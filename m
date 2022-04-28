@@ -2,146 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A3835139DD
-	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 18:30:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5BC865139F3
+	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 18:36:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346309AbiD1QeJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Apr 2022 12:34:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51140 "EHLO
+        id S236210AbiD1Qj4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Apr 2022 12:39:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40286 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350067AbiD1QeB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 12:34:01 -0400
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 882E96C967
-        for <devicetree@vger.kernel.org>; Thu, 28 Apr 2022 09:30:45 -0700 (PDT)
-Received: by mail-wr1-x42a.google.com with SMTP id q23so7506769wra.1
-        for <devicetree@vger.kernel.org>; Thu, 28 Apr 2022 09:30:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=KMHd5fXULhcXyAiUwOACLIbDiIltwFbphMx0p6+Bqpc=;
-        b=IlMhCUquK3302JRV+dnW8sisiWrBYKgke8Vcsjpan61x4HXqOUeMXJ1EvR38Yurf10
-         sH3zd7/SGwTh0oXmjtJex2nOM8ORWfbnqgOSuVpx+RfGFgl9ajfo7Zrnr/NS+iE85rdo
-         AbZw0oGHEj2zHmOx7VKJx+LiLoDE7DFsRbYmqhdp+PT29syjqX0ZbzDuSsUv9VnWlArf
-         yiLwTvcPA5Hrutqj/A4K+ZtU5FhV0nLSS2WWveJk6G/qWEyyMG5f0MI1fIjHglb+ABZW
-         aQYKaBd4jpDBZdZo+V7TTkDfL3hvrfgyidtMIZwDA96hZwWamWbxuLfBUmhDzf6YDSF8
-         SIxw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=KMHd5fXULhcXyAiUwOACLIbDiIltwFbphMx0p6+Bqpc=;
-        b=UE1czzYOpCqs+mxDrrj3936alu8JAh5jBpyuJF2WXbrLoKV8JPMxOEwrBgMiW8bNrP
-         ljYVHpSYhC4LHILka+IGIn8mYvdTt7Qw9+CkGNUPCCxAqxGs8jP0Lq8r3pQsqqpBg0C5
-         877vvlcWSZUMCV4c/q0ZboqvtQasxanACN6s1eYzFwBNI4zOTMkHxLAii7N2OUgfAMTq
-         jxCPXcQs6DfWwNGJEtXSPyuHVJ+5uWEjQMMC7UWohjAikM9mXHlbcrI4KcX7l6i4Kyor
-         3D8SUtmSXJnNhEVaxcxBti9STwb5hvwT7cW13U3pVhcJBkGAiUD7tZoWEyIuMM5jB/dZ
-         Ih5w==
-X-Gm-Message-State: AOAM531I7oR7ahykUw+SmhOmPLkK4Vvfxkl4HyfMpav+T/s866IY0rzK
-        fC9GsPMWNH93tnkZyFJZ4tCsvg==
-X-Google-Smtp-Source: ABdhPJyzdHvOPdycnfJ7BtT6tZsr29Nxggep8lbk5N3X/jFsaHxwjv7admh0kbjGdsP4qIdOkB5Ihg==
-X-Received: by 2002:a5d:6551:0:b0:20a:e23c:a7fa with SMTP id z17-20020a5d6551000000b0020ae23ca7famr12917464wrv.535.1651163444078;
-        Thu, 28 Apr 2022 09:30:44 -0700 (PDT)
-Received: from [192.168.0.33] (cpc78119-cwma10-2-0-cust590.7-3.cable.virginm.net. [81.96.50.79])
-        by smtp.gmail.com with ESMTPSA id j12-20020a5d564c000000b0020af46b0ff4sm247406wrw.37.2022.04.28.09.30.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 28 Apr 2022 09:30:43 -0700 (PDT)
-Message-ID: <cce2f4b7-3620-7a33-ef21-579eff9a7dac@linaro.org>
-Date:   Thu, 28 Apr 2022 17:30:42 +0100
+        with ESMTP id S229483AbiD1Qj4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 12:39:56 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28EC6888FA;
+        Thu, 28 Apr 2022 09:36:41 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id E64AEB82EAE;
+        Thu, 28 Apr 2022 16:36:39 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A0ADFC385AF;
+        Thu, 28 Apr 2022 16:36:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1651163798;
+        bh=5NZb3/YON7lOYIzTiyY5Y3HKC8KYwRKNiHRhLIgoZOg=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=WCvKqtEZJ8o8BiX3t+wq3lBaxr+UlZFG6vPZJ7219Fbi/VpAqrznu8B0Ee1+fM4MW
+         HaF1GBEu0W8ofA2nM3EnQaTn/yaTyVTiJVzEhBPEAaAH6UJGOM0usgBjmkoFi++sDu
+         Bu/hAbA1+1cT89fgNw9vQ1H5RDeo1GBSFyyyjgfST5agCD/PV/JnaZq8DyeJGckAyM
+         U6J2jieZWbDrLUcmf3eUQ/2IoEpdkANF8xOf36VPl48mRKUrgwwGOZUupvbdzwz//B
+         PoblzIRVMJGhWkGVWfG8U385eJW0R0fRCUJCJIZo8WxvnwPHxKstY69UbawU6uVl2w
+         R06oYd9NzQJFA==
+Received: by mail-pf1-f177.google.com with SMTP id y38so4708573pfa.6;
+        Thu, 28 Apr 2022 09:36:38 -0700 (PDT)
+X-Gm-Message-State: AOAM531ZfzweumK8gOaUh+3Adc65kWxrhxC8Ty8C4PsvESfj9m4arHxV
+        6dXQHlMWKnyhlDBCGrjErL4UOrfMczCESEKorw==
+X-Google-Smtp-Source: ABdhPJzcKZ0OAuC5ZcVAsgH/gXKAjIFW8NlQFPQY8Cah1gJd91WgIR8mzvN5Xix8YtdJqkfSA2NcM48JolV6qLi8EWk=
+X-Received: by 2002:a63:88c8:0:b0:3ab:1871:13b4 with SMTP id
+ l191-20020a6388c8000000b003ab187113b4mr21611277pgd.85.1651163798185; Thu, 28
+ Apr 2022 09:36:38 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH v13 2/9] mfd: qcom-spmi-pmic: expose the PMIC revid
- information to clients
-Content-Language: en-US
-To:     Lee Jones <lee.jones@linaro.org>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        sumit.semwal@linaro.org, amit.pundir@linaro.org,
-        john.stultz@linaro.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-References: <20220323162820.110806-1-caleb@connolly.tech>
- <20220323162820.110806-3-caleb@connolly.tech> <Yma4T1+AglaISe2l@google.com>
- <2763f103-6947-e431-cef5-e202c324d678@linaro.org>
- <Ymq9Su3UE5IYiHnI@google.com>
-From:   Caleb Connolly <caleb.connolly@linaro.org>
-In-Reply-To: <Ymq9Su3UE5IYiHnI@google.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+References: <20220423085319.483524-1-markuss.broks@gmail.com> <20220423085319.483524-3-markuss.broks@gmail.com>
+In-Reply-To: <20220423085319.483524-3-markuss.broks@gmail.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Thu, 28 Apr 2022 11:36:26 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+hBtuet-WShvvLA7vfdFdpGRSmv45bcqQhoediq7a7xQ@mail.gmail.com>
+Message-ID: <CAL_Jsq+hBtuet-WShvvLA7vfdFdpGRSmv45bcqQhoediq7a7xQ@mail.gmail.com>
+Subject: Re: [PATCH v5 2/5] dt-bindings: regulator: Add bindings for Silicon
+ Mitus SM5703 regulators
+To:     Markuss Broks <markuss.broks@gmail.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Mark Brown <broonie@kernel.org>
+Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        phone-devel@vger.kernel.org,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS
+        <devicetree@vger.kernel.org>, Hans de Goede <hdegoede@redhat.com>, Andy
+        Shevchenko <andy.shevchenko@gmail.com>," 
+        <~postmarketos/upstreaming@lists.sr.ht>,
+        Matti Vaittinen <mazziesaccount@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Sat, Apr 23, 2022 at 3:54 AM Markuss Broks <markuss.broks@gmail.com> wrote:
+>
+> This patch adds device-tree bindings for regulators on Silicon Mitus
+> SM5703 MFD.
+>
+> Signed-off-by: Markuss Broks <markuss.broks@gmail.com>
+> ---
+>  .../siliconmitus,sm5703-regulator.yaml        | 49 +++++++++++++++++++
+>  1 file changed, 49 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/regulator/siliconmitus,sm5703-regulator.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/regulator/siliconmitus,sm5703-regulator.yaml b/Documentation/devicetree/bindings/regulator/siliconmitus,sm5703-regulator.yaml
+> new file mode 100644
+> index 000000000000..75ff16b58000
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/regulator/siliconmitus,sm5703-regulator.yaml
+> @@ -0,0 +1,49 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/regulator/siliconmitus,sm5703-regulator.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Silicon Mitus SM5703 multi function device regulators
+> +
+> +maintainers:
+> +  - Markuss Broks <markuss.broks@gmail.com>
+> +
+> +description: |
+> +  SM5703 regulators node should be a sub node of the SM5703 MFD node. See SM5703 MFD
+> +  bindings at Documentation/devicetree/bindings/mfd/siliconmitus,sm5703.yaml
+> +  Regulator nodes should be named as USBLDO_<number>, BUCK, VBUS, LDO_<number>.
+> +  The definition for each of these nodes is defined using the standard
+> +  binding for regulators at Documentation/devicetree/bindings/regulator/regulator.txt.
+> +
+> +properties:
+> +  buck:
+> +    type: object
+> +    $ref: regulators.yaml#
 
+The correct file is regulator.yaml.
 
-On 28/04/2022 17:14, Lee Jones wrote:
-> On Wed, 27 Apr 2022, Caleb Connolly wrote:
->> On 25/04/2022 16:03, Lee Jones wrote:
->>>
->>> On Wed, 23 Mar 2022, Caleb Connolly wrote:
->>>> From: Caleb Connolly <caleb.connolly@linaro.org>
->>>>
->>>> Some PMIC functions such as the RRADC need to be aware of the PMIC
->>>> chip revision information to implement errata or otherwise adjust
->>>> behaviour, export the PMIC information to enable this.
->>>>
->>>> This is specifically required to enable the RRADC to adjust
->>>> coefficients based on which chip fab the PMIC was produced in,
->>>> this can vary per unique device and therefore has to be read at
->>>> runtime.
->>>>
->>>> Signed-off-by: Caleb Connolly <caleb.connolly@linaro.org>
->>>> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->>>> Tested-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->>>> ---
->>>>    drivers/mfd/qcom-spmi-pmic.c      | 261 +++++++++++++++++++-----------
->>>>    include/soc/qcom/qcom-spmi-pmic.h |  60 +++++++
->>>>    2 files changed, 231 insertions(+), 90 deletions(-)
->>>>    create mode 100644 include/soc/qcom/qcom-spmi-pmic.h
-> 
-> [...]
-> 
->>>> +			/*
->>>> +			 * If the base USID for this PMIC hasn't probed yet
->>>> +			 * but the secondary USID has, then we need to defer
->>>> +			 * the function driver so that it will attempt to
->>>> +			 * probe again when the base USID is ready.
->>>> +			 */
->>>> +			if (pmic_addr == function_parent_usid  - (ctx->num_usids - 1))
->>>
->>> Double "  ".
->> Ack
->>>
->>> Over-bracketing of statements with matching operands.
->> I don't think x - (y - 1) is equal to x - y - 1? Or am I misunderstanding you here?
-> 
-> Can you give me an example when this would be the case?
-According to the Python interpreter:
- >>> x=7
- >>> y=4
- >>> x - y - 1
-2
- >>> x - (y - 1)
-4
+That's indicated by this warning:
 
-C does also respect the first rule of BODMAS - parenthesis are always evaluated 
-first.
-> 
+schemas/regulator/regulators.yaml: ignoring, error parsing file
 
--- 
-Kind Regards,
-Caleb (they/he)
+It will fail worse than that once the example in the MFD file is added.
+
+Lee, Mark, I've said it before, but MFD plus child schemas need to be
+applied together. Maybe no one cares if dt_binding_check is broken on
+the MFD tree. The primary issue for me is transient failures during
+the merge window.
+
+Rob
