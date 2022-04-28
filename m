@@ -2,141 +2,249 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 22856512FB5
-	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 11:47:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D14951302A
+	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 11:48:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229814AbiD1Jsn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Apr 2022 05:48:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55474 "EHLO
+        id S229495AbiD1Jst (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Apr 2022 05:48:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56800 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347895AbiD1Jfe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 05:35:34 -0400
-Received: from mail-qk1-f171.google.com (mail-qk1-f171.google.com [209.85.222.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E15BF95486;
-        Thu, 28 Apr 2022 02:32:20 -0700 (PDT)
-Received: by mail-qk1-f171.google.com with SMTP id s4so3195791qkh.0;
-        Thu, 28 Apr 2022 02:32:20 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=XxrucvC/NAbMhAGxWgmP+P246fNaW3Hi7ZrfYXkN5TU=;
-        b=JUOn690e8hRPPVUa5vhEFKjj719h6ekxjI8U1Z3FWaiCTeTTRNgJaJUSXRSfjd801W
-         ZqUv3kzdBFk0Bpw0DWYz5XGfDSr5LaL3UqYNyU0qfp7F2FAG5M75OqWV/nnV1INIbCQ+
-         S1rdpqOhPbn7LwUejCGhKOhDAVyLyIWIx5eO6fKTEsnffubW6rXvkjP7R7+WgHWXeFxS
-         9unMT/kSvhSDccsPHudCWzoAtqI1fvkftoViIJrRqlUGEHi97+wMSfvMmYMkVNPALJyH
-         tQEXKX43khIrYspHEFXTSu30OdgeV/EYyuCJgH52v6+AN1Z8R+JKcjJvQm+3YbwEnGIa
-         Nv7Q==
-X-Gm-Message-State: AOAM5320tCIZu9PcPtp7VnIKaCuJIRgDAPoLnqRGNZq0XKaNcnJCwuRu
-        d1TkKKJLF3PuPkQgUp+aU0Gn3NFG8wklcg==
-X-Google-Smtp-Source: ABdhPJx4S8vUCcoVz/XiyfC23GM4Dmtj+/2Xg4SoVTsz2XZbbLg1QFb+OXVM2p5ZXg9xRJBla5oynQ==
-X-Received: by 2002:a05:620a:404e:b0:69e:a5db:22cb with SMTP id i14-20020a05620a404e00b0069ea5db22cbmr18894611qko.735.1651138339897;
-        Thu, 28 Apr 2022 02:32:19 -0700 (PDT)
-Received: from mail-yb1-f174.google.com (mail-yb1-f174.google.com. [209.85.219.174])
-        by smtp.gmail.com with ESMTPSA id i198-20020a379fcf000000b0069f869bcd49sm3039513qke.75.2022.04.28.02.32.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 28 Apr 2022 02:32:18 -0700 (PDT)
-Received: by mail-yb1-f174.google.com with SMTP id w17so7923266ybh.9;
-        Thu, 28 Apr 2022 02:32:18 -0700 (PDT)
-X-Received: by 2002:a25:d393:0:b0:648:4871:3b91 with SMTP id
- e141-20020a25d393000000b0064848713b91mr20880320ybf.506.1651138338366; Thu, 28
- Apr 2022 02:32:18 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220421221159.31729-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20220421221159.31729-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20220421221159.31729-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 28 Apr 2022 11:32:06 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdVrcT5iHUZUiCYmD12sS4F66BETBih36G7BzLTLuoQ9eQ@mail.gmail.com>
-Message-ID: <CAMuHMdVrcT5iHUZUiCYmD12sS4F66BETBih36G7BzLTLuoQ9eQ@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: interrupt-controller: Add Renesas RZ/G2L
- Interrupt Controller
-To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Cc:     Marc Zyngier <maz@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
+        with ESMTP id S1348113AbiD1Jgw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 05:36:52 -0400
+Received: from szxga01-in.huawei.com (szxga01-in.huawei.com [45.249.212.187])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B8C895486;
+        Thu, 28 Apr 2022 02:33:37 -0700 (PDT)
+Received: from dggpemm500021.china.huawei.com (unknown [172.30.72.54])
+        by szxga01-in.huawei.com (SkyGuard) with ESMTP id 4Kpr4l4pn6zfb5X;
+        Thu, 28 Apr 2022 17:32:39 +0800 (CST)
+Received: from dggpemm500006.china.huawei.com (7.185.36.236) by
+ dggpemm500021.china.huawei.com (7.185.36.109) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.24; Thu, 28 Apr 2022 17:33:35 +0800
+Received: from [10.174.178.55] (10.174.178.55) by
+ dggpemm500006.china.huawei.com (7.185.36.236) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.24; Thu, 28 Apr 2022 17:33:34 +0800
+Subject: Re: [PATCH v22 5/9] arm64: kdump: Reimplement crashkernel=X
+To:     Baoquan He <bhe@redhat.com>,
+        Catalin Marinas <catalin.marinas@arm.com>
+CC:     Thomas Gleixner <tglx@linutronix.de>,
+        Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
+        <x86@kernel.org>, "H . Peter Anvin" <hpa@zytor.com>,
+        <linux-kernel@vger.kernel.org>, Dave Young <dyoung@redhat.com>,
+        Vivek Goyal <vgoyal@redhat.com>,
+        Eric Biederman <ebiederm@xmission.com>,
+        <kexec@lists.infradead.org>, Will Deacon <will@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>
+        Frank Rowand <frowand.list@gmail.com>,
+        <devicetree@vger.kernel.org>, Jonathan Corbet <corbet@lwn.net>,
+        <linux-doc@vger.kernel.org>, Randy Dunlap <rdunlap@infradead.org>,
+        Feng Zhou <zhoufeng.zf@bytedance.com>,
+        Kefeng Wang <wangkefeng.wang@huawei.com>,
+        "Chen Zhou" <dingguo.cz@antgroup.com>,
+        John Donnelly <John.p.donnelly@oracle.com>,
+        Dave Kleikamp <dave.kleikamp@oracle.com>
+References: <20220414115720.1887-1-thunder.leizhen@huawei.com>
+ <20220414115720.1887-6-thunder.leizhen@huawei.com> <YmgzxsrrMlCDYsWp@arm.com>
+ <ee8daaa9-3258-e7e8-e5c4-c51dc9841580@huawei.com> <Ymk34NsIFqUgfk3b@arm.com>
+ <ae7211ad-e2ac-f5b1-5aa0-701802132e73@huawei.com> <YmlphvZVMsGfFksp@arm.com>
+ <YmoMvV1wzHT5V1aw@MiWiFi-R3L-srv> <YmoPhvkXQFZQOcIO@MiWiFi-R3L-srv>
+From:   "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
+Message-ID: <3fc41a94-4247-40f3-14e7-f11e3001ec33@huawei.com>
+Date:   Thu, 28 Apr 2022 17:33:33 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
+MIME-Version: 1.0
+In-Reply-To: <YmoPhvkXQFZQOcIO@MiWiFi-R3L-srv>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.174.178.55]
+X-ClientProxiedBy: dggems704-chm.china.huawei.com (10.3.19.181) To
+ dggpemm500006.china.huawei.com (7.185.36.236)
+X-CFilter-Loop: Reflected
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Prabhakar,
 
-On Fri, Apr 22, 2022 at 12:12 AM Lad Prabhakar
-<prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
-> Add DT bindings for the Renesas RZ/G2L Interrupt Controller.
->
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Thanks for your patch!
+On 2022/4/28 11:52, Baoquan He wrote:
+> On 04/28/22 at 11:40am, Baoquan He wrote:
+>> Hi Catalin, Zhen Lei,
+>>
+>> On 04/27/22 at 05:04pm, Catalin Marinas wrote:
+>>> On Wed, Apr 27, 2022 at 09:49:20PM +0800, Leizhen (ThunderTown) wrote:
+>>>> On 2022/4/27 20:32, Catalin Marinas wrote:
+>>>>> I think one could always pass a default command line like:
+>>>>>
+>>>>> 	crashkernel=1G,high crashkernel=128M,low
+>>>>>
+>>>>> without much knowledge of the SoC memory layout.
+>>>>
+>>>> Yes, that's what the end result is. The user specify crashkernel=128M,low
+>>>> and the implementation ensure the 128M low memory is allocated from DMA zone.
+>>>> We use arm64_dma_phys_limit as the upper limit for crash low memory.
+>>>>
+>>>> +#define CRASH_ADDR_LOW_MAX             arm64_dma_phys_limit
+>>>> +       unsigned long long crash_max = CRASH_ADDR_LOW_MAX;
+>>>> +       crash_base = memblock_phys_alloc_range(crash_size, CRASH_ALIGN,
+>>>>                                                crash_base, crash_max);
+>>>>
+>>>>> Another option is to only introduce crashkernel=Y,low and, when that is
+>>>>> passed, crashkernel=Y can go above arm64_dma_phys_limit. We won't need a
+>>>>> 'high' option at all:
+>>>>>
+>>>>> 	crashkernel=1G				- all within ZONE_DMA
+>>>>> 	crashkernel=1G crashkernel=128M,low	- 128M in ZONE_DMA
+>>>>> 						  1G above ZONE_DMA
+>>>>>
+>>>>> If ZONE_DMA is not present or it extends to the whole RAM, we can ignore
+>>>>> the 'low' option.
+>>>>
+>>>> I think although the code is hard to make generic, the interface is better to
+>>>> be relatively uniform. A user might have to maintain both x86 and arm64, and
+>>>> so on. It's not a good thing that the difference is too big.
+>>>
+>>> There will be some difference as the 4G limit doesn't always hold for
+>>> arm64 (though it's true in most cases). Anyway, we can probably simplify
+>>> things a bit while following the documented behaviour:
+>>>
+>>> 	crashkernel=Y		- current behaviour within ZONE_DMA
+>>> 	crashkernel=Y,high	- allocate from above ZONE_DMA
+>>> 	crashkernel=Y,low	- allocate within ZONE_DMA
+>>>
+>>> There is no fallback from crashkernel=Y.
+>>>
+>>> The question is whether we still want a default low allocation if
+>>> crashkernel=Y,low is missing but 'high' is present. If we add this, I
+>>> think we'd be consistent with kernel-parameters.txt for the 'low'
+>>> description. A default 'low' is probably not that bad but I'm tempted to
+>>> always mandate both 'high' and 'low'.
+>>
+>> Sorry to interrupt. Seems the ,high ,low and fallback are main concerns
+>> about this version. And I have the same concerns about them which comes
+>> from below points:
+>> 1) we may need to take best effort to keep ,high, ,low behaviour
+>> consistent on all ARCHes. Otherwise user/admin may be confused when they
+>> deploy/configure kdump on different machines of different ARCHes in the
+>> same LAB. I think we should try to avoid the confusion.
 
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/interrupt-controller/renesas,rzg2l-irqc.yaml
-> @@ -0,0 +1,131 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/interrupt-controller/renesas,rzg2l-irqc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Renesas RZ/G2L (and alike SoC's) Interrupt Controller (IA55)
-> +
-> +maintainers:
-> +  - Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> +  - Geert Uytterhoeven <geert+renesas@glider.be>
-> +
-> +description: |
-> +  IA55 performs various interrupt controls including synchronization for the external
-> +  interrupts of NMI, IRQ, and GPIOINT and the interrupts of the built-in peripheral
-> +  interrupts output by each IP. And it notifies the interrupt to the GIC
-> +    - IRQ sense select for 8 external interrupts, mapped to 8 GIC SPI interrupts
-> +    - GPIO pins used as external interrupt input pins, mapped to 32 GIC SPI interrupts
-> +    - NMI edge select (NMI is not treated as NMI exception and supports fall edge and
-> +      stand-up edge detection interrupts)
-> +
-> +allOf:
-> +  - $ref: /schemas/interrupt-controller.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - renesas,r9a07g044-irqc    # RZ/G2L
-> +      - const: renesas,rzg2l-irqc
-> +
-> +  '#interrupt-cells':
-> +    const: 2
+Yes, but for someone who is configuring crashkernel= for the first time, he
+needs to read doc to understand how to configure it. The doc can show the
+recommended default value of 'low' size.
 
-What is the meaning of the cells? IRQ number + flags, I assume?
-How are the numbers mapped, do you need a DT bindings header?
-Perhaps it would make sense to increase to 3 cells, so you can use
-one cell for the type (cfr. e.g. GIC_SPI), and the second for the
-plain index within the type?
+After commit 94fb93341822 ("x86/crash: Allocate enough low memory when crashkernel=high"),
+the default 'low' size doesn't make much sense anymore. The default size of swiotlb_size()
+is 64M, far less than 256M. And if user specify "swiotlb=", he can also adjust crashkernel=Y,low.
 
-The rest LGTM, but I'm not an interrupt expert, so I'm curious in
-hearing Marc's opinion.
 
-Gr{oetje,eeting}s,
++                * -swiotlb size: user-specified with swiotlb= or default.
+-               low_size = swiotlb_size_or_default() + (8UL<<20);
++               low_size = max(swiotlb_size_or_default() + (8UL<<20), 256UL<<20);
 
-                        Geert
+That means all ARCHs can explicit configure crashkernel=256M,low, instead of
+omitting it. This may be another way to avoid confusion. It's not hard for
+programmer-turned-user/admin. However, this requires us to forgo backward
+compatibility with the default size of 'low'.
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+>> 2) Fallback behaviour is important to our distros. The reason is we will
+>> provide default value with crashkernel=xxxM along kernel of distros. In
+>> this case, we hope the reservation will succeed by all means. The ,high
+>> and ,low is an option if customer likes to take with expertise.
+
+OK, I got it.
+
+>>
+>> After going through arm64 memory init code, I got below summary about
+>> arm64_dma_phys_limit which is the first zone's upper limit. I think we
+>> can make use of it to facilitate to simplify code.
+>> ================================================================================
+>>                         DMA                      DMA32                    NORMAL
+>> 1)Raspberry Pi4         0~1G                     3G~4G                    (above 4G)
+>> 2)Normal machine        0~4G                     0                        (above 4G)
+>> 3)Special machine       (above 4G)~MAX
+>> 4)No DMA|DMA32                                                            (above 4G)~MAX
+
+arm64_memblock_init()
+	reserve_crashkernel()        ---------------   0a30c53573b0 ("arm64: mm: Move reserve_crashkernel() into mem_init()")
+paging_init()                                       |
+	map_mem()                                   |
+unflatten_device_tree or ACPI                       |  ----  //Raspberry Pi4 get dma zone base on dtb or ACPI
+bootmem_init();                                     |      |
+	zone_sizes_init()                           |      |
+		of_dma_get_max_cpu_address          |  ----|
+		//Update arm64_dma_phys_limit       |  ----|
+	reserve_crashkernel()        <--------------  //Because we need arm64_dma_phys_limit to be updated above
+request_standard_resources()
+
+>>
+>> -------------------------------------------
+>>                       arm64_dma_phys_limit
+>> 1)Raspberry Pi4         1G                     
+>> 2)Normal machine        4G                     
+>> 3)Special machine       MAX
+>> 4)No DMA|DMA32          MAX
+>>
+>> Note: 3)Special machine means the machine's starting physical address is above 4G.
+>> WHile 4)No DMA|DMA32 means kernel w/o CONFIG_ZONE_DMA|DMA32, and has
+>> IOMMU hardware supporting.
+>> ===================================================================================
+>>
+>> I made a draft patch based on this patchset, please feel free to check and
+>> see if it's OK, or anything missing or wrongly understood. I removed
+>> reserve_crashkernel_high() and only keep reserve_crashkernel() and
+>> reserve_crashkernel_low() as the v21 did.
+> 
+> Sorry, forgot attaching the draft patch.
+> 
+> By the way, we can also have a simple version with basic ,high, ,low
+> support, no fallback. We can add fallback and other optimization later.
+> This can be plan B.
+
+Yes, That's what Catalin suggested also.
+
+Hi, Baoquan He:
+  Without optimization, the whole Patch 3-4 and 6-7 can be dropped.
+
+Process after abstraction:
+	if (!IS_ENABLED(CONFIG_ZONE_DMA) && !IS_ENABLED(CONFIG_ZONE_DMA32)) {
+		reserve_crashkernel()
+		//block mapping
+	} else {
+		//page mapping
+		reserve_crashkernel()
+	}
+
+------------ Simplified real-world process ---------
+arm64_memblock_init()
+	if (!IS_ENABLED(CONFIG_ZONE_DMA) && !IS_ENABLED(CONFIG_ZONE_DMA32))
+		reserve_crashkernel()
+paging_init()
+	map_mem()
+		if (!IS_ENABLED(CONFIG_ZONE_DMA) && !IS_ENABLED(CONFIG_ZONE_DMA32))
+			//block mapping
+		else
+			//page mapping
+unflatten_device_tree or ACPI
+bootmem_init();
+	zone_sizes_init()
+		of_dma_get_max_cpu_address
+		//Update arm64_dma_phys_limit
+	if (IS_ENABLED(CONFIG_ZONE_DMA) || IS_ENABLED(CONFIG_ZONE_DMA32))
+		reserve_crashkernel()
+
+
+> 
+> 
+
+-- 
+Regards,
+  Zhen Lei
