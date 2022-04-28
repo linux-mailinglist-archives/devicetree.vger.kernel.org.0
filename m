@@ -2,131 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8502E513566
-	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 15:39:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 76B11513569
+	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 15:40:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347487AbiD1NmT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Apr 2022 09:42:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51308 "EHLO
+        id S1347505AbiD1Nnz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Apr 2022 09:43:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53594 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231983AbiD1NmS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 09:42:18 -0400
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42EF3B36A1;
-        Thu, 28 Apr 2022 06:39:03 -0700 (PDT)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 23SDcqgS090391;
-        Thu, 28 Apr 2022 08:38:52 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1651153132;
-        bh=EJ4fnrD4BvK043dOMejGSN/ckd1dhvSUTS0L46UrWy4=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=GA+QPi5kHQgwVa92Cy+y684o2KGJ5EfCNk59oivvynmrBEntMT0dmBWGy1MJYdEcB
-         LhQx6486ACDJ6GNSi3OtzscCuZHThmpv6AspwvgIz0o+ixfoCEdzL36NUjIqRTlYAe
-         RZ2K5syaDUgT0l7WmIMRYu4AdAdgr/rJX1/E6GOk=
-Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 23SDcqMe056859
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 28 Apr 2022 08:38:52 -0500
-Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Thu, 28
- Apr 2022 08:38:51 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Thu, 28 Apr 2022 08:38:51 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 23SDcoQp072458;
-        Thu, 28 Apr 2022 08:38:51 -0500
-Date:   Thu, 28 Apr 2022 19:08:50 +0530
-From:   Rahul T R <r-ravikumar@ti.com>
-To:     Aradhya Bhatia <a-bhatia1@ti.com>, <y@uda0490373>
-CC:     Vignesh Raghavendra <vigneshr@ti.com>, Nishanth Menon <nm@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Linux ARM Kernel List <linux-arm-kernel@lists.infradead.org>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        Linux Kernel List <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 1/4] arm64: dts: ti: k3-am62-main: Add node for Display
- SubSystem
-Message-ID: <20220428133849.df7it6m6z35azy6x@uda0490373>
-References: <20220427090850.32280-1-a-bhatia1@ti.com>
- <20220427090850.32280-2-a-bhatia1@ti.com>
+        with ESMTP id S1347500AbiD1Nnx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 09:43:53 -0400
+Received: from mail-qk1-f178.google.com (mail-qk1-f178.google.com [209.85.222.178])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D805C4D61D;
+        Thu, 28 Apr 2022 06:40:33 -0700 (PDT)
+Received: by mail-qk1-f178.google.com with SMTP id y6so1424525qke.10;
+        Thu, 28 Apr 2022 06:40:33 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=WQVEW6hHabsKiVjgv0AyFA73xfhc/Jr7I3cTgYDmmq4=;
+        b=rg2ucvmfVkmD054Ym5hWbdO4n+Lt7F2zgWeTBS9WGEhHISdA1htRXdcBJkynqhpnJ3
+         kIVWFnuQF0Sz1SMwc+tikTC9XRl8jjoCtWrffAeNvx5W/26MLBGqjA+7pvmDgwL22Zog
+         byte4kvmTGD+Z4mUAPRfxb4O1HCYhxmlVS2fN462hslN8KBBF9nqQw2txZkRMqATCLPG
+         Y10EZilunAjT/WDxT9rl/twNyBU4YWRvAoduGLjQ0E+q6cRSVM+fxhNYpTLXZ8IXS3kL
+         lyuxmAzGOVFSgkXNgPt4jSI7ClEZIcVZeVPFX83GcItvTuHw8T3vOHc36XMwMzlPBQhq
+         FuSg==
+X-Gm-Message-State: AOAM530gQzDFb+WLtHJJAJzb+98yZEAn+TJukGSwxVAWY2Mg/K7D5RoI
+        mPj8eLQLpglob+g5VJVyVWK3+G+rn44oMw==
+X-Google-Smtp-Source: ABdhPJy4ca5CHU5ITofgvQ10F7amB/AgH0bjVoSV5XJoqHdb3zPChZB84MjtPwmncdYZ1W09kE7ePw==
+X-Received: by 2002:a37:ba06:0:b0:69c:114f:6f24 with SMTP id k6-20020a37ba06000000b0069c114f6f24mr19780484qkf.595.1651153231983;
+        Thu, 28 Apr 2022 06:40:31 -0700 (PDT)
+Received: from mail-yb1-f176.google.com (mail-yb1-f176.google.com. [209.85.219.176])
+        by smtp.gmail.com with ESMTPSA id u18-20020a05622a011200b002f38843e32asm10048qtw.35.2022.04.28.06.40.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 28 Apr 2022 06:40:31 -0700 (PDT)
+Received: by mail-yb1-f176.google.com with SMTP id y2so9069194ybi.7;
+        Thu, 28 Apr 2022 06:40:31 -0700 (PDT)
+X-Received: by 2002:a25:8087:0:b0:641:dd06:577d with SMTP id
+ n7-20020a258087000000b00641dd06577dmr30516611ybk.207.1651153231323; Thu, 28
+ Apr 2022 06:40:31 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20220427090850.32280-2-a-bhatia1@ti.com>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20220425170530.200921-1-biju.das.jz@bp.renesas.com> <20220425170530.200921-8-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20220425170530.200921-8-biju.das.jz@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Thu, 28 Apr 2022 15:40:19 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdX6yU9_BNugGb6Zumtv4r-9+S35Q6inFJKTYn6GA+t63Q@mail.gmail.com>
+Message-ID: <CAMuHMdX6yU9_BNugGb6Zumtv4r-9+S35Q6inFJKTYn6GA+t63Q@mail.gmail.com>
+Subject: Re: [PATCH 07/13] arm64: dts: renesas: rzg2ul-smarc: Enable i2c{0,1}
+ and wm8978
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Aradhya,
+On Mon, Apr 25, 2022 at 7:06 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
+> Enable i2c{0,1} on RZ/G2LC SMARC EVK by deleting respective
+> entries from board dts and adding pincontrol entries to the
+> soc-pinctrl dtsi. Also enable wm8978 audio codec.
+>
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-On 14:38-20220427, Aradhya Bhatia wrote:
-> Add DT node for the Display SubSystem on the am62x soc in cbass_main.
-> The DSS IP on this soc is compatible with the one on the am65x soc.
-> 
-> The DSS supports one each of video pipeline (vid) and video-lite
-> pipeline (vidl1). It outputs OLDI signals on one video port (vp1) and
-> DPI signals on another (vp2). The video ports are connected to the
-> pipelines via 2 identical overlay managers (ovr1 and ovr2).
-> 
-> Signed-off-by: Aradhya Bhatia <a-bhatia1@ti.com>
-> ---
->  arch/arm64/boot/dts/ti/k3-am62-main.dtsi | 30 ++++++++++++++++++++++++
->  1 file changed, 30 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
-> index eec8dae65e7c..ff21efa4ffad 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
-> @@ -515,6 +515,36 @@ cpts@3d000 {
->  		};
->  	};
->  
-> +	dss: dss@30200000 {
-> +		compatible = "ti,am65x-dss";
-> +
-> +		reg = <0x00 0x30200000 0x00 0x1000>, /* common */
-> +		      <0x00 0x30202000 0x00 0x1000>, /* vidl1 */
-> +		      <0x00 0x30206000 0x00 0x1000>, /* vid */
-> +		      <0x00 0x30207000 0x00 0x1000>, /* ovr1 */
-> +		      <0x00 0x30208000 0x00 0x1000>, /* ovr2 */
-> +		      <0x00 0x3020a000 0x00 0x1000>, /* vp1: Used for OLDI */
-> +		      <0x00 0x3020b000 0x00 0x1000>; /* vp2: Used as DPI Out */
-> +
-> +		reg-names = "common", "vidl1", "vid",
-> +			"ovr1", "ovr2", "vp1", "vp2";
-> +
-> +		power-domains = <&k3_pds 186 TI_SCI_PD_EXCLUSIVE>;
-> +
-> +		clocks = <&k3_clks 186 4>,
-> +			 <&k3_clks 186 0>,
-> +			 <&k3_clks 186 2>;
-> +
-> +		clock-names = "fck", "vp1", "vp2";
-> +
-> +		interrupts = <GIC_SPI 84 IRQ_TYPE_LEVEL_HIGH>;
-> +
-> +		dss_ports: ports {
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v5.19.
 
-address and size cells are added in dts as well, its not required here
+Gr{oetje,eeting}s,
 
-> +		};
-> +	};
-> +
->  	hwspinlock: spinlock@2a000000 {
->  		compatible = "ti,am64-hwspinlock";
->  		reg = <0x00 0x2a000000 0x00 0x1000>;
-> -- 
-> 2.36.0
-> 
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
