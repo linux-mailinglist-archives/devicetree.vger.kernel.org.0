@@ -2,93 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 81004513797
-	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 17:00:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 577EE5137FD
+	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 17:17:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348697AbiD1PEK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Apr 2022 11:04:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56996 "EHLO
+        id S1348949AbiD1PTx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Apr 2022 11:19:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43168 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348730AbiD1PD6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 11:03:58 -0400
-Received: from mail-pl1-x632.google.com (mail-pl1-x632.google.com [IPv6:2607:f8b0:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73E01B3C4C;
-        Thu, 28 Apr 2022 08:00:44 -0700 (PDT)
-Received: by mail-pl1-x632.google.com with SMTP id h12so4571782plf.12;
-        Thu, 28 Apr 2022 08:00:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :references:from:in-reply-to:content-transfer-encoding;
-        bh=Xzh71VOPVUr+FTLGg1rFRJRlpUUfpPpuTtbbxsOPXfI=;
-        b=O5bMQXXZowjnASkvRhCWoT+QMe8mgP+/12AIDAsuiTgxY4Nj4M71kFjRRl4/HvuX7n
-         iKd+G/OfoI31xR44jdpgxb+UxGmOPvjBbjJbg6IQh+CfSC1ahh/7SRr4jYt+kooa1S/k
-         ntgHw7A88EWdbHp0rib6grcjCLLI2lWNvbXSIvRo3eWXiTtQOvkU98+mKCqTmarQ5a6j
-         89tilDCVOHA10IV7O+ZQNiLHy6uev/Wl6S6ArorU06Ka6erpU5y+4grLqvOy2CimHT3s
-         m8ZnO+VLvQeQPdpsVUixFFcV70NnnAV2O0jWWDLxQLRMfVG97HWK/oTaX6dhBIpy7UoF
-         3RlA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=Xzh71VOPVUr+FTLGg1rFRJRlpUUfpPpuTtbbxsOPXfI=;
-        b=C2Vt0t9t+ZxPG45rGdFB9+coGXrGsYnEuthb3ygBiWHULQX5ZwjCYv1RznqE+Vvsy5
-         YzysSQyULS5iS4CAnNKin8e30KDNMi+QlLypdgR0nbMkLDD7e2rFNys1Xs4a6ZEsPVkr
-         +sjNuULNcYaorjstGNhQ0wkC1OyipmI9oakUuzwUyRuVfYu4//lQcyXzSYNxYOqoLudt
-         QwtH3pCF0hex0y5ckP1/7cBero9NFtNHLupBU9BpEIknTdfeRhInEbLyLxHalL5EfXVL
-         1hmT2HlDHOSMRiyH0/GhnU5YYMtj45a84E8gsTE6nfZhIavSsf2GxVGDj5p7ltrH0VLN
-         51tw==
-X-Gm-Message-State: AOAM5323kMcZW9k/CyicxVwWCHn01vez8ugOsa2/eGdeZVm+upjOYbM7
-        gXnsvNBa+eHJ3QoAp5URpaMam2z3PNU=
-X-Google-Smtp-Source: ABdhPJz8BQrt5G2ELPiXuQARmcj6SXgWvxmGYSF4ceGToAt3z56e7gcOGZXW/o5OYHsXQeAzQ/LZew==
-X-Received: by 2002:a17:902:f612:b0:14c:e978:f99e with SMTP id n18-20020a170902f61200b0014ce978f99emr34096174plg.23.1651158043945;
-        Thu, 28 Apr 2022 08:00:43 -0700 (PDT)
-Received: from ?IPV6:2600:8802:b00:4a48:e9ac:ce6:5da2:8724? ([2600:8802:b00:4a48:e9ac:ce6:5da2:8724])
-        by smtp.gmail.com with ESMTPSA id t63-20020a625f42000000b0050a7eaff8c9sm127923pfb.189.2022.04.28.08.00.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 28 Apr 2022 08:00:43 -0700 (PDT)
-Message-ID: <0650ab91-4102-77a4-c27a-f48e74c6bd8d@gmail.com>
-Date:   Thu, 28 Apr 2022 08:00:42 -0700
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH 2/2] dt-bindings: mmc: brcm,sdhci-brcmstb: cleanup example
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
+        with ESMTP id S1348948AbiD1PTx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 11:19:53 -0400
+Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::224])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30A5BAF1F7;
+        Thu, 28 Apr 2022 08:16:36 -0700 (PDT)
+Received: (Authenticated sender: herve.codina@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPA id 3D035E0002;
+        Thu, 28 Apr 2022 15:16:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1651158995;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=Xx4++H4H07qRaFWCLXjPyhd8z07yHU6qu47SxPJ2nTk=;
+        b=bRWuHYKpBmXDLWGTmxrKlbl0K8wnqqcDg9rtbyuOds0h5kSdlI/HLfObWrUQjiOOj7pWS/
+        IrxKrfQuxtxIrBbZmTtTfSZ+CJer8Ssv1y/QzxCCQ6ZWq5u+2IjDoQnyrdp7dWS49tYLFr
+        hvIH7vcXyraNVABqvZf3JRMBIn1yLP5qdbhV96fjuOuR9xORhRJjk2MNGdbvGoEQuTU6hJ
+        hnx1XPL0jvZX6yIAJWSRIclfd14jx23psIM2F66FvdtGAZ936iEXZuFEFnROCyHF0oozp5
+        92LnUnetlULaN1FMCGQN7YGmlJpYwLHlR0g7HEAzx306utmfi2CcwCR7cE8d5Q==
+From:   Herve Codina <herve.codina@bootlin.com>
+To:     Marek Vasut <marek.vasut+renesas@gmail.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Broadcom Kernel Team <bcm-kernel-feedback-list@broadcom.com>,
-        Al Cooper <alcooperx@gmail.com>, linux-mmc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-References: <20220428081817.35382-1-krzysztof.kozlowski@linaro.org>
- <20220428081817.35382-2-krzysztof.kozlowski@linaro.org>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-In-Reply-To: <20220428081817.35382-2-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>
+Cc:     Rob Herring <robh@kernel.org>, linux-pci@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Sergey Shtylyov <s.shtylyov@omp.ru>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Clement Leger <clement.leger@bootlin.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Herve Codina <herve.codina@bootlin.com>
+Subject: [PATCH v4 0/6] RZN1 USB Host support
+Date:   Thu, 28 Apr 2022 17:16:24 +0200
+Message-Id: <20220428151630.586009-1-herve.codina@bootlin.com>
+X-Mailer: git-send-email 2.35.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
+
+This series add support for the USB Host controllers available on
+RZN1 (r9a06g032) SOC.
+
+These USB Host controllers are PCI OHCI/EHCI controllers located
+behind a bridge.
+
+Regards,
+Herve
+
+Changes v2:
+- Convert bindings to json-schema
+- Update clocks description
+- Remove unneeded '.compatible = "renesas,pci-r9a06g032"'
+
+Changes v3:
+- Remove the unneeded patch that calls clk_bulk_prepare_enable()
+- Rework the device tree binding (conversion from .txt and RZ/N1 support)
+- Use the RZ/N1 SOCs family only in the driver match compatible string.
+- Enable PM and PM_GENERIC_DOMAIN for RZ/N1 and add the missing
+  '#power-domain-cells' in sysctrl node.
+
+Changes v4:
+- Remove patches related to PM enable and #pwower-domain-cells as they
+  will be handle out of this series.
+- Add Bob's reviewed-by on patch 1
+- Add Geert's reviewed by on patch 1 and 6
+- Rename clocks and make the 'resets' property optional on RZ/N1 family
+- Reword some commit logs and titles
+- Fix dst node location (sort by node names or unit addresses)
+- Fix the USB PHY node name
 
 
-On 4/28/2022 1:18 AM, Krzysztof Kozlowski wrote:
-> Cleanup indentation and order of entries in example DTS.  The most
-> important when reading the DTS are compatible and reg.  By convention
-> they are usually to first entries.  No functional change.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Herve Codina (6):
+  dt-bindings: PCI: pci-rcar-gen2: Convert bindings to json-schema
+  dt-bindings: PCI: renesas,pci-rcar-gen2: Add device tree support for
+    r9a06g032
+  PCI: rcar-gen2: Add RZ/N1 SOCs family compatible string
+  ARM: dts: r9a06g032: Add internal PCI bridge node
+  ARM: dts: r9a06g032: Add USB PHY DT support
+  ARM: dts: r9a06g032: Link the PCI USB devices to the USB PHY
 
-Acked-by: Florian Fainelli <f.fainelli@gmail.com>
+ .../devicetree/bindings/pci/pci-rcar-gen2.txt |  84 --------
+ .../bindings/pci/renesas,pci-rcar-gen2.yaml   | 188 ++++++++++++++++++
+ arch/arm/boot/dts/r9a06g032.dtsi              |  47 +++++
+ drivers/pci/controller/pci-rcar-gen2.c        |   1 +
+ 4 files changed, 236 insertions(+), 84 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/pci/pci-rcar-gen2.txt
+ create mode 100644 Documentation/devicetree/bindings/pci/renesas,pci-rcar-gen2.yaml
+
 -- 
-Florian
+2.35.1
+
