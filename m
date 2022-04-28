@@ -2,92 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 51331512D9E
-	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 10:01:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 66757512D9B
+	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 10:01:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244693AbiD1IDh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Apr 2022 04:03:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52514 "EHLO
+        id S1343725AbiD1IDv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Apr 2022 04:03:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53334 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343710AbiD1ID3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 04:03:29 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A89EB140A0;
-        Thu, 28 Apr 2022 01:00:15 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id BCDC361F44;
-        Thu, 28 Apr 2022 08:00:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id E8E82C385AF;
-        Thu, 28 Apr 2022 08:00:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1651132814;
-        bh=NhzxeaiPtX29P/RQ1EZRDWoQ85Ud+xmKkVGCgk4axRo=;
-        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-        b=oWYnxOyhqwu9+DDI3nBKx2MYv9VAjqFHY9gZOLYQ7YbVsFEJJ2BlN+VLth0CqxAyY
-         D0RIbVuZISIqam72WMojOrEbtuuJdeLTxWIr43XBLUrTSMM2wU/0RzZackNVo+znSv
-         R6xYwOZN1ILqAXOmQIokF4HdL9m9mlh+R8axr5NmhzBn9QeibT6HhjaCGKK1akD++I
-         NBTcWhpdT+1XK/N7PyiRmtUfZa7W7KdR4uGcZqGvrhrpcSrRk59ctb4UQJCVcsumFV
-         19vY9gHiNU+PyLvznLounOc8CRMJIXkVSL5tZc5i52KP24cLttIjQg4U8PR/1U/Rq6
-         L4srSq1YfbLYg==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id CC6A6F03848;
-        Thu, 28 Apr 2022 08:00:13 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+        with ESMTP id S1343727AbiD1IDn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 04:03:43 -0400
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 106859BADE
+        for <devicetree@vger.kernel.org>; Thu, 28 Apr 2022 01:00:29 -0700 (PDT)
+Received: by mail-ej1-x62a.google.com with SMTP id y3so7865901ejo.12
+        for <devicetree@vger.kernel.org>; Thu, 28 Apr 2022 01:00:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=hoO0z6ox/0MpErRBciBUS6KXmSs/8Ul8Shji/6D5s6Y=;
+        b=jZR3MnpAJ0mog/qurS4zjfNeTVjwu1R7dSeZynWmrRUlEZfEoirRMAK3v6lTFs5aVR
+         K/IrQ+bSRwQLSvEehuSzvgPTugl+v8t7cVjMD6NekHDNTbNmUGJIjGwK30LFkBdg48I/
+         mFEfqXI64C1SFJMPO3C7VNKI/9Xu8sN7YCfO/8g6Z6qTDHL/JaAXK9BKv+kdpnb5M7CQ
+         4MGS0X/j5eZ17YI1xOUk4alTxSK4qStpr7lX8GXDmhLB+qzov5iAeomdKLn5cFhbu5Pf
+         LIqJV62giHlfnTfPfbUC/Z2SeHwsjm1udPgr43A8zInqYCW2xVtBRqLK23maRIk07asU
+         s4PA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=hoO0z6ox/0MpErRBciBUS6KXmSs/8Ul8Shji/6D5s6Y=;
+        b=GhiqQiHevqTi9cUbvqPM2i8eA1l216gUn4nbNZzp/AyYLURzGOXnsbabbDDFZbmUu7
+         dp8qoOSWi3Ft2ISNnoEA6a4q2q9sy4f2AY30OXafm1xAWvilzg5LEu+nsWhx9izxydsR
+         JPcvbJud3aKbS5gI5d9jrpGNc2ohrAMJ4aXAbihKDPDQj316YX+MRaXvB9LBF/knZpCO
+         UQOfSKws052B4tPy/isR0oE4pJ++VKo6s67lQ4ckBqJCED8GlZo+3kqaSB0aVkqlZ5d8
+         pdMTyt5yROH77HZTBRaKvI3fC5of7mebQAm9mx7n0wQGGPCXc2XqM5B+OApZJlJBK4gO
+         cZNQ==
+X-Gm-Message-State: AOAM53112Q/6xBin6+pcf+o+uJfs+ev+aoa3pyjuw+LMmD7+WPMUzqUs
+        uaUbJFpg7+nObeDf7KFqQZwb3w==
+X-Google-Smtp-Source: ABdhPJxY0l6cGk55GfOnpY/HEIBGRKGps3VQWZY7889JQ0r8sNS6Iig2RknQXv0yzdCXTzT7tNj+Nw==
+X-Received: by 2002:a17:906:2294:b0:6f3:bd02:95a3 with SMTP id p20-20020a170906229400b006f3bd0295a3mr9758882eja.201.1651132827289;
+        Thu, 28 Apr 2022 01:00:27 -0700 (PDT)
+Received: from [192.168.0.161] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id h7-20020a1709060f4700b006e8d0746969sm7855860ejj.222.2022.04.28.01.00.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 28 Apr 2022 01:00:26 -0700 (PDT)
+Message-ID: <e41bad2a-3453-e5ce-2f92-b4655a5453f6@linaro.org>
+Date:   Thu, 28 Apr 2022 10:00:25 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH net-next v6 0/3] Add reset deassertion for Aspeed MDIO
-From:   patchwork-bot+netdevbpf@kernel.org
-Message-Id: <165113281383.18320.4392733597031620759.git-patchwork-notify@kernel.org>
-Date:   Thu, 28 Apr 2022 08:00:13 +0000
-References: <20220427035501.17500-1-dylan_hung@aspeedtech.com>
-In-Reply-To: <20220427035501.17500-1-dylan_hung@aspeedtech.com>
-To:     Dylan Hung <dylan_hung@aspeedtech.com>
-Cc:     robh+dt@kernel.org, joel@jms.id.au, andrew@aj.id.au,
-        andrew@lunn.ch, hkallweit1@gmail.com, linux@armlinux.org.uk,
-        davem@davemloft.net, kuba@kernel.org, pabeni@redhat.com,
-        p.zabel@pengutronix.de, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        netdev@vger.kernel.org, krzk+dt@kernel.org, BMC-SW@aspeedtech.com
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH v5 3/3] dt-bindings: clock: qcom,gcc-apq8064: split tsens
+ to the child node
+Content-Language: en-US
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Thara Gopinath <thara.gopinath@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        quic_tdas@quicinc.com
+References: <20220427125423.3166138-1-dmitry.baryshkov@linaro.org>
+ <20220427125423.3166138-4-dmitry.baryshkov@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220427125423.3166138-4-dmitry.baryshkov@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello:
-
-This series was applied to netdev/net-next.git (master)
-by Paolo Abeni <pabeni@redhat.com>:
-
-On Wed, 27 Apr 2022 11:54:58 +0800 you wrote:
-> Add missing reset deassertion for Aspeed MDIO bus controller. The reset
-> is asserted by the hardware when power-on so the driver only needs to
-> deassert it. To be able to work with the old DT blobs, the reset is
-> optional since it may be deasserted by the bootloader or the previous
-> kernel.
+On 27/04/2022 14:54, Dmitry Baryshkov wrote:
+> Split tsens properties to the child node of the gcc. This follows the
+> lead of ipq8064 (which also uses a separate node for tsens) and makes
+> device tree closer to other platforms, where tsens is a completely
+> separate device.
 > 
-> V6:
-> - fix merge conflict for net-next
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+>  .../bindings/clock/qcom,gcc-apq8064.yaml      | 49 +++++++++----------
+>  1 file changed, 22 insertions(+), 27 deletions(-)
 > 
-> [...]
+> diff --git a/Documentation/devicetree/bindings/clock/qcom,gcc-apq8064.yaml b/Documentation/devicetree/bindings/clock/qcom,gcc-apq8064.yaml
+> index bd7b04c75e50..3a8bb5a5b37f 100644
+> --- a/Documentation/devicetree/bindings/clock/qcom,gcc-apq8064.yaml
+> +++ b/Documentation/devicetree/bindings/clock/qcom,gcc-apq8064.yaml
+> @@ -23,47 +23,42 @@ description: |
+>  
+>  properties:
+>    compatible:
+> -    enum:
+> -      - qcom,gcc-apq8064
+> -      - qcom,gcc-msm8960
+> -
+> -  nvmem-cells:
+> -    minItems: 1
+> -    maxItems: 2
+> -    description:
+> -      Qualcomm TSENS (thermal sensor device) on some devices can
+> -      be part of GCC and hence the TSENS properties can also be part
+> -      of the GCC/clock-controller node.
+> -      For more details on the TSENS properties please refer
+> -      Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
+> -
+> -  nvmem-cell-names:
 
-Here is the summary with links:
-  - [net-next,v6,1/3] dt-bindings: net: add reset property for aspeed, ast2600-mdio binding
-    https://git.kernel.org/netdev/net-next/c/65e42ad98e22
-  - [net-next,v6,2/3] net: mdio: add reset control for Aspeed MDIO
-    https://git.kernel.org/netdev/net-next/c/1585362250fe
-  - [net-next,v6,3/3] ARM: dts: aspeed: add reset properties into MDIO nodes
-    https://git.kernel.org/netdev/net-next/c/a8db203db05c
+All these properties (and old compatible list) should be rather instead
+made deprecated:true. These bindings exists since some time, so it's not
+like refactoring during development.
 
-You are awesome, thank you!
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
+> -    minItems: 1
+>      items:
+> -      - const: calib
+> -      - const: calib_backup
+> +      - enum:
+> +          - qcom,gcc-apq8064
+> +          - qcom,gcc-msm8960
+> +      - const: syscon
+> +
+> +  thermal-sensor:
+> +    type: object
+>  
+> -  '#thermal-sensor-cells':
+> -    const: 1
+> +    allOf:
+> +      - $ref: /schemas/thermal/qcom-tsens.yaml#
+
+No need for allOf and type, just $ref and description.
+
+>  
+>  required:
+>    - compatible
+> -  - nvmem-cells
+> -  - nvmem-cell-names
+> -  - '#thermal-sensor-cells'
+>  
+>  unevaluatedProperties: false
 
 
+Best regards,
+Krzysztof
