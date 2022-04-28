@@ -2,73 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ED03F5132A3
-	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 13:41:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CCD7B5132CD
+	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 13:48:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345704AbiD1Lo6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Apr 2022 07:44:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51384 "EHLO
+        id S1345681AbiD1Lv5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Apr 2022 07:51:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42496 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345751AbiD1Lot (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 07:44:49 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41BC764705
-        for <devicetree@vger.kernel.org>; Thu, 28 Apr 2022 04:41:23 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id h29so846206lfj.2
-        for <devicetree@vger.kernel.org>; Thu, 28 Apr 2022 04:41:22 -0700 (PDT)
+        with ESMTP id S229814AbiD1Lvy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 07:51:54 -0400
+Received: from mail-pj1-x102e.google.com (mail-pj1-x102e.google.com [IPv6:2607:f8b0:4864:20::102e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B560C689AD
+        for <devicetree@vger.kernel.org>; Thu, 28 Apr 2022 04:48:38 -0700 (PDT)
+Received: by mail-pj1-x102e.google.com with SMTP id r9so4069581pjo.5
+        for <devicetree@vger.kernel.org>; Thu, 28 Apr 2022 04:48:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=Kg1LPvr7CNmKtgBxGFEj5Vun/S0D0osu3a6EbDsk4vU=;
-        b=d1JNUpPFqdyqSgIH+N042aPoeNpvS9ZLEC6QG5U+eqR3h5Zmi/PVfC3gPkCKQ60f7A
-         0Yx5bHBRs7fin0tsVwRwFH4CDrleT9xN8BKe/PhPaC2ZTZz/W6crxqRTWksPJSwXL5Xx
-         gwbfM4zRtlDy8Cf5zjNHXb/RmmE1iErae/abfiYJg+jcjNdnR4MaMJtq5IG8SEbliMJK
-         iUsLrbXwi+iQb4F6ZeRNungPHfcnv//Z5O8Cmg2LPFaEs/tgzwAGZ1isxo3ICOfmiuh7
-         D41A2wHxGlspwodH0ZtTRK5mkkRXbOhBousybyBvAIekpOEvZbXIwVhHhhfkckQM/7yr
-         ITpg==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=lKWQTGV4dh9PrDo1ht1APvD79N4/klGUKA1N6RBf/GQ=;
+        b=G3X+tE3No3MGFynBoTKdGdMfqY90HrjssPASkzvSVM3xa3pYXi6L5rl4CkSVGOR+z+
+         ro3lt+PwqdLf+fM7ZKxmcThJNKbQML0/enxTqS50zC4K2hTQcvOt5pxHARNiLVnp9go6
+         bL9CKShiWf9WpdXYz4FEgwYeQuM3jLB5igxWwvUMTRop1jMp7JKES0USBPgplpvHCD5B
+         WKJZlv0BZVL/6km57R0RivFmVwL+azaU9mWB+VXd92FVWxDUu4qoQzjXk+Kn6xj2ujXS
+         fktKKtimTGWrvth41l0ji77mmg+KgJDLWuaxWxQGc1mNEKUqApeJtr8jCBy1bqKY6L1k
+         Injw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=Kg1LPvr7CNmKtgBxGFEj5Vun/S0D0osu3a6EbDsk4vU=;
-        b=LxKzewhMxlvj7LK3ourQTXzLtIIHCqfu8RGsOeUrI6XDGSecnX6mViJWfsCDsODyhB
-         k/epJjIOH4OHrfUFKHwnSpRV/3jfu7coNUwzLeBP4wiEqKf5CxXFqggqlRlBzLcXYCcd
-         z1ablWc+UuDbMw/cj4VyQjywTW8eTv8QJOK49O8mEvLkdYNZg7vgrKEZ77G5paUVnfK+
-         iwsQgauZtIg7YMZOz28M9J00O1yRNrTTKO+76PYvxh5hlGgrEmsKjw8yumMpv/Tmw7Qv
-         ae6s4mljDQ7g11OHaXLurhtaGLokIxOc3lrrZoElctVLv/RQmY67DW58ts+3Dc2NezEj
-         iAYg==
-X-Gm-Message-State: AOAM531b+ES+PW/iDJfjNir2JRs7uUCIusAVehyTVvlGSXEsP1nOdqlU
-        4tVLEPFYZGG3K/PKuBw+a/5WLA==
-X-Google-Smtp-Source: ABdhPJzyBCYsLoS4Ofu7FN0YWK8ZuH4Wqpx92SQJlAdxRmLON+EdrAIAq9ehmwOURMT/g59BIoLN8A==
-X-Received: by 2002:a05:6512:3c93:b0:44b:4ba:c334 with SMTP id h19-20020a0565123c9300b0044b04bac334mr24006588lfv.27.1651146081363;
-        Thu, 28 Apr 2022 04:41:21 -0700 (PDT)
-Received: from eriador.lan ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id bu39-20020a05651216a700b004484a8cf5f8sm2338790lfb.302.2022.04.28.04.41.20
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=lKWQTGV4dh9PrDo1ht1APvD79N4/klGUKA1N6RBf/GQ=;
+        b=Lc77Dmf2q6OzesLWQYhRoNkMuDMzfWbCbZpO7GpMWukUCOAS+C9iNe+LMdroO/frK2
+         YkK45EtGMUBPuZcCpL/ndnw8p6QbwwAx6+EI5Rw1Qbss5S8cTsFuyn7xD1wIyw0ysiVJ
+         z1+keRvyEtjbHUa7hXSZlFBDAot5Nu1o6F5KcAW1WkkEb793ZXyL3PRlzEUJSW5f6s32
+         JM7dw3BRdrrT+ZhKHEED2JA18kec25GJbM1uthsYGIoZc0oi1Z3YRZY80VodrD2b2hJ1
+         cD5fp5tI0vlqtDdDDqbtXiUmqf0CWQhQt6K9Vn6qiwc0lX4xobXyBx41LvqHiOLHZsRR
+         11oQ==
+X-Gm-Message-State: AOAM532AUa3zjZPzMNCHyvYSmOei9JXfOHBpOSaGWF07CVh1GoA/KsuU
+        K494nFUc+1at6NZ5Eqh0tlr2Fg==
+X-Google-Smtp-Source: ABdhPJwfNlUrhObS4CNeZo5g5yFfXpFAPhyzjjlLtni25rafO48eOSIBrFIVd2rGxVJZL+uDhGhNbQ==
+X-Received: by 2002:a17:90b:3442:b0:1d9:8af8:2913 with SMTP id lj2-20020a17090b344200b001d98af82913mr20231216pjb.199.1651146518157;
+        Thu, 28 Apr 2022 04:48:38 -0700 (PDT)
+Received: from localhost ([122.162.207.161])
+        by smtp.gmail.com with ESMTPSA id k21-20020a63d855000000b003c14af5063fsm2654765pgj.87.2022.04.28.04.48.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 28 Apr 2022 04:41:21 -0700 (PDT)
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Stanimir Varbanov <svarbanov@mm-sol.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc:     Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v4 8/8] arm64: dts: qcom: replace deprecated perst-gpio with perst-gpios
-Date:   Thu, 28 Apr 2022 14:41:13 +0300
-Message-Id: <20220428114113.3411536-9-dmitry.baryshkov@linaro.org>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220428114113.3411536-1-dmitry.baryshkov@linaro.org>
-References: <20220428114113.3411536-1-dmitry.baryshkov@linaro.org>
+        Thu, 28 Apr 2022 04:48:37 -0700 (PDT)
+Date:   Thu, 28 Apr 2022 17:18:35 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Rex-BC Chen <rex-bc.chen@mediatek.com>
+Cc:     rafael@kernel.org, robh+dt@kernel.org, krzk+dt@kernel.org,
+        matthias.bgg@gmail.com, jia-wei.chang@mediatek.com,
+        roger.lu@mediatek.com, hsinyi@google.com, khilman@baylibre.com,
+        angelogioacchino.delregno@collabora.com, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+Subject: Re: [PATCH V4 07/14] cpufreq: mediatek: Add .get function
+Message-ID: <20220428114835.3ktimyz2tzzqdcbg@vireshk-i7>
+References: <20220422075239.16437-1-rex-bc.chen@mediatek.com>
+ <20220422075239.16437-8-rex-bc.chen@mediatek.com>
+ <20220425053548.72w2jh2g6lpzgz6g@vireshk-i7>
+ <64c690e8edf493ec0a4a14e0fdaad2d8e88e6da7.camel@mediatek.com>
+ <20220425100058.4kbvmpi63ygni6k5@vireshk-i7>
+ <078b1f9b39690da98cbd3c4528ba28374a097083.camel@mediatek.com>
+ <20220427031141.or2owu5wrh2cadfo@vireshk-i7>
+ <346736a339bed576817179ded3795d61f71fa06a.camel@mediatek.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <346736a339bed576817179ded3795d61f71fa06a.camel@mediatek.com>
+User-Agent: NeoMutt/20180716-391-311a52
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -78,164 +82,58 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Replace deprecated perst-gpio and wake-gpio properties with up-to-date
-perst-gpios and wake-gpios in the Qualcomm device trees.
+On 28-04-22, 19:16, Rex-BC Chen wrote:
+> Yes, the call stack will eventually go to __cpufreq_driver_target.
+> However, we can observe the mismatch between target_freq and policy-cur 
+> with a tiny difference.
+> e.g.
+> [ 553.065356] cpufreq: target for CPU 0: 500000 kHz, relation 0,
+> requested 500000 kHz
+> [ 553.066366] cpufreq: target_freq/policy->cur: 500000/499999 kHz
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- arch/arm64/boot/dts/qcom/apq8096-db820c.dts            | 6 +++---
- arch/arm64/boot/dts/qcom/ipq8074-hk01.dts              | 4 ++--
- arch/arm64/boot/dts/qcom/ipq8074-hk10.dtsi             | 4 ++--
- arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone.dtsi | 4 ++--
- arch/arm64/boot/dts/qcom/qcs404-evb.dtsi               | 2 +-
- arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi         | 2 +-
- arch/arm64/boot/dts/qcom/sc7280-idp.dtsi               | 2 +-
- arch/arm64/boot/dts/qcom/sdm845-db845c.dts             | 4 ++--
- 8 files changed, 14 insertions(+), 14 deletions(-)
+So you are trying to set the frequency to 500 MHz now, but policy->cur says it
+is 499 MHz.
 
-diff --git a/arch/arm64/boot/dts/qcom/apq8096-db820c.dts b/arch/arm64/boot/dts/qcom/apq8096-db820c.dts
-index f623db8451f1..9fb33850e46c 100644
---- a/arch/arm64/boot/dts/qcom/apq8096-db820c.dts
-+++ b/arch/arm64/boot/dts/qcom/apq8096-db820c.dts
-@@ -497,20 +497,20 @@ config {
- 
- &pcie0 {
- 	status = "okay";
--	perst-gpio = <&tlmm 35 GPIO_ACTIVE_LOW>;
-+	perst-gpios = <&tlmm 35 GPIO_ACTIVE_LOW>;
- 	vddpe-3v3-supply = <&wlan_en>;
- 	vdda-supply = <&vreg_l28a_0p925>;
- };
- 
- &pcie1 {
- 	status = "okay";
--	perst-gpio = <&tlmm 130 GPIO_ACTIVE_LOW>;
-+	perst-gpios = <&tlmm 130 GPIO_ACTIVE_LOW>;
- 	vdda-supply = <&vreg_l28a_0p925>;
- };
- 
- &pcie2 {
- 	status = "okay";
--	perst-gpio = <&tlmm 114 GPIO_ACTIVE_LOW>;
-+	perst-gpios = <&tlmm 114 GPIO_ACTIVE_LOW>;
- 	vdda-supply = <&vreg_l28a_0p925>;
- };
- 
-diff --git a/arch/arm64/boot/dts/qcom/ipq8074-hk01.dts b/arch/arm64/boot/dts/qcom/ipq8074-hk01.dts
-index b5e1eaa367bf..2d5ee337054c 100644
---- a/arch/arm64/boot/dts/qcom/ipq8074-hk01.dts
-+++ b/arch/arm64/boot/dts/qcom/ipq8074-hk01.dts
-@@ -54,12 +54,12 @@ &blsp1_uart5 {
- 
- &pcie0 {
- 	status = "okay";
--	perst-gpio = <&tlmm 61 0x1>;
-+	perst-gpios = <&tlmm 61 0x1>;
- };
- 
- &pcie1 {
- 	status = "okay";
--	perst-gpio = <&tlmm 58 0x1>;
-+	perst-gpios = <&tlmm 58 0x1>;
- };
- 
- &pcie_phy0 {
-diff --git a/arch/arm64/boot/dts/qcom/ipq8074-hk10.dtsi b/arch/arm64/boot/dts/qcom/ipq8074-hk10.dtsi
-index 07e670829676..3c0ac747de0e 100644
---- a/arch/arm64/boot/dts/qcom/ipq8074-hk10.dtsi
-+++ b/arch/arm64/boot/dts/qcom/ipq8074-hk10.dtsi
-@@ -44,12 +44,12 @@ &blsp1_uart5 {
- 
- &pcie0 {
- 	status = "ok";
--	perst-gpio = <&tlmm 58 0x1>;
-+	perst-gpios = <&tlmm 58 0x1>;
- };
- 
- &pcie1 {
- 	status = "ok";
--	perst-gpio = <&tlmm 61 0x1>;
-+	perst-gpios = <&tlmm 61 0x1>;
- };
- 
- &pcie_phy0 {
-diff --git a/arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone.dtsi b/arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone.dtsi
-index 3bb50cecd62d..b90000223d69 100644
---- a/arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone.dtsi
-@@ -195,8 +195,8 @@ &mmcc {
- 
- &pcie0 {
- 	status = "okay";
--	perst-gpio = <&tlmm 35 GPIO_ACTIVE_LOW>;
--	wake-gpio = <&tlmm 37 GPIO_ACTIVE_HIGH>;
-+	perst-gpios = <&tlmm 35 GPIO_ACTIVE_LOW>;
-+	wake-gpios = <&tlmm 37 GPIO_ACTIVE_HIGH>;
- 	vddpe-3v3-supply = <&wlan_en>;
- 	vdda-supply = <&pm8994_l28>;
- };
-diff --git a/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi b/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi
-index a80c578484ba..b067b9f95189 100644
---- a/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi
-+++ b/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi
-@@ -99,7 +99,7 @@ pms405_s3: s3 {
- &pcie {
- 	status = "okay";
- 
--	perst-gpio = <&tlmm 43 GPIO_ACTIVE_LOW>;
-+	perst-gpios = <&tlmm 43 GPIO_ACTIVE_LOW>;
- 
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&perst_state>;
-diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi b/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
-index dc17f2079695..461ba68fd939 100644
---- a/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
-@@ -362,7 +362,7 @@ &pcie1 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pcie1_clkreq_n>, <&ssd_rst_l>, <&pe_wake_odl>;
- 
--	perst-gpio = <&tlmm 2 GPIO_ACTIVE_LOW>;
-+	perst-gpios = <&tlmm 2 GPIO_ACTIVE_LOW>;
- 	vddpe-3v3-supply = <&pp3300_ssd>;
- };
- 
-diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-index ecbf2b89d896..8abf8077be11 100644
---- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-@@ -240,7 +240,7 @@ &ipa {
- 
- &pcie1 {
- 	status = "okay";
--	perst-gpio = <&tlmm 2 GPIO_ACTIVE_LOW>;
-+	perst-gpios = <&tlmm 2 GPIO_ACTIVE_LOW>;
- 
- 	vddpe-3v3-supply = <&nvme_3v3_regulator>;
- 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-index 28fe45c5d516..1aadd5504631 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-+++ b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-@@ -502,7 +502,7 @@ &mss_pil {
- 
- &pcie0 {
- 	status = "okay";
--	perst-gpio = <&tlmm 35 GPIO_ACTIVE_LOW>;
-+	perst-gpios = <&tlmm 35 GPIO_ACTIVE_LOW>;
- 	enable-gpio = <&tlmm 134 GPIO_ACTIVE_HIGH>;
- 
- 	vddpe-3v3-supply = <&pcie0_3p3v_dual>;
-@@ -520,7 +520,7 @@ &pcie0_phy {
- 
- &pcie1 {
- 	status = "okay";
--	perst-gpio = <&tlmm 102 GPIO_ACTIVE_LOW>;
-+	perst-gpios = <&tlmm 102 GPIO_ACTIVE_LOW>;
- 
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pcie1_default_state>;
+> We check the assignment of policy->cur could be either from
+> cpufreq_driver->get_intermediate or from cpufreq_driver->get.
+
+policy->cur is set only at two places, in your case:
+- CPUFREQ_POSTCHANGE
+- cpufreq_online()
+
+From what I understand, it is possible that cpufreq_online() is setting your
+frequency to 499999 (once at boot), but as soon as a frequency change has
+happened after that, policy->cur should be set to 500 MHz and you should see
+this problem only once.
+
+From CPUFREQ_POSTCHANGE notifier, we always set policy->cur from the table
+itself, which should be 500000 MHz.
+
+I wonder how you see policy->cur to be 499999 here. Does this happen only once ?
+Or repeatedly ?
+
+> But it is strange to have the frequency value like 499999 kHz.
+> Is the result of tiny frequency difference expected from your point of
+> view?
+
+Clock driver can give this value, that is fine.
+
+> > What do you mean by "voltage pulse" here? What actually happens which
+> > you want to avoid.
+> > 
+> 
+> When cpufreq is fixed to lowest opp, "voltage pulse" is a quick voltage
+> rising and falling phenomenon which can be observed if 'cpufreq_get' is
+> invoked.
+
+Do check if the call is reaching your driver's ->target_index(), it should be
+which it should not, ideally.
+
+> Thank you for sharing the correct information.
+> Is it possible to get frequency (API) a simple way, like get current
+> opp frequency?
+
+Lets dig/debug a bit further and fix this if a real problem exists.
+
 -- 
-2.35.1
-
+viresh
