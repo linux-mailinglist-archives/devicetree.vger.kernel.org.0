@@ -2,163 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DDF655136D5
-	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 16:26:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8DC235136E4
+	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 16:29:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348309AbiD1O3X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Apr 2022 10:29:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45614 "EHLO
+        id S1348382AbiD1Oc0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Apr 2022 10:32:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54886 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347045AbiD1O3V (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 10:29:21 -0400
-Received: from mail-oi1-f178.google.com (mail-oi1-f178.google.com [209.85.167.178])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A0883B57C;
-        Thu, 28 Apr 2022 07:26:06 -0700 (PDT)
-Received: by mail-oi1-f178.google.com with SMTP id m11so5471697oib.11;
-        Thu, 28 Apr 2022 07:26:06 -0700 (PDT)
+        with ESMTP id S1344321AbiD1OcX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 10:32:23 -0400
+Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE8F58F19A
+        for <devicetree@vger.kernel.org>; Thu, 28 Apr 2022 07:29:08 -0700 (PDT)
+Received: by mail-wm1-x32e.google.com with SMTP id v64-20020a1cac43000000b0038cfd1b3a6dso5385968wme.5
+        for <devicetree@vger.kernel.org>; Thu, 28 Apr 2022 07:29:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=dVispo4pExieFIRpZv+TTvYPHYnQEg3ZSO24r5MG9HI=;
+        b=XOGh55ExQa+tofFCzqAGnXzAnxRtFuFbXMauBFYn4C8d5jAFFKNLF1bPK707nqOghq
+         KknIBsABhTu2gShNJhMsd8kVuNuB86W6ZJ4iiLclp2Sb8zJ3/SOWkCODef0DqaTi/B88
+         WEMPV8Xd3PYNdTOndRnVZdCG1/niL0tU/Pi74KVZkcW1gzdEvOEe3BsIxA4Jh9eDFKSd
+         PXLgPRfcRJa0Ud8DqsOT3qwK6rgiyED7CDLDW9ffUj7SaDvLR3CA1agyzSTXXGT8eT1x
+         qzDavcoSdK39sDKZ/cwgTC6tqW3Qc7QMkPnKzkcDEuAq+tfHhZXV1/KACHsnlIzNvX40
+         rW/w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=zXubuPjx2pjAm7hx5cD02wC66amPUE4R4gLIeK6MStk=;
-        b=Hgi6UFYBOnfLbtFt3RVphkX7kyVyE0dWBeCF9+GFZIrwHTU07TyDVoycqB4ZceuCeC
-         /ITKNTjYNtQyhXdbWynMaYs1aExYGEF1YL37IPS/1XnsjYSSVuluPw6nB2MW2F2i7Oi9
-         l5bQYkYWY2erPfQ34x1MSGLoZ8eFIenJimtyHuUt6juNlAF3KRix/Lz/2a0FFM1tqBHC
-         BmUyMFkq2VJupPtVN07orIB2CErgPBitg3IsW0+ftJRa7s0hCN/Mv5COsV0EPkB8jC8O
-         QMrvdYwgDWwQKPgq10XLhwBxZ6AY3FYUDflhxjaBT7Wbl9bGg1Bkhyvofk/jGMofwFCI
-         JO8Q==
-X-Gm-Message-State: AOAM5332D4ayo57SKa5zR2EpXsFV4lR5oKJ1mRHQi41NBMIaso38Wxtw
-        FkWdKA1kATkpy7lVdLjY+w==
-X-Google-Smtp-Source: ABdhPJyGuPF0HOA0tIXbE2tN+YPk6d3A782bnuVeS4IVfJscr45WQBcONamKAO4aNHjqSxXj6dJ9ww==
-X-Received: by 2002:aca:1811:0:b0:2ef:3c0f:f169 with SMTP id h17-20020aca1811000000b002ef3c0ff169mr15678035oih.61.1651155965318;
-        Thu, 28 Apr 2022 07:26:05 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id x21-20020a4aea15000000b0035e9a8d6e58sm68641ood.26.2022.04.28.07.26.03
+        bh=dVispo4pExieFIRpZv+TTvYPHYnQEg3ZSO24r5MG9HI=;
+        b=zgdHutGH1W/lRarKoMUhWpQU4iPD+9SQSvuwgDf/ujRmZ3pLsfBzvjN5Zz4DnH+BR9
+         1OdBjiImgvplb1uNj97Uc9z2p0U/i/09iXYdp1dMvW/IXVtEs4kPqR/Cv5Idh2/QXaNm
+         b/umn37xAbLdFMcr+x5PJ+yaco6MYfwNW90+kzZHXi9OpCArPBAqQMH76SNPOqwdALpi
+         XFRvXe5peVEPYBN3CMGAwguoyfND9ROwkSSdkpG3coa7JuxBMsuZJ+i79czWNXZKtSA4
+         NvF+PWzJ4r1+jjdYRrKwp3f5R5ZHVs9CqlW20a8xrQkUhPttVIs2WbqosF+udlSuoPdd
+         2KYQ==
+X-Gm-Message-State: AOAM532bPv/EfIzTClvFiXFPo0jyYbUIKSwfT5MnM3Sh+0jDKwPFv3q+
+        PssTF+vlWxj1oDe6GDRB/ylrdA==
+X-Google-Smtp-Source: ABdhPJznWuJwk+EOYl5jsLHjb72Oqs8o0ksUJ6DBPP2VSQlw2fgQYnjSfMfqTwudzTMXYdd8eh3NYg==
+X-Received: by 2002:a7b:c844:0:b0:37b:b986:7726 with SMTP id c4-20020a7bc844000000b0037bb9867726mr32455609wml.160.1651156147203;
+        Thu, 28 Apr 2022 07:29:07 -0700 (PDT)
+Received: from google.com (49.222.77.34.bc.googleusercontent.com. [34.77.222.49])
+        by smtp.gmail.com with ESMTPSA id bs14-20020a056000070e00b0020af0a49c3bsm12585wrb.75.2022.04.28.07.29.06
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 28 Apr 2022 07:26:04 -0700 (PDT)
-Received: (nullmailer pid 2177702 invoked by uid 1000);
-        Thu, 28 Apr 2022 14:26:03 -0000
-Date:   Thu, 28 Apr 2022 09:26:03 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Detlev Casanova <detlev.casanova@collabora.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        bcm-kernel-feedback-list <bcm-kernel-feedback-list@broadcom.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-rpi-kernel <linux-rpi-kernel@lists.infradead.org>,
-        Masahiro Yamada <masahiroy@kernel.org>,
-        Michal Marek <michal.lkml@markovi.net>,
-        Nick Desaulniers <ndesaulniers@google.com>,
-        Nicolas Saenz Julienne <nsaenz@kernel.org>,
-        Olof Johansson <olof@lixom.net>, Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        arm-soc <soc@kernel.org>, Stefan Wahren <stefan.wahren@i2se.com>
-Subject: Re: [RFC PATCH v2 3/3] ARM: dto: Add bcm2711-rpi-7-inches-ts.dts
- overlay
-Message-ID: <Ymqj+2xBuHCmGUd/@robh.at.kernel.org>
-References: <20220427185243.173594-1-detlev.casanova@collabora.com>
- <20220427185243.173594-4-detlev.casanova@collabora.com>
- <YmmyvdjiG7s/Qil4@robh.at.kernel.org>
- <CAMuHMdXHRQOOrmUO1AyDXye+nnRtpzx7WHiC__whcg0aBtzAmw@mail.gmail.com>
+        Thu, 28 Apr 2022 07:29:06 -0700 (PDT)
+Date:   Thu, 28 Apr 2022 14:29:05 +0000
+From:   Sebastian Ene <sebastianene@google.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     linux-kernel@vger.kernel.org,
+        Derek Kiernan <derek.kiernan@xilinx.com>,
+        Dragan Cvetic <dragan.cvetic@xilinx.com>,
+        Arnd Bergmann <arnd@arndb.de>, devicetree@vger.kernel.org,
+        qperret@google.com, will@kernel.org, maz@kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Subject: Re: [PATCH v3 1/2] dt-bindings: vm-wdt: Add qemu,vm-watchdog
+ compatible
+Message-ID: <Ymqksfth+sj5JOWo@google.com>
+References: <20220425134204.149042-1-sebastianene@google.com>
+ <20220425134204.149042-2-sebastianene@google.com>
+ <YmbonypWxzZJbjQ1@robh.at.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAMuHMdXHRQOOrmUO1AyDXye+nnRtpzx7WHiC__whcg0aBtzAmw@mail.gmail.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+In-Reply-To: <YmbonypWxzZJbjQ1@robh.at.kernel.org>
+X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 28, 2022 at 08:44:17AM +0200, Geert Uytterhoeven wrote:
-> Hi Rob,
+On Mon, Apr 25, 2022 at 01:29:51PM -0500, Rob Herring wrote:
+> On Mon, Apr 25, 2022 at 01:42:05PM +0000, Sebastian Ene wrote:
+> > The stall detection mechanism allows to configure the expiration
+> > duration and the internal counter clock frequency measured in Hz.
+> > Add these properties in the schema.
+> > 
+> > Signed-off-by: Sebastian Ene <sebastianene@google.com>
+> > ---
+> >  .../devicetree/bindings/misc/vm-wdt.yaml      | 44 +++++++++++++++++++
+> >  1 file changed, 44 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/misc/vm-wdt.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/misc/vm-wdt.yaml b/Documentation/devicetree/bindings/misc/vm-wdt.yaml
+> > new file mode 100644
+> > index 000000000000..cb7665a0c5af
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/misc/vm-wdt.yaml
+> > @@ -0,0 +1,44 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/misc/vm-wdt.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: VM watchdog
+> > +
+> > +description: |
+> > +  This binding describes a CPU stall detector mechanism for virtual cpus.
+> > +
+> > +maintainers:
+> > +  - Sebastian Ene <sebastianene@google.com>
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - qemu,vm-watchdog
+> > +  clock:
+
+Hi,
+
 > 
-> On Wed, Apr 27, 2022 at 11:23 PM Rob Herring <robh@kernel.org> wrote:
-> > On Wed, Apr 27, 2022 at 02:52:43PM -0400, Detlev Casanova wrote:
-> > > Add a device tree overlay to support the official Raspberrypi 7" touchscreen for
-> > > the bcm2711 devices.
-> > >
-> > > The panel is connected on the DSI 1 port and uses the simple-panel
-> > > driver.
-> > >
-> > > The device tree also makes sure to activate the pixelvalve[0-4] CRTC modules
-> > >
-> > > Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
-> > > ---
-> > >  arch/arm/boot/dts/Makefile                    |   4 +
-> > >  arch/arm/boot/dts/overlays/Makefile           |   3 +
-> > >  .../dts/overlays/bcm2711-rpi-7-inches-ts.dts  | 125 ++++++++++++++++++
-> >
-> > .dtso is preferred. I think... It was discussed, but I never got an
-> > updated patch to switch.
+> 'clocks' is already a defined property and 'clock' is too close. It's 
+> also ambiguous what it is. 'clock-frequency' instead perhaps.
 > 
-> Unfortunately that switch indeed hasn't happened yet.
-> My main gripe with .dts for overlays is that you cannot know whether
-> it's an overlay or not without reading the file's contents.
-> Hence tools like make also cannot know, and you need to e.g. list
-> all files explicitly in a Makefile.
 
-See my reply in the other thread for that.
+Yes, I think 'clock-frequency' is a better name. I will update it.
 
-> > >  arch/arm64/boot/dts/broadcom/Makefile         |   4 +
-> > >  .../arm64/boot/dts/broadcom/overlays/Makefile |   3 +
-> > >  .../overlays/bcm2711-rpi-7-inches-ts.dts      |   2 +
-> > >  6 files changed, 141 insertions(+)
-> > >  create mode 100644 arch/arm/boot/dts/overlays/Makefile
-> > >  create mode 100644 arch/arm/boot/dts/overlays/bcm2711-rpi-7-inches-ts.dts
-> >
-> > A global (to arm) 'overlays' directory will create the same mess that we
-> > have in arch/arm/boot/dts/. IMO, first you should move all the Broadcom
-> > dts files to a 'broadcom' subdirectory like we have for arm64.
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    description: |
+> > +      The watchdog internal clock measure in Hz used to decrement the
+> > +      watchdog counter register on each tick.
+> > +      Defaults to 10 if unset.
+> > +  timeout-sec:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    description: |
+> > +      The watchdog expiration timeout measured in seconds.
+> > +      Defaults to 8 if unset.
+> > +
+> > +required:
+> > +  - compatible
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    watchdog {
+> > +      compatible = "qemu,vm-watchdog";
+> > +      clock = <10>;
+> > +      timeout-sec = <8>;
 > 
-> As I believe this display is not only used with real Raspberry Pi
-> devices, it makes sense to not have it a broadcom directory.
+> How does one access this 'hardware'?
+> 
 
-Then at a minimum 'bcm2711' in the name is not appropriate.
+This is a MMIO device.
 
-I'm doubtful that as-is the overlay would apply to boards outside of 
-RPi's. For this to work (well), there needs to be a connector node to 
-translate between connector resources and the base board resources. See 
-the recent mikrobus thread[2].
+> Why does this need to be in DT?
+> 
+> We have DT because h/w designers are incapable of making h/w 
+> discoverable. Why repeat that problem with s/w interfaces?
+> 
 
-> In fact it may be used on other architectures than arm, too, so I
-> think we need an arch-agnostic directory for overlays[1]?
+We need to have this one in the DT because in a secure VM we only load
+trusted DT components. 
 
-Probably so.
+> Rob
 
-Personally, I would prefer no DTs under /arch.
-
-> This may need remapping of labels. I'm aware the rpi infrastructure has
-> support for remapping labels when applying overlays during boot, but
-> AFAIK this is not yet supported by fdtoverlay (or perhaps by a fork?)?
-> Note that the remapping is also needed if you want to apply two
-> instances of the same overlay.
-
-First I've heard of label remapping... I have a lot of concerns about 
-using labels for overlays. For starters, with a flip of a switch (-@), 
-they all become an ABI when they were not previously. I think at a 
-minimum, we need an annotation so that a subset can be exported. 
-Anything that's an ABI, we should be documenting and reviewing.
-
-The requirement for overlays upstream is that they are applied at build 
-time to a base DT. Otherwise, we can't validate them completely. So if 
-there's a label remapping dependency on these, sounds like there is some 
-more work to do. The first being getting agreement that label remapping 
-is the right approach.
-
-Common label names or some remapping for targets kind of works, but 
-easily falls apart. For example, GPIO (or any provider with identifier 
-cells) numbering or SPI CS numbering would be different. 
-
-Rob
-
-[2] https://lore.kernel.org/all/YmFo+EntwxIsco%2Ft@robh.at.kernel.org/
+Thanks,
+Sebastian
