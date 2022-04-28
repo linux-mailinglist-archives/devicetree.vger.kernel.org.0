@@ -2,70 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 15360512C19
-	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 08:57:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C2821512C24
+	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 09:01:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244647AbiD1HBK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Apr 2022 03:01:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43704 "EHLO
+        id S239044AbiD1HEy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Apr 2022 03:04:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50024 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235345AbiD1HBK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 03:01:10 -0400
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6BEF4986C7
-        for <devicetree@vger.kernel.org>; Wed, 27 Apr 2022 23:57:56 -0700 (PDT)
-Received: by mail-ed1-x52e.google.com with SMTP id z19so4382520edx.9
-        for <devicetree@vger.kernel.org>; Wed, 27 Apr 2022 23:57:56 -0700 (PDT)
+        with ESMTP id S244679AbiD1HEx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 03:04:53 -0400
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D7FF75E4B
+        for <devicetree@vger.kernel.org>; Thu, 28 Apr 2022 00:01:38 -0700 (PDT)
+Received: by mail-ej1-x62b.google.com with SMTP id gh6so7736542ejb.0
+        for <devicetree@vger.kernel.org>; Thu, 28 Apr 2022 00:01:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=sFaIMBda9JLewaDbiv7MGBuoGzvAvL3L6Nf0tHYa4YY=;
-        b=ANMhEbqlmVF0tlEEAFs1g3/Ptqs/VZG+pyq97ZSVoIN7Lp5hJJoJkWxeHxGxM97gmY
-         fYRjAILZ/HLdzQo27dYt1hwje0qn72LUVNHPRIbCqe9mgMaUvOMV5cozhWHpzBMTbHiz
-         +eKyZYaGK2BqiWH7Gt4HtS1s/98/7Isb/P8/7Bl8DRsmmcYe8S50zPRSwrOBz/bcAjoG
-         iUNEnRlV4/it+lFSdScZh6Y+nFsIZObdonQ6IAoNFrZsFZ4zd1rv+Zk51Eimlo9qxNSS
-         sXhzDgnG6cJ2SV0LWdsnWunO5K2XUdNVLL+xcQp5VKEIJQl+t+Wm86ZhKd3Tg2p321mI
-         DG2A==
+        bh=cIRo4eRm8/HOc8fK9KT41e4OKvC8YfxOJdlSeDaeq5o=;
+        b=X6IDJLLpFIhHgsknq3BjKJakUmj7VGWlQAu7dQ5SAJhT9MaWeRZvl+80w7lu3xes9D
+         lNErreZIG+9nKd801PkQ5193nXWyAEjFiDekvCR65gn5UYOveVSLJuxS1E91H32s61jS
+         Z8cZBGmnDGbZvIek2Jro9ZcIu3PB6YWDcM33WIZ6pYtYicgSI+PH8i0JjCifcke378gB
+         kpGqhqr/iDcg17eKOclQHrBtiVk2HIQPS/P5tyl882iRT4do/6559CJMudAYiwZPCdLB
+         aWsOAqbJznKzm0hzUbcg+W/4yk5el8B53AV7gcXam5vE1GfoldmMaF52vxuTS8B/05y8
+         DkKQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=sFaIMBda9JLewaDbiv7MGBuoGzvAvL3L6Nf0tHYa4YY=;
-        b=irDY1z2m/4faNsCiabgc/kIH5q58sBHLRsDOueWFzDPgCz+DiyZUKDzOyFcEiJPtcv
-         hyL1ewhlia3ZvwNLFwGvngGA4I8CWU3tWBOyMQO+o2gfIShPh4bQe9R+d9Q0JOc3caJ4
-         YZG0jgxHPb1DcQelR5b83enFmPWsT6w4Xy/Jvu0CirKXmg0c4Go1dU992kvLtUAuafi9
-         h/XSOUh1vQxgTFTGTCobHNpb4GCWE72s1TSfjYYc+Pi8lRv5ERLbOgknzakMGALqTc9J
-         smvAH9ydhtuEVgMSVEp12gG9TRcH49m54b1rwxxt2JiNHu5CtHmLItfGX/BzGrUPeLc3
-         thCA==
-X-Gm-Message-State: AOAM530EJpwSKsqVDiMqBr69sVWEN5dfVVa9OXqW4xC1IIny+iyLmsod
-        4PtDY/TxoaEKfrIzCvYy6Uz+uA==
-X-Google-Smtp-Source: ABdhPJxx0WqusbtvoDLiDxt9yfgZl/iQzZUNIyyyGOVs1+Bo4EhvY/IEx/tipfIHIwybhyI+yVzcQQ==
-X-Received: by 2002:a05:6402:27d0:b0:41a:68bf:ff26 with SMTP id c16-20020a05640227d000b0041a68bfff26mr34521255ede.102.1651129075035;
-        Wed, 27 Apr 2022 23:57:55 -0700 (PDT)
+        bh=cIRo4eRm8/HOc8fK9KT41e4OKvC8YfxOJdlSeDaeq5o=;
+        b=XbzwQDWaRRDCHkZ3h5fRTSD4pxPyadPs86vORbhLlnX10JYDS/2X377r3oTgCi+J3a
+         eO2+hSDV/AqwFanI08K0r4ufDQtxlOj0IYX0LV6W/mTU3/H4MPQQ7O4S1zYOhnTdg9pw
+         koaB7AHPgrubnTTHKEZ/1shx6AtH61vxaShTVVNpxDC7xKL6lz/plIhKDZUuAza00QV4
+         ufj7jYJz7U9nEARW0+xwUf/YPMEZbq/YjUQyv9pdQMV6a+nhsvtU9dvDJDiBuwiNa7gW
+         JCZpKOyFshQ9xesY4sYkAGgg1caawwNRk+xLaZJ95qKHsEa/JaZPvEnjYQh0XKm3YFJJ
+         XU0g==
+X-Gm-Message-State: AOAM533sr780L7oQQGH/3zTbD4/hrPbcymiKXDCB1qkBYW+m6qlPtWze
+        hLculBkiGFvXuPUB51V8AAuexQ==
+X-Google-Smtp-Source: ABdhPJwUSd2HR/e60JZ2nB2tpSSx2XvQA9cJsa1MI5vH37faD8iJfshcMXsd492EqdPjrDNNlQC4OQ==
+X-Received: by 2002:a17:907:e88:b0:6ef:bce9:ff6a with SMTP id ho8-20020a1709070e8800b006efbce9ff6amr32013378ejc.275.1651129296774;
+        Thu, 28 Apr 2022 00:01:36 -0700 (PDT)
 Received: from [192.168.0.160] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id en9-20020a056402528900b00425ff691a32sm962548edb.0.2022.04.27.23.57.54
+        by smtp.gmail.com with ESMTPSA id p18-20020a1709065dd200b006f3b6c3bc8fsm3322091ejv.22.2022.04.28.00.01.35
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 27 Apr 2022 23:57:54 -0700 (PDT)
-Message-ID: <e54f612d-453e-f6cb-6236-4188669addb3@linaro.org>
-Date:   Thu, 28 Apr 2022 08:57:53 +0200
+        Thu, 28 Apr 2022 00:01:36 -0700 (PDT)
+Message-ID: <c126ca43-e9f9-0fcb-fa7e-2168625ae25f@linaro.org>
+Date:   Thu, 28 Apr 2022 09:01:35 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [PATCH 02/11] dt-bindings: arm: spe-pmu: convert to DT schema
+Subject: Re: [PATCH 03/11] dt-bindings: arm: sp810: convert to DT schema
 Content-Language: en-US
 To:     Andre Przywara <andre.przywara@arm.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
 Cc:     Liviu Dudau <liviu.dudau@arm.com>,
         Robin Murphy <robin.murphy@arm.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Will Deacon <will@kernel.org>
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
 References: <20220427112528.4097815-1-andre.przywara@arm.com>
- <20220427112528.4097815-3-andre.przywara@arm.com>
+ <20220427112528.4097815-4-andre.przywara@arm.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220427112528.4097815-3-andre.przywara@arm.com>
+In-Reply-To: <20220427112528.4097815-4-andre.przywara@arm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -79,27 +78,70 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 On 27/04/2022 13:25, Andre Przywara wrote:
 
-(...)
+Thank you for your patch. There is something to discuss/improve.
+
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clock-names:
+> +    items:
+> +      - const: refclk
+> +      - const: timclk
+> +      - const: apb_pclk
+> +
+> +  clocks:
+> +    items:
+> +      - description: reference clock
+> +      - description: timer clock
+> +      - description: APB register access clock
+> +
+> +  "#clock-cells":
+> +    const: 1
+> +
+> +  clock-output-names:
+> +    items:
+> +      - const: timerclken0
+> +      - const: timerclken1
+> +      - const: timerclken2
+> +      - const: timerclken3
+> +
+> +  assigned-clocks:
+> +    minItems: 4
+> +
+> +  assigned-clock-parents:
+> +    minItems: 4
+> +
 > +additionalProperties: false
 > +
 > +required:
 > +  - compatible
-> +  - interrupts
+> +  - reg
+> +  - "#clock-cells"
+
+clocks, clock-names, clock-output-names, assigned-clocks,
+assigned-clock-parents. They were all required and relaxing was not
+described/justified in commit msg.
+
 > +
 > +examples:
 > +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +    spe-pmu {
-> +        compatible = "arm,statistical-profiling-extension-v1";
-> +        interrupts = <GIC_PPI 05 IRQ_TYPE_LEVEL_HIGH>;
+> +    sysctl@20000 {
+> +            compatible = "arm,sp810", "arm,primecell";
 
+Indentation is messed up here. 4 spaces please.
 
-s/05/5/
+> +            reg = <0x020000 0x1000>;
+> +            clocks = <&v2m_refclk32khz>, <&v2m_refclk1mhz>, <&smbclk>;
+> +            clock-names = "refclk", "timclk", "apb_pclk";
+> +            #clock-cells = <1>;
+> +            clock-output-names = "timerclken0", "timerclken1",
+> +                                 "timerclken2", "timerclken3";
+> +            assigned-clocks = <&v2m_sysctl 0>, <&v2m_sysctl 1>,
+> +                              <&v2m_sysctl 3>, <&v2m_sysctl 3>;
+> +            assigned-clock-parents = <&v2m_refclk1mhz>, <&v2m_refclk1mhz>,
+> +                                     <&v2m_refclk1mhz>, <&v2m_refclk1mhz>;
+> +    };
 
-With that:
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
