@@ -2,71 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B3C625138FD
-	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 17:48:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 38E4451394E
+	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 18:01:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349624AbiD1Ptk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Apr 2022 11:49:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49650 "EHLO
+        id S239286AbiD1QEV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Apr 2022 12:04:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34032 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349611AbiD1Ptj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 11:49:39 -0400
-Received: from mail-oi1-x232.google.com (mail-oi1-x232.google.com [IPv6:2607:f8b0:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D01710D6
-        for <devicetree@vger.kernel.org>; Thu, 28 Apr 2022 08:46:24 -0700 (PDT)
-Received: by mail-oi1-x232.google.com with SMTP id l203so5794195oif.0
-        for <devicetree@vger.kernel.org>; Thu, 28 Apr 2022 08:46:24 -0700 (PDT)
+        with ESMTP id S233925AbiD1QEU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 12:04:20 -0400
+Received: from mail-oa1-x2f.google.com (mail-oa1-x2f.google.com [IPv6:2001:4860:4864:20::2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26A735B3EF
+        for <devicetree@vger.kernel.org>; Thu, 28 Apr 2022 09:01:05 -0700 (PDT)
+Received: by mail-oa1-x2f.google.com with SMTP id 586e51a60fabf-deb9295679so5577059fac.6
+        for <devicetree@vger.kernel.org>; Thu, 28 Apr 2022 09:01:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=72XL9ljJSCpyh1igSvHXXmfQ5X9YflA33+3u5daUI/Q=;
-        b=JkKdzH8ICBBnlV+qYWl8+s1yiWj+Sp1dn1ttrs9LsHxukOuc9DYojUjBHUB+7Emp+/
-         qnLwofWO/Afewv1Up5imHJxgSUuKQs03JD4f3os1S88QdSlGuAEBi2MNfRlRd41cT0dB
-         EY8x3xtSmZXYGE4R2FgC6lZB+I/VlOjR05czDNC6zsDQWfJ3VXFXEjWHEcDr4wcZAN2g
-         UtSDjrRcU4sQiv5m2qQT7+/Vh99fT+FNLVeWVgHL13jaOdcs5hCW9f+cPnQkitW8g+5W
-         +cxeGg5+nafAYEKN2h/zG39bmIF1pisSb1mRdxLAVBzhv/LFEMQR5LnBhUgnITIGMii/
-         jbVw==
+        d=chromium.org; s=google;
+        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
+         :subject:to:cc;
+        bh=tOYccIv/dT6lmvXGvSUCI6aiul062Sk35pOpE7VAjd0=;
+        b=Ex6/5YgKwQwxJsHj/38OfN7VSZ9xWcLyNJp10OPA38dwexhh4dcxsgFm+gKmIQrHT2
+         heh+TkkcCjKabzzpa1XHSCH0xJcaXx6BPHOTeQN/CgXhRQMW5IIcIYHBBSISK6LxBiL3
+         EeHbhgLa2oEI+/KrsNHKR84JcasSP1EXgv5SQ=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=72XL9ljJSCpyh1igSvHXXmfQ5X9YflA33+3u5daUI/Q=;
-        b=sC5fOXdDwUuBvED1sFt/AH+KaQOec99PbU4vSx3OzYsdWWt9pkkjPUjFBtVvuS3vwE
-         o3/Pwlz0qHNhTb/M4/U7qFUO4CTg0WVnrtKKEdCwqOBWO/4cvvk0IJ+Yw9BWC3oVJqkX
-         A9uGkWCWuhWlyG7dQLl+vmmKQbUCZo0YPyQ5AWUBIZi4H8rD0SukkoGzyStSSBD2LSly
-         Ep5TF5yQsTXRnQy+s37YEljwaqC8wq9fQuk0IVRlFmcD+3lL6r8fd2kH/Bis1O6/8qQj
-         860vu30E+yyYeX3o1x/ppH2+HOvBgVi7ja0dESQAcx+wi3mwC0P5U9+qDUNs0Ee9ytB7
-         99dQ==
-X-Gm-Message-State: AOAM530iHdEdbRl0xRlG12mUswVC2j1RoH0ybEXYhM9M99AhwJpKobaX
-        QOkervk2CSpDG16LO9YgpDpBng==
-X-Google-Smtp-Source: ABdhPJzPU4DOMgYNbXIxKVtSpLb8juWKCap4L4LCdbY0DlEyzGnlKd+RKNZOlV4GT7Oa3YDWgx8nEQ==
-X-Received: by 2002:a05:6808:1b14:b0:322:f715:a9d5 with SMTP id bx20-20020a0568081b1400b00322f715a9d5mr18929182oib.275.1651160783518;
-        Thu, 28 Apr 2022 08:46:23 -0700 (PDT)
-Received: from ripper ([2600:1700:a0:3dc8:205:1bff:fec0:b9b3])
-        by smtp.gmail.com with ESMTPSA id u3-20020a056870d58300b000e686d1389csm2146978oao.54.2022.04.28.08.46.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 28 Apr 2022 08:46:22 -0700 (PDT)
-Date:   Thu, 28 Apr 2022 08:48:17 -0700
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Andrew Halaney <ahalaney@redhat.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Johan Hovold <johan+linaro@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 3/3] soc: qcom: rpmhpd: add sc8280xp & sa8540p rpmh
- power-domains
-Message-ID: <Ymq3QfFnSplnEBRK@ripper>
-References: <20220426233508.1762345-1-bjorn.andersson@linaro.org>
- <20220426233508.1762345-4-bjorn.andersson@linaro.org>
- <20220427123835.hmfdu66ut3uvvtjp@halaneylaptop>
+        h=x-gm-message-state:mime-version:in-reply-to:references:from
+         :user-agent:date:message-id:subject:to:cc;
+        bh=tOYccIv/dT6lmvXGvSUCI6aiul062Sk35pOpE7VAjd0=;
+        b=Lf5WBBWHmUVT8JF0shzyKjnCpAlJZvYOCvmEM7f5ixS9RB9aQCD+WlnMxMMsT/vhc3
+         z6gWUIJlsoMgpw/mY/xTAAD5ybAHZunX6+BXMnCSEsSxdXcFD6BVNvdrPaK6CkT4dp9n
+         MQreBuvCzH0fvT/ZTSiyAwQ6MYhpivhHNR+E7ha3yPjdldAfju6OZluQAhCEnuqFH0Aq
+         juv9Xs2pqsqfW/pU8Hy7NNGGaUvAmaREO9U1kOCG9dKQAMZ2560xszQAXbC4Nch6XayV
+         SyWjisicYITyZwo3Z6BHJrVxmIOMD/oOT7f9DdoClRlYB5ob/8z8t3YCy1pbmJqSzVAV
+         VjPQ==
+X-Gm-Message-State: AOAM531r4eaAA+W490hX7xnpIpCZL2zTGp7DgqVFEhZG0LlnhegwSP3e
+        yTlGVVooKeFvN5E0cEU4AuY91CL9aV9VnXSbObeJ8w==
+X-Google-Smtp-Source: ABdhPJwz7phB9NwKRasAF0gUvyiUVCir6b2Zp6/7BWPtZe+hBjgdurJmcapC5XhcW8uNYD8Ad2BBWtxaRynOJC4aapY=
+X-Received: by 2002:a05:6870:558e:b0:e1:db7c:26aa with SMTP id
+ n14-20020a056870558e00b000e1db7c26aamr14473277oao.63.1651161664179; Thu, 28
+ Apr 2022 09:01:04 -0700 (PDT)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Thu, 28 Apr 2022 09:01:03 -0700
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220427123835.hmfdu66ut3uvvtjp@halaneylaptop>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+In-Reply-To: <29cc62aa-2995-ea96-0e7e-242f9ddaa87e@linaro.org>
+References: <20220427203026.828183-1-swboyd@chromium.org> <20220427203026.828183-2-swboyd@chromium.org>
+ <9248da4f-ca04-82f0-2840-a20797c25d2a@linaro.org> <CAE-0n52Y=3EEZ6qguNx=hM44BahbH3cuq7x6Bbe5HELKkkvrUw@mail.gmail.com>
+ <29cc62aa-2995-ea96-0e7e-242f9ddaa87e@linaro.org>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.10
+Date:   Thu, 28 Apr 2022 09:01:03 -0700
+Message-ID: <CAE-0n50ORzU52KpSPUNeEke-16uWo+Vn8WVhcdtdCc6WJiji6A@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: google,cros-ec-keyb: Introduce switches
+ only compatible
+To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     linux-kernel@vger.kernel.org, patches@lists.linux.dev,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Benson Leung <bleung@chromium.org>,
+        Guenter Roeck <groeck@chromium.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        "Joseph S. Barrera III" <joebar@chromium.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,133 +73,90 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed 27 Apr 05:38 PDT 2022, Andrew Halaney wrote:
+Quoting Krzysztof Kozlowski (2022-04-28 00:27:52)
+> On 28/04/2022 08:24, Stephen Boyd wrote:
+> > Quoting Krzysztof Kozlowski (2022-04-27 23:12:47)
+> >> On 27/04/2022 22:30, Stephen Boyd wrote:
+> >>> If the device is a detachable, this device won't have a matrix keyboard
+> >>> but it may have some button switches, e.g. volume buttons and power
+> >>> buttons. Let's add a more specific compatible for this type of device
+> >>> that indicates to the OS that there are only switches and no matrix
+> >>> keyboard present.
+> >>>
+> >>> Cc: Krzysztof Kozlowski <krzk@kernel.org>
+> >>> Cc: Rob Herring <robh+dt@kernel.org>
+> >>> Cc: <devicetree@vger.kernel.org>
+> >>> Cc: Benson Leung <bleung@chromium.org>
+> >>> Cc: Guenter Roeck <groeck@chromium.org>
+> >>> Cc: Douglas Anderson <dianders@chromium.org>
+> >>> Cc: Hsin-Yi Wang <hsinyi@chromium.org>
+> >>> Cc: "Joseph S. Barrera III" <joebar@chromium.org>
+> >>> Signed-off-by: Stephen Boyd <swboyd@chromium.org>
+> >>> ---
+> >>>  .../bindings/input/google,cros-ec-keyb.yaml          | 12 +++++++++---
+> >>>  1 file changed, 9 insertions(+), 3 deletions(-)
+> >>>
+> >>> diff --git a/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml b/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml
+> >>> index e8f137abb03c..edc1194d558d 100644
+> >>> --- a/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml
+> >>> +++ b/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml
+> >>> @@ -15,14 +15,20 @@ description: |
+> >>>    Google's ChromeOS EC Keyboard is a simple matrix keyboard
+> >>>    implemented on a separate EC (Embedded Controller) device. It provides
+> >>>    a message for reading key scans from the EC. These are then converted
+> >>> -  into keycodes for processing by the kernel.
+> >>> +  into keycodes for processing by the kernel. This device also supports
+> >>> +  switches/buttons like power and volume buttons.
+> >>>
+> >>>  allOf:
+> >>>    - $ref: "/schemas/input/matrix-keymap.yaml#"
+> >>>
+> >>>  properties:
+> >>>    compatible:
+> >>> -    const: google,cros-ec-keyb
+> >>> +    oneOf:
+> >>> +      - items:
+> >>> +          - const: google,cros-ec-keyb-switches
+> >>> +          - const: google,cros-ec-keyb
+> >>> +      - items:
+> >>> +          - const: google,cros-ec-keyb
+> >>>
+> >>
+> >> In such case matrix-keymap properties are not valid, right? The
+> >> matrix-keymap should not be referenced, IOW, you need to move allOf
+> >> below "required" and add:
+> >> if:not:...then: $ref: "/schemas/input/matrix-keymap.yaml
+> >>
+> >
+> > Eventually that sounds doable, but for the time being I want to merely
+> > add this new compatible in front of the original compatible so that
+> > updated DTBs still work with older kernels, i.e. the switches still get
+> > registered because the driver works with the original
+> > google,cros-ec-keyb compatible.
+>
+> The bindings here do not invalidate (break) existing DTBs. Old DTBs can
+> work in old way, we talk only about binding.
 
-> On Tue, Apr 26, 2022 at 04:35:08PM -0700, Bjorn Andersson wrote:
-> > The Qualcomm sc8280xp platform has 13 and the sa8540p platform has 11
-> > power-domains. Add compatibles, the typically used ones power-domains
-> > and their relevant active-only variants, to the RPMh power-domain
-> > driver.
-> > 
-> > Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> > ---
-> > 
-> > Changes since v1:
-> > - Added QPHY
-> > - Split out sa8540
-> > - Sorted the entries alphabetically
-> > 
-> >  drivers/soc/qcom/rpmhpd.c | 53 +++++++++++++++++++++++++++++++++++++++
-> >  1 file changed, 53 insertions(+)
-> > 
-> > diff --git a/drivers/soc/qcom/rpmhpd.c b/drivers/soc/qcom/rpmhpd.c
-> > index f8d28e902942..05fff8691ee3 100644
-> > --- a/drivers/soc/qcom/rpmhpd.c
-> > +++ b/drivers/soc/qcom/rpmhpd.c
-> > @@ -180,6 +180,36 @@ static struct rpmhpd mxc_ao = {
-> >  	.res_name = "mxc.lvl",
-> >  };
-> >  
-> > +static struct rpmhpd nsp = {
-> > +	.pd = { .name = "nsp", },
-> > +	.res_name = "nsp.lvl",
-> > +};
-> > +
-> > +static struct rpmhpd qphy = {
-> > +	.pd = { .name = "qphy", },
-> > +	.res_name = "qphy.lvl",
-> > +};
-> > +
-> > +/* SA8540P RPMH powerdomains */
-> > +static struct rpmhpd *sa8540p_rpmhpds[] = {
-> > +	[SC8280XP_CX] = &cx,
-> > +	[SC8280XP_CX_AO] = &cx_ao,
-> > +	[SC8280XP_EBI] = &ebi,
-> > +	[SC8280XP_GFX] = &gfx,
-> > +	[SC8280XP_LCX] = &lcx,
-> > +	[SC8280XP_LMX] = &lmx,
-> > +	[SC8280XP_MMCX] = &mmcx,
-> > +	[SC8280XP_MMCX_AO] = &mmcx_ao,
-> > +	[SC8280XP_MX] = &mx,
-> > +	[SC8280XP_MX_AO] = &mx_ao,
-> > +	[SC8280XP_NSP] = &nsp,
-> > +};
-> > +
-> > +static const struct rpmhpd_desc sa8540p_desc = {
-> > +	.rpmhpds = sa8540p_rpmhpds,
-> > +	.num_pds = ARRAY_SIZE(sa8540p_rpmhpds),
-> > +};
-> > +
-> >  /* SDM845 RPMH powerdomains */
-> >  static struct rpmhpd *sdm845_rpmhpds[] = {
-> >  	[SDM845_CX] = &cx_w_mx_parent,
-> > @@ -378,10 +408,33 @@ static const struct rpmhpd_desc sc8180x_desc = {
-> >  	.num_pds = ARRAY_SIZE(sc8180x_rpmhpds),
-> >  };
-> >  
-> > +/* SC8280xp RPMH powerdomains */
-> > +static struct rpmhpd *sc8280xp_rpmhpds[] = {
-> > +	[SC8280XP_CX] = &cx,
-> > +	[SC8280XP_CX_AO] = &cx_ao,
-> > +	[SC8280XP_EBI] = &ebi,
-> > +	[SC8280XP_GFX] = &gfx,
-> > +	[SC8280XP_LCX] = &lcx,
-> > +	[SC8280XP_LMX] = &lmx,
-> > +	[SC8280XP_MMCX] = &mmcx,
-> > +	[SC8280XP_MMCX_AO] = &mmcx_ao,
-> > +	[SC8280XP_MX] = &mx,
-> > +	[SC8280XP_MX_AO] = &mx_ao,
-> > +	[SC8280XP_NSP] = &nsp,
-> > +	[SC8280XP_QPHY] = &qphy,
-> > +};
-> 
-> The commit messages mention sc8280xp having 13 power domains, but here I
-> only count 12. Good chance I'm just missing something obvious (not
-> familiar with using power domains or rpmh) but I thought I should
-> highlight it in case that was an error.
-> 
+Ok, got it.
 
-The "typically used ones" in the commit message "captures" that. Further
-more _AO is just a variant of the non-_AO resources, referring to votes
-that should only apply when the CPU subsystem is not power collapsed.
+>
+> > Given that none of the properties are
+> > required for google,cros-ec-keyb it didn't seem necessary to make having
+> > the google,cros-ec-keyb-switches compatible deny the existence of the
+> > matrix-keymap properties.
+>
+> Maybe I misunderstood the commit msg. Are the
+> "google,cros-ec-keyb-switches" devices coming with matrix keyboard or
+> not? I mean physically.
+>
 
-So what you have in this list is 10 power domains.
+The answer is "sometimes, physically". Sometimes there are switches like
+volume buttons and power buttons and also a matrix keyboard (convertible
+and clamshells). Other times there are volume buttons and power buttons
+and no matrix keyboard (detachable). This device node represents both
+the keyboard and the switches.
 
-I added defines for all 13 in the DT binding, so comparing with that
-you'll see that the missing ones are DDR, MSS and XO. I don't see how we
-would use these from Linux today. So let's postpone adding them until we
-have a use case.
-
-> I attempted to find where this sort of thing is defined downstream, but
-> failed :(
-> 
-
-In direwolf-regulators.dtsi you'll find entries with qcom,resource-name
-of "*.lvl". These resource names are matches against the Command DB
-registry, which you can dump using the cmd-db file in debugfs.
-
-Regards,
-Bjorn
-
-> Thanks,
-> Andrew
-> 
-> > +
-> > +static const struct rpmhpd_desc sc8280xp_desc = {
-> > +	.rpmhpds = sc8280xp_rpmhpds,
-> > +	.num_pds = ARRAY_SIZE(sc8280xp_rpmhpds),
-> > +};
-> > +
-> >  static const struct of_device_id rpmhpd_match_table[] = {
-> > +	{ .compatible = "qcom,sa8540p-rpmhpd", .data = &sa8540p_desc },
-> >  	{ .compatible = "qcom,sc7180-rpmhpd", .data = &sc7180_desc },
-> >  	{ .compatible = "qcom,sc7280-rpmhpd", .data = &sc7280_desc },
-> >  	{ .compatible = "qcom,sc8180x-rpmhpd", .data = &sc8180x_desc },
-> > +	{ .compatible = "qcom,sc8280xp-rpmhpd", .data = &sc8280xp_desc },
-> >  	{ .compatible = "qcom,sdm845-rpmhpd", .data = &sdm845_desc },
-> >  	{ .compatible = "qcom,sdx55-rpmhpd", .data = &sdx55_desc},
-> >  	{ .compatible = "qcom,sdx65-rpmhpd", .data = &sdx65_desc},
-> > -- 
-> > 2.35.1
-> > 
-> 
+Unfortunately the EC firmware on older Chromebooks that don't have a
+matrix keyboard still report that they have some number of columns and
+rows. I was hoping to make this fully dynamic by querying the EC but
+that isn't possible.
