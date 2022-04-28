@@ -2,143 +2,219 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 536C1513996
+	by mail.lfdr.de (Postfix) with ESMTP id 0B3A6513995
 	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 18:20:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349894AbiD1QXF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Apr 2022 12:23:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49076 "EHLO
+        id S1349900AbiD1QXC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Apr 2022 12:23:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49022 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349912AbiD1QXE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 12:23:04 -0400
-Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id C29A35D1AA;
-        Thu, 28 Apr 2022 09:19:49 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="5.91,295,1647270000"; 
-   d="scan'208";a="119526903"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie6.idc.renesas.com with ESMTP; 29 Apr 2022 01:19:49 +0900
-Received: from localhost.localdomain (unknown [10.226.92.196])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 2E6FA4010DC0;
-        Fri, 29 Apr 2022 01:19:45 +0900 (JST)
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH v2 3/3] arm64: dts: renesas: rzg2ul-smarc: Enable USB2.0 support
-Date:   Thu, 28 Apr 2022 17:19:32 +0100
-Message-Id: <20220428161932.20370-4-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220428161932.20370-1-biju.das.jz@bp.renesas.com>
-References: <20220428161932.20370-1-biju.das.jz@bp.renesas.com>
+        with ESMTP id S1349882AbiD1QXC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 12:23:02 -0400
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 394035D1B6
+        for <devicetree@vger.kernel.org>; Thu, 28 Apr 2022 09:19:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1651162786;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=vq8RC9NK7ljExipax9OnZpDPFBAwe7JTpMhljndmQRY=;
+        b=cM0oEUH8AtVPBpQ2kISTpmcxqOc9F2y8HTVj3jHYEcu6l+pXCbELA4HvLu/Azmwzq2aH1H
+        XQJcY1YhdE1aVlDA0acSKvUmWcP4OoxAAXiPO3puxpJNErjM3h7imsO0QMV/XHJImGeZ0g
+        it6096EDUV4H2KRkTcmW48rQbfSj3zA=
+Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com
+ [209.85.160.200]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-68-iOYLc2WKNQSndLywEnLcuQ-1; Thu, 28 Apr 2022 12:19:44 -0400
+X-MC-Unique: iOYLc2WKNQSndLywEnLcuQ-1
+Received: by mail-qt1-f200.google.com with SMTP id e5-20020ac85985000000b002f38cf06674so1113141qte.17
+        for <devicetree@vger.kernel.org>; Thu, 28 Apr 2022 09:19:44 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=vq8RC9NK7ljExipax9OnZpDPFBAwe7JTpMhljndmQRY=;
+        b=MhiSJkfHbJOvhZicJg6ci/tWNksaAc3Pgq22Mk3rnf5yDbPlWogP+CSGR1fEb3EUgG
+         a8IWY8vxl52pvdSRfpZaayRh4lP1YeviyX+/jsjyQayzoY8KLY8yAiVRxiQcKOpIch+9
+         Jf/ibS+V0gPv+VmsxPB7nAakMVJdosmZq8rZRDFQofs0Q5vVbRBrdI7gGAM+1JN5pTLK
+         iKE7JD6lXYHx7cQe3sTfgLqSa5JjhmA3nmwfnOKXRz18hGcOPzJ8+/B9lLQC8b6yTjlQ
+         khlLNsZHwkBLJIJk3yeHuQmJ3UAix5kZE1GyTnfCsm1/XpF0CeFQNOXwyyQ5EE7kBZq+
+         spiA==
+X-Gm-Message-State: AOAM531usE6GJf8s5XrSw8bB9dCQLebPJly3pVTovz+OCDW0hsBEtu+g
+        uOYw2n9uGv7ilyW+8EsHyYfKF4ayYmBmbhzcokyu+NUqoCQg9MZt7rlvkbxxyyESFtB+RJJiVDB
+        D0j5jv9ZBftF14jsEA8I6UQ==
+X-Received: by 2002:a05:620a:2697:b0:699:cca7:f8b2 with SMTP id c23-20020a05620a269700b00699cca7f8b2mr20439366qkp.738.1651162784401;
+        Thu, 28 Apr 2022 09:19:44 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJz89Zo8kITvvA07ZT8XsQZFb2wfFp3rudks9OXnYWZ3EAYrQs+0vm9GqeZHvObJXgK9VgXxMg==
+X-Received: by 2002:a05:620a:2697:b0:699:cca7:f8b2 with SMTP id c23-20020a05620a269700b00699cca7f8b2mr20439351qkp.738.1651162784135;
+        Thu, 28 Apr 2022 09:19:44 -0700 (PDT)
+Received: from halaneylaptop (068-184-200-203.res.spectrum.com. [68.184.200.203])
+        by smtp.gmail.com with ESMTPSA id o14-20020a05622a138e00b002f335c3dbf2sm197795qtk.37.2022.04.28.09.19.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 28 Apr 2022 09:19:43 -0700 (PDT)
+Date:   Thu, 28 Apr 2022 11:19:41 -0500
+From:   Andrew Halaney <ahalaney@redhat.com>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Johan Hovold <johan+linaro@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 3/3] soc: qcom: rpmhpd: add sc8280xp & sa8540p rpmh
+ power-domains
+Message-ID: <20220428161941.mp53l4puglpei6kt@halaneylaptop>
+References: <20220426233508.1762345-1-bjorn.andersson@linaro.org>
+ <20220426233508.1762345-4-bjorn.andersson@linaro.org>
+ <20220427123835.hmfdu66ut3uvvtjp@halaneylaptop>
+ <Ymq3QfFnSplnEBRK@ripper>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Ymq3QfFnSplnEBRK@ripper>
+X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_NONE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable USB2.0 Host/Device support on RZ/G2L SMARC EVK by
-adding usb{0,1} pincontrol entries to the soc-pinctrl dtsi
-and deleting the nodes which disabled it.
+On Thu, Apr 28, 2022 at 08:48:17AM -0700, Bjorn Andersson wrote:
+> On Wed 27 Apr 05:38 PDT 2022, Andrew Halaney wrote:
+> 
+> > On Tue, Apr 26, 2022 at 04:35:08PM -0700, Bjorn Andersson wrote:
+> > > The Qualcomm sc8280xp platform has 13 and the sa8540p platform has 11
+> > > power-domains. Add compatibles, the typically used ones power-domains
+> > > and their relevant active-only variants, to the RPMh power-domain
+> > > driver.
+> > > 
+> > > Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> > > ---
+> > > 
+> > > Changes since v1:
+> > > - Added QPHY
+> > > - Split out sa8540
+> > > - Sorted the entries alphabetically
+> > > 
+> > >  drivers/soc/qcom/rpmhpd.c | 53 +++++++++++++++++++++++++++++++++++++++
+> > >  1 file changed, 53 insertions(+)
+> > > 
+> > > diff --git a/drivers/soc/qcom/rpmhpd.c b/drivers/soc/qcom/rpmhpd.c
+> > > index f8d28e902942..05fff8691ee3 100644
+> > > --- a/drivers/soc/qcom/rpmhpd.c
+> > > +++ b/drivers/soc/qcom/rpmhpd.c
+> > > @@ -180,6 +180,36 @@ static struct rpmhpd mxc_ao = {
+> > >  	.res_name = "mxc.lvl",
+> > >  };
+> > >  
+> > > +static struct rpmhpd nsp = {
+> > > +	.pd = { .name = "nsp", },
+> > > +	.res_name = "nsp.lvl",
+> > > +};
+> > > +
+> > > +static struct rpmhpd qphy = {
+> > > +	.pd = { .name = "qphy", },
+> > > +	.res_name = "qphy.lvl",
+> > > +};
+> > > +
+> > > +/* SA8540P RPMH powerdomains */
+> > > +static struct rpmhpd *sa8540p_rpmhpds[] = {
+> > > +	[SC8280XP_CX] = &cx,
+> > > +	[SC8280XP_CX_AO] = &cx_ao,
+> > > +	[SC8280XP_EBI] = &ebi,
+> > > +	[SC8280XP_GFX] = &gfx,
+> > > +	[SC8280XP_LCX] = &lcx,
+> > > +	[SC8280XP_LMX] = &lmx,
+> > > +	[SC8280XP_MMCX] = &mmcx,
+> > > +	[SC8280XP_MMCX_AO] = &mmcx_ao,
+> > > +	[SC8280XP_MX] = &mx,
+> > > +	[SC8280XP_MX_AO] = &mx_ao,
+> > > +	[SC8280XP_NSP] = &nsp,
+> > > +};
+> > > +
+> > > +static const struct rpmhpd_desc sa8540p_desc = {
+> > > +	.rpmhpds = sa8540p_rpmhpds,
+> > > +	.num_pds = ARRAY_SIZE(sa8540p_rpmhpds),
+> > > +};
+> > > +
+> > >  /* SDM845 RPMH powerdomains */
+> > >  static struct rpmhpd *sdm845_rpmhpds[] = {
+> > >  	[SDM845_CX] = &cx_w_mx_parent,
+> > > @@ -378,10 +408,33 @@ static const struct rpmhpd_desc sc8180x_desc = {
+> > >  	.num_pds = ARRAY_SIZE(sc8180x_rpmhpds),
+> > >  };
+> > >  
+> > > +/* SC8280xp RPMH powerdomains */
+> > > +static struct rpmhpd *sc8280xp_rpmhpds[] = {
+> > > +	[SC8280XP_CX] = &cx,
+> > > +	[SC8280XP_CX_AO] = &cx_ao,
+> > > +	[SC8280XP_EBI] = &ebi,
+> > > +	[SC8280XP_GFX] = &gfx,
+> > > +	[SC8280XP_LCX] = &lcx,
+> > > +	[SC8280XP_LMX] = &lmx,
+> > > +	[SC8280XP_MMCX] = &mmcx,
+> > > +	[SC8280XP_MMCX_AO] = &mmcx_ao,
+> > > +	[SC8280XP_MX] = &mx,
+> > > +	[SC8280XP_MX_AO] = &mx_ao,
+> > > +	[SC8280XP_NSP] = &nsp,
+> > > +	[SC8280XP_QPHY] = &qphy,
+> > > +};
+> > 
+> > The commit messages mention sc8280xp having 13 power domains, but here I
+> > only count 12. Good chance I'm just missing something obvious (not
+> > familiar with using power domains or rpmh) but I thought I should
+> > highlight it in case that was an error.
+> > 
+> 
+> The "typically used ones" in the commit message "captures" that. Further
+> more _AO is just a variant of the non-_AO resources, referring to votes
+> that should only apply when the CPU subsystem is not power collapsed.
+> 
+> So what you have in this list is 10 power domains.
+> 
+> I added defines for all 13 in the DT binding, so comparing with that
+> you'll see that the missing ones are DDR, MSS and XO. I don't see how we
+> would use these from Linux today. So let's postpone adding them until we
+> have a use case.
+> 
+> > I attempted to find where this sort of thing is defined downstream, but
+> > failed :(
+> > 
+> 
+> In direwolf-regulators.dtsi you'll find entries with qcom,resource-name
+> of "*.lvl". These resource names are matches against the Command DB
+> registry, which you can dump using the cmd-db file in debugfs.
+> 
+> Regards,
+> Bjorn
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
----
-v1->v2:
- * Fixed the code comment related to USB1 OVC and VBUS.
----
- .../boot/dts/renesas/r9a07g043u11-smarc.dts   | 46 -------------------
- .../dts/renesas/rzg2ul-smarc-pinfunction.dtsi | 11 +++++
- 2 files changed, 11 insertions(+), 46 deletions(-)
+Thanks, I really appreciate the explanation. This makes sense to me.
 
-diff --git a/arch/arm64/boot/dts/renesas/r9a07g043u11-smarc.dts b/arch/arm64/boot/dts/renesas/r9a07g043u11-smarc.dts
-index 52ee1640c3c1..2d740bd420ca 100644
---- a/arch/arm64/boot/dts/renesas/r9a07g043u11-smarc.dts
-+++ b/arch/arm64/boot/dts/renesas/r9a07g043u11-smarc.dts
-@@ -14,54 +14,8 @@ / {
- 	compatible = "renesas,smarc-evk", "renesas,r9a07g043u11", "renesas,r9a07g043";
- };
- 
--&ehci0 {
--	/delete-property/ pinctrl-0;
--	/delete-property/ pinctrl-names;
--	status = "disabled";
--};
--
--&ehci1 {
--	/delete-property/ pinctrl-0;
--	/delete-property/ pinctrl-names;
--	status = "disabled";
--};
--
--&hsusb {
--	/delete-property/ pinctrl-0;
--	/delete-property/ pinctrl-names;
--	status = "disabled";
--};
--
--&ohci0 {
--	/delete-property/ pinctrl-0;
--	/delete-property/ pinctrl-names;
--	status = "disabled";
--};
--
--&ohci1 {
--	/delete-property/ pinctrl-0;
--	/delete-property/ pinctrl-names;
--	status = "disabled";
--};
--
--&phyrst {
--	status = "disabled";
--};
--
- &spi1 {
- 	/delete-property/ pinctrl-0;
- 	/delete-property/ pinctrl-names;
- 	status = "disabled";
- };
--
--&usb2_phy0 {
--	/delete-property/ pinctrl-0;
--	/delete-property/ pinctrl-names;
--	status = "disabled";
--};
--
--&usb2_phy1 {
--	/delete-property/ pinctrl-0;
--	/delete-property/ pinctrl-names;
--	status = "disabled";
--};
-diff --git a/arch/arm64/boot/dts/renesas/rzg2ul-smarc-pinfunction.dtsi b/arch/arm64/boot/dts/renesas/rzg2ul-smarc-pinfunction.dtsi
-index 201b70150e01..bd8bc858c28c 100644
---- a/arch/arm64/boot/dts/renesas/rzg2ul-smarc-pinfunction.dtsi
-+++ b/arch/arm64/boot/dts/renesas/rzg2ul-smarc-pinfunction.dtsi
-@@ -105,4 +105,15 @@ ssi1_pins: ssi1 {
- 			 <RZG2L_PORT_PINMUX(3, 2, 2)>, /* TXD */
- 			 <RZG2L_PORT_PINMUX(3, 3, 2)>; /* RXD */
- 	};
-+
-+	usb0_pins: usb0 {
-+		pinmux = <RZG2L_PORT_PINMUX(5, 0, 1)>, /* VBUS */
-+			 <RZG2L_PORT_PINMUX(5, 2, 1)>, /* OVC */
-+			 <RZG2L_PORT_PINMUX(5, 3, 1)>; /* OTG_ID */
-+	};
-+
-+	usb1_pins: usb1 {
-+		pinmux = <RZG2L_PORT_PINMUX(5, 4, 5)>, /* OVC */
-+			 <RZG2L_PORT_PINMUX(6, 0, 1)>; /* VBUS */
-+	};
- };
--- 
-2.25.1
+> 
+> > Thanks,
+> > Andrew
+> > 
+> > > +
+> > > +static const struct rpmhpd_desc sc8280xp_desc = {
+> > > +	.rpmhpds = sc8280xp_rpmhpds,
+> > > +	.num_pds = ARRAY_SIZE(sc8280xp_rpmhpds),
+> > > +};
+> > > +
+> > >  static const struct of_device_id rpmhpd_match_table[] = {
+> > > +	{ .compatible = "qcom,sa8540p-rpmhpd", .data = &sa8540p_desc },
+> > >  	{ .compatible = "qcom,sc7180-rpmhpd", .data = &sc7180_desc },
+> > >  	{ .compatible = "qcom,sc7280-rpmhpd", .data = &sc7280_desc },
+> > >  	{ .compatible = "qcom,sc8180x-rpmhpd", .data = &sc8180x_desc },
+> > > +	{ .compatible = "qcom,sc8280xp-rpmhpd", .data = &sc8280xp_desc },
+> > >  	{ .compatible = "qcom,sdm845-rpmhpd", .data = &sdm845_desc },
+> > >  	{ .compatible = "qcom,sdx55-rpmhpd", .data = &sdx55_desc},
+> > >  	{ .compatible = "qcom,sdx65-rpmhpd", .data = &sdx65_desc},
+> > > -- 
+> > > 2.35.1
+> > > 
+> > 
+> 
 
