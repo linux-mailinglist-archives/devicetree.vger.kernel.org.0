@@ -2,113 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A31A65127E6
-	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 02:02:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C6BF5127F8
+	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 02:19:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238516AbiD1AFN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Apr 2022 20:05:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45756 "EHLO
+        id S229654AbiD1AWB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Apr 2022 20:22:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39066 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232923AbiD1AFN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 20:05:13 -0400
-Received: from mail-pj1-x102a.google.com (mail-pj1-x102a.google.com [IPv6:2607:f8b0:4864:20::102a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D117D82D0F;
-        Wed, 27 Apr 2022 17:02:00 -0700 (PDT)
-Received: by mail-pj1-x102a.google.com with SMTP id r9so2789989pjo.5;
-        Wed, 27 Apr 2022 17:02:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=MQAHzj75bUL24cVXZai27Cp7fT8NBFoM4IN6VdxYD9M=;
-        b=qrgstjD662uD0mASf4Lns6/fJJC8Tw6D60c8TonIiOHwaARfrwncV13tYmVyM4dxRf
-         Xp5N9IIzn+L4Dn/v+Nicm554zwRblHhkT7QlMbIKLyJKPqmozxzf1aEI2NehOEziAGce
-         h9ZWydlpd9ICko97l/P64TYeUxHYPz57A/rzewn6fGiFStDOhSqD8SbfnuoJIpP6gYqu
-         rsMar46OapajVOcXf1Qym7RuOOWc8lQDH9rGGJrswsJqBN/RU0gYvo49pN5fnRrL6p56
-         KC8Ig8QDfOHwousLQ6SXkfmKHTHuqeJ7snT58Fac3P60N6gOV//APIBU7P483/8tkpqb
-         sLoQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=MQAHzj75bUL24cVXZai27Cp7fT8NBFoM4IN6VdxYD9M=;
-        b=ZGFU+le1lE0kr720aAsp6AXdUz31D1/7ZhMMLhdCCb4IJB8IlS/U80n2Lh5oEYIHjE
-         wA9DSOCj7hN+UJGR8Xd0XB3tmBMEbpiO0nog5GISr1sHA+Ab0Bvfb9Q+pBH2tModjZaC
-         xyPuL1PkdYgtxQEjl/LXBb9O3yA8CjVRjJ5FJfNt9ustRbdP/GZQqUk1lThGEuqLUWzW
-         uzhH+d7dtBoeDWKoux1N/rt9ZdHjbOcSsbKmsUrTPuuRYb/t9lpLYhdA/6MipvRhF1ai
-         yxFnhZ8o79CObM7FXPRXj4oik0RS5YMgZCwTclxrUN1Ycpdm/mrqA95W8wrLhybxg8cf
-         ofpA==
-X-Gm-Message-State: AOAM5325KyXnfT9VUBqhXgdIk9qHrm728RbKlMAT7UCfI8VSVg2S6WN6
-        +G2iDt1ce8VRoRQxQ3rEzTWignLffng=
-X-Google-Smtp-Source: ABdhPJzZHN/PJml0c5wTRNM4ywoHQ5+7W4SXdULxBRlC6dGLU7RIBY8NFxoHyuzclzXuZoehvRDd8g==
-X-Received: by 2002:a17:903:31d1:b0:159:804:e852 with SMTP id v17-20020a17090331d100b001590804e852mr30769629ple.19.1651104120170;
-        Wed, 27 Apr 2022 17:02:00 -0700 (PDT)
-Received: from ?IPV6:2600:8802:b00:4a48:7132:60ce:33ea:8830? ([2600:8802:b00:4a48:7132:60ce:33ea:8830])
-        by smtp.gmail.com with ESMTPSA id x2-20020aa79182000000b00505a61ec387sm19612074pfa.138.2022.04.27.17.01.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 27 Apr 2022 17:01:59 -0700 (PDT)
-Message-ID: <21986066-f72c-83ce-d1b9-ef5767fdebef@gmail.com>
-Date:   Wed, 27 Apr 2022 17:01:57 -0700
+        with ESMTP id S230122AbiD1AWA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 20:22:00 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0127102C
+        for <devicetree@vger.kernel.org>; Wed, 27 Apr 2022 17:18:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=0E/cZusX8gpwqJUzB3w+9Rv4b0UfsFQ/mLYGkgPRNOs=; b=y+ijRyxoQ1DISj2pwyZhtX+dHL
+        M4WdFl3JEly9NjkHVun/hJOB598V0S2NlmSQ/hmaUhZfNe1JEry1+g2CC5ZdvMiUbVXpr+WdhZpNZ
+        Z6VhLCnpiXNNlNqkZfVwWLwn2+rrShqobX+ZUcWZfC86PLNJ3ujm64lhIYVPlaBe12qk=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1njrrd-000Cwl-Qv; Thu, 28 Apr 2022 02:18:33 +0200
+Date:   Thu, 28 Apr 2022 02:18:33 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Arnd Bergmann <arnd@arndb.de>
+Cc:     Mauri Sandberg <maukka@ext.kapsi.fi>, SoC Team <soc@kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Olof Johansson <olof@lixom.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>
+Subject: Re: [RFC RFT PATCH v1 0/1] ARM: orion5x: convert D-Link DNS-323 to
+ the Device Tree
+Message-ID: <YmndWe63ELJbQe20@lunn.ch>
+References: <20220427162123.110458-1-maukka@ext.kapsi.fi>
+ <CAK8P3a0p-ev50UfGiHCpMM5Jz5Mf8pdfQtNep0M7qi7PANSBVg@mail.gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [RFC PATCH v2 2/3] of: Add support for -@ when compiling overlays
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>,
-        Detlev Casanova <detlev.casanova@collabora.com>
-Cc:     linux-kernel@vger.kernel.org, arnd@arndb.de,
-        bcm-kernel-feedback-list@broadcom.com, devicetree@vger.kernel.org,
-        f.fainelli@gmail.com, frowand.list@gmail.com,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rpi-kernel@lists.infradead.org, masahiroy@kernel.org,
-        michal.lkml@markovi.net, ndesaulniers@google.com,
-        nsaenz@kernel.org, olof@lixom.net, rjui@broadcom.com,
-        sbranden@broadcom.com, soc@kernel.org, stefan.wahren@i2se.com
-References: <20220427185243.173594-1-detlev.casanova@collabora.com>
- <20220427185243.173594-3-detlev.casanova@collabora.com>
- <Ymm0l2/oGpt/SeDO@robh.at.kernel.org>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-In-Reply-To: <Ymm0l2/oGpt/SeDO@robh.at.kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAK8P3a0p-ev50UfGiHCpMM5Jz5Mf8pdfQtNep0M7qi7PANSBVg@mail.gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 4/27/2022 2:24 PM, Rob Herring wrote:
-> On Wed, Apr 27, 2022 at 02:52:42PM -0400, Detlev Casanova wrote:
->> This commit adds an option to compile all device trees with -@ to add the
->> symbol table to the Device Tree Blobs.
+> > - there is no concensus on how to get ascii formatted MAC address from mtd
+> >   partitions so eth is not fully functional without setting the MAC from
+> >   userspace
 > 
-> Why would we want to tie this to the kernel config?
-> 
-> Globally enabling it has already been discussed and rejected.
-> 
->> It prepares the introduction of device tree overlays that are
->> not applied on device trees at compile time (dtbo files.)
->>
->> These device tree overlays will be used by either a bootloader or a
->> linux userspace tool to extend the base device tree.
->>
->> This is used e.g. for drivers that need device tree nodes for optional
->> non plug and play devices, like an external DSI touchscreen panel that
->> embeds different i2c devices to control it.
-> 
-> You can already set DTC_FLAGS per directory (and target?), so enable it
-> for the dtbs that have overlays.
+> Ideally this is handled by the boot loader, but that requires being
+> able to update
+> it.
 
-Looks like this patch series from Aurelien should take care of that:
+The mv643xx Ethernet driver is happy if it finds the MAC address
+already in the hardware. The vendor uboot often does this. Does tftp
+boot work in uboot? That would indicate it has access to the MAC
+address.
 
-https://lore.kernel.org/linux-arm-kernel/20220427233607.1225419-1-
-aurelien@aurel32.net/
--- 
-Florian
+	Andrew
