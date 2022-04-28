@@ -2,33 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5EC3651318C
-	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 12:44:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D0EF5513192
+	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 12:45:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343984AbiD1Kqo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Apr 2022 06:46:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58380 "EHLO
+        id S231286AbiD1Ksh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Apr 2022 06:48:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33410 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343885AbiD1Kqb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 06:46:31 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 5B1ED86AEC;
-        Thu, 28 Apr 2022 03:43:10 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 963DB1474;
-        Thu, 28 Apr 2022 03:43:10 -0700 (PDT)
-Received: from [10.57.80.98] (unknown [10.57.80.98])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 7EEF53F774;
-        Thu, 28 Apr 2022 03:43:07 -0700 (PDT)
-Message-ID: <1d1aae6e-50db-d6db-9727-62f9c2d1ca6b@arm.com>
-Date:   Thu, 28 Apr 2022 11:43:01 +0100
+        with ESMTP id S229601AbiD1Ksf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 06:48:35 -0400
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E78589302
+        for <devicetree@vger.kernel.org>; Thu, 28 Apr 2022 03:45:21 -0700 (PDT)
+Received: by mail-ej1-x629.google.com with SMTP id kq17so8726762ejb.4
+        for <devicetree@vger.kernel.org>; Thu, 28 Apr 2022 03:45:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=cYKCRoREjH87n5LGj1ImFAnKPWrOHAXKmxpNcNNNnIw=;
+        b=l17YCFMxKiwjEr5HZ0HPvJ9Lp/No3mKPtEwmSTNmRmgT2RGTJcYSTwyW3ZAGFxNhhG
+         hemeitu4DciYBdWDTVfpRkaS4x14zdyI4L6NtXH1TBAWKHDN9AyxE/u3/GlKo2LuRr8S
+         R5kWe+WsFQl6l1GEXZamWspcggud4YW1AHazmNflTGkpcSZN2UwIGJ457pndK0rlZbk5
+         bDtLeUKFu+7YurGBdZ2t+SrjRzkoneO4541QY4RHWSC+7E2Bm+EVDy+YyF8Y40k0FiJZ
+         UT+6IDNuGkq8AQRkGQh4GZGA6YYifsOo8ZX1qcpZWS09L30vH/rRXx09o4OVFllVV0xL
+         t3GA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=cYKCRoREjH87n5LGj1ImFAnKPWrOHAXKmxpNcNNNnIw=;
+        b=HvxSILEvBdIDlPOhHTf6bEFbNOWCCM8xILVMY+K/HWNZbNBZbiyaM3fe5OFJjHWIkr
+         A6s4LHusLbC4GCYjWJzjpPSErcnjmuj5yLBxvxX9+2qg8q635ywBaiVh6R/AaeUOoVVT
+         TTg6lGygvmSSrxuu+gGk1+Ryv1miSqxaULIYS7HmxVSKqVZpehuUgTBOX8vqOxknLcqt
+         ox2AxRnIXksd7aq9gMOKWdG3PkxSc9IBsbrBKNxJ6nnnMJR+9k3WbeMCSFV6tJG9Vpin
+         dJZANAmtYHlgtKQLhYOrxu9LcWzyJ8WcyvDAf8Z3DG8tUhVjPcId1ER4QNeFo+c4DgKN
+         TnhA==
+X-Gm-Message-State: AOAM532BoW3OpWqY6U6YS52OvdPStagXbkL2tL7kNf0jXTqtLJs44Utx
+        +8UqwZClqbB/Un4H6xNVOhxHHg==
+X-Google-Smtp-Source: ABdhPJyp6f5iGveZCxbZ+tLf8F4Iv7cCwecumgh+r4Mv003t4J9QnoHQJbOmBYZwweCyrVxme8/N/g==
+X-Received: by 2002:a17:907:7ba3:b0:6ef:f9ca:f2da with SMTP id ne35-20020a1709077ba300b006eff9caf2damr20181561ejc.634.1651142719668;
+        Thu, 28 Apr 2022 03:45:19 -0700 (PDT)
+Received: from [192.168.0.161] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id h7-20020a1709060f4700b006e8d0746969sm8053221ejj.222.2022.04.28.03.45.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 28 Apr 2022 03:45:19 -0700 (PDT)
+Message-ID: <d8448fa4-3cec-db1c-c132-d875cab61572@linaro.org>
+Date:   Thu, 28 Apr 2022 12:45:17 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
 Subject: Re: [PATCH 04/10] arm64: dts: juno: use proper
  'dma-channels/requests' properties
-Content-Language: en-GB
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+Content-Language: en-US
+To:     Robin Murphy <robin.murphy@arm.com>,
         Lee Jones <lee.jones@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -47,54 +75,58 @@ To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
 Cc:     Rob Herring <robh@kernel.org>
 References: <20220427155840.596535-1-krzysztof.kozlowski@linaro.org>
  <20220427155840.596535-5-krzysztof.kozlowski@linaro.org>
-From:   Robin Murphy <robin.murphy@arm.com>
-In-Reply-To: <20220427155840.596535-5-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+ <1d1aae6e-50db-d6db-9727-62f9c2d1ca6b@arm.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <1d1aae6e-50db-d6db-9727-62f9c2d1ca6b@arm.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022-04-27 16:58, Krzysztof Kozlowski wrote:
-> pl330 DMA controller bindings documented 'dma-channels' and
-> 'dma-requests' properties (without leading hash sign), so fix the DTS to
-> match the bindings.
+On 28/04/2022 12:43, Robin Murphy wrote:
+> On 2022-04-27 16:58, Krzysztof Kozlowski wrote:
+>> pl330 DMA controller bindings documented 'dma-channels' and
+>> 'dma-requests' properties (without leading hash sign), so fix the DTS to
+>> match the bindings.
+>>
+>> Reported-by: Rob Herring <robh@kernel.org>
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> ---
+>>   arch/arm64/boot/dts/arm/juno-base.dtsi | 4 ++--
+>>   1 file changed, 2 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/arm/juno-base.dtsi b/arch/arm64/boot/dts/arm/juno-base.dtsi
+>> index 4f40a5c8f565..96ef0ddc0b2d 100644
+>> --- a/arch/arm64/boot/dts/arm/juno-base.dtsi
+>> +++ b/arch/arm64/boot/dts/arm/juno-base.dtsi
+>> @@ -829,8 +829,8 @@ dma-controller@7ff00000 {
+>>   		compatible = "arm,pl330", "arm,primecell";
+>>   		reg = <0x0 0x7ff00000 0 0x1000>;
+>>   		#dma-cells = <1>;
+>> -		#dma-channels = <8>;
+>> -		#dma-requests = <32>;
+>> +		dma-channels = <8>;
+>> +		dma-requests = <32>;
 > 
-> Reported-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->   arch/arm64/boot/dts/arm/juno-base.dtsi | 4 ++--
->   1 file changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/arm/juno-base.dtsi b/arch/arm64/boot/dts/arm/juno-base.dtsi
-> index 4f40a5c8f565..96ef0ddc0b2d 100644
-> --- a/arch/arm64/boot/dts/arm/juno-base.dtsi
-> +++ b/arch/arm64/boot/dts/arm/juno-base.dtsi
-> @@ -829,8 +829,8 @@ dma-controller@7ff00000 {
->   		compatible = "arm,pl330", "arm,primecell";
->   		reg = <0x0 0x7ff00000 0 0x1000>;
->   		#dma-cells = <1>;
-> -		#dma-channels = <8>;
-> -		#dma-requests = <32>;
-> +		dma-channels = <8>;
-> +		dma-requests = <32>;
+> BTW, this has always been wrong - Juno is configured with only 8 request 
+> interfaces. But then it's moot anyway since PL330 has an ID register for 
+> this stuff[1], so the DT properties aren't used by Linux, and shouldn't 
+> be needed in general.
 
-BTW, this has always been wrong - Juno is configured with only 8 request 
-interfaces. But then it's moot anyway since PL330 has an ID register for 
-this stuff[1], so the DT properties aren't used by Linux, and shouldn't 
-be needed in general.
+Marek also raised the point [1] that these properties are useless for
+PL330 because the actual data is read from the device registers.
 
-Thanks,
-Robin.
+I understand you are also supporting the idea of removing them from
+pl330 device nodes?
 
-[1] 
-https://developer.arm.com/documentation/ddi0424/d/programmers-model/register-descriptions/configuration-register-0?lang=en
+[1]
+https://lore.kernel.org/linux-devicetree/20220427155840.596535-1-krzysztof.kozlowski@linaro.org/T/#mf108b8c9f0d513ebc6e381775e3c6887b5c2fe31
 
->   		interrupts = <GIC_SPI 88 IRQ_TYPE_LEVEL_HIGH>,
->   			     <GIC_SPI 89 IRQ_TYPE_LEVEL_HIGH>,
->   			     <GIC_SPI 90 IRQ_TYPE_LEVEL_HIGH>,
+Best regards,
+Krzysztof
