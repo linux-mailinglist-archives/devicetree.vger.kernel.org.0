@@ -2,194 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0915D51385C
-	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 17:29:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E2144513880
+	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 17:38:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243861AbiD1PdL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Apr 2022 11:33:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52932 "EHLO
+        id S233663AbiD1PlQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Apr 2022 11:41:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48454 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231469AbiD1PdK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 11:33:10 -0400
-Received: from mail-oa1-x30.google.com (mail-oa1-x30.google.com [IPv6:2001:4860:4864:20::30])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B67DFB36A3;
-        Thu, 28 Apr 2022 08:29:55 -0700 (PDT)
-Received: by mail-oa1-x30.google.com with SMTP id 586e51a60fabf-d6e29fb3d7so5472668fac.7;
-        Thu, 28 Apr 2022 08:29:55 -0700 (PDT)
+        with ESMTP id S233280AbiD1PlP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 11:41:15 -0400
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D4B0B0A6C
+        for <devicetree@vger.kernel.org>; Thu, 28 Apr 2022 08:38:00 -0700 (PDT)
+Received: by mail-ed1-x52e.google.com with SMTP id p18so5983328edr.7
+        for <devicetree@vger.kernel.org>; Thu, 28 Apr 2022 08:37:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=sender:message-id:date:mime-version:user-agent:content-language:to
-         :cc:references:from:subject:in-reply-to:content-transfer-encoding;
-        bh=Pv9usw+O63MO2ATgl81kJeaUNBZyxyMTEuME1k+1RAc=;
-        b=dFLZe87VF5pOxbQi2n9CAh9vjWk7uDQU+GBRmKRFkZIEM+2c9yEH4tjxuIVGekH/kf
-         xPSr1PeiGuZHpdHrcMy0W577lhI8yyK6idoORqpyJWtGqHx04sYcICQNYv5vObe+hYZV
-         Pp0msLAJ/5fgOamq50sKYQQHLFlzkRbyuf08VSionWFuB/OIDOH7eMzefFyhbJ+2+27Y
-         lQ5STGTIx9G7+Wxxl/9+BOf83Em3BKo8vikFAxqOpAWG+ijSgBhloNOJn3617UftIPJl
-         R1z4aAypqpsp3tSV20yY3ouvSfciX3MPfUXzT3UFRjL5w14e9+LTOJr+HFnnXvj0xWxg
-         BPcg==
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=uAQT8HaM1F/C7tI0w3YAOWuIicIw4A32c+GrUwkdwpQ=;
+        b=aFj7WCsl9W2elIghvPF/0aoqi+ZIwLetMRy93r16p5B5v2Z9g0a/wGR9ENUf36Yqqn
+         P4N6UC5a1do9q3I7xV8inSoMr7BYKd/gM/oDozailW2vC4ysRvTBi32rUo1cFuw9pmGC
+         Ndiagl5DtuLdbsmZZLk+131jtQO4I2gs21A7s=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:sender:message-id:date:mime-version:user-agent
-         :content-language:to:cc:references:from:subject:in-reply-to
-         :content-transfer-encoding;
-        bh=Pv9usw+O63MO2ATgl81kJeaUNBZyxyMTEuME1k+1RAc=;
-        b=Nb9ZQu/Rff89vWErdXc89W/xe71VbsgfaUVM+Ax6H0+zd+TBqb+VnsGQGnbwJs4teG
-         yc+OupzvJqjLPu9KJUawfU+RswnmPL4dAFrxzyrP8dgPcx6/CXBiPUMsTMGiQsfNrRkN
-         jj5ZuJ97WOKQy3naTxAxjgR3O5v0gqaofJJFDWiJJTYcEmqUCHcSWF3F9XMdxnBkPmq1
-         aQNKARfLArdb42aovaFb+2S14/JtJwIhBqGZQfEhJvP4X14QCaPU0dyhXeoVeJ9rIbaO
-         9dmlHci6utCsuY8Pj/h6ZUeOkQAXP7N4lULEvsLIbTWgFr0yaZn7v6zGNOGc6yor8tqi
-         zQkA==
-X-Gm-Message-State: AOAM530Umel6mzLkAlu6WXkiapKVL0aOprbQxzpRny0lSCA40xgVDFKO
-        VWN98j8/S9loB36FEJpXP5tkaoTp3fA=
-X-Google-Smtp-Source: ABdhPJzENQqdkEKNdqUIFnwaoNg3ieUzE+pMCIQd5w6fDxD7X+wPG5vGa6KnnyeXOkaMut2Uu6DhNw==
-X-Received: by 2002:a05:6870:15ce:b0:e9:894f:d9ce with SMTP id k14-20020a05687015ce00b000e9894fd9cemr3428700oad.121.1651159794992;
-        Thu, 28 Apr 2022 08:29:54 -0700 (PDT)
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id a14-20020a544e0e000000b002f9c00dc626sm127786oiy.28.2022.04.28.08.29.53
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=uAQT8HaM1F/C7tI0w3YAOWuIicIw4A32c+GrUwkdwpQ=;
+        b=irnXDk9e/awIdtOwYaIulfMVxb43TURtLcndwA+LrgH0JoXBh8sZrF37Um6057Iur9
+         EjAE6GtzF+vQsbZkl4TinZEAWUC7cPnkOFq985lB0RouLmIVwnexQRbcjLU9PrIZKXpA
+         UIFgwJnv7OgHqYpOfdzoJdczkYzANh3JkZMnv4iUMRrM1a3OMhKjLTmzlBNy4MWgiCUC
+         w3q2HfOo5MlxcDXVUpYliU6LgHA5aCN1Bjm7FWeVDehamb4LwFcrCaJcW7mY/1KVVWnW
+         D10oTOikQqQxAWkiwN9GUwyyxFz3ltrrBMQ/nwALWWqN7JT8znMhaq4oVyWc6h4iPgNu
+         PBFw==
+X-Gm-Message-State: AOAM5300if8CKFWRPUl79Aq8PUigf3StKyo0sxXbxOEMcy6ZclKx4d3o
+        EAx339VXUHwSyreQBif935N3HhPBo7ffO7oO
+X-Google-Smtp-Source: ABdhPJwPGgwRrqTz1Q2lF4lD+9zDgqd64plWmFRhlxR6QOlMURNR3who1h3GQd9oPgir99Cw6bQeiw==
+X-Received: by 2002:a05:6402:254c:b0:426:13bd:3e48 with SMTP id l12-20020a056402254c00b0042613bd3e48mr10101938edb.58.1651160278080;
+        Thu, 28 Apr 2022 08:37:58 -0700 (PDT)
+Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com. [209.85.221.52])
+        by smtp.gmail.com with ESMTPSA id b11-20020a17090630cb00b006e83fb1e6b1sm124839ejb.100.2022.04.28.08.37.56
+        for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 28 Apr 2022 08:29:54 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <b7a47a91-abb9-5d0a-5f1d-fc15bf582dea@roeck-us.net>
-Date:   Thu, 28 Apr 2022 08:29:52 -0700
+        Thu, 28 Apr 2022 08:37:57 -0700 (PDT)
+Received: by mail-wr1-f52.google.com with SMTP id w4so7265196wrg.12
+        for <devicetree@vger.kernel.org>; Thu, 28 Apr 2022 08:37:56 -0700 (PDT)
+X-Received: by 2002:a05:6000:c7:b0:20a:d8c1:d044 with SMTP id
+ q7-20020a05600000c700b0020ad8c1d044mr18483210wrx.422.1651160276475; Thu, 28
+ Apr 2022 08:37:56 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Content-Language: en-US
-To:     =?UTF-8?Q?Pali_Roh=c3=a1r?= <pali@kernel.org>
-Cc:     Wim Van Sebroeck <wim@linux-watchdog.org>,
+References: <20220428014022.v1.1.I08a15a73996211d37dff16810c40ee1539658601@changeid>
+In-Reply-To: <20220428014022.v1.1.I08a15a73996211d37dff16810c40ee1539658601@changeid>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Thu, 28 Apr 2022 08:37:44 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=W716PePPFRJ+tjyKWg5CGtC7qz1+amVpq=iVk7neqkqg@mail.gmail.com>
+Message-ID: <CAD=FV=W716PePPFRJ+tjyKWg5CGtC7qz1+amVpq=iVk7neqkqg@mail.gmail.com>
+Subject: Re: [PATCH v1] arm64: dts: qcom: sc7180: Add mrbland dts files
+To:     "Joseph S. Barrera III" <joebar@chromium.org>
+Cc:     LKML <linux-kernel@vger.kernel.org>,
+        Alexandru M Stan <amstan@chromium.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220428091603.6838-1-pali@kernel.org>
- <b19ce453-1235-689b-8796-fa6cba35c1f0@roeck-us.net>
- <20220428143210.6cbvik2kmjul3qo5@pali>
-From:   Guenter Roeck <linux@roeck-us.net>
-Subject: Re: [PATCH] watchdog: max63xx_wdt: Add support for specifying WDI
- logic via GPIO
-In-Reply-To: <20220428143210.6cbvik2kmjul3qo5@pali>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 4/28/22 07:32, Pali Rohár wrote:
-> On Thursday 28 April 2022 06:10:56 Guenter Roeck wrote:
->> On 4/28/22 02:16, Pali Rohár wrote:
->>> On some boards is WDI logic of max6370 chip connected via GPIO. So extend
->>> max63xx_wdt driver and DTS schema to allow specifying WDI logic via GPIO.
->>>
->>> Signed-off-by: Pali Rohár <pali@kernel.org>
->>
->> How is that different to just using the gpio watchdog driver ?
-> 
-> GPIO watchdog driver does not support max6370 memory mapped
-> configuration.
-> 
-> With this change, max6370 can use memory mapped space for watchdog
-> configuration and GPIO WDI for pinging.
-> 
+Hi,
 
-Ok, that makes sense. Comments below.
+On Thu, Apr 28, 2022 at 1:41 AM Joseph S. Barrera III
+<joebar@chromium.org> wrote:
+>
+> +&i2c4 {
+> +       status = "okay";
+> +       clock-frequency = <400000>;
+> +
+> +       ap_ts: touchscreen@5d {
+> +               compatible = "goodix,gt7375p";
+> +               reg = <0x5d>;
+> +               pinctrl-names = "default";
+> +               pinctrl-0 = <&ts_int_l>, <&ts_reset_l>;
+> +
+> +               interrupt-parent = <&tlmm>;
+> +               interrupts = <9 IRQ_TYPE_LEVEL_LOW>;
+> +
+> +               reset-gpios = <&tlmm 8 GPIO_ACTIVE_LOW>;
+> +
+> +               vdd-supply = <&pp3300_ts>;
+> +       };
+> +};
 
-Thanks,
-Guenter
+This is a detachable, right? So can you add these to match what
+Stephen is doing for existing detachables [1]
 
->> Guenter
->>
->>> ---
->>>    .../bindings/watchdog/maxim,max63xx.yaml      |  4 +++
->>>    drivers/watchdog/max63xx_wdt.c                | 28 +++++++++++++++++++
->>>    2 files changed, 32 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/watchdog/maxim,max63xx.yaml b/Documentation/devicetree/bindings/watchdog/maxim,max63xx.yaml
->>> index ab9641e845db..a97aa0135ef9 100644
->>> --- a/Documentation/devicetree/bindings/watchdog/maxim,max63xx.yaml
->>> +++ b/Documentation/devicetree/bindings/watchdog/maxim,max63xx.yaml
->>> @@ -27,6 +27,10 @@ properties:
->>>        description: This is a 1-byte memory-mapped address
->>>        maxItems: 1
->>> +  gpios:
->>> +    description: Optional GPIO used for controlling WDI when WDI bit is not mapped to memory
->>> +    maxItems: 1
->>> +
->>>    required:
->>>      - compatible
->>>      - reg
+&keyboard_controller {
+       /delete-property/keypad,num-rows;
+       /delete-property/keypad,num-columns;
+};
 
-Devicetree patches needs to be separate.
+It should be sorted based on the name of the node you're overriding,
+so it should come right after &i2c4 I believe.
 
->>> diff --git a/drivers/watchdog/max63xx_wdt.c b/drivers/watchdog/max63xx_wdt.c
->>> index 9e1541cfae0d..eaf00c3f06a5 100644
->>> --- a/drivers/watchdog/max63xx_wdt.c
->>> +++ b/drivers/watchdog/max63xx_wdt.c
->>> @@ -27,6 +27,7 @@
->>>    #include <linux/io.h>
->>>    #include <linux/slab.h>
->>>    #include <linux/property.h>
->>> +#include <linux/gpio/consumer.h>
->>>    #define DEFAULT_HEARTBEAT 60
->>>    #define MAX_HEARTBEAT     60
->>> @@ -53,6 +54,9 @@ struct max63xx_wdt {
->>>    	void __iomem *base;
->>>    	spinlock_t lock;
->>> +	/* GPIOs */
->>> +	struct gpio_desc *gpio_wdi;
->>> +
->>>    	/* WDI and WSET bits write access routines */
->>>    	void (*ping)(struct max63xx_wdt *wdt);
->>>    	void (*set)(struct max63xx_wdt *wdt, u8 set);
->>> @@ -158,6 +162,17 @@ static const struct watchdog_info max63xx_wdt_info = {
->>>    	.identity = "max63xx Watchdog",
->>>    };
->>> +static void max63xx_gpio_ping(struct max63xx_wdt *wdt)
->>> +{
->>> +	spin_lock(&wdt->lock);
->>> +
->>> +	gpiod_set_value_cansleep(wdt->gpio_wdi, 1);
->>> +	udelay(1);
->>> +	gpiod_set_value_cansleep(wdt->gpio_wdi, 0);
->>> +
->>> +	spin_unlock(&wdt->lock);
->>> +}
->>> +
->>>    static void max63xx_mmap_ping(struct max63xx_wdt *wdt)
->>>    {
->>>    	u8 val;
->>> @@ -225,6 +240,19 @@ static int max63xx_wdt_probe(struct platform_device *pdev)
->>>    		return -EINVAL;
->>>    	}
->>> +	wdt->gpio_wdi = devm_gpiod_get(dev, NULL, GPIOD_FLAGS_BIT_DIR_OUT);
->>> +	if (IS_ERR(wdt->gpio_wdi) && PTR_ERR(wdt->gpio_wdi) != -ENOENT) {
->>> +		if (PTR_ERR(wdt->gpio_wdi) != -EPROBE_DEFER)
->>> +			dev_err(dev, "unable to request gpio: %ld\n",
->>> +				PTR_ERR(wdt->gpio_wdi));
 
-Please use dev_err_probe().
+> +tp_en: &en_pp3300_dx_edp {
+> +       pinmux {
+> +               pins = "gpio85";
+> +               };
+> +       pinconf {
+> +               pins = "gpio85";
+> +       };
+> +};
 
->>> +		return PTR_ERR(wdt->gpio_wdi);
->>> +	}
->>> +
->>> +	if (!IS_ERR(wdt->gpio_wdi))
->>> +		wdt->ping = max63xx_gpio_ping;
->>> +	else
->>> +		wdt->gpio_wdi = NULL;
+The above has the exact same problem that Stephen asked you to fix on
+wormdingler [2] about indentation / blank lines. Can you fix it here
+too?
 
-Why set gpio_wdi to NULL? It isn't used if the ping function is not set.
+In addition to the changes requested above, it's probably nicer to
+keep all 3 patches you're sending in one series just because they all
+touch the Makefile.
 
->>> +
->>>    	err = max63xx_mmap_init(pdev, wdt);
-
-Doesn't this override the gpio ping function set above ?
-
->>>    	if (err)
->>>    		return err;
->>
-
+[1] https://lore.kernel.org/r/20220426225748.324759-1-swboyd@chromium.org
+[2] https://lore.kernel.org/r/CAE-0n53juQ8--Sai=wKypj8URw+V1giOOhzd-p13fVbe_vxZ0Q@mail.gmail.com/
