@@ -2,108 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2817E5134BA
-	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 15:17:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8190D5134DC
+	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 15:20:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346991AbiD1NUc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Apr 2022 09:20:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37622 "EHLO
+        id S233777AbiD1NXE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Apr 2022 09:23:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46722 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346944AbiD1NUT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 09:20:19 -0400
-Received: from mail-oi1-f182.google.com (mail-oi1-f182.google.com [209.85.167.182])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B3B8E5C85D;
-        Thu, 28 Apr 2022 06:17:04 -0700 (PDT)
-Received: by mail-oi1-f182.google.com with SMTP id l203so5335608oif.0;
-        Thu, 28 Apr 2022 06:17:04 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=2KX0k1wrXX43D5TeLkqocszqE72U0xXm9eQIEdaCUbE=;
-        b=TgY5XBw5uqMfXtjMf9sYoal5HTrNfcmvw4StcnpzzB0rDlRM45ZMcSDfPOKmgQTUjQ
-         hPGz2xRhQn6EZt0Sp+F3f+bZHH5hburNjsjxkVLrLYejteID6EgeD08ceI9NzeoFmbQA
-         skGVhl790JO4uD/JjOUx+t6ourfAKFAkT+efo2mC/Ohh3UToye5wqL9LqTbSti5NwFjy
-         fGqjOmWAV2oMt63uQeByzICkDc1w05coNbBQoBTU2LsewXi8dIPNBjZs5Yd+behASMB8
-         8UtjZW99RQcyyrLBj8/cK9EW8v7cD2z8N5WTxfDda43d0atYjjEvVkGIWQJ690+8/Qrd
-         ZupQ==
-X-Gm-Message-State: AOAM532fWHsXpUkXv9rmqVs1tdtdD/cxmzkv/ZUtAwI0mvVS38GL/FJC
-        FWAFOp/yOVl8tte2V4D23g==
-X-Google-Smtp-Source: ABdhPJz/d8BYWGUSJp+sBgndd/ngWTLW1+V3dbP8Dggh5IlPgtUXaU65s/zWtk3vrKBC101akso2uw==
-X-Received: by 2002:a05:6808:2021:b0:322:ba69:53d2 with SMTP id q33-20020a056808202100b00322ba6953d2mr19985135oiw.22.1651151823956;
-        Thu, 28 Apr 2022 06:17:03 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id dt48-20020a0568705ab000b000e686d13875sm1825089oab.15.2022.04.28.06.17.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 28 Apr 2022 06:17:03 -0700 (PDT)
-Received: (nullmailer pid 2082134 invoked by uid 1000);
-        Thu, 28 Apr 2022 13:17:02 -0000
-Date:   Thu, 28 Apr 2022 08:17:02 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Gene Chen <gene.chen.richtek@gmail.com>
-Cc:     Lee Jones <lee.jones@linaro.org>,
-        krzysztof.kozlowski+dt@linaro.org,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Pavel Machek <pavel@ucw.cz>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux LED Subsystem <linux-leds@vger.kernel.org>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Gene Chen <gene_chen@richtek.com>,
-        ChiYuan Huang <cy_huang@richtek.com>
-Subject: Re: [PATCH 2/2] dt-bindings: mfd: Add bindings for the Mediatek
- MT6360
-Message-ID: <YmqTzlrVL5KaVPuz@robh.at.kernel.org>
-References: <20220427080330.40136-1-gene.chen.richtek@gmail.com>
- <20220427080330.40136-3-gene.chen.richtek@gmail.com>
- <YmmQpg/Hh6qTNhj2@robh.at.kernel.org>
- <CAE+NS34SawC_pdTm=eDmp6zq1zLZgEaA+_s_xZOc4LuFHDV1iQ@mail.gmail.com>
+        with ESMTP id S245525AbiD1NXE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 09:23:04 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1C4D94188;
+        Thu, 28 Apr 2022 06:19:48 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: kholk11)
+        with ESMTPSA id A8C9A1F4536D
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1651151987;
+        bh=Y6r9EqSsbh3Dq7eavxiGIUP0pwnIFPvRrJcfm6QBnE8=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=HEe0sCPkAkBWKZhzzUzZdry5WIJSxY16gc5VTbcu1Iyil/jW5t1lblH6ZqHf2Lt8C
+         tiuM8VRrJwFmYeZkQN2rfaI6SPqlYGF6+1F2S2pOkpVBM8ovivkkJNQco9jS8F3BM5
+         3YxtmrigFaC8xRHW1vhw9UdHMzkzmj7oiUTSvUD5ov/B/RhGRkOnZRIN4qOogvE6S2
+         Cxun4IVDrPxULNPup5cydHWqsrr61aCcOX208KEOdAfFsGonglKjlezDsgnTQpXH7i
+         sdlrxLr7Lw8QEkT/MmxCyRu6PrYFUEYJY5ou/byucvEqeX5chpKT/5PtuQF+m5UJdj
+         KTe6P5o2Fpz3Q==
+Message-ID: <88ddf1ba-9395-cd40-53f5-25d1d2f9ef9e@collabora.com>
+Date:   Thu, 28 Apr 2022 15:19:44 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAE+NS34SawC_pdTm=eDmp6zq1zLZgEaA+_s_xZOc4LuFHDV1iQ@mail.gmail.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH v4, 1/1] drm/mediatek: add lut diff flag for new gamma
+ hardware support
+Content-Language: en-US
+To:     Yongqiang Niu <yongqiang.niu@mediatek.com>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        Fabien Parent <fparent@baylibre.com>,
+        Dennis YC Hsieh <dennis-yc.hsieh@mediatek.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Yongqiang Niu <yongqiang.niu@mediatek.corp-partner.google.com>
+References: <20220428085829.15855-1-yongqiang.niu@mediatek.com>
+ <20220428085829.15855-2-yongqiang.niu@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20220428085829.15855-2-yongqiang.niu@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 28, 2022 at 05:30:38PM +0800, Gene Chen wrote:
-> Rob Herring <robh@kernel.org> 於 2022年4月28日 週四 上午2:51寫道：
-> >
-> > On Wed, Apr 27, 2022 at 04:03:30PM +0800, Gene Chen wrote:
-> > > From: Gene Chen <gene_chen@richtek.com>
-> > >
-> > > Add bindings for the Mediatek MT6360
-> > >
-> > > Signed-off-by: Gene Chen <gene_chen@richtek.com>
-> > > ---
-> > >  .../devicetree/bindings/mfd/mt6360.yaml       | 258 ++++++++++++++++++
-> > >  1 file changed, 258 insertions(+)
-> > >  create mode 100644 Documentation/devicetree/bindings/mfd/mt6360.yaml
-> >
-> > As I mentioned, I applied your previous version. Please send a patch on
-> > top of it adding the child nodes.
-> >
-> > Rob
+Il 28/04/22 10:58, Yongqiang Niu ha scritto:
+> From: Yongqiang Niu <yongqiang.niu@mediatek.corp-partner.google.com>
 > 
-> Hi Rob,
+> mt8183 gamma module usage is different with before soc,
+> gamma odd(index start from 0) lut value set to hardware
+> register should be
+> the difference of current lut value with last lut value.
 > 
->     I try to sync latest code and can't find the mt6360 led fixed patch.
->     Could you please tell me how to get and apply previous version?
->     And should I add a tags in commit message to tell which previous
-> commit I based on?
+> for example, chrome os user space set lut
+> like this(only r chanel for example):
+> 2 4 6 8 10 12.
+> 1) mt8183 gamma driver should set the gamma lut to hardware
+> register like this:
+> 2 [2] 6 [2] 10 [2]
+> the value with [] is the difference value
+> 2)gamma hardware process display data with original lut
+> 
+> Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
 
-The led fix is in my dt/linus branch and today's linux next.
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-The mfd patch is in my dt/next branch.
 
-Rob
