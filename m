@@ -2,137 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 77DAF51293A
-	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 04:01:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E3A98512972
+	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 04:22:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241162AbiD1CEE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Apr 2022 22:04:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56024 "EHLO
+        id S231766AbiD1CZz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Apr 2022 22:25:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58962 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241174AbiD1CD6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 22:03:58 -0400
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0F3160D92;
-        Wed, 27 Apr 2022 19:00:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1651111242; x=1682647242;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=CO5cvb+z/yjB+nM8Ln/vy0hVuoUGRL4PMtaR135Sw/E=;
-  b=GZghvFKnVnjDY+SIYN4UEGAecGqHGFzeauDkhy+vNK46HSBvHJ3zPrYd
-   gI8J62cYaE4PnULr833mKrmiF1r6ixUhpmEtc2XIMvqBe6X0CYHP5pdYW
-   yJVUe+1YXnwmYimXFuAVZpXyHWJ00PROMG3Q4RJMVXLHYHbvC/zF5dF1L
-   jvEa9l9STe/ro4gs4BbWCWpoNQ9f46olZOqlU3LaYVXMIpe814PdDHdoN
-   svLgKrjQyJgnUXpvwvOc2bE9aJjIzydMeKXcjsO35p1r1xGxVXUnTlltU
-   CA3s2IQMxU9VWezMyAycE2MhOB5NiYsfjeaiwuJVJsYJ9RwJuR9B2zprl
-   Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10330"; a="263717029"
-X-IronPort-AV: E=Sophos;i="5.90,294,1643702400"; 
-   d="scan'208";a="263717029"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
-  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Apr 2022 19:00:27 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,294,1643702400"; 
-   d="scan'208";a="580964147"
-Received: from lkp-server01.sh.intel.com (HELO 5056e131ad90) ([10.239.97.150])
-  by orsmga008.jf.intel.com with ESMTP; 27 Apr 2022 19:00:24 -0700
-Received: from kbuild by 5056e131ad90 with local (Exim 4.95)
-        (envelope-from <lkp@intel.com>)
-        id 1njtSB-0004y1-PB;
-        Thu, 28 Apr 2022 02:00:23 +0000
-Date:   Thu, 28 Apr 2022 09:59:54 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Piyush Malgujar <pmalgujar@marvell.com>,
-        linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     kbuild-all@lists.01.org, linus.walleij@linaro.org, brgl@bgdev.pl,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        rric@kernel.org, cchavva@marvell.com, wsadowski@marvell.com,
-        Piyush Malgujar <pmalgujar@marvell.com>
-Subject: Re: [PATCH 3/5] gpio: thunderx: Configure GPIO pins at probe
-Message-ID: <202204280405.DMzMLx60-lkp@intel.com>
-References: <20220427144620.9105-4-pmalgujar@marvell.com>
+        with ESMTP id S229826AbiD1CZy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 22:25:54 -0400
+Received: from szxga02-in.huawei.com (szxga02-in.huawei.com [45.249.212.188])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44C407523D;
+        Wed, 27 Apr 2022 19:22:41 -0700 (PDT)
+Received: from dggpemm500020.china.huawei.com (unknown [172.30.72.56])
+        by szxga02-in.huawei.com (SkyGuard) with ESMTP id 4KpfXD1JHdzhYTS;
+        Thu, 28 Apr 2022 10:22:20 +0800 (CST)
+Received: from dggpemm500006.china.huawei.com (7.185.36.236) by
+ dggpemm500020.china.huawei.com (7.185.36.49) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.24; Thu, 28 Apr 2022 10:22:39 +0800
+Received: from [10.174.178.55] (10.174.178.55) by
+ dggpemm500006.china.huawei.com (7.185.36.236) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.24; Thu, 28 Apr 2022 10:22:38 +0800
+Subject: Re: [PATCH v22 5/9] arm64: kdump: Reimplement crashkernel=X
+To:     Catalin Marinas <catalin.marinas@arm.com>
+CC:     Thomas Gleixner <tglx@linutronix.de>,
+        Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
+        <x86@kernel.org>, "H . Peter Anvin" <hpa@zytor.com>,
+        <linux-kernel@vger.kernel.org>, Dave Young <dyoung@redhat.com>,
+        Baoquan He <bhe@redhat.com>, Vivek Goyal <vgoyal@redhat.com>,
+        Eric Biederman <ebiederm@xmission.com>,
+        <kexec@lists.infradead.org>, Will Deacon <will@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        <devicetree@vger.kernel.org>, "Jonathan Corbet" <corbet@lwn.net>,
+        <linux-doc@vger.kernel.org>, Randy Dunlap <rdunlap@infradead.org>,
+        Feng Zhou <zhoufeng.zf@bytedance.com>,
+        Kefeng Wang <wangkefeng.wang@huawei.com>,
+        Chen Zhou <dingguo.cz@antgroup.com>,
+        "John Donnelly" <John.p.donnelly@oracle.com>,
+        Dave Kleikamp <dave.kleikamp@oracle.com>
+References: <20220414115720.1887-1-thunder.leizhen@huawei.com>
+ <20220414115720.1887-6-thunder.leizhen@huawei.com> <YmgzxsrrMlCDYsWp@arm.com>
+ <ee8daaa9-3258-e7e8-e5c4-c51dc9841580@huawei.com> <Ymk34NsIFqUgfk3b@arm.com>
+ <ae7211ad-e2ac-f5b1-5aa0-701802132e73@huawei.com> <YmlphvZVMsGfFksp@arm.com>
+From:   "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
+Message-ID: <42f4db6c-d3f9-e1c4-6a61-dc2bf4f89adf@huawei.com>
+Date:   Thu, 28 Apr 2022 10:22:37 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220427144620.9105-4-pmalgujar@marvell.com>
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <YmlphvZVMsGfFksp@arm.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.174.178.55]
+X-ClientProxiedBy: dggems701-chm.china.huawei.com (10.3.19.178) To
+ dggpemm500006.china.huawei.com (7.185.36.236)
+X-CFilter-Loop: Reflected
+X-Spam-Status: No, score=-6.1 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Piyush,
-
-Thank you for the patch! Yet something to improve:
-
-[auto build test ERROR on linus/master]
-[also build test ERROR on linusw-gpio/for-next linux/master v5.18-rc4 next-20220427]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Piyush-Malgujar/gpio-thunderx-Marvell-GPIO-changes/20220427-225001
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git 46cf2c613f4b10eb12f749207b0fd2c1bfae3088
-config: alpha-randconfig-r005-20220427 (https://download.01.org/0day-ci/archive/20220428/202204280405.DMzMLx60-lkp@intel.com/config)
-compiler: alpha-linux-gcc (GCC) 11.3.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/31a85ad65112e3ed61aa418772670eb96a881a4f
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Piyush-Malgujar/gpio-thunderx-Marvell-GPIO-changes/20220427-225001
-        git checkout 31a85ad65112e3ed61aa418772670eb96a881a4f
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.3.0 make.cross W=1 O=build_dir ARCH=alpha SHELL=/bin/bash drivers/gpio/
-
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
-
-All errors (new ones prefixed by >>):
-
-   drivers/gpio/gpio-thunderx.c: In function 'thunderx_gpio_pinsel':
->> drivers/gpio/gpio-thunderx.c:448:23: error: implicit declaration of function 'of_read_number' [-Werror=implicit-function-declaration]
-     448 |                 pin = of_read_number(pinsel++, 1);
-         |                       ^~~~~~~~~~~~~~
-   cc1: some warnings being treated as errors
 
 
-vim +/of_read_number +448 drivers/gpio/gpio-thunderx.c
+On 2022/4/28 0:04, Catalin Marinas wrote:
+> On Wed, Apr 27, 2022 at 09:49:20PM +0800, Leizhen (ThunderTown) wrote:
+>> On 2022/4/27 20:32, Catalin Marinas wrote:
+>>> I think one could always pass a default command line like:
+>>>
+>>> 	crashkernel=1G,high crashkernel=128M,low
+>>>
+>>> without much knowledge of the SoC memory layout.
+>>
+>> Yes, that's what the end result is. The user specify crashkernel=128M,low
+>> and the implementation ensure the 128M low memory is allocated from DMA zone.
+>> We use arm64_dma_phys_limit as the upper limit for crash low memory.
+>>
+>> +#define CRASH_ADDR_LOW_MAX             arm64_dma_phys_limit
+>> +       unsigned long long crash_max = CRASH_ADDR_LOW_MAX;
+>> +       crash_base = memblock_phys_alloc_range(crash_size, CRASH_ALIGN,
+>>                                                crash_base, crash_max);
+>>
+>>> Another option is to only introduce crashkernel=Y,low and, when that is
+>>> passed, crashkernel=Y can go above arm64_dma_phys_limit. We won't need a
+>>> 'high' option at all:
+>>>
+>>> 	crashkernel=1G				- all within ZONE_DMA
+>>> 	crashkernel=1G crashkernel=128M,low	- 128M in ZONE_DMA
+>>> 						  1G above ZONE_DMA
+>>>
+>>> If ZONE_DMA is not present or it extends to the whole RAM, we can ignore
+>>> the 'low' option.
+>>
+>> I think although the code is hard to make generic, the interface is better to
+>> be relatively uniform. A user might have to maintain both x86 and arm64, and
+>> so on. It's not a good thing that the difference is too big.
+> 
+> There will be some difference as the 4G limit doesn't always hold for
+> arm64 (though it's true in most cases). Anyway, we can probably simplify
+> things a bit while following the documented behaviour:
+> 
+> 	crashkernel=Y		- current behaviour within ZONE_DMA
+> 	crashkernel=Y,high	- allocate from above ZONE_DMA
+> 	crashkernel=Y,low	- allocate within ZONE_DMA
+> 
+> There is no fallback from crashkernel=Y.
 
-   428	
-   429	static void thunderx_gpio_pinsel(struct device *dev,
-   430					 struct thunderx_gpio *txgpio)
-   431	{
-   432		struct device_node *node;
-   433		const __be32 *pinsel;
-   434		int npins, rlen, i;
-   435		u32 pin, sel;
-   436	
-   437		node = dev_of_node(dev);
-   438		if (!node)
-   439			return;
-   440	
-   441		pinsel = of_get_property(node, "pin-cfg", &rlen);
-   442		if (!pinsel || rlen % 2)
-   443			return;
-   444	
-   445		npins = rlen / sizeof(__be32) / 2;
-   446	
-   447		for (i = 0; i < npins; i++) {
- > 448			pin = of_read_number(pinsel++, 1);
-   449			sel = of_read_number(pinsel++, 1);
-   450			dev_dbg(dev, "Set GPIO pin %d CFG register to %x\n", pin, sel);
-   451			writeq(sel, txgpio->register_base + bit_cfg_reg(pin));
-   452		}
-   453	}
-   454	
+Yes, I followed your guidelines yesterday to modify the code. Now the code flow
+is much clearer.
+
+> 
+> The question is whether we still want a default low allocation if
+> crashkernel=Y,low is missing but 'high' is present. If we add this, I
+> think we'd be consistent with kernel-parameters.txt for the 'low'
+> description. A default 'low' is probably not that bad but I'm tempted to
+> always mandate both 'high' and 'low'.
+
+Yes, I agree with you. Because the situation is complicated, the default value
+is hard to be accurate. It's better to let the user configure it according to
+the actual situation, they're also programmers.
+
+Whether mandate both 'high' and 'low', or allow only 'high' like x86(but the default
+value becomes zero). I prefer the latter. The size of 'low' maybe zero, for example,
+SMMU is enabled on the second kernel. If only high memory is required, only that
+high memory needs to be configured, seems more reasonable.
+
+> 
 
 -- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
+Regards,
+  Zhen Lei
