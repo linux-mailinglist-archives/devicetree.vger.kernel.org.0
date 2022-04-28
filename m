@@ -2,73 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7342A512B49
-	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 08:13:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 52EC8512B50
+	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 08:16:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243506AbiD1GQH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Apr 2022 02:16:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35382 "EHLO
+        id S243562AbiD1GTi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Apr 2022 02:19:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43892 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233488AbiD1GQG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 02:16:06 -0400
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61F4E21256
-        for <devicetree@vger.kernel.org>; Wed, 27 Apr 2022 23:12:51 -0700 (PDT)
-Received: by mail-ed1-x532.google.com with SMTP id y21so4321571edo.2
-        for <devicetree@vger.kernel.org>; Wed, 27 Apr 2022 23:12:51 -0700 (PDT)
+        with ESMTP id S243249AbiD1GTh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 02:19:37 -0400
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 009F433370
+        for <devicetree@vger.kernel.org>; Wed, 27 Apr 2022 23:16:22 -0700 (PDT)
+Received: by mail-ej1-x636.google.com with SMTP id k23so7483014ejd.3
+        for <devicetree@vger.kernel.org>; Wed, 27 Apr 2022 23:16:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=wm9yPzx6czvlBQnyn3z1i+GsN8IoN86F4R1Y0e4QEhY=;
-        b=n/LreBNeA3e/lXfk7FHUfsy5nVyum/m07hDh6cxldE7ONcu+HRW5ztN6LbpQCj5V5m
-         tmZY52qDNngIQ5yz3h2taja2hObSXWVYjYX7eMaPYxUnoDBe22CbecP3do6EqFWTSNJ+
-         dwjaYy2Gg/xLWxKbOms6Qrs1r2UPzk2FEZOermql+E8g2pEUd2kfMv4lGZYuJTEAuz3V
-         lqUWYPmA4igW9D4k2OKMtXdvUmCUrwUS+0MiwgiDcNq9BQPjBX/9GlffVR5MKNt3o/Mm
-         /YPOX1VEW8s8KGJViAyNASO1aIjXmmkGIFAK75v2xJsmBNAhyyPQ87LaQayDrvaQ2YaZ
-         ZSkg==
+        bh=MFsuND3deEikwDCrPgJTnpdq0PRuR+XEOkINDbDvzIs=;
+        b=dm7IIP+sI4Ep4b8lV07ltQtn5GmcD1I83e3a9lsIhs9/CpyP9r/tPoMOX8W4zzn3H+
+         Fnt8biujUBQUzZCgmruQol7neI5e+1oPmN5ass7Ow7+tzP7X5FdV0FQ0qyI/rAF+r5Mg
+         lAeLuF11cdUQUy4YFabaaRYnqLq018egODyaKP9JjXFOaZhXBy/NwY09f4qxt3kzykN7
+         4p0ourLjeTSMhlLuSxZvUNgwovcqwZtXZXFk+bVoa/X84oLITrXu6yFaEGwrMwht7O6d
+         9m1/hNubS3pgiwdFHmW3hduT9tqT//aF9r0q8V2nzdHv94WQpalZLz9yq4nLaP3AKEkM
+         +5dQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=wm9yPzx6czvlBQnyn3z1i+GsN8IoN86F4R1Y0e4QEhY=;
-        b=F+Cv9cnG/BAUMDPcua/ZMvavyE1IDtu1o8asyqy0fnSuKKap7tJxJDenATjvjqafHQ
-         elKr5+3lfkaXbP/QhmnJQhYgw3FrQkRpdhvg0JKYOdzWwWP/XaZwXCdRPG91FuicrCtD
-         uHUyu6o5BHy/+thOzHQf+7RkXeKvR1mb58LOCh45/z4mFbDlxIgmvVa/EVdJd+RNz8UD
-         nZdr97Gpi88FridgZN4gNA/NdEhlp8xtQx3+SH7BgoHa1uioPpx+9aH5o9NbFzsyEXD4
-         nFX8JH9R7JqlM/2QkwS3qchou4Mc9/uX0QGIH+hm3YGZsHNzCN01cpeQWpCrsqlr/5og
-         eUbg==
-X-Gm-Message-State: AOAM531CaBUDJbyM/ttQNzeNYKpa1MpXJ65pooqrkQvOkMEVJzgRiage
-        5MpJhGjZJ2yIGNjulOFD9AOkIudzTT8qrQ==
-X-Google-Smtp-Source: ABdhPJwKkUBJFO2jKXoH1LLDlOF7hO+RlyZgidW/QcXeirH3zxkeAeFtvMT8SSM+f7aIRaqx0OyVLA==
-X-Received: by 2002:a05:6402:11c9:b0:425:ef56:a1dd with SMTP id j9-20020a05640211c900b00425ef56a1ddmr18383244edw.143.1651126370001;
-        Wed, 27 Apr 2022 23:12:50 -0700 (PDT)
+        bh=MFsuND3deEikwDCrPgJTnpdq0PRuR+XEOkINDbDvzIs=;
+        b=OuEoktedXBR+oDgpfcyVp02Ku/nKxQ2lhttcRvjAxwPdSRZSa7/E3IYjexHJCad9WY
+         JY7j0cXf3mE3c2PjOAkMMd/bZ/hbwAaqAF4pbHBnR7G3/bQKJTB4LdvVfxynB0au5DfN
+         VT4nOBev6NNZ5AHui51rimf+zRufWplwDliJTok0zwTfEGl6Q/kr+ZgS7X4f+jToFO4R
+         RGT7DCLE1LtOTxtHo2OQtifRNCOXA0e0n5ngYoIClaDjbpA7yukgFjt5iCizReuinKI7
+         tGq8hch3FylHy/llqzToguBqf7qWqvvy9xSiwAXuIVKBil2A1V3rvMp+nBGxxUuyKkAK
+         MDow==
+X-Gm-Message-State: AOAM532qtjQRXzFFAWYO/YtOzCSxeQzj3dTcu0hXnFdsIGs/eZ3Sxpy9
+        0O1hZ6h83cJgGBD2U/Ee2Grmqw==
+X-Google-Smtp-Source: ABdhPJwBZ1KNRfTA1HAA4LNUtcVVMcP6eFpjtMb2TWZhJ9REFtbQpTpqXSRQVZsbPWfRPDqMyAnXmQ==
+X-Received: by 2002:a17:907:9628:b0:6f3:5fbe:c28 with SMTP id gb40-20020a170907962800b006f35fbe0c28mr28506329ejc.754.1651126581596;
+        Wed, 27 Apr 2022 23:16:21 -0700 (PDT)
 Received: from [192.168.0.159] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id t19-20020aa7d4d3000000b0042617ba63c2sm933624edr.76.2022.04.27.23.12.48
+        by smtp.gmail.com with ESMTPSA id c4-20020a170906170400b006e87c7b8ffasm7971376eje.32.2022.04.27.23.16.19
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 27 Apr 2022 23:12:49 -0700 (PDT)
-Message-ID: <9248da4f-ca04-82f0-2840-a20797c25d2a@linaro.org>
-Date:   Thu, 28 Apr 2022 08:12:47 +0200
+        Wed, 27 Apr 2022 23:16:20 -0700 (PDT)
+Message-ID: <8d9130b5-7459-bb26-79c7-3d83f7dd29a0@linaro.org>
+Date:   Thu, 28 Apr 2022 08:16:19 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [PATCH 1/2] dt-bindings: google,cros-ec-keyb: Introduce switches
- only compatible
+Subject: Re: [PATCH v3 3/4] dt-bindings: interrupt-controller: fsl,ls-extirq:
+ convert to YAML
 Content-Language: en-US
-To:     Stephen Boyd <swboyd@chromium.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Cc:     linux-kernel@vger.kernel.org, patches@lists.linux.dev,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Benson Leung <bleung@chromium.org>,
-        Guenter Roeck <groeck@chromium.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        "Joseph S. Barrera III" <joebar@chromium.org>
-References: <20220427203026.828183-1-swboyd@chromium.org>
- <20220427203026.828183-2-swboyd@chromium.org>
+To:     Leo Li <leoyang.li@nxp.com>, Michael Walle <michael@walle.cc>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Shawn Guo <shawnguo@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20220427075338.1156449-1-michael@walle.cc>
+ <20220427075338.1156449-4-michael@walle.cc>
+ <AS8PR04MB89464877E53B7F7B14A814178FFA9@AS8PR04MB8946.eurprd04.prod.outlook.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220427203026.828183-2-swboyd@chromium.org>
+In-Reply-To: <AS8PR04MB89464877E53B7F7B14A814178FFA9@AS8PR04MB8946.eurprd04.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -80,56 +83,25 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/04/2022 22:30, Stephen Boyd wrote:
-> If the device is a detachable, this device won't have a matrix keyboard
-> but it may have some button switches, e.g. volume buttons and power
-> buttons. Let's add a more specific compatible for this type of device
-> that indicates to the OS that there are only switches and no matrix
-> keyboard present.
+On 27/04/2022 22:08, Leo Li wrote:
+>> Convert the fsl,ls-extirq binding to the new YAML format.
+>>
+>> In contrast to the original binding documentation, there are three
+>> compatibles which are used in their corresponding device trees which have a
+>> specific compatible and the (already documented) fallback
+>> compatible:
+>>  - "fsl,ls1046a-extirq", "fsl,ls1043a-extirq"
+>>  - "fsl,ls2080a-extirq", "fsl,ls1088a-extirq"
+>>  - "fsl,lx2160a-extirq", "fsl,ls1088a-extirq"
+>>
+>> Depending on the number of the number of the external IRQs which is
+>> usually 12 except for the LS1021A where there are only 6, the interrupt-map-
+>> mask was reduced from 0xffffffff to 0xf and 0x7 respectively and the number
+>> of interrupt-map entries have to match.
 > 
-> Cc: Krzysztof Kozlowski <krzk@kernel.org>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: <devicetree@vger.kernel.org>
-> Cc: Benson Leung <bleung@chromium.org>
-> Cc: Guenter Roeck <groeck@chromium.org>
-> Cc: Douglas Anderson <dianders@chromium.org>
-> Cc: Hsin-Yi Wang <hsinyi@chromium.org>
-> Cc: "Joseph S. Barrera III" <joebar@chromium.org>
-> Signed-off-by: Stephen Boyd <swboyd@chromium.org>
-> ---
->  .../bindings/input/google,cros-ec-keyb.yaml          | 12 +++++++++---
->  1 file changed, 9 insertions(+), 3 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml b/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml
-> index e8f137abb03c..edc1194d558d 100644
-> --- a/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml
-> +++ b/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml
-> @@ -15,14 +15,20 @@ description: |
->    Google's ChromeOS EC Keyboard is a simple matrix keyboard
->    implemented on a separate EC (Embedded Controller) device. It provides
->    a message for reading key scans from the EC. These are then converted
-> -  into keycodes for processing by the kernel.
-> +  into keycodes for processing by the kernel. This device also supports
-> +  switches/buttons like power and volume buttons.
->  
->  allOf:
->    - $ref: "/schemas/input/matrix-keymap.yaml#"
->  
->  properties:
->    compatible:
-> -    const: google,cros-ec-keyb
-> +    oneOf:
-> +      - items:
-> +          - const: google,cros-ec-keyb-switches
-> +          - const: google,cros-ec-keyb
-> +      - items:
-> +          - const: google,cros-ec-keyb
->  
+> I assume this change won't prevent driver to be compatible with older device trees using the 0xffffffff?  The original 0xffffffff should work for both 6/12 interrupts or whatever reasonable number of interrupts that maybe used in future SoCs.  So the purpose of this change is to make the binding more specific to catch more errors in device tree?
 
-In such case matrix-keymap properties are not valid, right? The
-matrix-keymap should not be referenced, IOW, you need to move allOf
-below "required" and add:
-if:not:...then: $ref: "/schemas/input/matrix-keymap.yaml
+Yes.
 
 Best regards,
 Krzysztof
