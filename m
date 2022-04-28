@@ -2,174 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A3BE51324E
-	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 13:19:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 62C4E513269
+	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 13:24:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345498AbiD1LWH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Apr 2022 07:22:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51402 "EHLO
+        id S1345541AbiD1L1F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Apr 2022 07:27:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34430 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230231AbiD1LWD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 07:22:03 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6F28A94F6;
-        Thu, 28 Apr 2022 04:18:48 -0700 (PDT)
-X-UUID: 6da760cb734a4341bb8b8abd0fde6d5b-20220428
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.4,REQID:d83dbdcb-c48c-45e9-af44-dd36e57a733c,OB:0,LO
-        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,ACT
-        ION:release,TS:45
-X-CID-INFO: VERSION:1.1.4,REQID:d83dbdcb-c48c-45e9-af44-dd36e57a733c,OB:0,LOB:
-        0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,ACTIO
-        N:release,TS:45
-X-CID-META: VersionHash:faefae9,CLOUDID:5198d3c6-85ee-4ac1-ac05-bd3f1e72e732,C
-        OID:IGNORED,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,File:nil,QS:0
-        ,BEC:nil
-X-UUID: 6da760cb734a4341bb8b8abd0fde6d5b-20220428
-Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
-        (envelope-from <rex-bc.chen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 228262536; Thu, 28 Apr 2022 19:18:43 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.792.15; Thu, 28 Apr 2022 19:18:42 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Thu, 28 Apr 2022 19:18:41 +0800
-Message-ID: <b83049a9cc9714a28c90a167245c43afddbc1aab.camel@mediatek.com>
-Subject: Re: [PATCH V4 12/15] dt-bindings: reset: mediatek: Add infra_ao
- reset bit for MT8192/MT8195
-From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        "mturquette@baylibre.com" <mturquette@baylibre.com>,
-        "sboyd@kernel.org" <sboyd@kernel.org>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>
-CC:     "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "angelogioacchino.delregno@collabora.com" 
-        <angelogioacchino.delregno@collabora.com>,
-        Chun-Jie Chen =?UTF-8?Q?=28=E9=99=B3=E6=B5=9A=E6=A1=80=29?= 
-        <Chun-Jie.Chen@mediatek.com>,
-        "wenst@chromium.org" <wenst@chromium.org>,
-        Runyang Chen =?UTF-8?Q?=28=E9=99=88=E6=B6=A6=E6=B4=8B=29?= 
-        <Runyang.Chen@mediatek.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        Project_Global_Chrome_Upstream_Group 
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Thu, 28 Apr 2022 19:18:41 +0800
-In-Reply-To: <d96797dc-8fbd-fe1c-f970-2f6fc8ca5b69@linaro.org>
-References: <20220427030950.23395-1-rex-bc.chen@mediatek.com>
-         <20220427030950.23395-13-rex-bc.chen@mediatek.com>
-         <d96797dc-8fbd-fe1c-f970-2f6fc8ca5b69@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S245064AbiD1L1B (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 07:27:01 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D1266D971;
+        Thu, 28 Apr 2022 04:23:46 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 23SBNRXm112466;
+        Thu, 28 Apr 2022 06:23:27 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1651145007;
+        bh=5t3OzA0Rw/NGVThHMxQu6xew1IgZchZszoPZC/r7wwY=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=U3WwLaFQKcA8juoBzoJ6Y6E5ReyXXClgnmOv/P5Wr+nyQehNI/8L0F0MTE8pKV8eS
+         3D9gHclMZ2i5RG26Kvpp+Vkw4rtfUK5sfXAm+C3plcXYfLmBrAZ/x9bq7l66npIImz
+         Wo5aZCw9wmOgBy+CebCN6trSVY8+u4AF8UySDj40=
+Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 23SBNRFQ011008
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 28 Apr 2022 06:23:27 -0500
+Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Thu, 28
+ Apr 2022 06:23:27 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Thu, 28 Apr 2022 06:23:27 -0500
+Received: from [10.24.69.24] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 23SBNNd4068230;
+        Thu, 28 Apr 2022 06:23:23 -0500
+Message-ID: <ee1c1601-6db9-70d7-401a-8f67ec406ffc@ti.com>
+Date:   Thu, 28 Apr 2022 16:53:22 +0530
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH v3 0/5] Introduce PRU remoteproc consumer API
+Content-Language: en-US
+To:     <linux-kernel@vger.kernel.org>
+CC:     <bjorn.andersson@linaro.org>, <mathieu.poirier@linaro.org>,
+        <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <nm@ti.com>, <ssantosh@kernel.org>, <s-anna@ti.com>,
+        <linux-arm-kernel@lists.infradead.org>, <rogerq@kernel.org>,
+        <grygorii.strashko@ti.com>, <vigneshr@ti.com>, <kishon@ti.com>
+References: <20220418104118.12878-1-p-mohan@ti.com>
+From:   Puranjay Mohan <p-mohan@ti.com>
+In-Reply-To: <20220418104118.12878-1-p-mohan@ti.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
-        version=3.4.6
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 2022-04-28 at 15:18 +0800, Krzysztof Kozlowski wrote:
-> On 27/04/2022 05:09, Rex-BC Chen wrote:
-> > - To support reset of infra_ao, add the bit definition of
-> >   thermal/PCIe/SVS for MT8192.
-> > - To support reset of infra_ao, add the bit definition of
-> >   thermal/SVS for MT8195.
-> > - Add the driver comment to separate the reset index for
-> >   TOPRGU and INFRA.
-> > 
-> > Signed-off-by: Rex-BC Chen <rex-bc.chen@mediatek.com>
-> > ---
-> >  include/dt-bindings/reset/mt8192-resets.h | 8 ++++++++
-> >  include/dt-bindings/reset/mt8195-resets.h | 6 ++++++
-> >  2 files changed, 14 insertions(+)
-> > 
-> > diff --git a/include/dt-bindings/reset/mt8192-resets.h
-> > b/include/dt-bindings/reset/mt8192-resets.h
-> > index be9a7ca245b9..ee0ca02a39bf 100644
-> > --- a/include/dt-bindings/reset/mt8192-resets.h
-> > +++ b/include/dt-bindings/reset/mt8192-resets.h
-> > @@ -7,6 +7,7 @@
-> >  #ifndef _DT_BINDINGS_RESET_CONTROLLER_MT8192
-> >  #define _DT_BINDINGS_RESET_CONTROLLER_MT8192
-> >  
-> > +/* TOPRGU resets */
-> >  #define MT8192_TOPRGU_MM_SW_RST					
-> > 1
-> >  #define MT8192_TOPRGU_MFG_SW_RST				2
-> >  #define MT8192_TOPRGU_VENC_SW_RST				3
-> > @@ -27,4 +28,11 @@
-> >  
-> >  #define MT8192_TOPRGU_SW_RST_NUM				23
-> >  
-> > +/* INFRA resets */
-> > +#define MT8192_INFRA_THERMAL_CTRL_RST			0
-> > +#define MT8192_INFRA_PEXTP_PHY_RST				79
-> > +#define MT8192_INFRA_PTP_RST					
-> > 101
-> > +#define MT8192_INFRA_RST4_PCIE_TOP				129
-> > +#define MT8192_INFRA_THERMAL_CTRL_MCU_RST		140
-> 
-> This is still wrong. I gave you exactly what has to be used:
-> 0
-> 1
-> 2
-> ...
-> 
-> It's a decimal number incremented by one.
-> 
-> 
-> > +
-> >  #endif  /* _DT_BINDINGS_RESET_CONTROLLER_MT8192 */
-> > diff --git a/include/dt-bindings/reset/mt8195-resets.h
-> > b/include/dt-bindings/reset/mt8195-resets.h
-> > index a26bccc8b957..a3226f40779c 100644
-> > --- a/include/dt-bindings/reset/mt8195-resets.h
-> > +++ b/include/dt-bindings/reset/mt8195-resets.h
-> > @@ -7,6 +7,7 @@
-> >  #ifndef _DT_BINDINGS_RESET_CONTROLLER_MT8195
-> >  #define _DT_BINDINGS_RESET_CONTROLLER_MT8195
-> >  
-> > +/* TOPRGU resets */
-> >  #define MT8195_TOPRGU_CONN_MCU_SW_RST          0
-> >  #define MT8195_TOPRGU_INFRA_GRST_SW_RST        1
-> >  #define MT8195_TOPRGU_APU_SW_RST               2
-> > @@ -26,4 +27,9 @@
-> >  
-> >  #define MT8195_TOPRGU_SW_RST_NUM               16
-> >  
-> > +/* INFRA resets */
-> > +#define MT8195_INFRA_THERMAL_AP_RST            0
-> > +#define MT8195_INFRA_PTP_RST                   101
-> > +#define MT8195_INFRA_THERMAL_MCU_RST           138
-> 
-> Same issue.
-> 
-> 
-> Best regards,
-> Krzysztof
+Hi Bjorn,
+Hi Mathieu,
 
-Hello Krzysztof,
+I am writing to follow up on this patch series.
+This has been on the list for the last 10 days and I have not received
+any comments on it. So, does this look good to everyone?
 
-Thanks for your review.
-As mentioned in prvious mail, I will add all reset bits in MT8192 and
-MT8195.
+I had solved the minor checkpatch issues from v2 so I guess this series
+should be good now?
 
-BRs,
-Rex
+Looking forward to your comments.
 
+Thanks
+Puranjay Mohan
+
+On 18/04/22 16:11, Puranjay Mohan wrote:
+> This is the v3 of the patch series [1]. The v2 had some minor comments
+> which have been addressed here.
+> 
+> I will be posting two more patch series which depend on this series, one to
+> the soc tree and another to the networking tree. I had sent all the 3
+> series, including this one as RFC [2] to get comments and to explain the
+> dependencies.
+> 
+> The Programmable Real-Time Unit and Industrial Communication Subsystem
+> (PRU-ICSS or simply PRUSS) on various TI SoCs consists of dual 32-bit
+> RISC cores (Programmable Real-Time Units, or PRUs) for program execution.
+> 
+> There are 3 foundation components for PRUSS subsystem: the PRUSS platform
+> driver, the PRUSS INTC driver and the PRUSS remoteproc driver. All were
+> already merged and can be found under:
+> 1) drivers/soc/ti/pruss.c
+>    Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
+> 2) drivers/irqchip/irq-pruss-intc.c
+>    Documentation/devicetree/bindings/interrupt-controller/ti,pruss-intc.yaml
+> 3) drivers/remoteproc/pru_rproc.c
+>    Documentation/devicetree/bindings/remoteproc/ti,pru-rproc.yaml
+> 
+> The programmable nature of the PRUs provide flexibility to implement custom
+> peripheral interfaces, fast real-time responses, or specialized data handling.
+> Example of a PRU consumer drivers will be:
+>   - Software UART over PRUSS
+>   - PRU-ICSS Ethernet EMAC
+> 
+> In order to make usage of common PRU resources and allow the consumer drivers to
+> configure the PRU hardware for specific usage the PRU API is introduced.
+> 
+> [1] https://patchwork.kernel.org/project/linux-remoteproc/cover/20201216165239.2744-1-grzegorz.jaszczyk@linaro.org/
+> [2] https://patchwork.kernel.org/project/linux-remoteproc/cover/20220406094358.7895-1-p-mohan@ti.com/
+> 
+> Thanks,
+> Puranjay Mohan
+> 
+> Roger Quadros (1):
+>   remoteproc: pru: Add pru_rproc_set_ctable() function
+> 
+> Suman Anna (2):
+>   dt-bindings: remoteproc: Add PRU consumer bindings
+>   remoteproc: pru: Make sysfs entries read-only for PRU client driven
+>     boots
+> 
+> Tero Kristo (2):
+>   remoteproc: pru: Add APIs to get and put the PRU cores
+>   remoteproc: pru: Configure firmware based on client setup
+> 
+>  .../bindings/remoteproc/ti,pru-consumer.yaml  |  70 ++++++
+>  drivers/remoteproc/pru_rproc.c                | 234 +++++++++++++++++-
+>  include/linux/pruss.h                         |  78 ++++++
+>  3 files changed, 377 insertions(+), 5 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/remoteproc/ti,pru-consumer.yaml
+>  create mode 100644 include/linux/pruss.h
+> 
