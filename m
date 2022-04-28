@@ -2,112 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B578513539
-	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 15:33:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6EDE351353F
+	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 15:34:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347249AbiD1Ngb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Apr 2022 09:36:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36934 "EHLO
+        id S229650AbiD1Nhz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Apr 2022 09:37:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38786 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347245AbiD1Nga (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 09:36:30 -0400
-Received: from mail-oa1-f45.google.com (mail-oa1-f45.google.com [209.85.160.45])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B914C36322;
-        Thu, 28 Apr 2022 06:33:15 -0700 (PDT)
-Received: by mail-oa1-f45.google.com with SMTP id 586e51a60fabf-deb9295679so5152508fac.6;
-        Thu, 28 Apr 2022 06:33:15 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=MkPYC4wT6c/VEzdCj0wFf0XUJgHVgHaxvf4ri5zul6g=;
-        b=RcZtELW2TcWDRKSRKXL4rsuZjl//w0sXHcz4x8N1xAf/r5Sgvl6vDlIWOYEUAA/A7e
-         EflF8wvwYREF9zLrFJDrsMWH4P105CviJsV6VhoRhneejW+z/f05PCZpWxfLlibiTz+k
-         vf26WpkgR4/Ij6XNZ69nZbxmy7Fhrq0O4q8DMcLdkieesv6t/wGSrsnq3D46pnHMENqg
-         c840KqJorlw7QHJaH5I4Q4E842DDgZFWI6kRBz1gn5U9CLP8tE4SbRlPZmToFDgKzdx6
-         e1D9bcRQMb7i+Eg9t0MB4Y2G/9yHBOS8aggQ7TDi7W/xKZltQ5L38KOGwX+lkFRRGaMA
-         Szsg==
-X-Gm-Message-State: AOAM533YFPEyRItYvcta+DxKasXsgWamtl46/IRjcbFzBhoZCxi8ew1E
-        iWdatBeSqBByqHffkLxzmQ==
-X-Google-Smtp-Source: ABdhPJyyg4xxehRJ6S6u/e8qGxKkazJCdf8F+SPH8Hd67CeOr+MmYpGdtq1tiHMic/2BoR0ZYp2jMQ==
-X-Received: by 2002:a05:6870:2187:b0:e9:7872:c7f6 with SMTP id l7-20020a056870218700b000e97872c7f6mr4563491oae.257.1651152795039;
-        Thu, 28 Apr 2022 06:33:15 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id q22-20020a056870e89600b000e686d13895sm1819310oan.47.2022.04.28.06.33.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 28 Apr 2022 06:33:14 -0700 (PDT)
-Received: (nullmailer pid 2104457 invoked by uid 1000);
-        Thu, 28 Apr 2022 13:33:13 -0000
-Date:   Thu, 28 Apr 2022 08:33:13 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Marek Szyprowski <m.szyprowski@samsung.com>,
-        devicetree@vger.kernel.org, Dinh Nguyen <dinguyen@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        linux-samsung-soc@vger.kernel.org,
-        Broadcom Kernel Team <bcm-kernel-feedback-list@broadcom.com>,
-        linux-kernel@vger.kernel.org,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Liviu Dudau <liviu.dudau@arm.com>, Ray Jui <rjui@broadcom.com>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 08/10] ARM: dts: exynos: use proper
- 'dma-channels/requests' properties
-Message-ID: <YmqXmTau/YbZjrrn@robh.at.kernel.org>
-References: <20220427155840.596535-1-krzysztof.kozlowski@linaro.org>
- <CGME20220427160347eucas1p23ce51e0fb49160d437961d98fd682c28@eucas1p2.samsung.com>
- <20220427155840.596535-9-krzysztof.kozlowski@linaro.org>
- <5eeac2a0-4293-675e-9dc2-25ed8ab3fb8f@samsung.com>
- <6981f93a-ef01-6ba0-4451-26526372d666@linaro.org>
- <05c908ce-217f-6938-6745-7405ac39d8ea@samsung.com>
- <1399774c-f188-81f1-4d15-367b9d0e4a59@linaro.org>
- <99c80fb6-c6cc-9370-b93d-ed736c7f2192@samsung.com>
- <813bd5f2-38b6-9642-6993-94ad78f5c08a@linaro.org>
+        with ESMTP id S1347280AbiD1Nhz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 09:37:55 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38763ADD73;
+        Thu, 28 Apr 2022 06:34:39 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: kholk11)
+        with ESMTPSA id 25E171F4043E
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1651152877;
+        bh=GU8omeXrJMfiZadEv1lU4ULMJLZKc5nKhQvVWYR6Kng=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=Zci5EGF3w5QPmXuuq1SwposSe9d6KMSH+Ii9J0t8fDkjJ+2m3YGMhkSwg7zkTynOT
+         w/Aa2fGUruj+UOOaLFTBHP7XSnhvs+VZnu/ZSce56t3dJYtlEuH4YzuTnuuAU4uiV/
+         4v7+SZ41eHXIbheZq9MCva6QLsLleUNuaKmNUPBk5ridkPajUXpjB/SavbfR2aDPYu
+         eUMpp4ABATl2qO7Ussp78Jy9en/I6kxjO3Fviszdp2mRb7jpY+rx7G+NrfxApud6Rx
+         NrVK166N4mB+o0OPyfdt4yfop/8p1Dyp+ln8isOFls/tXHIqkKSK/Xgpp7mRlgY0gQ
+         s4QpN720ZSaKQ==
+Message-ID: <8007e692-7a67-2930-709a-494d4e7df1de@collabora.com>
+Date:   Thu, 28 Apr 2022 15:34:33 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <813bd5f2-38b6-9642-6993-94ad78f5c08a@linaro.org>
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH v8 1/2] dt-bindings: arm: Add compatible for MediaTek
+ MT8186
+Content-Language: en-US
+To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Project_Global_Chrome_Upstream_Group@mediatek.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        Chen-Yu Tsai <wenst@chromium.org>,
+        Ryder Lee <ryder.lee@kernel.org>, hsinyi@chromium.org
+References: <20220428061717.11197-1-allen-kh.cheng@mediatek.com>
+ <20220428061717.11197-2-allen-kh.cheng@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20220428061717.11197-2-allen-kh.cheng@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 28, 2022 at 12:09:02PM +0200, Krzysztof Kozlowski wrote:
-> On 28/04/2022 12:05, Marek Szyprowski wrote:
-> >>>>> I also don't see any code that would read those properties. IMHO they
-> >>>>> should be simply removed at all, at least for the PL330 related nodes.
-> >>>> In current Linux implementation they indeed are not used. Nothing parses
-> >>>> them. However:
-> >>>> 1. They describe (hopefully correct) the hardware.
-> >>>> 2. They might be used by other implementations of pl330 driver.
-> >>>>
-> >>>> I would not remove them from existing sources, but indeed maybe there is
-> >>>> no need to add for new files.
-> >>> What's the point in having dt properties duplicating data that might be
-> >>> read from the driver registers?
-> >> Hm, indeed, there is no point in this. Since they are read from
-> >> registers, what was the idea behind in commit 42cf20980cde?
-> > 
-> > #dma-cells is indeed required, but the rest seems to be the cargo-cult 
-> > of some kind.
+Il 28/04/22 08:17, Allen-KH Cheng ha scritto:
+> This commit adds dt-binding documentation for the MediaTek MT8186
+> reference board.
 > 
-> Rob,
-> 
-> Any guidance from your side? Is there any benefit in describing the
-> hadrware (dma-channels/dma-requests) if the same value can be read from
-> registers?
+> Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
 
-Drop the properties. They should only be an override if ever needed.
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-Rob
