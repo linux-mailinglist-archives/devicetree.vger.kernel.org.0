@@ -2,152 +2,245 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1682E5133D2
-	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 14:36:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A55F551342D
+	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 14:50:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235485AbiD1MjF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Apr 2022 08:39:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60490 "EHLO
+        id S1346645AbiD1MxU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Apr 2022 08:53:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44310 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346418AbiD1MjB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 08:39:01 -0400
-Received: from mail-qk1-f173.google.com (mail-qk1-f173.google.com [209.85.222.173])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A82AAAC929;
-        Thu, 28 Apr 2022 05:35:46 -0700 (PDT)
-Received: by mail-qk1-f173.google.com with SMTP id b189so3424925qkf.11;
-        Thu, 28 Apr 2022 05:35:46 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=ota7gHRE87eJmh6wHOVGcmYlVLZKWZc39ppAbTzKG6E=;
-        b=NVzeFigjNnJmoD1aN+EoumttmpQx8bLR5UD5t9FPCiqgiPWYhB94ZHXf1dMh66XVvO
-         d1gnH7+K7dN3Bfx/oXdvtsfh897EfZyBjvamoxwQEGFVW1FSXIKX86Rkp1wapGyt8mfR
-         Nr+ADRnACyj+9EPX1uP+e+4L98gTz0uN1t/4sac8PRX127lWoRcOZPn9+UlM1SHr+Grq
-         xWHXdCsUIKKmfA3sDfZihOYasorZPP1+74AUJ4DDk+ZHn15eks4Yb7fx3djetUpoebev
-         ykdR8pGrzuIECd5u2yhu2cVrNyh9lrfRWGW46kzyas082MpuN2ZGaJGqdXfibqdMgpyb
-         TSDQ==
-X-Gm-Message-State: AOAM530i/7F6ib/ogdGwulnwJ4A2S9B2+ZPmibZQ/K3hOpcRJ1p9oBvn
-        TBmjsJrYX63iETL6r7j4c4tibY3MZiW9pg==
-X-Google-Smtp-Source: ABdhPJxiA0k85dNHBkMfjY3K9mMJI4zKvkTrxVaThKPzkYn2IiXotUi04iI49UfBZGIAUMdDDfRxTg==
-X-Received: by 2002:a37:98c4:0:b0:69a:e14:16a2 with SMTP id a187-20020a3798c4000000b0069a0e1416a2mr19241812qke.610.1651149345570;
-        Thu, 28 Apr 2022 05:35:45 -0700 (PDT)
-Received: from mail-yb1-f177.google.com (mail-yb1-f177.google.com. [209.85.219.177])
-        by smtp.gmail.com with ESMTPSA id d1-20020a05622a15c100b002f373d233d3sm5587986qty.71.2022.04.28.05.35.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 28 Apr 2022 05:35:45 -0700 (PDT)
-Received: by mail-yb1-f177.google.com with SMTP id g28so8721681ybj.10;
-        Thu, 28 Apr 2022 05:35:44 -0700 (PDT)
-X-Received: by 2002:a25:d84c:0:b0:648:7d5e:e2d4 with SMTP id
- p73-20020a25d84c000000b006487d5ee2d4mr17457781ybg.6.1651149344687; Thu, 28
- Apr 2022 05:35:44 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220426064002.9411-1-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20220426064002.9411-1-biju.das.jz@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 28 Apr 2022 14:35:32 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdX5k5nsczGBPrO8HTio_8yONyLbs6JYBDBBLGrv0nzvMw@mail.gmail.com>
-Message-ID: <CAMuHMdX5k5nsczGBPrO8HTio_8yONyLbs6JYBDBBLGrv0nzvMw@mail.gmail.com>
-Subject: Re: [PATCH v3 1/2] arm64: dts: renesas: r9a07g044: Fix external clk
- node names
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+        with ESMTP id S1346651AbiD1MxT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 08:53:19 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69AFA2C4;
+        Thu, 28 Apr 2022 05:50:02 -0700 (PDT)
+X-UUID: 9b39dff691de41deb3c98de8a2dce9d1-20220428
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.4,REQID:15b060d6-3f95-44db-ade3-85f163998e47,OB:0,LO
+        B:0,IP:0,URL:25,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACT
+        ION:release,TS:25
+X-CID-META: VersionHash:faefae9,CLOUDID:a565d5c6-85ee-4ac1-ac05-bd3f1e72e732,C
+        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,File:nil,QS:0,BEC:nil
+X-UUID: 9b39dff691de41deb3c98de8a2dce9d1-20220428
+Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw02.mediatek.com
+        (envelope-from <rex-bc.chen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 2029437280; Thu, 28 Apr 2022 20:49:57 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.792.15; Thu, 28 Apr 2022 20:49:56 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Thu, 28 Apr 2022 20:49:56 +0800
+Message-ID: <18b4bfa2980625f10f574f23e278abd0499f113c.camel@mediatek.com>
+Subject: Re: [PATCH v4,1/3] dt-bindings: display: mediatek: dsi: Convert
+ dsi_dtbinding to .yaml
+From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
+To:     Rob Herring <robh@kernel.org>, <xinlei.lee@mediatek.com>
+CC:     <chunkuang.hu@kernel.org>, <jitao.shi@mediatek.com>,
+        <devicetree@vger.kernel.org>, <airlied@linux.ie>,
+        <linux-kernel@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        <linux-mediatek@lists.infradead.org>, <matthias.bgg@gmail.com>,
+        <linux-arm-kernel@lists.infradead.org>
+Date:   Thu, 28 Apr 2022 20:49:54 +0800
+In-Reply-To: <Ylc+ph5OFzQ/YR3k@robh.at.kernel.org>
+References: <1649495514-25746-1-git-send-email-xinlei.lee@mediatek.com>
+         <1649495514-25746-2-git-send-email-xinlei.lee@mediatek.com>
+         <Ylc+ph5OFzQ/YR3k@robh.at.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE,
+        SPF_HELO_NONE,SPF_PASS,UNPARSEABLE_RELAY autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Biju,
+On Wed, 2022-04-13 at 16:20 -0500, Rob Herring wrote:
+> On Sat, Apr 09, 2022 at 05:11:52PM +0800, xinlei.lee@mediatek.com
+> wrote:
+> > From: Xinlei Lee <xinlei.lee@mediatek.com>
+> > 
+> > Convert mediatek,dsi.txt to mediatek,dsi.yaml format
+> > 
+> > Signed-off-by: Xinlei Lee <xinlei.lee@mediatek.com>
+> > ---
+> >  .../display/mediatek/mediatek,dsi.txt         |  62 ---------
+> >  .../display/mediatek/mediatek,dsi.yaml        | 118
+> > ++++++++++++++++++
+> >  2 files changed, 118 insertions(+), 62 deletions(-)
+> >  delete mode 100644
+> > Documentation/devicetree/bindings/display/mediatek/mediatek,dsi.txt
+> >  create mode 100644
+> > Documentation/devicetree/bindings/display/mediatek/mediatek,dsi.yam
+> > l
+> 
+> 
+> > diff --git
+> > a/Documentation/devicetree/bindings/display/mediatek/mediatek,dsi.y
+> > aml
+> > b/Documentation/devicetree/bindings/display/mediatek/mediatek,dsi.y
+> > aml
+> > new file mode 100644
+> > index 000000000000..431bb981394f
+> > --- /dev/null
+> > +++
+> > b/Documentation/devicetree/bindings/display/mediatek/mediatek,dsi.y
+> > aml
+> > @@ -0,0 +1,118 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: 
+> > http://devicetree.org/schemas/display/mediatek/mediatek,dsi.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: MediaTek DSI Controller Device Tree Bindings
+> > +
+> > +maintainers:
+> > +  - CK Hu <ck.hu@mediatek.com>
+> > +  - Jitao Shi <jitao.shi@mediatek.com>
+> > +  - Xinlei Lee <xinlei.lee@mediatek.com>
+> > +
+> > +description: |
+> > +  The MediaTek DSI function block is a sink of the display
+> > subsystem and can
+> > +  drive up to 4-lane MIPI DSI output. Two DSIs can be synchronized
+> > for dual-
+> > +  channel output.
+> 
+> allOf:
+>   - $ref: /schemas/display/dsi-controller.yaml#
+> 
 
-On Tue, Apr 26, 2022 at 8:40 AM Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> Add suffix '-clk' for can and extal clk node names and replace the
-> clk node names audio_clk{1,2} with clk-{1,2} as per the device
-> tree specification.
->
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> ---
-> v2->v3:
->  * Sorted clk node-names alphabetically
-> v1->v2:
->  * Replaced clk node names audio_clk{1,2} with clk-{1,2}.
+Hello Rob,
 
-Thanks for the update!
+Thanks for your review.
 
-> --- a/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
-> @@ -13,29 +13,29 @@ / {
->         #address-cells = <2>;
->         #size-cells = <2>;
->
-> -       audio_clk1: audio_clk1 {
-> +       /* External CAN clock - to be overridden by boards that provide it */
-> +       can_clk: can-clk {
+I will help Xinlei to push next version.
+I will add this in next version.
 
-OK.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - mediatek,mt2701-dsi
+> > +      - mediatek,mt7623-dsi
+> > +      - mediatek,mt8167-dsi
+> > +      - mediatek,mt8173-dsi
+> > +      - mediatek,mt8183-dsi
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  interrupts:
+> > +    maxItems: 1
+> > +
+> > +  power-domains:
+> > +    maxItems: 1
+> > +
+> > +  clocks:
+> > +    items:
+> > +      - description: Engine Clock
+> > +      - description: Digital Clock
+> > +      - description: HS Clock
+> > +
+> > +  clock-names:
+> > +    items:
+> > +      - const: engine
+> > +      - const: digital
+> > +      - const: hs
+> > +
+> > +  resets:
+> > +    maxItems: 1
+> > +
+> > +  phys:
+> > +    maxItems: 1
+> > +
+> > +  phy-names:
+> > +    items:
+> > +      - const: dphy
+> > +
+> > +  port:
+> > +    $ref: /schemas/graph.yaml#/properties/port
+> > +    description:
+> > +      Output port node. This port should be connected to the input
+> > +      port of an attached DSI panel or DSI-to-eDP encoder chip.
+> > +
+> > +
+> > +  "#address-cells":
+> > +    const: 2
+> > +
+> > +  "#size-cells":
+> > +    const: 2
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - interrupts
+> > +  - power-domains
+> > +  - clocks
+> > +  - clock-names
+> > +  - phys
+> > +  - phy-names
+> > +  - port
+> > +
+> > +additionalProperties: false
+> 
+> with the above,
+> 
+> unevaluatedProperties: false
+> 
 
->                 compatible = "fixed-clock";
->                 #clock-cells = <0>;
-> -               /* This value must be overridden by boards that provide it */
->                 clock-frequency = <0>;
->         };
->
-> -       audio_clk2: audio_clk2 {
-> +       audio_clk1: clk-1 {
+OK, I will modify additionalProperties to unevaluatedProperties in next
+version.
 
-"clk-1" has a high risk of conflicts. "audio_clk1: audio1-clk"?
+BRs,
+Rex
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/clock/mt8183-clk.h>
+> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> > +    #include <dt-bindings/interrupt-controller/irq.h>
+> > +    #include <dt-bindings/power/mt8183-power.h>
+> > +    #include <dt-bindings/phy/phy.h>
+> > +    #include <dt-bindings/reset/mt8183-resets.h>
+> > +
+> > +    soc {
+> > +        #address-cells = <2>;
+> > +        #size-cells = <2>;
+> > +
+> > +        dsi0: dsi@14014000 {
+> > +            compatible = "mediatek,mt8183-dsi";
+> > +            reg = <0 0x14014000 0 0x1000>;
+> > +            interrupts = <GIC_SPI 236 IRQ_TYPE_LEVEL_LOW>;
+> > +            power-domains = <&spm MT8183_POWER_DOMAIN_DISP>;
+> > +            clocks = <&mmsys CLK_MM_DSI0_MM>,
+> > +                <&mmsys CLK_MM_DSI0_IF>,
+> > +                <&mipi_tx0>;
+> > +            clock-names = "engine", "digital", "hs";
+> > +            resets = <&mmsys MT8183_MMSYS_SW0_RST_B_DISP_DSI0>;
+> > +            phys = <&mipi_tx0>;
+> > +            phy-names = "dphy";
+> > +            port {
+> > +                dsi0_out: endpoint {
+> > +                    remote-endpoint = <&panel_in>;
+> > +                };
+> > +            };
+> > +        };
+> > +    };
+> > +
+> > +...
+> > -- 
+> > 2.18.0
+> > 
+> > 
 
->                 compatible = "fixed-clock";
->                 #clock-cells = <0>;
->                 /* This value must be overridden by boards that provide it */
->                 clock-frequency = <0>;
->         };
->
-> -       /* External CAN clock - to be overridden by boards that provide it */
-> -       can_clk: can {
-> +       audio_clk2: clk-2 {
-
-audio_clk2: audio-2clk?
-
->                 compatible = "fixed-clock";
->                 #clock-cells = <0>;
-> +               /* This value must be overridden by boards that provide it */
->                 clock-frequency = <0>;
->         };
->
->         /* clock can be either from exclk or crystal oscillator (XIN/XOUT) */
-> -       extal_clk: extal {
-> +       extal_clk: extal-clk {
-
-OK
-
->                 compatible = "fixed-clock";
->                 #clock-cells = <0>;
->                 /* This value must be overridden by the board */
-
-Same comments for patch 2/2.
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
