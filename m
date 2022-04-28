@@ -2,77 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3C76D513563
-	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 15:39:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8502E513566
+	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 15:39:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347457AbiD1Nll (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Apr 2022 09:41:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50214 "EHLO
+        id S1347487AbiD1NmT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Apr 2022 09:42:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51308 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347513AbiD1Nlf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 09:41:35 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A7459B3C41;
-        Thu, 28 Apr 2022 06:38:20 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id A6BB21F458A7
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1651153099;
-        bh=cmIfSy8CafEA7WKzM2siN0tevY6CnBZ1OIjAqjL90Co=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=bt4Q8bVE5cw+o5ezxzLR/F6y/Suo6+8SwvV5DVnTXw0ZJ5inAli4PziK4OhL7eH1T
-         gxycmkloO9rgd4t7ACEOIVzKWompfyvDJpECT2xCsE3dqO7mtPSPtkSsuk6cLI2ZeU
-         PzpQZFP2mpiZfeI4thXumVDg/VvmCyhwwNKA4pRsjwWzW6dxM40pt0/28EnlHc2lJy
-         QAmFz1gayjcBfaHYU+KWB58mPpQ2hBil4dlb9uk1WotJ7VOv2T3la0jd+LQ18gG3xn
-         88xImrSs7MBLUJZTe8fF9rIsumT43J3LfG/sQI7V1/8YuIJmAXw08gk1IR4/oF6gEO
-         29uLM0zKmRUBA==
-Message-ID: <79b2bdef-37b5-9b15-3739-5281d4bc8c9e@collabora.com>
-Date:   Thu, 28 Apr 2022 15:38:16 +0200
+        with ESMTP id S231983AbiD1NmS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 09:42:18 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42EF3B36A1;
+        Thu, 28 Apr 2022 06:39:03 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 23SDcqgS090391;
+        Thu, 28 Apr 2022 08:38:52 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1651153132;
+        bh=EJ4fnrD4BvK043dOMejGSN/ckd1dhvSUTS0L46UrWy4=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=GA+QPi5kHQgwVa92Cy+y684o2KGJ5EfCNk59oivvynmrBEntMT0dmBWGy1MJYdEcB
+         LhQx6486ACDJ6GNSi3OtzscCuZHThmpv6AspwvgIz0o+ixfoCEdzL36NUjIqRTlYAe
+         RZ2K5syaDUgT0l7WmIMRYu4AdAdgr/rJX1/E6GOk=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 23SDcqMe056859
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 28 Apr 2022 08:38:52 -0500
+Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Thu, 28
+ Apr 2022 08:38:51 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Thu, 28 Apr 2022 08:38:51 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 23SDcoQp072458;
+        Thu, 28 Apr 2022 08:38:51 -0500
+Date:   Thu, 28 Apr 2022 19:08:50 +0530
+From:   Rahul T R <r-ravikumar@ti.com>
+To:     Aradhya Bhatia <a-bhatia1@ti.com>, <y@uda0490373>
+CC:     Vignesh Raghavendra <vigneshr@ti.com>, Nishanth Menon <nm@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linux ARM Kernel List <linux-arm-kernel@lists.infradead.org>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        Linux Kernel List <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 1/4] arm64: dts: ti: k3-am62-main: Add node for Display
+ SubSystem
+Message-ID: <20220428133849.df7it6m6z35azy6x@uda0490373>
+References: <20220427090850.32280-1-a-bhatia1@ti.com>
+ <20220427090850.32280-2-a-bhatia1@ti.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH V5 07/16] clk: mediatek: reset: Support nonsequence base
- offsets of reset registers
-Content-Language: en-US
-To:     Rex-BC Chen <rex-bc.chen@mediatek.com>, mturquette@baylibre.com,
-        sboyd@kernel.org, matthias.bgg@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     p.zabel@pengutronix.de, chun-jie.chen@mediatek.com,
-        wenst@chromium.org, runyang.chen@mediatek.com,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20220428115620.13512-1-rex-bc.chen@mediatek.com>
- <20220428115620.13512-8-rex-bc.chen@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20220428115620.13512-8-rex-bc.chen@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20220427090850.32280-2-a-bhatia1@ti.com>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 28/04/22 13:56, Rex-BC Chen ha scritto:
-> The bank offsets are not serial for all reset registers.
-> For example, there are five infra reset banks for MT8192: 0x120, 0x130,
-> 0x140, 0x150 and 0x730.
-> 
-> To support this,
-> - Change reg_ofs to rst_bank_ofs which is a pointer to base offsets of
->    the reset register.
-> - Add a new define RST_NR_PER_BANK to define reset number for each
->    reset bank.
-> 
-> Signed-off-by: Rex-BC Chen <rex-bc.chen@mediatek.com>
+Hi Aradhya,
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+On 14:38-20220427, Aradhya Bhatia wrote:
+> Add DT node for the Display SubSystem on the am62x soc in cbass_main.
+> The DSS IP on this soc is compatible with the one on the am65x soc.
+> 
+> The DSS supports one each of video pipeline (vid) and video-lite
+> pipeline (vidl1). It outputs OLDI signals on one video port (vp1) and
+> DPI signals on another (vp2). The video ports are connected to the
+> pipelines via 2 identical overlay managers (ovr1 and ovr2).
+> 
+> Signed-off-by: Aradhya Bhatia <a-bhatia1@ti.com>
+> ---
+>  arch/arm64/boot/dts/ti/k3-am62-main.dtsi | 30 ++++++++++++++++++++++++
+>  1 file changed, 30 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
+> index eec8dae65e7c..ff21efa4ffad 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
+> @@ -515,6 +515,36 @@ cpts@3d000 {
+>  		};
+>  	};
+>  
+> +	dss: dss@30200000 {
+> +		compatible = "ti,am65x-dss";
+> +
+> +		reg = <0x00 0x30200000 0x00 0x1000>, /* common */
+> +		      <0x00 0x30202000 0x00 0x1000>, /* vidl1 */
+> +		      <0x00 0x30206000 0x00 0x1000>, /* vid */
+> +		      <0x00 0x30207000 0x00 0x1000>, /* ovr1 */
+> +		      <0x00 0x30208000 0x00 0x1000>, /* ovr2 */
+> +		      <0x00 0x3020a000 0x00 0x1000>, /* vp1: Used for OLDI */
+> +		      <0x00 0x3020b000 0x00 0x1000>; /* vp2: Used as DPI Out */
+> +
+> +		reg-names = "common", "vidl1", "vid",
+> +			"ovr1", "ovr2", "vp1", "vp2";
+> +
+> +		power-domains = <&k3_pds 186 TI_SCI_PD_EXCLUSIVE>;
+> +
+> +		clocks = <&k3_clks 186 4>,
+> +			 <&k3_clks 186 0>,
+> +			 <&k3_clks 186 2>;
+> +
+> +		clock-names = "fck", "vp1", "vp2";
+> +
+> +		interrupts = <GIC_SPI 84 IRQ_TYPE_LEVEL_HIGH>;
+> +
+> +		dss_ports: ports {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
 
+address and size cells are added in dts as well, its not required here
+
+> +		};
+> +	};
+> +
+>  	hwspinlock: spinlock@2a000000 {
+>  		compatible = "ti,am64-hwspinlock";
+>  		reg = <0x00 0x2a000000 0x00 0x1000>;
+> -- 
+> 2.36.0
+> 
