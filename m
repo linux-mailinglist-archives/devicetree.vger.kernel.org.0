@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 72943513182
-	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 12:43:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BCAE751317D
+	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 12:43:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245096AbiD1KqO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Apr 2022 06:46:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57876 "EHLO
+        id S244994AbiD1KqN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Apr 2022 06:46:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57878 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244309AbiD1KqK (ORCPT
+        with ESMTP id S244559AbiD1KqK (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 06:46:10 -0400
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75B8D85974
-        for <devicetree@vger.kernel.org>; Thu, 28 Apr 2022 03:42:51 -0700 (PDT)
-Received: by mail-ed1-x536.google.com with SMTP id g23so4994621edy.13
-        for <devicetree@vger.kernel.org>; Thu, 28 Apr 2022 03:42:51 -0700 (PDT)
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A27E86AC2
+        for <devicetree@vger.kernel.org>; Thu, 28 Apr 2022 03:42:52 -0700 (PDT)
+Received: by mail-ej1-x631.google.com with SMTP id i27so8692190ejd.9
+        for <devicetree@vger.kernel.org>; Thu, 28 Apr 2022 03:42:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=EOzQqgz02aXb8qIj3DdqRtK5QB4xG5+T1rYPUXMs6Ec=;
-        b=fWvIQQJeFXrda8Ur2+SsRaqvcZ8BmjCQsWq1dyasRRaviFhPmCRJ6ptJnBcRO6njS2
-         pZ2e+bzzD1FMTX1NvhX/XmFRVNGisEujIMextBEuw16ABp+3xirZrEpKe6NpTwynu60B
-         vV24ClYqyW1h/+M0pqnzd7tAVGddio3/vcx2EU8igg+Yb9lwG+w7LKF++691lsr6DF/8
-         I+8vFSMymGGegdCh6ViEpwo09My3+VZB5eyAnkPJDGWsiiWSlHu5jF3+C5GLKVZZFWA6
-         cFyflY605GJ3Asqna87zfdu3VTnbWSoE9iB4/NT8INSB59ggclcjpWwo4P2QMZEbiouc
-         O7QQ==
+        bh=N6G/xcwWCTxvb9G73B2XRdjPPr2MF5UR6WrCerpPvtI=;
+        b=afWohOX5/h2MitoomFn4Jj8HmGwDFi7+I/qKFfXl0zbDW9GdlQkwYMey7qtsBr3Ut1
+         TR7fex2X69k0Cp2nVHj872HxReTMTtAvQTwWSkAvLf4qQ/bf61S0bLDLBz8wd3wFuzXH
+         yKD2w9FSumkw5kppYJYUWZrv/uZr5XQkDtCKvafl0Xjj5tCqSLL3DOgrLjupTq/ntaa7
+         pLyW0LqZwJcnvnHdImBM+yizghmC92CE+HINrK3gdkGgy2Rbq4iGIn83WPG7S+NBcARV
+         JDdZoTxujQyzHMp5QHHx31Q6p6gZeIMd6e4KLwJB05j6dEopWTxcYv3FQugld09DK9jS
+         /m+A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=EOzQqgz02aXb8qIj3DdqRtK5QB4xG5+T1rYPUXMs6Ec=;
-        b=SSifRyqS4M2dNEgMqpqI5TbBt67ntRi6/zcCxCfVRgWjGTjIgn+rsNaqBGl2hpfFT6
-         kBfmaU9cOGirQhJ6dEtj4GgPhsOwPussmdbbX5b9PmtVjoV1JuLfgSll9y5YM/rLtdAT
-         QILfftGN1QcnuC50X1VtbgxU5maOsceI+ZU3qYX+q88gvHGxtpPlquZlyLloN+BtopTz
-         V7gxs/xIQRQjiYWUCUggLSq1ZdElBtrTGfbP06LoPqDLtXhbhoEsXaO5PZ9G4TDgpFPb
-         xEv0Vp3NH0m24RimSU63ueJM/MXsYychgqnuMlW0xazsJvBpbxixhM2OIFf3F7UjhpFt
-         VTlg==
-X-Gm-Message-State: AOAM533D62EPEmlOJCvsgUCgQ+wNR4LEJadfimn5yVlczM4WSiobL7DB
-        Ovohz5adsBQAMoBqTaBSd2zX13lNPWHt3A==
-X-Google-Smtp-Source: ABdhPJz/r0wtITcJ5NGANqGMCjDdZiQ7xMZvN8VMFgcxl1tXMBZ9RXKAtsh5GST7FPVW1drRSrXLGQ==
-X-Received: by 2002:a50:ed0e:0:b0:425:e476:f4ed with SMTP id j14-20020a50ed0e000000b00425e476f4edmr22316159eds.32.1651142569586;
-        Thu, 28 Apr 2022 03:42:49 -0700 (PDT)
+        bh=N6G/xcwWCTxvb9G73B2XRdjPPr2MF5UR6WrCerpPvtI=;
+        b=NdC1r+FRrUV3q2kmA0OqamHFArNeZqKpAI2RxD+zezWy1St1yJWQtGddjHujL7oxIJ
+         2Vjyzh953+l6/2GdymCF3DTmaYWmdCd0pLePtozj4ur+aRBzrwCI3fti+91MlAR+Q5XR
+         3WxtQCwbZ/wYoVm8ykAS6lg1E59l8Dzy5IvzqRAuENULNWxgwyVBPzSrTiiamorhdYLo
+         RWm5xe0EJRWpPiggeKk4zAthY7yqxQjO6+68w5GZ0LGDBQafucc4glRVExVHDacLsY8i
+         O4vz3Et+NWL5s9z6T+aAAvljGHXfcF24WuWdVftQuTU6bzFXb67kCPzZz3Oed70UqMbg
+         IrFQ==
+X-Gm-Message-State: AOAM53055+lSbwiaP0yKNcOkebPJWc1RoOdyl23eiZAp6OavxScMKIc1
+        Q3sU8XO3/XTMTgvmVb7Udte1S6OYYUaYfA==
+X-Google-Smtp-Source: ABdhPJzY6ALvKxPFzbFvnzPx2ZcFkFDikyd243cj8RSnwSMgEbc4UqYIIjNQwxII4daU9PNt4+euHQ==
+X-Received: by 2002:a17:907:3e1e:b0:6ef:ebf8:4059 with SMTP id hp30-20020a1709073e1e00b006efebf84059mr31076153ejc.657.1651142571177;
+        Thu, 28 Apr 2022 03:42:51 -0700 (PDT)
 Received: from localhost.localdomain (cpc78119-cwma10-2-0-cust590.7-3.cable.virginm.net. [81.96.50.79])
-        by smtp.gmail.com with ESMTPSA id mf1-20020a1709071a4100b006f39f556011sm4982583ejc.125.2022.04.28.03.42.48
+        by smtp.gmail.com with ESMTPSA id mf1-20020a1709071a4100b006f39f556011sm4982583ejc.125.2022.04.28.03.42.49
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 28 Apr 2022 03:42:48 -0700 (PDT)
+        Thu, 28 Apr 2022 03:42:50 -0700 (PDT)
 From:   Caleb Connolly <caleb.connolly@linaro.org>
 To:     caleb.connolly@linaro.org, Sebastian Reichel <sre@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
@@ -57,9 +57,9 @@ To:     caleb.connolly@linaro.org, Sebastian Reichel <sre@kernel.org>,
         linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
 Cc:     Amit Pundir <amit.pundir@linaro.org>,
         Sumit Semwal <sumit.semwal@linaro.org>
-Subject: [PATCH v2 3/6] arm64: dts: sdm845-oneplus: enable pmi8998 charger
-Date:   Thu, 28 Apr 2022 11:42:30 +0100
-Message-Id: <20220428104233.2980806-4-caleb.connolly@linaro.org>
+Subject: [PATCH v2 4/6] arm64: dts: qcom: sdm845-db845c: enable pmi8998 charger
+Date:   Thu, 28 Apr 2022 11:42:31 +0100
+Message-Id: <20220428104233.2980806-5-caleb.connolly@linaro.org>
 X-Mailer: git-send-email 2.36.0
 In-Reply-To: <20220428104233.2980806-1-caleb.connolly@linaro.org>
 References: <20220428104233.2980806-1-caleb.connolly@linaro.org>
@@ -75,58 +75,50 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable the smb2 charger to expose usb attach/detach events, charging
-stats etc.
+Enable the smb2 charger driver on the db845c and add a simple-battery
+node to report the correct VBAT voltage.
 
 Signed-off-by: Caleb Connolly <caleb.connolly@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi   | 4 ++++
- arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dts | 4 ++++
- arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dts    | 4 ++++
- 3 files changed, 12 insertions(+)
+ arch/arm64/boot/dts/qcom/sdm845-db845c.dts | 18 ++++++++++++++++++
+ 1 file changed, 18 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
-index 9c91ddc766af..b1fa00a8047b 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
-@@ -461,6 +461,10 @@ pinconf {
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
+index 40a290b6d4f3..3b73b5305c51 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
++++ b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
+@@ -240,6 +240,18 @@ vph_pwr: vph-pwr-regulator {
+ 
+ 		vin-supply = <&vbat_som>;
  	};
++
++	/*
++	 * The db845c doesn't actually have a battery, but the charger circuitry
++	 * is still wired up to support one, it needs to be programmed for nominal
++	 * vbat voltage. See the vbat-regulator above.
++	 */
++	battery: battery {
++		compatible = "simple-battery";
++
++		voltage-min-design-microvolt = <4200000>;
++		voltage-max-design-microvolt = <4200000>;
++	};
+ };
+ 
+ &adsp_pas {
+@@ -603,6 +615,12 @@ &pmi8998_rradc {
+ 	status = "okay";
  };
  
 +&pmi8998_charger {
 +	status = "okay";
-+};
 +
- &pmi8998_rradc {
- 	status = "okay";
- };
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dts b/arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dts
-index bf2cf92e8976..4e119a78c568 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dts
-+++ b/arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dts
-@@ -32,3 +32,7 @@ &display_panel {
- &bq27441_fg {
- 	monitored-battery = <&battery>;
- };
-+
-+&pmi8998_charger {
-+	monitored-battery = <&battery>;
-+};
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dts b/arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dts
-index 1b6b5bf368df..0b610e3a8d9c 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dts
-+++ b/arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dts
-@@ -33,6 +33,10 @@ &bq27441_fg {
- 	monitored-battery = <&battery>;
- };
- 
-+&pmi8998_charger {
 +	monitored-battery = <&battery>;
 +};
 +
- &rmi4_f12 {
- 	touchscreen-y-mm = <148>;
- };
+ /* QUAT I2S Uses 4 I2S SD Lines for audio on LT9611 HDMI Bridge */
+ &q6afedai {
+ 	qi2s@22 {
 -- 
 2.36.0
 
