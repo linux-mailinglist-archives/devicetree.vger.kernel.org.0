@@ -2,71 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0BCA6512C60
-	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 09:09:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 32FEC512C65
+	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 09:10:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233708AbiD1HLU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Apr 2022 03:11:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41944 "EHLO
+        id S244870AbiD1HOD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Apr 2022 03:14:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48048 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244890AbiD1HLK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 03:11:10 -0400
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F112A7DE20
-        for <devicetree@vger.kernel.org>; Thu, 28 Apr 2022 00:07:55 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id g23so4404167edy.13
-        for <devicetree@vger.kernel.org>; Thu, 28 Apr 2022 00:07:55 -0700 (PDT)
+        with ESMTP id S244919AbiD1HN7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 03:13:59 -0400
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 253767F21B
+        for <devicetree@vger.kernel.org>; Thu, 28 Apr 2022 00:10:45 -0700 (PDT)
+Received: by mail-ed1-x52a.google.com with SMTP id be20so4412373edb.12
+        for <devicetree@vger.kernel.org>; Thu, 28 Apr 2022 00:10:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=mcc+I6jnZJRrJEbVP21ywHq/ZmNTJKsMTD4hOUbWzcQ=;
-        b=hdH/3Kn8LZJ9CZjwIV7q4nqr/u4C7YR3WZCoXTP2SUOi3rvc350zdKbD5g8PUCg5PV
-         cAvCzZdHGm5mop3PsfnIkcgZB6OV0VbPhGLYGuMAzjh6EnZRiEh3FK00dEBYvD4ewstY
-         pTVGPN9MuUqJZdT3hreOn3HtL71fwDce1Xqdn8aFnGGL13y1C7e2cZNIxgcMm+wWgBEp
-         3B/z+CvQ6wLL8vgj4pN27IUy67Dm4m5ef054PZUz4iKmJ0JdJdI50R6eazdrq3sn17En
-         XCPLtOP5NFTNcizGfie2qRIkLex0565lsCnJXZpsTb1tm+LxSRcNmq6Tr0biS6m2jy8O
-         qOFA==
+        bh=mfVDlT+SB+fUGtNozIrcoCBtFK15myE/xvi70Ns07Y0=;
+        b=xaa7sh6dUpf/JxH5JjtFsQCnSBvLBGO59ZolFIGdMeRc1TeiA6r+f5f1yZ7Bnr2Nq/
+         FjtSAulgYT8xeGzhF+fK240lXwT2M02KlfSJEwJvh/cUisAjPQ+0mVGoP5lC0LhGNTK3
+         SC3u4sxieaHY5oA1CJLgbgCWSUr9B8s+Lrwu22OF+ShFdb2qQrOkPg3cGd0AD5DOW8ih
+         lhr53NlIGKMPK1ebYPtovy2tJ0PfIDoGAekcR1cOLeZ8Vi6HyXb81JuBpMZEHE2uRKdZ
+         EN1kUxq9ZSkxJIEkdpC816bw+O8L5srUyNB8pvvNmme61DuYZopGKaI1uBtZ6gHknl74
+         uZkA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=mcc+I6jnZJRrJEbVP21ywHq/ZmNTJKsMTD4hOUbWzcQ=;
-        b=zLUBDBxl50rCCwIJlCCspQ27qcVE2UTgRqZ/QnhfJOgh/b2y8bRFP5IVZ0UmbQf01n
-         9jFxitEHWp7VK7p1dJsRfbIR8njjojrB6zZN+hCaDzGxwpJaVmdnPAhQ9ARSSqa+v94F
-         3ThIjIik77kt5TRpqcOAb35ldsDyyiw4undm5yxVo85AhIyzBCL0Ef6dwttYfe0DQzNn
-         WYK85Is3QMBi/i4R80iCzlYvS/QR3gre2k98vkpbgjJzQgMnyPZ74fXEt0yUeN6FBUjK
-         H77Z6pG4GNRMpq1fgGuDYtxyQjFPC6eANKhmAFcyx56lcYW2ASFY+xBdUhlJ0BFcC2cX
-         /DXw==
-X-Gm-Message-State: AOAM532SErR0JxLdCNvm4IrizMJrnmLY7kCqHhJaCIso5NAQ7Ig7FXGt
-        RkN1Yb6LKmgiv3B1OoyTDZYchF2pT7C+Qw==
-X-Google-Smtp-Source: ABdhPJzqV0BQAJAyMiRYK4ZZ6ZDJEEcrxGgGzR26K+hw/8vfsIJLkEbCTmebsN6SqWLC7nNbrBiyZA==
-X-Received: by 2002:a05:6402:3553:b0:426:2b19:a4b0 with SMTP id f19-20020a056402355300b004262b19a4b0mr1438296edd.66.1651129674531;
-        Thu, 28 Apr 2022 00:07:54 -0700 (PDT)
+        bh=mfVDlT+SB+fUGtNozIrcoCBtFK15myE/xvi70Ns07Y0=;
+        b=FwzCwiJFecfviEXO7XcQuuE/ADOxm0WCY8qOZgQoFEYfDggQcg9gzSkCl/cbjMd8X1
+         IvT2SFNkhoZUUFxO8klBCc1Ibv8e4reui6pOKxH9SLO6E1UhTaiZdHemAwKnuApG2cG3
+         aSqOtSSOeD+4aOZtrgcAKZm5HUiTSlgujsjdxGSGtiCGqiccI8Npc+1R2f3FRkYZfpBW
+         boy/dBDqKJ7JzsnL4h/H/3u+RnSRR31tCZoHHiQx2jwUqsdaEbjGcheVconlVVehZZyq
+         i1hefHFmvQA3DpYVm538Emwil7Gr6QUmd9JDyhWdcNsfFah9C3siT67KqY1NDnRYI7FV
+         3hgw==
+X-Gm-Message-State: AOAM5300dfY3zjUV/MzXWMbalhu4CrtcqXk+6Zkms9+lGiu6rxs6374r
+        8jhMs6WXVbkhY4FX0Fed6rsIAg==
+X-Google-Smtp-Source: ABdhPJx/RN+yCmworyXkMteDeoWpMxQQIF8ARhEImfpJoyrf4ovluw4eYFLw46bzELds12rwdt2Gmg==
+X-Received: by 2002:aa7:d543:0:b0:416:13eb:6fec with SMTP id u3-20020aa7d543000000b0041613eb6fecmr35208100edr.348.1651129843703;
+        Thu, 28 Apr 2022 00:10:43 -0700 (PDT)
 Received: from [192.168.0.160] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id bm6-20020a170906c04600b006e89a5f5b8fsm8014191ejb.153.2022.04.28.00.07.53
+        by smtp.gmail.com with ESMTPSA id q9-20020a170906770900b006d20acf7e2bsm7890526ejm.200.2022.04.28.00.10.42
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 28 Apr 2022 00:07:54 -0700 (PDT)
-Message-ID: <55574426-df20-cdd7-c97d-092726981a42@linaro.org>
-Date:   Thu, 28 Apr 2022 09:07:53 +0200
+        Thu, 28 Apr 2022 00:10:43 -0700 (PDT)
+Message-ID: <57812ced-4132-51ae-98c2-62c6de809841@linaro.org>
+Date:   Thu, 28 Apr 2022 09:10:42 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [PATCH 05/11] dt-bindings: serio: add Arm PL050 DT schema
+Subject: Re: [PATCH v3 3/4] dt-bindings: interrupt-controller: fsl,ls-extirq:
+ convert to YAML
 Content-Language: en-US
-To:     Andre Przywara <andre.przywara@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Michael Walle <michael@walle.cc>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Liviu Dudau <liviu.dudau@arm.com>,
-        Robin Murphy <robin.murphy@arm.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        linux-input@vger.kernel.org
-References: <20220427112528.4097815-1-andre.przywara@arm.com>
- <20220427112528.4097815-6-andre.przywara@arm.com>
+Cc:     Li Yang <leoyang.li@nxp.com>, Shawn Guo <shawnguo@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>, linuxppc-dev@lists.ozlabs.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220427075338.1156449-1-michael@walle.cc>
+ <20220427075338.1156449-4-michael@walle.cc>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220427112528.4097815-6-andre.przywara@arm.com>
+In-Reply-To: <20220427075338.1156449-4-michael@walle.cc>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -79,103 +79,41 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/04/2022 13:25, Andre Przywara wrote:
-> The Arm PL050 "Keyboard/Mouse Interface" is an Arm system IP providing a
-> PS/2 compatible serial interface.
+On 27/04/2022 09:53, Michael Walle wrote:
+> Convert the fsl,ls-extirq binding to the new YAML format.
 > 
-> Add a simple DT schema binding, based on the TRM[1], the existing DTs and
-> the Linux driver.
+> In contrast to the original binding documentation, there are three
+> compatibles which are used in their corresponding device trees which
+> have a specific compatible and the (already documented) fallback
+> compatible:
+>  - "fsl,ls1046a-extirq", "fsl,ls1043a-extirq"
+>  - "fsl,ls2080a-extirq", "fsl,ls1088a-extirq"
+>  - "fsl,lx2160a-extirq", "fsl,ls1088a-extirq"
 > 
-> [1] https://developer.arm.com/documentation/ddi0143/latest
+> Depending on the number of the number of the external IRQs which is
+> usually 12 except for the LS1021A where there are only 6, the
+> interrupt-map-mask was reduced from 0xffffffff to 0xf and 0x7
+> respectively and the number of interrupt-map entries have to
+> match.
 > 
-> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+> Signed-off-by: Michael Walle <michael@walle.cc>
 > ---
->  .../devicetree/bindings/serio/amba-pl050.yaml | 67 +++++++++++++++++++
->  1 file changed, 67 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/serio/amba-pl050.yaml
+> changes since v2:
+>  - drop $ref to interrupt-controller.yaml
+>  - use a more strict interrupt-map-mask and make it conditional on SoC
 > 
-> diff --git a/Documentation/devicetree/bindings/serio/amba-pl050.yaml b/Documentation/devicetree/bindings/serio/amba-pl050.yaml
-> new file mode 100644
-> index 0000000000000..9732a84550098
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/serio/amba-pl050.yaml
+> changes since v1:
+>  - new patch
+> 
+>  .../interrupt-controller/fsl,ls-extirq.txt    |  53 --------
+>  .../interrupt-controller/fsl,ls-extirq.yaml   | 118 ++++++++++++++++++
+>  2 files changed, 118 insertions(+), 53 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/fsl,ls-extirq.txt
+>  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/fsl,ls-extirq.yaml
+> 
 
-Filename: vendor,device
 
-> @@ -0,0 +1,67 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/serio/amba-pl050.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Arm Ltd. PrimeCell PL050 PS/2 Keyboard/Mouse Interface
-> +
-> +maintainers:
-> +  - Andre Przywara <andre.przywara@arm.com>
-> +
-> +description:
-> +  The Arm PrimeCell PS2 Keyboard/Mouse Interface (KMI) is an AMBA compliant
-> +  peripheral that can be used to implement a keyboard or mouse interface that
-> +  is IBM PS2 or AT compatible.
-> +
-> +# We need a select here so we don't match all nodes with 'arm,primecell'
-> +select:
-> +  properties:
-> +    compatible:
-> +      contains:
-> +        const: arm,pl050
-> +  required:
-> +    - compatible
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - const: arm,pl050
-> +      - const: arm,primecell
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    items:
-> +      - description: KMI reference clock, used to generate the bus timing
-> +      - description: APB register access clock
-> +
-> +  clock-names:
-> +    items:
-> +      - const: KMIREFCLK
-
-lowercase letters only
-
-> +      - const: apb_pclk
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +  - clock-names
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    kmi@70000 {
-
-Generic node names, so "serio".
-
-> +            compatible = "arm,pl050", "arm,primecell";
-> +            reg = <0x070000 0x1000>;
-> +            interrupts = <8>;
-> +            clocks = <&mb_clk24mhz>, <&soc_smc50mhz>;
-> +            clock-names = "KMIREFCLK", "apb_pclk";
-> +    };
-> +
-> +...
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 
 Best regards,
