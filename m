@@ -2,86 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C9D2B5130ED
-	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 12:09:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6DC765130F3
+	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 12:09:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234042AbiD1KMK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Apr 2022 06:12:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51580 "EHLO
+        id S236286AbiD1KNK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Apr 2022 06:13:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51280 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234396AbiD1KLo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 06:11:44 -0400
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.19])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35B4E2CC8E;
-        Thu, 28 Apr 2022 03:03:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1651140147;
-        bh=5RkR0AnFX7vQTXrSZOyaEfFUYVNtE06t7X96bNHnpAk=;
-        h=X-UI-Sender-Class:Date:From:To:Cc:Subject:References:In-Reply-To;
-        b=EVZb7nTx/v4hqEQf/0UL39mQpzEJu4VuF3dvdrAbo9fT0Iy7igpqwmPyfEMJBQtY+
-         Pn2PmbzUQek4kJ1q1UIKaX7rOPl7Nf+Z9+fZ7S5dVF162uhqw3qb51QsEG+6vdrbcR
-         mhe7sT9dEFYcunjyIuD3Du0g/9QZgJK5vWxpSLEo=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from longitude ([37.201.215.103]) by mail.gmx.net (mrgmx005
- [212.227.17.190]) with ESMTPSA (Nemesis) id 1MZTqW-1nOTRM3hrC-00WUrz; Thu, 28
- Apr 2022 12:02:26 +0200
-Date:   Thu, 28 Apr 2022 12:02:24 +0200
-From:   Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
-To:     Zev Weiss <zweiss@equinix.com>
-Cc:     Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
-        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-        "openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        "linux-watchdog@vger.kernel.org" <linux-watchdog@vger.kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Patrick Venture <venture@google.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Avi Fishman <avifishman70@gmail.com>,
+        with ESMTP id S234556AbiD1KMs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 06:12:48 -0400
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2FAE40A36
+        for <devicetree@vger.kernel.org>; Thu, 28 Apr 2022 03:04:31 -0700 (PDT)
+Received: by mail-wr1-x42d.google.com with SMTP id b19so6017496wrh.11
+        for <devicetree@vger.kernel.org>; Thu, 28 Apr 2022 03:04:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=SbMt1g6aoE0Bg5dwfqmFelsLQshOG2+YZf5M70rMj8Q=;
+        b=eDHxmC6WsUWOrWLtgePXgUyYSARbuIpxRXqT83D+MT5KWhvRUkaRmVEDHIEuZK6a6/
+         SgTx+6aOSj/uNyNwjy/w0C3vfP21G+btolT7n89mozDMEnkZh8KaR3J9AXZiiTGeDpff
+         fWPJ6oduu0twIwFmfkUv8PsBJskvta0iFptbM=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=SbMt1g6aoE0Bg5dwfqmFelsLQshOG2+YZf5M70rMj8Q=;
+        b=TVgOZxXVEcTvzlQ9ZKHLf7Jv85P37v12vQv3GmrHUsUfdRXsl8rcZk1w+PBZld/wMA
+         ZGYq1abmEtcKUrZ132k5cErnAxz0HXbE6KHj7KY99/WhL7sPAWOestqSq7bHnyhTJhVZ
+         gogScK4B6WQt0uA+3VxKfkFoH+DtY0riZ1RBxTq/6DKgFaKIR1PoRHrv132aVi18NcyV
+         58x7bcBRgINDFC2AD5kGhz2X2u03vjcYmf1wYk+KuphOZsI8tXUumBAILELt+dhyL+VJ
+         gqIfTlgWpGas3NTh5+YS/DrtLFJqhuKU+konSATzHqyK55cBikY8x5cP8lxBqQTthKIB
+         SVpg==
+X-Gm-Message-State: AOAM531qs4F41HvT1vhVlhLiMkzu/erWYVP+NstQ8VqQWHNJ7fuplVev
+        RyZsPaHaCS0wJHQjj5xf8IIvZA==
+X-Google-Smtp-Source: ABdhPJyqFzeu7gO4jIJIJSD11VQmMog/KOSnjjmdVpYp4MOAqrZyPlPZSH+cTzEL0sYYjh71p4fM7Q==
+X-Received: by 2002:a5d:4f08:0:b0:20a:ddfe:bd99 with SMTP id c8-20020a5d4f08000000b0020addfebd99mr15546448wru.339.1651140270334;
+        Thu, 28 Apr 2022 03:04:30 -0700 (PDT)
+Received: from fabiobaltieri-linux.lan ([37.228.205.1])
+        by smtp.gmail.com with ESMTPSA id v5-20020a5d6785000000b0020a792848eesm15080449wru.82.2022.04.28.03.04.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 28 Apr 2022 03:04:29 -0700 (PDT)
+From:   Fabio Baltieri <fabiobaltieri@chromium.org>
+To:     Benson Leung <bleung@chromium.org>,
+        Guenter Roeck <groeck@chromium.org>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Benjamin Fair <benjaminfair@google.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Tali Perry <tali.perry1@gmail.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Tomer Maimon <tmaimon77@gmail.com>
-Subject: Re: [PATCH 2/7] clocksource: timer-npcm7xx: Enable timer 1 clock
- before use
-Message-ID: <YmpmMGsI2GLrvMg5@latitude>
-References: <20220422183012.444674-1-j.neuschaefer@gmx.net>
- <20220422183012.444674-3-j.neuschaefer@gmx.net>
- <20220428091158.GD11809@packtop>
+        chrome-platform@lists.linux.dev, linux-pwm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Fabio Baltieri <fabiobaltieri@chromium.org>
+Subject: [PATCH v6 0/4] Add channel type support to pwm-cros-ec
+Date:   Thu, 28 Apr 2022 10:04:17 +0000
+Message-Id: <20220428100421.247471-1-fabiobaltieri@chromium.org>
+X-Mailer: git-send-email 2.36.0.rc2.479.g8af0fa9b8e-goog
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="yOapqzkiMt8+dk0+"
-Content-Disposition: inline
-In-Reply-To: <20220428091158.GD11809@packtop>
-X-Provags-ID: V03:K1:z2GOvnE2pOoTKqPS2YNCdWH3PNgLZoY46dfHyKNgxU1cCV0GDMV
- CD5eXdswQsXQqcWJUlISm7/TxvKACGZ4FJS9IDAcStlPoqFOQYnAZI7jcX3dsNtIq+i3Uai
- bV9ZDeHO2mpbW/oJIk5KYUBSGI1btTH9/yVMpNt9Z3sK8JIRqdkp0d4QnB1agCrftN6tB+z
- hl6MQKVaa1728yKtcJiBA==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:I6+m8IwNZtM=:6UfzdwNcOAsy6GnUAtfJdl
- 6wW0Ip1MRPMbRrjB6AtLBRlzFqB1TJGg49uanx9G2aDNNU5pL8oveu/t/XhdSZajLVc5avdGp
- NexHpCpVrfm9P39HdsWE+Ys0gF5QOD5VLm3XEWSI5IdTpZsFl7rQ94GZjPGUpWOS5M76yKJQO
- HeWPP47IHdCOxj/g+3/yoa0SYC27v2lijBV9F7FWfqcucbNme9MQT/UxwHB2BLrKQLGcgtP0z
- 5rStsWFJ54Iq9YDnP8b8tVrx/Sc//6o3MXvyIh/OkHoTLP4lYouNjmscUocxJtxtH4CKDs8qB
- cdEK434ilq2GkCAN3j5DoTJi2f2UfvZ9vB5TIiogM1+pA7qjknwRhqo/RIEowtMKxS/PNemy7
- t/aweHpEDnlavP/XMBrSilu1mvq9/MexyqSaj14pLowIvu8DzJCMmo30/9pMkK869u/52W25Q
- ZqZ/AhaY5EgRs+XOFnj08nwmP4HGhxJB8bIkqKo4w40TNY1TIdYEqzuRdH+MlUIulHi6rXNJb
- TGUDj7BY57On5x8ng2FbF2MW5O5fd0dvWacwKvHpXWuzIdm9DIAqi+yxIcVlEvEcKpj+qPxrD
- SBJblxieQUAoPKOQtX8gWNEohdd1rHRawppM1/Z+FI7k/Uon7jxgZC31gGr/Jlqfs6PMHMu+6
- dkAnnrMfloM04cXPGgRYSj2VSeqVByrtPwPz4pk1B7KKU0VCv9a2xIt040qiByoAHM/DaRM58
- 8jzU8vbzjdXK//fpWL3sgAOuwHczM9ehyQmebFImrgk8TS04eqHqLPzFemNgdEFNE4TJSL8Ty
- cPIrK7irweN9tan58XCt1MY5okntg1dfih6GoblOwfDQx15BfNZHr6Wsq7eOWqkBdoCtl71cf
- PmUjzBsd7Biv33otqAby6iBMcSagwzXRKkat4/SDggUsVTbB2j6CM8AGH263eL15nFSXjuLdK
- Qrm32UaVAEYWCUxxY2hQnRutwHuYpvl5gCn65xUAmw3wX7JsNdEk02CsFWSKJ3zVEDIg2pSlj
- 1wEn2oH1yI6FqC7f+fn0la/L81NfleUMxBBcscy6H2UGlh57PD2dm7zmQ7rt/a0GA/1M0avLy
- oo+FpSSyPXgUvQ=
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_LOW,
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -89,89 +69,77 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
 
---yOapqzkiMt8+dk0+
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+The ChromiumOS EC PWM host command protocol supports specifying the
+requested PWM by type rather than channel. [1]
 
-On Thu, Apr 28, 2022 at 09:11:58AM +0000, Zev Weiss wrote:
-> On Fri, Apr 22, 2022 at 11:30:07AM PDT, Jonathan Neusch=C3=A4fer wrote:
-> >In the WPCM450 SoC, the clocks for each timer can be gated individually.
-> >To prevent the timer 1 clock from being gated, enable it explicitly.
-> >
-> >Signed-off-by: Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx.net>
-> >---
-> > drivers/clocksource/timer-npcm7xx.c | 14 +++++++++++++-
-> > 1 file changed, 13 insertions(+), 1 deletion(-)
-> >
-> >diff --git a/drivers/clocksource/timer-npcm7xx.c b/drivers/clocksource/t=
-imer-npcm7xx.c
-> >index a00520cbb660a..974269b6b0c36 100644
-> >--- a/drivers/clocksource/timer-npcm7xx.c
-> >+++ b/drivers/clocksource/timer-npcm7xx.c
-> >@@ -188,17 +188,29 @@ static void __init npcm7xx_clocksource_init(void)
-> >
-> > static int __init npcm7xx_timer_init(struct device_node *np)
-> > {
-> >+	struct clk *clk;
-> > 	int ret;
-> >
-> > 	ret =3D timer_of_init(np, &npcm7xx_to);
-> >-	if (ret)
-> >+	if (ret) {
-> >+		pr_warn("timer_of_init failed: %d\n", ret);
->=20
-> This seems like a somewhat opaque message to emit, especially given this
-> file's lack of a pr_fmt() definition -- maybe add a %pOF so it's
-> slightly easier to trace back to the device it stems from?
+This series adds support for specifying PWM by type rather than channel
+number in the pwm-cros-ec driver, which abstracts the node definitions
+from the actual hardware configuration from the kernel perspective,
+aligns the API with the one used by the bootloader, and allows removing
+some dtsi overrides.
 
-Now that I look at this code again, I think I should just drop the
-pr_warn entirely, since I didn't mention it in the description, and it's
-unrelated to enabling the clock.
+Tested on a sc7180-trogdor board, build tested on x86.
 
-> > 		return ret;
-> >+	}
-> >
-> > 	/* Clock input is divided by PRESCALE + 1 before it is fed */
-> > 	/* to the counter */
-> > 	npcm7xx_to.of_clk.rate =3D npcm7xx_to.of_clk.rate /
-> > 		(NPCM7XX_Tx_MIN_PRESCALE + 1);
-> >
-> >+	/* Enable the clock for timer1, if it exists */
-> >+	clk =3D of_clk_get(np, 1);
-> >+	if (clk) {
-> >+		if (!IS_ERR(clk))
-> >+			clk_prepare_enable(clk);
-> >+		else
-> >+			pr_warn("Failed to get clock for timer1: %pe", clk);
->=20
-> Likewise here (though to a slightly lesser extent).
+Changes from v5:
+(https://patchwork.kernel.org/project/chrome-platform/list/?series=633811)
+- reworded the binding patch commit subject
+- added one more review tag
 
-I'll add %pOF here.
+Changes from v4:
+(https://patchwork.kernel.org/project/chrome-platform/list/?series=632212)
+- fixed wrong indentation in the devietree file on patch 3
+- added review and ack tags from the previous run
 
+Changes from v3:
+(https://patchwork.kernel.org/project/chrome-platform/list/?series=631131)
+- actually reworded patch 2 commit description
+- reworked patch 2 to use of_device_is_compatible() instead of compatible .data
 
-Thanks,
-Jonathan
+Changes from v2:
+(https://patchwork.kernel.org/project/chrome-platform/list/?series=627837)
+- reworded patch 2 commit description
+- reworked the driver and dt documentation to use a new compatible rather than
+  boolean property
+- dropped the comment about build test only, tested on actual hardware
+  (trogdor), build test on x86 (with CONFIG_OF=n).
 
---yOapqzkiMt8+dk0+
-Content-Type: application/pgp-signature; name="signature.asc"
+Changes from v1:
+(https://patchwork.kernel.org/project/chrome-platform/list/?series=625182)
+- fixed the dt include file license
+- fixed the property name (s/_/-/)
+- rebased on current linus tree (few dts files changed from a soc tree
+  pull, so patch 4 needs a recent base to apply correctly)
 
------BEGIN PGP SIGNATURE-----
+[1] https://source.chromium.org/chromiumos/chromiumos/codesearch/+/main:src/platform/ec/common/pwm.c;l=24
+[2] https://source.chromium.org/chromiumos/chromiumos/codesearch/+/main:src/platform/depthcharge/src/drivers/ec/cros/ec.c;l=1271-1273
 
-iQIzBAABCgAdFiEEvHAHGBBjQPVy+qvDCDBEmo7zX9sFAmJqZg4ACgkQCDBEmo7z
-X9v7UA//XinB73NhiIWuAgNkGTSfPjaFxOvIHuRuFLsnTcJHlorK0w1BmfZHecD+
-ZdHnpqPtkXz3gnReMqx8qJcO/0lHmJTkgvddzHqEu4wcWFROMTNs8Tbrd7TUvaxx
-9jmxWWOE5f9P5EXHCLUlo0c03r6Iq8R7BlMUVSh0wZz6RtPujFoHjw6A8uhE9tbt
-ZzoD4XhdNl4BkUpC/NUNIHSxbb/VYZYy7GxqP4N9yQ0QSYGIJm7ESR3RRGhMFoEO
-BZziQtQiH/zJSj71FbG3q8vnXJF4mVozFqnTk4UHngq5nJrM7ZFmE6tVRBf5EPzY
-aaBOk7Y7gcYdPDFMHszp+TtlxcGk7IuTs3I4lVA1JjCX7YPBfxA6AVt6Haf15YkL
-TmosKy8EOB+QqfwKLwddQafB9FXSkRSWr0fn3WboeAolBa+omi+5NMVfq4X1kbHL
-FNO1MlBA0IdDIuMwgRAm5aVTFiIuDoyYIm7qytMFvve4nSlLS3sL3F7qzT783Dvm
-jbSSOUGrQa4XrQoO/N0HRiYj6FkZGE00Deg7e2qY6mqVi7PT9AIzWakASES0LqSd
-kRiHXIqXlsjp65wuJ6xL/hj0PUg9ziUTurX31k1BXomattaHbz5ZSq+bGBD9vuvI
-muA9b/srdaA7jEkkLs6AqWGSsFl8CXAEwI1Rh5VRZ+MStwIBicg=
-=8ywP
------END PGP SIGNATURE-----
+Fabio Baltieri (4):
+  dt-bindings: add mfd/cros_ec definitions
+  pwm: pwm-cros-ec: add channel type support
+  dt-bindings: google,cros-ec-pwm: add the new -type compatible
+  arm64: dts: address cros-ec-pwm channels by type
 
---yOapqzkiMt8+dk0+--
+ .../bindings/pwm/google,cros-ec-pwm.yaml      |  9 +-
+ .../mt8183-kukui-jacuzzi-fennel-sku1.dts      |  4 +-
+ .../dts/mediatek/mt8183-kukui-jacuzzi.dtsi    |  4 +-
+ .../arm64/boot/dts/mediatek/mt8183-kukui.dtsi |  1 +
+ .../boot/dts/qcom/sc7180-trogdor-coachz.dtsi  |  4 -
+ arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi  |  9 +-
+ .../qcom/sc7280-herobrine-herobrine-r0.dts    |  7 +-
+ .../arm64/boot/dts/qcom/sc7280-herobrine.dtsi |  7 +-
+ .../arm64/boot/dts/qcom/sc7280-idp-ec-h1.dtsi |  4 +-
+ arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi    |  7 +-
+ .../boot/dts/rockchip/rk3399-gru-bob.dts      |  4 -
+ .../dts/rockchip/rk3399-gru-chromebook.dtsi   |  5 +-
+ .../boot/dts/rockchip/rk3399-gru-kevin.dts    |  4 -
+ arch/arm64/boot/dts/rockchip/rk3399-gru.dtsi  |  1 +
+ drivers/pwm/pwm-cros-ec.c                     | 82 +++++++++++++++----
+ include/dt-bindings/mfd/cros_ec.h             | 18 ++++
+ 16 files changed, 121 insertions(+), 49 deletions(-)
+ create mode 100644 include/dt-bindings/mfd/cros_ec.h
+
+-- 
+2.36.0.rc2.479.g8af0fa9b8e-goog
+
