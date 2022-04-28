@@ -2,192 +2,413 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A525C513A12
-	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 18:42:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 208F8513A62
+	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 18:51:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349900AbiD1Qpz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Apr 2022 12:45:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59636 "EHLO
+        id S1345896AbiD1QyA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Apr 2022 12:54:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47698 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349955AbiD1Qpz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 12:45:55 -0400
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E366C6E8DF
-        for <devicetree@vger.kernel.org>; Thu, 28 Apr 2022 09:42:39 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id r13so10717327ejd.5
-        for <devicetree@vger.kernel.org>; Thu, 28 Apr 2022 09:42:39 -0700 (PDT)
+        with ESMTP id S1350376AbiD1Qxe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 12:53:34 -0400
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (mail-dm6nam11on2084.outbound.protection.outlook.com [40.107.223.84])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C784F4505F;
+        Thu, 28 Apr 2022 09:50:18 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=hzC1LavcGerU7o8A78K9NGmiQIBVjUH6JiETKjl/EVwr3eDveqZGjPNQbCOyXag2EGmWv4VLlXtQG/AegzK/6cb2XxTWmbwyXFPDqYfagsu39wNZs9se3KQQvp+sUqogWsvM7si/0M1GFwBJ8k2LdY1Mm0qGjP/yGC2b8GFCfg/grYhobzpkSS+tr3pMnSLO6tHgbgapsewYKVmEEDk09eaFdVutqDW7PKhJ7lVfEVpkwJEvPgetiTdBOSD7PT8p7idS6/AolK1gHy/2AKg6iH8xW8akZL7/A/Jh5Sj0R2dhpyrfw8t7VdACz3i8K1SAJFiErbYYQA1YcQsMmMUDlA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=OWBqL8RkSkz6TRdwC5CjpcFGATujoZff33d8nD3mCLU=;
+ b=anhsCCWnNrCw20swWA1FWXciWAQyCqtV0sdJaOxJL2N/gUwcTiU9vSgxWiWZMNMmSZfm1b+BLUdF071qMQL1n8U2Q2Mzu4VRfID/YdnseApV234jyVMpCXUNAvuNf0zWtEYidIofKN83TwdNCgyMLdcrUEB3FqDc8gfBrFGCb0bPR2lOCIfIRyjGQFqW8jRYWuzy83/o+bKDvDlsK14jZNcNPqSElmI6lXbJTiXrfhbddjlYj7FlLuOxTdAVLHeQMUI761N8AS/XT21J/2odeQdU3qatdjvHA13SUAO7ggfCjKtaQrcbm3CjnVN1//EnhuuRCZaReh/gv8d7aCLVhg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 149.199.62.198) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=xilinx.com;
+ dmarc=pass (p=none sp=none pct=100) action=none header.from=xilinx.com;
+ dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=AkQQpoM0XqeDnroSElMP8/Xsy0E3kSoEUlYeB6Pe/vk=;
-        b=bz9fRRT9A06VnWM5YCZauEp8rMIqhBhq2O7w/BgDv9VGUkM2g91QDtmNKbe1n5q1MA
-         Tvsv1uTCi1B4r8TCbe1VoL9OfXhKYuFI5QdlV7vebCaH7JcLINfuTmlGeWDZY+XnVHiH
-         C05m7IossFyNWXyN2z3+Kp946vNEWL8tnJUn8=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=AkQQpoM0XqeDnroSElMP8/Xsy0E3kSoEUlYeB6Pe/vk=;
-        b=QprZqsxdekhUZ+ZkXWFvuaz6cODwf4hRb/cDwt2SCic75bxpQOzwW2oJM+wEbM9NBR
-         DQTR5bG2nHK5p8fkN4Cl7SvHnTWVbvq71dXoblY4t6b8278w2uYJnC9euB025q1QNYV8
-         zRcX3qjEz0hNra3DKpmswihayCUeQ42kqD4lpx3j9fwmdvMulCNFWuRVLYCqITZfkmZM
-         J4QExSUkaClndjiZwttCyZ2Ech5nHFeQhv4h6PyVuEmso8nA12kdXxDn7xoX7fLq7CEk
-         NFrAiVmPYnop1kRBA/k3rQsPTs3PBY0nAPKMu06PVo7lSGDyDlg1k7MEtIGfMbOY0MS8
-         p3Bw==
-X-Gm-Message-State: AOAM533cjfw/Ue46chF48ppKH4MugCg5Dee4/bMTuqpPT4V8ijycSZ/U
-        eGLKrX2DuRt43eNs0Vbbls0hYt9+rVjpWMNF
-X-Google-Smtp-Source: ABdhPJyo3XUi5iAQoTmx5V+dodwJGhxCd+QoXYJQDB6x8nwQWZWu/5+El4WFNLAOU5Q2gzG+p1N2Dg==
-X-Received: by 2002:a17:907:6d91:b0:6f3:ef99:cf66 with SMTP id sb17-20020a1709076d9100b006f3ef99cf66mr75635ejc.62.1651164158116;
-        Thu, 28 Apr 2022 09:42:38 -0700 (PDT)
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com. [209.85.128.42])
-        by smtp.gmail.com with ESMTPSA id sd22-20020a170906ce3600b006f3ce56ea9csm169329ejb.203.2022.04.28.09.42.36
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 28 Apr 2022 09:42:36 -0700 (PDT)
-Received: by mail-wm1-f42.google.com with SMTP id l62-20020a1c2541000000b0038e4570af2fso3341156wml.5
-        for <devicetree@vger.kernel.org>; Thu, 28 Apr 2022 09:42:36 -0700 (PDT)
-X-Received: by 2002:a05:600c:3d0e:b0:38f:f83b:e7dc with SMTP id
- bh14-20020a05600c3d0e00b0038ff83be7dcmr40096910wmb.29.1651164156093; Thu, 28
- Apr 2022 09:42:36 -0700 (PDT)
+ d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=OWBqL8RkSkz6TRdwC5CjpcFGATujoZff33d8nD3mCLU=;
+ b=BAKsVWI3YRML67O0iFlsvYL4QQmW1J3FYHUvoUI2VRRkZpNb44kBBnBAkiAkVhe3jhSocbCZbauKuP7CTg7G0bBFqrRF3i+a0VX684IbhCy2oCufCduh6agIwXITimrLZ3YrRSaCQ5SNHDFa2JdhZTQoH6FF1mu4FHw3YQnWVQM=
+Received: from SA9PR13CA0140.namprd13.prod.outlook.com (2603:10b6:806:27::25)
+ by BL0PR02MB4578.namprd02.prod.outlook.com (2603:10b6:208:49::29) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5186.14; Thu, 28 Apr
+ 2022 16:50:11 +0000
+Received: from SN1NAM02FT0014.eop-nam02.prod.protection.outlook.com
+ (2603:10b6:806:27:cafe::dd) by SA9PR13CA0140.outlook.office365.com
+ (2603:10b6:806:27::25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5227.6 via Frontend
+ Transport; Thu, 28 Apr 2022 16:50:11 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
+ smtp.mailfrom=xilinx.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=xilinx.com;
+Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
+ 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=149.199.62.198; helo=xsj-pvapexch01.xlnx.xilinx.com;
+Received: from xsj-pvapexch01.xlnx.xilinx.com (149.199.62.198) by
+ SN1NAM02FT0014.mail.protection.outlook.com (10.97.4.112) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.5206.12 via Frontend Transport; Thu, 28 Apr 2022 16:50:10 +0000
+Received: from xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) by
+ xsj-pvapexch01.xlnx.xilinx.com (172.19.86.40) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.14; Thu, 28 Apr 2022 09:50:08 -0700
+Received: from smtp.xilinx.com (172.19.127.95) by
+ xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server id
+ 15.1.2176.14 via Frontend Transport; Thu, 28 Apr 2022 09:50:08 -0700
+Envelope-to: git@xilinx.com,
+ devicetree@vger.kernel.org,
+ jassisinghbrar@gmail.com,
+ robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org,
+ linux-kernel@vger.kernel.org
+Received: from [10.140.6.39] (port=56568 helo=xhdsgoud40.xilinx.com)
+        by smtp.xilinx.com with esmtp (Exim 4.90)
+        (envelope-from <shubhrajyoti.datta@xilinx.com>)
+        id 1nk7LE-000Fww-AA; Thu, 28 Apr 2022 09:50:08 -0700
+From:   Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
+To:     <devicetree@vger.kernel.org>
+CC:     <jassisinghbrar@gmail.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <michal.simek@xilinx.com>,
+        <git@xilinx.com>, <linux-kernel@vger.kernel.org>,
+        Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
+Subject: [PATCH v4] dt-bindings: mailbox: zynqmp_ipi: convert to yaml
+Date:   Thu, 28 Apr 2022 22:20:04 +0530
+Message-ID: <20220428165004.3212654-1-shubhrajyoti.datta@xilinx.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20220303214300.59468-1-bjorn.andersson@linaro.org>
- <20220303214300.59468-2-bjorn.andersson@linaro.org> <CAD=FV=WkgcJA6-niUh0L5_jLNSS=Hv0xrR5QZghPmNriekH7XA@mail.gmail.com>
- <CAD=FV=Xa4wW2AH1RzwQRiTZt__Eptr2+Li5SmfZyUjTvNTkOcA@mail.gmail.com>
-In-Reply-To: <CAD=FV=Xa4wW2AH1RzwQRiTZt__Eptr2+Li5SmfZyUjTvNTkOcA@mail.gmail.com>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Thu, 28 Apr 2022 09:42:22 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=U1jGdZiqu4ADo6ZDuMfhsLrvZyX9ab4KtJZoxwgj4oeA@mail.gmail.com>
-Message-ID: <CAD=FV=U1jGdZiqu4ADo6ZDuMfhsLrvZyX9ab4KtJZoxwgj4oeA@mail.gmail.com>
-Subject: Re: [PATCH v14 2/2] leds: Add driver for Qualcomm LPG
-To:     Pavel Machek <pavel@ucw.cz>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>,
-        Luca Weiss <luca@z3ntu.xyz>, Rob Herring <robh+dt@kernel.org>,
-        Jonathan Corbet <corbet@lwn.net>, linux-leds@vger.kernel.org,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
-        linux-pwm <linux-pwm@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 2aa62436-9176-448b-a67a-08da293728b9
+X-MS-TrafficTypeDiagnostic: BL0PR02MB4578:EE_
+X-Microsoft-Antispam-PRVS: <BL0PR02MB457874BC6317AF8135AD29FDAAFD9@BL0PR02MB4578.namprd02.prod.outlook.com>
+X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: njoa+6e9+vnksaUnjTasIOpAxOCn7yfIbeNQS9LTvPH7EznUc1MpDN219GwWRH3Xn1h8sNYMlpbUxX7H4U6LIya6zRv6K/FRIvjJM05tQ2eSUGGVO/yTQEIZ1NpTnJL4f4DYuYFp29hkewOl0smOTXNuP+MFsmFdlSyNc/X5JEOT34TejlfIvNZqvz2NYcyjG1OGEXfWTR0i76KCGv/l3Vnk1VMjBeF+ty8E7cYc0EVMkXznD3rbPiMLLof9kiW0gsBARJMzybHU0nejeSag1ZgRoWxYm2I4rn7Y8ZfUEJHY7IKWai20kvSWuWwmjorIpYghYG1EVgzbbaaVP6yNNg7CNLEs8hqBN8TWKoFi4MsrIzXxcHccHaIT9xMJmpRiFFR42Gdxej+zaLPHTd5xojKcVR7ZLJgN2uNMjdjcicBbxe60CATf919Vm/yz+XOtjfK4M36vnU1DxJ95iN/9yAQD5rCG7XKwFf+bwVcDj3y/yYERKCjT22Dgoob/IDwH0TjT+mCdRiBK+dh8Ur+q+nEJHoL5a4kniQlaaAKvYAkO7W+0BAtAK+OWZa1uo4jR2FzYLCYo9ajrCA8zaAwT9J2K/BccFS/THqLcvRKG8tX72PrMQHdTW/p0z5i2VlFVrWs9kHEFhLFvHxFvnR+CVrTqoxoER5nr6SPx/QnkYKIizvHGCn87c29qE51veVjKl9VYd9hhqwy4+hMfoVKJCXhQM6Rq6nFEXyomHc3KWawpI48t/UwrVmgx9QDIDAsymwNaIEJN6J+288qZ27livrJzjCxOYDLQZZ+8j923La+y06v2ardLlcWDbYhBke0YkKP9oJOAPW81PVleUljYQA==
+X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch01.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(13230001)(4636009)(36840700001)(46966006)(40470700004)(9786002)(5660300002)(8936002)(7636003)(1076003)(40460700003)(6666004)(2906002)(44832011)(36756003)(356005)(508600001)(15650500001)(83380400001)(8676002)(7696005)(70586007)(316002)(47076005)(426003)(70206006)(336012)(186003)(4326008)(36860700001)(82310400005)(54906003)(2616005)(6916009)(107886003)(26005)(102446001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: xilinx.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Apr 2022 16:50:10.8760
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2aa62436-9176-448b-a67a-08da293728b9
+X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch01.xlnx.xilinx.com]
+X-MS-Exchange-CrossTenant-AuthSource: SN1NAM02FT0014.eop-nam02.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR02MB4578
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Pavel,
+Convert the ipi doc to yaml.
 
-On Wed, Apr 6, 2022 at 8:18 AM Doug Anderson <dianders@chromium.org> wrote:
->
-> Hi Pavel,
->
-> On Thu, Mar 3, 2022 at 2:10 PM Doug Anderson <dianders@chromium.org> wrote:
-> >
-> > Hi,
-> >
-> > On Thu, Mar 3, 2022 at 1:41 PM Bjorn Andersson
-> > <bjorn.andersson@linaro.org> wrote:
-> > >
-> > > The Light Pulse Generator (LPG) is a PWM-block found in a wide range of
-> > > PMICs from Qualcomm. These PMICs typically comes with 1-8 LPG instances,
-> > > with their output being routed to various other components, such as
-> > > current sinks or GPIOs.
-> > >
-> > > Each LPG instance can operate on fixed parameters or based on a shared
-> > > lookup-table, altering the duty cycle over time. This provides the means
-> > > for hardware assisted transitions of LED brightness.
-> > >
-> > > A typical use case for the fixed parameter mode is to drive a PWM
-> > > backlight control signal, the driver therefor allows each LPG instance
-> > > to be exposed to the kernel either through the LED framework or the PWM
-> > > framework.
-> > >
-> > > A typical use case for the LED configuration is to drive RGB LEDs in
-> > > smartphones etc, for which the driver supports multiple channels to be
-> > > ganged up to a MULTICOLOR LED. In this configuration the pattern
-> > > generators will be synchronized, to allow for multi-color patterns.
-> > >
-> > > The idea of modelling this as a LED driver ontop of a PWM driver was
-> > > considered, but setting the properties related to patterns does not fit
-> > > in the PWM API. Similarly the idea of just duplicating the lower bits in
-> > > a PWM and LED driver separately was considered, but this would not allow
-> > > the PWM channels and LEDs to be configured on a per-board basis. The
-> > > driver implements the more complex LED interface, and provides a PWM
-> > > interface on the side of that, in the same driver.
-> > >
-> > > Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> > > ---
-> > >
-> > > Changes since v13:
-> > > - Fixed mixed space/tab indentation in documentation
-> > > - Added 0 as to lpg_clk_rates[] to match the hardware state, to avoid + 1 in
-> > >   lpg_apply_freq() and - 1 in lpg_pwm_get_state()
-> > > - Don't divide with 0 if current clock is 0 in lpg_pwm_get_state(), just return
-> > >   period = duty = 0 in this case
-> > > - Renamed "clk" in struct lpg_channel to clk_sel
-> > > - Renamed "pre_div" in struct lpg_channel to pre_div_sel
-> > >
-> > > Changes since v12:
-> > > - Initialize ret in lpg_pwm_apply()
-> > >
-> > > Changes since v11:
-> > > - Extended commit message to cover decision to put pwm_chip in the LED driver
-> > > - Added Documentation, in particular for the hw_pattern format
-> > > - Added a lock to synchronize requests from LED and PWM frameworks
-> > > - Turned out that the 9bit selector differs per channel in some PMICs, so
-> > >   replaced bitmask in lpg_data with lookup based on QPNP SUBTYPE
-> > > - Fixed kerneldoc for the struct device pointer in struct lpg
-> > > - Rewrote conditional in lut_free() to make it easier to read
-> > > - Corrected and deduplicated max_period expression in lpg_calc_freq()
-> > > - Extended nom/dom to numerator/denominator in lpg_calc_freq()
-> > > - Replaced 1 << 9 with LPG_RESOLUTION in one more place in lpg_calc_freq()
-> > > - Use FIELD_PREP() in lpg_apply_freq() as masks was introduced for reading the
-> > >   same in get_state()
-> > > - Cleaned up the pattern format, to allow specifying both low and high pause
-> > >   with and without pingpong mode.
-> > > - Only update frequency and pwm_value if PWM channel is enabled in lpg_pwm_apply
-> > > - Make lpg_pwm_get_state() read the hardware state, in order to pick up e.g.
-> > >   bootloader backlight configuration
-> > > - Use devm_bitmap_zalloc() to allocate the lut_bitmap
-> > > - Use dev_err_probe() in lpg_probe()
-> > > - Extended Kconfig help text to mention module name and satisfy checkpatch
-> > >
-> > >  Documentation/leds/leds-qcom-lpg.rst |   76 ++
-> > >  drivers/leds/Kconfig                 |    3 +
-> > >  drivers/leds/Makefile                |    3 +
-> > >  drivers/leds/rgb/Kconfig             |   18 +
-> > >  drivers/leds/rgb/Makefile            |    3 +
-> > >  drivers/leds/rgb/leds-qcom-lpg.c     | 1405 ++++++++++++++++++++++++++
-> > >  6 files changed, 1508 insertions(+)
-> >
-> > Gets rid of the KASAN error and PWM still works for me, so happy to add back:
-> >
-> > Tested-by: Douglas Anderson <dianders@chromium.org>
-> >
-> > I haven't done a full review of the driver but I did a once-over of
-> > the changes between v12 and v13 and they look good to me.
->
-> With v5.18-rc1 released, this seems like it would be an ideal time to
-> land this driver and its bindings in a for-next branch for the leds
-> subsystem. Is there anything blocking it? Are you the right person to
-> land them? Ideally the bindings / driver (patch #1 and #2) from
-> Satya's series [1] could land right atop it since it's ready too?
->
-> [1] https://lore.kernel.org/r/1645509309-16142-1-git-send-email-quic_c_skakit@quicinc.com/
+Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
+---
+v2:
+ Fix the warnings reported by Rob
+v3:
+ Run dtbs_check
+v4:
+ fix the formatting
+ fix the ranges
+ 
+ .../mailbox/xlnx,zynqmp-ipi-mailbox.txt       | 127 ----------------
+ .../mailbox/xlnx,zynqmp-ipi-mailbox.yaml      | 142 ++++++++++++++++++
+ 2 files changed, 142 insertions(+), 127 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/mailbox/xlnx,zynqmp-ipi-mailbox.txt
+ create mode 100644 Documentation/devicetree/bindings/mailbox/xlnx,zynqmp-ipi-mailbox.yaml
 
-I don't mean to be a huge pest, but we're already at v5.18-rc4 (almost
-at -rc5) and these two series are still pending. I'm worried that
-we're going to miss the window to land them again. Can you give any
-update about them?
+diff --git a/Documentation/devicetree/bindings/mailbox/xlnx,zynqmp-ipi-mailbox.txt b/Documentation/devicetree/bindings/mailbox/xlnx,zynqmp-ipi-mailbox.txt
+deleted file mode 100644
+index ad76edccf881..000000000000
+--- a/Documentation/devicetree/bindings/mailbox/xlnx,zynqmp-ipi-mailbox.txt
++++ /dev/null
+@@ -1,127 +0,0 @@
+-Xilinx IPI Mailbox Controller
+-========================================
+-
+-The Xilinx IPI(Inter Processor Interrupt) mailbox controller is to manage
+-messaging between two Xilinx Zynq UltraScale+ MPSoC IPI agents. Each IPI
+-agent owns registers used for notification and buffers for message.
+-
+-               +-------------------------------------+
+-               | Xilinx ZynqMP IPI Controller        |
+-               +-------------------------------------+
+-    +--------------------------------------------------+
+-ATF                    |                     |
+-                       |                     |
+-                       |                     |
+-    +--------------------------+             |
+-                       |                     |
+-                       |                     |
+-    +--------------------------------------------------+
+-            +------------------------------------------+
+-            |  +----------------+   +----------------+ |
+-Hardware    |  |  IPI Agent     |   |  IPI Buffers   | |
+-            |  |  Registers     |   |                | |
+-            |  |                |   |                | |
+-            |  +----------------+   +----------------+ |
+-            |                                          |
+-            | Xilinx IPI Agent Block                   |
+-            +------------------------------------------+
+-
+-
+-Controller Device Node:
+-===========================
+-Required properties:
+---------------------
+-IPI agent node:
+-- compatible:		Shall be: "xlnx,zynqmp-ipi-mailbox"
+-- interrupt-parent:	Phandle for the interrupt controller
+-- interrupts:		Interrupt information corresponding to the
+-			interrupt-names property.
+-- xlnx,ipi-id:		local Xilinx IPI agent ID
+-- #address-cells:	number of address cells of internal IPI mailbox nodes
+-- #size-cells:		number of size cells of internal IPI mailbox nodes
+-
+-Internal IPI mailbox node:
+-- reg:			IPI buffers address ranges
+-- reg-names:		Names of the reg resources. It should have:
+-			* local_request_region
+-			  - IPI request msg buffer written by local and read
+-			    by remote
+-			* local_response_region
+-			  - IPI response msg buffer written by local and read
+-			    by remote
+-			* remote_request_region
+-			  - IPI request msg buffer written by remote and read
+-			    by local
+-			* remote_response_region
+-			  - IPI response msg buffer written by remote and read
+-			    by local
+-- #mbox-cells:		Shall be 1. It contains:
+-			* tx(0) or rx(1) channel
+-- xlnx,ipi-id:		remote Xilinx IPI agent ID of which the mailbox is
+-			connected to.
+-
+-Optional properties:
+---------------------
+-- method:              The method of accessing the IPI agent registers.
+-                       Permitted values are: "smc" and "hvc". Default is
+-                       "smc".
+-
+-Client Device Node:
+-===========================
+-Required properties:
+---------------------
+-- mboxes:		Standard property to specify a mailbox
+-			(See ./mailbox.txt)
+-- mbox-names:		List of identifier  strings for each mailbox
+-			channel.
+-
+-Example:
+-===========================
+-	zynqmp_ipi {
+-		compatible = "xlnx,zynqmp-ipi-mailbox";
+-		interrupt-parent = <&gic>;
+-		interrupts = <0 29 4>;
+-		xlnx,ipi-id = <0>;
+-		#address-cells = <1>;
+-		#size-cells = <1>;
+-		ranges;
+-
+-		/* APU<->RPU0 IPI mailbox controller */
+-		ipi_mailbox_rpu0: mailbox@ff990400 {
+-			reg = <0xff990400 0x20>,
+-			      <0xff990420 0x20>,
+-			      <0xff990080 0x20>,
+-			      <0xff9900a0 0x20>;
+-			reg-names = "local_request_region",
+-				    "local_response_region",
+-				    "remote_request_region",
+-				    "remote_response_region";
+-			#mbox-cells = <1>;
+-			xlnx,ipi-id = <1>;
+-		};
+-		/* APU<->RPU1 IPI mailbox controller */
+-		ipi_mailbox_rpu1: mailbox@ff990440 {
+-			reg = <0xff990440 0x20>,
+-			      <0xff990460 0x20>,
+-			      <0xff990280 0x20>,
+-			      <0xff9902a0 0x20>;
+-			reg-names = "local_request_region",
+-				    "local_response_region",
+-				    "remote_request_region",
+-				    "remote_response_region";
+-			#mbox-cells = <1>;
+-			xlnx,ipi-id = <2>;
+-		};
+-	};
+-	rpu0 {
+-		...
+-		mboxes = <&ipi_mailbox_rpu0 0>,
+-			 <&ipi_mailbox_rpu0 1>;
+-		mbox-names = "tx", "rx";
+-	};
+-	rpu1 {
+-		...
+-		mboxes = <&ipi_mailbox_rpu1 0>,
+-			 <&ipi_mailbox_rpu1 1>;
+-		mbox-names = "tx", "rx";
+-	};
+diff --git a/Documentation/devicetree/bindings/mailbox/xlnx,zynqmp-ipi-mailbox.yaml b/Documentation/devicetree/bindings/mailbox/xlnx,zynqmp-ipi-mailbox.yaml
+new file mode 100644
+index 000000000000..46e91828b6b1
+--- /dev/null
++++ b/Documentation/devicetree/bindings/mailbox/xlnx,zynqmp-ipi-mailbox.yaml
+@@ -0,0 +1,142 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: "http://devicetree.org/schemas/mailbox/xlnx,zynqmp-ipi-mailbox.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++
++title: Xilinx IPI(Inter Processor Interrupt) mailbox controller
++
++description: |
++  The Xilinx IPI(Inter Processor Interrupt) mailbox controller is to manage
++  messaging between two Xilinx Zynq UltraScale+ MPSoC IPI agents. Each IPI
++  agent owns registers used for notification and buffers for message.
++
++               +-------------------------------------+
++               | Xilinx ZynqMP IPI Controller        |
++               +-------------------------------------+
++    +--------------------------------------------------+
++  TF-A                   |                     |
++                         |                     |
++                         |                     |
++    +--------------------------+               |
++                         |                     |
++                         |                     |
++    +--------------------------------------------------+
++              +------------------------------------------+
++              |  +----------------+   +----------------+ |
++  Hardware    |  |  IPI Agent     |   |  IPI Buffers   | |
++              |  |  Registers     |   |                | |
++              |  |                |   |                | |
++              |  +----------------+   +----------------+ |
++              |                                          |
++              | Xilinx IPI Agent Block                   |
++              +------------------------------------------+
++
++maintainers:
++  - Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
++
++properties:
++  compatible:
++    const: xlnx,zynqmp-ipi-mailbox
++
++  method:
++    description: |
++                 The method of calling the PM-API firmware layer.
++                 Permitted values are.
++                 - "smc" : SMC #0, following the SMCCC
++                 - "hvc" : HVC #0, following the SMCCC
++
++    $ref: /schemas/types.yaml#/definitions/string-array
++    enum:
++      - smc
++      - hvc
++    default: smc
++
++  '#address-cells':
++    const: 2
++
++  '#size-cells':
++    const: 2
++
++  xlnx,ipi-id:
++    description: |
++      Remote Xilinx IPI agent ID of which the mailbox is connected to.
++    $ref: /schemas/types.yaml#/definitions/uint32
++
++  interrupts:
++    maxItems: 1
++
++  ranges: true
++
++additionalProperties: false
++
++required:
++  - compatible
++  - interrupts
++  - '#address-cells'
++  - '#size-cells'
++
++patternProperties:
++  '^mailbox@[0-9a-f]+$':
++    description: Internal ipi mailbox node
++    type: object  # DT nodes are json objects
++    properties:
++      xlnx,ipi-id:
++        description:
++          Remote Xilinx IPI agent ID of which the mailbox is connected to.
++        $ref: /schemas/types.yaml#/definitions/uint32
++
++      "#mbox-cells":
++        const: 1
++        description:
++          It contains  tx(0) or rx(1) channel IPI id number.
++
++      reg:
++        maxItems: 4
++
++      reg-names:
++        items:
++          - const: local_request_region
++          - const: local_response_region
++          - const: remote_request_region
++          - const: remote_response_region
++
++
++    required:
++      - reg
++      - "#mbox-cells"
++
++examples:
++  - |
++    amba {
++      #address-cells = <0x2>;
++      #size-cells = <0x2>;
++      zynqmp_ipi {
++        compatible = "xlnx,zynqmp-ipi-mailbox";
++        interrupts = <0 29 4>;
++        xlnx,ipi-id = <0>;
++        #address-cells = <2>;
++        #size-cells = <2>;
++        ranges;
++
++        ipi_mailbox_rpu0: mailbox@ff9905c0 {
++          reg = <0x0 0xff9905c0 0x0 0x20>,
++                <0x0 0xff9905e0 0x0 0x20>,
++                <0x0 0xff990e80 0x0 0x20>,
++                <0x0 0xff990ea0 0x0 0x20>;
++          reg-names = "local_request_region",
++                "local_response_region",
++                "remote_request_region",
++                "remote_response_region";
++          #mbox-cells = <1>;
++          xlnx,ipi-id = <4>;
++        };
++      };
++    };
++
++    rpu0 {
++      mboxes = <&ipi_mailbox_rpu0 0>,
++               <&ipi_mailbox_rpu0 1>;
++      mbox-names = "tx", "rx";
++    };
++...
+-- 
+2.25.1
 
-Thanks!
-
--Doug
