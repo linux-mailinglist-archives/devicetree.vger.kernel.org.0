@@ -2,176 +2,345 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D140D5136B5
-	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 16:20:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 689D55136CC
+	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 16:23:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231589AbiD1OX0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Apr 2022 10:23:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56728 "EHLO
+        id S231370AbiD1O0q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Apr 2022 10:26:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39526 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232636AbiD1OXY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 10:23:24 -0400
-Received: from JPN01-TYC-obe.outbound.protection.outlook.com (mail-tycjpn01on2115.outbound.protection.outlook.com [40.107.114.115])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D51BC68;
-        Thu, 28 Apr 2022 07:20:08 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=mm4SiQbN4/ZlR1/rXVQVf/5wA9t4hCDLBNWuv9EwTr2zVE3OIydhBddsXfq7yuaXnIvnSeP6csGs8obnaA8VtFkUS3j8eToU8vV+voxx2Fgp8qWgKBvzDndz4tWNbctSy+o+U2UOjZEF33/XfXD5+qcrrWftXNh4Q7/0uDCmCg7xbWNoVEcRB1ptGq7CDV5tSOeWV+1doUQJnaTIkjnDVu2B8wTp3/ACo/ESy53y7fZmswzeNKI6RSDzsADJfa74zGqg6bz5gx0tPy+7l35Af7Cm3FVo4CwV6EaiwET9IW4mMYxLBbcbGQUmrTEUHGZcUjhUp+IFtf5289KKf8Ke/Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=TdEyrVM7Ztfixpw2GOnLceMjPUwBZ3w/VMDtXSZDRSo=;
- b=QkyNSNxfoMJn1lEn+qSGaomzeoXFeQowoy5G3YRuRemRSldWAw2+tTEyRN+wEaZLiCqHS6HV5KMnHVSj0xhhMp83cw36ASYkab0ymbn2D4LWGuZ8mC/U5BS7q4bTU662u/pwon23pqzIvR8awsJW1/j5mZ6zhRpTq+FXO/kKK56ST3Y1T5ysXMd2dP1u5jzGQqB0PEI5PrUjjtQVHkKrDPeu3QbAtiRu+tvN3wcovmAEal7VnTL+dLBIgeVnOXsn44JU2/Xu+SymOXfgx+aikgRzjdRnayXut1hD937cs9cXD2qWKgnTN8YOHnM7A/r7Jv3rXdrtkqmW2Dmkr7caqg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
- header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=TdEyrVM7Ztfixpw2GOnLceMjPUwBZ3w/VMDtXSZDRSo=;
- b=WYhsV/k5zsDgAe1bWDBTD2C8uRJJ5I6eh/kY5EYkGvrGofjZqVmlFwoWX/tiduDtEhNUWPM/nLrBuLzQh0O67KUMi76FJjLeyC+UsxVlC9UITuBLK7SRzEaAeCrSRkwISr5atRuofFDgyM4ftzyJdaiqZQ7V8/MGqn+8aV7FyNE=
-Received: from OS0PR01MB5922.jpnprd01.prod.outlook.com (2603:1096:604:bb::5)
- by TY2PR01MB3817.jpnprd01.prod.outlook.com (2603:1096:404:e0::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5186.15; Thu, 28 Apr
- 2022 14:20:06 +0000
-Received: from OS0PR01MB5922.jpnprd01.prod.outlook.com
- ([fe80::3e:970b:c238:f57]) by OS0PR01MB5922.jpnprd01.prod.outlook.com
- ([fe80::3e:970b:c238:f57%7]) with mapi id 15.20.5206.014; Thu, 28 Apr 2022
- 14:20:05 +0000
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: RE: [PATCH 09/13] arm64: dts: renesas: rzg2ul-smarc: Enable Audio
-Thread-Topic: [PATCH 09/13] arm64: dts: renesas: rzg2ul-smarc: Enable Audio
-Thread-Index: AQHYWMbEJx4Z7EShA0iGXNx3/+Coma0FXVgAgAAFv9A=
-Date:   Thu, 28 Apr 2022 14:20:05 +0000
-Message-ID: <OS0PR01MB5922483412D55DCA92D4951986FD9@OS0PR01MB5922.jpnprd01.prod.outlook.com>
-References: <20220425170530.200921-1-biju.das.jz@bp.renesas.com>
- <20220425170530.200921-10-biju.das.jz@bp.renesas.com>
- <CAMuHMdWKw9fEEN-DpmMbQGwrHEx2s5d2yPTDUtKyB5rvtur48Q@mail.gmail.com>
-In-Reply-To: <CAMuHMdWKw9fEEN-DpmMbQGwrHEx2s5d2yPTDUtKyB5rvtur48Q@mail.gmail.com>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=bp.renesas.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: afd26bda-b916-407f-ba81-08da29223152
-x-ms-traffictypediagnostic: TY2PR01MB3817:EE_
-x-microsoft-antispam-prvs: <TY2PR01MB38177E6005F56A0063DEB88286FD9@TY2PR01MB3817.jpnprd01.prod.outlook.com>
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: SavTrabREmRKkpoyMKlBw+Dv/zU3Nsst5dPT95tNhJtX20rPrP667EXdTTMb1b1SGzFUeF2CDnj7orAyHFC/VEeYwSvoTYlMzCRxdvnlFWM6OeMXfZ4T5Q8Er2QfwKRXcMkxOUZIjFmyib4CwLGOF2fW6Zshu0a4FomiVm/8tYeSTtJScgjf+rWqrZjoUtsoiCUAgQ+oEibK/PElmifgJ1klVpYmo+dvP6cZEB+GLrx/KLOOEpCGTNkw91HX7ajr2YAdmcauPWh3W8B8zzqfUwTYQ9A0MqsNy87WIT2YRAL5ucY0mFcNIcsw1P1fK+BlObvtYHo4V5czD4l3Mq7/bPZ9IN2Ps7b6DXtrSgfBhPowCi0vfTWeOeFqO54AbQv7KK0rp3pfMt7Gst/7+WJQZQvM7J0DJ3ItAfTRa34eLwkCkbAFly4RrTtbKxoXitkPaZaI+lIKlWyGxu16eAiII6vU/duFhrNITYcD6+mzp6njWaq9y/2NAeOuD2D072eo3WHzcfMKykNhcwm2oCm2pbmuRJBTGRbYZUFKEbXq04w4DJjCZc2K9RwKhJpTwD2V1jG0lhHmbjOEO6FNmOWjxCps9mmWW6/O6BCADzckfSZD68CWryW2PHmvoLkaXRa69/WSX7dyx3kR3O9tpmAU0DrXdaZmbhM4hSEllQIrOTX8suZ/5jN0uZj348JEum0Rn4+uOV8ENIXrS3x0AAjNfA==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OS0PR01MB5922.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(508600001)(53546011)(86362001)(83380400001)(38100700002)(38070700005)(186003)(6506007)(5660300002)(52536014)(8936002)(2906002)(55016003)(33656002)(122000001)(6916009)(7696005)(26005)(66446008)(66476007)(54906003)(4326008)(64756008)(66946007)(76116006)(9686003)(8676002)(66556008)(316002)(107886003)(71200400001);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?QXdGYTBTOFFieXFpb0U3c0htdTYyTVRuRU5CcVkwVDZrb0wxeS9WdXlQNTNE?=
- =?utf-8?B?dStIcTJrbDVHYWNLNjlaaXZYRE5NbnF6SkVnQTFsZjZVakJXV0Y2bkZhLytC?=
- =?utf-8?B?a1FTTUZBd2hjQlYzSExEUFVkcFBIVDZtSGZQTml4bjJUUXdFYnpNYVdlWE5j?=
- =?utf-8?B?VXBSaXBjM3NXSWFpVHptc2U3ZHBmcEtNNEZCRnhxU2FTUDgrYk15VDI3Y0ZZ?=
- =?utf-8?B?bVhlMW1ua05RcnFlczNuNm81TmlGZ0RySjdCT1RmYmUwbEZMTVRzNWp6V2RG?=
- =?utf-8?B?SisxQWYvbTJoOUxRZzdaL0o5SnMrdHQrZjhla3M0UUlsR21KUndyVXFJbnRW?=
- =?utf-8?B?TXpoSW9WL29PQmdqTzVRUDRUaVpkVmRlSzYweEtYYzFmRS9QQTNGVGc3bndF?=
- =?utf-8?B?cHIwSXJLWDEzemVFREpYY0NPQTVDaGUwVFZBRDI2Mi8rSGJmNTkrcjVxc2ZU?=
- =?utf-8?B?S1FiaDcxVUkvK2kyOG5KRXhKNzhnQmR5WDV4RFhGZ1VRMUdjTktqd01WY3M4?=
- =?utf-8?B?eVRta0pDd01VWFpKMis5TnlqVDV2K1BlWG9QNzNnN3RRWE1oMzdNNmNHTmFl?=
- =?utf-8?B?dXkxbjAvdi9WdFRjN1VrVWFLZ20vWmtKOTFzM1MycmlNU2MrSjZrNlFBeitJ?=
- =?utf-8?B?R3gyU0xWTmw2bkFiUE9BcGc2c0YzT2NWZSt4VzBsSm5qRlJwY1JDSU1BcFJu?=
- =?utf-8?B?Umt3UXI0dC9maHFTQ2RGLys4MVdrei9XOUdHSGVqWlVNSGJOZFduOUZsTy92?=
- =?utf-8?B?WnlMd25BVGVKY3Jlb3J4MXRsOUd2Vk42b3ZlbWZZd3RrZkpsWFllL3l5c09S?=
- =?utf-8?B?cDNPdFUreEwrTDhDcmJnV0JWT1VncW9DTFQvVXk4dWUxbTd4U2djT0crcXZy?=
- =?utf-8?B?bEthclRpMVBUVFBBUHRWT2pHTlo2YWZsVk9HSGFkUlU3TUNmY2ZLSTBlVExI?=
- =?utf-8?B?b1VTRUw0UE1WVGFpb08rTVBld0lEcnJONlJzWlRTME1RY0h5SVV4dFFMNEVT?=
- =?utf-8?B?ZXozYll5ZEFrajJiN2orMFJaZDVlV3RROUJVVFhXdGdqbURMWEtyZGhPRjNT?=
- =?utf-8?B?cTZzRGdPQVJjeXZJQ0huK2RnWDhnOUZZZkZKaGIrN1ZlUC9zbXNTRHc2N2ln?=
- =?utf-8?B?NXNVTmh1S3g2K2IrbFMzVmJEUnBOS0pCNlJIUjJFMmY0M01ramlWN1lORG1k?=
- =?utf-8?B?RXY3MUhYSnh6UGlUVmI1TG4zVUYvNTB4VE1nU0xpc3Jsam50NGxMNUhVSjBE?=
- =?utf-8?B?d240QndEaS8rTFlvbzBtWUQrbWhDbXRBOUtxNFNySXowaGhSRk5jR2V2SzJk?=
- =?utf-8?B?NVhhVTZNY0c3QnpldUt1eGEzVXJmdFFkOGEzZGZtUi8zcG5GaERRb2pERTVS?=
- =?utf-8?B?UmFKSW1OSU9xaVhSL3dqaUc3cWpLT29pUytQSUdyOEJCQnFkNFNaVkNZUklv?=
- =?utf-8?B?TkEyeWFJKzZOVzVpQzg1bE1VcmdWSVlpOXB1cFZETnBjRGNtbVIybFlEcFNk?=
- =?utf-8?B?L2paQnRHNVdudnl6M29LWjJyOWNrOEFQMGw3TENaQ0oxdnl0ZlcwZFZYYmNs?=
- =?utf-8?B?eFZrYlpFMU9hclRSVVZDUFJ0bFlmaEV3bmFyUU9oV1JlaUt2LzM4c1BDUzNG?=
- =?utf-8?B?bEZCbTBSV240c09JUUdGUU1Od0NYWGlTSnBWejNRdFdBWlhRQUZ4YXBPUWlY?=
- =?utf-8?B?bEpmS2FKdVNXdVduYkNsald4Qkd1U2V5bWNyM000aVp3KzNTU0VuenRQMnFT?=
- =?utf-8?B?b21QWnRmdm1yWmNBVEhkeS9Za3J1bEtkNGliU2pVMXJEZmhQam1GaUZrUUhI?=
- =?utf-8?B?aElmUEZ5MDZYTEd6RXNOMGNjSUFPaGNIamhGV1JKZkFYZW9LUHdGVmNLenFz?=
- =?utf-8?B?akFUZHdSbUg4NUV3RmR0dCtPS3NQZXBPeGZGdUNqSzU3c3hrRGZTSTFUQjZN?=
- =?utf-8?B?K0dZQXVwN01vQ01INlhrMDlRc24yVW0vVTVjc2J6dkN1Uk1HdVlNVjl4dEVz?=
- =?utf-8?B?VFZrOFZNa0p2czBaTjlxd0R6anRkWVA0OXRDRXhRUXhwekZ5Y1JzQVNwS0x6?=
- =?utf-8?B?b2hHTUZvLzljbTQ2V0JkeWMvc3lEZjV0SEZlY3ViWmcvRGxBWnFQSUpSamIz?=
- =?utf-8?B?c1dBVUg5VGFjWGkxWmMxL3l6d2RISFBiVTVLcjRLamx0dkwyT1dJQzAwTW44?=
- =?utf-8?B?MS9LQ3BWVFpsZk9HTGdPM1V6YnRWSW45Nk1GazhzMWIrSjZpbDFQWDduSzBM?=
- =?utf-8?B?c1d1VXBBUkJIZWF0WFl3TkEvdDZRQXJLeWk0aFNWNzcvUXJkSm5LWWRFb0lW?=
- =?utf-8?B?V0dvbmxTdTNXWGtUaHE3dEZQZHVRNStmbFRraE5kcjcxVGhuclRPWXJwVlgv?=
- =?utf-8?Q?lzNVtLetArVtdEfg=3D?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        with ESMTP id S1346723AbiD1O0n (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 10:26:43 -0400
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B29AB645B
+        for <devicetree@vger.kernel.org>; Thu, 28 Apr 2022 07:23:27 -0700 (PDT)
+Received: by mail-wr1-x431.google.com with SMTP id s21so6995004wrb.8
+        for <devicetree@vger.kernel.org>; Thu, 28 Apr 2022 07:23:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=T4OMoRCcRVFA0GeITjWTTDrrAy3UuDdOn8MZYxeYMis=;
+        b=fImJLDZTPArsLzV9PRdwFEyKlSRMrN5LdM1x+ekTA138hg+0H5oafdm8imQPdZiKPF
+         KeV7HuMjKfgEfZmJVXlVt3uhOTw3txj9LTWHunMbrxbQeBIUfetQPz7Aq4cFz4RuL8x5
+         eOO4eDEE0ldw2I+rp3vPFg6kptFNeoVznsFuKixY1wirzck4E3yEk6cAh0SL/qOYVCKL
+         QywOvJ1fm57xbRvYQfptdv2h/bVJmwpO4vGJQ2P9LZjkBiZoboObEQKvS/UD7JMTylM9
+         /+2jRT3lH5X8VL7E4v6538rmtlv7rPb0uZ49sSPCb3MHtHqjQQR+T/RQ0XYcd5Rs/LP1
+         c5Lg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=T4OMoRCcRVFA0GeITjWTTDrrAy3UuDdOn8MZYxeYMis=;
+        b=GsLg1MwOcP0cuf2VHMAh4Ec8K3TOptgtfqUpCt4qmQDhtiyWdoUvfx07KuvzC3dZmn
+         Xx9edZWL6BZmZlK3eLSnvaiU0KOowlGO9X8DEHPqpTL8Uxw5hTMd/jrIxVni+6bxcouO
+         /ihQT83HZG+FtsIyiEuLbdhTCeblI4FJ7kVyxXOj4g55yyBk0Fv5UQnNuMih8PQ/eO2P
+         wC3eAOJS6NA9LxAYpWCzdea4rxTrWgc4M6Q+aTVvHKbXVFcDUhnnsbPCc/46HVxqCFfN
+         RyDOje8GmUfv11S1uMXxRdtklm8SH3u2RuPKS0iGQ4sTmzGkmoLNLBevb8Ts6OX6PeLw
+         5Wew==
+X-Gm-Message-State: AOAM532/KQB0UEvEXqYXC7yyxXQTNZjRwX2zjgJYsB3d9f8Rr9hvCp4R
+        SMUeu4Qr0xQus9gf740pLcYoXA==
+X-Google-Smtp-Source: ABdhPJxFwFWv25lUO45yoxx4zaBAdRGsWMAwwanW5Af0EZ/KUaWE0nXEVHMN96zefB66I2AhTNvOgg==
+X-Received: by 2002:a5d:6daf:0:b0:20a:dd36:7296 with SMTP id u15-20020a5d6daf000000b0020add367296mr15658915wrs.274.1651155805911;
+        Thu, 28 Apr 2022 07:23:25 -0700 (PDT)
+Received: from google.com (49.222.77.34.bc.googleusercontent.com. [34.77.222.49])
+        by smtp.gmail.com with ESMTPSA id g13-20020a5d64ed000000b0020a9e488976sm21664wri.25.2022.04.28.07.23.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 28 Apr 2022 07:23:25 -0700 (PDT)
+Date:   Thu, 28 Apr 2022 14:23:24 +0000
+From:   Sebastian Ene <sebastianene@google.com>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc:     linux-kernel@vger.kernel.org,
+        Derek Kiernan <derek.kiernan@xilinx.com>,
+        Dragan Cvetic <dragan.cvetic@xilinx.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        qperret@google.com, will@kernel.org, maz@kernel.org
+Subject: Re: [PATCH v3 2/2] misc: Add a mechanism to detect stalls on guest
+ vCPUs
+Message-ID: <YmqjXDJCnuEZVGpa@google.com>
+References: <20220425134204.149042-1-sebastianene@google.com>
+ <20220425134204.149042-3-sebastianene@google.com>
+ <YmatGqfEZOSL0Yfg@kroah.com>
 MIME-Version: 1.0
-X-OriginatorOrg: bp.renesas.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: OS0PR01MB5922.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: afd26bda-b916-407f-ba81-08da29223152
-X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Apr 2022 14:20:05.9009
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: Xm+Vf01reZZhv40a7MqX7XQGjHahGr6+o6WdLPuVvYuF1kbBrF3KgTaUMLPp/xYvJPzujFdAVfCUNxkA6LlMItAitJTycQJpSJc46QrgTzw=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY2PR01MB3817
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YmatGqfEZOSL0Yfg@kroah.com>
+X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgR2VlcnQsDQoNClRoYW5rcyBmb3IgdGhlIGZlZWRiYWNrLg0KDQo+IC0tLS0tT3JpZ2luYWwg
-TWVzc2FnZS0tLS0tDQo+IEZyb206IEdlZXJ0IFV5dHRlcmhvZXZlbiA8Z2VlcnRAbGludXgtbTY4
-ay5vcmc+DQo+IFNlbnQ6IDI4IEFwcmlsIDIwMjIgMTQ6NTQNCj4gVG86IEJpanUgRGFzIDxiaWp1
-LmRhcy5qekBicC5yZW5lc2FzLmNvbT4NCj4gQ2M6IFJvYiBIZXJyaW5nIDxyb2JoK2R0QGtlcm5l
-bC5vcmc+OyBLcnp5c3p0b2YgS296bG93c2tpDQo+IDxrcnp5c3p0b2Yua296bG93c2tpK2R0QGxp
-bmFyby5vcmc+OyBHZWVydCBVeXR0ZXJob2V2ZW4NCj4gPGdlZXJ0K3JlbmVzYXNAZ2xpZGVyLmJl
-PjsgTWFnbnVzIERhbW0gPG1hZ251cy5kYW1tQGdtYWlsLmNvbT47IExpbnV4LQ0KPiBSZW5lc2Fz
-IDxsaW51eC1yZW5lc2FzLXNvY0B2Z2VyLmtlcm5lbC5vcmc+OyBvcGVuIGxpc3Q6T1BFTiBGSVJN
-V0FSRSBBTkQNCj4gRkxBVFRFTkVEIERFVklDRSBUUkVFIEJJTkRJTkdTIDxkZXZpY2V0cmVlQHZn
-ZXIua2VybmVsLm9yZz47IENocmlzDQo+IFBhdGVyc29uIDxDaHJpcy5QYXRlcnNvbjJAcmVuZXNh
-cy5jb20+OyBCaWp1IERhcw0KPiA8YmlqdS5kYXNAYnAucmVuZXNhcy5jb20+OyBQcmFiaGFrYXIg
-TWFoYWRldiBMYWQgPHByYWJoYWthci5tYWhhZGV2LQ0KPiBsYWQucmpAYnAucmVuZXNhcy5jb20+
-DQo+IFN1YmplY3Q6IFJlOiBbUEFUQ0ggMDkvMTNdIGFybTY0OiBkdHM6IHJlbmVzYXM6IHJ6ZzJ1
-bC1zbWFyYzogRW5hYmxlIEF1ZGlvDQo+IA0KPiBIaSBCaWp1LA0KPiANCj4gT24gTW9uLCBBcHIg
-MjUsIDIwMjIgYXQgNzowNiBQTSBCaWp1IERhcyA8YmlqdS5kYXMuanpAYnAucmVuZXNhcy5jb20+
-DQo+IHdyb3RlOg0KPiA+IEVuYWJsZSBBdWRpbyBvbiBSWi9HMkxDIFNNQVJDIEVWSyBieSBhZGRp
-bmcgc3NpMSBwaW5jb250cm9sIGVudHJpZXMgdG8NCj4gPiB0aGUgc29jLXBpbmN0cmwgZHRzaSBh
-bmQgc3NpMSBhbmQgY3B1X2RhaSBub2RlcyB0byB0aGUgYm9hcmQgZHRzaS4NCj4gPg0KPiA+IFNp
-Z25lZC1vZmYtYnk6IEJpanUgRGFzIDxiaWp1LmRhcy5qekBicC5yZW5lc2FzLmNvbT4NCj4gPiBS
-ZXZpZXdlZC1ieTogTGFkIFByYWJoYWthciA8cHJhYmhha2FyLm1haGFkZXYtbGFkLnJqQGJwLnJl
-bmVzYXMuY29tPg0KPiANCj4gVGhhbmtzIGZvciB5b3VyIHBhdGNoIQ0KPiANCj4gPiAtLS0gYS9h
-cmNoL2FybTY0L2Jvb3QvZHRzL3JlbmVzYXMvcnpnMnVsLXNtYXJjLmR0c2kNCj4gPiArKysgYi9h
-cmNoL2FybTY0L2Jvb3QvZHRzL3JlbmVzYXMvcnpnMnVsLXNtYXJjLmR0c2kNCj4gPiBAQCAtMjcs
-NiArMjcsMzEgQEAgd204OTc4OiBjb2RlY0AxYSB7DQo+ID4gICAgICAgICB9Ow0KPiA+ICB9Ow0K
-PiA+DQo+ID4gKyNpZiAoU1dfRVQwX0VOX04pDQo+ID4gKyZzbmRfcnpnMmwgew0KPiA+ICsgICAg
-ICAgY3B1X2RhaTogc2ltcGxlLWF1ZGlvLWNhcmQsY3B1IHsNCj4gDQo+IFlvdSBjYW4ganVzdCBy
-ZWZlciB0byAmY3B1X2RhaSBpbnN0ZWFkPw0KDQpPSywgd2lsbCBmaXggdGhpcy4NCg0KQ2hlZXJz
-LA0KQmlqdQ0KPiANCj4gPiArICAgICAgICAgICAgICAgc291bmQtZGFpID0gPCZzc2kxPjsNCj4g
-PiArICAgICAgIH07DQo+ID4gK307DQo+IA0KPiBUaGUgcmVzdCBMR1RNLCBzbw0KPiBSZXZpZXdl
-ZC1ieTogR2VlcnQgVXl0dGVyaG9ldmVuIDxnZWVydCtyZW5lc2FzQGdsaWRlci5iZT4NCj4gDQo+
-IEdye29ldGplLGVldGluZ31zLA0KPiANCj4gICAgICAgICAgICAgICAgICAgICAgICAgR2VlcnQN
-Cj4gDQo+IC0tDQo+IEdlZXJ0IFV5dHRlcmhvZXZlbiAtLSBUaGVyZSdzIGxvdHMgb2YgTGludXgg
-YmV5b25kIGlhMzIgLS0gZ2VlcnRAbGludXgtDQo+IG02OGsub3JnDQo+IA0KPiBJbiBwZXJzb25h
-bCBjb252ZXJzYXRpb25zIHdpdGggdGVjaG5pY2FsIHBlb3BsZSwgSSBjYWxsIG15c2VsZiBhIGhh
-Y2tlci4NCj4gQnV0IHdoZW4gSSdtIHRhbGtpbmcgdG8gam91cm5hbGlzdHMgSSBqdXN0IHNheSAi
-cHJvZ3JhbW1lciIgb3Igc29tZXRoaW5nDQo+IGxpa2UgdGhhdC4NCj4gICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAtLSBMaW51cyBUb3J2YWxkcw0K
+On Mon, Apr 25, 2022 at 04:15:54PM +0200, Greg Kroah-Hartman wrote:
+> On Mon, Apr 25, 2022 at 01:42:07PM +0000, Sebastian Ene wrote:
+> > This driver creates per-cpu hrtimers which are required to do the
+> > periodic 'pet' operation. On a conventional watchdog-core driver, the
+> > userspace is responsible for delivering the 'pet' events by writing to
+> > the particular /dev/watchdogN node. In this case we require a strong
+> > thread affinity to be able to account for lost time on a per vCPU.
+> > 
+> > This part of the driver is the 'frontend' which is reponsible for
+> > delivering the periodic 'pet' events, configuring the virtual peripheral
+> > and listening for cpu hotplug events. The other part of the driver
+> > handles the peripheral emulation and this part accounts for lost time by
+> > looking at the /proc/{}/task/{}/stat entries and is located here:
+> > https://chromium-review.googlesource.com/c/chromiumos/platform/crosvm/+/3548817
+> > 
+> > Signed-off-by: Sebastian Ene <sebastianene@google.com>
+> > ---
+> >  drivers/misc/Kconfig  |  12 +++
+> >  drivers/misc/Makefile |   1 +
+> >  drivers/misc/vm-wdt.c | 207 ++++++++++++++++++++++++++++++++++++++++++
+> >  3 files changed, 220 insertions(+)
+> >  create mode 100644 drivers/misc/vm-wdt.c
+> > 
+> > diff --git a/drivers/misc/Kconfig b/drivers/misc/Kconfig
+> > index 2b9572a6d114..71c173e3f064 100644
+> > --- a/drivers/misc/Kconfig
+> > +++ b/drivers/misc/Kconfig
+> > @@ -493,6 +493,18 @@ config OPEN_DICE
+> >  
+> >  	  If unsure, say N.
+> >  
+> > +config VM_WATCHDOG
+> > +	tristate "Virtual Machine Watchdog"
+> > +	select LOCKUP_DETECTOR
+> > +	help
+> > +	  Detect CPU locks on the virtual machine. This driver relies on the
+> > +	  hrtimers which are CPU-binded to do the 'pet' operation. When a vCPU
+> > +	  has to do a 'pet', it exists the guest through MMIO write and the
+> > +	  backend driver takes into account the lost ticks for this particular
+> > +	  CPU.
+> > +	  To compile this driver as a module, choose M here: the
+> > +	  module will be called vm-wdt.
+> > +
+> >  source "drivers/misc/c2port/Kconfig"
+> >  source "drivers/misc/eeprom/Kconfig"
+> >  source "drivers/misc/cb710/Kconfig"
+> > diff --git a/drivers/misc/Makefile b/drivers/misc/Makefile
+> > index 2ec634354cf5..fa9d644da5db 100644
+> > --- a/drivers/misc/Makefile
+> > +++ b/drivers/misc/Makefile
+> > @@ -59,3 +59,4 @@ obj-$(CONFIG_XILINX_SDFEC)	+= xilinx_sdfec.o
+> >  obj-$(CONFIG_HISI_HIKEY_USB)	+= hisi_hikey_usb.o
+> >  obj-$(CONFIG_UID_SYS_STATS)	+= uid_sys_stats.o
+> >  obj-$(CONFIG_OPEN_DICE)		+= open-dice.o
+> > +obj-$(CONFIG_VM_WATCHDOG)	+= vm-wdt.o
+
+Hi,
+
+> 
+> We have no limit on names, why not "vm-watchdog"?
+> 
+
+I will update the name to vm-watchdog.
+
+> > \ No newline at end of file
+> > diff --git a/drivers/misc/vm-wdt.c b/drivers/misc/vm-wdt.c
+> > new file mode 100644
+> > index 000000000000..0c4df2fefbb9
+> > --- /dev/null
+> > +++ b/drivers/misc/vm-wdt.c
+> > @@ -0,0 +1,207 @@
+> > +// SPDX-License-Identifier: GPL-2.0
+> > +//
+> > +// Virtual watchdog driver.
+> > +//  Copyright (C) Google, 2022
+> 
+> I will need a watchdog maintainer to agree that this is the way to do
+> this as I really really do not understand why you can not use that
+> subsystem here.
+> 
+
+Sure, let me CC Guenter Roeck as he initially helped me with the
+feedback on this.
+
+> > +
+> > +#include <linux/cpu.h>
+> > +#include <linux/init.h>
+> > +#include <linux/io.h>
+> > +#include <linux/kernel.h>
+> > +
+> > +#include <linux/device.h>
+> > +#include <linux/interrupt.h>
+> > +#include <linux/module.h>
+> > +#include <linux/nmi.h>
+> > +#include <linux/of.h>
+> > +#include <linux/of_device.h>
+> > +#include <linux/param.h>
+> > +#include <linux/percpu.h>
+> > +#include <linux/platform_device.h>
+> > +#include <linux/slab.h>
+> > +
+> > +#define DRV_NAME			"vm_wdt"
+> 
+> KBUILD_MODNAME please
+> 
+
+Fixed.
+
+> > +
+> > +#define VMWDT_REG_STATUS		(0x00)
+> > +#define VMWDT_REG_LOAD_CNT		(0x04)
+> > +#define VMWDT_REG_CURRENT_CNT		(0x08)
+> > +#define VMWDT_REG_CLOCK_FREQ_HZ		(0x0C)
+> > +#define VMWDT_REG_LEN			(0x10)
+> > +
+> > +#define VMWDT_DEFAULT_CLOCK_HZ		(10)
+> > +#define VMWDT_DEFAULT_TIMEOT_SEC	(8)
+> > +
+> > +struct vm_wdt_s {
+> > +	void __iomem *membase;
+> > +	u32 clock_freq;
+> > +	u32 expiration_sec;
+> > +	u32 ping_timeout_ms;
+> > +	struct hrtimer per_cpu_hrtimer;
+> > +	struct platform_device *dev;
+> > +};
+> > +
+> > +#define vmwdt_reg_write(wdt, reg, value)	\
+> > +	iowrite32((value), (wdt)->membase + (reg))
+> > +#define vmwdt_reg_read(wdt, reg)		\
+> > +	io32read((wdt)->membase + (reg))
+> > +
+> > +static struct platform_device *virt_dev;
+> 
+> Only one device in the system?  Please no, use the correct apis and you
+> will not have any limits like this.
+> 
+
+Can you please explain what do you mean by use the correct APIs ? I
+don't think it will be possible or necessary to register multipple
+instances of this. 
+
+> > +
+> > +static enum hrtimer_restart vmwdt_timer_fn(struct hrtimer *hrtimer)
+> > +{
+> > +	struct vm_wdt_s *cpu_wdt;
+> > +	u32 ticks;
+> > +
+> > +	cpu_wdt = container_of(hrtimer, struct vm_wdt_s, per_cpu_hrtimer);
+> > +	ticks = cpu_wdt->clock_freq * cpu_wdt->expiration_sec;
+> > +	vmwdt_reg_write(cpu_wdt, VMWDT_REG_LOAD_CNT, ticks);
+> > +	hrtimer_forward_now(hrtimer, ms_to_ktime(cpu_wdt->ping_timeout_ms));
+> > +
+> > +	return HRTIMER_RESTART;
+> > +}
+> > +
+> > +static void vmwdt_start(void *arg)
+> > +{
+> > +	u32 ticks;
+> > +	struct vm_wdt_s *cpu_wdt = arg;
+> > +	struct hrtimer *hrtimer = &cpu_wdt->per_cpu_hrtimer;
+> > +
+> > +	vmwdt_reg_write(cpu_wdt, VMWDT_REG_CLOCK_FREQ_HZ,
+> > +			cpu_wdt->clock_freq);
+> > +
+> > +	/* Compute the number of ticks required for the watchdog counter
+> > +	 * register based on the internal clock frequency and the watchdog
+> > +	 * timeout given from the device tree.
+> > +	 */
+> > +	ticks = cpu_wdt->clock_freq * cpu_wdt->expiration_sec;
+> > +	vmwdt_reg_write(cpu_wdt, VMWDT_REG_LOAD_CNT, ticks);
+> > +
+> > +	/* Enable the internal clock and start the watchdog */
+> > +	vmwdt_reg_write(cpu_wdt, VMWDT_REG_STATUS, 1);
+> > +
+> > +	hrtimer_init(hrtimer, CLOCK_MONOTONIC, HRTIMER_MODE_REL);
+> > +	hrtimer->function = vmwdt_timer_fn;
+> > +	hrtimer_start(hrtimer, ms_to_ktime(cpu_wdt->ping_timeout_ms),
+> > +		      HRTIMER_MODE_REL_PINNED);
+> > +}
+> > +
+> > +static void vmwdt_stop(void *arg)
+> > +{
+> > +	struct vm_wdt_s *cpu_wdt = arg;
+> > +	struct hrtimer *hrtimer = &cpu_wdt->per_cpu_hrtimer;
+> > +
+> > +	hrtimer_cancel(hrtimer);
+> > +
+> > +	/* Disable the watchdog */
+> > +	vmwdt_reg_write(cpu_wdt, VMWDT_REG_STATUS, 0);
+> > +}
+> > +
+> > +static int start_watchdog_on_cpu(unsigned int cpu)
+> > +{
+> > +	struct vm_wdt_s *vm_wdt = platform_get_drvdata(virt_dev);
+> > +
+> > +	vmwdt_start(this_cpu_ptr(vm_wdt));
+> > +	return 0;
+> > +}
+> > +
+> > +static int stop_watchdog_on_cpu(unsigned int cpu)
+> > +{
+> > +	struct vm_wdt_s *vm_wdt = platform_get_drvdata(virt_dev);
+> > +
+> > +	vmwdt_stop(this_cpu_ptr(vm_wdt));
+> > +	return 0;
+> > +}
+> > +
+> > +static int vmwdt_probe(struct platform_device *dev)
+> > +{
+> > +	int cpu, ret, err;
+> > +	void __iomem *membase;
+> > +	struct resource *r;
+> > +	struct vm_wdt_s *vm_wdt;
+> > +	u32 wdt_clock, wdt_timeout_sec = 0;
+> > +
+> > +	r = platform_get_resource(dev, IORESOURCE_MEM, 0);
+> > +	if (r == NULL)
+> > +		return -ENOENT;
+> > +
+> > +	vm_wdt = alloc_percpu(typeof(struct vm_wdt_s));
+> > +	if (!vm_wdt)
+> > +		return -ENOMEM;
+> > +
+> > +	membase = ioremap(r->start, resource_size(r));
+> > +	if (!membase) {
+> > +		ret = -ENXIO;
+> > +		goto err_withmem;
+> > +	}
+> > +
+> > +	virt_dev = dev;
+> > +	platform_set_drvdata(dev, vm_wdt);
+> > +	if (of_property_read_u32(dev->dev.of_node, "clock", &wdt_clock))
+> > +		wdt_clock = VMWDT_DEFAULT_CLOCK_HZ;
+> > +
+> > +	if (of_property_read_u32(dev->dev.of_node, "timeout-sec",
+> > +				 &wdt_timeout_sec))
+> > +		wdt_timeout_sec = VMWDT_DEFAULT_TIMEOT_SEC;
+> > +
+> > +	for_each_cpu_and(cpu, cpu_online_mask, &watchdog_cpumask) {
+> > +		struct vm_wdt_s *cpu_wdt = per_cpu_ptr(vm_wdt, cpu);
+> > +
+> > +		cpu_wdt->membase = membase + cpu * VMWDT_REG_LEN;
+> > +		cpu_wdt->clock_freq = wdt_clock;
+> > +		cpu_wdt->expiration_sec = wdt_timeout_sec;
+> > +		cpu_wdt->ping_timeout_ms = wdt_timeout_sec * MSEC_PER_SEC / 2;
+> > +		smp_call_function_single(cpu, vmwdt_start, cpu_wdt, true);
+> > +	}
+> > +
+> > +	err = cpuhp_setup_state_nocalls(CPUHP_AP_ONLINE_DYN,
+> > +					"virt/watchdog:online",
+> > +					start_watchdog_on_cpu,
+> > +					stop_watchdog_on_cpu);
+> > +	if (err < 0) {
+> > +		pr_warn("could not be initialized");
+> 
+> drivers should never use pr_* calls.  dev_warn() please.
+>
+
+Removed this call,
+
+> thanks,
+> 
+> greg k-h
+
+Thanks,
+Sebastian
