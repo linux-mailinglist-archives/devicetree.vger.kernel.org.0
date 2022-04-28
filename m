@@ -2,77 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 26F1D513585
-	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 15:44:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 52CE35135A7
+	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 15:49:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347583AbiD1NsI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Apr 2022 09:48:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36616 "EHLO
+        id S1347598AbiD1Nw1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Apr 2022 09:52:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49930 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233789AbiD1NsH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 09:48:07 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9262E5C77F;
-        Thu, 28 Apr 2022 06:44:52 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id 893481F41A71
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1651153491;
-        bh=fB7oaBnDq+Pk5dXIeNanIcPDn8WmB6Fwxu0ws9sHRSw=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=bjk4ghRjSBpf6pJdMGDZ4L3zRpEu7fxmpsiGi/WkeVIKRmw0oXu9LqxJ+5m3PNbEX
-         8OdUYcQS9It+X/1TWAfhbqOXW2GDc74Ho3ORZRDV8q1HXc569ha05VY16TrSure/z5
-         QrOnPcgAopTzm0KtdcfihZkCFIP5naB6EPxEDCEnsvO+tCJrwTK2saalGKNwVFZyJO
-         7jrc+86cJ8grY3sRo10M2pJhKBWhqnJuyvFsniZonUHg8W2IHXRhPbTF+Lukddg82L
-         mfbX2QdmbnjMkNwm+YE0hUClWM38It1b5rz4RM64K1+PFw8l7SNyK9L923C12lz5Bo
-         lIhNawWmyMVaA==
-Message-ID: <28fcda49-5f4e-508c-26cd-b30dc5837e9e@collabora.com>
-Date:   Thu, 28 Apr 2022 15:44:47 +0200
+        with ESMTP id S1344676AbiD1Nw0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 09:52:26 -0400
+Received: from mail-qk1-f173.google.com (mail-qk1-f173.google.com [209.85.222.173])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F370B3695;
+        Thu, 28 Apr 2022 06:49:09 -0700 (PDT)
+Received: by mail-qk1-f173.google.com with SMTP id 126so2620977qkm.4;
+        Thu, 28 Apr 2022 06:49:09 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=GtXTuyetOQXEPvEx9pdxnHQcYoTGIjHvr+XboJiHeys=;
+        b=Q9JjcrireY3sP57lqc3RCFt1wieNyASBn3cBGTPOVujFzn06OhXRIjJKoAq0omvw58
+         EKhgSEGUFvYavcwJ9bk4c+DL8GPujRRSSKHjztFuRlu8WkLIK9mlEg36PEj1arpMTgQA
+         zRhqjR80zalfiUomBN33HCnJlLoXkpAwb7k+bVHqiRkTTWF2xfJPfgpFY9rOUZTpk7pq
+         D47kDO3DcSGOqtPfUYgYsYIR21A8QhVV2S8oSDaEgS0Ccka5TQHuf51D/ttnHj0xYYCx
+         UkJj3b4nYPI2jNWvhvYXHqunj8xbdtmuAfmyJSZ7Dk4PhXCRg6Xriyy5jF5sknmoCk58
+         6cEg==
+X-Gm-Message-State: AOAM533i8bTeiLs9s1VRfnvVWrQGj8AoWNC1AWrYn0OMYBKZkyz6EulW
+        6AlsBaKc6nwpQ4/n/YPukcWjO3fALZc1aA==
+X-Google-Smtp-Source: ABdhPJz4N4GqGUhUI31Uw+yCV/tY+3qs2d2NNnao+tGExmWK5IScIsnTGVLYz3Fl6HaT59q7HGbvWw==
+X-Received: by 2002:a05:620a:40d3:b0:69f:4050:7307 with SMTP id g19-20020a05620a40d300b0069f40507307mr14255632qko.80.1651153747937;
+        Thu, 28 Apr 2022 06:49:07 -0700 (PDT)
+Received: from mail-yb1-f174.google.com (mail-yb1-f174.google.com. [209.85.219.174])
+        by smtp.gmail.com with ESMTPSA id p14-20020a05622a13ce00b002f20a695972sm33172qtk.14.2022.04.28.06.49.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 28 Apr 2022 06:49:07 -0700 (PDT)
+Received: by mail-yb1-f174.google.com with SMTP id d12so9124702ybc.4;
+        Thu, 28 Apr 2022 06:49:07 -0700 (PDT)
+X-Received: by 2002:a25:d84c:0:b0:648:7d5e:e2d4 with SMTP id
+ p73-20020a25d84c000000b006487d5ee2d4mr17797233ybg.6.1651153747119; Thu, 28
+ Apr 2022 06:49:07 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH V5 16/16] arm64: dts: mediatek: Add infra #reset-cells
- property for MT8195
-Content-Language: en-US
-To:     Rex-BC Chen <rex-bc.chen@mediatek.com>, mturquette@baylibre.com,
-        sboyd@kernel.org, matthias.bgg@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     p.zabel@pengutronix.de, chun-jie.chen@mediatek.com,
-        wenst@chromium.org, runyang.chen@mediatek.com,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20220428115620.13512-1-rex-bc.chen@mediatek.com>
- <20220428115620.13512-17-rex-bc.chen@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20220428115620.13512-17-rex-bc.chen@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
-        version=3.4.6
+References: <20220425170530.200921-1-biju.das.jz@bp.renesas.com> <20220425170530.200921-9-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20220425170530.200921-9-biju.das.jz@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Thu, 28 Apr 2022 15:48:55 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdUC+iBEri0eg-eR2DEFBFiX_dmbsKnHp-NF6WoymO76Nw@mail.gmail.com>
+Message-ID: <CAMuHMdUC+iBEri0eg-eR2DEFBFiX_dmbsKnHp-NF6WoymO76Nw@mail.gmail.com>
+Subject: Re: [PATCH 08/13] arm64: dts: renesas: rzg2l-smarc: Move ssi0 and cpu
+ sound_dai nodes from common dtsi
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 28/04/22 13:56, Rex-BC Chen ha scritto:
-> We will use mediatek clock reset as infracfg_ao reset instead of
-> ti-syscon. To support this, remove property of ti reset and add
-> property of #reset-cells for mediatek clock reset.
-> 
-> Fixes: 4c78814a1f46ac0 (arm64: dts: Add mediatek SoC mt8195 and evaluation board)
-> Signed-off-by: Rex-BC Chen <rex-bc.chen@mediatek.com>
+Hi Biju,
 
-Please remove the Fixes tag: the reset commits are not going to be backported, so
-this commit also shall not be backported.
+Thanks for your patch!
 
-After the removal:
+On Mon, Apr 25, 2022 at 7:06 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
+> On RZ/G2{L,LC} SoM module, ssi0 is connected to wm8978 audio codec whereas
+> on RZ/G2UL it is connected to ssi1. So move ssi0 and cpu sound_dai nodes
+> from common dtsi to soc specific dtsi.
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+The first sentence reads a bit odd. Perhaps:
 
+    On RZ/G2{L,LC} SoM module, the wm8978 audio codec is connected
+    to ssi0, whereas on RZ/G2UL it is connected to ssi1.
+
+?
+
+> --- a/arch/arm64/boot/dts/renesas/rz-smarc-common.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/rz-smarc-common.dtsi
+> @@ -52,7 +52,6 @@ snd_rzg2l: sound {
+>                             "Mic Bias", "Microphone Jack";
+>
+>                 cpu_dai: simple-audio-card,cpu {
+> -                       sound-dai = <&ssi0>;
+>                 };
+>
+>                 codec_dai: simple-audio-card,codec {
+
+> --- a/arch/arm64/boot/dts/renesas/rzg2l-smarc.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/rzg2l-smarc.dtsi
+> @@ -49,6 +49,19 @@ &scif2 {
+>  };
+>  #endif
+>
+> +&snd_rzg2l {
+> +       cpu_dai: simple-audio-card,cpu {
+
+Why not refer to &cpu_dai instead?
+
+> +               sound-dai = <&ssi0>;
+> +       };
+> +};
+> +
+> +&ssi0 {
+> +       pinctrl-0 = <&ssi0_pins>;
+> +       pinctrl-names = "default";
+> +
+> +       status = "okay";
+> +};
+> +
+>  &vccq_sdhi1 {
+>         gpios = <&pinctrl RZG2L_GPIO(39, 1) GPIO_ACTIVE_HIGH>;
+>  };
+> diff --git a/arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi b/arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi
+> index 74a844ea7537..522cfab69db6 100644
+> --- a/arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi
+> @@ -91,6 +91,19 @@ &scif1 {
+>  };
+>  #endif
+>
+> +&snd_rzg2l {
+> +       cpu_dai: simple-audio-card,cpu {
+
+&cpu_dai?
+
+> +               sound-dai = <&ssi0>;
+> +       };
+> +};
+> +
+> +&ssi0 {
+> +       pinctrl-0 = <&ssi0_pins>;
+> +       pinctrl-names = "default";
+> +
+> +       status = "okay";
+> +};
+> +
+>  #if (SW_RSPI_CAN)
+>  &spi1 {
+>         /delete-property/ pinctrl-0;
+
+The rest LGTM.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
