@@ -2,56 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F1FCA5130A7
-	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 12:04:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 16B875130AD
+	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 12:04:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233345AbiD1KG5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Apr 2022 06:06:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36064 "EHLO
+        id S231743AbiD1KHJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Apr 2022 06:07:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36758 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232350AbiD1KGV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 06:06:21 -0400
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E95A33DA50
-        for <devicetree@vger.kernel.org>; Thu, 28 Apr 2022 02:53:26 -0700 (PDT)
-Received: by mail-wr1-x432.google.com with SMTP id e24so5978071wrc.9
-        for <devicetree@vger.kernel.org>; Thu, 28 Apr 2022 02:53:26 -0700 (PDT)
+        with ESMTP id S233508AbiD1KGa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 06:06:30 -0400
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74C533EF16
+        for <devicetree@vger.kernel.org>; Thu, 28 Apr 2022 02:54:51 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id m20so8433260ejj.10
+        for <devicetree@vger.kernel.org>; Thu, 28 Apr 2022 02:54:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=Xqi3tQeoc1NHno9yKWMqbw4r5YQdgiKDuSb9oAeYHa8=;
-        b=yr78g+MaZhUlHS2UcXn1OUn3doItrjOKC8k1mxoul2Im7B+S6CbbzGMO5FxmG7VARk
-         B7pvcw5TzrbXRgxGIldFIdVA3DM15i8d7f48li84BuKwof+K4h8jJJXwABUBE8A7xGtb
-         PHzESRMgKjoDZjv0vMD1jD3NzpGFDK8sWlO8gM3Zl61C++rp56wfXLpnL7R26QTzraP+
-         xDY4MZ+BEVBP+FqFoFt9LOkDZZ/wHZbau4yo+bq7fAq3+a2j4vhSIRNUvoAY1FLovv+2
-         qrF0EIdo+7RzxS07iAAzFNw7fAD1AUoPYFNEmSDJfhq6UUKpFGVWzCbVEOzo0F9yGCUI
-         p/fw==
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=DBbj9vS4RiFSbV5R5DxxG2khMbNBoKzLwuIctcI4Aas=;
+        b=L9cmlONc//L5dCt/4+WU2nzhjMngUTJ6znb5nHNh7fjINXCLkHSu7CVBmuQyI2GWeQ
+         munaiWap7dNmrg5VJHQVJD/fr++mtTu2Nzippq5fjCOPNglIZSC/3dhgQ6cQ/9xHzwHN
+         jdNaJrRJk4XO682JIf4A9MFDhKSEhDBxCfwVZwqCEkd01/nLxS6dMT6Tg0/4mvQrgCGN
+         8Egovu+UaeilDMQggA7ecZMKVfBNlQ7Sf5NhRwbnj9d9TqV/65muAt3/aRYLbPAdM2pF
+         uAcgXnhl0LvgCbhXruDxcaC4ApHSGjS0+BxjuJXR25lj3yLta4UouOgo7iZeytJxnhWM
+         eN3A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=Xqi3tQeoc1NHno9yKWMqbw4r5YQdgiKDuSb9oAeYHa8=;
-        b=b6IeGBEMEUlvsFykE3XgIfluQmUR6w68Q7KbkpqeTWW67sgV1MadbA+RZmlPyA8sHX
-         VaEQT1j2vtN/oDMbtw9ssKQPDdt6LEG3Uxhk5xT1xe4GQ8/OI4dc9LylTeS2iAjZOxln
-         7ci8plbM9hr9wKOMEgdGeh0lxdWJ8FCTwEoWkyi6juOBau54YowJ7V6RHDCNLOqc+YM6
-         pd5ughTmI8hkBQxG66I7Gw/tdBhDQME2zm5magS8k0fRNjnjIcptqF6Pl4/K3VmO3sMP
-         yJFYwJTXdoEE25WY6DBO+9ovoCJPyCfYCh+3LLauYpH10bFGoSWK6APAPH7tT0Xy/nVB
-         KNjA==
-X-Gm-Message-State: AOAM532JSdNgwnUmgx3gfpcPnuuTVAyEfywEnPMYnA6v/PoRVVSv0WHC
-        mDFIDH9BhRDjBIQbMxjc056KSA==
-X-Google-Smtp-Source: ABdhPJww1dXap9RkiBq4VNLp6PdlAcDue9crNwyW2b35J8EzRhEJPe7hKCSwo+1hkrq+KUvXKsMcZg==
-X-Received: by 2002:adf:f30a:0:b0:20a:e193:6836 with SMTP id i10-20020adff30a000000b0020ae1936836mr12101094wro.654.1651139605530;
-        Thu, 28 Apr 2022 02:53:25 -0700 (PDT)
-Received: from google.com (cpc155339-bagu17-2-0-cust87.1-3.cable.virginm.net. [86.27.177.88])
-        by smtp.gmail.com with ESMTPSA id i15-20020adfaacf000000b0020aee621955sm3721870wrc.34.2022.04.28.02.53.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 28 Apr 2022 02:53:25 -0700 (PDT)
-Date:   Thu, 28 Apr 2022 10:53:23 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=DBbj9vS4RiFSbV5R5DxxG2khMbNBoKzLwuIctcI4Aas=;
+        b=SjlFLUA5n8ZgsAKdJcgFO9jRbnP3FGerHaz0Ig0n3O6JVj3lvcDvqoB4tYMuI7BTrL
+         sl7OrYfYAn3lKi29eF7kB81TWHZxav+UbF4vLTVc7QzHnnbjsd1blRGfZ8pLLFIRFaLj
+         +BoO5QiPVbIIf4ZfBL+JO/kEWPQO8zK2tYjmSVjn4gEpi0I2j2h4ohuAYHWDtF4oB62z
+         vv5dRBjlmuj4OflH68dbbFeyNgC8qiIQvARrDw25k4Wuuau8VSqZqT6r/REEBtV/d2PD
+         /PRRFJ45hzPldrbkO66pfJy5TanvU9K3jbYz4qBhVGJBSBmH4Dg9dip1qfHBOsWnpCDv
+         Jlfw==
+X-Gm-Message-State: AOAM530Lu5ULzjWqYdNvy5tjGjAj0f8/AtBLu/fif/88jyLzDlVSdTIR
+        Vjm3nZDYwyLx6VrpqTxLmkb7lA==
+X-Google-Smtp-Source: ABdhPJzUDZjZ6FqfqR9CbNRRWJcRTyZXYsJlcIWLhXC9v0jQj+VsOYGcUY63+9v8dDPDpntyVJYgcQ==
+X-Received: by 2002:a17:906:5d15:b0:6f3:77e6:2126 with SMTP id g21-20020a1709065d1500b006f377e62126mr23304886ejt.707.1651139690020;
+        Thu, 28 Apr 2022 02:54:50 -0700 (PDT)
+Received: from [192.168.0.161] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id 22-20020a17090600d600b006dfbc46efabsm8125774eji.126.2022.04.28.02.54.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 28 Apr 2022 02:54:49 -0700 (PDT)
+Message-ID: <6981f93a-ef01-6ba0-4451-26526372d666@linaro.org>
+Date:   Thu, 28 Apr 2022 11:54:48 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH 08/10] ARM: dts: exynos: use proper
+ 'dma-channels/requests' properties
+Content-Language: en-US
+To:     Marek Szyprowski <m.szyprowski@samsung.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Alim Akhtar <alim.akhtar@samsung.com>,
         Dinh Nguyen <dinguyen@kernel.org>,
@@ -64,20 +71,18 @@ Cc:     Rob Herring <robh+dt@kernel.org>,
         Broadcom Kernel Team <bcm-kernel-feedback-list@broadcom.com>,
         Sylwester Nawrocki <s.nawrocki@samsung.com>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH 06/10] dt-bindings: mfd: samsung,exynos5433-lpass: fix
- 'dma-channels/requests' properties
-Message-ID: <YmpkE0FgEhPNneg+@google.com>
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Rob Herring <robh@kernel.org>
 References: <20220427155840.596535-1-krzysztof.kozlowski@linaro.org>
- <20220427155840.596535-7-krzysztof.kozlowski@linaro.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+ <CGME20220427160347eucas1p23ce51e0fb49160d437961d98fd682c28@eucas1p2.samsung.com>
+ <20220427155840.596535-9-krzysztof.kozlowski@linaro.org>
+ <5eeac2a0-4293-675e-9dc2-25ed8ab3fb8f@samsung.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <5eeac2a0-4293-675e-9dc2-25ed8ab3fb8f@samsung.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220427155840.596535-7-krzysztof.kozlowski@linaro.org>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -86,23 +91,41 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 27 Apr 2022, Krzysztof Kozlowski wrote:
-
-> pl330 DMA controller bindings documented 'dma-channels' and
-> 'dma-requests' properties (without leading hash sign), so fix the DTS to
-> match the bindings.
+On 28/04/2022 11:50, Marek Szyprowski wrote:
+> Hi Krzysztof,
 > 
-> Reported-by: Rob Herring <robh@kernel.org>
-> Fixes: e18183cefc8b ("mfd: Add DT bindings documentation for Samsung Exynos LPASS")
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->  .../devicetree/bindings/mfd/samsung,exynos5433-lpass.yaml     | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
+> On 27.04.2022 17:58, Krzysztof Kozlowski wrote:
+>> pl330 DMA controller bindings documented 'dma-channels' and
+>> 'dma-requests' properties (without leading hash sign), so fix the DTS to
+>> match the bindings.
+>>
+>> Reported-by: Rob Herring <robh@kernel.org>
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+> Are those properties really needed for PL330 driver on Exynos SoCs? I've 
+> removed them and I still see the proper values read from registers and 
+> reported in the log (Exynos4210):
+> 
+> dma-pl330 12680000.dma-controller: Loaded driver for PL330 DMAC-141330
+> dma-pl330 12680000.dma-controller:       DBUFF-32x4bytes Num_Chans-8 
+> Num_Peri-32 Num_Events-32
+> dma-pl330 12690000.dma-controller: Loaded driver for PL330 DMAC-141330
+> dma-pl330 12690000.dma-controller:       DBUFF-32x4bytes Num_Chans-8 
+> Num_Peri-32 Num_Events-32
+> dma-pl330 12850000.dma-controller: Loaded driver for PL330 DMAC-141330
+> dma-pl330 12850000.dma-controller:       DBUFF-64x8bytes Num_Chans-8 
+> Num_Peri-1 Num_Events-32
+> 
+> I also don't see any code that would read those properties. IMHO they 
+> should be simply removed at all, at least for the PL330 related nodes.
 
-Applied, thanks.
+In current Linux implementation they indeed are not used. Nothing parses
+them. However:
+1. They describe (hopefully correct) the hardware.
+2. They might be used by other implementations of pl330 driver.
 
--- 
-Lee Jones [李琼斯]
-Principal Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+I would not remove them from existing sources, but indeed maybe there is
+no need to add for new files.
+
+Best regards,
+Krzysztof
