@@ -2,57 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6EDE351353F
-	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 15:34:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C01D2513555
+	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 15:38:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229650AbiD1Nhz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Apr 2022 09:37:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38786 "EHLO
+        id S1343654AbiD1NlR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Apr 2022 09:41:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49512 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347280AbiD1Nhz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 09:37:55 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38763ADD73;
-        Thu, 28 Apr 2022 06:34:39 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id 25E171F4043E
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1651152877;
-        bh=GU8omeXrJMfiZadEv1lU4ULMJLZKc5nKhQvVWYR6Kng=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=Zci5EGF3w5QPmXuuq1SwposSe9d6KMSH+Ii9J0t8fDkjJ+2m3YGMhkSwg7zkTynOT
-         w/Aa2fGUruj+UOOaLFTBHP7XSnhvs+VZnu/ZSce56t3dJYtlEuH4YzuTnuuAU4uiV/
-         4v7+SZ41eHXIbheZq9MCva6QLsLleUNuaKmNUPBk5ridkPajUXpjB/SavbfR2aDPYu
-         eUMpp4ABATl2qO7Ussp78Jy9en/I6kxjO3Fviszdp2mRb7jpY+rx7G+NrfxApud6Rx
-         NrVK166N4mB+o0OPyfdt4yfop/8p1Dyp+ln8isOFls/tXHIqkKSK/Xgpp7mRlgY0gQ
-         s4QpN720ZSaKQ==
-Message-ID: <8007e692-7a67-2930-709a-494d4e7df1de@collabora.com>
-Date:   Thu, 28 Apr 2022 15:34:33 +0200
+        with ESMTP id S1347300AbiD1NlQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 09:41:16 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C609F986D7;
+        Thu, 28 Apr 2022 06:38:01 -0700 (PDT)
+X-UUID: d309ffee3c9b4fbb96e6eb8d27b5a8e6-20220428
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.4,REQID:11fd026f-1d19-46a7-895e-072e0acfe536,OB:0,LO
+        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
+        ON:release,TS:0
+X-CID-META: VersionHash:faefae9,CLOUDID:ee51d6c6-85ee-4ac1-ac05-bd3f1e72e732,C
+        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,File:nil,QS:0,BEC:nil
+X-UUID: d309ffee3c9b4fbb96e6eb8d27b5a8e6-20220428
+Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw01.mediatek.com
+        (envelope-from <rex-bc.chen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1992065373; Thu, 28 Apr 2022 21:37:55 +0800
+Received: from mtkmbs07n1.mediatek.inc (172.21.101.16) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Thu, 28 Apr 2022 21:37:54 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Thu, 28 Apr 2022 21:37:54 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Thu, 28 Apr 2022 21:37:54 +0800
+From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
+To:     <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <chunkuang.hu@kernel.org>, <p.zabel@pengutronix.de>
+CC:     <airlied@linux.ie>, <daniel@ffwll.ch>, <matthias.bgg@gmail.com>,
+        <jitao.shi@mediatek.com>, <xinlei.lee@mediatek.com>,
+        <dri-devel@lists.freedesktop.org>,
+        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Rex-BC Chen <rex-bc.chen@mediatek.com>
+Subject: [PATCH v5 0/4] Add mt8186 dsi compatoble & Convert dsi_dtbinding to .yaml
+Date:   Thu, 28 Apr 2022 21:37:49 +0800
+Message-ID: <20220428133753.8348-1-rex-bc.chen@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH v8 1/2] dt-bindings: arm: Add compatible for MediaTek
- MT8186
-Content-Language: en-US
-To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Project_Global_Chrome_Upstream_Group@mediatek.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        Chen-Yu Tsai <wenst@chromium.org>,
-        Ryder Lee <ryder.lee@kernel.org>, hsinyi@chromium.org
-References: <20220428061717.11197-1-allen-kh.cheng@mediatek.com>
- <20220428061717.11197-2-allen-kh.cheng@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20220428061717.11197-2-allen-kh.cheng@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+Content-Type: text/plain
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
         SPF_PASS,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -61,11 +62,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 28/04/22 08:17, Allen-KH Cheng ha scritto:
-> This commit adds dt-binding documentation for the MediaTek MT8186
-> reference board.
-> 
-> Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+Changes since v4:
+1. Modify DSI dt-binding.
+2. Add support for MT8186 DSI in mtk_drm_drv.c.
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Changes since v3:
+1. Add dsi port property.
+2. Fix some formatting.
+
+Changes since v2:
+1. Added #address-cells, #size-cells two properties.
+2. Fix some formatting issues.
+
+Changes since v1:
+1. Delete the mediatek,dsi.txt & Add the mediatek,dsi.yaml.
+2. Ignore the Move the getting bridge node function patch for V1.
+
+Rex-BC Chen (1):
+  drm/mediatek: Add MT8186 DSI compatible for mtk_drm_drv.c
+
+Xinlei Lee (3):
+  dt-bindings: display: mediatek: dsi: Convert dsi_dtbinding to .yaml
+  dt-bindings: display: mediatek: dsi: Add compatible for MediaTek
+    MT8186
+  drm/mediatek: Add mt8186 dsi compatible to mtk_dsi.c
+
+ .../display/mediatek/mediatek,dsi.txt         |  62 ---------
+ .../display/mediatek/mediatek,dsi.yaml        | 123 ++++++++++++++++++
+ drivers/gpu/drm/mediatek/mtk_drm_drv.c        |   2 +
+ drivers/gpu/drm/mediatek/mtk_dsi.c            |   8 ++
+ 4 files changed, 133 insertions(+), 62 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/display/mediatek/mediatek,dsi.txt
+ create mode 100644 Documentation/devicetree/bindings/display/mediatek/mediatek,dsi.yaml
+
+-- 
+2.18.0
 
