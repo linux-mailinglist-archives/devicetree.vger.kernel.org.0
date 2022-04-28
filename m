@@ -2,116 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BC9E6513237
-	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 13:15:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 101D5513241
+	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 13:17:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236798AbiD1LS0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Apr 2022 07:18:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41406 "EHLO
+        id S1345455AbiD1LUH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Apr 2022 07:20:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46752 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345394AbiD1LSX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 07:18:23 -0400
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8657922B21;
-        Thu, 28 Apr 2022 04:15:09 -0700 (PDT)
-Received: by mail-ej1-x629.google.com with SMTP id kq17so8874102ejb.4;
-        Thu, 28 Apr 2022 04:15:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=m+MfYH2YQ+litd9nC4WLDji5G/nTM7/Ix1hsN4aQQiE=;
-        b=jHDaRN+NjsQ+9ro4gz2Wvs/dDGIlEWHb+T9Y5mQ8AObnsBA5Pd0FlIoc/BIu2k8+bj
-         /SqLjEdJ0MZBiONiCGTKXiTaa5DqMmVe7Sph+iCnEyB20tu2Qw6eNSS3+zCc+D/axZsL
-         rjBBnKxSScWm3WwnPeg65OWtkedtlAZ8F1Kex53HXfIm2H88bMNA1Tn5HoEUlNUA65/6
-         NcxY+80Ezi1ctMi6XpRx/YS4rDtLM5kc8ZJhKrBI5XW/VL4O84FMUxs6FkQzkLKcsAx7
-         c5nTCPQ77/aJ3432dxYq66k7k7wrGE7gYwARTs4fAry2AD/KtPpSrv/UQkd6gSBBGF8O
-         ttjg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=m+MfYH2YQ+litd9nC4WLDji5G/nTM7/Ix1hsN4aQQiE=;
-        b=r42hFB3eOSmxHIsU/7K8rGnoGjuxObSrenqqk5jy4+alPC5xQN9oRibODWWwufTk/7
-         GExkrIOxv5FGdWjIsosgpkGrfS659ilkvdOc2r5yjp8M3klF+zYtgB84ednpDhLlXPlI
-         FamT77OfqDeQ0TyRiBTNQZaoUXPMvI3JnnPJa/8T64shgOOkRrQSLYME63+lNNtOhoDI
-         XUSlNuvv8PdNPsgof9DQtEutwakisuyk7K1GeAeHQwcbWh8rGe+Jv0lhtE2g5/sbfH0w
-         omJB/mNp6DJpHNSST9iwdLz6yY2tc1PALA1Asa8mGw3K5yzRDAeYY7CpwQWCgI/Xy/DY
-         hoLg==
-X-Gm-Message-State: AOAM532T6g3AYP6f0zuPiwbWi9eonOf1NQZEBpG/qWMhdQgMJSmtMuAD
-        Qn3AupRx1cG5NDWLt5rFuf+FvaGBmCgRLg==
-X-Google-Smtp-Source: ABdhPJzAYtvVXrl9CAWvbv76jT6c8d/n2DovgQHySmatr7l5Dm4yG1AqCIsF6qg23AwQhhKxNa+28Q==
-X-Received: by 2002:a17:906:6a22:b0:6f3:e768:7de0 with SMTP id qw34-20020a1709066a2200b006f3e7687de0mr1469172ejc.480.1651144507953;
-        Thu, 28 Apr 2022 04:15:07 -0700 (PDT)
-Received: from archbook.localnet (84-72-105-84.dclient.hispeed.ch. [84.72.105.84])
-        by smtp.gmail.com with ESMTPSA id kk14-20020a170907766e00b006f3a6a528c8sm4898179ejc.146.2022.04.28.04.15.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 28 Apr 2022 04:15:07 -0700 (PDT)
-From:   Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
-To:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Michael Riesch <michael.riesch@wolfvision.net>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Liang Chen <cl@rock-chips.com>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Frank Wunderlich <frank-w@public-files.de>
-Subject: Re: [PATCH 1/3] arm64: dts: rockchip: enable otg/drd operation of usb_host0_xhci in rk356x
-Date:   Thu, 28 Apr 2022 13:15:06 +0200
-Message-ID: <2087500.ItEYzMA54p@archbook>
-In-Reply-To: <20220425133502.405512-1-michael.riesch@wolfvision.net>
-References: <20220425133502.405512-1-michael.riesch@wolfvision.net>
+        with ESMTP id S1345471AbiD1LUA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 07:20:00 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BFD9E52B12;
+        Thu, 28 Apr 2022 04:16:41 -0700 (PDT)
+X-UUID: 99dcd6c7b8c14047b1fc936b4ede6ca6-20220428
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.4,REQID:6ce3acf7-14bd-4058-bdb1-c51983d16a9b,OB:0,LO
+        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
+        ON:release,TS:0
+X-CID-META: VersionHash:faefae9,CLOUDID:8c8dd3c6-85ee-4ac1-ac05-bd3f1e72e732,C
+        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,File:nil,QS:0,BEC:nil
+X-UUID: 99dcd6c7b8c14047b1fc936b4ede6ca6-20220428
+Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw02.mediatek.com
+        (envelope-from <rex-bc.chen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 2020644970; Thu, 28 Apr 2022 19:16:34 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.792.15; Thu, 28 Apr 2022 19:16:33 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Thu, 28 Apr 2022 19:16:32 +0800
+Message-ID: <346736a339bed576817179ded3795d61f71fa06a.camel@mediatek.com>
+Subject: Re: [PATCH V4 07/14] cpufreq: mediatek: Add .get function
+From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
+To:     Viresh Kumar <viresh.kumar@linaro.org>
+CC:     <rafael@kernel.org>, <robh+dt@kernel.org>, <krzk+dt@kernel.org>,
+        <matthias.bgg@gmail.com>, <jia-wei.chang@mediatek.com>,
+        <roger.lu@mediatek.com>, <hsinyi@google.com>,
+        <khilman@baylibre.com>, <angelogioacchino.delregno@collabora.com>,
+        <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Date:   Thu, 28 Apr 2022 19:16:32 +0800
+In-Reply-To: <20220427031141.or2owu5wrh2cadfo@vireshk-i7>
+References: <20220422075239.16437-1-rex-bc.chen@mediatek.com>
+         <20220422075239.16437-8-rex-bc.chen@mediatek.com>
+         <20220425053548.72w2jh2g6lpzgz6g@vireshk-i7>
+         <64c690e8edf493ec0a4a14e0fdaad2d8e88e6da7.camel@mediatek.com>
+         <20220425100058.4kbvmpi63ygni6k5@vireshk-i7>
+         <078b1f9b39690da98cbd3c4528ba28374a097083.camel@mediatek.com>
+         <20220427031141.or2owu5wrh2cadfo@vireshk-i7>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Montag, 25. April 2022 15:35:00 CEST Michael Riesch wrote:
-> This USB 3.0 controller is capable of OTG/DRD operation. Enable it in the
-> device tree.
+On Wed, 2022-04-27 at 08:41 +0530, Viresh Kumar wrote:
+> On 26-04-22, 19:13, Rex-BC Chen wrote:
+> > We have a non-upstream driver which tries to get frequency by
+> > 'cpufreq_get'.
 > 
-> Signed-off-by: Michael Riesch <michael.riesch@wolfvision.net>
-> ---
->  arch/arm64/boot/dts/rockchip/rk356x.dtsi | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+> This is the right thing to do there.
 > 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk356x.dtsi b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-> index 55e6dcb948cc..f611aaf2d238 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-> @@ -266,7 +266,7 @@ usb_host0_xhci: usb@fcc00000 {
->  			 <&cru ACLK_USB3OTG0>;
->  		clock-names = "ref_clk", "suspend_clk",
->  			      "bus_clk";
-> -		dr_mode = "host";
-> +		dr_mode = "otg";
->  		phy_type = "utmi_wide";
->  		power-domains = <&power RK3568_PD_PIPE>;
->  		resets = <&cru SRST_USB3OTG0>;
+> > When we use that non-upstream driver, 'cpufreq_verify_current_freq'
+> > will be further invoked by 'cpufreq_get' and it would cause voltage
+> > pulse issue as I described previously.
+> 
+> I see this will eventually resolve to __cpufreq_driver_target(),
+> which
+> should return without any frequency updates.
 > 
 
-Hi Michael,
+Hello Viresh,
 
-according to official specs[1], only the RK3568 is capable of using the
-USB 3.0 controller in OTG mode. For the RK3566, OTG is USB 2.0, if I
-understand this correctly.
+Yes, the call stack will eventually go to __cpufreq_driver_target.
+However, we can observe the mismatch between target_freq and policy-cur 
+with a tiny difference.
+e.g.
+[ 553.065356] cpufreq: target for CPU 0: 500000 kHz, relation 0,
+requested 500000 kHz
+[ 553.066366] cpufreq: target_freq/policy->cur: 500000/499999 kHz
 
-So I think this should be an override in rk3568.dtsi.
+We check the assignment of policy->cur could be either from
+cpufreq_driver->get_intermediate or from cpufreq_driver->get.
+But it is strange to have the frequency value like 499999 kHz.
+Is the result of tiny frequency difference expected from your point of
+view?
 
-Regards,
-Nicolas Frattaroli
+> What do you mean by "voltage pulse" here? What actually happens which
+> you want to avoid.
+> 
 
-[1]: Compare page 17 of the RK3568 datasheet to page 16 of the RK3566
-     datasheet
+When cpufreq is fixed to lowest opp, "voltage pulse" is a quick voltage
+rising and falling phenomenon which can be observed if 'cpufreq_get' is
+invoked.
+From top of view, if 'cpufreq_get' is NOT invoked in that condition,
+the voltage pulse will no longer occur.
+That's why we add this patch for this series.
 
+> > Therefore, we apply the solution in this series.
+> 
+> I won't call it a solution but a Bug as .get() is supposed to read
+> real freq of the hardware.
+> 
+> > Recently, we found that using 'cpufreq_generic_get' directly in our
+> > non-upstream driver can do the same thing without pulse issue.
+> 
+> That would be an abuse of the cpufreq_generic_get() API. It is ONLY
+> allowed to be used while setting .get callback in the driver.
+> 
+
+Thank you for sharing the correct information.
+Is it possible to get frequency (API) a simple way, like get current
+opp frequency?
+
+BRs,
+Rex
 
