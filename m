@@ -2,106 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 52EC8512B50
-	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 08:16:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 41D5B512B5E
+	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 08:18:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243562AbiD1GTi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Apr 2022 02:19:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43892 "EHLO
+        id S243632AbiD1GVC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Apr 2022 02:21:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50042 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243249AbiD1GTh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 02:19:37 -0400
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 009F433370
-        for <devicetree@vger.kernel.org>; Wed, 27 Apr 2022 23:16:22 -0700 (PDT)
-Received: by mail-ej1-x636.google.com with SMTP id k23so7483014ejd.3
-        for <devicetree@vger.kernel.org>; Wed, 27 Apr 2022 23:16:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=MFsuND3deEikwDCrPgJTnpdq0PRuR+XEOkINDbDvzIs=;
-        b=dm7IIP+sI4Ep4b8lV07ltQtn5GmcD1I83e3a9lsIhs9/CpyP9r/tPoMOX8W4zzn3H+
-         Fnt8biujUBQUzZCgmruQol7neI5e+1oPmN5ass7Ow7+tzP7X5FdV0FQ0qyI/rAF+r5Mg
-         lAeLuF11cdUQUy4YFabaaRYnqLq018egODyaKP9JjXFOaZhXBy/NwY09f4qxt3kzykN7
-         4p0ourLjeTSMhlLuSxZvUNgwovcqwZtXZXFk+bVoa/X84oLITrXu6yFaEGwrMwht7O6d
-         9m1/hNubS3pgiwdFHmW3hduT9tqT//aF9r0q8V2nzdHv94WQpalZLz9yq4nLaP3AKEkM
-         +5dQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=MFsuND3deEikwDCrPgJTnpdq0PRuR+XEOkINDbDvzIs=;
-        b=OuEoktedXBR+oDgpfcyVp02Ku/nKxQ2lhttcRvjAxwPdSRZSa7/E3IYjexHJCad9WY
-         JY7j0cXf3mE3c2PjOAkMMd/bZ/hbwAaqAF4pbHBnR7G3/bQKJTB4LdvVfxynB0au5DfN
-         VT4nOBev6NNZ5AHui51rimf+zRufWplwDliJTok0zwTfEGl6Q/kr+ZgS7X4f+jToFO4R
-         RGT7DCLE1LtOTxtHo2OQtifRNCOXA0e0n5ngYoIClaDjbpA7yukgFjt5iCizReuinKI7
-         tGq8hch3FylHy/llqzToguBqf7qWqvvy9xSiwAXuIVKBil2A1V3rvMp+nBGxxUuyKkAK
-         MDow==
-X-Gm-Message-State: AOAM532qtjQRXzFFAWYO/YtOzCSxeQzj3dTcu0hXnFdsIGs/eZ3Sxpy9
-        0O1hZ6h83cJgGBD2U/Ee2Grmqw==
-X-Google-Smtp-Source: ABdhPJwBZ1KNRfTA1HAA4LNUtcVVMcP6eFpjtMb2TWZhJ9REFtbQpTpqXSRQVZsbPWfRPDqMyAnXmQ==
-X-Received: by 2002:a17:907:9628:b0:6f3:5fbe:c28 with SMTP id gb40-20020a170907962800b006f35fbe0c28mr28506329ejc.754.1651126581596;
-        Wed, 27 Apr 2022 23:16:21 -0700 (PDT)
-Received: from [192.168.0.159] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id c4-20020a170906170400b006e87c7b8ffasm7971376eje.32.2022.04.27.23.16.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 27 Apr 2022 23:16:20 -0700 (PDT)
-Message-ID: <8d9130b5-7459-bb26-79c7-3d83f7dd29a0@linaro.org>
-Date:   Thu, 28 Apr 2022 08:16:19 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH v3 3/4] dt-bindings: interrupt-controller: fsl,ls-extirq:
- convert to YAML
-Content-Language: en-US
-To:     Leo Li <leoyang.li@nxp.com>, Michael Walle <michael@walle.cc>,
+        with ESMTP id S243635AbiD1GVB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 02:21:01 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87217580D6;
+        Wed, 27 Apr 2022 23:17:47 -0700 (PDT)
+X-UUID: ccc9919feba64604ae56febf37595536-20220428
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.4,REQID:dbc5d9a1-909c-4a12-a56d-e9b566c2084d,OB:0,LO
+        B:0,IP:0,URL:0,TC:0,Content:-20,EDM:0,RT:0,SF:95,FILE:0,RULE:Release_Ham,A
+        CTION:release,TS:75
+X-CID-INFO: VERSION:1.1.4,REQID:dbc5d9a1-909c-4a12-a56d-e9b566c2084d,OB:0,LOB:
+        0,IP:0,URL:0,TC:0,Content:-20,EDM:0,RT:0,SF:95,FILE:0,RULE:Spam_GS981B3D,A
+        CTION:quarantine,TS:75
+X-CID-META: VersionHash:faefae9,CLOUDID:4826002f-6199-437e-8ab4-9920b4bc5b76,C
+        OID:4dc67446a6dc,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,File:nil
+        ,QS:0,BEC:nil
+X-UUID: ccc9919feba64604ae56febf37595536-20220428
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
+        (envelope-from <allen-kh.cheng@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 635182525; Thu, 28 Apr 2022 14:17:42 +0800
+Received: from mtkmbs07n1.mediatek.inc (172.21.101.16) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Thu, 28 Apr 2022 14:17:41 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Thu, 28 Apr 2022 14:17:19 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Thu, 28 Apr 2022 14:17:19 +0800
+From:   Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+To:     Matthias Brugger <matthias.bgg@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Shawn Guo <shawnguo@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
-        "linux-arm-kernel@lists.infradead.org" 
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+CC:     <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        <devicetree@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20220427075338.1156449-1-michael@walle.cc>
- <20220427075338.1156449-4-michael@walle.cc>
- <AS8PR04MB89464877E53B7F7B14A814178FFA9@AS8PR04MB8946.eurprd04.prod.outlook.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <AS8PR04MB89464877E53B7F7B14A814178FFA9@AS8PR04MB8946.eurprd04.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        <linux-kernel@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>,
+        "Chen-Yu Tsai" <wenst@chromium.org>,
+        Ryder Lee <ryder.lee@kernel.org>, <hsinyi@chromium.org>,
+        Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+Subject: [PATCH v8 0/2] Add basic node support for MediaTek MT8186 SoC
+Date:   Thu, 28 Apr 2022 14:17:15 +0800
+Message-ID: <20220428061717.11197-1-allen-kh.cheng@mediatek.com>
+X-Mailer: git-send-email 2.18.0
+MIME-Version: 1.0
+Content-Type: text/plain
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/04/2022 22:08, Leo Li wrote:
->> Convert the fsl,ls-extirq binding to the new YAML format.
->>
->> In contrast to the original binding documentation, there are three
->> compatibles which are used in their corresponding device trees which have a
->> specific compatible and the (already documented) fallback
->> compatible:
->>  - "fsl,ls1046a-extirq", "fsl,ls1043a-extirq"
->>  - "fsl,ls2080a-extirq", "fsl,ls1088a-extirq"
->>  - "fsl,lx2160a-extirq", "fsl,ls1088a-extirq"
->>
->> Depending on the number of the number of the external IRQs which is
->> usually 12 except for the LS1021A where there are only 6, the interrupt-map-
->> mask was reduced from 0xffffffff to 0xf and 0x7 respectively and the number
->> of interrupt-map entries have to match.
-> 
-> I assume this change won't prevent driver to be compatible with older device trees using the 0xffffffff?  The original 0xffffffff should work for both 6/12 interrupts or whatever reasonable number of interrupts that maybe used in future SoCs.  So the purpose of this change is to make the binding more specific to catch more errors in device tree?
+MT8186 is a SoC based on 64bit ARMv8 architecture.
+It contains 6 CA55 and 2 CA78 cores.
+MT8186 share many HW IP with MT65xx series.
 
-Yes.
+This patchset was tested on MT8186 evaluation board to shell.
 
-Best regards,
-Krzysztof
+Based on matthias/, v5.18-next/dts64. and add the below PATCHs
+- clk series: 20220409132251.31725-1-chun-jie.chen@mediatek.com
+- mt8186 timer compatible: 20220311130732.22706-2-allen-kh.cheng@mediatek.com
+- mt8186 watchdog compatible from commit 888423f98c8f
+  in linux/kernel/git/groeck/linux-staging.git, watchdog-next 
+- reset header from commit 457ece3a0fbf
+  in linux/kernel/git/groeck/linux-staging.git, watchdog-next
+
+changes since v7:
+ - add scp&auxadc node
+
+changes since v6:
+ - remove unnecessary blank line
+
+changes since v5:
+ - replace Mediatek a to MediaTek
+ - use GPL-2.0-only OR BSD-2-Clause
+
+changes since v4:
+ - correct driver clock of mt8186
+ - add power domains controller and clock controllers
+ - add pinctrl, usb host, spi and i2c nodes
+ - add node status in mt8186-evb.dts
+ - correct some dtbs_check warnings
+
+changes since v3:
+ - remove serial, mmc and phy patch from series. (already merged)
+ - remove mcusysoff node
+ - move oscillator nodes at the head of dts
+ - change name from usb-phy to t-phy
+
+changes since v2:
+ - add soc {} in mt8186.dtsi
+
+changes since v1:
+ - add dt-bindings: arm: Add compatible for MediaTek MT8186
+
+Allen-KH Cheng (2):
+  dt-bindings: arm: Add compatible for MediaTek MT8186
+  arm64: dts: Add MediaTek SoC MT8186 dts and evaluation board and
+    Makefile
+
+ .../devicetree/bindings/arm/mediatek.yaml     |   4 +
+ arch/arm64/boot/dts/mediatek/Makefile         |   1 +
+ arch/arm64/boot/dts/mediatek/mt8186-evb.dts   | 232 +++++
+ arch/arm64/boot/dts/mediatek/mt8186.dtsi      | 949 ++++++++++++++++++
+ 4 files changed, 1186 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt8186-evb.dts
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt8186.dtsi
+
+-- 
+2.18.0
+
