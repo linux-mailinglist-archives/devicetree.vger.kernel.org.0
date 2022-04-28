@@ -2,135 +2,243 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D0424513CF3
-	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 22:57:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E227E513D03
+	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 23:07:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230112AbiD1VAe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Apr 2022 17:00:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43400 "EHLO
+        id S237062AbiD1VLL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Apr 2022 17:11:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43210 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241199AbiD1VAd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 17:00:33 -0400
-Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.187])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61C37393EE
-        for <devicetree@vger.kernel.org>; Thu, 28 Apr 2022 13:57:17 -0700 (PDT)
-Received: from mail-yb1-f182.google.com ([209.85.219.182]) by
- mrelayeu.kundenserver.de (mreue012 [213.165.67.97]) with ESMTPSA (Nemesis) id
- 1MtPzy-1nzuIX1QlC-00umbh for <devicetree@vger.kernel.org>; Thu, 28 Apr 2022
- 22:57:15 +0200
-Received: by mail-yb1-f182.google.com with SMTP id w17so11177296ybh.9
-        for <devicetree@vger.kernel.org>; Thu, 28 Apr 2022 13:57:15 -0700 (PDT)
-X-Gm-Message-State: AOAM532TD54T22NN0fHJpIkkUSjO2EYeBVuytqVmlwrtqzmjO+zqsOCK
-        b67IgywFpAopkOFct7aYVjwa2bIWLSlmt114n4c=
-X-Google-Smtp-Source: ABdhPJxZ0jJTKv13jEU1ixYQwpduWcc1BZiMpsGqsbIhCzoeqzzL54Ca2wlwAbMvXrkH4d8qIV52yQztcIMUSlYcS+s=
-X-Received: by 2002:a25:d3c2:0:b0:645:74df:f43d with SMTP id
- e185-20020a25d3c2000000b0064574dff43dmr32292197ybf.394.1651179434204; Thu, 28
- Apr 2022 13:57:14 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220427162123.110458-1-maukka@ext.kapsi.fi> <CAK8P3a0p-ev50UfGiHCpMM5Jz5Mf8pdfQtNep0M7qi7PANSBVg@mail.gmail.com>
- <1509d16c-d244-19c7-610b-4c8ea8ca1624@ext.kapsi.fi>
-In-Reply-To: <1509d16c-d244-19c7-610b-4c8ea8ca1624@ext.kapsi.fi>
-From:   Arnd Bergmann <arnd@arndb.de>
-Date:   Thu, 28 Apr 2022 22:56:58 +0200
-X-Gmail-Original-Message-ID: <CAK8P3a3g4CZjiVHHoBqJLrdN0chghaskODVvtWY1Fjj8TcB8KQ@mail.gmail.com>
-Message-ID: <CAK8P3a3g4CZjiVHHoBqJLrdN0chghaskODVvtWY1Fjj8TcB8KQ@mail.gmail.com>
-Subject: Re: [RFC RFT PATCH v1 0/1] ARM: orion5x: convert D-Link DNS-323 to
- the Device Tree
-To:     Mauri Sandberg <maukka@ext.kapsi.fi>
-Cc:     Arnd Bergmann <arnd@arndb.de>, SoC Team <soc@kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Olof Johansson <olof@lixom.net>,
+        with ESMTP id S237046AbiD1VLK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 17:11:10 -0400
+Received: from lahtoruutu.iki.fi (lahtoruutu.iki.fi [IPv6:2a0b:5c81:1c1::37])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52466BF534;
+        Thu, 28 Apr 2022 14:07:53 -0700 (PDT)
+Received: from hillosipuli.retiisi.eu (89-27-103-169.bb.dnainternet.fi [89.27.103.169])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: sailus)
+        by lahtoruutu.iki.fi (Postfix) with ESMTPSA id 2DA111B0029D;
+        Fri, 29 Apr 2022 00:07:51 +0300 (EEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=lahtoruutu;
+        t=1651180071;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=BNdaIGfl1oTNmZ1z18jwQdqe5S5UFYhc+No0/RbEmds=;
+        b=OF3c2w3OnPb/EBbgqmLRqgNU547xWhie3X3z4PWvgSUT9cv75X8wQtJs6cU/cPtIMxZMqf
+        DSGH3RnMgLmfYaRDEsNR4OgMgzEg2WzzFjc/m3tlpYcECYNReYfGk717WejOrrXPV3ajOB
+        posWAH1nnBC5Z+ZQTRiEXVpaT6JDZGQPgkixPM3XRk07ssb/O6uJSVTSOBP2/yfm9SqtP8
+        u003Ab9YMsYQWuPCtMaPVOSO57BmWIQVp70Qw3slukhweKb5P35fqFJ+jpSt2M2uOiVBbT
+        6LCULxoSNlTWkbV8QaZqdaOutQGe8hilRioSTFDzrKAGpTxZJ0DJj+UmBGBkFw==
+Received: from valkosipuli.retiisi.eu (valkosipuli.localdomain [192.168.4.2])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        by hillosipuli.retiisi.eu (Postfix) with ESMTPS id AF355634C91;
+        Fri, 29 Apr 2022 00:07:50 +0300 (EEST)
+Date:   Fri, 29 Apr 2022 00:07:50 +0300
+From:   Sakari Ailus <sakari.ailus@iki.fi>
+To:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-kernel@vger.kernel.org, linux-staging@lists.linux.dev,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Provags-ID: V03:K1:jU/6Pr14czKUqiBBUqVSHmjGA1DkUzqyrB150TOIGEhIkP5zGky
- UkSEI2Vl4uqmHQNxZ3Z1kn1ZTEV0W4rezlC9iFLm/OLs7uCOMo9+WQGnxKHOr5PgEhyfNnu
- rzB/SoZf3GlgNeNdfK2BJFfDzPC+ttwIFAUAHz+90E9fXqNlQL+pXAV/mNHYfU1XKW5m+4+
- 0j/ca5wGtWUiKlP4WBkzA==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:A8hIR8DCc5Q=:G5FmzAJ5g3lnVDKE0vLE/k
- yxWVnLmMBLIXNhlEj3t6fdDOMtLDkYnE3QppMAtP/UvhwnAfu+3QvIntsJFKsQmvEOigarjIp
- HSIGkxldExmUHphFCqt51zKUFzAu0cs7BQAP/ldtcvCK4quBIzzba1sDMCr1FtN09eQun/84H
- FOjAQD1AAvhUgGBJT2WA4PiQjKLyxtVvWRjr527iZcW2grFxaTfIsnZdfCvBlCaeZM4YCQ3zK
- OjgIrPMEf5HfxDiZR/d8EWv4/2DfIuqqFPI9A5xoi7hh+d+Duqum6YYvraOZX0SbRRpPctM8G
- HJvVC9ZQjzdGF+BQRrz1HaBt73Z/MjyFJrZ5rxI1N69bvlKhtJeijBTyUtkVGnBg3nw1V4f7q
- NKGXEZElj8OUb71xMBV2n0cfqhkHXZ+GHpAOjA3mSgp8DwbO78MgYEuMa6gb1WqWs3RDdkcLu
- lACXr+mYHpfp24tFlWQdbm3+RwhWqeTpli6u1pY24bR3Njqe20i59ZVBms+MPf4Cg830K52R1
- Fvv31tOlI//BT57SnRQexkjUSexWD0BsY50YqIx9k9LEaAyb4KWXzoCth91kMqYskn4FsUwbF
- Eqg3b1hTAr+4FnVOHmkesCpaSjI4eiKwEbuDFdY6muAN4TamdFQ1KGdfhL/KRNm8KYrcbQFjz
- dlYP3WlYQIHYOaWAak8V3Th2ngI54xAxJlweNbxZMILKmH8Fe6GWRRRzQf3pS78/U3AhQ7YAt
- p5wjKnFConLtWenIk32/2n3XV/p8OllCPe7ifgBeR8R897frT4brY1pwQ/Y3bsieZQaytVGTr
- zOWu5z0jNNE5SCv1kzDhg9KQRPeHcD416gdN055sgvRl9JX62o=
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE autolearn=ham
-        autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Hans Verkuil <hans.verkuil@cisco.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v3 3/4] staging: media: Add support for the Allwinner A31
+ ISP
+Message-ID: <YmsCJicyzf+Bz98y@valkosipuli.retiisi.eu>
+References: <20220415153708.637804-1-paul.kocialkowski@bootlin.com>
+ <20220415153708.637804-4-paul.kocialkowski@bootlin.com>
+ <YmqFQSRBsqs4ghNQ@valkosipuli.retiisi.eu>
+ <Ymqk89e+mn/1kLLx@aptenodytes>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Ymqk89e+mn/1kLLx@aptenodytes>
+ARC-Seal: i=1; s=lahtoruutu; d=iki.fi; t=1651180071; a=rsa-sha256;
+        cv=none;
+        b=v/eA8lS+Dp459dHx9/YdvegyAVAdv3h9a0Yr+jBgaydoEWsMHmpWnCANwH4q+NvNWvgBc/
+        Ypsn41WgRTpTB97ijt1OUYuRhT58pZprzMZagaNYwt3BnDOyWCSa2TU1+4lRVLr/+hCncR
+        hOK9x8B100L22M1i+vtllvm9sA9c10RqHn3EwUK8f2J3dVL3eun5oiB8QDr6Zv58FZLZz1
+        Gpe4IJUSBMrx1R+VysazTYzvMdINCSQxIbufpslydr7/2FwHGd1brz3UT8nJYskmX8elp+
+        sxauh6ytrRyWn2ixbdZR3UrmL+nI7Zhynw8gnnUNOXFXA5sey16FDWyWC4bchQ==
+ARC-Authentication-Results: i=1;
+        ORIGINATING;
+        auth=pass smtp.auth=sailus smtp.mailfrom=sakari.ailus@iki.fi
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi;
+        s=lahtoruutu; t=1651180071;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=BNdaIGfl1oTNmZ1z18jwQdqe5S5UFYhc+No0/RbEmds=;
+        b=OxkxCwGcsbm/q1m2Q5iQsGZNvtjwLun+G9uMjYkxW1IaBm0CCL4+sX5F0ZzNDLRtoj5nl5
+        Nrtcv7gdIGS57mAdAW58Q/wheXnwcTAcPcAcXwJL7aRhiFu7c0T9PW9mEF+2C7RBuDY+We
+        c7pP3rpvO3szIXh721jhadkOuyLP+17JWKQnmdQJ3H6kQMraonrthuRqItJ+3Z0Jnp0OC/
+        6R9Rw99g6KtOSO/0YM+a+26FNr0ZRMxjyDC3VvU2LTGD8PS6ltxY1y5TclbyzjhTlzvtow
+        QSKnOn59GR3fDjfpu1hDdg42/9Wxfd3avqjlpBXVJauzC9JGaVB+Ly+Wq9RbhQ==
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 28, 2022 at 10:01 PM Mauri Sandberg <maukka@ext.kapsi.fi> wrote:
-> On 27.4.2022 21.10, Arnd Bergmann wrote:
-> > On Wed, Apr 27, 2022 at 6:21 PM Mauri Sandberg <maukka@ext.kapsi.fi> wrote:
-> > This is all normal: with a board file, all on-board IRQs are statically
-> > assigned to fixed numbers. With DT based boot, IRQ controllers
-> > usually define their own IRQ domains, which get a number space assigned
-> > according to probe order, and above the preallocated IRQ numbers.
-> >
-> >> - sata_mv fails to initialise with -22 (-EINVAL)
-> >
-> > No idea, I'd try inserting a printk in every code path that can return -EINVAL
-> > from there
-> >
-> I had something like that but I didn't get any wiser immediately. Then I
-> suspected it's something to do with initialisation of the PCIe bus and
-> that clashing with sata_mv initialisation and thought it's better to
-> ask. The PCIe initialisation uses hardwired irq and maybe that was
-> getting in the way. Is there a way to describe the PCIe bus in the
-> device tree? The initalisation of that bus is done for rev A1 only.
+Hi Paul,
 
-I'm not too familiar with the platform, but my interpretation is that the
-DT support here is incomplete:
+On Thu, Apr 28, 2022 at 04:30:11PM +0200, Paul Kocialkowski wrote:
+> Hi Sakari,
+> 
+> On Thu 28 Apr 22, 15:14, Sakari Ailus wrote:
+> > Hi Paul,
+> > 
+> > Thanks for the set.
+> > 
+> > A few comments below.
+> 
+> Thanks a lot for your review!
 
-The DT based PCI probe using drivers/pci/controller/pci-mvebu.c
-is not hooked up in orion5x.dtsi, and the traditional pci code does
-not work with DT.
+You're welcome!
 
-I see that orion5x has two separate blocks --  a PCIe host that is
-similar to the kirkwood one, and a legacy PCI host that needs
-a completely separate driver.
+...
 
-Which of the two do you actually need here?
+> > I understand this is an online ISP. How do you schedule the video buffer
+> > queues? Say, what happens if it's time to set up buffers for a frame and
+> > there's a buffer queued in the parameter queue but not in the image data
+> > queue? Or the other way around?
+> 
+> The ISP works in a quite atypical way, with a DMA buffer that is used to
+> hold upcoming parameters (including buffer addresses) and a bit in a "direct"
+> register to schedule the update of the parameters at next vsync.
+> 
+> The update (setting the bit) is triggered whenever new parameters are
+> submitted via the params video device or whenever there's a capture buffer
+> available in the capture video device.
+> 
+> So you don't particularly need to have one parameter buffer matching a capture
+> buffer, the two can be updated independently. Of course, a capture buffer will
+> only be returned after another buffer becomes active.
 
-> >> - there is no concensus on how to get ascii formatted MAC address from mtd
-> >>    partitions so eth is not fully functional without setting the MAC from
-> >>    userspace
-> >
-> > Ideally this is handled by the boot loader, but that requires being
-> > able to update
-> > it. If you cannot, this could perhaps be done using something like
-> > https://github.com/zonque/pxa-impedance-matcher
->
-> I had a look at the pxa-impedance-matcher but I am not sure how to use
-> it. Should it be flashed on the device and then it would the boot the
-> rest of the system? Maybe I'll have to add some dns323 specifics there
-> too first. On the dns323 there are these mtd partitions MTD1 and MTD2,
-> which I am not really sure what they are for. Maybe those could
-> accommodate a 3rd stage loader. But I'll consider it as my last resort
-> as they put it in their documentation too. In linux-mtd there's been a
-> few attempts to find a solution and I am hoping one will be found
-> eventually.
->
-> Adding support in the u-boot was stalled back in the days for some
-> reason and I am not sure I will be much wiser than the previous people
-> that were at it. But I have jtag programmer that should be suitable.
+This also means it's not possible to associate a capture buffer to a
+parameter buffer by other means than timing --- which is unreliable. The
+request API would allow that but it's not free of issues either.
 
-I think the idea of the impedance-matcher is that you can combine it
-with a DT-enabled kernel image into a file that looks to the existing
-boot loader like an old kernel and then provides both a way for
-code to run before booting the kernel, and for adding in the DT.
+Alternatively, I think in this case you could always require the capture
+buffer and grab a parameter buffer when it's available. As ISPs are
+generally requiring device specific control software, this shouldn't be a
+problem really.
 
-       Arnd
+I wonder what Laurent thinks.
+
+> 
+> I hope this answers your concern!
+> 
+> [...]
+> 
+> > > +static int sun6i_isp_tables_setup(struct sun6i_isp_device *isp_dev)
+> > > +{
+> > > +	struct sun6i_isp_tables *tables = &isp_dev->tables;
+> > > +	int ret;
+> > > +
+> > > +	/* Sizes are hardcoded for now but actually depend on the platform. */
+> > 
+> > Would it be cleaner to have them defined in a platform-specific way, e.g.
+> > in a struct you obtain using device_get_match_data()?
+> 
+> Absolutely! I didn't do it at this stage since only one platform is supported
+> but we could just as well introduce a variant structure already for the table
+> sizes.
+
+I think that would be nice already, especially if you know these are going
+to be different. Otherwise macros could be an option.
+
+...
+
+> > > +	ret = v4l2_ctrl_handler_init(&v4l2->ctrl_handler, 0);
+> > 
+> > I suppose you intend to add controls later on?
+> 
+> I might be wrong but I thought this was necessary to expose sensor controls
+> registered by subdevs that end up attached to this v4l2 device.
+> 
+> I doubt the drivers itself will expose controls otherwise.
+
+Now that this is an MC-enabled driver, the subdev controls should be
+accessed through the subdev nodes only. Adding them to the video device's
+control handler is quite hackish and not guaranteed to even work (as e.g.
+multiple subdevs can have the same control).
+
+...
+
+> > > +{
+> > > +	struct sun6i_isp_device *isp_dev = video_drvdata(file);
+> > > +	struct video_device *video_dev = &isp_dev->capture.video_dev;
+> > > +	struct mutex *lock = &isp_dev->capture.lock;
+> > > +	int ret;
+> > > +
+> > > +	if (mutex_lock_interruptible(lock))
+> > > +		return -ERESTARTSYS;
+> > > +
+> > > +	ret = v4l2_pipeline_pm_get(&video_dev->entity);
+> > 
+> > Do you need this?
+> > 
+> > Drivers should primarily depend on runtime PM, this is only needed for
+> > compatibility reasons. Instead I'd like to see sensor drivers being moved
+> > to runtime PM.
+> 
+> Yes it's still needed to support sensor drivers that don't use rpm yet.
+
+To that I suggested adding runtime PM support for the affected sensors.
+This doesn't seem to get done otherwise. E.g. ipu3-cio2 driver does not
+call s_power() on sensor subdevs.
+
+...
+
+> > > +	ret = video_register_device(video_dev, VFL_TYPE_VIDEO, -1);
+> > > +	if (ret) {
+> > > +		v4l2_err(v4l2_dev, "failed to register video device: %d\n",
+> > > +			 ret);
+> > > +		goto error_media_entity;
+> > > +	}
+> > > +
+> > > +	v4l2_info(v4l2_dev, "device %s registered as %s\n", video_dev->name,
+> > > +		  video_device_node_name(video_dev));
+> > 
+> > This isn't really driver specific. I'd drop it.
+> 
+> I agree but I see that many drivers are doing it and the information can
+> actually be quite useful at times.
+
+You can get that information using media-ctl -e 'entity name'.
+
+I guess this could be also added to video_register_device() on debug level.
+
+> > > +struct sun6i_isp_params_config_bdnf {
+> > > +	__u8	in_dis_min; // 8
+> > > +	__u8	in_dis_max; // 10
+> > 
+> > Are these default values or something else? Better documentation was in the
+> > TODO.txt file already.
+> 
+> Yes that's the default register values, but these comments are and overlook on
+> my side and should be removed.
+
+I'm fine leaving these here. Just wondering. Up to you.
+
+-- 
+Kind regards,
+
+Sakari Ailus
