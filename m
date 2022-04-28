@@ -2,100 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6745751380E
-	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 17:18:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6548C513829
+	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 17:21:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349045AbiD1PU2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Apr 2022 11:20:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45606 "EHLO
+        id S1343689AbiD1PXT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Apr 2022 11:23:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53120 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349053AbiD1PUT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 11:20:19 -0400
-Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E19F2AFB14;
-        Thu, 28 Apr 2022 08:16:57 -0700 (PDT)
-Received: (Authenticated sender: herve.codina@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPA id 93BDBE000C;
-        Thu, 28 Apr 2022 15:16:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1651159015;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=w3pZXXCT/j4+InWfaqZPrceul+QrUJYTf2Df3YfgcaE=;
-        b=hwVY5M8wOr6LJCQF2rxtRmcJgj5iKEMK+6h17lKN1X6DCJI0SIk/Np22kT2dBylap/oShf
-        hv94r/4QyLkPrIylFhFEaYtZKE7tsSYeXNe2QZMKKX2Gfdb2EMXe4hPtvxriu2x2UZuTXR
-        q1X8ovKeFuqb2h2F+Pz6eX+zgQO50uNe/Sg4ipjsmsuRaE/bKRE+lKeK6jePQafbEWHugt
-        KpW8VoFQ2TSyVeJaz9JqcFx4KZNKpXClcaJ69vk/isZbNipulUSy3Y9wfG/MqXVzMW8eeU
-        kf0CTEC+XN3IGXDBA+ezszKj9w4W7PlVDXqXmj8w84X8PAtxJEoGbDxBORHeQA==
-From:   Herve Codina <herve.codina@bootlin.com>
-To:     Marek Vasut <marek.vasut+renesas@gmail.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>
-Cc:     Rob Herring <robh@kernel.org>, linux-pci@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Sergey Shtylyov <s.shtylyov@omp.ru>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Clement Leger <clement.leger@bootlin.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Herve Codina <herve.codina@bootlin.com>
-Subject: [PATCH v4 6/6] ARM: dts: r9a06g032: Link the PCI USB devices to the USB PHY
-Date:   Thu, 28 Apr 2022 17:16:30 +0200
-Message-Id: <20220428151630.586009-7-herve.codina@bootlin.com>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220428151630.586009-1-herve.codina@bootlin.com>
-References: <20220428151630.586009-1-herve.codina@bootlin.com>
+        with ESMTP id S1343791AbiD1PXT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 11:23:19 -0400
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DCB31182
+        for <devicetree@vger.kernel.org>; Thu, 28 Apr 2022 08:20:03 -0700 (PDT)
+Received: by mail-ej1-x635.google.com with SMTP id j6so10199647ejc.13
+        for <devicetree@vger.kernel.org>; Thu, 28 Apr 2022 08:20:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=KK0oOt6tLl8qviBpPxZTlU4vCH0knOLsx36mHAlT6lQ=;
+        b=hobi6qzldDfJZ9JO2M31Iij9Vk0MCdxX/g/ZxjRTOwC71zomr2LAVZ72xxu23k6QMr
+         BzsHAysTO/zmBS6Gy4Pk58tUeavMruHU41mr4Hj1JDsxKLoEfSXwBFZCCQFb3MvA4U2U
+         sTRUcMk4GmEE8c4/K7qEonnyFvoBezEpXBUz4=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=KK0oOt6tLl8qviBpPxZTlU4vCH0knOLsx36mHAlT6lQ=;
+        b=OsOn21iO+VaF9hk/aUlwQTjya0C8Yg6hS+p4ABZxTMwG2f/H+uaikJLFbl94PF57vR
+         Yrf7ozquYl+9Jyg23bOfYVyenXaMDPdDt380shOiwRJzb2OvLhrwEWh80udZrVH27jz6
+         LRp4fST4ZjmyuKNqcZ4jjNQxXVYLtS/62s95x9r5rhfS25hlnSZfTDSkhP5+hHqbSmuW
+         FIfeMbyBmrvWzTfFC0EDmbjqIXW9VCX9M71AOOMjJmPhQRTlwT1DygS3ss6a2ONmDQin
+         BYkeFhKzDO3sDPclHXEPGlYeZuJlrRAC9LluHsp/6xpLIPTkqNzMVhH/c6ma2vJtfUZQ
+         igAg==
+X-Gm-Message-State: AOAM530FgsAALJtYFDpor5i4UhZzf3r65RRc1x4cln24vAKN0AXTdkuu
+        XctHsJDh/vJnrJcUAjP9S1Cxle8N/cQ+mTYL
+X-Google-Smtp-Source: ABdhPJwx2Gnndt99KA/9HlFHoWLBMC8DwdwLLo1CBazJEo/A9lgtnQA9e2J1A1zwQcCJJb8HYvg31A==
+X-Received: by 2002:a17:906:6a1e:b0:6f3:ee68:d31b with SMTP id qw30-20020a1709066a1e00b006f3ee68d31bmr12628ejc.160.1651159202043;
+        Thu, 28 Apr 2022 08:20:02 -0700 (PDT)
+Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com. [209.85.221.54])
+        by smtp.gmail.com with ESMTPSA id f8-20020a50fc88000000b0042617ba63b6sm1755375edq.64.2022.04.28.08.20.00
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 28 Apr 2022 08:20:01 -0700 (PDT)
+Received: by mail-wr1-f54.google.com with SMTP id s21so7208873wrb.8
+        for <devicetree@vger.kernel.org>; Thu, 28 Apr 2022 08:20:00 -0700 (PDT)
+X-Received: by 2002:adf:f50d:0:b0:20a:e096:ef with SMTP id q13-20020adff50d000000b0020ae09600efmr13733028wro.679.1651159200182;
+ Thu, 28 Apr 2022 08:20:00 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+References: <20220427161717.v1.1.I300757d61810c5e9aa60ff964d09251cb4422c73@changeid>
+In-Reply-To: <20220427161717.v1.1.I300757d61810c5e9aa60ff964d09251cb4422c73@changeid>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Thu, 28 Apr 2022 08:19:48 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=WwN-mANNGK_2Lo8u0kuBcG_UOLdKQVfxEVpnmn0pMbTQ@mail.gmail.com>
+Message-ID: <CAD=FV=WwN-mANNGK_2Lo8u0kuBcG_UOLdKQVfxEVpnmn0pMbTQ@mail.gmail.com>
+Subject: Re: [PATCH v1] arm64: dts: qcom: sc7180: Add kingoftown dts files
+ from v5.4 branch
+To:     "Joseph S. Barrera III" <joebar@chromium.org>
+Cc:     LKML <linux-kernel@vger.kernel.org>,
+        Alexandru M Stan <amstan@chromium.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Describe the PCI USB devices that are behind the PCI bridge, adding
-necessary links to the USB PHY device.
+Hi,
 
-Signed-off-by: Herve Codina <herve.codina@bootlin.com>
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
- arch/arm/boot/dts/r9a06g032.dtsi | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+On Wed, Apr 27, 2022 at 4:17 PM Joseph S. Barrera III
+<joebar@chromium.org> wrote:
+>
+> Kingoftown is a trogdor-based board, shipping to customers as the
+> HP Fortis 11 G9 Q Chromebook. These dts files are unchanged copies
+> from the downstream Chrome OS 5.4 kernel.
+>
+> Signed-off-by: Joseph S. Barrera III <joebar@chromium.org>
+> ---
+>
+>  arch/arm64/boot/dts/qcom/Makefile             |   2 +
+>  .../dts/qcom/sc7180-trogdor-kingoftown-r0.dts |  44 ++++
+>  .../dts/qcom/sc7180-trogdor-kingoftown-r1.dts |  17 ++
+>  .../dts/qcom/sc7180-trogdor-kingoftown.dtsi   | 223 ++++++++++++++++++
+>  4 files changed, 286 insertions(+)
 
-diff --git a/arch/arm/boot/dts/r9a06g032.dtsi b/arch/arm/boot/dts/r9a06g032.dtsi
-index dd4b1ddd3601..ad04093b01f4 100644
---- a/arch/arm/boot/dts/r9a06g032.dtsi
-+++ b/arch/arm/boot/dts/r9a06g032.dtsi
-@@ -120,6 +120,18 @@ pci_usb: pci@40030000 {
- 			interrupt-map = <0x0000 0 0 1 &gic GIC_SPI 79 IRQ_TYPE_LEVEL_HIGH
- 					 0x0800 0 0 1 &gic GIC_SPI 79 IRQ_TYPE_LEVEL_HIGH
- 					 0x1000 0 0 2 &gic GIC_SPI 79 IRQ_TYPE_LEVEL_HIGH>;
-+
-+			usb@1,0 {
-+				reg = <0x800 0 0 0 0>;
-+				phys = <&usbphy>;
-+				phy-names = "usb";
-+			};
-+
-+			usb@2,0 {
-+				reg = <0x1000 0 0 0 0>;
-+				phys = <&usbphy>;
-+				phy-names = "usb";
-+			};
- 		};
- 
- 		uart0: serial@40060000 {
--- 
-2.35.1
+This looks reasonable to me, but I think it would actually be more
+convenient to send the support for the 3 boards you're adding in one
+series just to reduce the likelihood of conflicts in the Makefile. Can
+just include all 3 patches at once and call it "v3"?
 
+Also: for future reference, the first version is usually not called
+"v1". Usually the first version simply has no version at all and then
+the second version is v2. In patman you simply leave "Series-version"
+off the first patch that'll work.
+
+-Doug
