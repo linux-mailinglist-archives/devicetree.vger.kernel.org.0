@@ -2,134 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 71D05512B72
-	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 08:24:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E856C512B7E
+	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 08:27:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243824AbiD1G1j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Apr 2022 02:27:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39290 "EHLO
+        id S233876AbiD1G3d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Apr 2022 02:29:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42286 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243791AbiD1G1e (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 02:27:34 -0400
-Received: from mail-oi1-x22a.google.com (mail-oi1-x22a.google.com [IPv6:2607:f8b0:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6714972B5
-        for <devicetree@vger.kernel.org>; Wed, 27 Apr 2022 23:24:20 -0700 (PDT)
-Received: by mail-oi1-x22a.google.com with SMTP id q8so3954452oif.13
-        for <devicetree@vger.kernel.org>; Wed, 27 Apr 2022 23:24:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to:cc;
-        bh=AOUBjawPmRnN8evNXoYGp+/SwIc2Lx8wXlLCMbXCewc=;
-        b=eFFoq6CzQtllJEhFXdGNNINBsySKH5Zogv5JnVRsgWjDI/7/fCM0iXGbg8y44gNgYE
-         CVtURwJlXlwY2byoC7a7YrZDuayY5qI04K0A0/BYFxuA1Bx1/JQEs7610miyQQZ86ZTl
-         dc/ZUERs0AX151PR25GDPOP78Pmgug2/iGiK4=
+        with ESMTP id S244133AbiD1G3D (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 02:29:03 -0400
+Received: from mail-qt1-f179.google.com (mail-qt1-f179.google.com [209.85.160.179])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B3AA972B5;
+        Wed, 27 Apr 2022 23:25:45 -0700 (PDT)
+Received: by mail-qt1-f179.google.com with SMTP id t16so2768793qtr.9;
+        Wed, 27 Apr 2022 23:25:45 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to:cc;
-        bh=AOUBjawPmRnN8evNXoYGp+/SwIc2Lx8wXlLCMbXCewc=;
-        b=IX952UY61jp4uFiDVgQ0i+jQl6ElM+dbEDHtFwJdyE1kzmshAfoVAjAV5Rn4G1ON/v
-         zLfAxPGZy5DBkaMw8dPw3ZqPkBI4QGGl65hMsAfKDlkJQXeeEHaakZ19Y9T8YCapG+ul
-         SOFQkhMyjm6omIXfc8l4FajeBeQ6f8gPs6uAiKIokBN1YcFIQz1rMTRIZzPtT5Ywq8gs
-         HzUBUCQGu8Bhfwi24oFqUoQVqXn1PVUNCkiIXRprnbupwVxoMyuUm2UoYlfQ5kCm1shY
-         ekgUHalwz7MSiEg5mlG+ZHBbN0Rziy8WS8FghAWtMGY3lCw4GUz1pBjETYGguDyY3mUu
-         2gNw==
-X-Gm-Message-State: AOAM531DwkStPRsNK36LKcfkdQXaTKnua0h97BkA9wqR+e+jlTAe55X5
-        9AQICw0FmJJhQDrFVguYjN43bmnjJEqCnDNxcGmWiw==
-X-Google-Smtp-Source: ABdhPJxTdgDULp8Ip+gh6w1tifiji7I8A/vnaeGTUOQvBOIBhBkdr1QUO8MYQFS6Fq24/UPeIqz1MmwGQ5SxG5Hr59k=
-X-Received: by 2002:a05:6808:1296:b0:325:8fb:68f3 with SMTP id
- a22-20020a056808129600b0032508fb68f3mr10950982oiw.193.1651127060059; Wed, 27
- Apr 2022 23:24:20 -0700 (PDT)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Wed, 27 Apr 2022 23:24:19 -0700
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=XfKmtzg0D+/23Jg+mxJhp4CSenJ+1YBHova8u1JkXUQ=;
+        b=ZnMLO/Lv6AqimFNQXTbBlSmQzAYfbc9QIGeK56A8vnXl+3h5bSmMkLqrZmBl2lvJ4r
+         YvR6ys4yhRsZBH8HI+GWMfRuwbO7mYTTU4EICyZk9eKIwLdY0KAxBuaWnE6nSkcXlzu2
+         9yLkuN6DQjI3qgguMYfWwGuvxQzY0VM4V0F9h1PNozkLMwjUYoyHmuQvZG/Eg5opw2x4
+         zFlWroAVjxHtZkGSIYh3OKjBDvJiTXdtl6t786KJlDc/dlnldvy7HdHg7MZcR+PGBhOl
+         cY58R3lVyZJxHSbmqwM0mprTUkELDEXpa/aipET38mGuVW0CcasVTe4wCEus+MX4qq7L
+         IabA==
+X-Gm-Message-State: AOAM533bm5vdnI5ww5YMrF+Fr4up06DaRzPgKWa9RD/4sOGt0O6ladDw
+        /i6ZNbay//BgEju11K2jGC7JviINdHYgtg==
+X-Google-Smtp-Source: ABdhPJzUkEFign92kH4Yv1si1oS0yjzkNBzRfm5+D5PBEvnhvmoMIrHJ17MfSAxsVeKG/4fgB7UwYw==
+X-Received: by 2002:a05:622a:13ca:b0:2f3:8070:ec79 with SMTP id p10-20020a05622a13ca00b002f38070ec79mr7355320qtk.199.1651127144247;
+        Wed, 27 Apr 2022 23:25:44 -0700 (PDT)
+Received: from mail-yw1-f169.google.com (mail-yw1-f169.google.com. [209.85.128.169])
+        by smtp.gmail.com with ESMTPSA id q27-20020a05620a039b00b0069c8307d9c4sm9023360qkm.18.2022.04.27.23.25.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 27 Apr 2022 23:25:43 -0700 (PDT)
+Received: by mail-yw1-f169.google.com with SMTP id 00721157ae682-2f863469afbso18014217b3.0;
+        Wed, 27 Apr 2022 23:25:43 -0700 (PDT)
+X-Received: by 2002:a81:8489:0:b0:2f7:edff:239f with SMTP id
+ u131-20020a818489000000b002f7edff239fmr18913227ywf.256.1651127143411; Wed, 27
+ Apr 2022 23:25:43 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <9248da4f-ca04-82f0-2840-a20797c25d2a@linaro.org>
-References: <20220427203026.828183-1-swboyd@chromium.org> <20220427203026.828183-2-swboyd@chromium.org>
- <9248da4f-ca04-82f0-2840-a20797c25d2a@linaro.org>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.10
-Date:   Wed, 27 Apr 2022 23:24:19 -0700
-Message-ID: <CAE-0n52Y=3EEZ6qguNx=hM44BahbH3cuq7x6Bbe5HELKkkvrUw@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: google,cros-ec-keyb: Introduce switches
- only compatible
-To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     linux-kernel@vger.kernel.org, patches@lists.linux.dev,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Benson Leung <bleung@chromium.org>,
-        Guenter Roeck <groeck@chromium.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        "Joseph S. Barrera III" <joebar@chromium.org>
+References: <20210324223713.1334666-1-frowand.list@gmail.com>
+ <20210327174035.GA291160@robh.at.kernel.org> <3e6710e7-08ac-7d1b-aa69-bcd36f0d932a@gmail.com>
+ <CAMuHMdXpGKMi-xv6hZQmmEw0JO=Q0WuvUzwJ2v0O28Tx5uW+sg@mail.gmail.com>
+ <d1aefaae-7b12-b5fb-4b97-7230bd52c1be@gmail.com> <20210526061144.yvoaurpz75a3bsjr@vireshk-i7>
+ <f651e95b-feef-5c86-edba-d6008bc80b34@gmail.com> <YK70Xsl1oXeEQpWZ@yekko>
+ <CAMuHMdWdb2s08a=axC+m88gARSA3enOBnczsN59XL2F9yHXXYA@mail.gmail.com>
+ <YLBnX4PeK51YwUJB@yekko> <CAMuHMdXPn9FHr41xmihuuzNNNKvY-50yAwY4HyuyVo6qBn=Z1w@mail.gmail.com>
+ <CAMuHMdWeL3DOXY3xcPOBW2WDDGW3PxgSM8didt7J1KxSm1ivJg@mail.gmail.com>
+ <CAMuHMdWXXoS9mmX9VWRQyXfmsy8YROgpLZ-xB7zthEdPdM2u4A@mail.gmail.com>
+ <CAMuHMdVWkSnki8VQDaYRzJ8yu8xtEKpXyfQppTtw3wXDQPmYzw@mail.gmail.com>
+ <d4b7ce06-23e7-1c60-cc0c-b6aea07e0a1a@gmail.com> <CAL_JsqKTckMABk6cM8d=boZcHyLdcqYmbzfKDjAHdCXoCPSDtg@mail.gmail.com>
+ <CAMuHMdU4oUKaGxmaPiC=cX0XpHG3KXhr+4MywEfeQ8sq-EG18A@mail.gmail.com>
+ <CAL_JsqL3fHXNdGS=ap6+5Y25T2zmnDYRkt5dNV9mW7hyanVvuw@mail.gmail.com> <CAL_JsqJn459-8wnwT0N0CKumnvh_gDkVdgVebvMVa13oTxfQ=g@mail.gmail.com>
+In-Reply-To: <CAL_JsqJn459-8wnwT0N0CKumnvh_gDkVdgVebvMVa13oTxfQ=g@mail.gmail.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Thu, 28 Apr 2022 08:25:31 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdUyuJbyHthc4ATuRXY=zM_Vbc7DmsZvWgX_u8w3FfhzDg@mail.gmail.com>
+Message-ID: <CAMuHMdUyuJbyHthc4ATuRXY=zM_Vbc7DmsZvWgX_u8w3FfhzDg@mail.gmail.com>
+Subject: Re: [PATCH 1/1] of: unittest: rename overlay source files from .dts
+ to .dtso
+To:     Rob Herring <robh@kernel.org>
+Cc:     Frank Rowand <frowand.list@gmail.com>,
+        David Gibson <david@gibson.dropbear.id.au>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        Michal Marek <michal.lkml@markovi.net>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Anmar Oueja <anmar.oueja@linaro.org>,
+        Bill Mills <bill.mills@linaro.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-kbuild <linux-kbuild@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Pantelis Antoniou <pantelis.antoniou@konsulko.com>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Krzysztof Kozlowski (2022-04-27 23:12:47)
-> On 27/04/2022 22:30, Stephen Boyd wrote:
-> > If the device is a detachable, this device won't have a matrix keyboard
-> > but it may have some button switches, e.g. volume buttons and power
-> > buttons. Let's add a more specific compatible for this type of device
-> > that indicates to the OS that there are only switches and no matrix
-> > keyboard present.
-> >
-> > Cc: Krzysztof Kozlowski <krzk@kernel.org>
-> > Cc: Rob Herring <robh+dt@kernel.org>
-> > Cc: <devicetree@vger.kernel.org>
-> > Cc: Benson Leung <bleung@chromium.org>
-> > Cc: Guenter Roeck <groeck@chromium.org>
-> > Cc: Douglas Anderson <dianders@chromium.org>
-> > Cc: Hsin-Yi Wang <hsinyi@chromium.org>
-> > Cc: "Joseph S. Barrera III" <joebar@chromium.org>
-> > Signed-off-by: Stephen Boyd <swboyd@chromium.org>
-> > ---
-> >  .../bindings/input/google,cros-ec-keyb.yaml          | 12 +++++++++---
-> >  1 file changed, 9 insertions(+), 3 deletions(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml b/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml
-> > index e8f137abb03c..edc1194d558d 100644
-> > --- a/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml
-> > +++ b/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml
-> > @@ -15,14 +15,20 @@ description: |
-> >    Google's ChromeOS EC Keyboard is a simple matrix keyboard
-> >    implemented on a separate EC (Embedded Controller) device. It provides
-> >    a message for reading key scans from the EC. These are then converted
-> > -  into keycodes for processing by the kernel.
-> > +  into keycodes for processing by the kernel. This device also supports
-> > +  switches/buttons like power and volume buttons.
-> >
-> >  allOf:
-> >    - $ref: "/schemas/input/matrix-keymap.yaml#"
-> >
-> >  properties:
-> >    compatible:
-> > -    const: google,cros-ec-keyb
-> > +    oneOf:
-> > +      - items:
-> > +          - const: google,cros-ec-keyb-switches
-> > +          - const: google,cros-ec-keyb
-> > +      - items:
-> > +          - const: google,cros-ec-keyb
-> >
->
-> In such case matrix-keymap properties are not valid, right? The
-> matrix-keymap should not be referenced, IOW, you need to move allOf
-> below "required" and add:
-> if:not:...then: $ref: "/schemas/input/matrix-keymap.yaml
->
+Hi Rob,
 
-Eventually that sounds doable, but for the time being I want to merely
-add this new compatible in front of the original compatible so that
-updated DTBs still work with older kernels, i.e. the switches still get
-registered because the driver works with the original
-google,cros-ec-keyb compatible. Given that none of the properties are
-required for google,cros-ec-keyb it didn't seem necessary to make having
-the google,cros-ec-keyb-switches compatible deny the existence of the
-matrix-keymap properties.
+On Wed, Apr 27, 2022 at 11:14 PM Rob Herring <robh@kernel.org> wrote:
+> On Wed, Jan 26, 2022 at 1:31 PM Rob Herring <robh@kernel.org> wrote:
+> > On Fri, Jan 14, 2022 at 3:25 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+> > > On Fri, Jan 14, 2022 at 3:10 AM Rob Herring <robh@kernel.org> wrote:
+> > > > On Thu, Jan 6, 2022 at 11:23 AM Frank Rowand <frowand.list@gmail.com> wrote:
+> > > > > Patient Geert has pinged again.
+> > > >
+> > > > If it's not a patch to be reviewed, then I'm not going to see it most
+> > > > likely. I don't read the DT list regularly...
+> > >
+> > > Fair enough...
+> > >
+> > > > > If I remember correctly you guys were not thrilled with this idea, but
+> > > > > also did not seem strongly against it.  Are you willing to go along
+> > > > > with .dtso for overlay source files?  If so, I will revive this patch
+> > > > > series.
+> > > > >
+> > > > > David, if you are against supporting .dtso in the dtc compiler then
+> > > > > the kernel can still support it through make rules.
+> > > >
+> > > > I'm not really interested in diverging from dtc. I'd suggest moving
+> > > > the discussion to dtc list and/or devicetree-spec if you want to get
+> > > > more attention on this.
+> > >
+> > > What needs to be supported in the dtc compiler?
+> > > The fallback passed to guess_input_format() is "dts".
+> > > So this has been working out-of-the-box since forever?
+> >
+> > Ah, okay.
+> >
+> > > > Also, keep in mind that extensions also affect MIME types which
+> > > > someone was also asking about recently.
+> > >
+> > > You mean "MIME type of Devicetree Blobs and Sources"[1]?
+> > > According to [2](2022-01-13), none of that has happened.
+> >
+> > This is what I was thinking of:
+> >
+> > https://github.com/devicetree-org/devicetree-specification/issues/46
+> >
+> > In any case, given everyone is ambivalent, send me an updated patch
+> > and I'll apply it.
+>
+> Ping! Anyone still want this?
+>
+> What I don't want to see is a mixture of .dts and .dtso. And now I'm
+> reviewing RPi overlay patches[1] with .dts.
+
+I still prefer .dtso over .dts, as it allows tools to detect the file
+type without having to read the file's contents.
+Without this, e.g. make needs to have all overlays listed explicitly
+in a Makefile.
+
+We do have .c, .h, .s (even .S), .dtsi. So why not .dtso?
+
+> [1] https://lore.kernel.org/r/20220427185243.173594-3-detlev.casanova@collabora.com
+
+Thanks!
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
