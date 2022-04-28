@@ -2,258 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 69D01512CA4
-	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 09:23:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0391E512CBB
+	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 09:26:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245064AbiD1H0b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Apr 2022 03:26:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33786 "EHLO
+        id S245321AbiD1H30 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Apr 2022 03:29:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38768 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245048AbiD1H0a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 03:26:30 -0400
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B12169A9BE
-        for <devicetree@vger.kernel.org>; Thu, 28 Apr 2022 00:23:16 -0700 (PDT)
-Received: by mail-ed1-x52f.google.com with SMTP id z19so4445584edx.9
-        for <devicetree@vger.kernel.org>; Thu, 28 Apr 2022 00:23:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=1/uMuIizparLUx2tgaC/QGD+M6/lxyg0u0CsO652dV4=;
-        b=BKEUI+dNa8d940Rbw3z2VPsiSNtKsznkTgC4qf4m0vRNs6XO2j5l4yP0gEtGPptX4q
-         jUy0QCNbDqKItpefA6NMGfdBIy3VJVUrbdmXqzKDnqj8hAJqrME8wLX3E1W1N+rwD9sD
-         74vwI9ixDQThqli1OxqO1/pFJSwg8miohBG3nooFAy1ivh8Zzv+mTYmxA1ROSTcLIrDT
-         gZT2y60bPNUBX77S/AraPAVJQSMYWiPHNTST0A45L7Pj2GVQLa3pzX2vfc/Eb9K9s2Z4
-         nxjjWVMmDBOsyy9Fhf+7+a1ylJEamlumcIvDA1Tdb4skkmwfvMy5YzJm+94GSKurshPe
-         6KRQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=1/uMuIizparLUx2tgaC/QGD+M6/lxyg0u0CsO652dV4=;
-        b=tcsL3QziMXMRJSH3SxCD0xYQ+xEuEMLIpFlI/6pKlhipvrWxx66mZVwKcPtbR75fi3
-         tDS5ao+uWVXaixD81CHi1xXZqI87DQVNZk0YI38coSm+cfRQmOnujFBWCGlO/y1ZrHPl
-         t02FJp9V3OfakbBuujum8oMwUJ+bExxWBlo1hdPTcGBX+hsPNqhX8RqbIeWWLMmZSSk+
-         tk0pmOWm6qaJgWVOkRC+pHR4nYv92bxy+M+jCaZY7T14ixCpIug5/X4Un5wqgn47mPsM
-         aFCJMCgVgjsXYWfDGXR2795Mv7Kpv2ptE6YRQgo7A+7SYu0rXeSqToOvDxL/RyUynayS
-         fNTA==
-X-Gm-Message-State: AOAM5315UFc3eNrA1lxpWdviJJh3qUufO579ddiIo0k6Un+gknPd3wmF
-        fxngjSb4r4sjICWaqyJjroGImpYnH5rp8w==
-X-Google-Smtp-Source: ABdhPJzGdRYw4jIYYMweMyzM4SU/EPEmOVlD56sUy+7Jn0sCg3+jHftcOzUDm2PCotyKJGsFK0NJaQ==
-X-Received: by 2002:aa7:cc02:0:b0:411:487e:36fe with SMTP id q2-20020aa7cc02000000b00411487e36femr34587420edt.338.1651130595279;
-        Thu, 28 Apr 2022 00:23:15 -0700 (PDT)
-Received: from [192.168.0.160] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id mp8-20020a1709071b0800b006efc915e1ccsm7793692ejc.118.2022.04.28.00.23.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 28 Apr 2022 00:23:14 -0700 (PDT)
-Message-ID: <93c0c4d7-1e3a-56d6-de22-aa2c948403e2@linaro.org>
-Date:   Thu, 28 Apr 2022 09:23:13 +0200
+        with ESMTP id S245284AbiD1H3Y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 03:29:24 -0400
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.19])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F27C2340C9;
+        Thu, 28 Apr 2022 00:26:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+        s=badeba3b8450; t=1651130723;
+        bh=Kl1D0qKBLbFcGmM/inCOM/LMhQnD3kUx2fRwBIfJFbY=;
+        h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
+        b=ICgj3U0KsWCdSyk+4KTl7+UbbH7ZgeuOkjZprYn96+3lI1AwcRvsBXO6wd+8qZwPn
+         OoIxHHuNiq00mTWpDdxVNnQJovYajWGc5SsfcuWwvgRNldnbn6R5FYiuIV/k+QG89n
+         mi1e9wXTuqQiOIvz8GUyBD6Pzj3qw9SOqaQH/XoM=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from [217.61.145.42] ([217.61.145.42]) by web-mail.gmx.net
+ (3c-app-gmx-bs20.server.lan [172.19.170.72]) (via HTTP); Thu, 28 Apr 2022
+ 09:25:23 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH V3 12/17] dt-binding: mt8192: Add infra_ao reset bit
-Content-Language: en-US
-To:     Rex-BC Chen <rex-bc.chen@mediatek.com>,
-        "mturquette@baylibre.com" <mturquette@baylibre.com>,
-        "sboyd@kernel.org" <sboyd@kernel.org>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>
-Cc:     "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "angelogioacchino.delregno@collabora.com" 
-        <angelogioacchino.delregno@collabora.com>,
-        =?UTF-8?B?Q2h1bi1KaWUgQ2hlbiAo6Zmz5rWa5qGAKQ==?= 
-        <Chun-Jie.Chen@mediatek.com>,
-        "wenst@chromium.org" <wenst@chromium.org>,
-        =?UTF-8?B?UnVueWFuZyBDaGVuICjpmYjmtqbmtIsp?= 
-        <Runyang.Chen@mediatek.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        Project_Global_Chrome_Upstream_Group 
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-References: <20220422060152.13534-1-rex-bc.chen@mediatek.com>
- <20220422060152.13534-13-rex-bc.chen@mediatek.com>
- <e5b18654-ce83-44ee-e4c8-4cdfc4ceaa1d@linaro.org>
- <5ec37a01b0b84140a7d171b9a5cff7ad8f9fbe87.camel@mediatek.com>
- <418c5f0c-5279-41f5-3705-345ec9a97ea2@linaro.org>
- <9547368870f6a8d5c5e6bd5dd497ddbe04c51b93.camel@mediatek.com>
- <49dd007b-f6f6-0278-8f06-f81cf951fcd3@linaro.org>
- <9b42b402be2b0ed065d176238ac2c41f2ec677ef.camel@mediatek.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <9b42b402be2b0ed065d176238ac2c41f2ec677ef.camel@mediatek.com>
+Message-ID: <trinity-fcca248f-cb76-474a-8227-5b7188140bdf-1651130723782@3c-app-gmx-bs20>
+From:   Frank Wunderlich <frank-w@public-files.de>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Frank Wunderlich <linux@fw-web.de>,
+        linux-rockchip@lists.infradead.org,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Johan Jonker <jbx6244@gmail.com>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-phy@lists.infradead.org
+Subject: Aw: Re: [RFC/RFT v2 05/11] dt-bindings: pci: add bifurcation option
+ to Rockchip DesignWare binding
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Date:   Thu, 28 Apr 2022 09:25:23 +0200
+Importance: normal
+Sensitivity: Normal
+In-Reply-To: <ea6ccec6-81a3-b22d-46db-c31a9f1e85f3@linaro.org>
+References: <20220426132139.26761-1-linux@fw-web.de>
+ <20220426132139.26761-6-linux@fw-web.de>
+ <ea6ccec6-81a3-b22d-46db-c31a9f1e85f3@linaro.org>
+X-UI-Message-Type: mail
+X-Priority: 3
+X-Provags-ID: V03:K1:HuS/IQbWns2B9KbVmd+JXXePQOBTI5r+4oLrCZnL6JqsyIeqTqsBN/vkAMd357JlnYgtg
+ 43YoCUDaepjA+gR16+vK2qsTsr2Ggk+GAdPHRIuTT25wO9OaXXFxzSpRFegBlZVrQWK5MXoEqjar
+ iAZeNn9SgywJLlkDgT8y3fRThCDpGCk0BET0WAB96yokouxCOXHKnW6UZMTKzC+794JlErXjecwE
+ nOvCkWakPUTT8Eb4neasYEGg6txE7h/DJplgMSgezg5PWQ445EzyGytjG9rvZ2t5gA53hlGPPTCu
+ CQ=
+X-UI-Out-Filterresults: notjunk:1;V03:K0:+DhlrGzejX0=:H7ejG4ksVlR2OD+2AK78pX
+ NEn5mlQjnBf4smxMBlFQljTTDT4W3WRU9Ox9sJ9xtSepQmURcyZ9dmRz33TNfj4pKUQQnPHR2
+ vJnr0pZHyzisgYrhozVIiPpQqDuK2Bm1g6wmUJEqNtkyvZMY1dJt50oY03g5hDHAh2Z68clXs
+ DEdgI9Q/rkGwXhaXXcmeWNR/yePzdnuglPIrJEqnIHu+WgpAcGYOT33sD8fxQOTKuGAhFUqVt
+ LGWzfBaGSHbQ7IAtL1cp5Os9cpbM5CWuUNUywoyNUW1mdZg6EO+tuRk8H/X0m3DgcfVfTFV5y
+ cdPM7M2+up0OIiVi1YuXUDrlfvppcNs5wmn5N/G5Mfoso5J3BnSqaAqu5IqW1MIkTFmZGnKHa
+ Otv3ngNV4/PnY0rspfKTYZBgtwvuFKESVSOjs/lbachHn9LL2mmrmjqiwmxlqPwDQq6W2mMFj
+ 2G5UtIxST1Y+5IHo0OXbSF0FwTXVwj2xMOBMDnDDUvGazu2xqLQFng8dzLnoGzVRr+m/srdOe
+ VCKBW4yNmX6U7tZ6W98QE14hn0R3gL4mWd6fSv9VGrE/O3HWP7rotqrVcDnMJ77F51RbKfNqP
+ JGdLo6lSN+nH7fuKzXYoDWU6JZD6FzyP72acErlUg0aLbF3UMNr+zZl7cdp/284bXNlZL5dLr
+ Fv6ERQriyiaZQ3BjuTQXJE5gIAslsj3d81qC8t6yyYFfqDWY+1bGH+38N9CmUIJixJkboSc4C
+ Mfqgom7Fv+w2Sh75SuR8v4crb79c6PkMGRAqpOJ8pdoZpebtchSZP90ENTVBfg3f5Enz/F/N4
+ 0aXBOMR
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/04/2022 08:48, Rex-BC Chen wrote:
-> On Thu, 2022-04-28 at 14:40 +0800, Krzysztof Kozlowski wrote:
->> On 26/04/2022 10:23, Rex-BC Chen wrote:
->>> On Mon, 2022-04-25 at 15:52 +0800, Krzysztof Kozlowski wrote:
->>>> On 25/04/2022 07:01, Rex-BC Chen wrote:
->>>>> On Sat, 2022-04-23 at 18:28 +0800, Krzysztof Kozlowski wrote:
->>>>>> On 22/04/2022 08:01, Rex-BC Chen wrote:
->>>>>>> To support reset of infra_ao, add the bit definition for
->>>>>>> thermal/PCIe/SVS.
->>>>>>>
->>>>>>> Signed-off-by: Rex-BC Chen <rex-bc.chen@mediatek.com>
->>>>>>> ---
->>>>>>>  include/dt-bindings/reset/mt8192-resets.h | 10 ++++++++++
->>>>>>>  1 file changed, 10 insertions(+)
->>>>>>>
->>>>>>> diff --git a/include/dt-bindings/reset/mt8192-resets.h
->>>>>>> b/include/dt-bindings/reset/mt8192-resets.h
->>>>>>> index be9a7ca245b9..d5f3433175c1 100644
->>>>>>> --- a/include/dt-bindings/reset/mt8192-resets.h
->>>>>>> +++ b/include/dt-bindings/reset/mt8192-resets.h
->>>>>>> @@ -27,4 +27,14 @@
->>>>>>>  
->>>>>>>  #define MT8192_TOPRGU_SW_RST_NUM				
->>>>>>> 23
->>>>>>>  
->>>>>>> +/* INFRA RST0 */
->>>>>>> +#define MT8192_INFRA_RST0_LVTS_AP_RST			
->>>>>>> 	
->>>>>>> 0
->>>>>>> +/* INFRA RST2 */
->>>>>>> +#define MT8192_INFRA_RST2_PCIE_PHY_RST			
->>>>>>> 	
->>>>>>> 15
->>>>>>> +/* INFRA RST3 */
->>>>>>> +#define MT8192_INFRA_RST3_PTP_RST				
->>>>>>> 5
->>>>>>> +/* INFRA RST4 */
->>>>>>> +#define MT8192_INFRA_RST4_LVTS_MCU				
->>>>>>> 12
->>>>>>> +#define MT8192_INFRA_RST4_PCIE_TOP				
->>>>>>> 1
->>>>>>
->>>>>> These should be the IDs of reset, not some register
->>>>>> values/offsets.
->>>>>> Therefore it is expected to have them incremented by 1.
->>>>>>
->>>>>>
->>>>>
->>>>> Hello Krzysztof,
->>>>>
->>>>> This is define bit.
->>>>>
->>>>> There is serveral reset set for infra_ao while it's not serial.
->>>>> For MT8192, it's 0x120/0x130/0x140/0x150/0x730.
->>>>> We are implement #reset-cells = <2>, and we can use this reset
->>>>> drive
->>>>> more easier.
->>>>>
->>>>> For example, in dts, we can define
->>>>> infra_ao: syscon {
->>>>> 	compatible = "mediatek,mt8192-infracfg", "syscon";
->>>>>  	reg = <0 0x10001000 0 0x1000>;
->>>>>  	#clock-cells = <1>;
->>>>> 	#reset-cells = <2>;
->>>>> };
->>>>>
->>>>> thermal {
->>>>> 	...
->>>>> 	resets = <&infra_ao 0x730 MT8192_INFRA_RST4_LVTS_MCU>;
->>>>> 	...
->>>>> };
->>>>>
->>>>> If it's acceptabel, I can update all bit difinition from 0 to
->>>>> 15
->>>>> for
->>>>> all reset set.
->>>>
->>>> Bits are not acceptable, because you embed specific device
->>>> programming
->>>> model (register bits) into the binding.
->>>>
->>>> These should be IDs, so decimal numbers incremented from 0, so:
->>>> #define MT8192_INFRA_RST0_LVTS_AP_RST				
->>>> 0
->>>> #define MT8192_INFRA_RST4_LVTS_MCU				
->>>> 1
->>>> #define MT8192_INFRA_RST4_PCIE_TOP				
->>>> 2
->>>>
->>>> And what is 0x730 in your example? It does not look like ID of a
->>>> reset...
->>>>
->>>> Entire changeset look wrong from DT point of view.
->>>>
->>>> Best regards,
->>>> Krzysztof
->>>
->>> Hello Krzysztof,
->>>
->>> Got it. I will modify them to reset index.
->>> And the dts in my next version would somthing like this:
->>>
->>> ----
->>> #define MT8192_INFRA_THERMAL_CTRL_RST			0
->>> #define MT8192_INFRA_PEXTP_PHY_RST			79
->>> #define MT8192_INFRA_PTP_RST				101
->>> #define MT8192_INFRA_RST4_PCIE_TOP			129
->>> #define MT8192_INFRA_THERMAL_CTRL_MCU_RST		140
->>
->> These are still not IDs, incremented by one.
->>
->> So again from beginning:
->> 0
->> 1
->> 2
->> ...
->>
->> Do not encode hardware register bits into the binding.
->>
->> Best regards,
->> Krzysztof
-> 
-> Hello Krzysztof,
-> 
-> It's not bit definiton, and it's index for our reset.
-> We have 32*5 reset bits for infra.
-> But we only use these 5 index currently, I do not list all of them.
+Hi
+> Gesendet: Donnerstag, 28. April 2022 um 08:37 Uhr
+> Von: "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>
+> On 26/04/2022 15:21, Frank Wunderlich wrote:
+> > From: Frank Wunderlich <frank-w@public-files.de>
+> >
+> > Add bifurcation property for splitting PCIe lanes.
+> >
+> > Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
+> > ---
+> >  Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml | 2 ++
+> >  1 file changed, 2 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.ya=
+ml b/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
+> > index bc0a9d1db750..a992970e8b85 100644
+> > --- a/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
+> > +++ b/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
+> > @@ -74,6 +74,8 @@ properties:
+> >    reset-names:
+> >      const: pipe
+> >
+> > +  bifurcation: true
+> > +
+>
+> Does not look like standard property. Is it already defined somewhere?
+> All non-standard properties need vendor, type and description.
 
-You do not have to list all of them. You can list three, e.g.:
+have removed vendor-prefix from v1>v2 based on suggestion this can be usef=
+ul for other vendors too.
 
-#define MT8192_INFRA_THERMAL_CTRL_RST			0
-#define MT8192_INFRA_PEXTP_PHY_RST			1
-#define MT8192_INFRA_PTP_RST				2
+but last 3 patches of this series replacing bifurcation property (which is=
+ only bool) by the more useful lane-map (left alone for discussion, will b=
+e squashed if the right way is found).
 
-and you will add all further later. This is how all dt-binding headers
-are created.
+i guess same here, description+type needed, but how to describe an array o=
+f int in yaml? do you know any examples?
 
-> 
-> The implementation is in [1].
-> -----
-> static int mtk_reset_update_set_clr(struct reset_controller_dev *rcdev,
->  	unsigned int deassert_ofs = deassert ? 0x4 : 0;
->  
->  	return regmap_write(data->regmap,
-> 			    data->desc->rst_bank_ofs[id /          
->  					RST_NR_PER_BANK] +
-> 			    deassert_ofs,
-> 			    BIT(id % RST_NR_PER_BANK));
->  }
-
-Exactly, you hard-code the hardware programming model - register
-values/bits/whatever - in the ID, which is not correct. Additionally,
-bindings are (mostly) independent of Linux implementation.
-
-
-Best regards,
-Krzysztof
+regards Frank
