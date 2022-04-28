@@ -2,67 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 939F5513670
-	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 16:10:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3FF88513672
+	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 16:10:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348013AbiD1ONV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Apr 2022 10:13:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56372 "EHLO
+        id S230047AbiD1ONj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Apr 2022 10:13:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57318 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347933AbiD1ONU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 10:13:20 -0400
-Received: from mail-qv1-f45.google.com (mail-qv1-f45.google.com [209.85.219.45])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ECB552C7;
-        Thu, 28 Apr 2022 07:10:04 -0700 (PDT)
-Received: by mail-qv1-f45.google.com with SMTP id 1so3268455qvs.8;
-        Thu, 28 Apr 2022 07:10:04 -0700 (PDT)
+        with ESMTP id S1348031AbiD1ONh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 10:13:37 -0400
+Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6CA2E5DA7A
+        for <devicetree@vger.kernel.org>; Thu, 28 Apr 2022 07:10:21 -0700 (PDT)
+Received: by mail-wr1-x42c.google.com with SMTP id t6so6986322wra.4
+        for <devicetree@vger.kernel.org>; Thu, 28 Apr 2022 07:10:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=hDK2LW4ixFaiS76Yog56KrcGnNdurhIS+pY8Y104vts=;
+        b=OB73Vf/TiDEDaq66Sl/bRYqcZ/YVS6/pn5Z7K8ZY4DwuCIUsL+udPqXRYsS/p1mCkG
+         hNXWWzV2UYh3HlilxhPtpgFomaVcT5ludnmS2DJseIFX3yVO0hgkQKmqr2xJGxoxsrLb
+         tm0548XOg88uK1d59cnJ/qRX0OinBQCQfK4yc6YvlxofVXstQJ2QqiEPbNXkua3Cb/Qf
+         Yja0+Fl5aT4TKUtjDv0ErKjr10bs0Mak83gvB/J5tie2PCeNBfEiH/Bt5+ZNfP5X80Jb
+         nTS0zWTyGBZx4hsa8rSRzrV9g/qVN6pB1U+PelFvVs66Rz/WmcS92wiuFU0mXfI5NYpn
+         d/Fw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=CKxalUl1M1SvVn0A60ScAFI8JZGp77vq7mTiqeVpHVw=;
-        b=AV2yni1yjcBR1J63uL7vjfAToVhxwArfhUy41pCxAlYZzzhGHOkq1b1aa+GnrGLLoN
-         vTUBkdOJ9fyTXDqwgArRMPuRTzki3Ah/ihp38cldEEJZ2cnD2LczfPafU0yQhikRnkrV
-         1KVn0ZCVaY5DJGt+CF8ovynvl9RMoHGR6rCFg/T7aOV6izzYo43UidmkDjJtUk+SrS8K
-         O4RTOyBVBzhY9h2Kt56Jc/61R0kX0Io5RQw9DCP10pQ5JEuwOn2HSfmJ2fUDkbxI9rhM
-         K+RcfAet8N01XVVshnFgrM83EFZ/di8Qao+Vi3jeJ8KVfJwGj+b01vPsYxm0+utjqIu5
-         9+MA==
-X-Gm-Message-State: AOAM531rCrXjsJZmR3N9zN/lTp1C3O0R7sAxfgEjlUiCpjdZBvxVyC5W
-        8uU5IrjgtUVWvO+abzhpDQgSaBY7HLcKnnxb
-X-Google-Smtp-Source: ABdhPJwPmdw8wl1SUtfVJGnJeoqNsJrX7Islw79vhvT2tVJjdtvoweZM0kjjYVB8VBDSOmGnuRNZ1A==
-X-Received: by 2002:ad4:4eec:0:b0:456:53ed:1b11 with SMTP id dv12-20020ad44eec000000b0045653ed1b11mr5066403qvb.1.1651155003837;
-        Thu, 28 Apr 2022 07:10:03 -0700 (PDT)
-Received: from mail-yb1-f179.google.com (mail-yb1-f179.google.com. [209.85.219.179])
-        by smtp.gmail.com with ESMTPSA id f11-20020a05620a12eb00b0069c88d15b6asm15606qkl.68.2022.04.28.07.10.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 28 Apr 2022 07:10:03 -0700 (PDT)
-Received: by mail-yb1-f179.google.com with SMTP id i38so9176815ybj.13;
-        Thu, 28 Apr 2022 07:10:03 -0700 (PDT)
-X-Received: by 2002:a25:9e89:0:b0:63c:ad37:a5de with SMTP id
- p9-20020a259e89000000b0063cad37a5demr30900185ybq.342.1651155002765; Thu, 28
- Apr 2022 07:10:02 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=hDK2LW4ixFaiS76Yog56KrcGnNdurhIS+pY8Y104vts=;
+        b=J9Xj4h7GG8UErk2pwVWGuThPSWk+RFUTrySNDXiiZ9T03C8PL0Wf01op7jU1Dm83+V
+         /Jy2uYjWglMvVpNAvNw2PRwI6z6vDwvtbZz0xbpJoQG1qZCkjdYCDUFt9muRhZaaX+1R
+         CvSc3e0+y6kG4mIP3Y8HKGQuTgRCsVwnD2HhQDK0JCl03JQcC++goTQ60dvOGG4OdDan
+         3B0RzKOmJEYzeUBI4gwCi8+MLGP59YTAl9Ce/KLkXGMiQyypsbkBlqQeBeBCdQj2nKss
+         28Y+b4pEe9vmfhJCOpIcp6FYNt4AdZEd3tjv4u8/TksXLVIZDEDWvv3MCszQWUUovLkM
+         lu9g==
+X-Gm-Message-State: AOAM531TWeqKtwZMQXxxvlpn43zUEHCGUmpm8aYGInW4WQ70s81eYM1/
+        Tm8RQN/IpaoUiLYr7M7KTCufQQ==
+X-Google-Smtp-Source: ABdhPJz2j2Cic+9yZ2453CMk5FbhXKf1RvIRzyVKuz1CtWy/DI7LGqsle1CvTJu+hsECDbJ9+ApMPA==
+X-Received: by 2002:a5d:44cf:0:b0:20a:c5d2:b6c3 with SMTP id z15-20020a5d44cf000000b0020ac5d2b6c3mr26522444wrr.177.1651155019802;
+        Thu, 28 Apr 2022 07:10:19 -0700 (PDT)
+Received: from google.com (49.222.77.34.bc.googleusercontent.com. [34.77.222.49])
+        by smtp.gmail.com with ESMTPSA id 3-20020a5d47a3000000b0020aa79d55b5sm19435890wrb.35.2022.04.28.07.10.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 28 Apr 2022 07:10:19 -0700 (PDT)
+Date:   Thu, 28 Apr 2022 14:10:18 +0000
+From:   Sebastian Ene <sebastianene@google.com>
+To:     Randy Dunlap <rdunlap@infradead.org>
+Cc:     linux-kernel@vger.kernel.org,
+        Derek Kiernan <derek.kiernan@xilinx.com>,
+        Dragan Cvetic <dragan.cvetic@xilinx.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        qperret@google.com, will@kernel.org, maz@kernel.org
+Subject: Re: [PATCH v3 2/2] misc: Add a mechanism to detect stalls on guest
+ vCPUs
+Message-ID: <YmqgSg6viIK5H9Rc@google.com>
+References: <20220425134204.149042-1-sebastianene@google.com>
+ <20220425134204.149042-3-sebastianene@google.com>
+ <1d938867-05b9-fab5-1f48-a635d92420d3@infradead.org>
 MIME-Version: 1.0
-References: <20220425170530.200921-1-biju.das.jz@bp.renesas.com> <20220425170530.200921-13-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20220425170530.200921-13-biju.das.jz@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 28 Apr 2022 16:09:50 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdXmbweC09xEmfZK4HEcju1CFhKYnuG05hAMa687gdNcKw@mail.gmail.com>
-Message-ID: <CAMuHMdXmbweC09xEmfZK4HEcju1CFhKYnuG05hAMa687gdNcKw@mail.gmail.com>
-Subject: Re: [PATCH 12/13] arm64: dts: renesas: rzg2ul-smarc-som: Enable OSTM
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1d938867-05b9-fab5-1f48-a635d92420d3@infradead.org>
+X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -70,23 +77,64 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Apr 25, 2022 at 7:06 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> Enable OSTM{1, 2} interfaces on RZ/G2UL SMARC EVK.
-> OSTM0 is reserved for TF-A.
->
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+On Mon, Apr 25, 2022 at 09:02:03AM -0700, Randy Dunlap wrote:
+> 
+> 
+> On 4/25/22 06:42, Sebastian Ene wrote:
+> > This driver creates per-cpu hrtimers which are required to do the
+> > periodic 'pet' operation. On a conventional watchdog-core driver, the
+> > userspace is responsible for delivering the 'pet' events by writing to
+> > the particular /dev/watchdogN node. In this case we require a strong
+> > thread affinity to be able to account for lost time on a per vCPU.
+> > 
+> > This part of the driver is the 'frontend' which is reponsible for
+> > delivering the periodic 'pet' events, configuring the virtual peripheral
+> > and listening for cpu hotplug events. The other part of the driver
+> > handles the peripheral emulation and this part accounts for lost time by
+> > looking at the /proc/{}/task/{}/stat entries and is located here:
+> > https://chromium-review.googlesource.com/c/chromiumos/platform/crosvm/+/3548817
+> > 
+> > Signed-off-by: Sebastian Ene <sebastianene@google.com>
+> > ---
+> >  drivers/misc/Kconfig  |  12 +++
+> >  drivers/misc/Makefile |   1 +
+> >  drivers/misc/vm-wdt.c | 207 ++++++++++++++++++++++++++++++++++++++++++
+> >  3 files changed, 220 insertions(+)
+> >  create mode 100644 drivers/misc/vm-wdt.c
+> > 
+> > diff --git a/drivers/misc/Kconfig b/drivers/misc/Kconfig
+> > index 2b9572a6d114..71c173e3f064 100644
+> > --- a/drivers/misc/Kconfig
+> > +++ b/drivers/misc/Kconfig
+> > @@ -493,6 +493,18 @@ config OPEN_DICE
+> >  
+> >  	  If unsure, say N.
+> >  
+> > +config VM_WATCHDOG
+> > +	tristate "Virtual Machine Watchdog"
+> > +	select LOCKUP_DETECTOR
+> > +	help
+> > +	  Detect CPU locks on the virtual machine. This driver relies on the
+> > +	  hrtimers which are CPU-binded to do the 'pet' operation. When a vCPU
+> > +	  has to do a 'pet', it exists the guest through MMIO write and the
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v5.19.
+Hi,
 
-Gr{oetje,eeting}s,
+> 
+> 	                        exits ?
+> I dunno, but it's confusing.
+> 
 
-                        Geert
+Yes, I will correct this typo, thanks for the notice.
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+> > +	  backend driver takes into account the lost ticks for this particular
+> > +	  CPU.
+> > +	  To compile this driver as a module, choose M here: the
+> > +	  module will be called vm-wdt.
+> 
+> 
+> 
+> -- 
+> ~Randy
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Sebastian
