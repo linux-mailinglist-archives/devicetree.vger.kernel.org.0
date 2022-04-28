@@ -2,72 +2,175 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F15445129EF
-	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 05:22:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B80DC512A19
+	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 05:41:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238565AbiD1DZz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Apr 2022 23:25:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45282 "EHLO
+        id S242803AbiD1DoX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Apr 2022 23:44:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37258 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235825AbiD1DZz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 23:25:55 -0400
-Received: from mail-yb1-xb36.google.com (mail-yb1-xb36.google.com [IPv6:2607:f8b0:4864:20::b36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5874814B9
-        for <devicetree@vger.kernel.org>; Wed, 27 Apr 2022 20:22:41 -0700 (PDT)
-Received: by mail-yb1-xb36.google.com with SMTP id g28so6733753ybj.10
-        for <devicetree@vger.kernel.org>; Wed, 27 Apr 2022 20:22:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=g5T8P+kiwzKbHbXXuLnNjVtw9eTjQ8tWYWXfsKxWX2Y=;
-        b=j3gCeQqNxowTu8OnwF4Ebbbrtla6hLPGYF0RnmUD8stsAvP+OSQ0v9ChwY2L96CgDl
-         gKBCk0MvClFyHE1tlicoLvpuR9oMCgVJrTCmxKpf3XwnluLIl2Kiq2rF6AxE08x1ITlW
-         pkwOZuuWLmJ5Xlg8uFwvTsBacO49iT/8YMJ1zQiPDi4NZWPJL3DJIy853Tr4H29J1AFE
-         y1GttrAeA70YrLJt705JSrc1YYdlqoT1a8JxPzzg0EQAIHrwi5arWR6qlDdlE/q14JC6
-         40hGplO/RAflA9VBHQwbXHWFvSWH8UFWHix94ikd8F0FZgenbLajiFBXFHLueTDlfKhi
-         v/Mg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=g5T8P+kiwzKbHbXXuLnNjVtw9eTjQ8tWYWXfsKxWX2Y=;
-        b=ScrpAhjtjxZGu1N7uwXw2YmgExjinAgmA2AWlHCYmvS1eT3dlyVVx5fTCTAHFNKotq
-         RZpm9TKXkQjDRHqLseYGF3NjKng5M4sFoFjs2AIi47tIQz9pDnmnSLjhwnk6/ajZskOd
-         rin5uZMAvayDCl8y3qeAHaRSQKJT9oguqEs4e6R6U/N4VrRGgpkUAQXyGOBHAfUr/UjE
-         de8foNkP9Hg0WeywvTOKisfJmcvXdIZ/fZoIgMYqrDmzARIZs8fkszwn2Y/gc5o8/cZJ
-         tISaMA0duYzo38f8f0j933BY/AdXWGqrHE9xJ7XPSUd0qUGrGTmQMXGsvbFFqKVl/ak9
-         aLzg==
-X-Gm-Message-State: AOAM531ar34Vp8IHC4Ns7bhlfFNTB7gD8uSGEuXyI2FZ1Vd2uslHxMxV
-        DUsEteVNGivml1JPstjTt+fsvBvt3uUr4A9+ZWk=
-X-Google-Smtp-Source: ABdhPJzlDGClHD4rOxv1BpiTno3SWMO3x3MwxIFZMTEzXU51rj09f/EINql6e4FTKoRziSMXxeY3nnTDsY3DTtd/7uc=
-X-Received: by 2002:a25:bb43:0:b0:645:43cf:736c with SMTP id
- b3-20020a25bb43000000b0064543cf736cmr28644188ybk.493.1651116161128; Wed, 27
- Apr 2022 20:22:41 -0700 (PDT)
+        with ESMTP id S242736AbiD1DoK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 23:44:10 -0400
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 0F8EC81496
+        for <devicetree@vger.kernel.org>; Wed, 27 Apr 2022 20:40:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1651117256;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=6a45cRhNTdyTWeV51hCajpfm2v3DEUl9/Oa/LlePIyo=;
+        b=OAjeKif+S5swKrDrjoHzojOrMRPPVViyg0/vf5Njnt6G8M/yNfnFXTRMJCgt3O9xupbhhk
+        bMqN6ShQQzZUT0nwzxA/OANe5EldfQvzhKLRB+CSb7EBFWNBaG1zMlLOzDjzyNsN79VxC7
+        gOQr8m5FaHtGlzt3b7hbYAtuwJ5QBtg=
+Received: from mimecast-mx02.redhat.com (mx3-rdu2.redhat.com
+ [66.187.233.73]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-464-1oYT8W6vO1uRN0Dr2-nsXQ-1; Wed, 27 Apr 2022 23:40:50 -0400
+X-MC-Unique: 1oYT8W6vO1uRN0Dr2-nsXQ-1
+Received: from smtp.corp.redhat.com (int-mx09.intmail.prod.int.rdu2.redhat.com [10.11.54.9])
+        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        by mimecast-mx02.redhat.com (Postfix) with ESMTPS id 9ACD1380670B;
+        Thu, 28 Apr 2022 03:40:49 +0000 (UTC)
+Received: from localhost (ovpn-13-110.pek2.redhat.com [10.72.13.110])
+        by smtp.corp.redhat.com (Postfix) with ESMTPS id ED604553D7A;
+        Thu, 28 Apr 2022 03:40:47 +0000 (UTC)
+Date:   Thu, 28 Apr 2022 11:40:45 +0800
+From:   Baoquan He <bhe@redhat.com>
+To:     Catalin Marinas <catalin.marinas@arm.com>,
+        "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
+Cc:     Thomas Gleixner <tglx@linutronix.de>,
+        Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
+        x86@kernel.org, "H . Peter Anvin" <hpa@zytor.com>,
+        linux-kernel@vger.kernel.org, Dave Young <dyoung@redhat.com>,
+        Vivek Goyal <vgoyal@redhat.com>,
+        Eric Biederman <ebiederm@xmission.com>,
+        kexec@lists.infradead.org, Will Deacon <will@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>,
+        linux-doc@vger.kernel.org, Randy Dunlap <rdunlap@infradead.org>,
+        Feng Zhou <zhoufeng.zf@bytedance.com>,
+        Kefeng Wang <wangkefeng.wang@huawei.com>,
+        Chen Zhou <dingguo.cz@antgroup.com>,
+        John Donnelly <John.p.donnelly@oracle.com>,
+        Dave Kleikamp <dave.kleikamp@oracle.com>
+Subject: Re: [PATCH v22 5/9] arm64: kdump: Reimplement crashkernel=X
+Message-ID: <YmoMvV1wzHT5V1aw@MiWiFi-R3L-srv>
+References: <20220414115720.1887-1-thunder.leizhen@huawei.com>
+ <20220414115720.1887-6-thunder.leizhen@huawei.com>
+ <YmgzxsrrMlCDYsWp@arm.com>
+ <ee8daaa9-3258-e7e8-e5c4-c51dc9841580@huawei.com>
+ <Ymk34NsIFqUgfk3b@arm.com>
+ <ae7211ad-e2ac-f5b1-5aa0-701802132e73@huawei.com>
+ <YmlphvZVMsGfFksp@arm.com>
 MIME-Version: 1.0
-References: <20220425191602.770932-1-kaehndan@gmail.com> <20220425191602.770932-2-kaehndan@gmail.com>
- <YmcdvcyeJJBB1pqW@robh.at.kernel.org> <CAP+ZCCfT8Mm1OECsrKxzq5vtjyaTiF=ML9LJYkHXO0A6Wao32w@mail.gmail.com>
- <YmiSvXCE5Yovvjhd@robh.at.kernel.org> <CAP+ZCCc0YBSMU1XXoTVxNRaQ6V76D2=zNJzoduLnG2pn16hHjQ@mail.gmail.com>
- <Ymn00nbRkkfoUh/Y@robh.at.kernel.org>
-In-Reply-To: <Ymn00nbRkkfoUh/Y@robh.at.kernel.org>
-From:   Dan K <kaehndan@gmail.com>
-Date:   Wed, 27 Apr 2022 22:22:30 -0500
-Message-ID: <CAP+ZCCfhRn0dQpM8ve0PmMg_fmvQJBwSSeS=cnM2ak9OY8CAKA@mail.gmail.com>
-Subject: Re: [PATCH v4 1/2] dt-bindings: sound: Add generic serial MIDI device
-To:     Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
-        tiwai@suse.com
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YmlphvZVMsGfFksp@arm.com>
+X-Scanned-By: MIMEDefang 2.85 on 10.11.54.9
+X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_NONE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Will do, thanks.
+Hi Catalin, Zhen Lei,
 
-Daniel Kaehn
+On 04/27/22 at 05:04pm, Catalin Marinas wrote:
+> On Wed, Apr 27, 2022 at 09:49:20PM +0800, Leizhen (ThunderTown) wrote:
+> > On 2022/4/27 20:32, Catalin Marinas wrote:
+> > > I think one could always pass a default command line like:
+> > > 
+> > > 	crashkernel=1G,high crashkernel=128M,low
+> > > 
+> > > without much knowledge of the SoC memory layout.
+> > 
+> > Yes, that's what the end result is. The user specify crashkernel=128M,low
+> > and the implementation ensure the 128M low memory is allocated from DMA zone.
+> > We use arm64_dma_phys_limit as the upper limit for crash low memory.
+> > 
+> > +#define CRASH_ADDR_LOW_MAX             arm64_dma_phys_limit
+> > +       unsigned long long crash_max = CRASH_ADDR_LOW_MAX;
+> > +       crash_base = memblock_phys_alloc_range(crash_size, CRASH_ALIGN,
+> >                                                crash_base, crash_max);
+> > 
+> > > Another option is to only introduce crashkernel=Y,low and, when that is
+> > > passed, crashkernel=Y can go above arm64_dma_phys_limit. We won't need a
+> > > 'high' option at all:
+> > > 
+> > > 	crashkernel=1G				- all within ZONE_DMA
+> > > 	crashkernel=1G crashkernel=128M,low	- 128M in ZONE_DMA
+> > > 						  1G above ZONE_DMA
+> > > 
+> > > If ZONE_DMA is not present or it extends to the whole RAM, we can ignore
+> > > the 'low' option.
+> > 
+> > I think although the code is hard to make generic, the interface is better to
+> > be relatively uniform. A user might have to maintain both x86 and arm64, and
+> > so on. It's not a good thing that the difference is too big.
+> 
+> There will be some difference as the 4G limit doesn't always hold for
+> arm64 (though it's true in most cases). Anyway, we can probably simplify
+> things a bit while following the documented behaviour:
+> 
+> 	crashkernel=Y		- current behaviour within ZONE_DMA
+> 	crashkernel=Y,high	- allocate from above ZONE_DMA
+> 	crashkernel=Y,low	- allocate within ZONE_DMA
+> 
+> There is no fallback from crashkernel=Y.
+> 
+> The question is whether we still want a default low allocation if
+> crashkernel=Y,low is missing but 'high' is present. If we add this, I
+> think we'd be consistent with kernel-parameters.txt for the 'low'
+> description. A default 'low' is probably not that bad but I'm tempted to
+> always mandate both 'high' and 'low'.
+
+Sorry to interrupt. Seems the ,high ,low and fallback are main concerns
+about this version. And I have the same concerns about them which comes
+from below points:
+1) we may need to take best effort to keep ,high, ,low behaviour
+consistent on all ARCHes. Otherwise user/admin may be confused when they
+deploy/configure kdump on different machines of different ARCHes in the
+same LAB. I think we should try to avoid the confusion.
+2) Fallback behaviour is important to our distros. The reason is we will
+provide default value with crashkernel=xxxM along kernel of distros. In
+this case, we hope the reservation will succeed by all means. The ,high
+and ,low is an option if customer likes to take with expertise.
+
+After going through arm64 memory init code, I got below summary about
+arm64_dma_phys_limit which is the first zone's upper limit. I think we
+can make use of it to facilitate to simplify code.
+================================================================================
+                        DMA                      DMA32                    NORMAL
+1)Raspberry Pi4         0~1G                     3G~4G                    (above 4G)
+2)Normal machine        0~4G                     0                        (above 4G)
+3)Special machine       (above 4G)~MAX
+4)No DMA|DMA32                                                            (above 4G)~MAX
+
+-------------------------------------------
+                      arm64_dma_phys_limit
+1)Raspberry Pi4         1G                     
+2)Normal machine        4G                     
+3)Special machine       MAX
+4)No DMA|DMA32          MAX
+
+Note: 3)Special machine means the machine's starting physical address is above 4G.
+WHile 4)No DMA|DMA32 means kernel w/o CONFIG_ZONE_DMA|DMA32, and has
+IOMMU hardware supporting.
+===================================================================================
+
+I made a draft patch based on this patchset, please feel free to check and
+see if it's OK, or anything missing or wrongly understood. I removed
+reserve_crashkernel_high() and only keep reserve_crashkernel() and
+reserve_crashkernel_low() as the v21 did.
+
+Thanks
+Baoquan
+
