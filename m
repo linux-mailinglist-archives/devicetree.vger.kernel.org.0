@@ -2,180 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4E2F15135DF
-	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 15:58:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B695513649
+	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 16:07:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347836AbiD1OBO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Apr 2022 10:01:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48690 "EHLO
+        id S233026AbiD1OJJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Apr 2022 10:09:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43080 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347835AbiD1OBN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 10:01:13 -0400
-Received: from mail-yb1-xb2e.google.com (mail-yb1-xb2e.google.com [IPv6:2607:f8b0:4864:20::b2e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09E094927B
-        for <devicetree@vger.kernel.org>; Thu, 28 Apr 2022 06:57:58 -0700 (PDT)
-Received: by mail-yb1-xb2e.google.com with SMTP id y2so9158185ybi.7
-        for <devicetree@vger.kernel.org>; Thu, 28 Apr 2022 06:57:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=SJe698o7gODypcByE9ePK4Qg/fkXO+ivrxsbVZOmzBk=;
-        b=l3T7RAFxRSJb91MSwmwRPLIDwF2OB9ZTbNvraDs5XaX48qnT/Vg8YNvqtUZapMMqEv
-         fkGuXMKvdwHsY1FwwyVljJXMzLddZ5tKF1ZOGa/aL26FroKeAoh3S3NREbMoBO4h5urB
-         lqODuWslM1VP0aQGs1sVTjSJN7NCeSIIXvRdyOqj70BQmAMJ9SMQlf87HpJun0JnpoGS
-         klt8gZcWFgRmwlomB2PM5Fq3dQWoQPPfOW1+342iXLplc4FM4y3jHk7Ot4m8GwUUE0By
-         7teSJn+4e7CVgHVdD96K5TYWmdTUDsSo6ivSZrDyfeDfVMKpehfy0NLKWr+X7Vz5Y1cs
-         fZ/w==
+        with ESMTP id S1348169AbiD1OIv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 10:08:51 -0400
+Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D87F6A6E28;
+        Thu, 28 Apr 2022 07:05:18 -0700 (PDT)
+Received: by mail-lf1-f42.google.com with SMTP id bu29so8901316lfb.0;
+        Thu, 28 Apr 2022 07:05:18 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=SJe698o7gODypcByE9ePK4Qg/fkXO+ivrxsbVZOmzBk=;
-        b=d+weygM8iwNdME4JpBb8cw+ddL605lamVgCcjq9t74xJqM0soqI0f9p7RvLLouuY4P
-         wwgGkcwBSJ7J5z4qRygruDrfDbPNnmkAP5ktfibRcLTGx1HrOkLMW43/gUdjUPaWGG89
-         U29JQgtZH3NYWR6zSgSf3L4njWNcdYWvOzHKQcTsKjT7kLXbiFt/hQ1PxxOw3H0J2ckz
-         hcbIc+wmIwrqQBkP9HWKDtkGRquf+4MqS2XTNXUPLUMBmPBifoMhz5q5ZOpta71brycr
-         NJhpL8vxMXVELImM9mbhuBy3hJkWvHDPchu1EphLCKYERNHBeRIRQZe7140EeshrrfFR
-         ftjg==
-X-Gm-Message-State: AOAM532ByDAYe0JezJhFnwBwV+HhyI+fuG2FPMqAaj+l7hWBXxaovnmR
-        i0wADR7gao5ekQyKQFKZxFW7BJmvEBNCRd0ompt1/w==
-X-Google-Smtp-Source: ABdhPJxJv2eAuVeslxQvXEke86d8yqVpJ0kQCDz2x0CAaD1m/uZ7s7QueGTZh4z4ks1FIzEM//CGr6W7g+m/tJ4oMME=
-X-Received: by 2002:a25:dccf:0:b0:648:a757:ad34 with SMTP id
- y198-20020a25dccf000000b00648a757ad34mr12926060ybe.66.1651154277289; Thu, 28
- Apr 2022 06:57:57 -0700 (PDT)
+        bh=bNf9rw2GTPgYpzsW80GmkQGexZVGoKA1BJoGlD8No+Y=;
+        b=VogqCRmhxFkRwr8nDBNgvHaCmpyjlhzoZkhjMjt9m1SOvLlH/nQp63XS0gjtm2DnE6
+         kIT6xmVk7rhX5iiV0DOzbrrctb9zbFrHCI0QQZnw8M2a4ZpE7zg0Hze9BkDeomGCWB8i
+         KrrQZW85YMsNrLDc+wCJ3OB6z708a15uTkJnFj8ewUZQM307laJEhyGYEbVWngcHQnVF
+         ka28f0LymsZPa7x+i0RFRIMv7J3PLXxVKgXWa0ykMktvhH5EH9bKdwzYVIWzWyIsSj1r
+         kJ6dWaeaoP5hj3NwoK8jPl9VmzVH/GflxjwqIoD6Bbs3A8cOzthM7IUp42YVw9T+D6hd
+         3Vuw==
+X-Gm-Message-State: AOAM533LjGgvX6/mmKNuB+WtD7ICj9uSUSfu0LLnqFkhBwVrCWsSrXlz
+        PYaGANP7p+X18MVboi6q9fSWxccy6zANwiNs
+X-Google-Smtp-Source: ABdhPJwYmpDcH9rfbQctdeLxnv3zG9kxNikjMmwg4q5LWi8UcTSv0oOtaILBn2x9YjDiBqykIWy7QA==
+X-Received: by 2002:a05:6512:1511:b0:44a:2f74:3c1c with SMTP id bq17-20020a056512151100b0044a2f743c1cmr23760737lfb.114.1651154716976;
+        Thu, 28 Apr 2022 07:05:16 -0700 (PDT)
+Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com. [209.85.167.51])
+        by smtp.gmail.com with ESMTPSA id f22-20020a2e6a16000000b0024f0cf6fdb0sm3139ljc.138.2022.04.28.07.04.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 28 Apr 2022 07:04:43 -0700 (PDT)
+Received: by mail-lf1-f51.google.com with SMTP id j4so8811156lfh.8;
+        Thu, 28 Apr 2022 07:04:34 -0700 (PDT)
+X-Received: by 2002:a05:6512:12c6:b0:44a:650f:3b86 with SMTP id
+ p6-20020a05651212c600b0044a650f3b86mr25233083lfg.79.1651154668136; Thu, 28
+ Apr 2022 07:04:28 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220428115934.3414641-1-dmitry.baryshkov@linaro.org>
- <20220428115934.3414641-7-dmitry.baryshkov@linaro.org> <6bd8eb4e-81eb-7e87-155b-f48b487e16ae@linaro.org>
-In-Reply-To: <6bd8eb4e-81eb-7e87-155b-f48b487e16ae@linaro.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Thu, 28 Apr 2022 16:57:45 +0300
-Message-ID: <CAA8EJpq38EudVcb7quuk1u85Cw+hJADxagkV7rN7fP9A-fz-Wg@mail.gmail.com>
-Subject: Re: [PATCH v4 6/7] dt-bindings: pci/qcom,pcie: support additional MSI interrupts
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Stanimir Varbanov <svarbanov@mm-sol.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org
+References: <20220425170530.200921-1-biju.das.jz@bp.renesas.com> <20220425170530.200921-11-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20220425170530.200921-11-biju.das.jz@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Thu, 28 Apr 2022 16:04:13 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdVBczjWQQdeaiE4NvgvZUc+tkK0o8unoD5ngjGaOM1JCg@mail.gmail.com>
+Message-ID: <CAMuHMdVBczjWQQdeaiE4NvgvZUc+tkK0o8unoD5ngjGaOM1JCg@mail.gmail.com>
+Subject: Re: [PATCH 10/13] arm64: dts: renesas: rzg2ul-smarc: Enable USB2.0 support
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 28 Apr 2022 at 15:08, Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
+Hi Biju,
+
+On Mon, Apr 25, 2022 at 7:06 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
+> Enable USB2.0 Host/Device support on RZ/G2L SMARC EVK by
+> deleting the nodes which disabled it.
 >
-> On 28/04/2022 13:59, Dmitry Baryshkov wrote:
-> > On Qualcomm platforms each group of 32 MSI vectors is routed to the
-> > separate GIC interrupt. Document mapping of additional interrupts.
-> >
-> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> > ---
-> >  .../devicetree/bindings/pci/qcom,pcie.yaml    | 51 ++++++++++++++++++-
-> >  1 file changed, 50 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
-> > index 0b69b12b849e..a8f99bca389e 100644
-> > --- a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
-> > +++ b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
-> > @@ -43,11 +43,20 @@ properties:
-> >      maxItems: 5
-> >
-> >    interrupts:
-> > -    maxItems: 1
-> > +    minItems: 1
-> > +    maxItems: 8
-> >
-> >    interrupt-names:
-> > +    minItems: 1
-> >      items:
-> >        - const: msi
-> > +      - const: msi2
-> > +      - const: msi3
-> > +      - const: msi4
-> > +      - const: msi5
-> > +      - const: msi6
-> > +      - const: msi7
-> > +      - const: msi8
-> >
-> >    # Common definitions for clocks, clock-names and reset.
-> >    # Platform constraints are described later.
-> > @@ -623,6 +632,46 @@ allOf:
-> >          - resets
-> >          - reset-names
-> >
-> > +    # On newer chipsets support either 1 or 8 msi interrupts
-> > +    # On older chipsets it's always 1 msi interrupt
-> > +  - if:
-> > +      properties:
-> > +        compatibles:
-> > +          contains:
-> > +            enum:
-> > +              - qcom,pcie-msm8996
-> > +              - qcom,pcie-sc7280
-> > +              - qcom,pcie-sc8180x
-> > +              - qcom,pcie-sdm845
-> > +              - qcom,pcie-sm8150
-> > +              - qcom,pcie-sm8250
-> > +              - qcom,pcie-sm8450-pcie0
-> > +              - qcom,pcie-sm8450-pcie1
-> > +    then:
-> > +      oneOf:
-> > +        - properties:
-> > +            interrupts:
-> > +              minItems: 1
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+
+Thanks for your patch!
+
+> --- a/arch/arm64/boot/dts/renesas/r9a07g043u11-smarc.dts
+> +++ b/arch/arm64/boot/dts/renesas/r9a07g043u11-smarc.dts
+> @@ -20,54 +20,8 @@ &canfd {
+>         status = "disabled";
+>  };
 >
-> minItems should not be needed here and in places below, because it is
-> equal to maxItems.
+> -&ehci0 {
+> -       /delete-property/ pinctrl-0;
+> -       /delete-property/ pinctrl-names;
+> -       status = "disabled";
+> -};
+> -
+> -&ehci1 {
+> -       /delete-property/ pinctrl-0;
+> -       /delete-property/ pinctrl-names;
+> -       status = "disabled";
+> -};
+> -
+> -&hsusb {
+> -       /delete-property/ pinctrl-0;
+> -       /delete-property/ pinctrl-names;
+> -       status = "disabled";
+> -};
+> -
+> -&ohci0 {
+> -       /delete-property/ pinctrl-0;
+> -       /delete-property/ pinctrl-names;
+> -       status = "disabled";
+> -};
+> -
+> -&ohci1 {
+> -       /delete-property/ pinctrl-0;
+> -       /delete-property/ pinctrl-names;
+> -       status = "disabled";
+> -};
 
-Maybe it's a misunderstanding from my side. In the top level we have
-the min = 1, max = 8.
-How does that interfere with these entries? In other words, if we e.g.
-omit minItems here, which setting would preveal: implicit minItems = 8
-(from maxItems = 8) or minItems = 1 in the top level?
+Looks like lots of non-existent pinctrl properties were deleted.
+Anyway, they'll be gone soon ;-)
 
-> > +              maxItems: 1
-> > +            interrupt-names:
-> > +              minItems: 1
-> > +              maxItems: 1
-> > +        - properties:
-> > +            interrupts:
-> > +              minItems: 8
-> > +              maxItems: 8
-> > +            interrupt-names:
-> > +              minItems: 8
-> > +              maxItems: 8
-> > +    else:
-> > +      properties:
-> > +        interrupts:
-> > +          minItems: 1
-> > +          maxItems: 1
-> > +        interrupt-names:
-> > +          minItems: 1
-> > +          maxItems: 1
-> > +
-> >  unevaluatedProperties: false
-> >
-> >  examples:
->
->
-> Best regards,
-> Krzysztof
+> --- a/arch/arm64/boot/dts/renesas/rzg2ul-smarc-pinfunction.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/rzg2ul-smarc-pinfunction.dtsi
+> @@ -77,4 +77,15 @@ ssi1_pins: ssi1 {
+>                          <RZG2L_PORT_PINMUX(3, 2, 2)>, /* TXD */
+>                          <RZG2L_PORT_PINMUX(3, 3, 2)>; /* RXD */
+>         };
+> +
+> +       usb0_pins: usb0 {
+> +               pinmux = <RZG2L_PORT_PINMUX(5, 0, 1)>, /* VBUS */
+> +                        <RZG2L_PORT_PINMUX(5, 2, 1)>, /* OVC */
+> +                        <RZG2L_PORT_PINMUX(5, 3, 1)>; /* OTG_ID */
+> +       };
+> +
+> +       usb1_pins: usb1 {
+> +               pinmux = <RZG2L_PORT_PINMUX(5, 4, 5)>, /* VBUS */
 
+/* OVC */?
 
+> +                        <RZG2L_PORT_PINMUX(6, 0, 1)>; /* OVC */
 
--- 
-With best wishes
-Dmitry
+/*VBUS */?
+
+> +       };
+>  };
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
