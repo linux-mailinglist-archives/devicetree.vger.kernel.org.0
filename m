@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B7D7512BA7
-	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 08:34:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CE95B512BB7
+	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 08:37:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244160AbiD1Gho (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Apr 2022 02:37:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40146 "EHLO
+        id S244175AbiD1Gku (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Apr 2022 02:40:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49940 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244133AbiD1Ghm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 02:37:42 -0400
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94AEC972FC
-        for <devicetree@vger.kernel.org>; Wed, 27 Apr 2022 23:34:27 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id g6so7562403ejw.1
-        for <devicetree@vger.kernel.org>; Wed, 27 Apr 2022 23:34:27 -0700 (PDT)
+        with ESMTP id S244158AbiD1Gkt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 02:40:49 -0400
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 867BD97BBB
+        for <devicetree@vger.kernel.org>; Wed, 27 Apr 2022 23:37:34 -0700 (PDT)
+Received: by mail-ej1-x62c.google.com with SMTP id l18so7528808ejc.7
+        for <devicetree@vger.kernel.org>; Wed, 27 Apr 2022 23:37:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=uzuvBG3ySD2q6+EwBDVkcHQZJOKGPkpC5+jeVqG/3co=;
-        b=hslMUKE+lJ/AV2mxULrxBj8n9wD1cA7ihbkpDl990VaHaNscheWT3YMDZWHKp/cpG7
-         ZFbphFxD0k8J4Hkc2pDWB7wdceFzPpu2AiRMUUeEc8F6WsGxguMtwDEo2lPUNpDuuEiy
-         GYXKN69K2YASGzxtO1hTO4zpmXbo1n4mywjj+7D7R6/IMDqTv9s1KdlRRc++gnx98MDw
-         lEyYVyJkQJexivMQ2O957UQCz7h2++X4CWJRCVHxNHHeCgWs8ky2QlwziejP5ZBpcK2n
-         eYJWFjRwEapB67DNbOPjuRlfUdm01V07eq+BzNVP5RstzjS8Tmz5XIzRfYgP6HVyWl7p
-         N+NQ==
+        bh=vQuJemEQZtOClpOcehCv8HwJ99NWWFLzVezPd8GOsHU=;
+        b=SQfA/qWnxaXhMdzN8fwO8LJSkhrZCgPApUc0W26KbVtHa1/bbo0ViFX+ofQKfo+5K/
+         DFVWIQYwoenoZq+bVHlU6015EMsluuxImU3vbKX1j71idFjW61GaANiq9LKtROHzWGE0
+         IH1XbG4wXxRNEv1zby59TG+Wqh1myUW5SPt3BPOQAAbxcOHXK4yIzZl0B5qEUCZmSSbf
+         PJnKcvbwbmDhH/eRu9KMo+Fxz7IpZAKy7jC484/zJ0N2Lgka0SLfQBdc2yUgfqRy+8RJ
+         74O33hF9OKmq0x/p5VikCLJbyKvxOhqn2heymD7ZFkT8DD0voR6Rmn/b3KViDePpg6Gf
+         dbrQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=uzuvBG3ySD2q6+EwBDVkcHQZJOKGPkpC5+jeVqG/3co=;
-        b=aWFZe7nhHSHS12aTQxyLVMoSNll8Q55hOEOgAUlTG/pcvUXBJptVWomI0kTMYD3Fru
-         ieYB/ezG4668CeOZEjwmalmS5qQKbLBJiLAqgwweU/beoaXDZqHZvfI8bqWkuSO8dFBa
-         3AJHwPC1vT5WsbfjVNdb07aUv+u8Td31VBb242eATDNZY9QEWnkSndnMFkCIfzsxR6fp
-         PTVZ1H8/OI/fHyr0iOfraCqBhY1S4s4lKM16S8a/ed7Mq2OjIEyDGuB7AmriPfjURjcs
-         3B2JSrSlMCji811DmbnzBhrId6brWo3PpRT9n/yXrp0qG0NicM45GX6pvegM6850fq8q
-         ABCg==
-X-Gm-Message-State: AOAM532OZaj3pcJYfLQjGsugFBpjzrqR4sTrc/0J0PKTUBC7jPIL+6ZN
-        rFEFihf8ApcdUW7j443SeDq6GQ==
-X-Google-Smtp-Source: ABdhPJzY1zrs5I3FVQuz284Iw/XuEBYz3tDW17K26IIlFioWkI1mMejMgLKVMYy1IHPyq9D6n6tqXA==
-X-Received: by 2002:a17:907:6e02:b0:6f3:d185:5d25 with SMTP id sd2-20020a1709076e0200b006f3d1855d25mr4921212ejc.14.1651127666184;
-        Wed, 27 Apr 2022 23:34:26 -0700 (PDT)
+        bh=vQuJemEQZtOClpOcehCv8HwJ99NWWFLzVezPd8GOsHU=;
+        b=xYVoIBN3iXL17LjzrcdSmw6ikK4MFx9mxkt5esy8qJX7FwSeLRZvqvMA/DhcqJxTUe
+         q+xmfy3w1RdQBKVxKxCfITqDazdXXtQzzfOPHPpio3WS5+8tX8ZqvMOd64fstwKZVL0N
+         +oRT4KnBBF16BbbdJcN5em7gLxTQ2t8Ky8mc+PhbG7VihrnA0VtMa3PyLD6vWPB0ML34
+         c5OvJBB2X23NhnLBPMnogLesjgJyVqPPiCisRqHEUo+4z5KXwBNoXVpCrhLBrUlasYOe
+         NWV0ZI77lu1bmX44omv2WrhTKY7MtEu1eMPtUeq0KOy+muBzwo8HpJPzbmmNhnlst3nD
+         dhRw==
+X-Gm-Message-State: AOAM5316ixgDDBoJvuW6hjpWX7rSGN9sMeYV0RxN+P8DY5FnRfeWRfil
+        h3u+z0PHXirWySKBHO7CzLFAQw==
+X-Google-Smtp-Source: ABdhPJwIDG6JJQkX2j+dOnGWCEo3T5++ulatebavZxvudL1ZgszkW2TlVKRE4wi1f/ha07iHzj1kJQ==
+X-Received: by 2002:a17:907:9482:b0:6da:8ad6:c8b5 with SMTP id dm2-20020a170907948200b006da8ad6c8b5mr29709648ejc.372.1651127853141;
+        Wed, 27 Apr 2022 23:37:33 -0700 (PDT)
 Received: from [192.168.0.159] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id f31-20020a056402329f00b0042617ba6381sm960602eda.11.2022.04.27.23.34.24
+        by smtp.gmail.com with ESMTPSA id u10-20020a1709060b0a00b006f38412b2d0sm6224668ejg.171.2022.04.27.23.37.31
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 27 Apr 2022 23:34:25 -0700 (PDT)
-Message-ID: <918f5bc9-77f6-4d65-7432-ab53aadd6734@linaro.org>
-Date:   Thu, 28 Apr 2022 08:34:24 +0200
+        Wed, 27 Apr 2022 23:37:32 -0700 (PDT)
+Message-ID: <ea6ccec6-81a3-b22d-46db-c31a9f1e85f3@linaro.org>
+Date:   Thu, 28 Apr 2022 08:37:31 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [RFC/RFT v2 03/11] dt-bindings: phy: rockchip: add PCIe v3
- constants
+Subject: Re: [RFC/RFT v2 05/11] dt-bindings: pci: add bifurcation option to
+ Rockchip DesignWare binding
 Content-Language: en-US
 To:     Frank Wunderlich <linux@fw-web.de>,
         linux-rockchip@lists.infradead.org
@@ -75,9 +75,9 @@ Cc:     Frank Wunderlich <frank-w@public-files.de>,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
         linux-phy@lists.infradead.org
 References: <20220426132139.26761-1-linux@fw-web.de>
- <20220426132139.26761-4-linux@fw-web.de>
+ <20220426132139.26761-6-linux@fw-web.de>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220426132139.26761-4-linux@fw-web.de>
+In-Reply-To: <20220426132139.26761-6-linux@fw-web.de>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -93,53 +93,26 @@ X-Mailing-List: devicetree@vger.kernel.org
 On 26/04/2022 15:21, Frank Wunderlich wrote:
 > From: Frank Wunderlich <frank-w@public-files.de>
 > 
-> Add constants that can be used in devicetree and driver for
-> PCIe v3 phy.
+> Add bifurcation property for splitting PCIe lanes.
 > 
 > Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
 > ---
-> v2:
-> - new patch because splitting out this file
-> - rename file from snps to rockchip
-> ---
->  include/dt-bindings/phy/phy-rockchip-pcie3.h | 21 ++++++++++++++++++++
-
-Naming - vendor,device.
-
->  1 file changed, 21 insertions(+)
->  create mode 100644 include/dt-bindings/phy/phy-rockchip-pcie3.h
+>  Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
-> diff --git a/include/dt-bindings/phy/phy-rockchip-pcie3.h b/include/dt-bindings/phy/phy-rockchip-pcie3.h
-> new file mode 100644
-> index 000000000000..93e57edd337d
-> --- /dev/null
-> +++ b/include/dt-bindings/phy/phy-rockchip-pcie3.h
-> @@ -0,0 +1,21 @@
-> +/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
+> diff --git a/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml b/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
+> index bc0a9d1db750..a992970e8b85 100644
+> --- a/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
+> +++ b/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
+> @@ -74,6 +74,8 @@ properties:
+>    reset-names:
+>      const: pipe
+>  
+> +  bifurcation: true
+> +
 
-s/MIT/BSD-2-clause/ just like bindings because it is part of it. Unless
-you took it from something and it is already licensed like that?
-
-> +/*
-> + * Copyright (c) 2021 Rockchip Electronics Co., Ltd.
-> + */
-> +
-> +#ifndef _DT_BINDINGS_PHY_ROCKCHIP_PCIE3
-> +#define _DT_BINDINGS_PHY_ROCKCHIP_PCIE3
-> +
-> +/*
-> + * pcie30_phy_mode[2:0]
-> + * bit2: aggregation
-> + * bit1: bifurcation for port 1
-> + * bit0: bifurcation for port 0
-> + */
-> +#define PHY_MODE_PCIE_AGGREGATION 4	/* PCIe3x4 */
-> +#define PHY_MODE_PCIE_NANBNB	0	/* P1:PCIe3x2  +  P0:PCIe3x2 */
-> +#define PHY_MODE_PCIE_NANBBI	1	/* P1:PCIe3x2  +  P0:PCIe3x1*2 */
-> +#define PHY_MODE_PCIE_NABINB	2	/* P1:PCIe3x1*2 + P0:PCIe3x2 */
-> +#define PHY_MODE_PCIE_NABIBI	3	/* P1:PCIe3x1*2 + P0:PCIe3x1*2 */
-> +
-> +#endif /* _DT_BINDINGS_PHY_ROCKCHIP_PCIE3 */
+Does not look like standard property. Is it already defined somewhere?
+All non-standard properties need vendor, type and description.
 
 
 Best regards,
