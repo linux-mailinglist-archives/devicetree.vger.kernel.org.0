@@ -2,141 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E3A98512972
-	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 04:22:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 71FEF51299D
+	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 04:44:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231766AbiD1CZz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Apr 2022 22:25:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58962 "EHLO
+        id S241571AbiD1Crj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Apr 2022 22:47:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32918 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229826AbiD1CZy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 22:25:54 -0400
-Received: from szxga02-in.huawei.com (szxga02-in.huawei.com [45.249.212.188])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44C407523D;
-        Wed, 27 Apr 2022 19:22:41 -0700 (PDT)
-Received: from dggpemm500020.china.huawei.com (unknown [172.30.72.56])
-        by szxga02-in.huawei.com (SkyGuard) with ESMTP id 4KpfXD1JHdzhYTS;
-        Thu, 28 Apr 2022 10:22:20 +0800 (CST)
-Received: from dggpemm500006.china.huawei.com (7.185.36.236) by
- dggpemm500020.china.huawei.com (7.185.36.49) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.24; Thu, 28 Apr 2022 10:22:39 +0800
-Received: from [10.174.178.55] (10.174.178.55) by
- dggpemm500006.china.huawei.com (7.185.36.236) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.24; Thu, 28 Apr 2022 10:22:38 +0800
-Subject: Re: [PATCH v22 5/9] arm64: kdump: Reimplement crashkernel=X
-To:     Catalin Marinas <catalin.marinas@arm.com>
-CC:     Thomas Gleixner <tglx@linutronix.de>,
-        Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
-        <x86@kernel.org>, "H . Peter Anvin" <hpa@zytor.com>,
-        <linux-kernel@vger.kernel.org>, Dave Young <dyoung@redhat.com>,
-        Baoquan He <bhe@redhat.com>, Vivek Goyal <vgoyal@redhat.com>,
-        Eric Biederman <ebiederm@xmission.com>,
-        <kexec@lists.infradead.org>, Will Deacon <will@kernel.org>,
+        with ESMTP id S229961AbiD1Crh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 22:47:37 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3675397B9E;
+        Wed, 27 Apr 2022 19:44:23 -0700 (PDT)
+X-UUID: a6c12de916bb4bdfa2bca24e05da6545-20220428
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.4,REQID:1730f5f9-1e2c-40d1-a8df-ed243df7996a,OB:0,LO
+        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:100,FILE:0,RULE:Release_Ham,AC
+        TION:release,TS:100
+X-CID-INFO: VERSION:1.1.4,REQID:1730f5f9-1e2c-40d1-a8df-ed243df7996a,OB:0,LOB:
+        0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:100,FILE:0,RULE:Spam_GS981B3D,AC
+        TION:quarantine,TS:100
+X-CID-META: VersionHash:faefae9,CLOUDID:5afdc0c6-85ee-4ac1-ac05-bd3f1e72e732,C
+        OID:60fd547dc6b5,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,File:nil
+        ,QS:0,BEC:nil
+X-UUID: a6c12de916bb4bdfa2bca24e05da6545-20220428
+Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw01.mediatek.com
+        (envelope-from <yongqiang.niu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 234965718; Thu, 28 Apr 2022 10:44:16 +0800
+Received: from MTKMBS07N2.mediatek.inc (172.21.101.141) by
+ mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Thu, 28 Apr 2022 10:44:15 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Thu, 28 Apr 2022 10:44:14 +0800
+Received: from localhost.localdomain (10.17.3.154) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Thu, 28 Apr 2022 10:44:13 +0800
+From:   Yongqiang Niu <yongqiang.niu@mediatek.com>
+To:     Chun-Kuang Hu <chunkuang.hu@kernel.org>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        "David Airlie" <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        Yongqiang Niu <yongqiang.niu@mediatek.com>,
+        Fabien Parent <fparent@baylibre.com>,
+        Dennis YC Hsieh <dennis-yc.hsieh@mediatek.com>,
+        <devicetree@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        <devicetree@vger.kernel.org>, "Jonathan Corbet" <corbet@lwn.net>,
-        <linux-doc@vger.kernel.org>, Randy Dunlap <rdunlap@infradead.org>,
-        Feng Zhou <zhoufeng.zf@bytedance.com>,
-        Kefeng Wang <wangkefeng.wang@huawei.com>,
-        Chen Zhou <dingguo.cz@antgroup.com>,
-        "John Donnelly" <John.p.donnelly@oracle.com>,
-        Dave Kleikamp <dave.kleikamp@oracle.com>
-References: <20220414115720.1887-1-thunder.leizhen@huawei.com>
- <20220414115720.1887-6-thunder.leizhen@huawei.com> <YmgzxsrrMlCDYsWp@arm.com>
- <ee8daaa9-3258-e7e8-e5c4-c51dc9841580@huawei.com> <Ymk34NsIFqUgfk3b@arm.com>
- <ae7211ad-e2ac-f5b1-5aa0-701802132e73@huawei.com> <YmlphvZVMsGfFksp@arm.com>
-From:   "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
-Message-ID: <42f4db6c-d3f9-e1c4-6a61-dc2bf4f89adf@huawei.com>
-Date:   Thu, 28 Apr 2022 10:22:37 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>
+Subject: [PATCH v2, 0/1] drm/mediatek: add lut diff flag for new gamma hardware support
+Date:   Thu, 28 Apr 2022 10:44:10 +0800
+Message-ID: <20220428024411.10133-1-yongqiang.niu@mediatek.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <YmlphvZVMsGfFksp@arm.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.174.178.55]
-X-ClientProxiedBy: dggems701-chm.china.huawei.com (10.3.19.178) To
- dggpemm500006.china.huawei.com (7.185.36.236)
-X-CFilter-Loop: Reflected
-X-Spam-Status: No, score=-6.1 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+base v5.17-rc1
 
+change from v1:
+- fix review comment issue
 
-On 2022/4/28 0:04, Catalin Marinas wrote:
-> On Wed, Apr 27, 2022 at 09:49:20PM +0800, Leizhen (ThunderTown) wrote:
->> On 2022/4/27 20:32, Catalin Marinas wrote:
->>> I think one could always pass a default command line like:
->>>
->>> 	crashkernel=1G,high crashkernel=128M,low
->>>
->>> without much knowledge of the SoC memory layout.
->>
->> Yes, that's what the end result is. The user specify crashkernel=128M,low
->> and the implementation ensure the 128M low memory is allocated from DMA zone.
->> We use arm64_dma_phys_limit as the upper limit for crash low memory.
->>
->> +#define CRASH_ADDR_LOW_MAX             arm64_dma_phys_limit
->> +       unsigned long long crash_max = CRASH_ADDR_LOW_MAX;
->> +       crash_base = memblock_phys_alloc_range(crash_size, CRASH_ALIGN,
->>                                                crash_base, crash_max);
->>
->>> Another option is to only introduce crashkernel=Y,low and, when that is
->>> passed, crashkernel=Y can go above arm64_dma_phys_limit. We won't need a
->>> 'high' option at all:
->>>
->>> 	crashkernel=1G				- all within ZONE_DMA
->>> 	crashkernel=1G crashkernel=128M,low	- 128M in ZONE_DMA
->>> 						  1G above ZONE_DMA
->>>
->>> If ZONE_DMA is not present or it extends to the whole RAM, we can ignore
->>> the 'low' option.
->>
->> I think although the code is hard to make generic, the interface is better to
->> be relatively uniform. A user might have to maintain both x86 and arm64, and
->> so on. It's not a good thing that the difference is too big.
-> 
-> There will be some difference as the 4G limit doesn't always hold for
-> arm64 (though it's true in most cases). Anyway, we can probably simplify
-> things a bit while following the documented behaviour:
-> 
-> 	crashkernel=Y		- current behaviour within ZONE_DMA
-> 	crashkernel=Y,high	- allocate from above ZONE_DMA
-> 	crashkernel=Y,low	- allocate within ZONE_DMA
-> 
-> There is no fallback from crashkernel=Y.
+Yongqiang Niu (1):
+  drm/mediatek: add lut diff flag for new gamma hardware support
 
-Yes, I followed your guidelines yesterday to modify the code. Now the code flow
-is much clearer.
-
-> 
-> The question is whether we still want a default low allocation if
-> crashkernel=Y,low is missing but 'high' is present. If we add this, I
-> think we'd be consistent with kernel-parameters.txt for the 'low'
-> description. A default 'low' is probably not that bad but I'm tempted to
-> always mandate both 'high' and 'low'.
-
-Yes, I agree with you. Because the situation is complicated, the default value
-is hard to be accurate. It's better to let the user configure it according to
-the actual situation, they're also programmers.
-
-Whether mandate both 'high' and 'low', or allow only 'high' like x86(but the default
-value becomes zero). I prefer the latter. The size of 'low' maybe zero, for example,
-SMMU is enabled on the second kernel. If only high memory is required, only that
-high memory needs to be configured, seems more reasonable.
-
-> 
+ drivers/gpu/drm/mediatek/mtk_disp_aal.c   |  2 +-
+ drivers/gpu/drm/mediatek/mtk_disp_drv.h   |  2 +-
+ drivers/gpu/drm/mediatek/mtk_disp_gamma.c | 34 +++++++++++++++++++----
+ 3 files changed, 30 insertions(+), 8 deletions(-)
 
 -- 
-Regards,
-  Zhen Lei
+2.25.1
+
