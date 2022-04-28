@@ -2,380 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6FD695130FD
-	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 12:11:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8006F513106
+	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 12:11:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239742AbiD1KNW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Apr 2022 06:13:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50986 "EHLO
+        id S231623AbiD1KO4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Apr 2022 06:14:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56560 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232406AbiD1KMx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 06:12:53 -0400
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1A7643EDA
-        for <devicetree@vger.kernel.org>; Thu, 28 Apr 2022 03:04:35 -0700 (PDT)
-Received: by mail-wm1-x334.google.com with SMTP id 129so2663002wmz.0
-        for <devicetree@vger.kernel.org>; Thu, 28 Apr 2022 03:04:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=tOhHnAQkxa2qzyKZzRXGoy2e/6Mk+dTMe0nNKxo4MUk=;
-        b=FlCvezu4VkJkmpNS2me+Pzs3FjNwQdGqQhsuzrcGnkzAnG/BwrtR0KgTbefUv7tVEM
-         9/gfBKFaby2S9D3FrRiM6c+xhwqiJFjMNzjKmL9Gv0bzT2jNqcZzm4g3UyNqv4rMniNy
-         9OcYFByOtM7Z/L3cZuwhIkIbpyGsSggZS2eH4=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=tOhHnAQkxa2qzyKZzRXGoy2e/6Mk+dTMe0nNKxo4MUk=;
-        b=vhzD5kaJ8tPIWsyBMjyZLJql4CsTLG1erlOHBDv9Zic1+90I6LrM3opJguK8pfM0ke
-         +3Wv8i11y9ie2yCLHDZW1FPEAuD309eKhMuBLxwRRx+ehVDB8Up92nKHQ6GLRLvyDxm9
-         gmS2YO3mYaqYIzRtpVJP59LkhuuZrWkXEmcH3KWvF8X6DT7tBgqjjghDVCvFAGSpf9Dd
-         LoM9zG1wSluzNRV1v5Sgri1NDYv7sZiSMwtckcKELaHgTskpdfGlpheSEJIQ0QUo+TyI
-         //EnevWapUbYnd+YRJ/fIYsxe1r7klz+OYX8y9Vk+/uTbETvyF2HbMgMP3jQXDVDW6hZ
-         AmUA==
-X-Gm-Message-State: AOAM532FSv5+u4inqz5l4jy8qpAaeTHQ7jtL5OD6YrEzFRfIVstx3Pvo
-        2GokLqD9M6Yawb6VKbL1EdU8Fg==
-X-Google-Smtp-Source: ABdhPJwntxxbBDaBUOxKvh3XkrKUy9vQGnet7rYVrC0FGyWXy63pk+1UEhOTJCf1ZY4J0+67EU884g==
-X-Received: by 2002:a05:600c:4f12:b0:393:ed40:5fa7 with SMTP id l18-20020a05600c4f1200b00393ed405fa7mr16540675wmq.70.1651140274220;
-        Thu, 28 Apr 2022 03:04:34 -0700 (PDT)
-Received: from fabiobaltieri-linux.lan ([37.228.205.1])
-        by smtp.gmail.com with ESMTPSA id v5-20020a5d6785000000b0020a792848eesm15080449wru.82.2022.04.28.03.04.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 28 Apr 2022 03:04:33 -0700 (PDT)
-From:   Fabio Baltieri <fabiobaltieri@chromium.org>
-To:     Benson Leung <bleung@chromium.org>,
-        Guenter Roeck <groeck@chromium.org>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        chrome-platform@lists.linux.dev, linux-pwm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Fabio Baltieri <fabiobaltieri@chromium.org>
-Subject: [PATCH v6 4/4] arm64: dts: address cros-ec-pwm channels by type
-Date:   Thu, 28 Apr 2022 10:04:21 +0000
-Message-Id: <20220428100421.247471-5-fabiobaltieri@chromium.org>
-X-Mailer: git-send-email 2.36.0.rc2.479.g8af0fa9b8e-goog
-In-Reply-To: <20220428100421.247471-1-fabiobaltieri@chromium.org>
-References: <20220428100421.247471-1-fabiobaltieri@chromium.org>
+        with ESMTP id S1345009AbiD1KO3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 06:14:29 -0400
+Received: from mailout1.w1.samsung.com (mailout1.w1.samsung.com [210.118.77.11])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 448D52E08D
+        for <devicetree@vger.kernel.org>; Thu, 28 Apr 2022 03:05:37 -0700 (PDT)
+Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
+        by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20220428100536euoutp015c9c68e57fb8ad4f26b019bafdfc9cf0~qB2NCenxj2684926849euoutp01F
+        for <devicetree@vger.kernel.org>; Thu, 28 Apr 2022 10:05:36 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20220428100536euoutp015c9c68e57fb8ad4f26b019bafdfc9cf0~qB2NCenxj2684926849euoutp01F
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1651140336;
+        bh=rNMoswJmasJ1RNqRjeSYB1k5B0BnxjvAK8UQufAn4Eg=;
+        h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
+        b=L46bNQclhKh/afok5LSzGx63Y1q1kBWEwMABGbtLg/VhQfHSsgnU1GFhVfnfpVmuT
+         cUgADl+1rahkJp94DaUPFgDflqrgrJiiWaNJtJW8Z0C+lr0c8CB/OUCT96X8NKBHyv
+         /tMifdpZ556VZKNm2o37rB3KZjlndz2ENb8qM3Us=
+Received: from eusmges1new.samsung.com (unknown [203.254.199.242]) by
+        eucas1p2.samsung.com (KnoxPortal) with ESMTP id
+        20220428100535eucas1p2e712550066617010c3049bdba4eeff40~qB2L-6QAi1557515575eucas1p2V;
+        Thu, 28 Apr 2022 10:05:35 +0000 (GMT)
+Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
+        eusmges1new.samsung.com (EUCPMTA) with SMTP id E6.4D.10009.EE66A626; Thu, 28
+        Apr 2022 11:05:35 +0100 (BST)
+Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
+        eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
+        20220428100534eucas1p2e44b4579e216ca06d47d0213b44adaaf~qB2K-EXX00832808328eucas1p26;
+        Thu, 28 Apr 2022 10:05:34 +0000 (GMT)
+Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
+        eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
+        20220428100534eusmtrp28fb94c78265d829dc2a1e78ff451247d~qB2K_Aoyj1482914829eusmtrp2B;
+        Thu, 28 Apr 2022 10:05:34 +0000 (GMT)
+X-AuditID: cbfec7f2-e7fff70000002719-da-626a66ee082b
+Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
+        eusmgms1.samsung.com (EUCPMTA) with SMTP id E4.5A.09522.DE66A626; Thu, 28
+        Apr 2022 11:05:33 +0100 (BST)
+Received: from [106.210.134.192] (unknown [106.210.134.192]) by
+        eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
+        20220428100532eusmtip1171d5c80f75d96e5b0953dc900eedec0~qB2J8DWoR1040710407eusmtip1v;
+        Thu, 28 Apr 2022 10:05:32 +0000 (GMT)
+Message-ID: <99c80fb6-c6cc-9370-b93d-ed736c7f2192@samsung.com>
+Date:   Thu, 28 Apr 2022 12:05:33 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0)
+        Gecko/20100101 Thunderbird/91.8.0
+Subject: Re: [PATCH 08/10] ARM: dts: exynos: use proper
+ 'dma-channels/requests' properties
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Dinh Nguyen <dinguyen@kernel.org>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Liviu Dudau <liviu.dudau@arm.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        Broadcom Kernel Team <bcm-kernel-feedback-list@broadcom.com>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Rob Herring <robh@kernel.org>
+From:   Marek Szyprowski <m.szyprowski@samsung.com>
+In-Reply-To: <1399774c-f188-81f1-4d15-367b9d0e4a59@linaro.org>
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrEKsWRmVeSWpSXmKPExsWy7djP87rv07KSDM5cZrJ4MG8bm8Xa3qMs
+        FvOPnGO1OHp+N5NF34uHzBZ7X29lt7j/9SijxabH11gtLu+aw2Yx4/w+JosDS9tZLN78fsFu
+        8e5lhMXTmZvZLFr3HmG3+L9nB7vF4TftrBbvVj9htFh+ageLg7DHmnlrGD1m3T/L5rFpVSeb
+        x51re9g8Ni+p9+jbsorR4/MmOY+9n3+zBHBEcdmkpOZklqUW6dslcGWc/KhScECwou/HCqYG
+        xht8XYycHBICJhIbT75l6WLk4hASWMEosfH2DGaQhJDAF0aJS8v0IOzPjBI/XjvDNGxdPZcJ
+        omE5o8T3g89YIZyPjBL3D/xjA6niFbCTaDw4kRHEZhFQlfi76BYrRFxQ4uTMJywgtqhAksTc
+        fffAtgkLxEg8XroOrJ5ZQFzi1pP5YBtEBJ6wSry5PI0FIqEocWvaUiYQm03AUKLrbRfYMk6g
+        Zf8OdLJD1MhLNG+dzQzSLCGwn1Pi6I3/QA4HkOMi0XvDGuIFYYlXx7ewQ9gyEv93giwDKcmX
+        +DvDGCJcIXHt9RpmCNta4s65X2wgJcwCmhLrd+lDhB0lDm6YC9XJJ3HjrSDEAXwSk7ZNh9rJ
+        K9HRJgRRrSYx6/g6uJ0HL1xinsCoNAspTGYh+X0WkldmIexdwMiyilE8tbQ4Nz212DAvtVyv
+        ODG3uDQvXS85P3cTIzAZnv53/NMOxrmvPuodYmTiYDzEKMHBrCTC+2V3RpIQb0piZVVqUX58
+        UWlOavEhRmkOFiVx3uTMDYlCAumJJanZqakFqUUwWSYOTqkGJmGJzQ43p4j/vTb1pXCL1/vF
+        /85u8Y5k+fHWxXP70YdSfJ3rf+dWJ5UdUFB5IP74AH/OHYvIoP9CRgdSSpqndV87V3eOVXuj
+        Uc5up/RFL17OyjeqqPh/5GHMRYsfl1q8Z/3a6XXk1LpN1xTesyxuMxZ/b/1R75fWySOTj3z3
+        8PV/3FZ291/RyqjGql6nSWxbGPadv/RJIdzDSqZJpNI4hNVL+tU0lkUqkZ4vM1M+2K1ZxrhW
+        /tJ5xV8+6Zsmh6h/M/96Y82lQKnWhsy0Bau/8t09M2OfxmmhyoOPak1zG93PeOk/ye663nri
+        Eu/jKVq7FH0ev+9d7LNwnmB61qY3sXPMH+5/PsNW3OCu+MOvx2KVWIozEg21mIuKEwFYj2Fx
+        9QMAAA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrFIsWRmVeSWpSXmKPExsVy+t/xu7pv07KSDJrW2Fg8mLeNzWJt71EW
+        i/lHzrFaHD2/m8mi78VDZou9r7eyW9z/epTRYtPja6wWl3fNYbOYcX4fk8WBpe0sFm9+v2C3
+        ePcywuLpzM1sFq17j7Bb/N+zg93i8Jt2Vot3q58wWiw/tYPFQdhjzbw1jB6z7p9l89i0qpPN
+        4861PWwem5fUe/RtWcXo8XmTnMfez79ZAjii9GyK8ktLUhUy8otLbJWiDS2M9AwtLfSMTCz1
+        DI3NY62MTJX07WxSUnMyy1KL9O0S9DJOflQpOCBY0fdjBVMD4w2+LkZODgkBE4mtq+cydTFy
+        cQgJLGWUmP3qIyNEQkbi5LQGVghbWOLPtS42iKL3jBJ9M9rBingF7CQaD04Es1kEVCX+LrrF
+        ChEXlDg58wkLiC0qkCTxYttzsBphgRiJx0vXgdnMAuISt57MB9ssIvCMVeLVz12sEAlFiVvT
+        lsKcxCxxdOt8sA42AUOJrrcgZ3BycAJt/negkx2iwUyia2sX1FR5ieats5knMArNQnLILCQL
+        ZyFpmYWkZQEjyypGkdTS4tz03GJDveLE3OLSvHS95PzcTYzARLDt2M/NOxjnvfqod4iRiYPx
+        EKMEB7OSCO+X3RlJQrwpiZVVqUX58UWlOanFhxhNgaExkVlKNDkfmIrySuINzQxMDU3MLA1M
+        Lc2MlcR5PQs6EoUE0hNLUrNTUwtSi2D6mDg4pRqYGMTOvg3TqDLhUPG5v/m932yPVJkaN9eI
+        Bs27817cm/3tz4Hgc7IRwYvdQzIMD/YeiChVdVU/bJ6je0tjVSTXtLh214CUaCbnm7s5ison
+        a0UlLu6sZ7idcHyhik/4/84kruKru6Q/hp05r7wy4UGJd968nrr674FnFOV/nJK0l9L0tjLr
+        tH0fWrZ21y/piwvXuCekzxJ74O4qsqXV0UucNdddYefHvSd72K7Nv9T7SMHDUWzy+zMz/1Xz
+        /500/4vt98TKh0Xih2xctzIGztV0mBwmddDG+/+TeR8Kn+x8t8G8IT6pV2Z3cXBfmWaL2rv7
+        spzr9/28/J55RV3Wqu8JdwUOCcxYp/NV8YRHYqgSS3FGoqEWc1FxIgCXE64ajQMAAA==
+X-CMS-MailID: 20220428100534eucas1p2e44b4579e216ca06d47d0213b44adaaf
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20220427160347eucas1p23ce51e0fb49160d437961d98fd682c28
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20220427160347eucas1p23ce51e0fb49160d437961d98fd682c28
+References: <20220427155840.596535-1-krzysztof.kozlowski@linaro.org>
+        <CGME20220427160347eucas1p23ce51e0fb49160d437961d98fd682c28@eucas1p2.samsung.com>
+        <20220427155840.596535-9-krzysztof.kozlowski@linaro.org>
+        <5eeac2a0-4293-675e-9dc2-25ed8ab3fb8f@samsung.com>
+        <6981f93a-ef01-6ba0-4451-26526372d666@linaro.org>
+        <05c908ce-217f-6938-6745-7405ac39d8ea@samsung.com>
+        <1399774c-f188-81f1-4d15-367b9d0e4a59@linaro.org>
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Update various cros-ec-pwm board definitions to address the keyboard and
-screen backlight PWM channels by type rather than channel number. This
-makes the instance independent by the actual hardware configuration,
-relying on the EC firmware to pick the right channel, and allows
-dropping few dtsi overrides as a consequence.
+On 28.04.2022 12:00, Krzysztof Kozlowski wrote:
+> On 28/04/2022 11:57, Marek Szyprowski wrote:
+>> On 28.04.2022 11:54, Krzysztof Kozlowski wrote:
+>>> On 28/04/2022 11:50, Marek Szyprowski wrote:
+>>>> On 27.04.2022 17:58, Krzysztof Kozlowski wrote:
+>>>>> pl330 DMA controller bindings documented 'dma-channels' and
+>>>>> 'dma-requests' properties (without leading hash sign), so fix the DTS to
+>>>>> match the bindings.
+>>>>>
+>>>>> Reported-by: Rob Herring <robh@kernel.org>
+>>>>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>>> Are those properties really needed for PL330 driver on Exynos SoCs? I've
+>>>> removed them and I still see the proper values read from registers and
+>>>> reported in the log (Exynos4210):
+>>>>
+>>>> dma-pl330 12680000.dma-controller: Loaded driver for PL330 DMAC-141330
+>>>> dma-pl330 12680000.dma-controller:       DBUFF-32x4bytes Num_Chans-8
+>>>> Num_Peri-32 Num_Events-32
+>>>> dma-pl330 12690000.dma-controller: Loaded driver for PL330 DMAC-141330
+>>>> dma-pl330 12690000.dma-controller:       DBUFF-32x4bytes Num_Chans-8
+>>>> Num_Peri-32 Num_Events-32
+>>>> dma-pl330 12850000.dma-controller: Loaded driver for PL330 DMAC-141330
+>>>> dma-pl330 12850000.dma-controller:       DBUFF-64x8bytes Num_Chans-8
+>>>> Num_Peri-1 Num_Events-32
+>>>>
+>>>> I also don't see any code that would read those properties. IMHO they
+>>>> should be simply removed at all, at least for the PL330 related nodes.
+>>> In current Linux implementation they indeed are not used. Nothing parses
+>>> them. However:
+>>> 1. They describe (hopefully correct) the hardware.
+>>> 2. They might be used by other implementations of pl330 driver.
+>>>
+>>> I would not remove them from existing sources, but indeed maybe there is
+>>> no need to add for new files.
+>> What's the point in having dt properties duplicating data that might be
+>> read from the driver registers?
+> Hm, indeed, there is no point in this. Since they are read from
+> registers, what was the idea behind in commit 42cf20980cde?
 
-Changed the node label used to cros_ec_pwm_type to avoid ambiguity about
-the pwm cell meaning.
+#dma-cells is indeed required, but the rest seems to be the cargo-cult 
+of some kind.
 
-Signed-off-by: Fabio Baltieri <fabiobaltieri@chromium.org>
----
- .../dts/mediatek/mt8183-kukui-jacuzzi-fennel-sku1.dts    | 4 ++--
- arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi   | 4 ++--
- arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi           | 1 +
- arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi      | 4 ----
- arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi             | 9 +++++----
- .../boot/dts/qcom/sc7280-herobrine-herobrine-r0.dts      | 7 ++++---
- arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi           | 7 ++++---
- arch/arm64/boot/dts/qcom/sc7280-idp-ec-h1.dtsi           | 4 ++--
- arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi               | 7 ++++---
- arch/arm64/boot/dts/rockchip/rk3399-gru-bob.dts          | 4 ----
- arch/arm64/boot/dts/rockchip/rk3399-gru-chromebook.dtsi  | 5 +++--
- arch/arm64/boot/dts/rockchip/rk3399-gru-kevin.dts        | 4 ----
- arch/arm64/boot/dts/rockchip/rk3399-gru.dtsi             | 1 +
- 13 files changed, 28 insertions(+), 33 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-sku1.dts b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-sku1.dts
-index dec11a4eb59e..e2554a313deb 100644
---- a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-sku1.dts
-+++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-sku1.dts
-@@ -15,13 +15,13 @@ pwmleds {
- 		compatible = "pwm-leds";
- 		keyboard_backlight: keyboard-backlight {
- 			label = "cros_ec::kbd_backlight";
--			pwms = <&cros_ec_pwm 0>;
-+			pwms = <&cros_ec_pwm_type CROS_EC_PWM_DT_KB_LIGHT>;
- 			max-brightness = <1023>;
- 		};
- 	};
- };
- 
--&cros_ec_pwm {
-+&cros_ec_pwm_type {
- 	status = "okay";
- };
- 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi
-index 8f7bf33f607d..8474bd3af6eb 100644
---- a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi
-@@ -92,8 +92,8 @@ volume_up {
- };
- 
- &cros_ec {
--	cros_ec_pwm: ec-pwm {
--		compatible = "google,cros-ec-pwm";
-+	cros_ec_pwm_type: ec-pwm {
-+		compatible = "google,cros-ec-pwm-type";
- 		#pwm-cells = <1>;
- 		status = "disabled";
- 	};
-diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
-index 0f9480f91261..ff54687ab8bf 100644
---- a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
-@@ -7,6 +7,7 @@
- 
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/input/input.h>
-+#include <dt-bindings/mfd/cros_ec.h>
- #include "mt8183.dtsi"
- #include "mt6358.dtsi"
- 
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi
-index c81805ef2250..aea7c66d95e0 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi
-@@ -77,10 +77,6 @@ &ap_spi_fp {
- 	status = "okay";
- };
- 
--&backlight {
--	pwms = <&cros_ec_pwm 0>;
--};
--
- &camcc {
- 	status = "okay";
- };
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-index 732e1181af48..6552e0025f84 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-@@ -8,6 +8,7 @@
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/input/gpio-keys.h>
- #include <dt-bindings/input/input.h>
-+#include <dt-bindings/mfd/cros_ec.h>
- #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
- #include <dt-bindings/sound/sc7180-lpass.h>
- 
-@@ -316,7 +317,7 @@ backlight: backlight {
- 		num-interpolated-steps = <64>;
- 		default-brightness-level = <951>;
- 
--		pwms = <&cros_ec_pwm 1>;
-+		pwms = <&cros_ec_pwm_type CROS_EC_PWM_DT_DISPLAY_LIGHT>;
- 		enable-gpios = <&tlmm 12 GPIO_ACTIVE_HIGH>;
- 		power-supply = <&ppvar_sys>;
- 		pinctrl-names = "default";
-@@ -354,7 +355,7 @@ pwmleds {
- 		keyboard_backlight: keyboard-backlight {
- 			status = "disabled";
- 			label = "cros_ec::kbd_backlight";
--			pwms = <&cros_ec_pwm 0>;
-+			pwms = <&cros_ec_pwm_type CROS_EC_PWM_DT_KB_LIGHT>;
- 			max-brightness = <1023>;
- 		};
- 	};
-@@ -637,8 +638,8 @@ cros_ec: ec@0 {
- 		pinctrl-0 = <&ap_ec_int_l>;
- 		spi-max-frequency = <3000000>;
- 
--		cros_ec_pwm: pwm {
--			compatible = "google,cros-ec-pwm";
-+		cros_ec_pwm_type: pwm {
-+			compatible = "google,cros-ec-pwm-type";
- 			#pwm-cells = <1>;
- 		};
- 
-diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-herobrine-r0.dts b/arch/arm64/boot/dts/qcom/sc7280-herobrine-herobrine-r0.dts
-index 1779d96c30f6..628ef990433b 100644
---- a/arch/arm64/boot/dts/qcom/sc7280-herobrine-herobrine-r0.dts
-+++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-herobrine-r0.dts
-@@ -11,6 +11,7 @@
- #include <dt-bindings/iio/qcom,spmi-adc7-pmr735a.h>
- #include <dt-bindings/input/gpio-keys.h>
- #include <dt-bindings/input/input.h>
-+#include <dt-bindings/mfd/cros_ec.h>
- #include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
- #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
- 
-@@ -336,7 +337,7 @@ pwmleds {
- 		keyboard_backlight: keyboard-backlight {
- 			status = "disabled";
- 			label = "cros_ec::kbd_backlight";
--			pwms = <&cros_ec_pwm 0>;
-+			pwms = <&cros_ec_pwm_type CROS_EC_PWM_DT_KB_LIGHT>;
- 			max-brightness = <1023>;
- 		};
- 	};
-@@ -705,8 +706,8 @@ cros_ec: ec@0 {
- 		pinctrl-0 = <&ap_ec_int_l>;
- 		spi-max-frequency = <3000000>;
- 
--		cros_ec_pwm: pwm {
--			compatible = "google,cros-ec-pwm";
-+		cros_ec_pwm_type: pwm {
-+			compatible = "google,cros-ec-pwm-type";
- 			#pwm-cells = <1>;
- 		};
- 
-diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi b/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
-index dc17f2079695..eb4b0e17adec 100644
---- a/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
-@@ -15,6 +15,7 @@
- 
- #include <dt-bindings/input/gpio-keys.h>
- #include <dt-bindings/input/input.h>
-+#include <dt-bindings/mfd/cros_ec.h>
- 
- #include "sc7280-qcard.dtsi"
- #include "sc7280-chrome-common.dtsi"
-@@ -288,7 +289,7 @@ pwmleds {
- 		keyboard_backlight: keyboard-backlight {
- 			status = "disabled";
- 			label = "cros_ec::kbd_backlight";
--			pwms = <&cros_ec_pwm 0>;
-+			pwms = <&cros_ec_pwm_type CROS_EC_PWM_DT_KB_LIGHT>;
- 			max-brightness = <1023>;
- 		};
- 	};
-@@ -421,8 +422,8 @@ cros_ec: ec@0 {
- 		pinctrl-0 = <&ap_ec_int_l>;
- 		spi-max-frequency = <3000000>;
- 
--		cros_ec_pwm: pwm {
--			compatible = "google,cros-ec-pwm";
-+		cros_ec_pwm_type: pwm {
-+			compatible = "google,cros-ec-pwm-type";
- 			#pwm-cells = <1>;
- 		};
- 
-diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp-ec-h1.dtsi b/arch/arm64/boot/dts/qcom/sc7280-idp-ec-h1.dtsi
-index a7c346aa3b02..a797f09e1328 100644
---- a/arch/arm64/boot/dts/qcom/sc7280-idp-ec-h1.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280-idp-ec-h1.dtsi
-@@ -20,8 +20,8 @@ cros_ec: ec@0 {
- 		pinctrl-0 = <&ap_ec_int_l>;
- 		spi-max-frequency = <3000000>;
- 
--		cros_ec_pwm: pwm {
--			compatible = "google,cros-ec-pwm";
-+		cros_ec_pwm_type: pwm {
-+			compatible = "google,cros-ec-pwm-type";
- 			#pwm-cells = <1>;
- 		};
- 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi b/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi
-index e7e4cc5936aa..a57951a50cd6 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi
-@@ -6,6 +6,7 @@
-  */
- 
- #include <dt-bindings/input/input.h>
-+#include <dt-bindings/mfd/cros_ec.h>
- #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
- #include "sdm845.dtsi"
- 
-@@ -27,7 +28,7 @@ chosen {
- 
- 	backlight: backlight {
- 		compatible = "pwm-backlight";
--		pwms = <&cros_ec_pwm 0>;
-+		pwms = <&cros_ec_pwm_type CROS_EC_PWM_DT_DISPLAY_LIGHT>;
- 		enable-gpios = <&tlmm 37 GPIO_ACTIVE_HIGH>;
- 		power-supply = <&ppvar_sys>;
- 		pinctrl-names = "default";
-@@ -708,8 +709,8 @@ cros_ec: ec@0 {
- 		pinctrl-0 = <&ec_ap_int_l>;
- 		spi-max-frequency = <3000000>;
- 
--		cros_ec_pwm: pwm {
--			compatible = "google,cros-ec-pwm";
-+		cros_ec_pwm_type: pwm {
-+			compatible = "google,cros-ec-pwm-type";
- 			#pwm-cells = <1>;
- 		};
- 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-gru-bob.dts b/arch/arm64/boot/dts/rockchip/rk3399-gru-bob.dts
-index 31ebb4e5fd33..5a076c2564f6 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-gru-bob.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-gru-bob.dts
-@@ -55,10 +55,6 @@ trackpad: trackpad@15 {
- 	};
- };
- 
--&backlight {
--	pwms = <&cros_ec_pwm 0>;
--};
--
- &cpu_alert0 {
- 	temperature = <65000>;
- };
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-gru-chromebook.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-gru-chromebook.dtsi
-index 3355fb90fa54..28eda361dfe1 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-gru-chromebook.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-gru-chromebook.dtsi
-@@ -198,6 +198,7 @@ backlight: backlight {
- 		power-supply = <&pp3300_disp>;
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&bl_en>;
-+		pwms = <&cros_ec_pwm_type CROS_EC_PWM_DT_DISPLAY_LIGHT>;
- 		pwm-delay-us = <10000>;
- 	};
- 
-@@ -462,8 +463,8 @@ ap_i2c_tp: &i2c5 {
- };
- 
- &cros_ec {
--	cros_ec_pwm: pwm {
--		compatible = "google,cros-ec-pwm";
-+	cros_ec_pwm_type: pwm {
-+		compatible = "google,cros-ec-pwm-type";
- 		#pwm-cells = <1>;
- 	};
- 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-gru-kevin.dts b/arch/arm64/boot/dts/rockchip/rk3399-gru-kevin.dts
-index 6863689df06f..e959a33af34b 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-gru-kevin.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-gru-kevin.dts
-@@ -84,10 +84,6 @@ thermistor_ppvar_litcpu: thermistor-ppvar-litcpu {
- 	};
- };
- 
--&backlight {
--	pwms = <&cros_ec_pwm 1>;
--};
--
- &gpio_keys {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&bt_host_wake_l>, <&cpu1_pen_eject>;
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-gru.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-gru.dtsi
-index 162f08bca0d4..181159e9982d 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-gru.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-gru.dtsi
-@@ -6,6 +6,7 @@
-  */
- 
- #include <dt-bindings/input/input.h>
-+#include <dt-bindings/mfd/cros_ec.h>
- #include "rk3399.dtsi"
- #include "rk3399-op1-opp.dtsi"
- 
+Best regards
 -- 
-2.36.0.rc2.479.g8af0fa9b8e-goog
+Marek Szyprowski, PhD
+Samsung R&D Institute Poland
 
