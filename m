@@ -2,87 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 19F2A513C9B
-	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 22:25:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C428513CAE
+	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 22:33:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346826AbiD1U21 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Apr 2022 16:28:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43638 "EHLO
+        id S1351849AbiD1Uge (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Apr 2022 16:36:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42996 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233218AbiD1U20 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 16:28:26 -0400
-Received: from mailserv1.kapsi.fi (mailserv1.kapsi.fi [IPv6:2001:67c:1be8::25:1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8D6E2BB27
-        for <devicetree@vger.kernel.org>; Thu, 28 Apr 2022 13:25:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=ext.kapsi.fi; s=20161220; h=Subject:Content-Transfer-Encoding:Content-Type:
-        In-Reply-To:From:References:To:Cc:MIME-Version:Date:Message-ID:Sender:
-        Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-        :Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-        List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=xtJrZMVo5Mq3hApYo1dK34SYaneZ5Xak6ST3DDUrWsk=; b=Cf9KlFIoJxk2im6IWZE7gAy3bN
-        wy5LrUD37eYdPGdVPIKuOqAzsnlhh+apqGEmGllR50k+a7KODr8tAawtrg038DxG3qoYDpDti7Fdv
-        ++p4jODQYrCoJe/Ez5M+ncnDeanu5ejRHnQWSjaS/H8h82gKWbrEBMp7T7auqvnKgpm//X2jvnbRv
-        EdTR/0AokSf8efK2q2WYxbT9fVM+gNlOOg/x4aSA3OtElDWpi/TOMhuz5ZG49/kLn0MVLTobB/Aoi
-        9ElVcaCVMM77RGsRkHK5cKtAi8v81iYNXbqsF3oTf/4Mk1bwr+03LzjKkafq6nwqrW9oWfxmdMIPv
-        CfTwiEng==;
-Received: from 378b-225d-1272-9d03-8500-87e2-07d0-2001.dyn.estpak.ee ([2001:7d0:87e2:8500:9d03:1272:225d:378b]:57203)
-        by mailserv1.kapsi.fi with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
-        (Exim 4.89)
-        (envelope-from <maukka@ext.kapsi.fi>)
-        id 1nkAhB-0000Mf-Bx; Thu, 28 Apr 2022 23:25:01 +0300
-Message-ID: <b9c7eb81-c49e-76bf-5b49-b97cb5c2b03d@ext.kapsi.fi>
-Date:   Thu, 28 Apr 2022 23:25:00 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Cc:     maukka@ext.kapsi.fi, SoC Team <soc@kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Olof Johansson <olof@lixom.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>
-To:     Andrew Lunn <andrew@lunn.ch>, Arnd Bergmann <arnd@arndb.de>
-References: <20220427162123.110458-1-maukka@ext.kapsi.fi>
- <CAK8P3a0p-ev50UfGiHCpMM5Jz5Mf8pdfQtNep0M7qi7PANSBVg@mail.gmail.com>
- <YmndWe63ELJbQe20@lunn.ch>
-From:   Mauri Sandberg <maukka@ext.kapsi.fi>
-In-Reply-To: <YmndWe63ELJbQe20@lunn.ch>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2001:7d0:87e2:8500:9d03:1272:225d:378b
-X-SA-Exim-Mail-From: maukka@ext.kapsi.fi
+        with ESMTP id S1351834AbiD1Ugd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 16:36:33 -0400
+Received: from mail-oa1-f54.google.com (mail-oa1-f54.google.com [209.85.160.54])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A889C0E42;
+        Thu, 28 Apr 2022 13:33:17 -0700 (PDT)
+Received: by mail-oa1-f54.google.com with SMTP id 586e51a60fabf-e67799d278so6270760fac.11;
+        Thu, 28 Apr 2022 13:33:17 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=J3cE7MiG6hZTV7t9gy7Edw0SJtbuoMz271VEnExHnD0=;
+        b=U4dFi7C3iyteroEe/7stMm3G5K1uMZazAmwUJje2D33ZH7rGiS+WJw1mM12JsuLWAm
+         y+0SaPoP5Hse/EgkFAmw7rsn3pe8s+nKnLOZF1UQ4kA0pbWSHG6p97F/M/1GifZyu3Pv
+         W8ofFMGFm6hFMuQhS5+n6tC2ldK8MWvethTcIfxL7kWwq228I8y8LALs1g5d+RaIyriC
+         8dwvlobJ12ain1tnIoi6BOjWqd7ChuUpqIXg0jhp2bCEBBwy1T67YXQOGzMBI/y8446s
+         vxQhYmUt3jqh5VXub6Plxb9KBHjdk+seTlZwn6iRm2NLYgQA5f06NaZ7RJxXokWHDvU8
+         CKSQ==
+X-Gm-Message-State: AOAM5336jpRk41VmCs84zAFKN6/MIsf0tX3a6wOHEH3Gxrt7Q1Swa675
+        RIX8gtxAMLpAA4f5qDEAig==
+X-Google-Smtp-Source: ABdhPJyIKCSFE8HADOvXCq4XSg7Q4QHv4eXtCiwjB/aZX//rs5FVokO0n3huOkyorbSQ8hAuq+erfA==
+X-Received: by 2002:a05:6870:558e:b0:e1:db7c:26aa with SMTP id n14-20020a056870558e00b000e1db7c26aamr5244oao.63.1651177996283;
+        Thu, 28 Apr 2022 13:33:16 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id q22-20020a056870e89600b000e686d13895sm2214899oan.47.2022.04.28.13.33.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 28 Apr 2022 13:33:15 -0700 (PDT)
+Received: (nullmailer pid 220468 invoked by uid 1000);
+        Thu, 28 Apr 2022 20:33:13 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Radhey Shyam Pandey <radhey.shyam.pandey@xilinx.com>
+Cc:     krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        linux-gpio@vger.kernel.org, linus.walleij@linaro.org,
+        git@xilinx.com, brgl@bgdev.pl, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, shubhrajyoti.datta@xilinx.com
+In-Reply-To: <1651163798-15123-1-git-send-email-radhey.shyam.pandey@xilinx.com>
+References: <1651163798-15123-1-git-send-email-radhey.shyam.pandey@xilinx.com>
+Subject: Re: [PATCH] dt-bindings: gpio: zynq: Add all the supported compatibles
+Date:   Thu, 28 Apr 2022 15:33:13 -0500
+Message-Id: <1651177993.343093.220467.nullmailer@robh.at.kernel.org>
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
-Subject: Re: [RFC RFT PATCH v1 0/1] ARM: orion5x: convert D-Link DNS-323 to
- the Device Tree
-X-SA-Exim-Version: 4.2.1 (built Tue, 02 Aug 2016 21:08:31 +0000)
-X-SA-Exim-Scanned: Yes (on mailserv1.kapsi.fi)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Andrew!
-
-On 28.4.2022 3.18, Andrew Lunn wrote:
->>> - there is no concensus on how to get ascii formatted MAC address from mtd
->>>    partitions so eth is not fully functional without setting the MAC from
->>>    userspace
->>
->> Ideally this is handled by the boot loader, but that requires being
->> able to update
->> it.
+On Thu, 28 Apr 2022 22:06:38 +0530, Radhey Shyam Pandey wrote:
+> From: Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
 > 
-> The mv643xx Ethernet driver is happy if it finds the MAC address
-> already in the hardware. The vendor uboot often does this. Does tftp
-> boot work in uboot? That would indicate it has access to the MAC
-> address.
+> Add the compatibles for zynqmp, versal and platform management controller
+> nodes.
+> 
+> Fixes: 45ca16072b70 ("dt-bindings: gpio: zynq: convert bindings to YAML")
+> Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
+> Signed-off-by: Radhey Shyam Pandey <radhey.shyam.pandey@xilinx.com>
+> ---
+> NOTE- There is 'gpio@e000a000: interrupts: [[0], [20], [4]] is too long'
+> warning coming with upstream yaml. I am checking it on devicetree mailing
+> list. https://www.spinics.net/lists/devicetree/msg493762.html
+> ---
+>  Documentation/devicetree/bindings/gpio/gpio-zynq.yaml | 6 +++++-
+>  1 file changed, 5 insertions(+), 1 deletion(-)
+> 
 
-The u-boot is really limited and I am transferring new images over 
-kermit. Tftp is not enabled.
+Running 'make dtbs_check' with the schema in this patch gives the
+following warnings. Consider if they are expected or the schema is
+incorrect. These may not be new warnings.
+
+Note that it is not yet a requirement to have 0 warnings for dtbs_check.
+This will change in the future.
+
+Full log is available here: https://patchwork.ozlabs.org/patch/
+
+
+gpio@ff0a0000: '#address-cells', 'gpio-line-names', 'power-domains' do not match any of the regexes: 'pinctrl-[0-9]+'
+	arch/arm64/boot/dts/xilinx/avnet-ultra96-rev1.dtb
+	arch/arm64/boot/dts/xilinx/zynqmp-sm-k26-revA.dtb
+	arch/arm64/boot/dts/xilinx/zynqmp-smk-k26-revA.dtb
+	arch/arm64/boot/dts/xilinx/zynqmp-zcu100-revC.dtb
+
+gpio@ff0a0000: '#address-cells', 'power-domains' do not match any of the regexes: 'pinctrl-[0-9]+'
+	arch/arm64/boot/dts/xilinx/zynqmp-zc1232-revA.dtb
+	arch/arm64/boot/dts/xilinx/zynqmp-zc1254-revA.dtb
+	arch/arm64/boot/dts/xilinx/zynqmp-zc1275-revA.dtb
+	arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm015-dc1.dtb
+	arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm016-dc2.dtb
+	arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm017-dc3.dtb
+	arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm018-dc4.dtb
+	arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm019-dc5.dtb
+	arch/arm64/boot/dts/xilinx/zynqmp-zcu102-rev1.0.dtb
+	arch/arm64/boot/dts/xilinx/zynqmp-zcu102-rev1.1.dtb
+	arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dtb
+	arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revB.dtb
+	arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revA.dtb
+	arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revC.dtb
+	arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dtb
+	arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dtb
 
