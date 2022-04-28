@@ -2,58 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 38093512C3F
-	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 09:06:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0BCA6512C60
+	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 09:09:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233734AbiD1HJX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Apr 2022 03:09:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33626 "EHLO
+        id S233708AbiD1HLU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Apr 2022 03:11:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41944 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244827AbiD1HJV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 03:09:21 -0400
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0489B7CDE0
-        for <devicetree@vger.kernel.org>; Thu, 28 Apr 2022 00:06:06 -0700 (PDT)
-Received: by mail-ej1-x62a.google.com with SMTP id y3so7621949ejo.12
-        for <devicetree@vger.kernel.org>; Thu, 28 Apr 2022 00:06:05 -0700 (PDT)
+        with ESMTP id S244890AbiD1HLK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 03:11:10 -0400
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F112A7DE20
+        for <devicetree@vger.kernel.org>; Thu, 28 Apr 2022 00:07:55 -0700 (PDT)
+Received: by mail-ed1-x531.google.com with SMTP id g23so4404167edy.13
+        for <devicetree@vger.kernel.org>; Thu, 28 Apr 2022 00:07:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=iBEhvrsPsOhgEt0Y1YW/HNHhU6vNHdiEta/57GlhVhk=;
-        b=dnR8dRNUs7h9j/HKxlXNIA4lIpkFD31q+HvLJ/eKuI+nhJlW+YrFiWM9rP2CyoGaMS
-         XeOLKlrYTjg5fMTkMESgKXIlyvnZ3oDuvVton7kAsZGNlZPnEjl2H2SPbwkktJTx7qCk
-         ekfhcJMJmLtU2lITdXGqu4rePZT0Cb9pNkCEND2Na9cbucTF4Q1DTOawQPdvbwIMquid
-         c672Ay3kWiDq9TOA+IELYO/uOyte64CA9KKzHDhPvgfQ9CVgHTohrIf+dryM44EkQPnl
-         pk8oTToh1A+OPyPqUxfluHpdmEQUfAnKDlFUp7pvOy5qPgL8V4y45IAj37tfJG3qJQnj
-         89YQ==
+        bh=mcc+I6jnZJRrJEbVP21ywHq/ZmNTJKsMTD4hOUbWzcQ=;
+        b=hdH/3Kn8LZJ9CZjwIV7q4nqr/u4C7YR3WZCoXTP2SUOi3rvc350zdKbD5g8PUCg5PV
+         cAvCzZdHGm5mop3PsfnIkcgZB6OV0VbPhGLYGuMAzjh6EnZRiEh3FK00dEBYvD4ewstY
+         pTVGPN9MuUqJZdT3hreOn3HtL71fwDce1Xqdn8aFnGGL13y1C7e2cZNIxgcMm+wWgBEp
+         3B/z+CvQ6wLL8vgj4pN27IUy67Dm4m5ef054PZUz4iKmJ0JdJdI50R6eazdrq3sn17En
+         XCPLtOP5NFTNcizGfie2qRIkLex0565lsCnJXZpsTb1tm+LxSRcNmq6Tr0biS6m2jy8O
+         qOFA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=iBEhvrsPsOhgEt0Y1YW/HNHhU6vNHdiEta/57GlhVhk=;
-        b=xSXeht0ZASEAMx/0EYI3yOtMlGwceBb4Wy0C+mQOlrwgjfvvLa582XihnUlNlnLQgK
-         f8iaLdvJKfZujhsYbDOaJaRT5eUG/7nfGtsAjAFFmZeS+1kplHF09jgdOVFrP7D0QlRX
-         9Gq5yidlSXMrn9PQ/E2+J1Wf1tEL+myY8gbmmKzgRwt6m+vrnfOBXmq5ZbhsAXy9ZcHD
-         gK6hYXJVYTQo+alpQkJlyxPYQuvnuZuu4K+fgApNiAYItR6HYUBJiHrcXvbmyK1mimuu
-         AySiOPcNaZK5gF+MV6+dRjRUzzUBfEwpR40UkOgaL9CKH4fNN4c8pGwV5djR2Y2TTlvF
-         Hyjg==
-X-Gm-Message-State: AOAM533HmdMu1a+7wLrOprZcj2NCYsfjif3lmtFYuNYyvgda4htNs57g
-        w845IaN528mVIZLLIj65WH5Jxw==
-X-Google-Smtp-Source: ABdhPJyEMosMEvWv2NKcCdkzSlAn1WgtjIOSc3yBPtrlslz4hSKiE5Mxs0hwDpBfDpfO4Wx0jZmH/w==
-X-Received: by 2002:a17:906:2883:b0:6e8:7012:4185 with SMTP id o3-20020a170906288300b006e870124185mr30112996ejd.204.1651129564100;
-        Thu, 28 Apr 2022 00:06:04 -0700 (PDT)
+        bh=mcc+I6jnZJRrJEbVP21ywHq/ZmNTJKsMTD4hOUbWzcQ=;
+        b=zLUBDBxl50rCCwIJlCCspQ27qcVE2UTgRqZ/QnhfJOgh/b2y8bRFP5IVZ0UmbQf01n
+         9jFxitEHWp7VK7p1dJsRfbIR8njjojrB6zZN+hCaDzGxwpJaVmdnPAhQ9ARSSqa+v94F
+         3ThIjIik77kt5TRpqcOAb35ldsDyyiw4undm5yxVo85AhIyzBCL0Ef6dwttYfe0DQzNn
+         WYK85Is3QMBi/i4R80iCzlYvS/QR3gre2k98vkpbgjJzQgMnyPZ74fXEt0yUeN6FBUjK
+         H77Z6pG4GNRMpq1fgGuDYtxyQjFPC6eANKhmAFcyx56lcYW2ASFY+xBdUhlJ0BFcC2cX
+         /DXw==
+X-Gm-Message-State: AOAM532SErR0JxLdCNvm4IrizMJrnmLY7kCqHhJaCIso5NAQ7Ig7FXGt
+        RkN1Yb6LKmgiv3B1OoyTDZYchF2pT7C+Qw==
+X-Google-Smtp-Source: ABdhPJzqV0BQAJAyMiRYK4ZZ6ZDJEEcrxGgGzR26K+hw/8vfsIJLkEbCTmebsN6SqWLC7nNbrBiyZA==
+X-Received: by 2002:a05:6402:3553:b0:426:2b19:a4b0 with SMTP id f19-20020a056402355300b004262b19a4b0mr1438296edd.66.1651129674531;
+        Thu, 28 Apr 2022 00:07:54 -0700 (PDT)
 Received: from [192.168.0.160] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id s23-20020a056402037700b0042617ba639bsm1010973edw.37.2022.04.28.00.06.02
+        by smtp.gmail.com with ESMTPSA id bm6-20020a170906c04600b006e89a5f5b8fsm8014191ejb.153.2022.04.28.00.07.53
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 28 Apr 2022 00:06:02 -0700 (PDT)
-Message-ID: <53e4eed4-16ae-95ce-967f-ed615158584d@linaro.org>
-Date:   Thu, 28 Apr 2022 09:06:01 +0200
+        Thu, 28 Apr 2022 00:07:54 -0700 (PDT)
+Message-ID: <55574426-df20-cdd7-c97d-092726981a42@linaro.org>
+Date:   Thu, 28 Apr 2022 09:07:53 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [PATCH 04/11] dt-bindings: sound: add Arm PL041 AACI DT schema
+Subject: Re: [PATCH 05/11] dt-bindings: serio: add Arm PL050 DT schema
 Content-Language: en-US
 To:     Andre Przywara <andre.przywara@arm.com>,
         Rob Herring <robh+dt@kernel.org>,
@@ -61,18 +61,18 @@ To:     Andre Przywara <andre.przywara@arm.com>,
 Cc:     Liviu Dudau <liviu.dudau@arm.com>,
         Robin Murphy <robin.murphy@arm.com>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        alsa-devel@alsa-project.org
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        linux-input@vger.kernel.org
 References: <20220427112528.4097815-1-andre.przywara@arm.com>
- <20220427112528.4097815-5-andre.przywara@arm.com>
+ <20220427112528.4097815-6-andre.przywara@arm.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220427112528.4097815-5-andre.przywara@arm.com>
+In-Reply-To: <20220427112528.4097815-6-andre.przywara@arm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -80,56 +80,58 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 27/04/2022 13:25, Andre Przywara wrote:
-> The Arm PrimeCell Advanced Audio CODEC Interface (AACI aka PL041) is
-> a peripheral that provides communication with an audio CODEC.
+> The Arm PL050 "Keyboard/Mouse Interface" is an Arm system IP providing a
+> PS/2 compatible serial interface.
 > 
-> Add a simple DT schema binding for it, so that DTs can be validated
-> automatically.
+> Add a simple DT schema binding, based on the TRM[1], the existing DTs and
+> the Linux driver.
+> 
+> [1] https://developer.arm.com/documentation/ddi0143/latest
 > 
 > Signed-off-by: Andre Przywara <andre.przywara@arm.com>
 > ---
->  .../devicetree/bindings/sound/amba-pl041.yaml | 62 +++++++++++++++++++
->  1 file changed, 62 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/sound/amba-pl041.yaml
+>  .../devicetree/bindings/serio/amba-pl050.yaml | 67 +++++++++++++++++++
+>  1 file changed, 67 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/serio/amba-pl050.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/sound/amba-pl041.yaml b/Documentation/devicetree/bindings/sound/amba-pl041.yaml
+> diff --git a/Documentation/devicetree/bindings/serio/amba-pl050.yaml b/Documentation/devicetree/bindings/serio/amba-pl050.yaml
 > new file mode 100644
-> index 0000000000000..f00796d5ea473
+> index 0000000000000..9732a84550098
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/sound/amba-pl041.yaml
+> +++ b/Documentation/devicetree/bindings/serio/amba-pl050.yaml
 
-Filename: vendor,device, so "arm,amba-pl041" or "arm,pl041"
+Filename: vendor,device
 
-> @@ -0,0 +1,62 @@
+> @@ -0,0 +1,67 @@
 > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/sound/amba-pl041.yaml#
+> +$id: http://devicetree.org/schemas/serio/amba-pl050.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: Arm Ltd. PrimeCell PL041 AACI sound interface
+> +title: Arm Ltd. PrimeCell PL050 PS/2 Keyboard/Mouse Interface
 > +
 > +maintainers:
 > +  - Andre Przywara <andre.przywara@arm.com>
 > +
 > +description:
-> +  The Arm PrimeCell Advanced Audio CODEC Interface (AACI) is an AMBA compliant
-> +  peripheral that provides communication with an audio CODEC using the AC-link
-> +  protocol.
+> +  The Arm PrimeCell PS2 Keyboard/Mouse Interface (KMI) is an AMBA compliant
+> +  peripheral that can be used to implement a keyboard or mouse interface that
+> +  is IBM PS2 or AT compatible.
 > +
 > +# We need a select here so we don't match all nodes with 'arm,primecell'
 > +select:
 > +  properties:
 > +    compatible:
 > +      contains:
-> +        const: arm,pl041
+> +        const: arm,pl050
 > +  required:
 > +    - compatible
 > +
 > +properties:
 > +  compatible:
 > +    items:
-> +      - const: arm,pl041
+> +      - const: arm,pl050
 > +      - const: arm,primecell
 > +
 > +  reg:
@@ -139,31 +141,38 @@ Filename: vendor,device, so "arm,amba-pl041" or "arm,pl041"
 > +    maxItems: 1
 > +
 > +  clocks:
-> +    description: APB register access clock
+> +    items:
+> +      - description: KMI reference clock, used to generate the bus timing
+> +      - description: APB register access clock
 > +
 > +  clock-names:
-> +    const: apb_pclk
+> +    items:
+> +      - const: KMIREFCLK
+
+lowercase letters only
+
+> +      - const: apb_pclk
 > +
 > +required:
 > +  - compatible
 > +  - reg
 > +  - interrupts
 > +  - clocks
+> +  - clock-names
 > +
 > +additionalProperties: false
 > +
 > +examples:
 > +  - |
-> +    aaci@40000 {
+> +    kmi@70000 {
 
-Would be nice to find here a generic node name, so "audio-controller"?
-It's not a codec, right?
+Generic node names, so "serio".
 
-> +            compatible = "arm,pl041", "arm,primecell";
-> +            reg = <0x040000 0x1000>;
-> +            interrupts = <11>;
-> +            clocks = <&v2m_clk24mhz>;
-> +            clock-names = "apb_pclk";
+> +            compatible = "arm,pl050", "arm,primecell";
+> +            reg = <0x070000 0x1000>;
+> +            interrupts = <8>;
+> +            clocks = <&mb_clk24mhz>, <&soc_smc50mhz>;
+> +            clock-names = "KMIREFCLK", "apb_pclk";
 > +    };
 > +
 > +...
