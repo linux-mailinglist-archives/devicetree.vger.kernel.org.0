@@ -2,158 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DDE22512CCA
-	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 09:28:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C767C512CCC
+	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 09:28:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234311AbiD1HbL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Apr 2022 03:31:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47284 "EHLO
+        id S238181AbiD1Hbz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Apr 2022 03:31:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50714 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238797AbiD1HbK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 03:31:10 -0400
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EAF9C541AD
-        for <devicetree@vger.kernel.org>; Thu, 28 Apr 2022 00:27:55 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id k27so4484355edk.4
-        for <devicetree@vger.kernel.org>; Thu, 28 Apr 2022 00:27:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=G0t5M5PTY98V2pFU2BrLfjWZQRkfAzQU7O0JRiBUSqw=;
-        b=EnjYsneRkqpWt31PWaAmunHv2Pd+bvgHqCNmsTRgS+A2YVMnSz/CmM89rjAHECAXAk
-         mBiY1zaeOhw8ZPeZV2wNl8LNbJ33Qpz3wjJfLKPYxi3b138/mS3V4UQufIs78RugB0Ap
-         7kbifk9oseSfX6SAjwOJP2QsIRcToBXSgngvYQKZjZOYyuMD22P6lP1ONCK6cjil3nzw
-         VeviTCKgSiUp/w+N5Cc/TdV0zc8RqAssHPOHhVDJE1nahj6KQksXd/yPyRQ/5+HlpvWH
-         XTXveEezTBCSoY5UdcdILBF6Sl01ro2IfxUtkaAI+FQNimFtxxgZ0hT7O9s03shgwd+x
-         Go0A==
+        with ESMTP id S231146AbiD1Hby (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 03:31:54 -0400
+Received: from mail-qk1-f176.google.com (mail-qk1-f176.google.com [209.85.222.176])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E85E75DA36;
+        Thu, 28 Apr 2022 00:28:39 -0700 (PDT)
+Received: by mail-qk1-f176.google.com with SMTP id j9so3021561qkg.1;
+        Thu, 28 Apr 2022 00:28:39 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=G0t5M5PTY98V2pFU2BrLfjWZQRkfAzQU7O0JRiBUSqw=;
-        b=bevpgFhVJiUk9AO1pujJWFuthHlZlSexjd3GjCAkDz/WBU55avk23sqXcb8vq5qOBC
-         PVp0Mr+hXu5bttrzaVbAxjzKa7holY/gE3XUhcSB1C/X65QoJRIZ9HvoqcgZJ1sZ+Sw0
-         om7dNu3l664hrHQr4ORNzEOjhKvNkyIIXEaY870tchFhfShOeeLxZ8hzPVlPpO5cllgw
-         G1AArbaanYQHoRmc+YlK/M8xeYduTwiIKqomaVAVCmaeX02UspIMzAwOC3aTM6rhNmSf
-         8VaT5LVWXxKTz30/lye3u3vbvr2cM2+8rWL+5kZOxjr9Pc9PKF6bKU9TardhHycsqsEv
-         4HBA==
-X-Gm-Message-State: AOAM532+3j1WX9h23k4akKgzMndItGtkpej5iFdVk/ksozBbxsYF6P8R
-        fvFTmq7liCVMFx5vhTzi+jzY2Q==
-X-Google-Smtp-Source: ABdhPJz+rgiwJv2clzp+0bE6ukQ2dupp6EhAp0O3l3QpWIyJToypY1ME9sHL2y6X8oWR56UUJjOmag==
-X-Received: by 2002:a50:d707:0:b0:425:e37d:4ef3 with SMTP id t7-20020a50d707000000b00425e37d4ef3mr22319371edi.167.1651130874526;
-        Thu, 28 Apr 2022 00:27:54 -0700 (PDT)
-Received: from [192.168.0.160] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id z3-20020aa7c643000000b0042617ba63bdsm1044782edr.71.2022.04.28.00.27.53
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=p0DTtmQR8+y4KQZHhVYB7vR22g+qoA6zYJL7IthJW2g=;
+        b=CCIebXVp+CAFnmRusDeL44Op8Ka1ezhN1hZL0N6MYRmNATZYREr/vpOIWpWddxjoLJ
+         Qj0feejo95BTJfAWtC9bTxS41sBbvrZTuBDUXlZJebNdkF/rZzd3bGEdYOAQeJJIBJUZ
+         oIxpJ8tTLtimsiuA0A445u6fpmTpt3JpRbxc2apjVtmMVNqRlZn3D41ModMDkSue+lGL
+         pOBCXJmF9CTtNATtvKsOcPuEJ4WFAOjRD1A5S5Wo0zO6IfDYxl8pUToTxQtXGdDynSl+
+         E8Wr3kLBWFiEXKi6DZ+DMfSX5qTXEpHOEp8Qb6a5M5Qvvm3g3AD9baFFkUDR3ssOvids
+         NZXQ==
+X-Gm-Message-State: AOAM531bVGvbZsg2PT09o2GMAf53lD0j++JhxctNHLJJVDr9Hu9RcsoH
+        A8xKqIEjrPpJ4vge6wc/k/Fi7GdKu4x/Cg==
+X-Google-Smtp-Source: ABdhPJwTPdSkO8t+D0K9vR0KIi44n6+ijCrBY9wHxB199q11fxzx89T18Jdvj0+5lM4hgVANBeMKpQ==
+X-Received: by 2002:a05:620a:254f:b0:680:f510:22e4 with SMTP id s15-20020a05620a254f00b00680f51022e4mr18436259qko.554.1651130918510;
+        Thu, 28 Apr 2022 00:28:38 -0700 (PDT)
+Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com. [209.85.128.180])
+        by smtp.gmail.com with ESMTPSA id x188-20020a3795c5000000b0069eb51aa159sm9171157qkd.108.2022.04.28.00.28.37
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 28 Apr 2022 00:27:54 -0700 (PDT)
-Message-ID: <29cc62aa-2995-ea96-0e7e-242f9ddaa87e@linaro.org>
-Date:   Thu, 28 Apr 2022 09:27:52 +0200
+        Thu, 28 Apr 2022 00:28:38 -0700 (PDT)
+Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-2f7c424c66cso43489877b3.1;
+        Thu, 28 Apr 2022 00:28:37 -0700 (PDT)
+X-Received: by 2002:a81:8489:0:b0:2f7:edff:239f with SMTP id
+ u131-20020a818489000000b002f7edff239fmr19073069ywf.256.1651130917627; Thu, 28
+ Apr 2022 00:28:37 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH 1/2] dt-bindings: google,cros-ec-keyb: Introduce switches
- only compatible
-Content-Language: en-US
-To:     Stephen Boyd <swboyd@chromium.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Cc:     linux-kernel@vger.kernel.org, patches@lists.linux.dev,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Benson Leung <bleung@chromium.org>,
-        Guenter Roeck <groeck@chromium.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        "Joseph S. Barrera III" <joebar@chromium.org>
-References: <20220427203026.828183-1-swboyd@chromium.org>
- <20220427203026.828183-2-swboyd@chromium.org>
- <9248da4f-ca04-82f0-2840-a20797c25d2a@linaro.org>
- <CAE-0n52Y=3EEZ6qguNx=hM44BahbH3cuq7x6Bbe5HELKkkvrUw@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAE-0n52Y=3EEZ6qguNx=hM44BahbH3cuq7x6Bbe5HELKkkvrUw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+References: <20220330154024.112270-1-phil.edworthy@renesas.com>
+ <20220330154024.112270-13-phil.edworthy@renesas.com> <CAMuHMdWVtJ-_KHUKCsuahhqP1YUwJGLDeVJmvBA0zuA28nwinQ@mail.gmail.com>
+ <TYYPR01MB7086F756432C1F67E76BC6CFF5FA9@TYYPR01MB7086.jpnprd01.prod.outlook.com>
+In-Reply-To: <TYYPR01MB7086F756432C1F67E76BC6CFF5FA9@TYYPR01MB7086.jpnprd01.prod.outlook.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Thu, 28 Apr 2022 09:28:25 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdX-dpB2Co2Wd0R2WxqSczNgt6zwtMXWAWjaxhHnX=tJaw@mail.gmail.com>
+Message-ID: <CAMuHMdX-dpB2Co2Wd0R2WxqSczNgt6zwtMXWAWjaxhHnX=tJaw@mail.gmail.com>
+Subject: Re: [PATCH v2 12/13] arm64: dts: renesas: Add initial DTSI for RZ/V2M SoC
+To:     Phil Edworthy <phil.edworthy@renesas.com>
+Cc:     Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/04/2022 08:24, Stephen Boyd wrote:
-> Quoting Krzysztof Kozlowski (2022-04-27 23:12:47)
->> On 27/04/2022 22:30, Stephen Boyd wrote:
->>> If the device is a detachable, this device won't have a matrix keyboard
->>> but it may have some button switches, e.g. volume buttons and power
->>> buttons. Let's add a more specific compatible for this type of device
->>> that indicates to the OS that there are only switches and no matrix
->>> keyboard present.
->>>
->>> Cc: Krzysztof Kozlowski <krzk@kernel.org>
->>> Cc: Rob Herring <robh+dt@kernel.org>
->>> Cc: <devicetree@vger.kernel.org>
->>> Cc: Benson Leung <bleung@chromium.org>
->>> Cc: Guenter Roeck <groeck@chromium.org>
->>> Cc: Douglas Anderson <dianders@chromium.org>
->>> Cc: Hsin-Yi Wang <hsinyi@chromium.org>
->>> Cc: "Joseph S. Barrera III" <joebar@chromium.org>
->>> Signed-off-by: Stephen Boyd <swboyd@chromium.org>
->>> ---
->>>  .../bindings/input/google,cros-ec-keyb.yaml          | 12 +++++++++---
->>>  1 file changed, 9 insertions(+), 3 deletions(-)
->>>
->>> diff --git a/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml b/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml
->>> index e8f137abb03c..edc1194d558d 100644
->>> --- a/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml
->>> +++ b/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml
->>> @@ -15,14 +15,20 @@ description: |
->>>    Google's ChromeOS EC Keyboard is a simple matrix keyboard
->>>    implemented on a separate EC (Embedded Controller) device. It provides
->>>    a message for reading key scans from the EC. These are then converted
->>> -  into keycodes for processing by the kernel.
->>> +  into keycodes for processing by the kernel. This device also supports
->>> +  switches/buttons like power and volume buttons.
->>>
->>>  allOf:
->>>    - $ref: "/schemas/input/matrix-keymap.yaml#"
->>>
->>>  properties:
->>>    compatible:
->>> -    const: google,cros-ec-keyb
->>> +    oneOf:
->>> +      - items:
->>> +          - const: google,cros-ec-keyb-switches
->>> +          - const: google,cros-ec-keyb
->>> +      - items:
->>> +          - const: google,cros-ec-keyb
->>>
->>
->> In such case matrix-keymap properties are not valid, right? The
->> matrix-keymap should not be referenced, IOW, you need to move allOf
->> below "required" and add:
->> if:not:...then: $ref: "/schemas/input/matrix-keymap.yaml
->>
-> 
-> Eventually that sounds doable, but for the time being I want to merely
-> add this new compatible in front of the original compatible so that
-> updated DTBs still work with older kernels, i.e. the switches still get
-> registered because the driver works with the original
-> google,cros-ec-keyb compatible. 
+Hi Phil,
 
-The bindings here do not invalidate (break) existing DTBs. Old DTBs can
-work in old way, we talk only about binding.
+On Wed, Apr 27, 2022 at 8:53 PM Phil Edworthy <phil.edworthy@renesas.com> wrote:
+> On 26 April 2022 19:13 Geert Uytterhoeven wrote:
+> > On Wed, Mar 30, 2022 at 5:42 PM Phil Edworthy wrote:
+> > > Details of the SoC can be found here:
+> > > https://www.renesas.com/us/en/products/microcontrollers-
+> > microprocessors/rz-cortex-a-mpus/rzv2m-dual-cortex-a53-lpddr4x32bit-ai-
+> > accelerator-isp-4k-video-codec-4k-camera-input-fhd-display-output
+> > >
+> > > Signed-off-by: Phil Edworthy <phil.edworthy@renesas.com>
+> > > Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
+> >
+> > Thanks for your patch!
+> >
+> > > --- /dev/null
+> > > +++ b/arch/arm64/boot/dts/renesas/r9a09g011.dtsi
 
-> Given that none of the properties are
-> required for google,cros-ec-keyb it didn't seem necessary to make having
-> the google,cros-ec-keyb-switches compatible deny the existence of the
-> matrix-keymap properties.
+> > > +       timer {
+> > > +               compatible = "arm,armv8-timer";
+> > > +               interrupts-extended = <&gic GIC_PPI 13
+> > (GIC_CPU_MASK_SIMPLE(1) | IRQ_TYPE_LEVEL_LOW)>,
+> > > +                                     <&gic GIC_PPI 14
+> > (GIC_CPU_MASK_SIMPLE(1) | IRQ_TYPE_LEVEL_LOW)>,
+> > > +                                     <&gic GIC_PPI 11
+> > (GIC_CPU_MASK_SIMPLE(1) | IRQ_TYPE_LEVEL_LOW)>,
+> > > +                                     <&gic GIC_PPI 10
+> > (GIC_CPU_MASK_SIMPLE(1) | IRQ_TYPE_LEVEL_LOW)>;
+> > > +               clocks = <&cpg CPG_MOD R9A09G011_SYC_CNT_CLK>;
+> > > +               clock-names = "clk";
+> > > +               resets = <&cpg R9A09G011_SYC_RST_N>;
+> >
+> > The three properties above are not document, causing the following
+> > "make dtbs_check" error message:
+> >
+> > arch/arm64/boot/dts/renesas/r9a09g011-v2mevk2.dtb: timer:
+> > 'clock-names', 'clocks', 'resets' do not match any of the regexes:
+> > 'pinctrl-[0-9]+'
+> >         From schema:
+> > Documentation/devicetree/bindings/timer/arm,arch_timer.yaml
+> Right.
+> I assume the correct action is to update the bindings, right?
 
-Maybe I misunderstood the commit msg. Are the
-"google,cros-ec-keyb-switches" devices coming with matrix keyboard or
-not? I mean physically.
+Yes.
 
-Best regards,
-Krzysztof
+> Of course, not much will work without this clock enabled ;)
+
+And that's why you have it (rightfully) marked as a critical clock
+in the clock driver.
+
+> Btw, do you know of a way to run "make dtbs_check" for a single dtb?
+
+"make dtbs_check" only runs checks on DTBs created by "make dtbs".
+Hence make sure your .config has only CONFIG_ARCH_R9A09G011
+enabled?
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
