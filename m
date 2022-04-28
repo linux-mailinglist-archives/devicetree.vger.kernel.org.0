@@ -2,283 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CBA9B512D3D
-	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 09:44:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 492C4512D41
+	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 09:44:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239239AbiD1HrT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Apr 2022 03:47:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40438 "EHLO
+        id S245528AbiD1Hrh convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Thu, 28 Apr 2022 03:47:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40750 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245494AbiD1HrO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 03:47:14 -0400
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BCA3B9D053
-        for <devicetree@vger.kernel.org>; Thu, 28 Apr 2022 00:43:58 -0700 (PDT)
-Received: by mail-lf1-x12e.google.com with SMTP id w19so7073453lfu.11
-        for <devicetree@vger.kernel.org>; Thu, 28 Apr 2022 00:43:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=ZeQ55rir3pvpzG7mxMHAL9JH9vYFV3iLsewoNK++nCc=;
-        b=wLi8paTcv7rTS87NS9wDvpud0PfLTGEK4kxEtD8jhiwaekHwfjYGAuTTOShVU4EkbJ
-         vNxxuigmLJdvzQW5QC7PXe3+FD1iuu1REoNdvThrDzkXrYIS/1DngzbKw9aViISPgim4
-         7tAkFuvNQuSdBqsdhoTn1aCOjMqTUnFeGfwlC3Bjwci9nPIciuqml7ZQM/Oh5WVqyE1k
-         CkvZv7/CgzORgK53M9xL1GXU5u0kvLu25YFpRcJaebE9Fx4zy5uvbaMjI0kmr6a59ulp
-         NEHd70tvrPoqDZUoqC/Z6idfmxf28voWlHX0S1ConySw3v9xBBzwYbFpjmvcPnRbNSXm
-         5CCg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=ZeQ55rir3pvpzG7mxMHAL9JH9vYFV3iLsewoNK++nCc=;
-        b=ByecSKa2DepMwVSgYL9JYBZBfCQGIVg+Dh+dSRXdPoCqoAidhkodIoXUXg2m6WbfIV
-         2T5nj3427a54tg2cPZMN3qH4XNcvIWiCJbneyZUYbPeh/O5AhQrlgyQrZHnsFPIXAjVp
-         ccj3QrNBJUfpp2BQ/p7LEeMJ68fu+agJBiHYWjqD/6crr0qrEkUKwhM/U4AhJWKNwLM/
-         pBzNhCBwvV7ksdAUcp100cMQI4eurPwGLoqCAn8XIF904aWCCA39fDRy8PV40neAoSQ7
-         txiPPeYrT3bKNUgrlCSVeR8dXuIZJvtdYSKm8TtxDyyVOufg9IS3mcRNI0+04wWG2sAY
-         xcyA==
-X-Gm-Message-State: AOAM5316IP23Xl4ROtUbwBoQ/+LSPODCPTU/weAThgbD2aI7s1VWQkU3
-        Z0uZMpvyVU9ANukeCECoHetE/A==
-X-Google-Smtp-Source: ABdhPJwSeVK6hXWCQGEOgF8ZW5yXjQsdw2Zunis7UkM3d/CaIYO/YBx1q9tHCevKT3+0ElIszldAsA==
-X-Received: by 2002:a05:6512:34d8:b0:46d:4a1e:7c9a with SMTP id w24-20020a05651234d800b0046d4a1e7c9amr23476156lfr.336.1651131836637;
-        Thu, 28 Apr 2022 00:43:56 -0700 (PDT)
-Received: from [192.168.1.211] ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id f4-20020a193804000000b00471a32f8f72sm2280264lfa.229.2022.04.28.00.43.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 28 Apr 2022 00:43:56 -0700 (PDT)
-Message-ID: <80132575-1abc-9a2e-dc73-3df72035a7d0@linaro.org>
-Date:   Thu, 28 Apr 2022 10:43:54 +0300
+        with ESMTP id S245494AbiD1Hrh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 03:47:37 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7BB8D9D076
+        for <devicetree@vger.kernel.org>; Thu, 28 Apr 2022 00:44:23 -0700 (PDT)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1njyol-0002pJ-Gl; Thu, 28 Apr 2022 09:44:03 +0200
+Received: from [2a0a:edc0:0:900:1d::4e] (helo=lupine)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1njyoj-005iCw-PE; Thu, 28 Apr 2022 09:44:00 +0200
+Received: from pza by lupine with local (Exim 4.94.2)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1njyoh-0002VQ-OH; Thu, 28 Apr 2022 09:43:59 +0200
+Message-ID: <23757fe6843e56b91a87d60eb0782ec6b64c10fd.camel@pengutronix.de>
+Subject: Re: [PATCH 2/5] iommu/sun50i: Support variants without an external
+ reset
+From:   Philipp Zabel <p.zabel@pengutronix.de>
+To:     Samuel Holland <samuel@sholland.org>,
+        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+        iommu@lists.linux-foundation.org
+Cc:     Heiko Stuebner <heiko@sntech.de>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        linux-riscv@lists.infradead.org, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-sunxi@lists.linux.dev
+Date:   Thu, 28 Apr 2022 09:43:59 +0200
+In-Reply-To: <20220428010401.11323-3-samuel@sholland.org>
+References: <20220428010401.11323-1-samuel@sholland.org>
+         <20220428010401.11323-3-samuel@sholland.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+User-Agent: Evolution 3.38.3-1 
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.0
-Subject: Re: [PATCH v3 1/5] PCI: dwc: Convert msi_irq to the array
-Content-Language: en-GB
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Stanimir Varbanov <svarbanov@mm-sol.com>,
-        Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org
-References: <20220427121653.3158569-1-dmitry.baryshkov@linaro.org>
- <20220427121653.3158569-2-dmitry.baryshkov@linaro.org>
- <20220427141329.GA4161@thinkpad>
- <b9d81916-10e6-94f9-78b2-b2198620e66a@linaro.org>
- <20220428060642.GA81644@thinkpad>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20220428060642.GA81644@thinkpad>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/04/2022 09:06, Manivannan Sadhasivam wrote:
-> On Wed, Apr 27, 2022 at 07:59:57PM +0300, Dmitry Baryshkov wrote:
->> On 27/04/2022 17:13, Manivannan Sadhasivam wrote:
->>> On Wed, Apr 27, 2022 at 03:16:49PM +0300, Dmitry Baryshkov wrote:
->>>> Qualcomm version of DWC PCIe controller supports more than 32 MSI
->>>> interrupts, but they are routed to separate interrupts in groups of 32
->>>> vectors. To support such configuration, change the msi_irq field into an
->>>> array. Let the DWC core handle all interrupts that were set in this
->>>> array.
->>>>
->>>
->>> Instead of defining it as an array, can we allocate it dynamically in the
->>> controller drivers instead? This has two benefits:
->>>
->>> 1. There is no need of using a dedicated flag.
->>> 2. Controller drivers that don't support MSIs can pass NULL and in the core we
->>> can use platform_get_irq_byname_optional() to get supported number of MSIs from
->>> devicetree.
->>
->> I think using dynamic allocation would make code worse. It would add
->> additional checks here and there.
->>
-> 
-> I take back my suggestion of allocating the memory for msi_irq in controller
-> drivers. It should be done in the designware-host instead.
-> 
-> We already know how many MSIs are supported by the platform using num_vectors.
-> So we should just allocate msi_irqs of num_vectors length in
-> dw_pcie_host_init() and populate it using platform_get_irq_byname_optional().
-> 
-> I don't think this can make the code worse.
-> 
->> If you don't like this design. I have an alternative suggestion: export the
->> dw_chained_msi_irq() and move allocation of all MSIs to the pcie-qcom code.
->> Would that be better? I'm not sure whether this multi-host-IRQ design is
->> used on other DWC platforms or not.
->>
-> 
-> No, I think the allocation should belong to designware-host.
+Hi Samuel,
 
-Granted that at least tegra and iMX tie all MSI vectors to a single host 
-interrupt, I think it's impractical to assume that other hosts would 
-benefit from such allocation. Let's move support for split IRQs into the 
-pcie-qcom.c. We can make this generic later if any other host would use 
-a separate per-"endpoint" (per-group) IRQ.
-
+On Mi, 2022-04-27 at 20:03 -0500, Samuel Holland wrote:
+> The IOMMU in the Allwinner D1 SoC does not have an external reset line.
 > 
-> Thanks,
-> Mani
+> Only attempt to get the reset on hardware variants which should have one
+> according to the binding. And switch from the deprecated function to the
+> explicit "exclusive" variant.
 > 
->>>
->>> Thanks,
->>> Mani
->>>
->>>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->>>> ---
->>>>    drivers/pci/controller/dwc/pci-dra7xx.c       |  2 +-
->>>>    drivers/pci/controller/dwc/pci-exynos.c       |  2 +-
->>>>    .../pci/controller/dwc/pcie-designware-host.c | 30 +++++++++++--------
->>>>    drivers/pci/controller/dwc/pcie-designware.h  |  2 +-
->>>>    drivers/pci/controller/dwc/pcie-keembay.c     |  2 +-
->>>>    drivers/pci/controller/dwc/pcie-spear13xx.c   |  2 +-
->>>>    drivers/pci/controller/dwc/pcie-tegra194.c    |  2 +-
->>>>    7 files changed, 24 insertions(+), 18 deletions(-)
->>>>
->>>> diff --git a/drivers/pci/controller/dwc/pci-dra7xx.c b/drivers/pci/controller/dwc/pci-dra7xx.c
->>>> index dfcdeb432dc8..0919c96dcdbd 100644
->>>> --- a/drivers/pci/controller/dwc/pci-dra7xx.c
->>>> +++ b/drivers/pci/controller/dwc/pci-dra7xx.c
->>>> @@ -483,7 +483,7 @@ static int dra7xx_add_pcie_port(struct dra7xx_pcie *dra7xx,
->>>>    		return pp->irq;
->>>>    	/* MSI IRQ is muxed */
->>>> -	pp->msi_irq = -ENODEV;
->>>> +	pp->msi_irq[0] = -ENODEV;
->>>>    	ret = dra7xx_pcie_init_irq_domain(pp);
->>>>    	if (ret < 0)
->>>> diff --git a/drivers/pci/controller/dwc/pci-exynos.c b/drivers/pci/controller/dwc/pci-exynos.c
->>>> index 467c8d1cd7e4..4f2010bd9cd7 100644
->>>> --- a/drivers/pci/controller/dwc/pci-exynos.c
->>>> +++ b/drivers/pci/controller/dwc/pci-exynos.c
->>>> @@ -292,7 +292,7 @@ static int exynos_add_pcie_port(struct exynos_pcie *ep,
->>>>    	}
->>>>    	pp->ops = &exynos_pcie_host_ops;
->>>> -	pp->msi_irq = -ENODEV;
->>>> +	pp->msi_irq[0] = -ENODEV;
->>>>    	ret = dw_pcie_host_init(pp);
->>>>    	if (ret) {
->>>> diff --git a/drivers/pci/controller/dwc/pcie-designware-host.c b/drivers/pci/controller/dwc/pcie-designware-host.c
->>>> index 2fa86f32d964..5d90009a0f73 100644
->>>> --- a/drivers/pci/controller/dwc/pcie-designware-host.c
->>>> +++ b/drivers/pci/controller/dwc/pcie-designware-host.c
->>>> @@ -257,8 +257,11 @@ int dw_pcie_allocate_domains(struct pcie_port *pp)
->>>>    static void dw_pcie_free_msi(struct pcie_port *pp)
->>>>    {
->>>> -	if (pp->msi_irq)
->>>> -		irq_set_chained_handler_and_data(pp->msi_irq, NULL, NULL);
->>>> +	u32 ctrl;
->>>> +
->>>> +	for (ctrl = 0; ctrl < MAX_MSI_CTRLS; ctrl++)
->>>> +		if (pp->msi_irq[ctrl])
->>>> +			irq_set_chained_handler_and_data(pp->msi_irq[ctrl], NULL, NULL);
->>>>    	irq_domain_remove(pp->msi_domain);
->>>>    	irq_domain_remove(pp->irq_domain);
->>>> @@ -368,13 +371,15 @@ int dw_pcie_host_init(struct pcie_port *pp)
->>>>    			for (ctrl = 0; ctrl < num_ctrls; ctrl++)
->>>>    				pp->irq_mask[ctrl] = ~0;
->>>> -			if (!pp->msi_irq) {
->>>> -				pp->msi_irq = platform_get_irq_byname_optional(pdev, "msi");
->>>> -				if (pp->msi_irq < 0) {
->>>> -					pp->msi_irq = platform_get_irq(pdev, 0);
->>>> -					if (pp->msi_irq < 0)
->>>> -						return pp->msi_irq;
->>>> +			if (!pp->msi_irq[0]) {
->>>> +				int irq = platform_get_irq_byname_optional(pdev, "msi");
->>>> +
->>>> +				if (irq < 0) {
->>>> +					irq = platform_get_irq(pdev, 0);
->>>> +					if (irq < 0)
->>>> +						return irq;
->>>>    				}
->>>> +				pp->msi_irq[0] = irq;
->>>>    			}
->>>>    			pp->msi_irq_chip = &dw_pci_msi_bottom_irq_chip;
->>>> @@ -383,10 +388,11 @@ int dw_pcie_host_init(struct pcie_port *pp)
->>>>    			if (ret)
->>>>    				return ret;
->>>> -			if (pp->msi_irq > 0)
->>>> -				irq_set_chained_handler_and_data(pp->msi_irq,
->>>> -							    dw_chained_msi_isr,
->>>> -							    pp);
->>>> +			for (ctrl = 0; ctrl < num_ctrls; ctrl++)
->>>> +				if (pp->msi_irq[ctrl] > 0)
->>>> +					irq_set_chained_handler_and_data(pp->msi_irq[ctrl],
->>>> +									 dw_chained_msi_isr,
->>>> +									 pp);
->>>>    			ret = dma_set_mask(pci->dev, DMA_BIT_MASK(32));
->>>>    			if (ret)
->>>> diff --git a/drivers/pci/controller/dwc/pcie-designware.h b/drivers/pci/controller/dwc/pcie-designware.h
->>>> index 7d6e9b7576be..9c1a38b0a6b3 100644
->>>> --- a/drivers/pci/controller/dwc/pcie-designware.h
->>>> +++ b/drivers/pci/controller/dwc/pcie-designware.h
->>>> @@ -187,7 +187,7 @@ struct pcie_port {
->>>>    	u32			io_size;
->>>>    	int			irq;
->>>>    	const struct dw_pcie_host_ops *ops;
->>>> -	int			msi_irq;
->>>> +	int			msi_irq[MAX_MSI_CTRLS];
->>>>    	struct irq_domain	*irq_domain;
->>>>    	struct irq_domain	*msi_domain;
->>>>    	u16			msi_msg;
->>>> diff --git a/drivers/pci/controller/dwc/pcie-keembay.c b/drivers/pci/controller/dwc/pcie-keembay.c
->>>> index 1ac29a6eef22..297e6e926c00 100644
->>>> --- a/drivers/pci/controller/dwc/pcie-keembay.c
->>>> +++ b/drivers/pci/controller/dwc/pcie-keembay.c
->>>> @@ -338,7 +338,7 @@ static int keembay_pcie_add_pcie_port(struct keembay_pcie *pcie,
->>>>    	int ret;
->>>>    	pp->ops = &keembay_pcie_host_ops;
->>>> -	pp->msi_irq = -ENODEV;
->>>> +	pp->msi_irq[0] = -ENODEV;
->>>>    	ret = keembay_pcie_setup_msi_irq(pcie);
->>>>    	if (ret)
->>>> diff --git a/drivers/pci/controller/dwc/pcie-spear13xx.c b/drivers/pci/controller/dwc/pcie-spear13xx.c
->>>> index 1569e82b5568..cc7776833810 100644
->>>> --- a/drivers/pci/controller/dwc/pcie-spear13xx.c
->>>> +++ b/drivers/pci/controller/dwc/pcie-spear13xx.c
->>>> @@ -172,7 +172,7 @@ static int spear13xx_add_pcie_port(struct spear13xx_pcie *spear13xx_pcie,
->>>>    	}
->>>>    	pp->ops = &spear13xx_pcie_host_ops;
->>>> -	pp->msi_irq = -ENODEV;
->>>> +	pp->msi_irq[0] = -ENODEV;
->>>>    	ret = dw_pcie_host_init(pp);
->>>>    	if (ret) {
->>>> diff --git a/drivers/pci/controller/dwc/pcie-tegra194.c b/drivers/pci/controller/dwc/pcie-tegra194.c
->>>> index b1b5f836a806..e75712db85b0 100644
->>>> --- a/drivers/pci/controller/dwc/pcie-tegra194.c
->>>> +++ b/drivers/pci/controller/dwc/pcie-tegra194.c
->>>> @@ -2271,7 +2271,7 @@ static void tegra194_pcie_shutdown(struct platform_device *pdev)
->>>>    	disable_irq(pcie->pci.pp.irq);
->>>>    	if (IS_ENABLED(CONFIG_PCI_MSI))
->>>> -		disable_irq(pcie->pci.pp.msi_irq);
->>>> +		disable_irq(pcie->pci.pp.msi_irq[0]);
->>>>    	tegra194_pcie_pme_turnoff(pcie);
->>>>    	tegra_pcie_unconfig_controller(pcie);
->>>> -- 
->>>> 2.35.1
->>>>
->>
->>
->> -- 
->> With best wishes
->> Dmitry
+> Signed-off-by: Samuel Holland <samuel@sholland.org>
 
+Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
 
--- 
-With best wishes
-Dmitry
+regards
+Philipp
