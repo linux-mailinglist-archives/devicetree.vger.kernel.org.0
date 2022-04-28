@@ -2,122 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 26DC751311F
-	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 12:16:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C29FF513152
+	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 12:30:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234245AbiD1KSa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Apr 2022 06:18:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35472 "EHLO
+        id S234232AbiD1Kdo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Apr 2022 06:33:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49004 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234536AbiD1KSH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 06:18:07 -0400
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CF9034B94
-        for <devicetree@vger.kernel.org>; Thu, 28 Apr 2022 03:09:05 -0700 (PDT)
-Received: by mail-ej1-x629.google.com with SMTP id m20so8506650ejj.10
-        for <devicetree@vger.kernel.org>; Thu, 28 Apr 2022 03:09:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=/dDr0fTGGl5BBgPYwPAZZ1pd+XtgWaczMpJtn23ntK0=;
-        b=ymmMVBWBQ8MpJSP4dXpx+Rq6OcKDzx8o92K2jOhgIxhtPTueaKNlqNV5b1+7OJodPs
-         nJ9xGKyW1KGLybKI+fvqgTX+VxkPz8uG3BEhkW5I1jxsR2cywsmsC4fS3CEEi+behj7t
-         hiQFekQ7PD5qsPm7FLhI0otlwLPjeekCPbmZ+HFju5Qr/hOapIWoIhtGlZk+Ab9fn8+r
-         3bUAldogPJq5VDqJJOXZIt3B8uU2Cr/jFJzMrKiPlGluhKMIafYJdaDkvN51MYsaMnsp
-         0Q89ZkoiQoZ8KLRlo4SBsyigrbJ9nhJmd8SmNu5SZaFHc/eG6XR07tI6tLuQUKZuXMJp
-         de5A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=/dDr0fTGGl5BBgPYwPAZZ1pd+XtgWaczMpJtn23ntK0=;
-        b=704b5xVc3UKvmFEuV2WcLd+WVfWhLFY3tM0CSPA1KlpMuk4yypVWZJ/FQJTOpFqhq/
-         O6Ig7aJ6XObBTW5ClzZV/dBzU2z3VoWi7sYtpiEjp4TGCpfAO/2W8oyaa0yFemzgGTgl
-         5Cf/NSJwkr6IVYLc6hDbkswCiLxP+NrHrNeoG69B8D05pm1AUz9xWTmOO1s+YAb8neSO
-         vTLMDpyqzC9hh/DCW3dvFGph48fVQRoduyjej6VI4j2PHLZ8MbUoFyx0XCeGO66/uEEZ
-         wVCTUZHdi7pKK6oNDuTeonTSeG7RYPFR+j2mzSRCQyATGFq2mjf46TSLiuMZS7UhTfTw
-         ZMVA==
-X-Gm-Message-State: AOAM53123IuCZtzr2sM0s4Yj15pskSWur817r6iKkLFOVguYaYPo7I1O
-        9Ts38XleM2dYC7ug377URjtTQQ==
-X-Google-Smtp-Source: ABdhPJyNl5aIeZaRe9OFQCAELtXNB7EAqHtq9JW4dgze3nveM4HBPQAYbmdni/LNySj3t3hVuS4AwQ==
-X-Received: by 2002:a17:907:3d91:b0:6df:a01c:f7cd with SMTP id he17-20020a1709073d9100b006dfa01cf7cdmr30990612ejc.255.1651140543621;
-        Thu, 28 Apr 2022 03:09:03 -0700 (PDT)
-Received: from [192.168.0.161] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id k14-20020a170906128e00b006e4b67514a1sm8220151ejb.179.2022.04.28.03.09.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 28 Apr 2022 03:09:03 -0700 (PDT)
-Message-ID: <813bd5f2-38b6-9642-6993-94ad78f5c08a@linaro.org>
-Date:   Thu, 28 Apr 2022 12:09:02 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH 08/10] ARM: dts: exynos: use proper
- 'dma-channels/requests' properties
-Content-Language: en-US
-To:     Marek Szyprowski <m.szyprowski@samsung.com>,
-        Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org, Dinh Nguyen <dinguyen@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>,
+        with ESMTP id S234079AbiD1Kdm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 06:33:42 -0400
+Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5444256C31;
+        Thu, 28 Apr 2022 03:30:23 -0700 (PDT)
+Received: (Authenticated sender: herve.codina@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 77031E0011;
+        Thu, 28 Apr 2022 10:30:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1651141822;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=XvY8OOcprZelkc7qvA2buNfCCfNWJDnZiew6EWVnFa0=;
+        b=pPcXOa7GQZjUQ1heIeDHrbr8vB4aD8YeZFWhXuiSNZn1klG/R6vUgnyRuQLaPAI9SzjcJF
+        YWkbMJDGbIknCDy9Jbvem2KKwH/nyr7hhMghPNwMsCXsRp+3lxPVlKyq+/zJvYJwgYEIJd
+        rJlgyPz8tFFYAuFPn7V7UYUgYR1UA6giuBCpvTCHqHZ9kd0Fa0jBBVDxY4yhJKQF2FwHxc
+        +7eFMq29GU4A6mzc4qAd8zcOPfGitVvf0n7t52Mvr5HFt+rriH7GScC0WljdyVDdeoWr/G
+        SqB9vom0+legpzZc+kL1FOZyFJbebv7rCy8Gn+/+mBWwgIGKL0g5y2qa6G7Cyw==
+Date:   Thu, 28 Apr 2022 12:30:18 +0200
+From:   Herve Codina <herve.codina@bootlin.com>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Marek Vasut <marek.vasut+renesas@gmail.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Michal Simek <michal.simek@xilinx.com>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
         Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        linux-samsung-soc@vger.kernel.org,
-        Broadcom Kernel Team <bcm-kernel-feedback-list@broadcom.com>,
-        linux-kernel@vger.kernel.org,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Liviu Dudau <liviu.dudau@arm.com>, Ray Jui <rjui@broadcom.com>,
-        linux-arm-kernel@lists.infradead.org
-References: <20220427155840.596535-1-krzysztof.kozlowski@linaro.org>
- <CGME20220427160347eucas1p23ce51e0fb49160d437961d98fd682c28@eucas1p2.samsung.com>
- <20220427155840.596535-9-krzysztof.kozlowski@linaro.org>
- <5eeac2a0-4293-675e-9dc2-25ed8ab3fb8f@samsung.com>
- <6981f93a-ef01-6ba0-4451-26526372d666@linaro.org>
- <05c908ce-217f-6938-6745-7405ac39d8ea@samsung.com>
- <1399774c-f188-81f1-4d15-367b9d0e4a59@linaro.org>
- <99c80fb6-c6cc-9370-b93d-ed736c7f2192@samsung.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <99c80fb6-c6cc-9370-b93d-ed736c7f2192@samsung.com>
+        Krzysztof =?UTF-8?B?V2lsY3p5xYRza2k=?= <kw@linux.com>,
+        Rob Herring <robh@kernel.org>,
+        linux-pci <linux-pci@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Sergey Shtylyov <s.shtylyov@omp.ru>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Clement Leger <clement.leger@bootlin.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>
+Subject: Re: [PATCH v3 7/8] ARM: dts: r9a06g032: Add USB PHY DT support
+Message-ID: <20220428123018.11cd054f@bootlin.com>
+In-Reply-To: <CAMuHMdXYpntR6QpJTRMPtE_RjNq+vwfCVRViXCc8DhNRMMjqJQ@mail.gmail.com>
+References: <20220422120850.769480-1-herve.codina@bootlin.com>
+        <20220422120850.769480-8-herve.codina@bootlin.com>
+        <CAMuHMdXYpntR6QpJTRMPtE_RjNq+vwfCVRViXCc8DhNRMMjqJQ@mail.gmail.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.31; x86_64-redhat-linux-gnu)
+MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/04/2022 12:05, Marek Szyprowski wrote:
->>>>> I also don't see any code that would read those properties. IMHO they
->>>>> should be simply removed at all, at least for the PL330 related nodes.
->>>> In current Linux implementation they indeed are not used. Nothing parses
->>>> them. However:
->>>> 1. They describe (hopefully correct) the hardware.
->>>> 2. They might be used by other implementations of pl330 driver.
->>>>
->>>> I would not remove them from existing sources, but indeed maybe there is
->>>> no need to add for new files.
->>> What's the point in having dt properties duplicating data that might be
->>> read from the driver registers?
->> Hm, indeed, there is no point in this. Since they are read from
->> registers, what was the idea behind in commit 42cf20980cde?
-> 
-> #dma-cells is indeed required, but the rest seems to be the cargo-cult 
-> of some kind.
+Hi Geert,
+On Thu, 28 Apr 2022 11:51:44 +0200
+Geert Uytterhoeven <geert@linux-m68k.org> wrote:
 
-Rob,
+> Hi Herv=C3=A9,
+>=20
+> On Fri, Apr 22, 2022 at 2:09 PM Herve Codina <herve.codina@bootlin.com> w=
+rote:
+> > Define the r9a06g032 generic part of the USB PHY device node.
+> >
+> > Signed-off-by: Herve Codina <herve.codina@bootlin.com> =20
+>=20
+> Thanks for your patch!
+>=20
+> > --- a/arch/arm/boot/dts/r9a06g032.dtsi
+> > +++ b/arch/arm/boot/dts/r9a06g032.dtsi
+> > @@ -59,6 +59,12 @@ ext_rtc_clk: extrtcclk {
+> >                 clock-frequency =3D <0>;
+> >         };
+> >
+> > +       usbphy: usbphy { =20
+>=20
+> Please preserve sort order (by node name).
 
-Any guidance from your side? Is there any benefit in describing the
-hadrware (dma-channels/dma-requests) if the same value can be read from
-registers?
+Ok, will be done.
 
+>=20
+> > +               #phy-cells =3D <0>;
+> > +               compatible =3D "usb-nop-xceiv";
+> > +               status =3D "disabled";
+> > +       };
+> > +
+> >         soc {
+> >                 compatible =3D "simple-bus";
+> >                 #address-cells =3D <1>; =20
+>=20
+> The rest LGTM, so with the above fixed:
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+>=20
 
-Best regards,
-Krzysztof
+Regards,
+Herv=C3=A9
+
+--=20
+Herv=C3=A9 Codina, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
