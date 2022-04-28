@@ -2,52 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DAA41513230
-	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 13:13:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BC9E6513237
+	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 13:15:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345038AbiD1LQF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Apr 2022 07:16:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39792 "EHLO
+        id S236798AbiD1LS0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Apr 2022 07:18:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41406 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236798AbiD1LQD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 07:16:03 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 63B08674D9;
-        Thu, 28 Apr 2022 04:12:49 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 1EB2B1474;
-        Thu, 28 Apr 2022 04:12:49 -0700 (PDT)
-Received: from [10.57.80.98] (unknown [10.57.80.98])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 8DF4F3F774;
-        Thu, 28 Apr 2022 04:12:45 -0700 (PDT)
-Message-ID: <7b09e989-0aa1-a557-485e-572f69caf881@arm.com>
-Date:   Thu, 28 Apr 2022 12:12:39 +0100
+        with ESMTP id S1345394AbiD1LSX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 07:18:23 -0400
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8657922B21;
+        Thu, 28 Apr 2022 04:15:09 -0700 (PDT)
+Received: by mail-ej1-x629.google.com with SMTP id kq17so8874102ejb.4;
+        Thu, 28 Apr 2022 04:15:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=m+MfYH2YQ+litd9nC4WLDji5G/nTM7/Ix1hsN4aQQiE=;
+        b=jHDaRN+NjsQ+9ro4gz2Wvs/dDGIlEWHb+T9Y5mQ8AObnsBA5Pd0FlIoc/BIu2k8+bj
+         /SqLjEdJ0MZBiONiCGTKXiTaa5DqMmVe7Sph+iCnEyB20tu2Qw6eNSS3+zCc+D/axZsL
+         rjBBnKxSScWm3WwnPeg65OWtkedtlAZ8F1Kex53HXfIm2H88bMNA1Tn5HoEUlNUA65/6
+         NcxY+80Ezi1ctMi6XpRx/YS4rDtLM5kc8ZJhKrBI5XW/VL4O84FMUxs6FkQzkLKcsAx7
+         c5nTCPQ77/aJ3432dxYq66k7k7wrGE7gYwARTs4fAry2AD/KtPpSrv/UQkd6gSBBGF8O
+         ttjg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=m+MfYH2YQ+litd9nC4WLDji5G/nTM7/Ix1hsN4aQQiE=;
+        b=r42hFB3eOSmxHIsU/7K8rGnoGjuxObSrenqqk5jy4+alPC5xQN9oRibODWWwufTk/7
+         GExkrIOxv5FGdWjIsosgpkGrfS659ilkvdOc2r5yjp8M3klF+zYtgB84ednpDhLlXPlI
+         FamT77OfqDeQ0TyRiBTNQZaoUXPMvI3JnnPJa/8T64shgOOkRrQSLYME63+lNNtOhoDI
+         XUSlNuvv8PdNPsgof9DQtEutwakisuyk7K1GeAeHQwcbWh8rGe+Jv0lhtE2g5/sbfH0w
+         omJB/mNp6DJpHNSST9iwdLz6yY2tc1PALA1Asa8mGw3K5yzRDAeYY7CpwQWCgI/Xy/DY
+         hoLg==
+X-Gm-Message-State: AOAM532T6g3AYP6f0zuPiwbWi9eonOf1NQZEBpG/qWMhdQgMJSmtMuAD
+        Qn3AupRx1cG5NDWLt5rFuf+FvaGBmCgRLg==
+X-Google-Smtp-Source: ABdhPJzAYtvVXrl9CAWvbv76jT6c8d/n2DovgQHySmatr7l5Dm4yG1AqCIsF6qg23AwQhhKxNa+28Q==
+X-Received: by 2002:a17:906:6a22:b0:6f3:e768:7de0 with SMTP id qw34-20020a1709066a2200b006f3e7687de0mr1469172ejc.480.1651144507953;
+        Thu, 28 Apr 2022 04:15:07 -0700 (PDT)
+Received: from archbook.localnet (84-72-105-84.dclient.hispeed.ch. [84.72.105.84])
+        by smtp.gmail.com with ESMTPSA id kk14-20020a170907766e00b006f3a6a528c8sm4898179ejc.146.2022.04.28.04.15.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 28 Apr 2022 04:15:07 -0700 (PDT)
+From:   Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
+To:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Michael Riesch <michael.riesch@wolfvision.net>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Liang Chen <cl@rock-chips.com>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Frank Wunderlich <frank-w@public-files.de>
+Subject: Re: [PATCH 1/3] arm64: dts: rockchip: enable otg/drd operation of usb_host0_xhci in rk356x
+Date:   Thu, 28 Apr 2022 13:15:06 +0200
+Message-ID: <2087500.ItEYzMA54p@archbook>
+In-Reply-To: <20220425133502.405512-1-michael.riesch@wolfvision.net>
+References: <20220425133502.405512-1-michael.riesch@wolfvision.net>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH 5/5] iommu/sun50i: Ensure the IOMMU can be used for DMA
-Content-Language: en-GB
-To:     Samuel Holland <samuel@sholland.org>,
-        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
-        iommu@lists.linux-foundation.org
-Cc:     devicetree@vger.kernel.org, Heiko Stuebner <heiko@sntech.de>,
-        linux-kernel@vger.kernel.org,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        linux-riscv@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-arm-kernel@lists.infradead.org
-References: <20220428010401.11323-1-samuel@sholland.org>
- <20220428010401.11323-6-samuel@sholland.org>
-From:   Robin Murphy <robin.murphy@arm.com>
-In-Reply-To: <20220428010401.11323-6-samuel@sholland.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -55,41 +76,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022-04-28 02:04, Samuel Holland wrote:
-> So far, the driver has relied on arch/arm64/Kconfig to select IOMMU_DMA.
-> Unsurprisingly, this does not work on RISC-V, so the driver must select
-> IOMMU_DMA itself.
-
-No, IOMMU_DMA should only be selected by the architecture code that's 
-also responsible for calling iommu_setup_dma_ops(). Without that, this 
-select will do nothing other than add some unused code to the kernel image.
-
-I appreciate that the current state of the x86 IOMMU drivers being 
-tightly-coupled to the x86 arch code might be confusing (which reminds 
-me I'd totally forgotten about [1]). I'm about to start reworking the 
-whole area anyway, but for now please just follow the existing intent.
-
-Thanks,
-Robin.
-
-[1] 
-https://lore.kernel.org/linux-iommu/9ba6f2e8568a3ff6a94fade66668d99705433c44.1631536879.git.robin.murphy@arm.com/
-
-> Signed-off-by: Samuel Holland <samuel@sholland.org>
+On Montag, 25. April 2022 15:35:00 CEST Michael Riesch wrote:
+> This USB 3.0 controller is capable of OTG/DRD operation. Enable it in the
+> device tree.
+> 
+> Signed-off-by: Michael Riesch <michael.riesch@wolfvision.net>
 > ---
+>  arch/arm64/boot/dts/rockchip/rk356x.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
->   drivers/iommu/Kconfig | 1 +
->   1 file changed, 1 insertion(+)
+> diff --git a/arch/arm64/boot/dts/rockchip/rk356x.dtsi b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+> index 55e6dcb948cc..f611aaf2d238 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+> @@ -266,7 +266,7 @@ usb_host0_xhci: usb@fcc00000 {
+>  			 <&cru ACLK_USB3OTG0>;
+>  		clock-names = "ref_clk", "suspend_clk",
+>  			      "bus_clk";
+> -		dr_mode = "host";
+> +		dr_mode = "otg";
+>  		phy_type = "utmi_wide";
+>  		power-domains = <&power RK3568_PD_PIPE>;
+>  		resets = <&cru SRST_USB3OTG0>;
 > 
-> diff --git a/drivers/iommu/Kconfig b/drivers/iommu/Kconfig
-> index c79a0df090c0..70a0bfa6d907 100644
-> --- a/drivers/iommu/Kconfig
-> +++ b/drivers/iommu/Kconfig
-> @@ -223,6 +223,7 @@ config SUN50I_IOMMU
->   	depends on ARCH_SUNXI || COMPILE_TEST
->   	select ARM_DMA_USE_IOMMU
->   	select IOMMU_API
-> +	select IOMMU_DMA
->   	help
->   	  Support for the IOMMU introduced in the Allwinner H6 SoCs.
->   
+
+Hi Michael,
+
+according to official specs[1], only the RK3568 is capable of using the
+USB 3.0 controller in OTG mode. For the RK3566, OTG is USB 2.0, if I
+understand this correctly.
+
+So I think this should be an override in rk3568.dtsi.
+
+Regards,
+Nicolas Frattaroli
+
+[1]: Compare page 17 of the RK3568 datasheet to page 16 of the RK3566
+     datasheet
+
+
