@@ -2,208 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D9F1512F33
-	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 10:58:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C0C3512F46
+	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 11:08:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344842AbiD1JBy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Apr 2022 05:01:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54670 "EHLO
+        id S1344365AbiD1JLj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Apr 2022 05:11:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50508 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229600AbiD1JBx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 05:01:53 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30F7669CE2;
-        Thu, 28 Apr 2022 01:58:39 -0700 (PDT)
-X-UUID: 8185ae474a1b4911960ae7e82d8114df-20220428
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.4,REQID:bc9a2a1a-37cb-4baa-b449-b7a9bdd071d4,OB:0,LO
-        B:0,IP:0,URL:0,TC:0,Content:-20,EDM:0,RT:0,SF:100,FILE:0,RULE:Release_Ham,
-        ACTION:release,TS:80
-X-CID-INFO: VERSION:1.1.4,REQID:bc9a2a1a-37cb-4baa-b449-b7a9bdd071d4,OB:0,LOB:
-        0,IP:0,URL:0,TC:0,Content:-20,EDM:0,RT:0,SF:100,FILE:0,RULE:Spam_GS981B3D,
-        ACTION:quarantine,TS:80
-X-CID-META: VersionHash:faefae9,CLOUDID:2281cec6-85ee-4ac1-ac05-bd3f1e72e732,C
-        OID:3b09fe92fc99,Recheck:0,SF:28|16|19|48,TC:nil,Content:0,EDM:-3,File:nil
-        ,QS:0,BEC:nil
-X-UUID: 8185ae474a1b4911960ae7e82d8114df-20220428
-Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw01.mediatek.com
-        (envelope-from <yongqiang.niu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1286502859; Thu, 28 Apr 2022 16:58:34 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
- Thu, 28 Apr 2022 16:58:33 +0800
-Received: from localhost.localdomain (10.17.3.154) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Thu, 28 Apr 2022 16:58:32 +0800
-From:   Yongqiang Niu <yongqiang.niu@mediatek.com>
-To:     Chun-Kuang Hu <chunkuang.hu@kernel.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "David Airlie" <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        Yongqiang Niu <yongqiang.niu@mediatek.com>,
-        Fabien Parent <fparent@baylibre.com>,
-        Dennis YC Hsieh <dennis-yc.hsieh@mediatek.com>,
+        with ESMTP id S229709AbiD1JLh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 05:11:37 -0400
+Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::221])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6DB453E19;
+        Thu, 28 Apr 2022 02:08:21 -0700 (PDT)
+Received: (Authenticated sender: herve.codina@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id BD0C824000C;
+        Thu, 28 Apr 2022 09:08:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1651136900;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=3ZaVxd+2WjygVQXWswdisAkNx+oA7fl9OUz2pidyb4k=;
+        b=M9NQEgqxVS+N0oyyjs4W4Whgk+JUc7I5Mfy1xvbtI9cZ6obYaEXP6mqwwDvcbuwULXvquQ
+        7mwoiCOmTjWbeoYn8PQKndMWvWDBVUdlb+5ezUH26//GxEhuBCZn5VswA09Kw0xhGNxA4J
+        9jCKV/zOSETAqDJQbqmEFBnRm9YcdSjqhbU6ozCZzBRWz6vEuIB2B8qMWmvt4jug2XL2c3
+        mUNTarLAOxOATtEo/qk6AuwGbrelDf5RhXS1awQqX4wo0H/IW3jwucBaXR9TeWztDdDkfv
+        8f/W7ARWVQR+kx9IjVZsNw/xHaL5Cdjzx5xZ24Sz3MdlaZ57cmswJxjmhoHgBg==
+Date:   Thu, 28 Apr 2022 11:08:17 +0200
+From:   Herve Codina <herve.codina@bootlin.com>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Marek Vasut <marek.vasut+renesas@gmail.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Krzysztof =?UTF-8?B?V2lsY3p5xYRza2k=?= <kw@linux.com>,
+        Rob Herring <robh@kernel.org>,
+        linux-pci <linux-pci@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Yongqiang Niu <yongqiang.niu@mediatek.corp-partner.google.com>
-Subject: [PATCH v4, 1/1] drm/mediatek: add lut diff flag for new gamma hardware support
-Date:   Thu, 28 Apr 2022 16:58:29 +0800
-Message-ID: <20220428085829.15855-2-yongqiang.niu@mediatek.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220428085829.15855-1-yongqiang.niu@mediatek.com>
-References: <20220428085829.15855-1-yongqiang.niu@mediatek.com>
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Sergey Shtylyov <s.shtylyov@omp.ru>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Clement Leger <clement.leger@bootlin.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>
+Subject: Re: [PATCH v3 2/8] dt-bindings: PCI: renesas,pci-rcar-gen2: Add
+ device tree support for r9a06g032
+Message-ID: <20220428110817.07ce92a6@bootlin.com>
+In-Reply-To: <CAMuHMdVB2-Sv1AWFr43erOioui0me5A4TfvazKHp9hTF3gJCwg@mail.gmail.com>
+References: <20220422120850.769480-1-herve.codina@bootlin.com>
+        <20220422120850.769480-3-herve.codina@bootlin.com>
+        <CAMuHMdVB2-Sv1AWFr43erOioui0me5A4TfvazKHp9hTF3gJCwg@mail.gmail.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.31; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Yongqiang Niu <yongqiang.niu@mediatek.corp-partner.google.com>
+Hi Geert,
 
-mt8183 gamma module usage is different with before soc,
-gamma odd(index start from 0) lut value set to hardware
-register should be
-the difference of current lut value with last lut value.
+On Wed, 27 Apr 2022 17:15:15 +0200
+Geert Uytterhoeven <geert@linux-m68k.org> wrote:
 
-for example, chrome os user space set lut
-like this(only r chanel for example):
-2 4 6 8 10 12.
-1) mt8183 gamma driver should set the gamma lut to hardware
-register like this:
-2 [2] 6 [2] 10 [2]
-the value with [] is the difference value
-2)gamma hardware process display data with original lut
+> Hi Herv=C3=A9,
+>=20
+> On Fri, Apr 22, 2022 at 2:09 PM Herve Codina <herve.codina@bootlin.com> w=
+rote:
+> > Add internal PCI bridge support for the r9a06g032 SOC. The Renesas
+> > RZ/N1D (R9A06G032) internal PCI bridge is compatible with the one
+> > present in the R-Car Gen2 family.
+> > Compared to the R-Car Gen2 family, it needs three clocks instead of
+> > one.
+> >
+> > Signed-off-by: Herve Codina <herve.codina@bootlin.com> =20
+>=20
+> Thanks for your patch!
+>=20
+> > --- a/Documentation/devicetree/bindings/pci/renesas,pci-rcar-gen2.yaml
+> > +++ b/Documentation/devicetree/bindings/pci/renesas,pci-rcar-gen2.yaml
+> > @@ -113,6 +113,37 @@ required:
+> >    - "#size-cells"
+> >    - "#interrupt-cells"
+> >
+> > +if:
+> > +  properties:
+> > +    compatible:
+> > +      contains:
+> > +        enum:
+> > +          - renesas,pci-rzn1
+> > +
+> > +then:
+> > +  properties:
+> > +    clocks:
+> > +      items:
+> > +        - description: Internal bus clock (AHB) for HOST
+> > +        - description: Internal bus clock (AHB) Power Management
+> > +        - description: PCI clock for USB subsystem
+> > +    clock-names:
+> > +      items:
+> > +        - const: hclk_usbh
+> > +        - const: hclk_usbpm
+> > +        - const: clk_pci_usb =20
+>=20
+> These are the provider names.
+> I think they should use the consumer names: usb_hclkh, usb_hclkpm,
+> and usb_pciclk.
 
-Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
----
- drivers/gpu/drm/mediatek/mtk_disp_aal.c   |  2 +-
- drivers/gpu/drm/mediatek/mtk_disp_drv.h   |  2 +-
- drivers/gpu/drm/mediatek/mtk_disp_gamma.c | 34 +++++++++++++++++++----
- 3 files changed, 30 insertions(+), 8 deletions(-)
+Yes, it makes sense.
+I will changed in v4.
 
-diff --git a/drivers/gpu/drm/mediatek/mtk_disp_aal.c b/drivers/gpu/drm/mediatek/mtk_disp_aal.c
-index f46d4ab73d6a..0f9d7efb61d7 100644
---- a/drivers/gpu/drm/mediatek/mtk_disp_aal.c
-+++ b/drivers/gpu/drm/mediatek/mtk_disp_aal.c
-@@ -66,7 +66,7 @@ void mtk_aal_gamma_set(struct device *dev, struct drm_crtc_state *state)
- 	struct mtk_disp_aal *aal = dev_get_drvdata(dev);
- 
- 	if (aal->data && aal->data->has_gamma)
--		mtk_gamma_set_common(aal->regs, state);
-+		mtk_gamma_set_common(aal->regs, state, false);
- }
- 
- void mtk_aal_start(struct device *dev)
-diff --git a/drivers/gpu/drm/mediatek/mtk_disp_drv.h b/drivers/gpu/drm/mediatek/mtk_disp_drv.h
-index 86c3068894b1..3380651c6707 100644
---- a/drivers/gpu/drm/mediatek/mtk_disp_drv.h
-+++ b/drivers/gpu/drm/mediatek/mtk_disp_drv.h
-@@ -51,7 +51,7 @@ void mtk_gamma_config(struct device *dev, unsigned int w,
- 		      unsigned int h, unsigned int vrefresh,
- 		      unsigned int bpc, struct cmdq_pkt *cmdq_pkt);
- void mtk_gamma_set(struct device *dev, struct drm_crtc_state *state);
--void mtk_gamma_set_common(void __iomem *regs, struct drm_crtc_state *state);
-+void mtk_gamma_set_common(void __iomem *regs, struct drm_crtc_state *state, bool lut_diff);
- void mtk_gamma_start(struct device *dev);
- void mtk_gamma_stop(struct device *dev);
- 
-diff --git a/drivers/gpu/drm/mediatek/mtk_disp_gamma.c b/drivers/gpu/drm/mediatek/mtk_disp_gamma.c
-index 3a5815ab4079..bbd558a036ec 100644
---- a/drivers/gpu/drm/mediatek/mtk_disp_gamma.c
-+++ b/drivers/gpu/drm/mediatek/mtk_disp_gamma.c
-@@ -27,6 +27,7 @@
- 
- struct mtk_disp_gamma_data {
- 	bool has_dither;
-+	bool lut_diff;
- };
- 
- /*
-@@ -53,12 +54,13 @@ void mtk_gamma_clk_disable(struct device *dev)
- 	clk_disable_unprepare(gamma->clk);
- }
- 
--void mtk_gamma_set_common(void __iomem *regs, struct drm_crtc_state *state)
-+void mtk_gamma_set_common(void __iomem *regs, struct drm_crtc_state *state, bool lut_diff)
- {
- 	unsigned int i, reg;
- 	struct drm_color_lut *lut;
- 	void __iomem *lut_base;
- 	u32 word;
-+	u32 diff[3] = {0};
- 
- 	if (state->gamma_lut) {
- 		reg = readl(regs + DISP_GAMMA_CFG);
-@@ -67,9 +69,20 @@ void mtk_gamma_set_common(void __iomem *regs, struct drm_crtc_state *state)
- 		lut_base = regs + DISP_GAMMA_LUT;
- 		lut = (struct drm_color_lut *)state->gamma_lut->data;
- 		for (i = 0; i < MTK_LUT_SIZE; i++) {
--			word = (((lut[i].red >> 6) & LUT_10BIT_MASK) << 20) +
--				(((lut[i].green >> 6) & LUT_10BIT_MASK) << 10) +
--				((lut[i].blue >> 6) & LUT_10BIT_MASK);
-+
-+			if (!lut_diff || (i % 2 == 0)) {
-+				word = (((lut[i].red >> 6) & LUT_10BIT_MASK) << 20) +
-+					(((lut[i].green >> 6) & LUT_10BIT_MASK) << 10) +
-+					((lut[i].blue >> 6) & LUT_10BIT_MASK);
-+			} else {
-+				diff[0] = (lut[i].red >> 6) - (lut[i - 1].red >> 6);
-+				diff[1] = (lut[i].green >> 6) - (lut[i - 1].green >> 6);
-+				diff[2] = (lut[i].blue >> 6) - (lut[i - 1].blue >> 6);
-+
-+				word = ((diff[0] & LUT_10BIT_MASK) << 20) +
-+					((diff[1] & LUT_10BIT_MASK) << 10) +
-+					(diff[2] & LUT_10BIT_MASK);
-+			}
- 			writel(word, (lut_base + i * 4));
- 		}
- 	}
-@@ -78,8 +91,12 @@ void mtk_gamma_set_common(void __iomem *regs, struct drm_crtc_state *state)
- void mtk_gamma_set(struct device *dev, struct drm_crtc_state *state)
- {
- 	struct mtk_disp_gamma *gamma = dev_get_drvdata(dev);
-+	bool lut_diff = false;
-+
-+	if (gamma->data)
-+		lut_diff = gamma->data->lut_diff;
- 
--	mtk_gamma_set_common(gamma->regs, state);
-+	mtk_gamma_set_common(gamma->regs, state, lut_diff);
- }
- 
- void mtk_gamma_config(struct device *dev, unsigned int w,
-@@ -176,10 +193,15 @@ static const struct mtk_disp_gamma_data mt8173_gamma_driver_data = {
- 	.has_dither = true,
- };
- 
-+static const struct mtk_disp_gamma_data mt8183_gamma_driver_data = {
-+	.lut_diff = true,
-+};
-+
- static const struct of_device_id mtk_disp_gamma_driver_dt_match[] = {
- 	{ .compatible = "mediatek,mt8173-disp-gamma",
- 	  .data = &mt8173_gamma_driver_data},
--	{ .compatible = "mediatek,mt8183-disp-gamma"},
-+	{ .compatible = "mediatek,mt8183-disp-gamma",
-+	  .data = &mt8183_gamma_driver_data},
- 	{},
- };
- MODULE_DEVICE_TABLE(of, mtk_disp_gamma_driver_dt_match);
--- 
-2.25.1
+>=20
+> The rest looks good to me.
 
+Perfect.
+
+Thanks for the review,
+Herv=C3=A9
+
+
+--=20
+Herv=C3=A9 Codina, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
