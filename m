@@ -2,68 +2,182 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 723F35135AC
-	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 15:51:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E2B325135C9
+	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 15:53:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230239AbiD1NxX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Apr 2022 09:53:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50778 "EHLO
+        id S235821AbiD1N4d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Apr 2022 09:56:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34976 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347699AbiD1NxW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 09:53:22 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41D3F39D;
-        Thu, 28 Apr 2022 06:50:07 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id 970DB1F458D4
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1651153806;
-        bh=p0LBmr6xOjfSOkbGUyCZlDHkH8yMb/71DA4vGV6dvEw=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=jhsMveSLZaTMEHHdlGv9JbUiTX7LDVQY+nY1zfuAUduJr/1UjuHlhzonCQ5foGjAb
-         zcDz0BexZoraX/sFx/HgChOxrXaNt9xsESe2zSVB2XcJg+ZfzTFTsQRcJD2R7efzYW
-         zvPPqQ2mLSHnl5QM5R5tdTxDGkc8sv4UEYzSTPvuRsF0FBo/t40kKj73JF3AkD1n63
-         8Qqv7UMj02XGUJ2bYTDkCfsCA8YLSxLXLfbyZ12UcPtbZHvNNJbJUTVxqYKv9R4v5S
-         scB/ftayVxqQ5E7g7QXgh35AUC058K8VR+gbo6/sZOi7IkV8nvp6S8MXveGdxwdRYU
-         m9g5LTmWVEo+A==
-Message-ID: <3ae5b1ea-4721-3e61-9b5f-505ab2d5f037@collabora.com>
-Date:   Thu, 28 Apr 2022 15:50:02 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH] arm64: dts: mediatek: mt8183-pumpkin: fix bad thermistor
- node name
-Content-Language: en-US
-To:     Fabien Parent <fparent@baylibre.com>,
+        with ESMTP id S243521AbiD1N4c (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 09:56:32 -0400
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5A12762B6;
+        Thu, 28 Apr 2022 06:53:17 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 23SDr4Hk059239;
+        Thu, 28 Apr 2022 08:53:04 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1651153984;
+        bh=SXWfGs93paC8+JGjukuUl/knJsXUK1oO0tYrUkQvlY0=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=vzgnbKqtApo9qDz7kUQyaEwuvgz4vqkAQWomCJsBZ13+tuuQnoZJDR5wlcoitBrQE
+         Frd5pbaKFXGJxyjhnFjWUmH4GrTy2QSFvvx0Q4Ar0Xr8ADp15CXYVbiz80oSaMhKMt
+         Bvq//eSJTmY+B+FRyI5fK8dT/WqMfEPig7qAxPIA=
+Received: from DFLE101.ent.ti.com (dfle101.ent.ti.com [10.64.6.22])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 23SDr3MJ069887
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 28 Apr 2022 08:53:03 -0500
+Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE101.ent.ti.com
+ (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Thu, 28
+ Apr 2022 08:53:02 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Thu, 28 Apr 2022 08:53:02 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 23SDr14w086090;
+        Thu, 28 Apr 2022 08:53:02 -0500
+Date:   Thu, 28 Apr 2022 19:23:01 +0530
+From:   Rahul T R <r-ravikumar@ti.com>
+To:     Aradhya Bhatia <a-bhatia1@ti.com>
+CC:     Vignesh Raghavendra <vigneshr@ti.com>, Nishanth Menon <nm@ti.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20220426164755.435372-1-fparent@baylibre.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20220426164755.435372-1-fparent@baylibre.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
-        version=3.4.6
+        Linux ARM Kernel List <linux-arm-kernel@lists.infradead.org>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        Linux Kernel List <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 4/4] arm64: dts: ti: k3-am625-sk: Add DSS ports, HDMI tx
+ & peripherals
+Message-ID: <20220428135300.rxu435u6yb2v5x3s@uda0490373>
+References: <20220427090850.32280-1-a-bhatia1@ti.com>
+ <20220427090850.32280-5-a-bhatia1@ti.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20220427090850.32280-5-a-bhatia1@ti.com>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 26/04/22 18:47, Fabien Parent ha scritto:
-> Fix the following dtbs_check error by using the correct node name:
-> /home/fabo/build/linux/mt8183-pumpkin/arch/arm64/boot/dts/mediatek/mt8183-pumpkin.dtb: ntc: $nodename:0: 'ntc' does not match '^thermistor(.*)?$'
-> 	From schema: /home/fabo/devel/baylibre/linux-mainline/Documentation/devicetree/bindings/hwmon/ntc-thermistor.yaml
+On 14:38-20220427, Aradhya Bhatia wrote:
+> Add DT nodes for sil9022 HDMI transmitter (tx), HDMI connector and the
+> HDMI fixed master clock on the am625-sk board.
 > 
-> Signed-off-by: Fabien Parent <fparent@baylibre.com>
-> Reviewed-by: Mattijs Korpershoek <mkorpershoek@baylibre.com>
+> Additionally, add and connect output port for DSS (vp2), input and output
+> ports for the sil9022 HDMI tx and the input port for the HDMI connector.
+> 
+> The sil9022 HDMI tx is connected on the i2c1 bus. The HDMI connector on
+> the board is of type "a". The clock frequency of the master clock that
+> supports the HDMI tx is 12.288 MHz.
+> 
+> The dpi output signals from the vp2 of DSS are fed into the sil9022 HDMI
+> transmitter. These signals are converted into HDMI signals which are
+> further passed on to the HDMI connector on the board, on which display
+> can be connected via appropriate HDMI cables.
+> 
+> Signed-off-by: Aradhya Bhatia <a-bhatia1@ti.com>
+> ---
+>  arch/arm64/boot/dts/ti/k3-am625-sk.dts | 63 ++++++++++++++++++++++++++
+>  1 file changed, 63 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-am625-sk.dts b/arch/arm64/boot/dts/ti/k3-am625-sk.dts
+> index 96414c5dacf7..9567fa4a447b 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am625-sk.dts
+> +++ b/arch/arm64/boot/dts/ti/k3-am625-sk.dts
+> @@ -134,6 +134,23 @@ led-0 {
+>  			default-state = "off";
+>  		};
+>  	};
+> +
+> +	hdmi_mstrclk: hdmi-mstrclk {
+> +		compatible = "fixed-clock";
+> +		#clock-cells = <0>;
+> +		clock-frequency = <12288000>;
+> +	};
+> +
+> +	hdmi: connector {
+> +		compatible = "hdmi-connector";
+> +		label = "hdmi";
+> +		type = "a";
+> +		port {
+> +			hdmi_connector_in: endpoint {
+> +				remote-endpoint = <&sii9022_out>;
+> +			};
+> +		};
+> +	};
+>  };
+>  
+>  &main_pmx0 {
+> @@ -385,6 +402,38 @@ exp1: gpio@22 {
+>  		pinctrl-names = "default";
+>  		pinctrl-0 = <&main_gpio1_ioexp_intr_pins_default>;
+>  	};
+> +
+> +	sii9022: sii9022@3b {
+> +		compatible = "sil,sii9022";
+> +		reg = <0x3b>;
+> +
+> +		clocks = <&hdmi_mstrclk>;
+> +		clock-names = "mclk";
+> +
+> +		interrupt-parent = <&exp1>;
+> +		interrupts = <16 IRQ_TYPE_EDGE_FALLING>;
+> +
+> +		ports {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +
+> +			port@0 {
+> +				reg = <0>;
+> +
+> +				sii9022_in: endpoint {
+> +					remote-endpoint = <&dpi1_out>;
+> +				};
+> +			};
+> +
+> +			port@1 {
+> +				reg = <1>;
+> +
+> +				sii9022_out: endpoint {
+> +					remote-endpoint = <&hdmi_connector_in>;
+> +				};
+> +			};
+> +		};
+> +	};
+>  };
+>  
+>  &main_i2c2 {
+> @@ -450,6 +499,20 @@ &dss {
+>  	pinctrl-0 = <&main_dss0_pins_default>;
+>  };
+>  
+> +&dss_ports {
+> +	#address-cells = <1>;
+> +	#size-cells = <0>;
+> +
+> +	/* VP2: DPI Output */
+> +	port@1 {
+> +		reg = <1>;
+> +
+> +		dpi1_out: endpoint {
+> +			remote-endpoint = <&sii9022_in>;
+> +		};
+> +	};
+> +};
+> +
+>  &mailbox0_cluster0 {
+>  	mbox_m4_0: mbox-m4-0 {
+>  		ti,mbox-rx = <0 0 0>;
+> -- 
+> 2.36.0
+>
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-
+Reviewed-by: Rahul T R <r-ravikumar@ti.com>
