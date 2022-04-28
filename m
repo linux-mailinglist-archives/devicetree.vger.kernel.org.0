@@ -2,147 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F61A513485
-	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 15:05:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D287751349C
+	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 15:11:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346803AbiD1NJF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Apr 2022 09:09:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58040 "EHLO
+        id S231298AbiD1NOV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Apr 2022 09:14:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45690 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346832AbiD1NJE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 09:09:04 -0400
-Received: from mail-oi1-f173.google.com (mail-oi1-f173.google.com [209.85.167.173])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BCB4EB0A6F;
-        Thu, 28 Apr 2022 06:05:49 -0700 (PDT)
-Received: by mail-oi1-f173.google.com with SMTP id m11so5228110oib.11;
-        Thu, 28 Apr 2022 06:05:49 -0700 (PDT)
+        with ESMTP id S1346952AbiD1NOP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 09:14:15 -0400
+Received: from mail-oi1-x232.google.com (mail-oi1-x232.google.com [IPv6:2607:f8b0:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79EAA1AF32;
+        Thu, 28 Apr 2022 06:11:00 -0700 (PDT)
+Received: by mail-oi1-x232.google.com with SMTP id s131so5294718oie.1;
+        Thu, 28 Apr 2022 06:11:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=sender:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=m1086ZQTgciBDTHOLT4KKyAGoDAeJX2AiJjybJQ5ZuA=;
+        b=LOr1/Kv/sLO4NyKJzb6wqfS6o0gV4djWxJx68mOvZpgzsNuLzwrbG+2V7jAE76zIUj
+         iikJ8X+ovko/EHgij1nBQo/x7Bi/KPoLw5dbFg1zkl+o+xzs/STuev2VguEmliiioU9o
+         aCRBFz40yeAc2H4oCQbOSaMqx4cZT1CU8By5trHyfwPkvOAWyXlHhK8z6XGX/SWIIQLl
+         Q1L2YoO0TcjAiw0rojGcluE6Tex4gTGwkAVShpqBRAL9TZm38Dq0T+qg4j3LtP3jpc5T
+         CCMOla56w5vcgbaVApT13+c8dDBbEjXo0Hng5F4WYel0R7mCQx+yTsPc3q4uQqGQqOeU
+         09+w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=6Q8sY5EYm3EAW/+YeLHV7h7x0ZdCODIrdPi50A0ISao=;
-        b=u++iRuKcHfDFMmWbZnvEIpEYIUADDRqtLhhrwzutcxvS8GTGXzqsZkb2bTXqIRzb5f
-         on3N5xou4Z6Y4cXWfaEzqL3/yGXdu99nk80pbYwvors5f434LNaexTxtFdl1xn/4tDD7
-         KsRL4eiG7xNfTpYIgwXnXeskebRJtEbALXuwR2uHYJAgXLxzOaT4+5g4NpyYCE4rbWc6
-         uP2ixTsn9obX3xVIFUW0U/lPsLTdkF3071g7R5ZclXXL4NQW1ZWLKSKwMonF0d4zk78C
-         I+DY9qlrqh10e5HZ1CX8GKuLzyq2cyUqePnLjW8WnEZoZeYzuFLj4qt+0q554AgBm+pv
-         /0Gg==
-X-Gm-Message-State: AOAM531FgLj7EG7Dvo6K4Hq9cqfRTrpWQJduxwafzMFVEwf4WzzFZyUC
-        rVVtkXUM7fMTrYh+RZMy7g==
-X-Google-Smtp-Source: ABdhPJz6TYrHQtltlSw6ndMYP3gm28JA36oK2lDbmJR8WaKuAC2Bu+/+6uLXbKrudAPgGHRM7xjyoQ==
-X-Received: by 2002:a05:6808:124f:b0:321:855d:5b19 with SMTP id o15-20020a056808124f00b00321855d5b19mr16189828oiv.30.1651151148774;
-        Thu, 28 Apr 2022 06:05:48 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id k4-20020a9d7604000000b00605d52c6472sm2130753otl.9.2022.04.28.06.05.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 28 Apr 2022 06:05:48 -0700 (PDT)
-Received: (nullmailer pid 2066044 invoked by uid 1000);
-        Thu, 28 Apr 2022 13:05:47 -0000
-Date:   Thu, 28 Apr 2022 08:05:47 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Frank Rowand <frowand.list@gmail.com>,
-        David Gibson <david@gibson.dropbear.id.au>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Masahiro Yamada <masahiroy@kernel.org>,
-        Michal Marek <michal.lkml@markovi.net>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Anmar Oueja <anmar.oueja@linaro.org>,
-        Bill Mills <bill.mills@linaro.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-kbuild <linux-kbuild@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Pantelis Antoniou <pantelis.antoniou@konsulko.com>
-Subject: Re: [PATCH 1/1] of: unittest: rename overlay source files from .dts
- to .dtso
-Message-ID: <YmqRK1uWiady7BHD@robh.at.kernel.org>
-References: <CAMuHMdXPn9FHr41xmihuuzNNNKvY-50yAwY4HyuyVo6qBn=Z1w@mail.gmail.com>
- <CAMuHMdWeL3DOXY3xcPOBW2WDDGW3PxgSM8didt7J1KxSm1ivJg@mail.gmail.com>
- <CAMuHMdWXXoS9mmX9VWRQyXfmsy8YROgpLZ-xB7zthEdPdM2u4A@mail.gmail.com>
- <CAMuHMdVWkSnki8VQDaYRzJ8yu8xtEKpXyfQppTtw3wXDQPmYzw@mail.gmail.com>
- <d4b7ce06-23e7-1c60-cc0c-b6aea07e0a1a@gmail.com>
- <CAL_JsqKTckMABk6cM8d=boZcHyLdcqYmbzfKDjAHdCXoCPSDtg@mail.gmail.com>
- <CAMuHMdU4oUKaGxmaPiC=cX0XpHG3KXhr+4MywEfeQ8sq-EG18A@mail.gmail.com>
- <CAL_JsqL3fHXNdGS=ap6+5Y25T2zmnDYRkt5dNV9mW7hyanVvuw@mail.gmail.com>
- <CAL_JsqJn459-8wnwT0N0CKumnvh_gDkVdgVebvMVa13oTxfQ=g@mail.gmail.com>
- <CAMuHMdUyuJbyHthc4ATuRXY=zM_Vbc7DmsZvWgX_u8w3FfhzDg@mail.gmail.com>
+        h=x-gm-message-state:sender:message-id:date:mime-version:user-agent
+         :subject:content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=m1086ZQTgciBDTHOLT4KKyAGoDAeJX2AiJjybJQ5ZuA=;
+        b=4OqAqygbgnAM6NRfolPcwj2dafkw5q6nJwddL4HNmu1oJCi8xAqCNtbsQtB7BiryQs
+         WJ/rSBgVcHuQ33M1IA4zt3hNWdqXIDpCezaqQd3um4G1KpkFKaUBKkFBIo9Z2OF9dtqp
+         aaIpR2PV9zTPDXQAT3Yk4CprDEXH1jfC9iFsB90fcHLAE36d9tNkhZsq27e2shFYl2D8
+         E2kesnTAsRz3URdLKaayZOoK93lcYYW1zuiJK8ZnUmt35lBBixovvma+AkTdeNPv5vYv
+         wZs35F1ZXu+6ZVH5pzk3i+YRDNca12qPiZ/wH+ug9ZsFxQHapEFCKa34X5K9tGBsTFA3
+         xFLA==
+X-Gm-Message-State: AOAM532RIWCtDXP07UUKZJjJhPpMtnLvYozOnZj+bU9NgAAcMaF43B9X
+        D+03HikrJkqQByP5+cGAA+Q=
+X-Google-Smtp-Source: ABdhPJzcMUpV76tKlp2QvspGppKBwEJiHCceRqEhu5DMtQBUZJkt02KlvwVAfbzsG9cuehRDhFmpIQ==
+X-Received: by 2002:aca:782:0:b0:325:4771:90b1 with SMTP id 124-20020aca0782000000b00325477190b1mr8237240oih.236.1651151459806;
+        Thu, 28 Apr 2022 06:10:59 -0700 (PDT)
+Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id i16-20020a056870d41000b000e686d1388esm1917184oag.40.2022.04.28.06.10.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 28 Apr 2022 06:10:58 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <b19ce453-1235-689b-8796-fa6cba35c1f0@roeck-us.net>
+Date:   Thu, 28 Apr 2022 06:10:56 -0700
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAMuHMdUyuJbyHthc4ATuRXY=zM_Vbc7DmsZvWgX_u8w3FfhzDg@mail.gmail.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH] watchdog: max63xx_wdt: Add support for specifying WDI
+ logic via GPIO
+Content-Language: en-US
+To:     =?UTF-8?Q?Pali_Roh=c3=a1r?= <pali@kernel.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220428091603.6838-1-pali@kernel.org>
+From:   Guenter Roeck <linux@roeck-us.net>
+In-Reply-To: <20220428091603.6838-1-pali@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 28, 2022 at 08:25:31AM +0200, Geert Uytterhoeven wrote:
-> Hi Rob,
+On 4/28/22 02:16, Pali Rohár wrote:
+> On some boards is WDI logic of max6370 chip connected via GPIO. So extend
+> max63xx_wdt driver and DTS schema to allow specifying WDI logic via GPIO.
 > 
-> On Wed, Apr 27, 2022 at 11:14 PM Rob Herring <robh@kernel.org> wrote:
-> > On Wed, Jan 26, 2022 at 1:31 PM Rob Herring <robh@kernel.org> wrote:
-> > > On Fri, Jan 14, 2022 at 3:25 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
-> > > > On Fri, Jan 14, 2022 at 3:10 AM Rob Herring <robh@kernel.org> wrote:
-> > > > > On Thu, Jan 6, 2022 at 11:23 AM Frank Rowand <frowand.list@gmail.com> wrote:
-> > > > > > Patient Geert has pinged again.
-> > > > >
-> > > > > If it's not a patch to be reviewed, then I'm not going to see it most
-> > > > > likely. I don't read the DT list regularly...
-> > > >
-> > > > Fair enough...
-> > > >
-> > > > > > If I remember correctly you guys were not thrilled with this idea, but
-> > > > > > also did not seem strongly against it.  Are you willing to go along
-> > > > > > with .dtso for overlay source files?  If so, I will revive this patch
-> > > > > > series.
-> > > > > >
-> > > > > > David, if you are against supporting .dtso in the dtc compiler then
-> > > > > > the kernel can still support it through make rules.
-> > > > >
-> > > > > I'm not really interested in diverging from dtc. I'd suggest moving
-> > > > > the discussion to dtc list and/or devicetree-spec if you want to get
-> > > > > more attention on this.
-> > > >
-> > > > What needs to be supported in the dtc compiler?
-> > > > The fallback passed to guess_input_format() is "dts".
-> > > > So this has been working out-of-the-box since forever?
-> > >
-> > > Ah, okay.
-> > >
-> > > > > Also, keep in mind that extensions also affect MIME types which
-> > > > > someone was also asking about recently.
-> > > >
-> > > > You mean "MIME type of Devicetree Blobs and Sources"[1]?
-> > > > According to [2](2022-01-13), none of that has happened.
-> > >
-> > > This is what I was thinking of:
-> > >
-> > > https://github.com/devicetree-org/devicetree-specification/issues/46
-> > >
-> > > In any case, given everyone is ambivalent, send me an updated patch
-> > > and I'll apply it.
+> Signed-off-by: Pali Rohár <pali@kernel.org>
 
-^^^^^^^^
+How is that different to just using the gpio watchdog driver ?
 
-> >
-> > Ping! Anyone still want this?
-> >
-> > What I don't want to see is a mixture of .dts and .dtso. And now I'm
-> > reviewing RPi overlay patches[1] with .dts.
+Guenter
+
+> ---
+>   .../bindings/watchdog/maxim,max63xx.yaml      |  4 +++
+>   drivers/watchdog/max63xx_wdt.c                | 28 +++++++++++++++++++
+>   2 files changed, 32 insertions(+)
 > 
-> I still prefer .dtso over .dts, as it allows tools to detect the file
-> type without having to read the file's contents.
-> Without this, e.g. make needs to have all overlays listed explicitly
-> in a Makefile.
-> 
-> We do have .c, .h, .s (even .S), .dtsi. So why not .dtso?
+> diff --git a/Documentation/devicetree/bindings/watchdog/maxim,max63xx.yaml b/Documentation/devicetree/bindings/watchdog/maxim,max63xx.yaml
+> index ab9641e845db..a97aa0135ef9 100644
+> --- a/Documentation/devicetree/bindings/watchdog/maxim,max63xx.yaml
+> +++ b/Documentation/devicetree/bindings/watchdog/maxim,max63xx.yaml
+> @@ -27,6 +27,10 @@ properties:
+>       description: This is a 1-byte memory-mapped address
+>       maxItems: 1
+>   
+> +  gpios:
+> +    description: Optional GPIO used for controlling WDI when WDI bit is not mapped to memory
+> +    maxItems: 1
+> +
+>   required:
+>     - compatible
+>     - reg
+> diff --git a/drivers/watchdog/max63xx_wdt.c b/drivers/watchdog/max63xx_wdt.c
+> index 9e1541cfae0d..eaf00c3f06a5 100644
+> --- a/drivers/watchdog/max63xx_wdt.c
+> +++ b/drivers/watchdog/max63xx_wdt.c
+> @@ -27,6 +27,7 @@
+>   #include <linux/io.h>
+>   #include <linux/slab.h>
+>   #include <linux/property.h>
+> +#include <linux/gpio/consumer.h>
+>   
+>   #define DEFAULT_HEARTBEAT 60
+>   #define MAX_HEARTBEAT     60
+> @@ -53,6 +54,9 @@ struct max63xx_wdt {
+>   	void __iomem *base;
+>   	spinlock_t lock;
+>   
+> +	/* GPIOs */
+> +	struct gpio_desc *gpio_wdi;
+> +
+>   	/* WDI and WSET bits write access routines */
+>   	void (*ping)(struct max63xx_wdt *wdt);
+>   	void (*set)(struct max63xx_wdt *wdt, u8 set);
+> @@ -158,6 +162,17 @@ static const struct watchdog_info max63xx_wdt_info = {
+>   	.identity = "max63xx Watchdog",
+>   };
+>   
+> +static void max63xx_gpio_ping(struct max63xx_wdt *wdt)
+> +{
+> +	spin_lock(&wdt->lock);
+> +
+> +	gpiod_set_value_cansleep(wdt->gpio_wdi, 1);
+> +	udelay(1);
+> +	gpiod_set_value_cansleep(wdt->gpio_wdi, 0);
+> +
+> +	spin_unlock(&wdt->lock);
+> +}
+> +
+>   static void max63xx_mmap_ping(struct max63xx_wdt *wdt)
+>   {
+>   	u8 val;
+> @@ -225,6 +240,19 @@ static int max63xx_wdt_probe(struct platform_device *pdev)
+>   		return -EINVAL;
+>   	}
+>   
+> +	wdt->gpio_wdi = devm_gpiod_get(dev, NULL, GPIOD_FLAGS_BIT_DIR_OUT);
+> +	if (IS_ERR(wdt->gpio_wdi) && PTR_ERR(wdt->gpio_wdi) != -ENOENT) {
+> +		if (PTR_ERR(wdt->gpio_wdi) != -EPROBE_DEFER)
+> +			dev_err(dev, "unable to request gpio: %ld\n",
+> +				PTR_ERR(wdt->gpio_wdi));
+> +		return PTR_ERR(wdt->gpio_wdi);
+> +	}
+> +
+> +	if (!IS_ERR(wdt->gpio_wdi))
+> +		wdt->ping = max63xx_gpio_ping;
+> +	else
+> +		wdt->gpio_wdi = NULL;
+> +
+>   	err = max63xx_mmap_init(pdev, wdt);
+>   	if (err)
+>   		return err;
 
-Read above! I said to resend this patch and I will apply it.
-
-Rob
