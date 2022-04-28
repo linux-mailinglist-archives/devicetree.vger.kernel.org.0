@@ -2,138 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CCD7B5132CD
-	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 13:48:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4EEAB5132F9
+	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 13:56:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345681AbiD1Lv5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Apr 2022 07:51:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42496 "EHLO
+        id S239271AbiD1L7s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Apr 2022 07:59:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36246 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229814AbiD1Lvy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 07:51:54 -0400
-Received: from mail-pj1-x102e.google.com (mail-pj1-x102e.google.com [IPv6:2607:f8b0:4864:20::102e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B560C689AD
-        for <devicetree@vger.kernel.org>; Thu, 28 Apr 2022 04:48:38 -0700 (PDT)
-Received: by mail-pj1-x102e.google.com with SMTP id r9so4069581pjo.5
-        for <devicetree@vger.kernel.org>; Thu, 28 Apr 2022 04:48:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=lKWQTGV4dh9PrDo1ht1APvD79N4/klGUKA1N6RBf/GQ=;
-        b=G3X+tE3No3MGFynBoTKdGdMfqY90HrjssPASkzvSVM3xa3pYXi6L5rl4CkSVGOR+z+
-         ro3lt+PwqdLf+fM7ZKxmcThJNKbQML0/enxTqS50zC4K2hTQcvOt5pxHARNiLVnp9go6
-         bL9CKShiWf9WpdXYz4FEgwYeQuM3jLB5igxWwvUMTRop1jMp7JKES0USBPgplpvHCD5B
-         WKJZlv0BZVL/6km57R0RivFmVwL+azaU9mWB+VXd92FVWxDUu4qoQzjXk+Kn6xj2ujXS
-         fktKKtimTGWrvth41l0ji77mmg+KgJDLWuaxWxQGc1mNEKUqApeJtr8jCBy1bqKY6L1k
-         Injw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=lKWQTGV4dh9PrDo1ht1APvD79N4/klGUKA1N6RBf/GQ=;
-        b=Lc77Dmf2q6OzesLWQYhRoNkMuDMzfWbCbZpO7GpMWukUCOAS+C9iNe+LMdroO/frK2
-         YkK45EtGMUBPuZcCpL/ndnw8p6QbwwAx6+EI5Rw1Qbss5S8cTsFuyn7xD1wIyw0ysiVJ
-         z1+keRvyEtjbHUa7hXSZlFBDAot5Nu1o6F5KcAW1WkkEb793ZXyL3PRlzEUJSW5f6s32
-         JM7dw3BRdrrT+ZhKHEED2JA18kec25GJbM1uthsYGIoZc0oi1Z3YRZY80VodrD2b2hJ1
-         cD5fp5tI0vlqtDdDDqbtXiUmqf0CWQhQt6K9Vn6qiwc0lX4xobXyBx41LvqHiOLHZsRR
-         11oQ==
-X-Gm-Message-State: AOAM532AUa3zjZPzMNCHyvYSmOei9JXfOHBpOSaGWF07CVh1GoA/KsuU
-        K494nFUc+1at6NZ5Eqh0tlr2Fg==
-X-Google-Smtp-Source: ABdhPJwfNlUrhObS4CNeZo5g5yFfXpFAPhyzjjlLtni25rafO48eOSIBrFIVd2rGxVJZL+uDhGhNbQ==
-X-Received: by 2002:a17:90b:3442:b0:1d9:8af8:2913 with SMTP id lj2-20020a17090b344200b001d98af82913mr20231216pjb.199.1651146518157;
-        Thu, 28 Apr 2022 04:48:38 -0700 (PDT)
-Received: from localhost ([122.162.207.161])
-        by smtp.gmail.com with ESMTPSA id k21-20020a63d855000000b003c14af5063fsm2654765pgj.87.2022.04.28.04.48.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 28 Apr 2022 04:48:37 -0700 (PDT)
-Date:   Thu, 28 Apr 2022 17:18:35 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Rex-BC Chen <rex-bc.chen@mediatek.com>
-Cc:     rafael@kernel.org, robh+dt@kernel.org, krzk+dt@kernel.org,
-        matthias.bgg@gmail.com, jia-wei.chang@mediatek.com,
-        roger.lu@mediatek.com, hsinyi@google.com, khilman@baylibre.com,
-        angelogioacchino.delregno@collabora.com, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-Subject: Re: [PATCH V4 07/14] cpufreq: mediatek: Add .get function
-Message-ID: <20220428114835.3ktimyz2tzzqdcbg@vireshk-i7>
-References: <20220422075239.16437-1-rex-bc.chen@mediatek.com>
- <20220422075239.16437-8-rex-bc.chen@mediatek.com>
- <20220425053548.72w2jh2g6lpzgz6g@vireshk-i7>
- <64c690e8edf493ec0a4a14e0fdaad2d8e88e6da7.camel@mediatek.com>
- <20220425100058.4kbvmpi63ygni6k5@vireshk-i7>
- <078b1f9b39690da98cbd3c4528ba28374a097083.camel@mediatek.com>
- <20220427031141.or2owu5wrh2cadfo@vireshk-i7>
- <346736a339bed576817179ded3795d61f71fa06a.camel@mediatek.com>
+        with ESMTP id S1345818AbiD1L7o (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 07:59:44 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2FD8188B0A;
+        Thu, 28 Apr 2022 04:56:29 -0700 (PDT)
+X-UUID: 04ac1cfa536d41f2a8db36c268c09267-20220428
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.4,REQID:4789b727-6664-4b2b-bce4-c797dc9d9db8,OB:20,L
+        OB:40,IP:0,URL:0,TC:0,Content:-20,EDM:0,RT:0,SF:95,FILE:0,RULE:Release_Ham
+        ,ACTION:release,TS:75
+X-CID-INFO: VERSION:1.1.4,REQID:4789b727-6664-4b2b-bce4-c797dc9d9db8,OB:20,LOB
+        :40,IP:0,URL:0,TC:0,Content:-20,EDM:0,RT:0,SF:95,FILE:0,RULE:Spam_GS981B3D
+        ,ACTION:quarantine,TS:75
+X-CID-META: VersionHash:faefae9,CLOUDID:d5590c2f-6199-437e-8ab4-9920b4bc5b76,C
+        OID:d7c54ea7e6a2,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,File:nil
+        ,QS:0,BEC:nil
+X-UUID: 04ac1cfa536d41f2a8db36c268c09267-20220428
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
+        (envelope-from <rex-bc.chen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 1427020110; Thu, 28 Apr 2022 19:56:23 +0800
+Received: from mtkmbs07n1.mediatek.inc (172.21.101.16) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Thu, 28 Apr 2022 19:56:22 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Thu, 28 Apr 2022 19:56:21 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Thu, 28 Apr 2022 19:56:21 +0800
+From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
+To:     <mturquette@baylibre.com>, <sboyd@kernel.org>,
+        <matthias.bgg@gmail.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>
+CC:     <p.zabel@pengutronix.de>,
+        <angelogioacchino.delregno@collabora.com>,
+        <chun-jie.chen@mediatek.com>, <wenst@chromium.org>,
+        <runyang.chen@mediatek.com>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        Rex-BC Chen <rex-bc.chen@mediatek.com>
+Subject: [PATCH V5 00/16] Cleanup MediaTek clk reset drivers and support MT8192/MT8195
+Date:   Thu, 28 Apr 2022 19:56:03 +0800
+Message-ID: <20220428115620.13512-1-rex-bc.chen@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <346736a339bed576817179ded3795d61f71fa06a.camel@mediatek.com>
-User-Agent: NeoMutt/20180716-391-311a52
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28-04-22, 19:16, Rex-BC Chen wrote:
-> Yes, the call stack will eventually go to __cpufreq_driver_target.
-> However, we can observe the mismatch between target_freq and policy-cur 
-> with a tiny difference.
-> e.g.
-> [ 553.065356] cpufreq: target for CPU 0: 500000 kHz, relation 0,
-> requested 500000 kHz
-> [ 553.066366] cpufreq: target_freq/policy->cur: 500000/499999 kHz
+In this series, we cleanup MediaTek clock reset drivers in clk/mediatek
+folder. MediaTek clock reset driver is used to provide reset control
+of modules controlled in clk, like infra_ao.
 
-So you are trying to set the frequency to 500 MHz now, but policy->cur says it
-is 499 MHz.
+Changes for V5:
+1. Add all infra reset bits for MT8192 and MT8195.
+2. Fix reviewers' comments.
 
-> We check the assignment of policy->cur could be either from
-> cpufreq_driver->get_intermediate or from cpufreq_driver->get.
+Changes for V4:
+1. Abandon the implementation of reset-cell = 2, and use reset index to
+   determine which reset bit is used.
+2. Add documentation for enum/structure/function in reset.h.
+3. Combine binding/drvier support patch for MT8192 and MT8195.
+4. The MT8195 DTS is accepted by Matthias, and I add new DTS patch to
+   support infracfg_ao reset for MT8195. The DTS of MT8195 is still
+   not merged into mainline. Please refer to [1].
 
-policy->cur is set only at two places, in your case:
-- CPUFREQ_POSTCHANGE
-- cpufreq_online()
+[1]: https://git.kernel.org/pub/scm/linux/kernel/git/matthias.bgg/linux.git/commit/?h=for-next&id=37f2582883be7218dc69f9af135959a8e93de223
 
-From what I understand, it is possible that cpufreq_online() is setting your
-frequency to 499999 (once at boot), but as soon as a frequency change has
-happened after that, policy->cur should be set to 500 MHz and you should see
-this problem only once.
+Changes for V3:
+1. Modify drivers for reviewers' comments.
+2. Add dt-binding patch for MT8192/MT8195 infra.
+3. Add reset property of infra node for MT8192.
+4. Use original function for simple operation.
 
-From CPUFREQ_POSTCHANGE notifier, we always set policy->cur from the table
-itself, which should be 500000 MHz.
+Changes for V2:
+1. Modify drivers for reviewers' comments.
+2. Use simple reset to replace v1.
+3. Recover v2 to set_clr.
+4. Separate error handling to another patch.
+5. Add support for input offset and bit from DT.
+6. Add support for MT8192 and MT8195.
 
-I wonder how you see policy->cur to be 499999 here. Does this happen only once ?
-Or repeatedly ?
+Rex-BC Chen (16):
+  clk: mediatek: reset: Add reset.h
+  clk: mediatek: reset: Fix written reset bit offset
+  clk: mediatek: reset: Refine and reorder functions in reset.c
+  clk: mediatek: reset: Extract common drivers to update function
+  clk: mediatek: reset: Merge and revise reset register function
+  clk: mediatek: reset: Revise structure to control reset register
+  clk: mediatek: reset: Support nonsequence base offsets of reset registers
+  clk: mediatek: reset: Change return type for clock reset register function
+  clk: mediatek: reset: Add new register reset function with device
+  clk: mediatek: reset: Add reset support for simple probe
+  dt-bindings: arm: mediatek: Add #reset-cells property for MT8192/MT8195
+  dt-bindings: reset: mediatek: Add infra_ao reset bit for MT8195
+  dt-bindings: reset: mediatek: Add infra_ao reset bit for MT8192
+  clk: mediatek: reset: Add infra_ao reset support for MT8192/MT8195
+  arm64: dts: mediatek: Add infra #reset-cells property for MT8192
+  arm64: dts: mediatek: Add infra #reset-cells property for MT8195
 
-> But it is strange to have the frequency value like 499999 kHz.
-> Is the result of tiny frequency difference expected from your point of
-> view?
-
-Clock driver can give this value, that is fine.
-
-> > What do you mean by "voltage pulse" here? What actually happens which
-> > you want to avoid.
-> > 
-> 
-> When cpufreq is fixed to lowest opp, "voltage pulse" is a quick voltage
-> rising and falling phenomenon which can be observed if 'cpufreq_get' is
-> invoked.
-
-Do check if the call is reaching your driver's ->target_index(), it should be
-which it should not, ideally.
-
-> Thank you for sharing the correct information.
-> Is it possible to get frequency (API) a simple way, like get current
-> opp frequency?
-
-Lets dig/debug a bit further and fix this if a real problem exists.
+ .../mediatek/mediatek,mt8192-sys-clock.yaml   |   3 +
+ .../mediatek/mediatek,mt8195-sys-clock.yaml   |   3 +
+ arch/arm64/boot/dts/mediatek/mt8192.dtsi      |   1 +
+ arch/arm64/boot/dts/mediatek/mt8195.dtsi      |  13 +-
+ drivers/clk/mediatek/clk-mt2701-eth.c         |  10 +-
+ drivers/clk/mediatek/clk-mt2701-g3d.c         |  10 +-
+ drivers/clk/mediatek/clk-mt2701-hif.c         |  10 +-
+ drivers/clk/mediatek/clk-mt2701.c             |  22 ++-
+ drivers/clk/mediatek/clk-mt2712.c             |  22 ++-
+ drivers/clk/mediatek/clk-mt7622-eth.c         |  10 +-
+ drivers/clk/mediatek/clk-mt7622-hif.c         |  12 +-
+ drivers/clk/mediatek/clk-mt7622.c             |  22 ++-
+ drivers/clk/mediatek/clk-mt7629-eth.c         |  10 +-
+ drivers/clk/mediatek/clk-mt7629-hif.c         |  12 +-
+ drivers/clk/mediatek/clk-mt8135.c             |  22 ++-
+ drivers/clk/mediatek/clk-mt8173.c             |  22 ++-
+ drivers/clk/mediatek/clk-mt8183.c             |  18 +-
+ drivers/clk/mediatek/clk-mt8192.c             |  18 ++
+ drivers/clk/mediatek/clk-mt8195-infra_ao.c    |  15 ++
+ drivers/clk/mediatek/clk-mtk.c                |   7 +
+ drivers/clk/mediatek/clk-mtk.h                |   9 +-
+ drivers/clk/mediatek/reset.c                  | 172 ++++++++++++------
+ drivers/clk/mediatek/reset.h                  |  77 ++++++++
+ include/dt-bindings/reset/mt8192-resets.h     | 163 +++++++++++++++++
+ include/dt-bindings/reset/mt8195-resets.h     | 170 +++++++++++++++++
+ 25 files changed, 759 insertions(+), 94 deletions(-)
+ create mode 100644 drivers/clk/mediatek/reset.h
 
 -- 
-viresh
+2.18.0
+
