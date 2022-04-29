@@ -2,201 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 38ADE515457
-	for <lists+devicetree@lfdr.de>; Fri, 29 Apr 2022 21:19:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E945D515494
+	for <lists+devicetree@lfdr.de>; Fri, 29 Apr 2022 21:32:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1380264AbiD2TWp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Apr 2022 15:22:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40628 "EHLO
+        id S1380306AbiD2Tfz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Apr 2022 15:35:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52212 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1380260AbiD2TWp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Apr 2022 15:22:45 -0400
-Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com [IPv6:2607:f8b0:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D35D5C90FB
-        for <devicetree@vger.kernel.org>; Fri, 29 Apr 2022 12:19:25 -0700 (PDT)
-Received: by mail-pl1-x633.google.com with SMTP id h12so7926103plf.12
-        for <devicetree@vger.kernel.org>; Fri, 29 Apr 2022 12:19:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=Nbl1l94NSe3Fek2fXmDdi1dWs+tZMPUUMy0P2EiLPLg=;
-        b=e+923uX3L34JoxH8inI2ZslZuVikT2P6I5OcFSRPPg8PWVOj34lfOUIuKdw5y2eIN+
-         vGUUvNtdpS7vGCww/uqb2kGFOd9R/L99ldLU+nWZITJlCqJONw41uN3MQZD3uQ2//N+M
-         crhXv+T8QnJFSY/NAUSKR1o4ahHUVk7dBVY18=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Nbl1l94NSe3Fek2fXmDdi1dWs+tZMPUUMy0P2EiLPLg=;
-        b=L7L8u5m7Oi7mPZ+InFsdJsropn4aDJ9+VKZRi2/bF/NUctyQqmXqV7WAOi/aXw4ZHi
-         nG23Uu13D147jQoV7FPnO4UsOvEkwzf+qArY+0DLnwlEJT4uSaZTatJSo6eMSSdQZHhP
-         t4LTlU3+QPjEwsKhJT0glLbwPLUYdBxSWkL5I18aIyO54KCx2qmObHacAdaVM3UJRKZG
-         tY3jbddDLColcZL0bBBFwYJO+ORvStnX83K2kJAtzHqwkQniUAZwKV6HcIB+77Ih88h/
-         xq99rMg3RWELUlub+MRd4aUuvheKaYe4BNveVXNr2VGtnyXzLVyumgwc4Hj7DWsv5CsW
-         UGvQ==
-X-Gm-Message-State: AOAM532V/PcVzLxp8wqNahcpcHN4UXBtMifbaHGQfB/U29hIMn2JWBSw
-        tQ9zDUT/BcWbKmsbVQsl/dB3mQ==
-X-Google-Smtp-Source: ABdhPJx5izOWf80ef6ldgjmrgWzIUTHlyiEV4R/ZZm5TorJpza0hZq8zsUWD1pcGPG5bzvzzP3PbRg==
-X-Received: by 2002:a17:90b:4a09:b0:1d2:de49:9be8 with SMTP id kk9-20020a17090b4a0900b001d2de499be8mr5668726pjb.68.1651259965279;
-        Fri, 29 Apr 2022 12:19:25 -0700 (PDT)
-Received: from localhost ([2620:15c:202:201:7d14:5f45:9377:9b6a])
-        by smtp.gmail.com with UTF8SMTPSA id m8-20020a17090a414800b001d81a30c437sm11380455pjg.50.2022.04.29.12.19.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 29 Apr 2022 12:19:24 -0700 (PDT)
-Date:   Fri, 29 Apr 2022 12:19:22 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Pavan Kondeti <quic_pkondeti@quicinc.com>
-Cc:     "Rafael J. Wysocki" <rafael@kernel.org>,
-        Sandeep Maheswaram <quic_c_sanm@quicinc.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Felipe Balbi <balbi@kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Doug Anderson <dianders@chromium.org>,
-        Mathias Nyman <mathias.nyman@intel.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Len Brown <len.brown@intel.com>, Pavel Machek <pavel@ucw.cz>,
-        Linux PM <linux-pm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        "open list:ULTRA-WIDEBAND (UWB) SUBSYSTEM:" 
-        <linux-usb@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        quic_ppratap@quicinc.com, quic_kriskura@quicinc.com,
-        quic_vpulyala@quicinc.com
-Subject: Re: [PATCH v14 2/7] PM / wakeup: Add device_children_wakeup_capable()
-Message-ID: <Ymw6Og/qhg3D0mx+@google.com>
-References: <1650395470-31333-1-git-send-email-quic_c_sanm@quicinc.com>
- <1650395470-31333-3-git-send-email-quic_c_sanm@quicinc.com>
- <CAJZ5v0h2ZKPN6SERPnASPywZfeOWXWncJgNZ1WZa80+=M4DCiQ@mail.gmail.com>
- <YmL3lMaR79wPMEfY@google.com>
- <20220425130303.GA16319@hu-pkondeti-hyd.qualcomm.com>
- <20220429125956.GD16319@hu-pkondeti-hyd.qualcomm.com>
+        with ESMTP id S238144AbiD2Tfz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Apr 2022 15:35:55 -0400
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DED99692AA;
+        Fri, 29 Apr 2022 12:32:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1651260756; x=1682796756;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=JndYmvyDHGDJ5FLMtua0mbKv4qhsfh22QdXtZJJmVlQ=;
+  b=m91AYf/kuCNbT9zbjpYqz6+1uEpWL3ieA4Eggo+cmEzG/UeTJPhsZMwa
+   KaAWOqyUXtJTOXa4Z5iCasuON5GPlH+wP+psoOD8upQRpumCMQjmM42oO
+   iub29LBpzKDTK2jeibTFevSen7MYkBRYPU3UTpgNfoiMzL6FwsHvUqE5m
+   1EQQ7mAgUtZXHT2R3rhPPELaBlYI5L8f73dQIpevofLYF8R1lUVTfE5sh
+   Oh5uDZKc8a98VSl2PsF2gAoMFx7zMcp4BnfDGOALl0yWsi5KTLI08MbmU
+   5VgQrLYZhtNL7fBUOq4MrrH50WPATWmckmTnbhswS4PYvytSkidBTWm25
+   w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10332"; a="266294483"
+X-IronPort-AV: E=Sophos;i="5.91,186,1647327600"; 
+   d="scan'208";a="266294483"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Apr 2022 12:32:26 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.91,186,1647327600"; 
+   d="scan'208";a="566287859"
+Received: from lkp-server01.sh.intel.com (HELO 5056e131ad90) ([10.239.97.150])
+  by fmsmga007.fm.intel.com with ESMTP; 29 Apr 2022 12:32:21 -0700
+Received: from kbuild by 5056e131ad90 with local (Exim 4.95)
+        (envelope-from <lkp@intel.com>)
+        id 1nkWLk-0006a3-Gm;
+        Fri, 29 Apr 2022 19:32:20 +0000
+Date:   Sat, 30 Apr 2022 03:31:43 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Sebastian Reichel <sebastian.reichel@collabora.com>,
+        Heiko Stuebner <heiko@sntech.de>
+Cc:     kbuild-all@lists.01.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org,
+        linux-mmc@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, kernel@lists.collabora.co.uk,
+        Elaine Zhang <zhangqing@rock-chips.com>, kernel@collabora.com,
+        Sebastian Reichel <sebastian.reichel@collabora.com>
+Subject: Re: [PATCHv1 06/19] clk: rockchip: Add clock controller for the
+ RK3588
+Message-ID: <202204300329.BL2rwfwr-lkp@intel.com>
+References: <20220422170920.401914-7-sebastian.reichel@collabora.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220429125956.GD16319@hu-pkondeti-hyd.qualcomm.com>
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+In-Reply-To: <20220422170920.401914-7-sebastian.reichel@collabora.com>
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Pavan,
+Hi Sebastian,
 
-On Fri, Apr 29, 2022 at 06:29:56PM +0530, Pavan Kondeti wrote:
-> Hi Matthias,
-> 
-> On Mon, Apr 25, 2022 at 06:33:03PM +0530, Pavan Kondeti wrote:
-> > Hi Matthias,
-> > 
-> > On Fri, Apr 22, 2022 at 11:44:36AM -0700, Matthias Kaehlcke wrote:
-> > > On Fri, Apr 22, 2022 at 01:57:17PM +0200, Rafael J. Wysocki wrote:
-> > > > On Tue, Apr 19, 2022 at 9:11 PM Sandeep Maheswaram
-> > > > <quic_c_sanm@quicinc.com> wrote:
-> > > > >
-> > > > > From: Matthias Kaehlcke <mka@chromium.org>
-> > > > >
-> > > > > Add device_children_wakeup_capable() which checks whether the device itself
-> > > > > or one if its descendants is wakeup capable.
-> > > > 
-> > > > device_wakeup_path() exists for a very similar purpose.
-> > > > 
-> > > > Is it not usable for whatever you need the new function introduced here?
-> > > 
-> > > I wasn't aware of it's function, there are no doc comments and the
-> > > name isn't really self explanatory.
-> > > 
-> > > In a quick test device_wakeup_path() returned inconsistent values for the
-> > > root hub, sometimes true, others false when a wakeup capable USB device was
-> > > connected.
-> > 
-> > We will also test the same to double confirm the behavior of
-> > device_wakeup_path(). I am assuming that you checked device_wakeup_path()
-> > only during system suspend path.
-> > 
-> > Here is what I understood by looking at __device_suspend(). Please share
-> > your thoughts on this.
-> > 
-> > power.wakeup_path is set to true for the parent *after* a wakeup capable
-> > device is suspended. This means when the root hub(s) is suspended, it is
-> > propagated to xhci-plat and when xhci-plat is suspended, it is propagated
-> > to dwc3. bottom up propgation during system suspend.
-> > 
-> > I believe we can directly check something like this in the dwc3 driver
-> > instead of having another wrapper like device_children_wakeup_capable().
-> > 
-> > diff --git a/drivers/usb/dwc3/core.c b/drivers/usb/dwc3/core.c
-> > index 1170b80..a783257 100644
-> > --- a/drivers/usb/dwc3/core.c
-> > +++ b/drivers/usb/dwc3/core.c
-> > @@ -1878,8 +1878,14 @@ static int dwc3_suspend_common(struct dwc3 *dwc, pm_message_t msg)
-> >  		break;
-> >  	case DWC3_GCTL_PRTCAP_HOST:
-> >  		if (!PMSG_IS_AUTO(msg)) {
-> > +			/*
-> > +			 * Don't kill the host when dwc3 is wakeup capable and
-> > +			 * its children needs wakeup.
-> > +			 */
-> > +			if (device_may_wakeup(dwc->dev) && device_wakeup_path(dwc->dev))
-> > +				handle_it();
-> > +		} else {
-> >  			dwc3_core_exit(dwc);
-> > -			break;
-> >  		}
-> >  
-> >  		/* Let controller to suspend HSPHY before PHY driver suspends */
-> > 
-> 
-> device_wakeup_path(dwc->dev) is returning true all the time irrespective of
-> the wakeup capability (and enabled status) of the connected USB devices. That
-> is because xhci-plat device is configured to wakeup all the time. Since the
-> child is wakeup capable, its parent i.e dwc3 has device_wakeup_path() set.
-> device_children_wakeup_capable() will also suffer the problem. However,
-> 
-> device_children_wakeup_capable(&hcd->self.root_hub->dev) is what Sandeep's
-> patch is using. That is not correct. we have two root hubs (HS and SS) associated
-> with a USB3 controller and calling it on one root hub is incorrect. 
-> device_children_wakeup_capable() must be called on xhci-plat so that it covers
-> both HS and SS root hubs
+Thank you for the patch! Perhaps something to improve:
 
-Thanks for pointing that out!
+[auto build test WARNING on robh/for-next]
+[also build test WARNING on linusw-pinctrl/devel linus/master v5.18-rc4 next-20220429]
+[cannot apply to rockchip/for-next]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
 
-> I am thinking of dynamically enabling/disabling xhci-plat wakeup capability so
-> that the wakeup path is correctly propagated to dwc3. something like below.
-> Does it make sense to you?
-> 
-> diff --git a/drivers/usb/host/xhci-plat.c b/drivers/usb/host/xhci-plat.c
-> index 649ffd8..be0c55b 100644
-> --- a/drivers/usb/host/xhci-plat.c
-> +++ b/drivers/usb/host/xhci-plat.c
-> @@ -412,6 +412,9 @@ static int __maybe_unused xhci_plat_suspend(struct device *dev)
->  	struct xhci_hcd	*xhci = hcd_to_xhci(hcd);
->  	int ret;
->  
-> +	if (!device_wakeup_path(dev))
-> +		device_wakeup_disable(dev);
-> +
->  	if (pm_runtime_suspended(dev))
->  		pm_runtime_resume(dev);
->  
-> @@ -443,6 +446,8 @@ static int __maybe_unused xhci_plat_resume(struct device *dev)
->  	pm_runtime_set_active(dev);
->  	pm_runtime_enable(dev);
->  
-> +	device_wakeup_enable(dev);
+url:    https://github.com/intel-lab-lkp/linux/commits/Sebastian-Reichel/Basic-RK3588-Support/20220423-013425
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+config: arm64-defconfig (https://download.01.org/0day-ci/archive/20220430/202204300329.BL2rwfwr-lkp@intel.com/config)
+compiler: aarch64-linux-gcc (GCC) 11.3.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/6736e6f1e32bb98780b77b5aa64fe5ac5dfaae26
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Sebastian-Reichel/Basic-RK3588-Support/20220423-013425
+        git checkout 6736e6f1e32bb98780b77b5aa64fe5ac5dfaae26
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.3.0 make.cross W=1 O=build_dir ARCH=arm64 SHELL=/bin/bash drivers/clk/rockchip/ drivers/media/platform/qcom/venus/
 
-I think this also needs to be done conditionally, otherwise it would
-create a new wake source on every resume when wakeup is already
-enabled.
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
 
-Other than that this seems to do the trick and keeps the USB layer out of
-the dwc3 code.
+All warnings (new ones prefixed by >>):
+
+   drivers/clk/rockchip/clk-rk3588.c: In function 'rk3588_clk_init':
+>> drivers/clk/rockchip/clk-rk3588.c:2408:22: warning: variable 'clks' set but not used [-Wunused-but-set-variable]
+    2408 |         struct clk **clks;
+         |                      ^~~~
+
+
+vim +/clks +2408 drivers/clk/rockchip/clk-rk3588.c
+
+  2403	
+  2404	static void __init rk3588_clk_init(struct device_node *np)
+  2405	{
+  2406		struct rockchip_clk_provider *ctx;
+  2407		void __iomem *reg_base;
+> 2408		struct clk **clks;
+  2409	
+  2410		reg_base = of_iomap(np, 0);
+  2411		if (!reg_base) {
+  2412			pr_err("%s: could not map cru region\n", __func__);
+  2413			return;
+  2414		}
+  2415	
+  2416		ctx = rockchip_clk_init(np, reg_base, CLK_NR_CLKS);
+  2417		if (IS_ERR(ctx)) {
+  2418			pr_err("%s: rockchip clk init failed\n", __func__);
+  2419			iounmap(reg_base);
+  2420			return;
+  2421		}
+  2422		clks = ctx->clk_data.clks;
+  2423	
+  2424		rockchip_clk_register_plls(ctx, rk3588_pll_clks,
+  2425					   ARRAY_SIZE(rk3588_pll_clks),
+  2426					   RK3588_GRF_SOC_STATUS0);
+  2427	
+  2428		rockchip_clk_register_armclk(ctx, ARMCLK_L, "armclk_l",
+  2429				mux_armclkl_p, ARRAY_SIZE(mux_armclkl_p),
+  2430				&rk3588_cpulclk_data, rk3588_cpulclk_rates,
+  2431				ARRAY_SIZE(rk3588_cpulclk_rates));
+  2432		rockchip_clk_register_armclk(ctx, ARMCLK_B01, "armclk_b01",
+  2433				mux_armclkb01_p, ARRAY_SIZE(mux_armclkb01_p),
+  2434				&rk3588_cpub0clk_data, rk3588_cpub0clk_rates,
+  2435				ARRAY_SIZE(rk3588_cpub0clk_rates));
+  2436		rockchip_clk_register_armclk(ctx, ARMCLK_B23, "armclk_b23",
+  2437				mux_armclkb23_p, ARRAY_SIZE(mux_armclkb23_p),
+  2438				&rk3588_cpub1clk_data, rk3588_cpub1clk_rates,
+  2439				ARRAY_SIZE(rk3588_cpub1clk_rates));
+  2440	
+  2441		rockchip_clk_register_branches(ctx, rk3588_clk_branches,
+  2442					       ARRAY_SIZE(rk3588_clk_branches));
+  2443	
+  2444		rockchip_register_softrst(np, 49158, reg_base + RK3588_SOFTRST_CON(0),
+  2445					  ROCKCHIP_SOFTRST_HIWORD_MASK);
+  2446	
+  2447		rockchip_register_restart_notifier(ctx, RK3588_GLB_SRST_FST, NULL);
+  2448	
+  2449		rockchip_clk_of_add_provider(np, ctx);
+  2450	}
+  2451	
+
+-- 
+0-DAY CI Kernel Test Service
+https://01.org/lkp
