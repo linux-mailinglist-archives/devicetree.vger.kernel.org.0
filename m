@@ -2,87 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E35051564B
-	for <lists+devicetree@lfdr.de>; Fri, 29 Apr 2022 23:01:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B4837515659
+	for <lists+devicetree@lfdr.de>; Fri, 29 Apr 2022 23:02:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1381160AbiD2VEF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Apr 2022 17:04:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37298 "EHLO
+        id S1376454AbiD2VFE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Apr 2022 17:05:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42108 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1381170AbiD2VD6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Apr 2022 17:03:58 -0400
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7CE98D3AE7
-        for <devicetree@vger.kernel.org>; Fri, 29 Apr 2022 14:00:38 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id m20so17567071ejj.10
-        for <devicetree@vger.kernel.org>; Fri, 29 Apr 2022 14:00:38 -0700 (PDT)
+        with ESMTP id S1381182AbiD2VFC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Apr 2022 17:05:02 -0400
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD908D3D97
+        for <devicetree@vger.kernel.org>; Fri, 29 Apr 2022 14:01:43 -0700 (PDT)
+Received: by mail-ed1-x52e.google.com with SMTP id g20so10369698edw.6
+        for <devicetree@vger.kernel.org>; Fri, 29 Apr 2022 14:01:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=k+FLEaNOSlEZQgu+29CSWk5IjfdF4HGnJSzB2OIKnM8=;
-        b=x7oX3LjaOjtefLkFeO1lfDimV4wlwSgqTHvXxjvzfFsgSznI/BNVeHchG5Vp1ycoGn
-         6k+Q1ObllNBs2MPJ6e2M5I2HXhi7+XdSznQxo0xTkWwm2IyxxExE3QmAIGm5D8iWvYhl
-         qSs+w87c/MjCdApC5C7chhvDTDjQd7Xsi+xrKtGNasicVrgymiuiqjgKAHaX3/qH3xcw
-         i4SRReozeEenNuZ0+wfNtXl4BwpW4aZDH8y2YY6paDFXouFiVn7a228C2W8swy0QfVi7
-         pxWXrAqcDJvZmTzsJ05GSBLb6sr32+RVq73JDprpkzwMzDdXpJoUzPcLKochMS+ZalvE
-         Lihg==
+        bh=+hPInKpIDooHrKupF5RNs/2guHgbPlSDYet1zTo77CM=;
+        b=wPzuxVUyq4buxSFTI12310NVqICUJ/+JXnauyORm9IhtDwlBC4TKSS92rTZz6IA0Ze
+         gAS8gVzLn+NAo1j/nyet4r/GM76503xZ9FqFlHnZ2runqv7n6clIoPWxv1v3AAR/jmGP
+         n+Rcubc4fckTLI+f7+LLY3m+eiYdvGK9nxuFBXPp9cWmKPYniazuSyTwGgdzekaUjP/N
+         XfC3JZhWEhlmU89UAGAadAp2ug5ruorPWZljOrM4brVnI4vNixQVHZAj4xHb79MtSo99
+         XkUvaF/P8IJmzMEJ8Yu5E4Aqj+bOROp2URTh62M5mCQYNVJXsKbO21KrYKEOxbvK0DTp
+         Og+Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=k+FLEaNOSlEZQgu+29CSWk5IjfdF4HGnJSzB2OIKnM8=;
-        b=Qdy1F9AK90dUsK62FFSk0OQFV/jgypSha4PAK78FpIvrCuty6ndnXEodGasdItMoJf
-         EWems8KAQ8iKs2lSHlE/XRqGNJppIgOrU+ODPHYONxKnrKlEX/Nde7ml/e+XVLtPLOnJ
-         ogR7+DkX9jwFxNaMwJu2KDKcroNTyhtBb8yy8hZTPfzWLUCMVuvFZdJoL9ZNShv9mfGa
-         kGxibN1bycleHlyz0PqTWf8ABcWjvtm7yMb8FQreFSLmtdqDSiU0bVfebaftr6QYlxm8
-         uiZI33dcboPR0YLKPiwJtFwtCwEKV0cQcSIjh1N5vP1761LnxjKIj3HqjMNI6JWF2oI1
-         qirA==
-X-Gm-Message-State: AOAM530RKyHGIfQUdCfeZlujY2GBdsnuLGCGMNMK2XwoyaBrA4lFmyL5
-        Q6bBdh15Izp7yjyu6ciQsqBmdg==
-X-Google-Smtp-Source: ABdhPJw53pKMx9sI0aKBMCgGj/gUj/W0YSBOVUjOj6Oco83loSg4sAKu3bV6ZFbp/vCWQZx1JXQPVw==
-X-Received: by 2002:a17:907:1c06:b0:6df:b257:cbb3 with SMTP id nc6-20020a1709071c0600b006dfb257cbb3mr1042874ejc.631.1651266037074;
-        Fri, 29 Apr 2022 14:00:37 -0700 (PDT)
+        bh=+hPInKpIDooHrKupF5RNs/2guHgbPlSDYet1zTo77CM=;
+        b=Y7LlDfje+R6KdkSLv6viKb4xiB6r/+Xd2oNNsR5wwLtq3mopV16a+XuhYwh0AhsqJJ
+         s0sZ1xpX1ZMjD3+8Uvtxt7WdhRXhqzxcM03KOpM7Hbf2uzXNzcfE9A5rHSqdWXlPp020
+         b7FX1rHudVW7bcWJEVKXWDCtyQYHeluSotljHZ6mmq+ezBQlVDnOo8XLaPM1AnoYk4CQ
+         HkLrzHeVttu2hbj24HFR8tzxZL+yOLVbGlnNch+jVJHUaoEkle2RaRYdm0M1pBFe8PaF
+         AU9ESlZLGYwYb2Ul8BdmRMcznrXPyo19RfE9D5KBbaYl6fmptStMDs6e1J7iv6+KhA9G
+         TDGg==
+X-Gm-Message-State: AOAM5302BA3/D2yTwxn24yLmA8PqsdP8JY8Yl3FpsBEyAUOX8yyzSEcL
+        7OX88cRH1w8/h51ZUQQ6n1KX3Q==
+X-Google-Smtp-Source: ABdhPJydYUfzRWWlb7jnujGl+WeNXPkeDfWil6Fvx7LhbEmTqT3D2ffUa0UXb/8GKmomagoc6J4XoA==
+X-Received: by 2002:a05:6402:26d1:b0:426:3bc9:67d0 with SMTP id x17-20020a05640226d100b004263bc967d0mr1160939edd.400.1651266102271;
+        Fri, 29 Apr 2022 14:01:42 -0700 (PDT)
 Received: from [192.168.0.176] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id qz24-20020a170907681800b006f3ef214de0sm973786ejc.70.2022.04.29.14.00.36
+        by smtp.gmail.com with ESMTPSA id g7-20020aa7d1c7000000b0042617ba63b1sm3379674edp.59.2022.04.29.14.01.41
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 29 Apr 2022 14:00:36 -0700 (PDT)
-Message-ID: <32712c76-df62-9a02-fbb0-14f97417feae@linaro.org>
-Date:   Fri, 29 Apr 2022 23:00:35 +0200
+        Fri, 29 Apr 2022 14:01:41 -0700 (PDT)
+Message-ID: <fff7c77f-452f-2fe4-b405-a6f65e483d3e@linaro.org>
+Date:   Fri, 29 Apr 2022 23:01:40 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [PATCH 1/2] dt-bindings: soc: mediatek: devapc: Add bindings for
- MT8186
+Subject: Re: [PATCH V2 1/2] dt-bindings: remoteproc: imx_rproc: support i.MX93
 Content-Language: en-US
-To:     Rex-BC Chen <rex-bc.chen@mediatek.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com
-Cc:     neal.liu@mediatek.com, runyang.chen@mediatek.com,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20220429065429.7957-1-rex-bc.chen@mediatek.com>
- <20220429065429.7957-2-rex-bc.chen@mediatek.com>
+To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
+        bjorn.andersson@linaro.org, mathieu.poirier@linaro.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com,
+        linux-remoteproc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
+Cc:     devicetree@vger.kernel.org, Peng Fan <peng.fan@nxp.com>
+References: <20220429005346.2108279-1-peng.fan@oss.nxp.com>
+ <20220429005346.2108279-2-peng.fan@oss.nxp.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220429065429.7957-2-rex-bc.chen@mediatek.com>
+In-Reply-To: <20220429005346.2108279-2-peng.fan@oss.nxp.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/04/2022 08:54, Rex-BC Chen wrote:
-> Add the dt-binding to support MT8186 devapc.
+On 29/04/2022 02:53, Peng Fan (OSS) wrote:
+> From: Peng Fan <peng.fan@nxp.com>
 > 
-> Signed-off-by: Rex-BC Chen <rex-bc.chen@mediatek.com>
+> Add i.MX93 remote processor(Cortex-M33) compatible string, and
+> reorder the strings in alphabetical order
+> 
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> ---
+>  .../devicetree/bindings/remoteproc/fsl,imx-rproc.yaml    | 9 +++++----
+>  1 file changed, 5 insertions(+), 4 deletions(-)
+> 
+
 
 Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
 
 Best regards,
 Krzysztof
