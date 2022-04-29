@@ -2,695 +2,289 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D071051489E
-	for <lists+devicetree@lfdr.de>; Fri, 29 Apr 2022 13:53:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 789C05148BA
+	for <lists+devicetree@lfdr.de>; Fri, 29 Apr 2022 14:02:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1358771AbiD2L4h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Apr 2022 07:56:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54262 "EHLO
+        id S235150AbiD2MFe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Apr 2022 08:05:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46894 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1358750AbiD2L4f (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Apr 2022 07:56:35 -0400
-Received: from mail-qt1-x82b.google.com (mail-qt1-x82b.google.com [IPv6:2607:f8b0:4864:20::82b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4BEF9C6F32;
-        Fri, 29 Apr 2022 04:53:17 -0700 (PDT)
-Received: by mail-qt1-x82b.google.com with SMTP id y3so5465834qtn.8;
-        Fri, 29 Apr 2022 04:53:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=U94ALepQmGn7GnBmWOSk1WQMgcA5eYVoH76BcrPHAok=;
-        b=qu2I/Hy3P4e7M0ebT59Ftb1ScSM3dctFM5Whzl0YHIPJ63U48QgMtZ6wwjUJWGuY+N
-         lGvfWpdcISIaXHjo9sbK0Titl6wac01OipAyrGAFmvsCxaB4kI0bC7lC7PoBms92UlBX
-         /N08F/1XEIuzkirdj8EpowpzPU9/nIlG2iWfeRIJM4nX2+8shNs20tDfqiwRSLK3S8X+
-         j5DrtQBdNGh3yJ8228ktmjtH3vA6PQL0iOF3CXq9UmvBRrnXL2vKowyBEOWZCkv+y766
-         fhi1W1VcV+Mis5hUSWUvxw0E9lhYA9wtqPFq6KtJ2oOrF29H6RjHEKnLz/r6yzLbcWsn
-         PQeg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=U94ALepQmGn7GnBmWOSk1WQMgcA5eYVoH76BcrPHAok=;
-        b=W73oG3b+O/imj9sl8OSlzOhnxfIFOh3I3L+5J0lVpMvqM/YFgu/N77Y2RiuYbj1s5q
-         HUGnc3wViVyZ6XnUqL/UTlgwXZN5/WM1r4Cz+kIk9xAnEFfq8w/X0QIxbCC/d0gTfvU/
-         LARA/A65/5puE1XqrpL9dWtXOHzIlMWSV0cS18X1ja4NNTbVKQHMLxksov/8PL6wIekP
-         Nu/MGw/uMI7Us2bEtFq5CLsU4OgPLmtUBU4F1frYUA+2rM1aZerYBUE0x9AU8s11uXl4
-         4j/7502n6qAvN7eCYlK0TQ2cqdpPgRW61wvZPd4F9Ei8FVOjrJqTTm5eLlE7gBVB+nNe
-         xjJA==
-X-Gm-Message-State: AOAM533Q9cAUccWh/v9vszxhvujeUzAOSlhEB13oj6gLhLR5vvZvzpgM
-        W/IZ5nO82DOgCM+8BnyZi5Y=
-X-Google-Smtp-Source: ABdhPJzCnEpXDYRoeTfG27nYdLicrnG5qlAry+whVVBFVT/YbrhkyPGQyLt3Frcv+GbD0TPIMzHKfQ==
-X-Received: by 2002:ac8:58c6:0:b0:2f3:8c79:b5db with SMTP id u6-20020ac858c6000000b002f38c79b5dbmr4846116qta.39.1651233196070;
-        Fri, 29 Apr 2022 04:53:16 -0700 (PDT)
-Received: from master-x64.sparksnet ([2601:153:980:85b1::10])
-        by smtp.gmail.com with ESMTPSA id 123-20020a370c81000000b0069fa408fdb7sm1382505qkm.24.2022.04.29.04.53.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 29 Apr 2022 04:53:15 -0700 (PDT)
-From:   Peter Geis <pgwipeout@gmail.com>
-To:     linux-rockchip@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>
-Cc:     Furkan Kardame <f.kardame@manjaro.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Peter Geis <pgwipeout@gmail.com>
-Subject: [PATCH v2 7/7] arm64: dts: rockchip: add dts for Firefly Station M2 rk3566
-Date:   Fri, 29 Apr 2022 07:52:52 -0400
-Message-Id: <20220429115252.2360496-8-pgwipeout@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220429115252.2360496-1-pgwipeout@gmail.com>
-References: <20220429115252.2360496-1-pgwipeout@gmail.com>
+        with ESMTP id S1356313AbiD2MFd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Apr 2022 08:05:33 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD5E24EDE4;
+        Fri, 29 Apr 2022 05:02:14 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 64DE6488;
+        Fri, 29 Apr 2022 14:02:12 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1651233732;
+        bh=s3FUxtcbwxTTl0K7Jru6SH3WZf3Jc9jTriYNwOqrY/k=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=nSQgKquHZjFz4Jw7QS2ctK9zNjXcPQBSrLNFl1vGpZik12rv06DMpeJ1GKYkg095/
+         5dP16CYaLDInbLUP7zMgq0K/4mBbG8fgfA+zS74yKP3Lc1Nm6KIWHXgJvCfnaEyomb
+         EhOrimIxwlgEUpKuGcmbXtR2unlOiWVA3nrvA1Ec=
+Date:   Fri, 29 Apr 2022 15:02:12 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Hans Verkuil <hverkuil@xs4all.nl>
+Cc:     Jacopo Mondi <jacopo@jmondi.org>, Eugen.Hristev@microchip.com,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Claudiu.Beznea@microchip.com, robh+dt@kernel.org,
+        Nicolas.Ferre@microchip.com
+Subject: Re: [PATCH v9 08/13] media: atmel: atmel-isc: change format
+ propagation to subdev into only verification
+Message-ID: <YmvTxKUbQoxchG2D@pendragon.ideasonboard.com>
+References: <20220310095202.2701399-1-eugen.hristev@microchip.com>
+ <20220310095202.2701399-9-eugen.hristev@microchip.com>
+ <39f541ec-313f-fe15-b93f-dd78469b2366@xs4all.nl>
+ <b6630c65-0720-3633-d5ed-aadf4716f206@microchip.com>
+ <dabbff36-a10c-0a8a-94e8-ce7c2d896403@xs4all.nl>
+ <20220429095848.ec4xnul6tin6n7sf@uno.localdomain>
+ <Ymu4ywjEvX5HbE/W@pendragon.ideasonboard.com>
+ <a10a255c-e3b7-4c5f-2a7e-9474e0526a61@xs4all.nl>
+ <Ymu7/VWrvT0bZfeP@pendragon.ideasonboard.com>
+ <50b07246-39ed-2e5d-05ff-b8b482cb2bcb@xs4all.nl>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <50b07246-39ed-2e5d-05ff-b8b482cb2bcb@xs4all.nl>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Furkan Kardame <f.kardame@manjaro.org>
+On Fri, Apr 29, 2022 at 01:17:27PM +0200, Hans Verkuil wrote:
+> On 29/04/2022 12:20, Laurent Pinchart wrote:
+> > On Fri, Apr 29, 2022 at 12:13:46PM +0200, Hans Verkuil wrote:
+> >> On 29/04/2022 12:07, Laurent Pinchart wrote:
+> >>> On Fri, Apr 29, 2022 at 11:58:48AM +0200, Jacopo Mondi wrote:
+> >>>> On Fri, Apr 29, 2022 at 10:43:09AM +0200, Hans Verkuil wrote:
+> >>>>> On 29/04/2022 10:28, Eugen.Hristev@microchip.com wrote:
+> >>>>>> On 4/29/22 11:17 AM, Hans Verkuil wrote:
+> >>>>>>> On 10/03/2022 10:51, Eugen Hristev wrote:
+> >>>>>>>> As a top MC video driver, the atmel-isc should not propagate the format to the
+> >>>>>>>> subdevice, it should rather check at start_streaming() time if the subdev is properly
+> >>>>>>>> configured with a compatible format.
+> >>>>>>>> Removed the whole format finding logic, and reworked the format verification
+> >>>>>>>> at start_streaming time, such that the ISC will return an error if the subdevice
+> >>>>>>>> is not properly configured. To achieve this, media_pipeline_start
+> >>>>>>>> is called and a link_validate callback is created to check the formats.
+> >>>>>>>> With this being done, the module parameter 'sensor_preferred' makes no sense
+> >>>>>>>> anymore. The ISC should not decide which format the sensor is using. The
+> >>>>>>>> ISC should only cope with the situation and inform userspace if the streaming
+> >>>>>>>> is possible in the current configuration.
+> >>>>>>>> The redesign of the format propagation has also risen the question of the
+> >>>>>>>> enumfmt callback. If enumfmt is called with an mbus_code, the enumfmt handler
+> >>>>>>>> should only return the formats that are supported for this mbus_code.
+> >>>>>>>> Otherwise, the enumfmt will report all the formats that the ISC could output.
+> >>>>>>>> With this rework, the dynamic list of user formats is removed. It makes no
+> >>>>>>>> more sense to identify at complete time which formats the sensor could emit,
+> >>>>>>>> and add those into a separate dynamic list.
+> >>>>>>>> The ISC will start with a simple preconfigured default format, and at
+> >>>>>>>> link validate time, decide whether it can use the format that is configured
+> >>>>>>>> on the sink or not.
+> >>>>>>>>
+> >>>>>>>> Signed-off-by: Eugen Hristev <eugen.hristev@microchip.com>
+> >>>>>>>> Reviewed-by: Jacopo Mondi <jacopo@jmondi.org>
+> >>>>>>>> ---
+> >>>>>>>> Changes in v9:
+> >>>>>>>> - isc_link_validate now static
+> >>>>>>>>
+> >>>>>>>> Changes in v7:
+> >>>>>>>> - minor typos as suggested by Jacopo
+> >>>>>>>> - small changes, reduce some indentation, modified an index, as suggested by
+> >>>>>>>> Jacopo
+> >>>>>>>>
+> >>>>>>>> Changes in v6:
+> >>>>>>>> - reworked a bit enum_fmt as suggested by Jacopo
+> >>>>>>>>
+> >>>>>>>> Changes in v5:
+> >>>>>>>> - removed user_formats dynamic list as it is now pointless
+> >>>>>>>> - greatly simplified the enum_fmt function
+> >>>>>>>> - removed some init code that was useless now
+> >>>>>>>>
+> >>>>>>>> Changes in v4:
+> >>>>>>>> - moved validation code into link_validate and used media_pipeline_start
+> >>>>>>>> - merged this patch with the enum_fmt patch which was previously in v3 of
+> >>>>>>>> the series
+> >>>>>>>>
+> >>>>>>>> Changes in v3:
+> >>>>>>>> - clamp to maximum resolution once the frame size from the subdev is found
+> >>>>>>>>   drivers/media/platform/atmel/atmel-isc-base.c | 412 ++++++++----------
+> >>>>>>>>   .../media/platform/atmel/atmel-isc-scaler.c   |   5 +
+> >>>>>>>>   drivers/media/platform/atmel/atmel-isc.h      |  13 +-
+> >>>>>>>>   .../media/platform/atmel/atmel-sama5d2-isc.c  |  20 +
+> >>>>>>>>   .../media/platform/atmel/atmel-sama7g5-isc.c  |  20 +
+> >>>>>>>>   5 files changed, 236 insertions(+), 234 deletions(-)
+> >>>>>>>>
+> >>>>>>>> diff --git a/drivers/media/platform/atmel/atmel-isc-base.c b/drivers/media/platform/atmel/atmel-isc-base.c
+> >>>>>>>> index ee1dda6707a0..fe2c0af58060 100644
+> >>>>>>>> --- a/drivers/media/platform/atmel/atmel-isc-base.c
+> >>>>>>>> +++ b/drivers/media/platform/atmel/atmel-isc-base.c
+> >>>>>>>> @@ -36,11 +36,6 @@ static unsigned int debug;
+> >>>>>>>>   module_param(debug, int, 0644);
+> >>>>>>>>   MODULE_PARM_DESC(debug, "debug level (0-2)");
+> >>>>>>>>
+> >>>>>>>> -static unsigned int sensor_preferred = 1;
+> >>>>>>>> -module_param(sensor_preferred, uint, 0644);
+> >>>>>>>> -MODULE_PARM_DESC(sensor_preferred,
+> >>>>>>>> -              "Sensor is preferred to output the specified format (1-on 0-off), default 1");
+> >>>>>>>> -
+> >>>>>>>>   #define ISC_IS_FORMAT_RAW(mbus_code) \
+> >>>>>>>>        (((mbus_code) & 0xf000) == 0x3000)
+> >>>>>>>>
+> >>>>>>>> @@ -337,6 +332,10 @@ static int isc_start_streaming(struct vb2_queue *vq, unsigned int count)
+> >>>>>>>>        unsigned long flags;
+> >>>>>>>>        int ret;
+> >>>>>>>>
+> >>>>>>>> +     ret = media_pipeline_start(&isc->video_dev.entity, &isc->mpipe);
+> >>>>>>>
+> >>>>>>> The pipeline validation is done in start_streaming, but I don't think that
+> >>>>>>> is the best place: if STREAMON is called before buffers are queued, then
+> >>>>>>> an invalid pipeline isn't discovered until enough buffers are queued to
+> >>>>>>> kick off start_streaming.
+> >>>>>>>
+> >>>>>>> Drivers like vsp1, omap3isp and the samsung drivers all do this in streamon().
+> >>>>>>>
+> >>>>>>> I think that is the correct time to do this.
+> >>>>>>
+> >>>>>> Hello Hans,
+> >>>>>>
+> >>>>>> Initially (v2, v3) I had this in streamon(). The problem that I faced at
+> >>>>>> that time was that streamoff was never called, so I could not call
+> >>>>>> media_pipeline_stop(). Then Jacopo told me to move it to start_streaming
+> >>>>>> (see change log for v4) , and I did not face any more problems.
+> >>>>
+> >>>> Yes indeed, seems I suggested to use media_pipeline_handler in a
+> >>>> comment on your v3
+> >>>>
+> >>>> "at s_stream time your top driver calls media_pipeline_start()"
+> >>>>
+> >>>> sorry about that, I should have looked around a bit more carefully and
+> >>>> notice most drivers do so at vb2 streamon
+> >>>>
+> >>>> However I don't see media_pipeline_start being called at all in v3 of
+> >>>> the patch
+> >>>>
+> >>>>> It's a mess. Looking at some drivers I see that omap3isp calls media_pipeline_stop
+> >>>>> in streamoff (so will have the same problem as you described if VIDIOC_STREAMOFF
+> >>>>> isn't called), exynos4-is does the same, but it also checks the streaming state in
+> >>>>> the release() fop callback, so that would fix this problem. And vimc does this
+> >>>>> in stop_streaming.
+> >>>>>
+> >>>>> I'm in favor of fixing this in vb2, that framework knows exactly when this needs
+> >>>>> to be called.
+> >>>>
+> >>>> Are you suggesting to have vb2 to call media_pipeline_start() or is it
+> >>>> more complex than this ?
+> >>>
+> >>> I think Hans meant adding a .validate() operation to vb2.
+> >>>
+> >>> vb2 is already quite complex, I don't think adding more features is a
+> >>> good idea. I'd rather have vb2 focus on buffer management only
+> >>> (.start_streaming() and .stop_streaming() shouldn't have been in there
+> >>> in my opinion), and handle validation in the .streamon() handler. I'd
+> >>> expect most drivers that deal with media pipelines to do more work in
+> >>> .streamon() anyway.
+> >>
+> >> I disagree with that :-)
+> >>
+> >> It's vb2 that keeps track of the streaming state and when what actions
+> >> need to be taken. Drivers really shouldn't need to care about the ioctls
+> >> themselves, and just implement the relevant vb2 callbacks. Relying on
+> >> drivers to handle any of the streaming ioctls is asking for problems,
+> >> as this shows: most drivers implement this wrong today.
+> >>
+> >> The vb2 framework knows when e.g. the pipeline needs to be started or
+> >> stopped, and can do this at the best time, without drivers needing to
+> >> keep track of when streamon/off/release is called. Keep that logic in
+> >> vb2.
+> > 
+> > Pipeline management and buffer management are two different issues.
+> > Don't forget about devices that have multiple video nodes, part of the
+> > same pipeline (possibly a combination of output and capture nodes, or
+> > all of the same type). Forcing drivers to go through vb2 operations to
+> > handle the pipeline will be messy, will result in more bloat in vb2, and
+> > make the result more bug-prone and harder to maintain.
+> > 
+> > If pipeline management is too complex, let's simplify it, new helpers
+> > can make sense, but not through vb2.
+> > 
+> 
+> But it is vb2 that knows when streaming starts and stops.
 
-Add dts for Firefly Station M2.
-Working IO:
-* UART
-* LED
-* LAN
-* Wifi
-* SD Card
-* eMMC
-* USB2
+That's right, but pipeline start (which includes validation and resource
+reservation) needs to be performed synchronously with VIDIOC_STREAMON.
+The streaming state managed by vb2 is not relevant,
+media_pipeline_start() must not be delayed the same way
+.start_streaming() is.
 
-Signed-off-by: Furkan Kardame <f.kardame@manjaro.org>
-Signed-off-by: Peter Geis <pgwipeout@gmail.com>
----
- arch/arm64/boot/dts/rockchip/Makefile         |   1 +
- .../arm64/boot/dts/rockchip/rk3566-roc-pc.dts | 580 ++++++++++++++++++
- 2 files changed, 581 insertions(+)
- create mode 100644 arch/arm64/boot/dts/rockchip/rk3566-roc-pc.dts
+> The driver just
+> needs to be informed (e.g. prepare_streaming and unprepare_streaming ops).
+> 
+> vb2 deals with buffer management and it keeps track of the streaming state
+> and makes the streaming state transitions. That *is* an integral part of
+> vb2. What is missing at the moment are callbacks done at streamon time and
+> when the streaming stops (streamoff, or close() when is_streaming is true).
+> 
+> If you want to implement stream validation in a driver, then there are a
+> lot of things you need to do:
+> 
+> - override streamon, make sure you call vb2_queue_is_busy(), validate the
+>   pipeline, then call vb2_streamon, if that fails, remember to stop the
+>   pipeline.
+> 
+> - override streamoff, make sure you call vb2_queue_is_busy(), stop the
+>   pipeline and call vb2_streamoff.
+> 
+> - in the release() function when the fh is closed, you have to check
+>   vb2_is_streaming(), check that you are the owner of the queue, and if true,
+>   stop the pipeline.
 
-diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
-index 23a2a0c111ac..617915c17ca8 100644
---- a/arch/arm64/boot/dts/rockchip/Makefile
-+++ b/arch/arm64/boot/dts/rockchip/Makefile
-@@ -60,6 +60,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-pinenote-v1.1.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-pinenote-v1.2.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-quartz64-a.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-quartz64-b.dtb
-+dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-roc-pc.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-soquartz-cm4.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-evb1-v10.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-bpi-r2-pro.dtb
-diff --git a/arch/arm64/boot/dts/rockchip/rk3566-roc-pc.dts b/arch/arm64/boot/dts/rockchip/rk3566-roc-pc.dts
-new file mode 100644
-index 000000000000..1ede01b46e1c
---- /dev/null
-+++ b/arch/arm64/boot/dts/rockchip/rk3566-roc-pc.dts
-@@ -0,0 +1,580 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+
-+/dts-v1/;
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/pinctrl/rockchip.h>
-+#include "rk3566.dtsi"
-+
-+/ {
-+	model = "Firefly Station M2";
-+	compatible = "firefly,rk3566-roc-pc", "rockchip,rk3566";
-+
-+	aliases {
-+		mmc0 = &sdmmc0;
-+		mmc1 = &sdhci;
-+		mmc2 = &sdmmc1;
-+	};
-+
-+	chosen: chosen {
-+		stdout-path = "serial2:1500000n8";
-+	};
-+
-+	gmac1_clkin: external-gmac1-clock {
-+		compatible = "fixed-clock";
-+		clock-frequency = <125000000>;
-+		clock-output-names = "gmac1_clkin";
-+		#clock-cells = <0>;
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		led-user {
-+			label = "user-led";
-+			default-state = "on";
-+			gpios = <&gpio0 RK_PD3 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "heartbeat";
-+			pinctrl-names = "default";
-+			pinctrl-0 = <&user_led_enable_h>;
-+			retain-state-suspended;
-+		};
-+	};
-+
-+	sdio_pwrseq: sdio-pwrseq {
-+		status = "okay";
-+		compatible = "mmc-pwrseq-simple";
-+		clocks = <&rk809 1>;
-+		clock-names = "ext_clock";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&wifi_enable_h>;
-+		reset-gpios = <&gpio2 RK_PB1 GPIO_ACTIVE_LOW>;
-+	};
-+
-+	usb_5v: usb-5v-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "usb_5v";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+	};
-+
-+	vcc5v0_sys: vcc5v0-sys-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc5v0_sys";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		vin-supply = <&usb_5v>;
-+	};
-+
-+	vcc3v3_sys: vcc3v3-sys-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc3v3_sys";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-always-on;
-+		vin-supply = <&vcc5v0_sys>;
-+	};
-+
-+	vcc5v0_usb30_host: vcc5v0-usb30-host-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc5v0_usb30_host";
-+		enable-active-high;
-+		gpio = <&gpio0 RK_PC5 GPIO_ACTIVE_HIGH>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&vcc5v0_usb30_host_en_h>;
-+		regulator-always-on;
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		vin-supply = <&vcc5v0_sys>;
-+	};
-+
-+	vcc5v0_usb_otg: vcc5v0-usb-otg-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc5v0_usb_otg";
-+		enable-active-high;
-+		gpio = <&gpio0 RK_PC6 GPIO_ACTIVE_HIGH>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&vcc5v0_usb_otg_en_h>;
-+		regulator-always-on;
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		vin-supply = <&vcc5v0_sys>;
-+	};
-+};
-+
-+&combphy1 {
-+	status = "okay";
-+};
-+
-+&cpu0 {
-+	cpu-supply = <&vdd_cpu>;
-+};
-+
-+&cpu1 {
-+	cpu-supply = <&vdd_cpu>;
-+};
-+
-+&cpu2 {
-+	cpu-supply = <&vdd_cpu>;
-+};
-+
-+&cpu3 {
-+	cpu-supply = <&vdd_cpu>;
-+};
-+
-+&gmac1 {
-+	assigned-clocks = <&cru SCLK_GMAC1_RX_TX>, <&cru SCLK_GMAC1_RGMII_SPEED>, <&cru SCLK_GMAC1>;
-+	assigned-clock-parents = <&cru SCLK_GMAC1_RGMII_SPEED>, <&cru SCLK_GMAC1>, <&gmac1_clkin>;
-+	clock_in_out = "input";
-+	phy-mode = "rgmii-id";
-+	phy-supply = <&vcc_3v3>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&gmac1m0_miim
-+		     &gmac1m0_tx_bus2
-+		     &gmac1m0_rx_bus2
-+		     &gmac1m0_rgmii_clk
-+		     &gmac1m0_clkinout
-+		     &gmac1m0_rgmii_bus>;
-+	snps,reset-gpio = <&gpio0 RK_PB7 GPIO_ACTIVE_LOW>;
-+	snps,reset-active-low;
-+	/* Reset time is 20ms, 100ms for rtl8211f */
-+	snps,reset-delays-us = <0 20000 100000>;
-+	tx_delay = <0x4f>;
-+	rx_delay = <0x24>;
-+	phy-handle = <&rgmii_phy1>;
-+	status = "okay";
-+};
-+
-+&i2c0 {
-+	status = "okay";
-+
-+	vdd_cpu: regulator@1c {
-+		compatible = "tcs,tcs4525";
-+		reg = <0x1c>;
-+		fcs,suspend-voltage-selector = <1>;
-+		regulator-name = "vdd_cpu";
-+		regulator-min-microvolt = <800000>;
-+		regulator-max-microvolt = <1150000>;
-+		regulator-ramp-delay = <2300>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+		vin-supply = <&vcc5v0_sys>;
-+
-+		regulator-state-mem {
-+			regulator-off-in-suspend;
-+		};
-+	};
-+
-+	rk809: pmic@20 {
-+		compatible = "rockchip,rk809";
-+		reg = <0x20>;
-+		interrupt-parent = <&gpio0>;
-+		interrupts = <RK_PA7 IRQ_TYPE_LEVEL_LOW>;
-+		clock-output-names = "rk808-clkout1", "rk808-clkout2";
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pmic_int>;
-+		rockchip,system-power-controller;
-+		wakeup-source;
-+		#clock-cells = <1>;
-+
-+		vcc1-supply = <&vcc3v3_sys>;
-+		vcc2-supply = <&vcc3v3_sys>;
-+		vcc3-supply = <&vcc3v3_sys>;
-+		vcc4-supply = <&vcc3v3_sys>;
-+		vcc5-supply = <&vcc3v3_sys>;
-+		vcc6-supply = <&vcc3v3_sys>;
-+		vcc7-supply = <&vcc3v3_sys>;
-+		vcc8-supply = <&vcc3v3_sys>;
-+		vcc9-supply = <&vcc3v3_sys>;
-+
-+		regulators {
-+			vdd_log: DCDC_REG1 {
-+				regulator-name = "vdd_log";
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <1350000>;
-+				regulator-init-microvolt = <900000>;
-+				regulator-ramp-delay = <6001>;
-+
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+					regulator-suspend-microvolt = <900000>;
-+				};
-+			};
-+
-+			vdd_gpu: DCDC_REG2 {
-+				regulator-name = "vdd_gpu";
-+				regulator-min-microvolt = <900000>;
-+				regulator-max-microvolt = <1350000>;
-+				regulator-init-microvolt = <900000>;
-+				regulator-ramp-delay = <6001>;
-+
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+					regulator-suspend-microvolt = <900000>;
-+				};
-+			};
-+
-+			vcc_ddr: DCDC_REG3 {
-+				regulator-name = "vcc_ddr";
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <1100000>;
-+				regulator-max-microvolt = <1100000>;
-+				regulator-initial-mode = <0x2>;
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+				};
-+			};
-+
-+			vdd_npu: DCDC_REG4 {
-+				regulator-name = "vdd_npu";
-+				regulator-min-microvolt = <900000>;
-+				regulator-max-microvolt = <1350000>;
-+				regulator-initial-mode = <0x2>;
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			vcc_1v8: DCDC_REG5 {
-+				regulator-name = "vcc_1v8";
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+					regulator-suspend-microvolt = <1800000>;
-+				};
-+			};
-+
-+			vdda0v9_image: LDO_REG1 {
-+				regulator-name = "vdda0v9_image";
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <900000>;
-+				regulator-max-microvolt = <900000>;
-+
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+					regulator-suspend-microvolt = <900000>;
-+				};
-+			};
-+
-+			vdda_0v9: LDO_REG2 {
-+				regulator-name = "vdda_0v9";
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <900000>;
-+				regulator-max-microvolt = <900000>;
-+
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+					regulator-suspend-microvolt = <900000>;
-+				};
-+			};
-+
-+			vdda0v9_pmu: LDO_REG3 {
-+				regulator-name = "vdda0v9_pmu";
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <900000>;
-+				regulator-max-microvolt = <900000>;
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+					regulator-suspend-microvolt = <900000>;
-+				};
-+			};
-+
-+			vccio_acodec: LDO_REG4 {
-+				regulator-name = "vccio_acodec";
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+					regulator-suspend-microvolt = <3300000>;
-+
-+				};
-+			};
-+
-+			vccio_sd: LDO_REG5 {
-+				regulator-name = "vccio_sd";
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <3300000>;
-+
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+					regulator-suspend-microvolt = <3300000>;
-+				};
-+			};
-+
-+			vcc3v3_pmu: LDO_REG6 {
-+				regulator-name = "vcc3v3_pmu";
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+					regulator-suspend-microvolt = <3300000>;
-+				};
-+			};
-+
-+			vcca_1v8: LDO_REG7 {
-+				regulator-name = "vcca_1v8";
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+					regulator-suspend-microvolt = <1800000>;
-+				};
-+			};
-+
-+			vcca1v8_pmu: LDO_REG8 {
-+				regulator-name = "vcca1v8_pmu";
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+					regulator-suspend-microvolt = <1800000>;
-+				};
-+			};
-+
-+			vcca1v8_image: LDO_REG9 {
-+				regulator-name = "vcca1v8_image";
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+					regulator-suspend-microvolt = <1800000>;
-+				};
-+			};
-+
-+			vcc_3v3: SWITCH_REG1 {
-+				regulator-boot-on;
-+				regulator-name = "vcc3v3";
-+			};
-+
-+			vcc3v3_sd: SWITCH_REG2 {
-+				regulator-name = "vcc3v3_sd";
-+				regulator-always-on;
-+				regulator-boot-on;
-+			};
-+		};
-+	};
-+};
-+
-+
-+&i2c1 {
-+	status = "okay";
-+};
-+
-+&i2c2 {
-+	status = "okay";
-+};
-+
-+&i2c3 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2c3m1_xfer>;
-+	status = "okay";
-+};
-+
-+&i2c5 {
-+	status = "okay";
-+};
-+
-+&mdio1 {
-+	rgmii_phy1: ethernet-phy@0 {
-+		compatible = "ethernet-phy-ieee802.3-c22";
-+		reg = <0x0>;
-+	};
-+};
-+
-+&pinctrl {
-+	bt {
-+		bt_enable_h: bt-enable-h {
-+			rockchip,pins = <0 RK_PC1 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+
-+		bt_host_wake_l: bt-host-wake-l {
-+			rockchip,pins = <0 RK_PB3 RK_FUNC_GPIO &pcfg_pull_down>;
-+		};
-+
-+		bt_wake_l: bt-wake-l {
-+			rockchip,pins = <0 RK_PB4 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+
-+	leds {
-+		user_led_enable_h: user-led-enable-h {
-+			rockchip,pins = <0 RK_PD3 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+
-+	pmic {
-+		pmic_int: pmic_int {
-+			rockchip,pins =
-+				<0 RK_PA3 RK_FUNC_GPIO &pcfg_pull_up>;
-+		};
-+	};
-+
-+	sdio-pwrseq {
-+		wifi_enable_h: wifi-enable-h {
-+			rockchip,pins = <2 RK_PB1 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+
-+	usb {
-+		vcc5v0_usb30_host_en_h: vcc5v0-usb30-host-en_h {
-+			rockchip,pins = <0 RK_PC5 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+
-+		vcc5v0_usb_otg_en_h: vcc5v0-usb-otg-en_h {
-+			rockchip,pins = <0 RK_PC6 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+};
-+
-+&pmu_io_domains {
-+	status = "okay";
-+	pmuio1-supply = <&vcc3v3_pmu>;
-+	pmuio2-supply = <&vcc3v3_pmu>;
-+	vccio1-supply = <&vccio_acodec>;
-+	vccio2-supply = <&vcc_1v8>;
-+	vccio3-supply = <&vccio_sd>;
-+	vccio4-supply = <&vcc_1v8>;
-+	vccio5-supply = <&vcc_3v3>;
-+	vccio6-supply = <&vcc_1v8>;
-+	vccio7-supply = <&vcc_3v3>;
-+};
-+
-+&sdhci {
-+	bus-width = <8>;
-+	mmc-hs200-1_8v;
-+	non-removable;
-+	vmmc-supply = <&vcc_3v3>;
-+	vqmmc-supply = <&vcc_1v8>;
-+	status = "okay";
-+};
-+
-+&sdmmc0 {
-+	bus-width = <4>;
-+	cap-sd-highspeed;
-+	cd-gpios = <&gpio0 RK_PA4 GPIO_ACTIVE_LOW>;
-+	disable-wp;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&sdmmc0_bus4 &sdmmc0_clk &sdmmc0_cmd &sdmmc0_det>;
-+	sd-uhs-sdr104;
-+	vmmc-supply = <&vcc3v3_sd>;
-+	vqmmc-supply = <&vccio_sd>;
-+	status = "okay";
-+};
-+
-+&sdmmc1 {
-+	bus-width = <4>;
-+	cap-sd-highspeed;
-+	cap-sdio-irq;
-+	keep-power-in-suspend;
-+	mmc-pwrseq = <&sdio_pwrseq>;
-+	vmmc-supply = <&vcc3v3_sys>;
-+	vqmmc-supply = <&vcca1v8_pmu>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&sdmmc1_bus4 &sdmmc1_cmd &sdmmc1_clk>;
-+	status = "okay";
-+};
-+
-+&tsadc {
-+	status = "okay";
-+};
-+
-+&uart0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&uart0_xfer>;
-+	status = "okay";
-+};
-+
-+&uart1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&uart1m0_xfer &uart1m0_ctsn>;
-+	status = "okay";
-+	uart-has-rtscts;
-+
-+	bluetooth {
-+		compatible = "brcm,bcm43438-bt";
-+		clocks = <&rk809 1>;
-+		clock-names = "lpo";
-+		device-wakeup-gpios = <&gpio2 RK_PC1 GPIO_ACTIVE_HIGH>;
-+		host-wakeup-gpios = <&gpio2 RK_PC0 GPIO_ACTIVE_HIGH>;
-+		shutdown-gpios = <&gpio2 RK_PB7 GPIO_ACTIVE_HIGH>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&bt_host_wake_l &bt_wake_l &bt_enable_h>;
-+		vbat-supply = <&vcc3v3_sys>;
-+		vddio-supply = <&vcca1v8_pmu>;
-+	};
-+};
-+
-+&uart2 {
-+	status = "okay";
-+};
-+
-+&usb2phy0_host {
-+	phy-supply = <&vcc5v0_usb30_host>;
-+	status = "okay";
-+};
-+
-+&usb2phy0_otg {
-+	phy-supply = <&vcc5v0_usb_otg>;
-+	status = "okay";
-+};
-+
-+&usb2phy1_otg {
-+	phy-supply = <&vcc5v0_usb30_host>;
-+	status = "okay";
-+};
-+
-+&usb2phy0 {
-+	status = "okay";
-+};
-+
-+&usb2phy1 {
-+	status = "okay";
-+};
-+
-+&usb_host0_xhci {
-+	status = "okay";
-+};
-+
-+&usb_host1_xhci {
-+	status = "okay";
-+};
-+
-+&usb_host0_ehci {
-+	status = "okay";
-+};
-+
-+&usb_host0_ohci {
-+	status = "okay";
-+};
+I'm not opposed to helper functions to implement that, they can bundle
+vb2 calls and pipeline management.
+
+> By moving this to vb2 ops all you need to implement are the prepare and
+> unprepare ops.
+> 
+> Esp. the release() implementation is tricky. I'm pretty sure that
+> drivers/media/platform/samsung/exynos4-is/fimc-lite.c is wrong, since it
+> should only call media_pipeline_stop() for the owner of the queue. Instead
+> it calls it for the last user of the queue.
+> 
+> I see that fimc_lite_streamoff() is wrong too: you can safely call
+> VIDIOC_STREAMOFF twice: the second streamoff just returns 0 without
+> doing anything. Instead media_pipeline_stop is called without testing if
+> the queue is streaming.
+> 
+> And yes, this is in part because V4L2 has quite some history and certainly
+> API choice were made in the past that we wouldn't make today. But vb2
+> shields you from that, and behaves much more like a proper state machine.
+> 
+> I know you prefer to give a lot more control to driver developers, but
+> in my experience very few developers can do things like this right. And
+> it is really hard as a reviewer to check if all the corner cases are handled
+> correctly in a driver. If vb2 is used, then I know things are called at the
+> right time, and that makes my life as reviewer so much easier.
+
+It's not just about giving more control to drivers, it's about
+organizing the software layers in a way that keeps them maintainable,
+with layered abstractions and not midlayers.
+
+We are extensively reworking the media pipeline management as part of
+the stream series, and there will be more work on top of that that will
+make even more fundamental changes. I would like to at least postpone
+any work on vb2 until then, to be able to evaluate the impact.
+
+> There may still be a few drivers that really need to do this manually, and
+> that's OK, but a driver like the atmel-isc doesn't need that at all.
+
 -- 
-2.25.1
+Regards,
 
+Laurent Pinchart
