@@ -2,112 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9FA95515776
-	for <lists+devicetree@lfdr.de>; Fri, 29 Apr 2022 23:56:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B56775157A3
+	for <lists+devicetree@lfdr.de>; Sat, 30 Apr 2022 00:01:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1355649AbiD2WAF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Apr 2022 18:00:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41892 "EHLO
+        id S1354970AbiD2WFN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Apr 2022 18:05:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56886 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349516AbiD2WAE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Apr 2022 18:00:04 -0400
-Received: from mail-qk1-x72b.google.com (mail-qk1-x72b.google.com [IPv6:2607:f8b0:4864:20::72b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8171DDBD36;
-        Fri, 29 Apr 2022 14:56:45 -0700 (PDT)
-Received: by mail-qk1-x72b.google.com with SMTP id x77so6133419qkb.3;
-        Fri, 29 Apr 2022 14:56:45 -0700 (PDT)
+        with ESMTP id S1380939AbiD2WFL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Apr 2022 18:05:11 -0400
+Received: from mail-pl1-x62e.google.com (mail-pl1-x62e.google.com [IPv6:2607:f8b0:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6392CC6F31
+        for <devicetree@vger.kernel.org>; Fri, 29 Apr 2022 15:01:50 -0700 (PDT)
+Received: by mail-pl1-x62e.google.com with SMTP id n18so8266636plg.5
+        for <devicetree@vger.kernel.org>; Fri, 29 Apr 2022 15:01:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=2IktU5cP8TErB1eZzzrdy5caCFWOk6wLxe2djT+xI+E=;
-        b=dJVWNiS90V1EftStrt0mAwxui8nKAeifH+Yp7HEV1Q0sIG7lBUrOUmfCBx9zMSGgD8
-         8Ni371s2KYzh6tw445SNe9CLkuuHhudAH3qm2d1JsawE1r+5Rh/Erm49luXVnoGflgzU
-         9nDVO5Gi3aURYAEQPKgyEo6UBpgTVNBW3JPr753/2g6pmyy5SBELD+JJphQAW2Mq8g42
-         tnNiJabRG55VaXVg6GfCX+OP379Zxc2m+1etTWPgc3/5zu6XgM/NaxW4Hsf9BxZloZ01
-         hiKDPIrVZXfb4qAAI2LmzitQnBsxng2bhNEcxjo2wDvklCi9mVp7sJSae8rMn/Yyru11
-         ccNA==
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Wsf7PpH6YuEAThui9ph6/dEFWrNGkCrcVUMv4d0y+RE=;
+        b=UBj0mbaUrykWmC+G7hZw1KMATmK+ZXir+FsVxiqP3ccz3kJVpRuTAIe2y3BVCLcBMj
+         z3zpojZaG2HO66wmE+TkoZnKHIEEP1016h6DCZXAFqW9u0WCk+8nXN9xT9xmO2NaS+9o
+         3IUvCRm1rEVZLDnKw3QecbITAYbCENnJ3ItOs=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=2IktU5cP8TErB1eZzzrdy5caCFWOk6wLxe2djT+xI+E=;
-        b=xRaqRQdB1sHK9n30RwhyiKkRSCjbpCyj6CD0q91bejKBip4iCSCsBfR8YDjMWSDWhW
-         c6xlJGhhQUy/EPNFICaO4dupbZNQGITiHSB8E8wm2FoH0wr4FP0iX/JxlVqYoj5+rIEs
-         VtMKwdb03CqFfVpIRRGXFy8QfU/ygWiO7OzwPJbwgszgRxnoDPLSRnM64d91zh/p2r4T
-         5PcrmRyP3grCF/N9ozxvuvuD2zwbA6SYZvXNbIym+LrOvrufSuLjOdDd3hkBJUUe1xJa
-         ryObI1WjlMVc5loxtQvQNr30EOU7QJbIy1r1FFaR0tRXBqkNYGKa1DWkJx3kne/qQZYW
-         H/ew==
-X-Gm-Message-State: AOAM5324mW7bhS2iTF19S9s/mN0FF0Qb1oF0vyR04QgorzVNc1b8Ow/3
-        iBM8hzhAfYuYyhNMFI5N236O58rxoiKI6WmMm2m5fqbjoGrZ0g==
-X-Google-Smtp-Source: ABdhPJxxTKocEmDRUVcm9VX7Omzv2dfX1hAPvyXANayJ6pDdW2hd3aw1MQyLYwzHXagxbCxLS4+BgOq6f8je5bz6HmQ=
-X-Received: by 2002:a05:620a:1a01:b0:69c:fda:7404 with SMTP id
- bk1-20020a05620a1a0100b0069c0fda7404mr910750qkb.522.1651269404666; Fri, 29
- Apr 2022 14:56:44 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Wsf7PpH6YuEAThui9ph6/dEFWrNGkCrcVUMv4d0y+RE=;
+        b=L/n89r/q5qUqbM16slO34MJG0ZBOcJH8nY0CbKjA8X2G9GctPDi2TVNCNtAiRvzu6X
+         4QwMcK4ZKpQDjJXOPa0kGY+DnHOaEs2Na0yaoRbWtTZMSlKEoT+5g3/yq7mymGbuVm9n
+         63nuQALncb5yv3hVyDz1rQRBlMadIo8DG8ZaHbHAsWm3OgodcIFERbo+vON5oBj0/iwm
+         t0HIq90P33qceJny0LY6SZdeNcS4TobNmYntrCkrP8lhu+4zj5Or7eCgKgAqGnJc1oCD
+         5gMACiVzwjX+ljMv68BaEuUBxnBzHTutjG/kWAdKiFpLSUps65Eh0bmGYLPppVX8zAmT
+         sz1g==
+X-Gm-Message-State: AOAM533Glr3Xn3yYO1uSYtjwgCfiHYjMtvjIhGt/qJKST0Mhm9a8t7Fa
+        m40zJ5TmObyCBp71YXZviiM68B43/Ja/CQ==
+X-Google-Smtp-Source: ABdhPJxQIefzP56gNj6qPyOaAHOEhu+gvftK1CSnPylGJl8ioSUKpqJDXfyY1jEfvW2JpYoDS4n1cg==
+X-Received: by 2002:a17:90a:cc6:b0:1d2:9a04:d29e with SMTP id 6-20020a17090a0cc600b001d29a04d29emr1203878pjt.136.1651269709696;
+        Fri, 29 Apr 2022 15:01:49 -0700 (PDT)
+Received: from localhost ([2620:15c:202:201:6161:73ca:10a5:5383])
+        by smtp.gmail.com with UTF8SMTPSA id nm5-20020a17090b19c500b001cb978f906esm11203402pjb.0.2022.04.29.15.01.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 29 Apr 2022 15:01:49 -0700 (PDT)
+From:   Gwendal Grignou <gwendal@chromium.org>
+To:     jic23@kernel.org, robh+dt@kernel.org, swboyd@chromium.org
+Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        Gwendal Grignou <gwendal@chromium.org>
+Subject: [PATCH v4 00/10] iio: sx9324/9360: Add settings for precharge, gain and internal resistor
+Date:   Fri, 29 Apr 2022 15:01:34 -0700
+Message-Id: <20220429220144.1476049-1-gwendal@chromium.org>
+X-Mailer: git-send-email 2.36.0.464.gb9c8b46e94-goog
 MIME-Version: 1.0
-References: <20220429114330.59026-1-robimarko@gmail.com> <20220429114330.59026-2-robimarko@gmail.com>
- <1b545fbb-eaca-fb98-f77a-15326a7a2e4e@linaro.org>
-In-Reply-To: <1b545fbb-eaca-fb98-f77a-15326a7a2e4e@linaro.org>
-From:   Robert Marko <robimarko@gmail.com>
-Date:   Fri, 29 Apr 2022 23:56:33 +0200
-Message-ID: <CAOX2RU4KiKxCSMGDu+=FZqkdRia0MSBcz-eMn0kGpJ5ABxdkSg@mail.gmail.com>
-Subject: Re: [PATCH 2/6] clk: qcom: Add DT bindings for IPQ8074 APSS clock controller
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        jassisinghbrar@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, linux-arm-msm@vger.kernel.org,
-        open list <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org, linux-clk@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 29 Apr 2022 at 22:46, Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 29/04/2022 13:43, Robert Marko wrote:
-> > Add DT-binding for the IPQ8074 APSS clock controller.
-> >
-> > Signed-off-by: Robert Marko <robimarko@gmail.com>
->
-> These are dt-bindings, so prefix the title matching dt-bindings
-> subsystem and remove "DT bindings" words form the title. Instead "Add
-> clock ID headers for..."
+For Semtech sensors SX9324 and SX9360, allow confugration of the
+pre-charge resistor (9324/9360) and internal resistor (9324).
 
-Ok, sorry for the mess-up, will fix up v2.
+Fix register name spelling mistakes first and set default value properly
+for sx9324 internal resistor register.
 
->
-> > ---
-> >  include/dt-bindings/clock/qcom,apss-ipq8074.h | 14 ++++++++++++++
-> >  1 file changed, 14 insertions(+)
-> >  create mode 100644 include/dt-bindings/clock/qcom,apss-ipq8074.h
-> >
-> > diff --git a/include/dt-bindings/clock/qcom,apss-ipq8074.h b/include/dt-bindings/clock/qcom,apss-ipq8074.h
-> > new file mode 100644
-> > index 000000000000..df07766b0146
-> > --- /dev/null
-> > +++ b/include/dt-bindings/clock/qcom,apss-ipq8074.h
-> > @@ -0,0 +1,14 @@
-> > +/* SPDX-License-Identifier: GPL-2.0 */
->
-> This should be licensed the same as bindings, so GPL|BSD, unless it's a
-> derivative of some other work?
+The 9360 changes are independent from the 9324 changes, but they are
+very similar.
 
-It's derivated from IPQ6018 PLL bindings which are marked GPL-2.0 so I
-decided to keep that.
+Changes since v4:
+- Add analog gain setting
+- Add missing test when property is not found
+- Fix dt-schema errors.
 
-Regards,
-Robert
->
-> Best regards,
-> Krzysztof
+Changes since v3:
+- Rename reserved field as _RESERVED_
+- Fix invalid string matching with match_string()
+- Fix cut and paste error in device tree bindings.
+
+Changes since v2:
+- use -ohms instead of -kohms, as ohms is a defined unit in
+  dt-schema.git dtschema/schemas/property-units.yaml
+
+Changes sinve v1:
+- Add kOhm Unit, add a new patch to fix invalid register setting.
+
+Gwendal Grignou (10):
+  iio: sx9324: Fix default precharge internal resistance register
+  iio: sx9324: Fix register field spelling
+  dt-bindings: iio: sx9324: Add precharge resistor setting
+  iio: sx9324: Add precharge internal resistance setting
+  dt-bindings: iio: sx9324: Add internal compensation resistor setting
+  iio: sx9324: Add Setting for internal compensation resistor
+  dt-bindings: iio: sx9324: Add input analog gain
+  iio: sx9324: Add Setting for internal analog gain
+  dt-bindings: iio: sx9360: Add precharge resistor setting
+  iio: sx9360: Add pre-charge resistor setting
+
+ .../iio/proximity/semtech,sx9324.yaml         | 30 +++++++++
+ .../iio/proximity/semtech,sx9360.yaml         |  9 +++
+ drivers/iio/proximity/sx9324.c                | 66 +++++++++++++++++--
+ drivers/iio/proximity/sx9360.c                | 15 ++++-
+ 4 files changed, 114 insertions(+), 6 deletions(-)
+
+-- 
+2.36.0.464.gb9c8b46e94-goog
+
