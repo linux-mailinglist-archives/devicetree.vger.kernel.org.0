@@ -2,102 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D25AF514871
-	for <lists+devicetree@lfdr.de>; Fri, 29 Apr 2022 13:44:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 30411514882
+	for <lists+devicetree@lfdr.de>; Fri, 29 Apr 2022 13:48:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1358640AbiD2LrD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Apr 2022 07:47:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33832 "EHLO
+        id S239171AbiD2Lvt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Apr 2022 07:51:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44310 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1358626AbiD2LrA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Apr 2022 07:47:00 -0400
-Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5940FB36B0;
-        Fri, 29 Apr 2022 04:43:42 -0700 (PDT)
-Received: by mail-wr1-x42c.google.com with SMTP id j15so10460785wrb.2;
-        Fri, 29 Apr 2022 04:43:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=QAG6pPyD19LucMP6CU8bLxTFEbcMKLUH+h3BO7hHMdg=;
-        b=XrPtIQJKdVelzjyZcDP5JYWrAupI8eZfW+4qG0MmikLOobez5/6ud+gLpdOLZq0qwz
-         5toAEsssrC9sqnJ4HQhGUJcYOB80r7aCIq0ahp12jO/r2k9Q0/9GFD9wz3locbaO+4Ja
-         dDIJQ1eZ/pa6I06DOQKdfLsrH84GiyAdDTcJtVJl9onmAOaiaTmVvVUhIT3nkA76UPWw
-         jFjnt/vJKMmieYSXzyGaOSu+lsQkhJCI1VNHvG+9wvv3T69ycqRGyR5V6Npw48QLREmb
-         HglDsujyrC+DWR62abq5WjWN+j4ry+eIZ/iAqRth9YFKC08dQblImp1l2trLqws/awdV
-         FMHg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=QAG6pPyD19LucMP6CU8bLxTFEbcMKLUH+h3BO7hHMdg=;
-        b=QSCE2WzkjwxveiiEdkxUEJDA2CTIdSi7leihBDyrhuCvSD8P2+QncrbBDAWbH62ozl
-         yQig5f//p1TzFBfYC9lpLxjdoy4ZgvNkkJbzNbilhLV/VxPLfLBfzU4RwiuJb0Xu2wMJ
-         bdhUL+pTFadw20DsXfO+dPdlR8CUjY/v2IrmBEaQcWzUW+U3gp4Ud1cxjljsOG0DRrG/
-         q6t35olAV2GRJKsGtHnYuPP0LUGAXgoNqLz48Tvk8ptHFc99gz2J2AIvqJZr83xAP7Zq
-         VggrTHCThjPv5lG+Q74qEXwSdn5Ftt9j7aRBQh3DuM6UdLcgTJ/A9boB5cNHU7vkmv+T
-         TFXQ==
-X-Gm-Message-State: AOAM532lFkSzkomgpqPK3URnbdcEiKU616tsQAHljhnC8x40J8LQcPYF
-        umSptQkrWZAeo6XPFxoH0eSNIz5WoPB+8w==
-X-Google-Smtp-Source: ABdhPJwa9zh912EeQ+Wd2W4TIvEJ8UM0h4erACtzSUOUAWGv85uWKfGiyjFUhY9MzrZxsC1K1zBUMw==
-X-Received: by 2002:a5d:634e:0:b0:20a:d67e:4a76 with SMTP id b14-20020a5d634e000000b0020ad67e4a76mr24094750wrw.637.1651232620918;
-        Fri, 29 Apr 2022 04:43:40 -0700 (PDT)
-Received: from fedora.robimarko.hr (dh207-99-183.xnet.hr. [88.207.99.183])
-        by smtp.googlemail.com with ESMTPSA id l6-20020a1c2506000000b0038e6fe8e8d8sm2990900wml.5.2022.04.29.04.43.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 29 Apr 2022 04:43:40 -0700 (PDT)
-From:   Robert Marko <robimarko@gmail.com>
-To:     agross@kernel.org, bjorn.andersson@linaro.org,
-        jassisinghbrar@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com,
-        sboyd@kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org
-Cc:     Robert Marko <robimarko@gmail.com>
-Subject: [PATCH 6/6] arm64: dts: ipq8074: update APCS node due to clock support
-Date:   Fri, 29 Apr 2022 13:43:30 +0200
-Message-Id: <20220429114330.59026-6-robimarko@gmail.com>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220429114330.59026-1-robimarko@gmail.com>
-References: <20220429114330.59026-1-robimarko@gmail.com>
+        with ESMTP id S234872AbiD2Lvr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Apr 2022 07:51:47 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9113CB3C4E;
+        Fri, 29 Apr 2022 04:48:29 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id F1ACC6205A;
+        Fri, 29 Apr 2022 11:48:28 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EAA04C385A7;
+        Fri, 29 Apr 2022 11:48:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1651232908;
+        bh=YddyMcIeDoK+LuBTa75Hcxrbfg+0jvhLvhQUUF3oiXk=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=NoSuL4mUKRW3vjvgLoOSLrHHuHPs9iWONsh0DB7gz6COPoBNQxLQsqvZFw3xCawYQ
+         S7+EvGUCR+2BTC4Y/44Ebm0+Y/MIkrAeKZb2XERxSklMhXpBaTwrHpoCCFTsFcINqx
+         E5oNi6tMB+H+3iNaAbBvk1W3rPG+jcVpRobzis9/ah2tMJOn9RwIxZU+vLEs/DRZQ/
+         Z+nLXuGRiMS/GCZwv7Ve+sYKlc1GN+FaJUyAWb3MGDzdr/EmwWsXSC6T7akZsi/yAF
+         moohsoQ+vRtsPSw+UIuPTy6yI+blc1vAAZ1ewZG/iiCeTL4mY5S9LjSNMuZmo14y7g
+         6qKqFtFtvK1zw==
+Date:   Fri, 29 Apr 2022 12:48:22 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Markuss Broks <markuss.broks@gmail.com>
+Cc:     linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        lee.jones@linaro.org, phone-devel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v6 2/5] dt-bindings: regulator: Add bindings for Silicon
+ Mitus SM5703 regulators
+Message-ID: <YmvQhpO8dg6VLHNP@sirena.org.uk>
+References: <20220429113927.5145-1-markuss.broks@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="P/bFAWC8P9UAkdFW"
+Content-Disposition: inline
+In-Reply-To: <20220429113927.5145-1-markuss.broks@gmail.com>
+X-Cookie: Are you still an ALCOHOLIC?
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-APCS now has support for providing the APSS clocks as the child device
-for IPQ8074, so update the DT node to reflect the expanded register space
-as well as add #clock-cells property as it now provides the APSS clock
-that will be used for CPU scaling.
 
-Signed-off-by: Robert Marko <robimarko@gmail.com>
----
- arch/arm64/boot/dts/qcom/ipq8074.dtsi | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+--P/bFAWC8P9UAkdFW
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/arch/arm64/boot/dts/qcom/ipq8074.dtsi b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-index 5b32d141c7ae..d23b14a8d4b4 100644
---- a/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-+++ b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-@@ -970,8 +970,9 @@ IRQ_TYPE_LEVEL_HIGH>, /* int_c */
- 
- 		apcs_glb: mailbox@b111000 {
- 			compatible = "qcom,ipq8074-apcs-apps-global";
--			reg = <0x0b111000 0x1000>;
-+			reg = <0x0b111000 0x6000>;
- 
-+			#clock-cells = <1>;
- 			#mbox-cells = <1>;
- 		};
- 
--- 
-2.35.1
+On Fri, Apr 29, 2022 at 02:39:25PM +0300, Markuss Broks wrote:
+> This patch adds device-tree bindings for regulators on Silicon Mitus
+> SM5703 MFD.
+>=20
+> Signed-off-by: Markuss Broks <markuss.broks@gmail.com>
+> ---
+>  .../siliconmitus,sm5703-regulator.yaml        | 49 +++++++++++++++++++
+>  1 file changed, 49 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/regulator/siliconmi=
+tus,sm5703-regulator.yaml
 
+As Rob said please send an incremental patch with any fixes needed.
+
+--P/bFAWC8P9UAkdFW
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmJr0IUACgkQJNaLcl1U
+h9AUswf6A3rRGKMwACJ831L5cTTs7vDmqfEXSrxM2+OTm3mlUVuue0ybuhAv8QY7
+CZk8K+H9OGHsNDzBBefGZmJE0BWnZstr23eyFkWsTJwmdOmyuzSMws3U/+7QsIP/
+DowZnycQuQzr9PSDJm1JFu8a2zc4Kp+lVDT7Xl8fk5dhkI/LTnIuho9A0vuSf8yy
+DF73wcpw++SWeSMwnoJ+vulRJ3draNgaQexnYnrxwSuqbr6gESzfPsxwNiA9KT4M
+5+y2F9PFeh5WGnliYlWnbmNWUm0ICwyWqs4G2BzJtaBIe2NGh9SPnORX5gYW51YH
+Q/BG6cU+6GMKPmFthHMBHlkwuZheJg==
+=P477
+-----END PGP SIGNATURE-----
+
+--P/bFAWC8P9UAkdFW--
