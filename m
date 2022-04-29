@@ -2,48 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D1B551552B
-	for <lists+devicetree@lfdr.de>; Fri, 29 Apr 2022 22:07:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C20A51554C
+	for <lists+devicetree@lfdr.de>; Fri, 29 Apr 2022 22:14:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239462AbiD2UKE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Apr 2022 16:10:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49566 "EHLO
+        id S1380635AbiD2UQ7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Apr 2022 16:16:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38272 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351462AbiD2UKD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Apr 2022 16:10:03 -0400
+        with ESMTP id S1380638AbiD2UQy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Apr 2022 16:16:54 -0400
 Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 347D32E089;
-        Fri, 29 Apr 2022 13:06:44 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FD1CD5E94;
+        Fri, 29 Apr 2022 13:13:32 -0700 (PDT)
 Received: from [127.0.0.1] (localhost [127.0.0.1])
         (Authenticated sender: nfraprado)
-        with ESMTPSA id CC2F51F469D0
+        with ESMTPSA id D924D1F469D0
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1651262803;
-        bh=JRAg129iDB2/5CSYNVbbLVuyBCrEuyoaGLVzHKyj2fQ=;
+        s=mail; t=1651263211;
+        bh=Ygrrf/uiE7GKex7nmfQ7KPictd649a7293BtSJxSJ28=;
         h=From:To:Cc:Subject:Date:From;
-        b=RapoQLJhI54F0hG0vEaHBbuBphCdk16JCXEz99skfhaqxplQKqZ1A13z8r+P5xcWf
-         vxSi8LrandGByTy8WQnwInxs7mYzXrHMGb2dwQjh7SvCm8EhpXG/xMOhhb37a+XVit
-         Wbpk1Q6+KCz534aszmtjngOfSuE1KOLvYtd37kuYJTw7r8d08XkGAdzQlgkeIwl2Fa
-         YREqh+nPIsskVk1lwHdOfnMJp8KeTWzCyBPmSJywfPhhjT3tftBlm5y42imQxavwRF
-         wAQ1sHqC/Z8XF5Ql805WrNduQnFdOJX71pSBQQdzkXX6pHRgn8LD0UNgUgoyYXN5iZ
-         Vlo8xTCE8aKew==
+        b=bF5Y9hNQy9VcyUwBt8enhkN46rRy0LwPqcxZlpmJQqFG7afz+RUXNOBkIXxBWSW7l
+         n5f0x+aG7Z8YNagVc31Zq9jt0XQ3BxPvCMxt4b4RSwkHBnMAoX8zHn519KzNttEn4y
+         zcYjx2Sxb8GKHejIaPnZix4Vqgg0t+qwcgN+4QKBOeY8rOnaNrcbFpym/oDFFxzS8Y
+         O5HZWV8mK1NwIccTscOUmVd0y5b0wMSD3GzDx7nw2UN1qxjLjn99L3NF2/mYg73kkM
+         WCw6i/oukTLnr7AJ4bDybinpRUOPB0WRM5iPsG9Uz1MgXENXUlHcDBUplbhDpKm5JW
+         gMj/arQdA1m3g==
 From:   =?UTF-8?q?N=C3=ADcolas=20F=2E=20R=2E=20A=2E=20Prado?= 
         <nfraprado@collabora.com>
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     kernel@collabora.com,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
+To:     Mark Brown <broonie@kernel.org>
+Cc:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, kernel@collabora.com,
         =?UTF-8?q?N=C3=ADcolas=20F=2E=20R=2E=20A=2E=20Prado?= 
         <nfraprado@collabora.com>,
+        Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
         Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sean Wang <sean.wang@mediatek.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org
-Subject: [PATCH] dt-bindings: pinctrl: mt8192: Add mediatek,pull-down-adv property
-Date:   Fri, 29 Apr 2022 16:06:37 -0400
-Message-Id: <20220429200637.2204937-1-nfraprado@collabora.com>
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org
+Subject: [PATCH] dt-bindings: regulator: mt6315: Enforce regulator-compatible, not name
+Date:   Fri, 29 Apr 2022 16:13:24 -0400
+Message-Id: <20220429201325.2205799-1-nfraprado@collabora.com>
 X-Mailer: git-send-email 2.36.0
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
@@ -57,39 +57,34 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the mediatek,pull-down-adv property to the pinctrl-mt8192 dt-binding
-to allow configuring pull-down resistors on the pins of MT8192. It is
-the same as in mt8183-pinctrl.
+The MT6315 PMIC dt-binding should enforce that one of the valid
+regulator-compatible is set in each regulator node. However it was
+mistakenly matching against regulator-name instead.
+
+Fix the typo. This not only fixes the compatible verification, but also
+lifts the regulator-name restriction, so that more meaningful names can
+be set for each platform.
 
 Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
 
 ---
 
- .../devicetree/bindings/pinctrl/pinctrl-mt8192.yaml   | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+ .../devicetree/bindings/regulator/mt6315-regulator.yaml         | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/pinctrl/pinctrl-mt8192.yaml b/Documentation/devicetree/bindings/pinctrl/pinctrl-mt8192.yaml
-index c90a132fbc79..e462f49eae6f 100644
---- a/Documentation/devicetree/bindings/pinctrl/pinctrl-mt8192.yaml
-+++ b/Documentation/devicetree/bindings/pinctrl/pinctrl-mt8192.yaml
-@@ -117,6 +117,17 @@ patternProperties:
-             $ref: /schemas/types.yaml#/definitions/uint32
-             enum: [0, 1, 2, 3]
+diff --git a/Documentation/devicetree/bindings/regulator/mt6315-regulator.yaml b/Documentation/devicetree/bindings/regulator/mt6315-regulator.yaml
+index 61dd5af80db6..5d2d989de893 100644
+--- a/Documentation/devicetree/bindings/regulator/mt6315-regulator.yaml
++++ b/Documentation/devicetree/bindings/regulator/mt6315-regulator.yaml
+@@ -31,7 +31,7 @@ properties:
+         $ref: "regulator.yaml#"
  
-+          mediatek,pull-down-adv:
-+            description: |
-+              Pull down settings for 2 pull resistors, R0 and R1. User can
-+              configure those special pins. Valid arguments are described as below:
-+              0: (R1, R0) = (0, 0) which means R1 disabled and R0 disabled.
-+              1: (R1, R0) = (0, 1) which means R1 disabled and R0 enabled.
-+              2: (R1, R0) = (1, 0) which means R1 enabled and R0 disabled.
-+              3: (R1, R0) = (1, 1) which means R1 enabled and R0 enabled.
-+            $ref: /schemas/types.yaml#/definitions/uint32
-+            enum: [0, 1, 2, 3]
-+
-           bias-pull-down: true
+         properties:
+-          regulator-name:
++          regulator-compatible:
+             pattern: "^vbuck[1-4]$"
  
-           bias-pull-up: true
+     additionalProperties: false
 -- 
 2.36.0
 
