@@ -2,249 +2,896 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E159A5143A8
-	for <lists+devicetree@lfdr.de>; Fri, 29 Apr 2022 10:08:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0DE0D5143F2
+	for <lists+devicetree@lfdr.de>; Fri, 29 Apr 2022 10:18:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345976AbiD2IMH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Apr 2022 04:12:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44770 "EHLO
+        id S234337AbiD2IU5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Apr 2022 04:20:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36298 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236729AbiD2IMG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Apr 2022 04:12:06 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A5EBBF50C;
-        Fri, 29 Apr 2022 01:08:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1651219728; x=1682755728;
-  h=from:to:cc:subject:date:message-id:references:
-   in-reply-to:content-id:content-transfer-encoding:
-   mime-version;
-  bh=k6XnJBhaLGLRXJ95CdLSGdJkqShiGtkM9b3fEumJB/g=;
-  b=A2XAAq3LUY/l/x8jLVw7rwWoeFwI5t39QDJd3VD73ooeXU0lmaLdlZMn
-   1S+4XEipJm3WeOhlX1yzjpZ6MJy14mvDgAXB31aWK2w7/++xRXhhvFu7z
-   RwQ4yefV8za9o4dBVfxZ6LZc16Aon+gUWT8wh/Z9HJ5yTMbmv4aUJuQNY
-   yqjCiWs5+144ZgHyyzYQ877HQcybtFTESVpS/956N2B4BkfJP3B6BOdLM
-   h072radSuEWJiIBJtcMmbXBzYjLq3nnsrsxG9q9jKeM0M/LzPdz87FOtn
-   Eub5qZIIgHgbjsbruZXbKTKBJdNk7figK0IADGhcdXknxiSw3tg+Mlr1m
-   A==;
-X-IronPort-AV: E=Sophos;i="5.91,297,1647327600"; 
-   d="scan'208";a="94018680"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 29 Apr 2022 01:08:46 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17; Fri, 29 Apr 2022 01:08:47 -0700
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (10.10.215.89) by
- email.microchip.com (10.10.87.71) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.17 via Frontend
- Transport; Fri, 29 Apr 2022 01:08:47 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=AjhzXPCnGUnrjzrS5WTj5ZwlFmLMcWT09eMvzjJtrvc2WNC0DSWG5Gjb4IQvdXAiRtkoCMzdgfMuxFgM4+gH1AWJUkfFi3Rrk/U/4XurHBOgXjmfVj7u3+GaA8mvcwSE9jOrbtYN9/ylt1IlA53O75FVSLs903SO6ih6SFOiu39Vtk0jUWArKsmdBqOxvBR+kszvjPxHHaSPglTUbzjdtaTyGQ+gHygYWTbKg+PBprhYsoo5rn6EmeqtVDgesUWzf2Ak/zBB4UP/N4UHfDZWHFJmLyROXQ8sIAitYNh0SmL+GDbh/3KI7mkFszHcZGcyvsPycz0Vb+Mo575bGz7bUA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=k6XnJBhaLGLRXJ95CdLSGdJkqShiGtkM9b3fEumJB/g=;
- b=BBT8/ltKglb73zBKZSESGBch9EsK04ec7GZblBAUrcVHQlkBVo1fEx7ZBC4zSS6gheBnMJJzk7Wwo2icMmnSSgsBeGyXfFJwkceDXTtwBXiRHbtGzFGWfTsbO8/VR9Bb/Jn9ca/M747yj3uGvtCyfbR+FtQucq022KTa7emW/OQanKhE8Vo/QtF9K5pb2QFokBKGXs8zWApmksQZWltJTCUqNgExLD8+a+pcrlxB4ertQHpUinp+LReKS2iz7hcCylLVzfYe67wWSL2LYb33Yd+cDjcugDEPjK0bEabCBMUpxVSIwqa/8GKdSALnRK8PIIUN4lZPC3r6KNpOCUE49w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=microchip.com; dmarc=pass action=none
- header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=microchiptechnology.onmicrosoft.com;
- s=selector2-microchiptechnology-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=k6XnJBhaLGLRXJ95CdLSGdJkqShiGtkM9b3fEumJB/g=;
- b=P3vlsqxZjXFFb2bL1PmfHw/Sfh3w8FHEoVW7kiVBzaAdQcHq7qZ9LJrdLnwWIA6/vLucSLR+rxRKhX2QRQRNSu7Qb7c0FGoQ13dP3oCB+MIWQ2DcMFpKdPnNCJN6haBy6eAG6AqXBU9eeeSUY/ibrDo62ZOGVlYKN4PJ8gpvNrE=
-Received: from BL1PR11MB5384.namprd11.prod.outlook.com (2603:10b6:208:311::14)
- by CH0PR11MB5283.namprd11.prod.outlook.com (2603:10b6:610:be::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5206.13; Fri, 29 Apr
- 2022 08:08:45 +0000
-Received: from BL1PR11MB5384.namprd11.prod.outlook.com
- ([fe80::39cb:eae2:1dbc:a5f2]) by BL1PR11MB5384.namprd11.prod.outlook.com
- ([fe80::39cb:eae2:1dbc:a5f2%8]) with mapi id 15.20.5186.026; Fri, 29 Apr 2022
- 08:08:45 +0000
-From:   <Eugen.Hristev@microchip.com>
-To:     <hverkuil@xs4all.nl>, <linux-media@vger.kernel.org>,
-        <jacopo@jmondi.org>
-CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <Claudiu.Beznea@microchip.com>, <robh+dt@kernel.org>,
-        <Nicolas.Ferre@microchip.com>
-Subject: Re: [PATCH v9 06/13] media: atmel: atmel-isc-base: use mutex to lock
- awb workqueue from streaming
-Thread-Topic: [PATCH v9 06/13] media: atmel: atmel-isc-base: use mutex to lock
- awb workqueue from streaming
-Thread-Index: AQHYNGSh7JwrajNUDU+e7C67bQo/Nq0G0GoAgAAHfQA=
-Date:   Fri, 29 Apr 2022 08:08:45 +0000
-Message-ID: <2510d479-5eef-6ef6-5d32-41f70217eb52@microchip.com>
-References: <20220310095202.2701399-1-eugen.hristev@microchip.com>
- <20220310095202.2701399-7-eugen.hristev@microchip.com>
- <d3858845-ca27-9207-68a9-6d802a7d59fe@xs4all.nl>
-In-Reply-To: <d3858845-ca27-9207-68a9-6d802a7d59fe@xs4all.nl>
-Accept-Language: en-US, ro-RO
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.8.0
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=microchip.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: edc5141a-dcf8-48fc-0fb5-08da29b77b71
-x-ms-traffictypediagnostic: CH0PR11MB5283:EE_
-x-microsoft-antispam-prvs: <CH0PR11MB5283C799CC648310953F86BBE8FC9@CH0PR11MB5283.namprd11.prod.outlook.com>
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 8yuMVL43aaU2B0+mPxDn2cb8d5v1QACiX4cXxNiPZ88M2H4BxLSt8c9O/VuZqGO0FGayVcvyfi2aQZq3K2F2XJhW47KVjFKQHH/+YX2FRcofOwVTVxK0AU3TAsedxMvGUZ6j1K5D5i0dab/oQm7VwDSMApUNY+GOcGgZywL/2pqdcqBJ+KDnqiTnI0W5Nu3cblB4WRyBKA9B1HeLCMbAFrJl/+tvc1M3B3OaFjHJPjeeVL/J38yPeN8A4y+WFnAzgrKCXuYUnKnque4H+pCBdEYG+YWwRlxh1SqXIUbjfoqr9EEUSx0Wup/VlBQjrM025lW1qMQkxXAmuIhuKGmXrlp4xYBQUybCqSTv77chJxFszkMF7JE5FeAb0mYbrNyRKvjqfWfSSd1LAivf4uYdl3Bo0RmTioQX6Y/tcrRv94CD4fr02POT9uAOl57IhrYyLXqBS3Ea2dZLzNiyjCo4jrIrn5yohH6JjgS6jDAMFUFAQRIoQ4VxxIYhEwtBrzf8tSqPuEtXH2EmcpsMzyeEK0xD+4gYkqtYz3r/FOnlQJm+XKzxe10lnx4XtWvUF8t+4+ypTIinMmIkHpzswb8zqFgcktSW0ehFpIrs1pzqHvEMSL+dGIflvqXU0UMo1QkDuiXhnM1J1gAtvvbrGUfhTTNJoN0Jd4MASBr9s09fNqnLDVEC2zeT47qehcA3n6v+8lEwdmAuJSZhZyZM7EFZ4g/7T+7hREp4QcrOH8TeMBDUqFT+e1PWc6It9VxIWafDCqWQRr+BP4rs6CUWqmcZwqrakDckc5dakrTcbsgjjCgcUwJwWZztMc8QY9hwV7QqZMVKemUYU+gBl6ZbTvzxJGSKW7zMM8gmAJ5/Z6dYwx8=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BL1PR11MB5384.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(366004)(186003)(83380400001)(122000001)(38070700005)(38100700002)(66446008)(4326008)(36756003)(8936002)(5660300002)(8676002)(64756008)(2906002)(31686004)(6506007)(6486002)(110136005)(66476007)(2616005)(6512007)(71200400001)(91956017)(966005)(54906003)(107886003)(66556008)(66946007)(76116006)(53546011)(26005)(86362001)(316002)(508600001)(31696002)(45980500001)(43740500002);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?emZRQ3F5SlpXRHplR2FTK2JkUXcxbDNYaXdvRytJWUpVdmZUWEZlZE1vdG11?=
- =?utf-8?B?d08rR0dRV3BXUDVpYTkzN2MvZzBBbXVNYklCSWRmc0VOV2FxQXpMZXhuUFBE?=
- =?utf-8?B?VXpvamtZa3FnRWFUY3kxaEdzcXFZU2NGNjZvNlBMbloxSlJaWFZaNER1bEVF?=
- =?utf-8?B?ZFR1NzNvY0pLWGo4dTNnNHJhTiszbFMwSmxJT0NNQzZaSHF0OEd4OEVWU2k0?=
- =?utf-8?B?alZxaW1kejMwN1c0cHJuUDFRM0IxRXhmdjNBWFg5aVdMM2ZQSTdybjlpQlFa?=
- =?utf-8?B?MFMra3QxSmc0enNQcWhHdFNhWVFpajNtZVFjQ1JSenl5OU0raS9ZcDdKR3ZO?=
- =?utf-8?B?VlFTaUJwNkVDdGh4OE43aFhGbmRwR1doOE50RzRTb1UraGxKdG1PRHpyWkFr?=
- =?utf-8?B?RGtYcCtNZnVyd3NxVFJTaGpmWjFlUWY2ZE9SUXkvT0VKTndpMEFrODhuTVcw?=
- =?utf-8?B?T2hGNWljSWJyRjJ1NUVYTVM2Zjd3Y0NKZS9vZXFNWW1jZEk5d1NPN0U1eVg5?=
- =?utf-8?B?L1NPbDZER2ZtZ3NlYU5IT1d5VzdXMXR5ck5DNks3aDRFUnZUdnJXNkVBS2hB?=
- =?utf-8?B?SnVnTEtnOEdDRUlmaG5FN3RBaHNBZDFLVERYYTRiK3oyMVlLVXdGU2xxRmZY?=
- =?utf-8?B?TFEzcWY2bEo3R21wNlNrcllxQkw0UHhzc0podmNtajdGOHR5YjR6emRSRkEv?=
- =?utf-8?B?b0lyQWRjMmtiRVNSaHFUWklxWCtiWFZRaC9IbnRid25pcHlSQnJ4UkJjdGVR?=
- =?utf-8?B?TU5FZHVtSkFFei9Qc3d0TEpLamhwTUpXNjRlWDBROG1qU3Zlby9CUTVnM3JC?=
- =?utf-8?B?YllYNmJUdWpKUGpoSTBESHVYSDFuOERXU3pZZk8waTJhdkMyLzByTklNTVZo?=
- =?utf-8?B?MWwwVHVpZmd4U3lKRjY3RHhKWGxWbkZKMGxMM3FhejZTeTJpdEkwcEdPTHFY?=
- =?utf-8?B?TTVqdVN5Mm9heWI5QTB5aDhTbkNjY09YODFCamJrdXlxZTUxN1BsV0xoVTl5?=
- =?utf-8?B?M3hmd1pzWGI3S1Q5OTRnbGVNZ3d2NG9pUU5DRDNQWGd1dEY2WXlucm1jNEta?=
- =?utf-8?B?c0xBdlhTM0lXdHNLd2lZZHJEUCtnVDRiYWY2UGpLVzRyQm02SXRkYVREOFJV?=
- =?utf-8?B?bGx6U1ZKSnZWK0dxem1sdlhEVmVscmxFOGxLYnp5RFVCWmUwdGF2dlMzUDAz?=
- =?utf-8?B?c1dOZmNDY0NKeWVnMHkwQWJKejY0dStuZzFVRTYxWDcvRmRIVzR6dXNuUnh2?=
- =?utf-8?B?R1hYUy9oZENxcm1id2RnM1hTTmVWc2FjSUsyWVZQUlVsN05kWVA5eHFZTjNn?=
- =?utf-8?B?K1JwMVI2MUEyZEtiK3dVdHp3cnh0ZkpWZEdhSVlTcU9hZjBpSnlDYnoxQ25x?=
- =?utf-8?B?ZFlONnN1TWFQR0hkWG4rcFlXb25lenQ3OUlsSWI4UkRuTjVxei8xSDlnc3Vu?=
- =?utf-8?B?WmVRYWpSMHhkSFczNldvRVZKWmErdzFFU1lOUnlreVVRbHlUbjJ3NDVJOTRM?=
- =?utf-8?B?eVFGVXRPZElJa0tEdHBlYlptaThpellKQUZtUVZtVVZoUGJhU0FBV3Z3cGpp?=
- =?utf-8?B?Zk8rR1N4K2x4dTJLR2w5d3R5NDZGa2JpYVVDUkVuY09ibGMrWFlMbVEvRUJH?=
- =?utf-8?B?dGNwQVJxK1paSXE0S1JKallhRzEwVEYwOWV2TVVHdUg3akRqc0ZvTy9XR0lG?=
- =?utf-8?B?enhyRTE1aUZZblJGaE5JYUpDRnBpM3VnNWxYSFU1VEJ2dzV2Kyt3MFZGQXNL?=
- =?utf-8?B?VHMwdnhsQ2FqZW1POXA3U05nNEpQWUcrVzFWYldRQ21YV1NWcnpuZDY5R0Vr?=
- =?utf-8?B?YThYMEQ4aHhLRjhEaTNFK2RYNFVTMzVMYzFIcjhsM204VnNlYXZQUnJRbDVp?=
- =?utf-8?B?T0R6cmROR1ZBQU15a2YxQThURkpoRzhMN1pPNWJIeDdzaXl3V3N3OG4yOUlG?=
- =?utf-8?B?SFgzY2RsTnpDdXVNb3I0ZWdYTWhINzhOdmhVVWx5N29OeU84enVBc1F6SGxn?=
- =?utf-8?B?cHF4dnRGL3R5dE1wTEpFa29XVmY0NzQ5aDB1L1NhbXlQejFtQTU0dmJrNkJY?=
- =?utf-8?B?b0UvdUhMLzA2R1NrODE3bEErNmtyeTJxNXhhaUpsVlY0N1NjR1JHRDRBRVpJ?=
- =?utf-8?B?b2Iwcm9ZTmJwN0hzRHdGSDNuSlRLK2ZXcUxCMU9xVzRZalNPWXpjRDBCMEtE?=
- =?utf-8?B?Q09PeUtyRTFkelNZN1pNMXhkQ0ZLZTR5VC9iMkdocitGQ3FPcUxPc2w2TVU2?=
- =?utf-8?B?STRjVFN2V3ZvZXN6L3IxNjliSXA4UDlyTlBBTHI5dXlGK0Q3Umc5V0M1YTht?=
- =?utf-8?B?ektMZWtTV29HUmNRQmNkSDFNREFpRDVFaFVvcExNNm9BVkZZQUZaejlCSE0v?=
- =?utf-8?Q?PAi9zIPt4g6MamXk=3D?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <9CA74F3F93D2D043A1597A2BC4A47F96@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+        with ESMTP id S234019AbiD2IU5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Apr 2022 04:20:57 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DD46C79;
+        Fri, 29 Apr 2022 01:17:38 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 09E18620D4;
+        Fri, 29 Apr 2022 08:17:38 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 34D70C385A4;
+        Fri, 29 Apr 2022 08:17:35 +0000 (UTC)
+Message-ID: <39f541ec-313f-fe15-b93f-dd78469b2366@xs4all.nl>
+Date:   Fri, 29 Apr 2022 10:17:33 +0200
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BL1PR11MB5384.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: edc5141a-dcf8-48fc-0fb5-08da29b77b71
-X-MS-Exchange-CrossTenant-originalarrivaltime: 29 Apr 2022 08:08:45.2795
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 0ful/jAlMKpM6evO98OdNFklhS6+inHrB1kh+9T2Ef7XEbSswQJs7ELkPXJtjWlxsKmMO3mP0iv6H4HTy8Nu93EXmoQ9PL0v5LYRHSOqjuU=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR11MB5283
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH v9 08/13] media: atmel: atmel-isc: change format
+ propagation to subdev into only verification
+Content-Language: en-US
+To:     Eugen Hristev <eugen.hristev@microchip.com>,
+        linux-media@vger.kernel.org, jacopo@jmondi.org,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, claudiu.beznea@microchip.com,
+        robh+dt@kernel.org, nicolas.ferre@microchip.com
+References: <20220310095202.2701399-1-eugen.hristev@microchip.com>
+ <20220310095202.2701399-9-eugen.hristev@microchip.com>
+From:   Hans Verkuil <hverkuil@xs4all.nl>
+In-Reply-To: <20220310095202.2701399-9-eugen.hristev@microchip.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-6.7 required=5.0 tests=BAYES_00,
+        HEADER_FROM_DIFFERENT_DOMAINS,NICE_REPLY_A,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gNC8yOS8yMiAxMDo0MSBBTSwgSGFucyBWZXJrdWlsIHdyb3RlOg0KPiBIaSBFdWdlbiwNCj4g
-DQo+IE9uIDEwLzAzLzIwMjIgMTA6NTEsIEV1Z2VuIEhyaXN0ZXYgd3JvdGU6DQo+PiBUaGUgQVdC
-IHdvcmtxdWV1ZSBydW5zIGluIGEga2VybmVsIHRocmVhZCBhbmQgbmVlZHMgdG8gYmUgc3luY2hy
-b25pemVkDQo+PiB3LnIudC4gdGhlIHN0cmVhbWluZyBzdGF0dXMuDQo+PiBJdCBpcyBwb3NzaWJs
-ZSB0aGF0IHN0cmVhbWluZyBpcyBzdG9wcGVkIHdoaWxlIHRoZSBBV0Igd29ya3EgaXMgcnVubmlu
-Zy4NCj4+IEluIHRoaXMgY2FzZSBpdCBpcyBsaWtlbHkgdGhhdCB0aGUgY2hlY2sgZm9yIHZiMl9z
-dGFydF9zdHJlYW1pbmdfY2FsbGVkIGlzIGRvbmUNCj4+IGF0IG9uZSBwb2ludCBpbiB0aW1lLCBi
-dXQgdGhlIEFXQiBjb21wdXRhdGlvbnMgYXJlIGRvbmUgbGF0ZXIsIGluY2x1ZGluZyBhIGNhbGwN
-Cj4+IHRvIGlzY191cGRhdGVfcHJvZmlsZSwgd2hpY2ggcmVxdWlyZXMgc3RyZWFtaW5nIHRvIGJl
-IHN0YXJ0ZWQuDQo+PiBUaHVzICwgaXNjX3VwZGF0ZV9wcm9maWxlIHdpbGwgZmFpbCBpZiBkdXJp
-bmcgdGhpcyBvcGVyYXRpb24gc2VxdWVuY2UgdGhlDQo+PiBzdHJlYW1pbmcgd2FzIHN0b3BwZWQu
-DQo+PiBUbyBzb2x2ZSB0aGlzIGlzc3VlLCBhIG11dGV4IGlzIGFkZGVkLCB0aGF0IHdpbGwgc2Vy
-aWFsaXplIHRoZSBhd2Igd29yayBhbmQNCj4+IHN0cmVhbWluZyBzdG9wcGluZywgd2l0aCB0aGUg
-bWVudGlvbiB0aGF0IGVpdGhlciBzdHJlYW1pbmcgaXMgc3RvcHBlZA0KPj4gY29tcGxldGVseSBp
-bmNsdWRpbmcgdGVybWluYXRpb24gb2YgdGhlIGxhc3QgZnJhbWUgaXMgZG9uZSwgYW5kIGFmdGVy
-IHRoYXQNCj4+IHRoZSBBV0Igd29yayBjYW4gY2hlY2sgc3RyZWFtIHN0YXR1cyBhbmQgc3RvcDsg
-ZWl0aGVyIGZpcnN0IEFXQiB3b3JrIGlzDQo+PiBjb21wbGV0ZWQgYW5kIGFmdGVyIHRoYXQgdGhl
-IHN0cmVhbWluZyBjYW4gc3RvcCBjb3JyZWN0bHkuDQo+PiBUaGUgYXdiIHNwaW4gbG9jayBjYW5u
-b3QgYmUgdXNlZCBzaW5jZSB0aGlzIHNwaW5sb2NrIGlzIHRha2VuIGluIHRoZSBzYW1lDQo+PiBj
-b250ZXh0IGFuZCB1c2luZyBpdCBpbiB0aGUgc3RvcCBzdHJlYW1pbmcgd2lsbCByZXN1bHQgaW4g
-YSByZWN1cnNpb24gQlVHLg0KPiANCj4gUGxlYXNlIGtlZXAgdGhlIGxpbmUgbGVuZ3RoIGluIGEg
-Y29tbWl0IGxvZyB0byBubyBtb3JlIHRoYW4gNzUuDQo+IA0KPj4NCj4+IFNpZ25lZC1vZmYtYnk6
-IEV1Z2VuIEhyaXN0ZXYgPGV1Z2VuLmhyaXN0ZXZAbWljcm9jaGlwLmNvbT4NCj4+IFJldmlld2Vk
-LWJ5OiBKYWNvcG8gTW9uZGkgPGphY29wb0BqbW9uZGkub3JnPg0KPj4gLS0tDQo+PiAgIGRyaXZl
-cnMvbWVkaWEvcGxhdGZvcm0vYXRtZWwvYXRtZWwtaXNjLWJhc2UuYyB8IDI5ICsrKysrKysrKysr
-KysrKystLS0NCj4+ICAgZHJpdmVycy9tZWRpYS9wbGF0Zm9ybS9hdG1lbC9hdG1lbC1pc2MuaCAg
-ICAgIHwgIDIgKysNCj4+ICAgMiBmaWxlcyBjaGFuZ2VkLCAyNyBpbnNlcnRpb25zKCspLCA0IGRl
-bGV0aW9ucygtKQ0KPj4NCj4+IGRpZmYgLS1naXQgYS9kcml2ZXJzL21lZGlhL3BsYXRmb3JtL2F0
-bWVsL2F0bWVsLWlzYy1iYXNlLmMgYi9kcml2ZXJzL21lZGlhL3BsYXRmb3JtL2F0bWVsL2F0bWVs
-LWlzYy1iYXNlLmMNCj4gDQo+IDxzbmlwPg0KPiANCj4+IEBAIC0xNTQ4LDYgKzE1NjQsNyBAQCBz
-dGF0aWMgaW50IGlzY19zX2F3Yl9jdHJsKHN0cnVjdCB2NGwyX2N0cmwgKmN0cmwpDQo+PiAgICAg
-ICAgICAgICAgICAgICAgICAgICAqLw0KPj4gICAgICAgICAgICAgICAgICAgICAgICB2NGwyX2N0
-cmxfYWN0aXZhdGUoaXNjLT5kb193Yl9jdHJsLCBmYWxzZSk7DQo+PiAgICAgICAgICAgICAgICB9
-DQo+PiArICAgICAgICAgICAgIG11dGV4X3VubG9jaygmaXNjLT5hd2JfbXV0ZXgpOw0KPiANCj4g
-SHVoPyBXaGF0IGlzIHRoaXMgdW5sb2NrIGRvaW5nIGhlcmU/IEFtIEkgbWlzc2luZyBzb21ldGhp
-bmc/DQoNCkhlbGxvIEhhbnMsDQoNClNvcnJ5LiBJdCBsb29rcyBsaWtlIHRoZSBjb3JyZXNwb25k
-aW5nIG11dGV4X2xvY2sgd2FzIGxvc3Qgd2hlbiBJIA0KcmViYXNlZCB0aGUgc2VyaWVzIG92ZXIg
-dGhlIHBhdGNoIHRvIHVzZSAnaXNfc3RyZWFtaW5nJyBpbnN0ZWFkIG9mIA0KJ3N0b3AnIHZhcmlh
-YmxlLg0KSW4gdmVyc2lvbiAzLCB0aGUgbXV0ZXhfbG9jayB3YXMgdGhlcmUgOg0KDQpodHRwczov
-L3d3dy5zcGluaWNzLm5ldC9saXN0cy9saW51eC1tZWRpYS9tc2cyMDQwNTkuaHRtbA0KDQpTb21l
-aG93IGEgcmFjZSBwcm9ibGVtIGRpZCBub3Qgb2NjdXIgaW4gdGhpcyBzcGVjaWZpYyBjcml0aWNh
-bCBhcmVhIGluIA0KbXkgdGVzdHMuDQoNCkkgd2lsbCByZXNlbmQgdGhpcyBwYXRjaCBhcyBhIHYx
-MCAsIG9yIHRoZSB3aG9sZSBzZXJpZXMgaWYgeW91IGhhdmUgDQpvdGhlciBjb21tZW50cyBvbiB0
-aGUgb3RoZXIgcGF0Y2hlcz8gSG93IHdvdWxkIHlvdSBwcmVmZXIgPw0KDQpUaGFua3MsDQpFdWdl
-bg0KDQo+IA0KPiBSZWdhcmRzLA0KPiANCj4gICAgICAgICAgSGFucw0KPiANCj4+DQo+PiAgICAg
-ICAgICAgICAgICAvKiBpZiB3ZSBoYXZlIGF1dG93aGl0ZWJhbGFuY2Ugb24sIHN0YXJ0IGhpc3Rv
-Z3JhbSBwcm9jZWR1cmUgKi8NCj4+ICAgICAgICAgICAgICAgIGlmIChjdHJscy0+YXdiID09IElT
-Q19XQl9BVVRPICYmDQo+PiBAQCAtMTc0MCw2ICsxNzU3LDcgQEAgc3RhdGljIHZvaWQgaXNjX2Fz
-eW5jX3VuYmluZChzdHJ1Y3QgdjRsMl9hc3luY19ub3RpZmllciAqbm90aWZpZXIsDQo+PiAgIHsN
-Cj4+ICAgICAgICBzdHJ1Y3QgaXNjX2RldmljZSAqaXNjID0gY29udGFpbmVyX29mKG5vdGlmaWVy
-LT52NGwyX2RldiwNCj4+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgIHN0cnVjdCBpc2NfZGV2aWNlLCB2NGwyX2Rldik7DQo+PiArICAgICBtdXRleF9kZXN0cm95
-KCZpc2MtPmF3Yl9tdXRleCk7DQo+PiAgICAgICAgY2FuY2VsX3dvcmtfc3luYygmaXNjLT5hd2Jf
-d29yayk7DQo+PiAgICAgICAgdmlkZW9fdW5yZWdpc3Rlcl9kZXZpY2UoJmlzYy0+dmlkZW9fZGV2
-KTsNCj4+ICAgICAgICB2NGwyX2N0cmxfaGFuZGxlcl9mcmVlKCZpc2MtPmN0cmxzLmhhbmRsZXIp
-Ow0KPj4gQEAgLTE4NTAsNiArMTg2OCw4IEBAIHN0YXRpYyBpbnQgaXNjX2FzeW5jX2NvbXBsZXRl
-KHN0cnVjdCB2NGwyX2FzeW5jX25vdGlmaWVyICpub3RpZmllcikNCj4+ICAgICAgICBpc2MtPmN1
-cnJlbnRfc3ViZGV2ID0gY29udGFpbmVyX29mKG5vdGlmaWVyLA0KPj4gICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgc3RydWN0IGlzY19zdWJkZXZfZW50aXR5LCBub3Rp
-Zmllcik7DQo+PiAgICAgICAgbXV0ZXhfaW5pdCgmaXNjLT5sb2NrKTsNCj4+ICsgICAgIG11dGV4
-X2luaXQoJmlzYy0+YXdiX211dGV4KTsNCj4+ICsNCj4+ICAgICAgICBpbml0X2NvbXBsZXRpb24o
-JmlzYy0+Y29tcCk7DQo+Pg0KPj4gICAgICAgIC8qIEluaXRpYWxpemUgdmlkZW9idWYyIHF1ZXVl
-ICovDQo+PiBAQCAtMTkzMCw2ICsxOTUwLDcgQEAgc3RhdGljIGludCBpc2NfYXN5bmNfY29tcGxl
-dGUoc3RydWN0IHY0bDJfYXN5bmNfbm90aWZpZXIgKm5vdGlmaWVyKQ0KPj4gICAgICAgIHZpZGVv
-X3VucmVnaXN0ZXJfZGV2aWNlKHZkZXYpOw0KPj4NCj4+ICAgaXNjX2FzeW5jX2NvbXBsZXRlX2Vy
-cjoNCj4+ICsgICAgIG11dGV4X2Rlc3Ryb3koJmlzYy0+YXdiX211dGV4KTsNCj4+ICAgICAgICBt
-dXRleF9kZXN0cm95KCZpc2MtPmxvY2spOw0KPj4gICAgICAgIHJldHVybiByZXQ7DQo+PiAgIH0N
-Cj4+IGRpZmYgLS1naXQgYS9kcml2ZXJzL21lZGlhL3BsYXRmb3JtL2F0bWVsL2F0bWVsLWlzYy5o
-IGIvZHJpdmVycy9tZWRpYS9wbGF0Zm9ybS9hdG1lbC9hdG1lbC1pc2MuaA0KPj4gaW5kZXggOWNj
-NjljM2FlMjZkLi5mOThmMjVhNTVlNzMgMTAwNjQ0DQo+PiAtLS0gYS9kcml2ZXJzL21lZGlhL3Bs
-YXRmb3JtL2F0bWVsL2F0bWVsLWlzYy5oDQo+PiArKysgYi9kcml2ZXJzL21lZGlhL3BsYXRmb3Jt
-L2F0bWVsL2F0bWVsLWlzYy5oDQo+PiBAQCAtMjI5LDYgKzIyOSw3IEBAIGVudW0gaXNjX3NjYWxl
-cl9wYWRzIHsNCj4+ICAgICoNCj4+ICAgICogQGxvY2s6ICAgICAgICAgICAgbG9jayBmb3Igc2Vy
-aWFsaXppbmcgdXNlcnNwYWNlIGZpbGUgb3BlcmF0aW9ucw0KPj4gICAgKiAgICAgICAgICAgICAg
-ICAgICB3aXRoIElTQyBvcGVyYXRpb25zDQo+PiArICogQGF3Yl9tdXRleDogICAgICAgICAgICAg
-ICBzZXJpYWxpemUgYWNjZXNzIHRvIHN0cmVhbWluZyBzdGF0dXMgZnJvbSBhd2Igd29yayBxdWV1
-ZQ0KPj4gICAgKiBAYXdiX2xvY2s6ICAgICAgICAgICAgICAgIGxvY2sgZm9yIHNlcmlhbGl6aW5n
-IGF3YiB3b3JrIHF1ZXVlIG9wZXJhdGlvbnMNCj4+ICAgICogICAgICAgICAgICAgICAgICAgd2l0
-aCBETUEvYnVmZmVyIG9wZXJhdGlvbnMNCj4+ICAgICoNCj4+IEBAIC0zMDcsNiArMzA4LDcgQEAg
-c3RydWN0IGlzY19kZXZpY2Ugew0KPj4gICAgICAgIHN0cnVjdCB3b3JrX3N0cnVjdCAgICAgIGF3
-Yl93b3JrOw0KPj4NCj4+ICAgICAgICBzdHJ1Y3QgbXV0ZXggICAgICAgICAgICBsb2NrOw0KPj4g
-KyAgICAgc3RydWN0IG11dGV4ICAgICAgICAgICAgYXdiX211dGV4Ow0KPj4gICAgICAgIHNwaW5s
-b2NrX3QgICAgICAgICAgICAgIGF3Yl9sb2NrOw0KPj4NCj4+ICAgICAgICBzdHJ1Y3QgcmVnbWFw
-X2ZpZWxkICAgICAqcGlwZWxpbmVbSVNDX1BJUEVfTElORV9OT0RFX05VTV07DQo+IA0KDQo=
+On 10/03/2022 10:51, Eugen Hristev wrote:
+> As a top MC video driver, the atmel-isc should not propagate the format to the
+> subdevice, it should rather check at start_streaming() time if the subdev is properly
+> configured with a compatible format.
+> Removed the whole format finding logic, and reworked the format verification
+> at start_streaming time, such that the ISC will return an error if the subdevice
+> is not properly configured. To achieve this, media_pipeline_start
+> is called and a link_validate callback is created to check the formats.
+> With this being done, the module parameter 'sensor_preferred' makes no sense
+> anymore. The ISC should not decide which format the sensor is using. The
+> ISC should only cope with the situation and inform userspace if the streaming
+> is possible in the current configuration.
+> The redesign of the format propagation has also risen the question of the
+> enumfmt callback. If enumfmt is called with an mbus_code, the enumfmt handler
+> should only return the formats that are supported for this mbus_code.
+> Otherwise, the enumfmt will report all the formats that the ISC could output.
+> With this rework, the dynamic list of user formats is removed. It makes no
+> more sense to identify at complete time which formats the sensor could emit,
+> and add those into a separate dynamic list.
+> The ISC will start with a simple preconfigured default format, and at
+> link validate time, decide whether it can use the format that is configured
+> on the sink or not.
+> 
+> Signed-off-by: Eugen Hristev <eugen.hristev@microchip.com>
+> Reviewed-by: Jacopo Mondi <jacopo@jmondi.org>
+> ---
+> Changes in v9:
+> - isc_link_validate now static
+> 
+> Changes in v7:
+> - minor typos as suggested by Jacopo
+> - small changes, reduce some indentation, modified an index, as suggested by
+> Jacopo
+> 
+> Changes in v6:
+> - reworked a bit enum_fmt as suggested by Jacopo
+> 
+> Changes in v5:
+> - removed user_formats dynamic list as it is now pointless
+> - greatly simplified the enum_fmt function
+> - removed some init code that was useless now
+> 
+> Changes in v4:
+> - moved validation code into link_validate and used media_pipeline_start
+> - merged this patch with the enum_fmt patch which was previously in v3 of
+> the series
+> 
+> Changes in v3:
+> - clamp to maximum resolution once the frame size from the subdev is found
+>  drivers/media/platform/atmel/atmel-isc-base.c | 412 ++++++++----------
+>  .../media/platform/atmel/atmel-isc-scaler.c   |   5 +
+>  drivers/media/platform/atmel/atmel-isc.h      |  13 +-
+>  .../media/platform/atmel/atmel-sama5d2-isc.c  |  20 +
+>  .../media/platform/atmel/atmel-sama7g5-isc.c  |  20 +
+>  5 files changed, 236 insertions(+), 234 deletions(-)
+> 
+> diff --git a/drivers/media/platform/atmel/atmel-isc-base.c b/drivers/media/platform/atmel/atmel-isc-base.c
+> index ee1dda6707a0..fe2c0af58060 100644
+> --- a/drivers/media/platform/atmel/atmel-isc-base.c
+> +++ b/drivers/media/platform/atmel/atmel-isc-base.c
+> @@ -36,11 +36,6 @@ static unsigned int debug;
+>  module_param(debug, int, 0644);
+>  MODULE_PARM_DESC(debug, "debug level (0-2)");
+>  
+> -static unsigned int sensor_preferred = 1;
+> -module_param(sensor_preferred, uint, 0644);
+> -MODULE_PARM_DESC(sensor_preferred,
+> -		 "Sensor is preferred to output the specified format (1-on 0-off), default 1");
+> -
+>  #define ISC_IS_FORMAT_RAW(mbus_code) \
+>  	(((mbus_code) & 0xf000) == 0x3000)
+>  
+> @@ -337,6 +332,10 @@ static int isc_start_streaming(struct vb2_queue *vq, unsigned int count)
+>  	unsigned long flags;
+>  	int ret;
+>  
+> +	ret = media_pipeline_start(&isc->video_dev.entity, &isc->mpipe);
+
+The pipeline validation is done in start_streaming, but I don't think that
+is the best place: if STREAMON is called before buffers are queued, then
+an invalid pipeline isn't discovered until enough buffers are queued to
+kick off start_streaming.
+
+Drivers like vsp1, omap3isp and the samsung drivers all do this in streamon().
+
+I think that is the correct time to do this.
+
+Laurent, Jacopo, do you agree with that?
+
+I notice that quite a few other drivers do this in start_streaming as well,
+but I think it just weird that a QBUF can return EPIPE while STREAMON might
+succeed.
+
+Perhaps we need an optional vb2 validate() callback that is called by
+vb2_core_streamon() to validate the pipeline before streaming. That makes
+it easier to implement these checks rather than having to implement your
+own streamon ioctl.
+
+Regards,
+
+	Hans
+
+> +	if (ret)
+> +		goto err_pipeline_start;
+> +
+>  	/* Enable stream on the sub device */
+>  	ret = v4l2_subdev_call(isc->current_subdev->sd, video, s_stream, 1);
+>  	if (ret && ret != -ENOIOCTLCMD) {
+> @@ -385,6 +384,9 @@ static int isc_start_streaming(struct vb2_queue *vq, unsigned int count)
+>  	v4l2_subdev_call(isc->current_subdev->sd, video, s_stream, 0);
+>  
+>  err_start_stream:
+> +	media_pipeline_stop(&isc->video_dev.entity);
+> +
+> +err_pipeline_start:
+>  	spin_lock_irqsave(&isc->dma_queue_lock, flags);
+>  	list_for_each_entry(buf, &isc->dma_queue, list)
+>  		vb2_buffer_done(&buf->vb.vb2_buf, VB2_BUF_STATE_QUEUED);
+> @@ -423,6 +425,9 @@ static void isc_stop_streaming(struct vb2_queue *vq)
+>  	if (ret && ret != -ENOIOCTLCMD)
+>  		v4l2_err(&isc->v4l2_dev, "stream off failed in subdev\n");
+>  
+> +	/* Stop media pipeline */
+> +	media_pipeline_stop(&isc->video_dev.entity);
+> +
+>  	/* Release all active buffers */
+>  	spin_lock_irqsave(&isc->dma_queue_lock, flags);
+>  	if (unlikely(isc->cur_frm)) {
+> @@ -453,22 +458,6 @@ static void isc_buffer_queue(struct vb2_buffer *vb)
+>  	spin_unlock_irqrestore(&isc->dma_queue_lock, flags);
+>  }
+>  
+> -static struct isc_format *find_format_by_fourcc(struct isc_device *isc,
+> -						 unsigned int fourcc)
+> -{
+> -	unsigned int num_formats = isc->num_user_formats;
+> -	struct isc_format *fmt;
+> -	unsigned int i;
+> -
+> -	for (i = 0; i < num_formats; i++) {
+> -		fmt = isc->user_formats[i];
+> -		if (fmt->fourcc == fourcc)
+> -			return fmt;
+> -	}
+> -
+> -	return NULL;
+> -}
+> -
+>  static const struct vb2_ops isc_vb2_ops = {
+>  	.queue_setup		= isc_queue_setup,
+>  	.wait_prepare		= vb2_ops_wait_prepare,
+> @@ -497,23 +486,57 @@ static int isc_enum_fmt_vid_cap(struct file *file, void *priv,
+>  {
+>  	struct isc_device *isc = video_drvdata(file);
+>  	u32 index = f->index;
+> -	u32 i, supported_index;
+> +	u32 i, supported_index = 0;
+> +	struct isc_format *fmt;
+> +
+> +	/*
+> +	 * If we are not asked a specific mbus_code, we have to report all
+> +	 * the formats that we can output.
+> +	 */
+> +	if (!f->mbus_code) {
+> +		if (index >= isc->controller_formats_size)
+> +			return -EINVAL;
+>  
+> -	if (index < isc->controller_formats_size) {
+>  		f->pixelformat = isc->controller_formats[index].fourcc;
+> +
+> +		return 0;
+> +	}
+> +
+> +	/*
+> +	 * If a specific mbus_code is requested, check if we support
+> +	 * this mbus_code as input for the ISC.
+> +	 * If it's supported, then we report the corresponding pixelformat
+> +	 * as first possible option for the ISC.
+> +	 * E.g. mbus MEDIA_BUS_FMT_YUYV8_2X8 and report
+> +	 * 'YUYV' (YUYV 4:2:2)
+> +	 */
+> +	fmt = isc_find_format_by_code(isc, f->mbus_code, &i);
+> +	if (!fmt)
+> +		return -EINVAL;
+> +
+> +	if (!index) {
+> +		f->pixelformat = fmt->fourcc;
+> +
+>  		return 0;
+>  	}
+>  
+> -	index -= isc->controller_formats_size;
+> +	supported_index++;
+>  
+> -	supported_index = 0;
+> +	/* If the index is not raw, we don't have anymore formats to report */
+> +	if (!ISC_IS_FORMAT_RAW(f->mbus_code))
+> +		return -EINVAL;
+>  
+> -	for (i = 0; i < isc->formats_list_size; i++) {
+> -		if (!ISC_IS_FORMAT_RAW(isc->formats_list[i].mbus_code) ||
+> -		    !isc->formats_list[i].sd_support)
+> +	/*
+> +	 * We are asked for a specific mbus code, which is raw.
+> +	 * We have to search through the formats we can convert to.
+> +	 * We have to skip the raw formats, we cannot convert to raw.
+> +	 * E.g. 'AR12' (16-bit ARGB 4-4-4-4), 'AR15' (16-bit ARGB 1-5-5-5), etc.
+> +	 */
+> +	for (i = 0; i < isc->controller_formats_size; i++) {
+> +		if (isc->controller_formats[i].raw)
+>  			continue;
+> -		if (supported_index == index) {
+> -			f->pixelformat = isc->formats_list[i].fourcc;
+> +		if (index == supported_index) {
+> +			f->pixelformat = isc->controller_formats[i].fourcc;
+>  			return 0;
+>  		}
+>  		supported_index++;
+> @@ -584,20 +607,30 @@ static int isc_try_validate_formats(struct isc_device *isc)
+>  		break;
+>  	default:
+>  	/* any other different formats are not supported */
+> +		v4l2_err(&isc->v4l2_dev, "Requested unsupported format.\n");
+>  		ret = -EINVAL;
+>  	}
+>  	v4l2_dbg(1, debug, &isc->v4l2_dev,
+>  		 "Format validation, requested rgb=%u, yuv=%u, grey=%u, bayer=%u\n",
+>  		 rgb, yuv, grey, bayer);
+>  
+> -	/* we cannot output RAW if we do not receive RAW */
+> -	if ((bayer) && !ISC_IS_FORMAT_RAW(isc->try_config.sd_format->mbus_code))
+> +	if (bayer &&
+> +	    !ISC_IS_FORMAT_RAW(isc->try_config.sd_format->mbus_code)) {
+> +		v4l2_err(&isc->v4l2_dev, "Cannot output RAW if we do not receive RAW.\n");
+>  		return -EINVAL;
+> +	}
+>  
+> -	/* we cannot output GREY if we do not receive RAW/GREY */
+>  	if (grey && !ISC_IS_FORMAT_RAW(isc->try_config.sd_format->mbus_code) &&
+> -	    !ISC_IS_FORMAT_GREY(isc->try_config.sd_format->mbus_code))
+> +	    !ISC_IS_FORMAT_GREY(isc->try_config.sd_format->mbus_code)) {
+> +		v4l2_err(&isc->v4l2_dev, "Cannot output GREY if we do not receive RAW/GREY.\n");
+>  		return -EINVAL;
+> +	}
+> +
+> +	if ((rgb || bayer || yuv) &&
+> +	    ISC_IS_FORMAT_GREY(isc->try_config.sd_format->mbus_code)) {
+> +		v4l2_err(&isc->v4l2_dev, "Cannot convert GREY to another format.\n");
+> +		return -EINVAL;
+> +	}
+>  
+>  	return ret;
+>  }
+> @@ -825,7 +858,7 @@ static void isc_try_fse(struct isc_device *isc,
+>  	 * If we do not know yet which format the subdev is using, we cannot
+>  	 * do anything.
+>  	 */
+> -	if (!isc->try_config.sd_format)
+> +	if (!isc->config.sd_format)
+>  		return;
+>  
+>  	fse.code = isc->try_config.sd_format->mbus_code;
+> @@ -846,180 +879,140 @@ static void isc_try_fse(struct isc_device *isc,
+>  	}
+>  }
+>  
+> -static int isc_try_fmt(struct isc_device *isc, struct v4l2_format *f,
+> -			u32 *code)
+> +static int isc_try_fmt(struct isc_device *isc, struct v4l2_format *f)
+>  {
+> -	int i;
+> -	struct isc_format *sd_fmt = NULL, *direct_fmt = NULL;
+>  	struct v4l2_pix_format *pixfmt = &f->fmt.pix;
+> -	struct v4l2_subdev_pad_config pad_cfg = {};
+> -	struct v4l2_subdev_state pad_state = {
+> -		.pads = &pad_cfg
+> -		};
+> -	struct v4l2_subdev_format format = {
+> -		.which = V4L2_SUBDEV_FORMAT_TRY,
+> -	};
+> -	u32 mbus_code;
+> -	int ret;
+> -	bool rlp_dma_direct_dump = false;
+> +	unsigned int i;
+>  
+>  	if (f->type != V4L2_BUF_TYPE_VIDEO_CAPTURE)
+>  		return -EINVAL;
+>  
+> -	/* Step 1: find a RAW format that is supported */
+> -	for (i = 0; i < isc->num_user_formats; i++) {
+> -		if (ISC_IS_FORMAT_RAW(isc->user_formats[i]->mbus_code)) {
+> -			sd_fmt = isc->user_formats[i];
+> +	isc->try_config.fourcc = isc->controller_formats[0].fourcc;
+> +
+> +	/* find if the format requested is supported */
+> +	for (i = 0; i < isc->controller_formats_size; i++)
+> +		if (isc->controller_formats[i].fourcc == pixfmt->pixelformat) {
+> +			isc->try_config.fourcc = pixfmt->pixelformat;
+>  			break;
+>  		}
+> -	}
+> -	/* Step 2: We can continue with this RAW format, or we can look
+> -	 * for better: maybe sensor supports directly what we need.
+> -	 */
+> -	direct_fmt = find_format_by_fourcc(isc, pixfmt->pixelformat);
+> -
+> -	/* Step 3: We have both. We decide given the module parameter which
+> -	 * one to use.
+> -	 */
+> -	if (direct_fmt && sd_fmt && sensor_preferred)
+> -		sd_fmt = direct_fmt;
+> -
+> -	/* Step 4: we do not have RAW but we have a direct format. Use it. */
+> -	if (direct_fmt && !sd_fmt)
+> -		sd_fmt = direct_fmt;
+> -
+> -	/* Step 5: if we are using a direct format, we need to package
+> -	 * everything as 8 bit data and just dump it
+> -	 */
+> -	if (sd_fmt == direct_fmt)
+> -		rlp_dma_direct_dump = true;
+> -
+> -	/* Step 6: We have no format. This can happen if the userspace
+> -	 * requests some weird/invalid format.
+> -	 * In this case, default to whatever we have
+> -	 */
+> -	if (!sd_fmt && !direct_fmt) {
+> -		sd_fmt = isc->user_formats[isc->num_user_formats - 1];
+> -		v4l2_dbg(1, debug, &isc->v4l2_dev,
+> -			 "Sensor not supporting %.4s, using %.4s\n",
+> -			 (char *)&pixfmt->pixelformat, (char *)&sd_fmt->fourcc);
+> -	}
+> -
+> -	if (!sd_fmt) {
+> -		ret = -EINVAL;
+> -		goto isc_try_fmt_err;
+> -	}
+> -
+> -	/* Step 7: Print out what we decided for debugging */
+> -	v4l2_dbg(1, debug, &isc->v4l2_dev,
+> -		 "Preferring to have sensor using format %.4s\n",
+> -		 (char *)&sd_fmt->fourcc);
+>  
+> -	/* Step 8: at this moment we decided which format the subdev will use */
+> -	isc->try_config.sd_format = sd_fmt;
+> +	isc_try_configure_rlp_dma(isc, false);
+>  
+>  	/* Limit to Atmel ISC hardware capabilities */
+> -	if (pixfmt->width > isc->max_width)
+> -		pixfmt->width = isc->max_width;
+> -	if (pixfmt->height > isc->max_height)
+> -		pixfmt->height = isc->max_height;
+> -
+> -	/*
+> -	 * The mbus format is the one the subdev outputs.
+> -	 * The pixels will be transferred in this format Sensor -> ISC
+> -	 */
+> -	mbus_code = sd_fmt->mbus_code;
+> -
+> -	/*
+> -	 * Validate formats. If the required format is not OK, default to raw.
+> -	 */
+> -
+> -	isc->try_config.fourcc = pixfmt->pixelformat;
+> -
+> -	if (isc_try_validate_formats(isc)) {
+> -		pixfmt->pixelformat = isc->try_config.fourcc = sd_fmt->fourcc;
+> -		/* Re-try to validate the new format */
+> -		ret = isc_try_validate_formats(isc);
+> -		if (ret)
+> -			goto isc_try_fmt_err;
+> -	}
+> -
+> -	ret = isc_try_configure_rlp_dma(isc, rlp_dma_direct_dump);
+> -	if (ret)
+> -		goto isc_try_fmt_err;
+> -
+> -	ret = isc_try_configure_pipeline(isc);
+> -	if (ret)
+> -		goto isc_try_fmt_err;
+> -
+> -	/* Obtain frame sizes if possible to have crop requirements ready */
+> -	isc_try_fse(isc, &pad_state);
+> -
+> -	v4l2_fill_mbus_format(&format.format, pixfmt, mbus_code);
+> -	ret = v4l2_subdev_call(isc->current_subdev->sd, pad, set_fmt,
+> -			       &pad_state, &format);
+> -	if (ret < 0)
+> -		goto isc_try_fmt_subdev_err;
+> -
+> -	v4l2_fill_pix_format(pixfmt, &format.format);
+> +	v4l_bound_align_image(&pixfmt->width, 16, isc->max_width, 0,
+> +			      &pixfmt->height, 16, isc->max_height, 0, 0);
+> +	/* If we did not find the requested format, we will fallback here */
+> +	pixfmt->pixelformat = isc->try_config.fourcc;
+> +	pixfmt->colorspace = V4L2_COLORSPACE_SRGB;
+> +	pixfmt->field = V4L2_FIELD_NONE;
+>  
+> -	/* Limit to Atmel ISC hardware capabilities */
+> -	if (pixfmt->width > isc->max_width)
+> -		pixfmt->width = isc->max_width;
+> -	if (pixfmt->height > isc->max_height)
+> -		pixfmt->height = isc->max_height;
+>  
+> -	pixfmt->field = V4L2_FIELD_NONE;
+>  	pixfmt->bytesperline = (pixfmt->width * isc->try_config.bpp_v4l2) >> 3;
+>  	pixfmt->sizeimage = ((pixfmt->width * isc->try_config.bpp) >> 3) *
+>  			     pixfmt->height;
+>  
+> -	if (code)
+> -		*code = mbus_code;
+> +	isc->try_fmt = *f;
+>  
+>  	return 0;
+> +}
+>  
+> -isc_try_fmt_err:
+> -	v4l2_err(&isc->v4l2_dev, "Could not find any possible format for a working pipeline\n");
+> -isc_try_fmt_subdev_err:
+> -	memset(&isc->try_config, 0, sizeof(isc->try_config));
+> +static int isc_set_fmt(struct isc_device *isc, struct v4l2_format *f)
+> +{
+> +	isc_try_fmt(isc, f);
+>  
+> -	return ret;
+> +	/* make the try configuration active */
+> +	isc->config = isc->try_config;
+> +	isc->fmt = isc->try_fmt;
+> +
+> +	v4l2_dbg(1, debug, &isc->v4l2_dev, "ISC set_fmt to %.4s @%dx%d\n",
+> +		 (char *)&f->fmt.pix.pixelformat,
+> +		 f->fmt.pix.width, f->fmt.pix.height);
+> +
+> +	return 0;
+>  }
+>  
+> -static int isc_set_fmt(struct isc_device *isc, struct v4l2_format *f)
+> +static int isc_validate(struct isc_device *isc)
+>  {
+> +	int ret;
+> +	int i;
+> +	struct isc_format *sd_fmt = NULL;
+> +	struct v4l2_pix_format *pixfmt = &isc->fmt.fmt.pix;
+>  	struct v4l2_subdev_format format = {
+>  		.which = V4L2_SUBDEV_FORMAT_ACTIVE,
+> +		.pad = isc->remote_pad,
+> +	};
+> +	struct v4l2_subdev_pad_config pad_cfg = {};
+> +	struct v4l2_subdev_state pad_state = {
+> +		.pads = &pad_cfg,
+>  	};
+> -	u32 mbus_code = 0;
+> -	int ret;
+>  
+> -	ret = isc_try_fmt(isc, f, &mbus_code);
+> +	/* Get current format from subdev */
+> +	ret = v4l2_subdev_call(isc->current_subdev->sd, pad, get_fmt, NULL,
+> +			       &format);
+>  	if (ret)
+>  		return ret;
+>  
+> -	v4l2_fill_mbus_format(&format.format, &f->fmt.pix, mbus_code);
+> -	ret = v4l2_subdev_call(isc->current_subdev->sd, pad,
+> -			       set_fmt, NULL, &format);
+> -	if (ret < 0)
+> -		return ret;
+> +	/* Identify the subdev's format configuration */
+> +	for (i = 0; i < isc->formats_list_size; i++)
+> +		if (isc->formats_list[i].mbus_code == format.format.code) {
+> +			sd_fmt = &isc->formats_list[i];
+> +			break;
+> +		}
+> +
+> +	/* Check if the format is not supported */
+> +	if (!sd_fmt) {
+> +		v4l2_err(&isc->v4l2_dev,
+> +			 "Current subdevice is streaming a media bus code that is not supported 0x%x\n",
+> +			 format.format.code);
+> +		return -EPIPE;
+> +	}
+> +
+> +	/* At this moment we know which format the subdev will use */
+> +	isc->try_config.sd_format = sd_fmt;
+> +
+> +	/* If the sensor is not RAW, we can only do a direct dump */
+> +	if (!ISC_IS_FORMAT_RAW(isc->try_config.sd_format->mbus_code))
+> +		isc_try_configure_rlp_dma(isc, true);
+>  
+>  	/* Limit to Atmel ISC hardware capabilities */
+> -	if (f->fmt.pix.width > isc->max_width)
+> -		f->fmt.pix.width = isc->max_width;
+> -	if (f->fmt.pix.height > isc->max_height)
+> -		f->fmt.pix.height = isc->max_height;
+> +	v4l_bound_align_image(&format.format.width, 16, isc->max_width, 0,
+> +			      &format.format.height, 16, isc->max_height, 0, 0);
+>  
+> -	isc->fmt = *f;
+> +	/* Check if the frame size is the same. Otherwise we may overflow */
+> +	if (pixfmt->height != format.format.height ||
+> +	    pixfmt->width != format.format.width) {
+> +		v4l2_err(&isc->v4l2_dev,
+> +			 "ISC not configured with the proper frame size: %dx%d\n",
+> +			 format.format.width, format.format.height);
+> +		return -EPIPE;
+> +	}
+>  
+> +	v4l2_dbg(1, debug, &isc->v4l2_dev,
+> +		 "Identified subdev using format %.4s with %dx%d %d bpp\n",
+> +		 (char *)&sd_fmt->fourcc, pixfmt->width, pixfmt->height,
+> +		 isc->try_config.bpp);
+> +
+> +	/* Reset and restart AWB if the subdevice changed the format */
+>  	if (isc->try_config.sd_format && isc->config.sd_format &&
+>  	    isc->try_config.sd_format != isc->config.sd_format) {
+>  		isc->ctrls.hist_stat = HIST_INIT;
+>  		isc_reset_awb_ctrls(isc);
+>  		isc_update_v4l2_ctrls(isc);
+>  	}
+> -	/* make the try configuration active */
+> +
+> +	/* Validate formats */
+> +	ret = isc_try_validate_formats(isc);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* Obtain frame sizes if possible to have crop requirements ready */
+> +	isc_try_fse(isc, &pad_state);
+> +
+> +	/* Configure ISC pipeline for the config */
+> +	ret = isc_try_configure_pipeline(isc);
+> +	if (ret)
+> +		return ret;
+> +
+>  	isc->config = isc->try_config;
+>  
+>  	v4l2_dbg(1, debug, &isc->v4l2_dev, "New ISC configuration in place\n");
+> @@ -1043,7 +1036,7 @@ static int isc_try_fmt_vid_cap(struct file *file, void *priv,
+>  {
+>  	struct isc_device *isc = video_drvdata(file);
+>  
+> -	return isc_try_fmt(isc, f, NULL);
+> +	return isc_try_fmt(isc, f);
+>  }
+>  
+>  static int isc_enum_input(struct file *file, void *priv,
+> @@ -1098,10 +1091,6 @@ static int isc_enum_framesizes(struct file *file, void *fh,
+>  	if (fsize->index)
+>  		return -EINVAL;
+>  
+> -	for (i = 0; i < isc->num_user_formats; i++)
+> -		if (isc->user_formats[i]->fourcc == fsize->pixel_format)
+> -			ret = 0;
+> -
+>  	for (i = 0; i < isc->controller_formats_size; i++)
+>  		if (isc->controller_formats[i].fourcc == fsize->pixel_format)
+>  			ret = 0;
+> @@ -1782,52 +1771,6 @@ struct isc_format *isc_find_format_by_code(struct isc_device *isc,
+>  }
+>  EXPORT_SYMBOL_GPL(isc_find_format_by_code);
+>  
+> -static int isc_formats_init(struct isc_device *isc)
+> -{
+> -	struct isc_format *fmt;
+> -	struct v4l2_subdev *subdev = isc->current_subdev->sd;
+> -	unsigned int num_fmts, i, j;
+> -	u32 list_size = isc->formats_list_size;
+> -	struct v4l2_subdev_mbus_code_enum mbus_code = {
+> -		.which = V4L2_SUBDEV_FORMAT_ACTIVE,
+> -	};
+> -
+> -	num_fmts = 0;
+> -	while (!v4l2_subdev_call(subdev, pad, enum_mbus_code,
+> -	       NULL, &mbus_code)) {
+> -		mbus_code.index++;
+> -
+> -		fmt = isc_find_format_by_code(isc, mbus_code.code, &i);
+> -		if (!fmt) {
+> -			v4l2_warn(&isc->v4l2_dev, "Mbus code %x not supported\n",
+> -				  mbus_code.code);
+> -			continue;
+> -		}
+> -
+> -		fmt->sd_support = true;
+> -		num_fmts++;
+> -	}
+> -
+> -	if (!num_fmts)
+> -		return -ENXIO;
+> -
+> -	isc->num_user_formats = num_fmts;
+> -	isc->user_formats = devm_kcalloc(isc->dev,
+> -					 num_fmts, sizeof(*isc->user_formats),
+> -					 GFP_KERNEL);
+> -	if (!isc->user_formats)
+> -		return -ENOMEM;
+> -
+> -	fmt = &isc->formats_list[0];
+> -	for (i = 0, j = 0; i < list_size; i++) {
+> -		if (fmt->sd_support)
+> -			isc->user_formats[j++] = fmt;
+> -		fmt++;
+> -	}
+> -
+> -	return 0;
+> -}
+> -
+>  static int isc_set_default_fmt(struct isc_device *isc)
+>  {
+>  	struct v4l2_format f = {
+> @@ -1836,12 +1779,12 @@ static int isc_set_default_fmt(struct isc_device *isc)
+>  			.width		= VGA_WIDTH,
+>  			.height		= VGA_HEIGHT,
+>  			.field		= V4L2_FIELD_NONE,
+> -			.pixelformat	= isc->user_formats[0]->fourcc,
+> +			.pixelformat	= isc->controller_formats[0].fourcc,
+>  		},
+>  	};
+>  	int ret;
+>  
+> -	ret = isc_try_fmt(isc, &f, NULL);
+> +	ret = isc_try_fmt(isc, &f);
+>  	if (ret)
+>  		return ret;
+>  
+> @@ -1896,13 +1839,6 @@ static int isc_async_complete(struct v4l2_async_notifier *notifier)
+>  	spin_lock_init(&isc->dma_queue_lock);
+>  	spin_lock_init(&isc->awb_lock);
+>  
+> -	ret = isc_formats_init(isc);
+> -	if (ret < 0) {
+> -		v4l2_err(&isc->v4l2_dev,
+> -			 "Init format failed: %d\n", ret);
+> -		goto isc_async_complete_err;
+> -	}
+> -
+>  	ret = isc_set_default_fmt(isc);
+>  	if (ret) {
+>  		v4l2_err(&isc->v4l2_dev, "Could not set default format\n");
+> @@ -2016,6 +1952,24 @@ int isc_pipeline_init(struct isc_device *isc)
+>  }
+>  EXPORT_SYMBOL_GPL(isc_pipeline_init);
+>  
+> +static int isc_link_validate(struct media_link *link)
+> +{
+> +	struct video_device *vdev =
+> +		media_entity_to_video_device(link->sink->entity);
+> +	struct isc_device *isc = video_get_drvdata(vdev);
+> +	int ret;
+> +
+> +	ret = v4l2_subdev_link_validate(link);
+> +	if (ret)
+> +		return ret;
+> +
+> +	return isc_validate(isc);
+> +}
+> +
+> +static const struct media_entity_operations isc_entity_operations = {
+> +	.link_validate = isc_link_validate,
+> +};
+> +
+>  int isc_mc_init(struct isc_device *isc, u32 ver)
+>  {
+>  	const struct of_device_id *match;
+> @@ -2023,6 +1977,8 @@ int isc_mc_init(struct isc_device *isc, u32 ver)
+>  
+>  	isc->video_dev.entity.function = MEDIA_ENT_F_IO_V4L;
+>  	isc->video_dev.entity.flags = MEDIA_ENT_FL_DEFAULT;
+> +	isc->video_dev.entity.ops = &isc_entity_operations;
+> +
+>  	isc->pads[ISC_PAD_SINK].flags = MEDIA_PAD_FL_SINK;
+>  
+>  	ret = media_entity_pads_init(&isc->video_dev.entity, ISC_PADS_NUM,
+> diff --git a/drivers/media/platform/atmel/atmel-isc-scaler.c b/drivers/media/platform/atmel/atmel-isc-scaler.c
+> index a1ca4633787c..2b0621297dfe 100644
+> --- a/drivers/media/platform/atmel/atmel-isc-scaler.c
+> +++ b/drivers/media/platform/atmel/atmel-isc-scaler.c
+> @@ -173,6 +173,10 @@ static const struct v4l2_subdev_pad_ops isc_scaler_pad_ops = {
+>  	.init_cfg = isc_scaler_init_cfg,
+>  };
+>  
+> +static const struct media_entity_operations isc_scaler_entity_ops = {
+> +	.link_validate = v4l2_subdev_link_validate,
+> +};
+> +
+>  static const struct v4l2_subdev_ops xisc_scaler_subdev_ops = {
+>  	.pad = &isc_scaler_pad_ops,
+>  };
+> @@ -190,6 +194,7 @@ int isc_scaler_init(struct isc_device *isc)
+>  
+>  	isc->scaler_sd.flags |= V4L2_SUBDEV_FL_HAS_DEVNODE;
+>  	isc->scaler_sd.entity.function = MEDIA_ENT_F_PROC_VIDEO_SCALER;
+> +	isc->scaler_sd.entity.ops = &isc_scaler_entity_ops;
+>  	isc->scaler_pads[ISC_SCALER_PAD_SINK].flags = MEDIA_PAD_FL_SINK;
+>  	isc->scaler_pads[ISC_SCALER_PAD_SOURCE].flags = MEDIA_PAD_FL_SOURCE;
+>  
+> diff --git a/drivers/media/platform/atmel/atmel-isc.h b/drivers/media/platform/atmel/atmel-isc.h
+> index f98f25a55e73..5b0100c8c245 100644
+> --- a/drivers/media/platform/atmel/atmel-isc.h
+> +++ b/drivers/media/platform/atmel/atmel-isc.h
+> @@ -63,15 +63,16 @@ struct isc_subdev_entity {
+>   * @cfa_baycfg:		If this format is RAW BAYER, indicate the type of bayer.
+>  			this is either BGBG, RGRG, etc.
+>   * @pfe_cfg0_bps:	Number of hardware data lines connected to the ISC
+> + * @raw:		If the format is raw bayer.
+>   */
+>  
+>  struct isc_format {
+>  	u32	fourcc;
+>  	u32	mbus_code;
+>  	u32	cfa_baycfg;
+> -
+> -	bool	sd_support;
+>  	u32	pfe_cfg0_bps;
+> +
+> +	bool	raw;
+>  };
+>  
+>  /* Pipeline bitmap */
+> @@ -216,8 +217,7 @@ enum isc_scaler_pads {
+>   * @comp:		completion reference that signals frame completion
+>   *
+>   * @fmt:		current v42l format
+> - * @user_formats:	list of formats that are supported and agreed with sd
+> - * @num_user_formats:	how many formats are in user_formats
+> + * @try_fmt:		current v4l2 try format
+>   *
+>   * @config:		current ISC format configuration
+>   * @try_config:		the current ISC try format , not yet activated
+> @@ -272,6 +272,7 @@ enum isc_scaler_pads {
+>   * @formats_list_size:	size of formats_list array
+>   * @pads:		media controller pads for isc video entity
+>   * @mdev:		media device that is registered by the isc
+> + * @mpipe:		media device pipeline used by the isc
+>   * @remote_pad:		remote pad on the connected subdevice
+>   * @scaler_sd:		subdevice for the scaler that isc registers
+>   * @scaler_pads:	media controller pads for the scaler subdevice
+> @@ -298,8 +299,7 @@ struct isc_device {
+>  	struct completion	comp;
+>  
+>  	struct v4l2_format	fmt;
+> -	struct isc_format	**user_formats;
+> -	unsigned int		num_user_formats;
+> +	struct v4l2_format	try_fmt;
+>  
+>  	struct fmt_config	config;
+>  	struct fmt_config	try_config;
+> @@ -369,6 +369,7 @@ struct isc_device {
+>  	struct {
+>  		struct media_pad		pads[ISC_PADS_NUM];
+>  		struct media_device		mdev;
+> +		struct media_pipeline		mpipe;
+>  
+>  		u32				remote_pad;
+>  	};
+> diff --git a/drivers/media/platform/atmel/atmel-sama5d2-isc.c b/drivers/media/platform/atmel/atmel-sama5d2-isc.c
+> index d96ee3373889..2a651e237193 100644
+> --- a/drivers/media/platform/atmel/atmel-sama5d2-isc.c
+> +++ b/drivers/media/platform/atmel/atmel-sama5d2-isc.c
+> @@ -80,20 +80,40 @@ static const struct isc_format sama5d2_controller_formats[] = {
+>  		.fourcc		= V4L2_PIX_FMT_Y10,
+>  	}, {
+>  		.fourcc		= V4L2_PIX_FMT_SBGGR8,
+> +		.raw		= true,
+>  	}, {
+>  		.fourcc		= V4L2_PIX_FMT_SGBRG8,
+> +		.raw		= true,
+>  	}, {
+>  		.fourcc		= V4L2_PIX_FMT_SGRBG8,
+> +		.raw		= true,
+>  	}, {
+>  		.fourcc		= V4L2_PIX_FMT_SRGGB8,
+> +		.raw		= true,
+>  	}, {
+>  		.fourcc		= V4L2_PIX_FMT_SBGGR10,
+> +		.raw		= true,
+>  	}, {
+>  		.fourcc		= V4L2_PIX_FMT_SGBRG10,
+> +		.raw		= true,
+>  	}, {
+>  		.fourcc		= V4L2_PIX_FMT_SGRBG10,
+> +		.raw		= true,
+>  	}, {
+>  		.fourcc		= V4L2_PIX_FMT_SRGGB10,
+> +		.raw		= true,
+> +	}, {
+> +		.fourcc		= V4L2_PIX_FMT_SBGGR12,
+> +		.raw		= true,
+> +	}, {
+> +		.fourcc		= V4L2_PIX_FMT_SGBRG12,
+> +		.raw		= true,
+> +	}, {
+> +		.fourcc		= V4L2_PIX_FMT_SGRBG12,
+> +		.raw		= true,
+> +	}, {
+> +		.fourcc		= V4L2_PIX_FMT_SRGGB12,
+> +		.raw		= true,
+>  	},
+>  };
+>  
+> diff --git a/drivers/media/platform/atmel/atmel-sama7g5-isc.c b/drivers/media/platform/atmel/atmel-sama7g5-isc.c
+> index e07ae188c15f..a0d60cfdba7b 100644
+> --- a/drivers/media/platform/atmel/atmel-sama7g5-isc.c
+> +++ b/drivers/media/platform/atmel/atmel-sama7g5-isc.c
+> @@ -89,20 +89,40 @@ static const struct isc_format sama7g5_controller_formats[] = {
+>  		.fourcc		= V4L2_PIX_FMT_Y16,
+>  	}, {
+>  		.fourcc		= V4L2_PIX_FMT_SBGGR8,
+> +		.raw		= true,
+>  	}, {
+>  		.fourcc		= V4L2_PIX_FMT_SGBRG8,
+> +		.raw		= true,
+>  	}, {
+>  		.fourcc		= V4L2_PIX_FMT_SGRBG8,
+> +		.raw		= true,
+>  	}, {
+>  		.fourcc		= V4L2_PIX_FMT_SRGGB8,
+> +		.raw		= true,
+>  	}, {
+>  		.fourcc		= V4L2_PIX_FMT_SBGGR10,
+> +		.raw		= true,
+>  	}, {
+>  		.fourcc		= V4L2_PIX_FMT_SGBRG10,
+> +		.raw		= true,
+>  	}, {
+>  		.fourcc		= V4L2_PIX_FMT_SGRBG10,
+> +		.raw		= true,
+>  	}, {
+>  		.fourcc		= V4L2_PIX_FMT_SRGGB10,
+> +		.raw		= true,
+> +	}, {
+> +		.fourcc		= V4L2_PIX_FMT_SBGGR12,
+> +		.raw		= true,
+> +	}, {
+> +		.fourcc		= V4L2_PIX_FMT_SGBRG12,
+> +		.raw		= true,
+> +	}, {
+> +		.fourcc		= V4L2_PIX_FMT_SGRBG12,
+> +		.raw		= true,
+> +	}, {
+> +		.fourcc		= V4L2_PIX_FMT_SRGGB12,
+> +		.raw		= true,
+>  	},
+>  };
+>  
+
