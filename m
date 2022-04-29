@@ -2,175 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F38D75149ED
-	for <lists+devicetree@lfdr.de>; Fri, 29 Apr 2022 14:51:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 824605149E0
+	for <lists+devicetree@lfdr.de>; Fri, 29 Apr 2022 14:49:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1359568AbiD2Myk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Apr 2022 08:54:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51570 "EHLO
+        id S1359081AbiD2MxJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Apr 2022 08:53:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46596 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1359567AbiD2My0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Apr 2022 08:54:26 -0400
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7D49B3695;
-        Fri, 29 Apr 2022 05:51:06 -0700 (PDT)
-Received: by mail-ed1-x533.google.com with SMTP id a21so8975260edb.1;
-        Fri, 29 Apr 2022 05:51:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:subject:date:message-id:in-reply-to:references:mime-version
-         :content-transfer-encoding;
-        bh=wYLNkQDRIReLtuo3nph35Lv13qW9BGvsKSf7RZPP9xg=;
-        b=A62YDg43ZJFVz+Vc0gpIGYmqdZfuoXw19LxJxPOFelkvshyFVf7ot1cCaV2dhGMSOn
-         mJJ53CdisMbvmESH3a1v/MpSU0FIMn3I5D9zlmrnNOGf+5Q91EdO7HdcQ9+ModUAEegb
-         SgpzCXSfFCvsBnsPkrqHf6hOQ099ysfpwEAbbLXTK9hZbKufE4DAdkZ5osrU2CDfL6Qp
-         yRnDXZZPkTSE51RRa7oA4hCk6H7RpI7qeY2FYPGNqEs6DP1NHVQz3tZOKPnuLUlqHrEv
-         OtJxU5orp0zKXc4IlkPd/XWtw7jz4GQyRBENfOzGl82iilR4KYhJkIgEp47onw6Vyc4l
-         44AQ==
+        with ESMTP id S1357892AbiD2MxI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Apr 2022 08:53:08 -0400
+Received: from mail-qt1-f178.google.com (mail-qt1-f178.google.com [209.85.160.178])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10E68C9B75;
+        Fri, 29 Apr 2022 05:49:50 -0700 (PDT)
+Received: by mail-qt1-f178.google.com with SMTP id p4so5014054qtq.12;
+        Fri, 29 Apr 2022 05:49:50 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=wYLNkQDRIReLtuo3nph35Lv13qW9BGvsKSf7RZPP9xg=;
-        b=TjD/cIBtf0Fm8jgjk3uTvJXKnT2Rz/tXXhToF5Cj3mn+qLstq5gaDM3tZooTisXlIy
-         HryMt6hrbjQIHqGx4m+TBF7GEGJFbsTexez/BImCRkgEzWQhyogNCdhI8N32sE2t/hUb
-         ufTxh4ZeNWOqf3Bnr89gnYhjvReGy4jFkO1aeGw/SCJ+PepmT1snSVjWSwmr9yZeeBWT
-         kM1qJNR04sNE0aTMcF1Vyj/gpfitdAUzuwmuDDtID57zizZ9uClyGDv8UsYQv0GOPD0D
-         LGxSA8lADrccBMTsOFA/yf7pDG2l208TqcfyYaP8NbJ6hp1CzY1p8bweJlcT272ERywp
-         MeAQ==
-X-Gm-Message-State: AOAM531WZ8Qq080ei00zv9eah0GzId7qyq4dect2m/c0kvFErkwr3I6t
-        CPM0ZzB9B+PRF4Pcm++0UOlcKXUOJa0=
-X-Google-Smtp-Source: ABdhPJwD9ryKCvmVR5tY0PkuFcZhNw6EywaHCs5BHyiQ7YPCknGIaZbHuubrGmR+oMLbh9bnGyyLOQ==
-X-Received: by 2002:a05:6402:3486:b0:425:f2c6:9695 with SMTP id v6-20020a056402348600b00425f2c69695mr24131738edc.2.1651236665223;
-        Fri, 29 Apr 2022 05:51:05 -0700 (PDT)
-Received: from localhost.localdomain (93-42-70-190.ip85.fastwebnet.it. [93.42.70.190])
-        by smtp.googlemail.com with ESMTPSA id hf27-20020a1709072c5b00b006f3ef214e33sm615347ejc.153.2022.04.29.05.51.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 29 Apr 2022 05:51:04 -0700 (PDT)
-From:   Ansuel Smith <ansuelsmth@gmail.com>
-To:     Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Ansuel Smith <ansuelsmth@gmail.com>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [RESEND PATCH v3 2/2] mtd: core: introduce of support for dynamic partitions
-Date:   Fri, 29 Apr 2022 14:48:25 +0200
-Message-Id: <20220429124825.21477-3-ansuelsmth@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220429124825.21477-1-ansuelsmth@gmail.com>
-References: <20220429124825.21477-1-ansuelsmth@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=4tqelAYwf2EnKhlkfmEW1Nniwpv4OsNQ/+Rpd0YuVJE=;
+        b=QA7qD+Sc/Tn/d3TJwe1Y9P3uS55IzPjQOcT8Fr0DaXmY4HJo81BJ8nXOy4kwVFuBX3
+         5GN5rKOGwOe37evzd4inH5bE6IlkyUPe51/axUolyIZrsQrpV29B70KjIulL+dU+Vwgc
+         48iUWzVemWqRaa9Ha922A+7+LuJdHVUihYmzWlxXbgAqyOJCSJuOMMf9IUdG62bKJsuT
+         ng8DFgKCRBoC7qawat1GD4PYoj7BodFMWeO8pzO/nDOt0osN8j4tqRuqA/40I/bbv2If
+         lh17mHtixCY3Vr2qfV1mhPGHFDS+Q3/Oav0P7HqdP+8uR+/d4SoL7Pr9g2gXlXaRmV34
+         3YOA==
+X-Gm-Message-State: AOAM532w1wWr65QdXejVXS6EihZySKvgy//IpYDUNuLB1lYOVuTMIqeP
+        2GB8VazRQiHWMQDZElpyI1QEqP4UWd7NFnmP
+X-Google-Smtp-Source: ABdhPJzu1L3CKUQeA5EfpZv7o3ouJ05aOw/9erx+/iJuJw2JRbWwcuXwpozlkTeQoow8/m8lTJ2Htw==
+X-Received: by 2002:ac8:5a81:0:b0:2f1:f20d:173a with SMTP id c1-20020ac85a81000000b002f1f20d173amr26622184qtc.686.1651236588942;
+        Fri, 29 Apr 2022 05:49:48 -0700 (PDT)
+Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com. [209.85.128.180])
+        by smtp.gmail.com with ESMTPSA id s16-20020ac85cd0000000b002e1ed82f1e5sm1834042qta.75.2022.04.29.05.49.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 29 Apr 2022 05:49:48 -0700 (PDT)
+Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-2f83983782fso84025897b3.6;
+        Fri, 29 Apr 2022 05:49:47 -0700 (PDT)
+X-Received: by 2002:a81:e10d:0:b0:2f7:bb2a:6529 with SMTP id
+ w13-20020a81e10d000000b002f7bb2a6529mr34597687ywh.62.1651236586925; Fri, 29
+ Apr 2022 05:49:46 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20220428093355.16172-1-jiaxin.yu@mediatek.com>
+ <CAMuHMdWYJofetMwkAH4d8UzKZH77hxwRhXrMhaECOs1suQV2PA@mail.gmail.com> <b90426905a486ab720b9d67f00ed869285acd768.camel@mediatek.com>
+In-Reply-To: <b90426905a486ab720b9d67f00ed869285acd768.camel@mediatek.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Fri, 29 Apr 2022 14:49:35 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdVA-JJqPB9fiUZSeXZR+fa58V5t2OQjaN1-JvGR+K_H4Q@mail.gmail.com>
+Message-ID: <CAMuHMdVA-JJqPB9fiUZSeXZR+fa58V5t2OQjaN1-JvGR+K_H4Q@mail.gmail.com>
+Subject: Re: [v4 00/18] ASoC: mediatek: Add support for MT8186 SoC
+To:     Jiaxin Yu <jiaxin.yu@mediatek.com>
+Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, aaronyu@google.com,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Trevor Wu <trevor.wu@mediatek.com>,
+        Tzung-Bi Shih <tzungbi@google.com>,
+        Julian Braha <julianbraha@gmail.com>,
+        ALSA Development Mailing List <alsa-devel@alsa-project.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-mediatek@lists.infradead.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-We have many parser that register mtd partitions at runtime. One example
-is the cmdlinepart or the smem-part parser where the compatible is defined
-in the dts and the partitions gets detected and registered by the
-parser. This is problematic for the NVMEM subsystem that requires an OF node
-to detect NVMEM cells.
+Hi Jiaxin,
 
-To fix this problem, introduce an additional logic that will try to
-assign an OF node to the MTD if declared.
+On Fri, Apr 29, 2022 at 11:32 AM Jiaxin Yu <jiaxin.yu@mediatek.com> wrote:
+> On Fri, 2022-04-29 at 10:47 +0200, Geert Uytterhoeven wrote:
+> > Gmail tends to mark your patches as spam.
+> > Can you please make sure to use "PATCH" in the subject line, e.g.
+> > "[PATCH v4 00/18] ASoC: mediatek: Add support for MT8186 SoC"?
 
-On MTD addition, it will be checked if the MTD has an OF node and if
-not declared will check if a partition with the same name / label is
-declared in DTS. If an exact match is found, the partition dynamically
-allocated by the parser will have a connected OF node.
+> Sorry for this mistake, I usually use "git format-patch --subject-
+> prefix "v4" --cover-letter -x" to generate a series of patches.
+> So it automatically removes "PATCH". I will correct the cmd to "git
+> format-patch --subject-prefix "PATCH v4" --cover-letter -x".
 
-The NVMEM subsystem will detect the OF node and register any NVMEM cells
-declared statically in the DTS.
+You can just use e.g. "-v4" instead of the --subject-prefix option.
 
-Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
----
- drivers/mtd/mtdcore.c | 56 +++++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 56 insertions(+)
+Gr{oetje,eeting}s,
 
-diff --git a/drivers/mtd/mtdcore.c b/drivers/mtd/mtdcore.c
-index 7731796024e0..ffca53fcc19a 100644
---- a/drivers/mtd/mtdcore.c
-+++ b/drivers/mtd/mtdcore.c
-@@ -546,6 +546,61 @@ static int mtd_nvmem_add(struct mtd_info *mtd)
- 	return 0;
- }
- 
-+static void mtd_check_of_node(struct mtd_info *mtd)
-+{
-+	struct device_node *partitions, *parent_dn, *mtd_dn = NULL;
-+	const char *mtd_name, *suffix = "-dynamic";
-+	int plen, suffix_len = 8;
-+	struct mtd_info *parent;
-+	bool found = false;
-+
-+	/* Check if MTD already has a device node */
-+	if (dev_of_node(&mtd->dev))
-+		return;
-+
-+	/* Check if a partitions node exist */
-+	parent = mtd->parent;
-+	parent_dn = dev_of_node(&parent->dev);
-+	if (!parent_dn)
-+		return;
-+
-+	partitions = of_get_child_by_name(parent_dn, "partitions");
-+	if (!partitions)
-+		goto exit_parent;
-+
-+	/* Search if a partition is defined with the same name */
-+	for_each_child_of_node(partitions, mtd_dn) {
-+		mtd_name = of_get_property(mtd_dn, "label", &plen);
-+		if (!mtd_name) {
-+			mtd_name = of_get_property(mtd_dn, "name", &plen);
-+
-+			/* Check correct suffix */
-+			if (plen <= suffix_len ||
-+			    strncmp(mtd_name + plen - suffix_len, suffix, suffix_len))
-+				continue;
-+
-+			plen = plen - suffix_len;
-+		}
-+
-+		if (!strncmp(mtd->name, mtd_name, plen)) {
-+			found = true;
-+			break;
-+		}
-+	}
-+
-+	if (!found)
-+		goto exit_partitions;
-+
-+	/* Set of_node only for nvmem */
-+	if (of_device_is_compatible(mtd_dn, "nvmem-cells"))
-+		mtd_set_of_node(mtd, mtd_dn);
-+
-+exit_partitions:
-+	of_node_put(partitions);
-+exit_parent:
-+	of_node_put(parent_dn);
-+}
-+
- /**
-  *	add_mtd_device - register an MTD device
-  *	@mtd: pointer to new MTD device info structure
-@@ -651,6 +706,7 @@ int add_mtd_device(struct mtd_info *mtd)
- 	mtd->dev.devt = MTD_DEVT(i);
- 	dev_set_name(&mtd->dev, "mtd%d", i);
- 	dev_set_drvdata(&mtd->dev, mtd);
-+	mtd_check_of_node(mtd);
- 	of_node_get(mtd_get_of_node(mtd));
- 	error = device_register(&mtd->dev);
- 	if (error)
--- 
-2.34.1
+                        Geert
 
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
