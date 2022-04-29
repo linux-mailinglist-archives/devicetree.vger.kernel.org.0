@@ -2,105 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A5C31514961
-	for <lists+devicetree@lfdr.de>; Fri, 29 Apr 2022 14:31:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A38D514982
+	for <lists+devicetree@lfdr.de>; Fri, 29 Apr 2022 14:36:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1359207AbiD2MfF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Apr 2022 08:35:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54402 "EHLO
+        id S230296AbiD2Mjx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Apr 2022 08:39:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48964 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1359153AbiD2MfE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Apr 2022 08:35:04 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83AB2B9F26;
-        Fri, 29 Apr 2022 05:31:46 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 298D1621D0;
-        Fri, 29 Apr 2022 12:31:46 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 37FDAC385B2;
-        Fri, 29 Apr 2022 12:31:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1651235505;
-        bh=U1fnlH5OyGJ5UIzfEScyxiBRXPgHxk+UHE3ZSX1gPvY=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=ISPMvNcSQFkMZIWSHYxdg5JmBcRxJsqOeGCndtVUOHzFSep/BT5TXtbexxYIN9Zzv
-         +D9a9cf63EfihTrNLiCSYnSITsZ858oBCjHM9OAyLTHtFm/haWeZ6ioTJtFEM4508X
-         W4q4abspHfamRw89c8Qu/vBggzpAMPr5smLkEFCN3X2QRJXSA8oQRWQzbjenxJVFU4
-         vVvWes7+RoHQf0M2d4ygN8Fj6V6mJAIK2a401iKT6MLqVWYU6t/sX2ZbKs9zsTqPq2
-         9k3JTkOU1u4t9YWJ/E3OWsvCRpUR6bsW1GSxvr48e115hufTW00WQFhXx6qalzVU6F
-         IOrrneGjSjqHA==
-From:   matthias.bgg@kernel.org
-To:     mturquette@baylibre.com, sboyd@kernel.org
-Cc:     allen-kh.cheng@mediatek.com, weiyi.lu@mediatek.com,
-        chun-jie.chen@mediatek.com, linux-kernel@vger.kernel.org,
-        ikjn@chromium.org, miles.chen@mediatek.com, robh+dt@kernel.org,
-        linux-mediatek@lists.infradead.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-clk@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        angelogioacchino.delregno@collabora.com,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        devicetree@vger.kernel.org
-Subject: [PATCH v2 1/2] dt-bindings: ARM: Mediatek: Remove msdc binding of MT8192 clock
-Date:   Fri, 29 Apr 2022 14:31:31 +0200
-Message-Id: <20220429123133.28869-2-matthias.bgg@kernel.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220429123133.28869-1-matthias.bgg@kernel.org>
-References: <20220429123133.28869-1-matthias.bgg@kernel.org>
+        with ESMTP id S1359266AbiD2Mjv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Apr 2022 08:39:51 -0400
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B822C9B4D
+        for <devicetree@vger.kernel.org>; Fri, 29 Apr 2022 05:36:31 -0700 (PDT)
+Received: by mail-wr1-x429.google.com with SMTP id d5so10619752wrb.6
+        for <devicetree@vger.kernel.org>; Fri, 29 Apr 2022 05:36:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=eHBs6Wa9r1VbHh/2aicD7vVCojI5eLmVYJiucsgDFTk=;
+        b=XqZ+y6bbbSv2+K44Xm6/VbTJoc9xIp1XuWEYMITpXxYMPU9cFVPOLnVUT4NgcviQtA
+         WrRCGQYy21MIJC+ZIpySVhHvbyFGrgtvYyjQ+7gid1dXuUJW7pFE9eEzuzMmvnld4X5b
+         k7zB4O+sjQOmCFfTpmo5mN9fI6D5M9hNyfQ5CogrFytmz9ZYe3xlLLv0RXXUOO54kmea
+         LPQZvfAlXUrjM60hCjVsG/m9SxIlw7XwomTV3Do5+/X76KmpGbV5iz1W34zaISujW+O9
+         6VvLpjZZ27GZAVe3ZMwPcASx3QyQ/DEXa2gIXlkxN+IHzUU6cIn5eUEi05Z24L9H8d2g
+         2TQw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=eHBs6Wa9r1VbHh/2aicD7vVCojI5eLmVYJiucsgDFTk=;
+        b=MRgr5FNS2Atg4ITcjj8nR19z2YFt/qH40Lo5aykeDTcejcb1vmOf2i2xEsCqIBXv4b
+         K/ugrTLldoQysJolCEWH8WaEePrp0wcXYjnOgTDXzZuDUJzvLfXd9YTIDXW9r7V+3lj2
+         hDipphQ6MQiU7kY6F43m2UMZ6k/BEpWKHnH2hrOqUlAzTwuRb+Jfs1kzFQs5cE3FsEPk
+         O8eS55XjDSr36qOKcelLlExvK6caI4tWsfv6JdJDPh4wEWKxdlMY8w5gY6yEeSBHr8p9
+         3rdfDtc+ucG4tocLuKhLM0BlvlVtHFRBZlGbhg/BR9dvGe0860UvXfkr0NMHUwXhvxlQ
+         vxsQ==
+X-Gm-Message-State: AOAM533zRaCDq2jYGgIR/YMzyKxaaT5HvGHwZbCUrIlG08E7fSuWYir+
+        /GHZC0MUQOt7ItiSXCuJfzH7ZA==
+X-Google-Smtp-Source: ABdhPJyy8JUFUfBnijB3GYFKp10PJWH4OqLaYHArQcZhhhkQ92FLDC0Q6RKTfrlQxwq7UZISf2kz9g==
+X-Received: by 2002:a05:6000:188b:b0:20c:47af:1058 with SMTP id a11-20020a056000188b00b0020c47af1058mr2787417wri.58.1651235790067;
+        Fri, 29 Apr 2022 05:36:30 -0700 (PDT)
+Received: from [192.168.0.33] (cpc78119-cwma10-2-0-cust590.7-3.cable.virginm.net. [81.96.50.79])
+        by smtp.gmail.com with ESMTPSA id g5-20020a5d5545000000b0020af6c38da3sm2334651wrw.33.2022.04.29.05.36.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 29 Apr 2022 05:36:29 -0700 (PDT)
+Message-ID: <d4d8d158-4f59-2158-1764-0c9ac61723eb@linaro.org>
+Date:   Fri, 29 Apr 2022 13:36:28 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH v13 2/9] mfd: qcom-spmi-pmic: expose the PMIC revid
+ information to clients
+Content-Language: en-US
+To:     Lee Jones <lee.jones@linaro.org>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Stephen Boyd <sboyd@kernel.org>, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        sumit.semwal@linaro.org, amit.pundir@linaro.org,
+        john.stultz@linaro.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+References: <20220323162820.110806-1-caleb@connolly.tech>
+ <20220323162820.110806-3-caleb@connolly.tech> <Yma4T1+AglaISe2l@google.com>
+ <2763f103-6947-e431-cef5-e202c324d678@linaro.org>
+ <Ymq9Su3UE5IYiHnI@google.com>
+ <cce2f4b7-3620-7a33-ef21-579eff9a7dac@linaro.org>
+ <Ymu4jUup3YiX6p3X@google.com>
+From:   Caleb Connolly <caleb.connolly@linaro.org>
+In-Reply-To: <Ymu4jUup3YiX6p3X@google.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Matthias Brugger <matthias.bgg@gmail.com>
 
-The msdc gate is part of the MMC driver. Delete the binding description
-of this node.
 
-Signed-off-by: Matthias Brugger <matthias.bgg@gmail.com>
+On 29/04/2022 11:06, Lee Jones wrote:
+> On Thu, 28 Apr 2022, Caleb Connolly wrote:
+>> On 28/04/2022 17:14, Lee Jones wrote:
+>>> On Wed, 27 Apr 2022, Caleb Connolly wrote:
+>>>> On 25/04/2022 16:03, Lee Jones wrote:
+>>>>>
+>>>>> On Wed, 23 Mar 2022, Caleb Connolly wrote:
+>>>>>> From: Caleb Connolly <caleb.connolly@linaro.org>
+>>>>>>
+>>>>>> Some PMIC functions such as the RRADC need to be aware of the PMIC
+>>>>>> chip revision information to implement errata or otherwise adjust
+>>>>>> behaviour, export the PMIC information to enable this.
+>>>>>>
+>>>>>> This is specifically required to enable the RRADC to adjust
+>>>>>> coefficients based on which chip fab the PMIC was produced in,
+>>>>>> this can vary per unique device and therefore has to be read at
+>>>>>> runtime.
+>>>>>>
+>>>>>> Signed-off-by: Caleb Connolly <caleb.connolly@linaro.org>
+>>>>>> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>>>>>> Tested-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>>>>>> ---
+>>>>>>     drivers/mfd/qcom-spmi-pmic.c      | 261 +++++++++++++++++++-----------
+>>>>>>     include/soc/qcom/qcom-spmi-pmic.h |  60 +++++++
+>>>>>>     2 files changed, 231 insertions(+), 90 deletions(-)
+>>>>>>     create mode 100644 include/soc/qcom/qcom-spmi-pmic.h
+>>>
+>>> [...]
+>>>
+>>>>>> +			/*
+>>>>>> +			 * If the base USID for this PMIC hasn't probed yet
+>>>>>> +			 * but the secondary USID has, then we need to defer
+>>>>>> +			 * the function driver so that it will attempt to
+>>>>>> +			 * probe again when the base USID is ready.
+>>>>>> +			 */
+>>>>>> +			if (pmic_addr == function_parent_usid  - (ctx->num_usids - 1))
+>>>>>
+>>>>> Double "  ".
+>>>> Ack
+>>>>>
+>>>>> Over-bracketing of statements with matching operands.
+>>>> I don't think x - (y - 1) is equal to x - y - 1? Or am I misunderstanding you here?
+>>>
+>>> Can you give me an example when this would be the case?
+>> According to the Python interpreter:
+>>>>> x=7
+>>>>> y=4
+>>>>> x - y - 1
+>> 2
+>>>>> x - (y - 1)
+>> 4
+>>
+>> C does also respect the first rule of BODMAS - parenthesis are always
+>> evaluated first.
+> 
+> Fair point, well presented.
+> 
+> Thanks for this - I understand the problem now.
+Thanks,
 
----
+Could you respond to my other two points in 
+https://lore.kernel.org/linux-arm-msm/2763f103-6947-e431-cef5-e202c324d678@linaro.org/
 
-Changes in v2:
-- Delete compatible in binding descprition as well
+Regarding
 
- .../bindings/arm/mediatek/mediatek,mt8192-clock.yaml      | 8 --------
- 1 file changed, 8 deletions(-)
+if (!of_match_device(pmic_spmi_id_table, dev))
 
-diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt8192-clock.yaml b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt8192-clock.yaml
-index c8c67c033f8c..b57cc2e69efb 100644
---- a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt8192-clock.yaml
-+++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt8192-clock.yaml
-@@ -24,7 +24,6 @@ properties:
-           - mediatek,mt8192-imp_iic_wrap_w
-           - mediatek,mt8192-imp_iic_wrap_n
-           - mediatek,mt8192-msdc_top
--          - mediatek,mt8192-msdc
-           - mediatek,mt8192-mfgcfg
-           - mediatek,mt8192-imgsys
-           - mediatek,mt8192-imgsys2
-@@ -107,13 +106,6 @@ examples:
-         #clock-cells = <1>;
-     };
- 
--  - |
--    msdc: clock-controller@11f60000 {
--        compatible = "mediatek,mt8192-msdc";
--        reg = <0x11f60000 0x1000>;
--        #clock-cells = <1>;
--    };
--
-   - |
-     mfgcfg: clock-controller@13fbf000 {
-         compatible = "mediatek,mt8192-mfgcfg";
+and
+
+ctx->num_usids = (long)of_device_get_match_data(&sdev->dev);
+> 
+
 -- 
-2.34.1
-
+Kind Regards,
+Caleb (they/he)
