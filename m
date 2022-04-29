@@ -2,89 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 19A5D51589D
-	for <lists+devicetree@lfdr.de>; Sat, 30 Apr 2022 00:40:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 80E4D51589F
+	for <lists+devicetree@lfdr.de>; Sat, 30 Apr 2022 00:40:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1381585AbiD2WnY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Apr 2022 18:43:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35162 "EHLO
+        id S1381598AbiD2Wn7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Apr 2022 18:43:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36442 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1381584AbiD2WnX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Apr 2022 18:43:23 -0400
-Received: from mail-oi1-f169.google.com (mail-oi1-f169.google.com [209.85.167.169])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B408FEF;
-        Fri, 29 Apr 2022 15:40:04 -0700 (PDT)
-Received: by mail-oi1-f169.google.com with SMTP id y63so9983970oia.7;
-        Fri, 29 Apr 2022 15:40:04 -0700 (PDT)
+        with ESMTP id S1381605AbiD2Wnv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Apr 2022 18:43:51 -0400
+Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 722D31EC69
+        for <devicetree@vger.kernel.org>; Fri, 29 Apr 2022 15:40:32 -0700 (PDT)
+Received: by mail-lj1-x236.google.com with SMTP id 4so12052516ljw.11
+        for <devicetree@vger.kernel.org>; Fri, 29 Apr 2022 15:40:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=WQqv5jsy5NviH5hoj1FwHfKerTy0YHKg1MYY89svw0E=;
+        b=NhcMfwsBGmuuvMDSnGKLhEipmq5u7KXFLey1k25yxf9GNyl2DUB1DDAcjdmyERdWDO
+         fPIfoDzkTdsnxptZYC4G+DRM0nKqUAWj7PMRGrDv86h83qAOg+VObA+zMJs0Bo1ciFlJ
+         VrUiuAO+7DkHMxo5rgPgK5KV7+4bD6gsL2/o426Y85j6K/pj0FFzorRloCKs6dhVhJWj
+         h738gPMZts4YXUJRyKwmWVhwamEE1IhNIm707HBm72g7aVjOGNfKiVrcm9Y8y30noRmD
+         4a0Q1QFFp04wAqFT+YTH5opAaQ+0YILINVVOurmodBIB+pcx8yiyrcWSl0zPIlHWBj+W
+         il4A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=m/Rs86VVXCF4b61KU23mR8u0brfO067mz0n4mQYK8uM=;
-        b=7EPZxGWsQX2RmGvd0oaU/Lu2dKJC9gm3gof7M4U79x8aA3Gk43DM6B+XbUPZhQxgcN
-         dtPxS+iFOXUsAEQJRdBdTVAVZ+WSV5bo+uWsmenLgGNCG/N/jHJrmPsVG+D7tRR/Z/Tz
-         HiM78+8fnUHx+IOTu6j1h104TwhBi7CvPmdckJsa+WnyJBtDnDmvgigWjuchN7E+fijF
-         cvqCy7KncNXGGp+HS4qIABy3BzcdNgD2gYMnl/wgzoDcUa/5mjDCEbyHgXX3wCfj8txC
-         s6fISqwHyn8qvMBMy/YzASgXVkxgSv0H3Qk7nCtXyPw9xf9Ee5YKqqOg/SiZ07XvBL91
-         MmGA==
-X-Gm-Message-State: AOAM530zJCEENmKk5nP41w2ZrmA7Q91MTcOdBL84WHwxuTzea27W6hF0
-        SynXNIFCohf3s5eiOxk25Q==
-X-Google-Smtp-Source: ABdhPJzyPaMeTEhRAE3mMh9OBwh/+3e5SrP7sZvmDtK2Up0lhc3Y5SarSooP70XVdQ41q/n7t5hzmA==
-X-Received: by 2002:a05:6808:148e:b0:325:592f:84a1 with SMTP id e14-20020a056808148e00b00325592f84a1mr2673147oiw.118.1651272003516;
-        Fri, 29 Apr 2022 15:40:03 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id r23-20020a4aea97000000b0035eb4e5a6b1sm1289822ooh.7.2022.04.29.15.40.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 29 Apr 2022 15:40:03 -0700 (PDT)
-Received: (nullmailer pid 3033802 invoked by uid 1000);
-        Fri, 29 Apr 2022 22:40:01 -0000
-Date:   Fri, 29 Apr 2022 17:40:01 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Jesse Taube <mr.bossman075@gmail.com>
-Cc:     mturquette@baylibre.com, stefan@agner.ch, tglx@linutronix.de,
-        giulio.benetti@benettiengineering.com,
-        linux-arm-kernel@lists.infradead.org, tharvey@gateworks.com,
-        linus.walleij@linaro.org, linux-gpio@vger.kernel.org,
-        olof@lixom.net, linux@armlinux.org.uk, kernel@pengutronix.de,
-        aisheng.dong@nxp.com, daniel.lezcano@linaro.org,
-        linux-kernel@vger.kernel.org, festevam@gmail.com,
-        linux-imx@nxp.com, s.hauer@pengutronix.de, leoyang.li@nxp.com,
-        dev@lynxeye.de, robh+dt@kernel.org, shawnguo@kernel.org,
-        arnd@arndb.de, Mr.Bossman075@gmail.com, devicetree@vger.kernel.org,
-        cniedermaier@dh-electronics.com, soc@kernel.org,
-        linux-clk@vger.kernel.org, marcel.ziswiler@toradex.com,
-        clin@suse.com, abel.vesa@nxp.com, sebastian.reichel@collabora.com,
-        sboyd@kernel.org
-Subject: Re: [PATCH v2 05/15] dt-bindings: serial: fsl-lpuart: add i.MXRT1170
- compatible
-Message-ID: <YmxpQedWAbaRK/uF@robh.at.kernel.org>
-References: <20220428214838.1040278-1-Mr.Bossman075@gmail.com>
- <20220428214838.1040278-6-Mr.Bossman075@gmail.com>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=WQqv5jsy5NviH5hoj1FwHfKerTy0YHKg1MYY89svw0E=;
+        b=Qhll1aq4AEz8u8AR+S8ijHG81yIJfb5qnk/0fLBRwGFFQ07YPztCvgp5Q9r87aKviU
+         rFv/VByhWErKnDPpbfigGxwqX71ECkTLrWOAMsKrxrh1kyJU9B8dCrJusv3JfgGcIoUF
+         WV1DqIMTcP015zb9m+jJWmJBbdCVW4g1xExC7ZyLfHE6wy2w9Ax8f3ua8eBBeZiSetii
+         5dRcvgndcbSxXGkPXAbZg3F94wct80MOwCd3FpN/8hjPebS+QlyRGKHVwBniQyfMQ9PF
+         c9X/WQtb4CTkx8ppDDWxoizNxd1y7GV0CSREQq6yg2gaH+MRrcx5mKSYRS021btfrbpu
+         bhng==
+X-Gm-Message-State: AOAM5302epP6oKqv5WMBW2E++VKIrp/sguWHJ6zF+3LR+Hf1cTvz6Jdq
+        3J08tojWdcv2XrJMaxtPdDxuhA==
+X-Google-Smtp-Source: ABdhPJxcY4iY9iCSvmLH7RshXVp/DOdqX+TlgZcg3q06hsfa2wp3WccpsPLzEa0yojGQvpYuNlr3FA==
+X-Received: by 2002:a05:651c:179a:b0:247:d37b:6ec5 with SMTP id bn26-20020a05651c179a00b00247d37b6ec5mr848389ljb.112.1651272030783;
+        Fri, 29 Apr 2022 15:40:30 -0700 (PDT)
+Received: from [192.168.1.211] ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id s4-20020a05651c048400b0024f3d1daeaesm381377ljc.54.2022.04.29.15.40.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 29 Apr 2022 15:40:30 -0700 (PDT)
+Message-ID: <0f240264-a6cd-156b-ecd0-d94197b18ede@linaro.org>
+Date:   Sat, 30 Apr 2022 01:40:29 +0300
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220428214838.1040278-6-Mr.Bossman075@gmail.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH v5 2/8] dt-bindings: PCI: qcom: Do not require resets on
+ msm8996 platforms
+Content-Language: en-GB
+To:     Bjorn Helgaas <helgaas@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Stanimir Varbanov <svarbanov@mm-sol.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+References: <20220429220233.GA110383@bhelgaas>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <20220429220233.GA110383@bhelgaas>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 28 Apr 2022 17:48:28 -0400, Jesse Taube wrote:
-> Add i.MXRT1170 compatible string to Documentation.
+On 30/04/2022 01:02, Bjorn Helgaas wrote:
+> On Sat, Apr 30, 2022 at 12:30:26AM +0300, Dmitry Baryshkov wrote:
+>> On MSM8996/APQ8096 platforms the PCIe controller doesn't have any
+>> resets. So move the requirement stance under the corresponding if
+>> condition.
 > 
-> Cc: Giulio Benetti <giulio.benetti@benettiengineering.com>
-> Signed-off-by: Jesse Taube <Mr.Bossman075@gmail.com>
-> ---
-> V1 -> V2:
->  - New commit to fix dtbs_check
-> ---
->  Documentation/devicetree/bindings/serial/fsl-lpuart.yaml | 4 ++++
->  1 file changed, 4 insertions(+)
-> 
+> Nit: Pretty sure you mean "stanza" instead of "stance".  Only
+> mentioning it because I pointed it out last time but it was buried
+> down in some text that I should have trimmed out.
 
-Acked-by: Rob Herring <robh@kernel.org>
+Yes, and you even pointed that out. Completely forgot about it while 
+updating the patches.
+
+
+-- 
+With best wishes
+Dmitry
