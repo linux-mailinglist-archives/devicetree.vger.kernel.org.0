@@ -2,149 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BEE75514832
-	for <lists+devicetree@lfdr.de>; Fri, 29 Apr 2022 13:30:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C41615146EC
+	for <lists+devicetree@lfdr.de>; Fri, 29 Apr 2022 12:41:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1358457AbiD2LeE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Apr 2022 07:34:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35138 "EHLO
+        id S1356110AbiD2Koq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Apr 2022 06:44:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55682 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1358477AbiD2Ld5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Apr 2022 07:33:57 -0400
-Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com [199.106.114.39])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF2B149F14;
-        Fri, 29 Apr 2022 04:30:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1651231840; x=1682767840;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version;
-  bh=4CK1W0a9kn9jaFNkX6JJAfWkAorqu+bWucmc9AijetY=;
-  b=n9/AfdO0OH/EVJX0yVrhMn6C/cLnkHxQ00xA+MdTig10Uizdtu3Nzn8J
-   6ZCvXugi2QjuC5mOiOqGxLRG+JDyd+Cg38QyII9ODB1xHr8Rf3T4ufa8Y
-   iV9IeT7Mg2sVKy4e9czVAElGqO4II5aHlhcji4pEqDgIlqY+/J2wFuotB
-   k=;
-Received: from unknown (HELO ironmsg04-sd.qualcomm.com) ([10.53.140.144])
-  by alexa-out-sd-02.qualcomm.com with ESMTP; 29 Apr 2022 04:30:37 -0700
-X-QCInternal: smtphost
-Received: from unknown (HELO nasanex01a.na.qualcomm.com) ([10.52.223.231])
-  by ironmsg04-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Apr 2022 04:30:37 -0700
-Received: from bgodavar-linux.qualcomm.com (10.80.80.8) by
- nasanex01a.na.qualcomm.com (10.52.223.231) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Fri, 29 Apr 2022 04:30:33 -0700
-From:   Balakrishna Godavarthi <quic_bgodavar@quicinc.com>
-To:     <agross@kernel.org>, <robh+dt@kernel.org>,
-        <bjorn.andersson@linaro.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <marcel@holtmann.org>, <johan.hedberg@gmail.com>
-CC:     <mka@chromium.org>, <linux-bluetooth@vger.kernel.org>,
-        <quic_hemantg@quicinc.com>, <quic_saluvala@quicinc.com>,
-        <quic_rjliao@quicinc.com>, <mcchou@chromium.org>,
-        Balakrishna Godavarthi <quic_bgodavar@quicinc.com>
-Subject: [PATCH v1 3/3] Bluetooth: hci_qca: WAR to handle WCN6750 HW issue
-Date:   Fri, 29 Apr 2022 15:57:53 +0530
-Message-ID: <1651228073-1999-4-git-send-email-quic_bgodavar@quicinc.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1651228073-1999-1-git-send-email-quic_bgodavar@quicinc.com>
-References: <1651228073-1999-1-git-send-email-quic_bgodavar@quicinc.com>
+        with ESMTP id S241432AbiD2Kop (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Apr 2022 06:44:45 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD3DB7A994;
+        Fri, 29 Apr 2022 03:41:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1651228887; x=1682764887;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=hb7qYyX9lqSS5ehCqpe6Z0ZB3U0YtPIUC2+n1GdDKfM=;
+  b=UpldiZUICtj6yVFHoUzdsvtCgzxNyDTS+0o7wtITai0V3SQRjtUpCkO8
+   7tBpdjoYabViYZndISixuKno0VHBMfaD9w7yHvxAF4PPA76Fy/cs6nHMA
+   2Rq1XjHWv3byzP80xTiL539hsJI3Z1P9eNvfIntZDJAK8aL4pmrZL3exx
+   IDfTG5HCsXbbNt+Zybs2FXP2D/fNE1Zn8MK67jY0uybBaFHnMsUTMHMLR
+   uV+5P4d1Hl2aBtV4nx/ZsX4B7EB2rX98nyOHmz3jpT4Vu5/q4BvCoXiL4
+   Jt/ENwpzgFmiCjBhJXJm7iVfcmhm2jIM8og/mtMmtLEEEorkc8QTo+fOD
+   Q==;
+X-IronPort-AV: E=Sophos;i="5.91,298,1647327600"; 
+   d="scan'208";a="94031874"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 29 Apr 2022 03:41:26 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.17; Fri, 29 Apr 2022 03:41:26 -0700
+Received: from wendy.microchip.com (10.10.115.15) by chn-vm-ex04.mchp-main.com
+ (10.10.85.152) with Microsoft SMTP Server id 15.1.2375.17 via Frontend
+ Transport; Fri, 29 Apr 2022 03:41:23 -0700
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>
+CC:     Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@rivosinc.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Daire McNamara <daire.mcnamara@microchip.com>,
+        Cyril Jean <Cyril.Jean@microchip.com>,
+        <devicetree@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, "Arnd Bergmann" <arnd@arndb.de>
+Subject: [PATCH v1 0/8] PolarFire SoC dt for 5.19
+Date:   Fri, 29 Apr 2022 11:40:33 +0100
+Message-ID: <20220429104040.197161-1-conor.dooley@microchip.com>
+X-Mailer: git-send-email 2.35.2
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The patch is workaround for hardware issue on WCN6750.
-On WCN6750 sometimes observed AON power source takes 100ms
-time to fully discharge voltage during OFF. As WCN6750 is
-combo chip for WLAN and BT. If any of the tech area ON is
-triggered during discharge phase, it fails to turn ON.
-To overcome this hardware issue, During BT ON, driver check
-for WLAN_EN pin status. If it high, it will pull BT_EN to high
-immediately else it will wait for 100ms assuming WLAN was just
-powered OFF and then BT_EN will be pulled to high.
+Hey all,
+Got a few PolarFire SoC device tree related changes here for 5.19.
 
-Fixes: d8f97da1b92d2 ("Bluetooth: hci_qca: Add support for QTI Bluetooth chip wcn6750")
-Reviewed-by: Miao-chen Chou <mcchou@chromium.org>
-Signed-off-by: Sai Teja Aluvala <quic_saluvala@quicinc.com>
-Signed-off-by: Balakrishna Godavarthi <quic_bgodavar@quicinc.com>
----
- drivers/bluetooth/hci_qca.c | 30 ++++++++++++++++++++++++------
- 1 file changed, 24 insertions(+), 6 deletions(-)
+Firstly, patches 1 & 2 of this series supersede [0] & are unchanged
+compared to that submission, figured it would just be easier to keep
+all the changes in one series.
 
-diff --git a/drivers/bluetooth/hci_qca.c b/drivers/bluetooth/hci_qca.c
-index eab34e2..c3862d1 100644
---- a/drivers/bluetooth/hci_qca.c
-+++ b/drivers/bluetooth/hci_qca.c
-@@ -219,6 +219,7 @@ struct qca_serdev {
- 	struct hci_uart	 serdev_hu;
- 	struct gpio_desc *bt_en;
- 	struct gpio_desc *sw_ctrl;
-+	struct gpio_desc *wlan_en;
- 	struct clk	 *susclk;
- 	enum qca_btsoc_type btsoc_type;
- 	struct qca_power *bt_power;
-@@ -1627,12 +1628,25 @@ static int qca_regulator_init(struct hci_uart *hu)
- 	if (qcadev->bt_en) {
- 		gpiod_set_value_cansleep(qcadev->bt_en, 0);
- 		msleep(50);
-+	}
-+
-+	if (!qcadev->wlan_en || (qcadev->wlan_en && gpiod_get_value_cansleep(qcadev->wlan_en)))
-+		gpiod_set_value_cansleep(qcadev->bt_en, 1);
-+
-+	if (qcadev->wlan_en && !gpiod_get_value_cansleep(qcadev->wlan_en)) {
-+		gpiod_set_value_cansleep(qcadev->bt_en, 0);
-+		msleep(100);
- 		gpiod_set_value_cansleep(qcadev->bt_en, 1);
--		msleep(50);
--		if (qcadev->sw_ctrl) {
--			sw_ctrl_state = gpiod_get_value_cansleep(qcadev->sw_ctrl);
--			bt_dev_dbg(hu->hdev, "SW_CTRL is %d", sw_ctrl_state);
--		}
-+	}
-+
-+	if (!gpiod_get_value_cansleep(qcadev->bt_en))
-+		gpiod_set_value_cansleep(qcadev->bt_en, 1);
-+
-+	msleep(50);
-+
-+	if (qcadev->sw_ctrl) {
-+		sw_ctrl_state = gpiod_get_value_cansleep(qcadev->sw_ctrl);
-+		bt_dev_dbg(hu->hdev, "SW_CTRL is %d", sw_ctrl_state);
- 	}
- 
- 	qca_set_speed(hu, QCA_INIT_SPEED);
-@@ -1906,8 +1920,8 @@ static void qca_power_shutdown(struct hci_uart *hu)
- 		qca_regulator_disable(qcadev);
- 	} else if (soc_type == QCA_WCN6750) {
- 		gpiod_set_value_cansleep(qcadev->bt_en, 0);
--		msleep(100);
- 		qca_regulator_disable(qcadev);
-+		msleep(100);
- 		if (qcadev->sw_ctrl) {
- 			sw_ctrl_state = gpiod_get_value_cansleep(qcadev->sw_ctrl);
- 			bt_dev_dbg(hu->hdev, "SW_CTRL is %d", sw_ctrl_state);
-@@ -2057,6 +2071,10 @@ static int qca_serdev_probe(struct serdev_device *serdev)
- 
- 		qcadev->bt_power->vregs_on = false;
- 
-+		qcadev->wlan_en = devm_gpiod_get_optional(&serdev->dev, "wlan", GPIOD_ASIS);
-+		if (!qcadev->wlan_en && data->soc_type == QCA_WCN6750)
-+			dev_err(&serdev->dev, "failed to acquire WL_EN gpio");
-+
- 		qcadev->bt_en = devm_gpiod_get_optional(&serdev->dev, "enable",
- 					       GPIOD_OUT_LOW);
- 		if (IS_ERR_OR_NULL(qcadev->bt_en) && data->soc_type == QCA_WCN6750) {
+As discussed on irc, patch 3 removes the duplicated "microchip" from
+the device tree files so that they follow a soc-board.dts & a
+soc{,-fabric}.dtsi format.
+
+Patch 5 makes the fabric dtsi board specific by renaming the file to
+mpfs-icicle-kit-fabric.dtsi & including it in the dts rather than
+mpfs.dtsi. Additionally this will allow other boards to define their
+own reference fabric design. A revision specific compatible, added in
+patch 4, is added to the dt also.
+
+The remainder of the series adds a bare minimum devicetree for the
+Sundance Polarberry.
+
+Thanks,
+Conor.
+
+[0] - https://lore.kernel.org/linux-riscv/20220425104521.132538-1-conor.dooley@microchip.com/
+
+Conor Dooley (8):
+  riscv: dts: microchip: remove icicle memory clocks
+  riscv: dts: microchip: move sysctrlr out of soc bus
+  riscv: dts: microchip: remove soc vendor from filenames
+  dt-bindings: riscv: microchip: document icicle reference design
+  riscv: dts: microchip: make the fabric dtsi board specific
+  dt-bindings: vendor-prefixes: add Sundance DSP
+  dt-bindings: riscv: microchip: add polarberry compatible string
+  riscv: dts: microchip: add the sundance polarberry
+
+ .../devicetree/bindings/riscv/microchip.yaml  | 12 ++-
+ .../devicetree/bindings/vendor-prefixes.yaml  |  2 +
+ arch/riscv/boot/dts/microchip/Makefile        |  3 +-
+ ...abric.dtsi => mpfs-icicle-kit-fabric.dtsi} |  2 +
+ ...pfs-icicle-kit.dts => mpfs-icicle-kit.dts} |  5 +-
+ .../dts/microchip/mpfs-polarberry-fabric.dtsi | 16 ++++
+ .../boot/dts/microchip/mpfs-polarberry.dts    | 95 +++++++++++++++++++
+ .../{microchip-mpfs.dtsi => mpfs.dtsi}        | 11 +--
+ 8 files changed, 132 insertions(+), 14 deletions(-)
+ rename arch/riscv/boot/dts/microchip/{microchip-mpfs-fabric.dtsi => mpfs-icicle-kit-fabric.dtsi} (93%)
+ rename arch/riscv/boot/dts/microchip/{microchip-mpfs-icicle-kit.dts => mpfs-icicle-kit.dts} (95%)
+ create mode 100644 arch/riscv/boot/dts/microchip/mpfs-polarberry-fabric.dtsi
+ create mode 100644 arch/riscv/boot/dts/microchip/mpfs-polarberry.dts
+ rename arch/riscv/boot/dts/microchip/{microchip-mpfs.dtsi => mpfs.dtsi} (98%)
+
+
+base-commit: a91b05f6b928e8fab750fc953d7df0aa6dc43547
 -- 
-The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-a Linux Foundation Collaborative Project
+2.35.2
 
