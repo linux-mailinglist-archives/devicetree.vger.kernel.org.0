@@ -2,166 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A38D514982
-	for <lists+devicetree@lfdr.de>; Fri, 29 Apr 2022 14:36:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AFF1B514997
+	for <lists+devicetree@lfdr.de>; Fri, 29 Apr 2022 14:39:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230296AbiD2Mjx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Apr 2022 08:39:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48964 "EHLO
+        id S1359328AbiD2MmF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Apr 2022 08:42:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52314 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1359266AbiD2Mjv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Apr 2022 08:39:51 -0400
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B822C9B4D
-        for <devicetree@vger.kernel.org>; Fri, 29 Apr 2022 05:36:31 -0700 (PDT)
-Received: by mail-wr1-x429.google.com with SMTP id d5so10619752wrb.6
-        for <devicetree@vger.kernel.org>; Fri, 29 Apr 2022 05:36:31 -0700 (PDT)
+        with ESMTP id S1359326AbiD2MmD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Apr 2022 08:42:03 -0400
+Received: from mail-ot1-x334.google.com (mail-ot1-x334.google.com [IPv6:2607:f8b0:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7482C90FD
+        for <devicetree@vger.kernel.org>; Fri, 29 Apr 2022 05:38:41 -0700 (PDT)
+Received: by mail-ot1-x334.google.com with SMTP id e15-20020a9d63cf000000b006054e65aaecso5072954otl.0
+        for <devicetree@vger.kernel.org>; Fri, 29 Apr 2022 05:38:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=eHBs6Wa9r1VbHh/2aicD7vVCojI5eLmVYJiucsgDFTk=;
-        b=XqZ+y6bbbSv2+K44Xm6/VbTJoc9xIp1XuWEYMITpXxYMPU9cFVPOLnVUT4NgcviQtA
-         WrRCGQYy21MIJC+ZIpySVhHvbyFGrgtvYyjQ+7gid1dXuUJW7pFE9eEzuzMmvnld4X5b
-         k7zB4O+sjQOmCFfTpmo5mN9fI6D5M9hNyfQ5CogrFytmz9ZYe3xlLLv0RXXUOO54kmea
-         LPQZvfAlXUrjM60hCjVsG/m9SxIlw7XwomTV3Do5+/X76KmpGbV5iz1W34zaISujW+O9
-         6VvLpjZZ27GZAVe3ZMwPcASx3QyQ/DEXa2gIXlkxN+IHzUU6cIn5eUEi05Z24L9H8d2g
-         2TQw==
+        d=usp.br; s=usp-google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=GyLq/VeXsUx7i3jX6gXpo6bXbVNITIFiiUrEDtEMY+w=;
+        b=yBhyfloaiTY1IVTbeQadAid7OQA5iFJYxuwJ71nUqzOYUX6rTgNjU2a+VJl7EAC4NV
+         49q0sAscKw1XpWdXFzHfWb84cR0Ta1bpYLPKdUxB1oPiJLubSviIRSe+nBBVAHmfumX/
+         r4eklVMjUTL8YQrl88ehVnE9Hzt+1EjwY7eRA0ZAeDp3BOWRzipo/Wkbe6YBYKkpaYGc
+         A2WIBmU8owUzbma6An2NEDIq+8tGv+9V5sVaEdIfGBwaZf/sX5Qq2BjVI/FGoJxmXQvh
+         fVhe2yQeGhn01V4Qi3rbya6Eg3SR2ZfPalj1i7GKbH4QqrwO/rjAX5cclDfUMAOmxosM
+         k6zQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=eHBs6Wa9r1VbHh/2aicD7vVCojI5eLmVYJiucsgDFTk=;
-        b=MRgr5FNS2Atg4ITcjj8nR19z2YFt/qH40Lo5aykeDTcejcb1vmOf2i2xEsCqIBXv4b
-         K/ugrTLldoQysJolCEWH8WaEePrp0wcXYjnOgTDXzZuDUJzvLfXd9YTIDXW9r7V+3lj2
-         hDipphQ6MQiU7kY6F43m2UMZ6k/BEpWKHnH2hrOqUlAzTwuRb+Jfs1kzFQs5cE3FsEPk
-         O8eS55XjDSr36qOKcelLlExvK6caI4tWsfv6JdJDPh4wEWKxdlMY8w5gY6yEeSBHr8p9
-         3rdfDtc+ucG4tocLuKhLM0BlvlVtHFRBZlGbhg/BR9dvGe0860UvXfkr0NMHUwXhvxlQ
-         vxsQ==
-X-Gm-Message-State: AOAM533zRaCDq2jYGgIR/YMzyKxaaT5HvGHwZbCUrIlG08E7fSuWYir+
-        /GHZC0MUQOt7ItiSXCuJfzH7ZA==
-X-Google-Smtp-Source: ABdhPJyy8JUFUfBnijB3GYFKp10PJWH4OqLaYHArQcZhhhkQ92FLDC0Q6RKTfrlQxwq7UZISf2kz9g==
-X-Received: by 2002:a05:6000:188b:b0:20c:47af:1058 with SMTP id a11-20020a056000188b00b0020c47af1058mr2787417wri.58.1651235790067;
-        Fri, 29 Apr 2022 05:36:30 -0700 (PDT)
-Received: from [192.168.0.33] (cpc78119-cwma10-2-0-cust590.7-3.cable.virginm.net. [81.96.50.79])
-        by smtp.gmail.com with ESMTPSA id g5-20020a5d5545000000b0020af6c38da3sm2334651wrw.33.2022.04.29.05.36.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 29 Apr 2022 05:36:29 -0700 (PDT)
-Message-ID: <d4d8d158-4f59-2158-1764-0c9ac61723eb@linaro.org>
-Date:   Fri, 29 Apr 2022 13:36:28 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH v13 2/9] mfd: qcom-spmi-pmic: expose the PMIC revid
- information to clients
-Content-Language: en-US
-To:     Lee Jones <lee.jones@linaro.org>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
+        bh=GyLq/VeXsUx7i3jX6gXpo6bXbVNITIFiiUrEDtEMY+w=;
+        b=Kh2dwSRQQI4memvfV/cIPCAj1VjnBg3h4L6jKXSyBsBcwsJfmuoBBjj1TQjsE/Q+t9
+         x864DOFAOjmBNWS/N0hvQs/Nwkpdyq25lMW0p0zlbBQNUZMprb29IZZEyXH3xu0djQFp
+         u4mgZ8mbkAJ6Phx2xcWV/GNU16iZyFBYaXlTSlbTy/ChzaeZnHPNEWV08ft4ZtY+P62s
+         eBdKV/Jhf3H52ykfbgiUBubuoFesrLibxUOZ21yw4i6EZjqpbGNwWSVBWzOgHTaVtInR
+         1RKJvlxFbQ4dsMViRAD92/RNqOz6iSduTEMkGH9fcBoo87FOJZEOLaeU1Gh2JjScyLzk
+         uDRA==
+X-Gm-Message-State: AOAM531dm6PYNCKjkHosEMx33eIu8GCdlR5uwepCCljXyYwO25Qn9f2H
+        ekFr//7/q8fR/nRzCv4+727KUw==
+X-Google-Smtp-Source: ABdhPJxPDW83R2yw7JMq1jxLLs7fVovH8A1+UGFMXP2aSOvwrrTatEspXjIK4tKZeaULwGrtm7ZbSQ==
+X-Received: by 2002:a05:6830:89:b0:605:642d:bd4f with SMTP id a9-20020a056830008900b00605642dbd4fmr13679037oto.235.1651235921194;
+        Fri, 29 Apr 2022 05:38:41 -0700 (PDT)
+Received: from fedora.sc.usp.br (gwsc.sc.usp.br. [143.107.225.16])
+        by smtp.gmail.com with ESMTPSA id e12-20020a4ae0cc000000b0035eb4e5a6d9sm705158oot.47.2022.04.29.05.38.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 29 Apr 2022 05:38:40 -0700 (PDT)
+From:   =?UTF-8?q?Ma=C3=ADra=20Canal?= <maira.canal@usp.br>
+To:     Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        sumit.semwal@linaro.org, amit.pundir@linaro.org,
-        john.stultz@linaro.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-References: <20220323162820.110806-1-caleb@connolly.tech>
- <20220323162820.110806-3-caleb@connolly.tech> <Yma4T1+AglaISe2l@google.com>
- <2763f103-6947-e431-cef5-e202c324d678@linaro.org>
- <Ymq9Su3UE5IYiHnI@google.com>
- <cce2f4b7-3620-7a33-ef21-579eff9a7dac@linaro.org>
- <Ymu4jUup3YiX6p3X@google.com>
-From:   Caleb Connolly <caleb.connolly@linaro.org>
-In-Reply-To: <Ymu4jUup3YiX6p3X@google.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Andrzej Hajda <andrzej.hajda@intel.com>
+Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        =?UTF-8?q?Ma=C3=ADra=20Canal?= <maira.canal@usp.br>
+Subject: [PATCH 0/2] media: s5c73m3: Update gpio interface and documentation
+Date:   Fri, 29 Apr 2022 09:37:38 -0300
+Message-Id: <20220429123740.147703-1-maira.canal@usp.br>
+X-Mailer: git-send-email 2.35.1
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+As suggested by Andrzej, all s5c73m3 specific gpio code is completely removed
+and replaced by the gpiod framework. Moreover, the documentation is updated by
+fixing the misplaced gpio property.
 
+Maíra Canal (2):
+  media: s5c73m3: Replace legacy gpio interface for gpiod
+  dt-bindings: media: s5c73m3: Fix reset-gpio descriptor
 
-On 29/04/2022 11:06, Lee Jones wrote:
-> On Thu, 28 Apr 2022, Caleb Connolly wrote:
->> On 28/04/2022 17:14, Lee Jones wrote:
->>> On Wed, 27 Apr 2022, Caleb Connolly wrote:
->>>> On 25/04/2022 16:03, Lee Jones wrote:
->>>>>
->>>>> On Wed, 23 Mar 2022, Caleb Connolly wrote:
->>>>>> From: Caleb Connolly <caleb.connolly@linaro.org>
->>>>>>
->>>>>> Some PMIC functions such as the RRADC need to be aware of the PMIC
->>>>>> chip revision information to implement errata or otherwise adjust
->>>>>> behaviour, export the PMIC information to enable this.
->>>>>>
->>>>>> This is specifically required to enable the RRADC to adjust
->>>>>> coefficients based on which chip fab the PMIC was produced in,
->>>>>> this can vary per unique device and therefore has to be read at
->>>>>> runtime.
->>>>>>
->>>>>> Signed-off-by: Caleb Connolly <caleb.connolly@linaro.org>
->>>>>> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->>>>>> Tested-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->>>>>> ---
->>>>>>     drivers/mfd/qcom-spmi-pmic.c      | 261 +++++++++++++++++++-----------
->>>>>>     include/soc/qcom/qcom-spmi-pmic.h |  60 +++++++
->>>>>>     2 files changed, 231 insertions(+), 90 deletions(-)
->>>>>>     create mode 100644 include/soc/qcom/qcom-spmi-pmic.h
->>>
->>> [...]
->>>
->>>>>> +			/*
->>>>>> +			 * If the base USID for this PMIC hasn't probed yet
->>>>>> +			 * but the secondary USID has, then we need to defer
->>>>>> +			 * the function driver so that it will attempt to
->>>>>> +			 * probe again when the base USID is ready.
->>>>>> +			 */
->>>>>> +			if (pmic_addr == function_parent_usid  - (ctx->num_usids - 1))
->>>>>
->>>>> Double "  ".
->>>> Ack
->>>>>
->>>>> Over-bracketing of statements with matching operands.
->>>> I don't think x - (y - 1) is equal to x - y - 1? Or am I misunderstanding you here?
->>>
->>> Can you give me an example when this would be the case?
->> According to the Python interpreter:
->>>>> x=7
->>>>> y=4
->>>>> x - y - 1
->> 2
->>>>> x - (y - 1)
->> 4
->>
->> C does also respect the first rule of BODMAS - parenthesis are always
->> evaluated first.
-> 
-> Fair point, well presented.
-> 
-> Thanks for this - I understand the problem now.
-Thanks,
-
-Could you respond to my other two points in 
-https://lore.kernel.org/linux-arm-msm/2763f103-6947-e431-cef5-e202c324d678@linaro.org/
-
-Regarding
-
-if (!of_match_device(pmic_spmi_id_table, dev))
-
-and
-
-ctx->num_usids = (long)of_device_get_match_data(&sdev->dev);
-> 
+ .../bindings/media/samsung-s5c73m3.txt        |  2 +-
+ drivers/media/i2c/s5c73m3/s5c73m3-core.c      | 95 ++++++++-----------
+ drivers/media/i2c/s5c73m3/s5c73m3.h           |  9 +-
+ include/media/i2c/s5c73m3.h                   | 15 +--
+ 4 files changed, 45 insertions(+), 76 deletions(-)
 
 -- 
-Kind Regards,
-Caleb (they/he)
+2.35.1
+
