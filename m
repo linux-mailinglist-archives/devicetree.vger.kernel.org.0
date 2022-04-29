@@ -2,274 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EC92B514F39
-	for <lists+devicetree@lfdr.de>; Fri, 29 Apr 2022 17:22:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0FE9B514F40
+	for <lists+devicetree@lfdr.de>; Fri, 29 Apr 2022 17:24:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1378349AbiD2PZd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Apr 2022 11:25:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59440 "EHLO
+        id S1377933AbiD2P1l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Apr 2022 11:27:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60998 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1378338AbiD2PZb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Apr 2022 11:25:31 -0400
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0719450B2E
-        for <devicetree@vger.kernel.org>; Fri, 29 Apr 2022 08:22:12 -0700 (PDT)
-Received: by mail-wr1-x434.google.com with SMTP id e24so11211013wrc.9
-        for <devicetree@vger.kernel.org>; Fri, 29 Apr 2022 08:22:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=BLvBmPgWkNIYBzQnMsLjrqJ6Q+Wo6mPOinOOp47QPLM=;
-        b=ggJGd8qKt0ELuTvuMsbWNZtzSIw9cGxyNauKWCMmtHioFLC20Rc/OmS7a7krR8bwlh
-         06MV7aFOWcmY9ZSq18dLu7TDzMa+yDXAUB1N/0PYfmmdhQPzzRfProzG6hiP8eVix5oe
-         Dyj5cDIG9yE45kT+TvfwqlprC1UXuyed54SQ47VfpKCakjesL943hVZK9hHKGVWcPj4F
-         9rHtNWzb6K2FNXItMTONP3YVZv31FwkqLwkBYps2pyh9quG0/oahmhTLwnywmBLtY/gK
-         F9iF3XvdrY33ZOXBN/J5HJJL/kMB3lXLyqZ3SJNNH4/HbUOitp416cQt5ey7Fgc0k01u
-         88Hw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=BLvBmPgWkNIYBzQnMsLjrqJ6Q+Wo6mPOinOOp47QPLM=;
-        b=l+EkGca2oKDcSEqWFw5X62NHpIIPUomeTlQKgX+ohsX/jvBSHVYDHp0sabm8xpE29q
-         qzkBQkXkkQBPCReOFxWQ4N/IHwkxr5E/MW4IjEYZdxNnzxwLiRpcAmAG1CCRRvhK2IoT
-         lsxbhlu30dmUg51ZIslesix5NBOQ44k4Ox4x6OkMV5xYnqvIkU2Aia8uRI7uJGvLYRqQ
-         1dLLrgvvbDj3m9H5YWcaTnsRNxUtUzTNjqDEMXXdmfTf4zMfo81lWgbPiIMSGCXed8lR
-         OFRKFlJqRj6rLymRtdLVPPje49MDbP95NquhPYG7WJU+Sg2pG/aIsNGPT5NJCZygR0E+
-         XQhw==
-X-Gm-Message-State: AOAM531yP1U3B2AKWhTzZRF1FHUneRgU7H+HfRt5nLmx5dTcihilSQHz
-        1ZjPqayQ1+oOhRYxZGaFrnEnjA==
-X-Google-Smtp-Source: ABdhPJyxAaDV29Pk5q4lL8bvqoUXIkNNDFy+Jel6MnDtQTC/NHbbOczZsAk1AeP9vUrxlLUEo7TeZg==
-X-Received: by 2002:adf:f745:0:b0:20a:c43b:3dfe with SMTP id z5-20020adff745000000b0020ac43b3dfemr29754985wrp.117.1651245730494;
-        Fri, 29 Apr 2022 08:22:10 -0700 (PDT)
-Received: from radium ([88.160.162.107])
-        by smtp.gmail.com with ESMTPSA id l6-20020a1c2506000000b0038e6fe8e8d8sm3579793wml.5.2022.04.29.08.22.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 29 Apr 2022 08:22:09 -0700 (PDT)
-Date:   Fri, 29 Apr 2022 17:22:03 +0200
-From:   Fabien Parent <fparent@baylibre.com>
-To:     Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     Macpaul Lin <macpaul.lin@mediatek.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 5/7] arm64: dts: mediatek: mt8195-demo: enable ethernet
-Message-ID: <20220429152203.ppuimwcka5d6rvq4@radium>
-References: <20220426134106.242353-1-fparent@baylibre.com>
- <20220426134106.242353-6-fparent@baylibre.com>
- <c0cf89c05ee708ec3648b267c1c0a0baa1331836.camel@mediatek.com>
- <f4256b5e-e6b8-f9de-fe97-3e9c6cdcb00c@gmail.com>
+        with ESMTP id S229482AbiD2P1k (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Apr 2022 11:27:40 -0400
+Received: from mailout2.w1.samsung.com (mailout2.w1.samsung.com [210.118.77.12])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68711D4471
+        for <devicetree@vger.kernel.org>; Fri, 29 Apr 2022 08:24:20 -0700 (PDT)
+Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
+        by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20220429152419euoutp0222df3504fc1a44bb3a8e3216700c21e9~qZ1wyJ-HJ1190311903euoutp02l
+        for <devicetree@vger.kernel.org>; Fri, 29 Apr 2022 15:24:19 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20220429152419euoutp0222df3504fc1a44bb3a8e3216700c21e9~qZ1wyJ-HJ1190311903euoutp02l
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1651245859;
+        bh=to37rMSP/G4CXEYIvomZmetr3C+P2P4ivMTn6xRdbsg=;
+        h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
+        b=s+mnha8h73OcVdNiAiuyusAWF20b5DDiAQCsuEn81J9QVa+BMxE79dYNeECBZQ0kh
+         dhmD/Jyy2rls8nGL+PPE4RN3QHek3bNxU4unNKaD7jS6jW3/++DEqH7ZxxIGxMr0tZ
+         0bNru8lQkuXJ/DbXgLscwAZFzZSBm8iFhdMkGVOo=
+Received: from eusmges1new.samsung.com (unknown [203.254.199.242]) by
+        eucas1p1.samsung.com (KnoxPortal) with ESMTP id
+        20220429152418eucas1p1895361a526276af7a241c5590d006659~qZ1wd_KLX1840218402eucas1p1n;
+        Fri, 29 Apr 2022 15:24:18 +0000 (GMT)
+Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
+        eusmges1new.samsung.com (EUCPMTA) with SMTP id BC.AE.10009.2230C626; Fri, 29
+        Apr 2022 16:24:18 +0100 (BST)
+Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
+        eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
+        20220429152418eucas1p27b61f8f83c1f0239c6c5efe77ea03346~qZ1v6bQ5H0223702237eucas1p2T;
+        Fri, 29 Apr 2022 15:24:18 +0000 (GMT)
+Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
+        eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
+        20220429152418eusmtrp1c6c74eb14fb51948f06881eee9d976ba~qZ1v5POlh0707507075eusmtrp1K;
+        Fri, 29 Apr 2022 15:24:18 +0000 (GMT)
+X-AuditID: cbfec7f2-e95ff70000002719-ef-626c03225fe3
+Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
+        eusmgms1.samsung.com (EUCPMTA) with SMTP id 2F.E4.09522.1230C626; Fri, 29
+        Apr 2022 16:24:17 +0100 (BST)
+Received: from [106.210.134.141] (unknown [106.210.134.141]) by
+        eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
+        20220429152417eusmtip10633a042fd1bd92c1faad84608b9301d~qZ1vgsU5d1752317523eusmtip1g;
+        Fri, 29 Apr 2022 15:24:17 +0000 (GMT)
+Message-ID: <d9dfd712-45f6-2fac-4cbc-dd0a12f564e8@samsung.com>
+Date:   Fri, 29 Apr 2022 17:24:17 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="lzoq53ieck3g4u4f"
-Content-Disposition: inline
-In-Reply-To: <f4256b5e-e6b8-f9de-fe97-3e9c6cdcb00c@gmail.com>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0)
+        Gecko/20100101 Thunderbird/91.8.1
+Subject: Re: [PATCH] schemas: clock: Add assigned-clocks description
+Content-Language: en-US
+To:     Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+        devicetree-spec@vger.kernel.org
+Cc:     Stephen Boyd <sboyd@codeaurora.org>,
+        Stephen Boyd <swboyd@chromium.org>
+From:   Sylwester Nawrocki <s.nawrocki@samsung.com>
+In-Reply-To: <20220428152633.2261979-1-robh@kernel.org>
+Content-Transfer-Encoding: 7bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFupjleLIzCtJLcpLzFFi42LZduzneV0l5pwkg97JmhbNPw+zWsw/co7V
+        4v+eHewWP850s1gcv/OUyYHVY3bDRRaPy329TB6bVnWyeXzeJBfAEsVlk5Kak1mWWqRvl8CV
+        8fb4QsaCD8wVTYf72RoY5zB3MXJySAiYSDRdawSyuTiEBFYwSsx8fZkRwvnCKDH14TZWCOcz
+        o8TqB1vZYVr2LfnNBpFYzijReG4pC4TzkVHi37OprCBVvAJ2Egv7TrKB2CwCqhLbj/ayQMQF
+        JU7OfAJmiwokSfy6OocRxBYWcJHo75oC1sssIC5x68l8JhBbRCBB4vXng+wQcW+J7z0PwGay
+        CRhK9B7tA+vlFDCXONd9kBmiRl5i+9s5YA9JCJzgkJg4/SkbxNkuEt0/Z7JC2MISr45vgXpH
+        RuL05B4WCLteYvKUK1D1HYwSX/eaQdjWEhM2nQCKcwAt0JRYv0sfIuwosWXaDrCwhACfxI23
+        ghAn8ElM2jadGSLMK9HRJgRRrSLxe9V0JghbSqL7yX+WCYxKs5ACZRaS52cheWYWwt4FjCyr
+        GMVTS4tz01OLDfNSy/WKE3OLS/PS9ZLzczcxApPM6X/HP+1gnPvqo94hRiYOxkOMEhzMSiK8
+        X3ZnJAnxpiRWVqUW5ccXleakFh9ilOZgURLnTc7ckCgkkJ5YkpqdmlqQWgSTZeLglGpgMrqT
+        q6zdeHjTzrZL8+7Yl/v8/CKbn7c26vnVuBXCD/jvuinvi4+9X3TmRcrbFQ8m5Xo6fOk0X1g2
+        bcrh1tkXRGSO7mXbM01SRJOvyy/+y7boYF2X1y8sKiP9mtl/HLT8IpwoLbbwn63y5tBF3/Pd
+        bDY9+rnyZ+KXwp7K68W9L64vuuDfyDrveuLfn1nzaxh3mh/e3DHniWqycIqLYeHdy/U/86Y/
+        MDo4e+kDyYbHjbyZs/f0/vZc5zVtdsvDddNbpNal9P45LsEjdKHsRqakZV2zyeWz/sy/Om6/
+        S9a9UaLWf7uRzfzJ62XWWqdY9PQ4191j1lNyDJ0k0jvbo22rkiWH5ZrZ0uv+u2vvXSuqqMRS
+        nJFoqMVcVJwIAJvDwWuhAwAA
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprPIsWRmVeSWpSXmKPExsVy+t/xu7qKzDlJBrMX2Fg0/zzMajH/yDlW
+        i/97drBb/DjTzWJx/M5TJgdWj9kNF1k8Lvf1MnlsWtXJ5vF5k1wAS5SeTVF+aUmqQkZ+cYmt
+        UrShhZGeoaWFnpGJpZ6hsXmslZGpkr6dTUpqTmZZapG+XYJextvjCxkLPjBXNB3uZ2tgnMPc
+        xcjJISFgIrFvyW+2LkYuDiGBpYwSpxf/Yupi5ABKSEnMb1GCqBGW+HOtC6rmPaNE87J77CAJ
+        XgE7iYV9J9lAbBYBVYntR3tZIOKCEidnPgGzRQWSJPbcb2QCsYUFXCT6u6awgtjMAuISt57M
+        B4uLCCRITF18jhki7i3xvecB1LIuRokZP6+DJdgEDCV6j/YxgticAuYS57oPMoMcyiygLrF+
+        nhBEr7zE9rdzmCcwCs1CcsYsJOtmIXTMQtKxgJFlFaNIamlxbnpusaFecWJucWleul5yfu4m
+        RmBMbTv2c/MOxnmvPuodYmTiYDzEKMHBrCTC+2V3RpIQb0piZVVqUX58UWlOavEhRlNgUExk
+        lhJNzgdGdV5JvKGZgamhiZmlgamlmbGSOK9nQUeikEB6YklqdmpqQWoRTB8TB6dUA9P+lQ67
+        Cvv+nExrjfw5XfpGs+3mzOKdnQskrz/ekyDlLr+7T9R9W9X2bQYcr0yOrNEti96u9yPzW1OK
+        +Hx5pYrMzX+ElpRe4t3nef/eU6Y8llmff3gvUXEoYV20K93znX/OxUhuvevbajnW9iROSbPZ
+        7Je7X+TTpgQpqfg/DCYL2VKe5645NlWdS+DG17N1dpJTTsvcns5duD57Vs2BTQt+eemyTZ88
+        aYbQfuNz7B2lJpv+/Duqs+LavArP424SYf+rbO7v3vU4tKHmyTmxX/Oe6Av8Dr8cu+nGFgWj
+        N5vWRR17mfWkr/D7+fephRsWC1RmiIbuMDnYfWbBAsl/G+L039UfYFE8OsEudeGNR7PfKrEU
+        ZyQaajEXFScCAOzDc7IyAwAA
+X-CMS-MailID: 20220429152418eucas1p27b61f8f83c1f0239c6c5efe77ea03346
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20220428152638eucas1p11b7bbe5bcb8d36641b8328057a248789
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20220428152638eucas1p11b7bbe5bcb8d36641b8328057a248789
+References: <CGME20220428152638eucas1p11b7bbe5bcb8d36641b8328057a248789@eucas1p1.samsung.com>
+        <20220428152633.2261979-1-robh@kernel.org>
+X-Spam-Status: No, score=-10.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 28.04.2022 17:26, Rob Herring wrote:
+> Add description for assigned-clocks properties from clock-binding.txt in
+> the Linux kernel.
+> 
+> This is relicensed from GPL-2.0 (the default) to BSD-2-Clause. The Cc list
+> are the original authors.
+> 
+> Cc: Sylwester Nawrocki <s.nawrocki@samsung.com>
+> Cc: Stephen Boyd <swboyd@chromium.org>
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
+> Please ack for the license change.
 
---lzoq53ieck3g4u4f
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Fri, Apr 29, 2022 at 04:00:32PM +0200, Matthias Brugger wrote:
->=20
->=20
-> On 27/04/2022 08:25, Macpaul Lin wrote:
-> > On Tue, 2022-04-26 at 15:41 +0200, Fabien Parent wrote:
-> > > Enable ethernet on the MT8195 demo board.
-> > >=20
-> > > Signed-off-by: Fabien Parent <fparent@baylibre.com>
-> > > ---
-> > >   arch/arm64/boot/dts/mediatek/mt8195-demo.dts | 108
-> > > +++++++++++++++++++
-> > >   1 file changed, 108 insertions(+)
-> > >=20
-> > > diff --git a/arch/arm64/boot/dts/mediatek/mt8195-demo.dts
-> > > b/arch/arm64/boot/dts/mediatek/mt8195-demo.dts
-> > > index 08cab3b3943b..0b7985486e2a 100644
-> > > --- a/arch/arm64/boot/dts/mediatek/mt8195-demo.dts
-> > > +++ b/arch/arm64/boot/dts/mediatek/mt8195-demo.dts
-> > > @@ -80,6 +80,30 @@ optee_reserved: optee@43200000 {
-> > >   	};
-> > >   };
-> > > +&eth {
-> > > +	phy-mode =3D "rgmii-rxid";
-> > > +	phy-handle =3D <&eth_phy>;
-> > > +	snps,reset-gpio =3D <&pio 93 GPIO_ACTIVE_HIGH>;
-> > > +	snps,reset-delays-us =3D <0 10000 10000>;
-> > > +	mediatek,tx-delay-ps =3D <2030>;
-> > > +	pinctrl-names =3D "default", "sleep";
-> > > +	pinctrl-0 =3D <&eth_default_pins>;
-> > > +	pinctrl-1 =3D <&eth_sleep_pins>;
-> > > +	status =3D "okay";
-> > > +
-> > > +	mdio {
-> > > +		compatible =3D "snps,dwmac-mdio";
-> > > +		#address-cells =3D <1>;
-> > > +		#size-cells =3D <0>;
-> > > +
-> > > +		eth_phy: phy@1 {
-> > > +			compatible =3D "ethernet-phy-id001c.c916";
-> > > +			#phy-cells =3D <0>;
-> > > +			reg =3D <0x1>;
-> > > +		};
-> > > +	};
-> > > +};
-> > > +
-> > >   &i2c6 {
-> > >   	clock-frequency =3D <400000>;
-> > >   	pinctrl-0 =3D <&i2c6_pins>;
-> > > @@ -260,6 +284,90 @@ &mt6359_vsram_others_ldo_reg {
-> > >   };
-> > >   &pio {
-> > > +	eth_default_pins: eth-default-pins {
-> > > +		pins-cc {
-> > > +			pinmux =3D <PINMUX_GPIO85__FUNC_GBE_TXC>,
-> > > +				 <PINMUX_GPIO88__FUNC_GBE_TXEN>,
-> > > +				 <PINMUX_GPIO87__FUNC_GBE_RXDV>,
-> > > +				 <PINMUX_GPIO86__FUNC_GBE_RXC>;
-> > > +			drive-strength =3D <MTK_DRIVE_8mA>;
-> > > +		};
-> > > +
-> > > +		pins-mdio {
-> > > +			pinmux =3D <PINMUX_GPIO89__FUNC_GBE_MDC>,
-> > > +				 <PINMUX_GPIO90__FUNC_GBE_MDIO>;
-> > > +			input-enable;
-> > > +		};
-> > > +
-> > > +		pins-phy-reset {
-> > > +			pinmux =3D <PINMUX_GPIO93__FUNC_GPIO93>;
-> > > +		};
-> > > +
-> > > +		pins-power {
-> > > +			pinmux =3D <PINMUX_GPIO91__FUNC_GPIO91>,
-> > > +				 <PINMUX_GPIO92__FUNC_GPIO92>;
-> > > +			output-high;
-> > > +		};
-> > > +
-> > > +		pins-rxd {
-> > > +			pinmux =3D <PINMUX_GPIO81__FUNC_GBE_RXD3>,
-> > > +				 <PINMUX_GPIO82__FUNC_GBE_RXD2>,
-> > > +				 <PINMUX_GPIO83__FUNC_GBE_RXD1>,
-> > > +				 <PINMUX_GPIO84__FUNC_GBE_RXD0>;
-> > > +		};
-> > > +
-> > > +		pins-txd {
-> > > +			pinmux =3D <PINMUX_GPIO77__FUNC_GBE_TXD3>,
-> > > +				 <PINMUX_GPIO78__FUNC_GBE_TXD2>,
-> > > +				 <PINMUX_GPIO79__FUNC_GBE_TXD1>,
-> > > +				 <PINMUX_GPIO80__FUNC_GBE_TXD0>;
-> > > +			drive-strength =3D <MTK_DRIVE_8mA>;
-> > > +		};
-> > > +	};
-> > > +
-> > > +	eth_sleep_pins: eth-sleep-pins {
-> > > +		pins-cc {
-> > > +			pinmux =3D <PINMUX_GPIO85__FUNC_GPIO85>,
-> > > +				 <PINMUX_GPIO88__FUNC_GPIO88>,
-> > > +				 <PINMUX_GPIO87__FUNC_GPIO87>,
-> > > +				 <PINMUX_GPIO86__FUNC_GPIO86>;
-> > > +		};
-> > > +
-> > > +		pins-mdio {
-> > > +			pinmux =3D <PINMUX_GPIO89__FUNC_GPIO89>,
-> > > +				 <PINMUX_GPIO90__FUNC_GPIO90>;
-> > > +			input-disable;
-> > > +			bias-disable;
-> > > +		};
-> > > +
-> > > +		pins-phy-reset {
-> > > +			pinmux =3D <PINMUX_GPIO93__FUNC_GPIO93>;
-> > > +			input-disable;
-> > > +			bias-disable;
-> > > +		};
-> > > +
-> > > +		pins-power {
-> > > +			pinmux =3D <PINMUX_GPIO91__FUNC_GPIO91>,
-> > > +				 <PINMUX_GPIO92__FUNC_GPIO92>;
-> > > +			input-disable;
-> > > +			bias-disable;
-> > > +		};
-> > > +
-> > > +		pins-rxd {
-> > > +			pinmux =3D <PINMUX_GPIO81__FUNC_GPIO81>,
-> > > +				 <PINMUX_GPIO82__FUNC_GPIO82>,
-> > > +				 <PINMUX_GPIO83__FUNC_GPIO83>,
-> > > +				 <PINMUX_GPIO84__FUNC_GPIO84>;
-> > > +		};
-> > > +
-> > > +		pins-txd {
-> > > +			pinmux =3D <PINMUX_GPIO77__FUNC_GPIO77>,
-> > > +				 <PINMUX_GPIO78__FUNC_GPIO78>,
-> > > +				 <PINMUX_GPIO79__FUNC_GPIO79>,
-> > > +				 <PINMUX_GPIO80__FUNC_GPIO80>;
-> > > +		};
-> > > +	};
-> > > +
-> > >   	gpio_keys_pins: gpio-keys-pins {
-> > >   		pins {
-> > >   			pinmux =3D <PINMUX_GPIO106__FUNC_GPIO106>;
-> >=20
-> > Tested-by: Macpaul Lin <macpaul.lin@mediatek.com>
-> >=20
->=20
-> I get the following error:
-> Error: arch/arm64/boot/dts/mediatek/mt8195.dtsi:582.26-27 syntax error
-
-I think he used my upstreaming branch where I store the patches I sent
-and will send to the mailing list: [0].
-
-I forgot there is a dependency between this patch and [1], and I forgot
-to test this patch serie independenly from the other commits from my
-branch. I will make sure to not forget next time.
-
-So from this patch serie, only patch 1-2, 6-7 can be applied since they
-don't have any hidden dependency:
-  dt-bindings: usb: mediatek,mtu3: add binding for MT8195 SoC
-  arm64: dts: mediatek: mt8195: add ssusb support
-  arm64: dts: mediatek: mt8195-demo: Remove input-name property
-  arm64: dts: mediatek: mt8195-demo: enable uart1
-
-[0] https://github.com/Fabo/linux/tree/mt8195-demo
-[1] https://lore.kernel.org/all/20210615173233.26682-7-tinghan.shen@mediate=
-k.com/
-
->=20
->=20
->=20
-> How did you test?
->=20
-> Regards,
-> Matthias
-
---lzoq53ieck3g4u4f
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEQyJHfU3UNW7IG61XVJKc6g3CeAAFAmJsApoACgkQVJKc6g3C
-eADspw/+L2GTNsHF9vIW29/RPamW2SwAH5iyxGmnDfgAGPU5P2dIVC+TQv4bGPCf
-YCF58yZGnNRljB7gUISwbBpq+fXSsU0rusTqNV7HYTDQV55MAUt+qYUPHsJjTWLC
-NcrUEf532RGv2uD/fSaQlMsfx55KZUepAkljPrvesjiRB55zrJQeEFO/cCdPsEMG
-e9Dx/+uZC1HR0zgy35FuuSvQLAXEuLQP+i10NDfpNAb2Fx9dQGeQnGsLlLv80NUP
-h7p4kJpytmrMVI0qRnj9i9boAOaJQyA/3HXpZqxN68QeRWS5nnx/3SsFedpwjqRK
-8IWz8DveEwUi1fxO7TjajgNPdKj6FuZWSoPTxg+Rl1uQzBSsYADidZ7JwyB/qH/w
-JbY1q+OlN/KJ8yx0eSQa6sFrjNIMbljcb0NJ4/FTWsnxI6UZ+93GbwpnPJ/MTc3J
-dX3G86mla/+lWLjz99e9bbgQndoXvPk0smBGM2roZYd5O5vzbP+CVBF63UXIOlCy
-jGOKd8fDRSMCRYSU56AV7WMdwbgzAMJ7sZmqF8OIZqJFfo7jijv/U500jmP++bQq
-7sFaQcyvLFr75yNXNiBBAJgNjHcfM1zz3BQaWL62XoA7hqZ4wMdWNPz9dBu5A89x
-jxawIrm5GhlRAugRaKYFPoOoDyEGtIWqRQHp8ja2m8Fiibtn5g8=
-=u18v
------END PGP SIGNATURE-----
-
---lzoq53ieck3g4u4f--
+Acked-by: Sylwester Nawrocki <s.nawrocki@samsung.com>
