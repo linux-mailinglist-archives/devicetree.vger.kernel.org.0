@@ -2,145 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8829151433F
-	for <lists+devicetree@lfdr.de>; Fri, 29 Apr 2022 09:24:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3394C51435E
+	for <lists+devicetree@lfdr.de>; Fri, 29 Apr 2022 09:42:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1355148AbiD2H1h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Apr 2022 03:27:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58602 "EHLO
+        id S1355216AbiD2HpU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Apr 2022 03:45:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34900 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1355119AbiD2H1f (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Apr 2022 03:27:35 -0400
-Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id C29F1C0D1B;
-        Fri, 29 Apr 2022 00:24:17 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="5.91,297,1647270000"; 
-   d="scan'208";a="118389359"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie5.idc.renesas.com with ESMTP; 29 Apr 2022 16:24:17 +0900
-Received: from localhost.localdomain (unknown [10.226.92.196])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id EFBBD40065C2;
-        Fri, 29 Apr 2022 16:24:13 +0900 (JST)
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH v3 3/3] arm64: dts: renesas: rzg2ul-smarc: Enable USB2.0 support
-Date:   Fri, 29 Apr 2022 08:24:00 +0100
-Message-Id: <20220429072400.23729-4-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220429072400.23729-1-biju.das.jz@bp.renesas.com>
-References: <20220429072400.23729-1-biju.das.jz@bp.renesas.com>
+        with ESMTP id S1355202AbiD2HpT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Apr 2022 03:45:19 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 666CBA66DD;
+        Fri, 29 Apr 2022 00:42:01 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id DC5F662009;
+        Fri, 29 Apr 2022 07:42:00 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8549BC385A4;
+        Fri, 29 Apr 2022 07:41:58 +0000 (UTC)
+Message-ID: <d3858845-ca27-9207-68a9-6d802a7d59fe@xs4all.nl>
+Date:   Fri, 29 Apr 2022 09:41:56 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH v9 06/13] media: atmel: atmel-isc-base: use mutex to lock
+ awb workqueue from streaming
+Content-Language: en-US
+To:     Eugen Hristev <eugen.hristev@microchip.com>,
+        linux-media@vger.kernel.org, jacopo@jmondi.org
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, claudiu.beznea@microchip.com,
+        robh+dt@kernel.org, nicolas.ferre@microchip.com
+References: <20220310095202.2701399-1-eugen.hristev@microchip.com>
+ <20220310095202.2701399-7-eugen.hristev@microchip.com>
+From:   Hans Verkuil <hverkuil@xs4all.nl>
+In-Reply-To: <20220310095202.2701399-7-eugen.hristev@microchip.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-6.7 required=5.0 tests=BAYES_00,
+        HEADER_FROM_DIFFERENT_DOMAINS,NICE_REPLY_A,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable USB2.0 Host/Device support on RZ/G2UL SMARC EVK by
-adding usb{0,1} pincontrol entries to the soc-pinctrl dtsi
-and deleting the nodes which disabled it.
+Hi Eugen,
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
----
-V2->v3:
- * Fixed typo in commit description RZ/G2L->RZ/G2UL.
-v1->v2:
- * Fixed the code comment related to USB1 OVC and VBUS.
----
- .../boot/dts/renesas/r9a07g043u11-smarc.dts   | 46 -------------------
- .../dts/renesas/rzg2ul-smarc-pinfunction.dtsi | 11 +++++
- 2 files changed, 11 insertions(+), 46 deletions(-)
+On 10/03/2022 10:51, Eugen Hristev wrote:
+> The AWB workqueue runs in a kernel thread and needs to be synchronized
+> w.r.t. the streaming status.
+> It is possible that streaming is stopped while the AWB workq is running.
+> In this case it is likely that the check for vb2_start_streaming_called is done
+> at one point in time, but the AWB computations are done later, including a call
+> to isc_update_profile, which requires streaming to be started.
+> Thus , isc_update_profile will fail if during this operation sequence the
+> streaming was stopped.
+> To solve this issue, a mutex is added, that will serialize the awb work and
+> streaming stopping, with the mention that either streaming is stopped
+> completely including termination of the last frame is done, and after that
+> the AWB work can check stream status and stop; either first AWB work is
+> completed and after that the streaming can stop correctly.
+> The awb spin lock cannot be used since this spinlock is taken in the same
+> context and using it in the stop streaming will result in a recursion BUG.
 
-diff --git a/arch/arm64/boot/dts/renesas/r9a07g043u11-smarc.dts b/arch/arm64/boot/dts/renesas/r9a07g043u11-smarc.dts
-index 52ee1640c3c1..2d740bd420ca 100644
---- a/arch/arm64/boot/dts/renesas/r9a07g043u11-smarc.dts
-+++ b/arch/arm64/boot/dts/renesas/r9a07g043u11-smarc.dts
-@@ -14,54 +14,8 @@ / {
- 	compatible = "renesas,smarc-evk", "renesas,r9a07g043u11", "renesas,r9a07g043";
- };
- 
--&ehci0 {
--	/delete-property/ pinctrl-0;
--	/delete-property/ pinctrl-names;
--	status = "disabled";
--};
--
--&ehci1 {
--	/delete-property/ pinctrl-0;
--	/delete-property/ pinctrl-names;
--	status = "disabled";
--};
--
--&hsusb {
--	/delete-property/ pinctrl-0;
--	/delete-property/ pinctrl-names;
--	status = "disabled";
--};
--
--&ohci0 {
--	/delete-property/ pinctrl-0;
--	/delete-property/ pinctrl-names;
--	status = "disabled";
--};
--
--&ohci1 {
--	/delete-property/ pinctrl-0;
--	/delete-property/ pinctrl-names;
--	status = "disabled";
--};
--
--&phyrst {
--	status = "disabled";
--};
--
- &spi1 {
- 	/delete-property/ pinctrl-0;
- 	/delete-property/ pinctrl-names;
- 	status = "disabled";
- };
--
--&usb2_phy0 {
--	/delete-property/ pinctrl-0;
--	/delete-property/ pinctrl-names;
--	status = "disabled";
--};
--
--&usb2_phy1 {
--	/delete-property/ pinctrl-0;
--	/delete-property/ pinctrl-names;
--	status = "disabled";
--};
-diff --git a/arch/arm64/boot/dts/renesas/rzg2ul-smarc-pinfunction.dtsi b/arch/arm64/boot/dts/renesas/rzg2ul-smarc-pinfunction.dtsi
-index 201b70150e01..bd8bc858c28c 100644
---- a/arch/arm64/boot/dts/renesas/rzg2ul-smarc-pinfunction.dtsi
-+++ b/arch/arm64/boot/dts/renesas/rzg2ul-smarc-pinfunction.dtsi
-@@ -105,4 +105,15 @@ ssi1_pins: ssi1 {
- 			 <RZG2L_PORT_PINMUX(3, 2, 2)>, /* TXD */
- 			 <RZG2L_PORT_PINMUX(3, 3, 2)>; /* RXD */
- 	};
-+
-+	usb0_pins: usb0 {
-+		pinmux = <RZG2L_PORT_PINMUX(5, 0, 1)>, /* VBUS */
-+			 <RZG2L_PORT_PINMUX(5, 2, 1)>, /* OVC */
-+			 <RZG2L_PORT_PINMUX(5, 3, 1)>; /* OTG_ID */
-+	};
-+
-+	usb1_pins: usb1 {
-+		pinmux = <RZG2L_PORT_PINMUX(5, 4, 5)>, /* OVC */
-+			 <RZG2L_PORT_PINMUX(6, 0, 1)>; /* VBUS */
-+	};
- };
--- 
-2.25.1
+Please keep the line length in a commit log to no more than 75.
+
+> 
+> Signed-off-by: Eugen Hristev <eugen.hristev@microchip.com>
+> Reviewed-by: Jacopo Mondi <jacopo@jmondi.org>
+> ---
+>  drivers/media/platform/atmel/atmel-isc-base.c | 29 ++++++++++++++++---
+>  drivers/media/platform/atmel/atmel-isc.h      |  2 ++
+>  2 files changed, 27 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/media/platform/atmel/atmel-isc-base.c b/drivers/media/platform/atmel/atmel-isc-base.c
+
+<snip>
+
+> @@ -1548,6 +1564,7 @@ static int isc_s_awb_ctrl(struct v4l2_ctrl *ctrl)
+>  			 */
+>  			v4l2_ctrl_activate(isc->do_wb_ctrl, false);
+>  		}
+> +		mutex_unlock(&isc->awb_mutex);
+
+Huh? What is this unlock doing here? Am I missing something?
+
+Regards,
+
+	Hans
+
+>  
+>  		/* if we have autowhitebalance on, start histogram procedure */
+>  		if (ctrls->awb == ISC_WB_AUTO &&
+> @@ -1740,6 +1757,7 @@ static void isc_async_unbind(struct v4l2_async_notifier *notifier,
+>  {
+>  	struct isc_device *isc = container_of(notifier->v4l2_dev,
+>  					      struct isc_device, v4l2_dev);
+> +	mutex_destroy(&isc->awb_mutex);
+>  	cancel_work_sync(&isc->awb_work);
+>  	video_unregister_device(&isc->video_dev);
+>  	v4l2_ctrl_handler_free(&isc->ctrls.handler);
+> @@ -1850,6 +1868,8 @@ static int isc_async_complete(struct v4l2_async_notifier *notifier)
+>  	isc->current_subdev = container_of(notifier,
+>  					   struct isc_subdev_entity, notifier);
+>  	mutex_init(&isc->lock);
+> +	mutex_init(&isc->awb_mutex);
+> +
+>  	init_completion(&isc->comp);
+>  
+>  	/* Initialize videobuf2 queue */
+> @@ -1930,6 +1950,7 @@ static int isc_async_complete(struct v4l2_async_notifier *notifier)
+>  	video_unregister_device(vdev);
+>  
+>  isc_async_complete_err:
+> +	mutex_destroy(&isc->awb_mutex);
+>  	mutex_destroy(&isc->lock);
+>  	return ret;
+>  }
+> diff --git a/drivers/media/platform/atmel/atmel-isc.h b/drivers/media/platform/atmel/atmel-isc.h
+> index 9cc69c3ae26d..f98f25a55e73 100644
+> --- a/drivers/media/platform/atmel/atmel-isc.h
+> +++ b/drivers/media/platform/atmel/atmel-isc.h
+> @@ -229,6 +229,7 @@ enum isc_scaler_pads {
+>   *
+>   * @lock:		lock for serializing userspace file operations
+>   *			with ISC operations
+> + * @awb_mutex:		serialize access to streaming status from awb work queue
+>   * @awb_lock:		lock for serializing awb work queue operations
+>   *			with DMA/buffer operations
+>   *
+> @@ -307,6 +308,7 @@ struct isc_device {
+>  	struct work_struct	awb_work;
+>  
+>  	struct mutex		lock;
+> +	struct mutex		awb_mutex;
+>  	spinlock_t		awb_lock;
+>  
+>  	struct regmap_field	*pipeline[ISC_PIPE_LINE_NODE_NUM];
 
