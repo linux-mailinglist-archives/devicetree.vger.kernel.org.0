@@ -2,106 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A79265144D0
-	for <lists+devicetree@lfdr.de>; Fri, 29 Apr 2022 10:50:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 77AF85144DB
+	for <lists+devicetree@lfdr.de>; Fri, 29 Apr 2022 10:52:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231750AbiD2Ive (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Apr 2022 04:51:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37866 "EHLO
+        id S238670AbiD2Izl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Apr 2022 04:55:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47168 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234027AbiD2Ivd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Apr 2022 04:51:33 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D6E466227;
-        Fri, 29 Apr 2022 01:48:16 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id EBA17B83394;
-        Fri, 29 Apr 2022 08:48:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4BA73C385A4;
-        Fri, 29 Apr 2022 08:48:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1651222093;
-        bh=87vkewPttramOVIcEGiZZilW3jikdo1ermvWTGQSA6M=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=1vEEyHcCS+swJ3HoxwS3PVJUumwAb+J5cjF6PWRPqDacMvpJ0YvQD3R9XzzK9qE+M
-         PO9owsPO+QUbjZ8s34lXo+FAnvFSVGpeXaqNQRKoiOLfXFo76UG9bhNFJWyZQ2uO9a
-         Tn0y08l6TJ4/F+P/8BcZuIJZs1We5x/iX7JTOljM=
-Date:   Fri, 29 Apr 2022 10:48:10 +0200
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     Sebastian Ene <sebastianene@google.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
-        Dragan Cvetic <dragan.cvetic@xilinx.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        maz@kernel.org, will@kernel.org, qperret@google.com,
-        Guenter Roeck <linux@roeck-us.net>
-Subject: Re: [PATCH v4 2/2] misc: Add a mechanism to detect stalls on guest
- vCPUs
-Message-ID: <YmumSgiTrQUWoXsb@kroah.com>
-References: <20220429083030.3241640-1-sebastianene@google.com>
- <20220429083030.3241640-3-sebastianene@google.com>
+        with ESMTP id S1356260AbiD2IyN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Apr 2022 04:54:13 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 753BE6D952;
+        Fri, 29 Apr 2022 01:50:55 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: dmitry.osipenko)
+        with ESMTPSA id 3042C1F460A3
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1651222254;
+        bh=JMryjmbHSpjNRgHd+CiOPwDHIkfH7sdFnahi2359ly4=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=HAlTgR7ERsXtlbeQUXl5BK+85HTiCmaGgR+VREeXHjtIWuSRvoxOSAJkUKVZTSSnh
+         6iZOln4rfgrlkFUSFJHpSoKrli2vEH1c8Ck3nqic3TD+QGEEbkzHZHGaq5JQnGKjpf
+         mgUzCRok5jXEKQ0MRxSVGq3F7RG4H2JAoo+l5r+6d9pieC+9x83Pm+EakjHkVdylBj
+         FH08H9u+nP4PT1wzg+ky+98IH96Ko7WwP/sluEzfrDDS4PN4GXStc68ldk7WCZuBuR
+         alGund/kuPdcHa23GSHlvOKR/MPuBtYCCgdURvRBsQTl21XzQTJV5cLwx5MiCvtj1/
+         +QAmm0/JFPRlQ==
+Message-ID: <8fc06781-72a0-9f86-e9cc-6af2425f2077@collabora.com>
+Date:   Fri, 29 Apr 2022 11:50:49 +0300
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220429083030.3241640-3-sebastianene@google.com>
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [Patch v9 1/4] memory: tegra: Add memory controller channels
+ support
+Content-Language: en-US
+To:     Ashish Mhetre <amhetre@nvidia.com>, krzysztof.kozlowski@linaro.org,
+        thierry.reding@gmail.com, jonathanh@nvidia.com, digetx@gmail.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org,
+        devicetree@vger.kernel.org
+Cc:     vdumpa@nvidia.com, Snikam@nvidia.com
+References: <20220426073827.25506-1-amhetre@nvidia.com>
+ <20220426073827.25506-2-amhetre@nvidia.com>
+From:   Dmitry Osipenko <dmitry.osipenko@collabora.com>
+In-Reply-To: <20220426073827.25506-2-amhetre@nvidia.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 29, 2022 at 08:30:33AM +0000, Sebastian Ene wrote:
-> This driver creates per-cpu hrtimers which are required to do the
-> periodic 'pet' operation. On a conventional watchdog-core driver, the
-> userspace is responsible for delivering the 'pet' events by writing to
-> the particular /dev/watchdogN node. In this case we require a strong
-> thread affinity to be able to account for lost time on a per vCPU.
-> 
-> This part of the driver is the 'frontend' which is reponsible for
-> delivering the periodic 'pet' events, configuring the virtual peripheral
-> and listening for cpu hotplug events. The other part of the driver
-> handles the peripheral emulation and this part accounts for lost time by
-> looking at the /proc/{}/task/{}/stat entries and is located here:
-> https://chromium-review.googlesource.com/c/chromiumos/platform/crosvm/+/3548817
-> 
-> Signed-off-by: Sebastian Ene <sebastianene@google.com>
-> ---
->  drivers/misc/Kconfig       |  12 +++
->  drivers/misc/Makefile      |   1 +
->  drivers/misc/vm-watchdog.c | 206 +++++++++++++++++++++++++++++++++++++
->  3 files changed, 219 insertions(+)
->  create mode 100644 drivers/misc/vm-watchdog.c
-> 
-> diff --git a/drivers/misc/Kconfig b/drivers/misc/Kconfig
-> index 2b9572a6d114..26c3a99e269c 100644
-> --- a/drivers/misc/Kconfig
-> +++ b/drivers/misc/Kconfig
-> @@ -493,6 +493,18 @@ config OPEN_DICE
->  
->  	  If unsure, say N.
->  
-> +config VM_WATCHDOG
-> +	tristate "Virtual Machine Watchdog"
-> +	select LOCKUP_DETECTOR
-> +	help
-> +	  Detect CPU locks on the virtual machine. This driver relies on the
-> +	  hrtimers which are CPU-binded to do the 'pet' operation. When a vCPU
-> +	  has to do a 'pet', it exits the guest through MMIO write and the
-> +	  backend driver takes into account the lost ticks for this particular
-> +	  CPU.
-> +	  To compile this driver as a module, choose M here: the
-> +	  module will be called vm-wdt.
+On 4/26/22 10:38, Ashish Mhetre wrote:
+> +static int tegra186_mc_map_regs(struct tegra_mc *mc)
+> +{
+> +	struct platform_device *pdev = to_platform_device(mc->dev);
+> +	unsigned int i;
+> +
+> +	mc->bcast_ch_regs = devm_platform_ioremap_resource_byname(pdev, "broadcast");
+> +	if (IS_ERR(mc->bcast_ch_regs)) {
+> +		if (PTR_ERR(mc->bcast_ch_regs) == -EINVAL) {
+> +			dev_warn(&pdev->dev, "Broadcast channel is missing, please update your device-tree\n");
+> +			mc->bcast_ch_regs = NULL;
+> +			return 0;
+> +		}
+> +		return PTR_ERR(mc->bcast_ch_regs);
+> +	}
+> +
+> +	mc->ch_regs = devm_kcalloc(mc->dev, mc->soc->num_channels,
+> +				   sizeof(*mc->ch_regs), GFP_KERNEL);
+> +	if (!mc->ch_regs)
+> +		return -ENOMEM;
+> +
+> +	for (i = 0; i < mc->soc->num_channels; i++) {
+> +		char name[5];
+> +
+> +		snprintf(name, sizeof(name), "ch%u", i);
+> +		mc->ch_regs[i] = devm_platform_ioremap_resource_byname(pdev, name);
+> +		if (IS_ERR(mc->ch_regs[i]))
+> +			return PTR_ERR(mc->ch_regs[i]);
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+>  const struct tegra_mc_ops tegra186_mc_ops = {
+>  	.probe = tegra186_mc_probe,
+>  	.remove = tegra186_mc_remove,
+>  	.resume = tegra186_mc_resume,
+>  	.probe_device = tegra186_mc_probe_device,
+> +	.map_regs = tegra186_mc_map_regs,
+>  };
 
-You forgot to name the module properly here based on the Makefile change
-you made.
-
-And again, as this is called a "watchdog", it seems crazy that it is not
-in drivers/watchdog/
-
-{sigh}
-
-greg k-h
+Do we really need the map_regs() callback? Could you please move it to
+the tegra186_mc_probe()? .. Sorry, I haven't noticed this previously.
