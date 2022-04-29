@@ -2,55 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 017465157A9
-	for <lists+devicetree@lfdr.de>; Sat, 30 Apr 2022 00:02:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 768B85157C0
+	for <lists+devicetree@lfdr.de>; Sat, 30 Apr 2022 00:02:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1379096AbiD2WFY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Apr 2022 18:05:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57418 "EHLO
+        id S1381197AbiD2WFb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Apr 2022 18:05:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57572 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1381135AbiD2WFV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Apr 2022 18:05:21 -0400
-Received: from mail-pg1-x52e.google.com (mail-pg1-x52e.google.com [IPv6:2607:f8b0:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6151DC59D
-        for <devicetree@vger.kernel.org>; Fri, 29 Apr 2022 15:02:00 -0700 (PDT)
-Received: by mail-pg1-x52e.google.com with SMTP id r83so7483102pgr.2
-        for <devicetree@vger.kernel.org>; Fri, 29 Apr 2022 15:02:00 -0700 (PDT)
+        with ESMTP id S1381167AbiD2WFY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Apr 2022 18:05:24 -0400
+Received: from mail-pl1-x632.google.com (mail-pl1-x632.google.com [IPv6:2607:f8b0:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39C8EDC59A
+        for <devicetree@vger.kernel.org>; Fri, 29 Apr 2022 15:02:02 -0700 (PDT)
+Received: by mail-pl1-x632.google.com with SMTP id j8so8244238pll.11
+        for <devicetree@vger.kernel.org>; Fri, 29 Apr 2022 15:02:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=a8EzmCrTNHAHOnOS39ISGsmIQIULar5f2bQVxaPjFTI=;
-        b=B6E1Ub19KqivdJT8MmrvK2gCXVJP0KzovqFh1L+/a2HDo3/B2EP4wnBr0p/NWCuSHm
-         YsLW96o4wObu+nlVsvqUAushFl+s33FppLKKQVRKq5WjMJ1lDwZ18CKvyKPPmIvqMhQ5
-         3RuaoiUfVOFpTaL+k2pfbLypK1yl7t3NBl4PQ=
+        bh=Hvam89OhrSHzgUmGzxLK+czpa+WBvjuZZyC7jpzzxzM=;
+        b=Fiyln5642DNlT2hviPPk/cfEWYUrf836JGjtSDY9xBR7LeDnwlJ9o5Ob/2hHNHEgv+
+         /M3+QBTDoAaVg3P7J8sbpVFhF0aofdys5+wKPInR6XDLdRtzjPDXqb4oARHVEJNa9pb3
+         sZymztSGQou/jtiRNEL1T2zpaoP2xM5hMFkO0=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=a8EzmCrTNHAHOnOS39ISGsmIQIULar5f2bQVxaPjFTI=;
-        b=clpLrQ6VPFmVlQo+hxmEdHEw23tBNxFSmjGQT6zgFlNmUnDH/1+3RPhAA99ugpCGto
-         q6DHejPsvqhd+5onRaAcasPMvcdbRNN8VIuhRZtBM7UmuAm8r4pauKdXgbuWBegRgGxB
-         vPqypaAtrIqS/TwJmR9psWaqucYcP4KTxC7cGuffM8vubHLLq7QMglBypFudd62P3Uln
-         rUOCpNSnfGBsy5G6bE+UFkjZubzhSUNhzWeiVY4GIjc9pKXx4/87yU0EeBnL7+Q+E17G
-         sewe4MPH/OYXwx8dq/YzF89J1UF4Wg6Qo8HXnkbXamDferyao/LqXrGt3G1byJQj1dgI
-         DbzA==
-X-Gm-Message-State: AOAM532OVWFNxFXSkV+PwQ9UVkwdwD5AzDwYrr4JikIKqp2ytR1Qo9Bi
-        A/Q7cvcjG02aX3gaMskyHGqIMg==
-X-Google-Smtp-Source: ABdhPJzXQxmO+TtpF7DFGKedluWRIhzEeyTmKwmh/Dm4cmNVpOqlBDS7qZtng5r2Ni77j3ksq0wGYQ==
-X-Received: by 2002:a63:894a:0:b0:3ab:2edc:b973 with SMTP id v71-20020a63894a000000b003ab2edcb973mr1019501pgd.219.1651269720298;
-        Fri, 29 Apr 2022 15:02:00 -0700 (PDT)
+        bh=Hvam89OhrSHzgUmGzxLK+czpa+WBvjuZZyC7jpzzxzM=;
+        b=CuhDCd5y4LyDcZBx/QInlPvrKA+M04GjEwUU8NJQEIYgUUhiijHwItuIM1dpAKwMYo
+         NyWu5rLTqGBw3h+7lxjK8WpVRjJ//07y+Hs6C0tI4Ek0jayKsyRbk+n+95YH7h5r3Gv6
+         aTKmUIF7AHaa+fj/KoNvKGpE4ihk2fkqXOKm1kUSirT890UNs6kURovEWKZuPUHDPyMY
+         0RYQV7wGHKJY2QCuQTNrCjgooTRQKf4tvzdRp8kHlAwTUy1IbxJ9SxQnFAfcJRj+qs3b
+         TOJLgSkfKulh4pWvKW2YGaF7uT8G1lS5sT6Ah4M4XtxgvhSq9Ri5ENt0GhLEoz18ZdCu
+         m50Q==
+X-Gm-Message-State: AOAM532PU2qZnWxQqY7nJNE1AanvHHgsYqrXM0m5noDRvNCdYhlIjov5
+        QxLgXm5D1OeeqYahtIzZSnBIYA==
+X-Google-Smtp-Source: ABdhPJwuKG96oD9IHm2c9thgq7K805GvetFK3RzMClXtEoHQWG0TNiQRj8d5iknzKRl9byw9m+cAlQ==
+X-Received: by 2002:a17:903:208:b0:15c:7dd0:eb64 with SMTP id r8-20020a170903020800b0015c7dd0eb64mr1378995plh.40.1651269721638;
+        Fri, 29 Apr 2022 15:02:01 -0700 (PDT)
 Received: from localhost ([2620:15c:202:201:6161:73ca:10a5:5383])
-        by smtp.gmail.com with UTF8SMTPSA id o3-20020a1709026b0300b0015e8d4eb237sm80540plk.129.2022.04.29.15.01.59
+        by smtp.gmail.com with UTF8SMTPSA id z21-20020a631915000000b003c14af5062dsm6225226pgl.69.2022.04.29.15.02.00
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 29 Apr 2022 15:01:59 -0700 (PDT)
+        Fri, 29 Apr 2022 15:02:01 -0700 (PDT)
 From:   Gwendal Grignou <gwendal@chromium.org>
 To:     jic23@kernel.org, robh+dt@kernel.org, swboyd@chromium.org
 Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
         Gwendal Grignou <gwendal@chromium.org>
-Subject: [PATCH v5 07/10] dt-bindings: iio: sx9324: Add input analog gain
-Date:   Fri, 29 Apr 2022 15:01:41 -0700
-Message-Id: <20220429220144.1476049-8-gwendal@chromium.org>
+Subject: [PATCH v5 08/10] iio: sx9324: Add Setting for internal analog gain
+Date:   Fri, 29 Apr 2022 15:01:42 -0700
+Message-Id: <20220429220144.1476049-9-gwendal@chromium.org>
 X-Mailer: git-send-email 2.36.0.464.gb9c8b46e94-goog
 In-Reply-To: <20220429220144.1476049-1-gwendal@chromium.org>
 References: <20220429220144.1476049-1-gwendal@chromium.org>
@@ -58,44 +58,63 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Allow setting the configure the input analog gain.
+Based on device tree setting, set the internal analog gain.
 
 Signed-off-by: Gwendal Grignou <gwendal@chromium.org>
 ---
 New in v5.
 
- .../bindings/iio/proximity/semtech,sx9324.yaml        | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+ drivers/iio/proximity/sx9324.c | 22 ++++++++++++++++++++++
+ 1 file changed, 22 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/iio/proximity/semtech,sx9324.yaml b/Documentation/devicetree/bindings/iio/proximity/semtech,sx9324.yaml
-index 0be87ac05b97a..d265eb5258c84 100644
---- a/Documentation/devicetree/bindings/iio/proximity/semtech,sx9324.yaml
-+++ b/Documentation/devicetree/bindings/iio/proximity/semtech,sx9324.yaml
-@@ -143,6 +143,17 @@ properties:
-     description:
-       Pre-charge input resistance in Ohm.
+diff --git a/drivers/iio/proximity/sx9324.c b/drivers/iio/proximity/sx9324.c
+index 6806262eb1c92..851f2ff0ae7e8 100644
+--- a/drivers/iio/proximity/sx9324.c
++++ b/drivers/iio/proximity/sx9324.c
+@@ -79,6 +79,7 @@
+ #define SX9324_REG_AFE_CTRL8_RESFILTIN_4KOHM 0x02
+ #define SX9324_REG_AFE_CTRL8_RESFILTIN_MASK GENMASK(3, 0)
+ #define SX9324_REG_AFE_CTRL9		0x2d
++#define SX9324_REG_AFE_CTRL9_AGAIN_MASK			GENMASK(3, 0)
+ #define SX9324_REG_AFE_CTRL9_AGAIN_1	0x08
  
-+  semtech,input-analog-gain:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    minimum: 0
-+    maximum: 3
-+    description: |
-+      Defines the input antenna analog gain
-+      0: x1.247
-+      1: x1 (default)
-+      2: x0.768
-+      3: x0.552
+ #define SX9324_REG_PROX_CTRL0		0x30
+@@ -925,6 +926,27 @@ sx9324_get_default_reg(struct device *dev, int idx,
+ 					   raw / 2000);
+ 		break;
+ 
++	case SX9324_REG_AFE_CTRL9:
++		ret = device_property_read_u32(dev,
++				"semtech,input-analog-gain", &raw);
++		if (ret)
++			break;
++		/*
++		 * The analog gain has the following setting:
++		 * +---------+----------------+----------------+
++		 * | dt(raw) | physical value | register value |
++		 * +---------+----------------+----------------+
++		 * |  0      |      x1.247    |      6         |
++		 * |  1      |      x1        |      8         |
++		 * |  2      |      x0.768    |     11         |
++		 * |  3      |      x0.552    |     15         |
++		 * +---------+----------------+----------------+
++		 */
++		reg_def->def &= ~SX9324_REG_AFE_CTRL9_AGAIN_MASK;
++		reg_def->def |= FIELD_PREP(SX9324_REG_AFE_CTRL9_AGAIN_MASK,
++					   6 + raw * (raw + 3) / 2);
++		break;
 +
- required:
-   - compatible
-   - reg
+ 	case SX9324_REG_ADV_CTRL5:
+ 		ret = device_property_read_u32(dev, "semtech,startup-sensor",
+ 					       &start);
 -- 
 2.36.0.464.gb9c8b46e94-goog
 
