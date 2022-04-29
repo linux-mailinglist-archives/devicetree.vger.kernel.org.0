@@ -2,203 +2,274 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C3B0951459A
-	for <lists+devicetree@lfdr.de>; Fri, 29 Apr 2022 11:44:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 08ED35145A5
+	for <lists+devicetree@lfdr.de>; Fri, 29 Apr 2022 11:46:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1356700AbiD2JrK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Apr 2022 05:47:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60216 "EHLO
+        id S245487AbiD2JsR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Apr 2022 05:48:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32834 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244541AbiD2JrJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Apr 2022 05:47:09 -0400
-Received: from mail-yw1-x112f.google.com (mail-yw1-x112f.google.com [IPv6:2607:f8b0:4864:20::112f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A70E4BE9F1;
-        Fri, 29 Apr 2022 02:43:48 -0700 (PDT)
-Received: by mail-yw1-x112f.google.com with SMTP id 00721157ae682-2ef5380669cso79408227b3.9;
-        Fri, 29 Apr 2022 02:43:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=4Kg3hGg7aSQtOExCKtXSFZRSUP75e6nI3Aslv19Y7vA=;
-        b=TZF6d1SWhW6T1e7EkSodGQRYWm/8NaFP8evsK09WZzyAdjhiFi3leY8CW5P+6jJryI
-         j4zxovudMYqZPPzH8LLnKztlVEwxwVGfeks9injDB80fcmwjvwipeAjbCJSV0QzLQHkh
-         /gdK3nQ9svbNJdEOOCq2Igc83rASG+dciYrOu+IIwfH4iuobI3dbh33Uur7VEIol8YYB
-         4ThkbHnT8gLtnzS+Vk5mDTOcGHqb4oBzBHw+ajZOj0WYtE6CTKSxJFobJm/WneFC6Q/L
-         FkyTeoCSXiJy9Q90dJOQilWD7mJiQ0sDMD7JeNBiMB+Ohbz2ZvUGFic8NkdArAn/is/t
-         cgjA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=4Kg3hGg7aSQtOExCKtXSFZRSUP75e6nI3Aslv19Y7vA=;
-        b=Irvbuu/WqS5S8yDKcHSUDQCiuDdx16TB0Bu2CAcqaVW6sj/8utcWimrJLLWAk+XPLg
-         Os6bjBEM43J73mywG+Fq3kDcCdO2kLLRzUgok7F21ufJWcXG9V7gF5reLncdf4pvOMwf
-         Y4LmrnU3Hvnl88OJ5+/FzAei+Fc0e9wzqinhwJyGku+o1bWOkEZiVa744hher0W7Wnv8
-         pUfkP/VLRYordBmAtEdGosj86BFLanCfId8vKmWcDSG2O/HtrpxnuvnnPxGhXeLtEUss
-         56/MaNcByUSgqEl0a7wthVmqe/kDt3U87vBaFsM3EagLlRMQG8Vhw5a8mRaunY39Dh+w
-         dFLQ==
-X-Gm-Message-State: AOAM5323pIFxQnDCXxPhgZAsMlRBD5zkhz7t+XuEndtF2tskRNwR0agU
-        l3xzZbMifIT/Jdum5MIycKJ7ygwaX2RMc20v8Ow=
-X-Google-Smtp-Source: ABdhPJx1hDX7pnjETYTkdntFjdt5Nq6fxhad4iQ13SDXFdm2nMnRkoJufGnLbvDiVVAaEHweo2vkFXH2I0QzR4maH4Y=
-X-Received: by 2002:a81:6a46:0:b0:2f4:dc3f:e8f8 with SMTP id
- f67-20020a816a46000000b002f4dc3fe8f8mr38317183ywc.292.1651225427891; Fri, 29
- Apr 2022 02:43:47 -0700 (PDT)
+        with ESMTP id S244541AbiD2JsO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Apr 2022 05:48:14 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8E80C1CAA;
+        Fri, 29 Apr 2022 02:44:55 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 29B09B82C1A;
+        Fri, 29 Apr 2022 09:44:54 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 23F1EC385A7;
+        Fri, 29 Apr 2022 09:44:47 +0000 (UTC)
+Message-ID: <4334520e-af49-fe32-fb23-ef9af6388529@xs4all.nl>
+Date:   Fri, 29 Apr 2022 11:44:46 +0200
 MIME-Version: 1.0
-References: <20220421221159.31729-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20220421221159.31729-3-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAMuHMdVqk1ryzzK9-BZCMDPeyjfF1-8hMpzUoEPCcg8pJ2-ang@mail.gmail.com>
-In-Reply-To: <CAMuHMdVqk1ryzzK9-BZCMDPeyjfF1-8hMpzUoEPCcg8pJ2-ang@mail.gmail.com>
-From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date:   Fri, 29 Apr 2022 10:43:21 +0100
-Message-ID: <CA+V-a8tosEeNqzPZsdX=VCKTrkQfAhpMRWQDwva+fpQGc8x+jA@mail.gmail.com>
-Subject: Re: [PATCH 2/2] irqchip: Add RZ/G2L IA55 Interrupt Controller driver
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Marc Zyngier <maz@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [DKIM] [PATCH v10, 00/15] media: mtk-vcodec: support for M8192
+ decoder
+Content-Language: en-US
+To:     Yunfei Dong <yunfei.dong@mediatek.com>,
+        Alexandre Courbot <acourbot@chromium.org>,
+        Nicolas Dufresne <nicolas@ndufresne.ca>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Tiffany Lin <tiffany.lin@mediatek.com>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Tomasz Figa <tfiga@google.com>
+Cc:     George Sun <george.sun@mediatek.com>,
+        Xiaoyong Lu <xiaoyong.lu@mediatek.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Fritz Koenig <frkoenig@chromium.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Irui Wang <irui.wang@mediatek.com>,
+        Steve Cho <stevecho@chromium.org>, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20220426100828.13429-1-yunfei.dong@mediatek.com>
+From:   Hans Verkuil <hverkuil-cisco@xs4all.nl>
+In-Reply-To: <20220426100828.13429-1-yunfei.dong@mediatek.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-9.6 required=5.0 tests=BAYES_00,
+        HEADER_FROM_DIFFERENT_DOMAINS,NICE_REPLY_A,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Geert,
+Hi Yunfei,
 
-Thank you for the review.
+On 26/04/2022 12:08, Yunfei Dong wrote:
+> This series adds support for mt8192 h264/vp8/vp9 decoder drivers. Firstly, refactor
+> power/clock/interrupt interfaces for mt8192 is lat and core architecture.
+> 
+> Secondly, add new functions to get frame buffer size and resolution according
+> to decoder capability from scp side. Then add callback function to get/put
+> capture buffer in order to enable lat and core decoder in parallel, need to
+> adjust GStreamer at the same time. 
+> 
+> Then add to support MT21C compressed mode and fix v4l2-compliance fail.
+> 
+> Next, extract H264 request api driver to let mt8183 and mt8192 use the same
+> code, and adds mt8192 frame based h264 driver for stateless decoder.
+> 
+> Lastly, add vp8 and vp9 stateless decoder drivers.
+> 
+> Patches 1 refactor power/clock/interrupt interface.
+> Patches 2~4 get frame buffer size and resolution according to decoder capability.
+> Patches 5 set capture queue bytesused.
+> Patches 6 adjust GStreamer.
+> Patch 7~11 add to support MT21C compressed mode and fix v4l2-compliance fail.
+> patch 12 record capture queue format type.
+> Patch 13~14 extract h264 driver and add mt8192 frame based driver for h264 decoder.
+> Patch 15~16 add vp8 and vp9 stateless decoder drivers.
+> Patch 17 prevent kernel crash when rmmod mtk-vcodec-dec.ko
 
-On Thu, Apr 28, 2022 at 10:42 AM Geert Uytterhoeven
-<geert@linux-m68k.org> wrote:
->
-> Hi Prabhakar,
->
-> On Fri, Apr 22, 2022 at 12:12 AM Lad Prabhakar
-> <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
-> > Add a driver for the Renesas RZ/G2L Interrupt Controller.
-> >
-> > This supports external pins being used as interrupts. It supports
-> > one line for NMI, 8 external pins and 32 GPIO pins (out of 123)
-> > to be used as IRQ lines.
-> >
-> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->
-> Thanks for your patch!
->
-> > --- /dev/null
-> > +++ b/drivers/irqchip/irq-renesas-rzg2l.c
-> > @@ -0,0 +1,447 @@
-> > +// SPDX-License-Identifier: GPL-2.0
-> > +/*
-> > + * Renesas RZ/G2L IRQC Driver
-> > + *
-> > + * Copyright (C) 2022 Renesas Electronics Corporation.
-> > + *
-> > + * Author: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > + */
-> > +
-> > +#include <linux/clk.h>
-> > +#include <linux/err.h>
-> > +#include <linux/io.h>
-> > +#include <linux/irqchip.h>
-> > +#include <linux/irqdomain.h>
-> > +#include <linux/of_address.h>
-> > +#include <linux/reset.h>
-> > +#include <linux/spinlock.h>
-> > +
-> > +#define IRQC_IRQ_START                 1
-> > +#define IRQC_IRQ_COUNT                 8
-> > +#define IRQC_TINT_START                        9
->
-> = IRQC_IRQ_START + IRQC_IRQ_COUNT
->
-OK
+I'm getting loads of sparse and smatch warnings/errors:
 
-> > +#define IRQC_TINT_COUNT                        32
-> > +#define IRQC_NUM_IRQ                   41
->
-> = IRQC_TINT_START + IRQC_TINT_COUNT
->
-OK.
+SPARSE:/home/hans/work/build/media-git/drivers/media/platform/mediatek/vcodec/vdec/vdec_h264_req_common.c
+/home/hans/work/build/media-git/drivers/media/platform/mediatek/vcodec/vdec/vdec_h264_req_common.c:20:28: warning: incorrect type in argument 1 (different address spaces)
+SPARSE:/home/hans/work/build/media-git/drivers/media/platform/mediatek/vcodec/vdec/vdec_h264_req_common.c
+/home/hans/work/build/media-git/drivers/media/platform/mediatek/vcodec/vdec/vdec_h264_req_common.c:176:21: warning: incorrect type in argument 1 (different address spaces)
+SPARSE:/home/hans/work/build/media-git/drivers/media/platform/mediatek/vcodec/vdec/vdec_h264_req_common.c
+/home/hans/work/build/media-git/drivers/media/platform/mediatek/vcodec/vdec/vdec_h264_req_common.c:179:21: warning: incorrect type in argument 1 (different address spaces)
+SPARSE:/home/hans/work/build/media-git/drivers/media/platform/mediatek/vcodec/vdec/vdec_h264_req_multi_if.c
+/home/hans/work/build/media-git/drivers/media/platform/mediatek/vcodec/vdec/vdec_h264_req_multi_if.c:463:26: warning: incorrect type in argument 1 (different address spaces)
+SPARSE:/home/hans/work/build/media-git/drivers/media/platform/mediatek/vcodec/vdec/vdec_h264_req_multi_if.c
+/home/hans/work/build/media-git/drivers/media/platform/mediatek/vcodec/vdec/vdec_h264_req_multi_if.c:647:60: warning: incorrect type in argument 2 (different address spaces)
+SPARSE:/home/hans/work/build/media-git/drivers/media/platform/mediatek/vcodec/vdec/vdec_h264_req_multi_if.c
+/home/hans/work/build/media-git/drivers/media/platform/mediatek/vcodec/vdec/vdec_h264_req_multi_if.c:723:30: warning: incorrect type in argument 1 (different address spaces)
+SPARSE:/home/hans/work/build/media-git/drivers/media/platform/mediatek/vcodec/vdec/vdec_h264_req_multi_if.c
+/home/hans/work/build/media-git/drivers/media/platform/mediatek/vcodec/vdec/vdec_h264_req_multi_if.c:740:48: warning: incorrect type in argument 2 (different address spaces)
+SPARSE:/home/hans/work/build/media-git/drivers/media/platform/mediatek/vcodec/vdec/vdec_vp9_req_lat_if.c
+/home/hans/work/build/media-git/drivers/media/platform/mediatek/vcodec/vdec/vdec_vp9_req_lat_if.c:1995:44: warning: incorrect type in argument 2 (different address spaces)
+SPARSE:/home/hans/work/build/media-git/drivers/media/platform/mediatek/vcodec/vdec/vdec_vp9_req_lat_if.c
+/home/hans/work/build/media-git/drivers/media/platform/mediatek/vcodec/vdec/vdec_vp9_req_lat_if.c:532:34: warning: incorrect type in argument 2 (different address spaces)
+SPARSE:/home/hans/work/build/media-git/drivers/media/platform/mediatek/vcodec/vdec/vdec_vp9_req_lat_if.c
+/home/hans/work/build/media-git/drivers/media/platform/mediatek/vcodec/vdec/vdec_vp9_req_lat_if.c:673:40: warning: incorrect type in argument 2 (different address spaces)
+SPARSE:/home/hans/work/build/media-git/drivers/media/platform/mediatek/vcodec/vdec/vdec_vp9_req_lat_if.c
+/home/hans/work/build/media-git/drivers/media/platform/mediatek/vcodec/vdec/vdec_vp9_req_lat_if.c:674:48: warning: incorrect type in argument 2 (different address spaces)
+SPARSE:/home/hans/work/build/media-git/drivers/media/platform/mediatek/vcodec/vdec/vdec_vp9_req_lat_if.c
+/home/hans/work/build/media-git/drivers/media/platform/mediatek/vcodec/vdec/vdec_vp9_req_lat_if.c:675:45: warning: incorrect type in argument 2 (different address spaces)
+SPARSE:/home/hans/work/build/media-git/drivers/media/platform/mediatek/vcodec/vdec/vdec_vp9_req_lat_if.c
+/home/hans/work/build/media-git/drivers/media/platform/mediatek/vcodec/vdec/vdec_vp9_req_lat_if.c:678:37: warning: incorrect type in argument 2 (different address spaces)
+SPARSE:/home/hans/work/build/media-git/drivers/media/platform/mediatek/vcodec/vdec/vdec_vp9_req_lat_if.c
+/home/hans/work/build/media-git/drivers/media/platform/mediatek/vcodec/vdec/vdec_vp9_req_lat_if.c:684:21: warning: incorrect type in argument 1 (different address spaces)
+SPARSE:/home/hans/work/build/media-git/drivers/media/platform/mediatek/vcodec/vdec/vdec_vp9_req_lat_if.c
+/home/hans/work/build/media-git/drivers/media/platform/mediatek/vcodec/vdec/vdec_vp9_req_lat_if.c:1912:45: warning: Using plain integer as NULL pointer
+SPARSE:/home/hans/work/build/media-git/drivers/media/platform/mediatek/vcodec/vdec/vdec_vp9_req_lat_if.c
+/home/hans/work/build/media-git/drivers/media/platform/mediatek/vcodec/vdec/vdec_vp9_req_lat_if.c:1924:44: warning: incorrect type in argument 2 (different address spaces)
 
-> Should these be in a DT binding header file?
->
-> Combining all types into a single linear number space makes it hard
-> to extend the range, when reusing for an SoC that supports more
-> interrupt sources.
->
-Or  DT data maybe?
 
-> > +static void rzg2l_irq_eoi(struct irq_data *d)
-> > +{
-> > +       struct rzg2l_irqc_priv *priv = irq_data_to_priv(d);
-> > +       unsigned int hw_irq = irqd_to_hwirq(d) - IRQC_IRQ_START;
-> > +       u16 bit = BIT(hw_irq);
->
-> I guess you can just use u32?
->
-OK, will do
+smatch: ERRORS
+/home/hans/work/build/media-git/drivers/media/platform/mediatek/vcodec/vdec/vdec_vp9_req_lat_if.c:
+/home/hans/work/build/media-git/drivers/media/platform/mediatek/vcodec/vdec/vdec_vp9_req_lat_if.c:1192 vdec_vp9_slice_map_counts_eob_coef() error: buffer overflow 'counts->coef_probs[i][j][k]->band_0'
+3 <= 5
+/home/hans/work/build/media-git/drivers/media/platform/mediatek/vcodec/vdec/vdec_vp9_req_lat_if.c:
+/home/hans/work/build/media-git/drivers/media/platform/mediatek/vcodec/vdec/vdec_vp9_req_lat_if.c:1194 vdec_vp9_slice_map_counts_eob_coef() error: buffer overflow 'counts->eob_branch[i][j][k]->band_0'
+3 <= 5
+/home/hans/work/build/media-git/drivers/media/platform/mediatek/vcodec/vdec/vdec_vp9_req_lat_if.c:
+/home/hans/work/build/media-git/drivers/media/platform/mediatek/vcodec/vdec/vdec_vp9_req_lat_if.c:1196 vdec_vp9_slice_map_counts_eob_coef() error: buffer overflow 'counts->coef_probs[i][j][k]->band_0'
+3 <= 5
+/home/hans/work/build/media-git/drivers/media/platform/mediatek/vcodec/vdec/vdec_vp9_req_lat_if.c:
+/home/hans/work/build/media-git/drivers/media/platform/mediatek/vcodec/vdec/vdec_vp9_req_lat_if.c:2018 vdec_vp9_slice_core_decode() error: we previously assumed 'pfc' could be null (see line 1963)
+/home/hans/work/build/media-git/drivers/media/platform/mediatek/vcodec/vdec/vdec_h264_req_multi_if.c:
+/home/hans/work/build/media-git/drivers/media/platform/mediatek/vcodec/vdec/vdec_h264_req_multi_if.c:700 vdec_h264_slice_single_decode() warn: unsigned 'nal_start_idx' is never less than zero.
 
-> > +       u32 reg;
-> > +
-> > +       reg = readl_relaxed(priv->base + ISCR);
-> > +       if (reg & bit)
-> > +               writel_relaxed(GENMASK(IRQC_IRQ_COUNT - 1, 0) & ~bit,
->
-> As writes to the unused upper bits are ignored, you can drop the
-> masking with GENMASK(IRQC_IRQ_COUNT - 1, 0), and be prepared for more
-> interrupt sources.
->
-Agreed.
+And also one compile warning when compiling on a 32 bit platform (i.e. arm or i686):
 
-> > +                              priv->base + ISCR);
-> > +}
-> > +
-> > +static void rzg2l_tint_eoi(struct irq_data *d)
-> > +{
-> > +       struct rzg2l_irqc_priv *priv = irq_data_to_priv(d);
-> > +       unsigned int hw_irq = irqd_to_hwirq(d);
->
-> "irqd_to_hwirq(d) - IRQC_TINT_START", for symmetry with
-> rzg2l_irq_eoi()?
->
-OK.
+In file included from /home/hans/work/build/media-git/include/linux/kernel.h:29,
+                 from /home/hans/work/build/media-git/include/linux/cpumask.h:10,
+                 from /home/hans/work/build/media-git/include/linux/mm_types_task.h:14,
+                 from /home/hans/work/build/media-git/include/linux/mm_types.h:5,
+                 from /home/hans/work/build/media-git/include/linux/buildid.h:5,
+                 from /home/hans/work/build/media-git/include/linux/module.h:14,
+                 from /home/hans/work/build/media-git/drivers/media/platform/mediatek/vcodec/vdec/vdec_h264_req_multi_if.c:7:
+/home/hans/work/build/media-git/drivers/media/platform/mediatek/vcodec/vdec/vdec_h264_req_multi_if.c: In function 'vdec_h264_slice_single_decode':
+/home/hans/work/build/media-git/drivers/media/platform/mediatek/vcodec/vdec/vdec_h264_req_multi_if.c:684:76: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+  684 |                          inst->ctx->decoded_frame_cnt, y_fb_dma, c_fb_dma, (u64)fb);
+      |                                                                            ^
+/home/hans/work/build/media-git/include/linux/printk.h:418:33: note: in definition of macro 'printk_index_wrap'
+  418 |                 _p_func(_fmt, ##__VA_ARGS__);                           \
+      |                                 ^~~~~~~~~~~
+/home/hans/work/build/media-git/include/linux/printk.h:132:17: note: in expansion of macro 'printk'
+  132 |                 printk(fmt, ##__VA_ARGS__);             \
+      |                 ^~~~~~
+/home/hans/work/build/media-git/include/linux/printk.h:576:9: note: in expansion of macro 'no_printk'
+  576 |         no_printk(KERN_DEBUG pr_fmt(fmt), ##__VA_ARGS__)
+      |         ^~~~~~~~~
+/home/hans/work/build/media-git/drivers/media/platform/mediatek/vcodec/vdec/../mtk_vcodec_util.h:45:9: note: in expansion of macro 'pr_debug'
+   45 |         pr_debug("[MTK_VCODEC][%d]: " fmt "\n",                 \
+      |         ^~~~~~~~
+/home/hans/work/build/media-git/drivers/media/platform/mediatek/vcodec/vdec/vdec_h264_req_multi_if.c:683:9: note: in expansion of macro 'mtk_vcodec_debug'
+  683 |         mtk_vcodec_debug(inst, "+ [%d] FB y_dma=%llx c_dma=%llx va=0x%llx",
+      |         ^~~~~~~~~~~~~~~~
 
-> > +       u32 bit = BIT(hw_irq - IRQC_TINT_START);
-> > +       u32 reg;
-> > +
-> > +       reg = readl_relaxed(priv->base + TSCR);
-> > +       if (reg & bit)
-> > +               writel_relaxed(GENMASK(IRQC_TINT_COUNT - 1, 0) & ~bit,
->
-> Drop the masking with all-ones?
->
-You mean instead of a mask just use the reg instead?
+Regards,
 
-Cheers,
-Prabhakar
+	Hans
 
-> > +                              priv->base + TSCR);
-> > +}
->
-> Gr{oetje,eeting}s,
->
->                         Geert
->
-> --
-> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
->
-> In personal conversations with technical people, I call myself a hacker. But
-> when I'm talking to journalists I just say "programmer" or something like that.
->                                 -- Linus Torvalds
+> ---
+> changes compared with v9:
+> - fix kernel robot build fail for patch 16
+> changes compared with v8:
+> - fix vp9 build error
+> - fix kernel-doc fail
+> changes compared with v7:
+> - adjust GStreamer, separate src buffer done with v4l2_ctrl_request_complete for patch 6.
+> - remove v4l2_m2m_set_dst_buffered.
+> - add new patch to set each plane bytesused in buf prepare for patch 5.
+> - using upstream interface to update vp9 prob tables for patch 16.
+> - fix maintainer comments.
+> - test the driver with chrome VD and GStreamer(H264/VP9/VP8/AV1).
+> changes compared with v6:
+> - rebase to the latest media stage and fix conficts
+> - fix memcpy to memcpy_fromio or memcpy_toio
+> - fix h264 crash when test field bitstream
+> changes compared with v5:
+> - fix vp9 comments for patch 15
+> - fix vp8 comments for patch 14.
+> - fix comments for patch 12.
+> - fix build errors.
+> changes compared with v4:
+> - fix checkpatch.pl fail.
+> - fix kernel-doc fail.
+> - rebase to the latest media codec driver.
+> changes compared with v3:
+> - remove enum mtk_chip for patch 2.
+> - add vp8 stateless decoder drivers for patch 14.
+> - add vp9 stateless decoder drivers for patch 15.
+> changes compared with v2:
+> - add new patch 11 to record capture queue format type.
+> - separate patch 4 according to tzung-bi's suggestion.
+> - re-write commit message for patch 5 according to tzung-bi's suggestion.
+> changes compared with v1:
+> - rewrite commit message for patch 12.
+> - rewrite cover-letter message.
+> ---
+> Yunfei Dong (17):
+>   media: mediatek: vcodec: Add vdec enable/disable hardware helpers
+>   media: mediatek: vcodec: Using firmware type to separate different
+>     firmware architecture
+>   media: mediatek: vcodec: get capture queue buffer size from scp
+>   media: mediatek: vcodec: Read max resolution from dec_capability
+>   media: mediatek: vcodec: set each plane bytesused in buf prepare
+>   media: mediatek: vcodec: Refactor get and put capture buffer flow
+>   media: mediatek: vcodec: Refactor supported vdec formats and
+>     framesizes
+>   media: mediatek: vcodec: Getting supported decoder format types
+>   media: mediatek: vcodec: Add format to support MT21C
+>   media: mediatek: vcodec: disable vp8 4K capability
+>   media: mediatek: vcodec: Fix v4l2-compliance fail
+>   media: mediatek: vcodec: record capture queue format type
+>   media: mediatek: vcodec: Extract H264 common code
+>   media: mediatek: vcodec: support stateless H.264 decoding for mt8192
+>   media: mediatek: vcodec: support stateless VP8 decoding
+>   media: mediatek: vcodec: support stateless VP9 decoding
+>   media: mediatek: vcodec: prevent kernel crash when rmmod
+>     mtk-vcodec-dec.ko
+> 
+>  .../media/platform/mediatek/vcodec/Makefile   |    4 +
+>  .../platform/mediatek/vcodec/mtk_vcodec_dec.c |   62 +-
+>  .../mediatek/vcodec/mtk_vcodec_dec_drv.c      |    8 +-
+>  .../mediatek/vcodec/mtk_vcodec_dec_pm.c       |  166 +-
+>  .../mediatek/vcodec/mtk_vcodec_dec_pm.h       |    6 +-
+>  .../mediatek/vcodec/mtk_vcodec_dec_stateful.c |   19 +-
+>  .../vcodec/mtk_vcodec_dec_stateless.c         |  257 ++-
+>  .../platform/mediatek/vcodec/mtk_vcodec_drv.h |   41 +-
+>  .../mediatek/vcodec/mtk_vcodec_enc_drv.c      |    5 -
+>  .../platform/mediatek/vcodec/mtk_vcodec_fw.c  |    6 +
+>  .../platform/mediatek/vcodec/mtk_vcodec_fw.h  |    1 +
+>  .../vcodec/vdec/vdec_h264_req_common.c        |  310 +++
+>  .../vcodec/vdec/vdec_h264_req_common.h        |  274 +++
+>  .../mediatek/vcodec/vdec/vdec_h264_req_if.c   |  438 +---
+>  .../vcodec/vdec/vdec_h264_req_multi_if.c      |  626 +++++
+>  .../mediatek/vcodec/vdec/vdec_vp8_req_if.c    |  437 ++++
+>  .../vcodec/vdec/vdec_vp9_req_lat_if.c         | 2031 +++++++++++++++++
+>  .../platform/mediatek/vcodec/vdec_drv_if.c    |   37 +-
+>  .../platform/mediatek/vcodec/vdec_drv_if.h    |    3 +
+>  .../platform/mediatek/vcodec/vdec_ipi_msg.h   |   36 +
+>  .../platform/mediatek/vcodec/vdec_msg_queue.c |    2 +
+>  .../platform/mediatek/vcodec/vdec_msg_queue.h |    2 +
+>  .../platform/mediatek/vcodec/vdec_vpu_if.c    |   53 +-
+>  .../platform/mediatek/vcodec/vdec_vpu_if.h    |   15 +
+>  .../platform/mediatek/vcodec/venc_vpu_if.c    |    2 +-
+>  include/linux/remoteproc/mtk_scp.h            |    2 +
+>  26 files changed, 4242 insertions(+), 601 deletions(-)
+>  create mode 100644 drivers/media/platform/mediatek/vcodec/vdec/vdec_h264_req_common.c
+>  create mode 100644 drivers/media/platform/mediatek/vcodec/vdec/vdec_h264_req_common.h
+>  create mode 100644 drivers/media/platform/mediatek/vcodec/vdec/vdec_h264_req_multi_if.c
+>  create mode 100644 drivers/media/platform/mediatek/vcodec/vdec/vdec_vp8_req_if.c
+>  create mode 100644 drivers/media/platform/mediatek/vcodec/vdec/vdec_vp9_req_lat_if.c
+> 
+
