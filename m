@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 02C3E5157F9
-	for <lists+devicetree@lfdr.de>; Sat, 30 Apr 2022 00:09:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D81915157FF
+	for <lists+devicetree@lfdr.de>; Sat, 30 Apr 2022 00:09:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1381297AbiD2WMV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S1381307AbiD2WMV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Fri, 29 Apr 2022 18:12:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53302 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53430 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1381301AbiD2WMP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Apr 2022 18:12:15 -0400
-Received: from mail-pg1-x52d.google.com (mail-pg1-x52d.google.com [IPv6:2607:f8b0:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30A84DC5B8
-        for <devicetree@vger.kernel.org>; Fri, 29 Apr 2022 15:08:56 -0700 (PDT)
-Received: by mail-pg1-x52d.google.com with SMTP id 15so7483028pgf.4
-        for <devicetree@vger.kernel.org>; Fri, 29 Apr 2022 15:08:56 -0700 (PDT)
+        with ESMTP id S1381309AbiD2WMU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Apr 2022 18:12:20 -0400
+Received: from mail-pj1-x102c.google.com (mail-pj1-x102c.google.com [IPv6:2607:f8b0:4864:20::102c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C9E3DCA8B
+        for <devicetree@vger.kernel.org>; Fri, 29 Apr 2022 15:09:00 -0700 (PDT)
+Received: by mail-pj1-x102c.google.com with SMTP id t11-20020a17090ad50b00b001d95bf21996so11660728pju.2
+        for <devicetree@vger.kernel.org>; Fri, 29 Apr 2022 15:09:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=fn2AqSrDktu9onw+xJqRpycXOFpgfT+y+eBhGZX0B1o=;
-        b=IG945+9+87GJjDBoc4SK4z5/C0j/QS5H4YBj4P1yoXFP0zgLq/lZzMNjdYh5V4iqxV
-         YKSRRRaShZc1KM7plw6uKeakwfRPBgK4itHafkGR6kqLPKJQXypuw3bn/S0VeyycjrAU
-         vm2KkWl1+12CqUSEWn6ZC0s1zCNhBfB/YsFfCw9s33n1b0C9PohMLRP+rQd+OGHbqHex
-         rju/o7My9FjLJyeKKE4osyZIyFfNazqUWF2nW2j8Cuv121KbSykKVs609IQIyWsVeHkL
-         BOpI5qMmiDMlTkQz81Ulhissqg+aeCOXC5C9P3IZOG3iHPM7G+rB5kUZVNgTz+zMGS9W
-         TsQQ==
+        bh=MoViicfii9p6utWoae7ElSIZUS07VgE/0ju82SmR24M=;
+        b=k7HcWctvtlxZkalvnAZe0Z5u5NOvNI94X3lEw6NY1VMBjEzPyVc1CrHbTxTLGTkZrE
+         SrzihBdRRB441L87xO29eXdylrY5XRz9RfsoK7jc97uXxY3sZ++1ES/lN5qsMvbYBnWT
+         AZAjM5U+7f70eK/wKjZhIagWjQkF53uolMKAKWuTe80FQ/1c+z2fuDR2/bWu7hecXeKU
+         48A96M2TMQcjDl5drYDR5a14TtAN0oP8Pwmri/Ue5JxDhXNIezxWgdhILbMt5c9SIG6q
+         jTnyMCuYWg6yB4XKGsAyxnaeCTepcpz0EDLZrc0TwQOWbk2qWhSaiZIcli85i4P5S1MV
+         9iEA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=fn2AqSrDktu9onw+xJqRpycXOFpgfT+y+eBhGZX0B1o=;
-        b=querJPlTPHrRVuo6CzQJtFaWczrIO67zkseQ1c3cIV0l1OznMrueNg5lsZ0BBmJ5S9
-         7AHuS/2/OIaLS0LNGnYVhCOUIWfufLOQ38w3qo/aBjK+kJZUQn/i3IHfZXQ4N1RQPIjL
-         X/l89YGU+/bi24jEOz55vWYh3nm+sEmEQsS+zjaf36/IioEQ9gulrkgVllV+oRbttSbh
-         nDTFCroB9n42wGo1PPJbOtRI3F/LkEeXUBhyza0N4ykwg8tdLgnj4Fofk0TG+eW7APwx
-         Auvbo2W42flQEEUf+SU163KDl9kyN30ZzmCcuLizTnjKkREMhIgK/x96LseqdsFts6AN
-         k7jA==
-X-Gm-Message-State: AOAM533AI7tebANLvUZsMxTOF+4kx0GYBXI2I6wnmAvPis+cAONTaDU4
-        t3K9zI/OzK3ePo6Z9AqcncL34w==
-X-Google-Smtp-Source: ABdhPJzi6qLlidSSflnORETma01551eA6GrtpzUGwF3DC2DSxAkAeUnnYNlERW0/1Ch9Gkfe0tbO4g==
-X-Received: by 2002:a63:1918:0:b0:3ab:8c08:6774 with SMTP id z24-20020a631918000000b003ab8c086774mr1052886pgl.226.1651270135669;
-        Fri, 29 Apr 2022 15:08:55 -0700 (PDT)
+        bh=MoViicfii9p6utWoae7ElSIZUS07VgE/0ju82SmR24M=;
+        b=iUchtjGmdA29FwR7MirKNQqLdZs2cNVD/oXGjQYAkeFVfE1O6lrPHS9Rk7I8qR/osl
+         BlR0Cvtb6BIpKv4TzY6/EAkFbKqQTxu2CwClyWTVRfbEsyFnZWcOOrZA2CLSA43AqkgF
+         /OrBAMULyR4Bx0BiHbRsedu4BKpMfMrq8yrdhfWVhsQsmiFjHIfkQ183+yozmDk3wder
+         /GZLC4ChpF6YlPRQ74eGkSWzDqO/a4emj4oqErlmBANxhy2PdisdUXhxBeVKLHVTa7hd
+         eSG3rV0crKMAFUTwzJNYWEa1Ulti4OmieUwet4uLVg/lpCOwQxrChH3MIDeAsjIbfkHD
+         vN9A==
+X-Gm-Message-State: AOAM5310A5gD0c1eoGly6mwqvwZ9stLANulhLJttMlhSwEnPyHLTkvke
+        /sDeHbGY/zXngMEEYXQXjShtNQ==
+X-Google-Smtp-Source: ABdhPJxZ+EEi2RSJizGrNsZtppHOgq1GzCFOC9SGroJ2295J2M1o09ttfhXrciO0rwIXevRIfOUwBA==
+X-Received: by 2002:a17:902:e743:b0:15e:8ddd:c7bd with SMTP id p3-20020a170902e74300b0015e8dddc7bdmr126045plf.128.1651270139817;
+        Fri, 29 Apr 2022 15:08:59 -0700 (PDT)
 Received: from localhost.localdomain ([223.233.64.97])
-        by smtp.gmail.com with ESMTPSA id n21-20020aa78a55000000b0050dc76281c2sm170020pfa.156.2022.04.29.15.08.51
+        by smtp.gmail.com with ESMTPSA id n21-20020aa78a55000000b0050dc76281c2sm170020pfa.156.2022.04.29.15.08.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 29 Apr 2022 15:08:55 -0700 (PDT)
+        Fri, 29 Apr 2022 15:08:59 -0700 (PDT)
 From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
 To:     linux-mmc@vger.kernel.org
 Cc:     bhupesh.sharma@linaro.org, bhupesh.linux@gmail.com,
@@ -54,9 +54,9 @@ Cc:     bhupesh.sharma@linaro.org, bhupesh.linux@gmail.com,
         linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
         robh+dt@kernel.org, bjorn.andersson@linaro.org,
         ulf.hansson@linaro.org, robh@kernel.org
-Subject: [PATCH 2/4] mmc: host/sdhci-msm: Add SoC specific compatibles
-Date:   Sat, 30 Apr 2022 03:38:31 +0530
-Message-Id: <20220429220833.873672-3-bhupesh.sharma@linaro.org>
+Subject: [PATCH 3/4] dt-bindings: mmc: sdhci-msm: Add compatible string for sm8150
+Date:   Sat, 30 Apr 2022 03:38:32 +0530
+Message-Id: <20220429220833.873672-4-bhupesh.sharma@linaro.org>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20220429220833.873672-1-bhupesh.sharma@linaro.org>
 References: <20220429220833.873672-1-bhupesh.sharma@linaro.org>
@@ -64,62 +64,37 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Since Qualcomm device-trees already use SoC specific compatibles
-for describing the 'sdhci-msm' nodes, it makes sense to add the support
-for the same in the driver as well.
-
-Keep the old deprecated compatible strings still in the driver,
-to ensure backward compatibility with older device-trees.
+Add sm8150 SoC specific compatible strings for qcom-sdhci
+controller.
 
 Cc: Ulf Hansson <ulf.hansson@linaro.org>
+Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc: Rob Herring <robh@kernel.org>
 Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
 ---
- drivers/mmc/host/sdhci-msm.c | 23 +++++++++++++++++++++++
- 1 file changed, 23 insertions(+)
+ Documentation/devicetree/bindings/mmc/sdhci-msm.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/mmc/host/sdhci-msm.c b/drivers/mmc/host/sdhci-msm.c
-index 50c71e0ba5e4..2de8d115a37a 100644
---- a/drivers/mmc/host/sdhci-msm.c
-+++ b/drivers/mmc/host/sdhci-msm.c
-@@ -2434,8 +2434,31 @@ static const struct sdhci_msm_variant_info sdm845_sdhci_var = {
- };
- 
- static const struct of_device_id sdhci_msm_dt_match[] = {
-+	 /* Following two entries are deprecated (kept only for backward compatibility) */
- 	{.compatible = "qcom,sdhci-msm-v4", .data = &sdhci_msm_mci_var},
- 	{.compatible = "qcom,sdhci-msm-v5", .data = &sdhci_msm_v5_var},
-+	/* Add entries for sdcc versions less than 5.0 here */
-+	{.compatible = "qcom,apq8084-sdhci", .data = &sdhci_msm_mci_var},
-+	{.compatible = "qcom,msm8226-sdhci", .data = &sdhci_msm_mci_var},
-+	{.compatible = "qcom,msm8916-sdhci", .data = &sdhci_msm_mci_var},
-+	{.compatible = "qcom,msm8953-sdhci", .data = &sdhci_msm_mci_var},
-+	{.compatible = "qcom,msm8974-sdhci", .data = &sdhci_msm_mci_var},
-+	{.compatible = "qcom,msm8992-sdhci", .data = &sdhci_msm_mci_var},
-+	{.compatible = "qcom,msm8994-sdhci", .data = &sdhci_msm_mci_var},
-+	{.compatible = "qcom,msm8996-sdhci", .data = &sdhci_msm_mci_var},
-+	/*
-+	 * Add entries for sdcc version 5.0 here. For SDCC version 5.0.0,
-+	 * MCI registers are removed from SDCC interface and some registers
-+	 * are moved to HC.
-+	 */
-+	{.compatible = "qcom,qcs404-sdhci", .data = &sdhci_msm_v5_var},
-+	{.compatible = "qcom,sdx55-sdhci",  .data = &sdhci_msm_v5_var},
-+	{.compatible = "qcom,sdm630-sdhci", .data = &sdhci_msm_v5_var},
-+	{.compatible = "qcom,sm6125-sdhci", .data = &sdhci_msm_v5_var},
-+	{.compatible = "qcom,sm6350-sdhci", .data = &sdhci_msm_v5_var},
-+	{.compatible = "qcom,sm8250-sdhci", .data = &sdhci_msm_v5_var},
-+	{.compatible = "qcom,sc7280-sdhci", .data = &sdhci_msm_v5_var},
-+	/* Add entries where soc specific handling is required, here */
- 	{.compatible = "qcom,sdm845-sdhci", .data = &sdm845_sdhci_var},
- 	{.compatible = "qcom,sc7180-sdhci", .data = &sdm845_sdhci_var},
- 	{},
+diff --git a/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml b/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
+index c33f173e3b6c..4eb213b3e551 100644
+--- a/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
++++ b/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
+@@ -35,6 +35,7 @@ properties:
+               - qcom,sdx55-sdhci
+               - qcom,sm6125-sdhci
+               - qcom,sm6350-sdhci
++              - qcom,sm8150-sdhci
+               - qcom,sm8250-sdhci
+           - enum:
+               - qcom,sdhci-msm-v4 # for sdcc versions less than 5.0
 -- 
 2.35.1
 
