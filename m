@@ -2,91 +2,189 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A80A51411C
-	for <lists+devicetree@lfdr.de>; Fri, 29 Apr 2022 05:50:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A2D01514133
+	for <lists+devicetree@lfdr.de>; Fri, 29 Apr 2022 06:10:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235908AbiD2Dxs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Apr 2022 23:53:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55972 "EHLO
+        id S236977AbiD2ENo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Apr 2022 00:13:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46090 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235455AbiD2Dxr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 23:53:47 -0400
-X-Greylist: delayed 231 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 28 Apr 2022 20:50:26 PDT
-Received: from mg.sunplus.com (unknown [113.196.136.146])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 88C60B646B;
-        Thu, 28 Apr 2022 20:50:23 -0700 (PDT)
-X-MailGates: (compute_score:DELIVER,40,3)
-Received: from 172.17.9.202
-        by mg02.sunplus.com with MailGates ESMTP Server V5.0(12344:0:AUTH_RELAY)
-        (envelope-from <wells.lu@sunplus.com>); Fri, 29 Apr 2022 11:46:12 +0800 (CST)
-Received: from sphcmbx02.sunplus.com.tw (172.17.9.112) by
- sphcmbx01.sunplus.com.tw (172.17.9.202) with Microsoft SMTP Server (TLS) id
- 15.0.1497.26; Fri, 29 Apr 2022 11:46:06 +0800
-Received: from sphcmbx02.sunplus.com.tw ([fe80::fd3d:ad1a:de2a:18bd]) by
- sphcmbx02.sunplus.com.tw ([fe80::fd3d:ad1a:de2a:18bd%14]) with mapi id
- 15.00.1497.026; Fri, 29 Apr 2022 11:46:06 +0800
-From:   =?utf-8?B?V2VsbHMgTHUg5ZGC6Iqz6aiw?= <wells.lu@sunplus.com>
-To:     Francois Romieu <romieu@fr.zoreil.com>
-CC:     Wells Lu <wellslutw@gmail.com>,
-        "davem@davemloft.net" <davem@davemloft.net>,
-        "kuba@kernel.org" <kuba@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "pabeni@redhat.com" <pabeni@redhat.com>,
-        "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-        "roopa@nvidia.com" <roopa@nvidia.com>,
-        "andrew@lunn.ch" <andrew@lunn.ch>,
-        "edumazet@google.com" <edumazet@google.com>
-Subject: RE: [PATCH net-next v9 2/2] net: ethernet: Add driver for Sunplus
- SP7021
-Thread-Topic: [PATCH net-next v9 2/2] net: ethernet: Add driver for Sunplus
- SP7021
-Thread-Index: AQHYWI+jS4JtiaXpFUyrVgs1l1MK560CSWcAgALotYCAACZzAIAA50mg
-Date:   Fri, 29 Apr 2022 03:46:06 +0000
-Message-ID: <c9f1c79f056c4982b6f425a3c3fdcfcd@sphcmbx02.sunplus.com.tw>
-References: <1650882640-7106-1-git-send-email-wellslutw@gmail.com>
- <1650882640-7106-3-git-send-email-wellslutw@gmail.com>
- <Ymh3si+MTg5i0Bnl@electric-eye.fr.zoreil.com>
- <ff2077684c4c45fca929a8f61447242b@sphcmbx02.sunplus.com.tw>
- <YmsIqDPjvZKbbKov@electric-eye.fr.zoreil.com>
-In-Reply-To: <YmsIqDPjvZKbbKov@electric-eye.fr.zoreil.com>
-Accept-Language: zh-TW, en-US
-Content-Language: zh-TW
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [172.25.108.39]
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        with ESMTP id S230133AbiD2ENn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Apr 2022 00:13:43 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F038227B0C;
+        Thu, 28 Apr 2022 21:10:19 -0700 (PDT)
+X-UUID: 97af7ee49a79401f98805bc78b2b5ada-20220429
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.4,REQID:39e446d9-861c-4177-a517-198e241cf7fd,OB:0,LO
+        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
+        ON:release,TS:0
+X-CID-META: VersionHash:faefae9,CLOUDID:7eb2e8c6-85ee-4ac1-ac05-bd3f1e72e732,C
+        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,File:nil,QS:0,BEC:nil
+X-UUID: 97af7ee49a79401f98805bc78b2b5ada-20220429
+Received: from mtkmbs11n2.mediatek.inc [(172.21.101.187)] by mailgw02.mediatek.com
+        (envelope-from <jason-jh.lin@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 1756898602; Fri, 29 Apr 2022 12:10:14 +0800
+Received: from mtkmbs07n1.mediatek.inc (172.21.101.16) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Fri, 29 Apr 2022 12:10:13 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Fri, 29 Apr 2022 12:10:13 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Fri, 29 Apr 2022 12:10:13 +0800
+Message-ID: <60338c26047f47c77fdc7d4eff6a7dee43853e1b.camel@mediatek.com>
+Subject: Re: [PATCH] dt-bindings: arm: mediatek: mmsys: refine power and gce
+ properties
+From:   Jason-JH Lin <jason-jh.lin@mediatek.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+CC:     Fabien Parent <fparent@baylibre.com>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>, CK Hu <ck.hu@mediatek.com>,
+        Rex-BC Chen <rex-bc.chen@mediatek.com>,
+        Nancy Lin <nancy.lin@mediatek.com>,
+        Singo Chang <singo.chang@mediatek.com>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Date:   Fri, 29 Apr 2022 12:10:13 +0800
+In-Reply-To: <b7bb228f-751c-e7ad-a695-3dc40d889a72@linaro.org>
+References: <20220428012715.2619-1-jason-jh.lin@mediatek.com>
+         <b7bb228f-751c-e7ad-a695-3dc40d889a72@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgRnJhbmNvaXMsDQoNCg0KPiBbLi4uXQ0KPiA+IEkgd2lsbCBhZGQgZGlzYWJsZV9pcnEoKSBh
-bmQgZW5hYmxlX2lycSgpIGZvciBzcGwyc3dfcnhfcG9sbCgpIGFuZCBzcGwyc3dfdHhfcG9sbCgp
-DQo+IGFzIHNob3duIGJlbG93Og0KPiA+DQo+ID4gc3BsMnN3X3J4X3BvbGwoKToNCj4gPg0KPiA+
-IAl3bWIoKTsJLyogbWFrZSBzdXJlIHNldHRpbmdzIGFyZSBlZmZlY3RpdmUuICovDQo+ID4gCWRp
-c2FibGVfaXJxKGNvbW0tPmlycSk7DQo+ID4gCW1hc2sgPSByZWFkbChjb21tLT5sMnN3X3JlZ19i
-YXNlICsgTDJTV19TV19JTlRfTUFTS18wKTsNCj4gPiAJbWFzayAmPSB+TUFDX0lOVF9SWDsNCj4g
-PiAJd3JpdGVsKG1hc2ssIGNvbW0tPmwyc3dfcmVnX2Jhc2UgKyBMMlNXX1NXX0lOVF9NQVNLXzAp
-Ow0KPiA+IAllbmFibGVfaXJxKGNvbW0tPmlycSk7DQo+ID4NCj4gPiBzcGwyc3dfdHhfcG9sbCgp
-Og0KPiA+DQo+ID4gCXdtYigpOwkJCS8qIG1ha2Ugc3VyZSBzZXR0aW5ncyBhcmUgZWZmZWN0aXZl
-LiAqLw0KPiA+IAlkaXNhYmxlX2lycShjb21tLT5pcnEpOw0KPiA+IAltYXNrID0gcmVhZGwoY29t
-bS0+bDJzd19yZWdfYmFzZSArIEwyU1dfU1dfSU5UX01BU0tfMCk7DQo+ID4gCW1hc2sgJj0gfk1B
-Q19JTlRfVFg7DQo+ID4gCXdyaXRlbChtYXNrLCBjb21tLT5sMnN3X3JlZ19iYXNlICsgTDJTV19T
-V19JTlRfTUFTS18wKTsNCj4gPiAJZW5hYmxlX2lycShjb21tLT5pcnEpOw0KPiA+DQo+ID4NCj4g
-PiBJcyB0aGUgbW9kaWZpY2F0aW9uIG9rPw0KPiANCj4gZGlzYWJsZV9pcnEgcHJldmVudHMgZnV0
-dXJlIGlycSBwcm9jZXNzaW5nIGJ1dCBpdCBkb2VzIG5vdCBoZWxwIGFnYWluc3QgaXJxIGNvZGUg
-Y3VycmVudGx5DQo+IHJ1bm5pbmcgb24gYSBkaWZmZXJlbnQgY3B1Lg0KPiANCj4gWW91IG1heSB1
-c2UgcGxhaW4gc3Bpbl97bG9jayAvIHVubG9ja30gaW4gSVJRIGNvbnRleHQgYW5kIHNwaW5fe2xv
-cV9pcnFzYXZlIC8gaXJxX3Jlc3RvcmV9DQo+IGluIE5BUEkgY29udGV4dC4NCj4gDQo+IC0tDQo+
-IFVlaW1vcg0KDQpUaGFuayB5b3UgZm9yIHRlYWNoaW5nIG1lIGhvdyB0byBmaXggdGhlIGlzc3Vl
-Lg0KSSdsbCBhZGQgdGhlbSBuZXh0IHBhdGNoLg0KDQoNCkJlc3QgcmVnYXJkcywNCldlbGxzDQo=
+Hi Krzysztof,
+
+Thanks for the reviews.
+
+On Thu, 2022-04-28 at 09:16 +0200, Krzysztof Kozlowski wrote:
+> On 28/04/2022 03:27, jason-jh.lin wrote:
+> > From: "Jason-JH.Lin" <jason-jh.lin@mediatek.com>
+> > 
+> > Power:
+> >   Refine description and add item number for power-domains
+> > property.
+> > 
+> > GCE:
+> >   Refine description and add item number for mboxes property and
+> >   mediatek,gce-client-reg property.
+> > 
+> > Fixes: 1da90b8a7bae ("dt-bindings: arm: mediatek: mmsys: add power
+> > and gce properties")
+> > Signed-off-by: Jason-JH.Lin <jason-jh.lin@mediatek.com>
+> > ---
+> >  .../bindings/arm/mediatek/mediatek,mmsys.yaml | 29 +++++++++----
+> > ------
+> >  1 file changed, 14 insertions(+), 15 deletions(-)
+> > 
+> > diff --git
+> > a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yam
+> > l
+> > b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yam
+> > l
+> > index 6ad023eec193..6722f1b724ef 100644
+> > ---
+> > a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yam
+> > l
+> > +++
+> > b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yam
+> > l
+> > @@ -43,28 +43,27 @@ properties:
+> >      maxItems: 1
+> >  
+> >    power-domains:
+> > +    maxItems: 1
+> >      description:
+> > -      A phandle and PM domain specifier as defined by bindings
+> > -      of the power controller specified by phandle. See
+> > -      Documentation/devicetree/bindings/power/power-domain.yaml
+> > for details.
+> > +      Each mmsys belongs to a power-domains. If mmsys wants to use
+> > PM
+> > +      interface to control the power controller of mmsys, it
+> > should have
+> > +      this property.
+> >  
+> >    mboxes:
+> > +    minItems: 1
+> 
+> maxItems, surely you cannot have infinite number of mailboxes to talk
+> with?
+
+Yes, we cannot have infinite number for this, but we can use not only
+one mbox channel for one mmsys.
+
+Its maximum number is equal to GCE HW thread number.
+The maximum number in mt8195 is 24 and mt8173 is 16.
+
+But we currently using 1.
+So I'm not sure if I need to set the maxItems for this?
+
+> 
+> >      description:
+> > -      Using mailbox to communicate with GCE, it should have this
+> > -      property and list of phandle, mailbox specifiers. See
+> > -      Documentation/devicetree/bindings/mailbox/mtk-gce.txt for
+> > details.
+> > -    $ref: /schemas/types.yaml#/definitions/phandle-array
+> > +      If using mailbox to communicate with GCE, it should have
+> > this
+> > +      property. GCE will help configure the hardware settings for
+> > the
+> > +      current mmsys data pipeline.
+> >  
+> >    mediatek,gce-client-reg:
+> > -    description:
+> > -      The register of client driver can be configured by gce with
+> > 4 arguments
+> > -      defined in this property, such as phandle of gce, subsys id,
+> > -      register offset and size.
+> > -      Each subsys id is mapping to a base address of display
+> > function blocks
+> > -      register which is defined in the gce header
+> > -      include/dt-bindings/gce/<chip>-gce.h.
+> > -    $ref: /schemas/types.yaml#/definitions/phandle-array
+> 
+> Why removing ref? Does your binding work after such change?
+
+I removed it unexpectedly, I'll add it back.
+> 
+> >      maxItems: 1
+> > +    items:
+> > +      - items:
+> > +          - description: phandle to GCE
+> > +          - description: subsys id
+> > +          - description: register offset
+> > +          - description: register size
+> >  
+> >    "#clock-cells":
+> >      const: 1
+> 
+> 
+> Best regards,
+> Krzysztof
+
+Regards,
+Jason-JH.Lin
+-- 
+Jason-JH Lin <jason-jh.lin@mediatek.com>
+
