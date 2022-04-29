@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E6D9151583A
-	for <lists+devicetree@lfdr.de>; Sat, 30 Apr 2022 00:12:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 65585515820
+	for <lists+devicetree@lfdr.de>; Sat, 30 Apr 2022 00:12:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1381396AbiD2WOd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Apr 2022 18:14:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58834 "EHLO
+        id S1381404AbiD2WO2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Apr 2022 18:14:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58660 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1381385AbiD2WOZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Apr 2022 18:14:25 -0400
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12B97DC5A2
-        for <devicetree@vger.kernel.org>; Fri, 29 Apr 2022 15:11:06 -0700 (PDT)
-Received: by mail-wm1-x333.google.com with SMTP id 125-20020a1c1983000000b003941f354c62so1676966wmz.0
-        for <devicetree@vger.kernel.org>; Fri, 29 Apr 2022 15:11:05 -0700 (PDT)
+        with ESMTP id S1381375AbiD2WO1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Apr 2022 18:14:27 -0400
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2721BDCA98
+        for <devicetree@vger.kernel.org>; Fri, 29 Apr 2022 15:11:07 -0700 (PDT)
+Received: by mail-wr1-x42b.google.com with SMTP id j15so12450644wrb.2
+        for <devicetree@vger.kernel.org>; Fri, 29 Apr 2022 15:11:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=0WEp4V6aZMyxWhcrxEKABYt19rBiXZcxvqKzE3SZIe0=;
-        b=Keg2qgtxsT0PNgxhjstP7bYXmZKcqHZMFZ6OQJGAz4/VS7eA8idH/UxV3ZZJ0ZdE19
-         aFKzPoA8oCSVmRyOjGcPEEKpK4XhyjrHZ7u7FzBWnRHoPfqJiAENT+FayNNe66CearY3
-         kGfekX4RrHA3rhlvh7ZpdBnDrUUUEVNxWprtS37MvfNbVHpwgHVcgn83++PCWMXlJa/X
-         lKKIzQmtKyfLylEBsr7GSuYv6LBI9JbI4BQI4RHn+dyS2OmYmfCu+1ospXcyL0dkBMy0
-         QYpXNZbjIpQQAl7K1bxcAs7Cb/zOad3C0AraEAxRBz4AX4Y55gbWRXiuHOBW4Mttaptk
-         ADAw==
+        bh=A9tCTKF5+kXpD3KU1TizjXB5qBDuu3jOgxCWOB2yXXk=;
+        b=KkrSwDChfgM04Mnzz7vJkkecpJiTPHpf1QqkE0Mj9miWts4vhiRQugah7tFTYsgl6w
+         d6p1uI7W3+KAuxhvEmPgw5C5zEapmdklUm43WOP5uZt/JT64DKCV3V/ME/T7/1kVu0xq
+         tfkd+gj5NYYGCQYZHfzf3iaOLxLWjzQWJLkpIoJB+9b0+HFNtVzBpg6e2cTPfZU4Id6n
+         4ko4wzdOGkrn09RjiNsareu8JF0rqpGgIyH2lSkMSYs006IAHlxfM+wdbNvM7bfDL2cu
+         0aV7Eb6jF39sOEMc0bU/tW9J53y3gREVx5mo/i54pTIyjm3dQ5QfsK6/vzIGW5BLXStT
+         0Vag==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=0WEp4V6aZMyxWhcrxEKABYt19rBiXZcxvqKzE3SZIe0=;
-        b=AM9fGS0fjPwx7u2s2sJIyUxeS5qv5A2YBtO9SRR16f+n7gVmQMErySqd5x4n3XHwki
-         MHz71/Iu92ggIbjuHnzRQudppYqmwAY18Kh1SIrvT05J4emL0LUItLnyHWWDczyyDU5V
-         1IWEZJrO76jfQJQfnWfg1Cp60AnCIx+i+9Biv6X+xoM0LIFrtEhqr0UFkhERQ/ql6LBQ
-         G+x1OjDkNCOwwKy2r9F2N3di5BcTCrScTBMwUIXwvJiCO8tKNM9ApQkwBD7SkZUKh1GE
-         sErPOlbZ80BivDe1GYvOPxEJsohnnszDhnxH2LS3s9mDOe982tcP2b1FKjoJ7JAJhpvm
-         xg5Q==
-X-Gm-Message-State: AOAM530WH7Rr+huzdOP9vCQWHo+BHwvT1HIiR7Cq0toDeOx8I+G98/r4
-        CYUIFoBmQ//63qt1BGXKhfMdUg==
-X-Google-Smtp-Source: ABdhPJz08OJcXIZ9HOmIoOx8RtC+6enH4juHgqsBFwco6tpfuwvu9EuEHJWx7vowVSp6ol5iQ584dw==
-X-Received: by 2002:a05:600c:4f90:b0:392:8de8:9deb with SMTP id n16-20020a05600c4f9000b003928de89debmr933061wmq.166.1651270264475;
-        Fri, 29 Apr 2022 15:11:04 -0700 (PDT)
+        bh=A9tCTKF5+kXpD3KU1TizjXB5qBDuu3jOgxCWOB2yXXk=;
+        b=00nmaVPJ1eGvLW+xOroGheAmnACFKqTIXGYLvd4kEzH+qO+gYe4pWIQslaCCD3uyHa
+         RXzSVEdH+aO2NrZdZBiKKTU+NC4lQMm331mBpNNXKFiaCJ5r5QUkJqNaPOEzysuqM8hG
+         4gpKQJsyu9bKzIcuG98bdO3XGil7ZDKto30T0WrpzKMVfKuG1n8ylAQV9eGnFQWZCLMs
+         vMwwUmauMJuuXeywfGRq8MuqdDe+gCOplM+sXMGQQplAscTxGBykCn2L7inTgOSFRjY9
+         BMfvodTzrTYW9rWA/5ltf4HM13O50gAv6fPP5y7FKcM7lGs4bTd5xBYzEa/egWPIdvKp
+         Az+g==
+X-Gm-Message-State: AOAM5306CwGJ9cuHoU3gizZmfGVPacOQnoHJj3rrriggxDDKCnts3EVW
+        h1VoH9gW2m1smWou/9CMOhxKPg==
+X-Google-Smtp-Source: ABdhPJwbYCYtWuSJRc4/Cm77+eXxkqueU+3CnDeUF3GwcvXsoEBv6m3gOIDW0GgmHp45US6/tzzk+g==
+X-Received: by 2002:a5d:448e:0:b0:20a:de9a:a7f3 with SMTP id j14-20020a5d448e000000b0020ade9aa7f3mr837603wrq.129.1651270265715;
+        Fri, 29 Apr 2022 15:11:05 -0700 (PDT)
 Received: from localhost.localdomain (cpc78119-cwma10-2-0-cust590.7-3.cable.virginm.net. [81.96.50.79])
-        by smtp.gmail.com with ESMTPSA id q7-20020a1cf307000000b003942a244ebfsm291985wmq.4.2022.04.29.15.11.03
+        by smtp.gmail.com with ESMTPSA id q7-20020a1cf307000000b003942a244ebfsm291985wmq.4.2022.04.29.15.11.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 29 Apr 2022 15:11:03 -0700 (PDT)
+        Fri, 29 Apr 2022 15:11:05 -0700 (PDT)
 From:   Caleb Connolly <caleb.connolly@linaro.org>
 To:     caleb.connolly@linaro.org, Jonathan Cameron <jic23@kernel.org>,
         Lars-Peter Clausen <lars@metafoo.de>,
@@ -60,9 +60,9 @@ To:     caleb.connolly@linaro.org, Jonathan Cameron <jic23@kernel.org>,
         linux-arm-msm@vger.kernel.org
 Cc:     Jami Kettunen <jami.kettunen@somainline.org>,
         Sumit Semwal <sumit.semwal@linaro.org>
-Subject: [PATCH v14 08/10] arm64: dts: qcom: sdm845-db845c: enable rradc
-Date:   Fri, 29 Apr 2022 23:09:03 +0100
-Message-Id: <20220429220904.137297-9-caleb.connolly@linaro.org>
+Subject: [PATCH v14 09/10] arm64: dts: qcom: sdm845-xiaomi-beryllium: enable rradc
+Date:   Fri, 29 Apr 2022 23:09:04 +0100
+Message-Id: <20220429220904.137297-10-caleb.connolly@linaro.org>
 X-Mailer: git-send-email 2.36.0
 In-Reply-To: <20220429220904.137297-1-caleb.connolly@linaro.org>
 References: <20220429220904.137297-1-caleb.connolly@linaro.org>
@@ -78,18 +78,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable the Round Robin ADC for the db845c.
+Enable the PMI8998 RRADC.
 
 Signed-off-by: Caleb Connolly <caleb.connolly@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sdm845-db845c.dts | 4 ++++
+ arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dts | 4 ++++
  1 file changed, 4 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-index 28fe45c5d516..40a290b6d4f3 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-+++ b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-@@ -599,6 +599,10 @@ resin {
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dts b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dts
+index 367389526b41..b3b6aa4e0fa3 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dts
++++ b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dts
+@@ -312,6 +312,10 @@ resin {
  	};
  };
  
@@ -97,7 +97,7 @@ index 28fe45c5d516..40a290b6d4f3 100644
 +	status = "okay";
 +};
 +
- /* QUAT I2S Uses 4 I2S SD Lines for audio on LT9611 HDMI Bridge */
+ /* QUAT I2S Uses 1 I2S SD Line for audio on TAS2559/60 amplifiers */
  &q6afedai {
  	qi2s@22 {
 -- 
