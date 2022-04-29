@@ -2,85 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B4DE514FC2
-	for <lists+devicetree@lfdr.de>; Fri, 29 Apr 2022 17:39:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0F24D514FF2
+	for <lists+devicetree@lfdr.de>; Fri, 29 Apr 2022 17:53:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233714AbiD2PnC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Apr 2022 11:43:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45154 "EHLO
+        id S1378255AbiD2P4l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Apr 2022 11:56:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58642 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231540AbiD2PnC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Apr 2022 11:43:02 -0400
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7BE90D64EF;
-        Fri, 29 Apr 2022 08:39:43 -0700 (PDT)
-Received: by mail-ej1-x633.google.com with SMTP id i19so16140028eja.11;
-        Fri, 29 Apr 2022 08:39:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=+mmy7RuPMU9hCC/2o2BzJ3rLqYOzAAc3YMuV1L840fY=;
-        b=i+LxBL7iEddxNdeB47NwwEeblzTlvP/xkHb3kztkrbhOeQ7NYmE/BOaMX+pYeWC7JI
-         kFidWrhpdqBmR9M6OS4sqssUmN/EbofEIc4u52ErRJ6IXhoThxZEeJFvidJHzLmwcdbt
-         C1/EeVsuvYQcRmF7YseuoTBlBSuoot2dihCCfusuEeI+NYnnSwlwRTOyc/nHIqN++YSK
-         t9R3JZgsO2jsPVvTj8BB/SJ/uk5tev642NtoR4Jh+Khofyyb5owT4ks4a0VgWzyEIHBk
-         dmhObRVcJUH40ze/gihxdQExwcLfzKYZV1NWEv4Qaum0x/BvdYh6AxlqL8JKaWbE7aSn
-         lxXw==
+        with ESMTP id S1378244AbiD2P4k (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Apr 2022 11:56:40 -0400
+Received: from mail-oi1-f181.google.com (mail-oi1-f181.google.com [209.85.167.181])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B7EEDC90C5;
+        Fri, 29 Apr 2022 08:53:18 -0700 (PDT)
+Received: by mail-oi1-f181.google.com with SMTP id l16so1671407oil.6;
+        Fri, 29 Apr 2022 08:53:18 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=+mmy7RuPMU9hCC/2o2BzJ3rLqYOzAAc3YMuV1L840fY=;
-        b=rzHg3kJ0phbzwerEiWFKl8aYKAFOyOTSL/Zda6J1hnLVlIDyRiArif3IQfBenHnlsS
-         +eELN8ZAqwaAWn1OeuDEfXdKP20aQN4FKbqcMpnIL4Aer2PbuX9CE77nJLZ2qK1sZDT8
-         yrBlPJJGdlpI0kH5zAHxMdIaF3+yYNb9Zn+3hTSxG3NWf/pajdhMJyN5sK7YynPO/6Aj
-         +5aTK91TYvuyiUvA2MI9hyeI2NqqKwRnYYPQOa7qWrIqHXImya8WJZUfhQn8IZRTj36w
-         ndjs2NYwwUi5uUGvckpMIUv/smSc/NlxkNezpAPQYdMJQoQF+RE2L3DRUFft5+bENbD2
-         TR2A==
-X-Gm-Message-State: AOAM530vmmoEua3Zfn0tOo3oN7/VgqbxtGVv8tbWrkTy8DwADleat7WL
-        TDve+uu2ldc84fO3ZVlMgzYkwYl5k08Zc/iW8/M=
-X-Google-Smtp-Source: ABdhPJysTx09E3S+k4vxcIhSGn2Xk6ivf6iVrOPm3PvZJQqFGajE+UPPkdSWH+q+J6XFLOdHkBSSQL/MinWpkeTpo/k=
-X-Received: by 2002:a17:907:c18:b0:6f3:9c23:20fd with SMTP id
- ga24-20020a1709070c1800b006f39c2320fdmr23390448ejc.740.1651246782030; Fri, 29
- Apr 2022 08:39:42 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220429114330.59026-1-robimarko@gmail.com> <20220429114330.59026-5-robimarko@gmail.com>
-In-Reply-To: <20220429114330.59026-5-robimarko@gmail.com>
-From:   Jassi Brar <jassisinghbrar@gmail.com>
-Date:   Fri, 29 Apr 2022 10:39:29 -0500
-Message-ID: <CABb+yY3dPwT4ASdxHqRidRBEq19YHsp8RfAgO0tr_rZ+Dde2hA@mail.gmail.com>
-Subject: Re: [PATCH 5/6] dt-bindings: mailbox: set correct #clock-cells
-To:     Robert Marko <robimarko@gmail.com>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        krzysztof.kozlowski+dt@linaro.org,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        linux-clk@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=FFjFGklMesuiQkPh+8rzTAyTXof2tZBqFJs5Jn3OJF4=;
+        b=p0DnbdUbo6W4ci3IqQsyUmAlKcRRbV+1v3kzVr5RaRRqfTuWIjYXyY1fhIoaDzdgn6
+         QPTpXIhFNB1kOqlbOar7vkoRLrrjxxWX12BLOulhTS/WRCmW5Pm4sPRbYsz3dLI8WGJH
+         Pp3HuZE7RgjjTnggckcxhU4FTHSPiyGipNhlwfLYP0GeGHPljdpf8Mv3raMnquRGTean
+         axU/qgFF7U3m/vbSnn7kPEYZw+yCDoc3yAxzdTkoAZr8+Ncph0Gyi0YMfVBTx9zLDGer
+         A9tnvZXsFoZsK2BfnUBkbNgQlWQCKr3g7KTYIQdln0cB4XMXvEdeOex/7aXABGKT62/N
+         kVjQ==
+X-Gm-Message-State: AOAM530LOYSnv6FFG+3cyOU6zTTqozxi/GVJPmgitBO5YDwdM4Q51377
+        kEOHSDhcUmpO1TMUGaWI2A==
+X-Google-Smtp-Source: ABdhPJxBDckK9tQAVZHKd7BiQTS1n/On3l+TQwVLBKxxqANVBsJa67fSMJpCyXx9MaORSsHbqtpJ+w==
+X-Received: by 2002:a05:6808:f8d:b0:325:5728:997b with SMTP id o13-20020a0568080f8d00b003255728997bmr1891780oiw.163.1651247598036;
+        Fri, 29 Apr 2022 08:53:18 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id o24-20020a4ae598000000b0035eb4e5a6d0sm890263oov.38.2022.04.29.08.53.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 29 Apr 2022 08:53:17 -0700 (PDT)
+Received: (nullmailer pid 2344490 invoked by uid 1000);
+        Fri, 29 Apr 2022 15:53:16 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Jesse Taube <mr.bossman075@gmail.com>
+Cc:     shawnguo@kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, s.hauer@pengutronix.de,
+        tglx@linutronix.de, leoyang.li@nxp.com,
+        cniedermaier@dh-electronics.com, aisheng.dong@nxp.com,
+        soc@kernel.org, olof@lixom.net, abel.vesa@nxp.com, clin@suse.com,
+        linux-arm-kernel@lists.infradead.org, mturquette@baylibre.com,
+        stefan@agner.ch, Mr.Bossman075@gmail.com,
+        daniel.lezcano@linaro.org, sboyd@kernel.org, tharvey@gateworks.com,
+        linus.walleij@linaro.org, sebastian.reichel@collabora.com,
+        giulio.benetti@benettiengineering.com, marcel.ziswiler@toradex.com,
+        robh+dt@kernel.org, devicetree@vger.kernel.org, festevam@gmail.com,
+        linux@armlinux.org.uk, linux-gpio@vger.kernel.org, dev@lynxeye.de,
+        kernel@pengutronix.de, linux-imx@nxp.com, arnd@arndb.de
+In-Reply-To: <20220428214838.1040278-8-Mr.Bossman075@gmail.com>
+References: <20220428214838.1040278-1-Mr.Bossman075@gmail.com> <20220428214838.1040278-8-Mr.Bossman075@gmail.com>
+Subject: Re: [PATCH v2 07/15] dt-bindings: clock: imx: Add documentation for i.MXRT1170 clock
+Date:   Fri, 29 Apr 2022 10:53:16 -0500
+Message-Id: <1651247596.107110.2344489.nullmailer@robh.at.kernel.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 29, 2022 at 6:43 AM Robert Marko <robimarko@gmail.com> wrote:
->
-> IPQ6018 and IPQ8074 require #clock-cells to be set to 1 as their APSS
-> clock driver provides multiple clock outputs.
->
-> So allow setting 1 as #clock-cells and check that its set to 1 for IPQ6018
-> and IPQ8074, check others for 0 as its currently.
->
-Please include qcom specific marker in the subject line.
+On Thu, 28 Apr 2022 17:48:30 -0400, Jesse Taube wrote:
+> Add DT binding documentation for i.MXRT1170 clock driver.
+> 
+> Cc: Giulio Benetti <giulio.benetti@benettiengineering.com>
+> Signed-off-by: Jesse Taube <Mr.Bossman075@gmail.com>
+> ---
+> V1 -> V2:
+>  - Change title to Clock Controller
+>  - Rename to add fsl
+> ---
+>  .../bindings/clock/fsl,imxrt1170-clock.yaml   | 59 +++++++++++++++++++
+>  1 file changed, 59 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/fsl,imxrt1170-clock.yaml
+> 
 
-thanks.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+./Documentation/devicetree/bindings/clock/fsl,imxrt1170-clock.yaml: $id: relative path/filename doesn't match actual path or filename
+	expected: http://devicetree.org/schemas/clock/fsl,imxrt1170-clock.yaml#
+Documentation/devicetree/bindings/clock/fsl,imxrt1170-clock.example.dts:20:18: fatal error: dt-bindings/clock/imxrt1170-clock.h: No such file or directory
+   20 |         #include <dt-bindings/clock/imxrt1170-clock.h>
+      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+make[1]: *** [scripts/Makefile.lib:364: Documentation/devicetree/bindings/clock/fsl,imxrt1170-clock.example.dtb] Error 1
+make[1]: *** Waiting for unfinished jobs....
+make: *** [Makefile:1401: dt_binding_check] Error 2
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
