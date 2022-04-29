@@ -2,61 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D665514A5A
-	for <lists+devicetree@lfdr.de>; Fri, 29 Apr 2022 15:19:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4167C514A7B
+	for <lists+devicetree@lfdr.de>; Fri, 29 Apr 2022 15:27:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1359730AbiD2NXJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Apr 2022 09:23:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55806 "EHLO
+        id S245070AbiD2Nac (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Apr 2022 09:30:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50120 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1359731AbiD2NXI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Apr 2022 09:23:08 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C02F8C8485;
-        Fri, 29 Apr 2022 06:19:50 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 2093862287;
-        Fri, 29 Apr 2022 13:19:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ABB19C385AC;
-        Fri, 29 Apr 2022 13:19:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1651238389;
-        bh=19u80WrRYBrn0euhR5t2IahZXsXYVRXAnPVdCH6q/OA=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=uzp9dNrw1fq7kaRwzsuipBWIEcIQrGCJXYGUQ+EJvcUn1wqUYdAMvlbx+LuUGhAKn
-         8xd69n0H8JX0CPgb6WjcW1q7XAfUofjuWy9WQ+fQO4NnJ5mRBJAAknOmVRLDPzOHCS
-         OS+7RFvMnFVE+xOeV77jBorf1wah47euXafGH6skPCZhCuZrgiFz/g+Lbv5N9ZTIMu
-         b5T8hbIzNmL26tDus1GewZO5h9kWYbB+tHrfcBxxkKFQIM3IS7wJgdMb+XHDJ/Xvn2
-         3jABx64hHlDYm6X8MbIoOTloGjf005gkwoSMRILhEkLYoCmCClXJdky2dowXC2lUUk
-         AT0KiiAs5SSzg==
-Date:   Fri, 29 Apr 2022 14:19:43 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     YC Hung <yc.hung@mediatek.com>, Rob Herring <robh@kernel.org>,
-        robh+dt@kernel.org, daniel.baluta@nxp.com, trevor.wu@mediatek.com,
-        tiwai@suse.com, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, cezary.rojewski@intel.com,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        allen-kh.cheng@mediatek.com
-Subject: Re: [PATCH v4] dt-bindings: dsp: mediatek: add mt8195 dsp document
-Message-ID: <Ymvl7x9NTJor/vfx@sirena.org.uk>
-References: <20220106064847.15588-1-yc.hung@mediatek.com>
- <Yd4yNkeGlzdULNlv@robh.at.kernel.org>
- <68895a40-559b-13ce-d433-f9b32c648323@gmail.com>
- <9965188904de2e89bc5390fa6c71d9fb243f9d12.camel@mediatek.com>
- <cf9b425e-84ff-af12-72a7-4056b8cbf90d@gmail.com>
+        with ESMTP id S236761AbiD2Nab (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Apr 2022 09:30:31 -0400
+Received: from mail-io1-xd31.google.com (mail-io1-xd31.google.com [IPv6:2607:f8b0:4864:20::d31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 362B22C10F;
+        Fri, 29 Apr 2022 06:27:13 -0700 (PDT)
+Received: by mail-io1-xd31.google.com with SMTP id c125so9713977iof.9;
+        Fri, 29 Apr 2022 06:27:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=LUkIerDD9yFWiQ4XjK59IaNhq21fsN5VuxYrogYKEo0=;
+        b=c5HmS9fg/usITYA5aQsq+UT5PKinstTEHXzxuJp+WNbF7kHb07BNF5dCSWubg+XvpS
+         RbW/eU9mLwyx1r3Wrto3Bg1hCFsZX6mogDTCLXHeSo1clWNbu0mIc7mXZP42z328iYD1
+         81X2iFcf4av/Rhop7TW7zb7gSKWzGCI3mxmEJLkap/lxDRO2unIAIlrjCE2eCjdcsBQi
+         8EQNmm5rP0baNIVXgqZIbXmV7ej+C6f9yLcYd42sxjN8stadWOxA6l3K69GcoineDPLR
+         LJDLq8UMD3q7tKFwnqeRXssNJWyp/obgVve15VQ//yH48gZPOLWyYAvT9qcfBjDlg6db
+         8H6w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=LUkIerDD9yFWiQ4XjK59IaNhq21fsN5VuxYrogYKEo0=;
+        b=Xug3RcT/123VSqmMGrJJp9X8OJjprd0OPWFCHngt4tQOxquQhB/AbrhWPiuvV4zl2i
+         E61/TDer5KfWJ7e1WaNH6FDD091lS6vxrofGiiq7K9prn2kNr7ddfkZPh+dOYPkaAaH2
+         F1r8jTslP65wQlnEYFwIITfghA+wm9nTc+vWQmCXzPkJyCET7LC2qcrbsMHfmrmeMFWB
+         nFj0bXHoGhFYAtkIGMts72GRsXezO/VYkZZI7kg+djJNasWqAIW43xQeQt20r9BTLvGb
+         pPQ2/JAaP5qPZRjm9iwBknZnPkvlz5jxncm64veTQZP8LanKdB8pFEcZt4DRc95A6uvK
+         cfIg==
+X-Gm-Message-State: AOAM531rgNTVb4/m9rwzY66aT2znzkPdaQABww3o0p1vdB8X0uB6CXx2
+        gKIRit/pickXqLp3WVKHeTo=
+X-Google-Smtp-Source: ABdhPJwJ77CkMkxkuzo6DHghxnW2F1yf3HeMQeDTYShK7oHLdqIgO4ebwcCDZRrGdkz+i5odFyUPrQ==
+X-Received: by 2002:a05:6638:2610:b0:32a:fed1:a4c7 with SMTP id m16-20020a056638261000b0032afed1a4c7mr9099242jat.1.1651238832526;
+        Fri, 29 Apr 2022 06:27:12 -0700 (PDT)
+Received: from [192.168.0.43] (static-35-180-85-188.ipcom.comunitel.net. [188.85.180.35])
+        by smtp.gmail.com with ESMTPSA id u14-20020a056638304e00b0032b3a7817cfsm572163jak.147.2022.04.29.06.27.10
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 29 Apr 2022 06:27:11 -0700 (PDT)
+Message-ID: <a3e566a5-bff7-10c5-724a-dde52e574c5e@gmail.com>
+Date:   Fri, 29 Apr 2022 15:27:08 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="qbtHrth/VF0HNcN8"
-Content-Disposition: inline
-In-Reply-To: <cf9b425e-84ff-af12-72a7-4056b8cbf90d@gmail.com>
-X-Cookie: Are you still an ALCOHOLIC?
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH] arm64: dts: mediatek: mt8183-pumpkin: fix bad thermistor
+ node name
+Content-Language: en-US
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Fabien Parent <fparent@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20220426164755.435372-1-fparent@baylibre.com>
+ <3ae5b1ea-4721-3e61-9b5f-505ab2d5f037@collabora.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+In-Reply-To: <3ae5b1ea-4721-3e61-9b5f-505ab2d5f037@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -64,42 +80,20 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---qbtHrth/VF0HNcN8
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
 
-On Fri, Apr 29, 2022 at 02:57:12PM +0200, Matthias Brugger wrote:
-> On 29/04/2022 07:59, YC Hung wrote:
+On 28/04/2022 15:50, AngeloGioacchino Del Regno wrote:
+> Il 26/04/22 18:47, Fabien Parent ha scritto:
+>> Fix the following dtbs_check error by using the correct node name:
+>> /home/fabo/build/linux/mt8183-pumpkin/arch/arm64/boot/dts/mediatek/mt8183-pumpkin.dtb: 
+>> ntc: $nodename:0: 'ntc' does not match '^thermistor(.*)?$'
+>>     From schema: 
+>> /home/fabo/devel/baylibre/linux-mainline/Documentation/devicetree/bindings/hwmon/ntc-thermistor.yaml 
+>>
+>>
+>> Signed-off-by: Fabien Parent <fparent@baylibre.com>
+>> Reviewed-by: Mattijs Korpershoek <mkorpershoek@baylibre.com>
+> 
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> 
 
-> > Sorry I miss this mail.
-> > Could you please help to check this patch? Thanks.
-
-> Rob gave his reviewed-by. I just saw that the driver maintainer is Mark, so
-> I expect him to take the patch through his tree. Didn't realized this
-> beforehand.
-
-TBH I'd missed this since there was nothing in the subject line that
-drew my attention to it.  Seen it now though.
-
-Please submit patches using subject lines reflecting the style for the
-subsystem, this makes it easier for people to identify relevant patches.
-Look at what existing commits in the area you're changing are doing and
-make sure your subject lines visually resemble what they're doing.
-There's no need to resubmit to fix this alone.
-
---qbtHrth/VF0HNcN8
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmJr5e4ACgkQJNaLcl1U
-h9B6jQf/dW9MqjjZQdTkinE+KFUJIRcK4SQ+e5QvdyqXMZ17f40lR3vhJ4Xo1NME
-uNZx34lYDN8jy1PAvJa8HlyqyL0nVzOuxN7qjRuMr/uBlg/qhLEYFUcaxZXXc/wR
-aGaaF3csCsN0+n/CMwkWP/my21AyyzhXfu8ygvhEVqhdJhetwOtYNfOB/aIHOId7
-oszASoq1Jvbpvz7CRKq/Vqqk8O9ASXDpvSERh6iWSkWH4ShJMteoAipC4MndSgSI
-rc0LLIZ2+wq+MAdE5KoqccPfGnx2UsJ9+6MzcYc7SbpRx/LirYjr5THGGkLWS/m3
-kqvXdGrUS8RZNjj07qJ/cqGj8a/mOw==
-=Hfdr
------END PGP SIGNATURE-----
-
---qbtHrth/VF0HNcN8--
+Applied, thanks!
