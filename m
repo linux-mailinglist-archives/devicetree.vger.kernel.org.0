@@ -2,98 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D4995148BE
-	for <lists+devicetree@lfdr.de>; Fri, 29 Apr 2022 14:03:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 102295148D8
+	for <lists+devicetree@lfdr.de>; Fri, 29 Apr 2022 14:07:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1355608AbiD2MGf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Apr 2022 08:06:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49148 "EHLO
+        id S1358875AbiD2MKv convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 29 Apr 2022 08:10:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33412 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237453AbiD2MGf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Apr 2022 08:06:35 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D2CBC6EFF;
-        Fri, 29 Apr 2022 05:03:17 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 51F75B83466;
-        Fri, 29 Apr 2022 12:03:16 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A6B3AC385A7;
-        Fri, 29 Apr 2022 12:03:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1651233795;
-        bh=ytyjAxLH3gz2/+/Nvl7NSG5DpaklWaIPupUTXXz4Z6o=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=M3Kft7g64LMqPsBtPppqKDSqU2/JwxE6tj9ZgKi7eNrTAgJY9NH+trStdssuA61RR
-         GDtaGqaf/2jfPvXkpL9hLc2toOdMdtgPlLUvu8GG34/rrreGSDFLIO1RXnEjS9gYdw
-         h/MY72M6UYx0zaVrev6GwWCW4n3c7Ns2AYlYLGYBaNIdDWCyFWp7eNWDINaIZynqhv
-         /RI11TfnHO4oomloq8xvKG1fcTV3oD8YpHpC0bTx9LBYmTV1JTmUvFGNmbFAPsWuXf
-         rz0CSFaRKA4hWRbXasbSYjh8imH7N7eknZJaf9EVzfBadftLWVKZYI0Vl9XyDvTnK8
-         fIePNVgw/hYsw==
-Date:   Fri, 29 Apr 2022 13:03:08 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Markuss Broks <markuss.broks@gmail.com>
-Cc:     linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        lee.jones@linaro.org, phone-devel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v6 2/5] dt-bindings: regulator: Add bindings for Silicon
- Mitus SM5703 regulators
-Message-ID: <YmvT/LL+1jB8xK77@sirena.org.uk>
-References: <20220429113927.5145-1-markuss.broks@gmail.com>
- <YmvQhpO8dg6VLHNP@sirena.org.uk>
- <2a18073b-974f-00d4-5811-8df577e943a8@gmail.com>
+        with ESMTP id S1355315AbiD2MKt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Apr 2022 08:10:49 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A1AFA76DD
+        for <devicetree@vger.kernel.org>; Fri, 29 Apr 2022 05:07:31 -0700 (PDT)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1nkPP0-0002Ha-DR; Fri, 29 Apr 2022 14:07:14 +0200
+Received: from [2a0a:edc0:0:900:1d::4e] (helo=lupine)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1nkPOx-005wMO-Hq; Fri, 29 Apr 2022 14:07:10 +0200
+Received: from pza by lupine with local (Exim 4.94.2)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1nkPOv-00073P-27; Fri, 29 Apr 2022 14:07:09 +0200
+Message-ID: <6776293c80bf3f48d7a72a3c9f73e93abee2b369.camel@pengutronix.de>
+Subject: Re: [PATCH v4 1/2] usb: host: ehci-sunplus: Add driver for ehci in
+ Sunplus SP7021
+From:   Philipp Zabel <p.zabel@pengutronix.de>
+To:     Vincent Shih <vincent.sunplus@gmail.com>,
+        gregkh@linuxfoundation.org, stern@rowland.harvard.edu,
+        davem@davemloft.net, vladimir.oltean@nxp.com,
+        linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        devicetree@vger.kernel.org, wells.lu@sunplus.com
+Date:   Fri, 29 Apr 2022 14:07:08 +0200
+In-Reply-To: <1651220876-26705-2-git-send-email-vincent.sunplus@gmail.com>
+References: <1651220876-26705-1-git-send-email-vincent.sunplus@gmail.com>
+         <1651220876-26705-2-git-send-email-vincent.sunplus@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+User-Agent: Evolution 3.38.3-1 
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="sXfYcVX2i2N4NMSP"
-Content-Disposition: inline
-In-Reply-To: <2a18073b-974f-00d4-5811-8df577e943a8@gmail.com>
-X-Cookie: Are you still an ALCOHOLIC?
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Vincent,
 
---sXfYcVX2i2N4NMSP
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+On Fr, 2022-04-29 at 16:27 +0800, Vincent Shih wrote:
+[...]
+> +static int sp_ehci_platform_power_on(struct platform_device *pdev)
+> +{
+> +	struct usb_hcd *hcd = platform_get_drvdata(pdev);
+> +	struct sp_ehci_priv *sp_priv = hcd_to_sp_ehci_priv(hcd);
+> +	int ret;
+> +
+> +	ret = clk_prepare_enable(sp_priv->ehci_clk);
+> +	if (ret)
+> +		goto err_ehci_clk;
 
-On Fri, Apr 29, 2022 at 02:51:03PM +0300, Markuss Broks wrote:
-> On 4/29/22 14:48, Mark Brown wrote:
+This should be:
 
-> > As Rob said please send an incremental patch with any fixes needed.
+		return ret;
 
-> I'm sorry, I didn't understand it correctly. Does "incremental patch" mean I
-> should send a separate follow-up patch with those fixes?
+> +
+> +	ret = reset_control_deassert(sp_priv->ehci_rstc);
+> +	if (ret)
+> +		goto err_ehci_reset;
 
-Yes.  It means on top of what's already applied.
+And this should be:
 
-Please also don't label patches that aren't part of a patch series as
-though they were in a series, it just creates confusion.
+		goto err_ehci_clk;
 
---sXfYcVX2i2N4NMSP
-Content-Type: application/pgp-signature; name="signature.asc"
+> +
+> +	ret = phy_init(sp_priv->phy);
+> +	if (ret)
+> +		goto err_ehci_reset;
+> +
+> +	ret = phy_power_on(sp_priv->phy);
+> +	if (ret)
+> +		goto err_phy_exit;
+> +
+> +	return 0;
+> +
+> +err_phy_exit:
+> +	phy_exit(sp_priv->phy);
+> +err_ehci_reset:
+> +	reset_control_assert(sp_priv->ehci_rstc);
+> +err_ehci_clk:
+> +	clk_disable_unprepare(sp_priv->ehci_clk);
+> +
+> +	return ret;
+> +}
+> +
+> +static void sp_ehci_platform_power_off(struct platform_device *pdev)
+> +{
+> +	struct usb_hcd *hcd = platform_get_drvdata(pdev);
+> +	struct sp_ehci_priv *sp_priv = hcd_to_sp_ehci_priv(hcd);
+> +
+> +	phy_power_off(sp_priv->phy);
+> +	phy_exit(sp_priv->phy);
+> +
+> +	reset_control_assert(sp_priv->ehci_rstc);
+> +	clk_disable_unprepare(sp_priv->ehci_clk);
+> +}
+> +
+> +static struct usb_ehci_pdata usb_ehci_pdata = {
+> +	.has_tt = 1,
+> +	.has_synopsys_hc_bug = 1,
+> +	.big_endian_desc = 1,
+> +	.big_endian_mmio = 1,
+> +	.power_on = sp_ehci_platform_power_on,
+> +	.power_suspend = sp_ehci_platform_power_off,
+> +	.power_off = sp_ehci_platform_power_off,
+> +
 
------BEGIN PGP SIGNATURE-----
+Superfluous whitespace.
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmJr0/wACgkQJNaLcl1U
-h9AxeQf/fsN26iHbjaWq030/gMA7pkIRcKce/G0iIcxx5adMpYB85hZF85tzX9WF
-YqJ9haQgJNOJd73UpiJZ7YSaehjMFNY6DW7bB3z1euU5YqHPV1lBdWaQhCXmKt0S
-ghGZZvoYqL20iizrBMP6GQR5NJKj1LrohhhhhMOODnxNIbJKazkhjhnGS0LwyNXo
-7QsNmOXjiW83nPYA7+x1YeyhHXP6rCJTchISj3rn3tabrYYMD9z4v55OWtHLVN/J
-bmqlixvWYrAoJho9Urnj/tvaQBo1XlBuggJ2vXzg9ItRLJMpOJam4Jlw5yOYyn7H
-zkrbR8aE6f7AkG/fkQMrPAhj/Y3s6g==
-=Lsum
------END PGP SIGNATURE-----
 
---sXfYcVX2i2N4NMSP--
+regards
+Philipp
