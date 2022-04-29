@@ -2,191 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 65821514450
-	for <lists+devicetree@lfdr.de>; Fri, 29 Apr 2022 10:33:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7AB8D51445A
+	for <lists+devicetree@lfdr.de>; Fri, 29 Apr 2022 10:37:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1355570AbiD2IhJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Apr 2022 04:37:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40564 "EHLO
+        id S235320AbiD2IkE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Apr 2022 04:40:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48730 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1354711AbiD2IhJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Apr 2022 04:37:09 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A148C1C99;
-        Fri, 29 Apr 2022 01:33:51 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 2F1946215C;
-        Fri, 29 Apr 2022 08:33:51 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C0FEFC385AD;
-        Fri, 29 Apr 2022 08:33:48 +0000 (UTC)
-Message-ID: <75a667ca-7c12-ff61-dab4-bdea03c16754@xs4all.nl>
-Date:   Fri, 29 Apr 2022 10:33:47 +0200
+        with ESMTP id S1351551AbiD2IkD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Apr 2022 04:40:03 -0400
+Received: from mail-qt1-f180.google.com (mail-qt1-f180.google.com [209.85.160.180])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24927C3EA1;
+        Fri, 29 Apr 2022 01:36:46 -0700 (PDT)
+Received: by mail-qt1-f180.google.com with SMTP id t16so5210721qtr.9;
+        Fri, 29 Apr 2022 01:36:45 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=PfK8sXszOg36I/kRuBNRSs26zAwgaqxfbeahBslodhc=;
+        b=EZ3z/C5AmVLr2OLe0NeIrmOUbpUldxpVTDOgjSfaWF/eMKJccvVTgECI4WO+yqRrVz
+         HTmd0BikUhF4xMxjeCAY2cdb+F3MCjm/qgChpGYh+Iysva/D2DsUowoQtPCOT+6/s7d8
+         IwyBhUNVnq0J1+o/0dE3oBqbznD7+qPcqaZqZaABfgkmvHcHi65+4QQzTUzL8okfnEEz
+         LyR5fiuWpDniem9buYkO+7OmJ9rKg+5yDEWCVMu+Vcvzg1rZbMZjWG7eN8X8PXjq5aJl
+         OdPgUIRr0mQfbO9kLhlYb/QUoEZsaH0bqEBU9Sn+0UkiXljIqQyDRO9VjRbNadEO5VY2
+         zJqg==
+X-Gm-Message-State: AOAM532EKIrtzdpgRv72bCOTz9XzbDPeoBVaKB0yTLpoIJma0eMbEUC/
+        ilCnhpEKjYEhH2B9ZcH9s64EtF6gougD+BIL
+X-Google-Smtp-Source: ABdhPJwjbAXui6VVA1k7m9j4P6AIGRB4OZRu84LhXVkvYpDc5nkmlRDY3Gez7YpW1R402qG22uydYQ==
+X-Received: by 2002:ac8:5b03:0:b0:2f3:858a:dd07 with SMTP id m3-20020ac85b03000000b002f3858add07mr8341246qtw.245.1651221405010;
+        Fri, 29 Apr 2022 01:36:45 -0700 (PDT)
+Received: from mail-yb1-f174.google.com (mail-yb1-f174.google.com. [209.85.219.174])
+        by smtp.gmail.com with ESMTPSA id y13-20020a05622a164d00b002f1ff52c518sm1433346qtj.28.2022.04.29.01.36.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 29 Apr 2022 01:36:44 -0700 (PDT)
+Received: by mail-yb1-f174.google.com with SMTP id j2so13345903ybu.0;
+        Fri, 29 Apr 2022 01:36:44 -0700 (PDT)
+X-Received: by 2002:a25:d393:0:b0:648:4871:3b91 with SMTP id
+ e141-20020a25d393000000b0064848713b91mr25549141ybf.506.1651221403999; Fri, 29
+ Apr 2022 01:36:43 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH v9 00/13] media: atmel: atmel-isc: implement media
- controller
-Content-Language: en-US
-To:     Eugen.Hristev@microchip.com, linux-media@vger.kernel.org,
-        jacopo@jmondi.org
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, Claudiu.Beznea@microchip.com,
-        robh+dt@kernel.org, Nicolas.Ferre@microchip.com
-References: <20220310095202.2701399-1-eugen.hristev@microchip.com>
- <d76bab1c-6547-5b9a-ad17-25a73bcc899d@xs4all.nl>
- <9111ee7f-9eb9-5da5-f65b-6e868f2e72f4@microchip.com>
-From:   Hans Verkuil <hverkuil@xs4all.nl>
-In-Reply-To: <9111ee7f-9eb9-5da5-f65b-6e868f2e72f4@microchip.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-9.6 required=5.0 tests=BAYES_00,
-        HEADER_FROM_DIFFERENT_DOMAINS,NICE_REPLY_A,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20220428151630.586009-1-herve.codina@bootlin.com> <20220428151630.586009-4-herve.codina@bootlin.com>
+In-Reply-To: <20220428151630.586009-4-herve.codina@bootlin.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Fri, 29 Apr 2022 10:36:32 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdXj_mQhkovm38ik_fKyWcrh3aSVNRVydqDuLYX_Nw2p=g@mail.gmail.com>
+Message-ID: <CAMuHMdXj_mQhkovm38ik_fKyWcrh3aSVNRVydqDuLYX_Nw2p=g@mail.gmail.com>
+Subject: Re: [PATCH v4 3/6] PCI: rcar-gen2: Add RZ/N1 SOCs family compatible string
+To:     Herve Codina <herve.codina@bootlin.com>
+Cc:     Marek Vasut <marek.vasut+renesas@gmail.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
+        Rob Herring <robh@kernel.org>,
+        linux-pci <linux-pci@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Sergey Shtylyov <s.shtylyov@omp.ru>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Clement Leger <clement.leger@bootlin.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/04/2022 10:20, Eugen.Hristev@microchip.com wrote:
-> On 4/29/22 11:05 AM, Hans Verkuil wrote:
->> Hi Eugen,
->>
->> On 10/03/2022 10:51, Eugen Hristev wrote:
->>> This series is the v9 series that attempts to support media controller in the
->>> atmel ISC and XISC drivers.
->>> The CSI2DC driver was accepted thus removed from the patch series, together with
->>> other patches.
->>>
->>> Important note: this series applies on top of current media_staging tree, as it
->>> relies on previous patches in the series which were accepted.
->>>
->>> Thanks to everyone who reviewed my work !
->>>
->>> Eugen
->>>
->>> Changes in v9:
->>> -> kernel robot reported isc_link_validate is not static, changed to static.
->>>
->>> Changes in v8:
->>> -> scaler: modified crop bounds to have the exact source size
->>>
->>> Changes in v7:
->>> -> scaler: modified crop bounds to have maximum isc size
->>> -> format propagation: did small changes as per Jacopo review
->>>
->>>
->>> Changes in v6:
->>> -> worked a bit on scaler, added try crop and other changes as per Jacopo review
->>> -> worked on isc-base enum_fmt , reworked as per Jacopo review
->>>
->>> Changes in v5:
->>> -> removed patch that removed the 'stop' variable as it was still required
->>> -> added two new trivial patches
->>> -> reworked some parts of the scaler and format propagation after discussions with Jacopo
->>>
->>>
->>> Changes in v4:
->>> -> as reviewed by Hans, added new patch to remove the 'stop' variable and reworked
->>> one patch that was using it
->>> -> as reviewed by Jacopo, reworked some parts of the media controller implementation
->>>
->>>
->>> Changes in v3:
->>> - change in bindings, small fixes in csi2dc driver and conversion to mc
->>> for the isc-base.
->>> - removed some MAINTAINERS patches and used patterns in MAINTAINERS
->>>
->>> Changes in v2:
->>> - integrated many changes suggested by Jacopo in the review of the v1 series.
->>> - add a few new patches
->>>
->>>
->>>
->>> Eugen Hristev (13):
->>>    media: atmel: atmel-isc-base: use streaming status when queueing
->>>      buffers
->>>    media: atmel: atmel-isc-base: replace is_streaming call in
->>>      s_fmt_vid_cap
->>>    media: atmel: atmel-isc: remove redundant comments
->>>    media: atmel: atmel-isc: implement media controller
->>>    media: atmel: atmel-sama5d2-isc: fix wrong mask in YUYV format check
->>>    media: atmel: atmel-isc-base: use mutex to lock awb workqueue from
->>>      streaming
->>>    media: atmel: atmel-isc: compact the controller formats list
->>>    media: atmel: atmel-isc: change format propagation to subdev into only
->>>      verification
->>>    media: atmel: atmel-sama7g5-isc: remove stray line
->>>    dt-bindings: media: microchip,xisc: add bus-width of 14
->>
->> I'm a bit unhappy with the order of these patches. Mostly these are fixes,
->> except for patches 4 and 8, which are the meat of this series and actually
->> switching on the MC support.
->>
->> Can those be moved to the end? That also makes it easier to merge the earlier
->> patches if some more work is needed for the MC part.
->>
->> I'm also not sure whether patches 4 and 8 shouldn't be a single patch,
->> since patch 4 leaves the driver in an inconsistent state since it is
->> missing the link validation code that patch 8 adds. Unless I missed
->> something?
-> 
-> Hello Hans,
-> 
-> The difference that patch 8 is making is that the 'old way' of 
-> configuring the ISC is no longer possible.
-> 
-> Patch 4 makes the ISC 'mc-ready' with all entities, links, but the old 
-> way still works (meaning that the top driver will call s_fmt down to the 
-> subdev ).
-> After patch 8, the driver no longer has this support at all, and 
-> validates links at start_streaming, and no longer sets anything to the 
-> subdev, just validates the config that the subdev already has.
-> So one reason that I had things in two patches was that patch 8 makes 
-> this big change that also makes userspace behave differently and has to 
-> configure all the subdevs and media pipeline.
-> 
-> If you feel patch 4 and patch 8 should be squashed, I can do it, definitely.
-> 
-> Let me know how to proceed ?
+On Thu, Apr 28, 2022 at 5:16 PM Herve Codina <herve.codina@bootlin.com> wrote:
+> Add the Renesas RZ/N1 SOCs family support to the Renesas R-Car Gen2
+> PCI bridge driver.
+>
+> The Renesas RZ/N1 SOCs internal PCI bridge is compatible with the one
+> available in the R-Car Gen2 family.
+>
+> Tested with the RZ/N1D (R9A06G032) SOC.
+>
+> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
 
-Ah, that was your intention. The problem in patch 4 is that you set
-V4L2_CAP_IO_MC, which indicates to applications that they have to use
-the MC and configure the pipeline correctly. Moving that to patch 8
-should resolve that, I think.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-Regards,
+Gr{oetje,eeting}s,
 
-	Hans
+                        Geert
 
-> 
-> Thanks,
-> Eugen
-> 
->>
->> Regards,
->>
->>          Hans
->>
->>>    ARM: dts: at91: sama7g5: add nodes for video capture
->>>    ARM: configs: at91: sama7: add xisc and csi2dc
->>>    ARM: multi_v7_defconfig: add atmel video pipeline modules
->>>
->>>   .../bindings/media/microchip,xisc.yaml        |   2 +-
->>>   arch/arm/boot/dts/sama7g5.dtsi                |  49 ++
->>>   arch/arm/configs/multi_v7_defconfig           |   3 +
->>>   arch/arm/configs/sama7_defconfig              |   2 +
->>>   drivers/media/platform/atmel/Makefile         |   2 +-
->>>   drivers/media/platform/atmel/atmel-isc-base.c | 518 ++++++++++--------
->>>   .../media/platform/atmel/atmel-isc-scaler.c   | 267 +++++++++
->>>   drivers/media/platform/atmel/atmel-isc.h      |  58 +-
->>>   .../media/platform/atmel/atmel-sama5d2-isc.c  |  87 +--
->>>   .../media/platform/atmel/atmel-sama7g5-isc.c  |  93 ++--
->>>   10 files changed, 754 insertions(+), 327 deletions(-)
->>>   create mode 100644 drivers/media/platform/atmel/atmel-isc-scaler.c
->>>
->>
-> 
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
