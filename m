@@ -2,125 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 178A65155B4
-	for <lists+devicetree@lfdr.de>; Fri, 29 Apr 2022 22:33:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 65D085155B8
+	for <lists+devicetree@lfdr.de>; Fri, 29 Apr 2022 22:34:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1379962AbiD2UfP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Apr 2022 16:35:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35496 "EHLO
+        id S1380794AbiD2Uhc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Apr 2022 16:37:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42198 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1377496AbiD2UfO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Apr 2022 16:35:14 -0400
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EEF54644F4
-        for <devicetree@vger.kernel.org>; Fri, 29 Apr 2022 13:31:54 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id kq17so17502967ejb.4
-        for <devicetree@vger.kernel.org>; Fri, 29 Apr 2022 13:31:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=cOTYvKnpssw+HjajD028HmP+wTShZ9IeCONkU/DnTDM=;
-        b=IS1Bwm1KfpiUP9DD8wNp7WoHCXusyqm+r96FFYBPQnjwMo4DHP7CiRZTs7jb3p5XCW
-         spWHOr7uLBLxmBGed7edoEFKUzDZw4lfa+zF/UssDIXgb5glOSFPpl0eRZgdk2tpJTjw
-         2dnQFVEV5XluFKgdMiXjg/WVa6dhmTbKzRETUVxk3qsNELPl4TPDZHepIIdG5lBbYYAq
-         OmUAb2CPekhK3R8YB9uIBwwCN8KjMK4pXvataQGiWRx8r3y6C58oJUvIBE9rgzMBG1/t
-         SfXe0quGxmGX8L9S4V6NIcVtP6hhLWksn8EjxYNmEkgQaYonwOn9HZ8uU+fi/RWarzkB
-         DZ1Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=cOTYvKnpssw+HjajD028HmP+wTShZ9IeCONkU/DnTDM=;
-        b=J3RPBhTORnB4q/BwAwqX18p2xrKNPeh5cUXoM/JLvdjmzuOiHB7ui0Ja3KYICfk4Zz
-         ZyzLfZuE7rupxGELqINg4smBxpiNCi96nWRnS8PvwE/R2CGHDGOwvL4XM3Wb5cl/kumj
-         aWSHrsvvOISbHNMDLgGdMxp9Pzvcu3w1XQPoOkV+aLIuBqib1E4fRUCnE1dui9pusdav
-         ss0zIPDd22Ph/fZI4Bzf9R05rjlxGN2yk+K3FHk6Sw/g32ipYVI3MMyaVGkdH8gLKC/j
-         c1XkqKbpjJnR01vC1cO1Kf0OMPv+SvSV2JtdmYmxTWDw0UqegpS/x9upFnNhwyKbS/hf
-         7Lkg==
-X-Gm-Message-State: AOAM533DZHqzk+mbqf1xyWEnccS9s74JXHEnHlQ7yO+Q5xqq8ypFCtQJ
-        7th5AufQiNfxm9VDuWcIjNPAuQ==
-X-Google-Smtp-Source: ABdhPJwiJe/sfIfNDfS8+1kj10ZZagdOYEQqXZdXUtpduVnOH4GD+F84f5RxC6lUMiPC7SCi359tyw==
-X-Received: by 2002:a17:907:7f26:b0:6f4:69c:196f with SMTP id qf38-20020a1709077f2600b006f4069c196fmr956890ejc.613.1651264313578;
-        Fri, 29 Apr 2022 13:31:53 -0700 (PDT)
-Received: from [192.168.0.176] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id i8-20020aa7c708000000b0042617ba63absm3299258edq.53.2022.04.29.13.31.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 29 Apr 2022 13:31:53 -0700 (PDT)
-Message-ID: <4adf790c-5773-a78e-3c8e-2a510e3dbd1e@linaro.org>
-Date:   Fri, 29 Apr 2022 22:31:52 +0200
+        with ESMTP id S1348455AbiD2Uhb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Apr 2022 16:37:31 -0400
+Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.187])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5B77D890E;
+        Fri, 29 Apr 2022 13:34:11 -0700 (PDT)
+Received: from mail-yw1-f180.google.com ([209.85.128.180]) by
+ mrelayeu.kundenserver.de (mreue009 [213.165.67.97]) with ESMTPSA (Nemesis) id
+ 1MsI0I-1o0XhT3RYw-00tgcR; Fri, 29 Apr 2022 22:34:10 +0200
+Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-2f7bb893309so96691527b3.12;
+        Fri, 29 Apr 2022 13:34:09 -0700 (PDT)
+X-Gm-Message-State: AOAM532rxromeFZx8orO5hOHchjbE54LKfDWxMdlUd5Swbw//PE9+j/3
+        UsW6EFR2dL8rmIca8urwxofEZXpk773qXu3qJMs=
+X-Google-Smtp-Source: ABdhPJxmchRzlwbhUzJrTXSW5O46V9uTUf564hU5vkqZRRFSlvWrH3L90d9vRfJr0xR1Zvdx0EHMPavAkqrxafxfaRE=
+X-Received: by 2002:a0d:fc83:0:b0:2e5:b0f4:c125 with SMTP id
+ m125-20020a0dfc83000000b002e5b0f4c125mr1115356ywf.347.1651264448577; Fri, 29
+ Apr 2022 13:34:08 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH] dt-bindings: pinctrl: mt8192: Add mediatek,pull-down-adv
- property
-Content-Language: en-US
-To:     =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
-        <nfraprado@collabora.com>, Linus Walleij <linus.walleij@linaro.org>
-Cc:     kernel@collabora.com,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
+References: <20220426201539.12829-1-sven@svenpeter.dev> <CAK8P3a1yJkegvgvzHemBd_dowvpyDmxtUnrpiHob8+hiNeO4sw@mail.gmail.com>
+ <0f6ea2c3-586d-4f5a-9cee-688cd73b96b3@www.fastmail.com> <CAK8P3a3pPxpoOZ0hm9htBRyYc7L38F6egi-0=41tMtcLRGJ_jw@mail.gmail.com>
+ <20220428142412.GA19708@lst.de> <be7e0eb1-c423-455f-bd89-050d52996340@www.fastmail.com>
+In-Reply-To: <be7e0eb1-c423-455f-bd89-050d52996340@www.fastmail.com>
+From:   Arnd Bergmann <arnd@arndb.de>
+Date:   Fri, 29 Apr 2022 22:33:52 +0200
+X-Gmail-Original-Message-ID: <CAK8P3a1CO8_Pa=Hk3hcdNfT_eD3PQK2aWDFB9bwk6TCNbGmtEg@mail.gmail.com>
+Message-ID: <CAK8P3a1CO8_Pa=Hk3hcdNfT_eD3PQK2aWDFB9bwk6TCNbGmtEg@mail.gmail.com>
+Subject: Re: [PATCH v3 0/6] Apple M1 (Pro/Max) NVMe driver
+To:     Sven Peter <sven@svenpeter.dev>
+Cc:     "hch@lst.de" <hch@lst.de>, Arnd Bergmann <arnd@arndb.de>,
+        Hector Martin <marcan@marcan.st>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
         Rob Herring <robh+dt@kernel.org>,
-        Sean Wang <sean.wang@mediatek.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org
-References: <20220429200637.2204937-1-nfraprado@collabora.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220429200637.2204937-1-nfraprado@collabora.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Keith Busch <kbusch@kernel.org>, "axboe@fb.com" <axboe@fb.com>,
+        "sagi@grimberg.me" <sagi@grimberg.me>,
+        Marc Zyngier <maz@kernel.org>, Janne Grunau <j@jannau.net>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-nvme@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+X-Provags-ID: V03:K1:r1FSgC0+iHYSfxL+8Z+moknQ0nCGDDpQkwCtuY53NIDtW2hw1bd
+ 849ECg/PwrI6rBtWZcCbZ7kXa6HlPekmQAMMcdSktsetvLR0C7FUi5ETNGlVEiedzg2/j08
+ HKcUfkD6f/KAm+1oYZ0tCJXH9s4wxVzbsFAzb6FCOci8KigQzuwf5WyffOMsYaxIUDztAX2
+ gQVaOVJAhJJhbX5uttjsg==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:htzl+qKV3XQ=:14TACTnPszlg1AVU/JL99l
+ E9rL+A6iQRVIjEFsYXqtMTfvvwMgeVYao9jScukS4yrLbmXsiulwjxSrloFO9w/6ydTR00zU0
+ kBbfsp+c5TZJxjlv+aDJrwMoZw0l9qmZAlhbup2x+x5BmSjNFx5CrNs0dxi2qnCu6m7Ty5onr
+ 4i8BR7jH8xh/T21lWLbshrBKayybO0zn/hxtonpq4LZ/auKk63phg7ben5EYIf/i8Wn5cuL88
+ pQzrRlUxhIsltrVcNSHI9b74ydpEkiVUtoWy24CtmRH9r2FgYPc7sd32VK7gfamp+Q+F3nX89
+ TPDf/QR29cXsL1lypvFtAlsW9AQx8ciMeT0VRgndtVefhEKimmIIbW8MuGlpQ4b+bLiBBSITi
+ XfB4YMvy0xPAxbbjMAOrWu3gFXzNXeaWtcv9y8ks1shRLUhvWIAVblxfGByB+o71oAmo8tPEH
+ QKDY4xuXs5aJoGmZPFzsicte3gOdHpfJwJeMW1QzIFZG3AFQrORdk5bSBxVebju+ww5T3x+MD
+ JmCyRvhSwA/ZEcEC8bPQMLZ7t9s6ugz589f/XaF1jZkLdPyG6t+IS4V+5NutnZ+4buw722tCU
+ U2YUVDr0IHso9YWQzn0DktU2/DJqO078hte/xcetQYzalVt7VtFWStZ6s4Fbx5HkJd1NUATHh
+ BV12vkwLdC9HSBJRtUxeBENWlFIE8UPAk6keCCTXz22iM469/hpgWn5MtdOEtbJ5F/Sc=
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/04/2022 22:06, Nícolas F. R. A. Prado wrote:
-> Add the mediatek,pull-down-adv property to the pinctrl-mt8192 dt-binding
-> to allow configuring pull-down resistors on the pins of MT8192. It is
-> the same as in mt8183-pinctrl.
-> 
-> Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
-> 
-> ---
-> 
->  .../devicetree/bindings/pinctrl/pinctrl-mt8192.yaml   | 11 +++++++++++
->  1 file changed, 11 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/pinctrl/pinctrl-mt8192.yaml b/Documentation/devicetree/bindings/pinctrl/pinctrl-mt8192.yaml
-> index c90a132fbc79..e462f49eae6f 100644
-> --- a/Documentation/devicetree/bindings/pinctrl/pinctrl-mt8192.yaml
-> +++ b/Documentation/devicetree/bindings/pinctrl/pinctrl-mt8192.yaml
-> @@ -117,6 +117,17 @@ patternProperties:
->              $ref: /schemas/types.yaml#/definitions/uint32
->              enum: [0, 1, 2, 3]
->  
-> +          mediatek,pull-down-adv:
-> +            description: |
-> +              Pull down settings for 2 pull resistors, R0 and R1. User can
-> +              configure those special pins. Valid arguments are described as below:
+On Fri, Apr 29, 2022 at 6:37 PM Sven Peter <sven@svenpeter.dev> wrote:
+> On Thu, Apr 28, 2022, at 16:24, hch@lst.de wrote:
+> > On Wed, Apr 27, 2022 at 07:39:49PM +0200, Arnd Bergmann wrote:
+> >> The usual trick is to have a branch with the shared patches and have
+> >> that pulled into every other tree that needs these, but make sure you never
+> >> rebase. In this case, you could have something like
+> >>
+> >> a) rtkit driver in a shared branch (private only)
+> >> b) thunderbolt driver based on branch a), merged through
+> >>      thunderbolt/usb/pci tree (I don't know who is responsible here)
+> >> c) sart driver based on branch a), merged through soc tree
+> >> d) nvme driver based on branch c), merged through nvme tree
+> >>
+> >> since the commit hashes are all identical, each patch only shows up in
+> >> the git tree once, but you get a somewhat funny history.
+> >
+> > Given that the nvme driver is just addition of new code I'm perfectly
+> > fine with sending it through whatever tree is most convenient.
+>
+> So If I understand all this correctly either
+>         1) I send a pull request with rtkit+sart to Arnd/soc@ followed by
+>            a pull request with the same commits + the nvme driver to
+>            Christoph/nvme to make sure the commit hashes in both trees
+>            are the same.
+> or
+>         2) I send a pull request with rtkit+sart+nvme to soc@ and we
+>            take the entire driver through there with Christoph's ack
+>            if Arnd is fine with carrying it as well.
+>
+> In either case SMC (or thunderbolt if I finish in time) can also be based
+> on the same rtkit commit and could go into 5.19 as well.
+> I don't have any preference here (not that my opinion matters much
+> for this decision anyway :-))
 
-Trailing ':' should be escaped, so '::'
+Correct, those are both ok.
 
-
-> +              0: (R1, R0) = (0, 0) which means R1 disabled and R0 disabled.
-> +              1: (R1, R0) = (0, 1) which means R1 disabled and R0 enabled.
-> +              2: (R1, R0) = (1, 0) which means R1 enabled and R0 disabled.
-> +              3: (R1, R0) = (1, 1) which means R1 enabled and R0 enabled.
-> +            $ref: /schemas/types.yaml#/definitions/uint32
-> +            enum: [0, 1, 2, 3]
-
-It's okay, but for all these and other values (you have few such in the
-binding), you should maybe add header and defines. It's much more
-readable for humans...
-
-Is the property valid without bias-pull-down?
-
-Best regards,
-Krzysztof
+        Arnd
