@@ -2,137 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A67AA51502D
-	for <lists+devicetree@lfdr.de>; Fri, 29 Apr 2022 18:03:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AC508515034
+	for <lists+devicetree@lfdr.de>; Fri, 29 Apr 2022 18:04:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1378755AbiD2QGg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Apr 2022 12:06:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38608 "EHLO
+        id S1357050AbiD2QHp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Apr 2022 12:07:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39906 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1378748AbiD2QGf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Apr 2022 12:06:35 -0400
-Received: from mail-yw1-x1130.google.com (mail-yw1-x1130.google.com [IPv6:2607:f8b0:4864:20::1130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE42E6D1A2
-        for <devicetree@vger.kernel.org>; Fri, 29 Apr 2022 09:03:16 -0700 (PDT)
-Received: by mail-yw1-x1130.google.com with SMTP id 00721157ae682-2f7ca2ce255so89920847b3.7
-        for <devicetree@vger.kernel.org>; Fri, 29 Apr 2022 09:03:16 -0700 (PDT)
+        with ESMTP id S1378769AbiD2QHo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Apr 2022 12:07:44 -0400
+Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com [IPv6:2607:f8b0:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CEE6A84ED4
+        for <devicetree@vger.kernel.org>; Fri, 29 Apr 2022 09:04:25 -0700 (PDT)
+Received: by mail-pf1-x433.google.com with SMTP id x23so1996556pff.9
+        for <devicetree@vger.kernel.org>; Fri, 29 Apr 2022 09:04:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=gateworks-com.20210112.gappssmtp.com; s=20210112;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=weVUNOweEKuBnOgbTT5sRsubKFtsUKuKJQ1Z2ZMEyQk=;
-        b=ktuMVBY3hzkXH24i9FvxhrVi5t/aZModgQunaWbvlAtnM53jhHuWMasNMZzQL5NU2v
-         IDW2KYoOMpVcSbret2ZelAh1luFQmP+z0q1h6YAt9090HrsVp+boZ/It7uTrSZ1AxOgr
-         fiAPxFp1uAWXbByuRmEGlIChZrg+R3g48Thg51O4qqE5akQ6tjZ3Jnav0cnBCvz9Amhm
-         WjzjSwc/chzd50zhhaQx7JDxy/W3Q1cxDoZseHtub6LFR0M+HrU1hNP18hHh6W6R9Awq
-         U4CLPUqtIJx4PzdOZ9Z3fvZbM0ZpJ/i4JJl4EiXanuD0+J6MAY2QLD1RR9yHvuJFk8xl
-         h+xw==
+        bh=CNNorgah8ybYol7gjHDhFHcts5/oLyPdR4o5Dg4a4YY=;
+        b=iz0iLtf5Kgi2CEamDtU3O35n39GYZGMdBjauwSTHbzwKnjawPqftV1+DkTxu8l+fYP
+         t3qSRFrjLVUdYo0fXyr5RNryHNmSK+9EUoIIiyoRIa5/HelC4citWC2v1up652v7KFgz
+         5vVtIgQrwZAO3JA17Uhx16lKZOYVUwKFGXKlwz9h/HCRwreWzGDnMmXkMarfczh4tpWg
+         gwNzy8gHq9PJg4zsTl2I3oI4QnvAJadoE0Dz3iWgf7Dal7FjTiX5rj7kH6vnv8AQMDhg
+         eMExwp74qxVfbIwj+RnyQF2c7ftt9BpB/6tCTPcbqwyHiSir7yAqU3Yfa2sOfp/hYiLq
+         eMzg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=weVUNOweEKuBnOgbTT5sRsubKFtsUKuKJQ1Z2ZMEyQk=;
-        b=R22Lm52e6Hikzzxy1lSKHIJY4/g3iwCmC0pAJX7FrdQGRwQiPml2tgucPIVOpT4TR0
-         KW5vidTTklEZxDd80de7t1zcoXJ9ogr4xylp7atC6EK30+qfavguOU4YgCPyzLp/h6Jm
-         sQfgLe27Tp10eobwOLZ5S8bCydlO/wBjK/LOlee9VzI/1uwSBBlzWlX3PeARHSwdAL0H
-         gYjULOsUXp2pFAEVtcW7r2konX0dJ5syudqUS9B5Ajjslen7mARKw7NC+X37Fwsl5uuC
-         eJgQ8dT4dRboRIQOMM7/hCNo5sYKuw5EJqBVsjhWIFNy4h/xHcY5qQqQnWj1mVtRSJOs
-         4lwQ==
-X-Gm-Message-State: AOAM533XujxRwCbnGCP665v8WB+CvHEenDX5scgcz8WP/jmymxAEwFRw
-        rrhstvXa+alxC20AzPTx5i5piWNk6xE625iN8KDSOA==
-X-Google-Smtp-Source: ABdhPJzk62ofT4JmF5QwOrBYsJ9viJWc9NtUrS4CcwDplIfqkHLFEiAGrAWs6uyCLeRCdBNGfPhopEY3GE0WTk+bBv0=
-X-Received: by 2002:a81:4c11:0:b0:2d1:1925:cd70 with SMTP id
- z17-20020a814c11000000b002d11925cd70mr38033089ywa.101.1651248194446; Fri, 29
- Apr 2022 09:03:14 -0700 (PDT)
+        bh=CNNorgah8ybYol7gjHDhFHcts5/oLyPdR4o5Dg4a4YY=;
+        b=ANqob4SiHXVin/IRIjnv+kF/mWUkZGRm+DfqbfjLUhYxya3Uw5eXhx/9XpX+aJPOi/
+         jWLmBBUVfFQ+COAp/Zz0eOEEQFP3dfMFBp410EaCcAseQt2GahkJqfinztrx6BGOD0cS
+         HWSjS4g2St94Dg6aEjf06QvI1zzMN4nfHBZ6KVCJt/OcCdytxyLMOsJr0VyLoBBbP+Q8
+         4UpTGqTPIY//w8lmXYnkOUcucRqrKSA4LKxJOCUsnIzyA2aLovbEhmKUAmSbhSRcz163
+         5X+zM8VcFMV/jn+x+lTROWKFMZqFCR72dXI71qd4gR8Hu7tWwHvQoFXY3NeOD4oZLeG1
+         hIcA==
+X-Gm-Message-State: AOAM5316oX0KKxlBWH7IxNWW2Zg9+/8J6TSJzLVqNQu/UUOP7p72yWK0
+        +Jp3rHFWXxZtQrFbCA8cp/y0hCBUUJ9re0bPSDcKGQ==
+X-Google-Smtp-Source: ABdhPJxsrjeODXrBp50VvsilExotJGBqxGmNr9R5vlCqNAXc0PJO2RfQxaGuXWFTfDX9NxLbE7pxdM/KFDsDWvkwkCA=
+X-Received: by 2002:a63:d43:0:b0:3c1:475e:8341 with SMTP id
+ 3-20020a630d43000000b003c1475e8341mr49887pgn.533.1651248265273; Fri, 29 Apr
+ 2022 09:04:25 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220429121739.28584-1-ansuelsmth@gmail.com> <20220429121739.28584-4-ansuelsmth@gmail.com>
- <1651247596.124069.2344494.nullmailer@robh.at.kernel.org> <626c0b64.1c69fb81.1b1e9.4fe6@mx.google.com>
-In-Reply-To: <626c0b64.1c69fb81.1b1e9.4fe6@mx.google.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Fri, 29 Apr 2022 19:03:03 +0300
-Message-ID: <CAA8EJpr4Qsiop5_6Ad1dT-i-xc4RkOot9UedDtp6ViEYpc46DA@mail.gmail.com>
-Subject: Re: [PATCH 3/3] dt-bindings: arm: msm: Convert kpss-gcc driver
- Documentation to yaml
-To:     Ansuel Smith <ansuelsmth@gmail.com>
-Cc:     Rob Herring <robh@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        linux-clk@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org
+References: <20220405200625.19359-1-tharvey@gateworks.com> <20220411013106.GD129381@dragon>
+ <CAJ+vNU0VVpDGDXivz=r8C4U8dYjA08SqnzPXwmtOv4ujvc3=Zg@mail.gmail.com> <20220418075718.GB391514@dragon>
+In-Reply-To: <20220418075718.GB391514@dragon>
+From:   Tim Harvey <tharvey@gateworks.com>
+Date:   Fri, 29 Apr 2022 09:04:13 -0700
+Message-ID: <CAJ+vNU12t_2Jr_D=YC-ZRJdJuZS2aPQ7EoT0QA8vctGhhLuHtQ@mail.gmail.com>
+Subject: Re: [PATCH] imx8mm-venice-gw7902: update pci refclk
+To:     Shawn Guo <shawnguo@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Device Tree Mailing List <devicetree@vger.kernel.org>,
+        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        Richard Zhu <hongxing.zhu@nxp.com>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 29 Apr 2022 at 18:59, Ansuel Smith <ansuelsmth@gmail.com> wrote:
+On Mon, Apr 18, 2022 at 12:57 AM Shawn Guo <shawnguo@kernel.org> wrote:
 >
-> On Fri, Apr 29, 2022 at 10:53:16AM -0500, Rob Herring wrote:
-> > On Fri, 29 Apr 2022 14:17:39 +0200, Ansuel Smith wrote:
-> > > Convert kpss-gcc driver Documentation to yaml.
+> On Mon, Apr 11, 2022 at 12:44:23PM -0700, Tim Harvey wrote:
+> > On Sun, Apr 10, 2022 at 6:31 PM Shawn Guo <shawnguo@kernel.org> wrote:
 > > >
-> > > Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
-> > > ---
-> > >  .../bindings/arm/msm/qcom,kpss-gcc.txt        | 44 -------------
-> > >  .../bindings/arm/msm/qcom,kpss-gcc.yaml       | 63 +++++++++++++++++++
-> > >  2 files changed, 63 insertions(+), 44 deletions(-)
-> > >  delete mode 100644 Documentation/devicetree/bindings/arm/msm/qcom,kpss-gcc.txt
-> > >  create mode 100644 Documentation/devicetree/bindings/arm/msm/qcom,kpss-gcc.yaml
+> > > On Tue, Apr 05, 2022 at 01:06:25PM -0700, Tim Harvey wrote:
+> > > > Use the correct PCI clock bindings.
+> > >
+> > > Please improve the commit log to explain why clock "pcie_phy" can be
+> > > dropped.
 > > >
 > >
-> > My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> > on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> > Shawn,
 > >
-> > yamllint warnings/errors:
+> > The original PCIe bindings for this board were wrong - they were from
+> > a version of the bindings that was not yet approved (my mistake) and
+> > I'm just trying to bring them up to date.
 > >
-> > dtschema/dtc warnings/errors:
-> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/arm/msm/qcom,kpss-gcc.yaml: properties: '#clock-cells' is a dependency of 'clock-output-names'
+> > That said, I looked at the latest fsl,imx6q-pcie.yaml dt-bindings [1]
+> > and see that there should be a min of 3 clocks called 'pcie',
+> > 'pcie_bus', and 'pcie_phy'. However I notice that all of the current
+> > imx8mm boards that enable PCI have clock-names of 'pcie', 'pcie_aux',
+> > and 'pcie_bus'. It seems like all the imx8mm boards having pcie have
+> > clock-names this way:
+> >
+> > arch/arm64/boot/dts/freescale/imx8mm-beacon-baseboard.dtsi
+> > arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi
+> > arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml-mba8mx.dts
+> > arch/arm64/boot/dts/freescale/imx8mm-venice-gw71xx.dtsi
+> > arch/arm64/boot/dts/freescale/imx8mm-venice-gw72xx.dtsi
+> > arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx.dtsi
+> > arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dts
+> > arch/arm64/boot/dts/freescale/imx8mm-venice-gw7902.dts
+> > arch/arm64/boot/dts/freescale/imx8mm-venice-gw7903.dts
+> >
+> > Does the binding need to change or do the clock names need to change
+> > in the above?
 >
-> Erm how to fix this? I can't do a 1:1 conversion if the source was
-> wrong and also have no bot warning.
-> Or I should just push an additional patch to fix this error after the
-> conversion?
-
-You can fix obvious simple mistakes and describe your chains in the
-commit message.
-
+> If the bindings is approved/correct, device tree should match bindings.
 >
-> >       from schema $id: http://devicetree.org/meta-schemas/clocks.yaml#
-> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/arm/msm/qcom,kpss-gcc.yaml: ignoring, error in schema: properties
-> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/arm/msm/qcom,kpss-gcc.example.dtb: clock-controller@2011000: '#clock-cells' is a dependency of 'clock-output-names'
-> >       From schema: /usr/local/lib/python3.10/dist-packages/dtschema/schemas/clock/clock.yaml
-> > Documentation/devicetree/bindings/arm/msm/qcom,kpss-gcc.example.dtb:0:0: /example-0/clock-controller@2011000: failed to match any schema with compatible: ['qcom,kpss-gcc-ipq8064', 'qcom,kpss-gcc']
-> > Documentation/devicetree/bindings/arm/msm/qcom,kpss-gcc.example.dtb:0:0: /example-0/clock-controller@2011000: failed to match any schema with compatible: ['qcom,kpss-gcc-ipq8064', 'qcom,kpss-gcc']
-> >
-> > doc reference errors (make refcheckdocs):
-> >
-> > See https://patchwork.ozlabs.org/patch/
-> >
-> > This check can fail if there are any dependencies. The base for a patch
-> > series is generally the most recent rc1.
-> >
-> > If you already ran 'make dt_binding_check' and didn't see the above
-> > error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> > date:
-> >
-> > pip3 install dtschema --upgrade
-> >
-> > Please check and re-submit.
-> >
->
-> --
->         Ansuel
 
+Shawn,
 
+I think the bindings are wrong.
 
--- 
-With best wishes
-Dmitry
+Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml has [1]:
+
+  clocks:
+    minItems: 3
+    items:
+      - description: PCIe bridge clock.
+      - description: PCIe bus clock.
+      - description: PCIe PHY clock.
+      - description: Additional required clock entry for imx6sx-pcie,
+          imx8mq-pcie.
+
+  clock-names:
+    minItems: 3
+    items:
+      - const: pcie
+      - const: pcie_bus
+      - const: pcie_phy
+      - const: pcie_inbound_axi for imx6sx-pcie, pcie_aux for imx8mq-pcie
+
+This indicates the "pcie_phy" clock is required yet
+drivers/pci/controller/dwc/pci-imx6.c [2] doesn't require it if it has
+an abstract PHY driver which is the case for IMX8M (and that's why my
+patch drops it)
+
+Additionally I note that the 4th clock described in the bindings could
+use some clarification for imx8mm-pcie as for this "pcie_aux" is
+required.
+
+Best Regards,
+
+Tim
+[1] https://elixir.bootlin.com/linux/v5.18-rc4/source/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml
+[2] https://elixir.bootlin.com/linux/v5.18-rc4/source/drivers/pci/controller/dwc/pci-imx6.c#L1140
