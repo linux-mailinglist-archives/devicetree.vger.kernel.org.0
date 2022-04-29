@@ -2,69 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7631B515618
-	for <lists+devicetree@lfdr.de>; Fri, 29 Apr 2022 22:47:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6E0BA51561F
+	for <lists+devicetree@lfdr.de>; Fri, 29 Apr 2022 22:53:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1381073AbiD2UvL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Apr 2022 16:51:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58478 "EHLO
+        id S1380878AbiD2U42 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Apr 2022 16:56:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45808 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1381069AbiD2UvH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Apr 2022 16:51:07 -0400
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D050AA0BEA
-        for <devicetree@vger.kernel.org>; Fri, 29 Apr 2022 13:47:46 -0700 (PDT)
-Received: by mail-ej1-x62a.google.com with SMTP id n10so129821ejk.5
-        for <devicetree@vger.kernel.org>; Fri, 29 Apr 2022 13:47:46 -0700 (PDT)
+        with ESMTP id S239602AbiD2U41 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Apr 2022 16:56:27 -0400
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 216CACC516
+        for <devicetree@vger.kernel.org>; Fri, 29 Apr 2022 13:53:07 -0700 (PDT)
+Received: by mail-ed1-x52a.google.com with SMTP id b24so10352054edu.10
+        for <devicetree@vger.kernel.org>; Fri, 29 Apr 2022 13:53:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :references:from:in-reply-to:content-transfer-encoding;
-        bh=7XFv0enAym+ID9R3vXfpM3vAOvL5k1kdXEpaRFJe1CA=;
-        b=FA9Vla0q5kmg3t9U6lDt1g7PjTCHg7wH9SuQqQKoueF53p/pt0lvTacAT7XeT8nbdi
-         AAQIGarG8AuhPBmEHDkxDslSITkeNOLXXlPnsqn9bCtMeESkLt6R3dnxhwwghdkVEZCG
-         +N7+WB9MdciyoSV4YPFN9Bwy76n7fAdCGs3jBszl8rRYc8AQMUJZzojy7N5gM6Dqjd5H
-         FBhSXmiYTmWV4QB/uEuwXwPk6Ms2xmZYsb97BXGwk3+0vgP9N6dIG3bM6h4ExmmgIR42
-         6SFqex9GDbPeI7uAXhDTKDT97XqiC+NkLqepQueJwgwDrbx0DF1CrRs2W1idNPJXLIWp
-         ZJdg==
+        bh=5rueA+5P6DTgRKhYiRtmSze3ymkDAf5ytcrTJ+jun9M=;
+        b=Lld+U214U5FpR4tHUMml0PeDOJMDTHUSspkT9J9PRSGdfHLrXLUZh5TzNZKVksNGyn
+         lsJIeEyOuKjndcsMU3i11HFYeUeGHR8whS5ERQjMdMJRtK7cHF7813uS1Pf1K7Kkk9LB
+         TB9F7PnvpLhSQfqKea+3KLbAEuB1BeslNWWrd//LCgYFGiqTe43gOuVgJgMOl3YWqlbu
+         Z6NO7+NVFMoo93e6PcPFIVj9eK8M43N8GM4G+6c/ZXJG5m9g7x2te+LAVhrygp7wpmFg
+         oqqdXY79pVug5hMWwJGwAD+BD/gXE5EaNPdBbuhT0QCGlKtR3hEeM41Iu8JGITrZdn3u
+         Bb4A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=7XFv0enAym+ID9R3vXfpM3vAOvL5k1kdXEpaRFJe1CA=;
-        b=CRjylNw92s+5+oqGj9/OZV2clGkBfxl+WqADTgOVvLpdU7GApuKr5NJYQ2GedlJ2WA
-         OXB9rHmCTgqvHlZm3JwaytY0q9/Kcm7n6owLkrtTYhtebwzX5iADsToI4dcIOX77e3c4
-         6VMmKPUV5MRYlsN2jA6LnJGtM4vXvlpDfqjqbF9ktNJyoO94+Rr7fbCdLV/5CMk9ujAO
-         D9eReXNd/NSNbVYng8uI0NyxZmUZsVXHiG90rAbWq4DWoiZRhrBpZ/7PergsT8NlyRQy
-         6Xa4CFRbAvUyYI+QFoiveV9O5+DPVvq3udOWDTpKenD+xPX+GVW3vzQbYS6H2Xw3ZHga
-         d1bA==
-X-Gm-Message-State: AOAM530rvlNdxOrIGlH+CNqrzblI5tcxOyeMyyJTB6p7/OCUP/aLR0b8
-        xSKrfQx6e8vGt/OKnzWG4ALlWQ==
-X-Google-Smtp-Source: ABdhPJx8NIy7aI2AgyUS6bXRPo7rEIWxGmXm72s/3A6kmrHKRAvH2T0l9dyQDRkC7PwDU+bTGKI8fA==
-X-Received: by 2002:a17:906:2ac9:b0:6ce:dc0f:9139 with SMTP id m9-20020a1709062ac900b006cedc0f9139mr1069924eje.206.1651265265461;
-        Fri, 29 Apr 2022 13:47:45 -0700 (PDT)
+        bh=5rueA+5P6DTgRKhYiRtmSze3ymkDAf5ytcrTJ+jun9M=;
+        b=agDJ24bIqcDBRLCwlAZMGiGuZoRrS4pwZYFKxL7IWVsD3niwsJhwQ8+AaYtE4pILqW
+         SKq4wY36fyQpAI0/R+xI5v+xqtxehvzpQafBC/unRfPhIhgtp0OJVHwpX9PYMfGgNqa/
+         Hx+T930z3KhP09Db/xhZ/5+SRL1QUyPcXPf2XMI7Exn/gsF7xA57DqKaZFzn9oGVkQ7J
+         ZVO+2Z9Vk1tQroW539F8Ec9kys/REQb6rYSvjPpUpHKjGmAXd//5IgqIjUdt2xzyDDnR
+         kSACduEYv/KcWChAJDbuwr7t+aDoqb4yH+4oLYCCT3gCjnnmUZfDlFiLrS8aiRv23oly
+         AHUg==
+X-Gm-Message-State: AOAM53082wRTFel4pJsGrmTm1deORk0GIefOz9TKWS7crfiea8Q/5YFx
+        EBPmxsdzHMZ1T+Wg0506gTAzHg==
+X-Google-Smtp-Source: ABdhPJy8IUwbb2odNT7CTTekNssjCh4o9qQLalWP0g+aNBCPfam0Wsuwz3cMRZqb5yANHs0LGjORGQ==
+X-Received: by 2002:aa7:ce84:0:b0:425:d2e0:a75f with SMTP id y4-20020aa7ce84000000b00425d2e0a75fmr1119803edv.263.1651265585758;
+        Fri, 29 Apr 2022 13:53:05 -0700 (PDT)
 Received: from [192.168.0.176] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id ig1-20020a1709072e0100b006f3ef214e7asm961748ejc.224.2022.04.29.13.47.44
+        by smtp.gmail.com with ESMTPSA id u26-20020aa7d99a000000b0042617ba63b7sm3418077eds.65.2022.04.29.13.53.04
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 29 Apr 2022 13:47:44 -0700 (PDT)
-Message-ID: <791bb7a7-a717-7d86-eca4-3a270e6b3d0f@linaro.org>
-Date:   Fri, 29 Apr 2022 22:47:43 +0200
+        Fri, 29 Apr 2022 13:53:05 -0700 (PDT)
+Message-ID: <5866fb85-37ee-76ce-a1c4-a0d9b9aebda4@linaro.org>
+Date:   Fri, 29 Apr 2022 22:53:04 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [PATCH 5/6] dt-bindings: mailbox: set correct #clock-cells
+Subject: Re: [PATCH v4 2/2] dt-bindings: usb: Add bindings doc for Sunplus
+ EHCI driver
 Content-Language: en-US
-To:     Robert Marko <robimarko@gmail.com>, agross@kernel.org,
-        bjorn.andersson@linaro.org, jassisinghbrar@gmail.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        mturquette@baylibre.com, sboyd@kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-clk@vger.kernel.org
-References: <20220429114330.59026-1-robimarko@gmail.com>
- <20220429114330.59026-5-robimarko@gmail.com>
+To:     Vincent Shih <vincent.sunplus@gmail.com>,
+        gregkh@linuxfoundation.org, stern@rowland.harvard.edu,
+        p.zabel@pengutronix.de, davem@davemloft.net,
+        vladimir.oltean@nxp.com, linux-kernel@vger.kernel.org,
+        linux-usb@vger.kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+        wells.lu@sunplus.com
+References: <1651220876-26705-1-git-send-email-vincent.sunplus@gmail.com>
+ <1651220876-26705-3-git-send-email-vincent.sunplus@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220429114330.59026-5-robimarko@gmail.com>
+In-Reply-To: <1651220876-26705-3-git-send-email-vincent.sunplus@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -77,22 +79,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/04/2022 13:43, Robert Marko wrote:
-> IPQ6018 and IPQ8074 require #clock-cells to be set to 1 as their APSS
-> clock driver provides multiple clock outputs.
+On 29/04/2022 10:27, Vincent Shih wrote:
+> Add bindings doc for Sunplus EHCI driver
 > 
-> So allow setting 1 as #clock-cells and check that its set to 1 for IPQ6018
-> and IPQ8074, check others for 0 as its currently.
-> 
-> Signed-off-by: Robert Marko <robimarko@gmail.com>
+> Signed-off-by: Vincent Shih <vincent.sunplus@gmail.com>
 > ---
->  .../mailbox/qcom,apcs-kpss-global.yaml         | 18 +++++++++++++++++-
->  1 file changed, 17 insertions(+), 1 deletion(-)
+> Changes in v2:
+>   - Address the comments from Mr. Krzysztof Kozlowski and Mr. Rob Herring
 
+Improved, but still I don't think you applied all of my comments. Please
+go through them one more time.
 
-With the changes asked by Jassi:
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+https://lore.kernel.org/all/67ec6f3a-1579-f77a-a54d-381472252d6b@canonical.com/
 
 
 Best regards,
