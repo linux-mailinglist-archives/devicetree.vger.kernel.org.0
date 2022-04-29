@@ -2,195 +2,216 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 09760513FD4
-	for <lists+devicetree@lfdr.de>; Fri, 29 Apr 2022 02:52:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 56880514065
+	for <lists+devicetree@lfdr.de>; Fri, 29 Apr 2022 03:55:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1353594AbiD2Azo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Apr 2022 20:55:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34774 "EHLO
+        id S231922AbiD2B7F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Apr 2022 21:59:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55738 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1353591AbiD2Azj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 20:55:39 -0400
-Received: from EUR02-HE1-obe.outbound.protection.outlook.com (mail-eopbgr10087.outbound.protection.outlook.com [40.107.1.87])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36315BC84B;
-        Thu, 28 Apr 2022 17:52:21 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=W7pt3KgaXOxgCnqbryWkKYZWfnC89+AxpWR5N3pZ8fFtOEXzskmsHh36S97u8pwz0ywIF2pwe39Z4xNHrIsTpIddYeKtoSNpeX5PCuaJb3IdRY+PvCRKtAyU+NT1FxYf2uNDwhW5ILEwH3Iqrm+Ea92IwTMXH8qHnwukI7V/xO/40ncI/GatDE1+ErgztxI2s+muMcqbEFkCVV9dTWdzUOst43N15ElqPq65C4pky+oQXzbNLNjHhwwz2yUVUjI7AESKV09tCx4+NuUoQG38pYQExnMQrFEUFPY32w69NAtz8IF4fJAnRAWplN545v+iu4N4zqv7OE+IUotF+eQyhQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=VL6x8Q83Ck96DTCFE962M7gT794X42qpo/xnHvLGlhs=;
- b=l7J8Nz04cKd/VijSVbGwy0rgSRbqzARCvDUDr430tGDGfXwKIwXWOWdMtyuh7rpTYJMok6qu0Bwzmj7CDfKNpBYkToFrtzC+5GbOCcB+zlW8E/sqmYOPyhelLP3P5Pr4bCEHQWb+upXoO6yZkdU0O7tso9YhmovVwjn2AujNfFzImDIQsuqS13tkhh5/Rrdw0fg+xuN/K4sn1vkodaFwXvcaVfbQwagA47FHLZb8oPV5GbO1SlLHc5gV7k9QUBTQmGKUJFm9wdGzNj6CawtJDWS1BmUSCIb0MsCPyUEQIjJq12d2EHglx9j7HBgoploNKIT56FrP2948HG/NB6RWEw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector2-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=VL6x8Q83Ck96DTCFE962M7gT794X42qpo/xnHvLGlhs=;
- b=UgnZGuIPukyO+0enMoU6SA4J4KKkFx1ZJlwR3dfkIu/UuONM4MnVRE3s93zz/DMMHb84VIAz0pjauPftHK184av8VDB/+tpOTlgLwW1xdq8e39bdUwKKARGAY8s9H5U6qLR7je5Br3cMd562W4Dbj29LSuBlendmIbMUChJHQz4=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from DU0PR04MB9417.eurprd04.prod.outlook.com (2603:10a6:10:358::11)
- by DB8PR04MB6619.eurprd04.prod.outlook.com (2603:10a6:10:108::24) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5186.23; Fri, 29 Apr
- 2022 00:52:17 +0000
-Received: from DU0PR04MB9417.eurprd04.prod.outlook.com
- ([fe80::fc66:662f:2a82:1420]) by DU0PR04MB9417.eurprd04.prod.outlook.com
- ([fe80::fc66:662f:2a82:1420%5]) with mapi id 15.20.5206.014; Fri, 29 Apr 2022
- 00:52:17 +0000
-From:   "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-To:     bjorn.andersson@linaro.org, mathieu.poirier@linaro.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com,
-        linux-remoteproc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
-Cc:     devicetree@vger.kernel.org, Peng Fan <peng.fan@nxp.com>
-Subject: [PATCH V2 2/2] remoteproc: imx_rproc: support i.MX93
-Date:   Fri, 29 Apr 2022 08:53:46 +0800
-Message-Id: <20220429005346.2108279-3-peng.fan@oss.nxp.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220429005346.2108279-1-peng.fan@oss.nxp.com>
-References: <20220429005346.2108279-1-peng.fan@oss.nxp.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SI2PR01CA0004.apcprd01.prod.exchangelabs.com
- (2603:1096:4:191::22) To DU0PR04MB9417.eurprd04.prod.outlook.com
- (2603:10a6:10:358::11)
+        with ESMTP id S231824AbiD2B7E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 21:59:04 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2499987237;
+        Thu, 28 Apr 2022 18:55:43 -0700 (PDT)
+X-UUID: b667f1e75fe6441e8a6a75c90429b40d-20220429
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.4,REQID:2c578ea6-e8b2-4057-adfa-4483c9a7fdc9,OB:0,LO
+        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
+        ON:release,TS:0
+X-CID-META: VersionHash:faefae9,CLOUDID:88121b2f-6199-437e-8ab4-9920b4bc5b76,C
+        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,File:nil,QS:0,BEC:nil
+X-UUID: b667f1e75fe6441e8a6a75c90429b40d-20220429
+Received: from mtkmbs11n2.mediatek.inc [(172.21.101.187)] by mailgw02.mediatek.com
+        (envelope-from <rex-bc.chen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 949969813; Fri, 29 Apr 2022 09:55:39 +0800
+Received: from mtkmbs07n1.mediatek.inc (172.21.101.16) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Fri, 29 Apr 2022 09:55:37 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Fri, 29 Apr 2022 09:55:37 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Fri, 29 Apr 2022 09:55:37 +0800
+Message-ID: <9f601c458bd3401b216992e8dd72485a10f34597.camel@mediatek.com>
+Subject: Re: [PATCH v5 1/4] dt-bindings: display: mediatek: dsi: Convert
+ dsi_dtbinding to .yaml
+From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     <matthias.bgg@gmail.com>, <linux-arm-kernel@lists.infradead.org>,
+        <chunkuang.hu@kernel.org>, <jitao.shi@mediatek.com>,
+        <linux-kernel@vger.kernel.org>, <airlied@linux.ie>,
+        <krzysztof.kozlowski+dt@linaro.org>, <daniel@ffwll.ch>,
+        <xinlei.lee@mediatek.com>, <devicetree@vger.kernel.org>,
+        <p.zabel@pengutronix.de>, <linux-mediatek@lists.infradead.org>,
+        <robh+dt@kernel.org>, <dri-devel@lists.freedesktop.org>,
+        <cellopoint.kai@gmail.com>
+Date:   Fri, 29 Apr 2022 09:55:37 +0800
+In-Reply-To: <1651177993.334386.220464.nullmailer@robh.at.kernel.org>
+References: <20220428133753.8348-1-rex-bc.chen@mediatek.com>
+         <20220428133753.8348-2-rex-bc.chen@mediatek.com>
+         <1651177993.334386.220464.nullmailer@robh.at.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 208a2c92-facb-443f-7603-08da297a825e
-X-MS-TrafficTypeDiagnostic: DB8PR04MB6619:EE_
-X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
-X-Microsoft-Antispam-PRVS: <DB8PR04MB661933C4387D73811F8D3C62C9FC9@DB8PR04MB6619.eurprd04.prod.outlook.com>
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: uqIY2Z406pQ2wwsM0CHU+ufWZo7gRTW6Sfl3izKwCasfXv6uEJVarNvR7ltzTHg7irjzFr29Z8sNzPmywOqTi036DHp8U5Nrb9nDJt+RLTV+velaAw5QbEU54AfM98ycgRF2UFl2LMKwjMRJ/mSHZ1365xT5LOimLPZaLUSF7Yadfk/wZhJKiKagRIPBzmDBxYjjLP2DwM1m5Q11YwkifvFuaNEd6ehFeUwPIOA9XvnSfdKjgWnlxpezN7TBHq56ZvLHZKBZHvyxcd7HRtuMpDsDbghNDkRj7lnTf8NJDkCEA5fTxVAQ1aA8Q7HeF+6di/B6Qfbgu0jn6/emEiPA/m41XoSTvY+gthtZpeql0pNNPfH50Akom5LgFxPkjuePJHzZCMTuDno6eJEMA+p85u/fmMxJVT5/oPKWxtOFAftW8CSZ3Eh0XPgS76QdXHtsJuIeGFyUxkGU+KEPbiatwjOaSnRYwRiWt5dtCW4yhmRFpuvOgCXx/TtawagDf8R3mK8yZf7jXbaeys+9oZALSAyEdE9m5S0iDrIba7Y/o8HDV4ECIA1a+Or7FutuymrpRvhXl0tDGyBrUjPJ1GCf8Z2Ijwd0XN9rssH4hik8G+ap52YdhVRbnIsXWJN1RzAl3woQbgUftCIlPSx27INA6n8HTKqn2VM9iVSa6BUgRJkWDeea/9dgpsgOkQ0GuYfXGr2zrsKpOWsp5mi26EBkEDXAOBF2eWqq0O4Px6SFzK0=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9417.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(26005)(1076003)(6512007)(2616005)(5660300002)(86362001)(316002)(6486002)(7416002)(508600001)(38100700002)(38350700002)(8936002)(4326008)(6506007)(52116002)(6666004)(186003)(66946007)(66556008)(66476007)(8676002)(2906002)(921005);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?ah8CpZTavE69ASCRKyjjZYsKj4ZGXziMqz7+aRGASbPX3pwdeXCkRBBp2YI3?=
- =?us-ascii?Q?DLQlEWJeyyGIaYzEZyayc925g+SfyKNWBCj4ZD0Q4f6oRaAgEmeRdeBOn96F?=
- =?us-ascii?Q?4PWqh0JEuIJIFL5X1kIFVz/9tY3GjtM+ZXeIN3bbB1/z1gnP/a5NYHUXuQQb?=
- =?us-ascii?Q?ZJunLxVsU63jHp+5THGkn5Loq/rm2kJdWxIqxkfrnA+Zw5MMwfDc9gPB9zSq?=
- =?us-ascii?Q?IAIYpjsOz93wpTB10Upk5eRuKemXVFKnkaWvsbz9oKESdhgJ4xWGSds47Jds?=
- =?us-ascii?Q?6C+yrKxE8ajgIii4fqFkvfXcrsdCyD++mlu/pOPWKB7C9NsBj/ZkLcyjHYJP?=
- =?us-ascii?Q?TgMK0e2O4lFRjX4JxRtNSAru3TCL6zbIIcadrI+teTedi/BwQNrcB1iy7BkN?=
- =?us-ascii?Q?35ofusUh9b+dLfWA2DAY6B7iXJC86HAwhhMAyq+KvnyhhguBkBFpX0g/gNC3?=
- =?us-ascii?Q?cTJRrDAQ4j/JtyfuQI50ZI3TQ6MPkl24hsqdDue72eSAZVDlvxWtnYCyNYSJ?=
- =?us-ascii?Q?odtu6iPeWHYaXauKy2fJoIucM/qrRDVHyhTQpnIcqMT3eHQa+cvVmwK0A9xM?=
- =?us-ascii?Q?gRZYX68Zt62xtMXr8YlNUYcjQl9Es0pVmLnk8n8O7dub33MMqUOjfbEWi0in?=
- =?us-ascii?Q?gcO8v/0NewBDbBks5V7KG9wYBWgxAoQ0+EBVTYILkZ5x1IlvYS2xQrlpLWY4?=
- =?us-ascii?Q?vBNVAqWctTSgAxYbedftIoGsTR4AtKkMSn3AfXr/CSCYN9tnZiItObOu+RrY?=
- =?us-ascii?Q?VeSqiQxMposTqFWhquJy+Lz2bKO3lRuxoJ9/rl1D7IvxbiipzS9tBYfwQyyk?=
- =?us-ascii?Q?dJ3Vo7ukCNEQA+FGQasR3cadhKyvGApxJY5QqSeMzgP0UAFP3MsDRUATpon6?=
- =?us-ascii?Q?Y6Kv0exJ79k0OiXad5i5QYTVN4RXgdwbqFz2ljI1/kXLB2iKq3caGqICMg1I?=
- =?us-ascii?Q?k8U+sJ8R5ce0R2PCfbv3wPkilALU5j3vvLM1sNwfVdt+OBW09h+Yaw2eeS/s?=
- =?us-ascii?Q?xkSSkLSIx9cdLjR5XIAE4PQf+Vpot/EbsUgWsgprFwoWtn9fpAADoAlUhm8E?=
- =?us-ascii?Q?OT2wqgpoRswoDlwo1lwSmJgpA29K7f2PTWhDkMOpScUjZc8HpzpRGoempFwa?=
- =?us-ascii?Q?r8o5qidjJ9vy9zZMJN+yzbVcasS00UShxm2jTDR5Fz50+Uz37eYMK56TbRgM?=
- =?us-ascii?Q?xZMWwXky+zLQ91+X5YElfPyu7ctM3rvjJOibtOaHYlo/nC+d1ilMezks5Hhm?=
- =?us-ascii?Q?2rjjAtP4k8ALbhGTulnGKRsuSu2PHYymyZnk04TfjIONEeqQgZNmxyD8A99w?=
- =?us-ascii?Q?lSXcUqlKnWwJRxQ4qQMJKNmvGJ9iwJkuD5KB6GBDCn3JeppwCOkX9/Qmfe9Y?=
- =?us-ascii?Q?j7KCwMHopcsTUTFWm4OpjKAtH5PUlgHl4/BAxXP9PryLAr+s9gFkrHDqnbo+?=
- =?us-ascii?Q?k2sv7G3xpKtWnIo8yvU2vY2BBvUnyHDn7c1zodpLA+fQ4kvNv1HBo/twgrwc?=
- =?us-ascii?Q?T5dGnZY0qHLNKUXOjgJLj4hu3uLgEKa2hNoUvc/5gojII+i9d5u9ASzTwVHK?=
- =?us-ascii?Q?M6cMFXcRpiy/+pzgnliebtO1bbWTVYPLVr6Si3ULluE4ohd0cQZdVQUynb+i?=
- =?us-ascii?Q?2iWGvlv8AbFXrz52Nh0ILMVBLTusDk6JwkCnii9ev5hkDBxV2XgsHqZiW7SP?=
- =?us-ascii?Q?wIKiIZYRarv804C3OHn0SYK36FNBDUJT88Fm61MEZU7MNC712l6E7vnBVDI2?=
- =?us-ascii?Q?Od8sRyVmrg=3D=3D?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 208a2c92-facb-443f-7603-08da297a825e
-X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9417.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Apr 2022 00:52:17.8043
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: c8I0v9VfYdqQ1M9KC3RWxhACawVWHqR5+l/hL9xcgbm+VbaxJeI0ZCBJ1wF6QdNqlNpV+QXgCP27UGu8BvdG+g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8PR04MB6619
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Peng Fan <peng.fan@nxp.com>
+On Thu, 2022-04-28 at 15:33 -0500, Rob Herring wrote:
+> On Thu, 28 Apr 2022 21:37:50 +0800, Rex-BC Chen wrote:
+> > From: Xinlei Lee <xinlei.lee@mediatek.com>
+> > 
+> > Convert mediatek,dsi.txt to mediatek,dsi.yaml format
+> > 
+> > Signed-off-by: Xinlei Lee <xinlei.lee@mediatek.com>
+> > Signed-off-by: Rex-BC Chen <rex-bc.chen@mediatek.com>
+> > ---
+> >  .../display/mediatek/mediatek,dsi.txt         |  62 ---------
+> >  .../display/mediatek/mediatek,dsi.yaml        | 122
+> > ++++++++++++++++++
+> >  2 files changed, 122 insertions(+), 62 deletions(-)
+> >  delete mode 100644
+> > Documentation/devicetree/bindings/display/mediatek/mediatek,dsi.txt
+> >  create mode 100644
+> > Documentation/devicetree/bindings/display/mediatek/mediatek,dsi.yam
+> > l
+> > 
+> 
+> Running 'make dtbs_check' with the schema in this patch gives the
+> following warnings. Consider if they are expected or the schema is
+> incorrect. These may not be new warnings.
+> 
+> Note that it is not yet a requirement to have 0 warnings for
+> dtbs_check.
+> This will change in the future.
+> 
+> Full log is available here: 
+> https://urldefense.com/v3/__https://patchwork.ozlabs.org/patch/__;!!CTRNKA9wMg0ARbw!wKbRsUmeUS_4mtOwj1t30buVNEilHYYhsUmEd5MvZ7P9VyDXg6cikERof47mkwETQzFL$
+>  
+> 
+> 
+> dsi@1400c000: compatible: ['mediatek,mt7623-dsi', 'mediatek,mt2701-
+> dsi'] is too long
+> 	arch/arm/boot/dts/mt7623n-bananapi-bpi-r2.dtb
+> 	arch/arm/boot/dts/mt7623n-rfb-emmc.dtb
+> 
+> dsi@14014000: #address-cells:0:0: 2 was expected
+> 	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-burnet.dtb
+> 	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-cozmo.dtb
+> 	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-damu.dtb
+> 	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel14.dtb
+> 	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel14-
+> sku2.dtb
+> 	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-
+> sku1.dtb
+> 	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-
+> sku6.dtb
+> 	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-
+> sku7.dtb
+> 	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-juniper-
+> sku16.dtb
+> 	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-kappa.dtb
+> 	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-kenzo.dtb
+> 	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-willow-
+> sku0.dtb
+> 	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-willow-
+> sku1.dtb
+> 	arch/arm64/boot/dts/mediatek/mt8183-kukui-kakadu.dtb
+> 	arch/arm64/boot/dts/mediatek/mt8183-kukui-kakadu-sku22.dtb
+> 	arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku16.dtb
+> 	arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku272.dtb
+> 	arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku288.dtb
+> 	arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku32.dtb
+> 	arch/arm64/boot/dts/mediatek/mt8183-kukui-krane-sku0.dtb
+> 	arch/arm64/boot/dts/mediatek/mt8183-kukui-krane-sku176.dtb
+> 
+> dsi@14014000: 'port' is a required property
+> 	arch/arm64/boot/dts/mediatek/mt8183-evb.dtb
+> 	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-burnet.dtb
+> 	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-cozmo.dtb
+> 	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-damu.dtb
+> 	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel14.dtb
+> 	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel14-
+> sku2.dtb
+> 	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-
+> sku1.dtb
+> 	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-
+> sku6.dtb
+> 	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-
+> sku7.dtb
+> 	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-juniper-
+> sku16.dtb
+> 	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-kappa.dtb
+> 	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-kenzo.dtb
+> 	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-willow-
+> sku0.dtb
+> 	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-willow-
+> sku1.dtb
+> 	arch/arm64/boot/dts/mediatek/mt8183-kukui-kakadu.dtb
+> 	arch/arm64/boot/dts/mediatek/mt8183-kukui-kakadu-sku22.dtb
+> 	arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku16.dtb
+> 	arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku272.dtb
+> 	arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku288.dtb
+> 	arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku32.dtb
+> 	arch/arm64/boot/dts/mediatek/mt8183-kukui-krane-sku0.dtb
+> 	arch/arm64/boot/dts/mediatek/mt8183-kukui-krane-sku176.dtb
+> 
+> dsi@14014000: #size-cells:0:0: 2 was expected
+> 	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-burnet.dtb
+> 	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-cozmo.dtb
+> 	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-damu.dtb
+> 	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel14.dtb
+> 	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel14-
+> sku2.dtb
+> 	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-
+> sku1.dtb
+> 	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-
+> sku6.dtb
+> 	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-
+> sku7.dtb
+> 	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-juniper-
+> sku16.dtb
+> 	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-kappa.dtb
+> 	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-kenzo.dtb
+> 	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-willow-
+> sku0.dtb
+> 	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-willow-
+> sku1.dtb
+> 	arch/arm64/boot/dts/mediatek/mt8183-kukui-kakadu.dtb
+> 	arch/arm64/boot/dts/mediatek/mt8183-kukui-kakadu-sku22.dtb
+> 	arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku16.dtb
+> 	arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku272.dtb
+> 	arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku288.dtb
+> 	arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku32.dtb
+> 	arch/arm64/boot/dts/mediatek/mt8183-kukui-krane-sku0.dtb
+> 	arch/arm64/boot/dts/mediatek/mt8183-kukui-krane-sku176.dtb
+> 
+> dsi@1401b000: 'port' is a required property
+> 	arch/arm64/boot/dts/mediatek/mt8173-elm.dtb
+> 	arch/arm64/boot/dts/mediatek/mt8173-elm-hana.dtb
+> 	arch/arm64/boot/dts/mediatek/mt8173-elm-hana-rev7.dtb
+> 
 
-i.MX93 features a Cortex-M33 core which could be kicked by ROM/Bootloader
-/Linux. Similar with i.MX8MN/P, we use SMC to trap into Arm Trusted
-Firmware to start/stop the M33 core.
+Hello Rob,
 
-Signed-off-by: Peng Fan <peng.fan@nxp.com>
----
- drivers/remoteproc/imx_rproc.c | 33 +++++++++++++++++++++++++++++++++
- 1 file changed, 33 insertions(+)
+Thanks for your comments.
+The purpose of this series is not to fix dts for previous SoCs.
+Therefore, if there is a chance, we could send another series to fix
+them.
 
-diff --git a/drivers/remoteproc/imx_rproc.c b/drivers/remoteproc/imx_rproc.c
-index 91eb037089ef..4a3352821b1d 100644
---- a/drivers/remoteproc/imx_rproc.c
-+++ b/drivers/remoteproc/imx_rproc.c
-@@ -91,6 +91,32 @@ struct imx_rproc {
- 	void __iomem			*rsc_table;
- };
- 
-+static const struct imx_rproc_att imx_rproc_att_imx93[] = {
-+	/* dev addr , sys addr  , size	    , flags */
-+	/* TCM CODE NON-SECURE */
-+	{ 0x0FFC0000, 0x201C0000, 0x00020000, ATT_OWN | ATT_IOMEM },
-+	{ 0x0FFE0000, 0x201E0000, 0x00020000, ATT_OWN | ATT_IOMEM },
-+
-+	/* TCM CODE SECURE */
-+	{ 0x1FFC0000, 0x201C0000, 0x00020000, ATT_OWN | ATT_IOMEM },
-+	{ 0x1FFE0000, 0x201E0000, 0x00020000, ATT_OWN | ATT_IOMEM },
-+
-+	/* TCM SYS NON-SECURE*/
-+	{ 0x20000000, 0x20200000, 0x00020000, ATT_OWN | ATT_IOMEM },
-+	{ 0x20020000, 0x20220000, 0x00020000, ATT_OWN | ATT_IOMEM },
-+
-+	/* TCM SYS SECURE*/
-+	{ 0x30000000, 0x20200000, 0x00020000, ATT_OWN | ATT_IOMEM },
-+	{ 0x30020000, 0x20220000, 0x00020000, ATT_OWN | ATT_IOMEM },
-+
-+	/* DDR */
-+	{ 0x80000000, 0x80000000, 0x10000000, 0 },
-+	{ 0x90000000, 0x80000000, 0x10000000, 0 },
-+
-+	{ 0xC0000000, 0xa0000000, 0x10000000, 0 },
-+	{ 0xD0000000, 0xa0000000, 0x10000000, 0 },
-+};
-+
- static const struct imx_rproc_att imx_rproc_att_imx8mn[] = {
- 	/* dev addr , sys addr  , size	    , flags */
- 	/* ITCM   */
-@@ -261,6 +287,12 @@ static const struct imx_rproc_dcfg imx_rproc_cfg_imx6sx = {
- 	.method		= IMX_RPROC_MMIO,
- };
- 
-+static const struct imx_rproc_dcfg imx_rproc_cfg_imx93 = {
-+	.att		= imx_rproc_att_imx93,
-+	.att_size	= ARRAY_SIZE(imx_rproc_att_imx93),
-+	.method		= IMX_RPROC_SMC,
-+};
-+
- static int imx_rproc_start(struct rproc *rproc)
- {
- 	struct imx_rproc *priv = rproc->priv;
-@@ -824,6 +856,7 @@ static const struct of_device_id imx_rproc_of_match[] = {
- 	{ .compatible = "fsl,imx8mn-cm7", .data = &imx_rproc_cfg_imx8mn },
- 	{ .compatible = "fsl,imx8mp-cm7", .data = &imx_rproc_cfg_imx8mn },
- 	{ .compatible = "fsl,imx8ulp-cm33", .data = &imx_rproc_cfg_imx8ulp },
-+	{ .compatible = "fsl,imx93-cm33", .data = &imx_rproc_cfg_imx93 },
- 	{},
- };
- MODULE_DEVICE_TABLE(of, imx_rproc_of_match);
--- 
-2.25.1
+Thanks.
+
+BRs,
+Rex
 
