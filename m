@@ -2,62 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B0C1D51458E
-	for <lists+devicetree@lfdr.de>; Fri, 29 Apr 2022 11:40:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C3B0951459A
+	for <lists+devicetree@lfdr.de>; Fri, 29 Apr 2022 11:44:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1356614AbiD2Jne (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Apr 2022 05:43:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48850 "EHLO
+        id S1356700AbiD2JrK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Apr 2022 05:47:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60216 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1356627AbiD2Jnc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Apr 2022 05:43:32 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26C3238AD;
-        Fri, 29 Apr 2022 02:40:10 -0700 (PDT)
-X-UUID: 144feaeb2add4d3b98ffa866a261fc3c-20220429
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.4,REQID:e54a13ef-e425-4c35-a96e-b8fa1264c69f,OB:0,LO
-        B:0,IP:0,URL:25,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACT
-        ION:release,TS:25
-X-CID-META: VersionHash:faefae9,CLOUDID:f0372d2f-6199-437e-8ab4-9920b4bc5b76,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,File:nil,QS:0,BEC:nil
-X-UUID: 144feaeb2add4d3b98ffa866a261fc3c-20220429
-Received: from mtkmbs11n2.mediatek.inc [(172.21.101.187)] by mailgw01.mediatek.com
-        (envelope-from <jiaxin.yu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1916973249; Fri, 29 Apr 2022 17:40:04 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
- Fri, 29 Apr 2022 17:40:03 +0800
-Received: from mhfsdcap04 (10.17.3.154) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Fri, 29 Apr 2022 17:40:02 +0800
-Message-ID: <5e400f7ccb3b208a033e2ad8f220331851ff9c7e.camel@mediatek.com>
-Subject: Re: [v4 16/18] dt-bindings: mediatek: mt8186: add
- mt8186-mt6366-da7219-max98357 document
-From:   Jiaxin Yu <jiaxin.yu@mediatek.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     <broonie@kernel.org>, <angelogioacchino.delregno@collabora.com>,
-        <devicetree@vger.kernel.org>, <alsa-devel@alsa-project.org>,
-        <linux-kernel@vger.kernel.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        <tzungbi@google.com>, <linux-mediatek@lists.infradead.org>,
-        <trevor.wu@mediatek.com>, <matthias.bgg@gmail.com>,
-        <aaronyu@google.com>, <julianbraha@gmail.com>,
-        <linux-arm-kernel@lists.infradead.org>
-Date:   Fri, 29 Apr 2022 17:40:02 +0800
-In-Reply-To: <YmqlNV31FrcAyuN9@robh.at.kernel.org>
-References: <20220428093355.16172-1-jiaxin.yu@mediatek.com>
-         <20220428093355.16172-17-jiaxin.yu@mediatek.com>
-         <YmqlNV31FrcAyuN9@robh.at.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S244541AbiD2JrJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Apr 2022 05:47:09 -0400
+Received: from mail-yw1-x112f.google.com (mail-yw1-x112f.google.com [IPv6:2607:f8b0:4864:20::112f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A70E4BE9F1;
+        Fri, 29 Apr 2022 02:43:48 -0700 (PDT)
+Received: by mail-yw1-x112f.google.com with SMTP id 00721157ae682-2ef5380669cso79408227b3.9;
+        Fri, 29 Apr 2022 02:43:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=4Kg3hGg7aSQtOExCKtXSFZRSUP75e6nI3Aslv19Y7vA=;
+        b=TZF6d1SWhW6T1e7EkSodGQRYWm/8NaFP8evsK09WZzyAdjhiFi3leY8CW5P+6jJryI
+         j4zxovudMYqZPPzH8LLnKztlVEwxwVGfeks9injDB80fcmwjvwipeAjbCJSV0QzLQHkh
+         /gdK3nQ9svbNJdEOOCq2Igc83rASG+dciYrOu+IIwfH4iuobI3dbh33Uur7VEIol8YYB
+         4ThkbHnT8gLtnzS+Vk5mDTOcGHqb4oBzBHw+ajZOj0WYtE6CTKSxJFobJm/WneFC6Q/L
+         FkyTeoCSXiJy9Q90dJOQilWD7mJiQ0sDMD7JeNBiMB+Ohbz2ZvUGFic8NkdArAn/is/t
+         cgjA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=4Kg3hGg7aSQtOExCKtXSFZRSUP75e6nI3Aslv19Y7vA=;
+        b=Irvbuu/WqS5S8yDKcHSUDQCiuDdx16TB0Bu2CAcqaVW6sj/8utcWimrJLLWAk+XPLg
+         Os6bjBEM43J73mywG+Fq3kDcCdO2kLLRzUgok7F21ufJWcXG9V7gF5reLncdf4pvOMwf
+         Y4LmrnU3Hvnl88OJ5+/FzAei+Fc0e9wzqinhwJyGku+o1bWOkEZiVa744hher0W7Wnv8
+         pUfkP/VLRYordBmAtEdGosj86BFLanCfId8vKmWcDSG2O/HtrpxnuvnnPxGhXeLtEUss
+         56/MaNcByUSgqEl0a7wthVmqe/kDt3U87vBaFsM3EagLlRMQG8Vhw5a8mRaunY39Dh+w
+         dFLQ==
+X-Gm-Message-State: AOAM5323pIFxQnDCXxPhgZAsMlRBD5zkhz7t+XuEndtF2tskRNwR0agU
+        l3xzZbMifIT/Jdum5MIycKJ7ygwaX2RMc20v8Ow=
+X-Google-Smtp-Source: ABdhPJx1hDX7pnjETYTkdntFjdt5Nq6fxhad4iQ13SDXFdm2nMnRkoJufGnLbvDiVVAaEHweo2vkFXH2I0QzR4maH4Y=
+X-Received: by 2002:a81:6a46:0:b0:2f4:dc3f:e8f8 with SMTP id
+ f67-20020a816a46000000b002f4dc3fe8f8mr38317183ywc.292.1651225427891; Fri, 29
+ Apr 2022 02:43:47 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,MAY_BE_FORGED,
-        SPF_HELO_NONE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=no
+References: <20220421221159.31729-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20220421221159.31729-3-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAMuHMdVqk1ryzzK9-BZCMDPeyjfF1-8hMpzUoEPCcg8pJ2-ang@mail.gmail.com>
+In-Reply-To: <CAMuHMdVqk1ryzzK9-BZCMDPeyjfF1-8hMpzUoEPCcg8pJ2-ang@mail.gmail.com>
+From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date:   Fri, 29 Apr 2022 10:43:21 +0100
+Message-ID: <CA+V-a8tosEeNqzPZsdX=VCKTrkQfAhpMRWQDwva+fpQGc8x+jA@mail.gmail.com>
+Subject: Re: [PATCH 2/2] irqchip: Add RZ/G2L IA55 Interrupt Controller driver
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Marc Zyngier <maz@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -65,146 +75,130 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 2022-04-28 at 09:31 -0500, Rob Herring wrote:
-> On Thu, Apr 28, 2022 at 05:33:53PM +0800, Jiaxin Yu wrote:
-> > Add document for mt8186 board with mt6366, da7219 and max98357.
-> > 
-> > Signed-off-by: Jiaxin Yu <jiaxin.yu@mediatek.com>
-> > ---
-> >  .../sound/mt8186-mt6366-da7219-max98357.yaml  | 71
-> > +++++++++++++++++++
-> >  1 file changed, 71 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/sound/mt8186-
-> > mt6366-da7219-max98357.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/sound/mt8186-mt6366-
-> > da7219-max98357.yaml
-> > b/Documentation/devicetree/bindings/sound/mt8186-mt6366-da7219-
-> > max98357.yaml
-> > new file mode 100644
-> > index 000000000000..55e8649f2aea
+Hi Geert,
+
+Thank you for the review.
+
+On Thu, Apr 28, 2022 at 10:42 AM Geert Uytterhoeven
+<geert@linux-m68k.org> wrote:
+>
+> Hi Prabhakar,
+>
+> On Fri, Apr 22, 2022 at 12:12 AM Lad Prabhakar
+> <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
+> > Add a driver for the Renesas RZ/G2L Interrupt Controller.
+> >
+> > This supports external pins being used as interrupts. It supports
+> > one line for NMI, 8 external pins and 32 GPIO pins (out of 123)
+> > to be used as IRQ lines.
+> >
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Thanks for your patch!
+>
 > > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/sound/mt8186-mt6366-da7219-
-> > max98357.yaml
-> > @@ -0,0 +1,71 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: 
-> > http://devicetree.org/schemas/sound/mt8186-mt6366-da7219-max98357.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +++ b/drivers/irqchip/irq-renesas-rzg2l.c
+> > @@ -0,0 +1,447 @@
+> > +// SPDX-License-Identifier: GPL-2.0
+> > +/*
+> > + * Renesas RZ/G2L IRQC Driver
+> > + *
+> > + * Copyright (C) 2022 Renesas Electronics Corporation.
+> > + *
+> > + * Author: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > + */
 > > +
-> > +title: Mediatek MT8186 with MT6366, DA7219 and MAX98357 ASoC sound
-> > card driver
+> > +#include <linux/clk.h>
+> > +#include <linux/err.h>
+> > +#include <linux/io.h>
+> > +#include <linux/irqchip.h>
+> > +#include <linux/irqdomain.h>
+> > +#include <linux/of_address.h>
+> > +#include <linux/reset.h>
+> > +#include <linux/spinlock.h>
 > > +
-> > +maintainers:
-> > +  - Jiaxin Yu <jiaxin.yu@mediatek.com>
-> > +
-> > +description:
-> > +  This binding describes the MT8186 sound card.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - mediatek,mt8186_mt6366_da7219_max98357_sound
-> 
-> s/_/-/
-> 
-Got it.
-> > +
-> > +  mediatek,platform:
-> > +    $ref: "/schemas/types.yaml#/definitions/phandle"
-> > +    description: The phandle of MT8186 ASoC platform.
-> > +
-> > +  headset-codec:
-> > +    type: object
-> 
->        additionalProperties: false
-Ditto.
-> 
-> > +    properties:
-> > +      sound-dai:
-> > +        $ref: /schemas/types.yaml#/definitions/phandle
-> 
-> sound-dai already has a type, so drop and define how many entries.
-> 
-Ditto.
-> > +    required:
-> > +        - sound-dai
-> > +
+> > +#define IRQC_IRQ_START                 1
+> > +#define IRQC_IRQ_COUNT                 8
+> > +#define IRQC_TINT_START                        9
+>
+> = IRQC_IRQ_START + IRQC_IRQ_COUNT
+>
+OK
 
-The indentation of this line is incorrect. I will fix it.
+> > +#define IRQC_TINT_COUNT                        32
+> > +#define IRQC_NUM_IRQ                   41
+>
+> = IRQC_TINT_START + IRQC_TINT_COUNT
+>
+OK.
 
-> > +  playback-codecs:
-> > +    type: object
-> 
->        additionalProperties: false
-> 
-Got it.
-> > +    properties:
-> > +      sound-dai:
-> > +        minItems: 2
-> > +        maxItems: 3
-> 
-> If more than 1 entry, then you need to define what each one is and
-> the 
-> order. Just like reg, interrupts, clocks, etc.
-> 
-Hi Rob,
+> Should these be in a DT binding header file?
+>
+> Combining all types into a single linear number space makes it hard
+> to extend the range, when reusing for an SoC that supports more
+> interrupt sources.
+>
+Or  DT data maybe?
 
-Should I correct them as below?
+> > +static void rzg2l_irq_eoi(struct irq_data *d)
+> > +{
+> > +       struct rzg2l_irqc_priv *priv = irq_data_to_priv(d);
+> > +       unsigned int hw_irq = irqd_to_hwirq(d) - IRQC_IRQ_START;
+> > +       u16 bit = BIT(hw_irq);
+>
+> I guess you can just use u32?
+>
+OK, will do
 
----
-properties:
-  sound-dai:
-    minItems: 2
-    maxItems: 3
-    items:
-      - items:
-          - description: xxx
-          - description: yyy
-          - description: zzz
+> > +       u32 reg;
+> > +
+> > +       reg = readl_relaxed(priv->base + ISCR);
+> > +       if (reg & bit)
+> > +               writel_relaxed(GENMASK(IRQC_IRQ_COUNT - 1, 0) & ~bit,
+>
+> As writes to the unused upper bits are ignored, you can drop the
+> masking with GENMASK(IRQC_IRQ_COUNT - 1, 0), and be prepared for more
+> interrupt sources.
+>
+Agreed.
 
-> > +        $ref: /schemas/types.yaml#/definitions/phandle-array
-> 
-> Drop
-> 
-Got it.
-> > +    required:
-> > +        - sound-dai
+> > +                              priv->base + ISCR);
+> > +}
 > > +
-> > +additionalProperties: false
-> > +
-> > +required:
-> > +  - compatible
-> > +  - mediatek,platform
-> > +  - headset-codec
-> > +  - playback-codecs
-> > +
-> > +examples:
-> > +  - |
-> > +
-> > +    sound: mt8186-sound {
-> > +        compatible =
-> > "mediatek,mt8186_mt6366_da7219_max98357_sound";
-> > +        mediatek,platform = <&afe>;
-> > +        pinctrl-names = "aud_clk_mosi_off",
-> > +                        "aud_clk_mosi_on";
-> > +        pinctrl-0 = <&aud_clk_mosi_off>;
-> > +        pinctrl-1 = <&aud_clk_mosi_on>;
-> > +
-> > +        headset-codec {
-> > +            sound-dai = <&da7219>;
-> > +        };
-> > +
-> > +        playback-codecs {
-> > +            sound-dai = <&anx_bridge_dp>,
-> > +                        <&max98357a>;
-> > +        };
-> > +    };
-> > +
-> > +...
-> > -- 
-> > 2.25.1
-> > 
+> > +static void rzg2l_tint_eoi(struct irq_data *d)
+> > +{
+> > +       struct rzg2l_irqc_priv *priv = irq_data_to_priv(d);
+> > +       unsigned int hw_irq = irqd_to_hwirq(d);
+>
+> "irqd_to_hwirq(d) - IRQC_TINT_START", for symmetry with
+> rzg2l_irq_eoi()?
+>
+OK.
 
+> > +       u32 bit = BIT(hw_irq - IRQC_TINT_START);
+> > +       u32 reg;
+> > +
+> > +       reg = readl_relaxed(priv->base + TSCR);
+> > +       if (reg & bit)
+> > +               writel_relaxed(GENMASK(IRQC_TINT_COUNT - 1, 0) & ~bit,
+>
+> Drop the masking with all-ones?
+>
+You mean instead of a mask just use the reg instead?
+
+Cheers,
+Prabhakar
+
+> > +                              priv->base + TSCR);
+> > +}
+>
+> Gr{oetje,eeting}s,
+>
+>                         Geert
+>
+> --
+> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+>
+> In personal conversations with technical people, I call myself a hacker. But
+> when I'm talking to journalists I just say "programmer" or something like that.
+>                                 -- Linus Torvalds
