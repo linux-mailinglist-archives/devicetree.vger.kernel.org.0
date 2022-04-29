@@ -2,73 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 95F49514F89
-	for <lists+devicetree@lfdr.de>; Fri, 29 Apr 2022 17:32:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 719EE514F61
+	for <lists+devicetree@lfdr.de>; Fri, 29 Apr 2022 17:27:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1378507AbiD2PgL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Apr 2022 11:36:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56412 "EHLO
+        id S233893AbiD2Pa3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Apr 2022 11:30:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39802 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1352205AbiD2PgK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Apr 2022 11:36:10 -0400
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9928254689
-        for <devicetree@vger.kernel.org>; Fri, 29 Apr 2022 08:32:51 -0700 (PDT)
-Received: by mail-lf1-x136.google.com with SMTP id h29so7447839lfj.2
-        for <devicetree@vger.kernel.org>; Fri, 29 Apr 2022 08:32:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :references:from:in-reply-to:content-transfer-encoding;
-        bh=74mQW4KLk9pT6It5kma4iQOF1/OQ3T5soZPy6uFm7bU=;
-        b=o+hJDbDtPeC2H94/JnT+yfkZa4lTDWxNsYr63f89TTv8h1qvtho4vfKWlayCPCsZFr
-         Dtmv3I51rj6nWn55nMXBrZD2LC6tuDH75mKRjOLYfz+x/Q762ai+dgScrYRQquQ/rtJ1
-         GjYPc4T2Nq1hXSIbDQpmL0pM//+imxq4Nf4holSl9T8567jZZwBMUTS73cPQHhZ/S/sl
-         3xgR92cgKgGmVPWUKxt+Un5XOxJwIUoL0xxuhV6mGf25Tp/ZycuzejulVfjV9wOzLR1P
-         e/Z8IaHdqPSzkCUB3rrf6Go6MKHKiGWXzApx/FjuFfh2EU7JV1UBYqDvswuNOGa8Zi56
-         Emyw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=74mQW4KLk9pT6It5kma4iQOF1/OQ3T5soZPy6uFm7bU=;
-        b=MLiODmCBpq3b/hQG3KEHAhY2gA1vB7dipAYMqeFMRIT0oHPBrNpyAXbPMsV+mL/JAY
-         T8RMNfjAV0tdebqoGmRXn4w+5mrWgLveYTO25+JvkH8qz7ZNs5u/s5WJOW4992RVNhJF
-         Fd09RSabde9biGkWZYc8XijsCLrC2sFxeFXqB4fPiTGA8m0HyMpjWfL3/j3cBYZhevfI
-         nQ/staQPZG4GHYdHPV7ioIy8CsSAtYHauJakjF7AQ+T+tXAwLOp66qkgWSDZlv/88EUl
-         mcR8OsZE2evydOTCWQhk0E3TYm7vvbCAxYPvC25/6qiVYVc9hAK0ekxvOaMRi8tURbk3
-         1J0Q==
-X-Gm-Message-State: AOAM5306nFsCQB2sQ5ijLpefDQmIolPR83gusWR/qo+hOI7R1Pm+sULF
-        tfXhNZzhmhZbc4LU9fBGrANhoA==
-X-Google-Smtp-Source: ABdhPJybhXYkGY1wj309oPqqPdUYuuAVfsdO9/1/t2vYYGdKoD6XagxBryw5z9pZLscNu8virMpYnQ==
-X-Received: by 2002:a05:6512:11cc:b0:44a:5770:7425 with SMTP id h12-20020a05651211cc00b0044a57707425mr26976977lfr.406.1651246369984;
-        Fri, 29 Apr 2022 08:32:49 -0700 (PDT)
-Received: from [192.168.1.211] ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id f8-20020a19dc48000000b004720649aa22sm262066lfj.182.2022.04.29.08.32.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 29 Apr 2022 08:32:49 -0700 (PDT)
-Message-ID: <56189cee-d300-41f4-259d-fc74510f7afd@linaro.org>
-Date:   Fri, 29 Apr 2022 18:32:48 +0300
+        with ESMTP id S1356247AbiD2Pa1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Apr 2022 11:30:27 -0400
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B255D4C92;
+        Fri, 29 Apr 2022 08:27:09 -0700 (PDT)
+Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
+        by mx0a-00128a01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 23TEmwoR019342;
+        Fri, 29 Apr 2022 11:26:41 -0400
+Received: from nwd2mta3.analog.com ([137.71.173.56])
+        by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3fprv535t1-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 29 Apr 2022 11:26:41 -0400
+Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
+        by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 23TFQdYA024080
+        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 29 Apr 2022 11:26:39 -0400
+Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by ASHBMBX9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.14; Fri, 29 Apr
+ 2022 11:26:38 -0400
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Fri, 29 Apr 2022 11:26:38 -0400
+Received: from localhost.localdomain ([10.48.65.12])
+        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 23TFQEce028122;
+        Fri, 29 Apr 2022 11:26:20 -0400
+From:   <alexandru.tachici@analog.com>
+To:     <andrew@lunn.ch>
+CC:     <o.rempel@pengutronix.de>, <alexandru.tachici@analog.com>,
+        <davem@davemloft.net>, <devicetree@vger.kernel.org>,
+        <hkallweit1@gmail.com>, <kuba@kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux@armlinux.org.uk>,
+        <netdev@vger.kernel.org>, <robh+dt@kernel.org>
+Subject: [PATCH v7 0/7] net: phy: adin1100: Add initial support for ADIN1100 industrial PHY
+Date:   Fri, 29 Apr 2022 18:34:30 +0300
+Message-ID: <20220429153437.80087-1-alexandru.tachici@analog.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH v1 5/9] dt-bindings: clock: Add Qcom SM8350 GPUCC bindings
-Content-Language: en-GB
-To:     Robert Foss <robert.foss@linaro.org>, bjorn.andersson@linaro.org,
-        agross@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
-        robh+dt@kernel.org, krzk+dt@kernel.org, jonathan@marek.ca,
-        tdas@codeaurora.org, anischal@codeaurora.org,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220429151247.388837-1-robert.foss@linaro.org>
- <20220429151247.388837-5-robert.foss@linaro.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20220429151247.388837-5-robert.foss@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Content-Type: text/plain
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-GUID: 7aHfmSGKdAuEkqB2SsDASE8KW8oxkQQm
+X-Proofpoint-ORIG-GUID: 7aHfmSGKdAuEkqB2SsDASE8KW8oxkQQm
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.858,Hydra:6.0.486,FMLib:17.11.64.514
+ definitions=2022-04-29_07,2022-04-28_01,2022-02-23_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ phishscore=0 lowpriorityscore=0 spamscore=0 impostorscore=0 adultscore=0
+ mlxlogscore=763 mlxscore=0 bulkscore=0 suspectscore=0 clxscore=1015
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2202240000 definitions=main-2204290083
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -76,100 +67,111 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/04/2022 18:12, Robert Foss wrote:
-> Add device tree bindings for graphics clock controller for
-> Qualcomm Technology Inc's SM8350 SoCs.
-> 
-> Signed-off-by: Robert Foss <robert.foss@linaro.org>
+From: Alexandru Tachici <alexandru.tachici@analog.com>
 
-Reviewed-by: Dmitry Baryshkov <dmityr.baryshkov@linaro.org>
+The ADIN1100 is a low power single port 10BASE-T1L transceiver designed for
+industrial Ethernet applications and is compliant with the IEEE 802.3cg
+Ethernet standard for long reach 10 Mb/s Single Pair Ethernet.
 
-> ---
->   .../devicetree/bindings/clock/qcom,gpucc.yaml |  2 +
->   include/dt-bindings/clock/qcom,gpucc-sm8350.h | 52 +++++++++++++++++++
->   2 files changed, 54 insertions(+)
->   create mode 100644 include/dt-bindings/clock/qcom,gpucc-sm8350.h
-> 
-> diff --git a/Documentation/devicetree/bindings/clock/qcom,gpucc.yaml b/Documentation/devicetree/bindings/clock/qcom,gpucc.yaml
-> index 9ebcb1943b0a..4090cc7ea2ae 100644
-> --- a/Documentation/devicetree/bindings/clock/qcom,gpucc.yaml
-> +++ b/Documentation/devicetree/bindings/clock/qcom,gpucc.yaml
-> @@ -20,6 +20,7 @@ description: |
->       dt-bindings/clock/qcom,gpucc-sm6350.h
->       dt-bindings/clock/qcom,gpucc-sm8150.h
->       dt-bindings/clock/qcom,gpucc-sm8250.h
-> +    dt-bindings/clock/qcom,gpucc-sm8350.h
->   
->   properties:
->     compatible:
-> @@ -31,6 +32,7 @@ properties:
->         - qcom,sm6350-gpucc
->         - qcom,sm8150-gpucc
->         - qcom,sm8250-gpucc
-> +      - qcom,sm8350-gpucc
->   
->     clocks:
->       items:
-> diff --git a/include/dt-bindings/clock/qcom,gpucc-sm8350.h b/include/dt-bindings/clock/qcom,gpucc-sm8350.h
-> new file mode 100644
-> index 000000000000..d2294e0d527e
-> --- /dev/null
-> +++ b/include/dt-bindings/clock/qcom,gpucc-sm8350.h
-> @@ -0,0 +1,52 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only */
-> +/*
-> + * Copyright (c) 2019-2020, The Linux Foundation. All rights reserved.
-> + */
-> +
-> +#ifndef _DT_BINDINGS_CLK_QCOM_GPU_CC_SM8350_H
-> +#define _DT_BINDINGS_CLK_QCOM_GPU_CC_SM8350_H
-> +
-> +/* GPU_CC clocks */
-> +#define GPU_CC_AHB_CLK			0
-> +#define GPU_CC_CB_CLK			1
-> +#define GPU_CC_CRC_AHB_CLK		2
-> +#define GPU_CC_CX_APB_CLK		3
-> +#define GPU_CC_CX_GMU_CLK		4
-> +#define GPU_CC_CX_QDSS_AT_CLK		5
-> +#define GPU_CC_CX_QDSS_TRIG_CLK		6
-> +#define GPU_CC_CX_QDSS_TSCTR_CLK	7
-> +#define GPU_CC_CX_SNOC_DVM_CLK		8
-> +#define GPU_CC_CXO_AON_CLK		9
-> +#define GPU_CC_CXO_CLK			10
-> +#define GPU_CC_FREQ_MEASURE_CLK		11
-> +#define GPU_CC_GMU_CLK_SRC		12
-> +#define GPU_CC_GX_GMU_CLK		13
-> +#define GPU_CC_GX_QDSS_TSCTR_CLK	14
-> +#define GPU_CC_GX_VSENSE_CLK		15
-> +#define GPU_CC_HLOS1_VOTE_GPU_SMMU_CLK	16
-> +#define GPU_CC_HUB_AHB_DIV_CLK_SRC	17
-> +#define GPU_CC_HUB_AON_CLK		18
-> +#define GPU_CC_HUB_CLK_SRC		19
-> +#define GPU_CC_HUB_CX_INT_CLK		20
-> +#define GPU_CC_HUB_CX_INT_DIV_CLK_SRC	21
-> +#define GPU_CC_MND1X_0_GFX3D_CLK	22
-> +#define GPU_CC_MND1X_1_GFX3D_CLK	23
-> +#define GPU_CC_PLL0			24
-> +#define GPU_CC_PLL1			25
-> +#define GPU_CC_SLEEP_CLK		26
-> +
-> +/* GPU_CC resets */
-> +#define GPUCC_GPU_CC_ACD_BCR		0
-> +#define GPUCC_GPU_CC_CB_BCR		1
-> +#define GPUCC_GPU_CC_CX_BCR		2
-> +#define GPUCC_GPU_CC_FAST_HUB_BCR	3
-> +#define GPUCC_GPU_CC_GFX3D_AON_BCR	4
-> +#define GPUCC_GPU_CC_GMU_BCR		5
-> +#define GPUCC_GPU_CC_GX_BCR		6
-> +#define GPUCC_GPU_CC_XO_BCR		7
-> +
-> +/* GPU_CC GDSCRs */
-> +#define GPU_CX_GDSC			0
-> +#define GPU_GX_GDSC			1
-> +
-> +#endif
+The ADIN1100 uses Auto-Negotiation capability in accordance
+with IEEE 802.3 Clause 98, providing a mechanism for
+exchanging information between PHYs to allow link partners to
+agree to a common mode of operation.
 
+The concluded operating mode is the transmit amplitude mode and
+master/slave preference common across the two devices.
+
+Both device and LP advertise their ability and request for
+increased transmit at:
+- BASE-T1 autonegotiation advertisement register [47:32]\
+Clause 45.2.7.21 of Standard 802.3
+- BIT(13) - 10BASE-T1L High Level Transmit Operating Mode Ability
+- BIT(12) - 10BASE-T1L High Level Transmit Operating Mode Request
+
+For 2.4 Vpp (high level transmit) operation, both devices need
+to have the High Level Transmit Operating Mode Ability bit set,
+and only one of them needs to have the High Level Transmit
+Operating Mode Request bit set. Otherwise 1.0 Vpp transmit level
+will be used.
+
+Settings for eth1:
+	Supported ports: [ TP	 MII ]
+	Supported link modes:   10baseT1L/Full
+	Supported pause frame use: Symmetric Receive-only
+	Supports auto-negotiation: Yes
+	Supported FEC modes: Not reported
+	Advertised link modes:  10baseT1L/Full
+	Advertised pause frame use: No
+	Advertised auto-negotiation: Yes
+	Advertised FEC modes: Not reported
+	Link partner advertised link modes:  10baseT1L/Full
+	Link partner advertised pause frame use: No
+	Link partner advertised auto-negotiation: Yes
+	Link partner advertised FEC modes: Not reported
+	Speed: 10Mb/s
+	Duplex: Full
+	Auto-negotiation: on
+	master-slave cfg: preferred slave
+	master-slave status: slave
+	Port: Twisted Pair
+	PHYAD: 0
+	Transceiver: external
+	MDI-X: Unknown
+	Link detected: yes
+	SQI: 7/7
+
+1. Add basic support for ADIN1100.
+
+Alexandru Ardelean (1):
+  net: phy: adin1100: Add initial support for ADIN1100 industrial PHY
+
+1. Added 10baset-T1L link modes.
+
+2. Added 10-BasetT1L registers.
+
+3. Added Base-T1 auto-negotiation registers. For Base-T1 these
+registers decide master/slave status and TX voltage of the
+device and link partner.
+
+4. Added 10BASE-T1L support in phy-c45.c. Now genphy functions will call
+Base-T1 functions where registers don't match, like the auto-negotiation ones.
+
+5. Convert MSE to SQI using a predefined table and allow user access
+through ethtool.
+
+6. DT bindings for the 2.4 Vpp transmit mode.
+
+Alexandru Ardelean (1):
+  net: phy: adin1100: Add initial support for ADIN1100 industrial PHY
+
+Alexandru Tachici (6):
+  ethtool: Add 10base-T1L link mode entry
+  net: phy: Add 10-BaseT1L registers
+  net: phy: Add BaseT1 auto-negotiation registers
+  net: phy: Add 10BASE-T1L support in phy-c45
+  net: phy: adin1100: Add SQI support
+  dt-bindings: net: phy: Add 10-baseT1L 2.4 Vpp
+
+Changelog V6 -> V7:
+	- added kdoc for pma_extable in struct phy_device
+	- updated drivers/net/phy/phylink.c::phylink_caps_to_linkmodes()
+
+ .../devicetree/bindings/net/ethernet-phy.yaml |   9 +
+ drivers/net/phy/Kconfig                       |   7 +
+ drivers/net/phy/Makefile                      |   1 +
+ drivers/net/phy/adin1100.c                    | 292 ++++++++++++++++++
+ drivers/net/phy/phy-c45.c                     | 257 ++++++++++++++-
+ drivers/net/phy/phy-core.c                    |   3 +-
+ drivers/net/phy/phy_device.c                  |   4 +-
+ drivers/net/phy/phylink.c                     |   4 +-
+ include/linux/mdio.h                          |  70 +++++
+ include/linux/phy.h                           |   5 +-
+ include/uapi/linux/ethtool.h                  |   1 +
+ include/uapi/linux/mdio.h                     |  75 +++++
+ net/ethtool/common.c                          |   3 +
+ 13 files changed, 722 insertions(+), 9 deletions(-)
+ create mode 100644 drivers/net/phy/adin1100.c
 
 -- 
-With best wishes
-Dmitry
+2.25.1
+
