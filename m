@@ -2,101 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C58A7514608
-	for <lists+devicetree@lfdr.de>; Fri, 29 Apr 2022 11:54:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A25B514609
+	for <lists+devicetree@lfdr.de>; Fri, 29 Apr 2022 11:54:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1357086AbiD2J4R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Apr 2022 05:56:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38536 "EHLO
+        id S237055AbiD2J4o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Apr 2022 05:56:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40938 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1357100AbiD2J4Q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Apr 2022 05:56:16 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A406DF5A;
-        Fri, 29 Apr 2022 02:52:55 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 15EF362279;
-        Fri, 29 Apr 2022 09:52:55 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0BCE5C385A7;
-        Fri, 29 Apr 2022 09:52:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1651225974;
-        bh=4dX3RZKOAnpU33fOLqblNxRSAKqlEVe0S6NJCykWw3g=;
-        h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-        b=PV+lTtIAj27xwe/KlxXM8OCFDfRtERz2sAgqWHIvCZ9/Yfk1MLe3MT/5VT+rvQoGy
-         T/bt4tEQ8GI72joQDVBWouhGtI8vSosrPPcqM3yamjxAG9JZzrfcybY9+co3dT5+I7
-         zMw57GgGEgc3MANlJJa0TVJJKlfLUSdPxjX8WaoyKuUNf4xUA9KNq4tda0OjNmYYUN
-         lFJUp16QdS1giYeyAOfD6asLvGGYYdTdQSRC1WOLldVF0ftLlLOCHjrM5ABTN79NKm
-         p6FQgAwUYX9LPhqdc54orx1tPnPDp9WeWOT/rzUqDmc5OaO+4jNzht2eIpX89bfdFf
-         N3jx6PkslIDGA==
-From:   Kalle Valo <kvalo@kernel.org>
-To:     Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
-Cc:     <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <robh@kernel.org>, <mka@chromium.org>
-Subject: Re: [PATCH v6 4/9] ath11k: Add register access logic for WCN6750
-References: <20220427111848.9257-1-quic_mpubbise@quicinc.com>
-        <20220427111848.9257-5-quic_mpubbise@quicinc.com>
-        <87pml2g1c7.fsf@kernel.org>
-        <6e607455-e42a-a591-f58b-b3b2c83ea2cc@quicinc.com>
-Date:   Fri, 29 Apr 2022 12:52:49 +0300
-In-Reply-To: <6e607455-e42a-a591-f58b-b3b2c83ea2cc@quicinc.com> (Manikanta
-        Pubbisetty's message of "Wed, 27 Apr 2022 18:56:33 +0530")
-Message-ID: <87h76cdxn2.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
+        with ESMTP id S1345976AbiD2J4o (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Apr 2022 05:56:44 -0400
+Received: from mail-qk1-f177.google.com (mail-qk1-f177.google.com [209.85.222.177])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9AA661C906;
+        Fri, 29 Apr 2022 02:53:26 -0700 (PDT)
+Received: by mail-qk1-f177.google.com with SMTP id f186so5443408qke.8;
+        Fri, 29 Apr 2022 02:53:26 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=70I8wSWrKC9k1ABQmO5BN6/h/e8/pNZTe7YapF+lr7s=;
+        b=50KfD2AhtnJl6nK24oGdTUE1x28/iGbcjiJb9/3gqdroeztnVOIfno2Qw9VOda/Vz7
+         K5oNJjmXZLDtYeDQksBkB6e6DlTPfYqaIwKvBNTaV7y5VIaak5bOUoQ/DDLwyaq17dIm
+         f73eTaUwuTIli1z4Z5GPR4DCus6lM7wHWW2+YM1Q4j/kZEHxDrJtQpNYNPcAon59Wpqw
+         AL5d4433rNIxL/EGvgMBi02IwwJJrNcsTQEVP0pi/AiewZ578ggbbctO7HEdYMHdk5o1
+         MxCGeADVuriRV/T/sO2RQA72f68jG24LaVfxP8aht0/vqAFWoSdm8l/9U4os8Xdr3Hvk
+         wo0g==
+X-Gm-Message-State: AOAM530HyS0+oH68qto5BtOXhKfTYuF/Cg9jbApVrkMqB1XNCtne+CH0
+        aMQHt1C3JPn4Kb9NnlA7I7tsp6dhrM7T7DRG
+X-Google-Smtp-Source: ABdhPJwdqh93fEMojiK4pRLYGnq9ONN3iP2KxS4jOfPWuhNguQmZHcMwBK5XGf2WPoqQ5vm4sm8Srw==
+X-Received: by 2002:a37:98c4:0:b0:69a:e14:16a2 with SMTP id a187-20020a3798c4000000b0069a0e1416a2mr21979526qke.610.1651226005475;
+        Fri, 29 Apr 2022 02:53:25 -0700 (PDT)
+Received: from mail-yb1-f180.google.com (mail-yb1-f180.google.com. [209.85.219.180])
+        by smtp.gmail.com with ESMTPSA id s4-20020ae9de04000000b0069c3a577b0asm1236000qkf.51.2022.04.29.02.53.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 29 Apr 2022 02:53:24 -0700 (PDT)
+Received: by mail-yb1-f180.google.com with SMTP id f38so13579850ybi.3;
+        Fri, 29 Apr 2022 02:53:24 -0700 (PDT)
+X-Received: by 2002:a25:d84c:0:b0:648:7d5e:e2d4 with SMTP id
+ p73-20020a25d84c000000b006487d5ee2d4mr21891538ybg.6.1651226004378; Fri, 29
+ Apr 2022 02:53:24 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20220421221159.31729-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20220421221159.31729-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <CAMuHMdVqk1ryzzK9-BZCMDPeyjfF1-8hMpzUoEPCcg8pJ2-ang@mail.gmail.com> <CA+V-a8tosEeNqzPZsdX=VCKTrkQfAhpMRWQDwva+fpQGc8x+jA@mail.gmail.com>
+In-Reply-To: <CA+V-a8tosEeNqzPZsdX=VCKTrkQfAhpMRWQDwva+fpQGc8x+jA@mail.gmail.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Fri, 29 Apr 2022 11:53:13 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdWTQkxZjCtWhcRnOo6w-Vz6SKrjuaK-YOMr=qfwLnD7Rg@mail.gmail.com>
+Message-ID: <CAMuHMdWTQkxZjCtWhcRnOo6w-Vz6SKrjuaK-YOMr=qfwLnD7Rg@mail.gmail.com>
+Subject: Re: [PATCH 2/2] irqchip: Add RZ/G2L IA55 Interrupt Controller driver
+To:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Marc Zyngier <maz@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Manikanta Pubbisetty <quic_mpubbise@quicinc.com> writes:
+Hi Prabhakar,
 
->>> @@ -704,11 +718,26 @@ static int ath11k_pci_probe(struct pci_dev *pdev,
->>>   {
->>>   	struct ath11k_base *ab;
->>>   	struct ath11k_pci *ab_pci;
->>> +	const struct ath11k_bus_params *bus_params;
->>>   	u32 soc_hw_version_major, soc_hw_version_minor, addr;
->>>   	int ret;
->>>   +	switch (pci_dev->device) {
->>> +	case QCA6390_DEVICE_ID:
->>> +	case WCN6855_DEVICE_ID:
->>> +		bus_params = &ath11k_pci_bus_params_qca6390;
->>> +		break;
->>> +	case QCN9074_DEVICE_ID:
->>> +		bus_params = &ath11k_pci_bus_params_qcn9074;
->>> +		break;
->>
->> Now you are making bus_params device specific, that's not really the
->> point of bus params. They are supposed to be _bus_ specific parameters.
->>
->> Can't you use hw_params like I mentioned in the review?
->>
+On Fri, Apr 29, 2022 at 11:43 AM Lad, Prabhakar
+<prabhakar.csengg@gmail.com> wrote:
+> On Thu, Apr 28, 2022 at 10:42 AM Geert Uytterhoeven
+> <geert@linux-m68k.org> wrote:
+> > On Fri, Apr 22, 2022 at 12:12 AM Lad Prabhakar
+> > <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
+> > > Add a driver for the Renesas RZ/G2L Interrupt Controller.
+> > >
+> > > This supports external pins being used as interrupts. It supports
+> > > one line for NMI, 8 external pins and 32 GPIO pins (out of 123)
+> > > to be used as IRQ lines.
+> > >
+> > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+
+> > > --- /dev/null
+> > > +++ b/drivers/irqchip/irq-renesas-rzg2l.c
+> > > @@ -0,0 +1,447 @@
+> > > +// SPDX-License-Identifier: GPL-2.0
+> > > +/*
+> > > + * Renesas RZ/G2L IRQC Driver
+> > > + *
+> > > + * Copyright (C) 2022 Renesas Electronics Corporation.
+> > > + *
+> > > + * Author: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > > + */
+> > > +
+> > > +#include <linux/clk.h>
+> > > +#include <linux/err.h>
+> > > +#include <linux/io.h>
+> > > +#include <linux/irqchip.h>
+> > > +#include <linux/irqdomain.h>
+> > > +#include <linux/of_address.h>
+> > > +#include <linux/reset.h>
+> > > +#include <linux/spinlock.h>
+> > > +
+> > > +#define IRQC_IRQ_START                 1
+> > > +#define IRQC_IRQ_COUNT                 8
+> > > +#define IRQC_TINT_START                        9
+> >
+> > = IRQC_IRQ_START + IRQC_IRQ_COUNT
+> >
+> OK
 >
-> Even without this patch, as of today, bus_params is already device
-> specific with QCN9074 changing the static_window_map in bus_params to
-> true in ath11k_pci_probe().
+> > > +#define IRQC_TINT_COUNT                        32
+> > > +#define IRQC_NUM_IRQ                   41
+> >
+> > = IRQC_TINT_START + IRQC_TINT_COUNT
+> >
+> OK.
+>
+> > Should these be in a DT binding header file?
+> >
+> > Combining all types into a single linear number space makes it hard
+> > to extend the range, when reusing for an SoC that supports more
+> > interrupt sources.
+> >
+> Or  DT data maybe?
 
-Yeah, that's a mistake which slipped in review.
+Let's leave it for now. As I missed that DT consumers will refer to
+external interrupt numbers only (is that actually enforced?), there
+won't be an issue.
 
-> And if we have to move these device specific bus_params to hw_parmas,
-> then bus_params can be pretty much removed completely with the changes
-> that WCN6750 bring in. Any thoughts on this? I can make the changes
-> that can get along with WCN6750 series.
+The driver can be changed later to derive IRQC_IRQ_COUNT from the
+compatible value, when needed.
 
-My original idea with bus_params was to there are bus specific
-parameters and that way we could simplify hw_params. Clearly that's not
-working and I agree with you, bus_params should be removed. So it would
-be good if you can do that in the next patchset.
+> > > +       u32 reg;
+> > > +
+> > > +       reg = readl_relaxed(priv->base + ISCR);
+> > > +       if (reg & bit)
+> > > +               writel_relaxed(GENMASK(IRQC_IRQ_COUNT - 1, 0) & ~bit,
+> >
+> > As writes to the unused upper bits are ignored, you can drop the
+> > masking with GENMASK(IRQC_IRQ_COUNT - 1, 0), and be prepared for more
+> > interrupt sources.
+> >
+> Agreed.
 
--- 
-https://patchwork.kernel.org/project/linux-wireless/list/
+> > > +       u32 bit = BIT(hw_irq - IRQC_TINT_START);
+> > > +       u32 reg;
+> > > +
+> > > +       reg = readl_relaxed(priv->base + TSCR);
+> > > +       if (reg & bit)
+> > > +               writel_relaxed(GENMASK(IRQC_TINT_COUNT - 1, 0) & ~bit,
+> >
+> > Drop the masking with all-ones?
+> >
+> You mean instead of a mask just use the reg instead?
 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+No, I meant to drop the masking with GENMASK(IRQC_TINT_COUNT - 1, 0),
+cfr. for external interrupts.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
