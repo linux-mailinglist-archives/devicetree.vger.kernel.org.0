@@ -2,82 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6DBA151429D
-	for <lists+devicetree@lfdr.de>; Fri, 29 Apr 2022 08:47:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B24D95142A0
+	for <lists+devicetree@lfdr.de>; Fri, 29 Apr 2022 08:49:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1354694AbiD2Gtj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Apr 2022 02:49:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38192 "EHLO
+        id S1354774AbiD2Gwh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Apr 2022 02:52:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43568 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1352560AbiD2Gti (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Apr 2022 02:49:38 -0400
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F9AE20BC2
-        for <devicetree@vger.kernel.org>; Thu, 28 Apr 2022 23:46:21 -0700 (PDT)
-Received: by mail-ej1-x630.google.com with SMTP id r13so13614680ejd.5
-        for <devicetree@vger.kernel.org>; Thu, 28 Apr 2022 23:46:21 -0700 (PDT)
+        with ESMTP id S1354723AbiD2Gwg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Apr 2022 02:52:36 -0400
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26E58BCB54
+        for <devicetree@vger.kernel.org>; Thu, 28 Apr 2022 23:49:19 -0700 (PDT)
+Received: by mail-ej1-x62a.google.com with SMTP id y3so13570960ejo.12
+        for <devicetree@vger.kernel.org>; Thu, 28 Apr 2022 23:49:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=xrvbVTYSX718CzoTpb87YI9jX7d2f6okuPzmrfDd5oE=;
-        b=xNVFNFY3Yyl8v2oJkDosbR3b1ZGnJSLguQsNF3lKuBhGL2kxMx7xSGtK7IRL49NmC1
-         fy8DaSfoY9BdGhtGFNFovlrJyW3A8R9DoUtUb8Y7+VxHCvAlN0WIv9ebko+UKVB+T7YK
-         2P3Bn2+9zX7wy832/UWEI+rG/3G+TaZAeaG2xjqYe+NHkz3AHCpMUkykrxExfupZaEH4
-         ckyAWBfHZxpmgwIIttJxvE16ActebkFCSDYMKm0/ESuWI0Tl3ZmTxKioSv686do1zUU8
-         zI0dcSl3OWlbmfRo9RnuL1Xi6RfC51JpYdjEv3XDOjmKKYb5oMSr5Z3eNLDrdMXObegy
-         zVTQ==
+        bh=ojBbvtb1o01zsnYB75OteAg/TGpNEdw9pesZ19hw8Vk=;
+        b=XAh1xUf3hrxIejOXIORrozIl5IMMRTLzxUJgWIEB4uIkZjQ17TYHJ+oTQ2RH40nENk
+         cs9hSSbpwsK3GhdSLC+vcYZmvOdsxBCvkmCOJu8LV1VVZokHPIqWhrCtR9dF4mqBqERo
+         dF+Eo/oLlfjRMpOn3YIHmZdR1za7luj5DmoVGP8++N5Xm9bq9iDoSCahZcv3eg1YbnR5
+         EnBESMaBeHrmXellDZAgKH7qy2VR+67e2yV+ffFYl6iylkY5PqRYc45R+g5/8NKSz3QC
+         uJyaddT+LGTNj5efcfxY6E2IpPjRlFUr7C3cIWcc3fx9VWINTNzFoFnpLLsnFkA52CMA
+         GFpQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=xrvbVTYSX718CzoTpb87YI9jX7d2f6okuPzmrfDd5oE=;
-        b=7VmQz/UAU7JstdWPZV8X7vgl9yUgKzWzPcaEXHNzMvDvI1Ifd/5+Y+9utRite+HSLY
-         RamPfWhn3ta6/f+4Tlaw/MaCZKcBSvejlgRbqkZ7V0805rycpjrUfQ98zRoFpT6STy2T
-         VL9Gx9hBgurtUrnN3HYKlvTx7x02SDbQweknwjkiKzVB66wTjRpTWlZyk2l3PeLw4muT
-         dHlSmszQ3lSM/FVeQj3dJJRLUsgeQqFHEzX82RTzVo9IKoK0Lf5KMNXHLx/ozCo81INw
-         ufkOXExdrzu0oZzX8rx/45QvJNQbv8IChZAT8GgmX7TZSiWvegsgVTfDodCPVx5Put9h
-         nFvA==
-X-Gm-Message-State: AOAM533kFa1mz/i08S9inL/eBMA3TYo1MjxPLNuHO15QOJdRVtlKPw01
-        QkLELlre/z3yZFwMh1nIOTb5kw==
-X-Google-Smtp-Source: ABdhPJyuO3oZ/QiDbGWXSb64bqbYgx5YfcpXNcJaXAf8/j0v4zYwZp7O7t6DpPDOfTAGtkYuWXD+RA==
-X-Received: by 2002:a17:907:3f8f:b0:6f3:d4a0:e80c with SMTP id hr15-20020a1709073f8f00b006f3d4a0e80cmr8215819ejc.709.1651214779739;
-        Thu, 28 Apr 2022 23:46:19 -0700 (PDT)
+        bh=ojBbvtb1o01zsnYB75OteAg/TGpNEdw9pesZ19hw8Vk=;
+        b=vzf0fd1x0gXw2usCy04SLP9A0W60t+Mhje5yHskmTuq3vR05ipI6d50tGwrE/3mwxv
+         5YEvkW/779fcKYDNmrKlGMESQuaefx+FEvq5gczP4iHgyzlCBeI53TuzcwZBnN3D5a/7
+         KZc02tC1txKe8U4tzzp6/E2FiT4NGRinIDMHmWD9hpGLInE+gxBNd2vxDueuabF2iC0X
+         /f7ZYtYUXnX4CZ9w1cYd3pddUeEgj8aXQzdtiDT2pY6nOucxb0YVALFtdL/Qau7ys58X
+         y1MMXzwFxyoYir96qrb85wlH70OaNzS8m1gl6oZ0wyVkts8/Yko3fIZ9ztlbFQzjUck1
+         HcEw==
+X-Gm-Message-State: AOAM530Ox6WtOHhNjbmw/cM7nBomanjs3f/lP/FvLa3CiWglwVrgSQSm
+        T+7dTGdfhJPgIvI1RHcb8/ZsFw==
+X-Google-Smtp-Source: ABdhPJxBiIlo6xZcqio/Vpvr1Nuc0WuzvHNnNXZAE0k+/chdCWeqOZAxBw2MhEeiLlSHJvfCQiL6lw==
+X-Received: by 2002:a17:906:2991:b0:6cd:ac19:ce34 with SMTP id x17-20020a170906299100b006cdac19ce34mr35412237eje.746.1651214957738;
+        Thu, 28 Apr 2022 23:49:17 -0700 (PDT)
 Received: from [192.168.0.168] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id og39-20020a1709071de700b006f3ef214e61sm345251ejc.199.2022.04.28.23.46.18
+        by smtp.gmail.com with ESMTPSA id v3-20020aa7d9c3000000b0042617ba63cesm2592560eds.88.2022.04.28.23.49.16
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 28 Apr 2022 23:46:19 -0700 (PDT)
-Message-ID: <b279040a-a782-a2ca-2acb-2d8f07709081@linaro.org>
-Date:   Fri, 29 Apr 2022 08:46:18 +0200
+        Thu, 28 Apr 2022 23:49:17 -0700 (PDT)
+Message-ID: <fcc92b14-83fc-c945-a7eb-8907e5ba7922@linaro.org>
+Date:   Fri, 29 Apr 2022 08:49:16 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [PATCH v2 1/2] dt-bindings: mtd: partitions: Add binding for
- Sercomm parser
+Subject: Re: [PATCH v4 6/7] dt-bindings: pci/qcom,pcie: support additional MSI
+ interrupts
 Content-Language: en-US
-To:     Mikhail Zhilkin <csharper2005@gmail.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc:     NOGUCHI Hiroshi <drvlabo@gmail.com>, Karim <Karimdplay@gmail.com>,
-        M <x1@disroot.org>, linux-mtd@lists.infradead.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20220406195557.1956-1-csharper2005@gmail.com>
- <20220406195946.2019-1-csharper2005@gmail.com>
- <8d0d8b27-35ff-3693-cf80-897b80c26b4e@linaro.org>
- <57bebf2f-af4c-b2d9-10e5-19e5104946fb@gmail.com>
- <29cfa017-bbaf-3aba-fe1d-06771957dbaa@linaro.org>
- <1b391399-984b-7a63-3265-62ef09caec39@gmail.com>
- <bd533827-b575-caad-c230-af060851b231@gmail.com>
- <db70e53b-7484-43bf-e9c8-b6a2dce1fbb5@linaro.org>
- <25da3f43-c46e-8108-2da9-0e4f2b7cc1a4@gmail.com>
+        Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Stanimir Varbanov <svarbanov@mm-sol.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org
+References: <20220428115934.3414641-1-dmitry.baryshkov@linaro.org>
+ <20220428115934.3414641-7-dmitry.baryshkov@linaro.org>
+ <6bd8eb4e-81eb-7e87-155b-f48b487e16ae@linaro.org>
+ <CAA8EJpq38EudVcb7quuk1u85Cw+hJADxagkV7rN7fP9A-fz-Wg@mail.gmail.com>
+ <42588c32-5068-5f12-4cf8-f8b9bd074e88@linaro.org>
+ <db2f32e1-beeb-b421-efaa-b68900d99559@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <25da3f43-c46e-8108-2da9-0e4f2b7cc1a4@gmail.com>
+In-Reply-To: <db2f32e1-beeb-b421-efaa-b68900d99559@linaro.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -87,78 +87,93 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/04/2022 17:24, Mikhail Zhilkin wrote:
+On 28/04/2022 16:45, Dmitry Baryshkov wrote:
+> On 28/04/2022 17:06, Krzysztof Kozlowski wrote:
+>> On 28/04/2022 15:57, Dmitry Baryshkov wrote:
+>>> On Thu, 28 Apr 2022 at 15:08, Krzysztof Kozlowski
+>>> <krzysztof.kozlowski@linaro.org> wrote:
+>>>>
+>>>> On 28/04/2022 13:59, Dmitry Baryshkov wrote:
+>>>>> On Qualcomm platforms each group of 32 MSI vectors is routed to the
+>>>>> separate GIC interrupt. Document mapping of additional interrupts.
+>>>>>
+>>>>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>>>>> ---
+>>>>>   .../devicetree/bindings/pci/qcom,pcie.yaml    | 51 ++++++++++++++++++-
+>>>>>   1 file changed, 50 insertions(+), 1 deletion(-)
+>>>>>
+>>>>> diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+>>>>> index 0b69b12b849e..a8f99bca389e 100644
+>>>>> --- a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+>>>>> +++ b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+>>>>> @@ -43,11 +43,20 @@ properties:
+>>>>>       maxItems: 5
+>>>>>
+>>>>>     interrupts:
+>>>>> -    maxItems: 1
+>>>>> +    minItems: 1
+>>>>> +    maxItems: 8
+>>>>>
+>>>>>     interrupt-names:
+>>>>> +    minItems: 1
+>>>>>       items:
+>>>>>         - const: msi
+>>>>> +      - const: msi2
+>>>>> +      - const: msi3
+>>>>> +      - const: msi4
+>>>>> +      - const: msi5
+>>>>> +      - const: msi6
+>>>>> +      - const: msi7
+>>>>> +      - const: msi8
+>>>>>
+>>>>>     # Common definitions for clocks, clock-names and reset.
+>>>>>     # Platform constraints are described later.
+>>>>> @@ -623,6 +632,46 @@ allOf:
+>>>>>           - resets
+>>>>>           - reset-names
+>>>>>
+>>>>> +    # On newer chipsets support either 1 or 8 msi interrupts
+>>>>> +    # On older chipsets it's always 1 msi interrupt
+>>>>> +  - if:
+>>>>> +      properties:
+>>>>> +        compatibles:
+>>>>> +          contains:
+>>>>> +            enum:
+>>>>> +              - qcom,pcie-msm8996
+>>>>> +              - qcom,pcie-sc7280
+>>>>> +              - qcom,pcie-sc8180x
+>>>>> +              - qcom,pcie-sdm845
+>>>>> +              - qcom,pcie-sm8150
+>>>>> +              - qcom,pcie-sm8250
+>>>>> +              - qcom,pcie-sm8450-pcie0
+>>>>> +              - qcom,pcie-sm8450-pcie1
+>>>>> +    then:
+>>>>> +      oneOf:
+>>>>> +        - properties:
+>>>>> +            interrupts:
+>>>>> +              minItems: 1
+>>>>
+>>>> minItems should not be needed here and in places below, because it is
+>>>> equal to maxItems.
+>>>
+>>> Maybe it's a misunderstanding from my side. In the top level we have
+>>> the min = 1, max = 8.
+>>> How does that interfere with these entries? In other words, if we e.g.
+>>> omit minItems here, which setting would preveal: implicit minItems = 8
+>>> (from maxItems = 8) or minItems = 1 in the top level?
+>>>
+>>>>> +              maxItems: 1
+>>
+>> I don't propose to skip it for the case with maxItems:8, but only here.
+>> minItems:1 is set in toplevel. Where is that implicit minItems:8?
 > 
-> Hi, Krzysztof,
-> 
-> On 4/10/2022 11:18 AM, Krzysztof Kozlowski wrote:
->> I am sorry, but you changed now a lot in the bindings and it looks
->> entirely different. Things previously being correct now are wrong, so
->> rather start from your old bindings...
-> 
-> 
-> Looks like I'm a bit confused... I use dual "compatible" in my real dts
-> and I realized that:
-> 
-> 1. Therefore I have to use  dual "compatible" in example too:
-> 
-> compatible = "sercomm,sc-partitions", "fixed-partitions";
-> 
-> 2. When I'm trying to reuse "fixed-partitions" compatible from
-> fixed-partitions.yaml in my new .yaml I get "too long" errors.
+> maxItems:8? Maybe I just misunderstand this part of yaml/jsonschema.
 
-Yes, the fixed-partitions.yaml would have to be changed to allow extension.
+The top level defines minItems=1, maxItems=8, so it cannot mean
+implicitly "minItems=1, maxItems=8, minItems=maxItems".
 
-> 
-> Real dts:
-> 
-> Link:
-> https://github.com/openwrt/openwrt/blob/edcc1a9a734bb3fcdc9242025290d3f173e71b78/target/linux/ramips/dts/mt7621_beeline_smartbox-giga.dts#L79
-> 
-> So, I currently found another solution - to extend fixed-partitions.yaml
-> with "sercomm,sc-partitions". Is It ok from your side? Can I use this
-> code in v3?
-
-Not really, I don't understand why do you need it and it does not
-include our previous talks.
-
-> 
-> diff --git
-> a/Documentation/devicetree/bindings/mtd/partitions/fixed-partitions.yaml
-> b/Documentation/devicetree/bindings/mtd/partitions/fixed-partitions.yaml
-> index ea4cace6a955..9eebe39a57fb 100644
-> --- a/Documentation/devicetree/bindings/mtd/partitions/fixed-partitions.yaml
-> +++ b/Documentation/devicetree/bindings/mtd/partitions/fixed-partitions.yaml
-> @@ -19,7 +19,11 @@ maintainers:
->  
->  properties:
->    compatible:
-> -    const: fixed-partitions
-> +    oneOf:
-> +      - const: fixed-partitions
-> +      - items:
-> +          - const: sercomm,sc-partitions
-> +          - const: fixed-partitions
->  
->    "#address-cells": true
->  
-> @@ -27,7 +31,18 @@ properties:
->  
->  patternProperties:
->    "@[0-9a-f]+$":
-> -    $ref: "partition.yaml#"
-> +    allOf:
-> +      - $ref: "partition.yaml#"
-> +      - if:
-> +          properties:
-> +            compatible:
-> +              contains:
-> +                const: sercomm,sc-partitions
-> +        then:
-> +          properties:
-> +            scpart-id:
-
-It still misses vendor prefix and we agreed you don't need it, didn't we?
+There is no other place in the bindings which would implicitly set here
+minItems=maxItems.
 
 
 Best regards,
