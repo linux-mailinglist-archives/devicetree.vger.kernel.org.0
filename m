@@ -2,64 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A4169514859
-	for <lists+devicetree@lfdr.de>; Fri, 29 Apr 2022 13:39:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 34C10514863
+	for <lists+devicetree@lfdr.de>; Fri, 29 Apr 2022 13:43:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1358539AbiD2LnM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Apr 2022 07:43:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53612 "EHLO
+        id S239287AbiD2Lqx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Apr 2022 07:46:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33682 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233241AbiD2LnM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Apr 2022 07:43:12 -0400
-Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27221C6671;
-        Fri, 29 Apr 2022 04:39:54 -0700 (PDT)
-Received: by mail-lj1-x22a.google.com with SMTP id y19so10180697ljd.4;
-        Fri, 29 Apr 2022 04:39:54 -0700 (PDT)
+        with ESMTP id S1358073AbiD2Lqw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Apr 2022 07:46:52 -0400
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C32AB252AB;
+        Fri, 29 Apr 2022 04:43:34 -0700 (PDT)
+Received: by mail-wr1-x42f.google.com with SMTP id x18so10481340wrc.0;
+        Fri, 29 Apr 2022 04:43:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=Qf3Gnh0r/kH14MrLVG6iizA1sf1487qOGLkcc43P0Os=;
-        b=eR7O1MdIebnFj/Ml1zaxjL6DtmxxNFs71Suhqc/MESprUhT4GvoW/kWqjAoSoQJ45F
-         y8i++NF841lIoNyIROqh/4dmZS7WJT8UL8Xs30lUixnsXqvcmeWjaRsgmetNVXSrji/X
-         gSZnWf9mbdrTBFt0y5hBR5DyZT6TL5aD0vZXUt4geDCGTf9qfYbh8DCybGMW0vRCiVoh
-         zDjxEsMK8rocGKJxs1Mud1dFZc784/f8QPPiABKHTXZr8K5Jzukir2q4p1FHuOQIRPpi
-         RUFNI+ccskbIehnBa5lbqUmx1GICY3elF6ltEXMKS5E6kU8Vax2P3VIsItLf3xugp7/U
-         gx7A==
+        bh=noiLEGjS69TNqfsR+PPtmcT72BXbzXlEteGUOjRdti4=;
+        b=VBCT5w1S0mXJE2U2KRraF7W92VzzhpTIuk/ertQoUbVYS6V+zNOL/nC3B4Taz2fGIq
+         3Tc/0cnzp082Zxar3Q/FWb9rgXdmmmT1ipDxYlxmQgKMfRzHTZCh1wzvBRy7lEmL89Wv
+         jthJtdv/9NLhlkTlkCJmP2G/qYS4i7VTGIec0/gipIVHy5JiF53Hmxl4SzmlX33RWnvF
+         SfV1sxWgJa4Hj+cdzESUhBUXblaYGwLWZGKy+32z8PpIfpEjQmvlZO/mxFcwlXr/zlgS
+         a9UztJBAFJSHXfT83Evm3497rnkjzZs32CrHndY9uS0Mez35COZnKz5vUQjXdcUyCc4i
+         +BCg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=Qf3Gnh0r/kH14MrLVG6iizA1sf1487qOGLkcc43P0Os=;
-        b=eZBDutbVUq718a8rPaStGzjPQ1pf4K3oroVNe5+UF3VtGsnbTGcIIZs7eAzdJTrbOs
-         mDvxp1SP0M+V8RdzbAmMDAwqGGBOflH7pVK+wJEpY5MpzyACxpOtQ3lnu1cCYdJrCgm5
-         5tNl//sr0YLXgAD3Bnj3KJP5wXxjeQxSGFytNGK8XL1uKvwUAXnc1GLyt8/okz12dJx/
-         XQ4wJXldkDoiU1M54bZhksioe9LoxN879Aqxl8dB6eChf6cgdTLXVAd7+f9rA17HwxeU
-         5yc8HW8V0E07emBhTMOiCcNwfWMLelLfISOYXVURb/aYrxoi5aFDoFEp4tBbqmONLpkw
-         hQ4A==
-X-Gm-Message-State: AOAM533aALrR/NLqj2PqdA0+YjmhVjeAXbGwowgeLHUnrKgpFiCWBo7B
-        Nc/tEmVna/HNXxiVXpMUwDNsIlhkyrI=
-X-Google-Smtp-Source: ABdhPJyThILU8UMBSTIwKqMzBbYfwpw3i6vwhnHKLBh8cvkaHw2tWxAsInu8dLWhofJz1A8TvMkjBA==
-X-Received: by 2002:a2e:a604:0:b0:24f:d33:6d7a with SMTP id v4-20020a2ea604000000b0024f0d336d7amr19272898ljp.117.1651232392220;
-        Fri, 29 Apr 2022 04:39:52 -0700 (PDT)
-Received: from nergzd-desktop.localdomain ([194.39.226.133])
-        by smtp.gmail.com with ESMTPSA id v3-20020a196103000000b00472030b7f61sm217972lfb.270.2022.04.29.04.39.50
+        bh=noiLEGjS69TNqfsR+PPtmcT72BXbzXlEteGUOjRdti4=;
+        b=OdPA5Tk2qxpOepY+p6fEUUZR1pY65SAeu4aGkFwcrG4/Sll3zZ3lNEEpkA7w5RJYVe
+         yEdAvx9+Ja9mwsLGWf/5JS4Pu6ReSbdc180CZ+kggWgLvLkiDaYXMNY0r1fQloN2apGx
+         U4WtRKWpTG+R1ByIjwK8fPPIxIhCK8qxc4OdVZmyNndy6pFHIwBiYJUKN4YI8v5FgVJS
+         46gJqO3LwD4cQRdCQAUqvcXVd1AMFjuK6luHr22lXSDII7e3qRlrW+mXP7M7nGf3Qtm+
+         mEruR2GOIg3ql2143SLIm5uXvedK3cD72jZ0kxO6tV3J04osEsM5zQ+8Oa0cIwRzNpPJ
+         52VA==
+X-Gm-Message-State: AOAM531Lvq3AEOT2ejDqvJakIOzbeFvmTIjzyyXW2ckJfNArAELr8K/Y
+        YKoi13QAynSBms3AvUsVCYo=
+X-Google-Smtp-Source: ABdhPJy8R+fDWCVWIT8z/71l8GYePMC7jBJ8hyQmGdE9wl+d1vgnwHXdLIyUlbQ1WNfE9YmD9FTuVQ==
+X-Received: by 2002:a5d:498d:0:b0:20a:dc6b:35c9 with SMTP id r13-20020a5d498d000000b0020adc6b35c9mr19684389wrq.176.1651232613260;
+        Fri, 29 Apr 2022 04:43:33 -0700 (PDT)
+Received: from fedora.robimarko.hr (dh207-99-183.xnet.hr. [88.207.99.183])
+        by smtp.googlemail.com with ESMTPSA id l6-20020a1c2506000000b0038e6fe8e8d8sm2990900wml.5.2022.04.29.04.43.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 29 Apr 2022 04:39:51 -0700 (PDT)
-From:   Markuss Broks <markuss.broks@gmail.com>
-To:     linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        lee.jones@linaro.org, broonie@kernel.org
-Cc:     phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
-        Markuss Broks <markuss.broks@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        devicetree@vger.kernel.org
-Subject: [PATCH v6 2/5] dt-bindings: regulator: Add bindings for Silicon Mitus SM5703 regulators
-Date:   Fri, 29 Apr 2022 14:39:25 +0300
-Message-Id: <20220429113927.5145-1-markuss.broks@gmail.com>
+        Fri, 29 Apr 2022 04:43:32 -0700 (PDT)
+From:   Robert Marko <robimarko@gmail.com>
+To:     agross@kernel.org, bjorn.andersson@linaro.org,
+        jassisinghbrar@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com,
+        sboyd@kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org
+Cc:     Robert Marko <robimarko@gmail.com>
+Subject: [PATCH 1/6] clk: qcom: clk-alpha-pll: add support for APSS PLL
+Date:   Fri, 29 Apr 2022 13:43:25 +0200
+Message-Id: <20220429114330.59026-1-robimarko@gmail.com>
 X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -73,70 +71,52 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds device-tree bindings for regulators on Silicon Mitus
-SM5703 MFD.
+APSS PLL type will be used by the IPQ8074 APSS driver for providing the
+CPU core clocks and enabling CPU Frequency scaling.
 
-Signed-off-by: Markuss Broks <markuss.broks@gmail.com>
+This is ported from the downstream 5.4 kernel.
+
+Signed-off-by: Robert Marko <robimarko@gmail.com>
 ---
- .../siliconmitus,sm5703-regulator.yaml        | 49 +++++++++++++++++++
- 1 file changed, 49 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/regulator/siliconmitus,sm5703-regulator.yaml
+ drivers/clk/qcom/clk-alpha-pll.c | 12 ++++++++++++
+ drivers/clk/qcom/clk-alpha-pll.h |  1 +
+ 2 files changed, 13 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/regulator/siliconmitus,sm5703-regulator.yaml b/Documentation/devicetree/bindings/regulator/siliconmitus,sm5703-regulator.yaml
-new file mode 100644
-index 000000000000..9d84117530ca
---- /dev/null
-+++ b/Documentation/devicetree/bindings/regulator/siliconmitus,sm5703-regulator.yaml
-@@ -0,0 +1,49 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/regulator/siliconmitus,sm5703-regulator.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Silicon Mitus SM5703 multi function device regulators
-+
-+maintainers:
-+  - Markuss Broks <markuss.broks@gmail.com>
-+
-+description: |
-+  SM5703 regulators node should be a sub node of the SM5703 MFD node. See SM5703 MFD
-+  bindings at Documentation/devicetree/bindings/mfd/siliconmitus,sm5703.yaml
-+  Regulator nodes should be named as USBLDO_<number>, BUCK, VBUS, LDO_<number>.
-+  The definition for each of these nodes is defined using the standard
-+  binding for regulators at Documentation/devicetree/bindings/regulator/regulator.txt.
-+
-+properties:
-+  buck:
-+    type: object
-+    $ref: regulator.yaml#
-+    unevaluatedProperties: false
-+    description:
-+      Properties for the BUCK regulator.
-+
-+  vbus:
-+    type: object
-+    $ref: regulator.yaml#
-+    unevaluatedProperties: false
-+    description:
-+      Properties for the VBUS regulator.
-+
-+patternProperties:
-+  "^ldo[1-3]$":
-+    type: object
-+    $ref: regulator.yaml#
-+    unevaluatedProperties: false
-+    description:
-+      Properties for single LDO regulator.
-+
-+  "^usbldo[1-2]$":
-+    type: object
-+    $ref: regulator.yaml#
-+    unevaluatedProperties: false
-+    description:
-+      Properties for a single USBLDO regulator.
-+
-+additionalProperties: false
+diff --git a/drivers/clk/qcom/clk-alpha-pll.c b/drivers/clk/qcom/clk-alpha-pll.c
+index 4406cf609aae..8270363ff98e 100644
+--- a/drivers/clk/qcom/clk-alpha-pll.c
++++ b/drivers/clk/qcom/clk-alpha-pll.c
+@@ -154,6 +154,18 @@ const u8 clk_alpha_pll_regs[][PLL_OFF_MAX_REGS] = {
+ 		[PLL_OFF_TEST_CTL_U] = 0x30,
+ 		[PLL_OFF_TEST_CTL_U1] = 0x34,
+ 	},
++	[CLK_ALPHA_PLL_TYPE_APSS] = {
++		[PLL_OFF_L_VAL] = 0x08,
++		[PLL_OFF_ALPHA_VAL] = 0x10,
++		[PLL_OFF_ALPHA_VAL_U] = 0xff,
++		[PLL_OFF_USER_CTL] = 0x18,
++		[PLL_OFF_USER_CTL_U] = 0xff,
++		[PLL_OFF_CONFIG_CTL] = 0x20,
++		[PLL_OFF_CONFIG_CTL_U] = 0x24,
++		[PLL_OFF_TEST_CTL] = 0x30,
++		[PLL_OFF_TEST_CTL_U] = 0x34,
++		[PLL_OFF_STATUS] = 0x28,
++	},
+ };
+ EXPORT_SYMBOL_GPL(clk_alpha_pll_regs);
+ 
+diff --git a/drivers/clk/qcom/clk-alpha-pll.h b/drivers/clk/qcom/clk-alpha-pll.h
+index 6e9907deaf30..626fdf80336d 100644
+--- a/drivers/clk/qcom/clk-alpha-pll.h
++++ b/drivers/clk/qcom/clk-alpha-pll.h
+@@ -18,6 +18,7 @@ enum {
+ 	CLK_ALPHA_PLL_TYPE_AGERA,
+ 	CLK_ALPHA_PLL_TYPE_ZONDA,
+ 	CLK_ALPHA_PLL_TYPE_LUCID_EVO,
++	CLK_ALPHA_PLL_TYPE_APSS,
+ 	CLK_ALPHA_PLL_TYPE_MAX,
+ };
+ 
 -- 
 2.35.1
 
