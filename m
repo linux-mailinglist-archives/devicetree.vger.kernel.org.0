@@ -2,88 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2522E51566C
-	for <lists+devicetree@lfdr.de>; Fri, 29 Apr 2022 23:11:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7CF22515678
+	for <lists+devicetree@lfdr.de>; Fri, 29 Apr 2022 23:13:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232829AbiD2VOr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Apr 2022 17:14:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59344 "EHLO
+        id S233731AbiD2VQz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Apr 2022 17:16:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34176 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232693AbiD2VOp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Apr 2022 17:14:45 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5951D080A;
-        Fri, 29 Apr 2022 14:11:25 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: nfraprado)
-        with ESMTPSA id 8384A1F469E3
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1651266684;
-        bh=M4PKB7Pt1wtHjyvgT7kprcmuUgppO8szgoIad51yx9c=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=Wl77Ok5b3IK3LDT0M2d7Yk0V5PV38zHEL1zVj2XHPrQqs/jmFV7V3wqBjZ4RJE7Xz
-         C5BriECYW80aHA9eVOLBHDTASK562vHHtUtKagRiUb4yqm2MYYS1gMITNHSPqR3P23
-         9qbjmw0yAOTxMFCEllAyrnIcGmRvORrtZSR3tPc0YgVXUQptzm+zcHnsTicOcB9/Hg
-         35SwPgoJGrHPYDm2Y1nsRVFZrjgEIHfEaRtiBZC/X2KdAEPTc27xndRa//BTVxGeaf
-         SfksPiozhMk2QPvAxUHLO7fI5084icjuFg5vGEflLIE5hYFuuoAe6sh1yano/gGP+e
-         OAh9c4zhQOZug==
-From:   =?UTF-8?q?N=C3=ADcolas=20F=2E=20R=2E=20A=2E=20Prado?= 
-        <nfraprado@collabora.com>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, kernel@collabora.com,
-        =?UTF-8?q?N=C3=ADcolas=20F=2E=20R=2E=20A=2E=20Prado?= 
-        <nfraprado@collabora.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Tinghan Shen <tinghan.shen@mediatek.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        linux-remoteproc@vger.kernel.org
-Subject: [PATCH 2/2] dt-bindings: remoteproc: mediatek: Add optional memory-region to mtk,scp
-Date:   Fri, 29 Apr 2022 17:11:10 -0400
-Message-Id: <20220429211111.2214119-3-nfraprado@collabora.com>
-X-Mailer: git-send-email 2.36.0
-In-Reply-To: <20220429211111.2214119-1-nfraprado@collabora.com>
-References: <20220429211111.2214119-1-nfraprado@collabora.com>
+        with ESMTP id S233671AbiD2VQy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Apr 2022 17:16:54 -0400
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25BDBD3DAF
+        for <devicetree@vger.kernel.org>; Fri, 29 Apr 2022 14:13:35 -0700 (PDT)
+Received: by mail-ed1-x52f.google.com with SMTP id g23so10385877edy.13
+        for <devicetree@vger.kernel.org>; Fri, 29 Apr 2022 14:13:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=oq0Zya7alVgrjes/Aox+txkeo77UdQpWJ11CNaZCjU4=;
+        b=DSDaYI2+JOc5fVJeq4O73f88PTpo/fjuytmL6ZOqRjaI2Eyegq1yOrp93DIeTBrMOx
+         xZgBDlf7sdT33mwl3sUpRzO0giyNNlS/dxV2yWOgTh9nwy/frejL36p9dkMkNwod3Xz6
+         iwM2EXuiDQbWBDUpiFOq6N2ZOU+SB+7ZMt8CGmDtu6LddcKKsUug8DIUXdSU/Zg2n4jm
+         dL+u8LQFc6C2F1ZtYwrqHkZFZiCrbAm+330p8lk7pPSacMviChAy44LsiTaJeyzkMGq/
+         EIuW8+biX6E0jVY9bwX5M2SxksjrZ7ir/F1xlbrJC2o1tAGpCBo0nIrAvEUdam3thJi7
+         70lw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=oq0Zya7alVgrjes/Aox+txkeo77UdQpWJ11CNaZCjU4=;
+        b=H/l75hxa2mpR1FnzbKP9c6ER5b/PuG/QZ3pZ2GPeMzawnPVJH7aFJh9XTXffg9JZkH
+         fvL+vwHP2s1TdrZRrt/tI6NeWzoCww3rdTz53B+VlJjMp0L8u/VorvYh/BEa+sie/d67
+         pna2BUzQwE/0uOwAQY+Br47nEHRBq4I/23yJrPukRf/4mOll0655qba/VND65OgA63jm
+         9zWlHjPWlNUHknliZZMt5VETLp+6BizuOSUYUsNR3pUe2LMxTOSeaBkTJ4dXJeP9LW6R
+         bOV2gbEc2wuUkCRoVOWqc0vYz/nKUBOoZv2NU/i1F5i/NPqW2sv5j7bWXKsC80sWIRvO
+         w+Dw==
+X-Gm-Message-State: AOAM533q+VqQMWbWFrKdctLBGvOYh4S5BpPh66bpjufziYTWd68b6Vr0
+        UrKMaWFP7UjgGgLcqUD/knu7OA==
+X-Google-Smtp-Source: ABdhPJyVVhDYODMbBzhBifXA7nLpCfzCbTw5ofkKpFDmyCaG4pqIVxjAa/d1qFy9oGOViVNgIBZM+A==
+X-Received: by 2002:a05:6402:51d3:b0:426:3a20:738b with SMTP id r19-20020a05640251d300b004263a20738bmr1249084edd.342.1651266813682;
+        Fri, 29 Apr 2022 14:13:33 -0700 (PDT)
+Received: from [192.168.0.176] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id e16-20020a170906845000b006f3ef214dc7sm952984ejy.45.2022.04.29.14.13.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 29 Apr 2022 14:13:33 -0700 (PDT)
+Message-ID: <839978c5-c337-7784-a04f-26b9883c703b@linaro.org>
+Date:   Fri, 29 Apr 2022 23:13:31 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH V5 12/16] dt-bindings: reset: mediatek: Add infra_ao reset
+ bit for MT8195
+Content-Language: en-US
+To:     Rex-BC Chen <rex-bc.chen@mediatek.com>, mturquette@baylibre.com,
+        sboyd@kernel.org, matthias.bgg@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     p.zabel@pengutronix.de, angelogioacchino.delregno@collabora.com,
+        chun-jie.chen@mediatek.com, wenst@chromium.org,
+        runyang.chen@mediatek.com, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20220428115620.13512-1-rex-bc.chen@mediatek.com>
+ <20220428115620.13512-13-rex-bc.chen@mediatek.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220428115620.13512-13-rex-bc.chen@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        UNPARSEABLE_RELAY autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The SCP co-processor can optionally be passed a reserved memory region
-to use. Add this property in the dt-binding.
+On 28/04/2022 13:56, Rex-BC Chen wrote:
+> To support reset of infra_ao, add the bit definitions for MT8195.
+> The infra_ao reset includes 5 banks and 32 bits for each bank.
+> 
+> Signed-off-by: Rex-BC Chen <rex-bc.chen@mediatek.com>
+> ---
+>  include/dt-bindings/reset/mt8195-resets.h | 170 ++++++++++++++++++++++
+>  1 file changed, 170 insertions(+)
+> 
+> diff --git a/include/dt-bindings/reset/mt8195-resets.h b/include/dt-bindings/reset/mt8195-resets.h
+> index a26bccc8b957..463114014483 100644
+> --- a/include/dt-bindings/reset/mt8195-resets.h
+> +++ b/include/dt-bindings/reset/mt8195-resets.h
+> @@ -7,6 +7,7 @@
+>  #ifndef _DT_BINDINGS_RESET_CONTROLLER_MT8195
+>  #define _DT_BINDINGS_RESET_CONTROLLER_MT8195
+>  
+> +/* TOPRGU resets */
+>  #define MT8195_TOPRGU_CONN_MCU_SW_RST          0
+>  #define MT8195_TOPRGU_INFRA_GRST_SW_RST        1
+>  #define MT8195_TOPRGU_APU_SW_RST               2
+> @@ -26,4 +27,173 @@
+>  
+>  #define MT8195_TOPRGU_SW_RST_NUM               16
+>  
+> +/* INFRA RST0 */
+> +#define MT8195_INFRA_RST0_THERM_CTRL_SWRST	0
+> +#define MT8195_INFRA_RST0_RSV0			1
+> +#define MT8195_INFRA_RST0_DISP_PWM1_SWRST	2
+> +#define MT8195_INFRA_RST0_RSV1			3
+> +#define MT8195_INFRA_RST0_MSDC3_SWRST		4
+> +#define MT8195_INFRA_RST0_MSDC2_SWRST		5
+> +#define MT8195_INFRA_RST0_MSDC1_SWRST		6
+> +#define MT8195_INFRA_RST0_MSDC0_SWRST		7
+> +#define MT8195_INFRA_RST0_RSV2			8
+> +#define MT8195_INFRA_RST0_AP_DMA_SWRST		9
+> +#define MT8195_INFRA_RST0_MIPI_D_SWRST		10
+> +#define MT8195_INFRA_RST0_RSV3			11
+> +#define MT8195_INFRA_RST0_RSV4			12
+> +#define MT8195_INFRA_RST0_SSUSB_TOP_SWRST	13
+> +#define MT8195_INFRA_RST0_DISP_PWM_SWRST	14
+> +#define MT8195_INFRA_RST0_AUXADC_SWRST		15
+> +#define MT8195_INFRA_RST0_RSV5			16
+> +#define MT8195_INFRA_RST0_RSV6			17
+> +#define MT8195_INFRA_RST0_RSV7			18
+> +#define MT8195_INFRA_RST0_RSV8			19
+> +#define MT8195_INFRA_RST0_RSV9			20
+> +#define MT8195_INFRA_RST0_RSV10			21
+> +#define MT8195_INFRA_RST0_RSV11			22
+> +#define MT8195_INFRA_RST0_RSV12			23
+> +#define MT8195_INFRA_RST0_RSV13			24
+> +#define MT8195_INFRA_RST0_RSV14			25
+> +#define MT8195_INFRA_RST0_RSV15			26
+> +#define MT8195_INFRA_RST0_RSV16			27
+> +#define MT8195_INFRA_RST0_RSV17			28
+> +#define MT8195_INFRA_RST0_RSV18			29
+> +#define MT8195_INFRA_RST0_RSV19			30
+> +#define MT8195_INFRA_RST0_RSV20			31
 
-Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
----
+These are not proper IDs... don't work-around usage of bits with fake
+reserved IDs...
 
- Documentation/devicetree/bindings/remoteproc/mtk,scp.yaml | 4 ++++
- 1 file changed, 4 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/remoteproc/mtk,scp.yaml b/Documentation/devicetree/bindings/remoteproc/mtk,scp.yaml
-index ec9ddeb6ca2c..64a9d2c7ed0d 100644
---- a/Documentation/devicetree/bindings/remoteproc/mtk,scp.yaml
-+++ b/Documentation/devicetree/bindings/remoteproc/mtk,scp.yaml
-@@ -51,6 +51,10 @@ properties:
-   interrupts:
-     maxItems: 1
- 
-+  memory-region:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description: phandle to reserved memory region.
-+
- required:
-   - compatible
-   - reg
--- 
-2.36.0
-
+Best regards,
+Krzysztof
