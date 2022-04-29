@@ -2,113 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 24ED8514253
-	for <lists+devicetree@lfdr.de>; Fri, 29 Apr 2022 08:29:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 116C6514254
+	for <lists+devicetree@lfdr.de>; Fri, 29 Apr 2022 08:30:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1354471AbiD2Gcs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Apr 2022 02:32:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43484 "EHLO
+        id S1349532AbiD2GeH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Apr 2022 02:34:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46204 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238357AbiD2Gcq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Apr 2022 02:32:46 -0400
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C513B9F0E
-        for <devicetree@vger.kernel.org>; Thu, 28 Apr 2022 23:29:29 -0700 (PDT)
-Received: by mail-ej1-x636.google.com with SMTP id kq17so13555425ejb.4
-        for <devicetree@vger.kernel.org>; Thu, 28 Apr 2022 23:29:29 -0700 (PDT)
+        with ESMTP id S230018AbiD2GeG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Apr 2022 02:34:06 -0400
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 278EE6AA4A
+        for <devicetree@vger.kernel.org>; Thu, 28 Apr 2022 23:30:49 -0700 (PDT)
+Received: by mail-ed1-x52b.google.com with SMTP id y21so7934576edo.2
+        for <devicetree@vger.kernel.org>; Thu, 28 Apr 2022 23:30:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=MWHSWTEKcv7Xi6sCry02KvjP0oi7MJ00AsTeELKYR1k=;
-        b=QFNUUb7tg4MO3nPhOkcmFLcYBzSw8R4q4NyB2kULHhHKCiwDpwjty4GzN+1qHUVWXo
-         fy/jgch+A3d/a/EsdCQt+WpAjKkOil9mJn0LhC+0+msC2IKjNqHyVzrE8sCRkUww67pG
-         /WQXyoc2hMm6sFjyP9LRtNhazv/0fiQE1nHfG7sGYtcdEMrDVNkxPB3RdQruO3rbwogU
-         jZRFUrgt419FWZ1gSUhPzs5kBvpi7sV8xWnL0mDAPl99Jx5VBLUOkKtQkcPLNC4ql919
-         fl+IbUGz3T/k/cl9BWupoSBSyvEUdC39A2msPYGNS1W6/ENMH78IwgD3Tdad+P6OumoM
-         fOqA==
+        bh=s1clNq5BQBXHMi5yLCKb4UG59pVLMf7WbijCi7/Lbvw=;
+        b=yiP2cQfA0EiqXcNCGaC4mEFsX+LYRnv6XmBjLC4bLupo8UKkiWETvAQDXdAACSvQCG
+         wW6o/4Y4rB4ldjI+cVQ/c03GAIXcEhma+QdncoqL36X9hRq9OkZrucsJDqjhV4wQBnE2
+         A2YWxzIhvFf+5Xq9Er/zkQOq9i/2rXIvVIYRgdk/aCYSzjtrvGruMIN5T+an4gJ9ZBsX
+         dsE+ITqfuyQZXyh9YNSjVUs3HfAeTmV2f4FkKj0DE5t7TqMMqc1+TrZZbT2ylPXKSyI+
+         pp728qnS8TqjH2uTealBlfJ7ifY4Y0h+awWOMtda+tKh8gcAWG7hrqzYBQ4MFpuG9Nf9
+         N4LA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=MWHSWTEKcv7Xi6sCry02KvjP0oi7MJ00AsTeELKYR1k=;
-        b=eylcXW8NgCHUntOvBqOy2QJ8LbCfxP6J/n8p1UOmpV4IW3u5iftQg7ROZwfswH1Hoh
-         FVs39y/jKI7ryRDWYowSOhfIS2SRxlTUKNsC6hUwBnLVpKu5wVIhBe1zotqVmhnIPD11
-         7PFw39ONER6kjHEe534p/RosO2fYClZP4MlGxp2tdn/HW90NTbDhbKZkRiCfQCDdc4/0
-         8t1cuC6aTP19MQWMjE92q9SX3KUq65rt5Xe0aX+dN/RKkecSxkW3lThd46HsKoy+v7vP
-         G414dazaBarfE2cUbecESKd8V6rlV3hn/2E2oxbcuzi4BXE9KBdEk5o2qRmPPR34COxV
-         NcFQ==
-X-Gm-Message-State: AOAM530Ige/I6jd7r1jGJNOSBr8/U5Vk/Z1Epg1bbIO3rzFv0EMZaCAU
-        +woQiRuHfSc7t58oLuGLoM4RPA==
-X-Google-Smtp-Source: ABdhPJwF7kYhyBa2oQUWsOUhyejHYRH7OCesXxrrQ17b6ikVFNcVtOgzey85fp+uzN1oMC+KLH73MA==
-X-Received: by 2002:a17:907:8a10:b0:6f0:51c6:3cee with SMTP id sc16-20020a1709078a1000b006f051c63ceemr34819381ejc.259.1651213768126;
-        Thu, 28 Apr 2022 23:29:28 -0700 (PDT)
+        bh=s1clNq5BQBXHMi5yLCKb4UG59pVLMf7WbijCi7/Lbvw=;
+        b=krfFlv2SEyVJFwr4+bT9CGON6LpEf4rZ+9+jPlgcNHUqxxbILqRYBHoh5K8wVZI/+1
+         L2KJd39QAAP4qfP4bvfEIhoOYbXZlIhONVt09CngIM2gwQkqk6W3CvUjzDwaFxOeTSN6
+         6o12bq39GOlIIJMBdofkxohNhwEIiFz3jGbaFs8YwzV3eoMZ+NL9T/kXdk7hbRZsTcb9
+         mUiyQAP2plZEl48GgY5mwuklzMtjrJgoZfEbVUSmVFT5UCj7ai1EoVhP4qmzWKR1ZOFH
+         G0PTHDySw5cVp3VG0CTDD5s1J9Sbl0TDxeW+8eKocKHXmvn/dR002tzY6/qmA8ikfAhZ
+         vfGA==
+X-Gm-Message-State: AOAM532iG/egupKyQBdNzwANeMst9Mwpsw5ETGGEP6Sa4XW6Cz90FKmQ
+        xuEmFVPOTAatIvfT3omnIkrx7Q==
+X-Google-Smtp-Source: ABdhPJwHYf5LFrUI7xpoXcKT1RsbdRXWzWdeo7uxehHkpBBNBDrNMi1obwlZXtwPu3uRYLRM6IjsLw==
+X-Received: by 2002:a50:e696:0:b0:419:998d:5feb with SMTP id z22-20020a50e696000000b00419998d5febmr40180413edm.122.1651213847683;
+        Thu, 28 Apr 2022 23:30:47 -0700 (PDT)
 Received: from [192.168.0.168] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id hz13-20020a1709072ced00b006f3ef214db2sm333250ejc.24.2022.04.28.23.29.26
+        by smtp.gmail.com with ESMTPSA id co8-20020a0564020c0800b0042617ba63c6sm2562278edb.80.2022.04.28.23.30.46
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 28 Apr 2022 23:29:27 -0700 (PDT)
-Message-ID: <993d74fa-be5b-6db2-6bba-2323de7757f3@linaro.org>
-Date:   Fri, 29 Apr 2022 08:29:26 +0200
+        Thu, 28 Apr 2022 23:30:47 -0700 (PDT)
+Message-ID: <df1e8dd6-5d26-f3de-b9f5-643a73390517@linaro.org>
+Date:   Fri, 29 Apr 2022 08:30:46 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [PATCH 05/11] dt-bindings: serio: add Arm PL050 DT schema
+Subject: Re: [PATCH 1/2] dt-bindings: google,cros-ec-keyb: Introduce switches
+ only compatible
 Content-Language: en-US
-To:     Andre Przywara <andre.przywara@arm.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liviu Dudau <liviu.dudau@arm.com>,
-        Robin Murphy <robin.murphy@arm.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        linux-input@vger.kernel.org
-References: <20220427112528.4097815-1-andre.przywara@arm.com>
- <20220427112528.4097815-6-andre.przywara@arm.com>
- <55574426-df20-cdd7-c97d-092726981a42@linaro.org>
- <20220428182708.0c1065f8@donnerap.cambridge.arm.com>
+To:     Stephen Boyd <swboyd@chromium.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc:     linux-kernel@vger.kernel.org, patches@lists.linux.dev,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Benson Leung <bleung@chromium.org>,
+        Guenter Roeck <groeck@chromium.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        "Joseph S. Barrera III" <joebar@chromium.org>
+References: <20220427203026.828183-1-swboyd@chromium.org>
+ <20220427203026.828183-2-swboyd@chromium.org>
+ <9248da4f-ca04-82f0-2840-a20797c25d2a@linaro.org>
+ <CAE-0n52Y=3EEZ6qguNx=hM44BahbH3cuq7x6Bbe5HELKkkvrUw@mail.gmail.com>
+ <29cc62aa-2995-ea96-0e7e-242f9ddaa87e@linaro.org>
+ <CAE-0n50ORzU52KpSPUNeEke-16uWo+Vn8WVhcdtdCc6WJiji6A@mail.gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220428182708.0c1065f8@donnerap.cambridge.arm.com>
+In-Reply-To: <CAE-0n50ORzU52KpSPUNeEke-16uWo+Vn8WVhcdtdCc6WJiji6A@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/04/2022 19:27, Andre Przywara wrote:
-
->>> +  clock-names:
->>> +    items:
->>> +      - const: KMIREFCLK  
+On 28/04/2022 18:01, Stephen Boyd wrote:
 >>
->> lowercase letters only
+>>> Given that none of the properties are
+>>> required for google,cros-ec-keyb it didn't seem necessary to make having
+>>> the google,cros-ec-keyb-switches compatible deny the existence of the
+>>> matrix-keymap properties.
+>>
+>> Maybe I misunderstood the commit msg. Are the
+>> "google,cros-ec-keyb-switches" devices coming with matrix keyboard or
+>> not? I mean physically.
+>>
 > 
-> I am afraid this ship has sailed: the various DTs in the kernel tree use
-> it in that way, and the Linux driver insists on that spelling. 
+> The answer is "sometimes, physically". Sometimes there are switches like
+> volume buttons and power buttons and also a matrix keyboard (convertible
+> and clamshells). Other times there are volume buttons and power buttons
+> and no matrix keyboard (detachable). This device node represents both
+> the keyboard and the switches.
+> 
+> Unfortunately the EC firmware on older Chromebooks that don't have a
+> matrix keyboard still report that they have some number of columns and
+> rows. I was hoping to make this fully dynamic by querying the EC but
+> that isn't possible.
 
-The driver is coming from ancient times, so it is understandable it has
-some old coding style. But it definitely not sailed away. :)
+OK, then it's indeed slightly different case. Let's skip my comment.
 
-> So by
-> changing this we would break both the existing DT's compliance and also
-> existing Linux kernels.
-> So is lowercase something that is mandated by DT schema, or can we just
-> make an exception here?
-
-This uppercase clock name affects even ARM64 devices, so it seems the
-device is still being used. Therefore I propose to add new clock name,
-old as deprecated and support both in the driver:
-
-	kmi->clk = clk_get(&dev->dev, "kmirefclk");
-	if (IS_ERR(kmi->clk)) {
-		kmi->clk = clk_get(&dev->dev, "KMIREFCLK");
-
-and convert the DTS as well later on.
 
 Best regards,
 Krzysztof
