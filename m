@@ -2,180 +2,220 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4B04E515517
-	for <lists+devicetree@lfdr.de>; Fri, 29 Apr 2022 22:03:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CF649515529
+	for <lists+devicetree@lfdr.de>; Fri, 29 Apr 2022 22:06:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351229AbiD2UGT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Apr 2022 16:06:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43196 "EHLO
+        id S239466AbiD2UJx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Apr 2022 16:09:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48744 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1378860AbiD2UGS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Apr 2022 16:06:18 -0400
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 871FF5E15A
-        for <devicetree@vger.kernel.org>; Fri, 29 Apr 2022 13:02:58 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id x33so15921017lfu.1
-        for <devicetree@vger.kernel.org>; Fri, 29 Apr 2022 13:02:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=KQmxhazXdwnOp329/F1Ja7jyqqhUxCgPrYWsGjeTXIc=;
-        b=iXmqBaaXqlKaQSe9e+eDS2qIkibjeUzGFeUyCfxVi9CLrBblDdj08s6+qhf8y/kvrK
-         28+qhq1ZnMJlMjY0o9tkaSl6NwwE649lA/mMOQfTzF3LOy1sxE+CWrvgdbDY0n53WMbF
-         s2EahFFoFkBXooc1kbqtJdr96HYtUdn0lhn6k9veI0zoavK61y0lrP4oZsNKiRVVjZLR
-         o+SzC4RIqNPy8GNEGZ5rBzN5kSNhaxtym2oZ6uB1AybXbUfUn0/IPdf9c4zldmPckDNf
-         RmhZnJOtjTRc5ZYYH+kg2dFMf4j41EnGdrXPUmlpZnNTP9PW369qqsfvGCsod5QZmvZb
-         KgEQ==
+        with ESMTP id S239462AbiD2UJw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Apr 2022 16:09:52 -0400
+Received: from mail-oa1-f44.google.com (mail-oa1-f44.google.com [209.85.160.44])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 180AF245;
+        Fri, 29 Apr 2022 13:06:33 -0700 (PDT)
+Received: by mail-oa1-f44.google.com with SMTP id 586e51a60fabf-e922e68b0fso9218566fac.1;
+        Fri, 29 Apr 2022 13:06:33 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=KQmxhazXdwnOp329/F1Ja7jyqqhUxCgPrYWsGjeTXIc=;
-        b=xF/ZFsgVCL4C9J+VuxLIEdC/be2hLZqq7VeTFym9Qr7toCKH0VC8g/58AjbsGcm1pv
-         Y5QOHybUbvI832DI4blqQRzaf0sjNJz3zTdJ7U7r2V9CPhdh/hKZaWGWGNmhjPqfUkX8
-         OP7IH+JVh8gPb5miP+AvCPatCpgZFy5G2tgayK2cK13hKi72I6KxLAobFEfQOzRm89yZ
-         LRhHBbG/gPSbYNLWCpOhD97ruyWpW2MeyJnnVZVgzkh99Fs1wAsHQw+bXcuMpPAR4QhS
-         ykC71eYmnOJ6VkL1IVp/rKONpcKJF7Ex9maCYzYSMGGGU0a8mSvZV/eKI+ZZc1IRQznS
-         H5EQ==
-X-Gm-Message-State: AOAM533+aENJDGQw/Fe8bfwB/545xyiKRGaagEdhuEeTTvgpd0d3F9LP
-        Q2H2+oMhqxQct2SUQWHsRtpKNA==
-X-Google-Smtp-Source: ABdhPJzTflMpQAiH/7EilkMJgrNGIiLGV1NMfKNCAQP/p7Nw14KfwZcLtAZpNzfHS0uD61orjYUdDw==
-X-Received: by 2002:a19:5f05:0:b0:46b:a5f2:5fab with SMTP id t5-20020a195f05000000b0046ba5f25fabmr647096lfb.8.1651262576888;
-        Fri, 29 Apr 2022 13:02:56 -0700 (PDT)
-Received: from [192.168.1.211] ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id v16-20020ac25590000000b0047255d211d4sm11889lfg.259.2022.04.29.13.02.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 29 Apr 2022 13:02:56 -0700 (PDT)
-Message-ID: <522388b9-310d-25dd-1688-4bb715b594c0@linaro.org>
-Date:   Fri, 29 Apr 2022 23:02:55 +0300
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=2lI/TWi2tf2Q7JmUZ2/HVxcNVVbUFx/NU2eKJt3txIU=;
+        b=Ms43z8z1ptc2WmXRI/aZtHh8tek1jkQL5QriMuvGcm9905iCogsZBu8O5GYnsjdNYa
+         oKtkTgPmEfOEnHq51Pt9HOhC7/ih6gn32E4xnFh/t9eOCWum5XvRgFbHYWS3zbDCogw4
+         dY6CEVr6/i24NqS6kiJb2GY7tXJ0ReTS1feWNW21D+v5aKBitsG6yxJv94+aeqKawp1k
+         RktDMpA1Iqi9XEYfcsMyAadRa94j4dfxpFyLEFD+iaf37ojghb22e1O6VaVryaNRGkA4
+         u0q67/k+CvESOxMreg4w8udXR/hII2lpdsaQ0gXdzptGbfFtybW0VspmIoNZm/Ekxs1m
+         ZlCg==
+X-Gm-Message-State: AOAM531d/V6/8mr94XM2/dXcYbo1HXqPjsd/7oichfRGLCrb+txDnWcA
+        qV5pv+Zx7wh3THAoOGsDXA==
+X-Google-Smtp-Source: ABdhPJylIgWmSsuu4I/a3zDRexm1IDuitX9f8YLbudWq18PfZJulvaKEhEYxJPJKLMbOHCK/46tOnA==
+X-Received: by 2002:a05:6870:61d4:b0:df:b74:8de5 with SMTP id b20-20020a05687061d400b000df0b748de5mr467807oah.37.1651262792205;
+        Fri, 29 Apr 2022 13:06:32 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id o22-20020a9d7656000000b0060603221258sm65246otl.40.2022.04.29.13.06.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 29 Apr 2022 13:06:31 -0700 (PDT)
+Received: (nullmailer pid 2776081 invoked by uid 1000);
+        Fri, 29 Apr 2022 20:06:30 -0000
+Date:   Fri, 29 Apr 2022 15:06:30 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Rex-BC Chen <rex-bc.chen@mediatek.com>
+Cc:     matthias.bgg@gmail.com, linux-arm-kernel@lists.infradead.org,
+        chunkuang.hu@kernel.org, jitao.shi@mediatek.com,
+        linux-kernel@vger.kernel.org, airlied@linux.ie,
+        krzysztof.kozlowski+dt@linaro.org, daniel@ffwll.ch,
+        xinlei.lee@mediatek.com, devicetree@vger.kernel.org,
+        p.zabel@pengutronix.de, linux-mediatek@lists.infradead.org,
+        dri-devel@lists.freedesktop.org, cellopoint.kai@gmail.com
+Subject: Re: [PATCH v5 1/4] dt-bindings: display: mediatek: dsi: Convert
+ dsi_dtbinding to .yaml
+Message-ID: <YmxFRuBWmPaCyw0I@robh.at.kernel.org>
+References: <20220428133753.8348-1-rex-bc.chen@mediatek.com>
+ <20220428133753.8348-2-rex-bc.chen@mediatek.com>
+ <1651177993.334386.220464.nullmailer@robh.at.kernel.org>
+ <9f601c458bd3401b216992e8dd72485a10f34597.camel@mediatek.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH v4 2/8] dt-bindings: pci/qcom,pcie: resets are not defined
- for msm8996
-Content-Language: en-GB
-To:     Bjorn Helgaas <helgaas@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Stanimir Varbanov <svarbanov@mm-sol.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-References: <20220428143508.GA12269@bhelgaas>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20220428143508.GA12269@bhelgaas>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <9f601c458bd3401b216992e8dd72485a10f34597.camel@mediatek.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/04/2022 17:35, Bjorn Helgaas wrote:
-> Unlike the other patches in this series, this subject line mentions a
-> problem (actually, I don't even know whether it's a *problem* or just
-> a statement of fact), but doesn't say what this patch does.
+On Fri, Apr 29, 2022 at 09:55:37AM +0800, Rex-BC Chen wrote:
+> On Thu, 2022-04-28 at 15:33 -0500, Rob Herring wrote:
+> > On Thu, 28 Apr 2022 21:37:50 +0800, Rex-BC Chen wrote:
+> > > From: Xinlei Lee <xinlei.lee@mediatek.com>
+> > > 
+> > > Convert mediatek,dsi.txt to mediatek,dsi.yaml format
+> > > 
+> > > Signed-off-by: Xinlei Lee <xinlei.lee@mediatek.com>
+> > > Signed-off-by: Rex-BC Chen <rex-bc.chen@mediatek.com>
+> > > ---
+> > >  .../display/mediatek/mediatek,dsi.txt         |  62 ---------
+> > >  .../display/mediatek/mediatek,dsi.yaml        | 122
+> > > ++++++++++++++++++
+> > >  2 files changed, 122 insertions(+), 62 deletions(-)
+> > >  delete mode 100644
+> > > Documentation/devicetree/bindings/display/mediatek/mediatek,dsi.txt
+> > >  create mode 100644
+> > > Documentation/devicetree/bindings/display/mediatek/mediatek,dsi.yam
+> > > l
+> > > 
+> > 
+> > Running 'make dtbs_check' with the schema in this patch gives the
+> > following warnings. Consider if they are expected or the schema is
+> > incorrect. These may not be new warnings.
+> > 
+> > Note that it is not yet a requirement to have 0 warnings for
+> > dtbs_check.
+> > This will change in the future.
+> > 
+> > Full log is available here: 
+> > https://urldefense.com/v3/__https://patchwork.ozlabs.org/patch/__;!!CTRNKA9wMg0ARbw!wKbRsUmeUS_4mtOwj1t30buVNEilHYYhsUmEd5MvZ7P9VyDXg6cikERof47mkwETQzFL$
+> >  
+> > 
+> > 
+> > dsi@1400c000: compatible: ['mediatek,mt7623-dsi', 'mediatek,mt2701-
+> > dsi'] is too long
+> > 	arch/arm/boot/dts/mt7623n-bananapi-bpi-r2.dtb
+> > 	arch/arm/boot/dts/mt7623n-rfb-emmc.dtb
+> > 
+> > dsi@14014000: #address-cells:0:0: 2 was expected
+> > 	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-burnet.dtb
+> > 	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-cozmo.dtb
+> > 	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-damu.dtb
+> > 	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel14.dtb
+> > 	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel14-
+> > sku2.dtb
+> > 	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-
+> > sku1.dtb
+> > 	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-
+> > sku6.dtb
+> > 	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-
+> > sku7.dtb
+> > 	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-juniper-
+> > sku16.dtb
+> > 	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-kappa.dtb
+> > 	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-kenzo.dtb
+> > 	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-willow-
+> > sku0.dtb
+> > 	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-willow-
+> > sku1.dtb
+> > 	arch/arm64/boot/dts/mediatek/mt8183-kukui-kakadu.dtb
+> > 	arch/arm64/boot/dts/mediatek/mt8183-kukui-kakadu-sku22.dtb
+> > 	arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku16.dtb
+> > 	arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku272.dtb
+> > 	arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku288.dtb
+> > 	arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku32.dtb
+> > 	arch/arm64/boot/dts/mediatek/mt8183-kukui-krane-sku0.dtb
+> > 	arch/arm64/boot/dts/mediatek/mt8183-kukui-krane-sku176.dtb
+> > 
+> > dsi@14014000: 'port' is a required property
+> > 	arch/arm64/boot/dts/mediatek/mt8183-evb.dtb
+> > 	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-burnet.dtb
+> > 	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-cozmo.dtb
+> > 	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-damu.dtb
+> > 	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel14.dtb
+> > 	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel14-
+> > sku2.dtb
+> > 	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-
+> > sku1.dtb
+> > 	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-
+> > sku6.dtb
+> > 	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-
+> > sku7.dtb
+> > 	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-juniper-
+> > sku16.dtb
+> > 	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-kappa.dtb
+> > 	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-kenzo.dtb
+> > 	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-willow-
+> > sku0.dtb
+> > 	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-willow-
+> > sku1.dtb
+> > 	arch/arm64/boot/dts/mediatek/mt8183-kukui-kakadu.dtb
+> > 	arch/arm64/boot/dts/mediatek/mt8183-kukui-kakadu-sku22.dtb
+> > 	arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku16.dtb
+> > 	arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku272.dtb
+> > 	arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku288.dtb
+> > 	arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku32.dtb
+> > 	arch/arm64/boot/dts/mediatek/mt8183-kukui-krane-sku0.dtb
+> > 	arch/arm64/boot/dts/mediatek/mt8183-kukui-krane-sku176.dtb
+> > 
+> > dsi@14014000: #size-cells:0:0: 2 was expected
+> > 	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-burnet.dtb
+> > 	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-cozmo.dtb
+> > 	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-damu.dtb
+> > 	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel14.dtb
+> > 	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel14-
+> > sku2.dtb
+> > 	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-
+> > sku1.dtb
+> > 	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-
+> > sku6.dtb
+> > 	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-
+> > sku7.dtb
+> > 	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-juniper-
+> > sku16.dtb
+> > 	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-kappa.dtb
+> > 	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-kenzo.dtb
+> > 	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-willow-
+> > sku0.dtb
+> > 	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-willow-
+> > sku1.dtb
+> > 	arch/arm64/boot/dts/mediatek/mt8183-kukui-kakadu.dtb
+> > 	arch/arm64/boot/dts/mediatek/mt8183-kukui-kakadu-sku22.dtb
+> > 	arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku16.dtb
+> > 	arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku272.dtb
+> > 	arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku288.dtb
+> > 	arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku32.dtb
+> > 	arch/arm64/boot/dts/mediatek/mt8183-kukui-krane-sku0.dtb
+> > 	arch/arm64/boot/dts/mediatek/mt8183-kukui-krane-sku176.dtb
+> > 
+> > dsi@1401b000: 'port' is a required property
+> > 	arch/arm64/boot/dts/mediatek/mt8173-elm.dtb
+> > 	arch/arm64/boot/dts/mediatek/mt8173-elm-hana.dtb
+> > 	arch/arm64/boot/dts/mediatek/mt8173-elm-hana-rev7.dtb
+> > 
 > 
-> Based on the patch, I guess this does something like:
+> Hello Rob,
 > 
->    Require resets except for MSM8996/APQ8096
+> Thanks for your comments.
+> The purpose of this series is not to fix dts for previous SoCs.
+> Therefore, if there is a chance, we could send another series to fix
+> them.
 
-Ack
+Conversions often find that the actual dts files vary a bit more than 
+the binding doc said. You should look at the warnings and decide if they 
+should be fixed or the schema relaxed. It's a judgement call. I have no 
+idea if you did that already or not, so I send this out on conversions. 
+The check runs automatically, but sending it I review briefly.
 
-> 
-> I don't know whether you're changing the prefix convention for this
-> file, or just didn't look to see how it was done in the past, but it's
-> nice to have some consistency:
-
-
-Ack
-
-> 
->    $ git log --oneline Documentation/devicetree/bindings/pci/qcom,pcie.txt
->    f52d2a0f0d32 dt-bindings: pci: qcom: Document PCIe bindings for SM8150 SoC
->    dddb4efa5192 dt-bindings: pci: qcom: Document PCIe bindings for SM8450
->    45a3ec891370 PCI: qcom: Add sc8180x compatible
->    320e10986ef7 dt-bindings: PCI: update references to Designware schema
->    9f7368ff1210 dt-bindings: pci: qcom: Document PCIe bindings for IPQ6018 SoC
->    c9f04600026f dt-bindings: PCI: qcom: Document ddrss_sf_tbu clock for sm8250
->    458168247ccc dt-bindings: pci: qcom: Document PCIe bindings for SM8250 SoC
->    d511580ea9c2 dt-bindings: PCI: qcom: Add ipq8064 rev 2 variant
->    b11b8cc161de dt-bindings: PCI: qcom: Add ext reset
->    736ae5c91712 dt-bindings: PCI: qcom: Add missing clks
->    5d28bee7c91e dt-bindings: PCI: qcom: Add support for SDM845 PCIe
->    29a50257a9d6 dt-bindings: PCI: qcom: Add QCS404 to the binding
->    f625b1ade245 PCI: qcom: Add missing supplies required for msm8996
->    8baf0151cd4b dt-bindings: PCI: qcom: Add support for IPQ8074
->    90d52d57ccac PCI: qcom: Add support for IPQ4019 PCIe controller
->    d0491fc39bdd PCI: qcom: Add support for MSM8996 PCIe controller
->    845d5ca26647 PCI: qcom: Document PCIe devicetree bindings
-> 
-> Including both "pci" and "pcie" in the prefix seems like overkill.
-> 
-> On Thu, Apr 28, 2022 at 02:41:07PM +0300, Dmitry Baryshkov wrote:
->> On MSM8996/APQ8096 platforms the PCIe controller doesn't have any
->> resets. So move the requirement stance under the corresponding if
->> condition.
-> 
-> s/stance/stanza/
-> 
->> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->> ---
->>   .../devicetree/bindings/pci/qcom,pcie.yaml         | 14 ++++++++++++--
->>   1 file changed, 12 insertions(+), 2 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
->> index 16f765e96128..ce4f53cdaba0 100644
->> --- a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
->> +++ b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
->> @@ -114,8 +114,6 @@ required:
->>     - interrupt-map
->>     - clocks
->>     - clock-names
->> -  - resets
->> -  - reset-names
->>   
->>   allOf:
->>     - $ref: /schemas/pci/pci-bus.yaml#
->> @@ -504,6 +502,18 @@ allOf:
->>         required:
->>           - power-domains
->>   
->> +  - if:
->> +      not:
->> +        properties:
->> +          compatibles:
->> +            contains:
->> +              enum:
->> +                - qcom,pcie-msm8996
->> +    then:
->> +      required:
->> +        - resets
->> +        - reset-names
->> +
->>   unevaluatedProperties: false
->>   
->>   examples:
->> -- 
->> 2.35.1
->>
-
-
--- 
-With best wishes
-Dmitry
+Rob
