@@ -2,110 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 73DFF5154E1
-	for <lists+devicetree@lfdr.de>; Fri, 29 Apr 2022 21:52:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6DEEE515505
+	for <lists+devicetree@lfdr.de>; Fri, 29 Apr 2022 21:58:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1380419AbiD2Tz5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Apr 2022 15:55:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52340 "EHLO
+        id S1380444AbiD2UBO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Apr 2022 16:01:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33646 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239376AbiD2Tz4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Apr 2022 15:55:56 -0400
-Received: from mail-ot1-f48.google.com (mail-ot1-f48.google.com [209.85.210.48])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20EBD89331;
-        Fri, 29 Apr 2022 12:52:37 -0700 (PDT)
-Received: by mail-ot1-f48.google.com with SMTP id x8-20020a056830114800b00605fa3c9e90so1149873otq.2;
-        Fri, 29 Apr 2022 12:52:37 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=H9Vjs85xufky4aYHkz/e+mx0EVbxLmlUBWCH/SDU9N0=;
-        b=SQHEch20euMKuTSXy3R69ZKlNlOm1LSsUJROmmJTBSaEYGAu0Sz+SvfMdgNqcS2iqI
-         bfAWUenKtw2bsNck/7hYNRTaeLecKKlcFAV+m8KxmZ/PqIu8X/B/TvNIvyG1Jiy3U/SR
-         BuhyoL0artH6wETt/riyQB2i2DoR8O0ZzN3m023J2nUcpOJrCBmGanxcXB+I9jY1/zHP
-         RV9b0QTAOpJrEcRJzWvpA+4D8BlF2KNH20TLySic9G4rWJWXjIMW+SkJ2z8LahHkpx0e
-         a0j8i+YsL5dSaFyOU9lJ1f+CuboPQuwurmy0PExflG9kNw3QjcmyrfrGiaYKz/TDVEuV
-         VvNg==
-X-Gm-Message-State: AOAM533v5MIjPXRF7G5GGix9WucFrjOaIrhDaNm2+6vSgf3Mk6wXT5Wh
-        jQGNrHDtHgmuZrzy5PbLRg==
-X-Google-Smtp-Source: ABdhPJzn35H2MS02cc8yGaHGcxHK11y6uZhf2K7MMyY/rbTIg05isBDCaeiyEjVzOMpsxaGopmMCjw==
-X-Received: by 2002:a9d:6ac2:0:b0:605:d9b6:b150 with SMTP id m2-20020a9d6ac2000000b00605d9b6b150mr385127otq.50.1651261956341;
-        Fri, 29 Apr 2022 12:52:36 -0700 (PDT)
-Received: from xps15.. (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.googlemail.com with ESMTPSA id f11-20020a4ae60b000000b0035eb4e5a6bdsm831129oot.19.2022.04.29.12.52.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 29 Apr 2022 12:52:35 -0700 (PDT)
-From:   Rob Herring <robh@kernel.org>
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc:     Arnd Bergmann <arnd@arndb.de>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Claudiu Beznea <claudiu.beznea@microchip.com>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: pinctrl: Allow values for drive-push-pull and drive-open-drain
-Date:   Fri, 29 Apr 2022 14:46:11 -0500
-Message-Id: <20220429194610.2741437-1-robh@kernel.org>
-X-Mailer: git-send-email 2.34.1
+        with ESMTP id S1356279AbiD2UBN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Apr 2022 16:01:13 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9EC5BA7766;
+        Fri, 29 Apr 2022 12:57:53 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: nfraprado)
+        with ESMTPSA id C30DE1F4696F
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1651262272;
+        bh=aoTbCcZZ92qztLcOxHun78cIUtr7XMDInx4IzvkcyKk=;
+        h=From:To:Cc:Subject:Date:From;
+        b=AQbAGPd/98luGnCQpTydxXUBRqg2ogAU9Idgb+W7cXtWtSkMeVLrb2lqcl7pP8oJ2
+         B/I6qLiFNyA1UrFCLlEVtv3K+tEC/kdR/BzOyYBdD0TyoUN3/8+/bYvzZeDW1cmbvE
+         rmaMtHrrIQlOES6uwiKDIW1SJ8HLqd9TshZAeXpHYzbifrQNC8WOBZEQZ/ynjyUB7I
+         /ZyxjqUYTLJzVnR+EW3uL5dxTWXDpgRrdZOZzesFeA+VVc9cilfqfErZjWXELjFLId
+         pw/S45N6Vmxo2uYXNCOeLECVLq9Np0FRBsIkKuL77aYOwaQWxDulP26vWVkjonkpLo
+         kN4p3BaHSMuqw==
+From:   =?UTF-8?q?N=C3=ADcolas=20F=2E=20R=2E=20A=2E=20Prado?= 
+        <nfraprado@collabora.com>
+To:     Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, kernel@collabora.com,
+        =?UTF-8?q?N=C3=ADcolas=20F=2E=20R=2E=20A=2E=20Prado?= 
+        <nfraprado@collabora.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org
+Subject: [PATCH] arm64: dts: mediatek: Add fallback compatible for mt8192's flash
+Date:   Fri, 29 Apr 2022 15:57:45 -0400
+Message-Id: <20220429195745.2203461-1-nfraprado@collabora.com>
+X-Mailer: git-send-email 2.36.0
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        UNPARSEABLE_RELAY autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-A few platforms, at91 and tegra, use drive-push-pull and
-drive-open-drain with a 0 or 1 value. There's not really a need for values
-as '1' should be equivalent to no value (it wasn't treated that way) and
-drive-push-pull disabled is equivalent to drive-open-drain. So dropping the
-value can't be done without breaking existing OSs. As we don't want new
-cases, mark the case with values as deprecated.
+The dt-binding for Mediatek's SPI NOR flash controller expects a mt8173
+fallback compatible for mt8192, so add it in mt8192.dtsi.
 
-Cc: Arnd Bergmann <arnd@arndb.de>
-Cc: Thierry Reding <thierry.reding@gmail.com>
-Cc: Jonathan Hunter <jonathanh@nvidia.com>
-Cc: Nicolas Ferre <nicolas.ferre@microchip.com>
-Cc: Claudiu Beznea <claudiu.beznea@microchip.com>
-Signed-off-by: Rob Herring <robh@kernel.org>
+The driver already sets custom data based on the mt8192 compatible, so
+this fallback compatible won't be used and is added purely to suppress
+the dt-binding warning.
+
+Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+
 ---
- .../devicetree/bindings/pinctrl/pincfg-node.yaml     | 12 ++++++++++--
- 1 file changed, 10 insertions(+), 2 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/pinctrl/pincfg-node.yaml b/Documentation/devicetree/bindings/pinctrl/pincfg-node.yaml
-index 4b22a9e3a447..f5a121311f61 100644
---- a/Documentation/devicetree/bindings/pinctrl/pincfg-node.yaml
-+++ b/Documentation/devicetree/bindings/pinctrl/pincfg-node.yaml
-@@ -52,11 +52,19 @@ properties:
-       hardware supporting it the pull strength in Ohm.
+ arch/arm64/boot/dts/mediatek/mt8192.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+index 26dbe9ecc528..32a836105ea7 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+@@ -896,7 +896,7 @@ pcie_intc0: interrupt-controller {
+ 		};
  
-   drive-push-pull:
--    type: boolean
-+    oneOf:
-+      - type: boolean
-+      - $ref: /schemas/types.yaml#/definitions/uint32
-+        enum: [ 0, 1 ]
-+        deprecated: true
-     description: drive actively high and low
- 
-   drive-open-drain:
--    type: boolean
-+    oneOf:
-+      - type: boolean
-+      - $ref: /schemas/types.yaml#/definitions/uint32
-+        const: 1    # No known cases of 0
-+        deprecated: true
-     description: drive with open drain
- 
-   drive-open-source:
+ 		nor_flash: spi@11234000 {
+-			compatible = "mediatek,mt8192-nor";
++			compatible = "mediatek,mt8192-nor", "mediatek,mt8173-nor";
+ 			reg = <0 0x11234000 0 0xe0>;
+ 			interrupts = <GIC_SPI 431 IRQ_TYPE_LEVEL_HIGH 0>;
+ 			clocks = <&topckgen CLK_TOP_SFLASH_SEL>,
 -- 
-2.34.1
+2.36.0
 
