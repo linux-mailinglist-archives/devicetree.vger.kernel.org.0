@@ -2,151 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AC508515034
-	for <lists+devicetree@lfdr.de>; Fri, 29 Apr 2022 18:04:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 87DE1515075
+	for <lists+devicetree@lfdr.de>; Fri, 29 Apr 2022 18:10:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1357050AbiD2QHp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Apr 2022 12:07:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39906 "EHLO
+        id S1378907AbiD2QNp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Apr 2022 12:13:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59584 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1378769AbiD2QHo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Apr 2022 12:07:44 -0400
-Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com [IPv6:2607:f8b0:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CEE6A84ED4
-        for <devicetree@vger.kernel.org>; Fri, 29 Apr 2022 09:04:25 -0700 (PDT)
-Received: by mail-pf1-x433.google.com with SMTP id x23so1996556pff.9
-        for <devicetree@vger.kernel.org>; Fri, 29 Apr 2022 09:04:25 -0700 (PDT)
+        with ESMTP id S239390AbiD2QNo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Apr 2022 12:13:44 -0400
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53AA744A36
+        for <devicetree@vger.kernel.org>; Fri, 29 Apr 2022 09:10:23 -0700 (PDT)
+Received: by mail-ed1-x533.google.com with SMTP id p4so9684410edx.0
+        for <devicetree@vger.kernel.org>; Fri, 29 Apr 2022 09:10:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gateworks-com.20210112.gappssmtp.com; s=20210112;
+        d=chromium.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=CNNorgah8ybYol7gjHDhFHcts5/oLyPdR4o5Dg4a4YY=;
-        b=iz0iLtf5Kgi2CEamDtU3O35n39GYZGMdBjauwSTHbzwKnjawPqftV1+DkTxu8l+fYP
-         t3qSRFrjLVUdYo0fXyr5RNryHNmSK+9EUoIIiyoRIa5/HelC4citWC2v1up652v7KFgz
-         5vVtIgQrwZAO3JA17Uhx16lKZOYVUwKFGXKlwz9h/HCRwreWzGDnMmXkMarfczh4tpWg
-         gwNzy8gHq9PJg4zsTl2I3oI4QnvAJadoE0Dz3iWgf7Dal7FjTiX5rj7kH6vnv8AQMDhg
-         eMExwp74qxVfbIwj+RnyQF2c7ftt9BpB/6tCTPcbqwyHiSir7yAqU3Yfa2sOfp/hYiLq
-         eMzg==
+        bh=38G2yLvTesO/mAjiyLWZJ7vMR9eg3xKJsvKaGBhlj48=;
+        b=Z6/QtEfer9f+OTdeWiWLTDLQrtwaSk794Vgsbs8yANjijC/n6xI7dAdrszE6zXzZs3
+         eDk12zl2F8a46AyeYidW8tq2bsM7D0pA7biW1+/+uO/MCZkgqGi0OHA0fOrQzuzRKcVd
+         w63F5C7NaCxtPl8jO7Bxi1shpsUpt6qi/ApdE=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=CNNorgah8ybYol7gjHDhFHcts5/oLyPdR4o5Dg4a4YY=;
-        b=ANqob4SiHXVin/IRIjnv+kF/mWUkZGRm+DfqbfjLUhYxya3Uw5eXhx/9XpX+aJPOi/
-         jWLmBBUVfFQ+COAp/Zz0eOEEQFP3dfMFBp410EaCcAseQt2GahkJqfinztrx6BGOD0cS
-         HWSjS4g2St94Dg6aEjf06QvI1zzMN4nfHBZ6KVCJt/OcCdytxyLMOsJr0VyLoBBbP+Q8
-         4UpTGqTPIY//w8lmXYnkOUcucRqrKSA4LKxJOCUsnIzyA2aLovbEhmKUAmSbhSRcz163
-         5X+zM8VcFMV/jn+x+lTROWKFMZqFCR72dXI71qd4gR8Hu7tWwHvQoFXY3NeOD4oZLeG1
-         hIcA==
-X-Gm-Message-State: AOAM5316oX0KKxlBWH7IxNWW2Zg9+/8J6TSJzLVqNQu/UUOP7p72yWK0
-        +Jp3rHFWXxZtQrFbCA8cp/y0hCBUUJ9re0bPSDcKGQ==
-X-Google-Smtp-Source: ABdhPJxsrjeODXrBp50VvsilExotJGBqxGmNr9R5vlCqNAXc0PJO2RfQxaGuXWFTfDX9NxLbE7pxdM/KFDsDWvkwkCA=
-X-Received: by 2002:a63:d43:0:b0:3c1:475e:8341 with SMTP id
- 3-20020a630d43000000b003c1475e8341mr49887pgn.533.1651248265273; Fri, 29 Apr
- 2022 09:04:25 -0700 (PDT)
+        bh=38G2yLvTesO/mAjiyLWZJ7vMR9eg3xKJsvKaGBhlj48=;
+        b=Ex6A3/QoWrrxuJcvcrln4ITWro62vLuhsqxTM5vZqvXMmBtTQIy3+OIrk75a3q1dAI
+         P5M7NwDUVTq9K8hwaPOt+H4juStW70/tjshEujEhDgOMTH5UA7UhzzjaVV2eGvqj2nD2
+         1nbNmm657mmPLBUauHKRzDODppPGs99LA5imq9MOUuMWpWmaTV/bcNcKxBigTS4c346T
+         AG2Mv6b5JicMJURiGV3ieQOEwaZJUZHUaiQShJbBISk7L79lOWVm5au0mkP0rGRVPFhx
+         3eVS5uhULhNMY/I3g3HOCguuyRkkymg+/8r6quPq5rz+nsLvu/6v7zjctjqrnNcRnF1D
+         RJHg==
+X-Gm-Message-State: AOAM530GC/pz9F95qVoxlukyvElrjG3Xau0P4LVXJPwvRW880VWjBMjW
+        2esMdD+Uaae3sk1Kfn1g2XMIyqISjjnZ4445
+X-Google-Smtp-Source: ABdhPJx4KXWKYDt9vflacpkBUQ+w69g72UHa0IeLKYM1VGDL4+uwhnbgU8+J4Jj2Zb9dmtaKQmyiwg==
+X-Received: by 2002:a50:8a96:0:b0:425:e046:76d9 with SMTP id j22-20020a508a96000000b00425e04676d9mr30355286edj.115.1651248621496;
+        Fri, 29 Apr 2022 09:10:21 -0700 (PDT)
+Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com. [209.85.221.43])
+        by smtp.gmail.com with ESMTPSA id gv49-20020a1709072bf100b006f3ef214e35sm751743ejc.155.2022.04.29.09.10.19
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 29 Apr 2022 09:10:20 -0700 (PDT)
+Received: by mail-wr1-f43.google.com with SMTP id w4so11367919wrg.12
+        for <devicetree@vger.kernel.org>; Fri, 29 Apr 2022 09:10:19 -0700 (PDT)
+X-Received: by 2002:adf:f50d:0:b0:20a:e096:ef with SMTP id q13-20020adff50d000000b0020ae09600efmr17925110wro.679.1651248619233;
+ Fri, 29 Apr 2022 09:10:19 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220405200625.19359-1-tharvey@gateworks.com> <20220411013106.GD129381@dragon>
- <CAJ+vNU0VVpDGDXivz=r8C4U8dYjA08SqnzPXwmtOv4ujvc3=Zg@mail.gmail.com> <20220418075718.GB391514@dragon>
-In-Reply-To: <20220418075718.GB391514@dragon>
-From:   Tim Harvey <tharvey@gateworks.com>
-Date:   Fri, 29 Apr 2022 09:04:13 -0700
-Message-ID: <CAJ+vNU12t_2Jr_D=YC-ZRJdJuZS2aPQ7EoT0QA8vctGhhLuHtQ@mail.gmail.com>
-Subject: Re: [PATCH] imx8mm-venice-gw7902: update pci refclk
-To:     Shawn Guo <shawnguo@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Device Tree Mailing List <devicetree@vger.kernel.org>,
-        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        Richard Zhu <hongxing.zhu@nxp.com>
+References: <1651079383-7665-1-git-send-email-quic_srivasam@quicinc.com>
+ <1651079383-7665-5-git-send-email-quic_srivasam@quicinc.com> <YmsrB6Q89II5w1+9@google.com>
+In-Reply-To: <YmsrB6Q89II5w1+9@google.com>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Fri, 29 Apr 2022 09:10:06 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=XxeZsiOVVBDK_vmx0nhT7roB2FqcaPXsH3+jzTHFXMxw@mail.gmail.com>
+Message-ID: <CAD=FV=XxeZsiOVVBDK_vmx0nhT7roB2FqcaPXsH3+jzTHFXMxw@mail.gmail.com>
+Subject: Re: [PATCH v12 4/4] arm64: dts: qcom: sc7280-herobrine: Add lpi
+ pinmux properties for CRD 3.0/3.1
+To:     Matthias Kaehlcke <mka@chromium.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        quic_rohkumar@quicinc.com,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Judy Hsiao <judyhsiao@chromium.org>,
+        Venkata Prasad Potturu <quic_potturu@quicinc.com>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Apr 18, 2022 at 12:57 AM Shawn Guo <shawnguo@kernel.org> wrote:
+Hi,
+
+On Thu, Apr 28, 2022 at 5:02 PM Matthias Kaehlcke <mka@chromium.org> wrote:
 >
-> On Mon, Apr 11, 2022 at 12:44:23PM -0700, Tim Harvey wrote:
-> > On Sun, Apr 10, 2022 at 6:31 PM Shawn Guo <shawnguo@kernel.org> wrote:
-> > >
-> > > On Tue, Apr 05, 2022 at 01:06:25PM -0700, Tim Harvey wrote:
-> > > > Use the correct PCI clock bindings.
-> > >
-> > > Please improve the commit log to explain why clock "pcie_phy" can be
-> > > dropped.
-> > >
+> On Wed, Apr 27, 2022 at 10:39:43PM +0530, Srinivasa Rao Mandadapu wrote:
+> > Add LPASS LPI pinctrl properties, which are required for Audio
+> > functionality on herobrine based platforms of rev5+
+> > (aka CRD 3.0/3.1) boards.
 > >
-> > Shawn,
-> >
-> > The original PCIe bindings for this board were wrong - they were from
-> > a version of the bindings that was not yet approved (my mistake) and
-> > I'm just trying to bring them up to date.
-> >
-> > That said, I looked at the latest fsl,imx6q-pcie.yaml dt-bindings [1]
-> > and see that there should be a min of 3 clocks called 'pcie',
-> > 'pcie_bus', and 'pcie_phy'. However I notice that all of the current
-> > imx8mm boards that enable PCI have clock-names of 'pcie', 'pcie_aux',
-> > and 'pcie_bus'. It seems like all the imx8mm boards having pcie have
-> > clock-names this way:
-> >
-> > arch/arm64/boot/dts/freescale/imx8mm-beacon-baseboard.dtsi
-> > arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi
-> > arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml-mba8mx.dts
-> > arch/arm64/boot/dts/freescale/imx8mm-venice-gw71xx.dtsi
-> > arch/arm64/boot/dts/freescale/imx8mm-venice-gw72xx.dtsi
-> > arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx.dtsi
-> > arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dts
-> > arch/arm64/boot/dts/freescale/imx8mm-venice-gw7902.dts
-> > arch/arm64/boot/dts/freescale/imx8mm-venice-gw7903.dts
-> >
-> > Does the binding need to change or do the clock names need to change
-> > in the above?
+> > Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+> > Co-developed-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
+> > Signed-off-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
 >
-> If the bindings is approved/correct, device tree should match bindings.
+> I'm not super firm in pinctrl territory, a few maybe silly questions
+> below.
 >
+> >  arch/arm64/boot/dts/qcom/sc7280-herobrine-crd.dts | 84 +++++++++++++++++++++++
+> >  1 file changed, 84 insertions(+)
+> >
+> > diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-crd.dts b/arch/arm64/boot/dts/qcom/sc7280-herobrine-crd.dts
+> > index deaea3a..dfc42df 100644
+> > --- a/arch/arm64/boot/dts/qcom/sc7280-herobrine-crd.dts
+> > +++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-crd.dts
+> > @@ -111,6 +111,90 @@ ap_ts_pen_1v8: &i2c13 {
+> >   * - If a pin is not hooked up on Qcard, it gets no name.
+> >   */
+> >
+> > +&lpass_dmic01 {
+> > +     clk {
+> > +             drive-strength = <8>;
+> > +     };
 
-Shawn,
+Ugh, I've been distracted and I hadn't realized we were back to the
+two-level syntax. Definitely not my favorite for all the reasons I
+talked about [1]. I guess you took Bjorn's silence to my response to
+mean that you should switch back to this way? :(
 
-I think the bindings are wrong.
+Bjorn: can you clarify?
 
-Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml has [1]:
+[1] https://lore.kernel.org/r/CAD=FV=VicFiX6QkBksZs1KLwJ5x4eCte6j5RWOBPN+WwiXm2Cw@mail.gmail.com/
 
-  clocks:
-    minItems: 3
-    items:
-      - description: PCIe bridge clock.
-      - description: PCIe bus clock.
-      - description: PCIe PHY clock.
-      - description: Additional required clock entry for imx6sx-pcie,
-          imx8mq-pcie.
+> > +};
+> > +
+> > +&lpass_dmic01_sleep {
+> > +     clk {
+> > +             drive-strength = <2>;
+>
+> Does the drive strength really matter in the sleep state, is the SoC actively
+> driving the pin?
 
-  clock-names:
-    minItems: 3
-    items:
-      - const: pcie
-      - const: pcie_bus
-      - const: pcie_phy
-      - const: pcie_inbound_axi for imx6sx-pcie, pcie_aux for imx8mq-pcie
+My understanding is that if a pin is left as an output in sleep state
+that there is a slight benefit to switching it to drive-strength 2.
 
-This indicates the "pcie_phy" clock is required yet
-drivers/pci/controller/dwc/pci-imx6.c [2] doesn't require it if it has
-an abstract PHY driver which is the case for IMX8M (and that's why my
-patch drops it)
 
-Additionally I note that the 4th clock described in the bindings could
-use some clarification for imx8mm-pcie as for this "pcie_aux" is
-required.
+> > +             bias-disable;
+>
+> What should this be in active/default state? If I understand correctly
+> after a transition from 'sleep' to 'default' this setting will remain,
+> since the default config doesn't specify a setting for bias.
 
-Best Regards,
-
-Tim
-[1] https://elixir.bootlin.com/linux/v5.18-rc4/source/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml
-[2] https://elixir.bootlin.com/linux/v5.18-rc4/source/drivers/pci/controller/dwc/pci-imx6.c#L1140
+Your understanding matches mine but I haven't tested it and I remember
+sometimes being surprised in this corner of pinmux before. I think
+it's better to put the bias in the default state if it should be that
+way all the time, or have a bias in both the default and sleep state
+if they need to be different.
