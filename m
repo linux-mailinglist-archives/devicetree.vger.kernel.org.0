@@ -2,99 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 99DD551500D
-	for <lists+devicetree@lfdr.de>; Fri, 29 Apr 2022 17:58:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A8349515028
+	for <lists+devicetree@lfdr.de>; Fri, 29 Apr 2022 18:02:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1359081AbiD2QCN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Apr 2022 12:02:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48362 "EHLO
+        id S1378727AbiD2QGD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Apr 2022 12:06:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35976 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235747AbiD2QCM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Apr 2022 12:02:12 -0400
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0969284EDC;
-        Fri, 29 Apr 2022 08:58:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=uMcTfwKPVn7eKm6yUNY2CfJ2VmHi8B0YTZjYC/sPVmw=; b=LPlSmYEQoLqlRHI8hfnwT7EGX3
-        001Q4O8BKAqsP3kTy53hFA3QyJu7pP6CobiL21epvgyyJllnkRzhK2tKQ8Psnf0EaCAelVrk6E9R5
-        th04OYA5yrNpf3WvwxxJMbbCvUVsVq5a11ah+AomU6JHNsxpdy+LSDH140Uw6/mZOJ79+wVWHPYp0
-        l2EmMB5G4BXUtHjDUJtMYcqRq/kkamD2nt7WzYgnoxxGLUHQJ8Bdz31KbKB5SIWHKD6XXC5tHjm09
-        F+y+c5YGaGvA2UZFPHmBrd6ya4NmYWvoRrT31OFwesslvtZf//yt1TxLDK4ZX8o/1ERY0Kaozsm6w
-        h1KhoJhA==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:58444)
-        by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <linux@armlinux.org.uk>)
-        id 1nkT19-0004EG-Aa; Fri, 29 Apr 2022 16:58:51 +0100
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
-        (envelope-from <linux@shell.armlinux.org.uk>)
-        id 1nkT15-00024G-JO; Fri, 29 Apr 2022 16:58:47 +0100
-Date:   Fri, 29 Apr 2022 16:58:47 +0100
-From:   "Russell King (Oracle)" <linux@armlinux.org.uk>
-To:     Prasanna Vengateshan <prasanna.vengateshan@microchip.com>
-Cc:     andrew@lunn.ch, netdev@vger.kernel.org, olteanv@gmail.com,
-        robh+dt@kernel.org, UNGLinuxDriver@microchip.com,
-        woojung.huh@microchip.com, hkallweit1@gmail.com,
-        davem@davemloft.net, kuba@kernel.org, linux-kernel@vger.kernel.org,
-        vivien.didelot@gmail.com, f.fainelli@gmail.com,
-        devicetree@vger.kernel.org, pabeni@redhat.com
-Subject: Re: [RFC PATCH v11 net-next 06/10] net: dsa: microchip: add support
- for phylink management
-Message-ID: <YmwLNz1xeTED7xM/@shell.armlinux.org.uk>
-References: <20220325165341.791013-1-prasanna.vengateshan@microchip.com>
- <20220325165341.791013-7-prasanna.vengateshan@microchip.com>
+        with ESMTP id S1359029AbiD2QGD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Apr 2022 12:06:03 -0400
+Received: from mail-qv1-xf31.google.com (mail-qv1-xf31.google.com [IPv6:2607:f8b0:4864:20::f31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF8385B3D7;
+        Fri, 29 Apr 2022 09:02:43 -0700 (PDT)
+Received: by mail-qv1-xf31.google.com with SMTP id iy15so5641729qvb.9;
+        Fri, 29 Apr 2022 09:02:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=cYJZsvyOkea/9Q9eJc08SVbCYt0tvNcpUbqVcHGxyq4=;
+        b=jPeYnPbJRXQD0BX3W7jrdWUYJmD7N8mN6+/pC8+nlDf3j7JU8geIsPlI87igho4K1I
+         byuawC1unF1Z0oDe2W4t/5IPETGXvTeM2aq16clko+nH9SHevwesvXqYtP+0b33I5h/E
+         EBhRSIuyxAy3VKxC1elSJAPseZ2IfwKOYv88C8eOtWD4Jq0u8HxkUmT10yfwJNbEzqji
+         T4RlWfeSBVot08KfvT+eE4NwmiKr56Ya+6P38B693PvIx6nObZ/4rim4qAKCt+tlGEQ5
+         sHYyqbaZCa08RCNevQQ2OJLdHOScmSAJzBi9c8ICb+oNgxiVuzCOrY46cKB3LvMECDEF
+         rmFA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=cYJZsvyOkea/9Q9eJc08SVbCYt0tvNcpUbqVcHGxyq4=;
+        b=Rxp+FmblwiDUTbMlYCcjeVreos6R8yk2dT+6kXBbJrupLoFNbX71WpwFcZkbinuUsc
+         PZzb0T85ZmEh26mADAIJlDTqrbuyQFQu6h5xSEq3pElC31+3agfRm4567Qt/wu7BujR7
+         jvOg2fR4hCyh+EpJE/5YljXt9sTulvhhXtGlmQYO2P0nAyfB4r3mPQgSJOAoGZILGvs0
+         LgTeD5h141efsuGRM7wrw+/Lpb9LTRvwjgABWDvEn9vJdgFAvvNj1D94cyJ8pUz+FmSr
+         8CyMkanxRfmyCTA8V91sYAiHPNrW/DpcvhwnT+9muKjyDg10gWF0P1KsIOYwqMSR8Dce
+         s6/g==
+X-Gm-Message-State: AOAM531A5z1V72hZoo9F7LvBvithioXT9TWLnDluZ6G2xp7Is0HzZT7f
+        ZDyl5M1yGu8QL64gfsbIEBPqzvPFfW4XOYFEpDQ=
+X-Google-Smtp-Source: ABdhPJzdWlVtYLa+B+4LyiD79fGPDUp75fRe3KQuWcZb2b8cU/HDhsxHqmB8kyhr4IxxVNrLEevlt1WPs9mwB1mPoIs=
+X-Received: by 2002:ad4:4f48:0:b0:458:12bb:1321 with SMTP id
+ eu8-20020ad44f48000000b0045812bb1321mr2313282qvb.50.1651248163056; Fri, 29
+ Apr 2022 09:02:43 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220325165341.791013-7-prasanna.vengateshan@microchip.com>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+References: <20220429114330.59026-1-robimarko@gmail.com> <20220429114330.59026-5-robimarko@gmail.com>
+ <CABb+yY3dPwT4ASdxHqRidRBEq19YHsp8RfAgO0tr_rZ+Dde2hA@mail.gmail.com>
+In-Reply-To: <CABb+yY3dPwT4ASdxHqRidRBEq19YHsp8RfAgO0tr_rZ+Dde2hA@mail.gmail.com>
+From:   Robert Marko <robimarko@gmail.com>
+Date:   Fri, 29 Apr 2022 18:02:32 +0200
+Message-ID: <CAOX2RU5umgktA1kWfKiuDAC-VAH0U-DrPhk8FqX-kpkQ9RTPpQ@mail.gmail.com>
+Subject: Re: [PATCH 5/6] dt-bindings: mailbox: set correct #clock-cells
+To:     Jassi Brar <jassisinghbrar@gmail.com>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        krzysztof.kozlowski+dt@linaro.org,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        linux-clk@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 25, 2022 at 10:23:37PM +0530, Prasanna Vengateshan wrote:
-> +static void lan937x_apply_rgmii_delay(struct ksz_device *dev, int port,
-> +				      phy_interface_t interface, u8 val)
-> +{
-> +	struct ksz_port *p = &dev->ports[port];
-> +
-> +	/* Clear Ingress & Egress internal delay enabled bits */
-> +	val &= ~(PORT_RGMII_ID_EG_ENABLE | PORT_RGMII_ID_IG_ENABLE);
-> +
-> +	/* if the delay is 0, do not enable DLL */
-> +	if (p->rgmii_tx_val) {
-> +		lan937x_update_rgmii_tx_rx_delay(dev, port, true);
-> +		dev_info(dev->dev, "Applied rgmii tx delay for the port %d\n",
-> +			 port);
-> +		val |= PORT_RGMII_ID_EG_ENABLE;
-> +	}
-> +
-> +	/* if the delay is 0, do not enable DLL */
-> +	if (p->rgmii_rx_val) {
-> +		lan937x_update_rgmii_tx_rx_delay(dev, port, false);
-> +		dev_info(dev->dev, "Applied rgmii rx delay for the port %d\n",
-> +			 port);
-> +		val |= PORT_RGMII_ID_IG_ENABLE;
-> +	}
-> +
-> +	/* Enable RGMII internal delays */
-> +	lan937x_pwrite8(dev, port, REG_PORT_XMII_CTRL_1, val);
+On Fri, 29 Apr 2022 at 17:39, Jassi Brar <jassisinghbrar@gmail.com> wrote:
+>
+> On Fri, Apr 29, 2022 at 6:43 AM Robert Marko <robimarko@gmail.com> wrote:
+> >
+> > IPQ6018 and IPQ8074 require #clock-cells to be set to 1 as their APSS
+> > clock driver provides multiple clock outputs.
+> >
+> > So allow setting 1 as #clock-cells and check that its set to 1 for IPQ6018
+> > and IPQ8074, check others for 0 as its currently.
+> >
+> Please include qcom specific marker in the subject line.
+Yeah, I see that I forgot to include the actual binding name.
 
-"interface" doesn't appear to be used in this function, do you need to
-pass it?
-
-Other than that, the patch looks good, thanks.
-
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
+Will fixup in v2.
+Regards,
+Robert
+>
+> thanks.
