@@ -2,122 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E5D7351421D
-	for <lists+devicetree@lfdr.de>; Fri, 29 Apr 2022 08:00:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 24ED8514253
+	for <lists+devicetree@lfdr.de>; Fri, 29 Apr 2022 08:29:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348949AbiD2GDQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Apr 2022 02:03:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42428 "EHLO
+        id S1354471AbiD2Gcs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Apr 2022 02:32:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43484 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236958AbiD2GDP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Apr 2022 02:03:15 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BCFBFB1A89;
-        Thu, 28 Apr 2022 22:59:51 -0700 (PDT)
-X-UUID: bd6b44fac70b4733bbe0d11853d89fcf-20220429
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.4,REQID:6e9475b7-ebc5-477c-ac85-c26332b349d9,OB:0,LO
-        B:0,IP:0,URL:0,TC:0,Content:-20,EDM:0,RT:0,SF:51,FILE:0,RULE:Release_Ham,A
-        CTION:release,TS:31
-X-CID-INFO: VERSION:1.1.4,REQID:6e9475b7-ebc5-477c-ac85-c26332b349d9,OB:0,LOB:
-        0,IP:0,URL:0,TC:0,Content:-20,EDM:0,RT:0,SF:51,FILE:0,RULE:Release_Ham,ACT
-        ION:release,TS:31
-X-CID-META: VersionHash:faefae9,CLOUDID:3fd5232f-6199-437e-8ab4-9920b4bc5b76,C
-        OID:6ec4fd23a083,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,File:nil
-        ,QS:0,BEC:nil
-X-UUID: bd6b44fac70b4733bbe0d11853d89fcf-20220429
-Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
-        (envelope-from <yc.hung@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1785308049; Fri, 29 Apr 2022 13:59:47 +0800
-Received: from mtkmbs07n1.mediatek.inc (172.21.101.16) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.792.15; Fri, 29 Apr 2022 13:59:46 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Fri, 29 Apr 2022 13:59:46 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Fri, 29 Apr 2022 13:59:45 +0800
-Message-ID: <9965188904de2e89bc5390fa6c71d9fb243f9d12.camel@mediatek.com>
-Subject: Re: [PATCH v4] dt-bindings: dsp: mediatek: add mt8195 dsp document
-From:   YC Hung <yc.hung@mediatek.com>
-To:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh@kernel.org>
-CC:     <robh+dt@kernel.org>, <broonie@kernel.org>,
-        <daniel.baluta@nxp.com>, <trevor.wu@mediatek.com>,
-        <tiwai@suse.com>, <alsa-devel@alsa-project.org>,
-        <devicetree@vger.kernel.org>, <cezary.rojewski@intel.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <allen-kh.cheng@mediatek.com>
-Date:   Fri, 29 Apr 2022 13:59:46 +0800
-In-Reply-To: <68895a40-559b-13ce-d433-f9b32c648323@gmail.com>
-References: <20220106064847.15588-1-yc.hung@mediatek.com>
-         <Yd4yNkeGlzdULNlv@robh.at.kernel.org>
-         <68895a40-559b-13ce-d433-f9b32c648323@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S238357AbiD2Gcq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Apr 2022 02:32:46 -0400
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C513B9F0E
+        for <devicetree@vger.kernel.org>; Thu, 28 Apr 2022 23:29:29 -0700 (PDT)
+Received: by mail-ej1-x636.google.com with SMTP id kq17so13555425ejb.4
+        for <devicetree@vger.kernel.org>; Thu, 28 Apr 2022 23:29:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=MWHSWTEKcv7Xi6sCry02KvjP0oi7MJ00AsTeELKYR1k=;
+        b=QFNUUb7tg4MO3nPhOkcmFLcYBzSw8R4q4NyB2kULHhHKCiwDpwjty4GzN+1qHUVWXo
+         fy/jgch+A3d/a/EsdCQt+WpAjKkOil9mJn0LhC+0+msC2IKjNqHyVzrE8sCRkUww67pG
+         /WQXyoc2hMm6sFjyP9LRtNhazv/0fiQE1nHfG7sGYtcdEMrDVNkxPB3RdQruO3rbwogU
+         jZRFUrgt419FWZ1gSUhPzs5kBvpi7sV8xWnL0mDAPl99Jx5VBLUOkKtQkcPLNC4ql919
+         fl+IbUGz3T/k/cl9BWupoSBSyvEUdC39A2msPYGNS1W6/ENMH78IwgD3Tdad+P6OumoM
+         fOqA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=MWHSWTEKcv7Xi6sCry02KvjP0oi7MJ00AsTeELKYR1k=;
+        b=eylcXW8NgCHUntOvBqOy2QJ8LbCfxP6J/n8p1UOmpV4IW3u5iftQg7ROZwfswH1Hoh
+         FVs39y/jKI7ryRDWYowSOhfIS2SRxlTUKNsC6hUwBnLVpKu5wVIhBe1zotqVmhnIPD11
+         7PFw39ONER6kjHEe534p/RosO2fYClZP4MlGxp2tdn/HW90NTbDhbKZkRiCfQCDdc4/0
+         8t1cuC6aTP19MQWMjE92q9SX3KUq65rt5Xe0aX+dN/RKkecSxkW3lThd46HsKoy+v7vP
+         G414dazaBarfE2cUbecESKd8V6rlV3hn/2E2oxbcuzi4BXE9KBdEk5o2qRmPPR34COxV
+         NcFQ==
+X-Gm-Message-State: AOAM530Ige/I6jd7r1jGJNOSBr8/U5Vk/Z1Epg1bbIO3rzFv0EMZaCAU
+        +woQiRuHfSc7t58oLuGLoM4RPA==
+X-Google-Smtp-Source: ABdhPJwF7kYhyBa2oQUWsOUhyejHYRH7OCesXxrrQ17b6ikVFNcVtOgzey85fp+uzN1oMC+KLH73MA==
+X-Received: by 2002:a17:907:8a10:b0:6f0:51c6:3cee with SMTP id sc16-20020a1709078a1000b006f051c63ceemr34819381ejc.259.1651213768126;
+        Thu, 28 Apr 2022 23:29:28 -0700 (PDT)
+Received: from [192.168.0.168] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id hz13-20020a1709072ced00b006f3ef214db2sm333250ejc.24.2022.04.28.23.29.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 28 Apr 2022 23:29:27 -0700 (PDT)
+Message-ID: <993d74fa-be5b-6db2-6bba-2323de7757f3@linaro.org>
+Date:   Fri, 29 Apr 2022 08:29:26 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH 05/11] dt-bindings: serio: add Arm PL050 DT schema
+Content-Language: en-US
+To:     Andre Przywara <andre.przywara@arm.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Liviu Dudau <liviu.dudau@arm.com>,
+        Robin Murphy <robin.murphy@arm.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        linux-input@vger.kernel.org
+References: <20220427112528.4097815-1-andre.przywara@arm.com>
+ <20220427112528.4097815-6-andre.przywara@arm.com>
+ <55574426-df20-cdd7-c97d-092726981a42@linaro.org>
+ <20220428182708.0c1065f8@donnerap.cambridge.arm.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220428182708.0c1065f8@donnerap.cambridge.arm.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Mattias/Rob,
+On 28/04/2022 19:27, Andre Przywara wrote:
 
-Sorry I miss this mail.
-Could you please help to check this patch? Thanks.
+>>> +  clock-names:
+>>> +    items:
+>>> +      - const: KMIREFCLK  
+>>
+>> lowercase letters only
+> 
+> I am afraid this ship has sailed: the various DTs in the kernel tree use
+> it in that way, and the Linux driver insists on that spelling. 
 
-On Fri, 2022-01-14 at 13:56 +0100, Matthias Brugger wrote:
-> 
-> On 12/01/2022 02:43, Rob Herring wrote:
-> > On Thu, 06 Jan 2022 14:48:48 +0800, YC Hung wrote:
-> > > From: "YC Hung" <yc.hung@mediatek.com>
-> > > 
-> > > This patch adds mt8195 dsp document. The dsp is used for Sound
-> > > Open
-> > > Firmware driver node. It includes registers,  clocks, memory
-> > > regions,
-> > > and mailbox for dsp.
-> > > 
-> > > Signed-off-by: yc.hung <yc.hung@mediatek.com>
-> > > ---
-> > > Changes since v3:
-> > >    Fix patch v3 error : v3 only provide difference between v3 and
-> > > v2.
-> > > 
-> > > Changes since v2:
-> > >    Remove useless watchdog interrupt.
-> > >    Add commit message more detail description.
-> > > 
-> > > Changes since v1:
-> > >    Rename yaml file name as mediatek,mt8195-dsp.yaml
-> > >    Refine descriptions for mailbox, memory-region and drop unused
-> > > labels
-> > >    in examples.
-> > > ---
-> > >   .../bindings/dsp/mediatek,mt8195-dsp.yaml     | 105
-> > > ++++++++++++++++++
-> > >   1 file changed, 105 insertions(+)
-> > >   create mode 100644
-> > > Documentation/devicetree/bindings/dsp/mediatek,mt8195-dsp.yaml
-> > > 
-> > 
-> > Reviewed-by: Rob Herring <robh@kernel.org>
-> > 
-> 
-> Rob, it seems we don't have a maintainer for this bindings. Shall I
-> as MediaTek 
-> SoC maintainer take them through my branch?
-> 
-> Regards,
-> Matthias
+The driver is coming from ancient times, so it is understandable it has
+some old coding style. But it definitely not sailed away. :)
 
+> So by
+> changing this we would break both the existing DT's compliance and also
+> existing Linux kernels.
+> So is lowercase something that is mandated by DT schema, or can we just
+> make an exception here?
+
+This uppercase clock name affects even ARM64 devices, so it seems the
+device is still being used. Therefore I propose to add new clock name,
+old as deprecated and support both in the driver:
+
+	kmi->clk = clk_get(&dev->dev, "kmirefclk");
+	if (IS_ERR(kmi->clk)) {
+		kmi->clk = clk_get(&dev->dev, "KMIREFCLK");
+
+and convert the DTS as well later on.
+
+Best regards,
+Krzysztof
