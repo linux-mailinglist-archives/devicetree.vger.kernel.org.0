@@ -2,73 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 65166514AF1
-	for <lists+devicetree@lfdr.de>; Fri, 29 Apr 2022 15:44:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A380F514C3E
+	for <lists+devicetree@lfdr.de>; Fri, 29 Apr 2022 16:06:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232757AbiD2NrQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Apr 2022 09:47:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52940 "EHLO
+        id S1377168AbiD2OJg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Apr 2022 10:09:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55286 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231211AbiD2NrP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Apr 2022 09:47:15 -0400
-Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 705E6CC503;
-        Fri, 29 Apr 2022 06:43:56 -0700 (PDT)
-Received: by mail-wm1-x335.google.com with SMTP id r11-20020a05600c35cb00b0039409c1111bso3832654wmq.3;
-        Fri, 29 Apr 2022 06:43:56 -0700 (PDT)
+        with ESMTP id S1376904AbiD2OJ3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Apr 2022 10:09:29 -0400
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8A7538BA;
+        Fri, 29 Apr 2022 07:00:35 -0700 (PDT)
+Received: by mail-wr1-x42e.google.com with SMTP id c11so1088414wrn.8;
+        Fri, 29 Apr 2022 07:00:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=9SlylRvL62c7qQ0d0U09m8gj6wRuIZ4uikE6ZzCgN4s=;
-        b=BwVtRPzCEpgLI6VmOgXz/NXKyEBrJx9Ro+lZVO+Mau+UOdV36jcm8vhmeyfNr9t+vg
-         mYG4zfYRgfBP0L0x9m5YVeCd/PNwiwYJUKALD1HkikZi1RGbr3BY1rR7AOwMpvYkCOqn
-         7DC75t3w+u83ocQ5qPFZpBqB7mGJppKkIy9qE3TiJc6MJN47fxBOipQk0mzOi5N9hPHx
-         azauKMptEneUJagpdAfGPVPzVL3egBRmEAUy+LywOUMZMezOFkqv2gd5O10gjJwUouKX
-         M7FHGEb4QkDJv/wdCWfyvw2+vhajUsnDV0i7srobR4NW2Z17+S9sHIqjtMRSk4Bjmebw
-         3W8Q==
+        bh=UXw9dRUog+dEg/XP99Hw1iqvRPucaZ7bzcG1rwJHhio=;
+        b=YBd0+nTmzcoM2bp3hiXsuMNdPweajYXNtZrZPbniRjboy65K24zviiuLtMl5mJj60Y
+         lGp3dU3D8okBn+ixe9o2sRzIW+TV+YaQp2DH7qI5AbiMQ5NPw044NSExSv8Wi8f+OyrT
+         mm2TpGZewa0FjO4w6wneZ7n7gckwh1FVfTOWtx4grI94mq8uZhPbMjkEgbWyfE3+Pzb2
+         HX3ZpJviFMo4mVpYilbLYEogCNK92s/Y1ll50Xv/GRNdgn3OTx/5Pp8+8HmBjg4tsCN8
+         OHCH0rIySZ1wVcH4CI1ny32UzRDqzLISbA6fsM4hRJdAx4A2tleff3aa4juuguNGAYeN
+         ieLA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=9SlylRvL62c7qQ0d0U09m8gj6wRuIZ4uikE6ZzCgN4s=;
-        b=7SzLM5xFzv5ZtG+8RED2UgUA9qnv+3IqZoCIi2N/cK+vKgih8+y4iQryrVbhoyvvqA
-         FtcrroZwZ5qC9kI7zDcTgtb57wZkXdZipEoa5SHWO/bnecElzYr3UsUScTg4hWMDOsvk
-         lger0bdHKVNNusPh8Jp7smU96Uolt8N4nDhOBuZHMotEwC7TIhhbjDUk0eX+VE7Wf/+Q
-         yQCh2Eo0Y0sHjotRufKP6Iq8RthQczrQFvR8TXl71tB1p+T3mu12CY1xFW6bSSwEbvB2
-         Xr88ZqxbA1ri3x+QDdw8NZ8bMzBU3cSdqeDkncPFKIq/+rwvUGw3DGLhEo3FhVWNtLCa
-         K0LA==
-X-Gm-Message-State: AOAM531OchFT8aUSyx3X17ieaDr4QWUi23UaL7YbJyygoJphkdq5PLfe
-        Sy3jHckJj1da3YeaAPD53ek=
-X-Google-Smtp-Source: ABdhPJzHeQO20kA01fexo3yVJoC+v4x5EY+4oshVaGSoBUk3P1V+LEh6mKJWcgW7mdwV0uo3Hk3P5Q==
-X-Received: by 2002:a05:600c:220e:b0:394:2695:ce9b with SMTP id z14-20020a05600c220e00b003942695ce9bmr193877wml.64.1651239835033;
-        Fri, 29 Apr 2022 06:43:55 -0700 (PDT)
+        bh=UXw9dRUog+dEg/XP99Hw1iqvRPucaZ7bzcG1rwJHhio=;
+        b=3c6bNlt4ZMtiC3PUA2slX2wicgxEnxV5mOGg5eosJu4HEs/Tg5Yo8fzqfj6Fbm/DKM
+         2MTItMOtlH1fogZaLj9DNMcYK4BrkQP9uKS8lQ782VANo10nMeECPIhhW2wRPQYeiBKH
+         Z1W9ZEFYesRf4qRNdZvaJVID++TPZDfTzsk/pW5QvyANAsC61WIMzsaCpenlJbXTp+/t
+         vZ1HxwJsc8hFvHPoK/aG408OCQltqQ+pTSva5O1FqTIRzCA+eqh+LU2dvQw3+TryhGs9
+         5uC9TCliJ2VgTQn9R+vDDH5ReIfLJBCcsmeksnai7bjM0qCd0pTxKx1IMrO6wbBNhpAt
+         t51A==
+X-Gm-Message-State: AOAM531mhBbQeK2o6BH9+Khmr55mT7mLDNBlH2Ezh+bi+cdwfe5h1UJ2
+        aoasH4/4501JJbTFz3nMjsk=
+X-Google-Smtp-Source: ABdhPJzUbO5VBiVmnymikmHFglcyLkJ2PMGYgcMmAt5zqGiCuS9Z+l25Ny/E4zFagkiIjHOEMjVlwQ==
+X-Received: by 2002:adf:e8c1:0:b0:20a:e116:408a with SMTP id k1-20020adfe8c1000000b0020ae116408amr17196519wrn.672.1651240834295;
+        Fri, 29 Apr 2022 07:00:34 -0700 (PDT)
 Received: from [192.168.0.43] (static-35-180-85-188.ipcom.comunitel.net. [188.85.180.35])
-        by smtp.gmail.com with ESMTPSA id j19-20020adfb313000000b0020aed8ece65sm2600793wrd.32.2022.04.29.06.43.54
+        by smtp.gmail.com with ESMTPSA id m6-20020a1c2606000000b00393fbf75a56sm2631655wmm.29.2022.04.29.07.00.33
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 29 Apr 2022 06:43:54 -0700 (PDT)
-Message-ID: <36cddba0-ea3f-8993-7ffc-303a198043de@gmail.com>
-Date:   Fri, 29 Apr 2022 15:43:53 +0200
+        Fri, 29 Apr 2022 07:00:33 -0700 (PDT)
+Message-ID: <f4256b5e-e6b8-f9de-fe97-3e9c6cdcb00c@gmail.com>
+Date:   Fri, 29 Apr 2022 16:00:32 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.5.0
-Subject: Re: [PATCH v2 1/1] dt-bindings: rtc: mediatek: add mt6358 and mt6366
- compatible
+Subject: Re: [PATCH 5/7] arm64: dts: mediatek: mt8195-demo: enable ethernet
 Content-Language: en-US
-To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+To:     Macpaul Lin <macpaul.lin@mediatek.com>,
+        Fabien Parent <fparent@baylibre.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Yuchen Huang <yuchen.huang@mediatek.com>
-References: <20220428092726.25814-1-allen-kh.cheng@mediatek.com>
- <20220428092726.25814-2-allen-kh.cheng@mediatek.com>
+        Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20220426134106.242353-1-fparent@baylibre.com>
+ <20220426134106.242353-6-fparent@baylibre.com>
+ <c0cf89c05ee708ec3648b267c1c0a0baa1331836.camel@mediatek.com>
 From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <20220428092726.25814-2-allen-kh.cheng@mediatek.com>
+In-Reply-To: <c0cf89c05ee708ec3648b267c1c0a0baa1331836.camel@mediatek.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -83,32 +80,153 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 28/04/2022 11:27, Allen-KH Cheng wrote:
-> Add mt6358 and mt6366 compatible in devicetree-binding document for
-> MediaTek PMIC based RTC. mt6358 and mt6366 use same compatible data
-> to store RTC_WRTGR address offset.
+On 27/04/2022 08:25, Macpaul Lin wrote:
+> On Tue, 2022-04-26 at 15:41 +0200, Fabien Parent wrote:
+>> Enable ethernet on the MT8195 demo board.
+>>
+>> Signed-off-by: Fabien Parent <fparent@baylibre.com>
+>> ---
+>>   arch/arm64/boot/dts/mediatek/mt8195-demo.dts | 108
+>> +++++++++++++++++++
+>>   1 file changed, 108 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/mediatek/mt8195-demo.dts
+>> b/arch/arm64/boot/dts/mediatek/mt8195-demo.dts
+>> index 08cab3b3943b..0b7985486e2a 100644
+>> --- a/arch/arm64/boot/dts/mediatek/mt8195-demo.dts
+>> +++ b/arch/arm64/boot/dts/mediatek/mt8195-demo.dts
+>> @@ -80,6 +80,30 @@ optee_reserved: optee@43200000 {
+>>   	};
+>>   };
+>>   
+>> +&eth {
+>> +	phy-mode = "rgmii-rxid";
+>> +	phy-handle = <&eth_phy>;
+>> +	snps,reset-gpio = <&pio 93 GPIO_ACTIVE_HIGH>;
+>> +	snps,reset-delays-us = <0 10000 10000>;
+>> +	mediatek,tx-delay-ps = <2030>;
+>> +	pinctrl-names = "default", "sleep";
+>> +	pinctrl-0 = <&eth_default_pins>;
+>> +	pinctrl-1 = <&eth_sleep_pins>;
+>> +	status = "okay";
+>> +
+>> +	mdio {
+>> +		compatible = "snps,dwmac-mdio";
+>> +		#address-cells = <1>;
+>> +		#size-cells = <0>;
+>> +
+>> +		eth_phy: phy@1 {
+>> +			compatible = "ethernet-phy-id001c.c916";
+>> +			#phy-cells = <0>;
+>> +			reg = <0x1>;
+>> +		};
+>> +	};
+>> +};
+>> +
+>>   &i2c6 {
+>>   	clock-frequency = <400000>;
+>>   	pinctrl-0 = <&i2c6_pins>;
+>> @@ -260,6 +284,90 @@ &mt6359_vsram_others_ldo_reg {
+>>   };
+>>   
+>>   &pio {
+>> +	eth_default_pins: eth-default-pins {
+>> +		pins-cc {
+>> +			pinmux = <PINMUX_GPIO85__FUNC_GBE_TXC>,
+>> +				 <PINMUX_GPIO88__FUNC_GBE_TXEN>,
+>> +				 <PINMUX_GPIO87__FUNC_GBE_RXDV>,
+>> +				 <PINMUX_GPIO86__FUNC_GBE_RXC>;
+>> +			drive-strength = <MTK_DRIVE_8mA>;
+>> +		};
+>> +
+>> +		pins-mdio {
+>> +			pinmux = <PINMUX_GPIO89__FUNC_GBE_MDC>,
+>> +				 <PINMUX_GPIO90__FUNC_GBE_MDIO>;
+>> +			input-enable;
+>> +		};
+>> +
+>> +		pins-phy-reset {
+>> +			pinmux = <PINMUX_GPIO93__FUNC_GPIO93>;
+>> +		};
+>> +
+>> +		pins-power {
+>> +			pinmux = <PINMUX_GPIO91__FUNC_GPIO91>,
+>> +				 <PINMUX_GPIO92__FUNC_GPIO92>;
+>> +			output-high;
+>> +		};
+>> +
+>> +		pins-rxd {
+>> +			pinmux = <PINMUX_GPIO81__FUNC_GBE_RXD3>,
+>> +				 <PINMUX_GPIO82__FUNC_GBE_RXD2>,
+>> +				 <PINMUX_GPIO83__FUNC_GBE_RXD1>,
+>> +				 <PINMUX_GPIO84__FUNC_GBE_RXD0>;
+>> +		};
+>> +
+>> +		pins-txd {
+>> +			pinmux = <PINMUX_GPIO77__FUNC_GBE_TXD3>,
+>> +				 <PINMUX_GPIO78__FUNC_GBE_TXD2>,
+>> +				 <PINMUX_GPIO79__FUNC_GBE_TXD1>,
+>> +				 <PINMUX_GPIO80__FUNC_GBE_TXD0>;
+>> +			drive-strength = <MTK_DRIVE_8mA>;
+>> +		};
+>> +	};
+>> +
+>> +	eth_sleep_pins: eth-sleep-pins {
+>> +		pins-cc {
+>> +			pinmux = <PINMUX_GPIO85__FUNC_GPIO85>,
+>> +				 <PINMUX_GPIO88__FUNC_GPIO88>,
+>> +				 <PINMUX_GPIO87__FUNC_GPIO87>,
+>> +				 <PINMUX_GPIO86__FUNC_GPIO86>;
+>> +		};
+>> +
+>> +		pins-mdio {
+>> +			pinmux = <PINMUX_GPIO89__FUNC_GPIO89>,
+>> +				 <PINMUX_GPIO90__FUNC_GPIO90>;
+>> +			input-disable;
+>> +			bias-disable;
+>> +		};
+>> +
+>> +		pins-phy-reset {
+>> +			pinmux = <PINMUX_GPIO93__FUNC_GPIO93>;
+>> +			input-disable;
+>> +			bias-disable;
+>> +		};
+>> +
+>> +		pins-power {
+>> +			pinmux = <PINMUX_GPIO91__FUNC_GPIO91>,
+>> +				 <PINMUX_GPIO92__FUNC_GPIO92>;
+>> +			input-disable;
+>> +			bias-disable;
+>> +		};
+>> +
+>> +		pins-rxd {
+>> +			pinmux = <PINMUX_GPIO81__FUNC_GPIO81>,
+>> +				 <PINMUX_GPIO82__FUNC_GPIO82>,
+>> +				 <PINMUX_GPIO83__FUNC_GPIO83>,
+>> +				 <PINMUX_GPIO84__FUNC_GPIO84>;
+>> +		};
+>> +
+>> +		pins-txd {
+>> +			pinmux = <PINMUX_GPIO77__FUNC_GPIO77>,
+>> +				 <PINMUX_GPIO78__FUNC_GPIO78>,
+>> +				 <PINMUX_GPIO79__FUNC_GPIO79>,
+>> +				 <PINMUX_GPIO80__FUNC_GPIO80>;
+>> +		};
+>> +	};
+>> +
+>>   	gpio_keys_pins: gpio-keys-pins {
+>>   		pins {
+>>   			pinmux = <PINMUX_GPIO106__FUNC_GPIO106>;
 > 
-> mt6358-rts should be used as fallback for mt6366-rtc.
+> Tested-by: Macpaul Lin <macpaul.lin@mediatek.com>
 > 
-> Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-> Signed-off-by: Yuchen Huang <yuchen.huang@mediatek.com>
 
-Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
+I get the following error:
+Error: arch/arm64/boot/dts/mediatek/mt8195.dtsi:582.26-27 syntax error
 
-> ---
->   Documentation/devicetree/bindings/rtc/rtc-mt6397.txt | 2 ++
->   1 file changed, 2 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/rtc/rtc-mt6397.txt b/Documentation/devicetree/bindings/rtc/rtc-mt6397.txt
-> index 55a0c8874c03..7212076a8f1b 100644
-> --- a/Documentation/devicetree/bindings/rtc/rtc-mt6397.txt
-> +++ b/Documentation/devicetree/bindings/rtc/rtc-mt6397.txt
-> @@ -14,6 +14,8 @@ For MediaTek PMIC wrapper bus bindings, see:
->   Required properties:
->   - compatible: Should be one of follows
->          "mediatek,mt6323-rtc": for MT6323 PMIC
-> +       "mediatek,mt6358-rtc": for MT6358 PMIC
-> +       "mediatek,mt6366-rtc", "mediatek,mt6358-rtc": for MT6366 PMIC
->          "mediatek,mt6397-rtc": for MT6397 PMIC
->   
->   Example:
+
+
+How did you test?
+
+Regards,
+Matthias
