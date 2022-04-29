@@ -2,166 +2,221 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 699E951554D
-	for <lists+devicetree@lfdr.de>; Fri, 29 Apr 2022 22:16:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B58F7515577
+	for <lists+devicetree@lfdr.de>; Fri, 29 Apr 2022 22:22:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238707AbiD2UTz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Apr 2022 16:19:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45234 "EHLO
+        id S239559AbiD2UZe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Apr 2022 16:25:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34494 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238431AbiD2UTz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Apr 2022 16:19:55 -0400
-Received: from mail-oa1-f48.google.com (mail-oa1-f48.google.com [209.85.160.48])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07E3C996A6;
-        Fri, 29 Apr 2022 13:16:36 -0700 (PDT)
-Received: by mail-oa1-f48.google.com with SMTP id 586e51a60fabf-e93bbb54f9so9186983fac.12;
-        Fri, 29 Apr 2022 13:16:36 -0700 (PDT)
+        with ESMTP id S1347986AbiD2UZd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Apr 2022 16:25:33 -0400
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A04585E173
+        for <devicetree@vger.kernel.org>; Fri, 29 Apr 2022 13:22:13 -0700 (PDT)
+Received: by mail-ej1-x635.google.com with SMTP id i27so17446578ejd.9
+        for <devicetree@vger.kernel.org>; Fri, 29 Apr 2022 13:22:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=B5xgiQuwPDVq6wa2pBHGsA/S0+n6F6tg1rxMU8HQg9Q=;
+        b=mcE120iimXDKlF7XgivbJgAkUJRut3u22lfY1qcg5dF4wBAejZVviizpd9QnMZA03a
+         a4O+PDTm1C+oyCjfvUFiyFfPwd4Pwq5pwv9FsgUl7ohsZZ7xQtITz6LjK6usT0ELjzK4
+         MDQYsDK2+NMe6Ff0Ukby5fyhFZf8q6I6j7yriQ/pJbk9cQDvP9JPzqKurw3JQhYSVAA5
+         nMUuAeVDdEnbI5eAcwEUlL/87tKb+pkmK9arU7u5s8B7GrZbHyxOPtW86MGKNTW1cPEf
+         fuhDF1sgFbZSX08hvTx1X+ay6UpebhSVeqAHx2dL5y7id82s4HzHkRgxjMlCTNm1YHBe
+         SdgA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=tiOACVbwh67uqkrg+v7LDtn9Slnv0D8m91bpuKh0Ev0=;
-        b=toBc/y10DPlIcE3tfihrx4fLzBYFEXYl7iMAJi/bzqkxRv3ELU98btW81e1ljNxhsA
-         OgaUFXWEF0GpzVOY5lI51KNe2AgT12MuOEy8xtHnDcXmMTdNWWdyDzt41/rbaqjqvLZp
-         YbBiJ+qWAbw84nCcmdsecKl5+1l9TuwSjpAys+XAT1DxZmVKMlUapnitJb1quNu3kv82
-         tLtrYY42iaDYBUrIW0LOJeFrPV4pZAIHpBbILtdiCrOUH1ubEsTHUyGK0CfoE9UOuwrd
-         jubOXdTE8rwOUMa2zE4AfPnNcC3cnQNN1j6FfHMgFbynPVC3t40hODFZV+v7nEB3HgTU
-         KjVA==
-X-Gm-Message-State: AOAM533Rci8Ln+nIALgIndNfJuwT+mzDJ1cBexpgxTT9FQbuZQkL6TGD
-        EacXSvsTW/faDIOMCAIeuw==
-X-Google-Smtp-Source: ABdhPJw2gDKOW+0tcM8RQuwAxxtSJfYernX60ZZrMMDRUED6g9kqv7Imhf1an1clOEIvD5i6uHJTWA==
-X-Received: by 2002:a05:6870:e245:b0:de:9321:9ea3 with SMTP id d5-20020a056870e24500b000de93219ea3mr480183oac.79.1651263395259;
-        Fri, 29 Apr 2022 13:16:35 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id i13-20020a54408d000000b00325cda1ffb9sm67047oii.56.2022.04.29.13.16.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 29 Apr 2022 13:16:34 -0700 (PDT)
-Received: (nullmailer pid 2793009 invoked by uid 1000);
-        Fri, 29 Apr 2022 20:16:33 -0000
-Date:   Fri, 29 Apr 2022 15:16:33 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Jiaxin Yu <jiaxin.yu@mediatek.com>
-Cc:     broonie@kernel.org, angelogioacchino.delregno@collabora.com,
-        devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
-        linux-kernel@vger.kernel.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        tzungbi@google.com, linux-mediatek@lists.infradead.org,
-        trevor.wu@mediatek.com, matthias.bgg@gmail.com, aaronyu@google.com,
-        julianbraha@gmail.com, linux-arm-kernel@lists.infradead.org
-Subject: Re: [v4 16/18] dt-bindings: mediatek: mt8186: add
- mt8186-mt6366-da7219-max98357 document
-Message-ID: <YmxHoXfpmC2XxReg@robh.at.kernel.org>
-References: <20220428093355.16172-1-jiaxin.yu@mediatek.com>
- <20220428093355.16172-17-jiaxin.yu@mediatek.com>
- <YmqlNV31FrcAyuN9@robh.at.kernel.org>
- <5e400f7ccb3b208a033e2ad8f220331851ff9c7e.camel@mediatek.com>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=B5xgiQuwPDVq6wa2pBHGsA/S0+n6F6tg1rxMU8HQg9Q=;
+        b=xNKw1eG17oD65wZZ3k3HwwnlKckJwMwgv6scIp+tMS1CSfP0pccTr9jRTTSDyF7Br4
+         zEy2rFctEhl/4PPCPvwPUqFSMdJmcqrS75DcPIU1Ll2fV8/2gUpj6uALOR2LyylBgRaU
+         hJcBrDhrImBXIXtH75FThqdPuzoOvFlBh+R5snFGVioVSIFwtHuIoJxtj2GbM/7+G4aJ
+         MQJCfQ6kBfGqNIcS6FQ/a6avpVfQuGIOLJa+wLU1Qv3jpCnJf5G3dUpXHbMVcp/VI07Z
+         zZuhfnQzw15/1ynZDGADrNn6+lDXOYgR4tJpaHy4mwLUVvPW89n5pweuxhWIwHGpZtUJ
+         ag2Q==
+X-Gm-Message-State: AOAM5334d6UjS7yJaxIJ14ISmP1MVRncEGhNMcuU2a/bw7Z0mugxn+HG
+        3rlHDNAx55PzmqWlp7wixMMmjw==
+X-Google-Smtp-Source: ABdhPJxisJ27HjNyI+R3epyENsZDasAoU3UJfcIaj/8Mg+ufNZGEzHjn6GaAqAobdV7jJautl+/OkA==
+X-Received: by 2002:a17:907:c01a:b0:6f3:b313:2fd1 with SMTP id ss26-20020a170907c01a00b006f3b3132fd1mr971345ejc.680.1651263732039;
+        Fri, 29 Apr 2022 13:22:12 -0700 (PDT)
+Received: from [192.168.0.176] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id w23-20020a170907271700b006f3ef214d9fsm959747ejk.5.2022.04.29.13.22.10
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 29 Apr 2022 13:22:11 -0700 (PDT)
+Message-ID: <a84df850-149e-9656-43fa-1f040368a9f1@linaro.org>
+Date:   Fri, 29 Apr 2022 22:22:10 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <5e400f7ccb3b208a033e2ad8f220331851ff9c7e.camel@mediatek.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH v2 1/2] dt-bindings: mtd: partitions: Add binding for
+ Sercomm parser
+Content-Language: en-US
+To:     Mikhail Zhilkin <csharper2005@gmail.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc:     NOGUCHI Hiroshi <drvlabo@gmail.com>, Karim <Karimdplay@gmail.com>,
+        M <x1@disroot.org>, linux-mtd@lists.infradead.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20220406195557.1956-1-csharper2005@gmail.com>
+ <20220406195946.2019-1-csharper2005@gmail.com>
+ <8d0d8b27-35ff-3693-cf80-897b80c26b4e@linaro.org>
+ <57bebf2f-af4c-b2d9-10e5-19e5104946fb@gmail.com>
+ <29cfa017-bbaf-3aba-fe1d-06771957dbaa@linaro.org>
+ <1b391399-984b-7a63-3265-62ef09caec39@gmail.com>
+ <bd533827-b575-caad-c230-af060851b231@gmail.com>
+ <db70e53b-7484-43bf-e9c8-b6a2dce1fbb5@linaro.org>
+ <25da3f43-c46e-8108-2da9-0e4f2b7cc1a4@gmail.com>
+ <b279040a-a782-a2ca-2acb-2d8f07709081@linaro.org>
+ <1c19faf9-fc1c-9adf-d038-97b673a8f0be@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <1c19faf9-fc1c-9adf-d038-97b673a8f0be@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 29, 2022 at 05:40:02PM +0800, Jiaxin Yu wrote:
-> On Thu, 2022-04-28 at 09:31 -0500, Rob Herring wrote:
-> > On Thu, Apr 28, 2022 at 05:33:53PM +0800, Jiaxin Yu wrote:
-> > > Add document for mt8186 board with mt6366, da7219 and max98357.
-> > > 
-> > > Signed-off-by: Jiaxin Yu <jiaxin.yu@mediatek.com>
-> > > ---
-> > >  .../sound/mt8186-mt6366-da7219-max98357.yaml  | 71
-> > > +++++++++++++++++++
-> > >  1 file changed, 71 insertions(+)
-> > >  create mode 100644 Documentation/devicetree/bindings/sound/mt8186-
-> > > mt6366-da7219-max98357.yaml
-> > > 
-> > > diff --git a/Documentation/devicetree/bindings/sound/mt8186-mt6366-
-> > > da7219-max98357.yaml
-> > > b/Documentation/devicetree/bindings/sound/mt8186-mt6366-da7219-
-> > > max98357.yaml
-> > > new file mode 100644
-> > > index 000000000000..55e8649f2aea
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/sound/mt8186-mt6366-da7219-
-> > > max98357.yaml
-> > > @@ -0,0 +1,71 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: 
-> > > http://devicetree.org/schemas/sound/mt8186-mt6366-da7219-max98357.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: Mediatek MT8186 with MT6366, DA7219 and MAX98357 ASoC sound
-> > > card driver
-> > > +
-> > > +maintainers:
-> > > +  - Jiaxin Yu <jiaxin.yu@mediatek.com>
-> > > +
-> > > +description:
-> > > +  This binding describes the MT8186 sound card.
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    enum:
-> > > +      - mediatek,mt8186_mt6366_da7219_max98357_sound
-> > 
-> > s/_/-/
-> > 
-> Got it.
-> > > +
-> > > +  mediatek,platform:
-> > > +    $ref: "/schemas/types.yaml#/definitions/phandle"
-> > > +    description: The phandle of MT8186 ASoC platform.
-> > > +
-> > > +  headset-codec:
-> > > +    type: object
-> > 
-> >        additionalProperties: false
-> Ditto.
-> > 
-> > > +    properties:
-> > > +      sound-dai:
-> > > +        $ref: /schemas/types.yaml#/definitions/phandle
-> > 
-> > sound-dai already has a type, so drop and define how many entries.
-> > 
-> Ditto.
-
-No need to reply in agreement. Just trim the email instead.
-
-> > > +    properties:
-> > > +      sound-dai:
-> > > +        minItems: 2
-> > > +        maxItems: 3
-> > 
-> > If more than 1 entry, then you need to define what each one is and
-> > the 
-> > order. Just like reg, interrupts, clocks, etc.
-> > 
-> Hi Rob,
+On 29/04/2022 17:26, Mikhail Zhilkin wrote:
+> On 4/29/2022 9:46 AM, Krzysztof Kozlowski wrote:
 > 
-> Should I correct them as below?
+>>>> I am sorry, but you changed now a lot in the bindings and it looks
+>>>> entirely different. Things previously being correct now are wrong, so
+>>>> rather start from your old bindings...
+>>>
+>>> Looks like I'm a bit confused... I use dual "compatible" in my real dts
+>>> and I realized that:
+>>>
+>>> 1. Therefore I have to use  dual "compatible" in example too:
+>>>
+>>> compatible = "sercomm,sc-partitions", "fixed-partitions";
+>>>
+>>> 2. When I'm trying to reuse "fixed-partitions" compatible from
+>>> fixed-partitions.yaml in my new .yaml I get "too long" errors.
+>> Yes, the fixed-partitions.yaml would have to be changed to allow extension.
+> 
+> Well.
+> 
+>>> Real dts:
+>>>
+>>> Link:
+>>> https://github.com/openwrt/openwrt/blob/edcc1a9a734bb3fcdc9242025290d3f173e71b78/target/linux/ramips/dts/mt7621_beeline_smartbox-giga.dts#L79
+>>>
+>>> So, I currently found another solution - to extend fixed-partitions.yaml
+>>> with "sercomm,sc-partitions". Is It ok from your side? Can I use this
+>>> code in v3?
+>> Not really, I don't understand why do you need it 
+> 
+> The main idea is keeping original Sercomm firmware behavior:
+> 
+> 1. If dynamic partition map found then use offsets and mtd sizes stored
+> in partition map. It's provided by "sercomm,sc-partitions" compatible.
+> 
+> 2. If dynamic partition map doesn't exist or broken then default values
+> (from dts) are used. It's provided by "fixed-partitions" compatible.
+
+Then you need to adjust fixed-partitions for such case. See syscon case
+(all over the tree and Documentation/devicetree/bindings/mfd/syscon.yaml).
+
+> 
+>> and it does not
+>> include our previous talks.
+> 
+> At the time, I didn't realize how important is it. Understanding began
+> to come after dozens of experiments and checking the similar Linux patches.
+> 
+>>> diff --git
+>>> a/Documentation/devicetree/bindings/mtd/partitions/fixed-partitions.yaml
+>>> b/Documentation/devicetree/bindings/mtd/partitions/fixed-partitions.yaml
+>>> index ea4cace6a955..9eebe39a57fb 100644
+>>> --- a/Documentation/devicetree/bindings/mtd/partitions/fixed-partitions.yaml
+>>> +++ b/Documentation/devicetree/bindings/mtd/partitions/fixed-partitions.yaml
+>>> @@ -19,7 +19,11 @@ maintainers:
+>>>  
+>>>  properties:
+>>>    compatible:
+>>> -    const: fixed-partitions
+>>> +    oneOf:
+>>> +      - const: fixed-partitions
+>>> +      - items:
+>>> +          - const: sercomm,sc-partitions
+>>> +          - const: fixed-partitions
+>>>  
+>>>    "#address-cells": true
+>>>  
+>>> @@ -27,7 +31,18 @@ properties:
+>>>  
+>>>  patternProperties:
+>>>    "@[0-9a-f]+$":
+>>> -    $ref: "partition.yaml#"
+>>> +    allOf:
+>>> +      - $ref: "partition.yaml#"
+>>> +      - if:
+>>> +          properties:
+>>> +            compatible:
+>>> +              contains:
+>>> +                const: sercomm,sc-partitions
+>>> +        then:
+>>> +          properties:
+>>> +            scpart-id:
+>> It still misses vendor prefix and we agreed you don't need it, didn't we?
+> 
+> Do you mean "sercomm" vendor prefix? If so then we agreed that I include
+> it in a separate patch:
+
+There was some misunderstanding then. We talk here about scpart-id name.
+Adding vendor prefix cannot be a separate patch because it does not make
+much sense. You add new property with wrong name and immediately
+change/fix it in next patch.
+
+No, it should have proper name since beginning. The property is not used
+in the kernel.
+
+> 
+> Link:
+> https://lore.kernel.org/linux-mtd/1b391399-984b-7a63-3265-62ef09caec39@gmail.com/
+> 
+> I'm going to send it in v3:
 > 
 > ---
-> properties:
->   sound-dai:
->     minItems: 2
->     maxItems: 3
->     items:
->       - items:
->           - description: xxx
->           - description: yyy
->           - description: zzz
+> dt-bindings: Add Sercomm (Suzhou) Corporation vendor prefix
+> 
+> Update Documentation/devicetree/bindings/vendor-prefixes.yaml to include
+> "sercomm" as a vendor prefix for "Sercomm (Suzhou) Corporation".
+> Company website:
+> Link: https://www.sercomm.com/
+> 
+> Signed-off-by: Mikhail Zhilkin <csharper2005@gmail.com>
+> ---
+>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> index 01430973ecec..65ff22364fb3 100644
+> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> @@ -1082,6 +1082,8 @@ patternProperties:
+>      description: Sensirion AG
+>    "^sensortek,.*":
+>      description: Sensortek Technology Corporation
+> +  "^sercomm,.*":
+> +    description: Sercomm (Suzhou) Corporation
 
-Drop the outer 'items'. As-is, you are saying you have 1 entry with 3 
-cells (1 phandle + 2 arg cells).
+This can be separate patch, but it's separate issue...
 
-Rob
+
+Best regards,
+Krzysztof
