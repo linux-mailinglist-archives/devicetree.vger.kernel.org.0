@@ -2,88 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D284514E72
-	for <lists+devicetree@lfdr.de>; Fri, 29 Apr 2022 16:54:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BECF7514E8B
+	for <lists+devicetree@lfdr.de>; Fri, 29 Apr 2022 16:57:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1377987AbiD2O5s convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Fri, 29 Apr 2022 10:57:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42466 "EHLO
+        id S1378047AbiD2PAQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Apr 2022 11:00:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50018 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1377984AbiD2O5r (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Apr 2022 10:57:47 -0400
-X-Greylist: delayed 242 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Fri, 29 Apr 2022 07:54:27 PDT
-Received: from mail.holtmann.org (coyote.holtmann.net [212.227.132.17])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id CAB0DBE9C1;
-        Fri, 29 Apr 2022 07:54:27 -0700 (PDT)
-Received: from smtpclient.apple (p5b3d2ea3.dip0.t-ipconnect.de [91.61.46.163])
-        by mail.holtmann.org (Postfix) with ESMTPSA id B4274CED22;
-        Fri, 29 Apr 2022 16:54:26 +0200 (CEST)
-Content-Type: text/plain;
-        charset=us-ascii
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3696.80.82.1.1\))
-Subject: Re: [PATCH v1 3/3] Bluetooth: hci_qca: WAR to handle WCN6750 HW issue
-From:   Marcel Holtmann <marcel@holtmann.org>
-In-Reply-To: <1651228073-1999-4-git-send-email-quic_bgodavar@quicinc.com>
-Date:   Fri, 29 Apr 2022 16:54:25 +0200
-Cc:     Andy Gross <agross@kernel.org>, robh+dt@kernel.org,
-        bjorn.andersson@linaro.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Johan Hedberg <johan.hedberg@gmail.com>, mka@chromium.org,
-        linux-bluetooth@vger.kernel.org, quic_hemantg@quicinc.com,
-        quic_saluvala@quicinc.com, quic_rjliao@quicinc.com,
-        mcchou@chromium.org
-Content-Transfer-Encoding: 8BIT
-Message-Id: <0D3D8346-0F64-4CAF-8BED-940F189A3E97@holtmann.org>
-References: <1651228073-1999-1-git-send-email-quic_bgodavar@quicinc.com>
- <1651228073-1999-4-git-send-email-quic_bgodavar@quicinc.com>
-To:     Balakrishna Godavarthi <quic_bgodavar@quicinc.com>
-X-Mailer: Apple Mail (2.3696.80.82.1.1)
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S1359135AbiD2PAP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Apr 2022 11:00:15 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0486AD11A;
+        Fri, 29 Apr 2022 07:56:56 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: dmitry.osipenko)
+        with ESMTPSA id C2C671F466DF
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1651244214;
+        bh=z9AR4wgc26TG7iya9Kky9QmyE15COjI5k6NO1aUr9nM=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=B/o+15Qp5XwlYcfwYE4cvYJnt0OqXlhOnnLsVBpctIVKIBBQF1Y0ge8+TDDW8u9w+
+         CdvsBd7//mvviofvJIPFRwZksdC8WRcGvTlKZgIA1Fn+oNtTrEEuiaaODTX1TbOWlw
+         FlxkIIsE3NJI1NqThewT/+h9/AVB+laxO0pajoj1cSppFTa9uDnq0OVG9SNCtLQfPC
+         NtThfNp+cESYTKrQ3f/tpP8TrwIPOUp2tuiHL6v8WljdI1W10uXJg/QT2jRGESUP8P
+         taidYj5OEO3fTFm+48cNGGAV41RvEdnHly/JOnSn6XGedl5HwzaGiPecUPwQRwGPj7
+         Y+LzyxI6kfxyQ==
+Message-ID: <2e0df511-f9fa-2905-f381-fc1158774ab4@collabora.com>
+Date:   Fri, 29 Apr 2022 17:56:50 +0300
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [Patch v10 1/4] memory: tegra: Add memory controller channels
+ support
+Content-Language: en-US
+To:     Ashish Mhetre <amhetre@nvidia.com>, krzysztof.kozlowski@linaro.org,
+        thierry.reding@gmail.com, jonathanh@nvidia.com, digetx@gmail.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org,
+        devicetree@vger.kernel.org
+Cc:     vdumpa@nvidia.com, Snikam@nvidia.com
+References: <20220429113438.13988-1-amhetre@nvidia.com>
+ <20220429113438.13988-2-amhetre@nvidia.com>
+From:   Dmitry Osipenko <dmitry.osipenko@collabora.com>
+In-Reply-To: <20220429113438.13988-2-amhetre@nvidia.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Balakrishna,
 
-> The patch is workaround for hardware issue on WCN6750.
-> On WCN6750 sometimes observed AON power source takes 100ms
-> time to fully discharge voltage during OFF. As WCN6750 is
-> combo chip for WLAN and BT. If any of the tech area ON is
-> triggered during discharge phase, it fails to turn ON.
-> To overcome this hardware issue, During BT ON, driver check
-> for WLAN_EN pin status. If it high, it will pull BT_EN to high
-> immediately else it will wait for 100ms assuming WLAN was just
-> powered OFF and then BT_EN will be pulled to high.
-> 
-> Fixes: d8f97da1b92d2 ("Bluetooth: hci_qca: Add support for QTI Bluetooth chip wcn6750")
-> Reviewed-by: Miao-chen Chou <mcchou@chromium.org>
-> Signed-off-by: Sai Teja Aluvala <quic_saluvala@quicinc.com>
-> Signed-off-by: Balakrishna Godavarthi <quic_bgodavar@quicinc.com>
-> ---
-> drivers/bluetooth/hci_qca.c | 30 ++++++++++++++++++++++++------
-> 1 file changed, 24 insertions(+), 6 deletions(-)
-> 
-> diff --git a/drivers/bluetooth/hci_qca.c b/drivers/bluetooth/hci_qca.c
-> index eab34e2..c3862d1 100644
-> --- a/drivers/bluetooth/hci_qca.c
-> +++ b/drivers/bluetooth/hci_qca.c
-> @@ -219,6 +219,7 @@ struct qca_serdev {
-> 	struct hci_uart	 serdev_hu;
-> 	struct gpio_desc *bt_en;
-> 	struct gpio_desc *sw_ctrl;
-> +	struct gpio_desc *wlan_en;
-> 	struct clk	 *susclk;
-> 	enum qca_btsoc_type btsoc_type;
-> 	struct qca_power *bt_power;
+On 4/29/22 14:34, Ashish Mhetre wrote:
+>  static int tegra186_mc_probe(struct tegra_mc *mc)
+>  {
+> +	struct platform_device *pdev = to_platform_device(mc->dev);
+> +	unsigned int i;
+>  	int err;
+>  
+> +	mc->bcast_ch_regs = devm_platform_ioremap_resource_byname(pdev, "broadcast");
+> +	if (IS_ERR(mc->bcast_ch_regs)) {
+> +		if (PTR_ERR(mc->bcast_ch_regs) == -EINVAL) {
+> +			dev_warn(&pdev->dev, "Broadcast channel is missing, please update your device-tree\n");
+> +			mc->bcast_ch_regs = NULL;
+> +			goto skip_map_regs;
+> +		}
+> +		return PTR_ERR(mc->bcast_ch_regs);
+> +	}
+> +
+> +	mc->ch_regs = devm_kcalloc(mc->dev, mc->soc->num_channels,
+> +				   sizeof(*mc->ch_regs), GFP_KERNEL);
+> +	if (!mc->ch_regs)
+> +		return -ENOMEM;
+> +
+> +	for (i = 0; i < mc->soc->num_channels; i++) {
+> +		char name[5];
+> +
+> +		snprintf(name, sizeof(name), "ch%u", i);
+> +		mc->ch_regs[i] = devm_platform_ioremap_resource_byname(pdev, name);
+> +		if (IS_ERR(mc->ch_regs[i]))
+> +			return PTR_ERR(mc->ch_regs[i]);
+> +	}
+> +
+> +skip_map_regs:
+>  	err = of_platform_populate(mc->dev->of_node, NULL, NULL, mc->dev);
 
-I am really against these intermixing of Bluetooth and WiFi details. There is work ongoing to do some sequence power procedure. Maybe that is something you should look into. This is a mess.
+More common to name labels by the action pointed by label, like
+"populate:" in this case. No need to make v11 because of that.
 
-And again, we are still hacking around hci_qca.c instead of writing a clean serdev only driver for this hardware. I have the feeling that nobody listens to review comments these days. It is just hacking patches together to get hardware enabled somehow and then disappear.
-
-Regards
-
-Marcel
-
+Reviewed-by: Dmitry Osipenko <dmitry.osipenko@collabora.com>
