@@ -2,103 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A5500514638
-	for <lists+devicetree@lfdr.de>; Fri, 29 Apr 2022 12:06:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 048F2514639
+	for <lists+devicetree@lfdr.de>; Fri, 29 Apr 2022 12:06:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238947AbiD2KJ1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Apr 2022 06:09:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59050 "EHLO
+        id S238977AbiD2KJ2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Apr 2022 06:09:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59210 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238829AbiD2KJ1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Apr 2022 06:09:27 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 3178C86AEC;
-        Fri, 29 Apr 2022 03:06:09 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id C46851063;
+        with ESMTP id S238952AbiD2KJ2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Apr 2022 06:09:28 -0400
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF33B8AE50
+        for <devicetree@vger.kernel.org>; Fri, 29 Apr 2022 03:06:09 -0700 (PDT)
+Received: by mail-wr1-x429.google.com with SMTP id j15so10134702wrb.2
+        for <devicetree@vger.kernel.org>; Fri, 29 Apr 2022 03:06:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=5CntfCmjV+jt6ob6/zxp3NJtpyFCYLSjmSO47xgDfgc=;
+        b=oXA9dlu2adoUv261G7eAKYGi1UusCO0BveMUWtGi/h0x1gYMNR/5kar9EilfjqWqeH
+         RbQQah1OR9W1Epej6xFXyO2DPjGjQFkkaMoGvEr4GF+mznfy281mAKd4maVjO7gYS2gh
+         FD8fp7mOMZK+CvC9/hJbl7kU3k5kbgm9z9yYicwcQnnq1hQL8LyKyhlxeNqGwDfKKXvb
+         6ix2grTS4VjS3pXgcX+OIwhC6ah39pI7b5teZJFxBjc3PWFjTe1W5w0fMrKiOH1Nuqoz
+         i23aqjE5MO7AaSiLMfI3UnMTr5UtsaJCO4LnSs0sGiFOPXLF+1ATN9KndhWsBw0r5WNS
+         xWVA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=5CntfCmjV+jt6ob6/zxp3NJtpyFCYLSjmSO47xgDfgc=;
+        b=C5zhKKUUkn3n5L133I8lZBJNmu3GkW4ABulA11ciTK18DKXH+rD6srpBSgTyyYpOGZ
+         1ZW4VQes6PNGC5izr/dk7Zy7BRtqtp6GER6LAM+it0bHkaHgswWWQH6s1ISaraxbm03U
+         SwuTmmwI40Z1wT3RDrUn1hpgQHPvCYCYC5gQn7JOR4DgWuaUmGnIvsrLW/cDEmG/oXVA
+         016oEd3g5ZyjF2M0ix6m3ld4lVAMVG8koR208Kmr8TsYD0Ct2GTj0hJb8IVGOSVZRh7C
+         qa3o3a4OuCFNm9BujksZozacqjnrVoLJwNyKMXWOVTeAHkGjI3S8Q7jJ7aLNLojiu6S/
+         YHJw==
+X-Gm-Message-State: AOAM531CuQdlDsl15v4OQjiBmt1VS9PjHDs5eVAsg0hCyy5IeS3RBurY
+        8GsGf++uzJJ5MdJZGYTeptTQQg==
+X-Google-Smtp-Source: ABdhPJyyUkGGUul0ToFA0PjtK9Hd8cYiW92xkX4JQwO7eX/nHbXxL2pHim5RFuxPS/MurU+O7q0yrg==
+X-Received: by 2002:adf:ec05:0:b0:20a:e496:dab5 with SMTP id x5-20020adfec05000000b0020ae496dab5mr14839951wrn.221.1651226768263;
         Fri, 29 Apr 2022 03:06:08 -0700 (PDT)
-Received: from donnerap.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 881C23F73B;
+Received: from google.com (cpc155339-bagu17-2-0-cust87.1-3.cable.virginm.net. [86.27.177.88])
+        by smtp.gmail.com with ESMTPSA id x2-20020adfbb42000000b0020ae057045csm2094888wrg.28.2022.04.29.03.06.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
         Fri, 29 Apr 2022 03:06:07 -0700 (PDT)
-Date:   Fri, 29 Apr 2022 11:06:03 +0100
-From:   Andre Przywara <andre.przywara@arm.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liviu Dudau <liviu.dudau@arm.com>,
-        Robin Murphy <robin.murphy@arm.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        linux-input@vger.kernel.org
-Subject: Re: [PATCH 05/11] dt-bindings: serio: add Arm PL050 DT schema
-Message-ID: <20220429110603.7bd31c13@donnerap.cambridge.arm.com>
-In-Reply-To: <54dc7bc6-2849-157b-1245-75df2392a2cf@linaro.org>
-References: <20220427112528.4097815-1-andre.przywara@arm.com>
-        <20220427112528.4097815-6-andre.przywara@arm.com>
-        <55574426-df20-cdd7-c97d-092726981a42@linaro.org>
-        <20220428182708.0c1065f8@donnerap.cambridge.arm.com>
-        <993d74fa-be5b-6db2-6bba-2323de7757f3@linaro.org>
-        <54dc7bc6-2849-157b-1245-75df2392a2cf@linaro.org>
-Organization: ARM
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
+Date:   Fri, 29 Apr 2022 11:06:05 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Caleb Connolly <caleb.connolly@linaro.org>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Stephen Boyd <sboyd@kernel.org>, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        sumit.semwal@linaro.org, amit.pundir@linaro.org,
+        john.stultz@linaro.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Subject: Re: [PATCH v13 2/9] mfd: qcom-spmi-pmic: expose the PMIC revid
+ information to clients
+Message-ID: <Ymu4jUup3YiX6p3X@google.com>
+References: <20220323162820.110806-1-caleb@connolly.tech>
+ <20220323162820.110806-3-caleb@connolly.tech>
+ <Yma4T1+AglaISe2l@google.com>
+ <2763f103-6947-e431-cef5-e202c324d678@linaro.org>
+ <Ymq9Su3UE5IYiHnI@google.com>
+ <cce2f4b7-3620-7a33-ef21-579eff9a7dac@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <cce2f4b7-3620-7a33-ef21-579eff9a7dac@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 29 Apr 2022 08:35:02 +0200
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
-
-Hi Krzysztof,
-
-> On 29/04/2022 08:29, Krzysztof Kozlowski wrote:
-> > The driver is coming from ancient times, so it is understandable it has
-> > some old coding style. But it definitely not sailed away. :)
-
-What I meant with this was: there are DTs and drivers out there, for years
-now, and this binding is just documenting that state.
-
-I understand that in an ideal world you start with the binding, then write
-drivers and DT based on that, but we missed that opportunity years ago.
-It actually looks like this uppercase clock name predates the git history,
-so this was probably the internal board file clock name twenty years ago,
-and just got converted into the DT clock name.
-
-> >> So by
-> >> changing this we would break both the existing DT's compliance and also
-> >> existing Linux kernels.
-> >> So is lowercase something that is mandated by DT schema, or can we just
-> >> make an exception here?  
+On Thu, 28 Apr 2022, Caleb Connolly wrote:
+> On 28/04/2022 17:14, Lee Jones wrote:
+> > On Wed, 27 Apr 2022, Caleb Connolly wrote:
+> > > On 25/04/2022 16:03, Lee Jones wrote:
+> > > > 
+> > > > On Wed, 23 Mar 2022, Caleb Connolly wrote:
+> > > > > From: Caleb Connolly <caleb.connolly@linaro.org>
+> > > > > 
+> > > > > Some PMIC functions such as the RRADC need to be aware of the PMIC
+> > > > > chip revision information to implement errata or otherwise adjust
+> > > > > behaviour, export the PMIC information to enable this.
+> > > > > 
+> > > > > This is specifically required to enable the RRADC to adjust
+> > > > > coefficients based on which chip fab the PMIC was produced in,
+> > > > > this can vary per unique device and therefore has to be read at
+> > > > > runtime.
+> > > > > 
+> > > > > Signed-off-by: Caleb Connolly <caleb.connolly@linaro.org>
+> > > > > Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> > > > > Tested-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> > > > > ---
+> > > > >    drivers/mfd/qcom-spmi-pmic.c      | 261 +++++++++++++++++++-----------
+> > > > >    include/soc/qcom/qcom-spmi-pmic.h |  60 +++++++
+> > > > >    2 files changed, 231 insertions(+), 90 deletions(-)
+> > > > >    create mode 100644 include/soc/qcom/qcom-spmi-pmic.h
 > > 
-> > This uppercase clock name affects even ARM64 devices, so it seems the
-> > device is still being used. Therefore I propose to add new clock name,
-> > old as deprecated and support both in the driver:
+> > [...]
 > > 
-> > 	kmi->clk = clk_get(&dev->dev, "kmirefclk");
-> > 	if (IS_ERR(kmi->clk)) {
-> > 		kmi->clk = clk_get(&dev->dev, "KMIREFCLK");
+> > > > > +			/*
+> > > > > +			 * If the base USID for this PMIC hasn't probed yet
+> > > > > +			 * but the secondary USID has, then we need to defer
+> > > > > +			 * the function driver so that it will attempt to
+> > > > > +			 * probe again when the base USID is ready.
+> > > > > +			 */
+> > > > > +			if (pmic_addr == function_parent_usid  - (ctx->num_usids - 1))
+> > > > 
+> > > > Double "  ".
+> > > Ack
+> > > > 
+> > > > Over-bracketing of statements with matching operands.
+> > > I don't think x - (y - 1) is equal to x - y - 1? Or am I misunderstanding you here?
 > > 
-> > and convert the DTS as well later on.  
+> > Can you give me an example when this would be the case?
+> According to the Python interpreter:
+> >>> x=7
+> >>> y=4
+> >>> x - y - 1
+> 2
+> >>> x - (y - 1)
+> 4
 > 
-> On the other hand, I don't find this as that important if you do not
-> have time for it, so I am fine with the exception and uppercase name.
+> C does also respect the first rule of BODMAS - parenthesis are always
+> evaluated first.
 
-Thanks, and yeah, I would really like to not change that. For once, this
-device really doesn't have a big future (it's a PS/2 keyboard/mouse
-controller after all), and the most prominent users are the fast models /
-FVPs, where I wouldn't be aware of anyone actually using that device
-there. (I don't even know how to do that). Other than that there is the
-Juno board, but I need to disable the KMI driver there because it
-electrically interferes with the USB PHY, so is not really usable there as
-well, unless you sacrifice USB altogether.
+Fair point, well presented.
 
-So it would just create a lot of churn, for no real benefit.
+Thanks for this - I understand the problem now.
 
-Thanks!
-Andre
+-- 
+Lee Jones [李琼斯]
+Principal Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
