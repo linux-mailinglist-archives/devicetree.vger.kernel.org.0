@@ -2,114 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 39DC0514A3F
-	for <lists+devicetree@lfdr.de>; Fri, 29 Apr 2022 15:08:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 051E6514A5C
+	for <lists+devicetree@lfdr.de>; Fri, 29 Apr 2022 15:20:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232757AbiD2NLU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Apr 2022 09:11:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57434 "EHLO
+        id S1359731AbiD2NXm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Apr 2022 09:23:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56970 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230424AbiD2NLT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Apr 2022 09:11:19 -0400
-Received: from smtp2.axis.com (smtp2.axis.com [195.60.68.18])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6CDD5FBF;
-        Fri, 29 Apr 2022 06:08:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=axis.com; q=dns/txt; s=axis-central1; t=1651237681;
-  x=1682773681;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=tBpzPhBcbbkJvaYflvC0edSSXHj4eMy9ek7N0pIb53c=;
-  b=XQlGTf6SsfBKjFuTo3T1xWvH8iTSEUa6Q83cpU/vkspUGenVR+QkLdJ+
-   1mGK69jZUmXdFRsVmDkWqmg/PS7a2CB2ydwPTbjwQ1rljLElYMywzU/6a
-   Fj9C1rr1FaEK3tPmkZi0nTolDs8TS3xhb0xZzEgcCPGZ4J3YuKOyF4M91
-   nqPGLuqROdrsOoShWq/s9Puxi3PRz5tAOTOM5U0A8z9lHrgQDwaV/0OPi
-   cRSbFxiaMjFHRxYAsGTI5jOvhCfL1jjEQVlim3xRvkm1hLlWIuYFFDR6X
-   IVpjW9Zrfxtop6g0218rg6sR+A/m2TW3rZL/oICxCWu80ALY6WfdLqR3h
-   Q==;
-From:   Vincent Whitchurch <vincent.whitchurch@axis.com>
-To:     <wsa@kernel.org>
-CC:     <kernel@axis.com>,
-        Vincent Whitchurch <vincent.whitchurch@axis.com>,
-        <linux-i2c@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH v3 1/1] i2c: core: support no-detect property
-Date:   Fri, 29 Apr 2022 15:07:49 +0200
-Message-ID: <20220429130749.3032462-2-vincent.whitchurch@axis.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220429130749.3032462-1-vincent.whitchurch@axis.com>
-References: <20220429130749.3032462-1-vincent.whitchurch@axis.com>
+        with ESMTP id S1359723AbiD2NXl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Apr 2022 09:23:41 -0400
+Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B6C6FD34;
+        Fri, 29 Apr 2022 06:20:22 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by sin.source.kernel.org (Postfix) with ESMTPS id C536FCE2A31;
+        Fri, 29 Apr 2022 13:20:20 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E519DC385A7;
+        Fri, 29 Apr 2022 13:20:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1651238419;
+        bh=W0F62x4ZZOH2j54MPXWZcj4w3N1F+atcMVbtEoqkWr8=;
+        h=From:To:Cc:Subject:Date:From;
+        b=l328/irFh6BO2aAxvUJPBmxX/X8CRjQyhrbT4dMb5WH1sLSW33JdnfTnOQ0sUbkiq
+         5EAzCPDIGqPPIWdVbPFUa35q1WSrnkmwkjy+geWl0QD6w07nXbURqlKxnKAbwnHoyN
+         4P5rF+bmRHnmGxShuYwwzhsIpaiKRlTRnSVdxYCLf4QKkH8KMCDtS7k4nZZm7AM+5+
+         gj2qqD/sI/rO+Rhl+DC/1kuAAzekts4jsmFQzFj8LZbGqwXzFPGE0bg6JfyaeLzr9n
+         aF1iUH8pvcWB22C34vCZNd3T43NEA7i54L7oUptiQKoPhBj8qcuQc6Ay6/vqj5ehi9
+         SGxFDwlmoZODA==
+Received: by pali.im (Postfix)
+        id 49A35CAF; Fri, 29 Apr 2022 15:20:16 +0200 (CEST)
+From:   =?UTF-8?q?Pali=20Roh=C3=A1r?= <pali@kernel.org>
+To:     Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v2 1/2] dt-bindings: watchdog: max63xx: Add GPIO binding
+Date:   Fri, 29 Apr 2022 15:13:48 +0200
+Message-Id: <20220429131349.21229-1-pali@kernel.org>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-If the devicetree specifies the no-detect property (documented in
-dt-schema [0]) for the I2C bus, we know that there are no other devices
-on the bus other than the ones listed in the devicetree, so avoid
-calling drivers' detect callbacks and wasting time looking for devices
-which do not exist.
+GPIO is optional and used for WDI logic.
 
-[0] https://github.com/devicetree-org/dt-schema/commit/ba55f96c6d8d
-
-Signed-off-by: Vincent Whitchurch <vincent.whitchurch@axis.com>
+Signed-off-by: Pali Rohár <pali@kernel.org>
 ---
- drivers/i2c/i2c-core-base.c | 8 +++++++-
- include/linux/i2c.h         | 1 +
- 2 files changed, 8 insertions(+), 1 deletion(-)
+ Documentation/devicetree/bindings/watchdog/maxim,max63xx.yaml | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/drivers/i2c/i2c-core-base.c b/drivers/i2c/i2c-core-base.c
-index d43db2c3876e..d43025b84546 100644
---- a/drivers/i2c/i2c-core-base.c
-+++ b/drivers/i2c/i2c-core-base.c
-@@ -1341,7 +1341,8 @@ static int i2c_do_add_adapter(struct i2c_driver *driver,
- 			      struct i2c_adapter *adap)
- {
- 	/* Detect supported devices on that bus, and instantiate them */
--	i2c_detect(adap, driver);
-+	if (adap->detect)
-+		i2c_detect(adap, driver);
+diff --git a/Documentation/devicetree/bindings/watchdog/maxim,max63xx.yaml b/Documentation/devicetree/bindings/watchdog/maxim,max63xx.yaml
+index ab9641e845db..a97aa0135ef9 100644
+--- a/Documentation/devicetree/bindings/watchdog/maxim,max63xx.yaml
++++ b/Documentation/devicetree/bindings/watchdog/maxim,max63xx.yaml
+@@ -27,6 +27,10 @@ properties:
+     description: This is a 1-byte memory-mapped address
+     maxItems: 1
  
- 	return 0;
- }
-@@ -1432,6 +1433,7 @@ EXPORT_SYMBOL_GPL(i2c_handle_smbus_host_notify);
- 
- static int i2c_register_adapter(struct i2c_adapter *adap)
- {
-+	struct device_node *np = adap->dev.of_node;
- 	int res = -EINVAL;
- 
- 	/* Can't register until after driver model init */
-@@ -1502,6 +1504,10 @@ static int i2c_register_adapter(struct i2c_adapter *adap)
- 			 "Failed to create compatibility class link\n");
- #endif
- 
-+	adap->detect = true;
-+	if (np && of_property_read_bool(np, "no-detect"))
-+		adap->detect = false;
++  gpios:
++    description: Optional GPIO used for controlling WDI when WDI bit is not mapped to memory
++    maxItems: 1
 +
- 	/* create pre-declared device nodes */
- 	of_i2c_register_devices(adap);
- 	i2c_acpi_install_space_handler(adap);
-diff --git a/include/linux/i2c.h b/include/linux/i2c.h
-index fbda5ada2afc..8fad5fe85685 100644
---- a/include/linux/i2c.h
-+++ b/include/linux/i2c.h
-@@ -728,6 +728,7 @@ struct i2c_adapter {
- 	struct rt_mutex bus_lock;
- 	struct rt_mutex mux_lock;
- 
-+	bool detect;
- 	int timeout;			/* in jiffies */
- 	int retries;
- 	struct device dev;		/* the adapter device */
+ required:
+   - compatible
+   - reg
 -- 
-2.34.1
+2.20.1
 
