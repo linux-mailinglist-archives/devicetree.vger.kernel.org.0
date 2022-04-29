@@ -2,76 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D428515622
-	for <lists+devicetree@lfdr.de>; Fri, 29 Apr 2022 22:54:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 46B30515626
+	for <lists+devicetree@lfdr.de>; Fri, 29 Apr 2022 22:55:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1381071AbiD2U5X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Apr 2022 16:57:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48972 "EHLO
+        id S1381048AbiD2U7N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Apr 2022 16:59:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51732 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1355599AbiD2U5W (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Apr 2022 16:57:22 -0400
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0095965A2
-        for <devicetree@vger.kernel.org>; Fri, 29 Apr 2022 13:54:02 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id j6so17543620ejc.13
-        for <devicetree@vger.kernel.org>; Fri, 29 Apr 2022 13:54:02 -0700 (PDT)
+        with ESMTP id S236843AbiD2U7M (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Apr 2022 16:59:12 -0400
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3DA5F8CD9D
+        for <devicetree@vger.kernel.org>; Fri, 29 Apr 2022 13:55:53 -0700 (PDT)
+Received: by mail-ed1-x52e.google.com with SMTP id d6so10360138ede.8
+        for <devicetree@vger.kernel.org>; Fri, 29 Apr 2022 13:55:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=8ijMUHM6BZmaa7c0hm3mqC8JYHeyH09dTjrvSxZy1BY=;
-        b=jDZcRUA3YzPLHYV5bc8rvjIuyIhPN6BMCalJK0LvbKoFfLp8PIrNIwur1Crf2WZqx/
-         lEcirE4D5zqId9wjGmYP+xL+MSyb/DO7h3ILtI0cO2wiFNhb5Uv0jNIXYpKoP6VpyyJI
-         Hf7qNN32GMy6FdJvONI4uSRYmi4G50C/xuQS4uo1uiZsBpMYNqk2RPbzIG+oUfV0iOke
-         GfF0i7cGnflrgrn++seNwA+YI2Hn/RkkZS57sn/7q1e3AgpxcrMSnt/oSSY8GiVjo1c4
-         Bs0up1vL/19NSFtazp9B2WY0//RTnNc8V9LYU24i8mPVrFBqGg2lOG/3tclkKOYyg96S
-         VDtg==
+        bh=odFeoUtD+7OIfOjcCxQ9wfXNR7wVZhijBGF51FWGtSw=;
+        b=rE3Eu+h5/rF6eon9FdzUJ/dS8L+nePq2WYpXSQQZR5/UfOZYailhJXzjVlqNPyQVx1
+         AG7UavQcFGu3QXL4YzSWmGMnK78wgk/qzwjCwBg7WXYBEUlXQ/+HGgFusFqXicLULFG3
+         h442HKo878osClxO3VWeVI8jAN4Ter/I7cSb0eFdYjPUbcUfru460vxPZjCM1JoAnufl
+         s0Z/HZlaf53Qs67dEapm0SPgGhLrx/rUb6DkpTtcKmWkk/nC+I6t5Aziq0+d/RdzYHtl
+         vKhfZ5bH0LFFOQXRisNZ8Tgqu3szAp1qAh6Sy9BSl5Eao474yaVTjXWfCrZgvlScN2fH
+         8wnA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=8ijMUHM6BZmaa7c0hm3mqC8JYHeyH09dTjrvSxZy1BY=;
-        b=aXrIP4oHurf1NDqLohQBlQCaQwqWJSEHANwNp9ksGaE3l3KW+z4XyGaDckJn9Eym6j
-         Yj7NgR4mzhbexbOEm6++UB3vKKJUMWieN7RiElLU3jdT8eg0COUwSURdAWH0TeNypR9R
-         zqKSxLV9SzvCb5pz/dALcXL+9vpmEbz4k1oaiJQZ2/SyQ5xc/klBXzLiqpA3s7odGEDc
-         PEkiWfeAtVNGUsYWERe0c18yTlCpAArFlRmjsNJfhES7/w77JkWgtkzcS8gIMmRIrruh
-         SHtJc782/fRXvaVvtUwyShEtnQsKRIdPamEz8W7RrzRvXB/kmHzUtOFDEjaUwgLZU51q
-         TQiA==
-X-Gm-Message-State: AOAM532t+y5M3qdgD7Cp4kuGYkcWBQyEw+T/iUacHAMfNvQKasEztk06
-        ORzoQgsws5n+fs3vCwtQtrr/tOrWczIknQ==
-X-Google-Smtp-Source: ABdhPJyEiU/AYnt4FO/n9XbiqqNZdHoU6dwECTZ1TVLYSRRs21KAKVHRfb4kQfHEM4Oa1Qws3c12bw==
-X-Received: by 2002:a17:907:eab:b0:6da:8ec5:d386 with SMTP id ho43-20020a1709070eab00b006da8ec5d386mr1070959ejc.668.1651265641594;
-        Fri, 29 Apr 2022 13:54:01 -0700 (PDT)
+        bh=odFeoUtD+7OIfOjcCxQ9wfXNR7wVZhijBGF51FWGtSw=;
+        b=xw/Rs5pLhIfYpgdaMfCXUULVm+8zjvQvjV99AED5zuwxTABwGSS2foNSQ3gekzkCCP
+         M4gTxwQMik6Ecigb0I1/lneXutLj3ce9dg6WUyWp0W4VZuUuFXVD4+6MqwY6x7qZH1P+
+         158hoku5Qx+LCsX8WaByQiYrD8/KnKGdxenDBZtSS2Dr75fGHeD9VPe0ZbVNQUh5ocJi
+         Ba0NlTcA3nFVQPetCSOLyeqVX9BYUL1GY/c5eoLdPdxfWG+9s65knGwh0vGO4LZaJe0T
+         oF2nsmHqBwh2DJR4ji45bQ0XYIIm3rFwfZ7hupQp2XlQ+6rOpmHndWwl3oAPs1Sv12ky
+         QvzA==
+X-Gm-Message-State: AOAM530Sf3b7idph/RTMAelpXQCXNdu5BBbbqtrXkKuW4Y2sr/23zZWM
+        TZ7QtG+GOJPjP75RaEJ6F0d33Q==
+X-Google-Smtp-Source: ABdhPJyoJ3bmrABMI8yFtCqJfS6GezD6A0PfIiZPdI92UtPgc9/ENZq94mvA8yCzlYuZdxHhaeBKPg==
+X-Received: by 2002:a05:6402:11cd:b0:425:ee49:58cb with SMTP id j13-20020a05640211cd00b00425ee4958cbmr1145388edw.157.1651265751805;
+        Fri, 29 Apr 2022 13:55:51 -0700 (PDT)
 Received: from [192.168.0.176] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id gv19-20020a1709072bd300b006f3ef214df4sm991090ejc.90.2022.04.29.13.54.00
+        by smtp.gmail.com with ESMTPSA id bo9-20020a0564020b2900b0042617ba63a5sm3310476edb.47.2022.04.29.13.55.51
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 29 Apr 2022 13:54:01 -0700 (PDT)
-Message-ID: <069b274d-1460-cd70-89f9-6abda4e3b4fa@linaro.org>
-Date:   Fri, 29 Apr 2022 22:54:00 +0200
+        Fri, 29 Apr 2022 13:55:51 -0700 (PDT)
+Message-ID: <c962111d-09ab-36dc-6c12-5324e0f090b7@linaro.org>
+Date:   Fri, 29 Apr 2022 22:55:50 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [PATCH v2 1/1] dt-bindings: rtc: mediatek: add mt6358 and mt6366
- compatible
+Subject: Re: [PATCH 2/2] dt-bindings: media: s5c73m3: Fix reset-gpio
+ descriptor
 Content-Language: en-US
-To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+To:     =?UTF-8?Q?Ma=c3=adra_Canal?= <maira.canal@usp.br>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Yuchen Huang <yuchen.huang@mediatek.com>
-References: <20220428092726.25814-1-allen-kh.cheng@mediatek.com>
- <20220428092726.25814-2-allen-kh.cheng@mediatek.com>
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Andrzej Hajda <andrzej.hajda@intel.com>
+Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220429123740.147703-1-maira.canal@usp.br>
+ <20220429123740.147703-3-maira.canal@usp.br>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220428092726.25814-2-allen-kh.cheng@mediatek.com>
+In-Reply-To: <20220429123740.147703-3-maira.canal@usp.br>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -81,15 +79,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/04/2022 11:27, Allen-KH Cheng wrote:
-> Add mt6358 and mt6366 compatible in devicetree-binding document for
-> MediaTek PMIC based RTC. mt6358 and mt6366 use same compatible data
-> to store RTC_WRTGR address offset.
+On 29/04/2022 14:37, Maíra Canal wrote:
+> The reset-gpios is described as xshutdown-gpios on the required
+> properties, as it is on the driver. Despite that, the device tree
+> example set the property 'reset-gpios' instead of the property
+> 'xshutdown-gpios'.
 > 
-> mt6358-rts should be used as fallback for mt6366-rtc.
+> Therefore, this patch updates the example to match the property specified
+> on the driver.
 > 
-> Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-> Signed-off-by: Yuchen Huang <yuchen.huang@mediatek.com>
+> Signed-off-by: Maíra Canal <maira.canal@usp.br>
 
 Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
