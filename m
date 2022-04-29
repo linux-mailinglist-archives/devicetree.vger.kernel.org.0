@@ -2,102 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E0456514FF5
-	for <lists+devicetree@lfdr.de>; Fri, 29 Apr 2022 17:53:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 91A47515005
+	for <lists+devicetree@lfdr.de>; Fri, 29 Apr 2022 17:56:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1378647AbiD2P4n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Apr 2022 11:56:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58750 "EHLO
+        id S1357479AbiD2P7k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Apr 2022 11:59:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38088 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1378302AbiD2P4l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Apr 2022 11:56:41 -0400
-Received: from mail-oi1-f182.google.com (mail-oi1-f182.google.com [209.85.167.182])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B627EC8670;
-        Fri, 29 Apr 2022 08:53:21 -0700 (PDT)
-Received: by mail-oi1-f182.google.com with SMTP id a10so8912532oif.9;
-        Fri, 29 Apr 2022 08:53:21 -0700 (PDT)
+        with ESMTP id S1378543AbiD2P7k (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Apr 2022 11:59:40 -0400
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4BDD883B06
+        for <devicetree@vger.kernel.org>; Fri, 29 Apr 2022 08:56:21 -0700 (PDT)
+Received: by mail-wr1-x42e.google.com with SMTP id k2so11353157wrd.5
+        for <devicetree@vger.kernel.org>; Fri, 29 Apr 2022 08:56:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=5YkjOkdMrTLUHQuUqGIwhkj1JaETsfvX42SuSe3Gl3c=;
+        b=wGWFMuyL8G17A8QeN70Nd7L1AvMS/VUBX4pCfSaT7DmNIFF525gn/kuapKDIobv/Dw
+         j5jQw1mgI/weBA4GjjkmHsSNmyubi0AwZS96UxUtt4/pYYvcuhXq8HYdOlrdmoi8ifU/
+         Zhfpg56YtVKU3nfZHEUlCczPySy0sqoBjEWh1Lz2R2yUdcc5fz6qSgxp7nFGFxOmSNGB
+         9oDQyIHz6swPKY3c/7xKNREwugmsRAy0LXI1uWrmtfbm6Hw1NvK90TcDko2Le9kySWX8
+         fE2PAAPuwklQm9ZADLAAq2+vYB5g7vpSqL9GnDr2kLLHWzkkBB52gjfDSSBMwzDUqiuY
+         z3EA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=AmUJmIbdvaqP+LwlAIntrN0W+MZsdnrLEyCto2dXyeE=;
-        b=nEobffE4R7s9vRVq6ZQSpscBRZoDorxeVjUR5V15ZTWDOg9zzn6d1x3jzz8apEraPw
-         MFz6nAo4IcOfdw7gGrbGOlBpAoCwJ9xwIFYzKJwhlFThwokYQeabMooHzWS88pp2dwLW
-         gh8E/TUQrQhpqUc/k1ZI21qMlZgpXL8WTnW1Z86sJoN7xy4OsSWLZwC4c5IDf8Euolr1
-         Z5DwY9rvze7bZ8dEh7dG2R14WJTYVJENFM9dTuVaLc/4Oe1AqdOv/cd62+N+axizotpT
-         RMcU1RqcmkH0pveFk8AnvdS5NRmvLoZqH0FuHsw2t70L1+fqzZIq2lSRAeEAfVTVgeub
-         Nzpw==
-X-Gm-Message-State: AOAM532c62whRCKPaP9YOcv2PIHq8QOYiu6rFQ6ICDKxbrQm0qJTwV2W
-        kR5wV0m2aofrNJ7gbvjg6A==
-X-Google-Smtp-Source: ABdhPJwAjpJx3Zh+JF96gGbdN1Imb3/OBtUK2z+PbCHHuqf2TqnacWjE8AIH07JUwOc45jhuqHDMSg==
-X-Received: by 2002:a05:6808:1929:b0:322:695e:3576 with SMTP id bf41-20020a056808192900b00322695e3576mr1728138oib.15.1651247600922;
-        Fri, 29 Apr 2022 08:53:20 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id n44-20020a056870822c00b000e686d13894sm3088678oae.46.2022.04.29.08.53.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 29 Apr 2022 08:53:20 -0700 (PDT)
-Received: (nullmailer pid 2344493 invoked by uid 1000);
-        Fri, 29 Apr 2022 15:53:16 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Sebastian Ene <sebastianene@google.com>
-Cc:     devicetree@vger.kernel.org, qperret@google.com, maz@kernel.org,
-        Arnd Bergmann <arnd@arndb.de>,
-        Rob Herring <robh+dt@kernel.org>, will@kernel.org,
-        linux-kernel@vger.kernel.org,
-        Dragan Cvetic <dragan.cvetic@xilinx.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-In-Reply-To: <20220429083030.3241640-2-sebastianene@google.com>
-References: <20220429083030.3241640-1-sebastianene@google.com> <20220429083030.3241640-2-sebastianene@google.com>
-Subject: Re: [PATCH v4 1/2] dt-bindings: vm-wdt: Add qemu,vm-watchdog compatible
-Date:   Fri, 29 Apr 2022 10:53:16 -0500
-Message-Id: <1651247596.116764.2344492.nullmailer@robh.at.kernel.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=5YkjOkdMrTLUHQuUqGIwhkj1JaETsfvX42SuSe3Gl3c=;
+        b=I7OEiTevwiD32WwfsRkqV91jWt+AVPUl32SASgLoAsRRb2LHDmIxEw8Z0F7ar/DKWe
+         ednWti9Fa8b9dQH8Wh4Jqy19FTauY2kTal4MVvPWEDYMyjB/fE29U1JsXLxG/1WLyxvH
+         AMvyMgRJz7MVMcPUEC9W2vcprf7zeR66ZX6etxwMlDxUykYOn0vLPSvcdgwn/eyLfI2D
+         F2ex82yEIDhWDAD+GAs1JaFWLpPftdy4eVURy/CL20CryMdPofgBRxdKSgoTidqA6uDZ
+         SmQjIhw+5JUXftPA0PPSjNkW3bybWUc6B3MrkM0AmCZ8pwDHiIuaZc3NSN90HG2P+gSW
+         rwBA==
+X-Gm-Message-State: AOAM532FcuAzgi/a93qipm3pyepjcpLEk4iObcKlOn83WY/Z9fs9zlWM
+        OVHFgCpe9xC8bTyylcbaL77bHA==
+X-Google-Smtp-Source: ABdhPJyg+nRz/2sRbQZ8PEJCtNIu7XO4S8NmiLPPoLyrEyCLFXywlMFZRqV1WgHniqt4fGttwAKXSw==
+X-Received: by 2002:a5d:6e0d:0:b0:207:a4d9:7950 with SMTP id h13-20020a5d6e0d000000b00207a4d97950mr30514142wrz.477.1651247779788;
+        Fri, 29 Apr 2022 08:56:19 -0700 (PDT)
+Received: from [192.168.86.34] (cpc90716-aztw32-2-0-cust825.18-1.cable.virginm.net. [86.26.103.58])
+        by smtp.googlemail.com with ESMTPSA id e3-20020a05600c4e4300b00393e40b41d6sm7023968wmq.15.2022.04.29.08.56.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 29 Apr 2022 08:56:19 -0700 (PDT)
+Message-ID: <7aa5d553-04ad-5198-153c-39a9375a6a12@linaro.org>
+Date:   Fri, 29 Apr 2022 16:56:18 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH v3 0/9] nvmem: sfp: binding updates and additions
+Content-Language: en-US
+To:     Sean Anderson <sean.anderson@seco.com>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Cc:     Li Yang <leoyang.li@nxp.com>, linux-kernel@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Michael Walle <michael@walle.cc>, Andrew Lunn <andrew@lunn.ch>
+References: <20220428181703.2194171-1-sean.anderson@seco.com>
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+In-Reply-To: <20220428181703.2194171-1-sean.anderson@seco.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 29 Apr 2022 08:30:31 +0000, Sebastian Ene wrote:
-> The stall detection mechanism allows to configure the expiration
-> duration and the internal counter clock frequency measured in Hz.
-> Add these properties in the schema.
+
+
+On 28/04/2022 19:16, Sean Anderson wrote:
+> This adds several properties to the Layerscape Security Fuse Processor
+> (SFP) necessary for writing. Although the Linux driver does not use
+> these bindings, I plan to use them in U-Boot [1]. It also adds a new
+> compatibles for Trust Architecture (TA) 2.1 devices. In addition, it
+> also adds an SFP binding for all TA 2.1 and 3.0 devices.
 > 
-> Signed-off-by: Sebastian Ene <sebastianene@google.com>
-> ---
->  .../devicetree/bindings/misc/vm-watchdog.yaml | 45 +++++++++++++++++++
->  1 file changed, 45 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/misc/vm-watchdog.yaml
+> I would like to get this series merged for 5.18. As noted in patch 2,
+> making the clock property mandatory is not an ABI break, but if this is
+> not applied then it would become an ABI break. The absolute minimum
+> patches to apply for this would be patches 2 and 5. The rest (including
+> the regmap changes) could be deferred if necessary.
+> 
+> [1] https://lore.kernel.org/u-boot/7c8e206a-cd40-2a77-6282-7f4bead2b13a@seco.com/T/#m591f8425b6f096ab3d54e6f7bd258e41cfa4c43b
+> 
+> Changes in v3:
+> - Update commit message to note that this binding has not yet been
+>    present in a relase, so it is OK to make otherwise breaking changes.
+> 
+> Changes in v2:
+> - Mention "regulator" in the description for ta-prog-sfp-supply
+> - Convert sfp driver to use regmap
+> - Fix various typos in commit messages
+> 
+> Sean Anderson (9):
+>    dt-bindings: nvmem: sfp: Fix typo
+>    dt-bindings: nvmem: sfp: Add clock properties
+>    dt-bindings: nvmem: sfp: Add TA_PROG_SFP supply
+>    dt-bindings: nvmem: sfp: Add compatible binding for TA 2.1 SFPs
+>    arm64: dts: ls1028a: Update SFP binding to include clock
+>    ARM: dts: layerscape: Add SFP binding for TA 2.1 devices
+>    ARM: dts: Add SFP binding for TA 3.0 devices
+>    nvmem: sfp: Use regmap
+>    nvmem: sfp: Add support for TA 2.1 devices
 > 
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+I have applied all the patches except 5/9, 6/9, and 7/9 dts patches 
+which need to go via dts maintainer tree.
 
-yamllint warnings/errors:
+--srini
 
-dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/misc/vm-watchdog.yaml: properties:timeout-sec: '$ref' should not be valid under {'const': '$ref'}
-	hint: Standard unit suffix properties don't need a type $ref
-	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/misc/vm-watchdog.yaml: ignoring, error in schema: properties: timeout-sec
-Documentation/devicetree/bindings/misc/vm-watchdog.example.dtb:0:0: /example-0/watchdog: failed to match any schema with compatible: ['qemu,vm-watchdog']
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/patch/
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+>   .../bindings/nvmem/fsl,layerscape-sfp.yaml    | 30 ++++++++++++++--
+>   arch/arm/boot/dts/ls1021a.dtsi                |  7 ++++
+>   .../arm64/boot/dts/freescale/fsl-ls1012a.dtsi |  8 +++++
+>   .../arm64/boot/dts/freescale/fsl-ls1028a.dtsi |  5 ++-
+>   .../arm64/boot/dts/freescale/fsl-ls1043a.dtsi |  8 +++++
+>   .../arm64/boot/dts/freescale/fsl-ls1046a.dtsi |  8 +++++
+>   .../arm64/boot/dts/freescale/fsl-ls1088a.dtsi |  8 +++++
+>   .../arm64/boot/dts/freescale/fsl-ls208xa.dtsi |  8 +++++
+>   .../arm64/boot/dts/freescale/fsl-lx2160a.dtsi |  8 +++++
+>   drivers/nvmem/Kconfig                         |  1 +
+>   drivers/nvmem/layerscape-sfp.c                | 36 ++++++++++++++-----
+>   11 files changed, 115 insertions(+), 12 deletions(-)
+> 
