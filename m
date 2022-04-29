@@ -2,152 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 53AB9515140
-	for <lists+devicetree@lfdr.de>; Fri, 29 Apr 2022 19:03:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A12E515152
+	for <lists+devicetree@lfdr.de>; Fri, 29 Apr 2022 19:06:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1378952AbiD2RGX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Apr 2022 13:06:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54366 "EHLO
+        id S1379410AbiD2RJc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Apr 2022 13:09:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33202 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1378535AbiD2RGW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Apr 2022 13:06:22 -0400
-Received: from mail-ot1-x32b.google.com (mail-ot1-x32b.google.com [IPv6:2607:f8b0:4864:20::32b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CD9E7563C;
-        Fri, 29 Apr 2022 10:03:04 -0700 (PDT)
-Received: by mail-ot1-x32b.google.com with SMTP id k25-20020a056830169900b00605f215e55dso2171680otr.13;
-        Fri, 29 Apr 2022 10:03:04 -0700 (PDT)
+        with ESMTP id S1379409AbiD2RJ3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Apr 2022 13:09:29 -0400
+Received: from alexa-out.qualcomm.com (alexa-out.qualcomm.com [129.46.98.28])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3DCC181EF0;
+        Fri, 29 Apr 2022 10:06:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=sender:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=cP3k5kUuoWg5JR2OnDd92i4XFuEk9RrNw2XTYs8+nHQ=;
-        b=J4UGuTtuXijrsWLpCIDKsVNcOlRwtCJB+Dge/RcmmqI3XLLu3oqSHHWB81RXtKxWbB
-         dcpdUVaQC8StWrr75rhw0N67W8IfmJhPl82AtQcM1Jy8rX7TOH7SeECOu8SPi0j2oSJC
-         lR/xnUZTW2ylPgn1Oae7xp4RGYamBuRHNvUNXM9rppG6rYva78Z/qha3rac5G/2qsRET
-         BVhO3O+6Lmnaq79GWLwLyroVm33bfNv4/u4EZeZ6PNoEgSK1eiK2KoH6AJXq4ABAgQt9
-         Scd8DnwZtGT4sNFK/pSRiyYE8OUqgxanKI92+Wz6fsT+OYDaWiMMLaedwooMeQJov58K
-         d1Sw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:sender:message-id:date:mime-version:user-agent
-         :subject:content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=cP3k5kUuoWg5JR2OnDd92i4XFuEk9RrNw2XTYs8+nHQ=;
-        b=lQyVhm3AfT7Z8Bw10zIu4QXAbJU9ooxw7yp9Ng8kezixDpnmLlseSOvLRIiitL/XOP
-         gD7yyrZr7EVu9RP+0KGA1vNSoKQ5W+xMA2LvxFSB/Ud1I1vJjbJd1iY5srTIz2P+e7pZ
-         n6ixNy0QB3nf+gHNAzMwcUOVVRv1CF3P33dV+RhKt7IiH3SXbpZiZEF1GvKhO3agTfG3
-         2CrIuCzHnLK2cwzdQOg7MGYkmzscuekJbGxltrhEaVI1dMuwN2Pa9FhdhZa3VcD69nyj
-         ukLTtbAro29eZU9Z+tNIPdFPJpjATj8RPXjJdmOGFPkCfVyH7bFRoyg+kySvGWdVoYE/
-         KSKg==
-X-Gm-Message-State: AOAM530feSzX2fWzZJ6NssArwDksAkTKq713U0/OEz7NtF9PJRswVbKg
-        sZvBoBc5o4X45Aaoh9g5slE=
-X-Google-Smtp-Source: ABdhPJzewteeoRai5yOxCPAaxMcsmX2oilokDlj7mjkEf3C0syrfnE0N29DHjdHjC/EZcdezN6J83Q==
-X-Received: by 2002:a05:6830:1081:b0:605:e78a:ea4d with SMTP id y1-20020a056830108100b00605e78aea4dmr99480oto.315.1651251783432;
-        Fri, 29 Apr 2022 10:03:03 -0700 (PDT)
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id j72-20020a9d17ce000000b005e6b89f9f54sm1285246otj.32.2022.04.29.10.03.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 29 Apr 2022 10:03:02 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <dbbe0db1-9a0d-4f14-f8e9-81fae4422d31@roeck-us.net>
-Date:   Fri, 29 Apr 2022 10:02:24 -0700
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1651251969; x=1682787969;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=4ARWYirKS/s1hqBNHV3+54sgJgHq1tuTOtfcH88au1k=;
+  b=Lw/GU2y9v0quz1dDM+iT1Ed5f3Wza7RWuS4mHrClLkh4iXFTObJWmoOC
+   FldsZxjskjmeja5VzPzvGA51DuEVvCfIXMf7OjF2i3pJsUDsQlDXoFjTR
+   mapzIATajOgV3FNQL+NH8b5aDefYifY/8egdI+DncJYxEIuh8kiAw9BBY
+   I=;
+Received: from ironmsg-lv-alpha.qualcomm.com ([10.47.202.13])
+  by alexa-out.qualcomm.com with ESMTP; 29 Apr 2022 10:06:07 -0700
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg-lv-alpha.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Apr 2022 10:06:07 -0700
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Fri, 29 Apr 2022 10:05:27 -0700
+Received: from mpubbise-linux.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Fri, 29 Apr 2022 10:05:24 -0700
+From:   Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
+To:     <ath11k@lists.infradead.org>
+CC:     <linux-wireless@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <robh@kernel.org>, <mka@chromium.org>,
+        Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
+Subject: [PATCH v7 0/9] add support for WCN6750
+Date:   Fri, 29 Apr 2022 22:34:53 +0530
+Message-ID: <20220429170502.20080-1-quic_mpubbise@quicinc.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH v4 2/2] misc: Add a mechanism to detect stalls on guest
- vCPUs
-Content-Language: en-US
-To:     Sebastian Ene <sebastianene@google.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc:     linux-kernel@vger.kernel.org,
-        Derek Kiernan <derek.kiernan@xilinx.com>,
-        Dragan Cvetic <dragan.cvetic@xilinx.com>,
-        Arnd Bergmann <arnd@arndb.de>, devicetree@vger.kernel.org,
-        qperret@google.com, will@kernel.org,
-        Rob Herring <robh+dt@kernel.org>
-References: <20220429083030.3241640-1-sebastianene@google.com>
- <20220429083030.3241640-3-sebastianene@google.com>
- <YmunAm8ooJkNCx5D@kroah.com> <YmuvQvuPF/mn5S4C@google.com>
-From:   Guenter Roeck <linux@roeck-us.net>
-In-Reply-To: <YmuvQvuPF/mn5S4C@google.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 4/29/22 02:26, Sebastian Ene wrote:
-> On Fri, Apr 29, 2022 at 10:51:14AM +0200, Greg Kroah-Hartman wrote:
->> On Fri, Apr 29, 2022 at 08:30:33AM +0000, Sebastian Ene wrote:
->>> This driver creates per-cpu hrtimers which are required to do the
->>> periodic 'pet' operation. On a conventional watchdog-core driver, the
->>> userspace is responsible for delivering the 'pet' events by writing to
->>> the particular /dev/watchdogN node. In this case we require a strong
->>> thread affinity to be able to account for lost time on a per vCPU.
->>>
->>> This part of the driver is the 'frontend' which is reponsible for
->>> delivering the periodic 'pet' events, configuring the virtual peripheral
->>> and listening for cpu hotplug events. The other part of the driver
->>> handles the peripheral emulation and this part accounts for lost time by
->>> looking at the /proc/{}/task/{}/stat entries and is located here:
->>> https://chromium-review.googlesource.com/c/chromiumos/platform/crosvm/+/3548817
->>>
->>> Signed-off-by: Sebastian Ene <sebastianene@google.com>
->>> ---
->>>   drivers/misc/Kconfig       |  12 +++
->>>   drivers/misc/Makefile      |   1 +
->>>   drivers/misc/vm-watchdog.c | 206 +++++++++++++++++++++++++++++++++++++
->>>   3 files changed, 219 insertions(+)
->>>   create mode 100644 drivers/misc/vm-watchdog.c
->>>
->>> diff --git a/drivers/misc/Kconfig b/drivers/misc/Kconfig
->>> index 2b9572a6d114..26c3a99e269c 100644
->>> --- a/drivers/misc/Kconfig
->>> +++ b/drivers/misc/Kconfig
->>> @@ -493,6 +493,18 @@ config OPEN_DICE
->>>   
->>>   	  If unsure, say N.
->>>   
->>> +config VM_WATCHDOG
->>> +	tristate "Virtual Machine Watchdog"
->>> +	select LOCKUP_DETECTOR
->>> +	help
->>> +	  Detect CPU locks on the virtual machine. This driver relies on the
->>> +	  hrtimers which are CPU-binded to do the 'pet' operation. When a vCPU
->>> +	  has to do a 'pet', it exits the guest through MMIO write and the
->>> +	  backend driver takes into account the lost ticks for this particular
->>> +	  CPU.
-> 
-> Hi,
-> 
->>
->> There's nothing to keep this tied to a virtual machine at all, right?
->> You are just relying on some iomem address to be updated, so it should
->> be a "generic_iomem_watchdog" driver as there's nothing specific to vms
->> at all from what I can tell.
->>
->> thanks,
->>
->> greg k-h
-> 
-> That's right although I might think of using the term "generic lockup detector"
+WCN6750 is non-DBS 2x2 11AX chipset. Unlike QCA6390/WCN6855 which
+are DBS (dual band simultaneous) solutions (2 LMACs), WCN6750 has a
+single LMAC supporting 2G, 5G and 6G bands. It can be operated only
+on one band at any given point.
 
-Agreed, that would be a much better name.
+WCN6750 is a PCIe device. Unlike other supported ATH11K PCIe devices
+which are directly attached to APSS (Application Processor SubSystem),
+WCN6750 is not attached to APSS, it is attached to the WPSS
+(Wireless Processor SubSystem) Q6 processor, the FW which runs on the
+Q6 processor will enumerate the PCIe device. Since APSS is unaware of
+such a device, it has to be registered as a platform device(AHB) to the
+kernel for device probing. Like other AHB devices, remoteproc APIs are
+used to boot up or shutdown of WCN6750.
 
-Guenter
+WCN6750 uses both AHB and PCIe ATH11K APIs for it's operation.
+It uses AHB APIs for device probe and booting of the remote processor.
+Once device is booted up, it uses ATH11K PCIe APIs for initialization
+and register access. Hence, it is referred as hybrid bus device in
+the rest of this series.
 
+Since the chip is enumerated by WPSS Q6, device information like
+BAR and BAR size is not known to the APSS processor. A new QMI message
+called device info QMI request will be sent to the target for fetching
+these details.
 
-> instead of watchdog. The only reason why I would keep "virtual machine"
-> word in, is that there is no actual hardware for this.
-> 
-> Thanks,
-> Seb
+STA and AP modes are supported; Basic connectivity and ping are
+verified in both the modes.
+
+An important point to note is that though WCN6750 is a PCIe device,
+it cannot be attached to any other platform except on Qualcomm
+Snapdragon SoCs due to the aforementioned reasons.
+
+Tested-on: WCN6750 hw1.0 AHB WLAN.MSL.1.0.1-00887-QCAMSLSWPLZ-1
+Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-01720.1-QCAHSPSWPL_V1_V2_SILICONZ_LITE-1
+Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.5.0.1-01100-QCAHKSWPL_SILICONZ-1
+Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.4.0.1-00192-QCAHKSWPL_SILICONZ-1
+
+Manikanta Pubbisetty (9):
+  dt: bindings: net: add bindings of WCN6750 for ath11k
+  ath11k: Move parameters in bus_params to hw_params
+  ath11k: Add HW params for WCN6750
+  ath11k: Add register access logic for WCN6750
+  ath11k: Fetch device information via QMI for WCN6750
+  ath11k: Add QMI changes for WCN6750
+  ath11k: HAL changes to support WCN6750
+  ath11k: Datapath changes to support WCN6750
+  ath11k: Add support for WCN6750 device
+---
+V7:
+ - Moved bus_params to hw_params (ath11k: Move parameters in bus_params to hw_params)
+ - Removed patch "ath11k: Add bus params for WCN6750"
+ - Minor commit log changes
+ - Rebased on ToT SHAID: cfd3557af835ad2ab2dc8d617ea69aae2067d411
+
+V6:
+ - Initialized the bus_params fields for AHB/PCI devices which were not previously initialized
+ - Commit log changes in the patch "ath11k: Datapath changes to support WCN6750"
+ - Rebased on ToT SHAID: 3637b73b8e805d011202e2bf10947f2d206695d4
+
+V5:
+ - Rebased on ToT SHAID: 01be26cde012478db958d9bde530877c46031e76
+ - Added Reviewed-by: tag to the DT binding patch
+
+V4:
+ - Addressed comments on DT binding (Matthias Kaehlcke <mka@chromium.org>)
+ - Rebased on ToT SHAID: 607c3dc2750382befa0f3f20063943bd058a2bc1
+
+V3:
+ - Patch series with 19 patches is split in 2 patch series, this is the second one
+ - Rebased on ToT SHAID: 7316a74e54318d0cd648242b18ea83cdef6dda96
+ - Addessed DT binding concerns
+ - PCI common code is moved to ath11k.ko
+ - Added a new HW param for WCN6750 which uses fixed firmware memory, this is
+   needed to differentiate WCN6750 from other ATH11K chipsets
+ - Modified the logic in patch "ath11k: Add support for WCN6750 device" based on the latest DT binding
+
+V2:
+ - Rebased on ToT
+ - Addressed comments on DT binding
+
+ .../bindings/net/wireless/qcom,ath11k.yaml    | 361 ++++++++++++------
+ drivers/net/wireless/ath/ath11k/Makefile      |   5 +-
+ drivers/net/wireless/ath/ath11k/ahb.c         | 153 +++++++-
+ drivers/net/wireless/ath/ath11k/core.c        | 125 +++++-
+ drivers/net/wireless/ath/ath11k/core.h        |  14 +-
+ drivers/net/wireless/ath/ath11k/hal.c         |  15 +-
+ drivers/net/wireless/ath/ath11k/hal.h         |  15 +-
+ drivers/net/wireless/ath/ath11k/hw.c          | 166 ++++++++
+ drivers/net/wireless/ath/ath11k/hw.h          |  18 +
+ drivers/net/wireless/ath/ath11k/pci.c         |  14 +-
+ drivers/net/wireless/ath/ath11k/pcic.c        |  77 ++--
+ drivers/net/wireless/ath/ath11k/qmi.c         | 242 ++++++++++--
+ drivers/net/wireless/ath/ath11k/qmi.h         |  26 +-
+ 13 files changed, 984 insertions(+), 247 deletions(-)
+
+-- 
+2.35.1
 
