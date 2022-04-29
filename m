@@ -2,135 +2,209 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6899851458D
+	by mail.lfdr.de (Postfix) with ESMTP id B0C1D51458E
 	for <lists+devicetree@lfdr.de>; Fri, 29 Apr 2022 11:40:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236487AbiD2Jne (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S1356614AbiD2Jne (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Fri, 29 Apr 2022 05:43:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48736 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48850 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1356614AbiD2Jnc (ORCPT
+        with ESMTP id S1356627AbiD2Jnc (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Fri, 29 Apr 2022 05:43:32 -0400
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4EF646241
-        for <devicetree@vger.kernel.org>; Fri, 29 Apr 2022 02:40:13 -0700 (PDT)
-Received: by mail-ed1-x52b.google.com with SMTP id z19so8390518edx.9
-        for <devicetree@vger.kernel.org>; Fri, 29 Apr 2022 02:40:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=wQ2UALvuYRSPgu0V8AOck6B5HmYCenVgKB78DwZPTwM=;
-        b=P7M2zfxVjN+5Wd8MumYafWJIMBGQ0Jc6nQZZS4Ge63LJncxEXgHQ36SOaRkLum/PnK
-         wrmfJI0E8VHoj6N1xEV7OwDo7oqIJkie9FcMbcneokGzkOxgiAXn6VvkoWAz7NVE5JjO
-         S+NtNVIsxxLkv4KkJntQteu+zi8lQ2CZLJkLs=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=wQ2UALvuYRSPgu0V8AOck6B5HmYCenVgKB78DwZPTwM=;
-        b=2nIs1lb8ZD8EbJKHHnwdTb4uYTDIpBBvoUnvaZAS5eq42ZfklMH0lgcOvKDHXOL1o0
-         yodyU5dnYt/z4RD3tvFFzSelK7NNdxtFqyEE4qZrtsjx5U8XF6okWlbVOiMgtQ5hWYMt
-         d/SS2zbPd3OdH+xHhJvFDZ7VlhcTkfOwlyBQXbTdYdQQM4Nai7plrfp5AA3eRx9M2I2u
-         i2S81G3vNAn9qfd6N7zpHfuNcj6OXyLyLA+MEQIPmho/BCMMfisYqILh2FTNYcSb2blF
-         4PkE34QXZWyAcslSBt0SaNAh2W5zfzc361VuRX2kvR7QsmPE4z7wElaJgsN6ZJHDdH2y
-         4UJg==
-X-Gm-Message-State: AOAM531r+0J0pXyogKAfjdBnxk2zALcPzPo1zAriOLtcX0YEQeB9TddK
-        /vkqGo9gvH/AYTmKz8JN+pGHPSi58jwLzkr525Pe2g==
-X-Google-Smtp-Source: ABdhPJwFHiC8+9gGoQCOlqBd9O/JCWXoLXnjI9sNzpOY4Sn0Ab0tEfaKdoFaOZoZ0O20swi8/cgfutmRm3BLt3bIscU=
-X-Received: by 2002:a05:6402:2920:b0:425:d7c7:41f with SMTP id
- ee32-20020a056402292000b00425d7c7041fmr31226896edb.370.1651225211659; Fri, 29
- Apr 2022 02:40:11 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220408162108.184583-1-jagan@amarulasolutions.com>
- <20220408162108.184583-11-jagan@amarulasolutions.com> <YlMeEqhkQ6HuCKFE@pendragon.ideasonboard.com>
-In-Reply-To: <YlMeEqhkQ6HuCKFE@pendragon.ideasonboard.com>
-From:   Jagan Teki <jagan@amarulasolutions.com>
-Date:   Fri, 29 Apr 2022 15:10:00 +0530
-Message-ID: <CAMty3ZDg9chHXv1ZBw86TePxFFFoobMGffFG1gN9btnfkUb5AQ@mail.gmail.com>
-Subject: Re: [PATCH 10/11] dt-bindings: display: exynos: dsim: Add NXP i.MX8MM support
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     Andrzej Hajda <andrzej.hajda@intel.com>,
-        Inki Dae <inki.dae@samsung.com>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Joonyoung Shim <jy0922.shim@samsung.com>,
-        Seung-Woo Kim <sw0312.kim@samsung.com>,
-        Kyungmin Park <kyungmin.park@samsung.com>,
-        Frieder Schrempf <frieder.schrempf@kontron.de>,
-        Fancy Fang <chen.fang@nxp.com>,
-        Tim Harvey <tharvey@gateworks.com>,
-        Michael Nazzareno Trimarchi <michael@amarulasolutions.com>,
-        Adam Ford <aford173@gmail.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Robert Foss <robert.foss@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        NXP Linux Team <linux-imx@nxp.com>,
-        linux-amarula <linux-amarula@amarulasolutions.com>
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26C3238AD;
+        Fri, 29 Apr 2022 02:40:10 -0700 (PDT)
+X-UUID: 144feaeb2add4d3b98ffa866a261fc3c-20220429
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.4,REQID:e54a13ef-e425-4c35-a96e-b8fa1264c69f,OB:0,LO
+        B:0,IP:0,URL:25,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACT
+        ION:release,TS:25
+X-CID-META: VersionHash:faefae9,CLOUDID:f0372d2f-6199-437e-8ab4-9920b4bc5b76,C
+        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,File:nil,QS:0,BEC:nil
+X-UUID: 144feaeb2add4d3b98ffa866a261fc3c-20220429
+Received: from mtkmbs11n2.mediatek.inc [(172.21.101.187)] by mailgw01.mediatek.com
+        (envelope-from <jiaxin.yu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 1916973249; Fri, 29 Apr 2022 17:40:04 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Fri, 29 Apr 2022 17:40:03 +0800
+Received: from mhfsdcap04 (10.17.3.154) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Fri, 29 Apr 2022 17:40:02 +0800
+Message-ID: <5e400f7ccb3b208a033e2ad8f220331851ff9c7e.camel@mediatek.com>
+Subject: Re: [v4 16/18] dt-bindings: mediatek: mt8186: add
+ mt8186-mt6366-da7219-max98357 document
+From:   Jiaxin Yu <jiaxin.yu@mediatek.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     <broonie@kernel.org>, <angelogioacchino.delregno@collabora.com>,
+        <devicetree@vger.kernel.org>, <alsa-devel@alsa-project.org>,
+        <linux-kernel@vger.kernel.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        <tzungbi@google.com>, <linux-mediatek@lists.infradead.org>,
+        <trevor.wu@mediatek.com>, <matthias.bgg@gmail.com>,
+        <aaronyu@google.com>, <julianbraha@gmail.com>,
+        <linux-arm-kernel@lists.infradead.org>
+Date:   Fri, 29 Apr 2022 17:40:02 +0800
+In-Reply-To: <YmqlNV31FrcAyuN9@robh.at.kernel.org>
+References: <20220428093355.16172-1-jiaxin.yu@mediatek.com>
+         <20220428093355.16172-17-jiaxin.yu@mediatek.com>
+         <YmqlNV31FrcAyuN9@robh.at.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,MAY_BE_FORGED,
+        SPF_HELO_NONE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Laurent,
-
-On Sun, Apr 10, 2022 at 11:42 PM Laurent Pinchart
-<laurent.pinchart@ideasonboard.com> wrote:
->
-> Hi Jagan,
->
-> Thank you for the patch.
->
-> On Fri, Apr 08, 2022 at 09:51:07PM +0530, Jagan Teki wrote:
-> > Samsung MIPI DSIM bridge can also be found in i.MX8MM/i.MX8MN SoC.
-> >
-> > Add dt-bingings for it.
-> >
-> > v1:
-> > * new patch
-> >
-> > Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
+On Thu, 2022-04-28 at 09:31 -0500, Rob Herring wrote:
+> On Thu, Apr 28, 2022 at 05:33:53PM +0800, Jiaxin Yu wrote:
+> > Add document for mt8186 board with mt6366, da7219 and max98357.
+> > 
+> > Signed-off-by: Jiaxin Yu <jiaxin.yu@mediatek.com>
 > > ---
-> >  Documentation/devicetree/bindings/display/exynos/exynos_dsim.txt | 1 +
-> >  1 file changed, 1 insertion(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/display/exynos/exynos_dsim.txt b/Documentation/devicetree/bindings/display/exynos/exynos_dsim.txt
-> > index be377786e8cd..5133d4d39190 100644
-> > --- a/Documentation/devicetree/bindings/display/exynos/exynos_dsim.txt
-> > +++ b/Documentation/devicetree/bindings/display/exynos/exynos_dsim.txt
-> > @@ -7,6 +7,7 @@ Required properties:
->
-> May I try and ask you to convert the DT bindings to YAML as part of this
-> series ? :-)
+> >  .../sound/mt8186-mt6366-da7219-max98357.yaml  | 71
+> > +++++++++++++++++++
+> >  1 file changed, 71 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/sound/mt8186-
+> > mt6366-da7219-max98357.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/sound/mt8186-mt6366-
+> > da7219-max98357.yaml
+> > b/Documentation/devicetree/bindings/sound/mt8186-mt6366-da7219-
+> > max98357.yaml
+> > new file mode 100644
+> > index 000000000000..55e8649f2aea
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/sound/mt8186-mt6366-da7219-
+> > max98357.yaml
+> > @@ -0,0 +1,71 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: 
+> > http://devicetree.org/schemas/sound/mt8186-mt6366-da7219-max98357.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Mediatek MT8186 with MT6366, DA7219 and MAX98357 ASoC sound
+> > card driver
+> > +
+> > +maintainers:
+> > +  - Jiaxin Yu <jiaxin.yu@mediatek.com>
+> > +
+> > +description:
+> > +  This binding describes the MT8186 sound card.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - mediatek,mt8186_mt6366_da7219_max98357_sound
+> 
+> s/_/-/
+> 
+Got it.
+> > +
+> > +  mediatek,platform:
+> > +    $ref: "/schemas/types.yaml#/definitions/phandle"
+> > +    description: The phandle of MT8186 ASoC platform.
+> > +
+> > +  headset-codec:
+> > +    type: object
+> 
+>        additionalProperties: false
+Ditto.
+> 
+> > +    properties:
+> > +      sound-dai:
+> > +        $ref: /schemas/types.yaml#/definitions/phandle
+> 
+> sound-dai already has a type, so drop and define how many entries.
+> 
+Ditto.
+> > +    required:
+> > +        - sound-dai
+> > +
 
-I thought the same and I did it for RFC
-https://patchwork.kernel.org/project/dri-devel/patch/20210704090230.26489-9-jagan@amarulasolutions.com/
+The indentation of this line is incorrect. I will fix it.
 
-But, I'm thinking of sending a separate patch series for updating yaml
-as the existing binding is old that it has some properties need to
-fix.
+> > +  playback-codecs:
+> > +    type: object
+> 
+>        additionalProperties: false
+> 
+Got it.
+> > +    properties:
+> > +      sound-dai:
+> > +        minItems: 2
+> > +        maxItems: 3
+> 
+> If more than 1 entry, then you need to define what each one is and
+> the 
+> order. Just like reg, interrupts, clocks, etc.
+> 
+Hi Rob,
 
-Let me know if you are okay or not for it?
+Should I correct them as below?
 
->
-> >               "samsung,exynos5410-mipi-dsi" /* for Exynos5410/5420/5440 SoCs */
-> >               "samsung,exynos5422-mipi-dsi" /* for Exynos5422/5800 SoCs */
-> >               "samsung,exynos5433-mipi-dsi" /* for Exynos5433 SoCs */
-> > +             "fsl,imx8mm-mipi-dsim" /* for i.MX8M Mini/Nano SoCs */
->
-> Should we have two different compatible strings for i.MX8MM and i.MX8MN
-> ?
+---
+properties:
+  sound-dai:
+    minItems: 2
+    maxItems: 3
+    items:
+      - items:
+          - description: xxx
+          - description: yyy
+          - description: zzz
 
-Yes, MN is fallback to MM. I will update in next series or add it as
-part of yaml conversion series.
+> > +        $ref: /schemas/types.yaml#/definitions/phandle-array
+> 
+> Drop
+> 
+Got it.
+> > +    required:
+> > +        - sound-dai
+> > +
+> > +additionalProperties: false
+> > +
+> > +required:
+> > +  - compatible
+> > +  - mediatek,platform
+> > +  - headset-codec
+> > +  - playback-codecs
+> > +
+> > +examples:
+> > +  - |
+> > +
+> > +    sound: mt8186-sound {
+> > +        compatible =
+> > "mediatek,mt8186_mt6366_da7219_max98357_sound";
+> > +        mediatek,platform = <&afe>;
+> > +        pinctrl-names = "aud_clk_mosi_off",
+> > +                        "aud_clk_mosi_on";
+> > +        pinctrl-0 = <&aud_clk_mosi_off>;
+> > +        pinctrl-1 = <&aud_clk_mosi_on>;
+> > +
+> > +        headset-codec {
+> > +            sound-dai = <&da7219>;
+> > +        };
+> > +
+> > +        playback-codecs {
+> > +            sound-dai = <&anx_bridge_dp>,
+> > +                        <&max98357a>;
+> > +        };
+> > +    };
+> > +
+> > +...
+> > -- 
+> > 2.25.1
+> > 
 
-Thanks,
-Jagan.
