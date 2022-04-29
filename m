@@ -2,85 +2,180 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6DEEE515505
-	for <lists+devicetree@lfdr.de>; Fri, 29 Apr 2022 21:58:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4B04E515517
+	for <lists+devicetree@lfdr.de>; Fri, 29 Apr 2022 22:03:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1380444AbiD2UBO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Apr 2022 16:01:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33646 "EHLO
+        id S1351229AbiD2UGT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Apr 2022 16:06:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43196 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1356279AbiD2UBN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Apr 2022 16:01:13 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9EC5BA7766;
-        Fri, 29 Apr 2022 12:57:53 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: nfraprado)
-        with ESMTPSA id C30DE1F4696F
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1651262272;
-        bh=aoTbCcZZ92qztLcOxHun78cIUtr7XMDInx4IzvkcyKk=;
-        h=From:To:Cc:Subject:Date:From;
-        b=AQbAGPd/98luGnCQpTydxXUBRqg2ogAU9Idgb+W7cXtWtSkMeVLrb2lqcl7pP8oJ2
-         B/I6qLiFNyA1UrFCLlEVtv3K+tEC/kdR/BzOyYBdD0TyoUN3/8+/bYvzZeDW1cmbvE
-         rmaMtHrrIQlOES6uwiKDIW1SJ8HLqd9TshZAeXpHYzbifrQNC8WOBZEQZ/ynjyUB7I
-         /ZyxjqUYTLJzVnR+EW3uL5dxTWXDpgRrdZOZzesFeA+VVc9cilfqfErZjWXELjFLId
-         pw/S45N6Vmxo2uYXNCOeLECVLq9Np0FRBsIkKuL77aYOwaQWxDulP26vWVkjonkpLo
-         kN4p3BaHSMuqw==
-From:   =?UTF-8?q?N=C3=ADcolas=20F=2E=20R=2E=20A=2E=20Prado?= 
-        <nfraprado@collabora.com>
-To:     Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, kernel@collabora.com,
-        =?UTF-8?q?N=C3=ADcolas=20F=2E=20R=2E=20A=2E=20Prado?= 
-        <nfraprado@collabora.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org
-Subject: [PATCH] arm64: dts: mediatek: Add fallback compatible for mt8192's flash
-Date:   Fri, 29 Apr 2022 15:57:45 -0400
-Message-Id: <20220429195745.2203461-1-nfraprado@collabora.com>
-X-Mailer: git-send-email 2.36.0
+        with ESMTP id S1378860AbiD2UGS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Apr 2022 16:06:18 -0400
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 871FF5E15A
+        for <devicetree@vger.kernel.org>; Fri, 29 Apr 2022 13:02:58 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id x33so15921017lfu.1
+        for <devicetree@vger.kernel.org>; Fri, 29 Apr 2022 13:02:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=KQmxhazXdwnOp329/F1Ja7jyqqhUxCgPrYWsGjeTXIc=;
+        b=iXmqBaaXqlKaQSe9e+eDS2qIkibjeUzGFeUyCfxVi9CLrBblDdj08s6+qhf8y/kvrK
+         28+qhq1ZnMJlMjY0o9tkaSl6NwwE649lA/mMOQfTzF3LOy1sxE+CWrvgdbDY0n53WMbF
+         s2EahFFoFkBXooc1kbqtJdr96HYtUdn0lhn6k9veI0zoavK61y0lrP4oZsNKiRVVjZLR
+         o+SzC4RIqNPy8GNEGZ5rBzN5kSNhaxtym2oZ6uB1AybXbUfUn0/IPdf9c4zldmPckDNf
+         RmhZnJOtjTRc5ZYYH+kg2dFMf4j41EnGdrXPUmlpZnNTP9PW369qqsfvGCsod5QZmvZb
+         KgEQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=KQmxhazXdwnOp329/F1Ja7jyqqhUxCgPrYWsGjeTXIc=;
+        b=xF/ZFsgVCL4C9J+VuxLIEdC/be2hLZqq7VeTFym9Qr7toCKH0VC8g/58AjbsGcm1pv
+         Y5QOHybUbvI832DI4blqQRzaf0sjNJz3zTdJ7U7r2V9CPhdh/hKZaWGWGNmhjPqfUkX8
+         OP7IH+JVh8gPb5miP+AvCPatCpgZFy5G2tgayK2cK13hKi72I6KxLAobFEfQOzRm89yZ
+         LRhHBbG/gPSbYNLWCpOhD97ruyWpW2MeyJnnVZVgzkh99Fs1wAsHQw+bXcuMpPAR4QhS
+         ykC71eYmnOJ6VkL1IVp/rKONpcKJF7Ex9maCYzYSMGGGU0a8mSvZV/eKI+ZZc1IRQznS
+         H5EQ==
+X-Gm-Message-State: AOAM533+aENJDGQw/Fe8bfwB/545xyiKRGaagEdhuEeTTvgpd0d3F9LP
+        Q2H2+oMhqxQct2SUQWHsRtpKNA==
+X-Google-Smtp-Source: ABdhPJzTflMpQAiH/7EilkMJgrNGIiLGV1NMfKNCAQP/p7Nw14KfwZcLtAZpNzfHS0uD61orjYUdDw==
+X-Received: by 2002:a19:5f05:0:b0:46b:a5f2:5fab with SMTP id t5-20020a195f05000000b0046ba5f25fabmr647096lfb.8.1651262576888;
+        Fri, 29 Apr 2022 13:02:56 -0700 (PDT)
+Received: from [192.168.1.211] ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id v16-20020ac25590000000b0047255d211d4sm11889lfg.259.2022.04.29.13.02.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 29 Apr 2022 13:02:56 -0700 (PDT)
+Message-ID: <522388b9-310d-25dd-1688-4bb715b594c0@linaro.org>
+Date:   Fri, 29 Apr 2022 23:02:55 +0300
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        UNPARSEABLE_RELAY autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH v4 2/8] dt-bindings: pci/qcom,pcie: resets are not defined
+ for msm8996
+Content-Language: en-GB
+To:     Bjorn Helgaas <helgaas@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Stanimir Varbanov <svarbanov@mm-sol.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+References: <20220428143508.GA12269@bhelgaas>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <20220428143508.GA12269@bhelgaas>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The dt-binding for Mediatek's SPI NOR flash controller expects a mt8173
-fallback compatible for mt8192, so add it in mt8192.dtsi.
+On 28/04/2022 17:35, Bjorn Helgaas wrote:
+> Unlike the other patches in this series, this subject line mentions a
+> problem (actually, I don't even know whether it's a *problem* or just
+> a statement of fact), but doesn't say what this patch does.
+> 
+> Based on the patch, I guess this does something like:
+> 
+>    Require resets except for MSM8996/APQ8096
 
-The driver already sets custom data based on the mt8192 compatible, so
-this fallback compatible won't be used and is added purely to suppress
-the dt-binding warning.
+Ack
 
-Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+> 
+> I don't know whether you're changing the prefix convention for this
+> file, or just didn't look to see how it was done in the past, but it's
+> nice to have some consistency:
 
----
 
- arch/arm64/boot/dts/mediatek/mt8192.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Ack
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-index 26dbe9ecc528..32a836105ea7 100644
---- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-@@ -896,7 +896,7 @@ pcie_intc0: interrupt-controller {
- 		};
- 
- 		nor_flash: spi@11234000 {
--			compatible = "mediatek,mt8192-nor";
-+			compatible = "mediatek,mt8192-nor", "mediatek,mt8173-nor";
- 			reg = <0 0x11234000 0 0xe0>;
- 			interrupts = <GIC_SPI 431 IRQ_TYPE_LEVEL_HIGH 0>;
- 			clocks = <&topckgen CLK_TOP_SFLASH_SEL>,
+> 
+>    $ git log --oneline Documentation/devicetree/bindings/pci/qcom,pcie.txt
+>    f52d2a0f0d32 dt-bindings: pci: qcom: Document PCIe bindings for SM8150 SoC
+>    dddb4efa5192 dt-bindings: pci: qcom: Document PCIe bindings for SM8450
+>    45a3ec891370 PCI: qcom: Add sc8180x compatible
+>    320e10986ef7 dt-bindings: PCI: update references to Designware schema
+>    9f7368ff1210 dt-bindings: pci: qcom: Document PCIe bindings for IPQ6018 SoC
+>    c9f04600026f dt-bindings: PCI: qcom: Document ddrss_sf_tbu clock for sm8250
+>    458168247ccc dt-bindings: pci: qcom: Document PCIe bindings for SM8250 SoC
+>    d511580ea9c2 dt-bindings: PCI: qcom: Add ipq8064 rev 2 variant
+>    b11b8cc161de dt-bindings: PCI: qcom: Add ext reset
+>    736ae5c91712 dt-bindings: PCI: qcom: Add missing clks
+>    5d28bee7c91e dt-bindings: PCI: qcom: Add support for SDM845 PCIe
+>    29a50257a9d6 dt-bindings: PCI: qcom: Add QCS404 to the binding
+>    f625b1ade245 PCI: qcom: Add missing supplies required for msm8996
+>    8baf0151cd4b dt-bindings: PCI: qcom: Add support for IPQ8074
+>    90d52d57ccac PCI: qcom: Add support for IPQ4019 PCIe controller
+>    d0491fc39bdd PCI: qcom: Add support for MSM8996 PCIe controller
+>    845d5ca26647 PCI: qcom: Document PCIe devicetree bindings
+> 
+> Including both "pci" and "pcie" in the prefix seems like overkill.
+> 
+> On Thu, Apr 28, 2022 at 02:41:07PM +0300, Dmitry Baryshkov wrote:
+>> On MSM8996/APQ8096 platforms the PCIe controller doesn't have any
+>> resets. So move the requirement stance under the corresponding if
+>> condition.
+> 
+> s/stance/stanza/
+> 
+>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>> ---
+>>   .../devicetree/bindings/pci/qcom,pcie.yaml         | 14 ++++++++++++--
+>>   1 file changed, 12 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+>> index 16f765e96128..ce4f53cdaba0 100644
+>> --- a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+>> +++ b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+>> @@ -114,8 +114,6 @@ required:
+>>     - interrupt-map
+>>     - clocks
+>>     - clock-names
+>> -  - resets
+>> -  - reset-names
+>>   
+>>   allOf:
+>>     - $ref: /schemas/pci/pci-bus.yaml#
+>> @@ -504,6 +502,18 @@ allOf:
+>>         required:
+>>           - power-domains
+>>   
+>> +  - if:
+>> +      not:
+>> +        properties:
+>> +          compatibles:
+>> +            contains:
+>> +              enum:
+>> +                - qcom,pcie-msm8996
+>> +    then:
+>> +      required:
+>> +        - resets
+>> +        - reset-names
+>> +
+>>   unevaluatedProperties: false
+>>   
+>>   examples:
+>> -- 
+>> 2.35.1
+>>
+
+
 -- 
-2.36.0
-
+With best wishes
+Dmitry
