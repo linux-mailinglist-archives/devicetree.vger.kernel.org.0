@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 71F2F515CC4
-	for <lists+devicetree@lfdr.de>; Sat, 30 Apr 2022 14:20:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C1E18515CD7
+	for <lists+devicetree@lfdr.de>; Sat, 30 Apr 2022 14:20:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1356756AbiD3MWr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 30 Apr 2022 08:22:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44070 "EHLO
+        id S1357321AbiD3MWm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 30 Apr 2022 08:22:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44088 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1355307AbiD3MWk (ORCPT
+        with ESMTP id S1356027AbiD3MWk (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Sat, 30 Apr 2022 08:22:40 -0400
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26CE16AA5D
-        for <devicetree@vger.kernel.org>; Sat, 30 Apr 2022 05:19:15 -0700 (PDT)
-Received: by mail-ej1-x62b.google.com with SMTP id bv19so19967721ejb.6
-        for <devicetree@vger.kernel.org>; Sat, 30 Apr 2022 05:19:14 -0700 (PDT)
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 578FDAAB5E
+        for <devicetree@vger.kernel.org>; Sat, 30 Apr 2022 05:19:16 -0700 (PDT)
+Received: by mail-ej1-x630.google.com with SMTP id k23so19984901ejd.3
+        for <devicetree@vger.kernel.org>; Sat, 30 Apr 2022 05:19:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=L79GI+mT0jZQe54/uvCkpP4Pnwj1w6LGRYKkkvxF96E=;
-        b=HxLT770PhJNrsAs8v8YlsGWebhs8S4BnSmWMIFs/ZbsI/Jn27vYSQDk3FKthJXZ0Uf
-         bjPaQEx33epDGBipq3j06t0haEkMh72jyofUPXvF2p6jmgtaXgeOgD3nsKWshfflrcOh
-         MSAAWvW0nbpk8wEd6qv+ZkpfUfCvQtq8YPKL+WFrNi4N3X2BjNoZWNLodDXBM3eYySMv
-         OYqBcpUOCwR9Z0U7Y5BgkFkN255uDGUl4TeNxDHVo3kkjwzeaiTmg12h6rXQYdTBz0jq
-         oeUrJgwIHp1zXrcRdsBsE1qt2xOp/kLwKQ+hVSaEn5ssNWGiZloWqK1AqIB2EztwzrMT
-         qrtA==
+        bh=0RO6TI8wBg0VQ3uuEGgiZnjVHvc3YXcFjypcH3ATw2o=;
+        b=kqy3uhmr7+EaED713/fDAmt7SFPSxLznugLtOtmyrNbjgasz+7wrOADQox+8vUI89z
+         6YMMPfgafPSBy++xyIlIQUuV11Op8O2hL4MDHc75xqy++EU1RkBpnf/vo109ol3Gf8I0
+         q2MrG2ywCYpbfg99f48CPeLixRlIyCZLJdqbNW7jCFATs6X4SQyWNSgxot/LsZdwWYYM
+         Tfjw3ctAa9mguyREMbQWXmiNeaRGmvYkFxDKsrTvc1m2xGYZXc0wCMwABJAbRedZ4L0/
+         8u/z48FMI/RhLpiR8GmgSCTVvGgZ/l0VpHvYyDIlFUvUwqkypK4YdnCtbPgeVJYwc2LJ
+         LUsA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=L79GI+mT0jZQe54/uvCkpP4Pnwj1w6LGRYKkkvxF96E=;
-        b=FmuotUAzyfUohRHJg4GX+A6sUr61KtxKNU7XpoVzMsu94UuhrvT9DzYJ6uxWefj4Nu
-         AmJGVa48UQXUftXHNia940cpQwuUZCSKoYb+0RfgSGEc0/QYnzXeHp/vWLG1cfuqkuuG
-         oUr7RAYTc4uvPwJHzsSbZYWfAQXMiqXHHaxlW3OtJbsMFGMPN8WSL0PQiR19yvLj1jiL
-         uQYkv4b/Eyqn5o983QE0teNJj/HXMhYuh+AEGMTJyXQ/vcXpQ6kzzTVmTZh2RNZTzMNT
-         l46tW4OSUgmp41p9pNOVnGAYBSlFP1YbHjNT1YeB0Sj9ZpRhJcVFwMj6YocCidvGQIp/
-         MA6A==
-X-Gm-Message-State: AOAM5305fNYm3zySleNfMRw8Bbdgks+ZoRA9l9Q6HCVUWbgO/eykDr84
-        LZP96OIs9IpHjvJJhgaEhD1RFQ==
-X-Google-Smtp-Source: ABdhPJxBWAy+KPw1btN/yoFrxMnEtYQn5s298QGNRXgo/AWBDYHHnv00Ytwh/0II49sGeZIR/EnulA==
-X-Received: by 2002:a17:907:8a11:b0:6df:db0a:e5ab with SMTP id sc17-20020a1709078a1100b006dfdb0ae5abmr3728539ejc.528.1651321153664;
-        Sat, 30 Apr 2022 05:19:13 -0700 (PDT)
+        bh=0RO6TI8wBg0VQ3uuEGgiZnjVHvc3YXcFjypcH3ATw2o=;
+        b=YsuVQkU90vhv5FLzhZ/NmROBfNNN+ruAHqKjMEf1uEEVSD5eUZs8chIeYmCgY8TyK/
+         IAxVOkpCu/xN4EXuDfoy531J+95DKmLPBbDjvJzWrDtGo5CZwwuEcpSjdiYzPEIn6zuJ
+         nTQPt3iLSIqiud50sUrk+pVcXB68lFr0bejCDK2SCze5R5YzwV6jGd8dkacVNLTj8++U
+         6fkxrrtLqeqYqnaaPLDAVUKTbjJFC4ThbZTbgHsU9xb+jUwZ4RtHFVJKqqF8wXcz/JKs
+         rACubZNdZ/Qi1dC3Obqw0Q/ZH0vO9hJJGWwKD5UotOucO6ebdE096b+Zb1ypwTNAVQeD
+         o9Nw==
+X-Gm-Message-State: AOAM533VIbswps0XCjQgSfVJcdZxfquS1RkQ0VqLgbLcD9i6ZM0fXES4
+        UU5sKL1FqzZopu9aECmDDz4xRQ==
+X-Google-Smtp-Source: ABdhPJyYGqhym5nLmyrbCINZFxIxRIbBtXjym7LVAEMHv/1/Mi9Xk1QiTAgjU6cRbZExeUPQIIkQUA==
+X-Received: by 2002:a17:907:962a:b0:6f3:b0f5:5db9 with SMTP id gb42-20020a170907962a00b006f3b0f55db9mr3680869ejc.644.1651321154857;
+        Sat, 30 Apr 2022 05:19:14 -0700 (PDT)
 Received: from localhost.localdomain (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id c26-20020a056402159a00b0042617ba63d1sm4059091edv.91.2022.04.30.05.19.12
+        by smtp.gmail.com with ESMTPSA id c26-20020a056402159a00b0042617ba63d1sm4059091edv.91.2022.04.30.05.19.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 30 Apr 2022 05:19:13 -0700 (PDT)
+        Sat, 30 Apr 2022 05:19:14 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -63,9 +63,9 @@ To:     Rob Herring <robh+dt@kernel.org>,
         linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Rob Herring <robh@kernel.org>
-Subject: [PATCH v2 4/9] arm64: dts: juno: drop useless 'dma-channels/requests' properties
-Date:   Sat, 30 Apr 2022 14:18:57 +0200
-Message-Id: <20220430121902.59895-5-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v2 5/9] arm64: dts: broadcom: drop useless 'dma-channels/requests' properties
+Date:   Sat, 30 Apr 2022 14:18:58 +0200
+Message-Id: <20220430121902.59895-6-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.32.0
 In-Reply-To: <20220430121902.59895-1-krzysztof.kozlowski@linaro.org>
 References: <20220430121902.59895-1-krzysztof.kozlowski@linaro.org>
@@ -73,8 +73,7 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -88,28 +87,39 @@ property names which causes DT schema check failures - the bindings
 documented 'dma-channels' and 'dma-requests' properties without leading
 hash sign.
 
-Another reason is that the number of requests also does not seem right
-(should be 8).
-
 Reported-by: Rob Herring <robh@kernel.org>
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm64/boot/dts/arm/juno-base.dtsi | 2 --
- 1 file changed, 2 deletions(-)
+ arch/arm64/boot/dts/broadcom/northstar2/ns2.dtsi    | 2 --
+ arch/arm64/boot/dts/broadcom/stingray/stingray.dtsi | 2 --
+ 2 files changed, 4 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/arm/juno-base.dtsi b/arch/arm64/boot/dts/arm/juno-base.dtsi
-index 4f40a5c8f565..065381c1cbf5 100644
---- a/arch/arm64/boot/dts/arm/juno-base.dtsi
-+++ b/arch/arm64/boot/dts/arm/juno-base.dtsi
-@@ -829,8 +829,6 @@ dma-controller@7ff00000 {
- 		compatible = "arm,pl330", "arm,primecell";
- 		reg = <0x0 0x7ff00000 0 0x1000>;
- 		#dma-cells = <1>;
--		#dma-channels = <8>;
--		#dma-requests = <32>;
- 		interrupts = <GIC_SPI 88 IRQ_TYPE_LEVEL_HIGH>,
- 			     <GIC_SPI 89 IRQ_TYPE_LEVEL_HIGH>,
- 			     <GIC_SPI 90 IRQ_TYPE_LEVEL_HIGH>,
+diff --git a/arch/arm64/boot/dts/broadcom/northstar2/ns2.dtsi b/arch/arm64/boot/dts/broadcom/northstar2/ns2.dtsi
+index f59fa3979a04..fda97c47f4e9 100644
+--- a/arch/arm64/boot/dts/broadcom/northstar2/ns2.dtsi
++++ b/arch/arm64/boot/dts/broadcom/northstar2/ns2.dtsi
+@@ -289,8 +289,6 @@ dma0: dma-controller@61360000 {
+ 				     <GIC_SPI 215 IRQ_TYPE_LEVEL_HIGH>,
+ 				     <GIC_SPI 216 IRQ_TYPE_LEVEL_HIGH>;
+ 			#dma-cells = <1>;
+-			#dma-channels = <8>;
+-			#dma-requests = <32>;
+ 			clocks = <&iprocslow>;
+ 			clock-names = "apb_pclk";
+ 		};
+diff --git a/arch/arm64/boot/dts/broadcom/stingray/stingray.dtsi b/arch/arm64/boot/dts/broadcom/stingray/stingray.dtsi
+index 7f1b8efd0883..09d4aa8ae1d6 100644
+--- a/arch/arm64/boot/dts/broadcom/stingray/stingray.dtsi
++++ b/arch/arm64/boot/dts/broadcom/stingray/stingray.dtsi
+@@ -556,8 +556,6 @@ dma0: dma-controller@310000 {
+ 				     <GIC_SPI 200 IRQ_TYPE_LEVEL_HIGH>,
+ 				     <GIC_SPI 201 IRQ_TYPE_LEVEL_HIGH>;
+ 			#dma-cells = <1>;
+-			#dma-channels = <8>;
+-			#dma-requests = <32>;
+ 			clocks = <&hsls_div2_clk>;
+ 			clock-names = "apb_pclk";
+ 			iommus = <&smmu 0x6000 0x0000>;
 -- 
 2.32.0
 
