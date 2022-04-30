@@ -2,39 +2,41 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 775BC515E00
-	for <lists+devicetree@lfdr.de>; Sat, 30 Apr 2022 16:06:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B6E5515E09
+	for <lists+devicetree@lfdr.de>; Sat, 30 Apr 2022 16:07:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242323AbiD3OJ1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 30 Apr 2022 10:09:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40126 "EHLO
+        id S1382436AbiD3OKw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 30 Apr 2022 10:10:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46666 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242289AbiD3OJ0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 30 Apr 2022 10:09:26 -0400
+        with ESMTP id S235555AbiD3OKv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 30 Apr 2022 10:10:51 -0400
 Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F2D366216;
-        Sat, 30 Apr 2022 07:06:04 -0700 (PDT)
-Received: from wf0416.dip.tu-dresden.de ([141.76.181.160] helo=phil.dip.tu-dresden.de)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F4A866F83;
+        Sat, 30 Apr 2022 07:07:28 -0700 (PDT)
+Received: from wf0416.dip.tu-dresden.de ([141.76.181.160] helo=phil.localnet)
         by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
         (envelope-from <heiko@sntech.de>)
-        id 1nknjT-0001Wl-JD; Sat, 30 Apr 2022 16:05:59 +0200
+        id 1nknks-0001ZV-O8; Sat, 30 Apr 2022 16:07:26 +0200
 From:   Heiko Stuebner <heiko@sntech.de>
-To:     linux-rockchip@lists.infradead.org,
-        Samuel Holland <samuel@sholland.org>
-Cc:     Heiko Stuebner <heiko@sntech.de>,
+To:     Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Michael Riesch <michael.riesch@wolfvision.net>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 0/2] arm64: dts: rockchip: pinenote: Enable more hardware
-Date:   Sat, 30 Apr 2022 16:05:55 +0200
-Message-Id: <165132754299.647302.3726155341085702212.b4-ty@sntech.de>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220413035614.31045-1-samuel@sholland.org>
-References: <20220413035614.31045-1-samuel@sholland.org>
+        Liang Chen <cl@rock-chips.com>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Frank Wunderlich <frank-w@public-files.de>
+Subject: Re: [PATCH 1/3] arm64: dts: rockchip: enable otg/drd operation of usb_host0_xhci in rk356x
+Date:   Sat, 30 Apr 2022 16:07:25 +0200
+Message-ID: <3229434.5fSG56mABF@phil>
+In-Reply-To: <ca670161-7133-631e-f4b6-b48c8fde669b@wolfvision.net>
+References: <20220425133502.405512-1-michael.riesch@wolfvision.net> <2087500.ItEYzMA54p@archbook> <ca670161-7133-631e-f4b6-b48c8fde669b@wolfvision.net>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_NONE,
         T_SPF_HELO_TEMPERROR autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -43,24 +45,47 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 12 Apr 2022 22:56:12 -0500, Samuel Holland wrote:
-> This series adds support for some features in the PineNote that had
-> devicetree bindings or SoC support merged since the board was added.
+Am Donnerstag, 28. April 2022, 15:24:09 CEST schrieb Michael Riesch:
+> Hi Nicolas,
 > 
+> On 4/28/22 13:15, Nicolas Frattaroli wrote:
+> > On Montag, 25. April 2022 15:35:00 CEST Michael Riesch wrote:
+> >> This USB 3.0 controller is capable of OTG/DRD operation. Enable it in the
+> >> device tree.
+> >>
+> >> Signed-off-by: Michael Riesch <michael.riesch@wolfvision.net>
+> >> ---
+> >>  arch/arm64/boot/dts/rockchip/rk356x.dtsi | 2 +-
+> >>  1 file changed, 1 insertion(+), 1 deletion(-)
+> >>
+> >> diff --git a/arch/arm64/boot/dts/rockchip/rk356x.dtsi b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+> >> index 55e6dcb948cc..f611aaf2d238 100644
+> >> --- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+> >> +++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+> >> @@ -266,7 +266,7 @@ usb_host0_xhci: usb@fcc00000 {
+> >>  			 <&cru ACLK_USB3OTG0>;
+> >>  		clock-names = "ref_clk", "suspend_clk",
+> >>  			      "bus_clk";
+> >> -		dr_mode = "host";
+> >> +		dr_mode = "otg";
+> >>  		phy_type = "utmi_wide";
+> >>  		power-domains = <&power RK3568_PD_PIPE>;
+> >>  		resets = <&cru SRST_USB3OTG0>;
+> >>
+> > 
+> > Hi Michael,
+> > 
+> > according to official specs[1], only the RK3568 is capable of using the
+> > USB 3.0 controller in OTG mode. For the RK3566, OTG is USB 2.0, if I
+> > understand this correctly.
+> > 
+> > So I think this should be an override in rk3568.dtsi.
 > 
-> Samuel Holland (2):
->   arm64: dts: rockchip: pinenote: Add accelerometer
->   arm64: dts: rockchip: pinenote: Add USB and TCPC
-> 
-> [...]
+> Thanks for pointing that out -- will change in v2 (I'll wait a bit,
+> though, as I hope that patches 2 and 3 will be applied as they are ;-)
 
-Applied, thanks!
+that can be arranged ;-)
 
-[1/2] arm64: dts: rockchip: pinenote: Add accelerometer
-      commit: 8d411bebd4538a9750db175c030d6083d5210d7c
-[2/2] arm64: dts: rockchip: pinenote: Add USB and TCPC
-      commit: 87a267b4af09477721e9d2bad63555f0dc49d08a
+Heiko
 
-Best regards,
--- 
-Heiko Stuebner <heiko@sntech.de>
+
