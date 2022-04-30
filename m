@@ -2,354 +2,208 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 779F8516020
-	for <lists+devicetree@lfdr.de>; Sat, 30 Apr 2022 21:34:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 22CE051607C
+	for <lists+devicetree@lfdr.de>; Sat, 30 Apr 2022 22:51:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244632AbiD3ThZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 30 Apr 2022 15:37:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58108 "EHLO
+        id S245082AbiD3Uy3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 30 Apr 2022 16:54:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35026 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244619AbiD3ThY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 30 Apr 2022 15:37:24 -0400
-Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D93E74AE22
-        for <devicetree@vger.kernel.org>; Sat, 30 Apr 2022 12:34:01 -0700 (PDT)
-Received: by mail-lj1-x232.google.com with SMTP id 16so14149777lju.13
-        for <devicetree@vger.kernel.org>; Sat, 30 Apr 2022 12:34:01 -0700 (PDT)
+        with ESMTP id S245073AbiD3Uy3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 30 Apr 2022 16:54:29 -0400
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35E4C49F1F;
+        Sat, 30 Apr 2022 13:51:06 -0700 (PDT)
+Received: by mail-ed1-x52c.google.com with SMTP id d6so12659026ede.8;
+        Sat, 30 Apr 2022 13:51:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=UnE+PxMjNQxznrPiP9ilgjlD5E706JH8Np36aK30mBE=;
-        b=p98EiB7J4QlUIgrOREYncurzGzla//JE5yJnez9c8jgD7+nW417+QX/+lkiMOQJJVi
-         1vwvTByXfSMj26D4vcGc92RzNd4+hJ0SSlh2LOCH5bQGSJyHC1Vm5WasI1uTsMYW+9br
-         iZWFrHYjaXMwm9uZ2zCnPXG+/nryDO+R3OhIIIywZyyzT8LmbIvp2PwTsMKwbtQROz0H
-         iSsju6ZzK/sa5f5+tsBCk3pZHYo0ftqxd6tLsvNqRGdGzViwCR7X0tgn6nAccFcwswdA
-         6xUB1Ujlv7Cx8SOyBWf8U+LOT5LSM5g5eD8nCdy+rooprlHIX68pM57tBeZEyyW1rTQK
-         ApsQ==
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=DIpg9joXVj37DEw0/X2vPHLdIx/jukzHY2nL90S93uE=;
+        b=N6/PWpxc6vUpB/yz2hISssTUs6vjQvVU+0+VYR/P0l3Y0vz0GZ+oE2j4ByKR0nzKbE
+         E/0Ct4cVlMRjJrVDXShq5oVykqKkM4zJKqYMIUVSt277X15eVVLsrJh19q4gMt0pXi0D
+         2DVXRz8nUQ/TSju93cFK3sBc8YlDpVNxCGk1rvaXQoBz8NwTLtGiTmR7f2HHU79/0xda
+         YUXoZQ5IjnOCx06YWEjNReu7/c+86vz/8YN27HnlyjlCPu595USI3kI+bOuyJsf/PpDA
+         Bia7teaPzz0DthbmjxXkgA+OVaiGwMwyPDJGQLVRswOWXg3OQvn49koQ4s2TNXDiH3aY
+         OhEw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=UnE+PxMjNQxznrPiP9ilgjlD5E706JH8Np36aK30mBE=;
-        b=1hFemrMra5ccf3TE0MOmsxVnoskQRj4g0QYR98hQxIo7pXz1Eagzs5XIdZjjVmx2Xk
-         VGQ9yQvQ2qSaaCnpAY8YQE5KZqpu00GN9KNrzoDNMZ9bya4h4M5h3Snla4x4nfEupPVm
-         YxJPHzYVr654cleDXYsiaENb2m3YRsuyW9lVXw9/mk3CqEOy53BAa+EcCsoVGf1Yi90n
-         m5BmL5u8pG6KwKyOz39H/1bioHg7Ad1Ei3An5t9I2q3HX1liUyoq4HODbdGI1v1GzM4y
-         0jbo4xqZ/gS8Emz21R27MLkYACKIQD/gaoRqtWXpAvOetPoZ2ZMNCehit97DPHtMVGUG
-         eFnQ==
-X-Gm-Message-State: AOAM531WeZoFQer7JD60fmRxzLdSnDvmy3bVtU2tVGomJWfffngX25f1
-        KUXrjkNOaSvPid/c2b6P9oEedQ==
-X-Google-Smtp-Source: ABdhPJzhPLWRpIf0sDXy+U/g999jW8WL53W0lLzW8ieWTJH9ufc+2xKqEUO0f/o3Xup47gQr/iWnnQ==
-X-Received: by 2002:a05:651c:549:b0:24f:51da:6e1b with SMTP id q9-20020a05651c054900b0024f51da6e1bmr506089ljp.389.1651347240165;
-        Sat, 30 Apr 2022 12:34:00 -0700 (PDT)
-Received: from [192.168.1.211] ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id w24-20020ac24438000000b0047255d2113dsm257255lfl.108.2022.04.30.12.33.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 30 Apr 2022 12:33:59 -0700 (PDT)
-Message-ID: <7e066b7f-943a-6a5e-7383-a05794d207dc@linaro.org>
-Date:   Sat, 30 Apr 2022 22:33:59 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH 1/3] dt-bindings: display: msm: Add binding for MSM8996
- DPU
-Content-Language: en-GB
-To:     Konrad Dybcio <konrad.dybcio@somainline.org>,
-        ~postmarketos/upstreaming@lists.sr.ht
-Cc:     martin.botka@somainline.org,
-        angelogioacchino.delregno@somainline.org,
-        marijn.suijten@somainline.org, jamipkettunen@somainline.org,
-        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        bh=DIpg9joXVj37DEw0/X2vPHLdIx/jukzHY2nL90S93uE=;
+        b=aaIQ599ILol0dnvwwJDDqF5/Mn5PCCXK+qxD2VLrBmPf1lq1J3X6TXrH5ynwPdWjmf
+         zQ+p1L2+TCMEIo6DQIgEHEnrREVNBmDnnwwCDevIBQ0VyLTpA6wovPxwzZbY/waizE89
+         M4HgSJcHK00X0YniC3dQcpliuR9WBwNaJrjPWtj9zzXAZRwcHmdnZvJ7lRkLuhO00s7f
+         fNkWKPFik2EpT6RMhnR5xz+OWwaGo2OukPI3dsO8kvwMSSHb0fZ2otYpgxDpPJuhAO6Z
+         KbxkZnqBN1iatN9Ehl3Wvhyexyk19fIHvFN9cLNxtcppW86ekqocyBS0XJIKdf5HIHU3
+         QD/g==
+X-Gm-Message-State: AOAM533lbL1wRqosJOQ+QdSKJMCmRMWr6jvqATyjCVJZrmjtnxtzW0Lp
+        PIHRMwOuv6bvROdNWurw6bo=
+X-Google-Smtp-Source: ABdhPJyGa8eqLLHbw4vtStE6lJud4dA5Kx/KEnnmb74LqK34mjtwtG6LYB2TeFVVmmfImp6PNbrchA==
+X-Received: by 2002:a50:ed11:0:b0:425:c3d1:4547 with SMTP id j17-20020a50ed11000000b00425c3d14547mr5959420eds.410.1651351864653;
+        Sat, 30 Apr 2022 13:51:04 -0700 (PDT)
+Received: from fedora.robimarko.hr (cpe-94-253-165-113.zg.cable.xnet.hr. [94.253.165.113])
+        by smtp.googlemail.com with ESMTPSA id p14-20020a056402154e00b0042617ba63a8sm4457852edx.50.2022.04.30.13.51.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 30 Apr 2022 13:51:04 -0700 (PDT)
+From:   Robert Marko <robimarko@gmail.com>
+To:     agross@kernel.org, bjorn.andersson@linaro.org, amitk@kernel.org,
+        thara.gopinath@linaro.org, rafael@kernel.org,
+        daniel.lezcano@linaro.org, rui.zhang@intel.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-References: <20220430161529.605843-1-konrad.dybcio@somainline.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20220430161529.605843-1-konrad.dybcio@somainline.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Cc:     Robert Marko <robimarko@gmail.com>
+Subject: [PATCH 1/5] dt-bindings: thermal: tsens: Add ipq8074 compatible
+Date:   Sat, 30 Apr 2022 22:50:57 +0200
+Message-Id: <20220430205101.459782-1-robimarko@gmail.com>
+X-Mailer: git-send-email 2.35.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/04/2022 19:15, Konrad Dybcio wrote:
-> Add yaml binding for MSM8996 DPU.
-> 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
-> ---
->   .../bindings/display/msm/dpu-msm8996.yaml     | 221 ++++++++++++++++++
->   1 file changed, 221 insertions(+)
->   create mode 100644 Documentation/devicetree/bindings/display/msm/dpu-msm8996.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/display/msm/dpu-msm8996.yaml b/Documentation/devicetree/bindings/display/msm/dpu-msm8996.yaml
-> new file mode 100644
-> index 000000000000..10b02423224d
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/msm/dpu-msm8996.yaml
-> @@ -0,0 +1,221 @@
-> +# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/msm/dpu-msm8996.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm Display DPU dt properties for MSM8996 target
-> +
-> +maintainers:
-> +  - Konrad Dybcio <konrad.dybcio@somainline.org>
-> +
-> +description: |
-> +  Device tree bindings for MSM Mobile Display Subsystem (MDSS) that
-> +  encapsulates sub-blocks like DPU display controller, DSI interfaces, etc.
-> +  Device tree bindings of MDSS and DPU are mentioned for MSM8996 target.
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - const: qcom,msm8996-mdss
+Qualcomm IPQ8074 has tsens v2.3.0 block, though unlike existing v2 IP it
+only uses one IRQ, so tsens v2 compatible cannot be used as the fallback.
 
-With the unified MDSS driver there is no need to describe a separate 
-mdss bindings. Let's skip this part for now.
+We also have to make sure that correct interrupts are set according to
+compatibles, so populate interrupt information per compatibles.
 
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  reg-names:
-> +    const: mdss
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    items:
-> +      - description: Display AHB clock
-> +      - description: Display core clock
-> +
-> +  clock-names:
-> +    items:
-> +      - const: iface
-> +      - const: core
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  interrupt-controller: true
-> +
-> +  "#address-cells": true
-> +
-> +  "#size-cells": true
-> +
-> +  "#interrupt-cells":
-> +    const: 1
-> +
-> +  iommus:
-> +    items:
-> +      - description: Phandle to mdp_smmu node with SID mask for Hard-Fail port0
-> +
-> +  ranges: true
-> +
-> +patternProperties:
-> +  "^display-controller@[0-9a-f]+$":
-> +    type: object
-> +    description: Node containing the properties of DPU.
-> +
-> +    properties:
-> +      compatible:
-> +        items:
-> +          - const: qcom,msm8996-dpu
+Signed-off-by: Robert Marko <robimarko@gmail.com>
+---
+ .../bindings/thermal/qcom-tsens.yaml          | 79 ++++++++++++++++---
+ 1 file changed, 68 insertions(+), 11 deletions(-)
 
-Okay. So, this is the most interesting part. Unlike MSM8998, which is 
-supported in the mdp5 driver, but was not used in the upstream DTS 
-files, for the MSM8996 the MDP5 part is described, used and widely 
-tested. And, unfortunately, the bindings use solely the generic 
-"qcom,mdp5" compat.
-
-I would suggest the following plan:
-- Define a binding using both "qcom,msm8996-dpu" and "qcom,mdp5" 
-strings. Make sure that it is fully backwards-compatible with older dts.
-
-- Update msm8996.dtsi to follow new binding.
-
-- Let's have a Kconfig flip switch selecting which driver to be used for 
-8996/8998.
-
-
-> +
-> +      reg:
-> +        items:
-> +          - description: Address offset and size for mdp register set
-> +          - description: Address offset and size for vbif register set
-> +          - description: Address offset and size for non-realtime vbif register set
-> +
-> +      reg-names:
-> +        items:
-> +          - const: mdp
-> +          - const: vbif
-> +          - const: vbif_nrt
-> +
-> +      clocks:
-> +        items:
-> +          - description: Display ahb clock
-> +          - description: Display axi clock
-> +          - description: Display core clock
-> +          - description: Display iommu clock
-> +          - description: Display vsync clock
-> +
-> +      clock-names:
-> +        items:
-> +          - const: iface
-> +          - const: bus
-> +          - const: core
-> +          - const: iommu
-> +          - const: vsync
-> +
-> +      interrupts:
-> +        maxItems: 1
-> +
-> +      power-domains:
-> +        maxItems: 1
-> +
-> +      operating-points-v2: true
-> +      ports:
-> +        $ref: /schemas/graph.yaml#/properties/ports
-> +        description: |
-> +          Contains the list of output ports from DPU device. These ports
-> +          connect to interfaces that are external to the DPU hardware,
-> +          such as DSI, DP etc. Each output port contains an endpoint that
-> +          describes how it is connected to an external interface.
-> +
-> +        properties:
-> +          port@0:
-> +            $ref: /schemas/graph.yaml#/properties/port
-> +            description: DPU_INTF3 (HDMI)
-> +
-> +          port@1:
-> +            $ref: /schemas/graph.yaml#/properties/port
-> +            description: DPU_INTF1 (DSI0)
-> +
-> +        required:
-> +          - port@0
-> +          - port@1
-> +
-> +    required:
-> +      - compatible
-> +      - reg
-> +      - reg-names
-> +      - clocks
-> +      - interrupts
-> +      - power-domains
-> +      - operating-points-v2
-> +      - ports
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - reg-names
-> +  - power-domains
-> +  - clocks
-> +  - interrupts
-> +  - interrupt-controller
-> +  - iommus
-> +  - ranges
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/qcom,mmcc-msm8996.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/power/qcom-rpmpd.h>
-> +
-> +    mdss: display-subsystem@900000 {
-> +        compatible = "qcom,msm8996-mdss";
-> +        reg = <0x00900000 0x1000>;
-> +        reg-names = "mdss";
-> +
-> +        power-domains = <&mmcc MDSS_GDSC>;
-> +
-> +        clocks = <&mmcc MDSS_AHB_CLK>, <&mmcc MDSS_MDP_CLK>;
-> +        clock-names = "iface", "core";
-> +
-> +        assigned-clocks = <&mmcc MDSS_MDP_CLK>;
-> +        assigned-clock-rates = <300000000>;
-
-This should not be necessary.
-
-> +
-> +        interrupts = <GIC_SPI 83 IRQ_TYPE_LEVEL_HIGH>;
-> +        interrupt-controller;
-> +        #interrupt-cells = <1>;
-> +
-> +        iommus = <&mdp_smmu 0>;
-> +
-> +        #address-cells = <1>;
-> +        #size-cells = <1>;
-> +        ranges;
-> +
-> +        display-controller@901000 {
-> +            compatible = "qcom,msm8996-dpu";
-> +            reg = <0x00901000 0x90000>,
-> +                  <0x009b0000 0x1040>,
-> +                  <0x009b8000 0x1040>;
-> +            reg-names = "mdp", "vbif", "vbif_nrt";
-> +
-> +            clocks = <&mmcc MDSS_AHB_CLK>,
-> +              <&mmcc MDSS_AXI_CLK>,
-> +              <&mmcc MDSS_MDP_CLK>,
-> +              <&mmcc SMMU_MDP_AXI_CLK>,
-> +              <&mmcc MDSS_VSYNC_CLK>;
-> +            clock-names = "iface", "bus", "core", "iommu", "vsync";
-> +
-> +            assigned-clocks = <&mmcc MDSS_MDP_CLK>,
-> +                  <&mmcc MDSS_VSYNC_CLK>;
-> +            assigned-clock-rates = <412500000>, <19200000>;
-
-MDP_CLK here should not be neccessary after Vinod Polimera's patches.
-
-> +
-> +            operating-points-v2 = <&mdp_opp_table>;
-> +            power-domains = <&rpmpd MSM8996_VDDMX>;
-> +
-> +            interrupt-parent = <&mdss>;
-> +            interrupts = <0 IRQ_TYPE_LEVEL_HIGH>;
-> +
-> +            ports {
-> +              #address-cells = <1>;
-> +              #size-cells = <0>;
-> +
-> +              port@0 {
-> +                reg = <0>;
-> +                dpu_intf3_out: endpoint {
-> +                  remote-endpoint = <&hdmi_in>;
-> +                };
-> +              };
-> +
-> +              port@1 {
-> +                reg = <1>;
-> +                dpu_intf1_out: endpoint {
-> +                  remote-endpoint = <&dsi0_in>;
-> +                };
-> +              };
-> +            };
-> +        };
-> +    };
-> +...
-
-
+diff --git a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
+index b6406bcc683f..44ebdfd4560a 100644
+--- a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
++++ b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
+@@ -56,22 +56,19 @@ properties:
+               - qcom,sm8350-tsens
+           - const: qcom,tsens-v2
+ 
++      - description: v2 of TSENS with combined interrupt
++        items:
++          - enum:
++              - qcom,ipq8074-tsens
++
+   reg:
+     items:
+       - description: TM registers
+       - description: SROT registers
+ 
+-  interrupts:
+-    minItems: 1
+-    items:
+-      - description: Combined interrupt if upper or lower threshold crossed
+-      - description: Interrupt if critical threshold crossed
++  interrupts: true
+ 
+-  interrupt-names:
+-    minItems: 1
+-    items:
+-      - const: uplow
+-      - const: critical
++  interrupt-names: true
+ 
+   nvmem-cells:
+     minItems: 1
+@@ -125,21 +122,66 @@ allOf:
+       properties:
+         interrupts:
+           maxItems: 1
++          items:
++            - description: Combined interrupt if upper or lower threshold crossed
+         interrupt-names:
+           maxItems: 1
++          items:
++            - const: uplow
+ 
+-    else:
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - qcom,msm8953-tsens
++              - qcom,msm8996-tsens
++              - qcom,msm8998-tsens
++              - qcom,sc7180-tsens
++              - qcom,sc7280-tsens
++              - qcom,sc8180x-tsens
++              - qcom,sdm630-tsens
++              - qcom,sdm845-tsens
++              - qcom,sm8150-tsens
++              - qcom,sm8250-tsens
++              - qcom,sm8350-tsens
++              - qcom,tsens-v2
++    then:
+       properties:
+         interrupts:
+           minItems: 2
++          items:
++            - description: Combined interrupt if upper or lower threshold crossed
++            - description: Interrupt if critical threshold crossed
+         interrupt-names:
+           minItems: 2
++          items:
++            - const: uplow
++            - const: critical
++
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - qcom,ipq8074-tsens
++    then:
++      properties:
++        interrupts:
++          maxItems: 1
++          items:
++            - description: Combined interrupt if upper, lower or critical thresholds crossed
++        interrupt-names:
++          maxItems: 1
++          items:
++            - const: combined
+ 
+   - if:
+       properties:
+         compatible:
+           contains:
+             enum:
++              - qcom,ipq8074-tsens
+               - qcom,tsens-v0_1
+               - qcom,tsens-v1
+               - qcom,tsens-v2
+@@ -222,4 +264,19 @@ examples:
+            #qcom,sensors = <13>;
+            #thermal-sensor-cells = <1>;
+     };
++
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    // Example 4 (for any IPQ8074 based SoC-s):
++    tsens4: thermal-sensor@4a9000 {
++           compatible = "qcom,ipq8074-tsens";
++           reg = <0x4a9000 0x1000>,
++                 <0x4a8000 0x1000>;
++
++           interrupts = <GIC_SPI 184 IRQ_TYPE_LEVEL_HIGH>;
++           interrupt-names = "combined";
++
++           #qcom,sensors = <16>;
++           #thermal-sensor-cells = <1>;
++    };
+ ...
 -- 
-With best wishes
-Dmitry
+2.35.1
+
