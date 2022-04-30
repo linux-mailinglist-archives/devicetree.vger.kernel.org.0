@@ -2,109 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DCD2F515AA7
-	for <lists+devicetree@lfdr.de>; Sat, 30 Apr 2022 07:42:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 08690515AC4
+	for <lists+devicetree@lfdr.de>; Sat, 30 Apr 2022 08:18:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241273AbiD3FqA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 30 Apr 2022 01:46:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39178 "EHLO
+        id S240876AbiD3GVq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 30 Apr 2022 02:21:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45354 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241253AbiD3Fp7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 30 Apr 2022 01:45:59 -0400
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A22260A80;
-        Fri, 29 Apr 2022 22:42:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1651297358; x=1682833358;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=a4ecU1eWKCaDuyKNYzTBlF6FBEruaxnyEWX89xj25Rw=;
-  b=P8Yu8pX6KUj9uS39C4mZZzR8/1no/wkXwPXb/z6eWBWYHBWl0C7KAM5x
-   hPE83J7j8G/k8+5v8p14Wj/uRq7A7Ercc2tOFQYwIG7szP8g8OC6QZg7u
-   3XexFMmrHbNmVODaQmv3zcD14utmWAKgu7D9qMaLwWaQ1wg8VqcYVIK3E
-   Y7dlq8UN0Hz25R6K8K+vm+VDE1XAuOCSJhj74+a94VGbdwxwdHMRyxfvq
-   //z4aCw2DqImbVN1ka5zaN7SFPcWY5JhhkmZegXSv1KBF6oUNQizUOkRl
-   BNwXoypy93fc3xx1RhQFBaw75snsw6KYCMWAjKzSK1i0USe4p4dw+wicw
-   w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10332"; a="292014090"
-X-IronPort-AV: E=Sophos;i="5.91,187,1647327600"; 
-   d="scan'208";a="292014090"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Apr 2022 22:42:38 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.91,187,1647327600"; 
-   d="scan'208";a="706874098"
-Received: from lkp-server01.sh.intel.com (HELO 5056e131ad90) ([10.239.97.150])
-  by fmsmga001.fm.intel.com with ESMTP; 29 Apr 2022 22:42:36 -0700
-Received: from kbuild by 5056e131ad90 with local (Exim 4.95)
-        (envelope-from <lkp@intel.com>)
-        id 1nkfsJ-0006uj-Dy;
-        Sat, 30 Apr 2022 05:42:35 +0000
-Date:   Sat, 30 Apr 2022 13:42:17 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Peter Geis <pgwipeout@gmail.com>,
-        linux-rockchip@lists.infradead.org,
+        with ESMTP id S229770AbiD3GVq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 30 Apr 2022 02:21:46 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B970ACFB8C;
+        Fri, 29 Apr 2022 23:18:24 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id F12E460A28;
+        Sat, 30 Apr 2022 06:18:23 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9AD55C385AA;
+        Sat, 30 Apr 2022 06:18:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1651299503;
+        bh=uYF2s/xQF4T6AlR6mb0JRgmAFtb0jfMpWbE35bo1HwU=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=2BQcS/4NH+9ysls92X0SSlMU05RTtCM3xnAEHjDjzcWSOmFuV9GpH39yV9EC6WDyn
+         rYjTAhmhtnXik1cjo64wcxr4gxnmY32CXfbLqPHcxoEwfikfFZutcJacNREFh2olqH
+         giURfq009PrksK7aWDe/vXUbWBgFCAsvr8YuvCM0=
+Date:   Sat, 30 Apr 2022 08:18:14 +0200
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Guenter Roeck <linux@roeck-us.net>
+Cc:     Sebastian Ene <sebastianene@google.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>
-Cc:     llvm@lists.linux.dev, kbuild-all@lists.01.org,
-        Peter Geis <pgwipeout@gmail.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 6/7] arm64: dts: rockchip: add SoQuartz CM4IO dts
-Message-ID: <202204301300.XpbFVL82-lkp@intel.com>
-References: <20220429115252.2360496-7-pgwipeout@gmail.com>
+        Arnd Bergmann <arnd@arndb.de>,
+        Dragan Cvetic <dragan.cvetic@xilinx.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        maz@kernel.org, will@kernel.org, qperret@google.com
+Subject: Re: [PATCH v4 2/2] misc: Add a mechanism to detect stalls on guest
+ vCPUs
+Message-ID: <YmzUpr0e+eq0NUYc@kroah.com>
+References: <20220429083030.3241640-1-sebastianene@google.com>
+ <20220429083030.3241640-3-sebastianene@google.com>
+ <YmumSgiTrQUWoXsb@kroah.com>
+ <e94fdd89-7b8e-eec3-4b2f-dcea55c7f0bc@roeck-us.net>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220429115252.2360496-7-pgwipeout@gmail.com>
+In-Reply-To: <e94fdd89-7b8e-eec3-4b2f-dcea55c7f0bc@roeck-us.net>
 X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
-        autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Peter,
+On Fri, Apr 29, 2022 at 09:51:51AM -0700, Guenter Roeck wrote:
+> On 4/29/22 01:48, Greg Kroah-Hartman wrote:
+> > On Fri, Apr 29, 2022 at 08:30:33AM +0000, Sebastian Ene wrote:
+> > > This driver creates per-cpu hrtimers which are required to do the
+> > > periodic 'pet' operation. On a conventional watchdog-core driver, the
+> > > userspace is responsible for delivering the 'pet' events by writing to
+> > > the particular /dev/watchdogN node. In this case we require a strong
+> > > thread affinity to be able to account for lost time on a per vCPU.
+> > > 
+> > > This part of the driver is the 'frontend' which is reponsible for
+> > > delivering the periodic 'pet' events, configuring the virtual peripheral
+> > > and listening for cpu hotplug events. The other part of the driver
+> > > handles the peripheral emulation and this part accounts for lost time by
+> > > looking at the /proc/{}/task/{}/stat entries and is located here:
+> > > https://chromium-review.googlesource.com/c/chromiumos/platform/crosvm/+/3548817
+> > > 
+> > > Signed-off-by: Sebastian Ene <sebastianene@google.com>
+> > > ---
+> > >   drivers/misc/Kconfig       |  12 +++
+> > >   drivers/misc/Makefile      |   1 +
+> > >   drivers/misc/vm-watchdog.c | 206 +++++++++++++++++++++++++++++++++++++
+> > >   3 files changed, 219 insertions(+)
+> > >   create mode 100644 drivers/misc/vm-watchdog.c
+> > > 
+> > > diff --git a/drivers/misc/Kconfig b/drivers/misc/Kconfig
+> > > index 2b9572a6d114..26c3a99e269c 100644
+> > > --- a/drivers/misc/Kconfig
+> > > +++ b/drivers/misc/Kconfig
+> > > @@ -493,6 +493,18 @@ config OPEN_DICE
+> > >   	  If unsure, say N.
+> > > +config VM_WATCHDOG
+> > > +	tristate "Virtual Machine Watchdog"
+> > > +	select LOCKUP_DETECTOR
+> > > +	help
+> > > +	  Detect CPU locks on the virtual machine. This driver relies on the
+> > > +	  hrtimers which are CPU-binded to do the 'pet' operation. When a vCPU
+> > > +	  has to do a 'pet', it exits the guest through MMIO write and the
+> > > +	  backend driver takes into account the lost ticks for this particular
+> > > +	  CPU.
+> > > +	  To compile this driver as a module, choose M here: the
+> > > +	  module will be called vm-wdt.
+> > 
+> > You forgot to name the module properly here based on the Makefile change
+> > you made.
+> > 
+> > And again, as this is called a "watchdog", it seems crazy that it is not
+> > in drivers/watchdog/
+> > 
+> 
+> I disagree. It is not a watchdog driver in the traditional sense (it does
+> not use, want to use, or need to use the watchdog driver API or ABI).
+> Its functionality is similar to the functionality of kernel/watchdog.c,
+> which doesn't belong into drivers/watchdog either.
 
-I love your patch! Yet something to improve:
+Ah, ok, that makes more sense, the user/kernel api is not the same.
+Someone should put that in the changelog next time :)
 
-[auto build test ERROR on robh/for-next]
-[also build test ERROR on arm/for-next arm64/for-next/core clk/clk-next kvmarm/next shawnguo/for-next soc/for-next v5.18-rc4]
-[cannot apply to rockchip/for-next xilinx-xlnx/master keystone/next next-20220429]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
+thanks,
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Peter-Geis/Add-support-for-several-new-rk3566-SBCs/20220429-195433
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-config: arm64-randconfig-r021-20220428 (https://download.01.org/0day-ci/archive/20220430/202204301300.XpbFVL82-lkp@intel.com/config)
-compiler: clang version 15.0.0 (https://github.com/llvm/llvm-project 400775649969b9baf3bc2a510266e7912bb16ae9)
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # install arm64 cross compiling tool for clang build
-        # apt-get install binutils-aarch64-linux-gnu
-        # https://github.com/intel-lab-lkp/linux/commit/9c1ec04920cfad39477824908a540d7547dbed23
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Peter-Geis/Add-support-for-several-new-rk3566-SBCs/20220429-195433
-        git checkout 9c1ec04920cfad39477824908a540d7547dbed23
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=arm64 SHELL=/bin/bash
-
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
-
-All errors (new ones prefixed by >>):
-
->> Error: arch/arm64/boot/dts/rockchip/rk3566-soquartz.dtsi:605.1-16 Label or path usb_host0_xhci not found
->> Error: arch/arm64/boot/dts/rockchip/rk3566-soquartz-cm4.dts:161.1-16 Label or path usb_host0_xhci not found
-   FATAL ERROR: Syntax error parsing input tree
-
--- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
+greg k-h
