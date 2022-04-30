@@ -2,162 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A7B57515C91
-	for <lists+devicetree@lfdr.de>; Sat, 30 Apr 2022 13:51:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 106E9515D21
+	for <lists+devicetree@lfdr.de>; Sat, 30 Apr 2022 14:59:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232359AbiD3Lyj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 30 Apr 2022 07:54:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57030 "EHLO
+        id S1378157AbiD3NDD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 30 Apr 2022 09:03:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48450 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230444AbiD3Lyj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 30 Apr 2022 07:54:39 -0400
-Received: from NAM02-DM3-obe.outbound.protection.outlook.com (mail-dm3nam07on2047.outbound.protection.outlook.com [40.107.95.47])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DEB691A812;
-        Sat, 30 Apr 2022 04:51:17 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=IO7ZiEFa8Qd+/dWtykru4uq/U3WAukK8fYZsy1nXMaDQvQ7kvIF54neWn/5/BxADtE1KR2TNetaUZoif6VAO0g4+b/hG8ldDVjkA71pukkL/q+nMzF5I7nwtbLfwrPM3Ohmwh5oCRdCNb3YXAmRN+4Ab7stw8EcBnoEHRUIWxFYxEzWSKtXaHBlDWyA3OftbbGa1ImJp/+2OxZ3wHcuv1bRsi9/2B0F6EVmJU4dep54GLbIrF5EYAIiJiTAcUFopxU24AOKZOk96uwHASCLROGwlZSWgE1fVst+BABft8sLcuGhIqG4Xa1ioaY4r0jKkZOGM8QNuPy/tMT0Ng8TX8w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=kip9RHh3ngZQ8BJPfNXQjlwy70fX6sx6wAkm5DuYWsA=;
- b=HIaGDHk6u8OjvP4MA4Bi7vq3NUeNOlNCvIDIjbylpsuIsVAArYqVnyvGa4vc8NyRrGMI1V2chE8beQOGSekPib6iLw4HIAE2XKleWUG8CX1zFvvtgPf+Kk74oNiz6iZKTuan3k+C+URfsznwBupGJnGNDttMCbg+E/gxXCOgglaaqPcbKrqdSN3ujxbsZKo15DK0dsjci2cakCTUWPjla3PnVHRBjhgAsYhAQoKkl89klI0siRqo1Dg45uYWNDfMJvW3qT0ZhCNEEvPMTi5hLSPrflAaWy/J3mgoiKgwcC3Lg+JdXq2keSYDFttbHg5wTX7pg2CUOrk8WRPpOTjQPQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 12.22.5.236) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=nvidia.com;
- dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=kip9RHh3ngZQ8BJPfNXQjlwy70fX6sx6wAkm5DuYWsA=;
- b=UrPlIJA5+i79etUFhMwe6YLS5MW1axcVK2/q8tPytGPbmk9JN/a+XL6h2/Ks+2MKIvaAlR8hARdwJr6PNTzbpKZm09zT52DHv9owbLM65gw09NWxKm8HrLyWAV4KEWcZyGMvEZ9xRgQxIh7yhDs7QeXTdbz0eaz+iLgapKpmOQbzKGoS/T5laf992rA8mFRbNA8Hbbqi6HqWsnSadyLidbAX1czD4M1v8HXBlPwRyva+G5pk5yodoRLlYaB95khn3zA0G+zx3+Jx+qHuMjg/YjxRHjActoL0hOsprfFKR3WJsYwZvbp5Oxf/uE4hAa60slAYNaAzl5nVAC/6bZTuug==
-Received: from DM6PR06CA0049.namprd06.prod.outlook.com (2603:10b6:5:54::26) by
- MW2PR12MB2539.namprd12.prod.outlook.com (2603:10b6:907:9::30) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5186.15; Sat, 30 Apr 2022 11:49:17 +0000
-Received: from DM6NAM11FT026.eop-nam11.prod.protection.outlook.com
- (2603:10b6:5:54:cafe::8b) by DM6PR06CA0049.outlook.office365.com
- (2603:10b6:5:54::26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5186.14 via Frontend
- Transport; Sat, 30 Apr 2022 11:49:17 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 12.22.5.236)
- smtp.mailfrom=nvidia.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 12.22.5.236 as permitted sender) receiver=protection.outlook.com;
- client-ip=12.22.5.236; helo=mail.nvidia.com;
-Received: from mail.nvidia.com (12.22.5.236) by
- DM6NAM11FT026.mail.protection.outlook.com (10.13.172.161) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.20.5206.12 via Frontend Transport; Sat, 30 Apr 2022 11:49:17 +0000
-Received: from rnnvmail205.nvidia.com (10.129.68.10) by DRHQMAIL109.nvidia.com
- (10.27.9.19) with Microsoft SMTP Server (TLS) id 15.0.1497.32; Sat, 30 Apr
- 2022 11:49:16 +0000
-Received: from rnnvmail202.nvidia.com (10.129.68.7) by rnnvmail205.nvidia.com
- (10.129.68.10) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Sat, 30 Apr
- 2022 04:49:16 -0700
-Received: from r-build-bsp-02.mtr.labs.mlnx (10.127.8.9) by mail.nvidia.com
- (10.129.68.7) with Microsoft SMTP Server id 15.2.986.22 via Frontend
- Transport; Sat, 30 Apr 2022 04:49:14 -0700
-From:   <michaelsh@nvidia.com>
-To:     <linux@roeck-us.net>, <robh+dt@kernel.org>
-CC:     <linux-hwmon@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <vadimp@nvidia.com>, Michael Shych <michaelsh@nvidia.com>
-Subject: [PATCH v1 3/3] docs: hwmon: add emc2305.rst to docs
-Date:   Sat, 30 Apr 2022 14:49:05 +0300
-Message-ID: <20220430114905.53448-4-michaelsh@nvidia.com>
-X-Mailer: git-send-email 2.14.1
-In-Reply-To: <20220430114905.53448-1-michaelsh@nvidia.com>
-References: <20220430114905.53448-1-michaelsh@nvidia.com>
+        with ESMTP id S231486AbiD3NDC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 30 Apr 2022 09:03:02 -0400
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D71D274DD6;
+        Sat, 30 Apr 2022 05:59:40 -0700 (PDT)
+Received: by mail-ej1-x631.google.com with SMTP id m20so20042449ejj.10;
+        Sat, 30 Apr 2022 05:59:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Pqlb2CDncvPYE+UHM6oqSap1YjcS5KMGTqi0o7URon8=;
+        b=olL/+zlZsep6oWP7Rrh8tA53O191n7Fe7a+sy3NbCbBls981RcbeFUhIjm4G78KYRc
+         xENR1aBGj4DESg3PcnOn46jXrGORyw4auy6Vtd9Z9D6mfGNlWjTQ3c42rSK6X1oabCnj
+         PPnka71x0eQcJZvrrS7PnEhkgsrpmq67Yp4jpEGVThC6WM68r/W+12yfSN0Rvj/7t6tM
+         LRX6xirXGX9bqwwlSWZL85L+l9BrZobfcU9Uv0hYXMWgmQGgkFyrUkuHLPhgb7XDdEIa
+         Fw/L06PPhDVArJyDhp1564tSQQDQnUoPcOm8f5qTxxTNZm+oeSIoIKPSZPm6SX5EdRJC
+         d5Tg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Pqlb2CDncvPYE+UHM6oqSap1YjcS5KMGTqi0o7URon8=;
+        b=3jcUZ4kIy9aJXZOYUpRhtS5rM3P5gXzu0oIvSL3QqHLPwWwe1Coj3KAMcnJ3Gcutwa
+         ySQPMbUcv7RiH9uq5Hg2cFcsqZpqfXE5f0qVIojwALdzQxvnoRnh4vrGDzAKbOcr50VH
+         lLCFTx8BUJlLgZPhJX83kQ67z3H+VkgK2xJWMy9Mge/2lSGKaKbSHekCf90YL8HTy10W
+         12VTuAZ8eUwRXVt5qGJAxBkh83421PiCH7th1FXzACmHUGrGxfjXrEGYOV2dgPQqV5RJ
+         dlrHmnDFYR8k4YJngYNcvvChCBx4dwj/PhZhBUhTqG5gZPcnabOEzEjWcvGtoelNONXf
+         mxlw==
+X-Gm-Message-State: AOAM533/JuW7AI6NBmnyfLqNsCosKba+SYc1CxlRO2WOIUE7++8KWS0O
+        ZT+kLtYMZsRPIm2VqZO/aDo=
+X-Google-Smtp-Source: ABdhPJw3diLUBhg2UjGkqI8k7gOZCaSdV6fEJieDUrrer27ThuJpUlQiDdgeG76sWHkUsnKPvlakuA==
+X-Received: by 2002:a17:907:7f8e:b0:6f4:2d7c:1b75 with SMTP id qk14-20020a1709077f8e00b006f42d7c1b75mr351324ejc.726.1651323579297;
+        Sat, 30 Apr 2022 05:59:39 -0700 (PDT)
+Received: from localhost.localdomain (93-42-70-190.ip85.fastwebnet.it. [93.42.70.190])
+        by smtp.googlemail.com with ESMTPSA id a25-20020a056402169900b0042617ba63c8sm4125077edv.82.2022.04.30.05.59.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 30 Apr 2022 05:59:38 -0700 (PDT)
+From:   Ansuel Smith <ansuelsmth@gmail.com>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Ansuel Smith <ansuelsmth@gmail.com>
+Subject: [PATCH v2 0/2] PXO fixes for ipq8064 dtsi
+Date:   Sat, 30 Apr 2022 07:51:16 +0200
+Message-Id: <20220430055118.1947-1-ansuelsmth@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: d1e09a92-c491-4f2b-768a-08da2a9f74e6
-X-MS-TrafficTypeDiagnostic: MW2PR12MB2539:EE_
-X-Microsoft-Antispam-PRVS: <MW2PR12MB2539E9FCC212AFC165410D91D4FF9@MW2PR12MB2539.namprd12.prod.outlook.com>
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: J/CVlE5BfqE2Z5TuFUfSH1xQdanm+6t6Wprh52DWUP59CEsya+GvFb0LRZK342PUBt4BpYePE3Ik+cpdtWqJkHexT1FG05FyxRxLSaAY2JzhzWvuZY080XxB4DlJj+fwPYKeOTlwUWeK39A7ygKZYuq68hRM03b1nGNlgX2FT5nKQhSY3U/wjoG5vRJauoKJ+TJPRq+/V9WAdQVCBTHjx1Y4mbIoomi7RXWXqhmF7XUZPadzqNR0LIzxgENRNddrV9RYBT/PKZp9cr+p2LKBoDJCWgucMzvzztMI9FsbpIvN1OUy3l72oq6DA9L8xkaDP9g/V2e2XPZ4SSpqKncD+4+Qt9OBn4FaY3z/82sFsteC1vDl7draH2ZJHAyL7XnzfXsVDpiKfKB+H7PtrlZcIMP5JsOyEzfkjBY1nU+Q3c/YlfUNygHFJLm5V6tVqW9N5/9MHcbwEHXqHxosnMDBTqrTcDO9LidWI2q18aTxSN+Hq3NfaBX/bCM261bPe6PUeyLZ3+6/Nf/OTxQtMIBhUXLuwyYEmNq/zrtPrQltP0ilUAE6CBFy7w6KZHMbSecxsWw7YAj99nXgKDurOOYrbmssu1nULMHsgRsVRGTbq2gH+CaZEGJIEx6PqPrR4aNLvgmVjO+BJZxT2aq8AlfzeskF36IfyWKwNOcBJVCprYvkEPcDz7JjpgQ9DJOcL8goyoZsY98dzbCin0/LYNX5Vbj7FbP6F7aEDikzhhBSHbeceyXhNxje1Bs/zETEs1l4CN5ZR9lf4ns9Q5hYPRqFgf2ujokvtrQUzykvnxMV8vw=
-X-Forefront-Antispam-Report: CIP:12.22.5.236;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:InfoNoRecords;CAT:NONE;SFS:(13230001)(4636009)(36840700001)(46966006)(40470700004)(498600001)(40460700003)(186003)(2616005)(107886003)(81166007)(1076003)(70586007)(70206006)(8676002)(4326008)(356005)(26005)(6666004)(36860700001)(54906003)(47076005)(426003)(336012)(966005)(110136005)(2906002)(2876002)(86362001)(82310400005)(8936002)(5660300002)(36756003)(36900700001);DIR:OUT;SFP:1101;
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Apr 2022 11:49:17.4523
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: d1e09a92-c491-4f2b-768a-08da2a9f74e6
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[12.22.5.236];Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT026.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW2PR12MB2539
-X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-0.6 required=5.0 tests=BAYES_00,DATE_IN_PAST_06_12,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Michael Shych <michaelsh@nvidia.com>
+This small series is a fix for a long lasting error present in ipq8064
+dtsi. At times the kpss-gcc driver was defined in the dts with
+<&gcc PXO_SRC> a pxo clock. While PXO_SRC exist in the includes, the gcc
+driver never expose it and if a driver try to actually use it the result
+is a kernel panic even before any log is init.
 
-Add description of emc2305 driver.
+To prepare for correct conversion of the different krait drivers to
+parent data and to reflect what is defined in the Documentation with
+actual driver and dts implementation, fix this error by using the now
+defined pxo_board fixed clock.
 
-Signed-off-by: Michael Shych <michaelsh@nvidia.com>
-Reviewed-by: Vadim Pasternak <vadimp@nvidia.com>
----
- Documentation/hwmon/emc2305.rst | 40 ++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 40 insertions(+)
- create mode 100644 Documentation/hwmon/emc2305.rst
+v2:
+- Swap patch 1 with patch 2 (fixes first changes second)
+- Add fixes tag
 
-diff --git a/Documentation/hwmon/emc2305.rst b/Documentation/hwmon/emc2305.rst
-new file mode 100644
-index 000000000000..258da49d18f9
---- /dev/null
-+++ b/Documentation/hwmon/emc2305.rst
-@@ -0,0 +1,40 @@
-+.. SPDX-License-Identifier: GPL-2.0
-+
-+Kernel driver emc2305
-+=====================
-+
-+Supported chips:
-+   Microchip EMC2305, EMC2303, EMC2302, EMC2301
-+
-+   Addresses scanned: I2C 0x27, 0x2c, 0x2d, 0x2e, 0x2f, 0x4c, 0x4d
-+   Prefixes: 'emc2305'
-+
-+   Datasheet: Publicly available at the Microchip website :
-+      https://www.microchip.com/en-us/product/EMC2305
-+
-+Description:
-+-----------
-+This driver implements support for Microchip EMC2301/2/3/5 RPM-based PWM Fan Controller.
-+The EMC2305 Fan Controller supports up to 5 independently controlled PWM fan drives.
-+Fan rotation speeds are reported in RPM.
-+The driver supports the RPM-based PWM control to keep a fan at the desired speed.
-+The driver provides the possibility to have one common PWM interface for all FANs
-+or up to the maximum available or configured independent PWMs.
-+
-+The driver provides the following sysfs interfaces in hwmon subsystem:
-+
-+================= == ===================================================
-+fan[1-5]_fault    RO files for tachometers TACH1-TACH5 fault indication
-+fan[1-5]_input    RO files for tachometers TACH1-TACH5 input (in RPM)
-+pwm[1-5]          RW file for fan[1-5] target duty cycle (0..255)
-+================= == ===================================================
-+
-+sysfs interfaces in thermal subsystem:
-+
-+================= == ========================================================================
-+cur_state         RW file for the current cooling state of the cooling device (0..max_state)
-+max_state         RO file for the maximum cooling state of the cooling device
-+================= == ========================================================================
-+
-+Configuration is possible via device tree:
-+Documentation/devicetree/bindings/hwmon/microchip,emc2305.yaml
+Ansuel Smith (2):
+  ARM: dts: qcom: replace gcc PXO with pxo_board fixed clock
+  ARM: dts: qcom: add syscon and cxo/pxo clock to gcc node for ipq8064
+
+ arch/arm/boot/dts/qcom-ipq8064.dtsi | 10 ++++++----
+ 1 file changed, 6 insertions(+), 4 deletions(-)
+
 -- 
-2.14.1
+2.34.1
 
