@@ -2,48 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 81599515B6D
+	by mail.lfdr.de (Postfix) with ESMTP id 7EC04515B6C
 	for <lists+devicetree@lfdr.de>; Sat, 30 Apr 2022 10:18:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241392AbiD3IWO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 30 Apr 2022 04:22:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39548 "EHLO
+        id S241595AbiD3IWP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 30 Apr 2022 04:22:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39572 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239673AbiD3IWN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 30 Apr 2022 04:22:13 -0400
-Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com [IPv6:2607:f8b0:4864:20::1029])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8984080235
-        for <devicetree@vger.kernel.org>; Sat, 30 Apr 2022 01:18:51 -0700 (PDT)
-Received: by mail-pj1-x1029.google.com with SMTP id iq10so8940369pjb.0
-        for <devicetree@vger.kernel.org>; Sat, 30 Apr 2022 01:18:51 -0700 (PDT)
+        with ESMTP id S240876AbiD3IWP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 30 Apr 2022 04:22:15 -0400
+Received: from mail-pl1-x631.google.com (mail-pl1-x631.google.com [IPv6:2607:f8b0:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93B868070D
+        for <devicetree@vger.kernel.org>; Sat, 30 Apr 2022 01:18:53 -0700 (PDT)
+Received: by mail-pl1-x631.google.com with SMTP id c23so9001332plo.0
+        for <devicetree@vger.kernel.org>; Sat, 30 Apr 2022 01:18:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=upY1HQ01jlb/guwrFvdjP8aUqqr8EDbLZ7yKmEWLg2U=;
-        b=clxC7bKJaxA68zUSoaDPW3NsOPDt4eiMc1XxkGuZcvCW3t+wG5PxF89gycerjRstSH
-         bszXQvwpziWvKsUqFN09Y58UEg2ykzW8OaR2AW35yvd208jmiNts4RuwHbtT0JgRu/26
-         vSijvfpgbf1puPvG7k3Xq63jw2frqest8y1NA=
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=l3CwWyZBEbtGOAPPtNcMiP/0ZawCfC96Az10nkl8Ddo=;
+        b=GX5Arfo/0Nf0ogVMnHAUu0VkSFtv7Ty9+w+0Xqc8Q+m9fJJFLVwzEMX7lqzW71YX6i
+         sALHTUqJ4qX7YQARo0uF1jYHRje+JEpuvRODKRM8BDHrk0Cth39PbhurEf7uoA9B8VAE
+         Lj4NrFaruOKqbLKkH4Pew30k71+wpGVGwGgfU=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=upY1HQ01jlb/guwrFvdjP8aUqqr8EDbLZ7yKmEWLg2U=;
-        b=2FndAOWax8RY2go1rrYLCp7iSV6MofpHA3T5w2MUrJEiGUw9m2PwFm+8kGXEBaibam
-         mFSYuOcwjVn74DqCnlV1XRQkQ/QOpWhSjzPOeOQwpKeL/Dx/c+He+eGffMG7tuCe++mH
-         4QoYf2LMk5504nxUa0sF6PHSDN9U5MwDfrOie17/K6HMd4HVBTm5hV92xJRN5StzpvtS
-         vwhYcYN6P7FuSSNxzVVmfushgbhgnSI0bmjOFDXdPmpotOXEYJvl7INP4Tqu2on2ZzB8
-         u0tpD6XI2C1hJbKkAmA41nmb518Yhll8pNiO+91Kns/wDILE0oGbyV+okzGhrmHK1sc0
-         i6qw==
-X-Gm-Message-State: AOAM532IZcb8H43twn2iMB8OEUS5jsePLVHDl56zn00W9bPKzAsLpteZ
-        GtlkYCr3mtr7SHyoV2HU1sTRow==
-X-Google-Smtp-Source: ABdhPJxlO1hMhtPuBazlq5bw6xWe7r6JocsQELW3RsLYbdMKavBbjC7pvh7cZstgdyPUG7NbnAJuSg==
-X-Received: by 2002:a17:902:d58a:b0:15d:1cf6:644c with SMTP id k10-20020a170902d58a00b0015d1cf6644cmr2985472plh.67.1651306730991;
-        Sat, 30 Apr 2022 01:18:50 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=l3CwWyZBEbtGOAPPtNcMiP/0ZawCfC96Az10nkl8Ddo=;
+        b=V51gCk8ZUmeAn9ER/SC1tClrbRLBbNslfyT2jdHClXknvo6sewMb9cbqW/ro84t8pX
+         5TAMPWl1jJECEwS/DtYQTzrwJY/FO+YcoZUaqzxcDj2pI6zyg0dypJQuVk2uog24marD
+         lfelPMM6Hh7+QTGseblPMuWnrj0aGM0oEI3lp/UnDojv1/yizAhxI85dwwvmFI9E0enB
+         y0l1l7wz2uo/IEMfrlcmhE3P7rvVzV10jBrSB01ec2briklnij0RPD+YCbrZst0zo09f
+         mFPMhVSf1x0VrD9QY16S38BDS8e5dtOmLHD+S2/y21P5qbY5JQejNfWBKyMBsm6DifA7
+         IAjg==
+X-Gm-Message-State: AOAM530c8MfMaaWHXA21iCUIIgbXQQr/y3vQ40ww1VIz5qiHk7EbrR3n
+        jRBlNGzb5k/JhCwrzu+SqsANbA==
+X-Google-Smtp-Source: ABdhPJyTLmBSqo5/53w0p9xD9dVEIl9hNfXvpMp+/mL/LSdlxggDbc1NWk5UlErScIO4jQkM+Z0PnA==
+X-Received: by 2002:a17:902:e88c:b0:15e:6797:eae7 with SMTP id w12-20020a170902e88c00b0015e6797eae7mr2787641plg.71.1651306733012;
+        Sat, 30 Apr 2022 01:18:53 -0700 (PDT)
 Received: from joebar-glaptop.lan (c-71-202-34-56.hsd1.ca.comcast.net. [71.202.34.56])
-        by smtp.gmail.com with ESMTPSA id az12-20020a170902a58c00b0015e8d4eb27esm876387plb.200.2022.04.30.01.18.50
+        by smtp.gmail.com with ESMTPSA id az12-20020a170902a58c00b0015e8d4eb27esm876387plb.200.2022.04.30.01.18.51
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 30 Apr 2022 01:18:50 -0700 (PDT)
+        Sat, 30 Apr 2022 01:18:52 -0700 (PDT)
 From:   "Joseph S. Barrera III" <joebar@chromium.org>
 To:     LKML <linux-kernel@vger.kernel.org>
 Cc:     Douglas Anderson <dianders@chromium.org>,
@@ -54,73 +54,97 @@ Cc:     Douglas Anderson <dianders@chromium.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
         Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
         linux-arm-msm@vger.kernel.org
-Subject: [PATCH 1/5] arm64: dts: qcom: sc7180: Add wormdingler dts files
-Date:   Sat, 30 Apr 2022 01:15:16 -0700
-Message-Id: <20220430011402.1.If7c3471db53bea55213f7bcf17e9043084d3ac0c@changeid>
+Subject: [PATCH 2/5] arm64: dts: qcom: sc7180: Add mrbland dts files
+Date:   Sat, 30 Apr 2022 01:15:17 -0700
+Message-Id: <20220430011402.2.Iac7ac752b18224ab1458a7681301d9b48cab25c4@changeid>
 X-Mailer: git-send-email 2.31.0
+In-Reply-To: <20220430011402.1.If7c3471db53bea55213f7bcf17e9043084d3ac0c@changeid>
+References: <20220430011402.1.If7c3471db53bea55213f7bcf17e9043084d3ac0c@changeid>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Wormdingler is a trogdor-based board, shipping to customers as the
-Lenovo IdeaPad Chromebook Duet 3. These dts files are copies from
+Mrbland is a trogdor-based board. These dts files are copies from
 the downstream Chrome OS 5.4 kernel, but with downstream bits removed.
 
 Signed-off-by: Joseph S. Barrera III <joebar@chromium.org>
 ---
 
- arch/arm64/boot/dts/qcom/Makefile             |   6 +
- .../sc7180-trogdor-wormdingler-rev0-boe.dts   |  22 +
- .../sc7180-trogdor-wormdingler-rev0-inx.dts   |  22 +
- .../qcom/sc7180-trogdor-wormdingler-rev0.dtsi |  53 +++
- ...0-trogdor-wormdingler-rev1-boe-rt5682s.dts |  39 ++
- .../sc7180-trogdor-wormdingler-rev1-boe.dts   |  28 ++
- ...0-trogdor-wormdingler-rev1-inx-rt5682s.dts |  33 ++
- .../sc7180-trogdor-wormdingler-rev1-inx.dts   |  22 +
- .../dts/qcom/sc7180-trogdor-wormdingler.dtsi  | 413 ++++++++++++++++++
- 9 files changed, 638 insertions(+)
- create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev0-boe.dts
- create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev0-inx.dts
- create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev0.dtsi
- create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev1-boe-rt5682s.dts
- create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev1-boe.dts
- create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev1-inx-rt5682s.dts
- create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev1-inx.dts
- create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler.dtsi
+ arch/arm64/boot/dts/qcom/Makefile             |   4 +
+ .../qcom/sc7180-trogdor-mrbland-rev0-auo.dts  |  22 ++
+ .../qcom/sc7180-trogdor-mrbland-rev0-boe.dts  |  22 ++
+ .../dts/qcom/sc7180-trogdor-mrbland-rev0.dtsi |  53 +++
+ .../qcom/sc7180-trogdor-mrbland-rev1-auo.dts  |  22 ++
+ .../qcom/sc7180-trogdor-mrbland-rev1-boe.dts  |  24 ++
+ .../boot/dts/qcom/sc7180-trogdor-mrbland.dtsi | 352 ++++++++++++++++++
+ 7 files changed, 499 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-mrbland-rev0-auo.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-mrbland-rev0-boe.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-mrbland-rev0.dtsi
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-mrbland-rev1-auo.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-mrbland-rev1-boe.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-mrbland.dtsi
 
 diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index 2f8aec2cc6db..e4114e22548a 100644
+index e4114e22548a..2330b5ea13bf 100644
 --- a/arch/arm64/boot/dts/qcom/Makefile
 +++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -81,6 +81,12 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-pompom-r2.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-pompom-r2-lte.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-pompom-r3.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-pompom-r3-lte.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-wormdingler-rev0-boe.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-wormdingler-rev0-inx.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-wormdingler-rev1-boe.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-wormdingler-rev1-inx.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-wormdingler-rev1-inx-rt5682s.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-wormdingler-rev1-boe-rt5682s.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-r1.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-r1-lte.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-herobrine-crd.dtb
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev0-boe.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev0-boe.dts
+@@ -75,6 +75,10 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-lazor-limozeen-r9.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-lazor-limozeen-nots-r4.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-lazor-limozeen-nots-r5.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-lazor-limozeen-nots-r9.dtb
++dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-mrbland-rev0-auo.dtb
++dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-mrbland-rev0-boe.dtb
++dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-mrbland-rev1-auo.dtb
++dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-mrbland-rev1-boe.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-pompom-r1.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-pompom-r1-lte.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-pompom-r2.dtb
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-mrbland-rev0-auo.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-mrbland-rev0-auo.dts
 new file mode 100644
-index 000000000000..d6ed7d0afe4a
+index 000000000000..2767817fb053
 --- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev0-boe.dts
++++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-mrbland-rev0-auo.dts
 @@ -0,0 +1,22 @@
 +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
 +/*
-+ * Google Wormdingler board device tree source
++ * Google Mrbland board device tree source
++ *
++ * Copyright 2021 Google LLC.
++ *
++ * SKU: 0x0 => 0
++ *  - bits 7..4: Panel ID: 0x0 (AUO)
++ */
++
++/dts-v1/;
++
++#include "sc7180-trogdor-mrbland-rev0.dtsi"
++
++/ {
++	model = "Google Mrbland rev0 AUO panel board";
++	compatible = "google,mrbland-rev0-sku0", "qcom,sc7180";
++};
++
++&panel {
++	compatible = "auo,b101uan08.3";
++};
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-mrbland-rev0-boe.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-mrbland-rev0-boe.dts
+new file mode 100644
+index 000000000000..711485574a03
+--- /dev/null
++++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-mrbland-rev0-boe.dts
+@@ -0,0 +1,22 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * Google Mrbland board device tree source
 + *
 + * Copyright 2021 Google LLC.
 + *
@@ -130,53 +154,25 @@ index 000000000000..d6ed7d0afe4a
 +
 +/dts-v1/;
 +
-+#include "sc7180-trogdor-wormdingler-rev0.dtsi"
++#include "sc7180-trogdor-mrbland-rev0.dtsi"
 +
 +/ {
-+	model = "Google Wormdingler rev0 BOE panel board";
-+	compatible = "google,wormdingler-rev0-sku16", "qcom,sc7180";
++	model = "Google Mrbland rev0 BOE panel board";
++	compatible = "google,mrbland-rev0-sku16", "qcom,sc7180";
 +};
 +
 +&panel {
-+	compatible = "boe,tv110c9m-ll3";
++	compatible = "boe,tv101wum-n53";
 +};
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev0-inx.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev0-inx.dts
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-mrbland-rev0.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-mrbland-rev0.dtsi
 new file mode 100644
-index 000000000000..c03525ea64ca
+index 000000000000..7bc8402c018e
 --- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev0-inx.dts
-@@ -0,0 +1,22 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Google Wormdingler board device tree source
-+ *
-+ * Copyright 2021 Google LLC.
-+ *
-+ * SKU: 0x0 => 0
-+ *  - bits 7..4: Panel ID: 0x0 (INX)
-+ */
-+
-+/dts-v1/;
-+
-+#include "sc7180-trogdor-wormdingler-rev0.dtsi"
-+
-+/ {
-+	model = "Google Wormdingler rev0 INX panel board";
-+	compatible = "google,wormdingler-rev0-sku0", "qcom,sc7180";
-+};
-+
-+&panel {
-+	compatible = "innolux,hj110iz-01a";
-+};
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev0.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev0.dtsi
-new file mode 100644
-index 000000000000..db29e0cba29d
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev0.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-mrbland-rev0.dtsi
 @@ -0,0 +1,53 @@
 +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
 +/*
-+ * Google Wormdingler board device tree source
++ * Google Mrbland board device tree source
 + *
 + * Copyright 2021 Google LLC.
 + *
@@ -184,7 +180,7 @@ index 000000000000..db29e0cba29d
 +
 +/dts-v1/;
 +
-+#include "sc7180-trogdor-wormdingler.dtsi"
++#include "sc7180-trogdor-mrbland.dtsi"
 +
 +&avdd_lcd {
 +	gpio = <&tlmm 80 GPIO_ACTIVE_HIGH>;
@@ -198,7 +194,7 @@ index 000000000000..db29e0cba29d
 +	gpio = <&tlmm 81 GPIO_ACTIVE_HIGH>;
 +};
 +
-+/* PINCTRL - modifications to sc7180-trogdor-wormdingler.dtsi */
++/* PINCTRL - modifications to sc7180-trogdor-mrbland.dtsi */
 +&avdd_lcd_en {
 +	pinmux {
 +		pins = "gpio80";
@@ -227,161 +223,73 @@ index 000000000000..db29e0cba29d
 +		pins = "gpio76";
 +	};
 +};
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev1-boe-rt5682s.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev1-boe-rt5682s.dts
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-mrbland-rev1-auo.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-mrbland-rev1-auo.dts
 new file mode 100644
-index 000000000000..1a921a540075
+index 000000000000..275313ef7554
 --- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev1-boe-rt5682s.dts
-@@ -0,0 +1,39 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Google Wormdingler board device tree source
-+ *
-+ * Copyright 2021 Google LLC.
-+ *
-+ * SKU: 0x401 => 1025
-+ *  - bits 11..8: Panel ID: 0x4 (BOE)
-+ */
-+
-+/dts-v1/;
-+
-+#include "sc7180-trogdor-wormdingler.dtsi"
-+
-+/ {
-+	model = "Google Wormdingler rev1+ (BOE, rt5682s)";
-+	compatible = "google,wormdingler-sku1025", "qcom,sc7180";
-+};
-+
-+&panel {
-+	compatible = "boe,tv110c9m-ll3";
-+};
-+
-+&alc5682 {
-+	compatible = "realtek,rt5682s";
-+	realtek,dmic1-clk-pin = <2>;
-+	realtek,dmic-clk-rate-hz = <2048000>;
-+};
-+
-+&dsi_phy {
-+	qcom,phy-rescode-offset-top = /bits/ 8 <31 31 31 31 (-32)>;
-+	qcom,phy-rescode-offset-bot = /bits/ 8 <31 31 31 31 (-32)>;
-+	qcom,phy-drive-ldo-level = <450>;
-+};
-+
-+&sound {
-+	compatible = "google,sc7180-trogdor";
-+	model = "sc7180-rt5682s-max98357a-1mic";
-+};
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev1-boe.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev1-boe.dts
-new file mode 100644
-index 000000000000..c5b0658bd632
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev1-boe.dts
-@@ -0,0 +1,28 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Google Wormdingler board device tree source
-+ *
-+ * Copyright 2021 Google LLC.
-+ *
-+ * SKU: 0x400 => 1024
-+ *  - bits 11..8: Panel ID: 0x4 (BOE)
-+ */
-+
-+/dts-v1/;
-+
-+#include "sc7180-trogdor-wormdingler.dtsi"
-+
-+/ {
-+	model = "Google Wormdingler rev1+ BOE panel board";
-+	compatible = "google,wormdingler-sku1024", "qcom,sc7180";
-+};
-+
-+&dsi_phy {
-+	qcom,phy-rescode-offset-top = /bits/ 8 <31 31 31 31 (-32)>;
-+	qcom,phy-rescode-offset-bot = /bits/ 8 <31 31 31 31 (-32)>;
-+	qcom,phy-drive-ldo-level = <450>;
-+};
-+
-+&panel {
-+	compatible = "boe,tv110c9m-ll3";
-+};
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev1-inx-rt5682s.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev1-inx-rt5682s.dts
-new file mode 100644
-index 000000000000..1129e3fed165
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev1-inx-rt5682s.dts
-@@ -0,0 +1,33 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Google Wormdingler board device tree source
-+ *
-+ * Copyright 2021 Google LLC.
-+ *
-+ * SKU: 0x0001 => 1
-+ *  - bits 11..8: Panel ID: 0x0 (INX)
-+ */
-+
-+/dts-v1/;
-+
-+#include "sc7180-trogdor-wormdingler.dtsi"
-+
-+/ {
-+	model = "Google Wormdingler rev1+ (INX, rt5682s)";
-+	compatible = "google,wormdingler-sku1", "qcom,sc7180";
-+};
-+
-+&panel {
-+	compatible = "innolux,hj110iz-01a";
-+};
-+
-+&alc5682 {
-+	compatible = "realtek,rt5682s";
-+	realtek,dmic1-clk-pin = <2>;
-+	realtek,dmic-clk-rate-hz = <2048000>;
-+};
-+
-+&sound {
-+	compatible = "google,sc7180-trogdor";
-+	model = "sc7180-rt5682s-max98357a-1mic";
-+};
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev1-inx.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev1-inx.dts
-new file mode 100644
-index 000000000000..dd34a2297ea0
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev1-inx.dts
++++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-mrbland-rev1-auo.dts
 @@ -0,0 +1,22 @@
 +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
 +/*
-+ * Google Wormdingler board device tree source
++ * Google Mrbland board device tree source
 + *
 + * Copyright 2021 Google LLC.
 + *
-+ * SKU: 0x0000 => 0
-+ *  - bits 11..8: Panel ID: 0x0 (INX)
++ * SKU: 0x600 => 1536
++ *  - bits 11..8: Panel ID: 0x6 (AUO)
 + */
 +
 +/dts-v1/;
 +
-+#include "sc7180-trogdor-wormdingler.dtsi"
++#include "sc7180-trogdor-mrbland.dtsi"
 +
 +/ {
-+	model = "Google Wormdingler rev1+ INX panel board";
-+	compatible = "google,wormdingler-sku0", "qcom,sc7180";
++	model = "Google Mrbland rev1+ AUO panel board";
++	compatible = "google,mrbland-sku1536", "qcom,sc7180";
 +};
 +
 +&panel {
-+	compatible = "innolux,hj110iz-01a";
++	compatible = "auo,b101uan08.3";
 +};
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler.dtsi
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-mrbland-rev1-boe.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-mrbland-rev1-boe.dts
 new file mode 100644
-index 000000000000..9c5e3beabbed
+index 000000000000..87c6b6c30b5e
 --- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler.dtsi
-@@ -0,0 +1,413 @@
++++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-mrbland-rev1-boe.dts
+@@ -0,0 +1,24 @@
 +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
 +/*
-+ * Google Wormdingler board device tree source
++ * Google Mrbland board device tree source
++ *
++ * Copyright 2021 Google LLC.
++ *
++ * SKU: 0x300 => 768
++ *  - bits 11..8: Panel ID: 0x3 (BOE)
++ */
++
++/dts-v1/;
++
++#include "sc7180-trogdor-mrbland.dtsi"
++
++/ {
++	model = "Google Mrbland (rev1 - 2) BOE panel board";
++	/* Uses ID 768 on rev1 and 1024 on rev2+ */
++	compatible = "google,mrbland-sku1024", "google,mrbland-sku768",
++		"qcom,sc7180";
++};
++
++&panel {
++	compatible = "boe,tv101wum-n53";
++};
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-mrbland.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-mrbland.dtsi
+new file mode 100644
+index 000000000000..e1c1ea09b690
+--- /dev/null
++++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-mrbland.dtsi
+@@ -0,0 +1,352 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * Google Mrbland board device tree source
 + *
 + * Copyright 2021 Google LLC.
 + */
@@ -394,6 +302,9 @@ index 000000000000..9c5e3beabbed
 +ap_h1_spi: &spi0 {};
 +
 +#include "sc7180-trogdor.dtsi"
++
++/* This board only has 1 USB Type-C port. */
++/delete-node/ &usb_c1;
 +
 +/ {
 +	avdd_lcd: avdd-lcd {
@@ -420,7 +331,6 @@ index 000000000000..9c5e3beabbed
 +		vin-supply = <&pp5000_a>;
 +	};
 +
-+	pp1800_ts:
 +	v1p8_mipi: v1p8-mipi {
 +		compatible = "regulator-fixed";
 +		regulator-name = "v1p8_mipi";
@@ -432,50 +342,6 @@ index 000000000000..9c5e3beabbed
 +
 +		vin-supply = <&pp3300_a>;
 +	};
-+
-+	thermal-zones {
-+		skin_temp_thermal: skin-temp-thermal {
-+			polling-delay-passive = <250>;
-+			polling-delay = <0>;
-+
-+			thermal-sensors = <&pm6150_adc_tm 1>;
-+			sustainable-power = <574>;
-+
-+			trips {
-+				skin_temp_alert0: trip-point0 {
-+					temperature = <58000>;
-+					hysteresis = <1000>;
-+					type = "passive";
-+				};
-+
-+				skin_temp_alert1: trip-point1 {
-+					temperature = <62500>;
-+					hysteresis = <1000>;
-+					type = "passive";
-+				};
-+
-+				skin-temp-crit {
-+					temperature = <68000>;
-+					hysteresis = <1000>;
-+					type = "critical";
-+				};
-+			};
-+
-+			cooling-maps {
-+				map0 {
-+					trip = <&skin_temp_alert0>;
-+					cooling-device = <&CPU6 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+							 <&CPU7 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-+				};
-+
-+				map1 {
-+					trip = <&skin_temp_alert1>;
-+					cooling-device = <&CPU6 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+							 <&CPU7 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-+				};
-+			};
-+		};
-+	};
 +};
 +
 +&ap_tp_i2c {
@@ -486,10 +352,8 @@ index 000000000000..9c5e3beabbed
 +	pwms = <&cros_ec_pwm 0>;
 +};
 +
-+&cros_ec {
-+	base_detection: cbas {
-+		compatible = "google,cros-cbas";
-+	};
++&camcc {
++	status = "okay";
 +};
 +
 +&dsi0 {
@@ -528,43 +392,26 @@ index 000000000000..9c5e3beabbed
 +	};
 +};
 +
++&gpio_keys {
++	status = "okay";
++};
++
 +&i2c4 {
 +	status = "okay";
 +	clock-frequency = <400000>;
 +
-+	ap_ts: touchscreen@1 {
-+		compatible = "hid-over-i2c";
-+		reg = <0x01>;
++	ap_ts: touchscreen@5d {
++		compatible = "goodix,gt7375p";
++		reg = <0x5d>;
 +		pinctrl-names = "default";
-+		pinctrl-0 = <&ts_int_l>;
++		pinctrl-0 = <&ts_int_l>, <&ts_reset_l>;
 +
 +		interrupt-parent = <&tlmm>;
-+		interrupts = <9 IRQ_TYPE_EDGE_FALLING>;
++		interrupts = <9 IRQ_TYPE_LEVEL_LOW>;
 +
-+		post-power-on-delay-ms = <70>;
-+		hid-descr-addr = <0x0001>;
++		reset-gpios = <&tlmm 8 GPIO_ACTIVE_LOW>;
 +
 +		vdd-supply = <&pp3300_ts>;
-+		vddl-supply = <&pp1800_ts>;
-+	};
-+};
-+
-+&pm6150_adc {
-+	skin-temp-thermistor@4d {
-+		reg = <ADC5_AMUX_THM1_100K_PU>;
-+		qcom,ratiometric;
-+		qcom,hw-settle-time = <200>;
-+	};
-+};
-+
-+&pm6150_adc_tm {
-+	status = "okay";
-+
-+	skin-temp-thermistor@1 {
-+		reg = <1>;
-+		io-channels = <&pm6150_adc ADC5_AMUX_THM1_100K_PU>;
-+		qcom,ratiometric;
-+		qcom,hw-settle-time-us = <200>;
 +	};
 +};
 +
@@ -585,7 +432,7 @@ index 000000000000..9c5e3beabbed
 +};
 +
 +&wifi {
-+	qcom,ath10k-calibration-variant = "GO_WORMDINGLER";
++	qcom,ath10k-calibration-variant = "GO_MRBLAND";
 +};
 +
 +/*
@@ -668,7 +515,7 @@ index 000000000000..9c5e3beabbed
 +			  "AMP_BCLK",
 +			  "AMP_LRCLK",
 +			  "AMP_DIN",
-+			  "",
++			  "PEN_DET_ODL",
 +			  "HP_BCLK",
 +			  "HP_LRCLK",
 +			  "HP_DOUT",
