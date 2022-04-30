@@ -2,117 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C081515F47
-	for <lists+devicetree@lfdr.de>; Sat, 30 Apr 2022 18:35:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EE463515F5C
+	for <lists+devicetree@lfdr.de>; Sat, 30 Apr 2022 18:57:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1355243AbiD3Qi0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 30 Apr 2022 12:38:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35906 "EHLO
+        id S233406AbiD3RAq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 30 Apr 2022 13:00:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40208 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237942AbiD3QiZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 30 Apr 2022 12:38:25 -0400
-Received: from mail-pl1-x62d.google.com (mail-pl1-x62d.google.com [IPv6:2607:f8b0:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD9C36FF72;
-        Sat, 30 Apr 2022 09:35:03 -0700 (PDT)
-Received: by mail-pl1-x62d.google.com with SMTP id n8so9528063plh.1;
-        Sat, 30 Apr 2022 09:35:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=EyGOhUWTiu5u131oTuoKOtQFl2U6BDUbmbvuOTx3toc=;
-        b=Zuuwy2M6G2TwFQUNnapePqiqchEQ9b1DK7KVD30MpVWCQCOjgd2YOrl9FAD9LiaJnY
-         IDl4V5NC0EGSiZWubq9qnjmrDkhVcX6TVMFGInVD68debHAM8Ku4TJTNb8YoWqwzPlpb
-         24XNGR3crfXm/eytqO6nEM89AVC9XuOaJtvN2sHdIUsk0ZI1E2kBDIYy6VU31pemikrT
-         EsJac+JYKxGk//S71HMS+Cm9v+NAocdh5qutNBLoUfGyl8X6XOjPoRg0Kfbe7W8QeNzg
-         T3J3ndqs16qdEAkvTJz96ayfh+cTPgCxj7r3nb9xg5sklbySy2goTWsVL/vSj7eaR9/9
-         nVXg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=EyGOhUWTiu5u131oTuoKOtQFl2U6BDUbmbvuOTx3toc=;
-        b=gj8j4vKs151M4MWqi6LGmifEo4sw+pBxz54yYitlW8XsFHFtBaRM7gyLjBRT/qHu5g
-         EOiR3iPhF9ck7LgqEVH/cdjHQZgHS1c2VjMDs4a+SFnY0D0Bf4JhGv+i0RGJEA+uj0iK
-         DdHg1dvWT6FYcP6+P7DbS+H8qfw+oex6PaRWc99o2CUZphfw0KgYx3DVfoTpUJJPLdWH
-         xtmOllGgn3BNCSSchNDlPCCXVotNibUydPj7Upx/l/IUqODeLwHzhFgCT5HcftrdkuMX
-         y7Z1mQAuBa7yf5o//p2Vb5nb9C0x7BfLJKp9F/K365XNaKA0rWTkZzv8D52nqDqcFftx
-         Zyhg==
-X-Gm-Message-State: AOAM533yt1Cfw+e/qUcju8Qsd8iBo9SsuQglqbvMGo+WId74+TMZiniZ
-        sQyIGHt/+dL9FYGeJPj72Hc=
-X-Google-Smtp-Source: ABdhPJzpINsjuBEKWL2ROktmfsUJ53AY3PCTX+D41hWSE2ffksbSXCdPFcmTn6RkP6Uz/RB1YfHK7A==
-X-Received: by 2002:a17:90b:4a49:b0:1d2:adce:8a89 with SMTP id lb9-20020a17090b4a4900b001d2adce8a89mr9816215pjb.43.1651336503290;
-        Sat, 30 Apr 2022 09:35:03 -0700 (PDT)
-Received: from guoguo-omen.lan ([2001:250:3000:7000:c0f1:53a1:ea79:5d2f])
-        by smtp.gmail.com with ESMTPSA id t13-20020a65608d000000b003c14af50606sm8401152pgu.30.2022.04.30.09.34.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 30 Apr 2022 09:35:02 -0700 (PDT)
-From:   Chuanhong Guo <gch981213@gmail.com>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     Chuanhong Guo <gch981213@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS),
-        linux-mediatek@lists.infradead.org (moderated list:ARM/Mediatek SoC
-        support), linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH] arm: dts: mediatek: add mtk-snfi for mt7629
-Date:   Sun,  1 May 2022 00:34:52 +0800
-Message-Id: <20220430163453.537061-1-gch981213@gmail.com>
-X-Mailer: git-send-email 2.35.1
+        with ESMTP id S232692AbiD3RAq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 30 Apr 2022 13:00:46 -0400
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9AFB1E0CF;
+        Sat, 30 Apr 2022 09:57:20 -0700 (PDT)
+Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=diego.localnet)
+        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <heiko@sntech.de>)
+        id 1nkqP3-0002Do-Ak; Sat, 30 Apr 2022 18:57:05 +0200
+From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To:     kernel test robot <lkp@intel.com>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        Rob Herring <robh+dt@kernel.org>, llvm@lists.linux.dev,
+        kbuild-all@lists.01.org, devicetree <devicetree@vger.kernel.org>,
+        arm-mail-list <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 5/7] arm64: dts: rockchip: add Pine64 Quartz64-B device tree
+Date:   Sat, 30 Apr 2022 18:57:04 +0200
+Message-ID: <7373923.EvYhyI6sBW@diego>
+In-Reply-To: <CAMdYzYoBgeTthb8-uycis+BPDmSC5OGVHz2doKYLeh3OY1m_vQ@mail.gmail.com>
+References: <20220429115252.2360496-6-pgwipeout@gmail.com> <202204300850.X97CRcO6-lkp@intel.com> <CAMdYzYoBgeTthb8-uycis+BPDmSC5OGVHz2doKYLeh3OY1m_vQ@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_NONE,
+        T_SPF_HELO_TEMPERROR autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds device-tree nodes for the MTK SPI-NAND Flash Interface
-to mt7629 device tree.
+Am Samstag, 30. April 2022, 16:46:31 CEST schrieb Peter Geis:
+> On Fri, Apr 29, 2022 at 8:17 PM kernel test robot <lkp@intel.com> wrote:
+> >
+> > Hi Peter,
+> >
+> > I love your patch! Yet something to improve:
+> >
+> > [auto build test ERROR on robh/for-next]
+> > [also build test ERROR on arm/for-next arm64/for-next/core clk/clk-next kvmarm/next shawnguo/for-next soc/for-next v5.18-rc4]
+> > [cannot apply to rockchip/for-next xilinx-xlnx/master keystone/next next-20220429]
+> > [If your patch is applied to the wrong git tree, kindly drop us a note.
+> > And when submitting patch, we suggest to use '--base' as documented in
+> > https://git-scm.com/docs/git-format-patch]
+> 
+> The three new device trees are dependent on my usb series which was
+> accepted through Heiko's tree.
+> I can drop the xhci dependency, but this will just happen again adding
+> it back in if it's done in this RC series.
 
-Signed-off-by: Chuanhong Guo <gch981213@gmail.com>
----
- arch/arm/boot/dts/mt7629.dtsi | 21 +++++++++++++++++++++
- 1 file changed, 21 insertions(+)
+Of course dropping that part is not necessary :-)
+I.e. the dependency is in my tree and this stuff will go on top.
 
-diff --git a/arch/arm/boot/dts/mt7629.dtsi b/arch/arm/boot/dts/mt7629.dtsi
-index 46fc236e1b89..6f231e2ed68f 100644
---- a/arch/arm/boot/dts/mt7629.dtsi
-+++ b/arch/arm/boot/dts/mt7629.dtsi
-@@ -286,6 +286,27 @@ spi: spi@1100a000 {
- 			status = "disabled";
- 		};
- 
-+		snfi: spi@1100d000 {
-+			compatible = "mediatek,mt7629-snand";
-+			reg = <0x1100d000 0x1000>;
-+			interrupts = <GIC_SPI 96 IRQ_TYPE_LEVEL_LOW>;
-+			clocks = <&pericfg CLK_PERI_NFI_PD>, <&pericfg CLK_PERI_SNFI_PD>;
-+			clock-names = "nfi_clk", "pad_clk";
-+			nand-ecc-engine = <&bch>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			status = "disabled";
-+		};
-+
-+		bch: ecc@1100e000 {
-+			compatible = "mediatek,mt7622-ecc";
-+			reg = <0x1100e000 0x1000>;
-+			interrupts = <GIC_SPI 95 IRQ_TYPE_LEVEL_LOW>;
-+			clocks = <&pericfg CLK_PERI_NFIECC_PD>;
-+			clock-names = "nfiecc_clk";
-+			status = "disabled";
-+		};
-+
- 		qspi: spi@11014000 {
- 			compatible = "mediatek,mt7629-nor",
- 				     "mediatek,mt8173-nor";
--- 
-2.35.1
+I'm just not sure if I should give Krzysztof more time for patch1.
+The binding of course looks great now already, I guess I'll let the
+Quartz-B sit some days more.
+
+
+Heiko
+
+> 
+> >
+> > url:    https://github.com/intel-lab-lkp/linux/commits/Peter-Geis/Add-support-for-several-new-rk3566-SBCs/20220429-195433
+> > base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+> > config: arm64-randconfig-r021-20220428 (https://download.01.org/0day-ci/archive/20220430/202204300850.X97CRcO6-lkp@intel.com/config)
+> > compiler: clang version 15.0.0 (https://github.com/llvm/llvm-project 400775649969b9baf3bc2a510266e7912bb16ae9)
+> > reproduce (this is a W=1 build):
+> >         wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+> >         chmod +x ~/bin/make.cross
+> >         # install arm64 cross compiling tool for clang build
+> >         # apt-get install binutils-aarch64-linux-gnu
+> >         # https://github.com/intel-lab-lkp/linux/commit/d933bfeea016da20a99bce012bbf071f9d86e2bf
+> >         git remote add linux-review https://github.com/intel-lab-lkp/linux
+> >         git fetch --no-tags linux-review Peter-Geis/Add-support-for-several-new-rk3566-SBCs/20220429-195433
+> >         git checkout d933bfeea016da20a99bce012bbf071f9d86e2bf
+> >         # save the config file
+> >         mkdir build_dir && cp config build_dir/.config
+> >         COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=arm64 SHELL=/bin/bash
+> >
+> > If you fix the issue, kindly add following tag as appropriate
+> > Reported-by: kernel test robot <lkp@intel.com>
+> >
+> > All errors (new ones prefixed by >>):
+> >
+> > >> Error: arch/arm64/boot/dts/rockchip/rk3566-quartz64-b.dts:601.1-16 Label or path usb_host0_xhci not found
+> > >> Error: arch/arm64/boot/dts/rockchip/rk3566-quartz64-b.dts:605.1-16 Label or path usb_host1_xhci not found
+> >    FATAL ERROR: Syntax error parsing input tree
+> >
+> > --
+> > 0-DAY CI Kernel Test Service
+> > https://01.org/lkp
+> 
+
+
+
 
