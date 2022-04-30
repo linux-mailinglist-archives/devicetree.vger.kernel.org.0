@@ -2,70 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 337B1515D20
-	for <lists+devicetree@lfdr.de>; Sat, 30 Apr 2022 14:58:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E3793515D2E
+	for <lists+devicetree@lfdr.de>; Sat, 30 Apr 2022 15:04:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1377731AbiD3NB6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 30 Apr 2022 09:01:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48020 "EHLO
+        id S1343716AbiD3NHZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 30 Apr 2022 09:07:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35318 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231486AbiD3NB5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 30 Apr 2022 09:01:57 -0400
-Received: from mail-oi1-x22d.google.com (mail-oi1-x22d.google.com [IPv6:2607:f8b0:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C8BC74DCF;
-        Sat, 30 Apr 2022 05:58:35 -0700 (PDT)
-Received: by mail-oi1-x22d.google.com with SMTP id e189so11161477oia.8;
-        Sat, 30 Apr 2022 05:58:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=sender:date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=ciKZAgL4Y32fQDktpp8pgT/D9mFOYAbHr7EpiXlwflg=;
-        b=DzZzEmyFRHYyDcTBj0CEp6Ote2vz0QXlAZsSgvWMwZT0wfFWRqDshURzXnHE6+Duyl
-         tGJpoTaoSQBW4Q8SzDhUIAEL5K5AfxaHpVDPEmpHPCOCMaBtzOjsptIH9LPUWt2EJ/qS
-         o6C9kIk3SWXPR1IovAi2Otnq7xK7CmU5G27POuQNgAC9jcfB4coUJa2+9TU32GsKIZvD
-         UCFDKJthobxBw4WU6w+IFNb35Wh7pWTZq0PUNxOLoVI7Cfz3JAMhAr4iYc5kVUz3cCHZ
-         mi6LJCBY166hjWHIvZc7ePz9q+w1fo8l1sYo7CgIdHfgjzQSb0vA/tGEhYhx/S94knFr
-         sN1w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
-         :references:mime-version:content-disposition:in-reply-to;
-        bh=ciKZAgL4Y32fQDktpp8pgT/D9mFOYAbHr7EpiXlwflg=;
-        b=OLjFIACQAxwOcSRr89WlTLgXf5w3IdCGyJzAae1/i1oLp3xkNZ7pQhS0RVxi4W8YMa
-         g44jZm5Vbre8KuAICU18cY6bD2fuMxhd4bEJtSxMOsV4HTwieU+gLm4aL7I0C5EE4Y6X
-         Iv/HGE4M/GwB18zSOnG8c6ouWcDHXHJlHC9sbOOSBexUqKBGaUgtJALua37pQ/o+h7hI
-         gK89erqQUp8m+Z6S4upPuJrnBAjxnKJA2lMdJ8IQtVTHwkzTGAm6qB24XY8suC+e+/Nm
-         IOnibWI/+7Q/hMCftkM86k6W5CVp28v2pHCjIgZOeaHI9KxJFLbZhkLOt83eiJbrucCE
-         GBww==
-X-Gm-Message-State: AOAM532jfihi2Y72RUlNJV/+wQ1/ZDS1fcH28wpsYlpSOEV6T/UH+ldu
-        Z062HNy4C8/aBlktAjyLpSLkMasT0ofYzg==
-X-Google-Smtp-Source: ABdhPJx+vtwyvt9yAgitgg+Ig7W3fz6/XYc//dfziW9VWg8P8Y9X/4PvCkw/xkuUg7eA3rq2K5jrew==
-X-Received: by 2002:a05:6808:ec2:b0:2f7:34db:691e with SMTP id q2-20020a0568080ec200b002f734db691emr3660139oiv.252.1651323514636;
-        Sat, 30 Apr 2022 05:58:34 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id n44-20020a056870822c00b000e686d13894sm3991394oae.46.2022.04.30.05.58.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 30 Apr 2022 05:58:34 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date:   Sat, 30 Apr 2022 05:58:32 -0700
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     michaelsh@nvidia.com
-Cc:     robh+dt@kernel.org, linux-hwmon@vger.kernel.org,
-        devicetree@vger.kernel.org, vadimp@nvidia.com
-Subject: Re: [PATCH v1 2/3] dt-bindings: hwmon: add microchip,emc2306.yaml dt
- binding description.
-Message-ID: <20220430125832.GC1888736@roeck-us.net>
-References: <20220430114905.53448-1-michaelsh@nvidia.com>
- <20220430114905.53448-3-michaelsh@nvidia.com>
+        with ESMTP id S232192AbiD3NHY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 30 Apr 2022 09:07:24 -0400
+Received: from mxout3.routing.net (mxout3.routing.net [IPv6:2a03:2900:1:a::8])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AFDCC8071F;
+        Sat, 30 Apr 2022 06:04:01 -0700 (PDT)
+Received: from mxbox3.masterlogin.de (unknown [192.168.10.78])
+        by mxout3.routing.net (Postfix) with ESMTP id DA8BC6054A;
+        Sat, 30 Apr 2022 13:03:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailerdienst.de;
+        s=20200217; t=1651323839;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=E/DjbKxcbIiIW9rYKpEMs3z/xZdjhL53L8stR7y8sO4=;
+        b=c/b2QyYwrIXU5MbbqgvfcAfL4FUW9cZZKO0WzmDYe7xspvdKnTqhl3uEd3tymKqcZ2zZ59
+        UG0RabZgG7IZYViF/AZ6N+MnHtUdzPBYfsByChAIUePYmEx8natLwxwu3IcmdSKWNz/JFn
+        //VNzhNLCclCBauqbsf/bSVec02HjAg=
+Received: from localhost.localdomain (fttx-pool-80.245.72.211.bambit.de [80.245.72.211])
+        by mxbox3.masterlogin.de (Postfix) with ESMTPSA id 5AC8B3600EF;
+        Sat, 30 Apr 2022 13:03:57 +0000 (UTC)
+From:   Frank Wunderlich <linux@fw-web.de>
+To:     linux-mediatek@lists.infradead.org,
+        linux-rockchip@lists.infradead.org
+Cc:     Frank Wunderlich <frank-w@public-files.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Landen Chao <Landen.Chao@mediatek.com>,
+        DENG Qingfang <dqfext@gmail.com>, Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Peter Geis <pgwipeout@gmail.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        netdev@vger.kernel.org
+Subject: [RFC v2 0/4] Support mt7531 on BPI-R2 Pro
+Date:   Sat, 30 Apr 2022 15:03:43 +0200
+Message-Id: <20220430130347.15190-1-linux@fw-web.de>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220430114905.53448-3-michaelsh@nvidia.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
+Content-Transfer-Encoding: 8bit
+X-Mail-ID: b931c4e7-0a19-447e-82b1-0aeac9a6c684
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -73,82 +65,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Apr 30, 2022 at 02:49:04PM +0300, michaelsh@nvidia.com wrote:
-> From: Michael Shych <michaelsh@nvidia.com>
-> 
-> Add basic description of emc2305 driver device tree binding.
-> 
-> Signed-off-by: Michael Shych <michaelsh@nvidia.com>
-> Reviewed-by: Vadim Pasternak <vadimp@nvidia.com>
-> ---
->  .../bindings/hwmon/microchip,emc2305.yaml          | 55 ++++++++++++++++++++++
->  1 file changed, 55 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/hwmon/microchip,emc2305.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/hwmon/microchip,emc2305.yaml b/Documentation/devicetree/bindings/hwmon/microchip,emc2305.yaml
-> new file mode 100644
-> index 000000000000..c873172b7268
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/hwmon/microchip,emc2305.yaml
-> @@ -0,0 +1,55 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +
-> +$id: http://devicetree.org/schemas/hwmon/emc2305.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Microchip EMC2305 RPM-based PWM Fan Speed Controller
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - microcip,emc2305
-> +
-> +  emc2305,pwm-min:
-> +    description:
-> +      Min pwm of emc2305
-> +    maxItems: 1
-> +  emc2305,pwm-max:
-> +    description:
-> +      Max pwm of emc2305
-> +    maxItems: 1
-> +  emc2305,pwm-channel:
-> +    description:
-> +      Max number of pwm channels
-> +    maxItems: 1
+From: Frank Wunderlich <frank-w@public-files.de>
 
-I think this needs to be explained further.
+This Series add Support for the mt7531 switch on Bananapi R2 Pro board.
 
-> +  emcs205,max-state:
-> +    description:
-> +    maxItems: 1
-> +  emc2305,cooling-levels:
-> +    description:
-> +      Quantity of cooling level state.
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +
-> +optional:
-> +  - emc2305,min-pwm
-> +  - emc2305,max-pwm
-> +  - emc2305,pwm-channels
-> +  - emc2305,cooling-levels
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    fan {
-> +        emc2305,compatible = "microchip,emc2305";
-> +        emc2305,pwm-min = <0>;
-> +        emc2305,pwm-max = <255>;
-> +        emc2305,pwm-channel = <5>
-> +        emc2305,cooling-levels = <10>;
-> +    };
-> +
-> -- 
-> 2.14.1
-> 
+This board uses port5 of the switch to conect to the gmac0 of the
+rk3568 SoC.
+
+Currently CPU-Port is hardcoded in the mt7530 driver to port 6.
+
+Compared to v1 the reset-Patch was dropped as it was not needed and
+CPU-Port-changes are completely rewriten based on suggestions/code from
+Vladimir Oltean (many thanks to this).
+In DTS Patch i only dropped the status-property that was not
+needed/ignored by driver.
+
+Due to the Changes i also made a regression Test on mt7623 bpi-r2 using
+mt7530 with cpu-port 6. Tests were done directly (ipv4 config on dsa user
+port) and with vlan-aware bridge including vlan that was tagged outgoing
+on dsa user port.
+
+Frank Wunderlich (4):
+  net: dsa: mt7530: rework mt7530_hw_vlan_{add,del}
+  net: dsa: mt7530: rework mt753[01]_setup
+  net: dsa: mt7530: get cpu-port via dp->cpu_dp instead of constant
+  arm64: dts: rockchip: Add mt7531 dsa node to BPI-R2-Pro board
+
+ .../boot/dts/rockchip/rk3568-bpi-r2-pro.dts   | 48 +++++++++++
+ drivers/net/dsa/mt7530.c                      | 81 ++++++++++++-------
+ drivers/net/dsa/mt7530.h                      |  1 -
+ 3 files changed, 100 insertions(+), 30 deletions(-)
+
+-- 
+2.25.1
+
