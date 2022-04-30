@@ -2,138 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 59D24515CC7
-	for <lists+devicetree@lfdr.de>; Sat, 30 Apr 2022 14:20:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7EA11515CE2
+	for <lists+devicetree@lfdr.de>; Sat, 30 Apr 2022 14:30:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1380965AbiD3MWy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 30 Apr 2022 08:22:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44518 "EHLO
+        id S240895AbiD3Mdg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 30 Apr 2022 08:33:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33984 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1376982AbiD3MWu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 30 Apr 2022 08:22:50 -0400
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 323C36B091
-        for <devicetree@vger.kernel.org>; Sat, 30 Apr 2022 05:19:21 -0700 (PDT)
-Received: by mail-ej1-x62b.google.com with SMTP id m20so19931808ejj.10
-        for <devicetree@vger.kernel.org>; Sat, 30 Apr 2022 05:19:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=9PrzlAjGmNeSX2t/TXGPbZCFJ6ftTzqZDscsydnon9s=;
-        b=i/irFdjzBJgh54tgZ4//X6S0mWafLpwsgehVEM7BwkPqnDg9OvKTJ6dgosnzJF+rXF
-         luGhopmRV6H54GMguL3OvUGPWeQTKbAK+DO4Z+qBCXof1beTo2VDFKZn/jsJ7UfxJOdB
-         MWlcE+FxSFpcKb5Ldpf+JoelJ44BrUzi2wZGKp2Pv/A9SBs69PfOOTvfnN8/iYg2u3kh
-         4z6gkHL3A4KbssQgMsuY/4Co6VJhZ4CFlNIKIP72e5bw6SjKo5qeBH1l1ICzcADaLj2F
-         F+KS1sMCAruli5SPTjxgagHILCjRLsoosC7mFKYEAFq7AofXdHiLDJa2gtX/iTLPH+Js
-         RMxg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=9PrzlAjGmNeSX2t/TXGPbZCFJ6ftTzqZDscsydnon9s=;
-        b=y1IfPxSqwB0jwJ0n+J6H/6Ad87M1Lb0cYOaq5JBQneph0EzRyeLc0a2t726bPlMk0J
-         efeypsLkjbVIlbBrE75gIquKIHb+NRpGKeZhbhAksUDVhiasUS/7B0irRyXd1wKmPz2Q
-         H7h7OoFnHmdNV/pD+BYPGrivga43B2BcVuwjMAHO5K4R5W/VQTWPf5RrCuPoyGzLOpq8
-         4EbCoI5ReswVXEYZRIi/OE2bfQGsIQq8CVguFB6a0MpQRf7zlsVUZm3uva+v4yFd+3wN
-         bwlNFUNbqiu5eoHnDNq876Vmu7D56U6zTtUp5+DrlB8xnjl5pZuTqrznxhUoORgWo1fv
-         uBGQ==
-X-Gm-Message-State: AOAM532r86OlXBOQIe1ue0HbmIL/6ubZZhkmMYmdnZ0k0+Yku6vJLcZ2
-        ggqeBBpG7v87Wv0Zfq5391ioh0fUKGrUSw==
-X-Google-Smtp-Source: ABdhPJy1iVrG4EYBeYhtmduhXaSa9bjJ6gFExbQgPOoPqYmL7ybmkMBOA4DSedXZgdWFWOvpViLMUQ==
-X-Received: by 2002:a17:907:3e0e:b0:6f3:845a:8d2d with SMTP id hp14-20020a1709073e0e00b006f3845a8d2dmr3770364ejc.78.1651321159572;
-        Sat, 30 Apr 2022 05:19:19 -0700 (PDT)
-Received: from localhost.localdomain (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id c26-20020a056402159a00b0042617ba63d1sm4059091edv.91.2022.04.30.05.19.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 30 Apr 2022 05:19:19 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Dinh Nguyen <dinguyen@kernel.org>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Liviu Dudau <liviu.dudau@arm.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        Broadcom Kernel Team <bcm-kernel-feedback-list@broadcom.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH v2 9/9] arm64: dts: fsd: drop useless 'dma-channels/requests' properties
-Date:   Sat, 30 Apr 2022 14:19:02 +0200
-Message-Id: <20220430121902.59895-10-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20220430121902.59895-1-krzysztof.kozlowski@linaro.org>
-References: <20220430121902.59895-1-krzysztof.kozlowski@linaro.org>
+        with ESMTP id S240638AbiD3Mdf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 30 Apr 2022 08:33:35 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CDB6660D9;
+        Sat, 30 Apr 2022 05:30:12 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 638BA60B29;
+        Sat, 30 Apr 2022 12:30:12 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id B96BCC385AF;
+        Sat, 30 Apr 2022 12:30:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1651321811;
+        bh=TNwRjjaZtTXUA+rKES33JT5EjS9KBENobC9GoKco64M=;
+        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+        b=deMujOuzAlh5ONdUI1a3avYrWVkzjRDOhzA+3MRvpr97WOf2uthmncsU1KtJlgvgk
+         y4diCzTeKzxOTC/3xH9nseDtJSubteNbrEK4nOtm94j/P4niYvAJ/Arny0wouVoJ3C
+         hVwIvrz8ZQ65KGAv7FV3gUISRhEh4yQM4Iktrn6CP4GeruIrPpxbbHJjIlEsN2hnbz
+         UOOSQ+whQVydZzwLtIfUFiEv9wOThT6kYaAJ0ja0eZWTNlurszojds3SyhIHOp0ESz
+         4TPXMEH0JbHXALNZV4F0VUXdRX81ueZjCo/uQOGuDdGdeJOpRF/Yr2PZqleh9MtZlc
+         30JREaWapslXQ==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 8F9C1F03847;
+        Sat, 30 Apr 2022 12:30:11 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Subject: Re: [PATCH net-next 0/2] net: lan966x: remove PHY reset support
+From:   patchwork-bot+netdevbpf@kernel.org
+Message-Id: <165132181158.22225.4698610186663844622.git-patchwork-notify@kernel.org>
+Date:   Sat, 30 Apr 2022 12:30:11 +0000
+References: <20220428114049.1456382-1-michael@walle.cc>
+In-Reply-To: <20220428114049.1456382-1-michael@walle.cc>
+To:     Michael Walle <michael@walle.cc>
+Cc:     davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+        pabeni@redhat.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, horatiu.vultur@microchip.com,
+        UNGLinuxDriver@microchip.com, p.zabel@pengutronix.de,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The pl330 DMA controller provides number of DMA channels and requests
-through its registers, so duplicating this information (with a chance of
-mistakes) in DTS is pointless.  Additionally the DTS used always wrong
-property names which causes DT schema check failures - the bindings
-documented 'dma-channels' and 'dma-requests' properties without leading
-hash sign.
+Hello:
 
-Reported-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- arch/arm64/boot/dts/tesla/fsd.dtsi | 8 --------
- 1 file changed, 8 deletions(-)
+This series was applied to netdev/net-next.git (master)
+by David S. Miller <davem@davemloft.net>:
 
-diff --git a/arch/arm64/boot/dts/tesla/fsd.dtsi b/arch/arm64/boot/dts/tesla/fsd.dtsi
-index 10c217a57a7d..af39655331de 100644
---- a/arch/arm64/boot/dts/tesla/fsd.dtsi
-+++ b/arch/arm64/boot/dts/tesla/fsd.dtsi
-@@ -432,8 +432,6 @@ mdma0: dma-controller@10100000 {
- 			reg = <0x0 0x10100000 0x0 0x1000>;
- 			interrupts = <GIC_SPI 424 IRQ_TYPE_LEVEL_HIGH>;
- 			#dma-cells = <1>;
--			#dma-channels = <8>;
--			#dma-requests = <32>;
- 			clocks = <&clock_imem IMEM_DMA0_IPCLKPORT_ACLK>;
- 			clock-names = "apb_pclk";
- 			iommus = <&smmu_imem 0x800 0x0>;
-@@ -444,8 +442,6 @@ mdma1: dma-controller@10110000 {
- 			reg = <0x0 0x10110000 0x0 0x1000>;
- 			interrupts = <GIC_SPI 425 IRQ_TYPE_LEVEL_HIGH>;
- 			#dma-cells = <1>;
--			#dma-channels = <8>;
--			#dma-requests = <32>;
- 			clocks = <&clock_imem IMEM_DMA1_IPCLKPORT_ACLK>;
- 			clock-names = "apb_pclk";
- 			iommus = <&smmu_imem 0x801 0x0>;
-@@ -456,8 +452,6 @@ pdma0: dma-controller@14280000 {
- 			reg = <0x0 0x14280000 0x0 0x1000>;
- 			interrupts = <GIC_SPI 190 IRQ_TYPE_LEVEL_HIGH>;
- 			#dma-cells = <1>;
--			#dma-channels = <8>;
--			#dma-requests = <32>;
- 			clocks = <&clock_peric PERIC_DMA0_IPCLKPORT_ACLK>;
- 			clock-names = "apb_pclk";
- 			iommus = <&smmu_peric 0x2 0x0>;
-@@ -468,8 +462,6 @@ pdma1: dma-controller@14290000 {
- 			reg = <0x0 0x14290000 0x0 0x1000>;
- 			interrupts = <GIC_SPI 191 IRQ_TYPE_LEVEL_HIGH>;
- 			#dma-cells = <1>;
--			#dma-channels = <8>;
--			#dma-requests = <32>;
- 			clocks = <&clock_peric PERIC_DMA1_IPCLKPORT_ACLK>;
- 			clock-names = "apb_pclk";
- 			iommus = <&smmu_peric 0x1 0x0>;
+On Thu, 28 Apr 2022 13:40:47 +0200 you wrote:
+> Remove the unneeded PHY reset node as well as the driver support for it.
+> 
+> This was already discussed [1] and I expect Microchip to Ack on this
+> removal. Since there is no user, no breakage is expected.
+> 
+> I'm not sure it this should go through net or net-next and if the patches
+> should have a Fixes: tag or not. In upstream linux there was never any user
+> of it, so there is no bug to be fixed. But OTOH if the schema fix isn't
+> backported, then there might be an older schema version still containing
+> the reset node. Thoughts?
+> 
+> [...]
+
+Here is the summary with links:
+  - [net-next,1/2] dt-bindings: net: lan966x: remove PHY reset
+    https://git.kernel.org/netdev/net-next/c/4fdabd509df3
+  - [net-next,2/2] net: lan966x: remove PHY reset support
+    https://git.kernel.org/netdev/net-next/c/5b06ef86826a
+
+You are awesome, thank you!
 -- 
-2.32.0
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
 
