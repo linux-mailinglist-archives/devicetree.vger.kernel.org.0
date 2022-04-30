@@ -2,75 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2050D515E4F
-	for <lists+devicetree@lfdr.de>; Sat, 30 Apr 2022 16:43:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 76F9E515E51
+	for <lists+devicetree@lfdr.de>; Sat, 30 Apr 2022 16:45:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242517AbiD3Oqv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 30 Apr 2022 10:46:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54288 "EHLO
+        id S1382845AbiD3OsX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 30 Apr 2022 10:48:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55102 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231355AbiD3Oqr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 30 Apr 2022 10:46:47 -0400
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52B2166CB4
-        for <devicetree@vger.kernel.org>; Sat, 30 Apr 2022 07:43:24 -0700 (PDT)
-Received: by mail-ed1-x535.google.com with SMTP id a1so12078970edt.3
-        for <devicetree@vger.kernel.org>; Sat, 30 Apr 2022 07:43:24 -0700 (PDT)
+        with ESMTP id S1377478AbiD3OsW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 30 Apr 2022 10:48:22 -0400
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16EDB6A012
+        for <devicetree@vger.kernel.org>; Sat, 30 Apr 2022 07:45:00 -0700 (PDT)
+Received: by mail-ej1-x632.google.com with SMTP id gh6so20467335ejb.0
+        for <devicetree@vger.kernel.org>; Sat, 30 Apr 2022 07:45:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :references:from:in-reply-to:content-transfer-encoding;
-        bh=Ae7sNcHPWMn0vQt8ktazZVFlpIwIv2WIixfHk4+kCCs=;
-        b=R03VAAwVTDiVdVvlB4UrMenl7xp/UpjZLcoRbp4/jp5vDn6wjTFrjllooWfuKDUy4C
-         mNrMBFMThe2AtywO46d5WROs0dtF4F6lMQm6Hvp1jC4xDt4EViOJ5quaGM2kSY1C16gy
-         9r8ojzX34iXZKf1bql7rTKVqClqgIvmFa8JfGZRyZZR2nR/8eumAWVKR6P7PPwnz9lZu
-         MdBjsLya7QzRlZmWxmf9TWxTXZsIDmmIA3G6lMhapcvM/479Kg+UBhtoxzJ4WZymeqkP
-         4fesp6bFshwwuUpjHQvYyUj3LLLG4Sjsa64FPNPrgw/RBjnFI1Oirhl8n3eCs8Y251BU
-         11fA==
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=Oy0xVVppw3qelUQn91ueEZ7VduJvpy8odEjGqqKlo1o=;
+        b=u6xN0wCFJv3cexNP59tSC1QVYmfUiyE8i7LIuj/szhrIdwzshrYvdYV//O+mkjAGPh
+         W3bCDfq4VaftSpkOoUhoB8HP1mlOEBlXNg4uTwMOWYth1I7KD+KLZdZtGDLqiku+EqEv
+         719L5trEO48decxJx+WRmeI91lDT9zXsLruEBD4BWrv3XLCG7fa6YzecmEchFsbcMx30
+         SXXFRYHU9uLWmzgwVF1NWVLLBTX8tk9BxQf5byNAQLvTgSGOHDefjsvLFnovGOk8dUry
+         W5e0Ys9h7Jy3T/j94tC5PHuJwHPwCv+EoTk/q2Ucm1DLu1aCGhIJY15g+R0rnWXzcslz
+         PpfQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:references:from:in-reply-to
+         :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=Ae7sNcHPWMn0vQt8ktazZVFlpIwIv2WIixfHk4+kCCs=;
-        b=fKxJp6yce1MLR+lzpbjBKdFi+yN2tU5foCmASPTgIpqNoZpXJJa1tLu6aNQMPYaGOM
-         IVWgWh5blLE9hXI2PukipoepALGknUEWlTz77zcFP1oX68yf6frbmHr1ElzsRvLlxLKM
-         k0Rc/UjtQrGiA2O2qhGf3n70oKYS497akfcyrSQulGb6zkQTIyhjwMJQrhnGZME66ifC
-         LrJr/BZFxEIDusQIYGu6nB1iXsW13WYBCMM0u5qJl7N2YM2nMjCR15FgqcODgTInHwzh
-         F3ITkWWAvslcHNPwfHWDaxltUrSThog065/S9YrGgahwAXiRFdSastXGrFkl6z7uBTIk
-         Y5ZQ==
-X-Gm-Message-State: AOAM531bCaOSx0pPAVixm+N40WCVlnnLCTW9YYiitMPUFyaqVJvjsTCZ
-        /YJq/VKZcCT6RQdL4jer/nlyQQ==
-X-Google-Smtp-Source: ABdhPJw/sjjJ325eTLjgrvQ2SuNf9g5yd69OBocxHWeT36O4SGf1AKPyCMPkC1ksmQ5yoT6VPZtWwQ==
-X-Received: by 2002:aa7:cb4d:0:b0:425:e24f:96ba with SMTP id w13-20020aa7cb4d000000b00425e24f96bamr4755602edt.214.1651329802286;
-        Sat, 30 Apr 2022 07:43:22 -0700 (PDT)
+        bh=Oy0xVVppw3qelUQn91ueEZ7VduJvpy8odEjGqqKlo1o=;
+        b=rBFoRWB+zbiTP5O083jYYRyc4mLI4N4F1LzYZ2azkpqDmGl3hd717Ybaj3yXwdOJmX
+         ETAW8OuCYuC46md/Touck9v0PPeAs1k7DC+mbGQFs/ThV/o9oZaquzy0TeGhr9alOb6x
+         jxemSfm3RikHy65A8DKPjifvpyw1fvNTDUGO2h2QTyTGipFi2pMCCAoGkPZFKCF/Y16s
+         BQAjh8QCtmo33Z4ZY/w/f8PLzY2jIb+RY8AN0awODSxBluAMs4kfDu3GEiS4jHspDAGe
+         lF4pS7QVXWdaXO0EMeZBbkxiDq73E6BVebFQ30hVaCwP6mIvatPWkeBTllEg6vOSH1Su
+         GODA==
+X-Gm-Message-State: AOAM531UosQ9WoE/CZc++MyQPloV99ZROk6cJeSDfEWh0rLz81awWuEf
+        YnBB5F2BPuQ82pyMS52zFyx6Cw==
+X-Google-Smtp-Source: ABdhPJwV01wa7UN9N4o+K+6V9dicEDNKbkI9EsUJDussG7+bT4xtMjaSlzbFUiLEn1Vhuu6HSQL4Pg==
+X-Received: by 2002:a17:907:94c5:b0:6f3:f30e:8c52 with SMTP id dn5-20020a17090794c500b006f3f30e8c52mr4180004ejc.660.1651329898678;
+        Sat, 30 Apr 2022 07:44:58 -0700 (PDT)
 Received: from [192.168.0.180] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id ck13-20020a0564021c0d00b00427afbbf5e8sm527102edb.11.2022.04.30.07.43.21
+        by smtp.gmail.com with ESMTPSA id hx14-20020a170906846e00b006f3ef214db6sm1675837ejc.28.2022.04.30.07.44.57
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 30 Apr 2022 07:43:21 -0700 (PDT)
-Message-ID: <62709b53-392f-2463-8124-e109f2d810dd@linaro.org>
-Date:   Sat, 30 Apr 2022 16:43:20 +0200
+        Sat, 30 Apr 2022 07:44:58 -0700 (PDT)
+Message-ID: <f56061fe-adec-a148-e085-0561f84e8b3d@linaro.org>
+Date:   Sat, 30 Apr 2022 16:44:57 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [PATCH 2/2] dt-bindings: mtd: qcom_nandc: document
- qcom,boot_pages binding
+Subject: Re: [PATCH v14 04/10] dt-bindings: iio: adc: document qcom-spmi-rradc
 Content-Language: en-US
-To:     Ansuel Smith <ansuelsmth@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
+To:     Caleb Connolly <caleb.connolly@linaro.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-mtd@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220429211630.7812-1-ansuelsmth@gmail.com>
- <20220429211630.7812-3-ansuelsmth@gmail.com>
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Stephen Boyd <sboyd@kernel.org>, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+Cc:     Jami Kettunen <jami.kettunen@somainline.org>,
+        Sumit Semwal <sumit.semwal@linaro.org>
+References: <20220429220904.137297-1-caleb.connolly@linaro.org>
+ <20220429220904.137297-5-caleb.connolly@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220429211630.7812-3-ansuelsmth@gmail.com>
+In-Reply-To: <20220429220904.137297-5-caleb.connolly@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -83,61 +84,13 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/04/2022 23:16, Ansuel Smith wrote:
-> Document new qcom,boot_pages binding used to apply special
-> read/write configuration to boot pages.
+On 30/04/2022 00:08, Caleb Connolly wrote:
+> Add dt-binding docs for the Qualcomm SPMI RRADC found in PMICs like
+> PMI8998 and PMI8994
 > 
-> QCOM apply a special configuration where spare data is not protected
-> by ECC for some special pages (used for boot partition). Add
-> Documentation on how to declare these special pages.
-> 
-> Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
-> ---
->  .../devicetree/bindings/mtd/qcom,nandc.yaml         | 13 +++++++++++++
->  1 file changed, 13 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/mtd/qcom,nandc.yaml b/Documentation/devicetree/bindings/mtd/qcom,nandc.yaml
-> index 84ad7ff30121..ef243109689d 100644
-> --- a/Documentation/devicetree/bindings/mtd/qcom,nandc.yaml
-> +++ b/Documentation/devicetree/bindings/mtd/qcom,nandc.yaml
-> @@ -78,6 +78,17 @@ allOf:
->              Must contain the ADM data type CRCI block instance number
->              specified for the NAND controller on the given platform
->  
-> +        qcom,boot_pages:
+> Signed-off-by: Caleb Connolly <caleb.connolly@linaro.org>
 
-No underscores in property names.
-
-> +          $ref: /schemas/types.yaml#/definitions/uint32-array
-> +          description:
-> +            Some special page used by boot partition have spare data
-> +            not protected by ECC. Use this to declare these special page
-> +            by defining first the offset and then the size.
-> +
-> +            It's in the form of <offset1 size1 offset2 size2 offset3 ...>
-
-Then it look like uint32-matrix.
-
-> +
-> +            Refer to the ipq8064 example on how to use this special binding.
-
-Property does not look valid for other variants, so it should be made
-false for them (in allOf:if:then).
-
-> +
->    - if:
->        properties:
->          compatible:
-> @@ -135,6 +146,8 @@ examples:
->          nand-ecc-strength = <4>;
->          nand-bus-width = <8>;
->  
-> +        qcom,boot_pages = <0x0 0x58a0000>;
-> +
->          partitions {
->            compatible = "fixed-partitions";
->            #address-cells = <1>;
-
+You got my review tag, didn't you? Any changes in this patch?
 
 Best regards,
 Krzysztof
