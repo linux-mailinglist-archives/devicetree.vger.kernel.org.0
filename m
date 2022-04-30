@@ -2,125 +2,189 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 06A9C515E1E
-	for <lists+devicetree@lfdr.de>; Sat, 30 Apr 2022 16:18:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 85D76515E3A
+	for <lists+devicetree@lfdr.de>; Sat, 30 Apr 2022 16:36:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1382800AbiD3OVq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 30 Apr 2022 10:21:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50780 "EHLO
+        id S234103AbiD3OjY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 30 Apr 2022 10:39:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38108 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1382808AbiD3OVo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 30 Apr 2022 10:21:44 -0400
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.15])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0AA44811BD;
-        Sat, 30 Apr 2022 07:18:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1651328265;
-        bh=RpZTpQKzzOTn3ZLA/Gs5VRQkp2uGMos0GOqltACh2Ns=;
-        h=X-UI-Sender-Class:Date:In-Reply-To:References:Subject:Reply-to:To:
-         CC:From;
-        b=dhlfNF1jBeDlco4SgSmA4nCwK1HgNjGr+6piBTy9qIRiFS33Iuzs22AkCnocq+SmT
-         MptW0h6/ri3N0UYhXdVzdYZ8Hpqp8tH2HcgqL5QmvmjjgP5R5fUrmgUiKVskW3Wthz
-         p6HZ3R1MJjh1lNgKkFssVrI9pTaLdwK9EvBns1/4=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from frank-s9 ([80.245.72.211]) by mail.gmx.net (mrgmx004
- [212.227.17.190]) with ESMTPSA (Nemesis) id 1MnJhO-1oAGqb0I9k-00jJBp; Sat, 30
- Apr 2022 16:17:45 +0200
-Date:   Sat, 30 Apr 2022 16:17:35 +0200
-User-Agent: K-9 Mail for Android
-In-Reply-To: <3557249.iIbC2pHGDl@phil>
-References: <20220430130347.15190-1-linux@fw-web.de> <20220430130347.15190-5-linux@fw-web.de> <3557249.iIbC2pHGDl@phil>
+        with ESMTP id S232973AbiD3OjX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 30 Apr 2022 10:39:23 -0400
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5FB9FB9E
+        for <devicetree@vger.kernel.org>; Sat, 30 Apr 2022 07:36:00 -0700 (PDT)
+Received: by mail-ed1-x532.google.com with SMTP id p18so12044430edr.7
+        for <devicetree@vger.kernel.org>; Sat, 30 Apr 2022 07:36:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=1WgubGSoJAPdWjBnPDgWauo3P+IMmZgZaRGmCmfoizc=;
+        b=FVjVyF73PZABV91yo+wd5pvA43nakkeivhaxZs5+/JKDGWwTAGYssQOMAxJuYmkuH1
+         19kLfQgLuiw/ZM2yM/FBD2JFZYnBaev665PmkuI+y/tZNQY3520+orSBziIcdg8XF5KW
+         zGga89CvLdBkB/E0bmyKO5LfgkY4DvAkbIK4CM87XCgmuP1R3zxC1/yMeWsimRkgedE6
+         6e2Ag+QvN8tG0GEE3bwH7A38uhfuQmxH3anZ0KZDDD7pAex/dHEkeGYxZaGuOw2fg/58
+         k5zSoRdOILdqXONqhavBEuE1moP0ybE0tLYVT1HYv3DlzuDxGCfbiA0UJAy4bpT1Ohrc
+         IFMA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=1WgubGSoJAPdWjBnPDgWauo3P+IMmZgZaRGmCmfoizc=;
+        b=RNyJlsUK5Xkn8JH692SehMrIu50KzSxp7RtBnB5NEUcV69ED4Sepchj+4LFLeiyJF+
+         KPHBMKAKFY0Rpz3zoe+1BHdllDEeumNDOB4K0WffVr0T1bSxpRR14I3aHUaU3k9vEI4t
+         5h4sHU6TtDxyeRl/oxSe8gKMnXl0HHqTTFdghg/o2BMz0BFJVDdoO5STgk5SOgVUTH6n
+         ZaRG1xHWD6KV7WkX17ItC3qHPG927QCdC/FcLNHfxziouFkUxSUQfoQj5r/Ec1UkLDKD
+         xK7IFlqvfZyHFbl9Yg1wOmRuvyrCpTygLcVGdCv7eheuvklgzVuA/zl8f+tTbCL1odCs
+         xILQ==
+X-Gm-Message-State: AOAM530JVbJ8XX8eg5EDkf0f+W9H1CEKvgMt1hT6CiSTByKKiORhctgR
+        Na38g/k9lzEMRQXyVSGnZQeOnw==
+X-Google-Smtp-Source: ABdhPJxNeIB6AHKIO3rPt2UhdsqdD5/9TG6O/V7b7rM9TRQgx/XsND+2Kw96U5Y28+pQ8FQA62QMnw==
+X-Received: by 2002:a05:6402:3711:b0:425:d3d6:2b65 with SMTP id ek17-20020a056402371100b00425d3d62b65mr4785658edb.328.1651329358961;
+        Sat, 30 Apr 2022 07:35:58 -0700 (PDT)
+Received: from [192.168.0.180] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id r20-20020aa7da14000000b0042617ba63cdsm4172971eds.87.2022.04.30.07.35.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 30 Apr 2022 07:35:58 -0700 (PDT)
+Message-ID: <2e51842a-d2c9-8953-13aa-02ad3abb3f14@linaro.org>
+Date:   Sat, 30 Apr 2022 16:35:57 +0200
 MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [RFC v2 4/4] arm64: dts: rockchip: Add mt7531 dsa node to BPI-R2-Pro board
-Reply-to: frank-w@public-files.de
-To:     linux-rockchip@lists.infradead.org,
-        Heiko Stuebner <heiko@sntech.de>,
-        linux-mediatek@lists.infradead.org,
-        Frank Wunderlich <linux@fw-web.de>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Landen Chao <Landen.Chao@mediatek.com>,
-        DENG Qingfang <dqfext@gmail.com>, Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Peter Geis <pgwipeout@gmail.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        netdev@vger.kernel.org
-From:   Frank Wunderlich <frank-w@public-files.de>
-Message-ID: <40BC9D9E-3E30-4779-9131-E101CDE993BC@public-files.de>
-X-Provags-ID: V03:K1:ZlgyTVYfgWBO1Wy+cVSo2lW0VxJ02caKG+q8L7RxX6xFCXGwzKS
- 9Udx4qBl3JfeZ447LxlY29/NnBY4gMmLSnSByEDXRWCScdrLF7Xpqq4av3NGuhFbRaMWYkK
- PkHBk3TrnU78Afq0SL++aWQVkDjqc1ghvD4bSJKSzF9ao9N6UNNApaFP05dCg0HANSYgHZO
- ye2WgAO7g1iw0nykgZxfA==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:AgGhclNko/8=:aCrBet2od/8wC2RSNSK+oT
- a5aRnnJfwRSgWlKkxzCYOVhXI/79O8rT1THVM0MnbzHJCLI4Fvh8OqgLQBFT8KGUMsDt8CCBF
- /ZIuhrnsKwVevPZ+dOIZvsaZAt98lXRiMREzssZlZx1nPn+bBCpvM5CHll4nBR9xV6dsw19rR
- SXVyg90NhXFOe2TaHGck4JIe2kLiAqWqMd9z9H5BmBozxYzi/yqwoZjOb1F4tfsUOHKd/Cp5a
- vuxK04OjaSDcljtOhPHp8yJdUQ+a4X9IB9mGYju+X/SOtToT3sGOPzh1+lIDxO1PxB+ytorEc
- r+M0C0+BY9huBsLtEmv/APjzY96z1nl+Rnr/GiuL65LTyVTxSr/LCNNyngEQ5WbX84PH89QSH
- GXrbMz6poJ5w8ByUMq6Nohi3NhQL6UMV2ulKD2VBEZlF2Gzht2eU73/8nvBOx3m31YL/fRMWh
- zlAEXxeDg50H/FzGYJ8/j+/Y8KYI85DNVDfa+hjSZBbc2kZ9wPEs0tm2m3HuSR2yIln5zbf97
- xYbCnmcx7f4/ImNwuGKnP6rZYm/jitVu0BjGavWVDxzpjsdiBoEnMFnWLFbFCvWdtvDF/WKW6
- O+DwrDISWIGQ/9LRY+RRCKCnqNQ+lOJO3Qi2p2PlblYBJR/IKfhBFQOrWWLHiKAXSIbc2Gy41
- I8v+/4kJEGzo0S2HdK91aL9V51374tvnB6/md4i73yH48vbBJqjUSrl5t/jlg7ru8qtaU1zJF
- UKkxHQzD2TI3ynd9iYzd1QaOR4QCy+3fm08Uq6mbcuRqYNNpU6oRTH1kXAbwOiWFcuu2dKbCb
- Gkihb7baqLrmIoPm1hymk45EqW5vY8YHb5/h+NYgPL408xkD29786S9YtKR6DWdjiRj8borBO
- yi9VwYvK/bCqBNF7dueG2BpVsQpphPcfyQwARyUgJehMnMlUdFDc7PuQLTLH7wChdMNy8VHX8
- JIeFEFN+LRmk/nVjSM63E/eyvQ0+Rgqp8u6aBTZO5RleS7mdXk0isgrPFa/pR4K6uy5KSkKHU
- Fd1cX0xpUxzNAn9BDCqcRcoxK0uNC+dNjmTJfUAHT5qXvVxnW9RGrWELoUPbS3l/QC59ubvVr
- WK7GT44+uDZSpA=
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH v2 1/2] dt-bindings: mtd: partitions: Add binding for
+ Sercomm parser
+Content-Language: en-US
+To:     Mikhail Zhilkin <csharper2005@gmail.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc:     NOGUCHI Hiroshi <drvlabo@gmail.com>, Karim <Karimdplay@gmail.com>,
+        M <x1@disroot.org>, linux-mtd@lists.infradead.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20220406195557.1956-1-csharper2005@gmail.com>
+ <20220406195946.2019-1-csharper2005@gmail.com>
+ <8d0d8b27-35ff-3693-cf80-897b80c26b4e@linaro.org>
+ <57bebf2f-af4c-b2d9-10e5-19e5104946fb@gmail.com>
+ <29cfa017-bbaf-3aba-fe1d-06771957dbaa@linaro.org>
+ <1b391399-984b-7a63-3265-62ef09caec39@gmail.com>
+ <bd533827-b575-caad-c230-af060851b231@gmail.com>
+ <db70e53b-7484-43bf-e9c8-b6a2dce1fbb5@linaro.org>
+ <25da3f43-c46e-8108-2da9-0e4f2b7cc1a4@gmail.com>
+ <b279040a-a782-a2ca-2acb-2d8f07709081@linaro.org>
+ <1c19faf9-fc1c-9adf-d038-97b673a8f0be@gmail.com>
+ <a84df850-149e-9656-43fa-1f040368a9f1@linaro.org>
+ <0450d781-c506-c28e-a0e5-435bee16721f@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <0450d781-c506-c28e-a0e5-435bee16721f@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am 30=2E April 2022 16:05:06 MESZ schrieb Heiko Stuebner <heiko@sntech=2Ede=
->:
->Am Samstag, 30=2E April 2022, 15:03:47 CEST schrieb Frank Wunderlich:
+On 30/04/2022 10:04, Mikhail Zhilkin wrote:
+> 
+> diff --git
+> a/Documentation/devicetree/bindings/mtd/partitions/fixed-partitions.yaml
+> b/Documentation/devicetree/bindings/mtd/partitions/fixed-partitions.yaml
+> index ea4cace6a955..fa457d55559b 100644
+> --- a/Documentation/devicetree/bindings/mtd/partitions/fixed-partitions.yaml
+> +++ b/Documentation/devicetree/bindings/mtd/partitions/fixed-partitions.yaml
+> @@ -17,9 +17,29 @@ description: |
+>  maintainers:
+>    - Rafał Miłecki <rafal@milecki.pl>
+>  
+> +select:
+> +  properties:
+> +    compatible:
+> +      contains:
+> +        enum:
+> +          - fixed-partitions
+> +
+> +  required:
+> +    - compatible
 
->> --- a/arch/arm64/boot/dts/rockchip/rk3568-bpi-r2-pro=2Edts
->> +++ b/arch/arm64/boot/dts/rockchip/rk3568-bpi-r2-pro=2Edts
->> @@ -437,6 +437,54 @@ &i2c5 {
->>  	status =3D "disabled";
->>  };
->> =20
+With your approach you do not need this entire select. I pointed out to
+you if you wanted to take the syscon approach.
 
->> +			port@5 {
->> +				reg =3D <5>;
->> +				label =3D "cpu";
->> +				ethernet =3D <&gmac0>;
->> +				phy-mode =3D "rgmii";
->- phy-mode: String, the following values are acceptable for port
->labeled
->	"cpu":
->	If compatible mediatek,mt7530 or mediatek,mt7621 is set,
->	must be either "trgmii" or "rgmii"
->	If compatible mediatek,mt7531 is set,
->	must be either "sgmii", "1000base-x" or "2500base-x"
->
->So I guess the phy-mode needs to change?
+> +
+>  properties:
+>    compatible:
+> -    const: fixed-partitions
+> +    anyOf:
 
-This results from current (before my cpu-port patches) implementation in d=
-river where cpu-port is fixed to port 6=2E
+oneOf
 
-On Mt7530 port 6 supports rgmii and trgmii=2E On mt7531 port6 only support=
-s sgmii (which is basicly 2500base-x)=2E Afaik it does not support 1G=2E Po=
-rt 5 on mt7531 supports rgmii or sgmii (dual sgmii mode) but seems not refl=
-ected yet in txt=2E
+> +      - items:
+> +          - enum:
+> +              - sercomm,sc-partitions
+> +
+> +          - const: fixed-partitions
+> +
+> +      - contains:
+> +          const: fixed-partitions
+> +        minItems: 1
+> +        maxItems: 2
 
-On thing more to change when converting txt to yaml=2E
+This is also not needed if you do no take the syscon approach.
 
-regards Frank
+>  
+>    "#address-cells": true
+>  
+> @@ -27,7 +47,18 @@ properties:
+>  
+>  patternProperties:
+>    "@[0-9a-f]+$":
+> -    $ref: "partition.yaml#"
+> +    allOf:
+> +      - $ref: "partition.yaml#"
+> +      - if:
+> +          properties:
+> +            compatible:
+> +              contains:
+> +                const: sercomm,sc-partitions
+> +        then:
+> +          properties:
+> +            sercomm,scpart-id:
+> +              description: Partition id in Sercomm partition map
+> +              $ref: /schemas/types.yaml#/definitions/uint32
+
+I think we still did not clarify why do you need this ID which in all
+your examples increments by one. The description basically is a copy of
+property name, so it does not explain anything.
+
+>  
+>  required:
+>    - "#address-cells"
+> @@ -119,3 +150,29 @@ examples:
+>              };
+>          };
+>      };
+
+Blank line.
+
+> +  - |
+> +    partitions {
+> +        compatible = "sercomm,sc-partitions", "fixed-partitions";
+> +        #address-cells = <1>;
+> +        #size-cells = <1>;
+> +
+> +        partition@0 {
+> +            label = "u-boot";
+> +            reg = <0x0 0x100000>;
+> +            sercomm,scpart-id=<0>;
+
+Missing spaces around =.
+
+Best regards,
+Krzysztof
