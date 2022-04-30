@@ -2,107 +2,285 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C459515EE4
-	for <lists+devicetree@lfdr.de>; Sat, 30 Apr 2022 17:51:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D86FE515EF5
+	for <lists+devicetree@lfdr.de>; Sat, 30 Apr 2022 18:15:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236401AbiD3PzI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 30 Apr 2022 11:55:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51668 "EHLO
+        id S243067AbiD3QTG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 30 Apr 2022 12:19:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40156 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232786AbiD3PzH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 30 Apr 2022 11:55:07 -0400
-Received: from mail-pf1-x434.google.com (mail-pf1-x434.google.com [IPv6:2607:f8b0:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B640D49F92;
-        Sat, 30 Apr 2022 08:51:45 -0700 (PDT)
-Received: by mail-pf1-x434.google.com with SMTP id x52so7673192pfu.11;
-        Sat, 30 Apr 2022 08:51:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=LpVI+wHvPmtuQd7BRofKYFwZVUXSQ/H1fRvs7yRvcu8=;
-        b=T6VqIbSNwWtxsP2iTpZwkecEU9TxdUfWQg102Z4oprwO++xzkOjrF8S5CPwAuuhFoC
-         ywfnEV5HXFU4Jc8W9tYVmW2iwwVXsBrKi3L1mqIbYVwvcuUUbJC1pw1Qm3PjfKNzeZww
-         BUxQJ2CE8sDkMWDXwJObdoFLa+eJcytzQ+SzBSBIY8JIRBXwe1XK2uZrSeU2qtHCrp/I
-         eaRXHoIJgT7sfWnvtqZuOR3X0cTaFHUsEjQKGre2U3QrFS4U7+dRijXWzNHvkXdcbvVU
-         QvOznGEDYDPiXi6Ws7AZzzXUVpEWkPz7Azsqis0cbE4M9zuv6j6rajjAoPGpQeOAjQNq
-         r+Sg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=LpVI+wHvPmtuQd7BRofKYFwZVUXSQ/H1fRvs7yRvcu8=;
-        b=1Ls8LwW9EIKttUQ4QaOBrX/+BFUtiGsVpVsw9Q0EAQSGmAK4ggzqTKl3+ZzESptAPB
-         aH7Qckh4E+AEJ/uXC7b/UjWdhlUsXwHEbOzp6TAGFX6fFT/uIUjk3HGSRoYTP5nm2wge
-         v3Cg4crrSU+BNJ1OQJhqMLthTGnBtnzysAHAaRzNfZLsMnUfQXqiyG+58/S/qovbQJMk
-         X4AKEDjK78mbY9efi1Q60vo69PNcf9tut0g2J9z+okiOEw+uUPp40w+v6s9z55clbhM2
-         u0yboOj+6NpRoNIf4aCOdGqZGkS7xOWcSwxFhu5yALJqncPbRbxY2WI88A+Qk0cr42fC
-         //IQ==
-X-Gm-Message-State: AOAM532tKN6GQtKLLqfrmueCNUVn/m/gwKhzZ8HMyn2gejB/T5XNnR5D
-        y1IRYREByOqhcxvTN8yUZr5LA9Xpx40ASg==
-X-Google-Smtp-Source: ABdhPJxZR+6dKYd/WUpP6bN1rIoOdXa/nL+GYJHP2ncA9uKKuYd0a53b5ViyBDHJJx9n2czHRuyEow==
-X-Received: by 2002:a65:6657:0:b0:381:1b99:3f04 with SMTP id z23-20020a656657000000b003811b993f04mr3479256pgv.512.1651333905220;
-        Sat, 30 Apr 2022 08:51:45 -0700 (PDT)
-Received: from guoguo-omen.lan ([2001:250:3000:7000:c0f1:53a1:ea79:5d2f])
-        by smtp.gmail.com with ESMTPSA id j16-20020aa783d0000000b0050dc76281b8sm1755734pfn.146.2022.04.30.08.51.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 30 Apr 2022 08:51:44 -0700 (PDT)
-From:   Chuanhong Guo <gch981213@gmail.com>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     Chuanhong Guo <gch981213@gmail.com>, stable@vger.kernel.org,
+        with ESMTP id S243060AbiD3QTF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 30 Apr 2022 12:19:05 -0400
+Received: from relay06.th.seeweb.it (relay06.th.seeweb.it [IPv6:2001:4b7a:2000:18::167])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36DC134BB6
+        for <devicetree@vger.kernel.org>; Sat, 30 Apr 2022 09:15:43 -0700 (PDT)
+Received: from localhost.localdomain (abxh26.neoplus.adsl.tpnet.pl [83.9.1.26])
+        by m-r2.th.seeweb.it (Postfix) with ESMTPA id 918503F720;
+        Sat, 30 Apr 2022 18:15:39 +0200 (CEST)
+From:   Konrad Dybcio <konrad.dybcio@somainline.org>
+To:     ~postmarketos/upstreaming@lists.sr.ht
+Cc:     martin.botka@somainline.org,
+        angelogioacchino.delregno@somainline.org,
+        marijn.suijten@somainline.org, jamipkettunen@somainline.org,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Sean Wang <sean.wang@mediatek.com>,
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS),
-        linux-mediatek@lists.infradead.org (moderated list:ARM/Mediatek SoC
-        support), linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH] arm64: dts: mt7622: add irq to spi-nor controller
-Date:   Sat, 30 Apr 2022 23:51:11 +0800
-Message-Id: <20220430155112.227902-1-gch981213@gmail.com>
-X-Mailer: git-send-email 2.35.1
+        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH 1/3] dt-bindings: display: msm: Add binding for MSM8996 DPU
+Date:   Sat, 30 Apr 2022 18:15:25 +0200
+Message-Id: <20220430161529.605843-1-konrad.dybcio@somainline.org>
+X-Mailer: git-send-email 2.35.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Save some CPU from unnecessary polling and make SPI flash reading
-a tiny bit faster.
+Add yaml binding for MSM8996 DPU.
 
-Cc: <stable@vger.kernel.org> # v5.7+
-Fixes: 23beb1adb5f6 ("arm64: dts: mt7622: add flash related device nodes")
-Signed-off-by: Chuanhong Guo <gch981213@gmail.com>
+Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
 ---
-The nor controller driver in kernem when this dt is added doesn't
-support IRQ so there isn't one defined in dt back then. However,
-device-tree is supposed to describe the hardware, so I think this
-can count as a fix.
-My main purpose for the fixes tag is just for the linux-stable
-backport though. spi-mtk-nor supports interrupt since v5.7.
+ .../bindings/display/msm/dpu-msm8996.yaml     | 221 ++++++++++++++++++
+ 1 file changed, 221 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/msm/dpu-msm8996.yaml
 
- arch/arm64/boot/dts/mediatek/mt7622.dtsi | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/arch/arm64/boot/dts/mediatek/mt7622.dtsi b/arch/arm64/boot/dts/mediatek/mt7622.dtsi
-index 8c2563a3919a..e263a81a011b 100644
---- a/arch/arm64/boot/dts/mediatek/mt7622.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt7622.dtsi
-@@ -570,6 +570,7 @@ nor_flash: spi@11014000 {
- 		compatible = "mediatek,mt7622-nor",
- 			     "mediatek,mt8173-nor";
- 		reg = <0 0x11014000 0 0xe0>;
-+		interrupts = <GIC_SPI 88 IRQ_TYPE_LEVEL_LOW>;
- 		clocks = <&pericfg CLK_PERI_FLASH_PD>,
- 			 <&topckgen CLK_TOP_FLASH_SEL>;
- 		clock-names = "spi", "sf";
+diff --git a/Documentation/devicetree/bindings/display/msm/dpu-msm8996.yaml b/Documentation/devicetree/bindings/display/msm/dpu-msm8996.yaml
+new file mode 100644
+index 000000000000..10b02423224d
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/msm/dpu-msm8996.yaml
+@@ -0,0 +1,221 @@
++# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/display/msm/dpu-msm8996.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Qualcomm Display DPU dt properties for MSM8996 target
++
++maintainers:
++  - Konrad Dybcio <konrad.dybcio@somainline.org>
++
++description: |
++  Device tree bindings for MSM Mobile Display Subsystem (MDSS) that
++  encapsulates sub-blocks like DPU display controller, DSI interfaces, etc.
++  Device tree bindings of MDSS and DPU are mentioned for MSM8996 target.
++
++properties:
++  compatible:
++    items:
++      - const: qcom,msm8996-mdss
++
++  reg:
++    maxItems: 1
++
++  reg-names:
++    const: mdss
++
++  power-domains:
++    maxItems: 1
++
++  clocks:
++    items:
++      - description: Display AHB clock
++      - description: Display core clock
++
++  clock-names:
++    items:
++      - const: iface
++      - const: core
++
++  interrupts:
++    maxItems: 1
++
++  interrupt-controller: true
++
++  "#address-cells": true
++
++  "#size-cells": true
++
++  "#interrupt-cells":
++    const: 1
++
++  iommus:
++    items:
++      - description: Phandle to mdp_smmu node with SID mask for Hard-Fail port0
++
++  ranges: true
++
++patternProperties:
++  "^display-controller@[0-9a-f]+$":
++    type: object
++    description: Node containing the properties of DPU.
++
++    properties:
++      compatible:
++        items:
++          - const: qcom,msm8996-dpu
++
++      reg:
++        items:
++          - description: Address offset and size for mdp register set
++          - description: Address offset and size for vbif register set
++          - description: Address offset and size for non-realtime vbif register set
++
++      reg-names:
++        items:
++          - const: mdp
++          - const: vbif
++          - const: vbif_nrt
++
++      clocks:
++        items:
++          - description: Display ahb clock
++          - description: Display axi clock
++          - description: Display core clock
++          - description: Display iommu clock
++          - description: Display vsync clock
++
++      clock-names:
++        items:
++          - const: iface
++          - const: bus
++          - const: core
++          - const: iommu
++          - const: vsync
++
++      interrupts:
++        maxItems: 1
++
++      power-domains:
++        maxItems: 1
++
++      operating-points-v2: true
++      ports:
++        $ref: /schemas/graph.yaml#/properties/ports
++        description: |
++          Contains the list of output ports from DPU device. These ports
++          connect to interfaces that are external to the DPU hardware,
++          such as DSI, DP etc. Each output port contains an endpoint that
++          describes how it is connected to an external interface.
++
++        properties:
++          port@0:
++            $ref: /schemas/graph.yaml#/properties/port
++            description: DPU_INTF3 (HDMI)
++
++          port@1:
++            $ref: /schemas/graph.yaml#/properties/port
++            description: DPU_INTF1 (DSI0)
++
++        required:
++          - port@0
++          - port@1
++
++    required:
++      - compatible
++      - reg
++      - reg-names
++      - clocks
++      - interrupts
++      - power-domains
++      - operating-points-v2
++      - ports
++
++required:
++  - compatible
++  - reg
++  - reg-names
++  - power-domains
++  - clocks
++  - interrupts
++  - interrupt-controller
++  - iommus
++  - ranges
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/qcom,mmcc-msm8996.h>
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    #include <dt-bindings/power/qcom-rpmpd.h>
++
++    mdss: display-subsystem@900000 {
++        compatible = "qcom,msm8996-mdss";
++        reg = <0x00900000 0x1000>;
++        reg-names = "mdss";
++
++        power-domains = <&mmcc MDSS_GDSC>;
++
++        clocks = <&mmcc MDSS_AHB_CLK>, <&mmcc MDSS_MDP_CLK>;
++        clock-names = "iface", "core";
++
++        assigned-clocks = <&mmcc MDSS_MDP_CLK>;
++        assigned-clock-rates = <300000000>;
++
++        interrupts = <GIC_SPI 83 IRQ_TYPE_LEVEL_HIGH>;
++        interrupt-controller;
++        #interrupt-cells = <1>;
++
++        iommus = <&mdp_smmu 0>;
++
++        #address-cells = <1>;
++        #size-cells = <1>;
++        ranges;
++
++        display-controller@901000 {
++            compatible = "qcom,msm8996-dpu";
++            reg = <0x00901000 0x90000>,
++                  <0x009b0000 0x1040>,
++                  <0x009b8000 0x1040>;
++            reg-names = "mdp", "vbif", "vbif_nrt";
++
++            clocks = <&mmcc MDSS_AHB_CLK>,
++              <&mmcc MDSS_AXI_CLK>,
++              <&mmcc MDSS_MDP_CLK>,
++              <&mmcc SMMU_MDP_AXI_CLK>,
++              <&mmcc MDSS_VSYNC_CLK>;
++            clock-names = "iface", "bus", "core", "iommu", "vsync";
++
++            assigned-clocks = <&mmcc MDSS_MDP_CLK>,
++                  <&mmcc MDSS_VSYNC_CLK>;
++            assigned-clock-rates = <412500000>, <19200000>;
++
++            operating-points-v2 = <&mdp_opp_table>;
++            power-domains = <&rpmpd MSM8996_VDDMX>;
++
++            interrupt-parent = <&mdss>;
++            interrupts = <0 IRQ_TYPE_LEVEL_HIGH>;
++
++            ports {
++              #address-cells = <1>;
++              #size-cells = <0>;
++
++              port@0 {
++                reg = <0>;
++                dpu_intf3_out: endpoint {
++                  remote-endpoint = <&hdmi_in>;
++                };
++              };
++
++              port@1 {
++                reg = <1>;
++                dpu_intf1_out: endpoint {
++                  remote-endpoint = <&dsi0_in>;
++                };
++              };
++            };
++        };
++    };
++...
 -- 
-2.35.1
+2.35.2
 
