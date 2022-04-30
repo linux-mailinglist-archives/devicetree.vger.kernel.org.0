@@ -2,302 +2,796 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C9B7515B47
-	for <lists+devicetree@lfdr.de>; Sat, 30 Apr 2022 10:04:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 81599515B6D
+	for <lists+devicetree@lfdr.de>; Sat, 30 Apr 2022 10:18:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1380359AbiD3IHz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 30 Apr 2022 04:07:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57314 "EHLO
+        id S241392AbiD3IWO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 30 Apr 2022 04:22:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39548 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230511AbiD3IHy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 30 Apr 2022 04:07:54 -0400
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A42492332;
-        Sat, 30 Apr 2022 01:04:33 -0700 (PDT)
-Received: by mail-wm1-x334.google.com with SMTP id n32-20020a05600c3ba000b00393ea7192faso5899266wms.2;
-        Sat, 30 Apr 2022 01:04:33 -0700 (PDT)
+        with ESMTP id S239673AbiD3IWN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 30 Apr 2022 04:22:13 -0400
+Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com [IPv6:2607:f8b0:4864:20::1029])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8984080235
+        for <devicetree@vger.kernel.org>; Sat, 30 Apr 2022 01:18:51 -0700 (PDT)
+Received: by mail-pj1-x1029.google.com with SMTP id iq10so8940369pjb.0
+        for <devicetree@vger.kernel.org>; Sat, 30 Apr 2022 01:18:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=xh9pubjMeb3o3FM+QnkmnVOKKHDYvAGdOjaoC0qkMS8=;
-        b=epJsoiPoZVHhPAyNMEKDKBb0IFBygqOijGeTVAhD9r/PaAUGbCWdPm7AC0PUCuB1+3
-         gozFBWVCJWLCBZ0KrTbmupBB8g6uux9n4gX7fYh/ucn05yQR9h+e0B7gIptx49MmSz4c
-         WxdFYcwxD/5g7AZhXl7+ONMFQh3y9pBFoTS7XLVsmcFwo3u2kfLMlWdPclh7L4A8br5r
-         gtSlejIm8G1LSfbl4qNnbr7vYRA4AoT4h4K55UPl4vb14T0Zt6DIev8cUZGKwgUWUY8k
-         Fna1EBkzLqMYWy3YurGVo24M1JrHFebULCeN88q8Hv5k1OUH6MgnDm0Vl8pZeT5huTEO
-         Rs2w==
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=upY1HQ01jlb/guwrFvdjP8aUqqr8EDbLZ7yKmEWLg2U=;
+        b=clxC7bKJaxA68zUSoaDPW3NsOPDt4eiMc1XxkGuZcvCW3t+wG5PxF89gycerjRstSH
+         bszXQvwpziWvKsUqFN09Y58UEg2ykzW8OaR2AW35yvd208jmiNts4RuwHbtT0JgRu/26
+         vSijvfpgbf1puPvG7k3Xq63jw2frqest8y1NA=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=xh9pubjMeb3o3FM+QnkmnVOKKHDYvAGdOjaoC0qkMS8=;
-        b=HJam9dTT5rmq+AdGgRkiRGv4ozmZdqPMiDxJUNzR/RvObYYOIG/MYIgRG8g7O8hjju
-         cmLChb/dg2GXS7YbLSxMSc6vp28s/at6S+sZ2F2d02guwvDDQU2yQ7OYKYNUISAZwLvC
-         ORjvTPWeOEFJ36Jf/w7cVPGKxkWoR3T2PgbWoEzZ7ruxKQTuIWIWHCffv/bGcJ5zHXEh
-         uTjbt0zwEIf4hJmj9fve+E6sVMTHQ/Nj2Zbbr5oCn3SOgkYl+YjOItn6tz29ZbZZGnXb
-         zE+Ig78z0nFGltXvjYSxgr3zppLaJ0RxQ4fUocKOhSg4MZ71qeDjcjeWtUaxTL/aNUQ5
-         oRZw==
-X-Gm-Message-State: AOAM530QRLzz5VuC6pw6G1XCJaDgpwimxLWRoEJSE+thq6szwcmWmEam
-        pZsM5cYTfFDjEG1Z+RX7JkAbLWpYz9cwNBIlVGo=
-X-Google-Smtp-Source: ABdhPJzdoM+Kd0V6q2zu3OJLhQfGJ9rUGzrVpoGneVa0zAJy95Vg1IowIGaV96u+YYqrAnGCx7l6Wg==
-X-Received: by 2002:a05:600c:1f0f:b0:38e:c9c8:9983 with SMTP id bd15-20020a05600c1f0f00b0038ec9c89983mr2486393wmb.105.1651305871808;
-        Sat, 30 Apr 2022 01:04:31 -0700 (PDT)
-Received: from ?IPV6:2a06:a003:501a:a7ce:1c4f:5843:2dc4:fd34? ([2a06:a003:501a:a7ce:1c4f:5843:2dc4:fd34])
-        by smtp.gmail.com with ESMTPSA id e12-20020adfa74c000000b0020c5253d8d6sm1345979wrd.34.2022.04.30.01.04.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 30 Apr 2022 01:04:31 -0700 (PDT)
-Message-ID: <0450d781-c506-c28e-a0e5-435bee16721f@gmail.com>
-Date:   Sat, 30 Apr 2022 11:04:20 +0300
+        bh=upY1HQ01jlb/guwrFvdjP8aUqqr8EDbLZ7yKmEWLg2U=;
+        b=2FndAOWax8RY2go1rrYLCp7iSV6MofpHA3T5w2MUrJEiGUw9m2PwFm+8kGXEBaibam
+         mFSYuOcwjVn74DqCnlV1XRQkQ/QOpWhSjzPOeOQwpKeL/Dx/c+He+eGffMG7tuCe++mH
+         4QoYf2LMk5504nxUa0sF6PHSDN9U5MwDfrOie17/K6HMd4HVBTm5hV92xJRN5StzpvtS
+         vwhYcYN6P7FuSSNxzVVmfushgbhgnSI0bmjOFDXdPmpotOXEYJvl7INP4Tqu2on2ZzB8
+         u0tpD6XI2C1hJbKkAmA41nmb518Yhll8pNiO+91Kns/wDILE0oGbyV+okzGhrmHK1sc0
+         i6qw==
+X-Gm-Message-State: AOAM532IZcb8H43twn2iMB8OEUS5jsePLVHDl56zn00W9bPKzAsLpteZ
+        GtlkYCr3mtr7SHyoV2HU1sTRow==
+X-Google-Smtp-Source: ABdhPJxlO1hMhtPuBazlq5bw6xWe7r6JocsQELW3RsLYbdMKavBbjC7pvh7cZstgdyPUG7NbnAJuSg==
+X-Received: by 2002:a17:902:d58a:b0:15d:1cf6:644c with SMTP id k10-20020a170902d58a00b0015d1cf6644cmr2985472plh.67.1651306730991;
+        Sat, 30 Apr 2022 01:18:50 -0700 (PDT)
+Received: from joebar-glaptop.lan (c-71-202-34-56.hsd1.ca.comcast.net. [71.202.34.56])
+        by smtp.gmail.com with ESMTPSA id az12-20020a170902a58c00b0015e8d4eb27esm876387plb.200.2022.04.30.01.18.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 30 Apr 2022 01:18:50 -0700 (PDT)
+From:   "Joseph S. Barrera III" <joebar@chromium.org>
+To:     LKML <linux-kernel@vger.kernel.org>
+Cc:     Douglas Anderson <dianders@chromium.org>,
+        Alexandru M Stan <amstan@chromium.org>,
+        "Joseph S. Barrera III" <joebar@chromium.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+Subject: [PATCH 1/5] arm64: dts: qcom: sc7180: Add wormdingler dts files
+Date:   Sat, 30 Apr 2022 01:15:16 -0700
+Message-Id: <20220430011402.1.If7c3471db53bea55213f7bcf17e9043084d3ac0c@changeid>
+X-Mailer: git-send-email 2.31.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: [PATCH v2 1/2] dt-bindings: mtd: partitions: Add binding for Sercomm
- parser
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc:     NOGUCHI Hiroshi <drvlabo@gmail.com>, Karim <Karimdplay@gmail.com>,
-        M <x1@disroot.org>, linux-mtd@lists.infradead.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20220406195557.1956-1-csharper2005@gmail.com>
- <20220406195946.2019-1-csharper2005@gmail.com>
- <8d0d8b27-35ff-3693-cf80-897b80c26b4e@linaro.org>
- <57bebf2f-af4c-b2d9-10e5-19e5104946fb@gmail.com>
- <29cfa017-bbaf-3aba-fe1d-06771957dbaa@linaro.org>
- <1b391399-984b-7a63-3265-62ef09caec39@gmail.com>
- <bd533827-b575-caad-c230-af060851b231@gmail.com>
- <db70e53b-7484-43bf-e9c8-b6a2dce1fbb5@linaro.org>
- <25da3f43-c46e-8108-2da9-0e4f2b7cc1a4@gmail.com>
- <b279040a-a782-a2ca-2acb-2d8f07709081@linaro.org>
- <1c19faf9-fc1c-9adf-d038-97b673a8f0be@gmail.com>
- <a84df850-149e-9656-43fa-1f040368a9f1@linaro.org>
-From:   Mikhail Zhilkin <csharper2005@gmail.com>
-In-Reply-To: <a84df850-149e-9656-43fa-1f040368a9f1@linaro.org>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 4/29/2022 11:22 PM, Krzysztof Kozlowski wrote:
+Wormdingler is a trogdor-based board, shipping to customers as the
+Lenovo IdeaPad Chromebook Duet 3. These dts files are copies from
+the downstream Chrome OS 5.4 kernel, but with downstream bits removed.
 
->>>> Real dts:
->>>>
->>>> Link:
->>>> https://github.com/openwrt/openwrt/blob/edcc1a9a734bb3fcdc9242025290d3f173e71b78/target/linux/ramips/dts/mt7621_beeline_smartbox-giga.dts#L79
->>>>
->>>> So, I currently found another solution - to extend fixed-partitions.yaml
->>>> with "sercomm,sc-partitions". Is It ok from your side? Can I use this
->>>> code in v3?
->>> Not really, I don't understand why do you need it 
->> The main idea is keeping original Sercomm firmware behavior:
->>
->> 1. If dynamic partition map found then use offsets and mtd sizes stored
->> in partition map. It's provided by "sercomm,sc-partitions" compatible.
->>
->> 2. If dynamic partition map doesn't exist or broken then default values
->> (from dts) are used. It's provided by "fixed-partitions" compatible.
-> Then you need to adjust fixed-partitions for such case. See syscon case
-> (all over the tree and Documentation/devicetree/bindings/mfd/syscon.yaml).
+Signed-off-by: Joseph S. Barrera III <joebar@chromium.org>
+---
 
-Thanks! Here's what I got (neither errors nor warnings). I also updated
-the parser itself by adding the vendor prefix and tested on a real device. 
+ arch/arm64/boot/dts/qcom/Makefile             |   6 +
+ .../sc7180-trogdor-wormdingler-rev0-boe.dts   |  22 +
+ .../sc7180-trogdor-wormdingler-rev0-inx.dts   |  22 +
+ .../qcom/sc7180-trogdor-wormdingler-rev0.dtsi |  53 +++
+ ...0-trogdor-wormdingler-rev1-boe-rt5682s.dts |  39 ++
+ .../sc7180-trogdor-wormdingler-rev1-boe.dts   |  28 ++
+ ...0-trogdor-wormdingler-rev1-inx-rt5682s.dts |  33 ++
+ .../sc7180-trogdor-wormdingler-rev1-inx.dts   |  22 +
+ .../dts/qcom/sc7180-trogdor-wormdingler.dtsi  | 413 ++++++++++++++++++
+ 9 files changed, 638 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev0-boe.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev0-inx.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev0.dtsi
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev1-boe-rt5682s.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev1-boe.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev1-inx-rt5682s.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev1-inx.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler.dtsi
 
- .../mtd/partitions/fixed-partitions.yaml      | 61 ++++++++++++++++++-
- 1 file changed, 59 insertions(+), 2 deletions(-)
-
-diff --git
-a/Documentation/devicetree/bindings/mtd/partitions/fixed-partitions.yaml
-b/Documentation/devicetree/bindings/mtd/partitions/fixed-partitions.yaml
-index ea4cace6a955..fa457d55559b 100644
---- a/Documentation/devicetree/bindings/mtd/partitions/fixed-partitions.yaml
-+++ b/Documentation/devicetree/bindings/mtd/partitions/fixed-partitions.yaml
-@@ -17,9 +17,29 @@ description: |
- maintainers:
-   - Rafał Miłecki <rafal@milecki.pl>
- 
-+select:
-+  properties:
-+    compatible:
-+      contains:
-+        enum:
-+          - fixed-partitions
+diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+index 2f8aec2cc6db..e4114e22548a 100644
+--- a/arch/arm64/boot/dts/qcom/Makefile
++++ b/arch/arm64/boot/dts/qcom/Makefile
+@@ -81,6 +81,12 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-pompom-r2.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-pompom-r2-lte.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-pompom-r3.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-pompom-r3-lte.dtb
++dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-wormdingler-rev0-boe.dtb
++dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-wormdingler-rev0-inx.dtb
++dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-wormdingler-rev1-boe.dtb
++dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-wormdingler-rev1-inx.dtb
++dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-wormdingler-rev1-inx-rt5682s.dtb
++dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-wormdingler-rev1-boe-rt5682s.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-r1.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-r1-lte.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-herobrine-crd.dtb
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev0-boe.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev0-boe.dts
+new file mode 100644
+index 000000000000..d6ed7d0afe4a
+--- /dev/null
++++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev0-boe.dts
+@@ -0,0 +1,22 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * Google Wormdingler board device tree source
++ *
++ * Copyright 2021 Google LLC.
++ *
++ * SKU: 0x10 => 16
++ *  - bits 7..4: Panel ID: 0x1 (BOE)
++ */
 +
-+  required:
-+    - compatible
++/dts-v1/;
 +
- properties:
-   compatible:
--    const: fixed-partitions
-+    anyOf:
-+      - items:
-+          - enum:
-+              - sercomm,sc-partitions
++#include "sc7180-trogdor-wormdingler-rev0.dtsi"
 +
-+          - const: fixed-partitions
++/ {
++	model = "Google Wormdingler rev0 BOE panel board";
++	compatible = "google,wormdingler-rev0-sku16", "qcom,sc7180";
++};
 +
-+      - contains:
-+          const: fixed-partitions
-+        minItems: 1
-+        maxItems: 2
- 
-   "#address-cells": true
- 
-@@ -27,7 +47,18 @@ properties:
- 
- patternProperties:
-   "@[0-9a-f]+$":
--    $ref: "partition.yaml#"
-+    allOf:
-+      - $ref: "partition.yaml#"
-+      - if:
-+          properties:
-+            compatible:
-+              contains:
-+                const: sercomm,sc-partitions
-+        then:
-+          properties:
-+            sercomm,scpart-id:
-+              description: Partition id in Sercomm partition map
-+              $ref: /schemas/types.yaml#/definitions/uint32
- 
- required:
-   - "#address-cells"
-@@ -119,3 +150,29 @@ examples:
-             };
-         };
-     };
-+  - |
-+    partitions {
-+        compatible = "sercomm,sc-partitions", "fixed-partitions";
-+        #address-cells = <1>;
-+        #size-cells = <1>;
++&panel {
++	compatible = "boe,tv110c9m-ll3";
++};
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev0-inx.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev0-inx.dts
+new file mode 100644
+index 000000000000..c03525ea64ca
+--- /dev/null
++++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev0-inx.dts
+@@ -0,0 +1,22 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * Google Wormdingler board device tree source
++ *
++ * Copyright 2021 Google LLC.
++ *
++ * SKU: 0x0 => 0
++ *  - bits 7..4: Panel ID: 0x0 (INX)
++ */
 +
-+        partition@0 {
-+            label = "u-boot";
-+            reg = <0x0 0x100000>;
-+            sercomm,scpart-id=<0>;
-+            read-only;
-+        };
++/dts-v1/;
 +
-+        partition@100000 {
-+            label = "dynamic partition map";
-+            reg = <0x100000 0x100000>;
-+            sercomm,scpart-id = <1>;
-+        };
++#include "sc7180-trogdor-wormdingler-rev0.dtsi"
 +
-+        partition@200000 {
-+            label = "Factory";
-+            reg = <0x200000 0x100000>;
-+            sercomm,scpart-id = <2>;
-+            read-only;
-+        };
-+    };
++/ {
++	model = "Google Wormdingler rev0 INX panel board";
++	compatible = "google,wormdingler-rev0-sku0", "qcom,sc7180";
++};
++
++&panel {
++	compatible = "innolux,hj110iz-01a";
++};
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev0.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev0.dtsi
+new file mode 100644
+index 000000000000..db29e0cba29d
+--- /dev/null
++++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev0.dtsi
+@@ -0,0 +1,53 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * Google Wormdingler board device tree source
++ *
++ * Copyright 2021 Google LLC.
++ *
++ */
++
++/dts-v1/;
++
++#include "sc7180-trogdor-wormdingler.dtsi"
++
++&avdd_lcd {
++	gpio = <&tlmm 80 GPIO_ACTIVE_HIGH>;
++};
++
++&panel {
++	enable-gpios = <&tlmm 76 GPIO_ACTIVE_HIGH>;
++};
++
++&v1p8_mipi {
++	gpio = <&tlmm 81 GPIO_ACTIVE_HIGH>;
++};
++
++/* PINCTRL - modifications to sc7180-trogdor-wormdingler.dtsi */
++&avdd_lcd_en {
++	pinmux {
++		pins = "gpio80";
++	};
++
++	pinconf {
++		pins = "gpio80";
++	};
++};
++
++&mipi_1800_en {
++	pinmux {
++		pins = "gpio81";
++	};
++
++	pinconf {
++		pins = "gpio81";
++	};
++};
++&vdd_reset_1800 {
++	pinmux {
++		pins = "gpio76";
++	};
++
++	pinconf {
++		pins = "gpio76";
++	};
++};
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev1-boe-rt5682s.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev1-boe-rt5682s.dts
+new file mode 100644
+index 000000000000..1a921a540075
+--- /dev/null
++++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev1-boe-rt5682s.dts
+@@ -0,0 +1,39 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * Google Wormdingler board device tree source
++ *
++ * Copyright 2021 Google LLC.
++ *
++ * SKU: 0x401 => 1025
++ *  - bits 11..8: Panel ID: 0x4 (BOE)
++ */
++
++/dts-v1/;
++
++#include "sc7180-trogdor-wormdingler.dtsi"
++
++/ {
++	model = "Google Wormdingler rev1+ (BOE, rt5682s)";
++	compatible = "google,wormdingler-sku1025", "qcom,sc7180";
++};
++
++&panel {
++	compatible = "boe,tv110c9m-ll3";
++};
++
++&alc5682 {
++	compatible = "realtek,rt5682s";
++	realtek,dmic1-clk-pin = <2>;
++	realtek,dmic-clk-rate-hz = <2048000>;
++};
++
++&dsi_phy {
++	qcom,phy-rescode-offset-top = /bits/ 8 <31 31 31 31 (-32)>;
++	qcom,phy-rescode-offset-bot = /bits/ 8 <31 31 31 31 (-32)>;
++	qcom,phy-drive-ldo-level = <450>;
++};
++
++&sound {
++	compatible = "google,sc7180-trogdor";
++	model = "sc7180-rt5682s-max98357a-1mic";
++};
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev1-boe.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev1-boe.dts
+new file mode 100644
+index 000000000000..c5b0658bd632
+--- /dev/null
++++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev1-boe.dts
+@@ -0,0 +1,28 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * Google Wormdingler board device tree source
++ *
++ * Copyright 2021 Google LLC.
++ *
++ * SKU: 0x400 => 1024
++ *  - bits 11..8: Panel ID: 0x4 (BOE)
++ */
++
++/dts-v1/;
++
++#include "sc7180-trogdor-wormdingler.dtsi"
++
++/ {
++	model = "Google Wormdingler rev1+ BOE panel board";
++	compatible = "google,wormdingler-sku1024", "qcom,sc7180";
++};
++
++&dsi_phy {
++	qcom,phy-rescode-offset-top = /bits/ 8 <31 31 31 31 (-32)>;
++	qcom,phy-rescode-offset-bot = /bits/ 8 <31 31 31 31 (-32)>;
++	qcom,phy-drive-ldo-level = <450>;
++};
++
++&panel {
++	compatible = "boe,tv110c9m-ll3";
++};
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev1-inx-rt5682s.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev1-inx-rt5682s.dts
+new file mode 100644
+index 000000000000..1129e3fed165
+--- /dev/null
++++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev1-inx-rt5682s.dts
+@@ -0,0 +1,33 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * Google Wormdingler board device tree source
++ *
++ * Copyright 2021 Google LLC.
++ *
++ * SKU: 0x0001 => 1
++ *  - bits 11..8: Panel ID: 0x0 (INX)
++ */
++
++/dts-v1/;
++
++#include "sc7180-trogdor-wormdingler.dtsi"
++
++/ {
++	model = "Google Wormdingler rev1+ (INX, rt5682s)";
++	compatible = "google,wormdingler-sku1", "qcom,sc7180";
++};
++
++&panel {
++	compatible = "innolux,hj110iz-01a";
++};
++
++&alc5682 {
++	compatible = "realtek,rt5682s";
++	realtek,dmic1-clk-pin = <2>;
++	realtek,dmic-clk-rate-hz = <2048000>;
++};
++
++&sound {
++	compatible = "google,sc7180-trogdor";
++	model = "sc7180-rt5682s-max98357a-1mic";
++};
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev1-inx.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev1-inx.dts
+new file mode 100644
+index 000000000000..dd34a2297ea0
+--- /dev/null
++++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev1-inx.dts
+@@ -0,0 +1,22 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * Google Wormdingler board device tree source
++ *
++ * Copyright 2021 Google LLC.
++ *
++ * SKU: 0x0000 => 0
++ *  - bits 11..8: Panel ID: 0x0 (INX)
++ */
++
++/dts-v1/;
++
++#include "sc7180-trogdor-wormdingler.dtsi"
++
++/ {
++	model = "Google Wormdingler rev1+ INX panel board";
++	compatible = "google,wormdingler-sku0", "qcom,sc7180";
++};
++
++&panel {
++	compatible = "innolux,hj110iz-01a";
++};
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler.dtsi
+new file mode 100644
+index 000000000000..9c5e3beabbed
+--- /dev/null
++++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler.dtsi
+@@ -0,0 +1,413 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * Google Wormdingler board device tree source
++ *
++ * Copyright 2021 Google LLC.
++ */
++
++/dts-v1/;
++
++#include "sc7180.dtsi"
++
++ap_ec_spi: &spi6 {};
++ap_h1_spi: &spi0 {};
++
++#include "sc7180-trogdor.dtsi"
++
++/ {
++	avdd_lcd: avdd-lcd {
++		compatible = "regulator-fixed";
++		regulator-name = "avdd_lcd";
++
++		gpio = <&tlmm 88 GPIO_ACTIVE_HIGH>;
++		enable-active-high;
++		pinctrl-names = "default";
++		pinctrl-0 = <&avdd_lcd_en>;
++
++		vin-supply = <&pp5000_a>;
++	};
++
++	avee_lcd: avee-lcd {
++		compatible = "regulator-fixed";
++		regulator-name = "avee_lcd";
++
++		gpio = <&tlmm 21 GPIO_ACTIVE_HIGH>;
++		enable-active-high;
++		pinctrl-names = "default";
++		pinctrl-0 = <&avee_lcd_en>;
++
++		vin-supply = <&pp5000_a>;
++	};
++
++	pp1800_ts:
++	v1p8_mipi: v1p8-mipi {
++		compatible = "regulator-fixed";
++		regulator-name = "v1p8_mipi";
++
++		gpio = <&tlmm 86 GPIO_ACTIVE_HIGH>;
++		enable-active-high;
++		pinctrl-names = "default";
++		pinctrl-0 = <&mipi_1800_en>;
++
++		vin-supply = <&pp3300_a>;
++	};
++
++	thermal-zones {
++		skin_temp_thermal: skin-temp-thermal {
++			polling-delay-passive = <250>;
++			polling-delay = <0>;
++
++			thermal-sensors = <&pm6150_adc_tm 1>;
++			sustainable-power = <574>;
++
++			trips {
++				skin_temp_alert0: trip-point0 {
++					temperature = <58000>;
++					hysteresis = <1000>;
++					type = "passive";
++				};
++
++				skin_temp_alert1: trip-point1 {
++					temperature = <62500>;
++					hysteresis = <1000>;
++					type = "passive";
++				};
++
++				skin-temp-crit {
++					temperature = <68000>;
++					hysteresis = <1000>;
++					type = "critical";
++				};
++			};
++
++			cooling-maps {
++				map0 {
++					trip = <&skin_temp_alert0>;
++					cooling-device = <&CPU6 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
++							 <&CPU7 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
++				};
++
++				map1 {
++					trip = <&skin_temp_alert1>;
++					cooling-device = <&CPU6 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
++							 <&CPU7 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
++				};
++			};
++		};
++	};
++};
++
++&ap_tp_i2c {
++	status = "disabled";
++};
++
++&backlight {
++	pwms = <&cros_ec_pwm 0>;
++};
++
++&cros_ec {
++	base_detection: cbas {
++		compatible = "google,cros-cbas";
++	};
++};
++
++&dsi0 {
++
++	panel: panel@0 {
++		reg = <0>;
++		enable-gpios = <&tlmm 87 GPIO_ACTIVE_HIGH>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&vdd_reset_1800>;
++		avdd-supply = <&avdd_lcd>;
++		avee-supply = <&avee_lcd>;
++		pp1800-supply = <&v1p8_mipi>;
++		pp3300-supply = <&pp3300_dx_edp>;
++		backlight = <&backlight>;
++		rotation = <270>;
++
++		ports {
++			#address-cells = <1>;
++			#size-cells = <0>;
++			port@0 {
++				reg = <0>;
++				panel_in: endpoint {
++					remote-endpoint = <&dsi0_out>;
++				};
++			};
++		};
++	};
++
++	ports {
++		port@1 {
++			endpoint {
++				remote-endpoint = <&panel_in>;
++				data-lanes = <0 1 2 3>;
++			};
++		};
++	};
++};
++
++&i2c4 {
++	status = "okay";
++	clock-frequency = <400000>;
++
++	ap_ts: touchscreen@1 {
++		compatible = "hid-over-i2c";
++		reg = <0x01>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&ts_int_l>;
++
++		interrupt-parent = <&tlmm>;
++		interrupts = <9 IRQ_TYPE_EDGE_FALLING>;
++
++		post-power-on-delay-ms = <70>;
++		hid-descr-addr = <0x0001>;
++
++		vdd-supply = <&pp3300_ts>;
++		vddl-supply = <&pp1800_ts>;
++	};
++};
++
++&pm6150_adc {
++	skin-temp-thermistor@4d {
++		reg = <ADC5_AMUX_THM1_100K_PU>;
++		qcom,ratiometric;
++		qcom,hw-settle-time = <200>;
++	};
++};
++
++&pm6150_adc_tm {
++	status = "okay";
++
++	skin-temp-thermistor@1 {
++		reg = <1>;
++		io-channels = <&pm6150_adc ADC5_AMUX_THM1_100K_PU>;
++		qcom,ratiometric;
++		qcom,hw-settle-time-us = <200>;
++	};
++};
++
++&pp1800_uf_cam {
++	status = "okay";
++};
++
++&pp1800_wf_cam {
++	status = "okay";
++};
++
++&pp2800_uf_cam {
++	status = "okay";
++};
++
++&pp2800_wf_cam {
++	status = "okay";
++};
++
++&wifi {
++	qcom,ath10k-calibration-variant = "GO_WORMDINGLER";
++};
++
++/*
++ * No eDP on this board but it's logically the same signal so just give it
++ * a new name and assign the proper GPIO.
++ */
++pp3300_disp_on: &pp3300_dx_edp {
++	gpio = <&tlmm 85 GPIO_ACTIVE_HIGH>;
++};
++
++/* PINCTRL - modifications to sc7180-trogdor.dtsi */
++
++/*
++ * No eDP on this board but it's logically the same signal so just give it
++ * a new name and assign the proper GPIO.
++ */
++
++tp_en: &en_pp3300_dx_edp {
++	pinmux {
++		pins = "gpio85";
++	};
++
++	pinconf {
++		pins = "gpio85";
++	};
++};
++
++/* PINCTRL - board-specific pinctrl */
++
++&tlmm {
++	gpio-line-names = "HUB_RST_L",
++			  "AP_RAM_ID0",
++			  "AP_SKU_ID2",
++			  "AP_RAM_ID1",
++			  "",
++			  "AP_RAM_ID2",
++			  "UF_CAM_EN",
++			  "WF_CAM_EN",
++			  "TS_RESET_L",
++			  "TS_INT_L",
++			  "",
++			  "",
++			  "AP_EDP_BKLTEN",
++			  "UF_CAM_MCLK",
++			  "WF_CAM_CLK",
++			  "",
++			  "",
++			  "UF_CAM_SDA",
++			  "UF_CAM_SCL",
++			  "WF_CAM_SDA",
++			  "WF_CAM_SCL",
++			  "AVEE_LCD_EN",
++			  "",
++			  "AMP_EN",
++			  "",
++			  "",
++			  "",
++			  "",
++			  "HP_IRQ",
++			  "WF_CAM_RST_L",
++			  "UF_CAM_RST_L",
++			  "AP_BRD_ID2",
++			  "",
++			  "AP_BRD_ID0",
++			  "AP_H1_SPI_MISO",
++			  "AP_H1_SPI_MOSI",
++			  "AP_H1_SPI_CLK",
++			  "AP_H1_SPI_CS_L",
++			  "BT_UART_CTS",
++			  "BT_UART_RTS",
++			  "BT_UART_TXD",
++			  "BT_UART_RXD",
++			  "H1_AP_INT_ODL",
++			  "",
++			  "UART_AP_TX_DBG_RX",
++			  "UART_DBG_TX_AP_RX",
++			  "HP_I2C_SDA",
++			  "HP_I2C_SCL",
++			  "FORCED_USB_BOOT",
++			  "AMP_BCLK",
++			  "AMP_LRCLK",
++			  "AMP_DIN",
++			  "",
++			  "HP_BCLK",
++			  "HP_LRCLK",
++			  "HP_DOUT",
++			  "HP_DIN",
++			  "HP_MCLK",
++			  "AP_SKU_ID0",
++			  "AP_EC_SPI_MISO",
++			  "AP_EC_SPI_MOSI",
++			  "AP_EC_SPI_CLK",
++			  "AP_EC_SPI_CS_L",
++			  "AP_SPI_CLK",
++			  "AP_SPI_MOSI",
++			  "AP_SPI_MISO",
++			  /*
++			   * AP_FLASH_WP_L is crossystem ABI. Schematics
++			   * call it BIOS_FLASH_WP_L.
++			   */
++			  "AP_FLASH_WP_L",
++			  "",
++			  "AP_SPI_CS0_L",
++			  "",
++			  "",
++			  "",
++			  "",
++			  "WLAN_SW_CTRL",
++			  "",
++			  "REPORT_E",
++			  "",
++			  "ID0",
++			  "",
++			  "ID1",
++			  "",
++			  "",
++			  "",
++			  "CODEC_PWR_EN",
++			  "HUB_EN",
++			  "TP_EN",
++			  "MIPI_1.8V_EN",
++			  "VDD_RESET_1.8V",
++			  "AVDD_LCD_EN",
++			  "",
++			  "AP_SKU_ID1",
++			  "AP_RST_REQ",
++			  "",
++			  "AP_BRD_ID1",
++			  "AP_EC_INT_L",
++			  "SDM_GRFC_3",
++			  "",
++			  "",
++			  "BOOT_CONFIG_4",
++			  "BOOT_CONFIG_2",
++			  "",
++			  "",
++			  "",
++			  "",
++			  "",
++			  "",
++			  "",
++			  "BOOT_CONFIG_3",
++			  "WCI2_LTE_COEX_TXD",
++			  "WCI2_LTE_COEX_RXD",
++			  "",
++			  "",
++			  "",
++			  "",
++			  "FORCED_USB_BOOT_POL",
++			  "AP_TS_PEN_I2C_SDA",
++			  "AP_TS_PEN_I2C_SCL",
++			  "DP_HOT_PLUG_DET",
++			  "EC_IN_RW_ODL";
++
++	vdd_reset_1800: vdd-reset-1800 {
++		pinmux {
++			pins = "gpio87";
++			function = "gpio";
++		};
++
++		pinconf {
++			pins = "gpio87";
++			drive-strength = <2>;
++			bias-disable;
++		};
++	};
++
++	avdd_lcd_en: avdd-lcd-en {
++		pinmux {
++			pins = "gpio88";
++			function = "gpio";
++		};
++
++		pinconf {
++			pins = "gpio88";
++			drive-strength = <2>;
++			bias-disable;
++		};
++	};
++
++	avee_lcd_en: avee-lcd_en {
++		pinmux {
++			pins = "gpio21";
++			function = "gpio";
++		};
++
++		pinconf {
++			pins = "gpio21";
++			drive-strength = <2>;
++			bias-disable;
++		};
++	};
++
++	mipi_1800_en: mipi-1800-en {
++		pinmux {
++			pins = "gpio86";
++			function = "gpio";
++		};
++
++		pinconf {
++			pins = "gpio86";
++			drive-strength = <2>;
++			bias-disable;
++		};
++	};
++};
 -- 
-2.25.1
-
-
->>> and it does not
->>> include our previous talks.
->> At the time, I didn't realize how important is it. Understanding began
->> to come after dozens of experiments and checking the similar Linux patches.
->>
->>>> diff --git
->>>> a/Documentation/devicetree/bindings/mtd/partitions/fixed-partitions.yaml
->>>> b/Documentation/devicetree/bindings/mtd/partitions/fixed-partitions.yaml
->>>> index ea4cace6a955..9eebe39a57fb 100644
->>>> --- a/Documentation/devicetree/bindings/mtd/partitions/fixed-partitions.yaml
->>>> +++ b/Documentation/devicetree/bindings/mtd/partitions/fixed-partitions.yaml
->>>> @@ -19,7 +19,11 @@ maintainers:
->>>>  
->>>>  properties:
->>>>    compatible:
->>>> -    const: fixed-partitions
->>>> +    oneOf:
->>>> +      - const: fixed-partitions
->>>> +      - items:
->>>> +          - const: sercomm,sc-partitions
->>>> +          - const: fixed-partitions
->>>>  
->>>>    "#address-cells": true
->>>>  
->>>> @@ -27,7 +31,18 @@ properties:
->>>>  
->>>>  patternProperties:
->>>>    "@[0-9a-f]+$":
->>>> -    $ref: "partition.yaml#"
->>>> +    allOf:
->>>> +      - $ref: "partition.yaml#"
->>>> +      - if:
->>>> +          properties:
->>>> +            compatible:
->>>> +              contains:
->>>> +                const: sercomm,sc-partitions
->>>> +        then:
->>>> +          properties:
->>>> +            scpart-id:
->>> It still misses vendor prefix and we agreed you don't need it, didn't we?
->> Do you mean "sercomm" vendor prefix? If so then we agreed that I include
->> it in a separate patch:
-> There was some misunderstanding then. We talk here about scpart-id name.
-> Adding vendor prefix cannot be a separate patch because it does not make
-> much sense. You add new property with wrong name and immediately
-> change/fix it in next patch.
->
-> No, it should have proper name since beginning. The property is not used
-> in the kernel.
-
-Eureka! Thank you for your patience. I've never seen vendor prefixes for
-properties  and didn't know that it's possible too.
-
->> Link:
->> https://lore.kernel.org/linux-mtd/1b391399-984b-7a63-3265-62ef09caec39@gmail.com/
->>
->> I'm going to send it in v3:
->>
->> ---
->> dt-bindings: Add Sercomm (Suzhou) Corporation vendor prefix
->>
->> Update Documentation/devicetree/bindings/vendor-prefixes.yaml to include
->> "sercomm" as a vendor prefix for "Sercomm (Suzhou) Corporation".
->> Company website:
->> Link: https://www.sercomm.com/
->>
->> Signed-off-by: Mikhail Zhilkin <csharper2005@gmail.com>
->> ---
->>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
->>  1 file changed, 2 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml
->> b/Documentation/devicetree/bindings/vendor-prefixes.yaml
->> index 01430973ecec..65ff22364fb3 100644
->> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
->> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
->> @@ -1082,6 +1082,8 @@ patternProperties:
->>      description: Sensirion AG
->>    "^sensortek,.*":
->>      description: Sensortek Technology Corporation
->> +  "^sercomm,.*":
->> +    description: Sercomm (Suzhou) Corporation
-> This can be separate patch, but it's separate issue...
->
->
-> Best regards,
-> Krzysztof
-
--- 
-Best regards,
-Mikhail
+2.31.0
 
