@@ -2,88 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8125D515952
-	for <lists+devicetree@lfdr.de>; Sat, 30 Apr 2022 02:30:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4B298515998
+	for <lists+devicetree@lfdr.de>; Sat, 30 Apr 2022 03:26:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1359746AbiD3Adm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Apr 2022 20:33:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33848 "EHLO
+        id S240122AbiD3B3c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Apr 2022 21:29:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48296 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235155AbiD3Adm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Apr 2022 20:33:42 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 415BC10CF;
-        Fri, 29 Apr 2022 17:30:13 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id EF7216243B;
-        Sat, 30 Apr 2022 00:30:12 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 55C82C385A7;
-        Sat, 30 Apr 2022 00:30:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1651278612;
-        bh=w0Kb+JlJ3YxNGv5ZHU4i/iB27lhjEWCRLy/t4cz2zkw=;
-        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-        b=GKqgCMX1B7PWxKbYl2J15HZssGuOcACluqIz9H7FoeAjvL9ea8Uph0T4l5ROiXVNE
-         v5uVaEVKU4xBWNYjJHO9raXtbvNJZv83YW/ZxYvsuzvvEP/TH+hHCKrTKDErU9i/a7
-         hBSssnWHpJcguyBF5R3DqeboUQqr5wAmz/ydv4R5Hoj522N6DWp6Q2ERe4jy5dMKiH
-         fR6wLTHNmUmiCgPGz7w09oBUZQj1z945bkecoSp+hzFJLfSVLlhD+jcTPhMOptDFhN
-         BKu1VZJX0Ze4eLqGK7p7vPnYzIRjVJrTi8HhM/fa+RP8Ywq5c9fBqqRZJ3/EwRpXwg
-         0Ug/ent6FiILQ==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 3270DF0383D;
-        Sat, 30 Apr 2022 00:30:12 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH net-next v1 0/3] net: phy: micrel: add coma mode support
-From:   patchwork-bot+netdevbpf@kernel.org
-Message-Id: <165127861220.13084.9227966291421298377.git-patchwork-notify@kernel.org>
-Date:   Sat, 30 Apr 2022 00:30:12 +0000
-References: <20220427214406.1348872-1-michael@walle.cc>
-In-Reply-To: <20220427214406.1348872-1-michael@walle.cc>
-To:     Michael Walle <michael@walle.cc>
-Cc:     davem@davemloft.net, kuba@kernel.org, pabeni@redhat.com,
+        with ESMTP id S240104AbiD3B3b (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Apr 2022 21:29:31 -0400
+Received: from netrider.rowland.org (netrider.rowland.org [192.131.102.5])
+        by lindbergh.monkeyblade.net (Postfix) with SMTP id B83277F208
+        for <devicetree@vger.kernel.org>; Fri, 29 Apr 2022 18:26:11 -0700 (PDT)
+Received: (qmail 966577 invoked by uid 1000); 29 Apr 2022 21:26:11 -0400
+Date:   Fri, 29 Apr 2022 21:26:11 -0400
+From:   Alan Stern <stern@rowland.harvard.edu>
+To:     Vincent Shih <vincent.sunplus@gmail.com>
+Cc:     gregkh@linuxfoundation.org, p.zabel@pengutronix.de,
+        davem@davemloft.net, vladimir.oltean@nxp.com,
+        linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
         robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        andrew@lunn.ch, hkallweit1@gmail.com, linux@armlinux.org.uk,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        devicetree@vger.kernel.org, wells.lu@sunplus.com
+Subject: Re: [PATCH v4 1/2] usb: host: ehci-sunplus: Add driver for ehci in
+ Sunplus SP7021
+Message-ID: <YmyQM3Yp31E1lfrn@rowland.harvard.edu>
+References: <1651220876-26705-1-git-send-email-vincent.sunplus@gmail.com>
+ <1651220876-26705-2-git-send-email-vincent.sunplus@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1651220876-26705-2-git-send-email-vincent.sunplus@gmail.com>
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,
+        HEADER_FROM_DIFFERENT_DOMAINS,SPF_HELO_PASS,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello:
-
-This series was applied to netdev/net-next.git (master)
-by Jakub Kicinski <kuba@kernel.org>:
-
-On Wed, 27 Apr 2022 23:44:03 +0200 you wrote:
-> Add support to disable coma mode by a GPIO line.
+On Fri, Apr 29, 2022 at 04:27:55PM +0800, Vincent Shih wrote:
+> Add driver for ehci in Sunplus SP7021
 > 
-> Michael Walle (3):
->   dt-bindings: net: micrel: add coma-mode-gpios property
->   net: phy: micrel: move the PHY timestamping check
->   net: phy: micrel: add coma mode GPIO
-> 
-> [...]
+> Signed-off-by: Vincent Shih <vincent.sunplus@gmail.com>
+> ---
 
-Here is the summary with links:
-  - [net-next,v1,1/3] dt-bindings: net: micrel: add coma-mode-gpios property
-    https://git.kernel.org/netdev/net-next/c/749c61e5b30a
-  - [net-next,v1,2/3] net: phy: micrel: move the PHY timestamping check
-    https://git.kernel.org/netdev/net-next/c/31d00ca4ce0e
-  - [net-next,v1,3/3] net: phy: micrel: add coma mode GPIO
-    https://git.kernel.org/netdev/net-next/c/738871b09250
+> diff --git a/drivers/usb/host/ehci-sunplus.c b/drivers/usb/host/ehci-sunplus.c
+> new file mode 100644
+> index 0000000..4d8e20d
+> --- /dev/null
+> +++ b/drivers/usb/host/ehci-sunplus.c
 
-You are awesome, thank you!
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
+> +static struct usb_ehci_pdata usb_ehci_pdata = {
+> +	.has_tt = 1,
+> +	.has_synopsys_hc_bug = 1,
+> +	.big_endian_desc = 1,
+> +	.big_endian_mmio = 1,
+> +	.power_on = sp_ehci_platform_power_on,
+> +	.power_suspend = sp_ehci_platform_power_off,
+> +	.power_off = sp_ehci_platform_power_off,
+> +
+> +};
+> +
+> +static int ehci_sunplus_reset(struct usb_hcd *hcd)
+> +{
+> +	struct platform_device *pdev = to_platform_device(hcd->self.controller);
+> +	struct usb_ehci_pdata *pdata = pdev->dev.platform_data;
+> +	struct ehci_hcd *ehci = hcd_to_ehci(hcd);
+> +	int retval;
+> +
+> +	hcd->has_tt = pdata->has_tt;
+> +	ehci->has_synopsys_hc_bug = pdata->has_synopsys_hc_bug;
+> +	ehci->big_endian_desc = pdata->big_endian_desc;
+> +	ehci->big_endian_mmio = pdata->big_endian_mmio;
 
+By the way, you don't need to add all this pdata stuff.  You can just 
+set hcd->has_tt, ehci->has_synopsys_hc_bug, ehci_big_endian_desc, and 
+ehci->big_endian_mmio directly, since you already know what their values 
+should be.
 
+It looks like you simply copied the code from the ehci-platform driver.  
+But that driver has to handle many different kinds of platform devices, 
+so it needs to be told about their individual differences, whereas your 
+driver only has to handle one kind.
+
+In fact, there's no obvious reason why you didn't just use the 
+ehci-platform driver instead of writing your own driver.  
+That's the sort of thing you need to explain the patch description.
+
+Alan Stern
