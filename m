@@ -2,108 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AE92C515E7D
-	for <lists+devicetree@lfdr.de>; Sat, 30 Apr 2022 16:59:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E0178515E98
+	for <lists+devicetree@lfdr.de>; Sat, 30 Apr 2022 17:14:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1382911AbiD3PCm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 30 Apr 2022 11:02:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59240 "EHLO
+        id S232399AbiD3PRz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 30 Apr 2022 11:17:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36382 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1382905AbiD3PCl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 30 Apr 2022 11:02:41 -0400
-Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0467F63521
-        for <devicetree@vger.kernel.org>; Sat, 30 Apr 2022 07:59:19 -0700 (PDT)
-Received: by mail-wm1-x335.google.com with SMTP id p7-20020a05600c358700b00393e80c59daso6340281wmq.0
-        for <devicetree@vger.kernel.org>; Sat, 30 Apr 2022 07:59:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=+5JXfzkj+vhJJIZIKEEhm3Jlf2F+NoZCaiRzdzaWrsg=;
-        b=ONHYY+zTfSdlfeMSBI1tStKUm6Q8vLchai0CCsjvN4g2BRsTk7UZiYWn1DC8l1owSO
-         U0Q61wd0if6oQIdx3xvMN3RpIRX/PEYVkcJkfwc3XsXMmIg2w0hzhYtW3S758yL/a+u8
-         FUhtNEWRuXgSbet1i9Fr3zdtzt1ICpxnXrgGeigPyA7FY8JdRV/Iy7+NfRK4gNfOTmWp
-         SgBLE8+YT+xbwQb6Swj4/3n86m4PZ1YYLvyAYpG0cu8bGYqR31fTbYSOHKTzN6aRY8G5
-         DR0OFq9AyaCPo3cVTDotzHAB4ZNNaSuHiv54xmJOv3tC6Fpt7SJpvLWwjqOQY5wcfr5Z
-         qwtw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=+5JXfzkj+vhJJIZIKEEhm3Jlf2F+NoZCaiRzdzaWrsg=;
-        b=S1SN2D47A1YePgMg+UCMktB3cYb57bxXV16WdvohNAbz72SXmqE+/pGyGCFkM4mrvy
-         PHeG4OhpUA8hS1RyHACsAPmjtnrvKQ9Ki1IsyvXz9tybCqv3nN7TejBwLOmYuc28YZLz
-         aTYAMf2YwU6wIb+rvTPqUEmUHtvqhG8ePGzKfTh4mgB4PFmXyhwO2XbAnpwlxRFoEytS
-         f2uBchj7BUmDBNafj1SRF6wBfEjjWXIqEVDdWUGTVcUzjKyraj0NrndzeR1t7xvSo8Ca
-         oMRyRmUZdEWBYTLRZCLstZkm9kWq2WWquOU2x+4WAZdxUEELSeGyB+1oRrd6Qf1YQ7Bz
-         Rc5A==
-X-Gm-Message-State: AOAM531ewsXV0UBP+5RRcRDHyk+jUDh1xYuOPx5DlY4GO1soUYP99Wq5
-        ioESJ0WCeT/JE1Oaee4DfEMX9w==
-X-Google-Smtp-Source: ABdhPJy5uZmXFILh6aV3PA32I/1yRS2g4Z0v/3sQGk3nbfPs0topDKt8c1VtIf/89B6ythh3IXqatw==
-X-Received: by 2002:a05:600c:2102:b0:394:2765:580c with SMTP id u2-20020a05600c210200b003942765580cmr3871520wml.150.1651330757590;
-        Sat, 30 Apr 2022 07:59:17 -0700 (PDT)
-Received: from [192.168.209.234] (92.40.198.136.threembb.co.uk. [92.40.198.136])
-        by smtp.gmail.com with ESMTPSA id v13-20020adfa1cd000000b0020c5253d8b9sm2147055wrv.5.2022.04.30.07.59.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 30 Apr 2022 07:59:17 -0700 (PDT)
-Message-ID: <79f37538-cd4c-963c-225c-bf6b70d684de@linaro.org>
-Date:   Sat, 30 Apr 2022 16:00:18 +0100
+        with ESMTP id S238467AbiD3PRy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 30 Apr 2022 11:17:54 -0400
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.15])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD9EF60051
+        for <devicetree@vger.kernel.org>; Sat, 30 Apr 2022 08:14:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+        s=badeba3b8450; t=1651331668;
+        bh=KpkCQH0yeHnhMuWXXTtx5BznJDdINBL7kKfRNiiiYuM=;
+        h=X-UI-Sender-Class:From:To:Subject:Date;
+        b=ArRrjAcyT00I0OEiR2jXZjNP2a/ggBs/LvuQUdpgKGSmQaOnhV5rRqumdcHPDU3uw
+         cTDG9L6hEugAvhEB++5hOkNTu+x7NKRG1w4k+M8+ph8FrFZSPSpWRKyQ1MVV2OIQW4
+         wI9NX6vEjgrvQVqXMaUPNBMN8feSWLDnn9RvjWbQ=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from [80.245.72.211] ([80.245.72.211]) by web-mail.gmx.net
+ (3c-app-gmx-bs30.server.lan [172.19.170.82]) (via HTTP); Sat, 30 Apr 2022
+ 17:14:28 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.0
-Subject: Re: [PATCH v14 04/10] dt-bindings: iio: adc: document qcom-spmi-rradc
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-Cc:     Jami Kettunen <jami.kettunen@somainline.org>,
-        Sumit Semwal <sumit.semwal@linaro.org>
-References: <20220429220904.137297-1-caleb.connolly@linaro.org>
- <20220429220904.137297-5-caleb.connolly@linaro.org>
- <f56061fe-adec-a148-e085-0561f84e8b3d@linaro.org>
-From:   Caleb Connolly <caleb.connolly@linaro.org>
-In-Reply-To: <f56061fe-adec-a148-e085-0561f84e8b3d@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Message-ID: <trinity-06d48002-e871-47e9-ad45-fb2f07dcdb39-1651331668327@3c-app-gmx-bs30>
+From:   Frank Wunderlich <frank-w@public-files.de>
+To:     devicetree@vger.kernel.org
+Subject: help with converting txt binding to yaml
+Content-Type: text/plain; charset=UTF-8
+Date:   Sat, 30 Apr 2022 17:14:28 +0200
+Importance: normal
+Sensitivity: Normal
+X-Priority: 3
+X-Provags-ID: V03:K1:vdOH17sFpzBvbkFcBCBJniZhtE4Jw2iPGozTQfX7gOk4Sg9DVr3rEsYZ4thaoenQvUvP3
+ 7ggpSBJCJ209mpnjU9WkySXSGR8enmxm6UvXGty+mQmOLWNXijMy3ij29w6ITTk/WWgII+nxNEPF
+ HvW1FAl2xClM4YWwfXyVtoNwIajhSwcRCbtppTes0ae6gjEEDiLtcX4Qbg9yvdHj+ts+teET8py+
+ 2oPQ3nix53SXFLp6f3wLuhtvPC9tj1qdqtPgXUeL9clVAia+Yeo7u68+Rufs9nvrq7Nco1vsHdn7
+ 4I=
+X-UI-Out-Filterresults: notjunk:1;V03:K0:96RQMqWx47o=:Un/pIT/UYNuVz0dyoYQyLT
+ XmEYFYpKkPAfjpCx1vJt4aHqJUjqllcOUUPoRtT6rmLHkigbYSm1mo50gZ/3VPE4lNWnxC4y3
+ pz/uECbo6QygPH93Z9tst3yubFSBLzuAReXIYYfqetX1iUi6KCgU9MHW/9fKmO5TIjpQ3+363
+ eABG0i/j+JjmhvpXP88yrIXtiooBxusWsjwcmAmFe+77KE3bblyZGISQruie8hrOBjkFrvNgn
+ kJ+CnUnhja5AHpcb77cOI8b3y9k5uWEOpbwPDwevOfdBXkQTLU7vKGy/4ZqwTsmu8ybw7uk5/
+ 71xvAllg17Xb3LbvqjdWclJrXvc/A+L0/uRC3zcjA2TZxHWDiZJh8oV4fT3ZImf63vJ5LvyYp
+ +YHcKRFXs4Ub7iSOdMOVtWeax6tUhcPvt0468MjBMOslh1zpBza5ZX/+V2SLk4vVytf+brAjw
+ NFcTN7k9PTcUTN2tqoWvY1xtlb/cTrlei6D/077oV7zoZouTf9Gn9JXXzwpyvYvF6uYtJ0V1I
+ 6J/tvkUIKiamlsVroPKsvQLD3badEn19rulI+twiH4wmTZbDNGIBWxcQttl3L6YsNDTl2aNvB
+ P5FBnBE9tT8HKoAaiZpxWR5FO1NM/6Ix0RCG67TGPDfQaHcr5k+oZeK3q4PiF1DNKRgjKyvFH
+ HyecXZQcUAeaCW5oo5el2n6l+B1FOm1bNcvu5mkEFeU1K6keSAwRASCtZm7oW3ylMxNtLF060
+ bvUyBQ74vfdiVcNPAr3dBYy1mEgHMLjf4ONQSFcuiQmQQB93OK1WDTaKKlmP20Nkez1do0BK5
+ o2a9ZvH
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
+
+i try to convert the mt7530 txt binding to yaml and currently hang on duplicate labels across examples
+
+have the 3 examples added like in the Documentation/devicetree/bindings/net/dsa/mt7530.txt
+
+    Documentation/devicetree/bindings/net/dsa/mediatek.example.dts:203.26-213.15:
+    ERROR (duplicate_label): /example-2/eth/mac@0: Duplicate label 'gmac0' on /example-2/eth/mac@0 and /example-1/eth/mac@0
+    Documentation/devicetree/bindings/net/dsa/mediatek.example.dts:215.28-285.15:
+    ERROR (duplicate_label): /example-2/eth/mdio-bus: Duplicate label 'mdio' on /example-2/eth/mdio-bus and /example-1/eth/mdio-bus
+    Documentation/devicetree/bindings/net/dsa/mediatek.example.dts:224.35-284.19:
+    ERROR (duplicate_label): /example-2/eth/mdio-bus/switch@1f: Duplicate label 'mt7530' on /example-2/eth/mdio-bus/switch@1f and /example-1/eth/mdio-bus/switch@1f
+    Documentation/devicetree/bindings/net/dsa/mediatek.example.dts:271.43-282.27:
+    ERROR (duplicate_label): /example-2/eth/mdio-bus/switch@1f/ports/port@6: Duplicate label 'cpu_port0' on /example-2/eth/mdio-bus/switch@1f/ports/port@6 and /example-1/eth/mdio-bus/switch@1f/ports/port@6
 
 
-On 30/04/2022 15:44, Krzysztof Kozlowski wrote:
-> On 30/04/2022 00:08, Caleb Connolly wrote:
->> Add dt-binding docs for the Qualcomm SPMI RRADC found in PMICs like
->> PMI8998 and PMI8994
->>
->> Signed-off-by: Caleb Connolly <caleb.connolly@linaro.org>
-> 
-> You got my review tag, didn't you? Any changes in this patch?
-Yes, I did, and applied your suggestion, apologies I totally forgot to 
-pick it up.
+added descriptions about muxing/port 5 modes to "global" description, don't know if there is any better place.
 
-Shall I resend? Or who will be taking this patch? Would they maybe be 
-happy to add it?
-> 
-> Best regards,
-> Krzysztof
+and how to add requirements for the subnodes ("Required properties for the child nodes within ports container")
 
--- 
-Kind Regards,
-Caleb (they/he)
+this is my current state:
+
+https://github.com/frank-w/BPI-R2-4.14/blob/5.18-mt7531-mainline/Documentation/devicetree/bindings/net/dsa/mediatek.yaml
+
+regards Frank
