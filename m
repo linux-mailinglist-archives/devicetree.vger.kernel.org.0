@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AC285515D68
-	for <lists+devicetree@lfdr.de>; Sat, 30 Apr 2022 15:13:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1295E515D63
+	for <lists+devicetree@lfdr.de>; Sat, 30 Apr 2022 15:13:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230296AbiD3NQZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 30 Apr 2022 09:16:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33346 "EHLO
+        id S1382725AbiD3NQ3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 30 Apr 2022 09:16:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33394 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1382706AbiD3NQZ (ORCPT
+        with ESMTP id S1382715AbiD3NQZ (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Sat, 30 Apr 2022 09:16:25 -0400
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12E4B8300B
-        for <devicetree@vger.kernel.org>; Sat, 30 Apr 2022 06:13:00 -0700 (PDT)
-Received: by mail-wr1-x435.google.com with SMTP id k2so14050852wrd.5
-        for <devicetree@vger.kernel.org>; Sat, 30 Apr 2022 06:13:00 -0700 (PDT)
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3645E8301B
+        for <devicetree@vger.kernel.org>; Sat, 30 Apr 2022 06:13:01 -0700 (PDT)
+Received: by mail-wm1-x334.google.com with SMTP id p189so5984074wmp.3
+        for <devicetree@vger.kernel.org>; Sat, 30 Apr 2022 06:13:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=conchuod-ie.20210112.gappssmtp.com; s=20210112;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=l7Rc5OS3t5jH6ZKfP/hcCEMnf9UpuWYMdCo25UYCckg=;
-        b=X9thXVlmcxmH1PE12wviFkCqeB+MZYit8NQzf7UG+cKxQdSXGYfNvp7epUsMhphPqw
-         dgI0WpBh0Q16kC+ZyLeT3gTwo77RcBTLZdMSrV2LfXYUCnDCz9trJlWx4B6qkjb3UKcH
-         /kwL7Y3RvEE71ZY7lCZrSxmxURm6ziJ/ptAjeQSh8WkExAGRC2DdTIw6RyuHUA0qIUQD
-         aeDj/HfU6moCSAkfL+R0hj+IeFufhNBoyleaw0kmPvK2aA4eotgsq+ljwATz/XNDZBJO
-         KyekhtyA4ptf7zq5UJYpNJUJHZB3KjExiMKo8fb/9Cidq4B5IFsDPeuwpSZ5mq6zs5zH
-         vwag==
+        bh=xYRDXpY3Iw2Mp2L+0vKKbLbTXTTo1snejpw1fL9RgNM=;
+        b=U53G3o1zO2TfWVlvRkK8i7XxN1whWKxR20syfYHosot0Pj91VzSi2LEyZqdDh7kfrq
+         ESp4RBFRHnhhskiNmRD0FQKf6Rtu9nmKrIFYAqzhmJ8/+4/60Th4hpZyD9Syi36FgMO4
+         gROxG2a2Es4t3+lm80t5o+PqPMvWZ0J+jEKDboaBDO8QVWYVmqH7rGMwXwesYGbz9HYf
+         Oi5chDxwdMKBkgf+reDZAEeg9+SCarqF6U7DVhUt6lEqCssDu4HlxGgiiJjk/zKAKWeE
+         nhIcoJlms6omOF0Z5ScPUvuhmiPG8Lii5VTQC57WigTFac9JUR1kOn6++7lZ4+14BDIW
+         zQaw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=l7Rc5OS3t5jH6ZKfP/hcCEMnf9UpuWYMdCo25UYCckg=;
-        b=stiqQjBaACCoPySoRfhLLYzFkUKNDMSndgnWkMArsZzfdrgQ+pwtPCsfhRyR+2zzlG
-         H34uy4bp3lfNvvG6Oe+JZ3S9B3BdzZ6aCXJA3319HMTrO/OUjEYk91TiEF5lf0vPx96u
-         8L8oQjE8/+kBoh20N+6WiVBkayUpGWzeY63l6ETjfxiJSPHjabkG4yRY/zbfVCLZS7D1
-         uuschcL6RqtBaf9g/LZUF2eqob+2lrHKpurwmwiNZ0QlncP4bT8eTwUGZ8B7VQjJaxob
-         tDYw2ePjq6IWxokt/nHRqbHsAo4hU4wVb4Ni3VFH6Zfw5iyY03dJS6VRS6m4G0u29gMM
-         6Xhg==
-X-Gm-Message-State: AOAM530AUDwBS7rbUnvngY9/fBtaAZMsuTGXTrfT2tB1+Wt321ZmeY2Q
-        GPAtwsXr4p2D3+Naog9DyElYzA==
-X-Google-Smtp-Source: ABdhPJwfVdzniLJsxd2OkH7C13/Hxoma+jQxRAs+vM3HMP4eVaImC/GGXFNkSLzzDuWaaC2VqGfS6A==
-X-Received: by 2002:adf:e942:0:b0:20a:c907:90d6 with SMTP id m2-20020adfe942000000b0020ac90790d6mr3047537wrn.163.1651324378647;
-        Sat, 30 Apr 2022 06:12:58 -0700 (PDT)
+        bh=xYRDXpY3Iw2Mp2L+0vKKbLbTXTTo1snejpw1fL9RgNM=;
+        b=3gfYQn0/lcsgzilaCsZDsRNpiHaLnkvSFgowAN1nPwgs0WcslQ+qX29bIPvOs9sE3w
+         brs64Pk4wKkbXiZIIb523usf81T+NQuP+8SmFgSOAsccrzvfdE42aLiDoCPTDQOfXlqR
+         QLiLb0LxR4bJm6ML0sL5vjFlv50krCq5ZqlImSP9Y0LQSUCsv6z2NHyfjt5D8jpOC/1K
+         51RnIq+TueZ0HWAMLdcR4zxcJkLBZ98YOJr2U/bd4p70pbFuWDrZFzp7hULSdeNGqqrd
+         tu9rWd9C2KKYVmCKnKGFAZqjJjYPNNZlBzBgF6bc3Cya+7MejwWbPySV8Dutiic8sA2I
+         ChUA==
+X-Gm-Message-State: AOAM5319rfsIiw6NZhiPLf4Ky864VFr3VnrMeMvPZqHAxH4OmxE9mrBz
+        Byqdqh9QpnrcdIoDYHMbn/sKU5FtnYWtph+R
+X-Google-Smtp-Source: ABdhPJx5TybxW4mPhyRc1B07zUGZnDh+cnuJd20nySqJGiwWmYa+KtUc1qkRi3Adv3YqzZXrvWGq6A==
+X-Received: by 2002:a05:600c:19c6:b0:392:926e:5023 with SMTP id u6-20020a05600c19c600b00392926e5023mr7558948wmq.110.1651324379745;
+        Sat, 30 Apr 2022 06:12:59 -0700 (PDT)
 Received: from henark71.. ([109.77.36.132])
-        by smtp.gmail.com with ESMTPSA id p9-20020adfa209000000b0020c5253d8ebsm2004439wra.55.2022.04.30.06.12.57
+        by smtp.gmail.com with ESMTPSA id p9-20020adfa209000000b0020c5253d8ebsm2004439wra.55.2022.04.30.06.12.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 30 Apr 2022 06:12:58 -0700 (PDT)
+        Sat, 30 Apr 2022 06:12:59 -0700 (PDT)
 From:   Conor Dooley <mail@conchuod.ie>
 To:     krzk+dt@kernel.org, palmer@dabbelt.com, robh+dt@kernel.org
 Cc:     conor.dooley@microchip.com, Cyril.Jean@microchip.com,
@@ -54,9 +54,9 @@ Cc:     conor.dooley@microchip.com, Cyril.Jean@microchip.com,
         aou@eecs.berkeley.edu, palmer@rivosinc.com, arnd@arndb.de,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-riscv@lists.infradead.org, Conor Dooley <mail@conchuod.ie>
-Subject: [PATCH v2 5/8] riscv: dts: microchip: make the fabric dtsi board specific
-Date:   Sat, 30 Apr 2022 14:09:20 +0100
-Message-Id: <20220430130922.3504268-6-mail@conchuod.ie>
+Subject: [PATCH v2 6/8] dt-bindings: vendor-prefixes: add Sundance DSP
+Date:   Sat, 30 Apr 2022 14:09:21 +0100
+Message-Id: <20220430130922.3504268-7-mail@conchuod.ie>
 X-Mailer: git-send-email 2.36.0
 In-Reply-To: <20220430130922.3504268-1-mail@conchuod.ie>
 References: <20220430130922.3504268-1-mail@conchuod.ie>
@@ -73,63 +73,28 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Conor Dooley <conor.dooley@microchip.com>
 
-Currently mpfs-fabric.dtsi is included by mpfs.dtsi - which is fine
-currently since there is only one board with this SoC upstream.
-
-However if another board was added, it would include the fabric contents
-of the Icicle Kit's reference design. To avoid this, rename
-mpfs-fabric.dtsi to mpfs-icicle-kit-fabric.dtsi & include it in the dts
-rather than mpfs.dtsi.
+Sundance DSP Inc. (https://www.sundancedsp.com/) is a supplier of
+high-performance DSP and FPGA processor boards and I/O modules.
 
 Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
 Signed-off-by: Conor Dooley <mail@conchuod.ie>
 ---
- .../microchip/{mpfs-fabric.dtsi => mpfs-icicle-kit-fabric.dtsi} | 2 ++
- arch/riscv/boot/dts/microchip/mpfs-icicle-kit.dts               | 1 +
- arch/riscv/boot/dts/microchip/mpfs.dtsi                         | 1 -
- 3 files changed, 3 insertions(+), 1 deletion(-)
- rename arch/riscv/boot/dts/microchip/{mpfs-fabric.dtsi => mpfs-icicle-kit-fabric.dtsi} (93%)
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/arch/riscv/boot/dts/microchip/mpfs-fabric.dtsi b/arch/riscv/boot/dts/microchip/mpfs-icicle-kit-fabric.dtsi
-similarity index 93%
-rename from arch/riscv/boot/dts/microchip/mpfs-fabric.dtsi
-rename to arch/riscv/boot/dts/microchip/mpfs-icicle-kit-fabric.dtsi
-index ccaac3371cf9..7ee592e78c05 100644
---- a/arch/riscv/boot/dts/microchip/mpfs-fabric.dtsi
-+++ b/arch/riscv/boot/dts/microchip/mpfs-icicle-kit-fabric.dtsi
-@@ -2,6 +2,8 @@
- /* Copyright (c) 2020-2021 Microchip Technology Inc */
- 
- / {
-+	compatible = "microchip,mpfs-icicle-reference-rtlv2203";
-+
- 	core_pwm0: pwm@41000000 {
- 		compatible = "microchip,corepwm-rtl-v4";
- 		reg = <0x0 0x41000000 0x0 0xF0>;
-diff --git a/arch/riscv/boot/dts/microchip/mpfs-icicle-kit.dts b/arch/riscv/boot/dts/microchip/mpfs-icicle-kit.dts
-index 84b0015dfd47..739dfa52bed1 100644
---- a/arch/riscv/boot/dts/microchip/mpfs-icicle-kit.dts
-+++ b/arch/riscv/boot/dts/microchip/mpfs-icicle-kit.dts
-@@ -4,6 +4,7 @@
- /dts-v1/;
- 
- #include "mpfs.dtsi"
-+#include "mpfs-icicle-kit-fabric.dtsi"
- 
- /* Clock frequency (in Hz) of the rtcclk */
- #define RTCCLK_FREQ		1000000
-diff --git a/arch/riscv/boot/dts/microchip/mpfs.dtsi b/arch/riscv/boot/dts/microchip/mpfs.dtsi
-index cc3386068c2d..695c4e2807f5 100644
---- a/arch/riscv/boot/dts/microchip/mpfs.dtsi
-+++ b/arch/riscv/boot/dts/microchip/mpfs.dtsi
-@@ -3,7 +3,6 @@
- 
- /dts-v1/;
- #include "dt-bindings/clock/microchip,mpfs-clock.h"
--#include "mpfs-fabric.dtsi"
- 
- / {
- 	#address-cells = <2>;
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index 01430973ecec..1d47a38c2a2e 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -1197,6 +1197,8 @@ patternProperties:
+     description: Summit microelectronics
+   "^sunchip,.*":
+     description: Shenzhen Sunchip Technology Co., Ltd
++  "^sundance,.*":
++    description: Sundance DSP Inc.
+   "^sunplus,.*":
+     description: Sunplus Technology Co., Ltd.
+   "^SUNW,.*":
 -- 
 2.36.0
 
