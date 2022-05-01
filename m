@@ -2,123 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B67BA5162A1
-	for <lists+devicetree@lfdr.de>; Sun,  1 May 2022 10:17:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 52FCB5162A9
+	for <lists+devicetree@lfdr.de>; Sun,  1 May 2022 10:19:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244055AbiEAIUq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 1 May 2022 04:20:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42934 "EHLO
+        id S243479AbiEAIXG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 1 May 2022 04:23:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43722 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243553AbiEAIUp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 1 May 2022 04:20:45 -0400
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1120E0A7
-        for <devicetree@vger.kernel.org>; Sun,  1 May 2022 01:17:20 -0700 (PDT)
-Received: by mail-ed1-x52d.google.com with SMTP id a1so13526252edt.3
-        for <devicetree@vger.kernel.org>; Sun, 01 May 2022 01:17:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=EYMxrPRY3J2WekXOQlUGmVM4fNTTeU4P6bnwFue9aN0=;
-        b=pM4ivJZfiRe9iOTmARBovljjO2oq0pxe5QakrVO842DZpiF8Hg5fhgRsqzTPOk9rG0
-         SOOEG94VQcn8py37Q8Rt0HGcDjjLrvEdjYaT647NMzowT2O4JiFZApNqxcSJKR4AJfCe
-         pil4A8nCEpq/uvRz0WpR3qeRi6Hf9bQF98ZrNIa72HQodV+6b7K7odIz3/HWXTf0bCtL
-         U4FOelqw2VksG0E82Hv4BQ1lsrOZs15lc0d9J9DIcR+7zKwV0p7/tEQDcc8s8+2rkEME
-         unctWNewVWjFmz+FAQ9uEH/AQg1CsB7E8ksPtnYQi7IkelE0WJLDG9VgtUIMFO/FPD/V
-         b85g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=EYMxrPRY3J2WekXOQlUGmVM4fNTTeU4P6bnwFue9aN0=;
-        b=B5yINXnLZBDMZ9ci3kzrlyNYQyGV5j2TFzGe2wgOSloZK8QJn2q7UvccXI5fWQTTYt
-         pBPCybFpFUYbxNIRi3/dY76u56tC+IaclDmBV7ajl+WJGFRVTha8KMG3KmwWVuOZ4mWD
-         I4Y9fZdlLrA8IsGoJ/D0F9PPQU0NendrNZN7bbq0+/a0b2icQb617N0wldpdG8dJIbTL
-         NX4IeQApEwZRxLnHxlNste1NJ2xxg4UCeUB8d1C7QNMxR+asjW234YlJS9tnScbNfYj0
-         NizUXkyz0PYkBj0UJBUXCDxOlEiVBhx3lZoTxuT8wlDNF6CJoHfS2oMD9h5fQ+S1qZj5
-         HeKQ==
-X-Gm-Message-State: AOAM532K3aPLNOZgigYOhk4KCs1NSNbgg2Z8tn9dJiHGUvuufmmWAJKS
-        2AshlscwKj8yes+rFKvE5ErEiA==
-X-Google-Smtp-Source: ABdhPJwJfKYprVtgSwMv1foq2/oCXs/sEvqyI1//Vt1pmWYFBXMcO/AaEcENrAF0CEIlNJkmrTdKZw==
-X-Received: by 2002:a05:6402:11cd:b0:427:bda5:542f with SMTP id j13-20020a05640211cd00b00427bda5542fmr1369606edw.290.1651393039410;
-        Sun, 01 May 2022 01:17:19 -0700 (PDT)
-Received: from [192.168.0.182] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id zp15-20020a17090684ef00b006f3ef214e4esm2335099ejb.180.2022.05.01.01.17.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 01 May 2022 01:17:18 -0700 (PDT)
-Message-ID: <6c3ba4a7-80b0-5fd1-eb08-1f9e256b02c4@linaro.org>
-Date:   Sun, 1 May 2022 10:17:17 +0200
+        with ESMTP id S244336AbiEAIXD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 1 May 2022 04:23:03 -0400
+Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id A81F7165B5;
+        Sun,  1 May 2022 01:19:38 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="5.91,189,1647270000"; 
+   d="scan'208";a="118506594"
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie5.idc.renesas.com with ESMTP; 01 May 2022 17:19:38 +0900
+Received: from localhost.localdomain (unknown [10.226.92.14])
+        by relmlir5.idc.renesas.com (Postfix) with ESMTP id EC1F34006CD0;
+        Sun,  1 May 2022 17:19:33 +0900 (JST)
+From:   Biju Das <biju.das.jz@bp.renesas.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        linux-renesas-soc@vger.kernel.org
+Subject: [PATCH] dt-bindings: thermal: rzg2l-thermal: Document RZ/G2UL bindings
+Date:   Sun,  1 May 2022 09:19:30 +0100
+Message-Id: <20220501081930.23743-1-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH v2 1/2] dt-bindings: mtd: partitions: Add binding for
- Sercomm parser
-Content-Language: en-US
-To:     Mikhail Zhilkin <csharper2005@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc:     NOGUCHI Hiroshi <drvlabo@gmail.com>, Karim <Karimdplay@gmail.com>,
-        M <x1@disroot.org>, linux-mtd@lists.infradead.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20220406195557.1956-1-csharper2005@gmail.com>
- <20220406195946.2019-1-csharper2005@gmail.com>
- <8d0d8b27-35ff-3693-cf80-897b80c26b4e@linaro.org>
- <57bebf2f-af4c-b2d9-10e5-19e5104946fb@gmail.com>
- <29cfa017-bbaf-3aba-fe1d-06771957dbaa@linaro.org>
- <1b391399-984b-7a63-3265-62ef09caec39@gmail.com>
- <bd533827-b575-caad-c230-af060851b231@gmail.com>
- <db70e53b-7484-43bf-e9c8-b6a2dce1fbb5@linaro.org>
- <25da3f43-c46e-8108-2da9-0e4f2b7cc1a4@gmail.com>
- <b279040a-a782-a2ca-2acb-2d8f07709081@linaro.org>
- <1c19faf9-fc1c-9adf-d038-97b673a8f0be@gmail.com>
- <a84df850-149e-9656-43fa-1f040368a9f1@linaro.org>
- <0450d781-c506-c28e-a0e5-435bee16721f@gmail.com>
- <2e51842a-d2c9-8953-13aa-02ad3abb3f14@linaro.org>
- <ee5f293a-e59a-03d8-d9e4-ef35d33b5383@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <ee5f293a-e59a-03d8-d9e4-ef35d33b5383@gmail.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+X-Spam-Status: No, score=1.1 required=5.0 tests=AC_FROM_MANY_DOTS,BAYES_00,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/04/2022 20:54, Mikhail Zhilkin wrote:
->  patternProperties:
->    "@[0-9a-f]+$":
-> -    $ref: "partition.yaml#"
-> +    allOf:
-> +      - $ref: "partition.yaml#"
-> +      - if:
-> +          properties:
-> +            compatible:
-> +              contains:
-> +                const: sercomm,sc-partitions
-> +        then:
-> +          properties:
-> +            sercomm,scpart-id:
-> +              description: Partition id in Sercomm partition map. Parser
-> +                uses this id to get partition offset and size values from
-> +                dynamic partition map.
+Document RZ/G2UL TSU bindings. The TSU block on RZ/G2UL is identical to one
+found on RZ/G2L SoC. No driver changes are required as generic compatible
+string "renesas,rzg2l-tsu" will be used as a fallback.
 
-Partition offset and size values are not derived from scpart-id. I am
-sorry but after all these questions - it's the third time now - you
-never answer why do you need this property and what is it used for. From
-all the examples it could be simply removed and the partition map will
-be exactly the same.
+Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+---
+ Documentation/devicetree/bindings/thermal/rzg2l-thermal.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
+diff --git a/Documentation/devicetree/bindings/thermal/rzg2l-thermal.yaml b/Documentation/devicetree/bindings/thermal/rzg2l-thermal.yaml
+index dfb6dce5652a..1d8373397848 100644
+--- a/Documentation/devicetree/bindings/thermal/rzg2l-thermal.yaml
++++ b/Documentation/devicetree/bindings/thermal/rzg2l-thermal.yaml
+@@ -17,6 +17,7 @@ properties:
+   compatible:
+     items:
+       - enum:
++          - renesas,r9a07g043-tsu # RZ/G2UL
+           - renesas,r9a07g044-tsu # RZ/G2{L,LC}
+           - renesas,r9a07g054-tsu # RZ/V2L
+       - const: renesas,rzg2l-tsu
+-- 
+2.25.1
 
-Best regards,
-Krzysztof
