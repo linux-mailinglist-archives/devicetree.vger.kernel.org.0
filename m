@@ -2,45 +2,44 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A2ED2516200
-	for <lists+devicetree@lfdr.de>; Sun,  1 May 2022 07:21:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 96FAB516210
+	for <lists+devicetree@lfdr.de>; Sun,  1 May 2022 07:44:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240674AbiEAFYZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 1 May 2022 01:24:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57320 "EHLO
+        id S237795AbiEAFsP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 1 May 2022 01:48:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58828 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237866AbiEAFYZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 1 May 2022 01:24:25 -0400
+        with ESMTP id S236398AbiEAFsO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 1 May 2022 01:48:14 -0400
 Received: from mx-out2.startmail.com (mx-out2.startmail.com [145.131.90.155])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6831D13D05;
-        Sat, 30 Apr 2022 22:20:59 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2845138BF0;
+        Sat, 30 Apr 2022 22:44:50 -0700 (PDT)
 From:   "Marty E. Plummer" <hanetzer@startmail.com>
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=startmail.com;
-        s=2020-07; t=1651381846;
-        bh=CJkQRIMYjHGkPOoD08ZRSBh5tWFuR3jmLS/jherWFo8=;
-        h=From:To:Subject:Date:Message-Id:In-Reply-To:References:
-         MIME-Version:Content-Transfer-Encoding:From:Subject:To:Date:Sender:
-         Content-Type:Content-Transfer-Encoding:Content-Disposition:
-         Mime-Version:Reply-To:In-Reply-To:References:Message-Id:Autocrypt;
-        b=o67qEAg5gAkd6aO3l0M/uuD6stU6h4qJ4oopGC415zc5pO2zQTW329j2QcqnSRTOh
-         7zYDEcn08hRVwpsrvv/BCHLybFI0XmctjQcw5z68oRt3l+LCnQYfoIhiVv8OPYuyYv
-         uu+JuDHkVz6RHZbwLfsdN1o2g/zfOHJhw9ivo2TrIr5wbT3bZrQwx3NCvkLcyrLzZh
-         YIV5sOWL3oGj9lFhE7MDb4DG5wVYhKuPUbb3STmPok/1UT+dPKSNvkcvWgMzwRigbj
-         86SaqawgnxBpX+SMQU/Ntv1GkZFYWA6zZXpBGnWnar6AfLxTcIzdgQjDggVBTCgeLS
-         0nkd+nCCRZd1A==
-To:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        soc@kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Wei Xu <xuwei5@hisilicon.com>,
-        Russell King <linux@armlinux.org.uk>
-Cc:     "Marty E. Plummer" <hanetzer@startmail.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] arm: hisi: enable Hi3521a soc
-Date:   Sun,  1 May 2022 00:10:20 -0500
-Message-Id: <20220501051020.2432338-3-hanetzer@startmail.com>
-In-Reply-To: <20220501051020.2432338-1-hanetzer@startmail.com>
-References: <20220501051020.2432338-1-hanetzer@startmail.com>
+        s=2020-07; t=1651383887;
+        bh=eIKWJyoaLkJuB+nzU9OpjewDEuEGEm0it8FLQCd8BaE=;
+        h=From:To:Subject:Date:Message-Id:MIME-Version:
+         Content-Transfer-Encoding:From:Subject:To:Date:Sender:Content-Type:
+         Content-Transfer-Encoding:Content-Disposition:Mime-Version:
+         Reply-To:In-Reply-To:References:Message-Id:Autocrypt;
+        b=cZmGGMcQLi8neWNptANOwYRSIn7ZXoRUdTezksV5TgjQC57ZizSyXisUGZdIPuFm4
+         qD6vcRCDR5Qle1tgfYuCoifl9D0KFYd71uxcvc2Ozj/No/9zmU5TRIJO2fRjO96NS2
+         bqD/8U5zh23kL4yaLXq+BjCYPgRgRjijCMowNgrSfH3Du+9el0FRkW3SLN2QDP70vi
+         nFtIaQ3rEC9EqHyTaJAcDpkrzfvF4m0ckemUJkEmmXe1CN/zXjo1ThfX/mtxTkfrLJ
+         ZQtYIHXYcsW1W2sdYBaTLs+jROMSxyzhy2HB/0f8LdZrt6M/Cz3VjhmHvpPTVrdXMX
+         nHT5ZR8Y+nsJg==
+To:     mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, gengdongjiu@huawei.com,
+        rdunlap@infradead.org, hanetzer@startmail.com,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, tudor.ambarus@microchip.com,
+        p.yadav@ti.com, michael@walle.cc, miquel.raynal@bootlin.com,
+        richard@nod.at, vigneshr@ti.com, sumit.semwal@linaro.org,
+        christian.koenig@amd.com, cai.huoqing@linux.dev, novikov@ispras.ru,
+        linux-mtd@lists.infradead.org
+Subject: [PATCH 0/2] Hi3521a support.
+Date:   Sun,  1 May 2022 00:44:40 -0500
+Message-Id: <20220501054440.2434247-1-hanetzer@startmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -52,52 +51,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable Hisilicon Hi3521A/Hi3520DCV300 SoC. This SoC series includes
-hardware mutlimedia codec cores, commonly used in consumer cctv/dvr
-security systems and ipcameras. The arm core is a Cortex A7.
+Hey folks. Its been a while. Finally got back on the kernel dev train.
+This *mostly* seems to work, but I've ran into an issue which may
+require some upstream support.
 
-Add hi3521a.dtsi and hi3521a-rs-dm290e.dts for RaySharp CCTV systems,
-marketed under the name Samsung SDR-B74301N.
+Basic gist, I was attempting to boot a buildroot-built intramfs, was
+mostly working, but it would not give me a login prompt no matter how
+much I badgered it, so I decided to try a flash boot. That also failed,
+and after much banging my head on the desk and annoying people on irc,
+we finally came across *why* it was failing, or at least part of it.
+The kernel parser could produce the mtdblockN partitions based on the
+devicetree, but for whatever reason, when the hisilicon,fmc-spi-nor read
+its superblock, instead of the magic 0x73717368 (sqsh), it read back 0x73717360.
+At first I thought it was a mistake of mine, as we had tried modifying
+the header, and 0x60 is a `, so it could be a hex editing issue, but nope.
+Reading the data in u-boot (2010.06, vendor fork, would like to get mainline
+running on it at some point) showed the correct magic, so its something
+with the controller driver, I guess. CC'ing the people associated with
+that as well, hopefully we can get to the bottom of this.
 
-Signed-off-by: Marty E. Plummer <hanetzer@startmail.com>
----
- arch/arm/boot/dts/Makefile | 2 ++
- arch/arm/mach-hisi/Kconfig | 9 +++++++++
- 2 files changed, 11 insertions(+)
+Marty E. Plummer (2):
+  clk: hisilicon: add CRG driver Hi3521a SoC
+  arm: hisi: enable Hi3521a soc
 
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index 7c16f8a2b738..535cef3b14ab 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -242,6 +242,8 @@ dtb-$(CONFIG_ARCH_GEMINI) += \
- 	gemini-ssi1328.dtb \
- 	gemini-wbd111.dtb \
- 	gemini-wbd222.dtb
-+dtb-$(CONFIG_ARCH_HI3521A) += \
-+	hi3521a-rs-dm290e.dtb
- dtb-$(CONFIG_ARCH_HI3xxx) += \
- 	hi3620-hi4511.dtb
- dtb-$(CONFIG_ARCH_HIGHBANK) += \
-diff --git a/arch/arm/mach-hisi/Kconfig b/arch/arm/mach-hisi/Kconfig
-index 2e980f834a6a..165ffb972157 100644
---- a/arch/arm/mach-hisi/Kconfig
-+++ b/arch/arm/mach-hisi/Kconfig
-@@ -13,6 +13,15 @@ if ARCH_HISI
- 
- menu "Hisilicon platform type"
- 
-+config ARCH_HI3521A
-+	bool "Hisilicon Hi3521a/Hi3520dcv300 family"
-+	depends on ARCH_MULTI_V7
-+	select CACHE_L2X0
-+	select PINCTRL
-+	select PINCTRL_SINGLE
-+	help
-+	  Hisilicon Hi3521a/Hi3520dcv300 family
-+
- config ARCH_HI3xxx
- 	bool "Hisilicon Hi36xx family"
- 	depends on ARCH_MULTI_V7
+ arch/arm/boot/dts/Makefile                |   2 +
+ arch/arm/mach-hisi/Kconfig                |   9 ++
+ drivers/clk/hisilicon/Kconfig             |   8 ++
+ drivers/clk/hisilicon/Makefile            |   1 +
+ drivers/clk/hisilicon/crg-hi3521a.c       | 141 ++++++++++++++++++++++
+ include/dt-bindings/clock/hi3521a-clock.h |  34 ++++++
+ 6 files changed, 195 insertions(+)
+ create mode 100644 drivers/clk/hisilicon/crg-hi3521a.c
+ create mode 100644 include/dt-bindings/clock/hi3521a-clock.h
+
 -- 
 2.35.1
 
