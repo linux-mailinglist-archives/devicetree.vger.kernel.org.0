@@ -2,64 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 223EB5168A5
-	for <lists+devicetree@lfdr.de>; Mon,  2 May 2022 00:17:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DDA4F5168CC
+	for <lists+devicetree@lfdr.de>; Mon,  2 May 2022 00:54:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1355515AbiEAWVV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 1 May 2022 18:21:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43386 "EHLO
+        id S1345286AbiEAW6Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 1 May 2022 18:58:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38034 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239321AbiEAWVU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 1 May 2022 18:21:20 -0400
-Received: from mail-yw1-x112b.google.com (mail-yw1-x112b.google.com [IPv6:2607:f8b0:4864:20::112b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB34A35A83
-        for <devicetree@vger.kernel.org>; Sun,  1 May 2022 15:17:53 -0700 (PDT)
-Received: by mail-yw1-x112b.google.com with SMTP id 00721157ae682-2f7ca2ce255so131920857b3.7
-        for <devicetree@vger.kernel.org>; Sun, 01 May 2022 15:17:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=OHcKmkE+rIAXkTOBZuHPiqnK2tVvFIoTFEKDFyD7/SU=;
-        b=kD90+egFQ41q4Grt9jpl9Yb96LmgMblclHBm5QtyjHtRizdXUMQGZRicq8wIF5s6Ni
-         g60VjNbA7XU1BBBEt7z8LA6wyuwnBmO2TOgZXHmInILQnzqIRI5VenTJnAju1eA3ch//
-         aont5JFKke5phrmlE7yVQ4UdpHZvfiSby19U2qImtKk7VwGQu7+nZ0iBAuuKdFglZ2TM
-         krsR0XK8bSvzzEcrjpITieMD/iBYOltZYrwa+zqs0izt4Y9h4COruBdLcfsfgFHK01Lm
-         7clrfcYLo0rF1saBj4eA9pgZWKLqdzOhayJGP53XTiMZjnWwOBGOMPFWxvtX26XI4amQ
-         QI6Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=OHcKmkE+rIAXkTOBZuHPiqnK2tVvFIoTFEKDFyD7/SU=;
-        b=opd8YJIy6diOJ7+Eh6yMNjliboQNpdNB8ypj+tPxjZLNcmDZJWJLfc/CZAU7r6yLZx
-         81wrU+5DAQhe7fj66el3HCI0UnqH3+hXK+TRQUlC8OsoR6BTOgi2dwG9vZO8r/DXKc9T
-         BFte7DrcJyqaodZt+/awS2icbRaR4z/y2SgVHzDIPLfT6Id6dQHqe7dwxusqSPptOFg9
-         PnXhejcjrRFc+Y4Itg8VxldaY7RdEjML4TEW0XgY1gZzBg1v8JPbhjvHB6VjspDQo0N1
-         H0fRUMxxsxuyDN+y26WexN/E/OIjzxAByB1G902AFO48RqzS1VcCTnj86RlqnyMes0Q6
-         SXXw==
-X-Gm-Message-State: AOAM531t/Col5ynZudpFE7fTFHEADpx8ut0jsHAD5Wf6BsdDVWrib3tz
-        44/U11C+ASvzKjVxS2u2nZwlXbZmYdPs0o9RMdIJXg==
-X-Google-Smtp-Source: ABdhPJx9yHFXOUj3OgG6zsxo57KNcUwrld4ZVpMPiyqztVBS//vWoDNxleb6BAIjQuCLW3dFcnsPF3VBG41OR2joa6c=
-X-Received: by 2002:a0d:ddc6:0:b0:2f8:a506:a5c0 with SMTP id
- g189-20020a0dddc6000000b002f8a506a5c0mr9644644ywe.140.1651443472960; Sun, 01
- May 2022 15:17:52 -0700 (PDT)
+        with ESMTP id S234297AbiEAW6P (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 1 May 2022 18:58:15 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CD0A3CFD1;
+        Sun,  1 May 2022 15:54:48 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 8489561053;
+        Sun,  1 May 2022 22:54:48 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DEC8EC385B4;
+        Sun,  1 May 2022 22:54:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1651445687;
+        bh=XYah/6Osmyojc17k6cqZ+vX1jwgljOTNKYJ/JeSQBfk=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=px2suCI3Pu/bkCRbO5tygyBgCnMM71GOuMyeL9LyUC+OsRZ4FVjr/8GI6djLshrvc
+         M19tpJz53lIURMRhXPy2XW85ZAeHo7k74/Oy2bhXdQVTSPw6UIEz6iBkcW0n4OEGuc
+         SaRoGwLbS3qfyOEVT2ycxXzpFEqlwxiWGPFYsGEPzCagLtS4lZaENeuXI3lFeMNtS7
+         Vck9W34Ic6AROOfxEwL89jMHFFypiHlT/chDQNttnQTa/mJMgZNyERq0ioqK61Lwc4
+         GFuttc2DxKBcnMDQw89NpfG1DJ82UTeiCdmMi6tbiSSm5DOnpRgbA/VuH0chgtxE71
+         49iYHjxXsDnog==
+Received: by mail-yb1-f179.google.com with SMTP id s30so23475610ybi.8;
+        Sun, 01 May 2022 15:54:47 -0700 (PDT)
+X-Gm-Message-State: AOAM531c3/uGiP7XzzGT5yqi74TEh3k2wU8DgzvFOBeCxZ70CwWrceF/
+        0OTZs7iopk7caKSdVmKox/1pXaNyPa8smvuAaA==
+X-Google-Smtp-Source: ABdhPJyuplDBOy1HzgzBEurySzDISvnf65i4g3J7NP8mPSls5NwNyrHXj98ge6hOrTKJlam+L9WwpviYEfc1OEFPVok=
+X-Received: by 2002:a25:d194:0:b0:645:7892:43b0 with SMTP id
+ i142-20020a25d194000000b00645789243b0mr8501223ybg.35.1651445686885; Sun, 01
+ May 2022 15:54:46 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220427144620.9105-1-pmalgujar@marvell.com> <20220427144620.9105-6-pmalgujar@marvell.com>
-In-Reply-To: <20220427144620.9105-6-pmalgujar@marvell.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Mon, 2 May 2022 00:17:41 +0200
-Message-ID: <CACRpkdb367uMwRTgE2rMyfRYzKuJjzOyrPFHT7CSqiYCSVSCaA@mail.gmail.com>
-Subject: Re: [PATCH 5/5] gpio: thunderx: change handler for level interrupt
-To:     Piyush Malgujar <pmalgujar@marvell.com>
-Cc:     linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, brgl@bgdev.pl, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, rric@kernel.org,
-        cchavva@marvell.com, wsadowski@marvell.com
+References: <20220419094143.9561-1-jason-jh.lin@mediatek.com>
+ <20220419094143.9561-9-jason-jh.lin@mediatek.com> <402f0e60-8d3c-850d-84ff-af5424b72b73@gmail.com>
+In-Reply-To: <402f0e60-8d3c-850d-84ff-af5424b72b73@gmail.com>
+From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Date:   Mon, 2 May 2022 06:54:35 +0800
+X-Gmail-Original-Message-ID: <CAAOTY_-jiX_BhaZ5+skRu4RSZLjcHJerVtwH34fz4N6_jbVK0w@mail.gmail.com>
+Message-ID: <CAAOTY_-jiX_BhaZ5+skRu4RSZLjcHJerVtwH34fz4N6_jbVK0w@mail.gmail.com>
+Subject: Re: [PATCH v20 8/8] soc: mediatek: remove DDP_DOMPONENT_DITHER from enum
+To:     Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     "jason-jh.lin" <jason-jh.lin@mediatek.com>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        CK Hu <ck.hu@mediatek.com>, Nancy Lin <nancy.lin@mediatek.com>,
+        Singo Chang <singo.chang@mediatek.com>,
+        DTML <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        DRI Development <dri-devel@lists.freedesktop.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Project_Global_Chrome_Upstream_Group 
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -67,15 +75,64 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Apr 27, 2022 at 4:47 PM Piyush Malgujar <pmalgujar@marvell.com> wrote:
+Hi, Matthias:
 
-> The current level interrupt handler is masking the GPIO interrupt
-> and not unmasking it, to resolve that, handle_level_irq is used.
+Matthias Brugger <matthias.bgg@gmail.com> =E6=96=BC 2022=E5=B9=B44=E6=9C=88=
+22=E6=97=A5 =E9=80=B1=E4=BA=94 =E4=B8=8B=E5=8D=888:42=E5=AF=AB=E9=81=93=EF=
+=BC=9A
 >
-> Signed-off-by: Witold Sadowski <wsadowski@marvell.com>
-> Signed-off-by: Piyush Malgujar <pmalgujar@marvell.com>
+>
+>
+> On 19/04/2022 11:41, jason-jh.lin wrote:
+> > After mmsys and drm change DITHER enum to DDP_COMPONENT_DITHER0,
+> > mmsys header can remove the useless DDP_COMPONENT_DITHER enum.
+> >
+> > Signed-off-by: jason-jh.lin <jason-jh.lin@mediatek.com>
+> > Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@coll=
+abora.com>
+>
+> Acked-by: Matthias Brugger <matthias.bgg@gmail.com>
+>
+> Chun-Kuang, I think it would make sense to take that through your tree as=
+ it
+> depends on the previous patches.
+>
+> I provide you a stable tag so that you can take it:
+> v5.18-next-vdso0-stable-tag
 
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+After I take this tag, I find one checkpatch warning:
 
-Yours,
-Linus Walleij
+WARNING: DT compatible string "mediatek,mt8195-mmsys" appears
+un-documented -- check ./Documentation/devicetree/bindings/
+#670: FILE: drivers/soc/mediatek/mtk-mmsys.c:390:
++               .compatible =3D "mediatek,mt8195-mmsys",
+
+I think this tag lost one binding patch, it's better that this tag has
+no this warning.
+
+Regards,
+Chun-Kuang.
+
+>
+> Regards,
+> Matthias
+>
+> > ---
+> >   include/linux/soc/mediatek/mtk-mmsys.h | 3 +--
+> >   1 file changed, 1 insertion(+), 2 deletions(-)
+> >
+> > diff --git a/include/linux/soc/mediatek/mtk-mmsys.h b/include/linux/soc=
+/mediatek/mtk-mmsys.h
+> > index 59117d970daf..fb719fd1281c 100644
+> > --- a/include/linux/soc/mediatek/mtk-mmsys.h
+> > +++ b/include/linux/soc/mediatek/mtk-mmsys.h
+> > @@ -16,8 +16,7 @@ enum mtk_ddp_comp_id {
+> >       DDP_COMPONENT_CCORR,
+> >       DDP_COMPONENT_COLOR0,
+> >       DDP_COMPONENT_COLOR1,
+> > -     DDP_COMPONENT_DITHER,
+> > -     DDP_COMPONENT_DITHER0 =3D DDP_COMPONENT_DITHER,
+> > +     DDP_COMPONENT_DITHER0,
+> >       DDP_COMPONENT_DITHER1,
+> >       DDP_COMPONENT_DP_INTF0,
+> >       DDP_COMPONENT_DP_INTF1,
