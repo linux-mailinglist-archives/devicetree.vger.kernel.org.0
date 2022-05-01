@@ -2,124 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E84425163D3
-	for <lists+devicetree@lfdr.de>; Sun,  1 May 2022 12:41:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4AB7F5163D6
+	for <lists+devicetree@lfdr.de>; Sun,  1 May 2022 12:46:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241027AbiEAKpV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 1 May 2022 06:45:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45912 "EHLO
+        id S242943AbiEAKtb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 1 May 2022 06:49:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53428 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240644AbiEAKpP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 1 May 2022 06:45:15 -0400
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB01D222B2
-        for <devicetree@vger.kernel.org>; Sun,  1 May 2022 03:41:50 -0700 (PDT)
-Received: by mail-wm1-x332.google.com with SMTP id bi24-20020a05600c3d9800b00393ff664705so7066812wmb.4
-        for <devicetree@vger.kernel.org>; Sun, 01 May 2022 03:41:50 -0700 (PDT)
+        with ESMTP id S232503AbiEAKt3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 1 May 2022 06:49:29 -0400
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C2673AA56
+        for <devicetree@vger.kernel.org>; Sun,  1 May 2022 03:46:01 -0700 (PDT)
+Received: by mail-ed1-x531.google.com with SMTP id p18so13703134edr.7
+        for <devicetree@vger.kernel.org>; Sun, 01 May 2022 03:46:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=conchuod-ie.20210112.gappssmtp.com; s=20210112;
+        d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=KkYcIJHTck024cDWMgkYahLoSVBSbqWmLIuloxERXSQ=;
-        b=VpvQiZcnIQNb1lS7+RdWxTPcmuzgdf0ZV27F+Ohs3IfRaSLvpM/FRr5vg2fkYGoedz
-         hnrX845HpeQ9LBVEkF9PpogCa2sxZRFJ5poIYiXdjS+4+LkZVv5gqc7POgJ4rynoFfb0
-         DsM2NrUVDOorG8fWjgJUlGwam2Yzh52PU2noxIPiHBTqvx/WGvQXpfyH27rBF1BzjgLd
-         zARe7HgePX/8HGbhXpFP3FoS9xPAbJDMfME6ChpR2UxCJLG3tx2tGV4PEw2pw2wGFvPd
-         wAssXQXQoHoLJ4s33823ZrAOdQTbtWMCfyAYceX0car/FGV9AOJAjmPWeBb0/ZGUb83h
-         ELVQ==
+        bh=1BN3+xj6q/GJn7muBnvRtU8m6jK+R4V3lK2qkgBNL+w=;
+        b=L3VkJR/D/nmQqWs010nBYQnXVhc0ZwGUufO0U0PMbzWEjEz1BR2oiE4Bs+5/xCI4Ej
+         X+q+hXWlH+Uzxp56Ct27b0/QqKNyL858POpmxOqAdQQSymx1HqbA/QguKfwa8DRaGZyF
+         TDBxbw64hwfxjscETjoBC3eNjo22IojN5xm/kAOt0qi8aJjH9HAioPUCEkQbFkq/bWAo
+         D24lPuI7TIXMw3B93U3Zvlk5Od60jE2/5jeJuaTMOx9jBI5rSLVmtetcdlqu3CXCGA9m
+         xWwA0HzGDQvHcy8yfQI4iYFjacyULGdyhiQMJIUUVindzwGq9XnjGRWlcDV9YRzYdhTj
+         C3tg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=KkYcIJHTck024cDWMgkYahLoSVBSbqWmLIuloxERXSQ=;
-        b=5NaPTYeOHGzGvui/MhcjHF8Z3VSIPsygPiS+t5qsDOApR/xaLGTYX+UXD93u+oohMs
-         2jA7Xoenw76tr8hVD/RSerx1g/RjwEHmT1dSztjNiAf467ByFhEMDu+/PfwCWC7Ooewa
-         NU0krgXke/xjqm5NJJ8xx2gtE+TB+W1M8hQZMEtE8f4t7sJhOGNsXKj7NFreQhXySjtS
-         nVqaeqeB9GqJFdUHnqhbd2B0M3BXhxCWrnY8TnnJBI2p90NDCe3DuZVxr+K1tiJUoZ+D
-         OWnXo5JaYw3YtvEPr4r9cN89VK2l0pxt5hbPTHDsmhF8znlCbnofnmcQm0/BwKgB4kr6
-         2LVA==
-X-Gm-Message-State: AOAM5319Aigg8jXMyj2VRl1FmPP1aAJ+7gyLlEZsXANXAdEoAk3HrR+U
-        tteIoQOd3T6nXBFOqjYvwo3TOg==
-X-Google-Smtp-Source: ABdhPJzGXEeq34Jm4TTaSQAMngCwQK7m1EFzg95Xh1Q4ULqiDjC1RSLvOdcCXm3rj9rePcnvUCbh4g==
-X-Received: by 2002:a05:600c:3d8d:b0:394:3377:dfee with SMTP id bi13-20020a05600c3d8d00b003943377dfeemr2666293wmb.42.1651401709445;
-        Sun, 01 May 2022 03:41:49 -0700 (PDT)
-Received: from [192.168.2.222] ([109.77.36.132])
-        by smtp.gmail.com with ESMTPSA id j2-20020a05600c1c0200b003942a244ed4sm4786467wms.25.2022.05.01.03.41.48
+        bh=1BN3+xj6q/GJn7muBnvRtU8m6jK+R4V3lK2qkgBNL+w=;
+        b=Vg2nd0gtGovESdshCc8nwgPpCZBq9tqx52tVGYX/GreAlWOKtLWaWKovG5GPxIar5m
+         i5TYOL0X87Mcwxt/qcYBPiV4iqcle5JHgMjCNr/CFohs+L1mUXoIt+q4IoJgDhsFdIeD
+         s7zrR9D+M362xluLh70XfLYjvYYAwMfRKBGWC9Gk1Q7PenhuH5Vtj/W1NChH22gX+hST
+         gW9EWEPd6FFztsr2HmpeNf8RWaO4HEoKVNQsNfJ+yHS+g3Y99wPNxMBkChKPe2OdeFOo
+         dX74A/8Uq3msw70R/QrAMg/T00i645naYLz2btNrHseJq3yNKA1NesgDChY2dYhs4dmC
+         fdIA==
+X-Gm-Message-State: AOAM530h8WDi+HOxzmsypZ73AGyqUW6wXqFT9RIXcEXYKNK5MMKZ4wvi
+        7HvsDsf4DgIMFOVpPVyc2okrlg==
+X-Google-Smtp-Source: ABdhPJz5smgAwVqzK7oMSiqkJE9lgKLmFcDB8ypHTtNiluemXEtonjSPgytjkfb3js3/uhM+ryWplA==
+X-Received: by 2002:a05:6402:1d4e:b0:423:fd93:6466 with SMTP id dz14-20020a0564021d4e00b00423fd936466mr8225515edb.304.1651401959893;
+        Sun, 01 May 2022 03:45:59 -0700 (PDT)
+Received: from [192.168.0.183] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id zp1-20020a17090684e100b006f3ef214df0sm2468687ejb.86.2022.05.01.03.45.58
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 01 May 2022 03:41:48 -0700 (PDT)
-Message-ID: <6477d21c-206a-f062-793a-7dfb801aadd7@conchuod.ie>
-Date:   Sun, 1 May 2022 11:41:47 +0100
+        Sun, 01 May 2022 03:45:59 -0700 (PDT)
+Message-ID: <94bd3b92-fe6d-6bb4-8cbb-56ed52b9c4b9@linaro.org>
+Date:   Sun, 1 May 2022 12:45:58 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.0
-Subject: Re: [PATCH v2 4/8] dt-bindings: riscv: microchip: document icicle
- reference design
+ Thunderbird/91.7.0
+Subject: Re: [PATCH v2 6/8] dt-bindings: vendor-prefixes: add Sundance DSP
 Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        krzk+dt@kernel.org, palmer@dabbelt.com, robh+dt@kernel.org
+To:     Conor Dooley <mail@conchuod.ie>, krzk+dt@kernel.org,
+        palmer@dabbelt.com, robh+dt@kernel.org
 Cc:     conor.dooley@microchip.com, Cyril.Jean@microchip.com,
         daire.mcnamara@microchip.com, paul.walmsley@sifive.com,
         aou@eecs.berkeley.edu, palmer@rivosinc.com, arnd@arndb.de,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-riscv@lists.infradead.org
 References: <20220430130922.3504268-1-mail@conchuod.ie>
- <20220430130922.3504268-5-mail@conchuod.ie>
- <258640cd-01e3-2a9f-b2a5-79b2b6cc4f59@linaro.org>
-From:   Conor Dooley <mail@conchuod.ie>
-In-Reply-To: <258640cd-01e3-2a9f-b2a5-79b2b6cc4f59@linaro.org>
+ <20220430130922.3504268-7-mail@conchuod.ie>
+ <6fdc6da4-3a34-e67c-cab8-1c9570501a8a@linaro.org>
+ <f49b1d52-11e3-1c8b-bb1f-324318a7f669@conchuod.ie>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <f49b1d52-11e3-1c8b-bb1f-324318a7f669@conchuod.ie>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-4.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 01/05/2022 09:57, Krzysztof Kozlowski wrote:
-> On 30/04/2022 15:09, Conor Dooley wrote:
->> From: Conor Dooley <conor.dooley@microchip.com>
+On 01/05/2022 12:39, Conor Dooley wrote:
+> On 01/05/2022 09:59, Krzysztof Kozlowski wrote:
+>> On 30/04/2022 15:09, Conor Dooley wrote:
+>>> From: Conor Dooley <conor.dooley@microchip.com>
+>>>
+>>> Sundance DSP Inc. (https://www.sundancedsp.com/) is a supplier of
+>>> high-performance DSP and FPGA processor boards and I/O modules.
+>>>
+>>> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+>>> Signed-off-by: Conor Dooley <mail@conchuod.ie>
 >>
->> Add a compatible for the icicle kit's reference design. This represents
->> the FPGA fabric's contents & is versioned to denote which release of the
->> reference design it applies to.
+>> If your @microchip.com email still works, then there is no need to
+>> double-sign it. At the end you are still the same person... unless
+>> you're not. :)
 >>
->> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
->> Signed-off-by: Conor Dooley <mail@conchuod.ie>
->> ---
->>  .../devicetree/bindings/riscv/microchip.yaml          | 11 +++++++----
->>  1 file changed, 7 insertions(+), 4 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/riscv/microchip.yaml b/Documentation/devicetree/bindings/riscv/microchip.yaml
->> index 3f981e897126..c9d8fcc7a69e 100644
->> --- a/Documentation/devicetree/bindings/riscv/microchip.yaml
->> +++ b/Documentation/devicetree/bindings/riscv/microchip.yaml
->> @@ -17,10 +17,13 @@ properties:
->>    $nodename:
->>      const: '/'
->>    compatible:
->> -    items:
->> -      - enum:
->> -          - microchip,mpfs-icicle-kit
->> -      - const: microchip,mpfs
->> +    oneOf:
->> +      - items:
->> +          - enum:
->> +              - microchip,mpfs-icicle-kit
->> +          - const: microchip,mpfs
+>> This applies to your other patches as well.
 > 
-> Blank line.
-> 
->> +      - items:
->> +          - const: microchip,mpfs-icicle-reference-rtlv2203
-> 
-> Why is this not compatible with microchip,mpfs?
+> I thought that the last SoB had to match the email it was sent from?
+> If that's not the case, my bad. The @microchip email still works, but
+> it would've meant waiting til Tuesday to resend.
 
-I guess it should be, I'll add it. Thanks.
+The "From" address must match the SoB address. The person, rather than
+the email, sending the patch should be the last SoB. I almost do not
+recall cases where two SoBs were added in such flow like yours.
 
-
+Best regards,
+Krzysztof
