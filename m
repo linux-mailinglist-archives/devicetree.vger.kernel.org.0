@@ -2,221 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9BC46516771
-	for <lists+devicetree@lfdr.de>; Sun,  1 May 2022 21:27:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D084516784
+	for <lists+devicetree@lfdr.de>; Sun,  1 May 2022 21:40:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1353403AbiEATaJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 1 May 2022 15:30:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60108 "EHLO
+        id S1351021AbiEATnp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 1 May 2022 15:43:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36640 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1353859AbiEATaH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 1 May 2022 15:30:07 -0400
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C582C2CE07
-        for <devicetree@vger.kernel.org>; Sun,  1 May 2022 12:26:39 -0700 (PDT)
-Received: by mail-wr1-x432.google.com with SMTP id e24so17192979wrc.9
-        for <devicetree@vger.kernel.org>; Sun, 01 May 2022 12:26:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=conchuod-ie.20210112.gappssmtp.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=rfHaik7/2US1P/NFRRn4iUnlONPLqG6WILHOUefbBUo=;
-        b=mVdv9kcwOOIpX2quM/vp3HTG42F5lFQfkJxhE6lBERhLVc7FEwAM/Tn4kD+7r62ie8
-         nvlAX46+VaiPTnF/vylOd4xI+lScf0samo6C4eeA/GEJ3KrbWWyOJe7OmoW+Vwii6HqG
-         rWf8UXEHyGB2/s4ROjXXjewRBx1w/DyfWoz+chilBzG6ESM3ictgX6QuwAPWgZtrAMQt
-         FBKns7Y1C/TbqWVRqL+8qkARg7ZrKNKNotJc+/nTWOdUs1fWwCOXM1WFnsji800uqj9Z
-         YYMK7gooIH4sy+NV0qHp8CYytcOcOL/cVgfLYrvALtxEAKAJgLccYTYoodR9xMVbF2ES
-         Y6vg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=rfHaik7/2US1P/NFRRn4iUnlONPLqG6WILHOUefbBUo=;
-        b=PxIx0+8kNIUB/hq0r54v5bJVy/TwriSTL9QRTTSHyyAY7SeqrfB8ohDoyivYcHl9QT
-         eMXaQ7FQdgmCVxMnmz8LVo8iyutxJyM0LD8DbpPxMkPIhNR+wztoRNW0QdY7s5qRufpM
-         DooCYMl/eLMO5w4W/ED0+Jb+8U8aofhk93DLduF04FSu+FE6nH7sj+oOD045UlkzSwdH
-         1W5+O3sNLF4Kf83q7THjUyHn8ai2b7NrVRhUixqrtYTWpnep/uUP37khrKib8F7JlkXy
-         fPQIGVa//Vc5zyinMSpR1nVOhvzkQJEE5suoJMWFr9t0SCvqyeSpIOU6U4uVb/oMzjuf
-         5Yog==
-X-Gm-Message-State: AOAM532kwR6gjZBZv7If8LNCmByMbIEFwdeYlCaU3SLRgzHmeqE9HfOc
-        mM0qP7qc1XCRfpv2oiyd4HsMDQ==
-X-Google-Smtp-Source: ABdhPJx2i0mes1PmcgvFU5xWJ4TRUZY/DT1oIlVE5UY3f+NAzTWLdIkcmmjjxXaExuxvVcYoCFsCag==
-X-Received: by 2002:a5d:5012:0:b0:20a:d9a9:44dc with SMTP id e18-20020a5d5012000000b0020ad9a944dcmr7113624wrt.627.1651433198331;
-        Sun, 01 May 2022 12:26:38 -0700 (PDT)
-Received: from henark71.. ([109.77.36.132])
-        by smtp.gmail.com with ESMTPSA id i14-20020adfa50e000000b0020c5253d8c6sm6448105wrb.18.2022.05.01.12.26.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 01 May 2022 12:26:37 -0700 (PDT)
-From:   Conor Dooley <mail@conchuod.ie>
-To:     krzk+dt@kernel.org, palmer@dabbelt.com, robh+dt@kernel.org
-Cc:     conor.dooley@microchip.com, Cyril.Jean@microchip.com,
-        daire.mcnamara@microchip.com, paul.walmsley@sifive.com,
-        aou@eecs.berkeley.edu, palmer@rivosinc.com, arnd@arndb.de,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-riscv@lists.infradead.org
-Subject: [PATCH v3 8/8] riscv: dts: microchip: add the sundance polarberry
-Date:   Sun,  1 May 2022 20:25:59 +0100
-Message-Id: <20220501192557.2631936-9-mail@conchuod.ie>
-X-Mailer: git-send-email 2.36.0
-In-Reply-To: <20220501192557.2631936-1-mail@conchuod.ie>
-References: <20220501192557.2631936-1-mail@conchuod.ie>
+        with ESMTP id S237507AbiEATno (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 1 May 2022 15:43:44 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2C3F1126;
+        Sun,  1 May 2022 12:40:15 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 9B646B80EF2;
+        Sun,  1 May 2022 19:40:14 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 2AC8FC385A9;
+        Sun,  1 May 2022 19:40:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1651434013;
+        bh=Eaf475SVp08eFN0aQeF8QT7km8wrzXM1X7kUmOZNM5k=;
+        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+        b=CLL+klXKc5DDOTrTKCpzUToUiU2w9trMLtHmUPs36LP/G+Oa1POeOeWtKxzjSLD9g
+         BlS6FEPJddpnNSce1YveNUKy0QeO2wKcMkP24+wIyj8AvXxdTFhfSP9nbdvhuNsAEZ
+         p+6f/bf7Kiw7u2Fhxo012qXaqIJPKSimBaPDckmaJf3DLopxM1VMqVxzNYcXHblbMa
+         bUjpr+5BespW/mdIgkNk+M/Hf9NIcrQqmG8PqB26qIAVVWl4f9prm1oJvV1YtTgztf
+         YnM3fBIer+UmcruZu+cjsRmO1E2OhdtL8BhyaQc0bFAN3opZJ67mSFAgv1+oo1+t1v
+         wtjVvXTPtAxqg==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 0CAC7E85D90;
+        Sun,  1 May 2022 19:40:13 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Subject: Re: [PATCH v7 0/7] net: phy: adin1100: Add initial support for ADIN1100
+ industrial PHY
+From:   patchwork-bot+netdevbpf@kernel.org
+Message-Id: <165143401304.26026.480568891228725285.git-patchwork-notify@kernel.org>
+Date:   Sun, 01 May 2022 19:40:13 +0000
+References: <20220429153437.80087-1-alexandru.tachici@analog.com>
+In-Reply-To: <20220429153437.80087-1-alexandru.tachici@analog.com>
+To:     Alexandru Tachici <alexandru.tachici@analog.com>
+Cc:     andrew@lunn.ch, o.rempel@pengutronix.de, davem@davemloft.net,
+        devicetree@vger.kernel.org, hkallweit1@gmail.com, kuba@kernel.org,
+        linux-kernel@vger.kernel.org, linux@armlinux.org.uk,
+        netdev@vger.kernel.org, robh+dt@kernel.org
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Conor Dooley <conor.dooley@microchip.com>
+Hello:
 
-Add a minimal device tree for the PolarFire SoC based Sundance
-PolarBerry.
+This series was applied to netdev/net-next.git (master)
+by David S. Miller <davem@davemloft.net>:
 
-Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
----
- arch/riscv/boot/dts/microchip/Makefile        |  1 +
- .../dts/microchip/mpfs-polarberry-fabric.dtsi | 16 ++++
- .../boot/dts/microchip/mpfs-polarberry.dts    | 95 +++++++++++++++++++
- 3 files changed, 112 insertions(+)
- create mode 100644 arch/riscv/boot/dts/microchip/mpfs-polarberry-fabric.dtsi
- create mode 100644 arch/riscv/boot/dts/microchip/mpfs-polarberry.dts
+On Fri, 29 Apr 2022 18:34:30 +0300 you wrote:
+> From: Alexandru Tachici <alexandru.tachici@analog.com>
+> 
+> The ADIN1100 is a low power single port 10BASE-T1L transceiver designed for
+> industrial Ethernet applications and is compliant with the IEEE 802.3cg
+> Ethernet standard for long reach 10 Mb/s Single Pair Ethernet.
+> 
+> The ADIN1100 uses Auto-Negotiation capability in accordance
+> with IEEE 802.3 Clause 98, providing a mechanism for
+> exchanging information between PHYs to allow link partners to
+> agree to a common mode of operation.
+> 
+> [...]
 
-diff --git a/arch/riscv/boot/dts/microchip/Makefile b/arch/riscv/boot/dts/microchip/Makefile
-index af3a5059b350..39aae7b04f1c 100644
---- a/arch/riscv/boot/dts/microchip/Makefile
-+++ b/arch/riscv/boot/dts/microchip/Makefile
-@@ -1,3 +1,4 @@
- # SPDX-License-Identifier: GPL-2.0
- dtb-$(CONFIG_SOC_MICROCHIP_POLARFIRE) += mpfs-icicle-kit.dtb
-+dtb-$(CONFIG_SOC_MICROCHIP_POLARFIRE) += mpfs-polarberry.dtb
- obj-$(CONFIG_BUILTIN_DTB) += $(addsuffix .o, $(dtb-y))
-diff --git a/arch/riscv/boot/dts/microchip/mpfs-polarberry-fabric.dtsi b/arch/riscv/boot/dts/microchip/mpfs-polarberry-fabric.dtsi
-new file mode 100644
-index 000000000000..49380c428ec9
---- /dev/null
-+++ b/arch/riscv/boot/dts/microchip/mpfs-polarberry-fabric.dtsi
-@@ -0,0 +1,16 @@
-+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-+/* Copyright (c) 2020-2022 Microchip Technology Inc */
-+
-+/ {
-+	fabric_clk3: fabric-clk3 {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <62500000>;
-+	};
-+
-+	fabric_clk1: fabric-clk1 {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <125000000>;
-+	};
-+};
-diff --git a/arch/riscv/boot/dts/microchip/mpfs-polarberry.dts b/arch/riscv/boot/dts/microchip/mpfs-polarberry.dts
-new file mode 100644
-index 000000000000..96ec589d1571
---- /dev/null
-+++ b/arch/riscv/boot/dts/microchip/mpfs-polarberry.dts
-@@ -0,0 +1,95 @@
-+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-+/* Copyright (c) 2020-2022 Microchip Technology Inc */
-+
-+/dts-v1/;
-+
-+#include "mpfs.dtsi"
-+#include "mpfs-polarberry-fabric.dtsi"
-+
-+/* Clock frequency (in Hz) of the rtcclk */
-+#define MTIMER_FREQ	1000000
-+
-+/ {
-+	model = "Sundance PolarBerry";
-+	compatible = "sundance,polarberry", "microchip,mpfs";
-+
-+	aliases {
-+		serial0 = &mmuart0;
-+		ethernet0 = &mac1;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	cpus {
-+		timebase-frequency = <MTIMER_FREQ>;
-+	};
-+
-+	ddrc_cache_lo: memory@80000000 {
-+		device_type = "memory";
-+		reg = <0x0 0x80000000 0x0 0x2e000000>;
-+		status = "okay";
-+	};
-+
-+	ddrc_cache_hi: memory@1000000000 {
-+		device_type = "memory";
-+		reg = <0x10 0x00000000 0x0 0xC0000000>;
-+		status = "okay";
-+	};
-+};
-+
-+&refclk {
-+	clock-frequency = <125000000>;
-+};
-+
-+&mmuart0 {
-+	status = "okay";
-+};
-+
-+&mmc {
-+	status = "okay";
-+	bus-width = <4>;
-+	disable-wp;
-+	cap-sd-highspeed;
-+	cap-mmc-highspeed;
-+	card-detect-delay = <200>;
-+	mmc-ddr-1_8v;
-+	mmc-hs200-1_8v;
-+	sd-uhs-sdr12;
-+	sd-uhs-sdr25;
-+	sd-uhs-sdr50;
-+	sd-uhs-sdr104;
-+};
-+
-+&mac1 {
-+	status = "okay";
-+	phy-mode = "sgmii";
-+	phy-handle = <&phy1>;
-+	phy1: ethernet-phy@5 {
-+		reg = <5>;
-+		ti,fifo-depth = <0x01>;
-+	};
-+	phy0: ethernet-phy@4 {
-+		reg = <4>;
-+		ti,fifo-depth = <0x01>;
-+	};
-+};
-+
-+&mac0 {
-+	status = "disabled";
-+	phy-mode = "sgmii";
-+	phy-handle = <&phy0>;
-+};
-+
-+&rtc {
-+	status = "okay";
-+};
-+
-+&mbox {
-+	status = "okay";
-+};
-+
-+&syscontroller {
-+	status = "okay";
-+};
+Here is the summary with links:
+  - [v7,1/7] ethtool: Add 10base-T1L link mode entry
+    https://git.kernel.org/netdev/net-next/c/3254e0b9eb56
+  - [v7,2/7] net: phy: Add 10-BaseT1L registers
+    https://git.kernel.org/netdev/net-next/c/909b4f2bf764
+  - [v7,3/7] net: phy: Add BaseT1 auto-negotiation registers
+    https://git.kernel.org/netdev/net-next/c/1b020e448e0f
+  - [v7,4/7] net: phy: Add 10BASE-T1L support in phy-c45
+    https://git.kernel.org/netdev/net-next/c/3da8ffd8545f
+  - [v7,5/7] net: phy: adin1100: Add initial support for ADIN1100 industrial PHY
+    https://git.kernel.org/netdev/net-next/c/7eaf9132996a
+  - [v7,6/7] net: phy: adin1100: Add SQI support
+    https://git.kernel.org/netdev/net-next/c/48f20f902119
+  - [v7,7/7] dt-bindings: net: phy: Add 10-baseT1L 2.4 Vpp
+    https://git.kernel.org/netdev/net-next/c/49714461b797
+
+You are awesome, thank you!
 -- 
-2.36.0
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
 
