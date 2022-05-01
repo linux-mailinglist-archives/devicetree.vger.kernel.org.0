@@ -2,67 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5B52C5162BF
-	for <lists+devicetree@lfdr.de>; Sun,  1 May 2022 10:33:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C0AC85162C5
+	for <lists+devicetree@lfdr.de>; Sun,  1 May 2022 10:34:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245114AbiEAIgx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 1 May 2022 04:36:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48288 "EHLO
+        id S245223AbiEAIhW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 1 May 2022 04:37:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48686 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235721AbiEAIgw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 1 May 2022 04:36:52 -0400
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABF0B1AD8D;
-        Sun,  1 May 2022 01:33:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1651394007; x=1682930007;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=jrNTj0JJ2uvFbhnV20wpOWnX46OpvszfsQI3AOx8Eq0=;
-  b=Swenix9YesygIMhDutlaaNcUoEyHcxRCEYfzwrn0RUELVyawNcRuEb7P
-   7oLp1fNuhOil3b8fozrgsONI7lqgRKixOSBhhR5itbfviNRHdm6QlMPAe
-   r0/GjhLr8FX4BJ1Hx/8K6C/4Gw3e3d3VU7pcCz/te2EYWE35RD4l9PGoR
-   poY+T/C8699vTTdyeohV8ngjFY4oXunQZug2lDHJwP671yhM+hEx6i8Mu
-   bPcLk8o5TI66lnj+TBzar3zRHJaqbZSxW4x/HdyBkw3azaZFOx84ciLHx
-   QhW46gvkQ5U2suJgUNZCqD8pk5G5WnCcr/YyMHs1SxKtsQQfQ0ZT9f7gw
-   g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10333"; a="265830060"
-X-IronPort-AV: E=Sophos;i="5.91,189,1647327600"; 
-   d="scan'208";a="265830060"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
-  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 May 2022 01:33:27 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.91,189,1647327600"; 
-   d="scan'208";a="619433028"
-Received: from lkp-server01.sh.intel.com (HELO 5056e131ad90) ([10.239.97.150])
-  by fmsmga008.fm.intel.com with ESMTP; 01 May 2022 01:33:24 -0700
-Received: from kbuild by 5056e131ad90 with local (Exim 4.95)
-        (envelope-from <lkp@intel.com>)
-        id 1nl51A-0008cV-6m;
-        Sun, 01 May 2022 08:33:24 +0000
-Date:   Sun, 1 May 2022 16:32:47 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     "Marty E. Plummer" <hanetzer@startmail.com>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        soc@kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Wei Xu <xuwei5@hisilicon.com>,
-        Russell King <linux@armlinux.org.uk>
-Cc:     kbuild-all@lists.01.org,
-        "Marty E. Plummer" <hanetzer@startmail.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] arm: hisi: enable Hi3521a soc
-Message-ID: <202205011637.T9bZyDaL-lkp@intel.com>
-References: <20220501051020.2432338-3-hanetzer@startmail.com>
+        with ESMTP id S245505AbiEAIhV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 1 May 2022 04:37:21 -0400
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A703748312
+        for <devicetree@vger.kernel.org>; Sun,  1 May 2022 01:33:55 -0700 (PDT)
+Received: by mail-ej1-x629.google.com with SMTP id j6so22765660ejc.13
+        for <devicetree@vger.kernel.org>; Sun, 01 May 2022 01:33:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :references:from:in-reply-to:content-transfer-encoding;
+        bh=juphbGtVRI7AgwIBx/gVkRn1JsqVAIzvaH2H1Ynllr4=;
+        b=Ink2fnHkVWHDhPUFXh+DIhg9JOPJqIFKPZidd0JPdal2U+pv+v44Rrrq2/+XykLTUC
+         yiYFlX95J2ma8UL59qsoWaNO+5mj9DOQZZv7ZyOBoG0wXBU8HiaZydTfzKaZR1JfAKjZ
+         ZMgmAizrjpzSZwwM5qmeChXnYGKGWJGbSn0Jb2ktSExcVYcgtGtO9aWPpneL+0PSJWsT
+         hZzEnFGlo55eHclKU+tDgSkMwrzaUXbHRcd4Y+7SzjjLkW1jnyEtokp+ryzytujT0qlt
+         n0zmdzgN/evgrXCOsiFOodHpK6p5MUBcUJGFmNWutvGWTDtN7W/2D4pLVYqEVhn1xo5J
+         EoAg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=juphbGtVRI7AgwIBx/gVkRn1JsqVAIzvaH2H1Ynllr4=;
+        b=AslJTOvJUfVNYMqPNnExhbJJRDNZkjUtq/EBLYYNITgWp9NLioWfNbqUTua1MpgYgA
+         AJfdXas9tf7xr6c2uPkJlyOkGHtMyphfixR2h7AvJHmYPu7sXZUZ0argR2R4KHhVDQGj
+         8tcUzrZ6VeuQxkvaa4D0OctC2SCs7N+qs+nj+RDSD99vyO05Zh5UcF/RDAzeDz2AjOM2
+         dKV5Xl663rBPtET3dQoDzoI/YmASjwLPYFBjozXDSPnX/ENY7FgrpvvzqAcGMZilN58v
+         7B1VWQhscg7oY74b2b5Hlqv5K3WTyCYaptf4el+lPij2XVolmKvUXY5mTVDMexOli5jE
+         QOuQ==
+X-Gm-Message-State: AOAM533wir5nexLmCQF9qN04Q3aHtTxcBnSk7f+vqmIyw0WyHYRWalih
+        Ljo9yXPpv4daqrWaBdAA+5kmgw==
+X-Google-Smtp-Source: ABdhPJxAWLnuoKSS1igYp6oJJh+6W/c2qh9JvOdGJryIMghe4U60loFIZvJD6/J0AKyCZMskknqNKw==
+X-Received: by 2002:a17:907:7da2:b0:6f4:1b12:fea3 with SMTP id oz34-20020a1709077da200b006f41b12fea3mr5239590ejc.95.1651394034166;
+        Sun, 01 May 2022 01:33:54 -0700 (PDT)
+Received: from [192.168.0.182] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id og10-20020a1709071dca00b006f3ef214dccsm2364144ejc.50.2022.05.01.01.33.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 01 May 2022 01:33:53 -0700 (PDT)
+Message-ID: <9d40d129-1ab8-fb2b-48cd-7f206da45632@linaro.org>
+Date:   Sun, 1 May 2022 10:33:52 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220501051020.2432338-3-hanetzer@startmail.com>
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH 1/5] dt-bindings: thermal: tsens: Add ipq8074 compatible
+Content-Language: en-US
+To:     Robert Marko <robimarko@gmail.com>, agross@kernel.org,
+        bjorn.andersson@linaro.org, amitk@kernel.org,
+        thara.gopinath@linaro.org, rafael@kernel.org,
+        daniel.lezcano@linaro.org, rui.zhang@intel.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220430205101.459782-1-robimarko@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220430205101.459782-1-robimarko@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -70,39 +77,60 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi "Marty,
+On 30/04/2022 22:50, Robert Marko wrote:
+> Qualcomm IPQ8074 has tsens v2.3.0 block, though unlike existing v2 IP it
+> only uses one IRQ, so tsens v2 compatible cannot be used as the fallback.
+> 
+> We also have to make sure that correct interrupts are set according to
+> compatibles, so populate interrupt information per compatibles.
+> 
+> Signed-off-by: Robert Marko <robimarko@gmail.com>
+> ---
+>  .../bindings/thermal/qcom-tsens.yaml          | 79 ++++++++++++++++---
+>  1 file changed, 68 insertions(+), 11 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
+> index b6406bcc683f..44ebdfd4560a 100644
+> --- a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
+> +++ b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
+> @@ -56,22 +56,19 @@ properties:
+>                - qcom,sm8350-tsens
+>            - const: qcom,tsens-v2
+>  
+> +      - description: v2 of TSENS with combined interrupt
+> +        items:
 
-Thank you for the patch! Yet something to improve:
+It's just an enum, no list here.
 
-[auto build test ERROR on clk/clk-next]
-[also build test ERROR on soc/for-next robh/for-next krzk/for-next krzk-mem-ctrl/for-next v5.18-rc4 next-20220429]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
+> +          - enum:
+> +              - qcom,ipq8074-tsens
+> +
+>    reg:
+>      items:
+>        - description: TM registers
+>        - description: SROT registers
+>  
+> -  interrupts:
+> -    minItems: 1
+> -    items:
+> -      - description: Combined interrupt if upper or lower threshold crossed
+> -      - description: Interrupt if critical threshold crossed
+> +  interrupts: true
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Marty-E-Plummer/clk-hisilicon-add-CRG-driver-Hi3521a-SoC/20220501-141036
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/clk/linux.git clk-next
-config: arm-randconfig-r001-20220501 (https://download.01.org/0day-ci/archive/20220501/202205011637.T9bZyDaL-lkp@intel.com/config)
-compiler: arm-linux-gnueabi-gcc (GCC) 11.3.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/6677e373bf0fbceb87ba267fa934df2f4b7dc0ad
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Marty-E-Plummer/clk-hisilicon-add-CRG-driver-Hi3521a-SoC/20220501-141036
-        git checkout 6677e373bf0fbceb87ba267fa934df2f4b7dc0ad
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.3.0 make.cross W=1 O=build_dir ARCH=arm SHELL=/bin/bash
+minItems: 1
+maxItems: 2
 
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
+>  
+> -  interrupt-names:
+> -    minItems: 1
+> -    items:
+> -      - const: uplow
+> -      - const: critical
+> +  interrupt-names: true
 
-All errors (new ones prefixed by >>):
+minItems: 1
+maxItems: 2
 
->> make[2]: *** No rule to make target 'arch/arm/boot/dts/hi3521a-rs-dm290e.dtb', needed by '__build'.
-   make[2]: Target '__build' not remade because of errors.
 
--- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
+Best regards,
+Krzysztof
