@@ -2,92 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CA549516525
-	for <lists+devicetree@lfdr.de>; Sun,  1 May 2022 18:17:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 50E5351664B
+	for <lists+devicetree@lfdr.de>; Sun,  1 May 2022 18:58:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348960AbiEAQUz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 1 May 2022 12:20:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34846 "EHLO
+        id S1353182AbiEAQ7z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 1 May 2022 12:59:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34074 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237250AbiEAQUy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 1 May 2022 12:20:54 -0400
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2141C1704D
-        for <devicetree@vger.kernel.org>; Sun,  1 May 2022 09:17:28 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id i27so23898970ejd.9
-        for <devicetree@vger.kernel.org>; Sun, 01 May 2022 09:17:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=x5ohyCygEHddhh2Mt5evi/snR/P1ql5wrtaula7bajY=;
-        b=mLJgk+VCGKhaJ/vJniRuSmtaGWsZLod8QFNDKz4LeIbaZePqtsu/Q+0Wv5qc0wvd+V
-         3TpORtiJdVx/D5P6u2kgc0nzUNCiGNb8k7XHyjNSjMcBggQKVza0v/iFCrsuSxXuPhEx
-         xpDRii2tg6xfNAUPKCAv86KQtDHSxnKNvZRik6q4XH2F/GqmkIBIjacBfPljmoGU/v6R
-         LQsR8Ql3WnVNpL5tcfvCe1PYOeeX3HFYQuX4fhdhY51SyX9nWQcXuEyUKFd2THxgO2hy
-         icOc5MC+OMYf9ryPQV0V20mIICXv9e1DoJtl0ym79E9kOw3Ysl6JU85N47XUx94qHRSo
-         DvWQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=x5ohyCygEHddhh2Mt5evi/snR/P1ql5wrtaula7bajY=;
-        b=YZ7v7JbuUmC1Zx98HPYbTQGWQb06P5TVhtyVMfBhRTze0DE+HTMeypC5QPteiKjNDM
-         paEBWrkdORkiHOF6kY8zSMQ0l6qtwbhiGLDzGWYMKQJcYCvO4SMvorDnj01kF8gI7Jq6
-         rsmbNeRQYB9iN6vA7IuhiHWFDpeykZeWWf3M37rigOx58z2z8R7G1u9dfiGZ7Wgj+giE
-         XfYBXEiCv0iYectCjjshmvJc6Gop74F5EcuTlORumH6vRlWXEUhiRde0IEmYs8P4Dv/r
-         k+ANjORYr1F4N9zu7aRnqkta1f8IrqlUQDLI/b4whPDLbLq4AFLb6X7Ar3Q7n5oqntwB
-         dOQQ==
-X-Gm-Message-State: AOAM530nsUYr9i9lFnZuiz87UVt5w1s/9E7vLK4p2U61yaucWgLwA9Ui
-        Jon81xxVV2mREljxMGFYZfIbQA==
-X-Google-Smtp-Source: ABdhPJyPNsLWguq1ZcYy8FBqygSRQv0qbEI3lwLesqKVjA3jDL6zXrdUI3kmcc08tDjI5hGx0A0D1A==
-X-Received: by 2002:a17:906:6a15:b0:6f4:4de5:de39 with SMTP id qw21-20020a1709066a1500b006f44de5de39mr1440718ejc.317.1651421846684;
-        Sun, 01 May 2022 09:17:26 -0700 (PDT)
-Received: from [192.168.0.184] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id jz26-20020a17090775fa00b006f3ef214e49sm2716602ejc.175.2022.05.01.09.17.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 01 May 2022 09:17:26 -0700 (PDT)
-Message-ID: <11fbbafd-e7ce-f921-2073-146e96f01f6b@linaro.org>
-Date:   Sun, 1 May 2022 18:17:24 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH v2 1/2] dt-bindings: mtd: partitions: Add binding for
- Sercomm parser
-Content-Language: en-US
-To:     Mikhail Zhilkin <csharper2005@gmail.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
+        with ESMTP id S1352480AbiEAQ7q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 1 May 2022 12:59:46 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A5C846663;
+        Sun,  1 May 2022 09:54:52 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id A2D1CB80E91;
+        Sun,  1 May 2022 16:54:50 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 01EF5C385AA;
+        Sun,  1 May 2022 16:54:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1651424089;
+        bh=PN5Dbo/Y9eUiJsd8pMaaffUc29jZ4YY32wTLRQPYnwA=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=ANW4zjqijJ3H4TKRg+CQ4HSVODzA8d/iUNrNQQTMeuk9cN2Q+KyJVbihTZtKPEEY6
+         mwvO8oyewt1VoQTxWNPR0Mh2gAv1EgFIGjcpdej6W86dOxK/bstTJXAAn8t8pjmeo0
+         XNZl7xHTgQM5QcbTQFlspeHcsLIAAM2EPVY9MMX1LTBc+5Ka2nWkpldEbvjd3vZnWN
+         spR6h3wgBEZA4P2mjbdbAblt3OJqqGwy0COkcMwyO/dwHle+KVDfcEZ9BGIF0Y3pxE
+         at8Ca6O/HcaVixotrvS8ZftLn25csecrULhFCzK7w2BDVSBSljeP2sLrSM3drA310n
+         8SI2O2qifW4GA==
+Date:   Sun, 1 May 2022 18:03:03 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     Andrea Merello <andrea.merello@gmail.com>,
+        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc:     NOGUCHI Hiroshi <drvlabo@gmail.com>, Karim <Karimdplay@gmail.com>,
-        M <x1@disroot.org>, linux-mtd@lists.infradead.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20220406195557.1956-1-csharper2005@gmail.com>
- <20220406195946.2019-1-csharper2005@gmail.com>
- <8d0d8b27-35ff-3693-cf80-897b80c26b4e@linaro.org>
- <57bebf2f-af4c-b2d9-10e5-19e5104946fb@gmail.com>
- <29cfa017-bbaf-3aba-fe1d-06771957dbaa@linaro.org>
- <1b391399-984b-7a63-3265-62ef09caec39@gmail.com>
- <bd533827-b575-caad-c230-af060851b231@gmail.com>
- <db70e53b-7484-43bf-e9c8-b6a2dce1fbb5@linaro.org>
- <25da3f43-c46e-8108-2da9-0e4f2b7cc1a4@gmail.com>
- <b279040a-a782-a2ca-2acb-2d8f07709081@linaro.org>
- <1c19faf9-fc1c-9adf-d038-97b673a8f0be@gmail.com>
- <a84df850-149e-9656-43fa-1f040368a9f1@linaro.org>
- <0450d781-c506-c28e-a0e5-435bee16721f@gmail.com>
- <2e51842a-d2c9-8953-13aa-02ad3abb3f14@linaro.org>
- <ee5f293a-e59a-03d8-d9e4-ef35d33b5383@gmail.com>
- <6c3ba4a7-80b0-5fd1-eb08-1f9e256b02c4@linaro.org>
- <909094fd-ded0-38f9-b374-dd5f7b63e298@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <909094fd-ded0-38f9-b374-dd5f7b63e298@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        Matt Ranostay <matt.ranostay@konsulko.com>,
+        Alexandru Ardelean <ardeleanalex@gmail.com>,
+        jmondi <jacopo@jmondi.org>,
+        Andrea Merello <andrea.merello@iit.it>
+Subject: Re: [v5 00/14] Add support for Bosch BNO055 IMU
+Message-ID: <20220501180303.75a0d0a5@jic23-huawei>
+In-Reply-To: <CAHp75VcoXu=0yvxmTwGAzexV_MgACXg-Cufkigt_kCEvbnwq_Q@mail.gmail.com>
+References: <20220426131102.23966-1-andrea.merello@gmail.com>
+        <CAHp75VcoXu=0yvxmTwGAzexV_MgACXg-Cufkigt_kCEvbnwq_Q@mail.gmail.com>
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -96,74 +64,189 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/05/2022 16:51, Mikhail Zhilkin wrote:
-> On 5/1/2022 11:17 AM, Krzysztof Kozlowski wrote:
-> 
->> On 30/04/2022 20:54, Mikhail Zhilkin wrote:
->>>  patternProperties:
->>>    "@[0-9a-f]+$":
->>> -    $ref: "partition.yaml#"
->>> +    allOf:
->>> +      - $ref: "partition.yaml#"
->>> +      - if:
->>> +          properties:
->>> +            compatible:
->>> +              contains:
->>> +                const: sercomm,sc-partitions
->>> +        then:
->>> +          properties:
->>> +            sercomm,scpart-id:
->>> +              description: Partition id in Sercomm partition map. Parser
->>> +                uses this id to get partition offset and size values from
->>> +                dynamic partition map.
->> Partition offset and size values are not derived from scpart-id. I am
->> sorry but after all these questions - it's the third time now - you
->> never answer why do you need this property and what is it used for. From
->> all the examples it could be simply removed and the partition map will
->> be exactly the same.
-> scpart-id is necessary to get (using mtd parser) partition offset and
-> size from dynamic partition map (NOT from the reg property):
-> 
-> ❯ xxd -e -c 12 -s $((0x800)) -l $((0x78)) mtd1
-> 00000800: 00000000 00000000 00100000  ............
-> 0000080c: 00000001 00100000 00100000  ............
-> 00000818: 00000002 00200000 00100000  ...... .....
-> 00000824: 00000003 00300000 00100000  ......0.....
-> 00000830: 00000004 00400000 00600000  ......@...`.
-> 0000083c: 00000005 00a00000 00600000  ..........`.
-> 00000848: 00000006 01000000 02000000  ............
-> 00000854: 00000007 03000000 02000000  ............
-> 00000860: 00000008 05000000 01400000  ..........@.
-> 0000086c: 00000009 06400000 01b80000  ......@.....
->           scpart-id  offset      size
-> 
-> With sercomm,sc-partitions the reg property will be ignored (offset =
-> 0x200000, size = 0x100000) and the values will be taken from partition map.
-> 
-> For example we have this is dts:
-> 
-> partition@200000 {
->             label = "Factory";
->             reg = <0x200000 0x100000>;
->             sercomm,scpart-id = <2>;
->             read-only;
->         };
-> 
-> Dynamic partition map:
-> 
-> scpart-id = 2; offset = 0x00200000; size = 0x00100000
-> 
-> 00000002 00200000 00100000  ...... .....
-> 
-> In this example the offset and size are the same in reg and dynamic
-> partition map. If device have bad blocks on NAND the values will be a
-> little different. And we have to take partition offsets from partition
-> map to avoid boot loops, wrong eeprom location and other bad things.
-> 
-> Is there anything that needs to be explained in more detail?
+On Wed, 27 Apr 2022 15:42:49 +0200
+Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
 
-Thanks a lot, this clarifies the topic. Looks good. Maybe you could put
-parts of this into the scpart-id field description?
+> On Tue, Apr 26, 2022 at 3:11 PM Andrea Merello <andrea.merello@gmail.com> wrote:
+> >
+> > From: Andrea Merello <andrea.merello@iit.it>
+> >
+> > This series (tries to) add support for Bosch BNO055 IMU to Linux IIO
+> > subsystem. It is made up several patches:
+> >
+> >   1/14 to 6/14: add some IIO modifiers, and their documentation, to the IIO
+> >                 core layer, in order to being able to expose the linear
+> >                 acceleration and Euler angles among standard attributes.
+> >                 Also update the IIO event monitor tool
+> >
+> >   7/14: fix binary attributes didn't work with IIO
+> >
+> >   8/14 to 11/14: add the core IIO BNO055 driver and documentation for sysfs
+> >                  attributes and DT bindings
+> >
+> >   12/14: adds serdev BNO055 driver to actually use the IMU via serial line
+> >
+> >   13/14: adds I2C BNO055 driver to actually use the IMU via I2C wiring
+> >
+> >   14/14: add a documentation file that describe the bno055 driver and
+> >          specifically the calibration  
+> 
+> FWIW,
+> Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
+> for non-commented patches (12 out of 14 AFAICS).
+> 
+FWIW I'm fine with the series once you've tidied up the stuff Andy picked up
+on.
 
-Best regards,
-Krzysztof
+Thanks Andy for the detailed reviewing btw.
+
+Jonathan
+
+> > Differences wrt v4:
+> > - be more tolerant wrt unrecognized chip IDs
+> > - rename 'serial_number' attribute in 'serialnumber'
+> > - fix missing NULL variable initialization
+> > - use sign_extend32() instead of s16 casting where appropriate
+> > - fix quaternion unit
+> > - minor stuff (e.g. comments..)
+> > - reduce (slightly) locking in serdev driver
+> > - rework tracepoint support (e.g. remove dedicated config option)
+> >
+> > Differences wrt other BNO055 drivers:
+> >
+> >   Previously at least another driver for the very same chip has been posted
+> >   to the Linux ML [0], but it has been never merged, and it seems no one
+> >   cared of it since quite a long time.
+> >
+> >   This driver differs from the above driver on the following aspects:
+> >
+> >   - This driver supports also serial access (to be reliable, reset pin is
+> >     required to be wired)
+> >
+> >   - The above driver tried to support all IMU HW modes by allowing to
+> >     choose one in the DT, and adapting IIO attributes accordingly. This
+> >     driver does not rely on DT for this, instead settings are done via
+> >     sysfs attributes.  All IIO attributes are always exposed; more on this
+> >     later on. This driver however supports only a subset of the
+> >     HW-supported modes.
+> >
+> >   - This driver has some support for managing the IMU calibration
+> >
+> > Supported operation modes:
+> >
+> >   - AMG (accelerometer, magnetometer and gyroscope) mode, which provides
+> >     raw (uncalibrated) measurements from the said sensors, and allows for
+> >     setting some parameters about them (e.g. filter cut-off frequency, max
+> >     sensor ranges, etc).
+> >
+> >   - Fusion mode, which still provides AMG measures, while it also provides
+> >     other data calculated by the IMU (e.g. rotation angles, linear
+> >     acceleration, etc). In this mode user has no freedom to set any sensor
+> >     parameter, since the HW locks them. Autocalibration and correction is
+> >     performed by the IMU.
+> >
+> >   IIO attributes exposing sensors parameters are always present, but in
+> >   fusion modes the available values are constrained to just the one used by
+> >   the HW. This is reflected in the '*_available' IIO attributes.
+> >
+> >   Trying to set a not-supported value always falls back to the closest
+> >   supported one, which in this case is just the one in use by the HW.
+> >
+> >   IIO attributes for unavailable measurements (e.g. Euler angles in AMG
+> >   mode) can't be read (return -EBUSY, or refuse to enable buffer).
+> >
+> > IMU calibration:
+> >
+> >   The IMU supports for two sets of calibration parameters:
+> >
+> >   - SIC matrix. user-provided; this driver doesn't currently support it
+> >
+> >   - Offset and radius parameters. The IMU automatically finds out them when
+> >     it is running in fusion mode; supported by this driver.
+> >
+> >   The driver provides access to autocalibration flags (i.e. you can known
+> >   if the IMU has successfully autocalibrated) and to calibration data blob.
+> >   The user can save this blob in a "firmware" file (i.e. in /lib/firmware)
+> >   that the driver looks for at probe time. If found, then the IMU is
+> >   initialized with this calibration data. This saves the user from
+> >   performing the calibration procedure every time (which consist of moving
+> >   the IMU in various way).
+> >
+> >   The driver looks for calibration data file using two different names:
+> >   first a file whose name is suffixed with the IMU unique ID is searched
+> >   for; this is useful when there is more than one IMU instance. If this
+> >   file is not found, then a "generic" calibration file is searched for
+> >   (which can be used when only one IMU is present, without struggling with
+> >   fancy names, that changes on each device).
+> >
+> >   In AMG mode the IIO 'offset' attributes provide access to the offsets
+> >   from calibration data (if any), so that the user can apply them to the
+> >   accel, angvel and magn IIO attributes. In fusion mode they are not needed
+> >   and read as zero.
+> >
+> >
+> > Access protocols and serdev module:
+> >
+> >   The serial protocol is quite simple, but there are tricks to make it
+> >   really works. Those tricks and workarounds are documented in the driver
+> >   source file.
+> >
+> >   The core BNO055 driver tries to group readings in burst when appropriate,
+> >   in order to optimize triggered buffer operation. The threshold for
+> >   splitting a burst (i.e. max number of unused bytes in the middle of a
+> >   burst that will be throw away) is provided to the core driver by the
+> >   lowlevel access driver (either serdev or I2C) at probe time.
+> >
+> > [0] https://www.spinics.net/lists/linux-iio/msg25508.html
+> >
+> > Andrea Merello (14):
+> >   iio: add modifiers for linear acceleration
+> >   iio: document linear acceleration modifiers
+> >   iio: event_monitor: add linear acceleration modifiers
+> >   iio: add modifers for pitch, yaw, roll
+> >   iio: document pitch, yaw, roll modifiers
+> >   iio: event_monitor: add pitch, yaw and roll modifiers
+> >   iio: add support for binary attributes
+> >   iio: imu: add Bosch Sensortec BNO055 core driver
+> >   iio: document bno055 private sysfs attributes
+> >   iio: document "serialnumber" sysfs attribute
+> >   dt-bindings: iio/imu: Add Bosch BNO055
+> >   iio: imu: add BNO055 serdev driver
+> >   iio: imu: add BNO055 I2C driver
+> >   docs: iio: add documentation for BNO055 driver
+> >
+> >  Documentation/ABI/testing/sysfs-bus-iio       |   25 +
+> >  .../ABI/testing/sysfs-bus-iio-bno055          |   81 +
+> >  .../bindings/iio/imu/bosch,bno055.yaml        |   59 +
+> >  Documentation/iio/bno055.rst                  |   50 +
+> >  Documentation/iio/index.rst                   |    2 +
+> >  drivers/iio/imu/Kconfig                       |    1 +
+> >  drivers/iio/imu/Makefile                      |    1 +
+> >  drivers/iio/imu/bno055/Kconfig                |   25 +
+> >  drivers/iio/imu/bno055/Makefile               |   10 +
+> >  drivers/iio/imu/bno055/bno055.c               | 1710 +++++++++++++++++
+> >  drivers/iio/imu/bno055/bno055.h               |   12 +
+> >  drivers/iio/imu/bno055/bno055_i2c.c           |   57 +
+> >  drivers/iio/imu/bno055/bno055_ser_core.c      |  560 ++++++
+> >  drivers/iio/imu/bno055/bno055_ser_trace.h     |  104 +
+> >  drivers/iio/industrialio-core.c               |   10 +-
+> >  include/uapi/linux/iio/types.h                |    7 +-
+> >  tools/iio/iio_event_monitor.c                 |    6 +
+> >  17 files changed, 2718 insertions(+), 2 deletions(-)
+> >  create mode 100644 Documentation/ABI/testing/sysfs-bus-iio-bno055
+> >  create mode 100644 Documentation/devicetree/bindings/iio/imu/bosch,bno055.yaml
+> >  create mode 100644 Documentation/iio/bno055.rst
+> >  create mode 100644 drivers/iio/imu/bno055/Kconfig
+> >  create mode 100644 drivers/iio/imu/bno055/Makefile
+> >  create mode 100644 drivers/iio/imu/bno055/bno055.c
+> >  create mode 100644 drivers/iio/imu/bno055/bno055.h
+> >  create mode 100644 drivers/iio/imu/bno055/bno055_i2c.c
+> >  create mode 100644 drivers/iio/imu/bno055/bno055_ser_core.c
+> >  create mode 100644 drivers/iio/imu/bno055/bno055_ser_trace.h
+> >
+> > --
+> > 2.17.1  
+> 
+> 
+> 
+
