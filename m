@@ -2,112 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A0105163DF
-	for <lists+devicetree@lfdr.de>; Sun,  1 May 2022 12:52:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BE6E351640B
+	for <lists+devicetree@lfdr.de>; Sun,  1 May 2022 13:20:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244421AbiEAKza (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 1 May 2022 06:55:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41566 "EHLO
+        id S1345582AbiEALXZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 1 May 2022 07:23:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47836 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242030AbiEAKz3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 1 May 2022 06:55:29 -0400
-Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C3672182B
-        for <devicetree@vger.kernel.org>; Sun,  1 May 2022 03:52:03 -0700 (PDT)
-Received: by mail-wr1-x42c.google.com with SMTP id t6so16305124wra.4
-        for <devicetree@vger.kernel.org>; Sun, 01 May 2022 03:52:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=conchuod-ie.20210112.gappssmtp.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=gI3zKVuvBUpZPNwk0dB8gwBv+CGbUeSGw/y6OnW6r8c=;
-        b=CtPgKeF5HdYQZULbn/MAXZCcsMdJ5+cvC7NIboiysxlLDO6cwYO4o9x8IfcuVkKuu4
-         4/5jloM5g70fjfncQ2LgacOLTcc+0VAvf4u633fW2dhmof7qxEo6TrXb+Ehm3Lixk8AU
-         tgtXhkpxNmypa+bPHhygo7WolN1VTeWrnLgLLZVhLQ0hPVNTqdAujhFD2jOY0m+79sAa
-         DTZxGYvO22hXiCiU5wmoDsx2tXGSSYvORBV1xFCjq98iwH3yD9HG45Dc/lHvU/KjIINC
-         /W67UZRxwe0PUktriYPN6JOG0dO0/XsNSuHwYz98pL3jLpwwEPffBLWOTxbc1LFWk6Ob
-         iWTQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=gI3zKVuvBUpZPNwk0dB8gwBv+CGbUeSGw/y6OnW6r8c=;
-        b=hpta+pdWtAzW2D1HnZNUtx1CsJlrFbPJn1uhfeXfMBpf4SjZHHfop9A5HKw15b2Zb2
-         x86SqKw2CD4PGxhHux8mrHQIZN4RySGAyEwO20x2zJzExpQ2tlTPm/CduSRphnslfkxH
-         HcM+AODHmSdld1W52ClFaTPMO5lVk1dd3/hcG6EUOXxWEC2CwgMdg46SbGKDnQyQEB74
-         auekBh5Cn0R+J+9+EOq5H/4gTUu2Y4BOKh+5sjfc5mVCKFo3qP2D+U0+fPqascMQIKcR
-         EezYKl/uchIjAEokHJPr+tQKvoW7ablF36rOg2Cpl6tNZtPn+MAuwC4WEThRpHORSM9s
-         x68g==
-X-Gm-Message-State: AOAM531w7IDl12ZH5I7RmtIBEYa1orMq10Ckow7TpbpLoWO60Qn5sSZQ
-        FHhVGJxYkXw/lcVReYV+6NiEng==
-X-Google-Smtp-Source: ABdhPJx9hPPLFKI9qlHPlVLf4I/hiMjEzseqrhge4XJ1KueITL24n6+RLHVilawbKfTlaMdAnM92dg==
-X-Received: by 2002:a5d:58d0:0:b0:20a:e9f0:aea6 with SMTP id o16-20020a5d58d0000000b0020ae9f0aea6mr5862673wrf.60.1651402321391;
-        Sun, 01 May 2022 03:52:01 -0700 (PDT)
-Received: from [192.168.2.222] ([109.77.36.132])
-        by smtp.gmail.com with ESMTPSA id m12-20020a05600c3b0c00b003942a244ec7sm3682707wms.12.2022.05.01.03.52.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 01 May 2022 03:52:00 -0700 (PDT)
-Message-ID: <82beb918-8fc8-8949-1afe-6d708f2ac8db@conchuod.ie>
-Date:   Sun, 1 May 2022 11:51:59 +0100
+        with ESMTP id S1345385AbiEALXZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 1 May 2022 07:23:25 -0400
+Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 7ECCF5838B;
+        Sun,  1 May 2022 04:19:59 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="5.91,189,1647270000"; 
+   d="scan'208";a="118512018"
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie5.idc.renesas.com with ESMTP; 01 May 2022 20:19:58 +0900
+Received: from localhost.localdomain (unknown [10.226.92.14])
+        by relmlir5.idc.renesas.com (Postfix) with ESMTP id ADE6540062DF;
+        Sun,  1 May 2022 20:19:54 +0900 (JST)
+From:   Biju Das <biju.das.jz@bp.renesas.com>
+To:     Jonathan Cameron <jic23@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        linux-iio@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>
+Subject: [PATCH v2] dt-bindings: iio: adc: Document Renesas RZ/G2UL ADC
+Date:   Sun,  1 May 2022 12:19:52 +0100
+Message-Id: <20220501111952.45872-1-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.0
-Subject: Re: [PATCH v2 6/8] dt-bindings: vendor-prefixes: add Sundance DSP
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        krzk+dt@kernel.org, palmer@dabbelt.com, robh+dt@kernel.org
-Cc:     conor.dooley@microchip.com, Cyril.Jean@microchip.com,
-        daire.mcnamara@microchip.com, paul.walmsley@sifive.com,
-        aou@eecs.berkeley.edu, palmer@rivosinc.com, arnd@arndb.de,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-riscv@lists.infradead.org
-References: <20220430130922.3504268-1-mail@conchuod.ie>
- <20220430130922.3504268-7-mail@conchuod.ie>
- <6fdc6da4-3a34-e67c-cab8-1c9570501a8a@linaro.org>
- <f49b1d52-11e3-1c8b-bb1f-324318a7f669@conchuod.ie>
- <94bd3b92-fe6d-6bb4-8cbb-56ed52b9c4b9@linaro.org>
-From:   Conor Dooley <mail@conchuod.ie>
-In-Reply-To: <94bd3b92-fe6d-6bb4-8cbb-56ed52b9c4b9@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=1.1 required=5.0 tests=AC_FROM_MANY_DOTS,BAYES_00,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/05/2022 11:45, Krzysztof Kozlowski wrote:
-> On 01/05/2022 12:39, Conor Dooley wrote:
->> On 01/05/2022 09:59, Krzysztof Kozlowski wrote:
->>> On 30/04/2022 15:09, Conor Dooley wrote:
->>>> From: Conor Dooley <conor.dooley@microchip.com>
->>>>
->>>> Sundance DSP Inc. (https://www.sundancedsp.com/) is a supplier of
->>>> high-performance DSP and FPGA processor boards and I/O modules.
->>>>
->>>> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
->>>> Signed-off-by: Conor Dooley <mail@conchuod.ie>
->>>
->>> If your @microchip.com email still works, then there is no need to
->>> double-sign it. At the end you are still the same person... unless
->>> you're not. :)
->>>
->>> This applies to your other patches as well.
->>
->> I thought that the last SoB had to match the email it was sent from?
->> If that's not the case, my bad. The @microchip email still works, but
->> it would've meant waiting til Tuesday to resend.
-> 
-> The "From" address must match the SoB address. The person, rather than
-> the email, sending the patch should be the last SoB. I almost do not
-> recall cases where two SoBs were added in such flow like yours.
+ADC found on RZ/G2UL SoC is almost identical to RZ/G2L SoC, but RZ/G2UL
+has 2 analog input channels compared to 8 channels on RZ/G2L. Therefore,
+added a new compatible to handle this difference.
 
-That makes things easier! Thanks for clearing that up for me, must
-have misunderstood.
+Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+---
+v1->v2:
+ * Removed Items and used const for RZ/G2UL compatible
+ * Add allOf:if:then restricting available channels per SoC variant.
+---
+ .../bindings/iio/adc/renesas,rzg2l-adc.yaml   | 34 ++++++++++++++-----
+ 1 file changed, 25 insertions(+), 9 deletions(-)
 
-Thanks,
-Conor.
+diff --git a/Documentation/devicetree/bindings/iio/adc/renesas,rzg2l-adc.yaml b/Documentation/devicetree/bindings/iio/adc/renesas,rzg2l-adc.yaml
+index d66c24cae1e1..d76c5ba3d625 100644
+--- a/Documentation/devicetree/bindings/iio/adc/renesas,rzg2l-adc.yaml
++++ b/Documentation/devicetree/bindings/iio/adc/renesas,rzg2l-adc.yaml
+@@ -17,11 +17,13 @@ description: |
+ 
+ properties:
+   compatible:
+-    items:
+-      - enum:
+-          - renesas,r9a07g044-adc   # RZ/G2L
+-          - renesas,r9a07g054-adc   # RZ/V2L
+-      - const: renesas,rzg2l-adc
++    oneOf:
++      - const: renesas,renesas,r9a07g043-adc  # RZ/G2UL
++      - items:
++          - enum:
++              - renesas,r9a07g044-adc   # RZ/G2L
++              - renesas,r9a07g054-adc   # RZ/V2L
++          - const: renesas,rzg2l-adc
+ 
+   reg:
+     maxItems: 1
+@@ -76,10 +78,24 @@ patternProperties:
+     properties:
+       reg:
+         description: |
+-          The channel number. It can have up to 8 channels numbered from 0 to 7.
+-        items:
+-          - minimum: 0
+-            maximum: 7
++          The channel number. It can have up to 8 channels numbered from 0 to 7
++          for RZ/{G2L,V2L} SoCs or 2 channels numbered from 0 to 1 for RZ/G2UL
++          SoC.
++      allOf:
++        if:
++          properties:
++            compatible:
++              contains:
++                enum:
++                  - renesas,renesas,r9a07g043-adc
++        then:
++          items:
++            - minimum: 0
++              maximum: 1
++        else:
++          items:
++            - minimum: 0
++              maximum: 7
+ 
+     required:
+       - reg
+-- 
+2.25.1
+
