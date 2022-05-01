@@ -2,73 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4FE5D51629B
-	for <lists+devicetree@lfdr.de>; Sun,  1 May 2022 10:13:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B67BA5162A1
+	for <lists+devicetree@lfdr.de>; Sun,  1 May 2022 10:17:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243514AbiEAIQf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 1 May 2022 04:16:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34382 "EHLO
+        id S244055AbiEAIUq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 1 May 2022 04:20:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42934 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243538AbiEAIQc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 1 May 2022 04:16:32 -0400
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2AC101582F
-        for <devicetree@vger.kernel.org>; Sun,  1 May 2022 01:13:08 -0700 (PDT)
-Received: by mail-ej1-x62f.google.com with SMTP id n10so5328744ejk.5
-        for <devicetree@vger.kernel.org>; Sun, 01 May 2022 01:13:08 -0700 (PDT)
+        with ESMTP id S243553AbiEAIUp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 1 May 2022 04:20:45 -0400
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1120E0A7
+        for <devicetree@vger.kernel.org>; Sun,  1 May 2022 01:17:20 -0700 (PDT)
+Received: by mail-ed1-x52d.google.com with SMTP id a1so13526252edt.3
+        for <devicetree@vger.kernel.org>; Sun, 01 May 2022 01:17:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=XrKlK/wlEuAV8r4Uf6E1ukYjJx77nczax1aunKH5Q+4=;
-        b=YXINqYqsI0H9E96YUKV9+Mjzm52tkYI1g7ZqF8iLgJkMSH9V6NboFQLX3+U09VaasC
-         1Cis79Ded3Ql2O3zeNDUdojx0Lryo2uqklTYBces9JIway60hBgeHf0G7HNFSEt4RTgp
-         gCxNhm2+SZSmmsiSd6Xe3OXN6pleuh9F8IywWLaGMoKLJBl+7sUdYSx/9jzHA/lxnrH+
-         ZWN8pAKLurFJ0gg/ayepSUraNgr8/zPGPWQQeNr3OxdDhaW4EVfD4rsjiw/8qyAKDJ3G
-         tSqSTe8ey/7N+6DEAEFV4b71o382zMgdXAqxyZQ9Mo0rDLaIwGFLoDHx2dCm3K/01bt2
-         m7cA==
+        bh=EYMxrPRY3J2WekXOQlUGmVM4fNTTeU4P6bnwFue9aN0=;
+        b=pM4ivJZfiRe9iOTmARBovljjO2oq0pxe5QakrVO842DZpiF8Hg5fhgRsqzTPOk9rG0
+         SOOEG94VQcn8py37Q8Rt0HGcDjjLrvEdjYaT647NMzowT2O4JiFZApNqxcSJKR4AJfCe
+         pil4A8nCEpq/uvRz0WpR3qeRi6Hf9bQF98ZrNIa72HQodV+6b7K7odIz3/HWXTf0bCtL
+         U4FOelqw2VksG0E82Hv4BQ1lsrOZs15lc0d9J9DIcR+7zKwV0p7/tEQDcc8s8+2rkEME
+         unctWNewVWjFmz+FAQ9uEH/AQg1CsB7E8ksPtnYQi7IkelE0WJLDG9VgtUIMFO/FPD/V
+         b85g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=XrKlK/wlEuAV8r4Uf6E1ukYjJx77nczax1aunKH5Q+4=;
-        b=lgKpmSWem2O9eIzhM7nQbgfSud6ja/jdKrPzEwsFshomvWM4aAPSpi6wHXUOsHnn/B
-         GSOjcJZChFF6zGnvHyEByJWUNHXWyMWcjNLHB0tmPxJ33lGkuTCXtxmhFuoIc1uwrj8I
-         9Cqs/1xjCym+uffyjdHkOjUdErY8aza13r0YYXfiUp5tfoSPnaEXdpXHAoExToVwAP9E
-         YoLxnLNuS7MDWTvMSE/Ybxukx2eLi696zqbZNzea1UmftxECoy9QVOV6QOhqlDk6etbw
-         rtYDAzuOQ0rC4xXqcLQW0R+Zmz3v+X5n6Dn3Hu0f8s7h0aryrGofYWoae8wviyXo1qXD
-         hn1Q==
-X-Gm-Message-State: AOAM532Rjgn/+rWKYhgavuyLcUnfNmyyGCd1tU2OHn2cWbnBEgsdjxlP
-        5AsFe10awTlVhx0LccCknLHmAA==
-X-Google-Smtp-Source: ABdhPJwXuUt0sftDa1TvYqXx+d7cm+eB/BhcX08Oq5n1MDafYYfJxDamHA1BTbHyE/MfVzuLR/AHJw==
-X-Received: by 2002:a17:906:2319:b0:6f3:ad55:8fee with SMTP id l25-20020a170906231900b006f3ad558feemr6692397eja.26.1651392786726;
-        Sun, 01 May 2022 01:13:06 -0700 (PDT)
+        bh=EYMxrPRY3J2WekXOQlUGmVM4fNTTeU4P6bnwFue9aN0=;
+        b=B5yINXnLZBDMZ9ci3kzrlyNYQyGV5j2TFzGe2wgOSloZK8QJn2q7UvccXI5fWQTTYt
+         pBPCybFpFUYbxNIRi3/dY76u56tC+IaclDmBV7ajl+WJGFRVTha8KMG3KmwWVuOZ4mWD
+         I4Y9fZdlLrA8IsGoJ/D0F9PPQU0NendrNZN7bbq0+/a0b2icQb617N0wldpdG8dJIbTL
+         NX4IeQApEwZRxLnHxlNste1NJ2xxg4UCeUB8d1C7QNMxR+asjW234YlJS9tnScbNfYj0
+         NizUXkyz0PYkBj0UJBUXCDxOlEiVBhx3lZoTxuT8wlDNF6CJoHfS2oMD9h5fQ+S1qZj5
+         HeKQ==
+X-Gm-Message-State: AOAM532K3aPLNOZgigYOhk4KCs1NSNbgg2Z8tn9dJiHGUvuufmmWAJKS
+        2AshlscwKj8yes+rFKvE5ErEiA==
+X-Google-Smtp-Source: ABdhPJwJfKYprVtgSwMv1foq2/oCXs/sEvqyI1//Vt1pmWYFBXMcO/AaEcENrAF0CEIlNJkmrTdKZw==
+X-Received: by 2002:a05:6402:11cd:b0:427:bda5:542f with SMTP id j13-20020a05640211cd00b00427bda5542fmr1369606edw.290.1651393039410;
+        Sun, 01 May 2022 01:17:19 -0700 (PDT)
 Received: from [192.168.0.182] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id j12-20020aa7c40c000000b0042617ba63cbsm5047785edq.85.2022.05.01.01.13.05
+        by smtp.gmail.com with ESMTPSA id zp15-20020a17090684ef00b006f3ef214e4esm2335099ejb.180.2022.05.01.01.17.18
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 01 May 2022 01:13:06 -0700 (PDT)
-Message-ID: <c58c2d00-2b07-8873-2146-738199855492@linaro.org>
-Date:   Sun, 1 May 2022 10:13:05 +0200
+        Sun, 01 May 2022 01:17:18 -0700 (PDT)
+Message-ID: <6c3ba4a7-80b0-5fd1-eb08-1f9e256b02c4@linaro.org>
+Date:   Sun, 1 May 2022 10:17:17 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [PATCH v2 1/7] dt-bindings: arm: rockchip: Add Pine64 Quartz64
- Model B
+Subject: Re: [PATCH v2 1/2] dt-bindings: mtd: partitions: Add binding for
+ Sercomm parser
 Content-Language: en-US
-To:     Peter Geis <pgwipeout@gmail.com>,
-        linux-rockchip@lists.infradead.org,
+To:     Mikhail Zhilkin <csharper2005@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-References: <20220429115252.2360496-1-pgwipeout@gmail.com>
- <20220429115252.2360496-2-pgwipeout@gmail.com>
+        Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc:     NOGUCHI Hiroshi <drvlabo@gmail.com>, Karim <Karimdplay@gmail.com>,
+        M <x1@disroot.org>, linux-mtd@lists.infradead.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20220406195557.1956-1-csharper2005@gmail.com>
+ <20220406195946.2019-1-csharper2005@gmail.com>
+ <8d0d8b27-35ff-3693-cf80-897b80c26b4e@linaro.org>
+ <57bebf2f-af4c-b2d9-10e5-19e5104946fb@gmail.com>
+ <29cfa017-bbaf-3aba-fe1d-06771957dbaa@linaro.org>
+ <1b391399-984b-7a63-3265-62ef09caec39@gmail.com>
+ <bd533827-b575-caad-c230-af060851b231@gmail.com>
+ <db70e53b-7484-43bf-e9c8-b6a2dce1fbb5@linaro.org>
+ <25da3f43-c46e-8108-2da9-0e4f2b7cc1a4@gmail.com>
+ <b279040a-a782-a2ca-2acb-2d8f07709081@linaro.org>
+ <1c19faf9-fc1c-9adf-d038-97b673a8f0be@gmail.com>
+ <a84df850-149e-9656-43fa-1f040368a9f1@linaro.org>
+ <0450d781-c506-c28e-a0e5-435bee16721f@gmail.com>
+ <2e51842a-d2c9-8953-13aa-02ad3abb3f14@linaro.org>
+ <ee5f293a-e59a-03d8-d9e4-ef35d33b5383@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220429115252.2360496-2-pgwipeout@gmail.com>
+In-Reply-To: <ee5f293a-e59a-03d8-d9e4-ef35d33b5383@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-4.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -79,14 +95,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/04/2022 13:52, Peter Geis wrote:
-> The Quartz64 Model B is a compact single board computer from Pine64
-> based on the rk3566 SoC. It outputs on uart2 for the debug console.
-> 
-> Signed-off-by: Peter Geis <pgwipeout@gmail.com>
+On 30/04/2022 20:54, Mikhail Zhilkin wrote:
+>  patternProperties:
+>    "@[0-9a-f]+$":
+> -    $ref: "partition.yaml#"
+> +    allOf:
+> +      - $ref: "partition.yaml#"
+> +      - if:
+> +          properties:
+> +            compatible:
+> +              contains:
+> +                const: sercomm,sc-partitions
+> +        then:
+> +          properties:
+> +            sercomm,scpart-id:
+> +              description: Partition id in Sercomm partition map. Parser
+> +                uses this id to get partition offset and size values from
+> +                dynamic partition map.
 
-
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Partition offset and size values are not derived from scpart-id. I am
+sorry but after all these questions - it's the third time now - you
+never answer why do you need this property and what is it used for. From
+all the examples it could be simply removed and the partition map will
+be exactly the same.
 
 
 Best regards,
