@@ -2,48 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 96FAB516210
-	for <lists+devicetree@lfdr.de>; Sun,  1 May 2022 07:44:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 702DB516262
+	for <lists+devicetree@lfdr.de>; Sun,  1 May 2022 09:06:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237795AbiEAFsP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 1 May 2022 01:48:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58828 "EHLO
+        id S243278AbiEAHKF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 1 May 2022 03:10:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49410 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236398AbiEAFsO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 1 May 2022 01:48:14 -0400
-Received: from mx-out2.startmail.com (mx-out2.startmail.com [145.131.90.155])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2845138BF0;
-        Sat, 30 Apr 2022 22:44:50 -0700 (PDT)
-From:   "Marty E. Plummer" <hanetzer@startmail.com>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=startmail.com;
-        s=2020-07; t=1651383887;
-        bh=eIKWJyoaLkJuB+nzU9OpjewDEuEGEm0it8FLQCd8BaE=;
-        h=From:To:Subject:Date:Message-Id:MIME-Version:
-         Content-Transfer-Encoding:From:Subject:To:Date:Sender:Content-Type:
-         Content-Transfer-Encoding:Content-Disposition:Mime-Version:
-         Reply-To:In-Reply-To:References:Message-Id:Autocrypt;
-        b=cZmGGMcQLi8neWNptANOwYRSIn7ZXoRUdTezksV5TgjQC57ZizSyXisUGZdIPuFm4
-         qD6vcRCDR5Qle1tgfYuCoifl9D0KFYd71uxcvc2Ozj/No/9zmU5TRIJO2fRjO96NS2
-         bqD/8U5zh23kL4yaLXq+BjCYPgRgRjijCMowNgrSfH3Du+9el0FRkW3SLN2QDP70vi
-         nFtIaQ3rEC9EqHyTaJAcDpkrzfvF4m0ckemUJkEmmXe1CN/zXjo1ThfX/mtxTkfrLJ
-         ZQtYIHXYcsW1W2sdYBaTLs+jROMSxyzhy2HB/0f8LdZrt6M/Cz3VjhmHvpPTVrdXMX
-         nHT5ZR8Y+nsJg==
-To:     mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, gengdongjiu@huawei.com,
-        rdunlap@infradead.org, hanetzer@startmail.com,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, tudor.ambarus@microchip.com,
-        p.yadav@ti.com, michael@walle.cc, miquel.raynal@bootlin.com,
-        richard@nod.at, vigneshr@ti.com, sumit.semwal@linaro.org,
-        christian.koenig@amd.com, cai.huoqing@linux.dev, novikov@ispras.ru,
-        linux-mtd@lists.infradead.org
-Subject: [PATCH 0/2] Hi3521a support.
-Date:   Sun,  1 May 2022 00:44:40 -0500
-Message-Id: <20220501054440.2434247-1-hanetzer@startmail.com>
+        with ESMTP id S242262AbiEAHKC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 1 May 2022 03:10:02 -0400
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5BDE51276C;
+        Sun,  1 May 2022 00:06:37 -0700 (PDT)
+Received: by mail-ej1-x62f.google.com with SMTP id kq17so22623536ejb.4;
+        Sun, 01 May 2022 00:06:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=x8T0l3ePxEo0tPa3nLCaVVv3kLYt0vca+nm1RdbXgmU=;
+        b=Yo5O3EgiMQ0ZlebWvAXvbrxwCC3Aa+BZtg6kyYXMeJ8vpyo1yfB95uK5ni+LptP+nl
+         gCdl9e5FaqaK7cwYvdbaKvTCl6EAZp8r1G/QDCuJT7S01ZPyJPRchQro1MDWZQ62zydE
+         48UIuJs9psLLaaSOeAzgJt8jX45iSesfBrj7jni3Qs+/2ffgtYc7qbSxuIlTV9v0h8Ia
+         B/3vjy5tsd0yNy4+rQacs34rkx4UJq/kTLpupA0nTbk3lBWmUl1VQJLeACn6woO9hqkp
+         w58IEe6BAcci+MO03p0OTbMFCt+nCh0B75t/CmxfQ/e5gWHNc7ekzL3ZDegn22l9uKw7
+         lOxA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=x8T0l3ePxEo0tPa3nLCaVVv3kLYt0vca+nm1RdbXgmU=;
+        b=3EzucTTa27h1nN+X2sUA7Bd9AQbjXQscsUc5hBKC8J3Zjwa4S63n2W0Dn3uvfA1m3n
+         rPtSO+kVlZ8XveeuPpmDZ+bj9P3sfqVg4fUO6wd2uh6qFcO2ZXgLyf7MSyXTVYX/MJss
+         yNmHLlIGLaI64jDRK7+USaom8pt1CyP2vcVkTUv4uc8ZsMmoio1PNemgmi2oxJrRVmve
+         Q3BpqnbG8nGWvfxWAHJpIpOoogIIqC2PtYsoYkbAPVYSy1kA1vQ0Wq3RIH9ZQyui5j/D
+         evKySKabYjC6tjf1BT/32+ThqaiXPccHXZuilRx6y0xKSCRJAchsegM2Xs8t+AsUQ19X
+         /ceA==
+X-Gm-Message-State: AOAM532+l93nIJTHjmIRZLL72n5vOj1T47Vr6LtR5NWxyYDlM87l3aWe
+        PET/wQMPLvnI6OeJAYTJlsM=
+X-Google-Smtp-Source: ABdhPJzTW1au6Hq8+LkxfQRJRfHQIxpwiLzl7XquNFMAD+nZQL7T6Uji+LhedVpwD1C0N9xh0HE4+w==
+X-Received: by 2002:a17:907:6da5:b0:6f3:c4b1:378b with SMTP id sb37-20020a1709076da500b006f3c4b1378bmr6515327ejc.307.1651388795791;
+        Sun, 01 May 2022 00:06:35 -0700 (PDT)
+Received: from [192.168.2.1] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
+        by smtp.gmail.com with ESMTPSA id hw7-20020a170907a0c700b006f3ef214e18sm2336790ejc.126.2022.05.01.00.06.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 01 May 2022 00:06:35 -0700 (PDT)
+Message-ID: <46548c93-4e6d-858c-8b79-03be9326c92a@gmail.com>
+Date:   Sun, 1 May 2022 09:06:33 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.0
+Subject: Re: [PATCH v2 5/7] arm64: dts: rockchip: add Pine64 Quartz64-B device
+ tree
+Content-Language: en-US
+To:     Peter Geis <pgwipeout@gmail.com>,
+        linux-rockchip@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+References: <20220429115252.2360496-1-pgwipeout@gmail.com>
+ <20220429115252.2360496-6-pgwipeout@gmail.com>
+From:   Johan Jonker <jbx6244@gmail.com>
+In-Reply-To: <20220429115252.2360496-6-pgwipeout@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -51,39 +79,82 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hey folks. Its been a while. Finally got back on the kernel dev train.
-This *mostly* seems to work, but I've ran into an issue which may
-require some upstream support.
 
-Basic gist, I was attempting to boot a buildroot-built intramfs, was
-mostly working, but it would not give me a login prompt no matter how
-much I badgered it, so I decided to try a flash boot. That also failed,
-and after much banging my head on the desk and annoying people on irc,
-we finally came across *why* it was failing, or at least part of it.
-The kernel parser could produce the mtdblockN partitions based on the
-devicetree, but for whatever reason, when the hisilicon,fmc-spi-nor read
-its superblock, instead of the magic 0x73717368 (sqsh), it read back 0x73717360.
-At first I thought it was a mistake of mine, as we had tried modifying
-the header, and 0x60 is a `, so it could be a hex editing issue, but nope.
-Reading the data in u-boot (2010.06, vendor fork, would like to get mainline
-running on it at some point) showed the correct magic, so its something
-with the controller driver, I guess. CC'ing the people associated with
-that as well, hopefully we can get to the bottom of this.
 
-Marty E. Plummer (2):
-  clk: hisilicon: add CRG driver Hi3521a SoC
-  arm: hisi: enable Hi3521a soc
+On 4/29/22 13:52, Peter Geis wrote:
+> Add a device tree for the Pine64 Quartz64 Model B single board computer.
+> This board ouputs debug on uart2 and supports the following components:
+> Gigabit Ethernet
+> USB2 x2 (one port otg capable)
+> USB3
+> PCIe/SATA M2
+> HDMI
+> DSI (RPi compatible pinout)
+> CSI (RPi compatible pinout)
+> A/B/G/N WiFi
+> Bluetooth
+> SDMMC
+> eMMC
+> SPI Flash
+> PI-40 compatible pin header
+> 
+> Signed-off-by: Peter Geis <pgwipeout@gmail.com>
+> ---
+>  arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+>  .../boot/dts/rockchip/rk3566-quartz64-b.dts   | 615 ++++++++++++++++++
+>  2 files changed, 616 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/rockchip/rk3566-quartz64-b.dts
+> 
+> diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
+> index 4ae9f35434b8..252ee47b8a1d 100644
+> --- a/arch/arm64/boot/dts/rockchip/Makefile
+> +++ b/arch/arm64/boot/dts/rockchip/Makefile
+> @@ -59,5 +59,6 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399pro-rock-pi-n10.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-pinenote-v1.1.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-pinenote-v1.2.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-quartz64-a.dtb
+> +dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-quartz64-b.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-evb1-v10.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-bpi-r2-pro.dtb
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-b.dts b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-b.dts
+> new file mode 100644
+> index 000000000000..184ab7e1d178
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-b.dts
+> @@ -0,0 +1,615 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + *
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/pinctrl/rockchip.h>
+> +#include "rk3566.dtsi"
+> +
+> +/ {
+> +	model = "Pine64 RK3566 Quartz64-B Board";
+> +	compatible = "pine64,quartz64-b", "rockchip,rk3566";
+> +
 
- arch/arm/boot/dts/Makefile                |   2 +
- arch/arm/mach-hisi/Kconfig                |   9 ++
- drivers/clk/hisilicon/Kconfig             |   8 ++
- drivers/clk/hisilicon/Makefile            |   1 +
- drivers/clk/hisilicon/crg-hi3521a.c       | 141 ++++++++++++++++++++++
- include/dt-bindings/clock/hi3521a-clock.h |  34 ++++++
- 6 files changed, 195 insertions(+)
- create mode 100644 drivers/clk/hisilicon/crg-hi3521a.c
- create mode 100644 include/dt-bindings/clock/hi3521a-clock.h
+[..]
 
--- 
-2.35.1
+> +
+> +&mdio1 {
 
+> +	rgmii_phy1: ethernet-phy@0 {
+> +		compatible = "ethernet-phy-ieee802.3-c22";
+> +		reg = <0x1>;
+
+Hi,
+
+The reg value doesn't match the node name.
+Other 2 boards use "reg = <0>" with label "rgmii_phy1".
+Could you check?
+
+Johan
+
+> +	};
+> +};
+> +
