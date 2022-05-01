@@ -2,64 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 50A515160EF
-	for <lists+devicetree@lfdr.de>; Sun,  1 May 2022 01:14:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 24A5451610E
+	for <lists+devicetree@lfdr.de>; Sun,  1 May 2022 02:06:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236608AbiD3XRk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 30 Apr 2022 19:17:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52502 "EHLO
+        id S231433AbiEAAJU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 30 Apr 2022 20:09:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33104 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231941AbiD3XRj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 30 Apr 2022 19:17:39 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 129CE517F2;
-        Sat, 30 Apr 2022 16:14:11 -0700 (PDT)
-X-UUID: 65a0f79ec973441ba9cf2e07990c17b2-20220501
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.4,REQID:aedec0f3-be3e-43f0-9053-f6390d329c18,OB:0,LO
-        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,ACT
-        ION:release,TS:45
-X-CID-INFO: VERSION:1.1.4,REQID:aedec0f3-be3e-43f0-9053-f6390d329c18,OB:0,LOB:
-        0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,ACTIO
-        N:release,TS:45
-X-CID-META: VersionHash:faefae9,CLOUDID:2fc94a2f-6199-437e-8ab4-9920b4bc5b76,C
-        OID:IGNORED,Recheck:0,SF:28|17|19|48,TC:nil,Content:-5,EDM:-3,File:nil,QS:
-        0,BEC:nil
-X-UUID: 65a0f79ec973441ba9cf2e07990c17b2-20220501
-Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
-        (envelope-from <miles.chen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 591683792; Sun, 01 May 2022 07:14:06 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
- Sun, 1 May 2022 07:14:04 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Sun, 1 May 2022 07:14:04 +0800
-From:   Miles Chen <miles.chen@mediatek.com>
-To:     <matthias.bgg@kernel.org>
-CC:     <allen-kh.cheng@mediatek.com>,
-        <angelogioacchino.delregno@collabora.com>,
-        <chun-jie.chen@mediatek.com>, <devicetree@vger.kernel.org>,
-        <ikjn@chromium.org>, <krzk+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-clk@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>, <matthias.bgg@gmail.com>,
-        <miles.chen@mediatek.com>, <mturquette@baylibre.com>,
-        <robh+dt@kernel.org>, <sboyd@kernel.org>, <weiyi.lu@mediatek.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: ARM: Mediatek: Remove msdc binding of MT8192 clock
-Date:   Sun, 1 May 2022 07:14:04 +0800
-Message-ID: <20220430231404.3078-1-miles.chen@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20220429123133.28869-2-matthias.bgg@kernel.org>
-References: <20220429123133.28869-2-matthias.bgg@kernel.org>
+        with ESMTP id S237023AbiEAAJS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 30 Apr 2022 20:09:18 -0400
+Received: from mail-io1-xd31.google.com (mail-io1-xd31.google.com [IPv6:2607:f8b0:4864:20::d31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2AAF11DA5E;
+        Sat, 30 Apr 2022 17:05:55 -0700 (PDT)
+Received: by mail-io1-xd31.google.com with SMTP id z26so13171326iot.8;
+        Sat, 30 Apr 2022 17:05:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=olmFDK3PCE9W9EMoH9XCZnhEV6UjvWUIK+XTGkwGEFk=;
+        b=m0e2dfMtE1eEn+2qOKm442U6AyOrqe3iE7E7lyfB+ll65lTQWnoq7x62x96oAdHERH
+         D0/KU2qvp2i9QRt4DqMUBDoU6majxXJmnqLbvTTbfjZ2BiPr7Rj1+3KTJVYMwaQLHEZr
+         idwOrNNbjS8qtl+13riqKlD6DESQY8sVQU6VQY0PO0Z8jKpLBdWP1zkijEJK9+qBHddF
+         jWIe20H16I54zjYJzBtUn1sKe7o968/5xLJuaLv/N6CKl3LBFiL8VEUOITQ2iqr6sMq4
+         CGkrpLZGqVZkaKRzpO1r7vbSxJB08/cR5AszlOXyDddD4GfvkNiXYJY4BBSCQYBHM13j
+         p2yQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=olmFDK3PCE9W9EMoH9XCZnhEV6UjvWUIK+XTGkwGEFk=;
+        b=v8qkLLdB4D/Z17gcw3do/OigO4OkBeOEFzFvGZ77HSdnxC+Q6aA6xmi9e4dVoIMqw3
+         qKTr8PKzIlRJoeFg94xwI+/kb7bCEkl0J1Hn7iuVH/PbKk0eOsWmlauGXLoysx4mNrrQ
+         FHfu2CGUuF1X3Ym9JX1p+XnxX/h9gcrgVVulhq+J2H2xafkRohaB1Ko2lr130+6RvAH4
+         clzo374gzKyYQku5aIH5eFZ9Fk5us+0AoEHemW6lj6zlDk+XKtWBbPlYnj7Prcrrd64b
+         /sDkO5C20paZcqM/4me7jqr8fIv5eyC5wSvby8By9E17kMK/T6WuoClmQ4UJ+HhW/ATZ
+         rXVg==
+X-Gm-Message-State: AOAM532BReyyMpunpa1/FTPPsrk/T3vniXX89p70XwbfipDufFCddma4
+        AIHuhyaORVLJy/oHbwZZB3A=
+X-Google-Smtp-Source: ABdhPJw4FjncvCL4LUw0F/7lEWHc+BhRrRo4/M9dHH0JwLUcHWwcPHzCvu/6IKJ2Fa0Vsvn4r/SAbw==
+X-Received: by 2002:a05:6638:3709:b0:32b:5fdd:8f1b with SMTP id k9-20020a056638370900b0032b5fdd8f1bmr315054jav.171.1651363554550;
+        Sat, 30 Apr 2022 17:05:54 -0700 (PDT)
+Received: from xps8900.attlocal.net ([2600:1700:2442:6db0:809b:de5d:7e0a:bf83])
+        by smtp.gmail.com with ESMTPSA id n13-20020a92d9cd000000b002cde6e352dcsm1567160ilq.38.2022.04.30.17.05.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 30 Apr 2022 17:05:54 -0700 (PDT)
+From:   frowand.list@gmail.com
+To:     Rob Herring <robh+dt@kernel.org>, pantelis.antoniou@konsulko.com,
+        Slawomir Stepien <slawomir.stepien@nokia.com>,
+        Dan Carpenter <dan.carpenter@oracle.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Slawomir Stepien <sst@poczta.fm>,
+        Jan Kiszka <jan.kiszka@siemens.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: [PATCH 0/3] of: overlay: unittest: fix overlay notify error, add overlay notifier tests, fix bug revealed by new unittests
+Date:   Sat, 30 Apr 2022 19:05:40 -0500
+Message-Id: <20220501000543.1368005-1-frowand.list@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,MAY_BE_FORGED,
-        SPF_HELO_NONE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=no
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -67,9 +71,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> The msdc gate is part of the MMC driver. Delete the binding description
-> of this node.
-> 
-> Signed-off-by: Matthias Brugger <matthias.bgg@gmail.com>
+From: Frank Rowand <frank.rowand@sony.com>
 
-Reviewed-by: Miles Chen <miles.chen@mediatek.com> 
+patch 1/3: fix bug in overlay notifier handling
+patch 2/3: add overlay notifier unittests, expose another bug
+patch 3/3: fix bug exposed in patch 2, update unittests for fix
+
+Frank Rowand (3):
+  of: overlay: add entry to of_overlay_action_name[]
+  of: overlay: unittest: add tests for overlay notifiers
+  of: overlay: do not free changeset when of_overlay_apply returns error
+
+ drivers/of/overlay.c                    |  56 ++++---
+ drivers/of/unittest-data/Makefile       |  10 ++
+ drivers/of/unittest-data/overlay_16.dts |  15 ++
+ drivers/of/unittest-data/overlay_17.dts |  15 ++
+ drivers/of/unittest-data/overlay_18.dts |  15 ++
+ drivers/of/unittest-data/overlay_19.dts |  15 ++
+ drivers/of/unittest-data/overlay_20.dts |  15 ++
+ drivers/of/unittest.c                   | 204 ++++++++++++++++++++++++
+ include/linux/of.h                      |  13 ++
+ 9 files changed, 333 insertions(+), 25 deletions(-)
+ create mode 100644 drivers/of/unittest-data/overlay_16.dts
+ create mode 100644 drivers/of/unittest-data/overlay_17.dts
+ create mode 100644 drivers/of/unittest-data/overlay_18.dts
+ create mode 100644 drivers/of/unittest-data/overlay_19.dts
+ create mode 100644 drivers/of/unittest-data/overlay_20.dts
+
+-- 
+Frank Rowand <frank.rowand@sony.com>
+
