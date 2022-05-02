@@ -2,54 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4B5B3516DD8
+	by mail.lfdr.de (Postfix) with ESMTP id D93FE516DD9
 	for <lists+devicetree@lfdr.de>; Mon,  2 May 2022 12:03:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1384340AbiEBKGd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 May 2022 06:06:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47082 "EHLO
+        id S231508AbiEBKGe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 May 2022 06:06:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45640 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1384354AbiEBKG1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 May 2022 06:06:27 -0400
+        with ESMTP id S1384493AbiEBKG2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 May 2022 06:06:28 -0400
 Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B3CB111165;
-        Mon,  2 May 2022 03:02:47 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3A9015816;
+        Mon,  2 May 2022 03:02:48 -0700 (PDT)
 From:   Viraj Shah <viraj.shah@linutronix.de>
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-        s=2020; t=1651485765;
+        s=2020; t=1651485767;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
          to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding;
-        bh=WHd3sYmGrhY6M+5FnEIdkE/HqreC6sBnMmlSZvNnFpc=;
-        b=r0zn+wZ51sP9aEwYpzCnMZ0yX5wqsri6t4lYJ4cjqRNMGkYVvXQal3fSND4y5kmK1cojGm
-        3NgeN4bmU81hcmRsj8kE5ISxwFWZhNpe50dO0HA9+3AB4NEWeMengXhbce+HIBlNumilv/
-        3rJNMZiQs8UdFvlggdMN0FLdKt1AuJq892vb/4xIgq1ehKr9M81Rm8Bt8AI4R0yN8dA62q
-        I5Q0j4fs70EOEvtfEWcEJjjrQNuGeSkFDfNGjOw3/RhDPw44p79Cg1esfVrwfvHuEQcwRH
-        xorQnPjcEjDzuui8HfdXRe+go2rwEbrukAyx4rDLyd4tOrjiB+pMPRCwEbig2w==
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=z6/BAB9p5q4hz+/n012rImtlYhnNEb1aerIdTRWZQ5U=;
+        b=qevAM3ihOFB7k4QkmixlJCeSNX3FV/YJRZltA8wWRs0/xrZ0eRD1c3pJslidWpJoViM69+
+        2vGMNhQtUgLsNvS6led+g9B65k+DD0j9r/uE0oREDJZRIIFVNFQ/FO15Izt8L703baE+6l
+        kIp14BL8vFAD/kcocn/Sp31bHHt8lN12Pq0KONJcEYhV1mnLMCpm544H2Z2lRwRs+AaUC0
+        oWhvSGganj2BJJiqVv8QaugTbfisgeQI+LMbx6pDCETpp4C4DabHYvNs1M6HpZoFX5/5Eh
+        E8GgNkVswJJw693ABmvgyzfVrN+9qZtHUd+ZgPqQTP4i21EqaIzrhPFf/12jyA==
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-        s=2020e; t=1651485765;
+        s=2020e; t=1651485767;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
          to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding;
-        bh=WHd3sYmGrhY6M+5FnEIdkE/HqreC6sBnMmlSZvNnFpc=;
-        b=+vwnH20JgOmFpv2rtlYhJNjVvYFHRhxW0sK2xJEh1imI5MEzSPO2gOOL5a3By6P/N8y+uN
-        l0wpjdogZs4Kc3Dw==
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=z6/BAB9p5q4hz+/n012rImtlYhnNEb1aerIdTRWZQ5U=;
+        b=WeO5qxihZottFUJEZLEhgqozHQL0kBLD5lB+kOkd8WXIQkPXlbrJMWIvLpHlMpTD1Fon5R
+        8nB7eAbGo+LhTEBQ==
 To:     shawnguo@kernel.org, s.hauer@pengutronix.de
 Cc:     Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Fabio Estevam <festevam@gmail.com>,
         NXP Linux Team <linux-imx@nxp.com>,
         Lucas Stach <l.stach@pengutronix.de>,
-        Peng Fan <peng.fan@nxp.com>,
-        Frieder Schrempf <frieder.schrempf@kontron.de>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Dan Carpenter <dan.carpenter@oracle.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v1 0/4] imx8mm display controller power sequence 
-Date:   Mon,  2 May 2022 12:02:29 +0200
-Message-Id: <20220502100233.6023-1-viraj.shah@linutronix.de>
+        Adam Ford <aford173@gmail.com>,
+        Tim Harvey <tharvey@gateworks.com>,
+        Peng Fan <peng.fan@nxp.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v1 4/4] arm64: dts: imx8mm.dtsi: Add resets for dispmix power domain.
+Date:   Mon,  2 May 2022 12:02:33 +0200
+Message-Id: <20220502100233.6023-5-viraj.shah@linutronix.de>
+In-Reply-To: <20220502100233.6023-1-viraj.shah@linutronix.de>
+References: <20220502100233.6023-1-viraj.shah@linutronix.de>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -62,22 +64,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch queue addresses the power sequence of the display controller
-of the imx8mm SoC. The sequence mentioned in example code 5 in section
-5.2.9.5 of reference manual imx-8MMini-yhsc.pdf was not being performed.
-This meant that the display controller was not coming up.
+The resets are controlled from src. From reference manual page
+959, display controller needs DISP_RESET bit to be set to reset
+dispmix.
 
-Viraj Shah (4):
-  soc: imx: gpcv2: Power sequence for DISP
-  soc: imx: imx8m-blk-ctrl: Display Power ON sequence
-  soc: imx: imx8m-blk-ctrl: Add reset bits for mipi dsi phy
-  arm64: dts: imx8mm.dtsi: Add resets for dispmix power domain.
+Signed-off-by: Viraj Shah <viraj.shah@linutronix.de>
+---
+ arch/arm64/boot/dts/freescale/imx8mm.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
 
- arch/arm64/boot/dts/freescale/imx8mm.dtsi |  1 +
- drivers/soc/imx/gpcv2.c                   | 36 +++++++++++++++++++----
- drivers/soc/imx/imx8m-blk-ctrl.c          |  9 ++++--
- 3 files changed, 38 insertions(+), 8 deletions(-)
-
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm.dtsi b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
+index 1ee05677c2dd..11a6cae5bb99 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
+@@ -734,6 +734,7 @@
+ 						assigned-clock-parents = <&clk IMX8MM_SYS_PLL2_1000M>,
+ 									 <&clk IMX8MM_SYS_PLL1_800M>;
+ 						assigned-clock-rates = <500000000>, <200000000>;
++						resets = <&src IMX8MQ_RESET_DISP_RESET>;
+ 					};
+ 
+ 					pgc_mipi: power-domain@11 {
 -- 
 2.20.1
 
