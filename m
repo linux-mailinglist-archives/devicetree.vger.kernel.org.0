@@ -2,187 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B96C1517974
-	for <lists+devicetree@lfdr.de>; Mon,  2 May 2022 23:52:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 860A5517993
+	for <lists+devicetree@lfdr.de>; Mon,  2 May 2022 23:59:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234471AbiEBV4C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 May 2022 17:56:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43768 "EHLO
+        id S232192AbiEBWDV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 May 2022 18:03:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47510 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237495AbiEBVzx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 May 2022 17:55:53 -0400
-Received: from mail-oi1-x22f.google.com (mail-oi1-x22f.google.com [IPv6:2607:f8b0:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBE746247
-        for <devicetree@vger.kernel.org>; Mon,  2 May 2022 14:52:22 -0700 (PDT)
-Received: by mail-oi1-x22f.google.com with SMTP id z8so16541850oix.3
-        for <devicetree@vger.kernel.org>; Mon, 02 May 2022 14:52:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=Itt6Al99ZXx55Z0+z/aCQlFJ/Qfe/PU2t5niCqn7/5o=;
-        b=KMInJEqwKGYo9VD+rJE0s46CLrRx3VyNtX3LYH2SLwXOspWyNxcn9rlbSkgtE86l8u
-         5ocLNSoT3Hhk6px4uPINBumsib5vPUUYsBpVKUCWMFi+PFwtgdYiw0E8G5f22yXdxDaz
-         N5Gf/uXZFkSM3+yxnyL5vmL0UqTMLXuje6AXD0CUjgLedqtmUVNd+sQrmYg/+k87sV42
-         3nq+VHpdTe2MTy1YiGUarcMG2vSLFc05X5TA2iyclcv0/vmMBPUKKvnlIgN9begP2MSC
-         Ue+x2kYdfOEw46yHnDydj6ISm/Ue1htfjqX+nRjXfS94lo3j4dk8ZJPChc76s1/3ee0t
-         tyDg==
+        with ESMTP id S231668AbiEBWDR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 May 2022 18:03:17 -0400
+Received: from mail-oo1-f48.google.com (mail-oo1-f48.google.com [209.85.161.48])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 392471FF;
+        Mon,  2 May 2022 14:59:47 -0700 (PDT)
+Received: by mail-oo1-f48.google.com with SMTP id l9-20020a4abe09000000b0035eb3d4a2aeso1929899oop.0;
+        Mon, 02 May 2022 14:59:47 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=Itt6Al99ZXx55Z0+z/aCQlFJ/Qfe/PU2t5niCqn7/5o=;
-        b=P//IlqaGbmnWNBFCVfoalw71m2B5HJsS7Oq3R07j8ZXT2QCiqeX6y1ZSRKeBgHLrwf
-         w1dE5qf0mhgJa2gz4ybULWueEstscbSZam9oEVUupAHa/Ky2c1P/xr1+VbSuWeiPRKTW
-         OFENud0LGXzCIGaAM2oBEC7IQSN7DBc8IELGG3aPT0OB7bEt3zBn/n5GAm8jJggpOV3F
-         umLJ/4/b6Buj0GezNunDugYR56zKjOb6w3wPHBo2qUlLaoEYb6vV28vEfxGLwjYOpnzk
-         wOKumQ4Fg1a9/UOZB/Jvn5HaX7sO+PBTPmyi1Jpev8vNDyUwIVXZ5auVCCacgo0g9s0K
-         kX8A==
-X-Gm-Message-State: AOAM530Lkz9atextmvN/vXh093TwntYJnqkydY3mGWhxVho4MoQ6jkLd
-        DAtYVfD/NWY4TTHjG4Aqq1LKZA==
-X-Google-Smtp-Source: ABdhPJzbdVQSZgbYyzvz3zoArhe5129vL7dGg1H3rMhLTvKMlXnmgkmSK4GtIZT7xVGzTPb9GMp6dw==
-X-Received: by 2002:a05:6808:aa4:b0:325:91ff:43cc with SMTP id r4-20020a0568080aa400b0032591ff43ccmr582084oij.166.1651528342081;
-        Mon, 02 May 2022 14:52:22 -0700 (PDT)
-Received: from ripper.. (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id k16-20020a544710000000b00325cda1ff8asm2720406oik.9.2022.05.02.14.52.21
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=OfkNLJQzEZ7e5xPqfxUYJG64Wv+bQWkevq09mi7Lx3c=;
+        b=aH+vPtiB8afc82+9H3j0WhIkxZLLh2yOvX15hoqRTWu+pf00Mw6OjT8FxUtH1nOulL
+         avYb0UoOcu/e6YvBWKVpZwu8/U8OZ9XKJqs04JrrZIcjoaqgzf1b3Z1Wb4cPED0aavaQ
+         JZ5kdvUuk3N9jT8YNmJsqxA5DvNnlDl2kykBYPGkwWSfmNjtQ3i9jcZ8qE9SxtHKPoCo
+         kw5SJAR0gvf3pODtIGTHcLYNBWjdNCJLsi3yvDsrj/wuUfkGpMiPa2i+YjqGRfwGqbZd
+         qYmY7ZsosJZ0qP5DqtyOwO8sttB7YQ7FW2EI+Y85w8I6/0swidZ8+KSnC/ZfXy3QPVu/
+         xOHA==
+X-Gm-Message-State: AOAM532+2NohzzVA++hkcrUyRpD6yeDGFWOOpZACaswhTWzCEVbqt6II
+        co+ZJs8cpFaRJy9XJZD+ag==
+X-Google-Smtp-Source: ABdhPJx1LDExPGSXpHz8IMEURBsoMHXT9iZfDmEKZxw3kRgHSp4/DSf2T1IKY9UfgGxULbEh9lAUBQ==
+X-Received: by 2002:a4a:ac45:0:b0:35e:a8f2:7f55 with SMTP id q5-20020a4aac45000000b0035ea8f27f55mr4805941oon.46.1651528786470;
+        Mon, 02 May 2022 14:59:46 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id s1-20020a4ae541000000b0035eb4e5a6c8sm4329464oot.30.2022.05.02.14.59.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 May 2022 14:52:21 -0700 (PDT)
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Sai Prakash Ranjan <quic_saipraka@quicinc.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Mon, 02 May 2022 14:59:46 -0700 (PDT)
+Received: (nullmailer pid 1863055 invoked by uid 1000);
+        Mon, 02 May 2022 21:59:45 -0000
+Date:   Mon, 2 May 2022 16:59:45 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Oleksandr Tyshchenko <olekstysh@gmail.com>
+Cc:     xen-devel@lists.xenproject.org,
+        virtualization@lists.linux-foundation.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-Subject: [PATCH 2/2] soc: qcom: llcc: Add sc8180x and sc8280xp configurations
-Date:   Mon,  2 May 2022 14:54:06 -0700
-Message-Id: <20220502215406.612967-3-bjorn.andersson@linaro.org>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220502215406.612967-1-bjorn.andersson@linaro.org>
-References: <20220502215406.612967-1-bjorn.andersson@linaro.org>
+        linux-arm-kernel@lists.infradead.org,
+        Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>,
+        Jason Wang <jasowang@redhat.com>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Julien Grall <julien@xen.org>, Juergen Gross <jgross@suse.com>,
+        Stefano Stabellini <sstabellini@kernel.org>,
+        "Michael S. Tsirkin" <mst@redhat.com>,
+        Christoph Hellwig <hch@infradead.org>
+Subject: Re: [PATCH V1 4/6] dt-bindings: Add xen,dev-domid property
+ description for xen-grant DMA ops
+Message-ID: <YnBUUclJqkvKsV2o@robh.at.kernel.org>
+References: <1650646263-22047-1-git-send-email-olekstysh@gmail.com>
+ <1650646263-22047-5-git-send-email-olekstysh@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1650646263-22047-5-git-send-email-olekstysh@gmail.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add LLCC configuration data for the SC8180X and SC8280XP platforms,
-based on the downstream tables.
+On Fri, Apr 22, 2022 at 07:51:01PM +0300, Oleksandr Tyshchenko wrote:
+> From: Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>
+> 
+> Introduce Xen specific binding for the virtualized device (e.g. virtio)
+> to be used by Xen grant DMA-mapping layer in the subsequent commit.
+> 
+> This binding indicates that Xen grant mappings scheme needs to be
+> enabled for the device which DT node contains that property and specifies
+> the ID of Xen domain where the corresponding backend resides. The ID
+> (domid) is used as an argument to the grant mapping APIs.
+> 
+> This is needed for the option to restrict memory access using Xen grant
+> mappings to work which primary goal is to enable using virtio devices
+> in Xen guests.
+> 
+> Signed-off-by: Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>
+> ---
+> Changes RFC -> V1:
+>    - update commit subject/description and text in description
+>    - move to devicetree/bindings/arm/
+> ---
+>  .../devicetree/bindings/arm/xen,dev-domid.yaml     | 37 ++++++++++++++++++++++
+>  1 file changed, 37 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/arm/xen,dev-domid.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/xen,dev-domid.yaml b/Documentation/devicetree/bindings/arm/xen,dev-domid.yaml
+> new file mode 100644
+> index 00000000..ef0f747
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/arm/xen,dev-domid.yaml
+> @@ -0,0 +1,37 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/arm/xen,dev-domid.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Xen specific binding for the virtualized device (e.g. virtio)
+> +
+> +maintainers:
+> +  - Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>
+> +
+> +select: true
 
-Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
----
+Do we really need to support this property everywhere?
 
-Changs since v1:
-- Updated tables according to documentation - thanks Sai!
+> +
+> +description:
+> +  This binding indicates that Xen grant mappings scheme needs to be enabled
+> +  for that device and specifies the ID of Xen domain where the corresponding
+> +  device (backend) resides. This is needed for the option to restrict memory
+> +  access using Xen grant mappings to work.
+> +
+> +properties:
+> +  xen,dev-domid:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      The domid (domain ID) of the domain where the device (backend) is running.
+> +
+> +additionalProperties: true
+> +
+> +examples:
+> +  - |
+> +    virtio_block@3000 {
 
- drivers/soc/qcom/llcc-qcom.c       | 60 ++++++++++++++++++++++++++++++
- include/linux/soc/qcom/llcc-qcom.h |  2 +
- 2 files changed, 62 insertions(+)
+virtio@3000
 
-diff --git a/drivers/soc/qcom/llcc-qcom.c b/drivers/soc/qcom/llcc-qcom.c
-index 85ba8209b182..4b143cf7b4ce 100644
---- a/drivers/soc/qcom/llcc-qcom.c
-+++ b/drivers/soc/qcom/llcc-qcom.c
-@@ -130,6 +130,50 @@ static const struct llcc_slice_config sc7280_data[] =  {
- 	{ LLCC_MODPE,    29, 64,  1, 1, 0x3f, 0x0, 0, 0, 0, 1, 0, 0},
- };
- 
-+static const struct llcc_slice_config sc8180x_data[] = {
-+	{ LLCC_CPUSS,    1, 6144,  1, 1, 0xfff, 0x0,   0, 0, 0, 1, 1 },
-+	{ LLCC_VIDSC0,   2, 512,   2, 1, 0xfff, 0x0,   0, 0, 0, 1, 0 },
-+	{ LLCC_VIDSC1,   3, 512,   2, 1, 0xfff, 0x0,   0, 0, 0, 1, 0 },
-+	{ LLCC_AUDIO,    6, 1024,  1, 1, 0xfff, 0x0,   0, 0, 0, 1, 0 },
-+	{ LLCC_MDMHPGRW, 7, 3072,  1, 1, 0x3ff, 0xc00, 0, 0, 0, 1, 0 },
-+	{ LLCC_MDM,      8, 3072,  1, 1, 0xfff, 0x0,   0, 0, 0, 1, 0 },
-+	{ LLCC_MODHW,    9, 1024,  1, 1, 0xfff, 0x0,   0, 0, 0, 1, 0 },
-+	{ LLCC_CMPT,     10, 6144, 1, 1, 0xfff, 0x0,   0, 0, 0, 1, 0 },
-+	{ LLCC_GPUHTW,   11, 1024, 1, 1, 0xfff, 0x0,   0, 0, 0, 1, 0 },
-+	{ LLCC_GPU,      12, 5120, 1, 1, 0xfff, 0x0,   0, 0, 0, 1, 0 },
-+	{ LLCC_MMUHWT,   13, 1024, 1, 1, 0xfff, 0x0,   0, 0, 0, 0, 1 },
-+	{ LLCC_CMPTDMA,  15, 6144, 1, 1, 0xfff, 0x0,   0, 0, 0, 1, 0 },
-+	{ LLCC_DISP,     16, 6144, 1, 1, 0xfff, 0x0,   0, 0, 0, 1, 0 },
-+	{ LLCC_VIDFW,    17, 1024, 1, 1, 0xfff, 0x0,   0, 0, 0, 1, 0 },
-+	{ LLCC_MDMHPFX,  20, 1024, 2, 1, 0xfff, 0x0,   0, 0, 0, 1, 0 },
-+	{ LLCC_MDMPNG,   21, 1024, 0, 1, 0xc,   0x0,   0, 0, 0, 1, 0 },
-+	{ LLCC_AUDHW,    22, 1024, 1, 1, 0xfff, 0x0,   0, 0, 0, 1, 0 },
-+	{ LLCC_NPU,      23, 6144, 1, 1, 0xfff, 0x0,   0, 0, 0, 1, 0 },
-+	{ LLCC_WLHW,     24, 6144, 1, 1, 0xfff, 0x0,   0, 0, 0, 1, 0 },
-+	{ LLCC_MODPE,    29, 512,  1, 1, 0xc,   0x0,   0, 0, 0, 1, 0 },
-+	{ LLCC_APTCM,    30, 512,  3, 1, 0x0,   0x1,   1, 0, 0, 1, 0 },
-+	{ LLCC_WRCACHE,  31, 128,  1, 1, 0xfff, 0x0,   0, 0, 0, 0, 0 },
-+};
-+
-+static const struct llcc_slice_config sc8280xp_data[] = {
-+	{ LLCC_CPUSS,    1,  6144, 1, 1, 0xfff, 0x0, 0, 0, 0, 1, 1, 0 },
-+	{ LLCC_VIDSC0,   2,  512,  3, 1, 0xfff, 0x0, 0, 0, 0, 1, 0, 0 },
-+	{ LLCC_AUDIO,    6,  1024, 1, 1, 0xfff, 0x0, 0, 0, 0, 0, 0, 0 },
-+	{ LLCC_CMPT,     10, 6144, 1, 1, 0xfff, 0x0, 0, 0, 0, 0, 0, 0 },
-+	{ LLCC_GPUHTW,   11, 1024, 1, 1, 0xfff, 0x0, 0, 0, 0, 1, 0, 0 },
-+	{ LLCC_GPU,      12, 4096, 1, 1, 0xfff, 0x0, 0, 0, 0, 1, 0, 1 },
-+	{ LLCC_MMUHWT,   13, 1024, 1, 1, 0xfff, 0x0, 0, 0, 0, 0, 1, 0 },
-+	{ LLCC_DISP,     16, 6144, 1, 1, 0xfff, 0x0, 0, 0, 0, 1, 0, 0 },
-+	{ LLCC_AUDHW,    22, 2048, 1, 1, 0xfff, 0x0, 0, 0, 0, 1, 0, 0 },
-+	{ LLCC_DRE,      26, 1024, 1, 1, 0xfff, 0x0, 0, 0, 0, 1, 0, 0 },
-+	{ LLCC_CVP,      28, 512,  3, 1, 0xfff, 0x0, 0, 0, 0, 1, 0, 0 },
-+	{ LLCC_APTCM,    30, 1024, 3, 1, 0x0,   0x1, 1, 0, 0, 1, 0, 0 },
-+	{ LLCC_WRCACHE,  31, 1024, 1, 1, 0xfff, 0x0, 0, 0, 0, 0, 1, 0 },
-+	{ LLCC_CVPFW,    32, 512,  1, 0, 0xfff, 0x0, 0, 0, 0, 1, 0, 0 },
-+	{ LLCC_CPUSS1,   33, 2048, 1, 1, 0xfff, 0x0, 0, 0, 0, 1, 0, 0 },
-+	{ LLCC_CPUHWT,   36, 512,  1, 1, 0xfff, 0x0, 0, 0, 0, 0, 1, 0 },
-+};
-+
- static const struct llcc_slice_config sdm845_data[] =  {
- 	{ LLCC_CPUSS,    1,  2816, 1, 0, 0xffc, 0x2,   0, 0, 1, 1, 1 },
- 	{ LLCC_VIDSC0,   2,  512,  2, 1, 0x0,   0x0f0, 0, 0, 1, 1, 0 },
-@@ -276,6 +320,20 @@ static const struct qcom_llcc_config sc7280_cfg = {
- 	.reg_offset	= llcc_v1_2_reg_offset,
- };
- 
-+static const struct qcom_llcc_config sc8180x_cfg = {
-+	.sct_data	= sc8180x_data,
-+	.size		= ARRAY_SIZE(sc8180x_data),
-+	.need_llcc_cfg	= true,
-+	.reg_offset	= llcc_v1_2_reg_offset,
-+};
-+
-+static const struct qcom_llcc_config sc8280xp_cfg = {
-+	.sct_data	= sc8280xp_data,
-+	.size		= ARRAY_SIZE(sc8280xp_data),
-+	.need_llcc_cfg	= true,
-+	.reg_offset	= llcc_v1_2_reg_offset,
-+};
-+
- static const struct qcom_llcc_config sdm845_cfg = {
- 	.sct_data	= sdm845_data,
- 	.size		= ARRAY_SIZE(sdm845_data),
-@@ -741,6 +799,8 @@ static int qcom_llcc_probe(struct platform_device *pdev)
- static const struct of_device_id qcom_llcc_of_match[] = {
- 	{ .compatible = "qcom,sc7180-llcc", .data = &sc7180_cfg },
- 	{ .compatible = "qcom,sc7280-llcc", .data = &sc7280_cfg },
-+	{ .compatible = "qcom,sc8180x-llcc", .data = &sc8180x_cfg },
-+	{ .compatible = "qcom,sc8280xp-llcc", .data = &sc8280xp_cfg },
- 	{ .compatible = "qcom,sdm845-llcc", .data = &sdm845_cfg },
- 	{ .compatible = "qcom,sm6350-llcc", .data = &sm6350_cfg },
- 	{ .compatible = "qcom,sm8150-llcc", .data = &sm8150_cfg },
-diff --git a/include/linux/soc/qcom/llcc-qcom.h b/include/linux/soc/qcom/llcc-qcom.h
-index 0bc21ee58fac..9ed5384c5ca1 100644
---- a/include/linux/soc/qcom/llcc-qcom.h
-+++ b/include/linux/soc/qcom/llcc-qcom.h
-@@ -29,6 +29,8 @@
- #define LLCC_AUDHW       22
- #define LLCC_NPU         23
- #define LLCC_WLHW        24
-+#define LLCC_PIMEM       25
-+#define LLCC_DRE         26
- #define LLCC_CVP         28
- #define LLCC_MODPE       29
- #define LLCC_APTCM       30
--- 
-2.35.1
+> +            compatible = "virtio,mmio";
+> +            reg = <0x3000 0x100>;
+> +            interrupts = <41>;
+> +
+> +            /* The device is located in Xen domain with ID 1 */
+> +            xen,dev-domid = <1>;
 
+This fails validation:
+
+Documentation/devicetree/bindings/arm/xen,dev-domid.example.dtb: virtio_block@3000: xen,dev-domid: [[1]] is not of type 'object'
+        From schema: /home/rob/proj/git/linux-dt/Documentation/devicetree/bindings/virtio/mmio.yaml
+
+The property has to be added to the virtio/mmio.yaml schema. If it is 
+not needed elsewhere, then *just* add the property there.
+
+Rob
