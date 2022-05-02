@@ -2,154 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D44A517414
-	for <lists+devicetree@lfdr.de>; Mon,  2 May 2022 18:17:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 942D55173D2
+	for <lists+devicetree@lfdr.de>; Mon,  2 May 2022 18:09:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1386270AbiEBQU4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 May 2022 12:20:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34654 "EHLO
+        id S241486AbiEBQNA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 May 2022 12:13:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53474 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1386260AbiEBQUx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 May 2022 12:20:53 -0400
-X-Greylist: delayed 497 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 02 May 2022 09:17:21 PDT
-Received: from 2.mo548.mail-out.ovh.net (2.mo548.mail-out.ovh.net [178.33.255.19])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D2AAE0D1
-        for <devicetree@vger.kernel.org>; Mon,  2 May 2022 09:17:21 -0700 (PDT)
-Received: from mxplan5.mail.ovh.net (unknown [10.109.143.206])
-        by mo548.mail-out.ovh.net (Postfix) with ESMTPS id 40C7320A88;
-        Mon,  2 May 2022 16:09:01 +0000 (UTC)
-Received: from kaod.org (37.59.142.107) by DAG4EX1.mxp5.local (172.16.2.31)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.24; Mon, 2 May
- 2022 18:08:59 +0200
-Authentication-Results: garm.ovh; auth=pass (GARM-107S0015a36cd29-1587-4259-883a-5c3137477e16,
-                    1C738C3314058F8CE8CF02D37F1FC3678EA14F63) smtp.auth=clg@kaod.org
-X-OVh-ClientIp: 82.64.250.170
-Message-ID: <449f47d2-f700-e71d-996b-ce30c6906d89@kaod.org>
-Date:   Mon, 2 May 2022 18:08:56 +0200
+        with ESMTP id S240612AbiEBQM7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 May 2022 12:12:59 -0400
+Received: from mail-qv1-f46.google.com (mail-qv1-f46.google.com [209.85.219.46])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99598DEEF;
+        Mon,  2 May 2022 09:09:30 -0700 (PDT)
+Received: by mail-qv1-f46.google.com with SMTP id h13so367687qvh.0;
+        Mon, 02 May 2022 09:09:30 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Kf6KW4S6YQWsX5TsEsk6lp3YPZEpQJi8AUa4UmH89BM=;
+        b=LI0xjWE8saSUCqQzEpxmbhxlcaKpb42TA5e8pImjvH99bSvAXJEHTS5gfqHKtqGS/4
+         jkRkQ+eiYIjcfMBoUG97MXbDN0bF5+lY0zcr2FWXWcrVHACQhzW9eOuGBz/m2r5c/qQM
+         H1QerBe/YO+B5UTY/n4gJ/EYDl10qKN/uC0Wj5EBjQhQGapXNUz8wCOAYRNt5SVhpkyN
+         zieSUjb5Wwx4fs3/F8RmmY82xL9ef+GRJp2DUYdaXvMtA43u32PKBEi1VjaByvwDRPPd
+         yXqpYCajxJjPPGALS1vDPIS5LCPpxqbFqawnyrDPE4eSVKOLPdlJGvmnME0pl47C3NJ8
+         Lljw==
+X-Gm-Message-State: AOAM532tCsMSOv59VJ0HMXhKmRckC5pnroGZTdBcyGCvmPY+rEYUNmBT
+        kJfHAC2XDlfvqsy8g/FXrpRM8BbAknyKjA==
+X-Google-Smtp-Source: ABdhPJwolo74bSZmc3MtBo0s0ucoofegWJ5YPatSd62DbAEJgv1I3gpZ/6FbZPwlBeX97vgvo9zanA==
+X-Received: by 2002:a0c:e393:0:b0:45a:8c08:a5e6 with SMTP id a19-20020a0ce393000000b0045a8c08a5e6mr4689034qvl.115.1651507769270;
+        Mon, 02 May 2022 09:09:29 -0700 (PDT)
+Received: from mail-yb1-f169.google.com (mail-yb1-f169.google.com. [209.85.219.169])
+        by smtp.gmail.com with ESMTPSA id 5-20020a05620a048500b0069fd9de088esm2351046qkr.93.2022.05.02.09.09.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 02 May 2022 09:09:28 -0700 (PDT)
+Received: by mail-yb1-f169.google.com with SMTP id s30so26822300ybi.8;
+        Mon, 02 May 2022 09:09:28 -0700 (PDT)
+X-Received: by 2002:a05:6902:389:b0:633:31c1:d0f7 with SMTP id
+ f9-20020a056902038900b0063331c1d0f7mr10476491ybs.543.1651507768250; Mon, 02
+ May 2022 09:09:28 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.0
-Subject: Re: [PATCH v5 02/11] dt-bindings: spi: Add Aspeed SMC controllers
- device tree binding
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>
-CC:     Joel Stanley <joel@jms.id.au>,
-        Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Pratyush Yadav <p.yadav@ti.com>,
-        Mark Brown <broonie@kernel.org>,
-        Tudor Ambarus <tudor.ambarus@microchip.com>,
-        <linux-kernel@vger.kernel.org>, Tao Ren <rentao.bupt@gmail.com>,
-        Andrew Jeffery <andrew@aj.id.au>, <linux-spi@vger.kernel.org>,
+References: <20220501112926.47024-1-biju.das.jz@bp.renesas.com> <20220501112926.47024-3-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20220501112926.47024-3-biju.das.jz@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Mon, 2 May 2022 18:09:16 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdVp9ddi+JR3_tNZs1Km8Xu_++DGZFwtpHH6AjRb73rPKA@mail.gmail.com>
+Message-ID: <CAMuHMdVp9ddi+JR3_tNZs1Km8Xu_++DGZFwtpHH6AjRb73rPKA@mail.gmail.com>
+Subject: Re: [PATCH 2/6] arm64: dts: renesas: r9a07g043: Add RSPI{0,1,2} nodes
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        <linux-mtd@lists.infradead.org>,
-        Jae Hyun Yoo <quic_jaehyoo@quicinc.com>,
-        <linux-aspeed@lists.ozlabs.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>
-References: <20220502081341.203369-1-clg@kaod.org>
- <20220502081341.203369-3-clg@kaod.org>
- <1651505609.452113.1161768.nullmailer@robh.at.kernel.org>
-From:   =?UTF-8?Q?C=c3=a9dric_Le_Goater?= <clg@kaod.org>
-In-Reply-To: <1651505609.452113.1161768.nullmailer@robh.at.kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [37.59.142.107]
-X-ClientProxiedBy: DAG2EX2.mxp5.local (172.16.2.12) To DAG4EX1.mxp5.local
- (172.16.2.31)
-X-Ovh-Tracer-GUID: 256f9c92-6a2e-4112-84d2-d224bad78371
-X-Ovh-Tracer-Id: 152277964116167437
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedvfedrvdehgdeljecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefkffggfgfuvfevfhfhjggtgfhisehtkeertddtfeejnecuhfhrohhmpeevrogurhhitggpnfgvpgfiohgrthgvrhcuoegtlhhgsehkrghougdrohhrgheqnecuggftrfgrthhtvghrnhepudehkedtudfhgfelgffggfeffeefgefhudejvdekveeuveegieelteejiedugeevnecuffhomhgrihhnpehoiihlrggsshdrohhrghenucfkpheptddrtddrtddrtddpfeejrdehledrudegvddruddtjeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhhouggvpehsmhhtphhouhhtpdhhvghlohepmhigphhlrghnhedrmhgrihhlrdhovhhhrdhnvghtpdhinhgvtheptddrtddrtddrtddpmhgrihhlfhhrohhmpegtlhhgsehkrghougdrohhrghdpnhgspghrtghpthhtohepuddprhgtphhtthhopehrihgthhgrrhgusehnohgurdgrth
-X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 5/2/22 17:33, Rob Herring wrote:
-> On Mon, 02 May 2022 10:13:32 +0200, Cédric Le Goater wrote:
->> The "interrupt" property is optional because it is only necessary for
->> controllers supporting DMAs (Not implemented yet in the new driver).
->>
->> Cc: Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>
->> Tested-by: Joel Stanley <joel@jms.id.au>
->> Tested-by: Tao Ren <rentao.bupt@gmail.com>
->> Tested-by: Jae Hyun Yoo <quic_jaehyoo@quicinc.com>
->> Reviewed-by: Joel Stanley <joel@jms.id.au>
->> Reviewed-by: Rob Herring <robh@kernel.org>
->> Signed-off-by: Cédric Le Goater <clg@kaod.org>
->> ---
->>   .../bindings/spi/aspeed,ast2600-fmc.yaml      | 82 +++++++++++++++++++
->>   MAINTAINERS                                   |  9 ++
->>   2 files changed, 91 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/spi/aspeed,ast2600-fmc.yaml
->>
-> 
-> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
-> 
-> yamllint warnings/errors:
-> ./Documentation/devicetree/bindings/spi/aspeed,ast2600-fmc.yaml:62:1: [error] syntax error: found character '\t' that cannot start any token (syntax)
+On Sun, May 1, 2022 at 1:29 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
+> Add RSPI{0,1,2} nodes to R9A07G043 (RZ/G2UL) SoC DTSI.
+>
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
 
-drat. I forgot to rerun the check after prettifying the example.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v5.19.
 
-Will resend a v6 without the tabs.
+Gr{oetje,eeting}s,
 
-Thanks,
+                        Geert
 
-C.
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-> 
-> dtschema/dtc warnings/errors:
-> make[1]: *** Deleting file 'Documentation/devicetree/bindings/spi/aspeed,ast2600-fmc.example.dts'
-> Traceback (most recent call last):
->    File "/usr/local/bin/dt-extract-example", line 52, in <module>
->      binding = yaml.load(open(args.yamlfile, encoding='utf-8').read())
->    File "/usr/local/lib/python3.10/dist-packages/ruamel/yaml/main.py", line 434, in load
->      return constructor.get_single_data()
->    File "/usr/local/lib/python3.10/dist-packages/ruamel/yaml/constructor.py", line 119, in get_single_data
->      node = self.composer.get_single_node()
->    File "_ruamel_yaml.pyx", line 706, in _ruamel_yaml.CParser.get_single_node
->    File "_ruamel_yaml.pyx", line 724, in _ruamel_yaml.CParser._compose_document
->    File "_ruamel_yaml.pyx", line 775, in _ruamel_yaml.CParser._compose_node
->    File "_ruamel_yaml.pyx", line 889, in _ruamel_yaml.CParser._compose_mapping_node
->    File "_ruamel_yaml.pyx", line 773, in _ruamel_yaml.CParser._compose_node
->    File "_ruamel_yaml.pyx", line 848, in _ruamel_yaml.CParser._compose_sequence_node
->    File "_ruamel_yaml.pyx", line 904, in _ruamel_yaml.CParser._parse_next_event
-> ruamel.yaml.scanner.ScannerError: while scanning a block scalar
->    in "<unicode string>", line 49, column 5
-> found a tab character where an indentation space is expected
->    in "<unicode string>", line 62, column 1
-> make[1]: *** [Documentation/devicetree/bindings/Makefile:26: Documentation/devicetree/bindings/spi/aspeed,ast2600-fmc.example.dts] Error 1
-> make[1]: *** Waiting for unfinished jobs....
-> ./Documentation/devicetree/bindings/spi/aspeed,ast2600-fmc.yaml:  while scanning a block scalar
->    in "<unicode string>", line 49, column 5
-> found a tab character where an indentation space is expected
->    in "<unicode string>", line 62, column 1
-> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/spi/aspeed,ast2600-fmc.yaml: ignoring, error parsing file
-> make: *** [Makefile:1401: dt_binding_check] Error 2
-> 
-> doc reference errors (make refcheckdocs):
-> 
-> See https://patchwork.ozlabs.org/patch/
-> 
-> This check can fail if there are any dependencies. The base for a patch
-> series is generally the most recent rc1.
-> 
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> date:
-> 
-> pip3 install dtschema --upgrade
-> 
-> Please check and re-submit.
-> 
-
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
