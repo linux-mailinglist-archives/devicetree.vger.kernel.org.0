@@ -2,108 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4BF0F5173AF
-	for <lists+devicetree@lfdr.de>; Mon,  2 May 2022 18:04:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D44A517414
+	for <lists+devicetree@lfdr.de>; Mon,  2 May 2022 18:17:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349353AbiEBQHo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 May 2022 12:07:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47626 "EHLO
+        id S1386270AbiEBQU4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 May 2022 12:20:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34654 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237266AbiEBQHn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 May 2022 12:07:43 -0400
-Received: from mail-oi1-f180.google.com (mail-oi1-f180.google.com [209.85.167.180])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4BE70BC1E;
-        Mon,  2 May 2022 09:04:14 -0700 (PDT)
-Received: by mail-oi1-f180.google.com with SMTP id r8so15638135oib.5;
-        Mon, 02 May 2022 09:04:14 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=noR4HJFk7F0HSQNOMAQMG2M3tgi4T2ok0ZfyfqSOv20=;
-        b=MDAAafoaKw+ZpEgRfHoQ/UhiczJMpbkVCzo5BWFRDhU7S+4sHzUkBT8c+VhxHpScez
-         je1Bn1yjd0tR9X+UacR4iP+2ZuQIyD3XP2UnLSz6XEfyuNnQT5Q9u3sI3ouR0eKNST09
-         GZ2QaHjGeOSBzAubof9nQIVMtXJQBHZcxe78GHmQm2ZEBJj5PlcrZAvQj14upXwD77bh
-         F7CzxVQOXi6ob+llAu1zVI+5DBcCvTWBFUIrDyUPrNz3BCXrjkn4ElnTAKDukc1BGKid
-         MmPNt7Psj779KfyhJ+wRgpWmCw8s6Qg2o0TbzjTcNEeF2TggWRhIvTgQrSpJOntd3PHG
-         0Gwg==
-X-Gm-Message-State: AOAM533YwXklBK5kwJ6nqef6taUZ6OAXi/fSNd7jx583vjm9KKX6sjSz
-        2qMh9pbuJLi537ZTgA3UzQO2x+F8dg==
-X-Google-Smtp-Source: ABdhPJyp3N6PwcEyY2JXcQYDhoqtY3kwoqFv7iQuO063fxQxQ8tSr8xXiV7qNElm4YmaKCFaLGRjOA==
-X-Received: by 2002:a05:6808:1b0a:b0:325:ee07:e289 with SMTP id bx10-20020a0568081b0a00b00325ee07e289mr2987836oib.281.1651507453547;
-        Mon, 02 May 2022 09:04:13 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id e12-20020a4ae0cc000000b0035eb4e5a6d9sm3957814oot.47.2022.05.02.09.04.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 May 2022 09:04:12 -0700 (PDT)
-Received: (nullmailer pid 1215744 invoked by uid 1000);
-        Mon, 02 May 2022 16:04:12 -0000
-Date:   Mon, 2 May 2022 11:04:11 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     =?iso-8859-1?Q?N=EDcolas_F=2E_R=2E_A=2E?= Prado 
-        <nfraprado@collabora.com>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, kernel@collabora.com,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Tinghan Shen <tinghan.shen@mediatek.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        linux-remoteproc@vger.kernel.org
-Subject: Re: [PATCH 2/2] dt-bindings: remoteproc: mediatek: Add optional
- memory-region to mtk,scp
-Message-ID: <YnAA+7eqP/WzGrhQ@robh.at.kernel.org>
-References: <20220429211111.2214119-1-nfraprado@collabora.com>
- <20220429211111.2214119-3-nfraprado@collabora.com>
+        with ESMTP id S1386260AbiEBQUx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 May 2022 12:20:53 -0400
+X-Greylist: delayed 497 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 02 May 2022 09:17:21 PDT
+Received: from 2.mo548.mail-out.ovh.net (2.mo548.mail-out.ovh.net [178.33.255.19])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D2AAE0D1
+        for <devicetree@vger.kernel.org>; Mon,  2 May 2022 09:17:21 -0700 (PDT)
+Received: from mxplan5.mail.ovh.net (unknown [10.109.143.206])
+        by mo548.mail-out.ovh.net (Postfix) with ESMTPS id 40C7320A88;
+        Mon,  2 May 2022 16:09:01 +0000 (UTC)
+Received: from kaod.org (37.59.142.107) by DAG4EX1.mxp5.local (172.16.2.31)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.24; Mon, 2 May
+ 2022 18:08:59 +0200
+Authentication-Results: garm.ovh; auth=pass (GARM-107S0015a36cd29-1587-4259-883a-5c3137477e16,
+                    1C738C3314058F8CE8CF02D37F1FC3678EA14F63) smtp.auth=clg@kaod.org
+X-OVh-ClientIp: 82.64.250.170
+Message-ID: <449f47d2-f700-e71d-996b-ce30c6906d89@kaod.org>
+Date:   Mon, 2 May 2022 18:08:56 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.0
+Subject: Re: [PATCH v5 02/11] dt-bindings: spi: Add Aspeed SMC controllers
+ device tree binding
+Content-Language: en-US
+To:     Rob Herring <robh@kernel.org>
+CC:     Joel Stanley <joel@jms.id.au>,
+        Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Pratyush Yadav <p.yadav@ti.com>,
+        Mark Brown <broonie@kernel.org>,
+        Tudor Ambarus <tudor.ambarus@microchip.com>,
+        <linux-kernel@vger.kernel.org>, Tao Ren <rentao.bupt@gmail.com>,
+        Andrew Jeffery <andrew@aj.id.au>, <linux-spi@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        <linux-mtd@lists.infradead.org>,
+        Jae Hyun Yoo <quic_jaehyoo@quicinc.com>,
+        <linux-aspeed@lists.ozlabs.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>
+References: <20220502081341.203369-1-clg@kaod.org>
+ <20220502081341.203369-3-clg@kaod.org>
+ <1651505609.452113.1161768.nullmailer@robh.at.kernel.org>
+From:   =?UTF-8?Q?C=c3=a9dric_Le_Goater?= <clg@kaod.org>
+In-Reply-To: <1651505609.452113.1161768.nullmailer@robh.at.kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220429211111.2214119-3-nfraprado@collabora.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
-        version=3.4.6
+X-Originating-IP: [37.59.142.107]
+X-ClientProxiedBy: DAG2EX2.mxp5.local (172.16.2.12) To DAG4EX1.mxp5.local
+ (172.16.2.31)
+X-Ovh-Tracer-GUID: 256f9c92-6a2e-4112-84d2-d224bad78371
+X-Ovh-Tracer-Id: 152277964116167437
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedvfedrvdehgdeljecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefkffggfgfuvfevfhfhjggtgfhisehtkeertddtfeejnecuhfhrohhmpeevrogurhhitggpnfgvpgfiohgrthgvrhcuoegtlhhgsehkrghougdrohhrgheqnecuggftrfgrthhtvghrnhepudehkedtudfhgfelgffggfeffeefgefhudejvdekveeuveegieelteejiedugeevnecuffhomhgrihhnpehoiihlrggsshdrohhrghenucfkpheptddrtddrtddrtddpfeejrdehledrudegvddruddtjeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhhouggvpehsmhhtphhouhhtpdhhvghlohepmhigphhlrghnhedrmhgrihhlrdhovhhhrdhnvghtpdhinhgvtheptddrtddrtddrtddpmhgrihhlfhhrohhmpegtlhhgsehkrghougdrohhrghdpnhgspghrtghpthhtohepuddprhgtphhtthhopehrihgthhgrrhgusehnohgurdgrth
+X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 29, 2022 at 05:11:10PM -0400, Nícolas F. R. A. Prado wrote:
-> The SCP co-processor can optionally be passed a reserved memory region
-> to use. Add this property in the dt-binding.
+On 5/2/22 17:33, Rob Herring wrote:
+> On Mon, 02 May 2022 10:13:32 +0200, CÃ©dric Le Goater wrote:
+>> The "interrupt" property is optional because it is only necessary for
+>> controllers supporting DMAs (Not implemented yet in the new driver).
+>>
+>> Cc: Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>
+>> Tested-by: Joel Stanley <joel@jms.id.au>
+>> Tested-by: Tao Ren <rentao.bupt@gmail.com>
+>> Tested-by: Jae Hyun Yoo <quic_jaehyoo@quicinc.com>
+>> Reviewed-by: Joel Stanley <joel@jms.id.au>
+>> Reviewed-by: Rob Herring <robh@kernel.org>
+>> Signed-off-by: CÃ©dric Le Goater <clg@kaod.org>
+>> ---
+>>   .../bindings/spi/aspeed,ast2600-fmc.yaml      | 82 +++++++++++++++++++
+>>   MAINTAINERS                                   |  9 ++
+>>   2 files changed, 91 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/spi/aspeed,ast2600-fmc.yaml
+>>
 > 
-> Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
-> ---
+> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> on your patch (DT_CHECKER_FLAGS is new in v5.13):
 > 
->  Documentation/devicetree/bindings/remoteproc/mtk,scp.yaml | 4 ++++
->  1 file changed, 4 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/remoteproc/mtk,scp.yaml b/Documentation/devicetree/bindings/remoteproc/mtk,scp.yaml
-> index ec9ddeb6ca2c..64a9d2c7ed0d 100644
-> --- a/Documentation/devicetree/bindings/remoteproc/mtk,scp.yaml
-> +++ b/Documentation/devicetree/bindings/remoteproc/mtk,scp.yaml
-> @@ -51,6 +51,10 @@ properties:
->    interrupts:
->      maxItems: 1
->  
-> +  memory-region:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
+> yamllint warnings/errors:
+> ./Documentation/devicetree/bindings/spi/aspeed,ast2600-fmc.yaml:62:1: [error] syntax error: found character '\t' that cannot start any token (syntax)
 
-memory-region has a type already, so drop. What's needed is how many 
-entries and what they are if more than 1.
+drat. I forgot to rerun the check after prettifying the example.
 
-> +    description: phandle to reserved memory region.
-> +
->  required:
->    - compatible
->    - reg
-> -- 
-> 2.36.0
+Will resend a v6 without the tabs.
+
+Thanks,
+
+C.
+
 > 
+> dtschema/dtc warnings/errors:
+> make[1]: *** Deleting file 'Documentation/devicetree/bindings/spi/aspeed,ast2600-fmc.example.dts'
+> Traceback (most recent call last):
+>    File "/usr/local/bin/dt-extract-example", line 52, in <module>
+>      binding = yaml.load(open(args.yamlfile, encoding='utf-8').read())
+>    File "/usr/local/lib/python3.10/dist-packages/ruamel/yaml/main.py", line 434, in load
+>      return constructor.get_single_data()
+>    File "/usr/local/lib/python3.10/dist-packages/ruamel/yaml/constructor.py", line 119, in get_single_data
+>      node = self.composer.get_single_node()
+>    File "_ruamel_yaml.pyx", line 706, in _ruamel_yaml.CParser.get_single_node
+>    File "_ruamel_yaml.pyx", line 724, in _ruamel_yaml.CParser._compose_document
+>    File "_ruamel_yaml.pyx", line 775, in _ruamel_yaml.CParser._compose_node
+>    File "_ruamel_yaml.pyx", line 889, in _ruamel_yaml.CParser._compose_mapping_node
+>    File "_ruamel_yaml.pyx", line 773, in _ruamel_yaml.CParser._compose_node
+>    File "_ruamel_yaml.pyx", line 848, in _ruamel_yaml.CParser._compose_sequence_node
+>    File "_ruamel_yaml.pyx", line 904, in _ruamel_yaml.CParser._parse_next_event
+> ruamel.yaml.scanner.ScannerError: while scanning a block scalar
+>    in "<unicode string>", line 49, column 5
+> found a tab character where an indentation space is expected
+>    in "<unicode string>", line 62, column 1
+> make[1]: *** [Documentation/devicetree/bindings/Makefile:26: Documentation/devicetree/bindings/spi/aspeed,ast2600-fmc.example.dts] Error 1
+> make[1]: *** Waiting for unfinished jobs....
+> ./Documentation/devicetree/bindings/spi/aspeed,ast2600-fmc.yaml:  while scanning a block scalar
+>    in "<unicode string>", line 49, column 5
+> found a tab character where an indentation space is expected
+>    in "<unicode string>", line 62, column 1
+> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/spi/aspeed,ast2600-fmc.yaml: ignoring, error parsing file
+> make: *** [Makefile:1401: dt_binding_check] Error 2
 > 
+> doc reference errors (make refcheckdocs):
+> 
+> See https://patchwork.ozlabs.org/patch/
+> 
+> This check can fail if there are any dependencies. The base for a patch
+> series is generally the most recent rc1.
+> 
+> If you already ran 'make dt_binding_check' and didn't see the above
+> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> date:
+> 
+> pip3 install dtschema --upgrade
+> 
+> Please check and re-submit.
+> 
+
