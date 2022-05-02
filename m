@@ -2,48 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 812535178F9
-	for <lists+devicetree@lfdr.de>; Mon,  2 May 2022 23:18:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0716F517916
+	for <lists+devicetree@lfdr.de>; Mon,  2 May 2022 23:26:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243882AbiEBVWS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 May 2022 17:22:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55558 "EHLO
+        id S1387639AbiEBV3m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 May 2022 17:29:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58706 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230422AbiEBVWR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 May 2022 17:22:17 -0400
-Received: from relay07.th.seeweb.it (relay07.th.seeweb.it [IPv6:2001:4b7a:2000:18::168])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2AEC9BC3F
-        for <devicetree@vger.kernel.org>; Mon,  2 May 2022 14:18:47 -0700 (PDT)
-Received: from [192.168.1.101] (abxh26.neoplus.adsl.tpnet.pl [83.9.1.26])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 1B8673F585;
-        Mon,  2 May 2022 23:18:43 +0200 (CEST)
-Message-ID: <5007e01d-03b0-1bab-6dae-8b24a369aee5@somainline.org>
-Date:   Mon, 2 May 2022 23:18:42 +0200
+        with ESMTP id S1387638AbiEBV3j (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 May 2022 17:29:39 -0400
+Received: from mail-yw1-x1134.google.com (mail-yw1-x1134.google.com [IPv6:2607:f8b0:4864:20::1134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A4A2DE94
+        for <devicetree@vger.kernel.org>; Mon,  2 May 2022 14:26:09 -0700 (PDT)
+Received: by mail-yw1-x1134.google.com with SMTP id 00721157ae682-2f7ca2ce255so161897657b3.7
+        for <devicetree@vger.kernel.org>; Mon, 02 May 2022 14:26:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=NHBmXpT7UctLtbcxojCov04EssvHKmYOYEKIBGETnkw=;
+        b=uNXT/RzGT3RUbkdrMHAt0zpdtVc+lqUR5WaYVWKoH1zEMxp6uRLvJQSgvlelmCs//k
+         H/NrwYhVNFTX4b929guY9qWcsQTaryYM5W0WGwu/5J4hTfq79ZYikt/QXH/AJDoWXA7X
+         EKy6VdpUAXQEF7kdaxwT/mIriTKCDyCZDPmeKcETkogXOaS0X6uw7xspHxJicCR7WanH
+         ZiNKjyhXMmG44Ehz4t3CYqwH0eRQY61gYxTOKwc+064K491QyQuPNf8Blud40cCJ/phv
+         QhdC8/ixEkR/onsLMsh8WeSG1nhNUkfyDLs3ow8xcSzd7NaCQ6HXGsIEs00nmYO4JxOI
+         oVqg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=NHBmXpT7UctLtbcxojCov04EssvHKmYOYEKIBGETnkw=;
+        b=BAsYhb9jpPfQ/1K/GcTqmYN4d8lK7Kve/4ei9GjDwUx2x4i0R3UhHmuz8gRBhjpB9a
+         ide4iv+ElzRFFg3RMOfe4IBq7uVOw+5bPfMyDIFP5aXj2P3Q2jeMQXvxqgycGFgXyNmu
+         1F0pYZd2pE0lO3jGGLbyleRMEG9ohzA8c5DK9DmeVQO7oUA6VuoQJbTaZZmofKagq0RZ
+         bBOmTBRkXpAhgPMJlG6PeKWa+bjGLkE4QJNfNvOmGDRLhnpTYCA+Cmx6FitCJHYn/lMf
+         1uwBNvih9aMGSzeP+A4DF9IP2gYTyQf3hfurXTNJeRw/ILVURQHuE796zd2GS5+lhnFo
+         LV6A==
+X-Gm-Message-State: AOAM531zTbsRnUnBIcA27O2aWTqN5z7u90288CRS2fNdXwaWgLOdF3OB
+        LfXPDoqnxtUs9oNie9eiCjDkqXHQFBUu4z4icJZTIA==
+X-Google-Smtp-Source: ABdhPJy+xD0fdeNokGShWmA6iyt7amghaRq7DTZYb0f35KOCPRsRoA5MhFMfhTu9dQ2oa36L0hDQ8vZirepPgBijXhI=
+X-Received: by 2002:a81:2154:0:b0:2f4:d79e:35dc with SMTP id
+ h81-20020a812154000000b002f4d79e35dcmr13170533ywh.126.1651526768369; Mon, 02
+ May 2022 14:26:08 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH] arm64: dts: qcom: sm8450: add uart20 node
-Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Vinod Koul <vkoul@kernel.org>
-References: <20220501195458.4134911-1-dmitry.baryshkov@linaro.org>
- <6b0ef19b-a45b-ae6f-9f6f-41e72f2c71fd@somainline.org>
- <CAA8EJpqeR8FF7V1fdyWtQsU3xnFw5+4obBSndb3wS+H8Xgu8Rw@mail.gmail.com>
- <CAA8EJpoZaWXhD7aq4fR+6atJ6oMRNmA=8GJFmtXOSSbrBez53g@mail.gmail.com>
-From:   Konrad Dybcio <konrad.dybcio@somainline.org>
-In-Reply-To: <CAA8EJpoZaWXhD7aq4fR+6atJ6oMRNmA=8GJFmtXOSSbrBez53g@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+References: <20220404203522.2068071-1-linus.walleij@linaro.org>
+In-Reply-To: <20220404203522.2068071-1-linus.walleij@linaro.org>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Mon, 2 May 2022 23:25:57 +0200
+Message-ID: <CACRpkdbvdO0Q2A08_H6Yi0U+d_EBRWF1eyFo8EnoODLtF=yFcA@mail.gmail.com>
+Subject: Re: [PATCH 1/3] dt-bindings: leds: Add regulator-led binding
+To:     Pavel Machek <pavel@ucw.cz>
+Cc:     linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        Antonio Ospite <ao2@ao2.it>, Rob Herring <robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -51,115 +65,23 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Pavel,
 
+On Mon, Apr 4, 2022 at 10:37 PM Linus Walleij <linus.walleij@linaro.org> wrote:
 
-On 2.05.2022 21:49, Dmitry Baryshkov wrote:
-> On Mon, 2 May 2022 at 22:01, Dmitry Baryshkov
-> <dmitry.baryshkov@linaro.org> wrote:
->>
->> On Mon, 2 May 2022 at 20:59, Konrad Dybcio <konrad.dybcio@somainline.org> wrote:
->>>
->>>
->>>
->>> On 1.05.2022 21:54, Dmitry Baryshkov wrote:
->>>> Add device tree node for uart20, which is typically used for Bluetooth attachment.
->>>>
->>>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->>>> Reviewed-by: Vinod Koul <vkoul@kernel.org>
->>>> ---
->>>>  arch/arm64/boot/dts/qcom/sm8450.dtsi | 22 ++++++++++++++++++++++
->>>>  1 file changed, 22 insertions(+)
->>>>
->>>> diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
->>>> index 4fcb6e2b096b..8b9d9c2cd02c 100644
->>>> --- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
->>>> +++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
->>>> @@ -996,6 +996,19 @@ spi20: spi@894000 {
->>>>                               status = "disabled";
->>>>                       };
->>>>
->>>> +                     uart20: serial@894000 {
->>> I think it should come before SPI alphabetically?
->>
->> Argh. I sorted it using the label!
->>
->>>
->>>> +                             compatible = "qcom,geni-uart";
->>>> +                             reg = <0 0x00894000 0 0x4000>;
->>>> +                             clock-names = "se";
->>>> +                             clocks = <&gcc GCC_QUPV3_WRAP2_S5_CLK>;
->>>> +                             pinctrl-names = "default";
->>>> +                             pinctrl-0 = <&qup_uart20_default>;
->>> No sleep state?
->>
->> No, uarts do not provide a sleep state.
-> 
-> I've checked other dts. Usually the sleep state is provided by the
-> board dts rather than the SoC's dtsi.
-Weird. Perhaps we could consider centralizing that, since it's common(-ish) in the end?
+> The regulator is a LED connected directly to a regulator and with
+> its brightness controlled by the voltage of the regulator.
+>
+> Cc: devicetree@vger.kernel.org
+> Cc: Antonio Ospite <ao2@ao2.it>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+> ---
+> ChangeLog v1->v2:
+> - Collect Rob's ACK
+> - Rebase on v5.18-rc1
 
+can we merge this patch set?
 
-> 
->>
->>>
->>>> +                             interrupts = <GIC_SPI 587 IRQ_TYPE_LEVEL_HIGH>;
->>>> +                             #address-cells = <1>;
->>>> +                             #size-cells = <0>;
->>>> +                             status = "disabled";
->>>> +                     };
->>>> +
->>>>                       i2c21: i2c@898000 {
->>>>                               compatible = "qcom,geni-i2c";
->>>>                               reg = <0x0 0x00898000 0x0 0x4000>;
->>>> @@ -2757,6 +2770,15 @@ qup_uart7_tx: qup-uart7-tx {
->>>>                               drive-strength = <2>;
->>>>                               bias-disable;
->>>>                       };
->>>> +
->>>> +                     qup_uart20_default: qup-uart20-default {
->>>> +                             mux {
->>> Please drop the unnecessary mux{} here.
->>
->> Ack.
->>
->>>
->>>> +                                     pins = "gpio76", "gpio77",
->>>> +                                             "gpio78", "gpio79";
->>> I think these could fit into a single 100-char-long line>?
->>
->> I'll check.
->>
->>>
->>>> +                                     function = "qup20";
->>> Are there no default properties for this setup? I think boards that don't use standard Qualcomm connectivity setups (like Bluetooth on this specific UART) are rather scarce and it'd be more convenient to keep a standard setting here and override it where need be instead of copy-pasting the same thing over and over in 95-100% of the boards.
->>
->> I see your point. Let's do this.
-> 
-> Well, comparing with other SoC dtsi shows that most of them declare
-> pins&functions in the dtsi and leave bias/ details to the board.dts
-> (despite code duplication). So let's follow that approach.
-Eh, you're right, but I'd still argue it's really a thing that used to be more relevant in the past though, especially as newer devices seem to get closer and closer to Qualcomm reference designs.. Maybe Bjorn could give some input on this matter?
-
-Konrad
-
-> 
->>
->>>
->>> Konrad
->>>
->>>> +                             };
->>>> +                     };
->>>> +
->>>>               };
->>>>
->>>>               apps_smmu: iommu@15000000 {
->>>>
->>
->>
->>
->> --
->> With best wishes
->> Dmitry
-> 
-> 
-> 
+Yours,
+Linus Walleij
