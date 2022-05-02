@@ -2,147 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 63123517660
-	for <lists+devicetree@lfdr.de>; Mon,  2 May 2022 20:17:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6472A517663
+	for <lists+devicetree@lfdr.de>; Mon,  2 May 2022 20:17:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244588AbiEBSUl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 May 2022 14:20:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39066 "EHLO
+        id S244680AbiEBSVE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 May 2022 14:21:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39236 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229667AbiEBSUl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 May 2022 14:20:41 -0400
-Received: from mail-oa1-f41.google.com (mail-oa1-f41.google.com [209.85.160.41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B021EE1F;
-        Mon,  2 May 2022 11:17:11 -0700 (PDT)
-Received: by mail-oa1-f41.google.com with SMTP id 586e51a60fabf-deb9295679so15037660fac.6;
-        Mon, 02 May 2022 11:17:11 -0700 (PDT)
+        with ESMTP id S234602AbiEBSVE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 May 2022 14:21:04 -0400
+Received: from mail-io1-xd2e.google.com (mail-io1-xd2e.google.com [IPv6:2607:f8b0:4864:20::d2e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1912E1F;
+        Mon,  2 May 2022 11:17:34 -0700 (PDT)
+Received: by mail-io1-xd2e.google.com with SMTP id 125so16773230iov.10;
+        Mon, 02 May 2022 11:17:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=2NFyu4Gt61+QYs1mLP0LruiAJugECyDISNKQilmDba4=;
+        b=kSwDa5ATRspbpqxHdejmcou1BCv9BTqxI29t4PDFokn9lYVCJNdQ4i0vfv2NwDlsDr
+         p163IZJodaar2zJgitXQRPYoT9RxblutabPvjcFl28VpnuQqSWWeGcKfTLFbrL3XM6rM
+         tVs6uBtxKb4gvWU3yOxlCK8/UVeUATHVmtSTboDf/iRogkNYUEmOHJBJ81mL8s/GycUX
+         na9dWmK8pCJRWNokNKMPmilEOF6oCS7BqmstC6VrO2xfnVqvo71T5R4yzagVRCFU9A9s
+         f0knjZ4Ao8KLYt8PfjuArXzatwgHZ7oPJvWtxS629BSzjyph/g5vRFWV/P+TEALS3nqV
+         GA0g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=YwwIk+jeAaCtKOZfDXfW8hJEALg69ntNpW8zDKAvctA=;
-        b=cDGJv8Pg8U8BZohBIRLBY+DPelubVnUCJXzY6Qv/RLXRSGeA6VA0tSOcYYh2iK3Ag8
-         HZsq0aI2o+9JvI+p9+y1J/M4Jp+YBRoUWkl/NAotkrkEF4dnB5DWTfP10Uus/awleA93
-         nc5kDKUEYriNiNdkitxN3sBlnROYg+z1VMBwWNqS0CtppNWte/pIC20XJvnT1j5WZBwD
-         J5TljidoHWXtG2B6K1KWXl4pRMYuyodizgKnIAW0jJlkSyrAH88Mkrf1EaFqDutusuKW
-         Gv989wvaTfZK7qN7+gTQC0LgSmcsfrno5HvztMzz85gv2M1oVpFYoivouJ5fMn+wAgcm
-         TO1w==
-X-Gm-Message-State: AOAM531Mtr3gv4EXT9iH4c4oq9suDpXr21V6hMp97CfaSGn8vWCT4YSf
-        3s6Ff/G0PwAXI+EpSUSe7fBWVzoOGA==
-X-Google-Smtp-Source: ABdhPJzI3Z0eKgKtF2mg1GayMWBA7mY2NRPcUJpkfHS7aZLGR4hOV1rBUWLmkvR0bVE4IY6K2UY2ng==
-X-Received: by 2002:a05:6870:3105:b0:da:c099:7942 with SMTP id v5-20020a056870310500b000dac0997942mr181531oaa.199.1651515430984;
-        Mon, 02 May 2022 11:17:10 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id 1-20020a9d0c01000000b006060322127fsm3089835otr.79.2022.05.02.11.17.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 May 2022 11:17:10 -0700 (PDT)
-Received: (nullmailer pid 1457143 invoked by uid 1000);
-        Mon, 02 May 2022 18:17:09 -0000
-Date:   Mon, 2 May 2022 13:17:09 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     michaelsh@nvidia.com
-Cc:     linux@roeck-us.net, linux-hwmon@vger.kernel.org,
-        devicetree@vger.kernel.org, vadimp@nvidia.com
-Subject: Re: [PATCH v1 2/3] dt-bindings: hwmon: add microchip,emc2306.yaml dt
- binding description.
-Message-ID: <YnAgJVxh5fxijKQj@robh.at.kernel.org>
-References: <20220430114905.53448-1-michaelsh@nvidia.com>
- <20220430114905.53448-3-michaelsh@nvidia.com>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=2NFyu4Gt61+QYs1mLP0LruiAJugECyDISNKQilmDba4=;
+        b=60CFWaXQzi759g3UVc5t2Wsw1vY6Tm5iFbBUnlHRfhvSiXIkiSx9crqT+GJ0yzUmQw
+         HmUw1K3eCbztmDCyHcnkSfcCDakG/7o/FrHjOFVuMXx123PVyLz0rVI+YVvT59+QkinU
+         +ET+zURSBbeJwqgblL9DwpBfsKEjIswCeHhy937dYHUUjHBZmRfJJhKRCUj1o+DwrhWv
+         /ElVU5xZIEkXtziInXtXYRfONvm/A5F7fk+WrA+Dch217sM2XhopOMipykJF3t/9efBt
+         L0MwHDEJ7TXU4/xJjwtwYv6Pr50lVc92rLGD9kvQXlBHs2E/Ep6akbYivKu9zhZ2/CLL
+         5Kmg==
+X-Gm-Message-State: AOAM531EkSKNvU0q/XmE49eGzbyY2l0H8s8pRRlX0ErV3YT/DPsmqSpS
+        uDqLHWl9mOBqzl1v5gKydBM=
+X-Google-Smtp-Source: ABdhPJwgQ7bs8X5tx00BikwdgEBcvWdDQWUQbG+CklbdT2U0A436nlqlGQDi3y0U9DhcITGIJ9qEfw==
+X-Received: by 2002:a6b:8fd2:0:b0:657:c987:457a with SMTP id r201-20020a6b8fd2000000b00657c987457amr4573921iod.165.1651515453834;
+        Mon, 02 May 2022 11:17:33 -0700 (PDT)
+Received: from ?IPV6:2600:1700:2442:6db0:bd98:70d3:4542:6c6a? ([2600:1700:2442:6db0:bd98:70d3:4542:6c6a])
+        by smtp.gmail.com with ESMTPSA id y14-20020a92d20e000000b002cde6e352fcsm2831040ily.70.2022.05.02.11.17.33
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 02 May 2022 11:17:33 -0700 (PDT)
+Message-ID: <367805de-3ef5-1e1d-3711-7d21b500a886@gmail.com>
+Date:   Mon, 2 May 2022 13:17:32 -0500
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220430114905.53448-3-michaelsh@nvidia.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH 1/3] of: overlay: add entry to of_overlay_action_name[]
+Content-Language: en-US
+To:     Rob Herring <robh@kernel.org>
+Cc:     pantelis.antoniou@konsulko.com,
+        Slawomir Stepien <slawomir.stepien@nokia.com>,
+        Dan Carpenter <dan.carpenter@oracle.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Slawomir Stepien <sst@poczta.fm>,
+        Jan Kiszka <jan.kiszka@siemens.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+References: <20220501000543.1368005-1-frowand.list@gmail.com>
+ <20220501000543.1368005-2-frowand.list@gmail.com>
+ <YnAOEqO23BQk53vz@robh.at.kernel.org>
+From:   Frank Rowand <frowand.list@gmail.com>
+In-Reply-To: <YnAOEqO23BQk53vz@robh.at.kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Apr 30, 2022 at 02:49:04PM +0300, michaelsh@nvidia.com wrote:
-> From: Michael Shych <michaelsh@nvidia.com>
+On 5/2/22 12:00, Rob Herring wrote:
+> On Sat, Apr 30, 2022 at 07:05:41PM -0500, frowand.list@gmail.com wrote:
+>> From: Frank Rowand <frank.rowand@sony.com>
+>>
+>> The values of enum of_overlay_notify_action are used to index into
+>> array of_overlay_action_name.  Add an entry to of_overlay_action_name
+>> for the value recently added to of_overlay_notify_action.
+>>
+>> Array of_overlay_action_name[] is moved into include/linux/of.h
+>> adjacent to enum of_overlay_notify_action to make the connection
+>> between the two more obvious if either is modified in the future.
+>>
+>> The only use of of_overlay_action_name is for error reporting in
+>> overlay_notify().  All callers of overlay_notify() report the same
+>> error, but with fewer details.  Remove the redundant error reports
+>> in the callers.
+>>
+>> Fixes: 067c098766c6 ("of: overlay: rework overlay apply and remove kfree()s")
+>> Reported-by: Dan Carpenter <dan.carpenter@oracle.com>
+>> Signed-off-by: Frank Rowand <frank.rowand@sony.com>
+>> ---
+>>  drivers/of/overlay.c | 27 +++++----------------------
+>>  include/linux/of.h   | 13 +++++++++++++
+>>  2 files changed, 18 insertions(+), 22 deletions(-)
 > 
-> Add basic description of emc2305 driver device tree binding.
+> This isn't applying for me.
+
+Weird, patch can apply it, but 'git am' does not work.  I see that when
+I try that on your dt/next branch.
+
+The problem seems to be that I did not create the series on top of
+dt/next: 5f756a2eaa44 of: overlay: do not break notify on NOTIFY_{OK|STOP}.
+
+I have rebased the series on top of that patch and am sending v2.
+
+-Frank
+
+
 > 
-> Signed-off-by: Michael Shych <michaelsh@nvidia.com>
-> Reviewed-by: Vadim Pasternak <vadimp@nvidia.com>
-> ---
->  .../bindings/hwmon/microchip,emc2305.yaml          | 55 ++++++++++++++++++++++
->  1 file changed, 55 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/hwmon/microchip,emc2305.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/hwmon/microchip,emc2305.yaml b/Documentation/devicetree/bindings/hwmon/microchip,emc2305.yaml
-> new file mode 100644
-> index 000000000000..c873172b7268
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/hwmon/microchip,emc2305.yaml
-> @@ -0,0 +1,55 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +
-> +$id: http://devicetree.org/schemas/hwmon/emc2305.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Microchip EMC2305 RPM-based PWM Fan Speed Controller
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - microcip,emc2305
-> +
-> +  emc2305,pwm-min:
-> +    description:
-> +      Min pwm of emc2305
-> +    maxItems: 1
-> +  emc2305,pwm-max:
-> +    description:
-> +      Max pwm of emc2305
-> +    maxItems: 1
-> +  emc2305,pwm-channel:
-> +    description:
-> +      Max number of pwm channels
-> +    maxItems: 1
-> +  emcs205,max-state:
-> +    description:
-> +    maxItems: 1
-> +  emc2305,cooling-levels:
-> +    description:
-> +      Quantity of cooling level state.
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +
-> +optional:
-> +  - emc2305,min-pwm
-> +  - emc2305,max-pwm
-> +  - emc2305,pwm-channels
-> +  - emc2305,cooling-levels
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    fan {
-> +        emc2305,compatible = "microchip,emc2305";
+> Rob
 
-Err, what?
-
-> +        emc2305,pwm-min = <0>;
-> +        emc2305,pwm-max = <255>;
-> +        emc2305,pwm-channel = <5>
-> +        emc2305,cooling-levels = <10>;
-
-All possible fans attached to this controller are the same and don't 
-have anything that needs to be described? Based on other fan 
-controllers, I don't think so. As I've said multiple times, there's a 
-need for a common fan and fan-controller binding. Until that happens, 
-I'm not inclined to accept fan controller bindings with custom 
-properties.
-
-Rob
