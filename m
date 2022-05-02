@@ -2,68 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A2D151776A
-	for <lists+devicetree@lfdr.de>; Mon,  2 May 2022 21:26:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 394C651778A
+	for <lists+devicetree@lfdr.de>; Mon,  2 May 2022 21:44:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1387126AbiEBT3i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 May 2022 15:29:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52840 "EHLO
+        id S1387156AbiEBTrm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 May 2022 15:47:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60094 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1387124AbiEBT3h (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 May 2022 15:29:37 -0400
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C8C1D86
-        for <devicetree@vger.kernel.org>; Mon,  2 May 2022 12:26:07 -0700 (PDT)
-Received: by mail-lf1-x12a.google.com with SMTP id bu29so27016002lfb.0
-        for <devicetree@vger.kernel.org>; Mon, 02 May 2022 12:26:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=c49kkjx2fy3MeTzrRmuPxxWXGx08IMe9Dcd+JXOLX+0=;
-        b=ldKKAQaCKDk3JYBAnt8LZZq+oZEJAvlRntWJKHrZN3CMLHaRRx2FFLg33P53PKeECW
-         GIYN9xd59ElMgy4QBk0iQRlcn1fvHSZIrb1EvQ69x7yth+65yU0s0acjtEl39/RsTPpx
-         82Vv++LUMTK/IdtthjuSYFDdzn3fm57kspHKrhkpLVxV9re05K5FWDZ6brjsO+YyiW8R
-         qIgyDozn5aC5//ae4aZnuRPvmPlZUHsU1BSPW6EsohO5R55tIGe2qEpUDktMt49WaMih
-         p+XqSg1lhYXWhzha6mmiXxf9q6tlRmb1R6bLgPn9kxuBkoP4AmzJ1ms0lqINH0C9qYmM
-         EScg==
+        with ESMTP id S1387149AbiEBTrl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 May 2022 15:47:41 -0400
+Received: from mail-oi1-f173.google.com (mail-oi1-f173.google.com [209.85.167.173])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 225E565CF;
+        Mon,  2 May 2022 12:44:12 -0700 (PDT)
+Received: by mail-oi1-f173.google.com with SMTP id m25so2311105oih.2;
+        Mon, 02 May 2022 12:44:12 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=c49kkjx2fy3MeTzrRmuPxxWXGx08IMe9Dcd+JXOLX+0=;
-        b=ftQp04MDYctdKzWev2CxUgKCmnIh5IK4oBL2UTMQWdYKKiloU3BvIdQGupL+IMWhnJ
-         bSet6XkT2JimqXyFXfcsNAuROqYAXg/CpDJzboa+DkXefLTRLNa9wvaZyu8e43mGPc9Z
-         uu4wyOmzvK0SbHQyCRMvARxb0lhVmOUbipF2CBHr0N9Fr6cdrDPgoY91rgkWwQEf7hxd
-         +pbLjqxMdpTuyRF8fLXv8sMSIKji0PuC9CM29FwHSvYN8dHFCWz92QQfahyDcm2wmC2B
-         AtqZyTe9zqKuMKuZDfMStR/ICXH2BM1mMEHaoMvwye2rze9466r06HZb05zgmjdJ0Xay
-         yEUw==
-X-Gm-Message-State: AOAM530FkMlCJHUUx4LNH0qvF6tOO4OgEOsYzTr7kSwfOddYkXsvxXRl
-        ES4ehOhJ2kk1Z/8G9OJD5LMX8V4uc302xQ==
-X-Google-Smtp-Source: ABdhPJy5HcOII9BlPXWeu0agiEN4labVOEKtXx6T72OsY7RsgNY4IM8RgwHrmm6SCAcPbK8KZBKqfQ==
-X-Received: by 2002:a19:6915:0:b0:471:f9a9:7777 with SMTP id e21-20020a196915000000b00471f9a97777mr9943439lfc.428.1651519565644;
-        Mon, 02 May 2022 12:26:05 -0700 (PDT)
-Received: from eriador.lan ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id t12-20020ac24c0c000000b0047255d2119fsm771489lfq.206.2022.05.02.12.26.05
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=ucAvB47OLCc21fcBaiRNI7ffxRGUPPe35CD1iyIndks=;
+        b=KblTwfLJj7M7U4HD5HMFhttNSsv0YwdjupljaNzVqZidKHqMXbG+vqzsS91aTO98Ar
+         9mw+CCd/jVm4c8xww5aw6lZPFi2wjtblDj9PTfUo1uXsBAjD0tvnH/Wlh8dbHVODBR5k
+         WFYF8PZ/su/iX0y4PGw/Fgfxr9x272D16/yabW6Fhu2hLQznq7nINpB6RqU8GG4E+U9O
+         fTzIlrLS2KfKUanP789+FE8QoijxtDnHeZaTyYcOmRVpoINP0z7ihhcaxlUAW6jljA2e
+         mjxDKLHk4xkp4Py32uqRx+kqW2nwtuNxhUHrs4aiRec+Gz7amrj5kJdpPK6BqwfuzW+r
+         O0Sg==
+X-Gm-Message-State: AOAM532qiardx51AwSeb6GJ68YkkNZwv1zWxSElzZHij2qUkK/X1HqhB
+        yxFJIY9CEXqYEgfBryWKQA==
+X-Google-Smtp-Source: ABdhPJzG0RRJdyMVQN6p9lCm1Mkp6SZ7X84M3460ToEWrNZlJfrvlz74VS86/3RCEHBwMzht6kudBQ==
+X-Received: by 2002:a05:6808:220c:b0:325:c254:9b0a with SMTP id bd12-20020a056808220c00b00325c2549b0amr324140oib.239.1651520651405;
+        Mon, 02 May 2022 12:44:11 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id z17-20020a9d4691000000b006060322125dsm3283901ote.45.2022.05.02.12.44.10
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 May 2022 12:26:05 -0700 (PDT)
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Vinod Koul <vkoul@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>
-Subject: [PATCH v2] arm64: dts: qcom: sm8450 add ITS device tree node
-Date:   Mon,  2 May 2022 22:26:04 +0300
-Message-Id: <20220502192604.272686-1-dmitry.baryshkov@linaro.org>
-X-Mailer: git-send-email 2.35.1
+        Mon, 02 May 2022 12:44:10 -0700 (PDT)
+Received: (nullmailer pid 1611767 invoked by uid 1000);
+        Mon, 02 May 2022 19:44:09 -0000
+Date:   Mon, 2 May 2022 14:44:09 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Herve Codina <herve.codina@bootlin.com>,
+        Marek Vasut <marek.vasut+renesas@gmail.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+        linux-pci <linux-pci@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Sergey Shtylyov <s.shtylyov@omp.ru>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Clement Leger <clement.leger@bootlin.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>
+Subject: Re: [PATCH v5 2/6] dt-bindings: PCI: renesas,pci-rcar-gen2: Add
+ device tree support for r9a06g032
+Message-ID: <YnA0id1rXlNHNz+N@robh.at.kernel.org>
+References: <20220429134143.628428-1-herve.codina@bootlin.com>
+ <20220429134143.628428-4-herve.codina@bootlin.com>
+ <29ba3db6-e5c7-06d3-29d9-918ee5b34555@linaro.org>
+ <CAMuHMdWN_ni_V+e3QipWH2qKXeNPkEcVpHpb5iBYw1YQSAnCDA@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAMuHMdWN_ni_V+e3QipWH2qKXeNPkEcVpHpb5iBYw1YQSAnCDA@mail.gmail.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -71,39 +82,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add device tree node corresponding to the ITS part of GICv3.
+On Mon, May 02, 2022 at 11:19:19AM +0200, Geert Uytterhoeven wrote:
+> Hi Krzysztof,
+> 
+> On Sun, May 1, 2022 at 10:51 AM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+> > On 29/04/2022 15:41, Herve Codina wrote:
+> > > Add internal PCI bridge support for the r9a06g032 SOC. The Renesas
+> > > RZ/N1D (R9A06G032) internal PCI bridge is compatible with the one
+> > > present in the R-Car Gen2 family.
+> > > Compared to the R-Car Gen2 family, it needs three clocks instead of
+> > > one.
+> > >
+> > > The 'resets' property for the RZ/N1 family is not required since
+> > > there is no reset-controller support yet for the RZ/N1 family.
+> >
+> > This should not be a reason why a property is or is not required. Either
+> > this is required for device operation or not. If it is required, should
+> > be in the bindings. Otherwise what are you going to do in the future?
+> > Add a required property breaking the ABI?
+> 
+> The problem is that there are no bindings for the reset controller
+> (actually the reset controller feature of the system-controller) yet.
+> Yeah, we can just add #reset-cells = <1> to the system-controller
+> device node, but we cannot add the actual resets properties to the
+> consumers, until the actual cell values are defined.
 
-Reviewed-by: Vinod Koul <vkoul@kernel.org>
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
-Changes since v1:
- - Fixed subject to mention sm8450,
- - Reordered properties to follow recommended order.
----
- arch/arm64/boot/dts/qcom/sm8450.dtsi | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+Sounds like you should implement providers first. Or just live with the 
+warning as a reminder to implement the reset provider?
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-index 5f17540669b0..c8eeef5bedde 100644
---- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-@@ -1693,6 +1693,16 @@ intc: interrupt-controller@17100000 {
- 			reg = <0x0 0x17100000 0x0 0x10000>,     /* GICD */
- 			      <0x0 0x17180000 0x0 0x200000>;    /* GICR * 8 */
- 			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
-+			#address-cells = <2>;
-+			#size-cells = <2>;
-+			ranges;
-+
-+			gic_its: msi-controller@17140000 {
-+				compatible = "arm,gic-v3-its";
-+				reg = <0x0 0x17140000 0x0 0x20000>;
-+				msi-controller;
-+				#msi-cells = <1>;
-+			};
- 		};
- 
- 		timer@17420000 {
--- 
-2.35.1
-
+Rob
