@@ -2,170 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 56EB1516D5F
-	for <lists+devicetree@lfdr.de>; Mon,  2 May 2022 11:29:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B47A0516DBA
+	for <lists+devicetree@lfdr.de>; Mon,  2 May 2022 11:50:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1384178AbiEBJcp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 May 2022 05:32:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47090 "EHLO
+        id S1378128AbiEBJxb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 May 2022 05:53:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43272 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1380009AbiEBJcp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 May 2022 05:32:45 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18BF233E0D;
-        Mon,  2 May 2022 02:29:17 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S1384506AbiEBJwk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 May 2022 05:52:40 -0400
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9122E90
+        for <devicetree@vger.kernel.org>; Mon,  2 May 2022 02:49:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1651484952; x=1683020952;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=ZVCo58L2rU8z55TFcI8A+ssV8amwrxNlj/6HvBXrQLg=;
+  b=e0QqjXuwVh1bWKU5wzp5Fl6mu5vQwgC3Te6Pg52uS0Jdp/2j5WjfXYVf
+   UjlmJ7v6F+xPus3c7yZGCCbjGbhX5rxZRcdXn9xvl6Gn6AUeWOAS/sqz9
+   DmQC9pZDfhQ6UuPqAE08rmCBV5byH+KdacvsWySzErAcz7RrI1ipbpSNB
+   dl2QsA8zR7rQKm1oHDM6jlLH2kzUlhtnVX8tAZY9iTTw59i2f1EvuKcL7
+   LfegAp6nkmtS+z46uP+6MT23Cux5YGo/4VW5XnX/28QlwOP8ytXw88w1T
+   64CSdR3ZySKrbwyi4Ywd1FdRezCY+dvlmEaHSLmZUIy64ExEe/gk7YlNU
+   A==;
+X-IronPort-AV: E=Sophos;i="5.91,190,1647298800"; 
+   d="scan'208";a="23608909"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 02 May 2022 11:49:06 +0200
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Mon, 02 May 2022 11:49:06 +0200
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Mon, 02 May 2022 11:49:06 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1651484946; x=1683020946;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=ZVCo58L2rU8z55TFcI8A+ssV8amwrxNlj/6HvBXrQLg=;
+  b=AxNXQ30riiSt2ywg99N/mUPQxxfFM29ug7Nl9aR8d4eG0cXclFl9S4uD
+   DiwNK7B/tGqZxl9/q+O+xA40YPTC19zzI+uQyTy1qMppFI9RH0JQdvmsK
+   EP5ombapbsuUsQRozql3zBjHK2XgSs7xKmN69/IKT4c83AV5y+OEs5a8w
+   BGoftaHnXFtYoO9Waw9XeydjXVglXBDnkkYcq9wKv04Vcy21RRfustp1P
+   67FJpCGcR2Jqm6XvDbukcBUGtpUrsZK5096BcgajCq5gGoIKVsAY4ilXh
+   PSnmN5VwUvL3lREW2ZdoP5zac6nxJM38XHdgO0/tZfpSobaNYKYcCo+is
+   Q==;
+X-IronPort-AV: E=Sophos;i="5.91,190,1647298800"; 
+   d="scan'208";a="23608908"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 02 May 2022 11:49:06 +0200
+Received: from steina-w.tq-net.de (unknown [10.123.49.12])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id A5DDF611D0;
-        Mon,  2 May 2022 09:29:16 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 81C53C385A4;
-        Mon,  2 May 2022 09:29:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1651483756;
-        bh=mpCCh1LYSN/qxfvRph1QMzK0NnMSfrNwVpF7Uzir8sY=;
-        h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-        b=UD6zVba96lAU90DevmQSKaqj+6tnduJYu1duIevC0yVgrza7FnZCVYOHDVebEtRAG
-         qMRVaCz893bYhRS7MzADwI3RH/+8M/S2I52h1hWJcIEs0iO5PkadPFJcb1ma4OEOf6
-         1/kvvXwSyviTE1wNmI6YpLPpF9etI15FSm5OzBUFFwY3B1cYD5+7lkVlHDbxLdP8vc
-         Q8Ts3lJWBe5jyTw7oP03C0MNKR30gFVe2kS/1/8HguhpITuiYORr/Coat7U0pVJINX
-         kvot+MZwwGUeE+ZIFUF68EqCVzp49tlnLgT+GOJSJ/QBWzU2LvM5g0H0oeHR5D39Va
-         66JrDLUAD0Wlg==
-From:   Kalle Valo <kvalo@kernel.org>
-To:     Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
-Cc:     <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <robh@kernel.org>, <mka@chromium.org>
-Subject: Re: [PATCH v7 5/9] ath11k: Fetch device information via QMI for WCN6750
-References: <20220429170502.20080-1-quic_mpubbise@quicinc.com>
-        <20220429170502.20080-6-quic_mpubbise@quicinc.com>
-Date:   Mon, 02 May 2022 12:29:10 +0300
-In-Reply-To: <20220429170502.20080-6-quic_mpubbise@quicinc.com> (Manikanta
-        Pubbisetty's message of "Fri, 29 Apr 2022 22:34:58 +0530")
-Message-ID: <87k0b4b7vd.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 60FFC280070;
+        Mon,  2 May 2022 11:49:06 +0200 (CEST)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>
+Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: [PATCH 0/4] i.MX8M PWM polarity support
+Date:   Mon,  2 May 2022 11:48:57 +0200
+Message-Id: <20220502094901.251310-1-alexander.stein@ew.tq-group.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Manikanta Pubbisetty <quic_mpubbise@quicinc.com> writes:
+Hello,
 
-> Since WPPS Q6 does the PCIe enumeration of WCN6750, device
-> information like BAR and BAR size is not known to the APPS
-> processor (Application Processor SubSystem). In order to
-> fetch these details, a QMI message called device info request
-> will be sent to the target. Therefore, add logic to fetch
-> BAR details from the target.
->
-> Tested-on: WCN6750 hw1.0 AHB WLAN.MSL.1.0.1-00887-QCAMSLSWPLZ-1
-> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-01720.1-QCAHSPSWPL_V1_V2_SILICONZ_LITE-1
-> Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.5.0.1-01100-QCAHKSWPL_SILICONZ-1
-> Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.4.0.1-00192-QCAHKSWPL_SILICONZ-1
->
-> Signed-off-by: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
+this patchset adds the possibility to specify a PWM polarity inversion for
+i.MX8M. The pwm-imx27 driver already supports this in the 3rd pwm-cells, but
+the DT for imx8m so far only set #pwm-cells=<2>.
+Add support by setting #pwm-cells=<3> and adding the (default) normal (0)
+polarity to all boards.
+make dtbs_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/pwm/imx-pwm.yaml
+was used to get all boards.
 
-[...]
+Best regards,
+Alexander
 
-> +static int ath11k_qmi_request_device_info(struct ath11k_base *ab)
-> +{
-> +	struct qmi_wlanfw_device_info_req_msg_v01 req = {};
-> +	struct qmi_wlanfw_device_info_resp_msg_v01 resp = {};
-> +	struct qmi_txn txn;
-> +	void __iomem *bar_addr_va;
-> +	int ret;
-> +
-> +	/* device info message req is only sent for hybrid bus devices */
-> +	if (!ab->hw_params.hybrid_bus_type)
-> +		return 0;
-> +
-> +	ret = qmi_txn_init(&ab->qmi.handle, &txn,
-> +			   qmi_wlfw_device_info_resp_msg_v01_ei, &resp);
-> +	if (ret < 0)
-> +		goto out;
-> +
-> +	ret = qmi_send_request(&ab->qmi.handle, NULL, &txn,
-> +			       QMI_WLANFW_DEVICE_INFO_REQ_V01,
-> +			       QMI_WLANFW_DEVICE_INFO_REQ_MSG_V01_MAX_LEN,
-> +			       qmi_wlanfw_device_info_req_msg_v01_ei, &req);
-> +	if (ret < 0) {
-> +		qmi_txn_cancel(&txn);
-> +		ath11k_warn(ab, "qmi failed to send target device info request, err = %d\n",
-> +			    ret);
-> +		goto out;
-> +	}
-> +
-> +	ret = qmi_txn_wait(&txn, msecs_to_jiffies(ATH11K_QMI_WLANFW_TIMEOUT_MS));
-> +	if (ret < 0) {
-> +		ath11k_warn(ab, "qmi failed target device info request %d\n", ret);
-> +		goto out;
-> +	}
-> +
-> +	if (resp.resp.result != QMI_RESULT_SUCCESS_V01) {
-> +		ath11k_warn(ab, "qmi device info req failed, result: %d, err: %d\n",
-> +			    resp.resp.result, resp.resp.error);
-> +		ret = -EINVAL;
-> +		goto out;
-> +	}
-> +
-> +	if (!resp.bar_addr_valid || !resp.bar_size_valid) {
-> +		ath11k_warn(ab, "qmi device info response invalid, result: %d, err: %d\n",
-> +			    resp.resp.result, resp.resp.error);
-> +		ret = -EINVAL;
-> +		goto out;
-> +	}
-> +
-> +	if (!resp.bar_addr ||
-> +	    resp.bar_size != ATH11K_QMI_DEVICE_BAR_SIZE) {
-> +		ath11k_warn(ab, "qmi device info invalid addr and size, result: %d, err: %d\n",
-> +			    resp.resp.result, resp.resp.error);
-> +		ret = -EINVAL;
-> +		goto out;
-> +	}
-> +
-> +	bar_addr_va = devm_ioremap(ab->dev, resp.bar_addr, resp.bar_size);
-> +
-> +	if (!bar_addr_va) {
-> +		ath11k_warn(ab, "qmi device info ioremap failed\n");
-> +		ab->mem_len = 0;
-> +		ret = -EIO;
-> +		goto out;
-> +	}
-> +
-> +	ab->mem = bar_addr_va;
-> +	ab->mem_len = resp.bar_size;
-> +
-> +	return 0;
-> +out:
-> +	return ret;
-> +}
+Markus Niebel (4):
+  arm64: dt: imx8mq: support pwm polarity inversion
+  arm64: dt: imx8mm: support pwm polarity inversion
+  arm64: dt: imx8mn: support pwm polarity inversion
+  arm64: dt: imx8mp: support pwm polarity inversion
 
-In the pending branch I changed the warning messages to follow the style
-used in ath11k.
-
-> +
->  static int ath11k_qmi_request_target_cap(struct ath11k_base *ab)
->  {
->  	struct qmi_wlanfw_cap_req_msg_v01 req;
-> @@ -2749,6 +2886,12 @@ static int ath11k_qmi_event_load_bdf(struct ath11k_qmi *qmi)
->  		return ret;
->  	}
->  
-> +	ret = ath11k_qmi_request_device_info(ab);
-> +	if (ret < 0) {
-> +		ath11k_warn(ab, "failed to request qmi device info %d\n", ret);
-> +		return ret;
-> +	}
-
-Here too.
+ .../boot/dts/freescale/imx8mm-data-modul-edm-sbc.dts      | 2 +-
+ arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi             | 2 +-
+ arch/arm64/boot/dts/freescale/imx8mm.dtsi                 | 8 ++++----
+ arch/arm64/boot/dts/freescale/imx8mn.dtsi                 | 8 ++++----
+ arch/arm64/boot/dts/freescale/imx8mp.dtsi                 | 8 ++++----
+ arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts   | 2 +-
+ arch/arm64/boot/dts/freescale/imx8mq-mnt-reform2.dts      | 2 +-
+ arch/arm64/boot/dts/freescale/imx8mq.dtsi                 | 8 ++++----
+ 8 files changed, 20 insertions(+), 20 deletions(-)
 
 -- 
-https://patchwork.kernel.org/project/linux-wireless/list/
+2.25.1
 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
