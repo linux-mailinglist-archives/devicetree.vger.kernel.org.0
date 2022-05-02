@@ -2,127 +2,181 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 979895172B3
-	for <lists+devicetree@lfdr.de>; Mon,  2 May 2022 17:34:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5E0905172AA
+	for <lists+devicetree@lfdr.de>; Mon,  2 May 2022 17:33:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1385845AbiEBPhP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 May 2022 11:37:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43140 "EHLO
+        id S1385836AbiEBPhC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 May 2022 11:37:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42948 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1385863AbiEBPhK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 May 2022 11:37:10 -0400
-Received: from mail-ot1-f42.google.com (mail-ot1-f42.google.com [209.85.210.42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48224BC22;
-        Mon,  2 May 2022 08:33:38 -0700 (PDT)
-Received: by mail-ot1-f42.google.com with SMTP id i11-20020a9d4a8b000000b005cda3b9754aso9933172otf.12;
-        Mon, 02 May 2022 08:33:38 -0700 (PDT)
+        with ESMTP id S1385776AbiEBPhB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 May 2022 11:37:01 -0400
+Received: from mail-oa1-f52.google.com (mail-oa1-f52.google.com [209.85.160.52])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5AEB1B853;
+        Mon,  2 May 2022 08:33:31 -0700 (PDT)
+Received: by mail-oa1-f52.google.com with SMTP id 586e51a60fabf-ed8a3962f8so4527319fac.4;
+        Mon, 02 May 2022 08:33:31 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=SDazvwLtmD7iGR4/3qNdCTkP7LG5uBpWcYwGTxEc+2A=;
-        b=YHD5arfSvMRSB5p0CPCUeYNVppo5Nu6v8jeC/A90CUU19OiT4GKPjQZOaDjvdKvN6O
-         XU1DgiyS1pfiNGkSL4Ig0FvrI+1n0ccerzfljteYxsW4EJnVSPapnFhCrIX+ooB2K3Le
-         Os9TuT6fGT6GBi59AAehLq2p3cafT+wHMKKIIxyMdLGiL3mqvb4iyjUwcKp1Zr+/27ci
-         2K5jcMAtXGjrwKkpHE8BjeRtJi0v9nOj7x2r9Uc2eueMoOoMCqlkG3TIw+CpMXng9IAs
-         IUgWnOTnOvV07bzaKHlmqgVM2+/15HKwy2rJXidc4dieUf22WtNpo7S56taVVRI8ZDDu
-         9Crw==
-X-Gm-Message-State: AOAM530uX1bk8lScoSsS4hHJ45DyZ0Qm9mg0d7Q+OnbaxuEu6/7ex+lH
-        recJ2vNGPZZLKgNm6VSaKg==
-X-Google-Smtp-Source: ABdhPJyxhjWaL+KKrChyj8rFPZzTPAip2KUS5CJwmjTl5l+jgv7N6SL8bT0V7zetu7j4JXX4QkkOKg==
-X-Received: by 2002:a9d:491c:0:b0:605:c207:1f6b with SMTP id e28-20020a9d491c000000b00605c2071f6bmr4416443otf.41.1651505617521;
-        Mon, 02 May 2022 08:33:37 -0700 (PDT)
+        bh=Y6XB2Cr0TBco5WX98Ze46NuWq5sLmSH3T0SPQmcQyC8=;
+        b=7Av6iHT0mlyv9V9jumZFbUCB6rI8enUYvRNKbICZBd9UTSzEbSy8drwueQBX9o/WnR
+         jBzW/kRD9zACO7XixDiPsaN/ufaFoa+5/Xo6/yCWEh6d/R5xJPkMyPYJ3QOQ4pOBmFia
+         VvW87dhvt0Gv8X0bao4OaBSCMC9iJWN1FrvpfpH4WqMSDszA0YrbcXpqIGKwtIu5FTWL
+         fdrByH4ajcQZAsaU8Cuuqf0LKMpbjHJdUp0Egon4gDrk/pAMVT78L88vg7jyk6p5pabd
+         HJKctt/+uJ9x2/b5WsGr9HXPCjXoRKVj2uWDKNOzjv6/yaJNGQsoDPT+RtRypfjUgkpt
+         s7xg==
+X-Gm-Message-State: AOAM530GhTOpokWEzxMuDMLUKFrlwNHFDc4GJqpfEZ/TwmSwtEvOPMTW
+        wOUlKMSiOkuwT6nnGZ2JxZbNAFv/9Q==
+X-Google-Smtp-Source: ABdhPJwlQgJwwbkB6u3k/9PNaKLwUkrUeU1I+yXjAuvNMbaiSDuzVpd5HAs3vlI2j8keLTjoGFYQQA==
+X-Received: by 2002:a05:6870:6005:b0:e6:515c:da5a with SMTP id t5-20020a056870600500b000e6515cda5amr4998476oaa.183.1651505610564;
+        Mon, 02 May 2022 08:33:30 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id a11-20020a4a9b0b000000b0035ec65ac944sm3482696ook.16.2022.05.02.08.33.36
+        by smtp.gmail.com with ESMTPSA id s5-20020a05682003c500b0035eb4e5a6casm498626ooj.32.2022.05.02.08.33.29
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 May 2022 08:33:37 -0700 (PDT)
-Received: (nullmailer pid 1161769 invoked by uid 1000);
+        Mon, 02 May 2022 08:33:30 -0700 (PDT)
+Received: (nullmailer pid 1161766 invoked by uid 1000);
         Mon, 02 May 2022 15:33:29 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     =?utf-8?q?C=C3=A9dric_Le_Goater?= <clg@kaod.org>
-Cc:     Joel Stanley <joel@jms.id.au>,
-        Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Pratyush Yadav <p.yadav@ti.com>,
-        Mark Brown <broonie@kernel.org>,
-        Tudor Ambarus <tudor.ambarus@microchip.com>,
-        linux-kernel@vger.kernel.org, Tao Ren <rentao.bupt@gmail.com>,
-        Andrew Jeffery <andrew@aj.id.au>, linux-spi@vger.kernel.org,
-        devicetree@vger.kernel.org, Vignesh Raghavendra <vigneshr@ti.com>,
-        linux-mtd@lists.infradead.org,
-        Jae Hyun Yoo <quic_jaehyoo@quicinc.com>,
-        linux-aspeed@lists.ozlabs.org,
-        linux-arm-kernel@lists.infradead.org,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>
-In-Reply-To: <20220502081341.203369-3-clg@kaod.org>
-References: <20220502081341.203369-1-clg@kaod.org> <20220502081341.203369-3-clg@kaod.org>
-Subject: Re: [PATCH v5 02/11] dt-bindings: spi: Add Aspeed SMC controllers device tree binding
+To:     michaelsh@nvidia.com
+Cc:     linux@roeck-us.net, robh+dt@kernel.org, vadimp@nvidia.com,
+        devicetree@vger.kernel.org, linux-hwmon@vger.kernel.org
+In-Reply-To: <20220430114905.53448-3-michaelsh@nvidia.com>
+References: <20220430114905.53448-1-michaelsh@nvidia.com> <20220430114905.53448-3-michaelsh@nvidia.com>
+Subject: Re: [PATCH v1 2/3] dt-bindings: hwmon: add microchip,emc2306.yaml dt binding description.
 Date:   Mon, 02 May 2022 10:33:29 -0500
-Message-Id: <1651505609.452113.1161768.nullmailer@robh.at.kernel.org>
+Message-Id: <1651505609.441636.1161765.nullmailer@robh.at.kernel.org>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,PP_MIME_FAKE_ASCII_TEXT,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
-        version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 02 May 2022 10:13:32 +0200, Cédric Le Goater wrote:
-> The "interrupt" property is optional because it is only necessary for
-> controllers supporting DMAs (Not implemented yet in the new driver).
+On Sat, 30 Apr 2022 14:49:04 +0300, michaelsh@nvidia.com wrote:
+> From: Michael Shych <michaelsh@nvidia.com>
 > 
-> Cc: Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>
-> Tested-by: Joel Stanley <joel@jms.id.au>
-> Tested-by: Tao Ren <rentao.bupt@gmail.com>
-> Tested-by: Jae Hyun Yoo <quic_jaehyoo@quicinc.com>
-> Reviewed-by: Joel Stanley <joel@jms.id.au>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Cédric Le Goater <clg@kaod.org>
+> Add basic description of emc2305 driver device tree binding.
+> 
+> Signed-off-by: Michael Shych <michaelsh@nvidia.com>
+> Reviewed-by: Vadim Pasternak <vadimp@nvidia.com>
 > ---
->  .../bindings/spi/aspeed,ast2600-fmc.yaml      | 82 +++++++++++++++++++
->  MAINTAINERS                                   |  9 ++
->  2 files changed, 91 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/spi/aspeed,ast2600-fmc.yaml
+>  .../bindings/hwmon/microchip,emc2305.yaml          | 55 ++++++++++++++++++++++
+>  1 file changed, 55 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/hwmon/microchip,emc2305.yaml
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
 on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
 yamllint warnings/errors:
-./Documentation/devicetree/bindings/spi/aspeed,ast2600-fmc.yaml:62:1: [error] syntax error: found character '\t' that cannot start any token (syntax)
+./Documentation/devicetree/bindings/hwmon/microchip,emc2305.yaml:28:17: [error] empty value in block mapping (empty-values)
 
 dtschema/dtc warnings/errors:
-make[1]: *** Deleting file 'Documentation/devicetree/bindings/spi/aspeed,ast2600-fmc.example.dts'
-Traceback (most recent call last):
-  File "/usr/local/bin/dt-extract-example", line 52, in <module>
-    binding = yaml.load(open(args.yamlfile, encoding='utf-8').read())
-  File "/usr/local/lib/python3.10/dist-packages/ruamel/yaml/main.py", line 434, in load
-    return constructor.get_single_data()
-  File "/usr/local/lib/python3.10/dist-packages/ruamel/yaml/constructor.py", line 119, in get_single_data
-    node = self.composer.get_single_node()
-  File "_ruamel_yaml.pyx", line 706, in _ruamel_yaml.CParser.get_single_node
-  File "_ruamel_yaml.pyx", line 724, in _ruamel_yaml.CParser._compose_document
-  File "_ruamel_yaml.pyx", line 775, in _ruamel_yaml.CParser._compose_node
-  File "_ruamel_yaml.pyx", line 889, in _ruamel_yaml.CParser._compose_mapping_node
-  File "_ruamel_yaml.pyx", line 773, in _ruamel_yaml.CParser._compose_node
-  File "_ruamel_yaml.pyx", line 848, in _ruamel_yaml.CParser._compose_sequence_node
-  File "_ruamel_yaml.pyx", line 904, in _ruamel_yaml.CParser._parse_next_event
-ruamel.yaml.scanner.ScannerError: while scanning a block scalar
-  in "<unicode string>", line 49, column 5
-found a tab character where an indentation space is expected
-  in "<unicode string>", line 62, column 1
-make[1]: *** [Documentation/devicetree/bindings/Makefile:26: Documentation/devicetree/bindings/spi/aspeed,ast2600-fmc.example.dts] Error 1
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/hwmon/microchip,emc2305.yaml: properties:emcs205,max-state:description: None is not of type 'string'
+	from schema $id: http://json-schema.org/draft-07/schema#
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/hwmon/microchip,emc2305.yaml: 'optional' is not one of ['$id', '$schema', 'title', 'description', 'examples', 'required', 'allOf', 'anyOf', 'oneOf', 'definitions', '$defs', 'additionalProperties', 'dependencies', 'dependentRequired', 'dependentSchemas', 'patternProperties', 'properties', 'if', 'then', 'else', 'unevaluatedProperties', 'deprecated', 'maintainers', 'select', '$ref']
+	from schema $id: http://devicetree.org/meta-schemas/base.yaml#
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/hwmon/microchip,emc2305.yaml: 'maintainers' is a required property
+	hint: Metaschema for devicetree binding documentation
+	from schema $id: http://devicetree.org/meta-schemas/base.yaml#
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/hwmon/microchip,emc2305.yaml: properties:emc2305,pwm-channel: 'oneOf' conditional failed, one must be fixed:
+	'type' is a required property
+		hint: A vendor boolean property can use "type: boolean"
+	Additional properties are not allowed ('maxItems' was unexpected)
+		hint: A vendor boolean property can use "type: boolean"
+	/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/hwmon/microchip,emc2305.yaml: properties:emc2305,pwm-channel: 'oneOf' conditional failed, one must be fixed:
+		'enum' is a required property
+		'const' is a required property
+		hint: A vendor string property with exact values has an implicit type
+		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+	/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/hwmon/microchip,emc2305.yaml: properties:emc2305,pwm-channel: 'oneOf' conditional failed, one must be fixed:
+		'$ref' is a required property
+		'allOf' is a required property
+		hint: A vendor property needs a $ref to types.yaml
+		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+	hint: Vendor specific properties must have a type and description unless they have a defined, common suffix.
+	from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/hwmon/microchip,emc2305.yaml: properties:emcs205,max-state: 'oneOf' conditional failed, one must be fixed:
+	'type' is a required property
+		hint: A vendor boolean property can use "type: boolean"
+	Additional properties are not allowed ('maxItems' was unexpected)
+		hint: A vendor boolean property can use "type: boolean"
+	/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/hwmon/microchip,emc2305.yaml: properties:emcs205,max-state: 'oneOf' conditional failed, one must be fixed:
+		'enum' is a required property
+		'const' is a required property
+		hint: A vendor string property with exact values has an implicit type
+		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+	/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/hwmon/microchip,emc2305.yaml: properties:emcs205,max-state: 'oneOf' conditional failed, one must be fixed:
+		'$ref' is a required property
+		'allOf' is a required property
+		hint: A vendor property needs a $ref to types.yaml
+		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+	hint: Vendor specific properties must have a type and description unless they have a defined, common suffix.
+	from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/hwmon/microchip,emc2305.yaml: properties:emc2305,cooling-levels: 'oneOf' conditional failed, one must be fixed:
+	'type' is a required property
+		hint: A vendor boolean property can use "type: boolean"
+	Additional properties are not allowed ('maxItems' was unexpected)
+		hint: A vendor boolean property can use "type: boolean"
+	/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/hwmon/microchip,emc2305.yaml: properties:emc2305,cooling-levels: 'oneOf' conditional failed, one must be fixed:
+		'enum' is a required property
+		'const' is a required property
+		hint: A vendor string property with exact values has an implicit type
+		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+	/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/hwmon/microchip,emc2305.yaml: properties:emc2305,cooling-levels: 'oneOf' conditional failed, one must be fixed:
+		'$ref' is a required property
+		'allOf' is a required property
+		hint: A vendor property needs a $ref to types.yaml
+		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+	hint: Vendor specific properties must have a type and description unless they have a defined, common suffix.
+	from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/hwmon/microchip,emc2305.yaml: properties:emc2305,pwm-max: 'oneOf' conditional failed, one must be fixed:
+	'type' is a required property
+		hint: A vendor boolean property can use "type: boolean"
+	Additional properties are not allowed ('maxItems' was unexpected)
+		hint: A vendor boolean property can use "type: boolean"
+	/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/hwmon/microchip,emc2305.yaml: properties:emc2305,pwm-max: 'oneOf' conditional failed, one must be fixed:
+		'enum' is a required property
+		'const' is a required property
+		hint: A vendor string property with exact values has an implicit type
+		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+	/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/hwmon/microchip,emc2305.yaml: properties:emc2305,pwm-max: 'oneOf' conditional failed, one must be fixed:
+		'$ref' is a required property
+		'allOf' is a required property
+		hint: A vendor property needs a $ref to types.yaml
+		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+	hint: Vendor specific properties must have a type and description unless they have a defined, common suffix.
+	from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/hwmon/microchip,emc2305.yaml: properties:emc2305,pwm-min: 'oneOf' conditional failed, one must be fixed:
+	'type' is a required property
+		hint: A vendor boolean property can use "type: boolean"
+	Additional properties are not allowed ('maxItems' was unexpected)
+		hint: A vendor boolean property can use "type: boolean"
+	/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/hwmon/microchip,emc2305.yaml: properties:emc2305,pwm-min: 'oneOf' conditional failed, one must be fixed:
+		'enum' is a required property
+		'const' is a required property
+		hint: A vendor string property with exact values has an implicit type
+		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+	/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/hwmon/microchip,emc2305.yaml: properties:emc2305,pwm-min: 'oneOf' conditional failed, one must be fixed:
+		'$ref' is a required property
+		'allOf' is a required property
+		hint: A vendor property needs a $ref to types.yaml
+		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+	hint: Vendor specific properties must have a type and description unless they have a defined, common suffix.
+	from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+./Documentation/devicetree/bindings/hwmon/microchip,emc2305.yaml: $id: relative path/filename doesn't match actual path or filename
+	expected: http://devicetree.org/schemas/hwmon/microchip,emc2305.yaml#
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/hwmon/microchip,emc2305.yaml: ignoring, error in schema: properties: emcs205,max-state: description
+Error: Documentation/devicetree/bindings/hwmon/microchip,emc2305.example.dts:25.13-14 syntax error
+FATAL ERROR: Unable to parse input tree
+make[1]: *** [scripts/Makefile.lib:364: Documentation/devicetree/bindings/hwmon/microchip,emc2305.example.dtb] Error 1
 make[1]: *** Waiting for unfinished jobs....
-./Documentation/devicetree/bindings/spi/aspeed,ast2600-fmc.yaml:  while scanning a block scalar
-  in "<unicode string>", line 49, column 5
-found a tab character where an indentation space is expected
-  in "<unicode string>", line 62, column 1
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/spi/aspeed,ast2600-fmc.yaml: ignoring, error parsing file
 make: *** [Makefile:1401: dt_binding_check] Error 2
 
 doc reference errors (make refcheckdocs):
