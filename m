@@ -2,112 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4AFC751721A
-	for <lists+devicetree@lfdr.de>; Mon,  2 May 2022 17:01:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A90A5517225
+	for <lists+devicetree@lfdr.de>; Mon,  2 May 2022 17:03:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349320AbiEBPEj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 May 2022 11:04:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41810 "EHLO
+        id S1385652AbiEBPH0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 May 2022 11:07:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43292 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239046AbiEBPEi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 May 2022 11:04:38 -0400
-Received: from mail-m17638.qiye.163.com (mail-m17638.qiye.163.com [59.111.176.38])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EED70101FD;
-        Mon,  2 May 2022 08:01:08 -0700 (PDT)
-Received: from localhost.localdomain (unknown [IPV6:2001:250:6801:5501:163d:f2ff:fecb:5632])
-        by mail-m17638.qiye.163.com (Hmail) with ESMTPA id 9651E1C01BB;
-        Mon,  2 May 2022 23:01:06 +0800 (CST)
-From:   Chukun Pan <amadeus@jmu.edu.cn>
-To:     Maxime Ripard <maxime@cerno.tech>
-Cc:     Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
-        Chukun Pan <amadeus@jmu.edu.cn>
-Subject: [PATCH] arm64: dts: allwinner: h6: Enable CPU opp tables for OrangePi One Plus
-Date:   Mon,  2 May 2022 23:01:01 +0800
-Message-Id: <20220502150101.45200-1-amadeus@jmu.edu.cn>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S235195AbiEBPHY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 May 2022 11:07:24 -0400
+Received: from mail-qk1-f171.google.com (mail-qk1-f171.google.com [209.85.222.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2DFED10FFC;
+        Mon,  2 May 2022 08:03:55 -0700 (PDT)
+Received: by mail-qk1-f171.google.com with SMTP id c1so11507342qkf.13;
+        Mon, 02 May 2022 08:03:55 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=wpkWBnUm+tMNXEdU7dKMrLB1fKI4P20T5F+R3AcKCzs=;
+        b=xXjpkNbgZtc+HkIJ6v7m0YqnKw2lfPfitWvD0A/k+5hwzbPChMjx0vFdnoCh5hldvL
+         itqS3HooqpMaNd832qwSVPWYKs3EJsIbLUmMw7UrbcHb4pUe1I+yxRz7pua8+XuKkFPh
+         s40nn5HhVZ6XSZ9Qeg8xkfnLr1T2Pwfwkdzd0IXqLu8roK4ShgbXdlcj6FkwRUylgvdT
+         E/kuwX6jY8+V6s2lnq2w8lTd5G8sB/HmWY1V0BooDUmwlevYojK6XIcYbzzgy5RYaud0
+         EeKV0Ab+iV0QLeL4/oZNHOpy83Zsfs53pTi/nsEuz5sh0ChMJHZ0956FmKuraCAxeS77
+         4Emw==
+X-Gm-Message-State: AOAM532PSFeKP0rwIdjchyo2BMe3kl2qZSlkXlZ7j3Ww9oPaY4G6im3h
+        kJWh1W7g/z3+6Fe9zh+ghXca/WHpSvJotw==
+X-Google-Smtp-Source: ABdhPJxLOjB9SDUD5whn4d7o/eDaFFzOpu8LvLoOR9GAGYONE9On1ONxfgQYdslf+a7YRvh/AL6mhQ==
+X-Received: by 2002:a05:620a:2a06:b0:69f:f8f5:fdba with SMTP id o6-20020a05620a2a0600b0069ff8f5fdbamr993854qkp.110.1651503833925;
+        Mon, 02 May 2022 08:03:53 -0700 (PDT)
+Received: from mail-yb1-f179.google.com (mail-yb1-f179.google.com. [209.85.219.179])
+        by smtp.gmail.com with ESMTPSA id 18-20020ac85652000000b002f39b99f66dsm4262063qtt.7.2022.05.02.08.03.53
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 02 May 2022 08:03:53 -0700 (PDT)
+Received: by mail-yb1-f179.google.com with SMTP id y76so26539023ybe.1;
+        Mon, 02 May 2022 08:03:53 -0700 (PDT)
+X-Received: by 2002:a25:6157:0:b0:645:8d0e:f782 with SMTP id
+ v84-20020a256157000000b006458d0ef782mr11274573ybb.36.1651503832314; Mon, 02
+ May 2022 08:03:52 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUtXWQgPGg8OCBgUHx5ZQUlOS1dZCBgUCR5ZQVlLVUtZV1
-        kWDxoPAgseWUFZKDYvK1lXWShZQUhPN1dZLVlBSVdZDwkaFQgSH1lBWUMeGRlWSkxLGExCTEtLGE
-        hJVRMBExYaEhckFA4PWVdZFhoPEhUdFFlBWU9LSFVKSktISkNVS1kG
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6MyI6Shw6Az01EBUdTCM0MEgM
-        Di1PCw1VSlVKTU5KTktITU1MSU5LVTMWGhIXVRoWGh8eDgg7ERYOVR4fDlUYFUVZV1kSC1lBWUlL
-        S0pBSU5LQU1DS0pBTk5LSkFKTUgfQR1JHR1BHR4YGUFOTUhJWVdZCAFZQUhLQ0w3Bg++
-X-HM-Tid: 0a80854a16bed993kuws9651e1c01bb
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20220501082508.25511-1-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20220501082508.25511-1-biju.das.jz@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Mon, 2 May 2022 17:03:41 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdV07CHm3NE9YUTMqp-ZNkWoJyR6CFU9PA0heK+9G6NDxw@mail.gmail.com>
+Message-ID: <CAMuHMdV07CHm3NE9YUTMqp-ZNkWoJyR6CFU9PA0heK+9G6NDxw@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: memory: renesas,rpc-if: Document RZ/G2UL SoC
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sergei Shtylyov <sergei.shtylyov@gmail.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable CPU opp tables for OrangePi One Plus.
+On Sun, May 1, 2022 at 10:25 AM Biju Das <biju.das.jz@bp.renesas.com> wrote:
+> Document RZ/G2UL RPC-IF bindings. RZ/G2UL RPC-IF is identical to one found
+> on the RZ/G2L SoC. No driver changes are required as generic compatible
+> string "renesas,rzg2l-rpc-if" will be used as a fallback.
+>
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
 
-This needs to change the CPU regulator max voltage to fit
-the OPP table.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-Also add the ramp-delay information to avoid any out of spec
-running as the regulator is slower at reaching the voltage
-requested compare to the PLL reaching the frequency.
+Gr{oetje,eeting}s,
 
-There is no such information for AXP805 but similar PMIC (AXP813)
-has a DVM (Dynamic Voltage scaling Management) ramp rate equal
-to 2500uV/us.
+                        Geert
 
-Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
----
- arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi.dtsi | 9 ++++++++-
- 1 file changed, 8 insertions(+), 1 deletion(-)
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi.dtsi
-index 92745128fcfe..d7b82ef6be55 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi.dtsi
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi.dtsi
-@@ -5,6 +5,7 @@
- /dts-v1/;
- 
- #include "sun50i-h6.dtsi"
-+#include "sun50i-h6-cpu-opp.dtsi"
- 
- #include <dt-bindings/gpio/gpio.h>
- 
-@@ -64,6 +65,10 @@ reg_vcc5v: vcc5v {
- 	};
- };
- 
-+&cpu0 {
-+	cpu-supply = <&reg_dcdca>;
-+};
-+
- &de {
- 	status = "okay";
- };
-@@ -208,7 +213,8 @@ reg_cldo3: cldo3 {
- 			reg_dcdca: dcdca {
- 				regulator-always-on;
- 				regulator-min-microvolt = <810000>;
--				regulator-max-microvolt = <1080000>;
-+				regulator-max-microvolt = <1160000>;
-+				regulator-ramp-delay = <2500>;
- 				regulator-name = "vdd-cpu";
- 			};
- 
-@@ -216,6 +222,7 @@ reg_dcdcc: dcdcc {
- 				regulator-enable-ramp-delay = <32000>;
- 				regulator-min-microvolt = <810000>;
- 				regulator-max-microvolt = <1080000>;
-+				regulator-ramp-delay = <2500>;
- 				regulator-name = "vdd-gpu";
- 			};
- 
--- 
-2.25.1
-
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
