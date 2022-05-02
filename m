@@ -2,106 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F2EE551769B
-	for <lists+devicetree@lfdr.de>; Mon,  2 May 2022 20:35:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 043CB5176A9
+	for <lists+devicetree@lfdr.de>; Mon,  2 May 2022 20:39:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1386907AbiEBSjO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 May 2022 14:39:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50986 "EHLO
+        id S1384159AbiEBSmv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 May 2022 14:42:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53348 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1386973AbiEBSi7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 May 2022 14:38:59 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60A1765F3;
-        Mon,  2 May 2022 11:35:29 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: nfraprado)
-        with ESMTPSA id B8F721F42914
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1651516528;
-        bh=LNAKoERXNkxOChEkjc56ibMMeMeZRDZq9ArNo0Yf64k=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=SE1XcgI7Tnd9jrUCWIe+kKGkeveMBSkqfnpzeAxST784bFE4NvXBGVyKtmVTzFQKr
-         mpDOuBivzwO3rCkE+y73S6y4rOFyfFJcopT3rZD+7KKBew/QrHsYvAA63H6swWp+iA
-         yvm0b7qr6NCBM+H2arXbXISocgeMcw8XvDbH9LeiZbYIPsH0alUlCCKuw21bW3+etY
-         gApJ0l9e0G42MnJ4bN1QykoDF04L2CJT45frtB/qiEWKxx6stsS0KFkkd5LX7QTyPL
-         2U/yOkW78IG3fL0m/O7SLSgjUtBCMB6k2mBHuBqHJ2Ja89f7pF7B0JBG+POMq0q4qC
-         9vw5h2ft9f1Yw==
-Date:   Mon, 2 May 2022 14:35:23 -0400
-From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
-        <nfraprado@collabora.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, kernel@collabora.com,
+        with ESMTP id S231752AbiEBSmv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 May 2022 14:42:51 -0400
+Received: from mail-oa1-f41.google.com (mail-oa1-f41.google.com [209.85.160.41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 785C99FF1;
+        Mon,  2 May 2022 11:39:21 -0700 (PDT)
+Received: by mail-oa1-f41.google.com with SMTP id 586e51a60fabf-ed9a75c453so4559729fac.11;
+        Mon, 02 May 2022 11:39:21 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=VVcMzvyTq+QCVR9FKWTpGDU5miJJoGoqrT5NVytuZtY=;
+        b=MJZjPDmWJVul52OfHvPoIqg7G95+4GKYsHFt0FB+zyjhxJQGNU0pkVv/BP5ydvAxAK
+         r8CiPyAvKau+CgSFhiacHcSLZ9fPy5CV7OYMkd0AN1rPooSbnbbFaEujjFbpfjz4vaYn
+         0hqIazArwDRL0FHb8DOhGgtQ9BZBRAEMp/PXAPFADxyKPQFHcgrJjkO4mGJ0EnaAT+U1
+         92pIlOtQ1Uq1KfDSbxk0PZUW2yE2WC0gbYQjmtfiGGjW2oAUEUnxfqfN0VOCDv0CgXzo
+         0VMuGWF96p9czAcMmub08KlZYl/pb7JBhKIh/cdt7rlozH7ABUFu6CrS5Cdc9vW006CS
+         6+GA==
+X-Gm-Message-State: AOAM532J22zzbF1KUGCZY/qQDGfJjpylxW0i0wh5OLq0kR+vE/uN8/rR
+        71vrIoZgTls5qOpudL7rOw==
+X-Google-Smtp-Source: ABdhPJyYgpKONXd4WCpiY4fUPrOQnoiftHSAAMZwKmFvxKURVy5OoQFoTnJejNJOEQ9lYC9mfiNvbg==
+X-Received: by 2002:a05:6870:d5a2:b0:de:f682:6c4d with SMTP id u34-20020a056870d5a200b000def6826c4dmr210993oao.283.1651516759431;
+        Mon, 02 May 2022 11:39:19 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id b3-20020a05687061c300b000e686d13879sm6088920oah.19.2022.05.02.11.39.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 02 May 2022 11:39:18 -0700 (PDT)
+Received: (nullmailer pid 1499405 invoked by uid 1000);
+        Mon, 02 May 2022 18:39:17 -0000
+Date:   Mon, 2 May 2022 13:39:17 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     netdev@vger.kernel.org, Wolfgang Grandegger <wg@grandegger.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Marc Kleine-Budde <mkl@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Biju Das <biju.das@bp.renesas.com>,
+        Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Tinghan Shen <tinghan.shen@mediatek.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        linux-remoteproc@vger.kernel.org
-Subject: Re: [PATCH 2/2] dt-bindings: remoteproc: mediatek: Add optional
- memory-region to mtk,scp
-Message-ID: <20220502183523.tfrai4wndzhlvjq5@notapiano>
-References: <20220429211111.2214119-1-nfraprado@collabora.com>
- <20220429211111.2214119-3-nfraprado@collabora.com>
- <YnAA+7eqP/WzGrhQ@robh.at.kernel.org>
+        linux-can@vger.kernel.org, "David S. Miller" <davem@davemloft.net>,
+        linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: can: renesas,rcar-canfd: Document RZ/G2UL
+ support
+Message-ID: <YnAlVQr1A6UU0tB3@robh.at.kernel.org>
+References: <20220423130743.123198-1-biju.das.jz@bp.renesas.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <YnAA+7eqP/WzGrhQ@robh.at.kernel.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20220423130743.123198-1-biju.das.jz@bp.renesas.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 02, 2022 at 11:04:11AM -0500, Rob Herring wrote:
-> On Fri, Apr 29, 2022 at 05:11:10PM -0400, Nícolas F. R. A. Prado wrote:
-> > The SCP co-processor can optionally be passed a reserved memory region
-> > to use. Add this property in the dt-binding.
-> > 
-> > Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
-> > ---
-> > 
-> >  Documentation/devicetree/bindings/remoteproc/mtk,scp.yaml | 4 ++++
-> >  1 file changed, 4 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/remoteproc/mtk,scp.yaml b/Documentation/devicetree/bindings/remoteproc/mtk,scp.yaml
-> > index ec9ddeb6ca2c..64a9d2c7ed0d 100644
-> > --- a/Documentation/devicetree/bindings/remoteproc/mtk,scp.yaml
-> > +++ b/Documentation/devicetree/bindings/remoteproc/mtk,scp.yaml
-> > @@ -51,6 +51,10 @@ properties:
-> >    interrupts:
-> >      maxItems: 1
-> >  
-> > +  memory-region:
-> > +    $ref: /schemas/types.yaml#/definitions/phandle
+On Sat, 23 Apr 2022 14:07:43 +0100, Biju Das wrote:
+> Add CANFD binding documentation for Renesas R9A07G043 (RZ/G2UL) SoC.
 > 
-> memory-region has a type already, so drop. What's needed is how many 
-> entries and what they are if more than 1.
-
-Hi Rob,
-
-OK, didn't notice this common property was already documented elsewhere. In that
-case I'll also drop the description since it's only 1.
-
-Thanks,
-Nícolas
-
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> ---
+>  .../devicetree/bindings/net/can/renesas,rcar-canfd.yaml          | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> > +    description: phandle to reserved memory region.
-> > +
-> >  required:
-> >    - compatible
-> >    - reg
-> > -- 
-> > 2.36.0
-> > 
-> > 
+
+Applied, thanks!
