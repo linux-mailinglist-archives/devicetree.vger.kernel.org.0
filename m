@@ -2,180 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E59D6516924
-	for <lists+devicetree@lfdr.de>; Mon,  2 May 2022 03:38:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DF9AD516957
+	for <lists+devicetree@lfdr.de>; Mon,  2 May 2022 04:14:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234357AbiEBBmP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 1 May 2022 21:42:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50570 "EHLO
+        id S1346955AbiEBCSH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 1 May 2022 22:18:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44286 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233379AbiEBBmP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 1 May 2022 21:42:15 -0400
-Received: from alexa-out.qualcomm.com (alexa-out.qualcomm.com [129.46.98.28])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5214318E35;
-        Sun,  1 May 2022 18:38:48 -0700 (PDT)
+        with ESMTP id S231426AbiEBCSG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 1 May 2022 22:18:06 -0400
+Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com [IPv6:2607:f8b0:4864:20::1029])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D841393E1
+        for <devicetree@vger.kernel.org>; Sun,  1 May 2022 19:14:38 -0700 (PDT)
+Received: by mail-pj1-x1029.google.com with SMTP id cq17-20020a17090af99100b001dc0386cd8fso6304112pjb.5
+        for <devicetree@vger.kernel.org>; Sun, 01 May 2022 19:14:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1651455528; x=1682991528;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=GB5FNSl/Q5I54V+rN8pZy3Znz3ryXNi/K6XHiOqMzB4=;
-  b=rATZE1J1W2JnO9AEqYZ+0ImpNUBUdmBnvARAKCjWBjNUe0WYMzBOCKDS
-   w8Iwbi3xDQyMnLG7Kp4Lctj4aCQn1ooaTIGvYI7Iby4QXSuX7RYEFGRDC
-   UBxegr4p5dFc32iVlQgmXRcnnyAoawpzci06eECcn0yoRiDy4SyAOBHlo
-   E=;
-Received: from ironmsg07-lv.qualcomm.com ([10.47.202.151])
-  by alexa-out.qualcomm.com with ESMTP; 01 May 2022 18:38:48 -0700
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg07-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 May 2022 18:38:48 -0700
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Sun, 1 May 2022 18:38:27 -0700
-Received: from [10.38.245.205] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Sun, 1 May 2022
- 18:38:24 -0700
-Message-ID: <200eddae-02b8-5479-3e81-1f3885200ac0@quicinc.com>
-Date:   Sun, 1 May 2022 18:38:22 -0700
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=/6Cb5quQcvr6w4aquM9DgaTqeLRCFAMGcR2tJUmbtLU=;
+        b=d9+xyl3TTsYoDqDmHTrZccfj71lKamLTsmONamCeF6V38dumBz36dHdLyevokgi5Ut
+         Xn0bZcRB2loUzeJiPafcSO5/WrcL/9owgY2b6lb2pvIwVRjYvsCQPOiO/V6JowmYbJIF
+         kLamJ+A+MOeIOImPoMdX9YJaYN+hC3armcLPlTltur/PIjBpzWKrN0jYeq+cO1sp/teh
+         /tiidD0tqeTXXyMQVeEIz8lJnQlGGFsTLGS672UMl4U38HvneirztPm1/54Q+t4pTWOU
+         TeJunDxqmSgcm5RAgGjdcp4TSwr/1F5W2twWEGrmaKnBDuuPiiHtwXgk0rp+baZyt52z
+         TzcA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=/6Cb5quQcvr6w4aquM9DgaTqeLRCFAMGcR2tJUmbtLU=;
+        b=poRyAV/qeCZFVIU0HeN8f6CRCzbRfqIC7TMztnWiwrdVytMfFuHGu7/8KEJz+DKojv
+         HfttHh3j8XJ4uPrd31FN/hS8tqyZb0hprld4GRrw0WUaY3+xMvBXolxhzbO1QJ2b/mwh
+         xjuvr+MqTtaLOaXf8iwPIm1xiaDheXex/cZLR7wtGl5Asgk1FoeKQJOMxejoW22y0bQR
+         Xu7p3w/i7HwPESLyx60utJ/OP8m0jQC/NLdzvO3IGQFNMyzSAmLdyObLs09XbXhChn5h
+         cUxdXhdN4W0iofFXbr6fHM9tvTuPVRacsuWAhWTH1i/4IaIpYYwhXyW9J59QoTGTTcWi
+         4Tag==
+X-Gm-Message-State: AOAM531n8/O8rhZwBzI7iq3+qzmWArEelMhZHPpQ4lJBZszZkw1ipj33
+        wFZLCitq9luzfG4HIicR/97wqjUttJ5VOA==
+X-Google-Smtp-Source: ABdhPJyHVrPMj/QysGF4PO8NxMM2ZKszBnTj3OJ73k+dsYSsXrk01OtyxHNfdl7JSsW2ChKd9dHEag==
+X-Received: by 2002:a17:903:11d1:b0:151:9fb2:9858 with SMTP id q17-20020a17090311d100b001519fb29858mr9642183plh.136.1651457677684;
+        Sun, 01 May 2022 19:14:37 -0700 (PDT)
+Received: from x1.hsd1.or.comcast.net ([2601:1c2:1001:7090:c18e:6070:88f2:a04d])
+        by smtp.gmail.com with ESMTPSA id j2-20020a17090a734200b001cd4989febcsm18714475pjs.8.2022.05.01.19.14.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 01 May 2022 19:14:37 -0700 (PDT)
+From:   Drew Fustini <dfustini@baylibre.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Nishanth Menon <nm@ti.com>, Dave Gerlach <d-gerlach@ti.com>,
+        Tony Lindgren <tony@atomide.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Drew Fustini <dfustini@baylibre.com>
+Subject: [PATCH 0/3] ARM: dts: enable am33xx and am43xx wkup_m3_ipc features
+Date:   Sun,  1 May 2022 19:15:06 -0700
+Message-Id: <20220502021508.1342869-1-dfustini@baylibre.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.6.2
-Subject: Re: [Freedreno] [PATCH] drm/msm/disp/dpu1: avoid clearing hw
- interrupts if hw_intr is null during drm uninit
-Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Vinod Polimera <quic_vpolimer@quicinc.com>,
-        <devicetree@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <freedreno@lists.freedesktop.org>, <linux-arm-msm@vger.kernel.org>
-CC:     <quic_kalyant@quicinc.com>, <robdclark@gmail.com>,
-        <linux-kernel@vger.kernel.org>, <dianders@chromium.org>
-References: <1650952931-31988-1-git-send-email-quic_vpolimer@quicinc.com>
- <CAE-0n52cSR_xCxF+_UeK8CaHqsu=4HOtfWQ3BMmx2Tx3kmk-ZA@mail.gmail.com>
- <e20d94d7-a865-21f7-0514-706992294614@linaro.org>
-From:   Abhinav Kumar <quic_abhinavk@quicinc.com>
-In-Reply-To: <e20d94d7-a865-21f7-0514-706992294614@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-Spam-Status: No, score=-4.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Looks like our new CI has given all the answers we need :) which is a 
-great win for the CI in my opinion.
+Enable new wkup_m3_ipc features which includes IO isolation on the
+am437x-gp-evm and i2c voltage scaling firmware for both am33xx and
+am43xx based boards.
 
-Take a look at this report : 
-https://gitlab.freedesktop.org/drm/msm/-/jobs/22015361
+This dts series depends on the bindings and driver changes in:
+- [PATCH v3 0/2] soc: ti: wkup_m3_ipc: support i2c voltage scaling [1]
+- [PATCH v3 0/2] soc: ti: wkup_m3_ipc: Add support for IO Isolation [2]
 
-This issue seems to be because this change 
-https://github.com/torvalds/linux/commit/169466d4e59ca204683998b7f45673ebf0eb2de6 
-is missing in our tree.
+Dave Gerlach (3):
+  ARM: dts: am437x-gp-evm: Enable wkup_m3 control of IO isolation
+  ARM: dts: am33xx: Add i2c voltage scaling firmware to wkup_m3_ipc
+  ARM: dts: am43xx: Add i2c voltage scaling firmware to wkup_m3_ipc
 
-Without this change, what happens is that we are not hitting the return 
-0 because we check for ENODEV.
+ arch/arm/boot/dts/am335x-bone-common.dtsi | 4 ++++
+ arch/arm/boot/dts/am335x-evm.dts          | 4 ++++
+ arch/arm/boot/dts/am335x-evmsk.dts        | 4 ++++
+ arch/arm/boot/dts/am437x-gp-evm.dts       | 5 +++++
+ arch/arm/boot/dts/am437x-sk-evm.dts       | 4 ++++
+ arch/arm/boot/dts/am43x-epos-evm.dts      | 4 ++++
+ 6 files changed, 25 insertions(+)
 
+[1] https://lore.kernel.org/linux-devicetree/20220426200741.712842-1-dfustini@baylibre.com/
+[2] https://lore.kernel.org/linux-devicetree/20220414192722.2978837-1-dfustini@baylibre.com/
+-- 
+2.32.0
 
-   /*
-      * External bridges are mandatory for eDP interfaces: one has to
-      * provide at least an eDP panel (which gets wrapped into 
-panel-bridge).
-      *
-      * For DisplayPort interfaces external bridges are optional, so
-      * silently ignore an error if one is not present (-ENODEV).
-      */
-     rc = dp_parser_find_next_bridge(dp_priv->parser);
-     if (!dp->is_edp && rc == -ENODEV)
-         return 0;
-
-So, I think we should do both:
-
-1) Since we are running CI on the tree, backport this change so that 
-this error path doesnt hit?
-
-2) Add this protection as well because this shows that we can indeed hit 
-this path in EDEFER cases causing this crash.
-
-Thanks
-
-Abhinav
-
-On 4/27/2022 3:53 AM, Dmitry Baryshkov wrote:
-> On 27/04/2022 00:50, Stephen Boyd wrote:
->> Quoting Vinod Polimera (2022-04-25 23:02:11)
->>> Avoid clearing irqs and derefernce hw_intr when hw_intr is null.
->>
->> Presumably this is only the case when the display driver doesn't fully
->> probe and something probe defers? Can you clarify how this situation
->> happens?
->>
->>>
->>> BUG: Unable to handle kernel NULL pointer dereference at virtual 
->>> address 0000000000000000
->>>
->>> Call trace:
->>>   dpu_core_irq_uninstall+0x50/0xb0
->>>   dpu_irq_uninstall+0x18/0x24
->>>   msm_drm_uninit+0xd8/0x16c
->>>   msm_drm_bind+0x580/0x5fc
->>>   try_to_bring_up_master+0x168/0x1c0
->>>   __component_add+0xb4/0x178
->>>   component_add+0x1c/0x28
->>>   dp_display_probe+0x38c/0x400
->>>   platform_probe+0xb0/0xd0
->>>   really_probe+0xcc/0x2c8
->>>   __driver_probe_device+0xbc/0xe8
->>>   driver_probe_device+0x48/0xf0
->>>   __device_attach_driver+0xa0/0xc8
->>>   bus_for_each_drv+0x8c/0xd8
->>>   __device_attach+0xc4/0x150
->>>   device_initial_probe+0x1c/0x28
->>>
->>> Fixes: a73033619ea ("drm/msm/dpu: squash dpu_core_irq into 
->>> dpu_hw_interrupts")
->>
->> The fixes tag looks odd. In dpu_core_irq_uninstall() at that commit it
->> is dealing with 'irq_obj' which isn't a pointer. After commit
->> f25f656608e3 ("drm/msm/dpu: merge struct dpu_irq into struct
->> dpu_hw_intr") dpu_core_irq_uninstall() starts using 'hw_intr' which is
->> allocated on the heap. If we backported this patch to a place that had
->> a73033619ea without f25f656608e3 it wouldn't make any sense.
-> 
-> I'd agree here. The following tag would be correct:
-> 
-> Fixes: f25f656608e3 ("drm/msm/dpu: merge struct dpu_irq into struct 
-> dpu_hw_intr")
-> 
-> 
->>
->>> Signed-off-by: Vinod Polimera <quic_vpolimer@quicinc.com>
->>> ---
->>>   drivers/gpu/drm/msm/disp/dpu1/dpu_hw_interrupts.c | 3 +++
->>>   1 file changed, 3 insertions(+)
->>>
->>> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_interrupts.c 
->>> b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_interrupts.c
->>> index c515b7c..ab28577 100644
->>> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_interrupts.c
->>> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_interrupts.c
->>> @@ -599,6 +599,9 @@ void dpu_core_irq_uninstall(struct dpu_kms *dpu_kms)
->>>   {
->>>          int i;
->>>
->>> +       if (!dpu_kms->hw_intr)
->>> +               return;
->>> +
->>>          pm_runtime_get_sync(&dpu_kms->pdev->dev);
->>>          for (i = 0; i < dpu_kms->hw_intr->total_irqs; i++)
-> 
-> 
