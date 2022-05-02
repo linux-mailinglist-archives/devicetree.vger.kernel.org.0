@@ -2,57 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 66BEF5177C4
-	for <lists+devicetree@lfdr.de>; Mon,  2 May 2022 22:09:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 22D735177CA
+	for <lists+devicetree@lfdr.de>; Mon,  2 May 2022 22:11:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242026AbiEBUM1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 May 2022 16:12:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44040 "EHLO
+        id S240294AbiEBUPY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 May 2022 16:15:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45388 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245100AbiEBUM0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 May 2022 16:12:26 -0400
-Received: from mail-oi1-f173.google.com (mail-oi1-f173.google.com [209.85.167.173])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB18363E8
-        for <devicetree@vger.kernel.org>; Mon,  2 May 2022 13:08:56 -0700 (PDT)
-Received: by mail-oi1-f173.google.com with SMTP id s131so16308989oie.1
-        for <devicetree@vger.kernel.org>; Mon, 02 May 2022 13:08:56 -0700 (PDT)
+        with ESMTP id S232411AbiEBUPX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 May 2022 16:15:23 -0400
+Received: from mail-oa1-f43.google.com (mail-oa1-f43.google.com [209.85.160.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B1B67647;
+        Mon,  2 May 2022 13:11:54 -0700 (PDT)
+Received: by mail-oa1-f43.google.com with SMTP id 586e51a60fabf-e9027efe6aso15306516fac.10;
+        Mon, 02 May 2022 13:11:54 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Q6m+9/91beeHG9SZ7OzgOc2AsNH+m8OjcQF4LxtTsjU=;
-        b=J1C1IZ7EdLfKh50Y6WbKf2d0H/44sMMs2/rV2RdLheDxGSZdEo6hPgTrMz2jwrliMe
-         g9y7RD2VNgqjFQD0IroSAKAQrvquy27cEeX+Iao/ftrlIJOzjYMHYD3KaIwefHKZrBEB
-         GCOihDTt92AQ8p9at+IbiCzgW+glI1xtWHmLMOy9fTPiSyT1ZEJx6VVhq+hETrmMhrMn
-         U7kNwcU3X+jPrlHB77cmInip34t6GfBJUkmKylV5j1vHrTLqZQVp2wirVy9pwlEJ77eC
-         Lgz4XrGe8eq/q5JEij4wvSFTf2TiRvcK3e2P1q5CEoenCjwa8+eE29QDYIWlMFImJvtQ
-         Y8mA==
-X-Gm-Message-State: AOAM530Iz0YruOgJ/oqwwzjCtvWL5dXH12JAEUJgLPiAwVtgzGVMpIm9
-        ssvfvuUrOj0tSgB+47qWug==
-X-Google-Smtp-Source: ABdhPJzG0LME5KZKJO5is8BmKx1zYiEidh3wOBv1aM57Ca2mCxOBqOnH6plJmeXuuFWTlp/ZXoA6hg==
-X-Received: by 2002:aca:378a:0:b0:324:f822:675c with SMTP id e132-20020aca378a000000b00324f822675cmr403181oia.88.1651522136248;
-        Mon, 02 May 2022 13:08:56 -0700 (PDT)
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=iFucsA5Ez9eKEIIJxclpF6rEOIC5QyDejdPoOT0zWNw=;
+        b=jd6nBI5elW5VX3iGDVuMQ3qtAGUpr34tjJuSaJEbo7wJwEljrI/DGFCql39QnMXVub
+         pIXiabt051CjQ/FpRyFyzXG3nhZhEFX710qnSlP3Vm0TbuHnepYjxVRZZVAhO0m5LNv2
+         F22RGNtw9qMVPM+EcCuM1H+velm5CJ5+XueovDR4+/Fb3ZE3W7AEAi8naAMdSWohD4wC
+         tFS5p4m3/GZNk5PELwGFVZfZ8FvWBa/VV4FowNUSBYHicV/ngdl7geeRhyQqw98mLhjH
+         WvOcELEGQWAcMEywlOjzW5e8NUDmdRwnhnxkNnoyHiFa+98lo4+s1kKXwo21rj7+EQtD
+         9EyQ==
+X-Gm-Message-State: AOAM533Z16nVAhRWFVPPqSxh/ITeGX4ADsQIoRAhCRS4otR5nOx4ukrd
+        SbcJLfR+7/htfzfnizenIg==
+X-Google-Smtp-Source: ABdhPJzJQcZp2FqEi2/8eefqdINc5i65zvwbNYjQqC/1tVbA3fFDU4sX5q2bmYR9PaLVnGwIj0xRQg==
+X-Received: by 2002:a05:6870:d785:b0:d2:823a:94df with SMTP id bd5-20020a056870d78500b000d2823a94dfmr375395oab.93.1651522313182;
+        Mon, 02 May 2022 13:11:53 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id d9-20020a05680813c900b00325cda1ffaesm2761850oiw.45.2022.05.02.13.08.55
+        by smtp.gmail.com with ESMTPSA id m63-20020aca5842000000b00325cda1ff9esm2696562oib.29.2022.05.02.13.11.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 May 2022 13:08:55 -0700 (PDT)
-Received: (nullmailer pid 1653792 invoked by uid 1000);
-        Mon, 02 May 2022 20:08:55 -0000
-Date:   Mon, 2 May 2022 15:08:55 -0500
+        Mon, 02 May 2022 13:11:52 -0700 (PDT)
+Received: (nullmailer pid 1658903 invoked by uid 1000);
+        Mon, 02 May 2022 20:11:51 -0000
+Date:   Mon, 2 May 2022 15:11:50 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Fabio Estevam <festevam@gmail.com>
-Cc:     robh+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, shawnguo@kernel.org,
-        Fabio Estevam <festevam@denx.de>
-Subject: Re: [PATCH 2/3] dt-bindings: arm: fsl: Add Storopack i.MX7D SMEGW01
- board
-Message-ID: <YnA6V+dALZNO/I0s@robh.at.kernel.org>
-References: <20220420131507.1032732-1-festevam@gmail.com>
- <20220420131507.1032732-2-festevam@gmail.com>
+To:     Pali =?iso-8859-1?Q?Roh=E1r?= <pali@kernel.org>
+Cc:     linux-crypto@vger.kernel.org,
+        "David S. Miller" <davem@davemloft.net>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Ludovic Desroches <ludovic.desroches@microchip.com>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        linux-kernel@vger.kernel.org,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>
+Subject: Re: [PATCH] crypto: atmel-sha204a: Add support for ATSHA204
+ cryptochip
+Message-ID: <YnA7BvqB3Y5E8O8m@robh.at.kernel.org>
+References: <20220421134457.5867-1-pali@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20220420131507.1032732-2-festevam@gmail.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220421134457.5867-1-pali@kernel.org>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -64,15 +70,22 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 20 Apr 2022 10:15:06 -0300, Fabio Estevam wrote:
-> From: Fabio Estevam <festevam@denx.de>
+On Thu, 21 Apr 2022 15:44:57 +0200, Pali Rohár wrote:
+> ATSHA204 is predecessor of ATSHA204A which supports less features and some
+> of them are slightly different.
 > 
-> Add DT compatible string for Storopack i.MX7D SMEGW01 board.
+> Introduce a new compatible string for ATSHA204 cryptochip "atmel,atsha204".
 > 
-> Signed-off-by: Fabio Estevam <festevam@denx.de>
+> Current version of Linux kernel driver atmel-sha204a.c implements only hw
+> random number generator which is same in both ATSHA204 and ATSHA204A
+> cryptochips. So driver already supports also ATSHA204 hw generator, so just
+> simply extends list of compatible strings.
+> 
+> Signed-off-by: Pali Rohár <pali@kernel.org>
 > ---
->  Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
->  1 file changed, 1 insertion(+)
+>  Documentation/devicetree/bindings/trivial-devices.yaml | 4 +++-
+>  drivers/crypto/atmel-sha204a.c                         | 2 ++
+>  2 files changed, 5 insertions(+), 1 deletion(-)
 > 
 
 Acked-by: Rob Herring <robh@kernel.org>
