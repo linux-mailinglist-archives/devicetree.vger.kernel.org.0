@@ -2,68 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D1D17516B0E
-	for <lists+devicetree@lfdr.de>; Mon,  2 May 2022 09:07:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 12A1B516B11
+	for <lists+devicetree@lfdr.de>; Mon,  2 May 2022 09:07:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347732AbiEBHKj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 May 2022 03:10:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53346 "EHLO
+        id S1358424AbiEBHLF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 May 2022 03:11:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55358 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232250AbiEBHKi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 May 2022 03:10:38 -0400
-Received: from mail-pj1-x1034.google.com (mail-pj1-x1034.google.com [IPv6:2607:f8b0:4864:20::1034])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD3EE1EEF9
-        for <devicetree@vger.kernel.org>; Mon,  2 May 2022 00:07:08 -0700 (PDT)
-Received: by mail-pj1-x1034.google.com with SMTP id o69so10604732pjo.3
-        for <devicetree@vger.kernel.org>; Mon, 02 May 2022 00:07:08 -0700 (PDT)
+        with ESMTP id S233181AbiEBHLE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 May 2022 03:11:04 -0400
+Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com [IPv6:2607:f8b0:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 882843150E
+        for <devicetree@vger.kernel.org>; Mon,  2 May 2022 00:07:36 -0700 (PDT)
+Received: by mail-pf1-x433.google.com with SMTP id g8so9237800pfh.5
+        for <devicetree@vger.kernel.org>; Mon, 02 May 2022 00:07:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to;
-        bh=kYH0ay76Tay4ZAMs5UYFoGZVb+b5goR3w/zMZTj8gCk=;
-        b=aK6LO2mx6Tc/Te3W9vE0J3iZzladGLc0QGogAbCC2IAOSyLYNWlf2WwS5fQw5SxSsK
-         TcIzEsWgdkwJARJ8nVExSz5/x7Nyjb+7AUOlVvI0Gwomek8Suq+vnVZXmWo75X/rDxkB
-         v6RqL7jqhBGY27gN4qf9cs/LgpFO4/HJWa25n3ZNH9CUleb7vaj94IL7R51Nkp26Av42
-         HPxxoxqHw5iQFOppJjVdXKLSvphY+/V44M9b0HoK80rxWlMMuthsFselFlSXnJ075hQu
-         JN58/lIrszE/8mO2bI9v86tR2pdy6O5CtRotLtiCbHScj5cQzWCZwYv0fARBiQsagq/m
-         oABA==
+        bh=jcSxE86zVLj7E/7jleEylGGHP0tlw5PsdtapltFVYeM=;
+        b=Dv0b4+1pBOn4rpCQ+XV8wH1SByWSIeDtawC0IWMits3v1q5KIipiaYKfbmEVn+HxAC
+         VxAI8ofUZl41dFs0oREVI9rX3XNJojpkGEQh1CEF+8RAmlUdfn6z835vGllr5z71o6O7
+         slFgtznMN/kuPGYZDIzsy9PtjBRRRsix8RiLoZNwW8w2SR5zf4yiOzCKaaYWKGG8dk9E
+         KZxZMEPFvzdPdVGk2I5JE8TCNBcpJDfecRiskF6+NztYBBFro91vI7VGPz9OmDNlikp+
+         Rydy2l9YvQRTMxeuBe17taQ591J4wlcnEzoxmXAkbbFlerA3ZWrMsm/FH7ennmwj98qG
+         rCCw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=kYH0ay76Tay4ZAMs5UYFoGZVb+b5goR3w/zMZTj8gCk=;
-        b=epcrHswq3pljC9DQxCaBHZoTAoF2z3OySdAm/WMGqFzJNC4haHcwaoyBOFg0iCiVmS
-         1yroyO5l/lcefb+j2NmLNFvHuMOJwJpWWA9j1REkRk6hql1BmORtZOWuBAQhMIgKwr69
-         HViTLBNlRKHULJuz+wmj2i2X8EO5UMAG+1grDmCvDdpmic+wKvFUnpVVsv4appmxx28x
-         M74V9XsV0F2AmkpoBUr16a1VwtlqjEhXx0wyqla1HtaQe5NAzY4GA1kenJZO7OkAeBdf
-         Oa/SUQ7Kq0wxCmJm9wPf4/m3aVaJLkyPuUAV9slvGGYnGTu8hBnSoIbk9NxrxJhJU3/d
-         iDvg==
-X-Gm-Message-State: AOAM530f0TXx+PpamWH+KXO7mLrOq4cSK9ZVrrPcp3DTbm2qkVdCnSCu
-        36srG3uVNWx3oOWQ4ocvfsfh
-X-Google-Smtp-Source: ABdhPJzefYvFjXGL0mb8PwKxN4Qzl/AU5lz9eYSUYAJTIyI6d05Cqz9V6PrQhbRG87XeTV7K5Im4tA==
-X-Received: by 2002:a17:90a:55:b0:1dc:1ded:5a5e with SMTP id 21-20020a17090a005500b001dc1ded5a5emr11531615pjb.213.1651475228302;
-        Mon, 02 May 2022 00:07:08 -0700 (PDT)
+        bh=jcSxE86zVLj7E/7jleEylGGHP0tlw5PsdtapltFVYeM=;
+        b=6tD1zH2xGCWQTH2p2wsgHZP+2h846wLjFWKWFmr0nzjx80ePF5WHyjqQmxq7W38/Os
+         4YRrSGcLT+2PVm9m/yomUUAwbPDfWyMXxqtAyA4WCpB36enPk/c/XgryKZvTmDh2D+Ad
+         USrA4nJxcK8qktciHLNtWVi3mGuYw05qWnim7cymAyke9JoEKWhnFGYJ1nK5lO+/OVbF
+         PSB3T5kDxbFoutrF4WoEm41xO/R8WBQEsAYH8daNbvRIvXj6dScskswogGZl2uAPSZTN
+         CGyKpME91Yr4IuWdlXQZOISRJWeOhh6M5Y03Um4cCqSrUMxIgliOq21FjxQ1Yelznj97
+         2ALA==
+X-Gm-Message-State: AOAM531s/Hb11xpm7xnzI7GBnJAl4kybQhQ0nvLBsw0DJAsCHOPPY6kw
+        QY2xnnDgMBgguUkpmA8AjGhR
+X-Google-Smtp-Source: ABdhPJywApFsi9W71oHrgb3N9EEZ0yKzVLVDmqKkG5J8t3AEzzmSFUdcfBIdh8ExOA1a1HOt6MMnJQ==
+X-Received: by 2002:a05:6a00:1145:b0:4f6:3ebc:a79b with SMTP id b5-20020a056a00114500b004f63ebca79bmr9818863pfm.41.1651475255924;
+        Mon, 02 May 2022 00:07:35 -0700 (PDT)
 Received: from thinkpad ([27.111.75.99])
-        by smtp.gmail.com with ESMTPSA id l4-20020a632504000000b003c14af5061fsm11005813pgl.55.2022.05.02.00.07.05
+        by smtp.gmail.com with ESMTPSA id x5-20020aa79a45000000b004fa743ba3f9sm4047904pfj.2.2022.05.02.00.07.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 May 2022 00:07:07 -0700 (PDT)
-Date:   Mon, 2 May 2022 12:37:02 +0530
+        Mon, 02 May 2022 00:07:35 -0700 (PDT)
+Date:   Mon, 2 May 2022 12:37:30 +0530
 From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 To:     Kaushal Kumar <quic_kaushalk@quicinc.com>
 Cc:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
         krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 3/4] ARM: dts: qcom: sdx65-mtp: Enable QPIC BAM support
-Message-ID: <20220502070702.GD5053@thinkpad>
+Subject: Re: [PATCH 4/4] ARM: dts: qcom: sdx65-mtp: Enable QPIC NAND support
+Message-ID: <20220502070730.GE5053@thinkpad>
 References: <1651332610-6334-1-git-send-email-quic_kaushalk@quicinc.com>
- <1651332610-6334-4-git-send-email-quic_kaushalk@quicinc.com>
+ <1651332610-6334-5-git-send-email-quic_kaushalk@quicinc.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1651332610-6334-4-git-send-email-quic_kaushalk@quicinc.com>
+In-Reply-To: <1651332610-6334-5-git-send-email-quic_kaushalk@quicinc.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -71,23 +71,23 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Apr 30, 2022 at 08:30:09AM -0700, Kaushal Kumar wrote:
-> Enable QPIC BAM devicetree node for Qualcomm SDX65-MTP board.
+On Sat, Apr 30, 2022 at 08:30:10AM -0700, Kaushal Kumar wrote:
+> Enable QPIC NAND devicetree node for Qualcomm SDX65-MTP board.
 > 
 > Signed-off-by: Kaushal Kumar <quic_kaushalk@quicinc.com>
 > ---
->  arch/arm/boot/dts/qcom-sdx65-mtp.dts | 4 ++++
->  1 file changed, 4 insertions(+)
+>  arch/arm/boot/dts/qcom-sdx65-mtp.dts | 15 +++++++++++++++
+>  1 file changed, 15 insertions(+)
 > 
 > diff --git a/arch/arm/boot/dts/qcom-sdx65-mtp.dts b/arch/arm/boot/dts/qcom-sdx65-mtp.dts
-> index 6920524..5c5fcb0 100644
+> index 5c5fcb0..3628104 100644
 > --- a/arch/arm/boot/dts/qcom-sdx65-mtp.dts
 > +++ b/arch/arm/boot/dts/qcom-sdx65-mtp.dts
-> @@ -68,6 +68,10 @@
+> @@ -72,6 +72,21 @@
 >  	status = "ok";
 >  };
 >  
-> +&qpic_bam {
+> +&qpic_nand {
 
 Nodes need to be sorted in alphabetical order.
 
@@ -95,6 +95,17 @@ Thanks,
 Mani
 
 > +	status = "ok";
+> +
+> +	nand@0 {
+> +		reg = <0>;
+> +
+> +		nand-ecc-strength = <4>;
+> +		nand-ecc-step-size = <512>;
+> +		nand-bus-width = <8>;
+> +		/* ico and efs2 partitions are secured */
+> +		secure-regions = /bits/ 64 <0x500000 0x500000
+> +					    0xa00000 0xb00000>;
+> +	};
 > +};
 > +
 >  &apps_rsc {
