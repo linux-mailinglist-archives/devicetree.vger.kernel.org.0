@@ -2,60 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 032E451758F
-	for <lists+devicetree@lfdr.de>; Mon,  2 May 2022 19:12:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4144D517598
+	for <lists+devicetree@lfdr.de>; Mon,  2 May 2022 19:17:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1380265AbiEBRQR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 May 2022 13:16:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55824 "EHLO
+        id S236549AbiEBRVE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 May 2022 13:21:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58968 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242903AbiEBRQR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 May 2022 13:16:17 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C80B4627B;
-        Mon,  2 May 2022 10:12:46 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 6419661307;
-        Mon,  2 May 2022 17:12:46 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C4AC0C385AC;
-        Mon,  2 May 2022 17:12:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1651511565;
-        bh=F4A/7EYGFEZrN9M1/Wu0JMGDPGLaRN8iNpkNaFcYLn4=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=HVQdD5ETXp+x2uaRabpPzAVsPDBGswx4EsgZzOWr4HhCJrQvl8HQHpHNXZZIqdfgF
-         GCRatzouZgTdWnuiDMBWeTP8+VnaxQvvXbJHIrFo6XOBDkWpScEi/0yM/5kwSOkiDD
-         UBejt4S3hXRhz4SUzDimE6aFOqd/uTaxgyMt1GuTAUAsODI3v3wDbyRhOv6TaiMOYL
-         g04/9otO0978IaAHmLG/zNSHukXV4ojB35fvPsOOl21gBrBp02FeIiUzmUX9qZMWgR
-         eaj3Sf7+U1ztyPWJiStP8I+u0OpMsZ3ijPHnmCwhIq1y8fEv7pQPPV8m5l8MbLtcZZ
-         tqHsO8rGG9fFw==
-Received: by mail-pg1-f172.google.com with SMTP id q76so9085676pgq.10;
-        Mon, 02 May 2022 10:12:45 -0700 (PDT)
-X-Gm-Message-State: AOAM533tj8Eh9RKSo5wSNZOALq9AkdQmV9lz+Z0OfnylWBmmfXpbIph6
-        Ec1SsORtMw97UKD5xysQ8Cb4/iPSjqXNOXNCgQ==
-X-Google-Smtp-Source: ABdhPJzl9m0fFoAHvEl1DDBVONz2rISSslZowrjuzounK+sTYQiF+nbi0wBRKNwITCH0g2lI5Eh9KosK3zmFFUU25sA=
-X-Received: by 2002:a05:6a00:10d0:b0:4f7:5af4:47b6 with SMTP id
- d16-20020a056a0010d000b004f75af447b6mr12481460pfu.6.1651511565254; Mon, 02
- May 2022 10:12:45 -0700 (PDT)
+        with ESMTP id S1386592AbiEBRU7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 May 2022 13:20:59 -0400
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73A10A1B4
+        for <devicetree@vger.kernel.org>; Mon,  2 May 2022 10:17:29 -0700 (PDT)
+Received: by mail-ej1-x62b.google.com with SMTP id j6so28946405ejc.13
+        for <devicetree@vger.kernel.org>; Mon, 02 May 2022 10:17:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=oTeGZRyE2mr2u+m1voN9Z49X34/v4brkQnKi8WE42ks=;
+        b=JxCTtdo7XskJybuw+4NTUgwS8Au5koSIUQ7QZEpluKPGW4M2qVduWv8V3CDMR53GbQ
+         bI0iW4GTIpjXVQ12039X53L5Z5txctbYgvwRt7a2YYI/VN8UEkbiO/y8v6UMkVk/464O
+         IIxEw0Q4uWhxMz7xmgfA5TH+ehxSMM0U0cAk4=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=oTeGZRyE2mr2u+m1voN9Z49X34/v4brkQnKi8WE42ks=;
+        b=3lDE0qGioDvYf+lADiTT12K+yqDk9bCShTaAdio9MAIimcJv9extipT7uLzgjig0sX
+         SoAkCnjNJmf/CakdpQs6s1bkAo0ScSMNIrRvrPH3mk+Smwgr2XV1jI2CljdRbQnWTEWy
+         gm9uZXWkL1gf1jItR/Ma6mTV2N9mjz/4PrYOjRIAAn9Ubed1QIfXQJrI2+TFBAaNcIJE
+         6m6bCcCMBRzjgZMMVU6yhCBH5tPLuiR1CJ1/EUnYSz1G1CoylhQQYSudNY7sM4dP8FZZ
+         nTGFvE6BaKs1P6aeG6UpB3uCPE2BOHvKGYnezu+GMixm0+v1gBVvaCWNjiibaBwx22Hz
+         Pc/g==
+X-Gm-Message-State: AOAM5303Farh4qKTvPuG7sKyWSgo0tYna/LQL7gtEeqwWQrVF9l0rs+B
+        oM81qAEp05PCapTsn2QliQfRXEsU5np524Km
+X-Google-Smtp-Source: ABdhPJwiS7eQs5cqDTas0vNpLei2NmTBsmEnUcDSRT/B2NnyLqEIS/7nvih2pqXvNSdfsgK8Ys1JyQ==
+X-Received: by 2002:a17:906:3513:b0:6f3:a080:9f46 with SMTP id r19-20020a170906351300b006f3a0809f46mr11740900eja.466.1651511847653;
+        Mon, 02 May 2022 10:17:27 -0700 (PDT)
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com. [209.85.128.44])
+        by smtp.gmail.com with ESMTPSA id dq9-20020a170907734900b006f3ef214de3sm3765074ejc.73.2022.05.02.10.17.26
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 02 May 2022 10:17:26 -0700 (PDT)
+Received: by mail-wm1-f44.google.com with SMTP id o12-20020a1c4d0c000000b00393fbe2973dso10224061wmh.2
+        for <devicetree@vger.kernel.org>; Mon, 02 May 2022 10:17:26 -0700 (PDT)
+X-Received: by 2002:a05:600c:4e44:b0:394:46b4:7b0e with SMTP id
+ e4-20020a05600c4e4400b0039446b47b0emr110547wmq.29.1651511846037; Mon, 02 May
+ 2022 10:17:26 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220502165818.4002157-1-matthew.gerlach@linux.intel.com>
-In-Reply-To: <20220502165818.4002157-1-matthew.gerlach@linux.intel.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Mon, 2 May 2022 12:12:33 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqKwr7Je51X=OVd5Mfxe=Ztvp7jY2WcTu+treB3x7QBxfA@mail.gmail.com>
-Message-ID: <CAL_JsqKwr7Je51X=OVd5Mfxe=Ztvp7jY2WcTu+treB3x7QBxfA@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: intel: add device tree for n6000
-To:     matthew.gerlach@linux.intel.com
-Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org, dinguyen@vger.kernel.org,
-        robh+dt@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+References: <20220430011402.1.If7c3471db53bea55213f7bcf17e9043084d3ac0c@changeid>
+In-Reply-To: <20220430011402.1.If7c3471db53bea55213f7bcf17e9043084d3ac0c@changeid>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Mon, 2 May 2022 10:17:13 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=U-YCicgn06BnvCLHvXWw1-XzKhu8TMDm4T5LphoBOUBQ@mail.gmail.com>
+Message-ID: <CAD=FV=U-YCicgn06BnvCLHvXWw1-XzKhu8TMDm4T5LphoBOUBQ@mail.gmail.com>
+Subject: Re: [PATCH 1/5] arm64: dts: qcom: sc7180: Add wormdingler dts files
+To:     "Joseph S. Barrera III" <joebar@chromium.org>
+Cc:     LKML <linux-kernel@vger.kernel.org>,
+        Alexandru M Stan <amstan@chromium.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -63,128 +79,79 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 2, 2022 at 11:58 AM <matthew.gerlach@linux.intel.com> wrote:
+Hi,
+
+On Sat, Apr 30, 2022 at 1:18 AM Joseph S. Barrera III
+<joebar@chromium.org> wrote:
 >
-> From: Matthew Gerlach <matthew.gerlach@linux.intel.com>
+> Wormdingler is a trogdor-based board, shipping to customers as the
+> Lenovo IdeaPad Chromebook Duet 3. These dts files are copies from
+> the downstream Chrome OS 5.4 kernel, but with downstream bits removed.
 >
-> Add a device tree for the n6000 instantiation of Agilex
-> Hard Processor System (HPS).
->
-> Signed-off-by: Matthew Gerlach <matthew.gerlach@linux.intel.com>
+> Signed-off-by: Joseph S. Barrera III <joebar@chromium.org>
 > ---
->  arch/arm64/boot/dts/intel/Makefile            |  1 +
->  .../boot/dts/intel/socfpga_agilex_n6000.dts   | 77 +++++++++++++++++++
->  2 files changed, 78 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/intel/socfpga_agilex_n6000.dts
->
-> diff --git a/arch/arm64/boot/dts/intel/Makefile b/arch/arm64/boot/dts/intel/Makefile
-> index 0b5477442263..1425853877cc 100644
-> --- a/arch/arm64/boot/dts/intel/Makefile
-> +++ b/arch/arm64/boot/dts/intel/Makefile
-> @@ -1,5 +1,6 @@
->  # SPDX-License-Identifier: GPL-2.0-only
->  dtb-$(CONFIG_ARCH_INTEL_SOCFPGA) += socfpga_agilex_socdk.dtb \
->                                 socfpga_agilex_socdk_nand.dtb \
-> +                               socfpga_agilex_n6000.dtb \
 
-Alphabetical order.
+I was expecting that this patch series would be labeled "v3" and would
+also have version history. What happened? I provided the tags you
+needed for stuff like this in v2 and even wrote the history bits for
+you... [1]
 
->                                 socfpga_n5x_socdk.dtb
->  dtb-$(CONFIG_ARCH_KEEMBAY) += keembay-evm.dtb
-> diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex_n6000.dts b/arch/arm64/boot/dts/intel/socfpga_agilex_n6000.dts
-> new file mode 100644
-> index 000000000000..07f5a5983e5c
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/intel/socfpga_agilex_n6000.dts
-> @@ -0,0 +1,77 @@
-> +// SPDX-License-Identifier:     GPL-2.0
+
+[1] https://lore.kernel.org/r/CAD=FV=XbQ7LhnxGAavLL3XDpPigwtCz0CF3YcZ=ywrXwu=uiMQ@mail.gmail.com/
+
+
+> @@ -0,0 +1,33 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
 > +/*
-> + * Copyright (C) 2021-2022, Intel Corporation
+> + * Google Wormdingler board device tree source
+> + *
+> + * Copyright 2021 Google LLC.
+> + *
+> + * SKU: 0x0001 => 1
+> + *  - bits 11..8: Panel ID: 0x0 (INX)
 > + */
-> +#include "socfpga_agilex.dtsi"
 > +
-> +/ {
-> +       model = "SoCFPGA Agilex n6000";
+> +/dts-v1/;
 > +
-> +       aliases {
-> +               serial0 = &uart1;
-> +               serial1 = &uart0;
-> +               ethernet0 = &gmac0;
-> +               ethernet1 = &gmac1;
-> +               ethernet2 = &gmac2;
-> +       };
-> +
-> +       chosen {
-> +               stdout-path = "serial0:115200n8";
-> +       };
-> +
-> +       memory {
-> +               device_type = "memory";
-> +               /* We expect the bootloader to fill in the reg */
-> +               reg = <0 0 0 0>;
-> +       };
-> +
-> +       soc {
-> +               clocks {
-> +                       osc1 {
-> +                               clock-frequency = <25000000>;
-> +                       };
-> +               };
-> +               agilex_hps_bridges: bridge@80000000 {
-> +                       compatible = "simple-bus";
-> +                       reg = <0x80000000 0x60000000>,
-> +                               <0xf9000000 0x00100000>;
-> +                       reg-names = "axi_h2f", "axi_h2f_lw";
-> +                       #address-cells = <0x2>;
-> +                       #size-cells = <0x1>;
-> +                       ranges = <0x00000000 0x00000000 0xf9000000 0x00001000>;
-> +
-> +                       uio_cp_eng@0xf9000000 {
+> +#include "sc7180-trogdor-wormdingler.dtsi"
 
-Unit addresses shouldn't have '0x' and the address is wrong as it
-should match the child address (0). dtc will tell you this though you
-need 'W=1'. Run this and schema checks and don't add new warnings.
+In my reply to your v2 I was suggesting that the rt5682s files could
+be done more cleanly. I guess it's not 100% needed and could always be
+a later cleanup, but any reason why you decided not to do it?
 
-> +                               compatible = "generic-uio";
 
-NAK. Not documented and that's because this is not a h/w device.
-
-> +                               reg = <0x00000000 0x00000000 0x00001000>;
-> +                               status = "okay";
-
-That's the default.
-
-> +                       };
-> +               };
-> +       };
-> +};
-> +
-> +&uart0 {
-> +       status = "okay";
-> +};
-> +
-> +&uart1 {
-> +       status = "okay";
-> +};
-> +
-> +&spi0 {
-> +       status = "okay";
-> +
-> +       spidev: spidev@0 {
-> +               status = "okay";
-> +               compatible = "linux,spidev";
-> +               spi-max-frequency = <25000000>;
-> +               reg = <0>;
-> +       };
-> +};
-> +
-> +&watchdog0 {
-> +       status = "okay";
-> +};
-> +
-> +&fpga_mgr {
+> +&ap_tp_i2c {
 > +       status = "disabled";
 > +};
-> --
-> 2.25.1
->
+> +
+> +&backlight {
+> +       pwms = <&cros_ec_pwm 0>;
+> +};
+
+Downstream we have:
+
+&camcc {
+       status = "okay";
+};
+
+Why did you remove it here? You didn't in the previous version. Coach
+Z and Homestar still define it upstream and they work fine. Even if we
+haven't finished defining the MIPI camera bits, enabling the camera
+clock controller should still be fine, right?
+
+
+Also in my reply to v2 I suggested that you delete the keypad num-rows
+/ num-columns in wormdingler.dtsi. Hmmm, but I guess maybe we should
+put the num-rows/num-columns change on hold while we settle on an
+approach for it [1].
+
+
+So I guess overall summary:
+* Pretty sure you want "camcc", so please spin with that.
+* Please figure out how to tag your series as v4 and have version history.
+* I would still prefer the rt5682s stuff be cleaned up but if it's
+really too hard we can do it in a follow-up.
+
+
+
+[1] https://lore.kernel.org/r/CAD=FV=VX8EEgkeLgKwyKvjztcjbA8UhKOUpTr-sS1_Ec=QcWbA@mail.gmail.com
