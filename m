@@ -2,86 +2,205 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 37CB6517710
-	for <lists+devicetree@lfdr.de>; Mon,  2 May 2022 21:02:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5C940517716
+	for <lists+devicetree@lfdr.de>; Mon,  2 May 2022 21:04:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1387009AbiEBTFc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 May 2022 15:05:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38962 "EHLO
+        id S1387020AbiEBTHn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 May 2022 15:07:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40100 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1387003AbiEBTFb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 May 2022 15:05:31 -0400
-Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 1E536656C;
-        Mon,  2 May 2022 12:02:01 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="5.91,192,1647270000"; 
-   d="scan'208";a="118594725"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie5.idc.renesas.com with ESMTP; 03 May 2022 04:02:01 +0900
-Received: from localhost.localdomain (unknown [10.226.92.32])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 418E84006DF9;
-        Tue,  3 May 2022 04:01:57 +0900 (JST)
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S1387034AbiEBTHn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 May 2022 15:07:43 -0400
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28766B871;
+        Mon,  2 May 2022 12:04:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1651518253; x=1683054253;
+  h=date:from:to:cc:subject:in-reply-to:message-id:
+   references:mime-version;
+  bh=Rv8nCiwQdv7yIXAs22Fv6R6p/0NJiIKyzQb1x5PxAoo=;
+  b=KJcT7zLHymXhh2n8mDfcbmwfF9ZiIkCjtDbbeURvamBzko3hSnmrV+CK
+   JPYDmfIwcBLohr6fciSITW+/UmE8ELXj6OlyG6mWtqBa9USGSHIDep9CP
+   Toq4B6rp757kxcXYWMMsPfSDkG110jozM6wGDd/v5EayEK9u34Aj25PYt
+   VNuRwIsaeS3fJWVkNzPhx+5jbPynJEiJPIZbOzcCpJoBdlAVbPME1zRM3
+   HrHhCrT1U9T0inpVyuEKxfX9T8+B36EB7VnvbJQDyqhLABq/2i7Sw857R
+   vL4/f88nB7c/MqdBirogbmxB5cZ8VZQIeolVMd68hArtQrJFuIoEP9iA7
+   Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10335"; a="247212925"
+X-IronPort-AV: E=Sophos;i="5.91,193,1647327600"; 
+   d="scan'208";a="247212925"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 May 2022 12:04:13 -0700
+X-IronPort-AV: E=Sophos;i="5.91,193,1647327600"; 
+   d="scan'208";a="620040688"
+Received: from rhweight-wrk1.ra.intel.com ([137.102.106.43])
+  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 May 2022 12:04:12 -0700
+Date:   Mon, 2 May 2022 12:04:05 -0700 (PDT)
+From:   matthew.gerlach@linux.intel.com
+X-X-Sender: mgerlach@rhweight-WRK1
+To:     Rob Herring <robh@kernel.org>
+cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org, dinguyen@vger.kernel.org,
+        robh+dt@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH v2] arm64: dts: renesas: r9a07g043: Add SPI Multi I/O Bus controller node
-Date:   Mon,  2 May 2022 20:01:55 +0100
-Message-Id: <20220502190155.84496-1-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.25.1
+Subject: Re: [PATCH] arm64: dts: intel: add device tree for n6000
+In-Reply-To: <CAL_JsqKwr7Je51X=OVd5Mfxe=Ztvp7jY2WcTu+treB3x7QBxfA@mail.gmail.com>
+Message-ID: <alpine.DEB.2.22.394.2205021157040.65759@rhweight-WRK1>
+References: <20220502165818.4002157-1-matthew.gerlach@linux.intel.com> <CAL_JsqKwr7Je51X=OVd5Mfxe=Ztvp7jY2WcTu+treB3x7QBxfA@mail.gmail.com>
+User-Agent: Alpine 2.22 (DEB 394 2020-01-19)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=1.1 required=5.0 tests=AC_FROM_MANY_DOTS,BAYES_00,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
-X-Spam-Level: *
+Content-Type: text/plain; charset=US-ASCII; format=flowed
+X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add SPI Multi I/O Bus controller node to R9A07G043 (RZ/G2UL) SoC DTSI.
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
----
-V1->v2:
- * Removed interrupts property as interrupt is not supported on RZ/G2UL.
----
- arch/arm64/boot/dts/renesas/r9a07g043.dtsi | 9 ++++++++-
- 1 file changed, 8 insertions(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/renesas/r9a07g043.dtsi b/arch/arm64/boot/dts/renesas/r9a07g043.dtsi
-index 9048edb5e2b1..b31fb713ae4d 100644
---- a/arch/arm64/boot/dts/renesas/r9a07g043.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r9a07g043.dtsi
-@@ -498,12 +498,19 @@ tsu: thermal@10059400 {
- 		};
- 
- 		sbc: spi@10060000 {
-+			compatible = "renesas,r9a07g043-rpc-if",
-+				     "renesas,rzg2l-rpc-if";
- 			reg = <0 0x10060000 0 0x10000>,
- 			      <0 0x20000000 0 0x10000000>,
- 			      <0 0x10070000 0 0x10000>;
-+			reg-names = "regs", "dirmap", "wbuf";
-+			clocks = <&cpg CPG_MOD R9A07G043_SPI_CLK2>,
-+				 <&cpg CPG_MOD R9A07G043_SPI_CLK>;
-+			resets = <&cpg R9A07G043_SPI_RST>;
-+			power-domains = <&cpg>;
- 			#address-cells = <1>;
- 			#size-cells = <0>;
--			/* place holder */
-+			status = "disabled";
- 		};
- 
- 		cpg: clock-controller@11010000 {
--- 
-2.25.1
+On Mon, 2 May 2022, Rob Herring wrote:
 
+> On Mon, May 2, 2022 at 11:58 AM <matthew.gerlach@linux.intel.com> wrote:
+>>
+>> From: Matthew Gerlach <matthew.gerlach@linux.intel.com>
+>>
+>> Add a device tree for the n6000 instantiation of Agilex
+>> Hard Processor System (HPS).
+>>
+>> Signed-off-by: Matthew Gerlach <matthew.gerlach@linux.intel.com>
+>> ---
+>>  arch/arm64/boot/dts/intel/Makefile            |  1 +
+>>  .../boot/dts/intel/socfpga_agilex_n6000.dts   | 77 +++++++++++++++++++
+>>  2 files changed, 78 insertions(+)
+>>  create mode 100644 arch/arm64/boot/dts/intel/socfpga_agilex_n6000.dts
+>>
+>> diff --git a/arch/arm64/boot/dts/intel/Makefile b/arch/arm64/boot/dts/intel/Makefile
+>> index 0b5477442263..1425853877cc 100644
+>> --- a/arch/arm64/boot/dts/intel/Makefile
+>> +++ b/arch/arm64/boot/dts/intel/Makefile
+>> @@ -1,5 +1,6 @@
+>>  # SPDX-License-Identifier: GPL-2.0-only
+>>  dtb-$(CONFIG_ARCH_INTEL_SOCFPGA) += socfpga_agilex_socdk.dtb \
+>>                                 socfpga_agilex_socdk_nand.dtb \
+>> +                               socfpga_agilex_n6000.dtb \
+>
+> Alphabetical order.
+
+Got it.
+>
+>>                                 socfpga_n5x_socdk.dtb
+>>  dtb-$(CONFIG_ARCH_KEEMBAY) += keembay-evm.dtb
+>> diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex_n6000.dts b/arch/arm64/boot/dts/intel/socfpga_agilex_n6000.dts
+>> new file mode 100644
+>> index 000000000000..07f5a5983e5c
+>> --- /dev/null
+>> +++ b/arch/arm64/boot/dts/intel/socfpga_agilex_n6000.dts
+>> @@ -0,0 +1,77 @@
+>> +// SPDX-License-Identifier:     GPL-2.0
+>> +/*
+>> + * Copyright (C) 2021-2022, Intel Corporation
+>> + */
+>> +#include "socfpga_agilex.dtsi"
+>> +
+>> +/ {
+>> +       model = "SoCFPGA Agilex n6000";
+>> +
+>> +       aliases {
+>> +               serial0 = &uart1;
+>> +               serial1 = &uart0;
+>> +               ethernet0 = &gmac0;
+>> +               ethernet1 = &gmac1;
+>> +               ethernet2 = &gmac2;
+>> +       };
+>> +
+>> +       chosen {
+>> +               stdout-path = "serial0:115200n8";
+>> +       };
+>> +
+>> +       memory {
+>> +               device_type = "memory";
+>> +               /* We expect the bootloader to fill in the reg */
+>> +               reg = <0 0 0 0>;
+>> +       };
+>> +
+>> +       soc {
+>> +               clocks {
+>> +                       osc1 {
+>> +                               clock-frequency = <25000000>;
+>> +                       };
+>> +               };
+>> +               agilex_hps_bridges: bridge@80000000 {
+>> +                       compatible = "simple-bus";
+>> +                       reg = <0x80000000 0x60000000>,
+>> +                               <0xf9000000 0x00100000>;
+>> +                       reg-names = "axi_h2f", "axi_h2f_lw";
+>> +                       #address-cells = <0x2>;
+>> +                       #size-cells = <0x1>;
+>> +                       ranges = <0x00000000 0x00000000 0xf9000000 0x00001000>;
+>> +
+>> +                       uio_cp_eng@0xf9000000 {
+>
+> Unit addresses shouldn't have '0x' and the address is wrong as it
+> should match the child address (0). dtc will tell you this though you
+> need 'W=1'. Run this and schema checks and don't add new warnings.
+
+Thanks for the pointers.  I will run with W=1 and run schema checks and 
+submit a v2.
+
+>
+>> +                               compatible = "generic-uio";
+>
+> NAK. Not documented and that's because this is not a h/w device.
+
+Got it.  I will create a meaningful name for the h/w device and submit 
+documentation.
+
+>
+>> +                               reg = <0x00000000 0x00000000 0x00001000>;
+>> +                               status = "okay";
+>
+> That's the default.
+
+I will remove redundant status field.
+
+>
+>> +                       };
+>> +               };
+>> +       };
+>> +};
+>> +
+>> +&uart0 {
+>> +       status = "okay";
+>> +};
+>> +
+>> +&uart1 {
+>> +       status = "okay";
+>> +};
+>> +
+>> +&spi0 {
+>> +       status = "okay";
+>> +
+>> +       spidev: spidev@0 {
+>> +               status = "okay";
+>> +               compatible = "linux,spidev";
+>> +               spi-max-frequency = <25000000>;
+>> +               reg = <0>;
+>> +       };
+>> +};
+>> +
+>> +&watchdog0 {
+>> +       status = "okay";
+>> +};
+>> +
+>> +&fpga_mgr {
+>> +       status = "disabled";
+>> +};
+>> --
+>> 2.25.1
+>>
+>
