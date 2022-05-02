@@ -2,80 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3EF145178F0
-	for <lists+devicetree@lfdr.de>; Mon,  2 May 2022 23:13:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 812535178F9
+	for <lists+devicetree@lfdr.de>; Mon,  2 May 2022 23:18:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1387573AbiEBVRX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 May 2022 17:17:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54098 "EHLO
+        id S243882AbiEBVWS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 May 2022 17:22:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55558 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230422AbiEBVRW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 May 2022 17:17:22 -0400
-Received: from mail-oo1-f52.google.com (mail-oo1-f52.google.com [209.85.161.52])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9ED092193;
-        Mon,  2 May 2022 14:13:52 -0700 (PDT)
-Received: by mail-oo1-f52.google.com with SMTP id e7-20020a4aaac7000000b00330e3ddfd4bso2788103oon.8;
-        Mon, 02 May 2022 14:13:52 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=3q+qtdP+luQ33LzicXlYLTVCEnsuA+2H8mH4UxrS+O4=;
-        b=wJfQW5CapC3feMuRnr7bjiOZvNAPFzK1bgAdQptjB1PRIKengWCm8zzTpZcVx6RDLF
-         +LxFt3usfXm7GDTUoAq5YEDcqdmcodSzvdpVVdgVhnPcsYYZz0cQ8FPrFYaLpiZnlXVG
-         yaHDwSVMuVdhHCYiG4R5Zno9bBdFisrV7JXX9im6BolDjUymTpNclj1xrMwzpKq4kDAA
-         eJ4SpSmaKS2tjg2BqYf0GjYjIwITNXBZS6Uf8PASlfaivEed+Oa9cyr8sRgYL6ivu5be
-         MNdo8ZZ8LpbBLWca86B85dIKczf1uRxpbgyblTecgK8SOcgYK1fetlXb7SUxGSYGHiha
-         iJtg==
-X-Gm-Message-State: AOAM53391vpaPtLg9lWa7zj/iiNtnPQGVCk0ex/D07MPI5Pa9iTf44En
-        RWab3zeCdszZRa36CayDlA==
-X-Google-Smtp-Source: ABdhPJzdddq7QjHdq1Gyqkm9hnLQMotisgl4Ju8ztMqS+jbqac/2Etf+2iATS8SO6UwVwY2Ix6AJGQ==
-X-Received: by 2002:a4a:d40d:0:b0:33a:33be:9c1e with SMTP id n13-20020a4ad40d000000b0033a33be9c1emr4627230oos.96.1651526031874;
-        Mon, 02 May 2022 14:13:51 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id o11-20020a54478b000000b00325cda1ff93sm2771256oic.18.2022.05.02.14.13.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 May 2022 14:13:51 -0700 (PDT)
-Received: (nullmailer pid 1763244 invoked by uid 1000);
-        Mon, 02 May 2022 21:13:50 -0000
-Date:   Mon, 2 May 2022 16:13:50 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Alexandre Torgue <alexandre.torgue@foss.st.com>
-Cc:     etienne.carriere@st.com, arnd@arndb.de,
-        Ahmad Fatoum <a.fatoum@pengutronix.de>,
-        Marek Vasut <marex@denx.de>, soc@kernel.org,
-        robh+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        linux-kernel@vger.kernel.org,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/8] dt-bindings: clock: stm32mp1: describes clocks if
- "st,stm32mp1-rcc-secure"
-Message-ID: <YnBJjhv6uu2USIUs@robh.at.kernel.org>
-References: <20220422150952.20587-1-alexandre.torgue@foss.st.com>
- <20220422150952.20587-3-alexandre.torgue@foss.st.com>
+        with ESMTP id S230422AbiEBVWR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 May 2022 17:22:17 -0400
+Received: from relay07.th.seeweb.it (relay07.th.seeweb.it [IPv6:2001:4b7a:2000:18::168])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2AEC9BC3F
+        for <devicetree@vger.kernel.org>; Mon,  2 May 2022 14:18:47 -0700 (PDT)
+Received: from [192.168.1.101] (abxh26.neoplus.adsl.tpnet.pl [83.9.1.26])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 1B8673F585;
+        Mon,  2 May 2022 23:18:43 +0200 (CEST)
+Message-ID: <5007e01d-03b0-1bab-6dae-8b24a369aee5@somainline.org>
+Date:   Mon, 2 May 2022 23:18:42 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220422150952.20587-3-alexandre.torgue@foss.st.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH] arm64: dts: qcom: sm8450: add uart20 node
+Content-Language: en-US
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Vinod Koul <vkoul@kernel.org>
+References: <20220501195458.4134911-1-dmitry.baryshkov@linaro.org>
+ <6b0ef19b-a45b-ae6f-9f6f-41e72f2c71fd@somainline.org>
+ <CAA8EJpqeR8FF7V1fdyWtQsU3xnFw5+4obBSndb3wS+H8Xgu8Rw@mail.gmail.com>
+ <CAA8EJpoZaWXhD7aq4fR+6atJ6oMRNmA=8GJFmtXOSSbrBez53g@mail.gmail.com>
+From:   Konrad Dybcio <konrad.dybcio@somainline.org>
+In-Reply-To: <CAA8EJpoZaWXhD7aq4fR+6atJ6oMRNmA=8GJFmtXOSSbrBez53g@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 22 Apr 2022 17:09:46 +0200, Alexandre Torgue wrote:
-> In case of "st,stm32mp1-rcc-secure" (stm32mp1 clock driver with RCC
-> security support hardened), "clocks" and "clock-names" describe oscillators
-> and are required.
-> 
-> Signed-off-by: Alexandre Torgue <alexandre.torgue@foss.st.com>
-> 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+
+On 2.05.2022 21:49, Dmitry Baryshkov wrote:
+> On Mon, 2 May 2022 at 22:01, Dmitry Baryshkov
+> <dmitry.baryshkov@linaro.org> wrote:
+>>
+>> On Mon, 2 May 2022 at 20:59, Konrad Dybcio <konrad.dybcio@somainline.org> wrote:
+>>>
+>>>
+>>>
+>>> On 1.05.2022 21:54, Dmitry Baryshkov wrote:
+>>>> Add device tree node for uart20, which is typically used for Bluetooth attachment.
+>>>>
+>>>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>>>> Reviewed-by: Vinod Koul <vkoul@kernel.org>
+>>>> ---
+>>>>  arch/arm64/boot/dts/qcom/sm8450.dtsi | 22 ++++++++++++++++++++++
+>>>>  1 file changed, 22 insertions(+)
+>>>>
+>>>> diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+>>>> index 4fcb6e2b096b..8b9d9c2cd02c 100644
+>>>> --- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
+>>>> +++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+>>>> @@ -996,6 +996,19 @@ spi20: spi@894000 {
+>>>>                               status = "disabled";
+>>>>                       };
+>>>>
+>>>> +                     uart20: serial@894000 {
+>>> I think it should come before SPI alphabetically?
+>>
+>> Argh. I sorted it using the label!
+>>
+>>>
+>>>> +                             compatible = "qcom,geni-uart";
+>>>> +                             reg = <0 0x00894000 0 0x4000>;
+>>>> +                             clock-names = "se";
+>>>> +                             clocks = <&gcc GCC_QUPV3_WRAP2_S5_CLK>;
+>>>> +                             pinctrl-names = "default";
+>>>> +                             pinctrl-0 = <&qup_uart20_default>;
+>>> No sleep state?
+>>
+>> No, uarts do not provide a sleep state.
+> 
+> I've checked other dts. Usually the sleep state is provided by the
+> board dts rather than the SoC's dtsi.
+Weird. Perhaps we could consider centralizing that, since it's common(-ish) in the end?
+
+
+> 
+>>
+>>>
+>>>> +                             interrupts = <GIC_SPI 587 IRQ_TYPE_LEVEL_HIGH>;
+>>>> +                             #address-cells = <1>;
+>>>> +                             #size-cells = <0>;
+>>>> +                             status = "disabled";
+>>>> +                     };
+>>>> +
+>>>>                       i2c21: i2c@898000 {
+>>>>                               compatible = "qcom,geni-i2c";
+>>>>                               reg = <0x0 0x00898000 0x0 0x4000>;
+>>>> @@ -2757,6 +2770,15 @@ qup_uart7_tx: qup-uart7-tx {
+>>>>                               drive-strength = <2>;
+>>>>                               bias-disable;
+>>>>                       };
+>>>> +
+>>>> +                     qup_uart20_default: qup-uart20-default {
+>>>> +                             mux {
+>>> Please drop the unnecessary mux{} here.
+>>
+>> Ack.
+>>
+>>>
+>>>> +                                     pins = "gpio76", "gpio77",
+>>>> +                                             "gpio78", "gpio79";
+>>> I think these could fit into a single 100-char-long line>?
+>>
+>> I'll check.
+>>
+>>>
+>>>> +                                     function = "qup20";
+>>> Are there no default properties for this setup? I think boards that don't use standard Qualcomm connectivity setups (like Bluetooth on this specific UART) are rather scarce and it'd be more convenient to keep a standard setting here and override it where need be instead of copy-pasting the same thing over and over in 95-100% of the boards.
+>>
+>> I see your point. Let's do this.
+> 
+> Well, comparing with other SoC dtsi shows that most of them declare
+> pins&functions in the dtsi and leave bias/ details to the board.dts
+> (despite code duplication). So let's follow that approach.
+Eh, you're right, but I'd still argue it's really a thing that used to be more relevant in the past though, especially as newer devices seem to get closer and closer to Qualcomm reference designs.. Maybe Bjorn could give some input on this matter?
+
+Konrad
+
+> 
+>>
+>>>
+>>> Konrad
+>>>
+>>>> +                             };
+>>>> +                     };
+>>>> +
+>>>>               };
+>>>>
+>>>>               apps_smmu: iommu@15000000 {
+>>>>
+>>
+>>
+>>
+>> --
+>> With best wishes
+>> Dmitry
+> 
+> 
+> 
