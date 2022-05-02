@@ -2,43 +2,43 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BF42B5177CD
-	for <lists+devicetree@lfdr.de>; Mon,  2 May 2022 22:14:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0FE4E5177D3
+	for <lists+devicetree@lfdr.de>; Mon,  2 May 2022 22:15:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239774AbiEBURo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 May 2022 16:17:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46234 "EHLO
+        id S243322AbiEBUTK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 May 2022 16:19:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47354 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229453AbiEBURn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 May 2022 16:17:43 -0400
-Received: from mail-ot1-f50.google.com (mail-ot1-f50.google.com [209.85.210.50])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC919A1A9;
-        Mon,  2 May 2022 13:14:13 -0700 (PDT)
-Received: by mail-ot1-f50.google.com with SMTP id c5-20020a9d75c5000000b00605ff3b9997so5232763otl.0;
-        Mon, 02 May 2022 13:14:13 -0700 (PDT)
+        with ESMTP id S1387309AbiEBUTI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 May 2022 16:19:08 -0400
+Received: from mail-ot1-f45.google.com (mail-ot1-f45.google.com [209.85.210.45])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94981B2A;
+        Mon,  2 May 2022 13:15:38 -0700 (PDT)
+Received: by mail-ot1-f45.google.com with SMTP id h10-20020a056830400a00b00605e92cc450so8456847ots.11;
+        Mon, 02 May 2022 13:15:38 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=bkeg6XLEWMu4HTjeFF0OJwDdi6kmXL5/h/LctGqY8Kw=;
-        b=H5TgUBNgdVHeQiWqDMlQDWkTDJN0cHuAliGAG3QY4oppgTD58ZrK64OWnm11jCBGp4
-         Y9Oka1d5gsbldczt2QJ3TtQlgpuh4MVuEQR9NOtqeksCEB1IpyS+hn4RsGsNhW+3Jp8L
-         7Ikxsby3NHdjcUEkRNJE8tULw414Ku4yIeOwSNWVhwku6Fhk2TSEfLUnfx2b8gPGyab5
-         aoZJXz2FWVKxStx94t6WCpe2nebL4VwTCzk6IGfXwALBtmUZnJnONr7DX2oNUWZn2Qmm
-         Ypr+yChqQB1708HcT1e8pkRTVhTGQk2BNQp0n1wQ0tvPN8E5VOyhVSVnV8U8xYnv0hx+
-         0ZMA==
-X-Gm-Message-State: AOAM531Qg11wMpgr9aUbwlN8UeyCx6NdSv6q/V3kvWyMGTmeUX3foUgz
-        MXzxwgA3tJwOhA8C3QtLHg==
-X-Google-Smtp-Source: ABdhPJwBQR971yAKeQpRWNLef9R+91JgJ3Xdcyk325o+0xXi591PrH9bHMO0DKElqNTJhKv+k+AYIQ==
-X-Received: by 2002:a9d:2ab:0:b0:605:6c58:668c with SMTP id 40-20020a9d02ab000000b006056c58668cmr4824172otl.284.1651522453137;
-        Mon, 02 May 2022 13:14:13 -0700 (PDT)
+        bh=Wcuo3wLe8i7fX/0vTB283vnwAIkjYat/Xc/G+3XsJC4=;
+        b=LHRgqje+N17ccMRK+8PG9O7a/cqF7prwvKSWaARNctebsk93UzzkiBeFCq+XXTrxuQ
+         7v7WIGvBX7DgE+fkszGtuXvXx6VuCAr/6gQtc887siMp8O3CsjKfVxxVr4D6c+K4q9lx
+         QwI1M3HYZV3VXjqBH0JsUGt5RejOiqV+CXpMW0uMXZ10NkyR8SvymTQOPKOm5i3Y95vy
+         02jiJq+I3kktVVEjBu6KatcrM4olfQSDHG0cfW3LzCaeiOLzRFlpwAz0OrqdHsCXd8VI
+         /jUETJPS/Z0DOrfc9s1qmKvW4YRk6bvmXVTeXOovc+zk2aqErCTKWa6X1Az9IFU6Ba8W
+         5Fcg==
+X-Gm-Message-State: AOAM531jMCxqtYHCnSCwaNbz5wJwvaqDhCqNiDqETAre2m9qU83z12h5
+        YEyX21aEz71RnlDQYxjbNw==
+X-Google-Smtp-Source: ABdhPJyBnRImjZTXHqLnyiVzGug8vuCN5NWHD9Wc3+zNvjMwq80j5IJH0zQxMvjczvzOOO/ANJcmuw==
+X-Received: by 2002:a05:6830:1489:b0:605:e8f6:5047 with SMTP id s9-20020a056830148900b00605e8f65047mr4668736otq.185.1651522537861;
+        Mon, 02 May 2022 13:15:37 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id b14-20020a056870160e00b000e915a9121csm6708074oae.52.2022.05.02.13.14.12
+        by smtp.gmail.com with ESMTPSA id f6-20020a4ad806000000b0035eb4e5a6c4sm4198367oov.26.2022.05.02.13.15.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 May 2022 13:14:12 -0700 (PDT)
-Received: (nullmailer pid 1663461 invoked by uid 1000);
-        Mon, 02 May 2022 20:14:12 -0000
-Date:   Mon, 2 May 2022 15:14:12 -0500
+        Mon, 02 May 2022 13:15:37 -0700 (PDT)
+Received: (nullmailer pid 1665884 invoked by uid 1000);
+        Mon, 02 May 2022 20:15:36 -0000
+Date:   Mon, 2 May 2022 15:15:36 -0500
 From:   Rob Herring <robh@kernel.org>
 To:     Dave Gerlach <d-gerlach@ti.com>
 Cc:     Santosh Shilimkar <ssantosh@kernel.org>,
@@ -46,15 +46,15 @@ Cc:     Santosh Shilimkar <ssantosh@kernel.org>,
         Tero Kristo <kristo@kernel.org>, Nishanth Menon <nm@ti.com>,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
         devicetree@vger.kernel.org, Vignesh Raghavendra <vigneshr@ti.com>
-Subject: Re: [PATCH 1/6] dt-bindings: ti,sci: Add ti,ctx-memory-region
- property
-Message-ID: <YnA7lKVJ4Mwm78ME@robh.at.kernel.org>
+Subject: Re: [PATCH 2/6] dt-bindings: ti,sci: Add lpm region and
+ ti,lpm-firmware-name
+Message-ID: <YnA76FFG0wW1Jzrs@robh.at.kernel.org>
 References: <20220421203659.27853-1-d-gerlach@ti.com>
- <20220421203659.27853-2-d-gerlach@ti.com>
+ <20220421203659.27853-3-d-gerlach@ti.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220421203659.27853-2-d-gerlach@ti.com>
+In-Reply-To: <20220421203659.27853-3-d-gerlach@ti.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
@@ -66,41 +66,62 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 21, 2022 at 03:36:54PM -0500, Dave Gerlach wrote:
-> Add documentation for the ti,ctx-memory-region property which is a
-> phandle to a reserved-memory carveout to be used by the ti_sci driver
-> storage of low power mode memory context. This is optional for normal
-> system operation but required to enabled suspend-to-mem usage of Deep
-> Sleep state.
+On Thu, Apr 21, 2022 at 03:36:55PM -0500, Dave Gerlach wrote:
+> Add documentation for the lpm region which tells the ti-sci driver where
+> to load the FS Stub low power mode firmware and also the
+> ti,lpm-firmware-name which tells the driver which binary to load. Both
+> of these are optional for normal system operation but required to
+> enabled suspend-to-mem usage of Deep Sleep state.
 > 
 > Signed-off-by: Dave Gerlach <d-gerlach@ti.com>
 > ---
->  .../devicetree/bindings/arm/keystone/ti,sci.yaml         | 9 +++++++++
->  1 file changed, 9 insertions(+)
+>  .../bindings/arm/keystone/ti,sci.yaml         | 21 +++++++++++++++----
+>  1 file changed, 17 insertions(+), 4 deletions(-)
 > 
 > diff --git a/Documentation/devicetree/bindings/arm/keystone/ti,sci.yaml b/Documentation/devicetree/bindings/arm/keystone/ti,sci.yaml
-> index 34f5f877d444..ec88aa88a2a0 100644
+> index ec88aa88a2a0..31c783507cd0 100644
 > --- a/Documentation/devicetree/bindings/arm/keystone/ti,sci.yaml
 > +++ b/Documentation/devicetree/bindings/arm/keystone/ti,sci.yaml
-> @@ -61,6 +61,15 @@ properties:
->    mboxes:
->      minItems: 2
+> @@ -42,12 +42,19 @@ properties:
+>            - const: ti,am654-sci
 >  
-> +  ti,ctx-memory-region:
+>    reg-names:
+> -    description: |
+> -      Specifies the debug messages memory mapped region that is optionally
+> -      made available from TI-SCI controller.
+> -    const: debug_messages
+> +    items:
+> +      - const: debug_messages
+> +      - const: lpm
+> +    minItems: 1
+>  
+>    reg:
+> +    items:
+> +      - description: |
+> +          Specifies the debug messages memory mapped region that is optionally
+> +          made available from TI-SCI controller.
+> +      - description: |
+> +          Specifies the lpm memory mapped region where the FS Stub low power
+> +          firmware is to be loaded.
+>      minItems: 1
+>  
+>    mbox-names:
+> @@ -92,6 +99,12 @@ properties:
+>      type: object
+>      $ref: /schemas/reset/ti,sci-reset.yaml#
+>  
+> +  ti,lpm-firmware-name:
 
-What's wrong with 'memory-region'?
+firmware-name
 
-> +    description:
-> +      Phandle to the reserved memory node to be associated with the
-> +      ti-sci device, to be used for saving low power context. The
-> +      reserved memory node should be a carveout node, and should
-> +      be defined as per the bindings in
-> +      Documentation/devicetree/bindings/reserved-memory/reserved-memory.yaml
+> +    description: |
+> +      Name of binary of FS Stub low power firmware located on the
+> +      firmware search path.
 > +    $ref: /schemas/types.yaml#/definitions/string
 > +
->    ti,system-reboot-controller:
->      description: Determines If system reboot can be triggered by SoC reboot
->      type: boolean
+>  required:
+>    - compatible
+>    - mbox-names
 > -- 
 > 2.35.0
 > 
