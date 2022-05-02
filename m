@@ -2,90 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2BC61517001
-	for <lists+devicetree@lfdr.de>; Mon,  2 May 2022 15:06:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 27DAF517012
+	for <lists+devicetree@lfdr.de>; Mon,  2 May 2022 15:13:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235167AbiEBNKD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 May 2022 09:10:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40018 "EHLO
+        id S1385178AbiEBNQc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 May 2022 09:16:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46204 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233037AbiEBNKC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 May 2022 09:10:02 -0400
-Received: from mail-oi1-x235.google.com (mail-oi1-x235.google.com [IPv6:2607:f8b0:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D22819295
-        for <devicetree@vger.kernel.org>; Mon,  2 May 2022 06:06:33 -0700 (PDT)
-Received: by mail-oi1-x235.google.com with SMTP id a10so15101021oif.9
-        for <devicetree@vger.kernel.org>; Mon, 02 May 2022 06:06:33 -0700 (PDT)
+        with ESMTP id S1351348AbiEBNQb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 May 2022 09:16:31 -0400
+Received: from mail-vs1-xe33.google.com (mail-vs1-xe33.google.com [IPv6:2607:f8b0:4864:20::e33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35894C0C;
+        Mon,  2 May 2022 06:12:58 -0700 (PDT)
+Received: by mail-vs1-xe33.google.com with SMTP id z144so13497137vsz.13;
+        Mon, 02 May 2022 06:12:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=YpduY3LUujj9agt2pyGYTYUcOltpq+QJYgSduqrfP7U=;
-        b=GV90JjF4D7CFDFpMIEVMlD+rNmMAkAKeJwY/3MeT+jIh15ZtQsFlSqF5wddudZNkWc
-         9kolMChs2vjLRYPHYp/aV6Hlpu5E74JJuZoVvrn0VwIEyVwaR6maMvZyBJ9w3IJMtU0F
-         YcnzHjtir5Wlt6tZttOiyM/fEZ+wrsYEXsuW7I5S3pbWOMA4DWg5tnqjTC/t3eOMNs6U
-         uhGa5aeDiMN79Zwujw9ofbp23NpfxJFfr8GHXk3bJpL9rNKmOGjTG5c5CAMdd2B5tivi
-         HLSvfp0IAZuUNSI9UMuaVbeDYcPcUpP0nVMYyPNv+bjr5H/MEXs1Hbz25qwArp3voUdW
-         oW/w==
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:reply-to:from:date:message-id
+         :subject:to:cc;
+        bh=Q9PzyxjQuHY1spsfkApUPqmCQWtSz+AxNkiNIjpbrU8=;
+        b=mJDEqDsVQSGSuhg63i6rSSlbP++q3ToYeRW7DKxkb1Mgg6ahghRFMAMYVO8Z248Wpv
+         /zMAOvyhuFpiRAqn2VhRMA3uu9E2VH6ACglzHVwKn/4w8bGMp9mQx2Xcx1aHcJFCULwd
+         /WzVHWm330mmycVGKOMDo98gNZZW3mekRi0x/PDJGRx9yPLvbhVlqTbbAjcKUl3QFBOx
+         r5f57N5BwI9bpueFyyiPE8lmhgNPHdUr+4NejTLlWU9CozHtjS9GpXqjB0SCJG7l9tFN
+         reM2aggIX8NxhU2uBmPxOp9y1Y09HDqTmQmXVatCdmw685GsgJmU9inIuFvA4fvUDJ4+
+         S/sg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=YpduY3LUujj9agt2pyGYTYUcOltpq+QJYgSduqrfP7U=;
-        b=qvg4o7Bk/YIzQ3YuuCkGba+eOheTQJePwkd79NchS4jwnvZRP6o4So/UjH4cgbmixd
-         6C/whJgu8omCotkt7sCkRA4U5Zu1ye+ShifgfjWMRpCi5AgN3rijgQ+tZrXgjbwAOHk8
-         4oa/RxiMbj5JTrRuZOrrjPLPWrbTNrSkybu73cd6cvEvsufs78k9dSVC8E/92yyqPSzM
-         sEwJk0ESv72kzNgVt6BlTJbTfqc1L+tvqNw9DjIo0Ysh94otvz8Z2T9r1JhdN2MsfFua
-         8/EjIlTodLHYmZHVl05lZwrbdvDwEmYRw1A86agfR6h8w4GhpGmJv1uYqEfK+95QTNxo
-         nu4w==
-X-Gm-Message-State: AOAM530tkRbTHoi9P+OYbjtwXdc3l4w19ryZ7UgKEMmR+oyhgw5gqzdZ
-        aiHCMBYMmNZeUUAtY4zv3WQZAw==
-X-Google-Smtp-Source: ABdhPJy6gYlkrEw3HdhYgJS+i0PI5/yd6+OPCsHSn/J3tWNjwTbyMiQZ+NvTBxbS58riCDUPJjLlbg==
-X-Received: by 2002:a05:6808:2097:b0:326:c73:10c6 with SMTP id s23-20020a056808209700b003260c7310c6mr1321633oiw.182.1651496792671;
-        Mon, 02 May 2022 06:06:32 -0700 (PDT)
-Received: from ripper (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id i13-20020a54408d000000b00325cda1ffb9sm2282403oii.56.2022.05.02.06.06.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 May 2022 06:06:31 -0700 (PDT)
-Date:   Mon, 2 May 2022 06:08:18 -0700
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Mark Brown <broonie@kernel.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v3 1/3] regulator: dt-bindings: qcom,rpmh: update
- maintainers
-Message-ID: <Ym/XwheROw9Y1JGx@ripper>
-References: <20220426105501.73200-1-krzysztof.kozlowski@linaro.org>
- <20220426105501.73200-2-krzysztof.kozlowski@linaro.org>
- <YmlIDn1aHSrcoeoJ@sirena.org.uk>
+        h=x-gm-message-state:mime-version:references:in-reply-to:reply-to
+         :from:date:message-id:subject:to:cc;
+        bh=Q9PzyxjQuHY1spsfkApUPqmCQWtSz+AxNkiNIjpbrU8=;
+        b=VdLAWV52D5pn2k1CuyI1OZbZNcpOhc/XnOrelEDMdscMbG8L7ox9QW1ANuX38m3SxA
+         qUWwAq1KsqKFxPo6SRmiU4tZuEs5OWeElZEykY1UofV0mOdYuTd7KZCpYq9aFcZ5T7X9
+         cLpCzu5L0S8KDLq9f+yZp62fa2cSL2cpe//6uhAW89DonLd6V/iFcKKe9SNU7uprLNIj
+         iSXfnkkInNYMkkRyhRqKlMx3EFBG3ik4oTO0w/RaMYbRYw7Da227lfYLOu1fc85s4K3Q
+         mBsHF3rNK3eUi8XQXTjno44ISuOYjXx5AzDUZgOlY2Of1rrzq2n5LZIo06VwN4j8h6vZ
+         Yn7g==
+X-Gm-Message-State: AOAM531D+AaEh5TE2UYiOlLG9PhmKgW9WvB54Xje1xzfHINbv6LNGY/j
+        F7ai/IkOOjBwoqexkneSV/Lj+C0Gx16BjRak/2RYXwdybpjQwTF7
+X-Google-Smtp-Source: ABdhPJxbInO0MY7QS0qnVFBBJNpXUEKl/C28qXUrrFqVm+asE7qWtoiTdPab5crnAQKYbzgVZXYAV22vfuroIRfDXxo=
+X-Received: by 2002:a67:c107:0:b0:32d:3ac1:1e71 with SMTP id
+ d7-20020a67c107000000b0032d3ac11e71mr1332770vsj.41.1651497177274; Mon, 02 May
+ 2022 06:12:57 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YmlIDn1aHSrcoeoJ@sirena.org.uk>
+References: <20220426131102.23966-1-andrea.merello@gmail.com>
+ <20220426131102.23966-9-andrea.merello@gmail.com> <CAHp75VdLiBkg100UjFN36rW_vaOObOoJ_Mv9n=4LjSWb+dQWMw@mail.gmail.com>
+ <CAN8YU5PzwmeQ9XA3qod7HejG6cCLCrPvda5eomCh5hUze_DWcA@mail.gmail.com> <CAHp75VfOZpD135q_eERnLk0NorXwPxY8DFbKMu+eKV8XahGC1A@mail.gmail.com>
+In-Reply-To: <CAHp75VfOZpD135q_eERnLk0NorXwPxY8DFbKMu+eKV8XahGC1A@mail.gmail.com>
+Reply-To: andrea.merello@gmail.com
+From:   Andrea Merello <andrea.merello@gmail.com>
+Date:   Mon, 2 May 2022 15:12:45 +0200
+Message-ID: <CAN8YU5P_vGV0vrhdy273ef9GH2Y2=TbXbsiho=V9vG44NXAujA@mail.gmail.com>
+Subject: Re: [v5 08/14] iio: imu: add Bosch Sensortec BNO055 core driver
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matt Ranostay <matt.ranostay@konsulko.com>,
+        Alexandru Ardelean <ardeleanalex@gmail.com>,
+        jmondi <jacopo@jmondi.org>,
+        Andrea Merello <andrea.merello@iit.it>
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed 27 Apr 06:41 PDT 2022, Mark Brown wrote:
+Il giorno lun 2 mag 2022 alle ore 12:12 Andy Shevchenko
+<andy.shevchenko@gmail.com> ha scritto:
 
-> On Tue, Apr 26, 2022 at 12:54:59PM +0200, Krzysztof Kozlowski wrote:
-> 
-> >  maintainers:
-> > -  - David Collins <collinsd@codeaurora.org>
-> > +  - Bjorn Andersson <bjorn.andersson@linaro.org>
-> > +  - Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
-> Bjorn, are you OK with this?
+One inline comment. OK for the rest
 
-Acked-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> > > > +#define BNO055_ATTR_VALS(...)          \
+> > > > +       .vals = (int[]){ __VA_ARGS__},  \
+> > > > +       .len = ARRAY_SIZE(((int[]){__VA_ARGS__}))
+
+[...]
+
+> And my point about readability. The reader, and even the author after
+> some time, may have no clue in this forest of the macros and castings
+> what's going on.
+
+While I'm OK wrt your point in general, consider that it's just a
+three LOC macro, used only in a few structs just below. I wouldn't say
+it's so inricated; I've seen by far worse in the kernel :)
+
+> > but about avoiding as much as
+> > possible bugs caused by mismatched attr_vals, attr_aux and
+> > ARRAY_SIZE() arg. e.g:
+> > bno055_sysfs_attr_avail(priv, bno_foo_vals, ARRAY_SIZE(bno_bar_vals),
+> > bno_foobar_aux, vals, len)
+> >
+> > I used to make quite a lot of mess until I grouped all the stuff in
+> > one struct :/
+>
+> If something you want to prevent at compile time, consider to utilize
+> static_assert() and / or BUILD_BUG_ON() depending on the place in the
+> code (the former is preferred).
+
+I would be happy to get rid of my macro and use those assertion
+things, but I can't see how exactly. Do you have any advice about how
+to take advantage of them for catching bugs like the one above in this
+specific case?
