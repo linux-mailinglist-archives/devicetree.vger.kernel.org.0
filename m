@@ -2,162 +2,193 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EAC89516B9E
-	for <lists+devicetree@lfdr.de>; Mon,  2 May 2022 10:02:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EC298516BAA
+	for <lists+devicetree@lfdr.de>; Mon,  2 May 2022 10:06:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238076AbiEBIGB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 May 2022 04:06:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47712 "EHLO
+        id S1359180AbiEBIJk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 May 2022 04:09:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53148 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234054AbiEBIGA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 May 2022 04:06:00 -0400
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4079634B9D;
-        Mon,  2 May 2022 01:02:29 -0700 (PDT)
-Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 241LoNtB030224;
-        Mon, 2 May 2022 10:01:55 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=tj8rMg2anSNrkXmaoqsySNf92r1jyTKtJTMppRQhTPU=;
- b=WF0I5L2w7456WlL4ftWLf7Ckx4EjnJ2VqbJv35SoHQ4ztlxr0uu5OdKuX0KwkRZ9XnwO
- 6vhubTjHQveRxmNogvQNdpvYGf8M8DMGr8BnUSfkTDp+QtOk4vMwQsAU8IFuNn04Vc0S
- n/LXvc+Gv2ZXGK8XYJtZBxmR2k9g69hYRBrVrUg+NTSDcJO69OkYr0ZxroEr2ja954oi
- R7tPKqG614Li60kDqBswSrlMJ8rHm9a2+0LzWDt6IygNq3SfI3xa5EZAR9TGSAPtp52D
- PTax4AOKatXXDkfW5qSswybnlVAoVHBGwM6HEXvDKIlVWJMl/NYjkevYyHdqk+GNWIW+ Gw== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3frt88fxsr-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 02 May 2022 10:01:55 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id B641710002A;
-        Mon,  2 May 2022 10:01:53 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id ACB02212FBF;
-        Mon,  2 May 2022 10:01:53 +0200 (CEST)
-Received: from [10.201.21.93] (10.75.127.44) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.2308.20; Mon, 2 May
- 2022 10:01:53 +0200
-Message-ID: <0018dfe2-8279-fbdb-1c99-7c73570e2000@foss.st.com>
-Date:   Mon, 2 May 2022 10:01:52 +0200
+        with ESMTP id S1383656AbiEBIJG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 May 2022 04:09:06 -0400
+Received: from mail-yw1-x112d.google.com (mail-yw1-x112d.google.com [IPv6:2607:f8b0:4864:20::112d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3521C37BE0
+        for <devicetree@vger.kernel.org>; Mon,  2 May 2022 01:05:36 -0700 (PDT)
+Received: by mail-yw1-x112d.google.com with SMTP id 00721157ae682-2f7b815ac06so139794887b3.3
+        for <devicetree@vger.kernel.org>; Mon, 02 May 2022 01:05:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=pkED2ob7beSbV7dxZktMXjEINCdftZ7x+GOUm/NUPeI=;
+        b=TAvAENhMvrGwzmPBadnLxV8W7lPrEBQhCdgtGGiuvwg9C7UqfCJ5weozGQFVEcVeDy
+         9zHHts4vJYenln1281EwtIB/mmbMbqUZ/Bzx1MU80ZGS0Jkk/e8q4r3uuOXPw0EcpLLD
+         g9+d2t2UrJ7ncBVRs0Z4NGNTmhcOuZpIOKGOLFFpAu71wYnR61d3a5i69LHavy9BbE1L
+         icR4rHqLySa96fCcjA6fxV8aSaY8Wyh142DZ+GxyDmXjkIK51kpoqEUwZc89AZgRnzqL
+         CzqSVQc5StRFBzYrE1HGn9NnhCuPdgV+vDID7D1fkEZEkRzXK+v1faqzEheFGPAxm1ec
+         yoow==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=pkED2ob7beSbV7dxZktMXjEINCdftZ7x+GOUm/NUPeI=;
+        b=QlmS+pnsE9FSZ+/5bJZb3OGT6IJWpSdIFFnQDFNKxOKGvQK4qLWAi3we6pjU6EM0AB
+         PpLS12tfSGLUPlvFDQ5M2HWZSpfb4J/O+rVvxzxgZjfgxyoCCE4Hr9E6u9iS7tkZUgNS
+         er0czOlx+Hoz7RV0K/Sy363ZQGCwolJkBZwF3oaMLX5VmspDPHzZDNvDAgZioOh1DON0
+         7FK9mNnaCQCBu/SZt9WBWKOq89PB9JOwX+VSrQ4kuFbgl6veqNd82kMIpL/ux3n3mu2b
+         sqgIsgY+StAgEVFiWEPc73fukDd08SVcWbiNdTfqto5YE+p9VnDZhu3gRZgWHWcu8n2Q
+         eaqA==
+X-Gm-Message-State: AOAM5334dtARpWYL8ixG2WOcL1YWj62i1+T0/MdH2Z9FGhxMxjaL1jvz
+        jqHLN62nhldFKUTEdwIa5mnjCcLrnTuumWIu81sXfIL7AGg=
+X-Google-Smtp-Source: ABdhPJxjd/UXBkLDQ8v0mFv7qO6LcXwqsQ00DKef/H8r0Zu4XJme0fm1NhlnpF7VjbqgBLVTYHmD7fYUsLF7zRWf/mk=
+X-Received: by 2002:a81:4c11:0:b0:2d1:1925:cd70 with SMTP id
+ z17-20020a814c11000000b002d11925cd70mr10043140ywa.101.1651478735419; Mon, 02
+ May 2022 01:05:35 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH 1/2] dt-bindings: arm: stm32: narrow DH STM32MP1 SoM
- boards
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-CC:     Oleksij Rempel <o.rempel@pengutronix.de>
-References: <20220425140436.332467-1-krzysztof.kozlowski@linaro.org>
-From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
-In-Reply-To: <20220425140436.332467-1-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.75.127.44]
-X-ClientProxiedBy: SFHDAG2NODE2.st.com (10.75.127.5) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.858,Hydra:6.0.486,FMLib:17.11.64.514
- definitions=2022-05-02_02,2022-04-28_01,2022-02-23_01
-X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+References: <1650952931-31988-1-git-send-email-quic_vpolimer@quicinc.com>
+ <CAE-0n52cSR_xCxF+_UeK8CaHqsu=4HOtfWQ3BMmx2Tx3kmk-ZA@mail.gmail.com>
+ <e20d94d7-a865-21f7-0514-706992294614@linaro.org> <200eddae-02b8-5479-3e81-1f3885200ac0@quicinc.com>
+In-Reply-To: <200eddae-02b8-5479-3e81-1f3885200ac0@quicinc.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Mon, 2 May 2022 11:05:24 +0300
+Message-ID: <CAA8EJppVawrs+i0JBfmyO=68yKqA=2+ixm-KN+70Ah9OaUvG9g@mail.gmail.com>
+Subject: Re: [Freedreno] [PATCH] drm/msm/disp/dpu1: avoid clearing hw
+ interrupts if hw_intr is null during drm uninit
+To:     Abhinav Kumar <quic_abhinavk@quicinc.com>
+Cc:     Stephen Boyd <swboyd@chromium.org>,
+        Vinod Polimera <quic_vpolimer@quicinc.com>,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+        quic_kalyant@quicinc.com, robdclark@gmail.com,
+        linux-kernel@vger.kernel.org, dianders@chromium.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi krzysztof
+On Mon, 2 May 2022 at 04:38, Abhinav Kumar <quic_abhinavk@quicinc.com> wrote:
+>
+> Looks like our new CI has given all the answers we need :) which is a
+> great win for the CI in my opinion.
+>
+> Take a look at this report :
+> https://gitlab.freedesktop.org/drm/msm/-/jobs/22015361
+>
+> This issue seems to be because this change
+> https://github.com/torvalds/linux/commit/169466d4e59ca204683998b7f45673ebf0eb2de6
+> is missing in our tree.
+>
+> Without this change, what happens is that we are not hitting the return
+> 0 because we check for ENODEV.
+>
+>
+>    /*
+>       * External bridges are mandatory for eDP interfaces: one has to
+>       * provide at least an eDP panel (which gets wrapped into
+> panel-bridge).
+>       *
+>       * For DisplayPort interfaces external bridges are optional, so
+>       * silently ignore an error if one is not present (-ENODEV).
+>       */
+>      rc = dp_parser_find_next_bridge(dp_priv->parser);
+>      if (!dp->is_edp && rc == -ENODEV)
+>          return 0;
+>
+> So, I think we should do both:
+>
+> 1) Since we are running CI on the tree, backport this change so that
+> this error path doesnt hit?
+>
+> 2) Add this protection as well because this shows that we can indeed hit
+> this path in EDEFER cases causing this crash.
 
-On 4/25/22 16:04, Krzysztof Kozlowski wrote:
-> The bindings for DH STM32MP1 SoM boards allows invalid combinations,
-> e.g. st,stm32mp153 SoC on a dh,stm32mp157c-dhcom-som SoM.
-> 
-> Split the enums to properly match valid setups.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->   .../devicetree/bindings/arm/stm32/stm32.yaml  | 37 +++++++++++--------
->   1 file changed, 22 insertions(+), 15 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/stm32/stm32.yaml b/Documentation/devicetree/bindings/arm/stm32/stm32.yaml
-> index fa0a1b84122e..2f83f2760e6a 100644
-> --- a/Documentation/devicetree/bindings/arm/stm32/stm32.yaml
-> +++ b/Documentation/devicetree/bindings/arm/stm32/stm32.yaml
-> @@ -14,21 +14,6 @@ properties:
->       const: "/"
->     compatible:
->       oneOf:
-> -      - description: DH STM32MP1 SoM based Boards
-> -        items:
-> -          - enum:
-> -              - arrow,stm32mp157a-avenger96 # Avenger96
-> -              - dh,stm32mp153c-dhcom-drc02
-> -              - dh,stm32mp157c-dhcom-pdk2
-> -              - dh,stm32mp157c-dhcom-picoitx
-> -          - enum:
-> -     Applied on stm32-next.
+I have been waiting for v2 for the last week or so. It should include
+a fixed Fixes tag and an updated description (which should note that
+this happens in the error path, etc) as requested by Stephen.
 
-Thanks.
-Alex         - dh,stm32mp153c-dhcom-som
-> -              - dh,stm32mp157a-dhcor-som
-> -              - dh,stm32mp157c-dhcom-som
-> -          - enum:
-> -              - st,stm32mp153
-> -              - st,stm32mp157
-> -
->         - description: emtrion STM32MP1 Argon based Boards
->           items:
->             - const: emtrion,stm32mp157c-emsbc-argon
-> @@ -65,6 +50,13 @@ properties:
->             - enum:
->                 - st,stm32mp135f-dk
->             - const: st,stm32mp135
-> +
-> +      - description: DH STM32MP153 SoM based Boards
-> +        items:
-> +          - const: dh,stm32mp153c-dhcom-drc02
-> +          - const: dh,stm32mp153c-dhcom-som
-> +          - const: st,stm32mp153
-> +
->         - items:
->             - enum:
->                 - shiratech,stm32mp157a-iot-box # IoT Box
-> @@ -79,6 +71,21 @@ properties:
->             - const: st,stm32mp157c-ed1
->             - const: st,stm32mp157
->   
-> +      - description: DH STM32MP1 SoM based Boards
-> +        items:
-> +          - enum:
-> +              - arrow,stm32mp157a-avenger96 # Avenger96
-> +          - const: dh,stm32mp157a-dhcor-som
-> +          - const: st,stm32mp157
-> +
-> +      - description: DH STM32MP1 SoM based Boards
-> +        items:
-> +          - enum:
-> +              - dh,stm32mp157c-dhcom-pdk2
-> +              - dh,stm32mp157c-dhcom-picoitx
-> +          - const: dh,stm32mp157c-dhcom-som
-> +          - const: st,stm32mp157
-> +
->         - description: Engicam i.Core STM32MP1 SoM based Boards
->           items:
->             - enum:
+>
+> Thanks
+>
+> Abhinav
+>
+> On 4/27/2022 3:53 AM, Dmitry Baryshkov wrote:
+> > On 27/04/2022 00:50, Stephen Boyd wrote:
+> >> Quoting Vinod Polimera (2022-04-25 23:02:11)
+> >>> Avoid clearing irqs and derefernce hw_intr when hw_intr is null.
+> >>
+> >> Presumably this is only the case when the display driver doesn't fully
+> >> probe and something probe defers? Can you clarify how this situation
+> >> happens?
+> >>
+> >>>
+> >>> BUG: Unable to handle kernel NULL pointer dereference at virtual
+> >>> address 0000000000000000
+> >>>
+> >>> Call trace:
+> >>>   dpu_core_irq_uninstall+0x50/0xb0
+> >>>   dpu_irq_uninstall+0x18/0x24
+> >>>   msm_drm_uninit+0xd8/0x16c
+> >>>   msm_drm_bind+0x580/0x5fc
+> >>>   try_to_bring_up_master+0x168/0x1c0
+> >>>   __component_add+0xb4/0x178
+> >>>   component_add+0x1c/0x28
+> >>>   dp_display_probe+0x38c/0x400
+> >>>   platform_probe+0xb0/0xd0
+> >>>   really_probe+0xcc/0x2c8
+> >>>   __driver_probe_device+0xbc/0xe8
+> >>>   driver_probe_device+0x48/0xf0
+> >>>   __device_attach_driver+0xa0/0xc8
+> >>>   bus_for_each_drv+0x8c/0xd8
+> >>>   __device_attach+0xc4/0x150
+> >>>   device_initial_probe+0x1c/0x28
+> >>>
+> >>> Fixes: a73033619ea ("drm/msm/dpu: squash dpu_core_irq into
+> >>> dpu_hw_interrupts")
+> >>
+> >> The fixes tag looks odd. In dpu_core_irq_uninstall() at that commit it
+> >> is dealing with 'irq_obj' which isn't a pointer. After commit
+> >> f25f656608e3 ("drm/msm/dpu: merge struct dpu_irq into struct
+> >> dpu_hw_intr") dpu_core_irq_uninstall() starts using 'hw_intr' which is
+> >> allocated on the heap. If we backported this patch to a place that had
+> >> a73033619ea without f25f656608e3 it wouldn't make any sense.
+> >
+> > I'd agree here. The following tag would be correct:
+> >
+> > Fixes: f25f656608e3 ("drm/msm/dpu: merge struct dpu_irq into struct
+> > dpu_hw_intr")
+> >
+> >
+> >>
+> >>> Signed-off-by: Vinod Polimera <quic_vpolimer@quicinc.com>
+> >>> ---
+> >>>   drivers/gpu/drm/msm/disp/dpu1/dpu_hw_interrupts.c | 3 +++
+> >>>   1 file changed, 3 insertions(+)
+> >>>
+> >>> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_interrupts.c
+> >>> b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_interrupts.c
+> >>> index c515b7c..ab28577 100644
+> >>> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_interrupts.c
+> >>> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_interrupts.c
+> >>> @@ -599,6 +599,9 @@ void dpu_core_irq_uninstall(struct dpu_kms *dpu_kms)
+> >>>   {
+> >>>          int i;
+> >>>
+> >>> +       if (!dpu_kms->hw_intr)
+> >>> +               return;
+> >>> +
+> >>>          pm_runtime_get_sync(&dpu_kms->pdev->dev);
+> >>>          for (i = 0; i < dpu_kms->hw_intr->total_irqs; i++)
+> >
+> >
 
-Applied on stm32-next.
 
-Thanks.
-Alex
+
+-- 
+With best wishes
+Dmitry
