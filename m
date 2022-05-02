@@ -2,106 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 00C875174D5
-	for <lists+devicetree@lfdr.de>; Mon,  2 May 2022 18:46:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B5396517527
+	for <lists+devicetree@lfdr.de>; Mon,  2 May 2022 18:53:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1386470AbiEBQsc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 May 2022 12:48:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56776 "EHLO
+        id S238991AbiEBQ4z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 May 2022 12:56:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38050 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1386441AbiEBQsD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 May 2022 12:48:03 -0400
-Received: from alexa-out.qualcomm.com (alexa-out.qualcomm.com [129.46.98.28])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA53B10FEA;
-        Mon,  2 May 2022 09:44:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1651509868; x=1683045868;
-  h=from:to:cc:subject:date:message-id;
-  bh=/hBP51dakvyFvptK3SaVoqwhUb9b+sUY7FBEgdyP/G0=;
-  b=he2bz44j29Gw2C0tHNXGGlhlU+u6i0iN3aeUwULoDYFqlWO0FYXPnFaO
-   BKeROB7G3cDytkmTaEf2clhUPaM+oYXUKPk/+lGCeBv+YXB3KwFKTFJDq
-   MoQ2lstz006XEq+Ly4J3mAW9gVHvNKVdP35ofGq8pqky7QhwSNHkDaYHZ
-   A=;
-Received: from ironmsg-lv-alpha.qualcomm.com ([10.47.202.13])
-  by alexa-out.qualcomm.com with ESMTP; 02 May 2022 09:44:27 -0700
-X-QCInternal: smtphost
-Received: from ironmsg02-blr.qualcomm.com ([10.86.208.131])
-  by ironmsg-lv-alpha.qualcomm.com with ESMTP/TLS/AES256-SHA; 02 May 2022 09:44:25 -0700
-X-QCInternal: smtphost
-Received: from vpolimer-linux.qualcomm.com ([10.204.67.235])
-  by ironmsg02-blr.qualcomm.com with ESMTP; 02 May 2022 22:14:11 +0530
-Received: by vpolimer-linux.qualcomm.com (Postfix, from userid 463814)
-        id 8727E28A6; Mon,  2 May 2022 22:14:09 +0530 (IST)
-From:   Vinod Polimera <quic_vpolimer@quicinc.com>
-To:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org
-Cc:     Vinod Polimera <quic_vpolimer@quicinc.com>,
-        linux-kernel@vger.kernel.org, robdclark@gmail.com,
-        dianders@chromium.org, swboyd@chromium.org,
-        quic_kalyant@quicinc.com, quic_abhinavk@quicinc.com,
-        dmitry.baryshkov@linaro.org
-Subject: [PATCH v2] drm/msm/disp/dpu1: avoid clearing hw interrupts if hw_intr is null during drm uninit
-Date:   Mon,  2 May 2022 22:14:06 +0530
-Message-Id: <1651509846-4842-1-git-send-email-quic_vpolimer@quicinc.com>
-X-Mailer: git-send-email 2.7.4
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+        with ESMTP id S236543AbiEBQ4y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 May 2022 12:56:54 -0400
+Received: from mail-qv1-f44.google.com (mail-qv1-f44.google.com [209.85.219.44])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C3FB6245;
+        Mon,  2 May 2022 09:53:25 -0700 (PDT)
+Received: by mail-qv1-f44.google.com with SMTP id kd11so10601469qvb.2;
+        Mon, 02 May 2022 09:53:25 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=XZaiBLtcAlhidvtdNMc3W6SDQ30mbyneLJBcFUcG3GU=;
+        b=7381Wkw4b/VcmzyYeRrik+Nl0u0XfkatPis9zgLbR0xksKkIenxcsA+EUtQIe3VJ3S
+         oGkcp48nmWjz8dC5UsWDQ2B3RvjDDmvCckUi+4lAHFiO3DCeiZinLSLnub1inR4Nexls
+         RReSGyxSCLQp9MrafYiN3Ng6jjzkkhaUzhnuuP0sdPNzCv/JIXvKgvWQWy2Z3ZXd42ub
+         g2ndO3++dEKMa9ByOuiU4Vy5k/2OfhAMXFitpFgVaINPgBmyKFP77kuKxnCd06tUqIZd
+         BwFR8t71Ur19UwlGH16n7fk+2wXmpSYjrHMid53agqqLRQ4G8Ycz0jg+C7MYwEEyX1zW
+         Nq7w==
+X-Gm-Message-State: AOAM530zMg540F4d/97WSIIaWV3/YQ1KGYKbKX9elL/whV/bISS5BdWg
+        rLIVZtfI6WsBsRCAOk14RTlTU0VOf6HhBw==
+X-Google-Smtp-Source: ABdhPJxomT1YE3iFVdjNkVgre0QnOhzuhpmW0uv3LWLBGMgq6lKyxX5XIx+zJUtkONbBHp4KHn2ceg==
+X-Received: by 2002:a05:6214:5197:b0:458:32f4:d77d with SMTP id kl23-20020a056214519700b0045832f4d77dmr10489535qvb.76.1651510404600;
+        Mon, 02 May 2022 09:53:24 -0700 (PDT)
+Received: from mail-yw1-f177.google.com (mail-yw1-f177.google.com. [209.85.128.177])
+        by smtp.gmail.com with ESMTPSA id 18-20020a370a12000000b0069fc13ce1f7sm4660074qkk.40.2022.05.02.09.53.23
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 02 May 2022 09:53:24 -0700 (PDT)
+Received: by mail-yw1-f177.google.com with SMTP id 00721157ae682-2f7b815ac06so154465947b3.3;
+        Mon, 02 May 2022 09:53:23 -0700 (PDT)
+X-Received: by 2002:a05:690c:84:b0:2f1:9caa:e4f7 with SMTP id
+ be4-20020a05690c008400b002f19caae4f7mr12588562ywb.384.1651510403709; Mon, 02
+ May 2022 09:53:23 -0700 (PDT)
+MIME-Version: 1.0
+References: <20220501112926.47024-1-biju.das.jz@bp.renesas.com>
+ <20220501112926.47024-2-biju.das.jz@bp.renesas.com> <CAMuHMdV1fO4EuV2n-iQ1jYmX9Fz5B6nX8oYMfduVHSEPAKG+dg@mail.gmail.com>
+ <OS0PR01MB59221F1878FED409ACBE21B786C19@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+In-Reply-To: <OS0PR01MB59221F1878FED409ACBE21B786C19@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Mon, 2 May 2022 18:53:12 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdW-SzUUV=yT6SGQipvr8kT9_SGk=-3Dd+L+uQdZYab3Wg@mail.gmail.com>
+Message-ID: <CAMuHMdW-SzUUV=yT6SGQipvr8kT9_SGk=-3Dd+L+uQdZYab3Wg@mail.gmail.com>
+Subject: Re: [PATCH 1/6] arm64: dts: renesas: r9a07g043: Add SPI Multi I/O Bus
+ controller node
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-If edp modeset init is failed due to panel being not ready and
-probe defers during drm bind, avoid clearing irqs and derefernce
-hw_intr when hw_intr is null.
+Hi Biju,
 
-BUG: Unable to handle kernel NULL pointer dereference at virtual address 0000000000000000
+On Mon, May 2, 2022 at 6:18 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
+> > Subject: Re: [PATCH 1/6] arm64: dts: renesas: r9a07g043: Add SPI Multi I/O
+> > Bus controller node
+> > On Sun, May 1, 2022 at 1:29 PM Biju Das <biju.das.jz@bp.renesas.com>
+> > wrote:
+> > > Add SPI Multi I/O Bus controller node to R9A07G043 (RZ/G2UL) SoC DTSI.
+> > >
+> > > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
 
-Call trace:
- dpu_core_irq_uninstall+0x50/0xb0
- dpu_irq_uninstall+0x18/0x24
- msm_drm_uninit+0xd8/0x16c
- msm_drm_bind+0x580/0x5fc
- try_to_bring_up_master+0x168/0x1c0
- __component_add+0xb4/0x178
- component_add+0x1c/0x28
- dp_display_probe+0x38c/0x400
- platform_probe+0xb0/0xd0
- really_probe+0xcc/0x2c8
- __driver_probe_device+0xbc/0xe8
- driver_probe_device+0x48/0xf0
- __device_attach_driver+0xa0/0xc8
- bus_for_each_drv+0x8c/0xd8
- __device_attach+0xc4/0x150
- device_initial_probe+0x1c/0x28
+> > > --- a/arch/arm64/boot/dts/renesas/r9a07g043.dtsi
+> > > +++ b/arch/arm64/boot/dts/renesas/r9a07g043.dtsi
+> > > @@ -418,12 +418,20 @@ adc: adc@10059000 {
+> > >                 };
+> > >
+> > >                 sbc: spi@10060000 {
+> > > +                       compatible = "renesas,r9a07g043-rpc-if",
+> > > +                                    "renesas,rzg2l-rpc-if";
+> > >                         reg = <0 0x10060000 0 0x10000>,
+> > >                               <0 0x20000000 0 0x10000000>,
+> > >                               <0 0x10070000 0 0x10000>;
+> > > +                       reg-names = "regs", "dirmap", "wbuf";
+> > > +                       interrupts = <GIC_SPI 41 IRQ_TYPE_LEVEL_HIGH>;
+> >
+> > LGTM, but this interrupt is not documented in the RZ/G2UL Hardware User's
+> > Manual (Rev. 0.51 and 1.00)?
+>
+> You are correct. As per Table25.1 and Table 8.2, QSPI_INT# is not available on
+> RZ/G2UL.
+>
+> Will Fix this in next version. Maybe we need to make interrupt as optional in bindings with driver changes?
 
-Changes in V2:
-- Update commit message and coreect fixes tag.
+It's already optional, and the driver doesn't seem to use it at all.
 
-Fixes: f25f656608e3 ("drm/msm/dpu: merge struct dpu_irq into struct dpu_hw_intr")
-Signed-off-by: Vinod Polimera <quic_vpolimer@quicinc.com>
----
- drivers/gpu/drm/msm/disp/dpu1/dpu_hw_interrupts.c | 3 +++
- 1 file changed, 3 insertions(+)
+Gr{oetje,eeting}s,
 
-diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_interrupts.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_interrupts.c
-index c515b7c..ab28577 100644
---- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_interrupts.c
-+++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_interrupts.c
-@@ -599,6 +599,9 @@ void dpu_core_irq_uninstall(struct dpu_kms *dpu_kms)
- {
- 	int i;
- 
-+	if (!dpu_kms->hw_intr)
-+		return;
-+
- 	pm_runtime_get_sync(&dpu_kms->pdev->dev);
- 	for (i = 0; i < dpu_kms->hw_intr->total_irqs; i++)
- 		if (!list_empty(&dpu_kms->hw_intr->irq_cb_tbl[i]))
--- 
-2.7.4
+                        Geert
 
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
