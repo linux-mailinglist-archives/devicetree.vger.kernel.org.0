@@ -2,135 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D1A5516AFD
-	for <lists+devicetree@lfdr.de>; Mon,  2 May 2022 08:52:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 36947516B08
+	for <lists+devicetree@lfdr.de>; Mon,  2 May 2022 09:05:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350991AbiEBGzz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 May 2022 02:55:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46616 "EHLO
+        id S1358316AbiEBHIc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 May 2022 03:08:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46034 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244222AbiEBGzy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 May 2022 02:55:54 -0400
-Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [217.70.183.194])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA35935270;
-        Sun,  1 May 2022 23:52:24 -0700 (PDT)
-Received: (Authenticated sender: clement.leger@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 5498140003;
-        Mon,  2 May 2022 06:52:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1651474342;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=CRnuH9NmDN7PIjjb0xMDNRrIFcSL+3W+2vUxFvjNLKo=;
-        b=GHdJ3TT4SITL2nwOkmdIRURaN/xuQC5jufmrAZumYAEe4lZtwnW6aQXQN/YT10EFNdhjP2
-        iOU/QR9OcQwgUPcY2J9vtH/Ck6X24V8L9szzdgkGqYuE7WTORx81kA2addlo1LG7/gFK6b
-        5v0h05tFajTYdl+oUq0lermRU+f96HuaN90dD2Z5cGHp8lWWfbkHbE4/C1Ecnqscb9Q/wz
-        MqxwSSUaWbWnqE1zw3isHiX3CkZXDMSVyqXCcKwvpHd0XM70yegrcq7vYFrxrVl7Epq/rZ
-        u1VSqNFGOmK/liT99vSNmD7zsaz6Muly8EeV3fBvIKtzAVkGAeB2UP+57ZN2Kg==
-Date:   Mon, 2 May 2022 08:51:03 +0200
-From:   =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
-To:     Jakub Kicinski <kuba@kernel.org>
-Cc:     Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Herve Codina <herve.codina@bootlin.com>,
-        =?UTF-8?B?TWlxdcOobA==?= Raynal <miquel.raynal@bootlin.com>,
-        Milan Stevanovic <milan.stevanovic@se.com>,
-        Jimmy Lalande <jimmy.lalande@se.com>,
-        Pascal Eberhard <pascal.eberhard@se.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org, netdev@vger.kernel.org
-Subject: Re: [net-next v2 00/12] add support for Renesas RZ/N1 ethernet
- subsystem devices
-Message-ID: <20220502085103.19b4f47b@fixe.home>
-In-Reply-To: <20220429123235.3098ed12@kernel.org>
-References: <20220429143505.88208-1-clement.leger@bootlin.com>
-        <20220429123235.3098ed12@kernel.org>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.31; x86_64-pc-linux-gnu)
+        with ESMTP id S1353644AbiEBHIb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 May 2022 03:08:31 -0400
+Received: from mail-pl1-x634.google.com (mail-pl1-x634.google.com [IPv6:2607:f8b0:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C0633F8BE
+        for <devicetree@vger.kernel.org>; Mon,  2 May 2022 00:05:03 -0700 (PDT)
+Received: by mail-pl1-x634.google.com with SMTP id n14so4919527plf.3
+        for <devicetree@vger.kernel.org>; Mon, 02 May 2022 00:05:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=E7GM3tz8optTxbav5Ed4qJexrlVgb0LjVWwJUE4cUd0=;
+        b=MpYIp08yi1H01TpL8Sh/HuyfuPVXlp+PjsszsvhpnNdXGqaBlO1hCuFwxMJlPa1Fma
+         6dikW1vQwky1JPwcO1Z2xk/zdsLiBDIHDzE2/XVftDiuhiuEkByY0oQACDPr+ejWlIUd
+         N3ZGiafZQab3sLffCOOglzBTriQMDg8+1FBob1A0YifCgeEn2G4U3ifm2ObBBvdZdydR
+         qorJnFU9vzBbcg+dVMbQMPzYrtGDYppzC14fLo8kl/Jiii6ynURHzmEi7l4Ykc8v8A3s
+         KC5utargwHCGqm0MpBDq5Fcwork3KmIflAU1jq7UjyNCiuuiSdHVIDUi2Xg0lby1Zx7a
+         UM7g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=E7GM3tz8optTxbav5Ed4qJexrlVgb0LjVWwJUE4cUd0=;
+        b=LXIYw26MQxr1WOmvjzO7BGiadIZBgNDCWA+7Cq5vem+bVfYzxLpjl0xrmakMhcZsQu
+         lDfCOh3s3gRGc++G7CUCvfmqWTIDFtx54hMRKA8mgV7tzEcMVRq6kCkNoPgvCUNu8f2a
+         KkUZHFV3pYmXeyFqwWQ1pLqM2aFc4QrOjr0pqocVEAeIP4xOdDSrQKB9SwXM96bUo6Xi
+         OqNe9m7F8eFMNfdiax23y3ce+TnkKoMQk4jg9FBQd7xWmSUYArNvJt4q4Sy7qWazuiHk
+         cwNP7W3lLu+/SR2M28upTPk90TlkgZP+0gDojIRKXUaiKQRe7EsVjyGtlZJKvZLMgUyM
+         BPUg==
+X-Gm-Message-State: AOAM531e8O7WBrJpzW0KLp3MqNlUGpUaMa7a/dTwC4R8yLEJv50QY+sy
+        oqypiRVlN/yxfUv/E7khVTGI
+X-Google-Smtp-Source: ABdhPJzRJUicR64+Dut55H/RQG2Y33uYolxH/uFLiqbvoSaN8r8Gf74N0e5RESaWZ4Fd+EVJImxEQQ==
+X-Received: by 2002:a17:903:14a:b0:15c:f657:62d0 with SMTP id r10-20020a170903014a00b0015cf65762d0mr10768786plc.81.1651475102865;
+        Mon, 02 May 2022 00:05:02 -0700 (PDT)
+Received: from thinkpad ([27.111.75.99])
+        by smtp.gmail.com with ESMTPSA id x16-20020a170902b41000b0015e8d4eb253sm3887181plr.157.2022.05.02.00.04.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 02 May 2022 00:05:02 -0700 (PDT)
+Date:   Mon, 2 May 2022 12:34:57 +0530
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     Kaushal Kumar <quic_kaushalk@quicinc.com>
+Cc:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/4] ARM: dts: qcom: sdx65: Add QPIC BAM support
+Message-ID: <20220502070457.GB5053@thinkpad>
+References: <1651332610-6334-1-git-send-email-quic_kaushalk@quicinc.com>
+ <1651332610-6334-2-git-send-email-quic_kaushalk@quicinc.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1651332610-6334-2-git-send-email-quic_kaushalk@quicinc.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Le Fri, 29 Apr 2022 12:32:35 -0700,
-Jakub Kicinski <kuba@kernel.org> a =C3=A9crit :
+On Sat, Apr 30, 2022 at 08:30:07AM -0700, Kaushal Kumar wrote:
+> Add devicetree node to enable support for QPIC
+> BAM DMA controller on Qualcomm SDX65 platform.
+> 
+> Signed-off-by: Kaushal Kumar <quic_kaushalk@quicinc.com>
 
-> On Fri, 29 Apr 2022 16:34:53 +0200 Cl=C3=A9ment L=C3=A9ger wrote:
-> > The Renesas RZ/N1 SoCs features an ethernet subsystem which contains
-> > (most notably) a switch, two GMACs, and a MII converter [1]. This
-> > series adds support for the switch and the MII converter.
-> >=20
-> > The MII converter present on this SoC has been represented as a PCS
-> > which sit between the MACs and the PHY. This PCS driver is probed from
-> > the device-tree since it requires to be configured. Indeed the MII
-> > converter also contains the registers that are handling the muxing of
-> > ports (Switch, MAC, HSR, RTOS, etc) internally to the SoC.
-> >=20
-> > The switch driver is based on DSA and exposes 4 ports + 1 CPU
-> > management port. It include basic bridging support as well as FDB and
-> > statistics support. =20
->=20
-> Build's not happy (W=3D1 C=3D1):
->=20
-> drivers/net/dsa/rzn1_a5psw.c:574:29: warning: symbol 'a5psw_switch_ops' w=
-as not declared. Should it be static?
-> In file included from ../drivers/net/dsa/rzn1_a5psw.c:17:
-> drivers/net/dsa/rzn1_a5psw.h:221:1: note: offset of packed bit-field =E2=
-=80=98port_mask=E2=80=99 has changed in GCC 4.4
->   221 | } __packed;
->       | ^
->=20
+Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 
-Hi Jakub, I only had this one (due to the lack of W=3D1 C=3D1 I guess) which
-I thought (wrongly) that it was due to my GCC version:
+Thanks,
+Mani
 
-  CC      net/dsa/switch.o
-  CC      net/dsa/tag_8021q.o
-In file included from ../drivers/net/dsa/rzn1_a5psw.c:17:
-../drivers/net/dsa/rzn1_a5psw.h:221:1: note: offset of packed bit-field
-  =E2=80=98port_mask=E2=80=99 has changed in GCC 4.4 221 | } __packed;
-      | ^
-  CC      kernel/module.o
-  CC      drivers/net/ethernet/stmicro/stmmac/dwmac1000_core.o
-  CC      drivers/net/ethernet/stmicro/stmmac/dwmac100_core.o
-
-I'll fix the other errors which are more trivial, however, I did not
-found a way to fix the packed bit-field warning.
-
-Thanks
-
-> drivers/net/dsa/rzn1_a5psw.h:200: warning: Function parameter or member '=
-hclk' not described in 'a5psw'
-> drivers/net/dsa/rzn1_a5psw.h:200: warning: Function parameter or member '=
-clk' not described in 'a5psw'
->=20
-> Not sure how many of these are added by you but I think 2 at least.
-
-
-
---=20
-Cl=C3=A9ment L=C3=A9ger,
-Embedded Linux and Kernel engineer at Bootlin
-https://bootlin.com
+> ---
+>  arch/arm/boot/dts/qcom-sdx65.dtsi | 12 ++++++++++++
+>  1 file changed, 12 insertions(+)
+> 
+> diff --git a/arch/arm/boot/dts/qcom-sdx65.dtsi b/arch/arm/boot/dts/qcom-sdx65.dtsi
+> index a64be20..d6a6087 100644
+> --- a/arch/arm/boot/dts/qcom-sdx65.dtsi
+> +++ b/arch/arm/boot/dts/qcom-sdx65.dtsi
+> @@ -199,6 +199,18 @@
+>  			qcom,bcm-voters = <&apps_bcm_voter>;
+>  		};
+>  
+> +		qpic_bam: dma-controller@1b04000 {
+> +			compatible = "qcom,bam-v1.7.0";
+> +			reg = <0x01b04000 0x1c000>;
+> +			interrupts = <GIC_SPI 135 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&rpmhcc RPMH_QPIC_CLK>;
+> +			clock-names = "bam_clk";
+> +			#dma-cells = <1>;
+> +			qcom,ee = <0>;
+> +			qcom,controlled-remotely;
+> +			status = "disabled";
+> +		};
+> +
+>  		tcsr_mutex: hwlock@1f40000 {
+>  			compatible = "qcom,tcsr-mutex";
+>  			reg = <0x01f40000 0x40000>;
+> -- 
+> 2.7.4
+> 
