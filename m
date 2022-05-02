@@ -2,150 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E6DDD516AF5
-	for <lists+devicetree@lfdr.de>; Mon,  2 May 2022 08:46:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D1A5516AFD
+	for <lists+devicetree@lfdr.de>; Mon,  2 May 2022 08:52:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1383510AbiEBGti (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 May 2022 02:49:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58794 "EHLO
+        id S1350991AbiEBGzz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 May 2022 02:55:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46616 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1383512AbiEBGtg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 May 2022 02:49:36 -0400
-Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2083.outbound.protection.outlook.com [40.107.20.83])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 385812CE1D;
-        Sun,  1 May 2022 23:46:05 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=a8of7JKJ8WajbO7iEaQdEJtnPaET27D73gG7glYcbyHeqOCMiIQtZdbIOVLEd5TFzvLBcSzQht4pL3nlYQ/neg6qhBLhSazRJBXhncCxb/vA1nHq8AT3h1Xb+8ZcHbeoMcE0OJ1hJ8Me1U8ZPhdni3UKnqr5u7taajowBh2htn8ZHibBK54C9LhXn8d0PY5U5GTZWPIDs0rk3xez7dWFpDkLPUHNA8OcH0FNtEH0AqNIi5V+6GO4DNPMmaEnw3WelSy+2SeqxR23rHcwUcANrgbx9WvViD/NLKGI6s0gBmvroVBLFRXn+jbdRTMbjUYtlf3f9Wqeo1zMFhz0aHy7uw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=YcHxIlP47SjL8DUajpla9eRJDZIVYLstav6t1q7csS4=;
- b=XlHs5r9bs6+Ccqc2uMmuozm2NBQsF55pv1hvzDk5PwIFWRVCEnDYLzRfN9QlTJolvvwetHj8WAK2EMFOdKH0/8PYBnybIfK+OQPg5JLqAAi3b5oTIRd5xKO8m/sG0sbzhsVfkh+pDEa3I0A6nCzyRS/Ad/HqwAJTXmRxqvYz+fmCTaf2xNB51mmPdqgGlNMnrY0/Z9441929vHL4/iH+q0tmZcW8pNEhtC9vKT9fbKYQVJUdsIzgWNaC0Jws08oEiSNy/REdNi/xthWSwwMqDxdztUPs5r046aR4HKEEmdPactoBoIH7r3w3Fv+mfx/Bh1TR0+pCie8Sx8ELh+OTBg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=wolfvision.net; dmarc=pass action=none
- header.from=wolfvision.net; dkim=pass header.d=wolfvision.net; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wolfvision.net;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=YcHxIlP47SjL8DUajpla9eRJDZIVYLstav6t1q7csS4=;
- b=lSGLY3J/tPONK9F3atb3TnHrCYS5uVkgyr1g0aVlaNTevKBtvyWeRPPGzblu7h7CAW1104oy4ZanwyHDF0xmI6o2o6AMbo23eDL2sh5ilZxga+/IhZqERdGNAKVNOXIfXsf6t0LbNP2xLCMIgak/DSIj80puuNe4Mp7Ft8EMXu4=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=wolfvision.net;
-Received: from HE1PR0802MB2426.eurprd08.prod.outlook.com (2603:10a6:3:e1::23)
- by AS8PR08MB6407.eurprd08.prod.outlook.com (2603:10a6:20b:33e::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5186.15; Mon, 2 May
- 2022 06:46:03 +0000
-Received: from HE1PR0802MB2426.eurprd08.prod.outlook.com
- ([fe80::3de2:62a:3915:9d6d]) by HE1PR0802MB2426.eurprd08.prod.outlook.com
- ([fe80::3de2:62a:3915:9d6d%7]) with mapi id 15.20.5186.028; Mon, 2 May 2022
- 06:46:02 +0000
-From:   Michael Riesch <michael.riesch@wolfvision.net>
-To:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S244222AbiEBGzy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 May 2022 02:55:54 -0400
+Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [217.70.183.194])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA35935270;
+        Sun,  1 May 2022 23:52:24 -0700 (PDT)
+Received: (Authenticated sender: clement.leger@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 5498140003;
+        Mon,  2 May 2022 06:52:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1651474342;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=CRnuH9NmDN7PIjjb0xMDNRrIFcSL+3W+2vUxFvjNLKo=;
+        b=GHdJ3TT4SITL2nwOkmdIRURaN/xuQC5jufmrAZumYAEe4lZtwnW6aQXQN/YT10EFNdhjP2
+        iOU/QR9OcQwgUPcY2J9vtH/Ck6X24V8L9szzdgkGqYuE7WTORx81kA2addlo1LG7/gFK6b
+        5v0h05tFajTYdl+oUq0lermRU+f96HuaN90dD2Z5cGHp8lWWfbkHbE4/C1Ecnqscb9Q/wz
+        MqxwSSUaWbWnqE1zw3isHiX3CkZXDMSVyqXCcKwvpHd0XM70yegrcq7vYFrxrVl7Epq/rZ
+        u1VSqNFGOmK/liT99vSNmD7zsaz6Muly8EeV3fBvIKtzAVkGAeB2UP+57ZN2Kg==
+Date:   Mon, 2 May 2022 08:51:03 +0200
+From:   =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
+To:     Jakub Kicinski <kuba@kernel.org>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Liang Chen <cl@rock-chips.com>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
-        Frank Wunderlich <frank-w@public-files.de>
-Subject: [PATCH v2] arm64: dts: rockchip: enable otg/drd operation of usb_host0_xhci in rk3568
-Date:   Mon,  2 May 2022 08:45:51 +0200
-Message-Id: <20220502064551.202613-1-michael.riesch@wolfvision.net>
-X-Mailer: git-send-email 2.30.2
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: ZR0P278CA0144.CHEP278.PROD.OUTLOOK.COM
- (2603:10a6:910:40::23) To HE1PR0802MB2426.eurprd08.prod.outlook.com
- (2603:10a6:3:e1::23)
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Herve Codina <herve.codina@bootlin.com>,
+        =?UTF-8?B?TWlxdcOobA==?= Raynal <miquel.raynal@bootlin.com>,
+        Milan Stevanovic <milan.stevanovic@se.com>,
+        Jimmy Lalande <jimmy.lalande@se.com>,
+        Pascal Eberhard <pascal.eberhard@se.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, netdev@vger.kernel.org
+Subject: Re: [net-next v2 00/12] add support for Renesas RZ/N1 ethernet
+ subsystem devices
+Message-ID: <20220502085103.19b4f47b@fixe.home>
+In-Reply-To: <20220429123235.3098ed12@kernel.org>
+References: <20220429143505.88208-1-clement.leger@bootlin.com>
+        <20220429123235.3098ed12@kernel.org>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.31; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 76a4449e-b62e-4c90-3089-08da2c076c62
-X-MS-TrafficTypeDiagnostic: AS8PR08MB6407:EE_
-X-Microsoft-Antispam-PRVS: <AS8PR08MB6407A8AA10546C6CEE36B60AF2C19@AS8PR08MB6407.eurprd08.prod.outlook.com>
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: eiWqEH4FEk6QCrWuhNOs3CobnOtPto4GXsId+GtXrZeKtiPNJ6qPG5sxsEXAh3KS7diTuy8/MJvFhUk6TPKqn/9ztn2SnlluhUb+OTOLvjh2A5Yo61XQBha/Xj+UX6Pp7BbTHqC0wE5vysfwxOcPfBJTMCIuzeehY6HiSyz0WKNYf/DSZWBe5zyAj8ChRC9lf2D3qnEWFYErVB9qUXnztFgZioc//LYvWMgMqxxtP1WDvVc7BbDx3FwL+WV1Uni0eTdnrpxRmFHIGcmnerYVz3ddIsyK8Ut31xOP7BSMvNqJ5l8Bn+6VPlQBJgRXHpT8PMAuvXh6GOTA9lV2xL0z9+iC5M3VNvKwGpwU3CLB5pkq9pmjGES2z+jJW6gxveHDvfDFshwxrDrbf+zJKmHQYRE1hTZIgoFxmQdFv5v22Gj2BFQiGO4W5VP+NUfAC4XzagSLQK1yjboGIDrUNXKfub/FG1Es1ytZKTyPS2VVXy51GLlqJ8kxeEi1xkBpD53MOw6tJyuNORY/FR9HLjbbQAALLlC2Hl7Df1lyz9sDQTTjTnBTIQm+71LH9UsZ3wHSJHcMaz5f6s01M2uWFOQoVxT5Pc8iCcxZtwrzQi4Ql8Xm5L/cGt9yWSWkeycisMVuFOtw2ReKAohk61tCFpZhqw==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:HE1PR0802MB2426.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(346002)(376002)(136003)(39830400003)(366004)(396003)(2616005)(54906003)(508600001)(6486002)(6506007)(6512007)(52116002)(186003)(1076003)(86362001)(36756003)(66476007)(66556008)(66946007)(4326008)(8676002)(2906002)(44832011)(8936002)(5660300002)(4744005)(7416002)(38100700002)(316002)(6666004);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 2
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?tms4058hipIzToqYeWaumFXGfUS6RMoh03N3jUT4MMlLkjPCQW3l3DtzSbvD?=
- =?us-ascii?Q?zCvpaXvy7GNyA3yK5DlA2P8a1OqnzMuiQFQncf6oeW3PwbXDs5+4BXQrOvzf?=
- =?us-ascii?Q?cE7arofZp7gsInvRnW0LYRUhhvi8YqXbf5sTa0FkU8BpBO4tiI91EekU8dm8?=
- =?us-ascii?Q?VhitvT/eLY0peGJNx7ppwluRux4FeTM8a0rb/ce7MPBysV0vQC4Ow5u0/csi?=
- =?us-ascii?Q?6gzkQ1PH3ZXlwW3w8TaTc75eX4v6zld0UoKrvSMBe7YuCAIl7lZMSfNOWVXb?=
- =?us-ascii?Q?JcWWPE6QaLMUwpBirL/krOlUm6D16vbUtPCPZ0+vyHDGNQx9TOdXLmfJsDn5?=
- =?us-ascii?Q?EdljshjAVbeC8ISFWspvQl14kwoUa5/McsmH4KhVfp4ndqq415b808mEQHFU?=
- =?us-ascii?Q?8qDom2G7VXUyGHyor9TcwkqwzG96apD8t0/nVbEVzmVSzRk6sQZ1MGbj1Geo?=
- =?us-ascii?Q?+T83oPrsBtZ+uBnQTu+q2rj6+BLd7iNug4NJodtDgS13DSLheVN4M9V1cZAF?=
- =?us-ascii?Q?wdhlhvjQalIejJStOX7deI6RcJcW5M6qinm0ToAzGrGrfNGcKgClUE0ydMDV?=
- =?us-ascii?Q?fOqmkwS4cL0QlgD6QX31z+UZQezvgVPEPXDE+UDdkswFcUAywrCMJZURUV39?=
- =?us-ascii?Q?iUtvNnyJPfij3ifJWGhz7YhTfMIz5aEm8xKHY9StJaZ+0O96kNlJ3VDUcmuu?=
- =?us-ascii?Q?YPouWun/nYe1o4dZQvEhy3uFRBXG7GJ2nC/tgFp764lhtptrQTnOoeGdK597?=
- =?us-ascii?Q?p3dWvdb+LIXp9f+qH0arvHcFlB9afynwgs12hDMIX1PxNAuho9kbMlnkZUeT?=
- =?us-ascii?Q?l47ZbNJgDWSM+2zrg6PntX4RwSWPPAI+sqikgGNQHc6I6BBphp+kkZB0rjeL?=
- =?us-ascii?Q?FwA+IqML9qBEPlpLCzMWGK/wrv4dVmobJseYv0LvzRYJIKk33iGtg5J96Inr?=
- =?us-ascii?Q?mYiq8g6+vGj/3UBfX0T4ZOkwK/P83HoY7iOXuzuv7YHGnXdn2shCXvoB/6TR?=
- =?us-ascii?Q?PcHHbZyhsT+Y0/He6Wanu89nUqGh0WsTIIBNwUHuBv/dMlMUxJz89vEI/gps?=
- =?us-ascii?Q?qw5DsKetJ0RcFR8ll/EMF/lA1qn0jmbYu2HownJXtxw1qg8nRe60zpgUqlKr?=
- =?us-ascii?Q?IgQC6qUNj+8vW6GEpSacdRlyxqTzY+1QJOD6FVVEF0FWsHQTD09MCcVW2DD9?=
- =?us-ascii?Q?JBjGF69WA/Rq+vxPKjJxrH3YAz+IfuQtMfCc6zhNh7LcWoiagAs94lmEj/MI?=
- =?us-ascii?Q?JCSDhsb1+K9n0OodGVQteWBsbhgGJXDbwU/rrDnISkOg2DNqFAfu1UI9Snb8?=
- =?us-ascii?Q?LMfMRLgvtUfrWDM8jXNGGNwmt5nnCZz9Wi87jFb8BncktTE0KPSUDu5I8rKt?=
- =?us-ascii?Q?r75ZiBPFTAnRA25z5vays1yO6xGlcwkgXWr9/FW29WBXQvi/EpGic+p/ARAh?=
- =?us-ascii?Q?YoVPsDz+QrnZWGVL5pGcTgwSrB+nNKD5iSl80Icwm8eqkcKOjXErPE0DlMAy?=
- =?us-ascii?Q?UryP7O/1GuujSjdpu/wT1WVOWYjF1NjRwuyBF711YU3fwiwJSpPcUEVcUWTr?=
- =?us-ascii?Q?mGIvkkEx2hxKJNajp75dtWqthQLEQzaavXPTDJWK1mal0YofCaLvF8vRUfF1?=
- =?us-ascii?Q?0JLFdRMoBxLHmgC7udiVnXVLPAGYCcCk8901fZJv7+W0Quj/jpbTQU1PipK0?=
- =?us-ascii?Q?H2iSp/0q76MdcxTfHBpmISFnh9+OyiGL9WI21WUzZtqcfvO7Clb6Grdx/8uX?=
- =?us-ascii?Q?FpbnGUlKI8Dq0vpYx55r+Z6zpapJd95+Lewq5Wjj2u+bRC1UfsRjREhe2JSF?=
-X-MS-Exchange-AntiSpam-MessageData-1: jtMTmOuaVkUIb4Mh39hjS9d62tOxPKomQrmhbupK+tcOTHCFgZLLHpQG
-X-OriginatorOrg: wolfvision.net
-X-MS-Exchange-CrossTenant-Network-Message-Id: 76a4449e-b62e-4c90-3089-08da2c076c62
-X-MS-Exchange-CrossTenant-AuthSource: HE1PR0802MB2426.eurprd08.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 May 2022 06:46:02.5176
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: e94ec9da-9183-471e-83b3-51baa8eb804f
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: NoyY/btp6ems/yy60LJvKX1ZKSJACQjE19lAW1LFcwxpb4A7Cwrfuv8SKsXa+QAsTiSCM4CXGtIW31K49vSXDR9dSx6ggXWazSXusEuTc4w=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR08MB6407
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This USB 3.0 controller of the Rockchip RK3568 is capable of OTG/DRD
-operation. Enable it in the device tree.
+Le Fri, 29 Apr 2022 12:32:35 -0700,
+Jakub Kicinski <kuba@kernel.org> a =C3=A9crit :
 
-Signed-off-by: Michael Riesch <michael.riesch@wolfvision.net>
----
-v2:
- - As pointed out by Nicolas, this is RK3568 specific. Moved change to
-   rk3568.dtsi.
+> On Fri, 29 Apr 2022 16:34:53 +0200 Cl=C3=A9ment L=C3=A9ger wrote:
+> > The Renesas RZ/N1 SoCs features an ethernet subsystem which contains
+> > (most notably) a switch, two GMACs, and a MII converter [1]. This
+> > series adds support for the switch and the MII converter.
+> >=20
+> > The MII converter present on this SoC has been represented as a PCS
+> > which sit between the MACs and the PHY. This PCS driver is probed from
+> > the device-tree since it requires to be configured. Indeed the MII
+> > converter also contains the registers that are handling the muxing of
+> > ports (Switch, MAC, HSR, RTOS, etc) internally to the SoC.
+> >=20
+> > The switch driver is based on DSA and exposes 4 ports + 1 CPU
+> > management port. It include basic bridging support as well as FDB and
+> > statistics support. =20
+>=20
+> Build's not happy (W=3D1 C=3D1):
+>=20
+> drivers/net/dsa/rzn1_a5psw.c:574:29: warning: symbol 'a5psw_switch_ops' w=
+as not declared. Should it be static?
+> In file included from ../drivers/net/dsa/rzn1_a5psw.c:17:
+> drivers/net/dsa/rzn1_a5psw.h:221:1: note: offset of packed bit-field =E2=
+=80=98port_mask=E2=80=99 has changed in GCC 4.4
+>   221 | } __packed;
+>       | ^
+>=20
 
- arch/arm64/boot/dts/rockchip/rk3568.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+Hi Jakub, I only had this one (due to the lack of W=3D1 C=3D1 I guess) which
+I thought (wrongly) that it was due to my GCC version:
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3568.dtsi b/arch/arm64/boot/dts/rockchip/rk3568.dtsi
-index 5eafddf62edc..bbfe8f3d68b7 100644
---- a/arch/arm64/boot/dts/rockchip/rk3568.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3568.dtsi
-@@ -134,6 +134,7 @@ power-domain@RK3568_PD_PIPE {
- };
+  CC      net/dsa/switch.o
+  CC      net/dsa/tag_8021q.o
+In file included from ../drivers/net/dsa/rzn1_a5psw.c:17:
+../drivers/net/dsa/rzn1_a5psw.h:221:1: note: offset of packed bit-field
+  =E2=80=98port_mask=E2=80=99 has changed in GCC 4.4 221 | } __packed;
+      | ^
+  CC      kernel/module.o
+  CC      drivers/net/ethernet/stmicro/stmmac/dwmac1000_core.o
+  CC      drivers/net/ethernet/stmicro/stmmac/dwmac100_core.o
 
- &usb_host0_xhci {
-+	dr_mode = "otg";
- 	phys = <&usb2phy0_otg>, <&combphy0 PHY_TYPE_USB3>;
- 	phy-names = "usb2-phy", "usb3-phy";
- };
---
-2.30.2
+I'll fix the other errors which are more trivial, however, I did not
+found a way to fix the packed bit-field warning.
+
+Thanks
+
+> drivers/net/dsa/rzn1_a5psw.h:200: warning: Function parameter or member '=
+hclk' not described in 'a5psw'
+> drivers/net/dsa/rzn1_a5psw.h:200: warning: Function parameter or member '=
+clk' not described in 'a5psw'
+>=20
+> Not sure how many of these are added by you but I think 2 at least.
+
+
+
+--=20
+Cl=C3=A9ment L=C3=A9ger,
+Embedded Linux and Kernel engineer at Bootlin
+https://bootlin.com
