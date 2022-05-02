@@ -2,75 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3BC93516A45
-	for <lists+devicetree@lfdr.de>; Mon,  2 May 2022 07:22:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 14507516A4A
+	for <lists+devicetree@lfdr.de>; Mon,  2 May 2022 07:31:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1383316AbiEBFZa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 May 2022 01:25:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59884 "EHLO
+        id S1383331AbiEBFey (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 May 2022 01:34:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50130 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236108AbiEBFZ3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 May 2022 01:25:29 -0400
-Received: from mail-yb1-xb2e.google.com (mail-yb1-xb2e.google.com [IPv6:2607:f8b0:4864:20::b2e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 980951A064;
-        Sun,  1 May 2022 22:22:01 -0700 (PDT)
-Received: by mail-yb1-xb2e.google.com with SMTP id g28so24277168ybj.10;
-        Sun, 01 May 2022 22:22:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=h0S6lgpEgIBiX1LNh6vnZzSlK5+OJoieOd/tDumqVYQ=;
-        b=Pg5OWiL1C1NG4t1Akrt8OzF9rK7qIbFjX0OWkvNJBd50V34GQBnKgYLE3Pc6mR8OoW
-         ptb1IembQ7dPV3IUtXcLlpQ3AEm2sFlijZSZUCLCX4Ub8DcG5uimMTJnU48albRY3RVt
-         iYrpFWb1dkpxKTyykQpTQ7BSQBTOccgoXnGoeXtJOy1wZMmdahXB8I4vhTE78VWPgl+i
-         KiR/i0hXhpPmjqHSeHV4k4gvB0as5jHP0FDZoX3uf9gawo9flXGCP+Y8R3t5EQSCx5O8
-         +F3wh4uvPgzCJi0d4dVMjPV+Cy0SGBB8azcS9OPaGym+uXhfSbib33L+/yBLz6IEY4tj
-         cq8Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=h0S6lgpEgIBiX1LNh6vnZzSlK5+OJoieOd/tDumqVYQ=;
-        b=rmwm7WCngZaj+H8zfwAHvCIZ4P37LffXGVRP3wnRXfxI609sSrnW58IZUn7WNlAK0W
-         W1Uz9YEuo6kl2EHsLFtyaPyr0TPOq1Yg73DA5IL6rnOe+cU0jAs/OmCrb1T73BmV/cOi
-         oxTgRVUBsggZQNzOCXeUDnBadh6cxqOQXnhCPKRsMJZMEHy5qnm91CR+VKu63Ojan9gA
-         C88WdHIVRYnWRRwa3LGry2e6xYtL988p+6BiQNTvJN1JUc+cdQuNEZEClGqMbur1XmUK
-         matleCX1tJq6l0O7Hi3SCzo6pEC0LDa/sNg8i31xoTHigFGZZUP2Gtr8sMPkTUCGrtVp
-         FVfA==
-X-Gm-Message-State: AOAM531BEAfSlPgU4yCHMFYSFVr6wVTHG3QEEqq3TWUGih3sK8YCR3ZD
-        p2LEcjTQ8jhnuMppklZZJGHhXxPjHcuJ/4VQkDMfaKXQWfm5gQ==
-X-Google-Smtp-Source: ABdhPJwKW8E886UaDpY97eiOjRMw/xgZmZQT2IsChIW21uVEBehu9zoVBPT3x8xG8+RVIv1Nx6RGPMyPmkO8CxgNI7c=
-X-Received: by 2002:a25:8812:0:b0:633:7bd8:16ff with SMTP id
- c18-20020a258812000000b006337bd816ffmr9220534ybl.645.1651468920822; Sun, 01
- May 2022 22:22:00 -0700 (PDT)
+        with ESMTP id S236108AbiEBFew (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 May 2022 01:34:52 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E87F1BEBC;
+        Sun,  1 May 2022 22:31:23 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2425UpP3091238;
+        Mon, 2 May 2022 00:30:51 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1651469451;
+        bh=BUXxiuFFD86bcXlTaA9jXgKOVSHgEET95R0XpQs0bMQ=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=l3Jlr9Z5xiaWfnZKQS6pfGDWppRzOuu750uIjqgtewkBtXalcoGjkX1/tIK3Q4Mki
+         +t4JRYNurXz8MEcaPRvQ6d+NMBLawRFzG/8KucDFd5pec7ndEVlfhfk+tLkR9LT6FR
+         8ZawmYDt5bKQPO73r4XMmLzF/Dp2vd1Pa2eG9Ems=
+Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2425Upaj064608
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 2 May 2022 00:30:51 -0500
+Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Mon, 2
+ May 2022 00:30:50 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Mon, 2 May 2022 00:30:49 -0500
+Received: from [172.24.145.198] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2425UjCk005241;
+        Mon, 2 May 2022 00:30:45 -0500
+Message-ID: <f714ee55-ef47-317d-81b9-57020dda064b@ti.com>
+Date:   Mon, 2 May 2022 11:00:44 +0530
 MIME-Version: 1.0
-References: <20220421221159.31729-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20220421221159.31729-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <CAMuHMdVqk1ryzzK9-BZCMDPeyjfF1-8hMpzUoEPCcg8pJ2-ang@mail.gmail.com>
- <CA+V-a8tosEeNqzPZsdX=VCKTrkQfAhpMRWQDwva+fpQGc8x+jA@mail.gmail.com>
- <CAMuHMdWTQkxZjCtWhcRnOo6w-Vz6SKrjuaK-YOMr=qfwLnD7Rg@mail.gmail.com> <CA+V-a8sJrODEXosafcsk64gwPRRu6Bv+bO5JDfmbXZpqw-W2Og@mail.gmail.com>
-In-Reply-To: <CA+V-a8sJrODEXosafcsk64gwPRRu6Bv+bO5JDfmbXZpqw-W2Og@mail.gmail.com>
-From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date:   Mon, 2 May 2022 06:21:34 +0100
-Message-ID: <CA+V-a8suzvW8yLvuj=Knf895KaGmQEghP2R8u_ki3MSFA5pTwQ@mail.gmail.com>
-Subject: Re: [PATCH 2/2] irqchip: Add RZ/G2L IA55 Interrupt Controller driver
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Marc Zyngier <maz@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH 1/2] dt-bindings: usb: tps6598x: Make the interrupts
+ property optional
+Content-Language: en-US
+To:     Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Roger Quadros <rogerq@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     Vignesh Raghavendra <vigneshr@ti.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Biju Das <biju.das.jz@bp.renesas.com>
+        Sven Peter <sven@svenpeter.dev>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Hector Martin <marcan@marcan.st>,
+        Martin Kepplinger <martink@posteo.de>,
+        "Bryan O'Donoghue" <bryan.odonoghue@linaro.org>,
+        <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20220414083120.22535-1-a-govindraju@ti.com>
+ <20220414083120.22535-2-a-govindraju@ti.com>
+ <be8ab691-98f1-5fb9-fec8-7213a2288d07@kernel.org>
+ <56c72151-af5f-366b-b17f-24b9fb6264da@ti.com>
+ <ae54dbb1-2b02-cba2-5de2-cf3d9a4e35f5@kernel.org>
+ <c1de4293-a058-5e25-9be2-b61ac39f43a3@ti.com>
+ <89f7d69a-4fc8-33cc-d9ca-5c50dc5381ab@kernel.org>
+ <YmeXw8nerjpuKPC9@kuha.fi.intel.com>
+From:   Aswath Govindraju <a-govindraju@ti.com>
+In-Reply-To: <YmeXw8nerjpuKPC9@kuha.fi.intel.com>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,114 +84,135 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Geert,
+Hi Rob,
 
-On Fri, Apr 29, 2022 at 10:59 AM Lad, Prabhakar
-<prabhakar.csengg@gmail.com> wrote:
->
-> Hi Geert,
->
-> On Fri, Apr 29, 2022 at 10:53 AM Geert Uytterhoeven
-> <geert@linux-m68k.org> wrote:
-> >
-> > Hi Prabhakar,
-> >
-> > On Fri, Apr 29, 2022 at 11:43 AM Lad, Prabhakar
-> > <prabhakar.csengg@gmail.com> wrote:
-> > > On Thu, Apr 28, 2022 at 10:42 AM Geert Uytterhoeven
-> > > <geert@linux-m68k.org> wrote:
-> > > > On Fri, Apr 22, 2022 at 12:12 AM Lad Prabhakar
-> > > > <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
-> > > > > Add a driver for the Renesas RZ/G2L Interrupt Controller.
-> > > > >
-> > > > > This supports external pins being used as interrupts. It supports
-> > > > > one line for NMI, 8 external pins and 32 GPIO pins (out of 123)
-> > > > > to be used as IRQ lines.
-> > > > >
-> > > > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> >
-> > > > > --- /dev/null
-> > > > > +++ b/drivers/irqchip/irq-renesas-rzg2l.c
-> > > > > @@ -0,0 +1,447 @@
-> > > > > +// SPDX-License-Identifier: GPL-2.0
-> > > > > +/*
-> > > > > + * Renesas RZ/G2L IRQC Driver
-> > > > > + *
-> > > > > + * Copyright (C) 2022 Renesas Electronics Corporation.
-> > > > > + *
-> > > > > + * Author: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > > > > + */
-> > > > > +
-> > > > > +#include <linux/clk.h>
-> > > > > +#include <linux/err.h>
-> > > > > +#include <linux/io.h>
-> > > > > +#include <linux/irqchip.h>
-> > > > > +#include <linux/irqdomain.h>
-> > > > > +#include <linux/of_address.h>
-> > > > > +#include <linux/reset.h>
-> > > > > +#include <linux/spinlock.h>
-> > > > > +
-> > > > > +#define IRQC_IRQ_START                 1
-> > > > > +#define IRQC_IRQ_COUNT                 8
-> > > > > +#define IRQC_TINT_START                        9
-> > > >
-> > > > = IRQC_IRQ_START + IRQC_IRQ_COUNT
-> > > >
-> > > OK
-> > >
-> > > > > +#define IRQC_TINT_COUNT                        32
-> > > > > +#define IRQC_NUM_IRQ                   41
-> > > >
-> > > > = IRQC_TINT_START + IRQC_TINT_COUNT
-> > > >
-> > > OK.
-> > >
-> > > > Should these be in a DT binding header file?
-> > > >
-> > > > Combining all types into a single linear number space makes it hard
-> > > > to extend the range, when reusing for an SoC that supports more
-> > > > interrupt sources.
-> > > >
-> > > Or  DT data maybe?
-> >
-> > Let's leave it for now. As I missed that DT consumers will refer to
-> > external interrupt numbers only (is that actually enforced?), there
-> > won't be an issue.
-> >
-> > The driver can be changed later to derive IRQC_IRQ_COUNT from the
-> > compatible value, when needed.
-> >
-> Agreed.
->
-> > > > > +       u32 reg;
-> > > > > +
-> > > > > +       reg = readl_relaxed(priv->base + ISCR);
-> > > > > +       if (reg & bit)
-> > > > > +               writel_relaxed(GENMASK(IRQC_IRQ_COUNT - 1, 0) & ~bit,
-> > > >
-> > > > As writes to the unused upper bits are ignored, you can drop the
-> > > > masking with GENMASK(IRQC_IRQ_COUNT - 1, 0), and be prepared for more
-> > > > interrupt sources.
-> > > >
-> > > Agreed.
-> >
-> > > > > +       u32 bit = BIT(hw_irq - IRQC_TINT_START);
-> > > > > +       u32 reg;
-> > > > > +
-> > > > > +       reg = readl_relaxed(priv->base + TSCR);
-> > > > > +       if (reg & bit)
-> > > > > +               writel_relaxed(GENMASK(IRQC_TINT_COUNT - 1, 0) & ~bit,
-> > > >
-> > > > Drop the masking with all-ones?
-> > > >
-> > > You mean instead of a mask just use the reg instead?
-> >
-> > No, I meant to drop the masking with GENMASK(IRQC_TINT_COUNT - 1, 0),
-> > cfr. for external interrupts.
-> >
-> Ahh right, I missed that.
->
-I would need reg to clear off the bit if I drop the mask.
+On 26/04/22 12:27, Heikki Krogerus wrote:
+> On Tue, Apr 26, 2022 at 09:42:31AM +0300, Roger Quadros wrote:
+>> Hi,
+>>
+>> On 22/04/2022 08:07, Aswath Govindraju wrote:
+>>> Hi Roger,
+>>>
+>>> On 21/04/22 00:46, Roger Quadros wrote:
+>>>> Hi,
+>>>>
+>>>> On 18/04/2022 08:19, Aswath Govindraju wrote:
+>>>>> Hi Roger,
+>>>>>
+>>>>> On 14/04/22 23:40, Roger Quadros wrote:
+>>>>>> Hi,
+>>>>>>
+>>>>>> On 14/04/2022 11:31, Aswath Govindraju wrote:
+>>>>>>> Support for polling has been added in the driver, which will be used by
+>>>>>>> default if interrupts property is not populated. Therefore, remove
+>>>>>>> interrupts and interrupt-names from the required properties and add a note
+>>>>>>> under interrupts property describing the above support in driver.
+>>>>>>>
+>>>>>>> Suggested-by: Roger Quadros <rogerq@kernel.org>
+>>>>>>
+>>>>>> I did not suggest to make interrupts optional by default.
+>>>>>>
+>>>>>> What I suggested was that if a DT property exists to explicitly
+>>>>>> indicate polling mode then interrupts are not required.
+>>>>>>
+>>>>>
+>>>>> ohh okay, got it. However, may I know if adding a dt property to
+>>>>> indicate polling for aiding the driver, is the correct approach to model it?
+>>>>>
+>>>>> In terms of modelling hardware, as interrupts are not connected we are
+>>>>> not populating the interrupts property. Shouldn't that be all. If we are
+>>>>> adding a property explicitly to indicate polling that can be used by
+>>>>> driver, wouldn't that be a software aid being added in the device tree?
+>>>>
+>>>> The hardware (tps6598x chip) has an interrupt pin and is expected to be used
+>>>> in normal case.
+>>>>
+>>>> Some buggy boards might have forgot to connect it. We are adding polling mode only for these buggy boards. ;)
+>>>> So polling mode is an exception.
+>>>>
+>>>
+>>> Yes as you mentioned the interrupt line is expected to connected but
+>>> there could be cases where there are not enough pins on the SoC and
+>>> polling is used intentionally. In these cases this would be a feature
+>>> rather than a bug.
+>>
+>> I do not agree that this is a feature but a board defect. You can always use
+>> a GPIO expander to add more GPIOs than the SoC can provide.
+>>
+>> Type-C events are asynchronous and polling is a waste of CPU time.
+>> What will you do if system suspends and you need to wake up on Type-C
+>> status change?
+>> So polling mode is just an exception for the defective boards or could
+>> be used for debugging.
+>>
+>>>
+>>> Also, I feel like not adding interrupts property in the dt nodes will
+>>> indicate polling. My question is why are we adding an extra property
+>>> (which is being used only as an aid in the driver) when this feature can
+>>> be modeled by making interrupts property optional.
+>>
+>> Because interrupt property was not originally optional for this driver.
+>>
+>> I would like to hear what Heikki has to say about this.
+>>
+>> Any thoughts Heikki?
+> 
+> I think the question is generic. How should DT describe the
+> connection/lack of connection? Rob should comment on this.
+> 
 
-Cheers,
-Prabhakar
+A gentle ping regarding this.
+
+Thanks,
+Aswath
+
+> thanks,
+> 
+> 
+>> cheers,
+>> -roger
+>>
+>>>
+>>> Thanks,
+>>> Aswath
+>>>
+>>>> cheers,
+>>>> -roger
+>>>>
+>>>>>
+>>>>> Thanks,
+>>>>> Aswath
+>>>>>
+>>>>>>> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
+>>>>>>> ---
+>>>>>>>  Documentation/devicetree/bindings/usb/ti,tps6598x.yaml | 4 ++--
+>>>>>>>  1 file changed, 2 insertions(+), 2 deletions(-)
+>>>>>>>
+>>>>>>> diff --git a/Documentation/devicetree/bindings/usb/ti,tps6598x.yaml b/Documentation/devicetree/bindings/usb/ti,tps6598x.yaml
+>>>>>>> index a4c53b1f1af3..1c4b8c6233e5 100644
+>>>>>>> --- a/Documentation/devicetree/bindings/usb/ti,tps6598x.yaml
+>>>>>>> +++ b/Documentation/devicetree/bindings/usb/ti,tps6598x.yaml
+>>>>>>> @@ -25,6 +25,8 @@ properties:
+>>>>>>>  
+>>>>>>>    interrupts:
+>>>>>>>      maxItems: 1
+>>>>>>> +    description:
+>>>>>>> +      If interrupts are not populated then by default polling will be used.
+>>>>>>>  
+>>>>>>>    interrupt-names:
+>>>>>>>      items:
+>>>>>>> @@ -33,8 +35,6 @@ properties:
+>>>>>>>  required:
+>>>>>>>    - compatible
+>>>>>>>    - reg
+>>>>>>> -  - interrupts
+>>>>>>> -  - interrupt-names
+>>>>>>>  
+>>>>>>>  additionalProperties: true
+>>>>>>>  
+>>>>>>
+>>>>>> cheers,
+>>>>>> -roger
+>>>
+>>>
+>
