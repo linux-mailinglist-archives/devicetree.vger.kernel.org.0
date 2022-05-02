@@ -2,193 +2,187 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EC298516BAA
-	for <lists+devicetree@lfdr.de>; Mon,  2 May 2022 10:06:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A10A8516BB9
+	for <lists+devicetree@lfdr.de>; Mon,  2 May 2022 10:13:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1359180AbiEBIJk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 May 2022 04:09:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53148 "EHLO
+        id S1356754AbiEBIRX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 May 2022 04:17:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47492 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1383656AbiEBIJG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 May 2022 04:09:06 -0400
-Received: from mail-yw1-x112d.google.com (mail-yw1-x112d.google.com [IPv6:2607:f8b0:4864:20::112d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3521C37BE0
-        for <devicetree@vger.kernel.org>; Mon,  2 May 2022 01:05:36 -0700 (PDT)
-Received: by mail-yw1-x112d.google.com with SMTP id 00721157ae682-2f7b815ac06so139794887b3.3
-        for <devicetree@vger.kernel.org>; Mon, 02 May 2022 01:05:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=pkED2ob7beSbV7dxZktMXjEINCdftZ7x+GOUm/NUPeI=;
-        b=TAvAENhMvrGwzmPBadnLxV8W7lPrEBQhCdgtGGiuvwg9C7UqfCJ5weozGQFVEcVeDy
-         9zHHts4vJYenln1281EwtIB/mmbMbqUZ/Bzx1MU80ZGS0Jkk/e8q4r3uuOXPw0EcpLLD
-         g9+d2t2UrJ7ncBVRs0Z4NGNTmhcOuZpIOKGOLFFpAu71wYnR61d3a5i69LHavy9BbE1L
-         icR4rHqLySa96fCcjA6fxV8aSaY8Wyh142DZ+GxyDmXjkIK51kpoqEUwZc89AZgRnzqL
-         CzqSVQc5StRFBzYrE1HGn9NnhCuPdgV+vDID7D1fkEZEkRzXK+v1faqzEheFGPAxm1ec
-         yoow==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=pkED2ob7beSbV7dxZktMXjEINCdftZ7x+GOUm/NUPeI=;
-        b=QlmS+pnsE9FSZ+/5bJZb3OGT6IJWpSdIFFnQDFNKxOKGvQK4qLWAi3we6pjU6EM0AB
-         PpLS12tfSGLUPlvFDQ5M2HWZSpfb4J/O+rVvxzxgZjfgxyoCCE4Hr9E6u9iS7tkZUgNS
-         er0czOlx+Hoz7RV0K/Sy363ZQGCwolJkBZwF3oaMLX5VmspDPHzZDNvDAgZioOh1DON0
-         7FK9mNnaCQCBu/SZt9WBWKOq89PB9JOwX+VSrQ4kuFbgl6veqNd82kMIpL/ux3n3mu2b
-         sqgIsgY+StAgEVFiWEPc73fukDd08SVcWbiNdTfqto5YE+p9VnDZhu3gRZgWHWcu8n2Q
-         eaqA==
-X-Gm-Message-State: AOAM5334dtARpWYL8ixG2WOcL1YWj62i1+T0/MdH2Z9FGhxMxjaL1jvz
-        jqHLN62nhldFKUTEdwIa5mnjCcLrnTuumWIu81sXfIL7AGg=
-X-Google-Smtp-Source: ABdhPJxjd/UXBkLDQ8v0mFv7qO6LcXwqsQ00DKef/H8r0Zu4XJme0fm1NhlnpF7VjbqgBLVTYHmD7fYUsLF7zRWf/mk=
-X-Received: by 2002:a81:4c11:0:b0:2d1:1925:cd70 with SMTP id
- z17-20020a814c11000000b002d11925cd70mr10043140ywa.101.1651478735419; Mon, 02
- May 2022 01:05:35 -0700 (PDT)
+        with ESMTP id S1349062AbiEBIRX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 May 2022 04:17:23 -0400
+Received: from gandalf.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C6D46402;
+        Mon,  2 May 2022 01:13:54 -0700 (PDT)
+Received: from gandalf.ozlabs.org (mail.ozlabs.org [IPv6:2404:9400:2221:ea00::3])
+        by gandalf.ozlabs.org (Postfix) with ESMTP id 4KsG8070Qdz4xXk;
+        Mon,  2 May 2022 18:13:52 +1000 (AEST)
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        by mail.ozlabs.org (Postfix) with ESMTPSA id 4KsG7s6K8Kz4x7Y;
+        Mon,  2 May 2022 18:13:45 +1000 (AEST)
+From:   =?UTF-8?q?C=C3=A9dric=20Le=20Goater?= <clg@kaod.org>
+To:     linux-spi@vger.kernel.org, linux-mtd@lists.infradead.org
+Cc:     Mark Brown <broonie@kernel.org>,
+        Tudor Ambarus <tudor.ambarus@microchip.com>,
+        Pratyush Yadav <p.yadav@ti.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        linux-aspeed@lists.ozlabs.org, Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        =?UTF-8?q?C=C3=A9dric=20Le=20Goater?= <clg@kaod.org>
+Subject: [PATCH v5 00/11] spi: spi-mem: Convert Aspeed SMC driver to spi-mem
+Date:   Mon,  2 May 2022 10:13:30 +0200
+Message-Id: <20220502081341.203369-1-clg@kaod.org>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-References: <1650952931-31988-1-git-send-email-quic_vpolimer@quicinc.com>
- <CAE-0n52cSR_xCxF+_UeK8CaHqsu=4HOtfWQ3BMmx2Tx3kmk-ZA@mail.gmail.com>
- <e20d94d7-a865-21f7-0514-706992294614@linaro.org> <200eddae-02b8-5479-3e81-1f3885200ac0@quicinc.com>
-In-Reply-To: <200eddae-02b8-5479-3e81-1f3885200ac0@quicinc.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Mon, 2 May 2022 11:05:24 +0300
-Message-ID: <CAA8EJppVawrs+i0JBfmyO=68yKqA=2+ixm-KN+70Ah9OaUvG9g@mail.gmail.com>
-Subject: Re: [Freedreno] [PATCH] drm/msm/disp/dpu1: avoid clearing hw
- interrupts if hw_intr is null during drm uninit
-To:     Abhinav Kumar <quic_abhinavk@quicinc.com>
-Cc:     Stephen Boyd <swboyd@chromium.org>,
-        Vinod Polimera <quic_vpolimer@quicinc.com>,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
-        quic_kalyant@quicinc.com, robdclark@gmail.com,
-        linux-kernel@vger.kernel.org, dianders@chromium.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,
+        HEADER_FROM_DIFFERENT_DOMAINS,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 2 May 2022 at 04:38, Abhinav Kumar <quic_abhinavk@quicinc.com> wrote:
->
-> Looks like our new CI has given all the answers we need :) which is a
-> great win for the CI in my opinion.
->
-> Take a look at this report :
-> https://gitlab.freedesktop.org/drm/msm/-/jobs/22015361
->
-> This issue seems to be because this change
-> https://github.com/torvalds/linux/commit/169466d4e59ca204683998b7f45673ebf0eb2de6
-> is missing in our tree.
->
-> Without this change, what happens is that we are not hitting the return
-> 0 because we check for ENODEV.
->
->
->    /*
->       * External bridges are mandatory for eDP interfaces: one has to
->       * provide at least an eDP panel (which gets wrapped into
-> panel-bridge).
->       *
->       * For DisplayPort interfaces external bridges are optional, so
->       * silently ignore an error if one is not present (-ENODEV).
->       */
->      rc = dp_parser_find_next_bridge(dp_priv->parser);
->      if (!dp->is_edp && rc == -ENODEV)
->          return 0;
->
-> So, I think we should do both:
->
-> 1) Since we are running CI on the tree, backport this change so that
-> this error path doesnt hit?
->
-> 2) Add this protection as well because this shows that we can indeed hit
-> this path in EDEFER cases causing this crash.
+Hi,
 
-I have been waiting for v2 for the last week or so. It should include
-a fixed Fixes tag and an updated description (which should note that
-this happens in the error path, etc) as requested by Stephen.
+This series adds a new SPI driver using the spi-mem interface for the
+Aspeed static memory controllers of the AST2600, AST2500 and AST2400
+SoCs.
 
->
-> Thanks
->
-> Abhinav
->
-> On 4/27/2022 3:53 AM, Dmitry Baryshkov wrote:
-> > On 27/04/2022 00:50, Stephen Boyd wrote:
-> >> Quoting Vinod Polimera (2022-04-25 23:02:11)
-> >>> Avoid clearing irqs and derefernce hw_intr when hw_intr is null.
-> >>
-> >> Presumably this is only the case when the display driver doesn't fully
-> >> probe and something probe defers? Can you clarify how this situation
-> >> happens?
-> >>
-> >>>
-> >>> BUG: Unable to handle kernel NULL pointer dereference at virtual
-> >>> address 0000000000000000
-> >>>
-> >>> Call trace:
-> >>>   dpu_core_irq_uninstall+0x50/0xb0
-> >>>   dpu_irq_uninstall+0x18/0x24
-> >>>   msm_drm_uninit+0xd8/0x16c
-> >>>   msm_drm_bind+0x580/0x5fc
-> >>>   try_to_bring_up_master+0x168/0x1c0
-> >>>   __component_add+0xb4/0x178
-> >>>   component_add+0x1c/0x28
-> >>>   dp_display_probe+0x38c/0x400
-> >>>   platform_probe+0xb0/0xd0
-> >>>   really_probe+0xcc/0x2c8
-> >>>   __driver_probe_device+0xbc/0xe8
-> >>>   driver_probe_device+0x48/0xf0
-> >>>   __device_attach_driver+0xa0/0xc8
-> >>>   bus_for_each_drv+0x8c/0xd8
-> >>>   __device_attach+0xc4/0x150
-> >>>   device_initial_probe+0x1c/0x28
-> >>>
-> >>> Fixes: a73033619ea ("drm/msm/dpu: squash dpu_core_irq into
-> >>> dpu_hw_interrupts")
-> >>
-> >> The fixes tag looks odd. In dpu_core_irq_uninstall() at that commit it
-> >> is dealing with 'irq_obj' which isn't a pointer. After commit
-> >> f25f656608e3 ("drm/msm/dpu: merge struct dpu_irq into struct
-> >> dpu_hw_intr") dpu_core_irq_uninstall() starts using 'hw_intr' which is
-> >> allocated on the heap. If we backported this patch to a place that had
-> >> a73033619ea without f25f656608e3 it wouldn't make any sense.
-> >
-> > I'd agree here. The following tag would be correct:
-> >
-> > Fixes: f25f656608e3 ("drm/msm/dpu: merge struct dpu_irq into struct
-> > dpu_hw_intr")
-> >
-> >
-> >>
-> >>> Signed-off-by: Vinod Polimera <quic_vpolimer@quicinc.com>
-> >>> ---
-> >>>   drivers/gpu/drm/msm/disp/dpu1/dpu_hw_interrupts.c | 3 +++
-> >>>   1 file changed, 3 insertions(+)
-> >>>
-> >>> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_interrupts.c
-> >>> b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_interrupts.c
-> >>> index c515b7c..ab28577 100644
-> >>> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_interrupts.c
-> >>> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_interrupts.c
-> >>> @@ -599,6 +599,9 @@ void dpu_core_irq_uninstall(struct dpu_kms *dpu_kms)
-> >>>   {
-> >>>          int i;
-> >>>
-> >>> +       if (!dpu_kms->hw_intr)
-> >>> +               return;
-> >>> +
-> >>>          pm_runtime_get_sync(&dpu_kms->pdev->dev);
-> >>>          for (i = 0; i < dpu_kms->hw_intr->total_irqs; i++)
-> >
-> >
+ * AST2600 Firmware SPI Memory Controller (FMC)
+ * AST2600 SPI Flash Controller (SPI1 and SPI2)
+ * AST2500 Firmware SPI Memory Controller (FMC)
+ * AST2500 SPI Flash Controller (SPI1 and SPI2)
+ * AST2400 New Static Memory Controller (also referred as FMC)
+ * AST2400 SPI Flash Controller (SPI)
 
+It is based on the current OpenBMC kernel driver [1], using directly
+the MTD SPI-NOR interface and on a patchset [2] previously proposed
+adding support for the AST2600 only. This driver takes a slightly
+different approach to cover all 6 controllers.
 
+It does not make use of the controller register disabling Address and
+Data byte lanes because is not available on the AST2400 SoC. We could
+introduce a specific handler for new features available on recent SoCs
+if needed. As there is not much difference on performance, the driver
+chooses the common denominator: "User mode" which has been heavily
+tested in [1]. "User mode" is also used as a fall back method when
+flash device mapping window is too small.
+
+Problems to address with spi-mem were the configuration of the mapping
+windows and the calibration of the read timings. The driver handles
+them in the direct mapping handler when some knowledge on the size of
+the flash device is know. It is not perfect but not incorrect either.
+The algorithm is one from [1] because it doesn't require the DMA
+registers which are not available on all controllers.
+
+Direct mapping for writes is not supported (yet). I have seen some
+corruption with writes and I preferred to use the safer and proven
+method of the initial driver [1]. We can improve that later.
+
+The driver supports Quad SPI RX transfers on the AST2600 SoC but it
+didn't have the expected results. Therefore it is not activated yet.
+There are some issues on the pinctrl to investigate first. 
+
+Tested on:
+ 
+ * OpenPOWER Palmetto (AST2400)
+ * Facebook Wedge 100 BMC (AST2400) by Tao Ren <rentao.bupt@gmail.com>
+ * Evaluation board (AST2500) 
+ * Inspur FP5280G2 BMC (AST2500) by John Wang <wangzq.jn@gmail.com>
+ * Facebook Backpack CMM BMC (AST2500) by Tao Ren <rentao.bupt@gmail.com>
+ * OpenPOWER Witherspoon (AST2500)
+ * Evaluation board (AST2600 A0 and A3)
+ * Rainier board (AST2600)
+ 
+[1] https://github.com/openbmc/linux/blob/dev-5.15/drivers/mtd/spi-nor/controllers/aspeed-smc.c
+[2] https://patchwork.ozlabs.org/project/linux-aspeed/list/?series=212394
+
+Thanks,
+
+C. 
+
+Changes in v5:
+
+  - Rebased on 5.18-rc5
+  - More AST2600 tests from Jae Hyun Yoo
+  - Cleanups of aspeed,ast2600-fmc.yaml
+  - Modified aspeed_spi_send_cmd_addr() routine to return an error  
+  - Simplified conditions in exec_op() handler when computing
+    the controller setting
+  - Dropped the use of memcpy_fromio for the SFDP address space
+
+Changes in v4:
+
+  - Rebased on 5.18 
+  - Removal of the SPI-NOR base driver (we had enough tests)
+  - Fix for small size flash devices on AST2600 (Potin)
+
+Changes in v3:
+
+ - Fixed compile warning on aspeed_spi_dirmap_read() prototype reported
+   by kernel test robot 
+ - Removed unnecessary entry in ast2600-fmc.yaml
+ - New patch from Tao to set spi-max-frequency on all FMC devices
+
+Changes in v2:
+
+ - Fixed dt_binding_check warnings (Rob)
+ - New entry in MAINTAINERS 
+ - Addressed Lukas comments regarding the SPI controller registration
+   and device removal. Checked with driver bind/unbind   
+ - Introduced setup and cleanup handlers and removed routine looping
+   on the DT children properties (Pratyush)
+ - Clarified in commit log requirements for training.
+ - Removed defconfig changes of patch 1 since they were reverted in
+   the last patch (Joel)
+
+Cédric Le Goater (9):
+  ARM: dts: aspeed: Adjust "reg" property of FMC/SPI controllers
+  dt-bindings: spi: Add Aspeed SMC controllers device tree binding
+  spi: spi-mem: Convert Aspeed SMC driver to spi-mem
+  spi: aspeed: Add support for direct mapping
+  spi: aspeed: Adjust direct mapping to device size
+  spi: aspeed: Workaround AST2500 limitations
+  spi: aspeed: Add support for the AST2400 SPI controller
+  spi: aspeed: Calibrate read timings
+  ARM: dts: aspeed: Enable Dual SPI RX transfers
+
+Potin Lai (1):
+  mtd: spi-nor: aspeed: set the decoding size to at least 2MB for
+    AST2600
+
+Tao Ren (1):
+  ARM: dts: aspeed-g4: Set spi-max-frequency for all flashes
+
+ drivers/mtd/spi-nor/controllers/aspeed-smc.c  |  921 -------------
+ drivers/spi/spi-aspeed-smc.c                  | 1210 +++++++++++++++++
+ .../devicetree/bindings/mtd/aspeed-smc.txt    |   51 -
+ .../bindings/spi/aspeed,ast2600-fmc.yaml      |   82 ++
+ MAINTAINERS                                   |   10 +
+ arch/arm/boot/dts/aspeed-g4.dtsi              |   16 +-
+ arch/arm/boot/dts/aspeed-g5.dtsi              |   16 +-
+ arch/arm/boot/dts/aspeed-g6.dtsi              |   17 +-
+ drivers/mtd/spi-nor/controllers/Kconfig       |   10 -
+ drivers/mtd/spi-nor/controllers/Makefile      |    1 -
+ drivers/spi/Kconfig                           |   11 +
+ drivers/spi/Makefile                          |    1 +
+ 12 files changed, 1347 insertions(+), 999 deletions(-)
+ delete mode 100644 drivers/mtd/spi-nor/controllers/aspeed-smc.c
+ create mode 100644 drivers/spi/spi-aspeed-smc.c
+ delete mode 100644 Documentation/devicetree/bindings/mtd/aspeed-smc.txt
+ create mode 100644 Documentation/devicetree/bindings/spi/aspeed,ast2600-fmc.yaml
 
 -- 
-With best wishes
-Dmitry
+2.35.1
+
