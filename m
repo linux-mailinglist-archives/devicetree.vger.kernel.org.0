@@ -2,65 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4CE665176E7
-	for <lists+devicetree@lfdr.de>; Mon,  2 May 2022 20:53:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4CD05517708
+	for <lists+devicetree@lfdr.de>; Mon,  2 May 2022 20:59:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229974AbiEBS4a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 May 2022 14:56:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33802 "EHLO
+        id S1386737AbiEBTDY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 May 2022 15:03:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37532 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229822AbiEBS4a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 May 2022 14:56:30 -0400
-Received: from mail-yb1-xb2b.google.com (mail-yb1-xb2b.google.com [IPv6:2607:f8b0:4864:20::b2b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6DD856322
-        for <devicetree@vger.kernel.org>; Mon,  2 May 2022 11:53:00 -0700 (PDT)
-Received: by mail-yb1-xb2b.google.com with SMTP id r11so4701633ybg.6
-        for <devicetree@vger.kernel.org>; Mon, 02 May 2022 11:53:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=16c6LoufbePye4HWJelwY8ht2KeqIsEnJnUl7uB1SQc=;
-        b=jqr/xBWlNNErNwhynK5voUQvHR1NxmJKCd1Z7Qaq7g8Fb/GQwUCF9IIYtRUdR4YEr1
-         nynxZJexdSKlnY74XeujEogng80z2pYDihQOFgV9ELs3hmMgVY2onPj671j5ddbgB9BG
-         5/73p2GcfcxDWOy7wLz3h8l2tfPvAvPrDCQ+BE6Xk/5o0lgsvz3nCKU4AYeAVLlonsSL
-         Z2JmYA8dzKlG1beSvj5MMiTcw+WRqp7qLXLSERFy0/KcT8VMBSgKEIVz69YMhpgFGSjJ
-         vtGTnIbSnPEYsaroJpHICAhU/ENy4/ZJoL9sDV2o5RbMXmPW+qBFDmoBLK9/uwqgjrJy
-         fY4A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=16c6LoufbePye4HWJelwY8ht2KeqIsEnJnUl7uB1SQc=;
-        b=tMp9wmjJokYMB2I7zrWDx4g1uzBhYZcjEFrNKl4ETdCF2WU8lUjgE5kxwc0qy/AQLV
-         /8Zkz6LkO5lwiGY/y3pKCKKrMZHxd72GucQUvzxiW3B2arO0XXPQDSqCOr3I5MtHA4Be
-         sP5DGZRJg369SlUOXw47PlvphtZ0dzgch1Pq2362Lvb5whS+30mQZ/eA9HeNbt/Ot88v
-         4oL5mnrbXtaK2SHdQ0F9hrvnZHIaDEUm98E1FCJXjF2cDxkqq2inaRGrViGs2Czlj/H7
-         TLgMF2JJD5nJVZqn76rsew6J9cNrCyd4HBIuRTzKRbmxaBdH7WJ2NfxLqMTmE2B40Zjh
-         EMLA==
-X-Gm-Message-State: AOAM533MExMkqk7ORvBxMhBaYsLjo/dkddKMPSeXnhHlS+RsjsVqu9Gf
-        Fm+O79Ml+QIzMW9LBPfbm+IIAdCphtMa2pEaNDNewA==
-X-Google-Smtp-Source: ABdhPJzU+LBvikaPdp/AbP+b+aZ/afUryXUeK+51Yu6+TQyUdZFvwMSvJ2yZNRnIbcwvzfRr0QLLkvsrGpaMC605bhw=
-X-Received: by 2002:a25:84c1:0:b0:63e:7733:f95a with SMTP id
- x1-20020a2584c1000000b0063e7733f95amr10517577ybm.234.1651517579694; Mon, 02
- May 2022 11:52:59 -0700 (PDT)
+        with ESMTP id S229819AbiEBTDY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 May 2022 15:03:24 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00A9C654B
+        for <devicetree@vger.kernel.org>; Mon,  2 May 2022 11:59:54 -0700 (PDT)
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=bjornoya.blackshift.org)
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mkl@pengutronix.de>)
+        id 1nlbGg-0002Y4-To; Mon, 02 May 2022 20:59:34 +0200
+Received: from pengutronix.de (unknown [IPv6:2a01:4f8:1c1c:29e9:22:41ff:fe00:1400])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (Client did not present a certificate)
+        (Authenticated sender: mkl-all@blackshift.org)
+        by smtp.blackshift.org (Postfix) with ESMTPSA id C6DE8736FE;
+        Mon,  2 May 2022 18:59:30 +0000 (UTC)
+Date:   Mon, 2 May 2022 20:59:29 +0200
+From:   Marc Kleine-Budde <mkl@pengutronix.de>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Biju Das <biju.das.jz@bp.renesas.com>, netdev@vger.kernel.org,
+        Wolfgang Grandegger <wg@grandegger.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Biju Das <biju.das@bp.renesas.com>,
+        Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-can@vger.kernel.org, "David S. Miller" <davem@davemloft.net>,
+        linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: can: renesas,rcar-canfd: Document RZ/G2UL
+ support
+Message-ID: <20220502185929.hgjuitw4mnu4ye3c@pengutronix.de>
+References: <20220423130743.123198-1-biju.das.jz@bp.renesas.com>
+ <YnAlVQr1A6UU0tB3@robh.at.kernel.org>
 MIME-Version: 1.0
-References: <20220501195042.4132724-1-dmitry.baryshkov@linaro.org> <4824d621-5840-6535-dc8f-1f20ee35d96b@somainline.org>
-In-Reply-To: <4824d621-5840-6535-dc8f-1f20ee35d96b@somainline.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Mon, 2 May 2022 21:52:48 +0300
-Message-ID: <CAA8EJpoGWuSKE0B7np-M1JnHJ3z+_85thg_firRS_BBS06W=TA@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: qcom: add ITS device tree node
-To:     Konrad Dybcio <konrad.dybcio@somainline.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Vinod Koul <vkoul@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="vz3iylc7uzhlbnhj"
+Content-Disposition: inline
+In-Reply-To: <YnAlVQr1A6UU0tB3@robh.at.kernel.org>
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -69,68 +65,49 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 2 May 2022 at 20:55, Konrad Dybcio <konrad.dybcio@somainline.org> wrote:
->
->
->
-> On 1.05.2022 21:50, Dmitry Baryshkov wrote:
-> > Add device tree node corresponding to the ITS part of GICv3.
-> >
-> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> > Reviewed-by: Vinod Koul <vkoul@kernel.org>
+
+--vz3iylc7uzhlbnhj
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On 02.05.2022 13:39:17, Rob Herring wrote:
+> On Sat, 23 Apr 2022 14:07:43 +0100, Biju Das wrote:
+> > Add CANFD binding documentation for Renesas R9A07G043 (RZ/G2UL) SoC.
+> >=20
+> > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
 > > ---
-> Hi,
->
-> please keep the properties order coherent with other nodes, so:
->
-> [compatible]
-> [reg]
-> [various props]
-> [#-cells]
-> [ranges]
-> [status]
->
+> >  .../devicetree/bindings/net/can/renesas,rcar-canfd.yaml          | 1 +
+> >  1 file changed, 1 insertion(+)
+> >=20
+>=20
+> Applied, thanks!
 
-Never memorized the order. Thanks for the pointer!
+That just got into net-next/master as
+| 35a78bf20033 dt-bindings: can: renesas,rcar-canfd: Document RZ/G2UL suppo=
+rt
 
->
-> Konrad
->
-> >  arch/arm64/boot/dts/qcom/sm8450.dtsi | 10 ++++++++++
-> >  1 file changed, 10 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-> > index 3e4c710d3275..4fcb6e2b096b 100644
-> > --- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-> > @@ -2865,6 +2865,9 @@ apps_smmu: iommu@15000000 {
-> >
-> >               intc: interrupt-controller@17100000 {
-> >                       compatible = "arm,gic-v3";
-> > +                     #address-cells = <2>;
-> > +                     #size-cells = <2>;
-> > +                     ranges;
-> >                       #interrupt-cells = <3>;
-> >                       interrupt-controller;
-> >                       #redistributor-regions = <1>;
-> > @@ -2872,6 +2875,13 @@ intc: interrupt-controller@17100000 {
-> >                       reg = <0x0 0x17100000 0x0 0x10000>,     /* GICD */
-> >                             <0x0 0x17180000 0x0 0x200000>;    /* GICR * 8 */
-> >                       interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
-> > +
-> > +                     gic_its: msi-controller@17140000 {
-> > +                             compatible = "arm,gic-v3-its";
-> > +                             msi-controller;
-> > +                             #msi-cells = <1>;
-> > +                             reg = <0x0 0x17140000 0x0 0x20000>;
-> > +                     };
-> >               };
-> >
-> >               timer@17420000 {
-> >
+Marc
 
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde           |
+Embedded Linux                   | https://www.pengutronix.de  |
+Vertretung West/Dortmund         | Phone: +49-231-2826-924     |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-5555 |
 
+--vz3iylc7uzhlbnhj
+Content-Type: application/pgp-signature; name="signature.asc"
 
--- 
-With best wishes
-Dmitry
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEBsvAIBsPu6mG7thcrX5LkNig010FAmJwKg8ACgkQrX5LkNig
+012yfwf+Id2UNwmrDlurQlemVLbxIRUY+mkcOs73m7ATG33wKOTEqlEVX39qip4O
+vTKXP649wTWkWVSomhy01bziXcB9ut3VEsEYIVK9qR1gMctUYdJfyG/D3rk/NFKN
+5dc1JkS6UJu6KKuFY2sB+5/uDYOD24cWPSqoe9OvQ+tysQSfTcNaU0ft/QckBjbz
+aX7M7TeLb/lywnXhTcptKw6a5Qz+zIbM3qQPfbM9ABCnrpT+kWAE6eiFAX0VhKbt
+yXtzkK4/gmmEH8gQqsly0O3s3Tfx6P+lZ1KmYmK4vFsAzNIZEZ2y+DuAlIji/uXA
+Gd8Z++lW9XP8/t2NDNWq9dwX1woD0g==
+=nF1c
+-----END PGP SIGNATURE-----
+
+--vz3iylc7uzhlbnhj--
