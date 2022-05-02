@@ -2,62 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4CD05517708
-	for <lists+devicetree@lfdr.de>; Mon,  2 May 2022 20:59:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 42FCB51770E
+	for <lists+devicetree@lfdr.de>; Mon,  2 May 2022 21:01:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1386737AbiEBTDY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 May 2022 15:03:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37532 "EHLO
+        id S1387006AbiEBTEy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 May 2022 15:04:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38700 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229819AbiEBTDY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 May 2022 15:03:24 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00A9C654B
-        for <devicetree@vger.kernel.org>; Mon,  2 May 2022 11:59:54 -0700 (PDT)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=bjornoya.blackshift.org)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mkl@pengutronix.de>)
-        id 1nlbGg-0002Y4-To; Mon, 02 May 2022 20:59:34 +0200
-Received: from pengutronix.de (unknown [IPv6:2a01:4f8:1c1c:29e9:22:41ff:fe00:1400])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (Client did not present a certificate)
-        (Authenticated sender: mkl-all@blackshift.org)
-        by smtp.blackshift.org (Postfix) with ESMTPSA id C6DE8736FE;
-        Mon,  2 May 2022 18:59:30 +0000 (UTC)
-Date:   Mon, 2 May 2022 20:59:29 +0200
-From:   Marc Kleine-Budde <mkl@pengutronix.de>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>, netdev@vger.kernel.org,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Biju Das <biju.das@bp.renesas.com>,
-        Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-can@vger.kernel.org, "David S. Miller" <davem@davemloft.net>,
-        linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: can: renesas,rcar-canfd: Document RZ/G2UL
- support
-Message-ID: <20220502185929.hgjuitw4mnu4ye3c@pengutronix.de>
-References: <20220423130743.123198-1-biju.das.jz@bp.renesas.com>
- <YnAlVQr1A6UU0tB3@robh.at.kernel.org>
+        with ESMTP id S1387003AbiEBTEx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 May 2022 15:04:53 -0400
+Received: from mail-yw1-x112e.google.com (mail-yw1-x112e.google.com [IPv6:2607:f8b0:4864:20::112e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F0276550
+        for <devicetree@vger.kernel.org>; Mon,  2 May 2022 12:01:24 -0700 (PDT)
+Received: by mail-yw1-x112e.google.com with SMTP id 00721157ae682-2ebf4b91212so158321237b3.8
+        for <devicetree@vger.kernel.org>; Mon, 02 May 2022 12:01:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=AC0EeKmdD/wVz7MSLZ/h0yiSs6sEJRzxBmAWAP1+gLM=;
+        b=WNqdk/HayGYvvD78D8U73C49lNe6YaKCBv4ArxjZNpn2oWWIEHIsxOeMcFAvy8zrOI
+         bulK1HmtpQFrmpZ1IzpxWnpM5X3UedfgyhemcCBPfVAtK4NYJzdnujw1/appDkxvAkpw
+         2oAckt8rnItfE96eclwaEKN1wBW1/VcsrvfhP89WnxB+OpgiE+NODkMCo85NqTsqndul
+         qlUAswh3IYLO/xStX9jhIw21HgTUWpedgpdbr32B+3aA1/4ImCjTyb8h/jWqfdFUK8x/
+         Qsi7Hdmcf5HO+SONaDrdWIVRDgcZgGUMQvUyEommUNQjsxh3PoIayToQOnHGRCpJNo6N
+         pJLA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=AC0EeKmdD/wVz7MSLZ/h0yiSs6sEJRzxBmAWAP1+gLM=;
+        b=XGTujBbNPnv/I6M9vvSPe5HRk43GGkymsG82rgFSOowSE3xjykh6bPZRItm6GIEYyX
+         zBnEd6r78B91LixkG870WmtT1ZhkZql+ZobWRVym39zzN2edby0Jyp+Na3XFyNan6Hyf
+         SMKFCcfqC0IS4U/fQKdyxw4nfLzQi5iRu2bA+ClQjaNk3n/Tljp414d0NY5g73KUf5QH
+         D3PlLdi7rmMqSHfEadidT4i/kHltol1QBsviMIoMPTvnypyKsYd699JKDf4WOaDDb/eZ
+         JL+TRcP6NuXtPUqG+IgLzNvcl7rJ8psNoQaFqWXQWQOCaQa7u7JPHlgJrh6EvGaDM2Yj
+         68CA==
+X-Gm-Message-State: AOAM532rxqcpNNgFz/oCIDwTqNF0Iyn32oC6vs5aUoXtEz7LaVJW5Bh5
+        jX2+V3igXq4S5zlvxQCLru8lLP+ETrqce4ckRLZwF84AKog=
+X-Google-Smtp-Source: ABdhPJy/C0gQDMibcNI6GSVb0H9Uz0+HUuH3G2FQPbsmsIja9PVwDOFJHPrVOHPcd00s+q/RfeUIdKK97HQSMWzBSgU=
+X-Received: by 2002:a81:492:0:b0:2f7:ce87:c324 with SMTP id
+ 140-20020a810492000000b002f7ce87c324mr12569218ywe.359.1651518083662; Mon, 02
+ May 2022 12:01:23 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="vz3iylc7uzhlbnhj"
-Content-Disposition: inline
-In-Reply-To: <YnAlVQr1A6UU0tB3@robh.at.kernel.org>
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+References: <20220501195458.4134911-1-dmitry.baryshkov@linaro.org> <6b0ef19b-a45b-ae6f-9f6f-41e72f2c71fd@somainline.org>
+In-Reply-To: <6b0ef19b-a45b-ae6f-9f6f-41e72f2c71fd@somainline.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Mon, 2 May 2022 22:01:12 +0300
+Message-ID: <CAA8EJpqeR8FF7V1fdyWtQsU3xnFw5+4obBSndb3wS+H8Xgu8Rw@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: qcom: sm8450: add uart20 node
+To:     Konrad Dybcio <konrad.dybcio@somainline.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Vinod Koul <vkoul@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -65,49 +70,98 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
---vz3iylc7uzhlbnhj
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On 02.05.2022 13:39:17, Rob Herring wrote:
-> On Sat, 23 Apr 2022 14:07:43 +0100, Biju Das wrote:
-> > Add CANFD binding documentation for Renesas R9A07G043 (RZ/G2UL) SoC.
-> >=20
-> > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+On Mon, 2 May 2022 at 20:59, Konrad Dybcio <konrad.dybcio@somainline.org> w=
+rote:
+>
+>
+>
+> On 1.05.2022 21:54, Dmitry Baryshkov wrote:
+> > Add device tree node for uart20, which is typically used for Bluetooth =
+attachment.
+> >
+> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> > Reviewed-by: Vinod Koul <vkoul@kernel.org>
 > > ---
-> >  .../devicetree/bindings/net/can/renesas,rcar-canfd.yaml          | 1 +
-> >  1 file changed, 1 insertion(+)
-> >=20
->=20
-> Applied, thanks!
+> >  arch/arm64/boot/dts/qcom/sm8450.dtsi | 22 ++++++++++++++++++++++
+> >  1 file changed, 22 insertions(+)
+> >
+> > diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts=
+/qcom/sm8450.dtsi
+> > index 4fcb6e2b096b..8b9d9c2cd02c 100644
+> > --- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> > +++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> > @@ -996,6 +996,19 @@ spi20: spi@894000 {
+> >                               status =3D "disabled";
+> >                       };
+> >
+> > +                     uart20: serial@894000 {
+> I think it should come before SPI alphabetically?
 
-That just got into net-next/master as
-| 35a78bf20033 dt-bindings: can: renesas,rcar-canfd: Document RZ/G2UL suppo=
-rt
+Argh. I sorted it using the label!
 
-Marc
+>
+> > +                             compatible =3D "qcom,geni-uart";
+> > +                             reg =3D <0 0x00894000 0 0x4000>;
+> > +                             clock-names =3D "se";
+> > +                             clocks =3D <&gcc GCC_QUPV3_WRAP2_S5_CLK>;
+> > +                             pinctrl-names =3D "default";
+> > +                             pinctrl-0 =3D <&qup_uart20_default>;
+> No sleep state?
+
+No, uarts do not provide a sleep state.
+
+>
+> > +                             interrupts =3D <GIC_SPI 587 IRQ_TYPE_LEVE=
+L_HIGH>;
+> > +                             #address-cells =3D <1>;
+> > +                             #size-cells =3D <0>;
+> > +                             status =3D "disabled";
+> > +                     };
+> > +
+> >                       i2c21: i2c@898000 {
+> >                               compatible =3D "qcom,geni-i2c";
+> >                               reg =3D <0x0 0x00898000 0x0 0x4000>;
+> > @@ -2757,6 +2770,15 @@ qup_uart7_tx: qup-uart7-tx {
+> >                               drive-strength =3D <2>;
+> >                               bias-disable;
+> >                       };
+> > +
+> > +                     qup_uart20_default: qup-uart20-default {
+> > +                             mux {
+> Please drop the unnecessary mux{} here.
+
+Ack.
+
+>
+> > +                                     pins =3D "gpio76", "gpio77",
+> > +                                             "gpio78", "gpio79";
+> I think these could fit into a single 100-char-long line>?
+
+I'll check.
+
+>
+> > +                                     function =3D "qup20";
+> Are there no default properties for this setup? I think boards that don't=
+ use standard Qualcomm connectivity setups (like Bluetooth on this specific=
+ UART) are rather scarce and it'd be more convenient to keep a standard set=
+ting here and override it where need be instead of copy-pasting the same th=
+ing over and over in 95-100% of the boards.
+
+I see your point. Let's do this.
+
+>
+> Konrad
+>
+> > +                             };
+> > +                     };
+> > +
+> >               };
+> >
+> >               apps_smmu: iommu@15000000 {
+> >
+
+
 
 --=20
-Pengutronix e.K.                 | Marc Kleine-Budde           |
-Embedded Linux                   | https://www.pengutronix.de  |
-Vertretung West/Dortmund         | Phone: +49-231-2826-924     |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-5555 |
-
---vz3iylc7uzhlbnhj
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEBsvAIBsPu6mG7thcrX5LkNig010FAmJwKg8ACgkQrX5LkNig
-012yfwf+Id2UNwmrDlurQlemVLbxIRUY+mkcOs73m7ATG33wKOTEqlEVX39qip4O
-vTKXP649wTWkWVSomhy01bziXcB9ut3VEsEYIVK9qR1gMctUYdJfyG/D3rk/NFKN
-5dc1JkS6UJu6KKuFY2sB+5/uDYOD24cWPSqoe9OvQ+tysQSfTcNaU0ft/QckBjbz
-aX7M7TeLb/lywnXhTcptKw6a5Qz+zIbM3qQPfbM9ABCnrpT+kWAE6eiFAX0VhKbt
-yXtzkK4/gmmEH8gQqsly0O3s3Tfx6P+lZ1KmYmK4vFsAzNIZEZ2y+DuAlIji/uXA
-Gd8Z++lW9XP8/t2NDNWq9dwX1woD0g==
-=nF1c
------END PGP SIGNATURE-----
-
---vz3iylc7uzhlbnhj--
+With best wishes
+Dmitry
