@@ -2,66 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 25895517864
-	for <lists+devicetree@lfdr.de>; Mon,  2 May 2022 22:42:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B888351788D
+	for <lists+devicetree@lfdr.de>; Mon,  2 May 2022 22:50:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1355042AbiEBUp7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 May 2022 16:45:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37702 "EHLO
+        id S230295AbiEBUyR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 May 2022 16:54:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41098 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350086AbiEBUp7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 May 2022 16:45:59 -0400
-Received: from mail-oa1-x30.google.com (mail-oa1-x30.google.com [IPv6:2001:4860:4864:20::30])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD897EBA
-        for <devicetree@vger.kernel.org>; Mon,  2 May 2022 13:42:28 -0700 (PDT)
-Received: by mail-oa1-x30.google.com with SMTP id 586e51a60fabf-deb9295679so15414875fac.6
-        for <devicetree@vger.kernel.org>; Mon, 02 May 2022 13:42:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to:cc;
-        bh=ESpzyDqu8mnBm9LDtK8B5iICXfFMCWHMbvYXNK4D6ws=;
-        b=CHoiCdCU1i8vWiRKm0fwWD99JiWNrErUMwha0a5VBppTDfBnUn2/opeuaRT1wE2RaS
-         rSm/E1G6cgHlFacYHPjeuMbR5jcDr6+0jG1f2Dct3f1cS5/6TuefgaMl5w8Nt2XOSyye
-         u+AsxKM/XZ9HWjJWyBEFDuWz8i/KQC2Pf44XU=
+        with ESMTP id S1387509AbiEBUyK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 May 2022 16:54:10 -0400
+Received: from mail-oi1-f181.google.com (mail-oi1-f181.google.com [209.85.167.181])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49826B19;
+        Mon,  2 May 2022 13:50:40 -0700 (PDT)
+Received: by mail-oi1-f181.google.com with SMTP id r1so16201213oie.4;
+        Mon, 02 May 2022 13:50:40 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to:cc;
-        bh=ESpzyDqu8mnBm9LDtK8B5iICXfFMCWHMbvYXNK4D6ws=;
-        b=hdrwORu5aB/J18DZcJpq7y7Ctb7E4WFEMmO26MBaz/2x5kIjuroo9WhkMPt8XbnB+T
-         qqqttM3wiAAUoUzAPWvNoZ2SL4P0NBQs+2fHdf083NGOXkuaNNtI6m8YUTQRcmI0KZwm
-         PcdeXUd5i/if43FdEjEVWYRC9c8ic/onfOft9Bnm1vozMLEPRrF4eatvl9bti+Eu4iHg
-         KSNNihoww8GBaBKE5hNqZKhY179EODoLQsfPIB4RVQC0a3sbOdbjAFchXce1u+sFUEcc
-         I+xEFuXfFBD9PetPDwKrjQcqdqtzugnmpBMdAZGfKJIDGL4VosC7vl2ndVVYiGSntgKL
-         Siqg==
-X-Gm-Message-State: AOAM53344XTPKwZXfbN2/Jz4qWoISPnPVC+34luES2KSIRBXTxcXfHn4
-        d5qgdX7EoxLNOQJ2ArGzqq423x2pE4JxCIsQLXsp6Q==
-X-Google-Smtp-Source: ABdhPJyfSz0qIavKIY7/72y/6OLLmP5StcipFMQ6UuHm8uHovKIYZYl28pB2+rrNQkm8Rj+XIbcgGj4UB8blHvbLc3w=
-X-Received: by 2002:a05:6870:558e:b0:e1:db7c:26aa with SMTP id
- n14-20020a056870558e00b000e1db7c26aamr441978oao.63.1651524148228; Mon, 02 May
- 2022 13:42:28 -0700 (PDT)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Mon, 2 May 2022 13:42:27 -0700
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=E7dLfkQB5iRNEh+Agl2ljIZWdTsg7pWZ55/DrU1lX3U=;
+        b=yBOxF9Ici3jkKgH3ukbY3khU7J14nGIVzlvI6IqoyExuzE54dfGddWul2f/QC0hBiz
+         dBxI72Qb4R/TNGM9qqRzO7MIXI/js/eYgeo55x/ev0KVgDJwXwCioOGCpbq1fl06wCkk
+         9Vcz0AE5tykyvvCmYOd5boun8ZNg25v+h/ykiSMS1vYgDRGES8HdcTWV1if4PdKAzB4l
+         T93z0UNSdHY822sqfkWL3TMe1HgzWmfA19Hh47+k8rjbhOfXphcAwfKnO08loJQjF1jR
+         lvkZHOUTr/HybHPQcWc84ehwO5RFauUAna3A/nLSZubv3Nm8EKqd+FDgrET/9kkbJdxw
+         GGXA==
+X-Gm-Message-State: AOAM530QuT4Eo5cqjDRlipNvzGmORPDdG0s56pCmi4u6eBYNlhofteWJ
+        bIwAsIbx2uHPwCgB7QXnqg==
+X-Google-Smtp-Source: ABdhPJx8kDbeKKYG/ADawW42HXqiWmqrHC2ycDpq4wT5cjjBJkWPZp69DHt8An0bXLasg+8qjsWfEQ==
+X-Received: by 2002:aca:641:0:b0:325:473:403b with SMTP id 62-20020aca0641000000b003250473403bmr488975oig.116.1651524639465;
+        Mon, 02 May 2022 13:50:39 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id i9-20020aca2b09000000b00324f24e623fsm2687395oik.3.2022.05.02.13.50.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 02 May 2022 13:50:38 -0700 (PDT)
+Received: (nullmailer pid 1723863 invoked by uid 1000);
+        Mon, 02 May 2022 20:50:37 -0000
+Date:   Mon, 2 May 2022 15:50:37 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        linux-renesas-soc@vger.kernel.org,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Marc Zyngier <maz@kernel.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH 1/2] dt-bindings: interrupt-controller: Add Renesas
+ RZ/G2L Interrupt Controller
+Message-ID: <YnBEHdWD+Z5ojbu/@robh.at.kernel.org>
+References: <20220421221159.31729-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20220421221159.31729-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
 MIME-Version: 1.0
-In-Reply-To: <1651509846-4842-1-git-send-email-quic_vpolimer@quicinc.com>
-References: <1651509846-4842-1-git-send-email-quic_vpolimer@quicinc.com>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.10
-Date:   Mon, 2 May 2022 13:42:27 -0700
-Message-ID: <CAE-0n517_5ZxGXMYrW7xGTOdKBhEnhEc9U1SN=cZP7CKCrdVhA@mail.gmail.com>
-Subject: Re: [PATCH v2] drm/msm/disp/dpu1: avoid clearing hw interrupts if
- hw_intr is null during drm uninit
-To:     Vinod Polimera <quic_vpolimer@quicinc.com>,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, linux-arm-msm@vger.kernel.org
-Cc:     linux-kernel@vger.kernel.org, robdclark@gmail.com,
-        dianders@chromium.org, quic_kalyant@quicinc.com,
-        quic_abhinavk@quicinc.com, dmitry.baryshkov@linaro.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220421221159.31729-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -69,39 +71,14 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Vinod Polimera (2022-05-02 09:44:06)
-> If edp modeset init is failed due to panel being not ready and
-> probe defers during drm bind, avoid clearing irqs and derefernce
-
-s/derefernce/dereference/
-
-> hw_intr when hw_intr is null.
->
-> BUG: Unable to handle kernel NULL pointer dereference at virtual address 0000000000000000
->
-> Call trace:
->  dpu_core_irq_uninstall+0x50/0xb0
->  dpu_irq_uninstall+0x18/0x24
->  msm_drm_uninit+0xd8/0x16c
->  msm_drm_bind+0x580/0x5fc
->  try_to_bring_up_master+0x168/0x1c0
->  __component_add+0xb4/0x178
->  component_add+0x1c/0x28
->  dp_display_probe+0x38c/0x400
->  platform_probe+0xb0/0xd0
->  really_probe+0xcc/0x2c8
->  __driver_probe_device+0xbc/0xe8
->  driver_probe_device+0x48/0xf0
->  __device_attach_driver+0xa0/0xc8
->  bus_for_each_drv+0x8c/0xd8
->  __device_attach+0xc4/0x150
->  device_initial_probe+0x1c/0x28
->
-> Changes in V2:
-> - Update commit message and coreect fixes tag.
->
-> Fixes: f25f656608e3 ("drm/msm/dpu: merge struct dpu_irq into struct dpu_hw_intr")
-> Signed-off-by: Vinod Polimera <quic_vpolimer@quicinc.com>
+On Thu, 21 Apr 2022 23:11:58 +0100, Lad Prabhakar wrote:
+> Add DT bindings for the Renesas RZ/G2L Interrupt Controller.
+> 
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 > ---
+>  .../renesas,rzg2l-irqc.yaml                   | 131 ++++++++++++++++++
+>  1 file changed, 131 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/renesas,rzg2l-irqc.yaml
+> 
 
-Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
