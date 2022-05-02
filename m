@@ -2,62 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4144D517598
-	for <lists+devicetree@lfdr.de>; Mon,  2 May 2022 19:17:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E56BE51759D
+	for <lists+devicetree@lfdr.de>; Mon,  2 May 2022 19:17:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236549AbiEBRVE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 May 2022 13:21:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58968 "EHLO
+        id S1386613AbiEBRVN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 May 2022 13:21:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59090 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1386592AbiEBRU7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 May 2022 13:20:59 -0400
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73A10A1B4
-        for <devicetree@vger.kernel.org>; Mon,  2 May 2022 10:17:29 -0700 (PDT)
-Received: by mail-ej1-x62b.google.com with SMTP id j6so28946405ejc.13
-        for <devicetree@vger.kernel.org>; Mon, 02 May 2022 10:17:29 -0700 (PDT)
+        with ESMTP id S1386610AbiEBRVL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 May 2022 13:21:11 -0400
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29B00B1CC
+        for <devicetree@vger.kernel.org>; Mon,  2 May 2022 10:17:42 -0700 (PDT)
+Received: by mail-ej1-x62f.google.com with SMTP id bv19so28977261ejb.6
+        for <devicetree@vger.kernel.org>; Mon, 02 May 2022 10:17:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=oTeGZRyE2mr2u+m1voN9Z49X34/v4brkQnKi8WE42ks=;
-        b=JxCTtdo7XskJybuw+4NTUgwS8Au5koSIUQ7QZEpluKPGW4M2qVduWv8V3CDMR53GbQ
-         bI0iW4GTIpjXVQ12039X53L5Z5txctbYgvwRt7a2YYI/VN8UEkbiO/y8v6UMkVk/464O
-         IIxEw0Q4uWhxMz7xmgfA5TH+ehxSMM0U0cAk4=
+        bh=U6I8l2/ksiQd63xGl5KCPWmwyj9JWjRhGv3A0r30Lxs=;
+        b=eTQFfROjG1qUk1tXr04rLGRtNfHRxSVeDMHEKcSFJsWB2lR87/reU6RgOyiv7E0qxt
+         fUq+C3AJS8urPlLqMtWicVO+G9N1mRO6lsGXvu7mjehiG33ekyO0H9hzZBSmG8CoJ/H/
+         xlGLQpdPwl7jKLkTG4yZ/QYEk11Z1W9wmbWRo=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=oTeGZRyE2mr2u+m1voN9Z49X34/v4brkQnKi8WE42ks=;
-        b=3lDE0qGioDvYf+lADiTT12K+yqDk9bCShTaAdio9MAIimcJv9extipT7uLzgjig0sX
-         SoAkCnjNJmf/CakdpQs6s1bkAo0ScSMNIrRvrPH3mk+Smwgr2XV1jI2CljdRbQnWTEWy
-         gm9uZXWkL1gf1jItR/Ma6mTV2N9mjz/4PrYOjRIAAn9Ubed1QIfXQJrI2+TFBAaNcIJE
-         6m6bCcCMBRzjgZMMVU6yhCBH5tPLuiR1CJ1/EUnYSz1G1CoylhQQYSudNY7sM4dP8FZZ
-         nTGFvE6BaKs1P6aeG6UpB3uCPE2BOHvKGYnezu+GMixm0+v1gBVvaCWNjiibaBwx22Hz
-         Pc/g==
-X-Gm-Message-State: AOAM5303Farh4qKTvPuG7sKyWSgo0tYna/LQL7gtEeqwWQrVF9l0rs+B
-        oM81qAEp05PCapTsn2QliQfRXEsU5np524Km
-X-Google-Smtp-Source: ABdhPJwiS7eQs5cqDTas0vNpLei2NmTBsmEnUcDSRT/B2NnyLqEIS/7nvih2pqXvNSdfsgK8Ys1JyQ==
-X-Received: by 2002:a17:906:3513:b0:6f3:a080:9f46 with SMTP id r19-20020a170906351300b006f3a0809f46mr11740900eja.466.1651511847653;
-        Mon, 02 May 2022 10:17:27 -0700 (PDT)
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com. [209.85.128.44])
-        by smtp.gmail.com with ESMTPSA id dq9-20020a170907734900b006f3ef214de3sm3765074ejc.73.2022.05.02.10.17.26
+        bh=U6I8l2/ksiQd63xGl5KCPWmwyj9JWjRhGv3A0r30Lxs=;
+        b=33S6pKUL4A6EyhKH9XIEKCST/tqjrRfl28LtQEwJHaHXK+k/ZxsC5ekODBhki9Ci+A
+         uDgrYUM6MgYMljvxntIW+HsQoK/k+kq+Xj3tsE3X7rbtZxtg5wJ0/xYJd+vQarTzZkSR
+         I6YVJO0Hj36ZzWZqldYJ648XG69IhImwogB9iaaSujmvfYBmIiSXjY5DuTImjzyQm6uh
+         2a+0Gb7KBQb1DUEtunI1Zyf26+FgAAOajCSsVNGP29KvY2EGJQ0o5vNMAVObPy4rvHH3
+         IOj3g5FEGjKiPq2ISsiOgjhYHRyP5//33apeNIrtlSaR8A78P4hEOOPimFfzfp0uvOUq
+         QtGQ==
+X-Gm-Message-State: AOAM531sZrV3V6u5Lk12DieljsqO03gmwumQvGDixv3nNgJWLEA6l8Bx
+        zWHNfc3/MhZaAyBphyOZOwRmOWmUHNZeOQXY
+X-Google-Smtp-Source: ABdhPJy+GzAzIzUZwYiu+yJvwGlyUL+N9osHybfQTUzh4zi3FBuYAjo93eLEUAj+xZRSUwvQI0LYuQ==
+X-Received: by 2002:a17:907:9706:b0:6f4:7ed4:db57 with SMTP id jg6-20020a170907970600b006f47ed4db57mr557834ejc.432.1651511860516;
+        Mon, 02 May 2022 10:17:40 -0700 (PDT)
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com. [209.85.128.42])
+        by smtp.gmail.com with ESMTPSA id e25-20020a056402149900b0042617ba63d5sm6860331edv.95.2022.05.02.10.17.38
         for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 02 May 2022 10:17:26 -0700 (PDT)
-Received: by mail-wm1-f44.google.com with SMTP id o12-20020a1c4d0c000000b00393fbe2973dso10224061wmh.2
-        for <devicetree@vger.kernel.org>; Mon, 02 May 2022 10:17:26 -0700 (PDT)
-X-Received: by 2002:a05:600c:4e44:b0:394:46b4:7b0e with SMTP id
- e4-20020a05600c4e4400b0039446b47b0emr110547wmq.29.1651511846037; Mon, 02 May
- 2022 10:17:26 -0700 (PDT)
+        Mon, 02 May 2022 10:17:39 -0700 (PDT)
+Received: by mail-wm1-f42.google.com with SMTP id k126-20020a1ca184000000b003943fd07180so1398718wme.3
+        for <devicetree@vger.kernel.org>; Mon, 02 May 2022 10:17:38 -0700 (PDT)
+X-Received: by 2002:a05:600c:3c99:b0:392:b49c:7b79 with SMTP id
+ bg25-20020a05600c3c9900b00392b49c7b79mr89734wmb.199.1651511858472; Mon, 02
+ May 2022 10:17:38 -0700 (PDT)
 MIME-Version: 1.0
 References: <20220430011402.1.If7c3471db53bea55213f7bcf17e9043084d3ac0c@changeid>
-In-Reply-To: <20220430011402.1.If7c3471db53bea55213f7bcf17e9043084d3ac0c@changeid>
+ <20220430011402.2.Iac7ac752b18224ab1458a7681301d9b48cab25c4@changeid>
+In-Reply-To: <20220430011402.2.Iac7ac752b18224ab1458a7681301d9b48cab25c4@changeid>
 From:   Doug Anderson <dianders@chromium.org>
-Date:   Mon, 2 May 2022 10:17:13 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=U-YCicgn06BnvCLHvXWw1-XzKhu8TMDm4T5LphoBOUBQ@mail.gmail.com>
-Message-ID: <CAD=FV=U-YCicgn06BnvCLHvXWw1-XzKhu8TMDm4T5LphoBOUBQ@mail.gmail.com>
-Subject: Re: [PATCH 1/5] arm64: dts: qcom: sc7180: Add wormdingler dts files
+Date:   Mon, 2 May 2022 10:17:26 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=XZsUkCMjV9bBweVOPgJBUi72hDXpiMcuQfi7ZcQ4xqtw@mail.gmail.com>
+Message-ID: <CAD=FV=XZsUkCMjV9bBweVOPgJBUi72hDXpiMcuQfi7ZcQ4xqtw@mail.gmail.com>
+Subject: Re: [PATCH 2/5] arm64: dts: qcom: sc7180: Add mrbland dts files
 To:     "Joseph S. Barrera III" <joebar@chromium.org>
 Cc:     LKML <linux-kernel@vger.kernel.org>,
         Alexandru M Stan <amstan@chromium.org>,
@@ -84,74 +85,19 @@ Hi,
 On Sat, Apr 30, 2022 at 1:18 AM Joseph S. Barrera III
 <joebar@chromium.org> wrote:
 >
-> Wormdingler is a trogdor-based board, shipping to customers as the
-> Lenovo IdeaPad Chromebook Duet 3. These dts files are copies from
+> Mrbland is a trogdor-based board. These dts files are copies from
 > the downstream Chrome OS 5.4 kernel, but with downstream bits removed.
 >
 > Signed-off-by: Joseph S. Barrera III <joebar@chromium.org>
 > ---
+>
+>  arch/arm64/boot/dts/qcom/Makefile             |   4 +
+>  .../qcom/sc7180-trogdor-mrbland-rev0-auo.dts  |  22 ++
+>  .../qcom/sc7180-trogdor-mrbland-rev0-boe.dts  |  22 ++
+>  .../dts/qcom/sc7180-trogdor-mrbland-rev0.dtsi |  53 +++
+>  .../qcom/sc7180-trogdor-mrbland-rev1-auo.dts  |  22 ++
+>  .../qcom/sc7180-trogdor-mrbland-rev1-boe.dts  |  24 ++
+>  .../boot/dts/qcom/sc7180-trogdor-mrbland.dtsi | 352 ++++++++++++++++++
+>  7 files changed, 499 insertions(+)
 
-I was expecting that this patch series would be labeled "v3" and would
-also have version history. What happened? I provided the tags you
-needed for stuff like this in v2 and even wrote the history bits for
-you... [1]
-
-
-[1] https://lore.kernel.org/r/CAD=FV=XbQ7LhnxGAavLL3XDpPigwtCz0CF3YcZ=ywrXwu=uiMQ@mail.gmail.com/
-
-
-> @@ -0,0 +1,33 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Google Wormdingler board device tree source
-> + *
-> + * Copyright 2021 Google LLC.
-> + *
-> + * SKU: 0x0001 => 1
-> + *  - bits 11..8: Panel ID: 0x0 (INX)
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "sc7180-trogdor-wormdingler.dtsi"
-
-In my reply to your v2 I was suggesting that the rt5682s files could
-be done more cleanly. I guess it's not 100% needed and could always be
-a later cleanup, but any reason why you decided not to do it?
-
-
-> +&ap_tp_i2c {
-> +       status = "disabled";
-> +};
-> +
-> +&backlight {
-> +       pwms = <&cros_ec_pwm 0>;
-> +};
-
-Downstream we have:
-
-&camcc {
-       status = "okay";
-};
-
-Why did you remove it here? You didn't in the previous version. Coach
-Z and Homestar still define it upstream and they work fine. Even if we
-haven't finished defining the MIPI camera bits, enabling the camera
-clock controller should still be fine, right?
-
-
-Also in my reply to v2 I suggested that you delete the keypad num-rows
-/ num-columns in wormdingler.dtsi. Hmmm, but I guess maybe we should
-put the num-rows/num-columns change on hold while we settle on an
-approach for it [1].
-
-
-So I guess overall summary:
-* Pretty sure you want "camcc", so please spin with that.
-* Please figure out how to tag your series as v4 and have version history.
-* I would still prefer the rt5682s stuff be cleaned up but if it's
-really too hard we can do it in a follow-up.
-
-
-
-[1] https://lore.kernel.org/r/CAD=FV=VX8EEgkeLgKwyKvjztcjbA8UhKOUpTr-sS1_Ec=QcWbA@mail.gmail.com
+Reviewed-by: Douglas Anderson <dianders@chromium.org>
