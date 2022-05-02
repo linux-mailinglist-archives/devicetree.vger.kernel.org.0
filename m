@@ -2,82 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E629251712F
-	for <lists+devicetree@lfdr.de>; Mon,  2 May 2022 16:04:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5FBBE517154
+	for <lists+devicetree@lfdr.de>; Mon,  2 May 2022 16:15:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1359316AbiEBOID (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 May 2022 10:08:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44812 "EHLO
+        id S1385507AbiEBOS3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 May 2022 10:18:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54836 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236925AbiEBOIC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 May 2022 10:08:02 -0400
-Received: from mail.schwermer.no (mail.schwermer.no [49.12.228.226])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C21C63898;
-        Mon,  2 May 2022 07:04:31 -0700 (PDT)
-X-Virus-Scanned: Yes
-Message-ID: <cbb3434b-a149-ccd7-d620-c18fb1845e2f@svenschwermer.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=svenschwermer.de;
-        s=mail; t=1651500267;
-        bh=aVAwVgTGrGTC+oj/6rhsD1aJW6PcX3Onk4UMqeNllRY=;
-        h=Subject:From:To:Cc:References:In-Reply-To;
-        b=L2lQRVOeyrlBxyS2ATEJbG1pkW55O2PR/BL/E7Q7RCVjO47TvqQYD69bf5cdts+jZ
-         X0zGzkMbpn7EQkXLdaXlpGYhlVCuDxVgTWa+/apBu5+KfXejaciQ68McoNgm2MI/aS
-         crYa1lqq6pGTmwBIvWegKHaEVTxwjyOCeWwV8e9WD1nSRnn4vBLDgwnlFsanFEQuAq
-         phmhW3TeiX68mCI5GR01G0AHzc1s3LfcE8zaxpUFhIDplrT/pwuZvQeK64V0NSIjgd
-         y7IOhwL1yWC2z42kHkfDJWazjBtACfPU0fzqDvxQjuiRS5vG4zhYGKl2gTyFuLLDoE
-         SifkDCcMAWuXA==
-Date:   Mon, 2 May 2022 16:04:26 +0200
-Mime-Version: 1.0
-Subject: Re: [PATCH v8 0/3 RESEND] Multicolor PWM LED support
-Content-Language: en-US
-From:   Sven Schwermer <sven@svenschwermer.de>
-To:     linux-leds@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     pavel@ucw.cz, robh+dt@kernel.org, thierry.reding@gmail.com,
-        u.kleine-koenig@pengutronix.de, lee.jones@linaro.org,
-        post@lespocky.de, andy.shevchenko@gmail.com, robh@kernel.org
-References: <20220407073225.71605-1-sven@svenschwermer.de>
-In-Reply-To: <20220407073225.71605-1-sven@svenschwermer.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S235633AbiEBOS1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 May 2022 10:18:27 -0400
+Received: from alexa-out-sd-01.qualcomm.com (alexa-out-sd-01.qualcomm.com [199.106.114.38])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC15615830;
+        Mon,  2 May 2022 07:14:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1651500899; x=1683036899;
+  h=from:to:cc:subject:date:message-id:mime-version;
+  bh=t9A0/owut74r5wrIreSk8Ef8X68zNYGXFoWQAifley0=;
+  b=JW/tKRKTFGEilYxb7bi6QZ2DQH3qmy8RNOCzy4CpkOrw9O4y5V/eZa7U
+   3ha8wrAWodW1dIVzT1wRGccvq4LnAQ5y2TwY5JSWexQp/+t1f4fMnZ475
+   syrvxZ+G6ZBsOucIERe6vS0j/l+U2DJ1klhqxygCYbv7HuWpflvHVqkMl
+   w=;
+Received: from unknown (HELO ironmsg05-sd.qualcomm.com) ([10.53.140.145])
+  by alexa-out-sd-01.qualcomm.com with ESMTP; 02 May 2022 07:14:58 -0700
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg05-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 May 2022 07:14:57 -0700
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Mon, 2 May 2022 07:14:57 -0700
+Received: from kaushalk-linux.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Mon, 2 May 2022 07:14:53 -0700
+From:   Kaushal Kumar <quic_kaushalk@quicinc.com>
+To:     <agross@kernel.org>, <bjorn.andersson@linaro.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>
+CC:     <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <manivannan.sadhasivam@linaro.org>,
+        "Kaushal Kumar" <quic_kaushalk@quicinc.com>
+Subject: [PATCH v2 0/4] Add QPIC BAM and QPIC NAND devicetree support for SDX65
+Date:   Mon, 2 May 2022 07:14:34 -0700
+Message-ID: <1651500878-10244-1-git-send-email-quic_kaushalk@quicinc.com>
+X-Mailer: git-send-email 2.7.4
+MIME-Version: 1.0
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hello,
 
-Is there anything else I can do to get this series merged soon?
+This series adds and enables devicetree nodes for QPIC BAM
+and QPIC NAND for Qualcomm SDX65 platform.
 
-Best regards,
-Sven
+Changes since v1:
+ - Sort the nodes added for sdx65-mtp in alphabetical order.
+ - Rebased on top of 5.18-rc5.
 
-On 4/7/22 09:32, sven@svenschwermer.de wrote:
-> From: Sven Schwermer <sven.schwermer@disruptive-technologies.com>
-> 
-> Hi,
-> 
-> I believe this patch series is ready for merging.
-> 
-> Pavel, please let me know if you need more to get this merged.
-> 
-> Best regards,
-> Sven
-> 
-> Sven Schwermer (3):
->    dt-bindings: leds: Optional multi-led unit address
->    dt-bindings: leds: Add multicolor PWM LED bindings
->    leds: Add PWM multicolor driver
-> 
->   .../bindings/leds/leds-class-multicolor.yaml  |   2 +-
->   .../bindings/leds/leds-pwm-multicolor.yaml    |  79 ++++++++
->   drivers/leds/Kconfig                          |  11 ++
->   drivers/leds/Makefile                         |   1 +
->   drivers/leds/leds-pwm-multicolor.c            | 186 ++++++++++++++++++
->   5 files changed, 278 insertions(+), 1 deletion(-)
->   create mode 100644 Documentation/devicetree/bindings/leds/leds-pwm-multicolor.yaml
->   create mode 100644 drivers/leds/leds-pwm-multicolor.c
-> 
+Kaushal Kumar (4):
+  ARM: dts: qcom: sdx65: Add QPIC BAM support
+  ARM: dts: qcom: sdx65: Add QPIC NAND support
+  ARM: dts: qcom: sdx65-mtp: Enable QPIC BAM support
+  ARM: dts: qcom: sdx65-mtp: Enable QPIC NAND support
+
+ arch/arm/boot/dts/qcom-sdx65-mtp.dts | 27 +++++++++++++++++++++++----
+ arch/arm/boot/dts/qcom-sdx65.dtsi    | 34 ++++++++++++++++++++++++++++++++++
+ 2 files changed, 57 insertions(+), 4 deletions(-)
+
+--
+2.7.4
+
