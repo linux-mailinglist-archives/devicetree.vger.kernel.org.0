@@ -2,147 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 807DA51766E
-	for <lists+devicetree@lfdr.de>; Mon,  2 May 2022 20:19:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0FC6851766F
+	for <lists+devicetree@lfdr.de>; Mon,  2 May 2022 20:21:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1376875AbiEBSWj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 May 2022 14:22:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40918 "EHLO
+        id S244665AbiEBSYd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 May 2022 14:24:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42026 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238642AbiEBSWi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 May 2022 14:22:38 -0400
-Received: from mail-oi1-f178.google.com (mail-oi1-f178.google.com [209.85.167.178])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CAE1421B3;
-        Mon,  2 May 2022 11:19:08 -0700 (PDT)
-Received: by mail-oi1-f178.google.com with SMTP id q8so15574061oif.13;
-        Mon, 02 May 2022 11:19:08 -0700 (PDT)
+        with ESMTP id S232997AbiEBSYc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 May 2022 14:24:32 -0400
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84B906596
+        for <devicetree@vger.kernel.org>; Mon,  2 May 2022 11:21:00 -0700 (PDT)
+Received: by mail-ej1-x634.google.com with SMTP id i27so29259108ejd.9
+        for <devicetree@vger.kernel.org>; Mon, 02 May 2022 11:21:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=iItLeslMywWC75aXdXtU8Z+zXUhrV2MK1NBIxn2y2rs=;
+        b=ememrw3mrzB87tbxst36sFZrP2L0uucEvly20Ws+EZFhF/pddU8fYcS7JEFCJUP+CL
+         j+lGzY0fHbbQlSfH/ikTqPNafPooCBizg2Lq9AZYjeVZogIOGaFAnJ3yMaO2I572f1ch
+         BtyoIhO+5B1oarNj/H8Of44qF1QB2Fofx3dByrN7GaTI3ePDmN7+tFLZvrpg0GfxKYO/
+         Mn+Iv+6XPWcVY0artXR54yqQe0UEBo/Glqd773ezVvZaOxm3dOP1zOCExI2ZvwQfQy0s
+         IClGWaKHCqD2zLbNOmB55lYjCMsm4C6vMLQl59E+qbMAufvlFzNaLZTja1LW/8VSq9Ap
+         H3PA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=sCS8AdoJhLm6rltPCRkjueSbUN6CmYrKvYL7nJFeMvs=;
-        b=aXxk3N8+/8QZUbg5hS9VfotLfiYVJD56+DzssFyoeQkeFVNW2PzLSrsjge2ckfTZcA
-         y5L0iG7rb90gnWsH7FP9ERx2PtzQ/pFtqDjO9zOJYfmBLwiRN6k1BNqGA8PkTQupe9HU
-         Z6mtOTnlR6jw73AcLzuA9ZpWdDyVmTsAeB+BOHAmE8SBNFrP/1a0a7IJW0uopZevHhNJ
-         TntLpja8dJioKPsptEkNvsBF+Lq7LYWJdZQjls+wRo2mUtvWp3L+RLZSxnejsWa6WJlG
-         +OQSnx32ug6H0JW5fR/4/Ol+GMpFZrIiQC1AGCIxWugbSTWvGmp6hGwT9J3zxlYHq4pY
-         M9Pg==
-X-Gm-Message-State: AOAM531AlYaTAu4xtxWGpheGy67iYJHTTQ4vHAPgTBjnc5YSGkVKcxxa
-        A2EQVMlghdDB9dkJTRjqmVoT8+VSJQ==
-X-Google-Smtp-Source: ABdhPJxE5pVVevyygfIrw3FW8svlbrFKlAEVKUg6hXpJ1By2eG2ZPN5o7ADHGS1hOvUc29e2vuEqtg==
-X-Received: by 2002:a05:6808:1413:b0:322:ac62:f01b with SMTP id w19-20020a056808141300b00322ac62f01bmr201259oiv.85.1651515548092;
-        Mon, 02 May 2022 11:19:08 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id v4-20020a9d4e84000000b006060322124bsm3156314otk.27.2022.05.02.11.19.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 May 2022 11:19:07 -0700 (PDT)
-Received: (nullmailer pid 1460304 invoked by uid 1000);
-        Mon, 02 May 2022 18:19:07 -0000
-Date:   Mon, 2 May 2022 13:19:07 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     michaelsh@nvidia.com
-Cc:     linux@roeck-us.net, linux-hwmon@vger.kernel.org,
-        devicetree@vger.kernel.org, vadimp@nvidia.com
-Subject: Re: [PATCH v1 2/3] dt-bindings: hwmon: add microchip,emc2306.yaml dt
- binding description.
-Message-ID: <YnAgmywao0qSNZQ9@robh.at.kernel.org>
-References: <20220430114905.53448-1-michaelsh@nvidia.com>
- <20220430114905.53448-3-michaelsh@nvidia.com>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=iItLeslMywWC75aXdXtU8Z+zXUhrV2MK1NBIxn2y2rs=;
+        b=A68LdQWGp/eFdwCt4jcT+RZZpu9dIy0BAMdyuIIpjH6dKr1nxaUxEUhUNSs/38Cw93
+         HfTm+5b+zV3eZpOh535sNpkyQsqRidkCw39ZXMX7xQ3Y3pSAD0jJ+6h2GAsXiUKkuFpF
+         O2ECxfrJevLrgutn4jVLumjFlVxNYlXP4bOyEFPpA9hX7xxsy6XrBZIkAV0vGjFX7BE/
+         +5CYZOk22kzk9TumQW43pnmM9VsG4P86nQ7oY7OtPDdk8CY748xYcqjg5BUU34FVb+HJ
+         gsjf8DXnc5rcWcXz4ANWRjErHnfvvkI8J61RC5xWGVpHFQYFnFwqE22XnnyPevM5p4u6
+         jNXQ==
+X-Gm-Message-State: AOAM532ScRzB+eaNFlKr2bM9aB5O2TZGj7/LNj+WHQXPY5DK4ZNWaHIY
+        Uhkm1Stlvtjkc1Z7Grk6Dea25g==
+X-Google-Smtp-Source: ABdhPJxQs/h1jEPNSvWXNsY4p7A5yQi5Z4mXw2JDkI9IDc2ziVO/mSYH8FV79HltN8p7CElqnuj0Zg==
+X-Received: by 2002:a17:906:c110:b0:6e0:dc2a:3393 with SMTP id do16-20020a170906c11000b006e0dc2a3393mr12215880ejc.512.1651515659085;
+        Mon, 02 May 2022 11:20:59 -0700 (PDT)
+Received: from [192.168.0.196] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id y20-20020aa7ce94000000b0042617ba63a3sm7009742edv.45.2022.05.02.11.20.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 02 May 2022 11:20:58 -0700 (PDT)
+Message-ID: <717f54e9-9ca9-9ab1-2f03-2edfd7e684d1@linaro.org>
+Date:   Mon, 2 May 2022 20:20:57 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220430114905.53448-3-michaelsh@nvidia.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH 3/4] soc: qcom: icc-bwmon: Add bandwidth monitoring driver
+Content-Language: en-US
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Georgi Djakov <djakov@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Thara Gopinath <thara.gopinath@linaro.org>
+References: <20220502174046.139234-1-krzysztof.kozlowski@linaro.org>
+ <20220502174046.139234-4-krzysztof.kozlowski@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220502174046.139234-4-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Apr 30, 2022 at 02:49:04PM +0300, michaelsh@nvidia.com wrote:
-> From: Michael Shych <michaelsh@nvidia.com>
+On 02/05/2022 19:40, Krzysztof Kozlowski wrote:
+> Bandwidth monitoring h/w sits between various subsytems like cpu, gpu
+> etc and ddr subsystem. This h/w can be configured to monitor the data
+> traffic between ddr and other subsytems. The bandwidth values obtained
+> from this monitoring is used to bump up or down the corresponding
+> interconnect speeds.
 
-Also, for the subject no need for 'dt binding description.', you 
-already said that with 'dt-bindings'. So:
 
-dt-bindings: hwmon: Add Microchip EMC2305 fan controller
+(...)
 
-> 
-> Add basic description of emc2305 driver device tree binding.
-> 
-> Signed-off-by: Michael Shych <michaelsh@nvidia.com>
-> Reviewed-by: Vadim Pasternak <vadimp@nvidia.com>
-> ---
->  .../bindings/hwmon/microchip,emc2305.yaml          | 55 ++++++++++++++++++++++
->  1 file changed, 55 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/hwmon/microchip,emc2305.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/hwmon/microchip,emc2305.yaml b/Documentation/devicetree/bindings/hwmon/microchip,emc2305.yaml
-> new file mode 100644
-> index 000000000000..c873172b7268
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/hwmon/microchip,emc2305.yaml
-> @@ -0,0 +1,55 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
 > +
-> +$id: http://devicetree.org/schemas/hwmon/emc2305.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Microchip EMC2305 RPM-based PWM Fan Speed Controller
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - microcip,emc2305
-> +
-> +  emc2305,pwm-min:
-> +    description:
-> +      Min pwm of emc2305
-> +    maxItems: 1
-> +  emc2305,pwm-max:
-> +    description:
-> +      Max pwm of emc2305
-> +    maxItems: 1
-> +  emc2305,pwm-channel:
-> +    description:
-> +      Max number of pwm channels
-> +    maxItems: 1
-> +  emcs205,max-state:
-> +    description:
-> +    maxItems: 1
-> +  emc2305,cooling-levels:
-> +    description:
-> +      Quantity of cooling level state.
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +
-> +optional:
-> +  - emc2305,min-pwm
-> +  - emc2305,max-pwm
-> +  - emc2305,pwm-channels
-> +  - emc2305,cooling-levels
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    fan {
-> +        emc2305,compatible = "microchip,emc2305";
-> +        emc2305,pwm-min = <0>;
-> +        emc2305,pwm-max = <255>;
-> +        emc2305,pwm-channel = <5>
-> +        emc2305,cooling-levels = <10>;
-> +    };
-> +
-> -- 
-> 2.14.1
-> 
-> 
+> +MODULE_AUTHOR("Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>")
+
+I should have checked last minute changes if they compile...
+
+
+> +MODULE_DESCRIPTION("QCOM BWMON driver");
+> +MODULE_LICENSE("GPL");
+
+
+Best regards,
+Krzysztof
