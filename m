@@ -2,74 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D71A45173EC
-	for <lists+devicetree@lfdr.de>; Mon,  2 May 2022 18:12:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C609F5173F0
+	for <lists+devicetree@lfdr.de>; Mon,  2 May 2022 18:12:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1386121AbiEBQPT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 May 2022 12:15:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57346 "EHLO
+        id S1386107AbiEBQPk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 May 2022 12:15:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57836 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1386111AbiEBQPS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 May 2022 12:15:18 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12982DF52;
-        Mon,  2 May 2022 09:11:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1651507909; x=1683043909;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=KVc/+HNOqS4/r7m8XfOVVRZ+wIWothref+39qtK2eSk=;
-  b=V6Ycg7uKvQUAdLJwV5SkasjALwcQEX4rk/HJu27V6G5FqkVDYIKCxv89
-   gaP/We1G/pVzAmye3bJ8wr+kEMbyfPxPnOl8kwxxN4HOzooA7OvFZRq0e
-   gFR0X1V4YlFQIGA8XmhgTvGFmyIUw2dguFqkqjeSOfR7f5MAxQb7kNmlY
-   N3W7YWjFfxqFjF/sEFulpvvKBKYuJpzvLTHv/5J6plwkWDmWj8qcyTyKx
-   UY9yUAvWbmyFbqhPq8xLmERWA3vCmz+o53Y0F+a2F8Ke8ZO9X3deFuPmt
-   we5mt6zdEFcXzKX1zDO+nGVPwDrY5E0r6RnBvyfLv4CZ7G/lsusc6Lt26
-   w==;
-X-IronPort-AV: E=Sophos;i="5.91,192,1647327600"; 
-   d="scan'208";a="162033711"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 02 May 2022 09:11:48 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17; Mon, 2 May 2022 09:11:47 -0700
-Received: from CHE-LT-I17769U.microchip.com (10.10.115.15) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
- 15.1.2375.17 via Frontend Transport; Mon, 2 May 2022 09:11:26 -0700
-From:   Arun Ramadoss <arun.ramadoss@microchip.com>
-To:     <bpf@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <netdev@vger.kernel.org>
-CC:     KP Singh <kpsingh@kernel.org>,
-        John Fastabend <john.fastabend@gmail.com>,
-        Yonghong Song <yhs@fb.com>, Song Liu <songliubraving@fb.com>,
-        "Martin KaFai Lau" <kafai@fb.com>,
-        Andrii Nakryiko <andrii@kernel.org>,
-        Daniel Borkmann <daniel@iogearbox.net>,
-        Alexei Starovoitov <ast@kernel.org>,
-        Russell King <linux@armlinux.org.uk>,
+        with ESMTP id S1386196AbiEBQPj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 May 2022 12:15:39 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABDD2DFFC;
+        Mon,  2 May 2022 09:12:09 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: nfraprado)
+        with ESMTPSA id 34F4B1F42BC7
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1651507928;
+        bh=yFJOMKwuIhisyg/HTjYUfFFgojnjn1gaRe4MzlvPbJ8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=WugItvxTkOGGNHaEeKBTDncAM3wUeRs3oShgHGf4GWeVrX/mMiT1QygpMU4x5j065
+         Gt6pyaBHFSuQyXEAYYa28BgHWT2AFjZ8qhjXyFtxtQaQAgj1scf++bvYnN0LPsRNLi
+         Nce9SmSI9VJi9VrUeXPTLEafQp1+wPzugsIy3ByqPyONYVqhh07PyqnzfKsbe/QdCG
+         M96xm5UA5kIIdPqVzlfRRSV4yCAJ8jrFmk0njylohNyipmPCk2/FWxZxrQV8qDr8Iy
+         LL96d6HWQYUl894lIIUIdjaj/+4WOzRgEiBtOgz52UELJWKVB3NbSFCGf44AUVzO6H
+         Ua1OkdPiuO7ug==
+Date:   Mon, 2 May 2022 12:12:03 -0400
+From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
+        <nfraprado@collabora.com>
+To:     Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, kernel@collabora.com,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Paolo Abeni" <pabeni@redhat.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Eric Dumazet <edumazet@google.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        "Vladimir Oltean" <olteanv@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        "Vivien Didelot" <vivien.didelot@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>, <UNGLinuxDriver@microchip.com>,
-        Woojung Huh <woojung.huh@microchip.com>
-Subject: [Patch net-next v12 13/13] net: dsa: microchip: add support for vlan operations
-Date:   Mon, 2 May 2022 21:41:20 +0530
-Message-ID: <20220502161120.7441-1-arun.ramadoss@microchip.com>
-X-Mailer: git-send-email 2.33.0
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH] arm64: dts: mediatek: Add fallback compatible for
+ mt8192's flash
+Message-ID: <20220502161203.pfmjyep4escqwjix@notapiano>
+References: <20220429195745.2203461-1-nfraprado@collabora.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+In-Reply-To: <20220429195745.2203461-1-nfraprado@collabora.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,261 +56,52 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Prasanna Vengateshan <prasanna.vengateshan@microchip.com>
+On Fri, Apr 29, 2022 at 03:57:45PM -0400, Nícolas F. R. A. Prado wrote:
+> The dt-binding for Mediatek's SPI NOR flash controller expects a mt8173
+> fallback compatible for mt8192, so add it in mt8192.dtsi.
+> 
+> The driver already sets custom data based on the mt8192 compatible, so
+> this fallback compatible won't be used and is added purely to suppress
+> the dt-binding warning.
+> 
+> Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
 
-Support for VLAN add, del, prepare and filtering operations.
+By the way, I wonder if this patch should be accompanied by a patch adding the 
+mediatek,mt8192-nor standalone compatible as deprecated in the dt-binding. I
+feel like the answer is in theory yes, but in practice no.
 
-The VLAN aware is a global setting. Mixed vlan filterings
-are not supported. vlan_filtering_is_global is made as true
-in lan937x_setup function.
+The fact that the mediatek,mt8192-nor standalone compatible was accepted in the
+devicetree means that it should show in the dt-binding, since it's an acceptable
+binding. But since the binding already shows up there with a fallback binding,
+then this standalone binding should be considered deprecated.
 
-Signed-off-by: Prasanna Vengateshan <prasanna.vengateshan@microchip.com>
-Signed-off-by: Arun Ramadoss <arun.ramadoss@microchip.com>
-Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
----
- drivers/net/dsa/microchip/lan937x_dev.h  |  10 ++
- drivers/net/dsa/microchip/lan937x_main.c | 186 +++++++++++++++++++++++
- 2 files changed, 196 insertions(+)
+But in practice, the mediatek,mt8192-nor is the more specific binding so
+documenting its standalone use as deprecated wouldn't accomplish much.
 
-diff --git a/drivers/net/dsa/microchip/lan937x_dev.h b/drivers/net/dsa/microchip/lan937x_dev.h
-index da8c708a03ea..2ce4d60b477e 100644
---- a/drivers/net/dsa/microchip/lan937x_dev.h
-+++ b/drivers/net/dsa/microchip/lan937x_dev.h
-@@ -104,6 +104,16 @@ struct lan_alu_struct {
- 	u8	mac[ETH_ALEN];
- };
- 
-+struct lan937x_vlan {
-+	/* entry 1 */
-+	bool valid;
-+	u8 fid;
-+	/* entry 2 */
-+	u32 untag_prtmap;
-+	/* entry 3 */
-+	u32 fwd_map;
-+};
-+
- extern const struct dsa_switch_ops lan937x_switch_ops;
- extern const struct ksz_dev_ops lan937x_dev_ops;
- extern const struct mib_names lan937x_mib_names[];
-diff --git a/drivers/net/dsa/microchip/lan937x_main.c b/drivers/net/dsa/microchip/lan937x_main.c
-index 516ab563721d..a509f0fc6347 100644
---- a/drivers/net/dsa/microchip/lan937x_main.c
-+++ b/drivers/net/dsa/microchip/lan937x_main.c
-@@ -17,6 +17,14 @@
- #include "ksz_common.h"
- #include "lan937x_dev.h"
- 
-+static int lan937x_wait_vlan_ctrl_ready(struct ksz_device *dev)
-+{
-+	unsigned int val;
-+
-+	return regmap_read_poll_timeout(dev->regmap[0], REG_SW_VLAN_CTRL, val,
-+					!(val & VLAN_START), 10, 1000);
-+}
-+
- static u8 lan937x_get_fid(u16 vid)
- {
- 	if (vid > ALU_FID_SIZE)
-@@ -25,6 +33,97 @@ static u8 lan937x_get_fid(u16 vid)
- 		return vid;
- }
- 
-+static int lan937x_get_vlan_table(struct ksz_device *dev, u16 vid,
-+				  struct lan937x_vlan *vlan_entry)
-+{
-+	u32 data;
-+	int ret;
-+
-+	mutex_lock(&dev->vlan_mutex);
-+
-+	ret = ksz_write16(dev, REG_SW_VLAN_ENTRY_INDEX__2, vid & VLAN_INDEX_M);
-+	if (ret < 0)
-+		goto exit;
-+
-+	ret = ksz_write8(dev, REG_SW_VLAN_CTRL, VLAN_READ | VLAN_START);
-+	if (ret < 0)
-+		goto exit;
-+
-+	/* wait to be cleared */
-+	ret = lan937x_wait_vlan_ctrl_ready(dev);
-+	if (ret < 0)
-+		goto exit;
-+
-+	ret = ksz_read32(dev, REG_SW_VLAN_ENTRY__4, &data);
-+	if (ret < 0)
-+		goto exit;
-+
-+	vlan_entry->valid = !!(data & VLAN_VALID);
-+	vlan_entry->fid	= data & VLAN_FID_M;
-+
-+	ret = ksz_read32(dev, REG_SW_VLAN_ENTRY_UNTAG__4,
-+			 &vlan_entry->untag_prtmap);
-+	if (ret < 0)
-+		goto exit;
-+
-+	ret = ksz_read32(dev, REG_SW_VLAN_ENTRY_PORTS__4,
-+			 &vlan_entry->fwd_map);
-+	if (ret < 0)
-+		goto exit;
-+
-+	ret = ksz_write8(dev, REG_SW_VLAN_CTRL, 0);
-+	if (ret < 0)
-+		goto exit;
-+
-+exit:
-+	mutex_unlock(&dev->vlan_mutex);
-+
-+	return ret;
-+}
-+
-+static int lan937x_set_vlan_table(struct ksz_device *dev, u16 vid,
-+				  struct lan937x_vlan *vlan_entry)
-+{
-+	u32 data;
-+	int ret;
-+
-+	mutex_lock(&dev->vlan_mutex);
-+
-+	data = vlan_entry->valid ? VLAN_VALID : 0;
-+	data |= vlan_entry->fid;
-+
-+	ret = ksz_write32(dev, REG_SW_VLAN_ENTRY__4, data);
-+	if (ret < 0)
-+		goto exit;
-+
-+	ret = ksz_write32(dev, REG_SW_VLAN_ENTRY_UNTAG__4,
-+			  vlan_entry->untag_prtmap);
-+	if (ret < 0)
-+		goto exit;
-+
-+	ret = ksz_write32(dev, REG_SW_VLAN_ENTRY_PORTS__4, vlan_entry->fwd_map);
-+	if (ret < 0)
-+		goto exit;
-+
-+	ret = ksz_write16(dev, REG_SW_VLAN_ENTRY_INDEX__2, vid & VLAN_INDEX_M);
-+	if (ret < 0)
-+		goto exit;
-+
-+	ret = ksz_write8(dev, REG_SW_VLAN_CTRL, VLAN_START | VLAN_WRITE);
-+	if (ret < 0)
-+		goto exit;
-+
-+	/* wait to be cleared */
-+	ret = lan937x_wait_vlan_ctrl_ready(dev);
-+	if (ret < 0)
-+		goto exit;
-+
-+exit:
-+	mutex_unlock(&dev->vlan_mutex);
-+
-+	return ret;
-+}
-+
- static int lan937x_read_table(struct ksz_device *dev, u32 *table)
- {
- 	int ret;
-@@ -129,6 +228,90 @@ static void lan937x_port_stp_state_set(struct dsa_switch *ds, int port,
- 	ksz_port_stp_state_set(ds, port, state, P_STP_CTRL);
- }
- 
-+static int lan937x_port_vlan_filtering(struct dsa_switch *ds, int port,
-+				       bool flag,
-+				       struct netlink_ext_ack *extack)
-+{
-+	struct ksz_device *dev = ds->priv;
-+
-+	/* enable/disable VLAN mode, once enabled, look up process starts
-+	 * and then forwarding and discarding are done based on port
-+	 * membership of the VLAN table
-+	 */
-+	return lan937x_cfg(dev, REG_SW_LUE_CTRL_0, SW_VLAN_ENABLE, flag);
-+}
-+
-+static int lan937x_port_vlan_add(struct dsa_switch *ds, int port,
-+				 const struct switchdev_obj_port_vlan *vlan,
-+				 struct netlink_ext_ack *extack)
-+{
-+	bool untagged = vlan->flags & BRIDGE_VLAN_INFO_UNTAGGED;
-+	struct ksz_device *dev = ds->priv;
-+	struct lan937x_vlan vlan_entry;
-+	int ret;
-+
-+	ret = lan937x_get_vlan_table(dev, vlan->vid, &vlan_entry);
-+	if (ret < 0) {
-+		NL_SET_ERR_MSG_MOD(extack, "Failed to get vlan table");
-+		return ret;
-+	}
-+
-+	vlan_entry.fid = lan937x_get_fid(vlan->vid);
-+	vlan_entry.valid = true;
-+
-+	/* set/clear switch port when updating vlan table registers */
-+	if (untagged)
-+		vlan_entry.untag_prtmap |= BIT(port);
-+	else
-+		vlan_entry.untag_prtmap &= ~BIT(port);
-+
-+	vlan_entry.fwd_map |= BIT(port);
-+
-+	ret = lan937x_set_vlan_table(dev, vlan->vid, &vlan_entry);
-+	if (ret < 0) {
-+		NL_SET_ERR_MSG_MOD(extack, "Failed to set vlan table");
-+		return ret;
-+	}
-+
-+	/* change PVID */
-+	if (vlan->flags & BRIDGE_VLAN_INFO_PVID) {
-+		ret = lan937x_pwrite16(dev, port, REG_PORT_DEFAULT_VID,
-+				       vlan->vid);
-+		if (ret < 0) {
-+			NL_SET_ERR_MSG_MOD(extack, "Failed to set pvid");
-+			return ret;
-+		}
-+	}
-+
-+	return 0;
-+}
-+
-+static int lan937x_port_vlan_del(struct dsa_switch *ds, int port,
-+				 const struct switchdev_obj_port_vlan *vlan)
-+{
-+	struct ksz_device *dev = ds->priv;
-+	struct lan937x_vlan vlan_entry;
-+	int ret;
-+
-+	ret = lan937x_get_vlan_table(dev, vlan->vid, &vlan_entry);
-+	if (ret < 0) {
-+		dev_err(dev->dev, "Failed to get vlan table\n");
-+		return ret;
-+	}
-+
-+	/* clear port fwd map & untag entries*/
-+	vlan_entry.fwd_map &= ~BIT(port);
-+	vlan_entry.untag_prtmap &= ~BIT(port);
-+
-+	ret = lan937x_set_vlan_table(dev, vlan->vid, &vlan_entry);
-+	if (ret < 0) {
-+		dev_err(dev->dev, "Failed to set vlan table\n");
-+		return ret;
-+	}
-+
-+	return 0;
-+}
-+
- static int lan937x_port_fdb_add(struct dsa_switch *ds, int port,
- 				const unsigned char *addr, u16 vid,
- 				struct dsa_db db)
-@@ -1030,6 +1213,9 @@ const struct dsa_switch_ops lan937x_switch_ops = {
- 	.port_bridge_leave = ksz_port_bridge_leave,
- 	.port_stp_state_set = lan937x_port_stp_state_set,
- 	.port_fast_age = ksz_port_fast_age,
-+	.port_vlan_filtering = lan937x_port_vlan_filtering,
-+	.port_vlan_add = lan937x_port_vlan_add,
-+	.port_vlan_del = lan937x_port_vlan_del,
- 	.port_fdb_dump = lan937x_port_fdb_dump,
- 	.port_fdb_add = lan937x_port_fdb_add,
- 	.port_fdb_del = lan937x_port_fdb_del,
--- 
-2.33.0
+What do you think?
 
+Thanks,
+Nícolas
+
+> 
+> ---
+> 
+>  arch/arm64/boot/dts/mediatek/mt8192.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+> index 26dbe9ecc528..32a836105ea7 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+> @@ -896,7 +896,7 @@ pcie_intc0: interrupt-controller {
+>  		};
+>  
+>  		nor_flash: spi@11234000 {
+> -			compatible = "mediatek,mt8192-nor";
+> +			compatible = "mediatek,mt8192-nor", "mediatek,mt8173-nor";
+>  			reg = <0 0x11234000 0 0xe0>;
+>  			interrupts = <GIC_SPI 431 IRQ_TYPE_LEVEL_HIGH 0>;
+>  			clocks = <&topckgen CLK_TOP_SFLASH_SEL>,
+> -- 
+> 2.36.0
+> 
