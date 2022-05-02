@@ -2,113 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 273E5517AF2
-	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 01:50:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0D2C3517B1B
+	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 02:00:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229510AbiEBXxT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 May 2022 19:53:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57086 "EHLO
+        id S229469AbiECADW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 May 2022 20:03:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40228 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230154AbiEBXxM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 May 2022 19:53:12 -0400
-Received: from mail-oi1-x22a.google.com (mail-oi1-x22a.google.com [IPv6:2607:f8b0:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14DEA3298D
-        for <devicetree@vger.kernel.org>; Mon,  2 May 2022 16:49:40 -0700 (PDT)
-Received: by mail-oi1-x22a.google.com with SMTP id l16so9501529oil.6
-        for <devicetree@vger.kernel.org>; Mon, 02 May 2022 16:49:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to:cc;
-        bh=f/8wAhfndevj/J1N3yBWJIasHRz86NCxkLOraqJEZ3I=;
-        b=U+eozlJiuwXweZAZwZgwKg8AbtEWzgT787jSunJqgNYKFAYU2sk9jF/tussaSBzEj6
-         zPONEEClbARzCV70uc7Eac8vMXYjko7CvW18CXSdgRFD6hiK9T7gZqDzUjmqV/b3PHmk
-         OWScniXMFIN7XUInNcGUHP0cy2DepwEIxBsrM=
+        with ESMTP id S229905AbiECADM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 May 2022 20:03:12 -0400
+Received: from mail-ot1-f53.google.com (mail-ot1-f53.google.com [209.85.210.53])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05345344D6;
+        Mon,  2 May 2022 16:59:38 -0700 (PDT)
+Received: by mail-ot1-f53.google.com with SMTP id 31-20020a9d0822000000b00605f1807664so7663718oty.3;
+        Mon, 02 May 2022 16:59:38 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to:cc;
-        bh=f/8wAhfndevj/J1N3yBWJIasHRz86NCxkLOraqJEZ3I=;
-        b=F3sYtJ0krmoxKuEF6U4CPVfTbtJN/Q1DHv7fJCSLZwVCAo5NB15/eBZ0q1UTEPjj58
-         lB8QqZ6TadOXnhp7/oejF8eeXKsia4KSlk9BLKMFFeBY6dVD2SuxAYVYrPGE8Q08jZfh
-         /c8k+O2KGecbKJkxWGs39p/cdQ9LrOpTeNlwNe4xESCfcghKgvfqyAj0oNZYtM4zECVN
-         M4BG9qWekjpoEisxIl/xiiztITpiX4+8IdjXfhDbp6I/mbsLbJYYGvCvFNRjLuogm89s
-         RCmKqxGSjQVPUnMBcvA67rBFqP01l1Q0Njj1kzrG7dOAHTktTPQjOMThahxkFTPzWLxA
-         sZoQ==
-X-Gm-Message-State: AOAM530zwuLcDL+TeDRSfKN15PFkMY6mtfthtbIv9jdaYLvFUmzqP9uL
-        D2yjSyXatcQL2o8UjQENlUlLKp2aDGiybCDcpnQkXA==
-X-Google-Smtp-Source: ABdhPJxXlou3d6XzjcL/neLV6qpKQUgvnmAFgJDuMOTACWhPnak8bHhRAo8T3khmrzYlbcN9YD2WnbIjkQoANiagm8E=
-X-Received: by 2002:a05:6808:18a5:b0:326:31ff:4232 with SMTP id
- bi37-20020a05680818a500b0032631ff4232mr249354oib.193.1651535380105; Mon, 02
- May 2022 16:49:40 -0700 (PDT)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Mon, 2 May 2022 16:49:39 -0700
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=gezA+FgfQIOeosXiXauEFuGOC1DO4zlGtjWK/c4Mmoo=;
+        b=ImQrAU+Gy9zV0JUNN4v5kSmZgKbfE6rmzOlf5BEuT7tyWUh2f/HjxJkeH/UJz1PVqa
+         kvndIeNf2e3vF+OiCX0GEw1Idj+UIyeBehdfFByUAo5KjwPR2QAsdBl//3mpIEN7IqX0
+         vvixmzxroMOV7r6SqK1bwjkAeKJVu5/RdZjWsJKeIfy3ChvtG9MlQpRM8J58FYURbV4I
+         K6EkXtHJ6ura5KUoPGiY1nNDRZk3twHKT1P1f3czZpk3n32FN0MyhYddkTdGB+TC94SL
+         LVwWdTECO00x3ZnusXBjau9OLuINKinbPgDV6V4zwmzQviDUtrreHh7zLc71PcBWD1Zi
+         Pmjg==
+X-Gm-Message-State: AOAM532v+4QXWCfiKQ0ydkuQXN3acYgGPCjetc3pjgmMPmbHVAEldnwF
+        LD8xq5lKErD7Khb6xA2OPg==
+X-Google-Smtp-Source: ABdhPJyLUr8CePi/NiyCU4NOTuQg5eORG04y++TX2wMUO+0xhMygAcWkga2uJnvHK7HmmMiL5LKfyg==
+X-Received: by 2002:a05:6830:22e1:b0:605:e40d:d606 with SMTP id t1-20020a05683022e100b00605e40dd606mr5162983otc.205.1651535978105;
+        Mon, 02 May 2022 16:59:38 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id w10-20020a056830060a00b0060603221253sm3424123oti.35.2022.05.02.16.59.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 02 May 2022 16:59:37 -0700 (PDT)
+Received: (nullmailer pid 2058233 invoked by uid 1000);
+        Mon, 02 May 2022 23:59:36 -0000
+Date:   Mon, 2 May 2022 18:59:36 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Marcel Ziswiler <marcel@ziswiler.com>
+Cc:     Matthias Schiffer <matthias.schiffer@tq-group.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        linux-kernel@vger.kernel.org,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Denys Drozdov <denys.drozdov@toradex.com>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Li Yang <leoyang.li@nxp.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Max Krummenacher <max.krummenacher@toradex.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Russell King <linux@armlinux.org.uk>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Tim Harvey <tharvey@gateworks.com>, devicetree@vger.kernel.org,
+        Frank Rowand <frowand.list@gmail.com>,
+        Marek Vasut <marex@denx.de>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>
+Subject: Re: [PATCH v2 08/14] dt-bindings: arm: fsl: add
+ toradex,colibri-imx6ull
+Message-ID: <YnBwaHRcamhz1hMe@robh.at.kernel.org>
+References: <20220425162356.176665-1-marcel@ziswiler.com>
+ <20220425162356.176665-9-marcel@ziswiler.com>
 MIME-Version: 1.0
-In-Reply-To: <CAE-0n50Y8tZD9Djn9TVaAiHxehFJ2cZKZ1Z09piDk47uw3nK+Q@mail.gmail.com>
-References: <20220429233112.2851665-1-swboyd@chromium.org> <20220429233112.2851665-2-swboyd@chromium.org>
- <CAD=FV=VX8EEgkeLgKwyKvjztcjbA8UhKOUpTr-sS1_Ec=QcWbA@mail.gmail.com>
- <CAKdAkRSOtAD6u_cwKhHeMLgz5dC2hfPvVvqmj+17b4i-nspfgg@mail.gmail.com> <CAE-0n50Y8tZD9Djn9TVaAiHxehFJ2cZKZ1Z09piDk47uw3nK+Q@mail.gmail.com>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.10
-Date:   Mon, 2 May 2022 16:49:39 -0700
-Message-ID: <CAE-0n51hke4j6ChZ0am53FEojXF96X3K+ptOMOhdN7T7W1550g@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: google,cros-ec-keyb: Introduce
- switches only compatible
-To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Doug Anderson <dianders@chromium.org>
-Cc:     LKML <linux-kernel@vger.kernel.org>, patches@lists.linux.dev,
-        chrome-platform@lists.linux.dev,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Benson Leung <bleung@chromium.org>,
-        Guenter Roeck <groeck@chromium.org>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        "Joseph S. Barrera III" <joebar@chromium.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220425162356.176665-9-marcel@ziswiler.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Stephen Boyd (2022-05-02 13:41:33)
-> Quoting Dmitry Torokhov (2022-05-02 10:43:06)
->
-> > We have
-> > implemented the notion that without rows/columns properties we will
-> > not be creating input device for the matrix portion, all older devices
-> > should have it defined, so the newer driver is compatible with them...
-> >
->
-> Agreed, that solves half the problem. This new compatible eases
-> integration so that devicetrees can say they're compatible with the old
-> binding that _requires_ the rows/column properties. By making the driver
-> change we loosened that requirement, but the binding should have been
-> making the properties required at the start because it fails to bind
-> otherwise.
->
-> My interpretation of what Doug is saying is that we should maintain that
-> requirement that rows/columns exists if the original compatible
-> google,cros-ec-keyb is present and use the new compatible to indicate
-> that there are switches. Combining the two compatibles means there's
-> switches and a matrix keyboard, having only the switches compatible
-> means only switches, and having only the keyboard compatible means only
-> matrix keyboard.
->
-> It sounds OK to me.
+On Mon, 25 Apr 2022 18:23:50 +0200, Marcel Ziswiler wrote:
+> From: Denys Drozdov <denys.drozdov@toradex.com>
+> 
+> Add toradex,colibri-imx6ull for carrier board dts,
+> including aster, iris and iris-v2 device tree,
+> wifi and nonwifi variants for NAND and eMMC modules.
+> 
+> Signed-off-by: Denys Drozdov <denys.drozdov@toradex.com>
+> Signed-off-by: Marcel Ziswiler <marcel.ziswiler@toradex.com>
+> 
+> ---
+> 
+> Changes in v2:
+> - Fixed long line as pointed out by Rob's bot.
+> - Added V3 to Colibri Evaluation Board as done elsewhere.
+> 
+>  .../devicetree/bindings/arm/fsl.yaml          | 25 +++++++++++++------
+>  1 file changed, 17 insertions(+), 8 deletions(-)
+> 
 
-There's one more thing to mention. The switches are discovered by
-querying the EC. Reverting commit 4352e23a7ff2 ("Input: cros-ec-keyb -
-only register keyboard if rows/columns exist") makes it so that in the
-case you have a keyboard and switches you'll be tempted to define both
-compatibles because you have some switches, but for all practical
-purposes you don't need to change anything. The EC will still be queried
-for the switches. Maybe "google,cros-ec-keyb-switches" is a bad name. It
-should really be "google,cros-ec-keyb-v2" or
-"google,cros-ec-keyb-optional" where we clarify that matrix keyboard
-properties are optional now and are used to indicate if there's a matrix
-keyboard or not.
+Acked-by: Rob Herring <robh@kernel.org>
