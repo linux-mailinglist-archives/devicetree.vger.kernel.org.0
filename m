@@ -2,57 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 892D35172C6
-	for <lists+devicetree@lfdr.de>; Mon,  2 May 2022 17:36:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0EA345172FC
+	for <lists+devicetree@lfdr.de>; Mon,  2 May 2022 17:40:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239755AbiEBPk0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 May 2022 11:40:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47494 "EHLO
+        id S1376413AbiEBPnI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 May 2022 11:43:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49884 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234055AbiEBPk0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 May 2022 11:40:26 -0400
-Received: from mail-qt1-f180.google.com (mail-qt1-f180.google.com [209.85.160.180])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55A1B1013;
-        Mon,  2 May 2022 08:36:57 -0700 (PDT)
-Received: by mail-qt1-f180.google.com with SMTP id y3so11339159qtn.8;
-        Mon, 02 May 2022 08:36:57 -0700 (PDT)
+        with ESMTP id S1385916AbiEBPnH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 May 2022 11:43:07 -0400
+Received: from mail-qk1-f171.google.com (mail-qk1-f171.google.com [209.85.222.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3D72BC38;
+        Mon,  2 May 2022 08:39:34 -0700 (PDT)
+Received: by mail-qk1-f171.google.com with SMTP id j6so11614114qkp.9;
+        Mon, 02 May 2022 08:39:34 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=TDoz5j+pxxlLo8BZzNVeFJ18NZpMv98cHB+e5SciXrI=;
-        b=YlXXX6SwETQr4cO4SWEtRNL23hpOufVuDqmQODbAPFXVW7t91dnBlQIXsoBRMye4Ob
-         l2CELWbxZERLKzVFdXsxks2TR/lVUz/OjvLdCU+56wOEbSF+NhDl4B6fLd9zRNwxqRhS
-         BGESwfJqgtgMokUc9hiLzNsjstnbvBbG06kZQSI6okYDzxAixGAwqY8c+rOHYfSEXbVu
-         Mo5ye3/G7Bri9FcGc82Fu2DqGWmmKeBF0H9etK0Qq8o+BF3L9DEx8g86ruarOpPmkcqC
-         1JEWqJnnRQX+DSWdfPe5s1qGWfRYM7WE8CXosFvDdbI+AjFpJICqC2Mxpx9GvVQbq4RW
-         WlSw==
-X-Gm-Message-State: AOAM5319V66UbdsWpqIzZu4K+KZVGIB+4y3/RPWwTOnx5O2JRIa95vjB
-        8wbwBos2doQcggYcyOzd5ObHiL9doAa3ew==
-X-Google-Smtp-Source: ABdhPJwpy8PIOwnZjUxgUGnaF5I6e3yBHOWnZaCARHj7giqBxS1ZEhZgndDu5d4gNG+HR82uUoNHFg==
-X-Received: by 2002:a05:622a:1906:b0:2f3:a3f2:c50b with SMTP id w6-20020a05622a190600b002f3a3f2c50bmr5341388qtc.391.1651505816361;
-        Mon, 02 May 2022 08:36:56 -0700 (PDT)
-Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com. [209.85.128.180])
-        by smtp.gmail.com with ESMTPSA id l20-20020ac84a94000000b002f39b99f676sm4358068qtq.16.2022.05.02.08.36.55
+        bh=1cbGL55MYefR1RBZQnBzW2Qa9xyYWDeso5LJDjp3Bs0=;
+        b=agbtVE+6hD43TgiKkbLdT5BGzG9qk7CR085iYY2Zh4iLLKYQTCUjcvnaHtCRFQFpom
+         /LYLQmHsxTx0xVJ18DQ5wB2gkIT79iZUF1aMVhb1MR8q5gztJRP6e/JvmEFVtjYlOAue
+         rgx6KaNkdxyukbRt/XkegzcXJ7q+UVYmPIHXTiMtwH46+y83mzDgIHA4wHgFIByRX3mx
+         dS5EkfS0R9zs5CIw3LCDeeMbTrcTNEKxcbHLIPO84kZUip0E+GLRFLX4TWQ7FTE/PlQa
+         HD8NMGwW9DP0yufeRtT8BxQb2jNcEvzea8MykVxFBlwjCcN3LNAqyEraVglNh5PLzNXP
+         0GYA==
+X-Gm-Message-State: AOAM533yycLW3jAqkTjzssmIc6tzGDrpnTt9GMmRNiB33pyG5ybPGWHx
+        1TkzvSEsFVML7LLE59N1Az1c8Z6XKHPZdw==
+X-Google-Smtp-Source: ABdhPJywu5l9QXuFBssHW2zNyBncjnPx1NvdseTZGeiA1/vQANEr0jEYFMgqeF6RjYhw9/x4Mp3PIg==
+X-Received: by 2002:a37:5347:0:b0:69f:842f:bfed with SMTP id h68-20020a375347000000b0069f842fbfedmr9005184qkb.303.1651505973505;
+        Mon, 02 May 2022 08:39:33 -0700 (PDT)
+Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com. [209.85.128.178])
+        by smtp.gmail.com with ESMTPSA id i3-20020ac84883000000b002f39b99f68csm4361014qtq.38.2022.05.02.08.39.33
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 02 May 2022 08:36:56 -0700 (PDT)
-Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-2f7d19cac0bso151631197b3.13;
-        Mon, 02 May 2022 08:36:55 -0700 (PDT)
-X-Received: by 2002:a05:690c:84:b0:2f1:9caa:e4f7 with SMTP id
- be4-20020a05690c008400b002f19caae4f7mr12285991ywb.384.1651505815633; Mon, 02
- May 2022 08:36:55 -0700 (PDT)
+        Mon, 02 May 2022 08:39:33 -0700 (PDT)
+Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-2f7bb893309so151715407b3.12;
+        Mon, 02 May 2022 08:39:33 -0700 (PDT)
+X-Received: by 2002:a81:9b0c:0:b0:2f4:c522:7d3c with SMTP id
+ s12-20020a819b0c000000b002f4c5227d3cmr11532849ywg.316.1651505972915; Mon, 02
+ May 2022 08:39:32 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220501082150.24662-1-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20220501082150.24662-1-biju.das.jz@bp.renesas.com>
+References: <20220501081930.23743-1-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20220501081930.23743-1-biju.das.jz@bp.renesas.com>
 From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 2 May 2022 17:36:44 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdV3sGMxYRSKay=7oM07H2EBW1zeOH090jfaQxhEX9DGHw@mail.gmail.com>
-Message-ID: <CAMuHMdV3sGMxYRSKay=7oM07H2EBW1zeOH090jfaQxhEX9DGHw@mail.gmail.com>
-Subject: Re: [PATCH] spi: dt-bindings: renesas,rspi: Document RZ/G2UL SoC
+Date:   Mon, 2 May 2022 17:39:20 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdUouMixUNrDkinwy2U_JZSGrhsf-Pq2YZOES7tN3bOmhQ@mail.gmail.com>
+Message-ID: <CAMuHMdUouMixUNrDkinwy2U_JZSGrhsf-Pq2YZOES7tN3bOmhQ@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: thermal: rzg2l-thermal: Document RZ/G2UL bindings
 To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-spi <linux-spi@vger.kernel.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Linux PM list <linux-pm@vger.kernel.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
         Chris Paterson <Chris.Paterson2@renesas.com>,
@@ -62,21 +66,18 @@ Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
         FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
-        version=3.4.6
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, May 1, 2022 at 10:22 AM Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> Add RSPI binding documentation for Renesas RZ/G2UL SoC.
->
-> RSPI block is identical to one found on RZ/A, so no driver changes are
-> required. The fallback compatible string "renesas,rspi-rz" will be used
-> on RZ/G2UL.
+On Sun, May 1, 2022 at 10:19 AM Biju Das <biju.das.jz@bp.renesas.com> wrote:
+> Document RZ/G2UL TSU bindings. The TSU block on RZ/G2UL is identical to one
+> found on RZ/G2L SoC. No driver changes are required as generic compatible
+> string "renesas,rzg2l-tsu" will be used as a fallback.
 >
 > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
 
