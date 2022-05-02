@@ -2,67 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A0CE751796F
-	for <lists+devicetree@lfdr.de>; Mon,  2 May 2022 23:52:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AAA61517971
+	for <lists+devicetree@lfdr.de>; Mon,  2 May 2022 23:52:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237686AbiEBVzz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 May 2022 17:55:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43728 "EHLO
+        id S1387689AbiEBV4B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 May 2022 17:56:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43770 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232319AbiEBVzu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 May 2022 17:55:50 -0400
-Received: from mail-oi1-x232.google.com (mail-oi1-x232.google.com [IPv6:2607:f8b0:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A6D025D9
-        for <devicetree@vger.kernel.org>; Mon,  2 May 2022 14:52:20 -0700 (PDT)
-Received: by mail-oi1-x232.google.com with SMTP id r8so16536238oib.5
-        for <devicetree@vger.kernel.org>; Mon, 02 May 2022 14:52:20 -0700 (PDT)
+        with ESMTP id S234615AbiEBVzx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 May 2022 17:55:53 -0400
+Received: from mail-oi1-x22a.google.com (mail-oi1-x22a.google.com [IPv6:2607:f8b0:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 996D92DF1
+        for <devicetree@vger.kernel.org>; Mon,  2 May 2022 14:52:21 -0700 (PDT)
+Received: by mail-oi1-x22a.google.com with SMTP id v65so16507014oig.10
+        for <devicetree@vger.kernel.org>; Mon, 02 May 2022 14:52:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=2ArPYyyRi4X1PVF7Op/jphcaVscyLH09KdLAbVintNg=;
-        b=exoav0CMwObCGm6s5ouXRWqHwd0Nkj76FobHVMGu3sYtsR9daZgQpaZu/RyoRxv/mP
-         X9vFo3LDK8irUGUbIohgox0/+i0zWUfWl2cI2CoKgdydinjIgEOtUob5EpiX09EIE+BB
-         p3bGX/Q2yQaJ7iu/hmpZtLBVQUOFwgvkI4UWBRf0PAP+CMJ+t5D7ZoOygtTdx6eTuUuq
-         itBVVDHpjOzafIas1K04AsQKgkzDBMWtW9I1AkJig09QNGJ7Rsy7I0X870bKuRxK+msw
-         5lplc+QWp+six+Zkjkk1/WdNaCEeMqzlnBQHfOmdX3nzO5Ie0WYSbiUh3lWGf9Skby39
-         mltg==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=m7cFEgSG093ymIwJOUazHZ2tzJugEpErbHWE8WXYuz8=;
+        b=D+e6zSMU/lo2ulKiC5s6i8eyAliSd+WLo/190SJbLKVH/F/nZJhxsSN/HieZA4aDQ+
+         uJkEFkJ8pqxTzyW80fPGmJu0b3MpFmlmY9e59KtNXx1lomYvRKlHzVIky8vaeeVXMW+N
+         ++/5Xt5vQUeDV76zYzDWRzy5Z5Rso4xdAnkp6+cfW795M/nbDR2ZNujrLdzzws9Pzjtc
+         c0iAl+Ya6zL1o7HMJpWfo836T8n0RrmdA7hAT4Cy3jpr5PiQGbzEPCp4mE01jLYPnVzJ
+         BiUHfoaHmqJmVZro0eBKS6cOilbZSd28X9YfjZuwMsv1d2GZsqc68DXvkJ9cGYK2SRk8
+         QR9g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=2ArPYyyRi4X1PVF7Op/jphcaVscyLH09KdLAbVintNg=;
-        b=UsDPKFiH+TzgSoPFLt+DmrwZ6/c9TfVo9oEOo/SPMxWSrlQ3rxW5MXWauIr8eetP3Q
-         An6Td/eG/1mMry68nND4TaN7sYZJdguJb67tAxg7Nalc1xSxlu+aYpIP58dkCpLdVIsp
-         hBM5p2ujdaBaB9xUlp9nBFJzmxfxCRNCTeJb9ktMICAP/nHJmzQMlP+KYOkKADUDRnmF
-         rLTl/2xiMQkeKeisDyPfORFkCeBusmOBoCreRn/BVBFv7hWnIhcoDFm3hkOFh55mdkVE
-         76hBIRqzNXqXWS0NdSghsIp3pQ7rCwMPiGSCirtIfym6D+AYyAIhEmLHKxbzpXiMXW9v
-         Egaw==
-X-Gm-Message-State: AOAM531lj4QPvyL4dlYAzEK2VKnEZCKda6UWgjO1ns2FV75bnkzkyJIe
-        CcD/th07IQ3SJFNdqi5LMRFHbQ==
-X-Google-Smtp-Source: ABdhPJzNxQPOx1qc/jec0j56zzKBLf2XrK43BUDcwUDagR5CpUlZXH4tu86spDSpch44107GoXNU6A==
-X-Received: by 2002:a05:6808:2003:b0:326:24f0:89ee with SMTP id q3-20020a056808200300b0032624f089eemr565221oiw.24.1651528339977;
-        Mon, 02 May 2022 14:52:19 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=m7cFEgSG093ymIwJOUazHZ2tzJugEpErbHWE8WXYuz8=;
+        b=aUtKHe7TUrvYp5zDZWfYvUbrfOI0+icoYip14U5jqeZvc5Kx+d7rpX0hRl1+Qsod/E
+         oQv+JS76aarZVs9eBVLwx7CfuWHWQ305z9N4gCutrgjApvnd7wduZYmB7MsDfkytuCJx
+         9pm4w5lBNl2Bp3BaXyiGK130I3xnyGfiIvGHpYHC8CqJ3LZsEeU0WgDaTBu45X1zg0aG
+         f2pu7Cl8qAuBo0FYUvRs26v0sFt/KIY7AH7QTMToWSmg+qvlF7Y8Z3PVRc2AZ0sKtkqA
+         HelChZI7I31Wv0c7buB83UJfX6bz6/4sEDSvPVTv00m2FY1F7nF6QfCmnO6oS70YL+Ed
+         zZGQ==
+X-Gm-Message-State: AOAM5304Im50SIWOcFboo8v11ZChitKYiBfUDTbrEAck4DPUyOIZwWB0
+        DcM9fi9JnB+SqA0Pqk2je7FG4+VP9l7wkA8n
+X-Google-Smtp-Source: ABdhPJxgluWPoCVRCyVACraXiPxfGEtFANGj5JdQZtfNBmkUMZbAXHgiKECl6IaE5DGpzz74JlFmyg==
+X-Received: by 2002:a05:6808:124a:b0:2da:3588:6d35 with SMTP id o10-20020a056808124a00b002da35886d35mr550709oiv.269.1651528341028;
+        Mon, 02 May 2022 14:52:21 -0700 (PDT)
 Received: from ripper.. (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id k16-20020a544710000000b00325cda1ff8asm2720406oik.9.2022.05.02.14.52.19
+        by smtp.gmail.com with ESMTPSA id k16-20020a544710000000b00325cda1ff8asm2720406oik.9.2022.05.02.14.52.20
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 May 2022 14:52:19 -0700 (PDT)
+        Mon, 02 May 2022 14:52:20 -0700 (PDT)
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Sai Prakash Ranjan <quic_saipraka@quicinc.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-Subject: [PATCH 0/2] soc: qcom: llcc: Add sc8180x and sc8280xp support
-Date:   Mon,  2 May 2022 14:54:04 -0700
-Message-Id: <20220502215406.612967-1-bjorn.andersson@linaro.org>
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Sai Prakash Ranjan <quic_saipraka@quicinc.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 1/2] dt-bindings: arm: msm: Add sc8180x and sc8280xp LLCC compatibles
+Date:   Mon,  2 May 2022 14:54:05 -0700
+Message-Id: <20220502215406.612967-2-bjorn.andersson@linaro.org>
 X-Mailer: git-send-email 2.35.1
+In-Reply-To: <20220502215406.612967-1-bjorn.andersson@linaro.org>
+References: <20220502215406.612967-1-bjorn.andersson@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -70,17 +73,32 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-These patches adds support for the LLCC instance found in the sc8180x and sc8280xp.
+Add compatibles for the SC8180X and SC8280XP platforms to the existing
+LLCC binding.
 
-Bjorn Andersson (2):
-  dt-bindings: arm: msm: Add sc8180x and sc8280xp LLCC compatibles
-  soc: qcom: llcc: Add sc8180x and sc8280xp configurations
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+---
 
- .../bindings/arm/msm/qcom,llcc.yaml           |  2 +
- drivers/soc/qcom/llcc-qcom.c                  | 60 +++++++++++++++++++
- include/linux/soc/qcom/llcc-qcom.h            |  2 +
- 3 files changed, 64 insertions(+)
+Changes since v1:
+- Picked up Krzysztof's ack
 
+ Documentation/devicetree/bindings/arm/msm/qcom,llcc.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/arm/msm/qcom,llcc.yaml b/Documentation/devicetree/bindings/arm/msm/qcom,llcc.yaml
+index 30fcbe2ad8a3..5ea506412b4e 100644
+--- a/Documentation/devicetree/bindings/arm/msm/qcom,llcc.yaml
++++ b/Documentation/devicetree/bindings/arm/msm/qcom,llcc.yaml
+@@ -23,6 +23,8 @@ properties:
+     enum:
+       - qcom,sc7180-llcc
+       - qcom,sc7280-llcc
++      - qcom,sc8180x-llcc
++      - qcom,sc8280xp-llcc
+       - qcom,sdm845-llcc
+       - qcom,sm6350-llcc
+       - qcom,sm8150-llcc
 -- 
 2.35.1
 
