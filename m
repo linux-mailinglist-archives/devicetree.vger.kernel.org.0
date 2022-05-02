@@ -2,58 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 02F23517763
-	for <lists+devicetree@lfdr.de>; Mon,  2 May 2022 21:24:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3A2D151776A
+	for <lists+devicetree@lfdr.de>; Mon,  2 May 2022 21:26:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1387106AbiEBT2C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 May 2022 15:28:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51098 "EHLO
+        id S1387126AbiEBT3i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 May 2022 15:29:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52840 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1387089AbiEBT2B (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 May 2022 15:28:01 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1471FF1;
-        Mon,  2 May 2022 12:24:31 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: nfraprado)
-        with ESMTPSA id EE26B1F43619
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1651519470;
-        bh=XkLENWM+R3mXRcAnf7rx6wijc7C/RaUn71isMJVASJk=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=HVKO8pC3w6eYiPSquxenJQrMYI7U13/cmYQoDDE2VSCGKBJ/xAg0NBA4O+71HpmsD
-         zuWLVrPr6/yfdIrfJIFS57Ftw6uinl16vDF9HSpDW9KN5tgHl6TZeYVQMVE6U/egZ6
-         vEF9YxbLcFTyv3snK6oipLxlXeOOMSsE3Bb0e2ji7ckTovc83NEXPE32GJNf5xCAOw
-         oFDzp7U/ThHiU71zgOO7RiITYVF45QYsoc1ntahTh58PsVMN5s6oC/hOKH+tHqLtzt
-         zDz10r44TlOwBM/YVyLpnjOfxRW8PzebHhl6QGVWmukUAjY+LFFr8mDCqSyeOwknf1
-         TcusRrYZWtckQ==
-From:   =?UTF-8?q?N=C3=ADcolas=20F=2E=20R=2E=20A=2E=20Prado?= 
-        <nfraprado@collabora.com>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, kernel@collabora.com,
-        =?UTF-8?q?N=C3=ADcolas=20F=2E=20R=2E=20A=2E=20Prado?= 
-        <nfraprado@collabora.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
+        with ESMTP id S1387124AbiEBT3h (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 May 2022 15:29:37 -0400
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C8C1D86
+        for <devicetree@vger.kernel.org>; Mon,  2 May 2022 12:26:07 -0700 (PDT)
+Received: by mail-lf1-x12a.google.com with SMTP id bu29so27016002lfb.0
+        for <devicetree@vger.kernel.org>; Mon, 02 May 2022 12:26:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=c49kkjx2fy3MeTzrRmuPxxWXGx08IMe9Dcd+JXOLX+0=;
+        b=ldKKAQaCKDk3JYBAnt8LZZq+oZEJAvlRntWJKHrZN3CMLHaRRx2FFLg33P53PKeECW
+         GIYN9xd59ElMgy4QBk0iQRlcn1fvHSZIrb1EvQ69x7yth+65yU0s0acjtEl39/RsTPpx
+         82Vv++LUMTK/IdtthjuSYFDdzn3fm57kspHKrhkpLVxV9re05K5FWDZ6brjsO+YyiW8R
+         qIgyDozn5aC5//ae4aZnuRPvmPlZUHsU1BSPW6EsohO5R55tIGe2qEpUDktMt49WaMih
+         p+XqSg1lhYXWhzha6mmiXxf9q6tlRmb1R6bLgPn9kxuBkoP4AmzJ1ms0lqINH0C9qYmM
+         EScg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=c49kkjx2fy3MeTzrRmuPxxWXGx08IMe9Dcd+JXOLX+0=;
+        b=ftQp04MDYctdKzWev2CxUgKCmnIh5IK4oBL2UTMQWdYKKiloU3BvIdQGupL+IMWhnJ
+         bSet6XkT2JimqXyFXfcsNAuROqYAXg/CpDJzboa+DkXefLTRLNa9wvaZyu8e43mGPc9Z
+         uu4wyOmzvK0SbHQyCRMvARxb0lhVmOUbipF2CBHr0N9Fr6cdrDPgoY91rgkWwQEf7hxd
+         +pbLjqxMdpTuyRF8fLXv8sMSIKji0PuC9CM29FwHSvYN8dHFCWz92QQfahyDcm2wmC2B
+         AtqZyTe9zqKuMKuZDfMStR/ICXH2BM1mMEHaoMvwye2rze9466r06HZb05zgmjdJ0Xay
+         yEUw==
+X-Gm-Message-State: AOAM530FkMlCJHUUx4LNH0qvF6tOO4OgEOsYzTr7kSwfOddYkXsvxXRl
+        ES4ehOhJ2kk1Z/8G9OJD5LMX8V4uc302xQ==
+X-Google-Smtp-Source: ABdhPJy5HcOII9BlPXWeu0agiEN4labVOEKtXx6T72OsY7RsgNY4IM8RgwHrmm6SCAcPbK8KZBKqfQ==
+X-Received: by 2002:a19:6915:0:b0:471:f9a9:7777 with SMTP id e21-20020a196915000000b00471f9a97777mr9943439lfc.428.1651519565644;
+        Mon, 02 May 2022 12:26:05 -0700 (PDT)
+Received: from eriador.lan ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id t12-20020ac24c0c000000b0047255d2119fsm771489lfq.206.2022.05.02.12.26.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 02 May 2022 12:26:05 -0700 (PDT)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Tinghan Shen <tinghan.shen@mediatek.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        linux-remoteproc@vger.kernel.org
-Subject: [PATCH v2 2/2] dt-bindings: remoteproc: mediatek: Add optional memory-region to mtk,scp
-Date:   Mon,  2 May 2022 15:24:20 -0400
-Message-Id: <20220502192420.2548512-3-nfraprado@collabora.com>
-X-Mailer: git-send-email 2.36.0
-In-Reply-To: <20220502192420.2548512-1-nfraprado@collabora.com>
-References: <20220502192420.2548512-1-nfraprado@collabora.com>
+        Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Vinod Koul <vkoul@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>
+Subject: [PATCH v2] arm64: dts: qcom: sm8450 add ITS device tree node
+Date:   Mon,  2 May 2022 22:26:04 +0300
+Message-Id: <20220502192604.272686-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -61,36 +71,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The SCP co-processor can optionally be passed a reserved memory region
-to use. Add this property in the dt-binding.
+Add device tree node corresponding to the ITS part of GICv3.
 
-Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
-
+Reviewed-by: Vinod Koul <vkoul@kernel.org>
+Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
-I left out Angelo's R-b since of the 3 lines in the patch from v1, only
-1 is left.
+Changes since v1:
+ - Fixed subject to mention sm8450,
+ - Reordered properties to follow recommended order.
+---
+ arch/arm64/boot/dts/qcom/sm8450.dtsi | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
-Changes in v2:
-- Dropped type and description since it's a well-known property
-- Set maxItems to 1
-
- Documentation/devicetree/bindings/remoteproc/mtk,scp.yaml | 3 +++
- 1 file changed, 3 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/remoteproc/mtk,scp.yaml b/Documentation/devicetree/bindings/remoteproc/mtk,scp.yaml
-index ec9ddeb6ca2c..c6a92ac8db18 100644
---- a/Documentation/devicetree/bindings/remoteproc/mtk,scp.yaml
-+++ b/Documentation/devicetree/bindings/remoteproc/mtk,scp.yaml
-@@ -51,6 +51,9 @@ properties:
-   interrupts:
-     maxItems: 1
- 
-+  memory-region:
-+    maxItems: 1
+diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+index 5f17540669b0..c8eeef5bedde 100644
+--- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+@@ -1693,6 +1693,16 @@ intc: interrupt-controller@17100000 {
+ 			reg = <0x0 0x17100000 0x0 0x10000>,     /* GICD */
+ 			      <0x0 0x17180000 0x0 0x200000>;    /* GICR * 8 */
+ 			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
++			#address-cells = <2>;
++			#size-cells = <2>;
++			ranges;
 +
- required:
-   - compatible
-   - reg
++			gic_its: msi-controller@17140000 {
++				compatible = "arm,gic-v3-its";
++				reg = <0x0 0x17140000 0x0 0x20000>;
++				msi-controller;
++				#msi-cells = <1>;
++			};
+ 		};
+ 
+ 		timer@17420000 {
 -- 
-2.36.0
+2.35.1
 
