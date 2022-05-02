@@ -2,68 +2,46 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D5383517212
-	for <lists+devicetree@lfdr.de>; Mon,  2 May 2022 16:57:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4AFC751721A
+	for <lists+devicetree@lfdr.de>; Mon,  2 May 2022 17:01:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1385624AbiEBPBW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 May 2022 11:01:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38490 "EHLO
+        id S1349320AbiEBPEj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 May 2022 11:04:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41810 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349320AbiEBPBV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 May 2022 11:01:21 -0400
-Received: from mail-pg1-x52f.google.com (mail-pg1-x52f.google.com [IPv6:2607:f8b0:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3468BE0B2
-        for <devicetree@vger.kernel.org>; Mon,  2 May 2022 07:57:52 -0700 (PDT)
-Received: by mail-pg1-x52f.google.com with SMTP id e5so789342pgc.5
-        for <devicetree@vger.kernel.org>; Mon, 02 May 2022 07:57:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=XHqLNWitZtORmjEq/cRS//R1AvQcIbzg25S0RWWto9k=;
-        b=AyFgig29pfqccJeJdorEFuAEQ2F3/ciPZDDiB/bjUaNPUxsvPj1ds+wxjwJA9Zo4jw
-         nlfh041c6A0wdnF6jiRHssXwjPQhgV05k/hka086lAsbghZYwvR1hSco0mgsAV6pHY2Q
-         QiQmt4Bkw/9PGihig7cA8mI687d6BFxvOre+xKrStaA0yJlAqdJ3bjPnV1sf+RYKNSzA
-         /4GjeJD4gqJIRTWvQfpsLASKs3sa3+WXgRQYGWZhukOzU6FHKUGVeucSAzaX/uB/imbO
-         Wb4scXI/DkeSiOmsXgjeRoOiv4YGJdmwUvm3I8b19UiExQG5anjYUbp+fGaK7thasFg0
-         c5/Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=XHqLNWitZtORmjEq/cRS//R1AvQcIbzg25S0RWWto9k=;
-        b=iDV4R8+6ysAHFJ2RSz6v+F0s21+rimuupwKraUY0hHkrxF1lc/Nda6huiZoRr/TAt1
-         HMsa6cZcC6uteqF3A02//C0YRllPA5iPsD4bkNZbUBhMjOOLYWo6ElXtKoAF12iM+Wo+
-         YHGz7K/V249eExLnrHQM6OYcC1puuAAxWlJc+BatR2vRBpcizCdD6dtYXh6GjHFDX5Qz
-         WR0DPPGoqkygBbAQ8cf7mNQUiJB+9lZAutXbf6PD+jEs4tthpdu6GynNgWTSxJ1Yz/gm
-         V8BJz3R640Kqhz6D7S4Ae+PMhGur1KUn0DlGjG4VRhVXJpRCIV3bIH81dFSmltEqu8cJ
-         AOOw==
-X-Gm-Message-State: AOAM530ZJacklmf/HZe/EybYxh50LRpoAoaVPh6hUf1CAyjEskeCLqGY
-        eHooqzK3n7zUumOyHpNQbhgG
-X-Google-Smtp-Source: ABdhPJyIBwUGoIN5550lxCNvnnupjXjaMPmDyqTNGFAY1zq7+AzTJUTXeHmwH9N6r2cJ5TRhX1axYg==
-X-Received: by 2002:a63:4723:0:b0:3c2:69ab:df80 with SMTP id u35-20020a634723000000b003c269abdf80mr27147pga.23.1651503471617;
-        Mon, 02 May 2022 07:57:51 -0700 (PDT)
-Received: from thinkpad ([27.111.75.99])
-        by smtp.gmail.com with ESMTPSA id h2-20020a62b402000000b0050dc762815fsm4776688pfn.57.2022.05.02.07.57.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 May 2022 07:57:49 -0700 (PDT)
-Date:   Mon, 2 May 2022 20:27:43 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Kaushal Kumar <quic_kaushalk@quicinc.com>
-Cc:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 3/4] ARM: dts: qcom: sdx65-mtp: Enable QPIC BAM support
-Message-ID: <20220502145743.GE98313@thinkpad>
-References: <1651500878-10244-1-git-send-email-quic_kaushalk@quicinc.com>
- <1651500878-10244-4-git-send-email-quic_kaushalk@quicinc.com>
+        with ESMTP id S239046AbiEBPEi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 May 2022 11:04:38 -0400
+Received: from mail-m17638.qiye.163.com (mail-m17638.qiye.163.com [59.111.176.38])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EED70101FD;
+        Mon,  2 May 2022 08:01:08 -0700 (PDT)
+Received: from localhost.localdomain (unknown [IPV6:2001:250:6801:5501:163d:f2ff:fecb:5632])
+        by mail-m17638.qiye.163.com (Hmail) with ESMTPA id 9651E1C01BB;
+        Mon,  2 May 2022 23:01:06 +0800 (CST)
+From:   Chukun Pan <amadeus@jmu.edu.cn>
+To:     Maxime Ripard <maxime@cerno.tech>
+Cc:     Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+        Chukun Pan <amadeus@jmu.edu.cn>
+Subject: [PATCH] arm64: dts: allwinner: h6: Enable CPU opp tables for OrangePi One Plus
+Date:   Mon,  2 May 2022 23:01:01 +0800
+Message-Id: <20220502150101.45200-1-amadeus@jmu.edu.cn>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1651500878-10244-4-git-send-email-quic_kaushalk@quicinc.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Transfer-Encoding: 8bit
+X-HM-Spam-Status: e1kfGhgUHx5ZQUtXWQgPGg8OCBgUHx5ZQUlOS1dZCBgUCR5ZQVlLVUtZV1
+        kWDxoPAgseWUFZKDYvK1lXWShZQUhPN1dZLVlBSVdZDwkaFQgSH1lBWUMeGRlWSkxLGExCTEtLGE
+        hJVRMBExYaEhckFA4PWVdZFhoPEhUdFFlBWU9LSFVKSktISkNVS1kG
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6MyI6Shw6Az01EBUdTCM0MEgM
+        Di1PCw1VSlVKTU5KTktITU1MSU5LVTMWGhIXVRoWGh8eDgg7ERYOVR4fDlUYFUVZV1kSC1lBWUlL
+        S0pBSU5LQU1DS0pBTk5LSkFKTUgfQR1JHR1BHR4YGUFOTUhJWVdZCAFZQUhLQ0w3Bg++
+X-HM-Tid: 0a80854a16bed993kuws9651e1c01bb
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -71,53 +49,65 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 02, 2022 at 07:14:37AM -0700, Kaushal Kumar wrote:
-> Enable QPIC BAM devicetree node for Qualcomm SDX65-MTP board.
-> While at it, sort the blsp1_uart3 node in alphabetical order.
-> 
-> Signed-off-by: Kaushal Kumar <quic_kaushalk@quicinc.com>
+Enable CPU opp tables for OrangePi One Plus.
 
-Same comment as 4/4, with that fixed:
+This needs to change the CPU regulator max voltage to fit
+the OPP table.
 
-Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Also add the ramp-delay information to avoid any out of spec
+running as the regulator is slower at reaching the voltage
+requested compare to the PLL reaching the frequency.
 
-Thanks,
-Mani
+There is no such information for AXP805 but similar PMIC (AXP813)
+has a DVM (Dynamic Voltage scaling Management) ramp rate equal
+to 2500uV/us.
 
-> ---
->  arch/arm/boot/dts/qcom-sdx65-mtp.dts | 12 ++++++++----
->  1 file changed, 8 insertions(+), 4 deletions(-)
-> 
-> diff --git a/arch/arm/boot/dts/qcom-sdx65-mtp.dts b/arch/arm/boot/dts/qcom-sdx65-mtp.dts
-> index 6920524..153ad2a 100644
-> --- a/arch/arm/boot/dts/qcom-sdx65-mtp.dts
-> +++ b/arch/arm/boot/dts/qcom-sdx65-mtp.dts
-> @@ -64,10 +64,6 @@
->  	};
->  };
->  
-> -&blsp1_uart3 {
-> -	status = "ok";
-> -};
-> -
->  &apps_rsc {
->  	pmx65-rpmh-regulators {
->  		compatible = "qcom,pmx65-rpmh-regulators";
-> @@ -245,6 +241,14 @@
->  	};
->  };
->  
-> +&blsp1_uart3 {
-> +	status = "ok";
-> +};
-> +
-> +&qpic_bam {
-> +	status = "ok";
-> +};
-> +
->  &usb {
->  	status = "okay";
->  };
-> -- 
-> 2.7.4
-> 
+Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
+---
+ arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi.dtsi | 9 ++++++++-
+ 1 file changed, 8 insertions(+), 1 deletion(-)
+
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi.dtsi
+index 92745128fcfe..d7b82ef6be55 100644
+--- a/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi.dtsi
++++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi.dtsi
+@@ -5,6 +5,7 @@
+ /dts-v1/;
+ 
+ #include "sun50i-h6.dtsi"
++#include "sun50i-h6-cpu-opp.dtsi"
+ 
+ #include <dt-bindings/gpio/gpio.h>
+ 
+@@ -64,6 +65,10 @@ reg_vcc5v: vcc5v {
+ 	};
+ };
+ 
++&cpu0 {
++	cpu-supply = <&reg_dcdca>;
++};
++
+ &de {
+ 	status = "okay";
+ };
+@@ -208,7 +213,8 @@ reg_cldo3: cldo3 {
+ 			reg_dcdca: dcdca {
+ 				regulator-always-on;
+ 				regulator-min-microvolt = <810000>;
+-				regulator-max-microvolt = <1080000>;
++				regulator-max-microvolt = <1160000>;
++				regulator-ramp-delay = <2500>;
+ 				regulator-name = "vdd-cpu";
+ 			};
+ 
+@@ -216,6 +222,7 @@ reg_dcdcc: dcdcc {
+ 				regulator-enable-ramp-delay = <32000>;
+ 				regulator-min-microvolt = <810000>;
+ 				regulator-max-microvolt = <1080000>;
++				regulator-ramp-delay = <2500>;
+ 				regulator-name = "vdd-gpu";
+ 			};
+ 
+-- 
+2.25.1
+
