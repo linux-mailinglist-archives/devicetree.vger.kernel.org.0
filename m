@@ -2,106 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C609F5173F0
-	for <lists+devicetree@lfdr.de>; Mon,  2 May 2022 18:12:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1591C5173FB
+	for <lists+devicetree@lfdr.de>; Mon,  2 May 2022 18:14:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1386107AbiEBQPk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 May 2022 12:15:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57836 "EHLO
+        id S1383203AbiEBQRu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 May 2022 12:17:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59520 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1386196AbiEBQPj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 May 2022 12:15:39 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABDD2DFFC;
-        Mon,  2 May 2022 09:12:09 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: nfraprado)
-        with ESMTPSA id 34F4B1F42BC7
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1651507928;
-        bh=yFJOMKwuIhisyg/HTjYUfFFgojnjn1gaRe4MzlvPbJ8=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=WugItvxTkOGGNHaEeKBTDncAM3wUeRs3oShgHGf4GWeVrX/mMiT1QygpMU4x5j065
-         Gt6pyaBHFSuQyXEAYYa28BgHWT2AFjZ8qhjXyFtxtQaQAgj1scf++bvYnN0LPsRNLi
-         Nce9SmSI9VJi9VrUeXPTLEafQp1+wPzugsIy3ByqPyONYVqhh07PyqnzfKsbe/QdCG
-         M96xm5UA5kIIdPqVzlfRRSV4yCAJ8jrFmk0njylohNyipmPCk2/FWxZxrQV8qDr8Iy
-         LL96d6HWQYUl894lIIUIdjaj/+4WOzRgEiBtOgz52UELJWKVB3NbSFCGf44AUVzO6H
-         Ua1OkdPiuO7ug==
-Date:   Mon, 2 May 2022 12:12:03 -0400
-From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
-        <nfraprado@collabora.com>
-To:     Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, kernel@collabora.com,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH] arm64: dts: mediatek: Add fallback compatible for
- mt8192's flash
-Message-ID: <20220502161203.pfmjyep4escqwjix@notapiano>
-References: <20220429195745.2203461-1-nfraprado@collabora.com>
+        with ESMTP id S1357459AbiEBQRr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 May 2022 12:17:47 -0400
+Received: from mail-qt1-f176.google.com (mail-qt1-f176.google.com [209.85.160.176])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E57B1DF15;
+        Mon,  2 May 2022 09:14:17 -0700 (PDT)
+Received: by mail-qt1-f176.google.com with SMTP id o18so11431843qtk.7;
+        Mon, 02 May 2022 09:14:17 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=0hqgqEu5aJRzgUMQaVoNip5QQc2c2ZvmWoCn1B6VpAY=;
+        b=d6LjphT/YzeC1I+HVytlakLXPCv1THSH206yEEEAiuX2+K0bMBxkMCdffDdNCSeQVB
+         cS4ph3cJngJ2P0lqu0qhNADUHA1bH1FedOdXpEQwKbTFPG0/nkXL0HwO/vF6iwK6rW3F
+         7z0FoQli3tvlbB7ehM6Sb2q1zRCBIYh4e6JkWKNaPpPTswi2t+9pOeaZbuaaBYxyPwzc
+         FpQRyct7zUBDfE7IdlQ0ULTIml4tD6pyLg+kWri97aIMKMGxFs2j4xIHqQrlNBeACP4c
+         ZbMeKy5Ooy1hTNSitExZpk/vlkr03J1rIpCFep+ix2QD1ZsxmadZ3kgKa3voCXVctV07
+         i7VA==
+X-Gm-Message-State: AOAM532a0bLCKmcJBs29XlH89Qp2Rm4YgT0YjYiv239Y5NY3PGyi3fmW
+        8PAqn8/PxZRIN+v7KcHk45CnPEMO6KbCfA==
+X-Google-Smtp-Source: ABdhPJzgdvSdDZFl+lCu0pCk/vob5EsY3oOIFR7nioEJcoiQxqdoF7kOoGemWehLjRNHMfgt1gbQZA==
+X-Received: by 2002:ac8:598a:0:b0:2f3:637b:e4a with SMTP id e10-20020ac8598a000000b002f3637b0e4amr10814805qte.389.1651508056937;
+        Mon, 02 May 2022 09:14:16 -0700 (PDT)
+Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com. [209.85.128.180])
+        by smtp.gmail.com with ESMTPSA id b20-20020ac84f14000000b002f39b99f6bfsm4280166qte.89.2022.05.02.09.14.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 02 May 2022 09:14:16 -0700 (PDT)
+Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-2f7b815ac06so153268087b3.3;
+        Mon, 02 May 2022 09:14:16 -0700 (PDT)
+X-Received: by 2002:a0d:d953:0:b0:2f7:d5ce:f204 with SMTP id
+ b80-20020a0dd953000000b002f7d5cef204mr11551364ywe.502.1651508056101; Mon, 02
+ May 2022 09:14:16 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220429195745.2203461-1-nfraprado@collabora.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20220501112926.47024-1-biju.das.jz@bp.renesas.com> <20220501112926.47024-6-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20220501112926.47024-6-biju.das.jz@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Mon, 2 May 2022 18:14:04 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdXhiREfd2VUNAbLUdHz7aRz2LuuXwUdh6HK7Lu=GtS7jw@mail.gmail.com>
+Message-ID: <CAMuHMdXhiREfd2VUNAbLUdHz7aRz2LuuXwUdh6HK7Lu=GtS7jw@mail.gmail.com>
+Subject: Re: [PATCH 5/6] arm64: dts: renesas: r9a07g043: Create thermal zone
+ to support IPA
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 29, 2022 at 03:57:45PM -0400, Nícolas F. R. A. Prado wrote:
-> The dt-binding for Mediatek's SPI NOR flash controller expects a mt8173
-> fallback compatible for mt8192, so add it in mt8192.dtsi.
-> 
-> The driver already sets custom data based on the mt8192 compatible, so
-> this fallback compatible won't be used and is added purely to suppress
-> the dt-binding warning.
-> 
-> Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+On Sun, May 1, 2022 at 1:29 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
+> Setup a thermal zone driven by SoC temperature sensor.
+> Create passive trip points and bind them to CPUFreq cooling
+> device that supports power extension.
+>
+> Based on the work done by Dien Pham <dien.pham.ry@renesas.com>
+> and others for r8a77990 SoC.
+>
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
 
-By the way, I wonder if this patch should be accompanied by a patch adding the 
-mediatek,mt8192-nor standalone compatible as deprecated in the dt-binding. I
-feel like the answer is in theory yes, but in practice no.
+LGTM, so
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v5.19.
 
-The fact that the mediatek,mt8192-nor standalone compatible was accepted in the
-devicetree means that it should show in the dt-binding, since it's an acceptable
-binding. But since the binding already shows up there with a fallback binding,
-then this standalone binding should be considered deprecated.
+Gr{oetje,eeting}s,
 
-But in practice, the mediatek,mt8192-nor is the more specific binding so
-documenting its standalone use as deprecated wouldn't accomplish much.
+                        Geert
 
-What do you think?
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-Thanks,
-Nícolas
-
-> 
-> ---
-> 
->  arch/arm64/boot/dts/mediatek/mt8192.dtsi | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-> index 26dbe9ecc528..32a836105ea7 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-> @@ -896,7 +896,7 @@ pcie_intc0: interrupt-controller {
->  		};
->  
->  		nor_flash: spi@11234000 {
-> -			compatible = "mediatek,mt8192-nor";
-> +			compatible = "mediatek,mt8192-nor", "mediatek,mt8173-nor";
->  			reg = <0 0x11234000 0 0xe0>;
->  			interrupts = <GIC_SPI 431 IRQ_TYPE_LEVEL_HIGH 0>;
->  			clocks = <&topckgen CLK_TOP_SFLASH_SEL>,
-> -- 
-> 2.36.0
-> 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
