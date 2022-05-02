@@ -2,42 +2,42 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C620516E00
-	for <lists+devicetree@lfdr.de>; Mon,  2 May 2022 12:15:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E4AB2516E0B
+	for <lists+devicetree@lfdr.de>; Mon,  2 May 2022 12:19:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1384417AbiEBKSi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 May 2022 06:18:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52088 "EHLO
+        id S235855AbiEBKW0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 May 2022 06:22:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34890 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235855AbiEBKSh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 May 2022 06:18:37 -0400
+        with ESMTP id S1384492AbiEBKWY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 May 2022 06:22:24 -0400
 Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 154DF20C
-        for <devicetree@vger.kernel.org>; Mon,  2 May 2022 03:15:09 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C000E25C6
+        for <devicetree@vger.kernel.org>; Mon,  2 May 2022 03:18:50 -0700 (PDT)
 Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
         by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
         (envelope-from <l.stach@pengutronix.de>)
-        id 1nlT50-00066e-Rq; Mon, 02 May 2022 12:14:58 +0200
-Message-ID: <5e93e411e1100c5d8292327b9aea560bfcbda7d1.camel@pengutronix.de>
-Subject: Re: [PATCH v1 4/4] arm64: dts: imx8mm.dtsi: Add resets for dispmix
- power domain.
+        id 1nlT8c-0006jf-QH; Mon, 02 May 2022 12:18:42 +0200
+Message-ID: <f91157496327cead5d098a4f37e9f019e526f7c8.camel@pengutronix.de>
+Subject: Re: [PATCH v1 0/4] imx8mm display controller power sequence
 From:   Lucas Stach <l.stach@pengutronix.de>
 To:     Viraj Shah <viraj.shah@linutronix.de>, shawnguo@kernel.org,
         s.hauer@pengutronix.de
 Cc:     Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Fabio Estevam <festevam@gmail.com>,
         NXP Linux Team <linux-imx@nxp.com>,
-        Adam Ford <aford173@gmail.com>,
-        Tim Harvey <tharvey@gateworks.com>,
-        Peng Fan <peng.fan@nxp.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Date:   Mon, 02 May 2022 12:14:57 +0200
-In-Reply-To: <20220502100233.6023-5-viraj.shah@linutronix.de>
+        Peng Fan <peng.fan@nxp.com>,
+        Frieder Schrempf <frieder.schrempf@kontron.de>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Dan Carpenter <dan.carpenter@oracle.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Date:   Mon, 02 May 2022 12:18:39 +0200
+In-Reply-To: <20220502100233.6023-1-viraj.shah@linutronix.de>
 References: <20220502100233.6023-1-viraj.shah@linutronix.de>
-         <20220502100233.6023-5-viraj.shah@linutronix.de>
 Content-Type: text/plain; charset="UTF-8"
 User-Agent: Evolution 3.40.4 (3.40.4-1.fc34) 
 MIME-Version: 1.0
@@ -55,35 +55,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Viraj,
+
 Am Montag, dem 02.05.2022 um 12:02 +0200 schrieb Viraj Shah:
-> The resets are controlled from src. From reference manual page
-> 959, display controller needs DISP_RESET bit to be set to reset
-> dispmix.
-> 
-This reset is driven by the GPC hardware logic. Only if you are 100%
-sure that this is not the case should a reset be added to the DT, as
-handling it both from the GPC HW sequencing and software has proven to
-be problematic and result in sporadic hangs.
+> This patch queue addresses the power sequence of the display controller
+> of the imx8mm SoC. The sequence mentioned in example code 5 in section
+> 5.2.9.5 of reference manual imx-8MMini-yhsc.pdf was not being performed.
+> This meant that the display controller was not coming up.
+
+I don't know where you got the idea that the current implementation
+doesn't work. Numerous people are using this to get the i.MX8MM display
+light up. All you need to do is add the various display pipeline
+peripherals into the virtual power-domains provided by the blk-ctrl
+driver. The only thing that prevents upstream from having a working
+display pipeline is the conversion of the exynos-dsi into a proper
+bridge driver, which has just landed upstream and the addition of a few
+DT nodes, now that the drivers are getting ready.
 
 Regards,
 Lucas
 
-> Signed-off-by: Viraj Shah <viraj.shah@linutronix.de>
-> ---
->  arch/arm64/boot/dts/freescale/imx8mm.dtsi | 1 +
->  1 file changed, 1 insertion(+)
 > 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mm.dtsi b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-> index 1ee05677c2dd..11a6cae5bb99 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-> @@ -734,6 +734,7 @@
->  						assigned-clock-parents = <&clk IMX8MM_SYS_PLL2_1000M>,
->  									 <&clk IMX8MM_SYS_PLL1_800M>;
->  						assigned-clock-rates = <500000000>, <200000000>;
-> +						resets = <&src IMX8MQ_RESET_DISP_RESET>;
->  					};
->  
->  					pgc_mipi: power-domain@11 {
+> Viraj Shah (4):
+>   soc: imx: gpcv2: Power sequence for DISP
+>   soc: imx: imx8m-blk-ctrl: Display Power ON sequence
+>   soc: imx: imx8m-blk-ctrl: Add reset bits for mipi dsi phy
+>   arm64: dts: imx8mm.dtsi: Add resets for dispmix power domain.
+> 
+>  arch/arm64/boot/dts/freescale/imx8mm.dtsi |  1 +
+>  drivers/soc/imx/gpcv2.c                   | 36 +++++++++++++++++++----
+>  drivers/soc/imx/imx8m-blk-ctrl.c          |  9 ++++--
+>  3 files changed, 38 insertions(+), 8 deletions(-)
+> 
 
 
