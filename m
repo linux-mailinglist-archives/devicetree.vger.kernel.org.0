@@ -2,534 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 16A98516FB5
-	for <lists+devicetree@lfdr.de>; Mon,  2 May 2022 14:41:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B347516FCB
+	for <lists+devicetree@lfdr.de>; Mon,  2 May 2022 14:52:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1385031AbiEBMpT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 May 2022 08:45:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42958 "EHLO
+        id S230444AbiEBMzo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 May 2022 08:55:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50382 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1384939AbiEBMpS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 May 2022 08:45:18 -0400
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0248813EA5
-        for <devicetree@vger.kernel.org>; Mon,  2 May 2022 05:41:48 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id z19so16430993edx.9
-        for <devicetree@vger.kernel.org>; Mon, 02 May 2022 05:41:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=8yW6UdHo6njhH5S1r53s3segliI8gxUDt9nBcuHLQkY=;
-        b=uXCBZSwt1qRzIF5T6sW64Fm0CLcSwJeNelyGVd8AVvW6fG89FXwTz/Urgs93RFzEvK
-         3GeYghaFWl/YvIrao9lT9pjQMfqCUA+tPAHx2satP/wTqdRiT4zJs91ScTzTSbb1SJK9
-         +GMl5qhnFeCk2AB/u1iVM5ghV1VnArWlxSkQaDqH7FUnFfGISUzleGong6MCECRdJTBo
-         jbab2wNVpxF/sade3tE3dYST5xQxqoTAB41JcvAs21s3kIwTH7JZKKGg+nbMkD39iaf1
-         vfH0jOfgp21aELLylWOeC/q+BYIzgK9BXRbOrdM+I+TR1WiNizY3kQy0o5tbptj2cm/P
-         LUkg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=8yW6UdHo6njhH5S1r53s3segliI8gxUDt9nBcuHLQkY=;
-        b=D1k6ITU5oxE6D+d6rdpcMbBNZjK9FZLXQX6oIO9tzuv/HdiWAzWKKGqkZZQtrwGGJP
-         jIkTeInwGLvwykjOaXAsMIuCxziuSN8BBCdWxvd6qz1/dlse5VyYBOSe1rUhefgLEkB5
-         HJg90/GSIQgiLDd19KdDK3wiIF9mAuzpDTPKv4/NQRlvzHVhHDn7nrvKkRpQOfsoqJcM
-         MCg8qm2nve1h7qr25jY7BHfLg9jMSPblauQOP85WqWhEXtDYyjrjcH6r/gwb/OLSxkB4
-         SlE+qsAU+FYu+872joh6NYpXebXCEj/av+6urDV344vGT9JZpSEKoXE5JkTdIXpg2pJe
-         sosw==
-X-Gm-Message-State: AOAM532NMQclxWMtaAD+9mjTGXjcctyyJpklEiCKdn+XcUC8z0PkCvbp
-        KC3phg2Lel6U33qMUlSx5LLi4g==
-X-Google-Smtp-Source: ABdhPJx6l5AUDlq7fhzKVeszwcramj2frDv3MQu1iPWyc7QiS/srlGJWi/gzSTgMUpiGn8wUKaIZDA==
-X-Received: by 2002:a05:6402:3508:b0:427:b100:b825 with SMTP id b8-20020a056402350800b00427b100b825mr10097712edd.268.1651495306493;
-        Mon, 02 May 2022 05:41:46 -0700 (PDT)
-Received: from localhost.localdomain (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id w9-20020a170907270900b006f3ef214e75sm3504196ejk.219.2022.05.02.05.41.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 May 2022 05:41:45 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S1385110AbiEBMxu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 May 2022 08:53:50 -0400
+Received: from esa2.hgst.iphmx.com (esa2.hgst.iphmx.com [68.232.143.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 33E151147
+        for <devicetree@vger.kernel.org>; Mon,  2 May 2022 05:50:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=wdc.com; i=@wdc.com; q=dns/txt; s=dkim.wdc.com;
+  t=1651495821; x=1683031821;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=U7ic/RNoQY4d0W/UOAxEPCaLfnfBqlR3LVnngKZ9Uio=;
+  b=BwXxM4DhyElN6KsLx7Te0DKqDwTP+ycYa4MZgEIpYcGY3Ao8vyu1h2lL
+   NiGx0MvPCLmpYXgJddJ9Ib3xA/YpFwro/FXlL02lFN+ImAklcFRZdlfAf
+   q2J762jUHlicshGV1zzvid30mESQczdDkeMmuKO4hti/Adi+GeSBT+YBM
+   Za1F7pHMVa2s+1/jdoaOYHefnBLy6ibQ88KIsQ+Nh0M8PfTzfr8XiDngO
+   HnJeBMZe+ReJQ3nCWFh5yr+PgXUMxKZife+6pkgtf2VfcS+tLKF+R3mTg
+   2QGBqdRWIE0R6wqNcgfE8biiM8eQTUBV9niigbyWOF4MMC5X1wkoQdnUn
+   g==;
+X-IronPort-AV: E=Sophos;i="5.91,192,1647273600"; 
+   d="scan'208";a="303547574"
+Received: from uls-op-cesaip02.wdc.com (HELO uls-op-cesaep02.wdc.com) ([199.255.45.15])
+  by ob1.hgst.iphmx.com with ESMTP; 02 May 2022 20:50:20 +0800
+IronPort-SDR: GQqUhSlFFYbD2OgCjxu29nwlrgrJxz+7MrWV4nGezZxZLr1m2LkbbhUa6cb/smaIfMtpy1dwaE
+ 0TNjOMtoyduIDZ0yWVWkXH4jVWire2lamuY32CYaNEILvdSbmB4ORfu2QQlaTrZGz2T0wxBRwg
+ 68HJ9vBAnJ7p9gubDkrY0LZZaPLsCDZWQaN2yGFh/3z3777XlXYJmaXKQY0uJeeP6p2sLlMF4D
+ fw3UAWjsdgNwYP1bMzPM3tKxXuWqmCc0WOdMSiDwSfHiArCk+EPV+697EMA7WJNDV8ne9/R4Zo
+ bOxlNoYphAyulPiK66nEgTvH
+Received: from uls-op-cesaip02.wdc.com ([10.248.3.37])
+  by uls-op-cesaep02.wdc.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 02 May 2022 05:20:25 -0700
+IronPort-SDR: MwkCDZ9gDyn+1jyd5PTxjWBSvx5Bev0XnzApQ2tsiAAd/0x5+jWR10pFiQdnRkoru1q/vF7LAL
+ cZaL+VDP7rx208jPcxGF3XPbYg8ffszXsQD5HtoUC5O9973lPx1JKwMNLlKBtCc2AuP55s18gI
+ J6X9xxyo1KEFbWikElQR9jjse8rCtHSdimcDXJRMepdClr5PFZUmRl0RJuCvWUeukafo1JV+zx
+ IjpkbdJRVV0Q1YH5c6dbdEMH3UuAXVAuwX1WM7Bsr1UsYWHWT6AYZ6PrB6QlMqceHc0nQETNrP
+ 8pE=
+WDCIronportException: Internal
+Received: from unknown (HELO x1-carbon.lan) ([10.225.164.66])
+  by uls-op-cesaip02.wdc.com with ESMTP; 02 May 2022 05:50:19 -0700
+From:   Niklas Cassel <niklas.cassel@wdc.com>
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] arm64: dts: qcom: align OPP table names with DT schema
-Date:   Mon,  2 May 2022 14:41:43 +0200
-Message-Id: <20220502124143.160044-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.32.0
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>
+Cc:     Niklas Cassel <niklas.cassel@wdc.com>, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org
+Subject: [PATCH v2 0/2] riscv mmu-type minor fixes
+Date:   Mon,  2 May 2022 14:50:12 +0200
+Message-Id: <20220502125015.1345312-1-niklas.cassel@wdc.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-DT schema expects names of operating points tables to start with
-"opp-table".  Use hyphens instead of underscores, fix the names to match
-DT schema or remove the prefix entirely when it is not needed.
+Hello there,
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- arch/arm64/boot/dts/qcom/ipq6018.dtsi |  2 +-
- arch/arm64/boot/dts/qcom/msm8916.dtsi |  2 +-
- arch/arm64/boot/dts/qcom/sc7180.dtsi  | 18 +++++++++---------
- arch/arm64/boot/dts/qcom/sc7280.dtsi  | 12 ++++++------
- arch/arm64/boot/dts/qcom/sdm630.dtsi  |  4 ++--
- arch/arm64/boot/dts/qcom/sdm845.dtsi  | 16 ++++++++--------
- arch/arm64/boot/dts/qcom/sm6350.dtsi  |  4 ++--
- arch/arm64/boot/dts/qcom/sm8150.dtsi  |  8 ++++----
- arch/arm64/boot/dts/qcom/sm8250.dtsi  | 16 ++++++++--------
- arch/arm64/boot/dts/qcom/sm8350.dtsi  |  4 ++--
- arch/arm64/boot/dts/qcom/sm8450.dtsi  |  2 +-
- 11 files changed, 44 insertions(+), 44 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/ipq6018.dtsi b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-index a4d363c187fc..a78341da0a9d 100644
---- a/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-+++ b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-@@ -87,7 +87,7 @@ L2_0: l2-cache {
- 		};
- 	};
- 
--	cpu_opp_table: cpu_opp_table {
-+	cpu_opp_table: opp-table-cpu {
- 		compatible = "operating-points-v2";
- 		opp-shared;
- 
-diff --git a/arch/arm64/boot/dts/qcom/msm8916.dtsi b/arch/arm64/boot/dts/qcom/msm8916.dtsi
-index 05472510e29d..ec22668e641b 100644
---- a/arch/arm64/boot/dts/qcom/msm8916.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8916.dtsi
-@@ -216,7 +216,7 @@ CLUSTER_PWRDN: cluster-gdhs {
- 		};
- 	};
- 
--	cpu_opp_table: cpu-opp-table {
-+	cpu_opp_table: opp-table-cpu {
- 		compatible = "operating-points-v2";
- 		opp-shared;
- 
-diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-index 86175d257b1e..f434752c3e73 100644
---- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-@@ -398,7 +398,7 @@ CLUSTER_SLEEP_0: cluster-sleep-0 {
- 		};
- 	};
- 
--	cpu0_opp_table: cpu0_opp_table {
-+	cpu0_opp_table: opp-table-cpu0 {
- 		compatible = "operating-points-v2";
- 		opp-shared;
- 
-@@ -453,7 +453,7 @@ cpu0_opp10: opp-1804800000 {
- 		};
- 	};
- 
--	cpu6_opp_table: cpu6_opp_table {
-+	cpu6_opp_table: opp-table-cpu6 {
- 		compatible = "operating-points-v2";
- 		opp-shared;
- 
-@@ -725,7 +725,7 @@ sdhc_1: sdhci@7c4000 {
- 
- 			status = "disabled";
- 
--			sdhc1_opp_table: sdhc1-opp-table {
-+			sdhc1_opp_table: opp-table {
- 				compatible = "operating-points-v2";
- 
- 				opp-100000000 {
-@@ -744,7 +744,7 @@ opp-384000000 {
- 			};
- 		};
- 
--		qup_opp_table: qup-opp-table {
-+		qup_opp_table: opp-table-qup {
- 			compatible = "operating-points-v2";
- 
- 			opp-75000000 {
-@@ -2609,7 +2609,7 @@ sdhc_2: sdhci@8804000 {
- 
- 			status = "disabled";
- 
--			sdhc2_opp_table: sdhc2-opp-table {
-+			sdhc2_opp_table: opp-table {
- 				compatible = "operating-points-v2";
- 
- 				opp-100000000 {
-@@ -2628,7 +2628,7 @@ opp-202000000 {
- 			};
- 		};
- 
--		qspi_opp_table: qspi-opp-table {
-+		qspi_opp_table: opp-table-qspi {
- 			compatible = "operating-points-v2";
- 
- 			opp-75000000 {
-@@ -2829,7 +2829,7 @@ video-encoder {
- 				compatible = "venus-encoder";
- 			};
- 
--			venus_opp_table: venus-opp-table {
-+			venus_opp_table: opp-table {
- 				compatible = "operating-points-v2";
- 
- 				opp-150000000 {
-@@ -2967,7 +2967,7 @@ dpu_intf0_out: endpoint {
- 					};
- 				};
- 
--				mdp_opp_table: mdp-opp-table {
-+				mdp_opp_table: opp-table {
- 					compatible = "operating-points-v2";
- 
- 					opp-200000000 {
-@@ -3046,7 +3046,7 @@ dsi0_out: endpoint {
- 					};
- 				};
- 
--				dsi_opp_table: dsi-opp-table {
-+				dsi_opp_table: opp-table {
- 					compatible = "operating-points-v2";
- 
- 					opp-187500000 {
-diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-index ccf5e95071f9..4674ef7a1562 100644
---- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-@@ -417,7 +417,7 @@ CLUSTER_SLEEP_0: cluster-sleep-0 {
- 		};
- 	};
- 
--	cpu0_opp_table: cpu0-opp-table {
-+	cpu0_opp_table: opp-table-cpu0 {
- 		compatible = "operating-points-v2";
- 		opp-shared;
- 
-@@ -477,7 +477,7 @@ cpu0_opp_2016mhz: opp-2016000000 {
- 		};
- 	};
- 
--	cpu4_opp_table: cpu4-opp-table {
-+	cpu4_opp_table: opp-table-cpu4 {
- 		compatible = "operating-points-v2";
- 		opp-shared;
- 
-@@ -547,7 +547,7 @@ cpu4_opp_2611mhz: opp-2611200000 {
- 		};
- 	};
- 
--	cpu7_opp_table: cpu7-opp-table {
-+	cpu7_opp_table: opp-table-cpu7 {
- 		compatible = "operating-points-v2";
- 		opp-shared;
- 
-@@ -763,7 +763,7 @@ psci {
- 		method = "smc";
- 	};
- 
--	qspi_opp_table: qspi-opp-table {
-+	qspi_opp_table: opp-table-qspi {
- 		compatible = "operating-points-v2";
- 
- 		opp-75000000 {
-@@ -787,7 +787,7 @@ opp-300000000 {
- 		};
- 	};
- 
--	qup_opp_table: qup-opp-table {
-+	qup_opp_table: opp-table-qup {
- 		compatible = "operating-points-v2";
- 
- 		opp-75000000 {
-@@ -3326,7 +3326,7 @@ video-firmware {
- 				iommus = <&apps_smmu 0x21a2 0x0>;
- 			};
- 
--			venus_opp_table: venus-opp-table {
-+			venus_opp_table: opp-table {
- 				compatible = "operating-points-v2";
- 
- 				opp-133330000 {
-diff --git a/arch/arm64/boot/dts/qcom/sdm630.dtsi b/arch/arm64/boot/dts/qcom/sdm630.dtsi
-index 7f875bf9390a..8d51d266950a 100644
---- a/arch/arm64/boot/dts/qcom/sdm630.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm630.dtsi
-@@ -1401,7 +1401,7 @@ mmcc: clock-controller@c8c0000 {
- 					<0>;
- 		};
- 
--		dsi_opp_table: dsi-opp-table {
-+		dsi_opp_table: opp-table-dsi {
- 			compatible = "operating-points-v2";
- 
- 			opp-131250000 {
-@@ -1490,7 +1490,7 @@ mdp5_intf1_out: endpoint {
- 					};
- 				};
- 
--				mdp_opp_table: mdp-opp {
-+				mdp_opp_table: opp-table {
- 					compatible = "operating-points-v2";
- 
- 					opp-150000000 {
-diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-index 692cf4be4eef..3c94719f013e 100644
---- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-@@ -462,7 +462,7 @@ CLUSTER_SLEEP_0: cluster-sleep-0 {
- 		};
- 	};
- 
--	cpu0_opp_table: cpu0_opp_table {
-+	cpu0_opp_table: opp-table-cpu0 {
- 		compatible = "operating-points-v2";
- 		opp-shared;
- 
-@@ -557,7 +557,7 @@ cpu0_opp18: opp-1766400000 {
- 		};
- 	};
- 
--	cpu4_opp_table: cpu4_opp_table {
-+	cpu4_opp_table: opp-table-cpu4 {
- 		compatible = "operating-points-v2";
- 		opp-shared;
- 
-@@ -1104,7 +1104,7 @@ rng: rng@793000 {
- 			clock-names = "core";
- 		};
- 
--		qup_opp_table: qup-opp-table {
-+		qup_opp_table: opp-table-qup {
- 			compatible = "operating-points-v2";
- 
- 			opp-50000000 {
-@@ -3569,7 +3569,7 @@ sdhc_2: sdhci@8804000 {
- 
- 			status = "disabled";
- 
--			sdhc2_opp_table: sdhc2-opp-table {
-+			sdhc2_opp_table: opp-table {
- 				compatible = "operating-points-v2";
- 
- 				opp-9600000 {
-@@ -3594,7 +3594,7 @@ opp-201500000 {
- 			};
- 		};
- 
--		qspi_opp_table: qspi-opp-table {
-+		qspi_opp_table: opp-table-qspi {
- 			compatible = "operating-points-v2";
- 
- 			opp-19200000 {
-@@ -3965,7 +3965,7 @@ video-core1 {
- 				compatible = "venus-encoder";
- 			};
- 
--			venus_opp_table: venus-opp-table {
-+			venus_opp_table: opp-table {
- 				compatible = "operating-points-v2";
- 
- 				opp-100000000 {
-@@ -4202,7 +4202,7 @@ clock_camcc: clock-controller@ad00000 {
- 			clock-names = "bi_tcxo";
- 		};
- 
--		dsi_opp_table: dsi-opp-table {
-+		dsi_opp_table: opp-table-dsi {
- 			compatible = "operating-points-v2";
- 
- 			opp-19200000 {
-@@ -4304,7 +4304,7 @@ dpu_intf2_out: endpoint {
- 					};
- 				};
- 
--				mdp_opp_table: mdp-opp-table {
-+				mdp_opp_table: opp-table {
- 					compatible = "operating-points-v2";
- 
- 					opp-19200000 {
-diff --git a/arch/arm64/boot/dts/qcom/sm6350.dtsi b/arch/arm64/boot/dts/qcom/sm6350.dtsi
-index fb1a0f662575..9fda9be2f2f7 100644
---- a/arch/arm64/boot/dts/qcom/sm6350.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm6350.dtsi
-@@ -497,7 +497,7 @@ sdhc_1: sdhci@7c4000 {
- 
- 			status = "disabled";
- 
--			sdhc1_opp_table: sdhc1-opp-table {
-+			sdhc1_opp_table: opp-table {
- 				compatible = "operating-points-v2";
- 
- 				opp-19200000 {
-@@ -941,7 +941,7 @@ sdhc_2: sdhci@8804000 {
- 
- 			status = "disabled";
- 
--			sdhc2_opp_table: sdhc2-opp-table {
-+			sdhc2_opp_table: opp-table {
- 				compatible = "operating-points-v2";
- 
- 				opp-100000000 {
-diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-index 2700a8145cb9..0ca10684a748 100644
---- a/arch/arm64/boot/dts/qcom/sm8150.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-@@ -288,7 +288,7 @@ CLUSTER_SLEEP_0: cluster-sleep-0 {
- 		};
- 	};
- 
--	cpu0_opp_table: cpu0_opp_table {
-+	cpu0_opp_table: opp-table-cpu0 {
- 		compatible = "operating-points-v2";
- 		opp-shared;
- 
-@@ -383,7 +383,7 @@ cpu0_opp18: opp-1785600000 {
- 		};
- 	};
- 
--	cpu4_opp_table: cpu4_opp_table {
-+	cpu4_opp_table: opp-table-cpu4 {
- 		compatible = "operating-points-v2";
- 		opp-shared;
- 
-@@ -473,7 +473,7 @@ cpu4_opp17: opp-2419200000 {
- 		};
- 	};
- 
--	cpu7_opp_table: cpu7_opp_table {
-+	cpu7_opp_table: opp-table-cpu7 {
- 		compatible = "operating-points-v2";
- 		opp-shared;
- 
-@@ -3563,7 +3563,7 @@ sdhc_2: sdhci@8804000 {
- 
- 			status = "disabled";
- 
--			sdhc2_opp_table: sdhc2-opp-table {
-+			sdhc2_opp_table: opp-table {
- 				compatible = "operating-points-v2";
- 
- 				opp-19200000 {
-diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-index dc2562070336..c5034b7f9add 100644
---- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-@@ -336,7 +336,7 @@ CLUSTER_SLEEP_0: cluster-sleep-0 {
- 		};
- 	};
- 
--	cpu0_opp_table: cpu0_opp_table {
-+	cpu0_opp_table: opp-table-cpu0 {
- 		compatible = "operating-points-v2";
- 		opp-shared;
- 
-@@ -426,7 +426,7 @@ cpu0_opp17: opp-1804800000 {
- 		};
- 	};
- 
--	cpu4_opp_table: cpu4_opp_table {
-+	cpu4_opp_table: opp-table-cpu4 {
- 		compatible = "operating-points-v2";
- 		opp-shared;
- 
-@@ -521,7 +521,7 @@ cpu4_opp18: opp-2419200000 {
- 		};
- 	};
- 
--	cpu7_opp_table: cpu7_opp_table {
-+	cpu7_opp_table: opp-table-cpu7 {
- 		compatible = "operating-points-v2";
- 		opp-shared;
- 
-@@ -914,7 +914,7 @@ rng: rng@793000 {
- 			clock-names = "core";
- 		};
- 
--		qup_opp_table: qup-opp-table {
-+		qup_opp_table: opp-table-qup {
- 			compatible = "operating-points-v2";
- 
- 			opp-50000000 {
-@@ -2937,7 +2937,7 @@ sdhc_2: sdhci@8804000 {
- 
- 			status = "disabled";
- 
--			sdhc2_opp_table: sdhc2-opp-table {
-+			sdhc2_opp_table: opp-table {
- 				compatible = "operating-points-v2";
- 
- 				opp-19200000 {
-@@ -3115,7 +3115,7 @@ video-encoder {
- 				compatible = "venus-encoder";
- 			};
- 
--			venus_opp_table: venus-opp-table {
-+			venus_opp_table: opp-table {
- 				compatible = "operating-points-v2";
- 
- 				opp-720000000 {
-@@ -3478,7 +3478,7 @@ dpu_intf2_out: endpoint {
- 					};
- 				};
- 
--				mdp_opp_table: mdp-opp-table {
-+				mdp_opp_table: opp-table {
- 					compatible = "operating-points-v2";
- 
- 					opp-200000000 {
-@@ -3648,7 +3648,7 @@ dsi1_phy: dsi-phy@ae96400 {
- 
- 				status = "disabled";
- 
--				dsi_opp_table: dsi-opp-table {
-+				dsi_opp_table: opp-table {
- 					compatible = "operating-points-v2";
- 
- 					opp-187500000 {
-diff --git a/arch/arm64/boot/dts/qcom/sm8350.dtsi b/arch/arm64/boot/dts/qcom/sm8350.dtsi
-index c0137bdcf94b..ccfa84dda3d7 100644
---- a/arch/arm64/boot/dts/qcom/sm8350.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8350.dtsi
-@@ -638,7 +638,7 @@ ipcc: mailbox@408000 {
- 			#mbox-cells = <2>;
- 		};
- 
--		qup_opp_table_100mhz: qup-100mhz-opp-table {
-+		qup_opp_table_100mhz: opp-table-qup100mhz {
- 			compatible = "operating-points-v2";
- 
- 			opp-50000000 {
-@@ -657,7 +657,7 @@ opp-100000000 {
- 			};
- 		};
- 
--		qup_opp_table_120mhz: qup-120mhz-opp-table {
-+		qup_opp_table_120mhz: opp-table-qup120mhz {
- 			compatible = "operating-points-v2";
- 
- 			opp-50000000 {
-diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-index 7f52c3cfdfb7..7a4e989e14e0 100644
---- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-@@ -343,7 +343,7 @@ CLUSTER_PD: cpu-cluster0 {
- 		};
- 	};
- 
--	qup_opp_table_100mhz: qup-100mhz-opp-table {
-+	qup_opp_table_100mhz: opp-table-qup {
- 		compatible = "operating-points-v2";
- 
- 		opp-50000000 {
+Here are some minor riscv mmu-type related fixes.
+
+The first patch simply adds "riscv,sv57" to the list of valid mmu-type
+values.
+
+The second patch fixes the "mmu:" print in /proc/cpuinfo on nommu systems.
+
+Please review.
+
+
+Kind regards,
+Niklas
+
+Changes since v1:
+-Picked up tag from Rob Herring on patch 1/1.
+-Send both patches as a series, since they are relate to mmu-type.
+
+Niklas Cassel (2):
+  dt-bindings: riscv: Add mmu-type riscv,sv57
+  riscv: Don't output a bogus mmu-type on a no MMU kernel
+
+ Documentation/devicetree/bindings/riscv/cpus.yaml | 1 +
+ arch/riscv/kernel/cpu.c                           | 4 ++++
+ 2 files changed, 5 insertions(+)
+
 -- 
-2.32.0
+2.35.1
 
