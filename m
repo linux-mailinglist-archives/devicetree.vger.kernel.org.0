@@ -2,71 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DDA4F5168CC
-	for <lists+devicetree@lfdr.de>; Mon,  2 May 2022 00:54:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E59D6516924
+	for <lists+devicetree@lfdr.de>; Mon,  2 May 2022 03:38:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345286AbiEAW6Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 1 May 2022 18:58:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38034 "EHLO
+        id S234357AbiEBBmP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 1 May 2022 21:42:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50570 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234297AbiEAW6P (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 1 May 2022 18:58:15 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CD0A3CFD1;
-        Sun,  1 May 2022 15:54:48 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 8489561053;
-        Sun,  1 May 2022 22:54:48 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DEC8EC385B4;
-        Sun,  1 May 2022 22:54:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1651445687;
-        bh=XYah/6Osmyojc17k6cqZ+vX1jwgljOTNKYJ/JeSQBfk=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=px2suCI3Pu/bkCRbO5tygyBgCnMM71GOuMyeL9LyUC+OsRZ4FVjr/8GI6djLshrvc
-         M19tpJz53lIURMRhXPy2XW85ZAeHo7k74/Oy2bhXdQVTSPw6UIEz6iBkcW0n4OEGuc
-         SaRoGwLbS3qfyOEVT2ycxXzpFEqlwxiWGPFYsGEPzCagLtS4lZaENeuXI3lFeMNtS7
-         Vck9W34Ic6AROOfxEwL89jMHFFypiHlT/chDQNttnQTa/mJMgZNyERq0ioqK61Lwc4
-         GFuttc2DxKBcnMDQw89NpfG1DJ82UTeiCdmMi6tbiSSm5DOnpRgbA/VuH0chgtxE71
-         49iYHjxXsDnog==
-Received: by mail-yb1-f179.google.com with SMTP id s30so23475610ybi.8;
-        Sun, 01 May 2022 15:54:47 -0700 (PDT)
-X-Gm-Message-State: AOAM531c3/uGiP7XzzGT5yqi74TEh3k2wU8DgzvFOBeCxZ70CwWrceF/
-        0OTZs7iopk7caKSdVmKox/1pXaNyPa8smvuAaA==
-X-Google-Smtp-Source: ABdhPJyuplDBOy1HzgzBEurySzDISvnf65i4g3J7NP8mPSls5NwNyrHXj98ge6hOrTKJlam+L9WwpviYEfc1OEFPVok=
-X-Received: by 2002:a25:d194:0:b0:645:7892:43b0 with SMTP id
- i142-20020a25d194000000b00645789243b0mr8501223ybg.35.1651445686885; Sun, 01
- May 2022 15:54:46 -0700 (PDT)
+        with ESMTP id S233379AbiEBBmP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 1 May 2022 21:42:15 -0400
+Received: from alexa-out.qualcomm.com (alexa-out.qualcomm.com [129.46.98.28])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5214318E35;
+        Sun,  1 May 2022 18:38:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1651455528; x=1682991528;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=GB5FNSl/Q5I54V+rN8pZy3Znz3ryXNi/K6XHiOqMzB4=;
+  b=rATZE1J1W2JnO9AEqYZ+0ImpNUBUdmBnvARAKCjWBjNUe0WYMzBOCKDS
+   w8Iwbi3xDQyMnLG7Kp4Lctj4aCQn1ooaTIGvYI7Iby4QXSuX7RYEFGRDC
+   UBxegr4p5dFc32iVlQgmXRcnnyAoawpzci06eECcn0yoRiDy4SyAOBHlo
+   E=;
+Received: from ironmsg07-lv.qualcomm.com ([10.47.202.151])
+  by alexa-out.qualcomm.com with ESMTP; 01 May 2022 18:38:48 -0700
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg07-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 May 2022 18:38:48 -0700
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Sun, 1 May 2022 18:38:27 -0700
+Received: from [10.38.245.205] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Sun, 1 May 2022
+ 18:38:24 -0700
+Message-ID: <200eddae-02b8-5479-3e81-1f3885200ac0@quicinc.com>
+Date:   Sun, 1 May 2022 18:38:22 -0700
 MIME-Version: 1.0
-References: <20220419094143.9561-1-jason-jh.lin@mediatek.com>
- <20220419094143.9561-9-jason-jh.lin@mediatek.com> <402f0e60-8d3c-850d-84ff-af5424b72b73@gmail.com>
-In-Reply-To: <402f0e60-8d3c-850d-84ff-af5424b72b73@gmail.com>
-From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Date:   Mon, 2 May 2022 06:54:35 +0800
-X-Gmail-Original-Message-ID: <CAAOTY_-jiX_BhaZ5+skRu4RSZLjcHJerVtwH34fz4N6_jbVK0w@mail.gmail.com>
-Message-ID: <CAAOTY_-jiX_BhaZ5+skRu4RSZLjcHJerVtwH34fz4N6_jbVK0w@mail.gmail.com>
-Subject: Re: [PATCH v20 8/8] soc: mediatek: remove DDP_DOMPONENT_DITHER from enum
-To:     Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     "jason-jh.lin" <jason-jh.lin@mediatek.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        CK Hu <ck.hu@mediatek.com>, Nancy Lin <nancy.lin@mediatek.com>,
-        Singo Chang <singo.chang@mediatek.com>,
-        DTML <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        DRI Development <dri-devel@lists.freedesktop.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Project_Global_Chrome_Upstream_Group 
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.6.2
+Subject: Re: [Freedreno] [PATCH] drm/msm/disp/dpu1: avoid clearing hw
+ interrupts if hw_intr is null during drm uninit
+Content-Language: en-US
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Vinod Polimera <quic_vpolimer@quicinc.com>,
+        <devicetree@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
+        <freedreno@lists.freedesktop.org>, <linux-arm-msm@vger.kernel.org>
+CC:     <quic_kalyant@quicinc.com>, <robdclark@gmail.com>,
+        <linux-kernel@vger.kernel.org>, <dianders@chromium.org>
+References: <1650952931-31988-1-git-send-email-quic_vpolimer@quicinc.com>
+ <CAE-0n52cSR_xCxF+_UeK8CaHqsu=4HOtfWQ3BMmx2Tx3kmk-ZA@mail.gmail.com>
+ <e20d94d7-a865-21f7-0514-706992294614@linaro.org>
+From:   Abhinav Kumar <quic_abhinavk@quicinc.com>
+In-Reply-To: <e20d94d7-a865-21f7-0514-706992294614@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-4.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -75,64 +72,110 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Matthias:
+Looks like our new CI has given all the answers we need :) which is a 
+great win for the CI in my opinion.
 
-Matthias Brugger <matthias.bgg@gmail.com> =E6=96=BC 2022=E5=B9=B44=E6=9C=88=
-22=E6=97=A5 =E9=80=B1=E4=BA=94 =E4=B8=8B=E5=8D=888:42=E5=AF=AB=E9=81=93=EF=
-=BC=9A
->
->
->
-> On 19/04/2022 11:41, jason-jh.lin wrote:
-> > After mmsys and drm change DITHER enum to DDP_COMPONENT_DITHER0,
-> > mmsys header can remove the useless DDP_COMPONENT_DITHER enum.
-> >
-> > Signed-off-by: jason-jh.lin <jason-jh.lin@mediatek.com>
-> > Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@coll=
-abora.com>
->
-> Acked-by: Matthias Brugger <matthias.bgg@gmail.com>
->
-> Chun-Kuang, I think it would make sense to take that through your tree as=
- it
-> depends on the previous patches.
->
-> I provide you a stable tag so that you can take it:
-> v5.18-next-vdso0-stable-tag
+Take a look at this report : 
+https://gitlab.freedesktop.org/drm/msm/-/jobs/22015361
 
-After I take this tag, I find one checkpatch warning:
+This issue seems to be because this change 
+https://github.com/torvalds/linux/commit/169466d4e59ca204683998b7f45673ebf0eb2de6 
+is missing in our tree.
 
-WARNING: DT compatible string "mediatek,mt8195-mmsys" appears
-un-documented -- check ./Documentation/devicetree/bindings/
-#670: FILE: drivers/soc/mediatek/mtk-mmsys.c:390:
-+               .compatible =3D "mediatek,mt8195-mmsys",
+Without this change, what happens is that we are not hitting the return 
+0 because we check for ENODEV.
 
-I think this tag lost one binding patch, it's better that this tag has
-no this warning.
 
-Regards,
-Chun-Kuang.
+   /*
+      * External bridges are mandatory for eDP interfaces: one has to
+      * provide at least an eDP panel (which gets wrapped into 
+panel-bridge).
+      *
+      * For DisplayPort interfaces external bridges are optional, so
+      * silently ignore an error if one is not present (-ENODEV).
+      */
+     rc = dp_parser_find_next_bridge(dp_priv->parser);
+     if (!dp->is_edp && rc == -ENODEV)
+         return 0;
 
->
-> Regards,
-> Matthias
->
-> > ---
-> >   include/linux/soc/mediatek/mtk-mmsys.h | 3 +--
-> >   1 file changed, 1 insertion(+), 2 deletions(-)
-> >
-> > diff --git a/include/linux/soc/mediatek/mtk-mmsys.h b/include/linux/soc=
-/mediatek/mtk-mmsys.h
-> > index 59117d970daf..fb719fd1281c 100644
-> > --- a/include/linux/soc/mediatek/mtk-mmsys.h
-> > +++ b/include/linux/soc/mediatek/mtk-mmsys.h
-> > @@ -16,8 +16,7 @@ enum mtk_ddp_comp_id {
-> >       DDP_COMPONENT_CCORR,
-> >       DDP_COMPONENT_COLOR0,
-> >       DDP_COMPONENT_COLOR1,
-> > -     DDP_COMPONENT_DITHER,
-> > -     DDP_COMPONENT_DITHER0 =3D DDP_COMPONENT_DITHER,
-> > +     DDP_COMPONENT_DITHER0,
-> >       DDP_COMPONENT_DITHER1,
-> >       DDP_COMPONENT_DP_INTF0,
-> >       DDP_COMPONENT_DP_INTF1,
+So, I think we should do both:
+
+1) Since we are running CI on the tree, backport this change so that 
+this error path doesnt hit?
+
+2) Add this protection as well because this shows that we can indeed hit 
+this path in EDEFER cases causing this crash.
+
+Thanks
+
+Abhinav
+
+On 4/27/2022 3:53 AM, Dmitry Baryshkov wrote:
+> On 27/04/2022 00:50, Stephen Boyd wrote:
+>> Quoting Vinod Polimera (2022-04-25 23:02:11)
+>>> Avoid clearing irqs and derefernce hw_intr when hw_intr is null.
+>>
+>> Presumably this is only the case when the display driver doesn't fully
+>> probe and something probe defers? Can you clarify how this situation
+>> happens?
+>>
+>>>
+>>> BUG: Unable to handle kernel NULL pointer dereference at virtual 
+>>> address 0000000000000000
+>>>
+>>> Call trace:
+>>>   dpu_core_irq_uninstall+0x50/0xb0
+>>>   dpu_irq_uninstall+0x18/0x24
+>>>   msm_drm_uninit+0xd8/0x16c
+>>>   msm_drm_bind+0x580/0x5fc
+>>>   try_to_bring_up_master+0x168/0x1c0
+>>>   __component_add+0xb4/0x178
+>>>   component_add+0x1c/0x28
+>>>   dp_display_probe+0x38c/0x400
+>>>   platform_probe+0xb0/0xd0
+>>>   really_probe+0xcc/0x2c8
+>>>   __driver_probe_device+0xbc/0xe8
+>>>   driver_probe_device+0x48/0xf0
+>>>   __device_attach_driver+0xa0/0xc8
+>>>   bus_for_each_drv+0x8c/0xd8
+>>>   __device_attach+0xc4/0x150
+>>>   device_initial_probe+0x1c/0x28
+>>>
+>>> Fixes: a73033619ea ("drm/msm/dpu: squash dpu_core_irq into 
+>>> dpu_hw_interrupts")
+>>
+>> The fixes tag looks odd. In dpu_core_irq_uninstall() at that commit it
+>> is dealing with 'irq_obj' which isn't a pointer. After commit
+>> f25f656608e3 ("drm/msm/dpu: merge struct dpu_irq into struct
+>> dpu_hw_intr") dpu_core_irq_uninstall() starts using 'hw_intr' which is
+>> allocated on the heap. If we backported this patch to a place that had
+>> a73033619ea without f25f656608e3 it wouldn't make any sense.
+> 
+> I'd agree here. The following tag would be correct:
+> 
+> Fixes: f25f656608e3 ("drm/msm/dpu: merge struct dpu_irq into struct 
+> dpu_hw_intr")
+> 
+> 
+>>
+>>> Signed-off-by: Vinod Polimera <quic_vpolimer@quicinc.com>
+>>> ---
+>>>   drivers/gpu/drm/msm/disp/dpu1/dpu_hw_interrupts.c | 3 +++
+>>>   1 file changed, 3 insertions(+)
+>>>
+>>> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_interrupts.c 
+>>> b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_interrupts.c
+>>> index c515b7c..ab28577 100644
+>>> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_interrupts.c
+>>> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_interrupts.c
+>>> @@ -599,6 +599,9 @@ void dpu_core_irq_uninstall(struct dpu_kms *dpu_kms)
+>>>   {
+>>>          int i;
+>>>
+>>> +       if (!dpu_kms->hw_intr)
+>>> +               return;
+>>> +
+>>>          pm_runtime_get_sync(&dpu_kms->pdev->dev);
+>>>          for (i = 0; i < dpu_kms->hw_intr->total_irqs; i++)
+> 
+> 
