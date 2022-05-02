@@ -2,83 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D92D8516DB6
-	for <lists+devicetree@lfdr.de>; Mon,  2 May 2022 11:49:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 71585516DBC
+	for <lists+devicetree@lfdr.de>; Mon,  2 May 2022 11:51:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1384516AbiEBJxM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 May 2022 05:53:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43528 "EHLO
+        id S230448AbiEBJyi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 May 2022 05:54:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46708 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1384523AbiEBJwo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 May 2022 05:52:44 -0400
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 627E312AAF
-        for <devicetree@vger.kernel.org>; Mon,  2 May 2022 02:49:16 -0700 (PDT)
+        with ESMTP id S1384506AbiEBJyc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 May 2022 05:54:32 -0400
+Received: from mail-vk1-xa2e.google.com (mail-vk1-xa2e.google.com [IPv6:2607:f8b0:4864:20::a2e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B6ECE9;
+        Mon,  2 May 2022 02:50:59 -0700 (PDT)
+Received: by mail-vk1-xa2e.google.com with SMTP id m203so6360848vke.13;
+        Mon, 02 May 2022 02:50:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1651484956; x=1683020956;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=ci02NB4QGci9pTeqTiLS0Ke/DzJkZ60fO1FMVNrrSdU=;
-  b=b5ki0itsbB0ttYh+Pw7jfQMUAw1ElM5yvF5Ma4YGWEd0IjcPWFOY6WvG
-   nvn7Ce0sVZkcusttNEfWm4RajeUOjgZXbsxLQ0GWPhjh7tSEhXFuDPtqZ
-   eu6/HIPM/AuVJjBUhES95Wv7hxNlRdhlQoOQ7CKscMFHLNLGuDv5Mvh9D
-   IcYKqdHs1i/sRMtqcY2tSBM05GIa4A5i2TM9iQQYWBFIflwmCS87bLn8k
-   SNYH7Jl6eaVaP61EoRS9d+dk7rZMcXq5KfWUnsDCtQjOwLCIlN4auTWEk
-   nDJbbpDBpGcDX2TOKMuBajaZbtcYCBdPORb+bHN2xOjS1xixVw9kNCY0r
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.91,190,1647298800"; 
-   d="scan'208";a="23608917"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 02 May 2022 11:49:07 +0200
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Mon, 02 May 2022 11:49:07 +0200
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Mon, 02 May 2022 11:49:07 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1651484947; x=1683020947;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=ci02NB4QGci9pTeqTiLS0Ke/DzJkZ60fO1FMVNrrSdU=;
-  b=Ns6FB/gL5wXWiMMAB+Dc0nw82reyemAUdjK4lfKN16g642ETONF1EvXB
-   /hO2CKx/tg+zPPSffA7pD1q1XKa5Z5LCWn+Euz9Fo2FbVDD+LRYsez3K+
-   87GvnC5lpyGbUReGpOOT45C+cCc0NoRkoz6iD92hiHuOPmDPvGqRhVD5w
-   HBsF6Lx7wSNkhUShMZsq5GP9NHl1X95pcgb9CKR22if408SriNpeUmOwC
-   gLC1bhQq/9KOyDYVnVNtVZF83iW5HKPWT4jMZINvEEXSTjfXVTUv4J3D8
-   4/7CCsO9p+iqVZKEGsoKbzQym4bAmB+DMjMRXwlzoxF4xtQDhGhoIAFfF
-   w==;
-X-IronPort-AV: E=Sophos;i="5.91,190,1647298800"; 
-   d="scan'208";a="23608916"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 02 May 2022 11:49:07 +0200
-Received: from steina-w.tq-net.de (unknown [10.123.49.12])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 64B7F28007C;
-        Mon,  2 May 2022 11:49:07 +0200 (CEST)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>
-Cc:     Markus Niebel <Markus.Niebel@ew.tq-group.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Alexander Stein <alexander.stein@ew.tq-group.com>
-Subject: [PATCH 4/4] arm64: dt: imx8mp: support pwm polarity inversion
-Date:   Mon,  2 May 2022 11:49:01 +0200
-Message-Id: <20220502094901.251310-5-alexander.stein@ew.tq-group.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220502094901.251310-1-alexander.stein@ew.tq-group.com>
-References: <20220502094901.251310-1-alexander.stein@ew.tq-group.com>
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:reply-to:from:date:message-id
+         :subject:to:cc;
+        bh=8YULF+fxOKmOE52wuF3ol0Q9fjUkUz1zoEFHGOF9cuo=;
+        b=lVoM3WQCO0+G//fu2Z0qzV524H9UEtANF/OSLZa6sQNv4K88nZPVzVzKcSPPtuj8SJ
+         a+TgwLcx3DC55l8J7ks2N5PGkqGWnlJitoOuvGEkobqUlMwDqYyiXxGORmAXGEheHPN6
+         NX4rdvIsCOc5I+7HdQAv04bp831U4GXwhYnhWeTbSdpZUNYDs88Ry2TKhRY+hY1KAYj5
+         N5NG+rejIoZIrch/PWQkHOuZJ/Px+nhE0lfKXQZ+3MvlOHFCtJ77Vgrg998zxid23uSA
+         ik2/1kHM8mFd+cn74073PyvuE6/lBUeGXgLgMpb6ne69nwrNL1B2Ov2Fl+qP4BoJnhjR
+         5SYQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:reply-to
+         :from:date:message-id:subject:to:cc;
+        bh=8YULF+fxOKmOE52wuF3ol0Q9fjUkUz1zoEFHGOF9cuo=;
+        b=CRr9TwJklmBqAx0rQXHt00p4VDEEWf5z3BOsUmqmQJT1sDSG+Z0Rc/dRLiAuhlMUSw
+         +3J8WFAtted1/vwLbKcQN1+/xk05ikhn9uhD+O4wJ8ll/HaP1CAUt5OolxS04M/8AnS3
+         34nq89FA1EktcXCHzKMs+qY1xf7yZKNeKBwLthfkcEgzNdzoAuG9TI4IlEWjs44qFcuL
+         bpM/3bFP8HGdtcrA/K35Gngwd2yOpdQgXIHHBIh+JpiA2AzdUqkdaj/udnXwFZyi4asL
+         LTh1009yNkglstAb7Ip8Kb92bUlXZH4aMieQxKLaQbwsE8d5tblibMBkwekg+0W+4H3Q
+         TvvQ==
+X-Gm-Message-State: AOAM5329iFcniNkEy9aoE++L0m5DONOIsYd7Fe+2X4i+AQ7mb0Y9Eru2
+        /7jEPas9o9xuZUuL6PS1mwAZLLy0Au7np+c0DK0=
+X-Google-Smtp-Source: ABdhPJxrFUbWdgIa7fx7MiqjHJ7xhid6w+XNRYzydGbUkY73XQyHuwZ7g8NEihfKdX5XVRf3dnWdLVJaSqmaz78WrUk=
+X-Received: by 2002:ac5:c899:0:b0:349:33e8:d676 with SMTP id
+ n25-20020ac5c899000000b0034933e8d676mr2918216vkl.0.1651485058811; Mon, 02 May
+ 2022 02:50:58 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+References: <20220426131102.23966-1-andrea.merello@gmail.com>
+ <20220426131102.23966-9-andrea.merello@gmail.com> <CAHp75VdLiBkg100UjFN36rW_vaOObOoJ_Mv9n=4LjSWb+dQWMw@mail.gmail.com>
+In-Reply-To: <CAHp75VdLiBkg100UjFN36rW_vaOObOoJ_Mv9n=4LjSWb+dQWMw@mail.gmail.com>
+Reply-To: andrea.merello@gmail.com
+From:   Andrea Merello <andrea.merello@gmail.com>
+Date:   Mon, 2 May 2022 11:50:47 +0200
+Message-ID: <CAN8YU5PzwmeQ9XA3qod7HejG6cCLCrPvda5eomCh5hUze_DWcA@mail.gmail.com>
+Subject: Re: [v5 08/14] iio: imu: add Bosch Sensortec BNO055 core driver
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matt Ranostay <matt.ranostay@konsulko.com>,
+        Alexandru Ardelean <ardeleanalex@gmail.com>,
+        jmondi <jacopo@jmondi.org>,
+        Andrea Merello <andrea.merello@iit.it>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -86,60 +76,143 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Markus Niebel <Markus.Niebel@ew.tq-group.com>
+Il giorno mer 27 apr 2022 alle ore 15:23 Andy Shevchenko
+<andy.shevchenko@gmail.com> ha scritto:
+>
 
-The i.MX8M Plus has the same PWM IP as i.MX6 / i.MX7. This IP
-and the driver supporting pwm polarity inversion. Switch CPU
-device tree fragment to use 3 pwm-cells.
+As usual, some inline comments. OK for the rest.
 
-Tested on MBa8MPxL mainboard.
+[...]
 
-Signed-off-by: Markus Niebel <Markus.Niebel@ew.tq-group.com>
-Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
----
- arch/arm64/boot/dts/freescale/imx8mp.dtsi | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+>
+> > +#define BNO055_ATTR_VALS(...)          \
+> > +       .vals = (int[]){ __VA_ARGS__},  \
+> > +       .len = ARRAY_SIZE(((int[]){__VA_ARGS__}))
+>
+> Not sure this adds any readability to the code. Can we simply have an
+> array of int for each case with the explicit ARRAY_SIZE() calls?
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-index 7ad824e6b820..89ef26399bfa 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-@@ -567,7 +567,7 @@ pwm1: pwm@30660000 {
- 				clocks = <&clk IMX8MP_CLK_PWM1_ROOT>,
- 					 <&clk IMX8MP_CLK_PWM1_ROOT>;
- 				clock-names = "ipg", "per";
--				#pwm-cells = <2>;
-+				#pwm-cells = <3>;
- 				status = "disabled";
- 			};
- 
-@@ -578,7 +578,7 @@ pwm2: pwm@30670000 {
- 				clocks = <&clk IMX8MP_CLK_PWM2_ROOT>,
- 					 <&clk IMX8MP_CLK_PWM2_ROOT>;
- 				clock-names = "ipg", "per";
--				#pwm-cells = <2>;
-+				#pwm-cells = <3>;
- 				status = "disabled";
- 			};
- 
-@@ -589,7 +589,7 @@ pwm3: pwm@30680000 {
- 				clocks = <&clk IMX8MP_CLK_PWM3_ROOT>,
- 					 <&clk IMX8MP_CLK_PWM3_ROOT>;
- 				clock-names = "ipg", "per";
--				#pwm-cells = <2>;
-+				#pwm-cells = <3>;
- 				status = "disabled";
- 			};
- 
-@@ -600,7 +600,7 @@ pwm4: pwm@30690000 {
- 				clocks = <&clk IMX8MP_CLK_PWM4_ROOT>,
- 					 <&clk IMX8MP_CLK_PWM4_ROOT>;
- 				clock-names = "ipg", "per";
--				#pwm-cells = <2>;
-+				#pwm-cells = <3>;
- 				status = "disabled";
- 			};
- 
--- 
-2.25.1
+Do you mean moving the vals array out of the structs? Something like:
 
+static int bno055_gyr_scale_vals[] = {125, 1877467, 250, 1877467,
+        500, 1877467, 1000, 1877467, 2000, 1877467};
+
+static struct bno055_sysfs_attr_aux_data bno055_gyr_scale_aux = {
+        .fusion_vals = (int[]){1, 900},
+        .hw_xlate = (int[]){4, 3, 2, 1, 0},
+        .type = IIO_VAL_FRACTIONAL
+
+?
+But then I'd make also something like:
+
+#define bno055_sysfs_attr_avail(priv, attr, vals, len) \
+        _bno055_sysfs_attr_avail(priv, attr##_vals,
+ARRAY_SIZE(attr##_vals), attr##_aux, vals, len)
+
+And the same for all other users of those structs.
+
+My point is not about readability, but about avoiding as much as
+possible bugs caused by mismatched attr_vals, attr_aux and
+ARRAY_SIZE() arg. e.g:
+bno055_sysfs_attr_avail(priv, bno_foo_vals, ARRAY_SIZE(bno_bar_vals),
+bno_foobar_aux, vals, len)
+
+I used to make quite a lot of mess until I grouped all the stuff in
+one struct :/
+
+[...]
+
+>
+> > +       msleep(20);
+>
+> Perhaps a comment why so long sleep is needed.
+
+DS says that switching mode can last from 7mS up to 19mS depending on
+the case, but I don't know _why_ it takes so long. I may add a comment
+that just states that it's a sensor requirement.
+
+[...]
+
+>
+> > +       for (i = 0; i < bno055_acc_range.len; i++)
+> > +               len += sysfs_emit_at(buf, len, "%d%c", bno055_acc_range.vals[i],
+> > +                                    (i == bno055_acc_range.len - 1) ? '\n' : ' ');
+>
+> You may move the condition out of the loop.
+
+May you elaborate, please? Do you mean something like: loop one time
+less, and then call sysfs_emit_at() once more outside the loop,
+getting rid of the conditional ternary operator at all?
+
+[...]
+
+> > +       if (indio_dev->active_scan_mask &&
+> > +           !bitmap_empty(indio_dev->active_scan_mask, _BNO055_SCAN_MAX))
+> > +               return -EBUSY;
+> > +
+> > +       if (sysfs_streq(buf, "0")) {
+> > +               ret = bno055_operation_mode_set(priv, BNO055_OPR_MODE_AMG);
+>
+> return bno055_operation_mode_set(...);
+
+Why? bno055_operation_mode_set() returns an error code, while here we
+need to return the len, or propagate the error code only when it's the
+case
+
+> > +       } else {
+>
+> ...and drop this with the following decreasing indentation.
+
+if you want to drop this, then I can just duplicate if(ret) return
+ret; i.e. add it after bno055_operation_mode_set(priv,
+BNO055_OPR_MODE_AMG); and get rid of the else branch (see above)
+
+[...]
+
+>
+> Can be removed to group all related checks together.
+
+I'm not sure what you mean here, but see below
+
+> > +       if (ret)
+> > +               dev_notice(dev, "Calibration file load failed. See instruction in kernel Documentation/iio/bno055.rst");
+> > +
+> > +       if (caldata) {
+> > +               caldata_data = caldata->data;
+> > +               caldata_size = caldata->size;
+> > +       }
+> > +       ret = bno055_init(priv, caldata_data, caldata_size);
+>
+> > +       if (caldata)
+> > +               release_firmware(caldata);
+>
+> > +       if (ret)
+> > +               return ret;
+>
+> Can be rewritten in a form of
+>
+> if (caldata) {
+>  ret = bno055_init();
+>  release_firmware(...);
+> } else {
+>  ret = bno055_init();
+> }
+> if (ret)
+>   return ret;
+>
+> ?
+
+Indeed I'd say it could be rewritten as:
+
+        if (ret)
+                ret = request_firmware(&caldata, BNO055_FW_GENERIC_NAME, dev);
+        if (ret) {
+                dev_notice(dev, "Calibration file load failed. See
+instruction in kernel Documentation/iio/bno055.rst");
+                ret = bno055_init(priv, NULL, 0);
+        } else {
+                ret = bno055_init(priv, caldata->data, caldata->size);
+                release_firmware(caldata);
+        }
+        if (ret)
+                return ret;
