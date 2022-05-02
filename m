@@ -2,96 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E72DB517118
-	for <lists+devicetree@lfdr.de>; Mon,  2 May 2022 15:59:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E629251712F
+	for <lists+devicetree@lfdr.de>; Mon,  2 May 2022 16:04:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236512AbiEBODC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 May 2022 10:03:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39130 "EHLO
+        id S1359316AbiEBOID (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 May 2022 10:08:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44812 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1385436AbiEBODB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 May 2022 10:03:01 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CCDE012775;
-        Mon,  2 May 2022 06:59:32 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 83E9CB81147;
-        Mon,  2 May 2022 13:59:31 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B85F8C385AC;
-        Mon,  2 May 2022 13:59:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1651499970;
-        bh=rkki7fnxVJwM629ZKQOfs9gIhaGKzLdyqKlPakAN4hM=;
-        h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
-        b=T+BOSzFlGc7iDXXXBtehvAu37zdckd4dI18jZULA+9M2pTdwj5WEJTkd2+Rm/Vayb
-         DCbvssOTw4h9PoJf9c4AM/Lblnf3Y1LGkTRAwjWRRhG+owhl3PHr64jKHc4UBd+lL6
-         KHr8QtjrWN16Mkq4a5wWAQazkjBrempjMyixCeeCnktOC8Z2co9PF1JZ5yUt1sNPR0
-         IDx8rEEZao/MS8ItdrZGGp0t7xMx66vXXdpqxKskkjpYo7ZwXzRmb/w0OZ6ll0piKi
-         b+GNFWWk56UG9Fna6JT6VAMoUKmtthhWhyjdSkSrE6+5QaOrBJ0ISgKGrrTR4lWn/g
-         2njidFcTA+2wQ==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
+        with ESMTP id S236925AbiEBOIC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 May 2022 10:08:02 -0400
+Received: from mail.schwermer.no (mail.schwermer.no [49.12.228.226])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C21C63898;
+        Mon,  2 May 2022 07:04:31 -0700 (PDT)
+X-Virus-Scanned: Yes
+Message-ID: <cbb3434b-a149-ccd7-d620-c18fb1845e2f@svenschwermer.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=svenschwermer.de;
+        s=mail; t=1651500267;
+        bh=aVAwVgTGrGTC+oj/6rhsD1aJW6PcX3Onk4UMqeNllRY=;
+        h=Subject:From:To:Cc:References:In-Reply-To;
+        b=L2lQRVOeyrlBxyS2ATEJbG1pkW55O2PR/BL/E7Q7RCVjO47TvqQYD69bf5cdts+jZ
+         X0zGzkMbpn7EQkXLdaXlpGYhlVCuDxVgTWa+/apBu5+KfXejaciQ68McoNgm2MI/aS
+         crYa1lqq6pGTmwBIvWegKHaEVTxwjyOCeWwV8e9WD1nSRnn4vBLDgwnlFsanFEQuAq
+         phmhW3TeiX68mCI5GR01G0AHzc1s3LfcE8zaxpUFhIDplrT/pwuZvQeK64V0NSIjgd
+         y7IOhwL1yWC2z42kHkfDJWazjBtACfPU0fzqDvxQjuiRS5vG4zhYGKl2gTyFuLLDoE
+         SifkDCcMAWuXA==
+Date:   Mon, 2 May 2022 16:04:26 +0200
+Mime-Version: 1.0
+Subject: Re: [PATCH v8 0/3 RESEND] Multicolor PWM LED support
+Content-Language: en-US
+From:   Sven Schwermer <sven@svenschwermer.de>
+To:     linux-leds@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     pavel@ucw.cz, robh+dt@kernel.org, thierry.reding@gmail.com,
+        u.kleine-koenig@pengutronix.de, lee.jones@linaro.org,
+        post@lespocky.de, andy.shevchenko@gmail.com, robh@kernel.org
+References: <20220407073225.71605-1-sven@svenschwermer.de>
+In-Reply-To: <20220407073225.71605-1-sven@svenschwermer.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Subject: Re: [PATCH v7 1/9] dt: bindings: net: add bindings of WCN6750 for
- ath11k
-From:   Kalle Valo <kvalo@kernel.org>
-In-Reply-To: <20220429170502.20080-2-quic_mpubbise@quicinc.com>
-References: <20220429170502.20080-2-quic_mpubbise@quicinc.com>
-To:     Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
-Cc:     <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <robh@kernel.org>,
-        <mka@chromium.org>,
-        Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
-User-Agent: pwcli/0.1.0-git (https://github.com/kvalo/pwcli/) Python/3.7.3
-Message-ID: <165149996655.16977.4961291350588382970.kvalo@kernel.org>
-Date:   Mon,  2 May 2022 13:59:28 +0000 (UTC)
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Manikanta Pubbisetty <quic_mpubbise@quicinc.com> wrote:
+Hi,
 
-> WCN6750 is the WLAN chip on Qualcomm Snapdragon SoC SC7280;
-> Though being a PCIe based solution, it is not attached to
-> the APSS processor (Application Processor SubSystem), it is
-> instead attached to another tiny processor called WPSS Q6
-> processor (Wireless Processor SubSystem) on the SC7280 MSM,
-> where the WLAN firmware runs, and it is the WLAN firmware
-> running on the Q6 processor which enumerates WCN6750, as a
-> result APPS processor would never know such a device being
-> present in the system and would not detect the WCN6750
-> hardware unless and otherwise WCN6750 is registered as a
-> platform device. This is the reason behind adding WCN6750
-> WLAN node in the device tree.
+Is there anything else I can do to get this series merged soon?
+
+Best regards,
+Sven
+
+On 4/7/22 09:32, sven@svenschwermer.de wrote:
+> From: Sven Schwermer <sven.schwermer@disruptive-technologies.com>
 > 
-> Add WCN6750 wireless driver support, its based on ath11k driver.
+> Hi,
 > 
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
-> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
-
-9 patches applied to ath-next branch of ath.git, thanks.
-
-00fd24089b81 dt: bindings: net: add bindings of WCN6750 for ath11k
-92c1858e4399 ath11k: Move parameters in bus_params to hw_params
-d1e1edfde035 ath11k: Add HW params for WCN6750
-56c8ccf331bd ath11k: Add register access logic for WCN6750
-676f8905fff9 ath11k: Fetch device information via QMI for WCN6750
-73d3e71306fe ath11k: Add QMI changes for WCN6750
-49890d9c93d5 ath11k: HAL changes to support WCN6750
-e67ba1973917 ath11k: Datapath changes to support WCN6750
-00402f49d26f ath11k: Add support for WCN6750 device
-
--- 
-https://patchwork.kernel.org/project/linux-wireless/patch/20220429170502.20080-2-quic_mpubbise@quicinc.com/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
-
+> I believe this patch series is ready for merging.
+> 
+> Pavel, please let me know if you need more to get this merged.
+> 
+> Best regards,
+> Sven
+> 
+> Sven Schwermer (3):
+>    dt-bindings: leds: Optional multi-led unit address
+>    dt-bindings: leds: Add multicolor PWM LED bindings
+>    leds: Add PWM multicolor driver
+> 
+>   .../bindings/leds/leds-class-multicolor.yaml  |   2 +-
+>   .../bindings/leds/leds-pwm-multicolor.yaml    |  79 ++++++++
+>   drivers/leds/Kconfig                          |  11 ++
+>   drivers/leds/Makefile                         |   1 +
+>   drivers/leds/leds-pwm-multicolor.c            | 186 ++++++++++++++++++
+>   5 files changed, 278 insertions(+), 1 deletion(-)
+>   create mode 100644 Documentation/devicetree/bindings/leds/leds-pwm-multicolor.yaml
+>   create mode 100644 drivers/leds/leds-pwm-multicolor.c
+> 
