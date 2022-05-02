@@ -2,62 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E35E35179FC
-	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 00:28:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6E34C517A02
+	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 00:32:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245209AbiEBWbk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 May 2022 18:31:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33478 "EHLO
+        id S239396AbiEBWgY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 May 2022 18:36:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35786 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229876AbiEBWbk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 May 2022 18:31:40 -0400
-Received: from mail-ot1-f52.google.com (mail-ot1-f52.google.com [209.85.210.52])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5FA8656D;
-        Mon,  2 May 2022 15:28:10 -0700 (PDT)
-Received: by mail-ot1-f52.google.com with SMTP id z15-20020a9d65cf000000b00605f064482cso7816638oth.6;
-        Mon, 02 May 2022 15:28:10 -0700 (PDT)
+        with ESMTP id S229462AbiEBWgX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 May 2022 18:36:23 -0400
+Received: from mail-ot1-f48.google.com (mail-ot1-f48.google.com [209.85.210.48])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B751DA1B2;
+        Mon,  2 May 2022 15:32:53 -0700 (PDT)
+Received: by mail-ot1-f48.google.com with SMTP id m6-20020a05683023a600b0060612720715so3401252ots.10;
+        Mon, 02 May 2022 15:32:53 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=AiUtMghJJu4VQTdQvZz9IOUZgagJkbQTTmej6MXeemE=;
-        b=LrReLHXBkokNC8S5vZp3TsYr7Pv5RBzPSABdGeeUY9LIjXLFsy3jCXdLMtD1YvcQZR
-         MDyRolk5Nm7V0vTlhjexzM0kXwsg2kwaaMQngeIbUV6OchsbcQc7C/xwtqXeQddmONC3
-         J7qhxx9Bi3yqdrB1IrHDC/jmgo3lVsj+eBgrdVnFjA1HwNxqItTV9Yn2XClviWNFXXJx
-         ZpvsTthX/rkh3YRx326xmuUTwYeRwhTPsGtAMlHeDwILG2mDOogY9CegZhJHfhJTt4y4
-         cOglBo/t9lGf2zofWLnIil5wN/NcW2NyLbAzfjgKati/4i+UtAretW6D02aHNbeT3DyU
-         nYIg==
-X-Gm-Message-State: AOAM532XlhIK84zXS8MM5S4mAKkE6VcjxqwMqlvHKLVSf1EGSi41jfKr
-        AMhvKW8/+5R35+OxikjsuA==
-X-Google-Smtp-Source: ABdhPJwOIV024X6NuWnmN5TD2GGMj37f7RXZ4V/jnn+IrfIC/dd9kAKtGJAe5eSOuCRTgrLmIvtxtA==
-X-Received: by 2002:a9d:6442:0:b0:5b2:3851:597 with SMTP id m2-20020a9d6442000000b005b238510597mr4848051otl.247.1651530490037;
-        Mon, 02 May 2022 15:28:10 -0700 (PDT)
+        bh=XSA9YndvfNYBh4vCbeUSx3HnFvZdR1DxFJAhwqu75m0=;
+        b=4V35YE40lhHsC1lwUNaepjeKvVK0FuDe99SWnjWuL/NCISd4SQv8UdrHiZppXuf+Yr
+         733OLuuHny8xHNhmZ32PskCTqnfCnT8qIUSHbS4Jh/aSu4E/scj7q+geeWUl9QkEvGLN
+         WSTgKKGKzAwNpP9XnPCJtrcB4ol7frodJeAiwUCfF+26B5SWYkkJfntsvND1rZ9NSmxY
+         t1ZM9UqOWZEn3ZvA8N+EFwHQ9aqkjd7JdUHXtJ0+Eoxuiszt0MUiiU1b+c2epEhBq9u5
+         ckSGMd7R/pRAB7vaHAE0wWUUjFvAfYJYEC9WNylH2+kDrWw+z7NG/mfLDSVz/50xtBqE
+         KA+w==
+X-Gm-Message-State: AOAM531OT+eXBfkve1uLcqRKYPlh75oQSNvmtvo1VP6ThFzfHxRu3Le0
+        mMRU9zVM+a3ffXe9ypMdy+bl6FJMkQ==
+X-Google-Smtp-Source: ABdhPJzF2BhR/JXe6VIWEotbfWv8kVNDq/XceNLCdYXdx8vxLRKHHvOxpjQARdjMPuAAOHHRfZ0lZg==
+X-Received: by 2002:a05:6830:1d92:b0:606:a1e:946a with SMTP id y18-20020a0568301d9200b006060a1e946amr4185338oti.294.1651530773029;
+        Mon, 02 May 2022 15:32:53 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id q17-20020a9d6651000000b006060322127dsm3314132otm.77.2022.05.02.15.28.08
+        by smtp.gmail.com with ESMTPSA id n10-20020a9d6f0a000000b0060603221264sm3377485otq.52.2022.05.02.15.32.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 May 2022 15:28:09 -0700 (PDT)
-Received: (nullmailer pid 1909309 invoked by uid 1000);
-        Mon, 02 May 2022 22:28:08 -0000
-Date:   Mon, 2 May 2022 17:28:08 -0500
+        Mon, 02 May 2022 15:32:52 -0700 (PDT)
+Received: (nullmailer pid 1916692 invoked by uid 1000);
+        Mon, 02 May 2022 22:32:51 -0000
+Date:   Mon, 2 May 2022 17:32:51 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Vidya Sagar <vidyas@nvidia.com>
-Cc:     bhelgaas@google.com, lorenzo.pieralisi@arm.com,
-        thierry.reding@gmail.com, jonathanh@nvidia.com, kishon@ti.com,
-        vkoul@kernel.org, kw@linux.com, krzk@kernel.org,
-        p.zabel@pengutronix.de, mperttunen@nvidia.com,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-phy@lists.infradead.org, kthota@nvidia.com,
-        mmaddireddy@nvidia.com, sagar.tv@gmail.com
-Subject: Re: [PATCH V2 2/8] dt-bindings: PCI: tegra: Add device tree support
- for Tegra234
-Message-ID: <YnBa+I/PjQJXhACK@robh.at.kernel.org>
-References: <20220423124858.25946-1-vidyas@nvidia.com>
- <20220423124858.25946-3-vidyas@nvidia.com>
+To:     Nathan Rossi <nathan@nathanrossi.com>
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Subject: Re: [PATCH 1/2] dt-bindings: net: dsa: marvell: Add
+ single-chip-address property
+Message-ID: <YnBcE96wbQxZguw2@robh.at.kernel.org>
+References: <20220423131427.237160-1-nathan@nathanrossi.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220423124858.25946-3-vidyas@nvidia.com>
+In-Reply-To: <20220423131427.237160-1-nathan@nathanrossi.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
@@ -69,18 +69,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Apr 23, 2022 at 06:18:52PM +0530, Vidya Sagar wrote:
-> Add support for Tegra234 PCIe controllers. These controllers are based
-> on Synopsys DesignWare core IP.
+On Sat, Apr 23, 2022 at 01:14:27PM +0000, Nathan Rossi wrote:
+> Some Marvell DSA devices can be accessed in a single chip addressing
+> mode. This is currently configured by setting the address of the switch
+> to 0. However switches in this configuration do not respond to address
+> 0, only responding to higher addresses (fixed addressed based on the
+> switch model) for the individual ports/etc. This is a feature to allow
+> for other phys to exist on the same mdio bus.
 > 
-> Signed-off-by: Vidya Sagar <vidyas@nvidia.com>
+> This change defines a 'single-chip-address' property in order to
+> explicitly define that the chip is accessed in this mode. This allows
+> for a switch to have an address defined other than 0, so that address
+> 0 can be used for another mdio device.
+> 
+> Signed-off-by: Nathan Rossi <nathan@nathanrossi.com>
 > ---
-> V2:
-> * Addressed review comment from Rob
+>  Documentation/devicetree/bindings/net/dsa/marvell.txt | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
->  .../bindings/pci/nvidia,tegra194-pcie.txt     | 104 +++++++++++++++++-
->  1 file changed, 101 insertions(+), 3 deletions(-)
+> diff --git a/Documentation/devicetree/bindings/net/dsa/marvell.txt b/Documentation/devicetree/bindings/net/dsa/marvell.txt
+> index 2363b41241..5c7304274c 100644
+> --- a/Documentation/devicetree/bindings/net/dsa/marvell.txt
+> +++ b/Documentation/devicetree/bindings/net/dsa/marvell.txt
+> @@ -46,6 +46,8 @@ Optional properties:
+>  - mdio?		: Container of PHYs and devices on the external MDIO
+>  			  bus. The node must contains a compatible string of
+>  			  "marvell,mv88e6xxx-mdio-external"
+> +- single-chip-address	: Device is configured to use single chip addressing
+> +			  mode.
 
-That's a large change, please convert to schema first.
+Doesn't sound like a common feature, it needs a vendor prefix.
+
+Some of the commit message explanation of what 'single chip addressing' 
+is is needed here.
 
 Rob
