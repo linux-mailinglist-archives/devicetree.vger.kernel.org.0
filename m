@@ -2,114 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CCFA1516FE6
-	for <lists+devicetree@lfdr.de>; Mon,  2 May 2022 14:57:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2BC61517001
+	for <lists+devicetree@lfdr.de>; Mon,  2 May 2022 15:06:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350587AbiEBNBR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 May 2022 09:01:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59398 "EHLO
+        id S235167AbiEBNKD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 May 2022 09:10:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40018 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234640AbiEBNBR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 May 2022 09:01:17 -0400
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52F3915A23
-        for <devicetree@vger.kernel.org>; Mon,  2 May 2022 05:57:48 -0700 (PDT)
-Received: by mail-wm1-x334.google.com with SMTP id r1-20020a1c2b01000000b00394398c5d51so1491256wmr.2
-        for <devicetree@vger.kernel.org>; Mon, 02 May 2022 05:57:48 -0700 (PDT)
+        with ESMTP id S233037AbiEBNKC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 May 2022 09:10:02 -0400
+Received: from mail-oi1-x235.google.com (mail-oi1-x235.google.com [IPv6:2607:f8b0:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D22819295
+        for <devicetree@vger.kernel.org>; Mon,  2 May 2022 06:06:33 -0700 (PDT)
+Received: by mail-oi1-x235.google.com with SMTP id a10so15101021oif.9
+        for <devicetree@vger.kernel.org>; Mon, 02 May 2022 06:06:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=brainfault-org.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=/oxxwZu+bujgmZ0WqvFB4CIjaE6g3QCDr/7SdNoyaHk=;
-        b=VvfStjBWybuvJaTN7Q8kOcgNpUxyufiIHFyNjfyXIGTH0wmMPUtG6wA2D/WD1T3wS7
-         PnNLVyDdFX93ywHIFEOYEFqAVmySXl2SicG5lP8zzRnzcEFPbE+sGbqrBZVGiDRIvVZo
-         WXX5RWlY8YXWUM7+CKw4UQtgzaN6V6SbDqAD2sMTNGNnbJ3s1UzEtEhR9yp7EVTM+Qaa
-         THsM71bj6I6HzVC68+K/ZRa1WpD9AmEcMnhETCtv3m5/ZJVTkww/vIQMrGvdWhuzB75s
-         bnplIlemCILH8LHmD5hDyro52c2bUJotB5VzXFIK/2OJ2hPCfn/Pr+wjHz3fC/daceMG
-         yleQ==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=YpduY3LUujj9agt2pyGYTYUcOltpq+QJYgSduqrfP7U=;
+        b=GV90JjF4D7CFDFpMIEVMlD+rNmMAkAKeJwY/3MeT+jIh15ZtQsFlSqF5wddudZNkWc
+         9kolMChs2vjLRYPHYp/aV6Hlpu5E74JJuZoVvrn0VwIEyVwaR6maMvZyBJ9w3IJMtU0F
+         YcnzHjtir5Wlt6tZttOiyM/fEZ+wrsYEXsuW7I5S3pbWOMA4DWg5tnqjTC/t3eOMNs6U
+         uhGa5aeDiMN79Zwujw9ofbp23NpfxJFfr8GHXk3bJpL9rNKmOGjTG5c5CAMdd2B5tivi
+         HLSvfp0IAZuUNSI9UMuaVbeDYcPcUpP0nVMYyPNv+bjr5H/MEXs1Hbz25qwArp3voUdW
+         oW/w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=/oxxwZu+bujgmZ0WqvFB4CIjaE6g3QCDr/7SdNoyaHk=;
-        b=HI2ssVYI9mqn+5XKM2e+jUQ0y2NAtHbDas+DCKgBImIKb/oYWTex8FQz+E5sE6+IFf
-         KpOXuqQOHMQiQKTHCtjYLRjxhXzrwu/gQ/XkXOV3Pyr7Ze2fZ1WBZM01DYeA1cv/IbWL
-         KU2B8g/X0YjVNE3wFMYdnIudvRkM1zDMHFgtmwgt0X/5XeETZa23Iz1vUNkwkPzRd31Q
-         kcFcpj/ikkSnK/Kt7WAva4ybkOUP0ml9zDOhk2J/GN0Lipm+gvgYfTuxGiGowoizAiD0
-         YCzJHcsE6LJ2ze8CL658pNnaWHkvGgp5e/3EmMeDAOo5V2bhhBbMtNE0IPndM3c4nwIZ
-         rOfA==
-X-Gm-Message-State: AOAM531h+jNkti76vgJQ3S1a05neTZAJCPk2Xu71mLL5upPqhEyhIsfk
-        gQwtDGCXj7m3rmFwAvatiXjTYQWmLhu1+7G5SvUPNA==
-X-Google-Smtp-Source: ABdhPJxnolsj9BVAydioN0xjjlxrG0HC8ksApATCHpDRdJuKFrryI9K0ei6M60/rOuukgzpIp0AWFp/U7X+73SpDaFQ=
-X-Received: by 2002:a7b:c190:0:b0:394:116d:5e0b with SMTP id
- y16-20020a7bc190000000b00394116d5e0bmr14726680wmi.108.1651496266692; Mon, 02
- May 2022 05:57:46 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220502125015.1345312-1-niklas.cassel@wdc.com> <20220502125015.1345312-2-niklas.cassel@wdc.com>
-In-Reply-To: <20220502125015.1345312-2-niklas.cassel@wdc.com>
-From:   Anup Patel <anup@brainfault.org>
-Date:   Mon, 2 May 2022 18:27:34 +0530
-Message-ID: <CAAhSdy3wKn1FoKyq+O_n_iWXSLxq_EZXrxTD99fb+ABFfKc0NA@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: riscv: Add mmu-type riscv,sv57
-To:     Niklas Cassel <niklas.cassel@wdc.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=YpduY3LUujj9agt2pyGYTYUcOltpq+QJYgSduqrfP7U=;
+        b=qvg4o7Bk/YIzQ3YuuCkGba+eOheTQJePwkd79NchS4jwnvZRP6o4So/UjH4cgbmixd
+         6C/whJgu8omCotkt7sCkRA4U5Zu1ye+ShifgfjWMRpCi5AgN3rijgQ+tZrXgjbwAOHk8
+         4oa/RxiMbj5JTrRuZOrrjPLPWrbTNrSkybu73cd6cvEvsufs78k9dSVC8E/92yyqPSzM
+         sEwJk0ESv72kzNgVt6BlTJbTfqc1L+tvqNw9DjIo0Ysh94otvz8Z2T9r1JhdN2MsfFua
+         8/EjIlTodLHYmZHVl05lZwrbdvDwEmYRw1A86agfR6h8w4GhpGmJv1uYqEfK+95QTNxo
+         nu4w==
+X-Gm-Message-State: AOAM530tkRbTHoi9P+OYbjtwXdc3l4w19ryZ7UgKEMmR+oyhgw5gqzdZ
+        aiHCMBYMmNZeUUAtY4zv3WQZAw==
+X-Google-Smtp-Source: ABdhPJy6gYlkrEw3HdhYgJS+i0PI5/yd6+OPCsHSn/J3tWNjwTbyMiQZ+NvTBxbS58riCDUPJjLlbg==
+X-Received: by 2002:a05:6808:2097:b0:326:c73:10c6 with SMTP id s23-20020a056808209700b003260c7310c6mr1321633oiw.182.1651496792671;
+        Mon, 02 May 2022 06:06:32 -0700 (PDT)
+Received: from ripper (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id i13-20020a54408d000000b00325cda1ffb9sm2282403oii.56.2022.05.02.06.06.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 02 May 2022 06:06:31 -0700 (PDT)
+Date:   Mon, 2 May 2022 06:08:18 -0700
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Mark Brown <broonie@kernel.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Rob Herring <robh@kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v3 1/3] regulator: dt-bindings: qcom,rpmh: update
+ maintainers
+Message-ID: <Ym/XwheROw9Y1JGx@ripper>
+References: <20220426105501.73200-1-krzysztof.kozlowski@linaro.org>
+ <20220426105501.73200-2-krzysztof.kozlowski@linaro.org>
+ <YmlIDn1aHSrcoeoJ@sirena.org.uk>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YmlIDn1aHSrcoeoJ@sirena.org.uk>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 2, 2022 at 6:20 PM Niklas Cassel <niklas.cassel@wdc.com> wrote:
->
-> sv57 is defined in the RISC-V Privileged Specification document.
->
-> Additionally, commit 011f09d12052 ("riscv: mm: Set sv57 on defaultly")
-> changed the default MMU mode to sv57, if supported by current hardware.
->
-> Add riscv,sv57 to the list of valid mmu-type values.
->
-> Signed-off-by: Niklas Cassel <niklas.cassel@wdc.com>
-> Acked-by: Rob Herring <robh@kernel.org>
+On Wed 27 Apr 06:41 PDT 2022, Mark Brown wrote:
 
-Looks good to me.
+> On Tue, Apr 26, 2022 at 12:54:59PM +0200, Krzysztof Kozlowski wrote:
+> 
+> >  maintainers:
+> > -  - David Collins <collinsd@codeaurora.org>
+> > +  - Bjorn Andersson <bjorn.andersson@linaro.org>
+> > +  - Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+> Bjorn, are you OK with this?
 
-Reviewed-by: Anup Patel <anup@brainfault.org>
-
-Regards,
-Anup
-
-> ---
->  Documentation/devicetree/bindings/riscv/cpus.yaml | 1 +
->  1 file changed, 1 insertion(+)
->
-> diff --git a/Documentation/devicetree/bindings/riscv/cpus.yaml b/Documentation/devicetree/bindings/riscv/cpus.yaml
-> index d632ac76532e..3100fa233ca4 100644
-> --- a/Documentation/devicetree/bindings/riscv/cpus.yaml
-> +++ b/Documentation/devicetree/bindings/riscv/cpus.yaml
-> @@ -61,6 +61,7 @@ properties:
->        - riscv,sv32
->        - riscv,sv39
->        - riscv,sv48
-> +      - riscv,sv57
->        - riscv,none
->
->    riscv,isa:
-> --
-> 2.35.1
->
->
-> _______________________________________________
-> linux-riscv mailing list
-> linux-riscv@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-riscv
+Acked-by: Bjorn Andersson <bjorn.andersson@linaro.org>
