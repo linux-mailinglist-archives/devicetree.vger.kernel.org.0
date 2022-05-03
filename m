@@ -2,149 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B9E1C51905F
-	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 23:43:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 34A19519053
+	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 23:43:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235265AbiECVmQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 May 2022 17:42:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54640 "EHLO
+        id S231343AbiECVqf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 May 2022 17:46:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57408 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243040AbiECVmP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 17:42:15 -0400
-Received: from relay11.mail.gandi.net (relay11.mail.gandi.net [IPv6:2001:4b98:dc4:8::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA7B941981;
-        Tue,  3 May 2022 14:38:41 -0700 (PDT)
-Received: (Authenticated sender: alexandre.belloni@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 11698100002;
-        Tue,  3 May 2022 21:38:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1651613920;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=4e7Sv65BlxtfCAwzzTiuAVRpHIHdlis0/EJW+hJswEM=;
-        b=X7S2yyiEWsrUJc/EzPA6b/XIba4Qkz6NHaXC8NYel22mP41XVCzF/J7ygJzIgYT6txCoNa
-        s0gX4c+AS8TNumhap7CnxoqFib11natedG1Bz9jkLkN88NmbsUsQP377V5aa7GqrIu2DWF
-        xMUvoBc1N8yJa1jRQ0k4Vff5AuOMlItYoIgOkZCe0IQP7p8cPgj5ljWT5TUDVeIcx0FUFm
-        FdNXeN9YVL/HsWGaN+uiv6UPSuvNw+vHL6xT4RRvTrWZhuag7kOS35ctN2S/NHibJHN0wV
-        9uOKfdVGcImQ5swSW6FxxbvJUJs5nTmSsa+Zxay29uVNpfOD5ChZtIuIKiFGfQ==
-Date:   Tue, 3 May 2022 23:38:39 +0200
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-i3c@lists.infradead.org, devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH] dt-bindings: i3c: Convert snps,dw-i3c-master to DT schema
-Message-ID: <YnGg31lPwxAQOUtg@mail.local>
-References: <20220422192236.2594577-1-robh@kernel.org>
- <CAL_Jsq+t5e-Dr0z9Zd_+jaqwb1afEVx4SdjbQZA4bHpWf8a2jg@mail.gmail.com>
- <YmMD3RPXfPdiYXyg@mail.local>
- <Ymb61YHl62AfSe2R@robh.at.kernel.org>
+        with ESMTP id S230079AbiECVqe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 17:46:34 -0400
+Received: from mail-ot1-f45.google.com (mail-ot1-f45.google.com [209.85.210.45])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71C4F24968;
+        Tue,  3 May 2022 14:43:01 -0700 (PDT)
+Received: by mail-ot1-f45.google.com with SMTP id y14-20020a9d460e000000b00605ee347da1so9960425ote.8;
+        Tue, 03 May 2022 14:43:01 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=7Hu0gsr8Y6PWp2FP45L7+RGtOMCVNeN3hbCuvJ2usXo=;
+        b=S1uvi1+HzU2UxJgwdW039AXe8ZKhsF1uBkThEaKk+N+xLyda4IwzUiGo2jDapYR4V/
+         Z9sChaH3+fyFGeqt+ajhSFiGxsdzcWwRvO4Tfk16f16gDoz3+LjqJ1dBstECk7O5RnEZ
+         NL81ZmWih+fRj6GM7ZjC/BVhmCqIizljduaUZ2Leky7H4XiEDbP+gpBLXfCN085Zj3S6
+         rWcZ77tEC7XYYJDDPWRp07bfBUickLoT2WtGmKyKWoueFo3GN7gOywuPA7Vw5m0kv4fQ
+         24FNRUyqSlVet9J2hu4n55jmFn66KNYV3sRUuQVnuQmZ23oxY6nCBxK7P9SIXgr9i9sq
+         M6zg==
+X-Gm-Message-State: AOAM532W01jeXoUGHVNNjH7/cUljsvdwYCVool03vUWrBv1o7oXwweb3
+        eeQtKJqDO0m9aB8JTPPSvQ==
+X-Google-Smtp-Source: ABdhPJz4N4R764kPo+v++/Y+BmcZqqzXF0v6pZHNpMo6V//OxOtU550cg4XA4nzAnBjeZQ2Nv/molw==
+X-Received: by 2002:a9d:1714:0:b0:606:eaf:fa95 with SMTP id i20-20020a9d1714000000b006060eaffa95mr5217807ota.180.1651614180748;
+        Tue, 03 May 2022 14:43:00 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id bg1-20020a056808178100b00326414c1bb7sm686470oib.35.2022.05.03.14.42.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 03 May 2022 14:43:00 -0700 (PDT)
+Received: (nullmailer pid 82356 invoked by uid 1000);
+        Tue, 03 May 2022 21:42:58 -0000
+Date:   Tue, 3 May 2022 16:42:58 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Jesse Taube <mr.bossman075@gmail.com>
+Cc:     sboyd@kernel.org, linux-clk@vger.kernel.org,
+        daniel.lezcano@linaro.org, leoyang.li@nxp.com,
+        giulio.benetti@benettiengineering.com, festevam@gmail.com,
+        clin@suse.com, s.hauer@pengutronix.de, linux-imx@nxp.com,
+        stefan@agner.ch, tharvey@gateworks.com,
+        linux-arm-kernel@lists.infradead.org, aisheng.dong@nxp.com,
+        robh+dt@kernel.org, tglx@linutronix.de, abel.vesa@nxp.com,
+        sebastian.reichel@collabora.com, dev@lynxeye.de,
+        Mr.Bossman075@gmail.com, linux-kernel@vger.kernel.org,
+        kernel@pengutronix.de, olof@lixom.net, mturquette@baylibre.com,
+        linux@armlinux.org.uk, linus.walleij@linaro.org,
+        cniedermaier@dh-electronics.com, soc@kernel.org,
+        linux-gpio@vger.kernel.org, shawnguo@kernel.org,
+        marcel.ziswiler@toradex.com, arnd@arndb.de,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 03/15] dt-bindings: gpio: fsl-imx-gpio: Add i.MXRT
+ compatibles
+Message-ID: <YnGh4oZOm9eHO9z2@robh.at.kernel.org>
+References: <20220428214838.1040278-1-Mr.Bossman075@gmail.com>
+ <20220428214838.1040278-4-Mr.Bossman075@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <Ymb61YHl62AfSe2R@robh.at.kernel.org>
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+In-Reply-To: <20220428214838.1040278-4-Mr.Bossman075@gmail.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/04/2022 14:47:33-0500, Rob Herring wrote:
-> On Fri, Apr 22, 2022 at 09:37:01PM +0200, Alexandre Belloni wrote:
-> > On 22/04/2022 14:28:53-0500, Rob Herring wrote:
-> > > On Fri, Apr 22, 2022 at 2:22 PM Rob Herring <robh@kernel.org> wrote:
-> > > >
-> > > > Convert the Synopsys Designware I3C master to DT schema format.
-> > > >
-> > > > Signed-off-by: Rob Herring <robh@kernel.org>
-> > > > ---
-> > > >  .../bindings/i3c/snps,dw-i3c-master.txt       | 41 ---------------
-> > > >  .../bindings/i3c/snps,dw-i3c-master.yaml      | 52 +++++++++++++++++++
-> > > >  2 files changed, 52 insertions(+), 41 deletions(-)
-> > > >  delete mode 100644 Documentation/devicetree/bindings/i3c/snps,dw-i3c-master.txt
-> > > >  create mode 100644 Documentation/devicetree/bindings/i3c/snps,dw-i3c-master.yaml
-> > > >
-> > > > diff --git a/Documentation/devicetree/bindings/i3c/snps,dw-i3c-master.txt b/Documentation/devicetree/bindings/i3c/snps,dw-i3c-master.txt
-> > > > deleted file mode 100644
-> > > > index 07f35f36085d..000000000000
-> > > > --- a/Documentation/devicetree/bindings/i3c/snps,dw-i3c-master.txt
-> > > > +++ /dev/null
-> > > > @@ -1,41 +0,0 @@
-> > > > -Bindings for Synopsys DesignWare I3C master block
-> > > > -=================================================
-> > > > -
-> > > > -Required properties:
-> > > > ---------------------
-> > > > -- compatible: shall be "snps,dw-i3c-master-1.00a"
-> > > > -- clocks: shall reference the core_clk
-> > > > -- interrupts: the interrupt line connected to this I3C master
-> > > > -- reg: Offset and length of I3C master registers
-> > > > -
-> > > > -Mandatory properties defined by the generic binding (see
-> > > > -Documentation/devicetree/bindings/i3c/i3c.yaml for more details):
-> > > > -
-> > > > -- #address-cells: shall be set to 3
-> > > > -- #size-cells: shall be set to 0
-> > > > -
-> > > > -Optional properties defined by the generic binding (see
-> > > > -Documentation/devicetree/bindings/i3c/i3c.yaml for more details):
-> > > > -
-> > > > -- i2c-scl-hz
-> > > > -- i3c-scl-hz
-> > > > -
-> > > > -I3C device connected on the bus follow the generic description (see
-> > > > -Documentation/devicetree/bindings/i3c/i3c.yaml for more details).
-> > > > -
-> > > > -Example:
-> > > > -
-> > > > -       i3c-master@2000 {
-> > > > -               compatible = "snps,dw-i3c-master-1.00a";
-> > > > -               #address-cells = <3>;
-> > > > -               #size-cells = <0>;
-> > > > -               reg = <0x02000 0x1000>;
-> > > > -               interrupts = <0>;
-> > > > -               clocks = <&i3cclk>;
-> > > > -
-> > > > -               eeprom@57{
-> > > > -                       compatible = "atmel,24c01";
-> > > > -                       reg = <0x57 0x0 0x10>;
-> > > > -                       pagesize = <0x8>;
-> > > > -               };
-> > > > -       };
-> > > > diff --git a/Documentation/devicetree/bindings/i3c/snps,dw-i3c-master.yaml b/Documentation/devicetree/bindings/i3c/snps,dw-i3c-master.yaml
-> > > > new file mode 100644
-> > > > index 000000000000..5b8b43e6f1e4
-> > > > --- /dev/null
-> > > > +++ b/Documentation/devicetree/bindings/i3c/snps,dw-i3c-master.yaml
-> > > > @@ -0,0 +1,52 @@
-> > > > +# SPDX-License-Identifier: GPL-2.0
-> > > > +%YAML 1.2
-> > > > +---
-> > > > +$id: http://devicetree.org/schemas/i3c/snps,dw-i3c-master.yaml#
-> > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > > +
-> > > > +title: Synopsys DesignWare I3C master block
-> > > > +
-> > > > +maintainers:
-> > > > +  - Vitor Soares <vitor.soares@synopsys.com>
-> > > 
-> > > And it bounces. Someone else want it?
-> > > 
-> > 
-> > Probably no one but me.
+On Thu, 28 Apr 2022 17:48:26 -0400, Jesse Taube wrote:
+> Both the i.MXRT1170 and 1050 have the same gpio controller as
+> "fsl,imx35-gpio". Add i.MXRT to the compatible list.
 > 
-> Can you change it to yourself when applying?
+> Signed-off-by: Jesse Taube <Mr.Bossman075@gmail.com>
+> ---
+> V1 -> V2:
+>  - New commit to fix dtbs_check
+> ---
+>  Documentation/devicetree/bindings/gpio/fsl-imx-gpio.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
 
-Done!
-
-
--- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Acked-by: Rob Herring <robh@kernel.org>
