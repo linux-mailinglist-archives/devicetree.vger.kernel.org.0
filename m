@@ -2,122 +2,46 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BE3415182E7
-	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 12:58:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 189E95182FD
+	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 13:02:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232574AbiECLBh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 May 2022 07:01:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39348 "EHLO
+        id S234264AbiECLF4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 May 2022 07:05:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45128 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234612AbiECLB3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 07:01:29 -0400
-Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A13DE6153
-        for <devicetree@vger.kernel.org>; Tue,  3 May 2022 03:57:49 -0700 (PDT)
-Received: from epcas2p1.samsung.com (unknown [182.195.41.53])
-        by mailout2.samsung.com (KnoxPortal) with ESMTP id 20220503105735epoutp025e0953025336daad36502791fa8bf4db~rkyBKN9RD0882708827epoutp02c
-        for <devicetree@vger.kernel.org>; Tue,  3 May 2022 10:57:35 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20220503105735epoutp025e0953025336daad36502791fa8bf4db~rkyBKN9RD0882708827epoutp02c
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1651575455;
-        bh=7jsOef8nU8lcAfokG7blrAB7Ak/JnujaWFbKZe9QzF8=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=bq70/yiz+RRI0K3ZIH2KGMx71wEjNFOl6TavYop6cCNJ4jpbvVKBALFtCewvSM5h6
-         +b4NIwEONiz5+R09UXcfadIP09jIuJtrqZuby46bXsaBgYhPi4F6A+cOFoj9vBDN5K
-         RNfhCF8OjZH1LPS6qdS+kpyMJ6+ANLb9uzBP679E=
-Received: from epsnrtp4.localdomain (unknown [182.195.42.165]) by
-        epcas2p1.samsung.com (KnoxPortal) with ESMTP id
-        20220503105733epcas2p1aa19674ba203a181edf5ca0b5253835d~rkx-96rDN1158911589epcas2p1P;
-        Tue,  3 May 2022 10:57:33 +0000 (GMT)
-Received: from epsmges2p3.samsung.com (unknown [182.195.36.98]) by
-        epsnrtp4.localdomain (Postfix) with ESMTP id 4KsxkL66RGz4x9Q5; Tue,  3 May
-        2022 10:57:30 +0000 (GMT)
-Received: from epcas2p4.samsung.com ( [182.195.41.56]) by
-        epsmges2p3.samsung.com (Symantec Messaging Gateway) with SMTP id
-        F1.E8.10028.A9A01726; Tue,  3 May 2022 19:57:30 +0900 (KST)
-Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
-        epcas2p1.samsung.com (KnoxPortal) with ESMTPA id
-        20220503105730epcas2p1d033e65a2acb39fe23ea5c218d24896c~rkx8WN-x01158911589epcas2p1I;
-        Tue,  3 May 2022 10:57:30 +0000 (GMT)
-Received: from epsmgms1p2.samsung.com (unknown [182.195.42.42]) by
-        epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
-        20220503105730epsmtrp22e962c2fa77bdb7db9d39679a60c8e47~rkx8VZeC81021210212epsmtrp2S;
-        Tue,  3 May 2022 10:57:30 +0000 (GMT)
-X-AuditID: b6c32a47-589ff7000000272c-5f-62710a9a067f
-Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
-        epsmgms1p2.samsung.com (Symantec Messaging Gateway) with SMTP id
-        1D.A3.08924.99A01726; Tue,  3 May 2022 19:57:29 +0900 (KST)
-Received: from localhost.localdomain (unknown [10.229.9.51]) by
-        epsmtip2.samsung.com (KnoxPortal) with ESMTPA id
-        20220503105729epsmtip22fea1746e1a4dd47b67a016243dee07e~rkx8IqrBm1109211092epsmtip2F;
-        Tue,  3 May 2022 10:57:29 +0000 (GMT)
-From:   Chanho Park <chanho61.park@samsung.com>
-To:     Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Tomasz Figa <tomasz.figa@gmail.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Sam Protsenko <semen.protsenko@linaro.org>,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org,
-        Chanho Park <chanho61.park@samsung.com>
-Subject: [PATCH v2 12/12] arm64: dts: exynosautov9: switch ufs clock node
-Date:   Tue,  3 May 2022 19:59:14 +0900
-Message-Id: <20220503105914.117625-13-chanho61.park@samsung.com>
-X-Mailer: git-send-email 2.36.0
-In-Reply-To: <20220503105914.117625-1-chanho61.park@samsung.com>
+        with ESMTP id S233840AbiECLFz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 07:05:55 -0400
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6838633340
+        for <devicetree@vger.kernel.org>; Tue,  3 May 2022 04:02:21 -0700 (PDT)
+Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=diego.localnet)
+        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <heiko@sntech.de>)
+        id 1nlqIJ-0000jM-Qp; Tue, 03 May 2022 13:02:15 +0200
+From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To:     dri-devel@lists.freedesktop.org,
+        Sascha Hauer <s.hauer@pengutronix.de>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Sandy Huang <hjc@rock-chips.com>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Douglas Anderson <dianders@chromium.org>,
+        Yakir Yang <ykk@rock-chips.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>
+Subject: Re: [PATCH v11 11/24] drm/rockchip: dw_hdmi: Use auto-generated tables
+Date:   Tue, 03 May 2022 13:02:14 +0200
+Message-ID: <2236782.ElGaqSPkdT@diego>
+In-Reply-To: <20220422072841.2206452-12-s.hauer@pengutronix.de>
+References: <20220422072841.2206452-1-s.hauer@pengutronix.de> <20220422072841.2206452-12-s.hauer@pengutronix.de>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrPJsWRmVeSWpSXmKPExsWy7bCmhe4srsIkg0m3tC0ezNvGZnF5v7bF
-        9S/PWS3mHznHatH34iGzxd7XW9ktPvbcY7WYcX4fk8XFU64WrXuPsFscftPOavHv2kYWi+d9
-        QPFVu/4wOvB5vL/Ryu6xc9Zddo9NqzrZPO5c28Pm0bdlFaPH501yAWxR2TYZqYkpqUUKqXnJ
-        +SmZeem2St7B8c7xpmYGhrqGlhbmSgp5ibmptkouPgG6bpk5QMcqKZQl5pQChQISi4uV9O1s
-        ivJLS1IVMvKLS2yVUgtScgrMC/SKE3OLS/PS9fJSS6wMDQyMTIEKE7IzTuz8y1rwgqvi6PvP
-        LA2M9zi6GDk5JARMJM40XGADsYUEdjBKfGgR7mLkArI/MUqsnNbGBOF8ZpTYNOMkkMMB1rH1
-        PB9EfBejRM/C+cwQzkdGiaVnPrOAjGIT0JXY8vwVI0hCRKCLWeJi3z0WEIdZYCujxPEbs5hA
-        qoQFPCXenJzKCjKWRUBVYtuhFJAwr4CDxK9z25ghtslL/FscChLmBApf33WOCaJEUOLkzCdg
-        u5iBSpq3zgY7QkJgJYdE67KtLBC/uUh8OXqLGcIWlnh1fAs7hC0l8fndXjYIu1hi6axPTBDN
-        DYwSl7f9gkoYS8x61s4IcgSzgKbE+l36EPcoSxy5BbWXT6Lj8F92iDCvREebEESjusSB7dOh
-        LpCV6J7zmRWixENiZqMqJKAnM0o0rUucwKgwC8kzs5A8Mwth7QJG5lWMYqkFxbnpqcVGBcbw
-        6E3Oz93ECE65Wu47GGe8/aB3iJGJg/EQowQHs5IIr/PSgiQh3pTEyqrUovz4otKc1OJDjKbA
-        gJ7ILCWanA9M+nkl8YYmlgYmZmaG5kamBuZK4rxeKRsShQTSE0tSs1NTC1KLYPqYODilGphS
-        XpVuqP+4ylHkgeD/O1X7omS/tczf5xgn2W+Te0ND4NbbMi+GTucL3dZhn16FJ9w+NtvZ/ni2
-        wcwF+S7uQTdknk+ZWLxjWvOX2CApYYMfVSecltoesbl1wfXnart/H9dvdrzo0ek2N28/u5hs
-        Ss3vnZbey3jmVatXf3l+8eS9cJ8reXL/He+ITEibs7B+Wd6xlVHRl61CHsmKqOxV+fz8ymvl
-        X+VzG5fPm35B6UMU35aLyXrz15xMuffypuX6ty/S40XmdJnvPbNqef/kmZxuczYtuXRKJ1X7
-        +F/n7I23Ck49nJDG80V01nKrynWW07bO5W9e3m3hedzNf47SpZf7JtyTU1D/xd0ZNiflxpcS
-        EyWW4oxEQy3mouJEABQX/AlCBAAA
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrDLMWRmVeSWpSXmKPExsWy7bCSvO5MrsIkgycLrC0ezNvGZnF5v7bF
-        9S/PWS3mHznHatH34iGzxd7XW9ktPvbcY7WYcX4fk8XFU64WrXuPsFscftPOavHv2kYWi+d9
-        QPFVu/4wOvB5vL/Ryu6xc9Zddo9NqzrZPO5c28Pm0bdlFaPH501yAWxRXDYpqTmZZalF+nYJ
-        XBkndv5lLXjBVXH0/WeWBsZ7HF2MHBwSAiYSW8/zdTFycQgJ7GCUmPvtLmMXIydQXFbi2bsd
-        7BC2sMT9liOsEEXvGSVuPjnPDJJgE9CV2PL8FSNIQkRgArPEmysf2EEcZoGdjBJ3Xp1iA6kS
-        FvCUeHNyKivIOhYBVYlth1JAwrwCDhK/zm1jhrhCXuLf4lCQMCdQ+Pquc0wgtpCAvcTOv9uZ
-        IcoFJU7OfMICYjMDlTdvnc08gVFgFpLULCSpBYxMqxglUwuKc9Nziw0LjPJSy/WKE3OLS/PS
-        9ZLzczcxgiNES2sH455VH/QOMTJxMB5ilOBgVhLhdV5akCTEm5JYWZValB9fVJqTWnyIUZqD
-        RUmc90LXyXghgfTEktTs1NSC1CKYLBMHp1QDU1TbYYvFu2X0MvQuMUlI1teyepis9V94ZOYd
-        3gnP53HnM16a0HP/zSq2oAsJ2v4GCcte2D0+e+hidMwM3ZpXIoef8deqvfrfa2d9M2L1Mlmf
-        nONxohoFNxfXrJFjWfJD27Yi1tfC8NnGJ3Jh1x863S5/Fn9gv1L2bV3bV1/eC8070uC2Tr1x
-        X/2N1U9vnV1jf+Vpf2XovJ0Wq/z3rk/MW1KmoKvk59tsbMrRqRjVpLCoydrHQGgb/5pHDief
-        vFd77/B11aMNbi3OHsen/U0K3ftq839n2UvvNLV3rXzDNLs0U17E5klOfu+5vEbJn3fPL9/0
-        MejA7RdCSwouPNv7/fn2C/FPo821FSeGr0j3+6XEUpyRaKjFXFScCAByZ1VG/wIAAA==
-X-CMS-MailID: 20220503105730epcas2p1d033e65a2acb39fe23ea5c218d24896c
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: AUTO_CONFIDENTIAL
-CMS-TYPE: 102P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20220503105730epcas2p1d033e65a2acb39fe23ea5c218d24896c
-References: <20220503105914.117625-1-chanho61.park@samsung.com>
-        <CGME20220503105730epcas2p1d033e65a2acb39fe23ea5c218d24896c@epcas2p1.samsung.com>
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -125,45 +49,214 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Use cmu_fsys's clock node instead of dummy ufs clock node.
+Am Freitag, 22. April 2022, 09:28:28 CEST schrieb Sascha Hauer:
+> From: Douglas Anderson <dianders@chromium.org>
+> 
+> The previous tables for mpll_cfg and curr_ctrl were created using the
+> 20-pages of example settings provided by the PHY vendor.  Those
+> example settings weren't particularly dense, so there were places
+> where we were guessing what the settings would be for 10-bit and
+> 12-bit (not that we use those anyway).  It was also always a lot of
+> extra work every time we wanted to add a new clock rate since we had
+> to cross-reference several tables.
+> 
+> In <https://crrev.com/c/285855> I've gone through the work to figure
+> out how to generate this table automatically.  Let's now use the
+> automatically generated table and then we'll never need to look at it
+> again.
+> 
+> We only support 8-bit mode right now and only support a small number
+> of clock rates and I've verified that the only 8-bit rate that was
+> affected was 148.5.  That mode appears to have been wrong in the old
+> table.
+> 
+> Signed-off-by: Douglas Anderson <dianders@chromium.org>
+> Signed-off-by: Yakir Yang <ykk@rock-chips.com>
+> Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
 
-Signed-off-by: Chanho Park <chanho61.park@samsung.com>
----
- arch/arm64/boot/dts/exynos/exynosautov9.dtsi | 14 ++------------
- 1 file changed, 2 insertions(+), 12 deletions(-)
+This breaks hdmi on my rk3328-rock64 which then ends up in a
+	[CRTC:37:crtc-0] vblank wait timed out
 
-diff --git a/arch/arm64/boot/dts/exynos/exynosautov9.dtsi b/arch/arm64/boot/dts/exynos/exynosautov9.dtsi
-index f2f7565ba7cf..8b12c46dea3d 100644
---- a/arch/arm64/boot/dts/exynos/exynosautov9.dtsi
-+++ b/arch/arm64/boot/dts/exynos/exynosautov9.dtsi
-@@ -157,16 +157,6 @@ xtcxo: clock {
- 			clock-frequency = <26000000>;
- 			clock-output-names = "oscclk";
- 		};
--
--		/*
--		 * Keep the stub clock for ufs driver, until proper clock
--		 * driver is implemented.
--		 */
--		ufs_core_clock: ufs-core-clock {
--			compatible = "fixed-clock";
--			#clock-cells = <0>;
--			clock-frequency = <166562500>;
--		};
- 	};
- 
- 	soc: soc@0 {
-@@ -383,8 +373,8 @@ ufs_0: ufs0@17e00000 {
- 				<0x17dc0000 0x2200>;  /* 3: UFS protector */
- 			reg-names = "hci", "vs_hci", "unipro", "ufsp";
- 			interrupts = <GIC_SPI 227 IRQ_TYPE_LEVEL_HIGH>;
--			clocks = <&ufs_core_clock>,
--				<&ufs_core_clock>;
-+			clocks = <&cmu_fsys2 CLK_GOUT_FSYS2_UFS_EMBD0_ACLK>,
-+				 <&cmu_fsys2 CLK_GOUT_FSYS2_UFS_EMBD0_UNIPRO>;
- 			clock-names = "core_clk", "sclk_unipro_main";
- 			freq-table-hz = <0 0>, <0 0>;
- 			pinctrl-names = "default";
--- 
-2.36.0
+warning-loop.
+
+Some part of the patch11-14 range also creates sparking horizontal
+lines on my rk3288-pinky.
+
+I haven't the time to dig overly deep into that, so left out the
+hdmi-rate patches (11-14) for now.
+
+
+Heiko
+
+
+> ---
+> 
+> Notes:
+>     Changes since v5:
+>     - Add missing Signed-off-by me
+>     
+>     Changes since v3:
+>     - new patch
+> 
+>  drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c | 130 +++++++++++---------
+>  1 file changed, 69 insertions(+), 61 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c b/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
+> index fe4f9556239ac..cb43e7b47157d 100644
+> --- a/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
+> +++ b/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
+> @@ -91,80 +91,88 @@ static struct rockchip_hdmi *to_rockchip_hdmi(struct drm_encoder *encoder)
+>  
+>  static const struct dw_hdmi_mpll_config rockchip_mpll_cfg[] = {
+>  	{
+> -		27000000, {
+> -			{ 0x00b3, 0x0000},
+> -			{ 0x2153, 0x0000},
+> -			{ 0x40f3, 0x0000}
+> +		30666000, {
+> +			{ 0x00b3, 0x0000 },
+> +			{ 0x2153, 0x0000 },
+> +			{ 0x40f3, 0x0000 },
+>  		},
+> -	}, {
+> -		36000000, {
+> -			{ 0x00b3, 0x0000},
+> -			{ 0x2153, 0x0000},
+> -			{ 0x40f3, 0x0000}
+> +	},  {
+> +		36800000, {
+> +			{ 0x00b3, 0x0000 },
+> +			{ 0x2153, 0x0000 },
+> +			{ 0x40a2, 0x0001 },
+>  		},
+> -	}, {
+> -		40000000, {
+> -			{ 0x00b3, 0x0000},
+> -			{ 0x2153, 0x0000},
+> -			{ 0x40f3, 0x0000}
+> +	},  {
+> +		46000000, {
+> +			{ 0x00b3, 0x0000 },
+> +			{ 0x2142, 0x0001 },
+> +			{ 0x40a2, 0x0001 },
+>  		},
+> -	}, {
+> -		54000000, {
+> -			{ 0x0072, 0x0001},
+> -			{ 0x2142, 0x0001},
+> -			{ 0x40a2, 0x0001},
+> +	},  {
+> +		61333000, {
+> +			{ 0x0072, 0x0001 },
+> +			{ 0x2142, 0x0001 },
+> +			{ 0x40a2, 0x0001 },
+>  		},
+> -	}, {
+> -		65000000, {
+> -			{ 0x0072, 0x0001},
+> -			{ 0x2142, 0x0001},
+> -			{ 0x40a2, 0x0001},
+> +	},  {
+> +		73600000, {
+> +			{ 0x0072, 0x0001 },
+> +			{ 0x2142, 0x0001 },
+> +			{ 0x4061, 0x0002 },
+>  		},
+> -	}, {
+> -		66000000, {
+> -			{ 0x013e, 0x0003},
+> -			{ 0x217e, 0x0002},
+> -			{ 0x4061, 0x0002}
+> +	},  {
+> +		92000000, {
+> +			{ 0x0072, 0x0001 },
+> +			{ 0x2145, 0x0002 },
+> +			{ 0x4061, 0x0002 },
+>  		},
+> -	}, {
+> -		74250000, {
+> -			{ 0x0072, 0x0001},
+> -			{ 0x2145, 0x0002},
+> -			{ 0x4061, 0x0002}
+> +	},  {
+> +		122666000, {
+> +			{ 0x0051, 0x0002 },
+> +			{ 0x2145, 0x0002 },
+> +			{ 0x4061, 0x0002 },
+>  		},
+> -	}, {
+> -		83500000, {
+> -			{ 0x0072, 0x0001},
+> +	},  {
+> +		147200000, {
+> +			{ 0x0051, 0x0002 },
+> +			{ 0x2145, 0x0002 },
+> +			{ 0x4064, 0x0003 },
+>  		},
+> -	}, {
+> -		108000000, {
+> -			{ 0x0051, 0x0002},
+> -			{ 0x2145, 0x0002},
+> -			{ 0x4061, 0x0002}
+> +	},  {
+> +		184000000, {
+> +			{ 0x0051, 0x0002 },
+> +			{ 0x214c, 0x0003 },
+> +			{ 0x4064, 0x0003 },
+>  		},
+> -	}, {
+> -		106500000, {
+> -			{ 0x0051, 0x0002},
+> -			{ 0x2145, 0x0002},
+> -			{ 0x4061, 0x0002}
+> +	},  {
+> +		226666000, {
+> +			{ 0x0040, 0x0003 },
+> +			{ 0x214c, 0x0003 },
+> +			{ 0x4064, 0x0003 },
+>  		},
+> -	}, {
+> -		146250000, {
+> -			{ 0x0051, 0x0002},
+> -			{ 0x2145, 0x0002},
+> -			{ 0x4061, 0x0002}
+> +	},  {
+> +		272000000, {
+> +			{ 0x0040, 0x0003 },
+> +			{ 0x214c, 0x0003 },
+> +			{ 0x5a64, 0x0003 },
+>  		},
+> -	}, {
+> -		148500000, {
+> -			{ 0x0051, 0x0003},
+> -			{ 0x214c, 0x0003},
+> -			{ 0x4064, 0x0003}
+> +	},  {
+> +		340000000, {
+> +			{ 0x0040, 0x0003 },
+> +			{ 0x3b4c, 0x0003 },
+> +			{ 0x5a64, 0x0003 },
+>  		},
+> -	}, {
+> +	},  {
+> +		600000000, {
+> +			{ 0x1a40, 0x0003 },
+> +			{ 0x3b4c, 0x0003 },
+> +			{ 0x5a64, 0x0003 },
+> +		},
+> +	},  {
+>  		~0UL, {
+> -			{ 0x00a0, 0x000a },
+> -			{ 0x2001, 0x000f },
+> -			{ 0x4002, 0x000f },
+> +			{ 0x0000, 0x0000 },
+> +			{ 0x0000, 0x0000 },
+> +			{ 0x0000, 0x0000 },
+>  		},
+>  	}
+>  };
+> 
+
+
+
 
