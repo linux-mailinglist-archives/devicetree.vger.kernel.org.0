@@ -2,75 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EB2CF5188A5
-	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 17:33:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E28635188A1
+	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 17:32:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238599AbiECPhP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 May 2022 11:37:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49780 "EHLO
+        id S238223AbiECPgZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 May 2022 11:36:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49338 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238591AbiECPhO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 11:37:14 -0400
-Received: from mail-il1-x129.google.com (mail-il1-x129.google.com [IPv6:2607:f8b0:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A2392CE1A
-        for <devicetree@vger.kernel.org>; Tue,  3 May 2022 08:33:40 -0700 (PDT)
-Received: by mail-il1-x129.google.com with SMTP id o5so9970340ils.11
-        for <devicetree@vger.kernel.org>; Tue, 03 May 2022 08:33:40 -0700 (PDT)
+        with ESMTP id S238573AbiECPgY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 11:36:24 -0400
+Received: from mail-oi1-x22f.google.com (mail-oi1-x22f.google.com [IPv6:2607:f8b0:4864:20::22f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D32A2CE20
+        for <devicetree@vger.kernel.org>; Tue,  3 May 2022 08:32:51 -0700 (PDT)
+Received: by mail-oi1-x22f.google.com with SMTP id m25so4625498oih.2
+        for <devicetree@vger.kernel.org>; Tue, 03 May 2022 08:32:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=gvRzGHxzShcbzeb9SvoZt+wpZS+HlwfYAw4KbiIeK9c=;
-        b=Fz56/UjZT+JA/KlltkVjMTZpS/FLpEs3AL3ljnlrpQHHY8+55+WJNjdp1tMejkjHtc
-         B8bI1ZlgayDQbuYu5iZLJSRFBB2pY9+H7DO4/ATwr+KUcTZQZCqEWxgTxYkvcEzjxUGV
-         eRNBrmVcR84f7wLKt6jRx6+49iSe6XvmpqhR8=
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=XnQmOhsCZK19KFsjaZWzKreHbtLS7E4MAuj6me5xfA4=;
+        b=e93gker8XSUGtP9FNQzNbA3o8jNHWWcEose726ZqruHmgrvDB6XNDCXe7pZbHRDROa
+         qYb/NaGqpYxL4Z8sTqsoPbLPcLSrje8PJNt043evZevPWI3kIrBFYKul4LicV+pvUZrA
+         jjRtIlggoU+i0AyhjtBiCCEXSo1/wpZADFzanrftOTBWJG6Q+DUQyuNmTve/RNnbBAIH
+         1HvGNirA6jfGl0osjYrSghaU6VKQtnqGP4RIVWaM3typQ2AbuUkNl5i4UzbJrkBz5uZ7
+         BwOKF7idQCqwcT6+PnX/vwDFwMW2xnU3c5VClxep6rw5EeZKnA1M7pWl5yI6ZsMRBwQs
+         nDoQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=gvRzGHxzShcbzeb9SvoZt+wpZS+HlwfYAw4KbiIeK9c=;
-        b=7jkxjtW1ls2yOe1y+vIxxnoReZLKLDOS/H7NbTwSfcL8e4Mqq+SgdahwZJUlzN0uyh
-         JYEwCoAKAyveZ6+RJFtqgxZ/OuJke16ZMNwKe4Vzcaamj+jI2vT1kvOr/6wcmmAMeEXv
-         84FXPE5ET7EH/ZwgWbZ/ibcYGDamB0koyarhLUoxsRo5Aa7oEQa2F0zV76HO6pEyjazO
-         YxvX4VeEBy/oA1dmgYVGvbVVwwSMl7z/7AUBKKI/hY9l5O2eefEGR/MqTEsv96rdil6J
-         e0DfChLmotNBho9YuvtrFdal5tPYghzFkGLHX5WaljAIv2HQFT44F9j1A4EaaO3A7n7E
-         KE9Q==
-X-Gm-Message-State: AOAM530Z87IacDE9tZMj+9Oqm98lzu9UmM5yrWKy6FTZIA+h95XAdO6o
-        nTtjEqcJQ8GVUlKURwF8bzkOj+UZJUSEvrdJ
-X-Google-Smtp-Source: ABdhPJwWY26hZIZrcSefEoo/n03AGfU0RMu6DPImgE84QjdPGSIpTtymPN098XC+lQjkoxYarRk4rw==
-X-Received: by 2002:a05:6e02:19cf:b0:2cf:275:1284 with SMTP id r15-20020a056e0219cf00b002cf02751284mr5669631ill.175.1651592019776;
-        Tue, 03 May 2022 08:33:39 -0700 (PDT)
-Received: from mail-io1-f47.google.com (mail-io1-f47.google.com. [209.85.166.47])
-        by smtp.gmail.com with ESMTPSA id d29-20020a023f1d000000b0032b3a781789sm3937642jaa.77.2022.05.03.08.33.39
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 03 May 2022 08:33:39 -0700 (PDT)
-Received: by mail-io1-f47.google.com with SMTP id e3so15606967ios.6
-        for <devicetree@vger.kernel.org>; Tue, 03 May 2022 08:33:39 -0700 (PDT)
-X-Received: by 2002:a05:6638:35a0:b0:32a:8f99:fa03 with SMTP id
- v32-20020a05663835a000b0032a8f99fa03mr7388950jal.8.1651592017817; Tue, 03 May
- 2022 08:33:37 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=XnQmOhsCZK19KFsjaZWzKreHbtLS7E4MAuj6me5xfA4=;
+        b=fsquwAqJqq0MuDalsKLxa/Larn4yajwul5JXxt/bAzJJ0UyCk+LSokzXgrED/cxhj3
+         QwXOM+DURwEJOX7foAXowxFA6wZss56dAEbgN7z8hkMgEe8D7v6B+E3HWKa4DJkf/7sp
+         hsOsGBz6uV4PpKQjeqJEgl3bpgMHnnLyqFCVKDf8aRrAWHRTITJtlMCm8FGpAqP34Y6y
+         PYzNciHIGzXnGE7lq5jHmErY8n3CbszCRBDNkeM+x52M702Fe0BlS0XEmhv+uIkhWyEa
+         wn6uRLSGCxPJkxS6IOICcBLOe3OtIrQr4XVKEPeMJdzdkAO4ey45SJLkRumPr7k0kVkB
+         BwJA==
+X-Gm-Message-State: AOAM5311lcKf2g6gm/Za+RN5RXhTsBPNnvn1s9lrtVbIAwOYL/5n5jiO
+        O5B5X09b/EB2ly7nX5pl9rsGDQ==
+X-Google-Smtp-Source: ABdhPJxHKuxC9rmkYi2NQblFYNBfCKjkd4iYQI+D1hZPwuCjICezisBZiLi1dY6rZjY6TScVwvLZ5Q==
+X-Received: by 2002:a05:6808:f8d:b0:325:1e81:ffe5 with SMTP id o13-20020a0568080f8d00b003251e81ffe5mr2084792oiw.253.1651591970783;
+        Tue, 03 May 2022 08:32:50 -0700 (PDT)
+Received: from ripper.. (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id s4-20020a4adb84000000b00333220959b9sm4955736oou.1.2022.05.03.08.32.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 03 May 2022 08:32:50 -0700 (PDT)
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     "Rafael J. Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Zhang Rui <rui.zhang@intel.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-pm@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v2] dt-bindings: thermal: tsens: Add sc8280xp compatible
+Date:   Tue,  3 May 2022 08:34:36 -0700
+Message-Id: <20220503153436.960184-1-bjorn.andersson@linaro.org>
+X-Mailer: git-send-email 2.35.1
+In-Reply-To: <20220408225037.627432-1-bjorn.andersson@linaro.org>
+References: 
 MIME-Version: 1.0
-References: <20220428094043.v23.1.I7a1a6448d50bdd38e6082204a9818c59cc7a9bfd@changeid>
-In-Reply-To: <20220428094043.v23.1.I7a1a6448d50bdd38e6082204a9818c59cc7a9bfd@changeid>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Tue, 3 May 2022 08:33:24 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=VVVRj=FeW0dkPs+KGD_x=Xc+Vy9GiMsqZzW6OSirnuQw@mail.gmail.com>
-Message-ID: <CAD=FV=VVVRj=FeW0dkPs+KGD_x=Xc+Vy9GiMsqZzW6OSirnuQw@mail.gmail.com>
-Subject: Re: [PATCH v23 1/2] arm64: dts: qcom: sc7180-trogdor: Add nodes for
- onboard USB hub
-To:     Matthias Kaehlcke <mka@chromium.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -79,25 +74,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+The Qualcomm SC8280XP platform has three instances of the tsens block,
+add a compatible for these instances.
 
-On Thu, Apr 28, 2022 at 9:41 AM Matthias Kaehlcke <mka@chromium.org> wrote:
->
-> Add nodes for the onboard USB hub on trogdor devices. Remove the
-> 'always-on' property from the hub regulator, since the regulator
-> is now managed by the onboard_usb_hub driver.
->
-> For anyone using trogdor-based devices on Linux, it should be
-> noted that this requires "CONFIG_USB_ONBOARD_HUB=y".
->
-> Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
-> Reviewed-by: Stephen Boyd <swboyd@chromium.org>
-> Reviewed-by: Douglas Anderson <dianders@chromium.org>
-> ---
-> Depends on "usb: misc: Add onboard_usb_hub driver" [1] which landed in
-> https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usb.git/commit/?h=usb-testing
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+---
 
-Looks like this got reverted again. :( So the dts changes definitely
-need to be put on hold until it gets sorted out...
+I apprently missed the '2' in the compatible. Retaining Krzysztof's ack under
+the assumption that he's even more okay with the patch now that it's content is
+correct.
 
--Doug
+Changes since v1:
+- Fix compatible to say 8280, instead of 8180
+
+ Documentation/devicetree/bindings/thermal/qcom-tsens.yaml | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
+index d72122bbaf3d..038d81338fcf 100644
+--- a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
++++ b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
+@@ -50,6 +50,7 @@ properties:
+               - qcom,sc7180-tsens
+               - qcom,sc7280-tsens
+               - qcom,sc8180x-tsens
++              - qcom,sc8280xp-tsens
+               - qcom,sdm630-tsens
+               - qcom,sdm845-tsens
+               - qcom,sm6350-tsens
+-- 
+2.35.1
+
