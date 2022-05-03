@@ -2,81 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DFEFD518978
-	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 18:14:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A26D518980
+	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 18:16:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239255AbiECQSK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 May 2022 12:18:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57406 "EHLO
+        id S239284AbiECQT6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 May 2022 12:19:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59896 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239254AbiECQSJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 12:18:09 -0400
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3417C3B29F
-        for <devicetree@vger.kernel.org>; Tue,  3 May 2022 09:14:37 -0700 (PDT)
-Received: by mail-ej1-x636.google.com with SMTP id m20so34353363ejj.10
-        for <devicetree@vger.kernel.org>; Tue, 03 May 2022 09:14:37 -0700 (PDT)
+        with ESMTP id S239167AbiECQT5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 12:19:57 -0400
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E45220F52
+        for <devicetree@vger.kernel.org>; Tue,  3 May 2022 09:16:24 -0700 (PDT)
+Received: by mail-ej1-x62f.google.com with SMTP id dk23so34402704ejb.8
+        for <devicetree@vger.kernel.org>; Tue, 03 May 2022 09:16:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=bOowZENKEYBOQ5gQtuLs74mzTNH8Gi+Wvcp/0afqUT4=;
-        b=EEwYnpnu/2Fhr2sQHT2uhYWiyPhvmtU8DzHokKeYAXu5vlR0UiuNcMwlij7eWJT/Nd
-         KGBSe8Pej98sSFsthhMfgTmsJ5yPc7UFnVb+KTUDaeG/1/BJHloKuzgbBAk7p6W+v8RQ
-         xOP2eAJC4V5tKxUYoLIDLfVmxDH3iyr65NTWU=
+        bh=oU0gNOmApxV0Y7ahlTC+ZO77cG/p3zhJM/T1yrF7v5Y=;
+        b=F+dNGWv77Wmd0QgNj4t9OR2FM1cNz0M7TsCPrF2ZsdtitJNLVc0o+I5AhkCej72eCp
+         y4vtCZo0/bovmckK91ixaQnV1mx59K61ZEtPpFcwTIFDz3Lo1x+SNyqDV04OqV6GqMW0
+         H5u5uQEap5RRUXl17YeaccpRrcnXKRBDWLLY8=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=bOowZENKEYBOQ5gQtuLs74mzTNH8Gi+Wvcp/0afqUT4=;
-        b=zP/JBgs5Hk2SVAaShStNn9zUt3njm7r5RhsvLcd57PfzQ67x0PtB1D3surww5Tm1J0
-         rvVvlMqIM5mPgZJowdDoPrInbsEpMolEv15JFYLZvR26D/XvBAPThD29cBV/RFETTX18
-         koeIKZNvJJk5qDSS9790bpdKt4rYpPxh3hPYN67/BM9aGZCJHO1yVCWFOiYc5kacarKO
-         bXwpoZIjisFkiNfF0MeQa1bSGxTLmqTkSGoScaaUkoGVO7qpuPWZ7SOTfT0a4p24WK1q
-         MhELCtyrdVRYbRW3A/7PqdK8sYiix6cAvlqPvcerFOgGwoJnu0ADmV+uL4Msdv38Eo60
-         8rxw==
-X-Gm-Message-State: AOAM531AkuE6mCGpZK67QEv0NCS7ETCmjVyqCS+aknkCGsN1cxn4Zc+Q
-        IePbCYHnZH3zPQ6gdyHCJRURd5FZG1QtVtBI
-X-Google-Smtp-Source: ABdhPJxC0r1Kk1xX5l4w6de0hcRXYdNOOk542NTQulaGavPijfVuGVZZX3SBzVnzevL7XkZLR7TtRQ==
-X-Received: by 2002:a17:907:7204:b0:6f4:2c26:5f7 with SMTP id dr4-20020a170907720400b006f42c2605f7mr13094604ejc.506.1651594475483;
-        Tue, 03 May 2022 09:14:35 -0700 (PDT)
-Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com. [209.85.221.48])
-        by smtp.gmail.com with ESMTPSA id de46-20020a1709069bee00b006f3ef214e5asm4813764ejc.192.2022.05.03.09.14.34
+        bh=oU0gNOmApxV0Y7ahlTC+ZO77cG/p3zhJM/T1yrF7v5Y=;
+        b=3KWiBuYbIwli57pJ2DuYVLt+t3TivtthVDPzJykfj3jJ9Q4HwUDgkoKBKl1KDE/ivO
+         GkekJ+tWo0BBd7+k4EqEG7oqzTSl2IGxJrdRYB0IFzKdd2FLxhHID1SpguAvbg7FbjSr
+         KFhRPMgSIYFDI4Koe+JXubG3SWLwMpmY9ABERGDVWecEyMYu2E65lU/w/M66zHQUX6S5
+         HndMu+DW1QeDtHKFWcypM4JlIohXzxmrLf0Rff/x4NAQ3bdNckQ65HhDGgIZeqwbEaYq
+         LxYirNO9il6Gfa0d9QmkEjdixhyl9rzmII70/VAtimVrjiaMoTLdYJiBrpPmPNfO2HDK
+         V3/w==
+X-Gm-Message-State: AOAM530NLfHjzu5NGFkKL9+/z3WzG34KAm5X8qFbKNZInEYPiMuWOvZL
+        pcbiVKIUD+nokV4dM+rtoGW2+bQEE4nHg/yD
+X-Google-Smtp-Source: ABdhPJxtm/BA5ps4oc79p8zZhlutxmohH75QHIsQ9hiKBYqk6Q09UaktmFpCj0bomivYlqNE+/IDpg==
+X-Received: by 2002:a17:907:1c8a:b0:6e9:2a0d:d7b7 with SMTP id nb10-20020a1709071c8a00b006e92a0dd7b7mr16036014ejc.572.1651594583298;
+        Tue, 03 May 2022 09:16:23 -0700 (PDT)
+Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com. [209.85.221.42])
+        by smtp.gmail.com with ESMTPSA id gv8-20020a1709072bc800b006f3ef214e5csm4776887ejc.194.2022.05.03.09.16.22
         for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 03 May 2022 09:14:34 -0700 (PDT)
-Received: by mail-wr1-f48.google.com with SMTP id x18so24101866wrc.0
-        for <devicetree@vger.kernel.org>; Tue, 03 May 2022 09:14:34 -0700 (PDT)
-X-Received: by 2002:adf:f50d:0:b0:20a:e096:ef with SMTP id q13-20020adff50d000000b0020ae09600efmr13256382wro.679.1651594474057;
- Tue, 03 May 2022 09:14:34 -0700 (PDT)
+        Tue, 03 May 2022 09:16:22 -0700 (PDT)
+Received: by mail-wr1-f42.google.com with SMTP id w4so24023717wrg.12
+        for <devicetree@vger.kernel.org>; Tue, 03 May 2022 09:16:22 -0700 (PDT)
+X-Received: by 2002:a05:6000:2c1:b0:20c:5e37:3ed1 with SMTP id
+ o1-20020a05600002c100b0020c5e373ed1mr9011909wry.342.1651594581793; Tue, 03
+ May 2022 09:16:21 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220503042242.3597561-1-swboyd@chromium.org> <20220503042242.3597561-2-swboyd@chromium.org>
- <2280875f-fbd8-0dfd-5a0a-1d7fceb856e4@linaro.org> <CAD=FV=UEBi9dctmhaAi1z+c+Sj5gtcRrc3FRW294T55dTiAidQ@mail.gmail.com>
- <cd1da207-1f15-f3f1-7190-56b983e75024@kernel.org>
-In-Reply-To: <cd1da207-1f15-f3f1-7190-56b983e75024@kernel.org>
+References: <20220430011402.1.If7c3471db53bea55213f7bcf17e9043084d3ac0c@changeid>
+ <20220430011402.3.Ic20d0c002ac5406b880cbdf9824739f38740926c@changeid>
+ <dbcb45d6-d495-1e5d-b7ad-963096e5fe9d@linaro.org> <CAD=FV=WhAqQnxwNaW4kfq9Wuwsz6YYzBgSn=KX9Se_5o2mkcsA@mail.gmail.com>
+ <e321d8c2-950c-a194-04a3-1fe2659749e9@linaro.org>
+In-Reply-To: <e321d8c2-950c-a194-04a3-1fe2659749e9@linaro.org>
 From:   Doug Anderson <dianders@chromium.org>
-Date:   Tue, 3 May 2022 09:14:21 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=XHNuvhekh=hepGePftaMXnDJGeJP=Lg8VfqmGdKt7HEA@mail.gmail.com>
-Message-ID: <CAD=FV=XHNuvhekh=hepGePftaMXnDJGeJP=Lg8VfqmGdKt7HEA@mail.gmail.com>
-Subject: Re: [PATCH v3 1/2] dt-bindings: google,cros-ec-keyb: Introduce
- switches only compatible
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        LKML <linux-kernel@vger.kernel.org>, patches@lists.linux.dev,
-        chrome-platform@lists.linux.dev,
+Date:   Tue, 3 May 2022 09:16:08 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=Usp=uMj+aupFsiBEqPp1M5cgJOOPLxeSujrbm3V0obQg@mail.gmail.com>
+Message-ID: <CAD=FV=Usp=uMj+aupFsiBEqPp1M5cgJOOPLxeSujrbm3V0obQg@mail.gmail.com>
+Subject: Re: [PATCH 3/5] arm64: dts: qcom: sc7180: Add quackingstick dts files
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     "Joseph S. Barrera III" <joebar@chromium.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Alexandru M Stan <amstan@chromium.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Benson Leung <bleung@chromium.org>,
-        Guenter Roeck <groeck@chromium.org>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        "Joseph S. Barrera III" <joebar@chromium.org>
+        <devicetree@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -86,48 +85,53 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Hi,
 
-On Tue, May 3, 2022 at 8:54 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+On Tue, May 3, 2022 at 8:55 AM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
 >
-> On 03/05/2022 17:46, Doug Anderson wrote:
+> On 03/05/2022 17:34, Doug Anderson wrote:
 > > Hi,
 > >
-> > On Tue, May 3, 2022 at 8:42 AM Krzysztof Kozlowski
+> > On Tue, May 3, 2022 at 8:31 AM Krzysztof Kozlowski
 > > <krzysztof.kozlowski@linaro.org> wrote:
 > >>
-> >> On 03/05/2022 06:22, Stephen Boyd wrote:
-> >>> If the ChromeOS board is a detachable, this cros-ec-keyb device won't
-> >>> have a matrix keyboard but it may have some button switches, e.g. volume
-> >>> buttons and power buttons. The driver still registers a keyboard though
-> >>> and that leads to userspace confusion around where the keyboard is.
+> >> On 30/04/2022 10:15, Joseph S. Barrera III wrote:
+> >>> Quackingstick is a trogdor-based board. These dts files are copies from
+> >>> the downstream Chrome OS 5.4 kernel, but with downstream bits removed.
+> >>>
+> >>> Signed-off-by: Joseph S. Barrera III <joebar@chromium.org>
 > >>
 > >> (...)
 > >>
-> >>>
-> >>> +if:
-> >>> +  properties:
-> >>> +    compatible:
-> >>> +      contains:
-> >>> +        const: google,cros-ec-keyb
-> >>> +then:
-> >>> +  allOf:
-> >>> +    - $ref: "/schemas/input/matrix-keymap.yaml#"
-> >>> +  required:
-> >>> +    - keypad,num-rows
-> >>> +    - keypad,num-columns
-> >>> +    - linux,keymap
+> >>> +/*
+> >>> + * Google Quackingstick board device tree source
+> >>> + *
+> >>> + * Copyright 2021 Google LLC.
+> >>> + *
+> >>> + * SKU: 0x601 => 1537
+> >>> + *  - bits 11..8: Panel ID: 0x6 (AUO)
+> >>> + */
+> >>> +
+> >>> +#include "sc7180-trogdor-quackingstick.dtsi"
+> >>> +
+> >>> +/ {
+> >>> +     model = "Google Quackingstick (rev0+)";
+> >>> +     compatible = "google,quackingstick-sku1537", "qcom,sc7180";
 > >>
-> >> else:
-> >>   properties:
-> >>     function-row-phsymap: false
-> >>     google,needs-ghost-filter: false
-> >>
-> >> Because these are not valid for the non-matrix-keyboard case, right?
+> >> Here and in other patches you keep adding undocumented board compatibles.
 > >
-> > Isn't that implicit because this file has `unevaluatedProperties: false` ?
+> > Sure, but perhaps we could continue the conversation at:
+> >
+> > https://lore.kernel.org/r/CAD=FV=W_SA-3PfDFi-Gkjk9pew5bchFNjQhXX8MkZyuy5UohEQ@mail.gmail.com/
+> >
+> > ...to avoid forking it and losing all the context.
 >
-> But they are evaluated here, aren't they?
+> It's not that close to that discussion because none of compatibles here
+> are documented and we discussed about documenting specific revisions.
 
-Only if the "if" test, though? ...ah, or is this a difference between
-"unevaluatedProperties" and "additionalProperties" ?
+It is strongly related, though, since we later might need to add
+revision info to these boards. These are still Chrome OS devices and
+they still have a bootloader looking at revision strappings. In this
+case, though, all the changes between revisions (so far) have been
+invisible to software.
 
 -Doug
