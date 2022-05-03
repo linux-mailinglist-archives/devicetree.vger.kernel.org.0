@@ -2,95 +2,325 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C4D55180A0
-	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 11:06:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 70E5A5180A6
+	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 11:07:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229998AbiECJKX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 May 2022 05:10:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47192 "EHLO
+        id S233277AbiECJKs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 May 2022 05:10:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47600 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233257AbiECJKW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 05:10:22 -0400
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E58852B256;
-        Tue,  3 May 2022 02:06:50 -0700 (PDT)
-Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 2432SaD0005468;
-        Tue, 3 May 2022 11:06:30 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
- subject : date : message-id : mime-version : content-transfer-encoding :
- content-type; s=selector1;
- bh=Lch5kxrVurXyYkJZk2nr1V3CBhH5QtpWiVNCuZn3dzM=;
- b=qfAS0MxjOuQQCoIKmHoNKcGLTkoNaMUNO9w6hedNVBHEHSHPOaeKgDhZQXxxEG1Aukpr
- YMmKGkYE8JwzC5D3PLw7c3cfigAWEcl5PNxco3RIiUIwCZGnZD53EF+a/Q2SARhWFY23
- hkLEo1aHt1PwSSNJsRrF+g+CIZA8LVgpmylFe/phsGaFmPSiAiTggtbqD7AFo/aC9H2k
- IKytMxUC/5+zOKsck5XiC4iLlSqWP2YTKivfTXw7O8MFuro2rGDmiKzQypS5ifz/Umlc
- I7TKCPAVf3LLahHcpm8qOiyvAU+NQEUL+D5h1EwZnDDEQBu/SGAEYOmKM8oiRl6TMg1V JA== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3frvf0cxft-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 03 May 2022 11:06:30 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id DFBC710002A;
-        Tue,  3 May 2022 11:06:28 +0200 (CEST)
-Received: from Webmail-eu.st.com (sfhdag2node2.st.com [10.75.127.5])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id D8892214D19;
-        Tue,  3 May 2022 11:06:28 +0200 (CEST)
-Received: from localhost (10.75.127.47) by SFHDAG2NODE2.st.com (10.75.127.5)
- with Microsoft SMTP Server (TLS) id 15.0.1497.26; Tue, 3 May 2022 11:06:27
- +0200
-From:   Fabien Dessenne <fabien.dessenne@foss.st.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-CC:     Fabien Dessenne <fabien.dessenne@foss.st.com>
-Subject: [PATCH] ARM: dts: stm32: add EXTI interrupt-parent to pinctrl node on stm32mp131
-Date:   Tue, 3 May 2022 11:06:21 +0200
-Message-ID: <20220503090621.483567-1-fabien.dessenne@foss.st.com>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S233257AbiECJKr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 05:10:47 -0400
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47A5836154
+        for <devicetree@vger.kernel.org>; Tue,  3 May 2022 02:07:15 -0700 (PDT)
+Received: by mail-ed1-x532.google.com with SMTP id t5so8508270edw.11
+        for <devicetree@vger.kernel.org>; Tue, 03 May 2022 02:07:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=0DOQZSI+2jySOppXzUIGAxMuNHx5Ge1HN5BtN2gjyGU=;
+        b=P3jvv5JsIU3wkRIzFn0MPxELWwSr8XJXbSpJtiSgmJtGitnbRqDi/Px6HBzj23LRST
+         SnnarFjpZNDKXow0ixUmfo9lLvRTJt1mMBzDyZz/fvytvf1l2a57Qulg2hHxB99RGR+H
+         D7HclP+NhMpYyW0+j0js2Ca8nGP9peDcnHzDf2jY/VW4Rv1sgC0coXi9JrpKCWmtLNb6
+         pUOg3czqdSo4VoegvGfts6Qd4SblqhvQnlNinZZODou1c8TeDkR/MgAMuLFSC9Dx8HG5
+         DgdOQpkxEi1gfP2ojGfBB+LhyDktmbzuwCqGBw1a3sWO51N+NlPRlzMoBqZmThPKdH7v
+         n1Xw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=0DOQZSI+2jySOppXzUIGAxMuNHx5Ge1HN5BtN2gjyGU=;
+        b=fJ+ESUoFJE6HX6yfPZp8RnkyMYe+ljJZSwcnKmG/Yn9QK98GGqgRqh37Lt/aIO7o7m
+         ojkv6E7h+mZo6o9JHTx3oiKvWICjk9vvc7sc4z4XP0OTq9Bbo/RdGK6ulDGBpBRZXgrZ
+         JAi1EjgSP3UBiIkX4/xMB49yuvdkBEq+5qpF4kEfGUPikOPdr2WWbBfz1KU1JUf1oA7g
+         0kfWqEk6jPMm2riTXgTQSzPPWZ5HEY7UxjDW1emeniEfY4uW0lJjZfa+UdAPT1UsRgGs
+         yvDUbL4b9VDbFKdZav1tdS25PYf/u28AtaO9Cro1ffMKZw13XjazdqBUcNLkIsFXYLdc
+         Uu2g==
+X-Gm-Message-State: AOAM5336ducmrt8dK+kWvt7Cf9zBq3YYL/5gTfFlua3kjhZpoMMWRuLW
+        AJJjNrWhhoJSs1dz2tDIkgV78EvJxQor2A==
+X-Google-Smtp-Source: ABdhPJyJeMmXdRBpbxfTfFAN28c4gZnl/RtIqFb4dMtgsV5j/MNYKHNHHhsz0uTRyMNm64RNuaDuDg==
+X-Received: by 2002:a05:6402:1e8b:b0:41c:59f6:2c26 with SMTP id f11-20020a0564021e8b00b0041c59f62c26mr17214142edf.156.1651568833847;
+        Tue, 03 May 2022 02:07:13 -0700 (PDT)
+Received: from [192.168.0.201] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id eo9-20020a1709069b0900b006f3ef214e00sm4401022ejc.102.2022.05.03.02.07.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 03 May 2022 02:07:13 -0700 (PDT)
+Message-ID: <5bad039d-be2f-b967-4a64-0414b4880b45@linaro.org>
+Date:   Tue, 3 May 2022 11:07:12 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.75.127.47]
-X-ClientProxiedBy: SFHDAG2NODE2.st.com (10.75.127.5) To SFHDAG2NODE2.st.com
- (10.75.127.5)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.858,Hydra:6.0.486,FMLib:17.11.64.514
- definitions=2022-05-03_03,2022-05-02_03,2022-02-23_01
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH 01/12] dt-bindings: clock: add Exynos Auto v9 SoC CMU
+ bindings
+Content-Language: en-US
+To:     Chanho Park <chanho61.park@samsung.com>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Tomasz Figa <tomasz.figa@gmail.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Sam Protsenko <semen.protsenko@linaro.org>,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org
+References: <20220502090230.12853-1-chanho61.park@samsung.com>
+ <CGME20220502090100epcas2p4d4c26a79374a6affd1564c2e7287c234@epcas2p4.samsung.com>
+ <20220502090230.12853-2-chanho61.park@samsung.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220502090230.12853-2-chanho61.park@samsung.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add interrupt-parent property in pinctrl node to use GPIO as IRQ.
+On 02/05/2022 11:02, Chanho Park wrote:
+> Add dt-schema for Exynos Auto v9 SoC clock controller.
+> 
+> Signed-off-by: Chanho Park <chanho61.park@samsung.com>
+> ---
+>  .../clock/samsung,exynosautov9-clock.yaml     | 217 ++++++++++++++++++
+>  1 file changed, 217 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/samsung,exynosautov9-clock.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/clock/samsung,exynosautov9-clock.yaml b/Documentation/devicetree/bindings/clock/samsung,exynosautov9-clock.yaml
+> new file mode 100644
+> index 000000000000..e2a01f50db6c
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/clock/samsung,exynosautov9-clock.yaml
+> @@ -0,0 +1,217 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/clock/samsung,exynosautov9-clock.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Samsung Exynos Auto v9 SoC clock controller
+> +
+> +maintainers:
+> +  - Chanho Park <chanho61.park@samsung.com>
+> +  - Chanwoo Choi <cw00.choi@samsung.com>
+> +  - Krzysztof Kozlowski <krzk@kernel.org>
+> +  - Sylwester Nawrocki <s.nawrocki@samsung.com>
+> +  - Tomasz Figa <tomasz.figa@gmail.com>
+> +
+> +description: |
+> +  Exynos Auto v9 clock controller is comprised of several CMU units, generating
+> +  clocks for different domains. Those CMU units are modeled as separate device
+> +  tree nodes, and might depend on each other. Root clocks in that clock tree are
+> +  two external clocks:: OSCCLK/XTCXO (26 MHz) and RTCCLK/XrtcXTI (32768 Hz).
+> +  Those external clocks must be defined as fixed-rate clocks in dts.
+> +
+> +  CMU_TOP is a top-level CMU, where all base clocks are prepared using PLLs and
+> +  dividers; all other clocks of function blocks (other CMUs) are usually
+> +  derived from CMU_TOP.
+> +
+> +  Each clock is assigned an identifier and client nodes can use this identifier
+> +  to specify the clock which they consume. All clocks available for usage
+> +  in clock consumer nodes are defined as preprocessor macros in
+> +  'dt-bindings/clock/exynosautov9.h' header.
 
-Signed-off-by: Amelie Delaunay <amelie.delaunay@foss.st.com>
-Signed-off-by: Fabien Dessenne <fabien.dessenne@foss.st.com>
----
- arch/arm/boot/dts/stm32mp131.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
+I know this follows Exynos850 pattern, but I would prefer to move towards:
+1. vendor,device: samsung,exynosautov9.h
+2. put here full path, so include/dt-bindings ....
 
-diff --git a/arch/arm/boot/dts/stm32mp131.dtsi b/arch/arm/boot/dts/stm32mp131.dtsi
-index 58647396704f..f9ebc47e6421 100644
---- a/arch/arm/boot/dts/stm32mp131.dtsi
-+++ b/arch/arm/boot/dts/stm32mp131.dtsi
-@@ -259,6 +259,8 @@ pinctrl: pinctrl@50002000 {
- 			#size-cells = <1>;
- 			compatible = "st,stm32mp135-pinctrl";
- 			ranges = <0 0x50002000 0x8400>;
-+			interrupt-parent = <&exti>;
-+			st,syscfg = <&exti 0x60 0xff>;
- 			pins-are-numbered;
- 
- 			gpioa: gpio@50002000 {
--- 
-2.25.1
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - samsung,exynosautov9-cmu-top
+> +      - samsung,exynosautov9-cmu-busmc
+> +      - samsung,exynosautov9-cmu-core
+> +      - samsung,exynosautov9-cmu-fsys2
+> +      - samsung,exynosautov9-cmu-peric0
+> +      - samsung,exynosautov9-cmu-peric1
+> +      - samsung,exynosautov9-cmu-peris
+> +
+> +  clocks:
+> +    minItems: 1
+> +    maxItems: 5
+> +
+> +  clock-names:
+> +    minItems: 1
+> +    maxItems: 5
+> +
+> +  "#clock-cells":
+> +    const: 1
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: samsung,exynosautov9-cmu-top
+> +
+> +    then:
+> +      properties:
+> +        clocks:
+> +          items:
+> +            - description: External reference clock (26 MHz)
+> +
+> +        clock-names:
+> +          items:
+> +            - const: oscclk
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: samsung,exynosautov9-cmu-busmc
+> +
+> +    then:
+> +      properties:
+> +        clocks:
+> +          items:
+> +            - description: External reference clock (26 MHz)
+> +            - description: CMU_BUSMC bus clock (from CMU_TOP)
+> +
+> +        clock-names:
+> +          items:
+> +            - const: oscclk
+> +            - const: dout_clkcmu_busmc_bus
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: samsung,exynosautov9-cmu-core
+> +
+> +    then:
+> +      properties:
+> +        clocks:
+> +          items:
+> +            - description: External reference clock (26 MHz)
+> +            - description: CMU_CORE bus clock (from CMU_TOP)
+> +
+> +        clock-names:
+> +          items:
+> +            - const: oscclk
+> +            - const: dout_clkcmu_core_bus
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: samsung,exynosautov9-cmu-fsys2
+> +
+> +    then:
+> +      properties:
+> +        clocks:
+> +          items:
+> +            - description: External reference clock (26 MHz)
+> +            - description: CMU_FSYS2 bus clock (from CMU_TOP)
+> +            - description: UFS clock (from CMU_TOP)
+> +            - description: Ethernet clock (from CMU_TOP)
+> +
+> +        clock-names:
+> +          items:
+> +            - const: oscclk
+> +            - const: dout_clkcmu_fsys2_bus
+> +            - const: dout_fsys2_clkcmu_ufs_embd
+> +            - const: dout_fsys2_clkcmu_ethernet
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: samsung,exynosautov9-cmu-peric0
+> +
+> +    then:
+> +      properties:
+> +        clocks:
+> +          items:
+> +            - description: External reference clock (26 MHz)
+> +            - description: CMU_PERIC0 bus clock (from CMU_TOP)
+> +            - description: PERIC0 IP clock (from CMU_TOP)
+> +
+> +        clock-names:
+> +          items:
+> +            - const: oscclk
+> +            - const: dout_clkcmu_peric0_bus
+> +            - const: dout_clkcmu_peric0_ip
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: samsung,exynosautov9-cmu-peric1
+> +
+> +    then:
+> +      properties:
+> +        clocks:
+> +          items:
+> +            - description: External reference clock (26 MHz)
+> +            - description: CMU_PERIC1 bus clock (from CMU_TOP)
+> +            - description: PERIC1 IP clock (from CMU_TOP)
+> +
+> +        clock-names:
+> +          items:
+> +            - const: oscclk
+> +            - const: dout_clkcmu_peric1_bus
+> +            - const: dout_clkcmu_peric1_ip
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: samsung,exynosautov9-cmu-peris
+> +
+> +    then:
+> +      properties:
+> +        clocks:
+> +          items:
+> +            - description: External reference clock (26 MHz)
+> +            - description: CMU_PERIS bus clock (from CMU_TOP)
+> +
+> +        clock-names:
+> +          items:
+> +            - const: oscclk
+> +            - const: dout_clkcmu_peris_bus
+> +
+> +required:
+> +  - compatible
+> +  - "#clock-cells"
+> +  - clocks
+> +  - clock-names
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  # Clock controller node for CMU_FSYS2
+> +  - |
+> +    #include <dt-bindings/clock/exynosautov9.h>
+> +
+> +    cmu_fsys2: clock-controller@17c00000 {
+> +        compatible = "samsung,exynosautov9-cmu-fsys2";
+> +        reg = <0x17c00000 0x8000>;
+> +        #clock-cells = <1>;
+> +
+> +        clocks = <&xtcxo>, <&cmu_top DOUT_CLKCMU_FSYS2_BUS>,
+> +                 <&cmu_top DOUT_CLKCMU_FSYS2_UFS_EMBD>,
+> +                 <&cmu_top DOUT_CLKCMU_FSYS2_ETHERNET>;
 
+Let's put each item in its own line, so line break after every clock
+here and in the clock-names.
+
+Rest looks good.
+
+Best regards,
+Krzysztof
