@@ -2,113 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 80D78518526
-	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 15:09:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 86C8D51852B
+	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 15:10:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235895AbiECNMx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 May 2022 09:12:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32992 "EHLO
+        id S235933AbiECNON (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 May 2022 09:14:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35252 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235903AbiECNMv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 09:12:51 -0400
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 928E12B270;
-        Tue,  3 May 2022 06:09:19 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 243D98ZI015600;
-        Tue, 3 May 2022 08:09:08 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1651583348;
-        bh=+NJWeR2yAoBQ4gOXBumJ8EELuBtqDItb0MKtfFopUbs=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=Ovg5r4eKf5S9YAsVU+RRnJYo/iNXNe3beD3nkKDieeUNQ5zqjajoOPFBKH/NwkBCh
-         xSWKRvIr21et/UvuO98a38LGOijozwf2pgmIhMB4LxXgoBl7mlaklH9vxaaV9CXKJ3
-         +wf9yoGToYCGTa6WTLccuur6O03oZcddnBMnTCIk=
-Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 243D98LW028230
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 3 May 2022 08:09:08 -0500
-Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Tue, 3
- May 2022 08:09:07 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Tue, 3 May 2022 08:09:07 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 243D97AM049057;
-        Tue, 3 May 2022 08:09:07 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Santosh Shilimkar <ssantosh@kernel.org>,
+        with ESMTP id S236032AbiECNOC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 09:14:02 -0400
+Received: from mail-ot1-f51.google.com (mail-ot1-f51.google.com [209.85.210.51])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D1B6193D3;
+        Tue,  3 May 2022 06:10:30 -0700 (PDT)
+Received: by mail-ot1-f51.google.com with SMTP id i25-20020a9d6259000000b00605df9afea7so11267085otk.1;
+        Tue, 03 May 2022 06:10:30 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=IpqIzgphhCdmYF4OcPG4cl/7KB4HmQKnYBXclbeY+EM=;
+        b=hcTyTPPqWU/jeS7QnKnZXRWoqK5L886svbncT38n8/L+Fyyl3NGEi+yf9YSALIXPTi
+         WV6R1X6Fnk1GV/aepPSDftpKkcbSTwhUSK0KIQaSrYOYB+t3xYftob4bsjidMEjm2cvM
+         15cXwzkF78i+GK8bYG5NSuUhmL7CVNL2GSDkrXjCTWDdHoaIDb4X7ajakNbTK6AlGOLX
+         ChzBGws1zgjBSAZOyFCGkIoSdBO2odQpqe8AqrYr4ODsbNnyPQXiXZpOemCu70f/Gw7Q
+         +ASapoDr3oUL1Jn98dpNlHvgEOUuIJB7dQyTpLgG60rXGr5VC8KD8NOhuuQN4ZcBsHKh
+         HeNA==
+X-Gm-Message-State: AOAM533hFx19uvhAc0ipl3Zvx3EsthUWfVO9vk/xSrIFMzfegIJyZKe1
+        tYt49L8YKyZMvOb13UXbJA==
+X-Google-Smtp-Source: ABdhPJyQkrZSrMV59N970ZN+JMFQ8vc17D6rWTzqXy9EpoHa6uDya1nmYFVY1c6bDGawGt4Q2EPCtQ==
+X-Received: by 2002:a9d:1ec:0:b0:5ff:a72c:99b1 with SMTP id e99-20020a9d01ec000000b005ffa72c99b1mr5776732ote.31.1651583429323;
+        Tue, 03 May 2022 06:10:29 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id k7-20020a4ad987000000b0035eb4e5a6c3sm4926592oou.25.2022.05.03.06.10.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 03 May 2022 06:10:28 -0700 (PDT)
+Received: (nullmailer pid 3471438 invoked by uid 1000);
+        Tue, 03 May 2022 13:10:28 -0000
+Date:   Tue, 3 May 2022 08:10:27 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Kuldeep Singh <singh.kuldeep87k@gmail.com>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        linux-kernel@vger.kernel.org, Andy Gross <agross@kernel.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Tony Lindgren <tony@atomide.com>,
-        Dave Gerlach <d-gerlach@ti.com>,
-        Drew Fustini <dfustini@baylibre.com>
-CC:     Nishanth Menon <nm@ti.com>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-Subject: Re: (subset) [PATCH v3 0/2] soc: ti: wkup_m3_ipc: support i2c voltage scaling
-Date:   Tue, 3 May 2022 08:09:06 -0500
-Message-ID: <165158334205.6551.12979681952730458038.b4-ty@ti.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20220426200741.712842-1-dfustini@baylibre.com>
-References: <20220426200741.712842-1-dfustini@baylibre.com>
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-i2c@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH v2 1/4] dt-bindings: I2C: Add Qualcomm Geni based QUP I2C
+ bindings
+Message-ID: <YnEpw55zGCRj2QpE@robh.at.kernel.org>
+References: <20220404182938.29492-1-singh.kuldeep87k@gmail.com>
+ <20220404182938.29492-2-singh.kuldeep87k@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220404182938.29492-2-singh.kuldeep87k@gmail.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Drew Fustini,
-
-On Tue, 26 Apr 2022 13:07:40 -0700, Drew Fustini wrote:
-> Allow loading of a binary file containing i2c scaling sequences to be
-> provided to the Cortex-M3 firmware in order to properly scale voltage
-> rails on the PMIC during low power modes like DeepSleep0.
+On Mon, 04 Apr 2022 23:59:34 +0530, Kuldeep Singh wrote:
+> GENI(generic interface) based Qualcomm Universal Peripheral controller
+> can support multiple serial interfaces like SPI,UART and I2C.
 > 
-> The 'firmware-name' property which contains the name of a binary file.
+> Unlike other I2C controllers, QUP I2C bindings are present in parent
+> schema. Move it out from parent to an individual binding and let parent
+> refer to child schema later on.
 > 
-> A prerequisite for this series is:
-> [PATCH v3 0/2] soc: ti: wkup_m3_ipc: Add support for IO Isolation
-> https://lore.kernel.org/linux-devicetree/20220414192722.2978837-1-dfustini@baylibre.com/
+> Please note, current schema isn't complete as it misses out few
+> properties and thus, add these missing properties along the process.
 > 
-> [...]
+> Signed-off-by: Kuldeep Singh <singh.kuldeep87k@gmail.com>
+> ---
+> v2:
+> - Change compatible from enum to const
+> - Drop clock-frequency description
+> - Sort nodes
+> ---
+>  .../bindings/i2c/qcom,i2c-geni-qcom.yaml      | 100 ++++++++++++++++++
+>  1 file changed, 100 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/i2c/qcom,i2c-geni-qcom.yaml
+> 
 
-I have applied the following to branch ti-drivers-soc-next on [1].
-Thank you!
+This series should have been applied all together, but as it seems it's 
+already in multiple trees, I've applied.
 
-[2/2] soc: ti: wkup_m3_ipc: Add support for i2c voltage scaling
-      commit: ea082040fe071d2ba1f8f73792743d7ca9fb218e
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent up the chain during
-the next merge window (or sooner if it is a relevant bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-[1] git://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
-
+Rob
