@@ -2,66 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5534F51849D
-	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 14:53:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 406C75184A1
+	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 14:55:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233212AbiECM4f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 May 2022 08:56:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35496 "EHLO
+        id S230339AbiECM7Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 May 2022 08:59:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39738 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230339AbiECM4e (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 08:56:34 -0400
-Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.17.10])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19D0A1EEE1;
-        Tue,  3 May 2022 05:53:00 -0700 (PDT)
-Received: from mail-yw1-f175.google.com ([209.85.128.175]) by
- mrelayeu.kundenserver.de (mreue109 [213.165.67.113]) with ESMTPSA (Nemesis)
- id 1Mo6zF-1oATOS0uOB-00pc0n; Tue, 03 May 2022 14:52:59 +0200
-Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-2f16645872fso178250027b3.4;
-        Tue, 03 May 2022 05:52:58 -0700 (PDT)
-X-Gm-Message-State: AOAM531lrOcqaPKF3QUmTrFCc7E4OZRtgXT1CF/8myugN+srZh06H0Tw
-        T3YCLusH6gNw2r2w+QcW3+HAdPGaR4l8e+Zq69s=
-X-Google-Smtp-Source: ABdhPJyv1laW6E185MTLjPzEFveupItqW/H+SSTMlTqCVUIee6w3ZqqHo0k5z6EM5wkvOIryiG8mHw/gvMCwhJyPJWk=
-X-Received: by 2002:a81:ad7:0:b0:2e6:84de:3223 with SMTP id
- 206-20020a810ad7000000b002e684de3223mr15626133ywk.209.1651582377937; Tue, 03
- May 2022 05:52:57 -0700 (PDT)
+        with ESMTP id S235069AbiECM7Y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 08:59:24 -0400
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B87B33A20
+        for <devicetree@vger.kernel.org>; Tue,  3 May 2022 05:55:51 -0700 (PDT)
+Received: by mail-ed1-x531.google.com with SMTP id a21so19741698edb.1
+        for <devicetree@vger.kernel.org>; Tue, 03 May 2022 05:55:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :references:from:in-reply-to:content-transfer-encoding;
+        bh=mMhey8pni6QqzQ242qILhQnwRMabY16pK52zsz9eB/k=;
+        b=iHAvYsOJEFkfcg/Ij63vRaMi7aJOdqKVyEkYTrT/s7HlmEK4jVfh9rhD5CzSzV5tED
+         0835v64va435HBfAieoTknlELEsvf9m5fV81taqBf3gVSVxnKTpsi53FJXRscXwvHia7
+         j1jdDOv+cyX9aWZC7MS6eDBPEoLP0oMn9iDZFkOfs/cAcfFV7qc62cJ3Br7LAVJ3H8Y0
+         j4QqIu1iUDNTKu98I38LvG/ZaEkVNF5cWUL8R2T30GGcwFwewB17c3MMizuzpShu23WG
+         czkUsPqRufdqNwH4+hNaloqAdQzJfntG9wBeAwsG+NclUov2nJTUp2vD6/UxT0meknw2
+         iJ1A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=mMhey8pni6QqzQ242qILhQnwRMabY16pK52zsz9eB/k=;
+        b=TuWyxRXuCphJ5ZOmR2y2t14TjyG5fEs9vu7lSV96qH5lZK2j5ek92weqZZb4I1pLLs
+         jfDT/dSszTg60DIM3c57fh26mqe5CPKvakwYGexnrSvkD6n+KeznqnGZnv7+oh29ciis
+         jR5211yiqKrPhoWDHJGw9zjoce4/aiCUCEkxTyTkWQ5yhOUtJfoneBwA8i+LIWjFMHtt
+         ukuW53pvZ+w5kVywnvFkx08zQ5Jj8ZhB/RwAJsZ3DCxk/nIqDY8gFnY5r8kfXtBQSoQa
+         20tEgCmOcGKhu95d6gzRFHDqWwyXk/EwLDeA/j+ECLYuCTxDo06pjZ0BmsYqN5zoZfUL
+         KC2A==
+X-Gm-Message-State: AOAM531OAHlUfsg+pss/frxEM5PWOZrgw5Jr5nGlFMBF/sDJgr4XTAJO
+        NFpJj2R9RWHCdvubXdmtaB8/+w==
+X-Google-Smtp-Source: ABdhPJyAU0MDDN/YwoUn70zHdSSqdI//oZLA8t2/fo/LzttGVG4x9Vi3NiHmUyYds5e9CdE20DFAaA==
+X-Received: by 2002:a50:ee11:0:b0:425:b5b3:a48d with SMTP id g17-20020a50ee11000000b00425b5b3a48dmr18111581eds.246.1651582550044;
+        Tue, 03 May 2022 05:55:50 -0700 (PDT)
+Received: from [192.168.0.203] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id de55-20020a1709069bf700b006f3ef214e74sm4604047ejc.218.2022.05.03.05.55.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 03 May 2022 05:55:49 -0700 (PDT)
+Message-ID: <896ea19b-6dc1-a635-0dd6-c7f9494487e8@linaro.org>
+Date:   Tue, 3 May 2022 14:55:48 +0200
 MIME-Version: 1.0
-References: <20220421151055.6851-1-takayoshi.shimamoto.360@gmail.com>
-In-Reply-To: <20220421151055.6851-1-takayoshi.shimamoto.360@gmail.com>
-From:   Arnd Bergmann <arnd@arndb.de>
-Date:   Tue, 3 May 2022 14:52:41 +0200
-X-Gmail-Original-Message-ID: <CAK8P3a2pc5nUpGr_KQdhFZPm+vm5SfAzyUEy0=P3FVhfhdbNUQ@mail.gmail.com>
-Message-ID: <CAK8P3a2pc5nUpGr_KQdhFZPm+vm5SfAzyUEy0=P3FVhfhdbNUQ@mail.gmail.com>
-Subject: Re: [PATCH] ARM: dts: BCM5301X: Add DT for WZR-1166DHP,DHP2
-To:     SHIMAMOTO Takayoshi <takayoshi.shimamoto.360@gmail.com>
-Cc:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        SoC Team <soc@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Hauke Mehrtens <hauke@hauke-m.de>,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
-        bcm-kernel-feedback-list <bcm-kernel-feedback-list@broadcom.com>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Provags-ID: V03:K1:UUz7elM+auAsRowC7ROfRfxccth75nPAVzGQ1wn0r5L/IY3OB41
- Xc8JK+/rHEf/lS6gNTmVTnZFvTtX9LLNgfVuXy/CICydWqrcEbq1oqOT3/AMyvOWVy8um0T
- vEOPvMNglkvi96oJKBoRMCgVvd0hVKIAiXQbjZHcX+00s5cgH+kC97ZpwHfqzuyc5TWVI5a
- B7fHgyqFo+QQ3imFUczUg==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:AzyEmZ610OA=:AKIGkURKteUJ5cbywAANXG
- K2GiM89LZoSy/zAWY5C/wS3SP+1gAoLgpTqqHa7+Lmoyxom3+VKc3A6IqM86WI96tG+vqrttD
- yKxagz70iqn9a8KtOUZjw0JgDTShy07n6mwxuxZulanmE0Z9L9bWLR5yoYup8SircTDYL5J7e
- m/teKOg1WHT3FgjaXDWerXDqITEwSjmdYO0vPE4EsM1g0IrCZ3FVQcA6yb7vT8Qh2vOgutNE9
- mwaQGP3Xh6Usy8wiFONAmrz3pi0LI8uxgt+FNmM1k5x2qTET6eM7tJOdxCmZGdQX65d013rKq
- X/7TuiSsBrluXG/bl/vVV281fYzuFvvWbS3l4TouLY8q/AQiXzJtSeCmj0zK994HTtZLIdF5X
- afVwKol5roweJep8naybXlEqsPczol3C4Vy0/EozrRsyJ6wla4WYylRUciOrnqszh/q/qJUb6
- aQhfreJvix4RAczUR/ZtGW8cdiyDqeevmiKhhFYZnAmfZ1FvK89mDqVvl7crLLfK79mTNawZb
- 5kDLwUDzP4q+sQCzJXCZHY/megTgIHY7oviq4g4IIuYZ5qUYbeheXTZNo5pPgT3V/n0oTpF93
- f1Wd6IM4uYH/axg1pjrntg7WtMiCA4OPLsQdUc50WC4hw/N4AuKeEi2pXRX7MiUbrlEW/t1hY
- 3s+Wv7wH0cHBrAZmKPJdDUlVbq76Lwz1f3tfoED2NdKDKehc3M4R1Gk52VVclezjkzhU=
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH] arm64: dts: intel: add device tree for n6000
+Content-Language: en-US
+To:     matthew.gerlach@linux.intel.com, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, dinguyen@vger.kernel.org,
+        robh+dt@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org
+References: <20220502165818.4002157-1-matthew.gerlach@linux.intel.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220502165818.4002157-1-matthew.gerlach@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -69,34 +73,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 21, 2022 at 5:10 PM SHIMAMOTO Takayoshi
-<takayoshi.shimamoto.360@gmail.com> wrote:
->
->   Buffalo WZR-1166DHP/WZR-1166DHP2  wireless router with
->
->     - BCM4708A0
->     - 128MiB NAND flash
->     - 2T2R 11ac/a/b/g/n Wi-Fi
->     - 4x 10/100/1000M ethernet switch
->     - 1x USB 3.0 port
->
->   WZR-1166DHP and WZR-1166DHP2 have different memory capacity.
->
->   WZR-1166DHP
->     - 512 MiB DDR2 SDRAM
->
->   WZR-1166DHP2
->     - 256 MiB DDR2 SDRAM
->
->   These hardware components are very similar to the WZR-1750DHP
->    except for the number of antennas.
->
-> Signed-off-by: SHIMAMOTO Takayoshi <takayoshi.shimamoto.360@gmail.com>
+On 02/05/2022 18:58, matthew.gerlach@linux.intel.com wrote:
+> From: Matthew Gerlach <matthew.gerlach@linux.intel.com>
+> 
+> Add a device tree for the n6000 instantiation of Agilex
+> Hard Processor System (HPS).
 
-This looks ok to me, I expect that Florian will be able to apply this in the
-Broadcom tree if he hasn't already. Note: there is no need to Cc the
-soc@kernel.org address on dts file submissions, this is only necessary
-if you want me to pick it up directly, e.g. for platforms without an active
-maintainer, or when changes need to go across multiple platforms.
+Please also use scripts/get_maintainer.pl to get the addresses. You
+cc-ed here several wrong emails, so no one would pick up this patch.
 
-       Arnd
+Actually only my email is correct (except lists)...
+
+Best regards,
+Krzysztof
