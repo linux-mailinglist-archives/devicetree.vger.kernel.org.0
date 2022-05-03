@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 033BD5189FD
-	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 18:32:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CD23F5189FF
+	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 18:32:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239618AbiECQgW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 May 2022 12:36:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51822 "EHLO
+        id S239622AbiECQgY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 May 2022 12:36:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51844 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239500AbiECQgT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 12:36:19 -0400
-Received: from mail-oa1-x30.google.com (mail-oa1-x30.google.com [IPv6:2001:4860:4864:20::30])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB5B03BFA0
-        for <devicetree@vger.kernel.org>; Tue,  3 May 2022 09:32:46 -0700 (PDT)
-Received: by mail-oa1-x30.google.com with SMTP id 586e51a60fabf-ed9a75c453so7154250fac.11
-        for <devicetree@vger.kernel.org>; Tue, 03 May 2022 09:32:46 -0700 (PDT)
+        with ESMTP id S239615AbiECQgV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 12:36:21 -0400
+Received: from mail-oi1-x236.google.com (mail-oi1-x236.google.com [IPv6:2607:f8b0:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 065773CA66
+        for <devicetree@vger.kernel.org>; Tue,  3 May 2022 09:32:48 -0700 (PDT)
+Received: by mail-oi1-x236.google.com with SMTP id q8so18288698oif.13
+        for <devicetree@vger.kernel.org>; Tue, 03 May 2022 09:32:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=Jp8Z/hUeLP23KvvSUAkBlWhJEZRAAaKOAZwprobHvBo=;
-        b=ZWNTtDvt05fyhSOqHVAlqD562SO5r0AjFz08VS431jt2+vWW4mV6o8/q4xujLAqptP
-         E/8fYNIuddQGoanfU6R90qJA8YSRndiRv+9f0k6g4Rf0LFlmT55Isdb5U3hLfG0OG6/O
-         e2yowjegUn0jUc0Kt7sE2u7vOU9TJcyZT3HvjlMFphSpN1tPJvpURJ2EeSv1jYwaAjeO
-         Pj7KJ/RfNa0CmmZygAVZn8ZfSoX1YNK2NE6iOmGBkFEDtwqg6KRLQMX3xVDOrcHTcaOa
-         lSQQijHxSSfKK6xbqci9QWCksqS82afezFNqGgWnZAPb0LcuKYM+aUT840WFeRSZ7VyW
-         3Wsg==
+        bh=YWPXEW/dmcl26oN/UpNHlQ6MJJApmB07VctAbNzo6Hc=;
+        b=c75RKIVqFVCnqiqXF8fdSc13vcKVKS4WcFrMRTVpAl4t7sqYgrI0cLQPHLCKqsWAWT
+         B53i3FWTLfo75R/hRbhrnls/ez2F7u26lCPCuypk66bsA6lwDmpLYZtU2gF6uVuvhDDK
+         BtjSBj9LoYSL8GEKxZIwGaaHREE7amPiNmU4Iq3yxnwChbPUaX8QLstT0sKmEqvnUiGh
+         rIs0F4ix3NxwTl8IOyLxildF6kFtUOEN+9UZyNODi9rXiIlDbbr2hqaf4jR+VX2R7UgF
+         X9zJ/JieKgAaABbIdOeEOUT2ERmPCaTuUiyTUXJqq/0TMoTNFLTiXvLKTJ3fXBOO/RJV
+         ydJQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=Jp8Z/hUeLP23KvvSUAkBlWhJEZRAAaKOAZwprobHvBo=;
-        b=Z5xOuEmtXbNyU8p0b6dkp8msW25Rq4db8Zzv2SKRLWXK6fv+q3xZJ6pwzV4UTDecrb
-         3a1jv7jyC0msxX0ciog34wxeFEaZwndQOeQtAPNCtn9kvTXCEu+CpKKn/jhcQwFxeIw1
-         9MjIMjF9pJRk/bjcOhqUyoCwK9PFhQFrdiiEzQfSvzHXL5W+bMH/6G7MHOCHn3pEQ7rQ
-         +zFmXhFl5x7ZvvthnDjDgWpXP4X8amW+87Cq/t+OpA58zCTHk1xhpukqtGKlPSWUw0Wl
-         4J0KTZLXilUfit5iI4KNBEFYHLhvTj/Fj5ZEVhllO2FJ3gkSqXvZmlpJrpZDiy4Xrd0S
-         9rlw==
-X-Gm-Message-State: AOAM531whj0eDdcp0X2UQtNVRkcdXT1BUU8A+NO6E5QRsg2HDnkGGs1S
-        Ugu8vna438s61TcrRxkpjKV6LI3SRk528tbS
-X-Google-Smtp-Source: ABdhPJwReRtrO6xB097gOrPSYR+neB6cLjmKw2HS51B9RII40zRWisxMt/uRLJTu3w5yH67xiBwsDA==
-X-Received: by 2002:a05:6870:a2d0:b0:d9:ae66:b8e2 with SMTP id w16-20020a056870a2d000b000d9ae66b8e2mr2021333oak.7.1651595566241;
-        Tue, 03 May 2022 09:32:46 -0700 (PDT)
+        bh=YWPXEW/dmcl26oN/UpNHlQ6MJJApmB07VctAbNzo6Hc=;
+        b=ZUUMm4uVH6goJpJwTvl4gWVbB2xk4SdYMiZd6nrtCoBDAt5ZFhwP6eiZ1hfSG/4wPv
+         uMOxxmCl7JN7P9r+EB8Tvhn1GOnX6ayC0/f2nvkxfWKhkpExUDPd8k5+SRj1WK/LxKvf
+         kDVWmebCN4zP3hKBSk31FirufvP9mY8Zfku2OplOQm6lKMpcFyMq8Tw326gPENju1wGY
+         3BkML3yik+IOLqce0FS4ILA5tVPMueIX6baiUJKU84bBgQQDH379sIxmqPXz5yZvF737
+         OVZECK+xHxJtQPqFbiE/WvTDSHqMomz1G4xyDY+dTmFFlKjEFqFMaOIV+OB2VCYMY0Hp
+         n5jw==
+X-Gm-Message-State: AOAM531Sk0tj/63dun5RR5tFqgRzNkPnSSPzXJMKLHu7oUBEjKL2/WAj
+        Rx/zxOXPRNvmQpwFTM2MoSXR+Q==
+X-Google-Smtp-Source: ABdhPJzv0hOtfibu1ipLXlFKcbx6oRoYa04jZ8s7iMf8RTneuOK8/aKQziy6q1TrDRGBaYIfDuQS6A==
+X-Received: by 2002:a05:6808:1526:b0:323:1194:d3bf with SMTP id u38-20020a056808152600b003231194d3bfmr2139113oiw.120.1651595567404;
+        Tue, 03 May 2022 09:32:47 -0700 (PDT)
 Received: from ripper.. (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id v15-20020a4ae6cf000000b0035eb4e5a6cdsm5027404oot.35.2022.05.03.09.32.45
+        by smtp.gmail.com with ESMTPSA id v15-20020a4ae6cf000000b0035eb4e5a6cdsm5027404oot.35.2022.05.03.09.32.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 May 2022 09:32:45 -0700 (PDT)
+        Tue, 03 May 2022 09:32:46 -0700 (PDT)
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
 To:     Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
         Joerg Roedel <joro@8bytes.org>,
@@ -55,9 +55,9 @@ To:     Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
 Cc:     linux-arm-kernel@lists.infradead.org,
         iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: [PATCH 1/2] dt-bindings: arm-smmu: Add compatible for Qualcomm SC8280XP
-Date:   Tue,  3 May 2022 09:34:28 -0700
-Message-Id: <20220503163429.960998-2-bjorn.andersson@linaro.org>
+Subject: [PATCH 2/2] iommu/arm-smmu-qcom: Add SC8280XP support
+Date:   Tue,  3 May 2022 09:34:29 -0700
+Message-Id: <20220503163429.960998-3-bjorn.andersson@linaro.org>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20220503163429.960998-1-bjorn.andersson@linaro.org>
 References: <20220503163429.960998-1-bjorn.andersson@linaro.org>
@@ -65,7 +65,7 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -73,26 +73,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add compatible for the Qualcomm SC8280XP platform to the ARM SMMU
-DeviceTree binding.
+Add the Qualcomm SC8280XP platform to the list of compatible for which
+the Qualcomm-impl of the ARM SMMU should apply.
 
 Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 ---
- Documentation/devicetree/bindings/iommu/arm,smmu.yaml | 1 +
+ drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c | 1 +
  1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
-index da5381c8ee11..ba38ce054062 100644
---- a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
-+++ b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
-@@ -37,6 +37,7 @@ properties:
-               - qcom,sc7180-smmu-500
-               - qcom,sc7280-smmu-500
-               - qcom,sc8180x-smmu-500
-+              - qcom,sc8280xp-smmu-500
-               - qcom,sdm845-smmu-500
-               - qcom,sdx55-smmu-500
-               - qcom,sm6350-smmu-500
+diff --git a/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c b/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
+index ba6298c7140e..7820711c4560 100644
+--- a/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
++++ b/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
+@@ -408,6 +408,7 @@ static const struct of_device_id __maybe_unused qcom_smmu_impl_of_match[] = {
+ 	{ .compatible = "qcom,sc7180-smmu-500" },
+ 	{ .compatible = "qcom,sc7280-smmu-500" },
+ 	{ .compatible = "qcom,sc8180x-smmu-500" },
++	{ .compatible = "qcom,sc8280xp-smmu-500" },
+ 	{ .compatible = "qcom,sdm630-smmu-v2" },
+ 	{ .compatible = "qcom,sdm845-smmu-500" },
+ 	{ .compatible = "qcom,sm6125-smmu-500" },
 -- 
 2.35.1
 
