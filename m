@@ -2,105 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B8AA517F92
-	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 10:16:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1674D517F9B
+	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 10:21:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232517AbiECITd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 May 2022 04:19:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56922 "EHLO
+        id S232221AbiECIYi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 May 2022 04:24:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32778 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232004AbiECITb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 04:19:31 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13AEF21E06
-        for <devicetree@vger.kernel.org>; Tue,  3 May 2022 01:15:57 -0700 (PDT)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=bjornoya.blackshift.org)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mkl@pengutronix.de>)
-        id 1nlnhC-0002lE-Tg; Tue, 03 May 2022 10:15:46 +0200
-Received: from pengutronix.de (unknown [IPv6:2a01:4f8:1c1c:29e9:22:41ff:fe00:1400])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (Client did not present a certificate)
-        (Authenticated sender: mkl-all@blackshift.org)
-        by smtp.blackshift.org (Postfix) with ESMTPSA id 51A54749F4;
-        Tue,  3 May 2022 08:15:44 +0000 (UTC)
-Date:   Tue, 3 May 2022 10:15:42 +0200
-From:   Marc Kleine-Budde <mkl@pengutronix.de>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     Wolfgang Grandegger <wg@grandegger.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+        with ESMTP id S231847AbiECIYi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 04:24:38 -0400
+Received: from mailserv1.kapsi.fi (mailserv1.kapsi.fi [IPv6:2001:67c:1be8::25:1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A090011C0F
+        for <devicetree@vger.kernel.org>; Tue,  3 May 2022 01:21:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=ext.kapsi.fi; s=20161220; h=Subject:Content-Transfer-Encoding:Content-Type:
+        In-Reply-To:From:References:Cc:To:MIME-Version:Date:Message-ID:Sender:
+        Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+        :Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+        List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=OqscgcMP9UVcA9P6b/llsibkIGdaT45kJnJUIEEFa+E=; b=SO7arh+QQbvl3u+idWbbxla84E
+        rBBkmJycDY87e63wuNoKkFLGdgjbn65KS2zuY2rKl0ajbzM91l0u0sZCbae6fE107iExFfFcNK4Ps
+        AlLbFXtWl0qKF2/Ttd+qzeOwbwrmzO1VXFNgWrnQcGHLCah/gYn4iF1bZYRUBE72owho6gBXtsV0X
+        iIUiKS/juFoI2HMvtLIT4Y46RYqpOZRAD4+6Y+5m7cVxpiYKPJ4hpwp29wd3+PeK2eXaLX28HChA6
+        JF+D7zXuIlPm3nP5PK94IRdFG9iZXCZ+x9zAcy440w2th6nYWHiZ70Jkp7jY0FPb8YvSL9hmi1+45
+        Fy6n5+FA==;
+Received: from 13-105-191-90.dyn.estpak.ee ([90.191.105.13]:58685 helo=[10.0.2.15])
+        by mailserv1.kapsi.fi with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
+        (Exim 4.89)
+        (envelope-from <maukka@ext.kapsi.fi>)
+        id 1nlnm8-000596-6d; Tue, 03 May 2022 11:20:52 +0300
+Message-ID: <c6d61bfd-24c0-030b-eb50-5e97214f3f13@ext.kapsi.fi>
+Date:   Tue, 3 May 2022 11:20:50 +0300
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Content-Language: en-US
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     Arnd Bergmann <arnd@arndb.de>, SoC Team <soc@kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Olof Johansson <olof@lixom.net>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-        linux-can@vger.kernel.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH 2/2] dt-bindings: can: renesas,rcar-canfd: Make
- interrupt-names required
-Message-ID: <878rrjf2vv.fsf@hardanger.blackshift.org>
-References: <cover.1651512451.git.geert+renesas@glider.be>
- <a68e65955e0df4db60233d468f348203c2e7b940.1651512451.git.geert+renesas@glider.be>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="sfgxuhwvddqugxs5"
-Content-Disposition: inline
-In-Reply-To: <a68e65955e0df4db60233d468f348203c2e7b940.1651512451.git.geert+renesas@glider.be>
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>
+References: <20220427162123.110458-1-maukka@ext.kapsi.fi>
+ <CAK8P3a0p-ev50UfGiHCpMM5Jz5Mf8pdfQtNep0M7qi7PANSBVg@mail.gmail.com>
+ <YmndWe63ELJbQe20@lunn.ch>
+ <b9c7eb81-c49e-76bf-5b49-b97cb5c2b03d@ext.kapsi.fi>
+ <YmsisTq28nsSlf3k@lunn.ch>
+From:   Mauri Sandberg <maukka@ext.kapsi.fi>
+In-Reply-To: <YmsisTq28nsSlf3k@lunn.ch>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 90.191.105.13
+X-SA-Exim-Mail-From: maukka@ext.kapsi.fi
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+X-Spam-Level: 
+X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Subject: Re: [RFC RFT PATCH v1 0/1] ARM: orion5x: convert D-Link DNS-323 to
+ the Device Tree
+X-SA-Exim-Version: 4.2.1 (built Tue, 02 Aug 2016 21:08:31 +0000)
+X-SA-Exim-Scanned: Yes (on mailserv1.kapsi.fi)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---sfgxuhwvddqugxs5
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 29.04.22 02:26, Andrew Lunn wrote:
+> On Thu, Apr 28, 2022 at 11:25:00PM +0300, Mauri Sandberg wrote:
+>> Hello Andrew!
+>>
+>> On 28.4.2022 3.18, Andrew Lunn wrote:
+>>>>> - there is no concensus on how to get ascii formatted MAC address from mtd
+>>>>>     partitions so eth is not fully functional without setting the MAC from
+>>>>>     userspace
+>>>> Ideally this is handled by the boot loader, but that requires being
+>>>> able to update
+>>>> it.
+>>> The mv643xx Ethernet driver is happy if it finds the MAC address
+>>> already in the hardware. The vendor uboot often does this. Does tftp
+>>> boot work in uboot? That would indicate it has access to the MAC
+>>> address.
+>> The u-boot is really limited and I am transferring new images over kermit.
+> Ouch!
+>
+> If you can, try kexec. You can use wget or similar to grab the kernel
+> from you host machine, and then something like:
+>
+> kexec --append 'rootwait ro earlyprintk console=ttyS0,115200n8' bzImage
+>
+> wget will be much faster then kernel.
+>
+Nice, this looks promising. Thanks for the tip.
 
-On 02.05.2022 19:33:53, Geert Uytterhoeven wrote:
-> The Renesas R-Car CAN FD Controller always uses two or more interrupts.
-> Make the interrupt-names properties a required property, to make it
-> easier to identify the individual interrupts.
->=20
-> Update the example accordingly.
->=20
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-Applied to linux-can-next/testing.
-
-regards,
-Marc
-
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde           |
-Embedded Linux                   | https://www.pengutronix.de  |
-Vertretung West/Dortmund         | Phone: +49-231-2826-924     |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-5555 |
-
---sfgxuhwvddqugxs5
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEBsvAIBsPu6mG7thcrX5LkNig010FAmJw5KwACgkQrX5LkNig
-010SDAgAmjLWcB7Oaw7BaFNiAZCrFvSztk4Cdz5YLEkvckGfldZ3/pMuCe42t9sf
-oVJF8+89iexDgYCV/8VLOvtfeHnOBV/A1TLO3FUEXEMeVsjnpEXM8SKveWbQ1/sW
-Eav3u40j/oaoiKNoT5CYRzu2n+6qFmPBsfmj4QkONfKhDvxTB+ILZPhcth7urR6J
-muEHawO6nWkX7l8G52BEWMgi7CDvfudTzSywaJ/qQ1berzwpJYIMs64RBhdWonOk
-wA5Qr2iTjW7WGfg4NR00w416PhfFLrwc+f8pG7t20WZ74mkdODYzoFlWlgxrM55m
-F5mLvO7aP6tf/N7Zzw7Z+CDXsK7Lkw==
-=FNo9
------END PGP SIGNATURE-----
-
---sfgxuhwvddqugxs5--
