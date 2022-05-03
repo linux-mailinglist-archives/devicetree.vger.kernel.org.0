@@ -2,152 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7BF4F517BCA
-	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 04:15:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D657517BE3
+	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 04:23:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229877AbiECCRE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 May 2022 22:17:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49164 "EHLO
+        id S229944AbiECCVr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 May 2022 22:21:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53926 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229963AbiECCQ4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 May 2022 22:16:56 -0400
-Received: from mail-pj1-x102c.google.com (mail-pj1-x102c.google.com [IPv6:2607:f8b0:4864:20::102c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8AA9919C1C;
-        Mon,  2 May 2022 19:13:25 -0700 (PDT)
-Received: by mail-pj1-x102c.google.com with SMTP id j8-20020a17090a060800b001cd4fb60dccso889255pjj.2;
-        Mon, 02 May 2022 19:13:25 -0700 (PDT)
+        with ESMTP id S229882AbiECCVp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 May 2022 22:21:45 -0400
+Received: from mail-oi1-x22e.google.com (mail-oi1-x22e.google.com [IPv6:2607:f8b0:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2F9722BD6
+        for <devicetree@vger.kernel.org>; Mon,  2 May 2022 19:18:14 -0700 (PDT)
+Received: by mail-oi1-x22e.google.com with SMTP id s131so17008320oie.1
+        for <devicetree@vger.kernel.org>; Mon, 02 May 2022 19:18:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :in-reply-to:references;
-        bh=kroCv5wFfG4D8h1vV8y+rzckalafJWA5JkCIOK0Xo04=;
-        b=BypF4TJ4EemmoX/WCVnl6k6XqlvvIFw5BsFZOPt8pbGAHvLAYKEQUQekKIekqAobrs
-         wLvfcSH42pTjv14XAYH7GLljpZYky2foiml4O7tDKyqlQD3adCpMvM2TPVsNL8ukyDNx
-         LfhlXU3c2CZQz/9KKq5z40YNcD7Kn/7eu90HubNFmC6xt40lXh+64aX1HCHRlq+stnBu
-         bidDCA811PwdiC+x4f9TyQjS0BVGRA4/Wy9CaME7zAn9eEEblgLgyloJjrNLx5Xj6U5Q
-         csEcD6bGTwjR2XBPZvL9DaFwSL40vStnGpzMjjMEZ3hmoAGs46IrtUlxXyu2/6nZNBS3
-         yCXg==
+        d=chromium.org; s=google;
+        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
+         :subject:to:cc;
+        bh=laGkwi2JMs5cKXNdFPiuyuaZlbZLsdgpAHyD6QKor6E=;
+        b=jEi963cY0xSdF6MSjXXJz/sx7W/ReDryUgIFdwijSV6cirSdAl0OISyAOGKPQvvYLS
+         VDDd/DogiFDG4NWFJBaqKvRacbPPQrQGSjdnQC6xIoVSplCgt6eysx3zeYAvOfRMr337
+         7t4wjETW0dbuPRAqA4bNaP8sKag+zRo2ceatk=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:in-reply-to:references;
-        bh=kroCv5wFfG4D8h1vV8y+rzckalafJWA5JkCIOK0Xo04=;
-        b=wP5Ws6Q8b07jscNIJId7aB248QpHcQkZuPesAN30GYy+4yFEY1rYqfKF3tEc8sfrqv
-         eOICTA/yxub4ftzP5LFqYjiUtFyxAsfIYiBN0E6mj+uKHJoECCXx7xK3sZsGLDqPhcbp
-         YTr5EmNOjVah+OgcJ4qj3AemUpU0+GUgTXaPUyv0ue9h7ShcdcWN0cL6vSPDWC2rUHXt
-         wj5HKeDkExTA6gwWv845ez3JW8Py+7yPMSP31+J7brLpdYvzWLYMASuNLBAA5zDcH9yA
-         8mm9Mcn4x4LULApvJNaKPb+TPoRCXDNFRZL0TeRvIulWWARQOmXbUC74gzLitMjAj3bv
-         YO+A==
-X-Gm-Message-State: AOAM531zeMcljbfwlewnTs6ypWcbbLiLhVFoUBNCcZZAh2wFUiQRG6FS
-        X9PQ/Q2j3XkEggGUqNwfZUKvCfGmjKX0CA==
-X-Google-Smtp-Source: ABdhPJyP407Izy5nrZ7E00j0YMUWq9HxXA5WmFZNnYpz9jN0rPQ9hceDIXsP8t5BZmZ1y+1EpArCMw==
-X-Received: by 2002:a17:90b:4a02:b0:1dc:4710:c1fe with SMTP id kk2-20020a17090b4a0200b001dc4710c1femr2327200pjb.208.1651544004832;
-        Mon, 02 May 2022 19:13:24 -0700 (PDT)
-Received: from scdiu3.sunplus.com ([113.196.136.192])
-        by smtp.googlemail.com with ESMTPSA id j22-20020a17090a7e9600b001d903861194sm365805pjl.30.2022.05.02.19.13.22
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 02 May 2022 19:13:24 -0700 (PDT)
-From:   Li-hao Kuo <lhjeff911@gmail.com>
-To:     krzk@kernel.org, rafael@kernel.org, daniel.lezcano@linaro.org,
-        amitk@kernel.org, rui.zhang@intel.com, robh+dt@kernel.org,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Li-hao Kuo <lhjeff911@gmail.com>
-Subject: [PATCH v8 2/2] dt-bindings:thermal: Add Sunplus schema
-Date:   Tue,  3 May 2022 10:13:08 +0800
-Message-Id: <e9f65ca9a2b3205b91210398d743415f6c799d90.1651543731.git.lhjeff911@gmail.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <cover.1651543731.git.lhjeff911@gmail.com>
-References: <cover.1651543731.git.lhjeff911@gmail.com>
-In-Reply-To: <cover.1651543731.git.lhjeff911@gmail.com>
-References: <cover.1651543731.git.lhjeff911@gmail.com>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        h=x-gm-message-state:mime-version:in-reply-to:references:from
+         :user-agent:date:message-id:subject:to:cc;
+        bh=laGkwi2JMs5cKXNdFPiuyuaZlbZLsdgpAHyD6QKor6E=;
+        b=wOuTDO8P+ykXFdmdkMSoeIFpn460G1B4TUnIZ2pE/HijyC2aKP2ZPtXmPyUmYotkvI
+         jj6yDCRQJ0XbDdJFiu6LA+fmktH+19oRBg824q6PEoqdaJJWYf7LyexhZtZa6A4LRF1K
+         JJnIxFje0TORqHEHd8jeb4oeJTcrrttMBs+PL8JigMKYhTSD9B8CCz7N6sePJxf4mE2D
+         O+DMMOT9N4edY4SWNlAXTO3+YWsZzdRPzxtdm9TwIYvOgFApJW0wh0Pp3GwK6nFKdQG1
+         4LzlBPbLqt5K+wPNjl0BvyDA0kpXKxUwsu5xvDBY34pCTU3zLxokk36lcUJG5fC48J6c
+         mnFg==
+X-Gm-Message-State: AOAM530dbOQeuvgsr9pjOV32eE9hYBPPn4Hi1hgE0gb4+Wdxos0ZmWXY
+        atbMrlF502a358by1Hmt+6cg2/sFkPQFdy4CD4Qp6g==
+X-Google-Smtp-Source: ABdhPJwgxF7e7OaUmsTN9DQ1tI6Tga8Ca0OfGo5t/zHKneNAjjo8vRB3fW9fyLwGOXW1Tc/9OrGCxyOtKdMftc7cQn0=
+X-Received: by 2002:aca:bd41:0:b0:2ec:ff42:814f with SMTP id
+ n62-20020acabd41000000b002ecff42814fmr977960oif.63.1651544294289; Mon, 02 May
+ 2022 19:18:14 -0700 (PDT)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Mon, 2 May 2022 19:18:13 -0700
+MIME-Version: 1.0
+In-Reply-To: <CAD=FV=W5SeUNAiQi_h8LyUn+7EQG1Sf9N6Nq9HtVnQWqr0Ltsw@mail.gmail.com>
+References: <20220429233112.2851665-1-swboyd@chromium.org> <20220429233112.2851665-3-swboyd@chromium.org>
+ <CAD=FV=WAbfe9BC5QPDezz3FSEwHRFdQeZpARJYT4b9V1rNp_nA@mail.gmail.com>
+ <CAE-0n53x77n2ACuMYsFrdGhSkmO_4f8Uocnb+vKhcgoiY4RPQg@mail.gmail.com> <CAD=FV=W5SeUNAiQi_h8LyUn+7EQG1Sf9N6Nq9HtVnQWqr0Ltsw@mail.gmail.com>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.10
+Date:   Mon, 2 May 2022 19:18:13 -0700
+Message-ID: <CAE-0n50jO8Kj1d4g-2JVQpAhJ1bjy3RM5sajDs92bz=sO1g=zg@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] Input: cros-ec-keyb - skip keyboard registration
+ for switches compatible
+To:     Doug Anderson <dianders@chromium.org>
+Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        LKML <linux-kernel@vger.kernel.org>, patches@lists.linux.dev,
+        chrome-platform@lists.linux.dev,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Benson Leung <bleung@chromium.org>,
+        Guenter Roeck <groeck@chromium.org>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        "Joseph S. Barrera III" <joebar@chromium.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add bindings for Sunplus thermal driver
+Quoting Doug Anderson (2022-05-02 18:06:39)
+> Hi,
+>
+> On Mon, May 2, 2022 at 3:02 PM Stephen Boyd <swboyd@chromium.org> wrote:
+> >
+> > Quoting Doug Anderson (2022-05-02 10:02:54)
+> > > On Fri, Apr 29, 2022 at 4:31 PM Stephen Boyd <swboyd@chromium.org> wrote:
+> > > >
+> > > >
+> > > > diff --git a/drivers/input/keyboard/cros_ec_keyb.c b/drivers/input/keyboard/cros_ec_keyb.c
+> > > > index eef909e52e23..1bbe2987bf52 100644
+> > > > --- a/drivers/input/keyboard/cros_ec_keyb.c
+> > > > +++ b/drivers/input/keyboard/cros_ec_keyb.c
+> > > > @@ -536,6 +536,12 @@ static int cros_ec_keyb_register_matrix(struct cros_ec_keyb *ckdev)
+> > > >         u32 *physmap;
+> > > >         u32 key_pos;
+> > > >         unsigned int row, col, scancode, n_physmap;
+> > > > +       bool register_keyboard;
+> > > > +
+> > > > +       /* Skip matrix registration if no keyboard */
+> > > > +       register_keyboard = device_get_match_data(dev);
+> > > > +       if (!register_keyboard)
+> > > > +               return 0;
+> > > >
+> > > >         /*
+> > > >          * No rows and columns? There isn't a matrix but maybe there are
+> > >
+> > > As per my comments in patch #1, I wonder if it makes sense to delete
+> > > the "No rows and columns?" logic and settle on the compatible as the
+> > > one true way to specify this.
+> > >
+> >
+> > Ok. My only concern is that means we have to check for both compatibles
+> > which is not really how DT compatible strings work. The compatible
+> > string usually finds the more specific compatible that is first in the
+> > list of compatibles in DT. You're essentially proposing that the
+> > switches compatible could be first or last, the order doesn't matter.
+>
+> It's not quite what I was proposing. I think my summary really sums it up:
 
-Signed-off-by: Li-hao Kuo <lhjeff911@gmail.com>
----
-Changes in v8:
- - Modify yaml file.
-   modify the setting compatible
- - Change yaml file name.
- - Modify driver.
-   mosdify and simply the nvmem setting and remove valiable
+Alright, I'm glad I misunderstood.
 
- .../bindings/thermal/sunplus,thermal.yaml          | 43 ++++++++++++++++++++++
- MAINTAINERS                                        |  1 +
- 2 files changed, 44 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/thermal/sunplus,thermal.yaml
+>
+> 1. If you have a matrix keyboard and maybe also some buttons/switches
+> then use the compatible: google,cros-ec-keyb
+>
+> 2. If you only have buttons/switches but you want to be compatible
+> with the old driver in Linux that looked for the compatible
+> "google,cros-ec-keyb" and required the matrix properties, use the
+> compatible: "google,cros-ec-keyb-switches", "google,cros-ec-keyb"
+>
+> 3. If you have only buttons/switches and don't need compatibility with
+> old Linux drivers, use the compatible: "google,cros-ec-keyb-switches"
+>
+> ...but just to say it another way:
+>
+> * If you have the compatible "google,cros-ec-keyb-switches" I mean to
+> say that you _only_ have switches and buttons. You'd _never_ have this
+> compatible string if you truly have a matrix keyboard. If you have
+> this, it will always be first.
+>
+> * If you only have switches and buttons but you care about backward
+> compatibility then you can add a fallback compatible second:
+> "google,cros-ec-keyb"
+>
+> * In order for the fallback compatible to be at all useful as a
+> fallback (it's only useful at all if you're on an old driver), if you
+> specify it you should pretend that you have matrix properties even
+> though you don't really have them, just like we used to do.
+>
 
-diff --git a/Documentation/devicetree/bindings/thermal/sunplus,thermal.yaml b/Documentation/devicetree/bindings/thermal/sunplus,thermal.yaml
-new file mode 100644
-index 0000000..1ecf6f6
---- /dev/null
-+++ b/Documentation/devicetree/bindings/thermal/sunplus,thermal.yaml
-@@ -0,0 +1,43 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+# Copyright (C) Sunplus Co., Ltd.
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/thermal/sunplus,thermal.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Sunplus Thermal controller
-+
-+maintainers:
-+  - Li-hao Kuo <lhjeff911@gmail.com>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - sunplus,thermal
-+
-+  reg:
-+    maxItems: 1
-+
-+  nvmem-cells:
-+    maxItems: 1
-+
-+  nvmem-cell-names:
-+    const: calib
-+
-+required:
-+  - compatible
-+  - reg
-+  - nvmem-cells
-+  - nvmem-cell-names
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    thermal@9c000280 {
-+        compatible = "sunplus,thermal";
-+        reg = <0x9c000280 0xc>;
-+        nvmem-cells = <&calib>;
-+        nvmem-cell-names = "calib";
-+    };
-+...
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 82143ff..ff49023 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -18900,6 +18900,7 @@ SUNPLUS THERMAL DRIVER
- M:	Li-hao Kuo <lhjeff911@gmail.com>
- L:	linux-pm@vger.kernel.org
- S:	Maintained
-+F:	Documentation/devicetree/bindings/thermal/sunplus,thermal.yaml
- F:	drivers/thermal/sunplus_thermal.c
- 
- SUNPLUS UART DRIVER
--- 
-2.7.4
+Another important point is that the matrix properties are willfully
+ignored by the new driver if the "google,cros-ec-keyb-switches"
+compatible is present. Maybe it should be "google,cros-ec-no-keyb" to
+describe the true intent, i.e. ignore the keyboard properties. Or
+"google,cros-ec-keyboardless". I think it's confusing that I put
+"switches" in the compatible. It really should be about not registering
+the keyboard input device.
 
+Anyway, I agree that we don't need to use the matrix keyboard properties
+to figure out what to do. In fact, it isn't possible to remove the
+properties if "google,cros-ec-keyb" is present, so checking for them is
+redundant.
