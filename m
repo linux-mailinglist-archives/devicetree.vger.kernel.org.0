@@ -2,166 +2,210 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3C868517BEF
-	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 04:26:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3EDDF517C24
+	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 04:58:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230056AbiECC1v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 May 2022 22:27:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32776 "EHLO
+        id S230209AbiECC6e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 May 2022 22:58:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41264 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229882AbiECC1v (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 May 2022 22:27:51 -0400
-Received: from wout2-smtp.messagingengine.com (wout2-smtp.messagingengine.com [64.147.123.25])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9D3919C1F;
-        Mon,  2 May 2022 19:24:20 -0700 (PDT)
-Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
-        by mailout.west.internal (Postfix) with ESMTP id 34D2832009C5;
-        Mon,  2 May 2022 22:24:19 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute2.internal (MEProxy); Mon, 02 May 2022 22:24:20 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
-        cc:cc:content-transfer-encoding:content-type:date:date:from:from
-        :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to; s=fm2; t=1651544658; x=
-        1651631058; bh=tycuARXVqUe2TLl3K12T3UUhqG6qp0PN6otB8sEoyhA=; b=D
-        49zDk7dIyBK+x4sws1KEYwiKpw/4HXuug9Xbah4BT0ByUAfUgMMVXBt7QD1h/nVa
-        CFVBHruG7YaQ2ksZ9EjEvN+OOBfRU8Muv341f8vLrlelPok4AjVQ/u1+TeL/uPR6
-        c80ZnhkZDYDwFpYw6ubzrQzWLkVGS4aR24tMK8SHRyfU2aUglvw3ZGZukXY0gTNI
-        kcPlAa8EGjuSqtCq6UWhJlrDmGRYHtyMnmgwfuryy9sxskthx7q6/0cJIA4VrRHj
-        y8sYSZDnm8dfSfxRTLYCf8f0jntRIT2EDP2VgNgq5sHE0GfiU1iZbHK3d4g21S16
-        Tjd1T8/IYhJSkVjXf5puw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-transfer-encoding
-        :content-type:date:date:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm1; t=1651544658; x=1651631058; bh=tycuARXVqUe2T
-        Ll3K12T3UUhqG6qp0PN6otB8sEoyhA=; b=NXSC46eEWmuy1pd3froyQpdN6Q6rp
-        Q5w1qPsj/JKWqzAx3RhKbYl6M+zny22QyWIEk6E7OHU1/QWv1bOm1gaDOka2u75/
-        TdHKLk/eNOejdsBPap4Vm8ywNN1a/gq/MTZH86+HdEMXKQd7W6IpzYpBst9CNJpb
-        /fdynwgdkyS/d4Zs/lJ19E5fzoKX5/Ymn1AUeD2oTP5kcF+jkN6S+mG/K/FIMfVv
-        5leN9D9xvL/IcBv+Q8IWcNQ+YuqcPDvaaT3L8wJWUvZf/SRZACgZhTE4//2CoTxm
-        clnKzsqpBFgH4xbGX8aq+3KjbP6lnCefdzsXvGyKtuoEkFPMDAlRAMv5A==
-X-ME-Sender: <xms:UZJwYngTLd7sOuIQlodPZi5jlQhJNxEKVNt3oWpx4jVNcJhpon2z9w>
-    <xme:UZJwYkA2RWPlmhLMdeir5WmUken0YHCPviw2xOQnxNhEjxmjz3dujajZmjl2TcTDe
-    N7yfuNkPzvIMM7tCQ>
-X-ME-Received: <xmr:UZJwYnHxle1ONnfFfbdNdeQV-b23FVJHlXW23R8DZsd1JY3CHTq_30FfZlJtPQweWV62Kw>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrvdeigdehlecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefuvfevfhfhkffffgggjggtgfesthejredttdefjeenucfhrhhomhepufgrmhhu
-    vghlucfjohhllhgrnhguuceoshgrmhhuvghlsehshhholhhlrghnugdrohhrgheqnecugg
-    ftrfgrthhtvghrnhepffdtveekvdegkeeuueetgfetffeileevudekuefhheelvdfhiedt
-    heduhfduhefhnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrh
-    homhepshgrmhhuvghlsehshhholhhlrghnugdrohhrgh
-X-ME-Proxy: <xmx:UZJwYkS_0rb1-qcpoAfzbbSA0q_gO7LrSViJW0PIi2nNqM3fWSAGlQ>
-    <xmx:UZJwYkxMhrYqWn22UEMO8cLugxRjLX28q9Wyuu3svYwg0pStxNnIUg>
-    <xmx:UZJwYq5gsR7NFX0IYRNM3q2-BlCnM5FzH7cu3gYZKH52zmtY2eHxvg>
-    <xmx:UpJwYjkY2H1GS6IjGvyyHNNsl8Ed3tZHqGQTfbUrgpJLGffQyZsOJQ>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
- 2 May 2022 22:24:16 -0400 (EDT)
-Subject: Re: [PATCH] arm64: dts: allwinner: h6: Enable CPU opp tables for
- OrangePi One Plus
-To:     Chukun Pan <amadeus@jmu.edu.cn>, Maxime Ripard <maxime@cerno.tech>
-Cc:     Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
-References: <20220502150101.45200-1-amadeus@jmu.edu.cn>
-From:   Samuel Holland <samuel@sholland.org>
-Message-ID: <16b5d02f-5fa0-3094-1fc2-5b8322f047b0@sholland.org>
-Date:   Mon, 2 May 2022 21:24:07 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.6.0
+        with ESMTP id S229660AbiECC6c (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 May 2022 22:58:32 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11CF137ABD;
+        Mon,  2 May 2022 19:55:00 -0700 (PDT)
+X-UUID: 3613982ef258474698a54f63ce922854-20220503
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.4,REQID:a0288b3c-070a-43b7-a047-b4dfd53461f1,OB:0,LO
+        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
+        ON:release,TS:0
+X-CID-META: VersionHash:faefae9,CLOUDID:c7ea792f-6199-437e-8ab4-9920b4bc5b76,C
+        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,File:nil,QS:0,BEC:nil
+X-UUID: 3613982ef258474698a54f63ce922854-20220503
+Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw02.mediatek.com
+        (envelope-from <rex-bc.chen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1168897835; Tue, 03 May 2022 10:54:15 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Tue, 3 May 2022 10:54:13 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 3 May 2022 10:54:13 +0800
+Message-ID: <bb99742f40762d18baa342e7f5ee697fe5a86c09.camel@mediatek.com>
+Subject: Re: [PATCH V5 12/16] dt-bindings: reset: mediatek: Add infra_ao
+ reset bit for MT8195
+From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        "mturquette@baylibre.com" <mturquette@baylibre.com>,
+        "sboyd@kernel.org" <sboyd@kernel.org>,
+        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>
+CC:     "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        Chun-Jie Chen =?UTF-8?Q?=28=E9=99=B3=E6=B5=9A=E6=A1=80=29?= 
+        <Chun-Jie.Chen@mediatek.com>,
+        "wenst@chromium.org" <wenst@chromium.org>,
+        Runyang Chen =?UTF-8?Q?=28=E9=99=88=E6=B6=A6=E6=B4=8B=29?= 
+        <Runyang.Chen@mediatek.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-mediatek@lists.infradead.org" 
+        <linux-mediatek@lists.infradead.org>,
+        Project_Global_Chrome_Upstream_Group 
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Date:   Tue, 3 May 2022 10:54:09 +0800
+In-Reply-To: <c56464d3-d33d-1797-2c98-67bec34df756@collabora.com>
+References: <20220428115620.13512-1-rex-bc.chen@mediatek.com>
+         <20220428115620.13512-13-rex-bc.chen@mediatek.com>
+         <839978c5-c337-7784-a04f-26b9883c703b@linaro.org>
+         <c56464d3-d33d-1797-2c98-67bec34df756@collabora.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-In-Reply-To: <20220502150101.45200-1-amadeus@jmu.edu.cn>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-MTK:  N
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 5/2/22 10:01 AM, Chukun Pan wrote:
-> Enable CPU opp tables for OrangePi One Plus.
+On Mon, 2022-05-02 at 16:54 +0800, AngeloGioacchino Del Regno wrote:
+> Il 29/04/22 23:13, Krzysztof Kozlowski ha scritto:
+> > On 28/04/2022 13:56, Rex-BC Chen wrote:
+> > > To support reset of infra_ao, add the bit definitions for MT8195.
+> > > The infra_ao reset includes 5 banks and 32 bits for each bank.
+> > > 
+> > > Signed-off-by: Rex-BC Chen <rex-bc.chen@mediatek.com>
+> > > ---
+> > >   include/dt-bindings/reset/mt8195-resets.h | 170
+> > > ++++++++++++++++++++++
+> > >   1 file changed, 170 insertions(+)
+> > > 
+> > > diff --git a/include/dt-bindings/reset/mt8195-resets.h
+> > > b/include/dt-bindings/reset/mt8195-resets.h
+> > > index a26bccc8b957..463114014483 100644
+> > > --- a/include/dt-bindings/reset/mt8195-resets.h
+> > > +++ b/include/dt-bindings/reset/mt8195-resets.h
+> > > @@ -7,6 +7,7 @@
+> > >   #ifndef _DT_BINDINGS_RESET_CONTROLLER_MT8195
+> > >   #define _DT_BINDINGS_RESET_CONTROLLER_MT8195
+> > >   
+> > > +/* TOPRGU resets */
+> > >   #define MT8195_TOPRGU_CONN_MCU_SW_RST          0
+> > >   #define MT8195_TOPRGU_INFRA_GRST_SW_RST        1
+> > >   #define MT8195_TOPRGU_APU_SW_RST               2
+> > > @@ -26,4 +27,173 @@
+> > >   
+> > >   #define MT8195_TOPRGU_SW_RST_NUM               16
+> > >   
+> > > +/* INFRA RST0 */
+> > > +#define MT8195_INFRA_RST0_THERM_CTRL_SWRST	0
+> > > +#define MT8195_INFRA_RST0_RSV0			1
+> > > +#define MT8195_INFRA_RST0_DISP_PWM1_SWRST	2
+> > > +#define MT8195_INFRA_RST0_RSV1			3
+> > > +#define MT8195_INFRA_RST0_MSDC3_SWRST		4
+> > > +#define MT8195_INFRA_RST0_MSDC2_SWRST		5
+> > > +#define MT8195_INFRA_RST0_MSDC1_SWRST		6
+> > > +#define MT8195_INFRA_RST0_MSDC0_SWRST		7
+> > > +#define MT8195_INFRA_RST0_RSV2			8
+> > > +#define MT8195_INFRA_RST0_AP_DMA_SWRST		9
+> > > +#define MT8195_INFRA_RST0_MIPI_D_SWRST		10
+> > > +#define MT8195_INFRA_RST0_RSV3			11
+> > > +#define MT8195_INFRA_RST0_RSV4			12
+> > > +#define MT8195_INFRA_RST0_SSUSB_TOP_SWRST	13
+> > > +#define MT8195_INFRA_RST0_DISP_PWM_SWRST	14
+> > > +#define MT8195_INFRA_RST0_AUXADC_SWRST		15
+> > > +#define MT8195_INFRA_RST0_RSV5			16
+> > > +#define MT8195_INFRA_RST0_RSV6			17
+> > > +#define MT8195_INFRA_RST0_RSV7			18
+> > > +#define MT8195_INFRA_RST0_RSV8			19
+> > > +#define MT8195_INFRA_RST0_RSV9			20
+> > > +#define MT8195_INFRA_RST0_RSV10			21
+> > > +#define MT8195_INFRA_RST0_RSV11			22
+> > > +#define MT8195_INFRA_RST0_RSV12			23
+> > > +#define MT8195_INFRA_RST0_RSV13			24
+> > > +#define MT8195_INFRA_RST0_RSV14			25
+> > > +#define MT8195_INFRA_RST0_RSV15			26
+> > > +#define MT8195_INFRA_RST0_RSV16			27
+> > > +#define MT8195_INFRA_RST0_RSV17			28
+> > > +#define MT8195_INFRA_RST0_RSV18			29
+> > > +#define MT8195_INFRA_RST0_RSV19			30
+> > > +#define MT8195_INFRA_RST0_RSV20			31
+> > 
+> > These are not proper IDs... don't work-around usage of bits with
+> > fake
+> > reserved IDs...
 > 
-> This needs to change the CPU regulator max voltage to fit
-> the OPP table.
+> Hello Krzysztof,
 > 
-> Also add the ramp-delay information to avoid any out of spec
-> running as the regulator is slower at reaching the voltage
-> requested compare to the PLL reaching the frequency.
+> Actually, I get that it may seem that Rex is trying to cheat with
+> fake
+> reserved numbers... but it's really how the registers are laid out:
+> there
+> really are reserved bits in between used reset bits.
 > 
-> There is no such information for AXP805 but similar PMIC (AXP813)
-> has a DVM (Dynamic Voltage scaling Management) ramp rate equal
-> to 2500uV/us.
-
-The AXP805 datasheet has this information in the description for REG 1A. DVM is
-disabled by default, and when it is enabled, the default ramp rate is 10
-mV/15.625 us == 640 uV/us.
-
-Did you notice any instability without this delay?
-
-> Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
-> ---
->  arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi.dtsi | 9 ++++++++-
->  1 file changed, 8 insertions(+), 1 deletion(-)
+> I don't think that the reserved bits are doing anything though, so
+> the
+> best way to proceed is to just remove them and map the dt-bindings
+> IDs to
+> the HW register's bits in the driver instead.
+> Even though the current approach is very simplistic, I agree that
+> this is
+> not how it's supposed to be done (and I'm sort-of sad about that).
 > 
-> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi.dtsi
-> index 92745128fcfe..d7b82ef6be55 100644
-> --- a/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi.dtsi
-> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi.dtsi
-> @@ -5,6 +5,7 @@
->  /dts-v1/;
->  
->  #include "sun50i-h6.dtsi"
-> +#include "sun50i-h6-cpu-opp.dtsi"
->  
->  #include <dt-bindings/gpio/gpio.h>
->  
-> @@ -64,6 +65,10 @@ reg_vcc5v: vcc5v {
->  	};
->  };
->  
-> +&cpu0 {
-> +	cpu-supply = <&reg_dcdca>;
-> +};
-> +
->  &de {
->  	status = "okay";
->  };
-> @@ -208,7 +213,8 @@ reg_cldo3: cldo3 {
->  			reg_dcdca: dcdca {
->  				regulator-always-on;
->  				regulator-min-microvolt = <810000>;
-> -				regulator-max-microvolt = <1080000>;
-> +				regulator-max-microvolt = <1160000>;
-> +				regulator-ramp-delay = <2500>;
->  				regulator-name = "vdd-cpu";
->  			};
->  
-> @@ -216,6 +222,7 @@ reg_dcdcc: dcdcc {
->  				regulator-enable-ramp-delay = <32000>;
->  				regulator-min-microvolt = <810000>;
->  				regulator-max-microvolt = <1080000>;
-> +				regulator-ramp-delay = <2500>;
-
-This change is not related to CPU frequency scaling, so it belongs in a separate
-patch (if it is needed).
-
-Regards,
-Samuel
-
->  				regulator-name = "vdd-gpu";
->  			};
->  
+> Rex, please map these values in the reset driver so that, in this
+> header,
+> you'll get something like:
 > 
+> #define MT8195_INFRA_RST0_THERM_CTRL_SWRST	0
+> #define MT8195_INFRA_RST0_DISP_PWM1_SWRST	1
+> #define MT8195_INFRA_RST0_MSDC3_SWRST		2
+> #define .... (etc)
+> 
+> Cheers,
+> Angelo
+> 
+> > 
+> > Best regards,
+> > Krzysztof
+> 
+> 
+
+Hello Krzysztof and Angelo,
+
+Thanks for your advice and review.
+I will modify my driver using index and I will just add some reset we
+curreently use.
+
+reset.h will list like this:
+
+#define MT8195_INFRA_RST0_THERM_CTRL_SWRST	0
+#define MT8195_INFRA_RST3_THERM_CTRL_PTP_SWRST	1
+#define MT8195_INFRA_RST4_THERM_CTRL_MCU_SWRST	2
+
+For this, I will add a new mode for input argument because we alos need
+to be compatible with previous reset drivers.
+For input argument with different mode: 
+enum MTK_RST_CTRL_MODE {
+	MTK_RST_CTRL_BIT_MODE = 0,
+	MTK_RST_CTRL_INDEX_MODE,
+};
+
+If register MTK_RST_CTRL_INDEX_MODE for reset controller, I will
+implent new xlate function to transfer the index to offsets.
+
+BRs,
+Rex
 
