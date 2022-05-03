@@ -2,155 +2,194 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6567C518800
-	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 17:09:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 136BD518823
+	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 17:18:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237813AbiECPNB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 May 2022 11:13:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39536 "EHLO
+        id S238086AbiECPVt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 May 2022 11:21:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50804 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238014AbiECPNB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 11:13:01 -0400
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 408D73AA70
-        for <devicetree@vger.kernel.org>; Tue,  3 May 2022 08:09:27 -0700 (PDT)
-Received: by mail-ej1-x629.google.com with SMTP id n10so16625942ejk.5
-        for <devicetree@vger.kernel.org>; Tue, 03 May 2022 08:09:27 -0700 (PDT)
+        with ESMTP id S236468AbiECPVs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 11:21:48 -0400
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF2D93A5D1;
+        Tue,  3 May 2022 08:18:15 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id y3so34028170ejo.12;
+        Tue, 03 May 2022 08:18:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=EW58m2+b9sI8zBQxJJNwiRm2NLx6RkDOvMaweiiKwJI=;
-        b=kP0sjsAoi+T8Qd0UDI0pKRBJxpP0ihheGFQgxyMYs9AHtJ6sFLwBIzKvl2ZQUnbF61
-         9n91OBEICBk2fREjbLlMG0LW3/mcvUaEjToNI49hAKWzZMxSTcWX8bjxpDW+dzkEKpcP
-         63+I/QdvJSIPvl8JSQmUqWaKUnY52tyVnfi3A=
+        d=gmail.com; s=20210112;
+        h=from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Hj7+Fx1qxFXAGhjgQivL/sZ1+3IRshoKUQbn1Xsv+rU=;
+        b=Q4Bu/xaeAW7QHdICsdR2KdPYwNBknQR7tNCxpLoYMBpN4KyHtVolYB4G0tdYsD4l7z
+         664uGqmw5el2cIlMHtss7Kmr5R4jXC5gDkG9knDlCx9MSIzWvSTbO5LaE5LCDoLQ6npe
+         oKRl5c2LCdrsiB6KtKW/W/pGhLHYkOP+b0EoBqrI7WIPpN6ba8RNASkEVpsSuEZPmNeC
+         VJTvSGiloRuMQRZ9S9XnwWmPCqjucvRydzQO0E22Htsyt7G1cZujuoV20GwGfggEwuwn
+         42FnisUQj1O/0kMiWhvzKmIPxIyTO8MTPy2dPqvghEWD1WIjexRgFbBcF+iNKJeb9Ady
+         SHEg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=EW58m2+b9sI8zBQxJJNwiRm2NLx6RkDOvMaweiiKwJI=;
-        b=fLNg/nJYcoBrnq9uHZMWT5o3nPGJD8KSDAZJGJcHaKlKHvMm3kBLPF0AGECa0jR7Ho
-         8YJ/EVoi+Ct/Sfaf9W+k01UWj/xHDTao2aP8GS9YwWVn51+6XjEJfq7BEr5ie5X+wnSo
-         nBo2cMSUHhsUUxPfEbbb+YERWeLJbxVywh33bqwvTuSBmIBj0IkRzJR9zFE9Z26xYw8f
-         2O3OOno3uOxF8mh4li6TRMMIjJ7qaIR2yJTS86u23rB1joO46duqhWIvUDKtTP+KUv8O
-         QEVgtKOVY12BmwQZm1+nmNb2zSgxb0a664kzn005Hz058UNNmDU2/C1BukhUc5FxEvFM
-         JPNw==
-X-Gm-Message-State: AOAM532BSOS84rSymlvymVT3RzYUN2qDG2ScBt1RFKmpEEhLk+eiMV/r
-        dSEnKgihomSs35c0i/m6Y4zyNS62s/dbnYGI
-X-Google-Smtp-Source: ABdhPJyKj48C4symUVbZDK5lw55kiDfewFjBashXWl/Pp7e7MC3FTFeQzJwhyJPC17ZXUqjLzZoPsw==
-X-Received: by 2002:a17:907:3f8e:b0:6f4:4723:4185 with SMTP id hr14-20020a1709073f8e00b006f447234185mr10027822ejc.359.1651590565465;
-        Tue, 03 May 2022 08:09:25 -0700 (PDT)
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com. [209.85.128.48])
-        by smtp.gmail.com with ESMTPSA id bd28-20020a056402207c00b0042617ba6391sm8067754edb.27.2022.05.03.08.09.23
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 03 May 2022 08:09:24 -0700 (PDT)
-Received: by mail-wm1-f48.google.com with SMTP id p189so10057229wmp.3
-        for <devicetree@vger.kernel.org>; Tue, 03 May 2022 08:09:23 -0700 (PDT)
-X-Received: by 2002:a05:600c:4e44:b0:394:46b4:7b0e with SMTP id
- e4-20020a05600c4e4400b0039446b47b0emr3671832wmq.29.1651590563205; Tue, 03 May
- 2022 08:09:23 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220503042242.3597561-1-swboyd@chromium.org> <20220503042242.3597561-3-swboyd@chromium.org>
-In-Reply-To: <20220503042242.3597561-3-swboyd@chromium.org>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Tue, 3 May 2022 08:09:11 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=XDHwOeQOFevwH9rfd=UN9OcEoOS=HeydYnNAZMUdCaBQ@mail.gmail.com>
-Message-ID: <CAD=FV=XDHwOeQOFevwH9rfd=UN9OcEoOS=HeydYnNAZMUdCaBQ@mail.gmail.com>
-Subject: Re: [PATCH v3 2/2] Input: cros-ec-keyb - skip keyboard registration
- w/o cros-ec-keyb compatible
-To:     Stephen Boyd <swboyd@chromium.org>
-Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        LKML <linux-kernel@vger.kernel.org>, patches@lists.linux.dev,
-        chrome-platform@lists.linux.dev,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Hj7+Fx1qxFXAGhjgQivL/sZ1+3IRshoKUQbn1Xsv+rU=;
+        b=qIWL7Gtq3Z9on0+Ea9cQcuO/rF7GK8V0yDbMBpM60oFVf9DQuBZq+6TZJ9gv5oNG9D
+         5+KCCZVytFxDw3ZTYMHr/BnZ5IhsjnOyDkcHozF5/YAjdeQTJ2/oRWoQAFCS/U2d/Ki3
+         z67Y65/AlnNCeqrvRwcHhiRe9bcxZMSWBQcnNOjDtvz5nZ24KN24SMvLh8bUP/k1DPu2
+         cU9Df+u2gKhBPwJHBNVIcSR/8fPCZKDvMF4tBE25YulLcAFlZs+CXfeYp6ITD1WQU7ri
+         500AskUSMFqphDSROU0qr7aon4XhPQoMn4S+kYjrXi4rNGHJYIZw/HticIxhFhpH2wyf
+         ADOw==
+X-Gm-Message-State: AOAM531L2tgRp39KHTeOayzslqhR5bFfrZe6IaTxyHI1YgeN7kSGtn40
+        3ljxw1r2aAEarlAsfdNuAFQ=
+X-Google-Smtp-Source: ABdhPJzH3b5YFoLRjN/TbKqgEL7PdxZKBAYL6uF9i/AsCy6jvvLTRvFjFBl7zx++ua4Nl9hhT96STQ==
+X-Received: by 2002:a17:906:1c12:b0:6f3:9eed:e0 with SMTP id k18-20020a1709061c1200b006f39eed00e0mr16550294ejg.656.1651591093976;
+        Tue, 03 May 2022 08:18:13 -0700 (PDT)
+Received: from localhost.localdomain (93-42-70-190.ip85.fastwebnet.it. [93.42.70.190])
+        by smtp.googlemail.com with ESMTPSA id v3-20020aa7d9c3000000b0042617ba63cesm7947507eds.88.2022.05.03.08.18.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 03 May 2022 08:18:13 -0700 (PDT)
+From:   Ansuel Smith <ansuelsmth@gmail.com>
+To:     Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Benson Leung <bleung@chromium.org>,
-        Guenter Roeck <groeck@chromium.org>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        "Joseph S. Barrera III" <joebar@chromium.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Jonathan Corbet <corbet@lwn.net>, Pavel Machek <pavel@ucw.cz>,
+        Ansuel Smith <ansuelsmth@gmail.com>,
+        John Crispin <john@phrozen.org>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-doc@vger.kernel.org, linux-leds@vger.kernel.org
+Subject: [RFC PATCH v6 00/11] Adds support for PHY LEDs with offload triggers
+Date:   Tue,  3 May 2022 17:16:22 +0200
+Message-Id: <20220503151633.18760-1-ansuelsmth@gmail.com>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+This is another attempt on adding this feature on LEDs.
 
-On Mon, May 2, 2022 at 9:22 PM Stephen Boyd <swboyd@chromium.org> wrote:
->
-> In commit 4352e23a7ff2 ("Input: cros-ec-keyb - only register keyboard if
-> rows/columns exist") we skipped registration of the keyboard if the
-> row/columns property didn't exist, but that has a slight problem for
-> existing DTBs. The DTBs have the rows/columns properties, so removing
-> the properties to indicate only switches exist makes this keyboard
-> driver fail to probe, resulting in broken power and volume buttons. Ease
-> the migration of existing DTBs by skipping keyboard registration if the
-> google,cros-ec-keyb-switches compatible exists.
->
-> The end result is that new DTBs can either choose to remove the matrix
-> keymap properties or leave them in place and add this new compatible
-> indicating the matrix keyboard properties should be ignored. Existing
-> DTBs will continue to work, but they will keep registering the keyboard
-> that does nothing. To fix that problem we can add this extra compatible
-> to existing devicetrees and the keyboard will stop being registered.
-> Finally, if google,cros-ec-keyb is missing then this driver won't even
-> attempt to register the matrix keyboard. Of course, this driver won't
-> probe until this patch is applied in that scenario, but that's OK. This
-> last case is likely only going to be used by new devicetrees created
-> after this commit.
->
-> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: <devicetree@vger.kernel.org>
-> Cc: Benson Leung <bleung@chromium.org>
-> Cc: Guenter Roeck <groeck@chromium.org>
-> Cc: Douglas Anderson <dianders@chromium.org>
-> Cc: Hsin-Yi Wang <hsinyi@chromium.org>
-> Cc: "Joseph S. Barrera III" <joebar@chromium.org>
-> Fixes: 4352e23a7ff2 ("Input: cros-ec-keyb - only register keyboard if rows/columns exist")
-> Signed-off-by: Stephen Boyd <swboyd@chromium.org>
-> ---
->  drivers/input/keyboard/cros_ec_keyb.c | 20 +++++++++++---------
->  1 file changed, 11 insertions(+), 9 deletions(-)
->
-> diff --git a/drivers/input/keyboard/cros_ec_keyb.c b/drivers/input/keyboard/cros_ec_keyb.c
-> index eef909e52e23..04c550aaf897 100644
-> --- a/drivers/input/keyboard/cros_ec_keyb.c
-> +++ b/drivers/input/keyboard/cros_ec_keyb.c
-> @@ -536,14 +536,11 @@ static int cros_ec_keyb_register_matrix(struct cros_ec_keyb *ckdev)
->         u32 *physmap;
->         u32 key_pos;
->         unsigned int row, col, scancode, n_physmap;
-> +       bool register_keyboard;
->
-> -       /*
-> -        * No rows and columns? There isn't a matrix but maybe there are
-> -        * switches to register in cros_ec_keyb_register_bs() because
-> -        * this is a detachable device.
-> -        */
-> -       if (!device_property_present(dev, "keypad,num-rows") &&
-> -           !device_property_present(dev, "keypad,num-cols"))
-> +       /* Skip matrix registration if no keyboard */
-> +       register_keyboard = device_get_match_data(dev);
-> +       if (!register_keyboard)
->                 return 0;
+Most of the times Switch/PHY have connected multiple LEDs that are
+controlled by HW based on some rules/event. Currently we lack any
+support for a generic way to control the HW part and normally we
+either never implement the feature or only add control for brightness
+or hw blink.
 
-I'm a little on the fence about the local variable. It could have been
-shorter as:
+This is based on Marek idea of providing some API to cled but use a
+different implementation that in theory should be more generilized.
 
-/* Skip matrix registration if no keyboard */
-if (!device_get_match_data(dev))
+The current idea is:
+- LED driver implement 3 API (hw_control_status/start/stop).
+  They are used to put the LED in hardware mode and to configure the
+  various trigger.
+- We have hardware triggers that are used to expose to userspace the
+  supported hardware mode and set the hardware mode on trigger
+  activation.
+- We can also have triggers that both support hardware and software mode.
+- The LED driver will declare each supported hardware blink mode and
+  communicate with the trigger all the supported blink modes that will
+  be available by sysfs.
+- A trigger will use blink_set to configure the blink mode to active
+  in hardware mode.
+- On hardware trigger activation, only the hardware mode is enabled but
+  the blink modes are not configured. The LED driver should reset any
+  link mode active by default.
 
-...but I guess the "register_keyboard" maybe makes it more a little
-more obvious?
+Each LED driver will have to declare explicit support for the offload
+trigger (or return not supported error code) as we the trigger_data that
+the LED driver will elaborate and understand what is referring to (based
+on the current active trigger).
 
-In any case, I'm happy either way:
+I posted a user for this new implementation that will benefit from this
+and will add a big feature to it. Currently qca8k can have up to 3 LEDs
+connected to each PHY port and we have some device that have only one of
+them connected and the default configuration won't work for that.
 
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
+The netdev trigger is expanded and it does now support hardware only
+triggers.
+The idea is to use hardware mode when a device_name is not defined.
+An additional sysfs entry is added to give some info about the available
+trigger modes supported in the current configuration.
+
+More polish is required but this is just to understand if I'm taking
+the correct path with this implementation hoping we find a correct
+implementation and we start working on the ""small details""
+
+v6:
+- Back to RFC.
+- Drop additional trigger
+- Rework netdev trigger to support common modes used by switch and
+  hardware only triggers
+- Refresh qca8k leds logic and driver
+v5:
+- Move out of RFC. (no comments from Andrew this is the right path?)
+- Fix more spelling mistake (thx Randy)
+- Fix error reported by kernel test bot
+- Drop the additional HW_CONTROL flag. It does simplify CONFIG
+  handling and hw control should be available anyway to support
+  triggers as module.
+v4:
+- Rework implementation and drop hw_configure logic.
+  We now expand blink_set.
+- Address even more spelling mistake. (thx a lot Randy)
+- Drop blink option and use blink_set delay.
+- Rework phy-activity trigger to actually make the groups dynamic.
+v3:
+- Rework start/stop as Andrew asked.
+- Introduce more logic to permit a trigger to run in hardware mode.
+- Add additional patch with netdev hardware support.
+- Use test_bit API to check flag passed to hw_control_configure.
+- Added a new cmd to hw_control_configure to reset any active blink_mode.
+- Refactor all the patches to follow this new implementation.
+v2:
+- Fix spelling mistake (sorry)
+- Drop patch 02 "permit to declare supported offload triggers".
+  Change the logic, now the LED driver declare support for them
+  using the configure_offload with the cmd TRIGGER_SUPPORTED.
+- Rework code to follow this new implementation.
+- Update Documentation to better describe how this offload
+  implementation work.
+
+Ansuel Smith (11):
+  leds: add support for hardware driven LEDs
+  leds: add function to configure hardware controlled LED
+  leds: trigger: netdev: drop NETDEV_LED_MODE_LINKUP from mode
+  leds: trigger: netdev: rename and expose NETDEV trigger enum modes
+  leds: trigger: netdev: convert device attr to macro
+  leds: trigger: netdev: add hardware control support
+  leds: trigger: netdev: use mutex instead of spinlocks
+  leds: trigger: netdev: add available mode sysfs attr
+  leds: trigger: netdev: add additional hardware only triggers
+  net: dsa: qca8k: add LEDs support
+  dt-bindings: net: dsa: qca8k: add LEDs definition example
+
+ .../devicetree/bindings/net/dsa/qca8k.yaml    |  20 +
+ Documentation/leds/leds-class.rst             |  53 +++
+ drivers/leds/Kconfig                          |  11 +
+ drivers/leds/led-class.c                      |  27 ++
+ drivers/leds/led-triggers.c                   |  29 ++
+ drivers/leds/trigger/ledtrig-netdev.c         | 385 ++++++++++++-----
+ drivers/net/dsa/Kconfig                       |   9 +
+ drivers/net/dsa/Makefile                      |   1 +
+ drivers/net/dsa/qca8k-leds.c                  | 408 ++++++++++++++++++
+ drivers/net/dsa/qca8k.c                       |   4 +
+ drivers/net/dsa/qca8k.h                       |  61 +++
+ include/linux/leds.h                          | 103 ++++-
+ 12 files changed, 1012 insertions(+), 99 deletions(-)
+ create mode 100644 drivers/net/dsa/qca8k-leds.c
+
+-- 
+2.34.1
+
