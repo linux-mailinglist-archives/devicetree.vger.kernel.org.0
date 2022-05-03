@@ -2,89 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AEE17519033
-	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 23:36:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DDEEB519052
+	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 23:43:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240345AbiECV3Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 May 2022 17:29:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46628 "EHLO
+        id S243023AbiECVlV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 May 2022 17:41:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53786 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243100AbiECV3M (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 17:29:12 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76A922AE05;
-        Tue,  3 May 2022 14:25:37 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: nfraprado)
-        with ESMTPSA id 046C31F43B53
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1651613136;
-        bh=4LP/jKCMumd2WzQHTLcpeW44tdUtgMXLREom1d6+3d8=;
-        h=From:To:Cc:Subject:Date:From;
-        b=U6uwvqLWQz1rrgHBmyInvOdwj2a6NsnXgBaLDmfjzuWitxhBVPkxEfKiQ/zHtLaad
-         hr0qqA7zPswCSym0S5/b/p4XxmNMhoYHcdqd/lWjegnfnDpXEIcsmEbXNztOynVVhl
-         xarPslAab2CEed/rlVqJUSduVQg1MPtDjBk1bf/xxh7kyJzWhTCP3Q0F0bgkA+r8LG
-         vVGjtHfiZLqxzlwXdAobGcCXlCaaumMnVUlg3kHCyMm1EAoSDBuYrOT4v9upgAD6uz
-         xHJ0H/jA9Fshsxgn3EiV1PSpsN2E/+ZNPegH4r4eDNd+wzvKxd0u9ayFLUxS8daiEu
-         Qqw3eEUBib0/w==
-From:   =?UTF-8?q?N=C3=ADcolas=20F=2E=20R=2E=20A=2E=20Prado?= 
-        <nfraprado@collabora.com>
-To:     Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, kernel@collabora.com,
-        =?UTF-8?q?N=C3=ADcolas=20F=2E=20R=2E=20A=2E=20Prado?= 
-        <nfraprado@collabora.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org
-Subject: [PATCH] arm64: dts: mt8192: Follow binding order for SCP registers
-Date:   Tue,  3 May 2022 17:25:31 -0400
-Message-Id: <20220503212531.2657870-1-nfraprado@collabora.com>
-X-Mailer: git-send-email 2.36.0
+        with ESMTP id S243006AbiECVlU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 17:41:20 -0400
+Received: from relay11.mail.gandi.net (relay11.mail.gandi.net [IPv6:2001:4b98:dc4:8::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10D71326F4;
+        Tue,  3 May 2022 14:37:45 -0700 (PDT)
+Received: (Authenticated sender: alexandre.belloni@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 82070100007;
+        Tue,  3 May 2022 21:37:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1651613864;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=/6LTUzx08avjPkNfHjwYBuKNYze9L5g6GFctRWsa/nw=;
+        b=CrEeQ/EqwKWpk9BJkglsusY3giBASc2Op7qbMdTJMrPR4xtHzb9zovtPXWtt/32Suxg809
+        t92JhVYoMLrp162it3E9/nkKTP28UJQ41fHMmvah/evnApT/uQ7ed+ZuiNH4eB6ooVqMEr
+        85iYWX61U8U+fFpeHxWrjgFq4KKQePyDIot5/eKt6nHkUH+Mc9PyY5Z+xViNymSdz0nFoV
+        87rC8kSbaCMShyMqAJ+Dfz+We4Un6KEIzS9/VlwVo8uLxXqVyD0JBAT4yZAYRcHK6JrTkG
+        uy8/I4YPZLS34ak6s0fEoSIKJ30B/gyo0T+K30X2jogFAe86LgIEdWDZh1kdUQ==
+From:   alexandre.belloni@bootlin.com
+To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        =?UTF-8?q?Przemys=C5=82aw=20Gaj?= <pgaj@cadence.com>,
+        Boris Brezillon <bbrezillon@kernel.org>,
+        Rob Herring <robh@kernel.org>
+Cc:     Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-i3c@lists.infradead.org
+Subject: Re: [PATCH] dt-bindings: i3c: Convert cdns,i3c-master to DT schema
+Date:   Tue,  3 May 2022 23:37:42 +0200
+Message-Id: <165161385391.974772.13853911429360180678.b4-ty@bootlin.com>
+X-Mailer: git-send-email 2.35.1
+In-Reply-To: <20220422192224.2594098-1-robh@kernel.org>
+References: <20220422192224.2594098-1-robh@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The dt-binding for SCP documents the reg-names order as sram, cfg,
-l1tcm. Update the SCP node on the mt8192 devicetree to follow that
-order, which gets rid of a dtbs_check warning. This doesn't change any
-behavior since the SCP driver accesses the memory regions through the
-names anyway.
+From: Alexandre Belloni <alexandre.belloni@bootlin.com>
 
-Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+On Fri, 22 Apr 2022 14:22:23 -0500, Rob Herring wrote:
+> Convert the Cadence I3C master to DT schema format. This fixes a warning
+> as it is used in the i3c.yaml example.
+> 
+> The "nintendo,nunchuk" is not documented by a schema, so change the
+> example child device to something which is documented.
+> 
+> 
+> [...]
 
----
+Applied, thanks!
 
- arch/arm64/boot/dts/mediatek/mt8192.dtsi | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+[1/1] dt-bindings: i3c: Convert cdns,i3c-master to DT schema
+      commit: 4bd69ecfa672e94334618ef9ec653b2a237cf2d9
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-index 26dbe9ecc528..733aec2e7f77 100644
---- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-@@ -699,9 +699,9 @@ spi7: spi@1101e000 {
- 		scp: scp@10500000 {
- 			compatible = "mediatek,mt8192-scp";
- 			reg = <0 0x10500000 0 0x100000>,
--			      <0 0x10700000 0 0x8000>,
--			      <0 0x10720000 0 0xe0000>;
--			reg-names = "sram", "l1tcm", "cfg";
-+			      <0 0x10720000 0 0xe0000>,
-+			      <0 0x10700000 0 0x8000>;
-+			reg-names = "sram", "cfg", "l1tcm";
- 			interrupts = <GIC_SPI 435 IRQ_TYPE_LEVEL_HIGH 0>;
- 			clocks = <&infracfg CLK_INFRA_SCPSYS>;
- 			clock-names = "main";
+Best regards,
 -- 
-2.36.0
-
+Alexandre Belloni <alexandre.belloni@bootlin.com>
