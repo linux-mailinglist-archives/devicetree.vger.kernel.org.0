@@ -2,121 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 25C3E51806C
-	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 11:00:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5C4D55180A0
+	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 11:06:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233140AbiECJEC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 May 2022 05:04:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41558 "EHLO
+        id S229998AbiECJKX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 May 2022 05:10:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47192 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233135AbiECJEA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 05:04:00 -0400
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60D4D17E2B
-        for <devicetree@vger.kernel.org>; Tue,  3 May 2022 02:00:24 -0700 (PDT)
-Received: by mail-ed1-x536.google.com with SMTP id g20so19108896edw.6
-        for <devicetree@vger.kernel.org>; Tue, 03 May 2022 02:00:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :references:from:in-reply-to:content-transfer-encoding;
-        bh=j4CRxL9e7zZlh4b2P/p8FhUccprH7HKthusA0VBt+bM=;
-        b=b/XeqkebSCbXODnHkCi2RqyjzoJ74d6kbuqoZYv3DO3OcaTbv/qeFWTURH2hoJ+2yT
-         WGzeYXnB0WS7BN6GFadu3iQPdm9CuNhqzf1vrUZR5xRXgbPmT/eo+2ZSAXWNMcoHGmKz
-         0qkBZFq9PrTHigehcs0ZjjD2RXid7n3okw3z/guesffeaexDfAmRuOwafPUHmi2zUAuc
-         SlkA7fPdc2WFFX8N8bTNhp90GINnma8Ibkb8q6wZqFYyVz0tuQoBzY/0n8MgEYHKOiZR
-         Ao57ZnmzizOktGk10i8wgkowf72pMbtLtMJQi9EwK7WL9ZRMpKzqc6m5b68Xot4jmkCf
-         MiTg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=j4CRxL9e7zZlh4b2P/p8FhUccprH7HKthusA0VBt+bM=;
-        b=C4ZChJQmN+OAV0yMwp9RWpjdMOH9X1FDi7cMAt0FLDosaTneV/o9Xnfm6J3Y7hNN1p
-         zykf+1wMg7govkgfIgBd9yhdcKBtPHVGaxsbOwnShFSqNEfNBRCN+Wd5XUWS0z1t0n3V
-         AEyiovt5X5sr9mVpBE3BtUTF3K3C6JsUhKzuLm0uEupB8W/XJUbuNspZkYbIrFlHdaV1
-         wgMI8NBzuLKdB0GMHWShCOPA3wM1Nkt2qnywzIDuFaM6+NHRqRY4mR2JJPSKQeOrwxck
-         WCckRPnLqW5NrHjM+OPVEBIjvGvmVZ9BciUlVnKP20knHO28aKlqW8c3qnd1SWVbxXdr
-         P5Ew==
-X-Gm-Message-State: AOAM533ag1zuo/sM+gInmyHWTvTRcO8i1sXTHmU+FsnA9n194DMCcNW0
-        xDnWRf1BnhDA/qQAG7lSIGDzXg==
-X-Google-Smtp-Source: ABdhPJyX/ElrrxMX0/REfY3yLwKmEzVBenlQvKtFB9erYnqq+TRCxOFksTz3abIbzpybFPoFGhbplA==
-X-Received: by 2002:a05:6402:2363:b0:425:bc13:4c8b with SMTP id a3-20020a056402236300b00425bc134c8bmr17084825eda.140.1651568422920;
-        Tue, 03 May 2022 02:00:22 -0700 (PDT)
-Received: from [192.168.0.201] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id jy10-20020a170907762a00b006f3ef214dc2sm4415617ejc.40.2022.05.03.02.00.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 03 May 2022 02:00:22 -0700 (PDT)
-Message-ID: <215254be-da27-2f3f-fa07-7520b38eff5c@linaro.org>
-Date:   Tue, 3 May 2022 11:00:21 +0200
+        with ESMTP id S233257AbiECJKW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 05:10:22 -0400
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E58852B256;
+        Tue,  3 May 2022 02:06:50 -0700 (PDT)
+Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 2432SaD0005468;
+        Tue, 3 May 2022 11:06:30 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=selector1;
+ bh=Lch5kxrVurXyYkJZk2nr1V3CBhH5QtpWiVNCuZn3dzM=;
+ b=qfAS0MxjOuQQCoIKmHoNKcGLTkoNaMUNO9w6hedNVBHEHSHPOaeKgDhZQXxxEG1Aukpr
+ YMmKGkYE8JwzC5D3PLw7c3cfigAWEcl5PNxco3RIiUIwCZGnZD53EF+a/Q2SARhWFY23
+ hkLEo1aHt1PwSSNJsRrF+g+CIZA8LVgpmylFe/phsGaFmPSiAiTggtbqD7AFo/aC9H2k
+ IKytMxUC/5+zOKsck5XiC4iLlSqWP2YTKivfTXw7O8MFuro2rGDmiKzQypS5ifz/Umlc
+ I7TKCPAVf3LLahHcpm8qOiyvAU+NQEUL+D5h1EwZnDDEQBu/SGAEYOmKM8oiRl6TMg1V JA== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3frvf0cxft-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 03 May 2022 11:06:30 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id DFBC710002A;
+        Tue,  3 May 2022 11:06:28 +0200 (CEST)
+Received: from Webmail-eu.st.com (sfhdag2node2.st.com [10.75.127.5])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id D8892214D19;
+        Tue,  3 May 2022 11:06:28 +0200 (CEST)
+Received: from localhost (10.75.127.47) by SFHDAG2NODE2.st.com (10.75.127.5)
+ with Microsoft SMTP Server (TLS) id 15.0.1497.26; Tue, 3 May 2022 11:06:27
+ +0200
+From:   Fabien Dessenne <fabien.dessenne@foss.st.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+CC:     Fabien Dessenne <fabien.dessenne@foss.st.com>
+Subject: [PATCH] ARM: dts: stm32: add EXTI interrupt-parent to pinctrl node on stm32mp131
+Date:   Tue, 3 May 2022 11:06:21 +0200
+Message-ID: <20220503090621.483567-1-fabien.dessenne@foss.st.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH v8 2/2] dt-bindings:thermal: Add Sunplus schema
-Content-Language: en-US
-To:     Li-hao Kuo <lhjeff911@gmail.com>, rafael@kernel.org,
-        daniel.lezcano@linaro.org, amitk@kernel.org, rui.zhang@intel.com,
-        robh+dt@kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <cover.1651543731.git.lhjeff911@gmail.com>
- <e9f65ca9a2b3205b91210398d743415f6c799d90.1651543731.git.lhjeff911@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <e9f65ca9a2b3205b91210398d743415f6c799d90.1651543731.git.lhjeff911@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.75.127.47]
+X-ClientProxiedBy: SFHDAG2NODE2.st.com (10.75.127.5) To SFHDAG2NODE2.st.com
+ (10.75.127.5)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.858,Hydra:6.0.486,FMLib:17.11.64.514
+ definitions=2022-05-03_03,2022-05-02_03,2022-02-23_01
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/05/2022 04:13, Li-hao Kuo wrote:
-> Add bindings for Sunplus thermal driver
-> 
-> Signed-off-by: Li-hao Kuo <lhjeff911@gmail.com>
-> ---
-> Changes in v8:
->  - Modify yaml file.
->    modify the setting compatible
->  - Change yaml file name.
->  - Modify driver.
->    mosdify and simply the nvmem setting and remove valiable
-> 
->  .../bindings/thermal/sunplus,thermal.yaml          | 43 ++++++++++++++++++++++
->  MAINTAINERS                                        |  1 +
->  2 files changed, 44 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/thermal/sunplus,thermal.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/thermal/sunplus,thermal.yaml b/Documentation/devicetree/bindings/thermal/sunplus,thermal.yaml
-> new file mode 100644
-> index 0000000..1ecf6f6
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/thermal/sunplus,thermal.yaml
-> @@ -0,0 +1,43 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +# Copyright (C) Sunplus Co., Ltd.
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/thermal/sunplus,thermal.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Sunplus Thermal controller
-> +
-> +maintainers:
-> +  - Li-hao Kuo <lhjeff911@gmail.com>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - sunplus,thermal
+Add interrupt-parent property in pinctrl node to use GPIO as IRQ.
 
-This is a very surprising change and was never requested by me or other
-reviewers. It is also not correct. Previous compatible was correct.
+Signed-off-by: Amelie Delaunay <amelie.delaunay@foss.st.com>
+Signed-off-by: Fabien Dessenne <fabien.dessenne@foss.st.com>
+---
+ arch/arm/boot/dts/stm32mp131.dtsi | 2 ++
+ 1 file changed, 2 insertions(+)
 
-Best regards,
-Krzysztof
+diff --git a/arch/arm/boot/dts/stm32mp131.dtsi b/arch/arm/boot/dts/stm32mp131.dtsi
+index 58647396704f..f9ebc47e6421 100644
+--- a/arch/arm/boot/dts/stm32mp131.dtsi
++++ b/arch/arm/boot/dts/stm32mp131.dtsi
+@@ -259,6 +259,8 @@ pinctrl: pinctrl@50002000 {
+ 			#size-cells = <1>;
+ 			compatible = "st,stm32mp135-pinctrl";
+ 			ranges = <0 0x50002000 0x8400>;
++			interrupt-parent = <&exti>;
++			st,syscfg = <&exti 0x60 0xff>;
+ 			pins-are-numbered;
+ 
+ 			gpioa: gpio@50002000 {
+-- 
+2.25.1
+
