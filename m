@@ -2,177 +2,211 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E338D518D66
-	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 21:46:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 74243518D82
+	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 21:55:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242114AbiECTtg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 May 2022 15:49:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44578 "EHLO
+        id S234902AbiECT6q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 May 2022 15:58:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51798 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242106AbiECTtf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 15:49:35 -0400
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2EEF41EC69;
-        Tue,  3 May 2022 12:46:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1651607162; x=1683143162;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=15VPEkkpNfoHEDQrDJC9rIeebWmswoBg5hQZL9hNclE=;
-  b=CLv7Df7eErjcC4fll0pkV6Dh89yb565cCCltpnCxmRQjjeCcn3uf1Stk
-   xgtMHKc+7S3E3dLJh5fJM0IuxBIzOBcKoM2RAzkEy4dKdGkScI2DxBH/O
-   dsGy8CeFabI10L7PAJihpevqsgwW61e9d3OFmF2gXKg4/0VDACPrJ1Fxb
-   LurIUh2K8vhL08NK5YOhGvEXcUAtvDuHPR1Fi3/aMNpHCB9JNOin3Nzr5
-   UEl5TVVbUmZ+uUXTKqdHHto57WK1/4wxLtGJQtErzRTTHzzSvQhHX+9WA
-   OFy3WTxp5AzbhpAYuRFmewHXLQK1h5RoMgwZXLEkTw9y164KuAR++UWvn
-   Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10336"; a="248114162"
-X-IronPort-AV: E=Sophos;i="5.91,196,1647327600"; 
-   d="scan'208";a="248114162"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
-  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 May 2022 12:46:00 -0700
-X-IronPort-AV: E=Sophos;i="5.91,196,1647327600"; 
-   d="scan'208";a="584345940"
-Received: from rhweight-wrk1.ra.intel.com ([137.102.106.43])
-  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 May 2022 12:45:59 -0700
-From:   matthew.gerlach@linux.intel.com
-To:     dinguyen@kernel.org, robh+dt@kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     Matthew Gerlach <matthew.gerlach@linux.intel.com>
-Subject: [PATCH v2 3/3] arm64: dts: intel: add device tree for n6000
-Date:   Tue,  3 May 2022 12:45:46 -0700
-Message-Id: <20220503194546.1287679-4-matthew.gerlach@linux.intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220503194546.1287679-1-matthew.gerlach@linux.intel.com>
-References: <20220503194546.1287679-1-matthew.gerlach@linux.intel.com>
+        with ESMTP id S231902AbiECT6p (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 15:58:45 -0400
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40A2E3F8BB;
+        Tue,  3 May 2022 12:55:11 -0700 (PDT)
+Received: by mail-ed1-x533.google.com with SMTP id be20so21045071edb.12;
+        Tue, 03 May 2022 12:55:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=f+DEWzHhrxACEjCwf7T0XjTn5ZBDS8HwV0VUoztADHg=;
+        b=dWLQHeoIxj+f1p4NCW93iqTklgcPL8WN0VuU+snkXlk2e1hf/c1RslsVyzMpo2rubA
+         aZXIFZUrQG8a+AyRVzwzNx4AWUU+bUr21V+BiFmJ56ovyWrWbxyDAn3BvwRUjlNZzaA+
+         2pbWWBgON/CUoe/eI+HkhFGZ74Xt/QC0HWHDGK13u6ECrm+y1OX8PqX6f6pN7NmsV8CN
+         lvFk9hEsITGgScX/jyvHbEIg4J7rsMYP3IAq4FFqLh4CYMnmw3NgJ1m+5IALM1N/M0tB
+         93TM1R0pam1GOV+dM0YG942rezIGdI63lEAjEb+x5tCWD1/MyXGdvekj8hgNttSjmCPc
+         wLAQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=f+DEWzHhrxACEjCwf7T0XjTn5ZBDS8HwV0VUoztADHg=;
+        b=5LkBR0rAN4rLFzAlg6Q5GgaDZpMRIJ0k/pwnTRkC+PJCtjo7k3jjGEwrVXh/50+SfS
+         sRWx2QElzhsChAuuDBciFLdY2pydE14l91UMMW3FFs258rwMr2xlibOoGk2GeIcd5CUd
+         0vDPjNUYH+wSUae1jXeMXOVbb4TSlN8yPHcfIElFFssnRSQxOYwx/3VJEuHiy0Vg4EaX
+         U35vo4DjL0YFYZJPvGNwr8+AD9+wwrDPQubUGMjjjAwXF5quuumtNT2v7Mil+PYkH28h
+         vbFx+uW1k73EyjcwrwonHbhtdG2zAlmdBhWLpfraSMy0btC8x/aXXkqU/4azE+GMBVdt
+         Lchg==
+X-Gm-Message-State: AOAM531691K6zQe2KgqIWNtEt02tVm2/7OhP3ewVONEr1yNIhsjzdfgZ
+        w+syhSVvHpyWjC4mtAL9xsA=
+X-Google-Smtp-Source: ABdhPJxVyHdtQ9I2qKWzhlqsVlMnvcDSlegTZwE6qyb2HVxhTsJ1dRUbc42Lcopb65c/ra5IlrQMqQ==
+X-Received: by 2002:a05:6402:2142:b0:413:6531:bd9e with SMTP id bq2-20020a056402214200b004136531bd9emr19319635edb.5.1651607709862;
+        Tue, 03 May 2022 12:55:09 -0700 (PDT)
+Received: from kista.localnet (cpe1-3-76.cable.triera.net. [213.161.3.76])
+        by smtp.gmail.com with ESMTPSA id g3-20020a50ee03000000b0042617ba63acsm8337929eds.54.2022.05.03.12.55.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 03 May 2022 12:55:09 -0700 (PDT)
+From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To:     icenowy@outlook.com, Rob Herring <robh@kernel.org>
+Cc:     Chen-Yu Tsai <wens@csie.org>, Samuel Holland <samuel@sholland.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Andre Przywara <andre.przywara@arm.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+        Icenowy Zheng <icenowy@aosc.io>
+Subject: Re: Re: [PATCH 05/12] dt-bindings: clock: sunxi-ng: add bindings for R329 CCUs
+Date:   Tue, 03 May 2022 21:55:08 +0200
+Message-ID: <1910544.usQuhbGJ8B@kista>
+In-Reply-To: <YnBOY2EjW5ZWCAkx@robh.at.kernel.org>
+References: <20220422140902.1058101-1-icenowy@aosc.io> <BYAPR20MB2472A5F7269F56C2C6BB3104BCF79@BYAPR20MB2472.namprd20.prod.outlook.com> <YnBOY2EjW5ZWCAkx@robh.at.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Matthew Gerlach <matthew.gerlach@linux.intel.com>
+Dne ponedeljek, 02. maj 2022 ob 23:34:27 CEST je Rob Herring napisal(a):
+> On Fri, Apr 22, 2022 at 11:41:08PM +0800, icenowy@outlook.com wrote:
+> > From: Icenowy Zheng <icenowy@aosc.io>
+> > 
+> > R329 has a CPUX CCU and a R-CCU, with all PLLs in R-CCU.
+> > 
+> > Add bindings for them, with R-CCU only taking 3 oscillators as input and
+> > main CCU taking oscillators + PLLs as input.
+> > 
+> > Signed-off-by: Icenowy Zheng <icenowy@aosc.io>
+> > ---
+> >  .../clock/allwinner,sun4i-a10-ccu.yaml        | 62 ++++++++++++++--
+> >  include/dt-bindings/clock/sun50i-r329-ccu.h   | 73 +++++++++++++++++++
+> >  include/dt-bindings/clock/sun50i-r329-r-ccu.h | 45 ++++++++++++
+> >  include/dt-bindings/reset/sun50i-r329-ccu.h   | 45 ++++++++++++
+> >  include/dt-bindings/reset/sun50i-r329-r-ccu.h | 24 ++++++
+> >  5 files changed, 241 insertions(+), 8 deletions(-)
+> >  create mode 100644 include/dt-bindings/clock/sun50i-r329-ccu.h
+> >  create mode 100644 include/dt-bindings/clock/sun50i-r329-r-ccu.h
+> >  create mode 100644 include/dt-bindings/reset/sun50i-r329-ccu.h
+> >  create mode 100644 include/dt-bindings/reset/sun50i-r329-r-ccu.h
+> > 
+> > diff --git a/Documentation/devicetree/bindings/clock/allwinner,sun4i-a10-
+ccu.yaml b/Documentation/devicetree/bindings/clock/allwinner,sun4i-a10-
+ccu.yaml
+> > index 15ed64d35261..c7a429e55483 100644
+> > --- a/Documentation/devicetree/bindings/clock/allwinner,sun4i-a10-ccu.yaml
+> > +++ b/Documentation/devicetree/bindings/clock/allwinner,sun4i-a10-ccu.yaml
+> > @@ -45,6 +45,8 @@ properties:
+> >        - allwinner,sun50i-h6-r-ccu
+> >        - allwinner,sun50i-h616-ccu
+> >        - allwinner,sun50i-h616-r-ccu
+> > +      - allwinner,sun50i-r329-ccu
+> > +      - allwinner,sun50i-r329-r-ccu
+> >        - allwinner,suniv-f1c100s-ccu
+> >        - nextthing,gr8-ccu
+> >  
+> > @@ -106,6 +108,7 @@ else:
+> >            - allwinner,sun50i-a100-ccu
+> >            - allwinner,sun50i-h6-ccu
+> >            - allwinner,sun50i-h616-ccu
+> > +          - allwinner,sun50i-r329-r-ccu
+> >  
+> >    then:
+> >      properties:
+> > @@ -118,14 +121,57 @@ else:
+> >          maxItems: 3
+> >  
+> >    else:
+> > -    properties:
+> > -      clocks:
+> > -        minItems: 2
+> > -        maxItems: 2
+> > -
+> > -      clock-names:
+> > -        minItems: 2
+> > -        maxItems: 2
+> > +    if:
+> > +      properties:
+> > +        compatible:
+> > +          const: allwinner,sun50i-r329-ccu
+> > +    then:
+> > +      properties:
+> > +        clocks:
+> > +          minItems: 13
+> > +          maxItems: 13
+> 
+> This is (or should be) implied by the size of 'items'. Did you find that 
+> to not be the case?
+> 
+> > +          items:
+> > +            - description: High Frequency Oscillator (usually at 24MHz)
+> > +            - description: Low Frequency Oscillator (usually at 32kHz)
+> > +            - description: Internal Oscillator
+> > +            - description: CPUX PLL
+> > +            - description: Peripherals PLL
+> > +            - description: Peripherals PLL (2x)
+> > +            - description: Peripherals PLL derivated 800MHz clock
+> > +            - description: Audio PLL 0
+> > +            - description: Audio PLL 0 (/2)
+> > +            - description: Audio PLL 0 (/5)
+> > +            - description: Audio PLL 1
+> > +            - description: Audio PLL 1 (2x)
+> > +            - description: Audio PLL 1 (4x)
+> 
+> > diff --git a/include/dt-bindings/clock/sun50i-r329-ccu.h b/include/dt-
+bindings/clock/sun50i-r329-ccu.h
+> > new file mode 100644
+> > index 000000000000..116f8d13a9b3
+> > --- /dev/null
+> > +++ b/include/dt-bindings/clock/sun50i-r329-ccu.h
+> > @@ -0,0 +1,73 @@
+> > +/* SPDX-License-Identifier: GPL-2.0 */
+> > +/*
+> > + * Copyright (c) 2021 Sipeed
+> 
+> It's 2022.
+> 
+> > diff --git a/include/dt-bindings/clock/sun50i-r329-r-ccu.h b/include/dt-
+bindings/clock/sun50i-r329-r-ccu.h
+> > new file mode 100644
+> > index 000000000000..c327d1a1b602
+> > --- /dev/null
+> > +++ b/include/dt-bindings/clock/sun50i-r329-r-ccu.h
+> > @@ -0,0 +1,45 @@
+> > +/* SPDX-License-Identifier: GPL-2.0 */
+> 
+> > diff --git a/include/dt-bindings/reset/sun50i-r329-ccu.h b/include/dt-
+bindings/reset/sun50i-r329-ccu.h
+> > new file mode 100644
+> > index 000000000000..bb704a82443f
+> > --- /dev/null
+> > +++ b/include/dt-bindings/reset/sun50i-r329-ccu.h
+> > @@ -0,0 +1,45 @@
+> > +/* SPDX-License-Identifier: (GPL-2.0+ or MIT) */
+> 
+> > diff --git a/include/dt-bindings/reset/sun50i-r329-r-ccu.h b/include/dt-
+bindings/reset/sun50i-r329-r-ccu.h
+> > new file mode 100644
+> > index 000000000000..40644f2f21c6
+> > --- /dev/null
+> > +++ b/include/dt-bindings/reset/sun50i-r329-r-ccu.h
+> > @@ -0,0 +1,24 @@
+> > +/* SPDX-License-Identifier: (GPL-2.0+ or MIT) */
+> 
+> Why the different licenses? GPL-2.0 OR BSD-2-Clause is preferred. MIT is 
+> fine if that's what matches the dts files.
 
-Add a device tree for the n6000 instantiation of Agilex
-Hard Processor System (HPS).
+Yes, most, if not all, DT files for Allwinner are dual licensed under GPL2+ and 
+MIT. There are still some files under include/dt-bindings which are dual 
+licensed under GPL2+ and X11, but I believe those files are for older SoCs.
 
-Signed-off-by: Matthew Gerlach <matthew.gerlach@linux.intel.com>
----
-v2:
-  - fix copy engine node name
-  - fix compatible field for copy engine
-  - remove redundant status field
-  - add compatibility field for the board
-  - fix SPDX
-  - fix how osc1 clock frequency is set
----
- arch/arm64/boot/dts/intel/Makefile            |  3 +-
- .../boot/dts/intel/socfpga_agilex_n6000.dts   | 76 +++++++++++++++++++
- 2 files changed, 78 insertions(+), 1 deletion(-)
- create mode 100644 arch/arm64/boot/dts/intel/socfpga_agilex_n6000.dts
+Best regards,
+Jernej
 
-diff --git a/arch/arm64/boot/dts/intel/Makefile b/arch/arm64/boot/dts/intel/Makefile
-index 0b5477442263..c2a723838344 100644
---- a/arch/arm64/boot/dts/intel/Makefile
-+++ b/arch/arm64/boot/dts/intel/Makefile
-@@ -1,5 +1,6 @@
- # SPDX-License-Identifier: GPL-2.0-only
--dtb-$(CONFIG_ARCH_INTEL_SOCFPGA) += socfpga_agilex_socdk.dtb \
-+dtb-$(CONFIG_ARCH_INTEL_SOCFPGA) += socfpga_agilex_n6000.dtb \
-+				socfpga_agilex_socdk.dtb \
- 				socfpga_agilex_socdk_nand.dtb \
- 				socfpga_n5x_socdk.dtb
- dtb-$(CONFIG_ARCH_KEEMBAY) += keembay-evm.dtb
-diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex_n6000.dts b/arch/arm64/boot/dts/intel/socfpga_agilex_n6000.dts
-new file mode 100644
-index 000000000000..6f8b7bf7a53f
---- /dev/null
-+++ b/arch/arm64/boot/dts/intel/socfpga_agilex_n6000.dts
-@@ -0,0 +1,76 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (C) 2021-2022, Intel Corporation
-+ */
-+#include "socfpga_agilex.dtsi"
-+
-+/ {
-+	model = "SoCFPGA Agilex n6000";
-+	compatible = "intel,socfpga-agilex-n6000", "intel,socfpga-agilex";
-+
-+	aliases {
-+		serial0 = &uart1;
-+		serial1 = &uart0;
-+		ethernet0 = &gmac0;
-+		ethernet1 = &gmac1;
-+		ethernet2 = &gmac2;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	memory {
-+		device_type = "memory";
-+		/* We expect the bootloader to fill in the reg */
-+		reg = <0 0 0 0>;
-+	};
-+
-+	soc {
-+		agilex_hps_bridges: bus@80000000 {
-+			compatible = "simple-bus";
-+			reg = <0x80000000 0x60000000>,
-+				<0xf9000000 0x00100000>;
-+			reg-names = "axi_h2f", "axi_h2f_lw";
-+			#address-cells = <0x2>;
-+			#size-cells = <0x1>;
-+			ranges = <0x00000000 0x00000000 0xf9000000 0x00001000>;
-+
-+			hps_cp_eng@0 {
-+				compatible = "intel,hps-copy-engine";
-+				reg = <0x00000000 0x00000000 0x00001000>;
-+			};
-+		};
-+	};
-+};
-+
-+&osc1 {
-+	clock-frequency = <25000000>;
-+};
-+
-+&uart0 {
-+	status = "okay";
-+};
-+
-+&uart1 {
-+	status = "okay";
-+};
-+
-+&spi0 {
-+	status = "okay";
-+
-+	spidev: spidev@0 {
-+		status = "okay";
-+		compatible = "linux,spidev";
-+		spi-max-frequency = <25000000>;
-+		reg = <0>;
-+	};
-+};
-+
-+&watchdog0 {
-+	status = "okay";
-+};
-+
-+&fpga_mgr {
-+	status = "disabled";
-+};
--- 
-2.25.1
 
