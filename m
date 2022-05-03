@@ -2,57 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 914605185E3
-	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 15:47:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8199F5185E8
+	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 15:48:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233000AbiECNv0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 May 2022 09:51:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39086 "EHLO
+        id S236485AbiECNv7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 May 2022 09:51:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39350 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232995AbiECNv0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 09:51:26 -0400
-Received: from ssl.serverraum.org (ssl.serverraum.org [176.9.125.105])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED9F52BDD;
-        Tue,  3 May 2022 06:47:53 -0700 (PDT)
-Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ssl.serverraum.org (Postfix) with ESMTPSA id 0986C22239;
-        Tue,  3 May 2022 15:47:52 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
-        t=1651585672;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=HELqmcny3+zb4t8KJj96rlX1j5P0rp+bwG6Pd4W7Nj0=;
-        b=XHj+i/CZtrDSy5RFiDpnJIwa0HzP/ngi5kQAHKDEfSB2SURFh+P3MPRMcBj9Ag1hX33PzV
-        MzUJ6b895a/JH7gI6yL3AUS8OsWFR+JMhsO0ObrMKGGSe6By87Ao4Em7mrBXIUisIJg0Fl
-        fXuFxjDA5DcVqr0lJVfn9JeEWq7MIJE=
+        with ESMTP id S235053AbiECNv6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 09:51:58 -0400
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6D8A237C1;
+        Tue,  3 May 2022 06:48:25 -0700 (PDT)
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 2438jP16016032;
+        Tue, 3 May 2022 15:48:09 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
+ mime-version : subject : to : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=FcROAh4SzXous4lLTDrw/Umg8J6Je3OS37++N8VSQdI=;
+ b=H1hmbqUGQf1RIWQLtOvwlXd2ED83g7m4nyCPwkcHnmkqHPmlnGS0TejK0Ji36MsiAQ8G
+ /WPq1vqxKom8xNENw+B0oIKi/saLZ4TsqxXPG0aAUx4MMD7n1Sm/Nu+SxG60ba/gnYh0
+ 9F4D7H887tDF+kmQDU2QOj9g8ZJUKk2s0rXqRXp2QNZnncM7RoJrc1K4CuuveVcpGNZH
+ FwLUqOHilE529MlCQB3k0uhP/Jeamtaua+FKHYj+uivZmKjsyz0iqg4fBk6oMasrn7+0
+ S/dZ/oeN0g02z4c6e7jewZtHw2YRZ9b+woAwWkbRqhMtYRKYDJnOWJ8eoQ0JdzQxgCh+ 2Q== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3frv0g7dae-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 03 May 2022 15:48:08 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id D306510002A;
+        Tue,  3 May 2022 15:48:07 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id CC0E222177E;
+        Tue,  3 May 2022 15:48:07 +0200 (CEST)
+Received: from [10.201.21.93] (10.75.127.46) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.2308.20; Tue, 3 May
+ 2022 15:48:07 +0200
+Message-ID: <1be925e8-5eeb-2928-d9c8-95d41102ddf9@foss.st.com>
+Date:   Tue, 3 May 2022 15:48:06 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Tue, 03 May 2022 15:47:51 +0200
-From:   Michael Walle <michael@walle.cc>
-To:     Sean Anderson <sean.anderson@seco.com>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Li Yang <leoyang.li@nxp.com>, linux-kernel@vger.kernel.org,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH] ARM: dts: stm32: add EXTI interrupt-parent to pinctrl
+ node on stm32mp131
+Content-Language: en-US
+To:     Fabien Dessenne <fabien.dessenne@foss.st.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andrew Lunn <andrew@lunn.ch>
-Subject: Re: [PATCH v3 5/9] arm64: dts: ls1028a: Update SFP binding to include
- clock
-In-Reply-To: <20220428181703.2194171-6-sean.anderson@seco.com>
-References: <20220428181703.2194171-1-sean.anderson@seco.com>
- <20220428181703.2194171-6-sean.anderson@seco.com>
-User-Agent: Roundcube Webmail/1.4.13
-Message-ID: <548f2e576a4c299a1139eadb30ca4e67@walle.cc>
-X-Sender: michael@walle.cc
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20220503090621.483567-1-fabien.dessenne@foss.st.com>
+From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
+In-Reply-To: <20220503090621.483567-1-fabien.dessenne@foss.st.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.75.127.46]
+X-ClientProxiedBy: SFHDAG2NODE2.st.com (10.75.127.5) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.858,Hydra:6.0.486,FMLib:17.11.64.514
+ definitions=2022-05-03_05,2022-05-02_03,2022-02-23_01
+X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
         SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -61,10 +76,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am 2022-04-28 20:16, schrieb Sean Anderson:
-> The clocks property is now mandatory. Add it.
+On 5/3/22 11:06, Fabien Dessenne wrote:
+> Add interrupt-parent property in pinctrl node to use GPIO as IRQ.
 > 
-> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
-> Reviewed-by: Michael Walle <michael@walle.cc>
+> Signed-off-by: Amelie Delaunay <amelie.delaunay@foss.st.com>
+> Signed-off-by: Fabien Dessenne <fabien.dessenne@foss.st.com>
+> ---
+>   arch/arm/boot/dts/stm32mp131.dtsi | 2 ++
+>   1 file changed, 2 insertions(+)
+> 
+> diff --git a/arch/arm/boot/dts/stm32mp131.dtsi b/arch/arm/boot/dts/stm32mp131.dtsi
+> index 58647396704f..f9ebc47e6421 100644
+> --- a/arch/arm/boot/dts/stm32mp131.dtsi
+> +++ b/arch/arm/boot/dts/stm32mp131.dtsi
+> @@ -259,6 +259,8 @@ pinctrl: pinctrl@50002000 {
+>   			#size-cells = <1>;
+>   			compatible = "st,stm32mp135-pinctrl";
+>   			ranges = <0 0x50002000 0x8400>;
+> +			interrupt-parent = <&exti>;
+> +			st,syscfg = <&exti 0x60 0xff>;
+>   			pins-are-numbered;
+>   
+>   			gpioa: gpio@50002000 {
 
-Fixes: eba5bea8f37f ("arm64: dts: ls1028a: add efuse node")
+Applied on stm32-next.
+
+Thanks.
+Alex
