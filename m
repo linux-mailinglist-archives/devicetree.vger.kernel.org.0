@@ -2,145 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 01063518686
-	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 16:22:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1EDD8518691
+	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 16:25:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235344AbiECO0W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 May 2022 10:26:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53604 "EHLO
+        id S236989AbiECO3Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 May 2022 10:29:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56486 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232563AbiECO0W (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 10:26:22 -0400
-Received: from mail-qt1-f170.google.com (mail-qt1-f170.google.com [209.85.160.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D1282CE0F;
-        Tue,  3 May 2022 07:22:49 -0700 (PDT)
-Received: by mail-qt1-f170.google.com with SMTP id t11so13476807qto.11;
-        Tue, 03 May 2022 07:22:49 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=3t6SRW/DjuDAlbfHDheZgdCnYyoKNEk8ORQglJBIxaM=;
-        b=61iJRRCwP2Zxr1bmTANdq0PWM7wirPKq3Q0VKIvLBce/HdspMlzso9Q5J84kkWVrhO
-         FDW2Ltwp1NcJIuyO9fvK844EPqcKKie3hr3w4ed2905RjFqI5TD3l786vkZaYguf2OWG
-         G6tVEWAUU3VpUtwgFf+Bkbgcf6W8nYVHa1f0n1ai3Bio1U984Z/QmlaoxWagYOIZ2Mln
-         COOaN1UlJMv0D8+omUmErlPZUT6Rk4H8FXRbF53G8HVnMHS2zxshONKy3Eq1r5uUgvM2
-         SreJcQbnumM1oUxwAeYSFVJmsgrS+5EFuy4rQDnTwG09NJYU/7g2ylWOrTrlv2vm9/ce
-         aqsg==
-X-Gm-Message-State: AOAM531bPSzteXZtZk0xMJwlgHScvfI/AgYpRuPYP39uYVZekfhlwBBT
-        nLqMJL4nPhLik3MkzK+LpDqrEIz/WDiYAA==
-X-Google-Smtp-Source: ABdhPJzr8STgTUcOAvo0wR7Yr1A8UCuRUgJOCFym0UGApXLBtqMaaLNhgQmuh/T7u32cZTCGDgvV+w==
-X-Received: by 2002:ac8:5a4a:0:b0:2f3:9ddf:2cdd with SMTP id o10-20020ac85a4a000000b002f39ddf2cddmr12749377qta.112.1651587768291;
-        Tue, 03 May 2022 07:22:48 -0700 (PDT)
-Received: from mail-yb1-f174.google.com (mail-yb1-f174.google.com. [209.85.219.174])
-        by smtp.gmail.com with ESMTPSA id 184-20020a3704c1000000b0069fc13ce1f5sm6022653qke.38.2022.05.03.07.22.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 03 May 2022 07:22:47 -0700 (PDT)
-Received: by mail-yb1-f174.google.com with SMTP id m128so31341315ybm.5;
-        Tue, 03 May 2022 07:22:47 -0700 (PDT)
-X-Received: by 2002:a25:6157:0:b0:645:8d0e:f782 with SMTP id
- v84-20020a256157000000b006458d0ef782mr14945254ybb.36.1651587767157; Tue, 03
- May 2022 07:22:47 -0700 (PDT)
+        with ESMTP id S236982AbiECO3V (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 10:29:21 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A7FB43123A;
+        Tue,  3 May 2022 07:25:49 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: kholk11)
+        with ESMTPSA id CFF291F43CF4
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1651587948;
+        bh=OSfbrDUrVe70J9K2jP7JIoE1KkV5sv+mCi04aDwkksM=;
+        h=From:To:Cc:Subject:Date:From;
+        b=XOVaUqse8MFsLKBc1b9/W7RsrbglYlojHUwE8unQIm1yCMbDhY8m3VkGp3Ry6Xzv1
+         +4hjBJqGEk5i0KzxcpEnHNpPyfwyExXir6g3RHGHBpfTA+HtnOWFXR24IDIqCfwY9a
+         6qWXZTFiVVwQVNhOU5j73DTOdFb7ZoUHA6kGb5VJ0mixPEuEm8cglyjHF3bGRb84xl
+         o2vYu/Uevmj0+AlDn3SGgq86mnLx39XsOpbVA00MN5Yk9mbrrx4oPHI0FbsbPUNSPy
+         6A8+i9xjevscS//PZqPZNV17T+1kScbtEniM2ilanxpPvJba5+hXVyXl8TL6pjKwzy
+         GJI1nfW+eqf5w==
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+To:     linus.walleij@linaro.org
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        matthias.bgg@gmail.com, sean.wang@kernel.org,
+        angelogioacchino.delregno@collabora.com,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        kernel@collabora.com, nfraprado@collabora.com
+Subject: [PATCH v2 0/2] MediaTek Helio X10 MT6795 - Pinctrl driver
+Date:   Tue,  3 May 2022 16:25:35 +0200
+Message-Id: <20220503142537.152499-1-angelogioacchino.delregno@collabora.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-References: <20220503115557.53370-1-phil.edworthy@renesas.com>
- <20220503115557.53370-5-phil.edworthy@renesas.com> <6fb57bcc87e091d6e88217d2b82af9da@kernel.org>
-In-Reply-To: <6fb57bcc87e091d6e88217d2b82af9da@kernel.org>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 3 May 2022 16:22:35 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdU4j=Uaz5fAODFrPud0i40TdHUo6bYq0YpdnUzWaM3-Og@mail.gmail.com>
-Message-ID: <CAMuHMdU4j=Uaz5fAODFrPud0i40TdHUo6bYq0YpdnUzWaM3-Og@mail.gmail.com>
-Subject: Re: [PATCH v3 04/12] dt-bindings: timer: arm,arch_timer: Add optional
- clock and reset
-To:     Marc Zyngier <maz@kernel.org>
-Cc:     Phil Edworthy <phil.edworthy@renesas.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marc,
+In an effort to give some love to the apparently forgotten MT6795 SoC,
+I am upstreaming more components that are necessary to support platforms
+powered by this one apart from a simple boot to serial console.
 
-On Tue, May 3, 2022 at 3:12 PM Marc Zyngier <maz@kernel.org> wrote:
-> On 2022-05-03 12:55, Phil Edworthy wrote:
-> > Some SoCs use a gated clock for the timer and the means to reset the
-> > timer.
-> > Hence add these as optional.
->
-> The architecture is crystal clear on the subject: the counter
-> is in an always-on domain. Why should this be visible to SW?
-> Also, reseting the counter breaks the guaranteed monotonicity
-> we rely on.
+This series introduces a pinctrl driver for the Helio X10 SoC.
 
-The DT bindings do state:
+Tested on a Sony Xperia M5 (codename "Holly") smartphone.
 
-  always-on:
-    type: boolean
-    description: If present, the timer is powered through an always-on power
-      domain, therefore it never loses context.
+Changes in v2:
+ - Reordered commits, dt-bindings first, driver last
+ - Fixed yaml issues
 
-and (surprisingly?) the absence of this property seems to be the
-norm...
+AngeloGioacchino Del Regno (2):
+  dt-bindings: pinctrl: Add MediaTek MT6795 pinctrl bindings
+  pinctrl: mediatek: Add pinctrl driver for MT6795 Helio X10
 
-And:
+ .../pinctrl/mediatek,pinctrl-mt6795.yaml      |  224 +++
+ drivers/pinctrl/mediatek/Kconfig              |    7 +
+ drivers/pinctrl/mediatek/Makefile             |    1 +
+ drivers/pinctrl/mediatek/pinctrl-mt6795.c     |  623 ++++++
+ drivers/pinctrl/mediatek/pinctrl-mtk-mt6795.h | 1698 +++++++++++++++++
+ include/dt-bindings/pinctrl/mt6795-pinfunc.h  |  908 +++++++++
+ 6 files changed, 3461 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/mediatek,pinctrl-mt6795.yaml
+ create mode 100644 drivers/pinctrl/mediatek/pinctrl-mt6795.c
+ create mode 100644 drivers/pinctrl/mediatek/pinctrl-mtk-mt6795.h
+ create mode 100644 include/dt-bindings/pinctrl/mt6795-pinfunc.h
 
-  arm,no-tick-in-suspend:
-    type: boolean
-    description: The main counter does not tick when the system is in
-      low-power system suspend on some SoCs. This behavior does not match the
-      Architecture Reference Manual's specification that the system
-counter "must
-      be implemented in an always-on power domain."
+-- 
+2.35.1
 
-So there's already precedent for clocks that can be disabled.
-
-> Worse case, this belongs to the boot firmware, not the kernel,
-> and I don't think this should be described in the DT.
-
-"DT describes hardware, not software policy"?
-
-> > --- a/Documentation/devicetree/bindings/timer/arm,arch_timer.yaml
-> > +++ b/Documentation/devicetree/bindings/timer/arm,arch_timer.yaml
-> > @@ -64,6 +64,13 @@ properties:
-> >        CNTFRQ on all CPUs to a uniform correct value. Use of this
-> > property is
-> >        strongly discouraged; fix your firmware unless absolutely
-> > impossible.
-> >
-> > +  clocks:
-> > +    description: Optional clock for the timer.
-> > +    maxItems: 1
-> > +
-> > +  resets:
-> > +    maxItems: 1
-> > +
-> >    always-on:
-> >      type: boolean
-> >      description: If present, the timer is powered through an always-on
-> > power
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
