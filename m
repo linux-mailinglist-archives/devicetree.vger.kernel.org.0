@@ -2,60 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E798D518008
-	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 10:46:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 25C3E51806C
+	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 11:00:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233048AbiECIty (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 May 2022 04:49:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59182 "EHLO
+        id S233140AbiECJEC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 May 2022 05:04:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41558 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233041AbiECIte (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 04:49:34 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A47D635ABB;
-        Tue,  3 May 2022 01:45:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1651567559; x=1683103559;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=U/CKKh3POM+OwTtOgQF4Jp8Ls8i/luVYOEHzUs8doLs=;
-  b=O34AD+BA2epE45bU59Z0YyDpQO30Rw82T6AdUuGPpQvz7JqUQSDhZwp2
-   xcJb0yDhxGTstnDVXGSbNVmXwJGeSt7VoUvDVgPqAKeH5Uc2DICKd+bw6
-   w0/Vwoiz85CqzDkU+/BSsHhanuihys7unHwGx04nbpMDJ55aDoMSCRb5N
-   S9eBgTR66D0WUWxASb6BkbKE8OdkzLHfvXEvx/6Ukp+8rmgWwaZGJ+FG+
-   HjukJYDPNrUAytcJs9ylpGV7Vkz+ptH0y80DxkNNl5zkg4z9rVYXT/eDw
-   gVsF70qd68A6w2kZIIwM7xNYTwmKo3NfN7muxxeZ52hyJdGY6Mp4YjZK8
-   g==;
-X-IronPort-AV: E=Sophos;i="5.91,194,1647327600"; 
-   d="scan'208";a="162525584"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 03 May 2022 01:45:58 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17; Tue, 3 May 2022 01:45:58 -0700
-Received: from ROB-ULT-M18282.microchip.com (10.10.115.15) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
- 15.1.2375.17 via Frontend Transport; Tue, 3 May 2022 01:45:46 -0700
-From:   Eugen Hristev <eugen.hristev@microchip.com>
-To:     <linux-media@vger.kernel.org>, <hverkuil@xs4all.nl>
-CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <jacopo@jmondi.org>,
-        Eugen Hristev <eugen.hristev@microchip.com>,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH v10 8/8] dt-bindings: media: microchip,xisc: add bus-width of 14
-Date:   Tue, 3 May 2022 11:44:21 +0300
-Message-ID: <20220503084421.40682-9-eugen.hristev@microchip.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220503084421.40682-1-eugen.hristev@microchip.com>
-References: <20220503084421.40682-1-eugen.hristev@microchip.com>
+        with ESMTP id S233135AbiECJEA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 05:04:00 -0400
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60D4D17E2B
+        for <devicetree@vger.kernel.org>; Tue,  3 May 2022 02:00:24 -0700 (PDT)
+Received: by mail-ed1-x536.google.com with SMTP id g20so19108896edw.6
+        for <devicetree@vger.kernel.org>; Tue, 03 May 2022 02:00:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :references:from:in-reply-to:content-transfer-encoding;
+        bh=j4CRxL9e7zZlh4b2P/p8FhUccprH7HKthusA0VBt+bM=;
+        b=b/XeqkebSCbXODnHkCi2RqyjzoJ74d6kbuqoZYv3DO3OcaTbv/qeFWTURH2hoJ+2yT
+         WGzeYXnB0WS7BN6GFadu3iQPdm9CuNhqzf1vrUZR5xRXgbPmT/eo+2ZSAXWNMcoHGmKz
+         0qkBZFq9PrTHigehcs0ZjjD2RXid7n3okw3z/guesffeaexDfAmRuOwafPUHmi2zUAuc
+         SlkA7fPdc2WFFX8N8bTNhp90GINnma8Ibkb8q6wZqFYyVz0tuQoBzY/0n8MgEYHKOiZR
+         Ao57ZnmzizOktGk10i8wgkowf72pMbtLtMJQi9EwK7WL9ZRMpKzqc6m5b68Xot4jmkCf
+         MiTg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=j4CRxL9e7zZlh4b2P/p8FhUccprH7HKthusA0VBt+bM=;
+        b=C4ZChJQmN+OAV0yMwp9RWpjdMOH9X1FDi7cMAt0FLDosaTneV/o9Xnfm6J3Y7hNN1p
+         zykf+1wMg7govkgfIgBd9yhdcKBtPHVGaxsbOwnShFSqNEfNBRCN+Wd5XUWS0z1t0n3V
+         AEyiovt5X5sr9mVpBE3BtUTF3K3C6JsUhKzuLm0uEupB8W/XJUbuNspZkYbIrFlHdaV1
+         wgMI8NBzuLKdB0GMHWShCOPA3wM1Nkt2qnywzIDuFaM6+NHRqRY4mR2JJPSKQeOrwxck
+         WCckRPnLqW5NrHjM+OPVEBIjvGvmVZ9BciUlVnKP20knHO28aKlqW8c3qnd1SWVbxXdr
+         P5Ew==
+X-Gm-Message-State: AOAM533ag1zuo/sM+gInmyHWTvTRcO8i1sXTHmU+FsnA9n194DMCcNW0
+        xDnWRf1BnhDA/qQAG7lSIGDzXg==
+X-Google-Smtp-Source: ABdhPJyX/ElrrxMX0/REfY3yLwKmEzVBenlQvKtFB9erYnqq+TRCxOFksTz3abIbzpybFPoFGhbplA==
+X-Received: by 2002:a05:6402:2363:b0:425:bc13:4c8b with SMTP id a3-20020a056402236300b00425bc134c8bmr17084825eda.140.1651568422920;
+        Tue, 03 May 2022 02:00:22 -0700 (PDT)
+Received: from [192.168.0.201] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id jy10-20020a170907762a00b006f3ef214dc2sm4415617ejc.40.2022.05.03.02.00.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 03 May 2022 02:00:22 -0700 (PDT)
+Message-ID: <215254be-da27-2f3f-fa07-7520b38eff5c@linaro.org>
+Date:   Tue, 3 May 2022 11:00:21 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH v8 2/2] dt-bindings:thermal: Add Sunplus schema
+Content-Language: en-US
+To:     Li-hao Kuo <lhjeff911@gmail.com>, rafael@kernel.org,
+        daniel.lezcano@linaro.org, amitk@kernel.org, rui.zhang@intel.com,
+        robh+dt@kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <cover.1651543731.git.lhjeff911@gmail.com>
+ <e9f65ca9a2b3205b91210398d743415f6c799d90.1651543731.git.lhjeff911@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <e9f65ca9a2b3205b91210398d743415f6c799d90.1651543731.git.lhjeff911@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -63,28 +75,48 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Microchip XISC supports a bus width of 14 bits.
-Add it to the supported bus widths.
+On 03/05/2022 04:13, Li-hao Kuo wrote:
+> Add bindings for Sunplus thermal driver
+> 
+> Signed-off-by: Li-hao Kuo <lhjeff911@gmail.com>
+> ---
+> Changes in v8:
+>  - Modify yaml file.
+>    modify the setting compatible
+>  - Change yaml file name.
+>  - Modify driver.
+>    mosdify and simply the nvmem setting and remove valiable
+> 
+>  .../bindings/thermal/sunplus,thermal.yaml          | 43 ++++++++++++++++++++++
+>  MAINTAINERS                                        |  1 +
+>  2 files changed, 44 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/thermal/sunplus,thermal.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/thermal/sunplus,thermal.yaml b/Documentation/devicetree/bindings/thermal/sunplus,thermal.yaml
+> new file mode 100644
+> index 0000000..1ecf6f6
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/thermal/sunplus,thermal.yaml
+> @@ -0,0 +1,43 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +# Copyright (C) Sunplus Co., Ltd.
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/thermal/sunplus,thermal.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Sunplus Thermal controller
+> +
+> +maintainers:
+> +  - Li-hao Kuo <lhjeff911@gmail.com>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - sunplus,thermal
 
-Signed-off-by: Eugen Hristev <eugen.hristev@microchip.com>
-Acked-by: Rob Herring <robh@kernel.org>
----
- Documentation/devicetree/bindings/media/microchip,xisc.yaml | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+This is a very surprising change and was never requested by me or other
+reviewers. It is also not correct. Previous compatible was correct.
 
-diff --git a/Documentation/devicetree/bindings/media/microchip,xisc.yaml b/Documentation/devicetree/bindings/media/microchip,xisc.yaml
-index 086e1430af4f..3be8f64c3e21 100644
---- a/Documentation/devicetree/bindings/media/microchip,xisc.yaml
-+++ b/Documentation/devicetree/bindings/media/microchip,xisc.yaml
-@@ -67,7 +67,7 @@ properties:
-           remote-endpoint: true
- 
-           bus-width:
--            enum: [8, 9, 10, 11, 12]
-+            enum: [8, 9, 10, 11, 12, 14]
-             default: 12
- 
-           hsync-active:
--- 
-2.25.1
-
+Best regards,
+Krzysztof
