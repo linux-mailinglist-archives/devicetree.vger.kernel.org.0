@@ -2,83 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 363E7518761
-	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 16:55:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 420DA518766
+	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 16:55:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237551AbiECO7R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 May 2022 10:59:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52820 "EHLO
+        id S237592AbiECO7U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 May 2022 10:59:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52938 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237548AbiECO7B (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 10:59:01 -0400
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 070E51EC67
-        for <devicetree@vger.kernel.org>; Tue,  3 May 2022 07:55:27 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id bv19so33954258ejb.6
-        for <devicetree@vger.kernel.org>; Tue, 03 May 2022 07:55:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=59t7vn28D3yzCeD/SWs0WQWMWUokBjgyTL8jtIQ/mZ4=;
-        b=wyYQAm/yL4YCxQZnJSalcQidq4K2VieDxkJ7UUhCt+AngFV8CNSTl1gULdZ8ouWH3a
-         yN39Hd9vLvj5l98q1Q73+qN2XQluRsg/ZIxg1rCCkpBXOfXWyDoUFwsLg7q3raIuPL2M
-         CbuHA1N2i4l5BWNS9Ad6NovhugumU5uXoOKIFAIOOY1EFIZgg8FDoLd+XEPJzjAWqaYK
-         K+AK+4mF6Ew2tYA6877x1QYSEdUlpH6vE63HrDR9H/9KVh5NaUw3GNrC3ae8TkjeCKFn
-         NyJoU946TQfwq1inDJpG7Um3nsvSVO+TVIixUPCsqBUjfbGv/QJbs/E5tk+B2/lsmilw
-         X+Xw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=59t7vn28D3yzCeD/SWs0WQWMWUokBjgyTL8jtIQ/mZ4=;
-        b=ozjacl5NjfKlmlUjwhVmeVwaaHgOMbZqoqxo4YZONHzfb8nFSUKA+LZhIDjLSWvZNS
-         Vp+TMohKRg/5I0jOCgD9NfRfwuUrq2zYv0soBC93nKdp4VTrtiMmq+fKo7h6UZzFjBY9
-         ySLA+xdEAFmBP3k07D5775bqQoV0QgiUh4nycxFLDazLASwXcuIhGy4TRQsaSQrOPo6V
-         bfbwrzIHBZeLwEl0bgyjYDm4YN93+l49F53AKC6AeWCrGm1p4P6M/a8pSEW5g+F0661p
-         cwNAhqCWErkSv7oc5rQ/mRs72N7sKSYFFoYU/s2vN0QOxtrE7Xyof1DBKRLgjFLGVyX2
-         55UQ==
-X-Gm-Message-State: AOAM533FdU19C5ECHX+7Wf/+p0BL18u8TdFPbaM2K7JvjsJSJDm+Raql
-        GmQeZ6uQexuCHUtVhobHsC0TYA==
-X-Google-Smtp-Source: ABdhPJzrfLJwCJ3gQEW0hRsCRD17fpgu4Gejz8nnGLU7xiWLRfposWniK4q9adqoAsaMHEQW9ESexg==
-X-Received: by 2002:a17:907:7209:b0:6da:9781:ae5d with SMTP id dr9-20020a170907720900b006da9781ae5dmr15134105ejc.73.1651589725490;
-        Tue, 03 May 2022 07:55:25 -0700 (PDT)
-Received: from [192.168.0.205] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id s23-20020a056402037700b0042617ba639bsm7956855edw.37.2022.05.03.07.55.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 03 May 2022 07:55:24 -0700 (PDT)
-Message-ID: <75a48dfa-6fc9-aed9-b00e-d928bd9f33af@linaro.org>
-Date:   Tue, 3 May 2022 16:55:23 +0200
+        with ESMTP id S237528AbiECO7S (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 10:59:18 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 7F017338BD;
+        Tue,  3 May 2022 07:55:45 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 5361F12FC;
+        Tue,  3 May 2022 07:55:45 -0700 (PDT)
+Received: from lakrids (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id F33AD3F5A1;
+        Tue,  3 May 2022 07:55:43 -0700 (PDT)
+Date:   Tue, 3 May 2022 15:55:41 +0100
+From:   Mark Rutland <mark.rutland@arm.com>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Marc Zyngier <maz@kernel.org>,
+        Phil Edworthy <phil.edworthy@renesas.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
+Subject: Re: [PATCH v3 04/12] dt-bindings: timer: arm,arch_timer: Add
+ optional clock and reset
+Message-ID: <YnFCbe4ULoRRft4u@lakrids>
+References: <20220503115557.53370-1-phil.edworthy@renesas.com>
+ <20220503115557.53370-5-phil.edworthy@renesas.com>
+ <6fb57bcc87e091d6e88217d2b82af9da@kernel.org>
+ <CAMuHMdU4j=Uaz5fAODFrPud0i40TdHUo6bYq0YpdnUzWaM3-Og@mail.gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [RFC v2 2/2] arm: hisi: enable Hi3521a soc
-Content-Language: en-US
-To:     "Marty E. Plummer" <hanetzer@startmail.com>
-Cc:     arnd@arndb.de, cai.huoqing@linux.dev, christian.koenig@amd.com,
-        devicetree@vger.kernel.org, gengdongjiu@huawei.com,
-        krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org,
-        linux@armlinux.org.uk, michael@walle.cc, miquel.raynal@bootlin.com,
-        mturquette@baylibre.com, novikov@ispras.ru, olof@lixom.net,
-        p.yadav@ti.com, rdunlap@infradead.org, richard@nod.at,
-        robh+dt@kernel.org, sboyd@kernel.org, soc@kernel.org,
-        sumit.semwal@linaro.org, tudor.ambarus@microchip.com,
-        vigneshr@ti.com, xuwei5@hisilicon.com
-References: <20220501054440.2434247-1-hanetzer@startmail.com>
- <20220501173423.2473093-1-hanetzer@startmail.com>
- <20220501173423.2473093-3-hanetzer@startmail.com>
- <4cda3645-c4e8-1b3c-bd80-891afd56449a@linaro.org>
- <20220503134459.pplgvhcckja4ivcg@proprietary-killer>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220503134459.pplgvhcckja4ivcg@proprietary-killer>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAMuHMdU4j=Uaz5fAODFrPud0i40TdHUo6bYq0YpdnUzWaM3-Og@mail.gmail.com>
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -86,144 +53,74 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/05/2022 15:44, Marty E. Plummer wrote:
-> On Tue, May 03, 2022 at 01:47:01PM +0200, Krzysztof Kozlowski wrote:
->> On 01/05/2022 19:34, Marty E. Plummer wrote:
->>> Enable Hisilicon Hi3521A/Hi3520DCV300 SoC. This SoC series includes
->>> hardware mutlimedia codec cores, commonly used in consumer cctv/dvr
->>> security systems and ipcameras. The arm core is a Cortex A7.
->>>
->>> Add hi3521a.dtsi and hi3521a-rs-dm290e.dts for RaySharp CCTV systems,
->>> marketed under the name Samsung SDR-B74301N.
->>
->> Thank you for your patch. There is something to discuss/improve.
->>
->>>
->>> Signed-off-by: Marty E. Plummer <hanetzer@startmail.com>
->>> ---
->>>  arch/arm/boot/dts/Makefile              |   2 +
->>>  arch/arm/boot/dts/hi3521a-rs-dm290e.dts | 134 ++++++++
->>>  arch/arm/boot/dts/hi3521a.dtsi          | 423 ++++++++++++++++++++++++
->>
->> DTSes go to separate patches.
-> Do you mean dts and dtsi need to be separate patches?
+Hi Geert,
 
-I mean that any changes to "arch/arm/boot/dts/" have to be separate from
-other changes. These can be still one patch. See other examples on
-mailing lists.
+On Tue, May 03, 2022 at 04:22:35PM +0200, Geert Uytterhoeven wrote:
+> On Tue, May 3, 2022 at 3:12 PM Marc Zyngier <maz@kernel.org> wrote:
+> > On 2022-05-03 12:55, Phil Edworthy wrote:
+> > > Some SoCs use a gated clock for the timer and the means to reset the
+> > > timer.
+> > > Hence add these as optional.
+> >
+> > The architecture is crystal clear on the subject: the counter
+> > is in an always-on domain. Why should this be visible to SW?
+> > Also, reseting the counter breaks the guaranteed monotonicity
+> > we rely on.
+> 
+> The DT bindings do state:
+> 
+>   always-on:
+>     type: boolean
+>     description: If present, the timer is powered through an always-on power
+>       domain, therefore it never loses context.
+> 
+> and (surprisingly?) the absence of this property seems to be the
+> norm...
 
->>
->>>  arch/arm/mach-hisi/Kconfig              |   9 +
->>>  4 files changed, 568 insertions(+)
->>>  create mode 100644 arch/arm/boot/dts/hi3521a-rs-dm290e.dts
->>>  create mode 100644 arch/arm/boot/dts/hi3521a.dtsi
->>>
->>> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
->>> index 7c16f8a2b738..535cef3b14ab 100644
->>> --- a/arch/arm/boot/dts/Makefile
->>> +++ b/arch/arm/boot/dts/Makefile
->>> @@ -242,6 +242,8 @@ dtb-$(CONFIG_ARCH_GEMINI) += \
->>>  	gemini-ssi1328.dtb \
->>>  	gemini-wbd111.dtb \
->>>  	gemini-wbd222.dtb
->>> +dtb-$(CONFIG_ARCH_HI3521A) += \
->>> +	hi3521a-rs-dm290e.dtb
->>>  dtb-$(CONFIG_ARCH_HI3xxx) += \
->>>  	hi3620-hi4511.dtb
->>>  dtb-$(CONFIG_ARCH_HIGHBANK) += \
->>> diff --git a/arch/arm/boot/dts/hi3521a-rs-dm290e.dts b/arch/arm/boot/dts/hi3521a-rs-dm290e.dts
->>> new file mode 100644
->>> index 000000000000..b24fcf2ca85e
->>> --- /dev/null
->>> +++ b/arch/arm/boot/dts/hi3521a-rs-dm290e.dts
->>> @@ -0,0 +1,134 @@
->>> +// SPDX-License-Identifier: GPL-2.0-or-later
->>> +/*
->>> + * Copyright (C) 2017-2022 Marty Plummer <hanetzer@startmail.com>
->>> + */
->>> +
->>> +#include "hi3521a.dtsi"
->>> +
->>> +/ {
->>> +	model = "RaySharp RS-DM-290E DVR Board";
->>> +	compatible = "raysharp,rs-dm-290e", "hisilicon,hi3521a";
->>
->> Please run checkpatch and fix the warnings.
->>
-> sunova. I could have sworn I had my editor setup right for whitespace
-> and such.
+That's the *timer* (i.e. the comparator logic within each CPU which
+fires an interrupt), not the *counter* (i.e. the incrementing value fed
+by a clock). What this is trying to say is whether that can be relied
+upon to cause a wakeup while the CPU is in a low-power state, or whether
+it cannot (and hence SW needs to use another timer for the wakeup).
 
-It's not about whitespace but:
+It's legitimate for each timer to not be in an always-on power domain
+because it is part of each CPU, whereas the counter is global to the
+system.
 
-WARNING: DT compatible string "raysharp,rs-dm-290e" appears
-un-documented -- check ./Documentation/devicetree/bindings/
+We can clear up the wording here since it's apparently confusing.
 
+> And:
+> 
+>   arm,no-tick-in-suspend:
+>     type: boolean
+>     description: The main counter does not tick when the system is in
+>       low-power system suspend on some SoCs. This behavior does not match the
+>       Architecture Reference Manual's specification that the system
+> counter "must
+>       be implemented in an always-on power domain."
 
-WARNING: DT compatible string vendor "raysharp" appears un-documented --
-check ./Documentation/devicetree/bindings/vendor-prefixes.yaml
+This is admittedly a workaround for an integration bug, but it's quite
+different and only affects the time jump that can be observed when going
+into suspend an exiting from it. Whenever software is running the
+counter is incrementing.
 
+> So there's already precedent for clocks that can be disabled.
 
-(...)
+There's precedent for the clock being disabled in a specific deep sleep
+state, not when SW is actively running.
 
-> Ah gotcha.
->>> +	};
->>> +
->>> +	xtal24m: xtal24m {
->>
->> Generic node names, so one of: "clock-0" "clock-xtal24m"
->>
-> Will do.
->>> +		compatible = "fixed-clock";
->>> +		#clock-cells = <0>;
->>> +		clock-frequency = <24000000>;
->>
->> This does not look like property of the SoC, so should be defined by boards.
->>
-> SoC requires a 24Mhz osc (and a 32khz one as well), so it'll always be
-> present regardless.
+> > Worse case, this belongs to the boot firmware, not the kernel,
+> > and I don't think this should be described in the DT.
+> 
+> "DT describes hardware, not software policy"?
 
-Sure, but DTS/DTSI describes hardware. If the clock is not in the SoC
-but on the board, it should be in the board DTSI. Many times such clocks
-are put partially in DTSI and only their specific parts - frequency - in
-the board DTS, to indicate that implementation is relevant to the board,
-not SoC.
+It's still describing the HW. There's plenty of other always-on stuff
+that we don't describe because for all intents and purposes it is always
+on.
 
->>> +	};
->>> +
->>> +	clk_3m: clk_3m {
->>
->> No underscores in node names, generic node name (see above).
->>
-> early debugging clock, will be removed.
->>> +		compatible = "fixed-clock";
->>> +		#clock-cells = <0>;
->>> +		clock-frequency = <3000000>;
->>
->> This does not look like property of the SoC, so should be defined by boards.
+Note that this being always-on isn't just a Linux thing; that affects
+plenty of other SW which may run and it's an *architectural property*
+that's apparently being violated.
 
-(...)
-
->>
->>> +			status = "disabled";
->>> +		};
->>> +
->>> +		dual_timer0: timer@12000000 {
->>> +			compatible = "arm,sp804", "arm,primecell";
->>> +			interrupts = <GIC_SPI 1 IRQ_TYPE_LEVEL_HIGH>,
->>> +				     <GIC_SPI 1 IRQ_TYPE_LEVEL_HIGH>;
->>
->> A bit weird interrupts... the same?
->>
-> Yes, though I am aware that some sp804 timers do have a separate
-> interrupts per pair.
-
-They have also separate interrupts, one combined interrupt or one sole
-interrupt. However what you described here is one interrupt line
-physically connected to two separate pins on the device yet still not
-being somehow shared (shared as "combined interrupt"). I don't think it
-is your case...
-
-
-
-Best regards,
-Krzysztof
+Thanks,
+Mark.
