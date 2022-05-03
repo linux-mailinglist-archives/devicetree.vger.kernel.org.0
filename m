@@ -2,124 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 913F2518C22
-	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 20:20:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BA01A518C72
+	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 20:33:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241310AbiECSYG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 May 2022 14:24:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41638 "EHLO
+        id S233768AbiECShY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 May 2022 14:37:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55722 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241275AbiECSXv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 14:23:51 -0400
-Received: from mout.kundenserver.de (mout.kundenserver.de [217.72.192.73])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A66FF0D;
-        Tue,  3 May 2022 11:20:17 -0700 (PDT)
-Received: from mail-wm1-f43.google.com ([209.85.128.43]) by
- mrelayeu.kundenserver.de (mreue107 [213.165.67.113]) with ESMTPSA (Nemesis)
- id 1N2mWA-1ny6Ed2AJw-0138ux; Tue, 03 May 2022 20:20:15 +0200
-Received: by mail-wm1-f43.google.com with SMTP id 125-20020a1c1983000000b003941f354c62so1743521wmz.0;
-        Tue, 03 May 2022 11:20:15 -0700 (PDT)
-X-Gm-Message-State: AOAM530YD1h5v1azA72O6Mqa+tfzNkHhqmZ5OXPlvW5kwsjCWJc0yBTC
-        rwwwuLSPN/fFv4Si/tKZG7WMLpn+fYyI3lDgT6w=
-X-Google-Smtp-Source: ABdhPJzdLAi6LusGzpUmQqAEN7Ep7tmyrMxpq73q7upJ6tCWBfIvFV42Z7BCJneune7LbBwSqLK48yMk9eyVnxECpN8=
-X-Received: by 2002:a05:600c:3798:b0:394:454a:df74 with SMTP id
- o24-20020a05600c379800b00394454adf74mr4515023wmr.174.1651602015176; Tue, 03
- May 2022 11:20:15 -0700 (PDT)
+        with ESMTP id S241518AbiECShX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 14:37:23 -0400
+Received: from mail-oa1-f50.google.com (mail-oa1-f50.google.com [209.85.160.50])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05C253F8A6
+        for <devicetree@vger.kernel.org>; Tue,  3 May 2022 11:33:43 -0700 (PDT)
+Received: by mail-oa1-f50.google.com with SMTP id 586e51a60fabf-e656032735so18084707fac.0
+        for <devicetree@vger.kernel.org>; Tue, 03 May 2022 11:33:42 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=JD995VbXr1R+3XcKhoh2SmymKHzONLstnrCva28itOI=;
+        b=6N2IYenupqOhHoSCH+0C8Uwl2DdRFkQkSa536QVk1abvjv7Ax8sFnSD3g2fkLNXfd6
+         R3Cetec6wmPznM/XLFFki0aDo8Nm/ky8BbMCk9ttfeTIEA8Dypfcxn349IL0kk8ijXRZ
+         Wntw7nU4WXR0poF8Wuihz3w3LngeROO4MktsY+R3quQRkI2dlwGwBae/QCVasNAk3gVH
+         XHHuULZTZHMGL9GvG27uOG/UOhn+Q9m/uAe5fP45YO9bfXHW5AvtgaaXHHYBdfoM4nx0
+         JJVUpRCducn8MlVvYe5uu+KTlGLJyXXwEs4ascD2ZeRuI0Zc6t3FylsOY1pDAzqHC1d6
+         i/ng==
+X-Gm-Message-State: AOAM530q9An9J4h6FwjrI7eG3AIm+svDwsEWP0FxouoQXyvAJSYOwb2y
+        d3BCisxwd4t2BR/2mpk034V/rm4J9A==
+X-Google-Smtp-Source: ABdhPJxdLisMK7ntzYydEgULiZRYr/HCY5hCKYuOOWevIs2jkYangRQ/UUvLBeAa3/c5/hXVkcOfHw==
+X-Received: by 2002:a05:6870:e9a0:b0:e6:9d2:ff42 with SMTP id r32-20020a056870e9a000b000e609d2ff42mr2404393oao.7.1651602822225;
+        Tue, 03 May 2022 11:33:42 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id dt48-20020a0568705ab000b000e686d13875sm7178556oab.15.2022.05.03.11.33.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 03 May 2022 11:33:41 -0700 (PDT)
+Received: (nullmailer pid 4011087 invoked by uid 1000);
+        Tue, 03 May 2022 18:33:41 -0000
+Date:   Tue, 3 May 2022 13:33:41 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Daniel Kaehn <kaehndan@gmail.com>
+Cc:     tiwai@suse.com, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v5 1/2] dt-bindings: sound: Add generic serial MIDI device
+Message-ID: <YnF1hYpYvXrDtRyV@robh.at.kernel.org>
+References: <20220502150404.20295-1-kaehndan@gmail.com>
+ <20220502150404.20295-2-kaehndan@gmail.com>
 MIME-Version: 1.0
-References: <20220502204050.88316-1-nick.hawkins@hpe.com> <20220502204050.88316-7-nick.hawkins@hpe.com>
- <CAK8P3a2rzmVrpnf2r73iXB=T06OMOsgwyq1i8z7swuOW-q88eQ@mail.gmail.com> <PH0PR84MB17180215774D59A3EC277B1388C09@PH0PR84MB1718.NAMPRD84.PROD.OUTLOOK.COM>
-In-Reply-To: <PH0PR84MB17180215774D59A3EC277B1388C09@PH0PR84MB1718.NAMPRD84.PROD.OUTLOOK.COM>
-From:   Arnd Bergmann <arnd@arndb.de>
-Date:   Tue, 3 May 2022 20:19:58 +0200
-X-Gmail-Original-Message-ID: <CAK8P3a1q6pJ6pdZav0rWJFR2dAWwz8mpiFRO6vc+TA+L-Sk5uQ@mail.gmail.com>
-Message-ID: <CAK8P3a1q6pJ6pdZav0rWJFR2dAWwz8mpiFRO6vc+TA+L-Sk5uQ@mail.gmail.com>
-Subject: Re: [PATCH v6 7/8] ARM: dts: Introduce HPE GXP Device tree
-To:     "Hawkins, Nick" <nick.hawkins@hpe.com>
-Cc:     Arnd Bergmann <arnd@arndb.de>,
-        "Verdun, Jean-Marie" <verdun@hpe.com>,
-        Joel Stanley <joel@jms.id.au>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Olof Johansson <olof@lixom.net>, SoC Team <soc@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        DTML <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Provags-ID: V03:K1:zjREcXZbYFvUQ1Kcbd5k/VaOHL6Q2KrD6PF5KfRSnLW1L2b2Fh5
- yz1+YwcGsnuBr/eXzkR0U6igH5/MgIIIETMATAzWAW3pKErbc1y9GyXMgNYy7qcDD9WaZ0f
- 76z2wBb58xn9uq1yIXo0iv5vmNmvb78F7i8bAdbRBwgVp5gw6L4/+K78PxKC2/gMyU3oXAJ
- YnLlzdxjcg7HtkiEzsUig==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:PpOT044kYBY=:EqwI11zsy6OWP5gNaK00fW
- PczSOBKHmK7isX5ou14NFqidxhe4xUIJDVm3GUILOE/zZNyfIES2CPoGTm/G0XKM0RQR8+iza
- 9f2IkzA4Tdsh87yars3y1GooHHBrid5AWLXCWdyvYWqnk0XClqmYBfgf1/aYV55vGWYh/fVHS
- lPo1982p+btuo3UF785FUp+Lnh31i9XyoroXgRv2N5pCcTAEqcOXrxL5cElWuloaeg3o7nK3e
- L7rWOCx9pUEQNtC8+/+7PHtZjd5ghd1qWDh0wPwMuzt4IsI07nV0pM4PbG6hyzYSt/D5mNve/
- 1/PRXnWLMIIknbJ5e7fBVHZ7fTM5Bsb3xLDF5mAXA8sJdgzNrl1fZqKUCHlBg8+vXI04qi+Gc
- y36k/UmkJSNk3+/J5LCQIn2Odgm/iaqri3CQTbLVeZgV0cZtOau3yGoeoFnLqFLXf1ZiKZET9
- t4ZGb1yqJtyvDT6PvHK7xjaYxkK85uyVJAYDxnmVldqHdhAvrx8P3IUNrkUPw8Cx4Qmj7YZem
- 1L039uRgZ+JrMG+vIwIU3/yjm7bQ76Xfz1DQ/lyMIb5DiG2aAGHOXuoeyYUsDcY7E1og23bMp
- d29JAyuLRH6pebs2FbTsGl2UEhr7hJBbwIsb5GmfWnKZAcmTqcLX1zS546yucP41oLCCDGJsq
- EVP1xlUuaheVyQDZm1XIg7xCleGwEJRUdzPC/s93nyYYsaQi958fR+gE540x0LA/Nvc4=
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220502150404.20295-2-kaehndan@gmail.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 3, 2022 at 5:07 PM Hawkins, Nick <nick.hawkins@hpe.com> wrote:
-> On Mon, May 2, 2022 at 10:40 PM <nick.hawkins@hpe.com> wrote:
-> > > +++ b/arch/arm/boot/dts/hpe-bmc-dl360gen10.dts
->
-> > In the board specific file, you normally have "aliases", "chosen" and "memory"
-> > nodes that define e.g. which uart is used for the console.
->
-> This is what I have come up with.
->
-> / {
->         #address-cells = <1>;
->         #size-cells = <1>;
->         compatible = "hpe,gxp-dl360gen10", "hpe,gxp";
->         model = "Hewlett Packard Enterprise ProLiant dl360 Gen10";
->
->         aliases {
->                 serial2 = &uartc;
->         };
+On Mon, May 02, 2022 at 10:04:03AM -0500, Daniel Kaehn wrote:
+> Adds dt-binding for a Generic MIDI Interface using a serial device.
+> 
+> Signed-off-by: Daniel Kaehn <kaehndan@gmail.com>
+> ---
+>  .../devicetree/bindings/sound/serialmidi.yaml | 46 +++++++++++++++++++
+>  1 file changed, 46 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/sound/serialmidi.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/serialmidi.yaml b/Documentation/devicetree/bindings/sound/serialmidi.yaml
+> new file mode 100644
+> index 000000000000..06a894e1b91d
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sound/serialmidi.yaml
+> @@ -0,0 +1,46 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/sound/serialmidi.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Generic Serial MIDI Interface
+> +
+> +maintainers:
+> +  - Daniel Kaehn <kaehndan@gmail.com>
+> +
+> +description: 
+> +  Generic MIDI interface using a serial device. This denotes that a serial device is
+> +  dedicated to MIDI communication, either to an external MIDI device through a DIN5
+> +  or other connector, or to a known hardwired MIDI controller. This device must be a
+> +  child node of a serial node.
+> +
+> +  Can only be set to use standard baud rates corresponding to supported rates of the
+> +  parent serial device. If the standard MIDI baud of 31.25 kBaud is needed 
+> +  (as would be the case if interfacing with arbitrary external MIDI devices),
+> +  configure the clocks of the parent serial device so that a requested baud of 38.4 kBaud
+> +  resuts in the standard MIDI baud rate, and set the 'current-speed' property to 38400.
 
-It's a bit unusual to have a serial2 uart when there is no serial0 or serial1.
-Most boards that only have a single uart label it either '0' or '1'.
->
->         chosen {
->                 bootargs = "console=ttyS2,115200";
->         };
+s/resuts/results/
 
-Use 'stdout-path' to pick the console device here, not the argument
-string.
+> +
+> +properties:
+> +  compatible:
+> +    const: serialmidi
 
->
->         memory@40000000 {
->                 device_type = "memory";
->                 reg = <0x40000000 0x20000000>;
->         };
-> };
+serial-midi would be a bit more readable. (And then align the filename 
+with that.)
 
+> +
+> +  current-speed:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
 
-> > > +       memory@40000000 {
-> > > +               device_type = "memory";
-> > > +               reg = <0x40000000 0x20000000>;
-> > > +       };
->
-> > If the memory is outside of the SoC, it should not be here.
->
-> It is part of the SoC. Should I put it in the axi bus instead? If so would
-> I need to create an axi for the .dts as well?
+Already has a type applied by serial.yaml, so you can drop.
 
-That's fine then. The memory node has to be at the root of the DT, not in a
-child node. It's just that most SoCs have the memory in a separate chip
-on the board, rather than inside of the SoC itself, so it would be part
-of the board file. If the gxp package includes the memory and it's not
-an option for the board design, you can leave it in the .dtsi file.
-
-         Arnd
+> +    description: Baudrate to set the serial port to when this MIDI device is opened.
+> +      If not specified, the parent serial device is allowed to use its default baud.
+> +
+> +required:
+> +  - compatible
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    serial {
+> +        midi {
+> +            compatible = "serialmidi";
+> +            current-speed = <38400>;
+> +        };
+> +    };
+> -- 
+> 2.33.0
+> 
+> 
