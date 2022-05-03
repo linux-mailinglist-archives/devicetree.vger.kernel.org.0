@@ -2,73 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4EC4751888F
-	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 17:29:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 682AD518897
+	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 17:31:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238519AbiECPdU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 May 2022 11:33:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43446 "EHLO
+        id S234300AbiECPfO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 May 2022 11:35:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48390 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238511AbiECPdT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 11:33:19 -0400
-Received: from mail-io1-xd32.google.com (mail-io1-xd32.google.com [IPv6:2607:f8b0:4864:20::d32])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4557628E1A
-        for <devicetree@vger.kernel.org>; Tue,  3 May 2022 08:29:47 -0700 (PDT)
-Received: by mail-io1-xd32.google.com with SMTP id e194so19311179iof.11
-        for <devicetree@vger.kernel.org>; Tue, 03 May 2022 08:29:47 -0700 (PDT)
+        with ESMTP id S238537AbiECPfN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 11:35:13 -0400
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 149DF2CC91
+        for <devicetree@vger.kernel.org>; Tue,  3 May 2022 08:31:41 -0700 (PDT)
+Received: by mail-ed1-x536.google.com with SMTP id t5so9643667edw.11
+        for <devicetree@vger.kernel.org>; Tue, 03 May 2022 08:31:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=rPC8+21dGVPrqmLTCbG4CdID6aBZE3p2csZDn91eaqM=;
-        b=D5jX00kZ19+ALU+47QbVZQSduLJxg5L8nwz4y/EPRt0zP2KgYTt9qsvaQ+Ph89HGm0
-         EA0VmTJDTS7hsvjcxX7QMqtdaac7cNeHVZE0WUSPAcjyXzUrGEi5uOSjifoduBQhMFHU
-         fNAXQ4kMt+Cl8L4gawpNUTDTyl5zzXwIk9Qgg=
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=z92TtqNZrx4pGwhJNSa83P5rI6YqvZPEHu/3Ye9xYhQ=;
+        b=hIG82t34MdZuo5O6xnUk6Pjq693373tUzvKwWHDTGxAQul28qo+EG5t7qNxyGw2fMJ
+         YBTW+w9vF3TrSCGTOpmdrKN0//ynsXkLypnUJ30leWymDLHv+pa8evwsqEJm2flzI1/F
+         9io3qXEB/JN+HcqFOXSEXgUhS41DMgL3SYLXJvs41lYbw8op3AwgVQ9ndtWYLzugWZWu
+         wDLG/q9JuJQZRvQMKcUS0ivk56MMQ0ub84g8tOb67Up7HX/NguFZc+sYZ04kiDbSMQCN
+         STF14wwYoEy3+YC7BihXHnG+ois8p9/mjSh0R6r2hrh68sB49KmFETslz9Np6HTEblJV
+         DYyw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=rPC8+21dGVPrqmLTCbG4CdID6aBZE3p2csZDn91eaqM=;
-        b=Zadrwbd03uLAZTdq0Qvx2nUi2EG9JHUEvaxQdy4B7A3xcPbSeuQgi2hxTT3erOnEDJ
-         /PafQOfk36kOtxxwEXNcXL6+cSsDWfMTNrg9NKABLfdnVHHtmNnNG8Te/XIHCmvN4g8a
-         Ke4UeJEVGtGJK2gOXTpDMoAosFg/ZRze82OJOF5YPj5AyaUxRABdkhst1gcRk6+6hRS4
-         dGMa4Lp6dtp75lgpRIv2X/tPE8luZ2iT0mncC7O9PFlWN+KlsjdyXRVqFhJqijoiedLw
-         pUjlL0nGrKQ90Je3WmBLqBMFl+KrQ3W7RSyD8vjjggkFhGUFutkPKOYbvHEDvmcN/o6l
-         bReA==
-X-Gm-Message-State: AOAM532dvrSuF5Tz1hzDmBv7/8ne7TcmKVTR1U3vhp6njIoRn4K5oIqP
-        nld2Vj7/jLFGF89+GFVxdo9QhZ4a2evko5lG
-X-Google-Smtp-Source: ABdhPJz5lQ5HuP8g60E0iFdW5nTq+BDfp/dbUiccTS46KyQTdLjFti8XWXVNIJZQFDYVO0meHndzLg==
-X-Received: by 2002:a02:bb87:0:b0:32a:f103:60ce with SMTP id g7-20020a02bb87000000b0032af10360cemr7102468jan.223.1651591786446;
-        Tue, 03 May 2022 08:29:46 -0700 (PDT)
-Received: from mail-io1-f53.google.com (mail-io1-f53.google.com. [209.85.166.53])
-        by smtp.gmail.com with ESMTPSA id z16-20020a6b0a10000000b0065a47e16f42sm3031658ioi.20.2022.05.03.08.29.44
-        for <devicetree@vger.kernel.org>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=z92TtqNZrx4pGwhJNSa83P5rI6YqvZPEHu/3Ye9xYhQ=;
+        b=fjIK9F3iLGqxKcPoYrsovMJ0WmPMa/x37KAMxujC4FSqDNr+b+IZ8CQi38f0FkS+xD
+         qZV0u+fN9K4ddd1JxtyzeHG9Cm1KkhY5O7B802lF7naiQBHP9igOKEPG9+l267teevqF
+         oz3NR3HKx6MQqi6uUW/6USI6rtT0O75eg0XUhpq8Yzlp0/gDi0pKo8d5ExfQzn1OzhkQ
+         oufgZUd9hR9Xk3v7Z6MtpfMGK2PfKqD934U0vQBTQtd6ynA4TmKoT9EOUF7TJwHBX9rv
+         +Kjpo6M0jn/h7mDRnT3Q9ztlWC0kGAP1FBN/9i9pKeABOL9z0eO3v8Zmkf3IaRGC/Njf
+         NPwQ==
+X-Gm-Message-State: AOAM533RthmEFhG0BW9JAWdIDGf8O5WkKC6SZtb/+gnFo88A/z+J40sy
+        YqpAW05fAAz4pUx8N6WcR9lgaI+eHNV+lA==
+X-Google-Smtp-Source: ABdhPJw/t+sBsY7vQEN5qF5aRPB4PGFzv75oJlU5R9Ei2VuVTB7gvsbJih5P1SOe/TqyrgP1YMvZ5w==
+X-Received: by 2002:a05:6402:b4d:b0:425:ec4a:a37e with SMTP id bx13-20020a0564020b4d00b00425ec4aa37emr18324721edb.292.1651591899700;
+        Tue, 03 May 2022 08:31:39 -0700 (PDT)
+Received: from [192.168.0.205] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id er9-20020a170907738900b006f3ef214e6asm4692722ejc.208.2022.05.03.08.31.38
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 03 May 2022 08:29:45 -0700 (PDT)
-Received: by mail-io1-f53.google.com with SMTP id z26so19318484iot.8
-        for <devicetree@vger.kernel.org>; Tue, 03 May 2022 08:29:44 -0700 (PDT)
-X-Received: by 2002:a02:a98f:0:b0:315:19db:27a3 with SMTP id
- q15-20020a02a98f000000b0031519db27a3mr6898987jam.184.1651591783652; Tue, 03
- May 2022 08:29:43 -0700 (PDT)
+        Tue, 03 May 2022 08:31:38 -0700 (PDT)
+Message-ID: <dbcb45d6-d495-1e5d-b7ad-963096e5fe9d@linaro.org>
+Date:   Tue, 3 May 2022 17:31:37 +0200
 MIME-Version: 1.0
-References: <1650556567-4995-1-git-send-email-quic_vnivarth@quicinc.com>
-In-Reply-To: <1650556567-4995-1-git-send-email-quic_vnivarth@quicinc.com>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Tue, 3 May 2022 08:29:23 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=WbHJq_2gcpcuNHwBLFsi2UZR+JetWFfdZBvwD68RSnEg@mail.gmail.com>
-Message-ID: <CAD=FV=WbHJq_2gcpcuNHwBLFsi2UZR+JetWFfdZBvwD68RSnEg@mail.gmail.com>
-Subject: Re: [V6 0/2] arm64: dts: qcom: Configure CTS pin to bias-bus-hold for bluetooth
-To:     Vijaya Krishna Nivarthi <quic_vnivarth@quicinc.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        quic_msavaliy@quicinc.com
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH 3/5] arm64: dts: qcom: sc7180: Add quackingstick dts files
+Content-Language: en-US
+To:     "Joseph S. Barrera III" <joebar@chromium.org>,
+        LKML <linux-kernel@vger.kernel.org>
+Cc:     Douglas Anderson <dianders@chromium.org>,
+        Alexandru M Stan <amstan@chromium.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+References: <20220430011402.1.If7c3471db53bea55213f7bcf17e9043084d3ac0c@changeid>
+ <20220430011402.3.Ic20d0c002ac5406b880cbdf9824739f38740926c@changeid>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220430011402.3.Ic20d0c002ac5406b880cbdf9824739f38740926c@changeid>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -77,37 +80,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Bjorn,
+On 30/04/2022 10:15, Joseph S. Barrera III wrote:
+> Quackingstick is a trogdor-based board. These dts files are copies from
+> the downstream Chrome OS 5.4 kernel, but with downstream bits removed.
+> 
+> Signed-off-by: Joseph S. Barrera III <joebar@chromium.org>
 
-On Thu, Apr 21, 2022 at 8:56 AM Vijaya Krishna Nivarthi
-<quic_vnivarth@quicinc.com> wrote:
->
-> WLAN rail was leaking power during RBSC/sleep even after turning BT off.
-> Change pinctrl configuration to handle same.
->
-> Signed-off-by: Vijaya Krishna Nivarthi <quic_vnivarth@quicinc.com>
-> ---
-> v6: add code comments about how bias-bus-hold could save power
-> v5: modify subject to include bluetooth
-> v4: modify subject of each patch to indicate what it is applying to
-> v3: apply same change to active state and other sc7280*.dts* as well
-> v2: used bias-bus-hold as per review comments
-> v1: intial patch used bias-disable for sleep pinctrl in sc7280-idp only
-> ---
->
-> Vijaya Krishna Nivarthi (2):
->   arm64: dts: qcom: sc7280-idp: Configure CTS pin to bias-bus-hold for
->     bluetooth
->   arm64: dts: qcom: sc7280-qcard: Configure CTS pin to bias-bus-hold for
->     bluetooth
->
->  arch/arm64/boot/dts/qcom/sc7280-idp.dtsi   | 18 ++++++++++++------
->  arch/arm64/boot/dts/qcom/sc7280-qcard.dtsi | 19 ++++++++++++++-----
->  2 files changed, 26 insertions(+), 11 deletions(-)
+(...)
 
-If the tree hasn't closed yet, I think these two patches are waiting
-to land and ready to go.
+> +/*
+> + * Google Quackingstick board device tree source
+> + *
+> + * Copyright 2021 Google LLC.
+> + *
+> + * SKU: 0x601 => 1537
+> + *  - bits 11..8: Panel ID: 0x6 (AUO)
+> + */
+> +
+> +#include "sc7180-trogdor-quackingstick.dtsi"
+> +
+> +/ {
+> +	model = "Google Quackingstick (rev0+)";
+> +	compatible = "google,quackingstick-sku1537", "qcom,sc7180";
 
-Thanks!
+Here and in other patches you keep adding undocumented board compatibles.
 
--Doug
+
+Best regards,
+Krzysztof
