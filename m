@@ -2,109 +2,176 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A9D69518AF4
-	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 19:22:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 51F8D518B00
+	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 19:24:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234695AbiECRZt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 May 2022 13:25:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40306 "EHLO
+        id S240285AbiECR2O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 May 2022 13:28:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41676 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234526AbiECRZs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 13:25:48 -0400
-Received: from mail-qv1-xf33.google.com (mail-qv1-xf33.google.com [IPv6:2607:f8b0:4864:20::f33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23E632127E;
-        Tue,  3 May 2022 10:22:16 -0700 (PDT)
-Received: by mail-qv1-xf33.google.com with SMTP id kd11so12699346qvb.2;
-        Tue, 03 May 2022 10:22:16 -0700 (PDT)
+        with ESMTP id S240284AbiECR2J (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 13:28:09 -0400
+Received: from mail-oa1-x2f.google.com (mail-oa1-x2f.google.com [IPv6:2001:4860:4864:20::2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46B8E3D487
+        for <devicetree@vger.kernel.org>; Tue,  3 May 2022 10:24:36 -0700 (PDT)
+Received: by mail-oa1-x2f.google.com with SMTP id 586e51a60fabf-e2442907a1so17836329fac.8
+        for <devicetree@vger.kernel.org>; Tue, 03 May 2022 10:24:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=/xgS2I7wlbvhI/PcSukCCU0u23OSCzvebEggEsNanqg=;
-        b=FMyD0QAsPQiW6ssE3TMDKhPdWH1XfJJy1M3JAzOxRmRyhwz79Z17qOCffHrru2D/Kj
-         mUeqhgFqg2JZBI994JdWRMY4O9X8YGKtB8DhfAIIt3+0XGD6SOkqHzxer8JuOqB+GRB1
-         EYId4xjdJaqTxgA4xn6Pb9megxmi61qGXiDjyZ15+eryRFq8DA5x1gRmZPE/1t2gLdKn
-         EaWIVydG6UF84Xth3KZNdO+jNc1nTkdv1gqzrTeRnaakQ2m7IPk5Tl7OAv9IuY+OmBzm
-         JUKSjBP+S5eDR7GTDKd0987ngeHTkqhyWasajosp6iViH7/liuf/dDC6xpKCROxeUJsG
-         XIuw==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=CanGUDdfhEs76ZTWOvL6WUlp0ElqSKFQT4n1DiAHFqk=;
+        b=kHfnN8Umh4i/iD6UEc5/64MWyrqjKPwTWKNYSFeDp8kyOrC2B/ea2GDNL6zo1FfWpV
+         WtvBba+zmGIkCufOtdXHKtAqyV9HQTtN+HH26S9nMTXgNoBRGpg8ijbd4sEOshk3Op5b
+         6tQ/iaIYJm5ty+AiAMvUAkpwREnix80i8zHRgA2fX3nSWTtuyIsX7VQFKHwyHeAOcVP5
+         qYunaVKNZ6+9uNpa5XJgYVQniwX7nRpTQyKbwzcZysKXnZTHm1EDIXlELRcg93nzlCzH
+         8IjDGSSIiuVzO4eE+ltgCOkZH32zZYHIpJbtm2WR8Pg03Fr53/HPLe4XdgkS/BmuFPTm
+         FDSw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=/xgS2I7wlbvhI/PcSukCCU0u23OSCzvebEggEsNanqg=;
-        b=Dro36Yln57MuCZdDoT5R2tsGQA0yaHJqsZZj+chqIg1zn//riN93EwhEkqYR7EZAD+
-         vbREXBy76n8f9kgW86ZdecBKY04UWWZvsgD36/Y940yMxFGhpBsCg5ktI0k4ItuAhv1J
-         Pa9JXiTJ0bYTuq+rOPYcILUfvSJyGVCUZ1QSCmZceKELEi+CMdUtTrQEWQDZLzzjSOGp
-         q2VH3ZIObFjnKDjvh2UrvafipvQZYv3W98a5WLngmUVbSs/U1XzXPoxVGDlNUAcjzQcM
-         ZLDkz7U0A4CWwQCaWFmOY/76/zAtdP/JVp0R/2BozB3AzkswyF5cQ+nFjtqvc7cjH15h
-         q4Zg==
-X-Gm-Message-State: AOAM533s8CDGUlet+y+8AGuAHTCoUoCZk+S0rKnhBctr3zywq9/k6i+i
-        pTObRmqRz7NtKOAr2V6XNY0=
-X-Google-Smtp-Source: ABdhPJzaXt4zhQUxmdwEzXmZOw94i2Z4DV6CmwbanjTBIO0qxaLD41DhWkMH3g0qRyS2Sfs5+THnrQ==
-X-Received: by 2002:a05:6214:1946:b0:45a:7d74:5207 with SMTP id q6-20020a056214194600b0045a7d745207mr12378649qvk.43.1651598535326;
-        Tue, 03 May 2022 10:22:15 -0700 (PDT)
-Received: from ?IPV6:2600:1700:2442:6db0:f97a:8e0e:58ed:5519? ([2600:1700:2442:6db0:f97a:8e0e:58ed:5519])
-        by smtp.gmail.com with ESMTPSA id b7-20020a05620a118700b0069fc13ce232sm6075741qkk.99.2022.05.03.10.22.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 03 May 2022 10:22:15 -0700 (PDT)
-Message-ID: <803917a9-3622-1ffb-548e-6347d8b2dcae@gmail.com>
-Date:   Tue, 3 May 2022 12:22:13 -0500
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=CanGUDdfhEs76ZTWOvL6WUlp0ElqSKFQT4n1DiAHFqk=;
+        b=t6UrZ99PVTq4GGU3zrXZQhW9KEGwFhhNWbV6ly2eaOxzEAex/Lzu6PIdsoxqIgYpco
+         ors+11pf3X/uNRB+dMeBNIXNAxT2HG0whytVTgQ51qL6Qj+Ak2Z3oW8isW9Upolk7fJ5
+         6cjuolqEdSq8WcvP/tAguft+OvsSNjcusSE8iTbwkfwb7I2KnmFnG1uVLlYhqqkHpjti
+         7pY370sjUqqxq4qcwyUnS32x29nTOvh6coxZSpO8XbHH83tKm5iPWQiu+a1AjsXVtPv0
+         1p7xj1/HXL3VX7utxVU1HunF44X05rowmjJw/0NMqY7Jq2SbFYeut2yopLTTrhDpGGmd
+         pLVA==
+X-Gm-Message-State: AOAM531f8Iyisg6kT729CHluWRRfid13ly2TT9+LgjtpUaJhItGNCg5I
+        q5CzKYx7l9/G9tf2s9RqxBfadw==
+X-Google-Smtp-Source: ABdhPJwjwIDgVBfDq5SUFY1KN95N92pqKI4z57riTKlpijF6mveXktdHp6ZD8ze10wT+gPezQcxhzg==
+X-Received: by 2002:a05:6870:d254:b0:db:12b5:da3 with SMTP id h20-20020a056870d25400b000db12b50da3mr2183788oac.211.1651598675425;
+        Tue, 03 May 2022 10:24:35 -0700 (PDT)
+Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id eg20-20020a056870989400b000e686d1387asm7158089oab.20.2022.05.03.10.24.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 03 May 2022 10:24:34 -0700 (PDT)
+Date:   Tue, 3 May 2022 12:24:30 -0500
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Robert Foss <robert.foss@linaro.org>
+Cc:     agross@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
+        robh+dt@kernel.org, krzk+dt@kernel.org, jonathan@marek.ca,
+        tdas@codeaurora.org, anischal@codeaurora.org,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Dmitry Baryshkov <dmityr.baryshkov@linaro.org>
+Subject: Re: [PATCH v2 5/8] dt-bindings: clock: Add Qcom SM8350 GPUCC bindings
+Message-ID: <YnFlTgd4dJsaMdSB@builder.lan>
+References: <20220503130448.520470-1-robert.foss@linaro.org>
+ <20220503130448.520470-5-robert.foss@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH 1/3] of: always populate a root node
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>,
-        =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
-Cc:     Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Allan Nielsen <allan.nielsen@microchip.com>,
-        Horatiu Vultur <horatiu.vultur@microchip.com>,
-        Steen Hegelund <steen.hegelund@microchip.com>,
-        Thomas Petazzoni <thomas.petazonni@bootlin.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Mark Brown <broonie@kernel.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Andrew Lunn <andrew@lunn.ch>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org
-References: <20220427094502.456111-1-clement.leger@bootlin.com>
- <20220427094502.456111-2-clement.leger@bootlin.com>
- <YnEx5/ni1ddIFCj9@robh.at.kernel.org>
-From:   Frank Rowand <frowand.list@gmail.com>
-In-Reply-To: <YnEx5/ni1ddIFCj9@robh.at.kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220503130448.520470-5-robert.foss@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 5/3/22 08:45, Rob Herring wrote:
-> On Wed, Apr 27, 2022 at 11:45:00AM +0200, Clément Léger wrote:
->> When enabling CONFIG_OF on a platform where of_root is not populated by
->> firmware, we end up without a root node. In order to apply overlays and
->> create subnodes of the root node, we need one. This commit creates an
->> empty root node if not present.
-> 
-> The existing unittest essentially does the same thing for running the 
-> tests on non-DT systems. It should be modified to use this support 
-> instead. Maybe that's just removing the unittest code that set of_root.
-> 
-> I expect Frank will have some comments.
-> 
+On Tue 03 May 08:04 CDT 2022, Robert Foss wrote:
 
-< snip >
+> Add device tree bindings for graphics clock controller for
+> Qualcomm Technology Inc's SM8350 SoCs.
+> 
+> Signed-off-by: Robert Foss <robert.foss@linaro.org>
+> Reviewed-by: Dmitry Baryshkov <dmityr.baryshkov@linaro.org>
+> ---
+>  .../devicetree/bindings/clock/qcom,gpucc.yaml |  2 +
+>  include/dt-bindings/clock/qcom,gpucc-sm8350.h | 52 +++++++++++++++++++
+>  2 files changed, 54 insertions(+)
+>  create mode 100644 include/dt-bindings/clock/qcom,gpucc-sm8350.h
+> 
+> diff --git a/Documentation/devicetree/bindings/clock/qcom,gpucc.yaml b/Documentation/devicetree/bindings/clock/qcom,gpucc.yaml
+> index 9ebcb1943b0a..4090cc7ea2ae 100644
+> --- a/Documentation/devicetree/bindings/clock/qcom,gpucc.yaml
+> +++ b/Documentation/devicetree/bindings/clock/qcom,gpucc.yaml
+> @@ -20,6 +20,7 @@ description: |
+>      dt-bindings/clock/qcom,gpucc-sm6350.h
+>      dt-bindings/clock/qcom,gpucc-sm8150.h
+>      dt-bindings/clock/qcom,gpucc-sm8250.h
+> +    dt-bindings/clock/qcom,gpucc-sm8350.h
+>  
+>  properties:
+>    compatible:
+> @@ -31,6 +32,7 @@ properties:
+>        - qcom,sm6350-gpucc
+>        - qcom,sm8150-gpucc
+>        - qcom,sm8250-gpucc
+> +      - qcom,sm8350-gpucc
+>  
+>    clocks:
+>      items:
+> diff --git a/include/dt-bindings/clock/qcom,gpucc-sm8350.h b/include/dt-bindings/clock/qcom,gpucc-sm8350.h
+> new file mode 100644
+> index 000000000000..d2294e0d527e
+> --- /dev/null
+> +++ b/include/dt-bindings/clock/qcom,gpucc-sm8350.h
+> @@ -0,0 +1,52 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only */
 
-This patch series is next on my list, after what I am currently working
-on (updating the .dts -> .dtso patch).  I may get to this today, but
-more likely it will be tomorrow.
+Dual license please (you have the permission to change this)
 
--Frank
+Regards,
+Bjorn
+
+> +/*
+> + * Copyright (c) 2019-2020, The Linux Foundation. All rights reserved.
+> + */
+> +
+> +#ifndef _DT_BINDINGS_CLK_QCOM_GPU_CC_SM8350_H
+> +#define _DT_BINDINGS_CLK_QCOM_GPU_CC_SM8350_H
+> +
+> +/* GPU_CC clocks */
+> +#define GPU_CC_AHB_CLK			0
+> +#define GPU_CC_CB_CLK			1
+> +#define GPU_CC_CRC_AHB_CLK		2
+> +#define GPU_CC_CX_APB_CLK		3
+> +#define GPU_CC_CX_GMU_CLK		4
+> +#define GPU_CC_CX_QDSS_AT_CLK		5
+> +#define GPU_CC_CX_QDSS_TRIG_CLK		6
+> +#define GPU_CC_CX_QDSS_TSCTR_CLK	7
+> +#define GPU_CC_CX_SNOC_DVM_CLK		8
+> +#define GPU_CC_CXO_AON_CLK		9
+> +#define GPU_CC_CXO_CLK			10
+> +#define GPU_CC_FREQ_MEASURE_CLK		11
+> +#define GPU_CC_GMU_CLK_SRC		12
+> +#define GPU_CC_GX_GMU_CLK		13
+> +#define GPU_CC_GX_QDSS_TSCTR_CLK	14
+> +#define GPU_CC_GX_VSENSE_CLK		15
+> +#define GPU_CC_HLOS1_VOTE_GPU_SMMU_CLK	16
+> +#define GPU_CC_HUB_AHB_DIV_CLK_SRC	17
+> +#define GPU_CC_HUB_AON_CLK		18
+> +#define GPU_CC_HUB_CLK_SRC		19
+> +#define GPU_CC_HUB_CX_INT_CLK		20
+> +#define GPU_CC_HUB_CX_INT_DIV_CLK_SRC	21
+> +#define GPU_CC_MND1X_0_GFX3D_CLK	22
+> +#define GPU_CC_MND1X_1_GFX3D_CLK	23
+> +#define GPU_CC_PLL0			24
+> +#define GPU_CC_PLL1			25
+> +#define GPU_CC_SLEEP_CLK		26
+> +
+> +/* GPU_CC resets */
+> +#define GPUCC_GPU_CC_ACD_BCR		0
+> +#define GPUCC_GPU_CC_CB_BCR		1
+> +#define GPUCC_GPU_CC_CX_BCR		2
+> +#define GPUCC_GPU_CC_FAST_HUB_BCR	3
+> +#define GPUCC_GPU_CC_GFX3D_AON_BCR	4
+> +#define GPUCC_GPU_CC_GMU_BCR		5
+> +#define GPUCC_GPU_CC_GX_BCR		6
+> +#define GPUCC_GPU_CC_XO_BCR		7
+> +
+> +/* GPU_CC GDSCRs */
+> +#define GPU_CX_GDSC			0
+> +#define GPU_GX_GDSC			1
+> +
+> +#endif
+> -- 
+> 2.34.1
+> 
