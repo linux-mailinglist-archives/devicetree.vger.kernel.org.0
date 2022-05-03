@@ -2,133 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F0FE551850D
-	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 15:05:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 63D24518528
+	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 15:09:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235420AbiECNJK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 May 2022 09:09:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49596 "EHLO
+        id S233093AbiECNNP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 May 2022 09:13:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33430 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235899AbiECNIp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 09:08:45 -0400
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0401E38BED
-        for <devicetree@vger.kernel.org>; Tue,  3 May 2022 06:05:06 -0700 (PDT)
-Received: by mail-ej1-x62b.google.com with SMTP id k23so33341620ejd.3
-        for <devicetree@vger.kernel.org>; Tue, 03 May 2022 06:05:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=YVZd3VX5yDYHZFsgN5vgd0V6QUlWGwER/REYExEMMg0=;
-        b=csNpYjc4eRvrfqmATKfLTAmBvnvnCMLWE/GsmHyi6IhYJC98WztvFdjZffp5n3FDS2
-         7EckGJqAWC/FlT/DzCFuRjoog4OHIRo4npSQUqjgopM9lf9Atxn+T9s8kJttJxf3tmif
-         qkZJhdGaMA2f/H2eFtgin8YaIY97Sc7RR04ek4Q7m6NCTsDrDBYNnRfEp8Z0PkLMJKT1
-         83X5i7OeJSSZ/qmcYY/xdH83H19Z32A/N+U0w0RwLWMVCCYbG0IfqOJTSn4xsInkEehg
-         WzX9xycipOxRnlfkXk8vEIXkTPrKWO7xDk09UosYpR8K4DhEJgNCRh5YAM3WyKjwITH3
-         +zkw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=YVZd3VX5yDYHZFsgN5vgd0V6QUlWGwER/REYExEMMg0=;
-        b=z7k0cX3negIVKeCty9z+KjUVfTTC5Fud8/LfFI/kT1g9jY4dM6mquTv38I3h06Gz9C
-         rCa0WCDEx4ueOx2oR6Fp3rl9WM/MeNK441GeUMa8OWKA39vxn9IVJIWWT6bxK27cfLzg
-         kh9Vjnq4r2Kq6H3A0ANsdf+baAra5AWxK7LVcrMgKBcFl0Y8vjquLDeiaB6bLKR0fxOa
-         AvieXYw+O7Tpsn36lJpi181r/1oioPBPbyDDpypVp8kfJgMVTOn6JbcI1WOjKLBa/jyw
-         C580mGOiAWdbO7UQHqCVPIoZc/AnETA7sVDAgYUNffLec52b9d3fDWlwP9HlrYAGCsci
-         JpLA==
-X-Gm-Message-State: AOAM53162KmHvgEzcVTbHmjB3I5BaBQi43EqhGdulRRijbNiqNKFbgAo
-        2IG4naqXYiPNuWUuMY/z32Jsgg==
-X-Google-Smtp-Source: ABdhPJxFX2C0kYEgEZ+7lW5XsDBQeItTn6bDarTIf1+s0VuH4ATzexJD24XtSi3M+wHrQMVybYQLZQ==
-X-Received: by 2002:a17:907:d22:b0:6f4:8766:2042 with SMTP id gn34-20020a1709070d2200b006f487662042mr3434137ejc.259.1651583105046;
-        Tue, 03 May 2022 06:05:05 -0700 (PDT)
-Received: from prec5560.. (freifunk-gw.bsa1-cpe1.syseleven.net. [176.74.57.43])
-        by smtp.gmail.com with ESMTPSA id y13-20020aa7cccd000000b0042617ba639asm7868782edt.36.2022.05.03.06.05.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 May 2022 06:05:04 -0700 (PDT)
-From:   Robert Foss <robert.foss@linaro.org>
-To:     bjorn.andersson@linaro.org, agross@kernel.org,
-        mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
-        krzk+dt@kernel.org, jonathan@marek.ca, tdas@codeaurora.org,
-        anischal@codeaurora.org, linux-arm-msm@vger.kernel.org,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Robert Foss <robert.foss@linaro.org>
-Subject: [PATCH v2 8/8] arm64: dts: qcom: sm8350: Add DISPCC node
-Date:   Tue,  3 May 2022 15:04:48 +0200
-Message-Id: <20220503130448.520470-8-robert.foss@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220503130448.520470-1-robert.foss@linaro.org>
-References: <20220503130448.520470-1-robert.foss@linaro.org>
+        with ESMTP id S232644AbiECNNO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 09:13:14 -0400
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF8A42B259;
+        Tue,  3 May 2022 06:09:41 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 243D8ux6043001;
+        Tue, 3 May 2022 08:08:56 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1651583336;
+        bh=3vIShAAoNpZLtMZtd0E1uDb7nunSsqnUnysIieloaUw=;
+        h=From:To:CC:Subject:Date:In-Reply-To:References;
+        b=FawXVzieqpKrR+PRu9xRSx1l1CLani8PFnfCochOQXzdHQrC/eZZGn/5NOQBImvES
+         VRis9xQZ5doy/zqNikcekh/Fez4L1AkSur1urCHCthQ/PLvUe9TGjZgSgKSzbqso0x
+         BSJ5vcKbpQQ1Eqe51rrovkVvIT2e5aA+AVFbtRXk=
+Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 243D8ueH082277
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 3 May 2022 08:08:56 -0500
+Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Tue, 3
+ May 2022 08:08:55 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Tue, 3 May 2022 08:08:55 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 243D8tUN096341;
+        Tue, 3 May 2022 08:08:55 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Santosh Shilimkar <ssantosh@kernel.org>,
+        Dave Gerlach <d-gerlach@ti.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Drew Fustini <dfustini@baylibre.com>
+CC:     Nishanth Menon <nm@ti.com>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>
+Subject: Re: (subset) [PATCH v3 0/2] soc: ti: wkup_m3_ipc: Add support for IO Isolation
+Date:   Tue, 3 May 2022 08:08:54 -0500
+Message-ID: <165158332118.6421.15725754853562188300.b4-ty@ti.com>
+X-Mailer: git-send-email 2.31.1
+In-Reply-To: <20220414192722.2978837-1-dfustini@baylibre.com>
+References: <20220414192722.2978837-1-dfustini@baylibre.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_SBL_CSS,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
-X-Spam-Level: *
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the dispcc clock-controller DT node for sm8350.
+Hi Drew Fustini,
 
-Signed-off-by: Robert Foss <robert.foss@linaro.org>
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- arch/arm64/boot/dts/qcom/sm8350.dtsi | 27 +++++++++++++++++++++++++++
- 1 file changed, 27 insertions(+)
+On Thu, 14 Apr 2022 12:27:22 -0700, Drew Fustini wrote:
+> TI AM437x SoCs support isolation of the IOs so that control is taken
+> from the peripheral they are connected to and overridden by values
+> present in the control register for that pad. This series documents a
+> new property 'ti,set-io-isolation' and updates the wkup_m3_ipc driver to
+> inform the CM3 firmware when that property is set.
+> 
+> A prerequisite for this series is:
+> [PATCH v2 0/2] soc: ti: wkup_m3_ipc: support vtt toggle
+> https://lore.kernel.org/lkml/20220409211215.2529387-1-dfustini@baylibre.com/T/
+> 
+> [...]
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8350.dtsi b/arch/arm64/boot/dts/qcom/sm8350.dtsi
-index 52428b6df64e..94c2519e9f48 100644
---- a/arch/arm64/boot/dts/qcom/sm8350.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8350.dtsi
-@@ -3,7 +3,9 @@
-  * Copyright (c) 2020, Linaro Limited
-  */
- 
-+#include <dt-bindings/interconnect/qcom,sm8350.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
-+#include <dt-bindings/clock/qcom,dispcc-sm8350.h>
- #include <dt-bindings/clock/qcom,gcc-sm8350.h>
- #include <dt-bindings/clock/qcom,rpmh.h>
- #include <dt-bindings/dma/qcom-gpi.h>
-@@ -2525,6 +2527,31 @@ usb_2_dwc3: usb@a800000 {
- 			};
- 		};
- 
-+		dispcc: clock-controller@af00000 {
-+			compatible = "qcom,sm8350-dispcc";
-+			reg = <0 0x0af00000 0 0x10000>;
-+			clocks = <&rpmhcc RPMH_CXO_CLK>,
-+				 <0>,
-+				 <0>,
-+				 <0>,
-+				 <0>,
-+				 <0>,
-+				 <0>;
-+			clock-names = "bi_tcxo",
-+				      "dsi0_phy_pll_out_byteclk",
-+				      "dsi0_phy_pll_out_dsiclk",
-+				      "dsi1_phy_pll_out_byteclk",
-+				      "dsi1_phy_pll_out_dsiclk",
-+				      "dp_phy_pll_link_clk",
-+				      "dp_phy_pll_vco_div_clk";
-+			#clock-cells = <1>;
-+			#reset-cells = <1>;
-+			#power-domain-cells = <1>;
-+
-+			power-domains = <&rpmhpd SM8350_MMCX>;
-+			power-domain-names = "mmcx";
-+		};
-+
- 		adsp: remoteproc@17300000 {
- 			compatible = "qcom,sm8350-adsp-pas";
- 			reg = <0 0x17300000 0 0x100>;
+I have applied the following to branch ti-drivers-soc-next on [1].
+Thank you!
+
+[2/2] soc: ti: wkup_m3_ipc: Add support for IO Isolation
+      commit: 1dcbae86ee669bdb0338954cd0136863f5c96c0a
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent up the chain during
+the next merge window (or sooner if it is a relevant bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+[1] git://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
 -- 
-2.34.1
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
 
