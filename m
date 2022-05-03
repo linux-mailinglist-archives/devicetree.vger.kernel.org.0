@@ -2,354 +2,176 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F3AD35182C6
-	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 12:57:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E2B825182D6
+	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 12:57:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234449AbiECLAm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 May 2022 07:00:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60470 "EHLO
+        id S230520AbiECLB0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 May 2022 07:01:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39658 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234642AbiECLAZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 07:00:25 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D409B33374;
-        Tue,  3 May 2022 03:56:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1651575404; x=1683111404;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version;
-  bh=PMOy70RBNnBmgt8xSvufyb66sxT3XFCpnTYpkreXFjM=;
-  b=moQ/4bz49L+DRDwRlPY/aU6VmgfgfcoHdBVzoyYC4ufHSuA9IzmLkyJW
-   7znKrylz4+EUxfUbGSyPUIDkeOW1qvCGLUulb83p0nlzwgzBugFR9yjPZ
-   iCMU8iVrDGEhxvvRkxZmvppD8AMKGKmNLxXVdsQwUnp5gW6SmbYkIpzwt
-   u/bN/A3gf1APOGUCuXlhq9mMWsiKEj+7ZFD8W2OZLlsK5JaMlJlc3LfKf
-   RxjEUtOt5fJivA7KzqDpwa4DM81xGQgfOziNHR9AciQK9VV3b95TW6jOG
-   W1gvrKK9RqOC4oFGhiR6j+XJnYqRl44Oo7aQydu+OH6NgPwJupy8LMuCj
-   w==;
-X-IronPort-AV: E=Sophos;i="5.91,195,1647327600"; 
-   d="scan'208";a="171751051"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 03 May 2022 03:56:44 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17; Tue, 3 May 2022 03:56:44 -0700
-Received: from kavya-HP-Compaq-6000-Pro-SFF-PC.microchip.com (10.10.115.15) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
- 15.1.2375.17 via Frontend Transport; Tue, 3 May 2022 03:56:39 -0700
-From:   Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>
-To:     <krzysztof.kozlowski+dt@linaro.org>, <nicolas.ferre@microchip.com>,
-        <alexandre.belloni@bootlin.com>, <claudiu.beznea@microchip.com>,
-        <peda@axentia.se>
-CC:     <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <lee.jones@linaro.org>,
-        <linux@armlinux.org.uk>, <Manohar.Puri@microchip.com>,
-        <Kavyasree.Kotagiri@microchip.com>, <UNGLinuxDriver@microchip.com>
-Subject: [PATCH 4/4] mux: lan966: Add support for flexcom mux controller
-Date:   Tue, 3 May 2022 16:25:28 +0530
-Message-ID: <20220503105528.12824-5-kavyasree.kotagiri@microchip.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20220503105528.12824-1-kavyasree.kotagiri@microchip.com>
-References: <20220503105528.12824-1-kavyasree.kotagiri@microchip.com>
+        with ESMTP id S234618AbiECLBT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 07:01:19 -0400
+Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B868F2DE2
+        for <devicetree@vger.kernel.org>; Tue,  3 May 2022 03:57:37 -0700 (PDT)
+Received: from epcas2p2.samsung.com (unknown [182.195.41.54])
+        by mailout3.samsung.com (KnoxPortal) with ESMTP id 20220503105733epoutp03f2f611579bce04bd9ebc4df4f2505b85~rkx-JCZYP0431304313epoutp03h
+        for <devicetree@vger.kernel.org>; Tue,  3 May 2022 10:57:33 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20220503105733epoutp03f2f611579bce04bd9ebc4df4f2505b85~rkx-JCZYP0431304313epoutp03h
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1651575453;
+        bh=Vk0KefwtdtzzIiK4MnIQhvHmNSpT1Kw8VsjyJmDbLqA=;
+        h=From:To:Cc:Subject:Date:References:From;
+        b=ny5PnG+VoNxWW+CutG8LuNo0di3IJeS2oslUmUUi3/tgg8fhVnOv8/ypqAWK+26r+
+         rSCvFcDpbv3jKFmnJ6kCVzzvl2F/OEEvVJ5WCGhFZXV4ppDYON/rqeaSWcsDrQ/tMv
+         uzRfQrrGIwYz6/FOm70KRta+ZzQduBoHe7oseIms=
+Received: from epsnrtp3.localdomain (unknown [182.195.42.164]) by
+        epcas2p2.samsung.com (KnoxPortal) with ESMTP id
+        20220503105732epcas2p2357d79da2a03653895cd385f868e5edc~rkx_cl7ZW1964119641epcas2p2A;
+        Tue,  3 May 2022 10:57:32 +0000 (GMT)
+Received: from epsmges2p4.samsung.com (unknown [182.195.36.97]) by
+        epsnrtp3.localdomain (Postfix) with ESMTP id 4KsxkK4Tkvz4x9Q2; Tue,  3 May
+        2022 10:57:29 +0000 (GMT)
+Received: from epcas2p3.samsung.com ( [182.195.41.55]) by
+        epsmges2p4.samsung.com (Symantec Messaging Gateway) with SMTP id
+        B0.DA.09694.99A01726; Tue,  3 May 2022 19:57:29 +0900 (KST)
+Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
+        epcas2p4.samsung.com (KnoxPortal) with ESMTPA id
+        20220503105729epcas2p4aef9a721ca48657edd4b61deb163bb04~rkx7jXPcL1759317593epcas2p4P;
+        Tue,  3 May 2022 10:57:29 +0000 (GMT)
+Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
+        epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
+        20220503105729epsmtrp2d86d0f6d343500d1b589d4a0621f1851~rkx7iSPB41021210212epsmtrp2P;
+        Tue,  3 May 2022 10:57:29 +0000 (GMT)
+X-AuditID: b6c32a48-495ff700000025de-93-62710a998613
+Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
+        epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+        A0.42.08853.99A01726; Tue,  3 May 2022 19:57:29 +0900 (KST)
+Received: from localhost.localdomain (unknown [10.229.9.51]) by
+        epsmtip2.samsung.com (KnoxPortal) with ESMTPA id
+        20220503105728epsmtip2beb3a15ff08acb3d287c8344c385de53~rkx7SvtBw0549505495epsmtip26;
+        Tue,  3 May 2022 10:57:28 +0000 (GMT)
+From:   Chanho Park <chanho61.park@samsung.com>
+To:     Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Tomasz Figa <tomasz.figa@gmail.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Sam Protsenko <semen.protsenko@linaro.org>,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org,
+        Chanho Park <chanho61.park@samsung.com>
+Subject: [PATCH v2 00/12] initial clock support for exynosauto v9 SoC
+Date:   Tue,  3 May 2022 19:59:02 +0900
+Message-Id: <20220503105914.117625-1-chanho61.park@samsung.com>
+X-Mailer: git-send-email 2.36.0
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 8bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrCJsWRmVeSWpSXmKPExsWy7bCmue5MrsIkg5+/FC0ezNvGZnF5v7bF
+        9S/PWS3mHznHatH34iGzxd7XW9ktPvbcY7WYcX4fk8XFU64WrXuPsFscftPOavHv2kYWi+d9
+        QPFVu/4wOvB5vL/Ryu6xc9Zddo9NqzrZPO5c28Pm0bdlFaPH501yAWxR2TYZqYkpqUUKqXnJ
+        +SmZeem2St7B8c7xpmYGhrqGlhbmSgp5ibmptkouPgG6bpk5QMcqKZQl5pQChQISi4uV9O1s
+        ivJLS1IVMvKLS2yVUgtScgrMC/SKE3OLS/PS9fJSS6wMDQyMTIEKE7Iz+me/YCs4IFBxpWsO
+        YwPjTt4uRk4OCQETiQvXdrF1MXJxCAnsYJSY8uU0I0hCSOATo8SNSUkQiW+MEnvXNrPCdJxf
+        dQWqYy+jxK6Dt5ghOj4ySizaGQ1iswnoSmx5/ooRpEhEoItZ4mLfPRYQh1lgK6PE8RuzmLoY
+        OTiEBVwl3jTlgzSwCKhKnHvzAmw1r4C9xOdN59hASiQE5CX+LQ6FCAtKnJz5hAXEZgYKN2+d
+        zQwyUkKgl0Ni1o/LjBDXuUi87L3JBmELS7w6voUdwpaS+PxuL1S8WGLprE9MEM0NjBKXt/2C
+        ShhLzHrWzgiymFlAU2L9Ln2IG5QljtyC2ssn0XH4LztEmFeio00IolFd4sD26SwQtqxE95zP
+        0LDykDi7aTs0eGIlrtx/yzSBUX4Wkm9mIflmFsLeBYzMqxjFUguKc9NTi40KTOBxmpyfu4kR
+        nFy1PHYwzn77Qe8QIxMH4yFGCQ5mJRFe56UFSUK8KYmVValF+fFFpTmpxYcYTYHBO5FZSjQ5
+        H5je80riDU0sDUzMzAzNjUwNzJXEeb1SNiQKCaQnlqRmp6YWpBbB9DFxcEo1MFnqFPs1hn8+
+        7nXjSd3EaSmOFc0+bZeWlfLYzj6z41tgjcqVz1s7Gl53yR2+0H35WOLbMluLbe3NEbeyvpy7
+        KXwu4Osqj0PcJSvSEyRZvfsymflSRAqMJz/+0cm++eTXWT06vkmOxruvf37JvH/3dSELS+Z+
+        1oDeC1K/b/yosZG5GVySd6tr0drU1JU7Dh+TfP2abWmL3LujlxXtS3pKvBTvemxrbXA7luX8
+        4FWsV4UE36yA1Sy7b2WdO7llzrNrJod1z+y4M8N5p3WN/JfmlX/Xyaqxvt1o2Pm4159vu5/C
+        2jXVzzvFLFbcPJNl3Fed873QdV2A9bvuyYnL5x+wvvbNXqf6OkvW+TdPxLa48SixFGckGmox
+        FxUnAgBzFdBLNwQAAA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrKLMWRmVeSWpSXmKPExsWy7bCSvO5MrsIkg03PWSwezNvGZnF5v7bF
+        9S/PWS3mHznHatH34iGzxd7XW9ktPvbcY7WYcX4fk8XFU64WrXuPsFscftPOavHv2kYWi+d9
+        QPFVu/4wOvB5vL/Ryu6xc9Zddo9NqzrZPO5c28Pm0bdlFaPH501yAWxRXDYpqTmZZalF+nYJ
+        XBn9s1+wFRwQqLjSNYexgXEnbxcjJ4eEgInE+VVX2LoYuTiEBHYzSixZ0MUKkZCVePZuBzuE
+        LSxxv+UIK0TRe0aJZS+fMIMk2AR0JbY8f8UIkhARmMAs8ebKB3YQh1lgJ6PEnVengOZycAgL
+        uEq8acoHaWARUJU49+YFI4jNK2Av8XnTObASCQF5iX+LQyHCghInZz5hAbGZgcLNW2czT2Dk
+        m4UkNQtJagEj0ypGydSC4tz03GLDAsO81HK94sTc4tK8dL3k/NxNjOCQ19Lcwbh91Qe9Q4xM
+        HIyHGCU4mJVEeJ2XFiQJ8aYkVlalFuXHF5XmpBYfYpTmYFES573QdTJeSCA9sSQ1OzW1ILUI
+        JsvEwSnVwNQu8ixWs6R0nvTJC5sX3zAImcpgzb6uP6bnpcyqWv4jG9utu+d2Wzzsm7lRfqNO
+        wtEwB6EvNn+OrPh79cumg6uCT29vNpAVuyRdsfB97rvny1tEnOX63VZm7O/9sPuL/48JaUrX
+        vNn6F1u5JfzZaiq4e5aczrwwc+EctgtZKlzfEvi/n964j0OrQog7+/kh+1dfXn9yqzm+0ub7
+        5/yyqzrLZvnvSF0RunO/6YVIthMxtWoz06Zte1M3c4dh4sMNk6Vvx1SuXFW9ysart+y7kd+i
+        ybM4y98x1b/0vGDgmLJW6OEWgXkXpt1Tf62QHr5fdu92t6pdfx+rVITs3mZz5+BDz1NCgel8
+        Chbr7Ny+v1utxFKckWioxVxUnAgAYXi5CegCAAA=
+X-CMS-MailID: 20220503105729epcas2p4aef9a721ca48657edd4b61deb163bb04
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: AUTO_CONFIDENTIAL
+CMS-TYPE: 102P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20220503105729epcas2p4aef9a721ca48657edd4b61deb163bb04
+References: <CGME20220503105729epcas2p4aef9a721ca48657edd4b61deb163bb04@epcas2p4.samsung.com>
 X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-LAN966 SoC have 5 flexcoms. Each flexcom has 2 chip-selects.
-For each chip select of each flexcom there is a configuration
-register FLEXCOM_SHARED[0-4]:SS_MASK[0-1]. The width of
-configuration register is 21 because there are 21 shared pins
-on each of which the chip select can be mapped. Each bit of the
-register represents a different FLEXCOM_SHARED pin.
+This patchset adds initial clock driver support for Exynos Auto v9 SoC.
+This driver is highly inspired from exynos850 clock driver. Like
+exynos850, this does not use Q-channel control & Hardware automatic
+clock gating. So, all the gate clocks will be controlled by CCF & CMU
+driver.
 
-Signed-off-by: Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>
----
- arch/arm/mach-at91/Kconfig  |   2 +
- drivers/mfd/atmel-flexcom.c |  55 ++++++++++++++++-
- drivers/mux/Kconfig         |  12 ++++
- drivers/mux/Makefile        |   2 +
- drivers/mux/lan966-flx.c    | 116 ++++++++++++++++++++++++++++++++++++
- 5 files changed, 186 insertions(+), 1 deletion(-)
- create mode 100644 drivers/mux/lan966-flx.c
+Below CMU blocks are supported in this patchset and remains will be
+implemented later.
 
-diff --git a/arch/arm/mach-at91/Kconfig b/arch/arm/mach-at91/Kconfig
-index 279810381256..26fb0f4e1b79 100644
---- a/arch/arm/mach-at91/Kconfig
-+++ b/arch/arm/mach-at91/Kconfig
-@@ -74,6 +74,8 @@ config SOC_LAN966
- 	select DW_APB_TIMER_OF
- 	select ARM_GIC
- 	select MEMORY
-+	select MULTIPLEXER
-+	select MUX_LAN966
- 	help
- 	  This enables support for ARMv7 based Microchip LAN966 SoC family.
- 
-diff --git a/drivers/mfd/atmel-flexcom.c b/drivers/mfd/atmel-flexcom.c
-index 33caa4fba6af..cf3dac383f30 100644
---- a/drivers/mfd/atmel-flexcom.c
-+++ b/drivers/mfd/atmel-flexcom.c
-@@ -17,6 +17,7 @@
- #include <linux/io.h>
- #include <linux/clk.h>
- #include <dt-bindings/mfd/atmel-flexcom.h>
-+#include <linux/mux/consumer.h>
- 
- /* I/O register offsets */
- #define FLEX_MR		0x0	/* Mode Register */
-@@ -28,6 +29,10 @@
- #define FLEX_MR_OPMODE(opmode)	(((opmode) << FLEX_MR_OPMODE_OFFSET) &	\
- 				 FLEX_MR_OPMODE_MASK)
- 
-+struct atmel_flex_caps {
-+	bool has_flx_mux;
-+};
-+
- struct atmel_flexcom {
- 	void __iomem *base;
- 	u32 opmode;
-@@ -37,6 +42,7 @@ struct atmel_flexcom {
- static int atmel_flexcom_probe(struct platform_device *pdev)
- {
- 	struct device_node *np = pdev->dev.of_node;
-+	const struct atmel_flex_caps *caps;
- 	struct resource *res;
- 	struct atmel_flexcom *ddata;
- 	int err;
-@@ -76,13 +82,60 @@ static int atmel_flexcom_probe(struct platform_device *pdev)
- 	 */
- 	writel(FLEX_MR_OPMODE(ddata->opmode), ddata->base + FLEX_MR);
- 
-+	caps = of_device_get_match_data(&pdev->dev);
-+	if (!caps) {
-+		dev_err(&pdev->dev, "Could not retrieve flexcom caps\n");
-+		return -EINVAL;
-+	}
-+
-+	/* Flexcom Mux */
-+	if (caps->has_flx_mux && of_property_read_bool(np, "mux-controls")) {
-+		struct mux_control *flx_mux;
-+		struct of_phandle_args args;
-+		int i, count;
-+
-+		flx_mux = devm_mux_control_get(&pdev->dev, NULL);
-+		if (IS_ERR(flx_mux))
-+			return PTR_ERR(flx_mux);
-+
-+		count = of_property_count_strings(np, "mux-control-names");
-+		for (i = 0; i < count; i++) {
-+			err = of_parse_phandle_with_fixed_args(np, "mux-controls", 1, i, &args);
-+			if (err)
-+				break;
-+
-+			err = mux_control_select(flx_mux, args.args[0]);
-+			if (!err) {
-+				mux_control_deselect(flx_mux);
-+			} else {
-+				dev_err(&pdev->dev, "Failed to select FLEXCOM mux\n");
-+				return err;
-+			}
-+		}
-+	}
-+
- 	clk_disable_unprepare(ddata->clk);
- 
- 	return devm_of_platform_populate(&pdev->dev);
- }
- 
-+static const struct atmel_flex_caps atmel_flexcom_caps = {};
-+
-+static const struct atmel_flex_caps lan966x_flexcom_caps = {
-+	.has_flx_mux = true,
-+};
-+
- static const struct of_device_id atmel_flexcom_of_match[] = {
--	{ .compatible = "atmel,sama5d2-flexcom" },
-+	{
-+		.compatible = "atmel,sama5d2-flexcom",
-+		.data = &atmel_flexcom_caps,
-+	},
-+
-+	{
-+		.compatible = "microchip,lan966-flexcom",
-+		.data = &lan966x_flexcom_caps,
-+	},
-+
- 	{ /* sentinel */ }
- };
- MODULE_DEVICE_TABLE(of, atmel_flexcom_of_match);
-diff --git a/drivers/mux/Kconfig b/drivers/mux/Kconfig
-index e5c571fd232c..ea09f474bc2f 100644
---- a/drivers/mux/Kconfig
-+++ b/drivers/mux/Kconfig
-@@ -45,6 +45,18 @@ config MUX_GPIO
- 	  To compile the driver as a module, choose M here: the module will
- 	  be called mux-gpio.
- 
-+config MUX_LAN966
-+	tristate "LAN966 Flexcom multiplexer"
-+	depends on OF || COMPILE_TEST
-+	help
-+	Lan966 Flexcom Multiplexer controller.
-+
-+	The driver supports mapping 2 chip-selects of each of the lan966
-+	flexcoms to 21 flexcom shared pins.
-+
-+	To compile the driver as a module, choose M here: the module will
-+	be called mux-lan966.
-+
- config MUX_MMIO
- 	tristate "MMIO/Regmap register bitfield-controlled Multiplexer"
- 	depends on OF || COMPILE_TEST
-diff --git a/drivers/mux/Makefile b/drivers/mux/Makefile
-index 6e9fa47daf56..53a9840d96fa 100644
---- a/drivers/mux/Makefile
-+++ b/drivers/mux/Makefile
-@@ -7,10 +7,12 @@ mux-core-objs			:= core.o
- mux-adg792a-objs		:= adg792a.o
- mux-adgs1408-objs		:= adgs1408.o
- mux-gpio-objs			:= gpio.o
-+mux-lan966-objs			:= lan966-flx.o
- mux-mmio-objs			:= mmio.o
- 
- obj-$(CONFIG_MULTIPLEXER)	+= mux-core.o
- obj-$(CONFIG_MUX_ADG792A)	+= mux-adg792a.o
- obj-$(CONFIG_MUX_ADGS1408)	+= mux-adgs1408.o
- obj-$(CONFIG_MUX_GPIO)		+= mux-gpio.o
-+obj-$(CONFIG_MUX_LAN966)	+= mux-lan966.o
- obj-$(CONFIG_MUX_MMIO)		+= mux-mmio.o
-diff --git a/drivers/mux/lan966-flx.c b/drivers/mux/lan966-flx.c
-new file mode 100644
-index 000000000000..5d078a159fcd
---- /dev/null
-+++ b/drivers/mux/lan966-flx.c
-@@ -0,0 +1,116 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * LAN966 Flexcom MUX driver
-+ *
-+ * Copyright (c) Microchip Inc.
-+ *
-+ * Author: Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>
-+ */
-+
-+#include <linux/err.h>
-+#include <linux/module.h>
-+#include <linux/of_platform.h>
-+#include <linux/platform_device.h>
-+#include <linux/property.h>
-+#include <linux/mux/driver.h>
-+#include <linux/io.h>
-+
-+#define FLEX_SHRD_MASK		0x1FFFFF
-+#define LAN966_MAX_CS		21
-+
-+static void __iomem *flx_shared_base;
-+struct mux_lan966x {
-+	u32 offset;
-+	u32 ss_pin;
-+};
-+
-+static int mux_lan966x_set(struct mux_control *mux, int state)
-+{
-+	struct mux_lan966x *mux_lan966x = mux_chip_priv(mux->chip);
-+	u32 val;
-+
-+	val = ~(1 << mux_lan966x[state].ss_pin) & FLEX_SHRD_MASK;
-+	writel(val, flx_shared_base + mux_lan966x[state].offset);
-+
-+	return 0;
-+}
-+
-+static const struct mux_control_ops mux_lan966x_ops = {
-+	.set = mux_lan966x_set,
-+};
-+
-+static const struct of_device_id mux_lan966x_dt_ids[] = {
-+	{ .compatible = "microchip,lan966-flx-mux", },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, mux_lan966x_dt_ids);
-+
-+static int mux_lan966x_probe(struct platform_device *pdev)
-+{
-+	struct device_node *np = pdev->dev.of_node;
-+	struct device *dev = &pdev->dev;
-+	struct mux_lan966x *mux_lan966x;
-+	struct mux_chip *mux_chip;
-+	int ret, num_fields, i;
-+
-+	ret = of_property_count_u32_elems(np, "mux-offset-pin");
-+	if (ret == 0 || ret % 2)
-+		ret = -EINVAL;
-+	if (ret < 0)
-+		return dev_err_probe(dev, ret,
-+				     "mux-offset-pin property missing or invalid");
-+	num_fields = ret / 2;
-+
-+	mux_chip = devm_mux_chip_alloc(dev, num_fields, sizeof(*mux_lan966x));
-+	if (IS_ERR(mux_chip))
-+		return dev_err_probe(dev, PTR_ERR(mux_chip),
-+				     "failed to allocate mux_chips\n");
-+
-+	mux_lan966x = mux_chip_priv(mux_chip);
-+
-+	flx_shared_base = devm_platform_get_and_ioremap_resource(pdev, 0, NULL);
-+	if (IS_ERR(flx_shared_base))
-+		return dev_err_probe(dev, PTR_ERR(flx_shared_base),
-+				     "failed to get flexcom shared base address\n");
-+
-+	for (i = 0; i < num_fields; i++) {
-+		struct mux_control *mux = &mux_chip->mux[i];
-+		u32 offset, shared_pin;
-+
-+		ret = of_property_read_u32_index(np, "mux-offset-pin",
-+						 2 * i, &offset);
-+		if (ret == 0)
-+			ret = of_property_read_u32_index(np, "mux-offset-pin",
-+							 2 * i + 1,
-+							 &shared_pin);
-+		if (ret < 0)
-+			return dev_err_probe(dev, ret,
-+					     "failed to read mux-offset-pin property: %d", i);
-+
-+		if (shared_pin >= LAN966_MAX_CS)
-+			return -EINVAL;
-+
-+		mux_lan966x[i].offset = offset;
-+		mux_lan966x[i].ss_pin = shared_pin;
-+
-+		mux->states = LAN966_MAX_CS;
-+	}
-+
-+	mux_chip->ops = &mux_lan966x_ops;
-+
-+	ret = devm_mux_chip_register(dev, mux_chip);
-+	if (ret < 0)
-+		return ret;
-+
-+	return 0;
-+}
-+
-+static struct platform_driver mux_lan966x_driver = {
-+	.driver = {
-+		.name = "lan966-mux",
-+		.of_match_table	= of_match_ptr(mux_lan966x_dt_ids),
-+	},
-+	.probe = mux_lan966x_probe,
-+};
-+
-+module_platform_driver(mux_lan966x_driver);
+- CMU_TOP
+- CMU_BUSMC
+- CMU_CORE
+- CMU_FSYS2
+- CMU_PERIC0
+- CMU_PERIC1
+- CMU_PERIS
+
+Changes from v1:
+- Adjust patch order to avoid dt-binding check bot's build warning
+- Rename exynosautov9.h to samsung,exynosautov9.h (Suggested by
+  Krzystof)
+- clock nodes of exynosautov9.dtsi are aligned by unit address order.
+- Each clock items are listed to every own line.
+- Added Krzystof RB tags.
+
+Chanho Park (12):
+  dt-bindings: clock: add clock binding definitions for Exynos Auto v9
+  dt-bindings: clock: add Exynos Auto v9 SoC CMU bindings
+  clk: samsung: add top clock support for Exynos Auto v9 SoC
+  clk: samsung: exynosautov9: add cmu_core clock support
+  clk: samsung: exynosautov9: add cmu_peris clock support
+  clk: samsung: exynosautov9: add cmu_busmc clock support
+  clk: samsung: exynosautov9: add cmu_fsys2 clock support
+  clk: samsung: exynosautov9: add cmu_peric0 clock support
+  clk: samsung: exynosautov9: add cmu_peric1 clock support
+  arm64: dts: exynosautov9: add initial cmu clock nodes
+  arm64: dts: exynosautov9: switch usi clocks
+  arm64: dts: exynosautov9: switch ufs clock node
+
+ .../clock/samsung,exynosautov9-clock.yaml     |  219 +++
+ arch/arm64/boot/dts/exynos/exynosautov9.dtsi  |  115 +-
+ drivers/clk/samsung/Makefile                  |    1 +
+ drivers/clk/samsung/clk-exynosautov9.c        | 1733 +++++++++++++++++
+ .../dt-bindings/clock/samsung,exynosautov9.h  |  299 +++
+ 5 files changed, 2342 insertions(+), 25 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/samsung,exynosautov9-clock.yaml
+ create mode 100644 drivers/clk/samsung/clk-exynosautov9.c
+ create mode 100644 include/dt-bindings/clock/samsung,exynosautov9.h
+
 -- 
-2.17.1
+2.36.0
 
