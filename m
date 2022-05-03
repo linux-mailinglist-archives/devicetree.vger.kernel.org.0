@@ -2,69 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CE09951849A
-	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 14:51:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9E7EA5183D5
+	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 14:02:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231766AbiECMyk convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Tue, 3 May 2022 08:54:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34780 "EHLO
+        id S230229AbiECMGU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 May 2022 08:06:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52538 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230339AbiECMyj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 08:54:39 -0400
-X-Greylist: delayed 3427 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 03 May 2022 05:51:06 PDT
-Received: from mail.77msk.ru (mail.77msk.ru [84.204.203.133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id D41BF1EC73
-        for <devicetree@vger.kernel.org>; Tue,  3 May 2022 05:51:06 -0700 (PDT)
-Received: from mail.77msk.ru (gatekeeper.domain007.com [192.168.2.20])
-        by hermes.domain007.com (Postfix) with ESMTP id 72610D4B1C0
-        for <devicetree@vger.kernel.org>; Tue,  3 May 2022 14:27:43 +0300 (MSK)
-Received: from asda.co.uk (unknown [20.97.211.134])
-        by gatekeeper.domain007.com (Postfix) with ESMTPSA id 0FF173200A4
-        for <devicetree@vger.kernel.org>; Tue,  3 May 2022 14:27:42 +0300 (MSK)
-Reply-To: sales@asdaa.uk
-From:   ASDA Stores Limited <Hanes.Thomas2365@asda.co.uk>
-To:     devicetree@vger.kernel.org
-Subject: Procurement order from ASDA
-Date:   03 May 2022 11:27:42 +0000
-Message-ID: <20220503091904.29247643A4CFC30F@asda.co.uk>
+        with ESMTP id S235125AbiECMGM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 08:06:12 -0400
+Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id E8620366B5;
+        Tue,  3 May 2022 05:02:33 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="5.91,195,1647270000"; 
+   d="scan'208";a="118643206"
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie5.idc.renesas.com with ESMTP; 03 May 2022 21:02:33 +0900
+Received: from localhost.localdomain (unknown [10.226.92.6])
+        by relmlir6.idc.renesas.com (Postfix) with ESMTP id B409D4226AEF;
+        Tue,  3 May 2022 21:02:30 +0900 (JST)
+From:   Phil Edworthy <phil.edworthy@renesas.com>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Phil Edworthy <phil.edworthy@renesas.com>,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Subject: [PATCH v3 11/12] arm64: dts: renesas: Add initial DTSI for RZ/V2M SoC
+Date:   Tue,  3 May 2022 12:55:56 +0100
+Message-Id: <20220503115557.53370-12-phil.edworthy@renesas.com>
+X-Mailer: git-send-email 2.32.0
+In-Reply-To: <20220503115557.53370-1-phil.edworthy@renesas.com>
+References: <20220503115557.53370-1-phil.edworthy@renesas.com>
 MIME-Version: 1.0
-Content-Type: text/plain;
-        charset="utf-8"
-Content-Transfer-Encoding: 8BIT
-X-Virus-Scanned: clamav-milter 0.102.4 at hermes
-X-Virus-Status: Clean
-X-Spam-Status: No, score=3.5 required=5.0 tests=BAYES_50,RCVD_IN_PSBL,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
-X-Spam-Level: ***
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dear devicetree
+Details of the SoC can be found here:
+https://www.renesas.com/us/en/products/microcontrollers-microprocessors/rz-cortex-a-mpus/rzv2m-dual-cortex-a53-lpddr4x32bit-ai-accelerator-isp-4k-video-codec-4k-camera-input-fhd-display-output
 
-We are interested in having some of your hot selling product in 
-our stores and outlets spread all over United Kingdom, Northern 
-Island and Africa. ASDA Stores Limited is one of the highest-
-ranking Wholesale & Retail outlets in the United Kingdom. 
-  
-We shall furnish our detailed company profile in our next 
-correspondent. However, it would be appreciated if you can send 
-us your catalog through email to learn more about your company's 
-products and wholesale quote. It is hopeful that we can start a 
-viable long-lasting business relationship (partnership) with you.  
-  
-  
-Your prompt response would be delightfully appreciated. 
-  
-Best Wishes 
-  
-  
-Hanes S. Thomas 
-Procurement Office. 
-ASDA Stores Limited 
-Tel:  + 44 - 7451271650 
-WhatsApp: + 44 – 7441440360 
-Website: www.asda.co.uk
+Signed-off-by: Phil Edworthy <phil.edworthy@renesas.com>
+Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
+---
+v3:
+ - Replace CPG_CORE with CPG_MOD
+ - Add UART pclk
+ - Add gic clk
+ - Fix cpg and uart0 register region
+ - Remove sys as we are currently not using it and binding not accepted
+---
+ arch/arm64/boot/dts/renesas/r9a09g011.dtsi | 95 ++++++++++++++++++++++
+ 1 file changed, 95 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/renesas/r9a09g011.dtsi
+
+diff --git a/arch/arm64/boot/dts/renesas/r9a09g011.dtsi b/arch/arm64/boot/dts/renesas/r9a09g011.dtsi
+new file mode 100644
+index 000000000000..dafc0837775b
+--- /dev/null
++++ b/arch/arm64/boot/dts/renesas/r9a09g011.dtsi
+@@ -0,0 +1,95 @@
++// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++/*
++ * Device Tree Source for the RZ/V2M SoC
++ *
++ * Copyright (C) 2022 Renesas Electronics Corp.
++ */
++
++#include <dt-bindings/interrupt-controller/arm-gic.h>
++#include <dt-bindings/clock/r9a09g011-cpg.h>
++
++/ {
++	compatible = "renesas,r9a09g011";
++	#address-cells = <2>;
++	#size-cells = <2>;
++
++	/* clock can be either from exclk or crystal oscillator (XIN/XOUT) */
++	extal_clk: extal {
++		compatible = "fixed-clock";
++		#clock-cells = <0>;
++		/* This value must be overridden by the board */
++		clock-frequency = <0>;
++	};
++
++	cpus {
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		cpu-map {
++			cluster0 {
++				core0 {
++					cpu = <&cpu0>;
++				};
++			};
++		};
++
++		cpu0: cpu@0 {
++			compatible = "arm,cortex-a53";
++			reg = <0>;
++			device_type = "cpu";
++			clocks = <&cpg CPG_MOD R9A09G011_CA53_CLK>;
++		};
++	};
++
++	soc: soc {
++		compatible = "simple-bus";
++		interrupt-parent = <&gic>;
++		#address-cells = <2>;
++		#size-cells = <2>;
++		ranges;
++
++		gic: interrupt-controller@82000000 {
++			compatible = "arm,gic-400";
++			#interrupt-cells = <3>;
++			#address-cells = <0>;
++			interrupt-controller;
++			reg = <0x0 0x82010000 0 0x1000>,
++			      <0x0 0x82020000 0 0x20000>,
++			      <0x0 0x82040000 0 0x20000>,
++			      <0x0 0x82060000 0 0x20000>;
++			interrupts = <GIC_PPI 9 (GIC_CPU_MASK_SIMPLE(1) | IRQ_TYPE_LEVEL_HIGH)>;
++			clocks = <&cpg CPG_MOD R9A09G011_GIC_CLK>;
++			clock-names = "clk";
++		};
++
++		cpg: clock-controller@a3500000 {
++			compatible = "renesas,r9a09g011-cpg";
++			reg = <0 0xa3500000 0 0x1000>;
++			clocks = <&extal_clk>;
++			clock-names = "extal";
++			#clock-cells = <2>;
++			#reset-cells = <1>;
++			#power-domain-cells = <0>;
++		};
++
++		uart0: serial@a4040000 {
++			compatible = "renesas,r9a09g011-uart", "renesas,em-uart";
++			reg = <0 0xa4040000 0 0x80>;
++			interrupts = <GIC_SPI 240 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&cpg CPG_MOD R9A09G011_URT0_CLK>,
++				 <&cpg CPG_MOD R9A09G011_URT_PCLK>;
++			clock-names = "sclk", "pclk";
++			status = "disabled";
++		};
++	};
++
++	timer {
++		compatible = "arm,armv8-timer";
++		interrupts-extended = <&gic GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(1) | IRQ_TYPE_LEVEL_LOW)>,
++				      <&gic GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(1) | IRQ_TYPE_LEVEL_LOW)>,
++				      <&gic GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(1) | IRQ_TYPE_LEVEL_LOW)>,
++				      <&gic GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(1) | IRQ_TYPE_LEVEL_LOW)>;
++		clocks = <&cpg CPG_MOD R9A09G011_SYC_CNT_CLK>;
++		resets = <&cpg R9A09G011_SYC_RST_N>;
++	};
++};
+-- 
+2.32.0
+
