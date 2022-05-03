@@ -2,71 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 265C45181C6
-	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 11:56:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 122445181CD
+	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 11:58:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233104AbiECKAN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 May 2022 06:00:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45490 "EHLO
+        id S233840AbiECKBm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 May 2022 06:01:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46516 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233731AbiECKAL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 06:00:11 -0400
-Received: from mx1.molgen.mpg.de (mx3.molgen.mpg.de [141.14.17.11])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B911C35DF3;
-        Tue,  3 May 2022 02:56:38 -0700 (PDT)
-Received: from [192.168.0.2] (ip5f5aed95.dynamic.kabel-deutschland.de [95.90.237.149])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: pmenzel)
-        by mx.molgen.mpg.de (Postfix) with ESMTPSA id 65F0461EA193A;
-        Tue,  3 May 2022 11:56:35 +0200 (CEST)
-Message-ID: <776bb807-feba-7c75-d280-11c33e33f71d@molgen.mpg.de>
-Date:   Tue, 3 May 2022 11:56:34 +0200
+        with ESMTP id S232918AbiECKBl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 06:01:41 -0400
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9ECC935DF6
+        for <devicetree@vger.kernel.org>; Tue,  3 May 2022 02:58:09 -0700 (PDT)
+Received: by mail-ej1-x632.google.com with SMTP id g6so32474851ejw.1
+        for <devicetree@vger.kernel.org>; Tue, 03 May 2022 02:58:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=Z6vn8RV+oPJamH1qeu3cvsWts9bI2+OweL8gu7X/8vA=;
+        b=W5JJnAcNeGAKsYC8o/kXmqVrceo6nc9cLrogb7rhvZowJ++q8nOgznj84QF0gXE7Mc
+         yXmO4c/FMcATY9A4k85VMp7syj0DQr3gsBahcDzOQXnY2MYEIq0t+vijqxtiPm96qITE
+         BIkDpJOzuk2KlC8GCAHNKuyePjcaztOEFoWQBKIfSRK4e2lRZhaHcScIwyb9hHh2ulce
+         JSfWqc5W8mRzDUFe4XPug9NC0BGjhCDNBFaqstW9W7/zN6bUAL7yD8SSQ/op15J3U7GZ
+         027Nlw6egZcFlnhvTqIQANwxyt6GZhTKWMz5wL7nwnoDnW1vjkSiQ6477jQCsRPfG8Xc
+         HeLg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=Z6vn8RV+oPJamH1qeu3cvsWts9bI2+OweL8gu7X/8vA=;
+        b=Vmn9np8Qa8Yaa9QKRMYdFXbaLxRL+Retwv56g6BnQ0ksC63v2E8w9xHgH7zrTCBwiN
+         TwNSCS1Q3ok3AxxxGAN81F8xZ6RS2LNhZ8/DIdJSQPLOplKvl8BIxJWJStj1CY0MIEX1
+         2Yb+4PzY7H4GQ6fA/ISEPauBd9C5HKnua2vXUYFntP+Bb6ldHMvHh5OBbB5LLAPm3tIr
+         b44RcGq63Cs/CAeKImK4tkcljzWznGc1ViOMp08xr6kvhwlfkY5NuNIuciCDBrURpvyX
+         CpEPMU6J34vXYkQkRIKcJCDBJnqq9+U1WSsSbdyK6l9aI87L8vrwz2IRt6aFZvEZGP+f
+         QdXw==
+X-Gm-Message-State: AOAM5324SMu7hudhKysJTizEa5fyhkhXXNC/eUSIYXwf6Fevfs6Tm5gv
+        CkAluWxOu6qMHLEK7ew97JysNw==
+X-Google-Smtp-Source: ABdhPJwg5UlqU1Tyo9LaWEKwvdRYNzgjscMYLGM93oxn2dLEJvVzs39lGK1JLxztUdkGt39ON9n8tQ==
+X-Received: by 2002:a17:907:62a1:b0:6da:7952:d4d2 with SMTP id nd33-20020a17090762a100b006da7952d4d2mr14759958ejc.260.1651571888174;
+        Tue, 03 May 2022 02:58:08 -0700 (PDT)
+Received: from [192.168.0.201] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id jl22-20020a17090775d600b006f3ef214d9esm4452253ejc.4.2022.05.03.02.58.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 03 May 2022 02:58:07 -0700 (PDT)
+Message-ID: <dc005fa0-fee7-1ca8-11ea-b984b1ab3365@linaro.org>
+Date:   Tue, 3 May 2022 11:58:06 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH v8 1/3] ARM: dts: nuvoton: Add memory controller node
+ Thunderbird/91.7.0
+Subject: Re: [PATCH v6 5/8] dt-bindings: timer: hpe,gxp-timer: Creation
 Content-Language: en-US
-To:     Medad CChien <medadyoung@gmail.com>
-Cc:     rric@kernel.org, james.morse@arm.com, tony.luck@intel.com,
-        mchehab@kernel.org, bp@alien8.de, robh+dt@kernel.org,
-        benjaminfair@google.com, yuenn@google.com, venture@google.com,
-        KWLIU@nuvoton.com, YSCHU@nuvoton.com, JJLIU0@nuvoton.com,
-        KFTING@nuvoton.com, avifishman70@gmail.com, tmaimon77@gmail.com,
-        tali.perry1@gmail.com, ctcchien@nuvoton.com,
-        devicetree@vger.kernel.org, openbmc@lists.ozlabs.org,
-        linux-kernel@vger.kernel.org, linux-edac@vger.kernel.org
-References: <20220503094728.926-1-ctcchien@nuvoton.com>
- <20220503094728.926-2-ctcchien@nuvoton.com>
-From:   Paul Menzel <pmenzel@molgen.mpg.de>
-In-Reply-To: <20220503094728.926-2-ctcchien@nuvoton.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+To:     nick.hawkins@hpe.com, verdun@hpe.com, nick@hpe.com, joel@jms.id.au,
+        arnd@arndb.de, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Cc:     Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org
+References: <20220502204050.88316-1-nick.hawkins@hpe.com>
+ <20220502204050.88316-5-nick.hawkins@hpe.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220502204050.88316-5-nick.hawkins@hpe.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dear Medad,
+On 02/05/2022 22:40, nick.hawkins@hpe.com wrote:
+> From: Nick Hawkins <nick.hawkins@hpe.com>
+> 
+> Add support for the HPE GXP Timer and Watchdog. There are multiple
+> timers on the SoC but only one is enabled at this time.
+> 
+> Signed-off-by: Nick Hawkins <nick.hawkins@hpe.com>
+> 
+> ---
+> v6:
+> * Removed simple-mfd compatible, timer will create watchdog without
+>   watchdog node.
+> * Removed timer0 label
+> * Changed title from HPE GXP TIMER to HPE GXP Timer
+> * Changed clock name iopclk to iop
+> * Set additionalProperties to false
+> * Added space after ',' in the compatible list
+> * Changed subject to match the log better
 
+The subject after prefixes does not match it better. What is "creation"?
+"Add HPE GXP Timer and Watchdog"
 
-Thank you for v8.
+Rest is okay, so this could be fixed while applying (if you are going to
+resend, don't loose that comment and don't loose the tag):
 
-Am 03.05.22 um 11:47 schrieb Medad CChien:
-> ECC must be configured in the BootBlock header.
-> Then, you can read error counts via
-> the EDAC kernel framework.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Please reflow for 75 characters per line.
-
-[…]
-
-
-Kind regards,
-
-Paul
+Best regards,
+Krzysztof
