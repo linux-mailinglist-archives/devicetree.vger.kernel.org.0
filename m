@@ -2,68 +2,46 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 710D25180FE
+	by mail.lfdr.de (Postfix) with ESMTP id 870025180FF
 	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 11:26:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233380AbiECJaL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 May 2022 05:30:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34864 "EHLO
+        id S230204AbiECJaM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 May 2022 05:30:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34866 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233048AbiECJaK (ORCPT
+        with ESMTP id S233336AbiECJaK (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 05:30:10 -0400
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42F99252BD
-        for <devicetree@vger.kernel.org>; Tue,  3 May 2022 02:26:38 -0700 (PDT)
-Received: by mail-ej1-x630.google.com with SMTP id j6so32269863ejc.13
-        for <devicetree@vger.kernel.org>; Tue, 03 May 2022 02:26:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=FUOtlbGVsYih4mc6eQpV5OoGIdZjeLrioJqeo3NGpEU=;
-        b=HoP+fdqdEi/S/Nlnq2/b62HpRadWITtZg2Xp4xwINxyhNYrmzEjQxRaYsm9KqK2FJ3
-         TFzvJ3nrkSqKSB9r/s0QFJicqbiM6Cp8Hmt74PhBohMtM+/V8rJVfcQtL7DDA1CN2TA/
-         2wAixifczmYb9Bt0pxyvhFbU8gAagEW7Qm7yXM395BZ2PAoyHm8U5dW3/WD1f1uAXwgu
-         XmtDC48WoF+JfUwhAfqco2eTtWmWFXMag3RtgXfWON83+eqterxUMY0bRCk0tcnvGYnK
-         gHHEbMJzIDh36lbnJhT3iLLbuKi2Eq+uY0WYU6xE2buR7ZfJEL6xA5EX1SKlb9EptMoB
-         zgBg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=FUOtlbGVsYih4mc6eQpV5OoGIdZjeLrioJqeo3NGpEU=;
-        b=x1Z9G4YpD+drHjHezsjIuNHmd+Y3UqCyw4SdBxNlhjzzVn8IvsOQ0+QrQBYp9PGRhQ
-         bt1dwgh7DDDbtgJMP6fk4wCTl02xyihHZ/o+WlsDXgmC0BYVpfqZAXdZEnU5dLTzuCAZ
-         bUwrsS/eBBUV91/0MACXvigzPHzJCLYL+Nhu3tFxSePGXCS4A9T9HzHr7VdrNp9useaQ
-         Xj2soYH3oPPgu5u4S0OdbvLBNX3jEppqMLu/1z75akFrdYDklzBYRBlhPFwBXngcGTug
-         68v0W/cg9SeOTZS1qzfiO+F83o7hD/lwjvzwGxkryg1QWEujDvHaPYoTRrP54l/hWPjN
-         0Xbg==
-X-Gm-Message-State: AOAM530vIxwiTeUkDs2GSG6Mv6UV+GgcUhnyEJ5n5LVS0BJ1hbA8t8yT
-        YiEkBmuuJI6Wh7QAig0uboD7vQ==
-X-Google-Smtp-Source: ABdhPJwe3rmhvyYQ9yly28q1qZ4Sfx+S8eowB6YZIkuiRGyD2d9LMQilECpX/TWVcond5jGZPMPpNg==
-X-Received: by 2002:a17:906:5793:b0:6f3:d546:1764 with SMTP id k19-20020a170906579300b006f3d5461764mr15390330ejq.247.1651569996868;
-        Tue, 03 May 2022 02:26:36 -0700 (PDT)
-Received: from localhost.localdomain (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id e4-20020a170906844400b006f3ef214da4sm4493685ejy.10.2022.05.03.02.26.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 May 2022 02:26:36 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Chanho Park <chanho61.park@samsung.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] arm64: dts: exynos: move XTCXO clock frequency to board in Exynos Auto v9
-Date:   Tue,  3 May 2022 11:26:31 +0200
-Message-Id: <20220503092631.174713-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.32.0
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A28F1222AD
+        for <devicetree@vger.kernel.org>; Tue,  3 May 2022 02:26:37 -0700 (PDT)
+Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=phil.lan)
+        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <heiko@sntech.de>)
+        id 1nlonh-0008SU-NK; Tue, 03 May 2022 11:26:33 +0200
+From:   Heiko Stuebner <heiko@sntech.de>
+To:     Sascha Hauer <s.hauer@pengutronix.de>,
+        dri-devel@lists.freedesktop.org
+Cc:     Heiko Stuebner <heiko@sntech.de>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        kernel@pengutronix.de, devicetree@vger.kernel.org,
+        linux-rockchip@lists.infradead.org,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Andy Yan <andy.yan@rock-chips.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Peter Geis <pgwipeout@gmail.com>,
+        Sandy Huang <hjc@rock-chips.com>
+Subject: Re: (subset) [PATCH v11 00/24] drm/rockchip: RK356x VOP2 support
+Date:   Tue,  3 May 2022 11:26:32 +0200
+Message-Id: <165156994608.323667.422449653800274598.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.35.1
+In-Reply-To: <20220422072841.2206452-1-s.hauer@pengutronix.de>
+References: <20220422072841.2206452-1-s.hauer@pengutronix.de>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -71,41 +49,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The external oscillator - XTCXO - is an input to the SoC.  It is defined
-in the Exynos Auto v9 SoC DTSI, because all boards will provide it and
-clock controller bindings expect it, however the actual frequency of the
-clock should be determined by the board.
+On Fri, 22 Apr 2022 09:28:17 +0200, Sascha Hauer wrote:
+> It's v11 time. There's only one small change to v10. Discussion seems to
+> have settled now. Is there anything left that prevents the series from
+> being merged? I'd really like to have it in during the next merge
+> window.
+> 
+> This series still depends on:
+> drm/rockchip: Refactor IOMMU initialisation (https://lists.freedesktop.org/archives/dri-devel/2022-April/349548.html)
+> arm64: dts: rockchip: add basic dts for the radxa rock3 model a
+> 
+> [...]
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- arch/arm64/boot/dts/exynos/exynosautov9-sadk.dts | 4 ++++
- arch/arm64/boot/dts/exynos/exynosautov9.dtsi     | 1 -
- 2 files changed, 4 insertions(+), 1 deletion(-)
+Applied, thanks!
 
-diff --git a/arch/arm64/boot/dts/exynos/exynosautov9-sadk.dts b/arch/arm64/boot/dts/exynos/exynosautov9-sadk.dts
-index 57518cb5e8c4..17e568853eb6 100644
---- a/arch/arm64/boot/dts/exynos/exynosautov9-sadk.dts
-+++ b/arch/arm64/boot/dts/exynos/exynosautov9-sadk.dts
-@@ -58,3 +58,7 @@ &ufs_0 {
- &usi_0 {
- 	status = "okay";
- };
-+
-+&xtcxo {
-+	clock-frequency = <26000000>;
-+};
-diff --git a/arch/arm64/boot/dts/exynos/exynosautov9.dtsi b/arch/arm64/boot/dts/exynos/exynosautov9.dtsi
-index 807d500d6022..68d087ed0459 100644
---- a/arch/arm64/boot/dts/exynos/exynosautov9.dtsi
-+++ b/arch/arm64/boot/dts/exynos/exynosautov9.dtsi
-@@ -153,7 +153,6 @@ fixed-rate-clocks {
- 		xtcxo: clock {
- 			compatible = "fixed-clock";
- 			#clock-cells = <0>;
--			clock-frequency = <26000000>;
- 			clock-output-names = "oscclk";
- 		};
- 
+[02/24] drm/rockchip: Embed drm_encoder into rockchip_decoder
+        commit: 540b8f271e53362a308f6bf288d38b630cf3fbd2
+[03/24] drm/rockchip: Add crtc_endpoint_id to rockchip_encoder
+        commit: cf544c6a885c52d79e4d8bf139fb8cb63a878512
+[04/24] drm/rockchip: dw_hdmi: rename vpll clock to reference clock
+        commit: a9d37e684492ab5db1cce28b655e20c01191873f
+[05/24] dt-bindings: display: rockchip: dw-hdmi: use "ref" as clock name
+        commit: a5fc012e6ee75a899173398573e77207542f588a
+
+Best regards,
 -- 
-2.32.0
-
+Heiko Stuebner <heiko@sntech.de>
