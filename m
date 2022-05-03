@@ -2,104 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A0A7517FD7
-	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 10:36:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D2214517FEF
+	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 10:44:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232813AbiECIkF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 May 2022 04:40:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53160 "EHLO
+        id S231951AbiECIsX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 May 2022 04:48:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57040 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229628AbiECIkE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 04:40:04 -0400
-Received: from mail-qt1-f182.google.com (mail-qt1-f182.google.com [209.85.160.182])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B7A47326E9;
-        Tue,  3 May 2022 01:36:32 -0700 (PDT)
-Received: by mail-qt1-f182.google.com with SMTP id t11so12829273qto.11;
-        Tue, 03 May 2022 01:36:32 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=v6J1Z4u+meRqTje/A0YLpsvHhdUJQ7OAkYJCO4xjV5I=;
-        b=S5N8cgfqj8Keda4sUNr0l3qEWqkd9mR6m0Hc7TkrG11aYXNNiMRFZffKpp8FDqXQ1x
-         VKlvSJq+ayJA4A14aNOP1yJnQYluDHXZHbAcnBrU4/UiE7w14noO5Jbw7WYuGBQQ80e0
-         N1KW3h1HxIeISanpbuISfNK+1Pw8d7DlG6yH4OAv4ASAr2vw24NEgB8eR7zldSkCbsFG
-         LJu6A1pxuWgjr3uOI5X2USAkVy/dUIxnc8uBKxqz7MLi9J9OGejbgP3FKRYPAd9cRNF0
-         XBxDdB7YWHT1PvukmPZd5YHXTcqAAT6rX45+fGy2qz0QAXzPTYGiVGLfwi6bLMyPHW2r
-         5iLg==
-X-Gm-Message-State: AOAM533X+ee2ZwOMGgCOcgHOnPZBvbGPTfTJtC17GCe/+YaCNh+Bs4Ol
-        8POyp1pioQiHKtDPPaexRuGm360iGuwugQ==
-X-Google-Smtp-Source: ABdhPJy78MKxXHCKx4Ql5Fts89KdUUQ56J75DqBguLX1RoR0uWmgE6FwZaCGgLO8jDtzGthPQVXZbA==
-X-Received: by 2002:a05:622a:110f:b0:2f3:3f89:d38 with SMTP id e15-20020a05622a110f00b002f33f890d38mr13465640qty.346.1651566991538;
-        Tue, 03 May 2022 01:36:31 -0700 (PDT)
-Received: from mail-yb1-f169.google.com (mail-yb1-f169.google.com. [209.85.219.169])
-        by smtp.gmail.com with ESMTPSA id m133-20020a37a38b000000b0069fc13ce251sm5375222qke.130.2022.05.03.01.36.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 03 May 2022 01:36:30 -0700 (PDT)
-Received: by mail-yb1-f169.google.com with SMTP id f38so29988404ybi.3;
-        Tue, 03 May 2022 01:36:30 -0700 (PDT)
-X-Received: by 2002:a05:6902:389:b0:633:31c1:d0f7 with SMTP id
- f9-20020a056902038900b0063331c1d0f7mr12712609ybs.543.1651566990120; Tue, 03
- May 2022 01:36:30 -0700 (PDT)
+        with ESMTP id S230260AbiECIsW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 04:48:22 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 470A535246;
+        Tue,  3 May 2022 01:44:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1651567491; x=1683103491;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=7CH/R3WDM/KsLTRssfD9TcF5wFee3Th1OHNU9w2o+gw=;
+  b=I2gxO1yNnSdFtxEIDIbnvmbZV2/9FKqkqhLrmTdz3hotRyvRh+qlqX5s
+   k3zji1yMYoIi7DHwBcc5B7RLzqQyllc4/oIFO/N2QHN7v5zz0gqthOEA8
+   xRKVmXnK7B6izV6w7sUDiAEqZTQbpgGufrRP1x8MN0kN/yUPEKn6npbcp
+   2zLxbMTopEv86o3QhCmJGGxIbudS/geAFfwrLo2G91jiLkaymRW6CjRYx
+   2QDmSKQSuYf77eLfI33KdHKroS9X9HP+l3ZrQNltZL0X/YTbqMTLRFENt
+   alNmtj+kjoQga8odZOLRv278/i7GBSz69kTRQI5EU9URWY6AFA6HYNBjh
+   A==;
+X-IronPort-AV: E=Sophos;i="5.91,194,1647327600"; 
+   d="scan'208";a="171742551"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 03 May 2022 01:44:50 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.17; Tue, 3 May 2022 01:44:48 -0700
+Received: from ROB-ULT-M18282.microchip.com (10.10.115.15) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
+ 15.1.2375.17 via Frontend Transport; Tue, 3 May 2022 01:44:42 -0700
+From:   Eugen Hristev <eugen.hristev@microchip.com>
+To:     <linux-media@vger.kernel.org>, <hverkuil@xs4all.nl>
+CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <jacopo@jmondi.org>,
+        Eugen Hristev <eugen.hristev@microchip.com>
+Subject: [PATCH v10 0/8] media: atmel: atmel-isc: various fixes
+Date:   Tue, 3 May 2022 11:44:13 +0300
+Message-ID: <20220503084421.40682-1-eugen.hristev@microchip.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20220427095653.91804-1-miquel.raynal@bootlin.com> <20220427095653.91804-10-miquel.raynal@bootlin.com>
-In-Reply-To: <20220427095653.91804-10-miquel.raynal@bootlin.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 3 May 2022 10:36:19 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdXXCTWuYytGPd2=vqWvZK=RmXCT2EGff6BRutcKQgOu6Q@mail.gmail.com>
-Message-ID: <CAMuHMdXXCTWuYytGPd2=vqWvZK=RmXCT2EGff6BRutcKQgOu6Q@mail.gmail.com>
-Subject: Re: [PATCH v12 9/9] ARM: dts: r9a06g032: Describe the DMA router
-To:     Miquel Raynal <miquel.raynal@bootlin.com>
-Cc:     Magnus Damm <magnus.damm@gmail.com>,
-        Gareth Williams <gareth.williams.jx@renesas.com>,
-        Phil Edworthy <phil.edworthy@renesas.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        dmaengine <dmaengine@vger.kernel.org>,
-        Milan Stevanovic <milan.stevanovic@se.com>,
-        Jimmy Lalande <jimmy.lalande@se.com>,
-        Pascal Eberhard <pascal.eberhard@se.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Herve Codina <herve.codina@bootlin.com>,
-        Clement Leger <clement.leger@bootlin.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        Viresh Kumar <vireshk@kernel.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Ilpo Jarvinen <ilpo.jarvinen@linux.intel.com>,
-        Rob Herring <robh@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Apr 27, 2022 at 11:57 AM Miquel Raynal
-<miquel.raynal@bootlin.com> wrote:
-> There is a dmamux on this SoC which allows picking two different sources
-> for a single DMA request.
->
-> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+This series is a split from the series :
+[PATCH v9 00/13] media: atmel: atmel-isc: implement media controller
+and it includes only the fixes patches, as requested by Hans.
+The media controller part will be sent in a subsequent series.
 
-Queuing in renesas-devel for v5.19.
+Full series history:
 
-Gr{oetje,eeting}s,
+Changes in v10:
+-> split the series into this first fixes part.
+-> changed patch
+ [PATCH v9 06/13] media: atmel: atmel-isc-base: use mutex to lock awb workqueue from streaming
+ added a missing mutex_lock , and edited commit message.
 
-                        Geert
+Changes in v9:
+-> kernel robot reported isc_link_validate is not static, changed to static.
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+Changes in v8:
+-> scaler: modified crop bounds to have the exact source size
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Changes in v7:
+-> scaler: modified crop bounds to have maximum isc size
+-> format propagation: did small changes as per Jacopo review
+
+
+Changes in v6:
+-> worked a bit on scaler, added try crop and other changes as per Jacopo review
+-> worked on isc-base enum_fmt , reworked as per Jacopo review
+
+Changes in v5:
+-> removed patch that removed the 'stop' variable as it was still required
+-> added two new trivial patches
+-> reworked some parts of the scaler and format propagation after discussions with Jacopo
+
+
+Changes in v4:
+-> as reviewed by Hans, added new patch to remove the 'stop' variable and reworked
+one patch that was using it
+-> as reviewed by Jacopo, reworked some parts of the media controller implementation
+
+
+Changes in v3:
+- change in bindings, small fixes in csi2dc driver and conversion to mc
+for the isc-base.
+- removed some MAINTAINERS patches and used patterns in MAINTAINERS
+
+Changes in v2:
+- integrated many changes suggested by Jacopo in the review of the v1 series.
+- add a few new patches
+
+
+
+Eugen Hristev (8):
+  media: atmel: atmel-isc-base: use streaming status when queueing
+    buffers
+  media: atmel: atmel-isc-base: replace is_streaming call in
+    s_fmt_vid_cap
+  media: atmel: atmel-isc: remove redundant comments
+  media: atmel: atmel-sama5d2-isc: fix wrong mask in YUYV format check
+  media: atmel: atmel-isc-base: use mutex to lock awb workq from
+    streaming
+  media: atmel: atmel-isc: compact the controller formats list
+  media: atmel: atmel-sama7g5-isc: remove stray line
+  dt-bindings: media: microchip,xisc: add bus-width of 14
+
+ .../bindings/media/microchip,xisc.yaml        |  2 +-
+ drivers/media/platform/atmel/atmel-isc-base.c | 34 +++++++++--
+ drivers/media/platform/atmel/atmel-isc.h      |  8 ++-
+ .../media/platform/atmel/atmel-sama5d2-isc.c  | 53 ++++++----------
+ .../media/platform/atmel/atmel-sama7g5-isc.c  | 61 ++++++-------------
+ 5 files changed, 72 insertions(+), 86 deletions(-)
+
+-- 
+2.25.1
+
