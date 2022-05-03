@@ -2,135 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E73B3517B45
+	by mail.lfdr.de (Postfix) with ESMTP id 9E9F6517B44
 	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 02:37:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229835AbiECAjL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 May 2022 20:39:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40748 "EHLO
+        id S229516AbiECAkq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 May 2022 20:40:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47888 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229615AbiECAjK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 May 2022 20:39:10 -0400
-Received: from mail-ot1-x32a.google.com (mail-ot1-x32a.google.com [IPv6:2607:f8b0:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A26D3123E
-        for <devicetree@vger.kernel.org>; Mon,  2 May 2022 17:35:39 -0700 (PDT)
-Received: by mail-ot1-x32a.google.com with SMTP id 31-20020a9d0822000000b00605f1807664so7699318oty.3
-        for <devicetree@vger.kernel.org>; Mon, 02 May 2022 17:35:39 -0700 (PDT)
+        with ESMTP id S229484AbiECAkp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 May 2022 20:40:45 -0400
+Received: from mail-oi1-f169.google.com (mail-oi1-f169.google.com [209.85.167.169])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F32BA4D26C;
+        Mon,  2 May 2022 17:37:09 -0700 (PDT)
+Received: by mail-oi1-f169.google.com with SMTP id m25so2921127oih.2;
+        Mon, 02 May 2022 17:37:09 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=+xfMK+H0fMuHQUoosTVVx54TR5npSCucc917CZi8x0M=;
-        b=CAAz80CxdszDvmehMrhduHFB2F3WRsscNTx9ZqFPsFgcrd9kvfc0SHOx5P+xG6uulf
-         oFeDOdVTXaqnoCAJtaYRgGuIG+QWHgRtcduq/O2XXG8/68JRvsdT4SHVaEB/mvgmIyxc
-         Avipk3qlKWgenh0UpvBU06zOkbhLigqgEeU8y5fPY7wTzch41uwdcydVKHtXBLvQAv2o
-         dHjb3L+TPH/OaVk9g6g2u3lKtxdvWkj+BzIrGFiDEw2XwUlMAIlOegpg0oPjpMVhfWSY
-         xCGl61cp18M8TZuJsmYY8VdGk1LuSuKOmLlmLO5Tqg+W98sGp+7qTZhp3n6N+SiEKn96
-         DZaw==
-X-Gm-Message-State: AOAM531UQKLnzxl8+wRvxBd275dtsLZ/Edb9vB/gvhdA52qysgIXhTYV
-        jWfU+uFLy9UjW9Ekj8XI45SjdPStvQ==
-X-Google-Smtp-Source: ABdhPJyjDNQqFMKGWqkJAvrDnu1nt8BBWu2t1EZWDLhtEOFilJTPAKhjY8JokBsqlIXd/7+bhWxHMg==
-X-Received: by 2002:a05:6830:19f3:b0:605:fd48:7fed with SMTP id t19-20020a05683019f300b00605fd487fedmr5155994ott.382.1651537876978;
-        Mon, 02 May 2022 17:31:16 -0700 (PDT)
+        bh=oPoGfUm6HdS/RdvyDE4eYbdws9jspTBGYeir1rydtWI=;
+        b=A9TJ4JBeUXaqY3c1CO3CTAGFlCGj44sMrKZZbpkgnKkWWuWuLe7WzuuEjqV69qGR9r
+         BKC0sY6Xs0O6wvycVkhfajCTVq8IQudPwMCXzluHZqQKiGr5HzFcH7PaDdkiN3S1oH1v
+         zNOtx7/iLP8Wv1pz3mw69uN8l4ddGwHJR2p+e/CsYanwofqbncdWMVIMpKdg/x+2ZLBl
+         gtY+ptHYsS/txx2k7pRgvw9gh9BqJJ/ftoydNu9bTeKcO/Sd+91nqZiOcCYxEGh41005
+         aUwpalXYm0YCrapYuisbCP/QaJo5Xnqqug2zJ83SsqwLLL9AXdyhM2b7+wieQS4TxmAz
+         Ym5g==
+X-Gm-Message-State: AOAM5301DSzukuyLe79dJi+AZKgWWpwHfByjoGa69jXZqBhjDAHmi6D2
+        saPowshxHMmAUSlp4evKJw==
+X-Google-Smtp-Source: ABdhPJw3ddsqRq6pulMnNx0Fn+HlUlJlRBvLqA0Dm6SigHDMb7V21SDoPfc90N/p+iaBz3w66JpvOA==
+X-Received: by 2002:a05:6808:3083:b0:325:f167:415f with SMTP id bl3-20020a056808308300b00325f167415fmr846706oib.160.1651538096054;
+        Mon, 02 May 2022 17:34:56 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id b21-20020a056870b25500b000eba4901e57sm3933451oam.17.2022.05.02.17.31.16
+        by smtp.gmail.com with ESMTPSA id ay7-20020a056808300700b00325cda1ff8csm2864803oib.11.2022.05.02.17.34.55
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 May 2022 17:31:16 -0700 (PDT)
-Received: (nullmailer pid 2111272 invoked by uid 1000);
-        Tue, 03 May 2022 00:31:15 -0000
-Date:   Mon, 2 May 2022 19:31:15 -0500
+        Mon, 02 May 2022 17:34:55 -0700 (PDT)
+Received: (nullmailer pid 2117695 invoked by uid 1000);
+        Tue, 03 May 2022 00:34:54 -0000
+Date:   Mon, 2 May 2022 19:34:54 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Marek Vasut <marex@denx.de>
-Cc:     dri-devel@lists.freedesktop.org, robert.foss@linaro.org,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Maxime Ripard <maxime@cerno.tech>, Peng Fan <peng.fan@nxp.com>,
-        Robby Cai <robby.cai@nxp.com>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 1/2] dt-bindings: display: bridge: ldb: Implement
- simple Freescale i.MX8MP LDB bridge
-Message-ID: <YnB3008DXAVoUK7j@robh.at.kernel.org>
-References: <20220426193645.244792-1-marex@denx.de>
+To:     Keerthy <j-keerthy@ti.com>
+Cc:     kristo@kernel.org, amitk@kernel.org, devicetree@vger.kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski@linaro.org,
+        linux-kernel@vger.kernel.org, rui.zhang@intel.com,
+        daniel.lezcano@linaro.org, vigneshr@ti.com,
+        linux-pm@vger.kernel.org
+Subject: Re: [PATCH v6 1/4] dt-bindings: thermal: k3-j72xx: Add VTM bindings
+ documentation
+Message-ID: <YnB4rtn87l5nXtRM@robh.at.kernel.org>
+References: <20220427064635.24898-1-j-keerthy@ti.com>
+ <20220427064635.24898-2-j-keerthy@ti.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220426193645.244792-1-marex@denx.de>
+In-Reply-To: <20220427064635.24898-2-j-keerthy@ti.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
-        version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Apr 26, 2022 at 09:36:44PM +0200, Marek Vasut wrote:
-> The i.MX8MP contains two syscon registers which are responsible
-> for configuring the on-SoC DPI-to-LVDS serializer. Add DT binding
-> which represents this serializer as a bridge.
+On Wed, 27 Apr 2022 12:16:32 +0530, Keerthy wrote:
+> Add VTM bindings documentation. In the Voltage Thermal
+> Management Module(VTM), K3 J72XX supplies a voltage
+> reference and a temperature sensor feature that are gathered in the band
+> gap voltage and temperature sensor (VBGAPTS) module. The band
+> gap provides current and voltage reference for its internal
+> circuits and other analog IP blocks. The analog-to-digital
+> converter (ADC) produces an output value that is proportional
+> to the silicon temperature.
 > 
-> Acked-by: Sam Ravnborg <sam@ravnborg.org>
-> Signed-off-by: Marek Vasut <marex@denx.de>
-> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> Cc: Lucas Stach <l.stach@pengutronix.de>
-> Cc: Maxime Ripard <maxime@cerno.tech>
-> Cc: Peng Fan <peng.fan@nxp.com>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Robby Cai <robby.cai@nxp.com>
-> Cc: Robert Foss <robert.foss@linaro.org>
-> Cc: Sam Ravnborg <sam@ravnborg.org>
-> Cc: Thomas Zimmermann <tzimmermann@suse.de>
-> Cc: devicetree@vger.kernel.org
-> To: dri-devel@lists.freedesktop.org
+> Signed-off-by: Keerthy <j-keerthy@ti.com>
 > ---
-> V2: - Consistently use fsl,imx8mp-ldb as compatible
->     - Drop items: from compatible:
->     - Replace minItems with maxItems in clocks:
->     - Drop quotes from clock-names const: ldb
->     - Rename syscon to fsl,syscon
->     - Use generic name of ldb-lvds in example
-> V3: - Add AB from Sam
->     - Consistently use MX8MP
-> V4: - Rename to fsl-ldb all over the place
->     - Put the LDB node under media block controller in the example
-> ---
->  .../bindings/display/bridge/fsl,ldb.yaml      | 92 +++++++++++++++++++
->  1 file changed, 92 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/bridge/fsl,ldb.yaml
-
-A little quick on the applying...
-
+>  .../bindings/thermal/ti,j72xx-thermal.yaml    | 64 +++++++++++++++++++
+>  1 file changed, 64 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/thermal/ti,j72xx-thermal.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/display/bridge/fsl,ldb.yaml b/Documentation/devicetree/bindings/display/bridge/fsl,ldb.yaml
-> new file mode 100644
-> index 000000000000..77f174eee424
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/bridge/fsl,ldb.yaml
-> @@ -0,0 +1,92 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/bridge/fsl,ldb.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Freescale i.MX8MP DPI to LVDS bridge chip
-> +
-> +maintainers:
-> +  - Marek Vasut <marex@denx.de>
-> +
-> +description: |
-> +  The i.MX8MP mediamix contains two registers which are responsible
-> +  for configuring the on-SoC DPI-to-LVDS serializer. This describes
-> +  those registers as bridge within the DT.
 
-This is a subblock of the mediamix? Please add 'reg' for the 2 registers 
-even if you use a regmap.
-
-I didn't find a binding for mediamix. You really need the containing 
-block binding before a child node.
-
-Rob
+Reviewed-by: Rob Herring <robh@kernel.org>
