@@ -2,158 +2,291 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 939B451894E
-	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 18:07:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 42177518971
+	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 18:13:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238803AbiECQKx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 May 2022 12:10:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51836 "EHLO
+        id S239233AbiECQRB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 May 2022 12:17:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56742 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232536AbiECQKw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 12:10:52 -0400
-Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::222])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F33A25C6F;
-        Tue,  3 May 2022 09:07:18 -0700 (PDT)
-Received: (Authenticated sender: clement.leger@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 11B8340005;
-        Tue,  3 May 2022 16:07:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1651594036;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=xthf4C7ur9zN4o/9f3kzfNM7G/i4L2TMAmLJ5bF8nnI=;
-        b=PqfIbDa8O9C9Mq6unBJ/Ed+fd0gBO/cMham8ZD5lCisKxFdiERR8HF1CDaaHqFU76oYATY
-        0manVcHlIdzbQRoJzyoV+HZwmuJaj6selVkqYbEXDAxPqf0I5irS+d9Eab65Ah3AyJYP8e
-        8Fn7aDuieDU1zsRb8eRC0XK9T6GOn00MUZHE1T1RZCfnP1l71dwy9K+k0zZ4xrJgrAV/jN
-        DPZo/LrlGC3z/Qh22NVtPPnH2MVyOcxvvO8MHO8Y3DqRKxI2i8CbXXb7s28go/rgcKmc5x
-        nv4eTTqLZw1RuBQ0AJgr4LQ26mo5Ss+kR6RxbVxCeZMBm420yVBX0hBD1F/aWg==
-Date:   Tue, 3 May 2022 18:05:58 +0200
-From:   =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Frank Rowand <frowand.list@gmail.com>,
-        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Allan Nielsen <allan.nielsen@microchip.com>,
-        Horatiu Vultur <horatiu.vultur@microchip.com>,
-        Steen Hegelund <steen.hegelund@microchip.com>,
-        Thomas Petazzoni <thomas.petazonni@bootlin.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Mark Brown <broonie@kernel.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Andrew Lunn <andrew@lunn.ch>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org
-Subject: Re: [PATCH 2/3] PCI: of: create DT nodes for PCI devices if they do
- not exists
-Message-ID: <20220503180558.0ec2fd56@fixe.home>
-In-Reply-To: <YnE4Ni+QUJT/CXV4@robh.at.kernel.org>
-References: <20220427094502.456111-1-clement.leger@bootlin.com>
-        <20220427094502.456111-3-clement.leger@bootlin.com>
-        <YnE4Ni+QUJT/CXV4@robh.at.kernel.org>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.31; x86_64-pc-linux-gnu)
+        with ESMTP id S239123AbiECQRA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 12:17:00 -0400
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F209835AB9
+        for <devicetree@vger.kernel.org>; Tue,  3 May 2022 09:13:24 -0700 (PDT)
+Received: by mail-ed1-x536.google.com with SMTP id b24so20417233edu.10
+        for <devicetree@vger.kernel.org>; Tue, 03 May 2022 09:13:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=8Ix4flC8Lt3S4LnOPEHPllIKGgAhWjlUsKL1j7FHpiA=;
+        b=TiIgOs8E9eUtJtPgW7RvVvjvQUD+arFYWw9VJ7yG42lh0uXjsFc2qQHnw1+SKnesT4
+         QxmO1Bd6Ztk+nlweneKQQuvWpjUXJHw7M/kIi/D2NRK4dmWn2XVXb/eCq9ckNxGMN6bX
+         b82uUlY+TPqCznXNXmO5xYHktW47VgLFdc1JI=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=8Ix4flC8Lt3S4LnOPEHPllIKGgAhWjlUsKL1j7FHpiA=;
+        b=M98qDXDbJr+OoZFMp3pCycKzpYHxqWraw94aNUQVfnrfW/zo+B/pgioeoV90/RGmsW
+         WfMXy89Z2bmtV9YLXbP+3Z4+ytB2CaM9CI8wcJpz5WI6rEP1BEIa0Qy4+IlUDH3MS8dR
+         fCJHVlmir6xQXLN4xEeYSVyxzVh4RLZcOQUYqZh/YKWcqH4FyEuO5kVjmn93UBqWN44s
+         3mWQAvkRONTRAPROqODDi/VDTeC9GxKkVVrXhgg2kCIsU6PhsI2D/ykcdJ03bc3cgqFP
+         zRCwCfCUnT6CmQMfugGYSq/kMZis/yYQEPO3aBwMwAOSzET3rM9ARvLs9AtomtbLESMx
+         NcaA==
+X-Gm-Message-State: AOAM530kWF37RVGpeflGW2kkK6He33sSCMrl0M6RS431A1D4RZXMQXNT
+        g3TrLE9NKoP5Ux84ffh1kwblckasX9r+owl6
+X-Google-Smtp-Source: ABdhPJyRsF0x4sRf8voGgsNakBUgdoahmIhRZ7vQ/T2+uERJbTwcO8V8O7gEG6SeCX7hRE8wAponSQ==
+X-Received: by 2002:a05:6402:50d0:b0:427:b483:6195 with SMTP id h16-20020a05640250d000b00427b4836195mr13964113edb.390.1651594403074;
+        Tue, 03 May 2022 09:13:23 -0700 (PDT)
+Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com. [209.85.221.43])
+        by smtp.gmail.com with ESMTPSA id ht7-20020a170907608700b006f3ef214e67sm4773294ejc.205.2022.05.03.09.13.21
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 03 May 2022 09:13:22 -0700 (PDT)
+Received: by mail-wr1-f43.google.com with SMTP id q23so24070938wra.1
+        for <devicetree@vger.kernel.org>; Tue, 03 May 2022 09:13:21 -0700 (PDT)
+X-Received: by 2002:a5d:42c8:0:b0:20a:d91f:87b5 with SMTP id
+ t8-20020a5d42c8000000b0020ad91f87b5mr13504406wrr.301.1651594401230; Tue, 03
+ May 2022 09:13:21 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+References: <20220330090947.9100-1-chenxiangrui@huaqin.corp-partner.google.com>
+ <a0eb6bf9-256a-29b1-2211-496df710f531@linaro.org> <CAD=FV=UjyLofXZqnj=bL89fza5JS6O5Np9W-A4V4WK+na0hdrw@mail.gmail.com>
+ <b7ff08b8-60fb-7629-9399-3d5cca46ab9e@linaro.org> <CAD=FV=Vx5g_xTRZGc9wW=ZLnfsOcubTYFcnYQRC5jLm+n3en0w@mail.gmail.com>
+ <606cc762-a0c2-49a4-3e5d-d2dbd4595bc7@linaro.org> <CAD=FV=W_SA-3PfDFi-Gkjk9pew5bchFNjQhXX8MkZyuy5UohEQ@mail.gmail.com>
+ <CAJKOXPdt5WTg4VU-TEW3dmPHR76dKg63XVxRQfa7ZSKc_jz6Ag@mail.gmail.com>
+In-Reply-To: <CAJKOXPdt5WTg4VU-TEW3dmPHR76dKg63XVxRQfa7ZSKc_jz6Ag@mail.gmail.com>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Tue, 3 May 2022 09:13:08 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=XQqQSQDNh-zXqEQkwsrax5Qb3OtfKZoQLkncJj_4mcQw@mail.gmail.com>
+Message-ID: <CAD=FV=XQqQSQDNh-zXqEQkwsrax5Qb3OtfKZoQLkncJj_4mcQw@mail.gmail.com>
+Subject: Re: [PATCH] CHROMIUM: arm64: dts: qcom: Add sc7180-gelarshie
+To:     =?UTF-8?Q?Krzysztof_Koz=C5=82owski?= <k.kozlowski.k@gmail.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Mars Chen <chenxiangrui@huaqin.corp-partner.google.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Le Tue, 3 May 2022 09:12:06 -0500,
-Rob Herring <robh@kernel.org> a =C3=A9crit :
+Hi,
 
-> On Wed, Apr 27, 2022 at 11:45:01AM +0200, Cl=C3=A9ment L=C3=A9ger wrote:
-> > In order to apply overlays to PCI device nodes, the nodes must first
-> > exist. This commit add support to populate a skeleton tree for PCI bus
-> > and devices. These nodes can then be used by drivers to apply overlays.
-> >  =20
->=20
-> While I implemented this creating the nodes as the PCI devices are=20
-> created, I think probably we're going to want to create the device node=20
-> and any needed parent nodes on demand. Otherwise, just turning on=20
-> CONFIG_OF could break platforms.
+On Tue, May 3, 2022 at 8:54 AM Krzysztof Koz=C5=82owski
+<k.kozlowski.k@gmail.com> wrote:
+>
+> On Tue, 19 Apr 2022 at 18:55, Doug Anderson <dianders@chromium.org> wrote=
+:
+>
+> > > Except shuffling the compatibles in bindings, you are changing the
+> > > meaning of final "google,lazor" compatible. The bootloader works as
+> > > expected - from most specific (rev5-sku6) to most generic compatible
+> > > (google,lazor) but why do you need to advertise the latest rev as
+> > > "google,lazor"? Why the bootloader on latest rev (e.g. rev7) cannot b=
+ind
+> > > to rev7 compatible?
+> >
+> > The problem really comes along when a board strapped as -rev8 comes
+> > along that is a board spin (and thus a new revision) but "should" be
+> > invisible to software. Since it should be invisible to software we
+> > want it to boot without any software changes. As per my previous mail,
+> > sometimes HW guys make these changes without first consulting software
+> > (since it's invisible to SW!) and we want to make sure that they're
+> > still going to strap as "-rev8".
+>
+> If you want to boot it without any SW changes, do not change the SW.
+> Do not change the DTB. If you admit that you want to change DTB, so
+> the SW, sure, change it and accept the outcome - you have a new
+> compatible. This new compatible can be or might be not compatible with
+> rev7. Up to you.
+>
+> >
+> > So what happens with this -rev8 board? The bootloader will check and
+> > it won't see any device tree that advertises "google,lazor-rev8",
+> > right?
+>
+> Your bootloader looks for a specific rev8, which is not compatible
+> with rev7 (or is it? I lost the point of your example)
 
-Ok, so this creation would potentially be done on request from some PCI
-driver that want to apply it's overlay on the tree. Should I actually
-add some function such as of_pci_apply_overlay() which would create the
-PCI node tree if not present and apply the overlay to the of_node that
-is associated to the PCIe device ?
+Actually the whole point is that _we don't know_ if -rev7 and -rev8
+are compatible.
 
->=20
-> One potential issue is that fwnode assumes there is either a DT node or=20
-> ACPI node. With this, we have the potential for both. I'm not sure how=20
-> much that's going to be an issue.
+Think of it this way. You've got component A on your board and you
+power it up with 1.8 V. We run out of component A and we decide to
+replace it with component B. The vendor promises that component B is a
+drop-in replacement for component A. You boot up a few devices with
+component B and everything looks good. You build a whole lot of
+products.
 
-Not sure either but that's better not to play with that.
+Sometime down the line you start getting failure reports. It turns out
+that products that have component B are sporadically failing in the
+field. After talking to the vendor, they suggest that we need to power
+component B with 1.85 V instead of 1.80 V. Luckily we can adjust the
+voltage with the PMIC, but component A's vendor doesn't want you to
+bump the voltage up to 1.85V.
 
->=20
-> > Co-developed-by: Rob Herring <robh@kernel.org>
-> > Signed-off-by: Rob Herring <robh@kernel.org>
-> > Signed-off-by: Cl=C3=A9ment L=C3=A9ger <clement.leger@bootlin.com>
-> > ---
-> >  drivers/pci/of.c | 184 +++++++++++++++++++++++++++++++++++++++++++++++
-> >  1 file changed, 184 insertions(+)
-> >=20
-> > diff --git a/drivers/pci/of.c b/drivers/pci/of.c
-> > index cb2e8351c2cc..f2325708726e 100644
-> > --- a/drivers/pci/of.c
-> > +++ b/drivers/pci/of.c
-> > @@ -16,12 +16,194 @@
-> >  #include "pci.h"
-> > =20
-> >  #ifdef CONFIG_PCI
-> > +static int of_pci_add_property(struct of_changeset *ocs, struct device=
-_node *np,
-> > +			       const char *name, const void *value, int length) =20
->=20
-> Nothing really PCI specific about this function.
->=20
-> The kernel support for creating nodes and properties is pretty poor. We=20
-> should improve it with functions like this (in drivers/of/). Maybe the=20
-> changeset part should be separate though. We have some cases of creating=
-=20
-> properties or nodes already, and whatever new APIs we make those=20
-> cases should be able to use them. And if they are converted, then it can=
-=20
-> be merged sooner rather than when all the PCI parts are ready.
+Even though we originally thought that the two boards were 100%
+compatible, it later turns out that they're not.
 
-Ok, so this will be done as a first separate series to add property
-creation then.
-
-> > +
-> > +static int of_pci_add_cells_props(struct device_node *node,
-> > +				  struct of_changeset *cs, int n_addr_cells,
-> > +				  int n_size_cells)
-> > +{
-> > +	__be32 val;
-> > +	int ret;
-> > +
-> > +	ret =3D of_pci_add_property(cs, node, "ranges", NULL, 0); =20
->=20
-> The host bridge node is going to need to fill in 'ranges'. Empty ranges=20
-> is not valid when there's a change in number of cells.
-
-Ok, wasn't aware of that. If I understand, I'll need to obtain the
-range of PCI addresses that are behind the bridge to fill in this
-ranges property right ?
-
->=20
-> The root node also will need "#address-cells" and "#size-cells".
-> =20
-
-Ok.
+So as a general principle, if we make big changes to a product we
+increment the board revision strappings even if we think it's
+invisible to software. This can help us get out of sticky situations
+in the future.
 
 
---=20
-Cl=C3=A9ment L=C3=A9ger,
-Embedded Linux and Kernel engineer at Bootlin
-https://bootlin.com
+> and you ship
+> it with a DTB which has rev7, but not rev8. You control both pieces -
+> bootloader and DTB. You cannot put incompatible pieces of firmware
+> (one behaving entirely different than other) and expect proper output.
+> This is why you also have bindings.
+
+...and by "you" in "*you* control both pieces" you mean some
+collection of people spread across several companies and several
+countries and who don't always communicate well with each other. If
+they believe that a change should be invisible to software, folks
+building the hardware in China don't always send me a heads up in
+California, but I still want them to bump the revision number just in
+case they messed up and we do need a software change down the road.
+
+
+> > If _all_ lazor revisions all include the "google,lazor"
+> > compatible then the bootloader won't have any way to know which to
+> > pick. The bootloader _doesn't_ have the smarts to know that "-rev7" is
+> > closest to "-rev8".
+>
+> rev7 the next in the compatible list, isn't it? So bootloader picks up
+> the fallback...
+
+No. The bootloader works like this (just looking at the revision
+strappings and ignoring the SKU strappings):
+
+1. Read board strappings and get and ID (like "8")
+
+2. Look for "google,lazor-rev8".
+
+3. If it's not there, look for "google,lazor"
+
+4. If it's not there then that's bad.
+
+...so "-rev7" is _not_ in the compatible list for "-rev8".
+
+
+> > It'll just randomly pick one of the "google,lazor"
+> > boards. :( This is why we only advertise "google,lazor" for the newest
+> > device tree.
+> >
+> > Yes, I agree it's not beautiful but it's what we ended up with. I
+> > don't think we want to compromise on the ability to boot new revisions
+> > without software changes because that will just incentivize people to
+> > not increment the board revision. The only other option would be to
+> > make the bootloader smart enough to pick the "next revision down" but
+> > so far they haven't been willing to do that.
+>
+> Just choose the fallback and follow Devicetree spec...
+
+It does choose the fallback and follow the devicetree spec, but the
+bootloader doesn't have rules to consider "-rev7" as a fallback for
+"-rev8".
+
+
+> > I guess the question, though, is what action should be taken. I guess
+> > options are:
+> >
+> > 1. Say that the above requirement that new "invisible" HW revs can
+> > boot w/ no software changes is not a worthy requirement. Personally, I
+> > wouldn't accept this option.
+> >
+> > 2. Ignore. Don't try to document top level compatible for these devices=
+.
+> >
+> > 3. Document the compatible and accept that it's going to shuffle around=
+ a lot.
+> >
+> > 4. Try again to get the bootloader to match earlier revisions as fallba=
+cks.
+> >
+> >
+> > > > Now we can certainly argue back and forth above the above scheme an=
+d
+> > > > how it's terrible and/or great, but it definitely works pretty well
+> > > > and it's what we've been doing for a while now. Before that we used=
+ to
+> > > > proactively add a whole bunch of "future" revisions "just in case".
+> > > > That was definitely worse and had the same problem that we'd have t=
+o
+> > > > shuffle compatibles. See, for instance `rk3288-veyron-jerry.dts`.
+> > > >
+> > > > One thing we _definitely_ don't want to do is to give HW _any_
+> > > > incentive to make board spins _without_ changing the revision. HW
+> > > > sometimes makes spins without first involving software and if it
+> > > > doesn't boot because they updated the board ID then someone in Chin=
+a
+> > > > will just put the old ID in and ship it off. That's bad.
+> > > >
+> > > > --
+> > > >
+> > > > But I guess this doesn't answer your question: how can userspace
+> > > > identify what board this is running? I don't have an answer to that=
+,
+> > > > but I guess I'd say that the top-level "compatible" isn't really it=
+.
+> > >
+> > > It can, the same as bootloader, by looking at the most specific
+> > > compatible (rev7).
+> > >
+> > > > If nothing else, I think just from the definition it's not guarante=
+ed
+> > > > to be right, is it? From the spec: "Specifies a list of platform
+> > > > architectures with which this platform is compatible." The key thin=
+g
+> > > > is "a list". If this can be a list of things then how can you use i=
+t
+> > > > to uniquely identify what one board you're on?
+> > >
+> > > The most specific compatible identifies or, like recently Rob confirm=
+ed
+> > > in case of Renesas, the list of compatibles:
+> > > https://lore.kernel.org/linux-devicetree/Yk2%2F0Jf151gLuCGz@robh.at.k=
+ernel.org/
+> >
+> > I'm confused. If the device tree contains the compatibles:
+> >
+> > "google,lazor-rev4", "google,lazor-rev3", "google,lazor", "qualcomm,sc7=
+180"
+> >
+> > You want to know what board you're on and you look at the compatible,
+> > right? You'll decide that you're on a "google,lazor-rev4" which is the
+> > most specific compatible. ...but you could have booted a
+> > "google,lazor-rev3". How do you know?
+>
+> Applying the wrong DTB on the wrong device will always give you the
+> wrong answer. You can try too boot google,lazor-rev3 on x86 PC and it
+> does not make it a google,lazor-rev3...
+
+I don't understand what you're saying here. If a device tree has the compat=
+ible:
+
+"google,lazor-rev4", "google,lazor-rev3", "google,lazor", "qualcomm,sc7180"
+
+You wouldn't expect to boot it on an x86 PC, but you would expect to
+boot it on either a "google,lazor-rev4" _or_ a "google,lazor-rev3".
+Correct? Now, after we've booted software wants to look at the
+compatible of the device tree that was booted. The most specific entry
+in that device tree is "google,lazor-rev4". ...but we could have
+booted it on a "google,lazor-rev3". How can you know?
+
+-Doug
