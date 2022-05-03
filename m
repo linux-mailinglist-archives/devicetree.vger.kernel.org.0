@@ -2,384 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 10F8C518EC0
-	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 22:29:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 96151518F1A
+	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 22:42:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233093AbiECUdD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 May 2022 16:33:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41496 "EHLO
+        id S237650AbiECUn3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 May 2022 16:43:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48624 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231761AbiECUdB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 16:33:01 -0400
-Received: from esa1.hgst.iphmx.com (esa1.hgst.iphmx.com [68.232.141.245])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9068B30F4F
-        for <devicetree@vger.kernel.org>; Tue,  3 May 2022 13:29:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=wdc.com; i=@wdc.com; q=dns/txt; s=dkim.wdc.com;
-  t=1651609767; x=1683145767;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=o4kl1e8M8PVHGwK9GOuu6JSRWmYmeGGCml0ZIEc6joQ=;
-  b=NNfLpaNiltWpnRnHz5N4rCbm1t6Xev/eENZh0LhDYhPo9Robzri1G/CV
-   VDZrVQTZ1dx9bFw4quCBlLuPLKvIhBTgtxBXq3F0BOvO+R10AdoLc1dGD
-   9MjPZSt14jDtanD8rROy4X/41V/1Z9Vl8gNd06y+jiBjGDs6FcuCC18yH
-   8MhSSty+2/CEQeNTrOkhsjh7hGAp/ODBIABwlJ/vsGNTgQVptqS/r1vrJ
-   20TkPSkuMKOQhdtjAgqsH3fKSaWgTrmx0jFR4emK2Ze5kZdPYnNA9C6G0
-   428aq8IR/M5lmutzGUzcFAIuYpRxIHQFTQzlc1FXRduQYI3GwIwazFv5P
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.91,196,1647273600"; 
-   d="scan'208";a="311424723"
-Received: from uls-op-cesaip01.wdc.com (HELO uls-op-cesaep01.wdc.com) ([199.255.45.14])
-  by ob1.hgst.iphmx.com with ESMTP; 04 May 2022 04:29:26 +0800
-IronPort-SDR: 286d1eQoU6F2mr0r6fQ2kbLzptVIfVfaMn8saBFiLEKuVVMEmBBV4AhJe1LMeRulQgI9O9E/w1
- 0tw5vUyWB4pEzJi2hJVdQfftmbA4YU3ZyLsR+88ornENmpVhw2zRXLA9SXlDAR3bKk4ZBOEWUX
- EyeIX0FgiPb8ulUikoiheDknZIOH0gILcjpVUeKWKD+LrUc+HOmI+P9uE0QYRshB0xfDbhf3GB
- Td3Cxg7K9B4+2P61JUbCc8SNII+ko1AX+q0AMZl9bgrC27ZFPQGW68Q4jdhK4lwo35cPYqkqQP
- HY604F2rn7QJNvjRKm6b8bCT
-Received: from uls-op-cesaip02.wdc.com ([10.248.3.37])
-  by uls-op-cesaep01.wdc.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 03 May 2022 13:00:09 -0700
-IronPort-SDR: 0OD+9EonOSaa8lbHpKDt+hFZL3z7HW5kXyzjdfchRzTibzC0kB2pw6KvVtWfzGyFnctJK/FBhi
- d7Raf8vCzPOuTHL3LuFSvi0ssFlw0I0HIUxh6Fs7gke3//hvWRNQ3dx4xbQvzUpvE0REwGnt9M
- FMGF/GyRcq2ONZLZSHBC3reI1sKfiifzqXM7DmRHk54jsCwJSa6m9vKUU8Tld6aGpPopdreBJE
- uQX261ycVyXJN1m0zdfrvy1E5jrcuJtglgIN5MDzaSrLz6v8esO9z4LdcK7My6DIKwAdkwHJsC
- QV4=
-WDCIronportException: Internal
-Received: from usg-ed-osssrv.wdc.com ([10.3.10.180])
-  by uls-op-cesaip02.wdc.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 03 May 2022 13:29:27 -0700
-Received: from usg-ed-osssrv.wdc.com (usg-ed-osssrv.wdc.com [127.0.0.1])
-        by usg-ed-osssrv.wdc.com (Postfix) with ESMTP id 4KtBQG3ZRqz1SHwl
-        for <devicetree@vger.kernel.org>; Tue,  3 May 2022 13:29:26 -0700 (PDT)
-Authentication-Results: usg-ed-osssrv.wdc.com (amavisd-new); dkim=pass
-        reason="pass (just generated, assumed good)"
-        header.d=opensource.wdc.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=
-        opensource.wdc.com; h=content-transfer-encoding:content-type
-        :in-reply-to:organization:from:references:to:content-language
-        :subject:user-agent:mime-version:date:message-id; s=dkim; t=
-        1651609764; x=1654201765; bh=o4kl1e8M8PVHGwK9GOuu6JSRWmYmeGGCml0
-        ZIEc6joQ=; b=HhCfrVHLdtqq/nSonK/PRLGDKp24I/jadg37HwAxQ4bw1OKpuaz
-        dq4VUdjocobbtZM64wmeOqFBT+78FNWn1QThePzKUKe42+ipnG4EqRZ3aXBVkmH1
-        e2aiVBVZ7C/rINRChcFUuvwedbxXky6DiDJhW8usjcOA1vQ5JcPcthmChPJRKnN+
-        TdCcer3Io/BkWvF8yQG5wO0M3TD00DkeccHTdp100OEKYZY6Sm94wVU6rWk6GX8g
-        8Ea6HcFp3slRUdiw7RxI1r2jFgou+YyFiPlIborbCnZ9I7sdOa50iktrNCG0QzsG
-        lpx6pCtxocCjuP2suKt0eTWwgCLvqDimgng==
-X-Virus-Scanned: amavisd-new at usg-ed-osssrv.wdc.com
-Received: from usg-ed-osssrv.wdc.com ([127.0.0.1])
-        by usg-ed-osssrv.wdc.com (usg-ed-osssrv.wdc.com [127.0.0.1]) (amavisd-new, port 10026)
-        with ESMTP id i35FAAjccEnF for <devicetree@vger.kernel.org>;
-        Tue,  3 May 2022 13:29:24 -0700 (PDT)
-Received: from [10.225.81.200] (unknown [10.225.81.200])
-        by usg-ed-osssrv.wdc.com (Postfix) with ESMTPSA id 4KtBQD1mr9z1Rvlc;
-        Tue,  3 May 2022 13:29:24 -0700 (PDT)
-Message-ID: <773f5323-43af-6764-ea74-2a3bac2022e8@opensource.wdc.com>
-Date:   Wed, 4 May 2022 05:29:23 +0900
+        with ESMTP id S236018AbiECUn2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 16:43:28 -0400
+Received: from mail-qk1-x72b.google.com (mail-qk1-x72b.google.com [IPv6:2607:f8b0:4864:20::72b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6607133A1A
+        for <devicetree@vger.kernel.org>; Tue,  3 May 2022 13:39:53 -0700 (PDT)
+Received: by mail-qk1-x72b.google.com with SMTP id c1so14672186qkf.13
+        for <devicetree@vger.kernel.org>; Tue, 03 May 2022 13:39:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=marek-ca.20210112.gappssmtp.com; s=20210112;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=CF1rRZMBdGFikP/j43V46JlTy9v9S59RO3PJDooXZCk=;
+        b=s4MMs4b32ZZlqeuY7DthE+KfUczBMMggh5ly/jPZxCKBUh11m+/esR549euW/Q7UY8
+         NVlyl1RSnMXxUjsoElM0SIYxLJexmAeA7Mam8Ofsk/zZJVMK2ulqDKbTAw8USZ1OP00S
+         KSGN3LqcSwpTSBJWQG3sNs5jlms2w6iWNECQ73xaHxG5yMlNdbOOHQ/RPyTKUEQ2Dn+1
+         GXsgLUpy5eHISipD2maX85qvG2d184/ss3Vejuub114MCzJi/N9OPmJqJQ1IokBSuskl
+         kH7k4tU6Aem/mtTobdtDvKpNCEdBwAhPtd2S0hFO7Gdfb2jETPvquu8Qk1ZKJ0B36pk2
+         aNiQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=CF1rRZMBdGFikP/j43V46JlTy9v9S59RO3PJDooXZCk=;
+        b=X3RvrSDD76GTO8f1Jo97pI8lHzUpT87ap79Xtbb/ojueDUNeBtSUqd5LUA+0UR+B6I
+         2GgKUZiZCtKCVSXpv4NFcvS9Q0hkV1EliEvbSvXiwIqjVClQuqliP1iMDcROjXi5VG2t
+         hXsncYFA4Bv0CNZoNci6K8Q+VVwn89LHOTrceAXxi+es8iaDX9+aXMlNFwYogWR4EmB7
+         s9x+603Wb3oo+IY+7EqQfCqbMdypsvBDUlQH83OLf+jgvu7fvmE2+EGvs+B+mRpCAHo/
+         M9PMUTpt+iPMebHh16bL8A5xy7BxYhZGeF2Oxc+H7eLaXEeTGzOrDtEUxVGnXHR+jSqL
+         eGeg==
+X-Gm-Message-State: AOAM532TEkw4yO7sXDxBmMGLoKD8f/VWDIVmMVTv0QRJn5CNCvR2dPEt
+        SftnhT6LYzC8LyoR0EGOKqIcwA==
+X-Google-Smtp-Source: ABdhPJxqJm0wwuWGMwBvmBmgvducSLG4QQzA7m59lPsrpRYVx2+ZymLmVLU1Tjr0wZ0b/FZ5UPc6cQ==
+X-Received: by 2002:a05:620a:d87:b0:67b:3105:4f7f with SMTP id q7-20020a05620a0d8700b0067b31054f7fmr13658867qkl.230.1651610392536;
+        Tue, 03 May 2022 13:39:52 -0700 (PDT)
+Received: from [192.168.0.189] (modemcable134.222-177-173.mc.videotron.ca. [173.177.222.134])
+        by smtp.gmail.com with ESMTPSA id y8-20020ae9f408000000b0069fc13ce20fsm6271493qkl.64.2022.05.03.13.39.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 03 May 2022 13:39:51 -0700 (PDT)
+Subject: Re: [PATCH v2 4/8] clk: qcom: add support for SM8350 GPUCC
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Robert Foss <robert.foss@linaro.org>
+Cc:     agross@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
+        robh+dt@kernel.org, krzk+dt@kernel.org, tdas@codeaurora.org,
+        anischal@codeaurora.org, linux-arm-msm@vger.kernel.org,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+References: <20220503130448.520470-1-robert.foss@linaro.org>
+ <20220503130448.520470-4-robert.foss@linaro.org>
+ <YnFkn3CMS+VdJ9u7@builder.lan>
+From:   Jonathan Marek <jonathan@marek.ca>
+Message-ID: <e7935b8e-1e4c-a424-7d77-307e346f507f@marek.ca>
+Date:   Tue, 3 May 2022 16:39:41 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.2.2
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:91.0)
- Gecko/20100101 Thunderbird/91.8.1
-Subject: Re: [PATCH v2 02/23] dt-bindings: ata: ahci-platform: Detach common
- AHCI bindings
+In-Reply-To: <YnFkn3CMS+VdJ9u7@builder.lan>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
-To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Jens Axboe <axboe@kernel.dk>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Serge Semin <fancer.lancer@gmail.com>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        linux-ide@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20220503200938.18027-1-Sergey.Semin@baikalelectronics.ru>
- <20220503200938.18027-3-Sergey.Semin@baikalelectronics.ru>
-From:   Damien Le Moal <damien.lemoal@opensource.wdc.com>
-Organization: Western Digital Research
-In-Reply-To: <20220503200938.18027-3-Sergey.Semin@baikalelectronics.ru>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022/05/04 5:09, Serge Semin wrote:
-> In order to create a more sophisticated AHCI controller DT bindings let's
-> divide the already available generic AHCI platform YAML schema into the
-> platform part and a set of the common AHCI properties. The former part
-> will be used to evaluate the AHCI DT nodes mainly compatible with the
-> generic AHCI controller while the later schema will be used for more
-> thorough AHCI DT nodes description. For instance such YAML schemas design
-> will be useful for our DW AHCI SATA controller derivative with four clock
-> sources, two reset lines, one system controller reference and specific
-> max Rx/Tx DMA xfers size constraints.
+On 5/3/22 1:21 PM, Bjorn Andersson wrote:
+> On Tue 03 May 08:04 CDT 2022, Robert Foss wrote:
 > 
-> Note the phys and target-supply property requirement is preserved in the
-> generic AHCI platform bindings because some platforms can lack of the
-> explicitly specified PHYs or target device power regulators.
+>> From: Jonathan Marek <jonathan@marek.ca>
+>>
+>> The GPUCC manages the clocks for the Adreno GPU found on the
+>> sm8350 SoCs.
+>>
 > 
-> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+> If the patch is authored by Jonathan, we need Jonathan's S-o-b as well.
 > 
-> ---
-> 
-> Folks, I don't really see why the phys/target-supply requirement has been
-> added to the generic AHCI DT schema in the first place. Probably just to
-> imply some meaning for the sub-nodes definition. Anyway in one of the
-> further patches I am adding the DW AHCI SATA controller DT bindings which
-> won't require having these properties specified in the sub-nodes, but will
-> describe additional port-specific properties. That's why I get to keep the
-> constraints in the ahci-platform.yaml schema instead of moving them to the
-> common schema.
-> 
-> Changelog v2:
-> - This is a new patch created after rebasing v1 onto the 5.18-rc3 kernel.
-> ---
->  .../devicetree/bindings/ata/ahci-common.yaml  | 117 ++++++++++++++++++
->  .../bindings/ata/ahci-platform.yaml           |  68 +---------
->  2 files changed, 123 insertions(+), 62 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/ata/ahci-common.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/ata/ahci-common.yaml b/Documentation/devicetree/bindings/ata/ahci-common.yaml
-> new file mode 100644
-> index 000000000000..72e24b246040
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/ata/ahci-common.yaml
-> @@ -0,0 +1,117 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/ata/ahci-common.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Common Properties for Serial ATA AHCI controllers
-> +
-> +maintainers:
-> +  - Hans de Goede <hdegoede@redhat.com>
-> +  - Jens Axboe <axboe@kernel.dk>
 
-This should probably be me rather than Jens since Jens is no longer maintaining
-libata/ahci.
+Signed-off-by: Jonathan Marek <jonathan@marek.ca>
 
-> +
-> +description:
-> +  This document defines device tree properties for a common AHCI SATA
-> +  controller implementation. It's hardware interface is supposed to
-> +  conform to the technical standard defined by Intel (see Serial ATA
-> +  Advanced Host Controller Interface specification for details). The
-> +  document doesn't constitute a DT-node binding by itself but merely
-> +  defines a set of common properties for the AHCI-compatible devices.
-> +
-> +select: false
-> +
-> +allOf:
-> +  - $ref: sata-common.yaml#
-> +
-> +properties:
-> +  reg:
-> +    description:
-> +      Generic AHCI registers space conforming to the Serial ATA AHCI
-> +      specification.
-> +
-> +  reg-names:
-> +    description: CSR space IDs
-> +
-> +  interrupts:
-> +    description:
-> +      Generic AHCI state change interrupt. Can be implemented either as a
-> +      single line attached to the controller as a set of the dedicated signals
-> +      for the global and particular port events.
-> +
-> +  clocks:
-> +    description:
-> +      List of all the reference clocks connected to the controller.
-> +
-> +  clock-names:
-> +    description: Reference clocks IDs
-> +
-> +  resets:
-> +    description:
-> +      List of the reset control lines to reset the controller clock
-> +      domains.
-> +
-> +  reset-names:
-> +    description: Reset line IDs
-> +
-> +  power-domains:
-> +    description:
-> +      List of the power domain the AHCI controller being a part of.
-> +
-> +  ahci-supply:
-> +    description: Power regulator for AHCI controller
-> +
-> +  target-supply:
-> +    description: Power regulator for SATA target device
-> +
-> +  phy-supply:
-> +    description: Power regulator for SATA PHY
-> +
-> +  phys:
-> +    description: Reference to the SATA PHY node
-> +    maxItems: 1
-> +
-> +  phy-names:
-> +    maxItems: 1
-> +
-> +  ports-implemented:
-> +    $ref: '/schemas/types.yaml#/definitions/uint32'
-> +    description:
-> +      Mask that indicates which ports the HBA supports. Useful if PI is not
-> +      programmed by the BIOS, which is true for some embedded SoC's.
-> +    maximum: 0x1f
-> +
-> +patternProperties:
-> +  "^sata-port@[0-9a-f]+$":
-> +    type: object
-> +    description:
-> +      It is optionally possible to describe the ports as sub-nodes so
-> +      to enable each port independently when dealing with multiple PHYs.
-> +
-> +    properties:
-> +      reg:
-> +        description: AHCI SATA port identifier
-> +        maxItems: 1
-> +
-> +      phys:
-> +        description: Individual AHCI SATA port PHY
-> +        maxItems: 1
-> +
-> +      phy-names:
-> +        description: AHCI SATA port PHY ID
-> +        maxItems: 1
-> +
-> +      target-supply:
-> +        description: Power regulator for SATA port target device
-> +
-> +    required:
-> +      - reg
-> +
-> +    additionalProperties: true
-> +
-> +required:
-> +  - reg
-> +  - interrupts
-> +
-> +additionalProperties: true
-> +
-> +...
-> diff --git a/Documentation/devicetree/bindings/ata/ahci-platform.yaml b/Documentation/devicetree/bindings/ata/ahci-platform.yaml
-> index 9304e4731965..76075d3c8987 100644
-> --- a/Documentation/devicetree/bindings/ata/ahci-platform.yaml
-> +++ b/Documentation/devicetree/bindings/ata/ahci-platform.yaml
-> @@ -36,8 +36,7 @@ select:
->      - compatible
->  
->  allOf:
-> -  - $ref: "sata-common.yaml#"
-> -
-> +  - $ref: "ahci-common.yaml#"
->  
->  properties:
->    compatible:
-> @@ -69,90 +68,35 @@ properties:
->      maxItems: 1
->  
->    clocks:
-> -    description:
-> -      Clock IDs array as required by the controller.
->      minItems: 1
->      maxItems: 3
->  
->    clock-names:
-> -    description:
-> -      Names of clocks corresponding to IDs in the clock property.
->      minItems: 1
->      maxItems: 3
->  
->    interrupts:
->      maxItems: 1
->  
-> -  ahci-supply:
-> -    description:
-> -      regulator for AHCI controller
-> -
-> -  phy-supply:
-> -    description:
-> -      regulator for PHY power
-> -
-> -  phys:
-> -    description:
-> -      List of all PHYs on this controller
-> -    maxItems: 1
-> -
-> -  phy-names:
-> -    description:
-> -      Name specifier for the PHYs
-> -    maxItems: 1
-> -
-> -  ports-implemented:
-> -    $ref: '/schemas/types.yaml#/definitions/uint32'
-> -    description: |
-> -      Mask that indicates which ports that the HBA supports
-> -      are available for software to use. Useful if PORTS_IMPL
-> -      is not programmed by the BIOS, which is true with
-> -      some embedded SoCs.
-> -    maximum: 0x1f
-> -
->    power-domains:
->      maxItems: 1
->  
->    resets:
->      maxItems: 1
->  
-> -  target-supply:
-> -    description:
-> -      regulator for SATA target power
-> -
-> -required:
-> -  - compatible
-> -  - reg
-> -  - interrupts
-> -
->  patternProperties:
->    "^sata-port@[0-9a-f]+$":
->      type: object
-> -    additionalProperties: false
-> -    description:
-> -      Subnode with configuration of the Ports.
-> -
-> -    properties:
-> -      reg:
-> -        maxItems: 1
-> -
-> -      phys:
-> -        maxItems: 1
-> -
-> -      phy-names:
-> -        maxItems: 1
-> -
-> -      target-supply:
-> -        description:
-> -          regulator for SATA target power
-> -
-> -    required:
-> -      - reg
->  
->      anyOf:
->        - required: [ phys ]
->        - required: [ target-supply ]
->  
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +
->  unevaluatedProperties: false
->  
->  examples:
-
-
--- 
-Damien Le Moal
-Western Digital Research
+(but I didn't change much from downstream, I never submitted this patch 
+so didn't clean up things like using ARRAY_SIZE, etc.)
