@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 18FE5518214
-	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 12:08:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D84C5518223
+	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 12:15:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231181AbiECKMU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 May 2022 06:12:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59476 "EHLO
+        id S233217AbiECKTG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 May 2022 06:19:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36736 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233084AbiECKMT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 06:12:19 -0400
-Received: from mx-out1.startmail.com (mx-out1.startmail.com [145.131.90.139])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D10535ABF;
-        Tue,  3 May 2022 03:08:45 -0700 (PDT)
-Date:   Tue, 3 May 2022 05:08:39 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=startmail.com;
-        s=2020-07; t=1651572524;
-        bh=hVp7E/4O2QMrdbBVhjD1hXUYmGcMno8QOmZcxB9vkjM=;
-        h=Date:From:To:Subject:Message-ID:References:MIME-Version:
-         Content-Type:Content-Disposition:In-Reply-To:From:Subject:To:Date:
-         Sender:Content-Type:Content-Transfer-Encoding:Content-Disposition:
-         Mime-Version:Reply-To:In-Reply-To:References:Message-Id:Autocrypt;
-        b=BKu3IyLhQ6IwIyD9OPTGKdemLnjlkEPlDkHHLXrlVTW2eUPK30dDyM9JnRX2eUCi7
-         Kyh0HzAjpoNpJcNVTgb+iFE7ybjDB2jj/SsTrzLGvQN2TOL3/wHrEfN8WD1711tUmI
-         rOnwGiZ5sawajs6Tg154SVq3Uai+YKrEbdAc8DARGiglmSGoPuSnMB98GGSMi3QUmb
-         W/EOhuTfNicdke6bsLFl0us0mGJAcZbWZXTyVXQM94vkQN8KXka44SO6Swj8mNU4aP
-         zUgN/4k9RQnFwV9ZbzSdHe3zHCtRDAOBiF8JAy43+B6eSMs7vb9IyYcgYiB8QH+prU
-         10fIE6fYhifBQ==
-From:   "Marty E. Plummer" <hanetzer@startmail.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/2] clk: hisilicon: add CRG driver Hi3521a SoC
-Message-ID: <20220503100839.dyujyttv34t5equz@proprietary-killer>
-References: <20220501051020.2432338-1-hanetzer@startmail.com>
- <20220501051020.2432338-2-hanetzer@startmail.com>
- <0b66148a-c65f-2acf-9751-ae931778ad45@linaro.org>
- <20220501113215.rh6he5344hssziy7@proprietary-killer>
- <bacc123d-bedc-0034-6591-3ef0caf270ae@linaro.org>
+        with ESMTP id S233992AbiECKS6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 06:18:58 -0400
+Received: from mail.skyhub.de (mail.skyhub.de [5.9.137.197])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52A491EEE7;
+        Tue,  3 May 2022 03:15:25 -0700 (PDT)
+Received: from zn.tnic (p5de8eeb4.dip0.t-ipconnect.de [93.232.238.180])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.skyhub.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id 611181EC0455;
+        Tue,  3 May 2022 12:15:20 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=dkim;
+        t=1651572920;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:in-reply-to:in-reply-to:  references:references;
+        bh=mKTwIKrh4EWWiVkBp1uQfM1HxqpE6n66nTbg1oa/fMs=;
+        b=k+v0j3G24u+dsm0v1Dy3Hau5Ciwci0/rP3shg7OaHU3Hu1dutN5zcDK259Bdq4Ucfc3n7B
+        oJqGhAfr4UoD4KNHII84Nzi78k2eMxRXZtFmsJ3WAkFVLVIv/U1Y9vZjpws5SdeYvDyVbp
+        Che5jtFGBwnxYTOuEmR+/q3EBr5YSYY=
+Date:   Tue, 3 May 2022 12:15:17 +0200
+From:   Borislav Petkov <bp@alien8.de>
+To:     Medad CChien <medadyoung@gmail.com>
+Cc:     rric@kernel.org, james.morse@arm.com, tony.luck@intel.com,
+        mchehab@kernel.org, robh+dt@kernel.org, benjaminfair@google.com,
+        yuenn@google.com, venture@google.com, KWLIU@nuvoton.com,
+        YSCHU@nuvoton.com, JJLIU0@nuvoton.com, KFTING@nuvoton.com,
+        avifishman70@gmail.com, tmaimon77@gmail.com, tali.perry1@gmail.com,
+        ctcchien@nuvoton.com, linux-edac@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        openbmc@lists.ozlabs.org
+Subject: Re: [PATCH v8 1/3] ARM: dts: nuvoton: Add memory controller node
+Message-ID: <YnEAtQQ6Wnacfrub@zn.tnic>
+References: <20220503094728.926-1-ctcchien@nuvoton.com>
+ <20220503094728.926-2-ctcchien@nuvoton.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <bacc123d-bedc-0034-6591-3ef0caf270ae@linaro.org>
+In-Reply-To: <20220503094728.926-2-ctcchien@nuvoton.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
@@ -56,37 +56,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 03, 2022 at 11:41:49AM +0200, Krzysztof Kozlowski wrote:
-> On 01/05/2022 13:36, Marty E. Plummer wrote:
-> > On Sun, May 01, 2022 at 10:35:37AM +0200, Krzysztof Kozlowski wrote:
-> >> On 01/05/2022 07:10, Marty E. Plummer wrote:
-> >>> Add CRG driver for Hi3521A SoC. CRG (Clock and Reset Generator) module
-> >>> generates clock and reset signals used by other module blocks on SoC.
-> >>>
-> >>>
-> >> (...)
-> >>
-> >>> +		return;
-> >>> +
-> >>> +	hisi_clk_register_mux(hi3521a_sysctrl_mux_clks,
-> >>> +				ARRAY_SIZE(hi3521a_sysctrl_mux_clks),
-> >>> +				clk_data);
-> >>> +}
-> >>> +CLK_OF_DECLARE(hi3521a_sysctrl, "hisilicon,hi3521a-sysctrl", hi3521a_sysctrl_init);
-> >> Missing bindings.
-> >>
-> > Assume you mean the Documentation/dt/binding/... file? Will do. I
-> > probably should have prefixed it with RFC, as I'm mostly hoping to get
-> > the attention of the hisi people to see what's the deal with the mtd
-> > reads being borked.
+On Tue, May 03, 2022 at 05:47:26PM +0800, Medad CChien wrote:
+> ECC must be configured in the BootBlock header.
+> Then, you can read error counts via
+> the EDAC kernel framework.
 > 
-> Then just don't Cc devicetree folks and put in cover letter disclaimer
-> that this was intentionally omitted and will be later fixed.
-> 
-Yes, I should have disclaimered it, but I didn't intentionally cc dt
-folks, just what getmaintainer popped out.
-> It is a waste of time of reviewers to look/filter/organize such email,
-> if it is intentionally not for us.
-> 
-> Best regards,
-> Krzysztof
+> Signed-off-by: Medad CChien <ctcchien@nuvoton.com>
+> Reviewed-by: Borislav Petkov <bp@alien8.de>
+> Reviewed-by: Paul Menzel <pmenzel@molgen.mpg.de>
+
+I don't think you understand the concept of Reviewed-by: tags. You
+may add them to a patch of yours when the reviewer gives them to you
+explicitly - not because she/he has given comments to a patch of yours.
+
+Please go over
+
+Documentation/process/
+
+and Documentation/process/submitting-patches.rst especially and then
+send patches.
+
+Thx.
+
+-- 
+Regards/Gruss,
+    Boris.
+
+https://people.kernel.org/tglx/notes-about-netiquette
