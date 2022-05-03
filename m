@@ -2,60 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A53575188FB
-	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 17:47:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F933518915
+	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 17:52:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238590AbiECPum (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 May 2022 11:50:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34904 "EHLO
+        id S238896AbiECPzi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 May 2022 11:55:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37400 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237302AbiECPul (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 11:50:41 -0400
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D055E33E8F;
-        Tue,  3 May 2022 08:47:07 -0700 (PDT)
-Received: by mail-wm1-x332.google.com with SMTP id ay11-20020a05600c1e0b00b0038eb92fa965so1617581wmb.4;
-        Tue, 03 May 2022 08:47:07 -0700 (PDT)
+        with ESMTP id S238925AbiECPxu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 11:53:50 -0400
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 170DA6317;
+        Tue,  3 May 2022 08:50:17 -0700 (PDT)
+Received: by mail-wr1-x42e.google.com with SMTP id e2so23956207wrh.7;
+        Tue, 03 May 2022 08:50:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=80Ajy3E8zr74DMwLvdHtBgD6k+JzeYDH65oyG0hvOck=;
-        b=CfQAahfU+n8KZFyEVz4yGEntqne5VtENCybgdvVVfOHkdxKI1dSynIe76HkAAmBYhR
-         VaZQYgBJwIVintv/q/oDTUnM/FO7x7Zg5NoiYM8fPyVIs525a8tuVNgif5KDWlK5Die2
-         EurbCewLNat2XW7KsWN5MXYrwTewDT8Ea9B9J1ANnsNa6ExkCaNnsN8hr/1N0txrBG1C
-         LKHJqwFlBq42CnCKnyZZAA1B7N6q4d0Fo9g2TGDwLQTTwBcP9IppKzgz+Hbp2xHfY+pL
-         0W99f+knV/mYB//28Mx7Iio6J7PWEJOpM1Wcvs6fU+cmEAgLWeWF+JZn6sKELlQ0UeE/
-         FAag==
+        bh=kp0I+fDrNRZ+kcOulyBqIwYKgrX5Pypr91NpoQc/0zE=;
+        b=ZFBOAaAsyVFB3azHklpMGisviv1wFqvgeuS+yXrkzNpI26aW8Rx4DIz/LT7mfLZjPt
+         bdSXl4i53f+OSdYghJLapyYcckMhm1aIWxAOhQJWj9MXjGBcX1mpRpKOV1Vn8qMxL+uT
+         rbpSVr+q9XpCTyISVuUqjbeBbgQyt4Mb7cVIlawXk/UCnggkV8Hm2nphDs5FQJAzITBY
+         oVOiFW48hIk39EbzTqNOrPIxn6DY1w8fyciLm7M60NL5RxX91a2ZBhLOcd/UO2Ps2NYy
+         AG5Z1NBvTY2N+gZkwta6wGhtU8KQYzrSLNGfezKuY0g5WSEwdseZf75KgGLAxa/faj0V
+         O4Ug==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=80Ajy3E8zr74DMwLvdHtBgD6k+JzeYDH65oyG0hvOck=;
-        b=68kmf4mdaon1v6YoKMNetJxoHWrfjhSWbOXXB8WESVWPldSsrCs7KW7legsIX0mXc7
-         clzzTbPBDozLT2x9gKZFDLgTznvOaGw5iGi42qGIpzjsLuQKX9OdLIS2uRy8p4qbQyTn
-         Syn7PumC1emkvpHuw6QYjUFrz+8KgIgs5lAzLTVjO1LNsh7NvTZnzaEOmsuSu0NDAZfr
-         5tl7cG2VAcrPKn2pMCauz2i1l0UTXPoZnjby9DFw4HCsatFek09vQ4T/akI/zjeLYnPJ
-         7MoZCA1OHqTI25+SDmCz7wrBIpVPAlJjPz2/O4pT1Ha/nQfgINo+XbWQCW6TPDyPRwlA
-         IqWw==
-X-Gm-Message-State: AOAM530slq3XxsYnHp2ujnPi6Edlr9NoPkMOxdmjS0xSZ5h1mvjVACyN
-        t8dA4p7OGzyiNYkMkp+nkok=
-X-Google-Smtp-Source: ABdhPJwCH+6lVfB4Sqddsc3NgswMMhmULDQDl8FrAVs2ZeTHKe+xjOs06ldTX1Zh0UsH8qVC6O0qnQ==
-X-Received: by 2002:a05:600c:1da9:b0:394:235f:f5de with SMTP id p41-20020a05600c1da900b00394235ff5demr3863342wms.120.1651592826369;
-        Tue, 03 May 2022 08:47:06 -0700 (PDT)
+        bh=kp0I+fDrNRZ+kcOulyBqIwYKgrX5Pypr91NpoQc/0zE=;
+        b=8Q9Z5I5gd7jHBo1oJbt5X1k48MziwjLBRU+hrXKBqAdSWCV8YcewlSTmH7onHf26mn
+         OvaG2LTjCo0PwSRU+2hdvXOwt7JMs0d/U3JmRRlfbk/8fjxTi6qUhmzDF7LJbcf1nUZq
+         M1I2t4o0V5XTsGVDsHaACQYwRB4VYQVqqovGXv+yNdLI1yVr2SNJEsuIgxqWzefnOyc0
+         vW0v1AFlVIRp1ZPKQYitItn+TgDYETyVl39z4OLCSfQ46frzZ6+uDON+OhxfxSqwEA+U
+         CifXTf53NFrCz7PyZsUVhFZAwnqut7nnUzANPO8A/jbuuDy92kQ4oCrwHwprbkyZMqB+
+         1WBw==
+X-Gm-Message-State: AOAM530v7mGyVtHQAPUeBiJpGpLpHGU6VKSLelvNC1ZYo6DssSpExl3Z
+        LoprFRJBLzJZ39V1P/uFs3Y=
+X-Google-Smtp-Source: ABdhPJwW896RxEFOdbJcnn2DEmhLXrdedi9FVjmGiZViAFZp1PCH+C2fCuq498nQlWo9yP0OdCiwUA==
+X-Received: by 2002:a5d:690c:0:b0:20a:d9d1:f5ce with SMTP id t12-20020a5d690c000000b0020ad9d1f5cemr13436892wru.295.1651593015655;
+        Tue, 03 May 2022 08:50:15 -0700 (PDT)
 Received: from vmu1804.lan ([2a06:a004:d009:c8fa:102c:912a:a6e3:41ea])
-        by smtp.googlemail.com with ESMTPSA id c23-20020a7bc017000000b003942a244ecesm1861958wmb.19.2022.05.03.08.47.04
+        by smtp.googlemail.com with ESMTPSA id p26-20020adfa21a000000b0020c5253d8ecsm9523482wra.56.2022.05.03.08.50.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 May 2022 08:47:06 -0700 (PDT)
+        Tue, 03 May 2022 08:50:15 -0700 (PDT)
 From:   Mikhail Zhilkin <csharper2005@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
+To:     Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Karim <Karimdplay@gmail.com>, M <x1@disroot.org>,
-        Mikhail Zhilkin <csharper2005@gmail.com>
-Subject: [PATCH v3 1/3] dt-bindings: Add Sercomm (Suzhou) Corporation vendor prefix
-Date:   Tue,  3 May 2022 15:47:00 +0000
-Message-Id: <20220503154700.2339796-1-csharper2005@gmail.com>
+Cc:     =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>,
+        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Karim <Karimdplay@gmail.com>,
+        M <x1@disroot.org>, Mikhail Zhilkin <csharper2005@gmail.com>
+Subject: [PATCH v3 2/3] dt-bindings: mtd: partitions: Extend fixed-partitions binding
+Date:   Tue,  3 May 2022 15:50:07 +0000
+Message-Id: <20220503155007.2339847-1-csharper2005@gmail.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20220503154254.2339744-1-csharper2005@gmail.com>
 References: <20220503154254.2339744-1-csharper2005@gmail.com>
@@ -71,29 +75,112 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Update Documentation/devicetree/bindings/vendor-prefixes.yaml to include
-"sercomm" as a vendor prefix for "Sercomm (Suzhou) Corporation".
-Company website:
-Link: https://www.sercomm.com/
+Extend fixed-partitions binding for support of Sercomm partition parser
+(add "sercomm,sc-partitions" compatible).
 
 Signed-off-by: Mikhail Zhilkin <csharper2005@gmail.com>
 ---
- Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+ .../mtd/partitions/fixed-partitions.yaml      | 55 ++++++++++++++++++-
+ 1 file changed, 53 insertions(+), 2 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-index 01430973ecec..65ff22364fb3 100644
---- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-+++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-@@ -1082,6 +1082,8 @@ patternProperties:
-     description: Sensirion AG
-   "^sensortek,.*":
-     description: Sensortek Technology Corporation
-+  "^sercomm,.*":
-+    description: Sercomm (Suzhou) Corporation
-   "^sff,.*":
-     description: Small Form Factor Committee
-   "^sgd,.*":
+diff --git a/Documentation/devicetree/bindings/mtd/partitions/fixed-partitions.yaml b/Documentation/devicetree/bindings/mtd/partitions/fixed-partitions.yaml
+index ea4cace6a955..ad3ccd250802 100644
+--- a/Documentation/devicetree/bindings/mtd/partitions/fixed-partitions.yaml
++++ b/Documentation/devicetree/bindings/mtd/partitions/fixed-partitions.yaml
+@@ -19,7 +19,11 @@ maintainers:
+ 
+ properties:
+   compatible:
+-    const: fixed-partitions
++    oneOf:
++      - const: fixed-partitions
++      - items:
++          - const: sercomm,sc-partitions
++          - const: fixed-partitions
+ 
+   "#address-cells": true
+ 
+@@ -27,7 +31,24 @@ properties:
+ 
+ patternProperties:
+   "@[0-9a-f]+$":
+-    $ref: "partition.yaml#"
++    allOf:
++      - $ref: "partition.yaml#"
++      - if:
++          properties:
++            compatible:
++              contains:
++                const: sercomm,sc-partitions
++        then:
++          properties:
++            sercomm,scpart-id:
++              description: Partition id in Sercomm partition map. Mtd
++                parser uses this id to find a record in the partition map
++                containing offset and size of the current partition. The
++                values from partition map overrides partition offset and
++                size defined in reg property of the dts. Frequently these
++                values are the same, but may differ if device has bad
++                eraseblocks on a flash.
++              $ref: /schemas/types.yaml#/definitions/uint32
+ 
+ required:
+   - "#address-cells"
+@@ -52,6 +73,7 @@ examples:
+             reg = <0x0100000 0x200000>;
+         };
+     };
++
+   - |
+     partitions {
+         compatible = "fixed-partitions";
+@@ -64,6 +86,7 @@ examples:
+             reg = <0x00000000 0x1 0x00000000>;
+         };
+     };
++
+   - |
+     partitions {
+         compatible = "fixed-partitions";
+@@ -82,6 +105,7 @@ examples:
+             reg = <0x2 0x00000000 0x1 0x00000000>;
+         };
+     };
++
+   - |
+     partitions {
+         compatible = "fixed-partitions";
+@@ -119,3 +143,30 @@ examples:
+             };
+         };
+     };
++
++  - |
++    partitions {
++        compatible = "sercomm,sc-partitions", "fixed-partitions";
++        #address-cells = <1>;
++        #size-cells = <1>;
++
++        partition@0 {
++            label = "u-boot";
++            reg = <0x0 0x100000>;
++            sercomm,scpart-id = <0>;
++            read-only;
++        };
++
++        partition@100000 {
++            label = "dynamic partition map";
++            reg = <0x100000 0x100000>;
++            sercomm,scpart-id = <1>;
++        };
++
++        partition@200000 {
++            label = "Factory";
++            reg = <0x200000 0x100000>;
++            sercomm,scpart-id = <2>;
++            read-only;
++        };
++    };
 -- 
 2.25.1
 
