@@ -2,36 +2,38 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A6BC517D3E
-	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 08:15:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C81E7517D51
+	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 08:30:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229707AbiECGSv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 May 2022 02:18:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45728 "EHLO
+        id S229766AbiECGeK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 May 2022 02:34:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55118 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229693AbiECGSu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 02:18:50 -0400
-Received: from muru.com (muru.com [72.249.23.125])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 8B043BCF;
-        Mon,  2 May 2022 23:15:18 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-        by muru.com (Postfix) with ESMTPS id 5544180FB;
-        Tue,  3 May 2022 06:12:01 +0000 (UTC)
-Date:   Tue, 3 May 2022 09:15:15 +0300
-From:   Tony Lindgren <tony@atomide.com>
-To:     Drew Fustini <dfustini@baylibre.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Nishanth Menon <nm@ti.com>, Dave Gerlach <d-gerlach@ti.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/3] ARM: dts: enable am33xx and am43xx wkup_m3_ipc
- features
-Message-ID: <YnDIc6avf+8PwAXK@atomide.com>
-References: <20220502021508.1342869-1-dfustini@baylibre.com>
+        with ESMTP id S229798AbiECGeH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 02:34:07 -0400
+Received: from soltyk.jannau.net (soltyk.jannau.net [144.76.91.90])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A7FEA381A8;
+        Mon,  2 May 2022 23:30:35 -0700 (PDT)
+Received: from coburn.home.jannau.net (p579ad988.dip0.t-ipconnect.de [87.154.217.136])
+        by soltyk.jannau.net (Postfix) with ESMTPSA id 0605826E9B2;
+        Tue,  3 May 2022 08:23:01 +0200 (CEST)
+From:   Janne Grunau <j@jannau.net>
+To:     iommu@lists.linux-foundation.org
+Cc:     Sven Peter <sven@svenpeter.dev>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Hector Martin <marcan@marcan.st>,
+        Mark Kettenis <mark.kettenis@xs4all.nl>,
+        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v2 0/4] iommu: M1 Pro/Max DART support
+Date:   Tue,  3 May 2022 08:22:57 +0200
+Message-Id: <20220503062301.20872-1-j@jannau.net>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220502021508.1342869-1-dfustini@baylibre.com>
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
         SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
         version=3.4.6
@@ -41,20 +43,48 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-* Drew Fustini <dfustini@baylibre.com> [220502 02:11]:
-> Enable new wkup_m3_ipc features which includes IO isolation on the
-> am437x-gp-evm and i2c voltage scaling firmware for both am33xx and
-> am43xx based boards.
-> 
-> This dts series depends on the bindings and driver changes in:
-> - [PATCH v3 0/2] soc: ti: wkup_m3_ipc: support i2c voltage scaling [1]
-> - [PATCH v3 0/2] soc: ti: wkup_m3_ipc: Add support for IO Isolation [2]
-> 
-> Dave Gerlach (3):
->   ARM: dts: am437x-gp-evm: Enable wkup_m3 control of IO isolation
->   ARM: dts: am33xx: Add i2c voltage scaling firmware to wkup_m3_ipc
->   ARM: dts: am43xx: Add i2c voltage scaling firmware to wkup_m3_ipc
+Hej,
 
-Applying these all into omap-for-v5.19/dt thanks.
+I've taken over this series to add support for DART on M1 Pro/Max from
+Sven.
 
-Tony
+Since v1 we have discovered further differences in the PTE format. It
+has four differences which makes it incompatible with the one in the
+M1:
+
+  - the physical addresses are shifted left by 4 bits and and have 2 more
+    bits inside the PTE entries
+  - the read/write protection flags are at a different position
+  - the subpage protection feature is now mandatory. For Linux we can
+    just configure it to always allow access to the entire page.
+  - BIT(1) tags "uncached" mappings (used for the display controller)
+
+The last difference is the most troublesome since it makes the PTE format
+incomaptible with iopte_type(). Handling this inside io-pgtable-arm.c
+seems manageable since DART supports just a single block size. It opens
+the question at which point we decide that DART uses its own
+io_pgtable_ops.
+
+There is second type of DART (t8110) present on M1 Pro/Max SoCs which
+uses the same PTE format as t6000.
+
+Janne
+
+Sven Peter (4):
+  dt-bindings: iommu: dart: add t6000 compatible
+  iommu/io-pgtable: Add DART subpage protection support
+  iommu/io-pgtable: Add DART PTE support for t6000
+  iommu: dart: Support t6000 variant
+
+ .../devicetree/bindings/iommu/apple,dart.yaml |  4 +-
+ drivers/iommu/apple-dart.c                    | 24 +++++-
+ drivers/iommu/io-pgtable-arm.c                | 76 ++++++++++++++++++-
+ drivers/iommu/io-pgtable.c                    |  1 +
+ include/linux/io-pgtable.h                    |  3 +
+ 5 files changed, 101 insertions(+), 7 deletions(-)
+
+
+base-commit: 3123109284176b1532874591f7c81f3837bbdc17
+-- 
+2.35.1
+
