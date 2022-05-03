@@ -2,46 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A312D518109
-	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 11:29:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7781451810C
+	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 11:30:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233394AbiECJdF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 May 2022 05:33:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36002 "EHLO
+        id S233399AbiECJdc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 May 2022 05:33:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36188 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233375AbiECJdE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 05:33:04 -0400
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 296B534641
-        for <devicetree@vger.kernel.org>; Tue,  3 May 2022 02:29:31 -0700 (PDT)
-Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=phil.lan)
-        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <heiko@sntech.de>)
-        id 1nloqT-0008U7-K5; Tue, 03 May 2022 11:29:25 +0200
-From:   Heiko Stuebner <heiko@sntech.de>
-To:     Sascha Hauer <s.hauer@pengutronix.de>,
-        dri-devel@lists.freedesktop.org
-Cc:     Heiko Stuebner <heiko@sntech.de>,
-        Andy Yan <andy.yan@rock-chips.com>,
-        Peter Geis <pgwipeout@gmail.com>,
-        linux-arm-kernel@lists.infradead.org, kernel@pengutronix.de,
-        linux-rockchip@lists.infradead.org,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Sandy Huang <hjc@rock-chips.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        devicetree@vger.kernel.org
-Subject: Re: (subset) [PATCH v11 00/24] drm/rockchip: RK356x VOP2 support
-Date:   Tue,  3 May 2022 11:29:24 +0200
-Message-Id: <165157015917.325387.3625068865489692501.b4-ty@sntech.de>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220422072841.2206452-1-s.hauer@pengutronix.de>
-References: <20220422072841.2206452-1-s.hauer@pengutronix.de>
+        with ESMTP id S233272AbiECJdb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 05:33:31 -0400
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5889F36318
+        for <devicetree@vger.kernel.org>; Tue,  3 May 2022 02:29:56 -0700 (PDT)
+Received: by mail-ed1-x52c.google.com with SMTP id p18so19186978edr.7
+        for <devicetree@vger.kernel.org>; Tue, 03 May 2022 02:29:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=zB5e/Eye7NKTiR0iDf6A/QHPDIG8VOEpDlGbZQKTb30=;
+        b=BR6BitziOi0WXcjIJLa6fbzR99D1RO1QuZQlrMCVfu5IezrVdh94Je492bhD3tuePW
+         Vblf0IULaKsW3hkFdtR/JnR7P830V9R0yRz7ZsYDIngTVZA0O/Re1G+Q9y7ET6yAgTPX
+         tRpx+VIlUGwMeQHSYoyDWAm1BwalfVQyq3/DGy1iy+qaFlcLfCbGxL81eKnPmG/8w7Ww
+         n+lrtGmFl+HBIYtq5rWpKLfTU++lasaMTHN0TscdXYkcLRRcfbtXZSmhXwtOXKFR4/Rl
+         MbRT/oQFm7HNGHtoFhLEKxL95g0ZoNIAxQ7e8M2SdHtOBJvZKT/01Zcej5S4gQ6VnPN7
+         REUg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=zB5e/Eye7NKTiR0iDf6A/QHPDIG8VOEpDlGbZQKTb30=;
+        b=gy2ohuhKYUaEptz7DD9J8ukhnadECKtHbd9QDW3HIneXiK1sYFKKLWS8RRGMZs7wjt
+         61/ztlgRe4Ay1d7P98p/OE+avh9zCQKRwtgC+jChdX9NYVe6NzH/+QEk7RWkSrcsA3ON
+         TaC0KrFPWpsBMqZJDRHkv6hdgjjCG0Qc3287MnV6jpjtKcYtIuMPSSrJWQxwyx8QQpG/
+         vszYj9Pqwur7jGT6woNZMcqEbpkpRKzoRU1oAgGHx4mJCUBWAs2EI6glajCIalxrCSFl
+         4s45kptU5lqChfmUCmoWh/r1LBqKCZz4A7btMBpKK6qWV2xcS1UVcls5HAbFxm9rkjiB
+         3Akw==
+X-Gm-Message-State: AOAM531iyb72umrVQF6NOMywbHsgHjhEC1W9LZ5QvSecrLRejup7n/Oy
+        pP7IYY2nKghTGwWjNkUy9mmW/g==
+X-Google-Smtp-Source: ABdhPJw0CvtF1J8tlcNgNaOLoUi82bOqMVPxdlnIrx9IBPryH5dVXVAGmSZQkuKIy+RfCoXWk/K6Rw==
+X-Received: by 2002:a50:9f06:0:b0:425:c1ba:5037 with SMTP id b6-20020a509f06000000b00425c1ba5037mr17363890edf.285.1651570194908;
+        Tue, 03 May 2022 02:29:54 -0700 (PDT)
+Received: from [192.168.0.201] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id og13-20020a1709071dcd00b006f3ef214e3fsm4398405ejc.165.2022.05.03.02.29.53
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 03 May 2022 02:29:54 -0700 (PDT)
+Message-ID: <5a89e9bf-1004-500a-75e1-995732629937@linaro.org>
+Date:   Tue, 3 May 2022 11:29:53 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH v5 2/6] dt-bindings: PCI: renesas,pci-rcar-gen2: Add
+ device tree support for r9a06g032
+Content-Language: en-US
+To:     Geert Uytterhoeven <geert@linux-m68k.org>,
+        Rob Herring <robh@kernel.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Herve Codina <herve.codina@bootlin.com>,
+        Marek Vasut <marek.vasut+renesas@gmail.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>,
+        linux-pci <linux-pci@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Sergey Shtylyov <s.shtylyov@omp.ru>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Clement Leger <clement.leger@bootlin.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>
+References: <20220429134143.628428-1-herve.codina@bootlin.com>
+ <20220429134143.628428-4-herve.codina@bootlin.com>
+ <29ba3db6-e5c7-06d3-29d9-918ee5b34555@linaro.org>
+ <CAMuHMdWN_ni_V+e3QipWH2qKXeNPkEcVpHpb5iBYw1YQSAnCDA@mail.gmail.com>
+ <YnA0id1rXlNHNz+N@robh.at.kernel.org>
+ <CAMuHMdWktaRAw8Y6TR93_rH8v4mPR2yt3wGqeXeTA2p_Dh--wA@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CAMuHMdWktaRAw8Y6TR93_rH8v4mPR2yt3wGqeXeTA2p_Dh--wA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -49,23 +96,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 22 Apr 2022 09:28:17 +0200, Sascha Hauer wrote:
-> It's v11 time. There's only one small change to v10. Discussion seems to
-> have settled now. Is there anything left that prevents the series from
-> being merged? I'd really like to have it in during the next merge
-> window.
+On 03/05/2022 08:51, Geert Uytterhoeven wrote:
+>>>> This should not be a reason why a property is or is not required. Either
+>>>> this is required for device operation or not. If it is required, should
+>>>> be in the bindings. Otherwise what are you going to do in the future?
+>>>> Add a required property breaking the ABI?
+>>>
+>>> The problem is that there are no bindings for the reset controller
+>>> (actually the reset controller feature of the system-controller) yet.
+>>> Yeah, we can just add #reset-cells = <1> to the system-controller
+>>> device node, but we cannot add the actual resets properties to the
+>>> consumers, until the actual cell values are defined.
+>>
+>> Sounds like you should implement providers first. Or just live with the
+>> warning as a reminder to implement the reset provider?
 > 
-> This series still depends on:
-> drm/rockchip: Refactor IOMMU initialisation (https://lists.freedesktop.org/archives/dri-devel/2022-April/349548.html)
-> arm64: dts: rockchip: add basic dts for the radxa rock3 model a
-> 
-> [...]
+> I'd go for the latter. The upstream r9a06g032.dtsi is still under active
+> development. Until very recently, the only device supported was the
+> serial console.
 
-Applied, thanks!
-
-[06/24] arm64: dts: rockchip: rk3399: rename HDMI ref clock to 'ref'
-        commit: bd820bc5e77087a71a42c36f2660b8a35d2c01a5
+For clocks we use in such cases fixed-clock placeholders or empty
+phandles. Maybe something like that would work here as well?
 
 Best regards,
--- 
-Heiko Stuebner <heiko@sntech.de>
+Krzysztof
