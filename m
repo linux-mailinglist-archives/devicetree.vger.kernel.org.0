@@ -2,56 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 97EBD517B3B
-	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 02:24:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E73B3517B45
+	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 02:37:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229493AbiECAZo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 May 2022 20:25:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34836 "EHLO
+        id S229835AbiECAjL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 May 2022 20:39:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40748 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229752AbiECAZn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 May 2022 20:25:43 -0400
-Received: from mail-oi1-x234.google.com (mail-oi1-x234.google.com [IPv6:2607:f8b0:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CF9237A12;
-        Mon,  2 May 2022 17:22:09 -0700 (PDT)
-Received: by mail-oi1-x234.google.com with SMTP id z8so16824713oix.3;
-        Mon, 02 May 2022 17:22:09 -0700 (PDT)
+        with ESMTP id S229615AbiECAjK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 May 2022 20:39:10 -0400
+Received: from mail-ot1-x32a.google.com (mail-ot1-x32a.google.com [IPv6:2607:f8b0:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A26D3123E
+        for <devicetree@vger.kernel.org>; Mon,  2 May 2022 17:35:39 -0700 (PDT)
+Received: by mail-ot1-x32a.google.com with SMTP id 31-20020a9d0822000000b00605f1807664so7699318oty.3
+        for <devicetree@vger.kernel.org>; Mon, 02 May 2022 17:35:39 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=PKxuSyP6aAZ5UKADiJVd9CZqptgrT3l/21BfOHSNCtQ=;
-        b=Ik5iPVaBN+Uu2NIVdQYRP1PYlmdnHaEJqgvL9vyd0oc8+U7HeShUV+HXwSo9f14Gdm
-         kmZ2tqSIOIw+4alwdhOpYRnzhEMNZyDjQlNNae4VniFlS5NvVzyeoz6O/5hJu4pKajnl
-         o5uCeCBp2tAFes6KuDo2FyCe/I3YSo8+1Vsdi4Ts/XGMih+jlgQfHxlezdSDJAhB/rfv
-         vwgRgWuibWyHtjz0QgSPVBo3jbqIDn2USDTV65voZen0kPeufeXsjjj3wt62EfL1yVid
-         Cyrv9NPkHheaX6GDY0bc0ZSqHj7QPEyb3DXPev1HLlmgJhzd0fJoVCK48Xo1IJqIY/Nc
-         icyQ==
-X-Gm-Message-State: AOAM530n55C8RBoYn0P/NUcR96KPkox0Cr+V/7f9gjaIUwlnHQde3CoP
-        hIYYJRUA4G/g1p0qH70aiLWwlcToQg==
-X-Google-Smtp-Source: ABdhPJyUirzEkqEwSTX/2vlnZ6E45LPS9/E1ehXdgu4A903pyiY9tgt/pFt0zVjCrc3TjnXcX10V0A==
-X-Received: by 2002:a05:6808:14cd:b0:326:c1a:7a76 with SMTP id f13-20020a05680814cd00b003260c1a7a76mr823639oiw.44.1651537254615;
-        Mon, 02 May 2022 17:20:54 -0700 (PDT)
+        bh=+xfMK+H0fMuHQUoosTVVx54TR5npSCucc917CZi8x0M=;
+        b=CAAz80CxdszDvmehMrhduHFB2F3WRsscNTx9ZqFPsFgcrd9kvfc0SHOx5P+xG6uulf
+         oFeDOdVTXaqnoCAJtaYRgGuIG+QWHgRtcduq/O2XXG8/68JRvsdT4SHVaEB/mvgmIyxc
+         Avipk3qlKWgenh0UpvBU06zOkbhLigqgEeU8y5fPY7wTzch41uwdcydVKHtXBLvQAv2o
+         dHjb3L+TPH/OaVk9g6g2u3lKtxdvWkj+BzIrGFiDEw2XwUlMAIlOegpg0oPjpMVhfWSY
+         xCGl61cp18M8TZuJsmYY8VdGk1LuSuKOmLlmLO5Tqg+W98sGp+7qTZhp3n6N+SiEKn96
+         DZaw==
+X-Gm-Message-State: AOAM531UQKLnzxl8+wRvxBd275dtsLZ/Edb9vB/gvhdA52qysgIXhTYV
+        jWfU+uFLy9UjW9Ekj8XI45SjdPStvQ==
+X-Google-Smtp-Source: ABdhPJyjDNQqFMKGWqkJAvrDnu1nt8BBWu2t1EZWDLhtEOFilJTPAKhjY8JokBsqlIXd/7+bhWxHMg==
+X-Received: by 2002:a05:6830:19f3:b0:605:fd48:7fed with SMTP id t19-20020a05683019f300b00605fd487fedmr5155994ott.382.1651537876978;
+        Mon, 02 May 2022 17:31:16 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id p124-20020acad882000000b00325cda1ff86sm2863678oig.5.2022.05.02.17.20.53
+        by smtp.gmail.com with ESMTPSA id b21-20020a056870b25500b000eba4901e57sm3933451oam.17.2022.05.02.17.31.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 May 2022 17:20:54 -0700 (PDT)
-Received: (nullmailer pid 2093840 invoked by uid 1000);
-        Tue, 03 May 2022 00:20:53 -0000
-Date:   Mon, 2 May 2022 19:20:53 -0500
+        Mon, 02 May 2022 17:31:16 -0700 (PDT)
+Received: (nullmailer pid 2111272 invoked by uid 1000);
+        Tue, 03 May 2022 00:31:15 -0000
+Date:   Mon, 2 May 2022 19:31:15 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Daniels Umanovskis <du@axentia.se>
-Cc:     richard.leitner@skidata.com, linux-usb@vger.kernel.org,
+To:     Marek Vasut <marex@denx.de>
+Cc:     dri-devel@lists.freedesktop.org, robert.foss@linaro.org,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Maxime Ripard <maxime@cerno.tech>, Peng Fan <peng.fan@nxp.com>,
+        Robby Cai <robby.cai@nxp.com>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
         devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: usb: usb251xb: add documentation for
- reset-delay-us
-Message-ID: <YnB1ZQwpOBcT4zct@robh.at.kernel.org>
-References: <20220426123329.775-1-du@axentia.se>
- <20220426123329.775-2-du@axentia.se>
+Subject: Re: [PATCH v4 1/2] dt-bindings: display: bridge: ldb: Implement
+ simple Freescale i.MX8MP LDB bridge
+Message-ID: <YnB3008DXAVoUK7j@robh.at.kernel.org>
+References: <20220426193645.244792-1-marex@denx.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220426123329.775-2-du@axentia.se>
+In-Reply-To: <20220426193645.244792-1-marex@denx.de>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
@@ -63,37 +68,69 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Apr 26, 2022 at 12:33:47PM +0000, Daniels Umanovskis wrote:
-> Next patch implements support for this property
-
-Not a great reason why you need this. This patch should stand on its 
-own.
-
-My first question is whether this is board specific? If the default or 
-what the reference manual says is 500us, but you have a case needing 
-600us, why not just change the driver. I don't think this really needs 
-tuning to each board unless the delay becomes noticeable.
-
+On Tue, Apr 26, 2022 at 09:36:44PM +0200, Marek Vasut wrote:
+> The i.MX8MP contains two syscon registers which are responsible
+> for configuring the on-SoC DPI-to-LVDS serializer. Add DT binding
+> which represents this serializer as a bridge.
 > 
-> Signed-off-by: Daniels Umanovskis <du@axentia.se>
+> Acked-by: Sam Ravnborg <sam@ravnborg.org>
+> Signed-off-by: Marek Vasut <marex@denx.de>
+> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Cc: Lucas Stach <l.stach@pengutronix.de>
+> Cc: Maxime Ripard <maxime@cerno.tech>
+> Cc: Peng Fan <peng.fan@nxp.com>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Robby Cai <robby.cai@nxp.com>
+> Cc: Robert Foss <robert.foss@linaro.org>
+> Cc: Sam Ravnborg <sam@ravnborg.org>
+> Cc: Thomas Zimmermann <tzimmermann@suse.de>
+> Cc: devicetree@vger.kernel.org
+> To: dri-devel@lists.freedesktop.org
 > ---
->  Documentation/devicetree/bindings/usb/usb251xb.txt | 2 ++
->  1 file changed, 2 insertions(+)
+> V2: - Consistently use fsl,imx8mp-ldb as compatible
+>     - Drop items: from compatible:
+>     - Replace minItems with maxItems in clocks:
+>     - Drop quotes from clock-names const: ldb
+>     - Rename syscon to fsl,syscon
+>     - Use generic name of ldb-lvds in example
+> V3: - Add AB from Sam
+>     - Consistently use MX8MP
+> V4: - Rename to fsl-ldb all over the place
+>     - Put the LDB node under media block controller in the example
+> ---
+>  .../bindings/display/bridge/fsl,ldb.yaml      | 92 +++++++++++++++++++
+>  1 file changed, 92 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/bridge/fsl,ldb.yaml
+
+A little quick on the applying...
+
 > 
-> diff --git a/Documentation/devicetree/bindings/usb/usb251xb.txt b/Documentation/devicetree/bindings/usb/usb251xb.txt
-> index 1a934eab175e..d95c8ae518e7 100644
-> --- a/Documentation/devicetree/bindings/usb/usb251xb.txt
-> +++ b/Documentation/devicetree/bindings/usb/usb251xb.txt
-> @@ -12,6 +12,8 @@ Required properties :
->  
->  Optional properties :
->   - reset-gpios : Should specify the gpio for hub reset
-> + - reset-delay-us: Specifies delay in microseconds after reset deassert
-> +        on hub power-up. (32 bit, default is 500us)
->   - vdd-supply : Should specify the phandle to the regulator supplying vdd
->   - skip-config : Skip Hub configuration, but only send the USB-Attach command
->   - vendor-id : Set USB Vendor ID of the hub (16 bit, default is 0x0424)
-> -- 
-> 2.30.2
-> 
-> 
+> diff --git a/Documentation/devicetree/bindings/display/bridge/fsl,ldb.yaml b/Documentation/devicetree/bindings/display/bridge/fsl,ldb.yaml
+> new file mode 100644
+> index 000000000000..77f174eee424
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/bridge/fsl,ldb.yaml
+> @@ -0,0 +1,92 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/bridge/fsl,ldb.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Freescale i.MX8MP DPI to LVDS bridge chip
+> +
+> +maintainers:
+> +  - Marek Vasut <marex@denx.de>
+> +
+> +description: |
+> +  The i.MX8MP mediamix contains two registers which are responsible
+> +  for configuring the on-SoC DPI-to-LVDS serializer. This describes
+> +  those registers as bridge within the DT.
+
+This is a subblock of the mediamix? Please add 'reg' for the 2 registers 
+even if you use a regmap.
+
+I didn't find a binding for mediamix. You really need the containing 
+block binding before a child node.
+
+Rob
