@@ -2,58 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F7F05180CC
-	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 11:16:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 029335180D2
+	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 11:17:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233306AbiECJU0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 May 2022 05:20:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54036 "EHLO
+        id S233268AbiECJUy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 May 2022 05:20:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54180 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233268AbiECJUZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 05:20:25 -0400
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8369A1F60B
-        for <devicetree@vger.kernel.org>; Tue,  3 May 2022 02:16:53 -0700 (PDT)
-Received: by mail-ej1-x635.google.com with SMTP id n10so14838748ejk.5
-        for <devicetree@vger.kernel.org>; Tue, 03 May 2022 02:16:53 -0700 (PDT)
+        with ESMTP id S233337AbiECJUy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 05:20:54 -0400
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C56711F617
+        for <devicetree@vger.kernel.org>; Tue,  3 May 2022 02:17:21 -0700 (PDT)
+Received: by mail-ed1-x52c.google.com with SMTP id a21so19168404edb.1
+        for <devicetree@vger.kernel.org>; Tue, 03 May 2022 02:17:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=BsvaUnofBri4P1z7I41TveuHEhm/KwaQKOv/FA2SAmc=;
-        b=sBph3mqUoXZCAeoS4ktOxHHvz0utbrkPhF1THWGN+z5z8ktOKnOf+bb/F6sECeiOk6
-         pN4Uc3dZkvnhPGWj+DQ6cDnMMF0fqvKKHvYUKU1xGwetVB3FMBXSHoxuUqoz99NRKdjP
-         i/jBmtOm5r4E8IqdzsZpkm7ELsqVcHSobbHQaaWz4un9G+f2i2xv31Y7KXJablMsZ17H
-         6av1rwBQQ0S91N+NbzjrkfVk0q2i/FqP19QoDXYB920Slrk5nkROjrMM6fe1pYBFO7CF
-         wY7xlwm8/y/adBGz8fldhER/oAyv+5gAt0CVv81vA8MAx2kLPWB+w+LWcwwFlvtBHCDQ
-         a2/g==
+        bh=hjCHn+WZGHrnqeik6SWaiNFyoSed2pxZXBOAd992oik=;
+        b=U+AVru/ceVXxbtD3LsXj5mvT5a+Fpqzu0n2a7NrjZ3eLfrXF8sIIkrgJKcvV+LC5qy
+         Td58ZMVPxB+jgsZMwGY+5rmhJhzi8dfGoKD4ehhWTKB8fAW97wKq2AIAxXyVx9/OMC/1
+         mgbDaKWfHchtpEKmp6+UVkdtPhxO4Yl1Rv8MGWZRv8DXAd3b/XFNWpYTw6yMfWkqZYQn
+         gQvBIRGziLamNNlQi/Xsuj09X2pewWj2ENall/NsgLKXk45CAjPe/CEvQqLgGR9w2hvj
+         5XM6FnZyB2KA29u38rMRVhpg4iYxACM2kgqWp1qXWpGEoxehk+3j7ELHToa79P/tbQcS
+         vJyg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=BsvaUnofBri4P1z7I41TveuHEhm/KwaQKOv/FA2SAmc=;
-        b=XYjQJDCPSzSEu5p38BUIN8PMzPG2gB6I4jNeWDzIEUEqOyM7X2hNY2wf/mIGoOWwzS
-         Iyr+5eXChXogBEzdAafW3FmS2fAi4HLsLvxSZJOQ2/kGZyOChTFUa+363oc7Emcnh6De
-         f/UKDo2aR6cNejkM201mnkQeO0ALgOi2JghqDnr4XudEeO8xBBy8GGyJxBpV+To941BI
-         sAyYXbldzoW7a5Alt5web11OqB4caYhPjvpQY/xLC8tRmfvI8H1X3vZskx3qQMZrDuAv
-         nmOrKUVmy9nK6ju5Sl6auYx7CNJ4gn6pdFtQBo5xDAz7riY2lcwMeoVF9ZRJAFcanc44
-         lRYg==
-X-Gm-Message-State: AOAM5317oikCEAoA1nh7uW22JdctB9d6rXfI/Km9Pvj1+hffO3Qo0lmS
-        XA53yXOfNrnheZY9T3fogv8ayA==
-X-Google-Smtp-Source: ABdhPJybz8YV8La8W3rsUYjKDHXdxPptbFIiKIMx1xOO40zTIHCUi/l+jX/pzmHJRO3OQNDYRUD33w==
-X-Received: by 2002:a17:907:7811:b0:6ef:a896:b407 with SMTP id la17-20020a170907781100b006efa896b407mr14242662ejc.645.1651569412167;
-        Tue, 03 May 2022 02:16:52 -0700 (PDT)
+        bh=hjCHn+WZGHrnqeik6SWaiNFyoSed2pxZXBOAd992oik=;
+        b=poGLmbTLgVcTBSHCWl8alt1wRJF3ZQQiM7zT4pSYL15tGNGM38DyoU2D08QEIrrELI
+         nZ3ZSpTjnvH0PM8p4Oj+CBbWYGl89UbXPDpacz9uLoilY0tDhV5mnyrGIf3Z/mzn33my
+         Hu79gjgylKBUco4gAbQ4eK6KXouoSES+g6OSBQ3FK+jTjn9pJF180U7qR1fiZfUox1w/
+         shakGpllI0xjj1p4R8UMkNSXxGkgwm12rQP4EueC1hzCjkXXgSRgyOeLNmeqFL8gdgm4
+         AekWSoWBAw4VThUzO5IKjGglXsKonoNE1+b5YLD6haI4xIqC570AGM/hNA3hVSBvTUzC
+         zuXg==
+X-Gm-Message-State: AOAM531GxeVS0WC5ftxlmcESqPKvYTufzLCRk4AW8f2otAlppehyS9Jr
+        XX7U1WK2k1UEkIym0u8UrrmZNw==
+X-Google-Smtp-Source: ABdhPJyW4XTEpRp0lqLX+AV/QXMAhxINlMiaW0ZDjtsKq8XbZGm82ovCeTO/wmqcf0nUOdfgdcBvhg==
+X-Received: by 2002:a05:6402:2204:b0:426:34f1:1d2d with SMTP id cq4-20020a056402220400b0042634f11d2dmr16966407edb.335.1651569440409;
+        Tue, 03 May 2022 02:17:20 -0700 (PDT)
 Received: from [192.168.0.201] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id n9-20020aa7c689000000b0042617ba639csm7618302edq.38.2022.05.03.02.16.50
+        by smtp.gmail.com with ESMTPSA id p11-20020aa7c4cb000000b0042617ba639fsm7639236edr.41.2022.05.03.02.17.19
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 03 May 2022 02:16:51 -0700 (PDT)
-Message-ID: <8de2c84b-0140-6435-d79c-7d6e3416fe18@linaro.org>
-Date:   Tue, 3 May 2022 11:16:50 +0200
+        Tue, 03 May 2022 02:17:19 -0700 (PDT)
+Message-ID: <77476cb4-2bc1-531f-bc52-a0fe50166363@linaro.org>
+Date:   Tue, 3 May 2022 11:17:18 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [PATCH 07/12] clk: samsung: exynosautov9: add cmu_fsys2 clock
+Subject: Re: [PATCH 08/12] clk: samsung: exynosautov9: add cmu_peric0 clock
  support
 Content-Language: en-US
 To:     Chanho Park <chanho61.park@samsung.com>,
@@ -69,15 +69,15 @@ Cc:     Sam Protsenko <semen.protsenko@linaro.org>,
         linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
         linux-samsung-soc@vger.kernel.org
 References: <20220502090230.12853-1-chanho61.park@samsung.com>
- <CGME20220502090101epcas2p259f09e3ca3ba6361c47d39a66d9fd172@epcas2p2.samsung.com>
- <20220502090230.12853-8-chanho61.park@samsung.com>
+ <CGME20220502090101epcas2p4e3cbe1b3dc2c6c9c56c2c570a3825b69@epcas2p4.samsung.com>
+ <20220502090230.12853-9-chanho61.park@samsung.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220502090230.12853-8-chanho61.park@samsung.com>
+In-Reply-To: <20220502090230.12853-9-chanho61.park@samsung.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -86,9 +86,8 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 02/05/2022 11:02, Chanho Park wrote:
-> CMU_FSYS2 is responsible to control clocks of BLK_FSYS2 which includes
-> ufs and ethernet IPs. This patch adds some essential clocks to be
-> controlled by ethernet/ufs drivers instead of listing full clocks.
+> CMU_PERIC0 provides clocks for USI0 ~ USI5 and USIx_I2C. USI0/1/2/3/4/5
+> have its own divider but USI_I2Cs share "dout_peric0_usi_i2c" divider.
 > 
 > Signed-off-by: Chanho Park <chanho61.park@samsung.com>
 
