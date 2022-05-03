@@ -2,512 +2,286 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 286BE5183EA
-	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 14:06:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D230A518414
+	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 14:17:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233637AbiECMJp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 May 2022 08:09:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54186 "EHLO
+        id S235153AbiECMUs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 May 2022 08:20:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33794 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235110AbiECMIx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 08:08:53 -0400
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F16717E33
-        for <devicetree@vger.kernel.org>; Tue,  3 May 2022 05:05:17 -0700 (PDT)
-Received: by mail-ej1-x630.google.com with SMTP id n10so15591651ejk.5
-        for <devicetree@vger.kernel.org>; Tue, 03 May 2022 05:05:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=LoTzOhcLLyaeikFNfu1k4ItSA3teX///n/LvWB6h734=;
-        b=nIm1iLvs6ZeMffAmJ2tUSrNMMNftyUwBjvAXvb1QKQWdXJhbRb0zvvHcHat7wSc4mK
-         vY2J25Z1K4QQpTadmYr6qw2wCv9a5bHi084tPaKhAbWlO9CSCvmux7p96sCJaxj1HdtU
-         Udiu5cZ5/XuaGLYHoV1WHZY25dEOPlmCUperX4xLmF6gDqc6meZGLnbADXf7NZCXeCgU
-         KpZn3BrxPWXDN7JgzegX0OqMIZ3mmzxZF6+u90964yaPBKnyCIhWBfsO1UDCPkX0P+Os
-         NNxrjq7LLxn4rZnQ4bMrItMQCTLp/KY05m6kay+7z8fDMFmPnOpcRnyM63kZVVHA3E0r
-         5Cug==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=LoTzOhcLLyaeikFNfu1k4ItSA3teX///n/LvWB6h734=;
-        b=ZoffL7uslE6CwOTYtlta05U9/mMF6USULcRPRm2FDFkJFPMNl+ft3oX1AEETypmRig
-         Q5Aa7Yk4hQSLPtfVviBsG+JX3j6vqXftFD5lPmUTI742r/d15Yl9hKqaDGLSOZvTTjj1
-         TJRVBzvjUwAzJgx+ooRUGYtRdk8j1iLiwIcPnGCKFajVQdHmo3DYvtFzPnclx9jH7MbL
-         S0zLMPXw65JHVFp8Ha8QCGratQxmPSyIk2S792kzTqYNEthmSlFnBR2ckaYyQCJpxbUO
-         vb73IrZfMCdi0T46QB1YK17/yBIoYU5Y6UUIXgnhr0f+0MSkk96EVaj3W37qK73zwFo0
-         hy9w==
-X-Gm-Message-State: AOAM530dpJK8U83mHBMSpf5BaDGZUay7uQt5HN5atrb09GzHwKl0IJFI
-        oWSn3BJSQponmyNseC1dcBBRBw==
-X-Google-Smtp-Source: ABdhPJz4dqaOJ7tVlEDf2hHKffoFY/nbMWJIMF4bj24bO9sm7O2wot/9H3IMtuUAx+lUxyvzGdnsEQ==
-X-Received: by 2002:a17:907:3da2:b0:6f4:78d8:7c23 with SMTP id he34-20020a1709073da200b006f478d87c23mr4569586ejc.233.1651579515831;
-        Tue, 03 May 2022 05:05:15 -0700 (PDT)
-Received: from [192.168.0.202] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id gx21-20020a1709068a5500b006f3ef214dabsm4531141ejc.17.2022.05.03.05.05.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 03 May 2022 05:05:15 -0700 (PDT)
-Message-ID: <d29637f8-87ff-b5f0-9604-89b51a2ba7c1@linaro.org>
-Date:   Tue, 3 May 2022 14:05:14 +0200
+        with ESMTP id S235138AbiECMUs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 08:20:48 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 3F9C01EAE3
+        for <devicetree@vger.kernel.org>; Tue,  3 May 2022 05:17:16 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 0720E1042;
+        Tue,  3 May 2022 05:17:16 -0700 (PDT)
+Received: from [10.57.80.111] (unknown [10.57.80.111])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id D8A753F73D;
+        Tue,  3 May 2022 05:17:13 -0700 (PDT)
+Message-ID: <9e2d54d3-90d0-a9cf-2b93-84fbb567fb91@arm.com>
+Date:   Tue, 3 May 2022 13:17:08 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [RFC v1] dt-bindings: net: dsa: convert binding for mediatek
- switches
-Content-Language: en-US
-To:     Frank Wunderlich <linux@fw-web.de>, Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Landen Chao <Landen.Chao@mediatek.com>,
-        DENG Qingfang <dqfext@gmail.com>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-Cc:     Frank Wunderlich <frank-w@public-files.de>
-References: <20220502153238.85090-1-linux@fw-web.de>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220502153238.85090-1-linux@fw-web.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH v11 11/24] drm/rockchip: dw_hdmi: Use auto-generated
+ tables
+Content-Language: en-GB
+To:     =?UTF-8?Q?Heiko_St=c3=bcbner?= <heiko@sntech.de>,
+        dri-devel@lists.freedesktop.org,
+        Sascha Hauer <s.hauer@pengutronix.de>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Sandy Huang <hjc@rock-chips.com>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Douglas Anderson <dianders@chromium.org>,
+        Yakir Yang <ykk@rock-chips.com>
+References: <20220422072841.2206452-1-s.hauer@pengutronix.de>
+ <20220422072841.2206452-12-s.hauer@pengutronix.de> <2236782.ElGaqSPkdT@diego>
+From:   Robin Murphy <robin.murphy@arm.com>
+In-Reply-To: <2236782.ElGaqSPkdT@diego>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-9.8 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/05/2022 17:32, Frank Wunderlich wrote:
-> From: Frank Wunderlich <frank-w@public-files.de>
+On 2022-05-03 12:02, Heiko Stübner wrote:
+> Am Freitag, 22. April 2022, 09:28:28 CEST schrieb Sascha Hauer:
+>> From: Douglas Anderson <dianders@chromium.org>
+>>
+>> The previous tables for mpll_cfg and curr_ctrl were created using the
+>> 20-pages of example settings provided by the PHY vendor.  Those
+>> example settings weren't particularly dense, so there were places
+>> where we were guessing what the settings would be for 10-bit and
+>> 12-bit (not that we use those anyway).  It was also always a lot of
+>> extra work every time we wanted to add a new clock rate since we had
+>> to cross-reference several tables.
+>>
+>> In <https://crrev.com/c/285855> I've gone through the work to figure
+>> out how to generate this table automatically.  Let's now use the
+>> automatically generated table and then we'll never need to look at it
+>> again.
+>>
+>> We only support 8-bit mode right now and only support a small number
+>> of clock rates and I've verified that the only 8-bit rate that was
+>> affected was 148.5.  That mode appears to have been wrong in the old
+>> table.
+>>
+>> Signed-off-by: Douglas Anderson <dianders@chromium.org>
+>> Signed-off-by: Yakir Yang <ykk@rock-chips.com>
+>> Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
 > 
-> Convert txt binding to yaml binding for Mediatek switches.
+> This breaks hdmi on my rk3328-rock64 which then ends up in a
+> 	[CRTC:37:crtc-0] vblank wait timed out
 > 
-> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
-> ---
->  .../devicetree/bindings/net/dsa/mediatek.yaml | 435 ++++++++++++++++++
->  .../devicetree/bindings/net/dsa/mt7530.txt    | 327 -------------
->  2 files changed, 435 insertions(+), 327 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/net/dsa/mediatek.yaml
->  delete mode 100644 Documentation/devicetree/bindings/net/dsa/mt7530.txt
+> warning-loop.
+
+Oh yeah, that... IIRC from back when I was looking at it, it's because 
+the inno-hdmi phy does its own rate validation at a point when it's 
+already far too late to actually reject the mode. It manages to work at 
+the moment because its set of supported rates mostly line up with those 
+for the Synopsys phy which dw-hdmi-rockchip still insists on validating 
+against even when a vendor phy is present.
+
+> Some part of the patch11-14 range also creates sparking horizontal
+> lines on my rk3288-pinky.
+
+I figure that's the PLL jitter issue that's come up before. Similarly, 
+when I last tried hacking in a 154MHz rate for my monitor's 1920x1200 
+mode, it was rock solid on RK3399, but intolerably glitchy on RK3288.
+
+Robin.
+
+> I haven't the time to dig overly deep into that, so left out the
+> hdmi-rate patches (11-14) for now.
 > 
-> diff --git a/Documentation/devicetree/bindings/net/dsa/mediatek.yaml b/Documentation/devicetree/bindings/net/dsa/mediatek.yaml
-> new file mode 100644
-> index 000000000000..c1724809d34e
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/net/dsa/mediatek.yaml
-
-Specific name please, so previous (with vendor prefix) was better:
-mediatek,mt7530.yaml
-
-> @@ -0,0 +1,435 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-
-You should CC previous contributors and get their acks on this. You
-copied here a lot of description.
-
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/net/dsa/mediatek.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Mediatek MT7530 Ethernet switch
-> +
-> +maintainers:
-> +  - Sean Wang <sean.wang@mediatek.com>
-> +  - Landen Chao <Landen.Chao@mediatek.com>
-> +  - DENG Qingfang <dqfext@gmail.com>
-> +
-> +description: |
-> +  Port 5 of mt7530 and mt7621 switch is muxed between:
-> +  1. GMAC5: GMAC5 can interface with another external MAC or PHY.
-> +  2. PHY of port 0 or port 4: PHY interfaces with an external MAC like 2nd GMAC
-> +     of the SOC. Used in many setups where port 0/4 becomes the WAN port.
-> +     Note: On a MT7621 SOC with integrated switch: 2nd GMAC can only connected to
-> +       GMAC5 when the gpios for RGMII2 (GPIO 22-33) are not used and not
-> +       connected to external component!
-> +
-> +  Port 5 modes/configurations:
-> +  1. Port 5 is disabled and isolated: An external phy can interface to the 2nd
-> +     GMAC of the SOC.
-> +     In the case of a build-in MT7530 switch, port 5 shares the RGMII bus with 2nd
-> +     GMAC and an optional external phy. Mind the GPIO/pinctl settings of the SOC!
-> +  2. Port 5 is muxed to PHY of port 0/4: Port 0/4 interfaces with 2nd GMAC.
-> +     It is a simple MAC to PHY interface, port 5 needs to be setup for xMII mode
-> +     and RGMII delay.
-> +  3. Port 5 is muxed to GMAC5 and can interface to an external phy.
-> +     Port 5 becomes an extra switch port.
-> +     Only works on platform where external phy TX<->RX lines are swapped.
-> +     Like in the Ubiquiti ER-X-SFP.
-> +  4. Port 5 is muxed to GMAC5 and interfaces with the 2nd GAMC as 2nd CPU port.
-> +     Currently a 2nd CPU port is not supported by DSA code.
-> +
-> +  Depending on how the external PHY is wired:
-> +  1. normal: The PHY can only connect to 2nd GMAC but not to the switch
-> +  2. swapped: RGMII TX, RX are swapped; external phy interface with the switch as
-> +     a ethernet port. But can't interface to the 2nd GMAC.
-> +
-> +    Based on the DT the port 5 mode is configured.
-> +
-> +  Driver tries to lookup the phy-handle of the 2nd GMAC of the master device.
-> +  When phy-handle matches PHY of port 0 or 4 then port 5 set-up as mode 2.
-> +  phy-mode must be set, see also example 2 below!
-> +  * mt7621: phy-mode = "rgmii-txid";
-> +  * mt7623: phy-mode = "rgmii";
-> +
-> +  CPU-Ports need a phy-mode property:
-> +    Allowed values on mt7530 and mt7621:
-> +      - "rgmii"
-> +      - "trgmii"
-> +    On mt7531:
-> +      - "1000base-x"
-> +      - "2500base-x"
-> +      - "sgmii"
-> +
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - mediatek,mt7530
-> +      - mediatek,mt7531
-> +      - mediatek,mt7621
-> +
-> +  "#address-cells":
-> +    const: 1
-> +
-> +  "#size-cells":
-> +    const: 0
-> +
-> +  core-supply:
-> +    description: |
-> +      Phandle to the regulator node necessary for the core power.
-> +
-> +  "#gpio-cells":
-> +    description: |
-> +      Must be 2 if gpio-controller is defined.
-> +    const: 2
-> +
-> +  gpio-controller:
-> +    type: boolean
-> +    description: |
-> +      Boolean; if defined, MT7530's LED controller will run on
-
-No need to repeat Boolean.
-
-> +      GPIO mode.
-> +
-> +  "#interrupt-cells":
-> +    const: 1
-> +
-> +  interrupt-controller:
-> +    type: boolean
-> +    description: |
-> +      Boolean; Enables the internal interrupt controller.
-
-Skip description.
-
-> +
-> +  interrupts:
-> +    description: |
-> +      Parent interrupt for the interrupt controller.
-
-Skip description.
-
-> +    maxItems: 1
-> +
-> +  io-supply:
-> +    description: |
-> +      Phandle to the regulator node necessary for the I/O power.
-> +      See Documentation/devicetree/bindings/regulator/mt6323-regulator.txt
-> +      for details for the regulator setup on these boards.
-> +
-> +  mediatek,mcm:
-> +    type: boolean
-> +    description: |
-> +      Boolean; 
-
-No need to repeat Boolean.
-
-> if defined, indicates that either MT7530 is the part
-> +      on multi-chip module belong to MT7623A has or the remotely standalone
-> +      chip as the function MT7623N reference board provided for.
-> +
-> +  reset-gpios:
-> +    description: |
-> +      Should be a gpio specifier for a reset line.
-> +    maxItems: 1
-> +
-> +  reset-names:
-> +    description: |
-> +      Should be set to "mcm".
-> +    const: mcm
-> +
-> +  resets:
-> +    description: |
-> +      Phandle pointing to the system reset controller with
-> +      line index for the ethsys.
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-
-What about address/size cells?
-
-> +
-> +allOf:
-> +  - $ref: "dsa.yaml#"
-> +  - if:
-> +      required:
-> +        - mediatek,mcm
-
-Original bindings had this reversed.
-
-> +    then:
-> +      required:
-> +        - resets
-> +        - reset-names
-> +    else:
-> +      required:
-> +        - reset-gpios
-> +
-> +  - if:
-> +      required:
-> +        - interrupt-controller
-> +    then:
-> +      required:
-> +        - "#interrupt-cells"
-
-This should come from dt schema already...
-
-> +        - interrupts
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          items:
-> +            - const: mediatek,mt7530
-> +    then:
-> +      required:
-> +        - core-supply
-> +        - io-supply
-> +
-> +
-> +patternProperties:
-> +  "^ports$":
-
-It''s not a pattern, so put it under properties, like regular property.
-
-> +    type: object
-> +
-> +    patternProperties:
-> +      "^port@[0-9]+$":
-> +        type: object
-> +        description: Ethernet switch ports
-> +
-> +        $ref: dsa-port.yaml#
-
-This should go to allOf below.
-
-> +
-> +        properties:
-> +          reg:
-> +            description: |
-> +              Port address described must be 6 for CPU port and from 0 to 5 for user ports.
-> +
-> +        unevaluatedProperties: false
-> +
-> +        allOf:
-> +          - if:
-> +              properties:
-> +                label:
-> +                  items:
-> +                    - const: cpu
-> +            then:
-> +              required:
-> +                - reg
-> +                - phy-mode
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    mdio0 {
-
-Just mdio
-
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +        switch@0 {
-> +            compatible = "mediatek,mt7530";
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +            reg = <0>;
-> +
-> +            core-supply = <&mt6323_vpa_reg>;
-> +            io-supply = <&mt6323_vemc3v3_reg>;
-> +            reset-gpios = <&pio 33 0>;
-
-Use GPIO flag define/constant.
-
-> +
-> +            ports {
-> +                #address-cells = <1>;
-> +                #size-cells = <0>;
-> +                port@0 {
-> +                    reg = <0>;
-> +                    label = "lan0";
-> +                };
-> +
-> +                port@1 {
-> +                    reg = <1>;
-> +                    label = "lan1";
-> +                };
-> +
-> +                port@2 {
-> +                    reg = <2>;
-> +                    label = "lan2";
-> +                };
-> +
-> +                port@3 {
-> +                    reg = <3>;
-> +                    label = "lan3";
-> +                };
-> +
-> +                port@4 {
-> +                    reg = <4>;
-> +                    label = "wan";
-> +                };
-> +
-> +                port@6 {
-> +                    reg = <6>;
-> +                    label = "cpu";
-> +                    ethernet = <&gmac0>;
-> +                    phy-mode = "trgmii";
-> +                    fixed-link {
-> +                        speed = <1000>;
-> +                        full-duplex;
-> +                    };
-> +                };
-> +            };
-> +        };
-> +    };
-> +
-> +  - |
-> +    //Example 2: MT7621: Port 4 is WAN port: 2nd GMAC -> Port 5 -> PHY port 4.
-> +
-> +    eth {
-
-s/eth/ethernet/
-
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +        gmac0: mac@0 {
-> +            compatible = "mediatek,eth-mac";
-> +            reg = <0>;
-> +            phy-mode = "rgmii";
-> +
-> +            fixed-link {
-> +                speed = <1000>;
-> +                full-duplex;
-> +                pause;
-> +            };
-> +        };
-> +
-> +        gmac1: mac@1 {
-> +            compatible = "mediatek,eth-mac";
-> +            reg = <1>;
-> +            phy-mode = "rgmii-txid";
-> +            phy-handle = <&phy4>;
-> +        };
-> +
-> +        mdio: mdio-bus {
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +
-> +            /* Internal phy */
-> +            phy4: ethernet-phy@4 {
-> +                reg = <4>;
-> +            };
-> +
-> +            mt7530: switch@1f {
-> +                compatible = "mediatek,mt7621";
-> +                #address-cells = <1>;
-> +                #size-cells = <0>;
-> +                reg = <0x1f>;
-> +                mediatek,mcm;
-> +
-> +                resets = <&rstctrl 2>;
-> +                reset-names = "mcm";
-> +
-> +                ports {
-> +                    #address-cells = <1>;
-> +                    #size-cells = <0>;
-> +
-> +                    port@0 {
-> +                        reg = <0>;
-> +                        label = "lan0";
-> +                    };
-> +
-> +                    port@1 {
-> +                        reg = <1>;
-> +                        label = "lan1";
-> +                    };
-> +
-> +                    port@2 {
-> +                        reg = <2>;
-> +                        label = "lan2";
-> +                    };
-> +
-> +                    port@3 {
-> +                        reg = <3>;
-> +                        label = "lan3";
-> +                    };
-> +
-> +        /* Commented out. Port 4 is handled by 2nd GMAC.
-> +                    port@4 {
-> +                        reg = <4>;
-> +                        label = "lan4";
-> +                    };
-> +        */
-
-Messed up indentation
-> +
-> +                    port@6 {
-> +                        reg = <6>;
-> +                        label = "cpu";
-> +                        ethernet = <&gmac0>;
-> +                        phy-mode = "rgmii";
-> +
-> +                        fixed-link {
-> +                            speed = <1000>;
-> +                            full-duplex;
-> +                            pause;
-> +                        };
-> +                    };
-> +                };
-> +            };
-> +        };
-> +    };
-> +
-> +  - |
-> +    //Example 3: MT7621: Port 5 is connected to external PHY: Port 5 -> external PHY.
-> +
-> +    eth {
-
-Also ethernet?
-
-
-
-Best regards,
-Krzysztof
+> 
+> Heiko
+> 
+> 
+>> ---
+>>
+>> Notes:
+>>      Changes since v5:
+>>      - Add missing Signed-off-by me
+>>      
+>>      Changes since v3:
+>>      - new patch
+>>
+>>   drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c | 130 +++++++++++---------
+>>   1 file changed, 69 insertions(+), 61 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c b/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
+>> index fe4f9556239ac..cb43e7b47157d 100644
+>> --- a/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
+>> +++ b/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
+>> @@ -91,80 +91,88 @@ static struct rockchip_hdmi *to_rockchip_hdmi(struct drm_encoder *encoder)
+>>   
+>>   static const struct dw_hdmi_mpll_config rockchip_mpll_cfg[] = {
+>>   	{
+>> -		27000000, {
+>> -			{ 0x00b3, 0x0000},
+>> -			{ 0x2153, 0x0000},
+>> -			{ 0x40f3, 0x0000}
+>> +		30666000, {
+>> +			{ 0x00b3, 0x0000 },
+>> +			{ 0x2153, 0x0000 },
+>> +			{ 0x40f3, 0x0000 },
+>>   		},
+>> -	}, {
+>> -		36000000, {
+>> -			{ 0x00b3, 0x0000},
+>> -			{ 0x2153, 0x0000},
+>> -			{ 0x40f3, 0x0000}
+>> +	},  {
+>> +		36800000, {
+>> +			{ 0x00b3, 0x0000 },
+>> +			{ 0x2153, 0x0000 },
+>> +			{ 0x40a2, 0x0001 },
+>>   		},
+>> -	}, {
+>> -		40000000, {
+>> -			{ 0x00b3, 0x0000},
+>> -			{ 0x2153, 0x0000},
+>> -			{ 0x40f3, 0x0000}
+>> +	},  {
+>> +		46000000, {
+>> +			{ 0x00b3, 0x0000 },
+>> +			{ 0x2142, 0x0001 },
+>> +			{ 0x40a2, 0x0001 },
+>>   		},
+>> -	}, {
+>> -		54000000, {
+>> -			{ 0x0072, 0x0001},
+>> -			{ 0x2142, 0x0001},
+>> -			{ 0x40a2, 0x0001},
+>> +	},  {
+>> +		61333000, {
+>> +			{ 0x0072, 0x0001 },
+>> +			{ 0x2142, 0x0001 },
+>> +			{ 0x40a2, 0x0001 },
+>>   		},
+>> -	}, {
+>> -		65000000, {
+>> -			{ 0x0072, 0x0001},
+>> -			{ 0x2142, 0x0001},
+>> -			{ 0x40a2, 0x0001},
+>> +	},  {
+>> +		73600000, {
+>> +			{ 0x0072, 0x0001 },
+>> +			{ 0x2142, 0x0001 },
+>> +			{ 0x4061, 0x0002 },
+>>   		},
+>> -	}, {
+>> -		66000000, {
+>> -			{ 0x013e, 0x0003},
+>> -			{ 0x217e, 0x0002},
+>> -			{ 0x4061, 0x0002}
+>> +	},  {
+>> +		92000000, {
+>> +			{ 0x0072, 0x0001 },
+>> +			{ 0x2145, 0x0002 },
+>> +			{ 0x4061, 0x0002 },
+>>   		},
+>> -	}, {
+>> -		74250000, {
+>> -			{ 0x0072, 0x0001},
+>> -			{ 0x2145, 0x0002},
+>> -			{ 0x4061, 0x0002}
+>> +	},  {
+>> +		122666000, {
+>> +			{ 0x0051, 0x0002 },
+>> +			{ 0x2145, 0x0002 },
+>> +			{ 0x4061, 0x0002 },
+>>   		},
+>> -	}, {
+>> -		83500000, {
+>> -			{ 0x0072, 0x0001},
+>> +	},  {
+>> +		147200000, {
+>> +			{ 0x0051, 0x0002 },
+>> +			{ 0x2145, 0x0002 },
+>> +			{ 0x4064, 0x0003 },
+>>   		},
+>> -	}, {
+>> -		108000000, {
+>> -			{ 0x0051, 0x0002},
+>> -			{ 0x2145, 0x0002},
+>> -			{ 0x4061, 0x0002}
+>> +	},  {
+>> +		184000000, {
+>> +			{ 0x0051, 0x0002 },
+>> +			{ 0x214c, 0x0003 },
+>> +			{ 0x4064, 0x0003 },
+>>   		},
+>> -	}, {
+>> -		106500000, {
+>> -			{ 0x0051, 0x0002},
+>> -			{ 0x2145, 0x0002},
+>> -			{ 0x4061, 0x0002}
+>> +	},  {
+>> +		226666000, {
+>> +			{ 0x0040, 0x0003 },
+>> +			{ 0x214c, 0x0003 },
+>> +			{ 0x4064, 0x0003 },
+>>   		},
+>> -	}, {
+>> -		146250000, {
+>> -			{ 0x0051, 0x0002},
+>> -			{ 0x2145, 0x0002},
+>> -			{ 0x4061, 0x0002}
+>> +	},  {
+>> +		272000000, {
+>> +			{ 0x0040, 0x0003 },
+>> +			{ 0x214c, 0x0003 },
+>> +			{ 0x5a64, 0x0003 },
+>>   		},
+>> -	}, {
+>> -		148500000, {
+>> -			{ 0x0051, 0x0003},
+>> -			{ 0x214c, 0x0003},
+>> -			{ 0x4064, 0x0003}
+>> +	},  {
+>> +		340000000, {
+>> +			{ 0x0040, 0x0003 },
+>> +			{ 0x3b4c, 0x0003 },
+>> +			{ 0x5a64, 0x0003 },
+>>   		},
+>> -	}, {
+>> +	},  {
+>> +		600000000, {
+>> +			{ 0x1a40, 0x0003 },
+>> +			{ 0x3b4c, 0x0003 },
+>> +			{ 0x5a64, 0x0003 },
+>> +		},
+>> +	},  {
+>>   		~0UL, {
+>> -			{ 0x00a0, 0x000a },
+>> -			{ 0x2001, 0x000f },
+>> -			{ 0x4002, 0x000f },
+>> +			{ 0x0000, 0x0000 },
+>> +			{ 0x0000, 0x0000 },
+>> +			{ 0x0000, 0x0000 },
+>>   		},
+>>   	}
+>>   };
+>>
+> 
+> 
+> 
+> 
+> 
+> _______________________________________________
+> Linux-rockchip mailing list
+> Linux-rockchip@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-rockchip
