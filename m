@@ -2,66 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 89946518280
-	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 12:46:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B70451829C
+	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 12:53:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234229AbiECKt6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 May 2022 06:49:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43378 "EHLO
+        id S233378AbiECK5D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 May 2022 06:57:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56086 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234269AbiECKtj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 06:49:39 -0400
-Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C243625E8A;
-        Tue,  3 May 2022 03:46:06 -0700 (PDT)
-Received: from mail-yw1-f182.google.com ([209.85.128.182]) by
- mrelayeu.kundenserver.de (mreue012 [213.165.67.97]) with ESMTPSA (Nemesis) id
- 1MuF4v-1o6fdx2cY9-00uVlI; Tue, 03 May 2022 12:46:04 +0200
-Received: by mail-yw1-f182.google.com with SMTP id 00721157ae682-2f7b815ac06so175216487b3.3;
-        Tue, 03 May 2022 03:46:04 -0700 (PDT)
-X-Gm-Message-State: AOAM530SHApsi5p4D3Wx1ZoWrXfqN/TgkqydF9WILkkbIYLyoO2DiLeu
-        7tv5+SxIHt/QPkY5s48HwaLwDCsG+/350+/aG2c=
-X-Google-Smtp-Source: ABdhPJylICN3Lkv4MnajtKZ/mtz5v98V10dI0vpMrO0w3cw4ngaYj64jqdkCQYAkS/F2fDxRL5svru9bENy/YJPD9Ww=
-X-Received: by 2002:a0d:fc83:0:b0:2e5:b0f4:c125 with SMTP id
- m125-20020a0dfc83000000b002e5b0f4c125mr14878150ywf.347.1651574763350; Tue, 03
- May 2022 03:46:03 -0700 (PDT)
+        with ESMTP id S229699AbiECK5B (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 06:57:01 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E77433153E;
+        Tue,  3 May 2022 03:53:26 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: kholk11)
+        with ESMTPSA id 95CFB1F43E0F
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1651575205;
+        bh=DmdsdXPUSOFXBQpmitusBnyiDtXQO80VoTWdNn6WKfA=;
+        h=From:To:Cc:Subject:Date:From;
+        b=HAkZtg1GPWzlwHe/TTfYeEZrf676FMHRcizYzPv9pXT1MeFSspEVUpbTdYo1nNMD+
+         p3kiYBvxhKAWIp0xTYG5CyBQ+ydIoF0ae6Y60/Mf7gUMtd/L6xUfMUBCUCjPgbkRxK
+         E6t1V8at431FO4garL+MTXx0C854ejQEsSWNtNe2QS6r+WGofB7Ex8W7si+iZDuiuq
+         ci+P1JkKNy5VFCOpr4eirqeXegDm+bamEBSt4xzyZ3hYIK8BhDixrjWD2LNEr7c10J
+         Zq/mysq7LpeBJynVIgV0gCsxlGCX7qIAT3atF79LOYR4zI13Z2y++/Og8nVQpdN6JH
+         L5iD5s3bzgqSw==
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+To:     linus.walleij@linaro.org
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        matthias.bgg@gmail.com, sean.wang@kernel.org,
+        angelogioacchino.delregno@collabora.com,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        kernel@collabora.com, nfraprado@collabora.com
+Subject: [PATCH 0/2] MediaTek Helio X10 MT6795 - Pinctrl driver
+Date:   Tue,  3 May 2022 12:53:15 +0200
+Message-Id: <20220503105317.54696-1-angelogioacchino.delregno@collabora.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-References: <20220502204050.88316-1-nick.hawkins@hpe.com> <20220502204050.88316-7-nick.hawkins@hpe.com>
-In-Reply-To: <20220502204050.88316-7-nick.hawkins@hpe.com>
-From:   Arnd Bergmann <arnd@arndb.de>
-Date:   Tue, 3 May 2022 12:45:47 +0200
-X-Gmail-Original-Message-ID: <CAK8P3a2rzmVrpnf2r73iXB=T06OMOsgwyq1i8z7swuOW-q88eQ@mail.gmail.com>
-Message-ID: <CAK8P3a2rzmVrpnf2r73iXB=T06OMOsgwyq1i8z7swuOW-q88eQ@mail.gmail.com>
-Subject: Re: [PATCH v6 7/8] ARM: dts: Introduce HPE GXP Device tree
-To:     "Hawkins, Nick" <nick.hawkins@hpe.com>
-Cc:     "Verdun, Jean-Marie" <verdun@hpe.com>, nick@hpe.com,
-        Joel Stanley <joel@jms.id.au>, Arnd Bergmann <arnd@arndb.de>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Olof Johansson <olof@lixom.net>, SoC Team <soc@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        DTML <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Provags-ID: V03:K1:wXneJVDhHANw/r8NfxFZJbswJ5oULr5QQoJSkOab5zb02IKUsK3
- hU48wlq9luJx9Qoaz/y6lqRqo5n7oJNPBxLfvqaj8nctFIQCVlU5tKgYq+02fahppNXbB0V
- Vzj9eLNbGpAh7x+eGFiamO7uSy7tAvhbGGakj89UvhYf0/J7GwIXwYt1dyUmuerSLd9EFMY
- H0Wcb1padTZHYgf0IaKNw==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:7hyjKbR4LJ4=:yf7szBniFb+nnTPpUNum3x
- /XO7jhSGCpyiLmiCadG31blS20eHeYAMn9tTRqC7f4TYpSzPbtuDNaQDWsv7vulp6usimvrsx
- 3/n1QFpAEAxZhjLtAJADndzm8sh3Fep68O9JuocpLwUH5Gha6tjnMtO43MwRQ6DzFBc7bzit9
- e/Gmp5CKq2mSC7K1tNdsBdhnlFW8lbnuRbpyNq5LW0k7lP4AK7sgQBonBr1dMD0aCN8A1Dyhh
- gJ6Bn+Ygv+0F82GgVo6ueAm6FVA3vibtefDhwHMJ0Vk14e5rBJrATbGx/F9DrnrOTKLmog4k8
- 0x4jQg7NE5aZb+GTYkgTUTTpNfZTMGzOuA9er1/t2S9hFbqqwHfb4h974TR1QLLhQFGh4glrz
- cKQLLAACQnE7wTFvixDR+Dza0rNSNA2ohxi27f9VQvqwkgNTvcrCB/UFzCW+pxVl0BagwViNF
- xdarzmVSKhOxKhNkXRt5Nx9DfEIy4jALh7yy6/3trRIlOfCLMxy+3kxs8Ma28gTLD/OwtcXX/
- 26Fh0wpYqf2C5q1USwjheQwcXM6DzmBbZNBvkQ+KX48Z0yyLRmGnuhrbosyRpbBVYcQYJLdJF
- ZFbRiqQ6QCJHK3IThp9su3qWoEqPvSZjh3dVb1or9qWVRgwmr1GHGnYy+oLvpklWtduLOcLK/
- SFDJoukHhU1x9hjN71WbME6yd1AA7dlyyOxnsOzEIcNrJwta3UX5l9T05vbL05byv4bjrjq3j
- qYvpm509Jw64fu9QPLx21yaXVvAdlvkzZDHkAVKMG9G/nOG3dFFDdQjqFjVNf8068ETD3m24h
- fTDWaDGuqUlYGboIlcFPOiJol1gdX4b/7BYWg9dgo+02cYdGA4=
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -69,69 +53,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 2, 2022 at 10:40 PM <nick.hawkins@hpe.com> wrote:
+In an effort to give some love to the apparently forgotten MT6795 SoC,
+I am upstreaming more components that are necessary to support platforms
+powered by this one apart from a simple boot to serial console.
 
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/hpe-bmc-dl360gen10.dts
-> @@ -0,0 +1,13 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Device Tree file for HPE DL360Gen10
-> + */
-> +
-> +/include/ "hpe-gxp.dtsi"
-> +
-> +/ {
-> +       #address-cells = <1>;
-> +       #size-cells = <1>;
-> +       compatible = "hpe,gxp-dl360gen10","hpe,gxp";
-> +       model = "Hewlett Packard Enterprise ProLiant dl360 Gen10";
-> +};
+This series introduces a pinctrl driver for the Helio X10 SoC.
 
-In the board specific file, you normally have "aliases", "chosen" and "memory"
-nodes that define e.g. which uart is used for the console.
+Tested on a Sony Xperia M5 (codename "Holly") smartphone.
 
-> diff --git a/arch/arm/boot/dts/hpe-gxp.dtsi b/arch/arm/boot/dts/hpe-gxp.dtsi
-> new file mode 100644
-> index 000000000000..7a99e174e4b3
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/hpe-gxp.dtsi
-> @@ -0,0 +1,132 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Device Tree file for HPE GXP
-> + */
-> +
-> +/dts-v1/;
-> +/ {
-> +       model = "Hewlett Packard Enterprise GXP BMC";
-> +       compatible = "hpe,gxp", "hpe,gxp-dl360gen10";
+AngeloGioacchino Del Regno (2):
+  pinctrl: mediatek: Add pinctrl driver for MT6795 Helio X10
+  dt-bindings: pinctrl: Add MediaTek MT6795 pinctrl bindings
 
-I think "hpe,gxp-dl360gen10" is misplaced here, if that is the identifier
-of a particular machine rather than the SoC.
+ .../pinctrl/mediatek,pinctrl-mt6795.yaml      |  224 +++
+ drivers/pinctrl/mediatek/Kconfig              |    7 +
+ drivers/pinctrl/mediatek/Makefile             |    1 +
+ drivers/pinctrl/mediatek/pinctrl-mt6795.c     |  623 ++++++
+ drivers/pinctrl/mediatek/pinctrl-mtk-mt6795.h | 1698 +++++++++++++++++
+ include/dt-bindings/pinctrl/mt6795-pinfunc.h  |  908 +++++++++
+ 6 files changed, 3461 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/mediatek,pinctrl-mt6795.yaml
+ create mode 100644 drivers/pinctrl/mediatek/pinctrl-mt6795.c
+ create mode 100644 drivers/pinctrl/mediatek/pinctrl-mtk-mt6795.h
+ create mode 100644 include/dt-bindings/pinctrl/mt6795-pinfunc.h
 
-> +       memory@40000000 {
-> +               device_type = "memory";
-> +               reg = <0x40000000 0x20000000>;
-> +       };
+-- 
+2.35.1
 
-If the memory is outside of the SoC, it should not be here.
-
-> +       axi {
-> +               compatible = "simple-bus";
-> +               #address-cells = <1>;
-> +               #size-cells = <1>;
-> +               ranges;
-> +               dma-ranges;
-> +
-> +               L2: cache-controller@b0040000 {
-> +                       compatible = "arm,pl310-cache";
-> +                       reg = <0xb0040000 0xFFC>;
-> +                       cache-unified;
-> +                       cache-level = <2>;
-> +               };
-
-The length of the register area looks wrong, this is usually the full
-4KB area, rather than leaving out the last four bytes.
-
-        Arnd
