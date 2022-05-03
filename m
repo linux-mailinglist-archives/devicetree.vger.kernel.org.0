@@ -2,58 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1FDBF518359
-	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 13:37:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9101151835C
+	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 13:37:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234754AbiECLkx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 May 2022 07:40:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45894 "EHLO
+        id S234787AbiECLlS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 May 2022 07:41:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46354 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234748AbiECLkw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 07:40:52 -0400
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D44BB34BBD
-        for <devicetree@vger.kernel.org>; Tue,  3 May 2022 04:37:19 -0700 (PDT)
-Received: by mail-ej1-x631.google.com with SMTP id i27so32857914ejd.9
-        for <devicetree@vger.kernel.org>; Tue, 03 May 2022 04:37:19 -0700 (PDT)
+        with ESMTP id S234776AbiECLlS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 07:41:18 -0400
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D30BE34BA7
+        for <devicetree@vger.kernel.org>; Tue,  3 May 2022 04:37:45 -0700 (PDT)
+Received: by mail-ej1-x630.google.com with SMTP id k23so32898127ejd.3
+        for <devicetree@vger.kernel.org>; Tue, 03 May 2022 04:37:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :references:from:in-reply-to:content-transfer-encoding;
-        bh=X1FUNuB7P3eW2ayDNUqILdNTj2LgjfmvS/GJDjAZwJ8=;
-        b=m1lsa/lUBG13ARmSDKBacb1BxkHOLDYVNgdzx87jaByNzrYBqQjteQH9jkfbbdF0QO
-         gVBjSQDRDw79CP7VbvuDmFkUQHW5Y/2HQOpqKUZd50/mRQE0HrMFgj8B66PmfYRy61kb
-         8mQDe2M8M3SeuqAHv+CkuKeCTRxKJ8py6uI2LM1l0QxqNtLGG3TQ/E1drhj9elaMYM+Z
-         xFA/t/PW27qFlRei0Or6PigQwyezhQQlkaMdEd86vK4ijPxTDPA3k4qBDuVAyd7WmywV
-         UJb9Ji7I8Ftv+i2NiOVJKZ3oCXUG0kPPc9hYXimNdHyqsP34bD3r76D1aIy486doAtNa
-         cl7Q==
+        bh=QVp3RkrsZjknN37lAxJZhaR2zOHWGKJGvjIrozmrcSE=;
+        b=tLQIXAep+KkODb2kR+H3gzQ6jOvCX3R6P+mOUJCrE1CJ6CpXrCtUbTQ0KpW4ygvB20
+         W9go6Cj1n8KEishC2RUv6sjlqCg6Orly2xx3FECOPACCBFqVdsNaud4d71tdKyw7J9B+
+         EAa79rJ4Sntra6vgOkRMew7unZedgmc3lm18k871vDFf8Pl5T4pRmCwTfj/DuRBtPa5f
+         AP9l4RG7FcTQ29MDY0mMFQlzlkCIOt3XG2avd10re0f5jn+jY0aDETvIM6hdYZhW9bUy
+         iHg4ZntHsvderHpMV5R97DTwIj6wIVWwZd6vgelRAFH27QW+GW0pqgmdV036LoBDvA0r
+         SYCQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=X1FUNuB7P3eW2ayDNUqILdNTj2LgjfmvS/GJDjAZwJ8=;
-        b=bmXjh8EJzNeXi7JXgqYUJxt3cnogWnl+M5j/vxdOvRKjaoXFoj+NNaNYe/z1gyPjBI
-         +EXNqyvxZGaPK6w5G5XxQufS2f3iluAGsGXHs0QtX6UYNip5kSRPQceKI/g/Wz+LOz8E
-         TqmV4cc07IuAp3tdwpHmBEXNWDLqFnKbNYR9iMcyTizm88WGiL82u5NDQral/PKDEup9
-         1d9A6aLfGsrPyj2kfa/SNeGA0B2NVgvSUcrDXNyWGW5e5aKcEHJD5FyNwH+LeapEXXfi
-         HS1ytvOZ0DixeM56Uo4JN+Sxr8P/wvP4LomEQoojs+v3hBMj1apRPD1uGS//J1/46qhB
-         1t0A==
-X-Gm-Message-State: AOAM531eijafLpXKuxw2jWTSW6X/y2cNQ5AV6sRlezCNze0X7M9l7JLF
-        Tq4kce3vh2sf66D/DsoDrCazFg==
-X-Google-Smtp-Source: ABdhPJzQ+6Vtojorbgz03fnGzcETCdUI4hWoJhuVofseBZB8aIdh7DtxCNdBnYFVXj5i+orsRW9lFg==
-X-Received: by 2002:a17:907:1c9c:b0:6f4:2918:5672 with SMTP id nb28-20020a1709071c9c00b006f429185672mr12582950ejc.439.1651577838380;
-        Tue, 03 May 2022 04:37:18 -0700 (PDT)
+        bh=QVp3RkrsZjknN37lAxJZhaR2zOHWGKJGvjIrozmrcSE=;
+        b=0JAuk+cmDBhWWN7W09VpPnQuA8wzSwvCJSNS2kgzK1ge/UCIH0J0yS9eS4O+GbzHsG
+         TXV7RcjUNQ0aoW3C1zSlOktHz8Q9tKQXD5pf3MFRHDkr8gS10lYacMbQBoQiKdnX6xU3
+         oKgwXRu7I/2/mD0tymJyPIvn2f7jkirHe7A5/3UC0rNt04FI2Cmf19w4RA+06ItsW6bz
+         kd9vKNjuQXvLoMYA5vtet15IJGfHWdbCFm+q5vPkmNyrOg0d3KirZKy0BH8EWMBwZLJW
+         kaB35ND5DlkBSME2oqLc2Hy/p9Ab3LaywIWvn/5pzHJiKzmedv/6ExY2eVW+S6P4SRH4
+         /nmg==
+X-Gm-Message-State: AOAM533I3A5cMVHf1la76qVt7bgJ5rUigjLBiu/F/ExkLheqTmhAMxim
+        2dgJmPoOeZZyMwxvbT4qwolQUg==
+X-Google-Smtp-Source: ABdhPJzxvzxgUY0kSWz6s201m+ymj+wkPW3O8HI9frx8YpxBCkivKl1bsuIkyh+cfHW9VMvSQH2zmw==
+X-Received: by 2002:a17:906:c1d6:b0:6d6:e0a3:bbc7 with SMTP id bw22-20020a170906c1d600b006d6e0a3bbc7mr15490136ejb.484.1651577864342;
+        Tue, 03 May 2022 04:37:44 -0700 (PDT)
 Received: from [192.168.0.202] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id l24-20020a056402029800b0042617ba63a7sm7841464edv.49.2022.05.03.04.37.16
+        by smtp.gmail.com with ESMTPSA id zd7-20020a17090698c700b006f3ef214dfesm4569152ejb.100.2022.05.03.04.37.42
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 03 May 2022 04:37:17 -0700 (PDT)
-Message-ID: <b7bf8ab3-9680-6318-a575-bb1dfaeef405@linaro.org>
-Date:   Tue, 3 May 2022 13:37:16 +0200
+        Tue, 03 May 2022 04:37:43 -0700 (PDT)
+Message-ID: <f42cb4d0-7133-eea5-b456-b5169bebfad1@linaro.org>
+Date:   Tue, 3 May 2022 13:37:42 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [RFC v2 0/2] Hi3521a support.
+Subject: Re: [RFC v2 1/2] clk: hisilicon: add CRG driver Hi3521a SoC
 Content-Language: en-US
 To:     "Marty E. Plummer" <hanetzer@startmail.com>, arnd@arndb.de,
         cai.huoqing@linux.dev, christian.koenig@amd.com,
@@ -69,13 +69,14 @@ To:     "Marty E. Plummer" <hanetzer@startmail.com>, arnd@arndb.de,
         vigneshr@ti.com, xuwei5@hisilicon.com
 References: <20220501054440.2434247-1-hanetzer@startmail.com>
  <20220501173423.2473093-1-hanetzer@startmail.com>
+ <20220501173423.2473093-2-hanetzer@startmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220501173423.2473093-1-hanetzer@startmail.com>
+In-Reply-To: <20220501173423.2473093-2-hanetzer@startmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -84,21 +85,17 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 01/05/2022 19:34, Marty E. Plummer wrote:
-> Resend RFC.
+> Add CRG driver for Hi3521A SoC. CRG (Clock and Reset Generator) module
+> generates clock and reset signals used by other module blocks on SoC.
 > 
-> Changes in v2:
-> - Actually include the dts files.
-> - DT Bindings still missing, as the the driver is not quite complete
->   (need to add the reset controller bindings, have't quite figured that
->   out yet.)
-> 
-> Marty E. Plummer (2):
->   clk: hisilicon: add CRG driver Hi3521a SoC
->   arm: hisi: enable Hi3521a soc
+> Signed-off-by: Marty E. Plummer <hanetzer@startmail.com>
+> ---
+>  drivers/clk/hisilicon/Kconfig             |   8 ++
+>  drivers/clk/hisilicon/Makefile            |   1 +
+>  drivers/clk/hisilicon/crg-hi3521a.c       | 141 ++++++++++++++++++++++
+>  include/dt-bindings/clock/hi3521a-clock.h |  34 ++++++
 
-Still no bindings for boards/SoC.
-
-
+Bindings go to separate patch. Your patchset is unmerge'able.
 
 Best regards,
 Krzysztof
