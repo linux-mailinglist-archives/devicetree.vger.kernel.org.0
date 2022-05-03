@@ -2,138 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BA01A518C72
-	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 20:33:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 33D43518C8A
+	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 20:45:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233768AbiECShY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 May 2022 14:37:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55722 "EHLO
+        id S234806AbiECStE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 May 2022 14:49:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36762 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241518AbiECShX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 14:37:23 -0400
-Received: from mail-oa1-f50.google.com (mail-oa1-f50.google.com [209.85.160.50])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05C253F8A6
-        for <devicetree@vger.kernel.org>; Tue,  3 May 2022 11:33:43 -0700 (PDT)
-Received: by mail-oa1-f50.google.com with SMTP id 586e51a60fabf-e656032735so18084707fac.0
-        for <devicetree@vger.kernel.org>; Tue, 03 May 2022 11:33:42 -0700 (PDT)
+        with ESMTP id S241640AbiECStA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 14:49:00 -0400
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AFF081FCF3
+        for <devicetree@vger.kernel.org>; Tue,  3 May 2022 11:45:26 -0700 (PDT)
+Received: by mail-ed1-x531.google.com with SMTP id ba17so803370edb.5
+        for <devicetree@vger.kernel.org>; Tue, 03 May 2022 11:45:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=G8p7yldKtTr1PNOn8wgGIMMVK/LhdITnIisacE3JNHw=;
+        b=YGDEzllOPX0H7yHdt3Cd+P/OufKVIhQ9fVyXiIjA6hOhBxwJV1tHelxKWqvzp/oE8/
+         W8V0LDSTLA3y0/gw38XOZvhpv5JZ1wd3859Hw2dSVJL1NP63+1exFvVWv0mPnOGswUoB
+         kFxj5ZtfXJX//arKuEKnBzN03av8B/XppcLxPHn0ydki3x/aritvrQK1QeR/aOTp8Ar/
+         NDGa4XlR+d/rYfB4+Pl/aQLDtbdxPgE3z8XYryZLoOyn93bzz3OvkRi2UMndCNUEG2vN
+         uUOIgRxzfs7VQY2tEijbizsu/S/algodvp5heTlR3482b0BmF2s6I5V+wR+SxD4jY376
+         kDQQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=JD995VbXr1R+3XcKhoh2SmymKHzONLstnrCva28itOI=;
-        b=6N2IYenupqOhHoSCH+0C8Uwl2DdRFkQkSa536QVk1abvjv7Ax8sFnSD3g2fkLNXfd6
-         R3Cetec6wmPznM/XLFFki0aDo8Nm/ky8BbMCk9ttfeTIEA8Dypfcxn349IL0kk8ijXRZ
-         Wntw7nU4WXR0poF8Wuihz3w3LngeROO4MktsY+R3quQRkI2dlwGwBae/QCVasNAk3gVH
-         XHHuULZTZHMGL9GvG27uOG/UOhn+Q9m/uAe5fP45YO9bfXHW5AvtgaaXHHYBdfoM4nx0
-         JJVUpRCducn8MlVvYe5uu+KTlGLJyXXwEs4ascD2ZeRuI0Zc6t3FylsOY1pDAzqHC1d6
-         i/ng==
-X-Gm-Message-State: AOAM530q9An9J4h6FwjrI7eG3AIm+svDwsEWP0FxouoQXyvAJSYOwb2y
-        d3BCisxwd4t2BR/2mpk034V/rm4J9A==
-X-Google-Smtp-Source: ABdhPJxdLisMK7ntzYydEgULiZRYr/HCY5hCKYuOOWevIs2jkYangRQ/UUvLBeAa3/c5/hXVkcOfHw==
-X-Received: by 2002:a05:6870:e9a0:b0:e6:9d2:ff42 with SMTP id r32-20020a056870e9a000b000e609d2ff42mr2404393oao.7.1651602822225;
-        Tue, 03 May 2022 11:33:42 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id dt48-20020a0568705ab000b000e686d13875sm7178556oab.15.2022.05.03.11.33.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 May 2022 11:33:41 -0700 (PDT)
-Received: (nullmailer pid 4011087 invoked by uid 1000);
-        Tue, 03 May 2022 18:33:41 -0000
-Date:   Tue, 3 May 2022 13:33:41 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Daniel Kaehn <kaehndan@gmail.com>
-Cc:     tiwai@suse.com, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v5 1/2] dt-bindings: sound: Add generic serial MIDI device
-Message-ID: <YnF1hYpYvXrDtRyV@robh.at.kernel.org>
-References: <20220502150404.20295-1-kaehndan@gmail.com>
- <20220502150404.20295-2-kaehndan@gmail.com>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=G8p7yldKtTr1PNOn8wgGIMMVK/LhdITnIisacE3JNHw=;
+        b=iOuVTydC2sviqDkJpUybSiDmTs+V1Fl560CRtBrqqZCDJKo68HRFVlZVJpFegCHgy7
+         fVUDCah4q5U1W/874WXNPhyjHuI3Mh+iKNLabLu51hPYfqtkSW+nD1b8oGQ+Y4YSyFG+
+         mbrR05npFs9+bD1xKMEGhutbPPlWW4+LFHghv7f8zBqQ7vQG0UVAMMwCEBf/21qwTpO7
+         28poWfNmM4lRnNfKwsCY3trlPXjGsIYf/mhVyM+I5WTthtY6eCeBAYQenhbmH7b/tno5
+         l5lsYLtFQMcvMmeHZl5G4dV5Z412Q4/erlDegbm1YGIXFHRCsnfi0Ydeikoe5kedluAA
+         Ko4g==
+X-Gm-Message-State: AOAM532deDS2UIddQ2/G0ZuUmxnZQQTwGIpQgwTWeSdFxa3RoDQAHKe4
+        0N8IyGQoBvmDj8VMzQb8ApEcew==
+X-Google-Smtp-Source: ABdhPJzI5A1uJNgod3x8D6YTKaAahyJjif8qzzhmrGUNRzQTxJzrMZfdsh/nkKu29nRLM9x/jCMPIw==
+X-Received: by 2002:a05:6402:42d4:b0:416:5cac:a9a0 with SMTP id i20-20020a05640242d400b004165caca9a0mr19742244edc.86.1651603525309;
+        Tue, 03 May 2022 11:45:25 -0700 (PDT)
+Received: from [192.168.0.206] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id ia17-20020a170907a07100b006f3ef214de6sm4862679ejc.76.2022.05.03.11.45.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 03 May 2022 11:45:24 -0700 (PDT)
+Message-ID: <4ff1354e-07c6-5518-879d-1ad55f04e22a@linaro.org>
+Date:   Tue, 3 May 2022 20:45:22 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220502150404.20295-2-kaehndan@gmail.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH v3 1/2] dt-bindings: google,cros-ec-keyb: Introduce
+ switches only compatible
+Content-Language: en-US
+To:     Doug Anderson <dianders@chromium.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     Stephen Boyd <swboyd@chromium.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        LKML <linux-kernel@vger.kernel.org>, patches@lists.linux.dev,
+        chrome-platform@lists.linux.dev,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Benson Leung <bleung@chromium.org>,
+        Guenter Roeck <groeck@chromium.org>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        "Joseph S. Barrera III" <joebar@chromium.org>
+References: <20220503042242.3597561-1-swboyd@chromium.org>
+ <20220503042242.3597561-2-swboyd@chromium.org>
+ <2280875f-fbd8-0dfd-5a0a-1d7fceb856e4@linaro.org>
+ <CAD=FV=UEBi9dctmhaAi1z+c+Sj5gtcRrc3FRW294T55dTiAidQ@mail.gmail.com>
+ <cd1da207-1f15-f3f1-7190-56b983e75024@kernel.org>
+ <CAD=FV=XHNuvhekh=hepGePftaMXnDJGeJP=Lg8VfqmGdKt7HEA@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CAD=FV=XHNuvhekh=hepGePftaMXnDJGeJP=Lg8VfqmGdKt7HEA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 02, 2022 at 10:04:03AM -0500, Daniel Kaehn wrote:
-> Adds dt-binding for a Generic MIDI Interface using a serial device.
+On 03/05/2022 18:14, Doug Anderson wrote:
+> Hi,
 > 
-> Signed-off-by: Daniel Kaehn <kaehndan@gmail.com>
-> ---
->  .../devicetree/bindings/sound/serialmidi.yaml | 46 +++++++++++++++++++
->  1 file changed, 46 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/sound/serialmidi.yaml
+> On Tue, May 3, 2022 at 8:54 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>>
+>> On 03/05/2022 17:46, Doug Anderson wrote:
+>>> Hi,
+>>>
+>>> On Tue, May 3, 2022 at 8:42 AM Krzysztof Kozlowski
+>>> <krzysztof.kozlowski@linaro.org> wrote:
+>>>>
+>>>> On 03/05/2022 06:22, Stephen Boyd wrote:
+>>>>> If the ChromeOS board is a detachable, this cros-ec-keyb device won't
+>>>>> have a matrix keyboard but it may have some button switches, e.g. volume
+>>>>> buttons and power buttons. The driver still registers a keyboard though
+>>>>> and that leads to userspace confusion around where the keyboard is.
+>>>>
+>>>> (...)
+>>>>
+>>>>>
+>>>>> +if:
+>>>>> +  properties:
+>>>>> +    compatible:
+>>>>> +      contains:
+>>>>> +        const: google,cros-ec-keyb
+>>>>> +then:
+>>>>> +  allOf:
+>>>>> +    - $ref: "/schemas/input/matrix-keymap.yaml#"
+>>>>> +  required:
+>>>>> +    - keypad,num-rows
+>>>>> +    - keypad,num-columns
+>>>>> +    - linux,keymap
+>>>>
+>>>> else:
+>>>>   properties:
+>>>>     function-row-phsymap: false
+>>>>     google,needs-ghost-filter: false
+>>>>
+>>>> Because these are not valid for the non-matrix-keyboard case, right?
+>>>
+>>> Isn't that implicit because this file has `unevaluatedProperties: false` ?
+>>
+>> But they are evaluated here, aren't they?
 > 
-> diff --git a/Documentation/devicetree/bindings/sound/serialmidi.yaml b/Documentation/devicetree/bindings/sound/serialmidi.yaml
-> new file mode 100644
-> index 000000000000..06a894e1b91d
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/sound/serialmidi.yaml
-> @@ -0,0 +1,46 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/sound/serialmidi.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Generic Serial MIDI Interface
-> +
-> +maintainers:
-> +  - Daniel Kaehn <kaehndan@gmail.com>
-> +
-> +description: 
-> +  Generic MIDI interface using a serial device. This denotes that a serial device is
-> +  dedicated to MIDI communication, either to an external MIDI device through a DIN5
-> +  or other connector, or to a known hardwired MIDI controller. This device must be a
-> +  child node of a serial node.
-> +
-> +  Can only be set to use standard baud rates corresponding to supported rates of the
-> +  parent serial device. If the standard MIDI baud of 31.25 kBaud is needed 
-> +  (as would be the case if interfacing with arbitrary external MIDI devices),
-> +  configure the clocks of the parent serial device so that a requested baud of 38.4 kBaud
-> +  resuts in the standard MIDI baud rate, and set the 'current-speed' property to 38400.
+> Only if the "if" test, though? 
 
-s/resuts/results/
+No, they are evaluated always. They are listed directly in properties,
+not in "if", therefore they will be considered as always evaluated.
 
-> +
-> +properties:
-> +  compatible:
-> +    const: serialmidi
+> ...ah, or is this a difference between
+> "unevaluatedProperties" and "additionalProperties" ?
 
-serial-midi would be a bit more readable. (And then align the filename 
-with that.)
 
-> +
-> +  current-speed:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
 
-Already has a type applied by serial.yaml, so you can drop.
 
-> +    description: Baudrate to set the serial port to when this MIDI device is opened.
-> +      If not specified, the parent serial device is allowed to use its default baud.
-> +
-> +required:
-> +  - compatible
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    serial {
-> +        midi {
-> +            compatible = "serialmidi";
-> +            current-speed = <38400>;
-> +        };
-> +    };
-> -- 
-> 2.33.0
-> 
-> 
+Best regards,
+Krzysztof
