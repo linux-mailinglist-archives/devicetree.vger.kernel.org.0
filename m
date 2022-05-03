@@ -2,82 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 264B851892D
-	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 17:55:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C29E9518931
+	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 17:56:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239032AbiECP7J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 May 2022 11:59:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43314 "EHLO
+        id S239025AbiECQA0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 May 2022 12:00:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44084 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239038AbiECP6y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 11:58:54 -0400
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4ABC41FA4A
-        for <devicetree@vger.kernel.org>; Tue,  3 May 2022 08:55:21 -0700 (PDT)
-Received: by mail-ed1-x52b.google.com with SMTP id p4so20434147edx.0
-        for <devicetree@vger.kernel.org>; Tue, 03 May 2022 08:55:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=BsC042lq+ASiI+KFVDMGvdvhCioXLu8YzSoGzXQsmrY=;
-        b=pYggHZGRfnSGxHO3zqFddU6dCPxSZQdfkap6iw5ccn5lYkccQ6x02JX3sZ6dA6GMtR
-         H1jZHQco1peMLbjoCRKdvWCX6jqTeG/7vN3C0JetQFcJo2LvvJRpgFgXy8akYpZzcdfK
-         rJRJ/10OtXEFVdtpp7KCF+q0nVbSiFgxb6Mft/WRKq1vIYIwAz/iZ82bNzMWr77LmGk6
-         VeKfWl2zDyrWA58ZWll6lnq40pkoozr3XMqSGVF4F81bjVWEyQMtY7+r+0pDsdNJYxg3
-         x4cafyO6aRbgR26p7+CmXzHG+DAWZowK3qb1b6viX2ruYE61w9OOZwd39gx7mCtYiymL
-         bumw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=BsC042lq+ASiI+KFVDMGvdvhCioXLu8YzSoGzXQsmrY=;
-        b=fqFb7ratdHcFzaWeB+vBrRcj6Ph+18hMbiO/V1cUMEWIB4kskBi2R1/hwuOn8zEfH7
-         0lnYhis+F8kLT6YEofN/w9aI2mNzeZf2g5pmBDjp9DCCQjG6IttLRAVq555VFXfvLDOK
-         2xbO2i2AZFW5XLdLHCOKZiVsmL5NHU7Rb9XotBR36x6W9WPRelxKkaE7qNCiC579OvaY
-         lhFWKRHVJElZswZdyp7e9cZ7EQkUKhQft9Zou8qZPkxf4wbB7gWtFSaGJWp8/pT9k5vu
-         bjm3N3mDU7Dlz05fLkjCo0NyiGHeNRon6p+NCtbBGKi+rw/0A9e7LrYPMGpwV+/eK56j
-         s12A==
-X-Gm-Message-State: AOAM531z9+fsE7invrUg9Qwpg3ykTBkRFRqSQx3YKkQkWy5v0ozze1qK
-        167HvXMSdlWNh7hqmDk5CqiulA==
-X-Google-Smtp-Source: ABdhPJwEIWnG+vCQLxXejn5znkqT8nvWu/vgYffG3VNTTp+aGCOoi4adOvVNNTah+A+rfBkYqvrPYw==
-X-Received: by 2002:aa7:c619:0:b0:425:b14f:1183 with SMTP id h25-20020aa7c619000000b00425b14f1183mr18187742edq.254.1651593319833;
-        Tue, 03 May 2022 08:55:19 -0700 (PDT)
-Received: from [192.168.0.206] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id cf4-20020a0564020b8400b00426488dce1dsm5370443edb.25.2022.05.03.08.55.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 03 May 2022 08:55:19 -0700 (PDT)
-Message-ID: <e321d8c2-950c-a194-04a3-1fe2659749e9@linaro.org>
-Date:   Tue, 3 May 2022 17:55:18 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH 3/5] arm64: dts: qcom: sc7180: Add quackingstick dts files
-Content-Language: en-US
-To:     Doug Anderson <dianders@chromium.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     "Joseph S. Barrera III" <joebar@chromium.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Alexandru M Stan <amstan@chromium.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        with ESMTP id S233041AbiECQAZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 12:00:25 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE45421E3A;
+        Tue,  3 May 2022 08:56:52 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 79589B81EB8;
+        Tue,  3 May 2022 15:56:51 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3029CC385A4;
+        Tue,  3 May 2022 15:56:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1651593410;
+        bh=yLgv+wqjkaIZgbsKQ6TfodDHyXt26mq0elWPo6njigU=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=dhgSF+zjy5Ffe5isKT2GTwYJS7C5JXBW7EmkeDwDcQJu94mQBg0A2QVhw/ltHzJnK
+         CfBc90HR0sW71FhhfPMf3wVqAOa2H5hDdwCiASqaFTaOHiq3d6FR9bTs+TpH0Pt+EV
+         ldpoa3/CiAjsgQj8DT4IavwWMx2xedrO9h5fh5885C23D1yCGcT/XJhDa8bbhkeeLT
+         +7qUTq853OWvh7wEe8nNDmsEBSsR44GLRebUsArj4PNXQuUp4Py8ceaX/CU0ELygqe
+         SCPKD5ffk+zAvHcyqHHQV/SAbZRB0CpfyGokom51VfS1fL3qmVm3KVqUTXSJnc2CdY
+         kgdRmDhVs9w+A==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=why.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <maz@kernel.org>)
+        id 1nlutL-008gpO-J5; Tue, 03 May 2022 16:56:47 +0100
+Date:   Tue, 03 May 2022 16:56:47 +0100
+Message-ID: <87bkwe8v9c.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Phil Edworthy <phil.edworthy@renesas.com>,
         Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Mark Rutland <mark.rutland@arm.com>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>
-References: <20220430011402.1.If7c3471db53bea55213f7bcf17e9043084d3ac0c@changeid>
- <20220430011402.3.Ic20d0c002ac5406b880cbdf9824739f38740926c@changeid>
- <dbcb45d6-d495-1e5d-b7ad-963096e5fe9d@linaro.org>
- <CAD=FV=WhAqQnxwNaW4kfq9Wuwsz6YYzBgSn=KX9Se_5o2mkcsA@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAD=FV=WhAqQnxwNaW4kfq9Wuwsz6YYzBgSn=KX9Se_5o2mkcsA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
+Subject: Re: [PATCH v3 04/12] dt-bindings: timer: arm,arch_timer: Add optional clock and reset
+In-Reply-To: <CAMuHMdU4j=Uaz5fAODFrPud0i40TdHUo6bYq0YpdnUzWaM3-Og@mail.gmail.com>
+References: <20220503115557.53370-1-phil.edworthy@renesas.com>
+        <20220503115557.53370-5-phil.edworthy@renesas.com>
+        <6fb57bcc87e091d6e88217d2b82af9da@kernel.org>
+        <CAMuHMdU4j=Uaz5fAODFrPud0i40TdHUo6bYq0YpdnUzWaM3-Og@mail.gmail.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: geert@linux-m68k.org, phil.edworthy@renesas.com, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, biju.das.jz@bp.renesas.com, daniel.lezcano@linaro.org, tglx@linutronix.de, mark.rutland@arm.com, devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -85,46 +75,66 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/05/2022 17:34, Doug Anderson wrote:
-> Hi,
-> 
-> On Tue, May 3, 2022 at 8:31 AM Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
->>
->> On 30/04/2022 10:15, Joseph S. Barrera III wrote:
->>> Quackingstick is a trogdor-based board. These dts files are copies from
->>> the downstream Chrome OS 5.4 kernel, but with downstream bits removed.
->>>
->>> Signed-off-by: Joseph S. Barrera III <joebar@chromium.org>
->>
->> (...)
->>
->>> +/*
->>> + * Google Quackingstick board device tree source
->>> + *
->>> + * Copyright 2021 Google LLC.
->>> + *
->>> + * SKU: 0x601 => 1537
->>> + *  - bits 11..8: Panel ID: 0x6 (AUO)
->>> + */
->>> +
->>> +#include "sc7180-trogdor-quackingstick.dtsi"
->>> +
->>> +/ {
->>> +     model = "Google Quackingstick (rev0+)";
->>> +     compatible = "google,quackingstick-sku1537", "qcom,sc7180";
->>
->> Here and in other patches you keep adding undocumented board compatibles.
-> 
-> Sure, but perhaps we could continue the conversation at:
-> 
-> https://lore.kernel.org/r/CAD=FV=W_SA-3PfDFi-Gkjk9pew5bchFNjQhXX8MkZyuy5UohEQ@mail.gmail.com/
-> 
-> ...to avoid forking it and losing all the context.
+Geert,
 
-It's not that close to that discussion because none of compatibles here
-are documented and we discussed about documenting specific revisions.
+On Tue, 03 May 2022 15:22:35 +0100,
+Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+> 
+> Hi Marc,
+> 
+> On Tue, May 3, 2022 at 3:12 PM Marc Zyngier <maz@kernel.org> wrote:
+> > On 2022-05-03 12:55, Phil Edworthy wrote:
+> > > Some SoCs use a gated clock for the timer and the means to reset the
+> > > timer.
+> > > Hence add these as optional.
+> >
+> > The architecture is crystal clear on the subject: the counter
+> > is in an always-on domain. Why should this be visible to SW?
+> > Also, reseting the counter breaks the guaranteed monotonicity
+> > we rely on.
+> 
+> The DT bindings do state:
+> 
+>   always-on:
+>     type: boolean
+>     description: If present, the timer is powered through an always-on power
+>       domain, therefore it never loses context.
+> 
+> and (surprisingly?) the absence of this property seems to be the
+> norm...
 
+*timer* is the key word. And counter != timer. What your HW has is a
+gate on the *counter* which is illegal if observable from NS SW.
 
-Best regards,
-Krzysztof
+> 
+> And:
+> 
+>   arm,no-tick-in-suspend:
+>     type: boolean
+>     description: The main counter does not tick when the system is in
+>       low-power system suspend on some SoCs. This behavior does not match the
+>       Architecture Reference Manual's specification that the system
+> counter "must
+>       be implemented in an always-on power domain."
+> 
+> So there's already precedent for clocks that can be disabled.
+
+No, this is only the case in *suspend*, as the name of the property
+vaguely hints at. And that's a property for a bug. In your case, the
+clock can be controlled arbitrarily, which is even worse.
+
+> 
+> > Worse case, this belongs to the boot firmware, not the kernel,
+> > and I don't think this should be described in the DT.
+> 
+> "DT describes hardware, not software policy"?
+
+I'm happy to spread "always-on" properties all over the shop, but
+that's not helping. The HW spec says it in bold letters: the counter
+is always running, and doesn't jump backward. I can't imagine how
+secure SW will behave when you reset its counter... :-/
+
+	M.
+
+-- 
+Without deviation from the norm, progress is not possible.
