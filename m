@@ -2,79 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A26D518980
-	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 18:16:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B32BC5189BB
+	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 18:23:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239284AbiECQT6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 May 2022 12:19:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59896 "EHLO
+        id S239503AbiECQ1T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 May 2022 12:27:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38534 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239167AbiECQT5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 12:19:57 -0400
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E45220F52
-        for <devicetree@vger.kernel.org>; Tue,  3 May 2022 09:16:24 -0700 (PDT)
-Received: by mail-ej1-x62f.google.com with SMTP id dk23so34402704ejb.8
-        for <devicetree@vger.kernel.org>; Tue, 03 May 2022 09:16:24 -0700 (PDT)
+        with ESMTP id S237543AbiECQ1N (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 12:27:13 -0400
+Received: from mail-pj1-x102c.google.com (mail-pj1-x102c.google.com [IPv6:2607:f8b0:4864:20::102c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5BF013D1DF
+        for <devicetree@vger.kernel.org>; Tue,  3 May 2022 09:23:30 -0700 (PDT)
+Received: by mail-pj1-x102c.google.com with SMTP id t11-20020a17090ad50b00b001d95bf21996so2717588pju.2
+        for <devicetree@vger.kernel.org>; Tue, 03 May 2022 09:23:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
+        d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=oU0gNOmApxV0Y7ahlTC+ZO77cG/p3zhJM/T1yrF7v5Y=;
-        b=F+dNGWv77Wmd0QgNj4t9OR2FM1cNz0M7TsCPrF2ZsdtitJNLVc0o+I5AhkCej72eCp
-         y4vtCZo0/bovmckK91ixaQnV1mx59K61ZEtPpFcwTIFDz3Lo1x+SNyqDV04OqV6GqMW0
-         H5u5uQEap5RRUXl17YeaccpRrcnXKRBDWLLY8=
+        bh=UBkRzMAF2fmEnDOx5cm8C4yWv3/2n1bAuqgP0781Seo=;
+        b=rwEXmlzY2KoxV8/zMOBhFvw5DlF20vRth0I3M6jTU1SBvoigzfwCSX0X/3TwY2FX2g
+         cUK1K/5FcUA7Ds5MteSf/FmNEkvAmYM0Kd9Q7c+dLfOp55GMrUpz6uvxaFzw0EdNqNyI
+         HIhMr8cPEAJly2++bk272jmYqqVUihy7jEA1ZeKD65Nh6jnDVbolLI22uffyumPkn8Ks
+         zm4zXgSuKOzZI5I7zxUae+wyl3GCh7sfk2jLoiLjX526hGjIY5kayZiEhiSesv40gSnp
+         rdilNPxeJBSUaNxrRchYjHVsOocXcNuzbPUPjZvJi3qsLrsReOcmcmgq/xg+G0nr8sAv
+         BWgA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=oU0gNOmApxV0Y7ahlTC+ZO77cG/p3zhJM/T1yrF7v5Y=;
-        b=3KWiBuYbIwli57pJ2DuYVLt+t3TivtthVDPzJykfj3jJ9Q4HwUDgkoKBKl1KDE/ivO
-         GkekJ+tWo0BBd7+k4EqEG7oqzTSl2IGxJrdRYB0IFzKdd2FLxhHID1SpguAvbg7FbjSr
-         KFhRPMgSIYFDI4Koe+JXubG3SWLwMpmY9ABERGDVWecEyMYu2E65lU/w/M66zHQUX6S5
-         HndMu+DW1QeDtHKFWcypM4JlIohXzxmrLf0Rff/x4NAQ3bdNckQ65HhDGgIZeqwbEaYq
-         LxYirNO9il6Gfa0d9QmkEjdixhyl9rzmII70/VAtimVrjiaMoTLdYJiBrpPmPNfO2HDK
-         V3/w==
-X-Gm-Message-State: AOAM530NLfHjzu5NGFkKL9+/z3WzG34KAm5X8qFbKNZInEYPiMuWOvZL
-        pcbiVKIUD+nokV4dM+rtoGW2+bQEE4nHg/yD
-X-Google-Smtp-Source: ABdhPJxtm/BA5ps4oc79p8zZhlutxmohH75QHIsQ9hiKBYqk6Q09UaktmFpCj0bomivYlqNE+/IDpg==
-X-Received: by 2002:a17:907:1c8a:b0:6e9:2a0d:d7b7 with SMTP id nb10-20020a1709071c8a00b006e92a0dd7b7mr16036014ejc.572.1651594583298;
-        Tue, 03 May 2022 09:16:23 -0700 (PDT)
-Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com. [209.85.221.42])
-        by smtp.gmail.com with ESMTPSA id gv8-20020a1709072bc800b006f3ef214e5csm4776887ejc.194.2022.05.03.09.16.22
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 03 May 2022 09:16:22 -0700 (PDT)
-Received: by mail-wr1-f42.google.com with SMTP id w4so24023717wrg.12
-        for <devicetree@vger.kernel.org>; Tue, 03 May 2022 09:16:22 -0700 (PDT)
-X-Received: by 2002:a05:6000:2c1:b0:20c:5e37:3ed1 with SMTP id
- o1-20020a05600002c100b0020c5e373ed1mr9011909wry.342.1651594581793; Tue, 03
- May 2022 09:16:21 -0700 (PDT)
+        bh=UBkRzMAF2fmEnDOx5cm8C4yWv3/2n1bAuqgP0781Seo=;
+        b=3nAgsySpW2wqR+btfITHvjQlt1QfQ211kNXrRDI9iPM17gCaMeTNqAvNMl1cd82Gwx
+         pmlxVGSeh83Frj8J2Nccsm8T97+FMI5bIV/E5xScuZqnUfzkMvfEH24Ny7g50/RfJLC9
+         PfrO95Nf4957YrACwGDq/153wZJ/AqQ0hMUMwEjW0FZTfJcN7TsKtY4tnlkFcJiGzWIQ
+         +9hMmsOhiZGcToVdkpR+8/3AbBnuk0cV/7nG8jKLzsbKUL65GoF2hqeD709oLM1UVyYx
+         n7oHEmHnW+mS4jQQy40gv4aeisRSHvnU+3EnwaYKe8TyFJrxyKxi6GpWlmqhizDuTbiO
+         eecw==
+X-Gm-Message-State: AOAM5329hW05va2qLjBRIcUT+Jd9TwN/yq9ydomSYFNcggmKEoTC2d5O
+        Ohm38hTJHGAZzvW7kkFaSrVQw+wvLtD4gu+RojYgsA==
+X-Google-Smtp-Source: ABdhPJw39icUVJEDcTiertqWvLPqVUfip6kCDsWWoVMMdikQYdwVn01b80vuxcGqwl3p1a4PT4NkwLxO/a7Xy7YvTmk=
+X-Received: by 2002:a17:90b:1e4e:b0:1dc:583c:398 with SMTP id
+ pi14-20020a17090b1e4e00b001dc583c0398mr5517440pjb.232.1651595009809; Tue, 03
+ May 2022 09:23:29 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220430011402.1.If7c3471db53bea55213f7bcf17e9043084d3ac0c@changeid>
- <20220430011402.3.Ic20d0c002ac5406b880cbdf9824739f38740926c@changeid>
- <dbcb45d6-d495-1e5d-b7ad-963096e5fe9d@linaro.org> <CAD=FV=WhAqQnxwNaW4kfq9Wuwsz6YYzBgSn=KX9Se_5o2mkcsA@mail.gmail.com>
- <e321d8c2-950c-a194-04a3-1fe2659749e9@linaro.org>
-In-Reply-To: <e321d8c2-950c-a194-04a3-1fe2659749e9@linaro.org>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Tue, 3 May 2022 09:16:08 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=Usp=uMj+aupFsiBEqPp1M5cgJOOPLxeSujrbm3V0obQg@mail.gmail.com>
-Message-ID: <CAD=FV=Usp=uMj+aupFsiBEqPp1M5cgJOOPLxeSujrbm3V0obQg@mail.gmail.com>
-Subject: Re: [PATCH 3/5] arm64: dts: qcom: sc7180: Add quackingstick dts files
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     "Joseph S. Barrera III" <joebar@chromium.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Alexandru M Stan <amstan@chromium.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>
+References: <20220503130448.520470-1-robert.foss@linaro.org> <YnFDwUvFCgrH12zY@builder.lan>
+In-Reply-To: <YnFDwUvFCgrH12zY@builder.lan>
+From:   Robert Foss <robert.foss@linaro.org>
+Date:   Tue, 3 May 2022 18:23:18 +0200
+Message-ID: <CAG3jFyvMFZbELm8eydGm4Fp+UYQq9SCSUnfF79Y6QvZe4guYDw@mail.gmail.com>
+Subject: Re: [PATCH v2 1/8] clk: qcom: rcg2: Cache rate changes for parked RCGs
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     agross@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
+        robh+dt@kernel.org, krzk+dt@kernel.org, jonathan@marek.ca,
+        tdas@codeaurora.org, anischal@codeaurora.org,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Steev Klimaszewski <steev@kali.org>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -83,55 +71,36 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On Tue, May 3, 2022 at 8:55 AM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
+On Tue, 3 May 2022 at 17:01, Bjorn Andersson <bjorn.andersson@linaro.org> wrote:
 >
-> On 03/05/2022 17:34, Doug Anderson wrote:
-> > Hi,
-> >
-> > On Tue, May 3, 2022 at 8:31 AM Krzysztof Kozlowski
-> > <krzysztof.kozlowski@linaro.org> wrote:
-> >>
-> >> On 30/04/2022 10:15, Joseph S. Barrera III wrote:
-> >>> Quackingstick is a trogdor-based board. These dts files are copies from
-> >>> the downstream Chrome OS 5.4 kernel, but with downstream bits removed.
-> >>>
-> >>> Signed-off-by: Joseph S. Barrera III <joebar@chromium.org>
-> >>
-> >> (...)
-> >>
-> >>> +/*
-> >>> + * Google Quackingstick board device tree source
-> >>> + *
-> >>> + * Copyright 2021 Google LLC.
-> >>> + *
-> >>> + * SKU: 0x601 => 1537
-> >>> + *  - bits 11..8: Panel ID: 0x6 (AUO)
-> >>> + */
-> >>> +
-> >>> +#include "sc7180-trogdor-quackingstick.dtsi"
-> >>> +
-> >>> +/ {
-> >>> +     model = "Google Quackingstick (rev0+)";
-> >>> +     compatible = "google,quackingstick-sku1537", "qcom,sc7180";
-> >>
-> >> Here and in other patches you keep adding undocumented board compatibles.
-> >
-> > Sure, but perhaps we could continue the conversation at:
-> >
-> > https://lore.kernel.org/r/CAD=FV=W_SA-3PfDFi-Gkjk9pew5bchFNjQhXX8MkZyuy5UohEQ@mail.gmail.com/
-> >
-> > ...to avoid forking it and losing all the context.
+> On Tue 03 May 08:04 CDT 2022, Robert Foss wrote:
 >
-> It's not that close to that discussion because none of compatibles here
-> are documented and we discussed about documenting specific revisions.
+> > From: Bjorn Andersson <bjorn.andersson@linaro.org>
+> >
+> > As GDSCs are turned on and off some associated clocks are momentarily
+> > enabled for house keeping purposes. Failure to enable these clocks seems
+> > to have been silently ignored in the past, but starting in SM8350 this
+> > failure will prevent the GDSC to turn on.
+> >
+> > At least on SM8350 this operation will enable the RCG per the
+> > configuration in CFG_REG. This means that the current model where the
+> > current configuration is written back to CF_REG immediately after
+> > parking the RCG doesn't work.
+> >
+> > Instead, keep track of the currently requested rate of the clock and
+> > upon enabling the clock reapply the configuration per the saved rate.
+> >
+> > Fixes: 7ef6f11887bd ("clk: qcom: Configure the RCGs to a safe source as needed")
+> > Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> > Reviewed-by: Vinod Koul <vkoul@kernel.org>
+> > Tested-by: Steev Klimaszewski <steev@kali.org>
+> > ---
+>
+> This patch has been iterated since and the latest incarnation can be
+> found on below link. A reference to that in the cover letter would be
+> sufficient.
+>
+> https://lore.kernel.org/linux-arm-msm/20220426212136.1543984-1-bjorn.andersson@linaro.org/
+>
 
-It is strongly related, though, since we later might need to add
-revision info to these boards. These are still Chrome OS devices and
-they still have a bootloader looking at revision strappings. In this
-case, though, all the changes between revisions (so far) have been
-invisible to software.
-
--Doug
+Will do, thanks!
