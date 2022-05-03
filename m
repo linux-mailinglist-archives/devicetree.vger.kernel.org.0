@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D40CB517BBF
-	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 04:02:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2AAF5517BD3
+	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 04:15:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229766AbiECCFF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 May 2022 22:05:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38352 "EHLO
+        id S229846AbiECCKu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 May 2022 22:10:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42934 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229489AbiECCFE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 May 2022 22:05:04 -0400
+        with ESMTP id S229489AbiECCKt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 May 2022 22:10:49 -0400
 Received: from wout2-smtp.messagingengine.com (wout2-smtp.messagingengine.com [64.147.123.25])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C2693A737
-        for <devicetree@vger.kernel.org>; Mon,  2 May 2022 19:01:33 -0700 (PDT)
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-        by mailout.west.internal (Postfix) with ESMTP id 895B132009A9;
-        Mon,  2 May 2022 22:01:29 -0400 (EDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DCAE13B3CD;
+        Mon,  2 May 2022 19:07:17 -0700 (PDT)
+Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
+        by mailout.west.internal (Postfix) with ESMTP id 1393E32009A6;
+        Mon,  2 May 2022 22:07:15 -0400 (EDT)
 Received: from mailfrontend1 ([10.202.2.162])
-  by compute4.internal (MEProxy); Mon, 02 May 2022 22:01:30 -0400
+  by compute2.internal (MEProxy); Mon, 02 May 2022 22:07:17 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
         cc:cc:content-transfer-encoding:content-type:date:date:from:from
         :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to; s=fm2; t=1651543289; x=
-        1651629689; bh=yjxP6Q0jgbCd7Myxdtqjvlzx2TRr1TszmNbYWxxKkpU=; b=q
-        TkezOlALHJg3LHD8QvqyLBOjqYQEkrCFDbvdyTk9+qtLF6ISvblU5wq4CWgKFX35
-        c4fTb1jrTuTxxuGXfRnLXDCLcUjGWSJJuHjVlF2jiPw4wx/ihddLkHK/Hc/X/GBq
-        X+TCyCSg1nb3QcOO8z69Hh7JPpHm4lvkoLiZvilFhq56/NyDQ7zlZiXtdu6SWKKC
-        S38NeN8+WpClcbZaVhPSbmHsre9rt5blyZMsMaqZO1/+miG3ePQOx9DlSv+Xjy1v
-        Zt7O6JSdXYW/x5TmI84IZAF64b4cryr4hF+n7NcMeWI4YxPQZdAn6a0+m0BsR6eP
-        PQtzY7NTrDHls2lDe+NSw==
+        :reply-to:sender:subject:subject:to:to; s=fm2; t=1651543635; x=
+        1651630035; bh=xUeFWxsF5CLekYiemda/iXJE5D5dmgNKZ4AF9FvZhgI=; b=E
+        YJtIdNUHjcaX7VD3d737fYk7Uf0xE11EuATUuVFFJ5qG4c/VAvH8edQEtc/SHmKf
+        MFje+wEREmXz5jWzpSf7XD3Y/wkdJ6EWCvR5vgeB/+OAys0n7yRtYIg/M86JEVXb
+        I+t/smKJX5u2dFC/tw3BUkxu1Wn/MQZ+1BSF9YxEzOr4xIcg6a9ByQmcz31Km5l5
+        cTXcsdWUBnlxwt55upZgvPEe5R+LuL8hzoOki1cg0Q0LiI/4BDAXklXl+h2efHK6
+        KcTnrriGtiTirch6/cKh9n0TbYyRzjrcEf+sqI8GJfoniLp7J2bZsSdvr4hSsmp7
+        gC1cOUQW5Hl96f/Wti4og==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
         messagingengine.com; h=cc:cc:content-transfer-encoding
         :content-type:date:date:from:from:in-reply-to:in-reply-to
         :message-id:mime-version:references:reply-to:sender:subject
         :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm1; t=1651543289; x=1651629689; bh=yjxP6Q0jgbCd7
-        Myxdtqjvlzx2TRr1TszmNbYWxxKkpU=; b=ymhNiSQesxl1S9F1CE1vQgpg76QZZ
-        Ct6hrVZCYuWc3VSf6KGGJ29V0FfiLs3s5oVeoBHGXBrz12mKlc2UuQnrK8Y7+8eJ
-        7r03ylRtdHDynV/HkoFC8LUBFEP4hgUA4jIisRsQFyiSPCEwIECe5ah8RGKb7IgF
-        T9r5qjdghYcLnTEB1uD25nIJBuNjpNnUwBs5W5jEL9bnHO2wabtcFykXgPcWgQms
-        0B5ep+Y9wNh6x3mKrjUSpXTzNYtp/zPu44YgA92zzRDKDA17d/l4jp70xw0AS8eN
-        kCxyNs49dAoiqEaVMNNh3v57Ihr6TVBHAUf32ARczgWB3v3njeIxYDB4g==
-X-ME-Sender: <xms:-IxwYmeDAspTsKkfchF5_7h6SWBacwqw2_z7-ubELPZA13HP1AUd8w>
-    <xme:-IxwYgOZCgIi0baSy9cpr5RsY3-EvMHFOOAejgwF7iJQmnWI4ahyYCNPThSHCy4_7
-    tQcNfDSortwU0f36w>
-X-ME-Received: <xmr:-IxwYngwIAQ9vu3j4MJx5eKFU7-L-SELxHB8ROU_EaaZ9aCW4ackVegO9G_bpMZF3uB8cw>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrvdeigdehvdcutefuodetggdotefrodftvf
+        :x-sasl-enc; s=fm1; t=1651543635; x=1651630035; bh=xUeFWxsF5CLek
+        Yiemda/iXJE5D5dmgNKZ4AF9FvZhgI=; b=N+LfR9m3tsUk8K2rL2GNIh0qSWW4D
+        i2RFLHJ9Ar6EA6cd3xFjs2ZEoqNY8TndJzoum+BM2TJKB+Rq1amHVWNq8NjBw7sX
+        dPp8vTX+5q1iY0OTjqCcSGsCgjYrG+kwOsUV2usHn0qbf/ZYTSi0xmLZmxsAwqeI
+        tiBfudrlGV5w8JFjRVqcFB9nmcSsV9yIpDrXFyyoWxyliMwpUDR82Bd2oH120XeW
+        4atfr6iTUAniCWCohaHjtHqrA6NYEbYyD4qGqIHa7v42PtH82H7J+QaxiVd/+37K
+        Nsv1QDc5wmM+m2Q6gGNFu4lWOEqccKmIpx54sFPNhUsTUFxnVXwVb+SEQ==
+X-ME-Sender: <xms:U45wYoq5kocPCBnMpAf08BwvABmceqh7C23Bm2eVAz_Lk-HLSd5Udw>
+    <xme:U45wYuoXWYvHWne89jJG8pcXNMQiZCBRvUm6TW7BsseN6xaSmlgrt7QTxkRvx81rq
+    YA3RjUUDAWx304mEw>
+X-ME-Received: <xmr:U45wYtPCg0-9Zwrh5JvEZkimzRl-hrwYnYkLEv_jEggmh8eOfnNy4IfBFOi8M3cPb-015w>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrvdeigdehgecutefuodetggdotefrodftvf
     curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
     uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
     fjughrpefuvfevfhfhkffffgggjggtgfesthejredttdefjeenucfhrhhomhepufgrmhhu
@@ -54,26 +54,33 @@ X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrvdeigdehvdcutefuodetggdote
     ftrfgrthhtvghrnhepffdtveekvdegkeeuueetgfetffeileevudekuefhheelvdfhiedt
     heduhfduhefhnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrh
     homhepshgrmhhuvghlsehshhholhhlrghnugdrohhrgh
-X-ME-Proxy: <xmx:-IxwYj_fw7BINwgJUCGkkq4NnVSG_9lSL4DREE4J5SNh_QuCTNAFBQ>
-    <xmx:-IxwYitsUOpGPwHqXgP83vGR7eeONxw5LMIGfzlJZ155YOwS1dJlVA>
-    <xmx:-IxwYqFM94ccdNpBQkQS3TyiKZxXeu8MyZNIbrkFa_K9d14x7U-rfg>
-    <xmx:-YxwYkI2zaNCNBLuG5_ZNbpRfKH0bz-iifcaf7J7_w5Wcq1YBZIWsQ>
+X-ME-Proxy: <xmx:U45wYv7xihWsWib2z3IrMhV3LfULXb3BnB-s2i2gl6vcK71V9KZ2Mw>
+    <xmx:U45wYn4B_5dU-K559YWtMyTsWaWATVn2hwaCxRTJyJPtlVY6WAzbRw>
+    <xmx:U45wYvhy-feLxdoNLuDpbgIkV9rJN0-KLJ-DMsdaMVJ71G33bDEVFA>
+    <xmx:U45wYrgzMkA2MYR1UT2-SR5Yt5HWBTJITtQjUxmef7bAbpTL1egXxw>
 Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
- 2 May 2022 22:01:28 -0400 (EDT)
-Subject: Re: [PATCHv2] arm64: dts: allwinner: teres-i: Add GPIO port
- regulators
-To:     Harald Geyer <harald@ccbib.org>, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>
-Cc:     linux-sunxi@lists.linux.dev, devicetree@vger.kernel.org,
-        Torsten Duwe <duwe@suse.de>
-References: <20220430191009.73946-1-harald@ccbib.org>
+ 2 May 2022 22:07:14 -0400 (EDT)
+Subject: Re: [PATCH v11 1/6] clk: sunxi-ng: h6-r: Add RTC gate clock
+To:     Andre Przywara <andre.przywara@arm.com>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Chen-Yu Tsai <wens@csie.org>
+Cc:     Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Icenowy Zheng <icenowy@aosc.io>,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        linux-clk@vger.kernel.org
+References: <20220428230933.15262-1-andre.przywara@arm.com>
+ <20220428230933.15262-2-andre.przywara@arm.com>
 From:   Samuel Holland <samuel@sholland.org>
-Message-ID: <ff554e7a-b408-74b0-e4dc-94f244e0b56c@sholland.org>
-Date:   Mon, 2 May 2022 21:01:20 -0500
+Message-ID: <875fc3d6-fb45-903c-e52e-4abf43b46db2@sholland.org>
+Date:   Mon, 2 May 2022 21:06:59 -0500
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.6.0
 MIME-Version: 1.0
-In-Reply-To: <20220430191009.73946-1-harald@ccbib.org>
+In-Reply-To: <20220428230933.15262-2-andre.przywara@arm.com>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
@@ -87,9 +94,90 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 4/30/22 2:10 PM, Harald Geyer wrote:
-> Allwinner A64 SoC has separate supplies for PC, PD, PE, PG and PL.
+On 4/28/22 6:09 PM, Andre Przywara wrote:
+> The H6 and H616 feature an (undocumented) bus clock gate for accessing
+> the RTC registers. This seems to be enabled at reset (or by the BootROM),
+> so we got away without it so far, but exists regardless.
+> Since the new RTC clock binding for the H616 requires this "bus" clock
+> to be specified in the DT, add this to R_CCU clock driver and expose it
+> on the DT side with a new number.
+> We do this for both the H6 and H616, but mark it as IGNORE_UNUSED, as we
+> cannot reference it in any H6 DTs.
 > 
-> Signed-off-by: Harald Geyer <harald@ccbib.org>
+> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
 
 Reviewed-by: Samuel Holland <samuel@sholland.org>
+
+One tiny nit below, if you resend.
+
+> ---
+>  drivers/clk/sunxi-ng/ccu-sun50i-h6-r.c      | 5 +++++
+>  drivers/clk/sunxi-ng/ccu-sun50i-h6-r.h      | 2 +-
+>  include/dt-bindings/clock/sun50i-h6-r-ccu.h | 1 +
+>  3 files changed, 7 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/clk/sunxi-ng/ccu-sun50i-h6-r.c b/drivers/clk/sunxi-ng/ccu-sun50i-h6-r.c
+> index 712e103382d8..88509339031e 100644
+> --- a/drivers/clk/sunxi-ng/ccu-sun50i-h6-r.c
+> +++ b/drivers/clk/sunxi-ng/ccu-sun50i-h6-r.c
+> @@ -98,6 +98,8 @@ static SUNXI_CCU_GATE(r_apb1_ir_clk,	"r-apb1-ir",	"r-apb1",
+>  		      0x1cc, BIT(0), 0);
+>  static SUNXI_CCU_GATE(r_apb1_w1_clk,	"r-apb1-w1",	"r-apb1",
+>  		      0x1ec, BIT(0), 0);
+> +static SUNXI_CCU_GATE(r_apb1_rtc_clk,	"r-apb1-rtc",	"r-apb1",
+> +		      0x20c, BIT(0), CLK_IGNORE_UNUSED);
+>  
+>  /* Information of IR(RX) mod clock is gathered from BSP source code */
+>  static const char * const r_mod0_default_parents[] = { "osc32k", "osc24M" };
+> @@ -147,6 +149,7 @@ static struct ccu_common *sun50i_h616_r_ccu_clks[] = {
+>  	&r_apb2_i2c_clk.common,
+>  	&r_apb2_rsb_clk.common,
+>  	&r_apb1_ir_clk.common,
+> +	&r_apb1_rtc_clk.common,
+>  	&ir_clk.common,
+>  };
+>  
+> @@ -163,6 +166,7 @@ static struct clk_hw_onecell_data sun50i_h6_r_hw_clks = {
+>  		[CLK_R_APB2_I2C]	= &r_apb2_i2c_clk.common.hw,
+>  		[CLK_R_APB2_RSB]	= &r_apb2_rsb_clk.common.hw,
+>  		[CLK_R_APB1_IR]		= &r_apb1_ir_clk.common.hw,
+> +		[CLK_R_APB1_RTC]	= &r_apb1_rtc_clk.common.hw,
+>  		[CLK_R_APB1_W1]		= &r_apb1_w1_clk.common.hw,
+
+The new clock should go after CLK_R_APB1_W1 to match the ordering above.
+
+>  		[CLK_IR]		= &ir_clk.common.hw,
+>  		[CLK_W1]		= &w1_clk.common.hw,
+> @@ -179,6 +183,7 @@ static struct clk_hw_onecell_data sun50i_h616_r_hw_clks = {
+>  		[CLK_R_APB2_I2C]	= &r_apb2_i2c_clk.common.hw,
+>  		[CLK_R_APB2_RSB]	= &r_apb2_rsb_clk.common.hw,
+>  		[CLK_R_APB1_IR]		= &r_apb1_ir_clk.common.hw,
+> +		[CLK_R_APB1_RTC]	= &r_apb1_rtc_clk.common.hw,
+>  		[CLK_IR]		= &ir_clk.common.hw,
+>  	},
+>  	.num	= CLK_NUMBER,
+> diff --git a/drivers/clk/sunxi-ng/ccu-sun50i-h6-r.h b/drivers/clk/sunxi-ng/ccu-sun50i-h6-r.h
+> index 7e290b840803..10e9b66afc6a 100644
+> --- a/drivers/clk/sunxi-ng/ccu-sun50i-h6-r.h
+> +++ b/drivers/clk/sunxi-ng/ccu-sun50i-h6-r.h
+> @@ -14,6 +14,6 @@
+>  
+>  #define CLK_R_APB2	3
+>  
+> -#define CLK_NUMBER	(CLK_R_APB2_RSB + 1)
+> +#define CLK_NUMBER	(CLK_R_APB1_RTC + 1)
+>  
+>  #endif /* _CCU_SUN50I_H6_R_H */
+> diff --git a/include/dt-bindings/clock/sun50i-h6-r-ccu.h b/include/dt-bindings/clock/sun50i-h6-r-ccu.h
+> index 890368d252c4..a96087abc86f 100644
+> --- a/include/dt-bindings/clock/sun50i-h6-r-ccu.h
+> +++ b/include/dt-bindings/clock/sun50i-h6-r-ccu.h
+> @@ -22,5 +22,6 @@
+>  #define CLK_W1			12
+>  
+>  #define CLK_R_APB2_RSB		13
+> +#define CLK_R_APB1_RTC		14
+>  
+>  #endif /* _DT_BINDINGS_CLK_SUN50I_H6_R_CCU_H_ */
+> 
+
