@@ -2,79 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E0DF518429
-	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 14:20:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D7962518433
+	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 14:24:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235091AbiECMYW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 May 2022 08:24:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37114 "EHLO
+        id S235202AbiECM1c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 May 2022 08:27:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38592 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233203AbiECMYV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 08:24:21 -0400
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2EDE5E0E3
-        for <devicetree@vger.kernel.org>; Tue,  3 May 2022 05:20:48 -0700 (PDT)
-Received: by mail-ed1-x52c.google.com with SMTP id p4so19710296edx.0
-        for <devicetree@vger.kernel.org>; Tue, 03 May 2022 05:20:48 -0700 (PDT)
+        with ESMTP id S229451AbiECM1b (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 08:27:31 -0400
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C31C5344F2
+        for <devicetree@vger.kernel.org>; Tue,  3 May 2022 05:23:58 -0700 (PDT)
+Received: by mail-ej1-x62b.google.com with SMTP id l7so33136269ejn.2
+        for <devicetree@vger.kernel.org>; Tue, 03 May 2022 05:23:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=ATypDYM1Hgw+JVW3PULzGTbDtRMsM1D9mY5duLSApB8=;
-        b=nTPHWz/N33wHk9/lw+L2kBwXpj5x0zVfhGA+f3kH4W/aXt6VouU0DMNzNmUjp5XfrE
-         K76y2ic2byO67ladLMh+lxvi8IP+l/ePGavIhGKhT34T3glgPwr6fVBHRd9ZREtsB92g
-         AJhWF1SLB90XBjVer6ZUVlmFBilUfU9osp2fD2TokRZJkojd7JQZig44vqLztvKrdCHM
-         +54+fXN91uESKdnk8igkoV5CMxPBB4wuyZ2HcwbA+5qI2xpiuRmagbpTCZ6YADyAYlxd
-         hAK8nHs25AEdRh7P5sGbG+iXN7r2w2u1SmZodHKtmbK2obcrZOTSH4vucwYamdWF6RJZ
-         vXzw==
+         :references:from:in-reply-to:content-transfer-encoding;
+        bh=1+B0nDSelxPWBKeFfyRMZYaCgDIYB4AAPe14B7+Vz4E=;
+        b=Nq6gKXjCnhJbwyezIt3Nz5aUKU9CQkaKn1KS85YpIE/HGNvvbyjxmIwG1vBOQ6xm6n
+         iIFZXpaaIjmrrf/1Xo0aHiYZRQ7/KjU2cC7wsdSpRSueROUQ+Y4GXHYFcqYHg5i4255s
+         s3zIJyZ2sY3Mv6lK8QUvv7Jj5DMfsUXCQcrAuTqQa6K+332zH5ynu/2NLdgPseVqNmS8
+         79FZuyKNvnhMAhnNqekydF/KqC3YGtPIXdzDEBkWb/lCpVObE2ufIOuKn5kou4By3rjT
+         8LfnbipANv3e5rwfREo0KPr7twucvaFgQ7Xl0fbh2u928zpsZXzLVAWBjv7NlDzmPi2M
+         NY8w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
+         :content-language:to:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=ATypDYM1Hgw+JVW3PULzGTbDtRMsM1D9mY5duLSApB8=;
-        b=0iPzbecMQuc9Yb1dW5ZYXt4o3+Fkpv5fv3qZ5mYAwORY+74mLNlMm8FY4SKxuJHfFu
-         lvko4u354hew5P/CI5+CCv4QNyrtikJHDCDTzt93nr1J0OsF9iZtk+8dAGrNk90euOfX
-         wDut1rYjdLXIitARhSlScWkQrkQSxf9laAF+x/ycFsvfND4cw0SybOMSR0+6aYC4/1bx
-         gGRhb8h3AiSBtHA5Auu6xpnPnh7XmYoIXlIDw8DrQCyTnAboUTK3nMNU8QePYXmvZV41
-         lS9JVWy16MpPXRuK3FvlcuCtHnJ0IU6Ccgehw06eMuJ0aIDo2mHRe5baAKawRAfMkwS5
-         HTTg==
-X-Gm-Message-State: AOAM531V949z4rvBYqs9fLktK9j+4+t+7VDBN6IN+4i63YOVMIXA6ymF
-        RbfvWgUX3fwv2mlJHPfyoil2Kg==
-X-Google-Smtp-Source: ABdhPJwPIztAKjsTj9360EQjP1NOUrsVE200KUaRbSlAtUqgg3AOW7qipEdvW2qW35onBNwtlqtoJg==
-X-Received: by 2002:aa7:d842:0:b0:425:f329:33b1 with SMTP id f2-20020aa7d842000000b00425f32933b1mr17829071eds.74.1651580446747;
-        Tue, 03 May 2022 05:20:46 -0700 (PDT)
+        bh=1+B0nDSelxPWBKeFfyRMZYaCgDIYB4AAPe14B7+Vz4E=;
+        b=t06BTqyK4EOy2bTbeMx8o511eQKOdkdV2X3vxyZiumaIPCVRlRmhXwWh5alVUj0uAM
+         +TRxsRjrsQHjNnbjMApiYE5SwFaupFz9cG24onkkfCNuDsTuHxltDd8JWwgJJn05Sn99
+         +4a/XqkpN7sAbOCrLEDECwpQHrD/j8Xo1mFyobWJDROTA6xxi+FcYlgLDcV0ZG7kQgz0
+         Fft07mmjgAjZoI9I3uay375D0Mm2iMIrl4sEpQoEOeVhlUuUZTJ3iv5t9THRhuIDp9Td
+         tSygwIuZXrGEd3rWXuDPj8V+YonDuk6WAQuOISgizPDdgIvaUd28Mf/0Sc7eLcOsl6Mv
+         YPYA==
+X-Gm-Message-State: AOAM532+zbMzBeSy39XORm6qs0HPEXmkcxwr34WHr3qmKz0COCWgXZN/
+        EC8brbNV/iEmqpUTzXGN6iYACg==
+X-Google-Smtp-Source: ABdhPJxZ+H08qPQ20bNY26ofF/QfZilqLtIYkSJAGvGJKzajufuYx5Jh4Ht0ribtEK3RmbE2ZTRyxA==
+X-Received: by 2002:a17:906:5793:b0:6f3:d546:1764 with SMTP id k19-20020a170906579300b006f3d5461764mr16045203ejq.247.1651580637319;
+        Tue, 03 May 2022 05:23:57 -0700 (PDT)
 Received: from [192.168.0.203] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id ci18-20020a170907267200b006f3ef214e0esm4543127ejc.116.2022.05.03.05.20.45
+        by smtp.gmail.com with ESMTPSA id eo9-20020a1709069b0900b006f3ef214e00sm4561289ejc.102.2022.05.03.05.23.56
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 03 May 2022 05:20:46 -0700 (PDT)
-Message-ID: <c3789226-849f-4a90-d68a-d0e46763c8ee@linaro.org>
-Date:   Tue, 3 May 2022 14:20:45 +0200
+        Tue, 03 May 2022 05:23:56 -0700 (PDT)
+Message-ID: <e549b689-4043-e689-d0b0-f274ed08a665@linaro.org>
+Date:   Tue, 3 May 2022 14:23:55 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [PATCH v2 1/2] dt-bindings: remoteproc: mediatek: Fix optional
- reg-names for mtk,scp
+Subject: Re: [PATCH] arm64: dts: intel: add device tree for n6000
 Content-Language: en-US
-To:     =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
-        <nfraprado@collabora.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, kernel@collabora.com,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Tinghan Shen <tinghan.shen@mediatek.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        linux-remoteproc@vger.kernel.org
-References: <20220502192420.2548512-1-nfraprado@collabora.com>
- <20220502192420.2548512-2-nfraprado@collabora.com>
+To:     matthew.gerlach@linux.intel.com, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, dinguyen@vger.kernel.org,
+        robh+dt@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org
+References: <20220502165818.4002157-1-matthew.gerlach@linux.intel.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220502192420.2548512-2-nfraprado@collabora.com>
+In-Reply-To: <20220502165818.4002157-1-matthew.gerlach@linux.intel.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
@@ -85,58 +73,75 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/05/2022 21:24, Nícolas F. R. A. Prado wrote:
-> The SCP has three memory regions: sram, l1tcm and cfg. Only sram is
-> required, the other two are optional. Fix the dt-binding so that the
-> optional regions can be omitted and passed in any order.
-
-I commented for v1 - order is strict, so no for this change.
-
+On 02/05/2022 18:58, matthew.gerlach@linux.intel.com wrote:
+> From: Matthew Gerlach <matthew.gerlach@linux.intel.com>
 > 
-> Also add the missing minItems to the reg property and update the
-> description.
+> Add a device tree for the n6000 instantiation of Agilex
+> Hard Processor System (HPS).
 > 
-> Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
-> 
+> Signed-off-by: Matthew Gerlach <matthew.gerlach@linux.intel.com>
 > ---
+>  arch/arm64/boot/dts/intel/Makefile            |  1 +
+>  .../boot/dts/intel/socfpga_agilex_n6000.dts   | 77 +++++++++++++++++++
+>  2 files changed, 78 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/intel/socfpga_agilex_n6000.dts
 > 
-> (no changes since v1)
-> 
->  .../devicetree/bindings/remoteproc/mtk,scp.yaml      | 12 +++++++++---
->  1 file changed, 9 insertions(+), 3 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/remoteproc/mtk,scp.yaml b/Documentation/devicetree/bindings/remoteproc/mtk,scp.yaml
-> index 823a236242de..ec9ddeb6ca2c 100644
-> --- a/Documentation/devicetree/bindings/remoteproc/mtk,scp.yaml
-> +++ b/Documentation/devicetree/bindings/remoteproc/mtk,scp.yaml
-> @@ -24,14 +24,20 @@ properties:
->    reg:
->      description:
->        Should contain the address ranges for memory regions SRAM, CFG, and
-> -      L1TCM.
-> +      L1TCM. Only SRAM is required, while CFG and L1TCM are optional.
-> +    minItems: 1
->      maxItems: 3
->  
->    reg-names:
-> +    minItems: 1
->      items:
->        - const: sram
-> -      - const: cfg
-> -      - const: l1tcm
-> +      - enum:
-> +          - l1tcm
-> +          - cfg
-> +      - enum:
-> +          - l1tcm
-> +          - cfg
+> diff --git a/arch/arm64/boot/dts/intel/Makefile b/arch/arm64/boot/dts/intel/Makefile
+> index 0b5477442263..1425853877cc 100644
+> --- a/arch/arm64/boot/dts/intel/Makefile
+> +++ b/arch/arm64/boot/dts/intel/Makefile
+> @@ -1,5 +1,6 @@
+>  # SPDX-License-Identifier: GPL-2.0-only
+>  dtb-$(CONFIG_ARCH_INTEL_SOCFPGA) += socfpga_agilex_socdk.dtb \
+>  				socfpga_agilex_socdk_nand.dtb \
+> +				socfpga_agilex_n6000.dtb \
+>  				socfpga_n5x_socdk.dtb
+>  dtb-$(CONFIG_ARCH_KEEMBAY) += keembay-evm.dtb
+> diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex_n6000.dts b/arch/arm64/boot/dts/intel/socfpga_agilex_n6000.dts
+> new file mode 100644
+> index 000000000000..07f5a5983e5c
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/intel/socfpga_agilex_n6000.dts
+> @@ -0,0 +1,77 @@
+> +// SPDX-License-Identifier:     GPL-2.0
 
-Nope.
+Except what Rob said: remove the indentation before license.
 
->  
->    clocks:
->      description:
+> +/*
+> + * Copyright (C) 2021-2022, Intel Corporation
+> + */
+> +#include "socfpga_agilex.dtsi"
+> +
+> +/ {
+> +	model = "SoCFPGA Agilex n6000";
+> +
+> +	aliases {
+> +		serial0 = &uart1;
+> +		serial1 = &uart0;
+> +		ethernet0 = &gmac0;
+> +		ethernet1 = &gmac1;
+> +		ethernet2 = &gmac2;
+> +	};
+> +
+> +	chosen {
+> +		stdout-path = "serial0:115200n8";
+> +	};
+> +
+> +	memory {
+> +		device_type = "memory";
+> +		/* We expect the bootloader to fill in the reg */
+> +		reg = <0 0 0 0>;
+> +	};
+> +
+> +	soc {
+> +		clocks {
+> +			osc1 {
+> +				clock-frequency = <25000000>;
 
+This does not look like SoC property... If it is part of Soc, why it is
+not provided by clock controller? Where compatible?
+
+If you intended to override nodes, override by label, not by path.
 
 Best regards,
 Krzysztof
