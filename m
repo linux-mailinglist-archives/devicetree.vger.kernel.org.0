@@ -2,313 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 891FE517D4C
-	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 08:29:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A44C517DAB
+	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 08:52:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229619AbiECGco (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 May 2022 02:32:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53412 "EHLO
+        id S230303AbiECGzP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 May 2022 02:55:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45712 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229447AbiECGcn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 02:32:43 -0400
-Received: from mail-pg1-x52c.google.com (mail-pg1-x52c.google.com [IPv6:2607:f8b0:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C47C25C4D;
-        Mon,  2 May 2022 23:29:11 -0700 (PDT)
-Received: by mail-pg1-x52c.google.com with SMTP id v10so13310637pgl.11;
-        Mon, 02 May 2022 23:29:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=1ommot/0z42sf3SBGFHfrVoBq7JJGjmk6km0fRERgWs=;
-        b=BBZqsvfXLQMcxnvVKu19OiXFrM/hVM4VZ+TB4sAzS++ZfbcsGgC3gaIgYi3V/CxVyI
-         hTagtqcDHop40+tn6XHh1FfNWGj1H2zX197W8q7SH3W2UjSFujx/4tRPHDTBTJonNB59
-         1acUkA2RmNGSJP1O2DsYwghR/BvCSDcHfrbhet3gqQjaohsHzguix3TUsxF8g5UuVNDN
-         42cX0PSkBmTTHScDbzKPD4gcE3amRx4DyJ4OrQdKRsblQHnC4eplMz5oadgNU2TWSllT
-         Pp8ervTrj4BAOPhqAW0uVhaHRyGYWeIwN+OPWaAZNksm0dutDNUEiCZKv8LtEObohI0k
-         fxbg==
+        with ESMTP id S230179AbiECGzG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 02:55:06 -0400
+Received: from mail-qk1-f173.google.com (mail-qk1-f173.google.com [209.85.222.173])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A33D18E1E;
+        Mon,  2 May 2022 23:51:34 -0700 (PDT)
+Received: by mail-qk1-f173.google.com with SMTP id v9so2246254qkp.11;
+        Mon, 02 May 2022 23:51:34 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=1ommot/0z42sf3SBGFHfrVoBq7JJGjmk6km0fRERgWs=;
-        b=VIDwkVoHGjEpHTVTBNnUrtk32Tnygq+k1ErnVvkbFqmE7a8rbrJGJxfYNV9uTEbBbH
-         MR+JmEs4FbhOrrC03wF7YAspwARdsOqJN69YbdNB9Yeyr1XAizZs+B+PmLguOB3wO3vX
-         yKbgsLRg7g1OUnHzkYmxmaiSvp4umy4oYfCBOrl7W2f49V+JJTLDk+E6af3WmsmfSbZv
-         1DTWkE+SR51Af1Pa4gppIQFKdjNGIM7lPNVNHQE5jMR9MeOxD5VNVzjaAZe0WBFdvUVM
-         iHkOo9QTjLA7Bb3HZxl6yGmjM7CE9JuyQNIjTNXvGqE4gqW9V+07XdRJQtaese5TPqFN
-         Oz7A==
-X-Gm-Message-State: AOAM5309BPjoq5DKLmK2dIq8WhXq7kzSXPmBigd2gYqi3rkliZYQjuma
-        X7OtS4OWcBF7NU3pJjqtfQs=
-X-Google-Smtp-Source: ABdhPJwVmWB/+4ZbUnTbaekuYC8MZ5UU5EvCLiYkYU2agpKq050H3bedHlbNmKr5ciuIuhR85HqFzw==
-X-Received: by 2002:a63:87c1:0:b0:3ab:1a17:35b7 with SMTP id i184-20020a6387c1000000b003ab1a1735b7mr12716214pge.313.1651559350797;
-        Mon, 02 May 2022 23:29:10 -0700 (PDT)
-Received: from genechen-System-Product-Name.richtek.com ([2402:7500:469:f77c:e84b:f663:23:a6cf])
-        by smtp.gmail.com with ESMTPSA id j14-20020a63fc0e000000b003c260491adesm1313800pgi.82.2022.05.02.23.29.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 May 2022 23:29:10 -0700 (PDT)
-From:   Gene Chen <gene.chen.richtek@gmail.com>
-To:     lee.jones@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        gene_chen@richtek.com, cy_huang@richtek.com
-Subject: [PATCH] dt-bindings: mfd: Add bindings child nodes for the Mediatek MT6360
-Date:   Tue,  3 May 2022 14:28:43 +0800
-Message-Id: <20220503062843.12516-1-gene.chen.richtek@gmail.com>
-X-Mailer: git-send-email 2.25.1
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=pr4t1gPb6uklDrXM+exywKisHYkbCy1hPACrniddb9I=;
+        b=rjx6ZbeIPjz85RoWHQVqdNk8S4Kg6qG0weXU/9b1PCK5kfm2gErtnirmo4/bcXG5A5
+         vhnG7vPUpw/D5Z77up7eXuNevzN2CkmjsHRVFLZQhLKK9VbBtG1ZUkzzYnL3f/yH1Xsm
+         6VuGxcE5Dd2c8VNLVokPPuYTo21St55GL7ObC4UWp3ObXbdwRsOC4/WCSdnIK+viDTzh
+         +EHkIJ/PyIJZK2bUr7RxXe6JRFlJ87L0r829v0QrxnAz+/pq29obdyzTjv07AE0dmngo
+         zP24rGd1jsjnJM+FxniVvkk+mmoceNpdWZnUGM3KG41Zgs557HAG+u5enFyzEhbF+geD
+         ufNA==
+X-Gm-Message-State: AOAM5301Fm2kfeKbj7Zr9so6tKm5DZdDSL+MIpZeDSnLBPtopTYLhK8B
+        IlOPsGMo5oi2thO210gsLVQUUKezJviEVw==
+X-Google-Smtp-Source: ABdhPJy5glkxfW3WjzC/QQb5m5JtoZwVxdFfnQ2L1RVxq+rNzeivavGQl34wzQnJANlOWzeEW7ld6A==
+X-Received: by 2002:a37:7c8:0:b0:69f:c5f8:85a2 with SMTP id 191-20020a3707c8000000b0069fc5f885a2mr9895845qkh.662.1651560693386;
+        Mon, 02 May 2022 23:51:33 -0700 (PDT)
+Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com. [209.85.128.181])
+        by smtp.gmail.com with ESMTPSA id e12-20020ac845cc000000b002f39b99f6adsm5560386qto.71.2022.05.02.23.51.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 02 May 2022 23:51:32 -0700 (PDT)
+Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-2f7d621d1caso169917027b3.11;
+        Mon, 02 May 2022 23:51:31 -0700 (PDT)
+X-Received: by 2002:a81:9b0c:0:b0:2f4:c522:7d3c with SMTP id
+ s12-20020a819b0c000000b002f4c5227d3cmr14127188ywg.316.1651560691618; Mon, 02
+ May 2022 23:51:31 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+References: <20220429134143.628428-1-herve.codina@bootlin.com>
+ <20220429134143.628428-4-herve.codina@bootlin.com> <29ba3db6-e5c7-06d3-29d9-918ee5b34555@linaro.org>
+ <CAMuHMdWN_ni_V+e3QipWH2qKXeNPkEcVpHpb5iBYw1YQSAnCDA@mail.gmail.com> <YnA0id1rXlNHNz+N@robh.at.kernel.org>
+In-Reply-To: <YnA0id1rXlNHNz+N@robh.at.kernel.org>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 3 May 2022 08:51:19 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdWktaRAw8Y6TR93_rH8v4mPR2yt3wGqeXeTA2p_Dh--wA@mail.gmail.com>
+Message-ID: <CAMuHMdWktaRAw8Y6TR93_rH8v4mPR2yt3wGqeXeTA2p_Dh--wA@mail.gmail.com>
+Subject: Re: [PATCH v5 2/6] dt-bindings: PCI: renesas,pci-rcar-gen2: Add
+ device tree support for r9a06g032
+To:     Rob Herring <robh@kernel.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Herve Codina <herve.codina@bootlin.com>,
+        Marek Vasut <marek.vasut+renesas@gmail.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
+        linux-pci <linux-pci@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Sergey Shtylyov <s.shtylyov@omp.ru>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Clement Leger <clement.leger@bootlin.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Gene Chen <gene_chen@richtek.com>
+Hi Rob,
 
-Add bindings child nodes for the Mediatek MT6360
+On Mon, May 2, 2022 at 9:44 PM Rob Herring <robh@kernel.org> wrote:
+> On Mon, May 02, 2022 at 11:19:19AM +0200, Geert Uytterhoeven wrote:
+> > On Sun, May 1, 2022 at 10:51 AM Krzysztof Kozlowski
+> > <krzysztof.kozlowski@linaro.org> wrote:
+> > > On 29/04/2022 15:41, Herve Codina wrote:
+> > > > Add internal PCI bridge support for the r9a06g032 SOC. The Renesas
+> > > > RZ/N1D (R9A06G032) internal PCI bridge is compatible with the one
+> > > > present in the R-Car Gen2 family.
+> > > > Compared to the R-Car Gen2 family, it needs three clocks instead of
+> > > > one.
+> > > >
+> > > > The 'resets' property for the RZ/N1 family is not required since
+> > > > there is no reset-controller support yet for the RZ/N1 family.
+> > >
+> > > This should not be a reason why a property is or is not required. Either
+> > > this is required for device operation or not. If it is required, should
+> > > be in the bindings. Otherwise what are you going to do in the future?
+> > > Add a required property breaking the ABI?
+> >
+> > The problem is that there are no bindings for the reset controller
+> > (actually the reset controller feature of the system-controller) yet.
+> > Yeah, we can just add #reset-cells = <1> to the system-controller
+> > device node, but we cannot add the actual resets properties to the
+> > consumers, until the actual cell values are defined.
+>
+> Sounds like you should implement providers first. Or just live with the
+> warning as a reminder to implement the reset provider?
 
-Signed-off-by: Gene Chen <gene_chen@richtek.com>
-Link: https://lore.kernel.org/all/YmqTzlrVL5KaVPuz@robh.at.kernel.org/
----
- .../bindings/mfd/mediatek,mt6360.yaml         | 212 +++++++++++++++++-
- 1 file changed, 201 insertions(+), 11 deletions(-)
+I'd go for the latter. The upstream r9a06g032.dtsi is still under active
+development. Until very recently, the only device supported was the
+serial console.
 
-diff --git a/Documentation/devicetree/bindings/mfd/mediatek,mt6360.yaml b/Documentation/devicetree/bindings/mfd/mediatek,mt6360.yaml
-index 4d8769f3748c..b3eecf661bc1 100644
---- a/Documentation/devicetree/bindings/mfd/mediatek,mt6360.yaml
-+++ b/Documentation/devicetree/bindings/mfd/mediatek,mt6360.yaml
-@@ -37,6 +37,18 @@ properties:
-     description:
-       The first cell is the IRQ number.
- 
-+  regulators:
-+    $ref: ../regulator/mt6360-regulator.yaml
-+
-+  charger:
-+    $ref: ../power/supply/mt6360_charger.yaml
-+
-+  tcpc:
-+    $ref: ../usb/mediatek,mt6360-tcpc.yaml
-+
-+  led-controller:
-+    $ref: ../leds/leds-mt6360.yaml
-+
- required:
-   - compatible
-   - reg
-@@ -51,17 +63,195 @@ examples:
-   - |
-     #include <dt-bindings/interrupt-controller/irq.h>
-     #include <dt-bindings/regulator/mediatek,mt6360-regulator.h>
-+    #include <dt-bindings/leds/common.h>
-+    #include <dt-bindings/usb/pd.h>
-     i2c {
--        #address-cells = <1>;
--        #size-cells = <0>;
--
--        pmic@34 {
--            compatible = "mediatek,mt6360";
--            reg = <0x34>;
--            wakeup-source;
--            interrupts-extended = <&gpio26 0 IRQ_TYPE_LEVEL_LOW>;
--            interrupt-names = "IRQB";
--            interrupt-controller;
--            #interrupt-cells = <1>;
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+
-+      mt6360@34 {
-+        compatible = "mediatek,mt6360";
-+        reg = <0x34>;
-+        wakeup-source;
-+        interrupts-extended = <&gpio26 0 IRQ_TYPE_LEVEL_LOW>;
-+        interrupt-names = "IRQB";
-+        interrupt-controller;
-+        #interrupt-cells = <1>;
-+
-+        mt6360_charger: charger {
-+          compatible = "mediatek,mt6360-chg";
-+          richtek,vinovp-microvolt = <14500000>;
-+
-+          otg_vbus_regulator: usb-otg-vbus-regulator {
-+            regulator-compatible = "usb-otg-vbus";
-+            regulator-name = "usb-otg-vbus";
-+            regulator-min-microvolt = <4425000>;
-+            regulator-max-microvolt = <5825000>;
-+          };
-+        };
-+
-+        led-controller {
-+          compatible = "mediatek,mt6360-led";
-+          #address-cells = <1>;
-+          #size-cells = <0>;
-+
-+          multi-led@0 {
-+            reg = <0>;
-+            function = LED_FUNCTION_INDICATOR;
-+            color = <LED_COLOR_ID_RGB>;
-+            led-max-microamp = <24000>;
-+            #address-cells = <1>;
-+            #size-cells = <0>;
-+            led@0 {
-+              reg = <0>;
-+              color = <LED_COLOR_ID_RED>;
-+            };
-+            led@1 {
-+              reg = <1>;
-+              color = <LED_COLOR_ID_GREEN>;
-+            };
-+            led@2 {
-+              reg = <2>;
-+              color = <LED_COLOR_ID_BLUE>;
-+            };
-+          };
-+          led@3 {
-+            reg = <3>;
-+            function = LED_FUNCTION_INDICATOR;
-+            color = <LED_COLOR_ID_WHITE>;
-+            led-max-microamp = <150000>;
-+          };
-+          led@4 {
-+            reg = <4>;
-+            function = LED_FUNCTION_FLASH;
-+            color = <LED_COLOR_ID_WHITE>;
-+            function-enumerator = <1>;
-+            led-max-microamp = <200000>;
-+            flash-max-microamp = <500000>;
-+            flash-max-timeout-us = <1024000>;
-+          };
-+          led@5 {
-+            reg = <5>;
-+            function = LED_FUNCTION_FLASH;
-+            color = <LED_COLOR_ID_WHITE>;
-+            function-enumerator = <2>;
-+            led-max-microamp = <200000>;
-+            flash-max-microamp = <500000>;
-+            flash-max-timeout-us = <1024000>;
-+          };
-+        };
-+
-+        regulators {
-+          compatible = "mediatek,mt6360-regulator";
-+          LDO_VIN3-supply = <&BUCK2>;
-+          buck1 {
-+            regulator-compatible = "BUCK1";
-+            regulator-name = "mt6360,buck1";
-+            regulator-min-microvolt = <300000>;
-+            regulator-max-microvolt = <1300000>;
-+            regulator-allowed-modes = <MT6360_OPMODE_NORMAL
-+                 MT6360_OPMODE_LP
-+                 MT6360_OPMODE_ULP>;
-+          };
-+          BUCK2: buck2 {
-+            regulator-compatible = "BUCK2";
-+            regulator-name = "mt6360,buck2";
-+            regulator-min-microvolt = <300000>;
-+            regulator-max-microvolt = <1300000>;
-+            regulator-allowed-modes = <MT6360_OPMODE_NORMAL
-+                 MT6360_OPMODE_LP
-+                 MT6360_OPMODE_ULP>;
-+          };
-+          ldo6 {
-+            regulator-compatible = "LDO6";
-+            regulator-name = "mt6360,ldo6";
-+            regulator-min-microvolt = <500000>;
-+            regulator-max-microvolt = <2100000>;
-+            regulator-allowed-modes = <MT6360_OPMODE_NORMAL
-+                 MT6360_OPMODE_LP>;
-+          };
-+          ldo7 {
-+            regulator-compatible = "LDO7";
-+            regulator-name = "mt6360,ldo7";
-+            regulator-min-microvolt = <500000>;
-+            regulator-max-microvolt = <2100000>;
-+            regulator-allowed-modes = <MT6360_OPMODE_NORMAL
-+                 MT6360_OPMODE_LP>;
-+          };
-+          ldo1 {
-+            regulator-compatible = "LDO1";
-+            regulator-name = "mt6360,ldo1";
-+            regulator-min-microvolt = <1200000>;
-+            regulator-max-microvolt = <3600000>;
-+            regulator-allowed-modes = <MT6360_OPMODE_NORMAL
-+                 MT6360_OPMODE_LP>;
-+          };
-+            ldo2 {
-+            regulator-compatible = "LDO2";
-+            regulator-name = "mt6360,ldo2";
-+            regulator-min-microvolt = <1200000>;
-+            regulator-max-microvolt = <3600000>;
-+            regulator-allowed-modes = <MT6360_OPMODE_NORMAL
-+                 MT6360_OPMODE_LP>;
-+          };
-+          ldo3 {
-+            regulator-compatible = "LDO3";
-+            regulator-name = "mt6360,ldo3";
-+            regulator-min-microvolt = <1200000>;
-+            regulator-max-microvolt = <3600000>;
-+            regulator-allowed-modes = <MT6360_OPMODE_NORMAL
-+                 MT6360_OPMODE_LP>;
-+          };
-+          ldo5 {
-+            regulator-compatible = "LDO5";
-+            regulator-name = "mt6360,ldo5";
-+            regulator-min-microvolt = <2700000>;
-+            regulator-max-microvolt = <3600000>;
-+            regulator-allowed-modes = <MT6360_OPMODE_NORMAL
-+                 MT6360_OPMODE_LP>;
-+          };
-         };
-+
-+        tcpc {
-+          compatible = "mediatek,mt6360-tcpc";
-+          interrupts-extended = <&gpio26 3 IRQ_TYPE_LEVEL_LOW>;
-+          interrupt-names = "PD_IRQB";
-+
-+          connector {
-+            compatible = "usb-c-connector";
-+            label = "USB-C";
-+            data-role = "dual";
-+            power-role = "dual";
-+            try-power-role = "sink";
-+            source-pdos = <PDO_FIXED(5000, 1000, PDO_FIXED_DUAL_ROLE | PDO_FIXED_DATA_SWAP)>;
-+            sink-pdos = <PDO_FIXED(5000, 2000, PDO_FIXED_DUAL_ROLE | PDO_FIXED_DATA_SWAP)>;
-+            op-sink-microwatt = <10000000>;
-+
-+            ports {
-+              #address-cells = <1>;
-+              #size-cells = <0>;
-+
-+              port@0 {
-+                reg = <0>;
-+                endpoint {
-+                  remote-endpoint = <&usb_hs>;
-+                };
-+              };
-+              port@1 {
-+                reg = <1>;
-+                endpoint {
-+                  remote-endpoint = <&usb_ss>;
-+                };
-+              };
-+              port@2 {
-+                reg = <2>;
-+                endpoint {
-+                  remote-endpoint = <&dp_aux>;
-+                };
-+              };
-+            };
-+          };
-+        };
-+
-+      };
-     };
--- 
-2.25.1
+Gr{oetje,eeting}s,
 
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
