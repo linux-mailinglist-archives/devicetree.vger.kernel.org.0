@@ -2,88 +2,273 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 01019518BC1
-	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 20:03:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 18A7C518BC2
+	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 20:03:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238318AbiECSGq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 May 2022 14:06:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56794 "EHLO
+        id S240893AbiECSGs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 May 2022 14:06:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56922 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240893AbiECSGi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 14:06:38 -0400
-Received: from mail-oa1-f41.google.com (mail-oa1-f41.google.com [209.85.160.41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F1BBD3EA86;
-        Tue,  3 May 2022 11:03:02 -0700 (PDT)
-Received: by mail-oa1-f41.google.com with SMTP id 586e51a60fabf-deb9295679so17955929fac.6;
-        Tue, 03 May 2022 11:03:02 -0700 (PDT)
+        with ESMTP id S240781AbiECSGs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 14:06:48 -0400
+Received: from mail-oi1-x235.google.com (mail-oi1-x235.google.com [IPv6:2607:f8b0:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C004E3EA86
+        for <devicetree@vger.kernel.org>; Tue,  3 May 2022 11:03:14 -0700 (PDT)
+Received: by mail-oi1-x235.google.com with SMTP id r8so18983336oib.5
+        for <devicetree@vger.kernel.org>; Tue, 03 May 2022 11:03:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=pHp7YwoTf2Vdk24QufCdmU2MrD/gn+v9TqyvkBKPilQ=;
+        b=oASUIWSunTEb1LBbrg5c0vQj/FEZjRLhcFe23l2VL/75O7EiwL4bpik2++AxxzDO+G
+         XJQbak7untc//EOnU6bTNiKJ0riyrO6bySzh5j2YdwvJQfSAvOPdph+zRxfYKLduUpCP
+         j68cNCGiYKXGwdWlqSmnS3TjZ9a6sDsJ4vIaNdDR6UoKXTLZLcub4Nv2wHP4hoMaIgrg
+         lX63KTc8AJ7qByKPWfZvmzT65C2h2APShFIUC6zsZEo4SMRWcb45UXB0glEduI+vGu7T
+         3GZ07vqfIdb/8zd116T/IZIikZX8kIySOa6xUqYqkb8KTwMvuDYRk/BuFb85TiAbnC6q
+         c4UA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=c4y777QuZ0rKKaCWE+GQgAB76G2BUz6LnE4csQPAmbo=;
-        b=F4+VsA+4ZzQ6pml+OE2AJPrcFEDlGGgjV9G7ITAi51zohR/ygcVmNAY0hqxMICff7L
-         LrdzUFL1NsdnWLLjydhVhGRpISgfG1TAz3FJ7Y+ob4+Q8OoRid1OGp7QEBM+ELDPEC2z
-         gXJlh46Sz7UZ++0LHoqtD8Gi3fIYO0XZG6N9Ma6Co8TwHwzBSak5Kn5FXRY58P8o4V9Y
-         pQhlyUH1+F3y9vxQCB4Ph1ellTvxZKf9vzWMMvYKJP+ElyyWbIfWjVcEeawl9PGiMnNB
-         F7Q4VdKwqIdmhGprGaQLdtTeItodD1DbPpFexH90f9OLoTeY7f+DkGPGlQnA9LstgmUb
-         wBqA==
-X-Gm-Message-State: AOAM531jBQ630WUE1KF52AItEYNpAjt3Dbcn2nWPTmr0iOFNBDTGsME3
-        TLEvFgQ1/+ZIfvt1f3LqOA==
-X-Google-Smtp-Source: ABdhPJwkS+JKL3alM12RMwuyuhcf9h5jeTVKKREM/bjV2+Wk/fKjUl3bbLaTwQhMPoy7s0/gSSqlkg==
-X-Received: by 2002:a05:6870:5708:b0:e2:8a41:2261 with SMTP id k8-20020a056870570800b000e28a412261mr2301964oap.247.1651600982258;
-        Tue, 03 May 2022 11:03:02 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id n2-20020a4ae742000000b0035eb4e5a6b2sm5187127oov.8.2022.05.03.11.03.01
+        bh=pHp7YwoTf2Vdk24QufCdmU2MrD/gn+v9TqyvkBKPilQ=;
+        b=enJj7kclFHbteS8Yj6SyvPA9BE8kklGlor2YAmzR+ZRiu6j41KPT3KsOiIQO9onC+g
+         VsnISzGLV2HFRPyDZ7povivcQbR+Qja8lrm9Kjw+eMtJU21B9zjy9hrAcdy8Z/FuSWRb
+         aMpDM2bIX1cn3QPhbLJnCQroB2pm16u9/N4kl1M80xvr9QEKqURnx84RdEa7BHwFldy2
+         FM80bkPW2UAcKBxXFFQpw1Pbx6UTcfeOwBetd2FzBjLpLgkJEIW0CN3tfCJHgJDAhhPv
+         PSz6S9z74awRtg9o0G1JCa+UE92Yc3sEis+i4zj99SOgjsg91xtrHDVq/QesfwKGAaw5
+         vDEQ==
+X-Gm-Message-State: AOAM530DoeWlcAhkhrFZQyGGxYOQWPXhXwSIqTiRK96auScnkzdsLwgf
+        e/TeBhF/n0IvlzVgeMoe5eF/9Q==
+X-Google-Smtp-Source: ABdhPJwEBnus5YhDU9Wtk4POgwJH9KNS5mGSyWLeYc0ZszWEV4GQsb9nh1nQKsfM7G4ownHcnanz2g==
+X-Received: by 2002:a05:6808:30a9:b0:325:e5a7:1c49 with SMTP id bl41-20020a05680830a900b00325e5a71c49mr2265762oib.153.1651600992543;
+        Tue, 03 May 2022 11:03:12 -0700 (PDT)
+Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id g6-20020a056830160600b0060603221266sm4198960otr.54.2022.05.03.11.03.11
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 May 2022 11:03:01 -0700 (PDT)
-Received: (nullmailer pid 3966876 invoked by uid 1000);
-        Tue, 03 May 2022 18:03:01 -0000
-Date:   Tue, 3 May 2022 13:03:01 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Gwendal Grignou <gwendal@chromium.org>
-Cc:     swboyd@chromium.org, devicetree@vger.kernel.org,
-        linux-iio@vger.kernel.org, jic23@kernel.org, robh+dt@kernel.org
-Subject: Re: [PATCH v5 09/10] dt-bindings: iio: sx9360: Add precharge
- resistor setting
-Message-ID: <YnFuVfurEsrYxFdE@robh.at.kernel.org>
-References: <20220429220144.1476049-1-gwendal@chromium.org>
- <20220429220144.1476049-10-gwendal@chromium.org>
+        Tue, 03 May 2022 11:03:11 -0700 (PDT)
+Date:   Tue, 3 May 2022 13:03:09 -0500
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Souradeep Chowdhury <quic_schowdhu@quicinc.com>
+Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Alex Elder <elder@ieee.org>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Sai Prakash Ranjan <quic_saipraka@quicinc.com>,
+        Sibi Sankar <quic_sibis@quicinc.com>,
+        Rajendra Nayak <quic_rjendra@codeaurora.org>, vkoul@kernel.org
+Subject: Re: [PATCH V7 2/7] soc: qcom: dcc:Add driver support for Data
+ Capture and Compare unit(DCC)
+Message-ID: <YnFuXYEXxLQkak24@builder.lan>
+References: <cover.1646285069.git.quic_schowdhu@quicinc.com>
+ <bc8504bdaf24d98762e2dbad7d084ca247380f06.1646285069.git.quic_schowdhu@quicinc.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220429220144.1476049-10-gwendal@chromium.org>
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR
-        autolearn=no autolearn_force=no version=3.4.6
+In-Reply-To: <bc8504bdaf24d98762e2dbad7d084ca247380f06.1646285069.git.quic_schowdhu@quicinc.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 29 Apr 2022 15:01:43 -0700, Gwendal Grignou wrote:
-> Allow configure the resistance used during precharge.
-> 
-> Signed-off-by: Gwendal Grignou <gwendal@chromium.org>
-> Reviewed-by: Stephen Boyd <swboyd@chromium.org>
-> ---
-> Changes since v4:
-> - Add multipleOf propery
-> - Move description at the end, to match convension.
-> 
-> Changes since v3:
-> - Fix maximum field. Check make dt_binding_check passes.
-> 
-> Changes since v2:
-> - Change kOhms into ohms.
-> 
-> Changes since v1:
-> - Suffix property with kOhms.
-> 
->  .../bindings/iio/proximity/semtech,sx9360.yaml           | 9 +++++++++
->  1 file changed, 9 insertions(+)
-> 
+On Thu 03 Mar 00:27 CST 2022, Souradeep Chowdhury wrote:
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+> The DCC is a DMA Engine designed to capture and store data
+> during system crash or software triggers. The DCC operates
+> based on user inputs via the sysfs interface. The user gives
+> addresses as inputs and these addresses are stored in the
+> dcc sram. In case of a system crash or a manual software
+> trigger by the user through the debugfs interface,
+> the dcc captures and stores the values at these addresses.
+> This patch contains the driver which has all the methods
+> pertaining to the debugfs interface, auxiliary functions to
+> support all the four fundamental operations of dcc namely
+> read, write, read/modify/write and loop. The probe method
+> here instantiates all the resources necessary for dcc to
+> operate mainly the dedicated dcc sram where it stores the
+> values. The DCC driver can be used for debugging purposes
+> without going for a reboot since it can perform software
+> triggers as well based on user inputs.
+> 
+> Also added the documentation for debugfs entries and explained
+> the functionalities of each debugfs file that has been created
+> for dcc.
+> 
+> The following is the justification of using debugfs interface
+> over the other alternatives like sysfs/ioctls
+> 
+> i) As can be seen from the debugfs attribute descriptions,
+> some of the debugfs attribute files here contains multiple
+> arguments which needs to be accepted from the user. This goes
+> against the design style of sysfs.
+> 
+> ii) The user input patterns have been made simple and convenient
+> in this case with the use of debugfs interface as user doesn't
+> need to shuffle between different files to execute one instruction
+> as was the case on using other alternatives.
+> 
+> Signed-off-by: Souradeep Chowdhury <quic_schowdhu@quicinc.com>
+> ---
+>  Documentation/ABI/testing/debugfs-driver-dcc |  124 +++
+>  drivers/soc/qcom/Kconfig                     |    8 +
+>  drivers/soc/qcom/Makefile                    |    1 +
+>  drivers/soc/qcom/dcc.c                       | 1465 ++++++++++++++++++++++++++
+>  4 files changed, 1598 insertions(+)
+>  create mode 100644 Documentation/ABI/testing/debugfs-driver-dcc
+>  create mode 100644 drivers/soc/qcom/dcc.c
+> 
+> diff --git a/Documentation/ABI/testing/debugfs-driver-dcc b/Documentation/ABI/testing/debugfs-driver-dcc
+> new file mode 100644
+> index 0000000..70029ab
+> --- /dev/null
+> +++ b/Documentation/ABI/testing/debugfs-driver-dcc
+> @@ -0,0 +1,124 @@
+> +What:          /sys/kernel/debug/dcc/.../trigger
+> +Date:          March 2022
+> +Contact:       Souradeep Chowdhury <quic_schowdhu@quicinc.com>
+> +Description:
+> +		This is the debugfs interface for manual software
+> +		triggers. The user can simply enter a 1 against
+> +		the debugfs file and enable a manual trigger.
+> +		Example:
+> +		echo  1 > /sys/kernel/debug/dcc/.../trigger
+> +
+> +What:          /sys/kernel/debug/dcc/.../enable
+> +Date:          March 2022
+> +Contact:       Souradeep Chowdhury <quic_schowdhu@quicinc.com>
+> +Description:
+> +		This debugfs interface is used for enabling the
+> +		the dcc hardware. On enabling the dcc, all the
+> +		addresses entered by the user is written into
+> +		dcc sram which is read by the dcc hardware on
+> +		manual or crash induced triggers.
+> +		Example:
+> +		echo  0 > /sys/bus/platform/devices/.../enable
+> +		(disable dcc)
+> +		echo  1 > /sys/bus/platform/devices/.../enable
+> +		(enable dcc)
+> +
+> +What:          /sys/kernel/debug/dcc/.../config_read
+
+As mentioned last time, I don't like this interface of having 6 files
+that the user can write to in order to append items in the currently
+selected linked list.
+
+Why can't this be a single "config" which takes a multiline string of
+operations? (Bonus point for supporting appending to the list).
+
+
+This would also serve as a natural place to dump the linked list back to
+the user for inspection.
+
+> +Date:          March 2022
+> +Contact:       Souradeep Chowdhury <quic_schowdhu@quicinc.com>
+> +Description:
+> +		This stores the addresses of the registers which
+> +		needs to be read in case of a hardware crash or
+> +		manual software triggers. The address entered here
+> +		are considered under read type instruction.
+> +		Example:
+> +		echo <1> <2> <3> >/sys/kernel/debug/dcc/../config_read
+> +		1->Address to be considered for reading the value.
+> +		2->The word count of the addresses, read n words
+> +		   starting from address <1>.
+> +		3->Can be a 1 or 0 which indicates if it is apb or ahb
+> +		bus respectively.
+> +
+> +What:          /sys/kernel/debug/dcc/.../config_write
+> +Date:          March 2022
+> +Contact:       Souradeep Chowdhury <quic_schowdhu@quicinc.com>
+> +Description:
+> +		This file allows user to write a value to the register
+> +		address given as argument. The reason for this feature
+> +		of dcc is that for accessing certain registers it is
+> +		necessary to set some bits of some other register.
+> +		Example:
+> +		echo <1> <2> <3> > /sys/bus/platform/devices/.../config_write
+> +		1->Address to be considered for writing the value.
+> +		2->The value that needs to be written at the location.
+> +		3->Can be a 1 or 0 which indicates if it is apb or ahb
+> +		bus respectively.
+> +
+> +What:          /sys/kernel/debug/dcc/.../config_reset
+> +Date:          March 2022
+> +Contact:       Souradeep Chowdhury <quic_schowdhu@quicinc.com>
+> +Description:
+> +		This file is used to reset the configuration of
+> +		a dcc driver to the default configuration. This
+> +		means that all the previous addresses stored in
+> +		the driver gets removed and user needs to enter
+> +		the address values from the start.
+> +		Example:
+> +		echo  1 > /sys/bus/platform/devices/.../config_reset
+> +
+> +What:          /sys/kernel/debug/dcc/.../config_loop
+> +Date:		March 2022
+> +Contact:       Souradeep Chowdhury <quic_schowdhu@quicinc.com>
+> +Description:
+> +		This file is used to enter the loop type addresses for
+> +		dcc. DCC hardware provides feature to loop among multiple
+> +		addresses. For debugging purposes register values need to
+> +		be captured repeatedly in a loop. On giving the loop count
+> +		as n, the value at address will be captured n times in a
+> +		loop. At most 8 loop addresses can be configured at once.
+> +		Example:
+> +		echo <1> <2> <3> > /sys/kernel/debug/dcc/../config_loop
+> +		1->The loop count, the number of times the value of the
+> +		   addresses will be captured.
+> +		2->The address count, total number of addresses to be
+> +		   entered in this instruction.
+> +		3->The series of addresses to be entered separated by a
+> +		   space like <addr1> <addr2>... and so on.
+> +
+> +What:          /sys/kernel/debug/dcc/.../config_read_write
+> +Date:          March 2022
+> +Contact:       Souradeep Chowdhury <quic_schowdhu@quicinc.com>
+> +Description:
+> +		This file is used to read the value of the register
+> +		and then write the value given as an argument to the
+> +		register address. The address argument should be given
+> +		of the form <addr> <mask> <value>.For debugging purposes
+> +		sometimes we need to first read from a register and then
+> +		set some values to the register.
+> +		Example:
+> +		echo <1> <2> <3> > /sys/kernel/debug/dcc/.../config_read_write
+> +		1->The address which needs to be considered for read then write.
+> +		2->The value that needs to be written on the address.
+> +		3->The mask of the value to be written.
+> +
+> +What:		/sys/kernel/debug/dcc/.../ready
+> +Date:		March 2022
+> +Contact	Souradeep Chowdhury <quic_schowdhu@quicinc.com>
+> +Description:
+> +		This file is used to check the status of the dcc
+> +		hardware if it's ready to take the inputs. A 0
+> +		here indicates dcc is in a ready condition.
+> +		Example:
+> +		cat /sys/kernel/debug/dcc/.../ready
+> +
+> +What:		/sys/kernel/debug/dcc/.../curr_list
+
+I still don't like the idea of having a single set of files to interface
+with all N lists. I think you should discover how many lists you have
+and create N directories of files, each on operating on a given list.
+
+> +Date:		March 2022
+> +Contact:	Souradeep Chowdhury <quic_schowdhu@quicinc.com>
+> +Description:
+> +		This attribute is used to enter the linklist to be
+> +		used while appending addresses. The range of values
+> +		for this is advertised either by a register or is
+> +		predefined. Max value for this can be till 8.
+> +		Example:
+> +		echo 0 > /sys/kernel/debug/dcc/...curr_list
+> +
+
+Regards,
+Bjorn
