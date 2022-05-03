@@ -2,64 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AC22D518CB8
-	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 20:59:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3DFD7518CBD
+	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 21:00:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241524AbiECTCh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 May 2022 15:02:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56920 "EHLO
+        id S238146AbiECTEI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 May 2022 15:04:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59120 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239391AbiECTCg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 15:02:36 -0400
-Received: from mail-pf1-x435.google.com (mail-pf1-x435.google.com [IPv6:2607:f8b0:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B8723F8A6
-        for <devicetree@vger.kernel.org>; Tue,  3 May 2022 11:58:58 -0700 (PDT)
-Received: by mail-pf1-x435.google.com with SMTP id i24so15461177pfa.7
-        for <devicetree@vger.kernel.org>; Tue, 03 May 2022 11:58:58 -0700 (PDT)
+        with ESMTP id S236032AbiECTEH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 15:04:07 -0400
+Received: from mail-oi1-x235.google.com (mail-oi1-x235.google.com [IPv6:2607:f8b0:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A71A01D313
+        for <devicetree@vger.kernel.org>; Tue,  3 May 2022 12:00:34 -0700 (PDT)
+Received: by mail-oi1-x235.google.com with SMTP id m25so5225417oih.2
+        for <devicetree@vger.kernel.org>; Tue, 03 May 2022 12:00:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=dmdX5LwPiBBCHde6cuK9t05Y+cNd+V8HNLqn6OThmnY=;
-        b=XgCWLsjWT2ACUBzrKhk9kEVSUGsJ0/T8/mNVKpqknrJ30VXd+roYiGMeFe3jc3ir9I
-         hlqI+F/o2xulOtQZhUTTnMGLDPS/DCGJx8YJixgh51pWxXpX5I21NGxf0NVE6r26qena
-         5Qcm4wXadIk4GEgBmnRJbXjmy37c56u5jPtD8=
+        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
+         :subject:to:cc;
+        bh=sTwtLayt8lSmwFDwuP2xr78Bezhh6psTt6A0s7o6o54=;
+        b=ZL64jD3/KfRtxkUsZsMBA2i8ivzG5MZTHTOoiIVfGr4Ec4kMCqf5T5NaRNtr/0JDVI
+         TmM+l93APN8yXga262FNK0V1PE1Z9dXb5uWY5SVOcyZAnD+K9ADawpGdHw+9U3cAiT7a
+         JD95WlfPU1wAkrstXIwAhfu+Y3QrkiO7kC7kQ=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=dmdX5LwPiBBCHde6cuK9t05Y+cNd+V8HNLqn6OThmnY=;
-        b=1iy8BGqc+zkCWpt72wbWoZ1xIEr8XZg3FOO9NN8P+THFJUkgvNQWjAxH9eqBI8kbUT
-         Rvasv73rWV7J9Efbyv2gv28JIPB9HXgyxyPBcpkrlSYMejVjyxrPew/hVgxje0btXagI
-         jlN599+cI7BuD/SymnMXEJhVHtvjTyrJHfSyp3R3Eg0Aipcdxv0CUy7uAjjPvrpnKyEU
-         r/kCOEtNjfZ6g6cQCD5EkJVmSHjo0/vxvbKM9HuWX8pKCNhhkHrThpeFREouSK4Nx0hD
-         EhfY7DPY7W907LoUTvFtmtsumEZHyXWZYkF3eOiS82WSecnI0I8GmUqR1kx2FA18BRBa
-         J7Fw==
-X-Gm-Message-State: AOAM53279QkFn4WWcwuO07Z0zygna7QKwxZJhhokf6XwNlK9JAqYggym
-        Cv7My9/I/Thvi2eHGPGP7JPS1w==
-X-Google-Smtp-Source: ABdhPJzp9CxulKdYJY5YGKDcyq8wWINTaTB5UbuAR7+hIZGqH2QYBkpFvayfcpr6/D8NsCfLTEaPaw==
-X-Received: by 2002:a65:6a4e:0:b0:3aa:38d7:78e8 with SMTP id o14-20020a656a4e000000b003aa38d778e8mr14697974pgu.528.1651604337504;
-        Tue, 03 May 2022 11:58:57 -0700 (PDT)
-Received: from localhost ([2620:15c:202:201:1e1a:955c:a9ca:e550])
-        by smtp.gmail.com with UTF8SMTPSA id v1-20020a170902ca8100b0015e8d4eb1c7sm6658713pld.17.2022.05.03.11.58.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 03 May 2022 11:58:56 -0700 (PDT)
-Date:   Tue, 3 May 2022 11:58:55 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Taniya Das <quic_tdas@quicinc.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Stephen Boyd <swboyd@chromium.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4] arm64: dts: qcom: sc7280: Add lpasscore & lpassaudio
- clock controllers
-Message-ID: <YnF7b7n4Yn+NcP/b@google.com>
-References: <20220503113246.13857-1-quic_tdas@quicinc.com>
+        h=x-gm-message-state:mime-version:in-reply-to:references:from
+         :user-agent:date:message-id:subject:to:cc;
+        bh=sTwtLayt8lSmwFDwuP2xr78Bezhh6psTt6A0s7o6o54=;
+        b=mtL6rUeSIGTUnqoHHu3LbC6p1uv2qw+zbLqfrLXNP+oohGhuYFXG82UoFZAxVY89fj
+         kckM9wZmyza2AMlA+ceEV48inJPEe+bzxj+XV9fSKM8Rn3L/qd/DW+vh1jQqaXbQQZxG
+         Zt09GiiZLAUVGTHgMrIQ8AkKYzjKErGroY9bUNhHaD/4YTSlwBLyPadtBqQh4T1pA4Xn
+         W3IBkkxswjUKYrGOOgdXFHIVR+zOJnXJBjQ1HBqWhL7oSFPWoWvKazZfBnMO4lIoClU7
+         ifaTLeJ5bAJbiiXJMiB9Q336EdfItfht2BhPpb+rbhMQ3pEuaXDPifFAIm0peSPGoKIB
+         Xc5A==
+X-Gm-Message-State: AOAM532XyIHNzvxv4Vrjq/LAXIcOWJL3WSrb4nomo9VJ4HEj6O2uJMQc
+        2LAzbBW7YERllQ/ENcbpPtXWHqcIArkpp1YKPbbKyQ==
+X-Google-Smtp-Source: ABdhPJyoZVlr00aiP72F5GUeMpviqWaBNJ9GclCz9NF9x+6N/PBIUr0SmkirKve0fuXCbNOFIVsJBrojpRhd5w1GKGs=
+X-Received: by 2002:aca:bd41:0:b0:2ec:ff42:814f with SMTP id
+ n62-20020acabd41000000b002ecff42814fmr2540169oif.63.1651604434059; Tue, 03
+ May 2022 12:00:34 -0700 (PDT)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Tue, 3 May 2022 15:00:33 -0400
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20220503113246.13857-1-quic_tdas@quicinc.com>
+In-Reply-To: <2280875f-fbd8-0dfd-5a0a-1d7fceb856e4@linaro.org>
+References: <20220503042242.3597561-1-swboyd@chromium.org> <20220503042242.3597561-2-swboyd@chromium.org>
+ <2280875f-fbd8-0dfd-5a0a-1d7fceb856e4@linaro.org>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.10
+Date:   Tue, 3 May 2022 15:00:33 -0400
+Message-ID: <CAE-0n50oGX8jBzfNjYFj01nZkuYbk6ZPsqDj89-zqxHhib=vaw@mail.gmail.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: google,cros-ec-keyb: Introduce
+ switches only compatible
+To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     linux-kernel@vger.kernel.org, patches@lists.linux.dev,
+        chrome-platform@lists.linux.dev,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Benson Leung <bleung@chromium.org>,
+        Guenter Roeck <groeck@chromium.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        "Joseph S. Barrera III" <joebar@chromium.org>
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -70,90 +75,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 03, 2022 at 05:02:46PM +0530, Taniya Das wrote:
-> Add the low pass audio clock controller device nodes. Keep the lpasscc
-> clock node disabled and enabled for lpass pil based devices.
-> 
-> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
-> ---
-> [v4]
->  * Mark lpasscc[lpasscc@3000000] device node as "disabled".
-> 
-> [v3]
->  * Fix unwanted extra spaces in reg property.
->  * Fix lpass_aon node clock phandle <&lpasscc> to <&lpasscore>
-> 
->  arch/arm64/boot/dts/qcom/sc7280.dtsi | 44 ++++++++++++++++++++++++++++
->  1 file changed, 44 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> index f0b64be63c21..477a754741a1 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> @@ -8,6 +8,8 @@
->  #include <dt-bindings/clock/qcom,dispcc-sc7280.h>
->  #include <dt-bindings/clock/qcom,gcc-sc7280.h>
->  #include <dt-bindings/clock/qcom,gpucc-sc7280.h>
-> +#include <dt-bindings/clock/qcom,lpassaudiocc-sc7280.h>
-> +#include <dt-bindings/clock/qcom,lpasscorecc-sc7280.h>
->  #include <dt-bindings/clock/qcom,rpmh.h>
->  #include <dt-bindings/clock/qcom,videocc-sc7280.h>
->  #include <dt-bindings/gpio/gpio.h>
-> @@ -1978,6 +1980,48 @@
->  			clocks = <&gcc GCC_CFG_NOC_LPASS_CLK>;
->  			clock-names = "iface";
->  			#clock-cells = <1>;
-> +			status = "disabled";
-> +		};
-> +
-> +		lpass_audiocc: clock-controller@3300000 {
-> +			compatible = "qcom,sc7280-lpassaudiocc";
-> +			reg = <0 0x03300000 0 0x30000>;
-> +			clocks = <&rpmhcc RPMH_CXO_CLK>,
-> +			       <&lpass_aon LPASS_AON_CC_MAIN_RCG_CLK_SRC>;
-> +			clock-names = "bi_tcxo", "lpass_aon_cc_main_rcg_clk_src";
-> +			power-domains = <&lpass_aon LPASS_AON_CC_LPASS_AUDIO_HM_GDSC>;
-> +			#clock-cells = <1>;
-> +			#power-domain-cells = <1>;
-> +		};
-> +
-> +		lpass_aon: clock-controller@3380000 {
-> +			compatible = "qcom,sc7280-lpassaoncc";
-> +			reg = <0 0x03380000 0 0x30000>;
-> +			clocks = <&rpmhcc RPMH_CXO_CLK>,
-> +			       <&rpmhcc RPMH_CXO_CLK_A>,
-> +			       <&lpasscore LPASS_CORE_CC_CORE_CLK>;
-> +			clock-names = "bi_tcxo", "bi_tcxo_ao", "iface";
-> +			#clock-cells = <1>;
-> +			#power-domain-cells = <1>;
-> +		};
-> +
-> +		lpasscore: clock-controller@3900000 {
+Quoting Krzysztof Kozlowski (2022-05-03 08:42:39)
+> On 03/05/2022 06:22, Stephen Boyd wrote:
+> > If the ChromeOS board is a detachable, this cros-ec-keyb device won't
+> > have a matrix keyboard but it may have some button switches, e.g. volume
+> > buttons and power buttons. The driver still registers a keyboard though
+> > and that leads to userspace confusion around where the keyboard is.
+>
+> (...)
+>
+> >
+> > +if:
+> > +  properties:
+> > +    compatible:
+> > +      contains:
+> > +        const: google,cros-ec-keyb
+> > +then:
+> > +  allOf:
+> > +    - $ref: "/schemas/input/matrix-keymap.yaml#"
+> > +  required:
+> > +    - keypad,num-rows
+> > +    - keypad,num-columns
+> > +    - linux,keymap
+>
+> else:
+>   properties:
+>     function-row-phsymap: false
+>     google,needs-ghost-filter: false
+>
+> Because these are not valid for the non-matrix-keyboard case, right?
+>
 
-nit: lpass_core?
-
-The other labels have an underscore, it wouldn't hurt to be consistent.
-
-> +			compatible = "qcom,sc7280-lpasscorecc";
-> +			reg = <0 0x03900000 0 0x50000>;
-> +			clocks =  <&rpmhcc RPMH_CXO_CLK>;
-> +			clock-names = "bi_tcxo";
-> +			power-domains = <&lpass_hm LPASS_CORE_CC_LPASS_CORE_HM_GDSC>;
-> +			#clock-cells = <1>;
-> +			#power-domain-cells = <1>;
-> +		};
-> +
-> +		lpass_hm: clock-controller@3c00000 {
-> +			compatible = "qcom,sc7280-lpasshm";
-> +			reg = <0 0x3c00000 0 0x28>;
-> +			clocks = <&rpmhcc RPMH_CXO_CLK>;
-> +			clock-names = "bi_tcxo";
-> +			#clock-cells = <1>;
-> +			#power-domain-cells = <1>;
->  		};
-> 
->  		lpass_ag_noc: interconnect@3c40000 {
-> --
-> Qualcomm INDIA, on behalf of Qualcomm Innovation Center, Inc.is a member
-> of the Code Aurora Forum, hosted by the  Linux Foundation.
-> 
+Yes, but they also depend on linux,keymap so they're not possible to
+set because the matrix-keymap.yaml schema defines linux,keymap and that
+is only included if google,cros-ec-keyb is present.
