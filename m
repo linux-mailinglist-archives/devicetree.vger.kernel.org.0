@@ -2,102 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 944F35190F6
-	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 00:07:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 978E85190FA
+	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 00:07:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243441AbiECWFv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 May 2022 18:05:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48128 "EHLO
+        id S239243AbiECWJb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 May 2022 18:09:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51284 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239749AbiECWFt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 18:05:49 -0400
-Received: from mail-pf1-x429.google.com (mail-pf1-x429.google.com [IPv6:2607:f8b0:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0174D424B8;
-        Tue,  3 May 2022 15:02:15 -0700 (PDT)
-Received: by mail-pf1-x429.google.com with SMTP id a11so15829831pff.1;
-        Tue, 03 May 2022 15:02:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=BML3fCwKAkemWPuJ7hEIxFoVzk3CNeF2ywdelTSnmIQ=;
-        b=owiQWKJ4ZQJAcwCHFiQaYjtX3YmVXpcq8zcYGfq/c9VRE6z6kbjmjaRH1GrbY3bjrq
-         m/dKA+gBL/bv5dD9qStTUM1WA6v3jrmw9ghlDfVH7F0L9aZ05LSHkJkuBDxtL7nTITSE
-         t1xYE14wP20tl3mvkN7YTu5TdPyyPYvgPWEg1icBb/BeYxWjdD4KzNcSCeC0YRAam2EM
-         AZ1IQJoMrXOVmYDPutlC/o/3kQbYTEmpXY5lq1Cyt3X9b0OKlagbWAjVp0GO+vlqEnWF
-         SnGjLXHe46VAqMbWCyDdHS082T8hCuIX1Oip0+RLYnJHxB4wUAajIR07X2DAgx+wB+6K
-         /40Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=BML3fCwKAkemWPuJ7hEIxFoVzk3CNeF2ywdelTSnmIQ=;
-        b=Vk8xLZW74JpiTYM8z3AU9aRU9dYc4em/t1t7ES6hxg30wBM6pfIlqdvpeB++nZc3+B
-         2pGF0MAF5GvSStI90f+5Y3EkIKreNz+AeGSlckyokDLq2sBWbOZJ6c6X6U0xmzDfFpx+
-         0stALtd3eDMT2/ZXWYUTMn8hX7gPXtWgM7DUTAx7OT/j/A+9C/h+bW9FRU1JMQVnG7PY
-         5+BE4TzkAqNGEuZR40RTz0LNmdMEf9Y0oLXrZD9Oc16WIk+9I/7NstHPyrtg1iff0bAm
-         yDvdJWOBybMKXkG4pNhlsIi16xmyNCXiQLIqZv9niXy74CpKitzgn9CRugC5M0Yrzpv5
-         9FoA==
-X-Gm-Message-State: AOAM5337/NocdfktCye+EcyV2yu7LJoAX/0/kGLWqnPSwDd42dMUCAxY
-        hemq9TzAiqZoHB+70Qx4yNo=
-X-Google-Smtp-Source: ABdhPJzP6mUzXABdoFH1ZVeSaq/TMAPgJIb1k9QSNLAFmv5nzlKhGgUDeL8CPA1fwrylMwXwwXOOJg==
-X-Received: by 2002:a63:cc53:0:b0:372:7d69:49fb with SMTP id q19-20020a63cc53000000b003727d6949fbmr15398440pgi.21.1651615334498;
-        Tue, 03 May 2022 15:02:14 -0700 (PDT)
-Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id t5-20020a170902b20500b0015e8d4eb29asm6794268plr.228.2022.05.03.15.02.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 May 2022 15:02:14 -0700 (PDT)
-From:   Florian Fainelli <f.fainelli@gmail.com>
-To:     bcm-kernel-feedback-list@broadcom.com,
-        SHIMAMOTO Takayoshi <takayoshi.shimamoto.360@gmail.com>
-Cc:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        soc@kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Hauke Mehrtens <hauke@hauke-m.de>,
-        =?iso-8859-2?q?Rafa=B3_Mi=B3ecki?= <zajec5@gmail.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        with ESMTP id S233631AbiECWJa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 18:09:30 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E850201BB;
+        Tue,  3 May 2022 15:05:56 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 25834B82028;
+        Tue,  3 May 2022 22:05:55 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AAFFEC385A9;
+        Tue,  3 May 2022 22:05:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1651615553;
+        bh=oXRDlcllC0cjULPtqKpnnLAaTtBjrH2yAKjYZHOmxEg=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=kOgp61XjaLQHEUr+7iCLidSubGhFGYa9ZfqSwTIe88Kaow5K0+WdhIpmXruBl0hJA
+         jOAPSXk5fDbtvCumHKrFR/rbTbt42IZvFALXjqsLVOO4797SHPZmsM38XK7JXYbbZQ
+         HR1y9+53GpK168pLYVviAKv6nD5Jbknho+UWI/sveR8DsXGI3e3i3RHUeYR01HOzy3
+         8veDQD03CMdNrxdDpW1gBWnSrSFunUW8VJXlHnOGJqDcfTBFi3Vu+z+bY586dIfQgy
+         GLhrRsdGut+aqUnxntNe+l/OWXTAsN9JrO6awlelfPG2X+1lQQD5kMgw/wzDfwW7b8
+         2r33J7HeuBZCA==
+Received: by pali.im (Postfix)
+        id CD3D398A; Wed,  4 May 2022 00:05:50 +0200 (CEST)
+Date:   Wed, 4 May 2022 00:05:50 +0200
+From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
+To:     Guenter Roeck <linux@roeck-us.net>
+Cc:     Tzung-Bi Shih <tzungbi@kernel.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] ARM: dts: BCM5301X: Add DT for WZR-1166DHP,DHP2
-Date:   Tue,  3 May 2022 15:02:12 -0700
-Message-Id: <20220503220212.1676263-1-f.fainelli@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220421151055.6851-1-takayoshi.shimamoto.360@gmail.com>
-References: <20220421151055.6851-1-takayoshi.shimamoto.360@gmail.com>
+Subject: Re: [PATCH v2 2/2] watchdog: max63xx_wdt: Add support for specifying
+ WDI logic via GPIO
+Message-ID: <20220503220550.3jczn2hzc5me34qj@pali>
+References: <20220429131349.21229-1-pali@kernel.org>
+ <20220429131349.21229-2-pali@kernel.org>
+ <YnCoQUGQsXIfbowQ@google.com>
+ <6f69677c-18d9-abd9-93d7-cf1f29603ed6@roeck-us.net>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <6f69677c-18d9-abd9-93d7-cf1f29603ed6@roeck-us.net>
+User-Agent: NeoMutt/20180716
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 22 Apr 2022 00:10:54 +0900, SHIMAMOTO Takayoshi <takayoshi.shimamoto.360@gmail.com> wrote:
->   Buffalo WZR-1166DHP/WZR-1166DHP2  wireless router with
+On Monday 02 May 2022 21:37:16 Guenter Roeck wrote:
+> On 5/2/22 20:57, Tzung-Bi Shih wrote:
+> > On Fri, Apr 29, 2022 at 03:13:49PM +0200, Pali Rohár wrote:
+> > > @@ -27,6 +27,7 @@
+> > >   #include <linux/io.h>
+> > >   #include <linux/slab.h>
+> > >   #include <linux/property.h>
+> > > +#include <linux/gpio/consumer.h>
+> > 
+> > It would be better to keep them alphabetically.  Anyway, they aren't sorted
+> > originally...
+> > 
+> > > +static void max63xx_gpio_ping(struct max63xx_wdt *wdt)
+> > > +{
+> > > +	spin_lock(&wdt->lock);
+> > 
+> > Does it really need to acquire the lock?  It looks like the lock is to prevent
+> > concurrent accesses to the mmap in max63xx_mmap_ping() and max63xx_mmap_set().
+> > 
 > 
->     - BCM4708A0
->     - 128MiB NAND flash
->     - 2T2R 11ac/a/b/g/n Wi-Fi
->     - 4x 10/100/1000M ethernet switch
->     - 1x USB 3.0 port
+> Actually, that doesn't work at all. spin_lock() directly contradicts
+> with gpiod_set_value_cansleep().
 > 
->   WZR-1166DHP and WZR-1166DHP2 have different memory capacity.
+> > > +	gpiod_set_value_cansleep(wdt->gpio_wdi, 1);
+> > > +	udelay(1);
+> > 
+> > Doesn't it need to include <linux/delay.h> for udelay()?
+> > 
+> > > @@ -225,10 +240,19 @@ static int max63xx_wdt_probe(struct platform_device *pdev)
+> > >   		return -EINVAL;
+> > >   	}
+> > > +	wdt->gpio_wdi = devm_gpiod_get(dev, NULL, GPIOD_FLAGS_BIT_DIR_OUT);
+> > > +	if (IS_ERR(wdt->gpio_wdi) && PTR_ERR(wdt->gpio_wdi) != -ENOENT)
+> > 
+> > Use devm_gpiod_get_optional() to make the intent clear.  Also, it gets rid of
+> > the check for -ENOENT.
+> > 
+> > > +		return dev_err_probe(dev, PTR_ERR(wdt->gpio_wdi),
+> > > +				     "unable to request gpio: %ld\n",
+> > > +				     PTR_ERR(wdt->gpio_wdi));
+> > 
+> > It doesn't need to again print for PTR_ERR(wdt->gpio_wdi).  dev_err_probe()
+> > prints the error.
+> > 
+> > >   	err = max63xx_mmap_init(pdev, wdt);
+> > >   	if (err)
+> > >   		return err;
+> > > +	if (!IS_ERR(wdt->gpio_wdi))
+> > > +		wdt->ping = max63xx_gpio_ping;
+> > 
+> > Thus, the max63xx_gpio_ping() overrides max63xx_mmap_ping() if the GPIO was
+> > provided?  It would be better to mention the behavior in the commit message.
+> > 
+> > Also, could both the assignments of `wdt->gpio_wdi` and `wdt->ping` happen
+> > after max63xx_mmap_init()?
 > 
->   WZR-1166DHP
->     - 512 MiB DDR2 SDRAM
-> 
->   WZR-1166DHP2
->     - 256 MiB DDR2 SDRAM
-> 
->   These hardware components are very similar to the WZR-1750DHP
->    except for the number of antennas.
-> 
-> Signed-off-by: SHIMAMOTO Takayoshi <takayoshi.shimamoto.360@gmail.com>
-> ---
 
-Applied to https://github.com/Broadcom/stblinux/commits/devicetree/next, thanks!
---
-Florian
+Hello! I'm going to look at all these issues. Recently I sent max63
+watchdog driver also into U-Boot and seems that I mixed DTS and driver
+code between U-Boot and Kernel... and tested something mixed.
+
+I will do new testing again, and will check that I'm testing correct
+code.
