@@ -2,60 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1ED99519167
-	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 00:28:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2048C5191EC
+	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 00:55:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237150AbiECWZ1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 May 2022 18:25:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39100 "EHLO
+        id S236075AbiECW6O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 May 2022 18:58:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41366 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235378AbiECWZ0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 18:25:26 -0400
-Received: from mail-oa1-f48.google.com (mail-oa1-f48.google.com [209.85.160.48])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3AE9F3ED27;
-        Tue,  3 May 2022 15:21:53 -0700 (PDT)
-Received: by mail-oa1-f48.google.com with SMTP id 586e51a60fabf-e5e433d66dso18588773fac.5;
-        Tue, 03 May 2022 15:21:53 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=jAs3NAScHrB+A6PvNOqiGT3WbTZEZfZCmF0rQVevpas=;
-        b=yfjDKngGMfZhKpch3hkbOXWfoJlowgw37QGOGr/63bGg77SG9qQRXWdIG/uBR6bKuk
-         1CAeXGPP/ULc34xNYGW1KClu3Qn6uJgveokJrD8fvLXQnnVUJMx+8SNC6xUwLd4SWO91
-         Qy7Uoo02Jo8ALJW2qKk7V7mizrESY9SPub9IlWfDNaq+nJJ4ME6zGAXWzi5liOFdiH7E
-         emvkeIRLDx+fA2Gsko9722ZcH3xJfgR0RilwAd1pUgtFCFbao2NEkSBcOS6Ddy97DcFu
-         iXklSm5Hhc0G9s9MlNmYxQpMgTg0oLOM9QmgyyaNt09EKKV2xdKrw6P9jslZTct50q12
-         63jA==
-X-Gm-Message-State: AOAM530IarVrb4Qn/nBiKD3BLfwveaG5zp0sVSLcfBwMZTsC/nC3i2po
-        WCSsaXWwLKDHRqRhJELVHA==
-X-Google-Smtp-Source: ABdhPJx2qP8TkucEjD8msix8TxJmAarK1uRUmwgXHNb7Lqk2i56Bbhv9jE2reUKzQAmq1Z3/bzYMhw==
-X-Received: by 2002:a05:6870:548c:b0:ed:aa94:fd33 with SMTP id f12-20020a056870548c00b000edaa94fd33mr2629803oan.84.1651616512493;
-        Tue, 03 May 2022 15:21:52 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id t21-20020a056871055500b000e92d5a54ffsm7323349oal.26.2022.05.03.15.21.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 May 2022 15:21:52 -0700 (PDT)
-Received: (nullmailer pid 139785 invoked by uid 1000);
-        Tue, 03 May 2022 22:21:51 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>
-Cc:     Kavyasree.Kotagiri@microchip.com, peda@axentia.se,
-        devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        nicolas.ferre@microchip.com, UNGLinuxDriver@microchip.com,
-        Manohar.Puri@microchip.com, linux-kernel@vger.kernel.org,
-        lee.jones@linaro.org, alexandre.belloni@bootlin.com,
-        claudiu.beznea@microchip.com, linux-arm-kernel@lists.infradead.org,
-        linux@armlinux.org.uk
-In-Reply-To: <20220503105528.12824-2-kavyasree.kotagiri@microchip.com>
-References: <20220503105528.12824-1-kavyasree.kotagiri@microchip.com> <20220503105528.12824-2-kavyasree.kotagiri@microchip.com>
-Subject: Re: [PATCH 1/4] dt-bindings: mfd: atmel,flexcom: Convert to json-schema
-Date:   Tue, 03 May 2022 17:21:51 -0500
-Message-Id: <1651616511.149012.139784.nullmailer@robh.at.kernel.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        with ESMTP id S244272AbiECW6D (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 18:58:03 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24CAC443D0;
+        Tue,  3 May 2022 15:54:15 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 83725B821F1;
+        Tue,  3 May 2022 22:53:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AE4D7C385A9;
+        Tue,  3 May 2022 22:53:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1651618436;
+        bh=MjVuCNNcWZXYf57iNg2O+Xmc5CIZbqZZo07gCpHDjes=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:From;
+        b=gWRC7yU7yRQRDEtiNwaZ28IaQGxNmAxNwQoEaWdR1Q/imm6XlU15T3pHmqaeKz4s6
+         maM6tRjOaX4Qu48zV7nO2lHJEuA9xOuTwnje4MDNIIC6Ioh3EhelWkfhddNKwUi59B
+         VWaIZaRk+d0Gt0nPB2b0/1ff0Fe5eUe+Jc20C+8Ki8h9+1F1hYSithwXIyNCZt5NHL
+         JtmU6zqC2wEaZQzCGbYCLULw2DqdPVVu+mQpXLJh4mwEA/7fC3Fju9uf6yxEH62m8S
+         Gpgg75q9S/nuy0a+1I+xyMkyQ1ee/YS9OxU+r4OfKyazjbj5J0+CMqxXQ4ujNP80AT
+         dBbfO1vq3tEfQ==
+Date:   Tue, 3 May 2022 17:53:53 -0500
+From:   Bjorn Helgaas <helgaas@kernel.org>
+To:     =?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <clement.leger@bootlin.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Allan Nielsen <allan.nielsen@microchip.com>,
+        Horatiu Vultur <horatiu.vultur@microchip.com>,
+        Steen Hegelund <steen.hegelund@microchip.com>,
+        Thomas Petazzoni <thomas.petazonni@bootlin.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Mark Brown <broonie@kernel.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Andrew Lunn <andrew@lunn.ch>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+        Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH 2/3] PCI: of: create DT nodes for PCI devices if they do
+ not exists
+Message-ID: <20220503225353.GA415393@bhelgaas>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220427094502.456111-3-clement.leger@bootlin.com>
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -63,44 +68,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 03 May 2022 16:25:25 +0530, Kavyasree Kotagiri wrote:
-> Convert the Atmel flexcom device tree bindings to json schema.
-> 
-> Signed-off-by: Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>
-> ---
->  .../bindings/mfd/atmel,flexcom.yaml           | 68 +++++++++++++++++++
->  .../devicetree/bindings/mfd/atmel-flexcom.txt | 63 -----------------
->  2 files changed, 68 insertions(+), 63 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/mfd/atmel,flexcom.yaml
->  delete mode 100644 Documentation/devicetree/bindings/mfd/atmel-flexcom.txt
-> 
+In subject:
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+  PCI: of: Create DT nodes ... if they do not exist
 
-yamllint warnings/errors:
+The subject could be read as saying that you're going to create DT
+nodes before the PCI devices exist, but I think you mean that when we
+enumerate a PCI devices, we're *always* going to create a DT node for
+it, even if the DT didn't mention it.
 
-dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mfd/atmel,flexcom.yaml: properties:reg: 'oneOf' conditional failed, one must be fixed:
-	[{'description': 'Flexcom registers'}] is too short
-	False schema does not allow 1
-	hint: "minItems" is only needed if less than the "items" list length
-	from schema $id: http://devicetree.org/meta-schemas/items.yaml#
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mfd/atmel,flexcom.yaml: ignoring, error in schema: properties: reg
-Documentation/devicetree/bindings/mfd/atmel,flexcom.example.dtb:0:0: /example-0/flexcom@f8034000: failed to match any schema with compatible: ['atmel,sama5d2-flexcom']
+Maybe something like:
 
-doc reference errors (make refcheckdocs):
+  PCI: of: Create DT node for every PCI device
 
-See https://patchwork.ozlabs.org/patch/
+although I see Rob thinks this should be done on demand instead of
+doing it for every device, which sounds sensible to me.
 
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
+On Wed, Apr 27, 2022 at 11:45:01AM +0200, Clément Léger wrote:
+> In order to apply overlays to PCI device nodes, the nodes must first
+> exist. This commit add support to populate a skeleton tree for PCI bus
+> and devices. These nodes can then be used by drivers to apply overlays.
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+s/This commit add support/Add support/
 
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+Bjorn
