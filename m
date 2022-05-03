@@ -2,86 +2,332 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 007F75186E6
-	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 16:39:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 34A085186F6
+	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 16:40:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237180AbiECOma (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 May 2022 10:42:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36640 "EHLO
+        id S237230AbiECOoE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 May 2022 10:44:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37994 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235833AbiECOma (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 10:42:30 -0400
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DCFB83585B;
-        Tue,  3 May 2022 07:38:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1651588737; x=1683124737;
-  h=date:from:to:cc:subject:in-reply-to:message-id:
-   references:mime-version;
-  bh=N2zi+YIjSNLlSlsGyRm3N+vojMMVHkuZGiENMvXNw4o=;
-  b=VytaN1algBuJI9mZEfb9VquNk9cbFKm56rHbfZlzOBmpghGDMqirpurc
-   A0icsd0Vz7MectDZFkJw99HdW62g8cmw9XaQuktEv4P8ICqsSnpmY3H8W
-   A+eklRgUXWRPoPwwsgV1t6aUxuovy8yrCuU9v3Z27tHh1FNyydvlOCE13
-   9apPv5rdQyBkz/zvyX8lu5RL1TTmHnlXEWi+h+LmMEXaIwuzrk7DJ2zif
-   1tpm8+a9V+dbKTnQcLdlH+EyuTjBZBTEpmpqOvovzUXUYExPv76G+uF6E
-   2+u2PORAP4Fm+CCdQ2IP3XIFa5LS6Ug3druyscuN26fBFYFvh1+VMb34G
-   A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10336"; a="267084742"
-X-IronPort-AV: E=Sophos;i="5.91,195,1647327600"; 
-   d="scan'208";a="267084742"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
-  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 May 2022 07:38:57 -0700
-X-IronPort-AV: E=Sophos;i="5.91,195,1647327600"; 
-   d="scan'208";a="536357275"
-Received: from rhweight-wrk1.ra.intel.com ([137.102.106.43])
-  by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 May 2022 07:38:57 -0700
-Date:   Tue, 3 May 2022 07:38:57 -0700 (PDT)
-From:   matthew.gerlach@linux.intel.com
-X-X-Sender: mgerlach@rhweight-WRK1
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        dinguyen@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Subject: Re: [PATCH] arm64: dts: intel: add device tree for n6000
-In-Reply-To: <896ea19b-6dc1-a635-0dd6-c7f9494487e8@linaro.org>
-Message-ID: <alpine.DEB.2.22.394.2205030737190.244936@rhweight-WRK1>
-References: <20220502165818.4002157-1-matthew.gerlach@linux.intel.com> <896ea19b-6dc1-a635-0dd6-c7f9494487e8@linaro.org>
-User-Agent: Alpine 2.22 (DEB 394 2020-01-19)
+        with ESMTP id S234596AbiECOoC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 10:44:02 -0400
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3DCF72E0B6
+        for <devicetree@vger.kernel.org>; Tue,  3 May 2022 07:40:28 -0700 (PDT)
+Received: by mail-ej1-x62b.google.com with SMTP id kq17so33874391ejb.4
+        for <devicetree@vger.kernel.org>; Tue, 03 May 2022 07:40:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=T7KD58LLGLoFWa1xXxvp0DQeF4I0gKOPKSSTJE1ESIQ=;
+        b=r2joUbDnOfo04iaxwxKpn34xLPcue03BKA2xcR5i6N7cXrYk8Rp+cHm+ylEj63RZ7g
+         YpFFjyP8UeUmqalv1YTMVlSARi5ZFXr9TbF8X8oeR0NBj4Hhs7smfuO81RHuPMnIXYRf
+         zKzq7mrmCVczsefNa6APBEA52mivnPWENS3N5kqDum5p4JCY0nXPDiIUyRzJmYBZXmz6
+         LgCZg2m2o2Gg0SRfSigRTbB2pz5oIU3B5PJ/Tu7u7xq1VjIuTRsSjz6VN4cfe3n6X4lg
+         n9DQ1KzazDTcWYkcmCGvMi0FDb1ckLs3KarUQu2Mo0tpSTajVmZuZtMF8kPXPulH/cXC
+         aTkA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=T7KD58LLGLoFWa1xXxvp0DQeF4I0gKOPKSSTJE1ESIQ=;
+        b=zOYy+JfxgGs+VZboc+B/NMS2yteaN1fIHPxh3iOJTt41zeKuKUv9wJwOwlbaWFFhz3
+         yctmDZaPEHoDfGQTItTbOsRsYeTq5SCc+4VOGoCasGwDew9zPla5EKxTDaMvrE9cPTwk
+         QObgTaNX6T3p7cPy52qrhVakxemwbWW6blU5va0UADk3QGuNZgqZqZ7Wp9JZYjz0wNtn
+         snwIvEOTa1yXlcsLREjoC/es7xf4yTQRfd6M7AfjrzGB+346DZvq0NQ8dOl1YWEI+LKe
+         AspZMj59aNnu+Pt1Obt/7YKZHrghvI8gawOCEkW293rSZX3W70t4IQqOjXX3CoedzHTm
+         ZtoA==
+X-Gm-Message-State: AOAM5331lE27Gkk2MlVz+wM8VlqFCw9duwKw9dQIYGl7af/DX+QtOhhV
+        WAP43HPPtHuRRr7UCGBm55DNmw==
+X-Google-Smtp-Source: ABdhPJzUyOBnA5pwtFQm/3gpADNDDdDrjOagJfn2AvJ5rgaqlRv3q7PRI9wdbo+5IzmEMk/kzkE2Rg==
+X-Received: by 2002:a17:907:1c0f:b0:6f3:edd8:85d5 with SMTP id nc15-20020a1709071c0f00b006f3edd885d5mr15468515ejc.397.1651588826696;
+        Tue, 03 May 2022 07:40:26 -0700 (PDT)
+Received: from [192.168.0.203] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id gz19-20020a170907a05300b006f3ef214ddasm4612992ejc.64.2022.05.03.07.40.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 03 May 2022 07:40:26 -0700 (PDT)
+Message-ID: <10770ff5-c9b1-7364-4276-05fa0c393d3b@linaro.org>
+Date:   Tue, 3 May 2022 16:40:24 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII; format=flowed
-X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: Aw: Re: [RFC v1] dt-bindings: net: dsa: convert binding for
+ mediatek switches
+Content-Language: en-US
+To:     Frank Wunderlich <frank-w@public-files.de>,
+        Greg Ungerer <gerg@kernel.org>,
+        =?UTF-8?Q?Ren=c3=a9_van_Dorst?= <opensource@vdorst.com>,
+        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>
+Cc:     Frank Wunderlich <linux@fw-web.de>, Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Landen Chao <Landen.Chao@mediatek.com>,
+        DENG Qingfang <dqfext@gmail.com>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+References: <20220502153238.85090-1-linux@fw-web.de>
+ <d29637f8-87ff-b5f0-9604-89b51a2ba7c1@linaro.org>
+ <trinity-cda3b94f-8556-4b83-bc34-d2c215f93bcd-1651587032669@3c-app-gmx-bap25>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <trinity-cda3b94f-8556-4b83-bc34-d2c215f93bcd-1651587032669@3c-app-gmx-bap25>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On Tue, 3 May 2022, Krzysztof Kozlowski wrote:
-
-> On 02/05/2022 18:58, matthew.gerlach@linux.intel.com wrote:
->> From: Matthew Gerlach <matthew.gerlach@linux.intel.com>
+On 03/05/2022 16:10, Frank Wunderlich wrote:
+> Hi,
+> 
+> thank you for first review.
+> 
+>> Gesendet: Dienstag, 03. Mai 2022 um 14:05 Uhr
+>> Von: "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>
+>> Betreff: Re: [RFC v1] dt-bindings: net: dsa: convert binding for mediatek switches
 >>
->> Add a device tree for the n6000 instantiation of Agilex
->> Hard Processor System (HPS).
->
-> Please also use scripts/get_maintainer.pl to get the addresses. You
-> cc-ed here several wrong emails, so no one would pick up this patch.
->
-> Actually only my email is correct (except lists)...
+>> On 02/05/2022 17:32, Frank Wunderlich wrote:
+>>> From: Frank Wunderlich <frank-w@public-files.de>
+>>>
+>>> Convert txt binding to yaml binding for Mediatek switches.
+>>>
+>>> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
+>>> ---
+>>>  .../devicetree/bindings/net/dsa/mediatek.yaml | 435 ++++++++++++++++++
+>>>  .../devicetree/bindings/net/dsa/mt7530.txt    | 327 -------------
+>>>  2 files changed, 435 insertions(+), 327 deletions(-)
+>>>  create mode 100644 Documentation/devicetree/bindings/net/dsa/mediatek.yaml
+>>>  delete mode 100644 Documentation/devicetree/bindings/net/dsa/mt7530.txt
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/net/dsa/mediatek.yaml b/Documentation/devicetree/bindings/net/dsa/mediatek.yaml
+>>> new file mode 100644
+>>> index 000000000000..c1724809d34e
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/net/dsa/mediatek.yaml
+>>
+>> Specific name please, so previous (with vendor prefix) was better:
+>> mediatek,mt7530.yaml
+> 
+> ok, named it mediatek only because mt7530 is only one possible chip and driver handles 3 different "variants".
+> 
+>>> @@ -0,0 +1,435 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>
+>> You should CC previous contributors and get their acks on this. You
+>> copied here a lot of description.
+> 
+> added 3 Persons that made commits to txt before to let them know about this change
+> 
+> and yes, i tried to define at least the phy-mode requirement as yaml-depency, but failed because i cannot match
+> compatible in subnode.
 
-I did run scripts/get_maintain.pl, but I still managed to mangle Dinh's 
-and Rob's email addresses.  I will be extra, extra careful on the v2 
-submission.
+I don't remember such syntax.
 
-Matthew
+(...)
 
->
-> Best regards,
-> Krzysztof
->
+> 
+>>> if defined, indicates that either MT7530 is the part
+>>> +      on multi-chip module belong to MT7623A has or the remotely standalone
+>>> +      chip as the function MT7623N reference board provided for.
+>>> +
+>>> +  reset-gpios:
+>>> +    description: |
+>>> +      Should be a gpio specifier for a reset line.
+>>> +    maxItems: 1
+>>> +
+>>> +  reset-names:
+>>> +    description: |
+>>> +      Should be set to "mcm".
+>>> +    const: mcm
+>>> +
+>>> +  resets:
+>>> +    description: |
+>>> +      Phandle pointing to the system reset controller with
+>>> +      line index for the ethsys.
+>>> +    maxItems: 1
+>>> +
+>>> +required:
+>>> +  - compatible
+>>> +  - reg
+>>
+>> What about address/size cells?
+> 
+> you're right even if they are const to a value they need to be set
+> 
+>>> +
+>>> +allOf:
+>>> +  - $ref: "dsa.yaml#"
+>>> +  - if:
+>>> +      required:
+>>> +        - mediatek,mcm
+>>
+>> Original bindings had this reversed.
+> 
+> i know, but i think it is better readable and i will drop the else-part later.
+> Driver supports optional reset ("mediatek,mcm" unset and without reset-gpios)
+> as this is needed if there is a shared reset-line for gmac and switch like on R2 Pro.
+> 
+> i left this as separate commit to be posted later to have a nearly 1:1 conversion here.
+
+Ah, I missed that actually your syntax is better. No need to
+reverse/negate and the changes do not have to be strict 1:1.
+
+> 
+>>> +    then:
+>>> +      required:
+>>> +        - resets
+>>> +        - reset-names
+>>> +    else:
+>>> +      required:
+>>> +        - reset-gpios
+>>> +
+>>> +  - if:
+>>> +      required:
+>>> +        - interrupt-controller
+>>> +    then:
+>>> +      required:
+>>> +        - "#interrupt-cells"
+>>
+>> This should come from dt schema already...
+> 
+> so i should drop (complete block for interrupt controller)?
+
+The interrupts you need. What I mean, you can skip requirement of cells.
+
+> 
+>>> +        - interrupts
+>>> +
+>>> +  - if:
+>>> +      properties:
+>>> +        compatible:
+>>> +          items:
+>>> +            - const: mediatek,mt7530
+>>> +    then:
+>>> +      required:
+>>> +        - core-supply
+>>> +        - io-supply
+>>> +
+>>> +
+>>> +patternProperties:
+>>> +  "^ports$":
+>>
+>> It''s not a pattern, so put it under properties, like regular property.
+> 
+> can i then make the subnodes match? so the full block will move above required between "mediatek,mcm" and "reset-gpios"
+
+Yes, subnodes stay with patternProperties.
+
+> 
+>   ports:
+>     type: object
+> 
+>     patternProperties:
+>       "^port@[0-9]+$":
+>         type: object
+>         description: Ethernet switch ports
+> 
+>         properties:
+>           reg:
+>             description: |
+>               Port address described must be 5 or 6 for CPU port and from 0 to 5 for user ports.
+> 
+>         unevaluatedProperties: false
+> 
+>         allOf:
+>           - $ref: dsa-port.yaml#
+>           - if:
+> ....
+> 
+> basicly this "ports"-property should be required too, right?
+
+Previous binding did not enforce it, I think, but it is reasonable to
+require ports.
+
+> 
+> 
+>>> +    type: object
+>>> +
+>>> +    patternProperties:
+>>> +      "^port@[0-9]+$":
+>>> +        type: object
+>>> +        description: Ethernet switch ports
+>>> +
+>>> +        $ref: dsa-port.yaml#
+>>
+>> This should go to allOf below.
+> 
+> see above
+> 
+>>> +
+>>> +        properties:
+>>> +          reg:
+>>> +            description: |
+>>> +              Port address described must be 6 for CPU port and from 0 to 5 for user ports.
+>>> +
+>>> +        unevaluatedProperties: false
+>>> +
+>>> +        allOf:
+>>> +          - if:
+>>> +              properties:
+>>> +                label:
+>>> +                  items:
+>>> +                    - const: cpu
+>>> +            then:
+>>> +              required:
+>>> +                - reg
+>>> +                - phy-mode
+>>> +
+>>> +unevaluatedProperties: false
+>>> +
+>>> +examples:
+>>> +  - |
+>>> +    mdio0 {
+>>
+>> Just mdio
+> 
+> ok
+> 
+>>> +        #address-cells = <1>;
+>>> +        #size-cells = <0>;
+>>> +        switch@0 {
+>>> +            compatible = "mediatek,mt7530";
+>>> +            #address-cells = <1>;
+>>> +            #size-cells = <0>;
+>>> +            reg = <0>;
+>>> +
+>>> +            core-supply = <&mt6323_vpa_reg>;
+>>> +            io-supply = <&mt6323_vemc3v3_reg>;
+>>> +            reset-gpios = <&pio 33 0>;
+>>
+>> Use GPIO flag define/constant.
+> 
+> this example seems to be taken from bpi-r2 (i had taken it from the txt). In dts for this board there are no
+> constants too.
+> 
+> i guess
+> include/dt-bindings/gpio/gpio.h:14:#define GPIO_ACTIVE_HIGH 0
+> 
+> for 33 there seem no constant..all other references to pio node are with numbers too and there seem no binding
+> header defining the gpio pins (only functions in include/dt-bindings/pinctrl/mt7623-pinfunc.h)
+
+ok, then my comment
+
+
+Best regards,
+Krzysztof
