@@ -2,88 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 12ED9518C13
-	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 20:18:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 913F2518C22
+	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 20:20:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241176AbiECSWJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 May 2022 14:22:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40086 "EHLO
+        id S241310AbiECSYG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 May 2022 14:24:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41638 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235428AbiECSWI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 14:22:08 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 102373EAB7
-        for <devicetree@vger.kernel.org>; Tue,  3 May 2022 11:18:35 -0700 (PDT)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=bjornoya.blackshift.org)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mkl@pengutronix.de>)
-        id 1nlx5e-0000ix-89; Tue, 03 May 2022 20:17:38 +0200
-Received: from pengutronix.de (unknown [86.103.140.108])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (Client did not present a certificate)
-        (Authenticated sender: mkl-all@blackshift.org)
-        by smtp.blackshift.org (Postfix) with ESMTPSA id 0B74E75107;
-        Tue,  3 May 2022 18:17:23 +0000 (UTC)
-Date:   Tue, 3 May 2022 20:17:23 +0200
-From:   Marc Kleine-Budde <mkl@pengutronix.de>
-To:     Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Abel Vesa <abel.vesa@nxp.com>, Stephen Boyd <sboyd@kernel.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Mark Brown <broonie@kernel.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>,
-        Anson Huang <Anson.Huang@nxp.com>,
-        Fabrice Gasnier <fabrice.gasnier@foss.st.com>,
-        Han Xu <han.xu@nxp.com>, Dario Binacchi <dariobin@libero.it>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Peter Ujfalusi <peter.ujfalusi@ti.com>,
-        linux-clk@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-iio@vger.kernel.org, linux-mmc@vger.kernel.org,
-        linux-mtd@lists.infradead.org, linux-can@vger.kernel.org,
-        netdev@vger.kernel.org, linux-phy@lists.infradead.org,
-        linux-rtc@vger.kernel.org, linux-serial@vger.kernel.org,
-        alsa-devel@alsa-project.org, linux-pm@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: Drop redundant 'maxItems/minItems' in
- if/then schemas
-Message-ID: <20220503181723.wczerdgfrfoxj5xf@pengutronix.de>
-References: <20220503162738.3827041-1-robh@kernel.org>
+        with ESMTP id S241275AbiECSXv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 14:23:51 -0400
+Received: from mout.kundenserver.de (mout.kundenserver.de [217.72.192.73])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A66FF0D;
+        Tue,  3 May 2022 11:20:17 -0700 (PDT)
+Received: from mail-wm1-f43.google.com ([209.85.128.43]) by
+ mrelayeu.kundenserver.de (mreue107 [213.165.67.113]) with ESMTPSA (Nemesis)
+ id 1N2mWA-1ny6Ed2AJw-0138ux; Tue, 03 May 2022 20:20:15 +0200
+Received: by mail-wm1-f43.google.com with SMTP id 125-20020a1c1983000000b003941f354c62so1743521wmz.0;
+        Tue, 03 May 2022 11:20:15 -0700 (PDT)
+X-Gm-Message-State: AOAM530YD1h5v1azA72O6Mqa+tfzNkHhqmZ5OXPlvW5kwsjCWJc0yBTC
+        rwwwuLSPN/fFv4Si/tKZG7WMLpn+fYyI3lDgT6w=
+X-Google-Smtp-Source: ABdhPJzdLAi6LusGzpUmQqAEN7Ep7tmyrMxpq73q7upJ6tCWBfIvFV42Z7BCJneune7LbBwSqLK48yMk9eyVnxECpN8=
+X-Received: by 2002:a05:600c:3798:b0:394:454a:df74 with SMTP id
+ o24-20020a05600c379800b00394454adf74mr4515023wmr.174.1651602015176; Tue, 03
+ May 2022 11:20:15 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="vn735wunl5rhhwdp"
-Content-Disposition: inline
-In-Reply-To: <20220503162738.3827041-1-robh@kernel.org>
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+References: <20220502204050.88316-1-nick.hawkins@hpe.com> <20220502204050.88316-7-nick.hawkins@hpe.com>
+ <CAK8P3a2rzmVrpnf2r73iXB=T06OMOsgwyq1i8z7swuOW-q88eQ@mail.gmail.com> <PH0PR84MB17180215774D59A3EC277B1388C09@PH0PR84MB1718.NAMPRD84.PROD.OUTLOOK.COM>
+In-Reply-To: <PH0PR84MB17180215774D59A3EC277B1388C09@PH0PR84MB1718.NAMPRD84.PROD.OUTLOOK.COM>
+From:   Arnd Bergmann <arnd@arndb.de>
+Date:   Tue, 3 May 2022 20:19:58 +0200
+X-Gmail-Original-Message-ID: <CAK8P3a1q6pJ6pdZav0rWJFR2dAWwz8mpiFRO6vc+TA+L-Sk5uQ@mail.gmail.com>
+Message-ID: <CAK8P3a1q6pJ6pdZav0rWJFR2dAWwz8mpiFRO6vc+TA+L-Sk5uQ@mail.gmail.com>
+Subject: Re: [PATCH v6 7/8] ARM: dts: Introduce HPE GXP Device tree
+To:     "Hawkins, Nick" <nick.hawkins@hpe.com>
+Cc:     Arnd Bergmann <arnd@arndb.de>,
+        "Verdun, Jean-Marie" <verdun@hpe.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Olof Johansson <olof@lixom.net>, SoC Team <soc@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        DTML <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Provags-ID: V03:K1:zjREcXZbYFvUQ1Kcbd5k/VaOHL6Q2KrD6PF5KfRSnLW1L2b2Fh5
+ yz1+YwcGsnuBr/eXzkR0U6igH5/MgIIIETMATAzWAW3pKErbc1y9GyXMgNYy7qcDD9WaZ0f
+ 76z2wBb58xn9uq1yIXo0iv5vmNmvb78F7i8bAdbRBwgVp5gw6L4/+K78PxKC2/gMyU3oXAJ
+ YnLlzdxjcg7HtkiEzsUig==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:PpOT044kYBY=:EqwI11zsy6OWP5gNaK00fW
+ PczSOBKHmK7isX5ou14NFqidxhe4xUIJDVm3GUILOE/zZNyfIES2CPoGTm/G0XKM0RQR8+iza
+ 9f2IkzA4Tdsh87yars3y1GooHHBrid5AWLXCWdyvYWqnk0XClqmYBfgf1/aYV55vGWYh/fVHS
+ lPo1982p+btuo3UF785FUp+Lnh31i9XyoroXgRv2N5pCcTAEqcOXrxL5cElWuloaeg3o7nK3e
+ L7rWOCx9pUEQNtC8+/+7PHtZjd5ghd1qWDh0wPwMuzt4IsI07nV0pM4PbG6hyzYSt/D5mNve/
+ 1/PRXnWLMIIknbJ5e7fBVHZ7fTM5Bsb3xLDF5mAXA8sJdgzNrl1fZqKUCHlBg8+vXI04qi+Gc
+ y36k/UmkJSNk3+/J5LCQIn2Odgm/iaqri3CQTbLVeZgV0cZtOau3yGoeoFnLqFLXf1ZiKZET9
+ t4ZGb1yqJtyvDT6PvHK7xjaYxkK85uyVJAYDxnmVldqHdhAvrx8P3IUNrkUPw8Cx4Qmj7YZem
+ 1L039uRgZ+JrMG+vIwIU3/yjm7bQ76Xfz1DQ/lyMIb5DiG2aAGHOXuoeyYUsDcY7E1og23bMp
+ d29JAyuLRH6pebs2FbTsGl2UEhr7hJBbwIsb5GmfWnKZAcmTqcLX1zS546yucP41oLCCDGJsq
+ EVP1xlUuaheVyQDZm1XIg7xCleGwEJRUdzPC/s93nyYYsaQi958fR+gE540x0LA/Nvc4=
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -91,52 +69,57 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, May 3, 2022 at 5:07 PM Hawkins, Nick <nick.hawkins@hpe.com> wrote:
+> On Mon, May 2, 2022 at 10:40 PM <nick.hawkins@hpe.com> wrote:
+> > > +++ b/arch/arm/boot/dts/hpe-bmc-dl360gen10.dts
+>
+> > In the board specific file, you normally have "aliases", "chosen" and "memory"
+> > nodes that define e.g. which uart is used for the console.
+>
+> This is what I have come up with.
+>
+> / {
+>         #address-cells = <1>;
+>         #size-cells = <1>;
+>         compatible = "hpe,gxp-dl360gen10", "hpe,gxp";
+>         model = "Hewlett Packard Enterprise ProLiant dl360 Gen10";
+>
+>         aliases {
+>                 serial2 = &uartc;
+>         };
 
---vn735wunl5rhhwdp
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+It's a bit unusual to have a serial2 uart when there is no serial0 or serial1.
+Most boards that only have a single uart label it either '0' or '1'.
+>
+>         chosen {
+>                 bootargs = "console=ttyS2,115200";
+>         };
 
-On 03.05.2022 11:27:38, Rob Herring wrote:
-> Another round of removing redundant minItems/maxItems when 'items' list is
-> specified. This time it is in if/then schemas as the meta-schema was
-> failing to check this case.
->=20
-> If a property has an 'items' list, then a 'minItems' or 'maxItems' with t=
-he
-> same size as the list is redundant and can be dropped. Note that is DT
-> schema specific behavior and not standard json-schema behavior. The tooli=
-ng
-> will fixup the final schema adding any unspecified minItems/maxItems.
+Use 'stdout-path' to pick the console device here, not the argument
+string.
 
->  .../bindings/net/can/bosch,c_can.yaml         |  3 ---
+>
+>         memory@40000000 {
+>                 device_type = "memory";
+>                 reg = <0x40000000 0x20000000>;
+>         };
+> };
 
-For net/can:
 
-Acked-by: Marc Kleine-Budde <mkl@pengutronix.de>
+> > > +       memory@40000000 {
+> > > +               device_type = "memory";
+> > > +               reg = <0x40000000 0x20000000>;
+> > > +       };
+>
+> > If the memory is outside of the SoC, it should not be here.
+>
+> It is part of the SoC. Should I put it in the axi bus instead? If so would
+> I need to create an axi for the .dts as well?
 
-regards,
-Marc
+That's fine then. The memory node has to be at the root of the DT, not in a
+child node. It's just that most SoCs have the memory in a separate chip
+on the board, rather than inside of the SoC itself, so it would be part
+of the board file. If the gxp package includes the memory and it's not
+an option for the board design, you can leave it in the .dtsi file.
 
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde           |
-Embedded Linux                   | https://www.pengutronix.de  |
-Vertretung West/Dortmund         | Phone: +49-231-2826-924     |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-5555 |
-
---vn735wunl5rhhwdp
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEBsvAIBsPu6mG7thcrX5LkNig010FAmJxcbAACgkQrX5LkNig
-010+7wf+Mqx1TWITM4zoyD5krckfHGf4qplQOx8GgcvjVUhJVQ0mDXx9PgM7D2fF
-HjL7mYlg2zj+lrwhgLeH/YNvoCAKzXmbKRVFjs2HfzIEe3xaC1xFXt+vXRU4v1mE
-DXW0vVKC/oYmGqIWCSda8MeqjOhR+hFoQLC1RefyFIHijbaa/4+8W9Qe+oayuzIo
-aDASB5q9KGJUVxeh15402et6p4EqI6rJ8LiKW79xwtgfqRlqBGDQ1LBuBYf0LKFE
-Whl4mJRw2P0razAapZrvNWK6osSzN2ERLC7qQ9dnUOJvHYffN5IFcO8X3GbdpEkX
-SPDiKbA08vY8R9xmqlH4PzUcrR46zg==
-=MWdl
------END PGP SIGNATURE-----
-
---vn735wunl5rhhwdp--
+         Arnd
