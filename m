@@ -2,70 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CD23F5189FF
-	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 18:32:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B3A0518A3D
+	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 18:42:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239622AbiECQgY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 May 2022 12:36:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51844 "EHLO
+        id S239715AbiECQqC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 May 2022 12:46:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37934 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239615AbiECQgV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 12:36:21 -0400
-Received: from mail-oi1-x236.google.com (mail-oi1-x236.google.com [IPv6:2607:f8b0:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 065773CA66
-        for <devicetree@vger.kernel.org>; Tue,  3 May 2022 09:32:48 -0700 (PDT)
-Received: by mail-oi1-x236.google.com with SMTP id q8so18288698oif.13
-        for <devicetree@vger.kernel.org>; Tue, 03 May 2022 09:32:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=YWPXEW/dmcl26oN/UpNHlQ6MJJApmB07VctAbNzo6Hc=;
-        b=c75RKIVqFVCnqiqXF8fdSc13vcKVKS4WcFrMRTVpAl4t7sqYgrI0cLQPHLCKqsWAWT
-         B53i3FWTLfo75R/hRbhrnls/ez2F7u26lCPCuypk66bsA6lwDmpLYZtU2gF6uVuvhDDK
-         BtjSBj9LoYSL8GEKxZIwGaaHREE7amPiNmU4Iq3yxnwChbPUaX8QLstT0sKmEqvnUiGh
-         rIs0F4ix3NxwTl8IOyLxildF6kFtUOEN+9UZyNODi9rXiIlDbbr2hqaf4jR+VX2R7UgF
-         X9zJ/JieKgAaABbIdOeEOUT2ERmPCaTuUiyTUXJqq/0TMoTNFLTiXvLKTJ3fXBOO/RJV
-         ydJQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=YWPXEW/dmcl26oN/UpNHlQ6MJJApmB07VctAbNzo6Hc=;
-        b=ZUUMm4uVH6goJpJwTvl4gWVbB2xk4SdYMiZd6nrtCoBDAt5ZFhwP6eiZ1hfSG/4wPv
-         uMOxxmCl7JN7P9r+EB8Tvhn1GOnX6ayC0/f2nvkxfWKhkpExUDPd8k5+SRj1WK/LxKvf
-         kDVWmebCN4zP3hKBSk31FirufvP9mY8Zfku2OplOQm6lKMpcFyMq8Tw326gPENju1wGY
-         3BkML3yik+IOLqce0FS4ILA5tVPMueIX6baiUJKU84bBgQQDH379sIxmqPXz5yZvF737
-         OVZECK+xHxJtQPqFbiE/WvTDSHqMomz1G4xyDY+dTmFFlKjEFqFMaOIV+OB2VCYMY0Hp
-         n5jw==
-X-Gm-Message-State: AOAM531Sk0tj/63dun5RR5tFqgRzNkPnSSPzXJMKLHu7oUBEjKL2/WAj
-        Rx/zxOXPRNvmQpwFTM2MoSXR+Q==
-X-Google-Smtp-Source: ABdhPJzv0hOtfibu1ipLXlFKcbx6oRoYa04jZ8s7iMf8RTneuOK8/aKQziy6q1TrDRGBaYIfDuQS6A==
-X-Received: by 2002:a05:6808:1526:b0:323:1194:d3bf with SMTP id u38-20020a056808152600b003231194d3bfmr2139113oiw.120.1651595567404;
-        Tue, 03 May 2022 09:32:47 -0700 (PDT)
-Received: from ripper.. (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id v15-20020a4ae6cf000000b0035eb4e5a6cdsm5027404oot.35.2022.05.03.09.32.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 May 2022 09:32:46 -0700 (PDT)
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
-        Joerg Roedel <joro@8bytes.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] iommu/arm-smmu-qcom: Add SC8280XP support
-Date:   Tue,  3 May 2022 09:34:29 -0700
-Message-Id: <20220503163429.960998-3-bjorn.andersson@linaro.org>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220503163429.960998-1-bjorn.andersson@linaro.org>
-References: <20220503163429.960998-1-bjorn.andersson@linaro.org>
+        with ESMTP id S239702AbiECQqB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 12:46:01 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B2E12C10A;
+        Tue,  3 May 2022 09:42:28 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 3EE0CB81EB6;
+        Tue,  3 May 2022 16:42:27 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EDCEFC385AF;
+        Tue,  3 May 2022 16:42:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1651596146;
+        bh=RdmnwE+iucpL+/8qT85xaKQLpnn8IQBlp7A0PPpBkjc=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=MBuAO2xSVQR0Es2Khy87In4R8Y100/OP9420inSPVtGjNodMGqIXGDeoQHgu0zdtp
+         ZSMtkeQgwnC2B29WSRQCYL/O4jCHnME+f80aw4Fo5XWoHHVCVGx/BOqioVIUben+m7
+         dAMycifIRkxwmDNlXwHi1GwZNR0O1uzfUUGAcwMMFdw8KhKSWf9AkZmD379wvLv9fh
+         Uaih7P0/38fdDXOhFQTx4yM432rKEcsSGfyxP2ivUAyVZhwEsQe0HLwzNoIPwQXGpI
+         dxuPOzqD0QB+YJpXI7AwZY3EEZfQI0H8Fxh83x1xt1dkQXlECEzWDKnz//DiA0KIY/
+         DnUedifNgT+/g==
+Date:   Tue, 3 May 2022 17:42:13 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Abel Vesa <abel.vesa@nxp.com>, Stephen Boyd <sboyd@kernel.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Wolfgang Grandegger <wg@grandegger.com>,
+        Marc Kleine-Budde <mkl@pengutronix.de>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Niklas =?iso-8859-1?Q?S=F6derlund?= 
+        <niklas.soderlund@ragnatech.se>, Anson Huang <Anson.Huang@nxp.com>,
+        Fabrice Gasnier <fabrice.gasnier@foss.st.com>,
+        Han Xu <han.xu@nxp.com>, Dario Binacchi <dariobin@libero.it>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Peter Ujfalusi <peter.ujfalusi@ti.com>,
+        linux-clk@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-iio@vger.kernel.org, linux-mmc@vger.kernel.org,
+        linux-mtd@lists.infradead.org, linux-can@vger.kernel.org,
+        netdev@vger.kernel.org, linux-phy@lists.infradead.org,
+        linux-rtc@vger.kernel.org, linux-serial@vger.kernel.org,
+        alsa-devel@alsa-project.org, linux-pm@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: Drop redundant 'maxItems/minItems' in
+ if/then schemas
+Message-ID: <YnFbZaARRe13BqEU@sirena.org.uk>
+References: <20220503162738.3827041-1-robh@kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="Ie5Q9u0aDDvYlHNh"
+Content-Disposition: inline
+In-Reply-To: <20220503162738.3827041-1-robh@kernel.org>
+X-Cookie: Drop that pickle!
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -73,26 +94,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the Qualcomm SC8280XP platform to the list of compatible for which
-the Qualcomm-impl of the ARM SMMU should apply.
 
-Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
----
- drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c | 1 +
- 1 file changed, 1 insertion(+)
+--Ie5Q9u0aDDvYlHNh
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-diff --git a/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c b/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
-index ba6298c7140e..7820711c4560 100644
---- a/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
-+++ b/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
-@@ -408,6 +408,7 @@ static const struct of_device_id __maybe_unused qcom_smmu_impl_of_match[] = {
- 	{ .compatible = "qcom,sc7180-smmu-500" },
- 	{ .compatible = "qcom,sc7280-smmu-500" },
- 	{ .compatible = "qcom,sc8180x-smmu-500" },
-+	{ .compatible = "qcom,sc8280xp-smmu-500" },
- 	{ .compatible = "qcom,sdm630-smmu-v2" },
- 	{ .compatible = "qcom,sdm845-smmu-500" },
- 	{ .compatible = "qcom,sm6125-smmu-500" },
--- 
-2.35.1
+On Tue, May 03, 2022 at 11:27:38AM -0500, Rob Herring wrote:
+> Another round of removing redundant minItems/maxItems when 'items' list is
+> specified. This time it is in if/then schemas as the meta-schema was
+> failing to check this case.
 
+Acked-by: Mark Brown <broonie@kernel.org>
+
+--Ie5Q9u0aDDvYlHNh
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmJxW2QACgkQJNaLcl1U
+h9AhOwgAgCQAzTimr9tUAEV2YxMIwidmRC9yH7j14TLxr45y9aG5gyGDcabEWvNT
+1G+vE5DtD9PAsO0tkipn9eZam4zgKttaLGOTql3iSuyYP4IJZLz5B0UQdfH/Rblq
+lwN3vZgGQIDC0Bq4GZFntPO4DgtMJRUjLYBkqZ9VRrAc0BtdLx0s2eLXna86GqsS
+JRPrW4CqJ9evXkLhz4oWrns5IFYbbkZQBRDahnYbYEShXBVarN07FHDyJR7e563l
+wHOqrXEThke2dA9JPWeaBTp7h9SiE6UhFUpzyFAd9YF+0t0k3slgr1oj89o28M6t
+855bZNK3+42p+Ytiewlr25+J4xL31Q==
+=Z4ML
+-----END PGP SIGNATURE-----
+
+--Ie5Q9u0aDDvYlHNh--
