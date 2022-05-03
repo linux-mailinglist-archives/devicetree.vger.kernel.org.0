@@ -2,94 +2,212 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B0D76518908
-	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 17:51:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A337A518912
+	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 17:51:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238891AbiECPy4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 May 2022 11:54:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38744 "EHLO
+        id S238114AbiECPzZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 May 2022 11:55:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39272 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238980AbiECPyz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 11:54:55 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37F4F3B3FE;
-        Tue,  3 May 2022 08:51:21 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id C87F66168F;
-        Tue,  3 May 2022 15:51:20 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 47EAEC385A4;
-        Tue,  3 May 2022 15:51:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1651593080;
-        bh=KkuXBkxl3M1SrH9rLok6F19ml6E97xmqNVUAIDYkAao=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=tkCBD57f4XuGs75eNLeGYryfiWyg7qyPfjTS6XQ4AE+XBPnow2RzhMXWphNrq5rns
-         4jcXJ5UaKfSwOXfY87Ztyu4nBPyPoJkW/zE8NVSCBRa0GfGkNJjEWVRSw3I+JTiSsf
-         ESxKe9L8fH+bhTTw6OnH0vmt52hattDLjsGanMW2aEajKTWN7wyvhxK303N10010Tq
-         IbXP55iAaVJ12+2+IwQ16Oycy+NKYvYKyP+nV0bznCMj+ExlTFcwT2tc0vMVdPufIA
-         Bwu/8TrpumXCZBp9WgMtdJvJdB/DCQptNkZlz9Y1pvywxU32BSAw6kISkddSFgyKeC
-         5tZVOXQpUKWAg==
-From:   Mark Brown <broonie@kernel.org>
-To:     biju.das.jz@bp.renesas.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     prabhakar.mahadev-lad.rj@bp.renesas.com, linux-spi@vger.kernel.org,
-        devicetree@vger.kernel.org, geert+renesas@glider.be,
-        Chris.Paterson2@renesas.com, biju.das@bp.renesas.com,
-        linux-renesas-soc@vger.kernel.org
-In-Reply-To: <20220501082150.24662-1-biju.das.jz@bp.renesas.com>
-References: <20220501082150.24662-1-biju.das.jz@bp.renesas.com>
-Subject: Re: [PATCH] spi: dt-bindings: renesas,rspi: Document RZ/G2UL SoC
-Message-Id: <165159307802.184303.18335939609476308379.b4-ty@kernel.org>
-Date:   Tue, 03 May 2022 16:51:18 +0100
+        with ESMTP id S232627AbiECPzY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 11:55:24 -0400
+Received: from mx-out1.startmail.com (mx-out1.startmail.com [145.131.90.139])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA4C431DF3;
+        Tue,  3 May 2022 08:51:50 -0700 (PDT)
+Date:   Tue, 3 May 2022 10:51:41 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=startmail.com;
+        s=2020-07; t=1651593109;
+        bh=56w8flPoDdgtjGA9GvUtnG3sqpiIHyKUNGbNmd5gImM=;
+        h=Date:From:To:Subject:Message-ID:References:MIME-Version:
+         Content-Type:Content-Disposition:In-Reply-To:From:Subject:To:Date:
+         Sender:Content-Type:Content-Transfer-Encoding:Content-Disposition:
+         Mime-Version:Reply-To:In-Reply-To:References:Message-Id:Autocrypt;
+        b=FJ/tEpdv1e0AuZ2nIJUUELwcGzM69tunHMFCt/HJJxNPkq0+GLUD7oGrkdQv1N5aR
+         ICOLWOni4cGw7aGWG2xZwEcDa7cjAlB9LLALDEAGMXaOUu/JkTRnU/F9QQTVa7bOd0
+         G4FnPjmo1K+W+bvexKlIWTUOrwfBiDYoBl+3LJecTvSVxHtcWciit4OQG+CO4pl4xx
+         MvyYEOSsDrphfcfamqZiiba2CXoCEn6/uwkqbgStr9bgyRavR0vs6Btag1xitnqWc+
+         GxsXWRPYBMI+Sb4bPX8lbOl1oODzhC36nRyiGkllsZSZ9EIsbDG+BqjPpBJIg/at6N
+         /lUwBdI9uSSMg==
+From:   "Marty E. Plummer" <hanetzer@startmail.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     arnd@arndb.de, cai.huoqing@linux.dev, christian.koenig@amd.com,
+        devicetree@vger.kernel.org, gengdongjiu@huawei.com,
+        krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org,
+        linux@armlinux.org.uk, michael@walle.cc, miquel.raynal@bootlin.com,
+        mturquette@baylibre.com, novikov@ispras.ru, olof@lixom.net,
+        p.yadav@ti.com, rdunlap@infradead.org, richard@nod.at,
+        robh+dt@kernel.org, sboyd@kernel.org, soc@kernel.org,
+        sumit.semwal@linaro.org, tudor.ambarus@microchip.com,
+        vigneshr@ti.com, xuwei5@hisilicon.com
+Subject: Re: [RFC v2 2/2] arm: hisi: enable Hi3521a soc
+Message-ID: <20220503155141.ekbysx6fjom5el2h@proprietary-killer>
+References: <20220501054440.2434247-1-hanetzer@startmail.com>
+ <20220501173423.2473093-1-hanetzer@startmail.com>
+ <20220501173423.2473093-3-hanetzer@startmail.com>
+ <4cda3645-c4e8-1b3c-bd80-891afd56449a@linaro.org>
+ <20220503134459.pplgvhcckja4ivcg@proprietary-killer>
+ <75a48dfa-6fc9-aed9-b00e-d928bd9f33af@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <75a48dfa-6fc9-aed9-b00e-d928bd9f33af@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 1 May 2022 09:21:50 +0100, Biju Das wrote:
-> Add RSPI binding documentation for Renesas RZ/G2UL SoC.
+On Tue, May 03, 2022 at 04:55:23PM +0200, Krzysztof Kozlowski wrote:
+> On 03/05/2022 15:44, Marty E. Plummer wrote:
+> > On Tue, May 03, 2022 at 01:47:01PM +0200, Krzysztof Kozlowski wrote:
+> >> On 01/05/2022 19:34, Marty E. Plummer wrote:
+> >>> Enable Hisilicon Hi3521A/Hi3520DCV300 SoC. This SoC series includes
+> >>> hardware mutlimedia codec cores, commonly used in consumer cctv/dvr
+> >>> security systems and ipcameras. The arm core is a Cortex A7.
+> >>>
+> >>> Add hi3521a.dtsi and hi3521a-rs-dm290e.dts for RaySharp CCTV systems,
+> >>> marketed under the name Samsung SDR-B74301N.
+> >>
+> >> Thank you for your patch. There is something to discuss/improve.
+> >>
+> >>>
+> >>> Signed-off-by: Marty E. Plummer <hanetzer@startmail.com>
+> >>> ---
+> >>>  arch/arm/boot/dts/Makefile              |   2 +
+> >>>  arch/arm/boot/dts/hi3521a-rs-dm290e.dts | 134 ++++++++
+> >>>  arch/arm/boot/dts/hi3521a.dtsi          | 423 ++++++++++++++++++++++++
+> >>
+> >> DTSes go to separate patches.
+> > Do you mean dts and dtsi need to be separate patches?
 > 
-> RSPI block is identical to one found on RZ/A, so no driver changes are
-> required. The fallback compatible string "renesas,rspi-rz" will be used
-> on RZ/G2UL.
+> I mean that any changes to "arch/arm/boot/dts/" have to be separate from
+> other changes. These can be still one patch. See other examples on
+> mailing lists.
+> 
+> >>
+> >>>  arch/arm/mach-hisi/Kconfig              |   9 +
+> >>>  4 files changed, 568 insertions(+)
+> >>>  create mode 100644 arch/arm/boot/dts/hi3521a-rs-dm290e.dts
+> >>>  create mode 100644 arch/arm/boot/dts/hi3521a.dtsi
+> >>>
+> >>> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+> >>> index 7c16f8a2b738..535cef3b14ab 100644
+> >>> --- a/arch/arm/boot/dts/Makefile
+> >>> +++ b/arch/arm/boot/dts/Makefile
+> >>> @@ -242,6 +242,8 @@ dtb-$(CONFIG_ARCH_GEMINI) += \
+> >>>  	gemini-ssi1328.dtb \
+> >>>  	gemini-wbd111.dtb \
+> >>>  	gemini-wbd222.dtb
+> >>> +dtb-$(CONFIG_ARCH_HI3521A) += \
+> >>> +	hi3521a-rs-dm290e.dtb
+> >>>  dtb-$(CONFIG_ARCH_HI3xxx) += \
+> >>>  	hi3620-hi4511.dtb
+> >>>  dtb-$(CONFIG_ARCH_HIGHBANK) += \
+> >>> diff --git a/arch/arm/boot/dts/hi3521a-rs-dm290e.dts b/arch/arm/boot/dts/hi3521a-rs-dm290e.dts
+> >>> new file mode 100644
+> >>> index 000000000000..b24fcf2ca85e
+> >>> --- /dev/null
+> >>> +++ b/arch/arm/boot/dts/hi3521a-rs-dm290e.dts
+> >>> @@ -0,0 +1,134 @@
+> >>> +// SPDX-License-Identifier: GPL-2.0-or-later
+> >>> +/*
+> >>> + * Copyright (C) 2017-2022 Marty Plummer <hanetzer@startmail.com>
+> >>> + */
+> >>> +
+> >>> +#include "hi3521a.dtsi"
+> >>> +
+> >>> +/ {
+> >>> +	model = "RaySharp RS-DM-290E DVR Board";
+> >>> +	compatible = "raysharp,rs-dm-290e", "hisilicon,hi3521a";
+> >>
+> >> Please run checkpatch and fix the warnings.
+> >>
+> > sunova. I could have sworn I had my editor setup right for whitespace
+> > and such.
+> 
+> It's not about whitespace but:
+> 
+ah. Well, I'm not certain what we'll even call the board in the end,
+kind of a placeholder for now. What do you even name devices which are
+generic consumer hardware that they never intended to be tinkered with
+this way? the board is whiteboxed by several different vendors.
+> WARNING: DT compatible string "raysharp,rs-dm-290e" appears
+> un-documented -- check ./Documentation/devicetree/bindings/
 > 
 > 
-> [...]
-
-Applied to
-
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
-
-Thanks!
-
-[1/1] spi: dt-bindings: renesas,rspi: Document RZ/G2UL SoC
-      commit: dfc6597eb1e1604575c6e061e1a9be0048d17b2c
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+> WARNING: DT compatible string vendor "raysharp" appears un-documented --
+> check ./Documentation/devicetree/bindings/vendor-prefixes.yaml
+> 
+> 
+> (...)
+> 
+> > Ah gotcha.
+> >>> +	};
+> >>> +
+> >>> +	xtal24m: xtal24m {
+> >>
+> >> Generic node names, so one of: "clock-0" "clock-xtal24m"
+> >>
+> > Will do.
+> >>> +		compatible = "fixed-clock";
+> >>> +		#clock-cells = <0>;
+> >>> +		clock-frequency = <24000000>;
+> >>
+> >> This does not look like property of the SoC, so should be defined by boards.
+> >>
+> > SoC requires a 24Mhz osc (and a 32khz one as well), so it'll always be
+> > present regardless.
+> 
+> Sure, but DTS/DTSI describes hardware. If the clock is not in the SoC
+> but on the board, it should be in the board DTSI. Many times such clocks
+> are put partially in DTSI and only their specific parts - frequency - in
+> the board DTS, to indicate that implementation is relevant to the board,
+> not SoC.
+> 
+Ah ok, that makes sense I guess.
+> >>> +	};
+> >>> +
+> >>> +	clk_3m: clk_3m {
+> >>
+> >> No underscores in node names, generic node name (see above).
+> >>
+> > early debugging clock, will be removed.
+> >>> +		compatible = "fixed-clock";
+> >>> +		#clock-cells = <0>;
+> >>> +		clock-frequency = <3000000>;
+> >>
+> >> This does not look like property of the SoC, so should be defined by boards.
+> 
+> (...)
+> 
+> >>
+> >>> +			status = "disabled";
+> >>> +		};
+> >>> +
+> >>> +		dual_timer0: timer@12000000 {
+> >>> +			compatible = "arm,sp804", "arm,primecell";
+> >>> +			interrupts = <GIC_SPI 1 IRQ_TYPE_LEVEL_HIGH>,
+> >>> +				     <GIC_SPI 1 IRQ_TYPE_LEVEL_HIGH>;
+> >>
+> >> A bit weird interrupts... the same?
+> >>
+> > Yes, though I am aware that some sp804 timers do have a separate
+> > interrupts per pair.
+> 
+> They have also separate interrupts, one combined interrupt or one sole
+> interrupt. However what you described here is one interrupt line
+> physically connected to two separate pins on the device yet still not
+> being somehow shared (shared as "combined interrupt"). I don't think it
+> is your case...
+> 
+Unsure. datasheet just says '33 | Timer0/Timer1'. I don't think these
+timers are attached to pins, however.
+> 
+> 
+> Best regards,
+> Krzysztof
