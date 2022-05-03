@@ -2,124 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 54ED8517B8C
-	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 03:14:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AA8C9517B73
+	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 03:10:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229677AbiECBP4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 May 2022 21:15:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41004 "EHLO
+        id S229822AbiECBMu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 May 2022 21:12:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55480 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229620AbiECBPy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 May 2022 21:15:54 -0400
-Received: from mail-oa1-f49.google.com (mail-oa1-f49.google.com [209.85.160.49])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 163A6E0B;
-        Mon,  2 May 2022 18:12:22 -0700 (PDT)
-Received: by mail-oa1-f49.google.com with SMTP id 586e51a60fabf-e5ca5c580fso15924979fac.3;
-        Mon, 02 May 2022 18:12:22 -0700 (PDT)
+        with ESMTP id S229769AbiECBMs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 May 2022 21:12:48 -0400
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6991659B8E
+        for <devicetree@vger.kernel.org>; Mon,  2 May 2022 18:09:11 -0700 (PDT)
+Received: by mail-ej1-x62b.google.com with SMTP id y3so30702204ejo.12
+        for <devicetree@vger.kernel.org>; Mon, 02 May 2022 18:09:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=+GS/UD7rTSn/SrbnLBVwvNdcnYAN1i32IbtuzZWmvMs=;
+        b=GjPF8T0LFSfzHmDfzTyaQdTHc7/c7Au3dfdO9t7Jo7HNtVLIYTlK7boOyvbs8TaHWd
+         u9Fc4NyJgxlRHYIObzxW3VHsk8uI5SiIRPIDVCqgNVN2nW1uFL7RyBgX5amGCEBX1Dqa
+         wMPbnPQOsxEp8F4lvG7gMmlYdyq2+7Bca8HEw=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=5c3nAib//d7xQj9e0trcxqkLomABnHAZMncp89e42Vk=;
-        b=RzPe4mW6UvjsWb8wB2rnP6OM7EFkyN2oIZxAZ9gfvYBnfZ15lH96wxf2oqSwAEojU/
-         1964ARH6fUomxY+udKQ71of4k4aoMceb6J7RPePU++wyYxBCkwIVVmPYwbFPApyDbhxL
-         TkCEqvCUq8QWF2f5QMuXOE29y3FvjOkQbuTk44+AazstrV6i4bKhfMNwXH1a03TGTLMH
-         vS6atRJhUJ9fK7P2f96z8Vd4dGnNr6HxRFUyg0G/7TLwypei+eabQXlD8UGt9SwAM6zP
-         i1RXmMcMpZkzfMcIBeNZHdQZYgJZNXc1czHboiBEjwU8QFvYtj0/9ZAAqzEdVGPrAIgj
-         DUcA==
-X-Gm-Message-State: AOAM5315j+7kt7ke0Es4YdD7QLe+EYgdjO+28pPSLEKjQfYYloMiojfW
-        EMEXLVS/dSSiYZIFmdCItzl5pqcvBw==
-X-Google-Smtp-Source: ABdhPJx+ieV44C6Sc1L8qds7KFaA1+S433NOiO+oyUItpFP/Y6bCudwTRDB/qJEY8XUvWl81tJHDnw==
-X-Received: by 2002:a05:6870:434d:b0:e5:9115:cb15 with SMTP id x13-20020a056870434d00b000e59115cb15mr841105oah.53.1651539548285;
-        Mon, 02 May 2022 17:59:08 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id m63-20020aca5842000000b00325cda1ff9esm2892865oib.29.2022.05.02.17.59.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 May 2022 17:59:07 -0700 (PDT)
-Received: (nullmailer pid 2159671 invoked by uid 1000);
-        Tue, 03 May 2022 00:59:07 -0000
-Date:   Mon, 2 May 2022 19:59:07 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     frowand.list@gmail.com
-Cc:     Slawomir Stepien <slawomir.stepien@nokia.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jan Kiszka <jan.kiszka@siemens.com>,
-        linux-kernel@vger.kernel.org, Slawomir Stepien <sst@poczta.fm>,
-        pantelis.antoniou@konsulko.com, devicetree@vger.kernel.org,
-        Dan Carpenter <dan.carpenter@oracle.com>
-Subject: Re: [PATCH v2 3/3] of: overlay: do not free changeset when
- of_overlay_apply returns error
-Message-ID: <YnB+W6u5dL44vEBL@robh.at.kernel.org>
-References: <20220502181742.1402826-1-frowand.list@gmail.com>
- <20220502181742.1402826-4-frowand.list@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=+GS/UD7rTSn/SrbnLBVwvNdcnYAN1i32IbtuzZWmvMs=;
+        b=fOg2oj98bGf2wl5SZlHwxTGA9O5FrSZTKtrOabHGYUa5rx7IT9ccvU7abT7XIUuCBU
+         eZpUAvMj82Sj3BWEWFEafAxfrLKf9KP6IM2m6HuaJ8g55wPEn5e7T39Lq5b1jeK7dk/J
+         92tM14RTYyZU6fMYvY4WXb1Y4WxUdAfitj6rtD9+qDXZ8prGZQaThh9Cq1TZoS1Ug5N7
+         2wiLW6KxzMAZ9J4UK6GjpaBVONZldYN0y+WZupDZ4wecZrcQ3zUdP6YZ/daE8I8WQcaH
+         tRf5buzO5IeV9WFgBR5LoMC+16h7V+wZzddMiIK0ZYpdFFGZL1FwRAe6TJSSoE+00sBO
+         5X3g==
+X-Gm-Message-State: AOAM532N9bPxJ/2djpbo4TZwI0rswuOsZYSLlCw0HKEgnPFJpLyHCeSn
+        x/F12h0QqrDOTZh0pKmfD20bCepIY6wZHqYS
+X-Google-Smtp-Source: ABdhPJwJmQqxKqr/cm84xOf4Kk7KO+97a5pdm3QjURlawt1smef7G4D4T8YQClXDwbCcRIuit/qoyA==
+X-Received: by 2002:a17:907:eab:b0:6dd:e8fe:3dc with SMTP id ho43-20020a1709070eab00b006dde8fe03dcmr13320429ejc.165.1651540013416;
+        Mon, 02 May 2022 18:06:53 -0700 (PDT)
+Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com. [209.85.221.47])
+        by smtp.gmail.com with ESMTPSA id hw7-20020a170907a0c700b006f3ef214e16sm4112816ejc.124.2022.05.02.18.06.51
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 02 May 2022 18:06:52 -0700 (PDT)
+Received: by mail-wr1-f47.google.com with SMTP id e2so21474690wrh.7
+        for <devicetree@vger.kernel.org>; Mon, 02 May 2022 18:06:51 -0700 (PDT)
+X-Received: by 2002:a5d:6d09:0:b0:20c:53a9:cc30 with SMTP id
+ e9-20020a5d6d09000000b0020c53a9cc30mr10094457wrq.513.1651540011049; Mon, 02
+ May 2022 18:06:51 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220502181742.1402826-4-frowand.list@gmail.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+References: <20220429233112.2851665-1-swboyd@chromium.org> <20220429233112.2851665-3-swboyd@chromium.org>
+ <CAD=FV=WAbfe9BC5QPDezz3FSEwHRFdQeZpARJYT4b9V1rNp_nA@mail.gmail.com> <CAE-0n53x77n2ACuMYsFrdGhSkmO_4f8Uocnb+vKhcgoiY4RPQg@mail.gmail.com>
+In-Reply-To: <CAE-0n53x77n2ACuMYsFrdGhSkmO_4f8Uocnb+vKhcgoiY4RPQg@mail.gmail.com>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Mon, 2 May 2022 18:06:39 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=W5SeUNAiQi_h8LyUn+7EQG1Sf9N6Nq9HtVnQWqr0Ltsw@mail.gmail.com>
+Message-ID: <CAD=FV=W5SeUNAiQi_h8LyUn+7EQG1Sf9N6Nq9HtVnQWqr0Ltsw@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] Input: cros-ec-keyb - skip keyboard registration
+ for switches compatible
+To:     Stephen Boyd <swboyd@chromium.org>
+Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        LKML <linux-kernel@vger.kernel.org>, patches@lists.linux.dev,
+        chrome-platform@lists.linux.dev,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Benson Leung <bleung@chromium.org>,
+        Guenter Roeck <groeck@chromium.org>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        "Joseph S. Barrera III" <joebar@chromium.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 02 May 2022 13:17:42 -0500, frowand.list@gmail.com wrote:
-> From: Frank Rowand <frank.rowand@sony.com>
-> 
-> New unittests for overlay notifiers reveal a memory leak in
-> of_overlay_apply() when a notifier returns an error for action
-> OF_OVERLAY_POST_APPLY.  The pr_err() message is:
-> 
->    OF: ERROR: memory leak, expected refcount 1 instead of 3,
->    of_node_get()/of_node_put() unbalanced - destroy cset entry: attach
->    overlay node /testcase-data/overlay-node/test-bus/test-unittest17
-> 
-> Change the error path to no longer call free_overlay_changeset(),
-> and document that the caller of of_overlay_fdt_apply() may choose
-> to remove the overlay.
-> 
-> Update the unittest that triggered the error to expect the changed
-> return values and to call of_overlay_remove().
-> 
-> Signed-off-by: Frank Rowand <frank.rowand@sony.com>
-> ---
-> Changes since version 1:
->   - patch 1/1 v1 did not apply on Rob's dt/next branch, rebase on top of
->     5f756a2eaa44 of: overlay: do not break notify on NOTIFY_{OK|STOP}
-> 
-> Output of the new overlay notifier unittests, as filtered by
-> scripts/dtc/of_unittest_expect:
-> 
->    ### dt-test ### pass of_unittest_overlay_notify():2825
-> ok OF: overlay: overlay changeset pre-apply notifier error -16, target: /testcase-data/overlay-node/test-bus
->    ### dt-test ### pass of_unittest_overlay_notify():2846
->    ### dt-test ### pass of_unittest_overlay_notify():2851
-> ok OF: overlay: overlay changeset post-apply notifier error -17, target: /testcase-data/overlay-node/test-bus
->    ### dt-test ### pass of_unittest_overlay_notify():2857
->    ### dt-test ### pass of_unittest_overlay_notify():2862
->    ### dt-test ### pass of_unittest_overlay_notify():2866
->    ### dt-test ### pass of_unittest_overlay_notify():2872
->    ### dt-test ### pass of_unittest_overlay_notify():2875
-> ok OF: overlay: overlay changeset pre-remove notifier error -18, target: /testcase-data/overlay-node/test-bus
->    ### dt-test ### pass of_unittest_overlay_notify():2886
->    ### dt-test ### pass of_unittest_overlay_notify():2894
->    ### dt-test ### pass of_unittest_overlay_notify():2898
->    ### dt-test ### pass of_unittest_overlay_notify():2901
-> ok OF: overlay: overlay changeset post-remove notifier error -19, target: /testcase-data/overlay-node/test-bus
->    ### dt-test ### pass of_unittest_overlay_notify():2908
->    ### dt-test ### pass of_unittest_overlay_notify():2915
->    ### dt-test ### pass of_unittest_overlay_notify():2920
->    ### dt-test ### pass of_unittest_overlay_notify():2932
-> 
-> 
->  drivers/of/overlay.c  | 29 ++++++++++++++++++++++++++---
->  drivers/of/unittest.c | 10 ++++++++--
->  2 files changed, 34 insertions(+), 5 deletions(-)
-> 
+Hi,
 
-Applied, thanks!
+On Mon, May 2, 2022 at 3:02 PM Stephen Boyd <swboyd@chromium.org> wrote:
+>
+> Quoting Doug Anderson (2022-05-02 10:02:54)
+> > On Fri, Apr 29, 2022 at 4:31 PM Stephen Boyd <swboyd@chromium.org> wrote:
+> > >
+> > >
+> > > diff --git a/drivers/input/keyboard/cros_ec_keyb.c b/drivers/input/keyboard/cros_ec_keyb.c
+> > > index eef909e52e23..1bbe2987bf52 100644
+> > > --- a/drivers/input/keyboard/cros_ec_keyb.c
+> > > +++ b/drivers/input/keyboard/cros_ec_keyb.c
+> > > @@ -536,6 +536,12 @@ static int cros_ec_keyb_register_matrix(struct cros_ec_keyb *ckdev)
+> > >         u32 *physmap;
+> > >         u32 key_pos;
+> > >         unsigned int row, col, scancode, n_physmap;
+> > > +       bool register_keyboard;
+> > > +
+> > > +       /* Skip matrix registration if no keyboard */
+> > > +       register_keyboard = device_get_match_data(dev);
+> > > +       if (!register_keyboard)
+> > > +               return 0;
+> > >
+> > >         /*
+> > >          * No rows and columns? There isn't a matrix but maybe there are
+> >
+> > As per my comments in patch #1, I wonder if it makes sense to delete
+> > the "No rows and columns?" logic and settle on the compatible as the
+> > one true way to specify this.
+> >
+>
+> Ok. My only concern is that means we have to check for both compatibles
+> which is not really how DT compatible strings work. The compatible
+> string usually finds the more specific compatible that is first in the
+> list of compatibles in DT. You're essentially proposing that the
+> switches compatible could be first or last, the order doesn't matter.
+
+It's not quite what I was proposing. I think my summary really sums it up:
+
+1. If you have a matrix keyboard and maybe also some buttons/switches
+then use the compatible: google,cros-ec-keyb
+
+2. If you only have buttons/switches but you want to be compatible
+with the old driver in Linux that looked for the compatible
+"google,cros-ec-keyb" and required the matrix properties, use the
+compatible: "google,cros-ec-keyb-switches", "google,cros-ec-keyb"
+
+3. If you have only buttons/switches and don't need compatibility with
+old Linux drivers, use the compatible: "google,cros-ec-keyb-switches"
+
+...but just to say it another way:
+
+* If you have the compatible "google,cros-ec-keyb-switches" I mean to
+say that you _only_ have switches and buttons. You'd _never_ have this
+compatible string if you truly have a matrix keyboard. If you have
+this, it will always be first.
+
+* If you only have switches and buttons but you care about backward
+compatibility then you can add a fallback compatible second:
+"google,cros-ec-keyb"
+
+* In order for the fallback compatible to be at all useful as a
+fallback (it's only useful at all if you're on an old driver), if you
+specify it you should pretend that you have matrix properties even
+though you don't really have them, just like we used to do.
+
+-Doug
