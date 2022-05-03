@@ -2,364 +2,310 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CC827518F3F
-	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 22:45:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B4FC8518F9E
+	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 23:03:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238648AbiECUrP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 May 2022 16:47:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53704 "EHLO
+        id S242566AbiECVBO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 May 2022 17:01:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36180 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231410AbiECUrN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 16:47:13 -0400
-Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1C0E2C114;
-        Tue,  3 May 2022 13:43:39 -0700 (PDT)
-Received: by mail-lj1-x229.google.com with SMTP id q14so23455047ljc.12;
-        Tue, 03 May 2022 13:43:39 -0700 (PDT)
+        with ESMTP id S233476AbiECVBI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 17:01:08 -0400
+Received: from mail.baikalelectronics.ru (mail.baikalelectronics.com [87.245.175.226])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 3AEE31F637;
+        Tue,  3 May 2022 13:57:33 -0700 (PDT)
+Received: from mail.baikalelectronics.ru (unknown [192.168.51.25])
+        by mail.baikalelectronics.ru (Postfix) with ESMTP id 0AB9E16D8;
+        Tue,  3 May 2022 23:58:07 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mail.baikalelectronics.ru 0AB9E16D8
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=tpAiOFcuu3dIHbvSksLXy2Po/tDlC0C+LeabTLxnH8o=;
-        b=mG8h06ua9lMXysgqojZl1ocM78F910whL6WsFVG5yhBzYzVQ/LXVbvt7PdO1sPzW6z
-         zS6BsMRRlKDtMbnGtJj2TaSUiOLh3egm5QdoCDUqgFOUQ2ntvh2ga++UWVRtLBbZStlW
-         k+rlHjUwmb6OLhJllDC/j49noYyaLR68ZCQfxDWtPWRjud1lqIoOJDP2df3swPdL9wo2
-         dbzlNQOWntw3ZnDgbv4C17/Uybu4caH+StQiHYCeekCOSTyi1lPIKaULSc0m4GCefzgU
-         tAp6O20MlW7PfB2T09q+DPhHUqh2m4NSdoLOaNBhPnlu+Ci9yi8Egag1k+4wVpka3DIk
-         x3Xg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=tpAiOFcuu3dIHbvSksLXy2Po/tDlC0C+LeabTLxnH8o=;
-        b=1ncLYujtqbz2qlXDEV2IP08EBnHl00M64UNBBzPGqHVyYoP1c3JZugX6RaHKlQ/V9X
-         uEk8FNUVBSmqVb4JAI+dPYwkjP1CJLln8ilYILpehgfJ53OMBWOVEPEKNiVjh8JxuPjI
-         205vPM6B8c8OoIgslBq97o0dtIE2kGD3+iSbloEM9NjwF1MZ7EHDohnhvRHjIrso4N9K
-         wlOCEx3PcG7mKhDOg0+uYLMRnDuehpbPuCx6uAjY1cb7GnAqsCGgFQv8ccr04FiB+ZQl
-         3hLDgA/i6AMd5wPnxto7b72buY6MZ2Z8s/xw6MfwJcahl6Ds5c0Hj2RcZ/DQjO4Kdtnm
-         o/Sg==
-X-Gm-Message-State: AOAM533fM/LwKcXmld1zwJ4xD5nYoj+KBI+nvYkPPdKOpzsiRUzYwXhM
-        u6IX96Ec40c64IP0+hBSN8Q=
-X-Google-Smtp-Source: ABdhPJyEa4QMlArKeeC93tabJlLXCfVH1R372maz70XNgN+ky32Bbi+4S/7Mof1XKiidge8mS3s48A==
-X-Received: by 2002:a2e:94ce:0:b0:24b:3811:b242 with SMTP id r14-20020a2e94ce000000b0024b3811b242mr10940644ljh.197.1651610617820;
-        Tue, 03 May 2022 13:43:37 -0700 (PDT)
-Received: from mobilestation ([95.79.189.214])
-        by smtp.gmail.com with ESMTPSA id e27-20020ac2547b000000b0047255d21160sm1024118lfn.143.2022.05.03.13.43.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 May 2022 13:43:37 -0700 (PDT)
-Date:   Tue, 3 May 2022 23:43:34 +0300
-From:   Serge Semin <fancer.lancer@gmail.com>
-To:     Damien Le Moal <damien.lemoal@opensource.wdc.com>
-Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Jens Axboe <axboe@kernel.dk>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        d=baikalelectronics.ru; s=mail; t=1651611487;
+        bh=KwgRwEaLuj9S7bcXvNqk9nfNR+7FKV+wml4/e4DFTxo=;
+        h=From:To:CC:Subject:Date:In-Reply-To:References:From;
+        b=GZs2ZOcFOKOT2Fh9oRlO3lLonQnyM6P1fXTgGU3K80pXgmFtbIji62+If+ub+jKm4
+         VNe36IuUT+jcy6AdXh/rU1FiWgIptOP1DalFOD2V6gy5tgGND0cJgVUFOdYnR5Usql
+         z53EaHfR0frmXW6vlmEnfeoix+l7BkmHf5tSFmM4=
+Received: from localhost (192.168.53.207) by mail (192.168.51.25) with
+ Microsoft SMTP Server (TLS) id 15.0.1395.4; Tue, 3 May 2022 23:57:32 +0300
+From:   Serge Semin <Sergey.Semin@baikalelectronics.ru>
+To:     Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+CC:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Serge Semin <fancer.lancer@gmail.com>,
         Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
         Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        linux-ide@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 02/23] dt-bindings: ata: ahci-platform: Detach common
- AHCI bindings
-Message-ID: <20220503204334.tbmpcdfozylubrjn@mobilestation>
-References: <20220503200938.18027-1-Sergey.Semin@baikalelectronics.ru>
- <20220503200938.18027-3-Sergey.Semin@baikalelectronics.ru>
- <773f5323-43af-6764-ea74-2a3bac2022e8@opensource.wdc.com>
+        Rob Herring <robh@kernel.org>,
+        =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        <linux-clk@vger.kernel.org>, <linux-pci@vger.kernel.org>,
+        <linux-mips@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+Subject: [PATCH v3 4/4] clk: baikal-t1: Add DDR/PCIe directly controlled resets support
+Date:   Tue, 3 May 2022 23:57:22 +0300
+Message-ID: <20220503205722.24755-5-Sergey.Semin@baikalelectronics.ru>
+In-Reply-To: <20220503205722.24755-1-Sergey.Semin@baikalelectronics.ru>
+References: <20220503205722.24755-1-Sergey.Semin@baikalelectronics.ru>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <773f5323-43af-6764-ea74-2a3bac2022e8@opensource.wdc.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 04, 2022 at 05:29:23AM +0900, Damien Le Moal wrote:
-> On 2022/05/04 5:09, Serge Semin wrote:
-> > In order to create a more sophisticated AHCI controller DT bindings let's
-> > divide the already available generic AHCI platform YAML schema into the
-> > platform part and a set of the common AHCI properties. The former part
-> > will be used to evaluate the AHCI DT nodes mainly compatible with the
-> > generic AHCI controller while the later schema will be used for more
-> > thorough AHCI DT nodes description. For instance such YAML schemas design
-> > will be useful for our DW AHCI SATA controller derivative with four clock
-> > sources, two reset lines, one system controller reference and specific
-> > max Rx/Tx DMA xfers size constraints.
-> > 
-> > Note the phys and target-supply property requirement is preserved in the
-> > generic AHCI platform bindings because some platforms can lack of the
-> > explicitly specified PHYs or target device power regulators.
-> > 
-> > Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-> > 
-> > ---
-> > 
-> > Folks, I don't really see why the phys/target-supply requirement has been
-> > added to the generic AHCI DT schema in the first place. Probably just to
-> > imply some meaning for the sub-nodes definition. Anyway in one of the
-> > further patches I am adding the DW AHCI SATA controller DT bindings which
-> > won't require having these properties specified in the sub-nodes, but will
-> > describe additional port-specific properties. That's why I get to keep the
-> > constraints in the ahci-platform.yaml schema instead of moving them to the
-> > common schema.
-> > 
-> > Changelog v2:
-> > - This is a new patch created after rebasing v1 onto the 5.18-rc3 kernel.
-> > ---
-> >  .../devicetree/bindings/ata/ahci-common.yaml  | 117 ++++++++++++++++++
-> >  .../bindings/ata/ahci-platform.yaml           |  68 +---------
-> >  2 files changed, 123 insertions(+), 62 deletions(-)
-> >  create mode 100644 Documentation/devicetree/bindings/ata/ahci-common.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/ata/ahci-common.yaml b/Documentation/devicetree/bindings/ata/ahci-common.yaml
-> > new file mode 100644
-> > index 000000000000..72e24b246040
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/ata/ahci-common.yaml
-> > @@ -0,0 +1,117 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/ata/ahci-common.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Common Properties for Serial ATA AHCI controllers
-> > +
-> > +maintainers:
-> > +  - Hans de Goede <hdegoede@redhat.com>
-> > +  - Jens Axboe <axboe@kernel.dk>
-> 
+Aside with a set of the trigger-like resets Baikal-T1 CCU provides two
+additional blocks with directly controlled reset signals. In particular it
+concerns DDR full and initial resets and various PCIe sub-domains resets.
+Let's add the direct reset assertion/de-assertion of the corresponding
+flags support into the Baikal-T1 CCU driver then. It will be required at
+least for the PCIe platform driver. Obviously the DDR controller isn't
+supposed to be fully reset in the kernel, so the corresponding controls
+are added just for the sake of the interface implementation completeness.
 
-> This should probably be me rather than Jens since Jens is no longer maintaining
-> libata/ahci.
+Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+---
+ drivers/clk/baikal-t1/ccu-rst.c     | 117 +++++++++++++++++++++++++++-
+ drivers/clk/baikal-t1/ccu-rst.h     |   4 +
+ include/dt-bindings/reset/bt1-ccu.h |   9 +++
+ 3 files changed, 129 insertions(+), 1 deletion(-)
 
-Ok. I'll replace his email address with yours in v3.
+diff --git a/drivers/clk/baikal-t1/ccu-rst.c b/drivers/clk/baikal-t1/ccu-rst.c
+index 5e33c3ce962a..186a1491a7d9 100644
+--- a/drivers/clk/baikal-t1/ccu-rst.c
++++ b/drivers/clk/baikal-t1/ccu-rst.c
+@@ -25,17 +25,33 @@
+ #include "ccu-div.h"
+ #include "ccu-rst.h"
+ 
++#define CCU_SYS_DDR_BASE		0x02c
++#define CCU_SYS_PCIE_BASE		0x144
++
+ #define CCU_RST_MAP(_rst_id, _clk_id)		\
+ 	{					\
+ 		.rst_id = _rst_id,		\
+ 		.clk_id = _clk_id,		\
+ 	}
+ 
++#define CCU_RST_DIR(_rst_id, _base, _ofs)	\
++	{					\
++		.rst_id = _rst_id,		\
++		.base = _base,			\
++		.ofs = _ofs			\
++	}
++
+ struct ccu_rst_map {
+ 	unsigned int rst_id;
+ 	unsigned int clk_id;
+ };
+ 
++struct ccu_rst_dir {
++	unsigned int rst_id;
++	unsigned int base;
++	unsigned int ofs;
++};
++
+ struct ccu_rst_data {
+ 	struct device_node *np;
+ 	struct regmap *sys_regs;
+@@ -46,6 +62,9 @@ struct ccu_rst_data {
+ 	unsigned int rsts_map_num;
+ 	const struct ccu_rst_map *rsts_map;
+ 
++	unsigned int rsts_dir_num;
++	const struct ccu_rst_dir *rsts_dir;
++
+ 	unsigned int divs_num;
+ 	struct ccu_div **divs;
+ 
+@@ -81,6 +100,23 @@ static const struct ccu_rst_map sys_rst_map[] = {
+ 	CCU_RST_MAP(CCU_SYS_APB_RST, CCU_SYS_APB_CLK),
+ };
+ 
++/*
++ * DDR and PCIe sub-domains can be reset with directly controlled reset
++ * signals. I wouldn't suggest to reset the DDR controller though at least
++ * while the Linux kernel is working.
++ */
++static const struct ccu_rst_dir sys_rst_dir[] = {
++	CCU_RST_DIR(CCU_SYS_DDR_FULL_RST, CCU_SYS_DDR_BASE, 1),
++	CCU_RST_DIR(CCU_SYS_DDR_INIT_RST, CCU_SYS_DDR_BASE, 2),
++	CCU_RST_DIR(CCU_SYS_PCIE_PCS_PHY_RST, CCU_SYS_PCIE_BASE, 0),
++	CCU_RST_DIR(CCU_SYS_PCIE_PIPE0_RST, CCU_SYS_PCIE_BASE, 4),
++	CCU_RST_DIR(CCU_SYS_PCIE_CORE_RST, CCU_SYS_PCIE_BASE, 8),
++	CCU_RST_DIR(CCU_SYS_PCIE_PWR_RST, CCU_SYS_PCIE_BASE, 9),
++	CCU_RST_DIR(CCU_SYS_PCIE_STICKY_RST, CCU_SYS_PCIE_BASE, 10),
++	CCU_RST_DIR(CCU_SYS_PCIE_NSTICKY_RST, CCU_SYS_PCIE_BASE, 11),
++	CCU_RST_DIR(CCU_SYS_PCIE_HOT_RST, CCU_SYS_PCIE_BASE, 12),
++};
++
+ static int ccu_rst_reset(struct reset_controller_dev *rcdev,
+ 			 unsigned long idx)
+ {
+@@ -92,12 +128,81 @@ static int ccu_rst_reset(struct reset_controller_dev *rcdev,
+ 		return -EINVAL;
+ 	}
+ 
++	/*
++	 * No CCU divider descriptor means having directly handled reset control,
++	 * which is mapped into the CCU Divider registers.
++	 */
+ 	rst = &data->rsts[idx];
++	if (!rst->div)
++		return -EOPNOTSUPP;
++
+ 	return ccu_div_reset_domain(rst->div);
+ }
+ 
++static int ccu_rst_set(struct ccu_rst_data *data,
++		       unsigned long idx, bool high)
++{
++	struct ccu_rst *rst;
++
++	if (idx >= data->rsts_num) {
++		pr_err("Invalid reset ID %lu specified\n", idx);
++		return -EINVAL;
++	}
++
++	/*
++	 * Having CCU divider descriptor means trigger-like reset control so
++	 * direct assertion/de-assertion is unsupported.
++	 */
++	rst = &data->rsts[idx];
++	if (rst->div)
++		return high ? -EOPNOTSUPP : 0;
++
++	return regmap_update_bits(data->sys_regs, rst->reg_ctl,
++				  rst->mask, high ? rst->mask : 0);
++}
++
++static int ccu_rst_assert(struct reset_controller_dev *rcdev,
++			  unsigned long idx)
++{
++	struct ccu_rst_data *data = to_ccu_rst_data(rcdev);
++
++	return ccu_rst_set(data, idx, true);
++}
++
++static int ccu_rst_deassert(struct reset_controller_dev *rcdev,
++			    unsigned long idx)
++{
++	struct ccu_rst_data *data = to_ccu_rst_data(rcdev);
++
++	return ccu_rst_set(data, idx, false);
++}
++
++static int ccu_rst_status(struct reset_controller_dev *rcdev,
++			  unsigned long idx)
++{
++	struct ccu_rst_data *data = to_ccu_rst_data(rcdev);
++	struct ccu_rst *rst;
++	u32 val;
++
++	if (idx >= data->rsts_num) {
++		pr_err("Invalid reset ID %lu specified\n", idx);
++		return -EINVAL;
++	}
++
++	rst = &data->rsts[idx];
++	if (rst->div)
++		return -EOPNOTSUPP;
++
++	regmap_read(data->sys_regs, rst->reg_ctl, &val);
++
++	return !!(val & rst->mask);
++}
++
+ static const struct reset_control_ops ccu_rst_ops = {
+ 	.reset = ccu_rst_reset,
++	.assert = ccu_rst_assert,
++	.deassert = ccu_rst_deassert,
++	.status = ccu_rst_status,
+ };
+ 
+ static int ccu_rst_of_idx_get(struct reset_controller_dev *rcdev,
+@@ -153,6 +258,8 @@ static struct ccu_rst_data *ccu_rst_create_data(const struct ccu_rst_init_data *
+ 	} else if (of_device_is_compatible(data->np, "baikal,bt1-ccu-sys")) {
+ 		data->rsts_map_num = ARRAY_SIZE(sys_rst_map);
+ 		data->rsts_map = sys_rst_map;
++		data->rsts_dir_num = ARRAY_SIZE(sys_rst_dir);
++		data->rsts_dir = sys_rst_dir;
+ 	} else {
+ 		pr_err("Incompatible DT node '%s' specified\n",
+ 			of_node_full_name(data->np));
+@@ -160,7 +267,7 @@ static struct ccu_rst_data *ccu_rst_create_data(const struct ccu_rst_init_data *
+ 		goto err_kfree_data;
+ 	}
+ 
+-	data->rsts_num = data->rsts_map_num;
++	data->rsts_num = data->rsts_map_num + data->rsts_dir_num;
+ 	data->rsts = kcalloc(data->rsts_num, sizeof(*data->rsts), GFP_KERNEL);
+ 	if (!data->rsts) {
+ 		ret = -ENOMEM;
+@@ -198,6 +305,14 @@ static int ccu_rst_init_desc(struct ccu_rst_data *data)
+ 		}
+ 	}
+ 
++	for (idx = 0; idx < data->rsts_dir_num; ++idx, ++rst) {
++		const struct ccu_rst_dir *dir = &data->rsts_dir[idx];
++
++		rst->id = dir->rst_id;
++		rst->reg_ctl = dir->base;
++		rst->mask = BIT(dir->ofs);
++	}
++
+ 	return 0;
+ }
+ 
+diff --git a/drivers/clk/baikal-t1/ccu-rst.h b/drivers/clk/baikal-t1/ccu-rst.h
+index 2ef82899dba8..58347dc8a504 100644
+--- a/drivers/clk/baikal-t1/ccu-rst.h
++++ b/drivers/clk/baikal-t1/ccu-rst.h
+@@ -33,10 +33,14 @@ struct ccu_rst_init_data {
+  * struct ccu_div - CCU Reset descriptor
+  * @id: Reset identifier.
+  * @div: Pointer to the CCU Divider descriptor (can be NULL).
++ * @reg_ctl: reset control register base address.
++ * @mask: reset flag within the control register.
+  */
+ struct ccu_rst {
+ 	unsigned int id;
+ 	struct ccu_div *div;
++	unsigned int reg_ctl;
++	unsigned int mask;
+ };
+ 
+ #ifdef CONFIG_CLK_BT1_CCU_RST
+diff --git a/include/dt-bindings/reset/bt1-ccu.h b/include/dt-bindings/reset/bt1-ccu.h
+index 3578e83026bc..c691efaa678f 100644
+--- a/include/dt-bindings/reset/bt1-ccu.h
++++ b/include/dt-bindings/reset/bt1-ccu.h
+@@ -21,5 +21,14 @@
+ 
+ #define CCU_SYS_SATA_REF_RST		0
+ #define CCU_SYS_APB_RST			1
++#define CCU_SYS_DDR_FULL_RST		2
++#define CCU_SYS_DDR_INIT_RST		3
++#define CCU_SYS_PCIE_PCS_PHY_RST	4
++#define CCU_SYS_PCIE_PIPE0_RST		5
++#define CCU_SYS_PCIE_CORE_RST		6
++#define CCU_SYS_PCIE_PWR_RST		7
++#define CCU_SYS_PCIE_STICKY_RST		8
++#define CCU_SYS_PCIE_NSTICKY_RST	9
++#define CCU_SYS_PCIE_HOT_RST		10
+ 
+ #endif /* __DT_BINDINGS_RESET_BT1_CCU_H */
+-- 
+2.35.1
 
--Sergey
-
-> 
-> > +
-> > +description:
-> > +  This document defines device tree properties for a common AHCI SATA
-> > +  controller implementation. It's hardware interface is supposed to
-> > +  conform to the technical standard defined by Intel (see Serial ATA
-> > +  Advanced Host Controller Interface specification for details). The
-> > +  document doesn't constitute a DT-node binding by itself but merely
-> > +  defines a set of common properties for the AHCI-compatible devices.
-> > +
-> > +select: false
-> > +
-> > +allOf:
-> > +  - $ref: sata-common.yaml#
-> > +
-> > +properties:
-> > +  reg:
-> > +    description:
-> > +      Generic AHCI registers space conforming to the Serial ATA AHCI
-> > +      specification.
-> > +
-> > +  reg-names:
-> > +    description: CSR space IDs
-> > +
-> > +  interrupts:
-> > +    description:
-> > +      Generic AHCI state change interrupt. Can be implemented either as a
-> > +      single line attached to the controller as a set of the dedicated signals
-> > +      for the global and particular port events.
-> > +
-> > +  clocks:
-> > +    description:
-> > +      List of all the reference clocks connected to the controller.
-> > +
-> > +  clock-names:
-> > +    description: Reference clocks IDs
-> > +
-> > +  resets:
-> > +    description:
-> > +      List of the reset control lines to reset the controller clock
-> > +      domains.
-> > +
-> > +  reset-names:
-> > +    description: Reset line IDs
-> > +
-> > +  power-domains:
-> > +    description:
-> > +      List of the power domain the AHCI controller being a part of.
-> > +
-> > +  ahci-supply:
-> > +    description: Power regulator for AHCI controller
-> > +
-> > +  target-supply:
-> > +    description: Power regulator for SATA target device
-> > +
-> > +  phy-supply:
-> > +    description: Power regulator for SATA PHY
-> > +
-> > +  phys:
-> > +    description: Reference to the SATA PHY node
-> > +    maxItems: 1
-> > +
-> > +  phy-names:
-> > +    maxItems: 1
-> > +
-> > +  ports-implemented:
-> > +    $ref: '/schemas/types.yaml#/definitions/uint32'
-> > +    description:
-> > +      Mask that indicates which ports the HBA supports. Useful if PI is not
-> > +      programmed by the BIOS, which is true for some embedded SoC's.
-> > +    maximum: 0x1f
-> > +
-> > +patternProperties:
-> > +  "^sata-port@[0-9a-f]+$":
-> > +    type: object
-> > +    description:
-> > +      It is optionally possible to describe the ports as sub-nodes so
-> > +      to enable each port independently when dealing with multiple PHYs.
-> > +
-> > +    properties:
-> > +      reg:
-> > +        description: AHCI SATA port identifier
-> > +        maxItems: 1
-> > +
-> > +      phys:
-> > +        description: Individual AHCI SATA port PHY
-> > +        maxItems: 1
-> > +
-> > +      phy-names:
-> > +        description: AHCI SATA port PHY ID
-> > +        maxItems: 1
-> > +
-> > +      target-supply:
-> > +        description: Power regulator for SATA port target device
-> > +
-> > +    required:
-> > +      - reg
-> > +
-> > +    additionalProperties: true
-> > +
-> > +required:
-> > +  - reg
-> > +  - interrupts
-> > +
-> > +additionalProperties: true
-> > +
-> > +...
-> > diff --git a/Documentation/devicetree/bindings/ata/ahci-platform.yaml b/Documentation/devicetree/bindings/ata/ahci-platform.yaml
-> > index 9304e4731965..76075d3c8987 100644
-> > --- a/Documentation/devicetree/bindings/ata/ahci-platform.yaml
-> > +++ b/Documentation/devicetree/bindings/ata/ahci-platform.yaml
-> > @@ -36,8 +36,7 @@ select:
-> >      - compatible
-> >  
-> >  allOf:
-> > -  - $ref: "sata-common.yaml#"
-> > -
-> > +  - $ref: "ahci-common.yaml#"
-> >  
-> >  properties:
-> >    compatible:
-> > @@ -69,90 +68,35 @@ properties:
-> >      maxItems: 1
-> >  
-> >    clocks:
-> > -    description:
-> > -      Clock IDs array as required by the controller.
-> >      minItems: 1
-> >      maxItems: 3
-> >  
-> >    clock-names:
-> > -    description:
-> > -      Names of clocks corresponding to IDs in the clock property.
-> >      minItems: 1
-> >      maxItems: 3
-> >  
-> >    interrupts:
-> >      maxItems: 1
-> >  
-> > -  ahci-supply:
-> > -    description:
-> > -      regulator for AHCI controller
-> > -
-> > -  phy-supply:
-> > -    description:
-> > -      regulator for PHY power
-> > -
-> > -  phys:
-> > -    description:
-> > -      List of all PHYs on this controller
-> > -    maxItems: 1
-> > -
-> > -  phy-names:
-> > -    description:
-> > -      Name specifier for the PHYs
-> > -    maxItems: 1
-> > -
-> > -  ports-implemented:
-> > -    $ref: '/schemas/types.yaml#/definitions/uint32'
-> > -    description: |
-> > -      Mask that indicates which ports that the HBA supports
-> > -      are available for software to use. Useful if PORTS_IMPL
-> > -      is not programmed by the BIOS, which is true with
-> > -      some embedded SoCs.
-> > -    maximum: 0x1f
-> > -
-> >    power-domains:
-> >      maxItems: 1
-> >  
-> >    resets:
-> >      maxItems: 1
-> >  
-> > -  target-supply:
-> > -    description:
-> > -      regulator for SATA target power
-> > -
-> > -required:
-> > -  - compatible
-> > -  - reg
-> > -  - interrupts
-> > -
-> >  patternProperties:
-> >    "^sata-port@[0-9a-f]+$":
-> >      type: object
-> > -    additionalProperties: false
-> > -    description:
-> > -      Subnode with configuration of the Ports.
-> > -
-> > -    properties:
-> > -      reg:
-> > -        maxItems: 1
-> > -
-> > -      phys:
-> > -        maxItems: 1
-> > -
-> > -      phy-names:
-> > -        maxItems: 1
-> > -
-> > -      target-supply:
-> > -        description:
-> > -          regulator for SATA target power
-> > -
-> > -    required:
-> > -      - reg
-> >  
-> >      anyOf:
-> >        - required: [ phys ]
-> >        - required: [ target-supply ]
-> >  
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - interrupts
-> > +
-> >  unevaluatedProperties: false
-> >  
-> >  examples:
-> 
-> 
-> -- 
-> Damien Le Moal
-> Western Digital Research
