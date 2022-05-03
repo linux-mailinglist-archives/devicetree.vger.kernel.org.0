@@ -2,103 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DA64F51866C
-	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 16:18:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 01063518686
+	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 16:22:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236955AbiECOWW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 May 2022 10:22:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47112 "EHLO
+        id S235344AbiECO0W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 May 2022 10:26:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53604 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236956AbiECOWS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 10:22:18 -0400
-Received: from mail-ot1-f47.google.com (mail-ot1-f47.google.com [209.85.210.47])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34C8125E9E;
-        Tue,  3 May 2022 07:18:46 -0700 (PDT)
-Received: by mail-ot1-f47.google.com with SMTP id h10-20020a056830400a00b00605e92cc450so9769965ots.11;
-        Tue, 03 May 2022 07:18:46 -0700 (PDT)
+        with ESMTP id S232563AbiECO0W (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 10:26:22 -0400
+Received: from mail-qt1-f170.google.com (mail-qt1-f170.google.com [209.85.160.170])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D1282CE0F;
+        Tue,  3 May 2022 07:22:49 -0700 (PDT)
+Received: by mail-qt1-f170.google.com with SMTP id t11so13476807qto.11;
+        Tue, 03 May 2022 07:22:49 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=/aMt+iUL1CVqIgS6yg9mheyNXMFTAG1uctDwp9jLpck=;
-        b=Q0QTK4WNQAPlrFIeLia3/2cJGbVsHF1aLl2dgwpWT07gqFsVqL1hNNI3hnYTcumels
-         TAUhHWzTB44wZvCLZKWEV7Qp0LBwqqQTQKJuSgGdJwNuIzOb6R71qe0vA6HSLCWIuR/M
-         Y9scMmgqTytpq3pf+AMIyi5aPkRfXKWV7quV+YojAt+l6O67ZR9K1ALPlOAT9yjWFzEj
-         yB0aOjrph+SUpmVmIdxqivp7zjkYcXGIJdkMdZ/422mrkfeX2u4RjkzUJZslaNtJdpO0
-         EKEAnCF38+Qij8aGFGGcGxLpYfQpBzTzXI6XxmfzghhdzaJQV55RezlbfxuFubQmmc6s
-         mz0A==
-X-Gm-Message-State: AOAM533qinW4iQyuTYiNkPEV7CU8LW73KeGC2iV+N3ujCwCW/D+1MhD4
-        lEh684E0J0FPP68tWAqePczVE+vOIw==
-X-Google-Smtp-Source: ABdhPJy2p5eNvTSK+e4lPTi3BIf7IcquwGcze73MguD+vpeB8vzEjETxR5Ny0gGxkZHOQEReDlENHw==
-X-Received: by 2002:a9d:5913:0:b0:5cd:a050:8f55 with SMTP id t19-20020a9d5913000000b005cda0508f55mr5967584oth.44.1651587525443;
-        Tue, 03 May 2022 07:18:45 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id l24-20020a056820031800b0035eb4e5a6b0sm4984867ooe.6.2022.05.03.07.18.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 May 2022 07:18:44 -0700 (PDT)
-Received: (nullmailer pid 3575356 invoked by uid 1000);
-        Tue, 03 May 2022 14:18:44 -0000
-Date:   Tue, 3 May 2022 09:18:44 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Stephen Boyd <swboyd@chromium.org>
-Cc:     Jonathan Cameron <jic23@kernel.org>, linux-kernel@vger.kernel.org,
-        patches@lists.linux.dev, devicetree@vger.kernel.org,
-        linux-iio@vger.kernel.org, Gwendal Grignou <gwendal@chromium.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: iio: sx9324: Add CS idle/sleep mode
-Message-ID: <YnE5xMS13oSuR5rx@robh.at.kernel.org>
-References: <20220503004156.3559940-1-swboyd@chromium.org>
- <20220503004156.3559940-2-swboyd@chromium.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=3t6SRW/DjuDAlbfHDheZgdCnYyoKNEk8ORQglJBIxaM=;
+        b=61iJRRCwP2Zxr1bmTANdq0PWM7wirPKq3Q0VKIvLBce/HdspMlzso9Q5J84kkWVrhO
+         FDW2Ltwp1NcJIuyO9fvK844EPqcKKie3hr3w4ed2905RjFqI5TD3l786vkZaYguf2OWG
+         G6tVEWAUU3VpUtwgFf+Bkbgcf6W8nYVHa1f0n1ai3Bio1U984Z/QmlaoxWagYOIZ2Mln
+         COOaN1UlJMv0D8+omUmErlPZUT6Rk4H8FXRbF53G8HVnMHS2zxshONKy3Eq1r5uUgvM2
+         SreJcQbnumM1oUxwAeYSFVJmsgrS+5EFuy4rQDnTwG09NJYU/7g2ylWOrTrlv2vm9/ce
+         aqsg==
+X-Gm-Message-State: AOAM531bPSzteXZtZk0xMJwlgHScvfI/AgYpRuPYP39uYVZekfhlwBBT
+        nLqMJL4nPhLik3MkzK+LpDqrEIz/WDiYAA==
+X-Google-Smtp-Source: ABdhPJzr8STgTUcOAvo0wR7Yr1A8UCuRUgJOCFym0UGApXLBtqMaaLNhgQmuh/T7u32cZTCGDgvV+w==
+X-Received: by 2002:ac8:5a4a:0:b0:2f3:9ddf:2cdd with SMTP id o10-20020ac85a4a000000b002f39ddf2cddmr12749377qta.112.1651587768291;
+        Tue, 03 May 2022 07:22:48 -0700 (PDT)
+Received: from mail-yb1-f174.google.com (mail-yb1-f174.google.com. [209.85.219.174])
+        by smtp.gmail.com with ESMTPSA id 184-20020a3704c1000000b0069fc13ce1f5sm6022653qke.38.2022.05.03.07.22.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 03 May 2022 07:22:47 -0700 (PDT)
+Received: by mail-yb1-f174.google.com with SMTP id m128so31341315ybm.5;
+        Tue, 03 May 2022 07:22:47 -0700 (PDT)
+X-Received: by 2002:a25:6157:0:b0:645:8d0e:f782 with SMTP id
+ v84-20020a256157000000b006458d0ef782mr14945254ybb.36.1651587767157; Tue, 03
+ May 2022 07:22:47 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220503004156.3559940-2-swboyd@chromium.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+References: <20220503115557.53370-1-phil.edworthy@renesas.com>
+ <20220503115557.53370-5-phil.edworthy@renesas.com> <6fb57bcc87e091d6e88217d2b82af9da@kernel.org>
+In-Reply-To: <6fb57bcc87e091d6e88217d2b82af9da@kernel.org>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 3 May 2022 16:22:35 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdU4j=Uaz5fAODFrPud0i40TdHUo6bYq0YpdnUzWaM3-Og@mail.gmail.com>
+Message-ID: <CAMuHMdU4j=Uaz5fAODFrPud0i40TdHUo6bYq0YpdnUzWaM3-Og@mail.gmail.com>
+Subject: Re: [PATCH v3 04/12] dt-bindings: timer: arm,arch_timer: Add optional
+ clock and reset
+To:     Marc Zyngier <maz@kernel.org>
+Cc:     Phil Edworthy <phil.edworthy@renesas.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Mark Rutland <mark.rutland@arm.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 02, 2022 at 05:41:55PM -0700, Stephen Boyd wrote:
-> We need to configure the sleep and idle mode of the CS pins for this
-> device. Add a DT property to do this so pins are in a proper state
-> during sleep (either hi-z, grounded, or pulled up to vdd).
-> 
-> Cc: Gwendal Grignou <gwendal@chromium.org>
-> Signed-off-by: Stephen Boyd <swboyd@chromium.org>
-> ---
->  .../devicetree/bindings/iio/proximity/semtech,sx9324.yaml | 8 ++++++++
->  1 file changed, 8 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/proximity/semtech,sx9324.yaml b/Documentation/devicetree/bindings/iio/proximity/semtech,sx9324.yaml
-> index d265eb5258c8..6cec3481c8b2 100644
-> --- a/Documentation/devicetree/bindings/iio/proximity/semtech,sx9324.yaml
-> +++ b/Documentation/devicetree/bindings/iio/proximity/semtech,sx9324.yaml
-> @@ -126,6 +126,14 @@ properties:
->        UINT_MAX (4294967295) represents infinite. Other values
->        represent 1-1/N.
->  
-> +  semtech,cs-idle-sleep:
-> +    description:
-> +      State of CS pins during sleep mode and idle time.
-> +    enum:
-> +      - hz
+Hi Marc,
 
-I was trying to figure out how Hertz was a pin state. 'hiz' or 'hi-z' 
-instead?
+On Tue, May 3, 2022 at 3:12 PM Marc Zyngier <maz@kernel.org> wrote:
+> On 2022-05-03 12:55, Phil Edworthy wrote:
+> > Some SoCs use a gated clock for the timer and the means to reset the
+> > timer.
+> > Hence add these as optional.
+>
+> The architecture is crystal clear on the subject: the counter
+> is in an always-on domain. Why should this be visible to SW?
+> Also, reseting the counter breaks the guaranteed monotonicity
+> we rely on.
 
-> +      - gnd
-> +      - vdd
-> +
->    semtech,int-comp-resistor:
->      description:
->        Internal resistor setting for compensation.
-> -- 
-> https://chromeos.dev
-> 
-> 
+The DT bindings do state:
+
+  always-on:
+    type: boolean
+    description: If present, the timer is powered through an always-on power
+      domain, therefore it never loses context.
+
+and (surprisingly?) the absence of this property seems to be the
+norm...
+
+And:
+
+  arm,no-tick-in-suspend:
+    type: boolean
+    description: The main counter does not tick when the system is in
+      low-power system suspend on some SoCs. This behavior does not match the
+      Architecture Reference Manual's specification that the system
+counter "must
+      be implemented in an always-on power domain."
+
+So there's already precedent for clocks that can be disabled.
+
+> Worse case, this belongs to the boot firmware, not the kernel,
+> and I don't think this should be described in the DT.
+
+"DT describes hardware, not software policy"?
+
+> > --- a/Documentation/devicetree/bindings/timer/arm,arch_timer.yaml
+> > +++ b/Documentation/devicetree/bindings/timer/arm,arch_timer.yaml
+> > @@ -64,6 +64,13 @@ properties:
+> >        CNTFRQ on all CPUs to a uniform correct value. Use of this
+> > property is
+> >        strongly discouraged; fix your firmware unless absolutely
+> > impossible.
+> >
+> > +  clocks:
+> > +    description: Optional clock for the timer.
+> > +    maxItems: 1
+> > +
+> > +  resets:
+> > +    maxItems: 1
+> > +
+> >    always-on:
+> >      type: boolean
+> >      description: If present, the timer is powered through an always-on
+> > power
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
