@@ -2,77 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B6580518460
-	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 14:34:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 451B3518468
+	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 14:37:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235378AbiECMiR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 May 2022 08:38:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48140 "EHLO
+        id S231902AbiECMlK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 May 2022 08:41:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50372 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235377AbiECMiQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 08:38:16 -0400
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 958A81EAF2
-        for <devicetree@vger.kernel.org>; Tue,  3 May 2022 05:34:44 -0700 (PDT)
-Received: by mail-ed1-x52b.google.com with SMTP id z19so19643559edx.9
-        for <devicetree@vger.kernel.org>; Tue, 03 May 2022 05:34:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=ESzdvB4/btl/1VCow2f5NIGlHBg35qVo2qLML71Yw3o=;
-        b=DIsjTh73iE8Rod04+zulq6nGoNU0zcbcSAPgifnn3mAUZWqziW4iFRcBOAeaL1enXq
-         GI5CyuaYx3wCYCnzhWR9YFn97IYPDtz9V4WgcdyHKJm6p9NtZlR1KwhlLzUpCD2SUpHA
-         IX5Hu+vR6qGxrUPDATcDWaFvxnpQLtcTDCveaK9yhzJhTIC+DZRnHhhuPlUSlNYJf/H2
-         suUhmJD4gQSXmbme1yHsQpHyXzTAiYQgqWzvsnOCeK/gOf2SDGli3m8b899kwrGAYxRh
-         wMIsHASIbtfGmHQS0gFCDW3ca+q8EapxiHdeYuWFJdkkCuUyOG7dUhCAidR2CjXFenW3
-         cQgA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=ESzdvB4/btl/1VCow2f5NIGlHBg35qVo2qLML71Yw3o=;
-        b=SU7H/Ot3bWRdz9RL0yXW//8jbaNRQUTHFl2gUFTi8RsvT5+TdSvUfk1JE5Lio6ABm5
-         AA5J2pj6ycD8D82LVmAPkpihNeQpUdixONUoEgcRow8fByPBPkmbIOeMuxcVGFy5P1g9
-         CEfREV5T6Su90D9z8t33EqaRWpa/oDUOjELZP8rW+Pn0SHpyAjt/wvyPdrmGq//Eu0Em
-         pXT8MVF3lnSugEMrO0G6T00Ssat4HmZTGH+uLPpObaIJhZlHaR5r1NCmc4gp+8C12HGk
-         9mCOjrGiRarG/XkXqONuxtuBAR8ktWYy13kymThNCnrjXB/kyEVfmyQW3tfM5GWDjaKV
-         Bg4A==
-X-Gm-Message-State: AOAM532PsNCODU/lnH/kz7/mS4gU7Kz9sJADBGrr7ISvanWcaAKbxf16
-        Gg+IplY1cl9VFYr+ZFHhXt6NZA==
-X-Google-Smtp-Source: ABdhPJwnw3kZXCYUj/4HGLMHRU8PEvlEVEU0guicE86J3K3VdGDVcBLLFwNDGN6Cdg7KX1WQKAnZ+w==
-X-Received: by 2002:aa7:d9d6:0:b0:425:dafc:2fc6 with SMTP id v22-20020aa7d9d6000000b00425dafc2fc6mr17434815eds.340.1651581283193;
-        Tue, 03 May 2022 05:34:43 -0700 (PDT)
-Received: from [192.168.0.203] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id l16-20020a056402125000b0041d527833b9sm7875940edw.3.2022.05.03.05.34.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 03 May 2022 05:34:42 -0700 (PDT)
-Message-ID: <4c4b08a1-de08-d00f-dd4a-aeff2e1a9261@linaro.org>
-Date:   Tue, 3 May 2022 14:34:41 +0200
+        with ESMTP id S231181AbiECMlJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 08:41:09 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 59EB52B253;
+        Tue,  3 May 2022 05:37:37 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: kholk11)
+        with ESMTPSA id 561251F4311A
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1651581456;
+        bh=VcKWK2LsA65WsCzIX6kTsy9x8yTDsAjPHh9jmPBINM4=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=ZbNk2biGWUaWmmxI1Rz8qdy0hMnDS5YzDivXqWBqPhAX0yubGSlq+4/TcTbWS0o+z
+         +r8SIDRdbJGZ9DenfjxpYm7PhSD5PDhmgUvKeD/ZlpUKUwzy28V5Z+lvn74bNocuae
+         SwjG9OtCKTEpakm7uCM/R5H+un+vgLE8kFAzSLImm898nhRAX9mvwdy6H+xfcziC0d
+         HmXYAR+nnJ5K5B29Bt+gXuc6Vsm/XodHeHKbBpBGtLmlP8K40w7ctaqn6re513p9tW
+         yeS1mR+FZwXkoH9FcAw3XugqB09rBfb92G+u51as44nRrh6UoFutQeXWs29fNfD/CS
+         a3ehCKkySndjg==
+Message-ID: <0f5f6db3-34cd-ccdd-9ec4-5ba21480df64@collabora.com>
+Date:   Tue, 3 May 2022 14:37:32 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [PATCH 1/4] dt-bindings: mfd: atmel,flexcom: Convert to
- json-schema
+Subject: Re: [PATCH v6 13/16] dt-bindings: reset: mediatek: Add infra_ao reset
+ index for MT8192/MT8195
 Content-Language: en-US
-To:     Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>,
-        krzysztof.kozlowski+dt@linaro.org, nicolas.ferre@microchip.com,
-        alexandre.belloni@bootlin.com, claudiu.beznea@microchip.com,
-        peda@axentia.se
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, lee.jones@linaro.org,
-        linux@armlinux.org.uk, Manohar.Puri@microchip.com,
-        UNGLinuxDriver@microchip.com
-References: <20220503105528.12824-1-kavyasree.kotagiri@microchip.com>
- <20220503105528.12824-2-kavyasree.kotagiri@microchip.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220503105528.12824-2-kavyasree.kotagiri@microchip.com>
-Content-Type: text/plain; charset=UTF-8
+To:     Rex-BC Chen <rex-bc.chen@mediatek.com>, mturquette@baylibre.com,
+        sboyd@kernel.org, matthias.bgg@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     p.zabel@pengutronix.de, chun-jie.chen@mediatek.com,
+        wenst@chromium.org, runyang.chen@mediatek.com,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20220503093856.22250-1-rex-bc.chen@mediatek.com>
+ <20220503093856.22250-14-rex-bc.chen@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20220503093856.22250-14-rex-bc.chen@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,127 +61,11 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/05/2022 12:55, Kavyasree Kotagiri wrote:
-> Convert the Atmel flexcom device tree bindings to json schema.
+Il 03/05/22 11:38, Rex-BC Chen ha scritto:
+> To support reset of infra_ao, add the index of infra_ao reset of
+> thermal/svs/pcei for MT8192 and thermal/svs for MT8195.
 > 
-> Signed-off-by: Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>
-> ---
->  .../bindings/mfd/atmel,flexcom.yaml           | 68 +++++++++++++++++++
->  .../devicetree/bindings/mfd/atmel-flexcom.txt | 63 -----------------
->  2 files changed, 68 insertions(+), 63 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/mfd/atmel,flexcom.yaml
->  delete mode 100644 Documentation/devicetree/bindings/mfd/atmel-flexcom.txt
-> 
+> Signed-off-by: Rex-BC Chen <rex-bc.chen@mediatek.com>
 
-Thank you for your patch. There is something to discuss/improve.
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-> diff --git a/Documentation/devicetree/bindings/mfd/atmel,flexcom.yaml b/Documentation/devicetree/bindings/mfd/atmel,flexcom.yaml
-> new file mode 100644
-> index 000000000000..62dea9b891d8
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mfd/atmel,flexcom.yaml
-> @@ -0,0 +1,68 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mfd/atmel,flexcom.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Device tree bindings for Atmel Flexcom (Flexible Serial Communication Unit)
-> +
-> +maintainers:
-> +  - Rob Herring <robh+dt@kernel.org>
-
-Person with access to hardware/datasheet/knowledge should be here, not
-DT bindings maintainer.
-
-> +
-> +description: |
-
-No need for "|"
-
-> +  The Atmel Flexcom is just a wrapper which embeds a SPI controller,
-> +  an I2C controller and an USART. Only one function can be used at a
-> +  time and is chosen at boot time according to the device tree.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - atmel,sama5d2-flexcom
-> +
-> +  reg:
-> +    minItems: 1
-
-no need for minItems
-
-> +    items:
-> +      - description: Flexcom registers
-
-Description is obvious, so just replace all three lines with
-	maxItems: 1
-
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  "#address-cells": true
-> +
-> +  "#size-cells": true
-
-
-These should have some fixed value (e.g. const: 1).
-Second question - they do not look valid since you do not have any
-children nodes. It looks like you want children, so you need to define them.
-
-> +
-> +  ranges:
-> +    description:
-> +      One range for the full I/O register region. (including USART,
-> +      TWI and SPI registers).
-> +    items:
-> +      minItems: 3
-
-no need for minItems
-
-> +      maxItems: 3
-> +
-> +  atmel,flexcom-mode:
-> +    description:
-> +      One of the values. UART, I2C, SPI.
-
-This does not describe anything.
-
-If you have defines here, mention the header.
-
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    enum: [0, 1, 2]
-
-Here is 0 not UART?
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - "#address-cells"
-> +  - "#size-cells"
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    flx0: flexcom@f8034000 {> +          compatible = "atmel,sama5d2-flexcom";
-> +          reg = <0xf8034000 0x200>;
-> +          clocks = <&flx0_clk>;
-> +          #address-cells = <1>;
-> +          #size-cells = <1>;
-
-No need for address/size - no children here.
-
-> +          ranges = <0x0 0xf8034000 0x800>;
-
-Why do you need ranges without children?
-
-
-Best regards,
-Krzysztof
