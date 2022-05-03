@@ -2,60 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6ABFC5184AB
-	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 14:58:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 844345184B5
+	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 15:01:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230520AbiECNCI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 May 2022 09:02:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41328 "EHLO
+        id S235669AbiECNFL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 May 2022 09:05:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45510 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230133AbiECNCH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 09:02:07 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E1F133A20;
-        Tue,  3 May 2022 05:58:35 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id B82D81F44301
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1651582714;
-        bh=x3OQ1oHSHfYp4EWTit5w0xva4dWoTSyHlpVA/f0sBc8=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=oE4Gzqh7OQZobIVPBHen/agv7mJlYdisUly3VljCB4nzrklgVosKcpjP/KQOtoNfk
-         DAMgQab7UjiiKvjE3rCyi2RSCQQQWkTKn4wGCfOX6CXlnWkLGX0mBI8thk68jbVXjk
-         HzzCj5qWKP6/ZkqopFTk/2M9IexLWkJfU9KS/YD/nygGcXa8XFDSDlUV9EQVpnk6k5
-         LMf45muBV7e0FDFb/S9UQzm4bmQWbn9z1HXyrS4ZaG6uaoROVu/6/GbcMEhT26IQCo
-         A6df+5G40WYA9IITkq57SlpR9v/ftM3fPD2jB+bwwc4jIsaDQbkWXna/+MEW8XMP+C
-         MvmEEtEa0xFAg==
-Message-ID: <64129cb4-f33f-6017-4923-63f67f7067fa@collabora.com>
-Date:   Tue, 3 May 2022 14:58:31 +0200
+        with ESMTP id S233883AbiECNFK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 09:05:10 -0400
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 33A5619025
+        for <devicetree@vger.kernel.org>; Tue,  3 May 2022 06:01:37 -0700 (PDT)
+Received: by mail-ed1-x52a.google.com with SMTP id t5so9125964edw.11
+        for <devicetree@vger.kernel.org>; Tue, 03 May 2022 06:01:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=gG0dwpdZEvdDBuvEs96CRkJ96qnrRXLRezy0ryDW5k4=;
+        b=ALFTAYUx97uyNKW+lAnYdzjZir2++CoTgHbyUjF7Tyu8FB355br9ymFrLHz0yjDrvH
+         DrBwdFc3LklD9yrRb89qLlvZA45swTSbmHuxKgldKlCxDB9G9Bd/rTJMgy2E5BhuXpNG
+         yb3uDyAd0RZWZOAzkIzno8BwG1U9FqEA2iDDfvFQdY1zAtE4mcYmqd0IK3E8B6WW5z6O
+         Il7T85auivSNN1fPpuxtB8GmcDN5yYpug0AHyoO9xlmN/aBKvPJd2Lo3lmc7T3UxTryT
+         aSyIBP9yrCWMYKMi9FYlBuxD7LnSgPuAOlxYmPFIuuY5zYNOFH/jYeetXY4nPgZt1+cp
+         4lTQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=gG0dwpdZEvdDBuvEs96CRkJ96qnrRXLRezy0ryDW5k4=;
+        b=AmBBQdFCkVEerpUCHc3CvSw6UNvTHFHWq1u8rV5vi8XIjPsJ9m66x0PQRll4LZY6fR
+         0Mnad9TXeb4o+qoDLUNJYVScMCEpgBf0xL9YwrBQ/6HFFbXXmCPLLzurEvX98DuO5y8a
+         YzvIjlj9SJeQYs9ixYlKVJJnUSahEukmTYA/OHIrh23nHx98055M8Y4PEuBhJnX+v8ys
+         0u82UZ7NmADWwiYYMklmgAHCV96BccqFWlhmyj90lr2AwKTDRU7Eqrokan/o1RpgDVJq
+         VnFCnk/jkvAB1S4kVI02TCNUCkgRPjOEUWJRt/XrwdmQmlvHmb3MyF2RmSj/QqorbpUz
+         Lppg==
+X-Gm-Message-State: AOAM5313QUMs4R5G5JHcD6TF4WzVkGdsPhDNlErbzUM4tAsp/N9cBBHF
+        Zu/h3Apavss6XVWY6dgwW5i4oA==
+X-Google-Smtp-Source: ABdhPJx2Srwjeq9nawpv4x1JuljzsyhT5QkLcbjVFz2bgafQYS+1B1AShuziH+AsAOVKPNcC8AG0zA==
+X-Received: by 2002:aa7:c0c4:0:b0:425:c776:6f17 with SMTP id j4-20020aa7c0c4000000b00425c7766f17mr17610108edp.131.1651582895443;
+        Tue, 03 May 2022 06:01:35 -0700 (PDT)
+Received: from [192.168.0.203] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id hy10-20020a1709068a6a00b006f3ef214dd4sm4687649ejc.58.2022.05.03.06.01.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 03 May 2022 06:01:34 -0700 (PDT)
+Message-ID: <9d7514fd-511e-6596-5eb0-6001ead5a081@linaro.org>
+Date:   Tue, 3 May 2022 15:01:33 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [PATCH 1/2] dt-bindings: power: Add MediaTek Helio X10 MT6795
- power domains
+Subject: Re: [PATCH 1/7] dt-bindings: gpio: renesas,rcar-gpio: R-Car V3U is
+ R-Car Gen4
 Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        robh+dt@kernel.org
-Cc:     krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
-        chun-jie.chen@mediatek.com, weiyi.lu@mediatek.com,
-        mbrugger@suse.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, kernel@collabora.com,
-        nfraprado@collabora.com
-References: <20220503105436.54901-1-angelogioacchino.delregno@collabora.com>
- <20220503105436.54901-2-angelogioacchino.delregno@collabora.com>
- <ac774c74-4577-3dfc-7bf4-3c180d45b420@linaro.org>
- <94dbb7ee-764a-5568-a044-80dbfe77c29a@collabora.com>
- <d371fff5-0d45-b827-2696-3862b3c5fd59@linaro.org>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <d371fff5-0d45-b827-2696-3862b3c5fd59@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+Cc:     devicetree@vger.kernel.org, dmaengine@vger.kernel.org,
+        linux-gpio@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        linux-i2c@vger.kernel.org, iommu@lists.linux-foundation.org,
+        linux-serial@vger.kernel.org, linux-watchdog@vger.kernel.org
+References: <cover.1651497024.git.geert+renesas@glider.be>
+ <5628a862688bd9d3b4f6c66cb338671211058641.1651497024.git.geert+renesas@glider.be>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <5628a862688bd9d3b4f6c66cb338671211058641.1651497024.git.geert+renesas@glider.be>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -63,23 +89,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 03/05/22 14:57, Krzysztof Kozlowski ha scritto:
-> On 03/05/2022 14:43, AngeloGioacchino Del Regno wrote:
->>>
->>> If it is not a derivative work, should be GPL-2.0 OR BSD
->>>
->>
->> On that, I agree with you, fully.
->>
->> Though, all of the mt(xxxx)-power.h headers provide this license tag and I
->> wanted to follow that to give the same.
->>
->> Should I change it to (GPL-2.0-only OR BSD-2-Clause)?
+On 02/05/2022 15:34, Geert Uytterhoeven wrote:
+> Despite the name, R-Car V3U is the first member of the R-Car Gen4
+> family.  Hence move its compatible value to the R-Car Gen4 section.
 > 
-> Yes, please, for this one.
-> 
-> For the other bindings - you would need acks from people involved.
-> 
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-I'm glad to read this. I'll change it in the next version. Thank you!
 
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+
+Best regards,
+Krzysztof
