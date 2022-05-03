@@ -2,63 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E9F6517B44
-	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 02:37:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E1DF3517BAE
+	for <lists+devicetree@lfdr.de>; Tue,  3 May 2022 03:28:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229516AbiECAkq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 May 2022 20:40:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47888 "EHLO
+        id S229671AbiECBbf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 May 2022 21:31:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45722 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229484AbiECAkp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 May 2022 20:40:45 -0400
-Received: from mail-oi1-f169.google.com (mail-oi1-f169.google.com [209.85.167.169])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F32BA4D26C;
-        Mon,  2 May 2022 17:37:09 -0700 (PDT)
-Received: by mail-oi1-f169.google.com with SMTP id m25so2921127oih.2;
-        Mon, 02 May 2022 17:37:09 -0700 (PDT)
+        with ESMTP id S229661AbiECBbf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 May 2022 21:31:35 -0400
+Received: from mail-pf1-x435.google.com (mail-pf1-x435.google.com [IPv6:2607:f8b0:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A15336E35
+        for <devicetree@vger.kernel.org>; Mon,  2 May 2022 18:28:04 -0700 (PDT)
+Received: by mail-pf1-x435.google.com with SMTP id x52so12061647pfu.11
+        for <devicetree@vger.kernel.org>; Mon, 02 May 2022 18:28:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=khN4bSzgSmeJrIrtbbdzuHfsBE5dtKb/D17YqTGzfL8=;
+        b=XCO8kH0F5C04LPnTIDtteEB5GrIymqMB+WvOR2GPxPFQ9xKWdXuAju9Fd8Lteah3LV
+         f4YfbhntC1qJBBlU9kdX42V0YIP5/HGfJ2LUXkT71UWH2KPOJ+367UujuCuMBbsjcgtv
+         +nDQnnE36Rcv9LCYU9FRCyil9/jnvSBcMW9jY=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=oPoGfUm6HdS/RdvyDE4eYbdws9jspTBGYeir1rydtWI=;
-        b=A9TJ4JBeUXaqY3c1CO3CTAGFlCGj44sMrKZZbpkgnKkWWuWuLe7WzuuEjqV69qGR9r
-         BKC0sY6Xs0O6wvycVkhfajCTVq8IQudPwMCXzluHZqQKiGr5HzFcH7PaDdkiN3S1oH1v
-         zNOtx7/iLP8Wv1pz3mw69uN8l4ddGwHJR2p+e/CsYanwofqbncdWMVIMpKdg/x+2ZLBl
-         gtY+ptHYsS/txx2k7pRgvw9gh9BqJJ/ftoydNu9bTeKcO/Sd+91nqZiOcCYxEGh41005
-         aUwpalXYm0YCrapYuisbCP/QaJo5Xnqqug2zJ83SsqwLLL9AXdyhM2b7+wieQS4TxmAz
-         Ym5g==
-X-Gm-Message-State: AOAM5301DSzukuyLe79dJi+AZKgWWpwHfByjoGa69jXZqBhjDAHmi6D2
-        saPowshxHMmAUSlp4evKJw==
-X-Google-Smtp-Source: ABdhPJw3ddsqRq6pulMnNx0Fn+HlUlJlRBvLqA0Dm6SigHDMb7V21SDoPfc90N/p+iaBz3w66JpvOA==
-X-Received: by 2002:a05:6808:3083:b0:325:f167:415f with SMTP id bl3-20020a056808308300b00325f167415fmr846706oib.160.1651538096054;
-        Mon, 02 May 2022 17:34:56 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id ay7-20020a056808300700b00325cda1ff8csm2864803oib.11.2022.05.02.17.34.55
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=khN4bSzgSmeJrIrtbbdzuHfsBE5dtKb/D17YqTGzfL8=;
+        b=k0LJdUSwHaJN8fdZEVkuzePnG9lSFyiyp0mE8SdvV2voBFyB9yXu74HM+OqIPUF7AF
+         YAcws/Y4KxFkYUCwX4v3LsZNWWdEqO3/aqHPZZAeoxglcNVc8LjvSmrNGBvUo9XJTarj
+         /PYYJGPsFFNUwWlFDHhL2LORfAlz0Qwhox4QqBWstyMLSjOt55rIvO69laUn+89OAZG6
+         7y8GJgY1JHgQ57PmKp7pHdwGgwcnuQQ72WAdtwlSvUymfRAuaXiAYpEgWv+Q9st70mjk
+         wLoOIxKL/ZXqwYd/KMw+IWVIx/twvJ2azelwp3Wyy8au8+EB6HpkToXO0+Lrd5LBwSyY
+         /QEA==
+X-Gm-Message-State: AOAM532d38rwSxt/9yqex9jkyHOrD5/BqI78GW7QwyEfZ8J66gP7ETpd
+        r4bVf3xgIFkN+FBAajBrBEyMjx7b+iolDA==
+X-Google-Smtp-Source: ABdhPJzAgd+FaWOrobdXhjw9IxyYdko+Q1do11+CtCUhF7Ks1+/BdcIulft8Pi2z2X4LZbdJBn53uw==
+X-Received: by 2002:a65:6aa3:0:b0:3ab:23fb:adae with SMTP id x3-20020a656aa3000000b003ab23fbadaemr11772254pgu.278.1651538518337;
+        Mon, 02 May 2022 17:41:58 -0700 (PDT)
+Received: from smtp.gmail.com ([2620:15c:202:201:15e:c760:9a04:7fbe])
+        by smtp.gmail.com with ESMTPSA id i10-20020aa78b4a000000b0050dc7628177sm5258794pfd.81.2022.05.02.17.41.57
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 May 2022 17:34:55 -0700 (PDT)
-Received: (nullmailer pid 2117695 invoked by uid 1000);
-        Tue, 03 May 2022 00:34:54 -0000
-Date:   Mon, 2 May 2022 19:34:54 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Keerthy <j-keerthy@ti.com>
-Cc:     kristo@kernel.org, amitk@kernel.org, devicetree@vger.kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski@linaro.org,
-        linux-kernel@vger.kernel.org, rui.zhang@intel.com,
-        daniel.lezcano@linaro.org, vigneshr@ti.com,
-        linux-pm@vger.kernel.org
-Subject: Re: [PATCH v6 1/4] dt-bindings: thermal: k3-j72xx: Add VTM bindings
- documentation
-Message-ID: <YnB4rtn87l5nXtRM@robh.at.kernel.org>
-References: <20220427064635.24898-1-j-keerthy@ti.com>
- <20220427064635.24898-2-j-keerthy@ti.com>
+        Mon, 02 May 2022 17:41:57 -0700 (PDT)
+From:   Stephen Boyd <swboyd@chromium.org>
+To:     Jonathan Cameron <jic23@kernel.org>
+Cc:     linux-kernel@vger.kernel.org, patches@lists.linux.dev,
+        devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
+        Gwendal Grignou <gwendal@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>
+Subject: [PATCH 0/2] iio: sx9324: Support CS idle mode
+Date:   Mon,  2 May 2022 17:41:54 -0700
+Message-Id: <20220503004156.3559940-1-swboyd@chromium.org>
+X-Mailer: git-send-email 2.36.0.464.gb9c8b46e94-goog
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220427064635.24898-2-j-keerthy@ti.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -66,21 +67,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 27 Apr 2022 12:16:32 +0530, Keerthy wrote:
-> Add VTM bindings documentation. In the Voltage Thermal
-> Management Module(VTM), K3 J72XX supplies a voltage
-> reference and a temperature sensor feature that are gathered in the band
-> gap voltage and temperature sensor (VBGAPTS) module. The band
-> gap provides current and voltage reference for its internal
-> circuits and other analog IP blocks. The analog-to-digital
-> converter (ADC) produces an output value that is proportional
-> to the silicon temperature.
-> 
-> Signed-off-by: Keerthy <j-keerthy@ti.com>
-> ---
->  .../bindings/thermal/ti,j72xx-thermal.yaml    | 64 +++++++++++++++++++
->  1 file changed, 64 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/thermal/ti,j72xx-thermal.yaml
-> 
+I need one more property to set another regsiter field for 
+how to configure the CS pins during idle and sleep modes. This is based
+on the latest patch series from Gwendal[1]
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Stephen Boyd (2):
+  dt-bindings: iio: sx9324: Add CS idle/sleep mode
+  iio: sx9324: Add setting for CS idle mode
+
+ .../bindings/iio/proximity/semtech,sx9324.yaml   |  8 ++++++++
+ drivers/iio/proximity/sx9324.c                   | 16 ++++++++++++++++
+ 2 files changed, 24 insertions(+)
+
+[1] https://lore.kernel.org/all/20220429220144.1476049-1-gwendal@chromium.org/
+
+base-commit: d79478a79cfa393cde46bccb05d52fc7d875d2e2
+prerequisite-patch-id: 05986765e921df4c9725d10a3f51e68b0b5cc211
+prerequisite-patch-id: 5e47b28af046dce1eb7d7ca492c466df0f30e07c
+prerequisite-patch-id: adb59d1a14b74ddfe02c442da8bcca04765e7d15
+prerequisite-patch-id: ec6069ee00463db27826962537ff880e69522f70
+prerequisite-patch-id: e40f2a3048da2ff28bb426b85e41d277f29f18ef
+prerequisite-patch-id: 82077662b97c09014c5b291fe5a42938a29ddbcd
+prerequisite-patch-id: d02f0ec3be1fa9cdbf02a22c700982008d0550bd
+prerequisite-patch-id: a02a8faefc5b7b68b99c0cc326973948c9356b60
+prerequisite-patch-id: 522c808e4b8bf99b8404c01d495526a685e5b97a
+-- 
+https://chromeos.dev
+
