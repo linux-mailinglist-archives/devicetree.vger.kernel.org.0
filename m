@@ -2,106 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BB0A0519BE5
-	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 11:34:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 32FBA519BF1
+	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 11:35:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347182AbiEDJgW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 May 2022 05:36:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41824 "EHLO
+        id S231773AbiEDJif (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 May 2022 05:38:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41826 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347432AbiEDJgK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 05:36:10 -0400
-Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::222])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A73227147;
-        Wed,  4 May 2022 02:31:51 -0700 (PDT)
-Received: (Authenticated sender: clement.leger@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id A6E9A4001C;
-        Wed,  4 May 2022 09:31:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1651656710;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=0f9OuIqnKWeX+OGZsEpXifhCvbt8Y6SEkR4j7N0Js9U=;
-        b=Sjcw+PjsAzOmxGlvUsaJ7BeujYxDyRTETAWhccRn2Z+gu595uhugCY7X86KNktUWRg03+i
-        1PqAkMKeJ6ZRm6rRBSTAxDWgUuMY1CprQYXcghZ1hkarkVNBLmAAAvI+eneqFLmiEW7x9N
-        vupVwhYmG7eNE6jJDKQigTwM+0uroz8AMLUMt3EkXmsB/5YcoY3hnXC660z08UHX38FAIs
-        BO+IhCBS4IsLjF3WKK+whL9GniDeYz6t6QQkFey/9t3qi7ofXugPsTtMlGt/w4WCgz1JgZ
-        ALT+rQIpCE/1hgTCqMmgIIj5zNuwKJPv6zegYnkIE2CGxMqP/1U/1LnyoJF6oA==
-From:   =?UTF-8?q?Cl=C3=A9ment=20L=C3=A9ger?= <clement.leger@bootlin.com>
-To:     Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>
-Cc:     =?UTF-8?q?Cl=C3=A9ment=20L=C3=A9ger?= <clement.leger@bootlin.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Herve Codina <herve.codina@bootlin.com>,
-        =?UTF-8?q?Miqu=C3=A8l=20Raynal?= <miquel.raynal@bootlin.com>,
-        Milan Stevanovic <milan.stevanovic@se.com>,
-        Jimmy Lalande <jimmy.lalande@se.com>,
-        Pascal Eberhard <pascal.eberhard@se.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org, netdev@vger.kernel.org
-Subject: [PATCH net-next v3 12/12] MAINTAINERS: add Renesas RZ/N1 switch related driver entry
-Date:   Wed,  4 May 2022 11:30:00 +0200
-Message-Id: <20220504093000.132579-13-clement.leger@bootlin.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220504093000.132579-1-clement.leger@bootlin.com>
-References: <20220504093000.132579-1-clement.leger@bootlin.com>
+        with ESMTP id S1347712AbiEDJi3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 05:38:29 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBDAF26564;
+        Wed,  4 May 2022 02:34:19 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: kholk11)
+        with ESMTPSA id 2CAAF1F4473A
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1651656858;
+        bh=VSz/LLsmEm1Js0cfKn+Hmm9ubakkhyVvI6T42wiqQyk=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=PlOwHCc+CFruh7L8UWYeg6XK6tzGsIY3A2394VHvH8aGKIVw+zd8ST1yVt4m+INrb
+         1s2k2q32Gv5bC+41o+SmWhFiphpzbJ5yQeajgxwHooH6zkckIfkifHf+w5AiGDMPl0
+         kvWZ/JneQLrziWClXJmWNeiaRwTHVMxFAl979XZzVmor5c1E3dIP3XMqRbhxJnys5D
+         jU3dtS3ImUuZ+T3SUIxjalgdj5OGQqtW0p6BlQSIsAkxPaIYRuZllU0A9Bm9ffb1ks
+         ewmt7ax2IyoGLZzG1KddFzEgFs3BA1Quzi3aVXfLG6uDsHnxXTEDEXzqTVeIKzBMRW
+         jM+1TX3J5eQ+A==
+Message-ID: <3bd77be6-82ea-8c24-242a-0ee486ce888c@collabora.com>
+Date:   Wed, 4 May 2022 11:34:15 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH 2/2] soc: mediatek: devapc: Add support for MT8186
+Content-Language: en-US
+To:     Rex-BC Chen <rex-bc.chen@mediatek.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com
+Cc:     neal.liu@mediatek.com, runyang.chen@mediatek.com,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20220429065429.7957-1-rex-bc.chen@mediatek.com>
+ <20220429065429.7957-3-rex-bc.chen@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20220429065429.7957-3-rex-bc.chen@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-After contributing the drivers, volunteer for maintenance and add
-myself as the maintainer for Renesas RZ/N1 switch related drivers.
+Il 29/04/22 08:54, Rex-BC Chen ha scritto:
+> Add devapc data and compatible to support MT8186 devapc.
+> 
+> Signed-off-by: Runyang Chen <runyang.chen@mediatek.com>
+> Signed-off-by: Rex-BC Chen <rex-bc.chen@mediatek.com>
+> ---
+>   drivers/soc/mediatek/mtk-devapc.c | 15 +++++++++++++++
+>   1 file changed, 15 insertions(+)
+> 
+> diff --git a/drivers/soc/mediatek/mtk-devapc.c b/drivers/soc/mediatek/mtk-devapc.c
+> index 7c65ad3d1f8a..762e0e4d967d 100644
+> --- a/drivers/soc/mediatek/mtk-devapc.c
+> +++ b/drivers/soc/mediatek/mtk-devapc.c
+> @@ -227,10 +227,25 @@ static const struct mtk_devapc_data devapc_mt6779 = {
+>   	.vio_shift_con_offset = 0xF20,
+>   };
+>   
+> +static const struct mtk_devapc_data devapc_mt8186 = {
+> +	.vio_idx_num = 519,
+> +	.vio_mask_offset = 0x0,
+> +	.vio_sta_offset = 0x400,
+> +	.vio_dbg0_offset = 0x900,
+> +	.vio_dbg1_offset = 0x904,
+> +	.apc_con_offset = 0xF00,
+> +	.vio_shift_sta_offset = 0xF10,
+> +	.vio_shift_sel_offset = 0xF14,
+> +	.vio_shift_con_offset = 0xF20,
+> +};
 
-Signed-off-by: Clément Léger <clement.leger@bootlin.com>
----
- MAINTAINERS | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+Hello Rex,
+since the register layout is common across a lot of MediaTek SoCs and basically
+only the vio_idx_num wildly varies between them, can you separate this parameter
+from the mtk_devapc_data struct?
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index fa6896e8b2d8..9e1d2647f8bc 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -16872,6 +16872,17 @@ S:	Supported
- F:	Documentation/devicetree/bindings/iio/adc/renesas,rzg2l-adc.yaml
- F:	drivers/iio/adc/rzg2l_adc.c
- 
-+RENESAS RZ/N1 A5PSW SWITCH DRIVER
-+M:	Clément Léger <clement.leger@bootlin.com>
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/net/dsa/renesas,rzn1-a5psw.yaml
-+F:	Documentation/devicetree/bindings/net/pcs/renesas,rzn1-miic.yaml
-+F:	drivers/net/dsa/rzn1_a5psw*
-+F:	drivers/net/pcs/pcs-rzn1-miic.c
-+F:	include/dt-bindings/net/pcs-rzn1-miic.h
-+F:	include/linux/pcs-rzn1-miic.h
-+F:	net/dsa/tag_rzn1_a5psw.c
-+
- RENESAS R-CAR GEN3 & RZ/N1 NAND CONTROLLER DRIVER
- M:	Miquel Raynal <miquel.raynal@bootlin.com>
- L:	linux-mtd@lists.infradead.org
--- 
-2.34.1
+I propose the following:
+
+struct mtk_devapc_regs {
+	/* reg offset */
+	u32 vio_mask_offset;
+	u32 ... etc
+};
+
+struct mtk_devapc_data {
+	u32 vio_idx_num;
+	const struct mtk_devapc_regs *regs;
+};
+
+static const struct mtk_devapc_regs devapc_regs_mt6779 = {
+	.vio_mask_offset = 0x0,
+	.vio...etc
+};
+
+static const struct mtk_devapc_data devapc_mt6779 = {
+	.vio_idx_num = 511,
+	.regs = devapc_regs_mt6779,
+};
+
+static const struct mtk_devapc_data devapc_mt8186 = {
+	.vio_idx_num = 519,
+	.regs = devapc_regs_mt6779,
+};
+
+Regards,
+Angelo
 
