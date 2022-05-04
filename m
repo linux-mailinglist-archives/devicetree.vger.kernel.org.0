@@ -2,94 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F8D051A015
-	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 14:56:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DFDAA51A02B
+	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 15:03:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229753AbiEDM75 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 May 2022 08:59:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44454 "EHLO
+        id S1350146AbiEDNGw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 May 2022 09:06:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49194 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349930AbiEDM74 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 08:59:56 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CDCBB3B023;
-        Wed,  4 May 2022 05:56:20 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 881F4B824B2;
-        Wed,  4 May 2022 12:56:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 79D48C385AF;
-        Wed,  4 May 2022 12:56:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1651668978;
-        bh=gdxj5YVJJXTcWteagPD81sMBdc9Aq1VtB4tSVNICDTw=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=j4hq9cpxhq7G29FUlZFS8TbG6vfR1K8u5AaC8crxTXMBO8geP2iXkvV5HrxQhV7C2
-         OYV9YCzCTcqQOzl7h21grCFKxuXr81cupttv+s7iGkul7dU+ttNGGKFCzgPUFmyhgM
-         +bPU0LKLn51pn4zYmtEdLgXViWNUnbBPMkKLyv1rWojkcr5RB8qSizIzF1yzkPmeVY
-         JNr3D1amGpASDewu/l9N74CqKXGtuB4AyKI5BX3joIAqmkLDDY02po6BxuqSFqDkWn
-         JQq5VEkE2gBeQzUM0VErYAHoufbIIR/8PLdurA9AugZmb6avbELzkkWOQs7wgfqqAN
-         O2AETqevLiLdQ==
-Date:   Wed, 4 May 2022 13:56:13 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Zev Weiss <zev@bewilderbeest.net>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>, linux-kernel@vger.kernel.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        with ESMTP id S1350140AbiEDNGq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 09:06:46 -0400
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8421B377E0;
+        Wed,  4 May 2022 06:03:09 -0700 (PDT)
+Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 244A6Oxs016063;
+        Wed, 4 May 2022 15:02:41 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=selector1;
+ bh=thMF4CPlkTsnZstfuDPh8HVl0o2Yyz4DhhVhNaGVUps=;
+ b=2qokIaFqOEp/FXAivRHLXQwfKtxNjCCZENfb4vNYvO/+VzMxONx79mBqLl3SMjLaGaGE
+ mP3Fc9FLIUNTzD5ePCe9yefrHAKFfrEnrUnpKBC7KHFvjezEsLEkfGjys50xJHnUQklD
+ HMP5KoJ5tuLTcP6OkKXwu4jgPIV1GQuhP2OJ9kzkAP+NMawrCgIcIZ1zsVyJcslKqsGr
+ yLkDPyNW+i2TYAg1jxuTofrbZCLPUrUaZw7MczHBKKBHHE1Y1mGF2jTSyDMIsgEijErp
+ 3TqNf2ZzhGT41UpLkR6VPTnXU0erM80zilESEUNqB+UxWN5pamwsmHuh/wM4ZuywMXmp Qg== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3frvf0m4ed-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 04 May 2022 15:02:41 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 7DEE810002A;
+        Wed,  4 May 2022 15:02:40 +0200 (CEST)
+Received: from Webmail-eu.st.com (sfhdag2node2.st.com [10.75.127.5])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 6A50B21FE9E;
+        Wed,  4 May 2022 15:02:40 +0200 (CEST)
+Received: from localhost (10.75.127.45) by SFHDAG2NODE2.st.com (10.75.127.5)
+ with Microsoft SMTP Server (TLS) id 15.0.1497.26; Wed, 4 May 2022 15:02:39
+ +0200
+From:   Valentin Caron <valentin.caron@foss.st.com>
+To:     Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, openbmc@lists.ozlabs.org
-Subject: Re: [PATCH 0/6] regulator: core: Add support for external outputs
-Message-ID: <YnJ37QysSaa+gAps@sirena.org.uk>
-References: <20220504065041.6718-1-zev@bewilderbeest.net>
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>
+CC:     Gabriel Fernandez <gabriel.fernandez@foss.st.com>,
+        Amelie Delaunay <amelie.delaunay@foss.st.com>,
+        Valentin Caron <valentin.caron@foss.st.com>,
+        <linux-rtc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH 0/6] rtc: stm32: add alarm out and LSCO features.
+Date:   Wed, 4 May 2022 15:02:27 +0200
+Message-ID: <20220504130233.330983-1-valentin.caron@foss.st.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="w/VS4GgcCdfjbUlx"
-Content-Disposition: inline
-In-Reply-To: <20220504065041.6718-1-zev@bewilderbeest.net>
-X-Cookie: Your present plans will be successful.
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.75.127.45]
+X-ClientProxiedBy: SFHDAG2NODE2.st.com (10.75.127.5) To SFHDAG2NODE2.st.com
+ (10.75.127.5)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.858,Hydra:6.0.486,FMLib:17.11.64.514
+ definitions=2022-05-04_04,2022-05-04_01,2022-02-23_01
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On STM32MP1x SOCs, RTC is able to output some signals on its own pins.
 
---w/VS4GgcCdfjbUlx
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+This series add the possibility to select two of these signals on
+RTC pins :
+ - LSCO (Low Speed Clock Output) that allow to output LSE clock on a pin.
+   On STM32MP1x Discovery boards this feature is used to generate a clock
+   to Wifi/Bluetooth module.
+ - Alarm out that allow to send a pulse on a pin when alarm A of the RTC
+   expires.
 
-On Tue, May 03, 2022 at 11:50:35PM -0700, Zev Weiss wrote:
+Amelie Delaunay (2):
+  dt-bindings: rtc: stm32: add st,lsco optional property to select
+    output
+  rtc: stm32: add Low Speed Clock Output (LSCO) support
 
-> The DT bindings changes (patches 1 and 2) consist of a boolean
-> regulator property to mark it as supplying an external output, and a
-> reg-external-output binding to act as a downstream device representing
-> that output.  The redundancy between the two maybe isn't entirely
-> ideal, but it was the cleanest approach I've been able to come up with
-> so far in terms of working with the regulator subsystem; I'm certainly
-> open to suggestions for better ways of going about this.
+Gabriel Fernandez (2):
+  ARM: dts: stm32: add RTC LSCO support on stm32mp157c-dk2
+  ARM: dts: stm32: add RTC LSCO support on stm32mp135f-dk
 
-Nothing in the series articulates what the purpose of the redundancy is
-- your description of this is a consumer, why would the regulator itself
-care what's connected to it?
+Valentin Caron (2):
+  dt-bindings: rtc: stm32: add alarm A out property to select output
+  rtc: stm32: add alarm A out feature
 
---w/VS4GgcCdfjbUlx
-Content-Type: application/pgp-signature; name="signature.asc"
+ .../devicetree/bindings/rtc/st,stm32-rtc.yaml |  37 +++
+ arch/arm/boot/dts/stm32mp13-pinctrl.dtsi      |   6 +
+ arch/arm/boot/dts/stm32mp135f-dk.dts          |   4 +
+ arch/arm/boot/dts/stm32mp15-pinctrl.dtsi      |   6 +
+ arch/arm/boot/dts/stm32mp157c-dk2.dts         |   7 +
+ drivers/rtc/Kconfig                           |   1 +
+ drivers/rtc/rtc-stm32.c                       | 210 ++++++++++++++++++
+ include/dt-bindings/rtc/rtc-stm32.h           |  14 ++
+ 8 files changed, 285 insertions(+)
+ create mode 100644 include/dt-bindings/rtc/rtc-stm32.h
 
------BEGIN PGP SIGNATURE-----
+-- 
+2.25.1
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmJyd+wACgkQJNaLcl1U
-h9BkfQf8C9n7pk9sOlU770h8zAnMrgTZX6YUlmWUCZ20GO3OG+Y9Ufo6DjYIFFMP
-/23xU738nEL1GCU0/vktgE+r09jGXVQNtAXZRILLt2CxulR7Pe2ojiCmxHAOc5Dv
-bBwKwPk+N5L+9dvMQeTQDuLjfTrdbabEE6yEEfv5xu9cqjG2phSuqjvaIS6GA2Nj
-g9AP/t2UHV34bc2xeGRhLdJGcsu02FVjXxP/DPnofadK+p6YwiHBOd6MCxMrpoty
-iKwdy6ruqlM4NURMVpi89+pcwimfcH7M/XiXd6YnV53HAwx6Fsbd7zlk9QyRKxx4
-BOFFM9X5TWf7//qC2U+sIqn35dco7w==
-=dy9O
------END PGP SIGNATURE-----
-
---w/VS4GgcCdfjbUlx--
