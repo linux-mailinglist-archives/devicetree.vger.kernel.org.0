@@ -2,66 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CC9DA519CA7
-	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 12:13:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D7BC3519CC9
+	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 12:17:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245712AbiEDKRG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 May 2022 06:17:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58124 "EHLO
+        id S1348017AbiEDKVa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 May 2022 06:21:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34542 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347963AbiEDKRE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 06:17:04 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2D5915A24;
-        Wed,  4 May 2022 03:13:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1651659206; x=1683195206;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=sM5HZKwbi/TbzfSgE0bd7h9vz8tIFdLqFavip4Djt7k=;
-  b=j70ERuNUipp6l7ToB0KbhP5yxfb1uW1+MJaVoUyjXL0GO9QaDPdl+Ili
-   +VA6Tl4nd/P36yq/cEt85lJoNG2et5X9LOCehiBJTqyC+GXC2uEelbHnS
-   haPp/WGtUs9mKtpUU0J/Go6LHeg4xzEQljvgdoka8XCopF/vNGfci98dx
-   Zu04gXvK2FflQX2WokCXWTrrOmsW0i50cllEamWzxsLeec0nkP8/jlka3
-   eSTlO7PasxkYdCSRuqN1sNHV+3tZ3fs5OLB3A82dos91YkGyRYB5qpN0O
-   Li4oeAC79WSQn54QUpt7XCjctq27qrbLiCL+4e1/cjGmtVoPJk76tqAPL
-   w==;
-X-IronPort-AV: E=Sophos;i="5.91,197,1647327600"; 
-   d="scan'208";a="162277051"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 04 May 2022 03:13:25 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17; Wed, 4 May 2022 03:13:24 -0700
-Received: from localhost (10.10.115.15) by chn-vm-ex01.mchp-main.com
- (10.10.85.143) with Microsoft SMTP Server id 15.1.2375.17 via Frontend
- Transport; Wed, 4 May 2022 03:13:24 -0700
-Date:   Wed, 4 May 2022 12:16:54 +0200
-From:   Horatiu Vultur <horatiu.vultur@microchip.com>
-To:     Michael Walle <michael@walle.cc>
-CC:     Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        <soc@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        with ESMTP id S229778AbiEDKV3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 06:21:29 -0400
+Received: from mail-pl1-x629.google.com (mail-pl1-x629.google.com [IPv6:2607:f8b0:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52B6025EB0
+        for <devicetree@vger.kernel.org>; Wed,  4 May 2022 03:17:53 -0700 (PDT)
+Received: by mail-pl1-x629.google.com with SMTP id n18so1015571plg.5
+        for <devicetree@vger.kernel.org>; Wed, 04 May 2022 03:17:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=16pteYw1kFtrJHlHKxcHj6pbCmyXWlcmy0HBd0ZDI5o=;
+        b=YiR9S7H0J5pVNfuNC2J7Ui3tLQ3JLD8KUp1ycbIIG9ykdngGmxmWPmY+zO5jp94VzN
+         z7FCLmvNKQuouxkAPF+DA2WBzOUyn5VcxOBL3+W9I+Bwa0uGkHVR/Jp/X5x22ZJsajZx
+         nadxkO3YKULs3lto91ketPCPMpNf+sCygn2bVfS8Wq6IBLjpzWKTZVVSX5xMwDq70udz
+         eMm1NqOJ4ZMtV0gj6nxZ37lVgR7HhMrZAgsq8fnJpYsnnfyVXbcIsacWd1UwQreTpCPk
+         n5QzA5BMFSoNxG0VfSUYVijSKfLhCUfSfZ+P9Vc+bEtGkV/r6Kff1pgiKyodrN17g5wx
+         ix7A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=16pteYw1kFtrJHlHKxcHj6pbCmyXWlcmy0HBd0ZDI5o=;
+        b=C8kcaj9doEal3j/ZLnqF+NWK7JoSXRs57D10yBHpc2Q93efeIQ/nce3asLBPEA1X6Z
+         v23VNJj9E8pds8eiLC04RniyqyqH7Iusl/msSf9dszN5AV4WSpDgzbyT1oROesWrGvq/
+         TmMHdptSUb4XDIKtPfTsDqfRfQ3l3Isxy5hq+7Uk8v4M3YmTRDgGxkam9pT0Y93wCHx/
+         G89Q04pN0ssVRfmUasVsJKVPrqjt15PIDqtENN0k+mWWTZych3iLBYfhrOjUprtlrHCc
+         9VvcjsBENVfco2K1+MIusXCiNNkRQTiD85ANPSgVKI/0PHoa70HdWB8rUsPv2FTLNJh2
+         QwYQ==
+X-Gm-Message-State: AOAM531T6KrKDbeyzz3OadK+K1Bfuqga1vrcz2rbYrFHd6RTIqI7BVGW
+        hPUoUMhd5XKoDS0f1JXqvD1UkQ==
+X-Google-Smtp-Source: ABdhPJykOJSIEdtWlEgPag1pW44EnulI2L+WAC9h0zxtfXA5fBS0P4lFv40oX0kD2wQcvtlFj+rE2Q==
+X-Received: by 2002:a17:90a:e517:b0:1d7:5bbd:f9f0 with SMTP id t23-20020a17090ae51700b001d75bbdf9f0mr9386904pjy.77.1651659472873;
+        Wed, 04 May 2022 03:17:52 -0700 (PDT)
+Received: from localhost ([122.162.207.161])
+        by smtp.gmail.com with ESMTPSA id ie13-20020a17090b400d00b001da3920d985sm2939471pjb.12.2022.05.04.03.17.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 04 May 2022 03:17:52 -0700 (PDT)
+Date:   Wed, 4 May 2022 15:47:50 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Hector Martin <marcan@marcan.st>
+Cc:     "Rafael J. Wysocki" <rafael@kernel.org>,
+        Sven Peter <sven@svenpeter.dev>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Claudiu Beznea <claudiu.beznea@microchip.com>,
-        <Tudor.Ambarus@microchip.com>
-Subject: Re: [PATCH v4 00/13] ARM: dts: lan966x: dtsi improvements and
- KSwitch D10 support
-Message-ID: <20220504101654.cuui4kaxrjiw67ky@soft-dev3-1.localhost>
-References: <20220502224127.2604333-1-michael@walle.cc>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Marc Zyngier <maz@kernel.org>,
+        Mark Kettenis <mark.kettenis@xs4all.nl>,
+        linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/4] MAINTAINERS: Add entries for Apple SoC cpufreq
+ driver
+Message-ID: <20220504101750.wmuicq3dytnxrw5o@vireshk-i7>
+References: <20220504075153.185208-1-marcan@marcan.st>
+ <20220504075153.185208-2-marcan@marcan.st>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220502224127.2604333-1-michael@walle.cc>
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+In-Reply-To: <20220504075153.185208-2-marcan@marcan.st>
+User-Agent: NeoMutt/20180716-391-311a52
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -69,67 +81,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The 05/03/2022 00:41, Michael Walle wrote:
+On 04-05-22, 16:51, Hector Martin wrote:
+> Splitting this commit, as usual, to facilitate merges via the SoC tree.
 > 
-> Add missing nodes for the flexcom blocks and a node for the SGPIO
-> block. Then add basic support for the Kontron KSwitch D10.
+> Signed-off-by: Hector Martin <marcan@marcan.st>
+> ---
+>  MAINTAINERS | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
-> The first submission of this patchset was a long time ago. Since
-> then networking matured and is now working. Thus this now also
-> contains patches for all the networking related nodes and enables
-> them on the Kontron D10 switch.
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index edc96cdb85e8..39bfa478fe55 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -1835,6 +1835,7 @@ T:	git https://github.com/AsahiLinux/linux.git
+>  F:	Documentation/devicetree/bindings/arm/apple.yaml
+>  F:	Documentation/devicetree/bindings/arm/apple/*
+>  F:	Documentation/devicetree/bindings/clock/apple,nco.yaml
+> +F:	Documentation/devicetree/bindings/cpufreq/apple,soc-cpufreq.yaml
+>  F:	Documentation/devicetree/bindings/i2c/apple,i2c.yaml
+>  F:	Documentation/devicetree/bindings/interrupt-controller/apple,*
+>  F:	Documentation/devicetree/bindings/mailbox/apple,mailbox.yaml
+> @@ -1844,6 +1845,7 @@ F:	Documentation/devicetree/bindings/power/apple*
+>  F:	Documentation/devicetree/bindings/watchdog/apple,wdt.yaml
+>  F:	arch/arm64/boot/dts/apple/
+>  F:	drivers/clk/clk-apple-nco.c
+> +F:	drivers/cpufreq/apple-soc-cpufreq.c
+>  F:	drivers/i2c/busses/i2c-pasemi-core.c
+>  F:	drivers/i2c/busses/i2c-pasemi-platform.c
+>  F:	drivers/irqchip/irq-apple-aic.c
 
-I have tested these changes on the lan966x-pcb82891 board which seems to
-work fine.
-Tested-by: Horatiu Vultur <horatiu.vultur@microchip.com>
-
-> 
-> changes since v3:
->  - basic d10 switch support dropped the i2c mux and added a
->    dedicated bus for the second SFP cage.
->  - new patch to add the hwmon node
->  - new patches to add the network related nodes and to enable
->    the nodes on the d10 switch
-> 
-> changes since v2:
->  - add second kontron board variant and moved common stuff into a
->    new dtsi
->  - moved the uart/i2c nodes inside of the flexcom node
->  - moved sgpio child nodes inside of the sgpio node
-> 
-> changes since v1:
->  - fixed indendation
->  - keep compatible, reg first, move #address-cells and #size-cells
->    towards the end
-> 
-> Michael Walle (13):
->   ARM: dts: lan966x: swap dma channels for crypto node
->   ARM: dts: lan966x: add sgpio node
->   ARM: dts: lan966x: add missing uart DMA channel
->   ARM: dts: lan966x: add all flexcom usart nodes
->   ARM: dts: lan966x: add flexcom SPI nodes
->   ARM: dts: lan966x: add flexcom I2C nodes
->   ARM: dts: lan966x: add basic Kontron KSwitch D10 support
->   ARM: dts: lan966x: add hwmon node
->   ARM: dts: lan966x: add MIIM nodes
->   ARM: dts: lan966x: add reset switch reset node
->   ARM: dts: lan966x: add serdes node
->   ARM: dts: lan966x: add switch node
->   ARM: dts: kswitch-d10: enable networking
-> 
->  arch/arm/boot/dts/Makefile                    |   4 +-
->  ...lan966x-kontron-kswitch-d10-mmt-6g-2gs.dts |  94 +++++
->  .../lan966x-kontron-kswitch-d10-mmt-8g.dts    |  39 ++
->  .../dts/lan966x-kontron-kswitch-d10-mmt.dtsi  | 190 ++++++++++
->  arch/arm/boot/dts/lan966x.dtsi                | 353 +++++++++++++++++-
->  5 files changed, 676 insertions(+), 4 deletions(-)
->  create mode 100644 arch/arm/boot/dts/lan966x-kontron-kswitch-d10-mmt-6g-2gs.dts
->  create mode 100644 arch/arm/boot/dts/lan966x-kontron-kswitch-d10-mmt-8g.dts
->  create mode 100644 arch/arm/boot/dts/lan966x-kontron-kswitch-d10-mmt.dtsi
-> 
-> --
-> 2.30.2
-> 
+This should be the last patch instead, or should at least be added
+after the files are merged first. If someone checks out at this
+commit, the files won't be available but still linked here.
 
 -- 
-/Horatiu
+viresh
