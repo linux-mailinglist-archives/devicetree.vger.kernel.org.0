@@ -2,148 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5FEA351AEA4
-	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 22:07:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 26CC251AEAC
+	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 22:08:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347444AbiEDULI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 May 2022 16:11:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42548 "EHLO
+        id S244569AbiEDUM1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 May 2022 16:12:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44282 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230295AbiEDULH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 16:11:07 -0400
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD411205E8;
-        Wed,  4 May 2022 13:07:30 -0700 (PDT)
-Received: by mail-ej1-x629.google.com with SMTP id i19so4940263eja.11;
-        Wed, 04 May 2022 13:07:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=7lSSNpXXfR9Qy/9yZmZMditNWGkfTBxEtIAkXYQaMHY=;
-        b=DwrZPfkdvYwiBurT5FmmNntdTqHrVcc8lePpYW6+Ntes+tTNLEObFTfQJrJYVQTl5A
-         BJ+jQ6xn7udqIMO2MjGbtuOgMursdwv//eRcXUBeC0RjImLY78VJCOCnVJBcp2GUrjTr
-         4TUcKyKXcNUpqnn5WU8bRPUj6VMOdL5pI3scjr+2zSYIBvbg2sZfVcG88vFh5OkSe36A
-         sMfw1WtJe3tIipPmStwJQwzyRJISt9Y3Z8vkL2MplGRahYAd8JqVeGq8b4D6VqiAuqGq
-         k0l2x0ebEVOeHfzui4wu2UmbxvRqb2es+mmk4mOsaPDrRlxMatTClQgctgei0RB0Voch
-         5zrA==
+        with ESMTP id S1377861AbiEDUMZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 16:12:25 -0400
+Received: from mail-oa1-f50.google.com (mail-oa1-f50.google.com [209.85.160.50])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC84F4DF79;
+        Wed,  4 May 2022 13:08:46 -0700 (PDT)
+Received: by mail-oa1-f50.google.com with SMTP id 586e51a60fabf-edeb6c3642so2323381fac.3;
+        Wed, 04 May 2022 13:08:46 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=7lSSNpXXfR9Qy/9yZmZMditNWGkfTBxEtIAkXYQaMHY=;
-        b=yWc5Au9lAvJHeGNs9FKWjqUvrmQNvntWCFpZ5xy8AA8SXO38fwcTxGvEzEdkTw1AFd
-         f7YZpYTrCvIEXURncBSX2dbOa2PIOVK78t9zAlRgCzmJ4Cbk4dg5yBH4h0BtGgK7i8km
-         O3hDSaqYvkxJi29yZwY4gDIe/gvwJ1ODqYYxHtlhwHZmDA1JmeBTLfC8q8dZzXWynvIr
-         QJc3bjfPosV3lDPIRA1FtkzzRWYhHU9nGJuHyHksq1YrY3nFjp0SipNZWpracIlmN+W4
-         Fw68XyLCn0nxJmGpGbOx1nfSucnYmcfL+kNfB2OOEjCYVc1eDvHlcQTVzsWW6ktnHP5H
-         pLvQ==
-X-Gm-Message-State: AOAM533f0V53oYcAIWjKxwqw3In9NO8nHw6Z+9yjEIVBBrOaj+MSoAp7
-        UI+3NSCczgXGmon2Tx3E1+8=
-X-Google-Smtp-Source: ABdhPJzlGXzx5m76HwjZ3ekvNPEQriouGOD8PegIt5LcRvA/OXYGxxHNoM74Oe4PeDvJgXSnhTVgRw==
-X-Received: by 2002:a17:906:9b8a:b0:6f3:fcc9:f863 with SMTP id dd10-20020a1709069b8a00b006f3fcc9f863mr22090808ejc.672.1651694849219;
-        Wed, 04 May 2022 13:07:29 -0700 (PDT)
-Received: from skbuf ([188.25.160.86])
-        by smtp.gmail.com with ESMTPSA id hf27-20020a1709072c5b00b006f3ef214e2fsm6164979ejc.149.2022.05.04.13.07.26
+        bh=zGpGSM3JO+2veRFHs1niFNH4/CD/2VyoSg35vRROAu4=;
+        b=fGopPWAtHiLV7gStSX4XRtHLswyOdo3vhAqK7edPvkvY5l+o5PmGZnz/KMiyHopLHG
+         okclwkZF3m0U0kaVlsr6wJ1SZ8EsB/p7Uaq6WOCcfPcfDF89ehWm/hjNMAenvnjx+qBx
+         VCGC/bSW/7/VcyUpnI77VyTUxlLfWUjlvoI5Rg6cOcrjnqYQ1tSzDhTlDb36rtp7BTx8
+         ngH6eU6CkfUuHkPmH09hb/6I/oCI6VCWLSKEGU+L8WngYHSANMoW51lB/pvN8OAsztth
+         7Tjb45jjLRxtPltnA3U//0QS29a42FxP8zS82k3Cxv+BJfMlLtb6iUDEtnEnJpTXmjtP
+         OJ4Q==
+X-Gm-Message-State: AOAM533HD92IXsAmIqDjE/8+ZuIDox93YllpI065mypmuXE8/7Vq6vzp
+        nHVLiU+t4hPTc5d1IB9Ayw==
+X-Google-Smtp-Source: ABdhPJyO+rbTvhFFkPwVnyYpktm0eXBaVjuGB45CdORn8cVCMYDfYrUn5SmcQfX2hJ6YD3tJhqa9sA==
+X-Received: by 2002:a05:6870:c6a8:b0:ed:d3e0:52b3 with SMTP id cv40-20020a056870c6a800b000edd3e052b3mr637039oab.92.1651694925950;
+        Wed, 04 May 2022 13:08:45 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id f15-20020a4ada4f000000b0035eb4e5a6b5sm6338487oou.11.2022.05.04.13.08.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 May 2022 13:07:28 -0700 (PDT)
-Date:   Wed, 4 May 2022 23:07:26 +0300
-From:   Vladimir Oltean <olteanv@gmail.com>
-To:     Arun Ramadoss <arun.ramadoss@microchip.com>
-Cc:     bpf@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, netdev@vger.kernel.org,
-        KP Singh <kpsingh@kernel.org>,
-        John Fastabend <john.fastabend@gmail.com>,
-        Yonghong Song <yhs@fb.com>, Song Liu <songliubraving@fb.com>,
-        Martin KaFai Lau <kafai@fb.com>,
-        Andrii Nakryiko <andrii@kernel.org>,
-        Daniel Borkmann <daniel@iogearbox.net>,
-        Alexei Starovoitov <ast@kernel.org>,
-        Russell King <linux@armlinux.org.uk>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Woojung Huh <woojung.huh@microchip.com>,
-        UNGLinuxDriver@microchip.com, Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [Patch net-next v13 07/13] net: dsa: microchip: add LAN937x SPI
- driver
-Message-ID: <20220504200726.pn7y73gt7wc2dpsg@skbuf>
-References: <20220504151755.11737-1-arun.ramadoss@microchip.com>
- <20220504151755.11737-8-arun.ramadoss@microchip.com>
+        Wed, 04 May 2022 13:08:45 -0700 (PDT)
+Received: (nullmailer pid 2140556 invoked by uid 1000);
+        Wed, 04 May 2022 20:08:44 -0000
+Date:   Wed, 4 May 2022 15:08:44 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Robert Marko <robimarko@gmail.com>
+Cc:     agross@kernel.org, bjorn.andersson@linaro.org,
+        jassisinghbrar@gmail.com, krzysztof.kozlowski+dt@linaro.org,
+        mturquette@baylibre.com, sboyd@kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        dmitry.baryshkov@linaro.org
+Subject: Re: [PATCH v2 2/6] dt-bindings: clock: Add support for IPQ8074 APSS
+ clock controller
+Message-ID: <YnLdTIKx80wszbj7@robh.at.kernel.org>
+References: <20220503195605.4015616-1-robimarko@gmail.com>
+ <20220503195605.4015616-2-robimarko@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220504151755.11737-8-arun.ramadoss@microchip.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20220503195605.4015616-2-robimarko@gmail.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 04, 2022 at 08:47:49PM +0530, Arun Ramadoss wrote:
-> This patch add the SPI driver for the LAN937x switches. It uses the
-> lan937x_main.c and lan937x_dev.c functions.
+On Tue, May 03, 2022 at 09:56:01PM +0200, Robert Marko wrote:
+> Add dt-binding for the IPQ8074 APSS clock controller which provides
+> clocks to the CPU cores.
 > 
-> Signed-off-by: Arun Ramadoss <arun.ramadoss@microchip.com>
+> Signed-off-by: Robert Marko <robimarko@gmail.com>
 > ---
->  drivers/net/dsa/microchip/Makefile      |   1 +
->  drivers/net/dsa/microchip/ksz_common.h  |   1 +
->  drivers/net/dsa/microchip/lan937x_dev.c |   7 +
->  drivers/net/dsa/microchip/lan937x_spi.c | 236 ++++++++++++++++++++++++
->  4 files changed, 245 insertions(+)
->  create mode 100644 drivers/net/dsa/microchip/lan937x_spi.c
+> Changes in v2:
+> * Correct subject
+> ---
+>  include/dt-bindings/clock/qcom,apss-ipq8074.h | 14 ++++++++++++++
+>  1 file changed, 14 insertions(+)
+>  create mode 100644 include/dt-bindings/clock/qcom,apss-ipq8074.h
 > 
-> diff --git a/drivers/net/dsa/microchip/Makefile b/drivers/net/dsa/microchip/Makefile
-> index d32ff38dc240..28d8eb62a795 100644
-> --- a/drivers/net/dsa/microchip/Makefile
-> +++ b/drivers/net/dsa/microchip/Makefile
-> @@ -10,3 +10,4 @@ obj-$(CONFIG_NET_DSA_MICROCHIP_KSZ8863_SMI)	+= ksz8863_smi.o
->  obj-$(CONFIG_NET_DSA_MICROCHIP_LAN937X)		+= lan937x.o
->  lan937x-objs := lan937x_dev.o
->  lan937x-objs += lan937x_main.o
-> +lan937x-objs += lan937x_spi.o
-> diff --git a/drivers/net/dsa/microchip/ksz_common.h b/drivers/net/dsa/microchip/ksz_common.h
-> index 5671f580948d..fd9e0705d2d2 100644
-> --- a/drivers/net/dsa/microchip/ksz_common.h
-> +++ b/drivers/net/dsa/microchip/ksz_common.h
-> @@ -151,6 +151,7 @@ void ksz_switch_remove(struct ksz_device *dev);
->  int ksz8_switch_register(struct ksz_device *dev);
->  int ksz9477_switch_register(struct ksz_device *dev);
->  int lan937x_switch_register(struct ksz_device *dev);
-> +int lan937x_check_device_id(struct ksz_device *dev);
->  
->  void ksz_update_port_member(struct ksz_device *dev, int port);
->  void ksz_init_mib_timer(struct ksz_device *dev);
-> diff --git a/drivers/net/dsa/microchip/lan937x_dev.c b/drivers/net/dsa/microchip/lan937x_dev.c
-> index 3f1797cc1d16..f430a8711775 100644
-> --- a/drivers/net/dsa/microchip/lan937x_dev.c
-> +++ b/drivers/net/dsa/microchip/lan937x_dev.c
-> @@ -386,8 +386,15 @@ static int lan937x_mdio_register(struct ksz_device *dev)
->  
->  static int lan937x_switch_init(struct ksz_device *dev)
->  {
-> +	int ret;
-> +
->  	dev->ds->ops = &lan937x_switch_ops;
->  
-> +	/* Check device tree */
-> +	ret = lan937x_check_device_id(dev);
-> +	if (ret < 0)
-> +		return ret;
-> +
+> diff --git a/include/dt-bindings/clock/qcom,apss-ipq8074.h b/include/dt-bindings/clock/qcom,apss-ipq8074.h
+> new file mode 100644
+> index 000000000000..df07766b0146
+> --- /dev/null
+> +++ b/include/dt-bindings/clock/qcom,apss-ipq8074.h
+> @@ -0,0 +1,14 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
 
-Can't this be called from lan937x_spi_probe() directly, why do you need
-to go through lan937x_switch_register() first?
+Dual license please.
 
->  	dev->port_mask = (1 << dev->port_cnt) - 1;
->  
->  	dev->ports = devm_kzalloc(dev->dev,
+> +/*
+> + * Copyright (c) 2021, The Linux Foundation. All rights reserved.
+> + */
+> +
+> +#ifndef _DT_BINDINGS_CLOCK_QCA_APSS_IPQ8074_H
+> +#define _DT_BINDINGS_CLOCK_QCA_APSS_IPQ8074_H
+> +
+> +#define APSS_PLL_EARLY				0
+> +#define APSS_PLL				1
+> +#define APCS_ALIAS0_CLK_SRC			2
+> +#define APCS_ALIAS0_CORE_CLK			3
+> +
+> +#endif
+> -- 
+> 2.35.1
+> 
+> 
