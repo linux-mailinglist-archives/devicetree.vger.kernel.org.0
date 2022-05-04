@@ -2,116 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0786551A132
-	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 15:44:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A8B0951A138
+	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 15:45:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350766AbiEDNsS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 May 2022 09:48:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35968 "EHLO
+        id S1347705AbiEDNtT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 May 2022 09:49:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37596 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350775AbiEDNsH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 09:48:07 -0400
-X-Greylist: delayed 79480 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 04 May 2022 06:44:30 PDT
-Received: from relay10.mail.gandi.net (relay10.mail.gandi.net [217.70.178.230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 160BF27156;
-        Wed,  4 May 2022 06:44:29 -0700 (PDT)
-Received: (Authenticated sender: clement.leger@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 836C924000C;
-        Wed,  4 May 2022 13:44:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1651671868;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=rk72OOOdZSUj/t0ck9GUkQrJCm6OvviM5pEqmXGfJr4=;
-        b=GAjLy704dfosoxU9eAdGTyyj8HAuQP8NWeOEuRGQ8M0aC3aXtC4Z/+0wzc3MpPCNpazLqs
-        sqlSOuSZ6E7OfjEh41ItNsnvAA5BxHa65iDBnypdHxt0BXP1A3CRsej8eMwM2b4fFkFuYm
-        eqTfzkGfgZHCKC2EK18B8yQalmXLzMRS1WCKPc68XwGexWOYo+13s9ra5xfpAfeRdggkuW
-        Qub8s2GnqY2eWh1s/GD7d4ckd9MGOF29XRakpcsqC74GCJBSbd/9vNgAN1oXHmChv6Pbmc
-        g4QS/5UYg5Fm56SNbfpJkQ/Tv6k70XROwA7nHj0ThHUcgAPCMn6XmDh2rwu3gQ==
-Date:   Wed, 4 May 2022 15:43:03 +0200
-From:   =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
-To:     Bjorn Helgaas <helgaas@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Allan Nielsen <allan.nielsen@microchip.com>,
-        Horatiu Vultur <horatiu.vultur@microchip.com>,
-        Steen Hegelund <steen.hegelund@microchip.com>,
-        Thomas Petazzoni <thomas.petazonni@bootlin.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Mark Brown <broonie@kernel.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Andrew Lunn <andrew@lunn.ch>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-        Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH 2/3] PCI: of: create DT nodes for PCI devices if they do
- not exists
-Message-ID: <20220504154303.5cdf8cc2@fixe.home>
-In-Reply-To: <20220503225353.GA415393@bhelgaas>
-References: <20220427094502.456111-3-clement.leger@bootlin.com>
-        <20220503225353.GA415393@bhelgaas>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.31; x86_64-pc-linux-gnu)
+        with ESMTP id S1350802AbiEDNtH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 09:49:07 -0400
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A91917E38
+        for <devicetree@vger.kernel.org>; Wed,  4 May 2022 06:45:30 -0700 (PDT)
+Received: by mail-ej1-x62c.google.com with SMTP id m20so2961538ejj.10
+        for <devicetree@vger.kernel.org>; Wed, 04 May 2022 06:45:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Uv7Hp42LV/vTpm+weT4So5OI48akf0l91Vs3/APjQVg=;
+        b=nkKNa9OSox+I2AggVlih55mls2Es/JkmCEZAwb77r66baliDbgU8EDdLzRGFczo0yP
+         FSgfD+O+c4tXzxuOhPQHxvOUlJ9D5AQyRZZw0NkeftBD0NlLvEyt0MjIhMJ+lu1gyRhR
+         iFOd5IJGpYOdHePtcc3S7VnKeBkakc2CkiZbc=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Uv7Hp42LV/vTpm+weT4So5OI48akf0l91Vs3/APjQVg=;
+        b=W4dwYkyElKoX3KkzWa7juYQMYk6ug9vdbRnMLJNeYQ2p91WzT2t921i6TCIFDAO0Ki
+         27u/YwcRnIDBccmfWrWQBhwOPiHVtjlytb+FbucHENSQ7HMOwJL9A7Cel+KXzSVK1dPT
+         6/JmDXNZs2LKL0+1gOpu/dQqSF4YbqEIjiq/4sqShDIhzC0bx39H87aYPXt4gc4WVj3l
+         xtXAZFXjN0V0l0iXXgldXaf3slYUjY0Z1uo60qKE454JiMzQaQKIENo6OzQwidfaCjJ/
+         lEVL8tqmGME+LPDkuj3jgp6DQZ4i+/OgPErbE4VMd/bArKJRRIL5yCgeaGgNYn/QZkzF
+         Fhcw==
+X-Gm-Message-State: AOAM531idbsmKMhZm2z3x1YNXipHvW8cWOTY+2QIaAjiGMPfb/OEJjiM
+        OqHpdglLHfZZVP8JJw06BX3dGb618VMlPBXCsv8=
+X-Google-Smtp-Source: ABdhPJytcetPBF8INQnxupGs71oVfI48yEmUtWKfVLEgHM27LIabL6vgwJkFf94P2nq43HmqvwCLSA==
+X-Received: by 2002:a17:907:9613:b0:6f4:3b48:b004 with SMTP id gb19-20020a170907961300b006f43b48b004mr15031185ejc.171.1651671928442;
+        Wed, 04 May 2022 06:45:28 -0700 (PDT)
+Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com. [209.85.221.44])
+        by smtp.gmail.com with ESMTPSA id mm18-20020a170906cc5200b006f3ef214e1csm5742663ejb.130.2022.05.04.06.45.26
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 04 May 2022 06:45:26 -0700 (PDT)
+Received: by mail-wr1-f44.google.com with SMTP id x18so2136183wrc.0
+        for <devicetree@vger.kernel.org>; Wed, 04 May 2022 06:45:26 -0700 (PDT)
+X-Received: by 2002:a05:6000:c7:b0:20a:d8c1:d044 with SMTP id
+ q7-20020a05600000c700b0020ad8c1d044mr16774023wrx.422.1651671925564; Wed, 04
+ May 2022 06:45:25 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+References: <1645509309-16142-1-git-send-email-quic_c_skakit@quicinc.com>
+In-Reply-To: <1645509309-16142-1-git-send-email-quic_c_skakit@quicinc.com>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Wed, 4 May 2022 06:45:11 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=U9XfOancqNOGCWKEkP2jD4CHw6NHY8mdALG7D-7OLMTw@mail.gmail.com>
+Message-ID: <CAD=FV=U9XfOancqNOGCWKEkP2jD4CHw6NHY8mdALG7D-7OLMTw@mail.gmail.com>
+Subject: Re: [PATCH V4 0/4] Add PM8350C PMIC PWM support for backlight
+To:     Satya Priya <quic_c_skakit@quicinc.com>,
+        Pavel Machek <pavel@ucw.cz>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        linux-leds@vger.kernel.org,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Le Tue, 3 May 2022 17:53:53 -0500,
-Bjorn Helgaas <helgaas@kernel.org> a =C3=A9crit :
+Pavel,
 
-> In subject:
->=20
->   PCI: of: Create DT nodes ... if they do not exist
->=20
-> The subject could be read as saying that you're going to create DT
-> nodes before the PCI devices exist, but I think you mean that when we
-> enumerate a PCI devices, we're *always* going to create a DT node for
-> it, even if the DT didn't mention it.
+On Mon, Feb 21, 2022 at 9:55 PM Satya Priya <quic_c_skakit@quicinc.com> wrote:
+>
+> This series depends on [1], which adds driver for Qualcomm LPG.
+>
+> [1] https://patchwork.kernel.org/project/linux-arm-msm/list/?series=615848
+>
+> Satya Priya (4):
+>   dt-bindings: leds: Add pm8350c pmic support
+>   leds: Add pm8350c support to Qualcomm LPG driver
+>   arm64: dts: qcom: pm8350c: Add pwm support
+>   arm64: dts: qcom: Enable pm8350c pwm for sc7280-idp2
 
-Hi Bjorn,
+I see Bjorn's patch in your tree. Thanks!
 
-Indeed ! I'll modify that.
+...could you add patch #1 and #2 from this series too? They are both
+small and ready to go.
 
->=20
-> Maybe something like:
->=20
->   PCI: of: Create DT node for every PCI device
->=20
-> although I see Rob thinks this should be done on demand instead of
-> doing it for every device, which sounds sensible to me.
-
-Agreed, I'll rework this series.
-
-Thanks,
-
->=20
-> On Wed, Apr 27, 2022 at 11:45:01AM +0200, Cl=C3=A9ment L=C3=A9ger wrote:
-> > In order to apply overlays to PCI device nodes, the nodes must first
-> > exist. This commit add support to populate a skeleton tree for PCI bus
-> > and devices. These nodes can then be used by drivers to apply overlays.=
- =20
->=20
-> s/This commit add support/Add support/
->=20
-> Bjorn
-
-
-
---=20
-Cl=C3=A9ment L=C3=A9ger,
-Embedded Linux and Kernel engineer at Bootlin
-https://bootlin.com
+-Doug
