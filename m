@@ -2,58 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2FDAD51B221
-	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 00:42:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EBFE051B3A6
+	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 01:42:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1376642AbiEDWpE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 May 2022 18:45:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59406 "EHLO
+        id S233005AbiEDXoW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 May 2022 19:44:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53436 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1376474AbiEDWo7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 18:44:59 -0400
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD79548893;
-        Wed,  4 May 2022 15:41:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1651704081; x=1683240081;
-  h=date:from:to:cc:subject:in-reply-to:message-id:
-   references:mime-version;
-  bh=vo98koW8xOZpXvkfJZ26bs6YvtqqcceUyFD7sOeeXGI=;
-  b=QARAiMKcBxMxlkyw4T73MEiVXW+ANS56eY0oZYG5t9YP1XT2TTUe6dpD
-   2XHKLbJsb8/bjbZhpw335BBAcRuArgCbzriJwBTrmj7fseynGcnhRZYVW
-   5s0J06AUDha6sKC2sY/6nxP+Xm5yM3v1g47NFDB3Tw+DozxXdJEyKPJGs
-   veh0F0MmYzYJODxOoUncxVx+G2fBkVykNqBtYu+JV7zGGAuYDWhB6m8R3
-   2i7mMujC/D8SnNNTOlNmTkYh1zRgl1wZdn1D+ejq/02I8KgCErrMQwLcZ
-   2+AyNQaiMTAZsuldSHLdPU7a8U/MdZ64tEs6Sz+x/23z2QKfkpVMYuHQJ
-   Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10337"; a="267803170"
-X-IronPort-AV: E=Sophos;i="5.91,199,1647327600"; 
-   d="scan'208";a="267803170"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 May 2022 15:41:20 -0700
-X-IronPort-AV: E=Sophos;i="5.91,199,1647327600"; 
-   d="scan'208";a="549071723"
-Received: from rhweight-wrk1.ra.intel.com ([137.102.106.43])
-  by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 May 2022 15:41:20 -0700
-Date:   Wed, 4 May 2022 15:41:20 -0700 (PDT)
-From:   matthew.gerlach@linux.intel.com
-X-X-Sender: mgerlach@rhweight-WRK1
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-cc:     dinguyen@kernel.org, robh+dt@kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Subject: Re: [PATCH v2 1/3] dt-bindings: misc: add bindings for Intel HPS
- Copy Engine
-In-Reply-To: <17407fe7-b11d-2ba8-acca-3e71cf1a3b2f@linaro.org>
-Message-ID: <alpine.DEB.2.22.394.2205041425230.2669897@rhweight-WRK1>
-References: <20220503194546.1287679-1-matthew.gerlach@linux.intel.com> <20220503194546.1287679-2-matthew.gerlach@linux.intel.com> <17407fe7-b11d-2ba8-acca-3e71cf1a3b2f@linaro.org>
-User-Agent: Alpine 2.22 (DEB 394 2020-01-19)
+        with ESMTP id S1385717AbiEDXQr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 19:16:47 -0400
+Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 826EF5536F
+        for <devicetree@vger.kernel.org>; Wed,  4 May 2022 16:11:15 -0700 (PDT)
+Received: by mail-wm1-x333.google.com with SMTP id p189so1676331wmp.3
+        for <devicetree@vger.kernel.org>; Wed, 04 May 2022 16:11:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=paul-moore-com.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=qfWwXZWPvxEE3w1uLnkzPlrx6nJaZSmQ1gbsC3kCZlI=;
+        b=fMehx6+pldeupaypGl5lGMLh8Blc5Pb964suvnwujkOTfmhEds0USznV5iIpAmDMiQ
+         3bX5ovLiBcm+P+Qjkm7S30sNoAIneyphU/3HUmg8FgNya3x4Ys+vGWu+B9CwMsbZwixV
+         5hhw5d61RXfF0ZuA9a19yWLWnmsownsAlvxGOq/bh+zf+KCchfsYUSjN3DbkCogRNiil
+         4sZMBBy0wN3DJWJ3HV3y9RTPrsOy6eZO4wbIVzlw9cfeY3DYzhWrMs9JJuoIK2/rWVPl
+         SzHF6XACCrgzPRUtq8fL5afcNflV6Vriy9o5VdAvBNuxRLNvKxX70jkd0hURqNp4X2R8
+         1xwg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=qfWwXZWPvxEE3w1uLnkzPlrx6nJaZSmQ1gbsC3kCZlI=;
+        b=qWvtfBqAAt4XuX8XzN+ZLTR8JW6nLDsvL/uAswiI6g9zZtOA1ylHgECiRk+RUXcTF6
+         4HAq728cwK4ul39kwLnUrx1q4E838xlX1gdvVG6sG60pp03K/YPT57BPdKRqdVSo5V9i
+         tP2ByrzZeO39eWQedeKM4S6lFy9LuO0d9EBSlt9uLscyq5gi6NSq4DRRX0Fozmgjpb0e
+         4375J/JJqYO0b4wdmq7Y29SpN6g92TlvQfwyVNavyzni6mrYyzqSnW2eBiPJAaQ5mw6e
+         1OBlrWERtqtTiiyISXOkpV6HQaiuievczmn2MVnZRQTeli74tQl0DvabzuefMEFNueu2
+         IXSA==
+X-Gm-Message-State: AOAM532+vmD+B4Rh7MNE0rCNTnXseiT4qN/rr4v5dHWGhlIeTAE5IoQi
+        /u4yu2Qxvosh0IAOGdsl6kC0tYkaO9wM2ezW/sHAdwgUwbxZ
+X-Google-Smtp-Source: ABdhPJzn8kCki7g2xrksVPCE2X0dMoSQ5GNrlnQWJqU+8a/RnZE5ShgkUyQvDBvdRa4kG7oifCsX28YouBnWU5DkxR0=
+X-Received: by 2002:a05:600c:4fc9:b0:394:4317:1aa4 with SMTP id
+ o9-20020a05600c4fc900b0039443171aa4mr1477643wmq.179.1651705059031; Wed, 04
+ May 2022 15:57:39 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII; format=flowed
-X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+References: <20220504014440.3697851-1-keescook@chromium.org> <20220504014440.3697851-29-keescook@chromium.org>
+In-Reply-To: <20220504014440.3697851-29-keescook@chromium.org>
+From:   Paul Moore <paul@paul-moore.com>
+Date:   Wed, 4 May 2022 18:57:28 -0400
+Message-ID: <CAHC9VhT5Y=ENiSyb=S-NVbGX63sLOv4nVuR_GS-yww6tiz0wYA@mail.gmail.com>
+Subject: Re: [PATCH 28/32] selinux: Use mem_to_flex_dup() with xfrm and sidtab
+To:     Kees Cook <keescook@chromium.org>
+Cc:     "Gustavo A . R . Silva" <gustavoars@kernel.org>,
+        Steffen Klassert <steffen.klassert@secunet.com>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S. Miller" <davem@davemloft.net>,
+        Stephen Smalley <stephen.smalley.work@gmail.com>,
+        Eric Paris <eparis@parisplace.org>,
+        Nick Desaulniers <ndesaulniers@google.com>,
+        Xiu Jianfeng <xiujianfeng@huawei.com>,
+        =?UTF-8?Q?Christian_G=C3=B6ttsche?= <cgzones@googlemail.com>,
+        netdev@vger.kernel.org, selinux@vger.kernel.org,
+        Alexei Starovoitov <ast@kernel.org>,
+        alsa-devel@alsa-project.org, Al Viro <viro@zeniv.linux.org.uk>,
+        Andrew Gabbasov <andrew_gabbasov@mentor.com>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        Andy Gross <agross@kernel.org>,
+        Andy Lavr <andy.lavr@gmail.com>,
+        Arend van Spriel <aspriel@gmail.com>,
+        Baowen Zheng <baowen.zheng@corigine.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Boris Ostrovsky <boris.ostrovsky@oracle.com>,
+        Bradley Grove <linuxdrivers@attotech.com>,
+        brcm80211-dev-list.pdl@broadcom.com,
+        Christian Brauner <brauner@kernel.org>,
+        Christian Lamparter <chunkeey@googlemail.com>,
+        Chris Zankel <chris@zankel.net>,
+        Cong Wang <cong.wang@bytedance.com>,
+        Daniel Axtens <dja@axtens.net>,
+        Daniel Vetter <daniel.vetter@ffwll.ch>,
+        Dan Williams <dan.j.williams@intel.com>,
+        David Gow <davidgow@google.com>,
+        David Howells <dhowells@redhat.com>,
+        Dennis Dalessandro <dennis.dalessandro@cornelisnetworks.com>,
+        devicetree@vger.kernel.org, Dexuan Cui <decui@microsoft.com>,
+        Dmitry Kasatkin <dmitry.kasatkin@gmail.com>,
+        Eli Cohen <elic@nvidia.com>,
+        Eric Dumazet <edumazet@google.com>,
+        Eugeniu Rosca <erosca@de.adit-jv.com>,
+        Felipe Balbi <balbi@kernel.org>,
+        Francis Laniel <laniel_francis@privacyrequired.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Franky Lin <franky.lin@broadcom.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Gregory Greenman <gregory.greenman@intel.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Haiyang Zhang <haiyangz@microsoft.com>,
+        Hante Meuleman <hante.meuleman@broadcom.com>,
+        Hulk Robot <hulkci@huawei.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        "James E.J. Bottomley" <jejb@linux.ibm.com>,
+        James Morris <jmorris@namei.org>,
+        Jarkko Sakkinen <jarkko@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Jason Gunthorpe <jgg@ziepe.ca>, Jens Axboe <axboe@kernel.dk>,
+        Johan Hedberg <johan.hedberg@gmail.com>,
+        Johannes Berg <johannes.berg@intel.com>,
+        Johannes Berg <johannes@sipsolutions.net>,
+        John Keeping <john@metanate.com>,
+        Juergen Gross <jgross@suse.com>, Kalle Valo <kvalo@kernel.org>,
+        Keith Packard <keithp@keithp.com>, keyrings@vger.kernel.org,
+        kunit-dev@googlegroups.com,
+        Kuniyuki Iwashima <kuniyu@amazon.co.jp>,
+        "K. Y. Srinivasan" <kys@microsoft.com>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Lee Jones <lee.jones@linaro.org>,
+        Leon Romanovsky <leon@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        linux1394-devel@lists.sourceforge.net,
+        linux-afs@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-arm-msm@vger.kernel.org, linux-bluetooth@vger.kernel.org,
+        linux-hardening@vger.kernel.org, linux-hyperv@vger.kernel.org,
+        linux-integrity@vger.kernel.org, linux-rdma@vger.kernel.org,
+        linux-scsi@vger.kernel.org, linux-security-module@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux-wireless@vger.kernel.org,
+        linux-xtensa@linux-xtensa.org, llvm@lists.linux.dev,
+        Loic Poulain <loic.poulain@linaro.org>,
+        Louis Peens <louis.peens@corigine.com>,
+        Luca Coelho <luciano.coelho@intel.com>,
+        Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+        Marc Dionne <marc.dionne@auristor.com>,
+        Marcel Holtmann <marcel@holtmann.org>,
+        Mark Brown <broonie@kernel.org>,
+        "Martin K. Petersen" <martin.petersen@oracle.com>,
+        Max Filippov <jcmvbkbc@gmail.com>,
+        Mimi Zohar <zohar@linux.ibm.com>,
+        Muchun Song <songmuchun@bytedance.com>,
+        Nathan Chancellor <nathan@kernel.org>,
+        =?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rich Felker <dalias@aerifal.cx>,
+        Rob Herring <robh+dt@kernel.org>,
+        Russell King <linux@armlinux.org.uk>,
+        "Serge E. Hallyn" <serge@hallyn.com>,
+        SHA-cyfmac-dev-list@infineon.com,
+        Simon Horman <simon.horman@corigine.com>,
+        Stefano Stabellini <sstabellini@kernel.org>,
+        Stefan Richter <stefanr@s5r6.in-berlin.de>,
+        Stephen Hemminger <sthemmin@microsoft.com>,
+        Tadeusz Struk <tadeusz.struk@linaro.org>,
+        Takashi Iwai <tiwai@suse.com>, Tom Rix <trix@redhat.com>,
+        Udipto Goswami <quic_ugoswami@quicinc.com>,
+        Vincenzo Frascino <vincenzo.frascino@arm.com>,
+        wcn36xx@lists.infradead.org, Wei Liu <wei.liu@kernel.org>,
+        xen-devel@lists.xenproject.org,
+        Yang Yingliang <yangyingliang@huawei.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -61,131 +169,70 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On Wed, 4 May 2022, Krzysztof Kozlowski wrote:
-
-> On 03/05/2022 21:45, matthew.gerlach@linux.intel.com wrote:
->> From: Matthew Gerlach <matthew.gerlach@linux.intel.com>
->>
->> Add device tree bindings documentation for the Intel Hard
->> Processor System (HPS) Copy Engine.
->>
->> Signed-off-by: Matthew Gerlach <matthew.gerlach@linux.intel.com>
->> ---
->>  .../bindings/misc/intel,hps-copy-engine.yaml  | 48 +++++++++++++++++++
->>  1 file changed, 48 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/misc/intel,hps-copy-engine.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/misc/intel,hps-copy-engine.yaml b/Documentation/devicetree/bindings/misc/intel,hps-copy-engine.yaml
->> new file mode 100644
->> index 000000000000..74e7da9002f4
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/misc/intel,hps-copy-engine.yaml
+On Tue, May 3, 2022 at 9:57 PM Kees Cook <keescook@chromium.org> wrote:
 >
-> Please find appropriate directory matching this hardware, not "misc". As
-> a fallback SoC related bindings end up in "soc".
+> As part of the work to perform bounds checking on all memcpy() uses,
+> replace the open-coded a deserialization of bytes out of memory into a
+> trailing flexible array by using a flex_array.h helper to perform the
+> allocation, bounds checking, and copying:
+>
+>     struct xfrm_sec_ctx
+>     struct sidtab_str_cache
+>
+> Cc: Steffen Klassert <steffen.klassert@secunet.com>
+> Cc: Herbert Xu <herbert@gondor.apana.org.au>
+> Cc: "David S. Miller" <davem@davemloft.net>
+> Cc: Paul Moore <paul@paul-moore.com>
+> Cc: Stephen Smalley <stephen.smalley.work@gmail.com>
+> Cc: Eric Paris <eparis@parisplace.org>
+> Cc: Nick Desaulniers <ndesaulniers@google.com>
+> Cc: Xiu Jianfeng <xiujianfeng@huawei.com>
+> Cc: "Christian G=C3=B6ttsche" <cgzones@googlemail.com>
+> Cc: netdev@vger.kernel.org
+> Cc: selinux@vger.kernel.org
+> Signed-off-by: Kees Cook <keescook@chromium.org>
+> ---
+>  include/uapi/linux/xfrm.h    | 4 ++--
+>  security/selinux/ss/sidtab.c | 9 +++------
+>  security/selinux/xfrm.c      | 7 ++-----
+>  3 files changed, 7 insertions(+), 13 deletions(-)
+>
+> diff --git a/include/uapi/linux/xfrm.h b/include/uapi/linux/xfrm.h
+> index 65e13a099b1a..4a6fa2beff6a 100644
+> --- a/include/uapi/linux/xfrm.h
+> +++ b/include/uapi/linux/xfrm.h
+> @@ -31,9 +31,9 @@ struct xfrm_id {
+>  struct xfrm_sec_ctx {
+>         __u8    ctx_doi;
+>         __u8    ctx_alg;
+> -       __u16   ctx_len;
+> +       __DECLARE_FLEX_ARRAY_ELEMENTS_COUNT(__u16, ctx_len);
+>         __u32   ctx_sid;
+> -       char    ctx_str[0];
+> +       __DECLARE_FLEX_ARRAY_ELEMENTS(char, ctx_str);
+>  };
 
-I thought misc seemed appropriate because it is a very specific IP block 
-in the FPGA connected to the HPS.  It does perform a simple DMA function; 
-so I considered putting it in the dma directory, but it also has some
-hand-shaking registers between the HPS and a host processor connected to the
-FPGA via PCIe; so I thought misc.  Since the HPS "soc" accesses the 
-component, I can put it in the "soc" directory, unless there is a better 
-suggestion.
+While I like the idea of this in principle, I'd like to hear about the
+testing you've done on these patches.  A previous flex array
+conversion in the audit uapi headers ended up causing a problem with
+GCC12 and SWIG; while it was a SWIG problem and not a kernel header
+problem that was thin consolation for those with broken builds.
 
+> diff --git a/security/selinux/ss/sidtab.c b/security/selinux/ss/sidtab.c
+> index a54b8652bfb5..a9d434e8cff7 100644
+> --- a/security/selinux/ss/sidtab.c
+> +++ b/security/selinux/ss/sidtab.c
+> @@ -23,8 +23,8 @@ struct sidtab_str_cache {
+>         struct rcu_head rcu_member;
+>         struct list_head lru_member;
+>         struct sidtab_entry *parent;
+> -       u32 len;
+> -       char str[];
+> +       DECLARE_FLEX_ARRAY_ELEMENTS_COUNT(u32, len);
+> +       DECLARE_FLEX_ARRAY_ELEMENTS(char, str);
+>  };
 >
->> @@ -0,0 +1,48 @@
->> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->> +# Copyright (C) 2022, Intel Corporation
->> +%YAML 1.2
->> +---
->> +$id: "http://devicetree.org/schemas/misc/intel,hps-copy-engine.yaml#"
->> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
->> +
->> +title: Intel HPS Copy Engine
->> +
->> +maintainers:
->> +  - Matthew Gerlach <matthew.gerlach@linux.intel.com>
->> +
->> +description: |
->> +  The Intel Hard Processor System (HPS) Copy Engine is an IP block used to copy
->> +  a bootable image from host memory to HPS DDR.  Additionally, there is a
->> +  register the HPS can use to indicate the state of booting the copied image as
->> +  well as a keep-a-live indication to the host.
->> +
->> +properties:
->> +  compatible:
->> +    items:
->
-> No "items", you have just one item.
+>  #define index_to_sid(index) ((index) + SECINITSID_NUM + 1)
 
-Got it.  I will change it in v3.
->
->> +      - const: intel,hps-copy-engine
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    agilex_hps_bridges: bus@80000000 {
->
-> Unused label...
-
-I will remove unused label in v3.
-
->
->> +        compatible = "simple-bus";
->> +        reg = <0x80000000 0x60000000>,
->> +              <0xf9000000 0x00100000>;
->> +        reg-names = "axi_h2f", "axi_h2f_lw";
->> +        #address-cells = <0x2>;
->
-> $ git grep address-cell
-> Do not use inconsistent coding. The same applies to your DTS.
-
-Is the inconsistency the use of '0x' in the values of #address-cells and 
-#size-cells, or is the consistency having different values for 
-#address-cells and #size-cells or both?
-
->
->> +        #size-cells = <0x1>;
->> +        ranges = <0x00000000 0x00000000 0xf9000000 0x00001000>;
->
-> Why do you even need the simple-bus above and cannot put the device
-> directly on the bus?
-
-On an Agilex chip, the HPS is connected to the FPGA via two bridges, 
-referred as the "HPS to FPGA bridge" and the "Lightweight HPS to FPGA 
-bridge".  An IP block in the FPGA could be connected to one or both of 
-these bridges.  I am anticipating device tree overlays being applied for 
-other IP blocks instantiated in the FPGA.
-
->
->> +
->> +        hps_cp_eng@0 {
->
-> No underscores in node names. Generic node name.
-
-I understand.  I am considering dma@0 for the generic node name.
-
->
->> +            compatible = "intel,hps-copy-engine";
->> +            reg = <0x00000000 0x00000000 0x00001000>;
->> +        };
->> +    };
->
->
-> Best regards,
-> Krzysztof
->
-
-Thank you for the review,
-Matthew
+--=20
+paul-moore.com
