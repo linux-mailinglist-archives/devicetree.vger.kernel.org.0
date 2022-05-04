@@ -2,55 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 08081519D1A
-	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 12:38:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D5374519D22
+	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 12:38:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348243AbiEDKlq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 May 2022 06:41:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48708 "EHLO
+        id S1348270AbiEDKl6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 May 2022 06:41:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49154 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244854AbiEDKln (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 06:41:43 -0400
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1555327B06
-        for <devicetree@vger.kernel.org>; Wed,  4 May 2022 03:38:07 -0700 (PDT)
-Received: by mail-lf1-x12a.google.com with SMTP id p10so1560811lfa.12
-        for <devicetree@vger.kernel.org>; Wed, 04 May 2022 03:38:06 -0700 (PDT)
+        with ESMTP id S1348258AbiEDKly (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 06:41:54 -0400
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD48D29C87
+        for <devicetree@vger.kernel.org>; Wed,  4 May 2022 03:38:11 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id b18so1575327lfv.9
+        for <devicetree@vger.kernel.org>; Wed, 04 May 2022 03:38:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=sCUql32Z85QbAjdNmeSKhkBGKRfaobQ3esSmZFQlaVI=;
-        b=b82EipzYR66946BQCzgBeRhvSgKu/f2J3JluNKl9n+3IUQadplyKmCw26q1dIxolya
-         x5gS9sVwWF4BIz0IH6BdEtwozMOvtd0bVCOzmcYEvXDAy19OchE6V4A1UMquDYbu6b2/
-         Bjm7n4KYuv3f9135ewVBXIZc+32tiEPiWqNV32VWIACGs08AKXlOUazWTlSWdQpojbd0
-         pcWFSRfIWGiLbFMu6ynQf5myzWUXiSDpnAgssgDHvv91gjqf6AM6xTE3R7nsPdtz8jU0
-         sqQXrSx4iF8WishJUYWSDZgrMsSlkjtS2ctlsQR2vwFQO8Yzh9yj9b5WAoBCrk5IxxbN
-         TyBg==
+        bh=XBJL7r+MhOc1BUfYTC5dYyhYGOwhJC3R47akkKaHBhc=;
+        b=Fo5AXmN/C9QxzJ3Br7JOpUqk0j/RXcupl0BTw4Wjrni6hP5OsoaOjEZPE5GLHab9Nj
+         NVL03NB2wkxvM/WPcfG7U4JTYW33wRpdC71XSCVTbIZBaUGXfLhoYP4IdiIJ3vsHy0sI
+         xABLKlbnXknC9hrKxk1mmM79O50UC10y6NvSF2mYBU/AThLosW9RlODxmsmGA5UmSeZb
+         8XRBd1U4zy5omXK4KkyMk9gh0Zu2Mu3XTs2mGbDBxJRvde2WYdYdLpbEYvJAiI0KV5wo
+         +k/yWICRuu3r7o3ug/a00HmOOQOvFy07WZfE6L+EzmcgCQwtEHza4wH5mpbVcCu5kX6Y
+         oVyQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=sCUql32Z85QbAjdNmeSKhkBGKRfaobQ3esSmZFQlaVI=;
-        b=Ic6q9jN8lvDQ3eZDJyJs05EzpKH9fzarX3tj+n4Z8jEItdo46VQeOpdX92u9DIT1in
-         sNOZKMHH1lfDW6oanERxdFJetnrrxibyahwJORXY5IdACtoLGNKXFjW6Ucui41six+jC
-         mygAsg5tg7vFSt8abjNMeIlD1B91d70f1xaB6qzdj1RZE0jRlGJ6Qw549ph0B22ABXOq
-         5rOC5W101XAlf86OQlbWJnBijdpBXtJhRjGTNzeNjCUqFn4kOWuPYn77aWInRD23oa7e
-         oH65oiaTvPOrzsmvTOPSOLPemoa8WaVE0noHebhzwz4av3jZ+yM6/oTQ8RVKYHMDffRV
-         6Fig==
-X-Gm-Message-State: AOAM531RkIVf0Y6P+LE40lGS+g0OycSYFydbk8V/691QQ/KbtPBN+JC9
-        SEt+Wc9A2JaUCDBT55yR8PWV3kl8xJPMjqaWcBtF6Q==
-X-Google-Smtp-Source: ABdhPJzeIr+314o93x/VndF33IEPYJloviF3mb+cI0vf98H5qVUTu9MMWp10VwrLIsRUESZqHQXxQ/X3V8VHRYraC/U=
-X-Received: by 2002:a19:e007:0:b0:44a:a22d:2d49 with SMTP id
- x7-20020a19e007000000b0044aa22d2d49mr13560859lfg.254.1651660685372; Wed, 04
- May 2022 03:38:05 -0700 (PDT)
+        bh=XBJL7r+MhOc1BUfYTC5dYyhYGOwhJC3R47akkKaHBhc=;
+        b=BftGySl8eJ4v0zUUaOUusY5+Es6VCZy/YS+lOufOJYGDnqdMOfrOQmToqKNRXYfsSv
+         A3sS5Ikw2KhODjRk0eobJ7uJONISiPH4PUoVuouF9nxRnFlUxhtJxqWk9ILcawnKEjus
+         w67YqdGXmGKF1RPDaWW0GALbUs7wKNAVUdv1l2wBwyZBVljTRYMeziVaY+FL3p/aN59A
+         JclJvxsJfnQZjEEsAuOqOEEgeKRkHux2zSRsnJDpiOlrWdj/UnYfkvTP9Q/TxxAjX4h+
+         N7+pI+6cSVyRlHycqiNBUOBaz6rZ09MUAlpXKzVR24RwQ/TBpxHY7U2DoYOmz1sSR89/
+         rntQ==
+X-Gm-Message-State: AOAM530L8jHP5WTltrxAqfkyHZ4C1/xqKuEfXkMwwjmPAhVVG6j5XWxr
+        zf5/IGfCeceOV1pyhRekIQYBA5XA6lhfqYqceAIlDw==
+X-Google-Smtp-Source: ABdhPJxu7Qr1Izlnvgua2MSHSApJlcpDAyH2jMtBfmDOQ8muty6GPyrHmpy94VO5tD5GxcemtgfjQihNmYTK28kcVIc=
+X-Received: by 2002:ac2:4e98:0:b0:448:3039:d170 with SMTP id
+ o24-20020ac24e98000000b004483039d170mr14619429lfr.233.1651660689847; Wed, 04
+ May 2022 03:38:09 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220427180853.35970-1-kdasu.kdev@gmail.com> <20220427180853.35970-2-kdasu.kdev@gmail.com>
-In-Reply-To: <20220427180853.35970-2-kdasu.kdev@gmail.com>
+References: <20220427180853.35970-1-kdasu.kdev@gmail.com> <20220427180853.35970-3-kdasu.kdev@gmail.com>
+In-Reply-To: <20220427180853.35970-3-kdasu.kdev@gmail.com>
 From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Wed, 4 May 2022 12:37:29 +0200
-Message-ID: <CAPDyKFpeN4Ax7E+MSr1XBr4mh=fX-eze4d8ECjVAH4zhJ6cqEA@mail.gmail.com>
-Subject: Re: [PATCH v2 1/4] mmc: sdhci-brcmstb: Re-organize flags
+Date:   Wed, 4 May 2022 12:37:33 +0200
+Message-ID: <CAPDyKFrnZoy4ifWzDt3A6DJP_LHU2mohtFVN3n7rhhK6bjDOFA@mail.gmail.com>
+Subject: Re: [PATCH v2 2/4] mmc: sdhci-brcmstb: Enable Clock Gating to save power
 To:     Kamal Dasu <kdasu.kdev@gmail.com>
 Cc:     robh+dt@kernel.org, krzk+dt@kernel.org, alcooperx@gmail.com,
         f.fainelli@gmail.com, bcm-kernel-feedback-list@broadcom.com,
@@ -59,7 +59,7 @@ Cc:     robh+dt@kernel.org, krzk+dt@kernel.org, alcooperx@gmail.com,
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -71,9 +71,12 @@ On Wed, 27 Apr 2022 at 20:09, Kamal Dasu <kdasu.kdev@gmail.com> wrote:
 >
 > From: Al Cooper <alcooperx@gmail.com>
 >
-> Re-organize the flags by basing the bit names on the flag that they
-> apply to. Also change the "flags" member in the "brcmstb_match_priv"
-> struct to const.
+> Enabling this feature will allow the controller to stop the bus
+> clock when the bus is idle. The feature is not part of the standard
+> and is unique to newer Arasan cores and is enabled with a bit in a
+> vendor specific register. This feature will only be enabled for
+> non-removable devices because they don't switch the voltage and
+> clock gating breaks SD Card volatge switching.
 >
 > Signed-off-by: Al Cooper <alcooperx@gmail.com>
 > Signed-off-by: Kamal Dasu <kdasu.kdev@gmail.com>
@@ -87,114 +90,88 @@ Uffe
 
 
 > ---
->  drivers/mmc/host/sdhci-brcmstb.c | 32 ++++++++++++++++----------------
->  1 file changed, 16 insertions(+), 16 deletions(-)
+>  drivers/mmc/host/sdhci-brcmstb.c | 35 +++++++++++++++++++++++++++++++-
+>  1 file changed, 34 insertions(+), 1 deletion(-)
 >
 > diff --git a/drivers/mmc/host/sdhci-brcmstb.c b/drivers/mmc/host/sdhci-brcmstb.c
-> index f24623aac2db..244780481193 100644
+> index 244780481193..683d0c685748 100644
 > --- a/drivers/mmc/host/sdhci-brcmstb.c
 > +++ b/drivers/mmc/host/sdhci-brcmstb.c
-> @@ -18,20 +18,22 @@
+> @@ -17,11 +17,14 @@
+>
 >  #define SDHCI_VENDOR 0x78
 >  #define  SDHCI_VENDOR_ENHANCED_STRB 0x1
+> +#define  SDHCI_VENDOR_GATE_SDCLK_EN 0x2
 >
-> -#define BRCMSTB_PRIV_FLAGS_NO_64BIT            BIT(0)
-> -#define BRCMSTB_PRIV_FLAGS_BROKEN_TIMEOUT      BIT(1)
-> +#define BRCMSTB_MATCH_FLAGS_NO_64BIT           BIT(0)
-> +#define BRCMSTB_MATCH_FLAGS_BROKEN_TIMEOUT     BIT(1)
-> +
-> +#define BRCMSTB_PRIV_FLAGS_HAS_CQE             BIT(0)
+>  #define BRCMSTB_MATCH_FLAGS_NO_64BIT           BIT(0)
+>  #define BRCMSTB_MATCH_FLAGS_BROKEN_TIMEOUT     BIT(1)
+> +#define BRCMSTB_MATCH_FLAGS_HAS_CLOCK_GATE     BIT(2)
+>
+>  #define BRCMSTB_PRIV_FLAGS_HAS_CQE             BIT(0)
+> +#define BRCMSTB_PRIV_FLAGS_GATE_CLOCK          BIT(1)
 >
 >  #define SDHCI_ARASAN_CQE_BASE_ADDR             0x200
 >
->  struct sdhci_brcmstb_priv {
->         void __iomem *cfg_regs;
-> -       bool has_cqe;
-> +       unsigned int flags;
+> @@ -36,6 +39,27 @@ struct brcmstb_match_priv {
+>         const unsigned int flags;
 >  };
 >
->  struct brcmstb_match_priv {
->         void (*hs400es)(struct mmc_host *mmc, struct mmc_ios *ios);
->         struct sdhci_ops *ops;
-> -       unsigned int flags;
-> +       const unsigned int flags;
->  };
->
+> +static inline void enable_clock_gating(struct sdhci_host *host)
+> +{
+> +       u32 reg;
+> +
+> +       reg = sdhci_readl(host, SDHCI_VENDOR);
+> +       reg |= SDHCI_VENDOR_GATE_SDCLK_EN;
+> +       sdhci_writel(host, reg, SDHCI_VENDOR);
+> +}
+> +
+> +void brcmstb_reset(struct sdhci_host *host, u8 mask)
+> +{
+> +       struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
+> +       struct sdhci_brcmstb_priv *priv = sdhci_pltfm_priv(pltfm_host);
+> +
+> +       sdhci_reset(host, mask);
+> +
+> +       /* Reset will clear this, so re-enable it */
+> +       if (priv->flags & BRCMSTB_PRIV_FLAGS_GATE_CLOCK)
+> +               enable_clock_gating(host);
+> +}
+> +
 >  static void sdhci_brcmstb_hs400es(struct mmc_host *mmc, struct mmc_ios *ios)
-> @@ -134,13 +136,13 @@ static struct sdhci_ops sdhci_brcmstb_ops_7216 = {
+>  {
+>         struct sdhci_host *host = mmc_priv(mmc);
+> @@ -131,7 +155,7 @@ static struct sdhci_ops sdhci_brcmstb_ops = {
+>  static struct sdhci_ops sdhci_brcmstb_ops_7216 = {
+>         .set_clock = sdhci_brcmstb_set_clock,
+>         .set_bus_width = sdhci_set_bus_width,
+> -       .reset = sdhci_reset,
+> +       .reset = brcmstb_reset,
+>         .set_uhs_signaling = sdhci_brcmstb_set_uhs_signaling,
 >  };
 >
->  static struct brcmstb_match_priv match_priv_7425 = {
-> -       .flags = BRCMSTB_PRIV_FLAGS_NO_64BIT |
-> -       BRCMSTB_PRIV_FLAGS_BROKEN_TIMEOUT,
-> +       .flags = BRCMSTB_MATCH_FLAGS_NO_64BIT |
-> +       BRCMSTB_MATCH_FLAGS_BROKEN_TIMEOUT,
->         .ops = &sdhci_brcmstb_ops,
+> @@ -147,6 +171,7 @@ static struct brcmstb_match_priv match_priv_7445 = {
 >  };
 >
->  static struct brcmstb_match_priv match_priv_7445 = {
-> -       .flags = BRCMSTB_PRIV_FLAGS_BROKEN_TIMEOUT,
-> +       .flags = BRCMSTB_MATCH_FLAGS_BROKEN_TIMEOUT,
->         .ops = &sdhci_brcmstb_ops,
+>  static const struct brcmstb_match_priv match_priv_7216 = {
+> +       .flags = BRCMSTB_MATCH_FLAGS_HAS_CLOCK_GATE,
+>         .hs400es = sdhci_brcmstb_hs400es,
+>         .ops = &sdhci_brcmstb_ops_7216,
 >  };
+> @@ -273,6 +298,14 @@ static int sdhci_brcmstb_probe(struct platform_device *pdev)
+>         if (res)
+>                 goto err;
 >
-> @@ -176,7 +178,7 @@ static int sdhci_brcmstb_add_host(struct sdhci_host *host,
->         bool dma64;
->         int ret;
->
-> -       if (!priv->has_cqe)
-> +       if ((priv->flags & BRCMSTB_PRIV_FLAGS_HAS_CQE) == 0)
->                 return sdhci_add_host(host);
->
->         dev_dbg(mmc_dev(host->mmc), "CQE is enabled\n");
-> @@ -225,7 +227,6 @@ static int sdhci_brcmstb_probe(struct platform_device *pdev)
->         struct sdhci_brcmstb_priv *priv;
->         struct sdhci_host *host;
->         struct resource *iomem;
-> -       bool has_cqe = false;
->         struct clk *clk;
->         int res;
->
-> @@ -244,10 +245,6 @@ static int sdhci_brcmstb_probe(struct platform_device *pdev)
->                 return res;
->
->         memset(&brcmstb_pdata, 0, sizeof(brcmstb_pdata));
-> -       if (device_property_read_bool(&pdev->dev, "supports-cqe")) {
-> -               has_cqe = true;
-> -               match_priv->ops->irq = sdhci_brcmstb_cqhci_irq;
-> -       }
->         brcmstb_pdata.ops = match_priv->ops;
->         host = sdhci_pltfm_init(pdev, &brcmstb_pdata,
->                                 sizeof(struct sdhci_brcmstb_priv));
-> @@ -258,7 +255,10 @@ static int sdhci_brcmstb_probe(struct platform_device *pdev)
->
->         pltfm_host = sdhci_priv(host);
->         priv = sdhci_pltfm_priv(pltfm_host);
-> -       priv->has_cqe = has_cqe;
-> +       if (device_property_read_bool(&pdev->dev, "supports-cqe")) {
-> +               priv->flags |= BRCMSTB_PRIV_FLAGS_HAS_CQE;
-> +               match_priv->ops->irq = sdhci_brcmstb_cqhci_irq;
-> +       }
->
->         /* Map in the non-standard CFG registers */
->         iomem = platform_get_resource(pdev, IORESOURCE_MEM, 1);
-> @@ -287,14 +287,14 @@ static int sdhci_brcmstb_probe(struct platform_device *pdev)
->          * properties through mmc_of_parse().
->          */
->         host->caps = sdhci_readl(host, SDHCI_CAPABILITIES);
-> -       if (match_priv->flags & BRCMSTB_PRIV_FLAGS_NO_64BIT)
-> +       if (match_priv->flags & BRCMSTB_MATCH_FLAGS_NO_64BIT)
->                 host->caps &= ~SDHCI_CAN_64BIT;
->         host->caps1 = sdhci_readl(host, SDHCI_CAPABILITIES_1);
->         host->caps1 &= ~(SDHCI_SUPPORT_SDR50 | SDHCI_SUPPORT_SDR104 |
->                          SDHCI_SUPPORT_DDR50);
->         host->quirks |= SDHCI_QUIRK_MISSING_CAPS;
->
-> -       if (match_priv->flags & BRCMSTB_PRIV_FLAGS_BROKEN_TIMEOUT)
-> +       if (match_priv->flags & BRCMSTB_MATCH_FLAGS_BROKEN_TIMEOUT)
->                 host->quirks |= SDHCI_QUIRK_BROKEN_TIMEOUT_VAL;
->
->         res = sdhci_brcmstb_add_host(host, priv);
+> +       /*
+> +        * Automatic clock gating does not work for SD cards that may
+> +        * voltage switch so only enable it for non-removable devices.
+> +        */
+> +       if ((match_priv->flags & BRCMSTB_MATCH_FLAGS_HAS_CLOCK_GATE) &&
+> +           (host->mmc->caps & MMC_CAP_NONREMOVABLE))
+> +               priv->flags |= BRCMSTB_PRIV_FLAGS_GATE_CLOCK;
+> +
+>         /*
+>          * If the chip has enhanced strobe and it's enabled, add
+>          * callback
 > --
 > 2.17.1
 >
