@@ -2,171 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2DA7851AC68
-	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 20:09:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2BB9D51AC6E
+	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 20:10:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1376681AbiEDSNb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 May 2022 14:13:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53182 "EHLO
+        id S1376564AbiEDSNo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 May 2022 14:13:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57796 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1376615AbiEDSNY (ORCPT
+        with ESMTP id S1376851AbiEDSNY (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 14:13:24 -0400
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B3CBE47553
-        for <devicetree@vger.kernel.org>; Wed,  4 May 2022 10:32:21 -0700 (PDT)
-Received: by mail-ej1-x632.google.com with SMTP id z2so2658402ejj.3
-        for <devicetree@vger.kernel.org>; Wed, 04 May 2022 10:32:21 -0700 (PDT)
+Received: from mail-pg1-x529.google.com (mail-pg1-x529.google.com [IPv6:2607:f8b0:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D86875B3E3;
+        Wed,  4 May 2022 10:32:33 -0700 (PDT)
+Received: by mail-pg1-x529.google.com with SMTP id j70so1708603pge.1;
+        Wed, 04 May 2022 10:32:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=29ruKVriy2g3lqz65t1H7qVG6banp+GDlpPZFrL2iUc=;
-        b=gF9qfuK094RIWE4ckvIjXHamdtau6Old+ZMLvhHQGM/jmWVdnoEtdDj9wuwAQdCn5h
-         EN/s6w0wLYchhFEQ9Fd9x0JOQ1TjEockG/YeQyz2oJ1YAbjyXrsLW0YOSe65+7bfkYlF
-         /bM15nq7BKavjFDEnmkc5+uKpYArSpbky/rXU=
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=khvC0zRUn2wcPSPLy3O9uWd+bcV26djjWwaFNXMuw78=;
+        b=dTQxGlWJ3zHXjED6G5XuNyzMfCgMGQg1JW3Tf/OGgYwDOnJb6KTjERUTxgVfvpbeL/
+         VdLoHyx+uWaJxt+fDp0aN5Ucs4UqL2KG8fOJGdFSMjMZZoCmuM+F5ui0tGrKNOQpQ5zy
+         1iNN7sm5ATe601apZ0exS+MMCyoAw079bdehLD7imAH8cAgdktV1VMD8qoEGFKBwweGS
+         3eSHzo0c2VSCq0cJAhiyL7zg6QUo88cEVZ0zsKRLk126OuuYNROjvUL4TKmbqe01/c3I
+         H6f6tLAAnr6YkCcs+a9yaHiK+aJJO6DW4lpn6BBAMempOP9J9Ie2fMyVSQyRbuEOc7bJ
+         EHpA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=29ruKVriy2g3lqz65t1H7qVG6banp+GDlpPZFrL2iUc=;
-        b=YM3P1Zoi4+ENPODaKRMo7tcai8oJZFgUiS8TBSKbmlnNfdSvRxAg5nGRqSMpEJcmha
-         sq0B46DxNIGsUk0wqCGxNGKynsiFhjfsiLnVfvh5xO0ZYJOzXCn5XK01T3aAUBW6phOv
-         OjeICoIgNx4G9t+uV+Sn0ixpW1hNLHbgSw1wF50BB9B6V6FXiYoTJgRd6/MnH6iHHbtv
-         BYjrzQJUB7KPoIR/rf5xGP0P70zGMBWPzfGpWL5f0L45q3IA5CHU6adOro0LaM1t0qVS
-         /PAy7YbGvxPPxOC/GLSuxR1Gvyp6oTB0h2HGqLURfFXucNSYkOrObueFsF8Lg0NEsV2U
-         iqyA==
-X-Gm-Message-State: AOAM532J+W4OytW9NSKr10061cRsQnZidTIvt035fCqEExDklZa0Oopc
-        GxHHvDv5k2E6Ay5bO71Uk2quOGtoIqOoFwoTjSA=
-X-Google-Smtp-Source: ABdhPJww5agXTwmWVOhEqieDytsEY1YiHIo16nbAaNuu73b4+cvKYuESV5Bd/sWXqEFU5Nz9UgetNQ==
-X-Received: by 2002:a17:907:d89:b0:6f3:bd18:51a2 with SMTP id go9-20020a1709070d8900b006f3bd1851a2mr21559627ejc.83.1651685539872;
-        Wed, 04 May 2022 10:32:19 -0700 (PDT)
-Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com. [209.85.221.53])
-        by smtp.gmail.com with ESMTPSA id l16-20020a056402125000b0041d527833b9sm9498721edw.3.2022.05.04.10.32.18
-        for <devicetree@vger.kernel.org>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=khvC0zRUn2wcPSPLy3O9uWd+bcV26djjWwaFNXMuw78=;
+        b=lCT+Dr1aO6YaxFnRdxxrquGma57WrY/DtYjQxqstan0g8l13W3eyMUA4X6B8Jf1duJ
+         fPbXZlggGigfold4TkOdBCCXAIVqp1rzqEWc0nZsu3gHFLYgV/CsyNFGfPYJzfS4U7od
+         9JhiQbVxeehVn5bfpdv66bwvAQq/lYF4aosvIuHQ1peEuoRuN+hxKAmVL9hjXntPS6R6
+         YxWNdIfGcOTYwXWYrhlemNUWAIciSTR0zVcTV7RCRT+IV8TVwfn242iMzU3BseEzGZoe
+         kQ+iLuB6Y+N/zLaucOBEdUKEfjxtDQHSCIkc3Ql/yiwq7tvAVjOevFsR23fJRImM/VpV
+         aaKQ==
+X-Gm-Message-State: AOAM53230gA9q8f71OYZeMHnkAMQId01CL7p1EO7wn55Dn8l8fhFxBGW
+        X/ikyRmmRTFVKHo235ptUAOidLSRZ5Q=
+X-Google-Smtp-Source: ABdhPJxjy/dBkwPO/uhVsZdW+AJmn8H0VJFt/Ax3M+mp3Alz5oeeiflyb/DxVmHqf5ZeSMcH9tGuhg==
+X-Received: by 2002:a05:6a00:1943:b0:4cb:79c9:fa48 with SMTP id s3-20020a056a00194300b004cb79c9fa48mr22047983pfk.47.1651685552933;
+        Wed, 04 May 2022 10:32:32 -0700 (PDT)
+Received: from [172.30.1.41] ([14.32.163.5])
+        by smtp.gmail.com with ESMTPSA id b13-20020aa7810d000000b0050dc76281a5sm8454158pfi.127.2022.05.04.10.32.29
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 04 May 2022 10:32:18 -0700 (PDT)
-Received: by mail-wr1-f53.google.com with SMTP id q23so2984917wra.1
-        for <devicetree@vger.kernel.org>; Wed, 04 May 2022 10:32:18 -0700 (PDT)
-X-Received: by 2002:a05:6000:c7:b0:20a:d8c1:d044 with SMTP id
- q7-20020a05600000c700b0020ad8c1d044mr17464094wrx.422.1651685538029; Wed, 04
- May 2022 10:32:18 -0700 (PDT)
+        Wed, 04 May 2022 10:32:32 -0700 (PDT)
+Message-ID: <b7dc2b85-ed13-e3fa-738e-ff1a757c141a@gmail.com>
+Date:   Thu, 5 May 2022 02:32:27 +0900
 MIME-Version: 1.0
-References: <20220426124053.v2.1.Iedd71976a78d53c301ce0134832de95a989c9195@changeid>
-In-Reply-To: <20220426124053.v2.1.Iedd71976a78d53c301ce0134832de95a989c9195@changeid>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Wed, 4 May 2022 10:32:04 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=UUTVZPzJvC-S6=p_xRpoW+7EtupDYobgu7aQPWvR6XmA@mail.gmail.com>
-Message-ID: <CAD=FV=UUTVZPzJvC-S6=p_xRpoW+7EtupDYobgu7aQPWvR6XmA@mail.gmail.com>
-Subject: Re: [PATCH v2] arm64: dts: qcom: sc7280: eDP for herobrine boards
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Kuogee Hsieh <quic_khsieh@quicinc.com>,
-        Rob Clark <robdclark@chromium.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Sankeerth Billakanti <quic_sbillaka@quicinc.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        quic_kalyant <quic_kalyant@quicinc.com>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Andy Gross <agross@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH v3 03/12] clk: samsung: add top clock support for Exynos
+ Auto v9 SoC
+Content-Language: en-US
+To:     Chanho Park <chanho61.park@samsung.com>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Tomasz Figa <tomasz.figa@gmail.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Sam Protsenko <semen.protsenko@linaro.org>,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org
+References: <20220504075154.58819-1-chanho61.park@samsung.com>
+ <CGME20220504075003epcas2p1247f3e4d42e48f9459f80ad7d3e357ca@epcas2p1.samsung.com>
+ <20220504075154.58819-4-chanho61.park@samsung.com>
+From:   Chanwoo Choi <cwchoi00@gmail.com>
+In-Reply-To: <20220504075154.58819-4-chanho61.park@samsung.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Bjorn,,
-
-On Tue, Apr 26, 2022 at 12:41 PM Douglas Anderson <dianders@chromium.org> wrote:
->
-> Add eDP support to herobrine boards, splitting up amongst the
-> different files as makes sense. Rationale for the current split of
-> things:
-> * The eDP connector itself is on qcard. However, not all devices with
->   a qcard will use an eDP panel. Some might use MIPI and, presumably,
->   someone could build a device with qcard that had no display at all.
-> * The qcard provides a PWM for backlight that goes to the eDP
->   connector. This PWM is also provided to the board and it's expected
->   that it would be used as the backlight PWM even for herobrine
->   devices with MIPI displays.
-> * It's currently assumed that all herobrine boards will have some sort
->   of display, either MIPI or eDP (but not both).
-> * We will assume herobrine-rev1 has eDP. The schematics allow for a
->   MIPI panel to be hooked up but, aside from some testing, nobody is
->   doing this and most boards don't have all the parts stuffed for
->   it. The two panels would also share a PWM for backlight, which is
->   weird.
-> * herobrine-villager and herobrine-hoglin (crd) also have eDP.
-> * herobrine-hoglin (crd) has slightly different regulator setup for
->   the backlight. It's expected that this is unique to this board. See
->   comments in the dts file.
-> * There are some regulators that are defined in the qcard schematic
->   but provided by the board like "vreg_edp_bl" and
->   "vreg_edp_3p3". While we could put references to these regulators
->   straight in the qcard.dtsi file, this would force someone using
->   qcard that didn't provide those regulators to provide a dummy or do
->   an ugly /delete-node/. Instead, we'll add references in
->   herobrine.dtsi.
->
-> Signed-off-by: Douglas Anderson <dianders@chromium.org>
+On 22. 5. 4. 16:51, Chanho Park wrote:
+> This adds support for CMU_TOP which generates clocks for all the
+> function blocks such as CORE, FSYS0/1/2, PERIC0/1 and so on. For
+> CMU_TOP, PLL_SHARED0,1,2,3 and 4 will be the sources of this block
+> and they will generate bus clocks.
+> 
+> Signed-off-by: Chanho Park <chanho61.park@samsung.com>
 > ---
-> This patch most directly depends on ("arm64: dts: qcom: pm8350c: Add
-> pwm support") [1] and it won't even compile without that. To be
-> functional, of course, we also need the driver support for the PWM to
-> land.
->
-> In order for this patch to function we also need Sankeerth's eDP
-> series [2] to land.
->
-> To be schema happy, this patch also relies on my patch to add
-> regulators into the schema for the PHY an the eDP controller [3].
-> Several other device tree files reference these supplies without being
-> in the schema, though, so we'll have to decide whether to block on
-> those bindings landing. It does sound as if the regulator names may
-> not be exactly correct right now, though. :(
->
-> In theory, I could break this patch up into separate patches adding
-> the basic support to the qcard, then to herobrine.dtsi, and then one
-> patch each for herobrine-r1, villager, and crd. Doing so didn't seem
-> to make sense to me--I think it's easier to make sense of the change
-> as one patch. However, if someone feels strongly that it should be
-> broken up I'm happy to do so.
->
-> I've managed to get the display on my herobrine-rev1 up and running on
-> today's linuxnext (next-20220422) with this series. For whatever
-> reason the eDP PHY wouldn't probe unless I hacked `fw_devlink=off` in
-> the config. I don't believe that problem is related to this patch,
-> though.
->
-> [1] https://lore.kernel.org/r/1645509309-16142-4-git-send-email-quic_c_skakit@quicinc.com
-> [2] https://lore.kernel.org/r/1650887072-16652-1-git-send-email-quic_sbillaka@quicinc.com/
-> [3] https://lore.kernel.org/r/20220425210643.2420919-1-dianders@chromium.org
->
-> Changes in v2:
-> - Commit message and comment cleanups from Stephen.
->
->  .../boot/dts/qcom/sc7280-herobrine-crd.dts    | 40 ++++++++++++++
->  .../qcom/sc7280-herobrine-herobrine-r1.dts    |  8 +++
->  .../dts/qcom/sc7280-herobrine-villager-r0.dts |  8 +++
->  .../arm64/boot/dts/qcom/sc7280-herobrine.dtsi | 24 +++++++++
->  arch/arm64/boot/dts/qcom/sc7280-qcard.dtsi    | 54 +++++++++++++++++++
->  5 files changed, 134 insertions(+)
+>   drivers/clk/samsung/Makefile           |   1 +
+>   drivers/clk/samsung/clk-exynosautov9.c | 958 +++++++++++++++++++++++++
+>   2 files changed, 959 insertions(+)
+>   create mode 100644 drivers/clk/samsung/clk-exynosautov9.c
+> 
 
-Since you're landing patches, I'm curious what you think about this
-one. I believe that the dependencies have all landed except for [3],
-but we the drivers are already expecting these regulators and other
-dts files provide them despite the fact that they're not in the
-bindings.
+(snip)
 
-Thanks!
+Acked-by: Chanwoo Choi <cw00.choi@samsung.com>
 
--Doug
+
+-- 
+Best Regards,
+Samsung Electronics
+Chanwoo Choi
