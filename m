@@ -2,54 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7005A51AF68
-	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 22:37:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F0DC451AF71
+	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 22:39:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1355051AbiEDUkw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 May 2022 16:40:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52174 "EHLO
+        id S1343785AbiEDUmf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 May 2022 16:42:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53542 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233195AbiEDUku (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 16:40:50 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4BEE219032;
-        Wed,  4 May 2022 13:37:13 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id CF4D9B82940;
-        Wed,  4 May 2022 20:37:11 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3457AC385A5;
-        Wed,  4 May 2022 20:37:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1651696630;
-        bh=rvGFtzDUMdxkwhX/QNE/Ypl5Aws2l6MReGUI5o+GqFA=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=YL9ninoW5G4S5NnKRM9YU5i27m74E5PiA2pszB2EL6uBlt6P2nVSpYeBYXHj+FLFf
-         c+TThsNBYtNJHD+kMnhIp065fv5jj3hslWi65PUVqyhJfUTJSqXfK+kMt3WKETZhun
-         joDcYqFo53p6fPcLvbCKD96laCXHRZcCUMD4oZiyH9Wv9qvKPGH8VxgKdSnR1ssSVI
-         F1YvdOrHi4wGcgSUMCY4MZLKiVSjny6i/8X8oewxMdxsjt1/1RMyrbolAqk73T0SOG
-         o4cgehrMTC0MoL3dczTmu/aC6AI0muCUm/t7lndLCY/yBxEKWvxN5WboQ9AKLUA1y/
-         1LhhsxWdtKkEQ==
-From:   Mark Brown <broonie@kernel.org>
-To:     nfraprado@collabora.com
-Cc:     matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        hsin-hsiung.wang@mediatek.com, krzysztof.kozlowski+dt@linaro.org,
-        robh+dt@kernel.org, kernel@collabora.com,
-        linux-mediatek@lists.infradead.org, lgirdwood@gmail.com,
-        linux-arm-kernel@lists.infradead.org
-In-Reply-To: <20220429201325.2205799-1-nfraprado@collabora.com>
-References: <20220429201325.2205799-1-nfraprado@collabora.com>
-Subject: Re: [PATCH] dt-bindings: regulator: mt6315: Enforce regulator-compatible, not name
-Message-Id: <165169662791.1744767.17732308037249256443.b4-ty@kernel.org>
-Date:   Wed, 04 May 2022 21:37:07 +0100
+        with ESMTP id S235824AbiEDUmf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 16:42:35 -0400
+Received: from mail-oi1-f169.google.com (mail-oi1-f169.google.com [209.85.167.169])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 226FA4FC5E;
+        Wed,  4 May 2022 13:38:58 -0700 (PDT)
+Received: by mail-oi1-f169.google.com with SMTP id v65so2365673oig.10;
+        Wed, 04 May 2022 13:38:58 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=AcpEU69sAJkwiV3catvTf9Ba2Nirs+uxT6TgvfUDezQ=;
+        b=aI1+bxMjx+oP8zZqlFHPpvekCh3BHxh13601zAKUIN8tanqW7Egx5swO7Xp0CIqVZD
+         TaWQSaJ8lB+OoImnVOUPEaljDAg5DKyiSRz7DzDJEHyPzHCwTZXJ5TWUQlZ/8ratyCjl
+         +Kg1DeBy36IkFh5aHPdls+kIT4JpKamE69rPgv3YegqtF2CO8HD3XH3Ww6SxToMngjpI
+         TLLOXIaaIOBf/XiuhPb59JS5/mSgxKJ6VAqkY04xB4OrgB9afE77JZo2vi8THBHL+gN+
+         821bOIR1hfafGixQvhSxciSKZguie+2em4L95giU2SSooPGimF4348SpM603/WPS41bl
+         2BbQ==
+X-Gm-Message-State: AOAM533AHZViDc9k4pzR205BKZftWV9qzt0eXDPARwCKYBdHBSUOGcqI
+        J5Fo3uRKvkgQgwHATKdaFA==
+X-Google-Smtp-Source: ABdhPJxqGL2rYGTLd4lmJ9hpkXvtgU1omEZJ82uy+vc3bVbntykS23hu/PcAgWaMqP8CbQy4JAssJw==
+X-Received: by 2002:aca:545:0:b0:325:6e7:992d with SMTP id 66-20020aca0545000000b0032506e7992dmr673969oif.244.1651696737433;
+        Wed, 04 May 2022 13:38:57 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id dv2-20020a056870d88200b000e93d386d97sm8387005oab.31.2022.05.04.13.38.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 04 May 2022 13:38:57 -0700 (PDT)
+Received: (nullmailer pid 2187220 invoked by uid 1000);
+        Wed, 04 May 2022 20:38:56 -0000
+Date:   Wed, 4 May 2022 15:38:56 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     =?iso-8859-1?Q?N=EDcolas_F=2E_R=2E_A=2E?= Prado 
+        <nfraprado@collabora.com>
+Cc:     Mark Brown <broonie@kernel.org>, kernel@collabora.com,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Jiaxin Yu <jiaxin.yu@mediatek.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Shane Chien <shane.chien@mediatek.com>,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH 1/3] ASoC: dt-bindings: mediatek: mt8192: Add i2s-share
+ properties
+Message-ID: <YnLkYKmJ0TJ8uyjC@robh.at.kernel.org>
+References: <20220429203039.2207848-1-nfraprado@collabora.com>
+ <20220429203039.2207848-2-nfraprado@collabora.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+In-Reply-To: <20220429203039.2207848-2-nfraprado@collabora.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -57,41 +75,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 29 Apr 2022 16:13:24 -0400, NÃ­colas F. R. A. Prado wrote:
-> The MT6315 PMIC dt-binding should enforce that one of the valid
-> regulator-compatible is set in each regulator node. However it was
-> mistakenly matching against regulator-name instead.
+On Fri, Apr 29, 2022 at 04:30:37PM -0400, Nícolas F. R. A. Prado wrote:
+> The Mediatek AFE PCM controller for MT8192 allows sharing of an I2S bus
+> between two busses. Add a pattern for these properties in the
+> dt-binding.
 > 
-> Fix the typo. This not only fixes the compatible verification, but also
-> lifts the regulator-name restriction, so that more meaningful names can
-> be set for each platform.
+> Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
 > 
-> [...]
+> ---
+> 
+>  Documentation/devicetree/bindings/sound/mt8192-afe-pcm.yaml | 5 +++++
+>  1 file changed, 5 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/mt8192-afe-pcm.yaml b/Documentation/devicetree/bindings/sound/mt8192-afe-pcm.yaml
+> index 7a25bc9b8060..5b03c8dbf318 100644
+> --- a/Documentation/devicetree/bindings/sound/mt8192-afe-pcm.yaml
+> +++ b/Documentation/devicetree/bindings/sound/mt8192-afe-pcm.yaml
+> @@ -54,6 +54,11 @@ properties:
+>        - const: aud_infra_clk
+>        - const: aud_infra_26m_clk
+>  
+> +patternProperties:
+> +  "^i2s[0-35-9]-share$":
+> +    description: Name of the I2S bus that is shared with this bus
+> +    pattern: "^I2S[0-35-9]$"
 
-Applied to
+Why not a phandle to the the other bus? That would be the DT way to do 
+it. But I'm not sure I really understand who is sharing what here.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
-
-Thanks!
-
-[1/1] dt-bindings: regulator: mt6315: Enforce regulator-compatible, not name
-      commit: 6d435a94ba5bb4f2ad381c0828fbae89c66b50fe
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+> +
+>  required:
+>    - compatible
+>    - interrupts
+> -- 
+> 2.36.0
+> 
+> 
