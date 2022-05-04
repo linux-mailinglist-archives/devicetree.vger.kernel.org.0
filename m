@@ -2,69 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C730C51B128
-	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 23:38:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B20F51B134
+	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 23:38:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237208AbiEDVl6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 May 2022 17:41:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58198 "EHLO
+        id S1378773AbiEDVm1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 May 2022 17:42:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58644 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230214AbiEDVl5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 17:41:57 -0400
-Received: from mail-pl1-x62e.google.com (mail-pl1-x62e.google.com [IPv6:2607:f8b0:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F876B7D6
-        for <devicetree@vger.kernel.org>; Wed,  4 May 2022 14:38:21 -0700 (PDT)
-Received: by mail-pl1-x62e.google.com with SMTP id c11so2616412plg.13
-        for <devicetree@vger.kernel.org>; Wed, 04 May 2022 14:38:21 -0700 (PDT)
+        with ESMTP id S1378737AbiEDVmZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 17:42:25 -0400
+Received: from mail-yw1-x1130.google.com (mail-yw1-x1130.google.com [IPv6:2607:f8b0:4864:20::1130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8164749F0E
+        for <devicetree@vger.kernel.org>; Wed,  4 May 2022 14:38:48 -0700 (PDT)
+Received: by mail-yw1-x1130.google.com with SMTP id 00721157ae682-2f7d19cac0bso29964477b3.13
+        for <devicetree@vger.kernel.org>; Wed, 04 May 2022 14:38:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=mdl+GxAonGFBDF3U2llopaVHtHA1rpzl+Lz6pPUtmxc=;
-        b=k7fPNd4qvYwnCVuuO+NxqbuONaxe40wSbufQtEf27g8rrF1yQ3IMGP2tuZgGvHjOfE
-         niyKWs2TyaUG7lKJGm4t4CFjMB5G4Cm0fzjRNJgjCfcImIujygnZjTYP97Fnd/4ZPQ7K
-         x7L9DfL2WO3uvVPEn/LHlro/1MMfWze4iWEYI=
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=VX0Y5lK0oKhUNvSgMz9EtXzVemCwMapBfZK+KjIwWaY=;
+        b=QFpWrEBIrRnFFsbRzuQnDhJe4BaSIkFjtC3A5cZVG9hy/hcMauWrIqr2be5/KwrfGo
+         NCGCurP8cU79+UY+pB9TmqKhq7oXZZ7qPI7uQbAillCKF63H5X/zuGVkc+JsGOKGae5G
+         f+iwI+Dj4ePQuDCx/1Fct2nRPtAuc4Hty7oz//xsfve/iIL9k6svN3NMMvhiwINJ4xTM
+         9sMncJOw7LjeeB//tUJa4IoTpI6DRjLlfyj3NRTd/sq9i3txOLixbGmLfCTI0VPt6z/K
+         HRTwjUNbVnucCOGaOR4QEyXpnInRsolXUV5HOuBia87QkC+0dAuzdKHwcHKfLed2iZ+D
+         Bhzw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=mdl+GxAonGFBDF3U2llopaVHtHA1rpzl+Lz6pPUtmxc=;
-        b=CkyZJBnmKoAyEhYjfOHH0gLdU/mzQ3+qdlYCcK98mA7+QqxZUGWSX93zQxGSBMRpQg
-         NHH6IRh7sa/sN0ZWO/FTOWg2F0PX8d9y76fLMMrTpYl76Uswmz/MidPs/J9dCOPMWhG0
-         9+ZZVwifK/5tNQVF2QQu/HkGcF0c984M1C5BBjXCuhlWXZfWm321GN463w/jxoTAarjx
-         uxs0T/l4lu5hrMqBJuCRWOsR/Fvy12ubdsu6C4KZjAGKzYxlkZdZ8/BIlffNMQJqS/uL
-         EUCMAAU922D+uFCwxAyBFKjIV0/1hHKWdwIOBBhHwn0ei2YdgAUm/zlTzQ319X9mck12
-         uvMw==
-X-Gm-Message-State: AOAM5322/nOX/SwEL/ifL+X2lETPohzZjvyhi2hSs1E1tvPa7u5KeNYn
-        997+WPDmLq0W3pXsJ7/nzK5ZkA==
-X-Google-Smtp-Source: ABdhPJys2IvRcQmRGZzmkSLut+kvaoO5/bSCZPMtaA9l8ZwCvuoq7aszjmTwTiPIibHssbH1YKJECg==
-X-Received: by 2002:a17:902:b107:b0:15d:391c:5a72 with SMTP id q7-20020a170902b10700b0015d391c5a72mr24188487plr.46.1651700300635;
-        Wed, 04 May 2022 14:38:20 -0700 (PDT)
-Received: from localhost ([2620:15c:202:201:35b6:c77b:be04:3bd5])
-        by smtp.gmail.com with UTF8SMTPSA id s22-20020aa78296000000b0050dc76281b5sm9025499pfm.143.2022.05.04.14.38.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 04 May 2022 14:38:20 -0700 (PDT)
-Date:   Wed, 4 May 2022 14:38:19 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-Cc:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, quic_rohkumar@quicinc.com,
-        srinivas.kandagatla@linaro.org, dianders@chromium.org,
-        swboyd@chromium.org, judyhsiao@chromium.org,
-        Venkata Prasad Potturu <quic_potturu@quicinc.com>
-Subject: Re: [PATCH v11 07/12] arm64: dts: qcom: sc7280: herobrine: Add
- max98360a codec node
-Message-ID: <YnLyS3NgsUEii0RL@google.com>
-References: <1651664649-25290-1-git-send-email-quic_srivasam@quicinc.com>
- <1651664649-25290-8-git-send-email-quic_srivasam@quicinc.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=VX0Y5lK0oKhUNvSgMz9EtXzVemCwMapBfZK+KjIwWaY=;
+        b=Nb9oYP7uVLYd0EzsCkZMp5ks+JOSSdOtvnpBDjk3azmTKYFMzTHCbfauNasOddT105
+         VCdEKmI1x1eHcPd7Gtcd9WbgjTj5SIzhCMl02YUCGvfdD63RhjhMm26CtrSQLLEGRS2D
+         96Z3af6tZy1yd7R4Gpie8ZNI2Sc0tNkDFv36XHhZYXhggbCaJKdF2oaAp8WkU1MEoI29
+         TnCjfKwhpKOY3DZr9Hh6NflJuh65u+8NO/PR81mvM4oJ06Jv8FkkSmnP/zOR2rLUei83
+         YN9X6xWC4ydYUTpUvX5IihTXhFw9Q8UNNkvhMPGU7F4ZwBqMj6iUuz8D/4gjThg3bxZn
+         oojQ==
+X-Gm-Message-State: AOAM532q2ShKiZcQkp43Onv3LzDG3QBAzAMkr58Yp9rIz/HM7g9Ycegx
+        OXyEVLti0RLpJ4ORLF0XmGhzYNfq2qK3/VhFHvMbyQ==
+X-Google-Smtp-Source: ABdhPJyWaynNr+CEKkTESmGLzWOB0NJ+k01UPdgmFyQnRX5drt8jZsToCyQBLbeZMlkNdUUCDjlKhWmRzv0FXiKAhqI=
+X-Received: by 2002:a0d:ddc6:0:b0:2f8:a506:a5c0 with SMTP id
+ g189-20020a0dddc6000000b002f8a506a5c0mr22520729ywe.140.1651700327788; Wed, 04
+ May 2022 14:38:47 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <1651664649-25290-8-git-send-email-quic_srivasam@quicinc.com>
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+References: <20220428214838.1040278-1-Mr.Bossman075@gmail.com> <20220428214838.1040278-13-Mr.Bossman075@gmail.com>
+In-Reply-To: <20220428214838.1040278-13-Mr.Bossman075@gmail.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Wed, 4 May 2022 23:38:36 +0200
+Message-ID: <CACRpkdY2MNkAKhVOQ_Eyq0AwOtEW-seSrxgsJ2D8E78u636A8A@mail.gmail.com>
+Subject: Re: [PATCH v2 12/15] pinctrl: freescale: Add i.MXRT1170 pinctrl
+ driver support
+To:     Jesse Taube <mr.bossman075@gmail.com>
+Cc:     linux-imx@nxp.com, robh+dt@kernel.org, mturquette@baylibre.com,
+        sboyd@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        kernel@pengutronix.de, festevam@gmail.com, aisheng.dong@nxp.com,
+        stefan@agner.ch, daniel.lezcano@linaro.org, tglx@linutronix.de,
+        arnd@arndb.de, olof@lixom.net, soc@kernel.org,
+        linux@armlinux.org.uk, abel.vesa@nxp.com, dev@lynxeye.de,
+        marcel.ziswiler@toradex.com, tharvey@gateworks.com,
+        leoyang.li@nxp.com, sebastian.reichel@collabora.com,
+        cniedermaier@dh-electronics.com, clin@suse.com,
+        giulio.benetti@benettiengineering.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,13 +76,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 04, 2022 at 05:14:04PM +0530, Srinivasa Rao Mandadapu wrote:
-> Add max98360a codec node for audio use case on all herobrine boards.
-> 
-> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-> Co-developed-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
-> Signed-off-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
+On Thu, Apr 28, 2022 at 11:49 PM Jesse Taube <mr.bossman075@gmail.com> wrote:
 
-Carrying over from v10:
+> Add the pinctrl driver support for i.MXRT1170.
+>
+> Cc: Giulio Benetti <giulio.benetti@benettiengineering.com>
+> Signed-off-by: Jesse Taube <Mr.Bossman075@gmail.com>
+> ---
+> V1 -> V2:
+>  - Nothing done
 
-Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
+If I get a review from a Freescale maintainer on this driver and the bindings
+I can merge it separately, correct?
+
+Yours,
+Linus Walleij
