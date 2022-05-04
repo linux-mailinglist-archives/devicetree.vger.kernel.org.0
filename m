@@ -2,97 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E31851A1DC
-	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 16:09:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8FCDF51A1F6
+	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 16:14:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346211AbiEDONI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 May 2022 10:13:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57554 "EHLO
+        id S1351153AbiEDORt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 May 2022 10:17:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34030 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351070AbiEDONH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 10:13:07 -0400
-Received: from mail-ot1-f53.google.com (mail-ot1-f53.google.com [209.85.210.53])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4D60419A7;
-        Wed,  4 May 2022 07:09:31 -0700 (PDT)
-Received: by mail-ot1-f53.google.com with SMTP id y14-20020a9d460e000000b00605ee347da1so965072ote.8;
-        Wed, 04 May 2022 07:09:31 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=o53a8GmxnocjGIYplhPt9PwSDPQJ/OPLUJA/SSfS1HM=;
-        b=l4mdAZsYZYqH0kJ3KVaHvWC3PKi+vV81qasjUiPGDIVe5F2dsje5nwVy6gjB08vz4j
-         svFU4W+nCzjBb/oIfHUVaQKDtPFS8KRH1XiQSAGlDhUl9ArEmDbhoA95ZiZCcpWZuPtv
-         DsEgNU87GWlewYFhHCqiOitDD4Cmnzo8gpvlcBalu76coNEfvzEmgf454Z3rAlTNS96V
-         YNxtSvHFz1RB1eyqK+eV+4F9W8UQmLLjC1HUCK66XITq86D/HGWwip+eosKdZoK9mM5E
-         sA6zTKNlPCGpBZCnPDlJJPUdT5OvNUU9Cf0fG/G4XpnjMOvzUJFIcPi4N+2xKSkpZF9V
-         49Jw==
-X-Gm-Message-State: AOAM532oJqCWpZ+FQPdMGgwvqv+YiSWmItAkUwrqURDkeEaQVANDovqC
-        FkisG9hftbf8JamR2FEjbQ==
-X-Google-Smtp-Source: ABdhPJxtg9hxvR1IWm7xYdENP2YcZLWfPM1hpwSN0lI2GlIknHz/N+T7Lk6/cpY1Z6RkYt3IV4Uh2A==
-X-Received: by 2002:a05:6830:16c8:b0:606:2557:e324 with SMTP id l8-20020a05683016c800b006062557e324mr4010876otr.33.1651673370512;
-        Wed, 04 May 2022 07:09:30 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id b18-20020aca2212000000b00325cda1ff8esm4374899oic.13.2022.05.04.07.09.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 May 2022 07:09:29 -0700 (PDT)
-Received: (nullmailer pid 1631408 invoked by uid 1000);
-        Wed, 04 May 2022 14:09:29 -0000
-Date:   Wed, 4 May 2022 09:09:29 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Daniels Umanovskis <du@axentia.se>
-Cc:     Richard Leitner - SKIDATA <Richard.Leitner@skidata.com>,
-        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: usb: usb251xb: add documentation for
- reset-delay-us
-Message-ID: <YnKJGf6lgKfp9Vpj@robh.at.kernel.org>
-References: <20220426123329.775-1-du@axentia.se>
- <20220426123329.775-2-du@axentia.se>
- <YnB1ZQwpOBcT4zct@robh.at.kernel.org>
- <75ed6e33-0d67-c50f-4d3a-7345d5f058b4@axentia.se>
- <YnDz/q7hqlTbRqYR@ltleri2>
- <fb7a499f-2abb-d84e-c8d5-4d15e7fb6d3d@axentia.se>
+        with ESMTP id S1344737AbiEDORr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 10:17:47 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1164D42490
+        for <devicetree@vger.kernel.org>; Wed,  4 May 2022 07:14:11 -0700 (PDT)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1nmFlZ-0001VG-Ix; Wed, 04 May 2022 16:14:09 +0200
+Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1nmFlU-0006LT-3Q; Wed, 04 May 2022 16:14:04 +0200
+Date:   Wed, 4 May 2022 16:14:04 +0200
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     Gireesh.Hiremath@in.bosch.com
+Cc:     linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
+        bcousson@baylibre.com, tony@atomide.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, dmitry.torokhov@gmail.com,
+        mkorpershoek@baylibre.com, davidgow@google.com,
+        swboyd@chromium.org, fengping.yu@mediatek.com,
+        y.oudjana@protonmail.com, rdunlap@infradead.org,
+        colin.king@intel.com, sjoerd.simons@collabora.co.uk,
+        VinayKumar.Shettar@in.bosch.com,
+        Govindaraji.Sivanantham@in.bosch.com, anaclaudia.dias@de.bosch.com
+Subject: Re: [PATCH 2/4] Input: mt-matrix-keypad: Add Bosch mt matrix keypad
+ driver
+Message-ID: <20220504141404.onom7x5lycyg3b22@pengutronix.de>
+References: <20220504105254.1576-2-Gireesh.Hiremath@in.bosch.com>
+ <20220504134817.1490-1-Gireesh.Hiremath@in.bosch.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <fb7a499f-2abb-d84e-c8d5-4d15e7fb6d3d@axentia.se>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+In-Reply-To: <20220504134817.1490-1-Gireesh.Hiremath@in.bosch.com>
+User-Agent: NeoMutt/20180716
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 03, 2022 at 11:41:17AM +0200, Daniels Umanovskis wrote:
-> On 5/3/22 11:21 AM, Richard Leitner - SKIDATA wrote:
-> > What's the maximum timeout you've observed?
-> > 
-> > I guess it would be the simpler and "better" approach to just increase
-> > the timeout in the driver (if it's not too much above the 500µs).
+On 22-05-04, Gireesh.Hiremath@in.bosch.com wrote:
+> From: Gireesh Hiremath <Gireesh.Hiremath@in.bosch.com>
 > 
-> I saw 800-820 us at most, and my initial fix internally was just to increase
-> the sleep duration in the driver. But it's an increase of over 50% and I
-> don't feel it makes sense to change the driver's behavior for thousands of
-> users with properly working chips, hence the configurable timeout for
-> out-of-spec batches like the one we had here. I expect more users to run
-> across such batches in the coming months.
-> 
-> In an ideal world, we'd just trash these hubs that should have surely failed
-> factory QA, but with today's component shortage that's an unimaginable
-> luxury...
+> The existing matric_keypad.c use different gpio line for row and colunm,
+> where in mt_matrix_kepad.c use same gpio line for row as well as column.
+> a key can be placed at each intersection of a unique row number 
+> not equal to a unique column and they are diagonally symmetric.
+> Advantage of this is with existed gpio line we can get more keys
+>   
+> example: in matrix_keypad.c for 5 gpio line possible matrix is 2X3 or 3X2
+> and maximum possible keys are 6 but 
+> in mt_matrix_kepad.c for same 5 gpio line possible matrix is 5X5 and maximum
+> possible buttons are 10, below table will discribe that
 
-The only solution that works here is increase the timeout in the driver. 
-Are you going to tweak the dtb based on what batch the chip is from? No, 
-that's not possible.
+Nobody should stop you to increase the amount of max. possible keys, so
+this isn't a real block.
 
-Having worked in a chip company, I can tell you how they would fix it. 
-Better testing? No, they'd change the documentation.
+> 	------------------------------------------------------
+> 	|Row\Col |GPIO 0 | GPIO 1 | GPIO 2 | GPIO 3 | GPIO 4 |
+> 	------------------------------------------------------
+> 	| GPIO 0 |  X    | KEY_9  | KEY_2  | KEY_3  | KEY_1  |
+> 	------------------------------------------------------
+> 	| GPIO 1 | KEY_9 |  X     | KEY_6  | KEY_5  |  KEY_0 |
+> 	------------------------------------------------------
+> 	| GPIO 2 | KEY_2 | KEY_6  |  X     | KEY_4  | KEY_7  |
+> 	------------------------------------------------------
+> 	| GPIO 3 | KEY_3 | KEY_5  | KEY_4  |  X     | KEY_8  |
+> 	------------------------------------------------------
+> 	| GPIO 4 | KEY_1 |  KEY_0 | KEY_7  | KEY_8  |  X     |
+> 	------------------------------------------------------
+> 	X - invalid key
+> 	KEY_x - preferred key code
 
-Rob
+That should be pointed somewhere very clearly, thanks for the
+description. Also what is than the benefit of the original matrix_keypad
+driver?
+
+> both matric_keypad.c and mt_matrix_kepad.c logically operate differently,
+> my openion is not to merge both.
+
+IMHO from the user/system-integrator pov it is looking the same and so
+one driver should be fine. To distinguish between both modes we could
+add dt-property or add a new dt-compatible like "gpio-matrix-keypad-v2".
+
+Regards,
+  Marco
