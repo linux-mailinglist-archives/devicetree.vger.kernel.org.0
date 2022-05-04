@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A7A6C51A253
-	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 16:36:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C62FD51A256
+	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 16:36:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351364AbiEDOjo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 May 2022 10:39:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53124 "EHLO
+        id S1351368AbiEDOkI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 May 2022 10:40:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53506 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351365AbiEDOjm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 10:39:42 -0400
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CA5B40A34
-        for <devicetree@vger.kernel.org>; Wed,  4 May 2022 07:36:06 -0700 (PDT)
-Received: by mail-ej1-x62f.google.com with SMTP id z2so1706623ejj.3
-        for <devicetree@vger.kernel.org>; Wed, 04 May 2022 07:36:06 -0700 (PDT)
+        with ESMTP id S1351375AbiEDOkG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 10:40:06 -0400
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED78741306
+        for <devicetree@vger.kernel.org>; Wed,  4 May 2022 07:36:28 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id kq17so3293784ejb.4
+        for <devicetree@vger.kernel.org>; Wed, 04 May 2022 07:36:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=cj69kNdAT7OJwjP0WHM+y9peSYHjMZ4LxSkgoQoMKUA=;
-        b=zK42u34VPnfyOxNhk0iqW1afDz26ADZdXdU0SxIaaQ0lpRluVgjjHagB1by/sFC4lz
-         5V0mBiQ2lj7qMK/8ZPHX/xpDsbj+FSe2kOquvY5NemqTn6w0gzPVbzNgvlxT5HbdBNir
-         FuxyuSSvqevxRI2JCt7OdQfRKxvYr4yEu1j3wrDj+rhCMy/vGmxWxMHMcBRlyFtm1FzK
-         +uz0kJgUonEZDT9eyIk6v4OCzQjtFTsTHBG5195Mv9RkpRmKaATvWyQ3iNFuhxOS5ey6
-         oy9lrNz9FBCWPlRcLwaeRVeKSmV9w+4wmMOn4vMg+I+uDYbd5mUvOmVrQ0cGbzMd+09E
-         c9FQ==
+        bh=r4kTs37qzDv5vVl2H9hpUpYJnsnC2MUKlbtIkN5Yesg=;
+        b=jJVdw2tiE0ASvn7JEJlrJBqUsjY0HIacMO3hM/PBIo2S4FGZS/KLlQJxt5q2bm5WoY
+         PSRP5ApMeVwLZuSDCq2GF35V4qknJ0pf7tDsdJM3wzmW0qs1KxzRngMK4jM4Y/WU/v0a
+         w23ID0GIoj4I3Mld48y8WySbnyG3Ry0nKFxQCvVJKY5NjzmQtM5TPfN3uIiSz2OU/JTx
+         Ij2d88msyLkqRkbVp43872ciE8IRkhV34ANJaFdE7qDYWKSiDEOKQuY2XWRyxhbwFhml
+         1KQv6JEfDocZSBQojYGeOpR+YVrHibvB2OPnuQU3sJuAead94reLIBG1CJnppJxjGnR+
+         /F7w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=cj69kNdAT7OJwjP0WHM+y9peSYHjMZ4LxSkgoQoMKUA=;
-        b=6pVy2MjvkoX/V/FeudMHDIjnmiWYHHcRdNw/2gKkTwaj1IXiskInp7u5sDeOa3q1O9
-         tcMVB/MS7dK4FdoX4PNEn/vQB7x8ICOJgECLomWIDwy3t0IgxJmdrkgQvcdoE89kLTOw
-         2xnVAMF5CeyBPuNhA/J/ETEPPcAAQ0/NEem6kyKLG3REmPpzTGNXulOr25ti6PnOWHJD
-         qWb0WZ90k9oqWOCfJj1bumHkxxwdOjz7KFgBLwekmS/7qo7H5Z5OpTgEDOwLoQWK1H9A
-         4HXl61+WVnJa6jGZZ3mn5TOt/Lf6sgD+vNkkUmFnwqMnBCuRBRbbbTwL1IWcIfNryN9Q
-         /8IQ==
-X-Gm-Message-State: AOAM531rY/fRzB8v39kzGCnOKgVFdhNMLfeVtkTuduNU1yH1Hmd6Ttyr
-        N2ZnPSRx/aoJY/QbXu0bYlThag==
-X-Google-Smtp-Source: ABdhPJxQRGZdea5mQfD5avwlShqAqmOmyPxL439jtXkShSOrhV1tuSBLhDjdR0/HQUsIL2+ptx5+Wg==
-X-Received: by 2002:a17:906:9b94:b0:6f3:fd8d:8a00 with SMTP id dd20-20020a1709069b9400b006f3fd8d8a00mr20342963ejc.90.1651674964733;
-        Wed, 04 May 2022 07:36:04 -0700 (PDT)
+        bh=r4kTs37qzDv5vVl2H9hpUpYJnsnC2MUKlbtIkN5Yesg=;
+        b=EwbRUSeL4Ai6vI/p3+uMor3pyUa1I4Qs8MtQcIxlYbY1KmET8+vCRmacT/5r7WRw83
+         +TUXnxn3oh/tXNBTCMw7cwby5kIEhGBwQjO2L0jhrUnNPhq5R4V5+XqhbZX3J9oV41Sf
+         +qpMHGByrCL0Gi/88vQzrzEipAyCFU633x7ngi5cpn9AO3jn0P5/37M3k+dAztsMEStq
+         rPNr7qn0xgWEkE2AMKMn4G2Acl+wiwp57DpRK6EBWS/MNaOBRQWSNpNq5aRCNA9yqE/v
+         RsrwX/ZpyhBtFH8gt0WTPw5x4twwf57o5xzdfnwpROqPJSutqDmC5Lvd07e5ugm5H8mL
+         6L2A==
+X-Gm-Message-State: AOAM530o++jeezy8SThMRDIGzZ4ShEWFsrNT6bmlBs55aXFdcyOLZBFW
+        d64g0zguLJ1nwOZWHPBe83EoZg==
+X-Google-Smtp-Source: ABdhPJzoPAn+s2lg6saQY/gm3ODR4SztB5D5DPs1ZOnGzuvjjMzKYaKOKSID27nZIDLVmW+9kqJKdw==
+X-Received: by 2002:a17:907:70c4:b0:6f3:d23f:d711 with SMTP id yk4-20020a17090770c400b006f3d23fd711mr20047023ejb.205.1651674987486;
+        Wed, 04 May 2022 07:36:27 -0700 (PDT)
 Received: from [192.168.0.215] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id h14-20020a1709070b0e00b006f3ef214db9sm5741551ejl.31.2022.05.04.07.36.03
+        by smtp.gmail.com with ESMTPSA id zp1-20020a17090684e100b006f3ef214defsm5727577ejb.85.2022.05.04.07.36.26
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 04 May 2022 07:36:04 -0700 (PDT)
-Message-ID: <4f6bfca2-4591-af7c-4a65-f8b0b59d8076@linaro.org>
-Date:   Wed, 4 May 2022 16:36:02 +0200
+        Wed, 04 May 2022 07:36:27 -0700 (PDT)
+Message-ID: <811c2d85-b615-0f7a-6a35-832d091d62c2@linaro.org>
+Date:   Wed, 4 May 2022 16:36:26 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.8.1
-Subject: Re: [PATCH v3 01/12] dt-bindings: clock: add clock binding
- definitions for Exynos Auto v9
+Subject: Re: [PATCH v3 03/12] clk: samsung: add top clock support for Exynos
+ Auto v9 SoC
 Content-Language: en-US
 To:     Chanho Park <chanho61.park@samsung.com>,
         Sylwester Nawrocki <s.nawrocki@samsung.com>,
@@ -69,15 +69,15 @@ Cc:     Sam Protsenko <semen.protsenko@linaro.org>,
         linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
         linux-samsung-soc@vger.kernel.org
 References: <20220504075154.58819-1-chanho61.park@samsung.com>
- <CGME20220504075003epcas2p3708d1853dae290bc42cfacd318767c8d@epcas2p3.samsung.com>
- <20220504075154.58819-2-chanho61.park@samsung.com>
+ <CGME20220504075003epcas2p1247f3e4d42e48f9459f80ad7d3e357ca@epcas2p1.samsung.com>
+ <20220504075154.58819-4-chanho61.park@samsung.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220504075154.58819-2-chanho61.park@samsung.com>
+In-Reply-To: <20220504075154.58819-4-chanho61.park@samsung.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -86,27 +86,14 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 04/05/2022 09:51, Chanho Park wrote:
-> Add device tree clock binding definitions for below CMU blocks.
+> This adds support for CMU_TOP which generates clocks for all the
+> function blocks such as CORE, FSYS0/1/2, PERIC0/1 and so on. For
+> CMU_TOP, PLL_SHARED0,1,2,3 and 4 will be the sources of this block
+> and they will generate bus clocks.
 > 
-> - CMU_TOP
-> - CMU_BUSMC
-> - CMU_CORE
-> - CMU_FYS2
-> - CMU_PERIC0 / C1
-> - CMU_PERIS
-> 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > Signed-off-by: Chanho Park <chanho61.park@samsung.com>
-> ---
->  .../dt-bindings/clock/samsung,exynosautov9.h  | 299 ++++++++++++++++++
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Hi Sylwester,
-
-If I am to apply the DTS, which uses this header, I would need to take
-it via my tree and send you a pull request with it.
-
-Otherwise the DTS would need to be modified to have workaround-defines
-for missing header.
 
 Best regards,
 Krzysztof
