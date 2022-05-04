@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F0DC851A0A6
-	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 15:20:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9673A51A0AF
+	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 15:20:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350511AbiEDNXg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 May 2022 09:23:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34080 "EHLO
+        id S1350433AbiEDNXn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 May 2022 09:23:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34010 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350400AbiEDNXL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 09:23:11 -0400
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94C8E1CFD4
-        for <devicetree@vger.kernel.org>; Wed,  4 May 2022 06:19:33 -0700 (PDT)
-Received: by mail-ej1-x633.google.com with SMTP id l18so2834396ejc.7
-        for <devicetree@vger.kernel.org>; Wed, 04 May 2022 06:19:33 -0700 (PDT)
+        with ESMTP id S1350430AbiEDNXX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 09:23:23 -0400
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD03931203
+        for <devicetree@vger.kernel.org>; Wed,  4 May 2022 06:19:34 -0700 (PDT)
+Received: by mail-ej1-x62a.google.com with SMTP id l7so2864898ejn.2
+        for <devicetree@vger.kernel.org>; Wed, 04 May 2022 06:19:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=geJ1oCMfHvrwrPUcn2CBZQZQvkPEsJJFNL12XqUDXCM=;
-        b=eXCGt2ajshLobHOIJRX+d5yT3wL9OfZmJInYcSe/ETxQ72pQJIFe62eQYgmFP1pPPJ
-         kw8FYnmaF3rxOURKKA5S6VccS8E75IY1RlhJFP2oNZdXW1wP4RBFEHs6XilEinPW6vrj
-         Isc5hh11tqC1fdg1dc0MFa+ynH1gH0R//ndqg72N390E1LRiLtRwgk/EeW3psHNxc7du
-         SkwoD4sQ6Fgwv2wkNc6Xqd5moC3kSbCRMVEDmZWulqR+nCAAeae8kel9LtInwG32vPDE
-         /TIRLmnOfb7bc9M1ARp0XWGsPNH7DB20OxcANoK8jqJVhvVM/a6UYme2PxNOZRjwWP0+
-         K3ZA==
+        bh=A1CSj58CI9HvjxPtoHk1cXMAe4tONDfDlnbs+TC55zs=;
+        b=kjacRVN950U92kCKYjh6vcjIuJgk83hQ7cHYHqdPwrxYeKCtcs84ow3r1re0g6EmQr
+         JDAwe+O6El425hOeYz0ur1YK1e8bWDdGFb94A918Ia3bHwd2ik4e2yGazvfzZmoMPvmF
+         Rq3UxMYMb+JeNrvOvvtTEfV1V0tI3pCgd67zIgX4rxVpmZxAIqGgMRqEJ/lhJ1trTvti
+         NlD+i237pmP7QLNm9OgJ59XskxD3GWV+MlM8TUg6iuSePzGqLjaKqA1BQiPUorLxj2RU
+         j3rzpXZTDv5XpWV5F1x0GAvcyWzphvGeNyhdQBRjIVkruBWl6Gy2T6E75CbhxZDHvy+J
+         A9hQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=geJ1oCMfHvrwrPUcn2CBZQZQvkPEsJJFNL12XqUDXCM=;
-        b=uMMySkCJoZIqn4oVx0nwXlQiqF9WcU06M8zkkuGO1RApapa9ZCBrscWye/y346m9zj
-         20wpdKA5acWHVd1AQgTXN8qjlS6rhwAjMkL4053J80o8fLtxllisyiferXwja1AFCH2f
-         7w+onJgKYPlYPbmQUj3vq71ghg0BTTcfRqxo4tV27c/TGPbVvwegsTcFJxVFtd3ltVLr
-         OBx6f5oLwmzMcauyTY0nl+0A+eMh97zDUEECR+O7cYELUvFhOYzxpB35yGkKcKp9g/Kg
-         MXOjDEHnVxm6mIAEVcalklU+qUnf+I7kylzen+MogROsmwPJxwgfTpE81aGKeQFMzzLf
-         Xgdw==
-X-Gm-Message-State: AOAM530W0cpFFHBhSUstY1bHQDLvY0A7E55zgXfEeF3h6NsO9cMirfdO
-        2VGpTcYiTOXMxByel246gJzv+Q==
-X-Google-Smtp-Source: ABdhPJyfY9xuMVGc8LsmWl5zLun+0BP87d5iqcnXk5tyahzJRG6mgYGf6XihuoXxleN8KGqlPLo2LA==
-X-Received: by 2002:a17:907:8a06:b0:6f4:922b:4b91 with SMTP id sc6-20020a1709078a0600b006f4922b4b91mr7152726ejc.670.1651670372039;
-        Wed, 04 May 2022 06:19:32 -0700 (PDT)
+        bh=A1CSj58CI9HvjxPtoHk1cXMAe4tONDfDlnbs+TC55zs=;
+        b=Zo1ffeHzP7NR1w7f+lvggq27hSPXP01DtiIqbghaZVyVUlOm4ZsMKKNcc1aWG949Vj
+         iMBib3ntXJFhKj9SxfxoYvpYqGtOxRInRCD5M1UcFP0DBookqXWNIwojJQey7YmOrpQX
+         ya6vn2FLB/d402GcHdvkEBrRZfS4dX4tL1aeiQjfi/ONTlRRkbqbDlKK/2ih/a9SrEuP
+         rBA3JEod1YHbieTHwl+dQSnBTBwTDLuS3NZvWhkvv8kM1Od2j2flaxLYXzjsXu2Pb/YN
+         2+2XcU4cqE7r8/dodBYkS61SguxQAaQ9hTCMHCuieUt9jlqqQ435M6jI/tJMcn2oipbY
+         O7Dw==
+X-Gm-Message-State: AOAM533uQgEvwuLbQcs/7T0BptmI5iZqQYmZYDFlnU3Q/F8JibKgqhfx
+        7htY0aPTcPNY4/jlfuIIcVJM5A==
+X-Google-Smtp-Source: ABdhPJx2JP6mkZEtJMs4lGWXhQ6kj+yqnH8vIwhbyTZOBYJo5IEphJ2I+6gA8wvQ0UU6rFx4eqa4Lg==
+X-Received: by 2002:a17:907:6da3:b0:6f4:6b70:33d4 with SMTP id sb35-20020a1709076da300b006f46b7033d4mr10793697ejc.51.1651670373199;
+        Wed, 04 May 2022 06:19:33 -0700 (PDT)
 Received: from localhost.localdomain (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id gx3-20020a1709068a4300b006f3ef214dc4sm5660924ejc.42.2022.05.04.06.19.31
+        by smtp.gmail.com with ESMTPSA id gx3-20020a1709068a4300b006f3ef214dc4sm5660924ejc.42.2022.05.04.06.19.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 May 2022 06:19:31 -0700 (PDT)
+        Wed, 04 May 2022 06:19:32 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
@@ -57,9 +57,9 @@ To:     Andy Gross <agross@kernel.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 04/13] dt-bindings: usb: qcom,dwc3: fix clock matching
-Date:   Wed,  4 May 2022 15:19:14 +0200
-Message-Id: <20220504131923.214367-5-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 05/13] arm64: dts: qcom: add missing AOSS QMP compatible fallback
+Date:   Wed,  4 May 2022 15:19:15 +0200
+Message-Id: <20220504131923.214367-6-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.32.0
 In-Reply-To: <20220504131923.214367-1-krzysztof.kozlowski@linaro.org>
 References: <20220504131923.214367-1-krzysztof.kozlowski@linaro.org>
@@ -75,265 +75,86 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The bindings defined strict clocks but several variants do not use them
-in such order.  Split the clocks and clock-names per variants to match
-current DTS usage.  In few cases this might not be complete match, due
-to incomplete DTS.
+The AOSS QMP bindings expect all compatibles to be followed by fallback
+"qcom,aoss-qmp" because all of these are actually compatible with each
+other.  This fixes dtbs_check warnings like:
+
+  sm8250-hdk.dtb: power-controller@c300000: compatible: ['qcom,sm8250-aoss-qmp'] is too short
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- .../devicetree/bindings/usb/qcom,dwc3.yaml    | 222 ++++++++++++++++--
- 1 file changed, 200 insertions(+), 22 deletions(-)
+ arch/arm64/boot/dts/qcom/sc7180.dtsi | 2 +-
+ arch/arm64/boot/dts/qcom/sc7280.dtsi | 2 +-
+ arch/arm64/boot/dts/qcom/sm8150.dtsi | 2 +-
+ arch/arm64/boot/dts/qcom/sm8250.dtsi | 2 +-
+ arch/arm64/boot/dts/qcom/sm8350.dtsi | 2 +-
+ 5 files changed, 5 insertions(+), 5 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml b/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
-index 03f93f25cba4..5047ca31657c 100644
---- a/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
-+++ b/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
-@@ -54,26 +54,22 @@ properties:
-     maxItems: 1
+diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+index 86175d257b1e..925340fbbb59 100644
+--- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+@@ -3219,7 +3219,7 @@ aoss_reset: reset-controller@c2a0000 {
+ 		};
  
-   clocks:
--    description:
--      A list of phandle and clock-specifier pairs for the clocks
--      listed in clock-names.
--    items:
--      - description: System Config NOC clock.
--      - description: Master/Core clock, has to be >= 125 MHz
--          for SS operation and >= 60MHz for HS operation.
--      - description: System bus AXI clock.
--      - description: Mock utmi clock needed for ITP/SOF generation
--          in host mode. Its frequency should be 19.2MHz.
--      - description: Sleep clock, used for wakeup when
--          USB3 core goes into low power mode (U3).
-+    description: |
-+      Several clocks are used, depending on the variant. Typical ones are::
-+       - cfg_noc:: System Config NOC clock.
-+       - core:: Master/Core clock, has to be >= 125 MHz for SS operation and >=
-+                60MHz for HS operation.
-+       - iface:: System bus AXI clock.
-+       - sleep:: Sleep clock, used for wakeup when USB3 core goes into low
-+                 power mode (U3).
-+       - mock_utmi:: Mock utmi clock needed for ITP/SOF generation in host
-+                     mode. Its frequency should be 19.2MHz.
-+    minItems: 1
-+    maxItems: 6
+ 		aoss_qmp: power-controller@c300000 {
+-			compatible = "qcom,sc7180-aoss-qmp";
++			compatible = "qcom,sc7180-aoss-qmp", "qcom,aoss-qmp";
+ 			reg = <0 0x0c300000 0 0x400>;
+ 			interrupts = <GIC_SPI 389 IRQ_TYPE_EDGE_RISING>;
+ 			mboxes = <&apss_shared 0>;
+diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+index ccf5e95071f9..e2857d3393ef 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+@@ -3835,7 +3835,7 @@ aoss_reset: reset-controller@c2a0000 {
+ 		};
  
-   clock-names:
--    items:
--      - const: cfg_noc
--      - const: core
--      - const: iface
--      - const: mock_utmi
--      - const: sleep
-+    minItems: 1
-+    maxItems: 6
+ 		aoss_qmp: power-controller@c300000 {
+-			compatible = "qcom,sc7280-aoss-qmp";
++			compatible = "qcom,sc7280-aoss-qmp", "qcom,aoss-qmp";
+ 			reg = <0 0x0c300000 0 0x400>;
+ 			interrupts-extended = <&ipcc IPCC_CLIENT_AOP
+ 						     IPCC_MPROC_SIGNAL_GLINK_QMP
+diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qcom/sm8150.dtsi
+index 2700a8145cb9..90a4c09e67f1 100644
+--- a/arch/arm64/boot/dts/qcom/sm8150.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
+@@ -3710,7 +3710,7 @@ pdc: interrupt-controller@b220000 {
+ 		};
  
-   assigned-clocks:
-     items:
-@@ -136,6 +132,185 @@ required:
-   - interrupts
-   - interrupt-names
+ 		aoss_qmp: power-controller@c300000 {
+-			compatible = "qcom,sm8150-aoss-qmp";
++			compatible = "qcom,sm8150-aoss-qmp", "qcom,aoss-qmp";
+ 			reg = <0x0 0x0c300000 0x0 0x400>;
+ 			interrupts = <GIC_SPI 389 IRQ_TYPE_EDGE_RISING>;
+ 			mboxes = <&apss_shared 0>;
+diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+index dc2562070336..881550cf7557 100644
+--- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+@@ -3726,7 +3726,7 @@ tsens1: thermal-sensor@c265000 {
+ 		};
  
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - qcom,ipq4019-dwc3
-+    then:
-+      properties:
-+        clocks:
-+          maxItems: 3
-+        clock-names:
-+          items:
-+            - const: core
-+            - const: sleep
-+            - const: mock_utmi
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - qcom,ipq8064-dwc3
-+    then:
-+      properties:
-+        clocks:
-+          items:
-+            - description: Master/Core clock, has to be >= 125 MHz
-+                for SS operation and >= 60MHz for HS operation.
-+        clock-names:
-+          items:
-+            - const: core
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - qcom,msm8953-dwc3
-+              - qcom,msm8996-dwc3
-+              - qcom,msm8998-dwc3
-+              - qcom,sc7180-dwc3
-+              - qcom,sc7280-dwc3
-+              - qcom,sdm845-dwc3
-+              - qcom,sdx55-dwc3
-+              - qcom,sm6350-dwc3
-+    then:
-+      properties:
-+        clocks:
-+          maxItems: 5
-+        clock-names:
-+          items:
-+            - const: cfg_noc
-+            - const: core
-+            - const: iface
-+            - const: sleep
-+            - const: mock_utmi
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - qcom,ipq6018-dwc3
-+    then:
-+      properties:
-+        clocks:
-+          minItems: 3
-+          maxItems: 4
-+        clock-names:
-+          oneOf:
-+            - items:
-+                - const: core
-+                - const: sleep
-+                - const: mock_utmi
-+            - items:
-+                - const: cfg_noc
-+                - const: core
-+                - const: sleep
-+                - const: mock_utmi
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - qcom,ipq8074-dwc3
-+    then:
-+      properties:
-+        clocks:
-+          maxItems: 4
-+        clock-names:
-+          items:
-+            - const: cfg_noc
-+            - const: core
-+            - const: sleep
-+            - const: mock_utmi
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - qcom,msm8994-dwc3
-+              - qcom,qcs404-dwc3
-+    then:
-+      properties:
-+        clocks:
-+          maxItems: 4
-+        clock-names:
-+          items:
-+            - const: core
-+            - const: iface
-+            - const: sleep
-+            - const: mock_utmi
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - qcom,sdm660-dwc3
-+    then:
-+      properties:
-+        clocks:
-+          minItems: 6
-+        clock-names:
-+          items:
-+            - const: cfg_noc
-+            - const: core
-+            - const: iface
-+            - const: sleep
-+            - const: mock_utmi
-+            - const: bus
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - qcom,sm6125-dwc3
-+              - qcom,sm8150-dwc3
-+              - qcom,sm8250-dwc3
-+              - qcom,sm8450-dwc3
-+    then:
-+      properties:
-+        clocks:
-+          minItems: 6
-+        clock-names:
-+          items:
-+            - const: cfg_noc
-+            - const: core
-+            - const: iface
-+            - const: sleep
-+            - const: mock_utmi
-+            - const: xo
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - qcom,sm8350-dwc3
-+    then:
-+      properties:
-+        clocks:
-+          minItems: 5
-+          maxItems: 6
-+        clock-names:
-+          minItems: 5
-+          items:
-+            - const: cfg_noc
-+            - const: core
-+            - const: iface
-+            - const: sleep
-+            - const: mock_utmi
-+            - const: xo
-+
-+
- additionalProperties: false
+ 		aoss_qmp: power-controller@c300000 {
+-			compatible = "qcom,sm8250-aoss-qmp";
++			compatible = "qcom,sm8250-aoss-qmp", "qcom,aoss-qmp";
+ 			reg = <0 0x0c300000 0 0x400>;
+ 			interrupts-extended = <&ipcc IPCC_CLIENT_AOP
+ 						     IPCC_MPROC_SIGNAL_GLINK_QMP
+diff --git a/arch/arm64/boot/dts/qcom/sm8350.dtsi b/arch/arm64/boot/dts/qcom/sm8350.dtsi
+index c0137bdcf94b..e1eba30dc7ad 100644
+--- a/arch/arm64/boot/dts/qcom/sm8350.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8350.dtsi
+@@ -1718,7 +1718,7 @@ tsens1: thermal-sensor@c265000 {
+ 		};
  
- examples:
-@@ -157,10 +332,13 @@ examples:
-             clocks = <&gcc GCC_CFG_NOC_USB3_PRIM_AXI_CLK>,
-                      <&gcc GCC_USB30_PRIM_MASTER_CLK>,
-                      <&gcc GCC_AGGRE_USB3_PRIM_AXI_CLK>,
--                     <&gcc GCC_USB30_PRIM_MOCK_UTMI_CLK>,
--                     <&gcc GCC_USB30_PRIM_SLEEP_CLK>;
--            clock-names = "cfg_noc", "core", "iface", "mock_utmi",
--                      "sleep";
-+                     <&gcc GCC_USB30_PRIM_SLEEP_CLK>,
-+                     <&gcc GCC_USB30_PRIM_MOCK_UTMI_CLK>;
-+            clock-names = "cfg_noc",
-+                          "core",
-+                          "iface",
-+                          "sleep",
-+                          "mock_utmi";
- 
-             assigned-clocks = <&gcc GCC_USB30_PRIM_MOCK_UTMI_CLK>,
-                           <&gcc GCC_USB30_PRIM_MASTER_CLK>;
+ 		aoss_qmp: power-controller@c300000 {
+-			compatible = "qcom,sm8350-aoss-qmp";
++			compatible = "qcom,sm8350-aoss-qmp", "qcom,aoss-qmp";
+ 			reg = <0 0x0c300000 0 0x400>;
+ 			interrupts-extended = <&ipcc IPCC_CLIENT_AOP IPCC_MPROC_SIGNAL_GLINK_QMP
+ 						     IRQ_TYPE_EDGE_RISING>;
 -- 
 2.32.0
 
