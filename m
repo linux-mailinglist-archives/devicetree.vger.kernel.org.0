@@ -2,146 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D19825192E1
-	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 02:37:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F283351937E
+	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 03:26:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240868AbiEDAlU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 May 2022 20:41:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42816 "EHLO
+        id S230263AbiEDBaC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 May 2022 21:30:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39566 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244720AbiEDAlT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 20:41:19 -0400
-Received: from mail-oa1-f47.google.com (mail-oa1-f47.google.com [209.85.160.47])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D37E38BC6;
-        Tue,  3 May 2022 17:37:46 -0700 (PDT)
-Received: by mail-oa1-f47.google.com with SMTP id 586e51a60fabf-d39f741ba0so18834822fac.13;
-        Tue, 03 May 2022 17:37:46 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=5KRDlkFXP2wKyJ4meETvXlR/mwbS6ATze02B5zh4M/I=;
-        b=hVS0IObbfK5iuHCRUd75CpLjUKQCmlHDdsC+hMcdDE0wnKST9TZ4m4le204i65fZz6
-         ID1jZaEXD01bDsrvvnpptxYISBuZC2U5C9ieW1ElrswpmjUEDjmxcb82sZmjIeb9sBBL
-         glOx1z0D0kDaWSG/FgL23yV5fwzE++DU64Z4jBRaDqkQhK7zlKsDjOWUgaHAm5Vu9GPQ
-         FhG/9WwOk0CbxNHT9/RQi7JU0oHuL0rYIAt9xpxCCnVgpxzI/h22Z9pJhY+cBU1pSfgd
-         ofCLFhTsUE7gxAbiO+3kxnY97snGD3314Ib1iiBOVqmuiOk3IVPSNfNiaSoRht5cS8oW
-         nPtg==
-X-Gm-Message-State: AOAM530bio/ftB+yyvB6uu/LQLAd5VH0etakho70xKP7i16Cg16FPn+l
-        BID1vlpj5MoCYY6q76nckg==
-X-Google-Smtp-Source: ABdhPJwpbBvVAluIMtMpusacL7lEcNFSGDnzv8haZzTXw2jd+ynaLdOcMnBngErwPMPRXOJgyYqV5g==
-X-Received: by 2002:a05:6870:8996:b0:e2:976c:7732 with SMTP id f22-20020a056870899600b000e2976c7732mr2827995oaq.231.1651624665223;
-        Tue, 03 May 2022 17:37:45 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id 13-20020a9d048d000000b006060322124dsm4594491otm.29.2022.05.03.17.37.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 May 2022 17:37:44 -0700 (PDT)
-Received: (nullmailer pid 325837 invoked by uid 1000);
-        Wed, 04 May 2022 00:37:43 -0000
-Date:   Tue, 3 May 2022 19:37:43 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Primoz Fiser <primoz.fiser@norik.com>
-Cc:     linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Support Opensource <support.opensource@diasemi.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Marco Felsch <m.felsch@pengutronix.de>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andrej Picej <andrej.picej@norik.com>, upstream@phytec.de
-Subject: Re: [PATCH 1/3] dt-bindings: mfd: da9063: watchdog: add suspend
- disable option
-Message-ID: <YnHK1xRduqhF2+vh@robh.at.kernel.org>
-References: <20220422072713.3172345-1-primoz.fiser@norik.com>
- <YnBFg4exZKkqkxDo@robh.at.kernel.org>
- <bdedde60-aba8-5f7f-3a4a-b442e80fbb17@norik.com>
+        with ESMTP id S229849AbiEDBaB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 21:30:01 -0400
+Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E46FB1D329
+        for <devicetree@vger.kernel.org>; Tue,  3 May 2022 18:26:26 -0700 (PDT)
+Received: from tr.lan (ip-86-49-12-201.net.upcbroadband.cz [86.49.12.201])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 7C16983BAC;
+        Wed,  4 May 2022 03:26:23 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1651627583;
+        bh=xqgGZCcnqcQgYYD71Irb/nktpjEfFcbFyKjN6J1OG4c=;
+        h=From:To:Cc:Subject:Date:From;
+        b=KjqawEM44cxTp5YoaOYvZ/sI+G7XsMqP24aiVGBNCNCSp9NtZBZjj2c7z0NbPnVcM
+         vn7vJ5TtHCL7mvFWHkR9V3tFi2HoiyNeVBvE90CyLot+EfuLIHWkAyG3+nYOI4xJ9Y
+         09bChCx9LsNG5qKZmibuRsWwn89l76PKVfgDYrC5q6HK2OdH2MK4mJS6to0GKmhdwn
+         W1Hd4VRub1wFRnJY9ziNU65aeWYJZALghBgOLr4OuKCPgo86RhPEDykmUf1IBgo0H8
+         AJkTdmYhhybswByCsAVMFB/seFlH0KXbNXf7iK08wdAQVfxdSIjuzUOHOLFd2UD+rv
+         4+fVErZ6Dzc9g==
+From:   Marek Vasut <marex@denx.de>
+To:     dri-devel@lists.freedesktop.org
+Cc:     robert.foss@linaro.org, Marek Vasut <marex@denx.de>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Maxime Ripard <maxime@cerno.tech>, Peng Fan <peng.fan@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Robby Cai <robby.cai@nxp.com>, Sam Ravnborg <sam@ravnborg.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        devicetree@vger.kernel.org
+Subject: [PATCH] dt-bindings: display: bridge: ldb: Fill in reg property
+Date:   Wed,  4 May 2022 03:26:01 +0200
+Message-Id: <20220504012601.423644-1-marex@denx.de>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <bdedde60-aba8-5f7f-3a4a-b442e80fbb17@norik.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.5 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 03, 2022 at 08:53:42AM +0200, Primoz Fiser wrote:
-> Hi Rob,
-> 
+Add missing reg and reg-names properties for both 'LDB_CTRL'
+and 'LVDS_CTRL' registers.
 
-Please don't top post. Trim any irrelevant parts and reply below the 
-original quoted text.
+Fixes: 463db5c2ed4ae ("drm: bridge: ldb: Implement simple Freescale i.MX8MP LDB bridge")
+Signed-off-by: Marek Vasut <marex@denx.de>
+Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: Lucas Stach <l.stach@pengutronix.de>
+Cc: Maxime Ripard <maxime@cerno.tech>
+Cc: Peng Fan <peng.fan@nxp.com>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Robby Cai <robby.cai@nxp.com>
+Cc: Robert Foss <robert.foss@linaro.org>
+Cc: Sam Ravnborg <sam@ravnborg.org>
+Cc: Thomas Zimmermann <tzimmermann@suse.de>
+Cc: devicetree@vger.kernel.org
+To: dri-devel@lists.freedesktop.org
+---
+ .../bindings/display/bridge/fsl,ldb.yaml         | 16 +++++++++++++++-
+ 1 file changed, 15 insertions(+), 1 deletion(-)
 
-> > > Name the property based on the h/w quirk rather than what to do in
-> > > response. Something like 'dlg,hw-suspend-broken'
-> 
-> Shouldn't we match da9062's property?
+diff --git a/Documentation/devicetree/bindings/display/bridge/fsl,ldb.yaml b/Documentation/devicetree/bindings/display/bridge/fsl,ldb.yaml
+index 77f174eee424f..2ebaa43eb62e9 100644
+--- a/Documentation/devicetree/bindings/display/bridge/fsl,ldb.yaml
++++ b/Documentation/devicetree/bindings/display/bridge/fsl,ldb.yaml
+@@ -24,6 +24,15 @@ properties:
+   clock-names:
+     const: ldb
+ 
++  reg:
++    minItems: 2
++    maxItems: 2
++
++  reg-names:
++    items:
++      - const: ldb
++      - const: lvds
++
+   ports:
+     $ref: /schemas/graph.yaml#/properties/ports
+ 
+@@ -56,10 +65,15 @@ examples:
+     #include <dt-bindings/clock/imx8mp-clock.h>
+ 
+     blk-ctrl {
+-        bridge {
++        #address-cells = <1>;
++        #size-cells = <1>;
++
++        bridge@5c {
+             compatible = "fsl,imx8mp-ldb";
+             clocks = <&clk IMX8MP_CLK_MEDIA_LDB>;
+             clock-names = "ldb";
++            reg = <0x5c 0x4>, <0x128 0x4>;
++            reg-names = "ldb", "lvds";
+ 
+             ports {
+                 #address-cells = <1>;
+-- 
+2.35.1
 
-Ah, yes. I failed to grasp that from the 'based on commit...' in the 
-commit msg.
-
-
-> 
-> As this commit is based on c514430c51ee8 ("dt-bindings: watchdog: da9062:
-> add suspend disable option") which uses "dlg,use-sw-pm" as property to
-> implement the same functionality.
-
-The 'which uses "dlg,use-sw-pm" as property to implement the same 
-functionality' part would be useful in the commit msg. With that,
-
-Reviewed-by: Rob Herring <robh@kernel.org>
-
-> 
-> Sure I can spin up v2 with your proposal but I think that would create
-> unnecessary ambiguity and confusion?
-> 
-> For example, phyCORE board uses da9062 PMIC while phyFLEX uses da9063 as
-> PMIC. Boards are from the same SoM vendor. So one board would have to use
-> "dlg,use-sw-pm" and the other one "dlg,hw-suspend-broken" property to
-> achieve the same thing?
-> 
-> 
-> On 2. 05. 22 22:56, Rob Herring wrote:
-> > On Fri, Apr 22, 2022 at 09:27:11AM +0200, Primoz Fiser wrote:
-> > > Document the watchdog disable option which can be used if the hardware
-> > > automatic suspend option is broken.
-> > > 
-> > > Based on commit c514430c51ee8 ("dt-bindings: watchdog: da9062: add
-> > > suspend disable option").
-> > > 
-> > > Signed-off-by: Primoz Fiser <primoz.fiser@norik.com>
-> > > ---
-> > >   Documentation/devicetree/bindings/mfd/da9063.txt | 9 ++++++---
-> > >   1 file changed, 6 insertions(+), 3 deletions(-)
-> > > 
-> > > diff --git a/Documentation/devicetree/bindings/mfd/da9063.txt b/Documentation/devicetree/bindings/mfd/da9063.txt
-> > > index 91b79a21d403..aa8b800cc4ad 100644
-> > > --- a/Documentation/devicetree/bindings/mfd/da9063.txt
-> > > +++ b/Documentation/devicetree/bindings/mfd/da9063.txt
-> > > @@ -64,10 +64,13 @@ Sub-nodes:
-> > >       and KEY_SLEEP.
-> > >   - watchdog : This node defines settings for the Watchdog timer associated
-> > > -  with the DA9063 and DA9063L. There are currently no entries in this
-> > > -  binding, however compatible = "dlg,da9063-watchdog" should be added
-> > > -  if a node is created.
-> > > +  with the DA9063 and DA9063L. The node should contain the compatible property
-> > > +  with the value "dlg,da9063-watchdog".
-> > > +  Optional watchdog properties:
-> > > +  - dlg,use-sw-pm: Add this property to disable the watchdog during suspend.
-> > 
-> > Name the property based on the h/w quirk rather than what to do in
-> > response. Something like 'dlg,hw-suspend-broken'
-> > 
-> > > +  Only use this option if you can't use the watchdog automatic suspend
-> > > +  function during a suspend (see register CONTROL_B).
-> > >   Example:
-> > > -- 
-> > > 2.25.1
-> > > 
-> > > 
