@@ -2,56 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7303F519D2B
-	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 12:40:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 47854519D31
+	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 12:40:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348371AbiEDKma (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 May 2022 06:42:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49206 "EHLO
+        id S1348359AbiEDKm3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 May 2022 06:42:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49274 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348287AbiEDKl4 (ORCPT
+        with ESMTP id S1348207AbiEDKl4 (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 06:41:56 -0400
-Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F141C29CBE
-        for <devicetree@vger.kernel.org>; Wed,  4 May 2022 03:38:14 -0700 (PDT)
-Received: by mail-lj1-x22d.google.com with SMTP id 4so1104597ljw.11
-        for <devicetree@vger.kernel.org>; Wed, 04 May 2022 03:38:14 -0700 (PDT)
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 316372A271
+        for <devicetree@vger.kernel.org>; Wed,  4 May 2022 03:38:17 -0700 (PDT)
+Received: by mail-lf1-x129.google.com with SMTP id bu29so1640227lfb.0
+        for <devicetree@vger.kernel.org>; Wed, 04 May 2022 03:38:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=lD3vvXHAHJs3IRnQAHfphn1E2NtyGe633IfNU2pH9ck=;
-        b=QaNg+hrH0pWi1gegQLwIunoR96zQeWK405W/Y0DimAXEprgC6u6tNQyTc1XTqFVU4h
-         poyJ1hvGMfkGW4M4zzVcfyyiBE5x7enLur2bhx1BCk1vMfmmunpoJJvu62TgUJYs7EUN
-         rNETTUTSN7ekB6AXtT3O4rljzo4wb9v3QUMtEUUaODNLuI7ECb3F49YEvM+74VF7zM3W
-         m2cSjEjDZLt6B8o16XYHmC/R5xDBzmcf6Zi47MWoXmAq1hHZUYbz8bh+bRzkTgtz+jjX
-         CRGalEFuDBlXelp8sBL1sgXTzlbdfuBK0920R5Qh6l0w7CVfq4DSsVE7n1+PvvcN6ziO
-         PGQw==
+        bh=aIei54pOigWQK9+b+OkuEAgJl1aHkkUTvctdnQzlHt4=;
+        b=p0VO7qbsL7uF9M9/7ebYfqcO6JdNdD5a/QA5s064dT12fcvviR6wea5z8IkxOrVoyM
+         VUNhiDj4X8/+FW6HvzkKp4vdNUYxLuIbQdOD8ifURVedOD9eeCpxzCw/Ar2dVQxkU9BD
+         ilq0Y3MuGyvqnp/h8JvbkpxRXB5KpQormgYBo5GKUuM65GuRm/weR/HyQIZbBEbFMKND
+         98UrUCEeB4DlubfqxACY+6m4Q5W7ZQ1l/AFlX8nN7d3p1bg7N+qZpHEXeqS5ya924NVT
+         ofuwIaGzxEm48qe1Au0jlA7p/idKArtFirJ3dVGK5IX4rxR3S8AKzznF6y9Vu4kpbTKQ
+         GxjA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=lD3vvXHAHJs3IRnQAHfphn1E2NtyGe633IfNU2pH9ck=;
-        b=N7FMjIvYNt0HOPoEmQ7KZf3XqXyhqjlCGvBaGQQIrV+emKS59GstpXILH87irYOlvm
-         eAu7+VOxfKtVh4aBglj9kGGC3q461RTxyUKlpL/7tpq7qalRDW6PGyLPmLdWVO87Tmw2
-         LqLkbqoplPvGFHJHp6OMQLDZBlMXCLEPkFop0vvIhZmrJ0bL+/vREzk5/3wrL6whF+RH
-         pzl/Xg3J62vv1GaX6jKAkzYMDa1t0Bz01yh6og1GGLQk84PTSne1Zxh33kMqVRdsJV8b
-         ogwiPdWOrjbUFsHaQowiYmG4/WqX1szMIOWdCVcgSFDE/GAj8xp6dh+G7o7sX+EM0rsF
-         X+Mg==
-X-Gm-Message-State: AOAM5307SaAyfZJhNvwL6+jL3bR9qHox4NkJEP0rp376o5YcXJJ2qiPj
-        1Vx3RJpMzJ/LWQ64FaZcS9H6HtQEwsyVGVOAup6sHw==
-X-Google-Smtp-Source: ABdhPJy+kS6AXMWUkmQ6E/kbOxo9lyfYr8OK70af4kdLrlbjvuToWT0sZZJrsSDzfyNmt7IFspcd+yMVuBQcDDWWKHI=
-X-Received: by 2002:a05:651c:483:b0:24f:2ae0:61f3 with SMTP id
- s3-20020a05651c048300b0024f2ae061f3mr12397148ljc.229.1651660693223; Wed, 04
- May 2022 03:38:13 -0700 (PDT)
+        bh=aIei54pOigWQK9+b+OkuEAgJl1aHkkUTvctdnQzlHt4=;
+        b=rPprd5uvlLr6w3NdMJj0CuIjtuKuN9DxSCtYuTxgmB+PBd5iqoJFGLgOExAIClobeW
+         EMlV2biOgMqBQfIELnaJM6Nl/00Ek7AiGOMHtcJi6ByUudYwrp7rX6t1SixNOUuXELOV
+         CY0y3ocIr2VsRGCt9aQabQYdJ2gwywvnJCVfCx78Nw7tfz6hAJliYp+0mZ6m/wvQUGRS
+         lgImYGcPsM6nld2DuOtphmvfzxVeSj8sAMAUh3cM7EqzrFLDfKy3Fa3mcs/fkA17DZJa
+         jlhwzxBZJZJ6lfr/TlW8NxpqU4QmuDQyWW3zlIZ/pcAEFphGKl+oNvt6MGnGB/POrxCF
+         /TnQ==
+X-Gm-Message-State: AOAM533ffPaRqfB0WjjT9Lr/iN/HvqW4x9XAkJ+rU3dX860dQy3tuRCK
+        fgGpjStKd40hc+w8vAbgszInXop/7NmcwFmcUEDmMg==
+X-Google-Smtp-Source: ABdhPJwqEGO9KRl5DaF0jB3TjhJs4ZD0v8c25IWGC8C18y+TB8EClCVVs9A9uZbWsFRWbQbkHeM1oxy1vrwUxo+HD+s=
+X-Received: by 2002:a05:6512:301:b0:471:ecd0:ea24 with SMTP id
+ t1-20020a056512030100b00471ecd0ea24mr13515941lfp.71.1651660695871; Wed, 04
+ May 2022 03:38:15 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220428081817.35382-1-krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220428081817.35382-1-krzysztof.kozlowski@linaro.org>
+References: <20220428081817.35382-1-krzysztof.kozlowski@linaro.org> <20220428081817.35382-2-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220428081817.35382-2-krzysztof.kozlowski@linaro.org>
 From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Wed, 4 May 2022 12:37:36 +0200
-Message-ID: <CAPDyKFrkkif0ABhe0_pZFBpWjMVoXETKZ7GpJUORR94LmbbaGg@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: mmc: brcm,sdhci-brcmstb: correct number
- of reg entries
+Date:   Wed, 4 May 2022 12:37:39 +0200
+Message-ID: <CAPDyKFok+boJ5hHLduJbQ3AZjNWfWXB93=bem_s97yf=j3XRRw@mail.gmail.com>
+Subject: Re: [PATCH 2/2] dt-bindings: mmc: brcm,sdhci-brcmstb: cleanup example
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -74,8 +73,9 @@ X-Mailing-List: devicetree@vger.kernel.org
 On Thu, 28 Apr 2022 at 10:18, Krzysztof Kozlowski
 <krzysztof.kozlowski@linaro.org> wrote:
 >
-> The binding should not allow infinite number of 'reg' entries, so add
-> strict limit.
+> Cleanup indentation and order of entries in example DTS.  The most
+> important when reading the DTS are compatible and reg.  By convention
+> they are usually to first entries.  No functional change.
 >
 > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
@@ -86,22 +86,57 @@ Uffe
 
 
 > ---
->  Documentation/devicetree/bindings/mmc/brcm,sdhci-brcmstb.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  .../bindings/mmc/brcm,sdhci-brcmstb.yaml       | 18 +++++++++---------
+>  1 file changed, 9 insertions(+), 9 deletions(-)
 >
 > diff --git a/Documentation/devicetree/bindings/mmc/brcm,sdhci-brcmstb.yaml b/Documentation/devicetree/bindings/mmc/brcm,sdhci-brcmstb.yaml
-> index dccd5ad96981..54a0edab5f8c 100644
+> index 54a0edab5f8c..b672202fff4e 100644
 > --- a/Documentation/devicetree/bindings/mmc/brcm,sdhci-brcmstb.yaml
 > +++ b/Documentation/devicetree/bindings/mmc/brcm,sdhci-brcmstb.yaml
-> @@ -31,7 +31,7 @@ properties:
->            - const: brcm,sdhci-brcmstb
+> @@ -65,15 +65,15 @@ unevaluatedProperties: false
+>  examples:
+>    - |
+>      mmc@84b0000 {
+> -      sd-uhs-sdr50;
+> -      sd-uhs-ddr50;
+> -      sd-uhs-sdr104;
+> -      sdhci,auto-cmd12;
+>        compatible = "brcm,bcm7216-sdhci",
+>                     "brcm,bcm7445-sdhci",
+>                     "brcm,sdhci-brcmstb";
+>        reg = <0x84b0000 0x260>, <0x84b0300 0x200>;
+>        reg-names = "host", "cfg";
+> +      sd-uhs-sdr50;
+> +      sd-uhs-ddr50;
+> +      sd-uhs-sdr104;
+> +      sdhci,auto-cmd12;
+>        interrupts = <0x0 0x26 0x4>;
+>        interrupt-names = "sdio0_0";
+>        clocks = <&scmi_clk 245>;
+> @@ -81,6 +81,11 @@ examples:
+>      };
 >
->    reg:
-> -    minItems: 2
-> +    maxItems: 2
->
->    reg-names:
->      items:
+>      mmc@84b1000 {
+> +      compatible = "brcm,bcm7216-sdhci",
+> +                   "brcm,bcm7445-sdhci",
+> +                   "brcm,sdhci-brcmstb";
+> +      reg = <0x84b1000 0x260>, <0x84b1300 0x200>;
+> +      reg-names = "host", "cfg";
+>        mmc-ddr-1_8v;
+>        mmc-hs200-1_8v;
+>        mmc-hs400-1_8v;
+> @@ -88,11 +93,6 @@ examples:
+>        supports-cqe;
+>        non-removable;
+>        bus-width = <0x8>;
+> -      compatible = "brcm,bcm7216-sdhci",
+> -           "brcm,bcm7445-sdhci",
+> -            "brcm,sdhci-brcmstb";
+> -      reg = <0x84b1000 0x260>, <0x84b1300 0x200>;
+> -      reg-names = "host", "cfg";
+>        interrupts = <0x0 0x27 0x4>;
+>        interrupt-names = "sdio1_0";
+>        clocks = <&scmi_clk 245>;
 > --
 > 2.32.0
 >
