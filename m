@@ -2,105 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8FCDF51A1F6
-	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 16:14:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1FDDB51A210
+	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 16:20:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351153AbiEDORt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 May 2022 10:17:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34030 "EHLO
+        id S1351211AbiEDOY0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 May 2022 10:24:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39756 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344737AbiEDORr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 10:17:47 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1164D42490
-        for <devicetree@vger.kernel.org>; Wed,  4 May 2022 07:14:11 -0700 (PDT)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1nmFlZ-0001VG-Ix; Wed, 04 May 2022 16:14:09 +0200
-Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1nmFlU-0006LT-3Q; Wed, 04 May 2022 16:14:04 +0200
-Date:   Wed, 4 May 2022 16:14:04 +0200
-From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     Gireesh.Hiremath@in.bosch.com
-Cc:     linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
-        bcousson@baylibre.com, tony@atomide.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, dmitry.torokhov@gmail.com,
-        mkorpershoek@baylibre.com, davidgow@google.com,
-        swboyd@chromium.org, fengping.yu@mediatek.com,
-        y.oudjana@protonmail.com, rdunlap@infradead.org,
-        colin.king@intel.com, sjoerd.simons@collabora.co.uk,
-        VinayKumar.Shettar@in.bosch.com,
-        Govindaraji.Sivanantham@in.bosch.com, anaclaudia.dias@de.bosch.com
-Subject: Re: [PATCH 2/4] Input: mt-matrix-keypad: Add Bosch mt matrix keypad
- driver
-Message-ID: <20220504141404.onom7x5lycyg3b22@pengutronix.de>
-References: <20220504105254.1576-2-Gireesh.Hiremath@in.bosch.com>
- <20220504134817.1490-1-Gireesh.Hiremath@in.bosch.com>
+        with ESMTP id S1345701AbiEDOYZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 10:24:25 -0400
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D07D11C928;
+        Wed,  4 May 2022 07:20:49 -0700 (PDT)
+Received: by mail-ed1-x534.google.com with SMTP id k27so1880070edk.4;
+        Wed, 04 May 2022 07:20:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=PDUpqEwsU0g54F2duDLV9Pqr2Yjkf7JgCmsGkPEOp0w=;
+        b=LsrQObZXf1A/KJ3l8fAg9QNyokldjCq9cX5C7y+XIxBlonabohntkTLKb0rJ3mO6ES
+         DlWroY41MZMuGn0G6eM/TINrCGpIqU0VYsy/5y8QrNBn/E0vvJSiXGIOOonTe7PX7wwJ
+         Kr/dUZlao0crAh6cyzm7vJ9wvZQXkXUGl5gJnY6WKF6pf6dww8E3AHlESi0P/yHZ2q5F
+         Bki4i/mXRFF/XI2J7ovTbRnLw4ZJqtR4NOewVfd6Y94CzqGiP1rULXKWxYnGan3Qclxs
+         uPDx/gryb9V0LY+irlYkN/WoifbWSwOPw8d2bWmzgbROezZ2j1qhBrfFqwvyezQ0hqZd
+         Ztww==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=PDUpqEwsU0g54F2duDLV9Pqr2Yjkf7JgCmsGkPEOp0w=;
+        b=yCA0xbQpp3xj6eKFuxId0IaP1z61UvE6HS2vfoiq4uKLPZBeY7E1iZDDvyVdQ3Xzof
+         ISPhrC40ToQZ6GPYH1IU6Qi+o1Ql0O2Uqlm2Ua6wmedDrO4WFRFwLeYUzBZVpq/TWWwT
+         ateNDi9VVbi4FokhjI3HwQ3+6FXBHUkYWiyc0XUSMeNLJ06v576Tjeg1ZRu/c1ihqqPf
+         d28LthPl4+yCacBlYKREyZnH64idZ0CDlQ3xPJYLNskJjs0t0jMrem8POuR635pBowPJ
+         NjhSOoKpCP6dROBtTMDTCBJNbVJA3KdkrzbuvICyFX7bm+SsTMFyBYrbdw2MqKaH96tt
+         vA2g==
+X-Gm-Message-State: AOAM530E+5iBuB4DCWaSoXjF9xGWLAL2wPVJWpPg5Kq/g220uKz0by6b
+        mTCYATCRMp5Mm8ciLiXJUpJRaPxr4IU/e/11ydQ=
+X-Google-Smtp-Source: ABdhPJxtzj9zFuQw6N6sVztraiGsQxy5kNW6AXTNcgQlk00LHVmbnO+1P+bByTm7T3zXzTkNai4eTBVZFHT+TvmdkoU=
+X-Received: by 2002:a05:6402:d51:b0:425:d5e1:e9f0 with SMTP id
+ ec17-20020a0564020d5100b00425d5e1e9f0mr23287754edb.125.1651674048120; Wed, 04
+ May 2022 07:20:48 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220504134817.1490-1-Gireesh.Hiremath@in.bosch.com>
-User-Agent: NeoMutt/20180716
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20220504133612.604304-1-Qing-wu.Li@leica-geosystems.com.cn> <20220504133612.604304-4-Qing-wu.Li@leica-geosystems.com.cn>
+In-Reply-To: <20220504133612.604304-4-Qing-wu.Li@leica-geosystems.com.cn>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Wed, 4 May 2022 16:20:11 +0200
+Message-ID: <CAHp75VeseZ2ChtbafmbgVavS4KvCvrQ4+XSRkeiJSyqr8__dSw@mail.gmail.com>
+Subject: Re: [PATCH V3 3/5] iio: accel: sca3300: modified to support multi chips
+To:     LI Qingwu <Qing-wu.Li@leica-geosystems.com.cn>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Tomas Melin <tomas.melin@vaisala.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        Rob Herring <robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22-05-04, Gireesh.Hiremath@in.bosch.com wrote:
-> From: Gireesh Hiremath <Gireesh.Hiremath@in.bosch.com>
-> 
-> The existing matric_keypad.c use different gpio line for row and colunm,
-> where in mt_matrix_kepad.c use same gpio line for row as well as column.
-> a key can be placed at each intersection of a unique row number 
-> not equal to a unique column and they are diagonally symmetric.
-> Advantage of this is with existed gpio line we can get more keys
->   
-> example: in matrix_keypad.c for 5 gpio line possible matrix is 2X3 or 3X2
-> and maximum possible keys are 6 but 
-> in mt_matrix_kepad.c for same 5 gpio line possible matrix is 5X5 and maximum
-> possible buttons are 10, below table will discribe that
+On Wed, May 4, 2022 at 3:36 PM LI Qingwu
+<Qing-wu.Li@leica-geosystems.com.cn> wrote:
+>
+> The drive support sca3300 only.
 
-Nobody should stop you to increase the amount of max. possible keys, so
-this isn't a real block.
+driver supports
 
-> 	------------------------------------------------------
-> 	|Row\Col |GPIO 0 | GPIO 1 | GPIO 2 | GPIO 3 | GPIO 4 |
-> 	------------------------------------------------------
-> 	| GPIO 0 |  X    | KEY_9  | KEY_2  | KEY_3  | KEY_1  |
-> 	------------------------------------------------------
-> 	| GPIO 1 | KEY_9 |  X     | KEY_6  | KEY_5  |  KEY_0 |
-> 	------------------------------------------------------
-> 	| GPIO 2 | KEY_2 | KEY_6  |  X     | KEY_4  | KEY_7  |
-> 	------------------------------------------------------
-> 	| GPIO 3 | KEY_3 | KEY_5  | KEY_4  |  X     | KEY_8  |
-> 	------------------------------------------------------
-> 	| GPIO 4 | KEY_1 |  KEY_0 | KEY_7  | KEY_8  |  X     |
-> 	------------------------------------------------------
-> 	X - invalid key
-> 	KEY_x - preferred key code
+> There are some other similar chips, for instance, SCL3300.
+> Prepare the way for multiple chips and additional channels.
+> Modify the driver to read the device id.
+> Add the tables for the corresponding id to support multiple chips.
+> Add prepares for the addition of extra channels.
+> Add prepares for handling the operation modes for multiple chips.
 
-That should be pointed somewhere very clearly, thanks for the
-description. Also what is than the benefit of the original matrix_keypad
-driver?
+It seems you need to work more on the commit messages in all patches.
 
-> both matric_keypad.c and mt_matrix_kepad.c logically operate differently,
-> my openion is not to merge both.
+...
 
-IMHO from the user/system-integrator pov it is looking the same and so
-one driver should be fine. To distinguish between both modes we could
-add dt-property or add a new dt-compatible like "gpio-matrix-keypad-v2".
+> +struct sca3300_chip_info {
+> +       const struct iio_chan_spec *channels;
+> +       const int (*accel_scale_table)[2];
+> +       const int *accel_scale_modes_map;
+> +       const unsigned long *scan_masks;
+> +       const int *avail_modes_table;
+> +       const int *freq_modes_map;
+> +       const int *freq_table;
+> +       const u8 num_accel_scales;
+> +       const u8 num_avail_modes;
+> +       const u8 num_channels;
+> +       const u8 num_freqs;
+> +       const u8 chip_id;
 
-Regards,
-  Marco
+Why do you have const qualifier on all members?  The last one is
+understandable, but the rest, esp. pointers should be justified.
+
+> +       const char *name;
+> +};
+
+...
+
+> +static int sca3300_set_op_mode(struct sca3300_data *sca_data, int index)
+> +{
+> +       int mode;
+> +
+> +       if ((index < 0) || (index >= sca_data->chip->num_avail_modes))
+
+Too many parentheses.
+
+> +               return -EINVAL;
+> +
+> +       mode = sca_data->chip->avail_modes_table[index];
+> +
+> +       return sca3300_write_reg(sca_data, SCA3300_REG_MODE, mode);
+> +}
+
+-- 
+With Best Regards,
+Andy Shevchenko
