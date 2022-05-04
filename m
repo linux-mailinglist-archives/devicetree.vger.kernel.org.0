@@ -2,90 +2,44 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2BF1251A514
-	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 18:14:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7891F51A535
+	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 18:17:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1353159AbiEDQR6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 May 2022 12:17:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49616 "EHLO
+        id S1353231AbiEDQVS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 May 2022 12:21:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54968 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1353141AbiEDQR6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 12:17:58 -0400
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E0D327B39;
-        Wed,  4 May 2022 09:14:19 -0700 (PDT)
-Received: by mail-ej1-x62a.google.com with SMTP id j6so3801962ejc.13;
-        Wed, 04 May 2022 09:14:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=EO/exjYIL2Y7doxRAG/8tv0+K4n654l6gAS/q81p8VU=;
-        b=MqhOzlGbNPDmmEkZxrkvlxT8yAsFHCS5fJpOrOc96wYcV7RZliRUshFSrY7sMN8ssE
-         0ifZJBu1ODc9B+x7yzT8DuPqVdxoy3EEmWNQfcoDjW4lKC4L7mQdunYBXLjNKoBLuA5t
-         x+ejzkmyot4gDA6E0riYHZsfTuahHqqC6m7H66ECjJ199S3NO2rg5rH04JCxOUbFMHIJ
-         wMqHdnlRpf0XAaDhBj/6jvNZRxGA0j5DfuHILXTvItX9d88lZgDfE3M5ceuVGjRwIYHB
-         HODrZsf2ceJPTpk8hlUwTAz6qaqG2jpKhhVxAdnwXQpHe6PWpfKOt8Tmil5aTRlwTGDy
-         d+Og==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=EO/exjYIL2Y7doxRAG/8tv0+K4n654l6gAS/q81p8VU=;
-        b=T2HZBaQ1s8L4CBXt2hcIvh0YzvQvs0quAPhS6cigVQwDLhS8RUMt+6Uho8hLNn4UoU
-         gjh+LVay58kanMPURMmkLZvvHhRGKcMElaNL1mwUYOjEYYGEYBpTOjKUa/o7Bz/qGVDp
-         TcNzje99HzQePDWDWDfHU+XNlTbHdwiQMPogTL9ihDR5/5/k/LHkfRszrXX2FVfhF8xG
-         Lz8zzRomAEcdth+PNrXzldHDguGKphzgyZtlTI1o1YCKirbzCnqbZ8hbrmEdcNU8TqAC
-         b70/RFMm7+erOeLmsSoTyxFu+uqFSGPzaVDi2velh8iERoOHsdcTRIqkaVR44ZMcjwYi
-         aj/g==
-X-Gm-Message-State: AOAM532XGgjSA1OCf+GhYhuC2v8YDOORvdp8PSNJj1wc2aN9yHuaqOq5
-        Nq3RZH7KKolqCEo6mlmqBfsft8iCSWo=
-X-Google-Smtp-Source: ABdhPJy9c9TpbTPzuMmXBwFXbHfvSuQ6WT98ztnuNFRqTqFEUnA7xkC7oz2tfhV5q0bxgxpXCpwa1w==
-X-Received: by 2002:a17:907:7212:b0:6f4:7d9:5f78 with SMTP id dr18-20020a170907721200b006f407d95f78mr20039274ejc.474.1651680857768;
-        Wed, 04 May 2022 09:14:17 -0700 (PDT)
-Received: from skbuf ([188.25.160.86])
-        by smtp.gmail.com with ESMTPSA id ml11-20020a170906cc0b00b006f3ef214e59sm5916928ejb.191.2022.05.04.09.14.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 May 2022 09:14:17 -0700 (PDT)
-Date:   Wed, 4 May 2022 19:14:14 +0300
-From:   Vladimir Oltean <olteanv@gmail.com>
-To:     =?utf-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
-Cc:     Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Herve Codina <herve.codina@bootlin.com>,
-        =?utf-8?Q?Miqu=C3=A8l?= Raynal <miquel.raynal@bootlin.com>,
-        Milan Stevanovic <milan.stevanovic@se.com>,
-        Jimmy Lalande <jimmy.lalande@se.com>,
-        Pascal Eberhard <pascal.eberhard@se.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org, netdev@vger.kernel.org,
-        Jean-Pierre Geslin <jean-pierre.geslin@non.se.com>,
-        Phil Edworthy <phil.edworthy@renesas.com>
-Subject: Re: [PATCH net-next v3 06/12] net: dsa: rzn1-a5psw: add Renesas
- RZ/N1 advanced 5 port switch driver
-Message-ID: <20220504161414.u6riybjcrgachjvh@skbuf>
-References: <20220504093000.132579-1-clement.leger@bootlin.com>
- <20220504093000.132579-7-clement.leger@bootlin.com>
+        with ESMTP id S1353226AbiEDQVR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 12:21:17 -0400
+Received: from relay05.th.seeweb.it (relay05.th.seeweb.it [5.144.164.166])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD7A92AC5F
+        for <devicetree@vger.kernel.org>; Wed,  4 May 2022 09:17:39 -0700 (PDT)
+Received: from [10.1.250.9] (riviera.nat.ds.pw.edu.pl [194.29.137.1])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 1A3C93F731;
+        Wed,  4 May 2022 18:17:38 +0200 (CEST)
+Message-ID: <0574f34c-b898-8ccb-05bd-6e3d454fee2c@somainline.org>
+Date:   Wed, 4 May 2022 18:17:37 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220504093000.132579-7-clement.leger@bootlin.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:91.0)
+ Gecko/20100101 Thunderbird/91.8.1
+Subject: Re: [PATCH v1 5/5] arm64: dts: qcom: sdm660: Add initial Inforce
+ IFC6560 board support
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+References: <20220503220927.960821-1-dmitry.baryshkov@linaro.org>
+ <20220503220927.960821-6-dmitry.baryshkov@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@somainline.org>
+In-Reply-To: <20220503220927.960821-6-dmitry.baryshkov@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,NICE_REPLY_A,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -94,173 +48,585 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 04, 2022 at 11:29:54AM +0200, Clément Léger wrote:
-> Add Renesas RZ/N1 advanced 5 port switch driver. This switch handles 5
-> ports including 1 CPU management port. A MDIO bus is also exposed by
-> this switch and allows to communicate with PHYs connected to the ports.
-> Each switch port (except for the CPU management ports) is connected to
-> the MII converter.
-> 
-> This driver includes basic bridging support, more support will be added
-> later (vlan, etc).
-> 
-> Suggested-by: Jean-Pierre Geslin <jean-pierre.geslin@non.se.com>
-> Suggested-by: Phil Edworthy <phil.edworthy@renesas.com>
-> Signed-off-by: Clément Léger <clement.leger@bootlin.com>
+
+On 04/05/2022 00:09, Dmitry Baryshkov wrote:
+> The IFC6560 is a board from Inforce Computing, built around the SDA660
+> SoC. This patch describes core clocks, some regulators from the two
+> PMICs, debug uart, storage, bluetooth and audio DSP remoteproc.
+>
+> The regulator settings are inherited from prior work by Konrad Dybcio
+> and AngeloGioacchino Del Regno.
+>
+> Co-developed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 > ---
-> +static void a5psw_port_disable(struct dsa_switch *ds, int port)
-> +{
-> +	struct a5psw *a5psw = ds->priv;
-> +
-> +	a5psw_port_authorize_set(a5psw, port, false);
-> +	a5psw_port_enable_set(a5psw, port, false);
-> +	a5psw_port_fdb_flush(a5psw, port);
-
-The bridge core takes care of this by setting the port state to
-DISABLED, which makes DSA call dsa_port_fast_age(), no?
-
-Standalone ports shouldn't need fast ageing because they shouldn't have
-address learning enabled in the first place.
-
-> +}
-
-> +static int a5psw_port_bridge_join(struct dsa_switch *ds, int port,
-> +				  struct dsa_bridge bridge,
-> +				  bool *tx_fwd_offload,
-> +				  struct netlink_ext_ack *extack)
-> +{
-> +	struct a5psw *a5psw = ds->priv;
-> +
-> +	/* We only support 1 bridge device */
-> +	if (a5psw->br_dev && bridge.dev != a5psw->br_dev)
-> +		return -EINVAL;
-
-return -EOPNOTSUPP, to allow software bridging.
-You might also want to set an extack message here and avoid overwriting
-it in dsa_slave_changeupper() with "Offloading not supported", but say
-something more specific like "Forwarding offload supported for a single
-bridge".
-
-> +
-> +	a5psw->br_dev = bridge.dev;
-> +	a5psw_flooding_set_resolution(a5psw, port, true);
-> +	a5psw_port_mgmtfwd_set(a5psw, port, false);
-> +
-> +	return 0;
-> +}
-> +
-> +static void a5psw_port_bridge_leave(struct dsa_switch *ds, int port,
-> +				    struct dsa_bridge bridge)
-> +{
-> +	struct a5psw *a5psw = ds->priv;
-> +
-> +	a5psw_flooding_set_resolution(a5psw, port, false);
-> +	a5psw_port_mgmtfwd_set(a5psw, port, true);
-> +
-> +	/* No more port bridged */
-
-s/port/ports/
-
-> +	if (a5psw->bridged_ports == BIT(A5PSW_CPU_PORT))
-> +		a5psw->br_dev = NULL;
-> +}
-
-> +static int a5psw_pcs_get(struct a5psw *a5psw)
-> +{
-> +	struct device_node *ports, *port, *pcs_node;
-> +	struct phylink_pcs *pcs;
-> +	int ret;
-> +	u32 reg;
-> +
-> +	ports = of_get_child_by_name(a5psw->dev->of_node, "ports");
-
-Can you please do:
-
-	ports = of_get_child_by_name(a5psw->dev->of_node, "ethernet-ports");
-	if (!ports)
-		ports = of_get_child_by_name(a5psw->dev->of_node, "ports");
-
-> +	if (!ports)
-> +		return -EINVAL;
-> +
-> +	for_each_available_child_of_node(ports, port) {
-> +		pcs_node = of_parse_phandle(port, "pcs-handle", 0);
-> +		if (!pcs_node)
-> +			continue;
-> +
-> +		if (of_property_read_u32(port, "reg", &reg)) {
-> +			ret = -EINVAL;
-> +			goto free_pcs;
-> +		}
-> +
-> +		if (reg >= ARRAY_SIZE(a5psw->pcs)) {
-> +			ret = -ENODEV;
-> +			goto free_pcs;
-> +		}
-> +
-> +		pcs = miic_create(pcs_node);
-> +		if (IS_ERR(pcs)) {
-> +			dev_err(a5psw->dev, "Failed to create PCS for port %d\n",
-> +				reg);
-> +			ret = PTR_ERR(pcs);
-> +			goto free_pcs;
-> +		}
-> +
-> +		a5psw->pcs[reg] = pcs;
-> +	}
-> +	of_node_put(ports);
-> +
-> +	return 0;
-> +
-> +free_pcs:
-> +	a5psw_pcs_free(a5psw);
-> +
-> +	return ret;
-> +}
-
-> +/* Ensure enough space for 2 VLAN tags */
-> +#define A5PSW_EXTRA_MTU_LEN		(A5PSW_TAG_LEN + 8)
-> +#define A5PSW_MAX_MTU			(A5PSW_JUMBO_LEN - A5PSW_EXTRA_MTU_LEN)
-> +#define A5PSW_MGMT_TAG_VALUE		0xE001
-> +
-> +#define A5PSW_PATTERN_MGMTFWD		0
-> +
-> +#define A5PSW_LK_BUSY_USEC_POLL		10
-> +#define A5PSW_CTRL_TIMEOUT		1000
-> +#define A5PSW_TABLE_ENTRIES		8192
-> +
-> +/**
-> + * struct a5psw - switch struct
-> + * @base: Base address of the switch
-> + * @hclk: hclk_switch clock
-> + * @clk: clk_switch clock
-> + * @dev: Device associated to the switch
-> + * @mii_bus: MDIO bus struct
-> + * @mdio_freq: MDIO bus frequency requested
-> + * @pcs: Array of PCS connected to the switch ports (not for the CPU)
-> + * @ds: DSA switch struct
-> + * @lk_lock: Lock for the lookup table
-> + * @reg_lock: Lock for register read-modify-write operation
-> + * @bridged_ports: List of ports that are bridged and should be flooded
-
-s/List/Mask/
-
-> + * @br_dev: Bridge net device
+>   arch/arm64/boot/dts/qcom/Makefile             |   1 +
+>   .../boot/dts/qcom/sda660-inforce-ifc6560.dts  | 455 ++++++++++++++++++
+>   2 files changed, 456 insertions(+)
+>   create mode 100644 arch/arm64/boot/dts/qcom/sda660-inforce-ifc6560.dts
+>
+> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+> index f9e6343acd03..5f717fe0e8d0 100644
+> --- a/arch/arm64/boot/dts/qcom/Makefile
+> +++ b/arch/arm64/boot/dts/qcom/Makefile
+> @@ -88,6 +88,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-herobrine-herobrine-r1.dtb
+>   dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-idp.dtb
+>   dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-idp2.dtb
+>   dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-crd.dtb
+> +dtb-$(CONFIG_ARCH_QCOM)	+= sda660-inforce-ifc6560.dtb
+>   dtb-$(CONFIG_ARCH_QCOM)	+= sdm630-sony-xperia-ganges-kirin.dtb
+>   dtb-$(CONFIG_ARCH_QCOM)	+= sdm630-sony-xperia-nile-discovery.dtb
+>   dtb-$(CONFIG_ARCH_QCOM)	+= sdm630-sony-xperia-nile-pioneer.dtb
+> diff --git a/arch/arm64/boot/dts/qcom/sda660-inforce-ifc6560.dts b/arch/arm64/boot/dts/qcom/sda660-inforce-ifc6560.dts
+> new file mode 100644
+> index 000000000000..bb5cbd20379e
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/sda660-inforce-ifc6560.dts
+> @@ -0,0 +1,455 @@
+> +// SPDX-License-Identifier: BSD-3-Clause
+> +/*
+> + * Copyright (c) 2021, Linaro Ltd.
+> + * Copyright (c) 2020, Konrad Dybcio <konrad.dybcio@somainline.org>
+> + * Copyright (c) 2020, AngeloGioacchino Del Regno
+> + *                     <angelogioacchino.delregno@somainline.org>
 > + */
-> +struct a5psw {
-> +	void __iomem *base;
-> +	struct clk *hclk;
-> +	struct clk *clk;
-> +	struct device *dev;
-> +	struct mii_bus	*mii_bus;
-> +	struct phylink_pcs *pcs[A5PSW_PORTS_NUM - 1];
-> +	struct dsa_switch ds;
-> +	spinlock_t lk_lock;
-> +	spinlock_t reg_lock;
-> +	u32 bridged_ports;
-> +	struct net_device *br_dev;
-> +};
-> -- 
-> 2.34.1
-> 
+> +
+> +/dts-v1/;
+> +
+> +#include "sdm660.dtsi"
+> +#include "pm660.dtsi"
+> +#include "pm660l.dtsi"
+> +
+> +/ {
+> +	model = "Inforce 6560 Single Board Computer";
+> +	compatible = "inforce,ifc6560", "qcom,sdm660";
 
+qcom,sda660?
+
+I know it's very picky and opens another room for error (for OF platform 
+matching in case some more weird quirks are ever necessary), but:
+
+
+a) it is more precise, as these two are *technically* separate SoCs
+
+b) it gives us one more differentiating factor if there ever (although 
+it's unlikely) turns out that there's a very specific quirk for the SDA 
+but not SDM or vice versa
+
+
+Also, you're missing a chassis-type property.
+
+> +
+> +	aliases {
+> +		serial0 = &blsp1_uart2;
+> +		serial1 = &blsp2_uart1;
+> +	};
+> +
+> +	chosen {
+> +		stdout-path = "serial0:115200n8";
+> +	};
+> +
+> +	gpio-keys {
+> +		compatible = "gpio-keys";
+> +
+> +		volup {
+> +			label = "Volume Up";
+> +			gpios = <&pm660l_gpios 7 GPIO_ACTIVE_LOW>;
+> +			linux,code = <KEY_VOLUMEUP>;
+> +			debounce-interval = <15>;
+> +		};
+> +	};
+> +
+> +	/*
+> +	 * Until we hook up type-c detection, we
+> +	 * have to stick with this. But it works.
+> +	 */
+> +	extcon_usb: extcon-usb {
+> +		compatible = "linux,extcon-usb-gpio";
+> +		id-gpio = <&tlmm 58 GPIO_ACTIVE_HIGH>;
+> +	};
+> +
+> +	hdmi-out {
+> +		compatible = "hdmi-connector";
+> +		type = "a";
+> +
+> +		port {
+> +			hdmi_con: endpoint {
+> +				remote-endpoint = <&adv7533_out>;
+> +			};
+> +		};
+> +	};
+> +
+> +	vph_pwr: vph-pwr-regulator {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vph_pwr";
+> +		regulator-min-microvolt = <3800000>;
+> +		regulator-max-microvolt = <3800000>;
+> +
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +	};
+> +
+> +	v3p3_bck_bst: v3p3-bck-bst-regulator {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "v3p3_bck_bst";
+> +
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +
+> +		vin-supply = <&vph_pwr>;
+> +	};
+> +
+> +	v1p2_ldo: v1p2-ldo-regulator {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "v1p2_ldo";
+> +
+> +		regulator-min-microvolt = <1200000>;
+> +		regulator-max-microvolt = <1200000>;
+> +
+> +		vin-supply = <&vph_pwr>;
+> +	};
+> +
+> +	v5p0_boost: v5p0-boost-regulator {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "v5p0_boost";
+> +
+> +		regulator-min-microvolt = <5000000>;
+> +		regulator-max-microvolt = <5000000>;
+> +
+> +		vin-supply = <&vph_pwr>;
+> +	};
+> +};
+> +
+> +&adsp_pil {
+> +	firmware-name = "qcom/inforce/ifc6560/adsp.mbn";
+> +};
+> +
+> +&blsp_i2c6 {
+> +	status = "okay";
+> +
+> +	/* BAM DMA doesn't seem to work on the board */
+> +	/delete-property/ dmas;
+> +	/delete-property/ dma-names;
+> +
+> +	adv7533: hdmi@39 {
+> +		compatible = "adi,adv7535";
+> +
+
+Weird newline
+
+
+> +		reg = <0x39>, <0x66>;
+> +		reg-names = "main", "edid";
+> +
+> +		interrupt-parent = <&pm660l_gpios>;
+> +		interrupts = <11 2>;
+
+Please use the correct #define
+
+
+> +
+> +		clocks = <&rpmcc 12>;
+Ditto
+
+
+> +		clock-names = "cec";
+> +		adi,dsi-lanes = <3>;
+> +		avdd-supply = <&vreg_l13a_1p8>;
+> +		dvdd-supply = <&vreg_l13a_1p8>;
+> +		pvdd-supply = <&vreg_l13a_1p8>;
+> +		a2vdd-supply = <&vreg_l13a_1p8>;
+> +		v3p3-supply = <&v3p3_bck_bst>;
+> +
+> +		ports {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +
+> +			port@0 {
+> +				reg = <0>;
+> +
+> +				adv7533_in: endpoint {
+> +					remote-endpoint = <&dsi0_out>;
+> +				};
+> +			};
+> +
+> +			port@1 {
+> +				reg = <1>;
+> +
+> +				adv7533_out: endpoint {
+> +					remote-endpoint = <&hdmi_con>;
+> +				};
+> +			};
+> +		};
+> +	};
+> +};
+> +
+> +/* BAM DMA doesn't seem to work on the board */
+I wonder if these are configured differently on your firmware.. what if 
+you remove the `qcom,controlled-remotely` property, or in case that 
+doesn't work, swap out the BAM clock for a fake one, like xo_board?
+> +&blsp1_dma {
+> +	status = "disabled";
+> +};
+
+This reference should come before blsp1_i2c6 alphabetically
+
+
+> +
+> +&blsp1_uart2 {
+> +	status = "okay";
+> +};
+> +
+> +/* BAM DMA doesn't seem to work on the board */
+> +&blsp2_dma {
+> +	status = "disabled";
+> +};
+> +
+> +&blsp2_uart1 {
+> +	status = "okay";
+> +
+> +	bluetooth {
+> +		compatible = "qcom,wcn3990-bt";
+> +
+> +		vddio-supply = <&vreg_l13a_1p8>;
+> +		vddxo-supply = <&vreg_l9a_1p8>;
+> +		vddrf-supply = <&vreg_l6a_1p3>;
+> +		vddch0-supply = <&vreg_l19a_3p3>;
+> +		max-speed = <3200000>;
+> +	};
+> +};
+> +
+> +&dsi0 {
+> +	status = "okay";
+> +	vdda-supply = <&vreg_l1a_1p225>;
+> +};
+> +
+> +&dsi0_out {
+> +	remote-endpoint = <&adv7533_in>;
+> +	data-lanes = <0 1 2>;
+
+Only 3 out of 4 lines? (note: this might be correct, I have no idea)
+
+
+> +};
+> +
+> +&dsi0_phy {
+> +	status = "okay";
+> +	vcca-supply = <&vreg_l1b_0p925>;
+> +};
+> +
+> +&mdp {
+> +	status = "okay";
+> +};
+
+MDP should be always enabled in SoC DTSI instead, as MDSS is borderline 
+useless without it..
+
+
+> +
+> +&mdss {
+> +	status = "okay";
+> +};
+> +
+> +&mmss_smmu {
+> +	status = "okay";
+> +};
+
+..and same goes for all the SMMUs (but that's a nit for the future, as I 
+mentioned in one of the previous emails)
+
+
+> +
+> +&pon_pwrkey {
+> +	status = "okay";
+> +};
+> +
+> +&pon_resin {
+> +	status = "okay";
+> +
+> +	linux,code = <115>;
+
+linux,code = <KEY_VOLUMEUP>;
+
+
+> +};
+> +
+> +&qusb2phy {
+> +	status = "okay";
+> +
+> +	vdd-supply = <&vreg_l1b_0p925>;
+> +
+
+Weird newline
+
+
+> +	vdda-phy-dpdm-supply = <&vreg_l7b_3p125>;
+> +};
+> +
+> +&qusb2phy1 {
+> +	status = "okay";
+> +
+> +	vdd-supply = <&vreg_l1b_0p925>;
+> +
+
+Ditto
+
+
+> +	vdda-phy-dpdm-supply = <&vreg_l7b_3p125>;
+> +};
+> +
+> +&rpm_requests {
+> +	pm660-regulators {
+> +		compatible = "qcom,rpm-pm660-regulators";
+> +
+> +		vdd_s1-supply = <&vph_pwr>;
+> +		vdd_s2-supply = <&vph_pwr>;
+> +		vdd_s3-supply = <&vph_pwr>;
+> +		vdd_s4-supply = <&vph_pwr>;
+> +		vdd_s5-supply = <&vph_pwr>;
+> +		vdd_s6-supply = <&vph_pwr>;
+> +
+> +		vdd_l1_l6_l7-supply = <&vreg_s5a_1p35>;
+> +		vdd_l2_l3-supply = <&vreg_s2b_1p05>;
+> +		vdd_l5-supply = <&vreg_s2b_1p05>;
+> +		vdd_l8_l9_l10_l11_l12_l13_l14-supply = <&vreg_s4a_2p04>;
+> +		vdd_l15_l16_l17_l18_l19-supply = <&vreg_bob>;
+> +
+> +		vreg_s4a_2p04: s4 {
+> +			regulator-min-microvolt = <1805000>;
+> +			regulator-max-microvolt = <2040000>;
+> +			regulator-enable-ramp-delay = <200>;
+> +			regulator-ramp-delay = <0>;
+> +			regulator-always-on;
+> +		};
+> +
+> +		vreg_s5a_1p35: s5 {
+> +			regulator-min-microvolt = <1224000>;
+> +			regulator-max-microvolt = <1350000>;
+> +			regulator-enable-ramp-delay = <200>;
+> +			regulator-ramp-delay = <0>;
+> +		};
+> +
+> +		vreg_l1a_1p225: l1 {
+> +			regulator-min-microvolt = <1150000>;
+> +			regulator-max-microvolt = <1250000>;
+> +			regulator-enable-ramp-delay = <250>;
+> +			regulator-allow-set-load;
+> +		};
+> +
+> +		vreg_l6a_1p3: l6 {
+> +			regulator-min-microvolt = <1304000>;
+> +			regulator-max-microvolt = <1368000>;
+> +			regulator-allow-set-load;
+
+Please move the always-on prop to the bottom
+
+
+> +			regulator-enable-ramp-delay = <250>;
+> +			regulator-ramp-delay = <0>;
+> +		};
+> +
+> +		vreg_l8a_1p8: l8 {
+> +			regulator-min-microvolt = <1800000>;
+> +			regulator-max-microvolt = <1800000>;
+> +			regulator-enable-ramp-delay = <250>;
+> +			regulator-ramp-delay = <0>;
+> +			regulator-system-load = <325000>;
+> +			regulator-allow-set-load;
+> +		};
+> +
+> +		vreg_l9a_1p8: l9 {
+> +			regulator-min-microvolt = <1804000>;
+> +			regulator-max-microvolt = <1896000>;
+> +			regulator-enable-ramp-delay = <250>;
+> +			regulator-ramp-delay = <0>;
+> +			regulator-allow-set-load;
+> +		};
+> +
+> +		vreg_l13a_1p8: l13 {
+> +			/* This gives power to the LPDDR4: never turn it off! */
+> +			regulator-min-microvolt = <1800000>;
+> +			regulator-max-microvolt = <1944000>;
+> +			regulator-enable-ramp-delay = <250>;
+> +			regulator-ramp-delay = <0>;
+> +			regulator-boot-on;
+> +			regulator-always-on;
+
+I don't know if it's formalized anywhere, but I tend to go
+
+always-on
+
+boot-on
+
+
+as it looks cleaner (imo) when the consequent properties are shorter, 
+but it might be just my craziness..
+
+> +		};
+> +
+> +		vreg_l19a_3p3: l19 {
+> +			regulator-min-microvolt = <3312000>;
+> +			regulator-max-microvolt = <3400000>;
+> +			regulator-enable-ramp-delay = <250>;
+> +			regulator-ramp-delay = <0>;
+> +			regulator-allow-set-load;
+> +		};
+> +	};
+> +
+> +	pm660l-regulators {
+> +		compatible = "qcom,rpm-pm660l-regulators";
+> +
+> +		vdd_s1-supply = <&vph_pwr>;
+> +		vdd_s2-supply = <&vph_pwr>;
+> +		vdd_s3_s4-supply = <&vph_pwr>;
+> +		vdd_s5-supply = <&vph_pwr>;
+> +		vdd_s6-supply = <&vph_pwr>;
+> +
+> +		vdd_l1_l9_l10-supply = <&vreg_s2b_1p05>;
+> +		vdd_l2-supply = <&vreg_bob>;
+> +		vdd_l3_l5_l7_l8-supply = <&vreg_bob>;
+> +		vdd_l4_l6-supply = <&vreg_bob>;
+> +		vdd_bob-supply = <&vph_pwr>;
+> +
+> +		vreg_s2b_1p05: s2 {
+> +			regulator-min-microvolt = <1050000>;
+> +			regulator-max-microvolt = <1050000>;
+> +			regulator-enable-ramp-delay = <200>;
+> +			regulator-ramp-delay = <0>;
+> +		};
+> +
+> +		vreg_l1b_0p925: l1 {
+> +			regulator-min-microvolt = <800000>;
+> +			regulator-max-microvolt = <925000>;
+> +			regulator-enable-ramp-delay = <250>;
+> +			regulator-allow-set-load;
+> +		};
+> +
+> +		vreg_l2b_2p95: l2 {
+> +			regulator-min-microvolt = <1648000>;
+> +			regulator-max-microvolt = <3100000>;
+> +			regulator-enable-ramp-delay = <250>;
+> +			regulator-ramp-delay = <0>;
+> +			regulator-allow-set-load;
+> +		};
+> +
+> +		vreg_l4b_2p95: l4 {
+> +			regulator-min-microvolt = <2944000>;
+> +			regulator-max-microvolt = <2952000>;
+> +			regulator-enable-ramp-delay = <250>;
+> +			regulator-ramp-delay = <0>;
+> +
+> +			regulator-min-microamp = <200>;
+> +			regulator-max-microamp = <600000>;
+> +			regulator-system-load = <570000>;
+> +			regulator-allow-set-load;
+> +		};
+> +
+> +		/*
+> +		 * Downstream specifies a range of 1721-3600mV,
+> +		 * but the only assigned consumers are SDHCI2 VMMC
+> +		 * and Coresight QPDI that both request pinned 2.95V.
+> +		 * Tighten the range to 1.8-3.328 (closest to 3.3) to
+> +		 * make the mmc driver happy.
+> +		 */
+> +		vreg_l5b_2p95: l5 {
+> +			regulator-min-microvolt = <1800000>;
+> +			regulator-max-microvolt = <3328000>;
+> +			regulator-enable-ramp-delay = <250>;
+> +			regulator-ramp-delay = <0>;
+> +			regulator-allow-set-load;
+> +			regulator-system-load = <800000>;
+
+Same comment about shorter-properties-going-lower, but keep in mind I 
+don't know if it's formalized / valid
+
+
+
+> +		};
+> +
+> +		vreg_l7b_3p125: l7 {
+> +			regulator-min-microvolt = <2700000>;
+> +			regulator-max-microvolt = <3125000>;
+> +			regulator-enable-ramp-delay = <250>;
+> +		};
+> +
+> +		vreg_l8b_3p3: l8 {
+> +			regulator-min-microvolt = <2800000>;
+> +			regulator-max-microvolt = <3400000>;
+> +			regulator-enable-ramp-delay = <250>;
+> +			regulator-ramp-delay = <0>;
+> +		};
+> +
+> +		vreg_bob: bob {
+> +			regulator-min-microvolt = <3300000>;
+> +			regulator-max-microvolt = <3624000>;
+> +			regulator-enable-ramp-delay = <500>;
+> +			regulator-ramp-delay = <0>;
+> +		};
+> +	};
+> +};
+> +
+> +&sdhc_1 {
+> +	status = "okay";
+> +	supports-cqe;
+> +
+> +	mmc-ddr-1_8v;
+> +	mmc-hs400-1_8v;
+> +	mmc-hs400-enhanced-strobe;
+> +
+> +	vmmc-supply = <&vreg_l4b_2p95>;
+> +	vqmmc-supply = <&vreg_l8a_1p8>;
+
+Please move regulators above boolean properties to keep it coherent with 
+the node below
+
+
+> +};
+> +
+> +&sdhc_2 {
+> +	status = "okay";
+> +
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&sdc2_state_on &sdc2_card_det_n>;
+> +	pinctrl1 = <&sdc2_state_off &sdc2_card_det_n>;
+> +
+> +	vmmc-supply = <&vreg_l5b_2p95>;
+> +	vqmmc-supply = <&vreg_l2b_2p95>;
+> +
+> +	cd-gpios = <&tlmm 54 1>;
+
+GPIO_ACTIVE_LOW
+
+
+> +	no-sdio;
+> +	no-emmc;
+> +};
+> +
+> +&tlmm {
+> +	gpio-reserved-ranges = <0 4>, <8 4>;
+> +
+> +	sdc2_card_det_n: sd-card-det-n {
+> +		pins = "gpio54";
+> +		function = "gpio";
+> +		bias-pull-up;
+> +	};
+> +};
+> +
+> +&usb2 {
+> +	status = "okay";
+> +};
+> +
+> +&usb2_dwc3 {
+> +	dr_mode = "host";
+> +};
+> +
+> +&usb3 {
+> +	status = "okay";
+> +};
+> +
+> +&usb3_dwc3 {
+> +	dr_mode = "peripheral";
+> +	extcon = <&extcon_usb>;
+> +};
+>
+Konrad
