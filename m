@@ -2,106 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C3AA551AC81
-	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 20:12:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8ADCC51AC90
+	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 20:16:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1354829AbiEDSQa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 May 2022 14:16:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34750 "EHLO
+        id S1376730AbiEDSUZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 May 2022 14:20:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43322 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1354674AbiEDSQR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 14:16:17 -0400
-Received: from mail-pg1-x52b.google.com (mail-pg1-x52b.google.com [IPv6:2607:f8b0:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2026FBF4D;
-        Wed,  4 May 2022 10:35:21 -0700 (PDT)
-Received: by mail-pg1-x52b.google.com with SMTP id i62so1705286pgd.6;
-        Wed, 04 May 2022 10:35:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=MNJT9YzuHEAZEheWVsgmUZA8nQvMITugjqtFZYM9yzI=;
-        b=qcvs0NN+UVLDdqTT/NYRME6WjfWaBW9uy3X41u9k0CfY18BT3f5gCWMNZE4/q4a85Z
-         sKi3aujMmD7fDjjzcsmNqQkcfVEGlJWNRnnplaI6dRB5RvFnZ6J7JoLzizRSPp5CTYec
-         XPDynShDMimsPffdW5eCCobD4HRmGqnQBN9yF1JJgBehshm0NOt+H7JqsrUcKCQGnXgJ
-         P4077BcV0nsL+gDac5n0DRVw7GbFd1uQWaAqe59BUOxtYvt7HFWhyhJ1XLSvRpUxdzs0
-         Uh8+0uytNj71iSqMzLuRpJE8DHD239+uAMRIKhZ0glEQY+BRRPcQtOs78SSYTALpv8c6
-         gsIA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=MNJT9YzuHEAZEheWVsgmUZA8nQvMITugjqtFZYM9yzI=;
-        b=8BVFhmnoslpqBO5xrCvkZga6pdOf+OalP7O2xZ6WkNtc0eyy/FbNY62k5yqKY2JDC4
-         KYHOAKjIsHkUrbpq3Ta2d9hDW0kIINL27DEDNpfbOtw5LfBfEhkaCXNKFaH3AIMrDC/n
-         FKstlv68dz46Jf5jU3yjUlWcDomdSONFQcb68ID616xF6OMfwukyS3cDXtM4dcGQybmv
-         2yFynPAif2tltshuBH7jBMuG+1+SADn3picXCp1G/iQeaxYpkbWAmnjgn3a0vNemVLxP
-         97XPv/VJq1whjB4jnWnHlHfrKOI542yGtCBeox0p7IkUznPBZJoA7G4lEMgsqjA4d7Zz
-         vldg==
-X-Gm-Message-State: AOAM530MR5o1T5bilPrnh+a6CTB0c04iX/wgTcROrQPod099YnVpHkPZ
-        OF/xiL2+ujN4VRjc7HwiZM5a75+UiWs=
-X-Google-Smtp-Source: ABdhPJwcUisFPL9uPWplV1T40GpRsHfI54F/UB7Jj6vFaHRLvxruWDuWodqfjBrwJ+3g+vkgrpzIvg==
-X-Received: by 2002:a62:7ccc:0:b0:510:4e07:79f3 with SMTP id x195-20020a627ccc000000b005104e0779f3mr2050271pfc.10.1651685721045;
-        Wed, 04 May 2022 10:35:21 -0700 (PDT)
-Received: from [172.30.1.41] ([14.32.163.5])
-        by smtp.gmail.com with ESMTPSA id n9-20020a170903110900b0015e8d4eb1c1sm8616219plh.11.2022.05.04.10.35.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 04 May 2022 10:35:20 -0700 (PDT)
-Message-ID: <df273a5d-793d-0069-2df6-77b05050b2d2@gmail.com>
-Date:   Thu, 5 May 2022 02:35:15 +0900
+        with ESMTP id S242019AbiEDSUT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 14:20:19 -0400
+Received: from jabberwock.ucw.cz (jabberwock.ucw.cz [46.255.230.98])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9948532EA;
+        Wed,  4 May 2022 10:42:31 -0700 (PDT)
+Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
+        id EE7DA1C0BAA; Wed,  4 May 2022 19:42:29 +0200 (CEST)
+Date:   Wed, 4 May 2022 19:42:29 +0200
+From:   Pavel Machek <pavel@ucw.cz>
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        Antonio Ospite <ao2@ao2.it>, Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH 1/3] dt-bindings: leds: Add regulator-led binding
+Message-ID: <20220504174229.GC8725@duo.ucw.cz>
+References: <20220404203522.2068071-1-linus.walleij@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH v3 02/12] dt-bindings: clock: add Exynos Auto v9 SoC CMU
- bindings
-Content-Language: en-US
-To:     Chanho Park <chanho61.park@samsung.com>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Tomasz Figa <tomasz.figa@gmail.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Sam Protsenko <semen.protsenko@linaro.org>,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org
-References: <20220504075154.58819-1-chanho61.park@samsung.com>
- <CGME20220504075003epcas2p17f37265b522bb0c26dbdd4ebeec92ab9@epcas2p1.samsung.com>
- <20220504075154.58819-3-chanho61.park@samsung.com>
-From:   Chanwoo Choi <cwchoi00@gmail.com>
-In-Reply-To: <20220504075154.58819-3-chanho61.park@samsung.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha1;
+        protocol="application/pgp-signature"; boundary="oTHb8nViIGeoXxdp"
+Content-Disposition: inline
+In-Reply-To: <20220404203522.2068071-1-linus.walleij@linaro.org>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22. 5. 4. 16:51, Chanho Park wrote:
-> Add dt-schema for Exynos Auto v9 SoC clock controller.
-> 
-> Signed-off-by: Chanho Park <chanho61.park@samsung.com>
-> ---
->   .../clock/samsung,exynosautov9-clock.yaml     | 219 ++++++++++++++++++
->   1 file changed, 219 insertions(+)
->   create mode 100644 Documentation/devicetree/bindings/clock/samsung,exynosautov9-clock.yaml
-> 
 
+--oTHb8nViIGeoXxdp
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-(snip)
+On Mon 2022-04-04 22:35:20, Linus Walleij wrote:
+> The regulator is a LED connected directly to a regulator and with
+> its brightness controlled by the voltage of the regulator.
 
-Reviewed-by: Chanwoo Choi <cw00.choi@samsung.com>
+Thank you, applied.
 
--- 
-Best Regards,
-Samsung Electronics
-Chanwoo Choi
+Best regards,
+								Pavel
+							=09
+--=20
+People of Russia, stop Putin before his war on Ukraine escalates.
+
+--oTHb8nViIGeoXxdp
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iF0EABECAB0WIQRPfPO7r0eAhk010v0w5/Bqldv68gUCYnK7BQAKCRAw5/Bqldv6
+8jr+AJ42/8NJ+mbP2wcOunAYvZliV1DCQgCfVSAklw7SmN7mjpnukSq5Xqzd/QM=
+=2dRO
+-----END PGP SIGNATURE-----
+
+--oTHb8nViIGeoXxdp--
