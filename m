@@ -2,136 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D8C7151A124
-	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 15:41:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0786551A132
+	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 15:44:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350554AbiEDNoh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 May 2022 09:44:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33858 "EHLO
+        id S1350766AbiEDNsS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 May 2022 09:48:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35968 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235194AbiEDNog (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 09:44:36 -0400
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2FA124BCD;
-        Wed,  4 May 2022 06:40:58 -0700 (PDT)
-Received: by mail-ed1-x533.google.com with SMTP id g20so1739128edw.6;
-        Wed, 04 May 2022 06:40:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:to:cc:references
-         :from:in-reply-to:content-transfer-encoding;
-        bh=suVw3tSzbwyZSam3QbzRJHAkBAls+2hu9csRGskWjWw=;
-        b=bk9kOJqOLJTxShNzNja788BQ2B6hxHftCjyH0aVxO0vJypv6yv1bMzkGh7Qu8+7ccE
-         Y2XQdNv3VZEdvDWkWuimAcjeExlT3lFCmgTValt3KEPauGhwXBQkHqC2zZanUpv7heF7
-         kb8xaW5XRYSzxtRbRl3jtjMBTHZj4JB+o0azkG6bN1VZbmUVp05G2SFu8BdSc4Ayu/3+
-         cwV20fCW68AQh17TdOtQWun/2JxzAyXY00ENFuUquQYIcc0eLoQXSaTduF3/FHmJiNK9
-         +hJK3W5lulfnGCf9T1CuZQcWCIWcroGoMGeAnqKk5DJzeABcTvx1JM/69AmyBog9jtlR
-         1Y8w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :to:cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=suVw3tSzbwyZSam3QbzRJHAkBAls+2hu9csRGskWjWw=;
-        b=Lllvft10z/2m/fEsNx4eQcEBHIYSUYlt1SiL3f9KSRzrHQvrjQ+cCmvMx1ths0mKps
-         rLbp/oTtRO8QDEiDKr9C9v7GGRqFc85fJuc4m5GkkeXdBPRXuZRgeG4b5VVhUG9EyUJE
-         zbWVR02XRDYirmWzsCfyhMlmXZYcws5iF1uqfqrruaDKR5Pmb4cwmKD0sUudyoBGsu9q
-         3ymw4SGiDy26CabBUfmKjvkikmll90LhNPam08OVRBCmIWG3t79eq8YLgAxx8DreAbTh
-         uQPJVbkoRDoVlnc4zSrE88/sy0DLxyUn35GNCcWIncxeJwgYv2oTgUerkoePrVEEkKEz
-         hRMw==
-X-Gm-Message-State: AOAM531Jr+UvLKLWvNi1d4khcINUTVh4F1pDvegxVN66f4X6mw4x+EzO
-        rl8gXgbKXTxLDsZH33qe2e/p23Vx8ig=
-X-Google-Smtp-Source: ABdhPJwV+5IUc2JZSq1pNUPzHy8aTwwTASBzecl/CgmJrjO0BveOXuEoDT+ZmXE7LkjGMGFzYy/nkA==
-X-Received: by 2002:a05:6402:5108:b0:427:e323:4c67 with SMTP id m8-20020a056402510800b00427e3234c67mr8686804edd.326.1651671657228;
-        Wed, 04 May 2022 06:40:57 -0700 (PDT)
-Received: from [192.168.26.149] (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.googlemail.com with ESMTPSA id t26-20020a05640203da00b0042617ba6383sm9088126edw.13.2022.05.04.06.40.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 04 May 2022 06:40:56 -0700 (PDT)
-Message-ID: <63cb6fe1-5abe-ebfe-7d94-34dff86f1a81@gmail.com>
-Date:   Wed, 4 May 2022 15:40:55 +0200
+        with ESMTP id S1350775AbiEDNsH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 09:48:07 -0400
+X-Greylist: delayed 79480 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 04 May 2022 06:44:30 PDT
+Received: from relay10.mail.gandi.net (relay10.mail.gandi.net [217.70.178.230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 160BF27156;
+        Wed,  4 May 2022 06:44:29 -0700 (PDT)
+Received: (Authenticated sender: clement.leger@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 836C924000C;
+        Wed,  4 May 2022 13:44:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1651671868;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=rk72OOOdZSUj/t0ck9GUkQrJCm6OvviM5pEqmXGfJr4=;
+        b=GAjLy704dfosoxU9eAdGTyyj8HAuQP8NWeOEuRGQ8M0aC3aXtC4Z/+0wzc3MpPCNpazLqs
+        sqlSOuSZ6E7OfjEh41ItNsnvAA5BxHa65iDBnypdHxt0BXP1A3CRsej8eMwM2b4fFkFuYm
+        eqTfzkGfgZHCKC2EK18B8yQalmXLzMRS1WCKPc68XwGexWOYo+13s9ra5xfpAfeRdggkuW
+        Qub8s2GnqY2eWh1s/GD7d4ckd9MGOF29XRakpcsqC74GCJBSbd/9vNgAN1oXHmChv6Pbmc
+        g4QS/5UYg5Fm56SNbfpJkQ/Tv6k70XROwA7nHj0ThHUcgAPCMn6XmDh2rwu3gQ==
+Date:   Wed, 4 May 2022 15:43:03 +0200
+From:   =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
+To:     Bjorn Helgaas <helgaas@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Allan Nielsen <allan.nielsen@microchip.com>,
+        Horatiu Vultur <horatiu.vultur@microchip.com>,
+        Steen Hegelund <steen.hegelund@microchip.com>,
+        Thomas Petazzoni <thomas.petazonni@bootlin.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Mark Brown <broonie@kernel.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Andrew Lunn <andrew@lunn.ch>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+        Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH 2/3] PCI: of: create DT nodes for PCI devices if they do
+ not exists
+Message-ID: <20220504154303.5cdf8cc2@fixe.home>
+In-Reply-To: <20220503225353.GA415393@bhelgaas>
+References: <20220427094502.456111-3-clement.leger@bootlin.com>
+        <20220503225353.GA415393@bhelgaas>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.31; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:96.0) Gecko/20100101
- Thunderbird/96.0
-Subject: Re: Regression? [PATCH 1/2] mtd: call of_platform_populate() for MTD
- partitions
-To:     Daniel Golle <daniel@makrotopia.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>
-Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tom Rini <trini@konsulko.com>, linux-mtd@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        u-boot@lists.denx.de, devicetree@vger.kernel.org,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-References: <20220406143225.28107-1-zajec5@gmail.com>
- <20220411090032.10999-1-miquel.raynal@bootlin.com>
- <YmX3Yn9cS1YjWOjs@makrotopia.org>
-From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-In-Reply-To: <YmX3Yn9cS1YjWOjs@makrotopia.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25.04.2022 03:20, Daniel Golle wrote:
-> On Mon, Apr 11, 2022 at 11:00:32AM +0200, Miquel Raynal wrote:
->> On Wed, 2022-04-06 at 14:32:24 UTC, =?utf-8?b?UmFmYcWCIE1pxYJlY2tp?= wrote:
->>> From: Rafał Miłecki <rafal@milecki.pl>
->>>
->>> Until this change MTD subsystem supported handling partitions only with
->>> MTD partitions parsers. That's a specific / limited API designed around
->>> partitions.
->>>
->>> Some MTD partitions may however require different handling. They may
->>> contain specific data that needs to be parsed and somehow extracted. For
->>> that purpose MTD subsystem should allow binding of standard platform
->>> drivers.
->>>
->>> An example can be U-Boot (sub)partition with environment variables.
->>> There exist a "u-boot,env" DT binding for MTD (sub)partition that
->>> requires an NVMEM driver.
->>>
->>> Ref: 5db1c2dbc04c ("dt-bindings: nvmem: add U-Boot environment variables binding")
->>> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
->>
->> Applied to https://git.kernel.org/pub/scm/linux/kernel/git/mtd/linux.git mtd/next, thanks.
-> 
-> I'm trying to use next-20220422 and noticed a few new oops'es.
-> Turns out it could be a problem with this commit according to
-> 
-> [daniel@box linux.git]$ git bisect good
-> 68471517e883902cdff6ea399d043b17f803b1a8 is the first bad commit
-> commit 68471517e883902cdff6ea399d043b17f803b1a8
-> Author: Rafał Miłecki <rafal@milecki.pl>
-> Date:   Wed Apr 6 16:32:24 2022 +0200
-> 
->      mtd: call of_platform_populate() for MTD partitions
-> [...]
-> ---
-> 
-> So when ever there is at least one 'compatible' node for any of the
-> mtd partitions I get the oops messages below. It doesn't really matter
-> what the compatible string is, "nvmem-cells" as well as "denx,fit"
-> (used for OpenWrt mtdsplit not even present in linux-next, so just a
-> dead hint in DTS) make the kernel to oops.
-> 
-> Despite the messages being shown, both accessing MTD partitions and
-> also eth0 MAC address populated via NVMEM seem to work without
-> problems (at least looks like it on first sight).
-> 
-> Find the full device tree here:
-> 
-> https://git.openwrt.org/?p=openwrt/openwrt.git;a=blob;f=target/linux/mediatek/dts/mt7622-ubnt-unifi-6-lr-ubootmod.dts
+Le Tue, 3 May 2022 17:53:53 -0500,
+Bjorn Helgaas <helgaas@kernel.org> a =C3=A9crit :
 
-I found it! It used to happen (before dropping patch) with:
-# CONFIG_MTD_PARTITIONED_MASTER is not set
+> In subject:
+>=20
+>   PCI: of: Create DT nodes ... if they do not exist
+>=20
+> The subject could be read as saying that you're going to create DT
+> nodes before the PCI devices exist, but I think you mean that when we
+> enumerate a PCI devices, we're *always* going to create a DT node for
+> it, even if the DT didn't mention it.
 
-I'll work on V2 which doesn't require
-CONFIG_MTD_PARTITIONED_MASTER=y
+Hi Bjorn,
+
+Indeed ! I'll modify that.
+
+>=20
+> Maybe something like:
+>=20
+>   PCI: of: Create DT node for every PCI device
+>=20
+> although I see Rob thinks this should be done on demand instead of
+> doing it for every device, which sounds sensible to me.
+
+Agreed, I'll rework this series.
+
+Thanks,
+
+>=20
+> On Wed, Apr 27, 2022 at 11:45:01AM +0200, Cl=C3=A9ment L=C3=A9ger wrote:
+> > In order to apply overlays to PCI device nodes, the nodes must first
+> > exist. This commit add support to populate a skeleton tree for PCI bus
+> > and devices. These nodes can then be used by drivers to apply overlays.=
+ =20
+>=20
+> s/This commit add support/Add support/
+>=20
+> Bjorn
+
+
+
+--=20
+Cl=C3=A9ment L=C3=A9ger,
+Embedded Linux and Kernel engineer at Bootlin
+https://bootlin.com
