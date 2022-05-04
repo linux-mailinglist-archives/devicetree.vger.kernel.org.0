@@ -2,112 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6063951A005
-	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 14:51:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 81E4851A01A
+	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 14:57:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350079AbiEDMzR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 May 2022 08:55:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40636 "EHLO
+        id S1349950AbiEDNBL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 May 2022 09:01:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45078 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350115AbiEDMzM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 08:55:12 -0400
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1DC323C70A
-        for <devicetree@vger.kernel.org>; Wed,  4 May 2022 05:51:23 -0700 (PDT)
-Received: by mail-ed1-x52a.google.com with SMTP id d6so1571043ede.8
-        for <devicetree@vger.kernel.org>; Wed, 04 May 2022 05:51:23 -0700 (PDT)
+        with ESMTP id S235988AbiEDNBK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 09:01:10 -0400
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CBBE13BA50;
+        Wed,  4 May 2022 05:57:34 -0700 (PDT)
+Received: by mail-wr1-x435.google.com with SMTP id u3so1920051wrg.3;
+        Wed, 04 May 2022 05:57:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=jjmxXKFpqf8Z4PNCW7+PYo1hRoBDuo7aymv8o4l0yig=;
-        b=aXfY/UifkO/9PvC8A7tJ7N9w2P+4MfokRY5N48dcJ7tVumGyuQRJBOane2na/rpX5j
-         0iOj2Pb7o4cj35miU9Z1pog+murDeRRKuOep7SWHpsQEEKNR9qBTWopUScPNNL1aoipW
-         +6KenYFjpVqsUfFnK4v0Dez/uqovQeELxRsUyW+dRYRjBjDI1GLYzin87eX2nxqeS2uC
-         A4abEkuRrbhlivBCVgpa2ciIDqcUKSUrB9m2rXeAAahCLxYDTLnYNZdWlX1rqKFJ/OSC
-         aqiOWKOgvhtnlOgzoP4MRDTUojNy2goFoUxyl8Du81SuEhV4N+2ahPA0O1LFu/HTOoNl
-         fIcA==
+        d=gmail.com; s=20210112;
+        h=date:from:subject:to:cc:message-id:in-reply-to:references
+         :mime-version;
+        bh=kZZv9mgu5CwmRiMWt33fgzODsP/Bo5LczhPKHEYKI2g=;
+        b=P8vaQY9TUngwqCpijFd2d4LAeqJbERfj96ozEtY4mzt2p/c1Ywp7QSOfCTgTq+FJOO
+         Gbr4t70Tgv4ll5c1Q9qyQD+7wVYumYk6crLyqkNjC/HrTBPf8y2ybrG0cvsu2Ik5SRN/
+         JIP5BUgHCTVfVFcWhysaVBqlUCqdySDe929u/WByEhUtpO4obfaVaYFn3OgPodqJv5M8
+         sawCqySWh+/b8sbZwqH1cH7YPpXnGYwTbiE+WimD5cwoH5r5656z1snH0h6R4lvfm5X+
+         u/RD95dKWlF3dInYCUqun/LQgeX0c5ledhTrLWy1Wv6DMggWNPELirWNJGplpXEX0imC
+         RW6w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=jjmxXKFpqf8Z4PNCW7+PYo1hRoBDuo7aymv8o4l0yig=;
-        b=kUpHTmclvkRVY0JfMWyJDLX31CkCBR6gBAOqyzZIjdN1rhCGEp0skgCi4ywtwCUmzd
-         i577djhvK91kSeWCIg4TQF5g3dVZBu9+BJqtsVp/9/PmK+MNr1B42VioyKBPl3D/6N+L
-         /WF84VxVDmLrr5ODad3yAm7fu4D2ODWwj4gOl9Y7g7Qo8ZNPADobVz9wKZNyO+lGYZ6F
-         /kmw7dfc9wlUPMruMFpNzFM6g8xGEmA0YoEAyKkJU5lrHJ22DQne/p1JTRd5vHCZdIFX
-         vpc0qgQEaoGMhC3rpPbUexRR+Q61Po6snjQoFS/Mle74pDnZctVVRRGiRkjfmAhgjncX
-         by2g==
-X-Gm-Message-State: AOAM532glem1KK2HJYH+mpNdm3kwcmrMpNoUyUBw0EFQzoqkCfQByzYu
-        iiEgNn0gOwMlPb1Mfvogd/7+5A==
-X-Google-Smtp-Source: ABdhPJwx4+fZYJ0ueATWol1S7O97WonwX3s+AS1NMLk16prb52CGswaP2AVvW6RQEEejrEh/pn3QuA==
-X-Received: by 2002:a05:6402:1592:b0:425:edec:992d with SMTP id c18-20020a056402159200b00425edec992dmr22368071edv.283.1651668682420;
-        Wed, 04 May 2022 05:51:22 -0700 (PDT)
-Received: from localhost.localdomain (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id hg13-20020a1709072ccd00b006f3ef214df3sm5664261ejc.89.2022.05.04.05.51.21
+        h=x-gm-message-state:date:from:subject:to:cc:message-id:in-reply-to
+         :references:mime-version;
+        bh=kZZv9mgu5CwmRiMWt33fgzODsP/Bo5LczhPKHEYKI2g=;
+        b=dSqeIUgMzWOpYh8MeLR21bxQdsYCJTXriodewfggnBXZ8sOOMEMGMo4WVZUoBcJlCC
+         eSfaUWSA2Yr0L9fAShFkLJ5Il+lLymQgMo3lQiEqQyimm/uQjCkP2k5r+eGsSn95drhA
+         9BiPGXov2vAD8+ANR1IEoMK90DTRSQrcyk4NAPBzOx1oGuIyAOhAldWCzkhn+U4DMrCA
+         brMD6XrmIu9D6ti+z8YAKoidWABdE3KGdAsF2zzl8sAqKtwxIbpvZqax9IsR6NFhdSrS
+         +Ra3pMXxX2yt5s6xT0K/8ANuqlYM5hLGaIXUbx65lnYN+M42E9i08aOAugx0MCq2ouQR
+         Z1dQ==
+X-Gm-Message-State: AOAM530/EGim4anPESUL5NBpiZmG6AkLL1ELRbEcbbyfB9c61wEvOzHe
+        54+3CrqC/JtzlKGH6X9H9W8=
+X-Google-Smtp-Source: ABdhPJyg2nw7z5umMABTaNhWVzD3nqvwRSbwwdit8bqaZZDXTjb6FZqLpoDfrj9rWMr0ZmKS70ECbw==
+X-Received: by 2002:a5d:510a:0:b0:20c:4452:3161 with SMTP id s10-20020a5d510a000000b0020c44523161mr16584044wrt.31.1651669053295;
+        Wed, 04 May 2022 05:57:33 -0700 (PDT)
+Received: from [192.168.98.247] (185-177-124-12.hosted-by-worldstream.net. [185.177.124.12])
+        by smtp.gmail.com with ESMTPSA id e13-20020adf9bcd000000b0020c5253d8basm11723098wrc.6.2022.05.04.05.57.25
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 May 2022 05:51:21 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
+        Wed, 04 May 2022 05:57:32 -0700 (PDT)
+Date:   Wed, 04 May 2022 16:55:08 +0400
+From:   Yassine Oudjana <yassine.oudjana@gmail.com>
+Subject: Re: [PATCH 09/13] clk: mediatek: reset: Export
+ mtk_register_reset_controller symbols
+To:     Rex-BC Chen <rex-bc.chen@mediatek.com>
+Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-spi@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] spi: dt-bindings: qcom,spi-geni-qcom: allow three interconnects
-Date:   Wed,  4 May 2022 14:51:19 +0200
-Message-Id: <20220504125119.190526-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.32.0
+        Yassine Oudjana <y.oudjana@protonmail.com>,
+        Chun-Jie Chen <chun-jie.chen@mediatek.com>,
+        Chen-Yu Tsai <wenst@chromium.org>,
+        Tinghan Shen <tinghan.shen@mediatek.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Weiyi Lu <weiyi.lu@mediatek.com>,
+        Ikjoon Jang <ikjn@chromium.org>,
+        Miles Chen <miles.chen@mediatek.com>,
+        Sam Shih <sam.shih@mediatek.com>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org
+Message-Id: <WVZCBR.JP1KZVF249S43@gmail.com>
+In-Reply-To: <fda797664ad3cde1143838bdf63cc587459b2c2f.camel@mediatek.com>
+References: <20220504122601.335495-1-y.oudjana@protonmail.com>
+        <20220504122601.335495-10-y.oudjana@protonmail.com>
+        <fda797664ad3cde1143838bdf63cc587459b2c2f.camel@mediatek.com>
+X-Mailer: geary/40.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii; format=flowed
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Recent Qualcomm Geni SPI nodes, e.g. on SM8450, come with three
-interconnects.  This fixes dtbs_check warnings like:
 
-  sm8450-qrd.dtb: geniqup@8c0000: spi@880000:interconnect-names: ['qup-core', 'qup-config'] is too short
+On Wed, May 4 2022 at 20:46:22 +0800, Rex-BC Chen 
+<rex-bc.chen@mediatek.com> wrote:
+> On Wed, 2022-05-04 at 16:25 +0400, Yassine Oudjana wrote:
+>>  From: Yassine Oudjana <y.oudjana@protonmail.com>
+>> 
+>>  Export mtk_register_reset_controller and
+>>  mtk_register_reset_controller_set_clr to support building reset
+>>  drivers as modules.
+>> 
+>>  Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
+>>  ---
+>>   drivers/clk/mediatek/reset.c | 2 ++
+>>   1 file changed, 2 insertions(+)
+>> 
+>>  diff --git a/drivers/clk/mediatek/reset.c
+>>  b/drivers/clk/mediatek/reset.c
+>>  index bcec4b89f449..6c2effe6afef 100644
+>>  --- a/drivers/clk/mediatek/reset.c
+>>  +++ b/drivers/clk/mediatek/reset.c
+>>  @@ -129,6 +129,7 @@ void mtk_register_reset_controller(struct
+>>  device_node *np,
+>>   	mtk_register_reset_controller_common(np, num_regs, regofs,
+>>   		&mtk_reset_ops);
+>>   }
+>>  +EXPORT_SYMBOL_GPL(mtk_register_reset_controller);
+>> 
+>>   void mtk_register_reset_controller_set_clr(struct device_node *np,
+>>   	unsigned int num_regs, int regofs)
+>>  @@ -136,5 +137,6 @@ void 
+>> mtk_register_reset_controller_set_clr(struct
+>>  device_node *np,
+>>   	mtk_register_reset_controller_common(np, num_regs, regofs,
+>>   		&mtk_reset_ops_set_clr);
+>>   }
+>>  +EXPORT_SYMBOL_GPL(mtk_register_reset_controller_set_clr);
+>> 
+>>   MODULE_LICENSE("GPL");
+> 
+> Hello Yassine,
+> 
+> Thanks for your patch for mediatek clk reset.
+> But I have another series to cleanup mediatek clk reset drivers and
+> most of my patches are reviewed.
+> Please refer to
+> https://patchwork.kernel.org/project/linux-mediatek/list/?series=637849
 
-Fixes: 5bdcae1fe1c5 ("spi: dt-bindings: qcom,spi-geni-qcom: convert to dtschema")
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Great! In that case I'll rebase my patches onto your series and see
+if anything is missing.
 
----
+Thanks,
+Yassine
 
-Fix for a commit in MSM/Bjorn's tree.
----
- .../devicetree/bindings/spi/qcom,spi-geni-qcom.yaml          | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
-
-diff --git a/Documentation/devicetree/bindings/spi/qcom,spi-geni-qcom.yaml b/Documentation/devicetree/bindings/spi/qcom,spi-geni-qcom.yaml
-index e2c7b934c50d..47e1b3ee8b1b 100644
---- a/Documentation/devicetree/bindings/spi/qcom,spi-geni-qcom.yaml
-+++ b/Documentation/devicetree/bindings/spi/qcom,spi-geni-qcom.yaml
-@@ -45,12 +45,15 @@ properties:
-       - const: rx
- 
-   interconnects:
--    maxItems: 2
-+    minItems: 2
-+    maxItems: 3
- 
-   interconnect-names:
-+    minItems: 2
-     items:
-       - const: qup-core
-       - const: qup-config
-+      - const: qup-memory
- 
-   interrupts:
-     maxItems: 1
--- 
-2.32.0
 
