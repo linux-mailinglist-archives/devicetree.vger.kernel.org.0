@@ -2,54 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BFFD051A2A2
-	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 16:52:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B26AA51A2AA
+	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 16:54:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351491AbiEDO43 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 May 2022 10:56:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43994 "EHLO
+        id S1351541AbiEDO5k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 May 2022 10:57:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44902 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245006AbiEDO43 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 10:56:29 -0400
-X-Greylist: delayed 25244 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 04 May 2022 07:52:51 PDT
-Received: from mail.marcansoft.com (marcansoft.com [212.63.210.85])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A521B120A9;
-        Wed,  4 May 2022 07:52:51 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: marcan@marcan.st)
-        by mail.marcansoft.com (Postfix) with ESMTPSA id D5E7C419C2;
-        Wed,  4 May 2022 14:52:45 +0000 (UTC)
-Message-ID: <e0445aa6-0c96-b80d-154e-274be0c1a025@marcan.st>
-Date:   Wed, 4 May 2022 23:52:43 +0900
+        with ESMTP id S1351517AbiEDO5j (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 10:57:39 -0400
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54A0023BD4
+        for <devicetree@vger.kernel.org>; Wed,  4 May 2022 07:54:03 -0700 (PDT)
+Received: by mail-ej1-x634.google.com with SMTP id y3so3343781ejo.12
+        for <devicetree@vger.kernel.org>; Wed, 04 May 2022 07:54:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :references:from:in-reply-to:content-transfer-encoding;
+        bh=b4reLFnLGstNl8yU7ElXfhLVkJOlPPnUu0vbq9yYvVM=;
+        b=YSpRdjiyUkwTdZLN4Z9w1pNgbJtq8Rk/uUbwQkfYPhtUSaiPR5A45z4JD+HKiSyURe
+         U/1mOZp/r21+TSeaOzQd0He+Q/FyUZ48mJUbuQM/7xvn1LGgxeEvPU52Ss1n/GZm7yxl
+         CQ/1DZVf5RXKhXPbfBkLNlng0c6Pj5JsCEkiSy8MyVSZd+Tb4a2kBAneQ6ZX3mdc5NR+
+         Zz2A8g2mswkCL7I8ESlxzv4P+X05pAk//fVWA/e5hZE7g4nk28ezQ/psV8LEAVdg6Aou
+         GAONygP4QDmwIeb+CixxNctM38FKPw4j0tG06byJt6Z73RKN5E7V8RhWzLfCzxs02wmp
+         0wOg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=b4reLFnLGstNl8yU7ElXfhLVkJOlPPnUu0vbq9yYvVM=;
+        b=XUXAvZNgAy1uUHQl7VSMaluGmtLGKucmz9e5VH0spzrGQ3Jp7j+RW5xxtSj0TDfdfP
+         kCXOYw3Y9CB7wTm3CuM1AMaWsT7q+gdZKMh03BWLLt4RZZehwTPY5kk6vUbwxt08Gjxh
+         1isJbHemqxJHRsxJ8XgJPTeBuRlV263GaR06/HwagF+hmTbCRSE6qHDLs4qHJrrMZniX
+         TjB6gf3LzSeDsw/0ommLhLfCuX3R4PALF7YelszSxypGf/AL7sh9H0W5tdIRl2FQEtvS
+         tqiFnTWsjOsKgnoSOqee6mnxPVbWO2alAFwVemBdwztyK+U7m6WtCjy32GS1EqMmUn3L
+         Ekfg==
+X-Gm-Message-State: AOAM530574PG5hBgMGBznp8txECWcWTNpMo0KNTZHq5r0WqjpLYa6vMD
+        Fep6s+Eug5w7qd0WKw4qruC2fg==
+X-Google-Smtp-Source: ABdhPJyZg0q1YLmYUSx0xZRrSUBIS7r/5i2ghubZXjjmKv2kBNPRppV/MR81N+8c55cp1KYwzoqmsA==
+X-Received: by 2002:a17:907:d91:b0:6f4:c817:d492 with SMTP id go17-20020a1709070d9100b006f4c817d492mr2613993ejc.407.1651676041936;
+        Wed, 04 May 2022 07:54:01 -0700 (PDT)
+Received: from [192.168.0.215] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id er22-20020a170907739600b006f3ef214e7bsm5849395ejc.225.2022.05.04.07.54.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 04 May 2022 07:54:01 -0700 (PDT)
+Message-ID: <45e55d3e-f29a-81ee-6673-a05da377e798@linaro.org>
+Date:   Wed, 4 May 2022 16:54:00 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH v2 1/4] MAINTAINERS: Add entries for Apple SoC cpufreq
- driver
-Content-Language: es-ES
-To:     Viresh Kumar <viresh.kumar@linaro.org>
-Cc:     "Rafael J. Wysocki" <rafael@kernel.org>,
-        Sven Peter <sven@svenpeter.dev>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Marc Zyngier <maz@kernel.org>,
-        Mark Kettenis <mark.kettenis@xs4all.nl>,
-        linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220504075153.185208-1-marcan@marcan.st>
- <20220504075153.185208-2-marcan@marcan.st>
- <20220504101750.wmuicq3dytnxrw5o@vireshk-i7>
-From:   Hector Martin <marcan@marcan.st>
-In-Reply-To: <20220504101750.wmuicq3dytnxrw5o@vireshk-i7>
+ Thunderbird/91.8.1
+Subject: Re: [PATCH v2 2/3] dt-bindings: intel: add binding for Intel n6000
+Content-Language: en-US
+To:     matthew.gerlach@linux.intel.com, dinguyen@kernel.org,
+        robh+dt@kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org
+References: <20220503194546.1287679-1-matthew.gerlach@linux.intel.com>
+ <20220503194546.1287679-3-matthew.gerlach@linux.intel.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220503194546.1287679-3-matthew.gerlach@linux.intel.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -58,51 +74,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/05/2022 19.17, Viresh Kumar wrote:
-> On 04-05-22, 16:51, Hector Martin wrote:
->> Splitting this commit, as usual, to facilitate merges via the SoC tree.
->>
->> Signed-off-by: Hector Martin <marcan@marcan.st>
->> ---
->>  MAINTAINERS | 2 ++
->>  1 file changed, 2 insertions(+)
->>
->> diff --git a/MAINTAINERS b/MAINTAINERS
->> index edc96cdb85e8..39bfa478fe55 100644
->> --- a/MAINTAINERS
->> +++ b/MAINTAINERS
->> @@ -1835,6 +1835,7 @@ T:	git https://github.com/AsahiLinux/linux.git
->>  F:	Documentation/devicetree/bindings/arm/apple.yaml
->>  F:	Documentation/devicetree/bindings/arm/apple/*
->>  F:	Documentation/devicetree/bindings/clock/apple,nco.yaml
->> +F:	Documentation/devicetree/bindings/cpufreq/apple,soc-cpufreq.yaml
->>  F:	Documentation/devicetree/bindings/i2c/apple,i2c.yaml
->>  F:	Documentation/devicetree/bindings/interrupt-controller/apple,*
->>  F:	Documentation/devicetree/bindings/mailbox/apple,mailbox.yaml
->> @@ -1844,6 +1845,7 @@ F:	Documentation/devicetree/bindings/power/apple*
->>  F:	Documentation/devicetree/bindings/watchdog/apple,wdt.yaml
->>  F:	arch/arm64/boot/dts/apple/
->>  F:	drivers/clk/clk-apple-nco.c
->> +F:	drivers/cpufreq/apple-soc-cpufreq.c
->>  F:	drivers/i2c/busses/i2c-pasemi-core.c
->>  F:	drivers/i2c/busses/i2c-pasemi-platform.c
->>  F:	drivers/irqchip/irq-apple-aic.c
+On 03/05/2022 21:45, matthew.gerlach@linux.intel.com wrote:
+> From: Matthew Gerlach <matthew.gerlach@linux.intel.com>
 > 
-> This should be the last patch instead, or should at least be added
-> after the files are merged first. If someone checks out at this
-> commit, the files won't be available but still linked here.
+> Add the binding string for the Agilex based Intel n6000 board.
+> 
+> Signed-off-by: Matthew Gerlach <matthew.gerlach@linux.intel.com>
 
-Isn't that backwards? If someone touches the files, we want them to be
-able to get_maintainer.pl, so the MAINTAINERS entries should come first.
-It doesn't really cause any issues if there are entries that point at
-files that don't exist yet, right?
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Though this is mostly a moot point because the purpose of splitting this
-out is so we can merge this one patch through the SoC tree, at which
-point the ordering isn't guaranteed (unless the whole series goes
-through SoC). It's a minor issue though; we've done it like this for
-other series and it hasn't caused anyone trouble.
 
--- 
-Hector Martin (marcan@marcan.st)
-Public Key: https://mrcn.st/pub
+Best regards,
+Krzysztof
