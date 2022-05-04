@@ -2,77 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D7BC3519CC9
-	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 12:17:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EE704519CCC
+	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 12:19:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348017AbiEDKVa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 May 2022 06:21:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34542 "EHLO
+        id S1344735AbiEDKWr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 May 2022 06:22:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35226 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229778AbiEDKV3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 06:21:29 -0400
-Received: from mail-pl1-x629.google.com (mail-pl1-x629.google.com [IPv6:2607:f8b0:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52B6025EB0
-        for <devicetree@vger.kernel.org>; Wed,  4 May 2022 03:17:53 -0700 (PDT)
-Received: by mail-pl1-x629.google.com with SMTP id n18so1015571plg.5
-        for <devicetree@vger.kernel.org>; Wed, 04 May 2022 03:17:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=16pteYw1kFtrJHlHKxcHj6pbCmyXWlcmy0HBd0ZDI5o=;
-        b=YiR9S7H0J5pVNfuNC2J7Ui3tLQ3JLD8KUp1ycbIIG9ykdngGmxmWPmY+zO5jp94VzN
-         z7FCLmvNKQuouxkAPF+DA2WBzOUyn5VcxOBL3+W9I+Bwa0uGkHVR/Jp/X5x22ZJsajZx
-         nadxkO3YKULs3lto91ketPCPMpNf+sCygn2bVfS8Wq6IBLjpzWKTZVVSX5xMwDq70udz
-         eMm1NqOJ4ZMtV0gj6nxZ37lVgR7HhMrZAgsq8fnJpYsnnfyVXbcIsacWd1UwQreTpCPk
-         n5QzA5BMFSoNxG0VfSUYVijSKfLhCUfSfZ+P9Vc+bEtGkV/r6Kff1pgiKyodrN17g5wx
-         ix7A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=16pteYw1kFtrJHlHKxcHj6pbCmyXWlcmy0HBd0ZDI5o=;
-        b=C8kcaj9doEal3j/ZLnqF+NWK7JoSXRs57D10yBHpc2Q93efeIQ/nce3asLBPEA1X6Z
-         v23VNJj9E8pds8eiLC04RniyqyqH7Iusl/msSf9dszN5AV4WSpDgzbyT1oROesWrGvq/
-         TmMHdptSUb4XDIKtPfTsDqfRfQ3l3Isxy5hq+7Uk8v4M3YmTRDgGxkam9pT0Y93wCHx/
-         G89Q04pN0ssVRfmUasVsJKVPrqjt15PIDqtENN0k+mWWTZych3iLBYfhrOjUprtlrHCc
-         9VvcjsBENVfco2K1+MIusXCiNNkRQTiD85ANPSgVKI/0PHoa70HdWB8rUsPv2FTLNJh2
-         QwYQ==
-X-Gm-Message-State: AOAM531T6KrKDbeyzz3OadK+K1Bfuqga1vrcz2rbYrFHd6RTIqI7BVGW
-        hPUoUMhd5XKoDS0f1JXqvD1UkQ==
-X-Google-Smtp-Source: ABdhPJykOJSIEdtWlEgPag1pW44EnulI2L+WAC9h0zxtfXA5fBS0P4lFv40oX0kD2wQcvtlFj+rE2Q==
-X-Received: by 2002:a17:90a:e517:b0:1d7:5bbd:f9f0 with SMTP id t23-20020a17090ae51700b001d75bbdf9f0mr9386904pjy.77.1651659472873;
-        Wed, 04 May 2022 03:17:52 -0700 (PDT)
-Received: from localhost ([122.162.207.161])
-        by smtp.gmail.com with ESMTPSA id ie13-20020a17090b400d00b001da3920d985sm2939471pjb.12.2022.05.04.03.17.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 May 2022 03:17:52 -0700 (PDT)
-Date:   Wed, 4 May 2022 15:47:50 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Hector Martin <marcan@marcan.st>
-Cc:     "Rafael J. Wysocki" <rafael@kernel.org>,
-        Sven Peter <sven@svenpeter.dev>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Marc Zyngier <maz@kernel.org>,
-        Mark Kettenis <mark.kettenis@xs4all.nl>,
-        linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/4] MAINTAINERS: Add entries for Apple SoC cpufreq
- driver
-Message-ID: <20220504101750.wmuicq3dytnxrw5o@vireshk-i7>
-References: <20220504075153.185208-1-marcan@marcan.st>
- <20220504075153.185208-2-marcan@marcan.st>
+        with ESMTP id S245685AbiEDKWq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 06:22:46 -0400
+Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D888D26AFD
+        for <devicetree@vger.kernel.org>; Wed,  4 May 2022 03:19:10 -0700 (PDT)
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id E72C083EA4;
+        Wed,  4 May 2022 12:19:07 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1651659548;
+        bh=tkwBRcc829SiIxhHXV7+PD1r6cFxpBYbdG/+9N9RliY=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=YHVCVaERR0MIRlKHAfIRVktCkS2feNRE1Qju87CcEbQap7xsKH7Tg9o1tHHb5ob/Z
+         6GrXqLm/XRM8KvPWdMEi7gRKNLs7mENfkqY/deZTf9goXKgIUlE77h0rcZI5pg9aqk
+         suJeYQOa62DgO3lPFV6h6Tp++GDUjE+7/csYwa5KCtJILGZTdDD6LVvz2apo8lV6Oc
+         IyiW73L70vOfMEy2WdR0f20se2bqBxsnH/1g8DetPODk53ok29kB6R0o59QPya9hO/
+         hImfsFnp7/8naSQ/+PVf1TL6rKmh5L8x17hBsIT+tpmjXhNXq/KH4vUpK5J6zInX/H
+         /g18BNJBGr+6A==
+Message-ID: <7ec29583-ba0f-a5df-1563-6ee7c9a00849@denx.de>
+Date:   Wed, 4 May 2022 12:19:07 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220504075153.185208-2-marcan@marcan.st>
-User-Agent: NeoMutt/20180716-391-311a52
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH v4 00/11] consolidated i.MX8MP HSIO/MEDIA/HDMI blk-ctrl
+ series
+Content-Language: en-US
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Lucas Stach <l.stach@pengutronix.de>
+Cc:     Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        devicetree@vger.kernel.org,
+        Paul Elder <paul.elder@ideasonboard.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        linux-arm-kernel@lists.infradead.org, Peng Fan <peng.fan@nxp.com>
+References: <20220406153402.1265474-1-l.stach@pengutronix.de>
+ <8c29464ef118aae8a1ac2af28d4906a346b6028a.camel@pengutronix.de>
+ <YnI9yqgYnCBN+2Qp@pendragon.ideasonboard.com>
+ <a9d995b623fa893e8a21fd04c8c1b3e97c0c6bd2.camel@pengutronix.de>
+ <YnJQsU7AwxftGyUh@pendragon.ideasonboard.com>
+From:   Marek Vasut <marex@denx.de>
+In-Reply-To: <YnJQsU7AwxftGyUh@pendragon.ideasonboard.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: clamav-milter 0.103.5 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -81,38 +69,32 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04-05-22, 16:51, Hector Martin wrote:
-> Splitting this commit, as usual, to facilitate merges via the SoC tree.
-> 
-> Signed-off-by: Hector Martin <marcan@marcan.st>
-> ---
->  MAINTAINERS | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index edc96cdb85e8..39bfa478fe55 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -1835,6 +1835,7 @@ T:	git https://github.com/AsahiLinux/linux.git
->  F:	Documentation/devicetree/bindings/arm/apple.yaml
->  F:	Documentation/devicetree/bindings/arm/apple/*
->  F:	Documentation/devicetree/bindings/clock/apple,nco.yaml
-> +F:	Documentation/devicetree/bindings/cpufreq/apple,soc-cpufreq.yaml
->  F:	Documentation/devicetree/bindings/i2c/apple,i2c.yaml
->  F:	Documentation/devicetree/bindings/interrupt-controller/apple,*
->  F:	Documentation/devicetree/bindings/mailbox/apple,mailbox.yaml
-> @@ -1844,6 +1845,7 @@ F:	Documentation/devicetree/bindings/power/apple*
->  F:	Documentation/devicetree/bindings/watchdog/apple,wdt.yaml
->  F:	arch/arm64/boot/dts/apple/
->  F:	drivers/clk/clk-apple-nco.c
-> +F:	drivers/cpufreq/apple-soc-cpufreq.c
->  F:	drivers/i2c/busses/i2c-pasemi-core.c
->  F:	drivers/i2c/busses/i2c-pasemi-platform.c
->  F:	drivers/irqchip/irq-apple-aic.c
+On 5/4/22 12:08, Laurent Pinchart wrote:
+> Hi Lucas,
 
-This should be the last patch instead, or should at least be added
-after the files are merged first. If someone checks out at this
-commit, the files won't be available but still linked here.
+Hello all,
 
--- 
-viresh
+> On Wed, May 04, 2022 at 10:56:05AM +0200, Lucas Stach wrote:
+>> Am Mittwoch, dem 04.05.2022 um 11:48 +0300 schrieb Laurent Pinchart:
+>>> On Wed, May 04, 2022 at 10:27:01AM +0200, Lucas Stach wrote:
+>>>> Hi Shawn,
+>>>>
+>>>> there were some comments about the implementation of the HDMI blk-ctrl,
+>>>> which I don't know in which way to resolve, yet. In the meantime it
+>>>> would be very helpful if you could take all but the last patch of this
+>>>> series into your tree. They are all reviewed and tested and starting to
+>>>> block further work on some parts of the i.MX8MP bringup.
+>>>
+>>> Can we decouple the HDMI blk-ctrl from the rest, to at least upstream
+>>> the MEDIA blk-ctrl ? That part is ready.
+>>
+>> I've structured the series in such a way that the HDMI part is
+>> decoupled already. All that needs to be done is dropping the last
+>> patch.
+> 
+> I had misread you and thought you asked Shawn to only apply the last
+> patch. Indeed, I second the request to get the series applied without
+> the last patch.
+
+I agree with Lucas and you too, getting the first 10 patches in would be 
+most helpful.
