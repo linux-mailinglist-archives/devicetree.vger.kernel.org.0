@@ -2,82 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7ECBB519C6E
-	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 11:56:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BE8EF519C8E
+	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 12:08:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347539AbiEDJ7r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 May 2022 05:59:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40852 "EHLO
+        id S234891AbiEDKMc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 May 2022 06:12:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52090 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232653AbiEDJ7o (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 05:59:44 -0400
-Received: from mail-pj1-x102b.google.com (mail-pj1-x102b.google.com [IPv6:2607:f8b0:4864:20::102b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDBB826AFB;
-        Wed,  4 May 2022 02:56:08 -0700 (PDT)
-Received: by mail-pj1-x102b.google.com with SMTP id a15-20020a17090ad80f00b001dc2e23ad84so4725101pjv.4;
-        Wed, 04 May 2022 02:56:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=uiamPFk0Q3zq2yFmBaHFzIGUOqetjbFDCmgmyxZF7O4=;
-        b=SnJQrFWocgobc4LXgjf3sjbLOe78IkkWS8J/mqZ8tTx7ZX4L7lwnbSOJS3JzNkayjb
-         WtIOcIKismeF9LfMK7aAUN/qPZVePwUCNfQonAKqBfe94mj6SVIXJ3ZxWnu7Dp+AWYxJ
-         jXJ9PCTflomd3CwQd7EkLLDPVuMm2tPensN1yH3vxjboHJOm7buO4aN0KB8dE2tmQ+1y
-         dG0NgpZw0OAuG3Woxc4TKHC6e0iYmRrM/V5JSX726f/OH8qyUzErI5gCK1KQwlGrPeVO
-         WoLbJClbUWpmbnvSPhWGkErwFHh4+7XlbOYFw+9UGthQI6iLzshxkNOR5YWJqwP9hks8
-         hZeQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=uiamPFk0Q3zq2yFmBaHFzIGUOqetjbFDCmgmyxZF7O4=;
-        b=ZjeZOsWFRpVq7+jHMFkrU6PrGyTDmC195GfZJfSrKk4wceHm/HRR7kqUQ2QibWf06o
-         ZiXpaQnoOnFDwEfgxY9RE4NtIJSakcNqph8YpIojttCKt1BXcQ/3CogdK4mvTzBDNFia
-         BcOGCyFHjuW4pVOFcBMb7xhgMj9FEuJHSATg2DlSJOKfvIC+ILBevWrv3yVwQKTEiRh8
-         6Zuqzhsv2zZj8AIjMHNuMyaE1br2FDs1ky/kdvyiSfcf89KDVwCk5RCzEnqpHOQOS/eJ
-         umkgX5JZGf8ltPau5Jd9m4JH3npL307t2+QNEBJytWCXkhNCkM/Ty1PZoAyHuVojJbk9
-         J1zA==
-X-Gm-Message-State: AOAM530EWgCgqoprys+ByoqMhYj6qYI9Thjnm4gf2hRy7xwOFslzPql/
-        3U7Tmqtx5rA1lPR1QmZVDHU=
-X-Google-Smtp-Source: ABdhPJwjOcXQ+QLfAd/fUs1MMU4AYewWj+pzio7KxSH+nmTpfQasOZl874nWoA1Lxoeu8q4KQTMDnQ==
-X-Received: by 2002:a17:903:244c:b0:15e:b3f7:950d with SMTP id l12-20020a170903244c00b0015eb3f7950dmr8924703pls.9.1651658168452;
-        Wed, 04 May 2022 02:56:08 -0700 (PDT)
-Received: from [172.30.1.41] ([14.32.163.5])
-        by smtp.gmail.com with ESMTPSA id s5-20020a17090aa10500b001d287fd3f79sm2811996pjp.46.2022.05.04.02.56.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 04 May 2022 02:56:07 -0700 (PDT)
-Message-ID: <754b7076-e3f5-ba07-6b26-5c60d9fe46af@gmail.com>
-Date:   Wed, 4 May 2022 18:56:02 +0900
+        with ESMTP id S1347885AbiEDKMa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 06:12:30 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3CDA24948
+        for <devicetree@vger.kernel.org>; Wed,  4 May 2022 03:08:54 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 62402488;
+        Wed,  4 May 2022 12:08:52 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1651658932;
+        bh=qwLX3NXAWwkhunHDdS1v46NckQxicAFG5H9pWZGUo7U=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=tTdxg6iXT3ntwI3qFnGFeMhS41QtGuhsbVNl7HxRLqRVeeEMwpbONz6Khb8bOkVzh
+         bYraEiOiwvkcnuhH+YRZak15t6JFWj1NBIxcIevNHJCdSfQp0tZfNMSrBMLu4KCSSV
+         BowiXE/YZ7hJVPQOlUX+yaJp4/os+z223I6hdHKk=
+Date:   Wed, 4 May 2022 13:08:49 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Lucas Stach <l.stach@pengutronix.de>
+Cc:     Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Marek Vasut <marex@denx.de>, devicetree@vger.kernel.org,
+        Paul Elder <paul.elder@ideasonboard.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v4 00/11] consolidated i.MX8MP HSIO/MEDIA/HDMI blk-ctrl
+ series
+Message-ID: <YnJQsU7AwxftGyUh@pendragon.ideasonboard.com>
+References: <20220406153402.1265474-1-l.stach@pengutronix.de>
+ <8c29464ef118aae8a1ac2af28d4906a346b6028a.camel@pengutronix.de>
+ <YnI9yqgYnCBN+2Qp@pendragon.ideasonboard.com>
+ <a9d995b623fa893e8a21fd04c8c1b3e97c0c6bd2.camel@pengutronix.de>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH v3 11/12] arm64: dts: exynosautov9: switch usi clocks
-Content-Language: en-US
-To:     Chanho Park <chanho61.park@samsung.com>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Tomasz Figa <tomasz.figa@gmail.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Sam Protsenko <semen.protsenko@linaro.org>,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org
-References: <20220504075154.58819-1-chanho61.park@samsung.com>
- <CGME20220504075004epcas2p2fafaa565e78bfdbbf55c2b4da31743a9@epcas2p2.samsung.com>
- <20220504075154.58819-12-chanho61.park@samsung.com>
-From:   Chanwoo Choi <cwchoi00@gmail.com>
-In-Reply-To: <20220504075154.58819-12-chanho61.park@samsung.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <a9d995b623fa893e8a21fd04c8c1b3e97c0c6bd2.camel@pengutronix.de>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -85,60 +55,102 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22. 5. 4. 16:51, Chanho Park wrote:
-> This changes to use cmu clock nodes instead of dummy fixed-rate-clock.
-> 
-> Signed-off-by: Chanho Park <chanho61.park@samsung.com>
-> ---
->   arch/arm64/boot/dts/exynos/exynosautov9.dtsi | 17 ++++-------------
->   1 file changed, 4 insertions(+), 13 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/exynos/exynosautov9.dtsi b/arch/arm64/boot/dts/exynos/exynosautov9.dtsi
-> index c9cd3774f298..68335fefa5f3 100644
-> --- a/arch/arm64/boot/dts/exynos/exynosautov9.dtsi
-> +++ b/arch/arm64/boot/dts/exynos/exynosautov9.dtsi
-> @@ -158,17 +158,6 @@ xtcxo: clock {
->   			clock-output-names = "oscclk";
->   		};
->   
-> -		/*
-> -		 * Keep the stub clock for serial driver, until proper clock
-> -		 * driver is implemented.
-> -		 */
-> -		uart_clock: uart-clock {
-> -			compatible = "fixed-clock";
-> -			#clock-cells = <0>;
-> -			clock-frequency = <133250000>;
-> -			clock-output-names = "uart";
-> -		};
-> -
->   		/*
->   		 * Keep the stub clock for ufs driver, until proper clock
->   		 * driver is implemented.
-> @@ -355,7 +344,8 @@ usi_0: usi@103000c0 {
->   			#address-cells = <1>;
->   			#size-cells = <1>;
->   			ranges;
-> -			clocks = <&uart_clock>, <&uart_clock>;
-> +			clocks = <&cmu_peric0 CLK_GOUT_PERIC0_PCLK_0>,
-> +				 <&cmu_peric0 CLK_GOUT_PERIC0_IPCLK_0>;
->   			clock-names = "pclk", "ipclk";
->   			status = "disabled";
->   
-> @@ -366,7 +356,8 @@ serial_0: serial@10300000 {
->   				interrupts = <GIC_SPI 345 IRQ_TYPE_LEVEL_HIGH>;
->   				pinctrl-names = "default";
->   				pinctrl-0 = <&uart0_bus_dual>;
-> -				clocks = <&uart_clock>, <&uart_clock>;
-> +				clocks = <&cmu_peric0 CLK_GOUT_PERIC0_PCLK_0>,
-> +					 <&cmu_peric0 CLK_GOUT_PERIC0_IPCLK_0>;
->   				clock-names = "uart", "clk_uart_baud0";
->   				status = "disabled";
->   			};
+Hi Lucas,
 
-Reviewed-by: Chanwoo Choi <cw00.choi@samsung.com>
+On Wed, May 04, 2022 at 10:56:05AM +0200, Lucas Stach wrote:
+> Am Mittwoch, dem 04.05.2022 um 11:48 +0300 schrieb Laurent Pinchart:
+> > On Wed, May 04, 2022 at 10:27:01AM +0200, Lucas Stach wrote:
+> > > Hi Shawn,
+> > > 
+> > > there were some comments about the implementation of the HDMI blk-ctrl,
+> > > which I don't know in which way to resolve, yet. In the meantime it
+> > > would be very helpful if you could take all but the last patch of this
+> > > series into your tree. They are all reviewed and tested and starting to
+> > > block further work on some parts of the i.MX8MP bringup.
+> > 
+> > Can we decouple the HDMI blk-ctrl from the rest, to at least upstream
+> > the MEDIA blk-ctrl ? That part is ready.
+> 
+> I've structured the series in such a way that the HDMI part is
+> decoupled already. All that needs to be done is dropping the last
+> patch.
+
+I had misread you and thought you asked Shawn to only apply the last
+patch. Indeed, I second the request to get the series applied without
+the last patch.
+
+> > > Am Mittwoch, dem 06.04.2022 um 17:33 +0200 schrieb Lucas Stach:
+> > > > Hi all,
+> > > > 
+> > > > this series adds a bunch more power domains that integrate with the blk-ctrls
+> > > > to the i.MX8MP. It depends on the i.MX8MP GPCv2 support series posted in [1].
+> > > > 
+> > > > The HSIO blk-ctrl bindings are already applied upstream, so they are not part
+> > > > of this series anymore. The DT description hasn't changed, but the
+> > > > implementation of the HSIO blk-ctrl driver is reworked quite a bit from the
+> > > > last round of patches, so I've dropped the review/tested-by tags.
+> > > > 
+> > > > I've also picked up the pretty thoroughly reviewed and tested MEDIA blk-ctrl
+> > > > patches from Paul and Laurent into this series, as they would conflict with
+> > > > other patches from this series when applied separately. This should hopefully
+> > > > make it easier for Shawn to pick things up.
+> > > > 
+> > > > Finally this now also adds the HDMI blk-ctrl, not part of any previous series.
+> > > > This one is pretty complex and the documentation in the reference manual
+> > > > appears to be inaccurate. I found at least the following issues:
+> > > > 
+> > > > 1. GLOBAL_XTAL24M_CLK_EN does not actually gate the 24MHz reference clock,
+> > > > the PHY PLL happily locks and provides correct clocks without this clock being
+> > > > ungated. It seems to gate some clock input of the HDMI TX controller instead,
+> > > > register access to this controller fails without this clock.
+> > > > 
+> > > > 2. HDMI_RTX_RESET_CTL0 bits 6 and 7 are marked as "reserved" in the manual,
+> > > > but they are actually required to be configured. Bit 6 seems to keep something
+> > > > in the display pixel clock path in inactive state and Bit 7 seems to reset
+> > > > the HDMI TX i2c controller.
+> > > > 
+> > > > The HDMI blk-ctrl part is tested quite extensively with a PoC HDMI support
+> > > > patchset, which I will send out in a bit, so I'm pretty sure that the
+> > > > support as implemented is working. I've put the patches last in the series
+> > > > in case that this turns out to be controversial, so the other patches can
+> > > > be applied independent from the HDMI support.
+> > > > 
+> > > > Regards,
+> > > > Lucas
+> > > > 
+> > > > [1] https://lore.kernel.org/all/20220330104620.3600159-1-l.stach@pengutronix.de/
+> > > > 
+> > > > 
+> > > > Laurent Pinchart (1):
+> > > >   arm64: dts: imx8mp: Add MEDIAMIX power domains
+> > > > 
+> > > > Lucas Stach (7):
+> > > >   soc: imx: imx8m-blk-ctrl: set power device name
+> > > >   soc: imx: add i.MX8MP HSIO blk-ctrl
+> > > >   dt-bindings: power: imx8mp: add defines for HDMI blk-ctrl domains
+> > > >   dt-bindings: soc: add binding for i.MX8MP HDMI blk-ctrl
+> > > >   soc: imx: add i.MX8MP HDMI blk-ctrl
+> > > >   arm64: dts: imx8mp: add HSIO power-domains
+> > > >   arm64: dts: imx8mp: add HDMI power-domains
+> > > > 
+> > > > Paul Elder (3):
+> > > >   dt-bindings: soc: Add i.MX8MP media block control DT bindings
+> > > >   soc: imx: imx8m-blk-ctrl: Add i.MX8MP media blk-ctrl
+> > > >   arm64: dts: imx8mp: Add MEDIA_BLK_CTRL
+> > > > 
+> > > >  .../soc/imx/fsl,imx8mp-hdmi-blk-ctrl.yaml     |  84 +++
+> > > >  .../soc/imx/fsl,imx8mp-media-blk-ctrl.yaml    | 104 +++
+> > > >  arch/arm64/boot/dts/freescale/imx8mp.dtsi     | 153 +++-
+> > > >  drivers/soc/imx/Makefile                      |   1 +
+> > > >  drivers/soc/imx/imx8m-blk-ctrl.c              | 124 +++-
+> > > >  drivers/soc/imx/imx8mp-blk-ctrl.c             | 696 ++++++++++++++++++
+> > > >  include/dt-bindings/power/imx8mp-power.h      |  18 +
+> > > >  7 files changed, 1172 insertions(+), 8 deletions(-)
+> > > >  create mode 100644 Documentation/devicetree/bindings/soc/imx/fsl,imx8mp-hdmi-blk-ctrl.yaml
+> > > >  create mode 100644 Documentation/devicetree/bindings/soc/imx/fsl,imx8mp-media-blk-ctrl.yaml
+> > > >  create mode 100644 drivers/soc/imx/imx8mp-blk-ctrl.c
 
 -- 
-Best Regards,
-Samsung Electronics
-Chanwoo Choi
+Regards,
+
+Laurent Pinchart
