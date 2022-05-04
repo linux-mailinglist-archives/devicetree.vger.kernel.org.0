@@ -2,81 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EE33851A3E4
-	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 17:22:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E3BE51A3FB
+	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 17:25:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352309AbiEDP0N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 May 2022 11:26:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50864 "EHLO
+        id S1352229AbiEDP2Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 May 2022 11:28:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53162 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1352277AbiEDPZ5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 11:25:57 -0400
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94FCA44A0A;
-        Wed,  4 May 2022 08:22:19 -0700 (PDT)
-Received: by mail-ed1-x529.google.com with SMTP id g20so2084189edw.6;
-        Wed, 04 May 2022 08:22:19 -0700 (PDT)
+        with ESMTP id S229902AbiEDP2W (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 11:28:22 -0400
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8A9C4474B;
+        Wed,  4 May 2022 08:24:44 -0700 (PDT)
+Received: by mail-wm1-x32d.google.com with SMTP id c190-20020a1c35c7000000b0038e37907b5bso3452146wma.0;
+        Wed, 04 May 2022 08:24:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=xTYBUgx4sIq3qSVsjgl0przbRExfOFSCf3/4HQ5y1Uc=;
-        b=Tg8Bx/C6xSkcoO2dnyBeqWLtw2X4t7JrowzuBljo19KkSRX3m38bUXkupa3z1LKIYj
-         lDc8dTcPIaGDiX8W5KxFNIyHS5gvtVITsZz5B0sxg6t6qFqj8XmvaUZKitBipDise3vG
-         zloRxSRT4SrmBSzVIvtpBZBpluOGNuOOCbkwR9MDxZxTkD56RomzQqgffTRXpUBZ8ege
-         EWkhyLiMvel0CWoo7osXQxbTKp1qYa/QYtC3hy4j59fctlVsilNKhTrkP7lM+JRKigJF
-         OGROArQqHuYpH/tamBr4G2HaA24v8QKypOjDCBqglcJNUxpg+C9EJEyksuZJ2hV58FKV
-         GXRA==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Z1nMz8AV1XcW5h20PdvGECZTKrNaeXZIC73UZ/jHwIc=;
+        b=U1q/DgV8WmHyHZrPnWTw4Mo6VNO40cDt5sFdZXGGwGSxj2C10Jt3V1kH94HvOhuBhe
+         Jl58Qqn39NgwpUAmANvXeQtsJy0Nax0dkVCNShi05Hy301IjRC2k1QU9QzOJ93J7EiZO
+         HsFSSKIKUdY+JpyEOEWWTH+IcEJQ/GXRQhijjqvrQIm6AMRuIBYVEPz6JUQ/lYoqNYk5
+         BQxzaBS+WRw0c+FGsnwAPoq0O8YrRs6DAN7DWLiZ9bP6dBetN5sSWVbKHnDuDUulaCb1
+         rlMbBYlmUfyechE2jVkwe7h2dXXzNoVzOk+37N2qKKwk8S0mTzz1qGS2GyV7m6khsm1d
+         W5GA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=xTYBUgx4sIq3qSVsjgl0przbRExfOFSCf3/4HQ5y1Uc=;
-        b=QugPl+C3f4g+5G2jM56uheT6bO7KCnQQ3w7t18r9bE57umqx0TlWvBnwzKgVH+i8rW
-         KPTr/kh52aAFgzTq3bYVh9GiexH2cV0TdH9kRD8nZmhbeyxk4QzQDMkOIKaE5rYSjTrD
-         p/W4bg3IprGBCgLmWccyJ9J07EaH5fszUHiY2W0TR0HvBiKonAEfKCDOT4AcuBaU6jNS
-         kvD2iXkmQJ1N/QjSNvPMIgnfdFv1gZYr0RwVDbOlpSC/Bzzo61CzA7Iayd6GnE0nTzpE
-         hwpUEMGmsn1jQ4Gq99RKs7WuSzGZ2sfCrPutDpp4E9oErp00Sbkwhiv/C5CpsJ4gKLX5
-         6VAw==
-X-Gm-Message-State: AOAM533LN8jm7ASmmOGpgbMNcklzBGXHsVDjdKA7tUURkJdSUKV4Wvg0
-        wtMtJA8FTP+ohzRvOZs8MtY=
-X-Google-Smtp-Source: ABdhPJwQSHC3W2lpy/MOReI9kMJhEDuuR09hgP0Zb7GTtVs88FaRrxHsHhn/RqOQZsC5VpzSXtF99w==
-X-Received: by 2002:a05:6402:12cd:b0:426:16f:c135 with SMTP id k13-20020a05640212cd00b00426016fc135mr23796449edx.297.1651677738235;
-        Wed, 04 May 2022 08:22:18 -0700 (PDT)
-Received: from skbuf ([188.25.160.86])
-        by smtp.gmail.com with ESMTPSA id jx4-20020a170907760400b006f3ef214da3sm5739421ejc.9.2022.05.04.08.22.16
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Z1nMz8AV1XcW5h20PdvGECZTKrNaeXZIC73UZ/jHwIc=;
+        b=tqPJWKQ8HuOpHQPSngtIkXGAmKUpgnI2uG1Jt08xOl4s2q2IMS6z1ACg78r8Wf1C90
+         qfF17GYufrGjroYaKarnQ4toO8TP4HnSWuVMdSQSv+vCxietz+BLnObDMKLpsEsy6gWd
+         cA66NJ6Q/Pq5QnoZnp4bK2aaI3IPE21GphrEFuWCzH3nccqzzAJJoHzzRWuIWEQh0BML
+         WLO1DFY3JLptmrqxU3fbZS/qNXptGqlXrmOQ7EGsHXSZ9h7FJIX+C3NVkY7lmuC/GFZT
+         eOZwXco6P1CpZKUNHVGo18OmbTYEPc1yUjfguVm2gdyZzvGGxO5UplkZWF7UKJgEh4Um
+         tEVA==
+X-Gm-Message-State: AOAM530+yj+1GGUC0ROX0MRzPJNmC/hDHYyB6wb4kXwpLUlwuUktzQ2K
+        W9DhP0iKFZM3RHSdhgwECbwe9FSdsi4=
+X-Google-Smtp-Source: ABdhPJy1kzYMGNLYhbuRv3y4d/PByfjuQojOI9mbcBzhZ5nvU8Rajr0jtKJHSHEkhIbjyJdnVi+45Q==
+X-Received: by 2002:a05:600c:12c9:b0:394:54ab:52c5 with SMTP id v9-20020a05600c12c900b0039454ab52c5mr5415489wmd.141.1651677883397;
+        Wed, 04 May 2022 08:24:43 -0700 (PDT)
+Received: from nergzd-desktop.localdomain ([194.39.226.133])
+        by smtp.gmail.com with ESMTPSA id s14-20020adfa28e000000b0020c5253d91csm11541041wra.104.2022.05.04.08.24.42
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 May 2022 08:22:17 -0700 (PDT)
-Date:   Wed, 4 May 2022 18:22:16 +0300
-From:   Vladimir Oltean <olteanv@gmail.com>
-To:     Frank Wunderlich <linux@fw-web.de>
-Cc:     linux-mediatek@lists.infradead.org,
-        linux-rockchip@lists.infradead.org,
-        Frank Wunderlich <frank-w@public-files.de>,
+        Wed, 04 May 2022 08:24:43 -0700 (PDT)
+From:   Markuss Broks <markuss.broks@gmail.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+        Markuss Broks <markuss.broks@gmail.com>,
+        Lin Meng-Bo <linmengbo0689@protonmail.com>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Landen Chao <Landen.Chao@mediatek.com>,
-        DENG Qingfang <dqfext@gmail.com>, Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Peter Geis <pgwipeout@gmail.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        netdev@vger.kernel.org
-Subject: Re: [RFC v2 3/4] net: dsa: mt7530: get cpu-port via dp->cpu_dp
- instead of constant
-Message-ID: <20220504152216.747ckl3km7vbep4s@skbuf>
-References: <20220430130347.15190-1-linux@fw-web.de>
- <20220430130347.15190-4-linux@fw-web.de>
+        Henrik Rydberg <rydberg@bitmath.org>,
+        linux-input@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH 0/3] Add support for Imagis IST3038B
+Date:   Wed,  4 May 2022 18:24:02 +0300
+Message-Id: <20220504152406.8730-1-markuss.broks@gmail.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220430130347.15190-4-linux@fw-web.de>
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
@@ -87,16 +73,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Apr 30, 2022 at 03:03:46PM +0200, Frank Wunderlich wrote:
-> From: Frank Wunderlich <frank-w@public-files.de>
-> 
-> Replace last occurences of hardcoded cpu-port by cpu_dp member of
-> dsa_port struct.
-> 
-> Now the constant can be dropped.
-> 
-> Suggested-by: Vladimir Oltean <olteanv@gmail.com>
-> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
-> ---
+This series adds support for Imagis IST3038B IC support, which
+is a variant of Imagis IST3038 IC. It has a different register map
+(labeled protocol b), but otherwise it seems to be the same IC.
+It is also possible to support various other Imagis ICs using
+protocol b, such as (but not limited to) IST3044B, IST3026, IST3032,
+IST3026B, IST3032B. However, most of them (all except IST3044B)
+use a different coordinate format, so extra effort would be needed
+to support those.
 
-Reviewed-by: Vladimir Oltean <olteanv@gmail.com>
+Tested by Lin Meng-Bo on Samsung Galaxy Core Prime.
+
+Cc: Lin Meng-Bo <linmengbo0689@protonmail.com>
+
+Markuss Broks (3):
+  input/touchscreen: imagis: Correct the maximum touch area value
+  dt-bindings: input/touchscreen: Add compatible for IST3038B
+  input/touchscreen: imagis: Add support for Imagis IST3038B
+
+ .../input/touchscreen/imagis,ist3038c.yaml    |  1 +
+ drivers/input/touchscreen/imagis.c            | 60 +++++++++++++++----
+ 2 files changed, 49 insertions(+), 12 deletions(-)
+
+-- 
+2.35.1
+
