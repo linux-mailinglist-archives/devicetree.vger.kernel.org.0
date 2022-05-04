@@ -2,94 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 875E6519E9F
-	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 13:55:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5AED6519EAC
+	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 13:57:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242710AbiEDL6v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 May 2022 07:58:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36526 "EHLO
+        id S1346211AbiEDMAw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 May 2022 08:00:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38664 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349114AbiEDL6u (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 07:58:50 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7524D2CE25;
-        Wed,  4 May 2022 04:55:09 -0700 (PDT)
-X-UUID: a5790e3afd42459396b997f3f40f1ca8-20220504
+        with ESMTP id S231410AbiEDMAv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 08:00:51 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4666F18342;
+        Wed,  4 May 2022 04:57:15 -0700 (PDT)
+X-UUID: 68ad077453d943dc954df963fc5c3163-20220504
 X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.4,REQID:1cf93376-e68b-41e0-906d-ee2c1d9152e4,OB:0,LO
-        B:0,IP:0,URL:0,TC:0,Content:-20,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,AC
-        TION:release,TS:-20
-X-CID-META: VersionHash:faefae9,CLOUDID:363a2b16-2e53-443e-b81a-655c13977218,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,File:nil,QS:0,BEC:nil
-X-UUID: a5790e3afd42459396b997f3f40f1ca8-20220504
-Received: from mtkmbs11n2.mediatek.inc [(172.21.101.187)] by mailgw02.mediatek.com
+X-CID-O-INFO: VERSION:1.1.4,REQID:b565527c-a0c4-4a30-8c39-ac9ef5bece4c,OB:0,LO
+        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,ACT
+        ION:release,TS:45
+X-CID-INFO: VERSION:1.1.4,REQID:b565527c-a0c4-4a30-8c39-ac9ef5bece4c,OB:0,LOB:
+        0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,ACTIO
+        N:release,TS:45
+X-CID-META: VersionHash:faefae9,CLOUDID:4eed8ab2-56b5-4c9e-8d83-0070b288eb6a,C
+        OID:IGNORED,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,File:nil,QS:0
+        ,BEC:nil
+X-UUID: 68ad077453d943dc954df963fc5c3163-20220504
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
         (envelope-from <rex-bc.chen@mediatek.com>)
         (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 425391039; Wed, 04 May 2022 19:55:04 +0800
+        with ESMTP id 1706728257; Wed, 04 May 2022 19:57:11 +0800
+Received: from mtkmbs07n1.mediatek.inc (172.21.101.16) by
+ mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Wed, 4 May 2022 19:57:10 +0800
 Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
- Wed, 4 May 2022 19:55:03 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
- mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.792.3 via Frontend Transport; Wed, 4 May 2022 19:55:03 +0800
+ mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Wed, 4 May 2022 19:57:09 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n2.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
+ Transport; Wed, 4 May 2022 19:57:09 +0800
+Message-ID: <332f8adec6601f97ab2814d06330883a251e41ec.camel@mediatek.com>
+Subject: Re: [PATCH V4 07/14] cpufreq: mediatek: Add .get function
 From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
-To:     <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <matthias.bgg@gmail.com>
-CC:     <runyang.chen@mediatek.com>, <linux-mediatek@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+To:     Viresh Kumar <viresh.kumar@linaro.org>
+CC:     <rafael@kernel.org>, <robh+dt@kernel.org>, <krzk+dt@kernel.org>,
+        <matthias.bgg@gmail.com>, <jia-wei.chang@mediatek.com>,
+        <roger.lu@mediatek.com>, <hsinyi@google.com>,
+        <khilman@baylibre.com>, <angelogioacchino.delregno@collabora.com>,
+        <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Rex-BC Chen <rex-bc.chen@mediatek.com>
-Subject: [PATCH v2 3/3] soc: mediatek: devapc: Add support for MT8186
-Date:   Wed, 4 May 2022 19:55:01 +0800
-Message-ID: <20220504115501.3490-4-rex-bc.chen@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20220504115501.3490-1-rex-bc.chen@mediatek.com>
-References: <20220504115501.3490-1-rex-bc.chen@mediatek.com>
+        <linux-mediatek@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Date:   Wed, 4 May 2022 19:57:09 +0800
+In-Reply-To: <20220504082249.anrvkf2ssbxyzz5m@vireshk-i7>
+References: <20220422075239.16437-1-rex-bc.chen@mediatek.com>
+         <20220422075239.16437-8-rex-bc.chen@mediatek.com>
+         <20220425053548.72w2jh2g6lpzgz6g@vireshk-i7>
+         <64c690e8edf493ec0a4a14e0fdaad2d8e88e6da7.camel@mediatek.com>
+         <20220425100058.4kbvmpi63ygni6k5@vireshk-i7>
+         <078b1f9b39690da98cbd3c4528ba28374a097083.camel@mediatek.com>
+         <20220427031141.or2owu5wrh2cadfo@vireshk-i7>
+         <346736a339bed576817179ded3795d61f71fa06a.camel@mediatek.com>
+         <20220428114835.3ktimyz2tzzqdcbg@vireshk-i7>
+         <27a5dddd91b3dcbd69f08c10108cdec808237ace.camel@mediatek.com>
+         <20220504082249.anrvkf2ssbxyzz5m@vireshk-i7>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 7bit
 X-MTK:  N
-X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,MAY_BE_FORGED,
-        SPF_HELO_NONE,T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY
-        autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add devapc data and compatible to support MT8186 devapc.
+On Wed, 2022-05-04 at 13:52 +0530, Viresh Kumar wrote:
+> On 03-05-22, 19:33, Rex-BC Chen wrote:
+> > Our observation tells us cpufreq_online is setting only once at
+> > boot
+> > for one cpu cluster.
+> > But we can see the problem repeatly occurs once cpufreq_get is
+> > invoked.
+> > 
+> > e.g.
+> > [ 71.154560] cpufreq: Warning: CPU frequency out of sync: cpufreq
+> > and
+> > timing core thinks of 500000, is 499999 kHz
+> > [ 71.155880] cpufreq: notification 0 of frequency transition to
+> > 499999
+> > kHz
+> > [ 71.156777] cpufreq: notification 1 of frequency transition to
+> > 499999
+> > kHz
+> > [ 71.187241] cpufreq: target for CPU 0: 500000 kHz, relation 0,
+> > requested 500000 kHz
+> > [ 71.188246] cpufreq: target_freq/policy->cur: 500000/499999 kHz
+> 
+> Lemme know if this helps:
+> 
+> 
+https://lore.kernel.org/lkml/39e39a7d30c8ee6af81fb64670a330abeb87402e.1651652493.git.viresh.kumar@linaro.org/
+> 
 
-Signed-off-by: Runyang Chen <runyang.chen@mediatek.com>
-Signed-off-by: Rex-BC Chen <rex-bc.chen@mediatek.com>
----
- drivers/soc/mediatek/mtk-devapc.c | 8 ++++++++
- 1 file changed, 8 insertions(+)
+Hello Viresh,
 
-diff --git a/drivers/soc/mediatek/mtk-devapc.c b/drivers/soc/mediatek/mtk-devapc.c
-index f27e22cbb770..fc13334db1b1 100644
---- a/drivers/soc/mediatek/mtk-devapc.c
-+++ b/drivers/soc/mediatek/mtk-devapc.c
-@@ -234,10 +234,18 @@ static const struct mtk_devapc_data devapc_mt6779 = {
- 	.regs_ofs = &devapc_regs_ofs_mt6779,
- };
- 
-+static const struct mtk_devapc_data devapc_mt8186 = {
-+	.vio_idx_num = 519,
-+	.regs_ofs = &devapc_regs_ofs_mt6779,
-+};
-+
- static const struct of_device_id mtk_devapc_dt_match[] = {
- 	{
- 		.compatible = "mediatek,mt6779-devapc",
- 		.data = &devapc_mt6779,
-+	}, {
-+		.compatible = "mediatek,mt8186-devapc",
-+		.data = &devapc_mt8186,
- 	}, {
- 	},
- };
--- 
-2.18.0
+Thanks a lot! It helps to fix this issue.
+And I will drop this patch in the next version.
+
+BRs,
+Rex
 
