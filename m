@@ -2,73 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 48B22519954
-	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 10:11:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4011F519959
+	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 10:11:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232995AbiEDIOg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 May 2022 04:14:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44220 "EHLO
+        id S1346083AbiEDIOq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 May 2022 04:14:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44358 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346083AbiEDIOf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 04:14:35 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9BCBD1DB;
-        Wed,  4 May 2022 01:11:00 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id F2F821F43F34
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1651651859;
-        bh=/jiZgVApvYyURKtaMltQCHC5vAnx+PmRgNJz/ENPruU=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=JcO/T9fmxesXuqmiI6lT/hvrrsBu0JKyDlpiOKBYugj0SO9wGtNrDasM/4dKi6Jk7
-         Gc+/pyCdaj3tY0M8kxGsLHWm5xR/bBhRtFZ/2rxsPohMQPSebWR+/8CnHrZC3YWi9x
-         jCTsltQcpeQEtvp3YpBTTX9DxQqEUbCToNIGPDHpjHpUteaaq3ogmjElAFiE3vLmHZ
-         DmHIwqDJAeRvnW7vAi6Beao400bkL/S9C/5UDqfWxI/2Af1tj0jeLGvnDKkki5+nf6
-         n/GVMOzOGQ+Dd6fVf0VuoQjOcpAzVTJAfr+lKoIvpBxSRj1K/yo7r0kNh00jFBi+3m
-         5Qyev2BJjEo6w==
-Message-ID: <8e0435e0-d871-c278-3362-d349cbd1f7c8@collabora.com>
-Date:   Wed, 4 May 2022 10:10:56 +0200
+        with ESMTP id S1346088AbiEDIOn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 04:14:43 -0400
+Received: from m-r2.th.seeweb.it (m-r2.th.seeweb.it [IPv6:2001:4b7a:2000:18::171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4CA2022520;
+        Wed,  4 May 2022 01:11:08 -0700 (PDT)
+Received: from SoMainline.org (94-209-165-62.cable.dynamic.v4.ziggo.nl [94.209.165.62])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id AD9153F7A6;
+        Wed,  4 May 2022 10:11:04 +0200 (CEST)
+Date:   Wed, 4 May 2022 10:11:02 +0200
+From:   Marijn Suijten <marijn.suijten@somainline.org>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v1 1/5] arm64: dts: qcom: sdm660: disable dsi1/dsi1_phy
+ by default
+Message-ID: <20220504081102.g36yjajytvuaba7r@SoMainline.org>
+References: <20220503220927.960821-1-dmitry.baryshkov@linaro.org>
+ <20220503220927.960821-2-dmitry.baryshkov@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH] arm64: dts: mt8192: Follow binding order for SCP
- registers
-Content-Language: en-US
-To:     =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
-        <nfraprado@collabora.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     kernel@collabora.com,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org
-References: <20220503212531.2657870-1-nfraprado@collabora.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20220503212531.2657870-1-nfraprado@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220503220927.960821-2-dmitry.baryshkov@linaro.org>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 03/05/22 23:25, Nícolas F. R. A. Prado ha scritto:
-> The dt-binding for SCP documents the reg-names order as sram, cfg,
-> l1tcm. Update the SCP node on the mt8192 devicetree to follow that
-> order, which gets rid of a dtbs_check warning. This doesn't change any
-> behavior since the SCP driver accesses the memory regions through the
-> names anyway.
+On 2022-05-04 01:09:23, Dmitry Baryshkov wrote:
+> Follow the typical practice and keep DSI1/DSI1 PHY disabled by default.
+> They should be enabled in the board DT files. No existing boards use
+> them at this moment.
+
+This practice also seems to be applied to dsi0/dsi0_phy across other
+boards.  Should this also be applied to sdm630.dtsi's dsi0/dsi0_phy
+nodes, and them subsequently re-enabled in sdm630-sony-xperia-nile.dtsi?
+
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+
+Reviewed-by: Marijn Suijten <marijn.suijten@somainline.org>
+
+- Marijn
+> ---
+>  arch/arm64/boot/dts/qcom/sdm660.dtsi | 3 +++
+>  1 file changed, 3 insertions(+)
 > 
-> Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
-
-Nic, you need a Fixes: tag on this commit, please add it and send a v2!
-
-Cheers!
-
+> diff --git a/arch/arm64/boot/dts/qcom/sdm660.dtsi b/arch/arm64/boot/dts/qcom/sdm660.dtsi
+> index eccf6fde16b4..023b0ac4118c 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm660.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sdm660.dtsi
+> @@ -192,6 +192,8 @@ dsi1: dsi@c996000 {
+>  		phys = <&dsi1_phy>;
+>  		phy-names = "dsi";
+>  
+> +		status = "disabled";
+> +
+>  		ports {
+>  			#address-cells = <1>;
+>  			#size-cells = <0>;
+> @@ -225,6 +227,7 @@ dsi1_phy: dsi-phy@c996400 {
+>  
+>  		clocks = <&mmcc MDSS_AHB_CLK>, <&rpmcc RPM_SMD_XO_CLK_SRC>;
+>  		clock-names = "iface", "ref";
+> +		status = "disabled";
+>  	};
+>  };
+>  
+> -- 
+> 2.35.1
+> 
