@@ -2,48 +2,46 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9162E5199FA
-	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 10:37:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F705519A13
+	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 10:40:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235723AbiEDIlV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 May 2022 04:41:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38606 "EHLO
+        id S1346455AbiEDInp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 May 2022 04:43:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40558 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233343AbiEDIlU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 04:41:20 -0400
+        with ESMTP id S240868AbiEDInp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 04:43:45 -0400
 Received: from theia.8bytes.org (8bytes.org [IPv6:2a01:238:4383:600:38bc:a715:4b6d:a889])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F050D1C934;
-        Wed,  4 May 2022 01:37:44 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F9911EC5E;
+        Wed,  4 May 2022 01:40:10 -0700 (PDT)
 Received: by theia.8bytes.org (Postfix, from userid 1000)
-        id 3F17C67B; Wed,  4 May 2022 10:37:42 +0200 (CEST)
-Date:   Wed, 4 May 2022 10:37:41 +0200
+        id C65FF7EE; Wed,  4 May 2022 10:40:08 +0200 (CEST)
+Date:   Wed, 4 May 2022 10:40:07 +0200
 From:   Joerg Roedel <joro@8bytes.org>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>
+To:     Yong Wu <yong.wu@mediatek.com>
 Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
         Will Deacon <will@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        devicetree@vger.kernel.org, dmaengine@vger.kernel.org,
-        linux-gpio@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        linux-i2c@vger.kernel.org, iommu@lists.linux-foundation.org,
-        linux-serial@vger.kernel.org, linux-watchdog@vger.kernel.org
-Subject: Re: [PATCH 3/7] dt-bindings: iommu: renesas,ipmmu-vmsa: R-Car V3U is
- R-Car Gen4
-Message-ID: <YnI7VT8bpUbv7ySI@8bytes.org>
-References: <cover.1651497024.git.geert+renesas@glider.be>
- <d351ca12724d5b306119bd8dcd9bfac09ba2a925.1651497024.git.geert+renesas@glider.be>
+        Robin Murphy <robin.murphy@arm.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Tomasz Figa <tfiga@chromium.org>,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        iommu@lists.linux-foundation.org,
+        Hsin-Yi Wang <hsinyi@chromium.org>, youlin.pei@mediatek.com,
+        anan.sun@mediatek.com, xueqi.zhang@mediatek.com,
+        yen-chang.chen@mediatek.com,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        mingyuan.ma@mediatek.com, yf.wang@mediatek.com,
+        libo.kang@mediatek.com, chengci.xu@mediatek.com
+Subject: Re: [PATCH v7 00/36] MT8195 and MT8186 IOMMU SUPPORT
+Message-ID: <YnI751zEqTjrVuuz@8bytes.org>
+References: <20220503071427.2285-1-yong.wu@mediatek.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <d351ca12724d5b306119bd8dcd9bfac09ba2a925.1651497024.git.geert+renesas@glider.be>
+In-Reply-To: <20220503071427.2285-1-yong.wu@mediatek.com>
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
         SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
         version=3.4.6
@@ -53,14 +51,43 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 02, 2022 at 03:34:55PM +0200, Geert Uytterhoeven wrote:
-> Despite the name, R-Car V3U is the first member of the R-Car Gen4
-> family.  Hence move its compatible value to the R-Car Gen4 section.
-> 
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> ---
->  .../devicetree/bindings/iommu/renesas,ipmmu-vmsa.yaml         | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
+On Tue, May 03, 2022 at 03:13:51PM +0800, Yong Wu wrote:
+> Yong Wu (36):
+>   dt-bindings: mediatek: mt8195: Add binding for MM IOMMU
+>   dt-bindings: mediatek: mt8195: Add binding for infra IOMMU
+>   dt-bindings: mediatek: mt8186: Add binding for MM iommu
+>   iommu/mediatek: Fix 2 HW sharing pgtable issue
+>   iommu/mediatek: Add list_del in mtk_iommu_remove
+>   iommu/mediatek: Remove clk_disable in mtk_iommu_remove
+>   iommu/mediatek: Add mutex for m4u_group and m4u_dom in data
+>   iommu/mediatek: Add mutex for data in the mtk_iommu_domain
+>   iommu/mediatek: Adapt sharing and non-sharing pgtable case
+>   iommu/mediatek: Add 12G~16G support for multi domains
+>   iommu/mediatek: Add a flag DCM_DISABLE
+>   iommu/mediatek: Add a flag STD_AXI_MODE
+>   iommu/mediatek: Remove the granule in the tlb flush
+>   iommu/mediatek: Always enable output PA over 32bits in isr
+>   iommu/mediatek: Add SUB_COMMON_3BITS flag
+>   iommu/mediatek: Add IOMMU_TYPE flag
+>   iommu/mediatek: Contain MM IOMMU flow with the MM TYPE
+>   iommu/mediatek: Adjust device link when it is sub-common
+>   iommu/mediatek: Allow IOMMU_DOMAIN_UNMANAGED for PCIe VFIO
+>   iommu/mediatek: Add a PM_CLK_AO flag for infra iommu
+>   iommu/mediatek: Add infra iommu support
+>   iommu/mediatek: Add PCIe support
+>   iommu/mediatek: Add mt8195 support
+>   iommu/mediatek: Only adjust code about register base
+>   iommu/mediatek: Just move code position in hw_init
+>   iommu/mediatek: Separate mtk_iommu_data for v1 and v2
+>   iommu/mediatek: Remove mtk_iommu.h
+>   iommu/mediatek-v1: Just rename mtk_iommu to mtk_iommu_v1
+>   iommu/mediatek: Add mtk_iommu_bank_data structure
+>   iommu/mediatek: Initialise bank HW for each a bank
+>   iommu/mediatek: Change the domid to iova_region_id
+>   iommu/mediatek: Get the proper bankid for multi banks
+>   iommu/mediatek: Initialise/Remove for multi bank dev
+>   iommu/mediatek: Backup/restore regsiters for multi banks
+>   iommu/mediatek: mt8195: Enable multi banks for infra iommu
+>   iommu/mediatek: Add mt8186 iommu support
 
-Acked-by: Joerg Roedel <jroedel@suse.de>
-
+Applied, thanks.
