@@ -2,194 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6ECF651983D
-	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 09:31:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CD511519831
+	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 09:29:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230474AbiEDHeL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 May 2022 03:34:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54106 "EHLO
+        id S1345468AbiEDHdJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 May 2022 03:33:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52646 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345509AbiEDHeI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 03:34:08 -0400
-Received: from sipsolutions.net (s3.sipsolutions.net [IPv6:2a01:4f8:191:4433::2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 345C82647;
-        Wed,  4 May 2022 00:30:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=sipsolutions.net; s=mail; h=Content-Transfer-Encoding:MIME-Version:
-        Content-Type:References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender
-        :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-To:
-        Resent-Cc:Resent-Message-ID; bh=VhRMkWupHGEpu4hR7M12B8TWP/ZW0H0fx/g6wrBtOIU=;
-        t=1651649432; x=1652859032; b=lT+BoT7kzbehmIS4CE6tmnrNCaaMxC4ZC6lWOapcFoPAPDK
-        ivwD9L+TNY4ukXj7zmgHhbTz3x6Tc3SV0Eclg4IivKdtaoIhIPmv3/kOG1Hs3stt+sZYyGkiO9+6V
-        owmtPBnbKGrLhWnYlDrLZEDw7uo6wXChACSfuAQl/hfOCjl4lXTzOPy4xr/HkQRVd5xeST21zUOg+
-        eagjwkTPt+DkjP546h0kleKkFB8GmTwBSqL/1KvlDT1O2/wVtM3Zp6oqDYk5TVAlYnS1nsm9DdJwT
-        c18ih50SkMX+SiLKowBo4knf4fyHVmT3WXccgI5g7BaPwsULbewodpDd7UmE1G9w==;
-Received: by sipsolutions.net with esmtpsa (TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256)
-        (Exim 4.95)
-        (envelope-from <johannes@sipsolutions.net>)
-        id 1nm9RJ-001wsH-EM;
-        Wed, 04 May 2022 09:28:49 +0200
-Message-ID: <c31c1752cf6393319f5c7abd178ef43e0fbec5c1.camel@sipsolutions.net>
-Subject: Re: [PATCH 12/32] cfg80211: Use mem_to_flex_dup() with struct
- cfg80211_bss_ies
-From:   Johannes Berg <johannes@sipsolutions.net>
-To:     Kees Cook <keescook@chromium.org>,
-        "Gustavo A . R . Silva" <gustavoars@kernel.org>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Eric Dumazet <edumazet@google.com>,
-        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
-        Alexei Starovoitov <ast@kernel.org>,
-        alsa-devel@alsa-project.org, Al Viro <viro@zeniv.linux.org.uk>,
-        Andrew Gabbasov <andrew_gabbasov@mentor.com>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        Andy Gross <agross@kernel.org>,
-        Andy Lavr <andy.lavr@gmail.com>,
-        Arend van Spriel <aspriel@gmail.com>,
-        Baowen Zheng <baowen.zheng@corigine.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Boris Ostrovsky <boris.ostrovsky@oracle.com>,
-        Bradley Grove <linuxdrivers@attotech.com>,
-        brcm80211-dev-list.pdl@broadcom.com,
-        Christian Brauner <brauner@kernel.org>,
-        Christian =?ISO-8859-1?Q?G=F6ttsche?= <cgzones@googlemail.com>,
-        Christian Lamparter <chunkeey@googlemail.com>,
-        Chris Zankel <chris@zankel.net>,
-        Cong Wang <cong.wang@bytedance.com>,
-        Daniel Axtens <dja@axtens.net>,
-        Daniel Vetter <daniel.vetter@ffwll.ch>,
-        Dan Williams <dan.j.williams@intel.com>,
-        David Gow <davidgow@google.com>,
-        David Howells <dhowells@redhat.com>,
-        Dennis Dalessandro <dennis.dalessandro@cornelisnetworks.com>,
-        devicetree@vger.kernel.org, Dexuan Cui <decui@microsoft.com>,
-        Dmitry Kasatkin <dmitry.kasatkin@gmail.com>,
-        Eli Cohen <elic@nvidia.com>,
-        Eric Paris <eparis@parisplace.org>,
-        Eugeniu Rosca <erosca@de.adit-jv.com>,
-        Felipe Balbi <balbi@kernel.org>,
-        Francis Laniel <laniel_francis@privacyrequired.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Franky Lin <franky.lin@broadcom.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Gregory Greenman <gregory.greenman@intel.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Haiyang Zhang <haiyangz@microsoft.com>,
-        Hante Meuleman <hante.meuleman@broadcom.com>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        Hulk Robot <hulkci@huawei.com>,
-        "James E.J. Bottomley" <jejb@linux.ibm.com>,
-        James Morris <jmorris@namei.org>,
-        Jarkko Sakkinen <jarkko@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Jason Gunthorpe <jgg@ziepe.ca>, Jens Axboe <axboe@kernel.dk>,
-        Johan Hedberg <johan.hedberg@gmail.com>,
-        John Keeping <john@metanate.com>,
-        Juergen Gross <jgross@suse.com>, Kalle Valo <kvalo@kernel.org>,
-        Keith Packard <keithp@keithp.com>, keyrings@vger.kernel.org,
-        kunit-dev@googlegroups.com,
-        Kuniyuki Iwashima <kuniyu@amazon.co.jp>,
-        "K. Y. Srinivasan" <kys@microsoft.com>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Lee Jones <lee.jones@linaro.org>,
-        Leon Romanovsky <leon@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        linux1394-devel@lists.sourceforge.net,
-        linux-afs@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-arm-msm@vger.kernel.org, linux-bluetooth@vger.kernel.org,
-        linux-hardening@vger.kernel.org, linux-hyperv@vger.kernel.org,
-        linux-integrity@vger.kernel.org, linux-rdma@vger.kernel.org,
-        linux-scsi@vger.kernel.org, linux-security-module@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-xtensa@linux-xtensa.org,
-        llvm@lists.linux.dev, Loic Poulain <loic.poulain@linaro.org>,
-        Louis Peens <louis.peens@corigine.com>,
-        Luca Coelho <luciano.coelho@intel.com>,
-        Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
-        Marc Dionne <marc.dionne@auristor.com>,
-        Marcel Holtmann <marcel@holtmann.org>,
-        Mark Brown <broonie@kernel.org>,
-        "Martin K. Petersen" <martin.petersen@oracle.com>,
-        Max Filippov <jcmvbkbc@gmail.com>,
-        Mimi Zohar <zohar@linux.ibm.com>,
-        Muchun Song <songmuchun@bytedance.com>,
-        Nathan Chancellor <nathan@kernel.org>,
-        Nick Desaulniers <ndesaulniers@google.com>,
-        Nuno =?ISO-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-        Paul Moore <paul@paul-moore.com>,
-        Rich Felker <dalias@aerifal.cx>,
-        Rob Herring <robh+dt@kernel.org>,
-        Russell King <linux@armlinux.org.uk>, selinux@vger.kernel.org,
-        "Serge E. Hallyn" <serge@hallyn.com>,
-        SHA-cyfmac-dev-list@infineon.com,
-        Simon Horman <simon.horman@corigine.com>,
-        Stefano Stabellini <sstabellini@kernel.org>,
-        Stefan Richter <stefanr@s5r6.in-berlin.de>,
-        Steffen Klassert <steffen.klassert@secunet.com>,
-        Stephen Hemminger <sthemmin@microsoft.com>,
-        Stephen Smalley <stephen.smalley.work@gmail.com>,
-        Tadeusz Struk <tadeusz.struk@linaro.org>,
-        Takashi Iwai <tiwai@suse.com>, Tom Rix <trix@redhat.com>,
-        Udipto Goswami <quic_ugoswami@quicinc.com>,
-        Vincenzo Frascino <vincenzo.frascino@arm.com>,
-        wcn36xx@lists.infradead.org, Wei Liu <wei.liu@kernel.org>,
-        xen-devel@lists.xenproject.org,
-        Xiu Jianfeng <xiujianfeng@huawei.com>,
-        Yang Yingliang <yangyingliang@huawei.com>
-Date:   Wed, 04 May 2022 09:28:46 +0200
-In-Reply-To: <20220504014440.3697851-13-keescook@chromium.org>
-References: <20220504014440.3697851-1-keescook@chromium.org>
-         <20220504014440.3697851-13-keescook@chromium.org>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.42.4 (3.42.4-2.fc35) 
+        with ESMTP id S1345474AbiEDHdG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 03:33:06 -0400
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABDF4237FC
+        for <devicetree@vger.kernel.org>; Wed,  4 May 2022 00:29:26 -0700 (PDT)
+Received: by mail-wr1-x42d.google.com with SMTP id w4so743585wrg.12
+        for <devicetree@vger.kernel.org>; Wed, 04 May 2022 00:29:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=8VA4FHvbsRw2CxenU94ej339VkaiHmNkpMn++qhKZkY=;
+        b=BLaR8QxgOE15hRZ0jpFOV1OHP0eKmguetIqvw2yRUPitWzmBSDrDOloiPvkrZHsCP4
+         d9CeK4r2v43mVUEcDlfsQW5fE7iw7ahIYOIl7PZ8hKFS0fHsWwZNGAn2O3a8frn90nQf
+         c70B+1GEnqp8nJD/Oc/MCig+1DnCaJ5SS2uOXPCnDDbNLlXhkMTz8XO2THpfut2HFsdW
+         y2Fb0G3PK3GJH7imqh2sWXOBFixa7+BJUdvkda2IcsR1DPRfd8stpJIkCd0WtmYCey0S
+         STIJJPmdoOzn7gndEbiXnrZbt6rWUqqyXPtlZPDZj0owD8fg3XzJ70ZOClqayDmE5yl0
+         jUow==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=8VA4FHvbsRw2CxenU94ej339VkaiHmNkpMn++qhKZkY=;
+        b=Wt4VbwaGpiHWkKgy5kIfDEeYjU2Bc+GssGkUrIB+cRNOMS5+FWAzX9aYyG1L/jneo7
+         J8Gma9bZLLagB8pZKRuoExqQz7PCogBpjQjrGLNbOmBJzrelzcf2DurpAYIY9VtDvquj
+         vmnJyBOROr6qRq8hbJSrig0JVScRqKzDnMLNnFeN2H47Wtz9dxstLmZsS6JejhzFmmhG
+         +QCCNgKaBQe9qGfxafCKIEujnaT110jH/1hNF799EjVlKqvPzWX1FqlEpEznsRwqiiDg
+         CrqfD/gO1Otg6nikHWJqvkwl6vEKOZ+t97Mw+xvn1PKdgn3gzpphnw72B1/brv/dzFb5
+         REog==
+X-Gm-Message-State: AOAM5306lmTN418nC/Ak4lm/rdIYHVdhL9bT3+jcuvZmvWIErye6Hbw4
+        duBIzYNE36twbZVPIsX5zeBMS4hCC/OeJ1RD
+X-Google-Smtp-Source: ABdhPJxfjNTKh33MUceoLSrr/tcSZI46SrnsGB2f3xSrHVOnDDOHrIYE4vZQM7mesLGOqAr8L2huvg==
+X-Received: by 2002:a5d:6208:0:b0:203:dde4:c76e with SMTP id y8-20020a5d6208000000b00203dde4c76emr15234569wru.273.1651649365011;
+        Wed, 04 May 2022 00:29:25 -0700 (PDT)
+Received: from google.com (49.222.77.34.bc.googleusercontent.com. [34.77.222.49])
+        by smtp.gmail.com with ESMTPSA id h7-20020adfa4c7000000b0020c5253d907sm11000665wrb.83.2022.05.04.00.29.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 04 May 2022 00:29:24 -0700 (PDT)
+Date:   Wed, 4 May 2022 07:29:23 +0000
+From:   Sebastian Ene <sebastianene@google.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     linux-kernel@vger.kernel.org,
+        Derek Kiernan <derek.kiernan@xilinx.com>,
+        Dragan Cvetic <dragan.cvetic@xilinx.com>,
+        Arnd Bergmann <arnd@arndb.de>, devicetree@vger.kernel.org,
+        qperret@google.com, will@kernel.org, maz@kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Subject: Re: [PATCH v4 2/2] misc: Add a mechanism to detect stalls on guest
+ vCPUs
+Message-ID: <YnIrU/oTP1h2aawQ@google.com>
+References: <20220429083030.3241640-1-sebastianene@google.com>
+ <20220429083030.3241640-3-sebastianene@google.com>
+ <YmunAm8ooJkNCx5D@kroah.com>
+ <YmuvQvuPF/mn5S4C@google.com>
+ <YmuyLCdpnCzGnILI@kroah.com>
+ <YmxSsSxncvMak+L1@robh.at.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-malware-bazaar: not-scanned
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YmxSsSxncvMak+L1@robh.at.kernel.org>
+X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 2022-05-03 at 18:44 -0700, Kees Cook wrote:
+On Fri, Apr 29, 2022 at 04:03:45PM -0500, Rob Herring wrote:
+> On Fri, Apr 29, 2022 at 11:38:52AM +0200, Greg Kroah-Hartman wrote:
+> > On Fri, Apr 29, 2022 at 09:26:26AM +0000, Sebastian Ene wrote:
+> > > On Fri, Apr 29, 2022 at 10:51:14AM +0200, Greg Kroah-Hartman wrote:
+> > > > On Fri, Apr 29, 2022 at 08:30:33AM +0000, Sebastian Ene wrote:
+> > > > > This driver creates per-cpu hrtimers which are required to do the
+> > > > > periodic 'pet' operation. On a conventional watchdog-core driver, the
+> > > > > userspace is responsible for delivering the 'pet' events by writing to
+> > > > > the particular /dev/watchdogN node. In this case we require a strong
+> > > > > thread affinity to be able to account for lost time on a per vCPU.
+> > > > > 
+> > > > > This part of the driver is the 'frontend' which is reponsible for
+> > > > > delivering the periodic 'pet' events, configuring the virtual peripheral
+> > > > > and listening for cpu hotplug events. The other part of the driver
+> > > > > handles the peripheral emulation and this part accounts for lost time by
+> > > > > looking at the /proc/{}/task/{}/stat entries and is located here:
+> > > > > https://chromium-review.googlesource.com/c/chromiumos/platform/crosvm/+/3548817
+> > > > > 
+> > > > > Signed-off-by: Sebastian Ene <sebastianene@google.com>
+> > > > > ---
+> > > > >  drivers/misc/Kconfig       |  12 +++
+> > > > >  drivers/misc/Makefile      |   1 +
+> > > > >  drivers/misc/vm-watchdog.c | 206 +++++++++++++++++++++++++++++++++++++
+> > > > >  3 files changed, 219 insertions(+)
+> > > > >  create mode 100644 drivers/misc/vm-watchdog.c
+> > > > > 
+> > > > > diff --git a/drivers/misc/Kconfig b/drivers/misc/Kconfig
+> > > > > index 2b9572a6d114..26c3a99e269c 100644
+> > > > > --- a/drivers/misc/Kconfig
+> > > > > +++ b/drivers/misc/Kconfig
+> > > > > @@ -493,6 +493,18 @@ config OPEN_DICE
+> > > > >  
+> > > > >  	  If unsure, say N.
+> > > > >  
+> > > > > +config VM_WATCHDOG
+> > > > > +	tristate "Virtual Machine Watchdog"
+> > > > > +	select LOCKUP_DETECTOR
+> > > > > +	help
+> > > > > +	  Detect CPU locks on the virtual machine. This driver relies on the
+> > > > > +	  hrtimers which are CPU-binded to do the 'pet' operation. When a vCPU
+> > > > > +	  has to do a 'pet', it exits the guest through MMIO write and the
+> > > > > +	  backend driver takes into account the lost ticks for this particular
+> > > > > +	  CPU.
+> > > 
+> > > Hi,
+> > > 
+> > > > 
+> > > > There's nothing to keep this tied to a virtual machine at all, right?
+> > > > You are just relying on some iomem address to be updated, so it should
+> > > > be a "generic_iomem_watchdog" driver as there's nothing specific to vms
+> > > > at all from what I can tell.
+> > > > 
+> > > > thanks,
+> > > > 
+> > > > greg k-h
+> > > 
+> > > That's right although I might think of using the term "generic lockup detector"
+> > > instead of watchdog. The only reason why I would keep "virtual machine"
+> > > word in, is that there is no actual hardware for this.
+> > 
+> > That doesn't really matter, it's just a memory location in device tree
+> > that you are needing, odds are some hardware device could use it just
+> > like this.
+
+Hi,
+
 > 
-> @@ -2277,7 +2274,7 @@ cfg80211_update_notlisted_nontrans(struct wiphy *wiphy,
->  	size_t ielen = len - offsetof(struct ieee80211_mgmt,
->  				      u.probe_resp.variable);
->  	size_t new_ie_len;
-> -	struct cfg80211_bss_ies *new_ies;
-> +	struct cfg80211_bss_ies *new_ies = NULL;
->  	const struct cfg80211_bss_ies *old;
->  	u8 cpy_len;
->  
-> @@ -2314,8 +2311,7 @@ cfg80211_update_notlisted_nontrans(struct wiphy *wiphy,
->  	if (!new_ie)
->  		return;
->  
-> -	new_ies = kzalloc(sizeof(*new_ies) + new_ie_len, GFP_ATOMIC);
-> -	if (!new_ies)
-> +	if (mem_to_flex_dup(&new_ies, new_ie, new_ie_len, GFP_ATOMIC))
->  		goto out_free;
->  
->  	pos = new_ie;
-> @@ -2333,10 +2329,8 @@ cfg80211_update_notlisted_nontrans(struct wiphy *wiphy,
->  	memcpy(pos, mbssid + cpy_len, ((ie + ielen) - (mbssid + cpy_len)));
->  
->  	/* update ie */
-> -	new_ies->len = new_ie_len;
->  	new_ies->tsf = le64_to_cpu(mgmt->u.probe_resp.timestamp);
->  	new_ies->from_beacon = ieee80211_is_beacon(mgmt->frame_control);
-> -	memcpy(new_ies->data, new_ie, new_ie_len);
+> Such as a shared on-chip memory that both a system control processor and 
+> the main processors can access. Of course, those also typically already 
+> have a comnunication channel.
+> 
+> But for a VM-hypervisor interface, why isn't one of the existing 
+> communications interfaces being used? One that is discoverable would be 
+> better than using DT.
+> 
 
-This introduces a bug, "new_ie" is modified between the kzalloc() and
-the memcpy(), but you've moved the memcpy() into the allocation. In
-fact, new_ie is completely freshly kzalloc()'ed at this point. So you
-need to change the ordering here, but since new_ie is freed pretty much
-immediately, we can probably just build the stuff directly inside
-new_ies->data, though then of course we cannot use your helper anymore?
+In a protected VM we don't trust the host to present and control the loaded
+peripherals. We rely on another entity to generate a trusted device tree
+for us. I hope this clarifies the need for DT and I think this information
+should also be added in the changelog.
 
-johannes
+> Rob
+
+Thanks,
+Seb
