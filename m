@@ -2,69 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A928551993B
-	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 10:06:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D3C1519941
+	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 10:07:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233315AbiEDIKX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 May 2022 04:10:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40602 "EHLO
+        id S232076AbiEDIKo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 May 2022 04:10:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41110 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232076AbiEDIKW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 04:10:22 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 041BC222B8;
-        Wed,  4 May 2022 01:06:47 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id 2BA181F43E10
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1651651606;
-        bh=g4o2JNm4Ctpm5k1rvLgGc8KPep2McYePUQzlec3QBWk=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=b/wlNUz6s3DO+++GsE2ms8gl75kjfDcHwqg0VE1PAi8+0eGfY9Hgd+U3h0xCQexaw
-         onor0VkEbaFunBBtN0TyEFGreN1HUquBgcnuphdhihUaG2/gFDLi+ygm/T+Hdm7qsF
-         Q8L0HyrMwPuC6TtwBQgOd8Yf/yESF3rkq+9+w4mebNjM9RHr2DTlT3pHLCrE8mJsTV
-         E5aP3PfpTUcIRjN5mET63+Lb44KYzvrSkizpzqPphT13AWjMJjGm8q/psEcy5P25G1
-         QDvWmIrpGxqdYpADcFcwY5F8oDdedjsnxnNOGL4l+qPaD3bMNF9qjK1egW74egsodG
-         kTQkLFtbDO3TQ==
-Message-ID: <a387728e-94f0-ccd0-3936-977db545efb7@collabora.com>
-Date:   Wed, 4 May 2022 10:06:42 +0200
+        with ESMTP id S1346067AbiEDIKm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 04:10:42 -0400
+Received: from mail-qv1-f44.google.com (mail-qv1-f44.google.com [209.85.219.44])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58D7622530;
+        Wed,  4 May 2022 01:07:04 -0700 (PDT)
+Received: by mail-qv1-f44.google.com with SMTP id kj8so395663qvb.6;
+        Wed, 04 May 2022 01:07:04 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=qr8Gita3qZhZBTod6oSOJkjQHSZMAcLB8WWXhsphx9A=;
+        b=c86yVxfiA5ro1aLiRQPya71bWL7ryBvX//lLNWWr6EjOINJgUWJ5Du9Oop7aNVJArq
+         Z/dcKMmNTrwDIA7WKdWG4Fqk1jzAYonVcbu/MK6d+wTCcVHPDXpe00G+AA9dRY+2Fpoa
+         PDLB87K650eUo/2UoceGAuJp6gjxpSv82RjU1x8MDriaHw33Gtv+9EfB6+07G96a2sDz
+         J/5jGNeqkfgyLiykKumomNCTm8jeWV0CMw5fdWruGDpFATyM+7z+us52rRztHfyvXGMU
+         UaYA5PCAdlr26YK9Nda3BLObwy+mh4qKB8LCSKxo6OUoldP1NHu14YlPf2PzLvJodvDu
+         tZYw==
+X-Gm-Message-State: AOAM532d2R8De8IM4furCqLtC1sU13UZ8muUqguThB2uh3/6AN4SX/I5
+        q7orgy+SpE9kcrN4GDHXB+s15woWUpcMTg==
+X-Google-Smtp-Source: ABdhPJwfVjQnZcOeF6u1QOjb+7FIYWHHTBz23ex5y71Pa5KCDVVez83onjp2s3vu+kkDH8sPEraRYA==
+X-Received: by 2002:a05:6214:c44:b0:446:7a14:c301 with SMTP id r4-20020a0562140c4400b004467a14c301mr16347339qvj.35.1651651623651;
+        Wed, 04 May 2022 01:07:03 -0700 (PDT)
+Received: from mail-yb1-f171.google.com (mail-yb1-f171.google.com. [209.85.219.171])
+        by smtp.gmail.com with ESMTPSA id 3-20020a05620a040300b0069fd232296fsm5788544qkp.135.2022.05.04.01.07.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 04 May 2022 01:07:03 -0700 (PDT)
+Received: by mail-yb1-f171.google.com with SMTP id j2so1156358ybu.0;
+        Wed, 04 May 2022 01:07:02 -0700 (PDT)
+X-Received: by 2002:a05:6902:120e:b0:634:6f29:6b84 with SMTP id
+ s14-20020a056902120e00b006346f296b84mr17155385ybu.604.1651651622524; Wed, 04
+ May 2022 01:07:02 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH v5 4/4] drm/mediatek: Add MT8186 DSI compatible for
- mtk_drm_drv.c
-Content-Language: en-US
-To:     Rex-BC Chen <rex-bc.chen@mediatek.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, chunkuang.hu@kernel.org,
-        p.zabel@pengutronix.de
-Cc:     airlied@linux.ie, daniel@ffwll.ch, matthias.bgg@gmail.com,
-        jitao.shi@mediatek.com, xinlei.lee@mediatek.com,
-        dri-devel@lists.freedesktop.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20220428133753.8348-1-rex-bc.chen@mediatek.com>
- <20220428133753.8348-5-rex-bc.chen@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20220428133753.8348-5-rex-bc.chen@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20220503115557.53370-1-phil.edworthy@renesas.com> <20220503115557.53370-2-phil.edworthy@renesas.com>
+In-Reply-To: <20220503115557.53370-2-phil.edworthy@renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 4 May 2022 10:06:51 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdXjdoY3qrQhHxCdc=W7-MrX7FVeWqZ8Vma2-1Sc5_=hEQ@mail.gmail.com>
+Message-ID: <CAMuHMdXjdoY3qrQhHxCdc=W7-MrX7FVeWqZ8Vma2-1Sc5_=hEQ@mail.gmail.com>
+Subject: Re: [PATCH v3 01/12] dt-bindings: serial: renesas,em-uart: Add RZ/V2M
+ clock to access the registers
+To:     Phil Edworthy <phil.edworthy@renesas.com>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 28/04/22 15:37, Rex-BC Chen ha scritto:
-> The compatible "mediatek,mt8186-dsi" is used by MT8186 DSI, so
-> add it to mtk_ddp_comp_dt_ids in mtk_drm_drv.c.
-> 
-> Signed-off-by: Rex-BC Chen <rex-bc.chen@mediatek.com>
+Hi Phil,
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+On Tue, May 3, 2022 at 2:01 PM Phil Edworthy <phil.edworthy@renesas.com> wrote:
+> The RZ/V2M SoC has an additional clock to access the registers. The HW
+> manual says this clock should not be touched as it is used by the
+> "ISP Firmware".
+>
+> Signed-off-by: Phil Edworthy <phil.edworthy@renesas.com>
 
+Thanks for your patch!
+
+> --- a/Documentation/devicetree/bindings/serial/renesas,em-uart.yaml
+> +++ b/Documentation/devicetree/bindings/serial/renesas,em-uart.yaml
+> @@ -9,9 +9,6 @@ title: Renesas EMMA Mobile UART Interface
+>  maintainers:
+>    - Magnus Damm <magnus.damm@gmail.com>
+>
+> -allOf:
+> -  - $ref: serial.yaml#
+> -
+>  properties:
+>    compatible:
+>      oneOf:
+> @@ -29,11 +26,32 @@ properties:
+>    interrupts:
+>      maxItems: 1
+>
+> -  clocks:
+> -    maxItems: 1
+> +allOf:
+> +  - $ref: serial.yaml#
+>
+> -  clock-names:
+> -    const: sclk
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: renesas,r9a09g011-uart
+> +    then:
+> +      properties:
+> +        clocks:
+> +          items:
+> +            - description: UART functional clock
+> +            - description: Optional internal clock to access the registers
+
+It's not optional on r9a09g011, right?
+
+> +        clock-names:
+> +          items:
+> +            - const: sclk
+> +            - const: pclk
+> +    else:
+> +      properties:
+> +        clocks:
+> +          items:
+> +            - description: UART functional clock
+> +        clock-names:
+> +          items:
+> +            - const: sclk
+>
+>  required:
+>    - compatible
+
+The rest LGTM, so with the above fixed:
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
