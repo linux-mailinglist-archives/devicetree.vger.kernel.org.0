@@ -2,56 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C06F51A408
-	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 17:28:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 28B0F51A412
+	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 17:29:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345019AbiEDPcC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 May 2022 11:32:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57334 "EHLO
+        id S1352507AbiEDPdN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 May 2022 11:33:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58212 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350433AbiEDPcB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 11:32:01 -0400
-Received: from mail-oa1-f52.google.com (mail-oa1-f52.google.com [209.85.160.52])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6EFAD44747;
-        Wed,  4 May 2022 08:28:25 -0700 (PDT)
-Received: by mail-oa1-f52.google.com with SMTP id 586e51a60fabf-edeb6c3642so1522143fac.3;
-        Wed, 04 May 2022 08:28:25 -0700 (PDT)
+        with ESMTP id S1352473AbiEDPdG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 11:33:06 -0400
+Received: from mail-ot1-f51.google.com (mail-ot1-f51.google.com [209.85.210.51])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C82244A38;
+        Wed,  4 May 2022 08:29:30 -0700 (PDT)
+Received: by mail-ot1-f51.google.com with SMTP id c5-20020a9d75c5000000b00605ff3b9997so1142546otl.0;
+        Wed, 04 May 2022 08:29:30 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=CakslCFZPSTLSxniNATtM0iqeyDmotCnHYKTxwUTwS8=;
-        b=TsQCQ/cQv1ymjQD9EZFNQT+nZhXI42RhKmj0WPwZbvDDa7m7cvi+CBGFeh7uXiw6vE
-         p1K4TltENPnIQMjzuWQ24nT4cQ0xIZZOIcD25yhay+FQys03WMPrTfb8rVde5Crh0n2E
-         mmKa8KkO7/G0wA6jKHFYnq1/2YmuImWVaBK8Ognrd8GIGmwJ6dpBwm+wkeb4VHVQLG6v
-         pHWOPrkZa+Tb6dtEzfErulPJ5ph4OPAsuQf9GNdD4i+bEDUesfeicTTtTXo7nKqHwQqq
-         JJfWtopq4J/6kdguo9R15SG1MR+l2HpaJP+PYvMM6dRQkVZ3aU5bBlzwEYJrJAG4hzuV
-         PWgQ==
-X-Gm-Message-State: AOAM533i7HhLWasavRrl8+6nux54rVgBenoE5Ot8rzBDyRMaYe2Gwj8m
-        MNCzpwiuH4nF5XKtO8rnbQ==
-X-Google-Smtp-Source: ABdhPJwZK/kybU2Smle0zi8i7sLp4p4KKYosmp+461ZLK3FH/NX6aV5NvCRLEiF+CqGtFp/A5tXdSw==
-X-Received: by 2002:a05:6870:f61d:b0:e2:96b:be74 with SMTP id ek29-20020a056870f61d00b000e2096bbe74mr2720oab.260.1651678104727;
-        Wed, 04 May 2022 08:28:24 -0700 (PDT)
+        bh=5NQ3hOnaopgb1u4v6GSL1A1TZUSjB62fOKP/GjKT+74=;
+        b=DAm7MVpSfghPXqvUHjSJoQQfTOXgxwf+bVJASM7Jlh4ObPENY5GuCWxCi0Fcf1H6SL
+         vnKgLWQ3Rd3lQye9UKUkgyY4rvIrTh+Zjd216cmzTu251zksgyub/1BWuUvSyxZCCK2/
+         d+929IK/hEgAwKFaBLcfwAoDypFbNEsgBO5HqGZdSarmnv4t5pTfzAdYZp33wLSnC4H2
+         67Wv5pPylympuClPrLaxq6BmqHo9caqc6aO5b2jeY6iskDHRYYVYgdotkeoqql5plx6i
+         O0bQPnV1s8Ug7o1eaok8IEAKhSI9nRGa0fZ4YnKusBnQtY1Y3EXvV3x+5Pq4+qyx/lIF
+         Svgw==
+X-Gm-Message-State: AOAM530l8KEeBEjGziHCT53LjEwHZpnOe1WNYk7cSqB4IUtISQFd7K8a
+        hFaNAZHCSeKmKZ72+6qrTskKpJjdkA==
+X-Google-Smtp-Source: ABdhPJwwPQTqIDALHv8/q9v5utopx/7unnTSMQlFLOQ11ycLjqa2kC8fkIoKQpZgOm7ijGGfQC+RQw==
+X-Received: by 2002:a9d:634e:0:b0:605:f40a:258f with SMTP id y14-20020a9d634e000000b00605f40a258fmr7472854otk.375.1651678169476;
+        Wed, 04 May 2022 08:29:29 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id g14-20020a05683030ae00b0060603221239sm5150907ots.9.2022.05.04.08.28.23
+        by smtp.gmail.com with ESMTPSA id p6-20020aca4206000000b00325cda1ffbbsm4339035oia.58.2022.05.04.08.29.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 May 2022 08:28:24 -0700 (PDT)
-Received: (nullmailer pid 1742576 invoked by uid 1000);
-        Wed, 04 May 2022 15:28:20 -0000
-Date:   Wed, 4 May 2022 10:28:20 -0500
+        Wed, 04 May 2022 08:29:28 -0700 (PDT)
+Received: (nullmailer pid 1744191 invoked by uid 1000);
+        Wed, 04 May 2022 15:29:25 -0000
+Date:   Wed, 4 May 2022 10:29:25 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Marc Kleine-Budde <mkl@pengutronix.de>
-Cc:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Pavel Pisa <pisa@cmp.felk.cvut.cz>, linux-can@vger.kernel.org,
-        Ondrej Ille <ondrej.ille@gmail.com>
-Subject: Re: [PATCH can-next] dt-binding: can: ctucanfd: include common CAN
- controller bindings
-Message-ID: <YnKblDFXd9Z6Ng1C@robh.at.kernel.org>
-References: <20220504062342.52529-1-mkl@pengutronix.de>
+To:     Yassine Oudjana <yassine.oudjana@gmail.com>
+Cc:     Sam Shih <sam.shih@mediatek.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        linux-mediatek@lists.infradead.org,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Weiyi Lu <weiyi.lu@mediatek.com>,
+        Tinghan Shen <tinghan.shen@mediatek.com>,
+        linux-clk@vger.kernel.org, Chen-Yu Tsai <wenst@chromium.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Miles Chen <miles.chen@mediatek.com>,
+        Ikjoon Jang <ikjn@chromium.org>,
+        Yassine Oudjana <y.oudjana@protonmail.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Chun-Jie Chen <chun-jie.chen@mediatek.com>
+Subject: Re: [PATCH 03/13] dt-bindings: arm: mediatek: Add MT6735 clock
+ controller compatibles
+Message-ID: <YnKb1aDgiUKprKSS@robh.at.kernel.org>
+References: <20220504122601.335495-1-y.oudjana@protonmail.com>
+ <20220504122601.335495-4-y.oudjana@protonmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220504062342.52529-1-mkl@pengutronix.de>
+In-Reply-To: <20220504122601.335495-4-y.oudjana@protonmail.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
@@ -63,20 +81,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 04 May 2022 08:23:42 +0200, Marc Kleine-Budde wrote:
-> Since commit
+On Wed, 04 May 2022 16:25:52 +0400, Yassine Oudjana wrote:
+> From: Yassine Oudjana <y.oudjana@protonmail.com>
 > 
-> | 1f9234401ce0 ("dt-bindings: can: add can-controller.yaml")
+> Add compatible strings for MT6735 apmixedsys, topckgen, infracfg
+> and pericfg.
 > 
-> there is a common CAN controller binding. Add this to the ctucanfd
-> binding.
-> 
-> Cc: Pavel Pisa <pisa@cmp.felk.cvut.cz>
-> Cc: Ondrej Ille <ondrej.ille@gmail.com>
-> Signed-off-by: Marc Kleine-Budde <mkl@pengutronix.de>
+> Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
 > ---
->  Documentation/devicetree/bindings/net/can/ctu,ctucanfd.yaml | 3 +++
->  1 file changed, 3 insertions(+)
+>  .../bindings/arm/mediatek/mediatek,infracfg.yaml          | 8 +++++---
+>  .../bindings/arm/mediatek/mediatek,pericfg.yaml           | 1 +
+>  .../devicetree/bindings/clock/mediatek,apmixedsys.yaml    | 4 +++-
+>  .../devicetree/bindings/clock/mediatek,topckgen.yaml      | 4 +++-
+>  4 files changed, 12 insertions(+), 5 deletions(-)
 > 
 
-Acked-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
