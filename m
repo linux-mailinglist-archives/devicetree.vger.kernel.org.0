@@ -2,43 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5B503519BFC
-	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 11:36:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 68008519C03
+	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 11:37:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233756AbiEDJkS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 May 2022 05:40:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48426 "EHLO
+        id S1347471AbiEDJkh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 May 2022 05:40:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48598 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234739AbiEDJkS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 05:40:18 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id A58271A392;
-        Wed,  4 May 2022 02:36:42 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 7744012FC;
-        Wed,  4 May 2022 02:36:42 -0700 (PDT)
-Received: from e120937-lin.home (unknown [172.31.20.19])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id A94F43FA50;
-        Wed,  4 May 2022 02:36:40 -0700 (PDT)
-From:   Cristian Marussi <cristian.marussi@arm.com>
-To:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Cc:     sudeep.holla@arm.com, james.quinlan@broadcom.com,
-        Jonathan.Cameron@Huawei.com, f.fainelli@gmail.com,
-        vincent.guittot@linaro.org, daniel.lezcano@linaro.org,
-        tarek.el-sherbiny@arm.com, adrian.slatineanu@arm.com,
-        souvik.chakravarty@arm.com,
-        Cristian Marussi <cristian.marussi@arm.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH 1/7] dt-bindings: firmware: arm,scmi: Add powercap protocol
-Date:   Wed,  4 May 2022 10:36:03 +0100
-Message-Id: <20220504093609.3077646-2-cristian.marussi@arm.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20220504093609.3077646-1-cristian.marussi@arm.com>
-References: <20220504093609.3077646-1-cristian.marussi@arm.com>
+        with ESMTP id S245591AbiEDJk0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 05:40:26 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2FC226564;
+        Wed,  4 May 2022 02:36:50 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: kholk11)
+        with ESMTPSA id 1B0EB1F44761
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1651657009;
+        bh=7vMV83riab//ztpkWA1Ve1xv8JZ97Ulw/BxrBxOF+0A=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=bC9csRZGUw2FlsRfuX8zn7yt63zBFyHioHxzNj7l9WXIaPE9d4bzp2oVI44+enkKB
+         9Y2GFiqtBuUApLk0WmANFpZB+oK8eXuXoUkMv1KoyVsZRaelXDc1YERglB8x8nk9Ya
+         l3nm+8ejSfZdcfBQHcXpe0ISHb/hmvfDmjU7CBcmQGKViSCkyFp2mFSOECPHctmJfU
+         2Zqckg2hxX5UBBjSXOD0HCnA5TG77QjFvGLlw29kmYBV2aBWifiF2dKaMzzVW0Bsv5
+         FYc8EgKX5lcxoa0KPTiCgG4KdXs0S9gE63klnWO4fP4UKfvV832msTCeWqNEH7PQ/Y
+         GG+bwiE6Z4mRA==
+Message-ID: <276ef83c-c824-3874-c36e-4d422794d7dc@collabora.com>
+Date:   Wed, 4 May 2022 11:36:46 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH 1/2] dt-bindings: soc: mediatek: devapc: Add bindings for
+ MT8186
+Content-Language: en-US
+To:     Rex-BC Chen <rex-bc.chen@mediatek.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com
+Cc:     neal.liu@mediatek.com, runyang.chen@mediatek.com,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20220429065429.7957-1-rex-bc.chen@mediatek.com>
+ <20220429065429.7957-2-rex-bc.chen@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20220429065429.7957-2-rex-bc.chen@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -46,43 +58,11 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add new SCMIv3.1 Powercap protocol bindings definitions and example.
+Il 29/04/22 08:54, Rex-BC Chen ha scritto:
+> Add the dt-binding to support MT8186 devapc.
+> 
+> Signed-off-by: Rex-BC Chen <rex-bc.chen@mediatek.com>
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: devicetree@vger.kernel.org
-Signed-off-by: Cristian Marussi <cristian.marussi@arm.com>
----
- .../devicetree/bindings/firmware/arm,scmi.yaml         | 10 ++++++++++
- 1 file changed, 10 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-index 948e2a38beed..1c0388da6721 100644
---- a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-+++ b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-@@ -183,6 +183,12 @@ properties:
-             required:
-               - reg
- 
-+  protocol@18:
-+    type: object
-+    properties:
-+      reg:
-+        const: 0x18
-+
- additionalProperties: false
- 
- patternProperties:
-@@ -323,6 +329,10 @@ examples:
-                     };
-                 };
-             };
-+
-+            scmi_powercap: protocol@18 {
-+                reg = <0x18>;
-+            };
-         };
-     };
- 
--- 
-2.32.0
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
