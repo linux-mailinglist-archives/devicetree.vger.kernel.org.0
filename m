@@ -2,98 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6557A51AFF5
-	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 23:00:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BDF3251B020
+	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 23:09:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1357332AbiEDVDp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 May 2022 17:03:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49686 "EHLO
+        id S233478AbiEDVMr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 May 2022 17:12:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56152 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343672AbiEDVDo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 17:03:44 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBB3A517FD;
-        Wed,  4 May 2022 14:00:07 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 96C5FB8293F;
-        Wed,  4 May 2022 21:00:06 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4714DC385A4;
-        Wed,  4 May 2022 21:00:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1651698005;
-        bh=5Nf3iyTvgGnwT20t1hf3sHDL9Ia6CNjfhok9FG1zJ9Y=;
-        h=From:To:In-Reply-To:References:Subject:Date:From;
-        b=aiFVKPs62c0odAocD0BRu2jLYyKCUrTTOPiJvbDNsUrPmaaG13/o+l14i0ovljyNe
-         mSBkFdQgO6z4Ocz6x/poZ4hRcYR8J/bK5UkxqFiTXtgqdpFMqjKPDkdNSKte7GUE6F
-         dqva4pjX5ji5KNg8Z6Cok/D68R+QLrQ0cfUbZbPDxwflGV11D82H2qv2xiVqrjU/MF
-         Roiz18j6W3OYH+VxsqZfdYg0Kt9Av+46hCRcnHbZnp5v/hsIVCBnbxNH7sdIj886s6
-         HsZSOtr3QcXrRp6zBQdy70ybPeVcuJ6Vtsn5guB4vSJTZJLJ6F6bRG0CCqcz6Usa7h
-         EBhLOWD71+d2A==
-From:   Mark Brown <broonie@kernel.org>
-To:     linux-kernel@vger.kernel.org, krzysztof.kozlowski@linaro.org,
-        linux-arm-msm@vger.kernel.org, lgirdwood@gmail.com,
-        devicetree@vger.kernel.org, robh+dt@kernel.org, agross@kernel.org,
-        bjorn.andersson@linaro.org, krzysztof.kozlowski+dt@linaro.org
-In-Reply-To: <20220426105501.73200-1-krzysztof.kozlowski@linaro.org>
-References: <20220426105501.73200-1-krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v3 0/3] regulator: dt-bindings: qcom,rpmh: minor cleanups and extend supplies
-Message-Id: <165169800298.1752583.17813272460576782096.b4-ty@kernel.org>
-Date:   Wed, 04 May 2022 22:00:02 +0100
+        with ESMTP id S235258AbiEDVMq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 17:12:46 -0400
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87932517FC;
+        Wed,  4 May 2022 14:09:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1651698549; x=1683234549;
+  h=date:from:to:cc:subject:in-reply-to:message-id:
+   references:mime-version;
+  bh=T0JUGY/mbcJez9N2jqbH9/PfYjcazcXJqwVpET3qd60=;
+  b=dTFC6+CS/Ra7RAG4Q6Nx/eigAUrIBrxrhs8+DtIwM5hyqHmVTLGAMWof
+   uuJ6M4fODqvoI57qEmIKPudTv4y4XhdDkWqtHFZ/8oJSupY1nCprPlgC0
+   6nU9ghgYmg+CcGkF7gs/Vj01HfudBbQ4yzpfnvIQmjprNhS9XiDCjPGJj
+   qlrNCtDOE0BkUYaQWdaYxIpFYEgxJtzt2W2yY+2pfPFDmHjtex62uR9Rq
+   GAw4bcg5dnEofa0xUJPksuH2oLR8b7OFvDimgsFiQUqPS+Ic/6pxIkupp
+   0D0FK/3Q4bhhf7ry+KhnS8v8AySR6uIyqCFuZXRgy2srLx4eNPLFP13+E
+   w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10337"; a="247808559"
+X-IronPort-AV: E=Sophos;i="5.91,199,1647327600"; 
+   d="scan'208";a="247808559"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 May 2022 14:09:09 -0700
+X-IronPort-AV: E=Sophos;i="5.91,199,1647327600"; 
+   d="scan'208";a="620985186"
+Received: from rhweight-wrk1.ra.intel.com ([137.102.106.43])
+  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 May 2022 14:09:09 -0700
+Date:   Wed, 4 May 2022 14:09:02 -0700 (PDT)
+From:   matthew.gerlach@linux.intel.com
+X-X-Sender: mgerlach@rhweight-WRK1
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+cc:     dinguyen@kernel.org, robh+dt@kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Subject: Re: [PATCH v2 2/3] dt-bindings: intel: add binding for Intel n6000
+In-Reply-To: <45e55d3e-f29a-81ee-6673-a05da377e798@linaro.org>
+Message-ID: <alpine.DEB.2.22.394.2205041408230.2669897@rhweight-WRK1>
+References: <20220503194546.1287679-1-matthew.gerlach@linux.intel.com> <20220503194546.1287679-3-matthew.gerlach@linux.intel.com> <45e55d3e-f29a-81ee-6673-a05da377e798@linaro.org>
+User-Agent: Alpine 2.22 (DEB 394 2020-01-19)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=US-ASCII; format=flowed
+X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 26 Apr 2022 12:54:58 +0200, Krzysztof Kozlowski wrote:
-> Extend the RPMH regulator bindings with minor fixes and adding narrow supply
-> matching.
-> 
-> Changes since v2
-> ================
-> 1. Remove "defs" method, because schema nows allows unevaluatedProperties
->    without references to other schemas.
-> 2. Include maintainer change patch, previously sent separately.
-> 
-> [...]
 
-Applied to
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
+On Wed, 4 May 2022, Krzysztof Kozlowski wrote:
 
-Thanks!
+> On 03/05/2022 21:45, matthew.gerlach@linux.intel.com wrote:
+>> From: Matthew Gerlach <matthew.gerlach@linux.intel.com>
+>>
+>> Add the binding string for the Agilex based Intel n6000 board.
+>>
+>> Signed-off-by: Matthew Gerlach <matthew.gerlach@linux.intel.com>
+>
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-[1/3] regulator: dt-bindings: qcom,rpmh: update maintainers
-      commit: a6d889a8fdbb8cb4b0d01f30f93357f3ffd61f06
-[2/3] regulator: dt-bindings: qcom,rpmh: document supplies per variant
-      commit: ba5d99609a5e6a3d0d9ac2574250208457d839cc
-[3/3] regulator: dt-bindings: qcom,rpmh: document vdd-l7-bob-supply on PMR735A
-      commit: e84f3c41a583408c7c67ed7824a7ff14ff40d045
+Thank you for your time and the Acked-by. I will add it to my v3 patch 
+set.
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+Matthew
+>
+>
+> Best regards,
+> Krzysztof
+>
