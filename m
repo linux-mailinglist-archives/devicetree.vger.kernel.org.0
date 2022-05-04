@@ -2,74 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9408C51AEF7
-	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 22:23:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A682551AF0A
+	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 22:27:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233751AbiEDU07 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 May 2022 16:26:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58736 "EHLO
+        id S232475AbiEDUbb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 May 2022 16:31:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36658 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1377994AbiEDU04 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 16:26:56 -0400
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD9314F45D;
-        Wed,  4 May 2022 13:23:18 -0700 (PDT)
-Received: by mail-ej1-x62f.google.com with SMTP id n10so5029073ejk.5;
-        Wed, 04 May 2022 13:23:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:to:references:from
-         :in-reply-to:content-transfer-encoding;
-        bh=9J1muNG7xxQsE+IQE8kK9Xe8x16+0OIP6QRk6sSLBHA=;
-        b=HEK2utQXKHjtqLbqX/vqazx+hdZwt+Mg2EADF9WqJbFE5pMaDWvvu2FF2xc+26Q687
-         ecMTl3kbnmdnSaNDtLpoo66vFp/eZlI2Z2WmQK30epJ8vLQGiexgkNtz7KKiG9Lz0PYx
-         KU0ZGHdSruT4oWtDPR8ByQeAhB8aKdEcAKCYTusdSGiZ0Y6gNEEe5ml+Jrn/66bLpr7h
-         TAs9lprs6QHYk1Sg32LzjBeUJ0mUPVWTTrJArdq5ynzMim4OcXiTMLXrRMvF60znfTqt
-         RZ9HNUibOoW453GAI24+8tVkt15XJQ6U89hfMLqj/Gy6DtyAIWNU8+EB/Gjh1b74RM4G
-         d8zg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :to:references:from:in-reply-to:content-transfer-encoding;
-        bh=9J1muNG7xxQsE+IQE8kK9Xe8x16+0OIP6QRk6sSLBHA=;
-        b=PEwzVtMRhWYUClmaUFYeZ3orwosbRWi4VV3fRB0kd0/nJgV3vXA0WWmtjGDunsdrXW
-         Fq8YjYD5hVWiSQ8bka360+QsAc9b4RgtrYB2xnn+DWHCEApHX43KVDV1+BF+ECt5k/Ze
-         TO/2RkEUv6eZUXn2BkdCXYEk0lvUAHX2prCW4i4B3+vECn+qOU12a9SZELu5pOB2sxQh
-         lLLqS6iLeGMFtqa38UT3dkHSnifIY2CrnTBJ+7tnNvs2r1EwFT+0DZYX0QevML9pfaBI
-         o+VXl14h/OgXDH9DUTaZ2ebS5bFfrazl5uFU4/1q09rCHQc3SgPOshbOGl7ziEBAOuL7
-         bY8g==
-X-Gm-Message-State: AOAM530KvAKypSe5z2O9vCu96JoraJS3p3o4r28ulOwL7dkNhFdXGLLF
-        ievlETXu4VRmXqOSCu9R9twMzPAzTpM=
-X-Google-Smtp-Source: ABdhPJwRIRMKn8SmQQLwOuNdIe7xBc/BywkOBRX4mCM0mgbE0qRs0UsZGf3yaw4d4xA3xKs282RfJg==
-X-Received: by 2002:a17:907:1c01:b0:6f4:2692:e23 with SMTP id nc1-20020a1709071c0100b006f426920e23mr19550187ejc.243.1651695797311;
-        Wed, 04 May 2022 13:23:17 -0700 (PDT)
-Received: from [192.168.26.149] (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.googlemail.com with ESMTPSA id bo9-20020a0564020b2900b0042617ba63a5sm9559652edb.47.2022.05.04.13.23.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 04 May 2022 13:23:16 -0700 (PDT)
-Message-ID: <f511426e-47cd-7139-baab-ff31c9be2ba3@gmail.com>
-Date:   Wed, 4 May 2022 22:23:16 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:96.0) Gecko/20100101
- Thunderbird/96.0
-Subject: Re: [RESEND PATCH v3 0/2] Add nvmem support for dynamic partitions
-To:     Ansuel Smith <ansuelsmth@gmail.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
+        with ESMTP id S229703AbiEDUb2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 16:31:28 -0400
+Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::228])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DB404F9CB;
+        Wed,  4 May 2022 13:27:50 -0700 (PDT)
+Received: (Authenticated sender: alexandre.belloni@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 3E3B01BF205;
+        Wed,  4 May 2022 20:27:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1651696069;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=+hUwQLI04KRlF0eu0GKC8X4hwLKHloFuBKJTjH0IlCc=;
+        b=fqvBj59ZoYRwrHWryJr471246MpSLAYY4m41aJ6HilGtIRQMWbqhO4hmBKkhHwBBvF2lTV
+        Jt91bcWKFse6faQY3nlsQQ7xmv8CUWvhkFoTd8objUhzv8KlNljP5hTbi+zRk72j+9PpgP
+        nuH9ZziWeuOSsCz1jvLoNyE+PToIiocvRcWuPPaG7lWSU5cF1eOM5fg6UwaB1baMV3GMdC
+        no8PHNvic3bFE6ynZBW0/aY5s7wYX4HLY62AOd0mRURakV8OSg9WopjsPzmj2MTSIYIg87
+        9iOIuqog9D3C3zbA1szY1klVwOD62J7lbtrBCwOCHeEeGeYshsiRJVOMco7BxQ==
+Date:   Wed, 4 May 2022 22:27:47 +0200
+From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
+To:     Valentin Caron <valentin.caron@foss.st.com>
+Cc:     Alessandro Zummo <a.zummo@towertech.it>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220429124825.21477-1-ansuelsmth@gmail.com>
-From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-In-Reply-To: <20220429124825.21477-1-ansuelsmth@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Gabriel Fernandez <gabriel.fernandez@foss.st.com>,
+        Amelie Delaunay <amelie.delaunay@foss.st.com>,
+        linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/6] dt-bindings: rtc: stm32: add alarm A out property to
+ select output
+Message-ID: <YnLhw+Y7m8G2xJpK@mail.local>
+References: <20220504130233.330983-1-valentin.caron@foss.st.com>
+ <20220504130617.331290-1-valentin.caron@foss.st.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220504130617.331290-1-valentin.caron@foss.st.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,54 +58,82 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29.04.2022 14:48, Ansuel Smith wrote:
-> This very small series comes to fix the very annyoing problem of
-> partitions declared by parser at runtime NOT supporting nvmem cells
-> definition.
-> 
-> The current implementation is very generic. The idea is to provide an of
-> node if defined for everyone and not strictly limit this to nvmem stuff.
-> But still the actual change is done only for nvmem-cells mtd. (just to
-> make sure) This can totally change by removing the compatible check.
-> 
-> The idea here is that a user can still use these dynamic parsers
-> instead of declaring a fixed-partition and also declare how nvmem-cells
-> are defined for the partition.
-> This live with the assumption that dynamic partition have always the
-> same name and they are known. (this is the case for smem-part partition
-> that would require a bootloader reflash to change and for parsers like
-> cmdlinepart where the name is always the same.)
-> With this assumption, it's easy to fix this problem. Just introduce a
-> new partition node that will declare just these special partition.
-> Mtdcore then will check if these special declaration are present and
-> connect the dynamic partition with the OF node present in the dts. Nvmem
-> will automagically fin the OF node and cells will be works based on the
-> data provided by the parser.
-> 
-> The initial idea was to create a special nvmem driver with a special
-> compatible where a user would declare the mtd partition name and this
-> driver would search it and register the nvmem cells but that became
-> difficult really fast, mtd notifier system is problematic for this kind
-> of stuff. So here is the better implementation. A variant of this is
-> already tested on openwrt where we have devices that use cmdlinepart.
-> (that current variant have defined in the dts the exact copy of
-> cmdlinepart in the fixed-partition scheme and we patched the cmdlinepart
-> parser to scan this fixed-partition node (that is ignored as cmdlinepart
-> have priority) and connect the dynamic partition with the dts node)
-> 
-> I provided an example of this in the documentation commit.
-> In short it's needed to add to the partitions where the compatible parser
-> is declared, a partition with just the label declared (instead of the reg).
-> Then declare some nvmem-cells and it will all work at runtime.
-> Mtdcore will check if a node with the same label is present and assign an
-> OF node to the MTD.
-> 
-> I currently tested this on my device that have smem-part and the
-> gmac driver use nvmem to get the mac-address. This works correctly and
-> the same address is provided.
+Hello,
 
-Thanks a lot for working on this.
+On 04/05/2022 15:06:13+0200, Valentin Caron wrote:
+> STM32 RTC can pulse some SOC pins when an alarm of RTC expires.
+> 
+> This patch adds property to activate alarm A output. The pulse can
+> output on three pins RTC_OUT1, RTC_OUT2, RTC_OUT2_RMP
+> (PC13, PB2, PI8 on stm32mp15) (PC13, PB2, PI1 on stm32mp13).
+> 
+> Signed-off-by: Valentin Caron <valentin.caron@foss.st.com>
+> ---
+>  .../devicetree/bindings/rtc/st,stm32-rtc.yaml | 19 ++++++++++++++++++-
+>  1 file changed, 18 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/rtc/st,stm32-rtc.yaml b/Documentation/devicetree/bindings/rtc/st,stm32-rtc.yaml
+> index 56d46ea35c5d..71e02604e8de 100644
+> --- a/Documentation/devicetree/bindings/rtc/st,stm32-rtc.yaml
+> +++ b/Documentation/devicetree/bindings/rtc/st,stm32-rtc.yaml
+> @@ -59,6 +59,13 @@ properties:
+>        Refer to <include/dt-bindings/rtc/rtc-stm32.h> for the supported values.
+>        Pinctrl state named "default" may be defined to reserve pin for RTC output.
+>  
+> +  st,alarm:
+> +    $ref: "/schemas/types.yaml#/definitions/uint32"
+> +    description: |
+> +      To select and enable RTC Alarm A output.
+> +      Refer to <include/dt-bindings/rtc/rtc-stm32.h> for the supported values.
+> +      Pinctrl state named "default" may be defined to reserve pin for RTC output.
+> +
+>  allOf:
+>    - if:
+>        properties:
+> @@ -75,6 +82,9 @@ allOf:
+>          st,lsco:
+>            maxItems: 0
+>  
+> +        st,alarm:
+> +          maxItems: 0
+> +
+>          clock-names: false
+>  
+>        required:
+> @@ -95,6 +105,9 @@ allOf:
+>          st,lsco:
+>            maxItems: 0
+>  
+> +        st,alarm:
+> +          maxItems: 0
+> +
+>        required:
+>          - clock-names
+>          - st,syscfg
+> @@ -117,6 +130,9 @@ allOf:
+>          st,lsco:
+>            maxItems: 1
+>  
+> +        st,alarm:
+> +          maxItems: 1
+> +
+>        required:
+>          - clock-names
+>  
+> @@ -153,8 +169,9 @@ examples:
+>        clocks = <&rcc RTCAPB>, <&rcc RTC>;
+>        clock-names = "pclk", "rtc_ck";
+>        interrupts = <GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>;
+> +      st,alarm = <RTC_OUT1>;
+>        st,lsco = <RTC_OUT2_RMP>;
 
-Another case (that I need this work for) is cmdline parser. Some
-partitions passed by U-Boot may require extra handling and that needs to
-be described in DT.
+Shouldn't that be exactly the opposite? You have two pins that can
+output different functions. The property should be the pin and the value
+the function. I'd go even further and I would say this is actually
+pinmuxing.
+
+
+-- 
+Alexandre Belloni, co-owner and COO, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
