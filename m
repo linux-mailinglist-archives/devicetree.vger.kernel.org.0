@@ -2,167 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 74A6651AB74
-	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 19:48:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 601DF51ABF4
+	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 19:58:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1355789AbiEDRsO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 May 2022 13:48:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34844 "EHLO
+        id S1359720AbiEDSCK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 May 2022 14:02:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41358 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1359503AbiEDRoW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 13:44:22 -0400
-Received: from mail-oa1-x32.google.com (mail-oa1-x32.google.com [IPv6:2001:4860:4864:20::32])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8BA5E532D9
-        for <devicetree@vger.kernel.org>; Wed,  4 May 2022 10:07:33 -0700 (PDT)
-Received: by mail-oa1-x32.google.com with SMTP id 586e51a60fabf-ed9a75c453so1787985fac.11
-        for <devicetree@vger.kernel.org>; Wed, 04 May 2022 10:07:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=XsBuK9C0iTZ23AvndsVmxmsweL3NkKIVBO/JwZ4kCTI=;
-        b=HicliRiyqx34J8hoRZNyl8nYFnYudMYsszZHmDL17H5hi9vPEYGzOyzPs6BR5Pf5kO
-         rBpUH2oNEE4Y4kgNyxxsvzyEXS/GeLs3pWr9Vdrr//YevpnvzD+eaWLcTeRg7aHoHJtf
-         qmDSMskOLukbvAdTNrra//dYt366Ni/xN36gJogRiKRMhVrEnNZR50LASXSAD/U9zbAJ
-         o7uvjn04PXd/FL9jVgGi0ncdDbjomr+FGZP91wN4hIJbJOnQMnyUDaZems1B1CPxWI7H
-         W9jJdGHFTUbgkcxxCT5VqA7usqgnpdK268BTLf74J0PSu6hvcGONIkUQXWbo5dm6K6bo
-         bqQA==
+        with ESMTP id S1377452AbiEDSA4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 14:00:56 -0400
+Received: from mail-oa1-f46.google.com (mail-oa1-f46.google.com [209.85.160.46])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8D451C12B;
+        Wed,  4 May 2022 10:15:51 -0700 (PDT)
+Received: by mail-oa1-f46.google.com with SMTP id 586e51a60fabf-e5e433d66dso1825981fac.5;
+        Wed, 04 May 2022 10:15:51 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=XsBuK9C0iTZ23AvndsVmxmsweL3NkKIVBO/JwZ4kCTI=;
-        b=q45po1XwjZUquGsR7tZNmCUNPXyfd28aMPCy2BjcngHORryzXNB6EH7PQZWhl94GBH
-         IRK9+vQaPP5kv23o+h61TL92BJn2vrBGU0QKCecMiIqw3FX5arZCXAkwJHbIkecWmwKz
-         CIrza2LjUrheMXeNaSCDK8BHH3gcRuvzvSATyn8NP9owrmbJDqfJeynZ+M+ObI7oZOBS
-         bdCJ9LPNthoVoSrRvuzIkRC59YuxRATrexhEGwENFU4GF+YT0LQbC5yPs7PNN7YrsznU
-         nPHf1KcCmxaRlFlRPdstA16wvMTWfzM7FBXNs52XMzTYYOVtmOFcIl5coWkCovfQBu1U
-         c47g==
-X-Gm-Message-State: AOAM531SBvxR9q8+s/oylMW6YRwWHqn3WAlSo1XZg7tMgC7/39956ldD
-        DtqidGbmWfikS1K5qQn1esYkCw==
-X-Google-Smtp-Source: ABdhPJxg9/v0pCSGZ8BwTRKwaGvr6w8CT865Zhn8XA0POsMWJXyMxLfaaotxF7Mh9pvucduHkgRFdw==
-X-Received: by 2002:a05:6870:7084:b0:ed:d709:34be with SMTP id v4-20020a056870708400b000edd70934bemr236034oae.4.1651684052484;
-        Wed, 04 May 2022 10:07:32 -0700 (PDT)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id e63-20020a9d2ac5000000b006060322124fsm5232500otb.31.2022.05.04.10.07.31
+        bh=/sZFoGSuVJsC2wZ9dNCc4JLrQrkFZcqEG47d9JqV1Gg=;
+        b=Wr9U25nWL8PG6OO8do93gYbUy0N/ihRqkK/bG7hG7rdAZvds4bbbFujaJWEU5A1wdH
+         mqR5n3zR+FV6pcTyCAMwXPkipvbJXkQyMKX4BRGQXdrkvQnbS5rD72dILnM2Lcc+C4/g
+         UP4u/ZMql1p9cg7qM1vsYvlhxieblw8PXaVIK7UBmegsd/SJpYkfHRohDVqtTWgvG++M
+         aEhmU8Ty17KjYU/nBbylIOBrEYFCjoE02eXMz3nz3+1Il9hKZcY5G5pt4TvulFiuOlQe
+         jN79sSn3V3ZFmk6DC7n+fxK1sIPVekN6c3TOAJrkIr7bLpe7iFyGRY5Qq0fbue7tE7BG
+         U9+A==
+X-Gm-Message-State: AOAM531NQFsr89tMQ6FUmSMRh7QTq34GytN4hDYBDwebMZ1yCHmuxfPM
+        j055A1eAbtZnsdIcJnFvHg==
+X-Google-Smtp-Source: ABdhPJz/D0e0enLqOyhRaOxOcEe96JkZ+yUVLWBCkpaNez82JEr/wX3grMMHjSAk9p5UL5gCadvo6Q==
+X-Received: by 2002:a05:6870:9a05:b0:e6:589e:1ec5 with SMTP id fo5-20020a0568709a0500b000e6589e1ec5mr240831oab.203.1651684550678;
+        Wed, 04 May 2022 10:15:50 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id f6-20020a4ad806000000b0035eb4e5a6c4sm6234126oov.26.2022.05.04.10.15.49
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 May 2022 10:07:31 -0700 (PDT)
-Date:   Wed, 4 May 2022 12:07:27 -0500
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Doug Anderson <dianders@chromium.org>
-Cc:     Matthias Kaehlcke <mka@chromium.org>,
-        Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        quic_rohkumar@quicinc.com,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Judy Hsiao <judyhsiao@chromium.org>,
-        Venkata Prasad Potturu <quic_potturu@quicinc.com>
-Subject: Re: [PATCH v12 4/4] arm64: dts: qcom: sc7280-herobrine: Add lpi
- pinmux properties for CRD 3.0/3.1
-Message-ID: <YnKyzxPEolSVUhqD@builder.lan>
-References: <1651079383-7665-1-git-send-email-quic_srivasam@quicinc.com>
- <1651079383-7665-5-git-send-email-quic_srivasam@quicinc.com>
- <YmsrB6Q89II5w1+9@google.com>
- <CAD=FV=XxeZsiOVVBDK_vmx0nhT7roB2FqcaPXsH3+jzTHFXMxw@mail.gmail.com>
+        Wed, 04 May 2022 10:15:49 -0700 (PDT)
+Received: (nullmailer pid 1896703 invoked by uid 1000);
+        Wed, 04 May 2022 17:15:48 -0000
+Date:   Wed, 4 May 2022 12:15:48 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Ansuel Smith <ansuelsmth@gmail.com>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Jonathan Corbet <corbet@lwn.net>, Pavel Machek <pavel@ucw.cz>,
+        John Crispin <john@phrozen.org>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-doc@vger.kernel.org, linux-leds@vger.kernel.org
+Subject: Re: [RFC PATCH v6 11/11] dt-bindings: net: dsa: qca8k: add LEDs
+ definition example
+Message-ID: <YnK0xHOkfXI+rgzs@robh.at.kernel.org>
+References: <20220503151633.18760-1-ansuelsmth@gmail.com>
+ <20220503151633.18760-12-ansuelsmth@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAD=FV=XxeZsiOVVBDK_vmx0nhT7roB2FqcaPXsH3+jzTHFXMxw@mail.gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20220503151633.18760-12-ansuelsmth@gmail.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri 29 Apr 11:10 CDT 2022, Doug Anderson wrote:
+On Tue, May 03, 2022 at 05:16:33PM +0200, Ansuel Smith wrote:
+> Add LEDs definition example for qca8k using the offload trigger as the
+> default trigger and add all the supported offload triggers by the
+> switch.
+> 
+> Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
+> ---
+>  .../devicetree/bindings/net/dsa/qca8k.yaml    | 20 +++++++++++++++++++
+>  1 file changed, 20 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/dsa/qca8k.yaml b/Documentation/devicetree/bindings/net/dsa/qca8k.yaml
+> index f3c88371d76c..9b46ef645a2d 100644
+> --- a/Documentation/devicetree/bindings/net/dsa/qca8k.yaml
+> +++ b/Documentation/devicetree/bindings/net/dsa/qca8k.yaml
+> @@ -65,6 +65,8 @@ properties:
+>                   internal mdio access is used.
+>                   With the legacy mapping the reg corresponding to the internal
+>                   mdio is the switch reg with an offset of -1.
+> +                 Each phy have at least 3 LEDs connected and can be declared
 
-> Hi,
-> 
-> On Thu, Apr 28, 2022 at 5:02 PM Matthias Kaehlcke <mka@chromium.org> wrote:
-> >
-> > On Wed, Apr 27, 2022 at 10:39:43PM +0530, Srinivasa Rao Mandadapu wrote:
-> > > Add LPASS LPI pinctrl properties, which are required for Audio
-> > > functionality on herobrine based platforms of rev5+
-> > > (aka CRD 3.0/3.1) boards.
-> > >
-> > > Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-> > > Co-developed-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
-> > > Signed-off-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
-> >
-> > I'm not super firm in pinctrl territory, a few maybe silly questions
-> > below.
-> >
-> > >  arch/arm64/boot/dts/qcom/sc7280-herobrine-crd.dts | 84 +++++++++++++++++++++++
-> > >  1 file changed, 84 insertions(+)
-> > >
-> > > diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-crd.dts b/arch/arm64/boot/dts/qcom/sc7280-herobrine-crd.dts
-> > > index deaea3a..dfc42df 100644
-> > > --- a/arch/arm64/boot/dts/qcom/sc7280-herobrine-crd.dts
-> > > +++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-crd.dts
-> > > @@ -111,6 +111,90 @@ ap_ts_pen_1v8: &i2c13 {
-> > >   * - If a pin is not hooked up on Qcard, it gets no name.
-> > >   */
-> > >
-> > > +&lpass_dmic01 {
-> > > +     clk {
-> > > +             drive-strength = <8>;
-> > > +     };
-> 
-> Ugh, I've been distracted and I hadn't realized we were back to the
-> two-level syntax. Definitely not my favorite for all the reasons I
-> talked about [1]. I guess you took Bjorn's silence to my response to
-> mean that you should switch back to this way? :(
-> 
-> Bjorn: can you clarify?
-> 
+s/at least/up to/ ?
 
-I didn't think through the fact that &mi2s0_state was specified in the
-.dtsi and as such will be partially be overridden by the baord dts.
+Or your example is wrong with only 2.
 
-
-I do prefer the two level style and describing full "states", but as you
-say whenever we provide something that will have to be overwritten it's
-suboptimal.
-
-As such, I think your flattened model is preferred in this case - but it
-makes me dislike the partial definition between the dtsi and dts even
-more (but I don't have any better suggestion).
-
-Regards,
-Bjorn
-
-> [1] https://lore.kernel.org/r/CAD=FV=VicFiX6QkBksZs1KLwJ5x4eCte6j5RWOBPN+WwiXm2Cw@mail.gmail.com/
+> +                 using the standard LEDs structure.
+>  
+>  patternProperties:
+>    "^(ethernet-)?ports$":
+> @@ -287,6 +289,24 @@ examples:
+>  
+>                  internal_phy_port1: ethernet-phy@0 {
+>                      reg = <0>;
+> +
+> +                    leds {
+> +                        led@0 {
+> +                            reg = <0>;
+> +                            color = <LED_COLOR_ID_WHITE>;
+> +                            function = LED_FUNCTION_LAN;
+> +                            function-enumerator = <1>;
+> +                            linux,default-trigger = "netdev";
+> +                        };
+> +
+> +                        led@1 {
+> +                            reg = <1>;
+> +                            color = <LED_COLOR_ID_AMBER>;
+> +                            function = LED_FUNCTION_LAN;
+> +                            function-enumerator = <1>;
+> +                            linux,default-trigger = "netdev";
+> +                        };
+> +                    };
+>                  };
+>  
+>                  internal_phy_port2: ethernet-phy@1 {
+> -- 
+> 2.34.1
 > 
-> > > +};
-> > > +
-> > > +&lpass_dmic01_sleep {
-> > > +     clk {
-> > > +             drive-strength = <2>;
-> >
-> > Does the drive strength really matter in the sleep state, is the SoC actively
-> > driving the pin?
 > 
-> My understanding is that if a pin is left as an output in sleep state
-> that there is a slight benefit to switching it to drive-strength 2.
-> 
-> 
-> > > +             bias-disable;
-> >
-> > What should this be in active/default state? If I understand correctly
-> > after a transition from 'sleep' to 'default' this setting will remain,
-> > since the default config doesn't specify a setting for bias.
-> 
-> Your understanding matches mine but I haven't tested it and I remember
-> sometimes being surprised in this corner of pinmux before. I think
-> it's better to put the bias in the default state if it should be that
-> way all the time, or have a bias in both the default and sleep state
-> if they need to be different.
