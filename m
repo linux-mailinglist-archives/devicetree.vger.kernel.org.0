@@ -2,75 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9321551ADBD
-	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 21:26:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 90B4251ADDA
+	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 21:35:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343831AbiEDT3u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 May 2022 15:29:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57592 "EHLO
+        id S1352287AbiEDTjJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 May 2022 15:39:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39354 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343627AbiEDT3t (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 15:29:49 -0400
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E23164A3C5;
-        Wed,  4 May 2022 12:26:12 -0700 (PDT)
-Received: by mail-ed1-x52d.google.com with SMTP id y21so2834716edo.2;
-        Wed, 04 May 2022 12:26:12 -0700 (PDT)
+        with ESMTP id S1377557AbiEDTi7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 15:38:59 -0400
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3C9212754;
+        Wed,  4 May 2022 12:35:20 -0700 (PDT)
+Received: by mail-wr1-x42d.google.com with SMTP id x18so3383066wrc.0;
+        Wed, 04 May 2022 12:35:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=U4ugFnEHiQMZfrDXCj3ch+k+wAUwvH2FEn+27B1gMn8=;
-        b=b3IHFNU5vyS3CmCibqe8vz7MofuxGI2zN9F6/a91ENRH1Htd7thQmbLBLOEY7Ks4SI
-         /cV8G7CfQwdkOl46mzL6a7KKRYD9T5cRdSKL1ABALGWARV3jJp7DtBOUYjFbrZIF241D
-         fpNgsJsWhTfuhBmIovBY5a/pkIBv3BZvGrJcW0MPGJRF4dCwgbsh+a/rRE7zD1NQB5y8
-         gf8CbZ37kbvhxvVE9LSiBBjltSu4ZaW4kfYXj5S0pyMgmYu0RoFcXPwYnGdiCf6WgLq3
-         TSQkyURrqx/M3vcg9hbyf8O2HtEiBb9z6ZZqs47i1dP2OzujDM8xaN3yLxeTbbXJWzAU
-         H8oA==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=WMBVcPvfdOGpcRb8oCuPrUcLjm4n14Svx/JKtfhn2yQ=;
+        b=Ux+vOoiCXJhaJ6V0YGgg4lYzeYeXaqhZ3Nv+FkLc5FrBtLfaTxBiuYno04DMy0ch8y
+         weTWq0vFBlFXSs1InfVgdcp215nDx+Vgd/u6Ivu2Arwv560x6N5zB7EdxUQeFv3PYjd1
+         7nG431Va9IVtGQgxjtV5BFnFH2660S/ksNKmNSXx0kpscVNELk9h7KaSfVxLaREyEk/5
+         I8DqgHUzfYpGga5gx7JDYI3ATkUQ3+DSw9EjRHsRSNHGswmlR3SNBYycDtPBsE3YYiVD
+         gwYXJOr3wfEKXpeQmHWsjxs4Ka0bHqQNl+Aj7VJd4cjLs1/eqfg9ybaJ3Pd/45+jjbQF
+         9v+w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=U4ugFnEHiQMZfrDXCj3ch+k+wAUwvH2FEn+27B1gMn8=;
-        b=O8gtTvqYqMJo8FsoVDTIJIt/+Wm/WoqMGITMo+b9dYi2QfQYIxC+qAVEcwKQiDON9d
-         k++6Yk6X5LjP+2aaoxrhBcUrgoSPo/1MGE3lBuyVNh8psXzK9fR2tMgV4nN+6f83rcnO
-         aBvd8pK3JzKT5jBxD3DCyk7pw16CoReFa73WX6qKeamBoJaSoovc10UVabQb0lgEvtAN
-         dJDZUIbzVWtExboFMrUlQlDQIbVOgXtcIj1Pw1/jj23sS46JtEKgjx8v1gL95oF2c1DJ
-         g1bHRZTsuNquocKPmWKhVdbwPVccarXNJx+egVDrwPaeRbNTO/DlM9PJN0uEvW5RbIIu
-         zEYQ==
-X-Gm-Message-State: AOAM533Gyiw45DKxRIyyrUCysC3UJQHNo8SIb7KYSzRnd/Hysw+d0kGs
-        fSmikswQhD75U4pHqzvbjT4=
-X-Google-Smtp-Source: ABdhPJzNYhVKyEWXU83EQ5Wc+8d0ouLMc/N3EANkkzqM3BU/cf3RUZlUmzDzUR2yIzUYxjD95PgmYQ==
-X-Received: by 2002:aa7:dc0e:0:b0:426:af42:6a06 with SMTP id b14-20020aa7dc0e000000b00426af426a06mr24800545edu.307.1651692371247;
-        Wed, 04 May 2022 12:26:11 -0700 (PDT)
-Received: from skbuf ([188.25.160.86])
-        by smtp.gmail.com with ESMTPSA id gv23-20020a1709072bd700b006f3ef214e41sm6015940ejc.167.2022.05.04.12.26.09
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=WMBVcPvfdOGpcRb8oCuPrUcLjm4n14Svx/JKtfhn2yQ=;
+        b=3ajSxeq+4Tl3nGyKOOrSa2cQ5cwXBeCEoPggO5t9Y9k6q+VwmnjE8eVMJH8mFIOhyt
+         PgmfSlLVpuKDsxLHh0DKrK8E3IaN3QYAH/oeGS1XzhEb6sGxpXYLHFTsdM8JQMcNNzbl
+         76c78IPcrkSyCDIDLYu+eBWLJvbIoZ3NJtLu3otSD6hcjCVeaMXSaf4hZ3+9Puyt+2+D
+         fHTlMYPwvCvtB0Nl1hhzmmbkq3Q4JZoaCmXvQHzqjFgBNRhR2X5Ok8UHdRV+lqJjFR9y
+         BZGSGeTJjNrtWCu0FrNXCP05ZVIh1h8jm2mzGcDe1aWO7FLsr0ajA0xnxBu8jetlAWhl
+         S8DQ==
+X-Gm-Message-State: AOAM533w9kz0dR5I+cifsM+ATMnktINambVyyUF3sUaQpP8uCuDyX493
+        ROsxZBpOhTtn64ZJqaK02I3uj0t+el0=
+X-Google-Smtp-Source: ABdhPJwWyRu2fZfqUT3vpgO5d+alY5bqVY2UcqI0FiWvtbeICjzNqriuIqLSiX8JG/De2/QA+9VwMQ==
+X-Received: by 2002:adf:decb:0:b0:20a:c975:8eec with SMTP id i11-20020adfdecb000000b0020ac9758eecmr18092105wrn.438.1651692919367;
+        Wed, 04 May 2022 12:35:19 -0700 (PDT)
+Received: from nergzd-desktop.localdomain ([194.39.226.133])
+        by smtp.gmail.com with ESMTPSA id 67-20020a1c1946000000b003942a244f2csm5519358wmz.5.2022.05.04.12.35.18
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 May 2022 12:26:10 -0700 (PDT)
-Date:   Wed, 4 May 2022 22:26:09 +0300
-From:   Vladimir Oltean <olteanv@gmail.com>
-To:     Arun Ramadoss <arun.ramadoss@microchip.com>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        netdev@vger.kernel.org, Russell King <linux@armlinux.org.uk>,
+        Wed, 04 May 2022 12:35:18 -0700 (PDT)
+From:   Markuss Broks <markuss.broks@gmail.com>
+To:     pavel@ucw.cz
+Cc:     Markuss Broks <markuss.broks@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Woojung Huh <woojung.huh@microchip.com>,
-        UNGLinuxDriver@microchip.com, Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [Patch net-next v13 05/13] net: dsa: microchip: add DSA support
- for microchip LAN937x
-Message-ID: <20220504192609.p6bkyghvdluauwag@skbuf>
-References: <20220504151755.11737-1-arun.ramadoss@microchip.com>
- <20220504151755.11737-6-arun.ramadoss@microchip.com>
+        Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v7 0/2] Make AUX gpio pin optional for ktd2692
+Date:   Wed,  4 May 2022 22:34:34 +0300
+Message-Id: <20220504193439.15938-1-markuss.broks@gmail.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220504151755.11737-6-arun.ramadoss@microchip.com>
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
@@ -81,27 +74,44 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 04, 2022 at 08:47:47PM +0530, Arun Ramadoss wrote:
-> Basic DSA driver support for lan937x and the device will be
-> configured through SPI interface.
-> 
-> drivers/net/dsa/microchip/ path is already part of MAINTAINERS &
-> the new files come under this path. Hence no update needed to the
-> MAINTAINERS
-> 
-> Reused KSZ APIs for port_bridge_join() & port_bridge_leave() and
-> added support for port_stp_state_set().
-> 
-> RGMII internal delay values for the mac is retrieved from
-> rx-internal-delay-ps & tx-internal-delay-ps as per the feedback from
-> v3 patch series.
-> https://lore.kernel.org/netdev/20210802121550.gqgbipqdvp5x76ii@skbuf/
-> 
-> It supports standard delay 2ns only. If the property is not found, the
-> value will be forced to 0.
-> 
-> Signed-off-by: Prasanna Vengateshan <prasanna.vengateshan@microchip.com>
-> Signed-off-by: Arun Ramadoss <arun.ramadoss@microchip.com>
-> ---
+Some appliances of ktd2692 don't have the AUX pin connected to
+a GPIO. Specifically, Samsung Galaxy J5 (2015), which uses ktd2692
+for driving the front flash LED, has the pin not connected anywhere on
+schematics. Make specifying the AUX pin optional, since it is additional
+functionality and only affects amount of current going through the LED.
 
-Reviewed-by: Vladimir Oltean <olteanv@gmail.com>
+Also convert the txt device-tree bindings to yaml and pick up maintenance
+over the yaml binding and the driver itself.
+
+v2:
+- fix the dt_binding_check
+v3:
+- set the aux_gpio to NULL to avoid passing ERR_PTR as a gpio
+v4:
+- maintainership -> maintenance (description)
+- remove the if (led->aux_gpio)
+- use devm_gpiod_get_optional for aux gpio
+v5:
+- use ret to pass a correct error return code (Christophe)
+v6:
+- use PTR_ERR properly (when IS_ERR is true) (Christophe)
+v6-a:
+- ended up being a mess, corrected-v2 should have proper tags now
+v7:
+- drop the MAINTAINERS part
+
+Markuss Broks (2):
+  dt-bindings: leds: convert ktd2692 bindings to yaml
+  leds: ktd2692: Make aux-gpios optional
+
+ .../bindings/leds/kinetic,ktd2692.yaml        | 87 +++++++++++++++++++
+ .../devicetree/bindings/leds/leds-ktd2692.txt | 50 -----------
+ MAINTAINERS                                   |  6 ++
+ drivers/leds/flash/leds-ktd2692.c             | 18 ++--
+ 4 files changed, 103 insertions(+), 58 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/leds/kinetic,ktd2692.yaml
+ delete mode 100644 Documentation/devicetree/bindings/leds/leds-ktd2692.txt
+
+-- 
+2.35.1
+
