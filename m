@@ -2,79 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A07451A335
-	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 17:08:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7259E51A33D
+	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 17:08:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351902AbiEDPLi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 May 2022 11:11:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33168 "EHLO
+        id S1351931AbiEDPMJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 May 2022 11:12:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33650 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351888AbiEDPLf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 11:11:35 -0400
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B1C9220EF
-        for <devicetree@vger.kernel.org>; Wed,  4 May 2022 08:07:58 -0700 (PDT)
-Received: by mail-ed1-x52f.google.com with SMTP id p4so2069052edx.0
-        for <devicetree@vger.kernel.org>; Wed, 04 May 2022 08:07:58 -0700 (PDT)
+        with ESMTP id S230402AbiEDPMG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 11:12:06 -0400
+Received: from mail-pj1-x102e.google.com (mail-pj1-x102e.google.com [IPv6:2607:f8b0:4864:20::102e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A8062DD66
+        for <devicetree@vger.kernel.org>; Wed,  4 May 2022 08:08:28 -0700 (PDT)
+Received: by mail-pj1-x102e.google.com with SMTP id cq17-20020a17090af99100b001dc0386cd8fso1465250pjb.5
+        for <devicetree@vger.kernel.org>; Wed, 04 May 2022 08:08:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=mYhHc3io7+EcnhLKfT5KHQo9CUo/I52V7+vAalDTDrc=;
-        b=Pry1zIOhMcROdxNXGEJVcdAcgDOuaV5OGaAkCvZDv17g4fuJyui/y6CYLUIb6VBgVi
-         gL0OF2zlO+uF0xoBDkzxd5tWoaJC84c9R+8TbvTK8j3F0UrGyb16hT228bylx8qDkF5e
-         xuwWtsBzwpyICd9IHxKxZBGmoPfKvQjqGwORlFKxZ/0RlZNHpXYoot2EaaGMEumhVc0y
-         p4Jbd2T+vjX5Cd4fEr3FruB9EmrJTTvZKzWiKl5bTLUtlnwsuwdEIjMx8vN0xg8FhLQb
-         Lhi5Sxo7LVNOg2kUwU6NuxmlPV0TRB51ub6HeW6T3/8liyo19cpVpsgcTrIx517bHW1S
-         ZuiA==
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=Qb+1GrJs8SRgE6Wq+GlmzxuejfTqdKZ3b89DzJavSQw=;
+        b=QW7CQXai9IiD71Wvf+o2VYxsrI+DMXmN1vsS0b5DV0rtrX+G8r3eGzQnrLgcSNLS6o
+         18VjexLmt9t17aqS0qc4jCF5CPslGIy/SB1vEauI+iOiw3aemKigwzjm7wU//Osg3Pbt
+         9wMF/4HUhAaX0invtmDD41DdrKFbACP1VK8u0=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=mYhHc3io7+EcnhLKfT5KHQo9CUo/I52V7+vAalDTDrc=;
-        b=lFd83/9YQJMoUSA4JNp/TwX++s4DT4Vu46muM2VgPfoR7YGwEYD9w69v2hfNm76zmA
-         9x/tBvKkhTuPvuylgSQnXMziBVTBc024oaEzdOld0XMAw1MAV4vDe/rLVs4L5Vj5DXya
-         UnlFk+/8gj9sWS7vJtQ7xjZdQfZ9CJmN2ovz67gBCQ0LkiMEwjw2SVudEn5Iv1tPJG9W
-         /Bkz3oczGPqrm321RamdKb+awqopb+wXJcAo9FbdlQCXGnB6ggA9E7Z6e7Y+5Wtp0qqy
-         QM/5/ma92RoBr7NtrC2SCz9DLNyc22qEjBW62LaPIPm3Z+KncUCykN/LcxpP5frARbbg
-         dIvg==
-X-Gm-Message-State: AOAM531NURkKP+YQrlBjMHFRLMTW51A9KtGyQEr54nd7IjYCXKWq2Pjf
-        9hpDnQYJEJOxPjHfMQnZHcNxQQ==
-X-Google-Smtp-Source: ABdhPJzRgmmHymU7jVZH1CKHjC7GjVaif3hOtBorH2duyoZJ9xUDy8vVdQtDPpGjbQsN3vH3LqEBNQ==
-X-Received: by 2002:a05:6402:2788:b0:426:18e3:b6f9 with SMTP id b8-20020a056402278800b0042618e3b6f9mr23780128ede.81.1651676876667;
-        Wed, 04 May 2022 08:07:56 -0700 (PDT)
-Received: from [192.168.0.215] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id gv8-20020a1709072bc800b006f3ef214e5csm5810250ejc.194.2022.05.04.08.07.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 04 May 2022 08:07:56 -0700 (PDT)
-Message-ID: <5a6ab3be-1d76-76f0-b5da-eecf5c551bdc@linaro.org>
-Date:   Wed, 4 May 2022 17:07:55 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH v3 2/3] dt-bindings: mtd: partitions: Extend
- fixed-partitions binding
-Content-Language: en-US
-To:     Mikhail Zhilkin <csharper2005@gmail.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=Qb+1GrJs8SRgE6Wq+GlmzxuejfTqdKZ3b89DzJavSQw=;
+        b=u5nRWSW90f/Bbx1LGMP8OqI2gls0pdYszTnRp/+7zvDhj1DC2GPT9jhdkiWmfMjUky
+         iR2GHgLCjjQMT0J8qWY8WL7V+W1H1fKOwKSOs6TvDya6SVVaBFdmiGPlCDxivJ+2WAcM
+         sG1j0rRpAgIx37EPeRFZkiWNKuUFye8CIkBrgyyFDMp5X0YoGFRKKStVnThB+NDWlPvH
+         r/PubMCUb2PUBFNkPZhQBlZ9OPm0vhlnxGJLV02nLbuA04nisO/uTUmHqJxFaMryiskw
+         1ulGHFCAnaQPh4bXzFJ9KRn/GIV+XY7NlAzVAQ0vm3IljJYdnmWwZrRPhZVD6pt/L3Qm
+         78HQ==
+X-Gm-Message-State: AOAM531JI+jWTqTbiDF0ipGFEC8yShJJ2E0AzmTN2NVoCuM7Nu5dIy0O
+        3Hd3cgrSBvaY+AszrWLejP6ncQ==
+X-Google-Smtp-Source: ABdhPJxppSZTl5CKjnq8a5hBmltXmdlckYUA+zJjxmwbiUJP9s+fG0NYe/ezZfchAEYBzvKm6cdN0g==
+X-Received: by 2002:a17:90a:e7d2:b0:1dc:3762:c72d with SMTP id kb18-20020a17090ae7d200b001dc3762c72dmr10809021pjb.243.1651676908004;
+        Wed, 04 May 2022 08:08:28 -0700 (PDT)
+Received: from www.outflux.net (smtp.outflux.net. [198.145.64.163])
+        by smtp.gmail.com with ESMTPSA id q10-20020a170902bd8a00b0015e8d4eb2c8sm8430976pls.274.2022.05.04.08.08.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 04 May 2022 08:08:27 -0700 (PDT)
+Date:   Wed, 4 May 2022 08:08:26 -0700
+From:   Kees Cook <keescook@chromium.org>
+To:     Kalle Valo <kvalo@kernel.org>
+Cc:     "Gustavo A . R . Silva" <gustavoars@kernel.org>,
+        Loic Poulain <loic.poulain@linaro.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>, wcn36xx@lists.infradead.org,
+        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
+        Alexei Starovoitov <ast@kernel.org>,
+        alsa-devel@alsa-project.org, Al Viro <viro@zeniv.linux.org.uk>,
+        Andrew Gabbasov <andrew_gabbasov@mentor.com>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        Andy Gross <agross@kernel.org>,
+        Andy Lavr <andy.lavr@gmail.com>,
+        Arend van Spriel <aspriel@gmail.com>,
+        Baowen Zheng <baowen.zheng@corigine.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Boris Ostrovsky <boris.ostrovsky@oracle.com>,
+        Bradley Grove <linuxdrivers@attotech.com>,
+        brcm80211-dev-list.pdl@broadcom.com,
+        Christian Brauner <brauner@kernel.org>,
+        Christian =?iso-8859-1?Q?G=F6ttsche?= <cgzones@googlemail.com>,
+        Christian Lamparter <chunkeey@googlemail.com>,
+        Chris Zankel <chris@zankel.net>,
+        Cong Wang <cong.wang@bytedance.com>,
+        Daniel Axtens <dja@axtens.net>,
+        Daniel Vetter <daniel.vetter@ffwll.ch>,
+        Dan Williams <dan.j.williams@intel.com>,
+        David Gow <davidgow@google.com>,
+        David Howells <dhowells@redhat.com>,
+        Dennis Dalessandro <dennis.dalessandro@cornelisnetworks.com>,
+        devicetree@vger.kernel.org, Dexuan Cui <decui@microsoft.com>,
+        Dmitry Kasatkin <dmitry.kasatkin@gmail.com>,
+        Eli Cohen <elic@nvidia.com>,
+        Eric Paris <eparis@parisplace.org>,
+        Eugeniu Rosca <erosca@de.adit-jv.com>,
+        Felipe Balbi <balbi@kernel.org>,
+        Francis Laniel <laniel_francis@privacyrequired.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Franky Lin <franky.lin@broadcom.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Gregory Greenman <gregory.greenman@intel.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Haiyang Zhang <haiyangz@microsoft.com>,
+        Hante Meuleman <hante.meuleman@broadcom.com>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        Hulk Robot <hulkci@huawei.com>,
+        "James E.J. Bottomley" <jejb@linux.ibm.com>,
+        James Morris <jmorris@namei.org>,
+        Jarkko Sakkinen <jarkko@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Jason Gunthorpe <jgg@ziepe.ca>, Jens Axboe <axboe@kernel.dk>,
+        Johan Hedberg <johan.hedberg@gmail.com>,
+        Johannes Berg <johannes.berg@intel.com>,
+        Johannes Berg <johannes@sipsolutions.net>,
+        John Keeping <john@metanate.com>,
+        Juergen Gross <jgross@suse.com>,
+        Keith Packard <keithp@keithp.com>, keyrings@vger.kernel.org,
+        kunit-dev@googlegroups.com,
+        Kuniyuki Iwashima <kuniyu@amazon.co.jp>,
+        "K. Y. Srinivasan" <kys@microsoft.com>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Lee Jones <lee.jones@linaro.org>,
+        Leon Romanovsky <leon@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        linux1394-devel@lists.sourceforge.net,
+        linux-afs@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-arm-msm@vger.kernel.org, linux-bluetooth@vger.kernel.org,
+        linux-hardening@vger.kernel.org, linux-hyperv@vger.kernel.org,
+        linux-integrity@vger.kernel.org, linux-rdma@vger.kernel.org,
+        linux-scsi@vger.kernel.org, linux-security-module@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux-xtensa@linux-xtensa.org,
+        llvm@lists.linux.dev, Louis Peens <louis.peens@corigine.com>,
+        Luca Coelho <luciano.coelho@intel.com>,
+        Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+        Marcel Holtmann <marcel@holtmann.org>,
+        Mark Brown <broonie@kernel.org>,
+        "Martin K. Petersen" <martin.petersen@oracle.com>,
+        Max Filippov <jcmvbkbc@gmail.com>,
+        Mimi Zohar <zohar@linux.ibm.com>,
+        Muchun Song <songmuchun@bytedance.com>,
+        Nathan Chancellor <nathan@kernel.org>,
+        Nick Desaulniers <ndesaulniers@google.com>,
+        Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+        Paul Moore <paul@paul-moore.com>,
+        Rich Felker <dalias@aerifal.cx>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Karim <Karimdplay@gmail.com>,
-        M <x1@disroot.org>
-References: <20220503154254.2339744-1-csharper2005@gmail.com>
- <20220503155007.2339847-1-csharper2005@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220503155007.2339847-1-csharper2005@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        Russell King <linux@armlinux.org.uk>, selinux@vger.kernel.org,
+        "Serge E. Hallyn" <serge@hallyn.com>,
+        SHA-cyfmac-dev-list@infineon.com,
+        Simon Horman <simon.horman@corigine.com>,
+        Stefano Stabellini <sstabellini@kernel.org>,
+        Stefan Richter <stefanr@s5r6.in-berlin.de>,
+        Steffen Klassert <steffen.klassert@secunet.com>,
+        Stephen Hemminger <sthemmin@microsoft.com>,
+        Stephen Smalley <stephen.smalley.work@gmail.com>,
+        Tadeusz Struk <tadeusz.struk@linaro.org>,
+        Takashi Iwai <tiwai@suse.com>, Tom Rix <trix@redhat.com>,
+        Udipto Goswami <quic_ugoswami@quicinc.com>,
+        Vincenzo Frascino <vincenzo.frascino@arm.com>,
+        Wei Liu <wei.liu@kernel.org>, xen-devel@lists.xenproject.org,
+        Xiu Jianfeng <xiujianfeng@huawei.com>,
+        Yang Yingliang <yangyingliang@huawei.com>
+Subject: Re: [PATCH 10/32] wcn36xx: Use mem_to_flex_dup() with struct
+ wcn36xx_hal_ind_msg
+Message-ID: <202205040730.161645EC@keescook>
+References: <20220504014440.3697851-1-keescook@chromium.org>
+ <20220504014440.3697851-11-keescook@chromium.org>
+ <8735hpc0q1.fsf@kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <8735hpc0q1.fsf@kernel.org>
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -82,14 +170,107 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/05/2022 17:50, Mikhail Zhilkin wrote:
-> Extend fixed-partitions binding for support of Sercomm partition parser
-> (add "sercomm,sc-partitions" compatible).
+On Wed, May 04, 2022 at 08:42:46AM +0300, Kalle Valo wrote:
+> Kees Cook <keescook@chromium.org> writes:
 > 
-> Signed-off-by: Mikhail Zhilkin <csharper2005@gmail.com>
+> > As part of the work to perform bounds checking on all memcpy() uses,
+> > replace the open-coded a deserialization of bytes out of memory into a
+> > trailing flexible array by using a flex_array.h helper to perform the
+> > allocation, bounds checking, and copying.
+> >
+> > Cc: Loic Poulain <loic.poulain@linaro.org>
+> > Cc: Kalle Valo <kvalo@kernel.org>
+> > Cc: "David S. Miller" <davem@davemloft.net>
+> > Cc: Eric Dumazet <edumazet@google.com>
+> > Cc: Jakub Kicinski <kuba@kernel.org>
+> > Cc: Paolo Abeni <pabeni@redhat.com>
+> > Cc: wcn36xx@lists.infradead.org
+> > Cc: linux-wireless@vger.kernel.org
+> > Cc: netdev@vger.kernel.org
+> > Signed-off-by: Kees Cook <keescook@chromium.org>
+> 
+> [...]
+> 
+> > --- a/drivers/net/wireless/ath/wcn36xx/smd.h
+> > +++ b/drivers/net/wireless/ath/wcn36xx/smd.h
+> > @@ -46,8 +46,8 @@ struct wcn36xx_fw_msg_status_rsp {
+> >  
+> >  struct wcn36xx_hal_ind_msg {
+> >  	struct list_head list;
+> > -	size_t msg_len;
+> > -	u8 msg[];
+> > +	DECLARE_FLEX_ARRAY_ELEMENTS_COUNT(size_t, msg_len);
+> > +	DECLARE_FLEX_ARRAY_ELEMENTS(u8, msg);
+> 
+> This affects readability quite a lot and tbh I don't like it. Isn't
+> there any simpler way to solve this?
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Similar to how I plumbed member names into __mem_to_flex(), I could do
+the same for __mem_to_flex_dup(). That way if the struct member aliases
+(DECLARE_FLEX...)  aren't added, the longer form of the helper could
+be used. Instead of:
 
+	if (mem_to_flex_dup(&msg_ind, buf, len, GFP_ATOMIC)) {
 
-Best regards,
-Krzysztof
+it would be:
+
+	if (__mem_to_flex_dup(&msg_ind, /* self */, msg,
+			      msg_len, buf, len, GFP_ATOMIC)) {
+
+This was how I'd written the helpers in an earlier version, but it
+seemed much cleaner to avoid repeating structure layout details at each
+call site.
+
+I couldn't find any other way to encode the needed information. It'd be
+wonderful if C would let us do:
+
+	struct wcn36xx_hal_ind_msg {
+		struct list_head list;
+		size_t msg_len;
+		u8 msg[msg_len];
+	}
+
+And provide some kind of interrogation:
+
+	__builtin_flex_array_member(msg_ind) -> msg_ind->msg
+	__builtin_flex_array_count(msg_ind)  -> msg_ind->msg_len
+
+My hope would be to actually use the member aliases to teach things like
+-fsanitize=array-bounds about flexible arrays. If it encounters a
+structure with the aliases, it could add the instrumentation to do the
+bounds checking of things like:
+
+	msg_ind->msg[42]; /* check that 42 is < msg_ind->msg_len */
+
+I also wish I could find a way to make the proposed macros "forward
+portable" into proposed C syntax above, but this eluded me as well.
+For example:
+
+	struct wcn36xx_hal_ind_msg {
+		size_t msg_len;
+		struct list_head list;
+		BOUNDED_FLEX_ARRAY(u8, msg, msg_len);
+	}
+
+	#ifdef CC_HAS_DYNAMIC_ARRAY_LEN
+	# define BOUNDED_FLEX_ARRAY(type, name, bounds)	type name[bounds]
+	#else
+	# define BOUNDED_FLEX_ARRAY(type, name, bounds)			\
+		magic_alias_of msg_len __flex_array_elements_count;	\
+		union {							\
+			type name[];					\
+			type __flex_array_elements[];			\
+		}
+	#endif
+
+But I couldn't sort out the "magic_alias_of" syntax that wouldn't force
+structures into having the count member immediately before the flex
+array, which would impose more limitations on where this could be
+used...
+
+Anyway, I'm open to ideas on how to improve this!
+
+-Kees
+
+-- 
+Kees Cook
