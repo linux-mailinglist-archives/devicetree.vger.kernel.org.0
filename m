@@ -2,90 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0F80C51AC2E
-	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 20:03:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1AB7F51AC3C
+	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 20:06:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1359817AbiEDSG3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 May 2022 14:06:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47714 "EHLO
+        id S1376291AbiEDSIW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 May 2022 14:08:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45030 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1359630AbiEDSGL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 14:06:11 -0400
-Received: from mail-oa1-x31.google.com (mail-oa1-x31.google.com [IPv6:2001:4860:4864:20::31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8A1E6D3A9
-        for <devicetree@vger.kernel.org>; Wed,  4 May 2022 10:21:29 -0700 (PDT)
-Received: by mail-oa1-x31.google.com with SMTP id 586e51a60fabf-d39f741ba0so1827959fac.13
-        for <devicetree@vger.kernel.org>; Wed, 04 May 2022 10:21:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=vKpqt3Zv71OFS+RtPhQCpWEmVvpBGhpyU8YWWfhiy8Y=;
-        b=X3sXe04ZkZYP37hU1qpG6mMuBg9Z7LxX/EgWjSm7om6CYeHY5AX+WVfwlUtuR6s3DS
-         JQ2MOTy6wndnhdDNyARx/uI7yIWF3JnnEeFhoLU84NGkC7kVeQnfhEDswdgZ4jan6QYu
-         3hTtJim8bqdzAukunw3K/36WIdd2UoiOxiQrv3q+/ev+3xR0zYXB0I11VJOqLo5kKQnW
-         K8l43rAqc7C0qGOsLeYw4q/AJnZ9vbzRtD1wlNGiwI2fdtmhiSEbYdofofwBTXjQ69Az
-         Hybm0bC8HnDgoRCgNwt+lF5yHIvOhE7sQNuwi7gl5lUXcijwN+TQBY07gD+TPjFlCiva
-         fTPg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=vKpqt3Zv71OFS+RtPhQCpWEmVvpBGhpyU8YWWfhiy8Y=;
-        b=aZPkZMeX3/llWl9r/gwLt/P3vjCNQu0udyeMvfPEwx1c1etvrTjbfCsNUjBWw6Ky+2
-         ERcZmUrG/rdhVVkCVYKBX8XFZjFzvxyPxD4fFCDxUzgC/sjvXpg6sV22jsLduoMi/vf1
-         OnFO+LBkpSKVObWk4epZlIz7V408QaBuw1BLjK96sP2ftQm6MO87IpNjfjrj2d0pY5SI
-         Hb61jVUjEK1mdemFJuUuG6nFyAoytntjuyrG2s1jnB5n5eSIjJqV2JgKg1RZqu30a0JY
-         1t3tGKBhA2arV02mLtbZ0X9P4TNlQL16UethNB+ur6Fio2VYhh8+TtAY1afxto+ojo4O
-         Zaqg==
-X-Gm-Message-State: AOAM530Rc3tA53wRPfA1WkxxpEb3sQXO8giBOS49wIGy2OV3wYt2gZ8/
-        /V8UxccgZTTJ+DV0/5WOJMWQszbTrnJwjMsn
-X-Google-Smtp-Source: ABdhPJyU0Q/uoTIwMxovxMdIKX+ny8p88N5ogcC+0vganajhvhHMka5oEPfrKlUo8lGlzi/th+7yvw==
-X-Received: by 2002:a05:6870:6301:b0:e9:17b2:2e12 with SMTP id s1-20020a056870630100b000e917b22e12mr276826oao.96.1651684888962;
-        Wed, 04 May 2022 10:21:28 -0700 (PDT)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id a7-20020a056870b14700b000ead8b89484sm5785452oal.5.2022.05.04.10.21.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 May 2022 10:21:28 -0700 (PDT)
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     devicetree@vger.kernel.org,
-        Vijaya Krishna Nivarthi <quic_vnivarth@quicinc.com>,
-        krzysztof.kozlowski+dt@linaro.org, linux-kernel@vger.kernel.org,
-        robh+dt@kernel.org, agross@kernel.org,
-        linux-arm-msm@vger.kernel.org
-Cc:     dianders@chromium.org, quic_msavaliy@quicinc.com
-Subject: Re: [V6 0/2] arm64: dts: qcom: Configure CTS pin to bias-bus-hold for bluetooth
-Date:   Wed,  4 May 2022 12:21:13 -0500
-Message-Id: <165168485227.3730817.12193941137410849095.b4-ty@linaro.org>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <1650556567-4995-1-git-send-email-quic_vnivarth@quicinc.com>
-References: <1650556567-4995-1-git-send-email-quic_vnivarth@quicinc.com>
+        with ESMTP id S1376328AbiEDSIM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 14:08:12 -0400
+Received: from jabberwock.ucw.cz (jabberwock.ucw.cz [46.255.230.98])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA70C7092E;
+        Wed,  4 May 2022 10:23:30 -0700 (PDT)
+Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
+        id 65AF91C0BBB; Wed,  4 May 2022 19:23:29 +0200 (CEST)
+Date:   Wed, 4 May 2022 19:23:28 +0200
+From:   Pavel Machek <pavel@ucw.cz>
+To:     Caleb Connolly <caleb.connolly@linaro.org>
+Cc:     Sebastian Reichel <sre@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        Amit Pundir <amit.pundir@linaro.org>,
+        Sumit Semwal <sumit.semwal@linaro.org>
+Subject: Re: [PATCH 0/6] power: supply: introduce support for the Qualcomm
+ smb2 charger
+Message-ID: <20220504172328.GC1623@bug>
+References: <20220427184031.2569442-1-caleb.connolly@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220427184031.2569442-1-caleb.connolly@linaro.org>
+User-Agent: Mutt/1.5.23 (2014-03-12)
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 21 Apr 2022 21:26:05 +0530, Vijaya Krishna Nivarthi wrote:
-> WLAN rail was leaking power during RBSC/sleep even after turning BT off.
-> Change pinctrl configuration to handle same.
-> 
-> 
+Hi!
 
-Applied, thanks!
+> Add a driver for the Qualcomm PMI8998/PM660 Switch-Mode Battery Charger.
+> This is the second generation SMB charger, and replaces the previous
+> SMBB hardware found in older PMICs.
+> 
+> This driver provides basic support for initialising the hardware,
+> configuring the USB input current limit and reporting information about
+> the state of the charger. Features like type-c dual role support and OTG
+> switching will be added in future patches.
+> 
+> This patch series depends on my previous series adding support for
+> the Round Robin ADC which is used for reading the USB voltage and
+> current, it can be found here:
+> https://lore.kernel.org/linux-arm-msm/20220323162820.110806-1-caleb@connolly.tech/
 
-[1/2] arm64: dts: qcom: sc7280-idp: Configure CTS pin to bias-bus-hold for bluetooth
-      commit: 497b272759986af1aa5a25b5e903d082c67bd8f6
-[2/2] arm64: dts: qcom: sc7280-qcard: Configure CTS pin to bias-bus-hold for bluetooth
-      commit: 3d0e375bae55c2dfa6dd0762f45ad71f0b192f71
+Please cc phone-devel mailing list with this and related stuff.
 
 Best regards,
--- 
-Bjorn Andersson <bjorn.andersson@linaro.org>
+									Pavel
