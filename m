@@ -2,237 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EBFE051B3A6
-	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 01:42:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D6A051B3AC
+	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 01:44:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233005AbiEDXoW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 May 2022 19:44:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53436 "EHLO
+        id S1350339AbiEDXp5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 May 2022 19:45:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55564 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1385717AbiEDXQr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 19:16:47 -0400
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 826EF5536F
-        for <devicetree@vger.kernel.org>; Wed,  4 May 2022 16:11:15 -0700 (PDT)
-Received: by mail-wm1-x333.google.com with SMTP id p189so1676331wmp.3
-        for <devicetree@vger.kernel.org>; Wed, 04 May 2022 16:11:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=paul-moore-com.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=qfWwXZWPvxEE3w1uLnkzPlrx6nJaZSmQ1gbsC3kCZlI=;
-        b=fMehx6+pldeupaypGl5lGMLh8Blc5Pb964suvnwujkOTfmhEds0USznV5iIpAmDMiQ
-         3bX5ovLiBcm+P+Qjkm7S30sNoAIneyphU/3HUmg8FgNya3x4Ys+vGWu+B9CwMsbZwixV
-         5hhw5d61RXfF0ZuA9a19yWLWnmsownsAlvxGOq/bh+zf+KCchfsYUSjN3DbkCogRNiil
-         4sZMBBy0wN3DJWJ3HV3y9RTPrsOy6eZO4wbIVzlw9cfeY3DYzhWrMs9JJuoIK2/rWVPl
-         SzHF6XACCrgzPRUtq8fL5afcNflV6Vriy9o5VdAvBNuxRLNvKxX70jkd0hURqNp4X2R8
-         1xwg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=qfWwXZWPvxEE3w1uLnkzPlrx6nJaZSmQ1gbsC3kCZlI=;
-        b=qWvtfBqAAt4XuX8XzN+ZLTR8JW6nLDsvL/uAswiI6g9zZtOA1ylHgECiRk+RUXcTF6
-         4HAq728cwK4ul39kwLnUrx1q4E838xlX1gdvVG6sG60pp03K/YPT57BPdKRqdVSo5V9i
-         tP2ByrzZeO39eWQedeKM4S6lFy9LuO0d9EBSlt9uLscyq5gi6NSq4DRRX0Fozmgjpb0e
-         4375J/JJqYO0b4wdmq7Y29SpN6g92TlvQfwyVNavyzni6mrYyzqSnW2eBiPJAaQ5mw6e
-         1OBlrWERtqtTiiyISXOkpV6HQaiuievczmn2MVnZRQTeli74tQl0DvabzuefMEFNueu2
-         IXSA==
-X-Gm-Message-State: AOAM532+vmD+B4Rh7MNE0rCNTnXseiT4qN/rr4v5dHWGhlIeTAE5IoQi
-        /u4yu2Qxvosh0IAOGdsl6kC0tYkaO9wM2ezW/sHAdwgUwbxZ
-X-Google-Smtp-Source: ABdhPJzn8kCki7g2xrksVPCE2X0dMoSQ5GNrlnQWJqU+8a/RnZE5ShgkUyQvDBvdRa4kG7oifCsX28YouBnWU5DkxR0=
-X-Received: by 2002:a05:600c:4fc9:b0:394:4317:1aa4 with SMTP id
- o9-20020a05600c4fc900b0039443171aa4mr1477643wmq.179.1651705059031; Wed, 04
- May 2022 15:57:39 -0700 (PDT)
+        with ESMTP id S1381194AbiEDXQV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 19:16:21 -0400
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82E395419E;
+        Wed,  4 May 2022 16:09:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1651705772; x=1683241772;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=viWWezEGudsdbLy/fRq7EwiMWwIaZsmyJG8Q+HHJWzE=;
+  b=hMH9DmkEI3OmceNvFXU5LlSEeHnpbp43jUjfXniTp0BbO5FVjmxbxdJK
+   FU2EPHFhq6raFbSPfVdwVF4CCBRP933vVOqD/Fkia5WEP+sJc8XjaFzxq
+   UMluuI5sEcCoUiP7BxKP11gkFyBhNgrhgRPxeae9RjImbdlYCmzFPzQ6A
+   KbOkpwY9L/PrXoCQedorAkHk9lt88B3RT+KJw4Dd3w6B0xR3IAq/acYUX
+   8V2rvR0wny2GxaYX2CjrzXuqyKICzDBQPV7UsYwlJdnAM09oN+LyjhIf6
+   fHZ++5f5b0+Pea+mm8To1FgmEqDFnWW8gnqFgDCLZZg7JC5ITBsthdStQ
+   w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10337"; a="293121901"
+X-IronPort-AV: E=Sophos;i="5.91,199,1647327600"; 
+   d="scan'208";a="293121901"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 May 2022 16:09:19 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.91,199,1647327600"; 
+   d="scan'208";a="599749810"
+Received: from lkp-server01.sh.intel.com (HELO 5056e131ad90) ([10.239.97.150])
+  by orsmga001.jf.intel.com with ESMTP; 04 May 2022 16:09:16 -0700
+Received: from kbuild by 5056e131ad90 with local (Exim 4.95)
+        (envelope-from <lkp@intel.com>)
+        id 1nmO7Q-000Bsd-1h;
+        Wed, 04 May 2022 23:09:16 +0000
+Date:   Thu, 5 May 2022 07:09:10 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Justin Chen <justinpopo6@gmail.com>, linus.walleij@linaro.org,
+        brgl@bgdev.pl, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     kbuild-all@lists.01.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        f.fainelli@gmail.com, Justin Chen <justinpopo6@gmail.com>
+Subject: Re: [PATCH 1/2] gpio: pca953xx: Add support for pca6408
+Message-ID: <202205050612.1bwSZpER-lkp@intel.com>
+References: <1651685100-44687-2-git-send-email-justinpopo6@gmail.com>
 MIME-Version: 1.0
-References: <20220504014440.3697851-1-keescook@chromium.org> <20220504014440.3697851-29-keescook@chromium.org>
-In-Reply-To: <20220504014440.3697851-29-keescook@chromium.org>
-From:   Paul Moore <paul@paul-moore.com>
-Date:   Wed, 4 May 2022 18:57:28 -0400
-Message-ID: <CAHC9VhT5Y=ENiSyb=S-NVbGX63sLOv4nVuR_GS-yww6tiz0wYA@mail.gmail.com>
-Subject: Re: [PATCH 28/32] selinux: Use mem_to_flex_dup() with xfrm and sidtab
-To:     Kees Cook <keescook@chromium.org>
-Cc:     "Gustavo A . R . Silva" <gustavoars@kernel.org>,
-        Steffen Klassert <steffen.klassert@secunet.com>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S. Miller" <davem@davemloft.net>,
-        Stephen Smalley <stephen.smalley.work@gmail.com>,
-        Eric Paris <eparis@parisplace.org>,
-        Nick Desaulniers <ndesaulniers@google.com>,
-        Xiu Jianfeng <xiujianfeng@huawei.com>,
-        =?UTF-8?Q?Christian_G=C3=B6ttsche?= <cgzones@googlemail.com>,
-        netdev@vger.kernel.org, selinux@vger.kernel.org,
-        Alexei Starovoitov <ast@kernel.org>,
-        alsa-devel@alsa-project.org, Al Viro <viro@zeniv.linux.org.uk>,
-        Andrew Gabbasov <andrew_gabbasov@mentor.com>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        Andy Gross <agross@kernel.org>,
-        Andy Lavr <andy.lavr@gmail.com>,
-        Arend van Spriel <aspriel@gmail.com>,
-        Baowen Zheng <baowen.zheng@corigine.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Boris Ostrovsky <boris.ostrovsky@oracle.com>,
-        Bradley Grove <linuxdrivers@attotech.com>,
-        brcm80211-dev-list.pdl@broadcom.com,
-        Christian Brauner <brauner@kernel.org>,
-        Christian Lamparter <chunkeey@googlemail.com>,
-        Chris Zankel <chris@zankel.net>,
-        Cong Wang <cong.wang@bytedance.com>,
-        Daniel Axtens <dja@axtens.net>,
-        Daniel Vetter <daniel.vetter@ffwll.ch>,
-        Dan Williams <dan.j.williams@intel.com>,
-        David Gow <davidgow@google.com>,
-        David Howells <dhowells@redhat.com>,
-        Dennis Dalessandro <dennis.dalessandro@cornelisnetworks.com>,
-        devicetree@vger.kernel.org, Dexuan Cui <decui@microsoft.com>,
-        Dmitry Kasatkin <dmitry.kasatkin@gmail.com>,
-        Eli Cohen <elic@nvidia.com>,
-        Eric Dumazet <edumazet@google.com>,
-        Eugeniu Rosca <erosca@de.adit-jv.com>,
-        Felipe Balbi <balbi@kernel.org>,
-        Francis Laniel <laniel_francis@privacyrequired.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Franky Lin <franky.lin@broadcom.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Gregory Greenman <gregory.greenman@intel.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Haiyang Zhang <haiyangz@microsoft.com>,
-        Hante Meuleman <hante.meuleman@broadcom.com>,
-        Hulk Robot <hulkci@huawei.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        "James E.J. Bottomley" <jejb@linux.ibm.com>,
-        James Morris <jmorris@namei.org>,
-        Jarkko Sakkinen <jarkko@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Jason Gunthorpe <jgg@ziepe.ca>, Jens Axboe <axboe@kernel.dk>,
-        Johan Hedberg <johan.hedberg@gmail.com>,
-        Johannes Berg <johannes.berg@intel.com>,
-        Johannes Berg <johannes@sipsolutions.net>,
-        John Keeping <john@metanate.com>,
-        Juergen Gross <jgross@suse.com>, Kalle Valo <kvalo@kernel.org>,
-        Keith Packard <keithp@keithp.com>, keyrings@vger.kernel.org,
-        kunit-dev@googlegroups.com,
-        Kuniyuki Iwashima <kuniyu@amazon.co.jp>,
-        "K. Y. Srinivasan" <kys@microsoft.com>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Lee Jones <lee.jones@linaro.org>,
-        Leon Romanovsky <leon@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        linux1394-devel@lists.sourceforge.net,
-        linux-afs@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-arm-msm@vger.kernel.org, linux-bluetooth@vger.kernel.org,
-        linux-hardening@vger.kernel.org, linux-hyperv@vger.kernel.org,
-        linux-integrity@vger.kernel.org, linux-rdma@vger.kernel.org,
-        linux-scsi@vger.kernel.org, linux-security-module@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-wireless@vger.kernel.org,
-        linux-xtensa@linux-xtensa.org, llvm@lists.linux.dev,
-        Loic Poulain <loic.poulain@linaro.org>,
-        Louis Peens <louis.peens@corigine.com>,
-        Luca Coelho <luciano.coelho@intel.com>,
-        Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
-        Marc Dionne <marc.dionne@auristor.com>,
-        Marcel Holtmann <marcel@holtmann.org>,
-        Mark Brown <broonie@kernel.org>,
-        "Martin K. Petersen" <martin.petersen@oracle.com>,
-        Max Filippov <jcmvbkbc@gmail.com>,
-        Mimi Zohar <zohar@linux.ibm.com>,
-        Muchun Song <songmuchun@bytedance.com>,
-        Nathan Chancellor <nathan@kernel.org>,
-        =?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rich Felker <dalias@aerifal.cx>,
-        Rob Herring <robh+dt@kernel.org>,
-        Russell King <linux@armlinux.org.uk>,
-        "Serge E. Hallyn" <serge@hallyn.com>,
-        SHA-cyfmac-dev-list@infineon.com,
-        Simon Horman <simon.horman@corigine.com>,
-        Stefano Stabellini <sstabellini@kernel.org>,
-        Stefan Richter <stefanr@s5r6.in-berlin.de>,
-        Stephen Hemminger <sthemmin@microsoft.com>,
-        Tadeusz Struk <tadeusz.struk@linaro.org>,
-        Takashi Iwai <tiwai@suse.com>, Tom Rix <trix@redhat.com>,
-        Udipto Goswami <quic_ugoswami@quicinc.com>,
-        Vincenzo Frascino <vincenzo.frascino@arm.com>,
-        wcn36xx@lists.infradead.org, Wei Liu <wei.liu@kernel.org>,
-        xen-devel@lists.xenproject.org,
-        Yang Yingliang <yangyingliang@huawei.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1651685100-44687-2-git-send-email-justinpopo6@gmail.com>
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 3, 2022 at 9:57 PM Kees Cook <keescook@chromium.org> wrote:
->
-> As part of the work to perform bounds checking on all memcpy() uses,
-> replace the open-coded a deserialization of bytes out of memory into a
-> trailing flexible array by using a flex_array.h helper to perform the
-> allocation, bounds checking, and copying:
->
->     struct xfrm_sec_ctx
->     struct sidtab_str_cache
->
-> Cc: Steffen Klassert <steffen.klassert@secunet.com>
-> Cc: Herbert Xu <herbert@gondor.apana.org.au>
-> Cc: "David S. Miller" <davem@davemloft.net>
-> Cc: Paul Moore <paul@paul-moore.com>
-> Cc: Stephen Smalley <stephen.smalley.work@gmail.com>
-> Cc: Eric Paris <eparis@parisplace.org>
-> Cc: Nick Desaulniers <ndesaulniers@google.com>
-> Cc: Xiu Jianfeng <xiujianfeng@huawei.com>
-> Cc: "Christian G=C3=B6ttsche" <cgzones@googlemail.com>
-> Cc: netdev@vger.kernel.org
-> Cc: selinux@vger.kernel.org
-> Signed-off-by: Kees Cook <keescook@chromium.org>
-> ---
->  include/uapi/linux/xfrm.h    | 4 ++--
->  security/selinux/ss/sidtab.c | 9 +++------
->  security/selinux/xfrm.c      | 7 ++-----
->  3 files changed, 7 insertions(+), 13 deletions(-)
->
-> diff --git a/include/uapi/linux/xfrm.h b/include/uapi/linux/xfrm.h
-> index 65e13a099b1a..4a6fa2beff6a 100644
-> --- a/include/uapi/linux/xfrm.h
-> +++ b/include/uapi/linux/xfrm.h
-> @@ -31,9 +31,9 @@ struct xfrm_id {
->  struct xfrm_sec_ctx {
->         __u8    ctx_doi;
->         __u8    ctx_alg;
-> -       __u16   ctx_len;
-> +       __DECLARE_FLEX_ARRAY_ELEMENTS_COUNT(__u16, ctx_len);
->         __u32   ctx_sid;
-> -       char    ctx_str[0];
-> +       __DECLARE_FLEX_ARRAY_ELEMENTS(char, ctx_str);
->  };
+Hi Justin,
 
-While I like the idea of this in principle, I'd like to hear about the
-testing you've done on these patches.  A previous flex array
-conversion in the audit uapi headers ended up causing a problem with
-GCC12 and SWIG; while it was a SWIG problem and not a kernel header
-problem that was thin consolation for those with broken builds.
+Thank you for the patch! Yet something to improve:
 
-> diff --git a/security/selinux/ss/sidtab.c b/security/selinux/ss/sidtab.c
-> index a54b8652bfb5..a9d434e8cff7 100644
-> --- a/security/selinux/ss/sidtab.c
-> +++ b/security/selinux/ss/sidtab.c
-> @@ -23,8 +23,8 @@ struct sidtab_str_cache {
->         struct rcu_head rcu_member;
->         struct list_head lru_member;
->         struct sidtab_entry *parent;
-> -       u32 len;
-> -       char str[];
-> +       DECLARE_FLEX_ARRAY_ELEMENTS_COUNT(u32, len);
-> +       DECLARE_FLEX_ARRAY_ELEMENTS(char, str);
->  };
->
->  #define index_to_sid(index) ((index) + SECINITSID_NUM + 1)
+[auto build test ERROR on v5.18-rc5]
+[also build test ERROR on next-20220504]
+[cannot apply to linusw-gpio/for-next]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
 
---=20
-paul-moore.com
+url:    https://github.com/intel-lab-lkp/linux/commits/Justin-Chen/Add-support-for-NXP-PCA6408/20220505-020844
+base:    672c0c5173427e6b3e2a9bbb7be51ceeec78093a
+config: microblaze-randconfig-r031-20220501 (https://download.01.org/0day-ci/archive/20220505/202205050612.1bwSZpER-lkp@intel.com/config)
+compiler: microblaze-linux-gcc (GCC) 11.3.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/d45d7c84e1613b51cb1eb90ef6d92f4112a45925
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Justin-Chen/Add-support-for-NXP-PCA6408/20220505-020844
+        git checkout d45d7c84e1613b51cb1eb90ef6d92f4112a45925
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.3.0 make.cross W=1 O=build_dir ARCH=microblaze SHELL=/bin/bash drivers/gpio/
+
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
+
+All errors (new ones prefixed by >>):
+
+>> drivers/gpio/gpio-pca953x.c:74:27: error: 'PCA953x_TYPE' undeclared here (not in a function); did you mean 'PCA953X_TYPE'?
+      74 |         { "pca6408", 8  | PCA953x_TYPE | PCA_INT, },
+         |                           ^~~~~~~~~~~~
+         |                           PCA953X_TYPE
+
+
+vim +74 drivers/gpio/gpio-pca953x.c
+
+    72	
+    73	static const struct i2c_device_id pca953x_id[] = {
+  > 74		{ "pca6408", 8  | PCA953x_TYPE | PCA_INT, },
+    75		{ "pca6416", 16 | PCA953X_TYPE | PCA_INT, },
+    76		{ "pca9505", 40 | PCA953X_TYPE | PCA_INT, },
+    77		{ "pca9506", 40 | PCA953X_TYPE | PCA_INT, },
+    78		{ "pca9534", 8  | PCA953X_TYPE | PCA_INT, },
+    79		{ "pca9535", 16 | PCA953X_TYPE | PCA_INT, },
+    80		{ "pca9536", 4  | PCA953X_TYPE, },
+    81		{ "pca9537", 4  | PCA953X_TYPE | PCA_INT, },
+    82		{ "pca9538", 8  | PCA953X_TYPE | PCA_INT, },
+    83		{ "pca9539", 16 | PCA953X_TYPE | PCA_INT, },
+    84		{ "pca9554", 8  | PCA953X_TYPE | PCA_INT, },
+    85		{ "pca9555", 16 | PCA953X_TYPE | PCA_INT, },
+    86		{ "pca9556", 8  | PCA953X_TYPE, },
+    87		{ "pca9557", 8  | PCA953X_TYPE, },
+    88		{ "pca9574", 8  | PCA957X_TYPE | PCA_INT, },
+    89		{ "pca9575", 16 | PCA957X_TYPE | PCA_INT, },
+    90		{ "pca9698", 40 | PCA953X_TYPE, },
+    91	
+    92		{ "pcal6416", 16 | PCA953X_TYPE | PCA_LATCH_INT, },
+    93		{ "pcal6524", 24 | PCA953X_TYPE | PCA_LATCH_INT, },
+    94		{ "pcal9535", 16 | PCA953X_TYPE | PCA_LATCH_INT, },
+    95		{ "pcal9554b", 8  | PCA953X_TYPE | PCA_LATCH_INT, },
+    96		{ "pcal9555a", 16 | PCA953X_TYPE | PCA_LATCH_INT, },
+    97	
+    98		{ "max7310", 8  | PCA953X_TYPE, },
+    99		{ "max7312", 16 | PCA953X_TYPE | PCA_INT, },
+   100		{ "max7313", 16 | PCA953X_TYPE | PCA_INT, },
+   101		{ "max7315", 8  | PCA953X_TYPE | PCA_INT, },
+   102		{ "max7318", 16 | PCA953X_TYPE | PCA_INT, },
+   103		{ "pca6107", 8  | PCA953X_TYPE | PCA_INT, },
+   104		{ "tca6408", 8  | PCA953X_TYPE | PCA_INT, },
+   105		{ "tca6416", 16 | PCA953X_TYPE | PCA_INT, },
+   106		{ "tca6424", 24 | PCA953X_TYPE | PCA_INT, },
+   107		{ "tca9539", 16 | PCA953X_TYPE | PCA_INT, },
+   108		{ "tca9554", 8  | PCA953X_TYPE | PCA_INT, },
+   109		{ "xra1202", 8  | PCA953X_TYPE },
+   110		{ }
+   111	};
+   112	MODULE_DEVICE_TABLE(i2c, pca953x_id);
+   113	
+
+-- 
+0-DAY CI Kernel Test Service
+https://01.org/lkp
