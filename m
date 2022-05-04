@@ -2,97 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D47951B032
-	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 23:14:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CD3C751B03F
+	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 23:17:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237092AbiEDVR6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 May 2022 17:17:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60428 "EHLO
+        id S1378545AbiEDVV1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 May 2022 17:21:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35452 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232427AbiEDVRw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 17:17:52 -0400
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A37264D60D;
-        Wed,  4 May 2022 14:14:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1651698855; x=1683234855;
-  h=date:from:to:cc:subject:in-reply-to:message-id:
-   references:mime-version;
-  bh=Cj2D+b59wkw3CToYcJa5g3cc4lPf7xHjm9JCn4zgTJs=;
-  b=nYad37At3y0c/94d/Vf9l9ky1fp6ql2aBTdOLpDzvj/GyZV/GvmcJHYM
-   3fBrtRwNeJGVDt9FoTLVT4u3tswqnyFQLFYXztBwRiUnioVPK2QhxIvvc
-   lQPvpGnhoqmNCYR/jZFg6kMUGweNlEvc53pAP+6KIBxzfAFxHoaEnObPY
-   Cya9L5cla5vyUrKMiWZkjcK4iQ+HHUiPKunVcFzGZLQNtYZ7tJba28qMP
-   Rmc+qLXziZVuAPpW3kPj+Q9O+/nypkq2xp3AeKp6A6AcnEIaDcWcGxO2c
-   RbyH2jf8scvr2RrUxJSs5g0f+3t8h3hJPGkCNAHi8KMsDSPVcQBoqlTxF
-   g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10337"; a="354339092"
-X-IronPort-AV: E=Sophos;i="5.91,199,1647327600"; 
-   d="scan'208";a="354339092"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 May 2022 14:14:15 -0700
-X-IronPort-AV: E=Sophos;i="5.91,199,1647327600"; 
-   d="scan'208";a="664653734"
-Received: from rhweight-wrk1.ra.intel.com ([137.102.106.43])
-  by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 May 2022 14:14:15 -0700
-Date:   Wed, 4 May 2022 14:14:15 -0700 (PDT)
-From:   matthew.gerlach@linux.intel.com
-X-X-Sender: mgerlach@rhweight-WRK1
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-cc:     dinguyen@kernel.org, robh+dt@kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Subject: Re: [PATCH v2 3/3] arm64: dts: intel: add device tree for n6000
-In-Reply-To: <d9608f47-e70b-43bd-14a1-d03b2ca3b1a9@linaro.org>
-Message-ID: <alpine.DEB.2.22.394.2205041413190.2669897@rhweight-WRK1>
-References: <20220503194546.1287679-1-matthew.gerlach@linux.intel.com> <20220503194546.1287679-4-matthew.gerlach@linux.intel.com> <d9608f47-e70b-43bd-14a1-d03b2ca3b1a9@linaro.org>
-User-Agent: Alpine 2.22 (DEB 394 2020-01-19)
+        with ESMTP id S1378543AbiEDVV0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 17:21:26 -0400
+Received: from mail-pj1-x102a.google.com (mail-pj1-x102a.google.com [IPv6:2607:f8b0:4864:20::102a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 719654ECF1
+        for <devicetree@vger.kernel.org>; Wed,  4 May 2022 14:17:49 -0700 (PDT)
+Received: by mail-pj1-x102a.google.com with SMTP id z5-20020a17090a468500b001d2bc2743c4so2355397pjf.0
+        for <devicetree@vger.kernel.org>; Wed, 04 May 2022 14:17:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=8el4Rk0mk4LC6bzVxN9Wiyp6vHwSjolb835IADqSIQA=;
+        b=Y5V6GbrOtAzxivDyfLt5L5uZBXZlDDFBVcmRvZ3OOddanp56F72NsQK+Qec3PrNyH8
+         3SyQOe7yX5XMzvHZZbFpU3shQgwuqE6Ur9/o9SiEi5lTQpRUBzF2JCLai3oDiAyr1EOb
+         4usgamJAanu8dWMORqEYK6u7oaqD4PI1x3w/I=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=8el4Rk0mk4LC6bzVxN9Wiyp6vHwSjolb835IADqSIQA=;
+        b=KcB8J6rmYWqoa7NuBXfGWrquI9EdL6MWNgDWumQoO/UNWaC99CG/1EzJuSuj5klV94
+         cI3KSK675OJMylNHyXLL8ZIrcOIUPBNNYFlfoCLlBTBhDetucEkRazZPwRHPZk/aLsYc
+         r02W6JwmTojcdThj1S40kSdp1VHnzMW9TYsrm/Q1yBfcpwnHlHzmnhEtBMOMkD6mlwUo
+         i6f/hOQLI6kzrY9PiWvHrNFrfa9MYcKLGHsAQ6oGDNqMA+NB/hisszaqCVlCyOof+WTp
+         WrDH0DSJbPk3dY5xLUiQDI7b5xjv0nmqvAffB4wEcaw0GIoLbrqMVEFtxFXAD04Dgnhs
+         ++0Q==
+X-Gm-Message-State: AOAM531eZhATzOL8gUyGplJRlsnmoPdHR0Jsb1iHG2BzOYM+PEC4GkN2
+        k2SO8+uKJZxLYT51uPWnyrhRxg==
+X-Google-Smtp-Source: ABdhPJwhlBxZacPgfc5H9mWbA5FH2eaEZzDvZ33SWLjd1tzJzoZhiR0LdHYinUeTZ9WuECufN0sw3A==
+X-Received: by 2002:a17:902:d4ce:b0:15e:90f7:5bf7 with SMTP id o14-20020a170902d4ce00b0015e90f75bf7mr21335093plg.98.1651699068765;
+        Wed, 04 May 2022 14:17:48 -0700 (PDT)
+Received: from localhost ([2620:15c:202:201:35b6:c77b:be04:3bd5])
+        by smtp.gmail.com with UTF8SMTPSA id o4-20020a17090ab88400b001dbf2aac185sm3739324pjr.1.2022.05.04.14.17.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 04 May 2022 14:17:48 -0700 (PDT)
+Date:   Wed, 4 May 2022 14:17:46 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+Cc:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, quic_rohkumar@quicinc.com,
+        srinivas.kandagatla@linaro.org, dianders@chromium.org,
+        swboyd@chromium.org, judyhsiao@chromium.org,
+        Venkata Prasad Potturu <quic_potturu@quicinc.com>
+Subject: Re: [PATCH v11 02/12] arm64: dts: qcom: sc7280: Enable digital
+ codecs and soundwire for CRD 1.0/2.0 and IDP boards
+Message-ID: <YnLteplwGCBheObA@google.com>
+References: <1651664649-25290-1-git-send-email-quic_srivasam@quicinc.com>
+ <1651664649-25290-3-git-send-email-quic_srivasam@quicinc.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII; format=flowed
-X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <1651664649-25290-3-git-send-email-quic_srivasam@quicinc.com>
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, May 04, 2022 at 05:13:59PM +0530, Srinivasa Rao Mandadapu wrote:
+> Enable rx, tx and va macro codecs and soundwire nodes on revision 3,
+> 4 (aka CRD 1.0 and 2.0) and IDP boards.
+> 
+> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+> Co-developed-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
+> Signed-off-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
 
+Please make sure to collect tags, for v10 you already had:
 
-On Wed, 4 May 2022, Krzysztof Kozlowski wrote:
-
-> On 03/05/2022 21:45, matthew.gerlach@linux.intel.com wrote:
->> From: Matthew Gerlach <matthew.gerlach@linux.intel.com>
->>
->> Add a device tree for the n6000 instantiation of Agilex
->> Hard Processor System (HPS).
->>
->> Signed-off-by: Matthew Gerlach <matthew.gerlach@linux.intel.com>
->> +
->> +&spi0 {
->> +	status = "okay";
->> +
->> +	spidev: spidev@0 {
->> +		status = "okay";
->> +		compatible = "linux,spidev";
->> +		spi-max-frequency = <25000000>;
->> +		reg = <0>;
->
-> You should see big fat warnings - from checkpatch and when you boot your
-> device. This compatible is not accepted.
-
-I must have missed the warning for the compatible string.  I see it now, 
-and I remove the node in the v3 patch set.
-
-Thanks for the feedback.
->
-> Please be sure you run checkpatch on your patches. Using reviewers time
-> instead of automated tool for the same job is discouraged...
->
->
-> Best regards,
-> Krzysztof
->
+Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
