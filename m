@@ -2,67 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 68008519C03
-	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 11:37:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F2C57519C15
+	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 11:42:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347471AbiEDJkh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 May 2022 05:40:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48598 "EHLO
+        id S1347263AbiEDJqC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 May 2022 05:46:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54098 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245591AbiEDJk0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 05:40:26 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2FC226564;
-        Wed,  4 May 2022 02:36:50 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id 1B0EB1F44761
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1651657009;
-        bh=7vMV83riab//ztpkWA1Ve1xv8JZ97Ulw/BxrBxOF+0A=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=bC9csRZGUw2FlsRfuX8zn7yt63zBFyHioHxzNj7l9WXIaPE9d4bzp2oVI44+enkKB
-         9Y2GFiqtBuUApLk0WmANFpZB+oK8eXuXoUkMv1KoyVsZRaelXDc1YERglB8x8nk9Ya
-         l3nm+8ejSfZdcfBQHcXpe0ISHb/hmvfDmjU7CBcmQGKViSCkyFp2mFSOECPHctmJfU
-         2Zqckg2hxX5UBBjSXOD0HCnA5TG77QjFvGLlw29kmYBV2aBWifiF2dKaMzzVW0Bsv5
-         FYc8EgKX5lcxoa0KPTiCgG4KdXs0S9gE63klnWO4fP4UKfvV832msTCeWqNEH7PQ/Y
-         GG+bwiE6Z4mRA==
-Message-ID: <276ef83c-c824-3874-c36e-4d422794d7dc@collabora.com>
-Date:   Wed, 4 May 2022 11:36:46 +0200
+        with ESMTP id S238227AbiEDJp7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 05:45:59 -0400
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40CAE26AC8;
+        Wed,  4 May 2022 02:42:22 -0700 (PDT)
+Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 2446C7E6018201;
+        Wed, 4 May 2022 11:42:00 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=selector1;
+ bh=RSjmW4IjUGZ/bQ/two1rZ1aHlJIVLGx+97yQ1s1zd4A=;
+ b=JkwE7esC89R64iqYz9q+1Wyv3tHA6csHuhH/W/gaRAX4Y4FkcHsPpLsJVGsDP/PlPKM/
+ x9vw1JMYyrXVDV9S09ff5LYhUicrDOW6+K3cQBxgnbSDZpclUUCtS6E95K2nqCMsB8kd
+ oNhtKpfAN/o5Pz+bvMomqiEq914ff0Xua2ygEjgPbfRo+1CyZG3pZ4at1lwo4bkwQriP
+ BuDMchsW0nD6qgsqFBdJtBTjBQJ+Lv1NohNy40Mqirl3ETJko6qrt3ga/eYgSSQO3OaU
+ GdZVkGDZQSk+PB7VCzWl7HFBGv759H0xXjPQF+KSRf3wmloGoyd1RP0xLJXbXUy5q15a rg== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3frthjubws-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 04 May 2022 11:42:00 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 28C9610002A;
+        Wed,  4 May 2022 11:41:58 +0200 (CEST)
+Received: from Webmail-eu.st.com (sfhdag2node2.st.com [10.75.127.5])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 114BE216EE0;
+        Wed,  4 May 2022 11:41:58 +0200 (CEST)
+Received: from localhost (10.75.127.45) by SFHDAG2NODE2.st.com (10.75.127.5)
+ with Microsoft SMTP Server (TLS) id 15.0.1497.26; Wed, 4 May 2022 11:41:57
+ +0200
+From:   Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>
+CC:     <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-remoteproc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
+Subject: [PATCH] dt-bindings: remoteproc: Fix phandle-array parameters description
+Date:   Wed, 4 May 2022 11:41:43 +0200
+Message-ID: <20220504094143.1272200-1-arnaud.pouliquen@foss.st.com>
+X-Mailer: git-send-email 2.24.3
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH 1/2] dt-bindings: soc: mediatek: devapc: Add bindings for
- MT8186
-Content-Language: en-US
-To:     Rex-BC Chen <rex-bc.chen@mediatek.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com
-Cc:     neal.liu@mediatek.com, runyang.chen@mediatek.com,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20220429065429.7957-1-rex-bc.chen@mediatek.com>
- <20220429065429.7957-2-rex-bc.chen@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20220429065429.7957-2-rex-bc.chen@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.75.127.45]
+X-ClientProxiedBy: SFHDAG2NODE2.st.com (10.75.127.5) To SFHDAG2NODE2.st.com
+ (10.75.127.5)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.858,Hydra:6.0.486,FMLib:17.11.64.514
+ definitions=2022-05-04_03,2022-05-02_03,2022-02-23_01
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 29/04/22 08:54, Rex-BC Chen ha scritto:
-> Add the dt-binding to support MT8186 devapc.
-> 
-> Signed-off-by: Rex-BC Chen <rex-bc.chen@mediatek.com>
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Replace the FIXME by appropriate description.
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Fixes: 39bd2b6a3783 ("dt-bindings: Improve phandle-array schemas")
+Signed-off-by: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
+---
+ .../bindings/remoteproc/st,stm32-rproc.yaml      | 16 ++++++++--------
+ 1 file changed, 8 insertions(+), 8 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/remoteproc/st,stm32-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/st,stm32-rproc.yaml
+index be3d9b0e876b..da50f0e99fe2 100644
+--- a/Documentation/devicetree/bindings/remoteproc/st,stm32-rproc.yaml
++++ b/Documentation/devicetree/bindings/remoteproc/st,stm32-rproc.yaml
+@@ -43,8 +43,8 @@ properties:
+     items:
+       - items:
+           - description: Phandle of syscon block
+-          - description: FIXME
+-          - description: FIXME
++          - description: The offset of the trust zone setting register
++          - description: The field mask of the trust zone state
+ 
+   interrupts:
+     description: Should contain the WWDG1 watchdog reset interrupt
+@@ -101,8 +101,8 @@ properties:
+     items:
+       - items:
+           - description: Phandle of syscon block
+-          - description: FIXME
+-          - description: FIXME
++          - description: The offset of the power setting register
++          - description: The field mask of the PDDS selection
+ 
+   st,syscfg-m4-state:
+     $ref: "/schemas/types.yaml#/definitions/phandle-array"
+@@ -111,8 +111,8 @@ properties:
+     items:
+       - items:
+           - description: Phandle of syscon block with the tamp register
+-          - description: FIXME
+-          - description: FIXME
++          - description: The offset of the tamp register
++          - description: The field mask of the Cortex-M4 state
+ 
+   st,syscfg-rsc-tbl:
+     $ref: "/schemas/types.yaml#/definitions/phandle-array"
+@@ -122,8 +122,8 @@ properties:
+     items:
+       - items:
+           - description: Phandle of syscon block with the tamp register
+-          - description: FIXME
+-          - description: FIXME
++          - description: The offset of the tamp register
++          - description: The field mask of the Cortex-M4 resource table address
+ 
+   st,auto-boot:
+     $ref: /schemas/types.yaml#/definitions/flag
+-- 
+2.24.3
 
