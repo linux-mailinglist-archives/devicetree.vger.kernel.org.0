@@ -2,224 +2,265 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 24A5951A4F8
-	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 18:09:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2BF1251A514
+	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 18:14:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1353073AbiEDQMo convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 4 May 2022 12:12:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45202 "EHLO
+        id S1353159AbiEDQR6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 May 2022 12:17:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49616 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1353078AbiEDQMm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 12:12:42 -0400
-Received: from eu-smtp-delivery-151.mimecast.com (eu-smtp-delivery-151.mimecast.com [185.58.85.151])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id C3EA8326EC
-        for <devicetree@vger.kernel.org>; Wed,  4 May 2022 09:09:04 -0700 (PDT)
-Received: from AcuMS.aculab.com (156.67.243.121 [156.67.243.121]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- uk-mta-304-235WxlwhNjKFdg4Xv28oCg-1; Wed, 04 May 2022 17:08:18 +0100
-X-MC-Unique: 235WxlwhNjKFdg4Xv28oCg-1
-Received: from AcuMS.Aculab.com (fd9f:af1c:a25b:0:994c:f5c2:35d6:9b65) by
- AcuMS.aculab.com (fd9f:af1c:a25b:0:994c:f5c2:35d6:9b65) with Microsoft SMTP
- Server (TLS) id 15.0.1497.32; Wed, 4 May 2022 17:08:15 +0100
-Received: from AcuMS.Aculab.com ([fe80::994c:f5c2:35d6:9b65]) by
- AcuMS.aculab.com ([fe80::994c:f5c2:35d6:9b65%12]) with mapi id
- 15.00.1497.033; Wed, 4 May 2022 17:08:15 +0100
-From:   David Laight <David.Laight@ACULAB.COM>
-To:     'Kees Cook' <keescook@chromium.org>,
-        Johannes Berg <johannes@sipsolutions.net>
-CC:     "Gustavo A . R . Silva" <gustavoars@kernel.org>,
-        Keith Packard <keithp@keithp.com>,
-        Francis Laniel <laniel_francis@privacyrequired.com>,
-        Daniel Axtens <dja@axtens.net>,
-        Dan Williams <dan.j.williams@intel.com>,
-        Vincenzo Frascino <vincenzo.frascino@arm.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Daniel Vetter <daniel.vetter@ffwll.ch>,
-        Tadeusz Struk <tadeusz.struk@linaro.org>,
-        Alexei Starovoitov <ast@kernel.org>,
-        "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
-        Al Viro <viro@zeniv.linux.org.uk>,
-        Andrew Gabbasov <andrew_gabbasov@mentor.com>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        Andy Gross <agross@kernel.org>,
-        Andy Lavr <andy.lavr@gmail.com>,
-        Arend van Spriel <aspriel@gmail.com>,
-        "Baowen Zheng" <baowen.zheng@corigine.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Boris Ostrovsky <boris.ostrovsky@oracle.com>,
-        Bradley Grove <linuxdrivers@attotech.com>,
-        "brcm80211-dev-list.pdl@broadcom.com" 
-        <brcm80211-dev-list.pdl@broadcom.com>,
-        Christian Brauner <brauner@kernel.org>,
-        =?iso-8859-1?Q?Christian_G=F6ttsche?= <cgzones@googlemail.com>,
-        Christian Lamparter <chunkeey@googlemail.com>,
-        Chris Zankel <chris@zankel.net>,
-        Cong Wang <cong.wang@bytedance.com>,
-        "David Gow" <davidgow@google.com>,
-        David Howells <dhowells@redhat.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Dennis Dalessandro <dennis.dalessandro@cornelisnetworks.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Dexuan Cui <decui@microsoft.com>,
-        "Dmitry Kasatkin" <dmitry.kasatkin@gmail.com>,
-        Eli Cohen <elic@nvidia.com>,
-        "Eric Dumazet" <edumazet@google.com>,
-        Eric Paris <eparis@parisplace.org>,
-        "Eugeniu Rosca" <erosca@de.adit-jv.com>,
-        Felipe Balbi <balbi@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Franky Lin <franky.lin@broadcom.com>,
-        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
-        Gregory Greenman <gregory.greenman@intel.com>,
-        Haiyang Zhang <haiyangz@microsoft.com>,
-        "Hante Meuleman" <hante.meuleman@broadcom.com>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        Hulk Robot <hulkci@huawei.com>,
+        with ESMTP id S1353141AbiEDQR6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 12:17:58 -0400
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E0D327B39;
+        Wed,  4 May 2022 09:14:19 -0700 (PDT)
+Received: by mail-ej1-x62a.google.com with SMTP id j6so3801962ejc.13;
+        Wed, 04 May 2022 09:14:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=EO/exjYIL2Y7doxRAG/8tv0+K4n654l6gAS/q81p8VU=;
+        b=MqhOzlGbNPDmmEkZxrkvlxT8yAsFHCS5fJpOrOc96wYcV7RZliRUshFSrY7sMN8ssE
+         0ifZJBu1ODc9B+x7yzT8DuPqVdxoy3EEmWNQfcoDjW4lKC4L7mQdunYBXLjNKoBLuA5t
+         x+ejzkmyot4gDA6E0riYHZsfTuahHqqC6m7H66ECjJ199S3NO2rg5rH04JCxOUbFMHIJ
+         wMqHdnlRpf0XAaDhBj/6jvNZRxGA0j5DfuHILXTvItX9d88lZgDfE3M5ceuVGjRwIYHB
+         HODrZsf2ceJPTpk8hlUwTAz6qaqG2jpKhhVxAdnwXQpHe6PWpfKOt8Tmil5aTRlwTGDy
+         d+Og==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=EO/exjYIL2Y7doxRAG/8tv0+K4n654l6gAS/q81p8VU=;
+        b=T2HZBaQ1s8L4CBXt2hcIvh0YzvQvs0quAPhS6cigVQwDLhS8RUMt+6Uho8hLNn4UoU
+         gjh+LVay58kanMPURMmkLZvvHhRGKcMElaNL1mwUYOjEYYGEYBpTOjKUa/o7Bz/qGVDp
+         TcNzje99HzQePDWDWDfHU+XNlTbHdwiQMPogTL9ihDR5/5/k/LHkfRszrXX2FVfhF8xG
+         Lz8zzRomAEcdth+PNrXzldHDguGKphzgyZtlTI1o1YCKirbzCnqbZ8hbrmEdcNU8TqAC
+         b70/RFMm7+erOeLmsSoTyxFu+uqFSGPzaVDi2velh8iERoOHsdcTRIqkaVR44ZMcjwYi
+         aj/g==
+X-Gm-Message-State: AOAM532XGgjSA1OCf+GhYhuC2v8YDOORvdp8PSNJj1wc2aN9yHuaqOq5
+        Nq3RZH7KKolqCEo6mlmqBfsft8iCSWo=
+X-Google-Smtp-Source: ABdhPJy9c9TpbTPzuMmXBwFXbHfvSuQ6WT98ztnuNFRqTqFEUnA7xkC7oz2tfhV5q0bxgxpXCpwa1w==
+X-Received: by 2002:a17:907:7212:b0:6f4:7d9:5f78 with SMTP id dr18-20020a170907721200b006f407d95f78mr20039274ejc.474.1651680857768;
+        Wed, 04 May 2022 09:14:17 -0700 (PDT)
+Received: from skbuf ([188.25.160.86])
+        by smtp.gmail.com with ESMTPSA id ml11-20020a170906cc0b00b006f3ef214e59sm5916928ejb.191.2022.05.04.09.14.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 04 May 2022 09:14:17 -0700 (PDT)
+Date:   Wed, 4 May 2022 19:14:14 +0300
+From:   Vladimir Oltean <olteanv@gmail.com>
+To:     =?utf-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
         Jakub Kicinski <kuba@kernel.org>,
-        "James E.J. Bottomley" <jejb@linux.ibm.com>,
-        James Morris <jmorris@namei.org>,
-        Jarkko Sakkinen <jarkko@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Jason Gunthorpe <jgg@ziepe.ca>, Jens Axboe <axboe@kernel.dk>,
-        Johan Hedberg <johan.hedberg@gmail.com>,
-        John Keeping <john@metanate.com>,
-        Juergen Gross <jgross@suse.com>, Kalle Valo <kvalo@kernel.org>,
-        "keyrings@vger.kernel.org" <keyrings@vger.kernel.org>,
-        "kunit-dev@googlegroups.com" <kunit-dev@googlegroups.com>,
-        Kuniyuki Iwashima <kuniyu@amazon.co.jp>,
-        "K. Y. Srinivasan" <kys@microsoft.com>,
-        "Lars-Peter Clausen" <lars@metafoo.de>,
-        Lee Jones <lee.jones@linaro.org>,
-        Leon Romanovsky <leon@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        "linux1394-devel@lists.sourceforge.net" 
-        <linux1394-devel@lists.sourceforge.net>,
-        "linux-afs@lists.infradead.org" <linux-afs@lists.infradead.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
-        "linux-bluetooth@vger.kernel.org" <linux-bluetooth@vger.kernel.org>,
-        "linux-hardening@vger.kernel.org" <linux-hardening@vger.kernel.org>,
-        "linux-hyperv@vger.kernel.org" <linux-hyperv@vger.kernel.org>,
-        "linux-integrity@vger.kernel.org" <linux-integrity@vger.kernel.org>,
-        "linux-rdma@vger.kernel.org" <linux-rdma@vger.kernel.org>,
-        "linux-scsi@vger.kernel.org" <linux-scsi@vger.kernel.org>,
-        "linux-security-module@vger.kernel.org" 
-        <linux-security-module@vger.kernel.org>,
-        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-        "linux-wireless@vger.kernel.org" <linux-wireless@vger.kernel.org>,
-        "linux-xtensa@linux-xtensa.org" <linux-xtensa@linux-xtensa.org>,
-        "llvm@lists.linux.dev" <llvm@lists.linux.dev>,
-        Loic Poulain <loic.poulain@linaro.org>,
-        Louis Peens <louis.peens@corigine.com>,
-        Luca Coelho <luciano.coelho@intel.com>,
-        "Luiz Augusto von Dentz" <luiz.dentz@gmail.com>,
-        Marc Dionne <marc.dionne@auristor.com>,
-        Marcel Holtmann <marcel@holtmann.org>,
-        Mark Brown <broonie@kernel.org>,
-        "Martin K. Petersen" <martin.petersen@oracle.com>,
-        "Max Filippov" <jcmvbkbc@gmail.com>,
-        Mimi Zohar <zohar@linux.ibm.com>,
-        Muchun Song <songmuchun@bytedance.com>,
-        Nathan Chancellor <nathan@kernel.org>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        Nick Desaulniers <ndesaulniers@google.com>,
-        =?iso-8859-1?Q?Nuno_S=E1?= <nuno.sa@analog.com>,
         Paolo Abeni <pabeni@redhat.com>,
-        Paul Moore <paul@paul-moore.com>,
-        "Rich Felker" <dalias@aerifal.cx>,
         Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
         Russell King <linux@armlinux.org.uk>,
-        "selinux@vger.kernel.org" <selinux@vger.kernel.org>,
-        "Serge E. Hallyn" <serge@hallyn.com>,
-        "SHA-cyfmac-dev-list@infineon.com" <SHA-cyfmac-dev-list@infineon.com>,
-        Simon Horman <simon.horman@corigine.com>,
-        Stefano Stabellini <sstabellini@kernel.org>,
-        Stefan Richter <stefanr@s5r6.in-berlin.de>,
-        Steffen Klassert <steffen.klassert@secunet.com>,
-        Stephen Hemminger <sthemmin@microsoft.com>,
-        Stephen Smalley <stephen.smalley.work@gmail.com>,
-        Takashi Iwai <tiwai@suse.com>, Tom Rix <trix@redhat.com>,
-        Udipto Goswami <quic_ugoswami@quicinc.com>,
-        "wcn36xx@lists.infradead.org" <wcn36xx@lists.infradead.org>,
-        Wei Liu <wei.liu@kernel.org>,
-        "xen-devel@lists.xenproject.org" <xen-devel@lists.xenproject.org>,
-        Xiu Jianfeng <xiujianfeng@huawei.com>,
-        "Yang Yingliang" <yangyingliang@huawei.com>
-Subject: RE: [PATCH 02/32] Introduce flexible array struct memcpy() helpers
-Thread-Topic: [PATCH 02/32] Introduce flexible array struct memcpy() helpers
-Thread-Index: AQHYX80GRJFxZRupFEigWcMQWGiaSK0O4MfQ
-Date:   Wed, 4 May 2022 16:08:15 +0000
-Message-ID: <bc2efc31d25e4f42a98f0a5d7a8ad88a@AcuMS.aculab.com>
-References: <20220504014440.3697851-1-keescook@chromium.org>
- <20220504014440.3697851-3-keescook@chromium.org>
- <d3b73d80f66325fdfaf2d1f00ea97ab3db03146a.camel@sipsolutions.net>
- <202205040819.DEA70BD@keescook>
-In-Reply-To: <202205040819.DEA70BD@keescook>
-Accept-Language: en-GB, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.202.205.107]
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Herve Codina <herve.codina@bootlin.com>,
+        =?utf-8?Q?Miqu=C3=A8l?= Raynal <miquel.raynal@bootlin.com>,
+        Milan Stevanovic <milan.stevanovic@se.com>,
+        Jimmy Lalande <jimmy.lalande@se.com>,
+        Pascal Eberhard <pascal.eberhard@se.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, netdev@vger.kernel.org,
+        Jean-Pierre Geslin <jean-pierre.geslin@non.se.com>,
+        Phil Edworthy <phil.edworthy@renesas.com>
+Subject: Re: [PATCH net-next v3 06/12] net: dsa: rzn1-a5psw: add Renesas
+ RZ/N1 advanced 5 port switch driver
+Message-ID: <20220504161414.u6riybjcrgachjvh@skbuf>
+References: <20220504093000.132579-1-clement.leger@bootlin.com>
+ <20220504093000.132579-7-clement.leger@bootlin.com>
 MIME-Version: 1.0
-Authentication-Results: relay.mimecast.com;
-        auth=pass smtp.auth=C51A453 smtp.mailfrom=david.laight@aculab.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: aculab.com
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220504093000.132579-7-clement.leger@bootlin.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Kees Cook
-> Sent: 04 May 2022 16:38
-...
-> > >     struct something *instance = NULL;
-> > >     int rc;
-> > >
-> > >     rc = mem_to_flex_dup(&instance, byte_array, count, GFP_KERNEL);
-> > >     if (rc)
-> > >         return rc;
-> >
-> > This seems rather awkward, having to set it to NULL, then checking rc
-> > (and possibly needing a separate variable for it), etc.
+On Wed, May 04, 2022 at 11:29:54AM +0200, Clément Léger wrote:
+> Add Renesas RZ/N1 advanced 5 port switch driver. This switch handles 5
+> ports including 1 CPU management port. A MDIO bus is also exposed by
+> this switch and allows to communicate with PHYs connected to the ports.
+> Each switch port (except for the CPU management ports) is connected to
+> the MII converter.
 > 
-> I think the errno return is completely required. I had an earlier version
-> of this that was much more like a drop-in replacement for memcpy that
-> would just truncate or panic, and when I had it all together, I could
-> just imagine hearing Linus telling me to start over because it was unsafe
-> (truncation may be just as bad as overflow) and disruptive ("never BUG"),
-> and that it should be recoverable. So, I rewrote it all to return a
-> __must_check errno.
+> This driver includes basic bridging support, more support will be added
+> later (vlan, etc).
 > 
-> Requiring instance to be NULL is debatable, but I feel pretty strongly
-> about it because it does handle a class of mistakes (resource leaks),
-> and it's not much of a burden to require a known-good starting state.
+> Suggested-by: Jean-Pierre Geslin <jean-pierre.geslin@non.se.com>
+> Suggested-by: Phil Edworthy <phil.edworthy@renesas.com>
+> Signed-off-by: Clément Léger <clement.leger@bootlin.com>
+> ---
+> +static void a5psw_port_disable(struct dsa_switch *ds, int port)
+> +{
+> +	struct a5psw *a5psw = ds->priv;
+> +
+> +	a5psw_port_authorize_set(a5psw, port, false);
+> +	a5psw_port_enable_set(a5psw, port, false);
+> +	a5psw_port_fdb_flush(a5psw, port);
 
-Why not make it look like malloc() since it seems to be malloc().
-That gives a much better calling convention.
-Passing pointers and integers by reference can generate horrid code.
-(Mostly because it stops the compiler keeping values in registers.)
+The bridge core takes care of this by setting the port state to
+DISABLED, which makes DSA call dsa_port_fast_age(), no?
 
-If you want the type information inside the 'function'
-use a #define so that the use is:
+Standalone ports shouldn't need fast ageing because they shouldn't have
+address learning enabled in the first place.
 
-	mem_to_flex_dup(instance, byte_array, count, GFP_KERNEL);
-	if (!instance)
-		return ...
-(or use ERR_PTR() etc).
+> +}
 
-	David
+> +static int a5psw_port_bridge_join(struct dsa_switch *ds, int port,
+> +				  struct dsa_bridge bridge,
+> +				  bool *tx_fwd_offload,
+> +				  struct netlink_ext_ack *extack)
+> +{
+> +	struct a5psw *a5psw = ds->priv;
+> +
+> +	/* We only support 1 bridge device */
+> +	if (a5psw->br_dev && bridge.dev != a5psw->br_dev)
+> +		return -EINVAL;
 
--
-Registered Address Lakeside, Bramley Road, Mount Farm, Milton Keynes, MK1 1PT, UK
-Registration No: 1397386 (Wales)
+return -EOPNOTSUPP, to allow software bridging.
+You might also want to set an extack message here and avoid overwriting
+it in dsa_slave_changeupper() with "Offloading not supported", but say
+something more specific like "Forwarding offload supported for a single
+bridge".
+
+> +
+> +	a5psw->br_dev = bridge.dev;
+> +	a5psw_flooding_set_resolution(a5psw, port, true);
+> +	a5psw_port_mgmtfwd_set(a5psw, port, false);
+> +
+> +	return 0;
+> +}
+> +
+> +static void a5psw_port_bridge_leave(struct dsa_switch *ds, int port,
+> +				    struct dsa_bridge bridge)
+> +{
+> +	struct a5psw *a5psw = ds->priv;
+> +
+> +	a5psw_flooding_set_resolution(a5psw, port, false);
+> +	a5psw_port_mgmtfwd_set(a5psw, port, true);
+> +
+> +	/* No more port bridged */
+
+s/port/ports/
+
+> +	if (a5psw->bridged_ports == BIT(A5PSW_CPU_PORT))
+> +		a5psw->br_dev = NULL;
+> +}
+
+> +static int a5psw_pcs_get(struct a5psw *a5psw)
+> +{
+> +	struct device_node *ports, *port, *pcs_node;
+> +	struct phylink_pcs *pcs;
+> +	int ret;
+> +	u32 reg;
+> +
+> +	ports = of_get_child_by_name(a5psw->dev->of_node, "ports");
+
+Can you please do:
+
+	ports = of_get_child_by_name(a5psw->dev->of_node, "ethernet-ports");
+	if (!ports)
+		ports = of_get_child_by_name(a5psw->dev->of_node, "ports");
+
+> +	if (!ports)
+> +		return -EINVAL;
+> +
+> +	for_each_available_child_of_node(ports, port) {
+> +		pcs_node = of_parse_phandle(port, "pcs-handle", 0);
+> +		if (!pcs_node)
+> +			continue;
+> +
+> +		if (of_property_read_u32(port, "reg", &reg)) {
+> +			ret = -EINVAL;
+> +			goto free_pcs;
+> +		}
+> +
+> +		if (reg >= ARRAY_SIZE(a5psw->pcs)) {
+> +			ret = -ENODEV;
+> +			goto free_pcs;
+> +		}
+> +
+> +		pcs = miic_create(pcs_node);
+> +		if (IS_ERR(pcs)) {
+> +			dev_err(a5psw->dev, "Failed to create PCS for port %d\n",
+> +				reg);
+> +			ret = PTR_ERR(pcs);
+> +			goto free_pcs;
+> +		}
+> +
+> +		a5psw->pcs[reg] = pcs;
+> +	}
+> +	of_node_put(ports);
+> +
+> +	return 0;
+> +
+> +free_pcs:
+> +	a5psw_pcs_free(a5psw);
+> +
+> +	return ret;
+> +}
+
+> +/* Ensure enough space for 2 VLAN tags */
+> +#define A5PSW_EXTRA_MTU_LEN		(A5PSW_TAG_LEN + 8)
+> +#define A5PSW_MAX_MTU			(A5PSW_JUMBO_LEN - A5PSW_EXTRA_MTU_LEN)
+> +#define A5PSW_MGMT_TAG_VALUE		0xE001
+> +
+> +#define A5PSW_PATTERN_MGMTFWD		0
+> +
+> +#define A5PSW_LK_BUSY_USEC_POLL		10
+> +#define A5PSW_CTRL_TIMEOUT		1000
+> +#define A5PSW_TABLE_ENTRIES		8192
+> +
+> +/**
+> + * struct a5psw - switch struct
+> + * @base: Base address of the switch
+> + * @hclk: hclk_switch clock
+> + * @clk: clk_switch clock
+> + * @dev: Device associated to the switch
+> + * @mii_bus: MDIO bus struct
+> + * @mdio_freq: MDIO bus frequency requested
+> + * @pcs: Array of PCS connected to the switch ports (not for the CPU)
+> + * @ds: DSA switch struct
+> + * @lk_lock: Lock for the lookup table
+> + * @reg_lock: Lock for register read-modify-write operation
+> + * @bridged_ports: List of ports that are bridged and should be flooded
+
+s/List/Mask/
+
+> + * @br_dev: Bridge net device
+> + */
+> +struct a5psw {
+> +	void __iomem *base;
+> +	struct clk *hclk;
+> +	struct clk *clk;
+> +	struct device *dev;
+> +	struct mii_bus	*mii_bus;
+> +	struct phylink_pcs *pcs[A5PSW_PORTS_NUM - 1];
+> +	struct dsa_switch ds;
+> +	spinlock_t lk_lock;
+> +	spinlock_t reg_lock;
+> +	u32 bridged_ports;
+> +	struct net_device *br_dev;
+> +};
+> -- 
+> 2.34.1
+> 
 
