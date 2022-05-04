@@ -2,112 +2,197 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F0DC451AF71
-	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 22:39:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 49C8551AF76
+	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 22:39:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343785AbiEDUmf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 May 2022 16:42:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53542 "EHLO
+        id S238988AbiEDUmz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 May 2022 16:42:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53844 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235824AbiEDUmf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 16:42:35 -0400
-Received: from mail-oi1-f169.google.com (mail-oi1-f169.google.com [209.85.167.169])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 226FA4FC5E;
-        Wed,  4 May 2022 13:38:58 -0700 (PDT)
-Received: by mail-oi1-f169.google.com with SMTP id v65so2365673oig.10;
-        Wed, 04 May 2022 13:38:58 -0700 (PDT)
+        with ESMTP id S1350809AbiEDUmy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 16:42:54 -0400
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6AF8E5044E;
+        Wed,  4 May 2022 13:39:17 -0700 (PDT)
+Received: by mail-ej1-x632.google.com with SMTP id bv19so5092197ejb.6;
+        Wed, 04 May 2022 13:39:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:to:references:from
+         :in-reply-to:content-transfer-encoding;
+        bh=Z2dVs5miBxmXIySFSNiW8pDoiQoVKCwO3mjzMYv3Zec=;
+        b=Z3rTg8R+bJUJWRg/IqgFAIFPaCR7ziAiygfcpmxywJGxkFelZ6ryfoerwCQFWwBGuh
+         BuoMD1Ye30enuoDCP5jTZ8WN8YiA0Ycp8uR+6PTS9wmOfcw3aTg0BgHGe5qL+KKtwWeL
+         ONuIUbWjegJbQT2F1WLK8wmWWn2DG5HrkbArMLk8OE8AwVOV3tuRbATvzcfVfVO+dqt3
+         6yiXjYYMhew0GLY/3t9n62r8VbRlMZIEPROXPtkZqubcZ86T6ih6pnpdRwON2VwKDLw7
+         xobGgdk4Q7SjknBYnViPJ8XgdX+EJB+iagSiDtrtYl826TDbKWpC0od7jAOgfxE5ETcR
+         4LiA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=AcpEU69sAJkwiV3catvTf9Ba2Nirs+uxT6TgvfUDezQ=;
-        b=aI1+bxMjx+oP8zZqlFHPpvekCh3BHxh13601zAKUIN8tanqW7Egx5swO7Xp0CIqVZD
-         TaWQSaJ8lB+OoImnVOUPEaljDAg5DKyiSRz7DzDJEHyPzHCwTZXJ5TWUQlZ/8ratyCjl
-         +Kg1DeBy36IkFh5aHPdls+kIT4JpKamE69rPgv3YegqtF2CO8HD3XH3Ww6SxToMngjpI
-         TLLOXIaaIOBf/XiuhPb59JS5/mSgxKJ6VAqkY04xB4OrgB9afE77JZo2vi8THBHL+gN+
-         821bOIR1hfafGixQvhSxciSKZguie+2em4L95giU2SSooPGimF4348SpM603/WPS41bl
-         2BbQ==
-X-Gm-Message-State: AOAM533AHZViDc9k4pzR205BKZftWV9qzt0eXDPARwCKYBdHBSUOGcqI
-        J5Fo3uRKvkgQgwHATKdaFA==
-X-Google-Smtp-Source: ABdhPJxqGL2rYGTLd4lmJ9hpkXvtgU1omEZJ82uy+vc3bVbntykS23hu/PcAgWaMqP8CbQy4JAssJw==
-X-Received: by 2002:aca:545:0:b0:325:6e7:992d with SMTP id 66-20020aca0545000000b0032506e7992dmr673969oif.244.1651696737433;
-        Wed, 04 May 2022 13:38:57 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id dv2-20020a056870d88200b000e93d386d97sm8387005oab.31.2022.05.04.13.38.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 May 2022 13:38:57 -0700 (PDT)
-Received: (nullmailer pid 2187220 invoked by uid 1000);
-        Wed, 04 May 2022 20:38:56 -0000
-Date:   Wed, 4 May 2022 15:38:56 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     =?iso-8859-1?Q?N=EDcolas_F=2E_R=2E_A=2E?= Prado 
-        <nfraprado@collabora.com>
-Cc:     Mark Brown <broonie@kernel.org>, kernel@collabora.com,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Jiaxin Yu <jiaxin.yu@mediatek.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Shane Chien <shane.chien@mediatek.com>,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH 1/3] ASoC: dt-bindings: mediatek: mt8192: Add i2s-share
- properties
-Message-ID: <YnLkYKmJ0TJ8uyjC@robh.at.kernel.org>
-References: <20220429203039.2207848-1-nfraprado@collabora.com>
- <20220429203039.2207848-2-nfraprado@collabora.com>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :to:references:from:in-reply-to:content-transfer-encoding;
+        bh=Z2dVs5miBxmXIySFSNiW8pDoiQoVKCwO3mjzMYv3Zec=;
+        b=284Kce0OEEZELR1BksEPrUdkG/Zo/Z0tdOaNRwtLiChSwhgw8GZ7rHrHuxOeWGcNWj
+         piPKnIIwfEnxA8p+249ZSYTP+sJj2wgVq05yHjdu5EpKoky3UQkkqMefZVyOmFj4niUP
+         TWDqQ+fAZo4ta3jLc8EV8vTwu/tIrSfrnIo/pmxl+p1KN5TwmtcGW/SK5g2zIdL3e9WZ
+         NsfVeVIj+b2FHplgmJgMxov6fZcG9xNYxHHnejFcFebrhfSUhsHWLUfDzO1gXWMECQYw
+         JXsYPrfoWAu9cCXz1iREcfuFR6LmDNhoKzLNI7fqgrx7b1RgdseA1LVFtwCvKjePNhh0
+         zf2Q==
+X-Gm-Message-State: AOAM532/a/udTKrK3HocjAHZh1OTAbqebhqeZh34Zju85U4TA4lodWv2
+        XW/8pLjAEfO75GxDxgeinmY=
+X-Google-Smtp-Source: ABdhPJz/STYDRpY8rzebL057RwSwOIeG+CcAiMnBZMkP5z3+WXgOu4hNxD/b2WeJThieF8B9LgOK8A==
+X-Received: by 2002:a17:906:9c82:b0:6df:c5f0:d456 with SMTP id fj2-20020a1709069c8200b006dfc5f0d456mr22153238ejc.287.1651696755643;
+        Wed, 04 May 2022 13:39:15 -0700 (PDT)
+Received: from [192.168.26.149] (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
+        by smtp.googlemail.com with ESMTPSA id bf16-20020a0564021a5000b0042617ba63aesm9675481edb.56.2022.05.04.13.39.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 04 May 2022 13:39:15 -0700 (PDT)
+Message-ID: <b2d90156-f29d-88a0-58b8-7fb32c08c837@gmail.com>
+Date:   Wed, 4 May 2022 22:39:14 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220429203039.2207848-2-nfraprado@collabora.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:96.0) Gecko/20100101
+ Thunderbird/96.0
+Subject: Re: [RESEND PATCH v3 1/2] dt-bindings: mtd: partitions: Document new
+ partition-dynamic nodes
+To:     Ansuel Smith <ansuelsmth@gmail.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220429124825.21477-1-ansuelsmth@gmail.com>
+ <20220429124825.21477-2-ansuelsmth@gmail.com>
+From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+In-Reply-To: <20220429124825.21477-2-ansuelsmth@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 29, 2022 at 04:30:37PM -0400, Nícolas F. R. A. Prado wrote:
-> The Mediatek AFE PCM controller for MT8192 allows sharing of an I2S bus
-> between two busses. Add a pattern for these properties in the
-> dt-binding.
+On 29.04.2022 14:48, Ansuel Smith wrote:
+> Document new partition-dynamic nodes used to provide an OF node for
+> partition registred at runtime by parsers. This is required for nvmem
+> system to declare and detect nvmem-cells.
 > 
-> Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+> With these special partitions, the reg / offset is not required.
+> The node name must be in the form of "partition name"-dynamic.
+> If the partition can't be displayed using the node name, it's possible
+> to use the label binding that will be used instead of the node name.
+> The node name or the label binding is used to match the partition
+> allocated by the parser at runtime and the parser will provide reg
+> and offset of the mtd.
 > 
+> NVMEM will use the data from the parser and provide the NVMEM cells
+> declared in the DTS, "connecting" the dynamic partition with a
+> static declaration of cells in them.
+> 
+> Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
 > ---
+>   .../mtd/partitions/partition-dynamic.yaml     | 56 +++++++++++++++++++
+>   .../mtd/partitions/qcom,smem-part.yaml        |  4 ++
+>   2 files changed, 60 insertions(+)
+>   create mode 100644 Documentation/devicetree/bindings/mtd/partitions/partition-dynamic.yaml
 > 
->  Documentation/devicetree/bindings/sound/mt8192-afe-pcm.yaml | 5 +++++
->  1 file changed, 5 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/sound/mt8192-afe-pcm.yaml b/Documentation/devicetree/bindings/sound/mt8192-afe-pcm.yaml
-> index 7a25bc9b8060..5b03c8dbf318 100644
-> --- a/Documentation/devicetree/bindings/sound/mt8192-afe-pcm.yaml
-> +++ b/Documentation/devicetree/bindings/sound/mt8192-afe-pcm.yaml
-> @@ -54,6 +54,11 @@ properties:
->        - const: aud_infra_clk
->        - const: aud_infra_26m_clk
->  
-> +patternProperties:
-> +  "^i2s[0-35-9]-share$":
-> +    description: Name of the I2S bus that is shared with this bus
-> +    pattern: "^I2S[0-35-9]$"
-
-Why not a phandle to the the other bus? That would be the DT way to do 
-it. But I'm not sure I really understand who is sharing what here.
-
+> diff --git a/Documentation/devicetree/bindings/mtd/partitions/partition-dynamic.yaml b/Documentation/devicetree/bindings/mtd/partitions/partition-dynamic.yaml
+> new file mode 100644
+> index 000000000000..e0efa58e4fac
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mtd/partitions/partition-dynamic.yaml
+> @@ -0,0 +1,56 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mtd/partitions/partition-dynamic.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
->  required:
->    - compatible
->    - interrupts
-> -- 
-> 2.36.0
-> 
-> 
+> +title: Dynamic Partition
+
+I'm not native but that "Dynamic Partition" sounds pretty natural and
+I'm wondering if you shouldn't make that binding dynamic-partition.yaml
+
+Any natives to comment on this? :)
+
+
+> +description: |
+> +  This binding describes a single flash partition that is dynamically allocated
+> +  by a dedicated parser that is not a fixed-partition parser.
+> +
+> +  A dynamic partition require the node ending with the "-dynamic" tag and if the
+> +  dynamic partition name can't be displayed using the node name, the label
+> +  properties can be used. The node name or the label have to match the dynamic
+> +  partition allocated by the parser.
+> +
+> +  These special partition definition can be used to give a dynamic partition
+> +  an OF node to declare NVMEM cells. An example is declaring the partition
+> +  label and all the NVMEM cells in it. The parser will detect the correct reg
+> +  and offset and the NVMEM will register the cells in it based on the data
+> +  extracted by the parser.
+> +
+> +maintainers:
+> +  - Ansuel Smith <ansuelsmth@gmail.com>
+> +
+> +properties:
+> +  label:
+> +    description: The label / name for the partition assigned by the parser at
+> +      runtime. This is needed for sybsystem like NVMEM to define cells and
+> +      register with this OF node.
+> +
+> +additionalProperties: true
+> +
+> +examples:
+> +  - |
+> +    flash {
+> +      partitions {
+> +        compatible = "qcom,smem-part";
+> +
+> +        art-dynamic {
+> +          compatible = "nvmem-cells";
+> +          #address-cells = <1>;
+> +          #size-cells = <1>;
+> +          label = "0:art";
+> +
+> +          macaddr_art_0: macaddr@0 {
+> +            reg = <0x0 0x6>;
+> +          };
+> +
+> +          macaddr_art_6: macaddr@6 {
+> +            reg = <0x6 0x6>;
+> +          };
+> +        };
+> +      };
+> +    };
+
+I see that we need a property (like "label") for storing partition name
+as it may contain characters not allowed in $nodename.
+
+Is there a reason to play with all that foo-dynamic $nodename then? With
+fallback from "label" to extracting foo from *-dynamic pattern?
+
+Could we just be lazy, keep things simple and require "label" property?
+
+Then we could e.g. require $nodename to be pattern ^partition-[0-9a-f]+$
+It's what leds-gpio.yaml does for reference.
+
+Example:
+
+partitions {
+	compatible = "foo";
+
+	partition-1 {
+		label = "bootloader";
+	};
+
+	partition-2 {
+		label = "0:art";
+	};
+};
