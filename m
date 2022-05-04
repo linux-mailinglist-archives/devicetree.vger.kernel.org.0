@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6462B51A093
-	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 15:19:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 665CD51A099
+	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 15:19:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350407AbiEDNXN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 May 2022 09:23:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33970 "EHLO
+        id S1350397AbiEDNXL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 May 2022 09:23:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34012 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350359AbiEDNXH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 09:23:07 -0400
+        with ESMTP id S1350374AbiEDNXI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 09:23:08 -0400
 Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52B7137A89
-        for <devicetree@vger.kernel.org>; Wed,  4 May 2022 06:19:30 -0700 (PDT)
-Received: by mail-ej1-x635.google.com with SMTP id gh6so2888343ejb.0
-        for <devicetree@vger.kernel.org>; Wed, 04 May 2022 06:19:30 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 753F31CB0F
+        for <devicetree@vger.kernel.org>; Wed,  4 May 2022 06:19:31 -0700 (PDT)
+Received: by mail-ej1-x635.google.com with SMTP id i27so2822378ejd.9
+        for <devicetree@vger.kernel.org>; Wed, 04 May 2022 06:19:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=G7irfyCQlD/M8tL+PfS8TGD+KmTIlsaIOgtkEZDavc8=;
-        b=HR9JpF8cgsadmt47pxzxG0FT3E+/zIhvH8v7yx3sqf9xRKstzI1D/CuJbh4EIqDL2H
-         Z0mWC1f6nY/uFvjPcqyxt/C9gUhBB9/7DEgt88W36p386VIidahonAtxgvuIITHcQzCw
-         ooQ1osUEi99qUsVaEKYfcPGIt9q5dYNcC1P4nl5ix6Haw78a9l41qQTYrWP2h9ln+LC1
-         5i4cS1OZRr6blhjloTBrtAtdbCUYp1Ii904wsTZLUtW7xrQKFWEr+NpjbeGRr3K0c6wL
-         zLQ5AX+jXe+g+xqvtVWFLXwq2jJYsE3wTqM+Cvd7sJ1xL6Zem4jPK60ZfeTyGzmw3xOF
-         TVAg==
+        bh=cIxbMsIYOC41nyD069BUzktCiWAoIc1Hw5a409uln8M=;
+        b=O6pIQLrnTXqGXjoUibcX5awF0VD5FEN531oxXY/6EUZ1VhVGdnwoZ1/LeOSvKx6tAN
+         cmI/EGnXI/rSzAqODaIzfmd0pgvRQ2JB/hUH9D0O65GDm2WBsdNX45FmlJHRN5GpBvJA
+         2Hf6k0buqbzGPKkiqYpsWNz1JSy/1v4uMK3WWSDnPPWNwHfnB2hechyV0yGFf4FAzOqz
+         ff0ueW6q42HCthGjFrT18uA2Brfuh24iC2xRufNYgHPf6LzEdPv+ziuNgE4GT6UAS8+c
+         Pz0AyQhc2PQIrPir9ZyS48xmsH7NQmtytuwFBdUdU1tjkEcxRlEFZlr6nFuVpb0xkt0k
+         jLaA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=G7irfyCQlD/M8tL+PfS8TGD+KmTIlsaIOgtkEZDavc8=;
-        b=k3rQtjyP2uI5puzPIi3rVAGgUSUq6Ze3kHyV8LKPy/af3/WhuJfrODxxHFSCafOg/y
-         EwNC0END7IXHNvRc2uy+yzGUkdeat0QnYjDgq0g+1pdkyVWOp0EcNUt2ml1sHeY+KTRV
-         qF8z2Lu21+7ETpXr9QgackPEXJsAIc9nx3bybi+dG5A52+Wr496ZvgO8UO2qm1GpAIVX
-         IPxqTSYk+6VZHG1iOzRvWHPSJyQvN0Qr/DjJo7WnXwxcClBv32h9rw88AYru9Pjk9aSX
-         SDZHECUPUA4+9NriyiA8l9YpwaUb8gxJE+vvUHPWey6NKWd9E/gs+dHo4qlhkFJDkY2l
-         U+9Q==
-X-Gm-Message-State: AOAM5317lxGK7LWCWSFezmopWHES2ek+s8leB3qP0CYarbBn4DdsdXfW
-        rR1vYN8pv1HB4Ely5cS6grEm0A==
-X-Google-Smtp-Source: ABdhPJwRQ+1dtDdX/5DAMYWUOT+0UJnZBnzubU+AKGBV77frwhOwL3kuGIPEnLBy+9queoUWx5VT1w==
-X-Received: by 2002:a17:907:d9e:b0:6f4:2983:c371 with SMTP id go30-20020a1709070d9e00b006f42983c371mr17267601ejc.558.1651670368800;
-        Wed, 04 May 2022 06:19:28 -0700 (PDT)
+        bh=cIxbMsIYOC41nyD069BUzktCiWAoIc1Hw5a409uln8M=;
+        b=jvdjCWbx6uwR/j0sl/GDlcNL2+AwQmXqo54rH+zrkG2ABUIjpXv8UGfweBp0ftuNiS
+         vY20JDEp2xlWUuD6jgWgPq7jWzXottyO4rFjyVriKWPHlAyKqHNlhXgAgdZ1eorSjf/8
+         Mk9Y9pSM21LbslCtpjMySz9X18DWVV42MeJVFgO6q13cm+des3LdyV3XIbDfjUSz5Amw
+         bnmAknctqFkpD7gjhxkfMuTA4AfQyuOn3x/Y0/SDJ9D+cfk9HvA+fj3jCedoX1O2+mUw
+         VWhDasWGazLTw8M3qrpJbmlexMKTxv2Fn0cr2pX65vIyjraEXcxoDrzGrL/05uGRe4pD
+         6Yrw==
+X-Gm-Message-State: AOAM532MjOwuIhDVz5He9ST0r3cApNC1ZknZxoA7tKafW9+mvoOHzDgF
+        Nierr7Fakeqk5EuJUBDr4FlOkQ==
+X-Google-Smtp-Source: ABdhPJyuS3YxpEL7hJnfn9pk/WUIYNUrf65URgEiaFNNqK23PLeYMn6slxsruSPDITumPuxYywifrg==
+X-Received: by 2002:a17:907:1c0d:b0:6f3:b742:ef56 with SMTP id nc13-20020a1709071c0d00b006f3b742ef56mr20212422ejc.504.1651670369760;
+        Wed, 04 May 2022 06:19:29 -0700 (PDT)
 Received: from localhost.localdomain (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id gx3-20020a1709068a4300b006f3ef214dc4sm5660924ejc.42.2022.05.04.06.19.27
+        by smtp.gmail.com with ESMTPSA id gx3-20020a1709068a4300b006f3ef214dc4sm5660924ejc.42.2022.05.04.06.19.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 May 2022 06:19:28 -0700 (PDT)
+        Wed, 04 May 2022 06:19:29 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
@@ -57,9 +57,9 @@ To:     Andy Gross <agross@kernel.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 01/13] dt-bindings: soc: qcom: aoss: document qcom,sm8450-aoss-qmp
-Date:   Wed,  4 May 2022 15:19:11 +0200
-Message-Id: <20220504131923.214367-2-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 02/13] dt-bindings: soc: qcom: qcom,smd-rpm: add power-controller
+Date:   Wed,  4 May 2022 15:19:12 +0200
+Message-Id: <20220504131923.214367-3-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.32.0
 In-Reply-To: <20220504131923.214367-1-krzysztof.kozlowski@linaro.org>
 References: <20220504131923.214367-1-krzysztof.kozlowski@linaro.org>
@@ -67,7 +67,7 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -75,30 +75,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add compatible for qcom,sm8450-aoss-qmp with qcom,aoss-qmp as a
-fallback.  This fixes dtbs_check warnings like:
+Document power-controller child of Qualcomm RPM over SMD to fix
+dtbs_check warnings like:
 
-  sm8450-hdk.dtb: power-controller@c300000: compatible:0: 'qcom,sm8450-aoss-qmp' is not one of
-    ['qcom,sc7180-aoss-qmp', 'qcom,sc7280-aoss-qmp', 'qcom,sc8180x-aoss-qmp', 'qcom,sdm845-aoss-qmp',
-     'qcom,sm6350-aoss-qmp', 'qcom,sm8150-aoss-qmp', 'qcom,sm8250-aoss-qmp', 'qcom,sm8350-aoss-qmp']
+  msm8916-huawei-g7.dtb: rpm-requests: 'power-controller' do not match any of the regexes: 'pinctrl-[0-9]+'
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- Documentation/devicetree/bindings/soc/qcom/qcom,aoss-qmp.yaml | 1 +
- 1 file changed, 1 insertion(+)
+ Documentation/devicetree/bindings/soc/qcom/qcom,smd-rpm.yaml | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,aoss-qmp.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,aoss-qmp.yaml
-index e2e173dfada7..d01e98768153 100644
---- a/Documentation/devicetree/bindings/soc/qcom/qcom,aoss-qmp.yaml
-+++ b/Documentation/devicetree/bindings/soc/qcom/qcom,aoss-qmp.yaml
-@@ -33,6 +33,7 @@ properties:
-           - qcom,sm8150-aoss-qmp
-           - qcom,sm8250-aoss-qmp
-           - qcom,sm8350-aoss-qmp
-+          - qcom,sm8450-aoss-qmp
-       - const: qcom,aoss-qmp
+diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,smd-rpm.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,smd-rpm.yaml
+index f0f1bf06aea6..cc1b35080162 100644
+--- a/Documentation/devicetree/bindings/soc/qcom/qcom,smd-rpm.yaml
++++ b/Documentation/devicetree/bindings/soc/qcom/qcom,smd-rpm.yaml
+@@ -51,6 +51,9 @@ properties:
+     $ref: /schemas/clock/qcom,rpmcc.yaml#
+     unevaluatedProperties: false
  
-   reg:
++  power-controller:
++    $ref: /schemas/power/qcom,rpmpd.yaml#
++
+   qcom,smd-channels:
+     $ref: /schemas/types.yaml#/definitions/string-array
+     description: Channel name used for the RPM communication
 -- 
 2.32.0
 
