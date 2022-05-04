@@ -2,41 +2,36 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4B06451A2B9
-	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 16:55:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 00B2C51A2C6
+	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 16:57:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245462AbiEDO72 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 May 2022 10:59:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47792 "EHLO
+        id S1351603AbiEDPAj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 May 2022 11:00:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49222 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239051AbiEDO71 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 10:59:27 -0400
+        with ESMTP id S1351644AbiEDPAa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 11:00:30 -0400
 Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 2650A1E3D1;
-        Wed,  4 May 2022 07:55:51 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id B23F02B18E;
+        Wed,  4 May 2022 07:56:52 -0700 (PDT)
 X-IronPort-AV: E=Sophos;i="5.91,198,1647270000"; 
-   d="scan'208";a="118715015"
+   d="scan'208";a="118715078"
 Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie5.idc.renesas.com with ESMTP; 04 May 2022 23:55:50 +0900
+  by relmlie5.idc.renesas.com with ESMTP; 04 May 2022 23:56:51 +0900
 Received: from localhost.localdomain (unknown [10.226.93.27])
-        by relmlir6.idc.renesas.com (Postfix) with ESMTP id A4AF54250F05;
-        Wed,  4 May 2022 23:55:46 +0900 (JST)
+        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 640574250F0B;
+        Wed,  4 May 2022 23:56:49 +0900 (JST)
 From:   Phil Edworthy <phil.edworthy@renesas.com>
-To:     "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Geert Uytterhoeven <geert+renesas@glider.be>
 Cc:     Phil Edworthy <phil.edworthy@renesas.com>,
-        Sergey Shtylyov <s.shtylyov@omp.ru>,
-        Sergei Shtylyov <sergei.shtylyov@gmail.com>,
-        netdev@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        devicetree@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>
-Subject: [PATCH 2/9] dt-bindings: net: renesas,etheravb: Document RZ/V2M SoC
-Date:   Wed,  4 May 2022 15:54:47 +0100
-Message-Id: <20220504145454.71287-3-phil.edworthy@renesas.com>
+        Magnus Damm <magnus.damm@gmail.com>,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Subject: [PATCH 8/9] arm64: dts: renesas: r9a09g011: Add ethernet nodes
+Date:   Wed,  4 May 2022 15:54:53 +0100
+Message-Id: <20220504145454.71287-9-phil.edworthy@renesas.com>
 X-Mailer: git-send-email 2.32.0
 In-Reply-To: <20220504145454.71287-1-phil.edworthy@renesas.com>
 References: <20220504145454.71287-1-phil.edworthy@renesas.com>
@@ -51,142 +46,76 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document the Ethernet AVB IP found on RZ/V2M SoC.
-It includes the Ethernet controller (E-MAC) and Dedicated Direct memory
-access controller (DMAC) for transferring transmitted Ethernet frames
-to and received Ethernet frames from respective storage areas in the
-URAM at high speed.
-The AVB-DMAC is compliant with IEEE 802.1BA, IEEE 802.1AS timing and
-synchronization protocol, IEEE 802.1Qav real-time transfer, and the
-IEEE 802.1Qat stream reservation protocol.
-
-R-Car has a pair of combined interrupt lines:
- ch22 = Line0_DiA | Line1_A | Line2_A
- ch23 = Line0_DiB | Line1_B | Line2_B
-Line0 for descriptor interrupts.
-Line1 for error related interrupts (which we call err_a and err_b).
-Line2 for management and gPTP related interrupts (mgmt_a and mgmt_b).
-
-RZ/V2M hardware has separate interrupt lines for each of these, but
-we keep the "ch22" name for Line0_DiA. We also keep the "ch24" name
-for the Line3 (MAC) interrupt.
-
-It has 3 clocks; the main AXI clock, the AMBA CHI clock and a gPTP
-reference clock.
+Add Ethernet nodes to SoC dtsi.
 
 Signed-off-by: Phil Edworthy <phil.edworthy@renesas.com>
 Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
 ---
- .../bindings/net/renesas,etheravb.yaml        | 82 ++++++++++++++-----
- 1 file changed, 61 insertions(+), 21 deletions(-)
+ arch/arm64/boot/dts/renesas/r9a09g011.dtsi | 51 ++++++++++++++++++++++
+ 1 file changed, 51 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/net/renesas,etheravb.yaml b/Documentation/devicetree/bindings/net/renesas,etheravb.yaml
-index ee2ccacc39ff..6c5172ff2b18 100644
---- a/Documentation/devicetree/bindings/net/renesas,etheravb.yaml
-+++ b/Documentation/devicetree/bindings/net/renesas,etheravb.yaml
-@@ -43,6 +43,11 @@ properties:
-               - renesas,etheravb-r8a779a0     # R-Car V3U
-           - const: renesas,etheravb-rcar-gen3 # R-Car Gen3 and RZ/G2
+diff --git a/arch/arm64/boot/dts/renesas/r9a09g011.dtsi b/arch/arm64/boot/dts/renesas/r9a09g011.dtsi
+index 27810f4ad4cb..5948d4f0047b 100644
+--- a/arch/arm64/boot/dts/renesas/r9a09g011.dtsi
++++ b/arch/arm64/boot/dts/renesas/r9a09g011.dtsi
+@@ -62,6 +62,57 @@ gic: interrupt-controller@82000000 {
+ 			clock-names = "clk";
+ 		};
  
-+      - items:
-+          - enum:
-+              - renesas,etheravb-r9a09g011 # RZ/V2M
-+          - const: renesas,etheravb-rzv2m  # RZ/V2M compatible
++		avb: ethernet@a3300000 {
++			compatible = "renesas,etheravb-r9a09g011","renesas,etheravb-rzv2m";
++			reg = <0 0xa3300000 0 0x800>;
++			interrupts = <GIC_SPI 251 IRQ_TYPE_LEVEL_HIGH>, /* ch0: Rx0 BE */
++				     <GIC_SPI 252 IRQ_TYPE_LEVEL_HIGH>, /* ch1: Rx1 NC */
++				     <GIC_SPI 253 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 254 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 255 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 256 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 257 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 258 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 259 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 260 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 261 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 262 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 263 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 264 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 265 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 266 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 267 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 268 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 269 IRQ_TYPE_LEVEL_HIGH>, /* ch18: Tx0 BE */
++				     <GIC_SPI 270 IRQ_TYPE_LEVEL_HIGH>, /* ch19: Tx1 NC */
++				     <GIC_SPI 271 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 272 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 273 IRQ_TYPE_LEVEL_HIGH>, /* ch22: DiA */
++				     <GIC_SPI 274 IRQ_TYPE_LEVEL_HIGH>, /* DiB */
++				     <GIC_SPI 275 IRQ_TYPE_LEVEL_HIGH>, /* Line1_A */
++				     <GIC_SPI 276 IRQ_TYPE_LEVEL_HIGH>, /* Line1_B */
++				     <GIC_SPI 277 IRQ_TYPE_LEVEL_HIGH>, /* Line2_A */
++				     <GIC_SPI 278 IRQ_TYPE_LEVEL_HIGH>, /* Line2_B */
++				     <GIC_SPI 279 IRQ_TYPE_LEVEL_HIGH>; /* ch24: Line3 MAC */
++			interrupt-names = "ch0", "ch1", "ch2", "ch3",
++					  "ch4", "ch5", "ch6", "ch7",
++					  "ch8", "ch9", "ch10", "ch11",
++					  "ch12", "ch13", "ch14", "ch15",
++					  "ch16", "ch17", "ch18", "ch19",
++					  "ch20", "ch21", "ch22", "dib",
++					  "err_a", "err_b", "mgmt_a", "mgmt_b",
++					  "ch24";
++			clocks = <&cpg CPG_MOD R9A09G011_ETH0_CLK_AXI>,
++				 <&cpg CPG_MOD R9A09G011_ETH0_CLK_CHI>,
++				 <&cpg CPG_MOD R9A09G011_ETH0_GPTP_EXT>;
++			clock-names = "axi", "chi", "gptp";
++			resets = <&cpg R9A09G011_ETH0_RST_HW_N>;
++			power-domains = <&cpg>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++			status = "disable";
++		};
 +
-       - items:
-           - enum:
-               - renesas,r9a07g043-gbeth # RZ/G2UL
-@@ -160,16 +165,33 @@ allOf:
-             - const: arp_ns
-         rx-internal-delay-ps: false
-     else:
--      properties:
--        interrupts:
--          minItems: 25
--          maxItems: 25
--        interrupt-names:
--          items:
--            pattern: '^ch[0-9]+$'
--      required:
--        - interrupt-names
--        - rx-internal-delay-ps
-+      if:
-+        properties:
-+          compatible:
-+            contains:
-+              const: renesas,etheravb-rzv2m
-+      then:
-+        properties:
-+          interrupts:
-+            minItems: 29
-+            maxItems: 29
-+          interrupt-names:
-+            items:
-+              pattern: '^(ch[0-9]+)|dib|err_a|err_b|mgmt_a|mgmt_b$'
-+          rx-internal-delay-ps: false
-+        required:
-+          - interrupt-names
-+      else:
-+        properties:
-+          interrupts:
-+            minItems: 25
-+            maxItems: 25
-+          interrupt-names:
-+            items:
-+              pattern: '^ch[0-9]+$'
-+        required:
-+          - interrupt-names
-+          - rx-internal-delay-ps
- 
-   - if:
-       properties:
-@@ -231,17 +253,35 @@ allOf:
-             - const: chi
-             - const: refclk
-     else:
--      properties:
--        clocks:
--          minItems: 1
--          items:
--            - description: AVB functional clock
--            - description: Optional TXC reference clock
--        clock-names:
--          minItems: 1
--          items:
--            - const: fck
--            - const: refclk
-+      if:
-+        properties:
-+          compatible:
-+            contains:
-+              const: renesas,etheravb-rzv2m
-+      then:
-+        properties:
-+          clocks:
-+            items:
-+              - description: Main clock
-+              - description: Coherent Hub Interface clock
-+              - description: gPTP reference clock
-+          clock-names:
-+            items:
-+              - const: axi
-+              - const: chi
-+              - const: gptp
-+      else:
-+        properties:
-+          clocks:
-+            minItems: 1
-+            items:
-+              - description: AVB functional clock
-+              - description: Optional TXC reference clock
-+          clock-names:
-+            minItems: 1
-+            items:
-+              - const: fck
-+              - const: refclk
- 
- additionalProperties: false
- 
+ 		cpg: clock-controller@a3500000 {
+ 			compatible = "renesas,r9a09g011-cpg";
+ 			reg = <0 0xa3500000 0 0x1000>;
 -- 
 2.32.0
 
