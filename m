@@ -2,105 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A47FA51AD5F
-	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 20:56:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2CEAB51AD74
+	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 21:06:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1355845AbiEDS7f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 May 2022 14:59:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57852 "EHLO
+        id S1376492AbiEDTJ7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 May 2022 15:09:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37418 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1377500AbiEDS71 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 14:59:27 -0400
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BAFF5205CD;
-        Wed,  4 May 2022 11:55:50 -0700 (PDT)
-Received: by mail-ej1-x636.google.com with SMTP id kq17so4643389ejb.4;
-        Wed, 04 May 2022 11:55:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=qtj3kM23Q+DPPlGR5wpXCN7V8AfMLAVbykig0+rvwrQ=;
-        b=UH6Ta6W44ExCTUoM11nmWUGcXNzNXr6eSMG6xgz/VLSDuxvHk4TxueHl5IojELPqZq
-         Lt0MDCfaWL8yTjMlJGxbmloy9MPbnQwagScezzZVAoSaVJS32y7cnxqnr+CO51YBQMXZ
-         a2Jy/I9JSm6Ym9Rq8MJ05Iz2Ib6QjEN4vrRl+guWsFneVGcTYF645Lay6TdkmNHXigU2
-         wgimM8GhKfY9N8UckyEqExMZoQzK7+/yp12vcFeyJVDs9UR4sXxbENLIY4mvml7W3sRx
-         exQj7M2e0dMYQW3IOn9dTYDYZuOIB3EjhQyeVTTpDjWRVsEVkawL6JTPrd4pyf8xvuwF
-         n0aA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=qtj3kM23Q+DPPlGR5wpXCN7V8AfMLAVbykig0+rvwrQ=;
-        b=rmXGqopftbApLzgJE0IpkShi5eDMIIqsX5ZW3RMh5ThBmvD+x+bcCEZPBxoYlD+CXj
-         JLSo4L48uupzvCoMYGTyQN6Jgr2c8hCS1UCvWdZ4zirlaNZWTP1PaD9iagkuxvJ8MfIZ
-         pxb3GQIZsXJUQ7bxoU8nZYoOJcMetUU/A9aei/HJgjgc0yy6qiKZzy1704KVE+6kQfJ9
-         n4YuVgrhYLYKpYEvIuYbU5pfJrhKBlRihmSIm0BEyMOsL/IsdS2CMcEVq8+E6z2ulMJi
-         OjvzAcgmoTk2drEpzx2fI9o3c+ZSr4ak5/cg9NQQxcdiNVLEt3DdIzf/8TjlM+j/Vs5V
-         hTjA==
-X-Gm-Message-State: AOAM531HCBtHFRcw+DSeeOB0/115udXpzaNqKNPPIyGsdPoeyADfwU2V
-        BY1HxC6RVrw/VbZgwLR1MfxN1iNvjaatXkS4ZIc=
-X-Google-Smtp-Source: ABdhPJxOL8YqtOqnXGwVkqYA2gOLeZnIQddYIpWAjllRDaI2rIW3zYjkOhuqL7tjQzCNdLzkQO+MqfBPgDzp4Xf2/eE=
-X-Received: by 2002:a17:907:1b1b:b0:6e4:7fac:6ce0 with SMTP id
- mp27-20020a1709071b1b00b006e47fac6ce0mr21594175ejc.617.1651690548672; Wed, 04
- May 2022 11:55:48 -0700 (PDT)
-MIME-Version: 1.0
-References: <1651685100-44687-1-git-send-email-justinpopo6@gmail.com> <1651685100-44687-2-git-send-email-justinpopo6@gmail.com>
-In-Reply-To: <1651685100-44687-2-git-send-email-justinpopo6@gmail.com>
-From:   Justin Chen <justinpopo6@gmail.com>
-Date:   Wed, 4 May 2022 11:55:37 -0700
-Message-ID: <CAJx26kV+15rs0=YcRj6z5ZbKU4=u9MHyuOdo=EfJwAXYKAdbBg@mail.gmail.com>
-Subject: Re: [PATCH 1/2] gpio: pca953xx: Add support for pca6408
-To:     Linus Walleij <linus.walleij@linaro.org>, brgl@bgdev.pl,
+        with ESMTP id S1350612AbiEDTJ6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 15:09:58 -0400
+Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 4AED33A5E7;
+        Wed,  4 May 2022 12:06:21 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="5.91,198,1647270000"; 
+   d="scan'208";a="119951021"
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie6.idc.renesas.com with ESMTP; 05 May 2022 04:06:20 +0900
+Received: from localhost.localdomain (unknown [10.226.92.27])
+        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 688AA40D9551;
+        Thu,  5 May 2022 04:06:16 +0900 (JST)
+From:   Biju Das <biju.das.jz@bp.renesas.com>
+To:     Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, f.fainelli@gmail.com
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        linux-media@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Subject: [PATCH v10 1/5] media: dt-bindings: media: renesas,vsp1: Document RZ/G2L VSPD bindings
+Date:   Wed,  4 May 2022 20:06:05 +0100
+Message-Id: <20220504190609.94375-2-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20220504190609.94375-1-biju.das.jz@bp.renesas.com>
+References: <20220504190609.94375-1-biju.das.jz@bp.renesas.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 4, 2022 at 10:25 AM Justin Chen <justinpopo6@gmail.com> wrote:
->
-> Add support for pca6408 which is the 8-bit version of the pca6416.
->
-> https://www.nxp.com/docs/en/data-sheet/PCA6408A.pdf
->
-> Signed-off-by: Justin Chen <justinpopo6@gmail.com>
-> ---
->  drivers/gpio/gpio-pca953x.c | 2 ++
->  1 file changed, 2 insertions(+)
->
-> diff --git a/drivers/gpio/gpio-pca953x.c b/drivers/gpio/gpio-pca953x.c
-> index d2fe76f..2d0b080 100644
-> --- a/drivers/gpio/gpio-pca953x.c
-> +++ b/drivers/gpio/gpio-pca953x.c
-> @@ -71,6 +71,7 @@
->  #define PCA_CHIP_TYPE(x)       ((x) & PCA_TYPE_MASK)
->
->  static const struct i2c_device_id pca953x_id[] = {
-> +       { "pca6408", 8  | PCA953x_TYPE | PCA_INT, },
-Apologies, typo here. Should be capital "x". Will send a v2.
+Document VSPD found in RZ/G2L SoC. VSPD block is similar to VSP2-D
+found on R-Car SoC's, but it does not have a version register and
+it has 3 clocks compared to 1 clock on vsp1 and vsp2.
 
-Justin
->         { "pca6416", 16 | PCA953X_TYPE | PCA_INT, },
->         { "pca9505", 40 | PCA953X_TYPE | PCA_INT, },
->         { "pca9506", 40 | PCA953X_TYPE | PCA_INT, },
-> @@ -1198,6 +1199,7 @@ static int pca953x_resume(struct device *dev)
->  #define OF_957X(__nrgpio, __int) (void *)(__nrgpio | PCA957X_TYPE | __int)
->
->  static const struct of_device_id pca953x_dt_ids[] = {
-> +       { .compatible = "nxp,pca6408", .data = OF_953X(8, PCA_INT), },
->         { .compatible = "nxp,pca6416", .data = OF_953X(16, PCA_INT), },
->         { .compatible = "nxp,pca9505", .data = OF_953X(40, PCA_INT), },
->         { .compatible = "nxp,pca9506", .data = OF_953X(40, PCA_INT), },
-> --
-> 2.7.4
->
+This patch introduces a new compatible 'renesas,r9a07g044-vsp2' to
+handle these differences.
+
+Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+---
+v9->v10:
+ * No change
+v8->v9:
+ * No change
+v7->v8:
+ * Added Clock-names to false for Non RZ/G2L SoC's
+ * Replaced compatble 'renesas,rzg2l-vsp2'->'renesas,r9a07g044-vsp2'
+ * Removed RZ/V2L SoC, will be added later after testing it.
+ * Added Rb tag from Laurent.
+v6->v7:
+ * No change
+v5->v6:
+ * Removed LCDC reference clock description
+ * Changed the clock name from du.0->aclk
+v4->v5:
+ * No change
+v3->v4:
+ * No change
+v2->v3:
+ * Added Rb tag from Krzysztof.
+v1->v2:
+ * Changed compatible from vsp2-rzg2l->rzg2l-vsp2
+RFC->v1:
+ * Updated commit description
+ * Changed compatible from vsp2-r9a07g044->vsp2-rzg2l
+ * Defined the clocks
+ * Clock max Items is based on SoC Compatible string
+RFC:
+ * https://patchwork.kernel.org/project/linux-renesas-soc/patch/20220112174612.10773-20-biju.das.jz@bp.renesas.com/
+---
+ .../bindings/media/renesas,vsp1.yaml          | 53 ++++++++++++++-----
+ 1 file changed, 40 insertions(+), 13 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/media/renesas,vsp1.yaml b/Documentation/devicetree/bindings/media/renesas,vsp1.yaml
+index 990e9c1dbc43..7a8f32473852 100644
+--- a/Documentation/devicetree/bindings/media/renesas,vsp1.yaml
++++ b/Documentation/devicetree/bindings/media/renesas,vsp1.yaml
+@@ -17,6 +17,7 @@ description:
+ properties:
+   compatible:
+     enum:
++      - renesas,r9a07g044-vsp2 # RZ/G2L
+       - renesas,vsp1 # R-Car Gen2 and RZ/G1
+       - renesas,vsp2 # R-Car Gen3 and RZ/G2
+ 
+@@ -26,8 +27,8 @@ properties:
+   interrupts:
+     maxItems: 1
+ 
+-  clocks:
+-    maxItems: 1
++  clocks: true
++  clock-names: true
+ 
+   power-domains:
+     maxItems: 1
+@@ -50,17 +51,43 @@ required:
+ 
+ additionalProperties: false
+ 
+-if:
+-  properties:
+-    compatible:
+-      items:
+-        - const: renesas,vsp1
+-then:
+-  properties:
+-    renesas,fcp: false
+-else:
+-  required:
+-    - renesas,fcp
++allOf:
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: renesas,vsp1
++    then:
++      properties:
++        renesas,fcp: false
++    else:
++      required:
++        - renesas,fcp
++
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: renesas,r9a07g044-vsp2
++    then:
++      properties:
++        clocks:
++          items:
++            - description: Main clock
++            - description: Register access clock
++            - description: Video clock
++        clock-names:
++          items:
++            - const: aclk
++            - const: pclk
++            - const: vclk
++      required:
++        - clock-names
++    else:
++      properties:
++        clocks:
++          maxItems: 1
++        clock-names: false
+ 
+ examples:
+   # R8A7790 (R-Car H2) VSP1-S
+-- 
+2.25.1
+
