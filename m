@@ -2,108 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 200325197E4
-	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 09:12:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 84FFF519805
+	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 09:22:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243231AbiEDHPp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 May 2022 03:15:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40626 "EHLO
+        id S1345356AbiEDHZp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 May 2022 03:25:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46494 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230402AbiEDHPn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 03:15:43 -0400
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 531D822BEA;
-        Wed,  4 May 2022 00:12:06 -0700 (PDT)
-Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=diego.localnet)
-        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <heiko@sntech.de>)
-        id 1nm9Ar-0006s1-Gb; Wed, 04 May 2022 09:11:49 +0200
-From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To:     krzk+dt@kernel.org, palmer@dabbelt.com, robh+dt@kernel.org,
-        linux-riscv@lists.infradead.org, Conor.Dooley@microchip.com
-Cc:     Cyril.Jean@microchip.com, Daire.McNamara@microchip.com,
-        paul.walmsley@sifive.com, aou@eecs.berkeley.edu,
-        palmer@rivosinc.com, arnd@arndb.de, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, mail@conchuod.ie
-Subject: Re: [PATCH v3 5/8] riscv: dts: microchip: make the fabric dtsi board specific
-Date:   Wed, 04 May 2022 09:11:47 +0200
-Message-ID: <1814908.tdWV9SEqCh@diego>
-In-Reply-To: <872a2d30-89ad-b66a-7d03-90d3de85c51b@microchip.com>
-References: <20220501192557.2631936-1-mail@conchuod.ie> <1892011.PYKUYFuaPT@phil> <872a2d30-89ad-b66a-7d03-90d3de85c51b@microchip.com>
+        with ESMTP id S1345359AbiEDHZi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 03:25:38 -0400
+Received: from thorn.bewilderbeest.net (thorn.bewilderbeest.net [71.19.156.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D70F217049;
+        Wed,  4 May 2022 00:22:02 -0700 (PDT)
+Received: from hatter.bewilderbeest.net (174-21-163-222.tukw.qwest.net [174.21.163.222])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: zev)
+        by thorn.bewilderbeest.net (Postfix) with ESMTPSA id 8481127B;
+        Wed,  4 May 2022 00:22:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bewilderbeest.net;
+        s=thorn; t=1651648922;
+        bh=sx0SctmyG9TOtwIaQSFtf68ixGOt40YgbnYjWyRrhuw=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=X62oo+L0uURQ4J/bspzv5N4OBv2LTgvA7vp+/L4Q792w4u6UA9edJNL4d6wepuPBf
+         cehTyrf783Yc9C7Dd8OuCxFepA8OxH/spZpUO/F5v27jFRznhUZeDig9NB0e8cCAL0
+         sNxi1LV9gVYX14co9uNTu+HVwP49DesxBlGMZZSU=
+Date:   Wed, 4 May 2022 00:22:01 -0700
+From:   Zev Weiss <zev@bewilderbeest.net>
+To:     Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>
+Cc:     linux-kernel@vger.kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, openbmc@lists.ozlabs.org
+Subject: Re: [PATCH 0/6] regulator: core: Add support for external outputs
+Message-ID: <YnIpmdoQTm1gb4fp@hatter.bewilderbeest.net>
+References: <20220504065041.6718-1-zev@bewilderbeest.net>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Disposition: inline
+In-Reply-To: <20220504065041.6718-1-zev@bewilderbeest.net>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Mittwoch, 4. Mai 2022, 08:48:24 CEST schrieb Conor.Dooley@microchip.com:
-> On 04/05/2022 00:47, Heiko Stuebner wrote:
-> > EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
-> > 
-> > Am Sonntag, 1. Mai 2022, 21:25:56 CEST schrieb Conor Dooley:
-> >> From: Conor Dooley <conor.dooley@microchip.com>
-> >>
-> >> Currently mpfs-fabric.dtsi is included by mpfs.dtsi - which is fine
-> >> currently since there is only one board with this SoC upstream.
-> >>
-> >> However if another board was added, it would include the fabric contents
-> >> of the Icicle Kit's reference design. To avoid this, rename
-> >> mpfs-fabric.dtsi to mpfs-icicle-kit-fabric.dtsi & include it in the dts
-> >> rather than mpfs.dtsi.
-> >>
-> >> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-> >> ---
-> >>   .../microchip/{mpfs-fabric.dtsi => mpfs-icicle-kit-fabric.dtsi} | 2 ++
-> >>   arch/riscv/boot/dts/microchip/mpfs-icicle-kit.dts               | 1 +
-> >>   arch/riscv/boot/dts/microchip/mpfs.dtsi                         | 1 -
-> >>   3 files changed, 3 insertions(+), 1 deletion(-)
-> >>   rename arch/riscv/boot/dts/microchip/{mpfs-fabric.dtsi => mpfs-icicle-kit-fabric.dtsi} (91%)
-> >>
-> >> diff --git a/arch/riscv/boot/dts/microchip/mpfs-fabric.dtsi b/arch/riscv/boot/dts/microchip/mpfs-icicle-kit-fabric.dtsi
-> >> similarity index 91%
-> >> rename from arch/riscv/boot/dts/microchip/mpfs-fabric.dtsi
-> >> rename to arch/riscv/boot/dts/microchip/mpfs-icicle-kit-fabric.dtsi
-> >> index ccaac3371cf9..0d28858b83f2 100644
-> >> --- a/arch/riscv/boot/dts/microchip/mpfs-fabric.dtsi
-> >> +++ b/arch/riscv/boot/dts/microchip/mpfs-icicle-kit-fabric.dtsi
-> >> @@ -2,6 +2,8 @@
-> >>   /* Copyright (c) 2020-2021 Microchip Technology Inc */
-> >>
-> >>   / {
-> >> +     compatible = "microchip,mpfs-icicle-reference-rtlv2203", "microchip,mpfs";
-> >> +
-> > 
-> > I don't really understand the meaning of the added compatible yet.
-> 
-> 
-> I added it for informational purposes more than anything else.
-> The contents of this file match the 22.03 reference design for
-> the icicle kit's FPGA fabric & an older version of the design
-> may not have the i2c or pwm devices.
+On Tue, May 03, 2022 at 11:50:35PM PDT, Zev Weiss wrote:
+>Hello,
+>
+>This patch series is a new approach at implementing some functionality
+>I previously attempted as a separate driver in drivers/misc [0], but I
+>think (as suggested by Greg in that thread) ultimately makes more
+>sense being built into the regulator subsystem.
+>
 
-that makes sense, thanks for the explanation :-)
+<snip>
 
-Reviewed-by: Heiko Stuebner <heiko@sntech.de>
+Sorry for the broken threading here (missed a comma in the CC list on 
+patch 1 that 'git send-email --dry-run' didn't catch, then forgot to add 
+the necessary flags on the second attempt to tack it onto this cover 
+letter from the first).
+
+In case it's not obvious, the patches corresponding to this are here: 
+https://lore.kernel.org/openbmc/20220504065252.6955-1-zev@bewilderbeest.net/T/
 
 
-> > It will get overridden by the compatible in the dts and also the
-> > fabric dtsi for the polarberry does not contain a similar thing.
-> 
-> I did not add one for the polarberry b/c it has (to my knowledge)
-> no versioning scheme nor fabric peripherals in the design given
-> to customers.
-> 
-> Thanks,
-> Conor.
-> 
-
-
-
+Zev
 
