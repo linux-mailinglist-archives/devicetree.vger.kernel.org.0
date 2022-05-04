@@ -2,69 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 37EA751A5B0
-	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 18:38:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 74A6651AB74
+	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 19:48:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237034AbiEDQmS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 May 2022 12:42:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43904 "EHLO
+        id S1355789AbiEDRsO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 May 2022 13:48:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34844 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1353536AbiEDQmQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 12:42:16 -0400
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0230146674
-        for <devicetree@vger.kernel.org>; Wed,  4 May 2022 09:38:40 -0700 (PDT)
-Received: by mail-wr1-x431.google.com with SMTP id k2so2786644wrd.5
-        for <devicetree@vger.kernel.org>; Wed, 04 May 2022 09:38:39 -0700 (PDT)
+        with ESMTP id S1359503AbiEDRoW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 13:44:22 -0400
+Received: from mail-oa1-x32.google.com (mail-oa1-x32.google.com [IPv6:2001:4860:4864:20::32])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8BA5E532D9
+        for <devicetree@vger.kernel.org>; Wed,  4 May 2022 10:07:33 -0700 (PDT)
+Received: by mail-oa1-x32.google.com with SMTP id 586e51a60fabf-ed9a75c453so1787985fac.11
+        for <devicetree@vger.kernel.org>; Wed, 04 May 2022 10:07:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=QsArDsBFqUycL0OUq1BkvVO8KcvVKPwCI/znAJ555vE=;
-        b=b1K+gvu29EvZ5OjuDgM0ZBxY3gbITvpzYjXL0dE7CYg4ETne4M5U++YzxdxiovYKMQ
-         FsWn/by2DYvnT7Ty+RmSFGfJPWYteM+8zvIYDJPlroW0H3L4SXtV7wrDKxwZomnzlafx
-         OLsdbzHqJPWODie45J2MyyH5rpiUSPKGPADmv3Knq+8LBrRUaoVX5eX+CTVs/LK7Htpq
-         16+Agjg3fY/FJaWGMmfSlPzdqNSMnmuOIh9/xkXttA5wUptN4nwqwenHYRQkwOkJ06DX
-         krmWe/tWhaxM39y3bAw0/MhsY5SNDRWvDcE78I8SCMiK8Or/oJPoYkN1vJp4/oxFbtV8
-         GQjw==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=XsBuK9C0iTZ23AvndsVmxmsweL3NkKIVBO/JwZ4kCTI=;
+        b=HicliRiyqx34J8hoRZNyl8nYFnYudMYsszZHmDL17H5hi9vPEYGzOyzPs6BR5Pf5kO
+         rBpUH2oNEE4Y4kgNyxxsvzyEXS/GeLs3pWr9Vdrr//YevpnvzD+eaWLcTeRg7aHoHJtf
+         qmDSMskOLukbvAdTNrra//dYt366Ni/xN36gJogRiKRMhVrEnNZR50LASXSAD/U9zbAJ
+         o7uvjn04PXd/FL9jVgGi0ncdDbjomr+FGZP91wN4hIJbJOnQMnyUDaZems1B1CPxWI7H
+         W9jJdGHFTUbgkcxxCT5VqA7usqgnpdK268BTLf74J0PSu6hvcGONIkUQXWbo5dm6K6bo
+         bqQA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=QsArDsBFqUycL0OUq1BkvVO8KcvVKPwCI/znAJ555vE=;
-        b=rv3vuOolPzJPxXOrSg39HwsBKoaqsKqQDH96JiNjtkMEyUp1mz7I+JzHtOK9LJByBN
-         m9MRc8VWBBzcNHVueGtOz3q4Rc85Y8fgssUsbRbmCWU9ahhvASZftK2t17kWjOxWc+Ml
-         yioQZFAvBdh9qKCF78C+lfw7n/J9rXlONKsmiisTO3L6ZJoj1ybg2me64cuRkO0Ox4ZR
-         daxWwjmGWETg1wppfOAG7s7YzpRaUAhQ4DMLREo5iMImK09QJDbjf1vZc/mEz6E2A6Hv
-         WkQpBDCANrhIF2qjJxLDHvO5PrpeHaB1paZ7E4nDY7G/t1uH1aEoYl1/2iNa87NpxLnA
-         XWuA==
-X-Gm-Message-State: AOAM532aWazkbgfwK2yIGtSx1PZV/g0htZVBHA7quv7MQ8CGsyOvufLC
-        QOlupp7uh3cdzHOqEsAHmQuzQ2XtBPWNaQ==
-X-Google-Smtp-Source: ABdhPJxr7GTfB4YHvkUzYYC3fblzQ0zsPjdB56qzjA4MwiwHXRrYaOEpjYNVx+JS5Bb36j9w2H5YqQ==
-X-Received: by 2002:adf:f2cb:0:b0:20a:e801:d13f with SMTP id d11-20020adff2cb000000b0020ae801d13fmr17154819wrp.309.1651682318598;
-        Wed, 04 May 2022 09:38:38 -0700 (PDT)
-Received: from sagittarius-a.chello.ie (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id r20-20020adfa154000000b0020c5253d8c7sm11671706wrr.19.2022.05.04.09.38.37
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=XsBuK9C0iTZ23AvndsVmxmsweL3NkKIVBO/JwZ4kCTI=;
+        b=q45po1XwjZUquGsR7tZNmCUNPXyfd28aMPCy2BjcngHORryzXNB6EH7PQZWhl94GBH
+         IRK9+vQaPP5kv23o+h61TL92BJn2vrBGU0QKCecMiIqw3FX5arZCXAkwJHbIkecWmwKz
+         CIrza2LjUrheMXeNaSCDK8BHH3gcRuvzvSATyn8NP9owrmbJDqfJeynZ+M+ObI7oZOBS
+         bdCJ9LPNthoVoSrRvuzIkRC59YuxRATrexhEGwENFU4GF+YT0LQbC5yPs7PNN7YrsznU
+         nPHf1KcCmxaRlFlRPdstA16wvMTWfzM7FBXNs52XMzTYYOVtmOFcIl5coWkCovfQBu1U
+         c47g==
+X-Gm-Message-State: AOAM531SBvxR9q8+s/oylMW6YRwWHqn3WAlSo1XZg7tMgC7/39956ldD
+        DtqidGbmWfikS1K5qQn1esYkCw==
+X-Google-Smtp-Source: ABdhPJxg9/v0pCSGZ8BwTRKwaGvr6w8CT865Zhn8XA0POsMWJXyMxLfaaotxF7Mh9pvucduHkgRFdw==
+X-Received: by 2002:a05:6870:7084:b0:ed:d709:34be with SMTP id v4-20020a056870708400b000edd70934bemr236034oae.4.1651684052484;
+        Wed, 04 May 2022 10:07:32 -0700 (PDT)
+Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id e63-20020a9d2ac5000000b006060322124fsm5232500otb.31.2022.05.04.10.07.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 May 2022 09:38:38 -0700 (PDT)
-From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-To:     agross@kernel.org, bjorn.andersson@linaro.org,
-        mturquette@baylibre.com, sboyd@kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org
-Cc:     bryan.odonoghue@linaro.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org
-Subject: [PATCH 1/4] clk: qcom: Add missing SYSTEM_MM_NOC_BFDCD_CLK_SRC
-Date:   Wed,  4 May 2022 17:38:32 +0100
-Message-Id: <20220504163835.40130-2-bryan.odonoghue@linaro.org>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220504163835.40130-1-bryan.odonoghue@linaro.org>
-References: <20220504163835.40130-1-bryan.odonoghue@linaro.org>
+        Wed, 04 May 2022 10:07:31 -0700 (PDT)
+Date:   Wed, 4 May 2022 12:07:27 -0500
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Doug Anderson <dianders@chromium.org>
+Cc:     Matthias Kaehlcke <mka@chromium.org>,
+        Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        quic_rohkumar@quicinc.com,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Judy Hsiao <judyhsiao@chromium.org>,
+        Venkata Prasad Potturu <quic_potturu@quicinc.com>
+Subject: Re: [PATCH v12 4/4] arm64: dts: qcom: sc7280-herobrine: Add lpi
+ pinmux properties for CRD 3.0/3.1
+Message-ID: <YnKyzxPEolSVUhqD@builder.lan>
+References: <1651079383-7665-1-git-send-email-quic_srivasam@quicinc.com>
+ <1651079383-7665-5-git-send-email-quic_srivasam@quicinc.com>
+ <YmsrB6Q89II5w1+9@google.com>
+ <CAD=FV=XxeZsiOVVBDK_vmx0nhT7roB2FqcaPXsH3+jzTHFXMxw@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAD=FV=XxeZsiOVVBDK_vmx0nhT7roB2FqcaPXsH3+jzTHFXMxw@mail.gmail.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,32 +83,86 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-When adding in the indexes for this clock-controller we missed
-SYSTEM_MM_NOC_BFDCD_CLK_SRC.
+On Fri 29 Apr 11:10 CDT 2022, Doug Anderson wrote:
 
-Add it in now.
+> Hi,
+> 
+> On Thu, Apr 28, 2022 at 5:02 PM Matthias Kaehlcke <mka@chromium.org> wrote:
+> >
+> > On Wed, Apr 27, 2022 at 10:39:43PM +0530, Srinivasa Rao Mandadapu wrote:
+> > > Add LPASS LPI pinctrl properties, which are required for Audio
+> > > functionality on herobrine based platforms of rev5+
+> > > (aka CRD 3.0/3.1) boards.
+> > >
+> > > Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+> > > Co-developed-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
+> > > Signed-off-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
+> >
+> > I'm not super firm in pinctrl territory, a few maybe silly questions
+> > below.
+> >
+> > >  arch/arm64/boot/dts/qcom/sc7280-herobrine-crd.dts | 84 +++++++++++++++++++++++
+> > >  1 file changed, 84 insertions(+)
+> > >
+> > > diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-crd.dts b/arch/arm64/boot/dts/qcom/sc7280-herobrine-crd.dts
+> > > index deaea3a..dfc42df 100644
+> > > --- a/arch/arm64/boot/dts/qcom/sc7280-herobrine-crd.dts
+> > > +++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-crd.dts
+> > > @@ -111,6 +111,90 @@ ap_ts_pen_1v8: &i2c13 {
+> > >   * - If a pin is not hooked up on Qcard, it gets no name.
+> > >   */
+> > >
+> > > +&lpass_dmic01 {
+> > > +     clk {
+> > > +             drive-strength = <8>;
+> > > +     };
+> 
+> Ugh, I've been distracted and I hadn't realized we were back to the
+> two-level syntax. Definitely not my favorite for all the reasons I
+> talked about [1]. I guess you took Bjorn's silence to my response to
+> mean that you should switch back to this way? :(
+> 
+> Bjorn: can you clarify?
+> 
 
-Fixes: 4c71d6abc4fc ("clk: qcom: Add DT bindings for MSM8939 GCC")
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: devicetree@vger.kernel.org
-Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
----
- include/dt-bindings/clock/qcom,gcc-msm8939.h | 1 +
- 1 file changed, 1 insertion(+)
+I didn't think through the fact that &mi2s0_state was specified in the
+.dtsi and as such will be partially be overridden by the baord dts.
 
-diff --git a/include/dt-bindings/clock/qcom,gcc-msm8939.h b/include/dt-bindings/clock/qcom,gcc-msm8939.h
-index 0634467c4ce5..2d545ed0d35a 100644
---- a/include/dt-bindings/clock/qcom,gcc-msm8939.h
-+++ b/include/dt-bindings/clock/qcom,gcc-msm8939.h
-@@ -192,6 +192,7 @@
- #define GCC_VENUS0_CORE0_VCODEC0_CLK		183
- #define GCC_VENUS0_CORE1_VCODEC0_CLK		184
- #define GCC_OXILI_TIMER_CLK			185
-+#define SYSTEM_MM_NOC_BFDCD_CLK_SRC		186
- 
- /* Indexes for GDSCs */
- #define BIMC_GDSC				0
--- 
-2.35.1
 
+I do prefer the two level style and describing full "states", but as you
+say whenever we provide something that will have to be overwritten it's
+suboptimal.
+
+As such, I think your flattened model is preferred in this case - but it
+makes me dislike the partial definition between the dtsi and dts even
+more (but I don't have any better suggestion).
+
+Regards,
+Bjorn
+
+> [1] https://lore.kernel.org/r/CAD=FV=VicFiX6QkBksZs1KLwJ5x4eCte6j5RWOBPN+WwiXm2Cw@mail.gmail.com/
+> 
+> > > +};
+> > > +
+> > > +&lpass_dmic01_sleep {
+> > > +     clk {
+> > > +             drive-strength = <2>;
+> >
+> > Does the drive strength really matter in the sleep state, is the SoC actively
+> > driving the pin?
+> 
+> My understanding is that if a pin is left as an output in sleep state
+> that there is a slight benefit to switching it to drive-strength 2.
+> 
+> 
+> > > +             bias-disable;
+> >
+> > What should this be in active/default state? If I understand correctly
+> > after a transition from 'sleep' to 'default' this setting will remain,
+> > since the default config doesn't specify a setting for bias.
+> 
+> Your understanding matches mine but I haven't tested it and I remember
+> sometimes being surprised in this corner of pinmux before. I think
+> it's better to put the bias in the default state if it should be that
+> way all the time, or have a bias in both the default and sleep state
+> if they need to be different.
