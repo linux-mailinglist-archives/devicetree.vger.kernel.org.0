@@ -2,73 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1502A519D0E
-	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 12:37:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 08081519D1A
+	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 12:38:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348174AbiEDKl0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 May 2022 06:41:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48294 "EHLO
+        id S1348243AbiEDKlq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 May 2022 06:41:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48708 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347742AbiEDKlY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 06:41:24 -0400
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B3E9427B06
-        for <devicetree@vger.kernel.org>; Wed,  4 May 2022 03:37:47 -0700 (PDT)
-Received: by mail-lj1-x233.google.com with SMTP id q130so1120242ljb.5
-        for <devicetree@vger.kernel.org>; Wed, 04 May 2022 03:37:47 -0700 (PDT)
+        with ESMTP id S244854AbiEDKln (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 06:41:43 -0400
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1555327B06
+        for <devicetree@vger.kernel.org>; Wed,  4 May 2022 03:38:07 -0700 (PDT)
+Received: by mail-lf1-x12a.google.com with SMTP id p10so1560811lfa.12
+        for <devicetree@vger.kernel.org>; Wed, 04 May 2022 03:38:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=vb0NSe8ARzC5SmuUEMfvtdIbDeahcHfl+QMHR8M0UQk=;
-        b=GZhSotbCyj7bjcQg3PRN5d5i3LNDLOHkeiEebj/4ACqHtK1YLDFsRK/0IrTHnfceOy
-         UluKNPmhbjw9UWDe43i9hxj2A4wVNksLYrr0zgBRav0mWNt+O2TKGxOn39dduRc7hww+
-         5IU4ZhRYef0ywjjxFhBviwDj1IhQ/Nlc9V0YgCTRVNC2ObNe9YAxdNsieXO9KNQ3Xn8b
-         VrPx1e1Zk7/x4vnxDXFSvWv9wjxu51vfy8OhkXN4uzac4E34FHOJKbE4GhWrNkMTmO/t
-         mGyVZzFppdwPpbLeK03k3r0Eai14LTxLKjON1JLWRun+EEVT4Uc4/FB7XksuWfvM/MEH
-         5vKw==
+        bh=sCUql32Z85QbAjdNmeSKhkBGKRfaobQ3esSmZFQlaVI=;
+        b=b82EipzYR66946BQCzgBeRhvSgKu/f2J3JluNKl9n+3IUQadplyKmCw26q1dIxolya
+         x5gS9sVwWF4BIz0IH6BdEtwozMOvtd0bVCOzmcYEvXDAy19OchE6V4A1UMquDYbu6b2/
+         Bjm7n4KYuv3f9135ewVBXIZc+32tiEPiWqNV32VWIACGs08AKXlOUazWTlSWdQpojbd0
+         pcWFSRfIWGiLbFMu6ynQf5myzWUXiSDpnAgssgDHvv91gjqf6AM6xTE3R7nsPdtz8jU0
+         sqQXrSx4iF8WishJUYWSDZgrMsSlkjtS2ctlsQR2vwFQO8Yzh9yj9b5WAoBCrk5IxxbN
+         TyBg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=vb0NSe8ARzC5SmuUEMfvtdIbDeahcHfl+QMHR8M0UQk=;
-        b=uzqvZm7pENMkllRHoo5poCc1NUysoSQvfErZwXHw8t8goy4cI1ApqD+RAdRYjuOoA3
-         +B9u9opq3IHsbFGZWb8Issj/KhnOuoxKNRlp+FxhxpGPXaqtUQTD+d0ZKF8lNdctnpkD
-         NMBRiuQoYPCcgThpJPa9YWpFeVbAv6Dnaf76gcm/FoSQ44blvRjADhsAsXGo1jPKQUpj
-         MbGEBjX3jvxIca3QfSFOE9Iec51ouW2c57ViRi8spAALUJnadYoKP3MhMZ8FyTs6ZxCl
-         su69TspJ9XvvXxNkq+/SrLEFeBCUx5wnjtv0b4mE9sZ2IW36lOW96ZPF0oLnMnM5pXK5
-         01cw==
-X-Gm-Message-State: AOAM530qKiqvJu0iczA+a3wk6qQBJYec754s4mNOod034bYqvuyyrtUR
-        5aiB6tbCEDVVAxnyodGvzJH7qF3tDnYyM2+Kuffnfg==
-X-Google-Smtp-Source: ABdhPJy3RP8ApTLWFeuOxSaDmP+bk9p4uPaAGqlNoJA31itRj3U0AHz4xNk4wOpq4ed3AV5juy2VAtEjHIHTWQOiNls=
-X-Received: by 2002:a05:651c:1783:b0:249:43a8:b6f9 with SMTP id
- bn3-20020a05651c178300b0024943a8b6f9mr11878078ljb.273.1651660666042; Wed, 04
- May 2022 03:37:46 -0700 (PDT)
+        bh=sCUql32Z85QbAjdNmeSKhkBGKRfaobQ3esSmZFQlaVI=;
+        b=Ic6q9jN8lvDQ3eZDJyJs05EzpKH9fzarX3tj+n4Z8jEItdo46VQeOpdX92u9DIT1in
+         sNOZKMHH1lfDW6oanERxdFJetnrrxibyahwJORXY5IdACtoLGNKXFjW6Ucui41six+jC
+         mygAsg5tg7vFSt8abjNMeIlD1B91d70f1xaB6qzdj1RZE0jRlGJ6Qw549ph0B22ABXOq
+         5rOC5W101XAlf86OQlbWJnBijdpBXtJhRjGTNzeNjCUqFn4kOWuPYn77aWInRD23oa7e
+         oH65oiaTvPOrzsmvTOPSOLPemoa8WaVE0noHebhzwz4av3jZ+yM6/oTQ8RVKYHMDffRV
+         6Fig==
+X-Gm-Message-State: AOAM531RkIVf0Y6P+LE40lGS+g0OycSYFydbk8V/691QQ/KbtPBN+JC9
+        SEt+Wc9A2JaUCDBT55yR8PWV3kl8xJPMjqaWcBtF6Q==
+X-Google-Smtp-Source: ABdhPJzeIr+314o93x/VndF33IEPYJloviF3mb+cI0vf98H5qVUTu9MMWp10VwrLIsRUESZqHQXxQ/X3V8VHRYraC/U=
+X-Received: by 2002:a19:e007:0:b0:44a:a22d:2d49 with SMTP id
+ x7-20020a19e007000000b0044aa22d2d49mr13560859lfg.254.1651660685372; Wed, 04
+ May 2022 03:38:05 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220422170920.401914-1-sebastian.reichel@collabora.com> <20220422170920.401914-8-sebastian.reichel@collabora.com>
-In-Reply-To: <20220422170920.401914-8-sebastian.reichel@collabora.com>
+References: <20220427180853.35970-1-kdasu.kdev@gmail.com> <20220427180853.35970-2-kdasu.kdev@gmail.com>
+In-Reply-To: <20220427180853.35970-2-kdasu.kdev@gmail.com>
 From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Wed, 4 May 2022 12:37:09 +0200
-Message-ID: <CAPDyKFpCa6xqQfpBj9e8E92_WyK_tEESgSMuRm9_CNRuMgFbQw@mail.gmail.com>
-Subject: Re: [PATCHv1 07/19] dt-bindings: mmc: sdhci-of-dwcmhsc: Add rk3588
-To:     Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org,
-        linux-mmc@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, kernel@lists.collabora.co.uk,
-        kernel@collabora.com
+Date:   Wed, 4 May 2022 12:37:29 +0200
+Message-ID: <CAPDyKFpeN4Ax7E+MSr1XBr4mh=fX-eze4d8ECjVAH4zhJ6cqEA@mail.gmail.com>
+Subject: Re: [PATCH v2 1/4] mmc: sdhci-brcmstb: Re-organize flags
+To:     Kamal Dasu <kdasu.kdev@gmail.com>
+Cc:     robh+dt@kernel.org, krzk+dt@kernel.org, alcooperx@gmail.com,
+        f.fainelli@gmail.com, bcm-kernel-feedback-list@broadcom.com,
+        adrian.hunter@intel.com, linux-mmc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -76,38 +67,134 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 22 Apr 2022 at 19:09, Sebastian Reichel
-<sebastian.reichel@collabora.com> wrote:
+On Wed, 27 Apr 2022 at 20:09, Kamal Dasu <kdasu.kdev@gmail.com> wrote:
 >
-> Add compatible value for the Rockchip rk3588 dwcmshc controller.
+> From: Al Cooper <alcooperx@gmail.com>
 >
-> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+> Re-organize the flags by basing the bit names on the flag that they
+> apply to. Also change the "flags" member in the "brcmstb_match_priv"
+> struct to const.
+>
+> Signed-off-by: Al Cooper <alcooperx@gmail.com>
+> Signed-off-by: Kamal Dasu <kdasu.kdev@gmail.com>
+> Acked-by: Florian Fainelli <f.fainelli@gmail.com>
+> Acked-by: Adrian Hunter <adrian.hunter@intel.com>
 
 Applied for next, thanks!
-
-Note that, I am expecting a new version of the other mmc patches that
-is a part of the series.
 
 Kind regards
 Uffe
 
 
 > ---
->  Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml | 1 +
->  1 file changed, 1 insertion(+)
+>  drivers/mmc/host/sdhci-brcmstb.c | 32 ++++++++++++++++----------------
+>  1 file changed, 16 insertions(+), 16 deletions(-)
 >
-> diff --git a/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml b/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
-> index f300ced4cdf3..71f8e726d641 100644
-> --- a/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
-> +++ b/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
-> @@ -17,6 +17,7 @@ properties:
->    compatible:
->      enum:
->        - rockchip,rk3568-dwcmshc
-> +      - rockchip,rk3588-dwcmshc
->        - snps,dwcmshc-sdhci
+> diff --git a/drivers/mmc/host/sdhci-brcmstb.c b/drivers/mmc/host/sdhci-brcmstb.c
+> index f24623aac2db..244780481193 100644
+> --- a/drivers/mmc/host/sdhci-brcmstb.c
+> +++ b/drivers/mmc/host/sdhci-brcmstb.c
+> @@ -18,20 +18,22 @@
+>  #define SDHCI_VENDOR 0x78
+>  #define  SDHCI_VENDOR_ENHANCED_STRB 0x1
 >
->    reg:
+> -#define BRCMSTB_PRIV_FLAGS_NO_64BIT            BIT(0)
+> -#define BRCMSTB_PRIV_FLAGS_BROKEN_TIMEOUT      BIT(1)
+> +#define BRCMSTB_MATCH_FLAGS_NO_64BIT           BIT(0)
+> +#define BRCMSTB_MATCH_FLAGS_BROKEN_TIMEOUT     BIT(1)
+> +
+> +#define BRCMSTB_PRIV_FLAGS_HAS_CQE             BIT(0)
+>
+>  #define SDHCI_ARASAN_CQE_BASE_ADDR             0x200
+>
+>  struct sdhci_brcmstb_priv {
+>         void __iomem *cfg_regs;
+> -       bool has_cqe;
+> +       unsigned int flags;
+>  };
+>
+>  struct brcmstb_match_priv {
+>         void (*hs400es)(struct mmc_host *mmc, struct mmc_ios *ios);
+>         struct sdhci_ops *ops;
+> -       unsigned int flags;
+> +       const unsigned int flags;
+>  };
+>
+>  static void sdhci_brcmstb_hs400es(struct mmc_host *mmc, struct mmc_ios *ios)
+> @@ -134,13 +136,13 @@ static struct sdhci_ops sdhci_brcmstb_ops_7216 = {
+>  };
+>
+>  static struct brcmstb_match_priv match_priv_7425 = {
+> -       .flags = BRCMSTB_PRIV_FLAGS_NO_64BIT |
+> -       BRCMSTB_PRIV_FLAGS_BROKEN_TIMEOUT,
+> +       .flags = BRCMSTB_MATCH_FLAGS_NO_64BIT |
+> +       BRCMSTB_MATCH_FLAGS_BROKEN_TIMEOUT,
+>         .ops = &sdhci_brcmstb_ops,
+>  };
+>
+>  static struct brcmstb_match_priv match_priv_7445 = {
+> -       .flags = BRCMSTB_PRIV_FLAGS_BROKEN_TIMEOUT,
+> +       .flags = BRCMSTB_MATCH_FLAGS_BROKEN_TIMEOUT,
+>         .ops = &sdhci_brcmstb_ops,
+>  };
+>
+> @@ -176,7 +178,7 @@ static int sdhci_brcmstb_add_host(struct sdhci_host *host,
+>         bool dma64;
+>         int ret;
+>
+> -       if (!priv->has_cqe)
+> +       if ((priv->flags & BRCMSTB_PRIV_FLAGS_HAS_CQE) == 0)
+>                 return sdhci_add_host(host);
+>
+>         dev_dbg(mmc_dev(host->mmc), "CQE is enabled\n");
+> @@ -225,7 +227,6 @@ static int sdhci_brcmstb_probe(struct platform_device *pdev)
+>         struct sdhci_brcmstb_priv *priv;
+>         struct sdhci_host *host;
+>         struct resource *iomem;
+> -       bool has_cqe = false;
+>         struct clk *clk;
+>         int res;
+>
+> @@ -244,10 +245,6 @@ static int sdhci_brcmstb_probe(struct platform_device *pdev)
+>                 return res;
+>
+>         memset(&brcmstb_pdata, 0, sizeof(brcmstb_pdata));
+> -       if (device_property_read_bool(&pdev->dev, "supports-cqe")) {
+> -               has_cqe = true;
+> -               match_priv->ops->irq = sdhci_brcmstb_cqhci_irq;
+> -       }
+>         brcmstb_pdata.ops = match_priv->ops;
+>         host = sdhci_pltfm_init(pdev, &brcmstb_pdata,
+>                                 sizeof(struct sdhci_brcmstb_priv));
+> @@ -258,7 +255,10 @@ static int sdhci_brcmstb_probe(struct platform_device *pdev)
+>
+>         pltfm_host = sdhci_priv(host);
+>         priv = sdhci_pltfm_priv(pltfm_host);
+> -       priv->has_cqe = has_cqe;
+> +       if (device_property_read_bool(&pdev->dev, "supports-cqe")) {
+> +               priv->flags |= BRCMSTB_PRIV_FLAGS_HAS_CQE;
+> +               match_priv->ops->irq = sdhci_brcmstb_cqhci_irq;
+> +       }
+>
+>         /* Map in the non-standard CFG registers */
+>         iomem = platform_get_resource(pdev, IORESOURCE_MEM, 1);
+> @@ -287,14 +287,14 @@ static int sdhci_brcmstb_probe(struct platform_device *pdev)
+>          * properties through mmc_of_parse().
+>          */
+>         host->caps = sdhci_readl(host, SDHCI_CAPABILITIES);
+> -       if (match_priv->flags & BRCMSTB_PRIV_FLAGS_NO_64BIT)
+> +       if (match_priv->flags & BRCMSTB_MATCH_FLAGS_NO_64BIT)
+>                 host->caps &= ~SDHCI_CAN_64BIT;
+>         host->caps1 = sdhci_readl(host, SDHCI_CAPABILITIES_1);
+>         host->caps1 &= ~(SDHCI_SUPPORT_SDR50 | SDHCI_SUPPORT_SDR104 |
+>                          SDHCI_SUPPORT_DDR50);
+>         host->quirks |= SDHCI_QUIRK_MISSING_CAPS;
+>
+> -       if (match_priv->flags & BRCMSTB_PRIV_FLAGS_BROKEN_TIMEOUT)
+> +       if (match_priv->flags & BRCMSTB_MATCH_FLAGS_BROKEN_TIMEOUT)
+>                 host->quirks |= SDHCI_QUIRK_BROKEN_TIMEOUT_VAL;
+>
+>         res = sdhci_brcmstb_add_host(host, priv);
 > --
-> 2.35.1
+> 2.17.1
 >
