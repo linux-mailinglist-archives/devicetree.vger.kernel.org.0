@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 39EA651A090
-	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 15:19:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6462B51A093
+	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 15:19:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350306AbiEDNXG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 May 2022 09:23:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33920 "EHLO
+        id S1350407AbiEDNXN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 May 2022 09:23:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33970 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350285AbiEDNXG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 09:23:06 -0400
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18C9F1CB0F
-        for <devicetree@vger.kernel.org>; Wed,  4 May 2022 06:19:29 -0700 (PDT)
-Received: by mail-ej1-x633.google.com with SMTP id kq17so2851017ejb.4
-        for <devicetree@vger.kernel.org>; Wed, 04 May 2022 06:19:29 -0700 (PDT)
+        with ESMTP id S1350359AbiEDNXH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 09:23:07 -0400
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52B7137A89
+        for <devicetree@vger.kernel.org>; Wed,  4 May 2022 06:19:30 -0700 (PDT)
+Received: by mail-ej1-x635.google.com with SMTP id gh6so2888343ejb.0
+        for <devicetree@vger.kernel.org>; Wed, 04 May 2022 06:19:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=FIMtArNQCnScXPxbG5Ez4i9eHYlrhfD1C1i0rJpy+2k=;
-        b=WKnIzMa4uw++B6tgm1O9xzDfioCiVRLAjCp/D8BmAMMdnCL2kI/oXL29qtsXVKAYqx
-         Sv6kNrga8vB2oX8fWx9TNep2jWk/tdtOd2c2k0I+wNcoSHBNYW+iOyip9R55j7/TBrmQ
-         xvQWybw1naWhL+ploNpYOArvHYOtvDpJqwZZBJ6fTfKjDMxo6ZOMi7/AHHtinO042Fnv
-         ohlbUIWonp8O9PBg46TQQga4yqliYr19JaumNVcj6+4rw/QMR1AKlk5P7zYKN2OisTc6
-         z/JxjA3bg9lb3AxhAofBFvb/LbjpK4yVibuB0fZ3E6zCLcmLql3XrrLVmCL5x1PLMBty
-         Dh7w==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=G7irfyCQlD/M8tL+PfS8TGD+KmTIlsaIOgtkEZDavc8=;
+        b=HR9JpF8cgsadmt47pxzxG0FT3E+/zIhvH8v7yx3sqf9xRKstzI1D/CuJbh4EIqDL2H
+         Z0mWC1f6nY/uFvjPcqyxt/C9gUhBB9/7DEgt88W36p386VIidahonAtxgvuIITHcQzCw
+         ooQ1osUEi99qUsVaEKYfcPGIt9q5dYNcC1P4nl5ix6Haw78a9l41qQTYrWP2h9ln+LC1
+         5i4cS1OZRr6blhjloTBrtAtdbCUYp1Ii904wsTZLUtW7xrQKFWEr+NpjbeGRr3K0c6wL
+         zLQ5AX+jXe+g+xqvtVWFLXwq2jJYsE3wTqM+Cvd7sJ1xL6Zem4jPK60ZfeTyGzmw3xOF
+         TVAg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=FIMtArNQCnScXPxbG5Ez4i9eHYlrhfD1C1i0rJpy+2k=;
-        b=CBxxg8qKe+VxlGOBWDbOW4D4sG248LO4AMas8AOwhySGSXplljIuVZmokal/HMzxon
-         Gm1fQRn/2zQWn2JOMVJumimJ3PIid69TUOML/cDBa5J6JZWVqt45udGwXanks53FJ9SS
-         XF7PCNfgr7LYzBiTsUgIKnKLnrLy9jzzgVpdpuDzdZzSUlTFV34/6TzS+TMRrF1pHh2H
-         wT/xhfSeq9lc8guVQDjoDN5+sp+oFvrhg71+abFBUtGNUC2oJ+Do9nPu5pQiAdZmEDGN
-         sDT7Rs/5U4igz9SzEaABiqkRR7gLf8kBZODdky9pokW2WIn72iKVqx+Kjf2WWw76JxsF
-         kZyQ==
-X-Gm-Message-State: AOAM5317tp44rMgITRey6AJ1A5XsyuriJDjMXNDK6I5Qn5gI5hye3yZ8
-        hhinqLsERI86dGbNiCCgbqVqog==
-X-Google-Smtp-Source: ABdhPJyQrb/3lujjFvxdI3/EJeFf0fBea6dXetyFjPJrkIJ0Ia3Uhb0W9zifuVNK7ZmrJk1z/xNGiw==
-X-Received: by 2002:a17:907:8a0b:b0:6f4:4899:db98 with SMTP id sc11-20020a1709078a0b00b006f44899db98mr14038112ejc.622.1651670367697;
-        Wed, 04 May 2022 06:19:27 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=G7irfyCQlD/M8tL+PfS8TGD+KmTIlsaIOgtkEZDavc8=;
+        b=k3rQtjyP2uI5puzPIi3rVAGgUSUq6Ze3kHyV8LKPy/af3/WhuJfrODxxHFSCafOg/y
+         EwNC0END7IXHNvRc2uy+yzGUkdeat0QnYjDgq0g+1pdkyVWOp0EcNUt2ml1sHeY+KTRV
+         qF8z2Lu21+7ETpXr9QgackPEXJsAIc9nx3bybi+dG5A52+Wr496ZvgO8UO2qm1GpAIVX
+         IPxqTSYk+6VZHG1iOzRvWHPSJyQvN0Qr/DjJo7WnXwxcClBv32h9rw88AYru9Pjk9aSX
+         SDZHECUPUA4+9NriyiA8l9YpwaUb8gxJE+vvUHPWey6NKWd9E/gs+dHo4qlhkFJDkY2l
+         U+9Q==
+X-Gm-Message-State: AOAM5317lxGK7LWCWSFezmopWHES2ek+s8leB3qP0CYarbBn4DdsdXfW
+        rR1vYN8pv1HB4Ely5cS6grEm0A==
+X-Google-Smtp-Source: ABdhPJwRQ+1dtDdX/5DAMYWUOT+0UJnZBnzubU+AKGBV77frwhOwL3kuGIPEnLBy+9queoUWx5VT1w==
+X-Received: by 2002:a17:907:d9e:b0:6f4:2983:c371 with SMTP id go30-20020a1709070d9e00b006f42983c371mr17267601ejc.558.1651670368800;
+        Wed, 04 May 2022 06:19:28 -0700 (PDT)
 Received: from localhost.localdomain (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id gx3-20020a1709068a4300b006f3ef214dc4sm5660924ejc.42.2022.05.04.06.19.26
+        by smtp.gmail.com with ESMTPSA id gx3-20020a1709068a4300b006f3ef214dc4sm5660924ejc.42.2022.05.04.06.19.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 May 2022 06:19:27 -0700 (PDT)
+        Wed, 04 May 2022 06:19:28 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
@@ -57,15 +57,17 @@ To:     Andy Gross <agross@kernel.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 00/13] dt-bindings/arm64: dts: qcom: minor cleanups with DT schema
-Date:   Wed,  4 May 2022 15:19:10 +0200
-Message-Id: <20220504131923.214367-1-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 01/13] dt-bindings: soc: qcom: aoss: document qcom,sm8450-aoss-qmp
+Date:   Wed,  4 May 2022 15:19:11 +0200
+Message-Id: <20220504131923.214367-2-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.32.0
+In-Reply-To: <20220504131923.214367-1-krzysztof.kozlowski@linaro.org>
+References: <20220504131923.214367-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -73,56 +75,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Add compatible for qcom,sm8450-aoss-qmp with qcom,aoss-qmp as a
+fallback.  This fixes dtbs_check warnings like:
 
-The patches are independent, so they can be picked up as is (or everything
-through Qualcomm SoC tree).
+  sm8450-hdk.dtb: power-controller@c300000: compatible:0: 'qcom,sm8450-aoss-qmp' is not one of
+    ['qcom,sc7180-aoss-qmp', 'qcom,sc7280-aoss-qmp', 'qcom,sc8180x-aoss-qmp', 'qcom,sdm845-aoss-qmp',
+     'qcom,sm6350-aoss-qmp', 'qcom,sm8150-aoss-qmp', 'qcom,sm8250-aoss-qmp', 'qcom,sm8350-aoss-qmp']
 
-Best regards,
-Krzysztof
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ Documentation/devicetree/bindings/soc/qcom/qcom,aoss-qmp.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-Krzysztof Kozlowski (13):
-  dt-bindings: soc: qcom: aoss: document qcom,sm8450-aoss-qmp
-  dt-bindings: soc: qcom: qcom,smd-rpm: add power-controller
-  dt-bindings: usb: qcom,dwc3: add IPQ8074, MSM8994, QCS404 and SM6125
-  dt-bindings: usb: qcom,dwc3: fix clock matching
-  arm64: dts: qcom: add missing AOSS QMP compatible fallback
-  arm64: dts: qcom: correct DWC3 node names and unit addresses
-  arm64: dts: qcom: ipq8074: add dedicated qcom,ipq8074-dwc3 compatible
-  arm64: dts: qcom: msm8994: add dedicated qcom,msm8994-dwc3 compatible
-  arm64: dts: qcom: sm6125: add dedicated qcom,sm6125-dwc3 compatible
-  arm64: dts: qcom: qcs404: add dedicated qcom,qcs404-dwc3 compatible
-  arm64: dts: qcom: msm8996: add clock-names to DWC3 USB node
-  arm64: dts: qcom: align DWC3 USB clocks with DT schema
-  arm64: dts: qcom: align DWC3 USB interrupts with DT schema
-
- .../bindings/soc/qcom/qcom,aoss-qmp.yaml      |   1 +
- .../bindings/soc/qcom/qcom,smd-rpm.yaml       |   3 +
- .../devicetree/bindings/usb/qcom,dwc3.yaml    | 226 ++++++++++++++++--
- arch/arm/boot/dts/qcom-ipq4019.dtsi           |   2 +-
- arch/arm/boot/dts/qcom-sdx55.dtsi             |  11 +-
- arch/arm64/boot/dts/qcom/apq8096-db820c.dts   |  18 +-
- arch/arm64/boot/dts/qcom/ipq6018.dtsi         |  12 +-
- arch/arm64/boot/dts/qcom/ipq8074.dtsi         |  16 +-
- arch/arm64/boot/dts/qcom/msm8953.dtsi         |  11 +-
- arch/arm64/boot/dts/qcom/msm8994.dtsi         |   7 +-
- .../boot/dts/qcom/msm8996-xiaomi-common.dtsi  |  20 +-
- arch/arm64/boot/dts/qcom/msm8996.dtsi         |  23 +-
- arch/arm64/boot/dts/qcom/msm8998.dtsi         |  13 +-
- arch/arm64/boot/dts/qcom/qcs404-evb.dtsi      |   7 +-
- arch/arm64/boot/dts/qcom/qcs404.dtsi          |   8 +-
- arch/arm64/boot/dts/qcom/sc7180.dtsi          |  15 +-
- arch/arm64/boot/dts/qcom/sc7280.dtsi          |  34 ++-
- arch/arm64/boot/dts/qcom/sdm630.dtsi          |  12 +-
- arch/arm64/boot/dts/qcom/sdm845.dtsi          |  26 +-
- arch/arm64/boot/dts/qcom/sm6125.dtsi          |  16 +-
- arch/arm64/boot/dts/qcom/sm6350.dtsi          |  11 +-
- arch/arm64/boot/dts/qcom/sm8150.dtsi          |  24 +-
- arch/arm64/boot/dts/qcom/sm8250.dtsi          |  22 +-
- arch/arm64/boot/dts/qcom/sm8350.dtsi          |  23 +-
- arch/arm64/boot/dts/qcom/sm8450.dtsi          |  20 +-
- 25 files changed, 424 insertions(+), 157 deletions(-)
-
+diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,aoss-qmp.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,aoss-qmp.yaml
+index e2e173dfada7..d01e98768153 100644
+--- a/Documentation/devicetree/bindings/soc/qcom/qcom,aoss-qmp.yaml
++++ b/Documentation/devicetree/bindings/soc/qcom/qcom,aoss-qmp.yaml
+@@ -33,6 +33,7 @@ properties:
+           - qcom,sm8150-aoss-qmp
+           - qcom,sm8250-aoss-qmp
+           - qcom,sm8350-aoss-qmp
++          - qcom,sm8450-aoss-qmp
+       - const: qcom,aoss-qmp
+ 
+   reg:
 -- 
 2.32.0
 
