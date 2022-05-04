@@ -2,87 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E4D851AF0C
-	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 22:28:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 84CE951AF1D
+	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 22:31:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229703AbiEDUbx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 May 2022 16:31:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36990 "EHLO
+        id S1378034AbiEDUer (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 May 2022 16:34:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40878 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343665AbiEDUbw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 16:31:52 -0400
-Received: from thorn.bewilderbeest.net (thorn.bewilderbeest.net [IPv6:2605:2700:0:5::4713:9cab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 712CF4F9F0;
-        Wed,  4 May 2022 13:28:15 -0700 (PDT)
-Received: from hatter.bewilderbeest.net (174-21-163-222.tukw.qwest.net [174.21.163.222])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: zev)
-        by thorn.bewilderbeest.net (Postfix) with ESMTPSA id BEE94368;
-        Wed,  4 May 2022 13:28:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bewilderbeest.net;
-        s=thorn; t=1651696094;
-        bh=k1OGqO6yttpA6KvVZQkxzts4/vCE80ZuQxCGo5hhVRE=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Wo4l3g3tbSfivPvsKVzN8JXIHrCdw7VQ8UTGTKDqt9D5vfiFuZJrgX4Iq/+stwnCq
-         0eDDymQkC/+HVsKy7fMLvzjQN3Zteirdlt+fFf4ns5C9iwmM1mJKdOmO2FFMlZUyjL
-         5NwgO+BtJKIBuMH4kTzRM9i61xpkjAhlErqxi2Ig=
-Date:   Wed, 4 May 2022 13:28:11 -0700
-From:   Zev Weiss <zev@bewilderbeest.net>
-To:     Mark Brown <broonie@kernel.org>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>, linux-kernel@vger.kernel.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        with ESMTP id S1357568AbiEDUeo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 16:34:44 -0400
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1D2B4E387;
+        Wed,  4 May 2022 13:31:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1651696266; x=1683232266;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=5GhRSMdpdVf05QfepV3o9U0aOcougHdLRETdtU1BceE=;
+  b=Mt+ekS5FZ5erIAKIi3qdTFct5hRJu9qRtcj5JyjS8prYPm5OsJ/fp1Xo
+   YBQ8SOhf25jIeJj8+grqa0c3Tyh6CD032PSDR2UZcdP0TaSbOVlisv1UJ
+   zOAX944ge3UOH1zUMYWsFJwxW70E+tIZ+7ZyKwlWpmjwEEzfSZ5Obq9Zf
+   6rfsYfffll/Rk6lVegitDv8XeEr7/KOpLbVW2bqXgQSdxDcpXV0rmAMRP
+   SzPv+Fi9rEGB4QNPvEXF0alQFl6G5v2nZRe+FiMQ6A/ReI1kyokyq98ea
+   2W4gL/13YshNQPYYPfsIIDn2yo9FHNtXzTpA6kAspa6plcMkPtNRNLIUM
+   w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10337"; a="265484431"
+X-IronPort-AV: E=Sophos;i="5.91,199,1647327600"; 
+   d="scan'208";a="265484431"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 May 2022 13:31:04 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.91,199,1647327600"; 
+   d="scan'208";a="568271596"
+Received: from lkp-server01.sh.intel.com (HELO 5056e131ad90) ([10.239.97.150])
+  by fmsmga007.fm.intel.com with ESMTP; 04 May 2022 13:31:01 -0700
+Received: from kbuild by 5056e131ad90 with local (Exim 4.95)
+        (envelope-from <lkp@intel.com>)
+        id 1nmLeG-000BlC-Rr;
+        Wed, 04 May 2022 20:31:00 +0000
+Date:   Thu, 5 May 2022 04:30:40 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Markuss Broks <markuss.broks@gmail.com>,
+        linux-kernel@vger.kernel.org
+Cc:     llvm@lists.linux.dev, kbuild-all@lists.01.org,
+        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+        Markuss Broks <markuss.broks@gmail.com>,
+        Lin Meng-Bo <linmengbo0689@protonmail.com>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, openbmc@lists.ozlabs.org
-Subject: Re: [PATCH 0/6] regulator: core: Add support for external outputs
-Message-ID: <YnLh23QbnO1MHoVL@hatter.bewilderbeest.net>
-References: <20220504065041.6718-1-zev@bewilderbeest.net>
- <YnJ37QysSaa+gAps@sirena.org.uk>
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Henrik Rydberg <rydberg@bitmath.org>,
+        linux-input@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 3/3] input/touchscreen: imagis: Add support for Imagis
+ IST3038B
+Message-ID: <202205050459.Cn4Mj5ny-lkp@intel.com>
+References: <20220504152406.8730-4-markuss.broks@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <YnJ37QysSaa+gAps@sirena.org.uk>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20220504152406.8730-4-markuss.broks@gmail.com>
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 04, 2022 at 05:56:13AM PDT, Mark Brown wrote:
->On Tue, May 03, 2022 at 11:50:35PM -0700, Zev Weiss wrote:
->
->> The DT bindings changes (patches 1 and 2) consist of a boolean
->> regulator property to mark it as supplying an external output, and a
->> reg-external-output binding to act as a downstream device representing
->> that output.  The redundancy between the two maybe isn't entirely
->> ideal, but it was the cleanest approach I've been able to come up with
->> so far in terms of working with the regulator subsystem; I'm certainly
->> open to suggestions for better ways of going about this.
->
->Nothing in the series articulates what the purpose of the redundancy is
->- your description of this is a consumer, why would the regulator itself
->care what's connected to it?
+Hi Markuss,
 
-Hi Mark, thanks for the review.
+I love your patch! Perhaps something to improve:
 
-To some extent that was an additional (maybe excessive) protective 
-measure against regulators ending up userspace-controllable when they 
-shouldn't be, since I had previously gotten the impression that there 
-was some concern about that possibility.
+[auto build test WARNING on dtor-input/next]
+[also build test WARNING on linux/master linus/master v5.18-rc5 next-20220504]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
 
-More functionally though, it was also basically a hack to allow the 
-'state' sysfs attribute's mode to get set properly in 
-regulator_register(), before the consumer is known.  Though if things 
-are rearranged based on what you said in another message about putting 
-the enable/disable control in a consumer driver instead of the regulator 
-itself, it should be easy to get rid of.
+url:    https://github.com/intel-lab-lkp/linux/commits/Markuss-Broks/Add-support-for-Imagis-IST3038B/20220504-232637
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/dtor/input.git next
+config: hexagon-randconfig-r022-20220502 (https://download.01.org/0day-ci/archive/20220505/202205050459.Cn4Mj5ny-lkp@intel.com/config)
+compiler: clang version 15.0.0 (https://github.com/llvm/llvm-project 363b3a645a1e30011cc8da624f13dac5fd915628)
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/a22f360f66c82a3bc53d9861a62d2d2e5abe897c
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Markuss-Broks/Add-support-for-Imagis-IST3038B/20220504-232637
+        git checkout a22f360f66c82a3bc53d9861a62d2d2e5abe897c
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=hexagon SHELL=/bin/bash drivers/input/touchscreen/
+
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
+
+All warnings (new ones prefixed by >>):
+
+>> drivers/input/touchscreen/imagis.c:366:39: warning: unused variable 'imagis_3038b_data' [-Wunused-const-variable]
+   static const struct imagis_properties imagis_3038b_data = {
+                                         ^
+>> drivers/input/touchscreen/imagis.c:374:39: warning: unused variable 'imagis_3038c_data' [-Wunused-const-variable]
+   static const struct imagis_properties imagis_3038c_data = {
+                                         ^
+   2 warnings generated.
 
 
-Thanks,
-Zev
+vim +/imagis_3038b_data +366 drivers/input/touchscreen/imagis.c
 
+   365	
+ > 366	static const struct imagis_properties imagis_3038b_data = {
+   367		.interrupt_msg_cmd = IST3038B_REG_STATUS,
+   368		.touch_coord_cmd = IST3038B_REG_STATUS,
+   369		.whoami_cmd = IST3038B_REG_CHIPID,
+   370		.whoami_val = IST3038B_WHOAMI,
+   371		.protocol_b = true,
+   372	};
+   373	
+ > 374	static const struct imagis_properties imagis_3038c_data = {
+   375		.interrupt_msg_cmd = IST3038C_REG_INTR_MESSAGE,
+   376		.touch_coord_cmd = IST3038C_REG_TOUCH_COORD,
+   377		.whoami_cmd = IST3038C_REG_CHIPID,
+   378		.whoami_val = IST3038C_WHOAMI,
+   379	};
+   380	
+
+-- 
+0-DAY CI Kernel Test Service
+https://01.org/lkp
