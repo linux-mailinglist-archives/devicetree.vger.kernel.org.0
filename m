@@ -2,104 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 775FB519CD4
-	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 12:22:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DF17B519CE1
+	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 12:27:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347937AbiEDK0F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 May 2022 06:26:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37678 "EHLO
+        id S1348067AbiEDKbY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 May 2022 06:31:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41108 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343997AbiEDK0E (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 06:26:04 -0400
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.20])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C7471C131;
-        Wed,  4 May 2022 03:22:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1651659719;
-        bh=FMqy0avoQkJTPHIwxT5BOwePV8xTDg1i/a1jeG3qI+Y=;
-        h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=a/tWSVIXXDy8jbJh8kiUKjnq16C+BCvfq7Pht2bkf4Zaa7YOHgg6uwuP+ohQQTy2S
-         ZVZgL928GRPcDxohNdzc0IlhQuoVOdfs4oSZezf/bYEkqLY4f0gdYCRt+VPfNNd2AG
-         rDI4fnq2o+3fGzGtURHnVMbQDAAQlMF3tt5mfUSE=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from [80.245.79.168] ([80.245.79.168]) by web-mail.gmx.net
- (3c-app-gmx-bs42.server.lan [172.19.170.94]) (via HTTP); Wed, 4 May 2022
- 12:21:59 +0200
-MIME-Version: 1.0
-Message-ID: <trinity-050a20ad-480c-4464-99fc-95a3ce2eba11-1651659719023@3c-app-gmx-bs42>
-From:   Frank Wunderlich <frank-w@public-files.de>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Frank Wunderlich <linux@fw-web.de>, Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+        with ESMTP id S1348023AbiEDKbX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 06:31:23 -0400
+Received: from mail-pg1-x52d.google.com (mail-pg1-x52d.google.com [IPv6:2607:f8b0:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27E6E26571
+        for <devicetree@vger.kernel.org>; Wed,  4 May 2022 03:27:48 -0700 (PDT)
+Received: by mail-pg1-x52d.google.com with SMTP id a191so831905pge.2
+        for <devicetree@vger.kernel.org>; Wed, 04 May 2022 03:27:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=n8vzoy3N7pBPE7Pl8WE2bInrudsdOONjhf3PaHQ1svY=;
+        b=HVmmccbsvIcZmOYCJcgcjO7yILm1zErYVEIzfrg8InamWDpIjN+6Q9P2ZLPFZ//sw+
+         rOpmzpn4Tlpqgo5nIDx+9pvHbfvCvraETJu579UZDLCnABxGO4c0KDol8D43LNEKyXSd
+         gv3Bl1JkxIdyijkF6B5xOOn/SHngzh+Ay7+mOkrrkSTERY8GV2w6Ympu0obKQdZcMk5z
+         pfJglh8xBl3kfsZGwGSz2nwmAeVa0vD+OFeyK8j1Y0LBwGWajIWPQIjoaVqlaBmgEsJb
+         9EkTQCYVkIFDmF2djn0cKTFoGIv5UFdE0TG8IR1kjrTsgsw+hG5SLZWJAM7SzARdpyIi
+         fEKQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=n8vzoy3N7pBPE7Pl8WE2bInrudsdOONjhf3PaHQ1svY=;
+        b=GY4al9ycULWBlsoS+Ygwbj9NCO2Rc8Iyh4LFxFyAYCEkGTk23+8HYPmg/OVEfncGIW
+         wAL0/dj//v4a+VMezcCxNr/jB/AjN9ibPkkTxak57kpkYaGB3AQmgo1pXnj/vljliPTK
+         Lr3AXSNRmREe4OKTk68aMJJMvGUKq1jAf7IDHHwxDs49+aJxi0ak/FClxOrwUIoDPb2o
+         U/fcZvqD/62TbvVoc3TtXPu02apwG/IWN5387xn9i3AHczvJqmG5G/QErfnE0MV/CBsV
+         IuRi8SvfUjHjFquykArKZ8AL/v537F1Dk1yFI6pCuHiGHS7L5cuaBfFyTar7sWUtSZDR
+         uSaw==
+X-Gm-Message-State: AOAM531uscMMyQ44m5bmrL1Wg8jY5G57hAyUhqaAF9T0Zqaum86JodY0
+        UY4adRV1HS1VqtgS6SxEP7VC3w==
+X-Google-Smtp-Source: ABdhPJxs5soROkk0kpKdyut/L8JDvItaFHJCeyHzhAOimp8VW+AG5fW4x5mr5jTnFDiY9DbdDgbONA==
+X-Received: by 2002:a63:6bca:0:b0:3c2:13bc:2706 with SMTP id g193-20020a636bca000000b003c213bc2706mr11867564pgc.464.1651660067671;
+        Wed, 04 May 2022 03:27:47 -0700 (PDT)
+Received: from localhost ([122.162.207.161])
+        by smtp.gmail.com with ESMTPSA id e2-20020a17090a630200b001d5c571f487sm2938789pjj.25.2022.05.04.03.27.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 04 May 2022 03:27:47 -0700 (PDT)
+Date:   Wed, 4 May 2022 15:57:45 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Hector Martin <marcan@marcan.st>, manivannan.sadhasivam@linaro.org
+Cc:     "Rafael J. Wysocki" <rafael@kernel.org>,
+        Sven Peter <sven@svenpeter.dev>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Landen Chao <Landen.Chao@mediatek.com>,
-        DENG Qingfang <dqfext@gmail.com>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-Subject: Aw: Re: [RFC v1] dt-bindings: net: dsa: convert binding for
- mediatek switches
-Content-Type: text/plain; charset=UTF-8
-Date:   Wed, 4 May 2022 12:21:59 +0200
-Importance: normal
-Sensitivity: Normal
-In-Reply-To: <d29637f8-87ff-b5f0-9604-89b51a2ba7c1@linaro.org>
-References: <20220502153238.85090-1-linux@fw-web.de>
- <d29637f8-87ff-b5f0-9604-89b51a2ba7c1@linaro.org>
-X-UI-Message-Type: mail
-X-Priority: 3
-X-Provags-ID: V03:K1:6GHTHGGG/fWYaiqZe61bZK/+zhObG4vTyf/KfTx7otfQ/biiPX6LU4lOzmXX85G4UESoG
- 4hslvlK+fUX5CDwywLxRK82Ho/brj3SKPBTNOtB3qzQYfRzs2ZQDxs5e1kr6mpTzC5SuSXpGjf8h
- v81wIH6gk/s6iFE2OEcFySVDq07v+eBsZmUbLRNuTFThc9R2BtjvumXHM73Q2VCYj+clGLdu9x3Q
- nPNkkg//gwL55I/o4XoRrYf5lPV6M5JW90KB2IASWCrPb0F2dblMXebz7OhiDWgRd2pC2b2pLWaW
- Es=
-X-UI-Out-Filterresults: notjunk:1;V03:K0:fzNN70NOehs=:o2y6DVX52shLGNI/cLV33n
- 3HqYzOCruL5pfhyvZhdfoBxlSVtQofMnCzShO6uS/MQCk/Y/BfZaewZnrVokYmzRMyYt6lPSs
- HM1ACDcfFu2zAqSFuuVzAOeeqbgO9AeR/m6tuJCRivAJMPbIaYspcEpcu4Mkp6sBxc+MDrPau
- 5C1hC/W/XiiGSnsoVXCadcSPZj7RZ38DnSfP9U9dBb/9RzWb0hTAhZgz0vqckwRdoBOkwP1eF
- re1+1RC7g1YRw/OSpzEpj4pewVnYt+NKWAX+dYnyanY7T3voCxsYqwQjdY6P+4Sa8Az8rXR/8
- zYg1anWPD8jy+h6sPfJ9Q7nXew9tBBJPIDoHx3GxBvQuxt7Cm0Mv1Kc6NbZe9L0Y1/vyUnjkl
- 32kkDd0nQ5IgV3V0Kl82+4RmXIGS/NA9YG0bWszpVRVzahf44rLZ4djNNxc2M1PgrZ4/hqAAe
- +Q+CjPjlDOVs9tRCKG+i1frcFmWhH8zChohoXI5JnoJC+OhYQKyYM749LzBjbBDH22fEXrAb8
- +qicqfFBhv+su5kRv67CPgXn8eBsN0GCb7sN1lpGQl+AlKx6C3BpaUk2WKy70+cjIbNVOxXN3
- 3OLooidyH8LontIKlXXN0BwUbSMlhbua7Y8M4QnLv3J0xizz8rjwuNANld93ZofDT1rHHhF4H
- tQ8YKCIILPIl245jrAnkwHPMMCwwHW7X+b/ofRpZSK4PE6Ln4q66igK+XM3KoIMnaaB+XqX8F
- qfcLQ9+/ljBVnDq5tXlTGJHTtM+cV0ceNLQ9ixyyTdCoMcFhxH7DraCZyIefbMtA0iXdbViQh
- JSQ0Yrn
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_LOW,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        Stephen Boyd <sboyd@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Marc Zyngier <maz@kernel.org>,
+        Mark Kettenis <mark.kettenis@xs4all.nl>,
+        linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 0/4] Apple SoC cpufreq driver
+Message-ID: <20220504102745.fv5bl2cphq7ft4lm@vireshk-i7>
+References: <20220504075153.185208-1-marcan@marcan.st>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220504075153.185208-1-marcan@marcan.st>
+User-Agent: NeoMutt/20180716-391-311a52
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi
+On 04-05-22, 16:51, Hector Martin wrote:
+> Hi folks,
+> 
+> Here's a second take on the cpufreq driver for Apple SoCs. This is a
+> complete rewrite using a stand-alone cpufreq driver instead of using the
+> cpufreq-dt infrastructure.
+> 
+> Since v1 we ran some experiments on the memory controller performance
+> switching and it turns out it doesn't make a huge difference, so it
+> makes sense to punt that feature to the future (perhaps once a proper
+> memory controller driver exists for other reasons, e.g. for error
+> handling).
+> 
+> One advantage of having a standalone cpufreq driver is that we can
+> support fast switching. This also means any future interaction with
+> the memory controller will probably use some bespoke mechanism instead
+> of the genpd infrastructure, so we can keep the fast path without
+> allowing sleeps/etc.
+> 
+> The driver is based on scpi-cpufreq.c, with some bits (e.g. the
+> apple,freq-domain stuff) inspired by how cpufreq-qcom-hw does it.
+> I'm not sure if that particular property should be described
+> in a binding, since it goes in the cpu nodes (qcom doesn't have it
+> anywhere...).
 
-> Gesendet: Dienstag, 03. Mai 2022 um 14:05 Uhr
-> Von: "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>
+Hi Mani,
 
-> > +required:
-> > +  - compatible
-> > +  - reg
->
-> What about address/size cells?
+I can see that Rob asked you to add this somewhere, maybe in arm/cpu
+stuff, but I don't think you ever sent a patch with that. What
+happened ?
 
-in current devicetrees the address-cells/size-cells are set above the swit=
-ch on mdio-bus so i would
-not add these to required for switch.
+https://lore.kernel.org/lkml/20201013171800.GA3716411@bogus/
 
-https://elixir.bootlin.com/linux/latest/source/arch/arm/boot/dts/mt7623n-b=
-ananapi-bpi-r2.dts#L190
-
-regards Frank
+-- 
+viresh
