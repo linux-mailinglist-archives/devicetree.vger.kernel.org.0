@@ -2,169 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D3E8251960C
-	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 05:37:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A067C51964E
+	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 06:16:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344375AbiEDDlQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 May 2022 23:41:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44454 "EHLO
+        id S237681AbiEDEUS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 May 2022 00:20:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47190 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344349AbiEDDlP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 23:41:15 -0400
-Received: from mail-pf1-x430.google.com (mail-pf1-x430.google.com [IPv6:2607:f8b0:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 90E6528E13
-        for <devicetree@vger.kernel.org>; Tue,  3 May 2022 20:37:37 -0700 (PDT)
-Received: by mail-pf1-x430.google.com with SMTP id i24so157460pfa.7
-        for <devicetree@vger.kernel.org>; Tue, 03 May 2022 20:37:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=lsBVjxx2frcPFNjY4/BLqdzh7cys7mpO3LyMH5LAbSE=;
-        b=e/seADFb6dKCy5O35I2lb3QkGM1U1AG+HWJjIUEuWUaLYiQ/bRCqVwsL3BCOvWYEuK
-         9qpY1aU7RmqPGGBT5JUv2H6Jc6siGFaT+PVsx+FN+n4iHis5NM0gOyiK9HY2IIWzLhh4
-         mk3V/alwvU0/DDln8pB7kZALicerW3KUceFLU=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=lsBVjxx2frcPFNjY4/BLqdzh7cys7mpO3LyMH5LAbSE=;
-        b=y/gdZLokqfIseslVP1TJlCR8H80L08C9PzE7/9Ge7kWtnYP1yfD8siTL1wDobrli4L
-         CDxHEsyHKatCP8hvHt+g9sxqiEi1q+uzx+ArwqAKhTf0S7NQXN7OB9NjXoh2IbOPQSnh
-         KhkQykEGI3YvqXXi76WOlf3AbvZil1tYYtpbSINDUBBYAVIZLnEdNQsGyJpNAm2zEiTG
-         4OQ2uqC9NgcGZkqiSAaXVbNQKziwAuptMBeP8Zfalr64BxUq9Sc9b1CQwWb3WHosTdu+
-         EKd0Q9LTQ+vltuDCKvkr8YXjClY3+3ZQtnCFbQMh7TwPZs5bljE2kuVAfWk4D0jUMFsF
-         r3Ig==
-X-Gm-Message-State: AOAM53196j1SsmIrqKovYuJjjyLoLketmOK7hh2ADM6i+BdWSrekDTHe
-        JYpqhpQG6hPFPB3vfbCFIPj0CA==
-X-Google-Smtp-Source: ABdhPJwD/uvCKEJ4PY5hYyja46c4g0gVoPoVIrAV6/UTN/22EI1oLPF2GDVC1zkPD9qJOD+dW3FeWQ==
-X-Received: by 2002:a63:8c1a:0:b0:3ab:35a9:5f8f with SMTP id m26-20020a638c1a000000b003ab35a95f8fmr16187660pgd.598.1651635457000;
-        Tue, 03 May 2022 20:37:37 -0700 (PDT)
-Received: from www.outflux.net (smtp.outflux.net. [198.145.64.163])
-        by smtp.gmail.com with ESMTPSA id j17-20020a62b611000000b0050dc7628170sm7022939pff.74.2022.05.03.20.37.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 May 2022 20:37:36 -0700 (PDT)
-Date:   Tue, 3 May 2022 20:37:35 -0700
-From:   Kees Cook <keescook@chromium.org>
-To:     "Gustavo A. R. Silva" <gustavoars@kernel.org>
-Cc:     Rasmus Villemoes <linux@rasmusvillemoes.dk>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rich Felker <dalias@aerifal.cx>,
-        Eric Dumazet <edumazet@google.com>, netdev@vger.kernel.org,
-        Alexei Starovoitov <ast@kernel.org>,
-        alsa-devel@alsa-project.org, Al Viro <viro@zeniv.linux.org.uk>,
-        Andrew Gabbasov <andrew_gabbasov@mentor.com>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        Andy Gross <agross@kernel.org>,
-        Andy Lavr <andy.lavr@gmail.com>,
-        Arend van Spriel <aspriel@gmail.com>,
-        Baowen Zheng <baowen.zheng@corigine.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Boris Ostrovsky <boris.ostrovsky@oracle.com>,
-        Bradley Grove <linuxdrivers@attotech.com>,
-        brcm80211-dev-list.pdl@broadcom.com,
-        Christian Brauner <brauner@kernel.org>,
-        Christian =?iso-8859-1?Q?G=F6ttsche?= <cgzones@googlemail.com>,
-        Christian Lamparter <chunkeey@googlemail.com>,
-        Chris Zankel <chris@zankel.net>,
-        Cong Wang <cong.wang@bytedance.com>,
-        Daniel Axtens <dja@axtens.net>,
-        Daniel Vetter <daniel.vetter@ffwll.ch>,
-        Dan Williams <dan.j.williams@intel.com>,
-        David Gow <davidgow@google.com>,
-        David Howells <dhowells@redhat.com>,
-        Dennis Dalessandro <dennis.dalessandro@cornelisnetworks.com>,
-        devicetree@vger.kernel.org, Dexuan Cui <decui@microsoft.com>,
-        Dmitry Kasatkin <dmitry.kasatkin@gmail.com>,
-        Eli Cohen <elic@nvidia.com>,
-        Eric Paris <eparis@parisplace.org>,
-        Eugeniu Rosca <erosca@de.adit-jv.com>,
-        Felipe Balbi <balbi@kernel.org>,
-        Francis Laniel <laniel_francis@privacyrequired.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Franky Lin <franky.lin@broadcom.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Gregory Greenman <gregory.greenman@intel.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Haiyang Zhang <haiyangz@microsoft.com>,
-        Hante Meuleman <hante.meuleman@broadcom.com>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        Hulk Robot <hulkci@huawei.com>,
-        "James E.J. Bottomley" <jejb@linux.ibm.com>,
-        James Morris <jmorris@namei.org>,
-        Jarkko Sakkinen <jarkko@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Jason Gunthorpe <jgg@ziepe.ca>, Jens Axboe <axboe@kernel.dk>,
-        Johan Hedberg <johan.hedberg@gmail.com>,
-        Johannes Berg <johannes.berg@intel.com>,
-        Johannes Berg <johannes@sipsolutions.net>,
-        John Keeping <john@metanate.com>,
-        Juergen Gross <jgross@suse.com>, Kalle Valo <kvalo@kernel.org>,
-        Keith Packard <keithp@keithp.com>, keyrings@vger.kernel.org,
-        kunit-dev@googlegroups.com,
-        Kuniyuki Iwashima <kuniyu@amazon.co.jp>,
-        "K. Y. Srinivasan" <kys@microsoft.com>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Lee Jones <lee.jones@linaro.org>,
-        Leon Romanovsky <leon@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        linux1394-devel@lists.sourceforge.net,
-        linux-afs@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-arm-msm@vger.kernel.org, linux-bluetooth@vger.kernel.org,
-        linux-hardening@vger.kernel.org, linux-hyperv@vger.kernel.org,
-        linux-integrity@vger.kernel.org, linux-rdma@vger.kernel.org,
-        linux-scsi@vger.kernel.org, linux-security-module@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-wireless@vger.kernel.org,
-        linux-xtensa@linux-xtensa.org, llvm@lists.linux.dev,
-        Loic Poulain <loic.poulain@linaro.org>,
-        Louis Peens <louis.peens@corigine.com>,
-        Luca Coelho <luciano.coelho@intel.com>,
-        Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
-        Marc Dionne <marc.dionne@auristor.com>,
-        Marcel Holtmann <marcel@holtmann.org>,
-        Mark Brown <broonie@kernel.org>,
-        "Martin K. Petersen" <martin.petersen@oracle.com>,
-        Max Filippov <jcmvbkbc@gmail.com>,
-        Mimi Zohar <zohar@linux.ibm.com>,
-        Muchun Song <songmuchun@bytedance.com>,
-        Nathan Chancellor <nathan@kernel.org>,
-        Nick Desaulniers <ndesaulniers@google.com>,
-        Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Paul Moore <paul@paul-moore.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Russell King <linux@armlinux.org.uk>, selinux@vger.kernel.org,
-        "Serge E. Hallyn" <serge@hallyn.com>,
-        SHA-cyfmac-dev-list@infineon.com,
-        Simon Horman <simon.horman@corigine.com>,
-        Stefano Stabellini <sstabellini@kernel.org>,
-        Stefan Richter <stefanr@s5r6.in-berlin.de>,
-        Steffen Klassert <steffen.klassert@secunet.com>,
-        Stephen Hemminger <sthemmin@microsoft.com>,
-        Stephen Smalley <stephen.smalley.work@gmail.com>,
-        Tadeusz Struk <tadeusz.struk@linaro.org>,
-        Takashi Iwai <tiwai@suse.com>, Tom Rix <trix@redhat.com>,
-        Udipto Goswami <quic_ugoswami@quicinc.com>,
-        Vincenzo Frascino <vincenzo.frascino@arm.com>,
-        wcn36xx@lists.infradead.org, Wei Liu <wei.liu@kernel.org>,
-        xen-devel@lists.xenproject.org,
-        Xiu Jianfeng <xiujianfeng@huawei.com>,
-        Yang Yingliang <yangyingliang@huawei.com>
-Subject: Re: [PATCH 01/32] netlink: Avoid memcpy() across flexible array
- boundary
-Message-ID: <202205032027.B2A9FB4AA@keescook>
-References: <20220504014440.3697851-1-keescook@chromium.org>
- <20220504014440.3697851-2-keescook@chromium.org>
- <20220504033105.GA13667@embeddedor>
+        with ESMTP id S231736AbiEDEUR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 00:20:17 -0400
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 899DB1EAFB;
+        Tue,  3 May 2022 21:16:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1651637801; x=1683173801;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=w95RztZI123By603Xio5Fchn8GzUX2eg2YngFCbfwFs=;
+  b=GJMxH/d9k+2DeFKjaKHZ2G+G6d/sRMu2PZC9sT+NpQpdBijIiPjed9NI
+   ++Z6zseRoGOZKqB89WCLxQE2a5wyFHy6LXjyjdDDJ+XCF0fH17YclFPnb
+   RUSA0vp/60VZa4rrsWeLCCk/ha5P5fDwEe+RKjcPSrgpAZJBiuQDNLgsm
+   UToj+470EaaQRMcN+XHo3l1UKrHbTinTIOZXYHHQEvWLQlFBEB1NllTc4
+   5CNd77PIE7Xh46MEqthBPh1y1BFqCYrgmajohvScI9HYZ6SooZ3JFtQMa
+   n1Q+ieNGQ0xZgmrw0ZvB9JDsIwNuNXdclpfcvQu15naK0u7kJ5syjIfGL
+   Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10336"; a="330644282"
+X-IronPort-AV: E=Sophos;i="5.91,196,1647327600"; 
+   d="scan'208";a="330644282"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 May 2022 21:16:41 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.91,196,1647327600"; 
+   d="scan'208";a="599363824"
+Received: from lkp-server01.sh.intel.com (HELO 5056e131ad90) ([10.239.97.150])
+  by orsmga001.jf.intel.com with ESMTP; 03 May 2022 21:16:38 -0700
+Received: from kbuild by 5056e131ad90 with local (Exim 4.95)
+        (envelope-from <lkp@intel.com>)
+        id 1nm6RJ-000B43-CM;
+        Wed, 04 May 2022 04:16:37 +0000
+Date:   Wed, 4 May 2022 12:16:20 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Jens Axboe <axboe@kernel.dk>
+Cc:     kbuild-all@lists.01.org,
+        Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Rob Herring <robh+dt@kernel.org>, linux-ide@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 07/23] ata: libahci_platform: Convert to using devm
+ bulk clocks API
+Message-ID: <202205041253.SPLfX1oi-lkp@intel.com>
+References: <20220503200938.18027-8-Sergey.Semin@baikalelectronics.ru>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220504033105.GA13667@embeddedor>
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+In-Reply-To: <20220503200938.18027-8-Sergey.Semin@baikalelectronics.ru>
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -172,86 +71,159 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 03, 2022 at 10:31:05PM -0500, Gustavo A. R. Silva wrote:
-> On Tue, May 03, 2022 at 06:44:10PM -0700, Kees Cook wrote:
-> [...]
-> > diff --git a/net/netlink/af_netlink.c b/net/netlink/af_netlink.c
-> > index 1b5a9c2e1c29..09346aee1022 100644
-> > --- a/net/netlink/af_netlink.c
-> > +++ b/net/netlink/af_netlink.c
-> > @@ -2445,7 +2445,10 @@ void netlink_ack(struct sk_buff *in_skb, struct nlmsghdr *nlh, int err,
-> >  			  NLMSG_ERROR, payload, flags);
-> >  	errmsg = nlmsg_data(rep);
-> >  	errmsg->error = err;
-> > -	memcpy(&errmsg->msg, nlh, payload > sizeof(*errmsg) ? nlh->nlmsg_len : sizeof(*nlh));
-> > +	errmsg->msg = *nlh;
-> > +	if (payload > sizeof(*errmsg))
-> > +		memcpy(errmsg->msg.nlmsg_payload, nlh->nlmsg_payload,
-> > +		       nlh->nlmsg_len - sizeof(*nlh));
-> 
-> They have nlmsg_len()[1] for the length of the payload without the header:
-> 
-> /**
->  * nlmsg_len - length of message payload
->  * @nlh: netlink message header
->  */
-> static inline int nlmsg_len(const struct nlmsghdr *nlh)
-> {
-> 	return nlh->nlmsg_len - NLMSG_HDRLEN;
-> }
+Hi Serge,
 
-Oh, hm, yeah, that would be much cleaner. The relationship between
-"payload" and nlmsg_len is confusing in here. :)
+I love your patch! Yet something to improve:
 
-So, this should be simpler:
+[auto build test ERROR on axboe-block/for-next]
+[also build test ERROR on robh/for-next linus/master v5.18-rc5 next-20220503]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
 
--	memcpy(&errmsg->msg, nlh, payload > sizeof(*errmsg) ? nlh->nlmsg_len : sizeof(*nlh));
-+	errmsg->msg = *nlh;
-+	memcpy(errmsg->msg.nlmsg_payload, nlh->nlmsg_payload, nlmsg_len(nlh));
+url:    https://github.com/intel-lab-lkp/linux/commits/Serge-Semin/ata-ahci-Add-DWC-Baikal-T1-AHCI-SATA-support/20220504-041431
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/axboe/linux-block.git for-next
+config: microblaze-randconfig-r031-20220501 (https://download.01.org/0day-ci/archive/20220504/202205041253.SPLfX1oi-lkp@intel.com/config)
+compiler: microblaze-linux-gcc (GCC) 11.3.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/2aa1a2fe25d3757c2c3a6c59ec00c135ba17fe96
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Serge-Semin/ata-ahci-Add-DWC-Baikal-T1-AHCI-SATA-support/20220504-041431
+        git checkout 2aa1a2fe25d3757c2c3a6c59ec00c135ba17fe96
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.3.0 make.cross W=1 O=build_dir ARCH=microblaze SHELL=/bin/bash drivers/ata/
 
-It's actually this case that triggered my investigation in __bos(1)'s
-misbehavior around sub-structs, since this case wasn't getting silenced:
-https://gcc.gnu.org/bugzilla/show_bug.cgi?id=101832
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
 
-It still feels like it should be possible to get this right without
-splitting the memcpy, though. Hmpf.
+All errors (new ones prefixed by >>):
 
-> (would that function use some sanitization, though? what if nlmsg_len is
-> somehow manipulated to be less than NLMSG_HDRLEN?...)
+   drivers/ata/ahci_da850.c: In function 'ahci_da850_probe':
+>> drivers/ata/ahci_da850.c:181:13: error: wrong type argument to unary exclamation mark
+     181 |         if (!hpriv->clks[0]) {
+         |             ^
+>> drivers/ata/ahci_da850.c:186:34: error: incompatible types when assigning to type 'struct clk_bulk_data' from type 'struct clk *'
+     186 |                 hpriv->clks[0] = clk;
+         |                                  ^~~
+   drivers/ata/ahci_da850.c:194:13: error: wrong type argument to unary exclamation mark
+     194 |         if (!hpriv->clks[1]) {
+         |             ^
+   drivers/ata/ahci_da850.c:201:34: error: incompatible types when assigning to type 'struct clk_bulk_data' from type 'struct clk *'
+     201 |                 hpriv->clks[1] = clk;
+         |                                  ^~~
+>> drivers/ata/ahci_da850.c:204:64: error: incompatible type for argument 1 of 'clk_get_rate'
+     204 |         mpy = ahci_da850_calculate_mpy(clk_get_rate(hpriv->clks[1]));
+         |                                                     ~~~~~~~~~~~^~~
+         |                                                                |
+         |                                                                struct clk_bulk_data
+   In file included from drivers/ata/ahci.h:23,
+                    from drivers/ata/ahci_da850.c:13:
+   include/linux/clk.h:584:40: note: expected 'struct clk *' but argument is of type 'struct clk_bulk_data'
+     584 | unsigned long clk_get_rate(struct clk *clk);
+         |                            ~~~~~~~~~~~~^~~
+--
+   drivers/ata/ahci_dm816.c: In function 'ahci_dm816_phy_init':
+>> drivers/ata/ahci_dm816.c:72:13: error: wrong type argument to unary exclamation mark
+      72 |         if (!hpriv->clks[1]) {
+         |             ^
+>> drivers/ata/ahci_dm816.c:77:47: error: incompatible type for argument 1 of 'clk_get_rate'
+      77 |         refclk_rate = clk_get_rate(hpriv->clks[1]);
+         |                                    ~~~~~~~~~~~^~~
+         |                                               |
+         |                                               struct clk_bulk_data
+   In file included from drivers/ata/ahci.h:23,
+                    from drivers/ata/ahci_dm816.c:16:
+   include/linux/clk.h:584:40: note: expected 'struct clk *' but argument is of type 'struct clk_bulk_data'
+     584 | unsigned long clk_get_rate(struct clk *clk);
+         |                            ~~~~~~~~~~~~^~~
 
-Maybe something like:
 
-static inline int nlmsg_len(const struct nlmsghdr *nlh)
-{
-	if (WARN_ON(nlh->nlmsg_len < NLMSG_HDRLEN))
-		return 0;
-	return nlh->nlmsg_len - NLMSG_HDRLEN;
-}
+vim +186 drivers/ata/ahci_da850.c
 
-> Also, it seems there is at least one more instance of this same issue:
-> 
-> diff --git a/net/netfilter/ipset/ip_set_core.c b/net/netfilter/ipset/ip_set_core.c
-> index 16ae92054baa..d06184b94af5 100644
-> --- a/net/netfilter/ipset/ip_set_core.c
-> +++ b/net/netfilter/ipset/ip_set_core.c
-> @@ -1723,7 +1723,8 @@ call_ad(struct net *net, struct sock *ctnl, struct sk_buff *skb,
->                                   nlh->nlmsg_seq, NLMSG_ERROR, payload, 0);
->                 errmsg = nlmsg_data(rep);
->                 errmsg->error = ret;
-> -               memcpy(&errmsg->msg, nlh, nlh->nlmsg_len);
-> +               errmsg->msg = *nlh;
-> +               memcpy(errmsg->msg.nlmsg_payload, nlh->nlmsg_payload, nlmsg_len(nlh));
-
-Ah, yes, nice catch!
-
->                 cmdattr = (void *)&errmsg->msg + min_len;
-> 
->                 ret = nla_parse(cda, IPSET_ATTR_CMD_MAX, cmdattr,
-> 
-> --
-> Gustavo
-> 
-> [1] https://elixir.bootlin.com/linux/v5.18-rc5/source/include/net/netlink.h#L577
+018d5ef2048fca Akinobu Mita              2015-01-29  159  
+ae8723f8a9c8e8 Bartlomiej Zolnierkiewicz 2014-03-25  160  static int ahci_da850_probe(struct platform_device *pdev)
+ae8723f8a9c8e8 Bartlomiej Zolnierkiewicz 2014-03-25  161  {
+ae8723f8a9c8e8 Bartlomiej Zolnierkiewicz 2014-03-25  162  	struct device *dev = &pdev->dev;
+ae8723f8a9c8e8 Bartlomiej Zolnierkiewicz 2014-03-25  163  	struct ahci_host_priv *hpriv;
+ae8723f8a9c8e8 Bartlomiej Zolnierkiewicz 2014-03-25  164  	void __iomem *pwrdn_reg;
+cdf0ead3747200 Bartosz Golaszewski       2017-01-30  165  	struct resource *res;
+82dbe1a68fd65a Bartosz Golaszewski       2017-01-30  166  	struct clk *clk;
+cdf0ead3747200 Bartosz Golaszewski       2017-01-30  167  	u32 mpy;
+ae8723f8a9c8e8 Bartlomiej Zolnierkiewicz 2014-03-25  168  	int rc;
+ae8723f8a9c8e8 Bartlomiej Zolnierkiewicz 2014-03-25  169  
+16af2d65842d34 Kunihiko Hayashi          2018-08-22  170  	hpriv = ahci_platform_get_resources(pdev, 0);
+ae8723f8a9c8e8 Bartlomiej Zolnierkiewicz 2014-03-25  171  	if (IS_ERR(hpriv))
+ae8723f8a9c8e8 Bartlomiej Zolnierkiewicz 2014-03-25  172  		return PTR_ERR(hpriv);
+ae8723f8a9c8e8 Bartlomiej Zolnierkiewicz 2014-03-25  173  
+82dbe1a68fd65a Bartosz Golaszewski       2017-01-30  174  	/*
+82dbe1a68fd65a Bartosz Golaszewski       2017-01-30  175  	 * Internally ahci_platform_get_resources() calls clk_get(dev, NULL)
+82dbe1a68fd65a Bartosz Golaszewski       2017-01-30  176  	 * when trying to obtain the functional clock. This SATA controller
+82dbe1a68fd65a Bartosz Golaszewski       2017-01-30  177  	 * uses two clocks for which we specify two connection ids. If we don't
+82dbe1a68fd65a Bartosz Golaszewski       2017-01-30  178  	 * have the functional clock at this point - call clk_get() again with
+82dbe1a68fd65a Bartosz Golaszewski       2017-01-30  179  	 * con_id = "fck".
+82dbe1a68fd65a Bartosz Golaszewski       2017-01-30  180  	 */
+82dbe1a68fd65a Bartosz Golaszewski       2017-01-30 @181  	if (!hpriv->clks[0]) {
+82dbe1a68fd65a Bartosz Golaszewski       2017-01-30  182  		clk = clk_get(dev, "fck");
+82dbe1a68fd65a Bartosz Golaszewski       2017-01-30  183  		if (IS_ERR(clk))
+82dbe1a68fd65a Bartosz Golaszewski       2017-01-30  184  			return PTR_ERR(clk);
+82dbe1a68fd65a Bartosz Golaszewski       2017-01-30  185  
+82dbe1a68fd65a Bartosz Golaszewski       2017-01-30 @186  		hpriv->clks[0] = clk;
+82dbe1a68fd65a Bartosz Golaszewski       2017-01-30  187  	}
+82dbe1a68fd65a Bartosz Golaszewski       2017-01-30  188  
+cdf0ead3747200 Bartosz Golaszewski       2017-01-30  189  	/*
+cdf0ead3747200 Bartosz Golaszewski       2017-01-30  190  	 * The second clock used by ahci-da850 is the external REFCLK. If we
+cdf0ead3747200 Bartosz Golaszewski       2017-01-30  191  	 * didn't get it from ahci_platform_get_resources(), let's try to
+cdf0ead3747200 Bartosz Golaszewski       2017-01-30  192  	 * specify the con_id in clk_get().
+cdf0ead3747200 Bartosz Golaszewski       2017-01-30  193  	 */
+cdf0ead3747200 Bartosz Golaszewski       2017-01-30  194  	if (!hpriv->clks[1]) {
+cdf0ead3747200 Bartosz Golaszewski       2017-01-30  195  		clk = clk_get(dev, "refclk");
+cdf0ead3747200 Bartosz Golaszewski       2017-01-30  196  		if (IS_ERR(clk)) {
+cdf0ead3747200 Bartosz Golaszewski       2017-01-30  197  			dev_err(dev, "unable to obtain the reference clock");
+cdf0ead3747200 Bartosz Golaszewski       2017-01-30  198  			return -ENODEV;
+cdf0ead3747200 Bartosz Golaszewski       2017-01-30  199  		}
+cdf0ead3747200 Bartosz Golaszewski       2017-01-30  200  
+cdf0ead3747200 Bartosz Golaszewski       2017-01-30  201  		hpriv->clks[1] = clk;
+cdf0ead3747200 Bartosz Golaszewski       2017-01-30  202  	}
+cdf0ead3747200 Bartosz Golaszewski       2017-01-30  203  
+cdf0ead3747200 Bartosz Golaszewski       2017-01-30 @204  	mpy = ahci_da850_calculate_mpy(clk_get_rate(hpriv->clks[1]));
+cdf0ead3747200 Bartosz Golaszewski       2017-01-30  205  	if (mpy == 0) {
+cdf0ead3747200 Bartosz Golaszewski       2017-01-30  206  		dev_err(dev, "invalid REFCLK multiplier value: 0x%x", mpy);
+cdf0ead3747200 Bartosz Golaszewski       2017-01-30  207  		return -EINVAL;
+cdf0ead3747200 Bartosz Golaszewski       2017-01-30  208  	}
+cdf0ead3747200 Bartosz Golaszewski       2017-01-30  209  
+ae8723f8a9c8e8 Bartlomiej Zolnierkiewicz 2014-03-25  210  	rc = ahci_platform_enable_resources(hpriv);
+ae8723f8a9c8e8 Bartlomiej Zolnierkiewicz 2014-03-25  211  	if (rc)
+ae8723f8a9c8e8 Bartlomiej Zolnierkiewicz 2014-03-25  212  		return rc;
+ae8723f8a9c8e8 Bartlomiej Zolnierkiewicz 2014-03-25  213  
+ae8723f8a9c8e8 Bartlomiej Zolnierkiewicz 2014-03-25  214  	res = platform_get_resource(pdev, IORESOURCE_MEM, 1);
+c88c094985ad38 Christophe JAILLET        2017-08-16  215  	if (!res) {
+c88c094985ad38 Christophe JAILLET        2017-08-16  216  		rc = -ENODEV;
+ae8723f8a9c8e8 Bartlomiej Zolnierkiewicz 2014-03-25  217  		goto disable_resources;
+c88c094985ad38 Christophe JAILLET        2017-08-16  218  	}
+ae8723f8a9c8e8 Bartlomiej Zolnierkiewicz 2014-03-25  219  
+ae8723f8a9c8e8 Bartlomiej Zolnierkiewicz 2014-03-25  220  	pwrdn_reg = devm_ioremap(dev, res->start, resource_size(res));
+c88c094985ad38 Christophe JAILLET        2017-08-16  221  	if (!pwrdn_reg) {
+c88c094985ad38 Christophe JAILLET        2017-08-16  222  		rc = -ENOMEM;
+ae8723f8a9c8e8 Bartlomiej Zolnierkiewicz 2014-03-25  223  		goto disable_resources;
+c88c094985ad38 Christophe JAILLET        2017-08-16  224  	}
+ae8723f8a9c8e8 Bartlomiej Zolnierkiewicz 2014-03-25  225  
+cdf0ead3747200 Bartosz Golaszewski       2017-01-30  226  	da850_sata_init(dev, pwrdn_reg, hpriv->mmio, mpy);
+ae8723f8a9c8e8 Bartlomiej Zolnierkiewicz 2014-03-25  227  
+018d5ef2048fca Akinobu Mita              2015-01-29  228  	rc = ahci_platform_init_host(pdev, hpriv, &ahci_da850_port_info,
+018d5ef2048fca Akinobu Mita              2015-01-29  229  				     &ahci_platform_sht);
+ae8723f8a9c8e8 Bartlomiej Zolnierkiewicz 2014-03-25  230  	if (rc)
+ae8723f8a9c8e8 Bartlomiej Zolnierkiewicz 2014-03-25  231  		goto disable_resources;
+ae8723f8a9c8e8 Bartlomiej Zolnierkiewicz 2014-03-25  232  
+ae8723f8a9c8e8 Bartlomiej Zolnierkiewicz 2014-03-25  233  	return 0;
+ae8723f8a9c8e8 Bartlomiej Zolnierkiewicz 2014-03-25  234  disable_resources:
+ae8723f8a9c8e8 Bartlomiej Zolnierkiewicz 2014-03-25  235  	ahci_platform_disable_resources(hpriv);
+ae8723f8a9c8e8 Bartlomiej Zolnierkiewicz 2014-03-25  236  	return rc;
+ae8723f8a9c8e8 Bartlomiej Zolnierkiewicz 2014-03-25  237  }
+ae8723f8a9c8e8 Bartlomiej Zolnierkiewicz 2014-03-25  238  
 
 -- 
-Kees Cook
+0-DAY CI Kernel Test Service
+https://01.org/lkp
