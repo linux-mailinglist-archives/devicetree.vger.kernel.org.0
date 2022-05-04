@@ -2,63 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D6A051B3AC
-	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 01:44:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9064751B3AA
+	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 01:44:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350339AbiEDXp5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 May 2022 19:45:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55564 "EHLO
+        id S236579AbiEDXpz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 May 2022 19:45:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43342 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1381194AbiEDXQV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 19:16:21 -0400
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82E395419E;
-        Wed,  4 May 2022 16:09:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1651705772; x=1683241772;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=viWWezEGudsdbLy/fRq7EwiMWwIaZsmyJG8Q+HHJWzE=;
-  b=hMH9DmkEI3OmceNvFXU5LlSEeHnpbp43jUjfXniTp0BbO5FVjmxbxdJK
-   FU2EPHFhq6raFbSPfVdwVF4CCBRP933vVOqD/Fkia5WEP+sJc8XjaFzxq
-   UMluuI5sEcCoUiP7BxKP11gkFyBhNgrhgRPxeae9RjImbdlYCmzFPzQ6A
-   KbOkpwY9L/PrXoCQedorAkHk9lt88B3RT+KJw4Dd3w6B0xR3IAq/acYUX
-   8V2rvR0wny2GxaYX2CjrzXuqyKICzDBQPV7UsYwlJdnAM09oN+LyjhIf6
-   fHZ++5f5b0+Pea+mm8To1FgmEqDFnWW8gnqFgDCLZZg7JC5ITBsthdStQ
-   w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10337"; a="293121901"
-X-IronPort-AV: E=Sophos;i="5.91,199,1647327600"; 
-   d="scan'208";a="293121901"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 May 2022 16:09:19 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.91,199,1647327600"; 
-   d="scan'208";a="599749810"
-Received: from lkp-server01.sh.intel.com (HELO 5056e131ad90) ([10.239.97.150])
-  by orsmga001.jf.intel.com with ESMTP; 04 May 2022 16:09:16 -0700
-Received: from kbuild by 5056e131ad90 with local (Exim 4.95)
-        (envelope-from <lkp@intel.com>)
-        id 1nmO7Q-000Bsd-1h;
-        Wed, 04 May 2022 23:09:16 +0000
-Date:   Thu, 5 May 2022 07:09:10 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Justin Chen <justinpopo6@gmail.com>, linus.walleij@linaro.org,
-        brgl@bgdev.pl, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     kbuild-all@lists.01.org, linux-gpio@vger.kernel.org,
+        with ESMTP id S1380101AbiEDX13 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 19:27:29 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9E5B50B13;
+        Wed,  4 May 2022 16:23:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=z9csiruEF5xbbCJV5LeYL29FmqJAFdz3ZoLv9sjrHrQ=; b=5CK4fQnwZ5a6lvAHhinEALRp/t
+        S43cRzuf6hgQWYVQ1BaliQev7dwRrINVXjS9k+S65XNd2DhoSZjUjVh6M0lYbL2rWbXbKyl4E4ZNw
+        Y/iJ8VeRoPwZISh+iABX3W3HfrLNqZu1Ezh6T+/J3kmh7ySGtSurUk+ZN+Ff/NWcyW/U=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1nmOLI-001HGB-8v; Thu, 05 May 2022 01:23:36 +0200
+Date:   Thu, 5 May 2022 01:23:36 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Ansuel Smith <ansuelsmth@gmail.com>
+Cc:     Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Jonathan Corbet <corbet@lwn.net>, Pavel Machek <pavel@ucw.cz>,
+        John Crispin <john@phrozen.org>, netdev@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        f.fainelli@gmail.com, Justin Chen <justinpopo6@gmail.com>
-Subject: Re: [PATCH 1/2] gpio: pca953xx: Add support for pca6408
-Message-ID: <202205050612.1bwSZpER-lkp@intel.com>
-References: <1651685100-44687-2-git-send-email-justinpopo6@gmail.com>
+        linux-doc@vger.kernel.org, linux-leds@vger.kernel.org
+Subject: Re: [RFC PATCH v6 02/11] leds: add function to configure hardware
+ controlled LED
+Message-ID: <YnMK+EZDQXSGDXM1@lunn.ch>
+References: <20220503151633.18760-1-ansuelsmth@gmail.com>
+ <20220503151633.18760-3-ansuelsmth@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1651685100-44687-2-git-send-email-justinpopo6@gmail.com>
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
+In-Reply-To: <20220503151633.18760-3-ansuelsmth@gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -66,88 +58,94 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Justin,
+> +In SUPPORTED hw_control_configure() should return 0 or 1 if the LED driver supports the
+> +requested blink mode (flags) or not.
 
-Thank you for the patch! Yet something to improve:
-
-[auto build test ERROR on v5.18-rc5]
-[also build test ERROR on next-20220504]
-[cannot apply to linusw-gpio/for-next]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Justin-Chen/Add-support-for-NXP-PCA6408/20220505-020844
-base:    672c0c5173427e6b3e2a9bbb7be51ceeec78093a
-config: microblaze-randconfig-r031-20220501 (https://download.01.org/0day-ci/archive/20220505/202205050612.1bwSZpER-lkp@intel.com/config)
-compiler: microblaze-linux-gcc (GCC) 11.3.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/d45d7c84e1613b51cb1eb90ef6d92f4112a45925
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Justin-Chen/Add-support-for-NXP-PCA6408/20220505-020844
-        git checkout d45d7c84e1613b51cb1eb90ef6d92f4112a45925
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.3.0 make.cross W=1 O=build_dir ARCH=microblaze SHELL=/bin/bash drivers/gpio/
-
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
-
-All errors (new ones prefixed by >>):
-
->> drivers/gpio/gpio-pca953x.c:74:27: error: 'PCA953x_TYPE' undeclared here (not in a function); did you mean 'PCA953X_TYPE'?
-      74 |         { "pca6408", 8  | PCA953x_TYPE | PCA_INT, },
-         |                           ^~~~~~~~~~~~
-         |                           PCA953X_TYPE
+-EOPNOTSUPP might be clearer.
 
 
-vim +74 drivers/gpio/gpio-pca953x.c
+> +In ZERO hw_control_configure() should return 0 with success operation or error.
+> +
+> +The unsigned long flag is specific to the trigger and change across them. It's in the LED
+> +driver interest know how to elaborate this flag and to declare support for a
+> +particular trigger. For this exact reason explicit support for the specific
+> +trigger is mandatory or the driver returns -EOPNOTSUPP if asked to enter offload mode
+> +with a not supported trigger.
+> +If the driver returns -EOPNOTSUPP on hw_control_configure(), the trigger activation will
+> +fail as the driver doesn't support that specific offload trigger or doesn't know
+> +how to handle the provided flags.
+> +
+>  Known Issues
+>  ============
+>  
+> diff --git a/include/linux/leds.h b/include/linux/leds.h
+> index 09ff1dc6f48d..b5aad67fecfb 100644
+> --- a/include/linux/leds.h
+> +++ b/include/linux/leds.h
+> @@ -73,6 +73,16 @@ enum led_blink_modes {
+>  	SOFTWARE_HARDWARE_CONTROLLED,
+>  };
+>  
+> +#ifdef CONFIG_LEDS_HARDWARE_CONTROL
+> +enum blink_mode_cmd {
+> +	BLINK_MODE_ENABLE, /* Enable the hardware blink mode */
+> +	BLINK_MODE_DISABLE, /* Disable the hardware blink mode */
+> +	BLINK_MODE_READ, /* Read the status of the hardware blink mode */
+> +	BLINK_MODE_SUPPORTED, /* Ask the driver if the hardware blink mode is supported */
+> +	BLINK_MODE_ZERO, /* Disable any hardware blink active */
+> +};
+> +#endif
 
-    72	
-    73	static const struct i2c_device_id pca953x_id[] = {
-  > 74		{ "pca6408", 8  | PCA953x_TYPE | PCA_INT, },
-    75		{ "pca6416", 16 | PCA953X_TYPE | PCA_INT, },
-    76		{ "pca9505", 40 | PCA953X_TYPE | PCA_INT, },
-    77		{ "pca9506", 40 | PCA953X_TYPE | PCA_INT, },
-    78		{ "pca9534", 8  | PCA953X_TYPE | PCA_INT, },
-    79		{ "pca9535", 16 | PCA953X_TYPE | PCA_INT, },
-    80		{ "pca9536", 4  | PCA953X_TYPE, },
-    81		{ "pca9537", 4  | PCA953X_TYPE | PCA_INT, },
-    82		{ "pca9538", 8  | PCA953X_TYPE | PCA_INT, },
-    83		{ "pca9539", 16 | PCA953X_TYPE | PCA_INT, },
-    84		{ "pca9554", 8  | PCA953X_TYPE | PCA_INT, },
-    85		{ "pca9555", 16 | PCA953X_TYPE | PCA_INT, },
-    86		{ "pca9556", 8  | PCA953X_TYPE, },
-    87		{ "pca9557", 8  | PCA953X_TYPE, },
-    88		{ "pca9574", 8  | PCA957X_TYPE | PCA_INT, },
-    89		{ "pca9575", 16 | PCA957X_TYPE | PCA_INT, },
-    90		{ "pca9698", 40 | PCA953X_TYPE, },
-    91	
-    92		{ "pcal6416", 16 | PCA953X_TYPE | PCA_LATCH_INT, },
-    93		{ "pcal6524", 24 | PCA953X_TYPE | PCA_LATCH_INT, },
-    94		{ "pcal9535", 16 | PCA953X_TYPE | PCA_LATCH_INT, },
-    95		{ "pcal9554b", 8  | PCA953X_TYPE | PCA_LATCH_INT, },
-    96		{ "pcal9555a", 16 | PCA953X_TYPE | PCA_LATCH_INT, },
-    97	
-    98		{ "max7310", 8  | PCA953X_TYPE, },
-    99		{ "max7312", 16 | PCA953X_TYPE | PCA_INT, },
-   100		{ "max7313", 16 | PCA953X_TYPE | PCA_INT, },
-   101		{ "max7315", 8  | PCA953X_TYPE | PCA_INT, },
-   102		{ "max7318", 16 | PCA953X_TYPE | PCA_INT, },
-   103		{ "pca6107", 8  | PCA953X_TYPE | PCA_INT, },
-   104		{ "tca6408", 8  | PCA953X_TYPE | PCA_INT, },
-   105		{ "tca6416", 16 | PCA953X_TYPE | PCA_INT, },
-   106		{ "tca6424", 24 | PCA953X_TYPE | PCA_INT, },
-   107		{ "tca9539", 16 | PCA953X_TYPE | PCA_INT, },
-   108		{ "tca9554", 8  | PCA953X_TYPE | PCA_INT, },
-   109		{ "xra1202", 8  | PCA953X_TYPE },
-   110		{ }
-   111	};
-   112	MODULE_DEVICE_TABLE(i2c, pca953x_id);
-   113	
+Skip the #ifdef. The enum itself takes no space if never used, and it
+makes the driver simpler if they always exist.
 
--- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
+> +
+>  struct led_classdev {
+>  	const char		*name;
+>  	unsigned int brightness;
+> @@ -185,6 +195,17 @@ struct led_classdev {
+>  	 * the old status but that is not mandatory and also putting it off is accepted.
+>  	 */
+>  	int			(*hw_control_stop)(struct led_classdev *led_cdev);
+> +	/* This will be used to configure the various blink modes LED support in hardware
+> +	 * mode.
+> +	 * The LED driver require to support the active trigger and will elaborate the
+> +	 * unsigned long flag and do the operation based on the provided cmd.
+> +	 * Current operation are enable,disable,supported and status.
+> +	 * A trigger will use this to enable or disable the asked blink mode, check the
+> +	 * status of the blink mode or ask if the blink mode can run in hardware mode.
+> +	 */
+> +	int			(*hw_control_configure)(struct led_classdev *led_cdev,
+> +							unsigned long flag,
+> +							enum blink_mode_cmd cmd);
+>  #endif
+>  #endif
+>  
+> @@ -454,6 +475,24 @@ static inline void *led_get_trigger_data(struct led_classdev *led_cdev)
+>  	return led_cdev->trigger_data;
+>  }
+>  
+> +#ifdef CONFIG_LEDS_HARDWARE_CONTROL
+> +static inline bool led_trigger_blink_mode_is_supported(struct led_classdev *led_cdev,
+> +						       unsigned long flag)
+> +{
+> +	int ret;
+> +
+> +	/* Sanity check: make sure led support hw mode */
+> +	if (led_cdev->blink_mode == SOFTWARE_CONTROLLED)
+> +		return false;
+> +
+> +	ret = led_cdev->hw_control_configure(led_cdev, flag, BLINK_MODE_SUPPORTED);
+> +	if (ret > 0)
+> +		return true;
+> +
+> +	return false;
+> +}
+> +#endif
+
+Please add a version which returns false when
+CONFIG_LEDS_HARDWARE_CONTROL is disabled.
+
+Does this actually need to be an inline function?
+
+     Andrew
