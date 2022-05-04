@@ -2,80 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B4EBA51B1B6
-	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 00:17:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5ED0D51B1B7
+	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 00:18:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345621AbiEDWVC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 May 2022 18:21:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41018 "EHLO
+        id S238388AbiEDWWX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 May 2022 18:22:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41398 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240375AbiEDWVC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 18:21:02 -0400
-Received: from mail-oi1-f177.google.com (mail-oi1-f177.google.com [209.85.167.177])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2022C4CD5F;
-        Wed,  4 May 2022 15:17:25 -0700 (PDT)
-Received: by mail-oi1-f177.google.com with SMTP id m11so2604750oib.11;
-        Wed, 04 May 2022 15:17:25 -0700 (PDT)
+        with ESMTP id S234889AbiEDWWV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 18:22:21 -0400
+Received: from mail-ot1-f49.google.com (mail-ot1-f49.google.com [209.85.210.49])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 631594ECC3;
+        Wed,  4 May 2022 15:18:44 -0700 (PDT)
+Received: by mail-ot1-f49.google.com with SMTP id 88-20020a9d0ee1000000b005d0ae4e126fso1820191otj.5;
+        Wed, 04 May 2022 15:18:44 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=kD7M+8KXcS9HdKPwzwBpF1yYbVFJAgspjDqWP4VoK6Q=;
-        b=dX7RrpkCArZFDnh6jmb2f2EIP9dXTl5TzDIXtgqIR/Hc9eQdOY6FRJ/btvUVcu8t/f
-         1d3XCaCoKBMZB2G48Tzx8cHAWl5iI8PuOtZVotf7AhRTT1At5kH1f7CPjKBS7K+A6wK7
-         lfcN7VyuMNyZvOiPfI53s1wHzLl+/wNY1VeGnEF+lk/Ipxb9MxB0oNTK4TSk83eiJ8ac
-         LFiFbOVbPxH0ftAVT7hYman265ebBjr9taxu7NeLD1zo1QB/I7gJeQsFLR4FmTuEq9jv
-         smXctvT7ga5ytLM/hVZPG4F5E+ZPn6qzJVYCMBDtE5FQnYJvfjBxhBS/vge/cZcB4em5
-         ge0A==
-X-Gm-Message-State: AOAM532mpWOVXl8rJ1fH01vDiS910kZ3C8JwsrwdFvHN0JG9MnbrkMs1
-        mqrVeZR6Bym4MnZ35UDiNVRbFS+6gQ==
-X-Google-Smtp-Source: ABdhPJzpzlPiIvHZkp3KOM7uuHjMlPfyn8UnrCCTbY25jOIdazXOT6jia53nwattp0HU8tkVYlLsFA==
-X-Received: by 2002:a05:6808:3009:b0:2f9:6119:d676 with SMTP id ay9-20020a056808300900b002f96119d676mr874775oib.205.1651702644423;
-        Wed, 04 May 2022 15:17:24 -0700 (PDT)
+        bh=uPA2WXPf2ORHLvPqYvnaXDrZT9G3gl/LbUxeEGa3+Rk=;
+        b=M4h8Vw51/xwlanfMXEiTwbgMGOPmm+NZsHpgjeNZtcxSgvcNXffCoaEIQYVz54K3s0
+         QzT1QE86vZww78nhW8+vOdOIcSbB/ZxzqgS3BYAjvhKGlBxswvkWccRxJUXk4Tp9y2cq
+         LBjSjDXufUvLbjAj560Z2oVMO++btrHsbH6x4bzU98cqgFxTEj3Qp1UoUY04iE5gWFzP
+         aOMv51agQI025J2+2WVnEB5zboblp17Ldj9eaa0iGBh1KcKvRTPPByDE8do0G2v+iHC0
+         3ANHA6j7YipOscEOqMUlXBLx8eZwQRrOMGPL8SuZN3RCi1HMCaXh4iIGOb3JXH/XFq2g
+         mdXg==
+X-Gm-Message-State: AOAM531j9G8HVZCpmo6dTcuqOnwXBn7J9VjPf/R0kMQy1LV7qD6s/Z4k
+        do5htEvrI8P3jhbpBE+08Q==
+X-Google-Smtp-Source: ABdhPJxN6SwWGQWW1Tig+s8KsEXHmVP8UolyZn342PEBZ4kMRNzHqwmoRY1xgkpkGrYlZ3tUZAhjSA==
+X-Received: by 2002:a9d:195:0:b0:605:eb43:5b84 with SMTP id e21-20020a9d0195000000b00605eb435b84mr8372575ote.357.1651702723637;
+        Wed, 04 May 2022 15:18:43 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id e15-20020a4ada0f000000b0035eb4e5a6casm45440oou.32.2022.05.04.15.17.23
+        by smtp.gmail.com with ESMTPSA id l21-20020a544515000000b00325cda1ffb8sm38618oil.55.2022.05.04.15.18.42
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 May 2022 15:17:24 -0700 (PDT)
-Received: (nullmailer pid 2322908 invoked by uid 1000);
-        Wed, 04 May 2022 22:17:23 -0000
-Date:   Wed, 4 May 2022 17:17:23 -0500
+        Wed, 04 May 2022 15:18:43 -0700 (PDT)
+Received: (nullmailer pid 2325128 invoked by uid 1000);
+        Wed, 04 May 2022 22:18:42 -0000
+Date:   Wed, 4 May 2022 17:18:42 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        linux-renesas-soc@vger.kernel.org,
-        Sergei Shtylyov <sergei.shtylyov@gmail.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
+To:     Hector Martin <marcan@marcan.st>
+Cc:     Mark Kettenis <kettenis@openbsd.org>,
+        Marc Zyngier <maz@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
         Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Biju Das <biju.das@bp.renesas.com>,
-        Chris Paterson <Chris.Paterson2@renesas.com>
-Subject: Re: [PATCH] dt-bindings: memory: renesas,rpc-if: Document RZ/G2UL SoC
-Message-ID: <YnL7c57OT8/6SKa6@robh.at.kernel.org>
-References: <20220501082508.25511-1-biju.das.jz@bp.renesas.com>
+        Sven Peter <sven@svenpeter.dev>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: pci: apple,pcie: Drop max-link-speed from
+ example
+Message-ID: <YnL7wnGDbyGGksGX@robh.at.kernel.org>
+References: <20220502091308.28233-1-marcan@marcan.st>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220501082508.25511-1-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20220502091308.28233-1-marcan@marcan.st>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 01 May 2022 09:25:08 +0100, Biju Das wrote:
-> Document RZ/G2UL RPC-IF bindings. RZ/G2UL RPC-IF is identical to one found
-> on the RZ/G2L SoC. No driver changes are required as generic compatible
-> string "renesas,rzg2l-rpc-if" will be used as a fallback.
+On Mon, 02 May 2022 18:13:08 +0900, Hector Martin wrote:
+> We no longer use these since 111659c2a570 (and they never worked
+> anyway); drop them from the example to avoid confusion.
 > 
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> Fixes: 111659c2a570 ("arm64: dts: apple: t8103: Remove PCIe max-link-speed properties")
+> Signed-off-by: Hector Martin <marcan@marcan.st>
 > ---
->  .../devicetree/bindings/memory-controllers/renesas,rpc-if.yaml   | 1 +
->  1 file changed, 1 insertion(+)
+>  Documentation/devicetree/bindings/pci/apple,pcie.yaml | 3 ---
+>  1 file changed, 3 deletions(-)
 > 
 
-Acked-by: Rob Herring <robh@kernel.org>
+Applied, thanks!
