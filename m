@@ -2,102 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9A5D251A2FF
-	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 17:03:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F158A51A302
+	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 17:03:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351876AbiEDPGx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 May 2022 11:06:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55436 "EHLO
+        id S232012AbiEDPHV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 May 2022 11:07:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56280 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351831AbiEDPGl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 11:06:41 -0400
-Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75E4733376
-        for <devicetree@vger.kernel.org>; Wed,  4 May 2022 08:02:53 -0700 (PDT)
-Received: by mail-wr1-x42c.google.com with SMTP id b19so2401913wrh.11
-        for <devicetree@vger.kernel.org>; Wed, 04 May 2022 08:02:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :references:from:in-reply-to:content-transfer-encoding;
-        bh=HvKytfFVFBCLTWsgYnAEqf+taainONYbWgLIzFqsqvE=;
-        b=jnvLNfD/C3XvayK8cffWffFkU/EgtmnJKH5doqpaeg/QFaNr3qM0X0paUDDKaEZQdv
-         2SGb9d3dPMIdpHz0vbrqttnWBf2oCvB5aiLFNNgI1D+oBHIFCk3TmXkXMrL0mqyBUnmL
-         GugQGx0/JOFqw3XJUot/P6FMDcLUIJZZ/6abLg3LJIEvKR50DG/cMTWjgtMUEC9caSn8
-         MHXRTAdq8c1EUdT0foO0gfgBHCPjWMLyLDYhH1uk1/CGzGuwUJMCzj9kaRzwm4WH7PfA
-         W1qFySec5m/LjyG2xIYZQ/ySL5KGzNscv81JZ0xHIB9ZexcVziGmTfWkTDCrahCdsho6
-         VWAg==
+        with ESMTP id S242710AbiEDPHU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 11:07:20 -0400
+Received: from mail-oa1-f53.google.com (mail-oa1-f53.google.com [209.85.160.53])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75F642FFD1;
+        Wed,  4 May 2022 08:03:44 -0700 (PDT)
+Received: by mail-oa1-f53.google.com with SMTP id 586e51a60fabf-ed8a3962f8so1441081fac.4;
+        Wed, 04 May 2022 08:03:44 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=HvKytfFVFBCLTWsgYnAEqf+taainONYbWgLIzFqsqvE=;
-        b=YMpMNBEl59T1LBzYACRIj/ANvSMzHB4ojpQxy3lNleHpGyM73NYRwUaQ/QuItc2dhH
-         lZScptSYZdUgsGMeqAJPdK86IapurLPdL4zqyIzpqKgQSR/AmHCvvdjxBb7lTmEL3BfQ
-         v6fPEsVVd8XCRVr5d/yI26sTsGMsplcrVE/2com7X7gqVWgq6xUGJLJ+/huwPOLq7THY
-         zx67uh6W9YtsVlPkzfvQkfL+P+RGRElr54J0Fx824hnGKmPLo2UmfaK3RQ4uNSGgWy9U
-         hfBIFjQxPH06SLc7tLPsS8rLjf8WDUxWmBl5g5L1khtvWj6Jckla0wYQ/Vpbt9rzQs7F
-         TDIA==
-X-Gm-Message-State: AOAM530B+iJ4fJQRk+5nEmxGALW0bBZG3oIBqPRhV5FCiYKIFjyU549P
-        Fgu+4vI+yj00rvpfSP9lQ6KuPA==
-X-Google-Smtp-Source: ABdhPJz97z6SmdLoZhUDViG7Bw4YlE09bEU4XO7JZFqg5IWbW4bRwmyUtF9zN8hWdA3uWII5eYnWog==
-X-Received: by 2002:a05:6000:1565:b0:20c:611d:7fec with SMTP id 5-20020a056000156500b0020c611d7fecmr11749015wrz.387.1651676572081;
-        Wed, 04 May 2022 08:02:52 -0700 (PDT)
-Received: from [192.168.0.215] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id m6-20020adfc586000000b0020c5253d908sm12590770wrg.84.2022.05.04.08.02.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 04 May 2022 08:02:51 -0700 (PDT)
-Message-ID: <608ba746-9116-3f36-d640-07eb8b5d793e@linaro.org>
-Date:   Wed, 4 May 2022 17:02:50 +0200
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=0XSZeXWgi4scPvbVkMMEIf9HkEBqk/lFaT7ukZmszpk=;
+        b=sZGtUYjY43mgvIrf/c2MNmU4SDTyBzWs895Qub/gUyb+WHjTo+3bxUK4JMG9m94Hab
+         PNFPCx6tqioltSH9iQq9antpTij8w+RsnB585snAiHZFFpS8I1NGqAdm/kg7P2WpxnkO
+         uxSFjemIhP2I9J7WA/W7DAtaBjdhqFqcWP4QSdW1O8e4uX57kZMd3ObubBHzQgLj7G61
+         wdIFRAvUWZ2K0MSNDKaVoIVZuSeX9HsDYJX4oLWSkLYoQ5SMnAQS+Ryxx3/uMtJUnR55
+         OJpVCVJrgVWtEZd9FFM0Uv4wPbZBi6QPUpKNWDaeug95vKkVOGuMjpvjjkmzi030oxot
+         EGvw==
+X-Gm-Message-State: AOAM530KDt8yIH9ey1XDjNHqELhPpxItVOm2WD0nZyGmxflJOpI5W5dW
+        CE/cHURXBBJL5N/IED99oA==
+X-Google-Smtp-Source: ABdhPJwyXyp8l3/4eYbxsDquSInxw4zswI4vbcnE0ZLs7FRe5OuFOWyn3uGDkvricFp3AuWNeqamNA==
+X-Received: by 2002:a05:6870:6196:b0:e1:e1a2:5c65 with SMTP id a22-20020a056870619600b000e1e1a25c65mr4042232oah.190.1651676623681;
+        Wed, 04 May 2022 08:03:43 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id j5-20020a9d7685000000b006060322125asm5350223otl.42.2022.05.04.08.03.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 04 May 2022 08:03:43 -0700 (PDT)
+Received: (nullmailer pid 1707807 invoked by uid 1000);
+        Wed, 04 May 2022 15:03:42 -0000
+Date:   Wed, 4 May 2022 10:03:42 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Stephen Boyd <swboyd@chromium.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        linux-kernel@vger.kernel.org, patches@lists.linux.dev,
+        devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
+        Gwendal Grignou <gwendal@chromium.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>
+Subject: Re: [PATCH v2 1/2] dt-bindings: iio: sx9324: Add CS idle/sleep mode
+Message-ID: <YnKVzvAITXAHqSiX@robh.at.kernel.org>
+References: <20220503193937.3794477-1-swboyd@chromium.org>
+ <20220503193937.3794477-2-swboyd@chromium.org>
+ <faaa4ab4-8190-3cff-998e-3b6a6d3ce27c@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH v2 3/3] arm64: dts: intel: add device tree for n6000
-Content-Language: en-US
-To:     matthew.gerlach@linux.intel.com, dinguyen@kernel.org,
-        robh+dt@kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org
-References: <20220503194546.1287679-1-matthew.gerlach@linux.intel.com>
- <20220503194546.1287679-4-matthew.gerlach@linux.intel.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220503194546.1287679-4-matthew.gerlach@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <faaa4ab4-8190-3cff-998e-3b6a6d3ce27c@linaro.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/05/2022 21:45, matthew.gerlach@linux.intel.com wrote:
-> From: Matthew Gerlach <matthew.gerlach@linux.intel.com>
+On Wed, May 04, 2022 at 08:20:40AM +0200, Krzysztof Kozlowski wrote:
+> On 03/05/2022 21:39, Stephen Boyd wrote:
+> > We need to configure the sleep and idle mode of the CS pins for this
+> > device. Add a DT property to do this so pins are in a proper state
+> > during sleep (either hi-z, grounded, or pulled up to vdd).
+> > 
+> > Reviewed-by: Gwendal Grignou <gwendal@chromium.org>
+> > Signed-off-by: Stephen Boyd <swboyd@chromium.org>
+> > ---
+> >  .../bindings/iio/proximity/semtech,sx9324.yaml           | 9 +++++++++
+> >  1 file changed, 9 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/iio/proximity/semtech,sx9324.yaml b/Documentation/devicetree/bindings/iio/proximity/semtech,sx9324.yaml
+> > index d265eb5258c8..b3aa2ebf9661 100644
+> > --- a/Documentation/devicetree/bindings/iio/proximity/semtech,sx9324.yaml
+> > +++ b/Documentation/devicetree/bindings/iio/proximity/semtech,sx9324.yaml
+> > @@ -126,6 +126,14 @@ properties:
+> >        UINT_MAX (4294967295) represents infinite. Other values
+> >        represent 1-1/N.
+> >  
+> > +  semtech,cs-idle-sleep:
+> > +    description:
+> > +      State of CS pins during sleep mode and idle time.
+> > +    enum:
+> > +      - hi-z
+> > +      - gnd
+> > +      - vdd
 > 
-> Add a device tree for the n6000 instantiation of Agilex
-> Hard Processor System (HPS).
-> 
-> Signed-off-by: Matthew Gerlach <matthew.gerlach@linux.intel.com>
+> You need a ref to type (string).
 
-> +
-> +	soc {
-> +		agilex_hps_bridges: bus@80000000 {
-> +			compatible = "simple-bus";
-> +			reg = <0x80000000 0x60000000>,
-> +				<0xf9000000 0x00100000>;
-> +			reg-names = "axi_h2f", "axi_h2f_lw";
-> +			#address-cells = <0x2>;
-> +			#size-cells = <0x1>;
-> +			ranges = <0x00000000 0x00000000 0xf9000000 0x00001000>;
-> +
-> +			hps_cp_eng@0 {
+Actually, it can be implicit for single strings.
 
-No underscores in node names.  dtc W=1 should complain about it.
-The node name should be generic, matching class of a device. What is
-this exactly?
-
-Best regards,
-Krzysztof
+Rob
