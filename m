@@ -2,126 +2,298 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8877751A42E
-	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 17:38:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3268051A43D
+	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 17:40:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352574AbiEDPmM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 May 2022 11:42:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36542 "EHLO
+        id S1352666AbiEDPnm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 May 2022 11:43:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36440 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1352431AbiEDPmK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 11:42:10 -0400
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77760165BB;
-        Wed,  4 May 2022 08:38:34 -0700 (PDT)
-Received: by mail-wm1-x32a.google.com with SMTP id q20so1097116wmq.1;
-        Wed, 04 May 2022 08:38:34 -0700 (PDT)
+        with ESMTP id S1352590AbiEDPlz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 11:41:55 -0400
+Received: from mail-pf1-x432.google.com (mail-pf1-x432.google.com [IPv6:2607:f8b0:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE12218E12
+        for <devicetree@vger.kernel.org>; Wed,  4 May 2022 08:38:16 -0700 (PDT)
+Received: by mail-pf1-x432.google.com with SMTP id h1so1413667pfv.12
+        for <devicetree@vger.kernel.org>; Wed, 04 May 2022 08:38:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=CGfHsjidANyyHV7qeZ5govjIF6ESMs4sMWxP9NbcJlA=;
-        b=HKTlhRQHU8wuB7Yd31wODGwwRr40WNkmFOUi8rsW6a8U0AAakmd/S8xFQCyz9ygkUq
-         KkbnO3jCpSaaRv9Cu18gBVEYgWedbtQIQ7v1QZzQGuem2lXTH4pVkFSZ8ahpG4gb8Yfe
-         Owfjb/312vx0W+x6paggOO9TZSNp+AsCeZAPybwqxItFZ26jUv0nBmX5jgh1lR3B8Dx4
-         9ZhrgldNc1u5aC2kqKViBqEhO0M1dij+sKZGyYAviJF3LCi6h1y/5MMHTnJIcJWE9QWE
-         Ouvdhmn2ZGLH46qpy5POC5U0eZrN8FnHYvns7eKamBnzL/u+7NlTEPqxhMFs0LQw1Bn9
-         GFrQ==
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=KqAJb/V6gfBBDG6bSPIb4vESmdq1P/sKe2F177CTgUM=;
+        b=fQrMYNAIqMyggez1Cxk6MO5ffmDcMsHa95ZyVgeB+XLocHYSpcdXLdDMIvfhtVHebJ
+         c6KLuD9O1zHpfXOArUQ9i6OPKZN0wLEdS36xK8UGnJ7GhAZoY1ZaUI/INEIjt/aYGDme
+         7yPqIKR/2ePc228VdQYx3R6Gd7ox0JMkE5pTk=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=CGfHsjidANyyHV7qeZ5govjIF6ESMs4sMWxP9NbcJlA=;
-        b=WPgaZNgsdEG5l3PZVQS/3V/XwMy09Vz3/f7tcmY2dquTfghzV0+kivFpDyZW7bo10h
-         O9Yg2MwuzM1v/Jf0twwVOW3QwkQJiHLM/6R0+QU9IKdaLxB9baXSjSe7HVGJXvbX7LXx
-         LZBErjZ/Ag8sH87DHkGiq3oz5INvzZ7Ja6q2D05P5EyhPBvUd0LU3brROlNwwUB9/8F+
-         u7r6OTRMDi0G2pigyX6fguuXqSCy2lRU7cPDjxcGATA/L97iWe67mfan5urTnu41HWMp
-         40tD/3Nkxq3XTgOIkOfYHwOKhrZ5IDar6Srddl3JkBzs+N6Z+ZfQnAY6JBsOf9Oz+ocM
-         z24w==
-X-Gm-Message-State: AOAM533BjOB2IGAkuez0/R3xd/RXDI6tNvAaEKg3LS2YGL/u0Rc31WkA
-        19AHX+UUC9kQ5atihfFazN4=
-X-Google-Smtp-Source: ABdhPJzh6RAR1drthFT0i0kt4pF+YyMWOWIHuCbuIALa+gZThkRIq2l8IX27Il5BYGhR0GytSkfC7w==
-X-Received: by 2002:a1c:2706:0:b0:391:822c:83da with SMTP id n6-20020a1c2706000000b00391822c83damr46858wmn.100.1651678713085;
-        Wed, 04 May 2022 08:38:33 -0700 (PDT)
-Received: from nergzd-desktop.localdomain ([194.39.226.133])
-        by smtp.gmail.com with ESMTPSA id e18-20020adf9bd2000000b0020c5253d8besm11792725wrc.10.2022.05.04.08.38.32
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=KqAJb/V6gfBBDG6bSPIb4vESmdq1P/sKe2F177CTgUM=;
+        b=3glXj6jg/UzFYr7EceW5fxBkdntmoZT/D1UB67ZRe3kS9Vnu92X9Dw8sW10fIfQrqc
+         0f6pvV7AAxBPXYDKMuo3FkFMQUyHv1wk/J2BVEiSqL1UzZb1T5Hzek0tbwoSILzsJRLB
+         crtH7rEHbvGpYpTWW6O6RvvdV6RmLPdURn1ARljf2Cnwvu05IpI7YPzY7EAc+8w4ymq/
+         GsmkXGIWdXskWFfn8V6DX9v6z5tv8MAhSuQVx+7sCRQleQOk2Mq7l08uxMNxY0crLJ/5
+         Bcn6WrU+KAourIUTjxCA86+A9IbWSoC99suf+j9gcdTYtb86ZUPRXYczXUGcuMNQztIQ
+         4/3g==
+X-Gm-Message-State: AOAM531lJgvy9grVGQPbrVYBsYKltzfvsyv0Alrj8/QBGatqlcfzqeqI
+        +glouR1Tb/vYTCLC5sSV4jD0zA==
+X-Google-Smtp-Source: ABdhPJzzQnECj6TQ/WMnbIXyOhNDieYzy1koe+Zij9CEDYVoBr0fSGu6X0G/3k8EfFivormHMckX3w==
+X-Received: by 2002:a63:6b82:0:b0:39d:a6ce:14dc with SMTP id g124-20020a636b82000000b0039da6ce14dcmr8170661pgc.476.1651678695154;
+        Wed, 04 May 2022 08:38:15 -0700 (PDT)
+Received: from www.outflux.net (smtp.outflux.net. [198.145.64.163])
+        by smtp.gmail.com with ESMTPSA id t4-20020a170902bc4400b0015e8d4eb1f9sm8430240plz.67.2022.05.04.08.38.14
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 May 2022 08:38:32 -0700 (PDT)
-From:   Markuss Broks <markuss.broks@gmail.com>
-To:     pavel@ucw.cz
-Cc:     Markuss Broks <markuss.broks@gmail.com>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Wed, 04 May 2022 08:38:14 -0700 (PDT)
+Date:   Wed, 4 May 2022 08:38:13 -0700
+From:   Kees Cook <keescook@chromium.org>
+To:     Johannes Berg <johannes@sipsolutions.net>
+Cc:     "Gustavo A . R . Silva" <gustavoars@kernel.org>,
+        Keith Packard <keithp@keithp.com>,
+        Francis Laniel <laniel_francis@privacyrequired.com>,
+        Daniel Axtens <dja@axtens.net>,
+        Dan Williams <dan.j.williams@intel.com>,
+        Vincenzo Frascino <vincenzo.frascino@arm.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Daniel Vetter <daniel.vetter@ffwll.ch>,
+        Tadeusz Struk <tadeusz.struk@linaro.org>,
+        Alexei Starovoitov <ast@kernel.org>,
+        alsa-devel@alsa-project.org, Al Viro <viro@zeniv.linux.org.uk>,
+        Andrew Gabbasov <andrew_gabbasov@mentor.com>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        Andy Gross <agross@kernel.org>,
+        Andy Lavr <andy.lavr@gmail.com>,
+        Arend van Spriel <aspriel@gmail.com>,
+        Baowen Zheng <baowen.zheng@corigine.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Boris Ostrovsky <boris.ostrovsky@oracle.com>,
+        Bradley Grove <linuxdrivers@attotech.com>,
+        brcm80211-dev-list.pdl@broadcom.com,
+        Christian Brauner <brauner@kernel.org>,
+        Christian =?iso-8859-1?Q?G=F6ttsche?= <cgzones@googlemail.com>,
+        Christian Lamparter <chunkeey@googlemail.com>,
+        Chris Zankel <chris@zankel.net>,
+        Cong Wang <cong.wang@bytedance.com>,
+        David Gow <davidgow@google.com>,
+        David Howells <dhowells@redhat.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Dennis Dalessandro <dennis.dalessandro@cornelisnetworks.com>,
+        devicetree@vger.kernel.org, Dexuan Cui <decui@microsoft.com>,
+        Dmitry Kasatkin <dmitry.kasatkin@gmail.com>,
+        Eli Cohen <elic@nvidia.com>,
+        Eric Dumazet <edumazet@google.com>,
+        Eric Paris <eparis@parisplace.org>,
+        Eugeniu Rosca <erosca@de.adit-jv.com>,
+        Felipe Balbi <balbi@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Franky Lin <franky.lin@broadcom.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Gregory Greenman <gregory.greenman@intel.com>,
+        Haiyang Zhang <haiyangz@microsoft.com>,
+        Hante Meuleman <hante.meuleman@broadcom.com>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        Hulk Robot <hulkci@huawei.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        "James E.J. Bottomley" <jejb@linux.ibm.com>,
+        James Morris <jmorris@namei.org>,
+        Jarkko Sakkinen <jarkko@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Jason Gunthorpe <jgg@ziepe.ca>, Jens Axboe <axboe@kernel.dk>,
+        Johan Hedberg <johan.hedberg@gmail.com>,
+        John Keeping <john@metanate.com>,
+        Juergen Gross <jgross@suse.com>, Kalle Valo <kvalo@kernel.org>,
+        keyrings@vger.kernel.org, kunit-dev@googlegroups.com,
+        Kuniyuki Iwashima <kuniyu@amazon.co.jp>,
+        "K. Y. Srinivasan" <kys@microsoft.com>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Lee Jones <lee.jones@linaro.org>,
+        Leon Romanovsky <leon@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        linux1394-devel@lists.sourceforge.net,
+        linux-afs@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-arm-msm@vger.kernel.org, linux-bluetooth@vger.kernel.org,
+        linux-hardening@vger.kernel.org, linux-hyperv@vger.kernel.org,
+        linux-integrity@vger.kernel.org, linux-rdma@vger.kernel.org,
+        linux-scsi@vger.kernel.org, linux-security-module@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux-wireless@vger.kernel.org,
+        linux-xtensa@linux-xtensa.org, llvm@lists.linux.dev,
+        Loic Poulain <loic.poulain@linaro.org>,
+        Louis Peens <louis.peens@corigine.com>,
+        Luca Coelho <luciano.coelho@intel.com>,
+        Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+        Marc Dionne <marc.dionne@auristor.com>,
+        Marcel Holtmann <marcel@holtmann.org>,
+        Mark Brown <broonie@kernel.org>,
+        "Martin K. Petersen" <martin.petersen@oracle.com>,
+        Max Filippov <jcmvbkbc@gmail.com>,
+        Mimi Zohar <zohar@linux.ibm.com>,
+        Muchun Song <songmuchun@bytedance.com>,
+        Nathan Chancellor <nathan@kernel.org>, netdev@vger.kernel.org,
+        Nick Desaulniers <ndesaulniers@google.com>,
+        Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Paul Moore <paul@paul-moore.com>,
+        Rich Felker <dalias@aerifal.cx>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH RESEND v6 (corrected v2) 2/2] leds: ktd2692: Make aux-gpios optional
-Date:   Wed,  4 May 2022 18:38:11 +0300
-Message-Id: <20220504153814.11108-3-markuss.broks@gmail.com>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220504153814.11108-1-markuss.broks@gmail.com>
-References: <20220504153814.11108-1-markuss.broks@gmail.com>
+        Russell King <linux@armlinux.org.uk>, selinux@vger.kernel.org,
+        "Serge E. Hallyn" <serge@hallyn.com>,
+        SHA-cyfmac-dev-list@infineon.com,
+        Simon Horman <simon.horman@corigine.com>,
+        Stefano Stabellini <sstabellini@kernel.org>,
+        Stefan Richter <stefanr@s5r6.in-berlin.de>,
+        Steffen Klassert <steffen.klassert@secunet.com>,
+        Stephen Hemminger <sthemmin@microsoft.com>,
+        Stephen Smalley <stephen.smalley.work@gmail.com>,
+        Takashi Iwai <tiwai@suse.com>, Tom Rix <trix@redhat.com>,
+        Udipto Goswami <quic_ugoswami@quicinc.com>,
+        wcn36xx@lists.infradead.org, Wei Liu <wei.liu@kernel.org>,
+        xen-devel@lists.xenproject.org,
+        Xiu Jianfeng <xiujianfeng@huawei.com>,
+        Yang Yingliang <yangyingliang@huawei.com>
+Subject: Re: [PATCH 02/32] Introduce flexible array struct memcpy() helpers
+Message-ID: <202205040819.DEA70BD@keescook>
+References: <20220504014440.3697851-1-keescook@chromium.org>
+ <20220504014440.3697851-3-keescook@chromium.org>
+ <d3b73d80f66325fdfaf2d1f00ea97ab3db03146a.camel@sipsolutions.net>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <d3b73d80f66325fdfaf2d1f00ea97ab3db03146a.camel@sipsolutions.net>
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Make the AUX pin optional, since it isn't a core part of functionality,
-and the device is designed to be operational with only one CTRL pin.
+On Wed, May 04, 2022 at 09:25:56AM +0200, Johannes Berg wrote:
+> On Tue, 2022-05-03 at 18:44 -0700, Kees Cook wrote:
+> > 
+> > For example, using the most complicated helper, mem_to_flex_dup():
+> > 
+> >     /* Flexible array struct with members identified. */
+> >     struct something {
+> >         int mode;
+> >         DECLARE_FLEX_ARRAY_ELEMENTS_COUNT(int, how_many);
+> >         unsigned long flags;
+> >         DECLARE_FLEX_ARRAY_ELEMENTS(u32, value);
+> 
+> In many cases, the order of the elements doesn't really matter, so maybe
+> it'd be nicer to be able to write it as something like
+> 
+> DECLARE_FLEX_STRUCT(something,
+> 	int mode;
+> 	unsigned long flags;
+> 	,
+> 	int, how_many,
+> 	u32, value);
+> 
+> perhaps? OK, that doesn't seem so nice either.
+> 
+> Maybe
+> 
+> struct something {
+> 	int mode;
+> 	unsigned long flags;
+> 	FLEX_ARRAY(
+> 		int, how_many,
+> 		u32, value
+> 	);
+> };
 
-Also pick up maintenance for the LED driver and the yaml bindings.
+Yeah, I mention some of my exploration of this idea in the sibling reply:
+https://lore.kernel.org/linux-hardening/202205040730.161645EC@keescook/#t
 
-Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
-Signed-off-by: Markuss Broks <markuss.broks@gmail.com>
----
- MAINTAINERS                       | 6 ++++++
- drivers/leds/flash/leds-ktd2692.c | 6 +++---
- 2 files changed, 9 insertions(+), 3 deletions(-)
+It seemed like requiring a structure be rearranged to take advantage of
+the "automatic layout introspection" wasn't very friendly. On the other
+hand, looking at the examples, most of them are already neighboring
+members. Hmmm.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 2db49ea7ae55..8ef5667a1d98 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -10479,6 +10479,12 @@ S:	Maintained
- F:	Documentation/devicetree/bindings/leds/backlight/kinetic,ktd253.yaml
- F:	drivers/video/backlight/ktd253-backlight.c
- 
-+KTD2692 FLASH LED DRIVER
-+M:	Markuss Broks <markuss.broks@gmail.com>
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/leds/backlight/kinetic,ktd2692.yaml
-+F:	drivers/leds/flash/leds-ktd2692.yaml
-+
- KTEST
- M:	Steven Rostedt <rostedt@goodmis.org>
- M:	John Hawley <warthog9@eaglescrag.net>
-diff --git a/drivers/leds/flash/leds-ktd2692.c b/drivers/leds/flash/leds-ktd2692.c
-index f341da1503a4..01ceea83af67 100644
---- a/drivers/leds/flash/leds-ktd2692.c
-+++ b/drivers/leds/flash/leds-ktd2692.c
-@@ -284,9 +284,9 @@ static int ktd2692_parse_dt(struct ktd2692_context *led, struct device *dev,
- 		return ret;
- 	}
- 
--	led->aux_gpio = devm_gpiod_get(dev, "aux", GPIOD_ASIS);
--	ret = PTR_ERR_OR_ZERO(led->aux_gpio);
--	if (ret) {
-+	led->aux_gpio = devm_gpiod_get_optional(dev, "aux", GPIOD_ASIS);
-+	if (IS_ERR(led->aux_gpio)) {
-+		ret = PTR_ERR(led->aux_gpio);
- 		dev_err(dev, "cannot get aux-gpios %d\n", ret);
- 		return ret;
- 	}
+> or so? The long and duplicated DECLARE_FLEX_ARRAY_ELEMENTS_COUNT and
+> DECLARE_FLEX_ARRAY_ELEMENTS seems a bit tedious to me, at least in cases
+> where the struct layout is not the most important thing (or it's already
+> at the end anyway).
+
+The names aren't great, but I wanted to distinguish "elements" as the
+array not the count. Yay naming.
+
+However, perhaps the solution is to have _both_. i.e using
+BOUNDED_FLEX_ARRAY(count_type, count_name, array_type, array_name) for
+the "neighboring" case, and the DECLARE...{ELEMENTS,COUNT} for the
+"split" case.
+
+And DECLARE_FLEX_ARRAY_ELEMENTS could actually be expanded to include
+the count_name too, so both methods could be "forward portable" to a
+future where C grew the syntax for bounded flex arrays.
+
+> 
+> >     struct something *instance = NULL;
+> >     int rc;
+> > 
+> >     rc = mem_to_flex_dup(&instance, byte_array, count, GFP_KERNEL);
+> >     if (rc)
+> >         return rc;
+> 
+> This seems rather awkward, having to set it to NULL, then checking rc
+> (and possibly needing a separate variable for it), etc.
+
+I think the errno return is completely required. I had an earlier version
+of this that was much more like a drop-in replacement for memcpy that
+would just truncate or panic, and when I had it all together, I could
+just imagine hearing Linus telling me to start over because it was unsafe
+(truncation may be just as bad as overflow) and disruptive ("never BUG"),
+and that it should be recoverable. So, I rewrote it all to return a
+__must_check errno.
+
+Requiring instance to be NULL is debatable, but I feel pretty strongly
+about it because it does handle a class of mistakes (resource leaks),
+and it's not much of a burden to require a known-good starting state.
+
+> But I can understand how you arrived at this:
+>  - need to pass instance or &instance or such for typeof()
+>    or offsetof() or such
+
+Right.
+
+>  - instance = mem_to_flex_dup(instance, ...)
+>    looks too much like it would actually dup 'instance', rather than
+>    'byte_array'
+
+And I need an errno output to keep imaginary Linus happy. :)
+
+>  - if you pass &instance anyway, checking for NULL is simple and adds a
+>    bit of safety
+
+Right.
+
+> but still, honestly, I don't like it. As APIs go, it feels a bit
+> cumbersome and awkward to use, and you really need everyone to use this,
+> and not say "uh what, I'll memcpy() instead".
+
+Sure, and I have tried to get it down as small as possible. The earlier
+"just put all the member names in every call" version was horrid. :P I
+realize it's more work to check errno, but the memcpy() API we've all
+been trained to use is just plain dangerous. I don't think it's
+unreasonable to ask people to retrain themselves to avoid it. All that
+said, yes, I want it to be as friendly as possible.
+
+> Maybe there should also be a realloc() version of it?
+
+Sure! Seems reasonable. I'd like to see the code pattern for this
+though. Do you have any examples? Most of what I'd been able to find for
+the fragile memcpy() usage was just basic serialize/deserialize or
+direct copying.
+
+> > +/** __fas_bytes - Calculate potential size of flexible array structure
+> 
+> I think you forgot "\n *" in many cases here after "/**".
+
+Oops! Yes, thank you. I'll fix these.
+
+-Kees
+
 -- 
-2.35.1
-
+Kees Cook
