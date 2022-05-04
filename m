@@ -2,74 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A9FA151A360
-	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 17:12:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9371351A365
+	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 17:13:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352000AbiEDPQ2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 May 2022 11:16:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37844 "EHLO
+        id S1352047AbiEDPQx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 May 2022 11:16:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38362 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351882AbiEDPQ2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 11:16:28 -0400
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B73CE42EF0
-        for <devicetree@vger.kernel.org>; Wed,  4 May 2022 08:12:51 -0700 (PDT)
-Received: by mail-wr1-x42a.google.com with SMTP id x18so2500663wrc.0
-        for <devicetree@vger.kernel.org>; Wed, 04 May 2022 08:12:51 -0700 (PDT)
+        with ESMTP id S1352049AbiEDPQw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 11:16:52 -0400
+Received: from mail-pg1-x532.google.com (mail-pg1-x532.google.com [IPv6:2607:f8b0:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE37243AF0
+        for <devicetree@vger.kernel.org>; Wed,  4 May 2022 08:13:13 -0700 (PDT)
+Received: by mail-pg1-x532.google.com with SMTP id e5so1395048pgc.5
+        for <devicetree@vger.kernel.org>; Wed, 04 May 2022 08:13:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=Q8t/4zs15J+WUhbyzSWnk3xMYZcOI1/gRBqoDJhXob4=;
-        b=wi7jEkVHGAPE3FymCXSvLN550cRUAYn+sygWU7mIu1v6VRG1s7mhDZ07dA1iYbxg13
-         R/Rytjl94JyOgat26pA99xa6NJJXkv9o8ASXXJYmqwBgsrHKO3jCpvBch3BMVUTuDO1s
-         q182c5/7F7N1xv3HFPXMc6ERzEdT2cGvJ23dvQsQVG5u2qZcYxQWdOxvuyGnd0wgv1rm
-         jOtd0psyDJ6F3bYSbcUzFT3fyQMQjq6hOacnH0TDmwlF3DbqtXcxLn4134sRyQ0CpcbQ
-         dw3aG43dPDYrPKEsWqb3ILdVMpegh45O6gw08q0NqQjG90e9fZ7T2uG62sX6t8YmbqSY
-         bw/A==
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=K5o0mxzRhIj/1qVaf+Qsisfgid2WQLM66dSEL7WW688=;
+        b=XkqjtCLvOAHdMweJpAE7OFgXj0jWG7id7d0Hhskj9BPIqKJFUoqoOWLf2YUT5xAOL1
+         wZmhUNtZAmbQT4d6fpbwfM2QOncu2zNn3djMX16s2PmGSDIstIDxugPIALaO8utyKIj7
+         sKwWZedxfPJh4WLIB65ege/77jViBz9SzZ4sg=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=Q8t/4zs15J+WUhbyzSWnk3xMYZcOI1/gRBqoDJhXob4=;
-        b=yMph0OvHsPSWNcR9Jq16PsxIpuaK769CAjjz6WgXP1ruFbZtxOXXiGtfiiXz9vxTgC
-         8DtI7v/dUtbga+U3xnnnG3IcS6tKyxABcKXGBerGsic8PqhKswNpDXWKLJ1qA/Jf6dXw
-         EFnMtColTm5ehZOG6d78o0fslhZsLXbqwJw/A7wgNGy5sO3DBcYht89Fla7IUGeBehX4
-         zUacJKOGMkVKVRZZ/mH8s8sV6E2EblFgpFEC57m+OLVkPM3FZ+2P5UbeLNKXpZPAZ+36
-         bCN8p/9p6IJLKB+zwJCAKGVuPv2yr9ivAFTSl7+cTY4zejdm2dvmbFOT3yzZjlvfibcm
-         mBMA==
-X-Gm-Message-State: AOAM532lRtMlM/uVXIMBUMBpDyVMIJ1MB9SbgQDTB0SRncvCwkk+ynPy
-        QPHjTtsLJ8c4asfT+Hc7Bpzxow==
-X-Google-Smtp-Source: ABdhPJwfIvkgE9/1fAnUpjs8I+PHo/RnrTFjwqbemJe3+1Lvhwupfj7uVRIPK/HVf99hbq90HZ3bMA==
-X-Received: by 2002:a5d:598f:0:b0:20c:83c9:b05b with SMTP id n15-20020a5d598f000000b0020c83c9b05bmr2172834wri.343.1651677170300;
-        Wed, 04 May 2022 08:12:50 -0700 (PDT)
-Received: from [192.168.0.215] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id v1-20020a05600c15c100b003942a244ecfsm3898263wmf.20.2022.05.04.08.12.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 04 May 2022 08:12:49 -0700 (PDT)
-Message-ID: <6b231701-0c76-e7a8-bcd3-8a9c5cdc7a0f@linaro.org>
-Date:   Wed, 4 May 2022 17:12:48 +0200
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=K5o0mxzRhIj/1qVaf+Qsisfgid2WQLM66dSEL7WW688=;
+        b=kSIUuuJgMy6n7aj3AwJmt3enDPQUXHWdTJFd/DoCKnrGk8exq1CiCxqvxOkL0Uyjwr
+         VLIa6m10kiF82ST3Rsee1VQn3HJU8mLxTZDRqtnpifiAIvnqdRbqPL/6gt5izYfHVdDp
+         EThB0LxFmgoER+YJ4dm8tPWiybTW1yJ2R8lz6dTKQwjuAngjDT35FRAJ2V0od2J/xHN8
+         C2o9CMd0t9QpQ+qZrBLTMYjXGvkCwvpeycNsCqcpArV8n/5BcR17b8abF1GxtJINUi3J
+         W22KeEK45gI3lBPaKWZT4x5910LUzfrn6WW+/GzPsEQpz4K/1Aej3QjGt6RhwsxPvxEz
+         Tx9g==
+X-Gm-Message-State: AOAM5302CtEzIdGYIgfOCH7SKqx8J33hzeBcxXwtau98WYyc1U4xp5xT
+        7JtWb5ERKHyyIsR01iTR5iRNfA==
+X-Google-Smtp-Source: ABdhPJz90TOpMyff1PtQa6IsHmC44gl1STwuqZnossp54kBJNr59JnE6SQEpdVpiz10qBB7q+ENACA==
+X-Received: by 2002:a63:9d46:0:b0:3ab:573b:d7ca with SMTP id i67-20020a639d46000000b003ab573bd7camr18269533pgd.349.1651677193254;
+        Wed, 04 May 2022 08:13:13 -0700 (PDT)
+Received: from www.outflux.net (smtp.outflux.net. [198.145.64.163])
+        by smtp.gmail.com with ESMTPSA id t1-20020a170902b20100b0015e8d4eb20bsm8443013plr.85.2022.05.04.08.13.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 04 May 2022 08:13:12 -0700 (PDT)
+Date:   Wed, 4 May 2022 08:13:12 -0700
+From:   Kees Cook <keescook@chromium.org>
+To:     Johannes Berg <johannes@sipsolutions.net>
+Cc:     "Gustavo A . R . Silva" <gustavoars@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Eric Dumazet <edumazet@google.com>,
+        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
+        Alexei Starovoitov <ast@kernel.org>,
+        alsa-devel@alsa-project.org, Al Viro <viro@zeniv.linux.org.uk>,
+        Andrew Gabbasov <andrew_gabbasov@mentor.com>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        Andy Gross <agross@kernel.org>,
+        Andy Lavr <andy.lavr@gmail.com>,
+        Arend van Spriel <aspriel@gmail.com>,
+        Baowen Zheng <baowen.zheng@corigine.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Boris Ostrovsky <boris.ostrovsky@oracle.com>,
+        Bradley Grove <linuxdrivers@attotech.com>,
+        brcm80211-dev-list.pdl@broadcom.com,
+        Christian Brauner <brauner@kernel.org>,
+        Christian =?iso-8859-1?Q?G=F6ttsche?= <cgzones@googlemail.com>,
+        Christian Lamparter <chunkeey@googlemail.com>,
+        Chris Zankel <chris@zankel.net>,
+        Cong Wang <cong.wang@bytedance.com>,
+        Daniel Axtens <dja@axtens.net>,
+        Daniel Vetter <daniel.vetter@ffwll.ch>,
+        Dan Williams <dan.j.williams@intel.com>,
+        David Gow <davidgow@google.com>,
+        David Howells <dhowells@redhat.com>,
+        Dennis Dalessandro <dennis.dalessandro@cornelisnetworks.com>,
+        devicetree@vger.kernel.org, Dexuan Cui <decui@microsoft.com>,
+        Dmitry Kasatkin <dmitry.kasatkin@gmail.com>,
+        Eli Cohen <elic@nvidia.com>,
+        Eric Paris <eparis@parisplace.org>,
+        Eugeniu Rosca <erosca@de.adit-jv.com>,
+        Felipe Balbi <balbi@kernel.org>,
+        Francis Laniel <laniel_francis@privacyrequired.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Franky Lin <franky.lin@broadcom.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Gregory Greenman <gregory.greenman@intel.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Haiyang Zhang <haiyangz@microsoft.com>,
+        Hante Meuleman <hante.meuleman@broadcom.com>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        Hulk Robot <hulkci@huawei.com>,
+        "James E.J. Bottomley" <jejb@linux.ibm.com>,
+        James Morris <jmorris@namei.org>,
+        Jarkko Sakkinen <jarkko@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Jason Gunthorpe <jgg@ziepe.ca>, Jens Axboe <axboe@kernel.dk>,
+        Johan Hedberg <johan.hedberg@gmail.com>,
+        John Keeping <john@metanate.com>,
+        Juergen Gross <jgross@suse.com>, Kalle Valo <kvalo@kernel.org>,
+        Keith Packard <keithp@keithp.com>, keyrings@vger.kernel.org,
+        kunit-dev@googlegroups.com,
+        Kuniyuki Iwashima <kuniyu@amazon.co.jp>,
+        "K. Y. Srinivasan" <kys@microsoft.com>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Lee Jones <lee.jones@linaro.org>,
+        Leon Romanovsky <leon@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        linux1394-devel@lists.sourceforge.net,
+        linux-afs@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-arm-msm@vger.kernel.org, linux-bluetooth@vger.kernel.org,
+        linux-hardening@vger.kernel.org, linux-hyperv@vger.kernel.org,
+        linux-integrity@vger.kernel.org, linux-rdma@vger.kernel.org,
+        linux-scsi@vger.kernel.org, linux-security-module@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux-xtensa@linux-xtensa.org,
+        llvm@lists.linux.dev, Loic Poulain <loic.poulain@linaro.org>,
+        Louis Peens <louis.peens@corigine.com>,
+        Luca Coelho <luciano.coelho@intel.com>,
+        Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+        Marc Dionne <marc.dionne@auristor.com>,
+        Marcel Holtmann <marcel@holtmann.org>,
+        Mark Brown <broonie@kernel.org>,
+        "Martin K. Petersen" <martin.petersen@oracle.com>,
+        Max Filippov <jcmvbkbc@gmail.com>,
+        Mimi Zohar <zohar@linux.ibm.com>,
+        Muchun Song <songmuchun@bytedance.com>,
+        Nathan Chancellor <nathan@kernel.org>,
+        Nick Desaulniers <ndesaulniers@google.com>,
+        Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+        Paul Moore <paul@paul-moore.com>,
+        Rich Felker <dalias@aerifal.cx>,
+        Rob Herring <robh+dt@kernel.org>,
+        Russell King <linux@armlinux.org.uk>, selinux@vger.kernel.org,
+        "Serge E. Hallyn" <serge@hallyn.com>,
+        SHA-cyfmac-dev-list@infineon.com,
+        Simon Horman <simon.horman@corigine.com>,
+        Stefano Stabellini <sstabellini@kernel.org>,
+        Stefan Richter <stefanr@s5r6.in-berlin.de>,
+        Steffen Klassert <steffen.klassert@secunet.com>,
+        Stephen Hemminger <sthemmin@microsoft.com>,
+        Stephen Smalley <stephen.smalley.work@gmail.com>,
+        Tadeusz Struk <tadeusz.struk@linaro.org>,
+        Takashi Iwai <tiwai@suse.com>, Tom Rix <trix@redhat.com>,
+        Udipto Goswami <quic_ugoswami@quicinc.com>,
+        Vincenzo Frascino <vincenzo.frascino@arm.com>,
+        wcn36xx@lists.infradead.org, Wei Liu <wei.liu@kernel.org>,
+        xen-devel@lists.xenproject.org,
+        Xiu Jianfeng <xiujianfeng@huawei.com>,
+        Yang Yingliang <yangyingliang@huawei.com>
+Subject: Re: [PATCH 12/32] cfg80211: Use mem_to_flex_dup() with struct
+ cfg80211_bss_ies
+Message-ID: <202205040811.05D7E61@keescook>
+References: <20220504014440.3697851-1-keescook@chromium.org>
+ <20220504014440.3697851-13-keescook@chromium.org>
+ <c31c1752cf6393319f5c7abd178ef43e0fbec5c1.camel@sipsolutions.net>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH V4 2/4] dt-bindings: mfd: sprd: Add bindings for ums512
- global registers
-Content-Language: en-US
-To:     Cixi Geng <gengcixi@gmail.com>, mturquette@baylibre.com,
-        sboyd@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, orsonzhai@gmail.com,
-        baolin.wang7@gmail.com, zhang.lyra@gmail.com, lee.jones@linaro.org
-Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220427100848.3525710-1-gengcixi@gmail.com>
- <20220427100848.3525710-3-gengcixi@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220427100848.3525710-3-gengcixi@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <c31c1752cf6393319f5c7abd178ef43e0fbec5c1.camel@sipsolutions.net>
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -78,76 +170,49 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/04/2022 12:08, Cixi Geng wrote:
-> From: Chunyan Zhang <chunyan.zhang@unisoc.com>
+On Wed, May 04, 2022 at 09:28:46AM +0200, Johannes Berg wrote:
+> On Tue, 2022-05-03 at 18:44 -0700, Kees Cook wrote:
+> > 
+> > @@ -2277,7 +2274,7 @@ cfg80211_update_notlisted_nontrans(struct wiphy *wiphy,
+> >  	size_t ielen = len - offsetof(struct ieee80211_mgmt,
+> >  				      u.probe_resp.variable);
+> >  	size_t new_ie_len;
+> > -	struct cfg80211_bss_ies *new_ies;
+> > +	struct cfg80211_bss_ies *new_ies = NULL;
+> >  	const struct cfg80211_bss_ies *old;
+> >  	u8 cpy_len;
+> >  
+> > @@ -2314,8 +2311,7 @@ cfg80211_update_notlisted_nontrans(struct wiphy *wiphy,
+> >  	if (!new_ie)
+> >  		return;
+> >  
+> > -	new_ies = kzalloc(sizeof(*new_ies) + new_ie_len, GFP_ATOMIC);
+> > -	if (!new_ies)
+> > +	if (mem_to_flex_dup(&new_ies, new_ie, new_ie_len, GFP_ATOMIC))
+> >  		goto out_free;
+> >  
+> >  	pos = new_ie;
+> > @@ -2333,10 +2329,8 @@ cfg80211_update_notlisted_nontrans(struct wiphy *wiphy,
+> >  	memcpy(pos, mbssid + cpy_len, ((ie + ielen) - (mbssid + cpy_len)));
+> >  
+> >  	/* update ie */
+> > -	new_ies->len = new_ie_len;
+> >  	new_ies->tsf = le64_to_cpu(mgmt->u.probe_resp.timestamp);
+> >  	new_ies->from_beacon = ieee80211_is_beacon(mgmt->frame_control);
+> > -	memcpy(new_ies->data, new_ie, new_ie_len);
 > 
-> Add bindings for Unisoc system global register which provide register map
-> for clocks.
-> 
-> Signed-off-by: Chunyan Zhang <chunyan.zhang@unisoc.com>
-> Signed-off-by: Cixi Geng <cixi.geng1@unisoc.com>
-> ---
->  .../bindings/mfd/sprd,ums512-glbreg.yaml      | 68 +++++++++++++++++++
->  1 file changed, 68 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mfd/sprd,ums512-glbreg.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/mfd/sprd,ums512-glbreg.yaml b/Documentation/devicetree/bindings/mfd/sprd,ums512-glbreg.yaml
-> new file mode 100644
-> index 000000000000..3522f3d2d8de
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mfd/sprd,ums512-glbreg.yaml
-> @@ -0,0 +1,68 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mfd/sprd,ums512-glbreg.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Unisoc System Global Register Device Tree Bindings
+> This introduces a bug, "new_ie" is modified between the kzalloc() and
+> the memcpy(), but you've moved the memcpy() into the allocation. In
+> fact, new_ie is completely freshly kzalloc()'ed at this point. So you
+> need to change the ordering here, but since new_ie is freed pretty much
+> immediately, we can probably just build the stuff directly inside
+> new_ies->data, though then of course we cannot use your helper anymore?
 
-Thanks for removing "Device Tree Bindings" from first patch, but such
-comment applies everywhere. Please clean up all your patches (also
-future) based on received comments, so we do not have to repeat the same.
+Eek, yes, thanks. My attempt to locate the alloc/memcpy pattern failed
+to take into account anything touch the source between alloc and memcpy.
+I'll double check the other examples.
 
+-Kees
 
-> +maintainers:
-> +  - Orson Zhai <orsonzhai@gmail.com>
-> +  - Baolin Wang <baolin.wang7@gmail.com>
-> +  - Chunyan Zhang <zhang.lyra@gmail.com>
-> +
-> +description:
-> +  Unisoc system global registers provide register map
-> +  for clocks and some multimedia modules of the SoC.
-> +
-> +properties:
-> +  "#address-cells": true
-> +  "#size-cells": true
-> +
-> +  compatible:
-
-Put the compatible as first in the properties.
-
-> +    items:
-> +      - const: sprd,ums512-glbregs
-> +      - const: syscon
-> +      - const: simple-mfd
-> +
-> +  ranges:
-> +    maxItems: 1
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +patternProperties:
-> +  "^.*@[0-9a-f]+$":
-
-The name should be specific - "clock-controller" - so this can be in
-"properties".
-
-> +    # Child node
-
-Comment does not help.
-
-
-Best regards,
-Krzysztof
+-- 
+Kees Cook
