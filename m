@@ -2,69 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F2C57519C15
-	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 11:42:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B4E9519C1A
+	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 11:43:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347263AbiEDJqC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 May 2022 05:46:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54098 "EHLO
+        id S1347412AbiEDJqx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 May 2022 05:46:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54862 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238227AbiEDJp7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 05:45:59 -0400
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40CAE26AC8;
-        Wed,  4 May 2022 02:42:22 -0700 (PDT)
-Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 2446C7E6018201;
-        Wed, 4 May 2022 11:42:00 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
- subject : date : message-id : mime-version : content-transfer-encoding :
- content-type; s=selector1;
- bh=RSjmW4IjUGZ/bQ/two1rZ1aHlJIVLGx+97yQ1s1zd4A=;
- b=JkwE7esC89R64iqYz9q+1Wyv3tHA6csHuhH/W/gaRAX4Y4FkcHsPpLsJVGsDP/PlPKM/
- x9vw1JMYyrXVDV9S09ff5LYhUicrDOW6+K3cQBxgnbSDZpclUUCtS6E95K2nqCMsB8kd
- oNhtKpfAN/o5Pz+bvMomqiEq914ff0Xua2ygEjgPbfRo+1CyZG3pZ4at1lwo4bkwQriP
- BuDMchsW0nD6qgsqFBdJtBTjBQJ+Lv1NohNy40Mqirl3ETJko6qrt3ga/eYgSSQO3OaU
- GdZVkGDZQSk+PB7VCzWl7HFBGv759H0xXjPQF+KSRf3wmloGoyd1RP0xLJXbXUy5q15a rg== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3frthjubws-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 04 May 2022 11:42:00 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 28C9610002A;
-        Wed,  4 May 2022 11:41:58 +0200 (CEST)
-Received: from Webmail-eu.st.com (sfhdag2node2.st.com [10.75.127.5])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 114BE216EE0;
-        Wed,  4 May 2022 11:41:58 +0200 (CEST)
-Received: from localhost (10.75.127.45) by SFHDAG2NODE2.st.com (10.75.127.5)
- with Microsoft SMTP Server (TLS) id 15.0.1497.26; Wed, 4 May 2022 11:41:57
- +0200
-From:   Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>
-CC:     <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-remoteproc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
-Subject: [PATCH] dt-bindings: remoteproc: Fix phandle-array parameters description
-Date:   Wed, 4 May 2022 11:41:43 +0200
-Message-ID: <20220504094143.1272200-1-arnaud.pouliquen@foss.st.com>
-X-Mailer: git-send-email 2.24.3
+        with ESMTP id S238227AbiEDJqw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 05:46:52 -0400
+Received: from mail-pf1-x430.google.com (mail-pf1-x430.google.com [IPv6:2607:f8b0:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 083E127B0A;
+        Wed,  4 May 2022 02:43:18 -0700 (PDT)
+Received: by mail-pf1-x430.google.com with SMTP id v11so718937pff.6;
+        Wed, 04 May 2022 02:43:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=t0Vge1DrY6BF9/8b8O1Z41uF1+unK2gO+1o6Ghfw/bQ=;
+        b=KNRaZQU2OV0CbVT5EBeXGwZ2xoH6HF6hD0XqfMHFiI6CaIWpt0T7SePd8vESZ94Q24
+         3aRIB+bd48pYD+as2gtsIEXLhn0pafaJYDPz5lyipy74WmTI7Zml3QpbH5dQjzLSb7cB
+         Wbs50yzWqtv1ASRXX0vCTGSWYzjh08N5nDMUaLqE+4ktAzhzlVTmvFRNEDTGCs7Zti0g
+         SeG1kGKhq4vqalij+JCtYEXa/Mpvghf55M1ohhEA8pXYe5y576JcDAduY5fleoURK8yP
+         zWs2iRQo/I+IfN/2YIh0K/fv3FcOBRL263jTz/iS74MK4WS0FYH80QNG9QenUT/Wxqp9
+         3rJQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=t0Vge1DrY6BF9/8b8O1Z41uF1+unK2gO+1o6Ghfw/bQ=;
+        b=zvEvro0LrvD9kH8QxbySTXswmcR/ZFRd6DIpx165dT6cmu75OcbIBls1SOTErH4X65
+         fC/xpD6W3aj5qZw0BOOm6YU4k+SsytUuJ7MnKglOsXbJDvxn0F6Xmh6gErqPsLb3FoSL
+         lr4z8PfxLJWer2ERLLFKbPlFE7mj+Pm9rpDCGszhMCUmd2x0BT6cEh1DohaafD6+jkoe
+         QIccCXFJo2RY/TeZe7NCAzw1wg4d4klXLG4gGLdcNKJ34xBHqTVp1d0vMBtSYbo6OZ2x
+         1WNHfsQIoT8LELngT5KPY66bLHeKL9raofSO+lzdlNrkYWlTsscQ4WYklOYBzP27vtDj
+         XyaQ==
+X-Gm-Message-State: AOAM531CsfRBCUYg8MTs9XCjtmAWls2b+cvH5K8D4r+rESJRsMLkxjdR
+        XSysBSRqZiaZeB7RFEpD3MM=
+X-Google-Smtp-Source: ABdhPJzOJkUqXet1D2SSx84hKWV9giEUkv3YpXuvdddpMNmqN7srzVYCzUFtggEeEZ34yt65brcOQA==
+X-Received: by 2002:a63:90c3:0:b0:3ab:24df:fa19 with SMTP id a186-20020a6390c3000000b003ab24dffa19mr16999279pge.608.1651657397488;
+        Wed, 04 May 2022 02:43:17 -0700 (PDT)
+Received: from [172.30.1.41] ([14.32.163.5])
+        by smtp.gmail.com with ESMTPSA id j2-20020a17090a734200b001d0ec9c93fesm2860994pjs.12.2022.05.04.02.43.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 04 May 2022 02:43:17 -0700 (PDT)
+Message-ID: <9a84f78e-f54f-dd8e-a3b8-5a43001dd1df@gmail.com>
+Date:   Wed, 4 May 2022 18:43:12 +0900
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.75.127.45]
-X-ClientProxiedBy: SFHDAG2NODE2.st.com (10.75.127.5) To SFHDAG2NODE2.st.com
- (10.75.127.5)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.858,Hydra:6.0.486,FMLib:17.11.64.514
- definitions=2022-05-04_03,2022-05-02_03,2022-02-23_01
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH v3 05/12] clk: samsung: exynosautov9: add cmu_peris clock
+ support
+Content-Language: en-US
+To:     Chanho Park <chanho61.park@samsung.com>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Tomasz Figa <tomasz.figa@gmail.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Sam Protsenko <semen.protsenko@linaro.org>,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org
+References: <20220504075154.58819-1-chanho61.park@samsung.com>
+ <CGME20220504075004epcas2p218759eec1e29313c879eda085e37f0b7@epcas2p2.samsung.com>
+ <20220504075154.58819-6-chanho61.park@samsung.com>
+From:   Chanwoo Choi <cwchoi00@gmail.com>
+In-Reply-To: <20220504075154.58819-6-chanho61.park@samsung.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,62 +86,34 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Replace the FIXME by appropriate description.
+Hi Chanho Park,
 
-Fixes: 39bd2b6a3783 ("dt-bindings: Improve phandle-array schemas")
-Signed-off-by: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
----
- .../bindings/remoteproc/st,stm32-rproc.yaml      | 16 ++++++++--------
- 1 file changed, 8 insertions(+), 8 deletions(-)
+On 22. 5. 4. 16:51, Chanho Park wrote:
+> CMU_PERIS is responsible to control clocks of BLK_PERIS which has
+> OPT/MCT/WDT and TMU. This patch only supports WDT gate clocks and all
+> other clocks except WDT will be supported later.
+> 
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Chanho Park <chanho61.park@samsung.com>
+> ---
+>   drivers/clk/samsung/clk-exynosautov9.c | 51 ++++++++++++++++++++++++++
+>   1 file changed, 51 insertions(+)
+> 
 
-diff --git a/Documentation/devicetree/bindings/remoteproc/st,stm32-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/st,stm32-rproc.yaml
-index be3d9b0e876b..da50f0e99fe2 100644
---- a/Documentation/devicetree/bindings/remoteproc/st,stm32-rproc.yaml
-+++ b/Documentation/devicetree/bindings/remoteproc/st,stm32-rproc.yaml
-@@ -43,8 +43,8 @@ properties:
-     items:
-       - items:
-           - description: Phandle of syscon block
--          - description: FIXME
--          - description: FIXME
-+          - description: The offset of the trust zone setting register
-+          - description: The field mask of the trust zone state
- 
-   interrupts:
-     description: Should contain the WWDG1 watchdog reset interrupt
-@@ -101,8 +101,8 @@ properties:
-     items:
-       - items:
-           - description: Phandle of syscon block
--          - description: FIXME
--          - description: FIXME
-+          - description: The offset of the power setting register
-+          - description: The field mask of the PDDS selection
- 
-   st,syscfg-m4-state:
-     $ref: "/schemas/types.yaml#/definitions/phandle-array"
-@@ -111,8 +111,8 @@ properties:
-     items:
-       - items:
-           - description: Phandle of syscon block with the tamp register
--          - description: FIXME
--          - description: FIXME
-+          - description: The offset of the tamp register
-+          - description: The field mask of the Cortex-M4 state
- 
-   st,syscfg-rsc-tbl:
-     $ref: "/schemas/types.yaml#/definitions/phandle-array"
-@@ -122,8 +122,8 @@ properties:
-     items:
-       - items:
-           - description: Phandle of syscon block with the tamp register
--          - description: FIXME
--          - description: FIXME
-+          - description: The offset of the tamp register
-+          - description: The field mask of the Cortex-M4 resource table address
- 
-   st,auto-boot:
-     $ref: /schemas/types.yaml#/definitions/flag
+(snip)
+
+Look good to me for all patches. But, some v3 patches has
+not yet arrived into my mail box. So that I checked
+the patches on lore.kernel.org[1].
+
+[1] 
+https://lore.kernel.org/linux-clk/20220504075154.58819-1-chanho61.park@samsung.com/
+
+Thanks for your work for latest Exynos SoC.
+
+Acked-by: Chanwoo Choi <cw00.choi@samsung.com>
+
 -- 
-2.24.3
-
+Best Regards,
+Samsung Electronics
+Chanwoo Choi
