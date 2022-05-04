@@ -2,64 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 25253519E6C
-	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 13:45:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DB4B6519E7F
+	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 13:49:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349182AbiEDLtV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 May 2022 07:49:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54116 "EHLO
+        id S240226AbiEDLxH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 May 2022 07:53:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59630 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349066AbiEDLtC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 07:49:02 -0400
-Received: from alexa-out.qualcomm.com (alexa-out.qualcomm.com [129.46.98.28])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2A51BE7;
-        Wed,  4 May 2022 04:45:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1651664725; x=1683200725;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version;
-  bh=tzuzsMYuwIcic0PWiWemrB1BGpNJb/G4FkSp8vfATRw=;
-  b=x9S6EWl55brS26bW6VRVFdvdHu4EK8473I0fcDC1Ht0J/eo1aLwnNli1
-   7Yl4Hz5N6OuugROSMXVUq7x1nd4CVPzsmmYz3KWNchNwEjD5T3AnfmjQ2
-   xLPJZwPMnq3X8AGcnZA4qD/WEhdr3f8DObN/d9F4tOcJTjykv3xql3WxZ
-   Q=;
-Received: from ironmsg09-lv.qualcomm.com ([10.47.202.153])
-  by alexa-out.qualcomm.com with ESMTP; 04 May 2022 04:45:24 -0700
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg09-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 May 2022 04:45:24 -0700
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Wed, 4 May 2022 04:45:23 -0700
-Received: from hu-srivasam-hyd.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Wed, 4 May 2022 04:45:19 -0700
-From:   Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-To:     <agross@kernel.org>, <bjorn.andersson@linaro.org>,
-        <robh+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <quic_rohkumar@quicinc.com>, <srinivas.kandagatla@linaro.org>,
-        <dianders@chromium.org>, <swboyd@chromium.org>,
-        <judyhsiao@chromium.org>
-CC:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
-        "Venkata Prasad Potturu" <quic_potturu@quicinc.com>
-Subject: [PATCH v11 12/12] arm64: dts: qcom: sc7280: Add sound node for CRD 3.0/3.1
-Date:   Wed, 4 May 2022 17:14:09 +0530
-Message-ID: <1651664649-25290-13-git-send-email-quic_srivasam@quicinc.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1651664649-25290-1-git-send-email-quic_srivasam@quicinc.com>
-References: <1651664649-25290-1-git-send-email-quic_srivasam@quicinc.com>
+        with ESMTP id S234461AbiEDLxF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 07:53:05 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9BC965F91;
+        Wed,  4 May 2022 04:49:28 -0700 (PDT)
+X-UUID: 03b2502f90ec4a62b4abbce6beff4ddd-20220504
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.4,REQID:7f5c9cfb-e572-4057-9e20-2dd2e1d5b1f6,OB:0,LO
+        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
+        ON:release,TS:0
+X-CID-META: VersionHash:faefae9,CLOUDID:fac48ab2-56b5-4c9e-8d83-0070b288eb6a,C
+        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,File:nil,QS:0,BEC:nil
+X-UUID: 03b2502f90ec4a62b4abbce6beff4ddd-20220504
+Received: from mtkmbs11n2.mediatek.inc [(172.21.101.187)] by mailgw01.mediatek.com
+        (envelope-from <rex-bc.chen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 325725063; Wed, 04 May 2022 19:49:22 +0800
+Received: from MTKMBS07N2.mediatek.inc (172.21.101.141) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Wed, 4 May 2022 19:49:21 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Wed, 4 May 2022 19:49:21 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Wed, 4 May 2022 19:49:21 +0800
+Message-ID: <7189b0c0c62fe8a8026d2e25e741a29b2f5b01a9.camel@mediatek.com>
+Subject: Re: [PATCH v14 1/3] dt-binding: mediatek: add bindings for MediaTek
+ MDP3 components
+From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
+To:     Rob Herring <robh@kernel.org>, Moudy Ho <moudy.ho@mediatek.com>
+CC:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Rob Landley <rob@landley.net>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        Alexandre Courbot <acourbot@chromium.org>,
+        <tfiga@chromium.org>, <drinkcat@chromium.org>,
+        <pihsun@chromium.org>, <hsinyi@google.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        daoyuan huang <daoyuan.huang@mediatek.com>,
+        Ping-Hsun Wu <ping-hsun.wu@mediatek.com>,
+        <allen-kh.cheng@mediatek.com>, <xiandong.wang@mediatek.com>,
+        <randy.wu@mediatek.com>, <jason-jh.lin@mediatek.com>,
+        <roy-cw.yeh@mediatek.com>, <river.cheng@mediatek.com>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Date:   Wed, 4 May 2022 19:49:21 +0800
+In-Reply-To: <YnFqnEI16B+xrxdQ@robh.at.kernel.org>
+References: <20220427070514.10355-1-moudy.ho@mediatek.com>
+         <20220427070514.10355-2-moudy.ho@mediatek.com>
+         <YnFqnEI16B+xrxdQ@robh.at.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -67,126 +83,109 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add dt nodes for sound card support on rev5+ (aka CRD 3.0/3.1) boards,
-which is using WCD9385 headset playback, capture, I2S speaker playback
-and DMICs via VA macro.
+On Tue, 2022-05-03 at 12:47 -0500, Rob Herring wrote:
+> On Wed, Apr 27, 2022 at 03:05:12PM +0800, Moudy Ho wrote:
+> > This patch adds DT binding documents for Media Data Path 3 (MDP3)
+> > a unit in multimedia system combined with several components and
+> > used for scaling and color format convert.
+> > 
+> > Signed-off-by: Moudy Ho <moudy.ho@mediatek.com>
+> > ---
+> >  .../bindings/media/mediatek,mdp3-rdma.yaml    | 82
+> > +++++++++++++++++++
+> >  .../bindings/media/mediatek,mdp3-rsz.yaml     | 61 ++++++++++++++
+> >  .../bindings/media/mediatek,mdp3-wrot.yaml    | 66 +++++++++++++++
+> >  .../bindings/soc/mediatek/mediatek,ccorr.yaml | 54 ++++++++++++
+> >  .../bindings/soc/mediatek/mediatek,wdma.yaml  | 67 +++++++++++++++
+> >  5 files changed, 330 insertions(+)
+> >  create mode 100644
+> > Documentation/devicetree/bindings/media/mediatek,mdp3-rdma.yaml
+> >  create mode 100644
+> > Documentation/devicetree/bindings/media/mediatek,mdp3-rsz.yaml
+> >  create mode 100644
+> > Documentation/devicetree/bindings/media/mediatek,mdp3-wrot.yaml
+> >  create mode 100644
+> > Documentation/devicetree/bindings/soc/mediatek/mediatek,ccorr.yaml
+> >  create mode 100644
+> > Documentation/devicetree/bindings/soc/mediatek/mediatek,wdma.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/media/mediatek,mdp3-
+> > rdma.yaml b/Documentation/devicetree/bindings/media/mediatek,mdp3-
+> > rdma.yaml
+> > new file mode 100644
+> > index 000000000000..ce24eda14cb6
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/media/mediatek,mdp3-
+> > rdma.yaml
+> > @@ -0,0 +1,82 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: 
+> > https://urldefense.com/v3/__http://devicetree.org/schemas/media/mediatek,mdp3-rdma.yaml*__;Iw!!CTRNKA9wMg0ARbw!zzzJB6GFgAbOaMvOMeEANc2UnatoXvcdzZ3UGx6024oxx1okemuH9vCeCSpaGUuD8dSrlYueRf2HFVdfFu6CVB7LUQ$
+> >  
+> > +$schema: 
+> > https://urldefense.com/v3/__http://devicetree.org/meta-schemas/core.yaml*__;Iw!!CTRNKA9wMg0ARbw!zzzJB6GFgAbOaMvOMeEANc2UnatoXvcdzZ3UGx6024oxx1okemuH9vCeCSpaGUuD8dSrlYueRf2HFVdfFu5BwY-loQ$
+> >  
+> > +
+> > +title: Mediatek Read Direct Memory Access
+> > +
+> > +maintainers:
+> > +  - Matthias Brugger <matthias.bgg@gmail.com>
+> > +  - Ping-Hsun Wu <ping-hsun.wu@mediatek.com>
+> > +
+> > +description: |
+> > +  Mediatek Read Direct Memory Access(RDMA) component used to do
+> > read DMA.
+> > +  It contains one line buffer to store the sufficient pixel data,
+> > and
+> > +  must be siblings to the central MMSYS_CONFIG node.
+> > +  For a description of the MMSYS_CONFIG binding, see
+> > +  Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.ya
+> > ml
+> > +  for details.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    items:
+> > +      - const: mediatek,mt8183-mdp3-rdma
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  mediatek,gce-client-reg:
+> > +    $ref: '/schemas/types.yaml#/definitions/phandle-array'
+> > +    maxItems: 1
+> 
+> Like your other patches this needs 'items' describing each cell.
+> 
+> > +    description: |
+> > +      The register of client driver can be configured by gce with
+> > +      4 arguments defined in this property, such as phandle of
+> > gce, subsys id,
+> > +      register offset and size. Each GCE subsys id is mapping to a
+> > client
+> > +      defined in the header include/dt-bindings/gce/<chip>-gce.h.
+> 
+> Other than other cases of this property, the rest looks fine.
+> 
+> Rob
 
-Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-Co-developed-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
-Signed-off-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
----
- arch/arm64/boot/dts/qcom/sc7280-herobrine-crd.dts | 98 +++++++++++++++++++++++
- 1 file changed, 98 insertions(+)
+Hello Rob,
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-crd.dts b/arch/arm64/boot/dts/qcom/sc7280-herobrine-crd.dts
-index 0fb0045..405252e 100644
---- a/arch/arm64/boot/dts/qcom/sc7280-herobrine-crd.dts
-+++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-crd.dts
-@@ -12,6 +12,104 @@
- / {
- 	model = "Qualcomm Technologies, Inc. sc7280 CRD platform (rev5+)";
- 	compatible = "google,hoglin", "qcom,sc7280";
-+
-+	sound: sound {
-+		compatible = "google,sc7280-herobrine";
-+		model = "sc7280-wcd938x-max98360a-1mic";
-+
-+		audio-routing =
-+			"IN1_HPHL", "HPHL_OUT",
-+			"IN2_HPHR", "HPHR_OUT",
-+			"AMIC1", "MIC BIAS1",
-+			"AMIC2", "MIC BIAS2",
-+			"VA DMIC0", "MIC BIAS1",
-+			"VA DMIC1", "MIC BIAS1",
-+			"VA DMIC2", "MIC BIAS3",
-+			"VA DMIC3", "MIC BIAS3",
-+			"TX SWR_ADC0", "ADC1_OUTPUT",
-+			"TX SWR_ADC1", "ADC2_OUTPUT",
-+			"TX SWR_ADC2", "ADC3_OUTPUT",
-+			"TX SWR_DMIC0", "DMIC1_OUTPUT",
-+			"TX SWR_DMIC1", "DMIC2_OUTPUT",
-+			"TX SWR_DMIC2", "DMIC3_OUTPUT",
-+			"TX SWR_DMIC3", "DMIC4_OUTPUT",
-+			"TX SWR_DMIC4", "DMIC5_OUTPUT",
-+			"TX SWR_DMIC5", "DMIC6_OUTPUT",
-+			"TX SWR_DMIC6", "DMIC7_OUTPUT",
-+			"TX SWR_DMIC7", "DMIC8_OUTPUT";
-+
-+		qcom,msm-mbhc-hphl-swh = <1>;
-+		qcom,msm-mbhc-gnd-swh = <1>;
-+
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		#sound-dai-cells = <0>;
-+
-+		dai-link@0 {
-+			link-name = "MAX98360A";
-+			reg = <0>;
-+
-+			cpu {
-+				sound-dai = <&lpass_cpu MI2S_SECONDARY>;
-+			};
-+
-+			codec {
-+				sound-dai = <&max98360a>;
-+			};
-+		};
-+
-+		dai-link@1 {
-+			link-name = "DisplayPort";
-+			reg = <1>;
-+
-+			cpu {
-+				sound-dai = <&lpass_cpu LPASS_DP_RX>;
-+			};
-+
-+			codec {
-+				sound-dai = <&mdss_dp>;
-+			};
-+		};
-+
-+		dai-link@2 {
-+			link-name = "WCD9385 Playback";
-+			reg = <2>;
-+
-+			cpu {
-+				sound-dai = <&lpass_cpu LPASS_CDC_DMA_RX0>;
-+			};
-+
-+			codec {
-+				sound-dai = <&wcd9385 0>, <&swr0 0>, <&lpass_rx_macro 0>;
-+			};
-+		};
-+
-+		dai-link@3 {
-+			link-name = "WCD9385 Capture";
-+			reg = <3>;
-+
-+			cpu {
-+				sound-dai = <&lpass_cpu LPASS_CDC_DMA_TX3>;
-+			};
-+
-+			codec {
-+				sound-dai = <&wcd9385 1>, <&swr1 0>, <&lpass_tx_macro 0>;
-+			};
-+		};
-+
-+		dai-link@4 {
-+			link-name = "DMIC";
-+			reg = <4>;
-+
-+			cpu {
-+				sound-dai = <&lpass_cpu LPASS_CDC_DMA_VA_TX0>;
-+			};
-+
-+			codec {
-+				sound-dai = <&lpass_va_macro 0>;
-+			};
-+		};
-+	};
- };
- 
- /* ADDITIONS TO NODES DEFINED IN PARENT DEVICE TREE FILES */
--- 
-2.7.4
+Thanks for your review and reminder.
+
+Moudy's mail is still not received by devicetree@vger.kernel.org.
+We are still under checking this issue.
+To prevent you do not receive his response, I help Moudy to mail you
+again.
+
+Moudy will sync the description from the patch listed below to this
+property and extend to other yaml files in this series.
+
+
+https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20220427064425.30383-5-moudy.ho@mediatek.com/
+
+BRs,
+Rex
 
