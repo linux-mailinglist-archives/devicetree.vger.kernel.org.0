@@ -2,92 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 396D251AEBD
-	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 22:11:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A529E51AEF2
+	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 22:23:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1377885AbiEDUOe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 May 2022 16:14:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47446 "EHLO
+        id S1356336AbiEDU0t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 May 2022 16:26:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58670 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1352117AbiEDUOe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 16:14:34 -0400
-Received: from mail-oa1-f54.google.com (mail-oa1-f54.google.com [209.85.160.54])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF31B4B43E;
-        Wed,  4 May 2022 13:10:56 -0700 (PDT)
-Received: by mail-oa1-f54.google.com with SMTP id 586e51a60fabf-e656032735so2352728fac.0;
-        Wed, 04 May 2022 13:10:56 -0700 (PDT)
+        with ESMTP id S1377969AbiEDU0s (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 16:26:48 -0400
+Received: from mail-oi1-f169.google.com (mail-oi1-f169.google.com [209.85.167.169])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94B7E4F448;
+        Wed,  4 May 2022 13:23:11 -0700 (PDT)
+Received: by mail-oi1-f169.google.com with SMTP id n24so2324138oie.12;
+        Wed, 04 May 2022 13:23:11 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=AQcC/PTw0CZ4nW87/fDZEd1OCFRfJKtF1G1vA6JNl30=;
-        b=RQr0fRDs8oSnLTEIaCWk2+95WrviwBo+P9Df4GgeqUTK8UacayQ87PqZpMwwzDjytp
-         XG7pMKb9uJyJwKe4gF/OeMztw90nJ9Sg9wSimSRLENKRBfDBI/7aje/SMUYL0BHav/yU
-         +riYSxE3HGTqRbxloUIkbOw3Dv0NHOyrlanVqkM56gU9N+ZG0GsSoIviWoIW58HEQ5zD
-         41YBg2lJcABsvJEpK3VIaymMUsPtLDYvc1z9cgsjIzTValc9YlPPBsymnr0xRvznbKHY
-         W16IGlSDgvZML99V/N3T+F6PhK0AGZAEs9ceHRI1xfT66v9/8uwHD+QGUdbIxgcQP9eC
-         U7Cw==
-X-Gm-Message-State: AOAM5301P/nQSsP00Sq/K+Ts7eTcXHyoXX4+3Mn8mYzD8YZCo0OFeHgl
-        Q9iUz/+bZxXqC0rYbmXkn+/GWaJyxw==
-X-Google-Smtp-Source: ABdhPJxm9dCY1QAzxTuM18EpGcmPS9stG0iSdDg3APF55LC0FY7ml3TuO/YsSKuI0ItXvUhRfVyG8Q==
-X-Received: by 2002:a05:6870:2419:b0:ed:efba:5e11 with SMTP id n25-20020a056870241900b000edefba5e11mr641328oap.136.1651695045621;
-        Wed, 04 May 2022 13:10:45 -0700 (PDT)
+        bh=ySBOubiPulo913haM4WoQ1mv/TU5CEHMQ1toV9XVhMc=;
+        b=FCXUdLEbcOxpcjp7ADFVzzL2Gzc4xU1gZLDS/KjuhAimejAP23RYfyfr0XrNcUaWen
+         bkoIy8uojZhLQKS5WmbTRQTW6a2qtL1e10vhkQwhLC4ADIvLYIae3lgGw45upQZXuyhP
+         6nqxhafn8/W7XBCo07/91jRd6P5B9FKVQRR+KT0WQWTVRHIQRIibvfRTg0Afc7JWISKZ
+         zYHncbxKha3ocQJRo6n3GuNwunjQHu3eDc0I60MZUa0wO/IDt55qYSyEVjS9zBomB8hM
+         7ClopJjeMCnkJ7HC5JLq2uaBfepzUv4B6KLtW6XVvySbkcBFzGzwoE4W6m5/iTFoFbQE
+         W8Aw==
+X-Gm-Message-State: AOAM530iV1vlhHpOjEtzE/2q188qJr21NsRXkp1i/keuFMzuYj3xK4Mj
+        3HWGC4nz2CVT4jedV8vD1Q==
+X-Google-Smtp-Source: ABdhPJzACW6AvH0oEJr8UNPH9HL8vuoKqEyRonyCY12D3tqsWHQUGMaQ5zgSLXG56C5vPug6oW5P/A==
+X-Received: by 2002:a05:6808:d48:b0:326:2d1f:1c0f with SMTP id w8-20020a0568080d4800b003262d1f1c0fmr637501oik.43.1651695790838;
+        Wed, 04 May 2022 13:23:10 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id z24-20020a9d7a58000000b006062d346083sm2907056otm.22.2022.05.04.13.10.44
+        by smtp.gmail.com with ESMTPSA id o14-20020a0568080f8e00b00325cda1ff8bsm4649538oiw.10.2022.05.04.13.23.09
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 May 2022 13:10:45 -0700 (PDT)
-Received: (nullmailer pid 2143715 invoked by uid 1000);
-        Wed, 04 May 2022 20:10:44 -0000
-Date:   Wed, 4 May 2022 15:10:44 -0500
+        Wed, 04 May 2022 13:23:10 -0700 (PDT)
+Received: (nullmailer pid 2163645 invoked by uid 1000);
+        Wed, 04 May 2022 20:23:09 -0000
+Date:   Wed, 4 May 2022 15:23:09 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Robert Marko <robimarko@gmail.com>
-Cc:     amitk@kernel.org, thara.gopinath@linaro.org, agross@kernel.org,
-        bjorn.andersson@linaro.org, rafael@kernel.org,
-        daniel.lezcano@linaro.org, rui.zhang@intel.com,
-        krzysztof.kozlowski+dt@linaro.org, linux-pm@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v4 1/5] dt-bindings: thermal: tsens: Add ipq8074
+To:     Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
+Cc:     Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Ezequiel Garcia <ezequiel@collabora.com>,
+        linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: media: rockchip-vpu: Add RK3568 JPEG
  compatible
-Message-ID: <YnLdxF+P7hWwjgZS@robh.at.kernel.org>
-References: <20220503200813.4020698-1-robimarko@gmail.com>
+Message-ID: <YnLgrVJcdkYgNvEO@robh.at.kernel.org>
+References: <20220427224438.335327-1-frattaroli.nicolas@gmail.com>
+ <20220427224438.335327-2-frattaroli.nicolas@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220503200813.4020698-1-robimarko@gmail.com>
+In-Reply-To: <20220427224438.335327-2-frattaroli.nicolas@gmail.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 03, 2022 at 10:08:09PM +0200, Robert Marko wrote:
-> Qualcomm IPQ8074 has tsens v2.3.0 block, though unlike existing v2 IP it
-> only uses one IRQ, so tsens v2 compatible cannot be used as the fallback.
-> 
-> We also have to make sure that correct interrupts are set according to
-> compatibles, so populate interrupt information per compatibles.
-> 
-> Signed-off-by: Robert Marko <robimarko@gmail.com>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
-> Changes in v4:
-> * Add the forgotten Reviewed-by tag from Krzysztof
-> 
-> Changes in v3:
-> * Remove implied min/maxItem properties as pointed by Rob
-> 
-> Changes in v2:
-> * No need for a list in compatible check
-> * Specify minItems and maxItems for interrupt and interrupt-names
-> ---
->  .../bindings/thermal/qcom-tsens.yaml          | 76 ++++++++++++++++---
->  1 file changed, 65 insertions(+), 11 deletions(-)
+On Thu, Apr 28, 2022 at 12:44:36AM +0200, Nicolas Frattaroli wrote:
+> The RK3568 and RK3566 have a VPU node solely dedicated to JPEG
+> encoding. This patch adds a compatible for it, and also allows
+> the bindings to only come with a vepu interrupt.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Sounds like this might be more than just JPEG, so I'm assuming this will 
+get sent again.
+ 
+> Signed-off-by: Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
+> ---
+>  Documentation/devicetree/bindings/media/rockchip-vpu.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/media/rockchip-vpu.yaml b/Documentation/devicetree/bindings/media/rockchip-vpu.yaml
+> index bacb60a34989..cd62b44c34c3 100644
+> --- a/Documentation/devicetree/bindings/media/rockchip-vpu.yaml
+> +++ b/Documentation/devicetree/bindings/media/rockchip-vpu.yaml
+> @@ -22,6 +22,7 @@ properties:
+>            - rockchip,rk3288-vpu
+>            - rockchip,rk3328-vpu
+>            - rockchip,rk3399-vpu
+> +          - rockchip,rk3568-jpeg-vepu
+>            - rockchip,px30-vpu
+>        - items:
+>            - const: rockchip,rk3188-vpu
+> @@ -40,6 +41,7 @@ properties:
+>    interrupt-names:
+>      oneOf:
+>        - const: vdpu
+> +      - const: vepu
+>        - items:
+>            - const: vepu
+>            - const: vdpu
+> -- 
+> 2.36.0
+> 
+> 
