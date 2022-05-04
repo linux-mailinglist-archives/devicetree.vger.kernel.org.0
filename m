@@ -2,88 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 81E4851A01A
-	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 14:57:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4CACF51A013
+	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 14:56:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349950AbiEDNBL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 May 2022 09:01:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45078 "EHLO
+        id S1345785AbiEDM7h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 May 2022 08:59:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44146 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235988AbiEDNBK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 09:01:10 -0400
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CBBE13BA50;
-        Wed,  4 May 2022 05:57:34 -0700 (PDT)
-Received: by mail-wr1-x435.google.com with SMTP id u3so1920051wrg.3;
-        Wed, 04 May 2022 05:57:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:subject:to:cc:message-id:in-reply-to:references
-         :mime-version;
-        bh=kZZv9mgu5CwmRiMWt33fgzODsP/Bo5LczhPKHEYKI2g=;
-        b=P8vaQY9TUngwqCpijFd2d4LAeqJbERfj96ozEtY4mzt2p/c1Ywp7QSOfCTgTq+FJOO
-         Gbr4t70Tgv4ll5c1Q9qyQD+7wVYumYk6crLyqkNjC/HrTBPf8y2ybrG0cvsu2Ik5SRN/
-         JIP5BUgHCTVfVFcWhysaVBqlUCqdySDe929u/WByEhUtpO4obfaVaYFn3OgPodqJv5M8
-         sawCqySWh+/b8sbZwqH1cH7YPpXnGYwTbiE+WimD5cwoH5r5656z1snH0h6R4lvfm5X+
-         u/RD95dKWlF3dInYCUqun/LQgeX0c5ledhTrLWy1Wv6DMggWNPELirWNJGplpXEX0imC
-         RW6w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:subject:to:cc:message-id:in-reply-to
-         :references:mime-version;
-        bh=kZZv9mgu5CwmRiMWt33fgzODsP/Bo5LczhPKHEYKI2g=;
-        b=dSqeIUgMzWOpYh8MeLR21bxQdsYCJTXriodewfggnBXZ8sOOMEMGMo4WVZUoBcJlCC
-         eSfaUWSA2Yr0L9fAShFkLJ5Il+lLymQgMo3lQiEqQyimm/uQjCkP2k5r+eGsSn95drhA
-         9BiPGXov2vAD8+ANR1IEoMK90DTRSQrcyk4NAPBzOx1oGuIyAOhAldWCzkhn+U4DMrCA
-         brMD6XrmIu9D6ti+z8YAKoidWABdE3KGdAsF2zzl8sAqKtwxIbpvZqax9IsR6NFhdSrS
-         +Ra3pMXxX2yt5s6xT0K/8ANuqlYM5hLGaIXUbx65lnYN+M42E9i08aOAugx0MCq2ouQR
-         Z1dQ==
-X-Gm-Message-State: AOAM530/EGim4anPESUL5NBpiZmG6AkLL1ELRbEcbbyfB9c61wEvOzHe
-        54+3CrqC/JtzlKGH6X9H9W8=
-X-Google-Smtp-Source: ABdhPJyg2nw7z5umMABTaNhWVzD3nqvwRSbwwdit8bqaZZDXTjb6FZqLpoDfrj9rWMr0ZmKS70ECbw==
-X-Received: by 2002:a5d:510a:0:b0:20c:4452:3161 with SMTP id s10-20020a5d510a000000b0020c44523161mr16584044wrt.31.1651669053295;
-        Wed, 04 May 2022 05:57:33 -0700 (PDT)
-Received: from [192.168.98.247] (185-177-124-12.hosted-by-worldstream.net. [185.177.124.12])
-        by smtp.gmail.com with ESMTPSA id e13-20020adf9bcd000000b0020c5253d8basm11723098wrc.6.2022.05.04.05.57.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 May 2022 05:57:32 -0700 (PDT)
-Date:   Wed, 04 May 2022 16:55:08 +0400
-From:   Yassine Oudjana <yassine.oudjana@gmail.com>
-Subject: Re: [PATCH 09/13] clk: mediatek: reset: Export
- mtk_register_reset_controller symbols
-To:     Rex-BC Chen <rex-bc.chen@mediatek.com>
-Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
+        with ESMTP id S1349930AbiEDM7g (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 08:59:36 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28DCA3B558;
+        Wed,  4 May 2022 05:56:01 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id D0B38B8239E;
+        Wed,  4 May 2022 12:55:59 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B761DC385A8;
+        Wed,  4 May 2022 12:55:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1651668958;
+        bh=kTceZKaSae8dEs+i0l1pReBP7AnGtYSXSHGjRB5sBmw=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=GiRoDcjCnjPMOR+OupvzqaEVdo+3p1ITb84GN+/B5EkRtVzdE40dsqPiMrDEXdz7P
+         nkJgkk7rZ5dKw2PH1lN6vuU2ctPLb4371XlSLJcurETAY6957q9WThOe/qtKDXKtq1
+         ANQSWjwp5+rf07iyjEC+TA0P8hpvjyuFtNvZEJS6X6Phivw9Cj+fxU1IynE02dAeVS
+         jTK14uGFUP2xlM5bGK7XI2oYaSx8/1L3AGVy3N6YzwKp0ImPO/KsF77UVt7m/dnwUE
+         +ho1ZXbFL7L8LSK2N1csXgBRX2uZfMoMbD+TAYZXXftTK9jH8nQ/bTG/OR7naGFDNZ
+         9t241WyWfuNxA==
+Date:   Wed, 4 May 2022 13:55:53 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Zev Weiss <zev@bewilderbeest.net>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Yassine Oudjana <y.oudjana@protonmail.com>,
-        Chun-Jie Chen <chun-jie.chen@mediatek.com>,
-        Chen-Yu Tsai <wenst@chromium.org>,
-        Tinghan Shen <tinghan.shen@mediatek.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Weiyi Lu <weiyi.lu@mediatek.com>,
-        Ikjoon Jang <ikjn@chromium.org>,
-        Miles Chen <miles.chen@mediatek.com>,
-        Sam Shih <sam.shih@mediatek.com>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org
-Message-Id: <WVZCBR.JP1KZVF249S43@gmail.com>
-In-Reply-To: <fda797664ad3cde1143838bdf63cc587459b2c2f.camel@mediatek.com>
-References: <20220504122601.335495-1-y.oudjana@protonmail.com>
-        <20220504122601.335495-10-y.oudjana@protonmail.com>
-        <fda797664ad3cde1143838bdf63cc587459b2c2f.camel@mediatek.com>
-X-Mailer: geary/40.0
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        openbmc@lists.ozlabs.org
+Subject: Re: [PATCH 2/6] dt-bindings: regulator: Add reg-external-output
+ binding
+Message-ID: <YnJ32bG4IkSrRtHV@sirena.org.uk>
+References: <20220504065252.6955-1-zev@bewilderbeest.net>
+ <20220504065252.6955-2-zev@bewilderbeest.net>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="OeS2mizHPjpFFiLa"
+Content-Disposition: inline
+In-Reply-To: <20220504065252.6955-2-zev@bewilderbeest.net>
+X-Cookie: Mother is the invention of necessity.
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -91,56 +62,53 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Wed, May 4 2022 at 20:46:22 +0800, Rex-BC Chen 
-<rex-bc.chen@mediatek.com> wrote:
-> On Wed, 2022-05-04 at 16:25 +0400, Yassine Oudjana wrote:
->>  From: Yassine Oudjana <y.oudjana@protonmail.com>
->> 
->>  Export mtk_register_reset_controller and
->>  mtk_register_reset_controller_set_clr to support building reset
->>  drivers as modules.
->> 
->>  Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
->>  ---
->>   drivers/clk/mediatek/reset.c | 2 ++
->>   1 file changed, 2 insertions(+)
->> 
->>  diff --git a/drivers/clk/mediatek/reset.c
->>  b/drivers/clk/mediatek/reset.c
->>  index bcec4b89f449..6c2effe6afef 100644
->>  --- a/drivers/clk/mediatek/reset.c
->>  +++ b/drivers/clk/mediatek/reset.c
->>  @@ -129,6 +129,7 @@ void mtk_register_reset_controller(struct
->>  device_node *np,
->>   	mtk_register_reset_controller_common(np, num_regs, regofs,
->>   		&mtk_reset_ops);
->>   }
->>  +EXPORT_SYMBOL_GPL(mtk_register_reset_controller);
->> 
->>   void mtk_register_reset_controller_set_clr(struct device_node *np,
->>   	unsigned int num_regs, int regofs)
->>  @@ -136,5 +137,6 @@ void 
->> mtk_register_reset_controller_set_clr(struct
->>  device_node *np,
->>   	mtk_register_reset_controller_common(np, num_regs, regofs,
->>   		&mtk_reset_ops_set_clr);
->>   }
->>  +EXPORT_SYMBOL_GPL(mtk_register_reset_controller_set_clr);
->> 
->>   MODULE_LICENSE("GPL");
-> 
-> Hello Yassine,
-> 
-> Thanks for your patch for mediatek clk reset.
-> But I have another series to cleanup mediatek clk reset drivers and
-> most of my patches are reviewed.
-> Please refer to
-> https://patchwork.kernel.org/project/linux-mediatek/list/?series=637849
+--OeS2mizHPjpFFiLa
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Great! In that case I'll rebase my patches onto your series and see
-if anything is missing.
+On Tue, May 03, 2022 at 11:52:48PM -0700, Zev Weiss wrote:
+> This describes an external output supplied by a regulator, such as a
+> power outlet on a power distribution unit (PDU).
 
-Thanks,
-Yassine
+OK, so this is that represnetation of the connection - which raises the
+question about why the regulator needs a property?
 
+> +description: |
+> +  This describes an external output supplied by a regulator, such as
+> +  a power outlet on a power distribution unit (PDU).
+> +
+> +properties:
+> +  compatible:
+> +    const: reg-external-output
+> +
+> +  vout-supply:
+> +    description:
+> +      Phandle of the regulator supplying the output, which should have
+> +      the regulator-external-output property.
+> +
+> +required:
 
+I think at a minimum anything like this would need some sort of
+representation of how the output physically appears so that people can
+work out how outputs are mapped to the hardware they see.  However we
+already have a subsystem for external connectors - extcon.  Perhaps this
+should be a regulator client in the extcon API?  It's common for
+connectors to include some sort of power provision so it seems like this
+would fit right in.
+
+--OeS2mizHPjpFFiLa
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmJyd9gACgkQJNaLcl1U
+h9AKZwf+Kv5LJYapRQXolMBLWWzK2Nn85PgabLCHlDg312x1LS4BqxJGYDX9mRTF
+UAYoRIgM8itBAMqd/p2ia6jbpfynvjQ4R+hMx1rIKcPl3qIPV8X7MsLnutU9fjvg
+StTLlWzLW/at2L1yGq3ca3PAqJZh/jZOaxU1EPdZNiuXUT0xet0lfvhxt4dGWiHP
+ZoGd+muGLfNDflUHBs5jR87rD0WmL4c5/daPJoK47ZFXk2S2wJ0fBa/5l1kPLDkq
+QfRmtNC5zFFAj3f5tZfJFt54ozljaCEPuaj7Jt4LVU8/DJDnkioYB5QiYe767X4P
+uSBZMYJvEyIzr0gXgk9WJrVRthK1zA==
+=VA9P
+-----END PGP SIGNATURE-----
+
+--OeS2mizHPjpFFiLa--
