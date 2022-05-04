@@ -2,222 +2,255 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 11515519689
-	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 06:27:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8E78351969D
+	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 06:36:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344570AbiEDEa2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 May 2022 00:30:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56780 "EHLO
+        id S1344599AbiEDEjt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 May 2022 00:39:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35192 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344542AbiEDEaQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 00:30:16 -0400
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7990527CD3;
-        Tue,  3 May 2022 21:26:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1651638401; x=1683174401;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=KL0VQr9q7v/ilrpm5D5wFlNTKVUad7oBMkfv8Plpj90=;
-  b=Xxy5MJqT735nBEKQ3ckKDwXtOeaDZ1PflpNmn2i5uobHWea0lLFhjR+U
-   leCSp9xiAq4YeZFKvKK5IO30GagbA93aQrVBFEQ8DglTfD/rL0LrDTgBo
-   L68kdCHcGq3e29/GmLsF24BFEuZodKlbc/0gV79/SgkDzCAHBpw3+jwbs
-   jXSO1He6kO0alZOUlXA4Jz5fBdhXk75zhWi6n1rgvZFwVm2x5VErccROM
-   bjKM89OJ5FbbbGMnmhBe+BhRIQ1Q2eY6cvvY5wla/UaAjgA7KF9eCtY5Z
-   PPN/3H0hE2T/AncpIFX54iWji9WCut7HmB+scem9RFiR1JJBR3OD7olgv
-   Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10336"; a="354097572"
-X-IronPort-AV: E=Sophos;i="5.91,196,1647327600"; 
-   d="scan'208";a="354097572"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 May 2022 21:26:41 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.91,196,1647327600"; 
-   d="scan'208";a="653556113"
-Received: from lkp-server01.sh.intel.com (HELO 5056e131ad90) ([10.239.97.150])
-  by FMSMGA003.fm.intel.com with ESMTP; 03 May 2022 21:26:38 -0700
-Received: from kbuild by 5056e131ad90 with local (Exim 4.95)
-        (envelope-from <lkp@intel.com>)
-        id 1nm6az-000B4N-HH;
-        Wed, 04 May 2022 04:26:37 +0000
-Date:   Wed, 4 May 2022 12:26:36 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Jens Axboe <axboe@kernel.dk>
-Cc:     llvm@lists.linux.dev, kbuild-all@lists.01.org,
-        Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Rob Herring <robh+dt@kernel.org>, linux-ide@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 07/23] ata: libahci_platform: Convert to using devm
- bulk clocks API
-Message-ID: <202205041215.o6Ubib6t-lkp@intel.com>
-References: <20220503200938.18027-8-Sergey.Semin@baikalelectronics.ru>
+        with ESMTP id S232280AbiEDEjs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 00:39:48 -0400
+Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [IPv6:2001:df5:b000:5::4])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 939EF2A24E
+        for <devicetree@vger.kernel.org>; Tue,  3 May 2022 21:36:12 -0700 (PDT)
+Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (Client did not present a certificate)
+        by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 2F06E2C019D;
+        Wed,  4 May 2022 04:36:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
+        s=mail181024; t=1651638969;
+        bh=6FaGZa12henirzB20VLIIITZhWvMCD3N+Hr2xV6HwkA=;
+        h=From:To:Cc:Subject:Date:From;
+        b=pXa8nFmOsz5ACdbxOqrdY831y533w4h6UrXbxl/D8w3rm/qQ+PqjLKwxDAMJl0WDN
+         od0Jg7ct7+n20ItIsmkKlxqWyazL5IQtINwLDr9QqmMepLcaI2VYoGZSESjl52ke5R
+         cDUK1W1t9WR497KMayQ/9+vDlWQDiersV0RrHhbEiohLFwXy+Dp7gqKw5zjsMZTZKG
+         xfpeU6eSCUF1HFVnTli8gvBvvn8WctVNBRIYTIupBLJr7kTNfBz7G3SSuWNYBX/Qk2
+         CKpdunXUtW7GJ1s530f2TTiiV6u2gLTZ0Su7MuhQaAimIQTnPyOXW0QnqhHKsldgrO
+         TufeB7WUjgU6g==
+Received: from pat.atlnz.lc (Not Verified[10.32.16.33]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
+        id <B627202b80000>; Wed, 04 May 2022 16:36:08 +1200
+Received: from chrisp-dl.ws.atlnz.lc (chrisp-dl.ws.atlnz.lc [10.33.22.30])
+        by pat.atlnz.lc (Postfix) with ESMTP id E0B4013ED63;
+        Wed,  4 May 2022 16:36:08 +1200 (NZST)
+Received: by chrisp-dl.ws.atlnz.lc (Postfix, from userid 1030)
+        id DAAF02A1FA9; Wed,  4 May 2022 16:36:08 +1200 (NZST)
+From:   Chris Packham <chris.packham@alliedtelesis.co.nz>
+To:     davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+        pabeni@redhat.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, atenart@kernel.org,
+        thomas.petazzoni@free-electrons.com, f.fainelli@gmail.com
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Chris Packham <chris.packham@alliedtelesis.co.nz>
+Subject: [PATCH] dt-bindings: net: orion-mdio: Convert to JSON schema
+Date:   Wed,  4 May 2022 16:36:02 +1200
+Message-Id: <20220504043603.949134-1-chris.packham@alliedtelesis.co.nz>
+X-Mailer: git-send-email 2.36.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220503200938.18027-8-Sergey.Semin@baikalelectronics.ru>
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+X-SEG-SpamProfiler-Analysis: v=2.3 cv=C7GXNjH+ c=1 sm=1 tr=0 a=KLBiSEs5mFS1a/PbTCJxuA==:117 a=oZkIemNP1mAA:10 a=gEfo2CItAAAA:8 a=VwQbUJbxAAAA:8 a=uP1ucDPQAAAA:8 a=pGLkceISAAAA:8 a=DUOwM17OdgdjODy0UN4A:9 a=sptkURWiP4Gy88Gu7hUp:22 a=AjGcO6oz07-iQ99wixmX:22 a=9a9ggB8z3XFZH39hjkD6:22
+X-SEG-SpamProfiler-Score: 0
+x-atlnz-ls: pat
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Serge,
+Convert the marvell,orion-mdio binding to JSON schema.
 
-I love your patch! Yet something to improve:
+Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+---
 
-[auto build test ERROR on axboe-block/for-next]
-[also build test ERROR on robh/for-next linus/master v5.18-rc5 next-20220503]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
+Notes:
+    Thomas, Antione & Florian I hope you don't mind me putting you as
+    maintainers of the binding. Between you you've written the majority o=
+f
+    the mvmdio.c driver.
+   =20
+    This does throw up the following dtbs_check warnings for turris-mox:
+   =20
+    arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dtb: mdio@32004: s=
+witch0@10:reg: [[16], [0]] is too long
+            From schema: Documentation/devicetree/bindings/net/marvell,or=
+ion-mdio.yaml
+    arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dtb: mdio@32004: s=
+witch0@2:reg: [[2], [0]] is too long
+            From schema: Documentation/devicetree/bindings/net/marvell,or=
+ion-mdio.yaml
+    arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dtb: mdio@32004: s=
+witch1@11:reg: [[17], [0]] is too long
+            From schema: Documentation/devicetree/bindings/net/marvell,or=
+ion-mdio.yaml
+    arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dtb: mdio@32004: s=
+witch1@2:reg: [[2], [0]] is too long
+            From schema: Documentation/devicetree/bindings/net/marvell,or=
+ion-mdio.yaml
+    arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dtb: mdio@32004: s=
+witch2@12:reg: [[18], [0]] is too long
+            From schema: Documentation/devicetree/bindings/net/marvell,or=
+ion-mdio.yaml
+    arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dtb: mdio@32004: s=
+witch2@2:reg: [[2], [0]] is too long
+            From schema: Documentation/devicetree/bindings/net/marvell,or=
+ion-mdio.yaml
+   =20
+    I think they're all genuine but I'm hesitant to leap in and fix them
+    without being able to test them.
+   =20
+    I also need to set unevaluatedProperties: true to cater for the L2
+    switch on turris-mox (and probably others). That might be better tack=
+led
+    in the core mdio.yaml schema but I wasn't planning on touching that.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Serge-Semin/ata-ahci-Add-DWC-Baikal-T1-AHCI-SATA-support/20220504-041431
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/axboe/linux-block.git for-next
-config: arm64-randconfig-r034-20220501 (https://download.01.org/0day-ci/archive/20220504/202205041215.o6Ubib6t-lkp@intel.com/config)
-compiler: clang version 15.0.0 (https://github.com/llvm/llvm-project 363b3a645a1e30011cc8da624f13dac5fd915628)
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # install arm64 cross compiling tool for clang build
-        # apt-get install binutils-aarch64-linux-gnu
-        # https://github.com/intel-lab-lkp/linux/commit/2aa1a2fe25d3757c2c3a6c59ec00c135ba17fe96
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Serge-Semin/ata-ahci-Add-DWC-Baikal-T1-AHCI-SATA-support/20220504-041431
-        git checkout 2aa1a2fe25d3757c2c3a6c59ec00c135ba17fe96
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=arm64 SHELL=/bin/bash drivers/ata/
+ .../bindings/net/marvell,orion-mdio.yaml      | 62 +++++++++++++++++++
+ .../bindings/net/marvell-orion-mdio.txt       | 54 ----------------
+ 2 files changed, 62 insertions(+), 54 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/net/marvell,orion-m=
+dio.yaml
+ delete mode 100644 Documentation/devicetree/bindings/net/marvell-orion-m=
+dio.txt
 
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
+diff --git a/Documentation/devicetree/bindings/net/marvell,orion-mdio.yam=
+l b/Documentation/devicetree/bindings/net/marvell,orion-mdio.yaml
+new file mode 100644
+index 000000000000..43cd896a0851
+--- /dev/null
++++ b/Documentation/devicetree/bindings/net/marvell,orion-mdio.yaml
+@@ -0,0 +1,62 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/net/marvell,orion-mdio.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Marvell MDIO Ethernet Controller interface
++
++maintainers:
++  - Antoine Tenart <atenart@kernel.org>
++  - Thomas Petazzoni <thomas.petazzoni@free-electrons.com>
++  - Florian Fainelli <f.fainelli@gmail.com>
++
++description: |
++  The Ethernet controllers of the Marvel Kirkwood, Dove, Orion5x, MV78xx=
+0,
++  Armada 370, Armada XP, Armada 7k and Armada 8k have an identical unit =
+that
++  provides an interface with the MDIO bus. Additionally, Armada 7k and A=
+rmada
++  8k has a second unit which provides an interface with the xMDIO bus. T=
+his
++  driver handles these interfaces.
++
++allOf:
++  - $ref: "mdio.yaml#"
++
++properties:
++  compatible:
++    enum:
++      - marvell,orion-mdio
++      - marvell,xmdio
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  clocks:
++    minItems: 1
++    maxItems: 4
++
++required:
++  - compatible
++  - reg
++
++unevaluatedProperties: true
++
++examples:
++  - |
++    mdio@d0072004 {
++      compatible =3D "marvell,orion-mdio";
++      reg =3D <0xd0072004 0x4>;
++      #address-cells =3D <1>;
++      #size-cells =3D <0>;
++      interrupts =3D <30>;
++
++      phy0: ethernet-phy@0 {
++        reg =3D <0>;
++      };
++
++      phy1: ethernet-phy@1 {
++        reg =3D <1>;
++      };
++    };
+diff --git a/Documentation/devicetree/bindings/net/marvell-orion-mdio.txt=
+ b/Documentation/devicetree/bindings/net/marvell-orion-mdio.txt
+deleted file mode 100644
+index 3f3cfc1d8d4d..000000000000
+--- a/Documentation/devicetree/bindings/net/marvell-orion-mdio.txt
++++ /dev/null
+@@ -1,54 +0,0 @@
+-* Marvell MDIO Ethernet Controller interface
+-
+-The Ethernet controllers of the Marvel Kirkwood, Dove, Orion5x,
+-MV78xx0, Armada 370, Armada XP, Armada 7k and Armada 8k have an
+-identical unit that provides an interface with the MDIO bus.
+-Additionally, Armada 7k and Armada 8k has a second unit which
+-provides an interface with the xMDIO bus. This driver handles
+-these interfaces.
+-
+-Required properties:
+-- compatible: "marvell,orion-mdio" or "marvell,xmdio"
+-- reg: address and length of the MDIO registers.  When an interrupt is
+-  not present, the length is the size of the SMI register (4 bytes)
+-  otherwise it must be 0x84 bytes to cover the interrupt control
+-  registers.
+-
+-Optional properties:
+-- interrupts: interrupt line number for the SMI error/done interrupt
+-- clocks: phandle for up to four required clocks for the MDIO instance
+-
+-The child nodes of the MDIO driver are the individual PHY devices
+-connected to this MDIO bus. They must have a "reg" property given the
+-PHY address on the MDIO bus.
+-
+-Example at the SoC level without an interrupt property:
+-
+-mdio {
+-	#address-cells =3D <1>;
+-	#size-cells =3D <0>;
+-	compatible =3D "marvell,orion-mdio";
+-	reg =3D <0xd0072004 0x4>;
+-};
+-
+-Example with an interrupt property:
+-
+-mdio {
+-	#address-cells =3D <1>;
+-	#size-cells =3D <0>;
+-	compatible =3D "marvell,orion-mdio";
+-	reg =3D <0xd0072004 0x84>;
+-	interrupts =3D <30>;
+-};
+-
+-And at the board level:
+-
+-mdio {
+-	phy0: ethernet-phy@0 {
+-		reg =3D <0>;
+-	};
+-
+-	phy1: ethernet-phy@1 {
+-		reg =3D <1>;
+-	};
+-}
+--=20
+2.36.0
 
-All errors (new ones prefixed by >>):
-
->> drivers/ata/ahci_da850.c:181:6: error: invalid argument type 'struct clk_bulk_data' to unary expression
-           if (!hpriv->clks[0]) {
-               ^~~~~~~~~~~~~~~
->> drivers/ata/ahci_da850.c:186:18: error: assigning to 'struct clk_bulk_data' from incompatible type 'struct clk *'
-                   hpriv->clks[0] = clk;
-                                  ^ ~~~
-   drivers/ata/ahci_da850.c:194:6: error: invalid argument type 'struct clk_bulk_data' to unary expression
-           if (!hpriv->clks[1]) {
-               ^~~~~~~~~~~~~~~
-   drivers/ata/ahci_da850.c:201:18: error: assigning to 'struct clk_bulk_data' from incompatible type 'struct clk *'
-                   hpriv->clks[1] = clk;
-                                  ^ ~~~
->> drivers/ata/ahci_da850.c:204:46: error: passing 'struct clk_bulk_data' to parameter of incompatible type 'struct clk *'
-           mpy = ahci_da850_calculate_mpy(clk_get_rate(hpriv->clks[1]));
-                                                       ^~~~~~~~~~~~~~
-   include/linux/clk.h:584:40: note: passing argument to parameter 'clk' here
-   unsigned long clk_get_rate(struct clk *clk);
-                                          ^
-   5 errors generated.
---
->> drivers/ata/ahci_dm816.c:72:6: error: invalid argument type 'struct clk_bulk_data' to unary expression
-           if (!hpriv->clks[1]) {
-               ^~~~~~~~~~~~~~~
->> drivers/ata/ahci_dm816.c:77:29: error: passing 'struct clk_bulk_data' to parameter of incompatible type 'struct clk *'
-           refclk_rate = clk_get_rate(hpriv->clks[1]);
-                                      ^~~~~~~~~~~~~~
-   include/linux/clk.h:584:40: note: passing argument to parameter 'clk' here
-   unsigned long clk_get_rate(struct clk *clk);
-                                          ^
-   2 errors generated.
-
-
-vim +181 drivers/ata/ahci_da850.c
-
-018d5ef2048fca Akinobu Mita              2015-01-29  159  
-ae8723f8a9c8e8 Bartlomiej Zolnierkiewicz 2014-03-25  160  static int ahci_da850_probe(struct platform_device *pdev)
-ae8723f8a9c8e8 Bartlomiej Zolnierkiewicz 2014-03-25  161  {
-ae8723f8a9c8e8 Bartlomiej Zolnierkiewicz 2014-03-25  162  	struct device *dev = &pdev->dev;
-ae8723f8a9c8e8 Bartlomiej Zolnierkiewicz 2014-03-25  163  	struct ahci_host_priv *hpriv;
-ae8723f8a9c8e8 Bartlomiej Zolnierkiewicz 2014-03-25  164  	void __iomem *pwrdn_reg;
-cdf0ead3747200 Bartosz Golaszewski       2017-01-30  165  	struct resource *res;
-82dbe1a68fd65a Bartosz Golaszewski       2017-01-30  166  	struct clk *clk;
-cdf0ead3747200 Bartosz Golaszewski       2017-01-30  167  	u32 mpy;
-ae8723f8a9c8e8 Bartlomiej Zolnierkiewicz 2014-03-25  168  	int rc;
-ae8723f8a9c8e8 Bartlomiej Zolnierkiewicz 2014-03-25  169  
-16af2d65842d34 Kunihiko Hayashi          2018-08-22  170  	hpriv = ahci_platform_get_resources(pdev, 0);
-ae8723f8a9c8e8 Bartlomiej Zolnierkiewicz 2014-03-25  171  	if (IS_ERR(hpriv))
-ae8723f8a9c8e8 Bartlomiej Zolnierkiewicz 2014-03-25  172  		return PTR_ERR(hpriv);
-ae8723f8a9c8e8 Bartlomiej Zolnierkiewicz 2014-03-25  173  
-82dbe1a68fd65a Bartosz Golaszewski       2017-01-30  174  	/*
-82dbe1a68fd65a Bartosz Golaszewski       2017-01-30  175  	 * Internally ahci_platform_get_resources() calls clk_get(dev, NULL)
-82dbe1a68fd65a Bartosz Golaszewski       2017-01-30  176  	 * when trying to obtain the functional clock. This SATA controller
-82dbe1a68fd65a Bartosz Golaszewski       2017-01-30  177  	 * uses two clocks for which we specify two connection ids. If we don't
-82dbe1a68fd65a Bartosz Golaszewski       2017-01-30  178  	 * have the functional clock at this point - call clk_get() again with
-82dbe1a68fd65a Bartosz Golaszewski       2017-01-30  179  	 * con_id = "fck".
-82dbe1a68fd65a Bartosz Golaszewski       2017-01-30  180  	 */
-82dbe1a68fd65a Bartosz Golaszewski       2017-01-30 @181  	if (!hpriv->clks[0]) {
-82dbe1a68fd65a Bartosz Golaszewski       2017-01-30  182  		clk = clk_get(dev, "fck");
-82dbe1a68fd65a Bartosz Golaszewski       2017-01-30  183  		if (IS_ERR(clk))
-82dbe1a68fd65a Bartosz Golaszewski       2017-01-30  184  			return PTR_ERR(clk);
-82dbe1a68fd65a Bartosz Golaszewski       2017-01-30  185  
-82dbe1a68fd65a Bartosz Golaszewski       2017-01-30 @186  		hpriv->clks[0] = clk;
-82dbe1a68fd65a Bartosz Golaszewski       2017-01-30  187  	}
-82dbe1a68fd65a Bartosz Golaszewski       2017-01-30  188  
-cdf0ead3747200 Bartosz Golaszewski       2017-01-30  189  	/*
-cdf0ead3747200 Bartosz Golaszewski       2017-01-30  190  	 * The second clock used by ahci-da850 is the external REFCLK. If we
-cdf0ead3747200 Bartosz Golaszewski       2017-01-30  191  	 * didn't get it from ahci_platform_get_resources(), let's try to
-cdf0ead3747200 Bartosz Golaszewski       2017-01-30  192  	 * specify the con_id in clk_get().
-cdf0ead3747200 Bartosz Golaszewski       2017-01-30  193  	 */
-cdf0ead3747200 Bartosz Golaszewski       2017-01-30  194  	if (!hpriv->clks[1]) {
-cdf0ead3747200 Bartosz Golaszewski       2017-01-30  195  		clk = clk_get(dev, "refclk");
-cdf0ead3747200 Bartosz Golaszewski       2017-01-30  196  		if (IS_ERR(clk)) {
-cdf0ead3747200 Bartosz Golaszewski       2017-01-30  197  			dev_err(dev, "unable to obtain the reference clock");
-cdf0ead3747200 Bartosz Golaszewski       2017-01-30  198  			return -ENODEV;
-cdf0ead3747200 Bartosz Golaszewski       2017-01-30  199  		}
-cdf0ead3747200 Bartosz Golaszewski       2017-01-30  200  
-cdf0ead3747200 Bartosz Golaszewski       2017-01-30  201  		hpriv->clks[1] = clk;
-cdf0ead3747200 Bartosz Golaszewski       2017-01-30  202  	}
-cdf0ead3747200 Bartosz Golaszewski       2017-01-30  203  
-cdf0ead3747200 Bartosz Golaszewski       2017-01-30 @204  	mpy = ahci_da850_calculate_mpy(clk_get_rate(hpriv->clks[1]));
-cdf0ead3747200 Bartosz Golaszewski       2017-01-30  205  	if (mpy == 0) {
-cdf0ead3747200 Bartosz Golaszewski       2017-01-30  206  		dev_err(dev, "invalid REFCLK multiplier value: 0x%x", mpy);
-cdf0ead3747200 Bartosz Golaszewski       2017-01-30  207  		return -EINVAL;
-cdf0ead3747200 Bartosz Golaszewski       2017-01-30  208  	}
-cdf0ead3747200 Bartosz Golaszewski       2017-01-30  209  
-ae8723f8a9c8e8 Bartlomiej Zolnierkiewicz 2014-03-25  210  	rc = ahci_platform_enable_resources(hpriv);
-ae8723f8a9c8e8 Bartlomiej Zolnierkiewicz 2014-03-25  211  	if (rc)
-ae8723f8a9c8e8 Bartlomiej Zolnierkiewicz 2014-03-25  212  		return rc;
-ae8723f8a9c8e8 Bartlomiej Zolnierkiewicz 2014-03-25  213  
-ae8723f8a9c8e8 Bartlomiej Zolnierkiewicz 2014-03-25  214  	res = platform_get_resource(pdev, IORESOURCE_MEM, 1);
-c88c094985ad38 Christophe JAILLET        2017-08-16  215  	if (!res) {
-c88c094985ad38 Christophe JAILLET        2017-08-16  216  		rc = -ENODEV;
-ae8723f8a9c8e8 Bartlomiej Zolnierkiewicz 2014-03-25  217  		goto disable_resources;
-c88c094985ad38 Christophe JAILLET        2017-08-16  218  	}
-ae8723f8a9c8e8 Bartlomiej Zolnierkiewicz 2014-03-25  219  
-ae8723f8a9c8e8 Bartlomiej Zolnierkiewicz 2014-03-25  220  	pwrdn_reg = devm_ioremap(dev, res->start, resource_size(res));
-c88c094985ad38 Christophe JAILLET        2017-08-16  221  	if (!pwrdn_reg) {
-c88c094985ad38 Christophe JAILLET        2017-08-16  222  		rc = -ENOMEM;
-ae8723f8a9c8e8 Bartlomiej Zolnierkiewicz 2014-03-25  223  		goto disable_resources;
-c88c094985ad38 Christophe JAILLET        2017-08-16  224  	}
-ae8723f8a9c8e8 Bartlomiej Zolnierkiewicz 2014-03-25  225  
-cdf0ead3747200 Bartosz Golaszewski       2017-01-30  226  	da850_sata_init(dev, pwrdn_reg, hpriv->mmio, mpy);
-ae8723f8a9c8e8 Bartlomiej Zolnierkiewicz 2014-03-25  227  
-018d5ef2048fca Akinobu Mita              2015-01-29  228  	rc = ahci_platform_init_host(pdev, hpriv, &ahci_da850_port_info,
-018d5ef2048fca Akinobu Mita              2015-01-29  229  				     &ahci_platform_sht);
-ae8723f8a9c8e8 Bartlomiej Zolnierkiewicz 2014-03-25  230  	if (rc)
-ae8723f8a9c8e8 Bartlomiej Zolnierkiewicz 2014-03-25  231  		goto disable_resources;
-ae8723f8a9c8e8 Bartlomiej Zolnierkiewicz 2014-03-25  232  
-ae8723f8a9c8e8 Bartlomiej Zolnierkiewicz 2014-03-25  233  	return 0;
-ae8723f8a9c8e8 Bartlomiej Zolnierkiewicz 2014-03-25  234  disable_resources:
-ae8723f8a9c8e8 Bartlomiej Zolnierkiewicz 2014-03-25  235  	ahci_platform_disable_resources(hpriv);
-ae8723f8a9c8e8 Bartlomiej Zolnierkiewicz 2014-03-25  236  	return rc;
-ae8723f8a9c8e8 Bartlomiej Zolnierkiewicz 2014-03-25  237  }
-ae8723f8a9c8e8 Bartlomiej Zolnierkiewicz 2014-03-25  238  
-
--- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
