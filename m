@@ -2,212 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B41B6519286
-	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 02:02:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 07C3751929E
+	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 02:13:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232816AbiEDAFp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 May 2022 20:05:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44450 "EHLO
+        id S244504AbiEDAQ3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 May 2022 20:16:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52144 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230087AbiEDAFo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 20:05:44 -0400
-Received: from mail-oa1-f43.google.com (mail-oa1-f43.google.com [209.85.160.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 522CD17E16;
-        Tue,  3 May 2022 17:02:10 -0700 (PDT)
-Received: by mail-oa1-f43.google.com with SMTP id 586e51a60fabf-e5ca5c580fso18792697fac.3;
-        Tue, 03 May 2022 17:02:10 -0700 (PDT)
+        with ESMTP id S243628AbiEDAQ2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 May 2022 20:16:28 -0400
+Received: from mail-oo1-f49.google.com (mail-oo1-f49.google.com [209.85.161.49])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2DE1912ACF;
+        Tue,  3 May 2022 17:12:54 -0700 (PDT)
+Received: by mail-oo1-f49.google.com with SMTP id m3-20020a4ac683000000b0035f13dde9ccso589853ooq.6;
+        Tue, 03 May 2022 17:12:54 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:content-transfer-encoding
          :in-reply-to;
-        bh=XPALVs8tri7925YP8yP2QcFpx7h0JSNeGifZWhU99Ro=;
-        b=z1XxzGVWgYu5pm+Q8SLVn2m2CbCHuHAElEb//jELxJCdnoo4DCgeWIjC6RKmBBPNYg
-         DNoLZyVtjDVRP/0A4RyW2OrrAM/Kj9YgCtSGq6RwHdrCyMNkWrVpC6HpYhwkjG/NGxEq
-         l5M4edjeDIL17sF8N19pnRKsqdv+5WhHPDiM0+K+vQLfs4RM5naWh6ZZ7aqHBo3ZjDzi
-         Q3Vtq3HCz0OmwBiCT9bHoQaSTL5sWFwOPU/BSPyMNqqsQn/dw2AnSP49NwRxusjuMfgM
-         RgBSqWQny74qUv+PXIjJv7EBfbMVlmGKyN0d5YIhzCsYHxRfv2DHqkaSmocsXf/ekUX7
-         b7bA==
-X-Gm-Message-State: AOAM5319IC8Pvvv6TesRL+18ylvfmQPF4WC/Oi/O9AfoCjfurVZlEAfi
-        mDsS3Pky9zeplyPVudvW3g==
-X-Google-Smtp-Source: ABdhPJzDGRHxbFONbrvkkP2SSUKrYke5y7WcShS5ZvQNY7jHJAryoCIKp3IBbg4qJhIn8naxdCDyWw==
-X-Received: by 2002:a05:6870:b292:b0:ec:ec79:4842 with SMTP id c18-20020a056870b29200b000ecec794842mr2769207oao.145.1651622529455;
-        Tue, 03 May 2022 17:02:09 -0700 (PDT)
+        bh=NpgcwOXxUIOD9DVencnySKK5YuvmcBy25ONszQmYt3g=;
+        b=W5r0UwBdWk2ChgPxWAHrX+eMgKZyW7tItP4QwYhn49lQJa3pmMcf4o263c7pY4/ME3
+         ZXWTJ3kh1/E4AHyTApLkrbAun4A4M6A2pXAGkhidm6gFiuY9HBgn6HtKTAJc9OGqIFEK
+         2EhHncG1yHPWkGV204AnSgRpTeRCg9+26slTA01pYI5Y9sB+VxhWh/9+WofPsOqgchte
+         CBxwkEr3BGYACV7B7lFSnBszVU6mXZz5gX5Dh9BqREg1iLR1Xc71WgNl7lB28+X6fuee
+         cS3boRPg5czj26BvHQWoHDRB8FdDHL814bum3AtRRNvSemLUH8jbQz1XiKTgAVJeeCSZ
+         y0yA==
+X-Gm-Message-State: AOAM531imGKOsX8OymfQOgC/4RsSM8pAzRdp+Hc1ccu1abVjCYZCjnpc
+        9FkGEjBFsYdaDM4tizYmx6SXACdmXg==
+X-Google-Smtp-Source: ABdhPJyGBo9TWKVr3K3lIp/Txn9XdD6mgw1baqvv55+V+9a5WK6OdIb8Y4bF69xigWn6fvkFAmDQKw==
+X-Received: by 2002:a4a:8783:0:b0:324:b9a2:d605 with SMTP id b3-20020a4a8783000000b00324b9a2d605mr6498711ooi.38.1651623173315;
+        Tue, 03 May 2022 17:12:53 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id b14-20020a056870160e00b000e915a9121csm8077296oae.52.2022.05.03.17.02.08
+        by smtp.gmail.com with ESMTPSA id q17-20020a9d6651000000b006060322127dsm4487354otm.77.2022.05.03.17.12.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 May 2022 17:02:08 -0700 (PDT)
-Received: (nullmailer pid 275646 invoked by uid 1000);
-        Wed, 04 May 2022 00:02:08 -0000
-Date:   Tue, 3 May 2022 19:02:08 -0500
+        Tue, 03 May 2022 17:12:52 -0700 (PDT)
+Received: (nullmailer pid 290579 invoked by uid 1000);
+        Wed, 04 May 2022 00:12:51 -0000
+Date:   Tue, 3 May 2022 19:12:51 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Oleksandr <olekstysh@gmail.com>
-Cc:     xen-devel@lists.xenproject.org,
-        virtualization@lists.linux-foundation.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>,
-        Jason Wang <jasowang@redhat.com>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Julien Grall <julien@xen.org>, Juergen Gross <jgross@suse.com>,
-        Stefano Stabellini <sstabellini@kernel.org>,
-        "Michael S. Tsirkin" <mst@redhat.com>,
-        Christoph Hellwig <hch@infradead.org>
-Subject: Re: [PATCH V1 4/6] dt-bindings: Add xen,dev-domid property
- description for xen-grant DMA ops
-Message-ID: <YnHCgBsQ90cJ58+0@robh.at.kernel.org>
-References: <1650646263-22047-1-git-send-email-olekstysh@gmail.com>
- <1650646263-22047-5-git-send-email-olekstysh@gmail.com>
- <YnBUUclJqkvKsV2o@robh.at.kernel.org>
- <accbc6be-82c1-dfd2-586f-816141415d7c@gmail.com>
+To:     Jernej =?utf-8?Q?=C5=A0krabec?= <jernej.skrabec@gmail.com>
+Cc:     icenowy@outlook.com, Chen-Yu Tsai <wens@csie.org>,
+        Samuel Holland <samuel@sholland.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Andre Przywara <andre.przywara@arm.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+        Icenowy Zheng <icenowy@aosc.io>
+Subject: Re: Re: [PATCH 05/12] dt-bindings: clock: sunxi-ng: add bindings for
+ R329 CCUs
+Message-ID: <YnHFA9NKHYDUuLKW@robh.at.kernel.org>
+References: <20220422140902.1058101-1-icenowy@aosc.io>
+ <BYAPR20MB2472A5F7269F56C2C6BB3104BCF79@BYAPR20MB2472.namprd20.prod.outlook.com>
+ <YnBOY2EjW5ZWCAkx@robh.at.kernel.org>
+ <1910544.usQuhbGJ8B@kista>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <accbc6be-82c1-dfd2-586f-816141415d7c@gmail.com>
+In-Reply-To: <1910544.usQuhbGJ8B@kista>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 03, 2022 at 08:09:32PM +0300, Oleksandr wrote:
-> 
-> On 03.05.22 00:59, Rob Herring wrote:
-> 
-> Hello Rob
-> 
-> 
-> > On Fri, Apr 22, 2022 at 07:51:01PM +0300, Oleksandr Tyshchenko wrote:
-> > > From: Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>
+On Tue, May 03, 2022 at 09:55:08PM +0200, Jernej Å krabec wrote:
+> Dne ponedeljek, 02. maj 2022 ob 23:34:27 CEST je Rob Herring napisal(a):
+> > On Fri, Apr 22, 2022 at 11:41:08PM +0800, icenowy@outlook.com wrote:
+> > > From: Icenowy Zheng <icenowy@aosc.io>
 > > > 
-> > > Introduce Xen specific binding for the virtualized device (e.g. virtio)
-> > > to be used by Xen grant DMA-mapping layer in the subsequent commit.
+> > > R329 has a CPUX CCU and a R-CCU, with all PLLs in R-CCU.
 > > > 
-> > > This binding indicates that Xen grant mappings scheme needs to be
-> > > enabled for the device which DT node contains that property and specifies
-> > > the ID of Xen domain where the corresponding backend resides. The ID
-> > > (domid) is used as an argument to the grant mapping APIs.
+> > > Add bindings for them, with R-CCU only taking 3 oscillators as input and
+> > > main CCU taking oscillators + PLLs as input.
 > > > 
-> > > This is needed for the option to restrict memory access using Xen grant
-> > > mappings to work which primary goal is to enable using virtio devices
-> > > in Xen guests.
-> > > 
-> > > Signed-off-by: Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>
+> > > Signed-off-by: Icenowy Zheng <icenowy@aosc.io>
 > > > ---
-> > > Changes RFC -> V1:
-> > >     - update commit subject/description and text in description
-> > >     - move to devicetree/bindings/arm/
-> > > ---
-> > >   .../devicetree/bindings/arm/xen,dev-domid.yaml     | 37 ++++++++++++++++++++++
-> > >   1 file changed, 37 insertions(+)
-> > >   create mode 100644 Documentation/devicetree/bindings/arm/xen,dev-domid.yaml
-> > > 
-> > > diff --git a/Documentation/devicetree/bindings/arm/xen,dev-domid.yaml b/Documentation/devicetree/bindings/arm/xen,dev-domid.yaml
-> > > new file mode 100644
-> > > index 00000000..ef0f747
+
 > > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/arm/xen,dev-domid.yaml
-> > > @@ -0,0 +1,37 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/arm/xen,dev-domid.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: Xen specific binding for the virtualized device (e.g. virtio)
-> > > +
-> > > +maintainers:
-> > > +  - Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>
-> > > +
-> > > +select: true
-> > Do we really need to support this property everywhere?
-> 
-> From my understanding - yes.
-> 
-> As, I think, any device node describing virtulized device in the guest
-> device tree can have this property.  Initially (in the RFC series) the
-> "solution to restrict memory access using Xen grant mappings" was
-> virtio-specific.
-> 
-> Although the support of virtio is a primary target of this series, we
-> decided to generalize this work and expand it to any device [1]. So the Xen
-> grant mappings scheme (this property to be used for) can be theoretically
-> used for any device emulated by the Xen backend.
-> 
-> 
-> > > +
-> > > +description:
-> > > +  This binding indicates that Xen grant mappings scheme needs to be enabled
-> > > +  for that device and specifies the ID of Xen domain where the corresponding
-> > > +  device (backend) resides. This is needed for the option to restrict memory
-> > > +  access using Xen grant mappings to work.
-> > > +
-> > > +properties:
-> > > +  xen,dev-domid:
-> > > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > > +    description:
-> > > +      The domid (domain ID) of the domain where the device (backend) is running.
-> > > +
-> > > +additionalProperties: true
-> > > +
-> > > +examples:
-> > > +  - |
-> > > +    virtio_block@3000 {
-> > virtio@3000
-> 
-> ok, will change
-> 
-> 
+> > > +++ b/include/dt-bindings/clock/sun50i-r329-ccu.h
+> > > @@ -0,0 +1,73 @@
+> > > +/* SPDX-License-Identifier: GPL-2.0 */
+> > > +/*
+> > > + * Copyright (c) 2021 Sipeed
 > > 
-> > > +            compatible = "virtio,mmio";
-> > > +            reg = <0x3000 0x100>;
-> > > +            interrupts = <41>;
-> > > +
-> > > +            /* The device is located in Xen domain with ID 1 */
-> > > +            xen,dev-domid = <1>;
-> > This fails validation:
+> > It's 2022.
 > > 
-> > Documentation/devicetree/bindings/arm/xen,dev-domid.example.dtb: virtio_block@3000: xen,dev-domid: [[1]] is not of type 'object'
-> >          From schema: /home/rob/proj/git/linux-dt/Documentation/devicetree/bindings/virtio/mmio.yaml
-> 
-> Thank you for pointing this out, my fault, I haven't "properly" checked this
-> before. I think, we need to remove "compatible = "virtio,mmio"; here
-
-Uhh, no. That just means the example is incomplete. You need to add this 
-property or reference this schema from virtio/mmio.yaml.
-
-
-> diff --git a/Documentation/devicetree/bindings/arm/xen,dev-domid.yaml
-> b/Documentation/devicetree/bindings/arm/xen,dev-domid.yaml
-> index 2daa8aa..d2f2140 100644
-> --- a/Documentation/devicetree/bindings/arm/xen,dev-domid.yaml
-> +++ b/Documentation/devicetree/bindings/arm/xen,dev-domid.yaml
-> @@ -28,7 +28,7 @@ additionalProperties: true
->  examples:
->    - |
->      virtio_block@3000 {
-> -            compatible = "virtio,mmio";
-> +            /* ... */
->              reg = <0x3000 0x100>;
->              interrupts = <41>;
-> 
-> 
-> 
+> > > diff --git a/include/dt-bindings/clock/sun50i-r329-r-ccu.h b/include/dt-
+> bindings/clock/sun50i-r329-r-ccu.h
+> > > new file mode 100644
+> > > index 000000000000..c327d1a1b602
+> > > --- /dev/null
+> > > +++ b/include/dt-bindings/clock/sun50i-r329-r-ccu.h
+> > > @@ -0,0 +1,45 @@
+> > > +/* SPDX-License-Identifier: GPL-2.0 */
 > > 
-> > The property has to be added to the virtio/mmio.yaml schema. If it is
-> > not needed elsewhere, then *just* add the property there.
+> > > diff --git a/include/dt-bindings/reset/sun50i-r329-ccu.h b/include/dt-
+> bindings/reset/sun50i-r329-ccu.h
+> > > new file mode 100644
+> > > index 000000000000..bb704a82443f
+> > > --- /dev/null
+> > > +++ b/include/dt-bindings/reset/sun50i-r329-ccu.h
+> > > @@ -0,0 +1,45 @@
+> > > +/* SPDX-License-Identifier: (GPL-2.0+ or MIT) */
+> > 
+> > > diff --git a/include/dt-bindings/reset/sun50i-r329-r-ccu.h b/include/dt-
+> bindings/reset/sun50i-r329-r-ccu.h
+> > > new file mode 100644
+> > > index 000000000000..40644f2f21c6
+> > > --- /dev/null
+> > > +++ b/include/dt-bindings/reset/sun50i-r329-r-ccu.h
+> > > @@ -0,0 +1,24 @@
+> > > +/* SPDX-License-Identifier: (GPL-2.0+ or MIT) */
+> > 
+> > Why the different licenses? GPL-2.0 OR BSD-2-Clause is preferred. MIT is 
+> > fine if that's what matches the dts files.
 > 
-> As I described above, the property is not virtio specific and can be used
-> for any virtualized device for which Xen grant mappings scheme needs to be
-> enabled (xen-grant DMA-mapping layer).
+> Yes, most, if not all, DT files for Allwinner are dual licensed under GPL2+ and 
+> MIT. There are still some files under include/dt-bindings which are dual 
+> licensed under GPL2+ and X11, but I believe those files are for older SoCs.
 
-But that's a finite list of devices, right? In any case, you have to 
-list the property anywhere it can be used.
+Okay. FWIW, the SPDX definition of X11 means copyrighted by Xorg 
+Consortium or something where as MIT is the same license with any other 
+copyright.
 
 Rob
