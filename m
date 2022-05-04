@@ -2,151 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B229951A03F
-	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 15:06:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 878DC51A048
+	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 15:06:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350225AbiEDNJq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 May 2022 09:09:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51780 "EHLO
+        id S1350180AbiEDNJt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 May 2022 09:09:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51812 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350187AbiEDNJa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 09:09:30 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E26432A246;
-        Wed,  4 May 2022 06:05:51 -0700 (PDT)
-X-UUID: 3dd8948e5a12483e8e8d547a14062e61-20220504
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.4,REQID:ef2b04ee-c0e0-4504-9fe4-65e810c6d8ae,OB:40,L
-        OB:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:95,FILE:0,RULE:Release_Ham,AC
-        TION:release,TS:95
-X-CID-INFO: VERSION:1.1.4,REQID:ef2b04ee-c0e0-4504-9fe4-65e810c6d8ae,OB:40,LOB
-        :0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:95,FILE:0,RULE:Spam_GS981B3D,AC
-        TION:quarantine,TS:95
-X-CID-META: VersionHash:faefae9,CLOUDID:375e8cb2-56b5-4c9e-8d83-0070b288eb6a,C
-        OID:a8c8ccef9126,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,File:nil
-        ,QS:0,BEC:nil
-X-UUID: 3dd8948e5a12483e8e8d547a14062e61-20220504
-Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw02.mediatek.com
-        (envelope-from <rex-bc.chen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 639549240; Wed, 04 May 2022 21:05:43 +0800
-Received: from MTKMBS07N2.mediatek.inc (172.21.101.141) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.792.15; Wed, 4 May 2022 21:05:42 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Wed, 4 May 2022 21:05:42 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
- mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.792.3 via Frontend Transport; Wed, 4 May 2022 21:05:42 +0800
-From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
-To:     <rafael@kernel.org>, <viresh.kumar@linaro.org>,
-        <robh+dt@kernel.org>, <krzk+dt@kernel.org>,
-        <matthias.bgg@gmail.com>
-CC:     <jia-wei.chang@mediatek.com>, <roger.lu@mediatek.com>,
-        <hsinyi@google.com>, <khilman@baylibre.com>,
-        <angelogioacchino.delregno@collabora.com>,
-        <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Rex-BC Chen <rex-bc.chen@mediatek.com>
-Subject: [PATCH v5 9/9] arm64: dts: mediatek: Add mediatek,cci property for MT8183 cpufreq
-Date:   Wed, 4 May 2022 21:05:40 +0800
-Message-ID: <20220504130540.5902-10-rex-bc.chen@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20220504130540.5902-1-rex-bc.chen@mediatek.com>
-References: <20220504130540.5902-1-rex-bc.chen@mediatek.com>
+        with ESMTP id S1350202AbiEDNJb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 09:09:31 -0400
+Received: from mail-pf1-x42f.google.com (mail-pf1-x42f.google.com [IPv6:2607:f8b0:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AEFB72ED71;
+        Wed,  4 May 2022 06:05:55 -0700 (PDT)
+Received: by mail-pf1-x42f.google.com with SMTP id p8so1080442pfh.8;
+        Wed, 04 May 2022 06:05:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=UC5/T62VBrPR2OvWMU7yh7SKj/WV1x6G5gEe33Tp7mk=;
+        b=jfvmZOqT1RCdG840AmSvi9BLfhWe0UsS6xUzfZZ21xHsl3Fg6lazuSiY2nD1/ALjfy
+         LrUQjOvzD7MpFz3WGNuKOHFuO9m01r9vay7aMeR/ZLwHLPM7kEPOwzebfjfF3IJC9cpj
+         ydQWn2kUWsegmxYjxBSAzLN2t0AlvAVyWPQ01GOjRq3Pxs2tVJFgwO2YbL4O9jG8dhXb
+         7h776yMANyYVzwVHbrkqJhUvEHHYTGkJjtV6JXPHBNWUmz265r5DwzQgQX2GMACST339
+         M9X1xaLS8u1ZqXexVat1fb0rrtLBRL+HFWjU1LUxZKW28ZoPXOVU2Yhc/kBHuHB6pza8
+         vWNQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=UC5/T62VBrPR2OvWMU7yh7SKj/WV1x6G5gEe33Tp7mk=;
+        b=A301ElbueYK0JoXavguTVa8gAA01wLfvYn51UrrJa3G8328ebcTtTs41Irs9/6gcTt
+         qd6wJzOohU9fk//rD5C9/aSAnsxFZhUeRKx5DairC77sT4g/6Sv1obvAgxwCvQPuDJYH
+         N1Q6LnmaGy7AB0L4AywVoyYiyWD7+7qJQHsqptem6Npb1IdHGyGoqYaZc85mddy1H5+R
+         wdp/FDRpricoM60lt3Zd1ywl7hxxVQHeOJZ56KcAWv/LKV4dAIzxhOEWkmlCDOpR7oh4
+         onIPQmai1hqag9HCa/XqZnkiWQuWvF5gQcrZOOBoy0nVnblc4U18emQzDE68wvf0Kibz
+         bi3g==
+X-Gm-Message-State: AOAM532mUQR3JW5WHub0457Q8yTNv++akGqgNrvDz6T8T1fNlaceK1sM
+        EHvFRSqkCif6WnnSJ1ilPCWEdvLjQDM=
+X-Google-Smtp-Source: ABdhPJyvSN6lqx6iGE7zAkwNM/r5YaenoNFhG0ehHtfOvx/cwMQGX3Eytq2mAfYIF0TbYO02EzDDYQ==
+X-Received: by 2002:a63:6808:0:b0:3c5:7405:1cd4 with SMTP id d8-20020a636808000000b003c574051cd4mr3436179pgc.444.1651669554978;
+        Wed, 04 May 2022 06:05:54 -0700 (PDT)
+Received: from [172.30.1.41] ([14.32.163.5])
+        by smtp.gmail.com with ESMTPSA id y6-20020aa78046000000b0050dc76281c9sm8153208pfm.163.2022.05.04.06.05.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 04 May 2022 06:05:54 -0700 (PDT)
+Message-ID: <c5532ab5-eaa5-e199-2c59-6ec58c9a8f55@gmail.com>
+Date:   Wed, 4 May 2022 22:05:49 +0900
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH v3 01/12] dt-bindings: clock: add clock binding
+ definitions for Exynos Auto v9
+Content-Language: en-US
+To:     Chanho Park <chanho61.park@samsung.com>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Tomasz Figa <tomasz.figa@gmail.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Sam Protsenko <semen.protsenko@linaro.org>,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org
+References: <20220504075154.58819-1-chanho61.park@samsung.com>
+ <CGME20220504075003epcas2p3708d1853dae290bc42cfacd318767c8d@epcas2p3.samsung.com>
+ <20220504075154.58819-2-chanho61.park@samsung.com>
+From:   Chanwoo Choi <cwchoi00@gmail.com>
+In-Reply-To: <20220504075154.58819-2-chanho61.park@samsung.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add mediatek,cci property to support MediaTek CCI feature.
+Hi Chanho,
 
-Signed-off-by: Rex-BC Chen <rex-bc.chen@mediatek.com>
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
----
- arch/arm64/boot/dts/mediatek/mt8183.dtsi | 8 ++++++++
- 1 file changed, 8 insertions(+)
+On 22. 5. 4. 16:51, Chanho Park wrote:
+> Add device tree clock binding definitions for below CMU blocks.
+> 
+> - CMU_TOP
+> - CMU_BUSMC
+> - CMU_CORE
+> - CMU_FYS2
+> - CMU_PERIC0 / C1
+> - CMU_PERIS
+> 
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Chanho Park <chanho61.park@samsung.com>
+> ---
+>   .../dt-bindings/clock/samsung,exynosautov9.h  | 299 ++++++++++++++++++
+>   1 file changed, 299 insertions(+)
+>   create mode 100644 include/dt-bindings/clock/samsung,exynosautov9.h
+> 
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-index 11caf3dd85cd..e5d4a8e0c545 100644
---- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-@@ -336,6 +336,7 @@
- 			operating-points-v2 = <&cluster0_opp>;
- 			dynamic-power-coefficient = <84>;
- 			#cooling-cells = <2>;
-+			mediatek,cci = <&cci>;
- 		};
- 
- 		cpu1: cpu@1 {
-@@ -351,6 +352,7 @@
- 			operating-points-v2 = <&cluster0_opp>;
- 			dynamic-power-coefficient = <84>;
- 			#cooling-cells = <2>;
-+			mediatek,cci = <&cci>;
- 		};
- 
- 		cpu2: cpu@2 {
-@@ -366,6 +368,7 @@
- 			operating-points-v2 = <&cluster0_opp>;
- 			dynamic-power-coefficient = <84>;
- 			#cooling-cells = <2>;
-+			mediatek,cci = <&cci>;
- 		};
- 
- 		cpu3: cpu@3 {
-@@ -381,6 +384,7 @@
- 			operating-points-v2 = <&cluster0_opp>;
- 			dynamic-power-coefficient = <84>;
- 			#cooling-cells = <2>;
-+			mediatek,cci = <&cci>;
- 		};
- 
- 		cpu4: cpu@100 {
-@@ -396,6 +400,7 @@
- 			operating-points-v2 = <&cluster1_opp>;
- 			dynamic-power-coefficient = <211>;
- 			#cooling-cells = <2>;
-+			mediatek,cci = <&cci>;
- 		};
- 
- 		cpu5: cpu@101 {
-@@ -411,6 +416,7 @@
- 			operating-points-v2 = <&cluster1_opp>;
- 			dynamic-power-coefficient = <211>;
- 			#cooling-cells = <2>;
-+			mediatek,cci = <&cci>;
- 		};
- 
- 		cpu6: cpu@102 {
-@@ -426,6 +432,7 @@
- 			operating-points-v2 = <&cluster1_opp>;
- 			dynamic-power-coefficient = <211>;
- 			#cooling-cells = <2>;
-+			mediatek,cci = <&cci>;
- 		};
- 
- 		cpu7: cpu@103 {
-@@ -441,6 +448,7 @@
- 			operating-points-v2 = <&cluster1_opp>;
- 			dynamic-power-coefficient = <211>;
- 			#cooling-cells = <2>;
-+			mediatek,cci = <&cci>;
- 		};
- 
- 		idle-states {
+(snip)
+
+Acked-by: Chanwoo Choi <cw00.choi@samsung.com>
+
+
 -- 
-2.18.0
-
+Best Regards,
+Samsung Electronics
+Chanwoo Choi
