@@ -2,290 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D6E951A455
-	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 17:42:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DEAA551A45C
+	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 17:43:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352637AbiEDPpt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 May 2022 11:45:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40828 "EHLO
+        id S1352638AbiEDPqj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 May 2022 11:46:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41348 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1352614AbiEDPpp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 11:45:45 -0400
-Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [217.70.183.194])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03E801BE86;
-        Wed,  4 May 2022 08:42:07 -0700 (PDT)
-Received: (Authenticated sender: clement.leger@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 092EC40003;
-        Wed,  4 May 2022 15:42:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1651678926;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=syVh6bmaMn5ntdtGN7GpyAnxiKbIllExQJN9dKGkNJ0=;
-        b=c6C+7W6XFAo/WW8FtCv6SSTsY/cs+sDCqpqwwTuow7Lz0ga7x4bSWSHJOLdnPyiHyfHhDI
-        vOeXRsUNeXFEJTswTiSC+HliR3Y0CF/L6v0eqC1vT9WlWO61Vq2+4T4xvK4oUaRhrgysqw
-        nrO/ooCzJJvXJzZr+/vF3Dpwfa9cUmTeJWqLBL1ydy6/qNM8u6IqQPyEAeDkk7LQvKfF5I
-        wX9BNb9qbwfUSDvBpVg+S90rtW5Y2N75WrIsr4fF0wKBGYlfxNJqzbgL0HLZdM9CtB5RSA
-        PuclVajdpob5X8Yg/J/Wc+M3clTTtw/WpRde9qzfG9MDLG1Dm4m82/0hNrPI7g==
-From:   =?UTF-8?q?Cl=C3=A9ment=20L=C3=A9ger?= <clement.leger@bootlin.com>
-To:     Michael Ellerman <mpe@ellerman.id.au>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Paul Mackerras <paulus@samba.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Nathan Lynch <nathanl@linux.ibm.com>,
-        Laurent Dufour <ldufour@linux.ibm.com>,
-        Daniel Henrique Barboza <danielhb413@gmail.com>,
-        David Gibson <david@gibson.dropbear.id.au>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        David Hildenbrand <david@redhat.com>,
-        Ohhoon Kwon <ohoono.kwon@samsung.com>,
-        "Aneesh Kumar K.V" <aneesh.kumar@linux.ibm.com>,
-        YueHaibing <yuehaibing@huawei.com>
-Cc:     =?UTF-8?q?Cl=C3=A9ment=20L=C3=A9ger?= <clement.leger@bootlin.com>,
-        linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Allan Nielsen <allan.nielsen@microchip.com>,
-        Horatiu Vultur <horatiu.vultur@microchip.com>,
-        Steen Hegelund <steen.hegelund@microchip.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: [PATCH 3/3] powerpc/pseries: use of_property_*() and of_node_*() functions
-Date:   Wed,  4 May 2022 17:40:33 +0200
-Message-Id: <20220504154033.750511-4-clement.leger@bootlin.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220504154033.750511-1-clement.leger@bootlin.com>
-References: <20220504154033.750511-1-clement.leger@bootlin.com>
+        with ESMTP id S1352784AbiEDPqc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 11:46:32 -0400
+Received: from mail-oa1-f49.google.com (mail-oa1-f49.google.com [209.85.160.49])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 409AD46643;
+        Wed,  4 May 2022 08:42:45 -0700 (PDT)
+Received: by mail-oa1-f49.google.com with SMTP id 586e51a60fabf-e2fa360f6dso1569039fac.2;
+        Wed, 04 May 2022 08:42:45 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=tnMRJsbiS8QiP9lDD2I4JzMT/wd9etKoP6P9ura1i48=;
+        b=oCz0VUEXIj3jIuPey1IVqcOAy6vhH24ER0yQnDh7laEqHv0QtcNP23RmSXBJvEMraV
+         0c5UHR+PB+UYkhyXKKFDu8kvG4GraHgY1u7s4CJTP7/x+tHWkDueQ6eVg0G1GQoLBUTt
+         6OCO9zmvTD7Yr6q+XNm5c2k3zJOxm+MQOocnE756wtrCXwphd17dE5wqRsiRWrizf9Os
+         N4TshiCucCCRgotUoINwmoiT81mBiSb/HLFYz3xpvx1ILYqShV0+c38L5rBzjSDOck6I
+         JHpL9SZlPy+sS/knztc/SPwMo7erCd3PTOzsJSqhl0mVsfI+yx9BHu4HRsM5j026OSgY
+         Jqdw==
+X-Gm-Message-State: AOAM5309sUlYqSCAlSEE0zLsHlYgV70CKvJBPg3NZuP9s0I78PZz4jOS
+        IQgNQm7ccjpEc9ZwP2xN+Q==
+X-Google-Smtp-Source: ABdhPJzNz108HgppQ2njmjK7spVH8oSX47FuDf8S/DyT2/BrJzu23fF4n28T9OGduSEoDRg/Cc5k1w==
+X-Received: by 2002:a05:6870:e412:b0:ed:a30a:2248 with SMTP id n18-20020a056870e41200b000eda30a2248mr39162oag.138.1651678964563;
+        Wed, 04 May 2022 08:42:44 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id v4-20020a9d4e84000000b006060322124bsm5279580otk.27.2022.05.04.08.42.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 04 May 2022 08:42:44 -0700 (PDT)
+Received: (nullmailer pid 1762666 invoked by uid 1000);
+        Wed, 04 May 2022 15:42:40 -0000
+Date:   Wed, 4 May 2022 10:42:40 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Valentin Caron <valentin.caron@foss.st.com>
+Cc:     Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Gabriel Fernandez <gabriel.fernandez@foss.st.com>,
+        Amelie Delaunay <amelie.delaunay@foss.st.com>,
+        linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/6] dt-bindings: rtc: stm32: add alarm A out property to
+ select output
+Message-ID: <YnKe8K3FjoaUO2ml@robh.at.kernel.org>
+References: <20220504130233.330983-1-valentin.caron@foss.st.com>
+ <20220504130617.331290-1-valentin.caron@foss.st.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220504130617.331290-1-valentin.caron@foss.st.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Use of_property_alloc/free() and of_node_alloc/free() to create and free
-device-tree nodes and properties.
+On Wed, May 04, 2022 at 03:06:13PM +0200, Valentin Caron wrote:
+> STM32 RTC can pulse some SOC pins when an alarm of RTC expires.
+> 
+> This patch adds property to activate alarm A output. The pulse can
+> output on three pins RTC_OUT1, RTC_OUT2, RTC_OUT2_RMP
+> (PC13, PB2, PI8 on stm32mp15) (PC13, PB2, PI1 on stm32mp13).
+> 
+> Signed-off-by: Valentin Caron <valentin.caron@foss.st.com>
+> ---
+>  .../devicetree/bindings/rtc/st,stm32-rtc.yaml | 19 ++++++++++++++++++-
+>  1 file changed, 18 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/rtc/st,stm32-rtc.yaml b/Documentation/devicetree/bindings/rtc/st,stm32-rtc.yaml
+> index 56d46ea35c5d..71e02604e8de 100644
+> --- a/Documentation/devicetree/bindings/rtc/st,stm32-rtc.yaml
+> +++ b/Documentation/devicetree/bindings/rtc/st,stm32-rtc.yaml
+> @@ -59,6 +59,13 @@ properties:
+>        Refer to <include/dt-bindings/rtc/rtc-stm32.h> for the supported values.
+>        Pinctrl state named "default" may be defined to reserve pin for RTC output.
+>  
+> +  st,alarm:
+> +    $ref: "/schemas/types.yaml#/definitions/uint32"
+> +    description: |
+> +      To select and enable RTC Alarm A output.
+> +      Refer to <include/dt-bindings/rtc/rtc-stm32.h> for the supported values.
 
-Signed-off-by: Clément Léger <clement.leger@bootlin.com>
----
- arch/powerpc/platforms/pseries/dlpar.c        | 51 +++----------------
- .../platforms/pseries/hotplug-memory.c        | 27 +---------
- arch/powerpc/platforms/pseries/reconfig.c     | 44 ++++------------
- 3 files changed, 20 insertions(+), 102 deletions(-)
+No, sorry, you need to define the allowed values as a schema here.
 
-diff --git a/arch/powerpc/platforms/pseries/dlpar.c b/arch/powerpc/platforms/pseries/dlpar.c
-index b1f01ac0c29e..ebecde6c7256 100644
---- a/arch/powerpc/platforms/pseries/dlpar.c
-+++ b/arch/powerpc/platforms/pseries/dlpar.c
-@@ -39,61 +39,25 @@ struct cc_workarea {
- 	__be32	prop_offset;
- };
- 
--void dlpar_free_cc_property(struct property *prop)
--{
--	kfree(prop->name);
--	kfree(prop->value);
--	kfree(prop);
--}
--
- static struct property *dlpar_parse_cc_property(struct cc_workarea *ccwa)
- {
--	struct property *prop;
--	char *name;
--	char *value;
--
--	prop = kzalloc(sizeof(*prop), GFP_KERNEL);
--	if (!prop)
--		return NULL;
-+	int length;
-+	char *name, *value;
- 
- 	name = (char *)ccwa + be32_to_cpu(ccwa->name_offset);
--	prop->name = kstrdup(name, GFP_KERNEL);
--	if (!prop->name) {
--		dlpar_free_cc_property(prop);
--		return NULL;
--	}
--
--	prop->length = be32_to_cpu(ccwa->prop_length);
-+	length = be32_to_cpu(ccwa->prop_length);
- 	value = (char *)ccwa + be32_to_cpu(ccwa->prop_offset);
--	prop->value = kmemdup(value, prop->length, GFP_KERNEL);
--	if (!prop->value) {
--		dlpar_free_cc_property(prop);
--		return NULL;
--	}
- 
--	return prop;
-+	return of_property_alloc(name, value, length, length, GFP_KERNEL);
- }
- 
- static struct device_node *dlpar_parse_cc_node(struct cc_workarea *ccwa)
- {
--	struct device_node *dn;
- 	const char *name;
- 
--	dn = kzalloc(sizeof(*dn), GFP_KERNEL);
--	if (!dn)
--		return NULL;
--
- 	name = (const char *)ccwa + be32_to_cpu(ccwa->name_offset);
--	dn->full_name = kstrdup(name, GFP_KERNEL);
--	if (!dn->full_name) {
--		kfree(dn);
--		return NULL;
--	}
--
--	of_node_set_flag(dn, OF_DYNAMIC);
--	of_node_init(dn);
- 
--	return dn;
-+	return of_node_alloc(name, GFP_KERNEL);
- }
- 
- static void dlpar_free_one_cc_node(struct device_node *dn)
-@@ -103,11 +67,10 @@ static void dlpar_free_one_cc_node(struct device_node *dn)
- 	while (dn->properties) {
- 		prop = dn->properties;
- 		dn->properties = prop->next;
--		dlpar_free_cc_property(prop);
-+		of_property_free(prop);
- 	}
- 
--	kfree(dn->full_name);
--	kfree(dn);
-+	of_node_free(dn);
- }
- 
- void dlpar_free_cc_nodes(struct device_node *dn)
-diff --git a/arch/powerpc/platforms/pseries/hotplug-memory.c b/arch/powerpc/platforms/pseries/hotplug-memory.c
-index 91cf23495ccb..591727b05f36 100644
---- a/arch/powerpc/platforms/pseries/hotplug-memory.c
-+++ b/arch/powerpc/platforms/pseries/hotplug-memory.c
-@@ -70,34 +70,11 @@ unsigned long pseries_memory_block_size(void)
- 	return memblock_size;
- }
- 
--static void dlpar_free_property(struct property *prop)
--{
--	kfree(prop->name);
--	kfree(prop->value);
--	kfree(prop);
--}
--
- static struct property *dlpar_clone_property(struct property *prop,
- 					     u32 prop_size)
- {
--	struct property *new_prop;
--
--	new_prop = kzalloc(sizeof(*new_prop), GFP_KERNEL);
--	if (!new_prop)
--		return NULL;
--
--	new_prop->name = kstrdup(prop->name, GFP_KERNEL);
--	new_prop->value = kzalloc(prop_size, GFP_KERNEL);
--	if (!new_prop->name || !new_prop->value) {
--		dlpar_free_property(new_prop);
--		return NULL;
--	}
--
--	memcpy(new_prop->value, prop->value, prop->length);
--	new_prop->length = prop_size;
--
--	of_property_set_flag(new_prop, OF_DYNAMIC);
--	return new_prop;
-+	return of_property_alloc(prop->name, prop->value, prop->length,
-+				 prop_size, GFP_KERNEL);
- }
- 
- static bool find_aa_index(struct device_node *dr_node,
-diff --git a/arch/powerpc/platforms/pseries/reconfig.c b/arch/powerpc/platforms/pseries/reconfig.c
-index 7f7369fec46b..08c2f9088537 100644
---- a/arch/powerpc/platforms/pseries/reconfig.c
-+++ b/arch/powerpc/platforms/pseries/reconfig.c
-@@ -25,17 +25,9 @@ static int pSeries_reconfig_add_node(const char *path, struct property *proplist
- 	struct device_node *np;
- 	int err = -ENOMEM;
- 
--	np = kzalloc(sizeof(*np), GFP_KERNEL);
-+	np = of_node_alloc(kbasename(path), GFP_KERNEL);
- 	if (!np)
--		goto out_err;
--
--	np->full_name = kstrdup(kbasename(path), GFP_KERNEL);
--	if (!np->full_name)
--		goto out_err;
--
--	np->properties = proplist;
--	of_node_set_flag(np, OF_DYNAMIC);
--	of_node_init(np);
-+		return -ENOMEM;
- 
- 	np->parent = pseries_of_derive_parent(path);
- 	if (IS_ERR(np->parent)) {
-@@ -56,8 +48,7 @@ static int pSeries_reconfig_add_node(const char *path, struct property *proplist
- out_err:
- 	if (np) {
- 		of_node_put(np->parent);
--		kfree(np->full_name);
--		kfree(np);
-+		of_node_free(np);
- 	}
- 	return err;
- }
-@@ -92,9 +83,7 @@ static void release_prop_list(const struct property *prop)
- 	struct property *next;
- 	for (; prop; prop = next) {
- 		next = prop->next;
--		kfree(prop->name);
--		kfree(prop->value);
--		kfree(prop);
-+		of_property_free(prop);
- 	}
- 
- }
-@@ -168,27 +157,16 @@ static char * parse_next_property(char *buf, char *end, char **name, int *length
- static struct property *new_property(const char *name, const int length,
- 				     const unsigned char *value, struct property *last)
- {
--	struct property *new = kzalloc(sizeof(*new), GFP_KERNEL);
-+	struct property *prop;
- 
--	if (!new)
-+	prop = of_property_alloc(name, value, length, length + 1, GFP_KERNEL);
-+	if (!prop)
- 		return NULL;
- 
--	if (!(new->name = kstrdup(name, GFP_KERNEL)))
--		goto cleanup;
--	if (!(new->value = kmalloc(length + 1, GFP_KERNEL)))
--		goto cleanup;
--
--	memcpy(new->value, value, length);
--	*(((char *)new->value) + length) = 0;
--	new->length = length;
--	new->next = last;
--	return new;
--
--cleanup:
--	kfree(new->name);
--	kfree(new->value);
--	kfree(new);
--	return NULL;
-+	*(((char *)prop->value) + length) = 0;
-+	prop->next = last;
-+
-+	return prop;
- }
- 
- static int do_add_node(char *buf, size_t bufsize)
--- 
-2.34.1
+> +      Pinctrl state named "default" may be defined to reserve pin for RTC output.
+> +
+>  allOf:
+>    - if:
+>        properties:
+> @@ -75,6 +82,9 @@ allOf:
+>          st,lsco:
+>            maxItems: 0
+>  
+> +        st,alarm:
+> +          maxItems: 0
 
+st,alarm: false
+
+or:
+
+not:
+  required: [ st,alarm ]
+
+is how you disallow a property.
+
+This should cause a warning, but this patch didn't apply for me.
+
+> +
+>          clock-names: false
+>  
+>        required:
+> @@ -95,6 +105,9 @@ allOf:
+>          st,lsco:
+>            maxItems: 0
+>  
+> +        st,alarm:
+> +          maxItems: 0
+> +
+>        required:
+>          - clock-names
+>          - st,syscfg
+> @@ -117,6 +130,9 @@ allOf:
+>          st,lsco:
+>            maxItems: 1
+>  
+> +        st,alarm:
+> +          maxItems: 1
+
+maxItems applies to arrays, but this is a scalar value. I don't think 
+you need this hunk.
+
+> +
+>        required:
+>          - clock-names
+>  
+> @@ -153,8 +169,9 @@ examples:
+>        clocks = <&rcc RTCAPB>, <&rcc RTC>;
+>        clock-names = "pclk", "rtc_ck";
+>        interrupts = <GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>;
+> +      st,alarm = <RTC_OUT1>;
+>        st,lsco = <RTC_OUT2_RMP>;
+> -      pinctrl-0 = <&rtc_out2_rmp_pins_a>;
+> +      pinctrl-0 = <&rtc_out1_pins_a &rtc_out2_rmp_pins_a>;
+>        pinctrl-names = "default";
+>      };
+>  
+> -- 
+> 2.25.1
+> 
+> 
