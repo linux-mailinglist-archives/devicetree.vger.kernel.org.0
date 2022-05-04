@@ -2,90 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7416E51A321
-	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 17:06:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 68B4951A32F
+	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 17:07:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351727AbiEDPKL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 May 2022 11:10:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59826 "EHLO
+        id S233560AbiEDPLB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 May 2022 11:11:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60888 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351705AbiEDPKK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 11:10:10 -0400
-Received: from mail-ot1-f45.google.com (mail-ot1-f45.google.com [209.85.210.45])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62155B8C
-        for <devicetree@vger.kernel.org>; Wed,  4 May 2022 08:06:34 -0700 (PDT)
-Received: by mail-ot1-f45.google.com with SMTP id h10-20020a056830400a00b00605e92cc450so1060853ots.11
-        for <devicetree@vger.kernel.org>; Wed, 04 May 2022 08:06:34 -0700 (PDT)
+        with ESMTP id S1351880AbiEDPLA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 11:11:00 -0400
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6AC092B18E
+        for <devicetree@vger.kernel.org>; Wed,  4 May 2022 08:07:22 -0700 (PDT)
+Received: by mail-ej1-x62f.google.com with SMTP id n10so3464209ejk.5
+        for <devicetree@vger.kernel.org>; Wed, 04 May 2022 08:07:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=SlBkoO1sK5p6C20wzTnNNu31b+DHcR3rosTKprOdHs4=;
+        b=NG/g7+GoQkuRMr4Owok4yF0WlWRYzGFoO4aL/2lfoyecYNKbnXea3E5U1IerqsE0+d
+         RzJK2AYlmvlObdC2gMvsC3ZIQuviWFYpdIKcgoAmAshyqvw77oj/6wDK7eb2NJibvRvA
+         +itEyj2X5jjLjhGHaeqs+90rhCpCTlnyAteMh1Jn0dz45LYMOINi/XN87uwdL7i3KYPM
+         aYkQb6d8WTwDwm0sJVa5r5sHcTB2JwqkEZ5aJgDrDWH+y97Zi7LE84Kj5tkEb6pP+jvf
+         /lJThvZHZMz9gCv1EfiVpTkqHIOcUIpc6oH8eAK8v/1oMXNAzy90Qw4LPu1Mao2NZfgS
+         BAFA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=CMbN7hS5qpXAJ56hrK4Dy33g9tIzfngyx0mx6oH98LI=;
-        b=HnZCBB6c7ROZaQuQ2dfHkjtOzz7qZjV7zBgcPS7/ha1gcQPpIgSAuJp1T2UC3GkPY1
-         fusjHyHlZj7OwwKV1fS0+xNDBd+ln8JsD4IUbYaSa0LbzEgm0mXvYty8BYcRvmyDb751
-         sH5TcpLYlxrlgo5mfFSyxg1uwV+LgYAFZAtrFYOuIBPp+k9f+QKowFOyJ+ztlx+aCzZP
-         ZfeYukiyQIIwt/qy751BR2Qbf+wHFMNQjY23AWnPsALOytn3zBwWGt+14f6RP8iSa1vA
-         SNR4wqwveyKHiOLOkAWg/MEgwJKmUWWM8s70oFEtSFyFpAf3O0Eak6qsOHhbV3VpjTSz
-         nRXQ==
-X-Gm-Message-State: AOAM530GF7099FrFY4HfDVVPvbRMxBz1O7gqF+GAS5qdokXmCT51rCSn
-        D1dQkYyM8aU8bW0zJUBndw==
-X-Google-Smtp-Source: ABdhPJzimC2Mzz2fvZIGRB0h0xrOBQBahibFvTDdc4eoJHIylylulmbJ3HrZO6H+owbGwvZAVRUU7g==
-X-Received: by 2002:a05:6830:1059:b0:606:2f92:4c28 with SMTP id b25-20020a056830105900b006062f924c28mr3411242otp.253.1651676793648;
-        Wed, 04 May 2022 08:06:33 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id k14-20020a056820016e00b0035eb4e5a6bcsm6164683ood.18.2022.05.04.08.06.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 May 2022 08:06:33 -0700 (PDT)
-Received: (nullmailer pid 1712216 invoked by uid 1000);
-        Wed, 04 May 2022 15:06:32 -0000
-Date:   Wed, 4 May 2022 10:06:32 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Marek Vasut <marex@denx.de>
-Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Sam Ravnborg <sam@ravnborg.org>, Robby Cai <robby.cai@nxp.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        robert.foss@linaro.org, Thomas Zimmermann <tzimmermann@suse.de>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Rob Herring <robh+dt@kernel.org>, Peng Fan <peng.fan@nxp.com>
-Subject: Re: [PATCH] dt-bindings: display: bridge: ldb: Fill in reg property
-Message-ID: <YnKWeAu2MxXA7GzV@robh.at.kernel.org>
-References: <20220504012601.423644-1-marex@denx.de>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=SlBkoO1sK5p6C20wzTnNNu31b+DHcR3rosTKprOdHs4=;
+        b=okIOChczpKwm657m1ZB0ywtOevhAQ/174vZ116FMbEfQav3c7a4KhahNbT54eERRK3
+         IJcKbsXQTzZir/WXMValjc9lGKXUEHNpAco+utQHG6t9KjziDnTWousZDX08Cz4xQpb5
+         Eijd9ieVNfqQv0JFmu0/S5Nueb/o7NeZ9fyxhvyzK4xvqGw7fY58iWjn63Onf+Gw6Rz0
+         seSbmtHkpdVaGOHGvddzenUUi7uzAtdugbIrrRtRPqZ4AiOwCDHfF5bER1IyewBXg6zx
+         mYFvq1xx13xlUZ+aKdziFU1sz3JJsZPZlkTh4UQDbAwNAOeE/Einhc0aPQva7VJtRtev
+         ewag==
+X-Gm-Message-State: AOAM533qaGm8idgDUmWPdQS8hU8Up5vk81wQu7PmVdx0fCkyg+14Ivui
+        jij1j1mn3cmrwe0GJ5vWIdl5ig==
+X-Google-Smtp-Source: ABdhPJzNR3dty6xg+9nnvi7tgssQ0/Gt/9NPLgoDdq2XQDhe0Sr7Ik0M13Ay/4y+wuygaAnEDSwF5A==
+X-Received: by 2002:a17:907:2cc2:b0:6f3:7657:7eb3 with SMTP id hg2-20020a1709072cc200b006f376577eb3mr21514299ejc.403.1651676840683;
+        Wed, 04 May 2022 08:07:20 -0700 (PDT)
+Received: from [192.168.0.215] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id gv1-20020a1709072bc100b006f3ef214dd2sm5849972ejc.56.2022.05.04.08.07.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 04 May 2022 08:07:20 -0700 (PDT)
+Message-ID: <e9494c4b-55c9-b4a6-b836-fd47fa717290@linaro.org>
+Date:   Wed, 4 May 2022 17:07:19 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220504012601.423644-1-marex@denx.de>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH v3 1/3] dt-bindings: Add Sercomm (Suzhou) Corporation
+ vendor prefix
+Content-Language: en-US
+To:     Mikhail Zhilkin <csharper2005@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Karim <Karimdplay@gmail.com>, M <x1@disroot.org>
+References: <20220503154254.2339744-1-csharper2005@gmail.com>
+ <20220503154700.2339796-1-csharper2005@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220503154700.2339796-1-csharper2005@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 04 May 2022 03:26:01 +0200, Marek Vasut wrote:
-> Add missing reg and reg-names properties for both 'LDB_CTRL'
-> and 'LVDS_CTRL' registers.
-> 
-> Fixes: 463db5c2ed4ae ("drm: bridge: ldb: Implement simple Freescale i.MX8MP LDB bridge")
-> Signed-off-by: Marek Vasut <marex@denx.de>
-> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> Cc: Lucas Stach <l.stach@pengutronix.de>
-> Cc: Maxime Ripard <maxime@cerno.tech>
-> Cc: Peng Fan <peng.fan@nxp.com>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Robby Cai <robby.cai@nxp.com>
-> Cc: Robert Foss <robert.foss@linaro.org>
-> Cc: Sam Ravnborg <sam@ravnborg.org>
-> Cc: Thomas Zimmermann <tzimmermann@suse.de>
-> Cc: devicetree@vger.kernel.org
-> To: dri-devel@lists.freedesktop.org
-> ---
->  .../bindings/display/bridge/fsl,ldb.yaml         | 16 +++++++++++++++-
->  1 file changed, 15 insertions(+), 1 deletion(-)
-> 
+On 03/05/2022 17:47, Mikhail Zhilkin wrote:
+> Update Documentation/devicetree/bindings/vendor-prefixes.yaml 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+This is visible from the diff, so just "Add sercomm vendor prefix  for ...."
+
+to include
+> "sercomm" as a vendor prefix for "Sercomm (Suzhou) Corporation".
+> Company website:
+> Link: https://www.sercomm.com/
+> 
+> Signed-off-by: Mikhail Zhilkin <csharper2005@gmail.com>
+> ---
+>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+
+
+Best regards,
+Krzysztof
