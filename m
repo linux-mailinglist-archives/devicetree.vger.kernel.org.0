@@ -2,92 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 772E6519B79
-	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 11:20:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BA0A3519B85
+	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 11:23:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347064AbiEDJXQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 May 2022 05:23:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57994 "EHLO
+        id S1347119AbiEDJ0x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 May 2022 05:26:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33236 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347050AbiEDJXM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 05:23:12 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 709CD24F0E;
-        Wed,  4 May 2022 02:19:37 -0700 (PDT)
-X-UUID: 4dd035e07b0047e8847d8c8a09d1d66a-20220504
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.4,REQID:80393125-8c08-48a6-a30a-5d75c75d3541,OB:0,LO
-        B:0,IP:0,URL:0,TC:0,Content:-20,EDM:0,RT:0,SF:95,FILE:0,RULE:Release_Ham,A
-        CTION:release,TS:75
-X-CID-INFO: VERSION:1.1.4,REQID:80393125-8c08-48a6-a30a-5d75c75d3541,OB:0,LOB:
-        0,IP:0,URL:0,TC:0,Content:-20,EDM:0,RT:0,SF:95,FILE:0,RULE:Spam_GS981B3D,A
-        CTION:quarantine,TS:75
-X-CID-META: VersionHash:faefae9,CLOUDID:9498ac2f-6199-437e-8ab4-9920b4bc5b76,C
-        OID:0b065cd284c6,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,File:nil
-        ,QS:0,BEC:nil
-X-UUID: 4dd035e07b0047e8847d8c8a09d1d66a-20220504
-Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
-        (envelope-from <rex-bc.chen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1318471534; Wed, 04 May 2022 17:19:28 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
- Wed, 4 May 2022 17:19:27 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
- mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.792.3 via Frontend Transport; Wed, 4 May 2022 17:19:27 +0800
-From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
-To:     <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <chunkuang.hu@kernel.org>, <p.zabel@pengutronix.de>
-CC:     <airlied@linux.ie>, <daniel@ffwll.ch>, <matthias.bgg@gmail.com>,
-        <jitao.shi@mediatek.com>, <xinlei.lee@mediatek.com>,
-        <dri-devel@lists.freedesktop.org>,
-        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Rex-BC Chen <rex-bc.chen@mediatek.com>
-Subject: [PATCH v6 4/4] drm/mediatek: Add MT8186 DSI compatible for mtk_drm_drv.c
-Date:   Wed, 4 May 2022 17:19:23 +0800
-Message-ID: <20220504091923.2219-5-rex-bc.chen@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20220504091923.2219-1-rex-bc.chen@mediatek.com>
-References: <20220504091923.2219-1-rex-bc.chen@mediatek.com>
+        with ESMTP id S1347023AbiEDJ0w (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 05:26:52 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9F2124F1C
+        for <devicetree@vger.kernel.org>; Wed,  4 May 2022 02:23:17 -0700 (PDT)
+Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
+        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <a.fatoum@pengutronix.de>)
+        id 1nmBDx-0006Us-V7; Wed, 04 May 2022 11:23:10 +0200
+Message-ID: <79c7891a-9a68-a111-094d-be9804071a9e@pengutronix.de>
+Date:   Wed, 4 May 2022 11:23:06 +0200
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+From:   Ahmad Fatoum <a.fatoum@pengutronix.de>
+Subject: Re: [PATCH V2] nvmem: add driver handling U-Boot environment
+ variables
+To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>
+Cc:     Tom Rini <trini@konsulko.com>, linux-mtd@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        u-boot@lists.denx.de, devicetree@vger.kernel.org,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>
+References: <20220503165658.13932-1-zajec5@gmail.com>
+Content-Language: en-US
+In-Reply-To: <20220503165658.13932-1-zajec5@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
+X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-6.7 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The compatible "mediatek,mt8186-dsi" is used by MT8186 DSI, so
-add it to mtk_ddp_comp_dt_ids in mtk_drm_drv.c.
+Hello Rafał,
 
-Signed-off-by: Rex-BC Chen <rex-bc.chen@mediatek.com>
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
----
- drivers/gpu/drm/mediatek/mtk_drm_drv.c | 2 ++
- 1 file changed, 2 insertions(+)
+On 03.05.22 18:56, Rafał Miłecki wrote:
+> From: Rafał Miłecki <rafal@milecki.pl>
+> 
+> U-Boot stores its setup as environment variables. It's a list of
+> key-value pairs stored on flash device with a custom header.
+> 
+> This commit adds an NVMEM driver that:
+> 1. Provides NVMEM access to environment vars binary data
+> 2. Extracts variables as NVMEM cells
+> 
+> It can be used for:
+> 1. Accessing env variables from user-space
 
-diff --git a/drivers/gpu/drm/mediatek/mtk_drm_drv.c b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
-index 6abe6bcacbdc..0104283767ad 100644
---- a/drivers/gpu/drm/mediatek/mtk_drm_drv.c
-+++ b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
-@@ -544,6 +544,8 @@ static const struct of_device_id mtk_ddp_comp_dt_ids[] = {
- 	  .data = (void *)MTK_DSI },
- 	{ .compatible = "mediatek,mt8183-dsi",
- 	  .data = (void *)MTK_DSI },
-+	{ .compatible = "mediatek,mt8186-dsi",
-+	  .data = (void *)MTK_DSI },
- 	{ }
- };
- 
+Is this already possible? The only interface I know of is the /nvmem
+file in sysfs, but that one is not per cell, but per device.
+
+> +	label = of_get_property(np->parent, "label", NULL);
+> +	if (!label)
+> +		label = np->parent->name;
+> +
+> +	priv->mtd = get_mtd_device_nm(label);
+> +	if (IS_ERR(priv->mtd)) {
+> +		dev_err(dev, "Failed to find \"%s\" MTD device: %ld\n", label, PTR_ERR(priv->mtd));
+> +		return PTR_ERR(priv->mtd);
+> +	}
+
+I am trying to make sense of this using the binding, but I can't.
+Do you have an example device tree fragment?
+
+Cheers,
+Ahmad
+
 -- 
-2.18.0
-
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
