@@ -2,107 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F401F5196A4
-	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 06:49:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6B0FB5196EF
+	for <lists+devicetree@lfdr.de>; Wed,  4 May 2022 07:35:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239660AbiEDEuK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 May 2022 00:50:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40162 "EHLO
+        id S238232AbiEDFjP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 May 2022 01:39:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50272 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344543AbiEDEuF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 00:50:05 -0400
-Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 623F82CC9F
-        for <devicetree@vger.kernel.org>; Tue,  3 May 2022 21:46:29 -0700 (PDT)
-Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (Client did not present a certificate)
-        by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 45E6B2C044A;
-        Wed,  4 May 2022 04:46:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
-        s=mail181024; t=1651639587;
-        bh=C93+mXRX31BdXpVA3Y58To51HyC8bXyh2ozoSRmpz1A=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=rx2UWi/uLYNS7f4iAlGmvy61naMOLZcZ4oaX8nJZIG+diDe1/su+C1TegoGOFeeEC
-         quar8tMuhGxUxb2V8PJDEqYQWfrzzdZbvE/KWL2oxDiba1HlMZQmSNjn00iPQgffqa
-         qtArDfOqblSuM18ZOBymPGZHrXU2OtucDhMlqNkgRgZ3+aYNsZcj2sRSiyRvLq1CqZ
-         6+pQGlpAEE/VVFtv8BLY7XZS0L3HKdZEZ/iZfPcXC47NuDU4loFUgm71QBDG/uSm4M
-         YP8VZe6WhnJx8Woo6ZJWDMMQ5N3y7QdPmDpf1Xax6sMiYSLq6iU5qQxpbgQfqBvf8S
-         8QDFZbuyNbeiA==
-Received: from pat.atlnz.lc (Not Verified[10.32.16.33]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
-        id <B627205220001>; Wed, 04 May 2022 16:46:26 +1200
-Received: from chrisp-dl.ws.atlnz.lc (chrisp-dl.ws.atlnz.lc [10.33.22.30])
-        by pat.atlnz.lc (Postfix) with ESMTP id E826013EE63;
-        Wed,  4 May 2022 16:46:26 +1200 (NZST)
-Received: by chrisp-dl.ws.atlnz.lc (Postfix, from userid 1030)
-        id E4BD72A1FBB; Wed,  4 May 2022 16:46:26 +1200 (NZST)
-From:   Chris Packham <chris.packham@alliedtelesis.co.nz>
-To:     catalin.marinas@arm.com, will@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, andrew@lunn.ch,
-        gregory.clement@bootlin.com, sebastian.hesselbarth@gmail.com,
-        kostap@marvell.com, robert.marko@sartura.hr
-Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Chris Packham <chris.packham@alliedtelesis.co.nz>
-Subject: [PATCH v5 2/2] arm64: marvell: enable the 98DX2530 pinctrl driver
-Date:   Wed,  4 May 2022 16:46:24 +1200
-Message-Id: <20220504044624.951841-3-chris.packham@alliedtelesis.co.nz>
-X-Mailer: git-send-email 2.36.0
-In-Reply-To: <20220504044624.951841-1-chris.packham@alliedtelesis.co.nz>
-References: <20220504044624.951841-1-chris.packham@alliedtelesis.co.nz>
+        with ESMTP id S238209AbiEDFjO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 01:39:14 -0400
+Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com [199.106.114.39])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8191B23BFE;
+        Tue,  3 May 2022 22:35:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1651642539; x=1683178539;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=HERzZ8fE5BhLt+64mZr7M8chYHgaQz+gAR/fUV9fewc=;
+  b=vpHSV8q43KJwTTOkDbtakd9QELbYSEhtPtfP76JYxz6i7NQfD+3SaJHd
+   Mxw5LgDnoO8JrH679TIKp+6N8Bk5ouvppECCPxQ54wPw2AEYnCZyVGTb6
+   1SatCxtMAovMNJdxcV3K1W9zTHrbgtJV0n8hE+Mc31WARwGAQWA5qLE3M
+   8=;
+Received: from unknown (HELO ironmsg-SD-alpha.qualcomm.com) ([10.53.140.30])
+  by alexa-out-sd-02.qualcomm.com with ESMTP; 03 May 2022 22:35:38 -0700
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg-SD-alpha.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 May 2022 22:35:38 -0700
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Tue, 3 May 2022 22:35:38 -0700
+Received: from [10.216.1.126] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Tue, 3 May 2022
+ 22:35:35 -0700
+Message-ID: <e74aacdf-3ff7-261d-997f-5b6566b66207@quicinc.com>
+Date:   Wed, 4 May 2022 11:05:29 +0530
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-SEG-SpamProfiler-Analysis: v=2.3 cv=C7GXNjH+ c=1 sm=1 tr=0 a=KLBiSEs5mFS1a/PbTCJxuA==:117 a=oZkIemNP1mAA:10 a=XQcNo-tEeLJW46c85tUA:9
-X-SEG-SpamProfiler-Score: 0
-x-atlnz-ls: pat
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.6.2
+Subject: Re: [PATCH v4] arm64: dts: qcom: sc7280: Add lpasscore & lpassaudio
+ clock controllers
+Content-Language: en-US
+To:     Stephen Boyd <swboyd@chromium.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     Douglas Anderson <dianders@chromium.org>,
+        <devicetree@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20220503113246.13857-1-quic_tdas@quicinc.com>
+ <CAE-0n53QZn8VYB-dxzwccYDURU-0qW3ZwsuOEECwrKGAhYzwgw@mail.gmail.com>
+From:   Taniya Das <quic_tdas@quicinc.com>
+In-Reply-To: <CAE-0n53QZn8VYB-dxzwccYDURU-0qW3ZwsuOEECwrKGAhYzwgw@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-7.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This commit makes sure the drivers for the 98DX2530 pin controller is
-enabled.
+Hello Stephen,
 
-Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
----
+On 5/4/2022 12:40 AM, Stephen Boyd wrote:
+> Quoting Taniya Das (2022-05-03 04:32:46)
+>> Add the low pass audio clock controller device nodes. Keep the lpasscc
+>> clock node disabled and enabled for lpass pil based devices.
+> 
+> Does it mean that we're going to have overlapping reg ranges between
+> nodes in DT for clk controllers? That is not proper DT style, indicating
+> that we should combine the overlapping nodes and then have some
+> compatible or DT property telling us how to treat the clks in the audio
+> subsystem.
+> 
 
-Notes:
-    Changes in v5:
-    - None
-    Changes in v4:
-    - None
-    Changes in v3:
-    - Add review from Andrew
-    Changes in v2:
-    - None
+In the case where PIL based LPASS node would be used, we would disable 
+the other lpass clock controller nodes. Does that seem fine or I would 
+need to map the complete range in the current PIL driver if that works.
 
- arch/arm64/Kconfig.platforms | 2 ++
- 1 file changed, 2 insertions(+)
+>>
+>> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
+>> ---
+>> [v4]
+>>   * Mark lpasscc[lpasscc@3000000] device node as "disabled".
 
-diff --git a/arch/arm64/Kconfig.platforms b/arch/arm64/Kconfig.platforms
-index 30b123cde02c..229571d57496 100644
---- a/arch/arm64/Kconfig.platforms
-+++ b/arch/arm64/Kconfig.platforms
-@@ -183,11 +183,13 @@ config ARCH_MVEBU
- 	select PINCTRL_ARMADA_37XX
- 	select PINCTRL_ARMADA_AP806
- 	select PINCTRL_ARMADA_CP110
-+	select PINCTRL_AC5
- 	help
- 	  This enables support for Marvell EBU familly, including:
- 	   - Armada 3700 SoC Family
- 	   - Armada 7K SoC Family
- 	   - Armada 8K SoC Family
-+	   - 98DX2530 SoC Family
-=20
- config ARCH_MXC
- 	bool "ARMv8 based NXP i.MX SoC family"
---=20
-2.36.0
-
+-- 
+Thanks & Regards,
+Taniya Das.
