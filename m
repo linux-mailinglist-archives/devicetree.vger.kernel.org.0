@@ -2,65 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E77D651C9C8
-	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 21:58:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B9B8B51C9DB
+	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 22:03:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1385484AbiEEUCQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 May 2022 16:02:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49220 "EHLO
+        id S1382031AbiEEUGu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 May 2022 16:06:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54856 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1383706AbiEEUCQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 16:02:16 -0400
-Received: from mail-oa1-f50.google.com (mail-oa1-f50.google.com [209.85.160.50])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 602CA5EBC9;
-        Thu,  5 May 2022 12:58:34 -0700 (PDT)
-Received: by mail-oa1-f50.google.com with SMTP id 586e51a60fabf-edeb6c3642so5287860fac.3;
-        Thu, 05 May 2022 12:58:34 -0700 (PDT)
+        with ESMTP id S244961AbiEEUGr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 16:06:47 -0400
+Received: from mail-ot1-f44.google.com (mail-ot1-f44.google.com [209.85.210.44])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0DD895EDF4;
+        Thu,  5 May 2022 13:03:07 -0700 (PDT)
+Received: by mail-ot1-f44.google.com with SMTP id m6-20020a05683023a600b0060612720715so3632937ots.10;
+        Thu, 05 May 2022 13:03:07 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=oBgLJC6txoRH8efJ9A0HaDL743e4v3tUFLl4QcZh6fg=;
-        b=tAz7gDIjj+liRx5as2qPfeS0ehNPLBlxvWbmO4xTma9zHvyZCJtPqO88HTkMwKgFKo
-         i+tq7c/kk7hMrkjLqNoxO3PkMXKxIjiEAxF0MwA+AoXj/SYn/DbYarEoBP7EZB2qHsFL
-         HCN0rV5GkvoDCD4KqJHiQ7upl8ufyHyNB+sFXLu/gncUaI/Sit7PmzqRRKl7eaLNgxby
-         DFhvN0YLI+Lmp6uCfwpRh0nHH7d1HCYO13+KlIh35cUp6AQznPY7S7C3BBeivSwyLfTt
-         LyM3naimg4GjnXb4nm0IR7I3IFQprvwro4eoa0nQjNhSThAlAewGqbgIxNfKXRxLvUfa
-         nndg==
-X-Gm-Message-State: AOAM531AejdrBDn7OcuIJqZKOAt9XC886Xym+0pJgL7R7GDxBUilCkq0
-        8E+pJrTsIVKjsh5myQ2bjQ==
-X-Google-Smtp-Source: ABdhPJwZrM0/FzDKiZrLq5mUOfVxF6AlSDCH+r6ocP91vWdO8W/w2KPkEt1c9NBOuD2DZTojloU5sw==
-X-Received: by 2002:a05:6870:b62a:b0:dd:f3b0:96da with SMTP id cm42-20020a056870b62a00b000ddf3b096damr3027837oab.258.1651780713715;
-        Thu, 05 May 2022 12:58:33 -0700 (PDT)
+        bh=Pyq/2vKiCJeafLAKrLbpew+3CjQ+qVQC3K8MNbXKH7s=;
+        b=R9OswNI/bjFONSGVJ3EPs/rftmN7CfKjqkvnGdapZ3Yt76VwIySaNj1j26EsqRicsc
+         c7JkMC71ipXEveZ7ee6YjS7YK0NxvDDVjxw67hf3TtBK57qgMCsw79Hu0TMfPUGmT58S
+         j3CHsdYOKd52+QfXaXJV+i5KKEKQAymILzykTBBgTz+zkoVaWCMm+3/Sd/89if7iSn61
+         RbNBZ5NWNT696fQungArPHZU6hYMQcA4O6U2btd3ZUP/ymzFbyvdL1llisNrZ3ygGptI
+         /GbdY4wEIFz4VqE9KMaDY0r2nb9LqyJSUMyNNQOk+CBRqD883s/KxOuQUkuiQxlJLZiI
+         hEow==
+X-Gm-Message-State: AOAM5338TbvCu9kfb+M+MCvbjDNFcM36aSd6b9sKQvHPitpqJs3w0VoR
+        Ka7/9qMniJZyB3laSqLgLwZbyvmVrw==
+X-Google-Smtp-Source: ABdhPJzs1asTZTmKLXNMh0PXTiEvLAWMuCmzpJCTeiBCudCzgeCyMfW7UzBRQJMYiJSe1XEvIayZnQ==
+X-Received: by 2002:a9d:6ac7:0:b0:5e6:ec48:d882 with SMTP id m7-20020a9d6ac7000000b005e6ec48d882mr9872300otq.274.1651780986171;
+        Thu, 05 May 2022 13:03:06 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id q130-20020acad988000000b00324f24e623fsm993653oig.3.2022.05.05.12.58.32
+        by smtp.gmail.com with ESMTPSA id a32-20020a9d2623000000b006060322123csm935981otb.12.2022.05.05.13.03.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 May 2022 12:58:33 -0700 (PDT)
-Received: (nullmailer pid 94673 invoked by uid 1000);
-        Thu, 05 May 2022 19:58:32 -0000
-Date:   Thu, 5 May 2022 14:58:32 -0500
+        Thu, 05 May 2022 13:03:05 -0700 (PDT)
+Received: (nullmailer pid 100851 invoked by uid 1000);
+        Thu, 05 May 2022 20:03:03 -0000
+Date:   Thu, 5 May 2022 15:03:03 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Marijn Suijten <marijn.suijten@somainline.org>
-Cc:     Martin Botka <martin.botka@somainline.org>,
-        ~postmarketos/upstreaming@lists.sr.ht, devicetree@vger.kernel.org,
-        phone-devel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Pavel Machek <pavel@ucw.cz>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        linux-leds@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        linux-kernel@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@somainline.org>
-Subject: Re: [PATCH 1/4] dt-bindings: leds: qcom-lpg: Add compatible for
- PM660L LPG block
-Message-ID: <YnQsaMOM1ei6SB31@robh.at.kernel.org>
-References: <20220504205704.699500-1-marijn.suijten@somainline.org>
+To:     Zhen Lei <thunder.leizhen@huawei.com>
+Cc:     Catalin Marinas <catalin.marinas@arm.com>,
+        Baoquan He <bhe@redhat.com>, devicetree@vger.kernel.org,
+        Jonathan Corbet <corbet@lwn.net>,
+        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
+        Will Deacon <will@kernel.org>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        linux-doc@vger.kernel.org, Vivek Goyal <vgoyal@redhat.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Chen Zhou <dingguo.cz@antgroup.com>, kexec@lists.infradead.org,
+        Feng Zhou <zhoufeng.zf@bytedance.com>,
+        Borislav Petkov <bp@alien8.de>, x86@kernel.org,
+        Ingo Molnar <mingo@redhat.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Eric Biederman <ebiederm@xmission.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Kefeng Wang <wangkefeng.wang@huawei.com>,
+        Dave Young <dyoung@redhat.com>,
+        John Donnelly <John.p.donnelly@oracle.com>,
+        Dave Kleikamp <dave.kleikamp@oracle.com>,
+        "H . Peter Anvin" <hpa@zytor.com>
+Subject: Re: [PATCH v23 5/6] of: Support more than one crash kernel regions
+ for kexec -s
+Message-ID: <YnQtd5+iSXj+R5X/@robh.at.kernel.org>
+References: <20220505091845.167-1-thunder.leizhen@huawei.com>
+ <20220505091845.167-6-thunder.leizhen@huawei.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220504205704.699500-1-marijn.suijten@somainline.org>
+In-Reply-To: <20220505091845.167-6-thunder.leizhen@huawei.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
@@ -72,14 +81,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 04 May 2022 22:57:01 +0200, Marijn Suijten wrote:
-> Document the availability of an LPG configuration for the PM660L PMIC in
-> the Qualcomm Light Pulse Generator driver.
+On Thu, 05 May 2022 17:18:44 +0800, Zhen Lei wrote:
+> When "crashkernel=X,high" is used, there may be two crash regions:
+> high=crashk_res and low=crashk_low_res. But now the syscall
+> kexec_file_load() only add crashk_res into "linux,usable-memory-range",
+> this may cause the second kernel to have no available dma memory.
 > 
-> Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
+> Fix it like kexec tool do for option -c, add both 'high' and 'low' regions
+> into the dtb.
+> 
+> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
 > ---
->  Documentation/devicetree/bindings/leds/leds-qcom-lpg.yaml | 1 +
->  1 file changed, 1 insertion(+)
+>  drivers/of/kexec.c | 9 +++++++++
+>  1 file changed, 9 insertions(+)
 > 
 
 Acked-by: Rob Herring <robh@kernel.org>
