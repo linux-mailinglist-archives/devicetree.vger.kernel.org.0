@@ -2,68 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4BD9E51C373
-	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 17:08:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3DD0A51C3A4
+	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 17:15:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1381074AbiEEPLK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 May 2022 11:11:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34034 "EHLO
+        id S1381197AbiEEPTJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 May 2022 11:19:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40344 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232149AbiEEPLI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 11:11:08 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 279F638BDA;
-        Thu,  5 May 2022 08:07:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1651763249; x=1683299249;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=ofOX12TGojhwMN/6KVsscVM33pqSCNg+r9yu6HGPdus=;
-  b=cGLpXgNbtVFx4D+CRdVFagqWeSrVVAncL5Ipx/wq/bQEbvxaINDVv3PL
-   reOProTAjqEUoy9xpNsVDs09UIyfDcC/M8I5/UtashDpe6uM1F3ORwqtj
-   gLeJhiX9taAB15DYOpIrZkZvgFT65T4+fD+Gv6BGp6hjpME1PEu2aTL1w
-   D9CsZMOmLNGpsqN/Vq9593xiQQaQfBYWbWe4d0479eDaASSbRQUxFj3E0
-   PzQusMaUhCXrnMTx0xCybhc7Hngikd6Fodnt8hKWY61RN1p0+LYJbLJ28
-   gb4gLHgkH6bEwF2FEqs85RGCbBQW18Hh6l077fyL7WXGg6JAAo13jHyQG
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.91,201,1647327600"; 
-   d="scan'208";a="157932577"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 05 May 2022 08:07:28 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17; Thu, 5 May 2022 08:07:27 -0700
-Received: from [10.159.245.112] (10.10.115.15) by chn-vm-ex03.mchp-main.com
- (10.10.85.151) with Microsoft SMTP Server id 15.1.2375.17 via Frontend
- Transport; Thu, 5 May 2022 08:07:25 -0700
-Message-ID: <ce1eeb0f-7211-f865-39d8-c0cc758de947@microchip.com>
-Date:   Thu, 5 May 2022 17:07:18 +0200
+        with ESMTP id S242784AbiEEPSw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 11:18:52 -0400
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F294F47054;
+        Thu,  5 May 2022 08:15:12 -0700 (PDT)
+Received: by mail-ej1-x62c.google.com with SMTP id y3so9301562ejo.12;
+        Thu, 05 May 2022 08:15:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=P9U8VtHTMpxS3daOmFxvM8CiEOLd4g2YjivTRqBj1gg=;
+        b=pylu+FcH16PRiwGxvsJ4Lvm8VVlU35vFQHYuCBoWRDRpESWBGDwGuKu0dR9BNAcbqc
+         cKx/JvbNE+O1OdTPQl6gHPG84lxarUomOauCC5h+37/TVx6QZovXxu0XTMAu09utWHin
+         B/eI9jpxuzn/9GpIC0QSQx88YVt0w5HNWJVybF52KdYjdZjezHNF3nZKTU9MuzUAzgvl
+         2E+gls8B87ahmQK74ZKRCUuaVIBgyVu1fyuwjwDFDVDcd/CxOz8RsmsRtJc7X9Gnzb6D
+         VDPU8wCLdF5sluzx4F1K3U6m00TU/VoR2kCAedh8Qq955i57wWN5IVEaQf0zTaNKqaTM
+         0kGQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=P9U8VtHTMpxS3daOmFxvM8CiEOLd4g2YjivTRqBj1gg=;
+        b=Lao8he9CrL6bv3MSTmtyEmYok3GQv3hALya7AXShs8VChg19TrovSr4koYOJv7ukZG
+         CtWvetLGm+3JNP7JViVbW0PNpegHoparhK8jOFDlszjp02TK/3gXygi+WXJFUq15u9ne
+         6YAOoVb6MhKkUEZbKbQBy/0LhH16WA4uR+4WvQbfgM8SF4olev/e2gtgZRcY5KB621Vh
+         klutoSfk2ITQ2GsogK55setrm7cpAmyuKwKmIJcnvghG/diUOUT65WQaJIlsoR/cAQXA
+         rYveVoWsFZQFRkJbMtoN1CC+6qf09KJugKLQ2gc/zYSjoIAx2WvoR0ZLVq0OBSDszA0O
+         w1vA==
+X-Gm-Message-State: AOAM531nRd1/OicxJIRZBE6AgFigUmUbgckayVCQbwBWUU/CKEDOECBa
+        cC8VW7UUbMvoYcA86JsN1bU=
+X-Google-Smtp-Source: ABdhPJxbaNdvNnwR7fqSaGdLSEy4BrGkyc6cPNhTM1hE34Dag/JoDOsa5U4KH+iru1hh2yxHWfyfyg==
+X-Received: by 2002:a17:907:1c87:b0:6f0:29ea:cc01 with SMTP id nb7-20020a1709071c8700b006f029eacc01mr26942736ejc.671.1651763711293;
+        Thu, 05 May 2022 08:15:11 -0700 (PDT)
+Received: from skbuf ([188.25.160.86])
+        by smtp.gmail.com with ESMTPSA id b21-20020aa7c915000000b0042617ba6380sm954779edt.10.2022.05.05.08.15.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 05 May 2022 08:15:10 -0700 (PDT)
+Date:   Thu, 5 May 2022 18:15:07 +0300
+From:   Vladimir Oltean <olteanv@gmail.com>
+To:     Arun.Ramadoss@microchip.com
+Cc:     songliubraving@fb.com, linux-kernel@vger.kernel.org,
+        bpf@vger.kernel.org, daniel@iogearbox.net, ast@kernel.org,
+        robh+dt@kernel.org, andrew@lunn.ch, devicetree@vger.kernel.org,
+        linux@armlinux.org.uk, andrii@kernel.org,
+        UNGLinuxDriver@microchip.com, john.fastabend@gmail.com,
+        vivien.didelot@gmail.com, f.fainelli@gmail.com, kuba@kernel.org,
+        kpsingh@kernel.org, edumazet@google.com, pabeni@redhat.com,
+        netdev@vger.kernel.org, kafai@fb.com, yhs@fb.com,
+        krzysztof.kozlowski+dt@linaro.org, davem@davemloft.net,
+        Woojung.Huh@microchip.com
+Subject: Re: [Patch net-next v13 07/13] net: dsa: microchip: add LAN937x SPI
+ driver
+Message-ID: <20220505151507.5fp3lur74gs4faee@skbuf>
+References: <20220504151755.11737-1-arun.ramadoss@microchip.com>
+ <20220504151755.11737-8-arun.ramadoss@microchip.com>
+ <20220504200726.pn7y73gt7wc2dpsg@skbuf>
+ <52e682a1bcd2aac1097f2b4f1948066fe5bb6924.camel@microchip.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH v3 6/6] ARM: configs: at91: sama7_defconfig: add MCHP PDMC
- and DMIC drivers
-Content-Language: en-US
-To:     Mark Brown <broonie@kernel.org>, <Codrin.Ciubotariu@microchip.com>
-CC:     <alsa-devel@alsa-project.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <lars@metafoo.de>,
-        <perex@perex.cz>, <tiwai@suse.com>, <robh+dt@kernel.org>
-References: <20220307122202.2251639-1-codrin.ciubotariu@microchip.com>
- <20220307122202.2251639-7-codrin.ciubotariu@microchip.com>
- <d84e0e48-cf35-ae1a-e384-067d361457ba@microchip.com>
- <77c2b348-b7a6-458d-21b6-68c54efc317f@microchip.com>
- <YnPmyEujwByeFDdp@sirena.org.uk>
-From:   Nicolas Ferre <nicolas.ferre@microchip.com>
-Organization: microchip
-In-Reply-To: <YnPmyEujwByeFDdp@sirena.org.uk>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <52e682a1bcd2aac1097f2b4f1948066fe5bb6924.camel@microchip.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -71,34 +81,73 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05/05/2022 at 17:01, Mark Brown wrote:
-> On Thu, May 05, 2022 at 02:47:04PM +0000,Codrin.Ciubotariu@microchip.com  wrote:
->> On 05.05.2022 16:58, Nicolas Ferre wrote:
->>> I'm fine with that, but I see that some Kconfig entries "select" this
->>> SND_SOC_DMIC directly (amd, intel, mediatek, stm).
->>> If it's absolutely needed for PDMC to work, what about doing the same as
->>> it would prevent some broken configurations?
->> The only way it makes sense to me to have this driver selected somewhere
->> is in a sound card driver, used for a specific board, which we know it
->> has PDM microphones. Since, for now, we use the simple sound card for
->> our audio interfaces, we have no place to add this select.
->> The reason I do not like to add this select under the controller driver,
->> as some of the vendors did, is because, in the future, we might have
->> different PDM microphones that might not work with SND_SOC_DMIC and
->> might need a different driver.
->> I don't have a strong opinion on this. If you think I am overthinking,
->> please let me know and I will change this.
-> It's unlikely but possible that there could be some other device
-> connected (eg, you could have a DSP or something that generates PDM
-> output).  If the driver doesn't directly instantiate the DMIC itself
-> then it's probably reasonable for it to be user controllable if the DMIC
-> driver is there.
+On Thu, May 05, 2022 at 10:32:17AM +0000, Arun.Ramadoss@microchip.com wrote:
+> > >  static int lan937x_switch_init(struct ksz_device *dev)
+> > >  {
+> > > +     int ret;
+> > > +
+> > >       dev->ds->ops = &lan937x_switch_ops;
+> > > 
+> > > +     /* Check device tree */
+> > > +     ret = lan937x_check_device_id(dev);
+> > > +     if (ret < 0)
+> > > +             return ret;
+> > > +
+> > 
+> > Can't this be called from lan937x_spi_probe() directly, why do you
+> > need
+> > to go through lan937x_switch_register() first?
+> 
+> lan937x_check_device_id function compares the dev->chip_id with the
+> lan937x_switch_chip array and populate the some of the parameters of
+> struct ksz_dev. The dev->chip_id is populated using the dev->dev_ops-
+> >detect in the ksz_switch_register function. If lan937x_check_device_id
+> needs to be called in spi_probe, then chip_id has to be identified as
+> part of spi_probe function. Since ksz_switch_register handles the
+> identifying the chip_id, checking the device_id is part of switch_init.
+>  
+>  if (dev->dev_ops->detect(dev))
+>              return -EINVAL;
+>  
+>  ret = dev->dev_ops->init(dev);
+>  if (ret)
+>             return ret;
 
-Fair enough, It makes perfect sense to me as it is then.
-Thanks for the feedback!
+Whatever you do, please use a common pattern for all of ksz9477, ksz8,
+and your lan937x. This includes validation of chip id, placement of the
+chip_data and dev_ops structures, and reuse as much logic as possible.
+The key is to limit the chip-specific information to structured data
+(tables) wherever possible and let common code deal with them.
 
-Best regards,
-   Nicolas
+For example there is no reason why struct ksz_chip_data is redefined for
+every switch, why copying from "chip" to "dev" is duplicated for every
+switch, and yet, why every other switch copies from "chip" to "dev" in
+the "switch_init" function yet lan937x does it from "check_device_id".
+So much boilerplate, yet different in subtle ways, makes the code very
+unpleasant to review.
 
--- 
-Nicolas Ferre
+I'm sure you'll find a straightforward way to code up a probing function.
+
+> As per the comment, enable_spi_indirect_access function called twice
+> https://lore.kernel.org/netdev/20220408232557.b62l3lksotq5vuvm@skbuf/
+> I have removed the enable_spi_indirect_access in the lan937x_setup
+> function in v13 patch 6. But it actually failed our regression.
+> The SPI indirect is required for accessing the Internal phy registers.
+> We have enabled it in lan937x_init before registering the
+> mdio_register. We need it for reading the phy id.
+> And another place enabled in lan937x_setup after lan937x_switch_reset
+> function. When I removed enabling in setup function, switch_reset
+> disables the spi indirecting addressing. Because of that further phy
+> register r/w fails. In Summary, we need to enable spi indirect access
+> in both the places, one for mdio_register and another after
+> switch_reset. 
+> 
+> Can I enable it both the places? Kindly suggest. 
+
+So you call lan937x_reset_switch() as the first thing in ds->ops->setup(),
+and this momentarily breaks the earlier MDIO bus setup done from probe
+-> ksz_switch_register() -> dev_ops->init().
+
+So why don't you move the lan937x_enable_spi_indirect_access() and
+lan937x_mdio_register() calls to ds->ops->setup(), _after_ the switch
+soft reset, then?
