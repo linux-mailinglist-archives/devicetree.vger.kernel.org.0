@@ -2,112 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4283D51BBE5
-	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 11:22:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C49151BBE8
+	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 11:22:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245206AbiEEJ0N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 May 2022 05:26:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37538 "EHLO
+        id S1352745AbiEEJ0V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 May 2022 05:26:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37836 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1352637AbiEEJ0C (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 05:26:02 -0400
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49AFF4EDDC
-        for <devicetree@vger.kernel.org>; Thu,  5 May 2022 02:22:23 -0700 (PDT)
-Received: by mail-wr1-x429.google.com with SMTP id t6so5272827wra.4
-        for <devicetree@vger.kernel.org>; Thu, 05 May 2022 02:22:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=YZkhX8VdSbRZKmQIOzgkSfpmToAIJcyGhKGvONZeKPM=;
-        b=wgm3Tdzap7kkOBihTP6T0IhnT9G6Oc8Ge/5nUNlrSnTPInQoGJ98CKanFTwb6sMccZ
-         9d4KCxdg9LCYphRKvE9rvwU1++xkoof4loKmHyCYfxAY0gBFhMA3oPXw7NTjEqqxyHfC
-         cNwAxA8oRijMoUjff4ROoa9YilWt5ieCB4F7ZaDx7bZ5NBlRq1XEjDizZ9ItDHbBrDJw
-         rdCoDCQ1En6Y5bGPfqpHlZRcg2m4vS6Y/g4KRAX51Favpx55TneHi7u6O0EF4FPDa2B0
-         NZ6FEyOLhsL2fcnruWZj5H0x5LOeT1KGIGqo+XJU4paF90d6jjbgSv1wgUCBUHYfU45r
-         HmpQ==
+        with ESMTP id S1352609AbiEEJ0Q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 05:26:16 -0400
+Received: from mail-qv1-f46.google.com (mail-qv1-f46.google.com [209.85.219.46])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09DED4D25A;
+        Thu,  5 May 2022 02:22:38 -0700 (PDT)
+Received: by mail-qv1-f46.google.com with SMTP id l1so199046qvh.1;
+        Thu, 05 May 2022 02:22:38 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=YZkhX8VdSbRZKmQIOzgkSfpmToAIJcyGhKGvONZeKPM=;
-        b=nxeUKK42Pc8SotxI9D5G1TzOad13ebJJHg9WZJISyZd3HuEyJX9isISEIVNhxkciLh
-         0+Cz9kJjvdme4CLUpUjZPzrFshA3wDjswlduz7GvUi7iCrX6nky/4sDHMXVufrrLmuEf
-         kaVtqvvh9B58u8eRpNcoMHcB45UPe5fkDksjF5kJQC9iiC+dIkMKyaQDlHE0IHN1X9uM
-         czhQxD1TXwjtrKK4u+iCDAYCtuRn8rdpn3FJn3fa9SZDxuS1vtUGYzQHTjOBWBrOmTM8
-         ZhhAk/qh+GiUnUGPh252jnYmLfosPG1DJdWGRxAf0esH03jV67vsYWs1QyCobB/E5W2c
-         vN3w==
-X-Gm-Message-State: AOAM530rHnPNCvR6Aod+PKYRqG+BYIE8UbB/VrHlxwXOZdwT8vtU94yu
-        0OErXSB6anVj323glUYVDeTOTA==
-X-Google-Smtp-Source: ABdhPJwfam1b9VUuK2KiSROtjJ68KFyfCyHnaJU4kSRx96x9vSh8DG8UHpeSy1pcGwoX3pIR2XLwyg==
-X-Received: by 2002:a05:6000:1110:b0:20a:e113:8221 with SMTP id z16-20020a056000111000b0020ae1138221mr19276809wrw.271.1651742541836;
-        Thu, 05 May 2022 02:22:21 -0700 (PDT)
-Received: from [192.168.0.217] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id o9-20020a5d4089000000b0020c5253d8d2sm779379wrp.30.2022.05.05.02.22.20
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=6aeBtjWxwV0FYmaz1d61r1GgyEeyLd4j9oGUOYgTCiA=;
+        b=b7UHUP/hxBvPMOzRuMX/2kSi2LE2Czu8X08w68CZ7oz7y1D11FyvfPCdIzOiQChsZR
+         +HXe0cT3L5Jn2Mz7kg4J7n/I6HWEWnm2QAz386qk882lX03Ajh3rJaqqLfJcrJP2vXXT
+         8URVI6i0Kq0nxaGjXYVtyDzSB3cf475JaG0NdV6MWdBO9C7ar+aM1kBbbp0SStUJKplz
+         sLQ8JpV9vY5D1Ff3BHpJDQrqXuzLV1LHCLp/LoPozUni21VMYGH4NDJR7Yk4CxAjO79w
+         MS5QPlMIX4/fe0eVn2BtV0uCiCwV49ZYrn+yomPjFYVVjySEKwu0z4Gk/YGtchK5/pOX
+         tO1g==
+X-Gm-Message-State: AOAM5304ZLr8HBB9M3Y1CMCil2HgIbYpSHIVPSroth5SrfyHHrDF1S/u
+        MpMl86UBq9zqJosUTuEqPIUtwHHaxcN0SQ==
+X-Google-Smtp-Source: ABdhPJwJc0gaE1szT774g6ziUdZTgUjgaJJ9mUYsp4iTVgv0o05wDBPAv3RuD3/hT5Sg1qADYVn8ng==
+X-Received: by 2002:ad4:5389:0:b0:42d:a3cf:1b67 with SMTP id i9-20020ad45389000000b0042da3cf1b67mr21244205qvv.129.1651742556865;
+        Thu, 05 May 2022 02:22:36 -0700 (PDT)
+Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com. [209.85.128.180])
+        by smtp.gmail.com with ESMTPSA id y12-20020ac8524c000000b002f39b99f695sm549796qtn.47.2022.05.05.02.22.36
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 05 May 2022 02:22:21 -0700 (PDT)
-Message-ID: <e9e03c19-cf65-28b8-a81a-10995b1f262f@linaro.org>
-Date:   Thu, 5 May 2022 11:22:20 +0200
+        Thu, 05 May 2022 02:22:36 -0700 (PDT)
+Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-2f83983782fso41831617b3.6;
+        Thu, 05 May 2022 02:22:36 -0700 (PDT)
+X-Received: by 2002:a0d:d953:0:b0:2f7:d5ce:f204 with SMTP id
+ b80-20020a0dd953000000b002f7d5cef204mr22533446ywe.502.1651742556112; Thu, 05
+ May 2022 02:22:36 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [RFC v2 4/4] arm64: dts: rockchip: Add mt7531 dsa node to
- BPI-R2-Pro board
-Content-Language: en-US
-To:     frank-w@public-files.de, Vladimir Oltean <olteanv@gmail.com>
-Cc:     Frank Wunderlich <linux@fw-web.de>,
-        linux-mediatek@lists.infradead.org,
-        linux-rockchip@lists.infradead.org,
+References: <20220501082508.25511-1-biju.das.jz@bp.renesas.com>
+ <CAMuHMdV07CHm3NE9YUTMqp-ZNkWoJyR6CFU9PA0heK+9G6NDxw@mail.gmail.com> <48a6fd28-b0cc-d17d-4e0c-170240d05455@linaro.org>
+In-Reply-To: <48a6fd28-b0cc-d17d-4e0c-170240d05455@linaro.org>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Thu, 5 May 2022 11:22:24 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdWutPYzG6nVmwBfuEPnTYb8BxSuW9xZXtjvTU0_t4UtrA@mail.gmail.com>
+Message-ID: <CAMuHMdWutPYzG6nVmwBfuEPnTYb8BxSuW9xZXtjvTU0_t4UtrA@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: memory: renesas,rpc-if: Document RZ/G2UL SoC
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Landen Chao <Landen.Chao@mediatek.com>,
-        DENG Qingfang <dqfext@gmail.com>, Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Peter Geis <pgwipeout@gmail.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        netdev@vger.kernel.org
-References: <20220430130347.15190-1-linux@fw-web.de>
- <20220430130347.15190-5-linux@fw-web.de>
- <20220504152450.cs2afa4hwkqp5b5m@skbuf>
- <trinity-9f557027-8e00-4a4a-bc19-bc576e163f7b-1651678399970@3c-app-gmx-bs42>
- <20220504154720.62cwrz7frjkjbb7u@skbuf>
- <313a5b2e-c571-a13f-3447-b1cd7200f4c9@linaro.org>
- <D201CE50-280C-4089-BB9F-053FEA28FE9A@public-files.de>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <D201CE50-280C-4089-BB9F-053FEA28FE9A@public-files.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        Sergei Shtylyov <sergei.shtylyov@gmail.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05/05/2022 11:06, Frank Wunderlich wrote:
->> You can make it "(ethernet-)?ports" as well. My comment was purely to
->> make it simpler, for bindings (goes into properties, not
->> patternProperties) and for us. If you prefer to keep it like DSA core,
->> also fine.
-> 
-> Ok, i'm also thinking, the dsa-definition will be the right way (pattern-properties with optional "ethernet-") in binding.
-> 
-> Should i use "ethernet-ports" instead of "ports" here? Current dts with mt7530/mt7531 switches using "ports" so i would use it here too. If dsa prefer ethernet-ports now it should be changed in other files too.
+Hi Krzysztof,
 
-I think bindings allow both, so choose something consistent with
-existing DTS sources.
+On Thu, May 5, 2022 at 11:06 AM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+> On 02/05/2022 17:03, Geert Uytterhoeven wrote:
+> > On Sun, May 1, 2022 at 10:25 AM Biju Das <biju.das.jz@bp.renesas.com> wrote:
+> >> Document RZ/G2UL RPC-IF bindings. RZ/G2UL RPC-IF is identical to one found
+> >> on the RZ/G2L SoC. No driver changes are required as generic compatible
+> >> string "renesas,rzg2l-rpc-if" will be used as a fallback.
+> >>
+> >> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> >
+> > Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+>
+> I already sent a mem-ctrl pull request and I was not planning for a next
+> one, so maybe this could go via renesas tree?
 
-Best regards,
-Krzysztof
+Sure, will queue in renesas-devel for v5.19.
+
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Thanks!
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
