@@ -2,113 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CD78251B90D
-	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 09:30:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 04ADD51B921
+	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 09:32:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344847AbiEEHdr convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Thu, 5 May 2022 03:33:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41324 "EHLO
+        id S1345015AbiEEHfu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 May 2022 03:35:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44426 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344950AbiEEHdl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 03:33:41 -0400
-Received: from mail-qv1-f41.google.com (mail-qv1-f41.google.com [209.85.219.41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 834A1488B6;
-        Thu,  5 May 2022 00:29:57 -0700 (PDT)
-Received: by mail-qv1-f41.google.com with SMTP id l1so66440qvh.1;
-        Thu, 05 May 2022 00:29:57 -0700 (PDT)
+        with ESMTP id S242062AbiEEHft (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 03:35:49 -0400
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1B7225CF;
+        Thu,  5 May 2022 00:32:10 -0700 (PDT)
+Received: by mail-lf1-x12c.google.com with SMTP id j4so6055715lfh.8;
+        Thu, 05 May 2022 00:32:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=oB2KwW+fZDHqViOCO0SeVykq03oI7SrGtrTSNV/zeXw=;
+        b=BFRMgPCyAxXKzFPzrX83J2MXIK6omEstm896Lx2iPA/ubW3FXufIIDGSpcw8nP7CfZ
+         KT6VvMMcQWBRuio908uzwWeaZoaZF37iiYvkO9cu99FRdbR0RkWnJ/AsH6Bz3ptOkNC5
+         9kq+ZBstRLXItzwWciuW4x1sGY9BNgrvGL5YDH8eCFf9VF9MJ+7AMoz5Ti3TPSpcKo7J
+         SCqjV2razKzhfdKn1jwNKTN3W8e+110uqKe+UDoqurE1o07K8UnTvFMmgRQbpF/hqtl4
+         hXWiO544ygw/QY3BDhL4KzQP6+9CyF4G5ox7dFLLFzCaucoNe4kPJOOBSk1Srlly+IfH
+         6nRw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc:content-transfer-encoding;
-        bh=KzAVmzBQmEO2JBPDtZGXfDmIQ4cQijhB1DuSyb01WrU=;
-        b=5N1IWr6m0gkJR6vW9nBddzzvBXN+oEycvKSnnLRyVOzjlyQPbi2YCFVm/czc6ACrL2
-         UGmXp/XMODp/Bcx1hviy0ymkXrfWDQ7W3od7TZmaJDRyolpAEGYs9aRvcXdjBFU8mIMN
-         3T8973Jz/f+BbCy9mSU7Ju+ol0szF9n0BqW0iSTi8ApHnErTAIFgMzTnwdLjAI8r/q7Q
-         HMBAgNmxTsLszBr32TxYY2bdl/39thCIvx8uVGyXTGc+Dyu1xT/w+41W4jJckuZWsLvS
-         /8YISqIKmqBd4DMxCLOx29ML/EeoUvbVlZ7REiK1dgvv9w7quxrbbBX8Uf705J+SnYx2
-         L3mQ==
-X-Gm-Message-State: AOAM532h3xpTaI++bz2r6ojWutXyDXJ8uXZd1yGyH8smpopYsx81Cjc9
-        0vGCzRntqwdvNNM5CCOnp9yfv8njaPO/yw==
-X-Google-Smtp-Source: ABdhPJwckh3gPol9EtZ060BLIaj2kVITp/R4+Z33r1y8JyoJObQRTAhGAD9QZtHxqiK0A5Sy5emKqw==
-X-Received: by 2002:a05:6214:2a82:b0:443:a395:cc23 with SMTP id jr2-20020a0562142a8200b00443a395cc23mr20705112qvb.67.1651735795912;
-        Thu, 05 May 2022 00:29:55 -0700 (PDT)
-Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com. [209.85.128.176])
-        by smtp.gmail.com with ESMTPSA id j186-20020a3755c3000000b0069fc13ce20asm424674qkb.59.2022.05.05.00.29.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 05 May 2022 00:29:55 -0700 (PDT)
-Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-2ef5380669cso39197047b3.9;
-        Thu, 05 May 2022 00:29:55 -0700 (PDT)
-X-Received: by 2002:a81:234b:0:b0:2f8:4082:bbd3 with SMTP id
- j72-20020a81234b000000b002f84082bbd3mr22448044ywj.47.1651735794998; Thu, 05
- May 2022 00:29:54 -0700 (PDT)
+        bh=oB2KwW+fZDHqViOCO0SeVykq03oI7SrGtrTSNV/zeXw=;
+        b=XTudahIcyIG14kXQ4rB9VynUcyDQmY4jtSmdSWirpO9Y3Jm/kl3ahXnV62TImTUsAq
+         frHHf47brvKcBzPlh41uDisJY/UZK3xw/UdnyeMD7HfvE7FErcAS2D+eDELy/GBf7YPm
+         wzfs2wAHilJVLnLdT59qRxm+p/7KS+q2BYpNLXzS5klt7cdbuam0Co4PqAexxvW6VR6s
+         hDfmZCh53FsLT/jP0FLEYQ1snSusDjxFaGFgRRANDmil3klHtUbjGUPbNsoT4PltqBX/
+         HQzZ58D0/fk/LJs9OglCZaackVK0hjXF/u+adDACalP0xCjXSAgF5YfFfBQovASLyaDU
+         rXlw==
+X-Gm-Message-State: AOAM533CCdtsfxvOyQi+jNwvQK0HJXY1NJuPFnuSsrO9NeA61JO8hPPJ
+        j3SLZ3qEup9tPfQMyaITrSUQ42ll97JrzRygGQE=
+X-Google-Smtp-Source: ABdhPJxdjK58CQrmJIEecoD5ChKmpWmyR/5zI/i8u9leJjHYWUtdHJ1LEMyH3OIqMm8fbt5BxCCWR/FljHxYpu4pjwA=
+X-Received: by 2002:a05:6512:c03:b0:447:7912:7e6b with SMTP id
+ z3-20020a0565120c0300b0044779127e6bmr17108146lfu.508.1651735928726; Thu, 05
+ May 2022 00:32:08 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220504093000.132579-1-clement.leger@bootlin.com>
-In-Reply-To: <20220504093000.132579-1-clement.leger@bootlin.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 5 May 2022 09:29:43 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdXdGCebeGiDj-4hYH24tBVRVqGsHbPfEqfUGT88GZKZrw@mail.gmail.com>
-Message-ID: <CAMuHMdXdGCebeGiDj-4hYH24tBVRVqGsHbPfEqfUGT88GZKZrw@mail.gmail.com>
-Subject: Re: [PATCH net-next v3 00/12] add support for Renesas RZ/N1 ethernet
- subsystem devices
-To:     =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
-Cc:     Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+References: <20220503094728.926-1-ctcchien@nuvoton.com> <20220503094728.926-2-ctcchien@nuvoton.com>
+ <YnEAtQQ6Wnacfrub@zn.tnic>
+In-Reply-To: <YnEAtQQ6Wnacfrub@zn.tnic>
+From:   Medad Young <medadyoung@gmail.com>
+Date:   Thu, 5 May 2022 15:31:57 +0800
+Message-ID: <CAHpyw9dz-P76ioNoZJPty0A_iHcw6Yx_z1S01E9+xWou28BeUg@mail.gmail.com>
+Subject: Re: [PATCH v8 1/3] ARM: dts: nuvoton: Add memory controller node
+To:     Borislav Petkov <bp@alien8.de>
+Cc:     rric@kernel.org, James Morse <james.morse@arm.com>,
+        tony.luck@intel.com, Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Herve Codina <herve.codina@bootlin.com>,
-        =?UTF-8?Q?Miqu=C3=A8l_Raynal?= <miquel.raynal@bootlin.com>,
-        Milan Stevanovic <milan.stevanovic@se.com>,
-        Jimmy Lalande <jimmy.lalande@se.com>,
-        Pascal Eberhard <pascal.eberhard@se.com>,
+        Benjamin Fair <benjaminfair@google.com>,
+        Nancy Yuen <yuenn@google.com>,
+        Patrick Venture <venture@google.com>, KWLIU@nuvoton.com,
+        YSCHU@nuvoton.com, JJLIU0@nuvoton.com, KFTING <KFTING@nuvoton.com>,
+        Avi Fishman <avifishman70@gmail.com>,
+        Tomer Maimon <tmaimon77@gmail.com>,
+        Tali Perry <tali.perry1@gmail.com>, ctcchien@nuvoton.com,
+        linux-edac <linux-edac@vger.kernel.org>,
         Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        netdev <netdev@vger.kernel.org>
+        devicetree <devicetree@vger.kernel.org>,
+        OpenBMC Maillist <openbmc@lists.ozlabs.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Clément,
+Dear Borislav,
 
-On Wed, May 4, 2022 at 11:31 AM Clément Léger <clement.leger@bootlin.com> wrote:
-> This series needs commits bcfb459b25b8 and 542d5835e4f6 which are on
-> the renesas-devel tree in order to enable generic power domain on
-> RZ/N1.
+Borislav Petkov <bp@alien8.de> =E6=96=BC 2022=E5=B9=B45=E6=9C=883=E6=97=A5 =
+=E9=80=B1=E4=BA=8C =E4=B8=8B=E5=8D=886:15=E5=AF=AB=E9=81=93=EF=BC=9A
+>
+> On Tue, May 03, 2022 at 05:47:26PM +0800, Medad CChien wrote:
+> > ECC must be configured in the BootBlock header.
+> > Then, you can read error counts via
+> > the EDAC kernel framework.
+> >
+> > Signed-off-by: Medad CChien <ctcchien@nuvoton.com>
+> > Reviewed-by: Borislav Petkov <bp@alien8.de>
+> > Reviewed-by: Paul Menzel <pmenzel@molgen.mpg.de>
+>
+> I don't think you understand the concept of Reviewed-by: tags. You
+> may add them to a patch of yours when the reviewer gives them to you
+> explicitly - not because she/he has given comments to a patch of yours.
+>
+> Please go over
+>
+> Documentation/process/
+>
+> and Documentation/process/submitting-patches.rst especially and then
+> send patches.
+>
+> Thx.
+>
 
--ENOENT
+Sorry, I did misunderstand  the concept of Reviewed-by: tags.
+I will revise
+thanks
 
-I assume you mean:
-14f11da778ff6421 ("soc: renesas: rzn1: Select PM and
-PM_GENERIC_DOMAINS configs")
-ed66b37f916ee23b ("ARM: dts: r9a06g032: Add missing '#power-domain-cells'")
+> --
+> Regards/Gruss,
+>     Boris.
+>
+> https://people.kernel.org/tglx/notes-about-netiquette
 
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+B.R.
+Medad
