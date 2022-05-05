@@ -2,285 +2,191 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D6E5051C8FF
-	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 21:28:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 60FBD51C91C
+	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 21:32:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1385008AbiEETbS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 May 2022 15:31:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45286 "EHLO
+        id S1384580AbiEETfw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 May 2022 15:35:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49170 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1385019AbiEETbR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 15:31:17 -0400
-Received: from mail-pj1-x1032.google.com (mail-pj1-x1032.google.com [IPv6:2607:f8b0:4864:20::1032])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB74E56218
-        for <devicetree@vger.kernel.org>; Thu,  5 May 2022 12:27:34 -0700 (PDT)
-Received: by mail-pj1-x1032.google.com with SMTP id iq2-20020a17090afb4200b001d93cf33ae9so8844123pjb.5
-        for <devicetree@vger.kernel.org>; Thu, 05 May 2022 12:27:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=/twjVtbcWPue2Jf3IhiwlWWY7Rof9WWSi6Cv9vIoV/Q=;
-        b=Zw4fRetuqYTkqeq+yVUkdhxXm/8i81f3Tz5yiq/8IIDSZ024zV3L+pNdERes4bJaav
-         31/Q4CkRhBZLAixBgNaxyPQDOPUfRkG6V2Lznu+vqnnAE8TdezgewvauqqI6bgLcXe8G
-         8pjfVWQFjtIzIDipg+thK9X2Q1whG0Xu+Ovt4=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=/twjVtbcWPue2Jf3IhiwlWWY7Rof9WWSi6Cv9vIoV/Q=;
-        b=5x5mYWnsbJZWxx2MvS1cTdQcHx+IgBAo456Y0xeTNX5bLhKlBJCNNqdn60y6AJJ81V
-         222fbnBz12YBHWQ72xMJeYIubN1NtQ2qAR+9GNqNkX/LyCgyMOoBZv5pdcWurs7bjbA7
-         r5svxqXcPVj6xJJSAvnaNbdjruMt6iR4Ti1kJkgrwxo20pmTtSaFdmzUi6qc7NbMWhHw
-         Tb2ralEdryjXdYzq5kAA/lYq6YwYzZfpSurmWtn4/WAThhEHO7r2Ux9KPj7VGvURlbU/
-         ErdKOC2LpiHDSlNJgx97NV5zKvMATp1ZZ2tEdrKCs7jHHoWnwM7tqC7Mh44YtSyCHUsX
-         Bb6Q==
-X-Gm-Message-State: AOAM531Q6qCPgCXxhfHL/3p3tlR4Ie860US6zYPZf61wOmrSmOuSqGpy
-        +s7uWCloEMr5FNn4gxJO1zJA5g==
-X-Google-Smtp-Source: ABdhPJyav77hf2OM1reUdtV3HW9WqLRQkX6N0+xVipZ4MkOtaIgBrGdD2dZR4M6krBDZsVod+2klvQ==
-X-Received: by 2002:a17:90b:1d92:b0:1dc:3f14:f8d0 with SMTP id pf18-20020a17090b1d9200b001dc3f14f8d0mr8041119pjb.7.1651778853636;
-        Thu, 05 May 2022 12:27:33 -0700 (PDT)
-Received: from www.outflux.net (smtp.outflux.net. [198.145.64.163])
-        by smtp.gmail.com with ESMTPSA id b10-20020a17090a550a00b001d954837197sm5617594pji.22.2022.05.05.12.27.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 May 2022 12:27:33 -0700 (PDT)
-Date:   Thu, 5 May 2022 12:27:32 -0700
-From:   Kees Cook <keescook@chromium.org>
-To:     Johannes Berg <johannes@sipsolutions.net>
-Cc:     "Gustavo A . R . Silva" <gustavoars@kernel.org>,
-        Keith Packard <keithp@keithp.com>,
-        Francis Laniel <laniel_francis@privacyrequired.com>,
-        Daniel Axtens <dja@axtens.net>,
-        Dan Williams <dan.j.williams@intel.com>,
-        Vincenzo Frascino <vincenzo.frascino@arm.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Daniel Vetter <daniel.vetter@ffwll.ch>,
-        Tadeusz Struk <tadeusz.struk@linaro.org>,
-        Alexei Starovoitov <ast@kernel.org>,
-        alsa-devel@alsa-project.org, Al Viro <viro@zeniv.linux.org.uk>,
-        Andrew Gabbasov <andrew_gabbasov@mentor.com>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        Andy Gross <agross@kernel.org>,
-        Andy Lavr <andy.lavr@gmail.com>,
-        Arend van Spriel <aspriel@gmail.com>,
-        Baowen Zheng <baowen.zheng@corigine.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Boris Ostrovsky <boris.ostrovsky@oracle.com>,
-        Bradley Grove <linuxdrivers@attotech.com>,
-        brcm80211-dev-list.pdl@broadcom.com,
-        Christian Brauner <brauner@kernel.org>,
-        Christian =?iso-8859-1?Q?G=F6ttsche?= <cgzones@googlemail.com>,
-        Christian Lamparter <chunkeey@googlemail.com>,
-        Chris Zankel <chris@zankel.net>,
-        Cong Wang <cong.wang@bytedance.com>,
-        David Gow <davidgow@google.com>,
-        David Howells <dhowells@redhat.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Dennis Dalessandro <dennis.dalessandro@cornelisnetworks.com>,
-        devicetree@vger.kernel.org, Dexuan Cui <decui@microsoft.com>,
-        Dmitry Kasatkin <dmitry.kasatkin@gmail.com>,
-        Eli Cohen <elic@nvidia.com>,
-        Eric Dumazet <edumazet@google.com>,
-        Eric Paris <eparis@parisplace.org>,
-        Eugeniu Rosca <erosca@de.adit-jv.com>,
-        Felipe Balbi <balbi@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Franky Lin <franky.lin@broadcom.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Gregory Greenman <gregory.greenman@intel.com>,
-        Haiyang Zhang <haiyangz@microsoft.com>,
-        Hante Meuleman <hante.meuleman@broadcom.com>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        Hulk Robot <hulkci@huawei.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        "James E.J. Bottomley" <jejb@linux.ibm.com>,
-        James Morris <jmorris@namei.org>,
-        Jarkko Sakkinen <jarkko@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Jason Gunthorpe <jgg@ziepe.ca>, Jens Axboe <axboe@kernel.dk>,
-        Johan Hedberg <johan.hedberg@gmail.com>,
-        John Keeping <john@metanate.com>,
-        Juergen Gross <jgross@suse.com>, Kalle Valo <kvalo@kernel.org>,
-        keyrings@vger.kernel.org, kunit-dev@googlegroups.com,
-        Kuniyuki Iwashima <kuniyu@amazon.co.jp>,
-        "K. Y. Srinivasan" <kys@microsoft.com>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Lee Jones <lee.jones@linaro.org>,
-        Leon Romanovsky <leon@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        linux1394-devel@lists.sourceforge.net,
-        linux-afs@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-arm-msm@vger.kernel.org, linux-bluetooth@vger.kernel.org,
-        linux-hardening@vger.kernel.org, linux-hyperv@vger.kernel.org,
-        linux-integrity@vger.kernel.org, linux-rdma@vger.kernel.org,
-        linux-scsi@vger.kernel.org, linux-security-module@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-wireless@vger.kernel.org,
-        linux-xtensa@linux-xtensa.org, llvm@lists.linux.dev,
-        Loic Poulain <loic.poulain@linaro.org>,
-        Louis Peens <louis.peens@corigine.com>,
-        Luca Coelho <luciano.coelho@intel.com>,
-        Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
-        Marcel Holtmann <marcel@holtmann.org>,
-        Mark Brown <broonie@kernel.org>,
-        "Martin K. Petersen" <martin.petersen@oracle.com>,
-        Max Filippov <jcmvbkbc@gmail.com>,
-        Mimi Zohar <zohar@linux.ibm.com>,
-        Muchun Song <songmuchun@bytedance.com>,
-        Nathan Chancellor <nathan@kernel.org>, netdev@vger.kernel.org,
-        Nick Desaulniers <ndesaulniers@google.com>,
-        Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Paul Moore <paul@paul-moore.com>,
-        Rich Felker <dalias@aerifal.cx>,
+        with ESMTP id S236532AbiEETft (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 15:35:49 -0400
+Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 618DB5B3D5;
+        Thu,  5 May 2022 12:32:08 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="5.91,203,1647270000"; 
+   d="scan'208";a="120034524"
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie6.idc.renesas.com with ESMTP; 06 May 2022 04:32:07 +0900
+Received: from localhost.localdomain (unknown [10.226.36.204])
+        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 395D740E1669;
+        Fri,  6 May 2022 04:32:02 +0900 (JST)
+From:   Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Russell King <linux@armlinux.org.uk>, selinux@vger.kernel.org,
-        "Serge E. Hallyn" <serge@hallyn.com>,
-        SHA-cyfmac-dev-list@infineon.com,
-        Simon Horman <simon.horman@corigine.com>,
-        Stefano Stabellini <sstabellini@kernel.org>,
-        Stefan Richter <stefanr@s5r6.in-berlin.de>,
-        Steffen Klassert <steffen.klassert@secunet.com>,
-        Stephen Hemminger <sthemmin@microsoft.com>,
-        Stephen Smalley <stephen.smalley.work@gmail.com>,
-        Takashi Iwai <tiwai@suse.com>, Tom Rix <trix@redhat.com>,
-        Udipto Goswami <quic_ugoswami@quicinc.com>,
-        wcn36xx@lists.infradead.org, Wei Liu <wei.liu@kernel.org>,
-        xen-devel@lists.xenproject.org,
-        Xiu Jianfeng <xiujianfeng@huawei.com>,
-        Yang Yingliang <yangyingliang@huawei.com>
-Subject: Re: [PATCH 02/32] Introduce flexible array struct memcpy() helpers
-Message-ID: <202205051143.6B19E63983@keescook>
-References: <20220504014440.3697851-1-keescook@chromium.org>
- <20220504014440.3697851-3-keescook@chromium.org>
- <d3b73d80f66325fdfaf2d1f00ea97ab3db03146a.camel@sipsolutions.net>
- <202205040819.DEA70BD@keescook>
- <970a674df04271b5fd1971b495c6b11a996c20c2.camel@sipsolutions.net>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <970a674df04271b5fd1971b495c6b11a996c20c2.camel@sipsolutions.net>
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Phil Edworthy <phil.edworthy@renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [RFC PATCH 0/4] Add CPG wrapper for Renesas RZ/Five SoC
+Date:   Thu,  5 May 2022 20:31:39 +0100
+Message-Id: <20220505193143.31826-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.17.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 05, 2022 at 03:16:19PM +0200, Johannes Berg wrote:
-> On Wed, 2022-05-04 at 08:38 -0700, Kees Cook wrote:
-> > 
-> > It seemed like requiring a structure be rearranged to take advantage of
-> > the "automatic layout introspection" wasn't very friendly. On the other
-> > hand, looking at the examples, most of them are already neighboring
-> > members. Hmmm.
-> 
-> A lot of them are, and many could be, though not all.
+Hi All,
 
-Yeah, I did a pass through them for the coming v2. Only a few have the
-struct order as part of an apparent hardware interface.
+This patch series adds CPG wrapper for Renesas RZ/Five SoC. RZ/Five SoC
+has almost identical clock structure compared to RZ/G2UL, so
+r9a07g043-cpg.c file is re-used to add support for Renesas RZ/Five SoC.
 
-> > And DECLARE_FLEX_ARRAY_ELEMENTS could actually be expanded to include
-> > the count_name too, so both methods could be "forward portable" to a
-> > future where C grew the syntax for bounded flex arrays.
-> 
-> I guess I don't see that happening :)
+Sending this as RFC in case there is a better approach for patch#2 to
+avoid looping. This patch has been tested on Renesas RZ/Five SMARC EVK.
+Below is the clock structure reported by Linux with this patch series:
 
-Well ... it's on my roadmap. ;) I want it for -fsanitize=array-bounds so
-that dynamic array indexing can be checked too. (Right now we can do
-constant-sized array index bounds checking at runtime, but the much
-harder to find problems tend to come from flex arrays.)
+/ # cat /sys/devices/soc0/family 
+RZ/Five
+/ # cat /sys/devices/soc0/machine 
+Renesas SMARC EVK based on r9a07g043
+/ # cat /sys/devices/soc0/revision 
+0
+/ # cat /sys/devices/soc0/soc_id 
+r9a07g043
+/ # cat /sys/kernel/debug/clk/clk_summary 
+                                 enable  prepare  protect                                duty  hardware
+   clock                          count    count    count        rate   accuracy phase  cycle    enable
+-------------------------------------------------------------------------------------------------------
+ extal                                3        3        0    24000000          0     0  50000         Y
+    .pll6                             0        0        0   500000000          0     0  50000         Y
+       .pll6_250                      0        0        0   250000000          0     0  50000         Y
+          HP                          0        0        0   250000000          0     0  50000         Y
+    .pll3                             1        1        0  1600000000          0     0  50000         Y
+       .pll3_533                      0        0        0   533333333          0     0  50000         Y
+          .sel_pll3_3                 0        0        0   533333333          0     0  50000         Y
+             divpl3c                  0        0        0   266666667          0     0  50000         Y
+                SPI1                  0        0        0    66666666          0     0  50000         Y
+                   spi_clk2           0        0        0    66666666          0     0  50000         N
+                SPI0                  0        0        0   133333333          0     0  50000         Y
+                   spi_clk            0        0        0   133333333          0     0  50000         N
+       .pll3_400                      0        0        0   400000000          0     0  50000         Y
+       .pll3_div2                     1        1        0   800000000          0     0  50000         Y
+          .pll3_div2_4                1        1        0   200000000          0     0  50000         Y
+             M0                       0        0        0   200000000          0     0  50000         Y
+                eth1_axi              0        0        0   200000000          0     0  50000         N
+                eth0_axi              0        0        0   200000000          0     0  50000         N
+             P1                       2        2        0   200000000          0     0  50000         Y
+                iax45_clk             1        1        0   200000000          0     0  50000         Y
+                usb_pclk              0        0        0   200000000          0     0  50000         N
+                usb0_func             0        0        0   200000000          0     0  50000         N
+                usb1_host             0        0        0   200000000          0     0  50000         N
+                usb0_host             0        0        0   200000000          0     0  50000         N
+                sdhi1_aclk            0        0        0   200000000          0     0  50000         N
+                sdhi0_aclk            0        0        0   200000000          0     0  50000         N
+                dmac_aclk             1        1        0   200000000          0     0  50000         Y
+                P1_DIV2               0        0        0   100000000          0     0  50000         Y
+                   dmac_pclk          0        0        0   100000000          0     0  50000         N
+             .pll3_div2_4_2           0        0        0   100000000          0     0  50000         Y
+                ZT                    0        0        0   100000000          0     0  50000         Y
+                   eth1_chi           0        0        0   100000000          0     0  50000         N
+                   eth0_chi           0        0        0   100000000          0     0  50000         N
+                P2                    0        0        0   100000000          0     0  50000         Y
+                   iax45_pclk         0        0        0   100000000          0     0  50000         N
+    .pll2                             1        1        0  1600000000          0     0  50000         Y
+       .clk_533                       0        0        0   533333333          0     0  50000         Y
+          sd1                         0        0        0   533333333          0     0  50000         Y
+             sdhi1_clk_hs             0        0        0   533333333          0     0  50000         N
+             SD1_DIV4                 0        0        0   133333333          0     0  50000         Y
+                sdhi1_imclk2          0        0        0   133333333          0     0  50000         N
+                sdhi1_imclk           0        0        0   133333333          0     0  50000         N
+          sd0                         0        0        0   533333333          0     0  50000         Y
+             sdhi0_clk_hs             0        0        0   533333333          0     0  50000         N
+             SD0_DIV4                 0        0        0   133333333          0     0  50000         Y
+                sdhi0_imclk2          0        0        0   133333333          0     0  50000         N
+                sdhi0_imclk           0        0        0   133333333          0     0  50000         N
+          .clk_266                    0        0        0   266666666          0     0  50000         Y
+       .clk_800                       0        0        0   800000000          0     0  50000         Y
+          .clk_400                    0        0        0   400000000          0     0  50000         Y
+       .pll2_div2                     1        1        0   800000000          0     0  50000         Y
+          .pll2_div2_10               0        0        0    80000000          0     0  50000         Y
+             TSU                      0        0        0    80000000          0     0  50000         Y
+                tsu_pclk              0        0        0    80000000          0     0  50000         N
+                adc_adclk             0        0        0    80000000          0     0  50000         N
+          .pll2_div2_8                1        1        0   100000000          0     0  50000         Y
+             P0                       1        1        0   100000000          0     0  50000         Y
+                adc_pclk              0        0        0   100000000          0     0  50000         N
+                canfd                 0        0        0   100000000          0     0  50000         N
+                rspi2                 0        0        0   100000000          0     0  50000         N
+                rspi1                 0        0        0   100000000          0     0  50000         N
+                rspi0                 0        0        0   100000000          0     0  50000         N
+                sci1                  0        0        0   100000000          0     0  50000         N
+                sci0                  0        0        0   100000000          0     0  50000         N
+                scif4                 0        0        0   100000000          0     0  50000         N
+                scif3                 0        0        0   100000000          0     0  50000         N
+                scif2                 0        0        0   100000000          0     0  50000         N
+                scif1                 0        0        0   100000000          0     0  50000         N
+                scif0                 2        2        0   100000000          0     0  50000         Y
+                i2c3                  0        0        0   100000000          0     0  50000         N
+                i2c2                  0        0        0   100000000          0     0  50000         N
+                i2c1                  0        0        0   100000000          0     0  50000         N
+                i2c0                  0        0        0   100000000          0     0  50000         N
+                ssi3_sfr              0        0        0   100000000          0     0  50000         N
+                ssi3_pclk             0        0        0   100000000          0     0  50000         N
+                ssi2_sfr              0        0        0   100000000          0     0  50000         N
+                ssi2_pclk             0        0        0   100000000          0     0  50000         N
+                ssi1_sfr              0        0        0   100000000          0     0  50000         N
+                ssi1_pclk             0        0        0   100000000          0     0  50000         N
+                ssi0_sfr              0        0        0   100000000          0     0  50000         N
+                ssi0_pclk             0        0        0   100000000          0     0  50000         N
+                wdt2_pclk             0        0        0   100000000          0     0  50000         N
+                wdt0_pclk             0        0        0   100000000          0     0  50000         N
+                ostm2                 0        0        0   100000000          0     0  50000         N
+                ostm1                 0        0        0   100000000          0     0  50000         N
+                ostm0                 0        0        0   100000000          0     0  50000         N
+                P0_DIV2               0        0        0    50000000          0     0  50000         Y
+    .pll1                             0        0        0  1000000000          0     0  50000         Y
+       I                              0        0        0  1000000000          0     0  50000         Y
+    .osc_div1000                      0        0        0       24000          0     0  50000         Y
+    .osc                              1        1        0    24000000          0     0  50000         Y
+       gpio                           1        2        0    24000000          0     0  50000         Y
+       wdt2_clk                       0        0        0    24000000          0     0  50000         N
+       wdt0_clk                       0        0        0    24000000          0     0  50000         N
+/ # 
+/ # 
 
-> > Requiring instance to be NULL is debatable, but I feel pretty strongly
-> > about it because it does handle a class of mistakes (resource leaks),
-> > and it's not much of a burden to require a known-good starting state.
-> 
-> Yeah, dunno, I guess I'm slightly more on the side of not requiring it,
-> since we don't do the same for kmalloc() etc. and probably really
-> wouldn't want to add kmalloc_s() that does it ;-)
+This patch series depends on branch [0].
 
-Well, I dislike all the *alloc APIs. :P
+[0] https://git.kernel.org/pub/scm/linux/kernel/git/geert/
+renesas-drivers.git/log/?h=renesas-clk-for-v5.19
 
-> I mean, you _could_ go there:
-> 
-> int kmalloc_s(void **ptr, size_t size, gfp_t gfp)
+Cheers,
+Prabhakar
 
-Oh, and I really do (though as a macro, not a "real" function), since
-having type introspection would be _extremely_ useful. Though maybe it
-needs to be through some kind of type-of-lvalue thing...
+Lad Prabhakar (4):
+  dt-bindings: clock: r9a07g043-cpg: Add Renesas RZ/Five CPG Clock and
+    Reset Definitions
+  clk: renesas: rzg2l-cpg: Add support to stack the resets instead of
+    indexing
+  clk: renesas: r9a07g043: Split up core, module and resets array
+  clk: renesas: r9a07g043: Add support for RZ/Five SoC
 
-https://github.com/KSPP/linux/issues/189
-https://github.com/KSPP/linux/issues/87
-
-> So I'm not really sure why this aspect here should need to be different,
-> except of course that you already need the input argument for the magic.
-
-Right, and trying to move the kernel code closer to a form where the
-compiler can take more of the burden of handling code safety.
-
-> And btw, while I was writing it down I was looking to see if it should
-> be "size_t elements" or "size_t len" (like memcpy), it took me some time
-> to figure out, and I was looking at the examples:
-> 
->  1) most of them actually use __u8 or some variant thereof, so you
->     could probably add an even simpler macro like
->        BOUNDED_FLEX_DATA(int, bytes, data)
->     which has the u8 type internally.
-
-I didn't want these helpers to be "opinionated" about their types (just
-their API), so while it's true u8 is usually "good enough", I don't
-think it's common enough to make a special case for.
-
->  2) Unless I'm confusing myself, you got the firewire change wrong,
->     because __mem_to_flex_dup takes the "elements_count", but the
->     memcpy() there wasn't multiplied by the sizeof(element)? Or maybe
->     the fact that it was declared as __u32 header[0] is wrong, and it
->     should be __u8, but it's all very confusing, and I'm really not
->     sure about this at all.
-
-Yes indeed; thanks for catching that. In fact, it's not a strict flex
-array struct, since, as you say, it's measuring bytes, not elements.
-Yeah, I'll see if that needs to be adjusted/dropped, etc.
-
-> One "perhaps you'll laugh me out of the room" suggestion might be to
-> actually be able to initialize the whole thing too?
-> 
-> mydata = flex_struct_alloc(mydata, GFP_KERNEL,
->                            variable_data, variable_len,
->                            .member = 1,
->                            .another = 2);
-> 
-> (the ordering can't really be otherwise since you have to use
-> __VA_ARGS__).
-
-Oooh, that's a cool idea for the API. Hmmmm.
-
-> That might reduce some more code too, though I guess it's quite some
-> additional magic ... :)
-
-Yay preprocessor magic!
-
-> I was going to point to struct cfg80211_bss_ies, but I realize now
-> they're RCU-managed, so we never resize them anyway ... So maybe it's
-> less common than I thought it might be.
-> 
-> I suppose you know better since you converted a lot of stuff already :-)
-
-Well, I've seen a lot of fragile code (usually in the form of
-exploitable flaws around flex arrays) and they do mostly look the same.
-Not everything fits perfectly into the forms this API tries to address,
-but my goal is to get it fitting well enough, and the weird stuff can be
-more carefully examined -- they're easier to find and audit if all the
-others are nicely wrapped up in some fancy flex*() API.
-
-Thanks for your thoughts on all of this! I'll continue to work on a v2...
-
--Kees
+ drivers/clk/renesas/r9a07g043-cpg.c       | 514 ++++++++++++----------
+ drivers/clk/renesas/rzg2l-cpg.c           |  76 +++-
+ drivers/clk/renesas/rzg2l-cpg.h           |   4 +-
+ include/dt-bindings/clock/r9a07g043-cpg.h |  20 +
+ 4 files changed, 376 insertions(+), 238 deletions(-)
 
 -- 
-Kees Cook
+2.25.1
+
