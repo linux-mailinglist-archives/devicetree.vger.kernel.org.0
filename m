@@ -2,153 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 86C0651C1AB
-	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 15:57:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8694451C1C1
+	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 15:59:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234610AbiEEN7T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 May 2022 09:59:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48990 "EHLO
+        id S238597AbiEEOCZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 May 2022 10:02:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53096 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1380276AbiEEN7R (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 09:59:17 -0400
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8F071EEDE;
-        Thu,  5 May 2022 06:55:37 -0700 (PDT)
-Received: by mail-ed1-x534.google.com with SMTP id g23so5294141edy.13;
-        Thu, 05 May 2022 06:55:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=W4OY/JvmasUugHSn3rUmXaSkS514QXA0AsYyOrhfQQg=;
-        b=H8Ao8D+HKPoqzvyk98XDDUx5ZI7tA1FociIFIuzl17MmQWY+/ne9onYEyJ0AYfrm6M
-         WBl8sG1lg7rLJT+ffPgm8+ERj97fPvTeSbCsqbV/h6YlsCvpNUU/SH7E4nWQHwQU8Y0H
-         fQhXJQemxVsnGX6dt0rvSKqm47LDBgg9ByAAs+3RMv0Ot3YFjq3hLRfsG2DPniS3t4tp
-         WhEqGTIecb+TAtoJ4goXvh/SbiMP9gwzm/uIIgPQNy116BtfzSDWWjEaRdRfeoc2C1Te
-         o5Mry/99pzA8YkYpAYviJKCNP97gqiItOI+NtsW6Ppnw9ndyiGrdPcpP2ZSxG1ufiQh+
-         +Aig==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=W4OY/JvmasUugHSn3rUmXaSkS514QXA0AsYyOrhfQQg=;
-        b=tDfJn+YuPVgaAmVyWZe9n82wFVcEnDpCX+it73cjRR17en3oTWOZxUDwkMsuX0NESr
-         vBqTx11eaPig5HP1RTIk5G4L2yquAqR9eUhhFzcARqAHYv9yd2FGxQNcglOMId3ZLW0Q
-         +XeYpk8Tc36nE0pzDebJPbYbT0FV+1ixP8zoph7p119lUu1ALbMS3l8vNjAO8k8UCnij
-         qcbS4KWDQNs07qsomy26s2SeupEUEotGIc0Wl58LuvLm8fzV5PViPbqYcxUuZTy1Ez6j
-         6LZIK2o+vtkLWIx2Ki55TKerJXMss/7GuvByNtl2TOh1I8NGK7vBWhBibEJ1xIR3ZP9o
-         SzvQ==
-X-Gm-Message-State: AOAM530JLQeWaONohBV7JkkCV9V9eMw0VEgNIJxxMIhcmfhLaP9woxPb
-        vgTkNMxActh+OshNjWGWXKQ=
-X-Google-Smtp-Source: ABdhPJxZtO2nEF1yJ6MjoitOsoR6NiKa4vbJTd4fTbtfyjCPOSo9zQI9bOEoP434SL7qulITdqNiPQ==
-X-Received: by 2002:a05:6402:2741:b0:41f:69dc:9bcd with SMTP id z1-20020a056402274100b0041f69dc9bcdmr30258922edd.239.1651758936244;
-        Thu, 05 May 2022 06:55:36 -0700 (PDT)
-Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.gmail.com with ESMTPSA id e15-20020a50e44f000000b0042617ba63c7sm877949edm.81.2022.05.05.06.55.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 May 2022 06:55:35 -0700 (PDT)
-From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Pavel Machek <pavel@ucw.cz>,
-        "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Hauke Mehrtens <hauke@hauke-m.de>,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        devicetree@vger.kernel.org, netdev@vger.kernel.org,
-        linux-leds@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org,
-        bcm-kernel-feedback-list@broadcom.com, ansuelsmth@gmail.com,
-        andrew@lunn.ch, vivien.didelot@gmail.com,
-        Vladimir Oltean <olteanv@gmail.com>,
-        Jonathan Corbet <corbet@lwn.net>,
-        John Crispin <john@phrozen.org>, linux-doc@vger.kernel.org,
-        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH RESEND PoC] leds: trigger: netdev: support DT "trigger-sources" property
-Date:   Thu,  5 May 2022 15:55:12 +0200
-Message-Id: <20220505135512.3486-6-zajec5@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220505135512.3486-1-zajec5@gmail.com>
-References: <20220505135512.3486-1-zajec5@gmail.com>
+        with ESMTP id S233206AbiEEOCY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 10:02:24 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32A3C23159;
+        Thu,  5 May 2022 06:58:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1651759125; x=1683295125;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=GMVMpKDn0PDDw4iO5jpTyKJm/l58XPckDe3I2ZWI29o=;
+  b=KJ8ABJlinMKizBTmRWT257bLB4kloc10qkE5DX6BzPYVkhHUn82IVNzM
+   hCu33xi5+qeTwQJXmblefNaowh3Bgjgc6XnAhr6xD+aQp765kh7o7YWOQ
+   5QNqRqIbTcEd0gS6FAUWsAAU2NeLPnorGEp+ZmAxDdIFP75LaTwVK4jpS
+   r1NVhnwHYx7mtmazNZxcpQpr0j4taaLxBMwRkzfyRHFAJ5GfgpiDkoaqM
+   T7Iu2fpu1CftRU/V963NdJnvwQyzviY1uWoZmUPEqmSpMwHucqlsZhBoq
+   dhsztjSkm9mRg/UiTJBIjP1njiBv4UJ7+mSfpU+NrK1OmCGXsz11Asvzw
+   g==;
+X-IronPort-AV: E=Sophos;i="5.91,201,1647327600"; 
+   d="scan'208";a="94666318"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 05 May 2022 06:58:44 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.17; Thu, 5 May 2022 06:58:44 -0700
+Received: from [10.159.245.112] (10.10.115.15) by chn-vm-ex01.mchp-main.com
+ (10.10.85.143) with Microsoft SMTP Server id 15.1.2375.17 via Frontend
+ Transport; Thu, 5 May 2022 06:58:41 -0700
+Message-ID: <d84e0e48-cf35-ae1a-e384-067d361457ba@microchip.com>
+Date:   Thu, 5 May 2022 15:58:34 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH v3 6/6] ARM: configs: at91: sama7_defconfig: add MCHP PDMC
+ and DMIC drivers
+Content-Language: en-US
+To:     Codrin Ciubotariu <codrin.ciubotariu@microchip.com>,
+        <alsa-devel@alsa-project.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+CC:     <lars@metafoo.de>, <broonie@kernel.org>, <perex@perex.cz>,
+        <tiwai@suse.com>, <robh+dt@kernel.org>
+References: <20220307122202.2251639-1-codrin.ciubotariu@microchip.com>
+ <20220307122202.2251639-7-codrin.ciubotariu@microchip.com>
+From:   Nicolas Ferre <nicolas.ferre@microchip.com>
+Organization: microchip
+In-Reply-To: <20220307122202.2251639-7-codrin.ciubotariu@microchip.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-7.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Rafał Miłecki <rafal@milecki.pl>
+On 07/03/2022 at 13:22, Codrin Ciubotariu wrote:
+> Enable drivers needed for Microchip's PDMC and PDM microphones.
+> 
+> Signed-off-by: Codrin Ciubotariu <codrin.ciubotariu@microchip.com>
+> ---
+> 
+> Changes in v2,v3:
+>   - none;
+> 
+>   arch/arm/configs/sama7_defconfig | 2 ++
+>   1 file changed, 2 insertions(+)
+> 
+> diff --git a/arch/arm/configs/sama7_defconfig b/arch/arm/configs/sama7_defconfig
+> index 0368068e04d9..bc29badab890 100644
+> --- a/arch/arm/configs/sama7_defconfig
+> +++ b/arch/arm/configs/sama7_defconfig
+> @@ -138,6 +138,8 @@ CONFIG_SND_SOC_MIKROE_PROTO=m
+>   CONFIG_SND_MCHP_SOC_I2S_MCC=y
+>   CONFIG_SND_MCHP_SOC_SPDIFTX=y
+>   CONFIG_SND_MCHP_SOC_SPDIFRX=y
+> +CONFIG_SND_MCHP_SOC_PDMC=y
+> +CONFIG_SND_SOC_DMIC=y
 
-Parse "trigger-sources", find referenced netdev & use it as default
-trigger source.
+I'm fine with that, but I see that some Kconfig entries "select" this 
+SND_SOC_DMIC directly (amd, intel, mediatek, stm).
+If it's absolutely needed for PDMC to work, what about doing the same as 
+it would prevent some broken configurations?
 
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
----
-This is a proof on concept, please don't apply this patch. I'll rework
-this on top of Ansuel's netdev trigger refactoring once it gets accepted
-----
- drivers/leds/trigger/ledtrig-netdev.c | 26 ++++++++++++++++++++++++++
- 1 file changed, 26 insertions(+)
+Regards,
+   Nicolas
 
-diff --git a/drivers/leds/trigger/ledtrig-netdev.c b/drivers/leds/trigger/ledtrig-netdev.c
-index d5e774d83021..c036a3671773 100644
---- a/drivers/leds/trigger/ledtrig-netdev.c
-+++ b/drivers/leds/trigger/ledtrig-netdev.c
-@@ -20,6 +20,8 @@
- #include <linux/list.h>
- #include <linux/module.h>
- #include <linux/netdevice.h>
-+#include <linux/of.h>
-+#include <linux/of_net.h>
- #include <linux/spinlock.h>
- #include <linux/timer.h>
- #include "../leds.h"
-@@ -389,6 +391,28 @@ static void netdev_trig_work(struct work_struct *work)
- 			(atomic_read(&trigger_data->interval)*2));
- }
- 
-+static void netdev_trig_of_init(struct led_classdev *led_cdev)
-+{
-+	struct device *dev = led_cdev->dev;
-+	struct device_node *np = dev->of_node;
-+	struct of_phandle_args args;
-+	struct net_device *netdev;
-+	int err;
-+
-+	err = of_parse_phandle_with_args(np, "trigger-sources", "#trigger-source-cells", 0, &args);
-+	if (err || WARN_ON(!args.np)) {
-+		dev_err(dev, "Failed to get trigger source phandle: %d\n", err);
-+		return;
-+	}
-+
-+	netdev = of_find_net_device_by_node(args.np);
-+	if (netdev) {
-+		device_name_store(dev, NULL, netdev->name, strlen(netdev->name) + 1);
-+	}
-+
-+	of_node_put(args.np);
-+}
-+
- static int netdev_trig_activate(struct led_classdev *led_cdev)
- {
- 	struct led_netdev_data *trigger_data;
-@@ -415,6 +439,8 @@ static int netdev_trig_activate(struct led_classdev *led_cdev)
- 
- 	led_set_trigger_data(led_cdev, trigger_data);
- 
-+	netdev_trig_of_init(led_cdev);
-+
- 	rc = register_netdevice_notifier(&trigger_data->notifier);
- 	if (rc)
- 		kfree(trigger_data);
+>   CONFIG_SND_SOC_PCM5102A=y
+>   CONFIG_SND_SOC_SPDIF=y
+>   CONFIG_SND_SIMPLE_CARD=y
+
+
 -- 
-2.34.1
-
+Nicolas Ferre
