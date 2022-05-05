@@ -2,417 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3FBCA51C671
-	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 19:44:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 22E9C51C6A6
+	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 20:02:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1382861AbiEERrY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 May 2022 13:47:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40888 "EHLO
+        id S1354809AbiEESFt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 May 2022 14:05:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53768 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1382860AbiEERrO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 13:47:14 -0400
-Received: from mail-pj1-x1030.google.com (mail-pj1-x1030.google.com [IPv6:2607:f8b0:4864:20::1030])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 887C318B01
-        for <devicetree@vger.kernel.org>; Thu,  5 May 2022 10:43:33 -0700 (PDT)
-Received: by mail-pj1-x1030.google.com with SMTP id cx11-20020a17090afd8b00b001d9fe5965b3so8637033pjb.3
-        for <devicetree@vger.kernel.org>; Thu, 05 May 2022 10:43:33 -0700 (PDT)
+        with ESMTP id S230386AbiEESFk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 14:05:40 -0400
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3DAED4BFFC;
+        Thu,  5 May 2022 11:02:00 -0700 (PDT)
+Received: by mail-ed1-x533.google.com with SMTP id be20so6073782edb.12;
+        Thu, 05 May 2022 11:02:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=NQfFt3HaBAioonm8VTKsJgtS3lpy2wAUQ+cM79qV71A=;
-        b=WHGV30FcJ9QXGwlNy9NQ818aOd+zCCtzQKwWTfDpfgjIqf5UNb3qWYknniF19FbsJe
-         emGjDd/ktzn3hm/eJHzC6cQQb5LwUHkE3jqc8T6j0VhoBFR3ZCKZime2om2p0xd5Bkgh
-         ++s2BwD37u/uwZm0J+c3U9wLnn+1Paa0O7/MM=
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=9t4LNeKMgDm4bsG6VjPLo2oZxRoaM8DUvvm+HYE+R1M=;
+        b=iJoOmgsIjvyuFihyonY0t0eMJ1r4WRq2au65ubOWz4svZ7uNke1xkh5TMl5Uk1C4ar
+         UIY/BEIb559kc/8GA6AN2jZbtK3HJUgDyFcf8WYibLMc4HUxfjX6QN0xwUZxTH3bch5f
+         TpiHeFKPDqdrDDweoPDKVkKe0H69aGPfNEBD0lxurv4GAGtssFoph6Z3LIYL2wxFRX8W
+         l3guDXZ+n306XJnPKwzETB0ujHwqeVXGp3xpkZe1ZSLKJGvydMrE5OiDGzIL3LGVfVNK
+         m9QhBxtqSxYy18lmWGr2EAHMM9HquaSsC1yXL1dJ2GxYlyf3YhgL6KBvi44ez6Sum4DJ
+         JZ5w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=NQfFt3HaBAioonm8VTKsJgtS3lpy2wAUQ+cM79qV71A=;
-        b=C1lhyd+33weSWIj/W4QJ23J6On0cEde9IZiRTLEAWDO0OBM3Isg2YpDEatCse04l2M
-         yCNT/bZP29cDuZ0BMB5/skDS88w3RrwUd9IJucm9yBeHKoddfGKmG+3t15iRrkNde2aQ
-         j4IEXXY4rWMKCQVkFgHzoSgqmwS2Avk92Cwpaitke6lqHNFkSPZjSvSGVPgu3363hGgE
-         SpcrrTSra8psMy+taiouH7u5NhH5rBdKUZUfUqT2Ek4Q3+FOfSensopozjNqTNY2HZ0H
-         6uFMo4jcA/+byavM6dwI39uXk++csWm9g9C/QSbCf52iuCVFw8Nj2QDFfFBxyivOj+6H
-         nq6Q==
-X-Gm-Message-State: AOAM531uz5cw5gbSmAA1lgahjgc/ExXlHorOc6EebW6ZJMn+U+MEeISZ
-        bS/xrmEL1223IWn+6h9eq0lmag==
-X-Google-Smtp-Source: ABdhPJwlqXlYXMIoPvcPQ7XNSTA0WwLa3NuXxMOnM6dQT57CNuqNMtwVV0GrdF3vKHAUD/4oLacCyQ==
-X-Received: by 2002:a17:902:ab04:b0:156:1517:411a with SMTP id ik4-20020a170902ab0400b001561517411amr28286302plb.128.1651772613049;
-        Thu, 05 May 2022 10:43:33 -0700 (PDT)
-Received: from joebar-glaptop.lan (c-71-202-34-56.hsd1.ca.comcast.net. [71.202.34.56])
-        by smtp.gmail.com with ESMTPSA id a6-20020a636606000000b003c60b1f0dbasm1599928pgc.35.2022.05.05.10.43.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 May 2022 10:43:32 -0700 (PDT)
-From:   "Joseph S. Barrera III" <joebar@chromium.org>
-To:     LKML <linux-kernel@vger.kernel.org>
-Cc:     Douglas Anderson <dianders@chromium.org>,
-        Alexandru M Stan <amstan@chromium.org>,
-        "Joseph S. Barrera III" <joebar@chromium.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-Subject: [PATCH v4 5/5] arm64: dts: qcom: sc7180: Add kingoftown dts files
-Date:   Thu,  5 May 2022 10:41:16 -0700
-Message-Id: <20220505104024.v4.5.Ib62291487a664a65066d18a3e83c5428a6d2cc6c@changeid>
-X-Mailer: git-send-email 2.31.0
-In-Reply-To: <20220505104024.v4.1.Id769ddc5dbf570ccb511db96da59f97d08f75a9c@changeid>
-References: <20220505104024.v4.1.Id769ddc5dbf570ccb511db96da59f97d08f75a9c@changeid>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=9t4LNeKMgDm4bsG6VjPLo2oZxRoaM8DUvvm+HYE+R1M=;
+        b=wQgah8rVFW4z64LJm6bBhPN3qY1qM3VtVv095jFvGPIcvZXmScdWzXyHIZgW0B/Ou+
+         NFN9DzdYoEpXf+O8gPn3ePaLYEW4oxc/TLOqz4ZtQvvLdQ3nk4M6h+sb+ubb2LO59oM6
+         m6lNsoBN6ZZam0pII34pso21Ro5pM6mWuS2J1795gG3YnOD/pOm6utahn239IT+/46V0
+         O81rNKg0bBiPWfhu933RI93UCf0pzVVNzWRpxyKaef91/WfzOnoRa5HS6vevJ0jsCnRa
+         kCclYCb6HXxqJJ27FwE7BwPxlqWhmhtIVtgIEj/uCCGOVGrFDQJ8wy23XUTqAsWAIXvh
+         N/uw==
+X-Gm-Message-State: AOAM531ky5YN6yM6NKCIxFxLP4u5mJgj51dSVx5WXww+1h9mHl9i/BT/
+        vSbeireKuqg6uloUKKv89N9twhJjx8ot1QX3eo0=
+X-Google-Smtp-Source: ABdhPJwS8lSH9jpq6E2YTDJsT+UUIAttq51sN8ZOaVxn+s/4vminCmuIhkjtgAfiFHBrFFujkBJeOKFSZV9VWi3/Zok=
+X-Received: by 2002:aa7:d350:0:b0:425:e029:da56 with SMTP id
+ m16-20020aa7d350000000b00425e029da56mr31711234edr.296.1651773718814; Thu, 05
+ May 2022 11:01:58 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20220504133612.604304-1-Qing-wu.Li@leica-geosystems.com.cn>
+ <20220504133612.604304-4-Qing-wu.Li@leica-geosystems.com.cn>
+ <CAHp75VeseZ2ChtbafmbgVavS4KvCvrQ4+XSRkeiJSyqr8__dSw@mail.gmail.com>
+ <AM9PR06MB7844E8FE0EDF712C769271DAD7C39@AM9PR06MB7844.eurprd06.prod.outlook.com>
+ <CAHp75VfEK_TXXA3NdGgjis7duHgoDo4aSOZntdO0wEGLw0sQ7g@mail.gmail.com> <AM9PR06MB7844C01CA580F046FA570B43D7C29@AM9PR06MB7844.eurprd06.prod.outlook.com>
+In-Reply-To: <AM9PR06MB7844C01CA580F046FA570B43D7C29@AM9PR06MB7844.eurprd06.prod.outlook.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Thu, 5 May 2022 20:01:22 +0200
+Message-ID: <CAHp75VcD-UpG=ppuE2Du2SsQK66MYdrwhXvjHksN5=gqcppYqA@mail.gmail.com>
+Subject: Re: [PATCH V3 3/5] iio: accel: sca3300: modified to support multi chips
+To:     LI Qingwu <qing-wu.li@leica-geosystems.com.cn>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Tomas Melin <tomas.melin@vaisala.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        Rob Herring <robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Kingoftown is a trogdor-based board. These dts files are unchanged copies
-from the downstream Chrome OS 5.4 kernel.
+On Thu, May 5, 2022 at 4:12 PM LI Qingwu
+<qing-wu.li@leica-geosystems.com.cn> wrote:
+> > -----Original Message-----
+> > From: Andy Shevchenko <andy.shevchenko@gmail.com>
+> > Sent: Wednesday, May 4, 2022 10:39 PM
+> > On Wed, May 4, 2022 at 4:35 PM LI Qingwu
+> > <qing-wu.li@leica-geosystems.com.cn> wrote:
+> > > > From: Andy Shevchenko <andy.shevchenko@gmail.com>
+> > > > Sent: Wednesday, May 4, 2022 10:20 PM On Wed, May 4, 2022 at 3:36 P=
+M
+> > > > LI Qingwu <Qing-wu.Li@leica-geosystems.com.cn> wrote:
 
-Signed-off-by: Joseph S. Barrera III <joebar@chromium.org>
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
----
+...
 
-Changes in v4:
-- Fixed description (no downstream bits removed).
-- Added missing version history.
+> > > > > +struct sca3300_chip_info {
+> > > > > +       const struct iio_chan_spec *channels;
+> > > > > +       const int (*accel_scale_table)[2];
+> > > > > +       const int *accel_scale_modes_map;
+> > > > > +       const unsigned long *scan_masks;
+> > > > > +       const int *avail_modes_table;
+> > > > > +       const int *freq_modes_map;
+> > > > > +       const int *freq_table;
+> > > > > +       const u8 num_accel_scales;
+> > > > > +       const u8 num_avail_modes;
+> > > > > +       const u8 num_channels;
+> > > > > +       const u8 num_freqs;
+> > > > > +       const u8 chip_id;
+> > > >
+> > > > Why do you have const qualifier on all members?  The last one is
+> > > > understandable, but the rest, esp. pointers should be justified.
+> > > Because I thought it was static and has fix value for each chip, unac=
+ceptable
+> > for you?
+> >
+> > But why const qualifier? What is the point of it for example for u8 mem=
+bers if
+> > the entire object is qualified as const below in the same patch?
+> >
+> > On top of that, please explain what in your opinion the "const ...
+> > *foo" gives us, and what we will lose if we remove the "const" part out=
+ of them.
+>
+> Ah, you are right, those const are unnecessary for nonpointer members.
+> for the pointers, the contexts that the pointer points to are still writa=
+ble.
+> what about if I remove all the const from nonpointer and keep it for the =
+pointers?
+> Like=EF=BC=9A
+> const struct iio_chan_spec *channels;
+> const int (*accel_scale_table)[2];
+> const int (*incli_scale_table)[2];
+> const int *accel_scale_modes_map;
+> const int *incli_scale_modes_map;
+> const unsigned long *scan_masks;
+> const int *avail_modes_table;
+> const int *freq_modes_map;
+> const int *freq_table;
+> const char *name;
+> u8 num_accel_scales;
+> u8 num_incli_scales;
+> u8 num_avail_modes;
+> u8 num_channels;
+> u8 num_freqs;
+> u8 chip_id;
+> bool angle;
 
-Changes in v3:
-- None
+It's better, but you still need to justify the rest with explanation
+in the commit message.
+And I leave this to maintainers to say if the const:s are needed or not.
 
-Changes in v2:
-- First inclusion in series.
+> > > > > +       const char *name;
+> > > > > +};
 
- arch/arm64/boot/dts/qcom/Makefile             |   2 +
- .../dts/qcom/sc7180-trogdor-kingoftown-r0.dts |  44 ++++
- .../dts/qcom/sc7180-trogdor-kingoftown-r1.dts |  17 ++
- .../dts/qcom/sc7180-trogdor-kingoftown.dtsi   | 223 ++++++++++++++++++
- 4 files changed, 286 insertions(+)
- create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-kingoftown-r0.dts
- create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-kingoftown-r1.dts
- create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-kingoftown.dtsi
-
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index dc26704dfe34..a9f2ad013179 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -60,6 +60,8 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-coachz-r3-lte.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-homestar-r2.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-homestar-r3.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-homestar-r4.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-kingoftown-r0.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-kingoftown-r1.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-lazor-r0.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-lazor-r1.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-lazor-r1-kb.dtb
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-kingoftown-r0.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-kingoftown-r0.dts
-new file mode 100644
-index 000000000000..85aec1be98fc
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-kingoftown-r0.dts
-@@ -0,0 +1,44 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Google Kingoftown board device tree source
-+ *
-+ * Copyright 2021 Google LLC.
-+ */
-+
-+/dts-v1/;
-+
-+#include "sc7180.dtsi"
-+#include "sc7180-trogdor-ti-sn65dsi86.dtsi"
-+#include "sc7180-trogdor-kingoftown.dtsi"
-+
-+/ {
-+	model = "Google Kingoftown (rev0)";
-+	compatible = "google,kingoftown-rev0", "qcom,sc7180";
-+};
-+
-+/*
-+ * In rev1+, the enable pin of pp3300_fp_tp will be tied to pp1800_l10a
-+ * power rail instead, since kingoftown does not have FP.
-+ */
-+&pp3300_fp_tp {
-+	gpio = <&tlmm 74 GPIO_ACTIVE_HIGH>;
-+	enable-active-high;
-+
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&en_fp_rails>;
-+};
-+
-+&tlmm {
-+	en_fp_rails: en-fp-rails {
-+		pinmux {
-+			pins = "gpio74";
-+			function = "gpio";
-+		};
-+
-+		pinconf {
-+			pins = "gpio74";
-+			drive-strength = <2>;
-+			bias-disable;
-+		};
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-kingoftown-r1.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-kingoftown-r1.dts
-new file mode 100644
-index 000000000000..2be9138ba89f
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-kingoftown-r1.dts
-@@ -0,0 +1,17 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Google Kingoftown board device tree source
-+ *
-+ * Copyright 2021 Google LLC.
-+ */
-+
-+/dts-v1/;
-+
-+#include "sc7180.dtsi"
-+#include "sc7180-trogdor-parade-ps8640.dtsi"
-+#include "sc7180-trogdor-kingoftown.dtsi"
-+
-+/ {
-+	model = "Google Kingoftown (rev1+)";
-+	compatible = "google,kingoftown", "qcom,sc7180";
-+};
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-kingoftown.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-kingoftown.dtsi
-new file mode 100644
-index 000000000000..e7503a5b0403
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-kingoftown.dtsi
-@@ -0,0 +1,223 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Google Kingoftown board device tree source
-+ *
-+ * Copyright 2021 Google LLC.
-+ */
-+
-+ap_ec_spi: &spi6 {};
-+ap_h1_spi: &spi0 {};
-+
-+#include "sc7180-trogdor.dtsi"
-+#include "sc7180-trogdor-lte-sku.dtsi"
-+
-+&alc5682 {
-+	compatible = "realtek,rt5682s";
-+	realtek,dmic1-clk-pin = <2>;
-+	realtek,dmic-clk-rate-hz = <2048000>;
-+};
-+
-+ap_ts_pen_1v8: &i2c4 {
-+	status = "okay";
-+	clock-frequency = <400000>;
-+
-+	ap_ts: touchscreen@10 {
-+		compatible = "elan,ekth3500";
-+		reg = <0x10>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&ts_int_l>, <&ts_reset_l>;
-+
-+		interrupt-parent = <&tlmm>;
-+		interrupts = <9 IRQ_TYPE_LEVEL_LOW>;
-+
-+		vcc33-supply = <&pp3300_ts>;
-+
-+		reset-gpios = <&tlmm 8 GPIO_ACTIVE_LOW>;
-+	};
-+};
-+
-+&keyboard_controller {
-+	function-row-physmap = <
-+		MATRIX_KEY(0x00, 0x02, 0)       /* T1 */
-+		MATRIX_KEY(0x03, 0x02, 0)       /* T2 */
-+		MATRIX_KEY(0x02, 0x02, 0)       /* T3 */
-+		MATRIX_KEY(0x01, 0x02, 0)       /* T4 */
-+		MATRIX_KEY(0x03, 0x04, 0)       /* T5 */
-+		MATRIX_KEY(0x02, 0x04, 0)       /* T6 */
-+		MATRIX_KEY(0x01, 0x04, 0)       /* T7 */
-+		MATRIX_KEY(0x02, 0x09, 0)       /* T8 */
-+		MATRIX_KEY(0x01, 0x09, 0)       /* T9 */
-+		MATRIX_KEY(0x00, 0x04, 0)       /* T10 */
-+	>;
-+	linux,keymap = <
-+		MATRIX_KEY(0x00, 0x02, KEY_BACK)
-+		MATRIX_KEY(0x03, 0x02, KEY_REFRESH)
-+		MATRIX_KEY(0x02, 0x02, KEY_ZOOM)
-+		MATRIX_KEY(0x01, 0x02, KEY_SCALE)
-+		MATRIX_KEY(0x03, 0x04, KEY_SYSRQ)
-+		MATRIX_KEY(0x02, 0x04, KEY_BRIGHTNESSDOWN)
-+		MATRIX_KEY(0x01, 0x04, KEY_BRIGHTNESSUP)
-+		MATRIX_KEY(0x02, 0x09, KEY_MUTE)
-+		MATRIX_KEY(0x01, 0x09, KEY_VOLUMEDOWN)
-+		MATRIX_KEY(0x00, 0x04, KEY_VOLUMEUP)
-+
-+		CROS_STD_MAIN_KEYMAP
-+	>;
-+};
-+
-+&panel {
-+	compatible = "edp-panel";
-+};
-+
-+&pp3300_dx_edp {
-+	gpio = <&tlmm 67 GPIO_ACTIVE_HIGH>;
-+};
-+
-+&sound {
-+	compatible = "google,sc7180-trogdor";
-+	model = "sc7180-rt5682s-max98357a-1mic";
-+};
-+
-+&wifi {
-+	qcom,ath10k-calibration-variant = "GO_KINGOFTOWN";
-+};
-+
-+/* PINCTRL - modifications to sc7180-trogdor.dtsi */
-+
-+&en_pp3300_dx_edp {
-+	pinmux {
-+		pins = "gpio67";
-+	};
-+
-+	pinconf {
-+		pins = "gpio67";
-+	};
-+};
-+
-+/* PINCTRL - board-specific pinctrl */
-+
-+&tlmm {
-+	gpio-line-names = "TP_INT_L",		/* 0 */
-+			  "AP_RAM_ID0",
-+			  "AP_SKU_ID2",
-+			  "AP_RAM_ID1",
-+			  "",
-+			  "AP_RAM_ID2",
-+			  "AP_TP_I2C_SDA",
-+			  "AP_TP_I2C_SCL",
-+			  "TS_RESET_L",
-+			  "TS_INT_L",
-+			  "",			/* 10 */
-+			  "EDP_BRIJ_IRQ",
-+			  "AP_EDP_BKLTEN",
-+			  "",
-+			  "",
-+			  "EDP_BRIJ_I2C_SDA",
-+			  "EDP_BRIJ_I2C_SCL",
-+			  "HUB_RST_L",
-+			  "",
-+			  "",
-+			  "",			/* 20 */
-+			  "",
-+			  "",
-+			  "AMP_EN",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "HP_IRQ",
-+			  "",
-+			  "",			/* 30 */
-+			  "AP_BRD_ID2",
-+			  "BRIJ_SUSPEND",
-+			  "AP_BRD_ID0",
-+			  "AP_H1_SPI_MISO",
-+			  "AP_H1_SPI_MOSI",
-+			  "AP_H1_SPI_CLK",
-+			  "AP_H1_SPI_CS_L",
-+			  "BT_UART_CTS",
-+			  "BT_UART_RTS",
-+			  "BT_UART_TXD",	/* 40 */
-+			  "BT_UART_RXD",
-+			  "H1_AP_INT_ODL",
-+			  "",
-+			  "UART_AP_TX_DBG_RX",
-+			  "UART_DBG_TX_AP_RX",
-+			  "HP_I2C_SDA",
-+			  "HP_I2C_SCL",
-+			  "FORCED_USB_BOOT",
-+			  "AMP_BCLK",
-+			  "AMP_LRCLK",		/* 50 */
-+			  "AMP_DIN",
-+			  "",
-+			  "HP_BCLK",
-+			  "HP_LRCLK",
-+			  "HP_DOUT",
-+			  "HP_DIN",
-+			  "HP_MCLK",
-+			  "AP_SKU_ID0",
-+			  "AP_EC_SPI_MISO",
-+			  "AP_EC_SPI_MOSI",	/* 60 */
-+			  "AP_EC_SPI_CLK",
-+			  "AP_EC_SPI_CS_L",
-+			  "AP_SPI_CLK",
-+			  "AP_SPI_MOSI",
-+			  "AP_SPI_MISO",
-+			  /*
-+			   * AP_FLASH_WP_L is crossystem ABI. Schematics
-+			   * call it BIOS_FLASH_WP_L.
-+			   */
-+			  "AP_FLASH_WP_L",
-+			  "EN_PP3300_DX_EDP",
-+			  "AP_SPI_CS0_L",
-+			  "",
-+			  "",			/* 70 */
-+			  "",
-+			  "",
-+			  "",
-+			  "EN_FP_RAILS",
-+			  "UIM2_DATA",
-+			  "UIM2_CLK",
-+			  "UIM2_RST",
-+			  "UIM2_PRESENT_L",
-+			  "UIM1_DATA",
-+			  "UIM1_CLK",		/* 80 */
-+			  "UIM1_RST",
-+			  "",
-+			  "CODEC_PWR_EN",
-+			  "HUB_EN",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "AP_SKU_ID1",		/* 90 */
-+			  "AP_RST_REQ",
-+			  "",
-+			  "AP_BRD_ID1",
-+			  "AP_EC_INT_L",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "",			/* 100 */
-+			  "",
-+			  "",
-+			  "",
-+			  "EDP_BRIJ_EN",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "",			/* 110 */
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "AP_TS_PEN_I2C_SDA",
-+			  "AP_TS_PEN_I2C_SCL",
-+			  "DP_HOT_PLUG_DET",
-+			  "EC_IN_RW_ODL";
-+};
--- 
-2.31.0
-
+--=20
+With Best Regards,
+Andy Shevchenko
