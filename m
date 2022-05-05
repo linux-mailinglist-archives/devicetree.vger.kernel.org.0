@@ -2,58 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F02F451B5E2
+	by mail.lfdr.de (Postfix) with ESMTP id 1366251B5DF
 	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 04:28:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238972AbiEEC3L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 May 2022 22:29:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34518 "EHLO
+        id S238912AbiEEC3I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 May 2022 22:29:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34522 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239260AbiEEC3C (ORCPT
+        with ESMTP id S239264AbiEEC3C (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 22:29:02 -0400
 Received: from mail-oi1-x22c.google.com (mail-oi1-x22c.google.com [IPv6:2607:f8b0:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C20011B7B2
-        for <devicetree@vger.kernel.org>; Wed,  4 May 2022 19:25:24 -0700 (PDT)
-Received: by mail-oi1-x22c.google.com with SMTP id v65so3047451oig.10
-        for <devicetree@vger.kernel.org>; Wed, 04 May 2022 19:25:24 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6748C13D36
+        for <devicetree@vger.kernel.org>; Wed,  4 May 2022 19:25:25 -0700 (PDT)
+Received: by mail-oi1-x22c.google.com with SMTP id s131so3079996oie.1
+        for <devicetree@vger.kernel.org>; Wed, 04 May 2022 19:25:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=jdqK6Dur5SPo0lYVwgMH9y/i4cpr1+v+A1l02sBcPXE=;
-        b=tuiCr9FSJep+kbgAL7zjxv4q0EjdD4MPFudV1vifvs8o7yIRK0dXJccqAz7rjZsdcv
-         Y4h4w253T0SEzBc6QTZvUPb97hHE5fD0f/PwegmvVrWb1ksP00VfxLNc1j30Ryp97tOi
-         gp332t5vAlXA4ruv6uRF6n9ALOLydGs0FiLPGbr5La8KlRw52OGnz1V4TqJ9sp0IMBjH
-         +dZwPvtCJASLnAuvhjhY7XG567Q9kIwaVRkkfxNnoqIoImiUA7rUPEnO4wqVH5hn5H0o
-         g1La8yHLxjMKrb0hsZp1vpJJM8x670nEUkILXPRuMlGRyl6eZvGlIQ8ixOKkNDPunVbu
-         IHcQ==
+        bh=moa0rcMvLHKuxdxI1h9ylYwMNI93SZwQx2b51rTmovE=;
+        b=i9CKkmhIDyV9nMEWjRJ0TwdW2E5CkkbK6as+LIP4sG4W+z6CORxIJahsKGWUaOj2yZ
+         VUruWYYQsSUutj5oHqEQoaX2jl5zdC4BwScNcy1RO9RvjpCY7FAfTveQ5hn8PrvonE+s
+         hN4tolMPih77TlYlBXRd3+jSSfS7Iwm9YCa4LTXl01F3S6MxCkEhErPLI9gGRH238/ZR
+         YFI3ALEuCdtRPkior2pllYVXU6Hy/ZbZ4s3+qlNO4GPkdof05oxrWr7EUygmqtu9uNzA
+         0ApIzXiEdoNosTbc4WGzELkbr0E1vlnpLePHXiM26J1uR8Y77Xx+X3mvnXTkFAq4dVcx
+         TJ+g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=jdqK6Dur5SPo0lYVwgMH9y/i4cpr1+v+A1l02sBcPXE=;
-        b=EivgXd5fe93RiU3NsDhJ/zJIB9czJqsaDd1Ac5QrTVMcnlOvxRTharYG10Lu1f7+zU
-         Hs/G67Xj9VzCBIolbKPdzdmFwgavpaefhGyklUaVL/bxxR9IPOD/q6mwzTzFg0B0GHxE
-         EzA1fdTNtXxnIT1BmPdhNTbPy/cgQAwZfrf2CKZd0W3ohUbStYQgYowzii2Crw3zclCN
-         vL4Wm1YdkRWVQxXPCZfFT2nBCrxSRahUHmXPukb+kuL/Tcc6qBQlUiFD+o0kg3r+3Qye
-         xybCgPNMRap6PrgMuDixsSZcSqkpDhiWicFnaxOH1/n8r9YAAeSLymmS4+I/eJzzJtC1
-         LnFg==
-X-Gm-Message-State: AOAM531xxWcbfbpRQ7W/Ax3sbxvt+feRrCvFepRjzFAqN9OR5gbCUNok
-        kNADZauE3BNQG0KQ5qnCO0lZIt1DJcwmDG02
-X-Google-Smtp-Source: ABdhPJwC7eisISmz1u4nSqSApX0CR3uWLsEeNv0QU+tguMtpzU45eQvD1Bz7xMlVJrHqv+E8qzDYyA==
-X-Received: by 2002:a54:468f:0:b0:322:5226:598e with SMTP id k15-20020a54468f000000b003225226598emr1252724oic.213.1651717524152;
-        Wed, 04 May 2022 19:25:24 -0700 (PDT)
+        bh=moa0rcMvLHKuxdxI1h9ylYwMNI93SZwQx2b51rTmovE=;
+        b=iur07f2TstqBbow66XhLxjd/7nVH1Q1uK4vBQt+q5XFWc+caj9DeAgL+v9KYvboi7K
+         8YfWVi/+71FZnWcC/hAUd3xNi6D/r3LJiYjOfjKNUBTaGgcae3BzsrnDrDdDoaDHXUxh
+         q9y7eDks9WlJj36NMpfirKDIizgub9CBpq7CpgV6z8BbA100jilDeU+MSDZ5Z54Jyxrc
+         Yo1mAFHp0BwbRKUYDaRoe/7sZq4TiuG3zWPTivHsWctnjfChc4fuh1jvyNsYgnNL0QKJ
+         kY7kZc5UNos0mdieVDPUmcct9zvDQ5nd6gTowvW3uI4FFQypVIetQYPnslDGnB5joikp
+         Tr/g==
+X-Gm-Message-State: AOAM5305SQvrRkCoytGZvGahQKuISFlBnH5qN0c8HZUwqV95g7qKsRoo
+        pd1lSUIcEnvwjHkB5NITJBNQMg==
+X-Google-Smtp-Source: ABdhPJyG7SJlL33vt+EhoJgcvJFYLIJTjiyxtXvmPN3r7wSO9e/Oxh657Q8n3uaryYzmvEhQ3pgSDw==
+X-Received: by 2002:aca:4254:0:b0:322:953b:872 with SMTP id p81-20020aca4254000000b00322953b0872mr1274456oia.32.1651717525118;
+        Wed, 04 May 2022 19:25:25 -0700 (PDT)
 Received: from ripper.. (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id n8-20020a0568080a0800b00325cda1ff8csm238296oij.11.2022.05.04.19.25.23
+        by smtp.gmail.com with ESMTPSA id n8-20020a0568080a0800b00325cda1ff8csm238296oij.11.2022.05.04.19.25.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 May 2022 19:25:23 -0700 (PDT)
+        Wed, 04 May 2022 19:25:24 -0700 (PDT)
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
 To:     Bjorn Andersson <bjorn.andersson@linaro.org>
 Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: [PATCH 2/4] arm64: dts: qcom: sdm845: Enable user LEDs on DB845c
-Date:   Wed,  4 May 2022 19:27:04 -0700
-Message-Id: <20220505022706.1692554-3-bjorn.andersson@linaro.org>
+Subject: [PATCH 3/4] arm64: dts: qcom: pmi8994: Define MPP block
+Date:   Wed,  4 May 2022 19:27:05 -0700
+Message-Id: <20220505022706.1692554-4-bjorn.andersson@linaro.org>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20220505022706.1692554-1-bjorn.andersson@linaro.org>
 References: <20220505022706.1692554-1-bjorn.andersson@linaro.org>
@@ -61,7 +61,7 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -69,64 +69,34 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The DB845c has 4 "user LEDs", the last one is already supported as it's
-just wired to a gpio. Now that the LPG binding is in place we can wire
-up the other 3 LEDs as well.
+The pmi8994 has 4 multi-purpose-pins, add these to the definition.
 
 Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sdm845-db845c.dts | 31 ++++++++++++++++++++++
- 1 file changed, 31 insertions(+)
+ arch/arm64/boot/dts/qcom/pmi8994.dtsi | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-index 194ebeb3259c..e4d3de0a1e6d 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-+++ b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-@@ -5,6 +5,7 @@
- 
- /dts-v1/;
- 
-+#include <dt-bindings/leds/common.h>
- #include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
- #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
- #include <dt-bindings/sound/qcom,q6afe.h>
-@@ -606,6 +607,36 @@ resin {
+diff --git a/arch/arm64/boot/dts/qcom/pmi8994.dtsi b/arch/arm64/boot/dts/qcom/pmi8994.dtsi
+index b1b50c99ada2..0dfdd42f6f55 100644
+--- a/arch/arm64/boot/dts/qcom/pmi8994.dtsi
++++ b/arch/arm64/boot/dts/qcom/pmi8994.dtsi
+@@ -19,6 +19,16 @@ pmi8994_gpios: gpios@c000 {
+ 			interrupt-controller;
+ 			#interrupt-cells = <2>;
+ 		};
++
++		pmi8994_mpps: mpps@a000 {
++			compatible = "qcom,pmi8994-mpp";
++			reg = <0xa000>;
++			gpio-controller;
++			gpio-ranges = <&pmi8994_mpps 0 0 4>;
++			#gpio-cells = <2>;
++			interrupt-controller;
++			#interrupt-cells = <2>;
++		};
  	};
- };
  
-+&pmi8998_lpg {
-+	status = "okay";
-+
-+	qcom,power-source = <1>;
-+
-+	led@3 {
-+		reg = <3>;
-+		color = <LED_COLOR_ID_GREEN>;
-+		function = LED_FUNCTION_HEARTBEAT;
-+		function-enumerator = <3>;
-+
-+		linux,default-trigger = "heartbeat";
-+		default-state = "on";
-+	};
-+
-+	led@4 {
-+		reg = <4>;
-+		color = <LED_COLOR_ID_GREEN>;
-+		function = LED_FUNCTION_INDICATOR;
-+		function-enumerator = <2>;
-+	};
-+
-+	led@5 {
-+		reg = <5>;
-+		color = <LED_COLOR_ID_GREEN>;
-+		function = LED_FUNCTION_INDICATOR;
-+		function-enumerator = <1>;
-+	};
-+};
-+
- /* QUAT I2S Uses 4 I2S SD Lines for audio on LT9611 HDMI Bridge */
- &q6afedai {
- 	qi2s@22 {
+ 	pmic@3 {
 -- 
 2.35.1
 
