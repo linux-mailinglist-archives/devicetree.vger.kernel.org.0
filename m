@@ -2,105 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C49151BBE8
-	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 11:22:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0BF6051BBF3
+	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 11:26:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352745AbiEEJ0V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 May 2022 05:26:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37836 "EHLO
+        id S1352754AbiEEJaR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 May 2022 05:30:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43034 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1352609AbiEEJ0Q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 05:26:16 -0400
-Received: from mail-qv1-f46.google.com (mail-qv1-f46.google.com [209.85.219.46])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09DED4D25A;
-        Thu,  5 May 2022 02:22:38 -0700 (PDT)
-Received: by mail-qv1-f46.google.com with SMTP id l1so199046qvh.1;
-        Thu, 05 May 2022 02:22:38 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=6aeBtjWxwV0FYmaz1d61r1GgyEeyLd4j9oGUOYgTCiA=;
-        b=b7UHUP/hxBvPMOzRuMX/2kSi2LE2Czu8X08w68CZ7oz7y1D11FyvfPCdIzOiQChsZR
-         +HXe0cT3L5Jn2Mz7kg4J7n/I6HWEWnm2QAz386qk882lX03Ajh3rJaqqLfJcrJP2vXXT
-         8URVI6i0Kq0nxaGjXYVtyDzSB3cf475JaG0NdV6MWdBO9C7ar+aM1kBbbp0SStUJKplz
-         sLQ8JpV9vY5D1Ff3BHpJDQrqXuzLV1LHCLp/LoPozUni21VMYGH4NDJR7Yk4CxAjO79w
-         MS5QPlMIX4/fe0eVn2BtV0uCiCwV49ZYrn+yomPjFYVVjySEKwu0z4Gk/YGtchK5/pOX
-         tO1g==
-X-Gm-Message-State: AOAM5304ZLr8HBB9M3Y1CMCil2HgIbYpSHIVPSroth5SrfyHHrDF1S/u
-        MpMl86UBq9zqJosUTuEqPIUtwHHaxcN0SQ==
-X-Google-Smtp-Source: ABdhPJwJc0gaE1szT774g6ziUdZTgUjgaJJ9mUYsp4iTVgv0o05wDBPAv3RuD3/hT5Sg1qADYVn8ng==
-X-Received: by 2002:ad4:5389:0:b0:42d:a3cf:1b67 with SMTP id i9-20020ad45389000000b0042da3cf1b67mr21244205qvv.129.1651742556865;
-        Thu, 05 May 2022 02:22:36 -0700 (PDT)
-Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com. [209.85.128.180])
-        by smtp.gmail.com with ESMTPSA id y12-20020ac8524c000000b002f39b99f695sm549796qtn.47.2022.05.05.02.22.36
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 05 May 2022 02:22:36 -0700 (PDT)
-Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-2f83983782fso41831617b3.6;
-        Thu, 05 May 2022 02:22:36 -0700 (PDT)
-X-Received: by 2002:a0d:d953:0:b0:2f7:d5ce:f204 with SMTP id
- b80-20020a0dd953000000b002f7d5cef204mr22533446ywe.502.1651742556112; Thu, 05
- May 2022 02:22:36 -0700 (PDT)
+        with ESMTP id S1352702AbiEEJaP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 05:30:15 -0400
+Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com [199.106.114.39])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7BDF344CC;
+        Thu,  5 May 2022 02:26:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1651742796; x=1683278796;
+  h=from:to:cc:subject:date:message-id:mime-version;
+  bh=Qy7H/zpZChtzGkafZkP3xe/cE1VKxWgicbhdF3xm+Ro=;
+  b=Prixl+qHBWB1Cb2F9fqeF6AUE8VowMRstEGSzoxwjFugQW0nNS9T52Y1
+   qG7dzeb/2mE8uNHd60lHSP7VSNWNQtncr8Zjt4m4ji9WFB3tda72R0ATt
+   WGCq+tVdDz4B6mGF9kLXKR/jyYFgSYQWUoUrN03RigMsbvyfhG3a3qWBV
+   4=;
+Received: from unknown (HELO ironmsg01-sd.qualcomm.com) ([10.53.140.141])
+  by alexa-out-sd-02.qualcomm.com with ESMTP; 05 May 2022 02:26:36 -0700
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg01-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 May 2022 02:26:36 -0700
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Thu, 5 May 2022 02:26:36 -0700
+Received: from c-skakit-linux.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Thu, 5 May 2022 02:26:31 -0700
+From:   Satya Priya <quic_c_skakit@quicinc.com>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     Lee Jones <lee.jones@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <swboyd@chromium.org>,
+        <quic_collinsd@quicinc.com>, <quic_subbaram@quicinc.com>,
+        <quic_jprakash@quicinc.com>,
+        Satya Priya <quic_c_skakit@quicinc.com>
+Subject: [PATCH V11 0/9] Add Qualcomm Technologies, Inc. PM8008 regulator driver
+Date:   Thu, 5 May 2022 14:55:30 +0530
+Message-ID: <1651742739-12338-1-git-send-email-quic_c_skakit@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-References: <20220501082508.25511-1-biju.das.jz@bp.renesas.com>
- <CAMuHMdV07CHm3NE9YUTMqp-ZNkWoJyR6CFU9PA0heK+9G6NDxw@mail.gmail.com> <48a6fd28-b0cc-d17d-4e0c-170240d05455@linaro.org>
-In-Reply-To: <48a6fd28-b0cc-d17d-4e0c-170240d05455@linaro.org>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 5 May 2022 11:22:24 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdWutPYzG6nVmwBfuEPnTYb8BxSuW9xZXtjvTU0_t4UtrA@mail.gmail.com>
-Message-ID: <CAMuHMdWutPYzG6nVmwBfuEPnTYb8BxSuW9xZXtjvTU0_t4UtrA@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: memory: renesas,rpc-if: Document RZ/G2UL SoC
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sergei Shtylyov <sergei.shtylyov@gmail.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+Satya Priya (9):
+  dt-bindings: mfd: pm8008: Add reset-gpios
+  dt-bindings: mfd: pm8008: Change the address cells
+  dt-bindings: mfd: pm8008: Add regulators for pm8008
+  mfd: pm8008: Add reset-gpios
+  mfd: pm8008: Remove the regmap member from pm8008_data struct
+  mfd: pm8008: Use i2c_new_dummy_device() API
+  regulator: Add a regulator driver for the PM8008 PMIC
+  arm64: dts: qcom: pm8008: Add base dts file
+  arm64: dts: qcom: sc7280: Add pm8008 support for sc7280-idp
 
-On Thu, May 5, 2022 at 11:06 AM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
-> On 02/05/2022 17:03, Geert Uytterhoeven wrote:
-> > On Sun, May 1, 2022 at 10:25 AM Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> >> Document RZ/G2UL RPC-IF bindings. RZ/G2UL RPC-IF is identical to one found
-> >> on the RZ/G2L SoC. No driver changes are required as generic compatible
-> >> string "renesas,rzg2l-rpc-if" will be used as a fallback.
-> >>
-> >> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> >
-> > Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
->
-> I already sent a mem-ctrl pull request and I was not planning for a next
-> one, so maybe this could go via renesas tree?
+ .../devicetree/bindings/mfd/qcom,pm8008.yaml       |  69 ++++++-
+ arch/arm64/boot/dts/qcom/pm8008.dtsi               |  54 ++++++
+ arch/arm64/boot/dts/qcom/sc7280-idp.dtsi           |  66 +++++++
+ drivers/mfd/qcom-pm8008.c                          |  57 ++++--
+ drivers/regulator/Kconfig                          |   9 +
+ drivers/regulator/Makefile                         |   1 +
+ drivers/regulator/qcom-pm8008-regulator.c          | 216 +++++++++++++++++++++
+ include/linux/mfd/qcom_pm8008.h                    |   8 +
+ 8 files changed, 462 insertions(+), 18 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/qcom/pm8008.dtsi
+ create mode 100644 drivers/regulator/qcom-pm8008-regulator.c
+ create mode 100644 include/linux/mfd/qcom_pm8008.h
 
-Sure, will queue in renesas-devel for v5.19.
+-- 
+2.7.4
 
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Thanks!
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
