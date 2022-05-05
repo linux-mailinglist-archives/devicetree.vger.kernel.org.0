@@ -2,121 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5B64551C40A
-	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 17:37:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EC78151C43C
+	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 17:48:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242689AbiEEPlg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 May 2022 11:41:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33890 "EHLO
+        id S1381408AbiEEPvv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 May 2022 11:51:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41262 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238590AbiEEPld (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 11:41:33 -0400
-Received: from extserv.mm-sol.com (ns.mm-sol.com [37.157.136.199])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 218BD15815;
-        Thu,  5 May 2022 08:37:52 -0700 (PDT)
-Received: from [192.168.1.17] (unknown [84.238.208.205])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (Client did not present a certificate)
-        (Authenticated sender: svarbanov@mm-sol.com)
-        by extserv.mm-sol.com (Postfix) with ESMTPSA id BF412D2AA;
-        Thu,  5 May 2022 18:37:50 +0300 (EEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mm-sol.com; s=201706;
-        t=1651765070; bh=uVBey31bxdTj1jCCK+/s43l7HdKmJ0V7+XbcUggK3zA=;
-        h=Date:Subject:To:Cc:From:From;
-        b=nkIpo+HObdOmz3xtRL3k69eQ5gV3avmAx9tAxhZakfllVMMRQJLx0GpYxbf7XKTnm
-         Wf6qbPwZ7Z912uWgMvVyb9htTfP6OpOCQIsHX4XkodBxZ8RqIBBaIVbSRMmm+8Ku7g
-         urirEqfGJmmDX2wZwRRDLLZbGIbIdivxe+H8kes5t47FZMFEuVnApJLBgPXtcuGDpP
-         rN6n7+KZ+rP8vaHVz0CzGt53tQKEjQmSNkDTioHzmbFWuLbiph0DEOIRNMWQP2rWtj
-         vM+NysPthpGf/2duhomPGxxlfd1j7IFDqEOMlMnI0VkWn7e9S5/SqzkBMrnMdAiFoL
-         9T6z5/LVoNoWA==
-Message-ID: <ace7dd07-cf2f-fa74-866f-50f7da0b89bb@mm-sol.com>
-Date:   Thu, 5 May 2022 18:37:48 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH v7 0/7] PCI: qcom: Fix higher MSI vectors handling
-Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        with ESMTP id S1355562AbiEEPvu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 11:51:50 -0400
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57BEC5A5A3
+        for <devicetree@vger.kernel.org>; Thu,  5 May 2022 08:48:10 -0700 (PDT)
+Received: by mail-wr1-x42d.google.com with SMTP id d5so6655844wrb.6
+        for <devicetree@vger.kernel.org>; Thu, 05 May 2022 08:48:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=dz2crOFWGnc2tJ+5hQ8HTWioTwYzhB3xpGSgL65wUTY=;
+        b=GqeinuOtqa1AEtAicabrscRJxIs3Scd/kwKKyrpshrbaEhyDFuuHVDUT9W0FjGH/O9
+         Dzn3F7QwFZ9yUm5LYk7KJPIGzA6iGfQZGrANT/MBD8doRfwQQ9TM9gnFc4ef3A+Ykl99
+         HVMn8HKN11pHoAedERmk/JBJwoXydTqvJfIByWYS1Wdm67oy+vXf0t9s3QSEyUAzAYbV
+         kv0MVbjlMiO3JrZgfkNZs+5o67kMEW8ka9oCnjpEKkUotqQ4VobwaPHwEsoNRAncRzkZ
+         q83vnji0w+UhEoNAhlOEZFEDDROEmoL9/+EqRAt2lpBWx7dPlj7kHW+YfcIJ4vLcf/SJ
+         DSCg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=dz2crOFWGnc2tJ+5hQ8HTWioTwYzhB3xpGSgL65wUTY=;
+        b=1Kq/9LauJBhH0IrH6X5+/UeYobQcF1NeMjyeMzW8voP08VEAreRIVciu3Wcwiu57Cv
+         Jn1PF5t9ZfFQml5WItfFJRGyfa876yJf2mbLZurw8IjaCm3exvSQAP0MOlH7e3MA2h3H
+         c7On59HOnaQ5EVE5MVISIRNvTFiLfqLFlmmeQDpEULz9cRiNiXhLo1shOW1N4OkWgWek
+         hnJUTiQ2NfHlDEgt12qStDeC9/psg0p2tgiFthBQv4e0u4ZB9fwUyVdMUC6B2LlC5F6I
+         Xhs8mMUEwmXKutpcYiCsspzVM2Ie4g55LxRQCDVqM3AYR05jwO4OvBwdUFIpIKSV5nEv
+         H9mg==
+X-Gm-Message-State: AOAM530dgR2nZR9BVWbO5/ylKDdmrOwc/Qte4XPKurRKFj2IjrzhS//R
+        0CLv8u19I2E0H27TPFPlBlfThA==
+X-Google-Smtp-Source: ABdhPJyhm76mmw60HuLdnLYEnXvHtF5RCkTbMn+Kpn9N0N4Ki2TPnopccaMJ6t3VUM1zDG+1gIrq1w==
+X-Received: by 2002:adf:fd4a:0:b0:20a:cee3:5abf with SMTP id h10-20020adffd4a000000b0020acee35abfmr21761822wrs.522.1651765688972;
+        Thu, 05 May 2022 08:48:08 -0700 (PDT)
+Received: from localhost.localdomain (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id c14-20020adffb0e000000b0020c6fa5a797sm1518956wrr.91.2022.05.05.08.48.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 05 May 2022 08:48:08 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Lee Jones <lee.jones@linaro.org>,
+        Daniel Thompson <daniel.thompson@linaro.org>,
+        Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@ucw.cz>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc:     Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org
-References: <20220505135407.1352382-1-dmitry.baryshkov@linaro.org>
-From:   Stanimir Varbanov <svarbanov@mm-sol.com>
-In-Reply-To: <20220505135407.1352382-1-dmitry.baryshkov@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        Kiran Gunda <kgunda@codeaurora.org>,
+        dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 1/2] dt-bindings: leds: qcom-wled: fix number of addresses
+Date:   Thu,  5 May 2022 17:47:01 +0200
+Message-Id: <20220505154702.422108-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.32.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Thanks Dmitry!
+On PM660L, PMI8994 and PMI8998, the WLED has two address spaces.  This
+also fixes dtbs_check warnings like:
 
-On 5/5/22 16:54, Dmitry Baryshkov wrote:
-> I have replied with my Tested-by to the patch at [2], which has landed
-> in the linux-next as the commit 20f1bfb8dd62 ("PCI: qcom:
-> Add support for handling MSIs from 8 endpoints"). However lately I
-> noticed that during the tests I still had 'pcie_pme=nomsi', so the
-> device was not forced to use higher MSI vectors.
-> 
-> After removing this option I noticed that hight MSI vectors are not
-> delivered on tested platforms. After additional research I stumbled upon
-> a patch in msm-4.14 ([1]), which describes that each group of MSI
-> vectors is mapped to the separate interrupt. Implement corresponding
-> mapping.
-> 
-> Since we can not expect that other platforms will use multi-IRQ scheme
-> for MSI mapping (e.g. iMX and Tegra map all 256 MSI interrupts to single
-> IRQ), it's support is implemented directly in pcie-qcom rather than in
-> the core driver.
-> 
-> The first patch in the series is a revert of  [2] (landed in pci-next).
-> Either both patches should be applied or both should be dropped.
-> 
-> Patchseries dependecies: [3] (for the schema change).
-> 
-> Changes since v6:
->  - Fix indentation of the arguments as requested by Stanimir
+  arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dtb: leds@d800: reg: [[55296], [55552]] is too long
 
-<cut>
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ .../devicetree/bindings/leds/backlight/qcom-wled.yaml    | 9 ++++++++-
+ 1 file changed, 8 insertions(+), 1 deletion(-)
 
-> 
-> Dmitry Baryshkov (7):
->   PCI: qcom: Revert "PCI: qcom: Add support for handling MSIs from 8
->     endpoints"
->   PCI: dwc: Correct msi_irq condition in dw_pcie_free_msi()
->   PCI: dwc: Add msi_host_deinit callback
->   PCI: dwc: Export several functions useful for MSI implentations
->   PCI: qcom: Handle MSIs routed to multiple GIC interrupts
->   dt-bindings: PCI: qcom: Support additional MSI interrupts
->   arm64: dts: qcom: sm8250: provide additional MSI interrupts
-
-For PCI qcom driver:
-
-Acked-by: Stanimir Varbanov <svarbanov@mm-sol.com>
-
-> 
->  .../devicetree/bindings/pci/qcom,pcie.yaml    |  45 +++++-
->  arch/arm64/boot/dts/qcom/sm8250.dtsi          |  11 +-
->  .../pci/controller/dwc/pcie-designware-host.c |  72 +++++----
->  drivers/pci/controller/dwc/pcie-designware.h  |  12 ++
->  drivers/pci/controller/dwc/pcie-qcom.c        | 138 +++++++++++++++++-
->  5 files changed, 246 insertions(+), 32 deletions(-)
-> 
-
+diff --git a/Documentation/devicetree/bindings/leds/backlight/qcom-wled.yaml b/Documentation/devicetree/bindings/leds/backlight/qcom-wled.yaml
+index 5d66c3e4def5..4c15693f7a01 100644
+--- a/Documentation/devicetree/bindings/leds/backlight/qcom-wled.yaml
++++ b/Documentation/devicetree/bindings/leds/backlight/qcom-wled.yaml
+@@ -26,7 +26,8 @@ properties:
+       - qcom,pm8150l-wled
+ 
+   reg:
+-    maxItems: 1
++    minItems: 1
++    maxItems: 2
+ 
+   default-brightness:
+     description: |
+@@ -171,6 +172,9 @@ allOf:
+ 
+     then:
+       properties:
++        reg:
++          maxItems: 1
++
+         qcom,current-boost-limit:
+           enum: [ 105, 385, 525, 805, 980, 1260, 1400, 1680 ]
+           default: 805
+@@ -189,6 +193,9 @@ allOf:
+ 
+     else:
+       properties:
++        reg:
++          minItems: 2
++
+         qcom,current-boost-limit:
+           enum: [ 105, 280, 450, 620, 970, 1150, 1300, 1500 ]
+           default: 970
 -- 
-regards,
-Stan
+2.32.0
+
