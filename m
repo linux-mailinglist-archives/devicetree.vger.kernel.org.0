@@ -2,358 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 75C5851C11C
-	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 15:44:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5C82451C12A
+	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 15:46:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1354118AbiEENrz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 May 2022 09:47:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60598 "EHLO
+        id S1378312AbiEENth (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 May 2022 09:49:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34058 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343930AbiEENrw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 09:47:52 -0400
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 888745717A
-        for <devicetree@vger.kernel.org>; Thu,  5 May 2022 06:44:12 -0700 (PDT)
-Received: by mail-lj1-x234.google.com with SMTP id m23so5655143ljb.8
-        for <devicetree@vger.kernel.org>; Thu, 05 May 2022 06:44:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=x2/oaeLvBGUjNh6Ua3HoGxwQ5NaCtqAGbLaQrSSqV/M=;
-        b=gqrvQMYNF7YMLsZA7U87NMOSNJGvmoivK+ajS50rXz+M+z7nn1W8pdy5oOvZqi8e7J
-         MUuHWVzu+vGwpYs8t1uW3HcpE+eb2bvpu/Uv44f4Wnc1HZiiWftsy7Kzh10Nfb4JeI4h
-         zsgmD+m3oqSWohlWNaGcmA6/59kcQ67LoK7SGafYrOtfwTFIlizdubobyBsFz/SbPqao
-         QGZAiPaFpwOsS3WZfsTH8x/sXJ6Nhf6tP1IFVdp0f6M+T/mc6Q/KGR+EDfLbaSmRwtXT
-         nvPFLFhdbpN+0yMvj5f+sCyU7Wdk7aYRxyQt2VnI8M92jRp98aSmyaNoZ50f+kMS8oE5
-         uowA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=x2/oaeLvBGUjNh6Ua3HoGxwQ5NaCtqAGbLaQrSSqV/M=;
-        b=fbHQyaYvidGWCXFpA03xbIP8+0K6+bg4gL9uDuvOztzj9WMn+EODwEl7NpEq5mMw+T
-         JyMr8SXphQcXyJQo3Lsd7pSP68TYSXawV7QWC+byo05poog0vZQWM12yEERI7iLne8CH
-         NBJYPYC+WUtrNNhCrabAK/4PQZOHjtbkvn6euzKqqyDHKhgZTwButU+7zjHQyXzOKUYG
-         k3WqtGBbKwwo5h+5OSiH5vGhz14VUA8v0QsxYDO1azf627DSZxq+FtH4YRpK9Ebl6Nrt
-         /UxEZehF+LsqhuGoGrLINVhk2Z9r0wEg71DWkLnPGadKZNVnO2Y77hcsl4OXc6zbsdB4
-         HcTg==
-X-Gm-Message-State: AOAM5321kE83MOjoG3VyPb3qb8MsMmDzMGQu225SMrOfGsKU3kjjLBya
-        GEtWQ2R9us4rzLPW41jjVXva4Q==
-X-Google-Smtp-Source: ABdhPJw9sq4hhQFvOhKElq33RsMsy8B6/efk9XLTaI64SK+Q1s7iBTu6oUDnJe9ZtnPoVu99PwSJKg==
-X-Received: by 2002:a05:651c:1503:b0:24c:81df:e1f2 with SMTP id e3-20020a05651c150300b0024c81dfe1f2mr16585157ljf.182.1651758250878;
-        Thu, 05 May 2022 06:44:10 -0700 (PDT)
-Received: from localhost.localdomain (mobile-access-5672eb-224.dhcp.inet.fi. [86.114.235.224])
-        by smtp.gmail.com with ESMTPSA id g17-20020ac24d91000000b0047255d211d1sm218719lfe.256.2022.05.05.06.44.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 May 2022 06:44:10 -0700 (PDT)
-From:   Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-clk@vger.kernel.org
-Subject: [PATCH v4 1/7] dt-bindings: clock: add QCOM SM8450 camera clock bindings
-Date:   Thu,  5 May 2022 16:44:08 +0300
-Message-Id: <20220505134408.4124575-1-vladimir.zapolskiy@linaro.org>
-X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20220505121213.4121802-2-vladimir.zapolskiy@linaro.org>
-References: <20220505121213.4121802-2-vladimir.zapolskiy@linaro.org>
+        with ESMTP id S245347AbiEENtg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 09:49:36 -0400
+Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 221F42CCB7;
+        Thu,  5 May 2022 06:45:53 -0700 (PDT)
+Received: (Authenticated sender: clement.leger@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id AEC8F20007;
+        Thu,  5 May 2022 13:45:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1651758352;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=APu3zruYgegUIFbJNxsW/QRCDb/RNd0lCGoQLnybkX4=;
+        b=hUZr8TqznISglCXOoDmPQNy7VHUGtOg+69KBoCaQd/aG4OVfyqpsks65iqjmh72mBdeXZM
+        0YPfZJtxrCxY8H4UyIyoEI4A/Z0hEKXhMxjxwhAFj3SPxo6uWGOeijXR0X2L6cwgTpu1im
+        uF970G2QBHi2j/kOlJYJwwz+QEqqaWZLM5tu5fxLuIkcxiwdZxMwy1i0OKdIScypL6mfOx
+        okMTMJ9zYHkK4oKnRuFT8IPSzpXSDQs3NKvQtPlsfMAmc+jHqcApGopY32O8fpBS38DYnW
+        5RvF3zRgZjAiLnD7qadNVm/0OTDMyX+LB+tMsgJtKzn+porWx/vqlTVeZqGnPw==
+Date:   Thu, 5 May 2022 15:44:31 +0200
+From:   =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
+To:     Vladimir Oltean <olteanv@gmail.com>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Herve Codina <herve.codina@bootlin.com>,
+        =?UTF-8?B?TWlxdcOobA==?= Raynal <miquel.raynal@bootlin.com>,
+        Milan Stevanovic <milan.stevanovic@se.com>,
+        Jimmy Lalande <jimmy.lalande@se.com>,
+        Pascal Eberhard <pascal.eberhard@se.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, netdev@vger.kernel.org
+Subject: Re: [PATCH net-next v3 08/12] net: dsa: rzn1-a5psw: add FDB support
+Message-ID: <20220505154431.06174a04@fixe.home>
+In-Reply-To: <20220504162457.eeggo4xenvxddpkr@skbuf>
+References: <20220504093000.132579-1-clement.leger@bootlin.com>
+        <20220504093000.132579-9-clement.leger@bootlin.com>
+        <20220504162457.eeggo4xenvxddpkr@skbuf>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.31; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The change adds device tree bindings for camera clock controller
-found on SM8450 SoC.
+Le Wed, 4 May 2022 19:24:57 +0300,
+Vladimir Oltean <olteanv@gmail.com> a =C3=A9crit :
 
-Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
----
-Changes from v3 to v4:
-* renamed a filename in $id value after the rename of the file itself
+> On Wed, May 04, 2022 at 11:29:56AM +0200, Cl=C3=A9ment L=C3=A9ger wrote:
+> > +static int a5psw_port_fdb_del(struct dsa_switch *ds, int port,
+> > +			      const unsigned char *addr, u16 vid,
+> > +			      struct dsa_db db)
+> > +{
+> > +	struct a5psw *a5psw =3D ds->priv;
+> > +	union lk_data lk_data =3D {0};
+> > +	bool clear =3D false;
+> > +	int ret =3D 0;
+> > +	u16 entry;
+> > +	u32 reg;
+> > +
+> > +	ether_addr_copy(lk_data.entry.mac, addr);
+> > +
+> > +	spin_lock(&a5psw->lk_lock);
+> > +
+> > +	ret =3D a5psw_lk_execute_lookup(a5psw, &lk_data, &entry);
+> > +	if (ret) {
+> > +		dev_err(a5psw->dev, "Failed to lookup mac address\n");
+> > +		goto lk_unlock;
+> > +	}
+> > +
+> > +	lk_data.hi =3D a5psw_reg_readl(a5psw, A5PSW_LK_DATA_HI);
+> > +	if (!lk_data.entry.valid) {
+> > +		dev_err(a5psw->dev, "Tried to remove non-existing entry\n");
+> > +		ret =3D -ENOENT;
+> > +		goto lk_unlock; =20
+>=20
+> These error messages can happen under quite normal use with your hardware.
+> For example:
+>=20
+> ip link add br0 type bridge && ip link set br0 master br0
+> bridge fdb add dev swp0 00:01:02:03:04:05 vid 1 master static
+> bridge fdb add dev swp0 00:01:02:03:04:05 vid 2 master static
+> bridge fdb del dev swp0 00:01:02:03:04:05 vid 2 master static
+> bridge fdb del dev swp0 00:01:02:03:04:05 vid 1 master static
+>=20
+> Because the driver ignores the VID, then as soon as the VID 2 FDB entry
+> is removed, the VID 1 FDB entry doesn't exist anymore, either.
 
-Changes from v2 to v3:
-* renamed files to match the compatible value "qcom,sm8450-camcc",
-* fixed a typo in a usage example found in the yaml file.
+Argh did not thought about that but indeed, that will for sure trigger
+the error.
 
-Changes from v1 to v2:
-* updated qcom,camcc-sm8450.yaml according to review comments from Rob,
-* changed qcom,camcc-sm8450.h license to dual one.
+>=20
+> The above is a bit artificial. More practically, the bridge installs
+> local FDB entries (MAC address of bridge device, MAC addresses of ports)
+> once in the VLAN-unaware database (VID 0), and once per VLAN installed
+> on br0.
 
-.../bindings/clock/qcom,sm8450-camcc.yaml     |  89 ++++++++++
- include/dt-bindings/clock/qcom,sm8450-camcc.h | 159 ++++++++++++++++++
- 2 files changed, 248 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/clock/qcom,sm8450-camcc.yaml
- create mode 100644 include/dt-bindings/clock/qcom,sm8450-camcc.h
+Ok, seems clear.
 
-diff --git a/Documentation/devicetree/bindings/clock/qcom,sm8450-camcc.yaml b/Documentation/devicetree/bindings/clock/qcom,sm8450-camcc.yaml
-new file mode 100644
-index 000000000000..f09e7cec94d7
---- /dev/null
-+++ b/Documentation/devicetree/bindings/clock/qcom,sm8450-camcc.yaml
-@@ -0,0 +1,89 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/clock/qcom,sm8450-camcc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Qualcomm Camera Clock & Reset Controller Binding for SM8450
-+
-+maintainers:
-+  - Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-+
-+description: |
-+  Qualcomm camera clock control module which supports the clocks, resets and
-+  power domains on SM8450.
-+
-+  See also dt-bindings/clock/qcom,camcc-sm8450.h
-+
-+properties:
-+  compatible:
-+    const: qcom,sm8450-camcc
-+
-+  clocks:
-+    items:
-+      - description: Camera AHB clock from GCC
-+      - description: Board XO source
-+      - description: Board active XO source
-+      - description: Sleep clock source
-+
-+  clock-names:
-+    items:
-+      - const: iface
-+      - const: bi_tcxo
-+      - const: bi_tcxo_ao
-+      - const: sleep_clk
-+
-+  power-domains:
-+    maxItems: 1
-+    description:
-+      A phandle and PM domain specifier for the MMCX power domain.
-+
-+  required-opps:
-+    description:
-+      A phandle to an OPP node describing required MMCX performance point.
-+
-+  '#clock-cells':
-+    const: 1
-+
-+  '#reset-cells':
-+    const: 1
-+
-+  '#power-domain-cells':
-+    const: 1
-+
-+  reg:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - clock-names
-+  - power-domains
-+  - required-opps
-+  - '#clock-cells'
-+  - '#reset-cells'
-+  - '#power-domain-cells'
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/qcom,gcc-sm8450.h>
-+    #include <dt-bindings/clock/qcom,rpmh.h>
-+    #include <dt-bindings/power/qcom-rpmpd.h>
-+    clock-controller@ade0000 {
-+      compatible = "qcom,sm8450-camcc";
-+      reg = <0 0xade0000 0 0x20000>;
-+      clocks = <&gcc GCC_CAMERA_AHB_CLK>,
-+               <&rpmhcc RPMH_CXO_CLK>,
-+               <&rpmhcc RPMH_CXO_CLK_A>,
-+               <&sleep_clk>;
-+      clock-names = "iface", bi_tcxo", "bi_tcxo_ao", "sleep_clk";
-+      power-domains = <&rpmhpd SM8450_MMCX>;
-+      required-opps = <&rpmhpd_opp_low_svs>;
-+      #clock-cells = <1>;
-+      #reset-cells = <1>;
-+      #power-domain-cells = <1>;
-+    };
-+...
-diff --git a/include/dt-bindings/clock/qcom,sm8450-camcc.h b/include/dt-bindings/clock/qcom,sm8450-camcc.h
-new file mode 100644
-index 000000000000..7ff67acf301a
---- /dev/null
-+++ b/include/dt-bindings/clock/qcom,sm8450-camcc.h
-@@ -0,0 +1,159 @@
-+/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
-+/*
-+ * Copyright (c) 2020-2021, The Linux Foundation. All rights reserved.
-+ */
-+
-+#ifndef _DT_BINDINGS_CLK_QCOM_CAM_CC_SM8450_H
-+#define _DT_BINDINGS_CLK_QCOM_CAM_CC_SM8450_H
-+
-+/* CAM_CC clocks */
-+#define CAM_CC_BPS_AHB_CLK					0
-+#define CAM_CC_BPS_CLK						1
-+#define CAM_CC_BPS_CLK_SRC					2
-+#define CAM_CC_BPS_FAST_AHB_CLK					3
-+#define CAM_CC_CAMNOC_AXI_CLK					4
-+#define CAM_CC_CAMNOC_AXI_CLK_SRC				5
-+#define CAM_CC_CAMNOC_DCD_XO_CLK				6
-+#define CAM_CC_CCI_0_CLK					7
-+#define CAM_CC_CCI_0_CLK_SRC					8
-+#define CAM_CC_CCI_1_CLK					9
-+#define CAM_CC_CCI_1_CLK_SRC					10
-+#define CAM_CC_CORE_AHB_CLK					11
-+#define CAM_CC_CPAS_AHB_CLK					12
-+#define CAM_CC_CPAS_BPS_CLK					13
-+#define CAM_CC_CPAS_FAST_AHB_CLK				14
-+#define CAM_CC_CPAS_IFE_0_CLK					15
-+#define CAM_CC_CPAS_IFE_1_CLK					16
-+#define CAM_CC_CPAS_IFE_2_CLK					17
-+#define CAM_CC_CPAS_IFE_LITE_CLK				18
-+#define CAM_CC_CPAS_IPE_NPS_CLK					19
-+#define CAM_CC_CPAS_SBI_CLK					20
-+#define CAM_CC_CPAS_SFE_0_CLK					21
-+#define CAM_CC_CPAS_SFE_1_CLK					22
-+#define CAM_CC_CPHY_RX_CLK_SRC					23
-+#define CAM_CC_CSI0PHYTIMER_CLK					24
-+#define CAM_CC_CSI0PHYTIMER_CLK_SRC				25
-+#define CAM_CC_CSI1PHYTIMER_CLK					26
-+#define CAM_CC_CSI1PHYTIMER_CLK_SRC				27
-+#define CAM_CC_CSI2PHYTIMER_CLK					28
-+#define CAM_CC_CSI2PHYTIMER_CLK_SRC				29
-+#define CAM_CC_CSI3PHYTIMER_CLK					30
-+#define CAM_CC_CSI3PHYTIMER_CLK_SRC				31
-+#define CAM_CC_CSI4PHYTIMER_CLK					32
-+#define CAM_CC_CSI4PHYTIMER_CLK_SRC				33
-+#define CAM_CC_CSI5PHYTIMER_CLK					34
-+#define CAM_CC_CSI5PHYTIMER_CLK_SRC				35
-+#define CAM_CC_CSID_CLK						36
-+#define CAM_CC_CSID_CLK_SRC					37
-+#define CAM_CC_CSID_CSIPHY_RX_CLK				38
-+#define CAM_CC_CSIPHY0_CLK					39
-+#define CAM_CC_CSIPHY1_CLK					40
-+#define CAM_CC_CSIPHY2_CLK					41
-+#define CAM_CC_CSIPHY3_CLK					42
-+#define CAM_CC_CSIPHY4_CLK					43
-+#define CAM_CC_CSIPHY5_CLK					44
-+#define CAM_CC_FAST_AHB_CLK_SRC					45
-+#define CAM_CC_GDSC_CLK						46
-+#define CAM_CC_ICP_AHB_CLK					47
-+#define CAM_CC_ICP_CLK						48
-+#define CAM_CC_ICP_CLK_SRC					49
-+#define CAM_CC_IFE_0_CLK					50
-+#define CAM_CC_IFE_0_CLK_SRC					51
-+#define CAM_CC_IFE_0_DSP_CLK					52
-+#define CAM_CC_IFE_0_FAST_AHB_CLK				53
-+#define CAM_CC_IFE_1_CLK					54
-+#define CAM_CC_IFE_1_CLK_SRC					55
-+#define CAM_CC_IFE_1_DSP_CLK					56
-+#define CAM_CC_IFE_1_FAST_AHB_CLK				57
-+#define CAM_CC_IFE_2_CLK					58
-+#define CAM_CC_IFE_2_CLK_SRC					59
-+#define CAM_CC_IFE_2_DSP_CLK					60
-+#define CAM_CC_IFE_2_FAST_AHB_CLK				61
-+#define CAM_CC_IFE_LITE_AHB_CLK					62
-+#define CAM_CC_IFE_LITE_CLK					63
-+#define CAM_CC_IFE_LITE_CLK_SRC					64
-+#define CAM_CC_IFE_LITE_CPHY_RX_CLK				65
-+#define CAM_CC_IFE_LITE_CSID_CLK				66
-+#define CAM_CC_IFE_LITE_CSID_CLK_SRC				67
-+#define CAM_CC_IPE_NPS_AHB_CLK					68
-+#define CAM_CC_IPE_NPS_CLK					69
-+#define CAM_CC_IPE_NPS_CLK_SRC					70
-+#define CAM_CC_IPE_NPS_FAST_AHB_CLK				71
-+#define CAM_CC_IPE_PPS_CLK					72
-+#define CAM_CC_IPE_PPS_FAST_AHB_CLK				73
-+#define CAM_CC_JPEG_CLK						74
-+#define CAM_CC_JPEG_CLK_SRC					75
-+#define CAM_CC_MCLK0_CLK					76
-+#define CAM_CC_MCLK0_CLK_SRC					77
-+#define CAM_CC_MCLK1_CLK					78
-+#define CAM_CC_MCLK1_CLK_SRC					79
-+#define CAM_CC_MCLK2_CLK					80
-+#define CAM_CC_MCLK2_CLK_SRC					81
-+#define CAM_CC_MCLK3_CLK					82
-+#define CAM_CC_MCLK3_CLK_SRC					83
-+#define CAM_CC_MCLK4_CLK					84
-+#define CAM_CC_MCLK4_CLK_SRC					85
-+#define CAM_CC_MCLK5_CLK					86
-+#define CAM_CC_MCLK5_CLK_SRC					87
-+#define CAM_CC_MCLK6_CLK					88
-+#define CAM_CC_MCLK6_CLK_SRC					89
-+#define CAM_CC_MCLK7_CLK					90
-+#define CAM_CC_MCLK7_CLK_SRC					91
-+#define CAM_CC_PLL0						92
-+#define CAM_CC_PLL0_OUT_EVEN					93
-+#define CAM_CC_PLL0_OUT_ODD					94
-+#define CAM_CC_PLL1						95
-+#define CAM_CC_PLL1_OUT_EVEN					96
-+#define CAM_CC_PLL2						97
-+#define CAM_CC_PLL3						98
-+#define CAM_CC_PLL3_OUT_EVEN					99
-+#define CAM_CC_PLL4						100
-+#define CAM_CC_PLL4_OUT_EVEN					101
-+#define CAM_CC_PLL5						102
-+#define CAM_CC_PLL5_OUT_EVEN					103
-+#define CAM_CC_PLL6						104
-+#define CAM_CC_PLL6_OUT_EVEN					105
-+#define CAM_CC_PLL7						106
-+#define CAM_CC_PLL7_OUT_EVEN					107
-+#define CAM_CC_PLL8						108
-+#define CAM_CC_PLL8_OUT_EVEN					109
-+#define CAM_CC_QDSS_DEBUG_CLK					110
-+#define CAM_CC_QDSS_DEBUG_CLK_SRC				111
-+#define CAM_CC_QDSS_DEBUG_XO_CLK				112
-+#define CAM_CC_SBI_AHB_CLK					113
-+#define CAM_CC_SBI_CLK						114
-+#define CAM_CC_SFE_0_CLK					115
-+#define CAM_CC_SFE_0_CLK_SRC					116
-+#define CAM_CC_SFE_0_FAST_AHB_CLK				117
-+#define CAM_CC_SFE_1_CLK					118
-+#define CAM_CC_SFE_1_CLK_SRC					119
-+#define CAM_CC_SFE_1_FAST_AHB_CLK				120
-+#define CAM_CC_SLEEP_CLK					121
-+#define CAM_CC_SLEEP_CLK_SRC					122
-+#define CAM_CC_SLOW_AHB_CLK_SRC					123
-+#define CAM_CC_XO_CLK_SRC					124
-+
-+/* CAM_CC resets */
-+#define CAM_CC_BPS_BCR						0
-+#define CAM_CC_ICP_BCR						1
-+#define CAM_CC_IFE_0_BCR					2
-+#define CAM_CC_IFE_1_BCR					3
-+#define CAM_CC_IFE_2_BCR					4
-+#define CAM_CC_IPE_0_BCR					5
-+#define CAM_CC_QDSS_DEBUG_BCR					6
-+#define CAM_CC_SBI_BCR						7
-+#define CAM_CC_SFE_0_BCR					8
-+#define CAM_CC_SFE_1_BCR					9
-+
-+/* CAM_CC GDSCRs */
-+#define BPS_GDSC		0
-+#define IPE_0_GDSC		1
-+#define SBI_GDSC		2
-+#define IFE_0_GDSC		3
-+#define IFE_1_GDSC		4
-+#define IFE_2_GDSC		5
-+#define SFE_0_GDSC		6
-+#define SFE_1_GDSC		7
-+#define TITAN_TOP_GDSC		8
-+
-+#endif
--- 
-2.33.0
+>=20
+> When the MAC address of br0 is different from that of the ports, and it
+> is changed by the user, you'll get these errors too, since those changes
+> translate into a deletion of the old local FDB entries (installed as FDB
+> entries towards the CPU port). Do you want the users to see them and
+> think something is wrong?  I mean, something _is_ wrong (the hardware),
+> but you have to work with that somehow.
 
+Indeed, I'll simply remove these error message. Should I still return
+an error value however ? Seems like I should not to avoid triggering
+any error that might confuse the user.
+
+--=20
+Cl=C3=A9ment L=C3=A9ger,
+Embedded Linux and Kernel engineer at Bootlin
+https://bootlin.com
