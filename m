@@ -2,108 +2,192 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E93E51C576
-	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 18:54:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CD19851C5A1
+	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 19:02:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1381951AbiEEQ5t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 May 2022 12:57:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46414 "EHLO
+        id S245209AbiEERFk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 May 2022 13:05:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50510 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233268AbiEEQ5s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 12:57:48 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99D3D57B15;
-        Thu,  5 May 2022 09:54:08 -0700 (PDT)
+        with ESMTP id S1382496AbiEERFb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 13:05:31 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B4E05C840;
+        Thu,  5 May 2022 10:01:32 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 5AF10B82E0B;
-        Thu,  5 May 2022 16:54:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C6051C385A4;
-        Thu,  5 May 2022 16:54:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1651769646;
-        bh=p+Bv32mI3hSoH46S0grONiKmXRZCUz+77zQaW/pFQpI=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ge893G0ricbEaTvms2L5/YKhHTsgFuJ/7NLqXN3SX8NpXoG2SV4/QAnKg1fa109xu
-         k7OgZmCSKyvaWwnM3hHRoJ7fcDiiDzSqvYkeAQPgZqW9PoY6NESDTdv+bgwuPCaE6R
-         2c3iK+pMen4QnzLomiBDyIhvf+zfmylWCC7WvWpZC5MYR7MkJ47Xn8s42+jHPDU2Ar
-         3Vn2VIByNoahv8T79eZxtwcpkmm4bl0dxt6r/UIY/LwKtlSJ/LKOOlpIewpoxoR5un
-         jdfKjFww+mxhzHURhRk8F2TWG51rnNI922vQ/Y5tjFIgC5eeeBLRfY+wMN/sFcMtTH
-         oxd028ySdMxMw==
-Date:   Thu, 5 May 2022 09:54:00 -0700
-From:   Mike Rapoport <rppt@kernel.org>
-To:     Faiyaz Mohammed <quic_faiyazm@quicinc.com>
-Cc:     quic_vjitta@quicinc.com, karahmed@amazon.de, qperret@google.com,
-        robh@kernel.org, akpm@linux-foundation.org, linux-mm@kvack.org,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        frowand.list@gmail.com, devicetree@vger.kernel.org
-Subject: Re: [PATCH] mm: memblock: avoid to create memmap for memblock nomap
- regions
-Message-ID: <YnQBKPWtPa87y4NA@kernel.org>
-References: <1649704172-13181-1-git-send-email-quic_faiyazm@quicinc.com>
- <YlW2TO0O8qDHpkGW@kernel.org>
- <7b18bea8-b996-601d-f490-cb8aadfffa1b@quicinc.com>
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 98ED961E8A;
+        Thu,  5 May 2022 17:01:31 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B8A37C385A4;
+        Thu,  5 May 2022 17:01:26 +0000 (UTC)
+Date:   Thu, 5 May 2022 18:01:23 +0100
+From:   Catalin Marinas <catalin.marinas@arm.com>
+To:     Zhen Lei <thunder.leizhen@huawei.com>
+Cc:     Thomas Gleixner <tglx@linutronix.de>,
+        Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
+        x86@kernel.org, "H . Peter Anvin" <hpa@zytor.com>,
+        linux-kernel@vger.kernel.org, Dave Young <dyoung@redhat.com>,
+        Baoquan He <bhe@redhat.com>, Vivek Goyal <vgoyal@redhat.com>,
+        Eric Biederman <ebiederm@xmission.com>,
+        kexec@lists.infradead.org, Will Deacon <will@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>,
+        linux-doc@vger.kernel.org, Randy Dunlap <rdunlap@infradead.org>,
+        Feng Zhou <zhoufeng.zf@bytedance.com>,
+        Kefeng Wang <wangkefeng.wang@huawei.com>,
+        Chen Zhou <dingguo.cz@antgroup.com>,
+        John Donnelly <John.p.donnelly@oracle.com>,
+        Dave Kleikamp <dave.kleikamp@oracle.com>
+Subject: Re: [PATCH v23 3/6] arm64: kdump: Reimplement crashkernel=X
+Message-ID: <YnQC44KVKirH0vyB@arm.com>
+References: <20220505091845.167-1-thunder.leizhen@huawei.com>
+ <20220505091845.167-4-thunder.leizhen@huawei.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <7b18bea8-b996-601d-f490-cb8aadfffa1b@quicinc.com>
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20220505091845.167-4-thunder.leizhen@huawei.com>
+X-Spam-Status: No, score=-6.7 required=5.0 tests=BAYES_00,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 05, 2022 at 08:46:15PM +0530, Faiyaz Mohammed wrote:
+On Thu, May 05, 2022 at 05:18:42PM +0800, Zhen Lei wrote:
+> From: Chen Zhou <chenzhou10@huawei.com>
 > 
-> On 4/12/2022 10:56 PM, Mike Rapoport wrote:
-> > On Tue, Apr 12, 2022 at 12:39:32AM +0530, Faiyaz Mohammed wrote:
-> >> This 'commit 86588296acbf ("fdt: Properly handle "no-map" field in the
-> >> memory region")' is keeping the no-map regions in memblock.memory with
-> >> MEMBLOCK_NOMAP flag set to use no-map memory for EFI using memblock api's,
-> >> but during the initialization sparse_init mark all memblock.memory as
-> >> present using for_each_mem_pfn_range, which is creating the memmap for
-> >> no-map memblock regions. To avoid it skiping the memblock.memory regions
-> >> set with MEMBLOCK_NOMAP set and with this change we will be able to save
-> >> ~11MB memory for ~612MB carve out.
-> > The MEMBLOCK_NOMAP is very fragile and caused a lot of issues already. I
-> > really don't like the idea if adding more implicit assumptions about how
-> > NOMAP memory may or may not be used in a generic iterator function.
+> There are following issues in arm64 kdump:
+> 1. We use crashkernel=X to reserve crashkernel in DMA zone, which
+> will fail when there is not enough low memory.
+> 2. If reserving crashkernel above DMA zone, in this case, crash dump
+> kernel will fail to boot because there is no low memory available
+> for allocation.
 > 
-> Sorry for delayed response.
-> Yes, it is possible that implicit assumption can create
-> misunderstanding. How about adding command line option and control the
-> no-map region in fdt.c driver, to decide whether to keep "no-map" region
-> with NOMAP flag or remove?. Something like below
+> To solve these issues, introduce crashkernel=X,[high,low].
+> The "crashkernel=X,high" is used to select a region above DMA zone, and
+> the "crashkernel=Y,low" is used to allocate specified size low memory.
 
-I really don't like memblock_remove() for such cases.
-Pretending there is a hole when there is an actual DRAM makes things really
-hairy when it comes to memory map and page allocator initialization.
-You wouldn't want to trade system stability and random memory corruptions
-for 11M of "saved" memory.
- 
-> --- a/drivers/of/fdt.c
-> +++ b/drivers/of/fdt.c
-> @@ -1180,8 +1180,10 @@ int __init __weak
-> early_init_dt_reserve_memory_arch(phys_addr_t base,
->                  */
->                 if (memblock_is_region_reserved(base, size))
->                         return -EBUSY;
-> -
-> -               return memblock_mark_nomap(base, size);
-> +               if (remove_nomap_region)
-> +                       return memblock_remove(base, size);
-> +               else
-> +                       return memblock_mark_nomap(base, size);
-> Thanks and regards,
-> Mohammed Faiyaz
-> 
+Thanks for posting the simplified version, though the discussion with
+Baoquan is still ongoing. AFAICT there is no fallback if crashkernel=
+fails. The advantage with this series is cleaner code, we set the limits
+during parsing and don't have to adjust them if some of the first
+allocation failed.
+
+> diff --git a/arch/arm64/mm/init.c b/arch/arm64/mm/init.c
+> index 51863f1448c6989..11406f3e1443168 100644
+> --- a/arch/arm64/mm/init.c
+> +++ b/arch/arm64/mm/init.c
+> @@ -90,6 +90,32 @@ phys_addr_t __ro_after_init arm64_dma_phys_limit;
+>  phys_addr_t __ro_after_init arm64_dma_phys_limit = PHYS_MASK + 1;
+>  #endif
+>  
+> +/* Current arm64 boot protocol requires 2MB alignment */
+> +#define CRASH_ALIGN			SZ_2M
+> +
+> +#define CRASH_ADDR_LOW_MAX		arm64_dma_phys_limit
+> +#define CRASH_ADDR_HIGH_MAX		memblock.current_limit
+
+Better use memblock_get_current_limit() if you need to or just
+MEMBLOCK_ALLOC_ANYWHERE, memblock.current_limit is just a memblock
+internal. But I think we can go for (PHYS_MASK + 1) if you need
+something other than MEMBLOCK_ALLOC_ANYWHERE, memblock knows what to
+allocate anyway.
+
+> +static int __init reserve_crashkernel_low(unsigned long long low_size)
+> +{
+> +	unsigned long long low_base;
+> +
+> +	low_base = memblock_phys_alloc_range(low_size, CRASH_ALIGN, 0, CRASH_ADDR_LOW_MAX);
+> +	if (!low_base) {
+> +		pr_err("cannot allocate crashkernel low memory (size:0x%llx).\n", low_size);
+> +		return -ENOMEM;
+> +	}
+> +
+> +	pr_info("crashkernel low memory reserved: 0x%08llx - 0x%08llx (%lld MB)\n",
+> +		low_base, low_base + low_size, low_size >> 20);
+> +
+> +	crashk_low_res.start = low_base;
+> +	crashk_low_res.end   = low_base + low_size - 1;
+> +	insert_resource(&iomem_resource, &crashk_low_res);
+> +
+> +	return 0;
+> +}
+> +
+>  /*
+>   * reserve_crashkernel() - reserves memory for crash kernel
+>   *
+> @@ -100,17 +126,32 @@ phys_addr_t __ro_after_init arm64_dma_phys_limit = PHYS_MASK + 1;
+>  static void __init reserve_crashkernel(void)
+>  {
+>  	unsigned long long crash_base, crash_size;
+> -	unsigned long long crash_max = arm64_dma_phys_limit;
+> +	unsigned long long crash_low_size = 0;
+> +	unsigned long long crash_max = CRASH_ADDR_LOW_MAX;
+> +	char *cmdline = boot_command_line;
+>  	int ret;
+>  
+>  	if (!IS_ENABLED(CONFIG_KEXEC_CORE))
+>  		return;
+>  
+> -	ret = parse_crashkernel(boot_command_line, memblock_phys_mem_size(),
+> +	/* crashkernel=X[@offset] */
+> +	ret = parse_crashkernel(cmdline, memblock_phys_mem_size(),
+>  				&crash_size, &crash_base);
+> -	/* no crashkernel= or invalid value specified */
+> -	if (ret || !crash_size)
+> -		return;
+> +	if (ret || !crash_size) {
+
+I think we should check for ret == -ENOENT only. If the crashkernel=
+exists but is malformed or the size is 0, we shouldn't bother with
+high/low at all.
+
+> +		ret = parse_crashkernel_high(cmdline, 0, &crash_size, &crash_base);
+> +		if (ret || !crash_size)
+> +			return;
+> +
+> +		/*
+> +		 * crashkernel=Y,low can be specified or not, but invalid value
+> +		 * is not allowed.
+> +		 */
+> +		ret = parse_crashkernel_low(cmdline, 0, &crash_low_size, &crash_base);
+> +		if (ret && (ret != -ENOENT))
+> +			return;
+> +
+> +		crash_max = CRASH_ADDR_HIGH_MAX;
+> +	}
+>  
+>  	crash_size = PAGE_ALIGN(crash_size);
+>  
+> @@ -118,8 +159,7 @@ static void __init reserve_crashkernel(void)
+>  	if (crash_base)
+>  		crash_max = crash_base + crash_size;
+>  
+> -	/* Current arm64 boot protocol requires 2MB alignment */
+> -	crash_base = memblock_phys_alloc_range(crash_size, SZ_2M,
+> +	crash_base = memblock_phys_alloc_range(crash_size, CRASH_ALIGN,
+>  					       crash_base, crash_max);
+>  	if (!crash_base) {
+>  		pr_warn("cannot allocate crashkernel (size:0x%llx)\n",
+
+I personally like this but let's see how the other thread goes. I guess
+if we want a fallback, it would come just before the check the above:
+
+	if (!crash_base && crash_max != CRASH_ADDR_HIGH_MAX) {
+		/* attempt high allocation with default low */
+		if (!crash_low_size)
+			crash_low_size = some default;
+		crash_max = CRASH_ADDR_LOW_MAX;
+		crash_base = memblock_phys_alloc_range();
+	}
+
+Well, I guess we end up with your earlier proposal but I think I
+understand it better now ;).
 
 -- 
-Sincerely yours,
-Mike.
+Catalin
