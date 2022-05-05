@@ -2,588 +2,200 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 499D551B59A
-	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 04:05:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 56FE751B5AB
+	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 04:13:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232917AbiEECIk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 May 2022 22:08:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42406 "EHLO
+        id S237461AbiEECRN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 May 2022 22:17:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48254 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230027AbiEECIi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 22:08:38 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3FB9220189
-        for <devicetree@vger.kernel.org>; Wed,  4 May 2022 19:05:00 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id B400261001
-        for <devicetree@vger.kernel.org>; Thu,  5 May 2022 02:04:59 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 77673C385A5;
-        Thu,  5 May 2022 02:04:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1651716299;
-        bh=Hc3gvdKnkJxETQOsREQegDhjgVwZkvs8/RaowKdrsA4=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=L9WEe4pm5dHhOfpRo9B/h2DnwSmYi+YhwSvUQqp6zyKv8752pxMt6hY23C9NI6hic
-         jkWJAF7Rcw75db6ecG4413ZuvKuQWN4IL4JiWxcuP2iWFLoMjnb7+nBQD6i1GBODti
-         wQXj5CuRPCZOzIjx65fN8fNU1azHFbjSWUdJpd+rG7IRQxXqUaXSFyDCS8yG86t+5J
-         UJkCe74MrMjraDfkO/LPGSnGXx4l6pCwQLzv5LJh8kTYnWk5EvX+YbvEnuVR9cqngH
-         SZqhm0Yc+NXcQiEPx+3vhFg/xDpI2Z+z7yvIIe9WO3CWu10dDBMUjkJtLOYFMcXigB
-         ldFtY1peVFBRw==
-Date:   Thu, 5 May 2022 10:04:51 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Fabio Estevam <festevam@gmail.com>
-Cc:     robh+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, Fabio Estevam <festevam@denx.de>
-Subject: Re: [PATCH 3/3] ARM: dts: imx7d-smegw01: Add support for i.MX7D
- SMEGW01 board
-Message-ID: <20220505020451.GH14615@dragon>
-References: <20220420131507.1032732-1-festevam@gmail.com>
- <20220420131507.1032732-3-festevam@gmail.com>
+        with ESMTP id S230027AbiEECRM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 22:17:12 -0400
+Received: from szxga02-in.huawei.com (szxga02-in.huawei.com [45.249.212.188])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C5AF473A8;
+        Wed,  4 May 2022 19:13:34 -0700 (PDT)
+Received: from dggpemm500021.china.huawei.com (unknown [172.30.72.53])
+        by szxga02-in.huawei.com (SkyGuard) with ESMTP id 4Ktxxj04q0zGpXB;
+        Thu,  5 May 2022 10:10:49 +0800 (CST)
+Received: from dggpemm500006.china.huawei.com (7.185.36.236) by
+ dggpemm500021.china.huawei.com (7.185.36.109) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.24; Thu, 5 May 2022 10:13:32 +0800
+Received: from [10.174.178.55] (10.174.178.55) by
+ dggpemm500006.china.huawei.com (7.185.36.236) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.24; Thu, 5 May 2022 10:13:31 +0800
+Subject: Re: [PATCH v22 5/9] arm64: kdump: Reimplement crashkernel=X
+To:     Catalin Marinas <catalin.marinas@arm.com>
+CC:     Baoquan He <bhe@redhat.com>, Thomas Gleixner <tglx@linutronix.de>,
+        "Ingo Molnar" <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
+        <x86@kernel.org>, "H . Peter Anvin" <hpa@zytor.com>,
+        <linux-kernel@vger.kernel.org>, Dave Young <dyoung@redhat.com>,
+        Vivek Goyal <vgoyal@redhat.com>,
+        Eric Biederman <ebiederm@xmission.com>,
+        <kexec@lists.infradead.org>, Will Deacon <will@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        <devicetree@vger.kernel.org>, Jonathan Corbet <corbet@lwn.net>,
+        <linux-doc@vger.kernel.org>, Randy Dunlap <rdunlap@infradead.org>,
+        Feng Zhou <zhoufeng.zf@bytedance.com>,
+        Kefeng Wang <wangkefeng.wang@huawei.com>,
+        "Chen Zhou" <dingguo.cz@antgroup.com>,
+        John Donnelly <John.p.donnelly@oracle.com>,
+        Dave Kleikamp <dave.kleikamp@oracle.com>
+References: <ee8daaa9-3258-e7e8-e5c4-c51dc9841580@huawei.com>
+ <Ymk34NsIFqUgfk3b@arm.com> <ae7211ad-e2ac-f5b1-5aa0-701802132e73@huawei.com>
+ <YmlphvZVMsGfFksp@arm.com> <YmoMvV1wzHT5V1aw@MiWiFi-R3L-srv>
+ <YmoPhvkXQFZQOcIO@MiWiFi-R3L-srv>
+ <3fc41a94-4247-40f3-14e7-f11e3001ec33@huawei.com>
+ <YmtaiJhwIgP6m2Sk@MiWiFi-R3L-srv>
+ <a9c736a0-f2b3-5b8a-94d9-80742ccd2700@huawei.com>
+ <23e2dcf4-4e9a-5298-d5d8-8761b0bbbe21@huawei.com> <YnGmCwaWkvCrJoU2@arm.com>
+From:   "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
+Message-ID: <2b48d210-855b-fbf1-e2b9-3ed0b42bcd22@huawei.com>
+Date:   Thu, 5 May 2022 10:13:30 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220420131507.1032732-3-festevam@gmail.com>
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <YnGmCwaWkvCrJoU2@arm.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.174.178.55]
+X-ClientProxiedBy: dggems702-chm.china.huawei.com (10.3.19.179) To
+ dggpemm500006.china.huawei.com (7.185.36.236)
+X-CFilter-Loop: Reflected
+X-Spam-Status: No, score=-6.7 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Apr 20, 2022 at 10:15:07AM -0300, Fabio Estevam wrote:
-> From: Fabio Estevam <festevam@denx.de>
+
+
+On 2022/5/4 6:00, Catalin Marinas wrote:
+> On Fri, Apr 29, 2022 at 04:25:37PM +0800, Leizhen (ThunderTown) wrote:
+>> On 2022/4/29 16:02, Leizhen (ThunderTown) wrote:
+>>> On 2022/4/29 11:24, Baoquan He wrote:
+>>>> On 04/28/22 at 05:33pm, Leizhen (ThunderTown) wrote:
+>>>>> On 2022/4/28 11:52, Baoquan He wrote:
+>>>>>> On 04/28/22 at 11:40am, Baoquan He wrote:
+>>>>>>> On 04/27/22 at 05:04pm, Catalin Marinas wrote:
+>>>>>>>> There will be some difference as the 4G limit doesn't always hold for
+>>>>>>>> arm64 (though it's true in most cases). Anyway, we can probably simplify
+>>>>>>>> things a bit while following the documented behaviour:
+>>>>>>>>
+>>>>>>>> 	crashkernel=Y		- current behaviour within ZONE_DMA
+>>>>>>>> 	crashkernel=Y,high	- allocate from above ZONE_DMA
+>>>>>>>> 	crashkernel=Y,low	- allocate within ZONE_DMA
+> [...]
+>>>>>>> Sorry to interrupt. Seems the ,high ,low and fallback are main concerns
+>>>>>>> about this version. And I have the same concerns about them which comes
+>>>>>>> from below points:
+>>>>>>> 1) we may need to take best effort to keep ,high, ,low behaviour
+>>>>>>> consistent on all ARCHes. Otherwise user/admin may be confused when they
+>>>>>>> deploy/configure kdump on different machines of different ARCHes in the
+>>>>>>> same LAB. I think we should try to avoid the confusion.
 > 
-> Add support for the i.MX7D SMEGW01 board.
+> I guess by all arches you mean just x86 here. Since the code is not
+> generic, all arches do their own stuff.
 > 
-> This is a gateway board that supports the following peripherals:
+>>> OK, I plan to remove optimization, fallback and default low size, to follow the
+>>> suggestion of Catalin first. But there's one minor point of contention.
+>>>
+>>> 1)    Both "crashkernel=X,high" and "crashkernel=X,low" must be present.
+>>> 2)    Both "crashkernel=X,high" and "crashkernel=X,low" are present.
+>>>    or
+>>>       Allow "crashkernel=X,high" to be present alone. Unlike x86, the default low size is zero.
+>>>
+>>> I prefer 2), how about you?
 > 
-> - eMMC / SD card
-> - RTC
-> - USB modem
-> - Wifi via SDIO
-> - Dual Ethernet
-> - CAN
-> - Serial SRAM
+> (2) works for me as well. We keep these simple as "expert" options and
+
+Okay, so I'll follow 2) to update the code.
+
+> allow crashkernel= to fall back to 'high' if not sufficient memory in
+> ZONE_DMA. That would be a slight change from the current behaviour but,
+> as Zhen Lei said, with the old tools it's just moving the error around,
+> the crashkernel wouldn't be available in either case.
 > 
-> Signed-off-by: Fabio Estevam <festevam@denx.de>
-> ---
->  arch/arm/boot/dts/Makefile          |   1 +
->  arch/arm/boot/dts/imx7d-smegw01.dts | 474 ++++++++++++++++++++++++++++
->  2 files changed, 475 insertions(+)
->  create mode 100644 arch/arm/boot/dts/imx7d-smegw01.dts
+>>>>>>> 2) Fallback behaviour is important to our distros. The reason is we will
+>>>>>>> provide default value with crashkernel=xxxM along kernel of distros. In
+>>>>>>> this case, we hope the reservation will succeed by all means. The ,high
+>>>>>>> and ,low is an option if customer likes to take with expertise.
 > 
-> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-> index 01d5e66df832..b5f19aefa07d 100644
-> --- a/arch/arm/boot/dts/Makefile
-> +++ b/arch/arm/boot/dts/Makefile
-> @@ -741,6 +741,7 @@ dtb-$(CONFIG_SOC_IMX7D) += \
->  	imx7d-sdb.dtb \
->  	imx7d-sdb-reva.dtb \
->  	imx7d-sdb-sht11.dtb \
-> +	imx7d-smegw01.dtb \
->  	imx7d-zii-rmu2.dtb \
->  	imx7d-zii-rpu2.dtb \
->  	imx7s-colibri-aster.dtb \
-> diff --git a/arch/arm/boot/dts/imx7d-smegw01.dts b/arch/arm/boot/dts/imx7d-smegw01.dts
-> new file mode 100644
-> index 000000000000..a21830a41dc5
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/imx7d-smegw01.dts
-> @@ -0,0 +1,474 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +//
-> +// Copyright (C) 2020 PHYTEC Messtechnik GmbH
-> +// Author: Jens Lang  <J.Lang@phytec.de>
-> +// Copyright (C) 2021 Fabio Estevam <festevam@denx.de>
-> +
-> +/dts-v1/;
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include "imx7d.dtsi"
-> +
-> +/ {
-> +	model = "Storopack SMEGW01 board";
-> +	compatible = "storopack,imx7d-smegw01", "fsl,imx7d";
-> +
-> +	aliases {
-> +		mmc0 = &usdhc1;
-> +		mmc1 = &usdhc3;
-> +		mmc2 = &usdhc2;
-> +		rtc0 = &i2c_rtc;
-> +		rtc1 = &snvs_rtc;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path = &uart1;
-> +	};
-> +
-> +	memory@80000000 {
-> +		device_type = "memory";
-> +		reg = <0x80000000 0x20000000>;
-> +	};
-> +
-> +	reg_lte_on: regulator-lte-on {
-> +		compatible = "regulator-fixed";
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pinctrl_lte_on>;
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		regulator-name = "lte_on";
-> +		gpio = <&gpio7 12 GPIO_ACTIVE_HIGH>;
-> +		enable-active-high;
-> +		regulator-always-on;
-> +	};
-> +
-> +	reg_lte_nreset: regulator-lte-nreset {
-> +		compatible = "regulator-fixed";
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pinctrl_lte_nreset>;
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		regulator-name = "LTE_nReset";
-> +		gpio = <&gpio6 21 GPIO_ACTIVE_HIGH>;
-> +		enable-active-high;
-> +		regulator-always-on;
-> +	};
-> +
-> +	reg_wifi: regulator-wifi {
-> +		compatible = "regulator-fixed";
-> +		gpio = <&gpio2 30 GPIO_ACTIVE_HIGH>;
-> +		enable-active-high;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pinctrl_wifi>;
-> +		regulator-name = "wifi_reg";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		regulator-always-on;
-> +	};
-> +
-> +	reg_wlan_rfkill: regulator-wlan-rfkill {
-> +		compatible = "regulator-fixed";
-> +		pinctrl-names = "default";
-> +		pinctrl-2 = <&pinctrl_rfkill>;
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		regulator-name = "wlan_rfkill";
-> +		gpio = <&gpio2 11 GPIO_ACTIVE_HIGH>;
-> +		enable-active-high;
-> +		regulator-always-on;
-> +	};
-> +
-> +	reg_usbotg_vbus: regulator-usbotg-vbus {
-> +		compatible = "regulator-fixed";
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pinctrl_usbotg1_pwr_gpio>;
-> +		regulator-name = "usb_otg_vbus";
-> +		regulator-min-microvolt = <5000000>;
-> +		regulator-max-microvolt = <5000000>;
-> +		gpio = <&gpio1 05 GPIO_ACTIVE_HIGH>;
-> +		enable-active-high;
-> +		regulator-always-on;
-
-Why are all these regulators always-on?
-
-> +	};
-> +};
-> +
-> +&ecspi1 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_ecspi1>;
-> +	cs-gpios = <&gpio4 19 GPIO_ACTIVE_LOW>;
-> +	status = "okay";
-> +
-> +	sram@0 {
-> +		reg = <0>;
-> +		compatible = "microchip,48l640";
-
-Can we start properties with compatible if possible?
-
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-> +		spi-max-frequency = <16000000>;
-> +	};
-> +};
-> +
-> +&fec1 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_enet1>;
-> +	assigned-clocks = <&clks IMX7D_ENET1_TIME_ROOT_SRC>,
-> +			  <&clks IMX7D_ENET1_TIME_ROOT_CLK>;
-> +	assigned-clock-parents = <&clks IMX7D_PLL_ENET_MAIN_100M_CLK>;
-> +	assigned-clock-rates = <0>, <100000000>;
-> +	phy-mode = "rgmii-id";
-> +	phy-handle = <&ethphy0>;
-> +	fsl,magic-packet;
-> +	status = "okay";
-> +
-> +	mdio: mdio {
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		ethphy0: ethernet-phy@1 {
-> +			compatible = "ethernet-phy-id0022.1622",
-> +				     "ethernet-phy-ieee802.3-c22";
-> +			reg = <1>;
-> +			reset-gpios = <&gpio2 28 GPIO_ACTIVE_LOW>;
-> +		};
-> +
-> +		ethphy1: ethernet-phy@2 {
-> +			compatible = "ethernet-phy-id0022.1622",
-> +				     "ethernet-phy-ieee802.3-c22";
-> +			reg = <2>;
-> +		};
-> +	};
-> +};
-> +
-> +&fec2 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_enet2>;
-> +	assigned-clocks = <&clks IMX7D_ENET2_TIME_ROOT_SRC>,
-> +			  <&clks IMX7D_ENET2_TIME_ROOT_CLK>;
-> +	assigned-clock-parents = <&clks IMX7D_PLL_ENET_MAIN_100M_CLK>;
-> +	assigned-clock-rates = <0>, <100000000>;
-> +	phy-mode = "rgmii-id";
-> +	phy-handle = <&ethphy1>;
-> +	fsl,magic-packet;
-> +	status = "okay";
-> +};
-> +
-> +&i2c2 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 =<&pinctrl_i2c2>;
-> +	clock-frequency = <100000>;
-> +	status = "okay";
-> +
-> +	i2c_rtc: rtc@52 {
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pinctrl_rtc_int>;
-> +		compatible = "microcrystal,rv3028";
-
-Ditto
-
-> +		reg = <0x52>;
-> +		interrupt-parent = <&gpio2>;
-> +		interrupts = <15 IRQ_TYPE_LEVEL_LOW>;
-> +	};
-> +};
-> +
-> +&flexcan1 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_flexcan1>;
-> +	status = "okay";
-> +};
-> +
-> +&flexcan2 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_flexcan2>;
-> +	status = "okay";
-> +};
-> +
-> +&uart1 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_uart1>;
-> +	status = "okay";
-> +};
-> +
-> +&uart3 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_uart3>;
-> +	status = "okay";
-> +};
-> +
-> +&usbotg1 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_usbotg1_lpsr>;
-> +	dr_mode = "otg";
-> +	vbus-supply = <&reg_usbotg_vbus>;
-> +	status = "okay";
-> +};
-> +
-> +&usbotg2 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_usbotg2>;
-> +	dr_mode = "host";
-> +	status = "okay";
-> +};
-> +
-> +&usdhc1 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_usdhc1>;
-> +	cd-gpios = <&gpio5 0 GPIO_ACTIVE_LOW>;
-> +	no-1-8-v;
-> +	enable-sdio-wakeup;
-> +	keep-power-in-suspend;
-> +	status = "okay";
-> +};
-> +
-> +&usdhc2 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_usdhc2>;
-> +	bus-width = <4>;
-> +	non-removable;
-> +	cap-sd-highspeed;
-> +	sd-uhs-ddr50;
-> +	mmc-ddr-1_8v;
-> +	vmmc-supply = <&reg_wifi>;
-> +	enable-sdio-wakeup;
-> +	status = "okay";
-> +};
-> +
-> +&usdhc3 {
-> +	pinctrl-names = "default", "state_100mhz", "state_200mhz";
-> +	pinctrl-0 = <&pinctrl_usdhc3>;
-> +	pinctrl-1 = <&pinctrl_usdhc3_100mhz>;
-> +	pinctrl-2 = <&pinctrl_usdhc3_200mhz>;
-> +	assigned-clocks = <&clks IMX7D_USDHC3_ROOT_CLK>;
-> +	assigned-clock-rates = <400000000>;
-> +	max-frequency = <200000000>;
-> +	bus-width = <8>;
-> +	fsl,tuning-step = <1>;
-> +	non-removable;
-> +	cap-sd-highspeed;
-> +	cap-mmc-highspeed;
-> +	cap-mmc-hw-reset;
-> +	mmc-hs200-1_8v;
-> +	mmc-ddr-1_8v;
-> +	sd-uhs-ddr50;
-> +	sd-uhs-sdr104;
-
-I assume this is an eMMC.  If so, how would these SD specific properties
-be needed?
-
-Shawn
-
-> +	status = "okay";
-> +};
-> +
-> +&wdog1 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_wdog>;
-> +	fsl,ext-reset-output;
-> +	status = "okay";
-> +};
-> +
-> +&iomuxc {
-> +	pinctrl_ecspi1: ecspi1grp {
-> +		fsl,pins = <
-> +			MX7D_PAD_ECSPI1_SS0__GPIO4_IO19	0x04
-> +			MX7D_PAD_ECSPI1_SCLK__ECSPI1_SCLK	0x04
-> +			MX7D_PAD_ECSPI1_MOSI__ECSPI1_MOSI	0x04
-> +			MX7D_PAD_ECSPI1_MISO__ECSPI1_MISO	0x04
-> +		>;
-> +	};
-> +
-> +	pinctrl_enet1: enet1grp {
-> +		fsl,pins = <
-> +			MX7D_PAD_ENET1_RGMII_RX_CTL__ENET1_RGMII_RX_CTL 0x5
-> +			MX7D_PAD_ENET1_RGMII_RD0__ENET1_RGMII_RD0	0x5
-> +			MX7D_PAD_ENET1_RGMII_RD1__ENET1_RGMII_RD1	0x5
-> +			MX7D_PAD_ENET1_RGMII_RD2__ENET1_RGMII_RD2	0x5
-> +			MX7D_PAD_ENET1_RGMII_RD3__ENET1_RGMII_RD3	0x5
-> +			MX7D_PAD_ENET1_RGMII_RXC__ENET1_RGMII_RXC	0x5
-> +			MX7D_PAD_ENET1_RGMII_TX_CTL__ENET1_RGMII_TX_CTL 0x5
-> +			MX7D_PAD_ENET1_RGMII_TD0__ENET1_RGMII_TD0	0x5
-> +			MX7D_PAD_ENET1_RGMII_TD1__ENET1_RGMII_TD1	0x5
-> +			MX7D_PAD_ENET1_RGMII_TD2__ENET1_RGMII_TD2	0x5
-> +			MX7D_PAD_ENET1_RGMII_TD3__ENET1_RGMII_TD3	0x5
-> +			MX7D_PAD_ENET1_RGMII_TXC__ENET1_RGMII_TXC	0x5
-> +			MX7D_PAD_GPIO1_IO10__ENET1_MDIO		0x7
-> +			MX7D_PAD_GPIO1_IO11__ENET1_MDC		0x7
-> +		>;
-> +	};
-> +
-> +	pinctrl_enet2: enet2grp {
-> +		fsl,pins = <
-> +			MX7D_PAD_EPDC_SDCE0__ENET2_RGMII_RX_CTL 0x5
-> +			MX7D_PAD_EPDC_SDCE1__ENET2_RGMII_RXC	0x5
-> +			MX7D_PAD_EPDC_SDCLK__ENET2_RGMII_RD0	0x5
-> +			MX7D_PAD_EPDC_SDLE__ENET2_RGMII_RD1	0x5
-> +			MX7D_PAD_EPDC_SDOE__ENET2_RGMII_RD2	0x5
-> +			MX7D_PAD_EPDC_SDSHR__ENET2_RGMII_RD3	0x5
-> +			MX7D_PAD_EPDC_SDCE2__ENET2_RGMII_TD0	0x5
-> +			MX7D_PAD_EPDC_SDCE3__ENET2_RGMII_TD1	0x5
-> +			MX7D_PAD_EPDC_GDCLK__ENET2_RGMII_TD2	0x5
-> +			MX7D_PAD_EPDC_GDOE__ENET2_RGMII_TD3	0x5
-> +			MX7D_PAD_EPDC_GDRL__ENET2_RGMII_TX_CTL 0x5
-> +			MX7D_PAD_EPDC_GDSP__ENET2_RGMII_TXC	0x5
-> +			MX7D_PAD_GPIO1_IO09__GPIO1_IO9	0x08
-> +		>;
-> +	};
-> +
-> +	pinctrl_i2c2: i2c2grp {
-> +		fsl,pins = <
-> +			MX7D_PAD_I2C2_SCL__I2C2_SCL		0x40000004
-> +			MX7D_PAD_I2C2_SDA__I2C2_SDA		0x40000004
-> +		>;
-> +	};
-> +
-> +	pinctrl_flexcan1: flexcan1grp {
-> +		fsl,pins = <
-> +			MX7D_PAD_GPIO1_IO12__FLEXCAN1_RX	0x0b0b0
-> +			MX7D_PAD_GPIO1_IO13__FLEXCAN1_TX	0x0b0b0
-> +		>;
-> +	};
-> +
-> +	pinctrl_flexcan2: flexcan2grp {
-> +		fsl,pins = <
-> +			MX7D_PAD_GPIO1_IO14__FLEXCAN2_RX	0x0b0b0
-> +			MX7D_PAD_GPIO1_IO15__FLEXCAN2_TX	0x0b0b0
-> +		>;
-> +	};
-> +
-> +	pinctrl_lte_on: lteongrp {
-> +		fsl,pins = <
-> +			MX7D_PAD_ENET1_TX_CLK__GPIO7_IO12	0x17059
-> +		>;
-> +	};
-> +
-> +	pinctrl_lte_nreset: ltenresetgrp {
-> +		fsl,pins = <
-> +			MX7D_PAD_SAI2_RX_DATA__GPIO6_IO21	0x17059
-> +		>;
-> +	};
-> +
-> +	pinctrl_rfkill: rfkillrp {
-> +		fsl,pins = <
-> +			MX7D_PAD_EPDC_DATA11__GPIO2_IO11	0x17059
-> +		>;
-> +	};
-> +
-> +	pinctrl_rtc_int: rtcintgrp {
-> +		fsl,pins = <
-> +			MX7D_PAD_EPDC_DATA15__GPIO2_IO15	0x17059
-> +		>;
-> +	};
-> +
-> +	pinctrl_uart1: uart1grp {
-> +		fsl,pins = <
-> +			MX7D_PAD_UART1_TX_DATA__UART1_DCE_TX	0x74
-> +			MX7D_PAD_UART1_RX_DATA__UART1_DCE_RX	0x7c
-> +		>;
-> +	};
-> +
-> +	pinctrl_uart3: uart3grp {
-> +		fsl,pins = <
-> +			MX7D_PAD_UART3_TX_DATA__UART3_DCE_TX	0x7c
-> +			MX7D_PAD_UART3_RX_DATA__UART3_DCE_RX	0x74
-> +		>;
-> +	};
-> +
-> +	pinctrl_usbotg1_lpsr: usbotg1 {
-> +		fsl,pins = <
-> +			MX7D_PAD_LPSR_GPIO1_IO04__USB_OTG1_OC	0x04
-> +		>;
-> +	};
-> +
-> +	pinctrl_usbotg1_pwr: usbotg1-pwr {
-> +		fsl,pins = <
-> +			MX7D_PAD_LPSR_GPIO1_IO05__USB_OTG1_PWR	0x04
-> +		>;
-> +	};
-> +
-> +	pinctrl_usbotg1_pwr_gpio: usbotg1-pwr-gpio {
-> +		fsl,pins = <
-> +			MX7D_PAD_LPSR_GPIO1_IO05__GPIO1_IO5	0x04
-> +		>;
-> +	};
-> +
-> +	pinctrl_usbotg2: usbotg2grp {
-> +		fsl,pins = <
-> +			MX7D_PAD_UART3_RTS_B__USB_OTG2_OC	0x04
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc1: usdhc1grp {
-> +		fsl,pins = <
-> +			MX7D_PAD_SD1_CD_B__GPIO5_IO0		0x59
-> +			MX7D_PAD_SD1_CMD__SD1_CMD		0x59
-> +			MX7D_PAD_SD1_CLK__SD1_CLK		0x19
-> +			MX7D_PAD_SD1_DATA0__SD1_DATA0		0x59
-> +			MX7D_PAD_SD1_DATA1__SD1_DATA1		0x59
-> +			MX7D_PAD_SD1_DATA2__SD1_DATA2		0x59
-> +			MX7D_PAD_SD1_DATA3__SD1_DATA3		0x59
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc2: usdhc2grp {
-> +		fsl,pins = <
-> +			MX7D_PAD_SD2_CLK__SD2_CLK		0x19
-> +			MX7D_PAD_SD2_CMD__SD2_CMD		0x59
-> +			MX7D_PAD_SD2_DATA0__SD2_DATA0		0x59
-> +			MX7D_PAD_SD2_DATA1__SD2_DATA1		0x59
-> +			MX7D_PAD_SD2_DATA2__SD2_DATA2		0x59
-> +			MX7D_PAD_SD2_DATA3__SD2_DATA3		0x59
-> +			MX7D_PAD_SD2_CD_B__SD2_CD_B		0x08
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc3: usdhc3grp {
-> +		fsl,pins = <
-> +			MX7D_PAD_SD3_CMD__SD3_CMD		0x5d
-> +			MX7D_PAD_SD3_CLK__SD3_CLK		0x1d
-> +			MX7D_PAD_SD3_DATA0__SD3_DATA0		0x5d
-> +			MX7D_PAD_SD3_DATA1__SD3_DATA1		0x5d
-> +			MX7D_PAD_SD3_DATA2__SD3_DATA2		0x5d
-> +			MX7D_PAD_SD3_DATA3__SD3_DATA3		0x5d
-> +			MX7D_PAD_SD3_DATA4__SD3_DATA4		0x5d
-> +			MX7D_PAD_SD3_DATA5__SD3_DATA5		0x5d
-> +			MX7D_PAD_SD3_DATA6__SD3_DATA6		0x5d
-> +			MX7D_PAD_SD3_DATA7__SD3_DATA7		0x5d
-> +			MX7D_PAD_SD3_STROBE__SD3_STROBE	0x1d
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc3_100mhz: usdhc3-100mhzgrp {
-> +		fsl,pins = <
-> +			MX7D_PAD_SD3_CMD__SD3_CMD		0x5e
-> +			MX7D_PAD_SD3_CLK__SD3_CLK		0x1e
-> +			MX7D_PAD_SD3_DATA0__SD3_DATA0		0x5e
-> +			MX7D_PAD_SD3_DATA1__SD3_DATA1		0x5e
-> +			MX7D_PAD_SD3_DATA2__SD3_DATA2		0x5e
-> +			MX7D_PAD_SD3_DATA3__SD3_DATA3		0x5e
-> +			MX7D_PAD_SD3_DATA4__SD3_DATA4		0x5e
-> +			MX7D_PAD_SD3_DATA5__SD3_DATA5		0x5e
-> +			MX7D_PAD_SD3_DATA6__SD3_DATA6		0x5e
-> +			MX7D_PAD_SD3_DATA7__SD3_DATA7		0x5e
-> +			MX7D_PAD_SD3_STROBE__SD3_STROBE	0x1e
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc3_200mhz: usdhc3-200mhzgrp {
-> +		fsl,pins = <
-> +			MX7D_PAD_SD3_CMD__SD3_CMD		0x5f
-> +			MX7D_PAD_SD3_CLK__SD3_CLK		0x0f
-> +			MX7D_PAD_SD3_DATA0__SD3_DATA0		0x5f
-> +			MX7D_PAD_SD3_DATA1__SD3_DATA1		0x5f
-> +			MX7D_PAD_SD3_DATA2__SD3_DATA2		0x5f
-> +			MX7D_PAD_SD3_DATA3__SD3_DATA3		0x5f
-> +			MX7D_PAD_SD3_DATA4__SD3_DATA4		0x5f
-> +			MX7D_PAD_SD3_DATA5__SD3_DATA5		0x5f
-> +			MX7D_PAD_SD3_DATA6__SD3_DATA6		0x5f
-> +			MX7D_PAD_SD3_DATA7__SD3_DATA7		0x5f
-> +			MX7D_PAD_SD3_STROBE__SD3_STROBE	0x1f
-> +		>;
-> +	};
-> +
-> +	pinctrl_wifi: wifigrp {
-> +		fsl,pins = <
-> +			MX7D_PAD_EPDC_PWR_COM__GPIO2_IO30	0x04
-> +			MX7D_PAD_SD2_RESET_B__GPIO5_IO11	0x04
-> +		>;
-> +	};
-> +};
-> +
-> +&iomuxc_lpsr {
-> +	pinctrl_wdog: wdoggrp {
-> +		fsl,pins = <
-> +			MX7D_PAD_LPSR_GPIO1_IO00__WDOG1_WDOG_B 0x74
-> +		>;
-> +	};
-> +};
-> -- 
-> 2.25.1
+> OK, that's good feedback.
 > 
+> So, to recap, IIUC you are fine with:
+> 
+> 	crashkernel=Y		- allocate within ZONE_DMA with fallback
+> 				  above with a default in ZONE_DMA (like
+> 				  x86, 256M or swiotlb size)
+> 	crashkernel=Y,high	- allocate from above ZONE_DMA
+> 	crashkernel=Y,low	- allocate within ZONE_DMA
+> 
+> 'crashkernel' overrides the high and low while the latter two can be
+> passed independently.
+> 
+>>>>>>> After going through arm64 memory init code, I got below summary about
+>>>>>>> arm64_dma_phys_limit which is the first zone's upper limit. I think we
+>>>>>>> can make use of it to facilitate to simplify code.
+>>>>>>> ================================================================================
+>>>>>>>                         DMA                      DMA32                    NORMAL
+>>>>>>> 1)Raspberry Pi4         0~1G                     3G~4G                    (above 4G)
+>>>>>>> 2)Normal machine        0~4G                     0                        (above 4G)
+>>>>>>> 3)Special machine       (above 4G)~MAX
+>>>>>>> 4)No DMA|DMA32                                                            (above 4G)~MAX
+>>>>>
+>>>>> arm64_memblock_init()
+>>>>> 	reserve_crashkernel()        ---------------   0a30c53573b0 ("arm64: mm: Move reserve_crashkernel() into mem_init()")
+>>>> We don't need different code for this place of reservation as you are
+>>>> doing in this patchset, since arm64_dma_phys_limit is initialized as 
+>>>> below. In fact, in arm64_memblock_init(), we have made memblock ready,
+>>>> we can initialize arm64_dma_phys_limit as memblock_end_of_DRAM(). And if
+>>>> memblock_start_of_DRAM() is bigger than 4G, we possibly can call
+>>>> reserve_crashkernel() here too.
+>>>
+>>> Yes. Maybe all the devices in this environment are 64-bit. One way I
+>>> know of allowing 32-bit devices to access high memory without SMMU
+>>> is: Set a fixed value for the upper 32 bits. In this case, the DMA
+>>> zone should be [phys_start, phys_start + 4G).
+> 
+> We decided that this case doesn't really exists for arm64 platforms (no
+> need for special ZONE_DMA).
+> 
+>> I just read the message of commit 791ab8b2e3 ("arm64: Ignore any DMA
+>> offsets in the max_zone_phys() calculation")
+>>
+>>     Currently, the kernel assumes that if RAM starts above 32-bit (or
+>>     zone_bits), there is still a ZONE_DMA/DMA32 at the bottom of the RAM and
+>>     such constrained devices have a hardwired DMA offset. In practice, we
+>>     haven't noticed any such hardware so let's assume that we can expand
+>>     ZONE_DMA32 to the available memory if no RAM below 4GB. Similarly,
+>>     ZONE_DMA is expanded to the 4GB limit if no RAM addressable by
+>>     zone_bits.
+> 
+> I think the above log is slightly confusing. If the DRAM starts above
+> 4G, ZONE_DMA goes to the end of DRAM. If the DRAM starts below 4G but
+> above the zone_bits for ZONE_DMA as specified in DT/ACPI, it pushes
+> ZONE_DMA to 4G. I don't remember why we did this last part, maybe in
+> case we get incorrect firmware tables, otherwise we could have extended
+> ZONE_DMA to end of DRAM.
+> 
+> Zhen Lei, if we agreed on the crashkernel behaviour, could you please
+> post a series that does the above parsing allocation? Ignore the
+> optimisations, we can look at them afterwards.
+
+OK, I've changed the code before the festival, and I'll test it today.
+
+> 
+> Thanks.
+> 
+
+-- 
+Regards,
+  Zhen Lei
