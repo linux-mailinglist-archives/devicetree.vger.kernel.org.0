@@ -2,113 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A6F4C51C3FB
-	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 17:31:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B64551C40A
+	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 17:37:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232024AbiEEPfE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 May 2022 11:35:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59044 "EHLO
+        id S242689AbiEEPlg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 May 2022 11:41:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33890 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243039AbiEEPfA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 11:35:00 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E7113B2A3;
-        Thu,  5 May 2022 08:31:19 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id CE55C61CEB;
-        Thu,  5 May 2022 15:31:18 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3BBACC385AE;
-        Thu,  5 May 2022 15:31:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1651764678;
-        bh=sPIo4DFRBYDXNLF9h52050tG2IIqnqgkCur/2xVX4RY=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=IuEL6pCf+Eii24RzycPRwG0r4ohcorRk6bDSYHA40PghP1aqdXmFTE4NMDazOaoM+
-         Vq56pNXFGt6/X2NN14zCRqcEaUBeNXUT7ktjgNEhW7RVk53ZcWKYObq5XOd3BcW1cM
-         dlWLWny3HWBxTrZ9cIjfBJNVUC9U/uwbeXeSzRDSpgg5aIGteFDop8srQVh+0wSbS1
-         q/UoCIjzEWjTz3jxO3iduBPL5MjtbRrEQycA/PgLmSghRzTqi/edXyiiVKaXuuTMEQ
-         za8tLZg4k7/fLyqpYkd/+S3eJJwP2rNXBJ7voenBSl9tsWbdXzH08VkHnVMnPeox9D
-         0+JNUUCfhu9YA==
-Received: by mail-pf1-f173.google.com with SMTP id i24so3911736pfa.7;
-        Thu, 05 May 2022 08:31:18 -0700 (PDT)
-X-Gm-Message-State: AOAM531XspIzYmJAz5as66ztBA5eV55/A0eh3nO7n7tdX8gMEOGtuswp
-        mLQm7fouD7E1mOZVU1c7E4dxGDh17MyYcQT64g==
-X-Google-Smtp-Source: ABdhPJwSOuGri32j9UE9tHP99j3+jizUJpjlElDHAjjsjaVe4nVM8XEUeJjxcwZYmriEW9V8tFEBkPx2tFnqxBg0TV0=
-X-Received: by 2002:aa7:9519:0:b0:510:5175:7649 with SMTP id
- b25-20020aa79519000000b0051051757649mr5997617pfp.15.1651764677741; Thu, 05
- May 2022 08:31:17 -0700 (PDT)
+        with ESMTP id S238590AbiEEPld (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 11:41:33 -0400
+Received: from extserv.mm-sol.com (ns.mm-sol.com [37.157.136.199])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 218BD15815;
+        Thu,  5 May 2022 08:37:52 -0700 (PDT)
+Received: from [192.168.1.17] (unknown [84.238.208.205])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (Client did not present a certificate)
+        (Authenticated sender: svarbanov@mm-sol.com)
+        by extserv.mm-sol.com (Postfix) with ESMTPSA id BF412D2AA;
+        Thu,  5 May 2022 18:37:50 +0300 (EEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mm-sol.com; s=201706;
+        t=1651765070; bh=uVBey31bxdTj1jCCK+/s43l7HdKmJ0V7+XbcUggK3zA=;
+        h=Date:Subject:To:Cc:From:From;
+        b=nkIpo+HObdOmz3xtRL3k69eQ5gV3avmAx9tAxhZakfllVMMRQJLx0GpYxbf7XKTnm
+         Wf6qbPwZ7Z912uWgMvVyb9htTfP6OpOCQIsHX4XkodBxZ8RqIBBaIVbSRMmm+8Ku7g
+         urirEqfGJmmDX2wZwRRDLLZbGIbIdivxe+H8kes5t47FZMFEuVnApJLBgPXtcuGDpP
+         rN6n7+KZ+rP8vaHVz0CzGt53tQKEjQmSNkDTioHzmbFWuLbiph0DEOIRNMWQP2rWtj
+         vM+NysPthpGf/2duhomPGxxlfd1j7IFDqEOMlMnI0VkWn7e9S5/SqzkBMrnMdAiFoL
+         9T6z5/LVoNoWA==
+Message-ID: <ace7dd07-cf2f-fa74-866f-50f7da0b89bb@mm-sol.com>
+Date:   Thu, 5 May 2022 18:37:48 +0300
 MIME-Version: 1.0
-References: <1649704172-13181-1-git-send-email-quic_faiyazm@quicinc.com>
- <YlW2TO0O8qDHpkGW@kernel.org> <7b18bea8-b996-601d-f490-cb8aadfffa1b@quicinc.com>
-In-Reply-To: <7b18bea8-b996-601d-f490-cb8aadfffa1b@quicinc.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Thu, 5 May 2022 10:31:05 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqKc07YZ=b5mKcw1+3Gtu+Le2H-gezAdnthh9JNyRfdngg@mail.gmail.com>
-Message-ID: <CAL_JsqKc07YZ=b5mKcw1+3Gtu+Le2H-gezAdnthh9JNyRfdngg@mail.gmail.com>
-Subject: Re: [PATCH] mm: memblock: avoid to create memmap for memblock nomap regions
-To:     Faiyaz Mohammed <quic_faiyazm@quicinc.com>
-Cc:     Mike Rapoport <rppt@kernel.org>, quic_vjitta@quicinc.com,
-        KarimAllah Ahmed <karahmed@amazon.de>,
-        Quentin Perret <qperret@google.com>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        linux-mm <linux-mm@kvack.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH v7 0/7] PCI: qcom: Fix higher MSI vectors handling
+Content-Language: en-US
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc:     Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org
+References: <20220505135407.1352382-1-dmitry.baryshkov@linaro.org>
+From:   Stanimir Varbanov <svarbanov@mm-sol.com>
+In-Reply-To: <20220505135407.1352382-1-dmitry.baryshkov@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 5, 2022 at 10:17 AM Faiyaz Mohammed
-<quic_faiyazm@quicinc.com> wrote:
->
->
-> On 4/12/2022 10:56 PM, Mike Rapoport wrote:
-> > On Tue, Apr 12, 2022 at 12:39:32AM +0530, Faiyaz Mohammed wrote:
-> >> This 'commit 86588296acbf ("fdt: Properly handle "no-map" field in the
-> >> memory region")' is keeping the no-map regions in memblock.memory with
-> >> MEMBLOCK_NOMAP flag set to use no-map memory for EFI using memblock api's,
-> >> but during the initialization sparse_init mark all memblock.memory as
-> >> present using for_each_mem_pfn_range, which is creating the memmap for
-> >> no-map memblock regions. To avoid it skiping the memblock.memory regions
-> >> set with MEMBLOCK_NOMAP set and with this change we will be able to save
-> >> ~11MB memory for ~612MB carve out.
-> > The MEMBLOCK_NOMAP is very fragile and caused a lot of issues already. I
-> > really don't like the idea if adding more implicit assumptions about how
-> > NOMAP memory may or may not be used in a generic iterator function.
->
-> Sorry for delayed response.
-> Yes, it is possible that implicit assumption can create
-> misunderstanding. How about adding command line option and control the
-> no-map region in fdt.c driver, to decide whether to keep "no-map" region
-> with NOMAP flag or remove?. Something like below
+Thanks Dmitry!
 
-No. That just added another dimension to the test matrix. Having
-things from multiple sources is always a mess.
+On 5/5/22 16:54, Dmitry Baryshkov wrote:
+> I have replied with my Tested-by to the patch at [2], which has landed
+> in the linux-next as the commit 20f1bfb8dd62 ("PCI: qcom:
+> Add support for handling MSIs from 8 endpoints"). However lately I
+> noticed that during the tests I still had 'pcie_pme=nomsi', so the
+> device was not forced to use higher MSI vectors.
+> 
+> After removing this option I noticed that hight MSI vectors are not
+> delivered on tested platforms. After additional research I stumbled upon
+> a patch in msm-4.14 ([1]), which describes that each group of MSI
+> vectors is mapped to the separate interrupt. Implement corresponding
+> mapping.
+> 
+> Since we can not expect that other platforms will use multi-IRQ scheme
+> for MSI mapping (e.g. iMX and Tegra map all 256 MSI interrupts to single
+> IRQ), it's support is implemented directly in pcie-qcom rather than in
+> the core driver.
+> 
+> The first patch in the series is a revert of  [2] (landed in pci-next).
+> Either both patches should be applied or both should be dropped.
+> 
+> Patchseries dependecies: [3] (for the schema change).
+> 
+> Changes since v6:
+>  - Fix indentation of the arguments as requested by Stanimir
 
->
-> --- a/drivers/of/fdt.c
-> +++ b/drivers/of/fdt.c
-> @@ -1180,8 +1180,10 @@ int __init __weak
-> early_init_dt_reserve_memory_arch(phys_addr_t base,
->                  */
->                 if (memblock_is_region_reserved(base, size))
->                         return -EBUSY;
-> -
-> -               return memblock_mark_nomap(base, size);
-> +               if (remove_nomap_region)
-> +                       return memblock_remove(base, size);
-> +               else
-> +                       return memblock_mark_nomap(base, size);
-> Thanks and regards,
-> Mohammed Faiyaz
->
+<cut>
+
+> 
+> Dmitry Baryshkov (7):
+>   PCI: qcom: Revert "PCI: qcom: Add support for handling MSIs from 8
+>     endpoints"
+>   PCI: dwc: Correct msi_irq condition in dw_pcie_free_msi()
+>   PCI: dwc: Add msi_host_deinit callback
+>   PCI: dwc: Export several functions useful for MSI implentations
+>   PCI: qcom: Handle MSIs routed to multiple GIC interrupts
+>   dt-bindings: PCI: qcom: Support additional MSI interrupts
+>   arm64: dts: qcom: sm8250: provide additional MSI interrupts
+
+For PCI qcom driver:
+
+Acked-by: Stanimir Varbanov <svarbanov@mm-sol.com>
+
+> 
+>  .../devicetree/bindings/pci/qcom,pcie.yaml    |  45 +++++-
+>  arch/arm64/boot/dts/qcom/sm8250.dtsi          |  11 +-
+>  .../pci/controller/dwc/pcie-designware-host.c |  72 +++++----
+>  drivers/pci/controller/dwc/pcie-designware.h  |  12 ++
+>  drivers/pci/controller/dwc/pcie-qcom.c        | 138 +++++++++++++++++-
+>  5 files changed, 246 insertions(+), 32 deletions(-)
+> 
+
+-- 
+regards,
+Stan
