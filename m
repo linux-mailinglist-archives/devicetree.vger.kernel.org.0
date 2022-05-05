@@ -2,63 +2,588 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 009FA51B56F
-	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 03:55:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 499D551B59A
+	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 04:05:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236620AbiEEB7P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 May 2022 21:59:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37008 "EHLO
+        id S232917AbiEECIk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 May 2022 22:08:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42406 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236467AbiEEB7N (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 21:59:13 -0400
-Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 871D718E10;
-        Wed,  4 May 2022 18:55:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=sL15BtqxkS83BtwMcXzwwWefkBGsC27aYs1XXsPFiMg=; b=k4YcWOZ0W272989cxF2N9neV80
-        zC0uryM6TrESFaN/7iEAyWBnYSUfQbkXa6eBVJrjLslY4Z2tW1PwlRW8InkBQ4sl8aLNmtH4+a9M7
-        OjY/CPuYhlH+dpD3wW2tl3QcYVqLdJnMWUgeKEU6wjn0PLHQ/j5pqeTKHnl6WMBRCesU=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1nmQiF-001I3B-0G; Thu, 05 May 2022 03:55:27 +0200
-Date:   Thu, 5 May 2022 03:55:26 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Ansuel Smith <ansuelsmth@gmail.com>
-Cc:     Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Jonathan Corbet <corbet@lwn.net>, Pavel Machek <pavel@ucw.cz>,
-        John Crispin <john@phrozen.org>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-doc@vger.kernel.org, linux-leds@vger.kernel.org
-Subject: Re: [RFC PATCH v6 10/11] net: dsa: qca8k: add LEDs support
-Message-ID: <YnMujjDHD5M9UdH0@lunn.ch>
-References: <20220503151633.18760-1-ansuelsmth@gmail.com>
- <20220503151633.18760-11-ansuelsmth@gmail.com>
+        with ESMTP id S230027AbiEECIi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 22:08:38 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3FB9220189
+        for <devicetree@vger.kernel.org>; Wed,  4 May 2022 19:05:00 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id B400261001
+        for <devicetree@vger.kernel.org>; Thu,  5 May 2022 02:04:59 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 77673C385A5;
+        Thu,  5 May 2022 02:04:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1651716299;
+        bh=Hc3gvdKnkJxETQOsREQegDhjgVwZkvs8/RaowKdrsA4=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=L9WEe4pm5dHhOfpRo9B/h2DnwSmYi+YhwSvUQqp6zyKv8752pxMt6hY23C9NI6hic
+         jkWJAF7Rcw75db6ecG4413ZuvKuQWN4IL4JiWxcuP2iWFLoMjnb7+nBQD6i1GBODti
+         wQXj5CuRPCZOzIjx65fN8fNU1azHFbjSWUdJpd+rG7IRQxXqUaXSFyDCS8yG86t+5J
+         UJkCe74MrMjraDfkO/LPGSnGXx4l6pCwQLzv5LJh8kTYnWk5EvX+YbvEnuVR9cqngH
+         SZqhm0Yc+NXcQiEPx+3vhFg/xDpI2Z+z7yvIIe9WO3CWu10dDBMUjkJtLOYFMcXigB
+         ldFtY1peVFBRw==
+Date:   Thu, 5 May 2022 10:04:51 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Fabio Estevam <festevam@gmail.com>
+Cc:     robh+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, Fabio Estevam <festevam@denx.de>
+Subject: Re: [PATCH 3/3] ARM: dts: imx7d-smegw01: Add support for i.MX7D
+ SMEGW01 board
+Message-ID: <20220505020451.GH14615@dragon>
+References: <20220420131507.1032732-1-festevam@gmail.com>
+ <20220420131507.1032732-3-festevam@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220503151633.18760-11-ansuelsmth@gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20220420131507.1032732-3-festevam@gmail.com>
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> +		ret = fwnode_property_read_string(led, "default-state", &state);
+On Wed, Apr 20, 2022 at 10:15:07AM -0300, Fabio Estevam wrote:
+> From: Fabio Estevam <festevam@denx.de>
+> 
+> Add support for the i.MX7D SMEGW01 board.
+> 
+> This is a gateway board that supports the following peripherals:
+> 
+> - eMMC / SD card
+> - RTC
+> - USB modem
+> - Wifi via SDIO
+> - Dual Ethernet
+> - CAN
+> - Serial SRAM
+> 
+> Signed-off-by: Fabio Estevam <festevam@denx.de>
+> ---
+>  arch/arm/boot/dts/Makefile          |   1 +
+>  arch/arm/boot/dts/imx7d-smegw01.dts | 474 ++++++++++++++++++++++++++++
+>  2 files changed, 475 insertions(+)
+>  create mode 100644 arch/arm/boot/dts/imx7d-smegw01.dts
+> 
+> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+> index 01d5e66df832..b5f19aefa07d 100644
+> --- a/arch/arm/boot/dts/Makefile
+> +++ b/arch/arm/boot/dts/Makefile
+> @@ -741,6 +741,7 @@ dtb-$(CONFIG_SOC_IMX7D) += \
+>  	imx7d-sdb.dtb \
+>  	imx7d-sdb-reva.dtb \
+>  	imx7d-sdb-sht11.dtb \
+> +	imx7d-smegw01.dtb \
+>  	imx7d-zii-rmu2.dtb \
+>  	imx7d-zii-rpu2.dtb \
+>  	imx7s-colibri-aster.dtb \
+> diff --git a/arch/arm/boot/dts/imx7d-smegw01.dts b/arch/arm/boot/dts/imx7d-smegw01.dts
+> new file mode 100644
+> index 000000000000..a21830a41dc5
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/imx7d-smegw01.dts
+> @@ -0,0 +1,474 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +//
+> +// Copyright (C) 2020 PHYTEC Messtechnik GmbH
+> +// Author: Jens Lang  <J.Lang@phytec.de>
+> +// Copyright (C) 2021 Fabio Estevam <festevam@denx.de>
+> +
+> +/dts-v1/;
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include "imx7d.dtsi"
+> +
+> +/ {
+> +	model = "Storopack SMEGW01 board";
+> +	compatible = "storopack,imx7d-smegw01", "fsl,imx7d";
+> +
+> +	aliases {
+> +		mmc0 = &usdhc1;
+> +		mmc1 = &usdhc3;
+> +		mmc2 = &usdhc2;
+> +		rtc0 = &i2c_rtc;
+> +		rtc1 = &snvs_rtc;
+> +	};
+> +
+> +	chosen {
+> +		stdout-path = &uart1;
+> +	};
+> +
+> +	memory@80000000 {
+> +		device_type = "memory";
+> +		reg = <0x80000000 0x20000000>;
+> +	};
+> +
+> +	reg_lte_on: regulator-lte-on {
+> +		compatible = "regulator-fixed";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_lte_on>;
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		regulator-name = "lte_on";
+> +		gpio = <&gpio7 12 GPIO_ACTIVE_HIGH>;
+> +		enable-active-high;
+> +		regulator-always-on;
+> +	};
+> +
+> +	reg_lte_nreset: regulator-lte-nreset {
+> +		compatible = "regulator-fixed";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_lte_nreset>;
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		regulator-name = "LTE_nReset";
+> +		gpio = <&gpio6 21 GPIO_ACTIVE_HIGH>;
+> +		enable-active-high;
+> +		regulator-always-on;
+> +	};
+> +
+> +	reg_wifi: regulator-wifi {
+> +		compatible = "regulator-fixed";
+> +		gpio = <&gpio2 30 GPIO_ACTIVE_HIGH>;
+> +		enable-active-high;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_wifi>;
+> +		regulator-name = "wifi_reg";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		regulator-always-on;
+> +	};
+> +
+> +	reg_wlan_rfkill: regulator-wlan-rfkill {
+> +		compatible = "regulator-fixed";
+> +		pinctrl-names = "default";
+> +		pinctrl-2 = <&pinctrl_rfkill>;
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		regulator-name = "wlan_rfkill";
+> +		gpio = <&gpio2 11 GPIO_ACTIVE_HIGH>;
+> +		enable-active-high;
+> +		regulator-always-on;
+> +	};
+> +
+> +	reg_usbotg_vbus: regulator-usbotg-vbus {
+> +		compatible = "regulator-fixed";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_usbotg1_pwr_gpio>;
+> +		regulator-name = "usb_otg_vbus";
+> +		regulator-min-microvolt = <5000000>;
+> +		regulator-max-microvolt = <5000000>;
+> +		gpio = <&gpio1 05 GPIO_ACTIVE_HIGH>;
+> +		enable-active-high;
+> +		regulator-always-on;
 
-You should probably use led_default_state led_init_default_state_get()
+Why are all these regulators always-on?
 
-    Andrew
+> +	};
+> +};
+> +
+> +&ecspi1 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_ecspi1>;
+> +	cs-gpios = <&gpio4 19 GPIO_ACTIVE_LOW>;
+> +	status = "okay";
+> +
+> +	sram@0 {
+> +		reg = <0>;
+> +		compatible = "microchip,48l640";
+
+Can we start properties with compatible if possible?
+
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+> +		spi-max-frequency = <16000000>;
+> +	};
+> +};
+> +
+> +&fec1 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_enet1>;
+> +	assigned-clocks = <&clks IMX7D_ENET1_TIME_ROOT_SRC>,
+> +			  <&clks IMX7D_ENET1_TIME_ROOT_CLK>;
+> +	assigned-clock-parents = <&clks IMX7D_PLL_ENET_MAIN_100M_CLK>;
+> +	assigned-clock-rates = <0>, <100000000>;
+> +	phy-mode = "rgmii-id";
+> +	phy-handle = <&ethphy0>;
+> +	fsl,magic-packet;
+> +	status = "okay";
+> +
+> +	mdio: mdio {
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		ethphy0: ethernet-phy@1 {
+> +			compatible = "ethernet-phy-id0022.1622",
+> +				     "ethernet-phy-ieee802.3-c22";
+> +			reg = <1>;
+> +			reset-gpios = <&gpio2 28 GPIO_ACTIVE_LOW>;
+> +		};
+> +
+> +		ethphy1: ethernet-phy@2 {
+> +			compatible = "ethernet-phy-id0022.1622",
+> +				     "ethernet-phy-ieee802.3-c22";
+> +			reg = <2>;
+> +		};
+> +	};
+> +};
+> +
+> +&fec2 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_enet2>;
+> +	assigned-clocks = <&clks IMX7D_ENET2_TIME_ROOT_SRC>,
+> +			  <&clks IMX7D_ENET2_TIME_ROOT_CLK>;
+> +	assigned-clock-parents = <&clks IMX7D_PLL_ENET_MAIN_100M_CLK>;
+> +	assigned-clock-rates = <0>, <100000000>;
+> +	phy-mode = "rgmii-id";
+> +	phy-handle = <&ethphy1>;
+> +	fsl,magic-packet;
+> +	status = "okay";
+> +};
+> +
+> +&i2c2 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 =<&pinctrl_i2c2>;
+> +	clock-frequency = <100000>;
+> +	status = "okay";
+> +
+> +	i2c_rtc: rtc@52 {
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_rtc_int>;
+> +		compatible = "microcrystal,rv3028";
+
+Ditto
+
+> +		reg = <0x52>;
+> +		interrupt-parent = <&gpio2>;
+> +		interrupts = <15 IRQ_TYPE_LEVEL_LOW>;
+> +	};
+> +};
+> +
+> +&flexcan1 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_flexcan1>;
+> +	status = "okay";
+> +};
+> +
+> +&flexcan2 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_flexcan2>;
+> +	status = "okay";
+> +};
+> +
+> +&uart1 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_uart1>;
+> +	status = "okay";
+> +};
+> +
+> +&uart3 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_uart3>;
+> +	status = "okay";
+> +};
+> +
+> +&usbotg1 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_usbotg1_lpsr>;
+> +	dr_mode = "otg";
+> +	vbus-supply = <&reg_usbotg_vbus>;
+> +	status = "okay";
+> +};
+> +
+> +&usbotg2 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_usbotg2>;
+> +	dr_mode = "host";
+> +	status = "okay";
+> +};
+> +
+> +&usdhc1 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_usdhc1>;
+> +	cd-gpios = <&gpio5 0 GPIO_ACTIVE_LOW>;
+> +	no-1-8-v;
+> +	enable-sdio-wakeup;
+> +	keep-power-in-suspend;
+> +	status = "okay";
+> +};
+> +
+> +&usdhc2 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_usdhc2>;
+> +	bus-width = <4>;
+> +	non-removable;
+> +	cap-sd-highspeed;
+> +	sd-uhs-ddr50;
+> +	mmc-ddr-1_8v;
+> +	vmmc-supply = <&reg_wifi>;
+> +	enable-sdio-wakeup;
+> +	status = "okay";
+> +};
+> +
+> +&usdhc3 {
+> +	pinctrl-names = "default", "state_100mhz", "state_200mhz";
+> +	pinctrl-0 = <&pinctrl_usdhc3>;
+> +	pinctrl-1 = <&pinctrl_usdhc3_100mhz>;
+> +	pinctrl-2 = <&pinctrl_usdhc3_200mhz>;
+> +	assigned-clocks = <&clks IMX7D_USDHC3_ROOT_CLK>;
+> +	assigned-clock-rates = <400000000>;
+> +	max-frequency = <200000000>;
+> +	bus-width = <8>;
+> +	fsl,tuning-step = <1>;
+> +	non-removable;
+> +	cap-sd-highspeed;
+> +	cap-mmc-highspeed;
+> +	cap-mmc-hw-reset;
+> +	mmc-hs200-1_8v;
+> +	mmc-ddr-1_8v;
+> +	sd-uhs-ddr50;
+> +	sd-uhs-sdr104;
+
+I assume this is an eMMC.  If so, how would these SD specific properties
+be needed?
+
+Shawn
+
+> +	status = "okay";
+> +};
+> +
+> +&wdog1 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_wdog>;
+> +	fsl,ext-reset-output;
+> +	status = "okay";
+> +};
+> +
+> +&iomuxc {
+> +	pinctrl_ecspi1: ecspi1grp {
+> +		fsl,pins = <
+> +			MX7D_PAD_ECSPI1_SS0__GPIO4_IO19	0x04
+> +			MX7D_PAD_ECSPI1_SCLK__ECSPI1_SCLK	0x04
+> +			MX7D_PAD_ECSPI1_MOSI__ECSPI1_MOSI	0x04
+> +			MX7D_PAD_ECSPI1_MISO__ECSPI1_MISO	0x04
+> +		>;
+> +	};
+> +
+> +	pinctrl_enet1: enet1grp {
+> +		fsl,pins = <
+> +			MX7D_PAD_ENET1_RGMII_RX_CTL__ENET1_RGMII_RX_CTL 0x5
+> +			MX7D_PAD_ENET1_RGMII_RD0__ENET1_RGMII_RD0	0x5
+> +			MX7D_PAD_ENET1_RGMII_RD1__ENET1_RGMII_RD1	0x5
+> +			MX7D_PAD_ENET1_RGMII_RD2__ENET1_RGMII_RD2	0x5
+> +			MX7D_PAD_ENET1_RGMII_RD3__ENET1_RGMII_RD3	0x5
+> +			MX7D_PAD_ENET1_RGMII_RXC__ENET1_RGMII_RXC	0x5
+> +			MX7D_PAD_ENET1_RGMII_TX_CTL__ENET1_RGMII_TX_CTL 0x5
+> +			MX7D_PAD_ENET1_RGMII_TD0__ENET1_RGMII_TD0	0x5
+> +			MX7D_PAD_ENET1_RGMII_TD1__ENET1_RGMII_TD1	0x5
+> +			MX7D_PAD_ENET1_RGMII_TD2__ENET1_RGMII_TD2	0x5
+> +			MX7D_PAD_ENET1_RGMII_TD3__ENET1_RGMII_TD3	0x5
+> +			MX7D_PAD_ENET1_RGMII_TXC__ENET1_RGMII_TXC	0x5
+> +			MX7D_PAD_GPIO1_IO10__ENET1_MDIO		0x7
+> +			MX7D_PAD_GPIO1_IO11__ENET1_MDC		0x7
+> +		>;
+> +	};
+> +
+> +	pinctrl_enet2: enet2grp {
+> +		fsl,pins = <
+> +			MX7D_PAD_EPDC_SDCE0__ENET2_RGMII_RX_CTL 0x5
+> +			MX7D_PAD_EPDC_SDCE1__ENET2_RGMII_RXC	0x5
+> +			MX7D_PAD_EPDC_SDCLK__ENET2_RGMII_RD0	0x5
+> +			MX7D_PAD_EPDC_SDLE__ENET2_RGMII_RD1	0x5
+> +			MX7D_PAD_EPDC_SDOE__ENET2_RGMII_RD2	0x5
+> +			MX7D_PAD_EPDC_SDSHR__ENET2_RGMII_RD3	0x5
+> +			MX7D_PAD_EPDC_SDCE2__ENET2_RGMII_TD0	0x5
+> +			MX7D_PAD_EPDC_SDCE3__ENET2_RGMII_TD1	0x5
+> +			MX7D_PAD_EPDC_GDCLK__ENET2_RGMII_TD2	0x5
+> +			MX7D_PAD_EPDC_GDOE__ENET2_RGMII_TD3	0x5
+> +			MX7D_PAD_EPDC_GDRL__ENET2_RGMII_TX_CTL 0x5
+> +			MX7D_PAD_EPDC_GDSP__ENET2_RGMII_TXC	0x5
+> +			MX7D_PAD_GPIO1_IO09__GPIO1_IO9	0x08
+> +		>;
+> +	};
+> +
+> +	pinctrl_i2c2: i2c2grp {
+> +		fsl,pins = <
+> +			MX7D_PAD_I2C2_SCL__I2C2_SCL		0x40000004
+> +			MX7D_PAD_I2C2_SDA__I2C2_SDA		0x40000004
+> +		>;
+> +	};
+> +
+> +	pinctrl_flexcan1: flexcan1grp {
+> +		fsl,pins = <
+> +			MX7D_PAD_GPIO1_IO12__FLEXCAN1_RX	0x0b0b0
+> +			MX7D_PAD_GPIO1_IO13__FLEXCAN1_TX	0x0b0b0
+> +		>;
+> +	};
+> +
+> +	pinctrl_flexcan2: flexcan2grp {
+> +		fsl,pins = <
+> +			MX7D_PAD_GPIO1_IO14__FLEXCAN2_RX	0x0b0b0
+> +			MX7D_PAD_GPIO1_IO15__FLEXCAN2_TX	0x0b0b0
+> +		>;
+> +	};
+> +
+> +	pinctrl_lte_on: lteongrp {
+> +		fsl,pins = <
+> +			MX7D_PAD_ENET1_TX_CLK__GPIO7_IO12	0x17059
+> +		>;
+> +	};
+> +
+> +	pinctrl_lte_nreset: ltenresetgrp {
+> +		fsl,pins = <
+> +			MX7D_PAD_SAI2_RX_DATA__GPIO6_IO21	0x17059
+> +		>;
+> +	};
+> +
+> +	pinctrl_rfkill: rfkillrp {
+> +		fsl,pins = <
+> +			MX7D_PAD_EPDC_DATA11__GPIO2_IO11	0x17059
+> +		>;
+> +	};
+> +
+> +	pinctrl_rtc_int: rtcintgrp {
+> +		fsl,pins = <
+> +			MX7D_PAD_EPDC_DATA15__GPIO2_IO15	0x17059
+> +		>;
+> +	};
+> +
+> +	pinctrl_uart1: uart1grp {
+> +		fsl,pins = <
+> +			MX7D_PAD_UART1_TX_DATA__UART1_DCE_TX	0x74
+> +			MX7D_PAD_UART1_RX_DATA__UART1_DCE_RX	0x7c
+> +		>;
+> +	};
+> +
+> +	pinctrl_uart3: uart3grp {
+> +		fsl,pins = <
+> +			MX7D_PAD_UART3_TX_DATA__UART3_DCE_TX	0x7c
+> +			MX7D_PAD_UART3_RX_DATA__UART3_DCE_RX	0x74
+> +		>;
+> +	};
+> +
+> +	pinctrl_usbotg1_lpsr: usbotg1 {
+> +		fsl,pins = <
+> +			MX7D_PAD_LPSR_GPIO1_IO04__USB_OTG1_OC	0x04
+> +		>;
+> +	};
+> +
+> +	pinctrl_usbotg1_pwr: usbotg1-pwr {
+> +		fsl,pins = <
+> +			MX7D_PAD_LPSR_GPIO1_IO05__USB_OTG1_PWR	0x04
+> +		>;
+> +	};
+> +
+> +	pinctrl_usbotg1_pwr_gpio: usbotg1-pwr-gpio {
+> +		fsl,pins = <
+> +			MX7D_PAD_LPSR_GPIO1_IO05__GPIO1_IO5	0x04
+> +		>;
+> +	};
+> +
+> +	pinctrl_usbotg2: usbotg2grp {
+> +		fsl,pins = <
+> +			MX7D_PAD_UART3_RTS_B__USB_OTG2_OC	0x04
+> +		>;
+> +	};
+> +
+> +	pinctrl_usdhc1: usdhc1grp {
+> +		fsl,pins = <
+> +			MX7D_PAD_SD1_CD_B__GPIO5_IO0		0x59
+> +			MX7D_PAD_SD1_CMD__SD1_CMD		0x59
+> +			MX7D_PAD_SD1_CLK__SD1_CLK		0x19
+> +			MX7D_PAD_SD1_DATA0__SD1_DATA0		0x59
+> +			MX7D_PAD_SD1_DATA1__SD1_DATA1		0x59
+> +			MX7D_PAD_SD1_DATA2__SD1_DATA2		0x59
+> +			MX7D_PAD_SD1_DATA3__SD1_DATA3		0x59
+> +		>;
+> +	};
+> +
+> +	pinctrl_usdhc2: usdhc2grp {
+> +		fsl,pins = <
+> +			MX7D_PAD_SD2_CLK__SD2_CLK		0x19
+> +			MX7D_PAD_SD2_CMD__SD2_CMD		0x59
+> +			MX7D_PAD_SD2_DATA0__SD2_DATA0		0x59
+> +			MX7D_PAD_SD2_DATA1__SD2_DATA1		0x59
+> +			MX7D_PAD_SD2_DATA2__SD2_DATA2		0x59
+> +			MX7D_PAD_SD2_DATA3__SD2_DATA3		0x59
+> +			MX7D_PAD_SD2_CD_B__SD2_CD_B		0x08
+> +		>;
+> +	};
+> +
+> +	pinctrl_usdhc3: usdhc3grp {
+> +		fsl,pins = <
+> +			MX7D_PAD_SD3_CMD__SD3_CMD		0x5d
+> +			MX7D_PAD_SD3_CLK__SD3_CLK		0x1d
+> +			MX7D_PAD_SD3_DATA0__SD3_DATA0		0x5d
+> +			MX7D_PAD_SD3_DATA1__SD3_DATA1		0x5d
+> +			MX7D_PAD_SD3_DATA2__SD3_DATA2		0x5d
+> +			MX7D_PAD_SD3_DATA3__SD3_DATA3		0x5d
+> +			MX7D_PAD_SD3_DATA4__SD3_DATA4		0x5d
+> +			MX7D_PAD_SD3_DATA5__SD3_DATA5		0x5d
+> +			MX7D_PAD_SD3_DATA6__SD3_DATA6		0x5d
+> +			MX7D_PAD_SD3_DATA7__SD3_DATA7		0x5d
+> +			MX7D_PAD_SD3_STROBE__SD3_STROBE	0x1d
+> +		>;
+> +	};
+> +
+> +	pinctrl_usdhc3_100mhz: usdhc3-100mhzgrp {
+> +		fsl,pins = <
+> +			MX7D_PAD_SD3_CMD__SD3_CMD		0x5e
+> +			MX7D_PAD_SD3_CLK__SD3_CLK		0x1e
+> +			MX7D_PAD_SD3_DATA0__SD3_DATA0		0x5e
+> +			MX7D_PAD_SD3_DATA1__SD3_DATA1		0x5e
+> +			MX7D_PAD_SD3_DATA2__SD3_DATA2		0x5e
+> +			MX7D_PAD_SD3_DATA3__SD3_DATA3		0x5e
+> +			MX7D_PAD_SD3_DATA4__SD3_DATA4		0x5e
+> +			MX7D_PAD_SD3_DATA5__SD3_DATA5		0x5e
+> +			MX7D_PAD_SD3_DATA6__SD3_DATA6		0x5e
+> +			MX7D_PAD_SD3_DATA7__SD3_DATA7		0x5e
+> +			MX7D_PAD_SD3_STROBE__SD3_STROBE	0x1e
+> +		>;
+> +	};
+> +
+> +	pinctrl_usdhc3_200mhz: usdhc3-200mhzgrp {
+> +		fsl,pins = <
+> +			MX7D_PAD_SD3_CMD__SD3_CMD		0x5f
+> +			MX7D_PAD_SD3_CLK__SD3_CLK		0x0f
+> +			MX7D_PAD_SD3_DATA0__SD3_DATA0		0x5f
+> +			MX7D_PAD_SD3_DATA1__SD3_DATA1		0x5f
+> +			MX7D_PAD_SD3_DATA2__SD3_DATA2		0x5f
+> +			MX7D_PAD_SD3_DATA3__SD3_DATA3		0x5f
+> +			MX7D_PAD_SD3_DATA4__SD3_DATA4		0x5f
+> +			MX7D_PAD_SD3_DATA5__SD3_DATA5		0x5f
+> +			MX7D_PAD_SD3_DATA6__SD3_DATA6		0x5f
+> +			MX7D_PAD_SD3_DATA7__SD3_DATA7		0x5f
+> +			MX7D_PAD_SD3_STROBE__SD3_STROBE	0x1f
+> +		>;
+> +	};
+> +
+> +	pinctrl_wifi: wifigrp {
+> +		fsl,pins = <
+> +			MX7D_PAD_EPDC_PWR_COM__GPIO2_IO30	0x04
+> +			MX7D_PAD_SD2_RESET_B__GPIO5_IO11	0x04
+> +		>;
+> +	};
+> +};
+> +
+> +&iomuxc_lpsr {
+> +	pinctrl_wdog: wdoggrp {
+> +		fsl,pins = <
+> +			MX7D_PAD_LPSR_GPIO1_IO00__WDOG1_WDOG_B 0x74
+> +		>;
+> +	};
+> +};
+> -- 
+> 2.25.1
+> 
