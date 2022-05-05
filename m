@@ -2,63 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 13DA051C11E
-	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 15:44:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D6E251C111
+	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 15:44:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1379925AbiEENrM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 May 2022 09:47:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59132 "EHLO
+        id S1379965AbiEENrF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 May 2022 09:47:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59138 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1379894AbiEENrE (ORCPT
+        with ESMTP id S1379897AbiEENrE (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 09:47:04 -0400
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0EBF657988;
-        Thu,  5 May 2022 06:43:18 -0700 (PDT)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 245DhDuQ122533;
-        Thu, 5 May 2022 08:43:13 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1651758193;
-        bh=pQy8r4nSyp4/lSSZsHHCYvHBoz+cDyLXwl/nngd8tIo=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=Nm6Puk+1tY3VUjLZhgbK5X8k3qfhoR401QjFt6CnyxC9Mtv0+SpLr+NATsCgsaF9D
-         +bV2u+kLXjqcyc9m7oOITtdNwKTEba47AySgkfzlYqzePqbCvm0BL976RtYhCnNa4p
-         Z7mPV5tixy4qA2DI+GqGx1R4SXhF8nvyj76taswY=
-Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 245DhDAm062630
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 5 May 2022 08:43:13 -0500
-Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Thu, 5
- May 2022 08:43:11 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Thu, 5 May 2022 08:43:11 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 245DhAS7104725;
-        Thu, 5 May 2022 08:43:11 -0500
-From:   Aradhya Bhatia <a-bhatia1@ti.com>
-To:     Vignesh Raghavendra <vigneshr@ti.com>
-CC:     Nishanth Menon <nm@ti.com>, Rob Herring <robh+dt@kernel.org>,
-        Linux ARM Kernel List <linux-arm-kernel@lists.infradead.org>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        Linux Kernel List <linux-kernel@vger.kernel.org>,
-        Aradhya Bhatia <a-bhatia1@ti.com>,
-        Rahul T R <r-ravikumar@ti.com>
-Subject: [PATCH v2 4/4] arm64: dts: ti: k3-am625-sk: Add DSS ports, HDMI tx & peripherals
-Date:   Thu, 5 May 2022 19:13:03 +0530
-Message-ID: <20220505134303.23208-5-a-bhatia1@ti.com>
-X-Mailer: git-send-email 2.36.0
-In-Reply-To: <20220505134303.23208-1-a-bhatia1@ti.com>
-References: <20220505134303.23208-1-a-bhatia1@ti.com>
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20278579A1
+        for <devicetree@vger.kernel.org>; Thu,  5 May 2022 06:43:20 -0700 (PDT)
+Received: by mail-lf1-x135.google.com with SMTP id w1so7567835lfa.4
+        for <devicetree@vger.kernel.org>; Thu, 05 May 2022 06:43:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=x2/oaeLvBGUjNh6Ua3HoGxwQ5NaCtqAGbLaQrSSqV/M=;
+        b=jQ7NW+lH4NNqotrerCsrcusTqX8GQpUiluA3ye3312tFpsTZB9tF4+JQ71OIC4c43v
+         hBovEjZTA410k9tL7jgNEHi/3LvUy7muCGqc9BKh7x7PrcP+P4TvKtF+NXVl51YAr7Jn
+         BnAztyCO7Fjrq1mYY4LMCskoWxEn9PklapE/WtKwkD2lTd2ZbclRdXk5rxvGyJRwEMV4
+         L2yHNWETPO1U2lopFRKCEDeMWuIQmGXN0jcnghqksTf75HsL00JtyK7Vem2feY9IMsyF
+         p2ZtvvinZ9o7LUgU/+RQQqaQA5mwKrozY03HnRBbL/0+D5gHAo6hISLje+yTHZIzG19L
+         VaSw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=x2/oaeLvBGUjNh6Ua3HoGxwQ5NaCtqAGbLaQrSSqV/M=;
+        b=AL/wT0YSGmpC76sWtX3RLmrn2wML1pwCZmteqivMC31DmC0efT/GLcc1KMJcMBm1sW
+         wW708dILNcf3O8x7iRbUbp7COM1w3eQI9tXMRbLhK5aZv11C0SgZ0cK0dsX4427N5EkW
+         B0BCDZ/bAoB/mxG7IgRhpApFoQK1ciAd/ZJh90nC2mmGZNxUbl5/P7Q28LTQe+vJ/0Nd
+         4zpgOqure0t79hEjw7FOcnnyWAOy3rrz4c+wixHUNckTdyEaabbyLSKE5mU0NCvoIbQ9
+         WgXI9IeXo60L7WwqyD+Zth9gWgFFGdtMn4tXSVmmeLhJBFzqlWV/2EShM35HhjiIYifd
+         lQAg==
+X-Gm-Message-State: AOAM531P1ew2bZKS0rNwR2s4wDEbJgYoH0oj0zm9HvzBeYRQWRZMBB79
+        9+dJaRe34OaZn4s2ENaDLSjw2Q==
+X-Google-Smtp-Source: ABdhPJzpcR1GfsPLVSO3CUUTjXCpwjNGLdH+A7uTkjTbRPx2KZ4xiGNF5M4f85d6IarIf2OOziF60A==
+X-Received: by 2002:a19:ac04:0:b0:471:664f:95df with SMTP id g4-20020a19ac04000000b00471664f95dfmr18305751lfc.310.1651758198359;
+        Thu, 05 May 2022 06:43:18 -0700 (PDT)
+Received: from localhost.localdomain (mobile-access-5672eb-224.dhcp.inet.fi. [86.114.235.224])
+        by smtp.gmail.com with ESMTPSA id z10-20020a056512308a00b0047255d2115bsm221164lfd.138.2022.05.05.06.43.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 05 May 2022 06:43:17 -0700 (PDT)
+From:   Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-clk@vger.kernel.org
+Subject: [PATCH v4 1/7] dt-bindings: clock: add QCOM SM8450 camera clock bindings
+Date:   Thu,  5 May 2022 16:43:15 +0300
+Message-Id: <20220505134315.4124554-1-vladimir.zapolskiy@linaro.org>
+X-Mailer: git-send-email 2.33.0
+In-Reply-To: <<20220505121213.4121802-2-vladimir.zapolskiy@linaro.org>>
+References: <<20220505121213.4121802-2-vladimir.zapolskiy@linaro.org>>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -67,112 +72,288 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add DT nodes for sil9022 HDMI transmitter (tx), HDMI connector and the
-HDMI fixed master clock on the am625-sk board.
+The change adds device tree bindings for camera clock controller
+found on SM8450 SoC.
 
-Additionally, add and connect output port for DSS (vp2), input and output
-ports for the sil9022 HDMI tx and the input port for the HDMI connector.
-
-The sil9022 HDMI tx is connected on the i2c1 bus. The HDMI connector on
-the board is of type "a". The clock frequency of the master clock that
-supports the HDMI tx is 12.288 MHz.
-
-The dpi output signals from the vp2 of DSS are fed into the sil9022 HDMI
-transmitter. These signals are converted into HDMI signals which are
-further passed on to the HDMI connector on the board, on which display
-can be connected via appropriate HDMI cables.
-
-Signed-off-by: Aradhya Bhatia <a-bhatia1@ti.com>
-Reviewed-by: Rahul T R <r-ravikumar@ti.com>
+Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
 ---
- arch/arm64/boot/dts/ti/k3-am625-sk.dts | 60 ++++++++++++++++++++++++++
- 1 file changed, 60 insertions(+)
+Changes from v3 to v4:
+* renamed a filename in $id value after the rename of the file itself
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am625-sk.dts b/arch/arm64/boot/dts/ti/k3-am625-sk.dts
-index 96414c5dacf7..e5b05223e9a1 100644
---- a/arch/arm64/boot/dts/ti/k3-am625-sk.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am625-sk.dts
-@@ -134,6 +134,23 @@ led-0 {
- 			default-state = "off";
- 		};
- 	};
+Changes from v2 to v3:
+* renamed files to match the compatible value "qcom,sm8450-camcc",
+* fixed a typo in a usage example found in the yaml file.
+
+Changes from v1 to v2:
+* updated qcom,camcc-sm8450.yaml according to review comments from Rob,
+* changed qcom,camcc-sm8450.h license to dual one.
+
+.../bindings/clock/qcom,sm8450-camcc.yaml     |  89 ++++++++++
+ include/dt-bindings/clock/qcom,sm8450-camcc.h | 159 ++++++++++++++++++
+ 2 files changed, 248 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/qcom,sm8450-camcc.yaml
+ create mode 100644 include/dt-bindings/clock/qcom,sm8450-camcc.h
+
+diff --git a/Documentation/devicetree/bindings/clock/qcom,sm8450-camcc.yaml b/Documentation/devicetree/bindings/clock/qcom,sm8450-camcc.yaml
+new file mode 100644
+index 000000000000..f09e7cec94d7
+--- /dev/null
++++ b/Documentation/devicetree/bindings/clock/qcom,sm8450-camcc.yaml
+@@ -0,0 +1,89 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/clock/qcom,sm8450-camcc.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+	hdmi_mstrclk: hdmi-mstrclk {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <12288000>;
-+	};
++title: Qualcomm Camera Clock & Reset Controller Binding for SM8450
 +
-+	hdmi: connector {
-+		compatible = "hdmi-connector";
-+		label = "hdmi";
-+		type = "a";
-+		port {
-+			hdmi_connector_in: endpoint {
-+				remote-endpoint = <&sii9022_out>;
-+			};
-+		};
-+	};
- };
- 
- &main_pmx0 {
-@@ -385,6 +402,38 @@ exp1: gpio@22 {
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&main_gpio1_ioexp_intr_pins_default>;
- 	};
++maintainers:
++  - Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
 +
-+	sii9022: sii9022@3b {
-+		compatible = "sil,sii9022";
-+		reg = <0x3b>;
++description: |
++  Qualcomm camera clock control module which supports the clocks, resets and
++  power domains on SM8450.
 +
-+		clocks = <&hdmi_mstrclk>;
-+		clock-names = "mclk";
++  See also dt-bindings/clock/qcom,camcc-sm8450.h
 +
-+		interrupt-parent = <&exp1>;
-+		interrupts = <16 IRQ_TYPE_EDGE_FALLING>;
++properties:
++  compatible:
++    const: qcom,sm8450-camcc
 +
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
++  clocks:
++    items:
++      - description: Camera AHB clock from GCC
++      - description: Board XO source
++      - description: Board active XO source
++      - description: Sleep clock source
 +
-+			port@0 {
-+				reg = <0>;
++  clock-names:
++    items:
++      - const: iface
++      - const: bi_tcxo
++      - const: bi_tcxo_ao
++      - const: sleep_clk
 +
-+				sii9022_in: endpoint {
-+					remote-endpoint = <&dpi1_out>;
-+				};
-+			};
++  power-domains:
++    maxItems: 1
++    description:
++      A phandle and PM domain specifier for the MMCX power domain.
 +
-+			port@1 {
-+				reg = <1>;
++  required-opps:
++    description:
++      A phandle to an OPP node describing required MMCX performance point.
 +
-+				sii9022_out: endpoint {
-+					remote-endpoint = <&hdmi_connector_in>;
-+				};
-+			};
-+		};
-+	};
- };
- 
- &main_i2c2 {
-@@ -450,6 +499,17 @@ &dss {
- 	pinctrl-0 = <&main_dss0_pins_default>;
- };
- 
-+&dss_ports {
-+	/* VP2: DPI Output */
-+	port@1 {
-+		reg = <1>;
++  '#clock-cells':
++    const: 1
 +
-+		dpi1_out: endpoint {
-+			remote-endpoint = <&sii9022_in>;
-+		};
-+	};
-+};
++  '#reset-cells':
++    const: 1
 +
- &mailbox0_cluster0 {
- 	mbox_m4_0: mbox-m4-0 {
- 		ti,mbox-rx = <0 0 0>;
++  '#power-domain-cells':
++    const: 1
++
++  reg:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - clock-names
++  - power-domains
++  - required-opps
++  - '#clock-cells'
++  - '#reset-cells'
++  - '#power-domain-cells'
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/qcom,gcc-sm8450.h>
++    #include <dt-bindings/clock/qcom,rpmh.h>
++    #include <dt-bindings/power/qcom-rpmpd.h>
++    clock-controller@ade0000 {
++      compatible = "qcom,sm8450-camcc";
++      reg = <0 0xade0000 0 0x20000>;
++      clocks = <&gcc GCC_CAMERA_AHB_CLK>,
++               <&rpmhcc RPMH_CXO_CLK>,
++               <&rpmhcc RPMH_CXO_CLK_A>,
++               <&sleep_clk>;
++      clock-names = "iface", bi_tcxo", "bi_tcxo_ao", "sleep_clk";
++      power-domains = <&rpmhpd SM8450_MMCX>;
++      required-opps = <&rpmhpd_opp_low_svs>;
++      #clock-cells = <1>;
++      #reset-cells = <1>;
++      #power-domain-cells = <1>;
++    };
++...
+diff --git a/include/dt-bindings/clock/qcom,sm8450-camcc.h b/include/dt-bindings/clock/qcom,sm8450-camcc.h
+new file mode 100644
+index 000000000000..7ff67acf301a
+--- /dev/null
++++ b/include/dt-bindings/clock/qcom,sm8450-camcc.h
+@@ -0,0 +1,159 @@
++/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
++/*
++ * Copyright (c) 2020-2021, The Linux Foundation. All rights reserved.
++ */
++
++#ifndef _DT_BINDINGS_CLK_QCOM_CAM_CC_SM8450_H
++#define _DT_BINDINGS_CLK_QCOM_CAM_CC_SM8450_H
++
++/* CAM_CC clocks */
++#define CAM_CC_BPS_AHB_CLK					0
++#define CAM_CC_BPS_CLK						1
++#define CAM_CC_BPS_CLK_SRC					2
++#define CAM_CC_BPS_FAST_AHB_CLK					3
++#define CAM_CC_CAMNOC_AXI_CLK					4
++#define CAM_CC_CAMNOC_AXI_CLK_SRC				5
++#define CAM_CC_CAMNOC_DCD_XO_CLK				6
++#define CAM_CC_CCI_0_CLK					7
++#define CAM_CC_CCI_0_CLK_SRC					8
++#define CAM_CC_CCI_1_CLK					9
++#define CAM_CC_CCI_1_CLK_SRC					10
++#define CAM_CC_CORE_AHB_CLK					11
++#define CAM_CC_CPAS_AHB_CLK					12
++#define CAM_CC_CPAS_BPS_CLK					13
++#define CAM_CC_CPAS_FAST_AHB_CLK				14
++#define CAM_CC_CPAS_IFE_0_CLK					15
++#define CAM_CC_CPAS_IFE_1_CLK					16
++#define CAM_CC_CPAS_IFE_2_CLK					17
++#define CAM_CC_CPAS_IFE_LITE_CLK				18
++#define CAM_CC_CPAS_IPE_NPS_CLK					19
++#define CAM_CC_CPAS_SBI_CLK					20
++#define CAM_CC_CPAS_SFE_0_CLK					21
++#define CAM_CC_CPAS_SFE_1_CLK					22
++#define CAM_CC_CPHY_RX_CLK_SRC					23
++#define CAM_CC_CSI0PHYTIMER_CLK					24
++#define CAM_CC_CSI0PHYTIMER_CLK_SRC				25
++#define CAM_CC_CSI1PHYTIMER_CLK					26
++#define CAM_CC_CSI1PHYTIMER_CLK_SRC				27
++#define CAM_CC_CSI2PHYTIMER_CLK					28
++#define CAM_CC_CSI2PHYTIMER_CLK_SRC				29
++#define CAM_CC_CSI3PHYTIMER_CLK					30
++#define CAM_CC_CSI3PHYTIMER_CLK_SRC				31
++#define CAM_CC_CSI4PHYTIMER_CLK					32
++#define CAM_CC_CSI4PHYTIMER_CLK_SRC				33
++#define CAM_CC_CSI5PHYTIMER_CLK					34
++#define CAM_CC_CSI5PHYTIMER_CLK_SRC				35
++#define CAM_CC_CSID_CLK						36
++#define CAM_CC_CSID_CLK_SRC					37
++#define CAM_CC_CSID_CSIPHY_RX_CLK				38
++#define CAM_CC_CSIPHY0_CLK					39
++#define CAM_CC_CSIPHY1_CLK					40
++#define CAM_CC_CSIPHY2_CLK					41
++#define CAM_CC_CSIPHY3_CLK					42
++#define CAM_CC_CSIPHY4_CLK					43
++#define CAM_CC_CSIPHY5_CLK					44
++#define CAM_CC_FAST_AHB_CLK_SRC					45
++#define CAM_CC_GDSC_CLK						46
++#define CAM_CC_ICP_AHB_CLK					47
++#define CAM_CC_ICP_CLK						48
++#define CAM_CC_ICP_CLK_SRC					49
++#define CAM_CC_IFE_0_CLK					50
++#define CAM_CC_IFE_0_CLK_SRC					51
++#define CAM_CC_IFE_0_DSP_CLK					52
++#define CAM_CC_IFE_0_FAST_AHB_CLK				53
++#define CAM_CC_IFE_1_CLK					54
++#define CAM_CC_IFE_1_CLK_SRC					55
++#define CAM_CC_IFE_1_DSP_CLK					56
++#define CAM_CC_IFE_1_FAST_AHB_CLK				57
++#define CAM_CC_IFE_2_CLK					58
++#define CAM_CC_IFE_2_CLK_SRC					59
++#define CAM_CC_IFE_2_DSP_CLK					60
++#define CAM_CC_IFE_2_FAST_AHB_CLK				61
++#define CAM_CC_IFE_LITE_AHB_CLK					62
++#define CAM_CC_IFE_LITE_CLK					63
++#define CAM_CC_IFE_LITE_CLK_SRC					64
++#define CAM_CC_IFE_LITE_CPHY_RX_CLK				65
++#define CAM_CC_IFE_LITE_CSID_CLK				66
++#define CAM_CC_IFE_LITE_CSID_CLK_SRC				67
++#define CAM_CC_IPE_NPS_AHB_CLK					68
++#define CAM_CC_IPE_NPS_CLK					69
++#define CAM_CC_IPE_NPS_CLK_SRC					70
++#define CAM_CC_IPE_NPS_FAST_AHB_CLK				71
++#define CAM_CC_IPE_PPS_CLK					72
++#define CAM_CC_IPE_PPS_FAST_AHB_CLK				73
++#define CAM_CC_JPEG_CLK						74
++#define CAM_CC_JPEG_CLK_SRC					75
++#define CAM_CC_MCLK0_CLK					76
++#define CAM_CC_MCLK0_CLK_SRC					77
++#define CAM_CC_MCLK1_CLK					78
++#define CAM_CC_MCLK1_CLK_SRC					79
++#define CAM_CC_MCLK2_CLK					80
++#define CAM_CC_MCLK2_CLK_SRC					81
++#define CAM_CC_MCLK3_CLK					82
++#define CAM_CC_MCLK3_CLK_SRC					83
++#define CAM_CC_MCLK4_CLK					84
++#define CAM_CC_MCLK4_CLK_SRC					85
++#define CAM_CC_MCLK5_CLK					86
++#define CAM_CC_MCLK5_CLK_SRC					87
++#define CAM_CC_MCLK6_CLK					88
++#define CAM_CC_MCLK6_CLK_SRC					89
++#define CAM_CC_MCLK7_CLK					90
++#define CAM_CC_MCLK7_CLK_SRC					91
++#define CAM_CC_PLL0						92
++#define CAM_CC_PLL0_OUT_EVEN					93
++#define CAM_CC_PLL0_OUT_ODD					94
++#define CAM_CC_PLL1						95
++#define CAM_CC_PLL1_OUT_EVEN					96
++#define CAM_CC_PLL2						97
++#define CAM_CC_PLL3						98
++#define CAM_CC_PLL3_OUT_EVEN					99
++#define CAM_CC_PLL4						100
++#define CAM_CC_PLL4_OUT_EVEN					101
++#define CAM_CC_PLL5						102
++#define CAM_CC_PLL5_OUT_EVEN					103
++#define CAM_CC_PLL6						104
++#define CAM_CC_PLL6_OUT_EVEN					105
++#define CAM_CC_PLL7						106
++#define CAM_CC_PLL7_OUT_EVEN					107
++#define CAM_CC_PLL8						108
++#define CAM_CC_PLL8_OUT_EVEN					109
++#define CAM_CC_QDSS_DEBUG_CLK					110
++#define CAM_CC_QDSS_DEBUG_CLK_SRC				111
++#define CAM_CC_QDSS_DEBUG_XO_CLK				112
++#define CAM_CC_SBI_AHB_CLK					113
++#define CAM_CC_SBI_CLK						114
++#define CAM_CC_SFE_0_CLK					115
++#define CAM_CC_SFE_0_CLK_SRC					116
++#define CAM_CC_SFE_0_FAST_AHB_CLK				117
++#define CAM_CC_SFE_1_CLK					118
++#define CAM_CC_SFE_1_CLK_SRC					119
++#define CAM_CC_SFE_1_FAST_AHB_CLK				120
++#define CAM_CC_SLEEP_CLK					121
++#define CAM_CC_SLEEP_CLK_SRC					122
++#define CAM_CC_SLOW_AHB_CLK_SRC					123
++#define CAM_CC_XO_CLK_SRC					124
++
++/* CAM_CC resets */
++#define CAM_CC_BPS_BCR						0
++#define CAM_CC_ICP_BCR						1
++#define CAM_CC_IFE_0_BCR					2
++#define CAM_CC_IFE_1_BCR					3
++#define CAM_CC_IFE_2_BCR					4
++#define CAM_CC_IPE_0_BCR					5
++#define CAM_CC_QDSS_DEBUG_BCR					6
++#define CAM_CC_SBI_BCR						7
++#define CAM_CC_SFE_0_BCR					8
++#define CAM_CC_SFE_1_BCR					9
++
++/* CAM_CC GDSCRs */
++#define BPS_GDSC		0
++#define IPE_0_GDSC		1
++#define SBI_GDSC		2
++#define IFE_0_GDSC		3
++#define IFE_1_GDSC		4
++#define IFE_2_GDSC		5
++#define SFE_0_GDSC		6
++#define SFE_1_GDSC		7
++#define TITAN_TOP_GDSC		8
++
++#endif
 -- 
-2.36.0
+2.33.0
 
