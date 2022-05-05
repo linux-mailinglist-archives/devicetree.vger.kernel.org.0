@@ -2,159 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CA8F851BB9D
-	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 11:12:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 471C551BBA1
+	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 11:12:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352023AbiEEJQS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 May 2022 05:16:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54640 "EHLO
+        id S245720AbiEEJQ2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 May 2022 05:16:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55060 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351972AbiEEJQR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 05:16:17 -0400
-Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4332C4C790
-        for <devicetree@vger.kernel.org>; Thu,  5 May 2022 02:12:38 -0700 (PDT)
-Received: by mail-lj1-x235.google.com with SMTP id 4so4763389ljw.11
-        for <devicetree@vger.kernel.org>; Thu, 05 May 2022 02:12:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=CTHkilprIvL9A/8ur+bw1pjnP/4ABBDDnOBt355kY54=;
-        b=MtVHPH+tkf1YNfY9FifF4Ub1Vf/DvqV7wJV7BBt6pPpe0WSzEFCk7IN+oEobRWnfF4
-         Ge+x9KE0pRCW/1TAdxY5AqywQbtXZA7lIMb7I+b7Ima6BdjJlFnRcfadTqUtQohlYLT1
-         ihrF+FtM96PeZ9GKH/MuOWBlQTTmG8bjcKIIG/xbX4QtPAD3A2n3Q07zEDSXma+rFnDF
-         8UJD05ozoC5+ur6v86Ee3iBiSfp4r2+a7L8U27ZqcVPgptI9CkpYh5IZYAfqkTz2+JUT
-         Z9K+MDu+I7bkh0serbw8Ugy2r9u/tUvIsrEUsDv9uhRcPRIE3STky0krP3b3QE6GTL8P
-         X9rA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=CTHkilprIvL9A/8ur+bw1pjnP/4ABBDDnOBt355kY54=;
-        b=WNKBxFUgGZuBESY3Hq/x2MpTUEi35iKGuZJNgmUrKzagW+aB0KWMwhgC2JC0cFqYtI
-         chtka/FulZ3kILUUybvpPYGN8yr9JYjp1Lwx+Wf1Fma8ExgD0tF/K/kuVR9Z94hQeSQO
-         DsPO60FF548ltBeOcBd7UUk+KOjn0rABacto5vcmKK8WsRPPdwqi53c65dpdefF1U/aU
-         dcxyq34m3Ir0Oj00ux+4R9qvXeQIFvMXqg0w7Ty20Jx1+0x8jF1FOTaUFOrqsLJHvATC
-         mfXEqtywK6ZcvThCgLfg53v3qJhg4N3r/W2P5cCnt3xWqU0X+2ml/N0DKdrkEKckAn3b
-         V6PQ==
-X-Gm-Message-State: AOAM530tED11jUqiXAqjmitPDuOPryod6wfXRBa8rufv6fS/ZXGZoGaR
-        f99xSgKtt4016ioQ/TQc7zmxKQ==
-X-Google-Smtp-Source: ABdhPJw+zrP5UZN20F6mshaehcVua4TB0NWgYUNpRbfWLql7Hgdt0MsCQPsZYuzdjNU45bQY3YP2MQ==
-X-Received: by 2002:a2e:b88f:0:b0:24f:4fbc:6628 with SMTP id r15-20020a2eb88f000000b0024f4fbc6628mr12830576ljp.38.1651741956466;
-        Thu, 05 May 2022 02:12:36 -0700 (PDT)
-Received: from eriador.lan ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id v26-20020ac2593a000000b0047255d211e8sm133564lfi.279.2022.05.05.02.12.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 May 2022 02:12:36 -0700 (PDT)
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Stanimir Varbanov <svarbanov@mm-sol.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc:     Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v6 6/7] dt-bindings: PCI: qcom: Support additional MSI interrupts
-Date:   Thu,  5 May 2022 12:12:30 +0300
-Message-Id: <20220505091231.1308963-7-dmitry.baryshkov@linaro.org>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220505091231.1308963-1-dmitry.baryshkov@linaro.org>
-References: <20220505091231.1308963-1-dmitry.baryshkov@linaro.org>
+        with ESMTP id S1351912AbiEEJQ1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 05:16:27 -0400
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66D3A4BFCB;
+        Thu,  5 May 2022 02:12:48 -0700 (PDT)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2459CaQP083383;
+        Thu, 5 May 2022 04:12:36 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1651741956;
+        bh=ikGXkgdLE1DkMj1btIvsFn4UR8U22+rJPBhuFGJ5eJ8=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=MNzJbU/JMAvu+V2Fg092jIbIPFypbpkdLhhWUBD3bKafF0Cjs/K/ANN6VkVdcr/S8
+         UAteGvcYiIE1E96p/Ps+rzdoDFj1tAwyCmV9zA+CvuaJ0XlvSYmiB9ym3lKea/4Xpp
+         8m8Ux7IU6EnFuXVo/Em7BdEzOi9yR/1pR8Ctm7cE=
+Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2459Ca94121330
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 5 May 2022 04:12:36 -0500
+Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE106.ent.ti.com
+ (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Thu, 5
+ May 2022 04:12:35 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Thu, 5 May 2022 04:12:35 -0500
+Received: from [172.24.223.223] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2459CVlv094171;
+        Thu, 5 May 2022 04:12:32 -0500
+Message-ID: <205118bb-d74d-3966-d89e-95e385154760@ti.com>
+Date:   Thu, 5 May 2022 14:42:31 +0530
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH v5 0/2] DSS: Add support for DisplayPort
+Content-Language: en-US
+To:     Rahul T R <r-ravikumar@ti.com>, <nm@ti.com>
+CC:     <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <tomi.valkeinen@ideasonboard.com>,
+        <laurent.pinchart@ideasonboard.com>, <kishon@ti.com>
+References: <20220429112639.13004-1-r-ravikumar@ti.com>
+From:   Aradhya Bhatia <a-bhatia1@ti.com>
+In-Reply-To: <20220429112639.13004-1-r-ravikumar@ti.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-7.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Qualcomm platforms each group of 32 MSI vectors is routed to the
-separate GIC interrupt. Document mapping of additional interrupts.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- .../devicetree/bindings/pci/qcom,pcie.yaml    | 45 ++++++++++++++++++-
- 1 file changed, 44 insertions(+), 1 deletion(-)
+On 29/04/22 16:56, Rahul T R wrote:
+> The following series of patches enables DisplayPort on
+> j721e-evm
+> 
+> v2:
+>    - use phandle with a parameter to refer clocks insted of
+>      sub nodes in serdes_wiz node
+>    - move phy link node to board DTS file
+> 
+> v3:
+>    - Fix the regulator node name as per the DT spec
+>    - Use Macro for GPIO type
+> 
+> v4:
+>    - Move adding of phy link nodes from 2/2 to 1/2, to fix dtbs checks warnings
+>    - Add leading zeros to align reg property addresses and sizes
+>    - Add empty ports for mhdp node in dtsi file to fix dtbs checks warnings
+> 
+> v5:
+>    - Fix a typo in regulator name
+> 
+> boot logs:
+>    https://gist.githubusercontent.com/ravi-rahul/1bdbc3f77ab381e486c8394650c2e85d/raw/2327c9894c3236950a00f4511ae668ac4399b71e/j7_DP_upstream.log
+> 
+> kernel patch verify report:
+>    https://gist.githubusercontent.com/ravi-rahul/a982fef3fae03ec0dbdd5cb475a4cb25/raw/9ef482f96fa351cff7980e4340e9bcb8471ec3ab/report-kernel-patch-verify.txt
+> 
+> Tomi Valkeinen (2):
+>   arm64: dts: ti: k3-j721e-*: add DP & DP PHY
+>   arm64: dts: ti: k3-j721e-common-proc-board: add DP to j7 evm
+> 
+>  .../dts/ti/k3-j721e-common-proc-board.dts     | 77 ++++++++++++++++++-
+>  arch/arm64/boot/dts/ti/k3-j721e-main.dtsi     | 75 +++++++++++++++++-
+>  arch/arm64/boot/dts/ti/k3-j721e-sk.dts        | 16 ++++
+>  3 files changed, 162 insertions(+), 6 deletions(-)
+> 
 
-diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
-index 0b69b12b849e..fd3290e0e220 100644
---- a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
-+++ b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
-@@ -43,11 +43,20 @@ properties:
-     maxItems: 5
- 
-   interrupts:
--    maxItems: 1
-+    minItems: 1
-+    maxItems: 8
- 
-   interrupt-names:
-+    minItems: 1
-     items:
-       - const: msi
-+      - const: msi2
-+      - const: msi3
-+      - const: msi4
-+      - const: msi5
-+      - const: msi6
-+      - const: msi7
-+      - const: msi8
- 
-   # Common definitions for clocks, clock-names and reset.
-   # Platform constraints are described later.
-@@ -623,6 +632,40 @@ allOf:
-         - resets
-         - reset-names
- 
-+    # On newer chipsets support either 1 or 8 msi interrupts
-+    # On older chipsets it's always 1 msi interrupt
-+  - if:
-+      properties:
-+        compatibles:
-+          contains:
-+            enum:
-+              - qcom,pcie-msm8996
-+              - qcom,pcie-sc7280
-+              - qcom,pcie-sc8180x
-+              - qcom,pcie-sdm845
-+              - qcom,pcie-sm8150
-+              - qcom,pcie-sm8250
-+              - qcom,pcie-sm8450-pcie0
-+              - qcom,pcie-sm8450-pcie1
-+    then:
-+      oneOf:
-+        - properties:
-+            interrupts:
-+              maxItems: 1
-+            interrupt-names:
-+              maxItems: 1
-+        - properties:
-+            interrupts:
-+              minItems: 8
-+            interrupt-names:
-+              minItems: 8
-+    else:
-+      properties:
-+        interrupts:
-+          maxItems: 1
-+        interrupt-names:
-+          maxItems: 1
-+
- unevaluatedProperties: false
- 
- examples:
--- 
-2.35.1
-
+Reviewed-by: Aradhya Bhatia <a-bhatia1@ti.com>
