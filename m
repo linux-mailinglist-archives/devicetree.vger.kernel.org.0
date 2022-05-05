@@ -2,36 +2,36 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7263851BC96
-	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 11:58:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 15BDA51BC99
+	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 11:58:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349409AbiEEKCD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 May 2022 06:02:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42336 "EHLO
+        id S1354758AbiEEKCZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 May 2022 06:02:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42822 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243851AbiEEKCC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 06:02:02 -0400
+        with ESMTP id S1354726AbiEEKCZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 06:02:25 -0400
 Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A0C7B4AE22;
-        Thu,  5 May 2022 02:58:22 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A0E42506F8;
+        Thu,  5 May 2022 02:58:44 -0700 (PDT)
 Received: from janitor.denx.de (unknown [62.91.23.180])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
         (No client certificate requested)
         (Authenticated sender: noc@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 827A583F00;
-        Thu,  5 May 2022 11:58:20 +0200 (CEST)
+        by phobos.denx.de (Postfix) with ESMTPSA id 5C71A83B39;
+        Thu,  5 May 2022 11:58:43 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1651744700;
-        bh=yXye+GgNkW8KmlgmC12gA+GGa2bu/xCUhSLnb8ilQqU=;
-        h=From:To:Cc:Subject:Date:From;
-        b=e6DS6aGXffxCJhIAsLOUb+cTLwjfzyx/onpW3XLhMOJlc3FEJwnRRdBWh0CktpzzG
-         6UkLyCdkDKrAjjH4G3+AiAkG0FL8N6amhkjx8btaVQjQ+b6oSVA0NvnQbi3Q7bTRor
-         ifzrERIJUiEryGn3+HmvtC1aj4NAFuBMnxQeLJyQmauQOkMyY7KCsmLh7WsM7QjcrN
-         vorzQ05jodKeJFabMe83esFUOfcNsgBrjo/sfRr8V0qWrNzsJU4wDikIZtU7DxTcda
-         LrnSLnhIdj5myab6ULBYzi7PaNAjdhFnMCA+c9xzjWhnpzSshhclpF4reY9vSYbRs+
-         qk+jA12RLC7TA==
+        s=phobos-20191101; t=1651744723;
+        bh=Lf/yCYkD7jA7slNP+kaNzEXHEvTuA+EXjFYOYKEZjA0=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=TgFLUzhWhr0sCAFTiO0+r3rfL+XoQ+oL1ATaHavY6HdH3/u64rykNSoPl/Iy8tqw0
+         aMEU48U+erNKuz2GXAoPr6V3trpnmN7vs6THPHpVFo2I/pp4bXyaoGaDCCi3LW8Vwt
+         ETPxoYK+1vmi+QntA/W03Y7n7BE+1LmSZ+La4JasTJRWy6q0CHIX126SDgkVmqXp4/
+         hqFRpe4bFCYzsmHTPkzf8JaSifXJy/R5zyX0kTq12fXQ67re4Act7SnUOy8hZITt2V
+         L4aC+RNPZ6ZhlRfp1aoqaJ3L8ebwDKJwoDLD3yICtLeMzixNCweQ1REXJPWox+W3ER
+         0Brj2ac0bo1bQ==
 Received: by janitor.denx.de (Postfix, from userid 108)
-        id CD4ECA012A; Thu,  5 May 2022 11:58:18 +0200 (CEST)
+        id 1684CA012A; Thu,  5 May 2022 11:58:43 +0200 (CEST)
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 X-Spam-Level: 
@@ -40,27 +40,33 @@ X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
         version=3.4.6
 Received: from xpert.denx.de (xpert.denx.de [192.168.0.4])
-        by janitor.denx.de (Postfix) with ESMTPS id BC565A003A;
-        Thu,  5 May 2022 11:58:04 +0200 (CEST)
+        by janitor.denx.de (Postfix) with ESMTPS id 61CB1A003A;
+        Thu,  5 May 2022 11:58:27 +0200 (CEST)
 Received: by xpert.denx.de (Postfix, from userid 535)
-        id 87AB93E07D7; Thu,  5 May 2022 11:58:04 +0200 (CEST)
+        id 5701F3E07D7; Thu,  5 May 2022 11:58:27 +0200 (CEST)
 From:   Philip Oberfichtner <pro@denx.de>
 Cc:     Philip Oberfichtner <pro@denx.de>,
         Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        Shawn Guo <shawnguo@kernel.org>,
+        Tim Harvey <tharvey@gateworks.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        "Ariel D'Alessandro" <ariel.dalessandro@collabora.com>,
+        Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
+        Christoph Niedermaier <cniedermaier@dh-electronics.com>,
+        Sebastian Reichel <sebastian.reichel@collabora.com>,
+        Li Yang <leoyang.li@nxp.com>, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, matthias.winker@de.bosch.com
-Subject: [PATCH v4 1/4] dt-bindings: display: simple: Add DataImage FG1001L0DSSWMG01 compatible string
-Date:   Thu,  5 May 2022 11:57:24 +0200
-Message-Id: <20220505095725.902447-1-pro@denx.de>
+Subject: [PATCH v4 3/4] dt-bindings: arm: Add bosch acc board
+Date:   Thu,  5 May 2022 11:57:28 +0200
+Message-Id: <20220505095725.902447-3-pro@denx.de>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20220505095725.902447-1-pro@denx.de>
+References: <20220505095725.902447-1-pro@denx.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Virus-Scanned: clamav-milter 0.103.5 at phobos.denx.de
 X-Virus-Status: Clean
@@ -69,46 +75,50 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add DataImage FG1001L0DSSWMG01 10.1" 1280x800 TFT LCD panel compatible
-string.
+Add device tree binding for the Bosch ACC board, based on i.MX6 Dual.
 
 Signed-off-by: Philip Oberfichtner <pro@denx.de>
 Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 ---
 
-Cc: Thierry Reding <thierry.reding@gmail.com>
-Cc: Sam Ravnborg <sam@ravnborg.org>
-Cc: David Airlie <airlied@linux.ie>
-Cc: Daniel Vetter <daniel@ffwll.ch>
 Cc: Rob Herring <robh+dt@kernel.org>
 Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: dri-devel@lists.freedesktop.org
+Cc: Shawn Guo <shawnguo@kernel.org>
+Cc: Tim Harvey <tharvey@gateworks.com>
+Cc: Lucas Stach <l.stach@pengutronix.de>
+Cc: Marcel Ziswiler <marcel.ziswiler@toradex.com>
+Cc: Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc: "Ariel D'Alessandro" <ariel.dalessandro@collabora.com>
+Cc: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
+Cc: Christoph Niedermaier <cniedermaier@dh-electronics.com>
+Cc: Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc: Li Yang <leoyang.li@nxp.com>
 Cc: devicetree@vger.kernel.org
 Cc: linux-kernel@vger.kernel.org
 Cc: matthias.winker@de.bosch.com
 
 ---
 
-Changes in v4: Acked-by Krzysztof
-Changes in v3: new
+Changes in v4: none
+Changes in v3: none
+Changes in v2: Acked-by Krzysztof
 ---
- .../devicetree/bindings/display/panel/panel-simple.yaml         | 2 ++
- 1 file changed, 2 insertions(+)
+ Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
-index 1eb9dd4f8f58..a6db3eff3b1a 100644
---- a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
-+++ b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
-@@ -105,6 +105,8 @@ properties:
-       - chunghwa,claa101wb01
-         # Chunghwa Picture Tubes Ltd. 10.1" WXGA TFT LCD panel
-       - chunghwa,claa101wb03
-+        # DataImage, Inc. 10.1" WXGA (1280×800) TFT LCD panel
-+      - dataimage,fg1001l0dsswmg01
-         # DataImage, Inc. 7" WVGA (800x480) TFT LCD panel with 24-bit parallel interface.
-       - dataimage,scf0700c48ggu18
-         # DLC Display Co. DLC1010GIG 10.1" WXGA TFT LCD Panel
+diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+index 08bdd30e511c..9deb568761c1 100644
+--- a/Documentation/devicetree/bindings/arm/fsl.yaml
++++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+@@ -192,6 +192,7 @@ properties:
+         items:
+           - enum:
+               - auvidea,h100              # Auvidea H100
++              - bosch,imx6q-acc           # Bosch ACC i.MX6 Dual
+               - boundary,imx6q-nitrogen6_max
+               - boundary,imx6q-nitrogen6_som2
+               - boundary,imx6q-nitrogen6x
 -- 
 2.34.1
 
