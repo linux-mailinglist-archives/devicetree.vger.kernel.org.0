@@ -2,133 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A8E9751BB65
-	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 11:06:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CDBBA51BB63
+	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 11:06:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234786AbiEEJKe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 May 2022 05:10:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49308 "EHLO
+        id S235607AbiEEJJx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 May 2022 05:09:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49074 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234566AbiEEJKd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 05:10:33 -0400
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.21])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 607584B41B;
-        Thu,  5 May 2022 02:06:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1651741573;
-        bh=PE49ljxOaJbEZXi8zE0UMbSilxTIkum0Hyl9KtNCWhk=;
-        h=X-UI-Sender-Class:Date:In-Reply-To:References:Subject:Reply-to:To:
-         CC:From;
-        b=VUzb45/7jJ0QvY1LxJ8fGd5PIAHk5tdZv7WCsWGN7HfaLTECfsZkWen2XvyKS2Gcj
-         8kH0TsJ3fjICqkzk+WMAkUiLt9Bn1doMlT+h/XRlLyxtX+9DYHnXTl42I6LxeNibw+
-         Z5m/D4xAVI5EUTEwdTqGLboOd5OI7EtfGKKkEX84=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from frank-s9 ([217.61.145.208]) by mail.gmx.net (mrgmx105
- [212.227.17.168]) with ESMTPSA (Nemesis) id 1MO9z7-1nSWYG34kz-00OWh0; Thu, 05
- May 2022 11:06:13 +0200
-Date:   Thu, 05 May 2022 11:06:05 +0200
-User-Agent: K-9 Mail for Android
-In-Reply-To: <313a5b2e-c571-a13f-3447-b1cd7200f4c9@linaro.org>
-References: <20220430130347.15190-1-linux@fw-web.de> <20220430130347.15190-5-linux@fw-web.de> <20220504152450.cs2afa4hwkqp5b5m@skbuf> <trinity-9f557027-8e00-4a4a-bc19-bc576e163f7b-1651678399970@3c-app-gmx-bs42> <20220504154720.62cwrz7frjkjbb7u@skbuf> <313a5b2e-c571-a13f-3447-b1cd7200f4c9@linaro.org>
+        with ESMTP id S234786AbiEEJJw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 05:09:52 -0400
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6C874B419
+        for <devicetree@vger.kernel.org>; Thu,  5 May 2022 02:06:13 -0700 (PDT)
+Received: by mail-wr1-x42a.google.com with SMTP id q23so5222104wra.1
+        for <devicetree@vger.kernel.org>; Thu, 05 May 2022 02:06:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=QPvYitEkakUSEkkRAd+b7E2XB0UqCnryoZKojHH0dhc=;
+        b=awvizp79SJb6Kv1NeHmUcFHgDxY9B2TEi5BCYTUszXn0y/O0Zdn3qK1wqjpMQWlGKJ
+         qntAqfvXmRwal2i948gt5vGK5kcRl/rvvWVoPQbCZ17pYzMi1KTxx4BUx9VakX4zZjZa
+         AJcM5mZLHyrux1MyCU9enVWIWxiZO/P/ezutLWc8Kgo1dlG1gVwfgqUaOWbUWzSydcEc
+         G9VlrjYRUwgVnu8is2l/t5kElwf5fti1PCHgxeC4aN6bg3HVpkhSbzc3n0SOHVrKV/F+
+         xqfFrXuv47Lq/bfIfFjKIGVVYUvPrBZj4rfXRsa0b3kNaH0SwgxIUwUMgaOiGQy0Cy3B
+         LfdA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=QPvYitEkakUSEkkRAd+b7E2XB0UqCnryoZKojHH0dhc=;
+        b=rVkLKyidAF3gDSn1fwEMULwhIwRLLivBO5J7qdOpypfDHttK63IwFhVSsUe11TsqFa
+         3aZqmGjS/RNBy/2/kXeL7JrF7Eh8IqeaaIECt2e4Q2NKdPkVIhKdpxt0uzW2WdgMMMOU
+         xI4zarWQJhIttIeX5lKHQ+SRnZnh/AaIDh7FbBI4HCW/ayUx5UnJh+3NAxn1hhuSwfAW
+         3D4RUV2Kf3cIp+bPWRzySDz8lvW47dvRjhNUzZNUk6E929O/6hLBbQSrUM0V0pH7ekeo
+         BArcUMrvWlWenq6V19ObCVLM5czbMAYHeYfN0uFNqG3NaE78Uol2jRNJyIWKcOZv9Opr
+         w4+g==
+X-Gm-Message-State: AOAM532k9m/NXEmsr69BIvSj34P0j6B6OZhdnj/PW2rBQV9lKK8XeqdQ
+        RDBdb74Q1oageEfX+02OamAUWg==
+X-Google-Smtp-Source: ABdhPJx0C0YUR3RaSCP6SGaVzNzESuZ2Lqdb5fK6LdClRJadIpz1p0+6laZ2ZJJroxehqTM0GQos5w==
+X-Received: by 2002:a5d:64ad:0:b0:20c:565d:ca19 with SMTP id m13-20020a5d64ad000000b0020c565dca19mr18197775wrp.634.1651741572271;
+        Thu, 05 May 2022 02:06:12 -0700 (PDT)
+Received: from [192.168.0.217] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id k21-20020adfb355000000b0020c5253d905sm894649wrd.81.2022.05.05.02.06.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 05 May 2022 02:06:11 -0700 (PDT)
+Message-ID: <48a6fd28-b0cc-d17d-4e0c-170240d05455@linaro.org>
+Date:   Thu, 5 May 2022 11:06:10 +0200
 MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [RFC v2 4/4] arm64: dts: rockchip: Add mt7531 dsa node to BPI-R2-Pro board
-Reply-to: frank-w@public-files.de
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Vladimir Oltean <olteanv@gmail.com>
-CC:     Frank Wunderlich <linux@fw-web.de>,
-        linux-mediatek@lists.infradead.org,
-        linux-rockchip@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Landen Chao <Landen.Chao@mediatek.com>,
-        DENG Qingfang <dqfext@gmail.com>, Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Peter Geis <pgwipeout@gmail.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        netdev@vger.kernel.org
-From:   Frank Wunderlich <frank-w@public-files.de>
-Message-ID: <D201CE50-280C-4089-BB9F-053FEA28FE9A@public-files.de>
-X-Provags-ID: V03:K1:fswHZVyF/lRZd8JVwCdyHBJTeHXeAmwGzgMDMSGIdz0hDXO4adf
- 6DNQ7Hdu1vjFnafdsMjLokD96/xSHtW4P+JlwGF2ydVvccgeJQBGyVtf7/ZDzMAqCho34s6
- sqGM3PaZ3PFndCo6VMXLcocAJLEHxA55eeaTeLXVgZvDzQ8Eq5RrHCw/S+odtiUpd+qjGwv
- hU0vAPDjw5yIm6bXegJYA==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:j9Ro5GzlgnE=:y3PubMXQ+/zpI4KYSQDupN
- oJQ4JRWONcKWVYZCKX5H33jQSFgLL0YuSvZjmf5jpfD9ZjxI1yRt3sXo5C6rRn34aoaYXcKP5
- /4H0dcXerNyfkv11BLsVwX2VgZQOxaQjNLpXLl3aGa3zNBYwqcSzz/EdExVhA9cuEf8sEgCfn
- 0wnFgq+SwuViwDNEq/HpuRQQaFDuxy1QDlx+o2nvYr3Hz788H0tqJwVfEMaWelJU+mtfwaBe6
- NzkUsrZ2U2B9dvCi+VSuW/GkhIMUw1KQlWZ4UKCNFtJAZmcwrMSIxIFOvJPEwDUaXgtE10z50
- 7Fiv/v8B6y2qiSGvW/ReSyVbVgmgZhe1YtU8E2XzI5TXrt7rFOQw87hJkp/crzLFShocXerQ7
- zm4WJks0YVv+1oltOdPUFIspJjubkzbv6XYiF6BdA+1CMEaKHrstBYrKXswB30nDsqcWhzjrw
- /kfzpB34G2xm9xqFsI5fuR9s77kfUsVeA4d6UFGAhBhHRaclbOsFaHtbFhSIhSHIwg9bwKVIh
- 92vmwoTI+2PqW/yiSDF3TKfSwd/vsdlZzF0+C3hwSi8Ko6/PFLXSWUVCWgA6nexfzcs1aVEqx
- 0I4/Z32mTAh00UsfdTLvjzeqkIgzoNRB74Sjxg+mFyaD/zrL38u74bF3LB109QcvBTTxYlG9y
- NKZZ0Zue4kRVXXJ6jMvnCicYjwWrdHSKgW4nTT6d0Q9LhQb0mHnA0HN/m+BJRQLa7q2oQQHKz
- 0lwS8B3plWBqraGPjKNqjhvTh/56cN9zvWWnXKNGA62Iayo5NAHKrVcuLPVUF1JFtbX4RVL3+
- rYbffYZn8AWErO/QSmfeoOWLPRiCSw5iQs214Qy7h2QgFe2mQb+BXSiZxLW1fQag1q+c3QUwT
- JRy7cyct7nh15eyCpady/PJZVyrV2v1SdKAZz2u5iF4aPZfy1qvV5C/lyUwqqEz/Q3Uael2IP
- M5nkUJKzCP6lIJUeLYU0LtyfFwZAAF/cyKyNAcZ3UvmQ8Rh1OFJadwYuyxLyRXiP3Wi6XDTAT
- gia7QCQap4UUaPAopLvQFtwWb0Gm66A9uYYycp2oQfnUWkuMSVGRNbufUVlKGNuB9pIvr8uQE
- 88aNqbN5kytPzg=
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_LOW,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH] dt-bindings: memory: renesas,rpc-if: Document RZ/G2UL SoC
+Content-Language: en-US
+To:     Geert Uytterhoeven <geert@linux-m68k.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Sergei Shtylyov <sergei.shtylyov@gmail.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
+References: <20220501082508.25511-1-biju.das.jz@bp.renesas.com>
+ <CAMuHMdV07CHm3NE9YUTMqp-ZNkWoJyR6CFU9PA0heK+9G6NDxw@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CAMuHMdV07CHm3NE9YUTMqp-ZNkWoJyR6CFU9PA0heK+9G6NDxw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am 5=2E Mai 2022 10:46:55 MESZ schrieb Krzysztof Kozlowski <krzysztof=2Ekoz=
-lowski@linaro=2Eorg>:
->On 04/05/2022 17:47, Vladimir Oltean wrote:
->>>
->>> current device-tree nodes using "switch" and "ports"
->>>
->>> see discussioon here about make it fixed to "ports" property instead
->of PatternProperties including optional "ethernet-"
->>>
->>>
->https://patchwork=2Ekernel=2Eorg/project/linux-mediatek/patch/20220502153=
-238=2E85090-1-linux@fw-web=2Ede/#24843155
->>=20
->> Hmm, I don't get why Krzysztof said to just keep what is used in
->> existing device trees=2E The schema validator should describe what is
->> valid,=20
->
->These were talks about bindings which describe hardware=2E The node name,
->except Devicetree spec asking for generic names, does not matter here
->actually=2E
->
->> and since the mt7530 driver does not care one way or another
->> (some drivers do explicitly parse the "ports"/"ethernet-ports" node),
->> then whatever is valid for the DSA core is also valid for the mt7530
->> bindings=2E And "ethernet-ports" is valid too, so I think it should be
->> accepted by mediatek=2Eyaml=2E=2E=2E
->
->You can make it "(ethernet-)?ports" as well=2E My comment was purely to
->make it simpler, for bindings (goes into properties, not
->patternProperties) and for us=2E If you prefer to keep it like DSA core,
->also fine=2E
+On 02/05/2022 17:03, Geert Uytterhoeven wrote:
+> On Sun, May 1, 2022 at 10:25 AM Biju Das <biju.das.jz@bp.renesas.com> wrote:
+>> Document RZ/G2UL RPC-IF bindings. RZ/G2UL RPC-IF is identical to one found
+>> on the RZ/G2L SoC. No driver changes are required as generic compatible
+>> string "renesas,rzg2l-rpc-if" will be used as a fallback.
+>>
+>> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> 
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-Ok, i'm also thinking, the dsa-definition will be the right way (pattern-p=
-roperties with optional "ethernet-") in binding=2E
+I already sent a mem-ctrl pull request and I was not planning for a next
+one, so maybe this could go via renesas tree?
 
-Should i use "ethernet-ports" instead of "ports" here? Current dts with mt=
-7530/mt7531 switches using "ports" so i would use it here too=2E If dsa pre=
-fer ethernet-ports now it should be changed in other files too=2E
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
->Best regards,
->Krzysztof
-
-Hi,
-regards Frank
+Best regards,
+Krzysztof
