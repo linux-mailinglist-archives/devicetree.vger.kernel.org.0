@@ -2,80 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 49AEF51C75E
-	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 20:22:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6419A51C840
+	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 20:45:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1383918AbiEESZP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 May 2022 14:25:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46766 "EHLO
+        id S1355384AbiEESse (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 May 2022 14:48:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55322 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1385042AbiEESY4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 14:24:56 -0400
-Received: from mail-oa1-x30.google.com (mail-oa1-x30.google.com [IPv6:2001:4860:4864:20::30])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4760F60A88
-        for <devicetree@vger.kernel.org>; Thu,  5 May 2022 11:18:27 -0700 (PDT)
-Received: by mail-oa1-x30.google.com with SMTP id 586e51a60fabf-e5e433d66dso5013724fac.5
-        for <devicetree@vger.kernel.org>; Thu, 05 May 2022 11:18:27 -0700 (PDT)
+        with ESMTP id S1383378AbiEESsD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 14:48:03 -0400
+Received: from mail-pj1-x102b.google.com (mail-pj1-x102b.google.com [IPv6:2607:f8b0:4864:20::102b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6AD258E7F
+        for <devicetree@vger.kernel.org>; Thu,  5 May 2022 11:39:19 -0700 (PDT)
+Received: by mail-pj1-x102b.google.com with SMTP id cq17-20020a17090af99100b001dc0386cd8fso4843364pjb.5
+        for <devicetree@vger.kernel.org>; Thu, 05 May 2022 11:39:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to:cc;
-        bh=1jpEHyGirjaqNUVRP1nz/MiyeczcMtRZCBgdvFueFbg=;
-        b=dNocJH2pm51w2sdCBeubcHoBirqMpP4BeW10hHVrgouUJomu19MuSgDP10MAcJT1nj
-         mBhKXkC5eceOPxd/JNxBGm0skq56M6pzHm1+7vMA6y1XdjmY/oQybSc78dHVxPuR11wK
-         kQeBG67nLfix9PfNYpH8hazatCrGvl2JUyXw4=
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=bIDYG8oUb6Mu7NvJ6XCyJeRsH11vzTSCPCwxqfuBo6Q=;
+        b=TAsZfcIzZ1Euc/qIeEg34BQq2COz7cgqBz00GoicuXUNf9pdGcbnWHwxzUdfUr95G6
+         aZkeIr2DXfy8REqoWNWUrHkDO72sG3i0jXoJwl1ByCdJe4nI3ufTivSeF9XGTyVfZSBt
+         E8X9FJkYlIIwFcdiPVlMoWZYSaWqjlfPLGIK0=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to:cc;
-        bh=1jpEHyGirjaqNUVRP1nz/MiyeczcMtRZCBgdvFueFbg=;
-        b=R4yYCbMzH3scJ9abInvDw6X/JC8M6LhnQ9qJ7Z6kJaA5LifLt77V+equvX/56fgds6
-         Gy+qZKfHvQQl/y5n6JstlagKPeUF/UWni7TCzbXLyITEa5e2VKI/Fa0/4rwNiIcTU4Wk
-         XioxV+n+g1hjMpS7b60fA/9RltyNcp1+vcpTvy7O/aP+iABeE0vEDJN2iHruZRb7fHd3
-         lH7ncBzg8Kc3wrUm6nspIDtnYq+LZkcgCvEjTvLRIyHi1HTbnMSNtUGkMiomj4XwFhv+
-         iC3WTwMMh7e0sQLaSGsRlCA/vtjJNVddRSh6U7A7w/nlvWoYqWp/6BMvQi9W0RgH93bN
-         ZsIg==
-X-Gm-Message-State: AOAM532ZrYahmiCUk605ZU/SZZgWeT9O8Stb6U/2rgulIVuKEf86BFPH
-        b5gBbrLVnTp0wslenjjEURwW5Zn1BwsIw3aYtVLJ6Q==
-X-Google-Smtp-Source: ABdhPJzMp5CHlTo8w5ux98tGyd6+gy+uiMp3v8K0Hb9IdRobOQWLGqnf7677jht+CONLIgkUYNLz7u6VoaG/olKYp+g=
-X-Received: by 2002:a05:6870:558e:b0:e1:db7c:26aa with SMTP id
- n14-20020a056870558e00b000e1db7c26aamr2956854oao.63.1651774695213; Thu, 05
- May 2022 11:18:15 -0700 (PDT)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Thu, 5 May 2022 14:18:14 -0400
-MIME-Version: 1.0
-In-Reply-To: <MW4PR02MB718610FAA14F966ADE1B1585E1C29@MW4PR02MB7186.namprd02.prod.outlook.com>
-References: <20220425210643.2420919-1-dianders@chromium.org>
- <20220425140619.1.Ibfde5a26a7182c4b478d570c23d2649823ac2cce@changeid>
- <CAE-0n51eZpAKprRQ0HqjLciF_BVQHBDN8SMFNVmmOd=B9UBEzg@mail.gmail.com>
- <CAD=FV=WmVK3wTQf_EAxSi0WPXedSFGCsKdyqRnHsskmMYTHDQA@mail.gmail.com> <MW4PR02MB718610FAA14F966ADE1B1585E1C29@MW4PR02MB7186.namprd02.prod.outlook.com>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.10
-Date:   Thu, 5 May 2022 14:18:14 -0400
-Message-ID: <CAE-0n51Q=cGwrMec3JEQENqWHV3pAUjLPT6RwZLA5xV080sgxQ@mail.gmail.com>
-Subject: RE: [PATCH 1/2] dt-bindings: msm/dp: List supplies in the bindings
-To:     Doug Anderson <dianders@chromium.org>,
-        Sankeerth Billakanti <sbillaka@qti.qualcomm.com>
-Cc:     "bjorn.andersson@linaro.org" <bjorn.andersson@linaro.org>,
-        "dmitry.baryshkov@linaro.org" <dmitry.baryshkov@linaro.org>,
-        Rob Clark <robdclark@chromium.org>,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=bIDYG8oUb6Mu7NvJ6XCyJeRsH11vzTSCPCwxqfuBo6Q=;
+        b=qlxB5UlIs2+uGlXzxULKbRiDCq+tZBhmLYZNt4INhGX0thO77v00SX+EMSTOFkQ7n5
+         gRvp9QODMXQ0aucT66/cKNild/RREfG3l6RqJWYoa0I6tu+FQwk5rOTcoFkgMOBA+dbE
+         k1JEG/XgvkA01tnCXhI0eNFeFY0D66MH7SLDsSKc2+DFShsxcQ4cgMgdiNPaYybeqFfi
+         W5r7VvTX3noNQuYLSPNI/jmeY2xAg7sspx2pSlZ4nv7OXatL/Rn3ZskSUCaI8Rc1z7iG
+         dz5/ZD1Kqx/b6k3N6naLtuyQxU2QikrLapPGAGz1deyCTxykSCBwkC5TD3p5Bh3lMnZZ
+         jsnQ==
+X-Gm-Message-State: AOAM531XBIVwNbFYHPZ9bwfsdRSYCDOcNKuC+jBbTTKQwlXgdxsbXS3i
+        lgrli2TfIIfBFNdN5WOFLQYdng==
+X-Google-Smtp-Source: ABdhPJwhJknux9s/+qFqH2XgmMgiW2vZym5kO8XlabzZGnT4KBaHxWpUmQRgMpcqhaJmjVSWVeT9nQ==
+X-Received: by 2002:a17:902:c78b:b0:15c:e5dc:4f63 with SMTP id w11-20020a170902c78b00b0015ce5dc4f63mr28835867pla.90.1651775959148;
+        Thu, 05 May 2022 11:39:19 -0700 (PDT)
+Received: from www.outflux.net (smtp.outflux.net. [198.145.64.163])
+        by smtp.gmail.com with ESMTPSA id f10-20020a170902860a00b0015e8d4eb1fcsm1871783plo.70.2022.05.05.11.39.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 05 May 2022 11:39:18 -0700 (PDT)
+Date:   Thu, 5 May 2022 11:39:17 -0700
+From:   Kees Cook <keescook@chromium.org>
+To:     Paul Moore <paul@paul-moore.com>
+Cc:     "Gustavo A. R. Silva" <gustavoars@kernel.org>,
+        Steffen Klassert <steffen.klassert@secunet.com>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S. Miller" <davem@davemloft.net>,
+        Stephen Smalley <stephen.smalley.work@gmail.com>,
+        Eric Paris <eparis@parisplace.org>,
+        Nick Desaulniers <ndesaulniers@google.com>,
+        Xiu Jianfeng <xiujianfeng@huawei.com>,
+        Christian =?iso-8859-1?Q?G=F6ttsche?= <cgzones@googlemail.com>,
+        netdev@vger.kernel.org, selinux@vger.kernel.org,
+        Alexei Starovoitov <ast@kernel.org>,
+        alsa-devel@alsa-project.org, Al Viro <viro@zeniv.linux.org.uk>,
+        Andrew Gabbasov <andrew_gabbasov@mentor.com>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        Andy Gross <agross@kernel.org>,
+        Andy Lavr <andy.lavr@gmail.com>,
+        Arend van Spriel <aspriel@gmail.com>,
+        Baowen Zheng <baowen.zheng@corigine.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Boris Ostrovsky <boris.ostrovsky@oracle.com>,
+        Bradley Grove <linuxdrivers@attotech.com>,
+        brcm80211-dev-list.pdl@broadcom.com,
+        Christian Brauner <brauner@kernel.org>,
+        Christian Lamparter <chunkeey@googlemail.com>,
+        Chris Zankel <chris@zankel.net>,
+        Cong Wang <cong.wang@bytedance.com>,
+        Daniel Axtens <dja@axtens.net>,
+        Daniel Vetter <daniel.vetter@ffwll.ch>,
+        Dan Williams <dan.j.williams@intel.com>,
+        David Gow <davidgow@google.com>,
+        David Howells <dhowells@redhat.com>,
+        Dennis Dalessandro <dennis.dalessandro@cornelisnetworks.com>,
+        devicetree@vger.kernel.org, Dexuan Cui <decui@microsoft.com>,
+        Dmitry Kasatkin <dmitry.kasatkin@gmail.com>,
+        Eli Cohen <elic@nvidia.com>,
+        Eric Dumazet <edumazet@google.com>,
+        Eugeniu Rosca <erosca@de.adit-jv.com>,
+        Felipe Balbi <balbi@kernel.org>,
+        Francis Laniel <laniel_francis@privacyrequired.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Franky Lin <franky.lin@broadcom.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Gregory Greenman <gregory.greenman@intel.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Haiyang Zhang <haiyangz@microsoft.com>,
+        Hante Meuleman <hante.meuleman@broadcom.com>,
+        Hulk Robot <hulkci@huawei.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        "James E.J. Bottomley" <jejb@linux.ibm.com>,
+        James Morris <jmorris@namei.org>,
+        Jarkko Sakkinen <jarkko@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Jason Gunthorpe <jgg@ziepe.ca>, Jens Axboe <axboe@kernel.dk>,
+        Johan Hedberg <johan.hedberg@gmail.com>,
+        Johannes Berg <johannes.berg@intel.com>,
+        Johannes Berg <johannes@sipsolutions.net>,
+        John Keeping <john@metanate.com>,
+        Juergen Gross <jgross@suse.com>, Kalle Valo <kvalo@kernel.org>,
+        Keith Packard <keithp@keithp.com>, keyrings@vger.kernel.org,
+        kunit-dev@googlegroups.com,
+        Kuniyuki Iwashima <kuniyu@amazon.co.jp>,
+        "K. Y. Srinivasan" <kys@microsoft.com>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Lee Jones <lee.jones@linaro.org>,
+        Leon Romanovsky <leon@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        linux1394-devel@lists.sourceforge.net,
+        linux-afs@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-arm-msm@vger.kernel.org, linux-bluetooth@vger.kernel.org,
+        linux-hardening@vger.kernel.org, linux-hyperv@vger.kernel.org,
+        linux-integrity@vger.kernel.org, linux-rdma@vger.kernel.org,
+        linux-scsi@vger.kernel.org, linux-security-module@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux-wireless@vger.kernel.org,
+        linux-xtensa@linux-xtensa.org, llvm@lists.linux.dev,
+        Loic Poulain <loic.poulain@linaro.org>,
+        Louis Peens <louis.peens@corigine.com>,
+        Luca Coelho <luciano.coelho@intel.com>,
+        Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+        Marc Dionne <marc.dionne@auristor.com>,
+        Marcel Holtmann <marcel@holtmann.org>,
+        Mark Brown <broonie@kernel.org>,
+        "Martin K. Petersen" <martin.petersen@oracle.com>,
+        Max Filippov <jcmvbkbc@gmail.com>,
+        Mimi Zohar <zohar@linux.ibm.com>,
+        Muchun Song <songmuchun@bytedance.com>,
+        Nathan Chancellor <nathan@kernel.org>,
+        Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rich Felker <dalias@aerifal.cx>,
         Rob Herring <robh+dt@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        freedreno <freedreno@lists.freedesktop.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Sankeerth Billakanti <quic_sbillaka@quicinc.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Kalyan Thota <quic_kalyant@quicinc.com>,
-        Kuogee Hsieh <quic_khsieh@quicinc.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@linux.ie>,
-        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        devicetree@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Russell King <linux@armlinux.org.uk>,
+        "Serge E. Hallyn" <serge@hallyn.com>,
+        SHA-cyfmac-dev-list@infineon.com,
+        Simon Horman <simon.horman@corigine.com>,
+        Stefano Stabellini <sstabellini@kernel.org>,
+        Stefan Richter <stefanr@s5r6.in-berlin.de>,
+        Stephen Hemminger <sthemmin@microsoft.com>,
+        Tadeusz Struk <tadeusz.struk@linaro.org>,
+        Takashi Iwai <tiwai@suse.com>, Tom Rix <trix@redhat.com>,
+        Udipto Goswami <quic_ugoswami@quicinc.com>,
+        Vincenzo Frascino <vincenzo.frascino@arm.com>,
+        wcn36xx@lists.infradead.org, Wei Liu <wei.liu@kernel.org>,
+        xen-devel@lists.xenproject.org,
+        Yang Yingliang <yangyingliang@huawei.com>
+Subject: Re: [PATCH 28/32] selinux: Use mem_to_flex_dup() with xfrm and sidtab
+Message-ID: <202205051124.6D80ABAE32@keescook>
+References: <20220504014440.3697851-1-keescook@chromium.org>
+ <20220504014440.3697851-29-keescook@chromium.org>
+ <CAHC9VhT5Y=ENiSyb=S-NVbGX63sLOv4nVuR_GS-yww6tiz0wYA@mail.gmail.com>
+ <20220504234324.GA12556@embeddedor>
+ <CAHC9VhRJC4AxeDsGpdphfJD4WzgaeBsdONHnixBzft5u_cE-Dw@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAHC9VhRJC4AxeDsGpdphfJD4WzgaeBsdONHnixBzft5u_cE-Dw@mail.gmail.com>
 X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
@@ -86,42 +173,72 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Sankeerth Billakanti (2022-05-05 11:02:36)
-> >>
-> >> Quoting Douglas Anderson (2022-04-25 14:06:42)
-> >>
-> >> Having 'a' in 'vdda' typically means 'analog' for 'analog' circuits,
-> >> so I'd expect this to only matter for the phy that contains the analog
-> >> circuitry. It would be great to remove the regulator code from
-> >> drivers/gpu/drm/msm/dp/dp_power.c and move the regulator_set_load()
-> >> call to the phy driver if possible. Hopefully qcom folks can help
-> >> clarify here.
+On Wed, May 04, 2022 at 11:14:42PM -0400, Paul Moore wrote:
+> On Wed, May 4, 2022 at 7:34 PM Gustavo A. R. Silva
+> <gustavoars@kernel.org> wrote:
 > >
-> >Interesting. Oddly enough, the sc7280 datasheet doesn't list the "_A".
-> >It calls these "VDD_VREF_0P9" and "VDD_VREF_1P2". However, on the
-> >schematic in front of me someone labeled these pins on the sc7280 with the
-> >"A". ...and the driver looks for a supply with the "a". :-/
+> > Hi Paul,
 > >
-> >It would be good to get clarification from someone with better information.
+> > On Wed, May 04, 2022 at 06:57:28PM -0400, Paul Moore wrote:
+> > > On Tue, May 3, 2022 at 9:57 PM Kees Cook <keescook@chromium.org> wrote:
 > >
-> >-Doug
->
-> Our internal power grid documents list the regulators as VDD_A_*_1P2 and VDD_A_*_0P9
-> for all the platforms.
+> > [..]
+> >
+> > > > +++ b/include/uapi/linux/xfrm.h
+> > > > @@ -31,9 +31,9 @@ struct xfrm_id {
+> > > >  struct xfrm_sec_ctx {
+> > > >         __u8    ctx_doi;
+> > > >         __u8    ctx_alg;
+> > > > -       __u16   ctx_len;
+> > > > +       __DECLARE_FLEX_ARRAY_ELEMENTS_COUNT(__u16, ctx_len);
+> > > >         __u32   ctx_sid;
+> > > > -       char    ctx_str[0];
+> > > > +       __DECLARE_FLEX_ARRAY_ELEMENTS(char, ctx_str);
+> > > >  };
+> > >
+> > > While I like the idea of this in principle, I'd like to hear about the
+> > > testing you've done on these patches.  A previous flex array
+> > > conversion in the audit uapi headers ended up causing a problem with
+> >
+> > I'm curious about which commit caused those problems...?
+> 
+> Commit ed98ea2128b6 ("audit: replace zero-length array with
+> flexible-array member"), however, as I said earlier, the problem was
+> actually with SWIG, it just happened to be triggered by the kernel
+> commit.  There was a brief fedora-devel mail thread about the problem,
+> see the link below:
+> 
+> * https://www.spinics.net/lists/fedora-devel/msg297991.html
 
-Do your internal power grid documents indicate what these supplies are
-powering? The question is if these supplies power any of the logic
-inside the eDP controller or if they only supply power to the analog
-circuits in the eDP phy. If it's the eDP phy only then the regulator
-usage in the eDP driver should be removed. I would suspect this is the
-case because the controller is probably all digital logic and runs at
-the typical 1.8V that the rest of the SoC uses. Similarly, these are
-voltage references which sound like a PLL reference voltage.
+Wow, that's pretty weird -- it looks like SWIG was scraping the headers
+to build its conversions? I assume SWIG has been fixed now?
 
-Please clarify this further.
+> To reiterate, I'm supportive of changes like this, but I would like to
+> hear how it was tested to ensure there are no unexpected problems with
+> userspace.  If there are userspace problems it doesn't mean we can't
+> make changes like this, it just means we need to ensure that the
+> userspace issues are resolved first.
 
->
-> So, as a practice, we put the same name in the DT files. Hence,
->
-> Reviewed-by: Sankeerth Billakanti <quic_sbillaka@quicinc.com>
->
+Well, as this is the first and only report of any problems with [0] -> []
+conversions (in UAPI or anywhere) that I remember seeing, and they've
+been underway since at least v5.9, I hadn't been doing any new testing.
+
+So, for this case, I guess I should ask what tests you think would be
+meaningful here? Anything using #include should be fine:
+https://codesearch.debian.net/search?q=linux%2Fxfrm.h&literal=1&perpkg=1
+Which leaves just this, which may be doing something weird:
+
+libabigail_2.0-1/tests/data/test-diff-filter/test-PR27569-v0.abi
+        </data-member>
+        <data-member access="public" layout-offset-in-bits="128">
+          <var-decl name="seq_hi" type-id="3f1a6b60" visibility="default" filepath="include/uapi/linux/xfrm.h" line="97" column="1"/>
+        </data-member>
+        <data-member access="public" layout-offset-in-bits="160">
+
+But I see that SWIG doesn't show up in a search for linux/audit.h:
+https://codesearch.debian.net/search?q=linux%2Faudit.h&literal=1&perpkg=1
+
+So this may not be a sufficient analysis...
+
+-- 
+Kees Cook
