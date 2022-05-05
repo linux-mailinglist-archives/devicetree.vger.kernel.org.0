@@ -2,76 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0ECC751B9D7
-	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 10:16:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6647C51B9F8
+	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 10:17:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347172AbiEEIUJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 May 2022 04:20:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53702 "EHLO
+        id S1347099AbiEEIVB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 May 2022 04:21:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54102 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346860AbiEEIUD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 04:20:03 -0400
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD985488A9
-        for <devicetree@vger.kernel.org>; Thu,  5 May 2022 01:16:14 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id ks9so840087ejb.2
-        for <devicetree@vger.kernel.org>; Thu, 05 May 2022 01:16:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=dbqRuE1CwLabN+x/TH0QISlcTwlgIHsGqNhIQOAw7D8=;
-        b=Hm5+RkpWUVUenENqa5HRpdatP8eR2ck2VhwJhLldJlknP4AFbWGCfkzPTyjQMbv5Aj
-         9jUNaesVcrQywmr/KUMu7zGOxfiUbCcKbhyH2y1Pg13a+0yjeAHcUm1+0aBOmYqNTbac
-         O0wacDk8GguBSoX0x++JbGS4MBOa4qeqS5aUPaUfo8FT9xFAb8hK0TKSxAgpSpJgBmHn
-         zhF+HnSjo0qnz8IUn9JIt/xWQric63Sh//wc4R1VzUN+LpFBN8YjIiJ1nzcsHOvgWK0N
-         MC7U1ZAt4gkuQRHwFFYivfGXJmTGaOdJ5Y5gR5P6q826rp3/XBrw2igHfCBsNDJz8jkP
-         B7zA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=dbqRuE1CwLabN+x/TH0QISlcTwlgIHsGqNhIQOAw7D8=;
-        b=UuGDmPOUfxRN7/i82jaiX43p5FAAmZnqKKx5gW68xkjosufNqlRIqLdJuymWJABEo6
-         XyOta/z89u/nB8T185FLZKKRIRG6tH9cbL+xhOb/h/SRIj2mvlu98jD+h+RToYyqmWjC
-         Ejsb/HOFigIVJXYtXXgna5szST0V3+Wd92TgwuXQf9YlSo+9VhknVNs+4r9qnVkTX86Q
-         mSc0FANp/zZEpdlwg8jNpDeugN2Eww20kptfZygsiwfqelfGuoY5IWC/NsSPri34wlAQ
-         EBHgt7daDhfExMqWqUpOspxQ7q5pqlF4BoweFyxI0S6LNpyJW/Mhh8rPnq6UCGeM+GzZ
-         v+xw==
-X-Gm-Message-State: AOAM5335y9ja0STeqYANkYrvMHZBl8937E86K/nvyTFZKS4QaBgtuVXv
-        xXTvST0LhHBJIOSDI2QV8eIFjQ==
-X-Google-Smtp-Source: ABdhPJzOCxFTc+gf0aPuaRSWhYAXjy0l7MDIrOGEIPgZqgkJfuPQ7mT1moyZeaGlGLk0Eg5tRdUQNQ==
-X-Received: by 2002:a17:907:6294:b0:6e1:ea4:74a3 with SMTP id nd20-20020a170907629400b006e10ea474a3mr24398950ejc.168.1651738573066;
-        Thu, 05 May 2022 01:16:13 -0700 (PDT)
-Received: from [192.168.0.217] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id b18-20020aa7dc12000000b0042617ba63acsm475480edu.54.2022.05.05.01.16.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 05 May 2022 01:16:12 -0700 (PDT)
-Message-ID: <04af4087-cd03-667a-52f0-f801b783602a@linaro.org>
-Date:   Thu, 5 May 2022 10:16:11 +0200
+        with ESMTP id S244938AbiEEIUn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 04:20:43 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A71A49C8E;
+        Thu,  5 May 2022 01:17:03 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: kholk11)
+        with ESMTPSA id 7C2B51F40639
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1651738622;
+        bh=DltpyffxGCnMttOdjwga03qATyZuSIFzMUFN/jjVMRY=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=nThj+bzMWjxKwTmt2qlJ/+Owd47RE6aBL+lcRlbqO+6Q8laog1VGiax1adHrqQ2UG
+         ohHy7GxJ8lXqaDdtBfTaqIqdsx6gB0RdnwitY+sB9EFsJU5X0Zyk0tOwGcUzWJB7fN
+         XFVA7pWnLXDFWtciW5JvD0XcOl5V0j/8NMr1W2rHcd9GXUEZQ+Fyu4wcnYygDSfLJU
+         LD9XrPpU9hR8B6C163mWihj7O0ccB7v4shL4Ind7r0/KHeMVe8r78+wImo4V0RZDWO
+         ykRhYsU/zneisYpPwb0aW3aEbDMh0A53YS2tYscUvh0135amNgGhlI0qmQSaPfJqf+
+         BzmEvbz+JNBqA==
+Message-ID: <0b77cc7d-0595-504c-ab35-2850840dbdaf@collabora.com>
+Date:   Thu, 5 May 2022 10:16:59 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH v4 1/2] dt-bindings: clock: Add Qualcomm SC8280XP GCC
- bindings
+ Thunderbird/91.7.0
+Subject: Re: [PATCH v2] arm64: dts: mt8192: Follow binding order for SCP
+ registers
 Content-Language: en-US
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220505025457.1693716-1-bjorn.andersson@linaro.org>
- <20220505025457.1693716-2-bjorn.andersson@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220505025457.1693716-2-bjorn.andersson@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+To:     =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
+        <nfraprado@collabora.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     kernel@collabora.com, Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org
+References: <20220504214516.2957504-1-nfraprado@collabora.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20220504214516.2957504-1-nfraprado@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,19 +59,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05/05/2022 04:54, Bjorn Andersson wrote:
-> Add binding for the Qualcomm SC8280XP Global Clock controller.
+Il 04/05/22 23:45, Nícolas F. R. A. Prado ha scritto:
+> The dt-binding for SCP documents the reg-names order as sram, cfg,
+> l1tcm. Update the SCP node on the mt8192 devicetree to follow that
+> order, which gets rid of a dtbs_check warning. This doesn't change any
+> behavior since the SCP driver accesses the memory regions through the
+> names anyway.
 > 
-> The clock-names property is purposefully omitted, to clearly communicate
-> to the writer (and reader) of the DeviceTree source based on this
-> binding that the order of "clocks" is significant, in contrast to
-> previous GCC bindings.
-> 
-> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> ---
+> Fixes: c63556ec6bfe ("arm64: dts: mt8192: Add SCP node")
+> Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Now, that's perfect! Thanks!
 
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-Best regards,
-Krzysztof
