@@ -2,131 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 82EA851B856
-	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 08:59:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B4F7E51B85A
+	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 09:01:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241560AbiEEHDL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 May 2022 03:03:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40386 "EHLO
+        id S231975AbiEEHEq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 May 2022 03:04:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42536 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235166AbiEEHDL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 03:03:11 -0400
-Received: from mail-qt1-f178.google.com (mail-qt1-f178.google.com [209.85.160.178])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C6B147542;
-        Wed,  4 May 2022 23:59:33 -0700 (PDT)
-Received: by mail-qt1-f178.google.com with SMTP id fu47so2550439qtb.5;
-        Wed, 04 May 2022 23:59:33 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=1kyfcH624YObu9U2EDyv5UgsEw2pZgVLfORpPmEDwV0=;
-        b=nWWUsf1bTJ+CMZZR5AU2u+FV/aybBvUyJCs+xDgnGh2TzZlfUParIuyftqeoDAok/b
-         RT8Lhl9o014I77zuR8NenXQeojLARxbXAn/OQPE/kQDaF9YZpglfGfINRC8AoLpD7ctX
-         UClm4ry34tJBAZABMAF10YjIYw7k2aRdMNFNFv9GW/U1RtKraEodAM2rSp47qHZDqEiV
-         0wsps8xVODiMZJp4SDShCbYblS4wWMardvB0b7Kih9SfEzSYVdtr5rL+jdCWaP6tORAP
-         qsY3NhZK+cqfQm7N2k94EhP5IfC/ORkdvLRPfMikIZ+5/WPgDXswu35MQJRZwCkmaPQl
-         PdfQ==
-X-Gm-Message-State: AOAM532/yJVEWlfp1l/QmtTWu+u2cUEV9zSAxzjs/l6wa5LyhvoJxn7l
-        FyGBQV6jwwKpn0nekQ1blkbAeMTSJdazQg==
-X-Google-Smtp-Source: ABdhPJw3MVPc9LHMVwPOhabxZSORgomuFxm6Jt5ZC7fVqXJn/7fBzffvKV3zHZL95VgCt2Amnn0lBA==
-X-Received: by 2002:a05:622a:1649:b0:2f3:a6bc:73ea with SMTP id y9-20020a05622a164900b002f3a6bc73eamr16029240qtj.506.1651733971970;
-        Wed, 04 May 2022 23:59:31 -0700 (PDT)
-Received: from mail-yb1-f170.google.com (mail-yb1-f170.google.com. [209.85.219.170])
-        by smtp.gmail.com with ESMTPSA id x74-20020a37634d000000b0069ff51425a2sm392481qkb.120.2022.05.04.23.59.31
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 04 May 2022 23:59:31 -0700 (PDT)
-Received: by mail-yb1-f170.google.com with SMTP id y76so6146666ybe.1;
-        Wed, 04 May 2022 23:59:31 -0700 (PDT)
-X-Received: by 2002:a05:6902:389:b0:633:31c1:d0f7 with SMTP id
- f9-20020a056902038900b0063331c1d0f7mr19881851ybs.543.1651733970778; Wed, 04
- May 2022 23:59:30 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220504145454.71287-1-phil.edworthy@renesas.com> <20220504175757.0a3c1a6a@kernel.org>
-In-Reply-To: <20220504175757.0a3c1a6a@kernel.org>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 5 May 2022 08:59:19 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdXKUpHa0SGGQUbepAHoS3evEBSzF4RYqA8B09eq1CtBUw@mail.gmail.com>
-Message-ID: <CAMuHMdXKUpHa0SGGQUbepAHoS3evEBSzF4RYqA8B09eq1CtBUw@mail.gmail.com>
-Subject: Re: [PATCH 0/9] Add Renesas RZ/V2M Ethernet support
-To:     Jakub Kicinski <kuba@kernel.org>
-Cc:     Phil Edworthy <phil.edworthy@renesas.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+        with ESMTP id S243630AbiEEHEp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 03:04:45 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CADDE41313;
+        Thu,  5 May 2022 00:01:06 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 830DCB829A1;
+        Thu,  5 May 2022 07:01:05 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3DD76C385A4;
+        Thu,  5 May 2022 07:00:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1651734064;
+        bh=RulggmURxy/bgRQzjRpAUTqqCwOOUaZLn1ElIm5Tdfc=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Fm9/lQ71IxtV7BW4/czpysKhiaMBIlnIfJx2QQ7WyP4Enyky/tcu3rappH2zQpi99
+         +ZrMa7sAwfDsnhDAbjFRurOr/D8D8PmdPf6jWlJaxIJsuHObo0aVVJZ2QCCDfx3vN8
+         B673M9AL8rDVRm6a+vHE42XWp65hWrzsomO/avTrKhAZ41oxF1Mym2k58VrYM4PnEO
+         soBjavjrXVPTWLCsuskQ4ACuBj1PrqpjtS1X1HDZCs87GiG5V6fbuN4cJf6c6GAiCY
+         Sfe5iTEq9MBhmFf1N7XR/2Opo9Vr9wzf3WwS/bfH0XCn2j3xZAPSkLFCQ09oFwqx9F
+         ooRSqcI8DRQ1A==
+Date:   Thu, 5 May 2022 15:00:50 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Tim Harvey <tharvey@gateworks.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Sergey Shtylyov <s.shtylyov@omp.ru>,
-        Sergei Shtylyov <sergei.shtylyov@gmail.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        netdev <netdev@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
-        version=3.4.6
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>
+Subject: Re: [PATCH v2] arm64: dts: imx8mm-venice-gw7902: fix pcie bindings
+Message-ID: <20220505070050.GZ14615@dragon>
+References: <20220429161347.7947-1-tharvey@gateworks.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220429161347.7947-1-tharvey@gateworks.com>
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jakub,
+On Fri, Apr 29, 2022 at 09:13:47AM -0700, Tim Harvey wrote:
+> Update the pcie bindings to the correct dt bindings:
+>  pcie_phy:
+>   - use pcie0_refclk
+>   - add required clock-names
+>  pcie:
+>   - remove pcie_phy clock as it comes from phy driver
+> 
+> Signed-off-by: Tim Harvey <tharvey@gateworks.com>
 
-On Thu, May 5, 2022 at 2:58 AM Jakub Kicinski <kuba@kernel.org> wrote:
-> On Wed,  4 May 2022 15:54:45 +0100 Phil Edworthy wrote:
-> > The RZ/V2M Ethernet is very similar to R-Car Gen3 Ethernet-AVB, though
-> > some small parts are the same as R-Car Gen2.
-> > Other differences are:
-> > * It has separate data (DI), error (Line 1) and management (Line 2) irqs
-> >   rather than one irq for all three.
-> > * Instead of using the High-speed peripheral bus clock for gPTP, it has
-> >   a separate gPTP reference clock.
-> >
-> > The dts patches depend on v4 of the following patch set:
-> > "Add new Renesas RZ/V2M SoC and Renesas RZ/V2M EVK support"
-> >
-> > Phil Edworthy (9):
-> >   clk: renesas: r9a09g011: Add eth clock and reset entries
-> >   dt-bindings: net: renesas,etheravb: Document RZ/V2M SoC
-> >   ravb: Separate use of GIC reg for PTME from multi_irqs
-> >   ravb: Separate handling of irq enable/disable regs into feature
-> >   ravb: Support separate Line0 (Desc), Line1 (Err) and Line2 (Mgmt) irqs
-> >   ravb: Use separate clock for gPTP
-> >   ravb: Add support for RZ/V2M
-> >   arm64: dts: renesas: r9a09g011: Add ethernet nodes
-> >   arm64: dts: renesas: rzv2m evk: Enable ethernet
->
-> How are you expecting this to be merged?
->
-> I think you should drop the first (clk) patch from this series
-> so we can apply the series to net-next. And route the clk patch
-> thru Geert's tree separately?
-
-Same for the last two DTS patches, they should go through the
-renesas-devel and SoC trees.
-
-> Right now patchwork thinks the series is incomplete because it
-> hasn't received patch 1.
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Applied, thanks!
