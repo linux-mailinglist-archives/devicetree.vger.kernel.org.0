@@ -2,82 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B8EEA51C25E
-	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 16:23:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A6CB051C27D
+	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 16:25:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242271AbiEEO0u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 May 2022 10:26:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51862 "EHLO
+        id S1380556AbiEEO2i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 May 2022 10:28:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53160 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1380610AbiEEO0t (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 10:26:49 -0400
-Received: from mail-oi1-f174.google.com (mail-oi1-f174.google.com [209.85.167.174])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F28F5A59A;
-        Thu,  5 May 2022 07:23:10 -0700 (PDT)
-Received: by mail-oi1-f174.google.com with SMTP id l16so4473806oil.6;
-        Thu, 05 May 2022 07:23:10 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=2Taau8ka7vhSeyIzrAdEH+RWRel/8zyWmnArViOK7Lc=;
-        b=5FmOGNWoeYyCQRrzf8Maw74S0PSj5Wh8blgwSUMhBn4YHaNbPAhsprZgBbnl6w6GGu
-         nhFeP7tFY87Zp91rDkus0sgKqmvhdpersAoSPL41x5zCR28W7B+0h3Ew5a/sK+pUqK18
-         NwWzkG0R3p1TsCidbB5PII5hYQuJxWaKuKlGiuSuH6I8EWrn9axVODFTPT1xdJG/Q9cQ
-         u73LzobVKIyvOsULn5wRg4HkyjyhnbkDwcSQkgbVp02QX1wAYvdq8eB6nDPm3UIVINGJ
-         XDAiUSgHzDHtrjO62bUtosi7y7ZpVxP/Mx8UBwTKCfWP2A1n9YFBy+LlpdZE/JYT3NqV
-         Lj1g==
-X-Gm-Message-State: AOAM533oIDJmMAl5dIZgXN2Kwm0U6AR2end+5zL574spvQdRSDv5PNbh
-        ZWGTJZA76DFrBDkyiI8FXA==
-X-Google-Smtp-Source: ABdhPJxuao5+60YMfK95+X4uxsKmPVX85pl3N5ZYvDex79fllcKvzasLz/UxIh5HUKdzw9eZjo+Elw==
-X-Received: by 2002:a54:4119:0:b0:325:a6dc:efae with SMTP id l25-20020a544119000000b00325a6dcefaemr2469602oic.100.1651760589915;
-        Thu, 05 May 2022 07:23:09 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id z14-20020a056870e30e00b000e7a517df41sm548757oad.13.2022.05.05.07.23.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 May 2022 07:23:09 -0700 (PDT)
-Received: (nullmailer pid 3827231 invoked by uid 1000);
-        Thu, 05 May 2022 14:23:08 -0000
-Date:   Thu, 5 May 2022 09:23:08 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Manu Gautam <mgautam@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH 03/13] dt-bindings: usb: qcom,dwc3: add IPQ8074, MSM8994,
- QCS404 and SM6125
-Message-ID: <YnPdzLUqIE7FlmbN@robh.at.kernel.org>
-References: <20220504131923.214367-1-krzysztof.kozlowski@linaro.org>
- <20220504131923.214367-4-krzysztof.kozlowski@linaro.org>
+        with ESMTP id S1349409AbiEEO2h (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 10:28:37 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1BFDC5AA62;
+        Thu,  5 May 2022 07:24:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=aVV/FwrdQSe5VUKj28vMBhWJEvtyjJumJbTPBeKHAWg=; b=bhNRXf37ysGVvqgfPD0sDjMUPS
+        VUNS4DWIxcWDP44WFABcP97dqKD5KopTf5I88KCOHIrH0i6i2wP3ILw7g44QY0PaLHkP6U72IS7sL
+        83CmAhVe2pPvFviTDx2syFXOQc25/zWiOqxBjwr5CIBUWndZderzbAeDloAu0fapwJ9I=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1nmcPS-001NF1-Nv; Thu, 05 May 2022 16:24:50 +0200
+Date:   Thu, 5 May 2022 16:24:50 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Ansuel Smith <ansuelsmth@gmail.com>
+Cc:     Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Jonathan Corbet <corbet@lwn.net>, Pavel Machek <pavel@ucw.cz>,
+        John Crispin <john@phrozen.org>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-doc@vger.kernel.org, linux-leds@vger.kernel.org
+Subject: Re: [RFC PATCH v6 10/11] net: dsa: qca8k: add LEDs support
+Message-ID: <YnPeMmioATk63DKZ@lunn.ch>
+References: <20220503151633.18760-1-ansuelsmth@gmail.com>
+ <20220503151633.18760-11-ansuelsmth@gmail.com>
+ <YnMujjDHD5M9UdH0@lunn.ch>
+ <6273d215.1c69fb81.b7a4a.4478@mx.google.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220504131923.214367-4-krzysztof.kozlowski@linaro.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+In-Reply-To: <6273d215.1c69fb81.b7a4a.4478@mx.google.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 04 May 2022 15:19:13 +0200, Krzysztof Kozlowski wrote:
-> Add compatibles for dedicated USB DWC3 blocks on Qualcomm IPQ8074,
-> MSM8994, QCS404 and SM6125.  They differ against other variants in clock
-> and/or interrupts.
+On Thu, May 05, 2022 at 03:33:07PM +0200, Ansuel Smith wrote:
+> On Thu, May 05, 2022 at 03:55:26AM +0200, Andrew Lunn wrote:
+> > > +		ret = fwnode_property_read_string(led, "default-state", &state);
+> > 
+> > You should probably use led_default_state led_init_default_state_get()
+> > 
+> >     Andrew
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->  Documentation/devicetree/bindings/usb/qcom,dwc3.yaml | 4 ++++
->  1 file changed, 4 insertions(+)
-> 
+> Oh, didn't know it was a thing, is this new? Anyway thanks.
 
-Acked-by: Rob Herring <robh@kernel.org>
+No idea. But my thinking was, you cannot be the first to implement the
+binding, there probably exists some helpers somewhere...
+
+General rule of thumb: Assume somebody has already been there and done
+it, you just need to find it and reuse it.
+
+    Andrew
