@@ -2,85 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5EB5151C8AA
-	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 21:06:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D6E5051C8FF
+	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 21:28:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244406AbiEETJx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 May 2022 15:09:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55578 "EHLO
+        id S1385008AbiEETbS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 May 2022 15:31:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45286 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234595AbiEETJw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 15:09:52 -0400
-Received: from mail-oi1-x22e.google.com (mail-oi1-x22e.google.com [IPv6:2607:f8b0:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3AF724A3D0
-        for <devicetree@vger.kernel.org>; Thu,  5 May 2022 12:06:12 -0700 (PDT)
-Received: by mail-oi1-x22e.google.com with SMTP id r185so480732oih.5
-        for <devicetree@vger.kernel.org>; Thu, 05 May 2022 12:06:12 -0700 (PDT)
+        with ESMTP id S1385019AbiEETbR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 15:31:17 -0400
+Received: from mail-pj1-x1032.google.com (mail-pj1-x1032.google.com [IPv6:2607:f8b0:4864:20::1032])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB74E56218
+        for <devicetree@vger.kernel.org>; Thu,  5 May 2022 12:27:34 -0700 (PDT)
+Received: by mail-pj1-x1032.google.com with SMTP id iq2-20020a17090afb4200b001d93cf33ae9so8844123pjb.5
+        for <devicetree@vger.kernel.org>; Thu, 05 May 2022 12:27:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to:cc;
-        bh=D0hIIaQCI/Dh7yD1DKDpvDpYdxU4Kww1YfWBC7PJ66o=;
-        b=Y5TZ8gwH28OUdcotbTOTVpcbR4pDhTI/YaqLz24TF+cgaEBsGrcHfKJ6FBpz5fI8YD
-         0ZQoF6vw49X7WRHB1KNIwNnaHPbGRAeoDQ27rWR0fcMzDbA4qQ8IRsYiuu1tu/cgCh6i
-         7ztBLJfvDKa2BhXMW2eS+XrHhX8up86RwTwaI=
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=/twjVtbcWPue2Jf3IhiwlWWY7Rof9WWSi6Cv9vIoV/Q=;
+        b=Zw4fRetuqYTkqeq+yVUkdhxXm/8i81f3Tz5yiq/8IIDSZ024zV3L+pNdERes4bJaav
+         31/Q4CkRhBZLAixBgNaxyPQDOPUfRkG6V2Lznu+vqnnAE8TdezgewvauqqI6bgLcXe8G
+         8pjfVWQFjtIzIDipg+thK9X2Q1whG0Xu+Ovt4=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to:cc;
-        bh=D0hIIaQCI/Dh7yD1DKDpvDpYdxU4Kww1YfWBC7PJ66o=;
-        b=fQa737l1xUBcdlt5ww1972gNhqqVptC+GH7KGGTh+6Q+RKOTdu+v6zAo2tBZ6V3BOV
-         G5d092L4cQEjcOyfkZkECiyPerGOWbk/WpKFldzjxl1x68n/5ZWgt229H6y0PW3tLdAj
-         yILMZDCM45QDPMR53ahvHX3H7IWMVewmmkKQYs6bGC+J5oQD+kHevo+Oaz9Ukbwdgd9W
-         hALZEstYPozJA+RmlyWqQNZ3l3Ucz+Brhu31lZ3Kjw0rSO9BxrnihHB6kPThtnTV4+DZ
-         sVlCjbA8BACYMmZ8RS0kLRl3arSRItajzZWAFupJwlHSCp+Od4uvUXXN6BFrwsWGoI5E
-         Ahlw==
-X-Gm-Message-State: AOAM533rW7gH1Jr4jV0PeT4RWBvosrJuZ+MIBOHMCc7tJYPbzfxBTf+r
-        xvO0zxFCYBn/2aWfSXQ9Cf00cX0F1C4Ffd+4RhM3zQ==
-X-Google-Smtp-Source: ABdhPJynlWjxd2luIxa71ND0gePgQJv4YZ4ySZIIn/1gXDonkO41PQ/jE3q3+0goFTuJnjQr8o6y5FLtPhweRHmec9s=
-X-Received: by 2002:aca:bd41:0:b0:2ec:ff42:814f with SMTP id
- n62-20020acabd41000000b002ecff42814fmr3286599oif.63.1651777571605; Thu, 05
- May 2022 12:06:11 -0700 (PDT)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Thu, 5 May 2022 15:06:10 -0400
-MIME-Version: 1.0
-In-Reply-To: <MW4PR02MB71867A18732B266DE8FA2040E1C29@MW4PR02MB7186.namprd02.prod.outlook.com>
-References: <20220425210643.2420919-1-dianders@chromium.org>
- <20220425140619.1.Ibfde5a26a7182c4b478d570c23d2649823ac2cce@changeid>
- <CAE-0n51eZpAKprRQ0HqjLciF_BVQHBDN8SMFNVmmOd=B9UBEzg@mail.gmail.com>
- <CAD=FV=WmVK3wTQf_EAxSi0WPXedSFGCsKdyqRnHsskmMYTHDQA@mail.gmail.com>
- <MW4PR02MB718610FAA14F966ADE1B1585E1C29@MW4PR02MB7186.namprd02.prod.outlook.com>
- <CAE-0n51Q=cGwrMec3JEQENqWHV3pAUjLPT6RwZLA5xV080sgxQ@mail.gmail.com> <MW4PR02MB71867A18732B266DE8FA2040E1C29@MW4PR02MB7186.namprd02.prod.outlook.com>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.10
-Date:   Thu, 5 May 2022 15:06:10 -0400
-Message-ID: <CAE-0n53MEBYhyRtGWOCmjj923UQU_iVE_SEBQw6_FUci8NLz3w@mail.gmail.com>
-Subject: RE: [PATCH 1/2] dt-bindings: msm/dp: List supplies in the bindings
-To:     Doug Anderson <dianders@chromium.org>,
-        Sankeerth Billakanti <quic_sbillaka@quicinc.com>
-Cc:     "bjorn.andersson@linaro.org" <bjorn.andersson@linaro.org>,
-        "dmitry.baryshkov@linaro.org" <dmitry.baryshkov@linaro.org>,
-        Rob Clark <robdclark@chromium.org>,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=/twjVtbcWPue2Jf3IhiwlWWY7Rof9WWSi6Cv9vIoV/Q=;
+        b=5x5mYWnsbJZWxx2MvS1cTdQcHx+IgBAo456Y0xeTNX5bLhKlBJCNNqdn60y6AJJ81V
+         222fbnBz12YBHWQ72xMJeYIubN1NtQ2qAR+9GNqNkX/LyCgyMOoBZv5pdcWurs7bjbA7
+         r5svxqXcPVj6xJJSAvnaNbdjruMt6iR4Ti1kJkgrwxo20pmTtSaFdmzUi6qc7NbMWhHw
+         Tb2ralEdryjXdYzq5kAA/lYq6YwYzZfpSurmWtn4/WAThhEHO7r2Ux9KPj7VGvURlbU/
+         ErdKOC2LpiHDSlNJgx97NV5zKvMATp1ZZ2tEdrKCs7jHHoWnwM7tqC7Mh44YtSyCHUsX
+         Bb6Q==
+X-Gm-Message-State: AOAM531Q6qCPgCXxhfHL/3p3tlR4Ie860US6zYPZf61wOmrSmOuSqGpy
+        +s7uWCloEMr5FNn4gxJO1zJA5g==
+X-Google-Smtp-Source: ABdhPJyav77hf2OM1reUdtV3HW9WqLRQkX6N0+xVipZ4MkOtaIgBrGdD2dZR4M6krBDZsVod+2klvQ==
+X-Received: by 2002:a17:90b:1d92:b0:1dc:3f14:f8d0 with SMTP id pf18-20020a17090b1d9200b001dc3f14f8d0mr8041119pjb.7.1651778853636;
+        Thu, 05 May 2022 12:27:33 -0700 (PDT)
+Received: from www.outflux.net (smtp.outflux.net. [198.145.64.163])
+        by smtp.gmail.com with ESMTPSA id b10-20020a17090a550a00b001d954837197sm5617594pji.22.2022.05.05.12.27.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 05 May 2022 12:27:33 -0700 (PDT)
+Date:   Thu, 5 May 2022 12:27:32 -0700
+From:   Kees Cook <keescook@chromium.org>
+To:     Johannes Berg <johannes@sipsolutions.net>
+Cc:     "Gustavo A . R . Silva" <gustavoars@kernel.org>,
+        Keith Packard <keithp@keithp.com>,
+        Francis Laniel <laniel_francis@privacyrequired.com>,
+        Daniel Axtens <dja@axtens.net>,
+        Dan Williams <dan.j.williams@intel.com>,
+        Vincenzo Frascino <vincenzo.frascino@arm.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Daniel Vetter <daniel.vetter@ffwll.ch>,
+        Tadeusz Struk <tadeusz.struk@linaro.org>,
+        Alexei Starovoitov <ast@kernel.org>,
+        alsa-devel@alsa-project.org, Al Viro <viro@zeniv.linux.org.uk>,
+        Andrew Gabbasov <andrew_gabbasov@mentor.com>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        Andy Gross <agross@kernel.org>,
+        Andy Lavr <andy.lavr@gmail.com>,
+        Arend van Spriel <aspriel@gmail.com>,
+        Baowen Zheng <baowen.zheng@corigine.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Boris Ostrovsky <boris.ostrovsky@oracle.com>,
+        Bradley Grove <linuxdrivers@attotech.com>,
+        brcm80211-dev-list.pdl@broadcom.com,
+        Christian Brauner <brauner@kernel.org>,
+        Christian =?iso-8859-1?Q?G=F6ttsche?= <cgzones@googlemail.com>,
+        Christian Lamparter <chunkeey@googlemail.com>,
+        Chris Zankel <chris@zankel.net>,
+        Cong Wang <cong.wang@bytedance.com>,
+        David Gow <davidgow@google.com>,
+        David Howells <dhowells@redhat.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Dennis Dalessandro <dennis.dalessandro@cornelisnetworks.com>,
+        devicetree@vger.kernel.org, Dexuan Cui <decui@microsoft.com>,
+        Dmitry Kasatkin <dmitry.kasatkin@gmail.com>,
+        Eli Cohen <elic@nvidia.com>,
+        Eric Dumazet <edumazet@google.com>,
+        Eric Paris <eparis@parisplace.org>,
+        Eugeniu Rosca <erosca@de.adit-jv.com>,
+        Felipe Balbi <balbi@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Franky Lin <franky.lin@broadcom.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Gregory Greenman <gregory.greenman@intel.com>,
+        Haiyang Zhang <haiyangz@microsoft.com>,
+        Hante Meuleman <hante.meuleman@broadcom.com>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        Hulk Robot <hulkci@huawei.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        "James E.J. Bottomley" <jejb@linux.ibm.com>,
+        James Morris <jmorris@namei.org>,
+        Jarkko Sakkinen <jarkko@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Jason Gunthorpe <jgg@ziepe.ca>, Jens Axboe <axboe@kernel.dk>,
+        Johan Hedberg <johan.hedberg@gmail.com>,
+        John Keeping <john@metanate.com>,
+        Juergen Gross <jgross@suse.com>, Kalle Valo <kvalo@kernel.org>,
+        keyrings@vger.kernel.org, kunit-dev@googlegroups.com,
+        Kuniyuki Iwashima <kuniyu@amazon.co.jp>,
+        "K. Y. Srinivasan" <kys@microsoft.com>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Lee Jones <lee.jones@linaro.org>,
+        Leon Romanovsky <leon@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        linux1394-devel@lists.sourceforge.net,
+        linux-afs@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-arm-msm@vger.kernel.org, linux-bluetooth@vger.kernel.org,
+        linux-hardening@vger.kernel.org, linux-hyperv@vger.kernel.org,
+        linux-integrity@vger.kernel.org, linux-rdma@vger.kernel.org,
+        linux-scsi@vger.kernel.org, linux-security-module@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux-wireless@vger.kernel.org,
+        linux-xtensa@linux-xtensa.org, llvm@lists.linux.dev,
+        Loic Poulain <loic.poulain@linaro.org>,
+        Louis Peens <louis.peens@corigine.com>,
+        Luca Coelho <luciano.coelho@intel.com>,
+        Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+        Marcel Holtmann <marcel@holtmann.org>,
+        Mark Brown <broonie@kernel.org>,
+        "Martin K. Petersen" <martin.petersen@oracle.com>,
+        Max Filippov <jcmvbkbc@gmail.com>,
+        Mimi Zohar <zohar@linux.ibm.com>,
+        Muchun Song <songmuchun@bytedance.com>,
+        Nathan Chancellor <nathan@kernel.org>, netdev@vger.kernel.org,
+        Nick Desaulniers <ndesaulniers@google.com>,
+        Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Paul Moore <paul@paul-moore.com>,
+        Rich Felker <dalias@aerifal.cx>,
         Rob Herring <robh+dt@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        freedreno <freedreno@lists.freedesktop.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Kalyan Thota <quic_kalyant@quicinc.com>,
-        Kuogee Hsieh <quic_khsieh@quicinc.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@linux.ie>,
-        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Russell King <linux@armlinux.org.uk>, selinux@vger.kernel.org,
+        "Serge E. Hallyn" <serge@hallyn.com>,
+        SHA-cyfmac-dev-list@infineon.com,
+        Simon Horman <simon.horman@corigine.com>,
+        Stefano Stabellini <sstabellini@kernel.org>,
+        Stefan Richter <stefanr@s5r6.in-berlin.de>,
+        Steffen Klassert <steffen.klassert@secunet.com>,
+        Stephen Hemminger <sthemmin@microsoft.com>,
+        Stephen Smalley <stephen.smalley.work@gmail.com>,
+        Takashi Iwai <tiwai@suse.com>, Tom Rix <trix@redhat.com>,
+        Udipto Goswami <quic_ugoswami@quicinc.com>,
+        wcn36xx@lists.infradead.org, Wei Liu <wei.liu@kernel.org>,
+        xen-devel@lists.xenproject.org,
+        Xiu Jianfeng <xiujianfeng@huawei.com>,
+        Yang Yingliang <yangyingliang@huawei.com>
+Subject: Re: [PATCH 02/32] Introduce flexible array struct memcpy() helpers
+Message-ID: <202205051143.6B19E63983@keescook>
+References: <20220504014440.3697851-1-keescook@chromium.org>
+ <20220504014440.3697851-3-keescook@chromium.org>
+ <d3b73d80f66325fdfaf2d1f00ea97ab3db03146a.camel@sipsolutions.net>
+ <202205040819.DEA70BD@keescook>
+ <970a674df04271b5fd1971b495c6b11a996c20c2.camel@sipsolutions.net>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <970a674df04271b5fd1971b495c6b11a996c20c2.camel@sipsolutions.net>
 X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -88,33 +172,115 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Sankeerth Billakanti (QUIC) (2022-05-05 11:47:20)
-> >Quoting Sankeerth Billakanti (2022-05-05 11:02:36)
-> >>
-> >> Our internal power grid documents list the regulators as VDD_A_*_1P2
-> >> and VDD_A_*_0P9 for all the platforms.
-> >
-> >Do your internal power grid documents indicate what these supplies are
-> >powering? The question is if these supplies power any of the logic inside the
-> >eDP controller or if they only supply power to the analog circuits in the eDP
-> >phy. If it's the eDP phy only then the regulator usage in the eDP driver should
-> >be removed. I would suspect this is the case because the controller is
-> >probably all digital logic and runs at the typical 1.8V that the rest of the SoC
-> >uses. Similarly, these are voltage references which sound like a PLL reference
-> >voltage.
-> >
-> >Please clarify this further.
-> >
->
-> For the DP driver using the usb-dp combo phy, there were cases where the usb driver
-> was turning off the phy and pll regulators whenever usb-dp concurrent mode need not be supported.
-> This caused phy and pll to be powered down causing aux transaction failures and display blankouts.
-> From then on, it became a practice for the controller driver to vote for the phy and pll regulators also.
->
+On Thu, May 05, 2022 at 03:16:19PM +0200, Johannes Berg wrote:
+> On Wed, 2022-05-04 at 08:38 -0700, Kees Cook wrote:
+> > 
+> > It seemed like requiring a structure be rearranged to take advantage of
+> > the "automatic layout introspection" wasn't very friendly. On the other
+> > hand, looking at the examples, most of them are already neighboring
+> > members. Hmmm.
+> 
+> A lot of them are, and many could be, though not all.
 
-That sounds like USB-DP combo phy driver had improper regulator power
-management where aux transactions from DP didn't keep the power on to
-the phy. Where does the power physically go? If the power isn't
-physically going to the DP controller it shouldn't be controlled from
-the DP controller driver. If the aux bus needs the DP phy enabled, the
-DP controller driver should enable the phy power (via phy_power_on()?).
+Yeah, I did a pass through them for the coming v2. Only a few have the
+struct order as part of an apparent hardware interface.
+
+> > And DECLARE_FLEX_ARRAY_ELEMENTS could actually be expanded to include
+> > the count_name too, so both methods could be "forward portable" to a
+> > future where C grew the syntax for bounded flex arrays.
+> 
+> I guess I don't see that happening :)
+
+Well ... it's on my roadmap. ;) I want it for -fsanitize=array-bounds so
+that dynamic array indexing can be checked too. (Right now we can do
+constant-sized array index bounds checking at runtime, but the much
+harder to find problems tend to come from flex arrays.)
+
+> > Requiring instance to be NULL is debatable, but I feel pretty strongly
+> > about it because it does handle a class of mistakes (resource leaks),
+> > and it's not much of a burden to require a known-good starting state.
+> 
+> Yeah, dunno, I guess I'm slightly more on the side of not requiring it,
+> since we don't do the same for kmalloc() etc. and probably really
+> wouldn't want to add kmalloc_s() that does it ;-)
+
+Well, I dislike all the *alloc APIs. :P
+
+> I mean, you _could_ go there:
+> 
+> int kmalloc_s(void **ptr, size_t size, gfp_t gfp)
+
+Oh, and I really do (though as a macro, not a "real" function), since
+having type introspection would be _extremely_ useful. Though maybe it
+needs to be through some kind of type-of-lvalue thing...
+
+https://github.com/KSPP/linux/issues/189
+https://github.com/KSPP/linux/issues/87
+
+> So I'm not really sure why this aspect here should need to be different,
+> except of course that you already need the input argument for the magic.
+
+Right, and trying to move the kernel code closer to a form where the
+compiler can take more of the burden of handling code safety.
+
+> And btw, while I was writing it down I was looking to see if it should
+> be "size_t elements" or "size_t len" (like memcpy), it took me some time
+> to figure out, and I was looking at the examples:
+> 
+>  1) most of them actually use __u8 or some variant thereof, so you
+>     could probably add an even simpler macro like
+>        BOUNDED_FLEX_DATA(int, bytes, data)
+>     which has the u8 type internally.
+
+I didn't want these helpers to be "opinionated" about their types (just
+their API), so while it's true u8 is usually "good enough", I don't
+think it's common enough to make a special case for.
+
+>  2) Unless I'm confusing myself, you got the firewire change wrong,
+>     because __mem_to_flex_dup takes the "elements_count", but the
+>     memcpy() there wasn't multiplied by the sizeof(element)? Or maybe
+>     the fact that it was declared as __u32 header[0] is wrong, and it
+>     should be __u8, but it's all very confusing, and I'm really not
+>     sure about this at all.
+
+Yes indeed; thanks for catching that. In fact, it's not a strict flex
+array struct, since, as you say, it's measuring bytes, not elements.
+Yeah, I'll see if that needs to be adjusted/dropped, etc.
+
+> One "perhaps you'll laugh me out of the room" suggestion might be to
+> actually be able to initialize the whole thing too?
+> 
+> mydata = flex_struct_alloc(mydata, GFP_KERNEL,
+>                            variable_data, variable_len,
+>                            .member = 1,
+>                            .another = 2);
+> 
+> (the ordering can't really be otherwise since you have to use
+> __VA_ARGS__).
+
+Oooh, that's a cool idea for the API. Hmmmm.
+
+> That might reduce some more code too, though I guess it's quite some
+> additional magic ... :)
+
+Yay preprocessor magic!
+
+> I was going to point to struct cfg80211_bss_ies, but I realize now
+> they're RCU-managed, so we never resize them anyway ... So maybe it's
+> less common than I thought it might be.
+> 
+> I suppose you know better since you converted a lot of stuff already :-)
+
+Well, I've seen a lot of fragile code (usually in the form of
+exploitable flaws around flex arrays) and they do mostly look the same.
+Not everything fits perfectly into the forms this API tries to address,
+but my goal is to get it fitting well enough, and the weird stuff can be
+more carefully examined -- they're easier to find and audit if all the
+others are nicely wrapped up in some fancy flex*() API.
+
+Thanks for your thoughts on all of this! I'll continue to work on a v2...
+
+-Kees
+
+-- 
+Kees Cook
