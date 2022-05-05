@@ -2,60 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 79AED51B9A7
-	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 10:08:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B501451B9CB
+	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 10:14:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237008AbiEEIMF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 May 2022 04:12:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44304 "EHLO
+        id S239301AbiEEIS2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 May 2022 04:18:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49314 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236869AbiEEIME (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 04:12:04 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F3273337C;
-        Thu,  5 May 2022 01:08:25 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id E73021F44D6A
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1651738103;
-        bh=Sx0JTutas4/a5URHaHdUEVftBTpjpG3kAugSQyvFlOk=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=LQP40dxFDRXce8lfztccxf30KUdLwEI7Biw7WJFTVQgsdDbNckjKld2YhLoBNGUFK
-         6oiSh0nR9Xfnfbzk/jr6ze4TO3H0+DqXEUSKRQPakdjJeaG4ckhTKy9NBwbOVYL7Rz
-         75B5Sarx4ocMBfhtUMYwULroMzHxA1GU5xiW71rPLvmdS8+Nb3IVHiMdvyuR1N54lA
-         8CKd8fB/xfvNwcgZqG6z1VjuSIdQFmHsVfj3TRNZlUY4/F4ra07cYNlwfAXCukg8J5
-         X4Obi7f66sRUcI/xgAb4Y3SaJM2Yu8CnQ9wkG3c5C6d0oOM60j5N3/znbWeNql2KFQ
-         K5ftZZVV6WFrw==
-Message-ID: <4826c824-40ce-5726-ed95-5be069233ca7@collabora.com>
-Date:   Thu, 5 May 2022 10:08:20 +0200
+        with ESMTP id S230266AbiEEISZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 04:18:25 -0400
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DDD6E38DAE
+        for <devicetree@vger.kernel.org>; Thu,  5 May 2022 01:14:46 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id kq17so7258864ejb.4
+        for <devicetree@vger.kernel.org>; Thu, 05 May 2022 01:14:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=3z6nvLeGGyPc5qCTPHfhB8pduImZmC8hApcWr/wC4ME=;
+        b=Ez6EKS038QDuBSzEPaiuvG0DME44/f/+B5p+cIr2OQN54aWnmJwADBM6CnjWbNO6oO
+         oKdGjd1uGzuBJfzuNLdX/Kql8T4qpWWTB0WX7t6XR0M8TvaROApcwB9KSZzytAiN2Ip6
+         /QbuvdAb3S1eoEHUPWiUm1/NB8+mjuuL/8FYW834X+RsnAXYTin1Cixx+2gN/5gJSSKm
+         87wJ7E8RHkoM+Z7FkUpO5I5giqubTEifieXTcEOJJhhoBzIpMqVgrVsD8GGvPUmI7g2q
+         BT7sD++Io48aV/TrJTk7tMcoXpV2rE1MBANj5k5Ein7yrb8/t2hZSggyCGG4B+hPqm9Y
+         ctUg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=3z6nvLeGGyPc5qCTPHfhB8pduImZmC8hApcWr/wC4ME=;
+        b=alg4E+boQsxJ8vQkZmOAVLsPvRx0xM2NsOS7XLaE7QKSCLZXALuyee0+Nvd6aTEaHT
+         7vHTMyLCLrBV0bzofB5NxSmr5/3vuPPvfS/wGECyylqLuh4NrPsF/LrPhEDXjRSoNE3+
+         EOZOHpGnZZE6qRdY4+tejNjkrd0EzOhIq4elzXDIJ87JC1plqXU/hVQOUEi/Et3pADI7
+         E+3ptoQuabpnOGSGTQmAWJjqwShzmLSYedAkoLHhVlErGHJFG60AjSRN/xEbH//sIvYj
+         XtlBiRimvn2jMgRZD5oujEt/pewvBezvWK62U5ylAyiJRUh8O1lBJnMFqCfZJ0dW9p/J
+         vP9w==
+X-Gm-Message-State: AOAM530RgWIanZmEDyu6ottCTpqYgn5+Pg6U2Yb1A7cMk74SQQR1uMSI
+        5rcsin5nQu0p20ZEA18WiZf3Og==
+X-Google-Smtp-Source: ABdhPJx7GHIOru35sjPTls7HrrQOKJCX2U6B97Yb9PjvYl1AO0ggI+LLZhpfcLpEXN58JtiAngJjzw==
+X-Received: by 2002:a17:906:dc8f:b0:6f4:e6df:a48d with SMTP id cs15-20020a170906dc8f00b006f4e6dfa48dmr3489746ejc.206.1651738485458;
+        Thu, 05 May 2022 01:14:45 -0700 (PDT)
+Received: from [192.168.0.217] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id jy16-20020a170907763000b006f3ef214e53sm448547ejc.185.2022.05.05.01.14.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 05 May 2022 01:14:45 -0700 (PDT)
+Message-ID: <0ba5b88b-527a-9818-f85d-83a716a0d30a@linaro.org>
+Date:   Thu, 5 May 2022 10:14:44 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH 1/3] ASoC: dt-bindings: mediatek: mt8192: Add i2s-share
- properties
+ Thunderbird/91.8.1
+Subject: Re: [PATCH v2 2/2] dt-bindings: gpio: pca95xx: add entry for pca6408
 Content-Language: en-US
-To:     =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
-        <nfraprado@collabora.com>, Mark Brown <broonie@kernel.org>
-Cc:     kernel@collabora.com, Jiaxin Yu <jiaxin.yu@mediatek.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shane Chien <shane.chien@mediatek.com>,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org
-References: <20220429203039.2207848-1-nfraprado@collabora.com>
- <20220429203039.2207848-2-nfraprado@collabora.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20220429203039.2207848-2-nfraprado@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+To:     Justin Chen <justinpopo6@gmail.com>, linus.walleij@linaro.org,
+        brgl@bgdev.pl, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, f.fainelli@gmail.com
+References: <1651703357-25154-1-git-send-email-justinpopo6@gmail.com>
+ <1651703357-25154-3-git-send-email-justinpopo6@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <1651703357-25154-3-git-send-email-justinpopo6@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -63,53 +76,14 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 29/04/22 22:30, Nícolas F. R. A. Prado ha scritto:
-> The Mediatek AFE PCM controller for MT8192 allows sharing of an I2S bus
-> between two busses. Add a pattern for these properties in the
-> dt-binding.
+On 05/05/2022 00:29, Justin Chen wrote:
+> The NXP PCA5608 is the 8-bit version of PCA5616.
 > 
-> Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
-> ---
-> 
->   Documentation/devicetree/bindings/sound/mt8192-afe-pcm.yaml | 5 +++++
->   1 file changed, 5 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/sound/mt8192-afe-pcm.yaml b/Documentation/devicetree/bindings/sound/mt8192-afe-pcm.yaml
-> index 7a25bc9b8060..5b03c8dbf318 100644
-> --- a/Documentation/devicetree/bindings/sound/mt8192-afe-pcm.yaml
-> +++ b/Documentation/devicetree/bindings/sound/mt8192-afe-pcm.yaml
-> @@ -54,6 +54,11 @@ properties:
->         - const: aud_infra_clk
->         - const: aud_infra_26m_clk
->   
-> +patternProperties:
-> +  "^i2s[0-35-9]-share$":
-> +    description: Name of the I2S bus that is shared with this bus
-> +    pattern: "^I2S[0-35-9]$"
-> +
->   required:
->     - compatible
->     - interrupts
-> 
+> Signed-off-by: Justin Chen <justinpopo6@gmail.com>
 
-The only other way of doing this would be to complicate this in the driver
-so that we can do something like
 
-"i2s-share = <0 2>";  instead of  i2s0-share = "I2S2";
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-...and I don't think that this would be any more straightforward than the
-provided way.
 
-There's an improvement that we can do to that pattern description though,
-which would be explaining that declaring 'i2s0-share = "I2S2"' means that
-I2S2's data pin will be used as DATA-OUT, while i2s0 is DATA-IN.
-
-Another thing that comes to mind here is that this is a MediaTek specific
-property and *not* a generic one, which means that both the driver and
-this binding should be fixed to get a "mediatek," prefix, so, this property
-should - in reality - be "mediatek,i2s[0-35-9]-share" instead.
-
-I think that everyone agrees about that, but let's see what the others say.
-
-Cheers,
-Angelo
+Best regards,
+Krzysztof
