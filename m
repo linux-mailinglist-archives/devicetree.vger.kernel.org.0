@@ -2,79 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D8DF51BB54
-	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 11:01:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0ABD451BB61
+	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 11:05:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350883AbiEEJE4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 May 2022 05:04:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46204 "EHLO
+        id S234487AbiEEJJc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 May 2022 05:09:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48958 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351262AbiEEJEz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 05:04:55 -0400
-Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 090894BB83
-        for <devicetree@vger.kernel.org>; Thu,  5 May 2022 02:01:08 -0700 (PDT)
-Received: by mail-lj1-x236.google.com with SMTP id 16so4723424lju.13
-        for <devicetree@vger.kernel.org>; Thu, 05 May 2022 02:01:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=nyIBkdlH8U+DPOrC3RC5Dq9VLCYMkjKzwYlgP0rAk1k=;
-        b=Q51CwriF+iL8MVkMj8c/hXTpY68rIgy1NAf3Jy8TmZX+/aNLKmfUv8M95nnjvvCVxl
-         fXkU2+pLhQWLdolAwSi5To8Ncu1aVqoZK/fRUuwkivLNnmXcJaPVSHyvMxIYlxEysn1r
-         wPQ++uPSuVpMhoaiknaXxdFNlPV0R7j3kJ5VdQlyYmkpnqm+wTWwC1RKW/ydEuDCxx4Y
-         kGGS13Cz+5C5PcaQmwHYq7U+rufZzVZbBqw05Lw8F7fu0qNzr7PEN3hidFA2YhP966wr
-         sh8N0fv3k6OqN2FHEdZGP9mafe/sW0DdU9xtrjok3yAh3DjK9redRVEaZKkkRV8zU/yK
-         sY6A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=nyIBkdlH8U+DPOrC3RC5Dq9VLCYMkjKzwYlgP0rAk1k=;
-        b=B7HxolARocut3JtOTZP8n/m+pM7p4zidgkFni4cokMl/uNS99OMvEgQ7qUXtXF0vlf
-         FgLjupJNJtacScAEBo+DUBkqM8nuG2vM85d5VDCTs7ty8xovkN6mKVijEeuO85rxLFJR
-         oNZlc1GH7Dw4vgYf+OKGdc1GxvFpmnY8C3lVKZozHC1Eo4BUmgmsCRK/eBDe/UoXOjOM
-         7+BiorJSmAUj0MLxcEe89Ogu22enObaNJaavKSe9oMMeZj1gf47JGNXkiujGKXAD1eLN
-         /Xikg0lidLDTU9mfGk4s+D2PsoLMEi/WC/Z4liC9PEbmcasmfpbryZBbTsTpx5IHfUXT
-         dRsw==
-X-Gm-Message-State: AOAM531Cm9VrXqdICSciq1b6MFJjLXpDDoIz3dPQUS6qCu2scW4dKaav
-        KGWumOveYCgC0CSlz8+P0rp/7A==
-X-Google-Smtp-Source: ABdhPJzn8SSdzkNetfVnZx3IjWLHvwKHt1Q/uwWpSdXtsT7FpWUxIXOsp23Xbpd7c5RQIs82SPqAgg==
-X-Received: by 2002:a2e:a448:0:b0:24c:8fe8:f3c6 with SMTP id v8-20020a2ea448000000b0024c8fe8f3c6mr15491045ljn.115.1651741267222;
-        Thu, 05 May 2022 02:01:07 -0700 (PDT)
-Received: from [192.168.1.211] ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id bp20-20020a056512159400b0047255d211d5sm131056lfb.260.2022.05.05.02.01.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 05 May 2022 02:01:06 -0700 (PDT)
-Message-ID: <73cebbb5-518c-e3b9-85d4-f81cda28ae07@linaro.org>
-Date:   Thu, 5 May 2022 12:01:05 +0300
+        with ESMTP id S234283AbiEEJJc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 05:09:32 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E69BBF65
+        for <devicetree@vger.kernel.org>; Thu,  5 May 2022 02:05:51 -0700 (PDT)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <sha@pengutronix.de>)
+        id 1nmXQe-0001Q4-00; Thu, 05 May 2022 11:05:44 +0200
+Received: from sha by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <sha@pengutronix.de>)
+        id 1nmXQb-0007lM-D7; Thu, 05 May 2022 11:05:41 +0200
+Date:   Thu, 5 May 2022 11:05:41 +0200
+From:   Sascha Hauer <s.hauer@pengutronix.de>
+To:     Frank Wunderlich <frank-w@public-files.de>
+Cc:     dri-devel@lists.freedesktop.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Sandy Huang <hjc@rock-chips.com>,
+        Heiko =?iso-8859-15?Q?St=FCbner?= <heiko@sntech.de>,
+        Peter Geis <pgwipeout@gmail.com>
+Subject: Re: [PATCH v11 17/24] arm64: dts: rockchip: rk356x: Add HDMI nodes
+Message-ID: <20220505090541.GN4012@pengutronix.de>
+References: <20220422072841.2206452-1-s.hauer@pengutronix.de>
+ <20220422072841.2206452-18-s.hauer@pengutronix.de>
+ <trinity-bfbffcba-d1ed-40f7-8f37-0c8ad9245e3c-1651740303894@3c-app-gmx-bs47>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH v5 5/7] PCI: qcom: Handle MSI IRQs properly
-Content-Language: en-GB
-To:     Bjorn Helgaas <helgaas@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Stanimir Varbanov <svarbanov@mm-sol.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org
-References: <20220429224732.GA111265@bhelgaas>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20220429224732.GA111265@bhelgaas>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <trinity-bfbffcba-d1ed-40f7-8f37-0c8ad9245e3c-1651740303894@3c-app-gmx-bs47>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 11:03:13 up 35 days, 21:32, 83 users,  load average: 0.45, 0.31,
+ 0.18
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: sha@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -83,119 +64,91 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/04/2022 01:47, Bjorn Helgaas wrote:
-> In subject, "Handle MSI IRQs properly" really doesn't tell us anything
-> useful.  The existing MSI support handles some MSI IRQs "properly," so
-> we should say something specific about the improvements here, like
-> "Handle multiple MSI groups" or "Handle MSIs routed to multiple GIC
-> interrupts" or "Handle split MSI IRQs" or similar.
+On Thu, May 05, 2022 at 10:45:03AM +0200, Frank Wunderlich wrote:
+> Hi,
 > 
-> On Sat, Apr 30, 2022 at 12:42:48AM +0300, Dmitry Baryshkov wrote:
->> On some of Qualcomm platforms each group of 32 MSI vectors is routed to the
->> separate GIC interrupt. Thus to receive higher MSI vectors properly,
->> add separate msi_host_init()/msi_host_deinit() handling additional host
->> IRQs.
+> > Gesendet: Freitag, 22. April 2022 um 09:28 Uhr
+> > Von: "Sascha Hauer" <s.hauer@pengutronix.de>
+> > Betreff: [PATCH v11 17/24] arm64: dts: rockchip: rk356x: Add HDMI nodes
+> >
+> > Add support for the HDMI port found on RK3568.
+> >
+> > Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
+> > ---
+> >
+> > Notes:
+> >     Changes since v7:
+> >     - Rename hclk to niu
 > 
->> +static void qcom_chained_msi_isr(struct irq_desc *desc)
->> +{
->> +	struct irq_chip *chip = irq_desc_get_chip(desc);
->> +	int irq = irq_desc_get_irq(desc);
->> +	struct pcie_port *pp;
->> +	int idx, pos;
->> +	unsigned long val;
->> +	u32 status, num_ctrls;
->> +	struct dw_pcie *pci;
->> +	struct qcom_pcie *pcie;
->> +
->> +	chained_irq_enter(chip, desc);
->> +
->> +	pp = irq_desc_get_handler_data(desc);
->> +	pci = to_dw_pcie_from_pp(pp);
->> +	pcie = to_qcom_pcie(pci);
->> +
->> +	/*
->> +	 * Unlike generic dw_handle_msi_irq we can determine, which group of
->> +	 * MSIs triggered the IRQ, so process just single group.
+> clock-name no more present since v9, see below
 > 
-> Parens and punctuation touch-up:
+> >     Changes since v5:
+> >     - Drop unnecessary #size-cells/#address-cells from nodes with only single endpoint
+> >
+> ...
+> > --- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+> > +++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+> > @@ -620,6 +620,38 @@ vop_mmu: iommu@fe043e00 {
+> >  		status = "disabled";
+> >  	};
+> >
+> > +	hdmi: hdmi@fe0a0000 {
+> > +		compatible = "rockchip,rk3568-dw-hdmi";
+> > +		reg = <0x0 0xfe0a0000 0x0 0x20000>;
+> > +		interrupts = <GIC_SPI 45 IRQ_TYPE_LEVEL_HIGH>;
+> > +		clocks = <&cru PCLK_HDMI_HOST>,
+> > +			 <&cru CLK_HDMI_SFR>,
+> > +			 <&cru CLK_HDMI_CEC>,
+> > +			 <&pmucru CLK_HDMI_REF>,
+> > +			 <&cru HCLK_VO>;
+> > +		clock-names = "iahb", "isfr", "cec", "ref";
 > 
->    Unlike generic dw_handle_msi_irq(), we can determine which group of
->    MSIs triggered the IRQ, so process just that group.
-> 
->> +	 */
->> +	num_ctrls = pp->num_vectors / MAX_MSI_IRQS_PER_CTRL;
->> +
->> +	for (idx = 0; idx < num_ctrls; idx++) {
->> +		if (pcie->msi_irqs[idx] == irq)
->> +			break;
->> +	}
-> 
-> Since this is basically an enhanced clone of dw_handle_msi_irq(), it
-> would be nice to use the same variable names ("i" instead of "idx")
-> so it's not gratuitously different.
-> 
-> Actually, I wonder if you could enhance dw_handle_msi_irq() slightly
-> so you could use it directly, e.g.,
-> 
->      struct dw_pcie_host_ops {
->        ...
->        void (*msi_host_deinit)(struct pcie_port *pp);
->   +    bool (*msi_in_block)(struct pcie_port *pp, int irq, int i);
->      };
-> 
->      dw_handle_msi_irq(...)
->      {
->        ...
-> 
->        for (i = 0; i < num_ctrls; i++) {
->   +      if (pp->ops->msi_in_block && !pp->ops->msi_in_block(pp, irq, i))
->   +        continue;
-> 
-> 	status = dw_pcie_readl_dbi(pci, PCIE_MSI_INTR0_STATUS ...);
-> 	...
-> 
->   +  bool qcom_pcie_msi_in_block(struct pcie_port *pp, int irq, int i)
->   +  {
->   +    ...
->   +    pci = to_dw_pcie_from_pp(pp);
->   +    pcie = to_qcom_pcie(pci);
->   +
->   +    if (pcie->msi_irqs[i] == irq)
->   +      return true;
->   +
->   +    return false;
->   +  }
-> 
-> Maybe that's more complicated than it's worth.
+> noticed there are still 5 clocks, but only 4 clock-names. So i added "niu" after ref.
+> maybe missing clock-name was causing my iommu page-faults...on a quick test i have not got it,
+> but they came not every time.
 
-I think it will complicate the IRQ handler unnecessary. Just using a 
-separate handler seems simpler.
+The clock is not handled by the HDMI driver, so it shouldn't be the
+cause for any failure. It should be dropped here.
 
-> 
->> +
->> +	if (WARN_ON_ONCE(unlikely(idx == num_ctrls)))
->> +		goto out;
->> +
->> +	status = dw_pcie_readl_dbi(pci, PCIE_MSI_INTR0_STATUS +
->> +				   (idx * MSI_REG_CTRL_BLOCK_SIZE));
->> +	if (!status)
->> +		goto out;
->> +
->> +	val = status;
->> +	pos = 0;
->> +	while ((pos = find_next_bit(&val, MAX_MSI_IRQS_PER_CTRL,
->> +				    pos)) != MAX_MSI_IRQS_PER_CTRL) {
->> +		generic_handle_domain_irq(pp->irq_domain,
->> +					  (idx * MAX_MSI_IRQS_PER_CTRL) +
->> +					  pos);
->> +		pos++;
->> +	}
->> +
->> +out:
->> +	chained_irq_exit(chip, desc);
->> +}
+Heiko, could you apply the below patch or squash it into the original
+one?
 
+Sascha
+
+-------------------------------8<---------------------------
+
+From 8e5f90273401d98b2202676aafd49a350c9c4abd Mon Sep 17 00:00:00 2001
+From: Sascha Hauer <s.hauer@pengutronix.de>
+Date: Thu, 5 May 2022 10:59:48 +0200
+Subject: [PATCH] arm64: dts: rockchip: rk356x: remove extra hdmi clock
+
+HCLK_VO is not handled by the HDMI driver. This is a leftover from
+earlier VOP2 series. Remove it.
+
+Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
+---
+ arch/arm64/boot/dts/rockchip/rk356x.dtsi | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/rockchip/rk356x.dtsi b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+index 1a359bbf65300..49eb45e23f8c9 100644
+--- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+@@ -627,8 +627,7 @@ hdmi: hdmi@fe0a0000 {
+ 		clocks = <&cru PCLK_HDMI_HOST>,
+ 			 <&cru CLK_HDMI_SFR>,
+ 			 <&cru CLK_HDMI_CEC>,
+-			 <&pmucru CLK_HDMI_REF>,
+-			 <&cru HCLK_VO>;
++			 <&pmucru CLK_HDMI_REF>;
+ 		clock-names = "iahb", "isfr", "cec", "ref";
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&hdmitx_scl &hdmitx_sda &hdmitxm0_cec>;
+-- 
+2.30.2
 
 -- 
-With best wishes
-Dmitry
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
