@@ -2,67 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7614651B61E
-	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 04:51:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CCE0151B631
+	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 04:54:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239963AbiEECyq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 May 2022 22:54:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59070 "EHLO
+        id S236164AbiEEC4z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 May 2022 22:56:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60150 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237423AbiEECyp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 22:54:45 -0400
-Received: from mail-yw1-x112b.google.com (mail-yw1-x112b.google.com [IPv6:2607:f8b0:4864:20::112b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC1644D9E6
-        for <devicetree@vger.kernel.org>; Wed,  4 May 2022 19:51:07 -0700 (PDT)
-Received: by mail-yw1-x112b.google.com with SMTP id 00721157ae682-2f7d621d1caso35007187b3.11
-        for <devicetree@vger.kernel.org>; Wed, 04 May 2022 19:51:07 -0700 (PDT)
+        with ESMTP id S236219AbiEEC4y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 22:56:54 -0400
+Received: from mail-oi1-x22d.google.com (mail-oi1-x22d.google.com [IPv6:2607:f8b0:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51C734E3B8
+        for <devicetree@vger.kernel.org>; Wed,  4 May 2022 19:53:15 -0700 (PDT)
+Received: by mail-oi1-x22d.google.com with SMTP id r1so3114347oie.4
+        for <devicetree@vger.kernel.org>; Wed, 04 May 2022 19:53:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=hQ87eN9SQZi8NIJ0dQLJS+dLce/vvTzOM8adEXAvNpY=;
-        b=Le7GeHdTtmB5SEv2vlD7zJRJo2n5QshLycQemr00mvMeqoY81qcNLBHXHiJhUZzKbi
-         G42atpj+pi97+SAOT5ltJpCB55xi3goWnfEZsyMZeKKjGx72SadV4XMeYTOOB/j/Ch5I
-         cKg/UJvPDk/A5xrlnxZSMCG5I1DtTp79k9R18=
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=5JtMcRY+9JipAU8C1bkMSmvF0PCdAKtGbjYynT12iIQ=;
+        b=s/7YYm+ykBqWwHsrdfzUnctOAAIiD3SMSXkA5/lNxfZqFYKJnzyeuwCq4vXUdN1MA1
+         hScfyde5HQZDEe9qcmDEyqMr+l0PTrsXmTnzahIoQzDcN+uXZleuWB+C+KRc4sBHtkjZ
+         D63o+e94E4iV/kRbgx/Y6n3mCBqBXwAPbkKcs9fbq+VPacbTageksLm54LucC+k7egry
+         eq10zmOlBy/XDA3wk9K+1mPx3CM1tDOGee5ZfipVtj5MlQPXzqc0+Oc2lGOgMXoOqdHj
+         7lmD/TKbcoYxcGMGuIQIiQ3j4JFDJKF+S65M385CpZKMi255Wi+xJ68jN1MHYDvv1KHT
+         B0RQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=hQ87eN9SQZi8NIJ0dQLJS+dLce/vvTzOM8adEXAvNpY=;
-        b=lu4NuLkLJYJ1HQGGkXIz01W2JImvEm+fcGJ8z1vXWMFRZbsjcHB4UesY+ERAYXOKot
-         0QK5Pkd9EcGVf9p640eOYNrRKQL3kJHPc1OGUeAcPdnLjOV7muntFUOa8Js/fpGvzewx
-         3/x8VXNcQ0Ai4DJJzys3aWLXtqr/Y9GTkHm2JSC8OgzVdrnfmuqX9A11SctZWpk5Q+n4
-         sYfFfRXzCtxP31OdAwKDPRMdRSYzr8q3DwyIpSYavLxJ9E/5I+XUyNm90EnO2/DtGVv5
-         t4EOJFy2lCdU9GAHRkTT0SXnMdvgjl06+xZs/IcNlPa4c5+5JfP6QYnNbx2SDq1M/ah9
-         bzcg==
-X-Gm-Message-State: AOAM530jw1G11gdxeY1AM9dqb1KrMS5bwEVTOAVwoM9O6xsZa4kKbWxz
-        ITf4lyIwkJIuKJC5okJ7j8A9YshmCYTGNd+6vSzrnQ==
-X-Google-Smtp-Source: ABdhPJyAKMpcVpgskbnOy66gjUlw5KH/+b9uJG5rcYjxVXxuwcOYSmCeTcLTWA1Tu+QO4F7WHXLWo3pCF2QtRAd5yPc=
-X-Received: by 2002:a81:be05:0:b0:2e5:6c26:59fb with SMTP id
- i5-20020a81be05000000b002e56c2659fbmr22963642ywn.94.1651719067116; Wed, 04
- May 2022 19:51:07 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=5JtMcRY+9JipAU8C1bkMSmvF0PCdAKtGbjYynT12iIQ=;
+        b=mR+FCGHbBCciYbzb73PXXEdsCwqeIE3tNHRPe0Elx1GNgUGf/TXrU60X95s7XN2xfk
+         D8kZideBHX4v6TyT/0Ii2D7ev5V6cPOynuwWOVZCFqrg+mG43diHszrq6wnRR4F4trpc
+         To4Dy/6iQBw0KYI7P6b28cfg4LJScufWK7pQoRdgIhoz7jChpNpKDEOxXvuFJP1JlzrU
+         Rx4AMFVrE24NZSedVJH8wQ6pbvTt1ktEf9Cb9cqj13bKX0eNN9WiYyyZiHCR+eTnTct5
+         UbSGjrfNP7QGaBY+XHnmJDOJAdaAI4ykMKwIgou8ps8QTipokIby07tXyiX58ROrHJU9
+         bmWg==
+X-Gm-Message-State: AOAM5334djhpzfTMHygw6iXP+ovzDhu5k4b/MfxRSaTEStU10BuraUaW
+        ia8ZWl05uHEsq7WjoiZpuO44vQ==
+X-Google-Smtp-Source: ABdhPJxdPv1yS48+PtUC0XC2ujBEDklgGUJAlp2EVPL/sKrWpGR5jQTUNF2lsFYfn4x5wW42fwqKvA==
+X-Received: by 2002:a05:6808:20a0:b0:326:5283:7614 with SMTP id s32-20020a05680820a000b0032652837614mr1344376oiw.55.1651719194711;
+        Wed, 04 May 2022 19:53:14 -0700 (PDT)
+Received: from ripper.. (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id 1-20020aca2801000000b00325cda1ff95sm242572oix.20.2022.05.04.19.53.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 04 May 2022 19:53:13 -0700 (PDT)
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v4 0/2] clk: qcom: SC8280XP GCC
+Date:   Wed,  4 May 2022 19:54:55 -0700
+Message-Id: <20220505025457.1693716-1-bjorn.andersson@linaro.org>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-References: <20220504214516.2957504-1-nfraprado@collabora.com>
-In-Reply-To: <20220504214516.2957504-1-nfraprado@collabora.com>
-From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Thu, 5 May 2022 10:50:55 +0800
-Message-ID: <CAGXv+5EOactKnHkqq4E8Azkn4MGG8VHju4F8ZWWcaYeyy2wUww@mail.gmail.com>
-Subject: Re: [PATCH v2] arm64: dts: mt8192: Follow binding order for SCP registers
-To:     =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
-        <nfraprado@collabora.com>
-Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, kernel@collabora.com,
-        Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -70,16 +71,23 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 5, 2022 at 5:50 AM N=C3=ADcolas F. R. A. Prado
-<nfraprado@collabora.com> wrote:
->
-> The dt-binding for SCP documents the reg-names order as sram, cfg,
-> l1tcm. Update the SCP node on the mt8192 devicetree to follow that
-> order, which gets rid of a dtbs_check warning. This doesn't change any
-> behavior since the SCP driver accesses the memory regions through the
-> names anyway.
->
-> Fixes: c63556ec6bfe ("arm64: dts: mt8192: Add SCP node")
-> Signed-off-by: N=C3=ADcolas F. R. A. Prado <nfraprado@collabora.com>
+This adds binding and driver for the Global Clock Controller (GCC) found in the
+Qualcomm SC8280XP platform.
 
-Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
+Bjorn Andersson (2):
+  dt-bindings: clock: Add Qualcomm SC8280XP GCC bindings
+  clk: qcom: add sc8280xp GCC driver
+
+ .../bindings/clock/qcom,gcc-sc8280xp.yaml     |  128 +
+ drivers/clk/qcom/Kconfig                      |    9 +
+ drivers/clk/qcom/Makefile                     |    1 +
+ drivers/clk/qcom/gcc-sc8280xp.c               | 7488 +++++++++++++++++
+ include/dt-bindings/clock/qcom,gcc-sc8280xp.h |  496 ++
+ 5 files changed, 8122 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/qcom,gcc-sc8280xp.yaml
+ create mode 100644 drivers/clk/qcom/gcc-sc8280xp.c
+ create mode 100644 include/dt-bindings/clock/qcom,gcc-sc8280xp.h
+
+-- 
+2.35.1
+
