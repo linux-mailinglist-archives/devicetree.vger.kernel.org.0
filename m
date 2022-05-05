@@ -2,130 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B9E651BAE1
-	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 10:45:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BB53C51BAE5
+	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 10:47:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350292AbiEEItY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 May 2022 04:49:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60414 "EHLO
+        id S1350270AbiEEIuj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 May 2022 04:50:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32782 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350527AbiEEItS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 04:49:18 -0400
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.15])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5052F13DE2
-        for <devicetree@vger.kernel.org>; Thu,  5 May 2022 01:45:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1651740304;
-        bh=xx/4O0ev2h+cTTB8VZtp7yVZgwGZrAIwxUX58uMFqq0=;
-        h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=GeGv5ooBNOUCELJdyhcGPi5AxDeLQCnfHp3QiXcKhJzX3b9D8/fJcMn1t/ATvpd3E
-         VUrTifK62rAZzyK3nwmHXtJb0DwDSl+bfLGvccxI8O9IytezT49YOQQD9lL4FIkamo
-         fHsJ4HY+UhrAFI35Nh0sRUP3ViKytEhycutq0pQc=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from [217.61.145.208] ([217.61.145.208]) by web-mail.gmx.net
- (3c-app-gmx-bs47.server.lan [172.19.170.99]) (via HTTP); Thu, 5 May 2022
- 10:45:03 +0200
+        with ESMTP id S1344203AbiEEIuh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 04:50:37 -0400
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2CA249CB6
+        for <devicetree@vger.kernel.org>; Thu,  5 May 2022 01:46:58 -0700 (PDT)
+Received: by mail-wr1-x42a.google.com with SMTP id k2so5132240wrd.5
+        for <devicetree@vger.kernel.org>; Thu, 05 May 2022 01:46:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=KAi9SgYYEJZdQCddUzbx52lypx3cIglFyl/qHafebhw=;
+        b=tkNfdzaaxw1oNzzHEFi5PsCP9pSRB2g18WUgVkc6DnnNJz4opSwgzEVFoUUkq98Kud
+         DmFNXaVYExw1NuJr8DqujznLa2az0lWDiTc0qWvNUCAP5r5OW9iSR8QEqSlWZJONTS4P
+         F30VkUEk9v9uHoJqLqcvFr87lcceheNYz87udcrXOAHtFnIyEOvlcZaxaIZkOdNhT30Y
+         dB4ud6EWIxegH+EYbtLr/2s0zJ21Uw2TaCRSfxNT1dPyuAPqkA2Ti2WZXu8bcR/8mxNC
+         eMgh7vO/iGZwuEnOROZ+GPB0E6E/imyXgauO3i4m/vz/qEwWxwP3ttMVK1mz2Ist0shg
+         sbpQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=KAi9SgYYEJZdQCddUzbx52lypx3cIglFyl/qHafebhw=;
+        b=H+u5JeRpIOd+tzE9le6fW7MtVnnGt4w4DPtWtYAl96kOoSAqDIkY65WBpGhLt/pDsV
+         En2jaWwU0caKXMD1TCIqeC52aSkgv1F1caLNMAePaVZTVXYGplr9VCeOj+KwCcADZGPP
+         K79L9zPeeaSHlfusn3bb0ZQSK3IOW9m6F3yvraQtn9jQQQirgvinVn3q388iqRQfQ1nr
+         P79fpUyMreC3EAuEqdJbCe+2JxEMmsRG0DQQ0EEbPOz59mPF1qNj6H2TW4FxEjlVfmxW
+         ZdqAHIaDFizjjGrxLYDPEqjZ4yTgi4WMY9HbG89TL/w76HXMG09/98dmm5FFcJv4+xVK
+         7CWQ==
+X-Gm-Message-State: AOAM531jA64aokX7+ULWmX2A++UKAMAHy0AOzNZLeQWVbIKMMKQgkX3g
+        AOC/05h9zmS+g8bR80QFZTBvzw==
+X-Google-Smtp-Source: ABdhPJx0cG82J35HyxF+U/lAjaHUyieUfdukDsGukXiyDflYgKWosvfKkWmN+5Kvijh4a8XoYMPHpw==
+X-Received: by 2002:a5d:6551:0:b0:20a:e23c:a7fa with SMTP id z17-20020a5d6551000000b0020ae23ca7famr19657153wrv.535.1651740417622;
+        Thu, 05 May 2022 01:46:57 -0700 (PDT)
+Received: from [192.168.0.217] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id 67-20020a1c1946000000b003942a244f2csm6771728wmz.5.2022.05.05.01.46.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 05 May 2022 01:46:57 -0700 (PDT)
+Message-ID: <313a5b2e-c571-a13f-3447-b1cd7200f4c9@linaro.org>
+Date:   Thu, 5 May 2022 10:46:55 +0200
 MIME-Version: 1.0
-Message-ID: <trinity-bfbffcba-d1ed-40f7-8f37-0c8ad9245e3c-1651740303894@3c-app-gmx-bs47>
-From:   Frank Wunderlich <frank-w@public-files.de>
-To:     Sascha Hauer <s.hauer@pengutronix.de>
-Cc:     dri-devel@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Sandy Huang <hjc@rock-chips.com>,
-        =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>
-Subject: Aw: [PATCH v11 17/24] arm64: dts: rockchip: rk356x: Add HDMI nodes
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [RFC v2 4/4] arm64: dts: rockchip: Add mt7531 dsa node to
+ BPI-R2-Pro board
+Content-Language: en-US
+To:     Vladimir Oltean <olteanv@gmail.com>,
+        Frank Wunderlich <frank-w@public-files.de>
+Cc:     Frank Wunderlich <linux@fw-web.de>,
+        linux-mediatek@lists.infradead.org,
+        linux-rockchip@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Landen Chao <Landen.Chao@mediatek.com>,
+        DENG Qingfang <dqfext@gmail.com>, Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Peter Geis <pgwipeout@gmail.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        netdev@vger.kernel.org
+References: <20220430130347.15190-1-linux@fw-web.de>
+ <20220430130347.15190-5-linux@fw-web.de>
+ <20220504152450.cs2afa4hwkqp5b5m@skbuf>
+ <trinity-9f557027-8e00-4a4a-bc19-bc576e163f7b-1651678399970@3c-app-gmx-bs42>
+ <20220504154720.62cwrz7frjkjbb7u@skbuf>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220504154720.62cwrz7frjkjbb7u@skbuf>
 Content-Type: text/plain; charset=UTF-8
-Date:   Thu, 5 May 2022 10:45:03 +0200
-Importance: normal
-Sensitivity: Normal
-In-Reply-To: <20220422072841.2206452-18-s.hauer@pengutronix.de>
-References: <20220422072841.2206452-1-s.hauer@pengutronix.de>
- <20220422072841.2206452-18-s.hauer@pengutronix.de>
-X-UI-Message-Type: mail
-X-Priority: 3
-X-Provags-ID: V03:K1:jhHeBB0cVrPpmyuSV8dkcZkfMMoOV6qVeNwsgrvv2BcHyrAD72naC0el219Z5ID+Z/Re/
- 5cFt0p836fqtEg3/WBhTIHvozZg+qauPcPv2V/HiN+36OxKfXenbX8mkMkS9cP2hLcbpAH94/XF2
- Ee6ya9jarBvfYFc40yW1cB6jkU4h5+hrxI+2CoRz8QUdvDTl7CO0aKJbcxroi4icmuounMlaKfuM
- CBLLu9ZCJdj7X2zTm/5V/04h2hTpMkujwQRLAsZ33x0MlM6NRmewtbu3BWtKgTAXxCzJT8uuXB02
- xo=
-X-UI-Out-Filterresults: notjunk:1;V03:K0:hc0JSv9jgAE=:bZXSWIrFTtqezeF/jRdgdZ
- NnwkpgZMZnJuCsrlkdUy8btjwq8ZoV/0Xpzcs13FWuCtYIPQ5ro64TS6dvgTFIyyJL2ZmtUJd
- DihkaR+cIKek7YXrjROayUF89hAclkSKAyqQ+HC51L+Pl0i4jY5UwJHPUGFX1dzVcPZMz72vT
- vKQmQ5AGX+Nda0LKrhWy7NRmp0WrhAmp6tamK/ijygEGCEntUpUImUs8v8eOB/ASyDfWEKEuM
- +I8gNabAR0sp3exIaWqR7m9GUtRzkJOAVgiM2tPqp8nuo0nhBDHyBUwqofFQ3T8QwXt9hQlwd
- aB2iYe9EjootdPpT72SaiouyXDQHLmoL0zo18RxhNnA0sGA7c+n4B699M70TcVmU7pT7czuV6
- 8+Lyw+tnzm8iONWsrJS+rngS2zf0rTzq0TbZdHJUxZSZgF9Z26AfaDrOGBz0awRvW/rYrFb7M
- vZiYKM4W/6K1a5V5AecMf+c7wVgaXrJw6HgVztSLSs1IjEU1jIgfP/pKAk4/KrZxgvIm/PLTw
- 1G9roRVpNQHHPORfBRHtEiQwUxMzYbcxKTikfPtOmRWGJyNtsMDSbucb9sd2dJoLS0MBotOMn
- h+x49mJ/hzTZvm97DeV3rKLun0mwW/ezhcQ9wX4BbcUQDCis79x/3UGtgCgaMIS6uEspEFSvJ
- mU+nX3CGpBFSV9b7n6woeUNzrIUThfayn+fcngw+HFO14azzOp7jZet2vblY8uB+Fpvh1YUuc
- mKfsXjtnm9WsaLRT4/uGFfzfZWLDY/JBRfYQhbqc4/sEj/1ZmeYZqOH4imOhm97W0keilCxFM
- eG5inPC
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On 04/05/2022 17:47, Vladimir Oltean wrote:
+>>
+>> current device-tree nodes using "switch" and "ports"
+>>
+>> see discussioon here about make it fixed to "ports" property instead of PatternProperties including optional "ethernet-"
+>>
+>> https://patchwork.kernel.org/project/linux-mediatek/patch/20220502153238.85090-1-linux@fw-web.de/#24843155
+> 
+> Hmm, I don't get why Krzysztof said to just keep what is used in
+> existing device trees. The schema validator should describe what is
+> valid, 
 
-> Gesendet: Freitag, 22. April 2022 um 09:28 Uhr
-> Von: "Sascha Hauer" <s.hauer@pengutronix.de>
-> Betreff: [PATCH v11 17/24] arm64: dts: rockchip: rk356x: Add HDMI nodes
->
-> Add support for the HDMI port found on RK3568.
->
-> Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
-> ---
->
-> Notes:
->     Changes since v7:
->     - Rename hclk to niu
+These were talks about bindings which describe hardware. The node name,
+except Devicetree spec asking for generic names, does not matter here
+actually.
 
-clock-name no more present since v9, see below
+> and since the mt7530 driver does not care one way or another
+> (some drivers do explicitly parse the "ports"/"ethernet-ports" node),
+> then whatever is valid for the DSA core is also valid for the mt7530
+> bindings. And "ethernet-ports" is valid too, so I think it should be
+> accepted by mediatek.yaml...
 
->     Changes since v5:
->     - Drop unnecessary #size-cells/#address-cells from nodes with only s=
-ingle endpoint
->
-...
-> --- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-> @@ -620,6 +620,38 @@ vop_mmu: iommu@fe043e00 {
->  		status =3D "disabled";
->  	};
->
-> +	hdmi: hdmi@fe0a0000 {
-> +		compatible =3D "rockchip,rk3568-dw-hdmi";
-> +		reg =3D <0x0 0xfe0a0000 0x0 0x20000>;
-> +		interrupts =3D <GIC_SPI 45 IRQ_TYPE_LEVEL_HIGH>;
-> +		clocks =3D <&cru PCLK_HDMI_HOST>,
-> +			 <&cru CLK_HDMI_SFR>,
-> +			 <&cru CLK_HDMI_CEC>,
-> +			 <&pmucru CLK_HDMI_REF>,
-> +			 <&cru HCLK_VO>;
-> +		clock-names =3D "iahb", "isfr", "cec", "ref";
+You can make it "(ethernet-)?ports" as well. My comment was purely to
+make it simpler, for bindings (goes into properties, not
+patternProperties) and for us. If you prefer to keep it like DSA core,
+also fine.
 
-noticed there are still 5 clocks, but only 4 clock-names. So i added "niu"=
- after ref.
-maybe missing clock-name was causing my iommu page-faults...on a quick tes=
-t i have not got it,
-but they came not every time.
-
-what do you think?
-
-> +		pinctrl-names =3D "default";
-> +		pinctrl-0 =3D <&hdmitx_scl &hdmitx_sda &hdmitxm0_cec>;
-> +		power-domains =3D <&power RK3568_PD_VO>;
-
-regards Frank
+Best regards,
+Krzysztof
