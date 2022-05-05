@@ -2,69 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 41DAF51CB77
-	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 23:39:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3677651CB95
+	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 23:45:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1385988AbiEEVnW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 May 2022 17:43:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37770 "EHLO
+        id S1386153AbiEEVtD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 May 2022 17:49:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43334 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233533AbiEEVnV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 17:43:21 -0400
-Received: from mail-pg1-x536.google.com (mail-pg1-x536.google.com [IPv6:2607:f8b0:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8DF5E13E3A
-        for <devicetree@vger.kernel.org>; Thu,  5 May 2022 14:39:41 -0700 (PDT)
-Received: by mail-pg1-x536.google.com with SMTP id 7so4586151pga.12
-        for <devicetree@vger.kernel.org>; Thu, 05 May 2022 14:39:41 -0700 (PDT)
+        with ESMTP id S1386123AbiEEVs5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 17:48:57 -0400
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74916B93
+        for <devicetree@vger.kernel.org>; Thu,  5 May 2022 14:45:15 -0700 (PDT)
+Received: by mail-ej1-x632.google.com with SMTP id n10so11130076ejk.5
+        for <devicetree@vger.kernel.org>; Thu, 05 May 2022 14:45:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=dmqI2ALgZ3kvDiEew8IgLAO4SlOTFjh2EiR4gGFw+iA=;
-        b=PXHGbjdmVPvJFYthUJPH6VeHG2X/Y6BayuqvbTguvZzT0ZcujtcEWgaNwowbnJFL+0
-         5/PDg32n9aK0mkVWM8uokjy4pCAshHkPVj07rbL4Rj0xwUSX9zTZtSRQvJkb6xzSumnN
-         ciIHRzbIy/vvRfc10460Ruq/xqHqdtEBnrmIQ=
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=9a49K+nsIpClkkZJMCjWXi8/OJdtqcmRhzbltH+MvOc=;
+        b=kp3l63ItWPcoj3mIJFjL1IS0DRKLyCgq8rg4f+5Xx4U7BSNFu/vpr3X3kPrINxWG1y
+         d4JS+qP+fmnZlhoPr5rrxuKxTeRFD8zpP3dHL+NRp/2aruwblCvzL3UEjWgzvScPOgHO
+         OoIyC3l+RahxKrVlyOwHDLG9nq+F4L/tutw2U=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=dmqI2ALgZ3kvDiEew8IgLAO4SlOTFjh2EiR4gGFw+iA=;
-        b=bvXKpMrj+uv/umFIg0gYyuCyuiVGitxZl0E/vDz7ddU8av7T4W7ivPXWQ+QIpxvF6t
-         omk/z/tKOZ/x2yLljS5gPA1TE1vy5n9raMl8b9NsgoqDq/ld9U9AqmqUhp3OA+DXMnvx
-         q05H7EJv8feKQGaqVK/DWAnI8Uj8JmZpcSHyqy2dpeH7ieYLuLBw/RyVqP+ibRJMKGDc
-         IP94C7b+nDe2Sx5qEaYMtbsvgeSMIqbSFqQxL7T5KfA26QszDLaUq1Ldv8W8zznnDeZz
-         JJvDLsnjShH+y7pts5mGSmNLDzZSXaHH6r14KnC46S+YF3h6CMsQHEWAdJuxamt1eRje
-         CJtQ==
-X-Gm-Message-State: AOAM532sX8YOeHXAt2GW2So/OUk4khp8xQzxpIo+AOOxYjn79Dz+0WGC
-        9N13XLMu6cuTX97wqHvHPQycZx0nQ2nqvQ==
-X-Google-Smtp-Source: ABdhPJy1heYv21j6+zVS1d13Syq3/PhlTZCCTT4PeYPM7I/zvpaeGDy0W2UiLAMntKXMYYEGUDHFHg==
-X-Received: by 2002:a63:a512:0:b0:3c6:d89:1021 with SMTP id n18-20020a63a512000000b003c60d891021mr123296pgf.126.1651786781128;
-        Thu, 05 May 2022 14:39:41 -0700 (PDT)
-Received: from localhost ([2620:15c:202:201:827b:7f14:bb7e:2898])
-        by smtp.gmail.com with UTF8SMTPSA id q13-20020a170902dacd00b0015e8d4eb214sm107873plx.94.2022.05.05.14.39.40
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=9a49K+nsIpClkkZJMCjWXi8/OJdtqcmRhzbltH+MvOc=;
+        b=2CH5C2GnFMQOHQH4rs/TJn/TcCh+Uk2NwxjmC7XarYX48dbh+24/psMReRMA1MVBBB
+         VQ3SmSVDU1nDgydcSdWwksyC97Vjk/gJ0YuQo+X78J2AA9tI/2MHdhKgSKMCFHOlLcZu
+         +wb5TbE+ypRUUn9RW0Ar5w4aVLBhGwNQvvLVm/m0z6WCcpXhZ8x7Gpulv1R5rPvuxCAN
+         yKHOtR37TPqrd1u/VUOYAhWbq/0MvSqFhY6VdPE5zfxBz1GC8yyHeN9ebIX5W/6txhBY
+         omSY2f0xzymjcq5uc/Sev4eEOUk+H7QDzGQRnwHEm0rp+CN1yQIZe6ZhTlnEvAjZbx/k
+         GeOw==
+X-Gm-Message-State: AOAM532+9qegc68Ug4oBzwaZeuErMktWPr5A8XBw1pggszjePWtdeNf/
+        oaLveU5g3uqVyO8T0s+HiharfaMPbXIYD/PTqwI=
+X-Google-Smtp-Source: ABdhPJyYxcli3lmFcCFIJ5X6uGxfxB1D3k9M1Xvs41weX3imKw5WvJ2kb2hcNpbhzZGA5WCBJkMKjw==
+X-Received: by 2002:a17:907:8a1f:b0:6f4:b5fb:e1c8 with SMTP id sc31-20020a1709078a1f00b006f4b5fbe1c8mr204785ejc.240.1651787113786;
+        Thu, 05 May 2022 14:45:13 -0700 (PDT)
+Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com. [209.85.221.44])
+        by smtp.gmail.com with ESMTPSA id a13-20020a1709065f8d00b006f4c24495e7sm1190949eju.33.2022.05.05.14.45.12
+        for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 05 May 2022 14:39:40 -0700 (PDT)
-Date:   Thu, 5 May 2022 14:39:39 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-Cc:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, quic_rohkumar@quicinc.com,
-        srinivas.kandagatla@linaro.org, dianders@chromium.org,
-        swboyd@chromium.org, judyhsiao@chromium.org,
-        Venkata Prasad Potturu <quic_potturu@quicinc.com>
-Subject: Re: [PATCH v14 4/4] arm64: dts: qcom: sc7280-herobrine: Add lpi
- pinmux properties for CRD 3.0/3.1
-Message-ID: <YnREG4Ej1SNnj757@google.com>
-References: <1651763004-32533-1-git-send-email-quic_srivasam@quicinc.com>
- <1651763004-32533-5-git-send-email-quic_srivasam@quicinc.com>
+        Thu, 05 May 2022 14:45:12 -0700 (PDT)
+Received: by mail-wr1-f44.google.com with SMTP id d5so7696389wrb.6
+        for <devicetree@vger.kernel.org>; Thu, 05 May 2022 14:45:12 -0700 (PDT)
+X-Received: by 2002:a5d:42c8:0:b0:20a:d91f:87b5 with SMTP id
+ t8-20020a5d42c8000000b0020ad91f87b5mr103577wrr.301.1651787111509; Thu, 05 May
+ 2022 14:45:11 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <1651763004-32533-5-git-send-email-quic_srivasam@quicinc.com>
+References: <20220505104024.v4.1.Id769ddc5dbf570ccb511db96da59f97d08f75a9c@changeid>
+In-Reply-To: <20220505104024.v4.1.Id769ddc5dbf570ccb511db96da59f97d08f75a9c@changeid>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Thu, 5 May 2022 14:44:58 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=Vb8EJJakDYkZLiAEqU1iFUfU4oNwAbTqiH9dM7Ph0BxQ@mail.gmail.com>
+Message-ID: <CAD=FV=Vb8EJJakDYkZLiAEqU1iFUfU4oNwAbTqiH9dM7Ph0BxQ@mail.gmail.com>
+Subject: Re: [PATCH v4 1/5] arm64: dts: qcom: sc7180: Add wormdingler dts files
+To:     "Joseph S. Barrera III" <joebar@chromium.org>
+Cc:     LKML <linux-kernel@vger.kernel.org>,
+        Alexandru M Stan <amstan@chromium.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,13 +79,46 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 05, 2022 at 08:33:24PM +0530, Srinivasa Rao Mandadapu wrote:
-> Add LPASS LPI pinctrl properties, which are required for Audio
-> functionality on herobrine based platforms of rev5+
-> (aka CRD 3.0/3.1) boards.
-> 
-> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-> Co-developed-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
-> Signed-off-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
+Hi,
 
-Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
+On Thu, May 5, 2022 at 10:43 AM Joseph S. Barrera III
+<joebar@chromium.org> wrote:
+>
+> Wormdingler is a trogdor-based board, shipping to customers as the
+> Lenovo IdeaPad Chromebook Duet 3. These dts files are copies from
+> the downstream Chrome OS 5.4 kernel, but with the camera
+> (sc7180-trogdor-mipi-camera.dtsi) #include removed.
+>
+> Signed-off-by: Joseph S. Barrera III <joebar@chromium.org>
+>
+> ---
+>
+> Changes in v4:
+> - Cleaned up rt5682s files
+> - Restored camcc definition
+> - Added missing version history
+>
+> Changes in v3:
+> - Removed camcc definition
+>
+> Changes in v2:
+> - Word wrapped patch description.
+> - Removed "Author" from patch description.
+> - Fixed whitespace around "en_pp3300_dx_edp"
+>
+>  arch/arm64/boot/dts/qcom/Makefile             |   6 +
+>  .../sc7180-trogdor-wormdingler-rev0-boe.dts   |  22 +
+>  .../sc7180-trogdor-wormdingler-rev0-inx.dts   |  22 +
+>  .../qcom/sc7180-trogdor-wormdingler-rev0.dtsi |  53 +++
+>  ...0-trogdor-wormdingler-rev1-boe-rt5682s.dts |  29 ++
+>  .../sc7180-trogdor-wormdingler-rev1-boe.dts   |  28 ++
+>  ...0-trogdor-wormdingler-rev1-inx-rt5682s.dts |  29 ++
+>  .../sc7180-trogdor-wormdingler-rev1-inx.dts   |  22 +
+>  .../dts/qcom/sc7180-trogdor-wormdingler.dtsi  | 417 ++++++++++++++++++
+>  9 files changed, 628 insertions(+)
+
+This series looks great now to me now. Bjorn: if you agree and if it's
+not too land to land these for 5.19 that'd be wonderful. Otherwise I
+guess we've snooze for the next 4.5-5.5 weeks... ;-)
+
+Reviewed-by: Douglas Anderson <dianders@chromium.org>
