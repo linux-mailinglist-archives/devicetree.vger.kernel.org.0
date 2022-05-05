@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EC78151C43C
-	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 17:48:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DF6A351C442
+	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 17:48:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1381408AbiEEPvv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 May 2022 11:51:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41262 "EHLO
+        id S1381450AbiEEPvw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 May 2022 11:51:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41280 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1355562AbiEEPvu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 11:51:50 -0400
-Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57BEC5A5A3
-        for <devicetree@vger.kernel.org>; Thu,  5 May 2022 08:48:10 -0700 (PDT)
-Received: by mail-wr1-x42d.google.com with SMTP id d5so6655844wrb.6
-        for <devicetree@vger.kernel.org>; Thu, 05 May 2022 08:48:10 -0700 (PDT)
+        with ESMTP id S1381447AbiEEPvv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 11:51:51 -0400
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9624C59333
+        for <devicetree@vger.kernel.org>; Thu,  5 May 2022 08:48:11 -0700 (PDT)
+Received: by mail-wr1-x42b.google.com with SMTP id w4so6639183wrg.12
+        for <devicetree@vger.kernel.org>; Thu, 05 May 2022 08:48:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=dz2crOFWGnc2tJ+5hQ8HTWioTwYzhB3xpGSgL65wUTY=;
-        b=GqeinuOtqa1AEtAicabrscRJxIs3Scd/kwKKyrpshrbaEhyDFuuHVDUT9W0FjGH/O9
-         Dzn3F7QwFZ9yUm5LYk7KJPIGzA6iGfQZGrANT/MBD8doRfwQQ9TM9gnFc4ef3A+Ykl99
-         HVMn8HKN11pHoAedERmk/JBJwoXydTqvJfIByWYS1Wdm67oy+vXf0t9s3QSEyUAzAYbV
-         kv0MVbjlMiO3JrZgfkNZs+5o67kMEW8ka9oCnjpEKkUotqQ4VobwaPHwEsoNRAncRzkZ
-         q83vnji0w+UhEoNAhlOEZFEDDROEmoL9/+EqRAt2lpBWx7dPlj7kHW+YfcIJ4vLcf/SJ
-         DSCg==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=duIpxtiykCSeezrgTxT8A8q7XE7qrwoHIpE3IVHNv34=;
+        b=GMI0FjqJYk3Cx8Nnjj9PAr8HNET0bq+Oq1TTEgpIs6hZSXcCt0Rk+QTCSvV19L5dCM
+         noY5hoXJuHmtJ9+fmDwtLu9VtXsxirjN4lno9rK3zOGPxqPFAyYRNd6VPUfqhk9P9e5r
+         1HJQZvoEh1OMpk9bn2WBBfQOG5D6z5orJEqfNRvYEeVW6TUuldp+4T8ayqocGlwjb7d/
+         ETt5ZFEqBxpa2xYhIYY2dJgT9ZLScb56ietYyvF+tsTydAP+J1zuiyjdXgkpuMKOiwBk
+         oskPtPJbckidlC992DsU8jzou3ODmmBzOypCechi1lSyje4bCL/kMrugs+OmvI7NJLQS
+         bCFA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=dz2crOFWGnc2tJ+5hQ8HTWioTwYzhB3xpGSgL65wUTY=;
-        b=1Kq/9LauJBhH0IrH6X5+/UeYobQcF1NeMjyeMzW8voP08VEAreRIVciu3Wcwiu57Cv
-         Jn1PF5t9ZfFQml5WItfFJRGyfa876yJf2mbLZurw8IjaCm3exvSQAP0MOlH7e3MA2h3H
-         c7On59HOnaQ5EVE5MVISIRNvTFiLfqLFlmmeQDpEULz9cRiNiXhLo1shOW1N4OkWgWek
-         hnJUTiQ2NfHlDEgt12qStDeC9/psg0p2tgiFthBQv4e0u4ZB9fwUyVdMUC6B2LlC5F6I
-         Xhs8mMUEwmXKutpcYiCsspzVM2Ie4g55LxRQCDVqM3AYR05jwO4OvBwdUFIpIKSV5nEv
-         H9mg==
-X-Gm-Message-State: AOAM530dgR2nZR9BVWbO5/ylKDdmrOwc/Qte4XPKurRKFj2IjrzhS//R
-        0CLv8u19I2E0H27TPFPlBlfThA==
-X-Google-Smtp-Source: ABdhPJyhm76mmw60HuLdnLYEnXvHtF5RCkTbMn+Kpn9N0N4Ki2TPnopccaMJ6t3VUM1zDG+1gIrq1w==
-X-Received: by 2002:adf:fd4a:0:b0:20a:cee3:5abf with SMTP id h10-20020adffd4a000000b0020acee35abfmr21761822wrs.522.1651765688972;
-        Thu, 05 May 2022 08:48:08 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=duIpxtiykCSeezrgTxT8A8q7XE7qrwoHIpE3IVHNv34=;
+        b=z1crtm+CYObPXkWa1p0D2DjlM334HNdYauKtfN29UH2bF58CzvwtAawLOTxp4TMJof
+         AOG1i918CpxQxxkau9En4QLD14uRrvj8WFh60nF3eWoIu2mrwxeAB+FVWROne40lc2Lr
+         54uPnL9QoKGmOzFYrehVXFcdmqJ733ex6Ht10S/b1FdkKGa2Q+zfjIgCRePXqx4IsGgW
+         aQmdQ6zQ9iImBX0E08P1XnrakpF0n3AfiHuo3nr2FjX07157ufOX18Cl2s2BJfvGKiDp
+         pwgCQCUo/CV9puk8P7B43aJil4tslrp1iryRuabCqvalTNDwd4vHz0BSsh/rAcDCr5Dk
+         j/Mw==
+X-Gm-Message-State: AOAM530XUsnVo/4g+dhxrQc+wBIHxd/y+ZYzykS0ZC1TzkZr4eDj6gHc
+        vUqh8l/uVpk3yeAhsRCMriR9sQ==
+X-Google-Smtp-Source: ABdhPJyHr3Zn6CRC5oyGbEZHHp296FsMl3T6au8NoxhUoWUVnxzNOa/YN3KoPSLfW+hy6vfVaIf/8A==
+X-Received: by 2002:adf:f50e:0:b0:20a:c54a:42b0 with SMTP id q14-20020adff50e000000b0020ac54a42b0mr21067440wro.511.1651765690220;
+        Thu, 05 May 2022 08:48:10 -0700 (PDT)
 Received: from localhost.localdomain (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id c14-20020adffb0e000000b0020c6fa5a797sm1518956wrr.91.2022.05.05.08.48.07
+        by smtp.gmail.com with ESMTPSA id c14-20020adffb0e000000b0020c6fa5a797sm1518956wrr.91.2022.05.05.08.48.09
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 May 2022 08:48:08 -0700 (PDT)
+        Thu, 05 May 2022 08:48:09 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Lee Jones <lee.jones@linaro.org>,
         Daniel Thompson <daniel.thompson@linaro.org>,
@@ -60,15 +60,17 @@ To:     Lee Jones <lee.jones@linaro.org>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-arm-msm@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 1/2] dt-bindings: leds: qcom-wled: fix number of addresses
-Date:   Thu,  5 May 2022 17:47:01 +0200
-Message-Id: <20220505154702.422108-1-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 2/2] arm64: dts: qcom: correct SPMI WLED register range encoding
+Date:   Thu,  5 May 2022 17:47:02 +0200
+Message-Id: <20220505154702.422108-2-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.32.0
+In-Reply-To: <20220505154702.422108-1-krzysztof.kozlowski@linaro.org>
+References: <20220505154702.422108-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -76,50 +78,55 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On PM660L, PMI8994 and PMI8998, the WLED has two address spaces.  This
-also fixes dtbs_check warnings like:
-
-  arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dtb: leds@d800: reg: [[55296], [55552]] is too long
+On PM660L, PMI8994 and PMI8998, the WLED has two address spaces and with
+size-cells=0, they should be encoded as two separate items.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- .../devicetree/bindings/leds/backlight/qcom-wled.yaml    | 9 ++++++++-
- 1 file changed, 8 insertions(+), 1 deletion(-)
+ arch/arm64/boot/dts/qcom/pm660l.dtsi  | 2 +-
+ arch/arm64/boot/dts/qcom/pmi8994.dtsi | 2 +-
+ arch/arm64/boot/dts/qcom/pmi8998.dtsi | 2 +-
+ 3 files changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/leds/backlight/qcom-wled.yaml b/Documentation/devicetree/bindings/leds/backlight/qcom-wled.yaml
-index 5d66c3e4def5..4c15693f7a01 100644
---- a/Documentation/devicetree/bindings/leds/backlight/qcom-wled.yaml
-+++ b/Documentation/devicetree/bindings/leds/backlight/qcom-wled.yaml
-@@ -26,7 +26,8 @@ properties:
-       - qcom,pm8150l-wled
+diff --git a/arch/arm64/boot/dts/qcom/pm660l.dtsi b/arch/arm64/boot/dts/qcom/pm660l.dtsi
+index cfef42353611..cf26432bb7ce 100644
+--- a/arch/arm64/boot/dts/qcom/pm660l.dtsi
++++ b/arch/arm64/boot/dts/qcom/pm660l.dtsi
+@@ -67,7 +67,7 @@ pmic@3 {
  
-   reg:
--    maxItems: 1
-+    minItems: 1
-+    maxItems: 2
+ 		pm660l_wled: leds@d800 {
+ 			compatible = "qcom,pm660l-wled";
+-			reg = <0xd800 0xd900>;
++			reg = <0xd800>, <0xd900>;
+ 			interrupts = <0x3 0xd8 0x1 IRQ_TYPE_EDGE_RISING>;
+ 			interrupt-names = "ovp";
+ 			label = "backlight";
+diff --git a/arch/arm64/boot/dts/qcom/pmi8994.dtsi b/arch/arm64/boot/dts/qcom/pmi8994.dtsi
+index 6e7c252568e6..81899fe17f2b 100644
+--- a/arch/arm64/boot/dts/qcom/pmi8994.dtsi
++++ b/arch/arm64/boot/dts/qcom/pmi8994.dtsi
+@@ -35,7 +35,7 @@ pmi8994_spmi_regulators: regulators {
  
-   default-brightness:
-     description: |
-@@ -171,6 +172,9 @@ allOf:
+ 		pmi8994_wled: wled@d800 {
+ 			compatible = "qcom,pmi8994-wled";
+-			reg = <0xd800 0xd900>;
++			reg = <0xd800>, <0xd900>;
+ 			interrupts = <3 0xd8 0x02 IRQ_TYPE_EDGE_RISING>;
+ 			interrupt-names = "short";
+ 			qcom,cabc;
+diff --git a/arch/arm64/boot/dts/qcom/pmi8998.dtsi b/arch/arm64/boot/dts/qcom/pmi8998.dtsi
+index 0fef5f113f05..ef29e80c442c 100644
+--- a/arch/arm64/boot/dts/qcom/pmi8998.dtsi
++++ b/arch/arm64/boot/dts/qcom/pmi8998.dtsi
+@@ -44,7 +44,7 @@ lab: lab {
  
-     then:
-       properties:
-+        reg:
-+          maxItems: 1
-+
-         qcom,current-boost-limit:
-           enum: [ 105, 385, 525, 805, 980, 1260, 1400, 1680 ]
-           default: 805
-@@ -189,6 +193,9 @@ allOf:
- 
-     else:
-       properties:
-+        reg:
-+          minItems: 2
-+
-         qcom,current-boost-limit:
-           enum: [ 105, 280, 450, 620, 970, 1150, 1300, 1500 ]
-           default: 970
+ 		pmi8998_wled: leds@d800 {
+ 			compatible = "qcom,pmi8998-wled";
+-			reg = <0xd800 0xd900>;
++			reg = <0xd800>, <0xd900>;
+ 			interrupts = <0x3 0xd8 0x1 IRQ_TYPE_EDGE_RISING>,
+ 				     <0x3 0xd8 0x2 IRQ_TYPE_EDGE_RISING>;
+ 			interrupt-names = "ovp", "short";
 -- 
 2.32.0
 
