@@ -2,63 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F4D151BB6C
-	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 11:07:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8031751BB82
+	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 11:10:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351498AbiEEJLH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 May 2022 05:11:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49790 "EHLO
+        id S1350392AbiEEJOF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 May 2022 05:14:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52456 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351349AbiEEJLD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 05:11:03 -0400
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED04A4BB89;
-        Thu,  5 May 2022 02:07:24 -0700 (PDT)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 24597HZP091484;
-        Thu, 5 May 2022 04:07:17 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1651741637;
-        bh=hlLDAumZ2FyEFKvNswfGzuvkZ9zLOVp1U5Zzfg0dQdM=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=YCRwO7NL6D8hhdQBkl/sZrtXEnR3KkdOB4fjlcv3RpC/ZhQDjF4cc9BRlo9buj8In
-         6hlWlH33c8I2/gX7h2aIQB8Gc0YzBMCvOrt6/fhkdayPFPUmx3nnjzZFYHYTaRsct/
-         p2RsoukRj1pmzSynAVTQSllgYTqyhbEmgDPePvKU=
-Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 24597HfH043673
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 5 May 2022 04:07:17 -0500
-Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Thu, 5
- May 2022 04:07:17 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Thu, 5 May 2022 04:07:17 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 24597FRK089687;
-        Thu, 5 May 2022 04:07:16 -0500
-From:   Rahul T R <r-ravikumar@ti.com>
-To:     <nm@ti.com>
-CC:     <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <tomi.valkeinen@ideasonboard.com>,
-        <laurent.pinchart@ideasonboard.com>, <kishon@ti.com>,
-        <a-bhatia1@ti.com>, <r-ravikumar@ti.com>
-Subject: [PATCH v2 2/2] arm64: dts: ti: k3-j721e-sk: Enable HDMI
-Date:   Thu, 5 May 2022 14:37:09 +0530
-Message-ID: <20220505090709.9252-3-r-ravikumar@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20220505090709.9252-1-r-ravikumar@ti.com>
-References: <20220505090709.9252-1-r-ravikumar@ti.com>
+        with ESMTP id S1351785AbiEEJOE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 05:14:04 -0400
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B4926140
+        for <devicetree@vger.kernel.org>; Thu,  5 May 2022 02:10:22 -0700 (PDT)
+Received: by mail-ej1-x629.google.com with SMTP id n10so7496525ejk.5
+        for <devicetree@vger.kernel.org>; Thu, 05 May 2022 02:10:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=c8YCaE+5K/dsPc+9iPR/du6PTroxvuxyU+b5yayfxT0=;
+        b=BR9/PiFUmueB+D/dPuLP5gschdU/Btt/V6TifIiCR9DF9iMhXyAll6y6HgiXExHK5f
+         LCVDrMZOR/Kn+bqkWVXn1PHgfgjAbOlqka3Iu1awF0njedHmUvHbvwbnMVW/mnuaJcTN
+         zSe0NjynuCAT9rJckKeozN4VOfdarIDSP2C4abZ3zH6fK8QCWzDJH3bFgx23pC0e10yX
+         a8nPQqMNzz4Ftzl9gTIDqvSo8tyjX09k6MqEhCJ71sPOqnY3ZuW59KgBVzv6f2V4Vdwp
+         VBbQ6bvT6rn4vslTrJSz8so4skmLZe5YuaKHws5ojTgR5418yqOhNzZUMdzZY3Xp84Ir
+         LPtg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=c8YCaE+5K/dsPc+9iPR/du6PTroxvuxyU+b5yayfxT0=;
+        b=AmjCefNQx6KbU/q7ulC7yRlLop3vndVBBdEtmY3To6cuLstGGys/0wOiQviblORy9A
+         s4XgVMe/s3CEQVfBWFERWjv07vXUbqTxXbmdktdql0/SsXNEIno5OCSaPPcL77r+a+od
+         9nv8EvN99xbp5EeGQeN59hxGjpBPuCzUWoD0KPdjmiQ0HHxwJ/io+8+slSPOlxDkFsYJ
+         Zl5g3/Y+dTkwlUzagtWfY0mdcaSCmb4w7PnR5opuAegNt3jp9YiHWanKCYffk1UMm8LY
+         lAkouyEBJWNgMb/p+tnQhqus+EaQTCxuu6L7ZzdIeFFvfltTmXAF0OuQEWMPj/9sFP0r
+         bnyA==
+X-Gm-Message-State: AOAM531P27AO4lmowYJAi6kng9RJtxeDXrPV+prdagUdC3ryL0yUNBJR
+        fS0EQ748yTop1QUGHk43ToUyWA==
+X-Google-Smtp-Source: ABdhPJz7tsXlNRMPlAktkJhnba7TvMyZHIV5xs8SGanC49KbwY/dkQKKC6fYnLD9+ao8S0FbRuugvg==
+X-Received: by 2002:a17:907:1c24:b0:6f4:ff62:a393 with SMTP id nc36-20020a1709071c2400b006f4ff62a393mr643548ejc.154.1651741820790;
+        Thu, 05 May 2022 02:10:20 -0700 (PDT)
+Received: from [192.168.0.217] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id el22-20020a170907285600b006f3ef214e1dsm511229ejc.131.2022.05.05.02.10.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 05 May 2022 02:10:20 -0700 (PDT)
+Message-ID: <e0af5143-7fe1-fa68-25c0-eb81d695844a@linaro.org>
+Date:   Thu, 5 May 2022 11:10:19 +0200
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH] dt-bindings: remoteproc: Fix phandle-array parameters
+ description
+Content-Language: en-US
+To:     Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>
+Cc:     devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org,
+        linux-remoteproc@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220504094143.1272200-1-arnaud.pouliquen@foss.st.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220504094143.1272200-1-arnaud.pouliquen@foss.st.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -67,126 +81,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add node for dvi bridge and the endpoint nodes to
-describe connection from
-DSS => TI TFP410 DPI-to-DVI Bridge => HDMI connector.
-Also add the required pinmux for HDMI hotplug and
-powerdown
+On 04/05/2022 11:41, Arnaud Pouliquen wrote:
+> Replace the FIXME by appropriate description.
+> 
+> Fixes: 39bd2b6a3783 ("dt-bindings: Improve phandle-array schemas")
+> Signed-off-by: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
+> ---
+>  .../bindings/remoteproc/st,stm32-rproc.yaml      | 16 ++++++++--------
 
-Signed-off-by: Rahul T R <r-ravikumar@ti.com>
----
- arch/arm64/boot/dts/ti/k3-j721e-sk.dts | 80 +++++++++++++++++++++++++-
- 1 file changed, 79 insertions(+), 1 deletion(-)
+Please add "st,stm32-rproc" as last prefix in the subject. With that:
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j721e-sk.dts b/arch/arm64/boot/dts/ti/k3-j721e-sk.dts
-index 07b1e40fbc47..80358cba6954 100644
---- a/arch/arm64/boot/dts/ti/k3-j721e-sk.dts
-+++ b/arch/arm64/boot/dts/ti/k3-j721e-sk.dts
-@@ -225,6 +225,59 @@
- 			};
- 		};
- 	};
-+
-+	hdmi-connector {
-+		compatible = "hdmi-connector";
-+		label = "hdmi";
-+		type = "a";
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&hdmi_hpd_pins_default>;
-+
-+		ddc-i2c-bus = <&main_i2c1>;
-+
-+		/* HDMI_HPD */
-+		hpd-gpios = <&main_gpio1 0 GPIO_ACTIVE_HIGH>;
-+
-+		port {
-+			hdmi_connector_in: endpoint {
-+				remote-endpoint = <&tfp410_out>;
-+			};
-+		};
-+	};
-+
-+	dvi-bridge {
-+		compatible = "ti,tfp410";
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&hdmi_pdn_pins_default>;
-+
-+		powerdown-gpios = <&main_gpio0 127 GPIO_ACTIVE_LOW>;
-+		ti,deskew = <0>;
-+
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			port@0 {
-+				reg = <0>;
-+
-+				tfp410_in: endpoint {
-+					remote-endpoint = <&dpi1_out>;
-+					pclk-sample = <1>;
-+				};
-+			};
-+
-+			port@1 {
-+				reg = <1>;
-+
-+				tfp410_out: endpoint {
-+					remote-endpoint =
-+						<&hdmi_connector_in>;
-+				};
-+			};
-+		};
-+	};
- };
- 
- &main_pmx0 {
-@@ -329,6 +382,18 @@
- 		>;
- 	};
- 
-+	hdmi_hpd_pins_default: hdmi-hpd-pins-default {
-+		pinctrl-single,pins = <
-+			J721E_IOPAD(0x204, PIN_INPUT, 7) /* (AD5) UART1_RTSn.GPIO1_0 */
-+		>;
-+	};
-+
-+	hdmi_pdn_pins_default: hdmi-pdn-pins-default {
-+		pinctrl-single,pins = <
-+			J721E_IOPAD(0x200, PIN_INPUT, 7) /* (AC4) UART1_CTSn.GPIO0_127 */
-+		>;
-+	};
-+
- 	/* Reset for M.2 E Key slot on PCIe0  */
- 	ekey_reset_pins_default: ekey-reset-pns-pins-default {
- 		pinctrl-single,pins = <
-@@ -733,11 +798,24 @@
- };
- 
- &dss_ports {
--	port {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	port@0  {
-+		reg = <0>;
-+
- 		dpi0_out: endpoint {
- 			remote-endpoint = <&dp0_in>;
- 		};
- 	};
-+
-+	port@1 {
-+		reg = <1>;
-+
-+		dpi1_out: endpoint {
-+			remote-endpoint = <&tfp410_in>;
-+		};
-+	};
- };
- 
- &dp0_ports {
--- 
-2.17.1
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
+
+Best regards,
+Krzysztof
