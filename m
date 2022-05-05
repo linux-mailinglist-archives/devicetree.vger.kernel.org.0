@@ -2,144 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0F15F51C552
-	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 18:47:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2E93E51C576
+	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 18:54:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1378033AbiEEQvR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 May 2022 12:51:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41428 "EHLO
+        id S1381951AbiEEQ5t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 May 2022 12:57:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46414 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244828AbiEEQvQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 12:51:16 -0400
-Received: from mail-oo1-xc33.google.com (mail-oo1-xc33.google.com [IPv6:2607:f8b0:4864:20::c33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 573EB443E0;
-        Thu,  5 May 2022 09:47:36 -0700 (PDT)
-Received: by mail-oo1-xc33.google.com with SMTP id m3-20020a4ac683000000b0035f13dde9ccso810942ooq.6;
-        Thu, 05 May 2022 09:47:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=mZ1v1Dle2stU/b+5xs8mW34KpIG2CizYWSGqBNU2Bz8=;
-        b=kIU1IzWI2h67CczNZjDrAqOu+7amMiU9BNzBUsm9+8eUorQIgmZj8BUaj81G12rNlE
-         68e+vrj64mqY2psH6XqJCnztqqa0PQYdUiFVwlZFCUdnB10Eq3yPNuX2et/Qb7IiyrBz
-         y4P4CTgj9qHdFctipJQQLZooa5lZ6p9+t/FJlW5OsvmErxS/8SHDugMU5U/PNC8J3vyD
-         1HBZIl3MmaWUixyDAUco2zkiEwyySzadAX4fbQwpaHfhPJt5wbSxkV0ayhNZoX6n7e5a
-         HyZWZIVKJQiHg1IN3LnTM/Yup1dPA9d0emXF3/6nbwpE3BNPdT1+QaKsJavswdrAetPZ
-         rYkA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=mZ1v1Dle2stU/b+5xs8mW34KpIG2CizYWSGqBNU2Bz8=;
-        b=aAnACA9isyJLX2Xg2uQJh+TDgOWpBcQTTM5m7EeXLU1Cz+FHBjBs93CdvKzaFiv3pW
-         wYfy1mrate6Ht3hKXfo2zKklHVNILRrCXxPhB2M6bdL4upqZZIaCjwyW6xlT+mFY2eeS
-         2jbufSTseuioo+IPYotC3UtkgXtp+4RTmnTgLpgrpXYTk1PWg+7hSZDMpmmOv6bZjpcF
-         KwarQ3noOkmk6JHyUzqw9BUSg5aMCxukn/eAMmVD3Oepx2I9eNqD3dgV4eWzavjO0fo/
-         o6uP8GnIWVWRzl6AngM8knNDxTaGMNwa1JKw8p0iPraNAOiLsreK5UH8/amlJBTV8D79
-         Vasw==
-X-Gm-Message-State: AOAM531KlSFacRHsNiiUgUaIywXcIpDxVxFOd2gJNOZu8ubqflCPm+cS
-        wZGryqDlYgDA5GDCNUKg8Dg=
-X-Google-Smtp-Source: ABdhPJx/mBD6xFVnxfzAwXo9hN2FbyZEsHhGERFB1m4oe7WTeGkz/+OsH6gYEs3iDqleRPT+1WANlg==
-X-Received: by 2002:a4a:b289:0:b0:35e:7d6e:97eb with SMTP id k9-20020a4ab289000000b0035e7d6e97ebmr9583599ooo.57.1651769255626;
-        Thu, 05 May 2022 09:47:35 -0700 (PDT)
-Received: from [192.168.1.145] ([207.188.167.132])
-        by smtp.gmail.com with ESMTPSA id t28-20020a05683019fc00b0060603221260sm799519ott.48.2022.05.05.09.47.31
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 05 May 2022 09:47:35 -0700 (PDT)
-Message-ID: <26c2fb0c-e58a-5864-4256-f60f948ca634@gmail.com>
-Date:   Thu, 5 May 2022 18:47:30 +0200
+        with ESMTP id S233268AbiEEQ5s (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 12:57:48 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99D3D57B15;
+        Thu,  5 May 2022 09:54:08 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 5AF10B82E0B;
+        Thu,  5 May 2022 16:54:07 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C6051C385A4;
+        Thu,  5 May 2022 16:54:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1651769646;
+        bh=p+Bv32mI3hSoH46S0grONiKmXRZCUz+77zQaW/pFQpI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=ge893G0ricbEaTvms2L5/YKhHTsgFuJ/7NLqXN3SX8NpXoG2SV4/QAnKg1fa109xu
+         k7OgZmCSKyvaWwnM3hHRoJ7fcDiiDzSqvYkeAQPgZqW9PoY6NESDTdv+bgwuPCaE6R
+         2c3iK+pMen4QnzLomiBDyIhvf+zfmylWCC7WvWpZC5MYR7MkJ47Xn8s42+jHPDU2Ar
+         3Vn2VIByNoahv8T79eZxtwcpkmm4bl0dxt6r/UIY/LwKtlSJ/LKOOlpIewpoxoR5un
+         jdfKjFww+mxhzHURhRk8F2TWG51rnNI922vQ/Y5tjFIgC5eeeBLRfY+wMN/sFcMtTH
+         oxd028ySdMxMw==
+Date:   Thu, 5 May 2022 09:54:00 -0700
+From:   Mike Rapoport <rppt@kernel.org>
+To:     Faiyaz Mohammed <quic_faiyazm@quicinc.com>
+Cc:     quic_vjitta@quicinc.com, karahmed@amazon.de, qperret@google.com,
+        robh@kernel.org, akpm@linux-foundation.org, linux-mm@kvack.org,
+        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        frowand.list@gmail.com, devicetree@vger.kernel.org
+Subject: Re: [PATCH] mm: memblock: avoid to create memmap for memblock nomap
+ regions
+Message-ID: <YnQBKPWtPa87y4NA@kernel.org>
+References: <1649704172-13181-1-git-send-email-quic_faiyazm@quicinc.com>
+ <YlW2TO0O8qDHpkGW@kernel.org>
+ <7b18bea8-b996-601d-f490-cb8aadfffa1b@quicinc.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH v2 1/2] dt-bindings: ARM: Mediatek: Remove msdc binding of
- MT8192 clock
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>, matthias.bgg@kernel.org
-Cc:     mturquette@baylibre.com, sboyd@kernel.org,
-        allen-kh.cheng@mediatek.com, weiyi.lu@mediatek.com,
-        chun-jie.chen@mediatek.com, linux-kernel@vger.kernel.org,
-        ikjn@chromium.org, miles.chen@mediatek.com,
-        linux-mediatek@lists.infradead.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-clk@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        angelogioacchino.delregno@collabora.com,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        devicetree@vger.kernel.org
-References: <20220429123133.28869-1-matthias.bgg@kernel.org>
- <20220429123133.28869-2-matthias.bgg@kernel.org>
- <YnGjScfQA9axBYBO@robh.at.kernel.org>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <YnGjScfQA9axBYBO@robh.at.kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <7b18bea8-b996-601d-f490-cb8aadfffa1b@quicinc.com>
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 03/05/2022 23:48, Rob Herring wrote:
-> On Fri, Apr 29, 2022 at 02:31:31PM +0200, matthias.bgg@kernel.org wrote:
->> From: Matthias Brugger <matthias.bgg@gmail.com>
->>
->> The msdc gate is part of the MMC driver. Delete the binding description
->> of this node.
+On Thu, May 05, 2022 at 08:46:15PM +0530, Faiyaz Mohammed wrote:
 > 
-> An ABI break is okay because ...?
+> On 4/12/2022 10:56 PM, Mike Rapoport wrote:
+> > On Tue, Apr 12, 2022 at 12:39:32AM +0530, Faiyaz Mohammed wrote:
+> >> This 'commit 86588296acbf ("fdt: Properly handle "no-map" field in the
+> >> memory region")' is keeping the no-map regions in memblock.memory with
+> >> MEMBLOCK_NOMAP flag set to use no-map memory for EFI using memblock api's,
+> >> but during the initialization sparse_init mark all memblock.memory as
+> >> present using for_each_mem_pfn_range, which is creating the memmap for
+> >> no-map memblock regions. To avoid it skiping the memblock.memory regions
+> >> set with MEMBLOCK_NOMAP set and with this change we will be able to save
+> >> ~11MB memory for ~612MB carve out.
+> > The MEMBLOCK_NOMAP is very fragile and caused a lot of issues already. I
+> > really don't like the idea if adding more implicit assumptions about how
+> > NOMAP memory may or may not be used in a generic iterator function.
+> 
+> Sorry for delayed response.
+> Yes, it is possible that implicit assumption can create
+> misunderstanding. How about adding command line option and control the
+> no-map region in fdt.c driver, to decide whether to keep "no-map" region
+> with NOMAP flag or remove?. Something like below
+
+I really don't like memblock_remove() for such cases.
+Pretending there is a hole when there is an actual DRAM makes things really
+hairy when it comes to memory map and page allocator initialization.
+You wouldn't want to trade system stability and random memory corruptions
+for 11M of "saved" memory.
+ 
+> --- a/drivers/of/fdt.c
+> +++ b/drivers/of/fdt.c
+> @@ -1180,8 +1180,10 @@ int __init __weak
+> early_init_dt_reserve_memory_arch(phys_addr_t base,
+>                  */
+>                 if (memblock_is_region_reserved(base, size))
+>                         return -EBUSY;
+> -
+> -               return memblock_mark_nomap(base, size);
+> +               if (remove_nomap_region)
+> +                       return memblock_remove(base, size);
+> +               else
+> +                       return memblock_mark_nomap(base, size);
+> Thanks and regards,
+> Mohammed Faiyaz
 > 
 
-Because the code controlling the clock gate was moved to the consumer. This node 
-did never ever represent any working implementation of a peripheral. Just a 
-lonely clock gate that wasn't used.
-
-Regards,
-Matthias
-
->> Signed-off-by: Matthias Brugger <matthias.bgg@gmail.com>
->>
->> ---
->>
->> Changes in v2:
->> - Delete compatible in binding descprition as well
->>
->>   .../bindings/arm/mediatek/mediatek,mt8192-clock.yaml      | 8 --------
->>   1 file changed, 8 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt8192-clock.yaml b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt8192-clock.yaml
->> index c8c67c033f8c..b57cc2e69efb 100644
->> --- a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt8192-clock.yaml
->> +++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt8192-clock.yaml
->> @@ -24,7 +24,6 @@ properties:
->>             - mediatek,mt8192-imp_iic_wrap_w
->>             - mediatek,mt8192-imp_iic_wrap_n
->>             - mediatek,mt8192-msdc_top
->> -          - mediatek,mt8192-msdc
->>             - mediatek,mt8192-mfgcfg
->>             - mediatek,mt8192-imgsys
->>             - mediatek,mt8192-imgsys2
->> @@ -107,13 +106,6 @@ examples:
->>           #clock-cells = <1>;
->>       };
->>   
->> -  - |
->> -    msdc: clock-controller@11f60000 {
->> -        compatible = "mediatek,mt8192-msdc";
->> -        reg = <0x11f60000 0x1000>;
->> -        #clock-cells = <1>;
->> -    };
->> -
->>     - |
->>       mfgcfg: clock-controller@13fbf000 {
->>           compatible = "mediatek,mt8192-mfgcfg";
->> -- 
->> 2.34.1
->>
->>
+-- 
+Sincerely yours,
+Mike.
