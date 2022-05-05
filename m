@@ -2,79 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B655451C0F1
-	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 15:36:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D364551C0FE
+	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 15:40:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351918AbiEENih (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 May 2022 09:38:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51148 "EHLO
+        id S1379878AbiEENoQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 May 2022 09:44:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54858 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233559AbiEENih (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 09:38:37 -0400
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2F1B1AD99;
-        Thu,  5 May 2022 06:34:57 -0700 (PDT)
-Received: by mail-ej1-x629.google.com with SMTP id l18so8765672ejc.7;
-        Thu, 05 May 2022 06:34:57 -0700 (PDT)
+        with ESMTP id S229620AbiEENnr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 09:43:47 -0400
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF52956C2C;
+        Thu,  5 May 2022 06:40:06 -0700 (PDT)
+Received: by mail-wr1-x42d.google.com with SMTP id u3so6179836wrg.3;
+        Thu, 05 May 2022 06:40:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=message-id:date:from:to:cc:subject:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=UPQKk6k7iZjBvDBrSwiqjZZBhXacN0AVsfOq9/Z93RE=;
-        b=P58lRPzo06h3imubgpZe523Pph7le52PJEYuSZv1mDJnO16H81MRvQJ9KuwDonmwBD
-         6k1GU7Xesh2MZcdOES8S67Mt8O5z1RUY3xMZMv4gmvJ5hv5RcnAVkE09FNcEKYfhgHBn
-         rtnuS6JjnDFOeObCU4rTGJ2M3jKcNegqxXAzgG/Ha9rdwBKCTl/Ce9w1Vq7qOhTfMdEQ
-         144K73yQcNmW4de48pzWMWqZsM0qPMw/E9ylQm1XHD8HfBUsnxAMptpN7ycL58Pehpps
-         08XeL4BUqSutr5bwYeXMaF184+KbNa+Um0wIY6T1UmYNgwpDeE9eDMc1Ptd2/EMQZuk5
-         qo/w==
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=Z1RR59cI7xuB4wHEsyPKJMalbJOLkbwR60Nf/1GYehA=;
+        b=ndpgFCn1qTpGhnYt6AJHLLEWJlQPdUMvg62egEiojKObjEKE6FEJzqy6ysaSTXnW+c
+         39A4IXst24GMi+5AuVkfQN15o6O1nTSncpaAri2VwU//cHQS/1y1bpHqkwxymohUQsMy
+         S7wxs09NfXgyGf1uoENAa54UlPTrAtVVdsaV2CffmVoIcn+umOfBQRugbByiyd3Hjen9
+         0rC61Vzo7wsAW4hDQHGMPdb+cscQM5+HptSwTHt4KPxmOiNjKnA4tWJtqnmNEHdrlti3
+         fq39KCHk4Z4/01z2TpJrV0KDpn7/FCGgSJ3ktpOfCsY2b+g0urMPWeLPnVmWZg6p5Mrj
+         D5Ow==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:from:to:cc:subject:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=UPQKk6k7iZjBvDBrSwiqjZZBhXacN0AVsfOq9/Z93RE=;
-        b=DLdIc33rIPxsq+EU6NmPKgSnnvZlYjuRnRCeyxFyhOIZa/RP4/9QH0QEDZSjYrRooO
-         aDup8kZuWOx5NBQELTs3pA8Y5hjVf1V1KbyZq5Y1op0g7EXPOCe8xgRM3QpiZpmN3HeF
-         3r1PHoOGPUWy9svTm06bt15l5/eZEMAKReqDVIaq0eEJfHhhm4Y6+KAT5kU7Z3pYegDx
-         oFC+zrm5FhhP+nFu/abJSAnq1AC0nx9arqOpt8zjnLiiPlFqcoeBXq+MtzW5YJJ0wllb
-         gfqijl5rgHjmQhuLt9Wws99TTvhDhWa5PbzZ7xCGaAQpHEJYQfZni+fG5ZVh0JurwPvB
-         yI3A==
-X-Gm-Message-State: AOAM5319AtvbWFbYajiAdevF9++MC4NdyoTeZuNQIMkA9vwMZ4dt9bzv
-        foTjcCNb16vO+lZGMJ1LWJP+7Flf23w=
-X-Google-Smtp-Source: ABdhPJzPbgp1O6nSwALSCxsYipeQz7C8LafxJDsmZA0CjnA+ucU/sR54+B09i+/QQGyS79tGfcnk2A==
-X-Received: by 2002:a17:906:a08b:b0:6b9:2e20:f139 with SMTP id q11-20020a170906a08b00b006b92e20f139mr27451391ejy.463.1651757695463;
-        Thu, 05 May 2022 06:34:55 -0700 (PDT)
-Received: from Ansuel-xps. (93-42-70-190.ip85.fastwebnet.it. [93.42.70.190])
-        by smtp.gmail.com with ESMTPSA id mm27-20020a170906cc5b00b006f3ef214e1csm758571ejb.130.2022.05.05.06.34.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 May 2022 06:34:54 -0700 (PDT)
-Message-ID: <6273d27e.1c69fb81.95534.43c8@mx.google.com>
-X-Google-Original-Message-ID: <YnPSfWaN4LlOfwjD@Ansuel-xps.>
-Date:   Thu, 5 May 2022 15:34:53 +0200
-From:   Ansuel Smith <ansuelsmth@gmail.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Jonathan Corbet <corbet@lwn.net>, Pavel Machek <pavel@ucw.cz>,
-        John Crispin <john@phrozen.org>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-doc@vger.kernel.org, linux-leds@vger.kernel.org
-Subject: Re: [RFC PATCH v6 11/11] dt-bindings: net: dsa: qca8k: add LEDs
- definition example
-References: <20220503151633.18760-1-ansuelsmth@gmail.com>
- <20220503151633.18760-12-ansuelsmth@gmail.com>
- <YnK0xHOkfXI+rgzs@robh.at.kernel.org>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=Z1RR59cI7xuB4wHEsyPKJMalbJOLkbwR60Nf/1GYehA=;
+        b=To9W9AKz33r++Y2P5jV651DKHcgWjgya0VQIuhxTDBBTjBfktOsKr/etYHjSk9VcSh
+         YGbOsmeTeI3ipoptbj+1s/JenSuvcx8mzRwh9YE7UMJbyRF8wdj0L3PHYoqrwtbecvZL
+         y6OrQJ5Ga3qDMRpMo+HHq8TGpbbND77Ws+FT6lHlCjGe5n6e44m+5oTCR168zI8s3S6c
+         219x56BhmaDgkMOb6lVdjiF+OzMTaEkBK+yD9aZLMM2Em8qu8KGy2dHgJbv8ZXalZmvk
+         33zSJ36LMguW4Z50rpJ06YBHzycTsjeLUya0gLC6kMs/w1BcnS0IV0qOeqgRAZCw7TMb
+         a5ew==
+X-Gm-Message-State: AOAM53019vFQzIE+AzhciMIXOk6XsHXm28UvYV179UmgOVU5D5Qlthhg
+        hjCq0QpjN4BoX1AzldhRtOg=
+X-Google-Smtp-Source: ABdhPJyHaFZllmZOyM64fdf7fRq3DCLuUeYU8LlG4ML06VUn++MVFboIpiIVZAXJFIk1tqRN2CMwlQ==
+X-Received: by 2002:adf:e40f:0:b0:20a:d221:b00c with SMTP id g15-20020adfe40f000000b0020ad221b00cmr20911209wrm.11.1651758005257;
+        Thu, 05 May 2022 06:40:05 -0700 (PDT)
+Received: from [192.168.1.145] ([207.188.167.132])
+        by smtp.gmail.com with ESMTPSA id t16-20020a05600c2f9000b003942a244f50sm6912572wmn.41.2022.05.05.06.40.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 05 May 2022 06:40:04 -0700 (PDT)
+Message-ID: <1b42b5aa-2020-b545-72ab-96ec14ef454a@gmail.com>
+Date:   Thu, 5 May 2022 15:40:03 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YnK0xHOkfXI+rgzs@robh.at.kernel.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH v2] arm64: dts: mt8192: Follow binding order for SCP
+ registers
+Content-Language: en-US
+To:     =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
+        <nfraprado@collabora.com>
+Cc:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, kernel@collabora.com,
+        Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org
+References: <20220504214516.2957504-1-nfraprado@collabora.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+In-Reply-To: <20220504214516.2957504-1-nfraprado@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -83,68 +80,43 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 04, 2022 at 12:15:48PM -0500, Rob Herring wrote:
-> On Tue, May 03, 2022 at 05:16:33PM +0200, Ansuel Smith wrote:
-> > Add LEDs definition example for qca8k using the offload trigger as the
-> > default trigger and add all the supported offload triggers by the
-> > switch.
-> > 
-> > Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
-> > ---
-> >  .../devicetree/bindings/net/dsa/qca8k.yaml    | 20 +++++++++++++++++++
-> >  1 file changed, 20 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/net/dsa/qca8k.yaml b/Documentation/devicetree/bindings/net/dsa/qca8k.yaml
-> > index f3c88371d76c..9b46ef645a2d 100644
-> > --- a/Documentation/devicetree/bindings/net/dsa/qca8k.yaml
-> > +++ b/Documentation/devicetree/bindings/net/dsa/qca8k.yaml
-> > @@ -65,6 +65,8 @@ properties:
-> >                   internal mdio access is used.
-> >                   With the legacy mapping the reg corresponding to the internal
-> >                   mdio is the switch reg with an offset of -1.
-> > +                 Each phy have at least 3 LEDs connected and can be declared
+
+
+On 04/05/2022 23:45, Nícolas F. R. A. Prado wrote:
+> The dt-binding for SCP documents the reg-names order as sram, cfg,
+> l1tcm. Update the SCP node on the mt8192 devicetree to follow that
+> order, which gets rid of a dtbs_check warning. This doesn't change any
+> behavior since the SCP driver accesses the memory regions through the
+> names anyway.
 > 
-> s/at least/up to/ ?
+> Fixes: c63556ec6bfe ("arm64: dts: mt8192: Add SCP node")
+> Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
 > 
-> Or your example is wrong with only 2.
->
 
-Up to. Internally the regs are there but 99% of the times OEM just
-connect 2 of 3 LEDs. Will fix. 
+Applied thanks!
 
-> > +                 using the standard LEDs structure.
-> >  
-> >  patternProperties:
-> >    "^(ethernet-)?ports$":
-> > @@ -287,6 +289,24 @@ examples:
-> >  
-> >                  internal_phy_port1: ethernet-phy@0 {
-> >                      reg = <0>;
-> > +
-> > +                    leds {
-> > +                        led@0 {
-> > +                            reg = <0>;
-> > +                            color = <LED_COLOR_ID_WHITE>;
-> > +                            function = LED_FUNCTION_LAN;
-> > +                            function-enumerator = <1>;
-> > +                            linux,default-trigger = "netdev";
-> > +                        };
-> > +
-> > +                        led@1 {
-> > +                            reg = <1>;
-> > +                            color = <LED_COLOR_ID_AMBER>;
-> > +                            function = LED_FUNCTION_LAN;
-> > +                            function-enumerator = <1>;
-> > +                            linux,default-trigger = "netdev";
-> > +                        };
-> > +                    };
-> >                  };
-> >  
-> >                  internal_phy_port2: ethernet-phy@1 {
-> > -- 
-> > 2.34.1
-> > 
-> > 
-
--- 
-	Ansuel
+> ---
+> 
+> Changes in v2:
+> - Added missing Fixes tag
+> 
+>   arch/arm64/boot/dts/mediatek/mt8192.dtsi | 6 +++---
+>   1 file changed, 3 insertions(+), 3 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+> index 26dbe9ecc528..733aec2e7f77 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+> @@ -699,9 +699,9 @@ spi7: spi@1101e000 {
+>   		scp: scp@10500000 {
+>   			compatible = "mediatek,mt8192-scp";
+>   			reg = <0 0x10500000 0 0x100000>,
+> -			      <0 0x10700000 0 0x8000>,
+> -			      <0 0x10720000 0 0xe0000>;
+> -			reg-names = "sram", "l1tcm", "cfg";
+> +			      <0 0x10720000 0 0xe0000>,
+> +			      <0 0x10700000 0 0x8000>;
+> +			reg-names = "sram", "cfg", "l1tcm";
+>   			interrupts = <GIC_SPI 435 IRQ_TYPE_LEVEL_HIGH 0>;
+>   			clocks = <&infracfg CLK_INFRA_SCPSYS>;
+>   			clock-names = "main";
