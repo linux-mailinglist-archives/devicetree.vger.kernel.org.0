@@ -2,74 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8810051B957
-	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 09:41:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 59D0E51B872
+	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 09:08:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345503AbiEEHpV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 May 2022 03:45:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52204 "EHLO
+        id S245588AbiEEHM3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 May 2022 03:12:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49888 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345513AbiEEHpU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 03:45:20 -0400
-X-Greylist: delayed 2128 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 05 May 2022 00:41:41 PDT
-Received: from ao2.it (mail.ao2.it [92.243.12.208])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0FDBF1C901;
-        Thu,  5 May 2022 00:41:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=ao2.it; s=20180927;
-        h=Content-Transfer-Encoding:Content-Type:Mime-Version:References:In-Reply-To:Message-Id:Subject:Cc:To:From:Date; bh=lond+a4bCQAxVhPAjkVW6lgP11E9zMPB6gW9cqz7d/E=;
-        b=l8zf/DF4MpbmMcJgRI2PTtuY8nJaaecd/L0lmGc9YmBZLvnI0bVSPdKQvqOaTVVGXCL3zXjyh03H7yCXfw9EK0LCRSR7exIkKoCaFXhPLMU/nYUy2kYQudwVS6rpqUquwqABeOGvTy4ewkm9v0Mn5RtKjsw/MsiXTMNxkUqVQaJI4T08OOLag+4VJDRSyhfjG34upId10X7/0GSqMiqqGoIBc0T3Trnybc0KTyeqK9BXmLHDpgAZ143kljb1/SBi/dRLnEu0mGWs9zu2jf9F7mZ+JEcExi9Q5xRSGVj0cnz5sFWFsYai4d7fkvjogwBR2UBCZKEkd++d9JUq8aXViw==;
-Received: from localhost ([127.0.0.1] helo=jcn.localdomain)
-        by ao2.it with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.84_2)
-        (envelope-from <ao2@ao2.it>)
-        id 1nmVYP-0001vx-Py; Thu, 05 May 2022 09:05:37 +0200
-Date:   Thu, 5 May 2022 09:06:03 +0200
-From:   Antonio Ospite <ao2@ao2.it>
-To:     Pavel Machek <pavel@ucw.cz>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH 1/3] dt-bindings: leds: Add regulator-led binding
-Message-Id: <20220505090603.a9b902a2c9e51088c932a164@ao2.it>
-In-Reply-To: <20220504174229.GC8725@duo.ucw.cz>
-References: <20220404203522.2068071-1-linus.walleij@linaro.org>
-        <20220504174229.GC8725@duo.ucw.cz>
-X-Mailer: Sylpheed 3.7.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
-X-Face: z*RaLf`X<@C75u6Ig9}{oW$H;1_\2t5)({*|jhM<pyWR#k60!#=#>/Vb;]yA5<GWI5`6u&+
- ;6b'@y|8w"wB;4/e!7wYYrcqdJFY,~%Gk_4]cq$Ei/7<j&N3ah(m`ku?pX.&+~:_/wC~dwn^)MizBG !pE^+iDQQ1yC6^,)YDKkxDd!T>\I~93>J<_`<4)A{':UrE
-Mime-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        with ESMTP id S245580AbiEEHM2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 03:12:28 -0400
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 674CE47557
+        for <devicetree@vger.kernel.org>; Thu,  5 May 2022 00:08:49 -0700 (PDT)
+Received: by mail-ed1-x52a.google.com with SMTP id d6so4126931ede.8
+        for <devicetree@vger.kernel.org>; Thu, 05 May 2022 00:08:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=duYWT/Kl8tiyZtY/aESu/b4/GiVt1L4PnTvoWa73yYM=;
+        b=OMIT8mlwarcjmie4694HkB4wpke5YY8WBP2MY8g4bLOhmHgVSsCOJdfQhpfyE6iRDU
+         +73LfA2ddxMyesirBykiRBtgBuPzUOxclMbRQZ7Bvl6t+gTtInjsOYUhPUBFYbU6sFD/
+         8/cTZJnvxHjoosOHQanxNdidtKFkdILDJqnSUBsZCDL4VPcxkSuvMh+udrY6XoW9ZezI
+         2I7f+6XCs+I1N81i15+RMD7o+J0GlpAAwbjfo1vP0NY9i+yDOFRp3EZNhzxcmFqKgb5l
+         UomDj4aeEPWS0Nqd+OXyIsO9QG6uOGXJboJIFpVKQQeFLue9vOZywAcamtVjNLXeOr4h
+         bA4A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=duYWT/Kl8tiyZtY/aESu/b4/GiVt1L4PnTvoWa73yYM=;
+        b=PfAwNGJl+Rttos9IauLFFBxobYITshuwvrYXDQ2+PEvXtoZPxTWEf0W2ZmYTbxt411
+         uZm4mt8O8lNAcXr1EHpSNkS8NYnn9j9Y6b2Tx/IO3UiHMcEv4l6D0q9OTmD5W8StaExd
+         6harKBHz5bBP/QXCcAzu4nuiHgVVheaQOWU/pLoFSbE0PuVUFtUibpgL9fBI039N58IW
+         Mjl+KJyhBFkEMghg1+Wo7mLGrgbmCJgvYH565dy7PAOAlRt/229cNsBLzNKHE/e6/dgf
+         OUeWfdnRG1sgY8KZ/ygLxXjb/o+C+WiWxOFszEWZTU4+5hvkn2iNO3ukv+yBvIHLZaZ1
+         1ZDw==
+X-Gm-Message-State: AOAM533zbNmvMFNsw0GlQd5s12yzkvYMAezXlUBKNaVh82grEgG/b0iE
+        Fv0/BoIM+3KR1U/UEL+KqJYxpBDQnoM0iy5M
+X-Google-Smtp-Source: ABdhPJxXjwWDCwEVFJTt30OZtNvS3vZ90x+EBahDGCjmESxtkKHS4Jd1qRjgA1LECWkX1FLjJKarjw==
+X-Received: by 2002:a05:6402:2932:b0:425:d7b3:e0d1 with SMTP id ee50-20020a056402293200b00425d7b3e0d1mr28203271edb.141.1651734527881;
+        Thu, 05 May 2022 00:08:47 -0700 (PDT)
+Received: from localhost.localdomain (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id b4-20020a0564021f0400b0042617ba63ccsm394386edb.86.2022.05.05.00.08.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 05 May 2022 00:08:47 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Tomasz Figa <tomasz.figa@gmail.com>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Chanho Park <chanho61.park@samsung.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Sam Protsenko <semen.protsenko@linaro.org>
+Subject: Re: (subset) [PATCH v3 10/12] arm64: dts: exynosautov9: add initial cmu clock nodes
+Date:   Thu,  5 May 2022 09:08:43 +0200
+Message-Id: <165173452272.31721.8927188974111368088.b4-ty@linaro.org>
+X-Mailer: git-send-email 2.32.0
+In-Reply-To: <20220504075154.58819-11-chanho61.park@samsung.com>
+References: <20220504075154.58819-1-chanho61.park@samsung.com> <CGME20220504075004epcas2p44c3c0246988d133a5da1fdfd2f17d0b9@epcas2p4.samsung.com> <20220504075154.58819-11-chanho61.park@samsung.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 4 May 2022 19:42:29 +0200
-Pavel Machek <pavel@ucw.cz> wrote:
-
-> On Mon 2022-04-04 22:35:20, Linus Walleij wrote:
-> > The regulator is a LED connected directly to a regulator and with
-> > its brightness controlled by the voltage of the regulator.
+On Wed, 4 May 2022 16:51:52 +0900, Chanho Park wrote:
+> Add cmu_top, cmu_busmc, cmu_core, cmu_fsys and peric0/c1/s clock nodes.
 > 
-> Thank you, applied.
 > 
 
-Thank you all for keeping this driver up to date :)
+Applied, thanks!
 
-Ciao,
-   Antonio
+[10/12] arm64: dts: exynosautov9: add initial cmu clock nodes
+        commit: 5394461a31c9d1c6a0452a0312f941e0b4d08d74
 
+Best regards,
 -- 
-Antonio Ospite
-https://ao2.it
-https://twitter.com/ao2it
-
-A: Because it messes up the order in which people normally read text.
-   See http://en.wikipedia.org/wiki/Posting_style
-Q: Why is top-posting such a bad thing?
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
