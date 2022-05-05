@@ -2,109 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 471C551BBA1
-	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 11:12:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6870751BB9F
+	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 11:12:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245720AbiEEJQ2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 May 2022 05:16:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55060 "EHLO
+        id S1351972AbiEEJQT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 May 2022 05:16:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54668 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351912AbiEEJQ1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 05:16:27 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66D3A4BFCB;
-        Thu,  5 May 2022 02:12:48 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2459CaQP083383;
-        Thu, 5 May 2022 04:12:36 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1651741956;
-        bh=ikGXkgdLE1DkMj1btIvsFn4UR8U22+rJPBhuFGJ5eJ8=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=MNzJbU/JMAvu+V2Fg092jIbIPFypbpkdLhhWUBD3bKafF0Cjs/K/ANN6VkVdcr/S8
-         UAteGvcYiIE1E96p/Ps+rzdoDFj1tAwyCmV9zA+CvuaJ0XlvSYmiB9ym3lKea/4Xpp
-         8m8Ux7IU6EnFuXVo/Em7BdEzOi9yR/1pR8Ctm7cE=
-Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2459Ca94121330
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 5 May 2022 04:12:36 -0500
-Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Thu, 5
- May 2022 04:12:35 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Thu, 5 May 2022 04:12:35 -0500
-Received: from [172.24.223.223] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2459CVlv094171;
-        Thu, 5 May 2022 04:12:32 -0500
-Message-ID: <205118bb-d74d-3966-d89e-95e385154760@ti.com>
-Date:   Thu, 5 May 2022 14:42:31 +0530
+        with ESMTP id S1351992AbiEEJQS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 05:16:18 -0400
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA6044BFCB
+        for <devicetree@vger.kernel.org>; Thu,  5 May 2022 02:12:38 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id bq30so6447905lfb.3
+        for <devicetree@vger.kernel.org>; Thu, 05 May 2022 02:12:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=Ga1FXFUoff60uV1gZjfSxxZrosbrRhkS2aF6jySEeu8=;
+        b=W3tyAprDWp6UyDWYOdLrEzdJRss3YRRpqzy/uk0dYDH8QNfXcnaSp0CqWZ+wvwsLyL
+         oAsAwF4GR9NRKLP7bSNYHld3TK6NV1t2Pmdu1ZYmvLEyOf/CprNYm9D5nXMhfjOmhiOM
+         RWSy6eMW8s8wVq+5xJtCMjB9au4uTac8PUJpjgsIrsPvQYgJs70LuVXhTnXYGko96ev8
+         1POUYPIZ+cq6p1NEJ+CYQRxR+p6OhAuiajCBJoJvKLPy1YfbYoiKt2K2j3lfotrnfvH1
+         pc9FBAm14Yq+Wa5ZPOaXLM0fS1kx2VfOXzCYjNRwlcWqSgyS1N7VINWFJSyfxASNbSh4
+         Wm4A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=Ga1FXFUoff60uV1gZjfSxxZrosbrRhkS2aF6jySEeu8=;
+        b=w1FEsQHuivM41vFOeG1kn3iUimvA6tB0/A7vwFT+RCDUpuSfzG0HHCxrBdHvEsL/SR
+         kEtCX9XhuvYljyoVsrFyvkqbsTQH/8mmRW50G2rIswtUmPmzBcZG8bspeT4CpQr2AXMU
+         qKxL1Ei5oF9CWbSu5Ze6JTKzCxU2cK6TA6jmZD7JREybqrV37sXk9yE0FBMtag0Hb5YG
+         t9nI3rquYRxQX2IzGcCnMkOs8TwYMPDS0t3ba/bdKzKPOng26F1l6fcSQ14CD+Qs3gRD
+         VyVxkbQuzH0Y3C2yCphhPgYZNh+OrQj3sMR5zjG+G7bKvfx42u6eXUdJHPfmGSRUOgRU
+         H/8g==
+X-Gm-Message-State: AOAM532MnB4eKFj523oETAZ5LFs7HsvhIcF4mSWwKYbl+TPM2+Tme0Gx
+        wZq0kQFhTUbFx8VDVhYubXkeJw==
+X-Google-Smtp-Source: ABdhPJzZlSdGDF1bKE1X4lKCce+HRMOaUZjOQni3fefl0hld3wq50mbnLmt9CR8cvex4VIClMGVu/A==
+X-Received: by 2002:a05:6512:1513:b0:448:39c0:def0 with SMTP id bq19-20020a056512151300b0044839c0def0mr17057736lfb.469.1651741957121;
+        Thu, 05 May 2022 02:12:37 -0700 (PDT)
+Received: from eriador.lan ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id v26-20020ac2593a000000b0047255d211e8sm133564lfi.279.2022.05.05.02.12.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 05 May 2022 02:12:36 -0700 (PDT)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Stanimir Varbanov <svarbanov@mm-sol.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc:     Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH v6 7/7] arm64: dts: qcom: sm8250: provide additional MSI interrupts
+Date:   Thu,  5 May 2022 12:12:31 +0300
+Message-Id: <20220505091231.1308963-8-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.35.1
+In-Reply-To: <20220505091231.1308963-1-dmitry.baryshkov@linaro.org>
+References: <20220505091231.1308963-1-dmitry.baryshkov@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH v5 0/2] DSS: Add support for DisplayPort
-Content-Language: en-US
-To:     Rahul T R <r-ravikumar@ti.com>, <nm@ti.com>
-CC:     <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <tomi.valkeinen@ideasonboard.com>,
-        <laurent.pinchart@ideasonboard.com>, <kishon@ti.com>
-References: <20220429112639.13004-1-r-ravikumar@ti.com>
-From:   Aradhya Bhatia <a-bhatia1@ti.com>
-In-Reply-To: <20220429112639.13004-1-r-ravikumar@ti.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-7.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On SM8250 each group of MSI interrupts is mapped to the separate host
+interrupt. Describe each of interrupts in the device tree for PCIe0
+host.
 
-On 29/04/22 16:56, Rahul T R wrote:
-> The following series of patches enables DisplayPort on
-> j721e-evm
-> 
-> v2:
->    - use phandle with a parameter to refer clocks insted of
->      sub nodes in serdes_wiz node
->    - move phy link node to board DTS file
-> 
-> v3:
->    - Fix the regulator node name as per the DT spec
->    - Use Macro for GPIO type
-> 
-> v4:
->    - Move adding of phy link nodes from 2/2 to 1/2, to fix dtbs checks warnings
->    - Add leading zeros to align reg property addresses and sizes
->    - Add empty ports for mhdp node in dtsi file to fix dtbs checks warnings
-> 
-> v5:
->    - Fix a typo in regulator name
-> 
-> boot logs:
->    https://gist.githubusercontent.com/ravi-rahul/1bdbc3f77ab381e486c8394650c2e85d/raw/2327c9894c3236950a00f4511ae668ac4399b71e/j7_DP_upstream.log
-> 
-> kernel patch verify report:
->    https://gist.githubusercontent.com/ravi-rahul/a982fef3fae03ec0dbdd5cb475a4cb25/raw/9ef482f96fa351cff7980e4340e9bcb8471ec3ab/report-kernel-patch-verify.txt
-> 
-> Tomi Valkeinen (2):
->   arm64: dts: ti: k3-j721e-*: add DP & DP PHY
->   arm64: dts: ti: k3-j721e-common-proc-board: add DP to j7 evm
-> 
->  .../dts/ti/k3-j721e-common-proc-board.dts     | 77 ++++++++++++++++++-
->  arch/arm64/boot/dts/ti/k3-j721e-main.dtsi     | 75 +++++++++++++++++-
->  arch/arm64/boot/dts/ti/k3-j721e-sk.dts        | 16 ++++
->  3 files changed, 162 insertions(+), 6 deletions(-)
-> 
+Tested on Qualcomm RB5 platform with first group of MSI interrupts being
+used by the PME and attached ath11k WiFi chip using second group of MSI
+interrupts.
 
-Reviewed-by: Aradhya Bhatia <a-bhatia1@ti.com>
+Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/sm8250.dtsi | 11 +++++++++--
+ 1 file changed, 9 insertions(+), 2 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+index 410272a1e19b..0659ac45c651 100644
+--- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+@@ -1807,8 +1807,15 @@ pcie0: pci@1c00000 {
+ 			ranges = <0x01000000 0x0 0x60200000 0 0x60200000 0x0 0x100000>,
+ 				 <0x02000000 0x0 0x60300000 0 0x60300000 0x0 0x3d00000>;
+ 
+-			interrupts = <GIC_SPI 141 IRQ_TYPE_LEVEL_HIGH>;
+-			interrupt-names = "msi";
++			interrupts = <GIC_SPI 141 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 142 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 143 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 144 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 145 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 146 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 147 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 148 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "msi", "msi2", "msi3", "msi4", "msi5", "msi6", "msi7", "msi8";
+ 			#interrupt-cells = <1>;
+ 			interrupt-map-mask = <0 0 0 0x7>;
+ 			interrupt-map = <0 0 0 1 &intc 0 149 IRQ_TYPE_LEVEL_HIGH>, /* int_a */
+-- 
+2.35.1
+
