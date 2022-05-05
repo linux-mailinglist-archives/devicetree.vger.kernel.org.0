@@ -2,36 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D80C51B82D
-	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 08:46:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EE51E51B837
+	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 08:50:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233961AbiEEGtq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 May 2022 02:49:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58488 "EHLO
+        id S238386AbiEEGyW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 May 2022 02:54:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33284 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233151AbiEEGtp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 02:49:45 -0400
-Received: from mx1.cqplus1.com (unknown [113.204.237.245])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 653F01E3F7
-        for <devicetree@vger.kernel.org>; Wed,  4 May 2022 23:45:40 -0700 (PDT)
-X-MailGates: (flag:4,DYNAMIC,BADHELO,RELAY,NOHOST:PASS)(compute_score:DE
-        LIVER,40,3)
-Received: from 172.28.114.216
-        by mx1.cqplus1.com with MailGates ESMTP Server V5.0(24038:0:AUTH_RELAY)
-        (envelope-from <qinjian@cqplus1.com>); Thu, 05 May 2022 14:44:53 +0800 (CST)
-From:   Qin Jian <qinjian@cqplus1.com>
-To:     krzysztof.kozlowski@linaro.org
-Cc:     robh+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Qin Jian <qinjian@cqplus1.com>
-Subject: [PATCH] dt-bindings: arm: sunplus: Add bindings for Sunplus SP7021 SoC boards
-Date:   Thu,  5 May 2022 14:44:30 +0800
-Message-Id: <20220505064430.124657-1-qinjian@cqplus1.com>
-X-Mailer: git-send-email 2.33.1
+        with ESMTP id S245562AbiEEGyU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 02:54:20 -0400
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4034317E14
+        for <devicetree@vger.kernel.org>; Wed,  4 May 2022 23:50:39 -0700 (PDT)
+Received: by mail-ej1-x62e.google.com with SMTP id l18so6875837ejc.7
+        for <devicetree@vger.kernel.org>; Wed, 04 May 2022 23:50:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=J2j9EXhNS02qzUZ4UKY8kx4CRlU9zWWbcZ0qt22oRDQ=;
+        b=o2ewtQwCad4qB8oEZ6CSRXAKP3RXy8osCcV8RtqCxRykFSeKI4939xfIVft7NG+WX4
+         bgDllbsziJhSc2Up9zO20yXWT/dWJtghb0XDA79rVfqlIWmDOjzpR8hHtMmq5/I5nVUZ
+         +bUZm95fcmLgAEiMONC557BWLNcFZRui0B7Zwqh4yGyWW8grgSxtXxlWiha7a9O68hsy
+         J1DjrRQJl/MZJH2wYxLCrCz0MKRWBTtkuXQLS+6NaVrDNj4AT3ZtdphLdPjZiVLcGm69
+         EWWTPKox93BFEGMmOKYBa5BjK5bE458hWGzVl48J8b4pMBO+5AVmWBsqyzY/gWvb0hXQ
+         /ZCA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=J2j9EXhNS02qzUZ4UKY8kx4CRlU9zWWbcZ0qt22oRDQ=;
+        b=qDK0cb3NWVYvm67qoTjj3kvidIB7cDry+kCsoySl2yx6eYB+OgLGm7ip0V4cS/gXIQ
+         B+1mlVV3vSNnAy19oCCvpnx9+kHFQlf6Flm9JHFQ78h5BFsLYMOTYRxKN91e1F34hle4
+         E4+uFWfP4EvJai1hMGxw49npp/Zbnw6DQeBqZYztC3+U5cMpz7E3w7cCduMhlGv4bB1L
+         AC2jx8xmkYXQXehYxvRnSlVf3z+c4SdqMQ+wXI0UaSb9dWevPRHad6+W/UsILF+Z7W5c
+         dXriHum9nXXdc7udppKIuQp3DV/q/1mHQ+HjrzqB+S1MZEOaWAxymwBKn4JrxjThERSA
+         9e8Q==
+X-Gm-Message-State: AOAM530TUAuwq6VXn9XFHv/PuVsDNf+b2kkCGLdC4rOUNBAKpaZuH99d
+        T6RSTKEDo+wKSDwlaE0VS6yp5w==
+X-Google-Smtp-Source: ABdhPJxpmx592NBbH6ZMLepBK/ioYRGh0mxSUaPeeCkwN4NbZ1s0jljmd+KE7DfQyzyt9/jQL3gTQA==
+X-Received: by 2002:a17:907:3f25:b0:6b0:5e9a:83 with SMTP id hq37-20020a1709073f2500b006b05e9a0083mr24966683ejc.659.1651733437862;
+        Wed, 04 May 2022 23:50:37 -0700 (PDT)
+Received: from [192.168.0.215] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id h6-20020a1709062dc600b006f3ef214df5sm393388eji.91.2022.05.04.23.50.36
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 04 May 2022 23:50:37 -0700 (PDT)
+Message-ID: <172f168f-4253-f63f-e0df-c64fd77a2580@linaro.org>
+Date:   Thu, 5 May 2022 08:50:36 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH] spi: dt-bindings: qcom,spi-geni-qcom: allow three
+ interconnects
+Content-Language: en-US
+To:     Rob Herring <robh@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-spi@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220504125119.190526-1-krzysztof.kozlowski@linaro.org>
+ <YnKdnv69vueSURiU@robh.at.kernel.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <YnKdnv69vueSURiU@robh.at.kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -39,76 +79,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This introduces bindings for boards based Sunplus SP7021 SoC.
+On 04/05/2022 17:37, Rob Herring wrote:
+> On Wed, May 04, 2022 at 02:51:19PM +0200, Krzysztof Kozlowski wrote:
+>> Recent Qualcomm Geni SPI nodes, e.g. on SM8450, come with three
+>> interconnects.  This fixes dtbs_check warnings like:
+>>
+>>   sm8450-qrd.dtb: geniqup@8c0000: spi@880000:interconnect-names: ['qup-core', 'qup-config'] is too short
+> 
+> I'm confused. A length of 2 was already allowed before this change.
 
-This patch is separated from the patch series:
-Add Sunplus SP7021 SoC Support. [1]
-To simply thing, I extract it from the original and resend this patch.
+Me too... I think I copied that message not from original code, but from
+intermediary fix setting it to three elements. This was also wrong
+because some of nodes have two some three interconnects.
 
-Previous changelog: [1]
+The actual error is:
 
-[1] https://lore.kernel.org/lkml/cover.1649659095.git.qinjian@cqplus1.com/
+arch/arm64/boot/dts/qcom/sm8450-qrd.dtb: spi@a98000: interconnects:
+[[46, 1, 0, 46, 4, 0], [47, 2, 0, 48, 12, 0], [49, 1, 0, 50, 1, 0]] is
+too long
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Signed-off-by: Qin Jian <qinjian@cqplus1.com>
----
- .../bindings/arm/sunplus,sp7021.yaml          | 28 +++++++++++++++++++
- MAINTAINERS                                   |  7 +++++
- 2 files changed, 35 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/arm/sunplus,sp7021.yaml
+	From schema: Documentation/devicetree/bindings/spi/qcom,spi-geni-qcom.yaml
 
-diff --git a/Documentation/devicetree/bindings/arm/sunplus,sp7021.yaml b/Documentation/devicetree/bindings/arm/sunplus,sp7021.yaml
-new file mode 100644
-index 000000000..ef48fb270
---- /dev/null
-+++ b/Documentation/devicetree/bindings/arm/sunplus,sp7021.yaml
-@@ -0,0 +1,28 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+# Copyright (C) Sunplus Co., Ltd. 2021
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/arm/sunplus,sp7021.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Sunplus SP7021 Boards Device Tree Bindings
-+
-+maintainers:
-+  - qinjian <qinjian@cqplus1.com>
-+
-+description: |
-+  ARM platforms using Sunplus SP7021, an ARM Cortex A7 (4-cores) based SoC.
-+  Wiki: https://sunplus-tibbo.atlassian.net/wiki/spaces/doc/overview
-+
-+properties:
-+  $nodename:
-+    const: '/'
-+  compatible:
-+    items:
-+      - enum:
-+          - sunplus,sp7021-achip
-+      - const: sunplus,sp7021
-+
-+additionalProperties: true
-+
-+...
-diff --git a/MAINTAINERS b/MAINTAINERS
-index cd0f68d4a..8b5e2e639 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -2738,6 +2738,13 @@ F:	drivers/clocksource/armv7m_systick.c
- N:	stm32
- N:	stm
- 
-+ARM/SUNPLUS SP7021 SOC SUPPORT
-+M:	Qin Jian <qinjian@cqplus1.com>
-+L:	linux-arm-kernel@lists.infradead.org (moderated for mon-subscribers)
-+S:	Maintained
-+W:	https://sunplus-tibbo.atlassian.net/wiki/spaces/doc/overview
-+F:	Documentation/devicetree/bindings/arm/sunplus,sp7021.yaml
-+
- ARM/Synaptics SoC support
- M:	Jisheng Zhang <jszhang@kernel.org>
- M:	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>
--- 
-2.33.1
+arch/arm64/boot/dts/qcom/sm8450-qrd.dtb: spi@a98000: interconnect-names:
+['qup-core', 'qup-config', 'qup-memory'] is too long
 
+	From schema: Documentation/devicetree/bindings/spi/qcom,spi-geni-qcom.yaml
+
+I will send a v2.
+
+Best regards,
+Krzysztof
