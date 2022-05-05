@@ -2,105 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D2C951C02E
-	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 15:05:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E481351C050
+	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 15:12:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346531AbiEENJG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 May 2022 09:09:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51998 "EHLO
+        id S1347994AbiEENPB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 May 2022 09:15:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57894 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1378883AbiEENJB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 09:09:01 -0400
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4ED4265B0;
-        Thu,  5 May 2022 06:05:21 -0700 (PDT)
-Received: by mail-ej1-x62b.google.com with SMTP id bv19so8611700ejb.6;
-        Thu, 05 May 2022 06:05:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:from:to:cc:subject:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=aNKOhtKTSEh4Mqkalcz76ou0WqeGSr1qJcVWuxMdUgc=;
-        b=Rl64O5ujSl9GyaSM5CAsEp/QIQNn+pY27aNk3caCBymQk23TAnjTdLhOdwHuO6v0Xe
-         LX95mSzpjCgmTKkznYc5Yyn76KiDpX9xumKc4M1AUZEYRARlObL/akMmPkCzORIKL2lX
-         dlpF+c7Fo/EM2tTUuQq6vezqYHPWtHJMjpiZD295uy9umFpMWTszJvqe8O9FMRVKKzWZ
-         39NxWphExiy2VLUvQHnw1XON74THBYcpqVaK7Ay9nwQyOij7UZJuTGjXdOoXRJAHLA2l
-         eVAymy9eRQmh81jLURLeW4veoZ0H4K1ec6R+oOwMfiYPlpTwVqvB9viXzZuWG3IS1eu6
-         Paxw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:from:to:cc:subject:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=aNKOhtKTSEh4Mqkalcz76ou0WqeGSr1qJcVWuxMdUgc=;
-        b=PJM40PmC6l5F4QsHvu8LMmD0bO35bnQV2IQnGl19spdZHs+KY5T9e/mi4cFkYIz4TR
-         4c0zvXfN6zJiChY3OstDxmigL9FrHRiqN+NV29iPlrNI+/t6nCDwcqP9J9mImtaZz7yk
-         a/sQlbDoyeUiUt5TKOO2voAYu3r0AgGxFFcjmb72IaLoKFGjTb8TtTORhrO/Fga4lyMA
-         gdXoCHDZ3nG+X5bIaQpQjgljyujP1if/BAjrlnTjv7Br6NGd9mfy5mV1zPPIIuFlgSLr
-         jdbqQbWBPCleLocRmF2O/iFo0lBhOwKYrpyXgvwwBlEczPp8KQcokj2b4I4Ldw6I6y/U
-         UILQ==
-X-Gm-Message-State: AOAM533E5J+8Qt26IFavaUCrkumTDm4iS9HZHpy5XmhqNcwF+FjkwQXP
-        HtoydIgxNXI3nEbBBt34soA=
-X-Google-Smtp-Source: ABdhPJyyVh6cKMR5tBekSuJuZBCdlWUsoD48Yo83JDTJb326k6wuXABrCERWF5ectwaSbf2VtzR4pw==
-X-Received: by 2002:a17:907:7e88:b0:6f4:99be:a333 with SMTP id qb8-20020a1709077e8800b006f499bea333mr12336755ejc.719.1651755918889;
-        Thu, 05 May 2022 06:05:18 -0700 (PDT)
-Received: from Ansuel-xps. (93-42-70-190.ip85.fastwebnet.it. [93.42.70.190])
-        by smtp.gmail.com with ESMTPSA id p4-20020a17090628c400b006f3ef214e07sm721237ejd.109.2022.05.05.06.05.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 May 2022 06:05:18 -0700 (PDT)
-Message-ID: <6273cb8e.1c69fb81.716fc.3f98@mx.google.com>
-X-Google-Original-Message-ID: <YnPLjDg5Vs3eQyG+@Ansuel-xps.>
-Date:   Thu, 5 May 2022 15:05:16 +0200
-From:   Ansuel Smith <ansuelsmth@gmail.com>
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
+        with ESMTP id S1376871AbiEENPA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 09:15:00 -0400
+Received: from smtp14.infineon.com (smtp14.infineon.com [IPv6:2a00:18f0:1e00:4::6])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B9AC27B2C;
+        Thu,  5 May 2022 06:11:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=infineon.com; i=@infineon.com; q=dns/txt; s=IFXMAIL;
+  t=1651756277; x=1683292277;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=xsOMw0gRr0SLaJWZpts/Mm92RAFuNPJLPsaz21uD8Ww=;
+  b=FBTSHmIlIdE832JlYBLV7yOCvXGSjOOwpLTBWKHtzOzjmCfjmz9rzAKT
+   0BurVxBjCa9jduMfm3+7mZHyRjYUAjriT8gY/3ybC5xmgdipJWU2AsiEa
+   NX3XcawdsVI08o9UUxR4Dv6ixanp/bGT2Wb3Fs5tjNkHWFaZ4JkqBtHWF
+   Y=;
+X-SBRS: None
+X-IronPort-AV: E=McAfee;i="6400,9594,10337"; a="119355111"
+X-IronPort-AV: E=Sophos;i="5.91,201,1647298800"; 
+   d="scan'208";a="119355111"
+Received: from unknown (HELO mucxv001.muc.infineon.com) ([172.23.11.16])
+  by smtp14.infineon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 May 2022 15:11:12 +0200
+Received: from MUCSE812.infineon.com (MUCSE812.infineon.com [172.23.29.38])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mucxv001.muc.infineon.com (Postfix) with ESMTPS;
+        Thu,  5 May 2022 15:11:12 +0200 (CEST)
+Received: from MUCSE807.infineon.com (172.23.29.33) by MUCSE812.infineon.com
+ (172.23.29.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Thu, 5 May 2022
+ 15:11:12 +0200
+Received: from [10.160.221.24] (172.23.8.247) by MUCSE807.infineon.com
+ (172.23.29.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Thu, 5 May 2022
+ 15:11:11 +0200
+Message-ID: <1e8cfbc6-8452-0e87-9713-536d235e5b51@infineon.com>
+Date:   Thu, 5 May 2022 15:11:09 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.0
+Subject: Re: [PATCH 1/2] dt-bindings: net: broadcom-bluetooth: Add property
+ for autobaud mode
+Content-Language: en-US
+To:     Linus Walleij <linus.walleij@linaro.org>
+CC:     "David S. Miller" <davem@davemloft.net>,
         Jakub Kicinski <kuba@kernel.org>,
         Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Jonathan Corbet <corbet@lwn.net>, Pavel Machek <pavel@ucw.cz>,
-        John Crispin <john@phrozen.org>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-doc@vger.kernel.org, linux-leds@vger.kernel.org
-Subject: Re: [RFC PATCH v6 03/11] leds: trigger: netdev: drop
- NETDEV_LED_MODE_LINKUP from mode
-References: <20220503151633.18760-1-ansuelsmth@gmail.com>
- <20220503151633.18760-4-ansuelsmth@gmail.com>
- <YnMLay1N2KBjC1VE@lunn.ch>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YnMLay1N2KBjC1VE@lunn.ch>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        WEIRD_QUOTING autolearn=ham autolearn_force=no version=3.4.6
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        Marcel Holtmann <marcel@holtmann.org>,
+        Johan Hedberg <johan.hedberg@gmail.com>,
+        "Luiz Augusto von Dentz" <luiz.dentz@gmail.com>,
+        <linux-bluetooth@vger.kernel.org>
+References: <cover.1651647576.git.hakan.jansson@infineon.com>
+ <64b59ca66cc22e6433a044e7bba2b3e97c810dc2.1651647576.git.hakan.jansson@infineon.com>
+ <CACRpkdY3xPcyNcJfdGbSP5rdcUV6hr87yJNDVDGZdRCfN+MqLA@mail.gmail.com>
+From:   Hakan Jansson <hakan.jansson@infineon.com>
+In-Reply-To: <CACRpkdY3xPcyNcJfdGbSP5rdcUV6hr87yJNDVDGZdRCfN+MqLA@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [172.23.8.247]
+X-ClientProxiedBy: MUCSE805.infineon.com (172.23.29.31) To
+ MUCSE807.infineon.com (172.23.29.33)
+X-Spam-Status: No, score=-9.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 05, 2022 at 01:25:31AM +0200, Andrew Lunn wrote:
-> On Tue, May 03, 2022 at 05:16:25PM +0200, Ansuel Smith wrote:
-> > Drop NETDEV_LED_MODE_LINKUP from mode list and convert to a simple bool
-> > that will be true or false based on the carrier link. No functional
-> > change intended.
-> 
-> What is missing from the commit message is an explanation why?
-> 
->      Andrew
+Hi Linus,
 
-Will add the reason.
-Just in case it doesn't make sense...
-The reason is that putting a state in the mode bitmap doesn't look
-correct. It's ""acceptable"" if we have only 3 state (rx, tx and link).
-It become problematic when we start to have 7 modes and a link up state
-should be handled differently.
+Thanks for responding.
 
-Does it make sense?
+On 5/5/2022 12:15 AM, Linus Walleij wrote:
+> On Wed, May 4, 2022 at 11:04 AM Hakan Jansson
+> <hakan.jansson@infineon.com> wrote:
+>
+>> +  brcm,uses-autobaud-mode:
+>> +    type: boolean
+>> +    description: >
+>> +      The controller should be started in autobaud mode by asserting
+>> +      BT_UART_CTS_N (i.e. host RTS) during startup. Only HCI commands supported
+>> +      in autobaud mode should be used until patch FW has been loaded.
+> Things like gnss uses the current-speed attribute to set a serial link speed,
+> maybe also Bluetooth?
+As far as I can tell, not many Bluetooth drivers use the current-speed 
+attribute yet but perhaps it would be a good idea to start using it more 
+broadly in the future to set the initial serial link speed.
 
--- 
-	Ansuel
+>
+> Would it make sense to use
+>
+> current-speed-auto;
+>
+> As a flag for these things in general?
+I suppose a general flag could be useful but to be honest I don't know 
+if any other devices besides the ones using the Broadcom driver has any 
+use for it. You would probably also still want to be able to use 
+current-speed to set the link speed and end up using both 
+current-speed=x and current-speed-auto at the same time, which might 
+look a little confusing?
+
+Please let me know if you'd still prefer "current-speed-auto" over 
+"brcm,uses-autobaud-mode" and I'll revise the patch and rename it!
+
+>
+> Yours,
+> Linus Walleij
+
+Thanks,
+Håkan
