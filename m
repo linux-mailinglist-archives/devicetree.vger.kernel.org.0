@@ -2,58 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7778851CC88
-	for <lists+devicetree@lfdr.de>; Fri,  6 May 2022 01:10:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2E8CC51CC8A
+	for <lists+devicetree@lfdr.de>; Fri,  6 May 2022 01:14:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1386619AbiEEXNa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 May 2022 19:13:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49184 "EHLO
+        id S245209AbiEEXSg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 May 2022 19:18:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53014 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1386622AbiEEXN3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 19:13:29 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2489960070;
-        Thu,  5 May 2022 16:09:49 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id C4E3EB831BD;
-        Thu,  5 May 2022 23:09:47 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 80C72C385AE;
-        Thu,  5 May 2022 23:09:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1651792186;
-        bh=7uDnBDby8dlL1nlvTXdpeh6OAcrg9I8qMGiM8rWJzC4=;
-        h=Subject:From:In-Reply-To:References:Date:To:Cc:From;
-        b=HpCCzI9Eh5x7mzC+2FHPcyKPJVoVx8ONV1oiBzMB8hAYvyifHckoeVb4c+rE1H+Db
-         kgLzM83Ond2qucTC96XwZ7GufskV0MGJw3bSnPnqTzGxWTQEs4XH+FNYpaHNlFuWVI
-         njhKnCJaNcRjefgm3ccGNYBMSDAYI7FQpxwmFe6tfAX1rM2HUMhL7+rS85sAcR7FcD
-         y7XBHlTfWImiGIOenIgBMRzhggFnOqF5xmpipPSWkU8bExw5OgR6budF04bLBTrgX5
-         1HnIBrIn0zAyfssExO+lZm1+33qmRjqwnjmDGsDC6EiH6GakUn2UzTmwW0YzEASob4
-         LZ5AFiKi3Id7Q==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 6999EE8DBDA;
-        Thu,  5 May 2022 23:09:46 +0000 (UTC)
-Subject: Re: [GIT PULL] Devicetree fixes for v5.18, take 3
-From:   pr-tracker-bot@kernel.org
-In-Reply-To: <YnQuiPwutfe6EKGf@robh.at.kernel.org>
-References: <YnQuiPwutfe6EKGf@robh.at.kernel.org>
-X-PR-Tracked-List-Id: <devicetree.vger.kernel.org>
-X-PR-Tracked-Message-Id: <YnQuiPwutfe6EKGf@robh.at.kernel.org>
-X-PR-Tracked-Remote: git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-5.18-3
-X-PR-Tracked-Commit-Id: 5dc4630426511f641b7ac44fc550b8e21eafb237
-X-PR-Merge-Tree: torvalds/linux.git
-X-PR-Merge-Refname: refs/heads/master
-X-PR-Merge-Commit-Id: f47c960e9395743a8aa3bd939d4d3a0f582f565e
-Message-Id: <165179218642.20357.7040709401710476084.pr-tracker-bot@kernel.org>
-Date:   Thu, 05 May 2022 23:09:46 +0000
-To:     Rob Herring <robh@kernel.org>
-Cc:     Linus Torvalds <torvalds@linux-foundation.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        with ESMTP id S234769AbiEEXSf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 19:18:35 -0400
+Received: from mail-pg1-x529.google.com (mail-pg1-x529.google.com [IPv6:2607:f8b0:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1922A5DD19
+        for <devicetree@vger.kernel.org>; Thu,  5 May 2022 16:14:55 -0700 (PDT)
+Received: by mail-pg1-x529.google.com with SMTP id 6so4728649pgb.13
+        for <devicetree@vger.kernel.org>; Thu, 05 May 2022 16:14:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=0kSQb2icz9EuOBfEIavY1Q/aWHO2riUJJut5MHkXzYQ=;
+        b=S0Sy52a0le6z4xwOpfZmcEWeenlEQ8Ny5+NOsiV9S4WMz7U3/f+JzITvJnQltHt/fh
+         W/ORtfNYaxnBYg5XBurxElcnewtdnmEM2batwjzyFoBv1i9xCVFhXsoUL764CUpEBAbh
+         hAGapFLJLcwOGD1ZWZVT1v0J/duqNja6LRVUg=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=0kSQb2icz9EuOBfEIavY1Q/aWHO2riUJJut5MHkXzYQ=;
+        b=jZeew/oToYoydA+pP/fDmZRfs4LIq9BC6+9NRpbfgvjnL8y3ckZ6H8qrsp2rTr93UQ
+         pfTR1zjFcTVUwSCQKSlkqcGUYeIx9B4GWayriCQ+Q0ZNKD/vGsCg4zjSAbt5IJdV8DNq
+         QDlKInSRI2vDL0MhEm4hpktYmkfwiM1GybmTUWAnnXSW93pLHgl4ymGTL7yWVpLiJ8f0
+         ceI2EvYdE9AcS3/G2GTuszate/F4OsssT4Or/zKt8E1J3QxoCj8Vfm9UvJVtFx5tHt6P
+         u6NjlUiw+JVq12ZtwqPVUMrP6aMb4vWcL7yIhjzVsaJtu9qD5H9pQo6jZ/gjlwl64CQD
+         69tg==
+X-Gm-Message-State: AOAM530+3Ez/wUpgyeLkIkOES3QHUCTDoXidrf3Bxic0mu282hhM/4kW
+        h7APPcKJtWuN9zc8zQLNpZYRoA==
+X-Google-Smtp-Source: ABdhPJz1Ia/6Uv5F5lGAd/5I0letqAwHCmGa5BKl/B4Z2msc8l/CSz4cY/+EbZgHTjJmPSiBnaxrlA==
+X-Received: by 2002:a63:2317:0:b0:3c1:f437:2e7c with SMTP id j23-20020a632317000000b003c1f4372e7cmr351115pgj.351.1651792494626;
+        Thu, 05 May 2022 16:14:54 -0700 (PDT)
+Received: from tictac2.mtv.corp.google.com ([2620:15c:202:201:b675:c6dd:f7f3:5454])
+        by smtp.gmail.com with ESMTPSA id r20-20020aa79634000000b0050dc7a3e88asm1961946pfg.9.2022.05.05.16.14.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 05 May 2022 16:14:54 -0700 (PDT)
+From:   Douglas Anderson <dianders@chromium.org>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     swboyd@chromium.org, mka@chromium.org,
+        Douglas Anderson <dianders@chromium.org>,
+        Andy Gross <agross@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: qcom: sc7280: Set SPI flash to 50 MHz for herobrine boards
+Date:   Thu,  5 May 2022 16:14:30 -0700
+Message-Id: <20220505161425.1.Icf6f3796d2fa122b4c0566d9317b461bfbc24b7f@changeid>
+X-Mailer: git-send-email 2.36.0.512.ge40c2bad7a-goog
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -62,15 +68,43 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The pull request you sent on Thu, 5 May 2022 15:07:36 -0500:
+sc7280-herobrine based boards are specced to be able to access their
+SPI flash at 50 MHz with the drive strength of the pins set at 8. The
+drive strength is already set to 8 in "sc7280-herobrine.dtsi", so
+let's bump up the clock. The matching firmware change for this is at:
 
-> git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-5.18-3
+https://review.coreboot.org/c/coreboot/+/63948
 
-has been merged into torvalds/linux.git:
-https://git.kernel.org/torvalds/c/f47c960e9395743a8aa3bd939d4d3a0f582f565e
+NOTE: the firmware change isn't _required_ to make the kernel work at
+50 MHz, it merely shows that the boards are known to work fine at 50
+MHz.
 
-Thank you!
+ALSO NOTE: this doesn't update the "sc7280-chrome-common.dtsi" file
+which is used by both herobrine boards and IDP. At the moment the IDP
+boards aren't configuring a drive strength of 8 and it seems safer to
+just leave them at the slower speed if they're already working.
 
+Signed-off-by: Douglas Anderson <dianders@chromium.org>
+---
+
+ arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi b/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
+index d58045dd7334..939d9e922834 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
+@@ -452,6 +452,10 @@ &sdhc_2 {
+ 	cd-gpios = <&tlmm 91 GPIO_ACTIVE_LOW>;
+ };
+ 
++&spi_flash {
++	spi-max-frequency = <50000000>;
++};
++
+ /* Fingerprint, enabled on a per-board basis */
+ ap_spi_fp: &spi9 {
+ 	pinctrl-0 = <&qup_spi9_data_clk>, <&qup_spi9_cs_gpio_init_high>, <&qup_spi9_cs_gpio>;
 -- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/prtracker.html
+2.36.0.512.ge40c2bad7a-goog
+
