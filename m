@@ -2,96 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 45FAE51CB7A
-	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 23:40:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 41DAF51CB77
+	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 23:39:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1357014AbiEEVo2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 May 2022 17:44:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39902 "EHLO
+        id S1385988AbiEEVnW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 May 2022 17:43:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37770 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239137AbiEEVo2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 17:44:28 -0400
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F0C4527FF;
-        Thu,  5 May 2022 14:40:47 -0700 (PDT)
-Received: by mail-ed1-x52e.google.com with SMTP id p4so6698444edx.0;
-        Thu, 05 May 2022 14:40:47 -0700 (PDT)
+        with ESMTP id S233533AbiEEVnV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 17:43:21 -0400
+Received: from mail-pg1-x536.google.com (mail-pg1-x536.google.com [IPv6:2607:f8b0:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8DF5E13E3A
+        for <devicetree@vger.kernel.org>; Thu,  5 May 2022 14:39:41 -0700 (PDT)
+Received: by mail-pg1-x536.google.com with SMTP id 7so4586151pga.12
+        for <devicetree@vger.kernel.org>; Thu, 05 May 2022 14:39:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:from:mime-version:content-transfer-encoding
-         :content-description:subject:to:date:reply-to;
-        bh=1yRzq0DZsIZjcXwAKrsL0IEgLapFOXBvt5L3aNoafiE=;
-        b=CTkB+i5LqvkN1Akpkg2vuqOziGxmANoTgquw/vTMT5RAr+WuglQyoJLXMoJ77/NYnd
-         e23Srn0P6ABaxAkmL/ce/GuDWiKoxmN8hSOUsbRfA25E2MY5kZOtKZekQ5oqds0fENMj
-         qSDLCSesuaoX+3rhENkyhRLm/+BWjZPW+p3z0riAZHrr8/0GiAPB+01SpUhraN/Vu895
-         2Z1AxOcNDKuvoko1Fuw0VcdZN2Zp1eTl8idOLuK7DzHBYBvTP8R8BLvwSAfr2HeJmtaF
-         Dz+VkC4z/L9/pjC/SRGouAGNzo1qW2kW1DMRr29lcz+8D2AmE6UNNjFr4W+HxRuD45J9
-         pYGQ==
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=dmqI2ALgZ3kvDiEew8IgLAO4SlOTFjh2EiR4gGFw+iA=;
+        b=PXHGbjdmVPvJFYthUJPH6VeHG2X/Y6BayuqvbTguvZzT0ZcujtcEWgaNwowbnJFL+0
+         5/PDg32n9aK0mkVWM8uokjy4pCAshHkPVj07rbL4Rj0xwUSX9zTZtSRQvJkb6xzSumnN
+         ciIHRzbIy/vvRfc10460Ruq/xqHqdtEBnrmIQ=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:from:mime-version
-         :content-transfer-encoding:content-description:subject:to:date
-         :reply-to;
-        bh=1yRzq0DZsIZjcXwAKrsL0IEgLapFOXBvt5L3aNoafiE=;
-        b=cDWBOQzShLvAnlHcytGwT+gBkQ/z8qEbHGSpAmEMF6auIZZ0kjQIgzPjZuM3L4fucp
-         aF7TYnvZgFEFjSuIcTqXI9HwZCRYtfiCLLg6P4WfHroXO51e4tTwlItwvL7+hZwmhCP6
-         MYU1RO98pPQNYAQgtiZbQjdChFTttU870qIKJ9jqHEsUhMZBBKgJcWAji3ToyrTpAjaN
-         rVK6eiKSfXRKRCKXkyHR8ACtQDXKyOIRefPe7rXJYyW2Mfyhmvqavub6hPEWVopSgDs9
-         N48NX9RVfWFN8IXi6/A1wCigeBJQ2gC400n4uU4iuj/YkIRkwn+QAy8ctIoToy9/fnMK
-         REiA==
-X-Gm-Message-State: AOAM530+01InRbjfpSn+dz3VKVYA3pJgkHA/p8VDDXcEl/ELfaWuzQ5S
-        gUNzEC1i3mVzrGxxStQEHNc=
-X-Google-Smtp-Source: ABdhPJwkU/9UKjIdH1V9lAkmJVH8dyhG9Qezk5sPj5qm6AYcrsl9ifBvZ5JkSmM4pvuTCBMngARYWg==
-X-Received: by 2002:aa7:df0a:0:b0:425:d4bf:539 with SMTP id c10-20020aa7df0a000000b00425d4bf0539mr275181edy.24.1651786846004;
-        Thu, 05 May 2022 14:40:46 -0700 (PDT)
-Received: from [10.23.18.22] ([156.146.63.24])
-        by smtp.gmail.com with ESMTPSA id eo10-20020a1709069b0a00b006f3ef214e1esm1156965ejc.132.2022.05.05.14.40.39
-        (version=TLS1 cipher=AES128-SHA bits=128/128);
-        Thu, 05 May 2022 14:40:44 -0700 (PDT)
-Message-ID: <6274445c.1c69fb81.323b2.6b24@mx.google.com>
-From:   Susanne Klatten <antho.craig01@gmail.com>
-X-Google-Original-From: Susanne Klatten <davis.neubron@gmail.com>
-Content-Type: text/plain; charset="utf-8"
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=dmqI2ALgZ3kvDiEew8IgLAO4SlOTFjh2EiR4gGFw+iA=;
+        b=bvXKpMrj+uv/umFIg0gYyuCyuiVGitxZl0E/vDz7ddU8av7T4W7ivPXWQ+QIpxvF6t
+         omk/z/tKOZ/x2yLljS5gPA1TE1vy5n9raMl8b9NsgoqDq/ld9U9AqmqUhp3OA+DXMnvx
+         q05H7EJv8feKQGaqVK/DWAnI8Uj8JmZpcSHyqy2dpeH7ieYLuLBw/RyVqP+ibRJMKGDc
+         IP94C7b+nDe2Sx5qEaYMtbsvgeSMIqbSFqQxL7T5KfA26QszDLaUq1Ldv8W8zznnDeZz
+         JJvDLsnjShH+y7pts5mGSmNLDzZSXaHH6r14KnC46S+YF3h6CMsQHEWAdJuxamt1eRje
+         CJtQ==
+X-Gm-Message-State: AOAM532sX8YOeHXAt2GW2So/OUk4khp8xQzxpIo+AOOxYjn79Dz+0WGC
+        9N13XLMu6cuTX97wqHvHPQycZx0nQ2nqvQ==
+X-Google-Smtp-Source: ABdhPJy1heYv21j6+zVS1d13Syq3/PhlTZCCTT4PeYPM7I/zvpaeGDy0W2UiLAMntKXMYYEGUDHFHg==
+X-Received: by 2002:a63:a512:0:b0:3c6:d89:1021 with SMTP id n18-20020a63a512000000b003c60d891021mr123296pgf.126.1651786781128;
+        Thu, 05 May 2022 14:39:41 -0700 (PDT)
+Received: from localhost ([2620:15c:202:201:827b:7f14:bb7e:2898])
+        by smtp.gmail.com with UTF8SMTPSA id q13-20020a170902dacd00b0015e8d4eb214sm107873plx.94.2022.05.05.14.39.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 05 May 2022 14:39:40 -0700 (PDT)
+Date:   Thu, 5 May 2022 14:39:39 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+Cc:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, quic_rohkumar@quicinc.com,
+        srinivas.kandagatla@linaro.org, dianders@chromium.org,
+        swboyd@chromium.org, judyhsiao@chromium.org,
+        Venkata Prasad Potturu <quic_potturu@quicinc.com>
+Subject: Re: [PATCH v14 4/4] arm64: dts: qcom: sc7280-herobrine: Add lpi
+ pinmux properties for CRD 3.0/3.1
+Message-ID: <YnREG4Ej1SNnj757@google.com>
+References: <1651763004-32533-1-git-send-email-quic_srivasam@quicinc.com>
+ <1651763004-32533-5-git-send-email-quic_srivasam@quicinc.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Description: Mail message body
-Subject: GREAT NEWS!!!
-To:     Recipients <davis.neubron@gmail.com>
-Date:   Fri, 06 May 2022 05:37:25 +0800
-Reply-To: susanne.klatten212@gmail.com
-X-Spam-Status: No, score=2.6 required=5.0 tests=BAYES_50,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,FREEMAIL_REPLYTO,FREEMAIL_REPLYTO_END_DIGIT,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,SUBJ_ALL_CAPS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
-X-Spam-Level: **
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <1651763004-32533-5-git-send-email-quic_srivasam@quicinc.com>
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello
+On Thu, May 05, 2022 at 08:33:24PM +0530, Srinivasa Rao Mandadapu wrote:
+> Add LPASS LPI pinctrl properties, which are required for Audio
+> functionality on herobrine based platforms of rev5+
+> (aka CRD 3.0/3.1) boards.
+> 
+> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+> Co-developed-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
+> Signed-off-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
 
-I'm Susanne Klatten and I am  From Germany, I can control your financial pr=
-oblems without resorting Banks in the range of Credit Money . We offer pers=
-onal Loans and Business Loan, i am an approved and certified lender with ye=
-ars of experience in Loan lending and we give out Collateral and Non Collat=
-eral Loan amounts ranging from 10,000.00=E2=82=AC ( $)  to the maximum of 5=
-00,000,000.00=E2=82=AC  with a fixed interest of 3% on an  annual basis. Do=
- you need a Loan?   Email us at:  susanne.klatten212@gmail.com
-
-You can also view my link and learn more about me.
-
-https://en.wikipedia.org/wiki/Susanne_Klatten
-https://www.forbes.com/profile/susanne-klatten
-
-Email :  susanne.klatten212@gmail.com
-Signature,
-Executive Chairman
-Susanne Klatten.
-
-
-
-
-
+Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
