@@ -2,146 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A1FD51BB3D
-	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 10:58:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 07C8151BB4B
+	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 10:58:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351699AbiEEJBL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 May 2022 05:01:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41848 "EHLO
+        id S229476AbiEEJCc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 May 2022 05:02:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43856 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351731AbiEEJAz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 05:00:55 -0400
-Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com [199.106.114.39])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5FE5849F18;
-        Thu,  5 May 2022 01:57:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1651741021; x=1683277021;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version;
-  bh=V7sjjm49a0/QUz6WLYHMRbDzxjsAIpjkcvIhcXa4mU4=;
-  b=HEbHQLix8+eg2kC3eiLENNWLugLy5RhX9BcJgkAwSK+wKxmMCjGLxTZu
-   lDP2yhspRHONqJSC/RilGDmGEgC03axzXBXnvTahn3eu/8ZBwNQjeZJ80
-   GhWTCDq6zwp0/n0l93JseoaDD9mfvjRNpNCbqnjF1sQEMpzu00d3Xom9s
-   s=;
-Received: from unknown (HELO ironmsg-SD-alpha.qualcomm.com) ([10.53.140.30])
-  by alexa-out-sd-02.qualcomm.com with ESMTP; 05 May 2022 01:57:01 -0700
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg-SD-alpha.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 May 2022 01:57:00 -0700
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Thu, 5 May 2022 01:57:00 -0700
-Received: from hu-kriskura-hyd.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Thu, 5 May 2022 01:56:53 -0700
-From:   Krishna Kurapati <quic_kriskura@quicinc.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Felipe Balbi <balbi@kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Doug Anderson <dianders@chromium.org>,
-        "Matthias Kaehlcke" <mka@chromium.org>,
-        Mathias Nyman <mathias.nyman@intel.com>
-CC:     <devicetree@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-usb@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-pm@vger.kernel.org>, <quic_pkondeti@quicinc.com>,
-        <quic_ppratap@quicinc.com>, <quic_vpulyala@quicinc.com>,
-        Sandeep Maheswaram <quic_c_sanm@quicinc.com>,
-        Krishna Kurapati <quic_kriskura@quicinc.com>
-Subject: [v15 6/6] usb: dwc3: qcom: Keep power domain on to retain controller status
-Date:   Thu, 5 May 2022 14:26:13 +0530
-Message-ID: <1651740973-7944-7-git-send-email-quic_kriskura@quicinc.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1651740973-7944-1-git-send-email-quic_kriskura@quicinc.com>
-References: <1651740973-7944-1-git-send-email-quic_kriskura@quicinc.com>
+        with ESMTP id S234570AbiEEJCb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 05:02:31 -0400
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6EC7E4B1C5;
+        Thu,  5 May 2022 01:58:52 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2458wkh4042367;
+        Thu, 5 May 2022 03:58:46 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1651741126;
+        bh=/ERSrtnW080lHG0uAK8hOjnqXgpAuvT8+uW0erq7CVM=;
+        h=From:To:CC:Subject:Date:References:In-Reply-To;
+        b=eeZUwDAIrLcAfvNnpvAnrD8G1v8VzZYkqJ8zfEKKWdQxIfIZFTsISBN9PTp+5zqFr
+         Lp40bUrbeBECvtBce2erYStjmaGbZ7WnImxlj4e8uyShtK64Ws7lSXxAEAtWJUcjAy
+         CCGLJnMmXlRh8VziN2ULWuWY+hihk8fJBIKTBMWo=
+Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2458wkkp037169
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 5 May 2022 03:58:46 -0500
+Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Thu, 5
+ May 2022 03:58:45 -0500
+Received: from DFLE111.ent.ti.com ([fe80::6c89:b1ca:ee8f:1a6f]) by
+ DFLE111.ent.ti.com ([fe80::6c89:b1ca:ee8f:1a6f%17]) with mapi id
+ 15.01.2308.014; Thu, 5 May 2022 03:58:45 -0500
+From:   "M, Aparna" <a-m1@ti.com>
+To:     "bgolaszewski@baylibre.com" <bgolaszewski@baylibre.com>
+CC:     "Govindraju, Aswath" <a-govindraju@ti.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+        "Raghavendra, Vignesh" <vigneshr@ti.com>,
+        "Linus Walleij" <linus.walleij@linaro.org>
+Subject: Re: [PATCH v5] dt-bindings: gpio: Convert TI TPIC2810 GPIO Controller
+ bindings to YAML
+Thread-Topic: [PATCH v5] dt-bindings: gpio: Convert TI TPIC2810 GPIO
+ Controller bindings to YAML
+Thread-Index: AQHYYF5TXqMLIteje06nkAveL3LoWA==
+Date:   Thu, 5 May 2022 08:58:45 +0000
+Message-ID: <e682175fcfc54217a6ed006270877f4d@ti.com>
+References: <20220223174215.17838-1-a-m1@ti.com>
+ <CACRpkdbj2B90-RE2XKQJ5qEj1hZQA-u=vUu2vpXwNqQLf_kaPg@mail.gmail.com>
+In-Reply-To: <CACRpkdbj2B90-RE2XKQJ5qEj1hZQA-u=vUu2vpXwNqQLf_kaPg@mail.gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-imapappendstamp: DFLE111.ent.ti.com (15.01.2308.014)
+x-ms-exchange-messagesentrepresentingtype: 1
+x-originating-ip: [172.24.159.86]
+x-exclaimer-md-config: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <88ED82CFF925304C89778BDE264DAEDD@owa.mail.ti.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Sandeep Maheswaram <quic_c_sanm@quicinc.com>
-
-Keep the power domain always on during runtime suspend or if the
-controller supports wakeup in order to retain controller status
-and to support wakeup from devices.
-
-Signed-off-by: Sandeep Maheswaram <quic_c_sanm@quicinc.com>
-Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
----
- drivers/usb/dwc3/dwc3-qcom.c | 23 ++++++++++++++++-------
- 1 file changed, 16 insertions(+), 7 deletions(-)
-
-diff --git a/drivers/usb/dwc3/dwc3-qcom.c b/drivers/usb/dwc3/dwc3-qcom.c
-index 9804a19..1f9589a 100644
---- a/drivers/usb/dwc3/dwc3-qcom.c
-+++ b/drivers/usb/dwc3/dwc3-qcom.c
-@@ -17,6 +17,7 @@
- #include <linux/of_platform.h>
- #include <linux/platform_device.h>
- #include <linux/phy/phy.h>
-+#include <linux/pm_domain.h>
- #include <linux/usb/of.h>
- #include <linux/reset.h>
- #include <linux/iopoll.h>
-@@ -718,12 +719,13 @@ dwc3_qcom_create_urs_usb_platdev(struct device *dev)
- 
- static int dwc3_qcom_probe(struct platform_device *pdev)
- {
--	struct device_node	*np = pdev->dev.of_node;
--	struct device		*dev = &pdev->dev;
--	struct dwc3_qcom	*qcom;
--	struct resource		*res, *parent_res = NULL;
--	int			ret, i;
--	bool			ignore_pipe_clk;
-+	struct device_node *np = pdev->dev.of_node;
-+	struct device *dev = &pdev->dev;
-+	struct dwc3_qcom *qcom;
-+	struct resource	*res, *parent_res = NULL;
-+	int ret, i;
-+	bool ignore_pipe_clk;
-+	struct generic_pm_domain *genpd;
- 
- 	qcom = devm_kzalloc(&pdev->dev, sizeof(*qcom), GFP_KERNEL);
- 	if (!qcom)
-@@ -732,6 +734,8 @@ static int dwc3_qcom_probe(struct platform_device *pdev)
- 	platform_set_drvdata(pdev, qcom);
- 	qcom->dev = &pdev->dev;
- 
-+	genpd = pd_to_genpd(qcom->dev->pm_domain);
-+
- 	if (has_acpi_companion(dev)) {
- 		qcom->acpi_pdata = acpi_device_get_match_data(dev);
- 		if (!qcom->acpi_pdata) {
-@@ -839,7 +843,12 @@ static int dwc3_qcom_probe(struct platform_device *pdev)
- 	if (ret)
- 		goto interconnect_exit;
- 
--	device_init_wakeup(&pdev->dev, 1);
-+	genpd->flags |= GENPD_FLAG_RPM_ALWAYS_ON;
-+
-+	if (device_may_wakeup(&qcom->dwc3->dev)) {
-+		genpd->flags |= GENPD_FLAG_ALWAYS_ON;
-+		device_init_wakeup(&pdev->dev, true);
-+	}
- 	qcom->is_suspended = false;
- 	pm_runtime_set_active(dev);
- 	pm_runtime_enable(dev);
--- 
-2.7.4
-
+K1ZpZ25lc2gNCg0KUGluZy4gQ2FuIHRoaXMgYmUgcGlja2VkIHVwIGZvciBuZXh0IG1lcmdlIGN5
+Y2xlPw0KDQpPbiAxNS8wMy8yMiAwNjozMSwgTGludXMgV2FsbGVpaiB3cm90ZToNCj4gT24gV2Vk
+LCBGZWIgMjMsIDIwMjIgYXQgNjo0MiBQTSBBcGFybmEgTSA8YS1tMUB0aS5jb20+IHdyb3RlOg0K
+Pg0KPj4gQ29udmVydCBncGlvLXRwaWMyODEwIGJpbmRpbmdzIHRvIHlhbWwgZm9ybWF0IGFuZCBy
+ZW1vdmUgb3V0ZGF0ZWQNCj4+IGJpbmRpbmdzIGluIC50eHQgZm9ybWF0Lg0KPj4NCj4+IFNpZ25l
+ZC1vZmYtYnk6IEFwYXJuYSBNIDxhLW0xQHRpLmNvbT4NCj4gUmV2aWV3ZWQtYnk6IExpbnVzIFdh
+bGxlaWogPGxpbnVzLndhbGxlaWpAbGluYXJvLm9yZz4NCj4NCj4gWW91cnMsDQo+IExpbnVzIFdh
+bGxlaWoNCj4NClRoYW5rcywNCi0tIA0KQXBhcm5hIE0NCg0K
