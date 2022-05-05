@@ -2,143 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 80B6051BC85
-	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 11:50:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7263851BC96
+	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 11:58:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1354518AbiEEJy0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 May 2022 05:54:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37394 "EHLO
+        id S1349409AbiEEKCD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 May 2022 06:02:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42336 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231517AbiEEJyO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 05:54:14 -0400
-Received: from mail.schwermer.no (mail.schwermer.no [49.12.228.226])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E419140D7;
-        Thu,  5 May 2022 02:50:29 -0700 (PDT)
-X-Virus-Scanned: Yes
-From:   Sven Schwermer <sven@svenschwermer.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=svenschwermer.de;
-        s=mail; t=1651744226;
-        bh=lOGd00ODohYP+KMc0D1h92V6nZo00DPGfkd/bfgkdYw=;
-        h=From:To:Cc:Subject:In-Reply-To:References;
-        b=JZdNtDf77tM4Zs5MwXskT78cfYZLmrk/pLZ54LQmDnU5IHzW2XDNfeRxP2RYcK14+
-         TWyWIASbqtdYiIlRKuyKlWH6/gS0Lt9yJJGM6rHXnX9ff6xbtgprA/jSj3tzRaTxpx
-         nIJUaCWAnni5hEiyvcG1NwBcgfyq/mGnAOgodIFzY2swPU3yTYR/zTGDfLG/PG4n8C
-         6GGjQ0MuaApRj3n6qJUfnxAO5RyxBjkB6/nEGm/XU9JN/sVXht5EIVnnB7lMD8Edhi
-         mVR9Da2au8wKFPYavx2m/35pi7sSlpr5gg61ejBOifKoHtdPwUUOuoQaInDk/JX8hj
-         8+W0RhmXAVdvg==
-To:     linux-leds@vger.kernel.org, linux-kernel@vger.kernel.org,
-        pavel@ucw.cz, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org
-Cc:     Sven Schwermer <sven.schwermer@disruptive-technologies.com>,
-        schuchmann@schleissheimer.de
-Subject: [PATCH v3 2/2] leds: multicolor: Read default-intensities property
-Date:   Thu,  5 May 2022 11:50:09 +0200
-Message-Id: <9175a8b9fdd23a5b379457e7246ae4364cabc110.1651744128.git.sven.schwermer@disruptive-technologies.com>
-In-Reply-To: <eef2dba9633a860063527628a72f6a4523aaf6cd.1651744128.git.sven.schwermer@disruptive-technologies.com>
-References: <eef2dba9633a860063527628a72f6a4523aaf6cd.1651744128.git.sven.schwermer@disruptive-technologies.com>
-Mime-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S243851AbiEEKCC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 06:02:02 -0400
+Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A0C7B4AE22;
+        Thu,  5 May 2022 02:58:22 -0700 (PDT)
+Received: from janitor.denx.de (unknown [62.91.23.180])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: noc@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 827A583F00;
+        Thu,  5 May 2022 11:58:20 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1651744700;
+        bh=yXye+GgNkW8KmlgmC12gA+GGa2bu/xCUhSLnb8ilQqU=;
+        h=From:To:Cc:Subject:Date:From;
+        b=e6DS6aGXffxCJhIAsLOUb+cTLwjfzyx/onpW3XLhMOJlc3FEJwnRRdBWh0CktpzzG
+         6UkLyCdkDKrAjjH4G3+AiAkG0FL8N6amhkjx8btaVQjQ+b6oSVA0NvnQbi3Q7bTRor
+         ifzrERIJUiEryGn3+HmvtC1aj4NAFuBMnxQeLJyQmauQOkMyY7KCsmLh7WsM7QjcrN
+         vorzQ05jodKeJFabMe83esFUOfcNsgBrjo/sfRr8V0qWrNzsJU4wDikIZtU7DxTcda
+         LrnSLnhIdj5myab6ULBYzi7PaNAjdhFnMCA+c9xzjWhnpzSshhclpF4reY9vSYbRs+
+         qk+jA12RLC7TA==
+Received: by janitor.denx.de (Postfix, from userid 108)
+        id CD4ECA012A; Thu,  5 May 2022 11:58:18 +0200 (CEST)
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+X-Spam-Level: 
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
+Received: from xpert.denx.de (xpert.denx.de [192.168.0.4])
+        by janitor.denx.de (Postfix) with ESMTPS id BC565A003A;
+        Thu,  5 May 2022 11:58:04 +0200 (CEST)
+Received: by xpert.denx.de (Postfix, from userid 535)
+        id 87AB93E07D7; Thu,  5 May 2022 11:58:04 +0200 (CEST)
+From:   Philip Oberfichtner <pro@denx.de>
+Cc:     Philip Oberfichtner <pro@denx.de>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, matthias.winker@de.bosch.com
+Subject: [PATCH v4 1/4] dt-bindings: display: simple: Add DataImage FG1001L0DSSWMG01 compatible string
+Date:   Thu,  5 May 2022 11:57:24 +0200
+Message-Id: <20220505095725.902447-1-pro@denx.de>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.5 at phobos.denx.de
+X-Virus-Status: Clean
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Sven Schwermer <sven.schwermer@disruptive-technologies.com>
+Add DataImage FG1001L0DSSWMG01 10.1" 1280x800 TFT LCD panel compatible
+string.
 
-This allows to assign intensity values taken from the firmware interface
-(if available) to the indivisual sub LEDs (colors) at driver probe time,
-i.e. most commonly at kernel boot time. This is crucial for setting a
-specific color and early in the boot process. While it would be possible
-to set a static color in the bootloader, this mechanism allows setting a
-pattern (e.g. blinking) at a specific color.
+Signed-off-by: Philip Oberfichtner <pro@denx.de>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Signed-off-by: Sven Schwermer <sven.schwermer@disruptive-technologies.com>
 ---
 
-Notes:
-    V1->V2: Fix mixup
-    V2->V3: Use color-intensity mapping instead of simple intensity array
+Cc: Thierry Reding <thierry.reding@gmail.com>
+Cc: Sam Ravnborg <sam@ravnborg.org>
+Cc: David Airlie <airlied@linux.ie>
+Cc: Daniel Vetter <daniel@ffwll.ch>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: dri-devel@lists.freedesktop.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Cc: matthias.winker@de.bosch.com
 
- drivers/leds/led-class-multicolor.c | 48 +++++++++++++++++++++++++++++
- 1 file changed, 48 insertions(+)
+---
 
-diff --git a/drivers/leds/led-class-multicolor.c b/drivers/leds/led-class-multicolor.c
-index e317408583df..2900dd02fe41 100644
---- a/drivers/leds/led-class-multicolor.c
-+++ b/drivers/leds/led-class-multicolor.c
-@@ -9,6 +9,7 @@
- #include <linux/module.h>
- #include <linux/slab.h>
- #include <linux/uaccess.h>
-+#include <linux/property.h>
- 
- #include "leds.h"
- 
-@@ -116,6 +117,50 @@ static struct attribute *led_multicolor_attrs[] = {
- };
- ATTRIBUTE_GROUPS(led_multicolor);
- 
-+static void multi_load_default_intensities(struct device *parent,
-+					   struct led_classdev_mc *mcled_cdev,
-+					   struct fwnode_handle *fwnode)
-+{
-+	u32 intensities[2 * LED_COLOR_ID_MAX];
-+	unsigned int j;
-+	int len;
-+	int ret;
-+	int i;
-+
-+	len = fwnode_property_read_u32_array(fwnode, "default-intensities",
-+					     NULL, 0);
-+	if (len < 0) {
-+		if (len != -ENODATA)
-+			dev_warn(parent,
-+				 "failed to read default-intensities property length: %d", ret);
-+		return;
-+	}
-+	if (len % 2 != 0) {
-+		dev_warn(parent, "default-intensities property has uneven number of values");
-+		return;
-+	}
-+	if (len > ARRAY_SIZE(intensities)) {
-+		dev_warn(parent, "default-intensities property has too many values");
-+		return;
-+	}
-+
-+	ret = fwnode_property_read_u32_array(fwnode, "default-intensities",
-+					     intensities, len);
-+	if (ret < 0) {
-+		dev_warn(parent, "failed to read default-intensities property values: %d", ret);
-+		return;
-+	}
-+
-+	for (i = 0; i < len; i += 2) {
-+		for (j = 0; j < mcled_cdev->num_colors; j++) {
-+			if (intensities[i] == mcled_cdev->subled_info[j].color_index) {
-+				mcled_cdev->subled_info[j].intensity = intensities[i + 1];
-+				break;
-+			}
-+		}
-+	}
-+}
-+
- int led_classdev_multicolor_register_ext(struct device *parent,
- 				     struct led_classdev_mc *mcled_cdev,
- 				     struct led_init_data *init_data)
-@@ -134,6 +179,9 @@ int led_classdev_multicolor_register_ext(struct device *parent,
- 	led_cdev = &mcled_cdev->led_cdev;
- 	mcled_cdev->led_cdev.groups = led_multicolor_groups;
- 
-+	if (init_data && init_data->fwnode)
-+		multi_load_default_intensities(parent, mcled_cdev, init_data->fwnode);
-+
- 	return led_classdev_register_ext(parent, led_cdev, init_data);
- }
- EXPORT_SYMBOL_GPL(led_classdev_multicolor_register_ext);
+Changes in v4: Acked-by Krzysztof
+Changes in v3: new
+---
+ .../devicetree/bindings/display/panel/panel-simple.yaml         | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+index 1eb9dd4f8f58..a6db3eff3b1a 100644
+--- a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
++++ b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+@@ -105,6 +105,8 @@ properties:
+       - chunghwa,claa101wb01
+         # Chunghwa Picture Tubes Ltd. 10.1" WXGA TFT LCD panel
+       - chunghwa,claa101wb03
++        # DataImage, Inc. 10.1" WXGA (1280×800) TFT LCD panel
++      - dataimage,fg1001l0dsswmg01
+         # DataImage, Inc. 7" WVGA (800x480) TFT LCD panel with 24-bit parallel interface.
+       - dataimage,scf0700c48ggu18
+         # DLC Display Co. DLC1010GIG 10.1" WXGA TFT LCD Panel
 -- 
-2.36.0
+2.34.1
 
