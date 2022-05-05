@@ -2,183 +2,303 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5007E51BFA7
-	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 14:42:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3405751BFF2
+	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 14:55:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1377555AbiEEMob (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 May 2022 08:44:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49924 "EHLO
+        id S233661AbiEEM5j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 May 2022 08:57:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36910 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1377961AbiEEMoS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 08:44:18 -0400
-Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2052.outbound.protection.outlook.com [40.107.20.52])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA782193FB;
-        Thu,  5 May 2022 05:40:36 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=cJlwXWWN/rRJrF+/pghfMHs6WahJmXZb1Th+EDxIoYGD8r5QOpHmZDbcD2CWQjscv8O5Lk/YN1OMN5andsphA2P7+C8w7fr+mG2aKGfMHhGdYrL/MuLaPjDPvu6VeQJCCSCqAup9AzMw06lEDNWaJqBaPvyy30V/yy3PrXRPmx+3bPuyp14kk1WdhQ4CKauobvDMuOF0Lc5u0jMjmFVx78TPbPxIYBVG5Usa8rJ6tTc5ZVLwY5CUbqAzWdSEX3uyYsALFzBQt3voNcFm0y+nifHJ7XC/OAAdLZNC8tnDVIlw1MM21p+7zfEpJPAlEQ7GplXwy+seh8b7zhW0vJUcpw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ngw3NGbNeU2YhVFdm0+FyBd1E57Iw6AHC4JOBszABKE=;
- b=hv8PtPVwPQaPWV61AedhOZBcsEvtI5wa4q3s0BQ93ST6dGk44/SdKdVyjs987xNvXzrKAcMGFYzsQo7hKwHXC3eJVPthpivY3qAWugVH4ib3RmOYCUorgAd4ZIgPe5LuCpdl0Vc6YrDGVGB+iKr35Lw92VN/4/Ket8T8LMGEnnq5mzO7ABMleDpoGQ39JO5hbwB6IesEHvNTRV7XI81fpu2Q6hpSq+ywYG26XXaOcJi4g/Wsq+UiAlR/P7CmkQ0mavKBr8iWOsUCSGnj9ikFqEH/W1BGWHDf3ixpzjQC14drobn8vEUAj7u08PnPZyx1rV15X1zixY/QjcfD+HtnQw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=variscite.com; dmarc=pass action=none
- header.from=variscite.com; dkim=pass header.d=variscite.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=variscite.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ngw3NGbNeU2YhVFdm0+FyBd1E57Iw6AHC4JOBszABKE=;
- b=td3HNakzGp5MUaPAQ/lFb9qWYjSVEuyB7Q8msmwZCYy7U527UnRfmJ4J/PN5D1rwpS+Ctwv4hjyVIKt81XqnI2dKV07JBCjELxKOXfNMyqOZcoIyMq6y9AAy1HqIfEzo21HLgU03kcOJ/5ifT2rehTh4e+5t/BGobY4USTU9+MJeD/q0K/MD/V+kNk98UF204kYEn9FKsgLUajxtWOpUKMTvveECS53Gds7/nuElWHk+x1XauyXKmUuNSNp6XdGBPKS1lzreBGYooFPERpWBucW/83MYINKzDYjZuB1fN0tV0IqD9VBse5xqo/lLQO1bGWu/Ig3ih1tnA4GJVaPlTg==
-Received: from AM8PR08MB5746.eurprd08.prod.outlook.com (2603:10a6:20b:1d8::20)
- by DB7PR08MB3820.eurprd08.prod.outlook.com (2603:10a6:10:7f::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5206.25; Thu, 5 May
- 2022 12:40:31 +0000
-Received: from AM8PR08MB5746.eurprd08.prod.outlook.com
- ([fe80::9dfd:cf1c:a154:9a09]) by AM8PR08MB5746.eurprd08.prod.outlook.com
- ([fe80::9dfd:cf1c:a154:9a09%9]) with mapi id 15.20.5206.013; Thu, 5 May 2022
- 12:40:31 +0000
-From:   Nate Drude <Nate.D@variscite.com>
-To:     "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "krzysztof.kozlowski@linaro.org" <krzysztof.kozlowski@linaro.org>,
-        "pabeni@redhat.com" <pabeni@redhat.com>
-CC:     "andrew@lunn.ch" <andrew@lunn.ch>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "josua@solid-run.com" <josua@solid-run.com>,
-        Eran Matityahu <eran.m@variscite.com>,
-        "michael.hennerich@analog.com" <michael.hennerich@analog.com>,
-        "kuba@kernel.org" <kuba@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>
-Subject: Re: [PATCH 1/2] dt-bindings: net: adin: document adi,clk_rcvr_125_en
- property
-Thread-Topic: [PATCH 1/2] dt-bindings: net: adin: document adi,clk_rcvr_125_en
- property
-Thread-Index: AQHYW/lBEC5y4bS5mEezwW7NaJBvmK0LTw+AgAHBDQCAAzKNAA==
-Date:   Thu, 5 May 2022 12:40:31 +0000
-Message-ID: <88b343998e6cabeef71fee272cf3f8029a59d5f3.camel@variscite.com>
-References: <20220429184432.962738-1-nate.d@variscite.com>
-         <a11501d365b3ee401116e0f77c16f6c2f63ef69b.camel@redhat.com>
-         <5d3bccb5-2b0e-9054-3302-d6962da0fee4@linaro.org>
-In-Reply-To: <5d3bccb5-2b0e-9054-3302-d6962da0fee4@linaro.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=variscite.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 98e6e7fb-3c57-4b20-15be-08da2e947163
-x-ms-traffictypediagnostic: DB7PR08MB3820:EE_
-x-microsoft-antispam-prvs: <DB7PR08MB382037E12292408B4C0C147F85C29@DB7PR08MB3820.eurprd08.prod.outlook.com>
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: XcIN686fV5vbkNl9CyGxafMS/JuejR1a2db6O2KhFJbew3y3vefT9sJOXCoIWgdHJuE7YrCztre9KODY02JqMvkr5IGISFwxyc5YdhEbjrgEOboQAlZd5XKSVyDPlD6J5y1Bo5l/LPzChrcGEwqp8OMPPU2Agk5hRTGTQxN/P3HNp06z6REinBQ30u+Ol3uweM2uzJyl+Dui6WPRYvB1HHeaG5rV4tHP1Bd/AoRAF9fMlw+GzUeg1UJOdH5QjQjARcb1a05IWDNwqkjbJ0n08LWF+j0YoH6DiaRtLpgoSZTu0voGYB4riCv64YWbdMIVfusIA175g3E2vk0x46NkdZ223sjQD0u1JuamC/t343fDad2dpOO7lYYYJukzRkV+FKEcbVvqVZp0k7bOWBUw2Xq5YfW01S1/SpLlgfDuK001vOssKrj0U0xUR/ji0iLa65gQXIlRerq6Lmp4ecwhTHvDDwU9an0bFskAAe23C+qa4C7WvGyd0eccqMpa7OvGk4pZxSJ8Hj7QEMdCthg43JDt+IQZGSztGSp3nge0D+4ZzF4eCUKIdivtyUO58Zs+Daj3ZreKYdKNRoZhHm57yYpFrIQk1iyhXow1ulk3fPpU00xGRJV/owarae/mR/T8i+aptU+wzajwsBEUXE2Llg64H606d3VY4hNq9V3OlHXSh6inoAqmnFVQq6+I+m0VoSVuF6CHEDnrLoNsjmQYP9gCotFd/8k5x/RTZRWaMBHwFr+AAX/bKBuRcJKh6ZZFV1aaPAYzfyXdGhqz9/WAnSYGspbSHB3bVCQQQ4q+S7s=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM8PR08MB5746.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(396003)(376002)(39830400003)(366004)(136003)(346002)(54906003)(86362001)(6512007)(110136005)(26005)(122000001)(76116006)(91956017)(66946007)(66446008)(64756008)(66476007)(66556008)(316002)(36756003)(2616005)(4326008)(966005)(186003)(6486002)(83380400001)(71200400001)(6506007)(8676002)(2906002)(5660300002)(7416002)(38070700005)(38100700002)(508600001)(8936002)(53546011);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?MU5MemMrRGFtQS9UWGlvL3FsbG1PV0hZMjJRYVBmNng3azhxUE1xd1FGZk5C?=
- =?utf-8?B?QmRWbjVabXI4WnBQaUFnTkYzbys0SWNMbnkzSEhnbVZobGcvaGJyOGZjTjRa?=
- =?utf-8?B?b0gvd2hNbit1WXBTRVhuVG9XZWhSOVJCbHd6aDJjOElhNThnRDlwVjhuczJJ?=
- =?utf-8?B?QlFqY2IwQzRUMkpRbm5HaTAyT2p4VE1wYnhmcGRaNTltY2RCS3h1U21oZ1RW?=
- =?utf-8?B?Unk4UEtIT1FYL1VkaDgvQThIY3QyQ0VMeFNsQWt0aUJBWm1mVTJUSUJUWVNt?=
- =?utf-8?B?cU5QU3hBbjl6YWI5NGFubEp1MDAxVlhmN2V0UmZRb0RYWXVRSktOdUdRZkl0?=
- =?utf-8?B?bENSV1BLeEowd0NhNHdBSXNsQjBNeng4d2J3bGx5V2NUR1QvZVFaM2E1V2c3?=
- =?utf-8?B?QXVMYXF5aWdYZjBUd09SQ1NxSGVmaVM0UmhTZjZwZmV5K1BWYVpnaGl4dTRG?=
- =?utf-8?B?bTFOamhWT0wzNG5weENXTzl4V3N4MjhUTFN0Rmh1d1BpYy85OGROUlF2YmFL?=
- =?utf-8?B?WUdDai9ZdVJqeGxkemVjNkpXSUZKbm5qaURHK2V3VVFKNWt2ellZQTRDcWdu?=
- =?utf-8?B?bkZBeVg3RktEV1JNVG9qUGg3WjBUbGp6YWYzWFI1d3YvU2FvWlRSOEN5ZW43?=
- =?utf-8?B?T0FOMk5KSDJRZHF6Wmp5S09lZGQxZVZGT3FOT0VldkUwYzczeVIrS3ZaeWNK?=
- =?utf-8?B?clVjd0JrTi9QM0xGdGlaWGJ6TlZtODdPSE1SSEozSmRhYVM1UTJBZllvUGFL?=
- =?utf-8?B?V3p2WFJjNGQxRjU2RmhLZlpLR3Ryd3lSRHlpMWU4QzdLQm9hVTZFNUJUNGYx?=
- =?utf-8?B?b3ZjODNmU094cEY3OVlMb1BYTHJjZGc4N1lrYno1cUVIcTdiT3pueWNjN0RO?=
- =?utf-8?B?YXZSZDNNU2pmakFEK3R3WDJTT0RrNkFuTDRNazdoQzdlMlNPTGx5SzYrSi9F?=
- =?utf-8?B?OHhBbllUZGxoMWFmNVNSSzNSUmRJMDg5cDRuZTlaS1Njd0tsT0FJdjlsVWdZ?=
- =?utf-8?B?K1BIMmV2NHlRVU13dXdkZkt6U09kUVA0U3UvRFMvKzNFNXdxWUptUnB3K2gx?=
- =?utf-8?B?eHpSQjBZMWFkSlJYcmxHdDZ6bUFUMnRaVk1BOWxuaVVCR29CWkgxN0h3WkZQ?=
- =?utf-8?B?d1dCOU5mOThqYXRUakFwYzl3OWlhRXpDSGYrcmx0aG1rdU1vSkRNRGxoZndY?=
- =?utf-8?B?Nk1CaVNrbmFTUjBrSHlkVVA0YWp1eUlsN0s1d1hzNE1PM0VoUWxkSVhWSGZi?=
- =?utf-8?B?TG9BZGVhTmhLVFdGbmRiYTM0UlpVeVlNU1RhdkpUQU1uV3VpWnhGdlZjRkhr?=
- =?utf-8?B?REk2a0ZFU2lBYWlTeU1kdHFrdzU5Z1hoZVZzUTNVaDMzQlRaSHI2eitsMlR3?=
- =?utf-8?B?SGF1K2dON2JYdXdxYnZuakFMNTZSS2hPUVJNU3RFcEF1cW1uWTVVUFUrSXQ4?=
- =?utf-8?B?TkxpcmZCRktrbXZpaUp6MFpjSXRYQnE1VWpKNGlhM0REdTMyUzZMdzhPOGda?=
- =?utf-8?B?TG1RbFFVMU1BeG43MUt5ZnNmMHhzYWovTlBaYWNOUFJqMUFPTngrMDJGV3hI?=
- =?utf-8?B?Sll0a1NJR0E4TDlpNEJDWHJGVjNmd0pXQ2tpSndoMnJZUkZWekMrTU9HK3cy?=
- =?utf-8?B?RVBSMGFSTWtRcG1vZG95L3l4cmtrTzU0elhleldmYVhpZEtuMyt2eU13dk8x?=
- =?utf-8?B?WjhHQmFJdnhvUE9kNjdXbTRHY3h6ZXMvckZ5OHhzMFA1N29lV1dkbENzNmxN?=
- =?utf-8?B?WVlLVEZWVktpZkI0cG9nVHZrNnRVUGE0MkJMSVJ4MG9WTTZWTjBIQlJudlRX?=
- =?utf-8?B?aytUTUd0a0JFeVhVT2x5SzhuektjeGF0ZXovYmkwUW5xZHlsU2NtT3M3Z3Jp?=
- =?utf-8?B?K2lqMy9uNnlMdGNzUFN4Z0JhTWFiS3Ewd3BsaE9Ka05GdWQyVUk3WmJ0aWd2?=
- =?utf-8?B?N2J1WTU5WWtqU045SXNwYStMVDJaaXhydlJrWmJ6eVRmTXNzL0RERXFWUk5W?=
- =?utf-8?B?ZGorZm1hODJNeHRPQndnVGMwUlVzNkNHZzVHa2hHQnNRaS9mTG5ibjN3RDk2?=
- =?utf-8?B?RFdic1Q1cHp4UjBhT3pJRlVMMnRxbGV0dXhSYkNpL29HdXRzTy9FYmZXUE1I?=
- =?utf-8?B?UE9XRkdPcTIyMFJlZi9IbElwK1ZvUEdYYWFvakdYZUZ0S0s1NUU2enZOQUxH?=
- =?utf-8?B?TGQwTnRsWUE3WkFzb2YxVkRyZWk2UW96a1NKeUNCY1FGQUM3M250bFJmUnEy?=
- =?utf-8?B?SGpqR3RQZXpPL25zeFR1T1BKZ1ZEd00xZnZXYXZ3UmhrY3FuWktaRFlYdjY2?=
- =?utf-8?B?am1qa1RwYTJKd1NQRWV6VmhEUWV1K3RRcGxxK3cxU0tRTjFwU2U0bTlIMkN5?=
- =?utf-8?Q?BWYIeG5SzqQEulEs=3D?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <E606B52A758D314A8A90A9B14EA6F191@eurprd08.prod.outlook.com>
-Content-Transfer-Encoding: base64
+        with ESMTP id S234636AbiEEM5j (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 08:57:39 -0400
+Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com [199.106.114.39])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B1DF56216;
+        Thu,  5 May 2022 05:53:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1651755239; x=1683291239;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=HwR97P478iK45CdIdkPRinoYCx69pi/2Zftw98mI8mM=;
+  b=imP2wIuGUHJ3ctlzZ5BXmOGMs7TBlx69JUuLW3II3Nc+oYRhOH0YO2xY
+   JFkeeB6auDCCbCj4a7GTN2HYedaX4nCKsmsYJI2aEioxqM23lrJQ4Lr/d
+   U2QgjGHwGqGSzD/7tGPkMoFelepVCv7eC1wFi+Ca5vb6R+E78ArGtfXpF
+   A=;
+Received: from unknown (HELO ironmsg03-sd.qualcomm.com) ([10.53.140.143])
+  by alexa-out-sd-02.qualcomm.com with ESMTP; 05 May 2022 05:53:58 -0700
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg03-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 May 2022 05:53:57 -0700
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Thu, 5 May 2022 05:53:57 -0700
+Received: from [10.79.142.210] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Thu, 5 May 2022
+ 05:53:53 -0700
+Message-ID: <0997f2bc-e8ce-24cc-da90-0ecd3201350c@quicinc.com>
+Date:   Thu, 5 May 2022 18:23:20 +0530
 MIME-Version: 1.0
-X-OriginatorOrg: variscite.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: AM8PR08MB5746.eurprd08.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 98e6e7fb-3c57-4b20-15be-08da2e947163
-X-MS-Exchange-CrossTenant-originalarrivaltime: 05 May 2022 12:40:31.8234
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 399ae6ac-38f4-4ef0-94a8-440b0ad581de
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: yIS/3B9z1YZdktJ7wqSYlJ1cVG95xHhSwjxgikI0eTXMdgYoKrlSr3fbskh41D0byBZ399k8BOHOJncrUp5zvQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB7PR08MB3820
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.2
+Subject: Re: [PATCH V7 2/7] soc: qcom: dcc:Add driver support for Data Capture
+ and Compare unit(DCC)
+Content-Language: en-CA
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+CC:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        "Alex Elder" <elder@ieee.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        Sai Prakash Ranjan <quic_saipraka@quicinc.com>,
+        Sibi Sankar <quic_sibis@quicinc.com>,
+        Rajendra Nayak <quic_rjendra@codeaurora.org>,
+        <vkoul@kernel.org>
+References: <cover.1646285069.git.quic_schowdhu@quicinc.com>
+ <bc8504bdaf24d98762e2dbad7d084ca247380f06.1646285069.git.quic_schowdhu@quicinc.com>
+ <YnFuXYEXxLQkak24@builder.lan>
+From:   Souradeep Chowdhury <quic_schowdhu@quicinc.com>
+In-Reply-To: <YnFuXYEXxLQkak24@builder.lan>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gVHVlLCAyMDIyLTA1LTAzIGF0IDEzOjUwICswMjAwLCBLcnp5c3p0b2YgS296bG93c2tpIHdy
-b3RlOg0KPiBPbiAwMi8wNS8yMDIyIDExOjAzLCBQYW9sbyBBYmVuaSB3cm90ZToNCj4gPiBIZWxs
-bywNCj4gPiANCj4gPiBPbiBGcmksIDIwMjItMDQtMjkgYXQgMTM6NDQgLTA1MDAsIE5hdGUgRHJ1
-ZGUgd3JvdGU6DQo+ID4gPiBEb2N1bWVudCBkZXZpY2UgdHJlZSBwcm9wZXJ0eSB0byBzZXQgR0Vf
-Q0xLX1JDVlJfMTI1X0VOIChiaXQgNSBvZg0KPiA+ID4gR0VfQ0xLX0NGRyksDQo+ID4gPiBjYXVz
-aW5nIHRoZSAxMjUgTUh6IFBIWSByZWNvdmVyZWQgY2xvY2sgKG9yIFBMTCBjbG9jaykgdG8gYmUN
-Cj4gPiA+IGRyaXZlbiBhdA0KPiA+ID4gdGhlIEdQX0NMSyBwaW4uDQo+ID4gPiANCj4gPiA+IFNp
-Z25lZC1vZmYtYnk6IE5hdGUgRHJ1ZGUgPG5hdGUuZEB2YXJpc2NpdGUuY29tPg0KPiA+ID4gLS0t
-DQo+ID4gPiDCoERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9uZXQvYWRpLGFkaW4u
-eWFtbCB8IDUgKysrKysNCj4gPiA+IMKgMSBmaWxlIGNoYW5nZWQsIDUgaW5zZXJ0aW9ucygrKQ0K
-PiA+ID4gDQo+ID4gPiBkaWZmIC0tZ2l0IGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRp
-bmdzL25ldC9hZGksYWRpbi55YW1sDQo+ID4gPiBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9i
-aW5kaW5ncy9uZXQvYWRpLGFkaW4ueWFtbA0KPiA+ID4gaW5kZXggMTEyOWYyYjU4ZTk4Li41ZmRi
-YmQ1YWZmODIgMTAwNjQ0DQo+ID4gPiAtLS0gYS9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmlu
-ZGluZ3MvbmV0L2FkaSxhZGluLnlhbWwNCj4gPiA+ICsrKyBiL0RvY3VtZW50YXRpb24vZGV2aWNl
-dHJlZS9iaW5kaW5ncy9uZXQvYWRpLGFkaW4ueWFtbA0KPiA+ID4gQEAgLTM2LDYgKzM2LDExIEBA
-IHByb3BlcnRpZXM6DQo+ID4gPiDCoMKgwqDCoCBlbnVtOiBbIDQsIDgsIDEyLCAxNiwgMjAsIDI0
-IF0NCj4gPiA+IMKgwqDCoMKgIGRlZmF1bHQ6IDgNCj4gPiA+IMKgDQo+ID4gPiArwqAgYWRpLGNs
-a19yY3ZyXzEyNV9lbjoNCj4gDQo+IE5vIHVuZGVyc2NvcmVzIGluIG5vZGUgbmFtZXMNCj4gDQo+
-ID4gPiArwqDCoMKgIGRlc2NyaXB0aW9uOiB8DQo+ID4gPiArwqDCoMKgwqDCoCBTZXQgR0VfQ0xL
-X1JDVlJfMTI1X0VOIChiaXQgNSBvZiBHRV9DTEtfQ0ZHKSwgY2F1c2luZyB0aGUNCj4gPiA+IDEy
-NSBNSHoNCj4gPiA+ICvCoMKgwqDCoMKgIFBIWSByZWNvdmVyZWQgY2xvY2sgKG9yIFBMTCBjbG9j
-aykgdG8gYmUgZHJpdmVuIGF0IHRoZQ0KPiA+ID4gR1BfQ0xLIHBpbi4NCj4gDQo+IFlvdSBhcmUg
-ZGVzY3JpYmluZyBwcm9ncmFtbWluZyBtb2RlbCBidXQgeW91IHNob3VsZCBkZXNjcmliZSByYXRo
-ZXINCj4gaGFyZHdhcmUgZmVhdHVyZSBpbnN0ZWFkLiBUaGlzIHNob3VsZCBiZSByZWZsZWN0ZWQg
-aW4gcHJvcGVydHkgbmFtZQ0KPiBhbmQNCj4gZGVzY3JpcHRpb24uIEZvY3VzIG9uIGhhcmR3YXJl
-IGFuZCBkZXNjcmliZSBpdC4NCj4gDQo+ID4gPiArDQo+ID4gPiDCoHVuZXZhbHVhdGVkUHJvcGVy
-dGllczogZmFsc2UNCj4gPiA+IMKgDQo+ID4gPiDCoGV4YW1wbGVzOg0KPiA+IA0KPiA+IFRoZSBy
-ZWNpcGllbnRzIGxpc3QgZG9lcyBub3QgY29udGFpbiBhIGZldyByZXF1aXJlZCBvbmVzLCBhZGRp
-bmcNCj4gPiBmb3INCj4gPiBhd2FyZW5lc3MgUm9iLCBLcnp5c3p0b2YgYW5kIHRoZSBkZXZpY2V0
-cmVlIE1MLiBJZiBhIG5ldyB2ZXJzaW9uDQo+ID4gc2hvdWxkDQo+ID4gYmUgcmVxdWlyZWQsIHBs
-ZWFzZSBpbmNsdWRlIHRoZW0uDQo+IA0KPiBUaGFua3MhDQo+IA0KPiBOYXRlLA0KPiBKdXN0IHBs
-ZWFzZSB1c2Ugc2NyaXB0cy9nZXRfbWFpbnRhaW5lcnMucGwgYW5kIGFsbCBwcm9ibGVtcyB3aXRo
-DQo+IGFkZHJlc3NpbmcgYXJlIGdvbmUuLi4NCj4gDQo+IA0KPiBCZXN0IHJlZ2FyZHMsDQo+IEty
-enlzenRvZg0KDQpIaSBBbGwsDQoNClRoYW5rcyBmb3IgeW91ciBmZWVkYmFjayBvbiB0aGUgcGF0
-Y2ggYW5kIHByb3BlciBhZGRyZXNzaW5nLg0KDQpUaGlzIHBhdGNoIGlzIG5vdyBkdXBsaWNhdGVk
-IGJ5IHYzIG9mIEpvc3VhJ3MgcGF0Y2gsIHdoaWNoIGFwcGVhcnMgbW9yZQ0KY29tcHJlaGVuc2l2
-ZToNCmh0dHBzOi8vbG9yZS5rZXJuZWwub3JnL25ldGRldi8yMDIyMDQyODA4Mjg0OC4xMjE5MS0z
-LWpvc3VhQHNvbGlkLXJ1bi5jb20vDQoNClJlZ2FyZHMsDQpOYXRlDQo=
+
+On 5/3/2022 11:33 PM, Bjorn Andersson wrote:
+> On Thu 03 Mar 00:27 CST 2022, Souradeep Chowdhury wrote:
+>
+>> The DCC is a DMA Engine designed to capture and store data
+>> during system crash or software triggers. The DCC operates
+>> based on user inputs via the sysfs interface. The user gives
+>> addresses as inputs and these addresses are stored in the
+>> dcc sram. In case of a system crash or a manual software
+>> trigger by the user through the debugfs interface,
+>> the dcc captures and stores the values at these addresses.
+>> This patch contains the driver which has all the methods
+>> pertaining to the debugfs interface, auxiliary functions to
+>> support all the four fundamental operations of dcc namely
+>> read, write, read/modify/write and loop. The probe method
+>> here instantiates all the resources necessary for dcc to
+>> operate mainly the dedicated dcc sram where it stores the
+>> values. The DCC driver can be used for debugging purposes
+>> without going for a reboot since it can perform software
+>> triggers as well based on user inputs.
+>>
+>> Also added the documentation for debugfs entries and explained
+>> the functionalities of each debugfs file that has been created
+>> for dcc.
+>>
+>> The following is the justification of using debugfs interface
+>> over the other alternatives like sysfs/ioctls
+>>
+>> i) As can be seen from the debugfs attribute descriptions,
+>> some of the debugfs attribute files here contains multiple
+>> arguments which needs to be accepted from the user. This goes
+>> against the design style of sysfs.
+>>
+>> ii) The user input patterns have been made simple and convenient
+>> in this case with the use of debugfs interface as user doesn't
+>> need to shuffle between different files to execute one instruction
+>> as was the case on using other alternatives.
+>>
+>> Signed-off-by: Souradeep Chowdhury <quic_schowdhu@quicinc.com>
+>> ---
+>>   Documentation/ABI/testing/debugfs-driver-dcc |  124 +++
+>>   drivers/soc/qcom/Kconfig                     |    8 +
+>>   drivers/soc/qcom/Makefile                    |    1 +
+>>   drivers/soc/qcom/dcc.c                       | 1465 ++++++++++++++++++++++++++
+>>   4 files changed, 1598 insertions(+)
+>>   create mode 100644 Documentation/ABI/testing/debugfs-driver-dcc
+>>   create mode 100644 drivers/soc/qcom/dcc.c
+>>
+>> diff --git a/Documentation/ABI/testing/debugfs-driver-dcc b/Documentation/ABI/testing/debugfs-driver-dcc
+>> new file mode 100644
+>> index 0000000..70029ab
+>> --- /dev/null
+>> +++ b/Documentation/ABI/testing/debugfs-driver-dcc
+>> @@ -0,0 +1,124 @@
+>> +What:          /sys/kernel/debug/dcc/.../trigger
+>> +Date:          March 2022
+>> +Contact:       Souradeep Chowdhury <quic_schowdhu@quicinc.com>
+>> +Description:
+>> +		This is the debugfs interface for manual software
+>> +		triggers. The user can simply enter a 1 against
+>> +		the debugfs file and enable a manual trigger.
+>> +		Example:
+>> +		echo  1 > /sys/kernel/debug/dcc/.../trigger
+>> +
+>> +What:          /sys/kernel/debug/dcc/.../enable
+>> +Date:          March 2022
+>> +Contact:       Souradeep Chowdhury <quic_schowdhu@quicinc.com>
+>> +Description:
+>> +		This debugfs interface is used for enabling the
+>> +		the dcc hardware. On enabling the dcc, all the
+>> +		addresses entered by the user is written into
+>> +		dcc sram which is read by the dcc hardware on
+>> +		manual or crash induced triggers.
+>> +		Example:
+>> +		echo  0 > /sys/bus/platform/devices/.../enable
+>> +		(disable dcc)
+>> +		echo  1 > /sys/bus/platform/devices/.../enable
+>> +		(enable dcc)
+>> +
+>> +What:          /sys/kernel/debug/dcc/.../config_read
+> As mentioned last time, I don't like this interface of having 6 files
+> that the user can write to in order to append items in the currently
+> selected linked list.
+>
+> Why can't this be a single "config" which takes a multiline string of
+> operations? (Bonus point for supporting appending to the list).
+>
+>
+> This would also serve as a natural place to dump the linked list back to
+> the user for inspection.
+
+Following is the justification of having multiple files in debugfs
+
+1-> Since there are fundamentally 4 instructions for DCC, 
+Read,Write,Read and then Write and Loop,having separate debugfs files 
+for the same makes it
+
+        convenient for the user to use this tool and also to 
+document.This also is consistent with the design principles of debugfs 
+as it supports logical segregation
+
+        of Debugfs files based on the user instructions.
+
+2-> We are maintaining a common linkedlist inside the driver and it can 
+be viewed by the user through the "config_read" debugfs file. Will be 
+adding this to the
+
+        documentation as well.
+
+Let me know your thoughts regarding the above.
+
+>> +Date:          March 2022
+>> +Contact:       Souradeep Chowdhury <quic_schowdhu@quicinc.com>
+>> +Description:
+>> +		This stores the addresses of the registers which
+>> +		needs to be read in case of a hardware crash or
+>> +		manual software triggers. The address entered here
+>> +		are considered under read type instruction.
+>> +		Example:
+>> +		echo <1> <2> <3> >/sys/kernel/debug/dcc/../config_read
+>> +		1->Address to be considered for reading the value.
+>> +		2->The word count of the addresses, read n words
+>> +		   starting from address <1>.
+>> +		3->Can be a 1 or 0 which indicates if it is apb or ahb
+>> +		bus respectively.
+>> +
+>> +What:          /sys/kernel/debug/dcc/.../config_write
+>> +Date:          March 2022
+>> +Contact:       Souradeep Chowdhury <quic_schowdhu@quicinc.com>
+>> +Description:
+>> +		This file allows user to write a value to the register
+>> +		address given as argument. The reason for this feature
+>> +		of dcc is that for accessing certain registers it is
+>> +		necessary to set some bits of some other register.
+>> +		Example:
+>> +		echo <1> <2> <3> > /sys/bus/platform/devices/.../config_write
+>> +		1->Address to be considered for writing the value.
+>> +		2->The value that needs to be written at the location.
+>> +		3->Can be a 1 or 0 which indicates if it is apb or ahb
+>> +		bus respectively.
+>> +
+>> +What:          /sys/kernel/debug/dcc/.../config_reset
+>> +Date:          March 2022
+>> +Contact:       Souradeep Chowdhury <quic_schowdhu@quicinc.com>
+>> +Description:
+>> +		This file is used to reset the configuration of
+>> +		a dcc driver to the default configuration. This
+>> +		means that all the previous addresses stored in
+>> +		the driver gets removed and user needs to enter
+>> +		the address values from the start.
+>> +		Example:
+>> +		echo  1 > /sys/bus/platform/devices/.../config_reset
+>> +
+>> +What:          /sys/kernel/debug/dcc/.../config_loop
+>> +Date:		March 2022
+>> +Contact:       Souradeep Chowdhury <quic_schowdhu@quicinc.com>
+>> +Description:
+>> +		This file is used to enter the loop type addresses for
+>> +		dcc. DCC hardware provides feature to loop among multiple
+>> +		addresses. For debugging purposes register values need to
+>> +		be captured repeatedly in a loop. On giving the loop count
+>> +		as n, the value at address will be captured n times in a
+>> +		loop. At most 8 loop addresses can be configured at once.
+>> +		Example:
+>> +		echo <1> <2> <3> > /sys/kernel/debug/dcc/../config_loop
+>> +		1->The loop count, the number of times the value of the
+>> +		   addresses will be captured.
+>> +		2->The address count, total number of addresses to be
+>> +		   entered in this instruction.
+>> +		3->The series of addresses to be entered separated by a
+>> +		   space like <addr1> <addr2>... and so on.
+>> +
+>> +What:          /sys/kernel/debug/dcc/.../config_read_write
+>> +Date:          March 2022
+>> +Contact:       Souradeep Chowdhury <quic_schowdhu@quicinc.com>
+>> +Description:
+>> +		This file is used to read the value of the register
+>> +		and then write the value given as an argument to the
+>> +		register address. The address argument should be given
+>> +		of the form <addr> <mask> <value>.For debugging purposes
+>> +		sometimes we need to first read from a register and then
+>> +		set some values to the register.
+>> +		Example:
+>> +		echo <1> <2> <3> > /sys/kernel/debug/dcc/.../config_read_write
+>> +		1->The address which needs to be considered for read then write.
+>> +		2->The value that needs to be written on the address.
+>> +		3->The mask of the value to be written.
+>> +
+>> +What:		/sys/kernel/debug/dcc/.../ready
+>> +Date:		March 2022
+>> +Contact	Souradeep Chowdhury <quic_schowdhu@quicinc.com>
+>> +Description:
+>> +		This file is used to check the status of the dcc
+>> +		hardware if it's ready to take the inputs. A 0
+>> +		here indicates dcc is in a ready condition.
+>> +		Example:
+>> +		cat /sys/kernel/debug/dcc/.../ready
+>> +
+>> +What:		/sys/kernel/debug/dcc/.../curr_list
+> I still don't like the idea of having a single set of files to interface
+> with all N lists. I think you should discover how many lists you have
+> and create N directories of files, each on operating on a given list.
+
+As explained before there cannot be different files based on lists as 
+the number of lists to be used
+
+varies across platforms where DCC is used. Also we are giving the user 
+the flexibility to configure
+
+multiple lists at one go whereas the dumps are collected in the form of 
+separate lists that are
+
+configured by the user.
+
+>
+>> +Date:		March 2022
+>> +Contact:	Souradeep Chowdhury <quic_schowdhu@quicinc.com>
+>> +Description:
+>> +		This attribute is used to enter the linklist to be
+>> +		used while appending addresses. The range of values
+>> +		for this is advertised either by a register or is
+>> +		predefined. Max value for this can be till 8.
+>> +		Example:
+>> +		echo 0 > /sys/kernel/debug/dcc/...curr_list
+>> +
+> Regards,
+> Bjorn
