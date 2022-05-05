@@ -2,206 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4FF0151B4A6
-	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 02:28:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 63FC951B4A9
+	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 02:29:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229999AbiEEAcQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 May 2022 20:32:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50940 "EHLO
+        id S231686AbiEEAc5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 May 2022 20:32:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51346 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231543AbiEEAcP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 20:32:15 -0400
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9636B45060
-        for <devicetree@vger.kernel.org>; Wed,  4 May 2022 17:28:36 -0700 (PDT)
-Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=diego.localnet)
-        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <heiko@sntech.de>)
-        id 1nmPM3-00058A-6y; Thu, 05 May 2022 02:28:27 +0200
-From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To:     dri-devel@lists.freedesktop.org,
-        Sascha Hauer <s.hauer@pengutronix.de>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Sandy Huang <hjc@rock-chips.com>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v11 16/24] arm64: dts: rockchip: rk356x: Add VOP2 nodes
-Date:   Thu, 05 May 2022 02:28:24 +0200
-Message-ID: <1911394.usQuhbGJ8B@diego>
-In-Reply-To: <20220422072841.2206452-17-s.hauer@pengutronix.de>
-References: <20220422072841.2206452-1-s.hauer@pengutronix.de> <20220422072841.2206452-17-s.hauer@pengutronix.de>
+        with ESMTP id S231543AbiEEAc4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 20:32:56 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D3C94B855;
+        Wed,  4 May 2022 17:29:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=vtatA2kj3ne2Cmeh0OiP6BT/fiN85NGcwn16xUvpaEg=; b=bEx/pMG5sArpkwK/WeN/sarb1l
+        ZIJD+2D+9kupJKMX0N/oMWr/RsQf4AuJE9mJYj1LP/vtcBIxA1568D9/GIgKNCMImK+UWKR8PYPuk
+        v9PQNdjv1SMnuwoCmz4ACw7X7VOLMxyaaJfozX+Lhio28uj+cWO17My7GgrTSUn+5Y6g=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1nmPMi-001HbX-KE; Thu, 05 May 2022 02:29:08 +0200
+Date:   Thu, 5 May 2022 02:29:08 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Ansuel Smith <ansuelsmth@gmail.com>
+Cc:     Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Jonathan Corbet <corbet@lwn.net>, Pavel Machek <pavel@ucw.cz>,
+        John Crispin <john@phrozen.org>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-doc@vger.kernel.org, linux-leds@vger.kernel.org
+Subject: Re: [RFC PATCH v6 04/11] leds: trigger: netdev: rename and expose
+ NETDEV trigger enum modes
+Message-ID: <YnMaVI8OMpmIQjPs@lunn.ch>
+References: <20220503151633.18760-1-ansuelsmth@gmail.com>
+ <20220503151633.18760-5-ansuelsmth@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220503151633.18760-5-ansuelsmth@gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Freitag, 22. April 2022, 09:28:33 CEST schrieb Sascha Hauer:
-> The VOP2 is the display output controller on the RK3568. Add the node
-> for it to the dtsi file along with the required display-subsystem node
-> and the iommu node.
-> 
-> Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
-> Acked-by: Rob Herring <robh@kernel.org>
-> ---
-> 
-> Notes:
->     Changes since v6:
->     - Change RK3568_ prefix to ROCKCHIP_ prefix
->     - start counting from one instead of zero
->     
->     Changes since v4:
->     - Add Robs Ack
->     
->     Changes since v3:
->     - Bring back gamma_lut regs
->     - Drop redundant _vop suffix from clock names
-> 
->  arch/arm64/boot/dts/rockchip/rk3566.dtsi |  4 ++
->  arch/arm64/boot/dts/rockchip/rk3568.dtsi |  4 ++
->  arch/arm64/boot/dts/rockchip/rk356x.dtsi | 51 ++++++++++++++++++++++++
->  include/dt-bindings/soc/rockchip,vop2.h  | 14 +++++++
->  4 files changed, 73 insertions(+)
->  create mode 100644 include/dt-bindings/soc/rockchip,vop2.h
-> 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3566.dtsi b/arch/arm64/boot/dts/rockchip/rk3566.dtsi
-> index 3839eef5e4f76..595fa2562cb8e 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3566.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk3566.dtsi
-> @@ -18,3 +18,7 @@ power-domain@RK3568_PD_PIPE {
->  		#power-domain-cells = <0>;
->  	};
->  };
-> +
-> +&vop {
-> +	compatible = "rockchip,rk3566-vop";
-> +};
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3568.dtsi b/arch/arm64/boot/dts/rockchip/rk3568.dtsi
-> index 5b0f528d68180..4deab90e83834 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3568.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk3568.dtsi
-> @@ -114,3 +114,7 @@ power-domain@RK3568_PD_PIPE {
->  		#power-domain-cells = <0>;
->  	};
->  };
-> +
-> +&vop {
-> +	compatible = "rockchip,rk3568-vop";
-> +};
-> diff --git a/arch/arm64/boot/dts/rockchip/rk356x.dtsi b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-> index 7cdef800cb3ce..fdb7a9a6ca743 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-> @@ -129,6 +129,11 @@ opp-1800000000 {
->  		};
->  	};
->  
-> +	display_subsystem: display-subsystem {
-> +		compatible = "rockchip,display-subsystem";
-> +		ports = <&vop_out>;
-> +	};
-> +
->  	firmware {
->  		scmi: scmi {
->  			compatible = "arm,scmi-smc";
-> @@ -569,6 +574,52 @@ gmac1_mtl_tx_setup: tx-queues-config {
->  		};
->  	};
->  
-> +	vop: vop@fe040000 {
-> +		reg = <0x0 0xfe040000 0x0 0x3000>, <0x0 0xfe044000 0x0 0x1000>;
-> +		reg-names = "regs", "gamma_lut";
+On Tue, May 03, 2022 at 05:16:26PM +0200, Ansuel Smith wrote:
+> Rename NETDEV trigger enum modes to a more simbolic name and move them
 
-reg-names does not seem to be part of the dt-binding.
-Though now in the vop2-driver I see that the code uses that naming.
+symbolic
 
-I guess we might want to just go the vop1-way by using numbered
-platform-resources via a follow-up patch and drop the regnames here?
-
-
-Heiko
-
-
-> +		interrupts = <GIC_SPI 148 IRQ_TYPE_LEVEL_HIGH>;
-> +		clocks = <&cru ACLK_VOP>, <&cru HCLK_VOP>, <&cru DCLK_VOP0>,
-> +			 <&cru DCLK_VOP1>, <&cru DCLK_VOP2>;
-> +		clock-names = "aclk", "hclk", "dclk_vp0", "dclk_vp1", "dclk_vp2";
-> +		iommus = <&vop_mmu>;
-> +		power-domains = <&power RK3568_PD_VO>;
-> +		rockchip,grf = <&grf>;
-> +		status = "disabled";
-> +
-> +		vop_out: ports {
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +
-> +			vp0: port@0 {
-> +				reg = <0>;
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +			};
-> +
-> +			vp1: port@1 {
-> +				reg = <1>;
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +			};
-> +
-> +			vp2: port@2 {
-> +				reg = <2>;
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +			};
-> +		};
-> +	};
-> +
-> +	vop_mmu: iommu@fe043e00 {
-> +		compatible = "rockchip,rk3568-iommu";
-> +		reg = <0x0 0xfe043e00 0x0 0x100>, <0x0 0xfe043f00 0x0 0x100>;
-> +		interrupts = <GIC_SPI 148 IRQ_TYPE_LEVEL_HIGH>;
-> +		clocks = <&cru ACLK_VOP>, <&cru HCLK_VOP>;
-> +		clock-names = "aclk", "iface";
-> +		#iommu-cells = <0>;
-> +		status = "disabled";
-> +	};
-> +
->  	qos_gpu: qos@fe128000 {
->  		compatible = "rockchip,rk3568-qos", "syscon";
->  		reg = <0x0 0xfe128000 0x0 0x20>;
-> diff --git a/include/dt-bindings/soc/rockchip,vop2.h b/include/dt-bindings/soc/rockchip,vop2.h
-> new file mode 100644
-> index 0000000000000..6e66a802b96a5
-> --- /dev/null
-> +++ b/include/dt-bindings/soc/rockchip,vop2.h
-> @@ -0,0 +1,14 @@
-> +/* SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause */
-> +
-> +#ifndef __DT_BINDINGS_ROCKCHIP_VOP2_H
-> +#define __DT_BINDINGS_ROCKCHIP_VOP2_H
-> +
-> +#define ROCKCHIP_VOP2_EP_RGB0	1
-> +#define ROCKCHIP_VOP2_EP_HDMI0	2
-> +#define ROCKCHIP_VOP2_EP_EDP0	3
-> +#define ROCKCHIP_VOP2_EP_MIPI0	4
-> +#define ROCKCHIP_VOP2_EP_LVDS0	5
-> +#define ROCKCHIP_VOP2_EP_MIPI1	6
-> +#define ROCKCHIP_VOP2_EP_LVDS1	7
-> +
-> +#endif /* __DT_BINDINGS_ROCKCHIP_VOP2_H */
-> 
-
-
-
-
+	Andrew
