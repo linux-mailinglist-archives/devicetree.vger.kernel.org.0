@@ -2,53 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8652E51BA4B
-	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 10:26:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3371951BA57
+	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 10:27:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347690AbiEEIaE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 May 2022 04:30:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40360 "EHLO
+        id S1348267AbiEEIb3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 May 2022 04:31:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41990 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348090AbiEEIaC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 04:30:02 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F217329AB;
-        Thu,  5 May 2022 01:26:18 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 098AFB82C07;
-        Thu,  5 May 2022 08:26:17 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 692F9C385AF;
-        Thu,  5 May 2022 08:26:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1651739175;
-        bh=11hrI6vhS7kRRgg7/k3uswpnwvA2t/fuUzKKIDKnTPA=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=s65z05ICqWKP8COdFnw7XfRQ+t3AHgE09upqm0dwTN3UMc2C/J6QPoYjkL+WIHV+y
-         dtbdHtBcbix9aNQbOzAN5qJYVA1sbakyQqnxwyf3O34X90ZN+BV6maQOycuYH1IL2k
-         9+Vowl+zZy/evBVP9Cx39NJaVXO3/uhqIznvWeYaPzProkGxU73rN8TYjpNhE/X3Ei
-         A/8jS5pZHJ/RqXhhSpVmDpuAlVf/oFLRQOqCBKAD6MejWxjhjpNQ2qqYFNENdkhsKz
-         6sZrG1amspSyVD1B2ZWz7ixyJmoryvqILPuj1KFbl4ZBraVHIOOw6AZcX+NsL3UUaN
-         gnMzqmUVnaPtA==
-Date:   Thu, 5 May 2022 16:26:07 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        linux-imx@nxp.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Peng Fan <peng.fan@nxp.com>
-Subject: Re: [PATCH V2 0/3] arm64: add i.MX93 support
-Message-ID: <20220505082607.GE14615@dragon>
-References: <20220503122951.4147636-1-peng.fan@oss.nxp.com>
+        with ESMTP id S1348320AbiEEIb1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 04:31:27 -0400
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E6DE2FFC0
+        for <devicetree@vger.kernel.org>; Thu,  5 May 2022 01:27:46 -0700 (PDT)
+Received: by mail-ed1-x52d.google.com with SMTP id k27so4343241edk.4
+        for <devicetree@vger.kernel.org>; Thu, 05 May 2022 01:27:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=5tSgyVPoIjIJTnk8pwe9iFq2l8iCcKVYBSDyP0RRtUw=;
+        b=SZERI1K6Set/ar7XavDlXSuhC6TM4i6vWi504UalqyeoSF37mRcDmyXuFm72cjChwb
+         gx8eJmlAQ08OwR75gbT5wWjbaTEDH6y0+WG5hTVJgmLcV8bE2/CZ0UEjZWd7zuWEQ5gP
+         aqwOZz+mZLlHnttDl8wcoxsMblrTJTC7FOjN2TDCxD9Lw8wj9YPovvTCxinZAOU3K99U
+         NNFg1Nifl8dX9/pCm1pVbxMFtmAGYax5uE5a59iLzA46eD9e3EvaF+r09rBd3yFwCvwN
+         u1eZiPAt/Ue7aJ0uQOjr8mYBqSG3ByZerT5YRHjoStToy/heQveso+yUiIKVliq/yP9R
+         78tg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=5tSgyVPoIjIJTnk8pwe9iFq2l8iCcKVYBSDyP0RRtUw=;
+        b=oF8ow+GsmG694d4Ef5jTnZsubBRI2ruHWBVGrbW0Foep5u61Tngxty0Ov5/DVxE9HX
+         JAMfKlaKaXMnwubSHm/B3dzxeE+aYPQwK+w8TGkaYogUMSb339mymqIgiuGZAZG7wIRH
+         7rsiaR6O115PnP4yrG1NqyF6ZgTcODxzGND7EdjVTYmkEWHrt5LN34pUCXPThwh1iYmK
+         4qOjKGINBJo6xya6L4t8BUG7u9WZjQaaZMCmC1QzKl29AK3hpx2C2W61fXNlkX7frGcn
+         miKjO0iO+ymZkPjGNbHw/P0kmRP2VqMxvAASVLRUu4zpMIGCp48U+7wtGrzy5hPVzYKz
+         +VZQ==
+X-Gm-Message-State: AOAM531pT2B9z3IkkLUAK0R9o+oo0LPQgk3iVUkAUE3yta//XbCpYyG4
+        8kay9rLLI5sVCWN8zG2Yl2JsLA==
+X-Google-Smtp-Source: ABdhPJwgese7bUTlRcmGO1mVDEwMWHdoEWyOzOI+Igy+m5JwTam3fT/88Xt9SiMpZxojkp+JqaQVSw==
+X-Received: by 2002:a05:6402:358a:b0:428:136f:766a with SMTP id y10-20020a056402358a00b00428136f766amr7731609edc.403.1651739264889;
+        Thu, 05 May 2022 01:27:44 -0700 (PDT)
+Received: from [192.168.0.217] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id f6-20020a05640214c600b0042617ba639dsm496805edx.39.2022.05.05.01.27.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 05 May 2022 01:27:44 -0700 (PDT)
+Message-ID: <7674659c-20f4-68da-5a62-5c8e8ebdfe5a@linaro.org>
+Date:   Thu, 5 May 2022 10:27:43 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220503122951.4147636-1-peng.fan@oss.nxp.com>
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH 2/4] Input: mt-matrix-keypad: Add Bosch mt matrix keypad
+ driver
+Content-Language: en-US
+To:     Marco Felsch <m.felsch@pengutronix.de>,
+        Gireesh.Hiremath@in.bosch.com
+Cc:     linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
+        bcousson@baylibre.com, tony@atomide.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, dmitry.torokhov@gmail.com,
+        mkorpershoek@baylibre.com, davidgow@google.com,
+        swboyd@chromium.org, fengping.yu@mediatek.com,
+        y.oudjana@protonmail.com, rdunlap@infradead.org,
+        colin.king@intel.com, sjoerd.simons@collabora.co.uk,
+        VinayKumar.Shettar@in.bosch.com,
+        Govindaraji.Sivanantham@in.bosch.com, anaclaudia.dias@de.bosch.com
+References: <20220504105254.1576-2-Gireesh.Hiremath@in.bosch.com>
+ <20220504134817.1490-1-Gireesh.Hiremath@in.bosch.com>
+ <20220504141404.onom7x5lycyg3b22@pengutronix.de>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220504141404.onom7x5lycyg3b22@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -56,110 +85,47 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Peng,
-
-On Tue, May 03, 2022 at 08:29:48PM +0800, Peng Fan (OSS) wrote:
-> From: Peng Fan <peng.fan@nxp.com>
+On 04/05/2022 16:14, Marco Felsch wrote:
+> On 22-05-04, Gireesh.Hiremath@in.bosch.com wrote:
+>> From: Gireesh Hiremath <Gireesh.Hiremath@in.bosch.com>
+>>
+>> The existing matric_keypad.c use different gpio line for row and colunm,
+>> where in mt_matrix_kepad.c use same gpio line for row as well as column.
+>> a key can be placed at each intersection of a unique row number 
+>> not equal to a unique column and they are diagonally symmetric.
+>> Advantage of this is with existed gpio line we can get more keys
+>>   
+>> example: in matrix_keypad.c for 5 gpio line possible matrix is 2X3 or 3X2
+>> and maximum possible keys are 6 but 
+>> in mt_matrix_kepad.c for same 5 gpio line possible matrix is 5X5 and maximum
+>> possible buttons are 10, below table will discribe that
 > 
+> Nobody should stop you to increase the amount of max. possible keys, so
+> this isn't a real block.
 > 
-> V2:
->  Update License
+>> 	------------------------------------------------------
+>> 	|Row\Col |GPIO 0 | GPIO 1 | GPIO 2 | GPIO 3 | GPIO 4 |
+>> 	------------------------------------------------------
+>> 	| GPIO 0 |  X    | KEY_9  | KEY_2  | KEY_3  | KEY_1  |
+>> 	------------------------------------------------------
+>> 	| GPIO 1 | KEY_9 |  X     | KEY_6  | KEY_5  |  KEY_0 |
+>> 	------------------------------------------------------
+>> 	| GPIO 2 | KEY_2 | KEY_6  |  X     | KEY_4  | KEY_7  |
+>> 	------------------------------------------------------
+>> 	| GPIO 3 | KEY_3 | KEY_5  | KEY_4  |  X     | KEY_8  |
+>> 	------------------------------------------------------
+>> 	| GPIO 4 | KEY_1 |  KEY_0 | KEY_7  | KEY_8  |  X     |
+>> 	------------------------------------------------------
+>> 	X - invalid key
+>> 	KEY_x - preferred key code
 > 
-> Add i.MX93 dtsi and 11x11 evk board support
-> 
-> The required bindings and drivers has already been in tree.
-> There arem checkpatch error for the pin header files as other i.MX pin
-> pin header files.
-> 
-> Peng Fan (3):
->   arm64: dts: freescale: Add i.MX93 dtsi support
->   arm64: dts: freescale: add i.MX93 11x11 EVK basic support
->   arm64: defconfig: enable i.MX93 clk & pinctrl
+> That should be pointed somewhere very clearly, thanks for the
+> description. Also what is than the benefit of the original matrix_keypad
+> driver?
 
-Could you check if we can eliminate some (if not all) of the dtbs_check
-issues below?
+It looks like this driver has smaller number of features than
+matrix-keypad, so it should be integrated into the matrix-keypad.
+matrix-keypad features are superset to this one.
 
-Shawn
-
-
-  DTC     arch/arm64/boot/dts/freescale/imx93-11x11-evk.dtb
-  CHECK   arch/arm64/boot/dts/freescale/imx93-11x11-evk.dtb
-arch/arm64/boot/dts/freescale/imx93-11x11-evk.dtb: /: 'compatible' is a required property
-	From schema: .local/lib/python3.8/site-packages/dtschema/schemas/root-node.yaml
-arch/arm64/boot/dts/freescale/imx93-11x11-evk.dtb: /: 'model' is a required property
-	From schema: .local/lib/python3.8/site-packages/dtschema/schemas/root-node.yaml
-arch/arm64/boot/dts/freescale/imx93-11x11-evk.dtb: serial@44380000: compatible: 'oneOf' conditional failed, one must be fixed:
-	['fsl,imx93-lpuart', 'fsl,imx7ulp-lpuart'] is too long
-	'fsl,imx93-lpuart' is not one of ['fsl,vf610-lpuart', 'fsl,ls1021a-lpuart', 'fsl,ls1028a-lpuart', 'fsl,imx7ulp-lpuart', 'fsl,imx8qxp-lpuart', 'fsl,imxrt1050-lpuart']
-	'fsl,imx8ulp-lpuart' was expected
-	'fsl,imx93-lpuart' is not one of ['fsl,imx8qm-lpuart', 'fsl,imx8dxl-lpuart']
-	'fsl,imx8qxp-lpuart' was expected
-	From schema: repos/korg/imx/Documentation/devicetree/bindings/serial/fsl-lpuart.yaml
-arch/arm64/boot/dts/freescale/imx93-11x11-evk.dtb:0:0: /soc@0/bus@44000000/serial@44380000: failed to match any schema with compatible: ['fsl,imx93-lpuart', 'fsl,imx7ulp-lpuart']
-arch/arm64/boot/dts/freescale/imx93-11x11-evk.dtb: serial@44390000: compatible: 'oneOf' conditional failed, one must be fixed:
-	['fsl,imx93-lpuart', 'fsl,imx7ulp-lpuart'] is too long
-	'fsl,imx93-lpuart' is not one of ['fsl,vf610-lpuart', 'fsl,ls1021a-lpuart', 'fsl,ls1028a-lpuart', 'fsl,imx7ulp-lpuart', 'fsl,imx8qxp-lpuart', 'fsl,imxrt1050-lpuart']
-	'fsl,imx8ulp-lpuart' was expected
-	'fsl,imx93-lpuart' is not one of ['fsl,imx8qm-lpuart', 'fsl,imx8dxl-lpuart']
-	'fsl,imx8qxp-lpuart' was expected
-	From schema: repos/korg/imx/Documentation/devicetree/bindings/serial/fsl-lpuart.yaml
-arch/arm64/boot/dts/freescale/imx93-11x11-evk.dtb:0:0: /soc@0/bus@44000000/serial@44390000: failed to match any schema with compatible: ['fsl,imx93-lpuart', 'fsl,imx7ulp-lpuart']
-arch/arm64/boot/dts/freescale/imx93-11x11-evk.dtb: pinctrl@443c0000: 'pinctrl-0' is a dependency of 'pinctrl-names'
-	From schema: .local/lib/python3.8/site-packages/dtschema/schemas/pinctrl/pinctrl-consumer.yaml
-arch/arm64/boot/dts/freescale/imx93-11x11-evk.dtb:0:0: /soc@0/bus@44000000/anatop@44480000: failed to match any schema with compatible: ['fsl,imx93-anatop', 'syscon']
-arch/arm64/boot/dts/freescale/imx93-11x11-evk.dtb: serial@42570000: compatible: 'oneOf' conditional failed, one must be fixed:
-	['fsl,imx93-lpuart', 'fsl,imx7ulp-lpuart'] is too long
-	'fsl,imx93-lpuart' is not one of ['fsl,vf610-lpuart', 'fsl,ls1021a-lpuart', 'fsl,ls1028a-lpuart', 'fsl,imx7ulp-lpuart', 'fsl,imx8qxp-lpuart', 'fsl,imxrt1050-lpuart']
-	'fsl,imx8ulp-lpuart' was expected
-	'fsl,imx93-lpuart' is not one of ['fsl,imx8qm-lpuart', 'fsl,imx8dxl-lpuart']
-	'fsl,imx8qxp-lpuart' was expected
-	From schema: Documentation/devicetree/bindings/serial/fsl-lpuart.yaml
-arch/arm64/boot/dts/freescale/imx93-11x11-evk.dtb:0:0: /soc@0/bus@42000000/serial@42570000: failed to match any schema with compatible: ['fsl,imx93-lpuart', 'fsl,imx7ulp-lpuart']
-arch/arm64/boot/dts/freescale/imx93-11x11-evk.dtb: serial@42580000: compatible: 'oneOf' conditional failed, one must be fixed:
-	['fsl,imx93-lpuart', 'fsl,imx7ulp-lpuart'] is too long
-	'fsl,imx93-lpuart' is not one of ['fsl,vf610-lpuart', 'fsl,ls1021a-lpuart', 'fsl,ls1028a-lpuart', 'fsl,imx7ulp-lpuart', 'fsl,imx8qxp-lpuart', 'fsl,imxrt1050-lpuart']
-	'fsl,imx8ulp-lpuart' was expected
-	'fsl,imx93-lpuart' is not one of ['fsl,imx8qm-lpuart', 'fsl,imx8dxl-lpuart']
-	'fsl,imx8qxp-lpuart' was expected
-	From schema: Documentation/devicetree/bindings/serial/fsl-lpuart.yaml
-arch/arm64/boot/dts/freescale/imx93-11x11-evk.dtb:0:0: /soc@0/bus@42000000/serial@42580000: failed to match any schema with compatible: ['fsl,imx93-lpuart', 'fsl,imx7ulp-lpuart']
-arch/arm64/boot/dts/freescale/imx93-11x11-evk.dtb: serial@42590000: compatible: 'oneOf' conditional failed, one must be fixed:
-	['fsl,imx93-lpuart', 'fsl,imx7ulp-lpuart'] is too long
-	'fsl,imx93-lpuart' is not one of ['fsl,vf610-lpuart', 'fsl,ls1021a-lpuart', 'fsl,ls1028a-lpuart', 'fsl,imx7ulp-lpuart', 'fsl,imx8qxp-lpuart', 'fsl,imxrt1050-lpuart']
-	'fsl,imx8ulp-lpuart' was expected
-	'fsl,imx93-lpuart' is not one of ['fsl,imx8qm-lpuart', 'fsl,imx8dxl-lpuart']
-	'fsl,imx8qxp-lpuart' was expected
-	From schema: Documentation/devicetree/bindings/serial/fsl-lpuart.yaml
-arch/arm64/boot/dts/freescale/imx93-11x11-evk.dtb:0:0: /soc@0/bus@42000000/serial@42590000: failed to match any schema with compatible: ['fsl,imx93-lpuart', 'fsl,imx7ulp-lpuart']
-arch/arm64/boot/dts/freescale/imx93-11x11-evk.dtb: serial@425a0000: compatible: 'oneOf' conditional failed, one must be fixed:
-	['fsl,imx93-lpuart', 'fsl,imx7ulp-lpuart'] is too long
-	'fsl,imx93-lpuart' is not one of ['fsl,vf610-lpuart', 'fsl,ls1021a-lpuart', 'fsl,ls1028a-lpuart', 'fsl,imx7ulp-lpuart', 'fsl,imx8qxp-lpuart', 'fsl,imxrt1050-lpuart']
-	'fsl,imx8ulp-lpuart' was expected
-	'fsl,imx93-lpuart' is not one of ['fsl,imx8qm-lpuart', 'fsl,imx8dxl-lpuart']
-	'fsl,imx8qxp-lpuart' was expected
-	From schema: Documentation/devicetree/bindings/serial/fsl-lpuart.yaml
-arch/arm64/boot/dts/freescale/imx93-11x11-evk.dtb:0:0: /soc@0/bus@42000000/serial@425a0000: failed to match any schema with compatible: ['fsl,imx93-lpuart', 'fsl,imx7ulp-lpuart']
-arch/arm64/boot/dts/freescale/imx93-11x11-evk.dtb: serial@42690000: compatible: 'oneOf' conditional failed, one must be fixed:
-	['fsl,imx93-lpuart', 'fsl,imx7ulp-lpuart'] is too long
-	'fsl,imx93-lpuart' is not one of ['fsl,vf610-lpuart', 'fsl,ls1021a-lpuart', 'fsl,ls1028a-lpuart', 'fsl,imx7ulp-lpuart', 'fsl,imx8qxp-lpuart', 'fsl,imxrt1050-lpuart']
-	'fsl,imx8ulp-lpuart' was expected
-	'fsl,imx93-lpuart' is not one of ['fsl,imx8qm-lpuart', 'fsl,imx8dxl-lpuart']
-	'fsl,imx8qxp-lpuart' was expected
-	From schema: Documentation/devicetree/bindings/serial/fsl-lpuart.yaml
-arch/arm64/boot/dts/freescale/imx93-11x11-evk.dtb:0:0: /soc@0/bus@42000000/serial@42690000: failed to match any schema with compatible: ['fsl,imx93-lpuart', 'fsl,imx7ulp-lpuart']
-arch/arm64/boot/dts/freescale/imx93-11x11-evk.dtb: serial@426a0000: compatible: 'oneOf' conditional failed, one must be fixed:
-	['fsl,imx93-lpuart', 'fsl,imx7ulp-lpuart'] is too long
-	'fsl,imx93-lpuart' is not one of ['fsl,vf610-lpuart', 'fsl,ls1021a-lpuart', 'fsl,ls1028a-lpuart', 'fsl,imx7ulp-lpuart', 'fsl,imx8qxp-lpuart', 'fsl,imxrt1050-lpuart']
-	'fsl,imx8ulp-lpuart' was expected
-	'fsl,imx93-lpuart' is not one of ['fsl,imx8qm-lpuart', 'fsl,imx8dxl-lpuart']
-	'fsl,imx8qxp-lpuart' was expected
-	From schema: Documentation/devicetree/bindings/serial/fsl-lpuart.yaml
-arch/arm64/boot/dts/freescale/imx93-11x11-evk.dtb:0:0: /soc@0/bus@42000000/serial@426a0000: failed to match any schema with compatible: ['fsl,imx93-lpuart', 'fsl,imx7ulp-lpuart']
-arch/arm64/boot/dts/freescale/imx93-11x11-evk.dtb: gpio@43810000: interrupts: [[0, 57, 4], [0, 58, 4]] is too long
-	From schema: Documentation/devicetree/bindings/gpio/gpio-vf610.yaml
-arch/arm64/boot/dts/freescale/imx93-11x11-evk.dtb: gpio@43820000: interrupts: [[0, 59, 4], [0, 60, 4]] is too long
-	From schema: Documentation/devicetree/bindings/gpio/gpio-vf610.yaml
-arch/arm64/boot/dts/freescale/imx93-11x11-evk.dtb: gpio@43830000: interrupts: [[0, 189, 4], [0, 190, 4]] is too long
-	From schema: Documentation/devicetree/bindings/gpio/gpio-vf610.yaml
-arch/arm64/boot/dts/freescale/imx93-11x11-evk.dtb: gpio@47400000: interrupts: [[0, 10, 4], [0, 11, 4]] is too long
-	From schema: Documentation/devicetree/bindings/gpio/gpio-vf610.yaml
+Best regards,
+Krzysztof
