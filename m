@@ -2,148 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EA05851BE85
-	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 13:53:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A3B951BED2
+	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 14:05:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1358846AbiEEL4j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 May 2022 07:56:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60776 "EHLO
+        id S1347711AbiEEMJI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 May 2022 08:09:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45622 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1358791AbiEEL4d (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 07:56:33 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95441546A2;
-        Thu,  5 May 2022 04:52:52 -0700 (PDT)
-X-UUID: b5a3e45170d846e3b8534ccb7e961022-20220505
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.4,REQID:9b9de3ff-633e-4036-97bc-fc016a0dd35c,OB:0,LO
-        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:95,FILE:0,RULE:Release_Ham,ACT
-        ION:release,TS:95
-X-CID-INFO: VERSION:1.1.4,REQID:9b9de3ff-633e-4036-97bc-fc016a0dd35c,OB:0,LOB:
-        0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:95,FILE:0,RULE:Spam_GS981B3D,ACT
-        ION:quarantine,TS:95
-X-CID-META: VersionHash:faefae9,CLOUDID:0e94b1b2-56b5-4c9e-8d83-0070b288eb6a,C
-        OID:8e0daa05eee3,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,File:nil
-        ,QS:0,BEC:nil
-X-UUID: b5a3e45170d846e3b8534ccb7e961022-20220505
-Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
-        (envelope-from <rex-bc.chen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1411565441; Thu, 05 May 2022 19:52:36 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
- Thu, 5 May 2022 19:52:36 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Thu, 5 May 2022 19:52:35 +0800
-From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
-To:     <rafael@kernel.org>, <viresh.kumar@linaro.org>,
-        <robh+dt@kernel.org>, <krzk+dt@kernel.org>,
-        <matthias.bgg@gmail.com>
-CC:     <jia-wei.chang@mediatek.com>, <roger.lu@mediatek.com>,
-        <hsinyi@google.com>, <khilman@baylibre.com>,
-        <angelogioacchino.delregno@collabora.com>,
-        <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Rex-BC Chen <rex-bc.chen@mediatek.com>
-Subject: [PATCH v6 10/10] arm64: dts: mediatek: Add mediatek,cci property for MT8183 cpufreq
-Date:   Thu, 5 May 2022 19:52:26 +0800
-Message-ID: <20220505115226.20130-11-rex-bc.chen@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20220505115226.20130-1-rex-bc.chen@mediatek.com>
-References: <20220505115226.20130-1-rex-bc.chen@mediatek.com>
+        with ESMTP id S232917AbiEEMJI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 08:09:08 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F84E13CF7;
+        Thu,  5 May 2022 05:05:28 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 2DD64B82B79;
+        Thu,  5 May 2022 12:05:27 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D5618C385A8;
+        Thu,  5 May 2022 12:05:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1651752326;
+        bh=YOSvkdiD9YeJgj4aRLVreDoeI4SdaGNCAtWBB3qrsZo=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=MC2c9NhE+Pp2MlVr3eXkpI9xcJh1KF7xIr04oUTt6jPiN4MhfDWrvX4CmOp/8DIkx
+         6lLS9h6njGu+8KOSenAdgP5CoTDXKWtmfFqjh4LLgii3NS7DVLesGnm9Gs7r9ymxic
+         g0DNA2Dz3sfBQAJ7NYg0FcGyPHC54ylRSMHbAtZo8btjuEaXYeSXqK6KkY/t8J6ZbT
+         WPc4AabJ9vePARuVBWs1TjOjVg1JPToqG8IyIEdHtf8h0UHcYYTtljfxsDoZqmFH6M
+         hNBQRcMltqpyX/xHW8zQKpLnymUyV8sXagxEvYa8dlASeDdK2OsxqiHFp6goiTffCW
+         iNDW434jhq2zw==
+Date:   Thu, 5 May 2022 13:05:19 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Zev Weiss <zev@bewilderbeest.net>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        openbmc@lists.ozlabs.org, MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>
+Subject: Re: [PATCH 2/6] dt-bindings: regulator: Add reg-external-output
+ binding
+Message-ID: <YnO9fxkuk6AnEhLl@sirena.org.uk>
+References: <20220504065252.6955-1-zev@bewilderbeest.net>
+ <20220504065252.6955-2-zev@bewilderbeest.net>
+ <YnJ32bG4IkSrRtHV@sirena.org.uk>
+ <YnLjNn9WVhvd4izZ@hatter.bewilderbeest.net>
+ <YnLmyHwMGnRL18LD@sirena.org.uk>
+ <YnLxjJI8Vu3LqAnL@hatter.bewilderbeest.net>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="7moZXgHmwiy4vUEp"
+Content-Disposition: inline
+In-Reply-To: <YnLxjJI8Vu3LqAnL@hatter.bewilderbeest.net>
+X-Cookie: Real programs don't eat cache.
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add mediatek,cci property to support MediaTek CCI feature.
 
-Signed-off-by: Rex-BC Chen <rex-bc.chen@mediatek.com>
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
----
- arch/arm64/boot/dts/mediatek/mt8183.dtsi | 8 ++++++++
- 1 file changed, 8 insertions(+)
+--7moZXgHmwiy4vUEp
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-index 11caf3dd85cd..e5d4a8e0c545 100644
---- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-@@ -336,6 +336,7 @@
- 			operating-points-v2 = <&cluster0_opp>;
- 			dynamic-power-coefficient = <84>;
- 			#cooling-cells = <2>;
-+			mediatek,cci = <&cci>;
- 		};
- 
- 		cpu1: cpu@1 {
-@@ -351,6 +352,7 @@
- 			operating-points-v2 = <&cluster0_opp>;
- 			dynamic-power-coefficient = <84>;
- 			#cooling-cells = <2>;
-+			mediatek,cci = <&cci>;
- 		};
- 
- 		cpu2: cpu@2 {
-@@ -366,6 +368,7 @@
- 			operating-points-v2 = <&cluster0_opp>;
- 			dynamic-power-coefficient = <84>;
- 			#cooling-cells = <2>;
-+			mediatek,cci = <&cci>;
- 		};
- 
- 		cpu3: cpu@3 {
-@@ -381,6 +384,7 @@
- 			operating-points-v2 = <&cluster0_opp>;
- 			dynamic-power-coefficient = <84>;
- 			#cooling-cells = <2>;
-+			mediatek,cci = <&cci>;
- 		};
- 
- 		cpu4: cpu@100 {
-@@ -396,6 +400,7 @@
- 			operating-points-v2 = <&cluster1_opp>;
- 			dynamic-power-coefficient = <211>;
- 			#cooling-cells = <2>;
-+			mediatek,cci = <&cci>;
- 		};
- 
- 		cpu5: cpu@101 {
-@@ -411,6 +416,7 @@
- 			operating-points-v2 = <&cluster1_opp>;
- 			dynamic-power-coefficient = <211>;
- 			#cooling-cells = <2>;
-+			mediatek,cci = <&cci>;
- 		};
- 
- 		cpu6: cpu@102 {
-@@ -426,6 +432,7 @@
- 			operating-points-v2 = <&cluster1_opp>;
- 			dynamic-power-coefficient = <211>;
- 			#cooling-cells = <2>;
-+			mediatek,cci = <&cci>;
- 		};
- 
- 		cpu7: cpu@103 {
-@@ -441,6 +448,7 @@
- 			operating-points-v2 = <&cluster1_opp>;
- 			dynamic-power-coefficient = <211>;
- 			#cooling-cells = <2>;
-+			mediatek,cci = <&cci>;
- 		};
- 
- 		idle-states {
--- 
-2.18.0
+On Wed, May 04, 2022 at 02:35:08PM -0700, Zev Weiss wrote:
+> On Wed, May 04, 2022 at 01:49:12PM PDT, Mark Brown wrote:
 
+> > For example if the output comes out on a socket then that socket should
+> > be described.
+
+> Okay -- in the case of an Open19 power shelf like the ahe-50dc, there are 50
+> instances of this, 48 of which are in four ganged connectors each with 12
+> pairs of pins, but two of which have their own dedicated little individual
+> sockets.  The connectors are physically different, but they're all identical
+> as far as software is concerned, so I'm not clear on why it would need to be
+> expressed in any DT properties or the like.  Or did you just mean
+> explanatory free-form text in the description field?
+
+Explanatory description would be one example of something that should be
+described, yes - if there is control for switching the supplies on and
+off the user is going to need to be able to figure out which software
+control corresponds to which physical connection.  Other devices may
+have more things that need autoamtion (eg, jack detection).
+
+> > Sure, but there's no reason why it can't scale down to something
+> > simpler.  It's easier to support something simpler than have to extend
+> > to support something more complicated.
+
+> Alright, so would you suggest creating something like
+> drivers/extcon/extcon-regulator-output.c, and just having its extcon
+> functionality be something of a stub for now?
+
+I'm not super familiar with extcon but that seems plausible.
+
+--7moZXgHmwiy4vUEp
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmJzvX8ACgkQJNaLcl1U
+h9A8UAf/fie/0qtJtkcTIuxOavIxjrhnkZVoXgVXIZQkG30kKpFcFusvyLn7WqXr
+gpDsmSfB5Z2Eg2pd6Vqx58Gst7G7sDnZJt5O7PubZzenBQCMkyiWZiyqc5Rufp9F
+vtG6Zfsj1xhkkmZiXuuLuoDm+xLqFTuybFX0WiFCyis5gqvJdMnESUYcxrAhqafh
+YnxdpGueFPqxO/tT8kXNrt62bk5xZ1VpJDtesx1FvQ/tGj1I0alTPs30SRrNRNyc
+UkYI4t+wLyPh/NGIukqN+yzllWgjjHM7LCMnAM+VyM9vMtNunlRtx/M+T4E8K1b3
+j4fLzaFv8XLddtp/924vcwv2ZG/nnw==
+=k/3z
+-----END PGP SIGNATURE-----
+
+--7moZXgHmwiy4vUEp--
