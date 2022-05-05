@@ -2,923 +2,277 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BACFB51BC9C
-	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 11:59:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 480DC51BCE3
+	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 12:12:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237614AbiEEKDB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 May 2022 06:03:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43284 "EHLO
+        id S242001AbiEEKQK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 May 2022 06:16:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53278 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1352011AbiEEKCu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 06:02:50 -0400
-Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4DBBB506ED;
-        Thu,  5 May 2022 02:59:09 -0700 (PDT)
-Received: from janitor.denx.de (unknown [62.91.23.180])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: noc@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 01B3A83F00;
-        Thu,  5 May 2022 11:59:08 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1651744748;
-        bh=UIm/aizpraOldxouQU0VC+pHQGJSZ5Pj7vCjLt2J4js=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=LZlvTFUhHmqoFbGCSHPhP6Dl5WyqVghO9lzw7cwxDVaw6cqovVitwxC18iYES5btT
-         v/3RRGKIoxdLoHN7G+LAksYs0rUShRLHD+ipzcebb2pRVDeea+qkQNHfDU3b7I2/0j
-         Y3efu4E8AAocsAdqO0LDfnJ1GV3AdJrS9z40E29ysiw9Vh7aThzmqug4mKN/h08sd6
-         pOK+o+s5CyCf45DnXg1ocKjUZetSYEtJrEUiJgEYJdvOM/LVjOxGSE0C6jckSe5xO+
-         RAl8aUbPs1kV8AO0o6yY3mByQqW4DraXEzAktU9+YUtM3WhEqV7BMBozWF2Ucukm/w
-         eiIVaAv3T1xyw==
-Received: by janitor.denx.de (Postfix, from userid 108)
-        id B234BA003A; Thu,  5 May 2022 11:59:07 +0200 (CEST)
+        with ESMTP id S1355113AbiEEKQB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 06:16:01 -0400
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C05B51E46;
+        Thu,  5 May 2022 03:12:21 -0700 (PDT)
+Received: by mail-wr1-x436.google.com with SMTP id e24so5427361wrc.9;
+        Thu, 05 May 2022 03:12:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-transfer-encoding:content-language;
+        bh=eb2ZcFrJLchDQJ3uoZwQrPbJ1hCXeW171xzslTdT/U4=;
+        b=G89l6j5DRWAvV3zCYyVoZKkWWBGnZmD3gVlBJDJs1rBbWZGMduvsJXgjawnSyEvdry
+         wK8X2CVN4x+NPbTCSj/Hhf99L/9GOZ1OJbxwihCOn/RX0Kl5nqvbEsQh3FNzrbb1gixQ
+         UCiBZhzKSWWfPKfAk9noqtj32u52IDzcaLqLzCgHlvFdrC+eqqa6vTfXWDUFbgRqFBqB
+         6sLFoZLkvMkYbyxOtL/JwMxWfZNOPan9v832XXd/QrVzjHj+WBf2G+buT/KWnTlMphbF
+         UxWVKrDxlAdR/Thq9GPIpuJJU5fg+AoBHmdU1+Fi9uoVPjtOmPBSchUkefm3TRpzF2/C
+         pz6Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-transfer-encoding
+         :content-language;
+        bh=eb2ZcFrJLchDQJ3uoZwQrPbJ1hCXeW171xzslTdT/U4=;
+        b=nQjeR7qQRGbhEfOfENsRle0WrwiGYUyn54kt5Tm3P+68SG5bwUyaoPTGBCGJQZtKui
+         +s1chc/gHbOX8VlDwPvgv3/9LUVlnk9DQCypVPfDWOwIodk7OnLYrw0FU12hFn8rRmH+
+         AL8s/kPmQXLscMT8xz1Jh5LEAxcWL/xYbsYXVjrzA6gUgFCGYTSaS5+DipszSu71gUtD
+         tRYskPIYupQopDmvitwQXZ7klKAeY/A24RRYKyl7JWvr0TVsyHDbiUHWOnf9YfygDiEc
+         mwTj/WN8A4ESiPeSsfkGjTD+7S6J/HOhdFLCfkcThTAWRV6bz3jL8cfgXVGL+N4u1if6
+         XchQ==
+X-Gm-Message-State: AOAM531EhkN2WSrQWFHwfbNNHfVyeoaCpiZXCrikE5gGHkK6aIanKhw7
+        GDwCaIOVZMIZKsLi86e42zE=
+X-Google-Smtp-Source: ABdhPJw7Wbi8fb/wzTczoS25ioRejgwcD7Tq0/bwbcNAYzBrRJZFfWNBH1Dc95FX1erDQ/IFeDBlUg==
+X-Received: by 2002:a05:6000:144d:b0:20c:7829:2a44 with SMTP id v13-20020a056000144d00b0020c78292a44mr8970101wrx.663.1651745539758;
+        Thu, 05 May 2022 03:12:19 -0700 (PDT)
+Received: from [192.168.1.7] ([212.22.223.21])
+        by smtp.gmail.com with ESMTPSA id bj20-20020a0560001e1400b0020c5253d8edsm908950wrb.57.2022.05.05.03.12.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 05 May 2022 03:12:18 -0700 (PDT)
+Subject: Re: [PATCH V1 4/6] dt-bindings: Add xen,dev-domid property
+ description for xen-grant DMA ops
+To:     Rob Herring <robh@kernel.org>
+Cc:     xen-devel@lists.xenproject.org,
+        virtualization@lists.linux-foundation.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>,
+        Jason Wang <jasowang@redhat.com>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Julien Grall <julien@xen.org>, Juergen Gross <jgross@suse.com>,
+        Stefano Stabellini <sstabellini@kernel.org>,
+        "Michael S. Tsirkin" <mst@redhat.com>,
+        Christoph Hellwig <hch@infradead.org>
+References: <1650646263-22047-1-git-send-email-olekstysh@gmail.com>
+ <1650646263-22047-5-git-send-email-olekstysh@gmail.com>
+ <YnBUUclJqkvKsV2o@robh.at.kernel.org>
+ <accbc6be-82c1-dfd2-586f-816141415d7c@gmail.com>
+ <YnHCgBsQ90cJ58+0@robh.at.kernel.org>
+From:   Oleksandr <olekstysh@gmail.com>
+Message-ID: <87009e86-8999-eac9-a5c9-feef196f69fc@gmail.com>
+Date:   Thu, 5 May 2022 13:12:17 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
+MIME-Version: 1.0
+In-Reply-To: <YnHCgBsQ90cJ58+0@robh.at.kernel.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
+X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
-X-Spam-Level: 
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
-Received: from xpert.denx.de (xpert.denx.de [192.168.0.4])
-        by janitor.denx.de (Postfix) with ESMTPS id 76DACA003A;
-        Thu,  5 May 2022 11:58:48 +0200 (CEST)
-Received: by xpert.denx.de (Postfix, from userid 535)
-        id 6DAA03E07D7; Thu,  5 May 2022 11:58:38 +0200 (CEST)
-From:   Philip Oberfichtner <pro@denx.de>
-Cc:     Philip Oberfichtner <pro@denx.de>, Arnd Bergmann <arnd@arndb.de>,
-        Olof Johansson <olof@lixom.net>, soc@kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, matthias.winker@de.bosch.com
-Subject: [PATCH v4 4/4] ARM: dts: Add bosch acc board
-Date:   Thu,  5 May 2022 11:57:30 +0200
-Message-Id: <20220505095725.902447-4-pro@denx.de>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220505095725.902447-1-pro@denx.de>
-References: <20220505095725.902447-1-pro@denx.de>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.5 at phobos.denx.de
-X-Virus-Status: Clean
-To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add device tree for the Bosch ACC board, based on i.MX6 Dual.
 
-Signed-off-by: Philip Oberfichtner <pro@denx.de>
+On 04.05.22 03:02, Rob Herring wrote:
 
----
+Hello Rob
 
-Cc: Arnd Bergmann <arnd@arndb.de>
-Cc: Olof Johansson <olof@lixom.net>
-Cc: soc@kernel.org
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: Shawn Guo <shawnguo@kernel.org>
-Cc: Sascha Hauer <s.hauer@pengutronix.de>
-Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
-Cc: Fabio Estevam <festevam@gmail.com>
-Cc: NXP Linux Team <linux-imx@nxp.com>
-Cc: linux-arm-kernel@lists.infradead.org
-Cc: devicetree@vger.kernel.org
-Cc: linux-kernel@vger.kernel.org
-Cc: matthias.winker@de.bosch.com
+> On Tue, May 03, 2022 at 08:09:32PM +0300, Oleksandr wrote:
+>> On 03.05.22 00:59, Rob Herring wrote:
+>>
+>> Hello Rob
+>>
+>>
+>>> On Fri, Apr 22, 2022 at 07:51:01PM +0300, Oleksandr Tyshchenko wrote:
+>>>> From: Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>
+>>>>
+>>>> Introduce Xen specific binding for the virtualized device (e.g. virtio)
+>>>> to be used by Xen grant DMA-mapping layer in the subsequent commit.
+>>>>
+>>>> This binding indicates that Xen grant mappings scheme needs to be
+>>>> enabled for the device which DT node contains that property and specifies
+>>>> the ID of Xen domain where the corresponding backend resides. The ID
+>>>> (domid) is used as an argument to the grant mapping APIs.
+>>>>
+>>>> This is needed for the option to restrict memory access using Xen grant
+>>>> mappings to work which primary goal is to enable using virtio devices
+>>>> in Xen guests.
+>>>>
+>>>> Signed-off-by: Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>
+>>>> ---
+>>>> Changes RFC -> V1:
+>>>>      - update commit subject/description and text in description
+>>>>      - move to devicetree/bindings/arm/
+>>>> ---
+>>>>    .../devicetree/bindings/arm/xen,dev-domid.yaml     | 37 ++++++++++++++++++++++
+>>>>    1 file changed, 37 insertions(+)
+>>>>    create mode 100644 Documentation/devicetree/bindings/arm/xen,dev-domid.yaml
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/arm/xen,dev-domid.yaml b/Documentation/devicetree/bindings/arm/xen,dev-domid.yaml
+>>>> new file mode 100644
+>>>> index 00000000..ef0f747
+>>>> --- /dev/null
+>>>> +++ b/Documentation/devicetree/bindings/arm/xen,dev-domid.yaml
+>>>> @@ -0,0 +1,37 @@
+>>>> +# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
+>>>> +%YAML 1.2
+>>>> +---
+>>>> +$id: http://devicetree.org/schemas/arm/xen,dev-domid.yaml#
+>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>>> +
+>>>> +title: Xen specific binding for the virtualized device (e.g. virtio)
+>>>> +
+>>>> +maintainers:
+>>>> +  - Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>
+>>>> +
+>>>> +select: true
+>>> Do we really need to support this property everywhere?
+>>  From my understanding - yes.
+>>
+>> As, I think, any device node describing virtulized device in the guest
+>> device tree can have this property.  Initially (in the RFC series) the
+>> "solution to restrict memory access using Xen grant mappings" was
+>> virtio-specific.
+>>
+>> Although the support of virtio is a primary target of this series, we
+>> decided to generalize this work and expand it to any device [1]. So the Xen
+>> grant mappings scheme (this property to be used for) can be theoretically
+>> used for any device emulated by the Xen backend.
+>>
+>>
+>>>> +
+>>>> +description:
+>>>> +  This binding indicates that Xen grant mappings scheme needs to be enabled
+>>>> +  for that device and specifies the ID of Xen domain where the corresponding
+>>>> +  device (backend) resides. This is needed for the option to restrict memory
+>>>> +  access using Xen grant mappings to work.
+>>>> +
+>>>> +properties:
+>>>> +  xen,dev-domid:
+>>>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>>>> +    description:
+>>>> +      The domid (domain ID) of the domain where the device (backend) is running.
+>>>> +
+>>>> +additionalProperties: true
+>>>> +
+>>>> +examples:
+>>>> +  - |
+>>>> +    virtio_block@3000 {
+>>> virtio@3000
+>> ok, will change
+>>
+>>
+>>>> +            compatible = "virtio,mmio";
+>>>> +            reg = <0x3000 0x100>;
+>>>> +            interrupts = <41>;
+>>>> +
+>>>> +            /* The device is located in Xen domain with ID 1 */
+>>>> +            xen,dev-domid = <1>;
+>>> This fails validation:
+>>>
+>>> Documentation/devicetree/bindings/arm/xen,dev-domid.example.dtb: virtio_block@3000: xen,dev-domid: [[1]] is not of type 'object'
+>>>           From schema: /home/rob/proj/git/linux-dt/Documentation/devicetree/bindings/virtio/mmio.yaml
+>> Thank you for pointing this out, my fault, I haven't "properly" checked this
+>> before. I think, we need to remove "compatible = "virtio,mmio"; here
+> Uhh, no. That just means the example is incomplete. You need to add this
+> property or reference this schema from virtio/mmio.yaml.
 
----
+ok, I got it
 
-Changes in v4:
-- reorder i2c nodes
-- reorder properties
-- remove &pmu node
-- fix node naming style
 
-Changes in v3:
-- use panel compatible string instead of display-timings
-- adapt node naming for regulators and led
-- remove unreferenced pinctrl configs
-- remove unused audmux node
-- remove or adapt invalid or superfluous properties
-- use real pad settings instead of 0x80000000
-- fix other minor style issues
+>
+>
+>> diff --git a/Documentation/devicetree/bindings/arm/xen,dev-domid.yaml
+>> b/Documentation/devicetree/bindings/arm/xen,dev-domid.yaml
+>> index 2daa8aa..d2f2140 100644
+>> --- a/Documentation/devicetree/bindings/arm/xen,dev-domid.yaml
+>> +++ b/Documentation/devicetree/bindings/arm/xen,dev-domid.yaml
+>> @@ -28,7 +28,7 @@ additionalProperties: true
+>>   examples:
+>>     - |
+>>       virtio_block@3000 {
+>> -            compatible = "virtio,mmio";
+>> +            /* ... */
+>>               reg = <0x3000 0x100>;
+>>               interrupts = <41>;
+>>
+>>
+>>
+>>> The property has to be added to the virtio/mmio.yaml schema. If it is
+>>> not needed elsewhere, then *just* add the property there.
+>> As I described above, the property is not virtio specific and can be used
+>> for any virtualized device for which Xen grant mappings scheme needs to be
+>> enabled (xen-grant DMA-mapping layer).
+> But that's a finite list of devices, right?
 
-Changes in v2:
-- fix style errors in node naming
-- place regulators under root node
-- remove superfluous status properties
-- remove undocumented nodes and properties
-- use color instead of label for leds
-- fix other minor style issues
----
- arch/arm/boot/dts/Makefile            |   1 +
- arch/arm/boot/dts/imx6q-bosch-acc.dts | 779 ++++++++++++++++++++++++++
- 2 files changed, 780 insertions(+)
- create mode 100644 arch/arm/boot/dts/imx6q-bosch-acc.dts
+Right
 
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index 7c16f8a2b738..a6eff45bfee3 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -547,6 +547,7 @@ dtb-$(CONFIG_SOC_IMX6Q) += \
- 	imx6q-b450v3.dtb \
- 	imx6q-b650v3.dtb \
- 	imx6q-b850v3.dtb \
-+	imx6q-bosch-acc.dtb \
- 	imx6q-cm-fx6.dtb \
- 	imx6q-cubox-i.dtb \
- 	imx6q-cubox-i-emmc-som-v15.dtb \
-diff --git a/arch/arm/boot/dts/imx6q-bosch-acc.dts b/arch/arm/boot/dts/imx6q-bosch-acc.dts
-new file mode 100644
-index 000000000000..b4a85e22f61b
---- /dev/null
-+++ b/arch/arm/boot/dts/imx6q-bosch-acc.dts
-@@ -0,0 +1,779 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Support for the i.MX6-based Bosch ACC board.
-+ *
-+ * Copyright (C) 2016 Garz & Fricke GmbH
-+ * Copyright (C) 2018 DENX Software Engineering GmbH, Heiko Schocher <hs@denx.de>
-+ * Copyright (C) 2018 DENX Software Engineering GmbH, Niel Fourie <lusus@denx.de>
-+ * Copyright (C) 2019-2021 Bosch Thermotechnik GmbH, Matthias Winker <matthias.winker@bosch.com>
-+ * Copyright (C) 2022 DENX Software Engineering GmbH, Philip Oberfichtner <pro@denx.de>
-+ */
-+
-+/dts-v1/;
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/leds/common.h>
-+#include "imx6q.dtsi"
-+
-+/ {
-+	model = "Bosch ACC";
-+	compatible = "bosch,imx6q-acc", "fsl,imx6q";
-+
-+	aliases {
-+		i2c0 = &i2c1;
-+		i2c1 = &i2c2;
-+		i2c2 = &i2c3;
-+		mmc0 = &usdhc4;
-+		mmc1 = &usdhc2;
-+		serial0 = &uart2;
-+		serial1 = &uart1;
-+	};
-+
-+	memory@10000000 {
-+		device_type = "memory";
-+		reg = <0x10000000 0x40000000>;
-+	};
-+
-+	backlight_lvds: backlight-lvds {
-+		compatible = "pwm-backlight";
-+		pwms = <&pwm1 0 200000>;
-+		brightness-levels = <0 61 499 1706 4079 8022 13938 22237 33328 47623 65535>;
-+		num-interpolated-steps = <10>;
-+		default-brightness-level = <60>;
-+		power-supply = <&reg_lcd>;
-+	};
-+
-+	panel {
-+		compatible = "dataimage,fg1001l0dsswmg01";
-+		backlight = <&backlight_lvds>;
-+
-+		port {
-+			panel_in: endpoint {
-+				remote-endpoint = <&lvds0_out>;
-+			};
-+		};
-+	};
-+
-+	refclk: refclk {
-+		compatible = "fixed-factor-clock";
-+		#clock-cells = <0>;
-+		clocks = <&clks IMX6QDL_CLK_CKO2>;
-+		clock-div = <1>;
-+		clock-mult = <1>;
-+		clock-output-names = "12mhz_refclk";
-+		assigned-clocks = <&clks IMX6QDL_CLK_CKO>,
-+				  <&clks IMX6QDL_CLK_CKO2>,
-+				  <&clks IMX6QDL_CLK_CKO2_SEL>;
-+		assigned-clock-parents = <&clks IMX6QDL_CLK_CKO2>,
-+					 <&clks IMX6QDL_CLK_CKO2_PODF>,
-+					 <&clks IMX6QDL_CLK_OSC>;
-+		assigned-clock-rates = <0>, <12000000>, <0>;
-+	};
-+
-+	cpus {
-+		cpu0: cpu@0 {
-+			operating-points = <
-+				/* kHz    uV */
-+				1200000 1275000
-+				996000  1225000
-+				852000  1225000
-+				792000  1150000
-+				396000  950000
-+			>;
-+			fsl,soc-operating-points = <
-+				/* ARM kHz  SOC-PU uV */
-+				1200000 1225000
-+				996000	1175000
-+				852000	1175000
-+				792000	1150000
-+				396000	1150000
-+			>;
-+		};
-+
-+		cpu1: cpu@1 {
-+			operating-points = <
-+				/* kHz    uV */
-+				1200000 1275000
-+				996000  1225000
-+				852000  1225000
-+				792000  1150000
-+				396000  950000
-+			>;
-+			fsl,soc-operating-points = <
-+				/* ARM kHz  SOC-PU uV */
-+				1200000 1225000
-+				996000	1175000
-+				852000	1175000
-+				792000	1150000
-+				396000	1150000
-+			>;
-+		};
-+	};
-+
-+	pwm-leds {
-+		compatible = "pwm-leds";
-+
-+		led_red: led-0 {
-+			color = <LED_COLOR_ID_RED>;
-+			max-brightness = <248>;
-+			default-state = "off";
-+			pwms = <&pwm2 0 500000>;
-+		};
-+
-+		led_white: led-1 {
-+			color = <LED_COLOR_ID_WHITE>;
-+			max-brightness = <248>;
-+			default-state = "off";
-+			pwms = <&pwm3 0 500000>;
-+			linux,default-trigger = "heartbeat";
-+		};
-+	};
-+
-+	gpio-leds {
-+		compatible = "gpio-leds";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_reset_gpio_led>;
-+
-+		led-2 {
-+			color = <LED_COLOR_ID_RED>;
-+			gpios = <&gpio5 18 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+		};
-+	};
-+
-+	reg_5P0: regulator-5P0 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "5P0";
-+	};
-+
-+	reg_vin: regulator-vin {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VIN";
-+		regulator-min-microvolt = <4500000>;
-+		regulator-max-microvolt = <4500000>;
-+		regulator-always-on;
-+		vin-supply = <&reg_5P0>;
-+	};
-+
-+	reg_usb_otg_vbus: regulator-usb-otg-vbus {
-+		compatible = "regulator-fixed";
-+		regulator-name = "usb_otg_vbus";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+	};
-+
-+	reg_usb_h1_vbus: regulator-usb-h1-vbus {
-+		compatible = "regulator-fixed";
-+		regulator-name = "usb_h1_vbus";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		regulator-always-on;
-+		vin-supply = <&reg_5P0>;
-+	};
-+
-+	reg_usb_h2_vbus: regulator-usb-h2-vbus {
-+		compatible = "regulator-fixed";
-+		regulator-name = "usb_h2_vbus";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		vin-supply = <&reg_5P0> ;
-+		regulator-always-on;
-+	};
-+
-+	reg_vsnvs: regulator-vsnvs {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VSNVS_3V0";
-+		regulator-min-microvolt = <3000000>;
-+		regulator-max-microvolt = <3000000>;
-+		regulator-always-on;
-+		vin-supply = <&reg_5P0>;
-+	};
-+
-+	reg_lcd: regulator-lcd {
-+		compatible = "regulator-fixed";
-+		regulator-name = "LCD0 POWER";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_lcd_enable>;
-+		gpio = <&gpio3 23 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+		regulator-boot-on;
-+	};
-+
-+	reg_dac: regulator-dac {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vref_dac";
-+		regulator-min-microvolt = <20000>;
-+		regulator-max-microvolt = <20000>;
-+		vin-supply = <&reg_5P0> ;
-+		regulator-boot-on;
-+	};
-+
-+	reg_sw4: regulator-sw4 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "SW4_3V3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-always-on;
-+		vin-supply = <&reg_5P0>;
-+	};
-+
-+	reg_sys: regulator-sys {
-+		compatible = "regulator-fixed";
-+		regulator-name = "SYS_4V2";
-+		regulator-min-microvolt = <4200000>;
-+		regulator-max-microvolt = <4200000>;
-+		regulator-always-on;
-+		vin-supply = <&reg_5P0>;
-+	};
-+};
-+
-+&reg_arm {
-+	vin-supply = <&sw2_reg>;
-+};
-+
-+&reg_soc {
-+	vin-supply = <&sw1c_reg>;
-+};
-+
-+&reg_vdd1p1 {
-+	vin-supply = <&reg_vsnvs>;
-+};
-+
-+&reg_vdd2p5 {
-+	vin-supply = <&reg_vsnvs>;
-+};
-+
-+&reg_vdd3p0 {
-+	vin-supply = <&reg_vsnvs>;
-+};
-+
-+&fec {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_enet>;
-+	clocks = <&clks IMX6QDL_CLK_ENET>,
-+		<&clks IMX6QDL_CLK_ENET>,
-+		<&clks IMX6QDL_CLK_ENET>,
-+		<&clks IMX6QDL_CLK_ENET_REF>;
-+	clock-names = "ipg", "ahb", "ptp", "enet_out";
-+	phy-mode = "rmii";
-+	phy-supply = <&reg_sw4>;
-+	phy-handle = <&ethphy>;
-+	status = "okay";
-+
-+	mdio {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		ethphy: ethernet-phy@0 {
-+			compatible = "ethernet-phy-ieee802.3-c22";
-+			reg = <0>;
-+			interrupt-parent = <&gpio1>;
-+			interrupts = <23 IRQ_TYPE_EDGE_FALLING>;
-+			smsc,disable-energy-detect;
-+		};
-+	};
-+};
-+
-+&gpu_vg {
-+	status = "disabled";
-+};
-+
-+&gpu_2d {
-+	status = "disabled";
-+};
-+
-+&i2c1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_i2c1>;
-+	clock-frequency = <400000>;
-+	status = "okay";
-+
-+	pmic: pmic@8 {
-+		compatible = "fsl,pfuze100";
-+		reg = <0x08>;
-+
-+		regulators {
-+			sw1c_reg: sw1c {
-+				regulator-name = "VDD_SOC (sw1abc)";
-+				regulator-min-microvolt = <1275000>;
-+				regulator-max-microvolt = <1500000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+				regulator-ramp-delay = <6250>;
-+			};
-+
-+			sw2_reg: sw2 {
-+				regulator-name = "VDD_ARM (sw2)";
-+				regulator-min-microvolt = <1050000>;
-+				regulator-max-microvolt = <1500000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+				regulator-ramp-delay = <6250>;
-+			};
-+
-+			sw3a_reg: sw3a {
-+				compatible = "regulator-fixed";
-+				regulator-name = "DDR_1V5a";
-+				regulator-boot-on;
-+				regulator-always-on;
-+
-+			};
-+
-+			sw3b_reg: sw3b {
-+				compatible = "regulator-fixed";
-+				regulator-name = "DDR_1V5b";
-+				regulator-boot-on;
-+				regulator-always-on;
-+
-+			};
-+
-+			sw4_reg: sw4 {
-+				regulator-name = "AUX 3V15 (sw4)";
-+				regulator-min-microvolt = <800000>;
-+				regulator-max-microvolt = <3300000>;
-+			};
-+
-+			swbst_reg: swbst {
-+				regulator-min-microvolt = <5000000>;
-+				regulator-max-microvolt = <5150000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+				status = "disabled";
-+			};
-+
-+			snvs_reg: vsnvs {
-+				regulator-min-microvolt = <1200000>;
-+				regulator-max-microvolt = <3000000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			vref_reg: vrefddr {
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			vgen1_reg: vgen1 {
-+				regulator-min-microvolt = <800000>;
-+				regulator-max-microvolt = <1550000>;
-+				regulator-always-on;
-+			};
-+
-+			vgen2_reg: vgen2 {
-+				regulator-min-microvolt = <800000>;
-+				regulator-max-microvolt = <1550000>;
-+				regulator-always-on;
-+			};
-+
-+			vgen3_reg: vgen3 {
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-always-on;
-+			};
-+
-+			vgen4_reg: vgen4 {
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-always-on;
-+				regulator-boot-on;
-+			};
-+
-+			vgen5_reg: vgen5 {
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-always-on;
-+				regulator-boot-on;
-+			};
-+
-+			vgen6_reg: vgen6 {
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-always-on;
-+			};
-+		};
-+	};
-+
-+	lm75: sensor@49 {
-+		compatible = "national,lm75b";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_lm75>;
-+		reg = <0x49>;
-+	};
-+
-+	eeprom: eeprom@50 {
-+		compatible = "atmel,24c32";
-+		reg = <0x50>;
-+		pagesize = <32>;
-+	};
-+
-+	rtc: rtc@51 {
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_rtc>;
-+		compatible = "nxp,pcf8563";
-+		reg = <0x51>;
-+	};
-+};
-+
-+&i2c2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_i2c2>;
-+	clock-frequency = <100000>;
-+	status = "okay";
-+
-+	eeprom_ext: eeprom@50 {
-+		compatible = "atmel,24c32";
-+		reg = <0x50>;
-+		pagesize = <32>;
-+	};
-+};
-+
-+&i2c3 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_i2c3>;
-+	clock-frequency = <400000>;
-+	status = "okay";
-+
-+	usb3503: usb@8 {
-+		compatible = "smsc,usb3503";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_usb3503>;
-+		reg = <0x08>;
-+		connect-gpios = <&gpio1 16 GPIO_ACTIVE_HIGH>; /* Old: 0, SS: HIGH */
-+		intn-gpios = <&gpio7 12 GPIO_ACTIVE_LOW>; /* Old: 1, SS: HIGH */
-+		reset-gpios = <&gpio5 5 GPIO_ACTIVE_LOW>; /* Old: 0, SS: HIGH */
-+		initial-mode = <1>;
-+		clocks = <&refclk>;
-+		clock-names = "refclk";
-+		refclk-frequency = <12000000>;
-+	};
-+
-+	vcnl4035: light-sensor@60 {
-+		compatible = "vishay,vcnl4035";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_proximity>;
-+		reg = <0x60>;
-+	};
-+
-+	exc3000: touchscreen@2a {
-+		compatible = "eeti,exc3000";
-+		reg = <0x2a>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_ctouch>;
-+		interrupt-parent = <&gpio4>;
-+		interrupts = <6 IRQ_TYPE_LEVEL_LOW>;
-+		touchscreen-size-x = <4096>;
-+		touchscreen-size-y = <4096>;
-+	};
-+};
-+
-+&ldb {
-+	status = "okay";
-+
-+	lvds0: lvds-channel@0 {
-+		fsl,data-mapping = "spwg";
-+		fsl,data-width = <24>;
-+
-+		port@4 {
-+			reg = <4>;
-+
-+			lvds0_out: endpoint {
-+				remote-endpoint = <&panel_in>;
-+			};
-+		};
-+	};
-+};
-+
-+&pwm1 {
-+	#pwm-cells = <2>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_pwm1>;
-+	status = "okay";
-+};
-+
-+&pwm2 {
-+	#pwm-cells = <2>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_pwm2>;
-+	status = "okay";
-+};
-+
-+&pwm3 {
-+	#pwm-cells = <2>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_pwm3>;
-+	status = "okay";
-+};
-+
-+&pwm4 {
-+	#pwm-cells = <2>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_pwm4>;
-+	status = "okay";
-+};
-+
-+&uart1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_uart1>;
-+	rts-gpios = <&gpio7 8 GPIO_ACTIVE_HIGH>;
-+	linux,rs485-enabled-at-boot-time;
-+	rs485-rx-during-tx;
-+	status = "okay";
-+};
-+
-+&uart2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_uart2>;
-+	uart-has-rtscts;
-+	status = "okay";
-+};
-+
-+&usbh1 {
-+	vbus-supply = <&reg_usb_h1_vbus>;
-+	status = "okay";
-+};
-+
-+&usbh2 {
-+	pinctrl-names = "idle", "active";
-+	pinctrl-0 = <&pinctrl_usbh2_idle>;
-+	pinctrl-1 = <&pinctrl_usbh2_active>;
-+	vbus-supply = <&reg_usb_h2_vbus>;
-+	status = "okay";
-+};
-+
-+&usbotg {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_usbotg>;
-+	vbus-supply = <&reg_usb_otg_vbus>;
-+	disable-over-current;
-+	dr_mode = "otg";
-+	srp-disable;
-+	hnp-disable;
-+	adp-disable;
-+	status = "okay";
-+};
-+
-+&usbphynop1 {
-+	clocks = <&clks IMX6QDL_CLK_USBPHY1>;
-+	clock-names = "main_clk";
-+	vcc-supply = <&reg_usb_h1_vbus>;
-+};
-+
-+&usbphynop2 {
-+	vcc-supply = <&reg_usb_h2_vbus>;
-+};
-+
-+&usdhc2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_usdhc2>;
-+	cd-gpios = <&gpio1 4 GPIO_ACTIVE_LOW>;
-+	no-1-8-v;
-+	keep-power-in-suspend;
-+	enable-sdio-wakeup;
-+	voltage-ranges = <3300 3300>;
-+	vmmc-supply = <&reg_sw4>;
-+	fsl,wp-controller;
-+	status = "okay";
-+};
-+
-+&usdhc4 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_usdhc4>;
-+	bus-width = <8>;
-+	non-removable;
-+	no-1-8-v;
-+	keep-power-in-suspend;
-+	voltage-ranges = <3300 3300>;
-+	vmmc-supply = <&reg_sw4>;
-+	fsl,wp-controller;
-+	status = "okay";
-+};
-+
-+&wdog1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_wdog1>;
-+	fsl,ext-reset-output;
-+	timeout-sec=<10>;
-+	status = "okay";
-+};
-+
-+&iomuxc {
-+	pinctrl_enet: enetgrp {
-+		fsl,pins = <
-+			MX6QDL_PAD_ENET_MDC__ENET_MDC		0x1b0b0
-+			MX6QDL_PAD_ENET_MDIO__ENET_MDIO		0x1b0b0
-+			MX6QDL_PAD_ENET_CRS_DV__ENET_RX_EN	0x1b0b0
-+			MX6QDL_PAD_ENET_REF_CLK__GPIO1_IO23	0x1b0b0	/* FEC INT */
-+			MX6QDL_PAD_ENET_RX_ER__ENET_RX_ER	0x1b0b0
-+			MX6QDL_PAD_ENET_TX_EN__ENET_TX_EN	0x0001b098
-+			MX6QDL_PAD_ENET_RXD0__ENET_RX_DATA0	0x1b0b0
-+			MX6QDL_PAD_ENET_RXD1__ENET_RX_DATA1	0x1b0b0
-+			MX6QDL_PAD_ENET_TXD1__ENET_TX_DATA1	0x0001b098
-+			MX6QDL_PAD_ENET_TXD0__ENET_TX_DATA0	0x0001b098
-+			MX6QDL_PAD_GPIO_16__ENET_REF_CLK	0x4001b0a8
-+		>;
-+	};
-+
-+	pinctrl_reset_gpio_led: reset-gpio-led-grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_CSI0_PIXCLK__GPIO5_IO18		0x1b0b0
-+		>;
-+	};
-+
-+	pinctrl_i2c1: i2c1grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_CSI0_DAT8__I2C1_SDA 0x4001b8b1
-+			MX6QDL_PAD_CSI0_DAT9__I2C1_SCL 0x4001b8b1
-+		>;
-+	};
-+
-+	pinctrl_i2c2: i2c2grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_KEY_COL3__I2C2_SCL 0x4001b810
-+			MX6QDL_PAD_KEY_ROW3__I2C2_SDA 0x4001b810
-+		>;
-+	};
-+
-+	pinctrl_i2c3: i2c3grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_GPIO_5__I2C3_SCL  0x4001b8b1
-+			MX6QDL_PAD_GPIO_6__I2C3_SDA 0x4001b8b1
-+		>;
-+	};
-+
-+	pinctrl_lcd_enable: lcdenablegrp {
-+		fsl,pins = <
-+			MX6QDL_PAD_EIM_D23__GPIO3_IO23  0x1b0b0 /* lcd enable */
-+			MX6QDL_PAD_EIM_D16__GPIO3_IO16  0x1b0b0 /* sel6_8 */
-+		>;
-+	};
-+
-+	pinctrl_lm75: lm75grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_KEY_ROW0__GPIO4_IO07		0x1b0b0
-+		>;
-+	};
-+
-+	pinctrl_proximity: proximitygrp {
-+		fsl,pins = <
-+			MX6QDL_PAD_KEY_ROW2__GPIO4_IO11  0x1b0b0
-+		>;
-+	};
-+
-+	pinctrl_pwm1: pwm1grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_SD1_DAT3__PWM1_OUT 0x0001b0b0
-+		>;
-+	};
-+
-+	pinctrl_pwm2: pwm2grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_SD1_DAT2__PWM2_OUT 0x0001b0b0
-+		>;
-+	};
-+
-+	pinctrl_pwm3: pwm3grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_SD1_DAT1__PWM3_OUT 0x0001b0b0
-+		>;
-+	};
-+
-+	pinctrl_pwm4: pwm4grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_SD1_CMD__PWM4_OUT 0x0001b0b0
-+		>;
-+	};
-+
-+	pinctrl_rtc: rtc-grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_KEY_COL1__GPIO4_IO08 0x1b0b0 /* RTC INT */
-+		>;
-+	};
-+
-+	pinctrl_ctouch: ctouch-grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_KEY_COL0__GPIO4_IO06 0x1b0b0 /* CTOUCH_INT */
-+			MX6QDL_PAD_SD1_CLK__GPIO1_IO20 0x0001b0b0 /* CTOUCH_RESET */
-+		>;
-+	};
-+
-+	pinctrl_uart1: uart1grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_SD3_DAT6__UART1_RX_DATA 0x1b0b1
-+			MX6QDL_PAD_SD3_DAT7__UART1_TX_DATA 0x1b0b1
-+			MX6QDL_PAD_SD3_RST__GPIO7_IO08 0x0001b0b0
-+		>;
-+	};
-+
-+	pinctrl_uart2: uart2grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_SD3_DAT4__UART2_RX_DATA 0x1b0b1
-+			MX6QDL_PAD_SD3_DAT5__UART2_TX_DATA 0x1b0b1
-+			MX6QDL_PAD_EIM_D28__UART2_CTS_B 0x1b0b1
-+			MX6QDL_PAD_EIM_D29__UART2_RTS_B 0x1b0b1
-+		>;
-+	};
-+
-+	pinctrl_usbh2_idle: usbh2-idle-grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_RGMII_TXC__USB_H2_DATA      0x00013018
-+			MX6QDL_PAD_RGMII_TX_CTL__USB_H2_STROBE 0x00013018
-+		>;
-+	};
-+
-+	pinctrl_usbh2_active: usbh2-active-grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_RGMII_TXC__USB_H2_DATA      0x00013018
-+			MX6QDL_PAD_RGMII_TX_CTL__USB_H2_STROBE 0x00017018
-+		>;
-+	};
-+
-+	pinctrl_usb3503: usb3503-grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_CSI0_MCLK__CCM_CLKO1    0x00000018
-+			MX6QDL_PAD_GPIO_17__GPIO7_IO12     0x1b0b0 /* USB INT */
-+			MX6QDL_PAD_DISP0_DAT11__GPIO5_IO05 0x0001b0b0 /* USB Reset */
-+			MX6QDL_PAD_SD1_DAT0__GPIO1_IO16    0x1b0b0 /* USB Connect */
-+		>;
-+	};
-+
-+	pinctrl_usbotg: usbotggrp {
-+		fsl,pins = <
-+			MX6QDL_PAD_GPIO_1__USB_OTG_ID	0x17059
-+		>;
-+	};
-+
-+	pinctrl_usdhc2: usdhc2grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_SD2_CMD__SD2_CMD    0x00017069
-+			MX6QDL_PAD_SD2_CLK__SD2_CLK    0x00010038
-+			MX6QDL_PAD_SD2_DAT0__SD2_DATA0 0x00017069
-+			MX6QDL_PAD_SD2_DAT1__SD2_DATA1 0x00017069
-+			MX6QDL_PAD_SD2_DAT2__SD2_DATA2 0x00017069
-+			MX6QDL_PAD_SD2_DAT3__SD2_DATA3 0x00017069
-+			MX6QDL_PAD_GPIO_4__SD2_CD_B    0x0001b0b0
-+		>;
-+	};
-+
-+	pinctrl_usdhc4: usdhc4grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_SD4_CMD__SD4_CMD    0x00017059
-+			MX6QDL_PAD_SD4_CLK__SD4_CLK    0x00010059
-+			MX6QDL_PAD_SD4_DAT0__SD4_DATA0 0x00017059
-+			MX6QDL_PAD_SD4_DAT1__SD4_DATA1 0x00017059
-+			MX6QDL_PAD_SD4_DAT2__SD4_DATA2 0x00017059
-+			MX6QDL_PAD_SD4_DAT3__SD4_DATA3 0x00017059
-+			MX6QDL_PAD_SD4_DAT4__SD4_DATA4 0x00017059
-+			MX6QDL_PAD_SD4_DAT5__SD4_DATA5 0x00017059
-+			MX6QDL_PAD_SD4_DAT6__SD4_DATA6 0x00017059
-+			MX6QDL_PAD_SD4_DAT7__SD4_DATA7 0x00017059
-+		>;
-+	};
-+
-+	pinctrl_wdog1: wdoggrp {
-+		fsl,pins = <
-+			MX6QDL_PAD_GPIO_9__WDOG1_B 0x1b0b0
-+		>;
-+	};
-+};
+
+> In any case, you have to
+> list the property anywhere it can be used.
+
+Agree
+
+
+If I got it right, we need to add to virtio/mmio.yaml something like:
+
+
+diff --git a/Documentation/devicetree/bindings/virtio/mmio.yaml 
+b/Documentation/devicetree/bindings/virtio/mmio.yaml
+index 10c22b5..29a0932 100644
+--- a/Documentation/devicetree/bindings/virtio/mmio.yaml
++++ b/Documentation/devicetree/bindings/virtio/mmio.yaml
+@@ -13,6 +13,9 @@ description:
+    See 
+https://www.oasis-open.org/committees/tc_home.php?wg_abbrev=virtio for
+    more details.
+
++allOf:
++  - $ref: /schemas/arm/xen,dev-domid.yaml#
++
+  properties:
+    compatible:
+      const: virtio,mmio
+@@ -33,6 +36,10 @@ properties:
+      description: Required for devices making accesses thru an IOMMU.
+      maxItems: 1
+
++  xen,dev-domid:
++    description: Required when Xen grant mappings need to be enabled 
+for device.
++    $ref: /schemas/types.yaml#/definitions/uint32
++
+  required:
+    - compatible
+    - reg
+
+
+This passed validation.
+
+
+Could you please clarify, is my understanding correct?
+
+
+>
+> Rob
+
 -- 
-2.34.1
+Regards,
+
+Oleksandr Tyshchenko
 
