@@ -2,78 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6CD6B51BB50
-	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 11:00:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D8DF51BB54
+	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 11:01:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351325AbiEEJEN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 May 2022 05:04:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45200 "EHLO
+        id S1350883AbiEEJE4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 May 2022 05:04:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46204 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351324AbiEEJEJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 05:04:09 -0400
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9ED8B20184
-        for <devicetree@vger.kernel.org>; Thu,  5 May 2022 02:00:29 -0700 (PDT)
-Received: by mail-ej1-x635.google.com with SMTP id dk23so7444128ejb.8
-        for <devicetree@vger.kernel.org>; Thu, 05 May 2022 02:00:29 -0700 (PDT)
+        with ESMTP id S1351262AbiEEJEz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 05:04:55 -0400
+Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 090894BB83
+        for <devicetree@vger.kernel.org>; Thu,  5 May 2022 02:01:08 -0700 (PDT)
+Received: by mail-lj1-x236.google.com with SMTP id 16so4723424lju.13
+        for <devicetree@vger.kernel.org>; Thu, 05 May 2022 02:01:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=9AhHvge8RPPYxMTc08AdPjB0Im0yrHzhMR6FLazEcKY=;
-        b=qCcqE7MjKRccPt6aVTkfa2QCmPSM6UECqx8iMHUMeYy7r7GtvA4hPANJ6oS5frF3Oy
-         K7t+2k/Qj+7oxoz/8PppTw7UDI0HuNnIIxhhV9kJ0R11ryMFNziwtFc6LFyvAQSI226p
-         jdggYUSFS/V8rKTveXc/9EH+uqfreR1WV8PB83QVHzofB0RuTuyNS0L6HJljo57wxO0b
-         foLI8v6fh/oXQNRQoiOmtZRzDvkb2alBnjzS1u9J355JmXvsuKy8FtPqx43Fipa2u3K/
-         SOeOJpvLDnmZwZuSDORaItASRxuR2eUTNcDkA9iVkiat4JaUVWWRcmdGDwJofVu5u9JO
-         K61w==
+        bh=nyIBkdlH8U+DPOrC3RC5Dq9VLCYMkjKzwYlgP0rAk1k=;
+        b=Q51CwriF+iL8MVkMj8c/hXTpY68rIgy1NAf3Jy8TmZX+/aNLKmfUv8M95nnjvvCVxl
+         fXkU2+pLhQWLdolAwSi5To8Ncu1aVqoZK/fRUuwkivLNnmXcJaPVSHyvMxIYlxEysn1r
+         wPQ++uPSuVpMhoaiknaXxdFNlPV0R7j3kJ5VdQlyYmkpnqm+wTWwC1RKW/ydEuDCxx4Y
+         kGGS13Cz+5C5PcaQmwHYq7U+rufZzVZbBqw05Lw8F7fu0qNzr7PEN3hidFA2YhP966wr
+         sh8N0fv3k6OqN2FHEdZGP9mafe/sW0DdU9xtrjok3yAh3DjK9redRVEaZKkkRV8zU/yK
+         sY6A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=9AhHvge8RPPYxMTc08AdPjB0Im0yrHzhMR6FLazEcKY=;
-        b=2lIhfYyZBh3RngCiZgMSyK/2+q/lVB9688TaYMuYytvMzLboYkzhxBeeBXipc66vCo
-         k/WoVa2v7683fMw8N7xufwhFyMvxp4ZnaWNqF5VfKgbeVUMTC4GIpFkq4Vo1kzZ1kGrW
-         xBuAE0SE/TodrvZxloIWDbLxolUcd3S14jbBQtFyd6uFUNYNl6p0ubh6u3YaDI5e/rP4
-         8HRS7iqLq/L40Lzs5lGPDJjeUX6GpR6fifcKpHgS6tQQmgq2RT1oXVX6QbkWpRtBS3gF
-         UbfAupshhTYR8UDcYai5nfqiaQSRs9A6ulEMdp10dRLFu/D7m+8QPcVdRx6L+4aPvw20
-         576Q==
-X-Gm-Message-State: AOAM532O/ztcnuDpQubK5dXSqS18moD+9GzVePOSbmmTONLeuOeP6GT7
-        seXhe1+PS4uN3V8x53gRA61ymQ==
-X-Google-Smtp-Source: ABdhPJyVYeKkXidgPkQrPg7qjd5RnUZ/ol5zwHrgIrLMcOzGQ7cFpuk9ivJ15p5PLg/Zb/0gPvZatg==
-X-Received: by 2002:a17:906:300d:b0:6ec:c1b:9780 with SMTP id 13-20020a170906300d00b006ec0c1b9780mr24836204ejz.415.1651741228199;
-        Thu, 05 May 2022 02:00:28 -0700 (PDT)
-Received: from [192.168.0.217] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id z18-20020a05640240d200b0042617ba63a0sm537952edb.42.2022.05.05.02.00.26
+        bh=nyIBkdlH8U+DPOrC3RC5Dq9VLCYMkjKzwYlgP0rAk1k=;
+        b=B7HxolARocut3JtOTZP8n/m+pM7p4zidgkFni4cokMl/uNS99OMvEgQ7qUXtXF0vlf
+         FgLjupJNJtacScAEBo+DUBkqM8nuG2vM85d5VDCTs7ty8xovkN6mKVijEeuO85rxLFJR
+         oNZlc1GH7Dw4vgYf+OKGdc1GxvFpmnY8C3lVKZozHC1Eo4BUmgmsCRK/eBDe/UoXOjOM
+         7+BiorJSmAUj0MLxcEe89Ogu22enObaNJaavKSe9oMMeZj1gf47JGNXkiujGKXAD1eLN
+         /Xikg0lidLDTU9mfGk4s+D2PsoLMEi/WC/Z4liC9PEbmcasmfpbryZBbTsTpx5IHfUXT
+         dRsw==
+X-Gm-Message-State: AOAM531Cm9VrXqdICSciq1b6MFJjLXpDDoIz3dPQUS6qCu2scW4dKaav
+        KGWumOveYCgC0CSlz8+P0rp/7A==
+X-Google-Smtp-Source: ABdhPJzn8SSdzkNetfVnZx3IjWLHvwKHt1Q/uwWpSdXtsT7FpWUxIXOsp23Xbpd7c5RQIs82SPqAgg==
+X-Received: by 2002:a2e:a448:0:b0:24c:8fe8:f3c6 with SMTP id v8-20020a2ea448000000b0024c8fe8f3c6mr15491045ljn.115.1651741267222;
+        Thu, 05 May 2022 02:01:07 -0700 (PDT)
+Received: from [192.168.1.211] ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id bp20-20020a056512159400b0047255d211d5sm131056lfb.260.2022.05.05.02.01.06
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 05 May 2022 02:00:27 -0700 (PDT)
-Message-ID: <a099eb33-91a0-0262-f6c0-a77dc7aec146@linaro.org>
-Date:   Thu, 5 May 2022 11:00:26 +0200
+        Thu, 05 May 2022 02:01:06 -0700 (PDT)
+Message-ID: <73cebbb5-518c-e3b9-85d4-f81cda28ae07@linaro.org>
+Date:   Thu, 5 May 2022 12:01:05 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.8.1
-Subject: Re: [PATCH] spi: dt-bindings: qcom,spi-geni-qcom: allow three
- interconnects
-Content-Language: en-US
-To:     Mark Brown <broonie@kernel.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
+Subject: Re: [PATCH v5 5/7] PCI: qcom: Handle MSI IRQs properly
+Content-Language: en-GB
+To:     Bjorn Helgaas <helgaas@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-spi@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220504125119.190526-1-krzysztof.kozlowski@linaro.org>
- <YnKVLxmz0hhQGNzI@sirena.org.uk>
- <cfba178d-ff36-910b-3067-ce32b701b643@linaro.org>
- <YnKZyCogvngR7zfc@sirena.org.uk>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <YnKZyCogvngR7zfc@sirena.org.uk>
-Content-Type: text/plain; charset=UTF-8
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Stanimir Varbanov <svarbanov@mm-sol.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org
+References: <20220429224732.GA111265@bhelgaas>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <20220429224732.GA111265@bhelgaas>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -81,19 +83,119 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/05/2022 17:20, Mark Brown wrote:
->> Thanks Mark, but as explained in commit below "---" - this is a fix for
->> commit in Qualcomm/Bjorn tree. Could you ack it instead?
+On 30/04/2022 01:47, Bjorn Helgaas wrote:
+> In subject, "Handle MSI IRQs properly" really doesn't tell us anything
+> useful.  The existing MSI support handles some MSI IRQs "properly," so
+> we should say something specific about the improvements here, like
+> "Handle multiple MSI groups" or "Handle MSIs routed to multiple GIC
+> interrupts" or "Handle split MSI IRQs" or similar.
 > 
-> I was expecting this to be a fix for some change in the DTs in the
-> Qualcomm tree.  Why is there a change to the SPI bindings in there?  I
-> don't seem to have reviewed it...
+> On Sat, Apr 30, 2022 at 12:42:48AM +0300, Dmitry Baryshkov wrote:
+>> On some of Qualcomm platforms each group of 32 MSI vectors is routed to the
+>> separate GIC interrupt. Thus to receive higher MSI vectors properly,
+>> add separate msi_host_init()/msi_host_deinit() handling additional host
+>> IRQs.
+> 
+>> +static void qcom_chained_msi_isr(struct irq_desc *desc)
+>> +{
+>> +	struct irq_chip *chip = irq_desc_get_chip(desc);
+>> +	int irq = irq_desc_get_irq(desc);
+>> +	struct pcie_port *pp;
+>> +	int idx, pos;
+>> +	unsigned long val;
+>> +	u32 status, num_ctrls;
+>> +	struct dw_pcie *pci;
+>> +	struct qcom_pcie *pcie;
+>> +
+>> +	chained_irq_enter(chip, desc);
+>> +
+>> +	pp = irq_desc_get_handler_data(desc);
+>> +	pci = to_dw_pcie_from_pp(pp);
+>> +	pcie = to_qcom_pcie(pci);
+>> +
+>> +	/*
+>> +	 * Unlike generic dw_handle_msi_irq we can determine, which group of
+>> +	 * MSIs triggered the IRQ, so process just single group.
+> 
+> Parens and punctuation touch-up:
+> 
+>    Unlike generic dw_handle_msi_irq(), we can determine which group of
+>    MSIs triggered the IRQ, so process just that group.
+> 
+>> +	 */
+>> +	num_ctrls = pp->num_vectors / MAX_MSI_IRQS_PER_CTRL;
+>> +
+>> +	for (idx = 0; idx < num_ctrls; idx++) {
+>> +		if (pcie->msi_irqs[idx] == irq)
+>> +			break;
+>> +	}
+> 
+> Since this is basically an enhanced clone of dw_handle_msi_irq(), it
+> would be nice to use the same variable names ("i" instead of "idx")
+> so it's not gratuitously different.
+> 
+> Actually, I wonder if you could enhance dw_handle_msi_irq() slightly
+> so you could use it directly, e.g.,
+> 
+>      struct dw_pcie_host_ops {
+>        ...
+>        void (*msi_host_deinit)(struct pcie_port *pp);
+>   +    bool (*msi_in_block)(struct pcie_port *pp, int irq, int i);
+>      };
+> 
+>      dw_handle_msi_irq(...)
+>      {
+>        ...
+> 
+>        for (i = 0; i < num_ctrls; i++) {
+>   +      if (pp->ops->msi_in_block && !pp->ops->msi_in_block(pp, irq, i))
+>   +        continue;
+> 
+> 	status = dw_pcie_readl_dbi(pci, PCIE_MSI_INTR0_STATUS ...);
+> 	...
+> 
+>   +  bool qcom_pcie_msi_in_block(struct pcie_port *pp, int irq, int i)
+>   +  {
+>   +    ...
+>   +    pci = to_dw_pcie_from_pp(pp);
+>   +    pcie = to_qcom_pcie(pci);
+>   +
+>   +    if (pcie->msi_irqs[i] == irq)
+>   +      return true;
+>   +
+>   +    return false;
+>   +  }
+> 
+> Maybe that's more complicated than it's worth.
 
-I don't know, Mark. The confusion was not intended. The second patch in
-the set depended on SPI patch, so probably after three weeks Bjorn just
-took entire set.
+I think it will complicate the IRQ handler unnecessary. Just using a 
+separate handler seems simpler.
 
-https://lore.kernel.org/all/20220404064017.68634-1-krzysztof.kozlowski@linaro.org/
+> 
+>> +
+>> +	if (WARN_ON_ONCE(unlikely(idx == num_ctrls)))
+>> +		goto out;
+>> +
+>> +	status = dw_pcie_readl_dbi(pci, PCIE_MSI_INTR0_STATUS +
+>> +				   (idx * MSI_REG_CTRL_BLOCK_SIZE));
+>> +	if (!status)
+>> +		goto out;
+>> +
+>> +	val = status;
+>> +	pos = 0;
+>> +	while ((pos = find_next_bit(&val, MAX_MSI_IRQS_PER_CTRL,
+>> +				    pos)) != MAX_MSI_IRQS_PER_CTRL) {
+>> +		generic_handle_domain_irq(pp->irq_domain,
+>> +					  (idx * MAX_MSI_IRQS_PER_CTRL) +
+>> +					  pos);
+>> +		pos++;
+>> +	}
+>> +
+>> +out:
+>> +	chained_irq_exit(chip, desc);
+>> +}
 
-Best regards,
-Krzysztof
+
+-- 
+With best wishes
+Dmitry
