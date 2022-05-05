@@ -2,130 +2,206 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 73FC451B3E9
-	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 02:08:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4FF0151B4A6
+	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 02:28:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235250AbiEEAFk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 May 2022 20:05:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46384 "EHLO
+        id S229999AbiEEAcQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 May 2022 20:32:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50940 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1383726AbiEDX7x (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 19:59:53 -0400
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 523CD522CF
-        for <devicetree@vger.kernel.org>; Wed,  4 May 2022 16:56:15 -0700 (PDT)
-Received: by mail-wr1-x42e.google.com with SMTP id w4so3964652wrg.12
-        for <devicetree@vger.kernel.org>; Wed, 04 May 2022 16:56:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=bKdTjovqsCdX72d9roGYbZa4UTuliACzSNBJY8i+zFk=;
-        b=EA5zOF2CgBRM3KEnU1EvIVrVSK8lAaSe1mJheFenRg/fxUSAdgPxWJPZ260gEnWjKZ
-         ga9zu0kWaYJdhmnW5NcahZvlB3K9cUqIJBxrZUMnHORXjCFp4+DxOmpSBv8kw1tD+qFI
-         TsHcVzj6NygsHPQ70CeCqnZBqiDGgbyb+Q4Xw=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=bKdTjovqsCdX72d9roGYbZa4UTuliACzSNBJY8i+zFk=;
-        b=4jiMSfNuI1dGskW1QllUKAb40IrsOTjyybXdf6LPw433nlpzoQiWNvHRfTpWFsLSnN
-         Y6FxBRVDUiei7WZYHAAgYrLQ1yYSzmZOFKcnlfJr+2cU6VlNbpjUqgc7g+8nsM/hDx+o
-         v5sX3OtLHu8A6WTZQ1FyFuw+JhgK9QjB1FTx2MnnFYdbuMPsSzJnzyB9HVGrlBL2DvX/
-         Hxz1T3qWIIHLmd1keeviAkNE9BYBZAqJU6qEk5RLYMClcR15Euj8+hlIZ8AEwdBxLAgl
-         JBZhGqwHkIRNllTpCDYU72TwYaoeTqWKsE5u6IDSmod6NaTfldj3aqUNW4i/KGG5YaRj
-         Ve4w==
-X-Gm-Message-State: AOAM532LkjCFbEIOuXo6y59M85Ssij0in4aFuWtUwgadibnansitcFDB
-        gg1sAPy8C7Uo1GGI5WcRubzIGIIGe+bb3BhFp8S7/Q==
-X-Google-Smtp-Source: ABdhPJyy6isOT7IY1zukIUAQclCqJeMt+peKPjxTLWrRh+Oi9q1PWYXtgZwYoMvGpfavLyv6J0lLTj/7IawTpAuezyQ=
-X-Received: by 2002:adf:fb03:0:b0:20a:e253:b8c7 with SMTP id
- c3-20020adffb03000000b0020ae253b8c7mr17853079wrr.119.1651708573697; Wed, 04
- May 2022 16:56:13 -0700 (PDT)
+        with ESMTP id S231543AbiEEAcP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 May 2022 20:32:15 -0400
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9636B45060
+        for <devicetree@vger.kernel.org>; Wed,  4 May 2022 17:28:36 -0700 (PDT)
+Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=diego.localnet)
+        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <heiko@sntech.de>)
+        id 1nmPM3-00058A-6y; Thu, 05 May 2022 02:28:27 +0200
+From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To:     dri-devel@lists.freedesktop.org,
+        Sascha Hauer <s.hauer@pengutronix.de>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Sandy Huang <hjc@rock-chips.com>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v11 16/24] arm64: dts: rockchip: rk356x: Add VOP2 nodes
+Date:   Thu, 05 May 2022 02:28:24 +0200
+Message-ID: <1911394.usQuhbGJ8B@diego>
+In-Reply-To: <20220422072841.2206452-17-s.hauer@pengutronix.de>
+References: <20220422072841.2206452-1-s.hauer@pengutronix.de> <20220422072841.2206452-17-s.hauer@pengutronix.de>
 MIME-Version: 1.0
-References: <20220330090947.9100-1-chenxiangrui@huaqin.corp-partner.google.com>
- <a0eb6bf9-256a-29b1-2211-496df710f531@linaro.org> <CAD=FV=UjyLofXZqnj=bL89fza5JS6O5Np9W-A4V4WK+na0hdrw@mail.gmail.com>
- <b7ff08b8-60fb-7629-9399-3d5cca46ab9e@linaro.org> <CAD=FV=Vx5g_xTRZGc9wW=ZLnfsOcubTYFcnYQRC5jLm+n3en0w@mail.gmail.com>
- <606cc762-a0c2-49a4-3e5d-d2dbd4595bc7@linaro.org> <CAD=FV=W_SA-3PfDFi-Gkjk9pew5bchFNjQhXX8MkZyuy5UohEQ@mail.gmail.com>
- <CAJKOXPdt5WTg4VU-TEW3dmPHR76dKg63XVxRQfa7ZSKc_jz6Ag@mail.gmail.com>
- <CAD=FV=XQqQSQDNh-zXqEQkwsrax5Qb3OtfKZoQLkncJj_4mcQw@mail.gmail.com> <daf66d41-42ac-50dc-3f8d-c261da8e452d@linaro.org>
-In-Reply-To: <daf66d41-42ac-50dc-3f8d-c261da8e452d@linaro.org>
-From:   Julius Werner <jwerner@chromium.org>
-Date:   Wed, 4 May 2022 16:56:01 -0700
-Message-ID: <CAODwPW-0O16AkkYORovPHSESNfOe46639Wu2-QSsKxdx3fJs7A@mail.gmail.com>
-Subject: Re: [PATCH] CHROMIUM: arm64: dts: qcom: Add sc7180-gelarshie
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Doug Anderson <dianders@chromium.org>,
-        =?UTF-8?Q?Krzysztof_Koz=C5=82owski?= <k.kozlowski.k@gmail.com>,
-        Mars Chen <chenxiangrui@huaqin.corp-partner.google.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-9.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        USER_IN_DEF_SPF_WL autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Trying to chime in here from the firmware development side of this
-issue to help clarify what Doug is asking for. We have the fundamental
-problem that we have several different board revisions that we _think_
-should be 100% compatible for kernel and userspace, so for various
-practical reasons (easier to maintain in the source, limiting kernel
-image size by not having to bundle the same DTB multiple times under a
-different name), we want to use the same DTB for all of them. Just
-saying "well, you should treat each revision as incompatible to all
-the others from the start then" doesn't scale (we have a lot of
-revisions, and in the vast majority of cases they are just as
-compatible as we initially expect them to be).
+Am Freitag, 22. April 2022, 09:28:33 CEST schrieb Sascha Hauer:
+> The VOP2 is the display output controller on the RK3568. Add the node
+> for it to the dtsi file along with the required display-subsystem node
+> and the iommu node.
+> 
+> Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
+> Acked-by: Rob Herring <robh@kernel.org>
+> ---
+> 
+> Notes:
+>     Changes since v6:
+>     - Change RK3568_ prefix to ROCKCHIP_ prefix
+>     - start counting from one instead of zero
+>     
+>     Changes since v4:
+>     - Add Robs Ack
+>     
+>     Changes since v3:
+>     - Bring back gamma_lut regs
+>     - Drop redundant _vop suffix from clock names
+> 
+>  arch/arm64/boot/dts/rockchip/rk3566.dtsi |  4 ++
+>  arch/arm64/boot/dts/rockchip/rk3568.dtsi |  4 ++
+>  arch/arm64/boot/dts/rockchip/rk356x.dtsi | 51 ++++++++++++++++++++++++
+>  include/dt-bindings/soc/rockchip,vop2.h  | 14 +++++++
+>  4 files changed, 73 insertions(+)
+>  create mode 100644 include/dt-bindings/soc/rockchip,vop2.h
+> 
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3566.dtsi b/arch/arm64/boot/dts/rockchip/rk3566.dtsi
+> index 3839eef5e4f76..595fa2562cb8e 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3566.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/rk3566.dtsi
+> @@ -18,3 +18,7 @@ power-domain@RK3568_PD_PIPE {
+>  		#power-domain-cells = <0>;
+>  	};
+>  };
+> +
+> +&vop {
+> +	compatible = "rockchip,rk3566-vop";
+> +};
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3568.dtsi b/arch/arm64/boot/dts/rockchip/rk3568.dtsi
+> index 5b0f528d68180..4deab90e83834 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3568.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/rk3568.dtsi
+> @@ -114,3 +114,7 @@ power-domain@RK3568_PD_PIPE {
+>  		#power-domain-cells = <0>;
+>  	};
+>  };
+> +
+> +&vop {
+> +	compatible = "rockchip,rk3568-vop";
+> +};
+> diff --git a/arch/arm64/boot/dts/rockchip/rk356x.dtsi b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+> index 7cdef800cb3ce..fdb7a9a6ca743 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+> @@ -129,6 +129,11 @@ opp-1800000000 {
+>  		};
+>  	};
+>  
+> +	display_subsystem: display-subsystem {
+> +		compatible = "rockchip,display-subsystem";
+> +		ports = <&vop_out>;
+> +	};
+> +
+>  	firmware {
+>  		scmi: scmi {
+>  			compatible = "arm,scmi-smc";
+> @@ -569,6 +574,52 @@ gmac1_mtl_tx_setup: tx-queues-config {
+>  		};
+>  	};
+>  
+> +	vop: vop@fe040000 {
+> +		reg = <0x0 0xfe040000 0x0 0x3000>, <0x0 0xfe044000 0x0 0x1000>;
+> +		reg-names = "regs", "gamma_lut";
 
-However, we also can't just exhaustively enumerate all revision
-numbers that are compatible with this DTB, because we don't know in
-advance how many we'll build. For again various practical reasons
-(bundling, signing, testing), it would cost a lot of extra effort and
-friction to rebuild a new kernel image just to add a new compatible
-string to the list every time the factory updates the revision number.
-An earlier hacky solution we had for this is to just define a bunch of
-extra revision compatible strings in advance even though they don't
-exist yet (e.g. you can still see this in
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/arch/arm/boot/dts/tegra124-nyan-blaze.dts
--- I believe there were only actually ever 3 or 4 Blaze revisions, the
-other compatible strings defined there never existed as physical
-boards). This is cumbersome and hacky and also doesn't really scale
-(particularly when we need to add SKU as another dimension into the
-string), so we needed to come up with something more manageable.
+reg-names does not seem to be part of the dt-binding.
+Though now in the vop2-driver I see that the code uses that naming.
 
-Our solution is to use "google,lazor" as the stand-in compatible
-string for "all Lazor boards compatible with the latest revision".
-When a compatibility break happens at some point in the Lazor series
-(say between rev3 and rev4), we'll change the compatible string in the
-old rev3 DTB to no longer include "google,lazor" but to instead list
-all specific revision numbers ("google,lazor-rev0", ...,
-"google-lazor-rev3") exhaustively (at this point we can do it, because
-at this point we know we're not going to build any new boards
-compatible with that old layout in the future). The new rev4 DTB will
-then list "google,lazor" and again remain valid for all future
-revisions we build, until the next compatibility break.
+I guess we might want to just go the vop1-way by using numbered
+platform-resources via a follow-up patch and drop the regnames here?
 
-You are correct that this ends up changing the meaning of
-"google,lazor" at some point, but it's really the only good way I can
-see how to solve this within our practical constraints. I also don't
-really see a practical concern with that, since our firmware matching
-algorithm (and I believe this is the standard other bootloaders like
-U-Boot also follow) will look for the more specific string with the
-explicit revision number first, before falling back to the generic
-one. So whenever we decide to change the meaning of the latter in the
-kernel, we also make sure to provide matches for all the specific
-revisions that previously used the generic match, so that they will
-pick up those instead and there's no chance of them getting confused
-by the change in meaning. While it is perhaps a bit unorthodox, I
-think it is practical, safe, and I don't really see a practical
-alternative for our use case.
+
+Heiko
+
+
+> +		interrupts = <GIC_SPI 148 IRQ_TYPE_LEVEL_HIGH>;
+> +		clocks = <&cru ACLK_VOP>, <&cru HCLK_VOP>, <&cru DCLK_VOP0>,
+> +			 <&cru DCLK_VOP1>, <&cru DCLK_VOP2>;
+> +		clock-names = "aclk", "hclk", "dclk_vp0", "dclk_vp1", "dclk_vp2";
+> +		iommus = <&vop_mmu>;
+> +		power-domains = <&power RK3568_PD_VO>;
+> +		rockchip,grf = <&grf>;
+> +		status = "disabled";
+> +
+> +		vop_out: ports {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +
+> +			vp0: port@0 {
+> +				reg = <0>;
+> +				#address-cells = <1>;
+> +				#size-cells = <0>;
+> +			};
+> +
+> +			vp1: port@1 {
+> +				reg = <1>;
+> +				#address-cells = <1>;
+> +				#size-cells = <0>;
+> +			};
+> +
+> +			vp2: port@2 {
+> +				reg = <2>;
+> +				#address-cells = <1>;
+> +				#size-cells = <0>;
+> +			};
+> +		};
+> +	};
+> +
+> +	vop_mmu: iommu@fe043e00 {
+> +		compatible = "rockchip,rk3568-iommu";
+> +		reg = <0x0 0xfe043e00 0x0 0x100>, <0x0 0xfe043f00 0x0 0x100>;
+> +		interrupts = <GIC_SPI 148 IRQ_TYPE_LEVEL_HIGH>;
+> +		clocks = <&cru ACLK_VOP>, <&cru HCLK_VOP>;
+> +		clock-names = "aclk", "iface";
+> +		#iommu-cells = <0>;
+> +		status = "disabled";
+> +	};
+> +
+>  	qos_gpu: qos@fe128000 {
+>  		compatible = "rockchip,rk3568-qos", "syscon";
+>  		reg = <0x0 0xfe128000 0x0 0x20>;
+> diff --git a/include/dt-bindings/soc/rockchip,vop2.h b/include/dt-bindings/soc/rockchip,vop2.h
+> new file mode 100644
+> index 0000000000000..6e66a802b96a5
+> --- /dev/null
+> +++ b/include/dt-bindings/soc/rockchip,vop2.h
+> @@ -0,0 +1,14 @@
+> +/* SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause */
+> +
+> +#ifndef __DT_BINDINGS_ROCKCHIP_VOP2_H
+> +#define __DT_BINDINGS_ROCKCHIP_VOP2_H
+> +
+> +#define ROCKCHIP_VOP2_EP_RGB0	1
+> +#define ROCKCHIP_VOP2_EP_HDMI0	2
+> +#define ROCKCHIP_VOP2_EP_EDP0	3
+> +#define ROCKCHIP_VOP2_EP_MIPI0	4
+> +#define ROCKCHIP_VOP2_EP_LVDS0	5
+> +#define ROCKCHIP_VOP2_EP_MIPI1	6
+> +#define ROCKCHIP_VOP2_EP_LVDS1	7
+> +
+> +#endif /* __DT_BINDINGS_ROCKCHIP_VOP2_H */
+> 
+
+
+
+
