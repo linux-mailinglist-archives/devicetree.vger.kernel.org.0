@@ -2,80 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B533251B970
-	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 09:47:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C3F9151BA32
+	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 10:22:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236675AbiEEHvQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 May 2022 03:51:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57032 "EHLO
+        id S1346972AbiEEI00 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 May 2022 04:26:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36144 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346005AbiEEHvP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 03:51:15 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29FC94754D
-        for <devicetree@vger.kernel.org>; Thu,  5 May 2022 00:47:37 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id A87BF61D38
-        for <devicetree@vger.kernel.org>; Thu,  5 May 2022 07:47:36 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 523E8C385A8;
-        Thu,  5 May 2022 07:47:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1651736856;
-        bh=AKr7B5OuxpT3JWt5WT1yi3sIPRyhFC3zyGfLTuhc7Os=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=sZ2qjYIbs9LiOKmvz9PtqPMywINf7XyewoAeK4zwwAj8jxmQksiCAJTLCiyECS6rr
-         NioesgSftjBf8vxgw9sI7qby2QBkxive1L1db7/LhKQIFFP9MEmAfdwKIMlJiY1dbP
-         LwbMMwgOr4OQSNk8zu5qpT7h8bZdlV7vergzzd6mgcTqBW8oIgFmDyOsYAZy4qNd7g
-         t8PxKh8PrTrWaCrynKah2JXxojo+O4/NHl6gP1EF7QG+nyiSfOtNVBdWu+RZAQuzdb
-         7zbx/uwcxOpp1xsvAOUIy+wWtxu3Hn04B8GueCGWc5W2d5JjdBQtLNcBGfexPIsvlp
-         CwLC216WoNXGg==
-Date:   Thu, 5 May 2022 15:47:26 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 0/4] i.MX8M PWM polarity support
-Message-ID: <20220505074726.GD14615@dragon>
-References: <20220502094901.251310-1-alexander.stein@ew.tq-group.com>
+        with ESMTP id S1347057AbiEEI0W (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 04:26:22 -0400
+X-Greylist: delayed 740 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 05 May 2022 01:22:43 PDT
+Received: from mail.greatagencyonline.pl (mail.greatagencyonline.pl [89.40.125.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88413237F7
+        for <devicetree@vger.kernel.org>; Thu,  5 May 2022 01:22:43 -0700 (PDT)
+Received: by mail.greatagencyonline.pl (Postfix, from userid 1001)
+        id B3494A8FE7; Thu,  5 May 2022 09:03:37 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=greatagencyonline.pl;
+        s=mail; t=1651737919;
+        bh=ksvwLPFdjL017OLwir5xHXy3Vmrj/5fhZ5DwBI62qzc=;
+        h=Date:From:To:Subject:From;
+        b=Ccs5upP6zgitFM5ZTxLfHFSkDhEoJSTxetV1VeCZfaHCdHFk6R0W9SRMjL4niTCu1
+         8R/GdpSpp2mrcDdqtoVptD9yIQiAXSoh2/N/a0hIAItxnzmXTimt+KmoINwZPjWhMM
+         Qm3HOZl5i+iiyJr5lgh5AxJtnYrhy6pkXzRYQQGiGsZXZi0asZFv2Ly3lOBXaR4tTF
+         v0aVWMJkM6dPxZoIvn2ZH2HWIPYi5w5wgScgB4gQGigJVwMq9yGW4A1wpJ+DUMVCXU
+         B19S+D9qM8tMbidCcIu/bcY4poe42ocfZdoyqMljv37f2bE4QentiYYESDYssrBc33
+         ZW1My71Fe76mw==
+Received: by mail.greatagencyonline.pl for <devicetree@vger.kernel.org>; Thu,  5 May 2022 08:00:56 GMT
+Message-ID: <20220505074502-0.1.3q.jd0g.0.5kppzsp94d@greatagencyonline.pl>
+Date:   Thu,  5 May 2022 08:00:56 GMT
+From:   =?UTF-8?Q? "Miko=C5=82aj_Rudzik" ?= 
+        <mikolaj.rudzik@greatagencyonline.pl>
+To:     <devicetree@vger.kernel.org>
+Subject: =?UTF-8?Q?Nap=C5=82yw_Klient=C3=B3w_ze_strony?=
+X-Mailer: mail.greatagencyonline.pl
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220502094901.251310-1-alexander.stein@ew.tq-group.com>
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 02, 2022 at 11:48:57AM +0200, Alexander Stein wrote:
-> Hello,
-> 
-> this patchset adds the possibility to specify a PWM polarity inversion for
-> i.MX8M. The pwm-imx27 driver already supports this in the 3rd pwm-cells, but
-> the DT for imx8m so far only set #pwm-cells=<2>.
-> Add support by setting #pwm-cells=<3> and adding the (default) normal (0)
-> polarity to all boards.
-> make dtbs_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/pwm/imx-pwm.yaml
-> was used to get all boards.
-> 
-> Best regards,
-> Alexander
-> 
-> Markus Niebel (4):
->   arm64: dt: imx8mq: support pwm polarity inversion
->   arm64: dt: imx8mm: support pwm polarity inversion
->   arm64: dt: imx8mn: support pwm polarity inversion
->   arm64: dt: imx8mp: support pwm polarity inversion
+Dzie=C5=84 dobry,
 
-Applied all, thanks!
+chcia=C5=82bym poinformowa=C4=87 Pa=C5=84stwa o mo=C5=BCliwo=C5=9Bci pozy=
+skania nowych zlece=C5=84 ze strony www.
+
+Widzimy zainteresowanie potencjalnych Klient=C3=B3w Pa=C5=84stwa firm=C4=85=
+, dlatego ch=C4=99tnie pomo=C5=BCemy Pa=C5=84stwu dotrze=C4=87 z ofert=C4=
+=85 do wi=C4=99kszego grona odbiorc=C3=B3w poprzez efektywne metody pozyc=
+jonowania strony w Google.
+
+Czy m=C3=B3g=C5=82bym liczy=C4=87 na kontakt zwrotny?
+
+
+Pozdrawiam,
+Miko=C5=82aj Rudzik
