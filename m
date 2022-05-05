@@ -2,78 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CDBBA51BB63
-	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 11:06:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D4B6E51BB6B
+	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 11:07:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235607AbiEEJJx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 May 2022 05:09:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49074 "EHLO
+        id S237887AbiEEJLG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 May 2022 05:11:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49788 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234786AbiEEJJw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 05:09:52 -0400
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6C874B419
-        for <devicetree@vger.kernel.org>; Thu,  5 May 2022 02:06:13 -0700 (PDT)
-Received: by mail-wr1-x42a.google.com with SMTP id q23so5222104wra.1
-        for <devicetree@vger.kernel.org>; Thu, 05 May 2022 02:06:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=QPvYitEkakUSEkkRAd+b7E2XB0UqCnryoZKojHH0dhc=;
-        b=awvizp79SJb6Kv1NeHmUcFHgDxY9B2TEi5BCYTUszXn0y/O0Zdn3qK1wqjpMQWlGKJ
-         qntAqfvXmRwal2i948gt5vGK5kcRl/rvvWVoPQbCZ17pYzMi1KTxx4BUx9VakX4zZjZa
-         AJcM5mZLHyrux1MyCU9enVWIWxiZO/P/ezutLWc8Kgo1dlG1gVwfgqUaOWbUWzSydcEc
-         G9VlrjYRUwgVnu8is2l/t5kElwf5fti1PCHgxeC4aN6bg3HVpkhSbzc3n0SOHVrKV/F+
-         xqfFrXuv47Lq/bfIfFjKIGVVYUvPrBZj4rfXRsa0b3kNaH0SwgxIUwUMgaOiGQy0Cy3B
-         LfdA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=QPvYitEkakUSEkkRAd+b7E2XB0UqCnryoZKojHH0dhc=;
-        b=rVkLKyidAF3gDSn1fwEMULwhIwRLLivBO5J7qdOpypfDHttK63IwFhVSsUe11TsqFa
-         3aZqmGjS/RNBy/2/kXeL7JrF7Eh8IqeaaIECt2e4Q2NKdPkVIhKdpxt0uzW2WdgMMMOU
-         xI4zarWQJhIttIeX5lKHQ+SRnZnh/AaIDh7FbBI4HCW/ayUx5UnJh+3NAxn1hhuSwfAW
-         3D4RUV2Kf3cIp+bPWRzySDz8lvW47dvRjhNUzZNUk6E929O/6hLBbQSrUM0V0pH7ekeo
-         BArcUMrvWlWenq6V19ObCVLM5czbMAYHeYfN0uFNqG3NaE78Uol2jRNJyIWKcOZv9Opr
-         w4+g==
-X-Gm-Message-State: AOAM532k9m/NXEmsr69BIvSj34P0j6B6OZhdnj/PW2rBQV9lKK8XeqdQ
-        RDBdb74Q1oageEfX+02OamAUWg==
-X-Google-Smtp-Source: ABdhPJx0C0YUR3RaSCP6SGaVzNzESuZ2Lqdb5fK6LdClRJadIpz1p0+6laZ2ZJJroxehqTM0GQos5w==
-X-Received: by 2002:a5d:64ad:0:b0:20c:565d:ca19 with SMTP id m13-20020a5d64ad000000b0020c565dca19mr18197775wrp.634.1651741572271;
-        Thu, 05 May 2022 02:06:12 -0700 (PDT)
-Received: from [192.168.0.217] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id k21-20020adfb355000000b0020c5253d905sm894649wrd.81.2022.05.05.02.06.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 05 May 2022 02:06:11 -0700 (PDT)
-Message-ID: <48a6fd28-b0cc-d17d-4e0c-170240d05455@linaro.org>
-Date:   Thu, 5 May 2022 11:06:10 +0200
+        with ESMTP id S1351367AbiEEJLD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 05:11:03 -0400
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89ADA4B871;
+        Thu,  5 May 2022 02:07:24 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 24597E0L091469;
+        Thu, 5 May 2022 04:07:14 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1651741634;
+        bh=cuNlpAakS45rBc8XBXO2gkkoHDbvVLiW7EmY+HgwLOY=;
+        h=From:To:CC:Subject:Date;
+        b=xh02vZf69oWa0NLyqR+e9Iql2/Q40Mw1IGBgP9txfkKSLjEwwe9wHdpWgfuQAK+c6
+         L2aKuseb3/4V7EZd8p5nnH+TVw2X4EdoG+v03s6Edmp2nPjjevReJBLOEuSkFuF4e7
+         FOqYi4Lm5JUWs4B/Kdhu1fsyJpEmcV1LZfuuP0rw=
+Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 24597DXQ043661
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 5 May 2022 04:07:13 -0500
+Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Thu, 5
+ May 2022 04:07:13 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Thu, 5 May 2022 04:07:13 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 24597B9d089648;
+        Thu, 5 May 2022 04:07:12 -0500
+From:   Rahul T R <r-ravikumar@ti.com>
+To:     <nm@ti.com>
+CC:     <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <tomi.valkeinen@ideasonboard.com>,
+        <laurent.pinchart@ideasonboard.com>, <kishon@ti.com>,
+        <a-bhatia1@ti.com>, <r-ravikumar@ti.com>
+Subject: [PATCH v2 0/2] Add support for DP and HDMI on j721e-sk
+Date:   Thu, 5 May 2022 14:37:07 +0530
+Message-ID: <20220505090709.9252-1-r-ravikumar@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH] dt-bindings: memory: renesas,rpc-if: Document RZ/G2UL SoC
-Content-Language: en-US
-To:     Geert Uytterhoeven <geert@linux-m68k.org>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Sergei Shtylyov <sergei.shtylyov@gmail.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
-References: <20220501082508.25511-1-biju.das.jz@bp.renesas.com>
- <CAMuHMdV07CHm3NE9YUTMqp-ZNkWoJyR6CFU9PA0heK+9G6NDxw@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAMuHMdV07CHm3NE9YUTMqp-ZNkWoJyR6CFU9PA0heK+9G6NDxw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -81,20 +65,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/05/2022 17:03, Geert Uytterhoeven wrote:
-> On Sun, May 1, 2022 at 10:25 AM Biju Das <biju.das.jz@bp.renesas.com> wrote:
->> Document RZ/G2UL RPC-IF bindings. RZ/G2UL RPC-IF is identical to one found
->> on the RZ/G2L SoC. No driver changes are required as generic compatible
->> string "renesas,rzg2l-rpc-if" will be used as a fallback.
->>
->> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> 
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+The following series of patches enables DisplayPort and
+HDMI on j721e-sk
 
-I already sent a mem-ctrl pull request and I was not planning for a next
-one, so maybe this could go via renesas tree?
+v2:
+   - Fix name for dpi1 dss endpoint
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+This series depends on
+https://lore.kernel.org/all/20220429112639.13004-1-r-ravikumar@ti.com/
+which adds required nodes in the SoC dtsi file
 
-Best regards,
-Krzysztof
+boot logs:
+   https://gist.githubusercontent.com/ravi-rahul/d2e139d8ff9446ede003291a6a3e8be5/raw/ed51498efe7f7bc4848dffb27e2b37e0beb7a94d/j7_sk_DP_HDMI_boot.log
+
+kernel patch verify report:
+   https://gist.githubusercontent.com/ravi-rahul/1e2350b53ac7d6ba7694373c0b3bbb44/raw/f09f75821610b42ad1f8b4bf3e5ef7843de0c76e/report-kernel-patch-verify-sk-dp-hdmi.txt
+
+Rahul T R (2):
+  arm64: dts: ti: k3-j721e-sk: Enable DisplayPort
+  arm64: dts: ti: k3-j721e-sk: Enable HDMI
+
+ arch/arm64/boot/dts/ti/k3-j721e-sk.dts | 123 ++++++++++++++++++++++++-
+ 1 file changed, 119 insertions(+), 4 deletions(-)
+
+-- 
+2.17.1
+
