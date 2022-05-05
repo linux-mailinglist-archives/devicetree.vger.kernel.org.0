@@ -2,74 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6870751BB9F
-	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 11:12:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BB7A951BBA5
+	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 11:13:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351972AbiEEJQT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 May 2022 05:16:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54668 "EHLO
+        id S237484AbiEEJRE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 May 2022 05:17:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55474 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351992AbiEEJQS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 05:16:18 -0400
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA6044BFCB
-        for <devicetree@vger.kernel.org>; Thu,  5 May 2022 02:12:38 -0700 (PDT)
-Received: by mail-lf1-x12d.google.com with SMTP id bq30so6447905lfb.3
-        for <devicetree@vger.kernel.org>; Thu, 05 May 2022 02:12:38 -0700 (PDT)
+        with ESMTP id S1346264AbiEEJRD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 05:17:03 -0400
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1AEB94C41D
+        for <devicetree@vger.kernel.org>; Thu,  5 May 2022 02:13:24 -0700 (PDT)
+Received: by mail-ed1-x536.google.com with SMTP id g23so4446639edy.13
+        for <devicetree@vger.kernel.org>; Thu, 05 May 2022 02:13:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=Ga1FXFUoff60uV1gZjfSxxZrosbrRhkS2aF6jySEeu8=;
-        b=W3tyAprDWp6UyDWYOdLrEzdJRss3YRRpqzy/uk0dYDH8QNfXcnaSp0CqWZ+wvwsLyL
-         oAsAwF4GR9NRKLP7bSNYHld3TK6NV1t2Pmdu1ZYmvLEyOf/CprNYm9D5nXMhfjOmhiOM
-         RWSy6eMW8s8wVq+5xJtCMjB9au4uTac8PUJpjgsIrsPvQYgJs70LuVXhTnXYGko96ev8
-         1POUYPIZ+cq6p1NEJ+CYQRxR+p6OhAuiajCBJoJvKLPy1YfbYoiKt2K2j3lfotrnfvH1
-         pc9FBAm14Yq+Wa5ZPOaXLM0fS1kx2VfOXzCYjNRwlcWqSgyS1N7VINWFJSyfxASNbSh4
-         Wm4A==
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=C13CFKJEOWyH4FQIHZ/zbMnXVynUc/Y9MwQkzIzQHbE=;
+        b=F6SFjkjjWudZLAozoSYNPJQraIiViaBJ2Unq9ZF3WmHPCPxSPqMYXfwo0cWrp7R3Zs
+         3zplapT1nChS1cRnMbQFli1zcNAGqFo1MPfGZark0mRVOumKUdefulsAmgfA0QxoP2Qr
+         uWM+ij6HoeUN1G4VKS/bR4UCiXvXLxsG0vvS2pTdph1ldSuw2KoWBGgBPnbkUJW0Co+R
+         +bktWgbr5PDS4JNOEuhDuBaeqHNJeBkJscx7s0uAFHq+Ke3XEfA0jFFwiXXr1Qh91JJv
+         tlEtjRTPjzzm3ZNSM60oHrmgcE38hIDGHZwFnLnvLXi87ZRuHOEu8MZNadxmbkazggCL
+         XuFA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=Ga1FXFUoff60uV1gZjfSxxZrosbrRhkS2aF6jySEeu8=;
-        b=w1FEsQHuivM41vFOeG1kn3iUimvA6tB0/A7vwFT+RCDUpuSfzG0HHCxrBdHvEsL/SR
-         kEtCX9XhuvYljyoVsrFyvkqbsTQH/8mmRW50G2rIswtUmPmzBcZG8bspeT4CpQr2AXMU
-         qKxL1Ei5oF9CWbSu5Ze6JTKzCxU2cK6TA6jmZD7JREybqrV37sXk9yE0FBMtag0Hb5YG
-         t9nI3rquYRxQX2IzGcCnMkOs8TwYMPDS0t3ba/bdKzKPOng26F1l6fcSQ14CD+Qs3gRD
-         VyVxkbQuzH0Y3C2yCphhPgYZNh+OrQj3sMR5zjG+G7bKvfx42u6eXUdJHPfmGSRUOgRU
-         H/8g==
-X-Gm-Message-State: AOAM532MnB4eKFj523oETAZ5LFs7HsvhIcF4mSWwKYbl+TPM2+Tme0Gx
-        wZq0kQFhTUbFx8VDVhYubXkeJw==
-X-Google-Smtp-Source: ABdhPJzZlSdGDF1bKE1X4lKCce+HRMOaUZjOQni3fefl0hld3wq50mbnLmt9CR8cvex4VIClMGVu/A==
-X-Received: by 2002:a05:6512:1513:b0:448:39c0:def0 with SMTP id bq19-20020a056512151300b0044839c0def0mr17057736lfb.469.1651741957121;
-        Thu, 05 May 2022 02:12:37 -0700 (PDT)
-Received: from eriador.lan ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id v26-20020ac2593a000000b0047255d211e8sm133564lfi.279.2022.05.05.02.12.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 May 2022 02:12:36 -0700 (PDT)
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Stanimir Varbanov <svarbanov@mm-sol.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc:     Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH v6 7/7] arm64: dts: qcom: sm8250: provide additional MSI interrupts
-Date:   Thu,  5 May 2022 12:12:31 +0300
-Message-Id: <20220505091231.1308963-8-dmitry.baryshkov@linaro.org>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220505091231.1308963-1-dmitry.baryshkov@linaro.org>
-References: <20220505091231.1308963-1-dmitry.baryshkov@linaro.org>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=C13CFKJEOWyH4FQIHZ/zbMnXVynUc/Y9MwQkzIzQHbE=;
+        b=Htc+wAzevNXB/N91FZvfIsmeR2fSNxnJ/+lTaUn10Gr/52Wg/zOEQjGj05iLlqS41j
+         01tzu/EJ4CsAseVRCQ74eykKrGosFeOnovdSuMULT+fQ5fFT6HbJsMWkUZmgQG/E5vU1
+         HuXpSeohOQcgZQDTeW89i3FO71Cg5SySXrtz1TkFuYyzTJbNfHtdVjG0PPS9uRQnPLzs
+         vqvXh4Bb4pRPW3zPztxai5tq0fM3+GbD/a0BHNOZ7lMv0KSyRoxeOH+zi2FDHCfayYyk
+         wzyax8L7NeLMGoVYPYAUofrlJMdNwxLexWDPpRPmWknwGglCqexp/d7qK4YhisQpBfEp
+         8/ew==
+X-Gm-Message-State: AOAM530xnWuZVQjhxeyPTQvKVwi51DJNBoh5gBPSgJYGv75IyOWZy8UW
+        vl2L5dypbFxjdD8X3WiuhrK/3Q==
+X-Google-Smtp-Source: ABdhPJyauXqqC7x8uraKE/6KGzasb6Rf6omeH6bh0NkPyDvQ1ATzyeeI5h3E8OUKjmWmg42poxBUVQ==
+X-Received: by 2002:a05:6402:849:b0:427:edfe:1b7e with SMTP id b9-20020a056402084900b00427edfe1b7emr12779009edz.355.1651742002696;
+        Thu, 05 May 2022 02:13:22 -0700 (PDT)
+Received: from [192.168.0.217] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id my50-20020a1709065a7200b006f3ef214e79sm502596ejc.223.2022.05.05.02.13.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 05 May 2022 02:13:22 -0700 (PDT)
+Message-ID: <c790db17-79b9-a73f-ed0f-728a8a075ba1@linaro.org>
+Date:   Thu, 5 May 2022 11:13:21 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH v3 1/2] dt-bindings: remoteproc: mediatek: Make l1tcm reg
+ optional for mtk,scp
+Content-Language: en-US
+To:     =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
+        <nfraprado@collabora.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, kernel@collabora.com,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Tinghan Shen <tinghan.shen@mediatek.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        linux-remoteproc@vger.kernel.org
+References: <20220503211114.2656099-1-nfraprado@collabora.com>
+ <20220503211114.2656099-2-nfraprado@collabora.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220503211114.2656099-2-nfraprado@collabora.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -78,41 +85,14 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On SM8250 each group of MSI interrupts is mapped to the separate host
-interrupt. Describe each of interrupts in the device tree for PCIe0
-host.
+On 03/05/2022 23:11, Nícolas F. R. A. Prado wrote:
+> The SCP has three memory regions: sram, cfg and l1tcm. While the first
+> two are required, l1tcm is optional. Fix the dt-binding so that it can
+> be omitted and update the description. This gets rid of dtbs_check
+> warnings for devicetrees where the l1tcm reg is missing like mt8183.
 
-Tested on Qualcomm RB5 platform with first group of MSI interrupts being
-used by the PME and attached ath11k WiFi chip using second group of MSI
-interrupts.
+Please add "if:then:" for this case (need to put all ifs in allOf). I
+understand that l1tcm is optional *only* on mt8183.
 
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- arch/arm64/boot/dts/qcom/sm8250.dtsi | 11 +++++++++--
- 1 file changed, 9 insertions(+), 2 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-index 410272a1e19b..0659ac45c651 100644
---- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-@@ -1807,8 +1807,15 @@ pcie0: pci@1c00000 {
- 			ranges = <0x01000000 0x0 0x60200000 0 0x60200000 0x0 0x100000>,
- 				 <0x02000000 0x0 0x60300000 0 0x60300000 0x0 0x3d00000>;
- 
--			interrupts = <GIC_SPI 141 IRQ_TYPE_LEVEL_HIGH>;
--			interrupt-names = "msi";
-+			interrupts = <GIC_SPI 141 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 142 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 143 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 144 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 145 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 146 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 147 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 148 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "msi", "msi2", "msi3", "msi4", "msi5", "msi6", "msi7", "msi8";
- 			#interrupt-cells = <1>;
- 			interrupt-map-mask = <0 0 0 0x7>;
- 			interrupt-map = <0 0 0 1 &intc 0 149 IRQ_TYPE_LEVEL_HIGH>, /* int_a */
--- 
-2.35.1
-
+Best regards,
+Krzysztof
