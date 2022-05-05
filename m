@@ -2,82 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5CE9051C4F6
-	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 18:16:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 90A1F51C515
+	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 18:26:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1381318AbiEEQU3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 May 2022 12:20:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43202 "EHLO
+        id S234298AbiEEQ33 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 May 2022 12:29:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51926 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1381266AbiEEQU2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 12:20:28 -0400
-Received: from smtp2.infineon.com (smtp2.infineon.com [IPv6:2a00:18f0:1e00:4::4])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34ACC5B8AB;
-        Thu,  5 May 2022 09:16:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=infineon.com; i=@infineon.com; q=dns/txt; s=IFXMAIL;
-  t=1651767408; x=1683303408;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=e4ygsikyJl0tMYtfWtwA8j3Qi+E39Mbf/ZG9ORl73wk=;
-  b=LGu7GDoybbUgiB7+LbMIePQzOrWIaWWnEu9lzUYEwG3011bsjXHOW+Fc
-   7K1b9qbi/NcXPtRILU+ZnbMxJlDSFpSf8MjJH9Jgk517zGrX6VuzruzAM
-   IO8Bv8q7MTk8vQgNKeiW7nbbihP6nhJ/oBomklEFLin8pQTy9AIvrKJ6U
-   E=;
-X-SBRS: None
-X-IronPort-AV: E=McAfee;i="6400,9594,10338"; a="176210663"
-X-IronPort-AV: E=Sophos;i="5.91,201,1647298800"; 
-   d="scan'208";a="176210663"
-Received: from unknown (HELO mucxv002.muc.infineon.com) ([172.23.11.17])
-  by smtp2.infineon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 May 2022 18:16:46 +0200
-Received: from MUCSE812.infineon.com (MUCSE812.infineon.com [172.23.29.38])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mucxv002.muc.infineon.com (Postfix) with ESMTPS;
-        Thu,  5 May 2022 18:16:46 +0200 (CEST)
-Received: from MUCSE807.infineon.com (172.23.29.33) by MUCSE812.infineon.com
- (172.23.29.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Thu, 5 May 2022
- 18:16:46 +0200
-Received: from [10.160.221.24] (172.23.8.247) by MUCSE807.infineon.com
- (172.23.29.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Thu, 5 May 2022
- 18:16:45 +0200
-Message-ID: <d35fff90-ded7-2b1a-0e1a-f2db14cc4d07@infineon.com>
-Date:   Thu, 5 May 2022 18:16:44 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.0
-Subject: Re: [PATCH 1/2] dt-bindings: net: broadcom-bluetooth: Add property
- for autobaud mode
-Content-Language: en-US
-To:     Linus Walleij <linus.walleij@linaro.org>
-CC:     "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+        with ESMTP id S1380217AbiEEQ31 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 12:29:27 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C207318E1C;
+        Thu,  5 May 2022 09:25:45 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: nfraprado)
+        with ESMTPSA id 393751F45ABD
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1651767943;
+        bh=us6VQcZonVRZDNCqwnPC3/ZUDrCZ5LkU3g8yGafttv4=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=DsrqAmPPKwC1WvZxKzkbXTRjRJEiP/WizLShBmIu304hhlhhHNQSz9qLISwTIbG4W
+         v+6C9yOSV7c/7M3TEtnFvJe94HChoUgbpjOn6Wq2SqjrQtu0kwsVmCwnUlmEmIBirc
+         Po88xEbIChaOX6eNz/QE3ZfTlD8UWv0968oKjyBsx0JJoQrR9SVC1tIhACa4HxuwZG
+         WLyeqN2LlBDs+gUf5pcSTlu3ulu/pfIYCtS/nxaM7Dy24gZUCy/W8KtsAuNrOhSj8m
+         PA8F2q4XiLyQWx9Yhov61BeZXMt2Dkpy3lcK9Bvw6Uo5MNELIFEBZRKrFFCt+7MaRc
+         BmlcLSapwch7g==
+Date:   Thu, 5 May 2022 12:25:37 -0400
+From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
+        <nfraprado@collabora.com>
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     Jiaxin Yu <jiaxin.yu@mediatek.com>,
+        Mark Brown <broonie@kernel.org>, kernel@collabora.com,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Marcel Holtmann <marcel@holtmann.org>,
-        Johan Hedberg <johan.hedberg@gmail.com>,
-        "Luiz Augusto von Dentz" <luiz.dentz@gmail.com>,
-        <linux-bluetooth@vger.kernel.org>
-References: <cover.1651647576.git.hakan.jansson@infineon.com>
- <64b59ca66cc22e6433a044e7bba2b3e97c810dc2.1651647576.git.hakan.jansson@infineon.com>
- <CACRpkdY3xPcyNcJfdGbSP5rdcUV6hr87yJNDVDGZdRCfN+MqLA@mail.gmail.com>
- <1e8cfbc6-8452-0e87-9713-536d235e5b51@infineon.com>
- <CACRpkda4ByrS8RGAunno_S59+Y2yado4eObzwsVkM2Q=n-B+CQ@mail.gmail.com>
-From:   Hakan Jansson <hakan.jansson@infineon.com>
-In-Reply-To: <CACRpkda4ByrS8RGAunno_S59+Y2yado4eObzwsVkM2Q=n-B+CQ@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+        Shane Chien <shane.chien@mediatek.com>,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH 1/3] ASoC: dt-bindings: mediatek: mt8192: Add i2s-share
+ properties
+Message-ID: <20220505162537.byiwfe2ghomxhezl@notapiano>
+References: <20220429203039.2207848-1-nfraprado@collabora.com>
+ <20220429203039.2207848-2-nfraprado@collabora.com>
+ <4826c824-40ce-5726-ed95-5be069233ca7@collabora.com>
+ <cbf2fcbae25408b95875278eb37e829bf4671430.camel@mediatek.com>
+ <d1c548bb-8a36-79bf-498d-c909bf7e7679@collabora.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Originating-IP: [172.23.8.247]
-X-ClientProxiedBy: MUCSE816.infineon.com (172.23.29.42) To
- MUCSE807.infineon.com (172.23.29.33)
-X-Spam-Status: No, score=-9.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+In-Reply-To: <d1c548bb-8a36-79bf-498d-c909bf7e7679@collabora.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -85,52 +65,125 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, May 05, 2022 at 10:52:45AM +0200, AngeloGioacchino Del Regno wrote:
+> Il 05/05/22 10:48, Jiaxin Yu ha scritto:
+> > On Thu, 2022-05-05 at 10:08 +0200, AngeloGioacchino Del Regno wrote:
+> > > Il 29/04/22 22:30, Nícolas F. R. A. Prado ha scritto:
+> > > > The Mediatek AFE PCM controller for MT8192 allows sharing of an I2S
+> > > > bus
+> > > > between two busses. Add a pattern for these properties in the
+> > > > dt-binding.
+> > > > 
+> > > > Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+> > > > ---
+> > > > 
+> > > >    Documentation/devicetree/bindings/sound/mt8192-afe-pcm.yaml | 5
+> > > > +++++
+> > > >    1 file changed, 5 insertions(+)
+> > > > 
+> > > > diff --git a/Documentation/devicetree/bindings/sound/mt8192-afe-
+> > > > pcm.yaml b/Documentation/devicetree/bindings/sound/mt8192-afe-
+> > > > pcm.yaml
+> > > > index 7a25bc9b8060..5b03c8dbf318 100644
+> > > > --- a/Documentation/devicetree/bindings/sound/mt8192-afe-pcm.yaml
+> > > > +++ b/Documentation/devicetree/bindings/sound/mt8192-afe-pcm.yaml
+> > > > @@ -54,6 +54,11 @@ properties:
+> > > >          - const: aud_infra_clk
+> > > >          - const: aud_infra_26m_clk
+> > > > +patternProperties:
+> > > > +  "^i2s[0-35-9]-share$":
+> > > > +    description: Name of the I2S bus that is shared with this bus
+> > > > +    pattern: "^I2S[0-35-9]$"
+> > > > +
+> > > >    required:
+> > > >      - compatible
+> > > >      - interrupts
+> > > > 
+> > > 
+> > > The only other way of doing this would be to complicate this in the
+> > > driver
+> > > so that we can do something like
+> > > 
+> > > "i2s-share = <0 2>";  instead of  i2s0-share = "I2S2";
+> > > 
+> > > ...and I don't think that this would be any more straightforward than
+> > > the
+> > > provided way.
+> > > 
+> > > There's an improvement that we can do to that pattern description
+> > > though,
+> > > which would be explaining that declaring 'i2s0-share = "I2S2"' means
+> > > that
+> > > I2S2's data pin will be used as DATA-OUT, while i2s0 is DATA-IN.
+> > > 
+> > > Another thing that comes to mind here is that this is a MediaTek
+> > > specific
+> > > property and *not* a generic one, which means that both the driver
+> > > and
+> > > this binding should be fixed to get a "mediatek," prefix, so, this
+> > > property
+> > > should - in reality - be "mediatek,i2s[0-35-9]-share" instead.
+> > > 
+> > > I think that everyone agrees about that, but let's see what the
+> > > others say.
+> > > 
+> > > Cheers,
+> > > Angelo
+> > 
+> > Hi Angelo,
+> > 
+> > 'i2s0-share = "I2S2"' means that if we want use I2S0, there need open
+> > I2S2 to provide clock. Conversely, if we want to use I2S2, we don't
+> > need to open I2S0. However, MediaTek I2S0 and I2S2 hardware are
+> > generally designed as input. So usually we use 'i2s0-share = "I2S1"'.
+> > Even numbers represent input, odd numbers represent output.
+> > 
+> > Yes, I think adding the "mediatek," prefix is the right way to define a
+> > non-generic property.
+> > 
 
+Hi Jiaxin,
 
-On 5/5/2022 4:13 PM, Linus Walleij wrote:
-> I suppose a general flag could be useful but to be honest I don't know
->> if any other devices besides the ones using the Broadcom driver has any
->> use for it. You would probably also still want to be able to use
->> current-speed to set the link speed and end up using both
->> current-speed=x and current-speed-auto at the same time, which might
->> look a little confusing?
-> I do not think it is more confusing than being able to use
-> current-speed and brcm,uses-autobaud-mode at the same time.
->
->> Please let me know if you'd still prefer "current-speed-auto" over
->> "brcm,uses-autobaud-mode" and I'll revise the patch and rename it!
-> It actually depends a bit.
->
-> This:
->
->>>> +      The controller should be started in autobaud mode by asserting
->>>> +      BT_UART_CTS_N (i.e. host RTS) during startup. Only HCI commands supported
->>>> +      in autobaud mode should be used until patch FW has been loaded.
-> sounds a bit vague?
+thank you for the insights.
 
-Yes, perhaps. I was thinking the details could be helpful but I can see 
-how they might be perceived as vague and confusing. Maybe it would be 
-better to just leave it at "The controller should be started in autobaud 
-mode"?
+> 
+> Hello Jiaxin,
+> 
+> if I get this correctly, i2s0-share = "I2S2" would be *invalid*... as you
+> just explained, i2sX, where:
+> 
+> X = even number -> always DATA IN
+> X = odd number  -> always DATA OUT
+> 
+> ...this means that the dt-binding needs a pattern to specify that only odd
+> can be assigned to only even.
 
->
-> Does it mean that CTS is asserted, then you send a bit (CTS then goes low)
-> and then CTS is asserted again when the device is ready to receieve more
-> data? i.e is this some kind of one-bit mode, because it doesn't sound like
-> it is using CTS as it was used in legacy modems.
+So, the situation seems different at least on mt8192-asurada-spherion.
+Here, I2S8 is used for the headset microphone and I2S9 for the headset audio.
+Even for input and odd for output agree with Jiaxin's description. However, the
+input bus seems to be the main one, that is, disabling I2S8:
 
-CTS and RTS are actually used in the normal way during communication. 
-The host will assert its RTS to indicate being ready to receive data 
-from the controller. This flag just controls whether this happens before 
-or after the controller is powered on. The controller will check the 
-initial state of its BT_UART_CTS_N pin (connected to host's RTS) when 
-starting up. It will enter autobaud mode if the signal is already asserted.
+	amixer cset name='UL2_CH1 I2S8_CH1' 0
+	amixer cset name='UL2_CH2 I2S8_CH2' 0
 
-> Some more explanation of this mode is needed so we can understand if
-> this is something generic or a BRCM-only thing.
->
-> Yours,
-> Linus Walleij
+not only disables the microphone but also the audio on the headset. If I add 
+
+	i2s9-share = "I2S8";
+
+on the DT, then everything works, I can disable I2S8 without impacting the
+headset audio. So the pattern for the property on this platform is the opposite
+that Jiaxin mentioned. This tells me that we should keep the binding more
+generic (not assume where odds and evens go). I will still apply the other
+suggestions mentioned though.
 
 Thanks,
-HÃ¥kan
+Nícolas
+
+> 
+> Nicolas, take note! :-) :-)
+> 
+> Thanks,
+> Angelo
+> 
+> -- 
+> To unsubscribe, send mail to kernel-unsubscribe@lists.collabora.co.uk.
