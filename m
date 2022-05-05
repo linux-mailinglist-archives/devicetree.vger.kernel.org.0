@@ -2,83 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 480DC51BCE3
-	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 12:12:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1693A51BCF0
+	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 12:14:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242001AbiEEKQK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 May 2022 06:16:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53278 "EHLO
+        id S1352147AbiEEKSZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 May 2022 06:18:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55096 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1355113AbiEEKQB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 06:16:01 -0400
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C05B51E46;
-        Thu,  5 May 2022 03:12:21 -0700 (PDT)
-Received: by mail-wr1-x436.google.com with SMTP id e24so5427361wrc.9;
-        Thu, 05 May 2022 03:12:21 -0700 (PDT)
+        with ESMTP id S242584AbiEEKSY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 06:18:24 -0400
+Received: from mail-pj1-x102a.google.com (mail-pj1-x102a.google.com [IPv6:2607:f8b0:4864:20::102a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D91CB515BE;
+        Thu,  5 May 2022 03:14:45 -0700 (PDT)
+Received: by mail-pj1-x102a.google.com with SMTP id iq10so3801557pjb.0;
+        Thu, 05 May 2022 03:14:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-transfer-encoding:content-language;
-        bh=eb2ZcFrJLchDQJ3uoZwQrPbJ1hCXeW171xzslTdT/U4=;
-        b=G89l6j5DRWAvV3zCYyVoZKkWWBGnZmD3gVlBJDJs1rBbWZGMduvsJXgjawnSyEvdry
-         wK8X2CVN4x+NPbTCSj/Hhf99L/9GOZ1OJbxwihCOn/RX0Kl5nqvbEsQh3FNzrbb1gixQ
-         UCiBZhzKSWWfPKfAk9noqtj32u52IDzcaLqLzCgHlvFdrC+eqqa6vTfXWDUFbgRqFBqB
-         6sLFoZLkvMkYbyxOtL/JwMxWfZNOPan9v832XXd/QrVzjHj+WBf2G+buT/KWnTlMphbF
-         UxWVKrDxlAdR/Thq9GPIpuJJU5fg+AoBHmdU1+Fi9uoVPjtOmPBSchUkefm3TRpzF2/C
-         pz6Q==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=OW1SYqHDdzQ1HznA5LWZCuAo5BZ76JYOeNfHxD4Rcc8=;
+        b=CUyg5QW+W1vLB6vd6qExcOVZKR9ZlCQBWnIsjgywNmifR6Xq3e7IrLxJBOtKmFjPYf
+         121o+5HKbSaVN41Rj7Nr2ZZQYnsjSsYZ5dVYf9VQKUbbUOI+1sXDDXpa5LoY2UR0aqUU
+         ZkSTZ9qRf7KxnkihzLVpAB3XZA1lR2mDBio26cg1AiaXpvXbQpNWRRDEQOO4s57bmbVb
+         F4CnKroEIsc4/nKsByU/514Oy0aPDoyWV0hXkZzQ2lXGIbbnJ/sEVGKm/CY8ygqIcovv
+         J9KRKuffYi3lZRvl9iOq1lPx6nYynLd0B0Bb+NL5KQQ5PYFiRROGCmm4PZlBvFE5dnYo
+         hsEA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-transfer-encoding
-         :content-language;
-        bh=eb2ZcFrJLchDQJ3uoZwQrPbJ1hCXeW171xzslTdT/U4=;
-        b=nQjeR7qQRGbhEfOfENsRle0WrwiGYUyn54kt5Tm3P+68SG5bwUyaoPTGBCGJQZtKui
-         +s1chc/gHbOX8VlDwPvgv3/9LUVlnk9DQCypVPfDWOwIodk7OnLYrw0FU12hFn8rRmH+
-         AL8s/kPmQXLscMT8xz1Jh5LEAxcWL/xYbsYXVjrzA6gUgFCGYTSaS5+DipszSu71gUtD
-         tRYskPIYupQopDmvitwQXZ7klKAeY/A24RRYKyl7JWvr0TVsyHDbiUHWOnf9YfygDiEc
-         mwTj/WN8A4ESiPeSsfkGjTD+7S6J/HOhdFLCfkcThTAWRV6bz3jL8cfgXVGL+N4u1if6
-         XchQ==
-X-Gm-Message-State: AOAM531EhkN2WSrQWFHwfbNNHfVyeoaCpiZXCrikE5gGHkK6aIanKhw7
-        GDwCaIOVZMIZKsLi86e42zE=
-X-Google-Smtp-Source: ABdhPJw7Wbi8fb/wzTczoS25ioRejgwcD7Tq0/bwbcNAYzBrRJZFfWNBH1Dc95FX1erDQ/IFeDBlUg==
-X-Received: by 2002:a05:6000:144d:b0:20c:7829:2a44 with SMTP id v13-20020a056000144d00b0020c78292a44mr8970101wrx.663.1651745539758;
-        Thu, 05 May 2022 03:12:19 -0700 (PDT)
-Received: from [192.168.1.7] ([212.22.223.21])
-        by smtp.gmail.com with ESMTPSA id bj20-20020a0560001e1400b0020c5253d8edsm908950wrb.57.2022.05.05.03.12.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 05 May 2022 03:12:18 -0700 (PDT)
-Subject: Re: [PATCH V1 4/6] dt-bindings: Add xen,dev-domid property
- description for xen-grant DMA ops
-To:     Rob Herring <robh@kernel.org>
-Cc:     xen-devel@lists.xenproject.org,
-        virtualization@lists.linux-foundation.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>,
-        Jason Wang <jasowang@redhat.com>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Julien Grall <julien@xen.org>, Juergen Gross <jgross@suse.com>,
-        Stefano Stabellini <sstabellini@kernel.org>,
-        "Michael S. Tsirkin" <mst@redhat.com>,
-        Christoph Hellwig <hch@infradead.org>
-References: <1650646263-22047-1-git-send-email-olekstysh@gmail.com>
- <1650646263-22047-5-git-send-email-olekstysh@gmail.com>
- <YnBUUclJqkvKsV2o@robh.at.kernel.org>
- <accbc6be-82c1-dfd2-586f-816141415d7c@gmail.com>
- <YnHCgBsQ90cJ58+0@robh.at.kernel.org>
-From:   Oleksandr <olekstysh@gmail.com>
-Message-ID: <87009e86-8999-eac9-a5c9-feef196f69fc@gmail.com>
-Date:   Thu, 5 May 2022 13:12:17 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=OW1SYqHDdzQ1HznA5LWZCuAo5BZ76JYOeNfHxD4Rcc8=;
+        b=PfhkZUupyA2CvovPZ7y+9s94bVfrQ7awVe/hWE+o05ub2t/tvK+hh465yKWH/gUDu/
+         JDal9+ZeF9sPcqOJnYcNmYrw0fSvKAmEStCAgiD90mfO6mELaFaFF3ZQDOauVVDHbXIF
+         qXFjM8dqCrmNx5+VhVuAAyVKQP/4mUyJ+dTe9TEpl6bqzpRjT9jYbU9FTjOG7J4PeHda
+         6TSVA/zD/nn0pqjz/T8r+1zIvfoB99N0tLVsafnh0TsSazHLxZLtMnx7F9Eu/7G8xvOQ
+         DCJGfPaNhbnPU+7qETnBhOuoQpxJWIGD9nYMLDH7L8ZmFe2eeQGw05Afntr4WWCNi0WU
+         T2dw==
+X-Gm-Message-State: AOAM533LhJsy0zNg0pMeWjkCwTRSSlSG0gCha7dZx++Qzwh6ZZZAGbgJ
+        ms6fT34n0T5A/WDLnysq+hYafM5oiH8=
+X-Google-Smtp-Source: ABdhPJzCPuyrCXIcabZJGAL9MQp/URskwNuTJTzk9loEeTY/BHnC+ig4iM3xFuOHxKbsq79QmnnpWQ==
+X-Received: by 2002:a17:902:e809:b0:15e:c67d:14c5 with SMTP id u9-20020a170902e80900b0015ec67d14c5mr8064604plg.13.1651745685266;
+        Thu, 05 May 2022 03:14:45 -0700 (PDT)
+Received: from tj10039pcu.spreadtrum.com ([117.18.48.102])
+        by smtp.gmail.com with ESMTPSA id y10-20020a1709027c8a00b0015e8d4eb2d2sm1099717pll.284.2022.05.05.03.14.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 05 May 2022 03:14:44 -0700 (PDT)
+From:   Cixi Geng <gengcixi@gmail.com>
+To:     mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, orsonzhai@gmail.com,
+        baolin.wang7@gmail.com, zhang.lyra@gmail.com, lee.jones@linaro.org
+Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v5 0/4] Add ums512 clocks and relative bindings file
+Date:   Thu,  5 May 2022 18:14:29 +0800
+Message-Id: <20220505101433.1575096-1-gengcixi@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <YnHCgBsQ90cJ58+0@robh.at.kernel.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Content-Language: en-US
-X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -87,192 +69,50 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Cixi Geng <cixi.geng1@unisoc.com>
 
-On 04.05.22 03:02, Rob Herring wrote:
+This patchset is add the UMS512 clocks support
 
-Hello Rob
+v2 changes:
+  adjust description and add the "sprd,ums512-glbregs,syscon,simple-mfd"
+  compatibles to fix match failed logs in the dt_binding_check.
+  add the property license and copyright notice.
 
-> On Tue, May 03, 2022 at 08:09:32PM +0300, Oleksandr wrote:
->> On 03.05.22 00:59, Rob Herring wrote:
->>
->> Hello Rob
->>
->>
->>> On Fri, Apr 22, 2022 at 07:51:01PM +0300, Oleksandr Tyshchenko wrote:
->>>> From: Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>
->>>>
->>>> Introduce Xen specific binding for the virtualized device (e.g. virtio)
->>>> to be used by Xen grant DMA-mapping layer in the subsequent commit.
->>>>
->>>> This binding indicates that Xen grant mappings scheme needs to be
->>>> enabled for the device which DT node contains that property and specifies
->>>> the ID of Xen domain where the corresponding backend resides. The ID
->>>> (domid) is used as an argument to the grant mapping APIs.
->>>>
->>>> This is needed for the option to restrict memory access using Xen grant
->>>> mappings to work which primary goal is to enable using virtio devices
->>>> in Xen guests.
->>>>
->>>> Signed-off-by: Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>
->>>> ---
->>>> Changes RFC -> V1:
->>>>      - update commit subject/description and text in description
->>>>      - move to devicetree/bindings/arm/
->>>> ---
->>>>    .../devicetree/bindings/arm/xen,dev-domid.yaml     | 37 ++++++++++++++++++++++
->>>>    1 file changed, 37 insertions(+)
->>>>    create mode 100644 Documentation/devicetree/bindings/arm/xen,dev-domid.yaml
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/arm/xen,dev-domid.yaml b/Documentation/devicetree/bindings/arm/xen,dev-domid.yaml
->>>> new file mode 100644
->>>> index 00000000..ef0f747
->>>> --- /dev/null
->>>> +++ b/Documentation/devicetree/bindings/arm/xen,dev-domid.yaml
->>>> @@ -0,0 +1,37 @@
->>>> +# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
->>>> +%YAML 1.2
->>>> +---
->>>> +$id: http://devicetree.org/schemas/arm/xen,dev-domid.yaml#
->>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>> +
->>>> +title: Xen specific binding for the virtualized device (e.g. virtio)
->>>> +
->>>> +maintainers:
->>>> +  - Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>
->>>> +
->>>> +select: true
->>> Do we really need to support this property everywhere?
->>  From my understanding - yes.
->>
->> As, I think, any device node describing virtulized device in the guest
->> device tree can have this property.  Initially (in the RFC series) the
->> "solution to restrict memory access using Xen grant mappings" was
->> virtio-specific.
->>
->> Although the support of virtio is a primary target of this series, we
->> decided to generalize this work and expand it to any device [1]. So the Xen
->> grant mappings scheme (this property to be used for) can be theoretically
->> used for any device emulated by the Xen backend.
->>
->>
->>>> +
->>>> +description:
->>>> +  This binding indicates that Xen grant mappings scheme needs to be enabled
->>>> +  for that device and specifies the ID of Xen domain where the corresponding
->>>> +  device (backend) resides. This is needed for the option to restrict memory
->>>> +  access using Xen grant mappings to work.
->>>> +
->>>> +properties:
->>>> +  xen,dev-domid:
->>>> +    $ref: /schemas/types.yaml#/definitions/uint32
->>>> +    description:
->>>> +      The domid (domain ID) of the domain where the device (backend) is running.
->>>> +
->>>> +additionalProperties: true
->>>> +
->>>> +examples:
->>>> +  - |
->>>> +    virtio_block@3000 {
->>> virtio@3000
->> ok, will change
->>
->>
->>>> +            compatible = "virtio,mmio";
->>>> +            reg = <0x3000 0x100>;
->>>> +            interrupts = <41>;
->>>> +
->>>> +            /* The device is located in Xen domain with ID 1 */
->>>> +            xen,dev-domid = <1>;
->>> This fails validation:
->>>
->>> Documentation/devicetree/bindings/arm/xen,dev-domid.example.dtb: virtio_block@3000: xen,dev-domid: [[1]] is not of type 'object'
->>>           From schema: /home/rob/proj/git/linux-dt/Documentation/devicetree/bindings/virtio/mmio.yaml
->> Thank you for pointing this out, my fault, I haven't "properly" checked this
->> before. I think, we need to remove "compatible = "virtio,mmio"; here
-> Uhh, no. That just means the example is incomplete. You need to add this
-> property or reference this schema from virtio/mmio.yaml.
+v3 changes:
+  fix wrong indentation and hint: "maxItems" is not needed with an "items"
+  list when use the latest dtschema.
 
-ok, I got it
+v4 changes:
+  move the syscon bindins from clk to glbreg yaml file by pickup 
+  chunyan's patch for global registers bindings
+  fix the comments from Krzysztof in v3 patchset
+  add the Acked-by: Krzysztof in patch v4 3/4
+  fix the  warning Prefer "GPL" over "GPL v2"
 
+v5 changes:
+  Add review tags.
+  fix the comments in ums512-glbreg.yaml.
 
->
->
->> diff --git a/Documentation/devicetree/bindings/arm/xen,dev-domid.yaml
->> b/Documentation/devicetree/bindings/arm/xen,dev-domid.yaml
->> index 2daa8aa..d2f2140 100644
->> --- a/Documentation/devicetree/bindings/arm/xen,dev-domid.yaml
->> +++ b/Documentation/devicetree/bindings/arm/xen,dev-domid.yaml
->> @@ -28,7 +28,7 @@ additionalProperties: true
->>   examples:
->>     - |
->>       virtio_block@3000 {
->> -            compatible = "virtio,mmio";
->> +            /* ... */
->>               reg = <0x3000 0x100>;
->>               interrupts = <41>;
->>
->>
->>
->>> The property has to be added to the virtio/mmio.yaml schema. If it is
->>> not needed elsewhere, then *just* add the property there.
->> As I described above, the property is not virtio specific and can be used
->> for any virtualized device for which Xen grant mappings scheme needs to be
->> enabled (xen-grant DMA-mapping layer).
-> But that's a finite list of devices, right?
+Chunyan Zhang (1):
+  dt-bindings: mfd: sprd: Add bindings for ums512 global registers
 
-Right
+Cixi Geng (3):
+  dt-bindings: clk: sprd: Add bindings for ums512 clock controller
+  clk: sprd: Add dt-bindings include file for UMS512
+  clk: sprd: Add clocks support for UMS512
 
-
-> In any case, you have to
-> list the property anywhere it can be used.
-
-Agree
-
-
-If I got it right, we need to add to virtio/mmio.yaml something like:
-
-
-diff --git a/Documentation/devicetree/bindings/virtio/mmio.yaml 
-b/Documentation/devicetree/bindings/virtio/mmio.yaml
-index 10c22b5..29a0932 100644
---- a/Documentation/devicetree/bindings/virtio/mmio.yaml
-+++ b/Documentation/devicetree/bindings/virtio/mmio.yaml
-@@ -13,6 +13,9 @@ description:
-    See 
-https://www.oasis-open.org/committees/tc_home.php?wg_abbrev=virtio for
-    more details.
-
-+allOf:
-+  - $ref: /schemas/arm/xen,dev-domid.yaml#
-+
-  properties:
-    compatible:
-      const: virtio,mmio
-@@ -33,6 +36,10 @@ properties:
-      description: Required for devices making accesses thru an IOMMU.
-      maxItems: 1
-
-+  xen,dev-domid:
-+    description: Required when Xen grant mappings need to be enabled 
-for device.
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+
-  required:
-    - compatible
-    - reg
-
-
-This passed validation.
-
-
-Could you please clarify, is my understanding correct?
-
-
->
-> Rob
+ .../bindings/clock/sprd,ums512-clk.yaml       |   71 +
+ .../bindings/mfd/sprd,ums512-glbreg.yaml      |   68 +
+ drivers/clk/sprd/Kconfig                      |    6 +
+ drivers/clk/sprd/Makefile                     |    1 +
+ drivers/clk/sprd/ums512-clk.c                 | 2199 +++++++++++++++++
+ include/dt-bindings/clock/sprd,ums512-clk.h   |  397 +++
+ 6 files changed, 2742 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/sprd,ums512-clk.yaml
+ create mode 100644 Documentation/devicetree/bindings/mfd/sprd,ums512-glbreg.yaml
+ create mode 100644 drivers/clk/sprd/ums512-clk.c
+ create mode 100644 include/dt-bindings/clock/sprd,ums512-clk.h
 
 -- 
-Regards,
-
-Oleksandr Tyshchenko
+2.25.1
 
