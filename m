@@ -2,104 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DE81F51B769
-	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 07:19:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5BD6951B775
+	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 07:29:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235610AbiEEFXX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 May 2022 01:23:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53548 "EHLO
+        id S236203AbiEEFcy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 May 2022 01:32:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58948 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243354AbiEEFXX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 01:23:23 -0400
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C96F325289;
-        Wed,  4 May 2022 22:19:44 -0700 (PDT)
-Received: by mail-ed1-x52a.google.com with SMTP id p4so3949459edx.0;
-        Wed, 04 May 2022 22:19:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:to:cc:references
-         :from:in-reply-to:content-transfer-encoding;
-        bh=gDZB9prqVEcRFYfiG16SNiYfWZ6Q9f/8/MXT90OAgZ8=;
-        b=bv9KrtI3RA77JCJVR2qt7R5lnHFDu+Xe8/ZzP7+c46p0aPbKfRKCzlskn2fYlLXDTD
-         EZEcFYBV2bGdscBMqAydn1lpdTN8CYEqXQrQfaZRsUWFoln5WbmJnN+ke+2Kzbm4jmIg
-         8TeRZS/kGxau2ZNysPi+30BdSdKVccx0KK75D210v3SD3kiAhMtSzjj1wNrfKaF2fno7
-         Y807dkWXxhGp3Fy5mXM1ml1AHdyfvuf/kSaS+udKJOJnXw27hYkx0pbgBkOoqJRwqQc8
-         Ekjl1Tq1wh71koCvu6S4JVDh6+p0xStScb32bz87plJt77nAYhOta8hFw1HcVUNiOSdQ
-         vSbg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :to:cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=gDZB9prqVEcRFYfiG16SNiYfWZ6Q9f/8/MXT90OAgZ8=;
-        b=iemVji4ORRHELATagIAqSDeBnCc/TrP76xZmtXzO2sBc8yh7tvBj9+ZqHdUsmeznap
-         YNYZp9PqrGDl9QGs9FOyL/CThovkfTlcCN2TsbTYn+rcfvgIHGjjTH3cyuoZuLpN7A2F
-         HpnIITTO1VnVGQd/hRAcNWqAUzCF30Fi1hvU6AJi1cvHzGBriEnAQ30u+8e2TGX7Ndy2
-         m3ADvcUqlpAnsJiJHgZp0NhxzfU6pJJlOmSa3rWh/VM7a3DOSnGLUgLB0JG13vgc1Ctf
-         BzISUKTV5d1ojMUHjMSOcm+qd7Wo7Y5JB2N50V3fdfgX6fReGJWQL3U6gkmWsLRkDSIH
-         ricw==
-X-Gm-Message-State: AOAM5306nC5Y2rkfxeOSE5Fe/reDehjSpoJ/OwFE82IzPVtSKG8zkoVt
-        YxyxgoVw8ghunz9caAIJkDI=
-X-Google-Smtp-Source: ABdhPJwLXgyXMU8n4ziKV1g4zpamdPhfaEMCo/cW+4nZdSp3Auy4zRSa6TJUEDujyzGieTQSjs+oLw==
-X-Received: by 2002:a05:6402:2692:b0:427:ddba:d811 with SMTP id w18-20020a056402269200b00427ddbad811mr14604494edd.343.1651727983284;
-        Wed, 04 May 2022 22:19:43 -0700 (PDT)
-Received: from [192.168.26.149] (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.googlemail.com with ESMTPSA id v16-20020a17090690d000b006f3ef214da8sm343529ejw.14.2022.05.04.22.19.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 04 May 2022 22:19:42 -0700 (PDT)
-Message-ID: <235aa025-7c12-f7e1-d788-9a2ef97f664f@gmail.com>
-Date:   Thu, 5 May 2022 07:19:41 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:96.0) Gecko/20100101
- Thunderbird/96.0
-Subject: Re: [PATCH 1/4] dt-bindings: net: add bitfield defines for Ethernet
- speeds
-To:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S230073AbiEEFcy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 01:32:54 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 199701EAE0;
+        Wed,  4 May 2022 22:29:16 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id A232461ACF;
+        Thu,  5 May 2022 05:29:15 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DEB9EC385A4;
+        Thu,  5 May 2022 05:29:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1651728555;
+        bh=UmiWNST85xlrXdo4LctqgdbyGWV/UwCAEFb8UlVuBd8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=SMKs+g2Mxqjadb/yY8CjrRQeFLzc72G56i5yYg7RZa1SwzMeeT4PKYb1j6m0/9jxx
+         0Bfef26O7JHvOZvF84GOMzv8ssTJr6k9UQEel1meeZqzzq1qgZn/uHD08yZHFqB+vs
+         C9XS8kt3XmsGl3QWR+uOy4OL9IoI49Yb+oNI+uMjXCDrRKZcQZjQY1U+Lc9JNqgAMf
+         0pBBo5E9jd0BQIyUwQ1ktb2x8VATFpKM4F5lKkAOO0CyoAN9Qa2+Y1smUaGbzmywoS
+         Aov1zCF10bHTcRnu36iVGQUZqmIJHwkQxkVy9fdn1d65/o9uYQZjT6goOEDuOjPV8N
+         ykHxZWS/2fJkw==
+Date:   Thu, 5 May 2022 13:29:07 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andrew Lunn <andrew@lunn.ch>
-Cc:     Pavel Machek <pavel@ucw.cz>,
-        "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Hauke Mehrtens <hauke@hauke-m.de>,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        devicetree@vger.kernel.org, netdev@vger.kernel.org,
-        linux-leds@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org,
-        bcm-kernel-feedback-list@broadcom.com,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        Jonathan Corbet <corbet@lwn.net>,
-        John Crispin <john@phrozen.org>, linux-doc@vger.kernel.org
-References: <20220503153613.15320-1-zajec5@gmail.com>
-From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-In-Reply-To: <20220503153613.15320-1-zajec5@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: dmaengine: fsl-imx: deprecate
+ '#dma-channels' and '#dma-requests'
+Message-ID: <20220505052907.GX14615@dragon>
+References: <20220427161533.647837-1-krzysztof.kozlowski@linaro.org>
+ <20220427161533.647837-2-krzysztof.kozlowski@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220427161533.647837-2-krzysztof.kozlowski@linaro.org>
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 3.05.2022 17:36, Rafał Miłecki wrote:
-> From: Rafał Miłecki <rafal@milecki.pl>
+On Wed, Apr 27, 2022 at 06:15:32PM +0200, Krzysztof Kozlowski wrote:
+> The generic properties, used in most of the drivers and defined in
+> generic dma-common DT bindings, are 'dma-channels' and 'dma-requests'.
 > 
-> This allows specifying multiple Ethernet speeds in a single DT uint32
-> value.
-> 
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Ansuel please check if my patchset conflicts in any way with your work.
-
-Andrew suggested to combine both but right now I don't see it as
-necessary.
-
-I'd still appreciate your review of my work. Such binding may be
-required for some hardware controlled LEDs setup too I guess.
+Applied both, thanks!
