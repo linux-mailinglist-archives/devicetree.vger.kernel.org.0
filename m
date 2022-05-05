@@ -2,75 +2,250 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6FB2651CAA8
-	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 22:32:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E5B7E51CAE2
+	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 23:06:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243376AbiEEUfv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 May 2022 16:35:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50188 "EHLO
+        id S245219AbiEEVKN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 May 2022 17:10:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45978 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231304AbiEEUfv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 16:35:51 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CFFBB5EDF6;
-        Thu,  5 May 2022 13:32:10 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 668AB61EE6;
-        Thu,  5 May 2022 20:32:10 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8940FC385AA;
-        Thu,  5 May 2022 20:32:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1651782729;
-        bh=6X2GGjvnvPeSiQ3mLgGVNfuTmKYoy0LuWyOjf65aFrk=;
-        h=Date:Subject:To:References:From:In-Reply-To:From;
-        b=qUrR0MoH+gBd28U+v4+aUcyRTwaDZnGCKnnoXlICVA/Bp4LDQBYcq8KBWjPH6oD7F
-         QT9DFEnHItM9t1Bcv3OujRdFcBnjNGXk2T09OVxBvNYWW4c/xylCezhgSx8weOPuyP
-         I21EkB33rMDviQjmTJASvCtK6pT0qPIaaUtSKvRcQXR0Vx8B98mNQ5i17pvCPfA6Z8
-         kaRxixIOJ09lzNW3CpcxvjjhD/RPfRmpPBheEBwGHbbn+wMv7Yynl6EkIBHEsaxQYb
-         Xury8HfKemeth4XAU/D4myxzlRYFiQdQO2vfkgpsB4pMAWezy6lkwYpCyEK9H5+6Ob
-         xvoOmvUp3pv/A==
-Message-ID: <4671050a-20dd-2397-4f6a-f7e54f7d519b@kernel.org>
-Date:   Thu, 5 May 2022 23:32:02 +0300
+        with ESMTP id S242806AbiEEVKK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 17:10:10 -0400
+Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [IPv6:2001:df5:b000:5::4])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F3CC5E16C
+        for <devicetree@vger.kernel.org>; Thu,  5 May 2022 14:06:28 -0700 (PDT)
+Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (Client did not present a certificate)
+        by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 864412C019F;
+        Thu,  5 May 2022 21:06:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
+        s=mail181024; t=1651784784;
+        bh=1jwk4AXdGBQ9PG1mlOJhV/xwzzB5n2UJdnIoi8tczp4=;
+        h=From:To:Cc:Subject:Date:From;
+        b=qFaxB6MNk0IWwnGn//xpXoF1mhdum7/Xio5GhbtZuhRG5t/bu3ELLkXhVMMdsRdOT
+         kGD75DSq6UPLwJbfO2a4T3MsjylikUMbSPuT14/WkDZ06xdN95SmRZce42Yr6XHLum
+         iMBd9//6a2RdHOfwnM4Sj4MOAX1ci1WOTWut7YDMHxnvIjjqQ4MBTyiPYanaqkdhlf
+         f2eWPauRjQedUv4BorlkAU9JR1aFesQP22NYiXsgZrpG2SwhRpuc7QUf0s2pHrX6dA
+         DL45WJs2YzGgRiYBBdzE2HSQcfXI+C/cAzv71vtGNQEy3gWpf65spyABqEZa3qhfKc
+         2iap1Dwb1dNJw==
+Received: from pat.atlnz.lc (Not Verified[10.32.16.33]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
+        id <B62743c500000>; Fri, 06 May 2022 09:06:24 +1200
+Received: from chrisp-dl.ws.atlnz.lc (chrisp-dl.ws.atlnz.lc [10.33.22.30])
+        by pat.atlnz.lc (Postfix) with ESMTP id 34EA413ED63;
+        Fri,  6 May 2022 09:06:24 +1200 (NZST)
+Received: by chrisp-dl.ws.atlnz.lc (Postfix, from userid 1030)
+        id 304DB2A0478; Fri,  6 May 2022 09:06:24 +1200 (NZST)
+From:   Chris Packham <chris.packham@alliedtelesis.co.nz>
+To:     davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+        pabeni@redhat.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, andrew@lunn.ch
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Chris Packham <chris.packham@alliedtelesis.co.nz>
+Subject: [PATCH v2] dt-bindings: net: orion-mdio: Convert to JSON schema
+Date:   Fri,  6 May 2022 09:06:20 +1200
+Message-Id: <20220505210621.3637268-1-chris.packham@alliedtelesis.co.nz>
+X-Mailer: git-send-email 2.36.0
 MIME-Version: 1.0
-Subject: Re: [PATCH v2 1/5] dt-bindings: interconnect: qcom,sdm845-cpu-bwmon:
- add BWMON device
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20220504081735.26906-1-krzysztof.kozlowski@linaro.org>
- <20220504081735.26906-2-krzysztof.kozlowski@linaro.org>
-From:   Georgi Djakov <djakov@kernel.org>
-In-Reply-To: <20220504081735.26906-2-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+X-SEG-SpamProfiler-Analysis: v=2.3 cv=C7GXNjH+ c=1 sm=1 tr=0 a=KLBiSEs5mFS1a/PbTCJxuA==:117 a=oZkIemNP1mAA:10 a=gEfo2CItAAAA:8 a=DUOwM17OdgdjODy0UN4A:9 a=sptkURWiP4Gy88Gu7hUp:22
+X-SEG-SpamProfiler-Score: 0
+x-atlnz-ls: pat
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 4.05.22 11:17, Krzysztof Kozlowski wrote:
-> Add bindings for the Qualcomm Bandwidth Monitor device providing
-> performance data on interconnects.  The bindings describe only BWMON
-> version 4, e.g. the instance on SDM845 between CPU and Last Level Cache
-> Controller.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Convert the marvell,orion-mdio binding to JSON schema.
 
-Acked-by: Georgi Djakov <djakov@kernel.org>
+Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+---
+
+Notes:
+    This does throw up the following dtbs_check warnings for turris-mox:
+   =20
+    arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dtb: mdio@32004: s=
+witch0@10:reg: [[16], [0]] is too long
+            From schema: Documentation/devicetree/bindings/net/marvell,or=
+ion-mdio.yaml
+    arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dtb: mdio@32004: s=
+witch0@2:reg: [[2], [0]] is too long
+            From schema: Documentation/devicetree/bindings/net/marvell,or=
+ion-mdio.yaml
+    arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dtb: mdio@32004: s=
+witch1@11:reg: [[17], [0]] is too long
+            From schema: Documentation/devicetree/bindings/net/marvell,or=
+ion-mdio.yaml
+    arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dtb: mdio@32004: s=
+witch1@2:reg: [[2], [0]] is too long
+            From schema: Documentation/devicetree/bindings/net/marvell,or=
+ion-mdio.yaml
+    arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dtb: mdio@32004: s=
+witch2@12:reg: [[18], [0]] is too long
+            From schema: Documentation/devicetree/bindings/net/marvell,or=
+ion-mdio.yaml
+    arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dtb: mdio@32004: s=
+witch2@2:reg: [[2], [0]] is too long
+            From schema: Documentation/devicetree/bindings/net/marvell,or=
+ion-mdio.yaml
+   =20
+    I think they're all genuine but I'm hesitant to leap in and fix them
+    without being able to test them.
+   =20
+    I also need to set unevaluatedProperties: true to cater for the L2
+    switch on turris-mox (and probably others). That might be better tack=
+led
+    in the core mdio.yaml schema but I wasn't planning on touching that.
+   =20
+    Changes in v2:
+    - Add Andrew as maintainer (thanks for volunteering)
+
+ .../bindings/net/marvell,orion-mdio.yaml      | 60 +++++++++++++++++++
+ .../bindings/net/marvell-orion-mdio.txt       | 54 -----------------
+ 2 files changed, 60 insertions(+), 54 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/net/marvell,orion-m=
+dio.yaml
+ delete mode 100644 Documentation/devicetree/bindings/net/marvell-orion-m=
+dio.txt
+
+diff --git a/Documentation/devicetree/bindings/net/marvell,orion-mdio.yam=
+l b/Documentation/devicetree/bindings/net/marvell,orion-mdio.yaml
+new file mode 100644
+index 000000000000..fe3a3412f093
+--- /dev/null
++++ b/Documentation/devicetree/bindings/net/marvell,orion-mdio.yaml
+@@ -0,0 +1,60 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/net/marvell,orion-mdio.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Marvell MDIO Ethernet Controller interface
++
++maintainers:
++  - Andrew Lunn <andrew@lunn.ch>
++
++description: |
++  The Ethernet controllers of the Marvel Kirkwood, Dove, Orion5x, MV78xx=
+0,
++  Armada 370, Armada XP, Armada 7k and Armada 8k have an identical unit =
+that
++  provides an interface with the MDIO bus. Additionally, Armada 7k and A=
+rmada
++  8k has a second unit which provides an interface with the xMDIO bus. T=
+his
++  driver handles these interfaces.
++
++allOf:
++  - $ref: "mdio.yaml#"
++
++properties:
++  compatible:
++    enum:
++      - marvell,orion-mdio
++      - marvell,xmdio
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  clocks:
++    minItems: 1
++    maxItems: 4
++
++required:
++  - compatible
++  - reg
++
++unevaluatedProperties: true
++
++examples:
++  - |
++    mdio@d0072004 {
++      compatible =3D "marvell,orion-mdio";
++      reg =3D <0xd0072004 0x4>;
++      #address-cells =3D <1>;
++      #size-cells =3D <0>;
++      interrupts =3D <30>;
++
++      phy0: ethernet-phy@0 {
++        reg =3D <0>;
++      };
++
++      phy1: ethernet-phy@1 {
++        reg =3D <1>;
++      };
++    };
+diff --git a/Documentation/devicetree/bindings/net/marvell-orion-mdio.txt=
+ b/Documentation/devicetree/bindings/net/marvell-orion-mdio.txt
+deleted file mode 100644
+index 3f3cfc1d8d4d..000000000000
+--- a/Documentation/devicetree/bindings/net/marvell-orion-mdio.txt
++++ /dev/null
+@@ -1,54 +0,0 @@
+-* Marvell MDIO Ethernet Controller interface
+-
+-The Ethernet controllers of the Marvel Kirkwood, Dove, Orion5x,
+-MV78xx0, Armada 370, Armada XP, Armada 7k and Armada 8k have an
+-identical unit that provides an interface with the MDIO bus.
+-Additionally, Armada 7k and Armada 8k has a second unit which
+-provides an interface with the xMDIO bus. This driver handles
+-these interfaces.
+-
+-Required properties:
+-- compatible: "marvell,orion-mdio" or "marvell,xmdio"
+-- reg: address and length of the MDIO registers.  When an interrupt is
+-  not present, the length is the size of the SMI register (4 bytes)
+-  otherwise it must be 0x84 bytes to cover the interrupt control
+-  registers.
+-
+-Optional properties:
+-- interrupts: interrupt line number for the SMI error/done interrupt
+-- clocks: phandle for up to four required clocks for the MDIO instance
+-
+-The child nodes of the MDIO driver are the individual PHY devices
+-connected to this MDIO bus. They must have a "reg" property given the
+-PHY address on the MDIO bus.
+-
+-Example at the SoC level without an interrupt property:
+-
+-mdio {
+-	#address-cells =3D <1>;
+-	#size-cells =3D <0>;
+-	compatible =3D "marvell,orion-mdio";
+-	reg =3D <0xd0072004 0x4>;
+-};
+-
+-Example with an interrupt property:
+-
+-mdio {
+-	#address-cells =3D <1>;
+-	#size-cells =3D <0>;
+-	compatible =3D "marvell,orion-mdio";
+-	reg =3D <0xd0072004 0x84>;
+-	interrupts =3D <30>;
+-};
+-
+-And at the board level:
+-
+-mdio {
+-	phy0: ethernet-phy@0 {
+-		reg =3D <0>;
+-	};
+-
+-	phy1: ethernet-phy@1 {
+-		reg =3D <1>;
+-	};
+-}
+--=20
+2.36.0
+
