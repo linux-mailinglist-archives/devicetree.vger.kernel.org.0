@@ -2,66 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 96D6D51CA8E
-	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 22:27:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F85251CA9D
+	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 22:29:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1384863AbiEEUbL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 May 2022 16:31:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45996 "EHLO
+        id S1385868AbiEEUdZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 May 2022 16:33:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47334 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1385837AbiEEUbK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 16:31:10 -0400
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97F575F26D;
-        Thu,  5 May 2022 13:27:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1651782449; x=1683318449;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=LBkM+/38j5GpzaAIvuHMMzTzEjphpOTuzU4wuxKrqqE=;
-  b=Q55U7InrBbNj2+Z2mENUwcQdBj6n7CV5/1nZ3K6CQ1TOMdy0DRR9/DDM
-   BP6I/EF0onxNrPn5nwsmdQZzOAQeaVItFX3cJ9ZIV7VHrFxEdhbccPO3p
-   6gdhuilIb9rPjojzuuvfz83OZSv0lUfSB893H5zyc1vZYrvYxGobGfLoo
-   4L7nfXjsFWy6C19hkTIIgGaRPPGTk8kATH/WQwGrHkvSVtIfUH6m1nMI7
-   f3t+0+2mni6qPAcXI77r2wjHOtEJvurRQPs2xraSG13QMS/NpeGkObMuK
-   js+E6kXnYOoCcWcbaH7m22d7lPyT5ZPKjPmYmGI53Rw1Ws18glgbmNGUK
-   w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10338"; a="268134725"
-X-IronPort-AV: E=Sophos;i="5.91,203,1647327600"; 
-   d="scan'208";a="268134725"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
-  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 May 2022 13:27:28 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.91,203,1647327600"; 
-   d="scan'208";a="891502899"
-Received: from lkp-server01.sh.intel.com (HELO 5056e131ad90) ([10.239.97.150])
-  by fmsmga005.fm.intel.com with ESMTP; 05 May 2022 13:27:24 -0700
-Received: from kbuild by 5056e131ad90 with local (Exim 4.95)
-        (envelope-from <lkp@intel.com>)
-        id 1nmi4J-000Cj6-UP;
-        Thu, 05 May 2022 20:27:23 +0000
-Date:   Fri, 6 May 2022 04:26:42 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>,
-        krzysztof.kozlowski+dt@linaro.org, nicolas.ferre@microchip.com,
-        alexandre.belloni@bootlin.com, claudiu.beznea@microchip.com,
-        peda@axentia.se
-Cc:     llvm@lists.linux.dev, kbuild-all@lists.01.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, lee.jones@linaro.org,
-        linux@armlinux.org.uk, Manohar.Puri@microchip.com,
-        Kavyasree.Kotagiri@microchip.com, UNGLinuxDriver@microchip.com
-Subject: Re: [PATCH 4/4] mux: lan966: Add support for flexcom mux controller
-Message-ID: <202205060409.Vpkpcw6T-lkp@intel.com>
-References: <20220503105528.12824-5-kavyasree.kotagiri@microchip.com>
+        with ESMTP id S1385872AbiEEUdX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 16:33:23 -0400
+Received: from mail-oa1-x35.google.com (mail-oa1-x35.google.com [IPv6:2001:4860:4864:20::35])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 517B15FF21
+        for <devicetree@vger.kernel.org>; Thu,  5 May 2022 13:29:40 -0700 (PDT)
+Received: by mail-oa1-x35.google.com with SMTP id 586e51a60fabf-ed8a3962f8so5358291fac.4
+        for <devicetree@vger.kernel.org>; Thu, 05 May 2022 13:29:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=E79Hu+ASO7VIz4yIiTZ0/hvo5NTf0z2XjOcP52stTCU=;
+        b=PM1xqkEuWXZbfVjShwF21/MTzOGMRiFid042Gy0UVHlyXci4EeALcCFpZNo0p6IGCp
+         umzxSTNhFV9/rKVE/o+/21/Kg2HzGj+L2+KyaBhE75kzz7FkAXNlJmpyjV+BOOYJFQVw
+         VEWwE7/6H1QcpyDuze9/LP8A10ndTkrY6q4rUZ6fvQWHaCjb3pxyujRnRLLideQHgyk3
+         lei603yId0wclXOtWMNSJ07euMGpwnIAhl6fod7exC0MIuN/6yAGiC/P4KSVIBoilzEv
+         azX01NjQ6yOXkyHTrgpvhm5E+1tGkW7edkEqjYc1ro2DOkFSTFcEVVVdL1NTd6nYPEsJ
+         eKcw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=E79Hu+ASO7VIz4yIiTZ0/hvo5NTf0z2XjOcP52stTCU=;
+        b=6lgGUfwE15uDnhf020hgMgPiCgtROEmcs7pv6ZUI8JtNBKft+4+YmBUTeHYJ0oDzBU
+         Xajqx5PcfreNw1G1iP3He62IQKunOWSVRfalJMWnPWOHvSbhNfDxpLlN2PcMKidStxmD
+         tWesx/vqkKEcS/40oIWjcaR07Z7P6A4A7nJ2Y2nY4VTgiYpVmAX8RqFmLEW9UmSlooGt
+         ygrONRuaNm0F22DO0NFbPCMVciSmjDO1rdwBWc2cYGqC+tdhiDNkgrOEtWNAUNhIzcro
+         ZiS2ukFS7wv8vkzR10E34jSuDs9mM+Y+MixAAW8IikKCPYfJwBhivRayzBL3osoFAUIn
+         VeWw==
+X-Gm-Message-State: AOAM530Votb0T35p7raL8ox5fp5oPTanvEbafn51eyF417vInpyuxyHv
+        BPl2ToMwyi3XLK+mNH4yZO+dR8ePLx3Kgtt2x/WJFA==
+X-Google-Smtp-Source: ABdhPJztXKRlu4CCk3zbEqE9ZgBLuFCcb46GasGSAhdiYfMxEL0ccAvbf5Suni3bphRx3xrrej00DSq9xGmsJ3tvUMY=
+X-Received: by 2002:a05:6870:b50d:b0:ed:e8f5:b1cd with SMTP id
+ v13-20020a056870b50d00b000ede8f5b1cdmr11448oap.147.1651782579552; Thu, 05 May
+ 2022 13:29:39 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220503105528.12824-5-kavyasree.kotagiri@microchip.com>
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+References: <20220429220833.873672-1-bhupesh.sharma@linaro.org>
+ <20220429220833.873672-2-bhupesh.sharma@linaro.org> <YnLmNCwNfoqZln12@robh.at.kernel.org>
+ <CAPDyKFrJPHnKi+XGP8U-OJM_uf5fM8eAJT9-z3NL6bP=7MAVug@mail.gmail.com>
+In-Reply-To: <CAPDyKFrJPHnKi+XGP8U-OJM_uf5fM8eAJT9-z3NL6bP=7MAVug@mail.gmail.com>
+From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
+Date:   Fri, 6 May 2022 01:59:26 +0530
+Message-ID: <CAH=2NtwKuG8579JFM1GLO0882FB6Jhdn349aPVWgudcA7J8huA@mail.gmail.com>
+Subject: Re: [PATCH 1/4] dt-bindings: mmc/sdhci-msm: Convert bindings to yaml
+To:     Ulf Hansson <ulf.hansson@linaro.org>
+Cc:     Rob Herring <robh@kernel.org>, linux-mmc@vger.kernel.org,
+        bhupesh.linux@gmail.com, agross@kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, bjorn.andersson@linaro.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -69,49 +69,340 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Kavyasree,
+Hi Ulf and Rob,
 
-Thank you for the patch! Yet something to improve:
+On Thu, 5 May 2022 at 14:00, Ulf Hansson <ulf.hansson@linaro.org> wrote:
+>
+> On Wed, 4 May 2022 at 22:46, Rob Herring <robh@kernel.org> wrote:
+> >
+> > On Sat, Apr 30, 2022 at 03:38:30AM +0530, Bhupesh Sharma wrote:
+> > > Convert Qualcomm sdhci-msm devicetree binding to YAML.
+> > >
+> > > Cc: Ulf Hansson <ulf.hansson@linaro.org>
+> > > Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
+> > > Cc: Rob Herring <robh@kernel.org>
+> > > Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+> > > ---
+> > >  .../devicetree/bindings/mmc/sdhci-msm.txt     | 123 -----------
+> > >  .../devicetree/bindings/mmc/sdhci-msm.yaml    | 192 ++++++++++++++++++
+> > >  2 files changed, 192 insertions(+), 123 deletions(-)
+> > >  delete mode 100644 Documentation/devicetree/bindings/mmc/sdhci-msm.txt
+> > >  create mode 100644 Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/mmc/sdhci-msm.txt b/Documentation/devicetree/bindings/mmc/sdhci-msm.txt
+> > > deleted file mode 100644
+> > > index 6216ed777343..000000000000
+> > > --- a/Documentation/devicetree/bindings/mmc/sdhci-msm.txt
+> > > +++ /dev/null
+> > > @@ -1,123 +0,0 @@
+> > > -* Qualcomm SDHCI controller (sdhci-msm)
+> > > -
+> > > -This file documents differences between the core properties in mmc.txt
+> > > -and the properties used by the sdhci-msm driver.
+> > > -
+> > > -Required properties:
+> > > -- compatible: Should contain a SoC-specific string and a IP version string:
+> > > -     version strings:
+> > > -             "qcom,sdhci-msm-v4" for sdcc versions less than 5.0
+> > > -             "qcom,sdhci-msm-v5" for sdcc version 5.0
+> > > -             For SDCC version 5.0.0, MCI registers are removed from SDCC
+> > > -             interface and some registers are moved to HC. New compatible
+> > > -             string is added to support this change - "qcom,sdhci-msm-v5".
+> > > -     full compatible strings with SoC and version:
+> > > -             "qcom,apq8084-sdhci", "qcom,sdhci-msm-v4"
+> > > -             "qcom,msm8226-sdhci", "qcom,sdhci-msm-v4"
+> > > -             "qcom,msm8953-sdhci", "qcom,sdhci-msm-v4"
+> > > -             "qcom,msm8974-sdhci", "qcom,sdhci-msm-v4"
+> > > -             "qcom,msm8916-sdhci", "qcom,sdhci-msm-v4"
+> > > -             "qcom,msm8992-sdhci", "qcom,sdhci-msm-v4"
+> > > -             "qcom,msm8994-sdhci", "qcom,sdhci-msm-v4"
+> > > -             "qcom,msm8996-sdhci", "qcom,sdhci-msm-v4"
+> > > -             "qcom,qcs404-sdhci", "qcom,sdhci-msm-v5"
+> > > -             "qcom,sc7180-sdhci", "qcom,sdhci-msm-v5";
+> > > -             "qcom,sc7280-sdhci", "qcom,sdhci-msm-v5";
+> > > -             "qcom,sdm845-sdhci", "qcom,sdhci-msm-v5"
+> > > -             "qcom,sdx55-sdhci", "qcom,sdhci-msm-v5";
+> > > -             "qcom,sm8250-sdhci", "qcom,sdhci-msm-v5"
+> > > -     NOTE that some old device tree files may be floating around that only
+> > > -     have the string "qcom,sdhci-msm-v4" without the SoC compatible string
+> > > -     but doing that should be considered a deprecated practice.
+> > > -
+> > > -- reg: Base address and length of the register in the following order:
+> > > -     - Host controller register map (required)
+> > > -     - SD Core register map (required for controllers earlier than msm-v5)
+> > > -     - CQE register map (Optional, CQE support is present on SDHC instance meant
+> > > -                         for eMMC and version v4.2 and above)
+> > > -     - Inline Crypto Engine register map (optional)
+> > > -- reg-names: When CQE register map is supplied, below reg-names are required
+> > > -     - "hc" for Host controller register map
+> > > -     - "core" for SD core register map
+> > > -     - "cqhci" for CQE register map
+> > > -     - "ice" for Inline Crypto Engine register map (optional)
+> > > -- interrupts: Should contain an interrupt-specifiers for the interrupts:
+> > > -     - Host controller interrupt (required)
+> > > -- pinctrl-names: Should contain only one value - "default".
+> > > -- pinctrl-0: Should specify pin control groups used for this controller.
+> > > -- clocks: A list of phandle + clock-specifier pairs for the clocks listed in clock-names.
+> > > -- clock-names: Should contain the following:
+> > > -     "iface" - Main peripheral bus clock (PCLK/HCLK - AHB Bus clock) (required)
+> > > -     "core"  - SDC MMC clock (MCLK) (required)
+> > > -     "bus"   - SDCC bus voter clock (optional)
+> > > -     "xo"    - TCXO clock (optional)
+> > > -     "cal"   - reference clock for RCLK delay calibration (optional)
+> > > -     "sleep" - sleep clock for RCLK delay calibration (optional)
+> > > -     "ice" - clock for Inline Crypto Engine (optional)
+> > > -
+> > > -- qcom,ddr-config: Certain chipsets and platforms require particular settings
+> > > -     for the DDR_CONFIG register. Use this field to specify the register
+> > > -     value as per the Hardware Programming Guide.
+> > > -
+> > > -- qcom,dll-config: Chipset and Platform specific value. Use this field to
+> > > -     specify the DLL_CONFIG register value as per Hardware Programming Guide.
+> > > -
+> > > -Optional Properties:
+> > > -* Following bus parameters are required for interconnect bandwidth scaling:
+> > > -- interconnects: Pairs of phandles and interconnect provider specifier
+> > > -              to denote the edge source and destination ports of
+> > > -              the interconnect path.
+> > > -
+> > > -- interconnect-names: For sdhc, we have two main paths.
+> > > -             1. Data path : sdhc to ddr
+> > > -             2. Config path : cpu to sdhc
+> > > -             For Data interconnect path the name supposed to be
+> > > -             is "sdhc-ddr" and for config interconnect path it is
+> > > -             "cpu-sdhc".
+> > > -             Please refer to Documentation/devicetree/bindings/
+> > > -             interconnect/ for more details.
+> > > -
+> > > -Example:
+> > > -
+> > > -     sdhc_1: sdhci@f9824900 {
+> > > -             compatible = "qcom,msm8974-sdhci", "qcom,sdhci-msm-v4";
+> > > -             reg = <0xf9824900 0x11c>, <0xf9824000 0x800>;
+> > > -             interrupts = <0 123 0>;
+> > > -             bus-width = <8>;
+> > > -             non-removable;
+> > > -
+> > > -             vmmc-supply = <&pm8941_l20>;
+> > > -             vqmmc-supply = <&pm8941_s3>;
+> > > -
+> > > -             pinctrl-names = "default";
+> > > -             pinctrl-0 = <&sdc1_clk &sdc1_cmd &sdc1_data>;
+> > > -
+> > > -             clocks = <&gcc GCC_SDCC1_APPS_CLK>, <&gcc GCC_SDCC1_AHB_CLK>;
+> > > -             clock-names = "core", "iface";
+> > > -             interconnects = <&qnoc MASTER_SDCC_ID &qnoc SLAVE_DDR_ID>,
+> > > -                             <&qnoc MASTER_CPU_ID &qnoc SLAVE_SDCC_ID>;
+> > > -             interconnect-names = "sdhc-ddr","cpu-sdhc";
+> > > -
+> > > -             qcom,dll-config = <0x000f642c>;
+> > > -             qcom,ddr-config = <0x80040868>;
+> > > -     };
+> > > -
+> > > -     sdhc_2: sdhci@f98a4900 {
+> > > -             compatible = "qcom,msm8974-sdhci", "qcom,sdhci-msm-v4";
+> > > -             reg = <0xf98a4900 0x11c>, <0xf98a4000 0x800>;
+> > > -             interrupts = <0 125 0>;
+> > > -             bus-width = <4>;
+> > > -             cd-gpios = <&msmgpio 62 0x1>;
+> > > -
+> > > -             vmmc-supply = <&pm8941_l21>;
+> > > -             vqmmc-supply = <&pm8941_l13>;
+> > > -
+> > > -             pinctrl-names = "default";
+> > > -             pinctrl-0 = <&sdc2_clk &sdc2_cmd &sdc2_data>;
+> > > -
+> > > -             clocks = <&gcc GCC_SDCC2_APPS_CLK>, <&gcc GCC_SDCC2_AHB_CLK>;
+> > > -             clock-names = "core", "iface";
+> > > -
+> > > -             qcom,dll-config = <0x0007642c>;
+> > > -             qcom,ddr-config = <0x80040868>;
+> > > -     };
+> > > diff --git a/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml b/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
+> > > new file mode 100644
+> > > index 000000000000..c33f173e3b6c
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
+> > > @@ -0,0 +1,192 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > > +
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: "http://devicetree.org/schemas/mmc/sdhci-msm.yaml#"
+> > > +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> > > +
+> > > +title: Qualcomm SDHCI controller (sdhci-msm)
+> > > +
+> > > +maintainers:
+> > > +  - Bhupesh Sharma <bhupesh.sharma@linaro.org>
+> > > +
+> > > +description:
+> > > +  Secure Digital Host Controller Interface (SDHCI) present on
+> > > +  Qualcomm SOCs supports SD/MMC/SDIO devices.
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    oneOf:
+> > > +      - items:
+> > > +          - enum:
+> > > +              - qcom,apq8084-sdhci
+> > > +              - qcom,msm8226-sdhci
+> > > +              - qcom,msm8953-sdhci
+> > > +              - qcom,msm8974-sdhci
+> > > +              - qcom,msm8916-sdhci
+> > > +              - qcom,msm8992-sdhci
+> > > +              - qcom,msm8994-sdhci
+> > > +              - qcom,msm8996-sdhci
+> > > +              - qcom,qcs404-sdhci
+> > > +              - qcom,sc7180-sdhci
+> > > +              - qcom,sc7280-sdhci
+> > > +              - qcom,sdm630-sdhci
+> > > +              - qcom,sdm845-sdhci
+> > > +              - qcom,sdx55-sdhci
+> > > +              - qcom,sm6125-sdhci
+> > > +              - qcom,sm6350-sdhci
+> > > +              - qcom,sm8250-sdhci
+> > > +          - enum:
+> > > +              - qcom,sdhci-msm-v4 # for sdcc versions less than 5.0
+> > > +              - qcom,sdhci-msm-v5 # for sdcc version 5.0
+> >
+> > This should be split up between v4 and v5.
+> >
+> > > +      - items:
+> > > +          - const: qcom,sdhci-msm-v4 # Deprecated (only for backward compatibility)
+> > > +                                     # for sdcc versions less than 5.0
+> >
+> >            deprecated: true
+> >
+> > > +
+> > > +  reg:
+> > > +    minItems: 1
+> > > +    items:
+> > > +      - description: Host controller register map
+> > > +      - description: SD Core register map
+> > > +      - description: CQE register map
+> > > +      - description: Inline Crypto Engine register map
+> > > +
+> > > +  clocks:
+> > > +    minItems: 3
+> > > +    items:
+> > > +      - description: Main peripheral bus clock, PCLK/HCLK - AHB Bus clock
+> > > +      - description: SDC MMC clock, MCLK
+> > > +      - description: TCXO clock
+> > > +      - description: clock for Inline Crypto Engine
+> > > +      - description: SDCC bus voter clock
+> > > +      - description: reference clock for RCLK delay calibration
+> > > +      - description: sleep clock for RCLK delay calibration
+> > > +
+> > > +  clock-names:
+> > > +    minItems: 2
+> > > +    items:
+> > > +      - const: iface
+> > > +      - const: core
+> > > +      - const: xo
+> > > +      - const: ice
+> > > +      - const: bus
+> > > +      - const: cal
+> > > +      - const: sleep
+> > > +
+> > > +  interrupts:
+> > > +    maxItems: 2
+> > > +
+> > > +  interrupt-names:
+> > > +    items:
+> > > +      - const: hc_irq
+> > > +      - const: pwr_irq
+> > > +
+> > > +  pinctrl-names:
+> > > +    minItems: 1
+> > > +    items:
+> > > +      - const: default
+> > > +      - const: sleep
+> > > +
+> > > +  pinctrl-0:
+> > > +    description:
+> > > +      Should specify pin control groups used for this controller.
+> > > +
+> > > +  qcom,ddr-config:
+> > > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > > +    description: platform specific settings for DDR_CONFIG reg.
+> > > +
+> > > +  qcom,dll-config:
+> > > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > > +    description: platform specific settings for DLL_CONFIG reg.
+> > > +
+> > > +  iommus:
+> > > +    minItems: 1
+> > > +    maxItems: 8
+> > > +    description: |
+> > > +      phandle to apps_smmu node with sid mask.
+> > > +
+> > > +  interconnects:
+> > > +    items:
+> > > +      - description: data path, sdhc to ddr
+> > > +      - description: config path, cpu to sdhc
+> > > +
+> > > +  interconnect-names:
+> > > +    items:
+> > > +      - const: sdhc-ddr
+> > > +      - const: cpu-sdhc
+> > > +
+> > > +  power-domains:
+> > > +    description: A phandle to sdhci power domain node
+> > > +    maxItems: 1
+> > > +
+> > > +patternProperties:
+> > > +  '^opp-table(-[a-z0-9]+)?$':
+> > > +    if:
+> > > +      properties:
+> > > +        compatible:
+> > > +          const: operating-points-v2
+> > > +    then:
+> > > +      patternProperties:
+> > > +        '^opp-?[0-9]+$':
+> > > +          required:
+> > > +            - required-opps
+> > > +
+> > > +required:
+> > > +  - compatible
+> > > +  - reg
+> > > +  - clocks
+> > > +  - clock-names
+> > > +  - interrupts
+> > > +
+> > > +additionalProperties: true
+> >
+> > Not valid except for common (incomplete) schemas. Instead you need:
+> >
+> > allOf:
+> >   - $ref: mmc-controller.yaml#
+> >
+> > unevaluatedProperties: false
+> >
+> > > +
+> > > +examples:
+> > > +  - |
+> > > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> > > +    #include <dt-bindings/clock/qcom,gcc-sm8250.h>
+> > > +    #include <dt-bindings/clock/qcom,rpmh.h>
+> > > +    #include <dt-bindings/power/qcom-rpmpd.h>
+> > > +
+> > > +    sdhc_2: sdhci@8804000 {
+> >
+> > This will be an error then.
+> >
+> > > +      compatible = "qcom,sm8250-sdhci", "qcom,sdhci-msm-v5";
+> > > +      reg = <0 0x08804000 0 0x1000>;
+>
+>
+> [...]
+>
+> Bhupesh, I realized that I was a little too quick to apply @subject
+> patch. Although, rather than dropping it from my branch, can you
+> please address Rob's comments and send an incremental patch on top?
 
-[auto build test ERROR on lee-mfd/for-mfd-next]
-[also build test ERROR on robh/for-next]
-[cannot apply to soc/for-next linus/master v5.18-rc5 next-20220505]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
+Sure, no problem. I am preparing the incremental patch and will share
+it shortly.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Kavyasree-Kotagiri/Add-support-for-lan966-flexcom-multiplexer/20220503-190011
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git for-mfd-next
-config: i386-randconfig-a002 (https://download.01.org/0day-ci/archive/20220506/202205060409.Vpkpcw6T-lkp@intel.com/config)
-compiler: clang version 15.0.0 (https://github.com/llvm/llvm-project 5e004fb787698440a387750db7f8028e7cb14cfc)
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/f8c4bcef1d51c8668507ca53f7cad11e6ace1b2b
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Kavyasree-Kotagiri/Add-support-for-lan966-flexcom-multiplexer/20220503-190011
-        git checkout f8c4bcef1d51c8668507ca53f7cad11e6ace1b2b
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=i386 SHELL=/bin/bash
-
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
-
-All errors (new ones prefixed by >>):
-
->> ld.lld: error: undefined symbol: devm_mux_control_get
-   >>> referenced by atmel-flexcom.c
-   >>> mfd/atmel-flexcom.o:(atmel_flexcom_probe) in archive drivers/built-in.a
---
->> ld.lld: error: undefined symbol: mux_control_select_delay
-   >>> referenced by atmel-flexcom.c
-   >>> mfd/atmel-flexcom.o:(atmel_flexcom_probe) in archive drivers/built-in.a
---
->> ld.lld: error: undefined symbol: mux_control_deselect
-   >>> referenced by atmel-flexcom.c
-   >>> mfd/atmel-flexcom.o:(atmel_flexcom_probe) in archive drivers/built-in.a
-
--- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
+Thanks,
+Bhupesh
