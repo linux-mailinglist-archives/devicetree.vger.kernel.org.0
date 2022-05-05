@@ -2,70 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DF6A351C442
-	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 17:48:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4ED5F51C454
+	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 17:56:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1381450AbiEEPvw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 May 2022 11:51:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41280 "EHLO
+        id S1381483AbiEEQAY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 May 2022 12:00:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48200 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1381447AbiEEPvv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 11:51:51 -0400
-Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9624C59333
-        for <devicetree@vger.kernel.org>; Thu,  5 May 2022 08:48:11 -0700 (PDT)
-Received: by mail-wr1-x42b.google.com with SMTP id w4so6639183wrg.12
-        for <devicetree@vger.kernel.org>; Thu, 05 May 2022 08:48:11 -0700 (PDT)
+        with ESMTP id S243206AbiEEQAV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 12:00:21 -0400
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87A9A5A08A
+        for <devicetree@vger.kernel.org>; Thu,  5 May 2022 08:56:41 -0700 (PDT)
+Received: by mail-ej1-x634.google.com with SMTP id j6so9535940ejc.13
+        for <devicetree@vger.kernel.org>; Thu, 05 May 2022 08:56:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=duIpxtiykCSeezrgTxT8A8q7XE7qrwoHIpE3IVHNv34=;
-        b=GMI0FjqJYk3Cx8Nnjj9PAr8HNET0bq+Oq1TTEgpIs6hZSXcCt0Rk+QTCSvV19L5dCM
-         noY5hoXJuHmtJ9+fmDwtLu9VtXsxirjN4lno9rK3zOGPxqPFAyYRNd6VPUfqhk9P9e5r
-         1HJQZvoEh1OMpk9bn2WBBfQOG5D6z5orJEqfNRvYEeVW6TUuldp+4T8ayqocGlwjb7d/
-         ETt5ZFEqBxpa2xYhIYY2dJgT9ZLScb56ietYyvF+tsTydAP+J1zuiyjdXgkpuMKOiwBk
-         oskPtPJbckidlC992DsU8jzou3ODmmBzOypCechi1lSyje4bCL/kMrugs+OmvI7NJLQS
-         bCFA==
+        d=amarulasolutions.com; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=fjBt4PhnxyvpQZHwHALGbz1X5a0xwh6G7fjizoTyXiA=;
+        b=ZTU0SNmZWifpArOZCxILL1SHYnm+fwkV4zfQa0dehmOC6D+EdD2T94tUhkGrq5RDwu
+         VIty5jNMoq6e/2XPmutsofxDGkSMxM62aTiasN4leHOn3IBGOjHDd6iFA1z7l/LAwRQy
+         SaqCUOCtU7A1IOCnxJr63fR+eNnmf0X55eYxo=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=duIpxtiykCSeezrgTxT8A8q7XE7qrwoHIpE3IVHNv34=;
-        b=z1crtm+CYObPXkWa1p0D2DjlM334HNdYauKtfN29UH2bF58CzvwtAawLOTxp4TMJof
-         AOG1i918CpxQxxkau9En4QLD14uRrvj8WFh60nF3eWoIu2mrwxeAB+FVWROne40lc2Lr
-         54uPnL9QoKGmOzFYrehVXFcdmqJ733ex6Ht10S/b1FdkKGa2Q+zfjIgCRePXqx4IsGgW
-         aQmdQ6zQ9iImBX0E08P1XnrakpF0n3AfiHuo3nr2FjX07157ufOX18Cl2s2BJfvGKiDp
-         pwgCQCUo/CV9puk8P7B43aJil4tslrp1iryRuabCqvalTNDwd4vHz0BSsh/rAcDCr5Dk
-         j/Mw==
-X-Gm-Message-State: AOAM530XUsnVo/4g+dhxrQc+wBIHxd/y+ZYzykS0ZC1TzkZr4eDj6gHc
-        vUqh8l/uVpk3yeAhsRCMriR9sQ==
-X-Google-Smtp-Source: ABdhPJyHr3Zn6CRC5oyGbEZHHp296FsMl3T6au8NoxhUoWUVnxzNOa/YN3KoPSLfW+hy6vfVaIf/8A==
-X-Received: by 2002:adf:f50e:0:b0:20a:c54a:42b0 with SMTP id q14-20020adff50e000000b0020ac54a42b0mr21067440wro.511.1651765690220;
-        Thu, 05 May 2022 08:48:10 -0700 (PDT)
-Received: from localhost.localdomain (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id c14-20020adffb0e000000b0020c6fa5a797sm1518956wrr.91.2022.05.05.08.48.09
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=fjBt4PhnxyvpQZHwHALGbz1X5a0xwh6G7fjizoTyXiA=;
+        b=LpgIdvjB5YS2Q93I79wXehWajqF2QapD0izWoie5oxlJ6C+1m8bVcFeMWpfRNOozRW
+         IEY2RvoKeyplZvlcUkPav+i0ibfylhAfSTLPMY2rnT7WkCwUHZO5L22t65QBAzb/Ds+R
+         riBwQxWTn8NAFdXhctpoBIybkJnvkMX524Uene3uHRsfwUaEfVwoKhd0xiKrf5muNQBR
+         pCFzIKRD/vnFA0ti7BG7JBxurm+y9bfR065FKnJc0hPVMeV2Vwl38yl9H4dkvvMb18LE
+         8lP3lFhSsbZyTd+CcgYU08w7VFk92X+zMen8hKKucE4stsoP9XQCcv5S/236g0ef34KS
+         TXAQ==
+X-Gm-Message-State: AOAM531tRMbyqbMHEEYGyVTjhTbLBXYSWpsBDzIa6DW8Elu4Z5KJFTZy
+        YRUSCweRKQwpg/EhS9ioV8huHg==
+X-Google-Smtp-Source: ABdhPJwB/ZFjB6/h1JrEs8E12lO3+RH5QW17ibva6faESPfAZjkoAf0YstZGBgfG8dNGDjhQzNuQLA==
+X-Received: by 2002:a17:907:72cc:b0:6f4:cc8a:2bcd with SMTP id du12-20020a17090772cc00b006f4cc8a2bcdmr8661986ejc.532.1651766199997;
+        Thu, 05 May 2022 08:56:39 -0700 (PDT)
+Received: from dario-ThinkPad-T14s-Gen-2i.pdxnet.pdxeng.ch (host-87-0-15-73.retail.telecomitalia.it. [87.0.15.73])
+        by smtp.gmail.com with ESMTPSA id a4-20020aa7d904000000b0042617ba6385sm1009328edr.15.2022.05.05.08.56.38
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 May 2022 08:48:09 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Lee Jones <lee.jones@linaro.org>,
-        Daniel Thompson <daniel.thompson@linaro.org>,
-        Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@ucw.cz>,
-        Rob Herring <robh+dt@kernel.org>,
+        Thu, 05 May 2022 08:56:39 -0700 (PDT)
+From:   Dario Binacchi <dario.binacchi@amarulasolutions.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     Dario Binacchi <dario.binacchi@amarulasolutions.com>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Kiran Gunda <kgunda@codeaurora.org>,
-        dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 2/2] arm64: dts: qcom: correct SPMI WLED register range encoding
-Date:   Thu,  5 May 2022 17:47:02 +0200
-Message-Id: <20220505154702.422108-2-krzysztof.kozlowski@linaro.org>
+        Marco Felsch <m.felsch@pengutronix.de>,
+        Michael Trimarchi <michael@amarulasolutions.com>,
+        Oliver Graute <oliver.graute@kococonnector.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        devicetree@vger.kernel.org, linux-input@vger.kernel.org
+Subject: [RESEND PATCH v4 0/6] Input: edt-ft5x06 - Improve configuration
+Date:   Thu,  5 May 2022 17:56:29 +0200
+Message-Id: <20220505155635.419653-1-dario.binacchi@amarulasolutions.com>
 X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20220505154702.422108-1-krzysztof.kozlowski@linaro.org>
-References: <20220505154702.422108-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -78,55 +71,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On PM660L, PMI8994 and PMI8998, the WLED has two address spaces and with
-size-cells=0, they should be encoded as two separate items.
+The series was born from the analysis and mitigation of a crc problem
+raised by an M06 type device. The added sysfs attributes were helpful
+in debugging the problem. Patches that change the report rate on driver
+probing, mitigated crc errors on kernel bootup. The patch to get/set
+report rate by sysfs for an M12 device, has been tested.
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- arch/arm64/boot/dts/qcom/pm660l.dtsi  | 2 +-
- arch/arm64/boot/dts/qcom/pmi8994.dtsi | 2 +-
- arch/arm64/boot/dts/qcom/pmi8998.dtsi | 2 +-
- 3 files changed, 3 insertions(+), 3 deletions(-)
+Changes in v4:
+- Add Rob Herring 'Acked-by' tag.
 
-diff --git a/arch/arm64/boot/dts/qcom/pm660l.dtsi b/arch/arm64/boot/dts/qcom/pm660l.dtsi
-index cfef42353611..cf26432bb7ce 100644
---- a/arch/arm64/boot/dts/qcom/pm660l.dtsi
-+++ b/arch/arm64/boot/dts/qcom/pm660l.dtsi
-@@ -67,7 +67,7 @@ pmic@3 {
- 
- 		pm660l_wled: leds@d800 {
- 			compatible = "qcom,pm660l-wled";
--			reg = <0xd800 0xd900>;
-+			reg = <0xd800>, <0xd900>;
- 			interrupts = <0x3 0xd8 0x1 IRQ_TYPE_EDGE_RISING>;
- 			interrupt-names = "ovp";
- 			label = "backlight";
-diff --git a/arch/arm64/boot/dts/qcom/pmi8994.dtsi b/arch/arm64/boot/dts/qcom/pmi8994.dtsi
-index 6e7c252568e6..81899fe17f2b 100644
---- a/arch/arm64/boot/dts/qcom/pmi8994.dtsi
-+++ b/arch/arm64/boot/dts/qcom/pmi8994.dtsi
-@@ -35,7 +35,7 @@ pmi8994_spmi_regulators: regulators {
- 
- 		pmi8994_wled: wled@d800 {
- 			compatible = "qcom,pmi8994-wled";
--			reg = <0xd800 0xd900>;
-+			reg = <0xd800>, <0xd900>;
- 			interrupts = <3 0xd8 0x02 IRQ_TYPE_EDGE_RISING>;
- 			interrupt-names = "short";
- 			qcom,cabc;
-diff --git a/arch/arm64/boot/dts/qcom/pmi8998.dtsi b/arch/arm64/boot/dts/qcom/pmi8998.dtsi
-index 0fef5f113f05..ef29e80c442c 100644
---- a/arch/arm64/boot/dts/qcom/pmi8998.dtsi
-+++ b/arch/arm64/boot/dts/qcom/pmi8998.dtsi
-@@ -44,7 +44,7 @@ lab: lab {
- 
- 		pmi8998_wled: leds@d800 {
- 			compatible = "qcom,pmi8998-wled";
--			reg = <0xd800 0xd900>;
-+			reg = <0xd800>, <0xd900>;
- 			interrupts = <0x3 0xd8 0x1 IRQ_TYPE_EDGE_RISING>,
- 				     <0x3 0xd8 0x2 IRQ_TYPE_EDGE_RISING>;
- 			interrupt-names = "ovp", "short";
+Changes in v3:
+- Add hz unit suffix.
+- Add '|' to description.
+- Check the lower and upper limits of the report-rate-hz value
+- Convert the M06 report-rate-hz value
+
+Changes in v2:
+- Add Oliver Graute's 'Acked-by' tag to:
+  * Input: edt-ft5x06 - show model name by sysfs
+  * Input: edt-ft5x06 - show firmware version by sysfs
+- Fix yaml file. Tested with `make DT_CHECKER_FLAGS=-m dt_binding_check'.
+
+Dario Binacchi (6):
+  dt-bindings: input: touchscreen: edt-ft5x06: add report-rate-hz
+  Input: edt-ft5x06 - get/set M12 report rate by sysfs
+  Input: edt-ft5x06 - set report rate by dts property
+  Input: edt-ft5x06 - show model name by sysfs
+  Input: edt-ft5x06 - show firmware version by sysfs
+  Input: edt-ft5x06 - show crc and header errors by sysfs
+
+ .../input/touchscreen/edt-ft5x06.yaml         |   8 ++
+ drivers/input/touchscreen/edt-ft5x06.c        | 103 ++++++++++++++++--
+ 2 files changed, 103 insertions(+), 8 deletions(-)
+
 -- 
 2.32.0
 
