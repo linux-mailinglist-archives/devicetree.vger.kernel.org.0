@@ -2,78 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 62C4751C960
-	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 21:44:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 462A151C96C
+	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 21:46:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240224AbiEETrh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 May 2022 15:47:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58210 "EHLO
+        id S1385243AbiEETtp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 May 2022 15:49:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34416 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234514AbiEETrh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 15:47:37 -0400
-Received: from mail-oi1-f169.google.com (mail-oi1-f169.google.com [209.85.167.169])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D35451591;
-        Thu,  5 May 2022 12:43:56 -0700 (PDT)
-Received: by mail-oi1-f169.google.com with SMTP id l203so5429140oif.0;
-        Thu, 05 May 2022 12:43:56 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=VfBSloQQ81uRfQc02OmtDaGr9cu+x05nI2mcbylBCsg=;
-        b=5AwJ+lTcV4c2Z34MRyeJxqBzTXFhI0lVNA45eXSjb5iUBNHlqpK01CKJSKl0q4WacN
-         F78QR3SJcVoV/ZoRk0j+jeYRy8DRqq4mjEDXWPRpGu30XebXuDuqauTZhhI1s5he8WYM
-         YIa9dtqk3cIXitzXy6+Ykx6ot+xySJdeBiLOwojGrc7QX8L5abz7qTCTyOrD86iVru5f
-         /PdxibZfhBkGlJPm7+X6ruuQpjnYxW+ZDQNKD+fL7/v+6oNQ9ZskQxl35C7B76ppVEJu
-         46PUPFZ76wQUABwuHOqwwX7msCQgOYw16WNiW0m4TznCa8b3yNwQ1G8Ti63uRC2rON+5
-         APIw==
-X-Gm-Message-State: AOAM533NOjvaURZR5Patmg7X4ZMHphbixlV5/8Dn6l46njomUmBCh+mV
-        uZum6ty3xY1pTjcvAyJsQg==
-X-Google-Smtp-Source: ABdhPJwSBr+UtFMHunpc0UdlmFG0dImEkNGB5BW+Slimw4MKA65OsBzcX/Cj15VVliXwLAu2w1ENDA==
-X-Received: by 2002:a05:6808:120c:b0:325:731e:923 with SMTP id a12-20020a056808120c00b00325731e0923mr3220267oil.155.1651779835825;
-        Thu, 05 May 2022 12:43:55 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id d15-20020a05683025cf00b0060603221278sm891396otu.72.2022.05.05.12.43.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 May 2022 12:43:55 -0700 (PDT)
-Received: (nullmailer pid 73673 invoked by uid 1000);
-        Thu, 05 May 2022 19:43:54 -0000
-Date:   Thu, 5 May 2022 14:43:54 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     =?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <clement.leger@bootlin.com>
-Cc:     Michael Ellerman <mpe@ellerman.id.au>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Paul Mackerras <paulus@samba.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Nathan Lynch <nathanl@linux.ibm.com>,
-        Laurent Dufour <ldufour@linux.ibm.com>,
-        Daniel Henrique Barboza <danielhb413@gmail.com>,
-        David Gibson <david@gibson.dropbear.id.au>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        David Hildenbrand <david@redhat.com>,
-        Ohhoon Kwon <ohoono.kwon@samsung.com>,
-        "Aneesh Kumar K.V" <aneesh.kumar@linux.ibm.com>,
-        YueHaibing <yuehaibing@huawei.com>,
-        linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Allan Nielsen <allan.nielsen@microchip.com>,
-        Horatiu Vultur <horatiu.vultur@microchip.com>,
-        Steen Hegelund <steen.hegelund@microchip.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH 2/3] of: dynamic: add of_node_alloc() and of_node_free()
-Message-ID: <YnQo+mdDBuoKA6Fq@robh.at.kernel.org>
-References: <20220504154033.750511-1-clement.leger@bootlin.com>
- <20220504154033.750511-3-clement.leger@bootlin.com>
+        with ESMTP id S1383150AbiEETto (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 15:49:44 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 052B95D645;
+        Thu,  5 May 2022 12:46:02 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: nfraprado)
+        with ESMTPSA id 35F1B1F45CBE
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1651779960;
+        bh=RGCX7f1c3IvRqOzT0kQrLTGaV5rzWYFn7wa3F2g/3sc=;
+        h=From:To:Cc:Subject:Date:From;
+        b=BXy3pO2lbGRDAQvI5Sqc06/aVbQjRQAa+9OJG3jTImF2Pkx1vJdy6g8je5lhrAJ44
+         ZTfO2haJHSE1EIl6OgDagBuOOZd5pbaNkbLQO0pWBu3ma9rQVSqRG7s/OCOpK4AF7f
+         bG+2iJpQMt4I+pdTBf/dryqWzsxGfAWrGulm/I++Kczj1divEdS/4eQKcZlfxZs1fm
+         KIZLrg7EScTR452qblEK9qL4EXT1rFjN65ekXO2EniYPBdtTMcQdNJk6hpIA1003DG
+         6/s2b2Ftt/m888IGvwWOQ6A1l6YU2tx82ilpar4j9DAolh1i9+ywWO3J6sY59ikA5b
+         t9r9012cLKAHA==
+From:   =?UTF-8?q?N=C3=ADcolas=20F=2E=20R=2E=20A=2E=20Prado?= 
+        <nfraprado@collabora.com>
+To:     Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, kernel@collabora.com,
+        Chen-Yu Tsai <wenst@chromium.org>,
+        =?UTF-8?q?N=C3=ADcolas=20F=2E=20R=2E=20A=2E=20Prado?= 
+        <nfraprado@collabora.com>,
+        Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
+        Fabien Parent <fparent@baylibre.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Luca Weiss <luca@z3ntu.xyz>, Maxim Kutnij <gtk3@inbox.ru>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sam Shih <sam.shih@mediatek.com>,
+        Sean Wang <sean.wang@mediatek.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org
+Subject: [PATCH v2 00/16] Introduce support for MediaTek MT8192 Google Chromebooks
+Date:   Thu,  5 May 2022 15:45:34 -0400
+Message-Id: <20220505194550.3094656-1-nfraprado@collabora.com>
+X-Mailer: git-send-email 2.36.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220504154033.750511-3-clement.leger@bootlin.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -81,36 +62,55 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 04, 2022 at 05:40:32PM +0200, Clément Léger wrote:
-> Add functions which allows to create and free nodes.
-> 
-> Signed-off-by: Clément Léger <clement.leger@bootlin.com>
-> ---
->  drivers/of/dynamic.c | 59 ++++++++++++++++++++++++++++++++++++--------
->  include/linux/of.h   |  9 +++++++
->  2 files changed, 58 insertions(+), 10 deletions(-)
-> 
-> diff --git a/drivers/of/dynamic.c b/drivers/of/dynamic.c
-> index e8700e509d2e..ec28e5ba2969 100644
-> --- a/drivers/of/dynamic.c
-> +++ b/drivers/of/dynamic.c
-> @@ -455,6 +455,54 @@ struct property *__of_prop_dup(const struct property *prop, gfp_t allocflags)
->  				 prop->length, allocflags);
->  }
->  
-> +/**
-> + * of_node_free - Free a node allocated dynamically.
-> + * @node:	Node to be freed
-> + */
-> +void of_node_free(const struct device_node *node)
-> +{
-> +	kfree(node->full_name);
-> +	kfree(node->data);
-> +	kfree(node);
-> +}
-> +EXPORT_SYMBOL(of_node_free);
 
-This shouldn't be needed. Nodes are refcounted, so any caller should 
-just do a put.
+This series introduces Devicetrees for the MT8192-based Asurada platform
+as well as Asurada Spherion and Asurada Hayato boards.
 
-Rob
+Support for the boards is added to the extent that is currently enabled
+in the mt8192.dtsi, as to not add any dependencies to this series.
+
+Besides the other dt-binding fixes already on linux-next to avoid new
+warnings by this series, [1] is already merged but not on next yet.
+
+This series was peer-reviewed internally before submission.
+
+[1] https://lore.kernel.org/all/20220429201325.2205799-1-nfraprado@collabora.com/
+
+v1: https://lore.kernel.org/all/20220316151327.564214-1-nfraprado@collabora.com/
+
+Changes in v2:
+- Added patches 1-2 for Mediatek board dt-bindings
+- Added patches 13-16 enabling hardware for Asurada that has since been
+  enabled on mt8192.dtsi
+
+NÃ­colas F. R. A. Prado (16):
+  dt-bindings: arm64: dts: mediatek: Add mt8192-asurada-spherion
+  dt-bindings: arm64: dts: mediatek: Add mt8192-asurada-hayato
+  arm64: dts: mediatek: Introduce MT8192-based Asurada board family
+  arm64: dts: mediatek: asurada: Document GPIO names
+  arm64: dts: mediatek: asurada: Add system-wide power supplies
+  arm64: dts: mediatek: asurada: Enable and configure I2C and SPI busses
+  arm64: dts: mediatek: asurada: Add ChromeOS EC
+  arm64: dts: mediatek: asurada: Add keyboard mapping for the top row
+  arm64: dts: mediatek: asurada: Add Cr50 TPM
+  arm64: dts: mediatek: asurada: Add Elan eKTH3000 I2C trackpad
+  arm64: dts: mediatek: asurada: Add I2C touchscreen
+  arm64: dts: mediatek: spherion: Add keyboard backlight
+  arm64: dts: mediatek: asurada: Enable XHCI
+  arm64: dts: mediatek: asurada: Enable PCIe and add WiFi
+  arm64: dts: mediatek: asurada: Add MT6359 PMIC
+  arm64: dts: mediatek: asurada: Add SPMI regulators
+
+ .../devicetree/bindings/arm/mediatek.yaml     |  13 +
+ arch/arm64/boot/dts/mediatek/Makefile         |   2 +
+ .../dts/mediatek/mt8192-asurada-hayato-r1.dts |  18 +
+ .../mediatek/mt8192-asurada-spherion-r0.dts   |  33 +
+ .../boot/dts/mediatek/mt8192-asurada.dtsi     | 777 ++++++++++++++++++
+ 5 files changed, 843 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt8192-asurada-hayato-r1.dts
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt8192-asurada-spherion-r0.dts
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi
+
+-- 
+2.36.0
+
