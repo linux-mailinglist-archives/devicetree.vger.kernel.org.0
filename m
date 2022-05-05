@@ -2,72 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 07C8151BB4B
-	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 10:58:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6CD6B51BB50
+	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 11:00:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229476AbiEEJCc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 May 2022 05:02:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43856 "EHLO
+        id S1351325AbiEEJEN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 May 2022 05:04:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45200 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234570AbiEEJCb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 05:02:31 -0400
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6EC7E4B1C5;
-        Thu,  5 May 2022 01:58:52 -0700 (PDT)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2458wkh4042367;
-        Thu, 5 May 2022 03:58:46 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1651741126;
-        bh=/ERSrtnW080lHG0uAK8hOjnqXgpAuvT8+uW0erq7CVM=;
-        h=From:To:CC:Subject:Date:References:In-Reply-To;
-        b=eeZUwDAIrLcAfvNnpvAnrD8G1v8VzZYkqJ8zfEKKWdQxIfIZFTsISBN9PTp+5zqFr
-         Lp40bUrbeBECvtBce2erYStjmaGbZ7WnImxlj4e8uyShtK64Ws7lSXxAEAtWJUcjAy
-         CCGLJnMmXlRh8VziN2ULWuWY+hihk8fJBIKTBMWo=
-Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2458wkkp037169
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 5 May 2022 03:58:46 -0500
-Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Thu, 5
- May 2022 03:58:45 -0500
-Received: from DFLE111.ent.ti.com ([fe80::6c89:b1ca:ee8f:1a6f]) by
- DFLE111.ent.ti.com ([fe80::6c89:b1ca:ee8f:1a6f%17]) with mapi id
- 15.01.2308.014; Thu, 5 May 2022 03:58:45 -0500
-From:   "M, Aparna" <a-m1@ti.com>
-To:     "bgolaszewski@baylibre.com" <bgolaszewski@baylibre.com>
-CC:     "Govindraju, Aswath" <a-govindraju@ti.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
-        "Raghavendra, Vignesh" <vigneshr@ti.com>,
-        "Linus Walleij" <linus.walleij@linaro.org>
-Subject: Re: [PATCH v5] dt-bindings: gpio: Convert TI TPIC2810 GPIO Controller
- bindings to YAML
-Thread-Topic: [PATCH v5] dt-bindings: gpio: Convert TI TPIC2810 GPIO
- Controller bindings to YAML
-Thread-Index: AQHYYF5TXqMLIteje06nkAveL3LoWA==
-Date:   Thu, 5 May 2022 08:58:45 +0000
-Message-ID: <e682175fcfc54217a6ed006270877f4d@ti.com>
-References: <20220223174215.17838-1-a-m1@ti.com>
- <CACRpkdbj2B90-RE2XKQJ5qEj1hZQA-u=vUu2vpXwNqQLf_kaPg@mail.gmail.com>
-In-Reply-To: <CACRpkdbj2B90-RE2XKQJ5qEj1hZQA-u=vUu2vpXwNqQLf_kaPg@mail.gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-imapappendstamp: DFLE111.ent.ti.com (15.01.2308.014)
-x-ms-exchange-messagesentrepresentingtype: 1
-x-originating-ip: [172.24.159.86]
-x-exclaimer-md-config: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <88ED82CFF925304C89778BDE264DAEDD@owa.mail.ti.com>
-Content-Transfer-Encoding: base64
+        with ESMTP id S1351324AbiEEJEJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 05:04:09 -0400
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9ED8B20184
+        for <devicetree@vger.kernel.org>; Thu,  5 May 2022 02:00:29 -0700 (PDT)
+Received: by mail-ej1-x635.google.com with SMTP id dk23so7444128ejb.8
+        for <devicetree@vger.kernel.org>; Thu, 05 May 2022 02:00:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=9AhHvge8RPPYxMTc08AdPjB0Im0yrHzhMR6FLazEcKY=;
+        b=qCcqE7MjKRccPt6aVTkfa2QCmPSM6UECqx8iMHUMeYy7r7GtvA4hPANJ6oS5frF3Oy
+         K7t+2k/Qj+7oxoz/8PppTw7UDI0HuNnIIxhhV9kJ0R11ryMFNziwtFc6LFyvAQSI226p
+         jdggYUSFS/V8rKTveXc/9EH+uqfreR1WV8PB83QVHzofB0RuTuyNS0L6HJljo57wxO0b
+         foLI8v6fh/oXQNRQoiOmtZRzDvkb2alBnjzS1u9J355JmXvsuKy8FtPqx43Fipa2u3K/
+         SOeOJpvLDnmZwZuSDORaItASRxuR2eUTNcDkA9iVkiat4JaUVWWRcmdGDwJofVu5u9JO
+         K61w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=9AhHvge8RPPYxMTc08AdPjB0Im0yrHzhMR6FLazEcKY=;
+        b=2lIhfYyZBh3RngCiZgMSyK/2+q/lVB9688TaYMuYytvMzLboYkzhxBeeBXipc66vCo
+         k/WoVa2v7683fMw8N7xufwhFyMvxp4ZnaWNqF5VfKgbeVUMTC4GIpFkq4Vo1kzZ1kGrW
+         xBuAE0SE/TodrvZxloIWDbLxolUcd3S14jbBQtFyd6uFUNYNl6p0ubh6u3YaDI5e/rP4
+         8HRS7iqLq/L40Lzs5lGPDJjeUX6GpR6fifcKpHgS6tQQmgq2RT1oXVX6QbkWpRtBS3gF
+         UbfAupshhTYR8UDcYai5nfqiaQSRs9A6ulEMdp10dRLFu/D7m+8QPcVdRx6L+4aPvw20
+         576Q==
+X-Gm-Message-State: AOAM532O/ztcnuDpQubK5dXSqS18moD+9GzVePOSbmmTONLeuOeP6GT7
+        seXhe1+PS4uN3V8x53gRA61ymQ==
+X-Google-Smtp-Source: ABdhPJyVYeKkXidgPkQrPg7qjd5RnUZ/ol5zwHrgIrLMcOzGQ7cFpuk9ivJ15p5PLg/Zb/0gPvZatg==
+X-Received: by 2002:a17:906:300d:b0:6ec:c1b:9780 with SMTP id 13-20020a170906300d00b006ec0c1b9780mr24836204ejz.415.1651741228199;
+        Thu, 05 May 2022 02:00:28 -0700 (PDT)
+Received: from [192.168.0.217] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id z18-20020a05640240d200b0042617ba63a0sm537952edb.42.2022.05.05.02.00.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 05 May 2022 02:00:27 -0700 (PDT)
+Message-ID: <a099eb33-91a0-0262-f6c0-a77dc7aec146@linaro.org>
+Date:   Thu, 5 May 2022 11:00:26 +0200
 MIME-Version: 1.0
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH] spi: dt-bindings: qcom,spi-geni-qcom: allow three
+ interconnects
+Content-Language: en-US
+To:     Mark Brown <broonie@kernel.org>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-spi@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220504125119.190526-1-krzysztof.kozlowski@linaro.org>
+ <YnKVLxmz0hhQGNzI@sirena.org.uk>
+ <cfba178d-ff36-910b-3067-ce32b701b643@linaro.org>
+ <YnKZyCogvngR7zfc@sirena.org.uk>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <YnKZyCogvngR7zfc@sirena.org.uk>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -75,11 +81,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-K1ZpZ25lc2gNCg0KUGluZy4gQ2FuIHRoaXMgYmUgcGlja2VkIHVwIGZvciBuZXh0IG1lcmdlIGN5
-Y2xlPw0KDQpPbiAxNS8wMy8yMiAwNjozMSwgTGludXMgV2FsbGVpaiB3cm90ZToNCj4gT24gV2Vk
-LCBGZWIgMjMsIDIwMjIgYXQgNjo0MiBQTSBBcGFybmEgTSA8YS1tMUB0aS5jb20+IHdyb3RlOg0K
-Pg0KPj4gQ29udmVydCBncGlvLXRwaWMyODEwIGJpbmRpbmdzIHRvIHlhbWwgZm9ybWF0IGFuZCBy
-ZW1vdmUgb3V0ZGF0ZWQNCj4+IGJpbmRpbmdzIGluIC50eHQgZm9ybWF0Lg0KPj4NCj4+IFNpZ25l
-ZC1vZmYtYnk6IEFwYXJuYSBNIDxhLW0xQHRpLmNvbT4NCj4gUmV2aWV3ZWQtYnk6IExpbnVzIFdh
-bGxlaWogPGxpbnVzLndhbGxlaWpAbGluYXJvLm9yZz4NCj4NCj4gWW91cnMsDQo+IExpbnVzIFdh
-bGxlaWoNCj4NClRoYW5rcywNCi0tIA0KQXBhcm5hIE0NCg0K
+On 04/05/2022 17:20, Mark Brown wrote:
+>> Thanks Mark, but as explained in commit below "---" - this is a fix for
+>> commit in Qualcomm/Bjorn tree. Could you ack it instead?
+> 
+> I was expecting this to be a fix for some change in the DTs in the
+> Qualcomm tree.  Why is there a change to the SPI bindings in there?  I
+> don't seem to have reviewed it...
+
+I don't know, Mark. The confusion was not intended. The second patch in
+the set depended on SPI patch, so probably after three weeks Bjorn just
+took entire set.
+
+https://lore.kernel.org/all/20220404064017.68634-1-krzysztof.kozlowski@linaro.org/
+
+Best regards,
+Krzysztof
