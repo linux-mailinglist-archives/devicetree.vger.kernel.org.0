@@ -2,78 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DB39B51B8A3
-	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 09:23:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6BFF051B907
+	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 09:30:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240202AbiEEH0v convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Thu, 5 May 2022 03:26:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33854 "EHLO
+        id S1344468AbiEEHdS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 May 2022 03:33:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40864 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235197AbiEEH0u (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 03:26:50 -0400
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BCDCE41325
-        for <devicetree@vger.kernel.org>; Thu,  5 May 2022 00:23:10 -0700 (PDT)
-Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=diego.localnet)
-        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <heiko@sntech.de>)
-        id 1nmVpI-0006ji-TB; Thu, 05 May 2022 09:23:04 +0200
-From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To:     Sascha Hauer <s.hauer@pengutronix.de>
-Cc:     dri-devel@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Sandy Huang <hjc@rock-chips.com>,
-        Peter Geis <pgwipeout@gmail.com>, Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v11 16/24] arm64: dts: rockchip: rk356x: Add VOP2 nodes
-Date:   Thu, 05 May 2022 09:23:03 +0200
-Message-ID: <2508329.Lt9SDvczpP@diego>
-In-Reply-To: <20220505064131.GF4012@pengutronix.de>
-References: <20220422072841.2206452-1-s.hauer@pengutronix.de> <1911394.usQuhbGJ8B@diego> <20220505064131.GF4012@pengutronix.de>
+        with ESMTP id S1344142AbiEEHdR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 03:33:17 -0400
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67A5D29801;
+        Thu,  5 May 2022 00:29:38 -0700 (PDT)
+Received: by mail-lf1-x12c.google.com with SMTP id j4so6046488lfh.8;
+        Thu, 05 May 2022 00:29:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=6Z3ugqzs69IZl2+sRBwHWpG9kKlwl5WbPNjhplCiidk=;
+        b=NLnXMShaRN7PFstFtp8tEoVSOhftf8xxi0e83XfbK5BkN2iQ8x6cZgI8cOHrXkau6N
+         QCfJH+/eiJeveTWsc/Wy4YmWIIDlcr3IDSOQXHB8LXW1qOgYWCq52+SmQQ4VQQdBNrj4
+         6LwIQKCd6kqAdMSC4cHBaKQJIGP1MFrnrjRU0Pn5klIABxim8rvlc8nZbdFO9B67MrC8
+         iSchmvzpQDBS7k2oRxryDg7m/Tjm5LT5A3Xo6lWFQOYPZpNX1ieE9oZsgiXaKgWOuiS/
+         JE1SzzPfpZ7KWUpWof7vsPq0O/xAq3viH5rHjblyvfnM2t0IkX/k4du+kMlbaGzXxPEA
+         TMaQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=6Z3ugqzs69IZl2+sRBwHWpG9kKlwl5WbPNjhplCiidk=;
+        b=mLv2mSDEcbj+eIIdShIqJ8hb+/B07epIfZdVvDouSyQraHm8wMVKf1hx6GFYKCRxzK
+         Z4JcVUTYtaHslIKOrkDvyDjTH80bDp+mRTAyhTB+Kw6Xz8XMt8Cdp3+xcX+Y7yCXGDmk
+         X5uOMXM+2VhfcpxCWgyIdB5LaudTaNvRrwrrK84z2w+NqeW6oODq97/cmGIBu0Y2EvPC
+         wqxedVO0tr7xZu+yEq2C8JatRxiZBkkxljib4OxlqJIPhmWZz5+U/ZcoNdz0Oe3pS/as
+         nk8Rc8URObEm8vACmVM6VuIR66yex/xNAEjPLqI9xjK6hcfFtvpEk0f7ASIpEWPdTn89
+         cFDA==
+X-Gm-Message-State: AOAM531Rxp/0gsqvKjq5pOWnYkn4RpUHLKVciodlBks4AC4H2rwaPXEk
+        PO6FbhfIum+Ll7h+8sO4QTjWwhKfrhm7r5pFl/w=
+X-Google-Smtp-Source: ABdhPJwWrkWiEJE8wFxjLWt23K89Z5Y+pMlvG1QF6O0ewp61J8ENn3UK3Mk3CGRcyf6V/ntmhPUqWSTVxcUQ2sMYgFo=
+X-Received: by 2002:a05:6512:c03:b0:447:7912:7e6b with SMTP id
+ z3-20020a0565120c0300b0044779127e6bmr17101977lfu.508.1651735776564; Thu, 05
+ May 2022 00:29:36 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8BIT
-Content-Type: text/plain; charset="iso-8859-1"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20220503094728.926-1-ctcchien@nuvoton.com> <20220503094728.926-2-ctcchien@nuvoton.com>
+ <776bb807-feba-7c75-d280-11c33e33f71d@molgen.mpg.de>
+In-Reply-To: <776bb807-feba-7c75-d280-11c33e33f71d@molgen.mpg.de>
+From:   Medad Young <medadyoung@gmail.com>
+Date:   Thu, 5 May 2022 15:29:25 +0800
+Message-ID: <CAHpyw9dJqzgf_LKD9cmumoPMCNX92Pd9+m5xxDwxoLsEyVX1gg@mail.gmail.com>
+Subject: Re: [PATCH v8 1/3] ARM: dts: nuvoton: Add memory controller node
+To:     Paul Menzel <pmenzel@molgen.mpg.de>
+Cc:     rric@kernel.org, James Morse <james.morse@arm.com>,
+        tony.luck@intel.com, Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Borislav Petkov <bp@alien8.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Benjamin Fair <benjaminfair@google.com>,
+        Nancy Yuen <yuenn@google.com>,
+        Patrick Venture <venture@google.com>, KWLIU@nuvoton.com,
+        YSCHU@nuvoton.com, JJLIU0@nuvoton.com, KFTING <KFTING@nuvoton.com>,
+        Avi Fishman <avifishman70@gmail.com>,
+        Tomer Maimon <tmaimon77@gmail.com>,
+        Tali Perry <tali.perry1@gmail.com>, ctcchien@nuvoton.com,
+        devicetree <devicetree@vger.kernel.org>,
+        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-edac <linux-edac@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Donnerstag, 5. Mai 2022, 08:41:31 CEST schrieb Sascha Hauer:
-> On Thu, May 05, 2022 at 02:28:24AM +0200, Heiko Stübner wrote:
-> > Am Freitag, 22. April 2022, 09:28:33 CEST schrieb Sascha Hauer:
-> > > The VOP2 is the display output controller on the RK3568. Add the node
-> > > for it to the dtsi file along with the required display-subsystem node
-> > > and the iommu node.
-> > > 
-> > > Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
-> > > Acked-by: Rob Herring <robh@kernel.org>
-> > > ---
-> > > +	vop: vop@fe040000 {
-> > > +		reg = <0x0 0xfe040000 0x0 0x3000>, <0x0 0xfe044000 0x0 0x1000>;
-> > > +		reg-names = "regs", "gamma_lut";
-> > 
-> > reg-names does not seem to be part of the dt-binding.
-> > Though now in the vop2-driver I see that the code uses that naming.
-> > 
-> > I guess we might want to just go the vop1-way by using numbered
-> > platform-resources via a follow-up patch and drop the regnames here?
-> 
-> Or we could document the reg-names properties in a follow-up patch.
-> Wouldn't that be better?
+Dear Paul,
 
-Also a possibility. Although that of course leads us into the naming
-bike-shed ;-) ... i.e. for reg-names I'd do "vop" + "gamme-lut" (dash instead
-of underscore) - instead of the ones used right now.
+Paul Menzel <pmenzel@molgen.mpg.de> =E6=96=BC 2022=E5=B9=B45=E6=9C=883=E6=
+=97=A5 =E9=80=B1=E4=BA=8C =E4=B8=8B=E5=8D=885:56=E5=AF=AB=E9=81=93=EF=BC=9A
+>
+> Dear Medad,
+>
+>
+> Thank you for v8.
+>
+> Am 03.05.22 um 11:47 schrieb Medad CChien:
+> > ECC must be configured in the BootBlock header.
+> > Then, you can read error counts via
+> > the EDAC kernel framework.
+>
+> Please reflow for 75 characters per line.
 
-While using numbered resources would keep the commonality between
-both vops
+OK, I will reflow for 75 characters per line.
 
+>
+> [=E2=80=A6]
+>
+>
+> Kind regards,
+>
+> Paul
 
+B.R.
+Medad
