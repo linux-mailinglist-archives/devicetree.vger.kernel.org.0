@@ -2,146 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3994451B795
-	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 07:46:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3787151B7C6
+	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 08:09:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243704AbiEEFuR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 May 2022 01:50:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43820 "EHLO
+        id S232495AbiEEGNX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 May 2022 02:13:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33392 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243729AbiEEFuQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 01:50:16 -0400
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 803F7344CC;
-        Wed,  4 May 2022 22:46:37 -0700 (PDT)
-Received: by mail-ej1-x629.google.com with SMTP id gh6so6721410ejb.0;
-        Wed, 04 May 2022 22:46:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:to:cc:references
-         :from:in-reply-to:content-transfer-encoding;
-        bh=AAqxEn14F2urq7gRW6XIInZJqYKSj6uaZRKkj7ztyxc=;
-        b=iVInBQQc78CUYacNlpsH9Ud7kB6dqn23jW7w+jMJscvFFkOHvZBF54dzHIWhvU3llN
-         qW0uY0HHzTq1H9e10V+kPJH7f9nsk5NsPgVxzBhUXMTmiHdbSLSfbQiD6VysHFoae+Dh
-         JFilEyLYF9y7tE5HunM7u10h/4uBoOSZYLbV5OsBHJWx8zA7ewQVvD7mRBRKh0EeAf5s
-         fDfVGfhSWyajKH0AaR0S1TvwlCtCCjXTck9Cumtnlv7g4rsUW/ExegF650iQ+7M8EkaJ
-         W9OofsnjDhmPo7P59xG8naTefJsMm8WeFaoU4y0mIE28JQ+Zg9heoq3GCh7vep4TvCgU
-         IIWg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :to:cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=AAqxEn14F2urq7gRW6XIInZJqYKSj6uaZRKkj7ztyxc=;
-        b=P6q1lg5UcmotkFwFo1YaVUTMo8yYw+I+Uo26sIUcR7iLWwSXK6sIt9k3C6VKuwvvYk
-         8FEJ7PQTZeYVNwtxjsuSC2Gc//yLVxAUCEsarrJOM8KqKHd25/FyQwQ9WNblqmVlzGaZ
-         1HHTBYbELsdEbopev1LMiOrq+eJ1QtfaovqHwejjcXrcnI7+3jeDPgpQMtAFD7pRd3TF
-         g8gFc8kC+EH1ulSDsoNI1cvpeCP7rkAZAD0npb1s1yMeWL0nGqEFi/KX/4VpJwWLXF1O
-         JxD90tYcAwEw8/TJ1owv+XlKnQ8VD9dnCIM/zefoZ5AzpXwpuF537GdfkVx89Egh1I2x
-         WdLA==
-X-Gm-Message-State: AOAM530GyxpK4FIH2jv2hA3+4MHY+kMfwA6D1pLVzrEeYPcOpbp63CJ+
-        lv2pLJkSEQSgdKGlnQeShjE=
-X-Google-Smtp-Source: ABdhPJxmEoOm7L1U4kbR4F1xUSjzh+Guzq53ory3XJUYqqgkU5cBr7/B9HTGtNiGANSfQ2qgdwaB1Q==
-X-Received: by 2002:a17:907:7f09:b0:6f4:9f76:d10a with SMTP id qf9-20020a1709077f0900b006f49f76d10amr9971400ejc.248.1651729595926;
-        Wed, 04 May 2022 22:46:35 -0700 (PDT)
-Received: from [192.168.26.149] (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.googlemail.com with ESMTPSA id eb7-20020a170907280700b006f3ef214e4esm326062ejc.180.2022.05.04.22.46.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 04 May 2022 22:46:35 -0700 (PDT)
-Message-ID: <318c0814-7f0b-9798-6998-5039094b010d@gmail.com>
-Date:   Thu, 5 May 2022 07:46:34 +0200
+        with ESMTP id S230304AbiEEGNW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 02:13:22 -0400
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6598537BC0;
+        Wed,  4 May 2022 23:09:43 -0700 (PDT)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 24569RBA039067;
+        Thu, 5 May 2022 01:09:27 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1651730968;
+        bh=chtKfKi9u7JhqpHsYOv3fc2Cp6hTVUa04Y0qSDCul9s=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=J7968Gekoogq4yQZ/VFMVf9yKcMiih7fW0qpww3zY9mC6LFZ9DUdZNpQWRgrl9MoM
+         FYnq21eg2vvoqDx+FZhiK08uuuGiy05VobcF8jpbX93dUNpkzCdL5WtH1lrwgLSFL/
+         D9CJxK3Ehd5h2GWKYhhBR+jWAlKf8GLxbWnTdDjQ=
+Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 24569RI4016516
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 5 May 2022 01:09:27 -0500
+Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Thu, 5
+ May 2022 01:09:27 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Thu, 5 May 2022 01:09:27 -0500
+Received: from [172.24.219.78] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 24569N1Q009111;
+        Thu, 5 May 2022 01:09:24 -0500
+Message-ID: <80ed87e2-c987-1421-842a-1040f95279bb@ti.com>
+Date:   Thu, 5 May 2022 11:39:04 +0530
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:96.0) Gecko/20100101
- Thunderbird/96.0
-Subject: Re: [PATCH V2] nvmem: add driver handling U-Boot environment
- variables
-To:     Ahmad Fatoum <a.fatoum@pengutronix.de>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>
-Cc:     Tom Rini <trini@konsulko.com>, linux-mtd@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        u-boot@lists.denx.de, devicetree@vger.kernel.org,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>
-References: <20220503165658.13932-1-zajec5@gmail.com>
- <79c7891a-9a68-a111-094d-be9804071a9e@pengutronix.de>
-From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-In-Reply-To: <79c7891a-9a68-a111-094d-be9804071a9e@pengutronix.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH v3 0/2] arm64: ti: k3-am62: Enable audio output
+Content-Language: en-US
+To:     Jai Luthra <j-luthra@ti.com>, Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+CC:     <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, Jayesh Choudhary <j-choudhary@ti.com>
+References: <20220427085053.14964-1-j-luthra@ti.com>
+From:   Devarsh Thakkar <devarsht@ti.com>
+In-Reply-To: <20220427085053.14964-1-j-luthra@ti.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-7.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 4.05.2022 11:23, Ahmad Fatoum wrote:
-> Hello Rafał,
-> 
-> On 03.05.22 18:56, Rafał Miłecki wrote:
->> From: Rafał Miłecki <rafal@milecki.pl>
->>
->> U-Boot stores its setup as environment variables. It's a list of
->> key-value pairs stored on flash device with a custom header.
->>
->> This commit adds an NVMEM driver that:
->> 1. Provides NVMEM access to environment vars binary data
->> 2. Extracts variables as NVMEM cells
->>
->> It can be used for:
->> 1. Accessing env variables from user-space
-> 
-> Is this already possible? The only interface I know of is the /nvmem
-> file in sysfs, but that one is not per cell, but per device.
+On 27/04/22 14:20, Jai Luthra wrote:
+> This patch series adds support for audio output via headphone jack on the 
+> AM62-SK board. The jack is wired to TLV320AIC3106 (codec), which is 
+> connected to McASP (serializer).
+>
+> The same 3.5mm jack can be used for combined playback+recording, but audio 
+> input is currently disabled on McASP until further testing and debugging.
+>
+> For testing, please apply this series on top of 
+> https://lore.kernel.org/all/20220427072954.8821-1-vigneshr@ti.com/ and
+> https://lore.kernel.org/alsa-devel/20220422054001.3738-1-j-luthra@ti.com/
+>
+> v3:
+> Fix regulator, clock and codec node names
 
-Maybe that wasn't precise enough, I should probably write:
-1. Parsing binary data from user-space
+The series looks good to me.
 
-In future I'd like to extend U-Boot's "printenv" tool to support reading
-env variables blob using Linux's sysfs as documented in the
-Documentation/ABI/stable/sysfs-bus-nvmem
+Reviewed-by: Devarsh Thakkar <devarsht@ti.com>
 
-
->> +	label = of_get_property(np->parent, "label", NULL);
->> +	if (!label)
->> +		label = np->parent->name;
->> +
->> +	priv->mtd = get_mtd_device_nm(label);
->> +	if (IS_ERR(priv->mtd)) {
->> +		dev_err(dev, "Failed to find \"%s\" MTD device: %ld\n", label, PTR_ERR(priv->mtd));
->> +		return PTR_ERR(priv->mtd);
->> +	}
-> 
-> I am trying to make sense of this using the binding, but I can't.
-> Do you have an example device tree fragment?
-
-This comes from unreleased yet board I'm working on.
-
-It stores U-Boot env variables in the middle of U-Boot binary.
-
-partitions {
-	compatible = "fixed-partitions";
-	#address-cells = <1>;
-	#size-cells = <1>;
-
-	partition@0 {
-		label = "loader";
-		reg = <0x0 0x100000>;
-
-		partition@40000 {
-			compatible = "u-boot,env";
-			label = "u-boot-env";
-			reg = <0x40000 0x4000>;
-		};
-	};
-
-	partition@100000 {
-		label = "image";
-		reg = <0x100000 0x1fe00000>;
-	};
-};
+>
+> v2:
+> Move out the patch for sound/soc/ti/davinici-mcasp.c into a separate series
+>
+> v2: https://lore.kernel.org/all/20220422060052.8548-1-j-luthra@ti.com/
+> v1: https://lore.kernel.org/all/20220421132224.8601-1-j-luthra@ti.com/
+>
+> Jai Luthra (1):
+>   arm64: dts: ti: am625-sk: Add audio output support
+>
+> Jayesh Choudhary (1):
+>   arm64: dts: ti: k3-am62-main: Add McASP nodes
+>
+>  arch/arm64/boot/dts/ti/k3-am62-main.dtsi | 51 ++++++++++++++
+>  arch/arm64/boot/dts/ti/k3-am625-sk.dts   | 89 ++++++++++++++++++++++++
+>  2 files changed, 140 insertions(+)
+>
