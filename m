@@ -2,77 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 817BA51BA8D
-	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 10:33:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 09A1B51BA9B
+	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 10:36:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349421AbiEEIhF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 May 2022 04:37:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48606 "EHLO
+        id S235487AbiEEIjm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 May 2022 04:39:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50726 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343493AbiEEIhE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 04:37:04 -0400
+        with ESMTP id S1349690AbiEEIjE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 04:39:04 -0400
 Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B27F0488B2
-        for <devicetree@vger.kernel.org>; Thu,  5 May 2022 01:33:25 -0700 (PDT)
-Received: by mail-ed1-x52e.google.com with SMTP id be20so4326034edb.12
-        for <devicetree@vger.kernel.org>; Thu, 05 May 2022 01:33:25 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B24A01274E
+        for <devicetree@vger.kernel.org>; Thu,  5 May 2022 01:35:23 -0700 (PDT)
+Received: by mail-ed1-x52e.google.com with SMTP id g23so4343900edy.13
+        for <devicetree@vger.kernel.org>; Thu, 05 May 2022 01:35:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=EkR961EY1CXiCzNgowxxrUhXg4TMH8OHqi0oexOXXrs=;
-        b=Mt+y+lKLyTAGxGx+Cc8jLbXo6P9hfMiUjbZCuTTCCuaNtNZJs2Ce2i/GQ7BtCCHYIu
-         kmIjpU6HkEkOQhKTFMtrIHmp/6F0WkvZgVqBhEBLoHfGsnfcdYc6OJEpRvrC+I19872y
-         NNng+PNxrz3aeiuobZAz/CQDLOFpy+qAjrQnt9+0ADz8tY4uO7l7zCX1lmiSFzAhXV6h
-         7QAUe6emtYXxAMjuNg1xlwVbIZT8ypOOtq6sWGhvT5P3Br3PWVoSSfmmMFTQbxAjwDjb
-         fYsno5UpExANJUOCyBpGZF3XN9ENrq5LKZAxlJdoWtxQ4v5ocISQqhQnwCkOoxS8T+mD
-         lFDQ==
+        bh=8kO7QCHGCne68GYXczGxAGiwBY8jMQXd1Ly9yp866KU=;
+        b=Tq2Lj5sQBF9LAGbNoqQ2JGXC62P7kgvSvfVs08YDTPHhMEgdxVdBLz6X7JolcE6LtP
+         ndphpXlJi0GcCk0hxQ1wjPkH347gEUYF2Rcw/3DTz25oBUdNG2pW3bVGNEweroW8yBEm
+         YEwphZeqEWsXhRIEdzsBrDUhlXkqle6I8i5NTrTKeLMGJ1zNrvM1n4Lmggac0rqcOvV8
+         lDnCX3V51kzrXd9dtjJMOmh90I/N0tlRBKQFlUmfL0NEbuRRlSQe/vRgCTiZq3/nIRhK
+         vF5PcKa0cfY+eJn+n1TqUxKvriO1vb3v4fzFXEaR0pCfpip1LxZrkagACCPABd4iNq1o
+         uZbQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=EkR961EY1CXiCzNgowxxrUhXg4TMH8OHqi0oexOXXrs=;
-        b=VdJdwUChYL4XaDecPYWTmWV2AS8hXn21AheqXNJg4RG4iDRtORG2DgYbxziUIwff6Y
-         2bb+d9m8o2ttUHZnp26uGK1E28vfaVLMPy3OtlL0bPcGIg4Hma4TgWTYMP/eZNuQUPHR
-         eUotbUBZoKS0TRteDFDMq+38Z8PPJGFR8I4Cf9Ek0o2CDdqZIsINTWqOJ8crx73oyST6
-         w/onWAMNBwEFI3tVUopoRJ7q05i3E/sREbvyyT0dqXqqFjtdD0yltDYuI0PDSpzXKj+D
-         oEadpsiHsIysNoCqLDSg6CWjeSSpp+THySe1iuh6wWc2ZcjOoifYke1XP+bgcyxS/Gvv
-         G7Ew==
-X-Gm-Message-State: AOAM530brvrlDbHP/IMShYffekvcKzaxS5IDrXz+8dGtL+PaPOekf0xe
-        bfWzOP7OWgKJSSFG4ka64enF+g==
-X-Google-Smtp-Source: ABdhPJyF/rcmBBgiWodOMfkAv7sPsey9xQxskdtkaMwmULm+fFtWEOEYwxBPAE/k1fOsSJoVMBZAzA==
-X-Received: by 2002:a50:8dca:0:b0:425:e8a3:a79f with SMTP id s10-20020a508dca000000b00425e8a3a79fmr27875839edh.155.1651739604291;
-        Thu, 05 May 2022 01:33:24 -0700 (PDT)
+        bh=8kO7QCHGCne68GYXczGxAGiwBY8jMQXd1Ly9yp866KU=;
+        b=3ylsqVBEMBCH+aoxsfqiS1gZiS64zjfTgoavbu9wxswpr24p2EqWoo8dL12OVusQjV
+         AYIVglbitPzEQzYTt2Kk+tKpJbw/b7NXc2UuoBmiF/pZdM7DUKUh+1sW069ZxuzqefTr
+         /YX7gIXVCH9NUzXdzmqrIrH1FT1saph0yP7SREUKChAUdY9had+NRpYqJ/fdwYGjvSfF
+         YT8BF0qq8gXcoyY82JssJ9mW3DNiqAtf0UhaHSECcv7QyxgavRjt4OXmikSSDw6QxnkS
+         hPPGOBwJv3tViC9lmnRe07s7UIwV2GHXRP0tDObqeY019gTTypKAo3FCwxLCuJHc/4Ha
+         QkwA==
+X-Gm-Message-State: AOAM530RHozGt1N7l2797jzlqssi5hyYNAhKXheyb3N2Ln2Vs/H5omma
+        yP60IxhpeRajL6V/TmFQ5KJ07g==
+X-Google-Smtp-Source: ABdhPJwIqe09rAc0tNzIO2qX2RWAxzun0hwQjzf2mMISopdokDXCWkTsEVXDFrgW7UE7FTAKReYbgg==
+X-Received: by 2002:a05:6402:27c9:b0:427:ba7f:6288 with SMTP id c9-20020a05640227c900b00427ba7f6288mr22398071ede.416.1651739722273;
+        Thu, 05 May 2022 01:35:22 -0700 (PDT)
 Received: from [192.168.0.217] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id f24-20020a170906391800b006f3ef214df7sm490116eje.93.2022.05.05.01.33.23
+        by smtp.gmail.com with ESMTPSA id b21-20020aa7c915000000b0042617ba6380sm510483edt.10.2022.05.05.01.35.20
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 05 May 2022 01:33:23 -0700 (PDT)
-Message-ID: <2dbea4b4-9387-6676-8648-94bae6df3d8a@linaro.org>
-Date:   Thu, 5 May 2022 10:33:22 +0200
+        Thu, 05 May 2022 01:35:21 -0700 (PDT)
+Message-ID: <ec1afdc4-54be-71cd-1873-6959e132a45d@linaro.org>
+Date:   Thu, 5 May 2022 10:35:20 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.8.1
-Subject: Re: [PATCH 2/6] dt-bindings: regulator: Add reg-external-output
- binding
+Subject: Re: [PATCH 1/4] dt-bindings: leds: qcom-lpg: Add compatible for
+ PM660L LPG block
 Content-Language: en-US
-To:     Zev Weiss <zev@bewilderbeest.net>, Mark Brown <broonie@kernel.org>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+To:     Marijn Suijten <marijn.suijten@somainline.org>,
+        phone-devel@vger.kernel.org, Pavel Machek <pavel@ucw.cz>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     ~postmarketos/upstreaming@lists.sr.ht,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Martin Botka <martin.botka@somainline.org>,
+        linux-arm-msm@vger.kernel.org, linux-leds@vger.kernel.org,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        openbmc@lists.ozlabs.org
-References: <20220504065252.6955-1-zev@bewilderbeest.net>
- <20220504065252.6955-2-zev@bewilderbeest.net>
- <YnJ32bG4IkSrRtHV@sirena.org.uk> <YnLjNn9WVhvd4izZ@hatter.bewilderbeest.net>
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220504205704.699500-1-marijn.suijten@somainline.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <YnLjNn9WVhvd4izZ@hatter.bewilderbeest.net>
+In-Reply-To: <20220504205704.699500-1-marijn.suijten@somainline.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,28 +83,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/05/2022 22:33, Zev Weiss wrote:
-> On Wed, May 04, 2022 at 05:55:53AM PDT, Mark Brown wrote:
->> On Tue, May 03, 2022 at 11:52:48PM -0700, Zev Weiss wrote:
->>> This describes an external output supplied by a regulator, such as a
->>> power outlet on a power distribution unit (PDU).
->>
->> OK, so this is that represnetation of the connection - which raises the
->> question about why the regulator needs a property?
+On 04/05/2022 22:57, Marijn Suijten wrote:
+> Document the availability of an LPG configuration for the PM660L PMIC in
+> the Qualcomm Light Pulse Generator driver.
+> 
+> Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
+> ---
+>  Documentation/devicetree/bindings/leds/leds-qcom-lpg.yaml | 1 +
 
-This remained unanswered... the binding looks like approach the problem
-from wrong side. It's like defining consumers of clock inside clock
-controller. It does not scale, it's not in Devicetree style/intentions.
+Hmm, there is no such file in next-20220503...
 
-You should have a dedicated port or connector which takes a regulator as
-a supply (and for supply we already have bindings).
-
-We already have only one connector:
-git grep connector -- Documentation/devicetree/
-
-
-(extcon is not the best choice for bindings, it's tied to Linux
-implementation, not to hardware)
 
 Best regards,
 Krzysztof
