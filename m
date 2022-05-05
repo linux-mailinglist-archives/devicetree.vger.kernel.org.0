@@ -2,116 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B768451C039
-	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 15:07:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D2C951C02E
+	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 15:05:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1378730AbiEENJq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 May 2022 09:09:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51340 "EHLO
+        id S1346531AbiEENJG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 May 2022 09:09:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51998 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1378788AbiEENIr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 09:08:47 -0400
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 360425643F
-        for <devicetree@vger.kernel.org>; Thu,  5 May 2022 06:05:07 -0700 (PDT)
-Received: by mail-ej1-x62f.google.com with SMTP id dk23so8604400ejb.8
-        for <devicetree@vger.kernel.org>; Thu, 05 May 2022 06:05:07 -0700 (PDT)
+        with ESMTP id S1378883AbiEENJB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 09:09:01 -0400
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4ED4265B0;
+        Thu,  5 May 2022 06:05:21 -0700 (PDT)
+Received: by mail-ej1-x62b.google.com with SMTP id bv19so8611700ejb.6;
+        Thu, 05 May 2022 06:05:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=sxVJoGvxoT/BfORhwUe0lF83tKeGUQ56jY7vzgfAHU4=;
-        b=Y0K2T7eDDIErEPqMy8O6G47SIMuNV/FV2iBabtCwdZYCRksLJj+E+c7fbrSt9ZBBXD
-         DaXJNvwCp8O95B7G3qBBBXd/ZY5LglYP8OcOlRsRkLkFbnOz5YGjf1+Kq+Cej6sf1PKz
-         8jox3zcMMsB69mnVMtXKZEg+/RyB0rS4FojXfONdqL7k9Dw/I4yA/G/3RFFnSgWC8agR
-         bsZsTNdQJo4ur+mN0mOVzXqc/pW10pVTqbvQpkdO4R2oawKCjQrPZ/LhQquGSb8INoG5
-         zUIcx6Usp3yJ11Kt8LC8bG4AgtPbYUl5xx+MqNZTXX94AuUxIh18hRHgvcWzdek9DC0O
-         2i3w==
+        d=gmail.com; s=20210112;
+        h=message-id:date:from:to:cc:subject:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=aNKOhtKTSEh4Mqkalcz76ou0WqeGSr1qJcVWuxMdUgc=;
+        b=Rl64O5ujSl9GyaSM5CAsEp/QIQNn+pY27aNk3caCBymQk23TAnjTdLhOdwHuO6v0Xe
+         LX95mSzpjCgmTKkznYc5Yyn76KiDpX9xumKc4M1AUZEYRARlObL/akMmPkCzORIKL2lX
+         dlpF+c7Fo/EM2tTUuQq6vezqYHPWtHJMjpiZD295uy9umFpMWTszJvqe8O9FMRVKKzWZ
+         39NxWphExiy2VLUvQHnw1XON74THBYcpqVaK7Ay9nwQyOij7UZJuTGjXdOoXRJAHLA2l
+         eVAymy9eRQmh81jLURLeW4veoZ0H4K1ec6R+oOwMfiYPlpTwVqvB9viXzZuWG3IS1eu6
+         Paxw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=sxVJoGvxoT/BfORhwUe0lF83tKeGUQ56jY7vzgfAHU4=;
-        b=53dvi53cIwLPGvz3t7HfT0C7HEF9hXEHcaubsrgQgEzDXf3tvC7L3daMWBGvHnjatY
-         cpdGKAcfatvXc+80x4mkTJEKA796qhzxcmeJZIldHDPGEYIYJs0xxGhlpUkUyJqjZmt2
-         ix+a4yY5WMvPwD5CNc/rcLq0PuKfkm7P9JpfTJmURKtOSPBX57pe6LZEuHrx+kJlz+um
-         cmtXiwHNdp70xu6/r4ERbxF+OBYN41ToWVeXeOzfVibt+eMqQXiZbubjUlDsOfwh3c2p
-         1QfnizjBLOGoItZip5vk+vEG1CXJgaafyKVCatvpeZWh3GD7xqAjaC1/jXR9yto0jaVt
-         I7Mw==
-X-Gm-Message-State: AOAM531+zLeGSqAPABZS6w04nplzklSmk3JpIzXYuW0CXI2P3IQxidqm
-        YqjBScfhFu6j1R9GrxN+BBdcVc8fBFOxgYI48DAO7w==
-X-Google-Smtp-Source: ABdhPJxyNkSLwouP3OR63NyFLRxUlmDS+dFIZZqJlV9mcUABNttg9TsG8+o4n8l4yoY3YgwsQa8BiV83N6jWTpdMxkc=
-X-Received: by 2002:a17:907:3e28:b0:6f4:3900:78f8 with SMTP id
- hp40-20020a1709073e2800b006f4390078f8mr21714935ejc.736.1651755905797; Thu, 05
- May 2022 06:05:05 -0700 (PDT)
+        h=x-gm-message-state:message-id:date:from:to:cc:subject:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=aNKOhtKTSEh4Mqkalcz76ou0WqeGSr1qJcVWuxMdUgc=;
+        b=PJM40PmC6l5F4QsHvu8LMmD0bO35bnQV2IQnGl19spdZHs+KY5T9e/mi4cFkYIz4TR
+         4c0zvXfN6zJiChY3OstDxmigL9FrHRiqN+NV29iPlrNI+/t6nCDwcqP9J9mImtaZz7yk
+         a/sQlbDoyeUiUt5TKOO2voAYu3r0AgGxFFcjmb72IaLoKFGjTb8TtTORhrO/Fga4lyMA
+         gdXoCHDZ3nG+X5bIaQpQjgljyujP1if/BAjrlnTjv7Br6NGd9mfy5mV1zPPIIuFlgSLr
+         jdbqQbWBPCleLocRmF2O/iFo0lBhOwKYrpyXgvwwBlEczPp8KQcokj2b4I4Ldw6I6y/U
+         UILQ==
+X-Gm-Message-State: AOAM533E5J+8Qt26IFavaUCrkumTDm4iS9HZHpy5XmhqNcwF+FjkwQXP
+        HtoydIgxNXI3nEbBBt34soA=
+X-Google-Smtp-Source: ABdhPJyyVh6cKMR5tBekSuJuZBCdlWUsoD48Yo83JDTJb326k6wuXABrCERWF5ectwaSbf2VtzR4pw==
+X-Received: by 2002:a17:907:7e88:b0:6f4:99be:a333 with SMTP id qb8-20020a1709077e8800b006f499bea333mr12336755ejc.719.1651755918889;
+        Thu, 05 May 2022 06:05:18 -0700 (PDT)
+Received: from Ansuel-xps. (93-42-70-190.ip85.fastwebnet.it. [93.42.70.190])
+        by smtp.gmail.com with ESMTPSA id p4-20020a17090628c400b006f3ef214e07sm721237ejd.109.2022.05.05.06.05.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 05 May 2022 06:05:18 -0700 (PDT)
+Message-ID: <6273cb8e.1c69fb81.716fc.3f98@mx.google.com>
+X-Google-Original-Message-ID: <YnPLjDg5Vs3eQyG+@Ansuel-xps.>
+Date:   Thu, 5 May 2022 15:05:16 +0200
+From:   Ansuel Smith <ansuelsmth@gmail.com>
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Jonathan Corbet <corbet@lwn.net>, Pavel Machek <pavel@ucw.cz>,
+        John Crispin <john@phrozen.org>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-doc@vger.kernel.org, linux-leds@vger.kernel.org
+Subject: Re: [RFC PATCH v6 03/11] leds: trigger: netdev: drop
+ NETDEV_LED_MODE_LINKUP from mode
+References: <20220503151633.18760-1-ansuelsmth@gmail.com>
+ <20220503151633.18760-4-ansuelsmth@gmail.com>
+ <YnMLay1N2KBjC1VE@lunn.ch>
 MIME-Version: 1.0
-References: <cover.1651497024.git.geert+renesas@glider.be> <5628a862688bd9d3b4f6c66cb338671211058641.1651497024.git.geert+renesas@glider.be>
-In-Reply-To: <5628a862688bd9d3b4f6c66cb338671211058641.1651497024.git.geert+renesas@glider.be>
-From:   Bartosz Golaszewski <brgl@bgdev.pl>
-Date:   Thu, 5 May 2022 15:04:55 +0200
-Message-ID: <CAMRc=MeQZ_T_AoHUO3qx7oW68UMC6HH9CaC041vYr7wQisqjHA@mail.gmail.com>
-Subject: Re: [PATCH 1/7] dt-bindings: gpio: renesas,rcar-gpio: R-Car V3U is
- R-Car Gen4
-To:     Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        dmaengine@vger.kernel.org,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        linux-i2c <linux-i2c@vger.kernel.org>,
-        iommu@lists.linux-foundation.org, linux-serial@vger.kernel.org,
-        linux-watchdog@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YnMLay1N2KBjC1VE@lunn.ch>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        WEIRD_QUOTING autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 2, 2022 at 3:35 PM Geert Uytterhoeven
-<geert+renesas@glider.be> wrote:
->
-> Despite the name, R-Car V3U is the first member of the R-Car Gen4
-> family.  Hence move its compatible value to the R-Car Gen4 section.
->
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> ---
->  Documentation/devicetree/bindings/gpio/renesas,rcar-gpio.yaml | 4 +---
->  1 file changed, 1 insertion(+), 3 deletions(-)
->
-> diff --git a/Documentation/devicetree/bindings/gpio/renesas,rcar-gpio.yaml b/Documentation/devicetree/bindings/gpio/renesas,rcar-gpio.yaml
-> index 0681a4790cd62e23..75e5da6a7cc04bbd 100644
-> --- a/Documentation/devicetree/bindings/gpio/renesas,rcar-gpio.yaml
-> +++ b/Documentation/devicetree/bindings/gpio/renesas,rcar-gpio.yaml
-> @@ -48,11 +48,9 @@ properties:
->                - renesas,gpio-r8a77995     # R-Car D3
->            - const: renesas,rcar-gen3-gpio # R-Car Gen3 or RZ/G2
->
-> -      - items:
-> -          - const: renesas,gpio-r8a779a0  # R-Car V3U
-> -
->        - items:
->            - enum:
-> +              - renesas,gpio-r8a779a0     # R-Car V3U
->                - renesas,gpio-r8a779f0     # R-Car S4-8
->            - const: renesas,rcar-gen4-gpio # R-Car Gen4
->
-> --
-> 2.25.1
->
+On Thu, May 05, 2022 at 01:25:31AM +0200, Andrew Lunn wrote:
+> On Tue, May 03, 2022 at 05:16:25PM +0200, Ansuel Smith wrote:
+> > Drop NETDEV_LED_MODE_LINKUP from mode list and convert to a simple bool
+> > that will be true or false based on the carrier link. No functional
+> > change intended.
+> 
+> What is missing from the commit message is an explanation why?
+> 
+>      Andrew
 
-Acked-by: Bartosz Golaszewski <brgl@bgdev.pl>
+Will add the reason.
+Just in case it doesn't make sense...
+The reason is that putting a state in the mode bitmap doesn't look
+correct. It's ""acceptable"" if we have only 3 state (rx, tx and link).
+It become problematic when we start to have 7 modes and a link up state
+should be handled differently.
+
+Does it make sense?
+
+-- 
+	Ansuel
