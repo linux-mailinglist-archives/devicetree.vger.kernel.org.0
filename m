@@ -2,121 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C31F551BB05
-	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 10:52:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B9E651BAE1
+	for <lists+devicetree@lfdr.de>; Thu,  5 May 2022 10:45:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350527AbiEEIzv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 May 2022 04:55:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37214 "EHLO
+        id S1350292AbiEEItY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 May 2022 04:49:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60414 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244142AbiEEIzr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 04:55:47 -0400
-Received: from mail-il1-x131.google.com (mail-il1-x131.google.com [IPv6:2607:f8b0:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9BFB746179
-        for <devicetree@vger.kernel.org>; Thu,  5 May 2022 01:52:08 -0700 (PDT)
-Received: by mail-il1-x131.google.com with SMTP id f5so2416748ilj.13
-        for <devicetree@vger.kernel.org>; Thu, 05 May 2022 01:52:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=XRbImXS7yZjOSKJpbk8D2qEogzCI5zzUCNGCXkZ4ORI=;
-        b=itRUh1dwQfTmRruVf3tQRZTPHU7Q3LOQmD46K2PgD63vClU5QD1rKPPIjkhgtLXcuB
-         b/DTrLyF+Zv4hWALhGeK13DLEj9w2CPGWsdw+DPkgS5YcTKdH4ODYx6Dib5R1UkVZg2O
-         phpswVF3Zi0Eaqu52fpaMAOJXJQinwJvhUB2Ly7tNCVqb2YBT+tu57hcTnWvYaf49OGa
-         zQFFXlZ7SawuqXjPhrVYSu1S+HF+r3uiA94IZ4dl4sVsVHlrGd7YpZW8pRxmEKc4nwJr
-         owZsh7QYjRj9Bwc259EmGttM/+0UWE9ABmd+dMEQt2Hf05KbbZwwyk20anpZobX0p8bC
-         JzeA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=XRbImXS7yZjOSKJpbk8D2qEogzCI5zzUCNGCXkZ4ORI=;
-        b=njxOhME+Gi43LZSiwP+T9xkGQe137ckI++jbnh7ygjiUgx2pW6usZ9vVrCN6q3BPhp
-         iMWJdMhNYhXbVYwVChGpoi39lS3tP+SCeXt2tnNhKDLNBCKQ5keq6bw/8kKxC/PdYSi5
-         3cL/+U5ZR1sR2/G7+X1tylT3W7JNDmt7oV1yX9m7+6Wox/HQXbmOUqngche5DS5c+KXZ
-         qh88gwIAIj30CDMGDjlAquh9u0nqK6rqxPfuWvC+LHRRwGXhejQyoTqzDt+cZaozmuia
-         kRkVJ761ll+mMTktqDMHUni3jpYLMwLrktH8pJ42ZsdEK/QZPImsLLberGHA+A2G5FUS
-         WqVA==
-X-Gm-Message-State: AOAM5336bw/N9lWF9oZIJ1e80jeMCrrsyaEkjqoOMz9I+onFIOqQBDQM
-        xTrcsLdBpmoP/iZbzn+ZRukKHcQSEj88MQ==
-X-Google-Smtp-Source: ABdhPJxk2kal36tmSOj1u1bseqzNs8vNHgDOt6a/BDP1nICDYU6wjZQCZwyllBJW4uJTWz/H755R5w==
-X-Received: by 2002:a65:490d:0:b0:39e:58cb:b1eb with SMTP id p13-20020a65490d000000b0039e58cbb1ebmr21792988pgs.390.1651740298043;
-        Thu, 05 May 2022 01:44:58 -0700 (PDT)
-Received: from localhost ([122.162.234.2])
-        by smtp.gmail.com with ESMTPSA id t3-20020a170902e84300b0015e8d4eb267sm935629plg.177.2022.05.05.01.44.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 May 2022 01:44:57 -0700 (PDT)
-Date:   Thu, 5 May 2022 14:14:55 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Hector Martin <marcan@marcan.st>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Sven Peter <sven@svenpeter.dev>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Marc Zyngier <maz@kernel.org>,
-        Mark Kettenis <mark.kettenis@xs4all.nl>,
-        linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/4] MAINTAINERS: Add entries for Apple SoC cpufreq
- driver
-Message-ID: <20220505084455.x575yl2evgty5x3j@vireshk-i7>
-References: <20220504075153.185208-1-marcan@marcan.st>
- <20220504075153.185208-2-marcan@marcan.st>
- <20220504101750.wmuicq3dytnxrw5o@vireshk-i7>
- <e0445aa6-0c96-b80d-154e-274be0c1a025@marcan.st>
- <c374bea4-554d-2e50-4ac6-fb4a2e4fec67@linaro.org>
+        with ESMTP id S1350527AbiEEItS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 04:49:18 -0400
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.15])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5052F13DE2
+        for <devicetree@vger.kernel.org>; Thu,  5 May 2022 01:45:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+        s=badeba3b8450; t=1651740304;
+        bh=xx/4O0ev2h+cTTB8VZtp7yVZgwGZrAIwxUX58uMFqq0=;
+        h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
+        b=GeGv5ooBNOUCELJdyhcGPi5AxDeLQCnfHp3QiXcKhJzX3b9D8/fJcMn1t/ATvpd3E
+         VUrTifK62rAZzyK3nwmHXtJb0DwDSl+bfLGvccxI8O9IytezT49YOQQD9lL4FIkamo
+         fHsJ4HY+UhrAFI35Nh0sRUP3ViKytEhycutq0pQc=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from [217.61.145.208] ([217.61.145.208]) by web-mail.gmx.net
+ (3c-app-gmx-bs47.server.lan [172.19.170.99]) (via HTTP); Thu, 5 May 2022
+ 10:45:03 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <c374bea4-554d-2e50-4ac6-fb4a2e4fec67@linaro.org>
-User-Agent: NeoMutt/20180716-391-311a52
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Message-ID: <trinity-bfbffcba-d1ed-40f7-8f37-0c8ad9245e3c-1651740303894@3c-app-gmx-bs47>
+From:   Frank Wunderlich <frank-w@public-files.de>
+To:     Sascha Hauer <s.hauer@pengutronix.de>
+Cc:     dri-devel@lists.freedesktop.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Sandy Huang <hjc@rock-chips.com>,
+        =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>
+Subject: Aw: [PATCH v11 17/24] arm64: dts: rockchip: rk356x: Add HDMI nodes
+Content-Type: text/plain; charset=UTF-8
+Date:   Thu, 5 May 2022 10:45:03 +0200
+Importance: normal
+Sensitivity: Normal
+In-Reply-To: <20220422072841.2206452-18-s.hauer@pengutronix.de>
+References: <20220422072841.2206452-1-s.hauer@pengutronix.de>
+ <20220422072841.2206452-18-s.hauer@pengutronix.de>
+X-UI-Message-Type: mail
+X-Priority: 3
+X-Provags-ID: V03:K1:jhHeBB0cVrPpmyuSV8dkcZkfMMoOV6qVeNwsgrvv2BcHyrAD72naC0el219Z5ID+Z/Re/
+ 5cFt0p836fqtEg3/WBhTIHvozZg+qauPcPv2V/HiN+36OxKfXenbX8mkMkS9cP2hLcbpAH94/XF2
+ Ee6ya9jarBvfYFc40yW1cB6jkU4h5+hrxI+2CoRz8QUdvDTl7CO0aKJbcxroi4icmuounMlaKfuM
+ CBLLu9ZCJdj7X2zTm/5V/04h2hTpMkujwQRLAsZ33x0MlM6NRmewtbu3BWtKgTAXxCzJT8uuXB02
+ xo=
+X-UI-Out-Filterresults: notjunk:1;V03:K0:hc0JSv9jgAE=:bZXSWIrFTtqezeF/jRdgdZ
+ NnwkpgZMZnJuCsrlkdUy8btjwq8ZoV/0Xpzcs13FWuCtYIPQ5ro64TS6dvgTFIyyJL2ZmtUJd
+ DihkaR+cIKek7YXrjROayUF89hAclkSKAyqQ+HC51L+Pl0i4jY5UwJHPUGFX1dzVcPZMz72vT
+ vKQmQ5AGX+Nda0LKrhWy7NRmp0WrhAmp6tamK/ijygEGCEntUpUImUs8v8eOB/ASyDfWEKEuM
+ +I8gNabAR0sp3exIaWqR7m9GUtRzkJOAVgiM2tPqp8nuo0nhBDHyBUwqofFQ3T8QwXt9hQlwd
+ aB2iYe9EjootdPpT72SaiouyXDQHLmoL0zo18RxhNnA0sGA7c+n4B699M70TcVmU7pT7czuV6
+ 8+Lyw+tnzm8iONWsrJS+rngS2zf0rTzq0TbZdHJUxZSZgF9Z26AfaDrOGBz0awRvW/rYrFb7M
+ vZiYKM4W/6K1a5V5AecMf+c7wVgaXrJw6HgVztSLSs1IjEU1jIgfP/pKAk4/KrZxgvIm/PLTw
+ 1G9roRVpNQHHPORfBRHtEiQwUxMzYbcxKTikfPtOmRWGJyNtsMDSbucb9sd2dJoLS0MBotOMn
+ h+x49mJ/hzTZvm97DeV3rKLun0mwW/ezhcQ9wX4BbcUQDCis79x/3UGtgCgaMIS6uEspEFSvJ
+ mU+nX3CGpBFSV9b7n6woeUNzrIUThfayn+fcngw+HFO14azzOp7jZet2vblY8uB+Fpvh1YUuc
+ mKfsXjtnm9WsaLRT4/uGFfzfZWLDY/JBRfYQhbqc4/sEj/1ZmeYZqOH4imOhm97W0keilCxFM
+ eG5inPC
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05-05-22, 10:42, Krzysztof Kozlowski wrote:
-> On 04/05/2022 16:52, Hector Martin wrote:
-> > On 04/05/2022 19.17, Viresh Kumar wrote:
-> >> This should be the last patch instead, or should at least be added
-> >> after the files are merged first. If someone checks out at this
-> >> commit, the files won't be available but still linked here.
-> > 
-> > Isn't that backwards? 
-> 
-> No, because we have tools for checking valid paths (in some places), so
-> when using that tool, the history is not bisectable.
-> 
-> > If someone touches the files, we want them to be
-> > able to get_maintainer.pl, so the MAINTAINERS entries should come first.
-> > It doesn't really cause any issues if there are entries that point at
-> > files that don't exist yet, right?
-> 
-> It hurts any current or future tools checking for valid paths.
-> 
-> > 
-> > Though this is mostly a moot point because the purpose of splitting this
-> > out is so we can merge this one patch through the SoC tree, at which
-> > point the ordering isn't guaranteed (unless the whole series goes
-> > through SoC). 
-> 
-> Just add each path change to respective commit adding that file. It
-> should not be a separate commit, at first place.
-> 
-> Separate commits are for adding entire Maintainers entry.
+Hi,
 
-And there is no need for this patch to go via SoC tree, we can handle
-minor conflicts later on if required.
+> Gesendet: Freitag, 22. April 2022 um 09:28 Uhr
+> Von: "Sascha Hauer" <s.hauer@pengutronix.de>
+> Betreff: [PATCH v11 17/24] arm64: dts: rockchip: rk356x: Add HDMI nodes
+>
+> Add support for the HDMI port found on RK3568.
+>
+> Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
+> ---
+>
+> Notes:
+>     Changes since v7:
+>     - Rename hclk to niu
 
--- 
-viresh
+clock-name no more present since v9, see below
+
+>     Changes since v5:
+>     - Drop unnecessary #size-cells/#address-cells from nodes with only s=
+ingle endpoint
+>
+...
+> --- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+> @@ -620,6 +620,38 @@ vop_mmu: iommu@fe043e00 {
+>  		status =3D "disabled";
+>  	};
+>
+> +	hdmi: hdmi@fe0a0000 {
+> +		compatible =3D "rockchip,rk3568-dw-hdmi";
+> +		reg =3D <0x0 0xfe0a0000 0x0 0x20000>;
+> +		interrupts =3D <GIC_SPI 45 IRQ_TYPE_LEVEL_HIGH>;
+> +		clocks =3D <&cru PCLK_HDMI_HOST>,
+> +			 <&cru CLK_HDMI_SFR>,
+> +			 <&cru CLK_HDMI_CEC>,
+> +			 <&pmucru CLK_HDMI_REF>,
+> +			 <&cru HCLK_VO>;
+> +		clock-names =3D "iahb", "isfr", "cec", "ref";
+
+noticed there are still 5 clocks, but only 4 clock-names. So i added "niu"=
+ after ref.
+maybe missing clock-name was causing my iommu page-faults...on a quick tes=
+t i have not got it,
+but they came not every time.
+
+what do you think?
+
+> +		pinctrl-names =3D "default";
+> +		pinctrl-0 =3D <&hdmitx_scl &hdmitx_sda &hdmitxm0_cec>;
+> +		power-domains =3D <&power RK3568_PD_VO>;
+
+regards Frank
