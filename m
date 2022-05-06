@@ -2,65 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 154A351CFD7
-	for <lists+devicetree@lfdr.de>; Fri,  6 May 2022 05:49:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 91A2C51CFFB
+	for <lists+devicetree@lfdr.de>; Fri,  6 May 2022 06:09:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237204AbiEFDxW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 May 2022 23:53:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51194 "EHLO
+        id S1388899AbiEFENH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 May 2022 00:13:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39418 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1383368AbiEFDxU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 23:53:20 -0400
-Received: from mail-ot1-x335.google.com (mail-ot1-x335.google.com [IPv6:2607:f8b0:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64875457A6
-        for <devicetree@vger.kernel.org>; Thu,  5 May 2022 20:49:38 -0700 (PDT)
-Received: by mail-ot1-x335.google.com with SMTP id h10-20020a056830400a00b00605e92cc450so4194194ots.11
-        for <devicetree@vger.kernel.org>; Thu, 05 May 2022 20:49:38 -0700 (PDT)
+        with ESMTP id S1351670AbiEFENH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 May 2022 00:13:07 -0400
+Received: from mail-pf1-x42e.google.com (mail-pf1-x42e.google.com [IPv6:2607:f8b0:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9B545640D
+        for <devicetree@vger.kernel.org>; Thu,  5 May 2022 21:09:25 -0700 (PDT)
+Received: by mail-pf1-x42e.google.com with SMTP id p12so5315068pfn.0
+        for <devicetree@vger.kernel.org>; Thu, 05 May 2022 21:09:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=gY3JG7TDfX21nMa2WGN3YpZ2LNRhrr+YzDEPbalak5Q=;
-        b=rm12KW9WahZ+pwPBKCJVM2MEWPGf3QaPgdfV77GxfU+PL9qPHhQVxFbBNl1/wX6mMb
-         33mlJ2qzs/GataHnbdbJbQFsz94LjdsexJKnrSK4xud5V34rQsH0Qnjmfl1s3dJ1isoB
-         49+bB0vzHKrwQM2YNOsVxZHVe7mnBW/dsJTBJaUYxSZwR/g4aTpFnDVXJz0BIQBJwGAo
-         csegzBQNKgbI+Cr0+u7SiO4kMSkoFuSfcHOjPE9kFqfD+BQeecZKjqxYmg4gWXdIMx6K
-         t3c3SdZcrqBCnZZb3wt5DxgF2PPaMG6vq3yaTpGrZpvJAHkxUjF8L4FifGsxvJygyJZj
-         LVhQ==
+         :content-disposition:in-reply-to:user-agent;
+        bh=XsoBtkAebOgjtMxymQU1wBQgO9U1OW2Xx5QkHSE5DvU=;
+        b=rGUsO7GehX3b88mwxY/zTcVQU8oj8k7UYuN4o173aiyqlC/wvG1bQc2Fi1rXhtE3Bx
+         36+GftgNTCKYaGOqx/CeIa0XZaYCfOYsiabPJlmqnYBxpSbmchkntincElTwg/HoLuJi
+         e+lCHyvNqeQZqp1F5XV1AE1AAlRnEUm5g5DGIn5EdsZvvTunX5GoU0ZwZkI7YE8lQKEs
+         vEb4rR/TkUiuN4JMzIa1nU3YFANscD/rgHmiXMbPtgYTU4nxHRNQelZogez37nGnPYaW
+         6D83cfDUjFuvHsBfG0DgWLAG9QDRFYy3eKhq0ZffkCkdgvNJ29OtPapnnyqNAzzVmxZX
+         Z47w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=gY3JG7TDfX21nMa2WGN3YpZ2LNRhrr+YzDEPbalak5Q=;
-        b=jCvxA/tXRk9/KOrr466KUjgCuGipIrPfNsNCsviiTEw46lHN2R0+A960PL5VkUUvCR
-         DOdcovLN+PvHef7Etmesm/YhDNI7Lm42pgh8NoboRxD4DcSB1i9+sqjGM4KqtvYLb/69
-         XKzjvnmzheqEj/yD4vkVqv0jTjWrJb56JhwAHtwvsPubKEyOtzaufOLC/xVc0jMYphXo
-         xVmWXYhqwfd8b3nJ2d7iBb2zweemUbk5gjOG5aqq6Nu6TKG/gWn8Vy1AunyWcjO2TNP2
-         ICmhnSAmC3WuTpCSZVbcrDMtdNaY1YeAwE6ZJ4pxk2u96RQ/mkEkWTnMGjYObZWN+g40
-         0/yA==
-X-Gm-Message-State: AOAM533lhDJs46dfo9F9YKPRT6fSqB2TCgTDHvfqZRrV+3MaEA3HHJlD
-        Xy2iTECPf/PDiNOljY7NlGtvaYRIVe9RKDUM
-X-Google-Smtp-Source: ABdhPJxdBvt/VaAntv7NqdoCyyrKBD09j8Ynb47Z79pap61Oi/wfCocwQtV6PkRBZzAZIdQJH633Kw==
-X-Received: by 2002:a05:6830:4420:b0:606:64a6:1deb with SMTP id q32-20020a056830442000b0060664a61debmr93692otv.236.1651808977637;
-        Thu, 05 May 2022 20:49:37 -0700 (PDT)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id w14-20020a056870e2ce00b000e686d13887sm1150364oad.33.2022.05.05.20.49.36
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=XsoBtkAebOgjtMxymQU1wBQgO9U1OW2Xx5QkHSE5DvU=;
+        b=TQc1uq8Ae1TJVlJvoePxM7YDWO9OSorpHAVMdDDXfzwFyiFhBnRFAHjgaIoK4Oxwa6
+         vSRkuzLcPoKkykBTEymF3HRWyaTBJBWj+cXEruGWRApzATxH5hFArblbRQqmyShCkjyx
+         O6yHvDAyAQRrbyHrJf1ITdpDuX/qapwHu4krONFJfvsJRzW3M/U2PluIZxbiVkrfqbWi
+         +Up8W1Mo3PaCRMQYa202oQz2ndOoxvfVamH7ZGdtx1mGwibaD5PNm+oApn9BiXjj5SYK
+         WY4Wx5dSFJ+WgOP4UUc9ZD51/Yn8Bxqq9BHUpo3M72DmCjE0585XjuDBIJi9uX3T8l/d
+         3opA==
+X-Gm-Message-State: AOAM530INE+pEoKjlxPM8YSDj1b/19s94LZhTh9/Cc3/U0RmbNnOHi1/
+        gBnEaaRonkxqazs4SWu4mcaYbw==
+X-Google-Smtp-Source: ABdhPJwx7b+xmNh51JOkVexQJYw4Ub0h4b4eREe4WGecOLA4rSVA2b7lG2+t2YveniTshYGKqRBPJw==
+X-Received: by 2002:a65:5245:0:b0:39c:ce49:e97d with SMTP id q5-20020a655245000000b0039cce49e97dmr1193052pgp.301.1651810165472;
+        Thu, 05 May 2022 21:09:25 -0700 (PDT)
+Received: from localhost ([122.162.234.2])
+        by smtp.gmail.com with ESMTPSA id e30-20020a631e1e000000b003c14af5060asm2125467pge.34.2022.05.05.21.09.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 May 2022 20:49:36 -0700 (PDT)
-Date:   Thu, 5 May 2022 22:49:34 -0500
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Luca Weiss <luca@z3ntu.xyz>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@somainline.org>
-Subject: Re: [PATCH 1/2] ARM: dts: qcom: Add LPG node to pm8941
-Message-ID: <YnSazu3rcBMFPxYw@builder.lan>
-References: <20220504205411.1510667-1-bjorn.andersson@linaro.org>
- <12122358.O9o76ZdvQC@g550jk>
+        Thu, 05 May 2022 21:09:24 -0700 (PDT)
+Date:   Fri, 6 May 2022 09:39:22 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Rex-BC Chen <rex-bc.chen@mediatek.com>
+Cc:     rafael@kernel.org, robh+dt@kernel.org, krzk+dt@kernel.org,
+        matthias.bgg@gmail.com, jia-wei.chang@mediatek.com,
+        roger.lu@mediatek.com, hsinyi@google.com, khilman@baylibre.com,
+        angelogioacchino.delregno@collabora.com, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+Subject: Re: [PATCH v6 02/10] cpufreq: mediatek: Add
+ platform_device_unregister when driver exit
+Message-ID: <20220506040922.n7l3kswvsh4re5xr@vireshk-i7>
+References: <20220505115226.20130-1-rex-bc.chen@mediatek.com>
+ <20220505115226.20130-3-rex-bc.chen@mediatek.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <12122358.O9o76ZdvQC@g550jk>
+In-Reply-To: <20220505115226.20130-3-rex-bc.chen@mediatek.com>
+User-Agent: NeoMutt/20180716-391-311a52
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
@@ -71,67 +78,20 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu 05 May 03:01 CDT 2022, Luca Weiss wrote:
+On 05-05-22, 19:52, Rex-BC Chen wrote:
+> We register the platform device when driver inits. However, we do not
+> unregister it when driver exits.
+> To resolve this, we declare the platform data to be a global static
+> variable and rename it to be "cpufreq_pdev".
+> With this global variable, we can do platform_device_unregister() when
+> driver exits.
+> 
+> Signed-off-by: Rex-BC Chen <rex-bc.chen@mediatek.com>
+> ---
+>  drivers/cpufreq/mediatek-cpufreq.c | 10 ++++++----
+>  1 file changed, 6 insertions(+), 4 deletions(-)
 
-> Hi Bjorn,
-> 
-> On Mittwoch, 4. Mai 2022 22:54:10 CEST Bjorn Andersson wrote:
-> > The PM8941 contains 8 LPG channels, as well as TRILED and LUT blocks.
-> > Add a node for these.
-> > 
-> > Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> > ---
-> >  arch/arm/boot/dts/qcom-pm8941.dtsi | 9 +++++++++
-> >  1 file changed, 9 insertions(+)
-> > 
-> > diff --git a/arch/arm/boot/dts/qcom-pm8941.dtsi
-> > b/arch/arm/boot/dts/qcom-pm8941.dtsi index cdd2bdb77b32..7881a071b372
-> > 100644
-> > --- a/arch/arm/boot/dts/qcom-pm8941.dtsi
-> > +++ b/arch/arm/boot/dts/qcom-pm8941.dtsi
-> > @@ -144,6 +144,15 @@ pm8941_1: pm8941@1 {
-> >  		#address-cells = <1>;
-> >  		#size-cells = <0>;
-> > 
-> > +		pm8941_lpg: lpg {
-> > +			compatible = "qcom,pm8941-lpg";
-> > +
-> > +			#address-cells = <1>;
-> > +			#size-cells = <0>;
-> 
-> Just curious, why doesn't pm8941 have #pwm-cells = <2>; like the other lpg 
-> nodes in [0]?
+Applied. Thanks.
 
-I guess I didn't have a need for the lpg to be a pwm-chip on this pmic,
-yet. This could be added now, or at a later point when someone has a
-usecase for the pwm-chip.
-
-> Other than that, the node works fine on pm8941. Will send a patch for enabling 
-> notification LED on msm8974-FP2 soon.
-> 
-
-If you turn that into a Tested-by, and preferably a Reviewed-by, I would
-have what I need to merge the two changes.
-
-Looking forward to the FP2 patch.
-
-Thanks,
-Bjorn
-
-> Regards
-> Luca
-> 
-> [0] https://lore.kernel.org/linux-arm-msm/20220505022706.1692554-2-bjorn.andersson@linaro.org/
-> 
-> 
-> > +
-> > +			status = "disabled";
-> > +		};
-> > +
-> >  		pm8941_wled: wled@d800 {
-> >  			compatible = "qcom,pm8941-wled";
-> >  			reg = <0xd800>;
-> 
-> 
-> 
-> 
+-- 
+viresh
