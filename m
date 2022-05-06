@@ -2,122 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 717C151D8C2
-	for <lists+devicetree@lfdr.de>; Fri,  6 May 2022 15:19:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CC07F51D89C
+	for <lists+devicetree@lfdr.de>; Fri,  6 May 2022 15:16:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1392364AbiEFNWs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 May 2022 09:22:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44324 "EHLO
+        id S1392291AbiEFNUB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 May 2022 09:20:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41988 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1392345AbiEFNWp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 May 2022 09:22:45 -0400
-Received: from mail.pr-group.ru (mail.pr-group.ru [178.18.215.3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67416694BB;
-        Fri,  6 May 2022 06:18:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-        d=metrotek.ru; s=mail;
-        h=from:subject:date:message-id:to:cc:mime-version:content-transfer-encoding:
-         in-reply-to:references;
-        bh=Y+q3Espln8Rodgx5Nn4tnLIErSJz4K4izMOM418Zr7I=;
-        b=DY2NR/XpopY2FaFQ5O8B4/oqLHcnNqdtnDnW39qJsGoLyvqQTHzaRJvFHt44WWAID4mdYLijHapU5
-         2+1B3rQJG0sKIHZnv5iRW94RzWCIumqzvp/mAAEAOqFWRYWsB2OArNPzMfTbewoFiJw7H4cvng5wUR
-         Kf8kxap55KDpNC/b//+GKowls3A8VqdXA9kRLDbWd7xkZyShD8sVh4PpvVoHsRMV71+Syp0fIAB0oP
-         HDSl4D+EkxQBmvAFLlXpxRXn9dQ5d2cv7+SSOZELvUmt0pnCDDtS37mzxZa8BequBcaB5IuvMB0DHU
-         gKTjtHnK3ekg+QkjKAvAhuOe6EMX7cg==
-X-Kerio-Anti-Spam:  Build: [Engines: 2.16.3.1422, Stamp: 3], Multi: [Enabled, t: (0.000009,0.007577)], BW: [Enabled, t: (0.000015,0.000001)], RTDA: [Enabled, t: (0.070421), Hit: No, Details: v2.39.0; Id: 15.52kajc.1g2cobklg.101p; mclb], total: 0(700)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
-X-Spam-Level: 
-X-Footer: bWV0cm90ZWsucnU=
-Received: from localhost.localdomain ([178.70.36.174])
-        (authenticated user i.bornyakov@metrotek.ru)
-        by mail.pr-group.ru with ESMTPSA
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256 bits));
-        Fri, 6 May 2022 16:18:43 +0300
-From:   Ivan Bornyakov <i.bornyakov@metrotek.ru>
-Cc:     mdf@kernel.org, hao.wu@intel.com, yilun.xu@intel.com,
-        trix@redhat.com, conor.dooley@microchip.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-fpga@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        system@metrotek.ru, Ivan Bornyakov <i.bornyakov@metrotek.ru>,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH v10 3/3] dt-bindings: fpga: add binding doc for microchip-spi fpga mgr
-Date:   Fri,  6 May 2022 15:57:10 +0300
-Message-Id: <20220506125710.25550-4-i.bornyakov@metrotek.ru>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220506125710.25550-1-i.bornyakov@metrotek.ru>
-References: <20220506125710.25550-1-i.bornyakov@metrotek.ru>
+        with ESMTP id S1343648AbiEFNUB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 May 2022 09:20:01 -0400
+Received: from us-smtp-delivery-74.mimecast.com (us-smtp-delivery-74.mimecast.com [170.10.129.74])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 705F4B7C2
+        for <devicetree@vger.kernel.org>; Fri,  6 May 2022 06:16:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1651842977;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=8wPDA2gsA8PtLts/9kHE8ZGbzgkULXlMPGcav5wmzQU=;
+        b=EgczeQqo1C6cLs/nFOfS/3eCBdQw5fgtVB4jfohiKCLgp/lwntpERTR9UEmlrDrX/JRcD3
+        aVyd1jvW6H02/pBUSo4+d8yqUurl+OnsmOA35Da06Uxdm+pUjxPIN1+72boqZAM3WHYney
+        ua+D5nsJPFKDpZhbbrqwULt0bTBb6EA=
+Received: from mimecast-mx02.redhat.com (mimecast-mx02.redhat.com
+ [66.187.233.88]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-583-j9olosgBNA2Z3YsZN10Vzw-1; Fri, 06 May 2022 09:16:14 -0400
+X-MC-Unique: j9olosgBNA2Z3YsZN10Vzw-1
+Received: from smtp.corp.redhat.com (int-mx10.intmail.prod.int.rdu2.redhat.com [10.11.54.10])
+        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        by mimecast-mx02.redhat.com (Postfix) with ESMTPS id 7D9F8803E2E;
+        Fri,  6 May 2022 13:16:13 +0000 (UTC)
+Received: from localhost (ovpn-13-105.pek2.redhat.com [10.72.13.105])
+        by smtp.corp.redhat.com (Postfix) with ESMTPS id A3EAD463EDC;
+        Fri,  6 May 2022 13:16:11 +0000 (UTC)
+Date:   Fri, 6 May 2022 21:16:08 +0800
+From:   Baoquan He <bhe@redhat.com>
+To:     "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
+Cc:     Catalin Marinas <catalin.marinas@arm.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
+        x86@kernel.org, "H . Peter Anvin" <hpa@zytor.com>,
+        linux-kernel@vger.kernel.org, Dave Young <dyoung@redhat.com>,
+        Vivek Goyal <vgoyal@redhat.com>,
+        Eric Biederman <ebiederm@xmission.com>,
+        kexec@lists.infradead.org, Will Deacon <will@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>,
+        linux-doc@vger.kernel.org, Randy Dunlap <rdunlap@infradead.org>,
+        Feng Zhou <zhoufeng.zf@bytedance.com>,
+        Kefeng Wang <wangkefeng.wang@huawei.com>,
+        Chen Zhou <dingguo.cz@antgroup.com>,
+        John Donnelly <John.p.donnelly@oracle.com>,
+        Dave Kleikamp <dave.kleikamp@oracle.com>
+Subject: Re: [PATCH v23 3/6] arm64: kdump: Reimplement crashkernel=X
+Message-ID: <YnUfmMmON2c1FZrx@MiWiFi-R3L-srv>
+References: <20220505091845.167-1-thunder.leizhen@huawei.com>
+ <20220505091845.167-4-thunder.leizhen@huawei.com>
+ <YnQC44KVKirH0vyB@arm.com>
+ <189f24a8-9e9b-b3e9-7ac5-935433ea575b@huawei.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <189f24a8-9e9b-b3e9-7ac5-935433ea575b@huawei.com>
+X-Scanned-By: MIMEDefang 2.85 on 10.11.54.10
+X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
-To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add Device Tree Binding doc for Microchip Polarfire FPGA Manager using
-slave SPI to load .dat formatted bitstream image.
+On 05/06/22 at 11:22am, Leizhen (ThunderTown) wrote:
+......  
+> >> @@ -118,8 +159,7 @@ static void __init reserve_crashkernel(void)
+> >>  	if (crash_base)
+> >>  		crash_max = crash_base + crash_size;
+> >>  
+> >> -	/* Current arm64 boot protocol requires 2MB alignment */
+> >> -	crash_base = memblock_phys_alloc_range(crash_size, SZ_2M,
+> >> +	crash_base = memblock_phys_alloc_range(crash_size, CRASH_ALIGN,
+> >>  					       crash_base, crash_max);
+> >>  	if (!crash_base) {
+> >>  		pr_warn("cannot allocate crashkernel (size:0x%llx)\n",
+> > 
+> > I personally like this but let's see how the other thread goes. I guess
+> 
+> Me too. This fallback complicates code logic more than just a little.
+> I'm not sure why someone would rather add fallback than change the bootup
+> options to crashkernel=X,[high|low]. Perhaps fallback to high/low is a better
+> compatible and extended mode when crashkernel=X fails to reserve memory. And
+> the code logic will be much clearer.
 
-Signed-off-by: Ivan Bornyakov <i.bornyakov@metrotek.ru>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
- .../fpga/microchip,mpf-spi-fpga-mgr.yaml      | 44 +++++++++++++++++++
- 1 file changed, 44 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/fpga/microchip,mpf-spi-fpga-mgr.yaml
+The fallback does complicates code, while it was not made at the
+beginning, but added later. The original crahskernel=xM can only reserve
+low memory under 896M on x86 to be back compatible with the case in which
+normal kernel is x86_64, while kdump kernel could be i386. Then customer
+complained why crashkernel=xM can't be put anywhere so that they don't
+need to know the details of limited low memory and huge high memory fact 
+in system.
 
-diff --git a/Documentation/devicetree/bindings/fpga/microchip,mpf-spi-fpga-mgr.yaml b/Documentation/devicetree/bindings/fpga/microchip,mpf-spi-fpga-mgr.yaml
-new file mode 100644
-index 000000000000..aee45cb15592
---- /dev/null
-+++ b/Documentation/devicetree/bindings/fpga/microchip,mpf-spi-fpga-mgr.yaml
-@@ -0,0 +1,44 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/fpga/microchip,mpf-spi-fpga-mgr.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Microchip Polarfire FPGA manager.
-+
-+maintainers:
-+  - Ivan Bornyakov <i.bornyakov@metrotek.ru>
-+
-+description:
-+  Device Tree Bindings for Microchip Polarfire FPGA Manager using slave SPI to
-+  load the bitstream in .dat format.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - microchip,mpf-spi-fpga-mgr
-+
-+  reg:
-+    description: SPI chip select
-+    maxItems: 1
-+
-+  spi-max-frequency: true
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    spi {
-+            #address-cells = <1>;
-+            #size-cells = <0>;
-+
-+            fpga_mgr@0 {
-+                    compatible = "microchip,mpf-spi-fpga-mgr";
-+                    spi-max-frequency = <20000000>;
-+                    reg = <0>;
-+            };
-+    };
--- 
-2.35.1
+The implementation of fallback is truly complicated, but its use is
+quite simple. And it makes crashkernel reservation setting simple.
+Most of users don't need to know crashkernel=,high, ,low things, unless
+the crashkernel region is too big. Nobody wants to take away 1G or more
+from low memory for kdump just in case bad thing happens, while normal
+kernel itself is seriously impacted by limited low memory.
 
+> 
+> //parse crashkernel=X		//To simplify the discussion, Ignore [@offset]
+> crash_base = memblock_phys_alloc_range()
+> if (!crash_base || /* crashkernel=X is not specified */) {
+> 	//parse crashkernel=X,[high,low]
+> 	//reserve high/low memory
+> }
+> 
+> So that, the following three modes are supported:
+> 1) crashkernel=X[@offset]
+> 2) crashkernel=X,high crashkernel=X,low
+> 3) crashkernel=X[@offset] crashkernel=X,high [crashkernel=Y,low]
+> 
+> For case 3), try "crashkernel=X[@offset]" first, if it can not work, fallback
+> to "crashkernel=X,high crashkernel=X,low". This looks better than the old "crashkernel=X"
+> fallback ---- Select a region under 4G first, and fall back to reserve region above 4G.
+
+Don't get it. Aren't they the same?
+
+> 
+> Note: when the X of crashkernel=X and crashkernel=X,high are the same, It's equivalent
+> to the old "crashkernel=X" fallback.
+> 
+> > if we want a fallback, it would come just before the check the above:
+> > 
+> > 	if (!crash_base && crash_max != CRASH_ADDR_HIGH_MAX) {
+> > 		/* attempt high allocation with default low */
+> > 		if (!crash_low_size)
+> > 			crash_low_size = some default;
+> > 		crash_max = CRASH_ADDR_LOW_MAX;
+> 
+> crash_max = CRASH_ADDR_HIGH_MAX; We should fallback to high memory now.
+> 
+> > 		crash_base = memblock_phys_alloc_range();
+> > 	}
+> > 
+> > Well, I guess we end up with your earlier proposal but I think I
+> > understand it better now ;).
+> > 
+> 
+> -- 
+> Regards,
+>   Zhen Lei
+> 
 
