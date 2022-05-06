@@ -2,77 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4E33151E242
-	for <lists+devicetree@lfdr.de>; Sat,  7 May 2022 01:40:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 53F7E51E21F
+	for <lists+devicetree@lfdr.de>; Sat,  7 May 2022 01:40:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1444815AbiEFWnt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 May 2022 18:43:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50064 "EHLO
+        id S1355771AbiEFWnu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 May 2022 18:43:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50092 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1355771AbiEFWnr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 May 2022 18:43:47 -0400
-Received: from mail-oa1-f47.google.com (mail-oa1-f47.google.com [209.85.160.47])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CD8162117
-        for <devicetree@vger.kernel.org>; Fri,  6 May 2022 15:40:03 -0700 (PDT)
-Received: by mail-oa1-f47.google.com with SMTP id 586e51a60fabf-deb9295679so8694690fac.6
-        for <devicetree@vger.kernel.org>; Fri, 06 May 2022 15:40:03 -0700 (PDT)
+        with ESMTP id S1444819AbiEFWns (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 May 2022 18:43:48 -0400
+Received: from mail-oi1-f180.google.com (mail-oi1-f180.google.com [209.85.167.180])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8045162128
+        for <devicetree@vger.kernel.org>; Fri,  6 May 2022 15:40:04 -0700 (PDT)
+Received: by mail-oi1-f180.google.com with SMTP id w194so7807037oie.9
+        for <devicetree@vger.kernel.org>; Fri, 06 May 2022 15:40:04 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=jnCduir5pQYlrdkaJpztvPdFvaPDr5xSt6EEmo8r0sk=;
-        b=xv6EMSOdgV3hIEtK1att36Z/KVUvnY647kp0axGVyx4XrvggdCgUU5Gu3NVSTbGCKR
-         TNRR+LGSSjXd6LWjHw2DG5NLv/kJA7KMWW53dxMLK8b/YmVpzC5fKWwdwIUuopnsJtTa
-         DMNhuOMXzeHpkAzPUYE3OTaJ+YnyTdfPLFQ5BjgCddFAoUICkn7FGM0NTUjBZC9phl4W
-         Gr2LsYMVOm0FeX4G20lD2dVDXz2f1YNH1kZDryO3w8pLvt6uSrRQsWikm3LjYAyVS899
-         0QbSzxfPl2YDpf0OhJi5hmEH6QUApixNz4//NdFnNDisZemsRgBhy89NS4Tc6MMuSU3I
-         o4OQ==
-X-Gm-Message-State: AOAM530lqfhyDdoeJIw1BSHj1ppYVaxHGLytMYQpUZZNLgj91e1aWwsF
-        grD9orcaeLpVxfBisILuLA==
-X-Google-Smtp-Source: ABdhPJx32GDw5jkZmie8yU5Cr25cJJIbL1vIbDCLgVtdTOhoqI0NIN+yftvLprwNmgDhM9ToJCpnRg==
-X-Received: by 2002:a05:6870:4623:b0:ed:c502:bf3d with SMTP id z35-20020a056870462300b000edc502bf3dmr2329272oao.100.1651876802445;
-        Fri, 06 May 2022 15:40:02 -0700 (PDT)
+        bh=DRgwz3Pr66109k8i3q4OJZka7y/YBIE0KaI7WFdrYJ8=;
+        b=4ujN7t9s8GNZgVoPpDhiCVK+L7EQ+3UsgnfDdThr8ChGqiYg8zvNrggB4xp8n7AJD2
+         f4mGhsqOHQEdhT14JLthcT2fO0k/N9Unts6Wu7i219z1BeIIBMhDSGdEJS19hYAV68iA
+         kdEI1s1PSH8j1qAjNA5cmrQF3545i6VCJiwGzpWR+Brw7oPC5LrK40Ag8yIX12sywGHB
+         AzYKVcEiZf4bnPZ+kXPykMm5SEIxmTpDzGW2/xKVVRMpIa85C62qjxi8vdFkGdYycxPG
+         2FYzqAZDOlycIu//tKTc0a87bvvhXaaZ7KNnZaQovmPwAAo6f+LnVbwQktnKXyU6iCeN
+         qo5w==
+X-Gm-Message-State: AOAM532ta1mIKnWZN9n/JXXGSWetQPx1MDArAtbRdiResrcJxYkuDZ+H
+        D4Wp3Fe8h45aMmJ/VA2ooA==
+X-Google-Smtp-Source: ABdhPJzrdNSnC5BVoRKMuBDvgNbnC5uroyrH4/mzoFE1AvpkFImqSpr3rFfcN8WIixqCY3b+N0Od9g==
+X-Received: by 2002:aca:c0c5:0:b0:325:9ed4:a240 with SMTP id q188-20020acac0c5000000b003259ed4a240mr2540381oif.289.1651876803706;
+        Fri, 06 May 2022 15:40:03 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id c21-20020a9d75d5000000b0060603221279sm2011155otl.73.2022.05.06.15.40.01
+        by smtp.gmail.com with ESMTPSA id y28-20020a056870459c00b000e686d1387bsm1990639oao.21.2022.05.06.15.40.02
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 06 May 2022 15:40:01 -0700 (PDT)
-Received: (nullmailer pid 2407419 invoked by uid 1000);
+        Fri, 06 May 2022 15:40:03 -0700 (PDT)
+Received: (nullmailer pid 2407425 invoked by uid 1000);
         Fri, 06 May 2022 22:39:53 -0000
 From:   Rob Herring <robh@kernel.org>
 To:     Andre Przywara <andre.przywara@arm.com>
-Cc:     Robin Murphy <robin.murphy@arm.com>,
+Cc:     Rob Herring <robh+dt@kernel.org>,
         linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Will Deacon <will@kernel.org>, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        Robin Murphy <robin.murphy@arm.com>,
         Liviu Dudau <liviu.dudau@arm.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-In-Reply-To: <20220506140533.3566431-7-andre.przywara@arm.com>
-References: <20220506140533.3566431-1-andre.przywara@arm.com> <20220506140533.3566431-7-andre.przywara@arm.com>
-Subject: Re: [PATCH v2 06/11] dt-bindings: arm: convert vexpress-sysregs to DT schema
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Will Deacon <will@kernel.org>
+In-Reply-To: <20220506140533.3566431-11-andre.przywara@arm.com>
+References: <20220506140533.3566431-1-andre.przywara@arm.com> <20220506140533.3566431-11-andre.przywara@arm.com>
+Subject: Re: [PATCH v2 10/11] dt-bindings: display: convert Arm Mali-DP to DT schema
 Date:   Fri, 06 May 2022 17:39:53 -0500
-Message-Id: <1651876793.674154.2407418.nullmailer@robh.at.kernel.org>
+Message-Id: <1651876793.707852.2407424.nullmailer@robh.at.kernel.org>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 06 May 2022 15:05:28 +0100, Andre Przywara wrote:
-> The Arm Versatile Express system control register block provides GPIO
-> functionality to some devices and is also used for board identification.
+On Fri, 06 May 2022 15:05:32 +0100, Andre Przywara wrote:
+> The Arm Mali Display Processor (DP) 5xx/6xx is a series of IP that scans
+> out a framebuffer and hands the pixels over to a digital signal encoder.
+> It supports multiple layers, scaling and rotation.
 > 
-> Extract the first half of the informal vexpress-sysreg.txt binding and
-> make it proper DT schema compliant.
+> Convert the existing DT binding to DT schema.
 > 
 > Signed-off-by: Andre Przywara <andre.przywara@arm.com>
 > ---
->  .../bindings/arm/vexpress-sysreg.yaml         | 90 +++++++++++++++++++
->  1 file changed, 90 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/arm/vexpress-sysreg.yaml
+>  .../bindings/display/arm,malidp.txt           |  68 ----------
+>  .../bindings/display/arm,malidp.yaml          | 116 ++++++++++++++++++
+>  2 files changed, 116 insertions(+), 68 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/display/arm,malidp.txt
+>  create mode 100644 Documentation/devicetree/bindings/display/arm,malidp.yaml
 > 
 
 Running 'make dtbs_check' with the schema in this patch gives the
@@ -85,23 +91,13 @@ This will change in the future.
 Full log is available here: https://patchwork.ozlabs.org/patch/
 
 
-sysreg@10000: '#address-cells' is a required property
-	arch/arm64/boot/dts/arm/foundation-v8.dtb
-	arch/arm64/boot/dts/arm/foundation-v8-gicv3.dtb
-	arch/arm64/boot/dts/arm/foundation-v8-gicv3-psci.dtb
-	arch/arm64/boot/dts/arm/foundation-v8-psci.dtb
-	arch/arm64/boot/dts/arm/fvp-base-revc.dtb
-	arch/arm64/boot/dts/arm/rtsm_ve-aemv8a.dtb
-
-sysreg@10000: '#gpio-cells', 'gpio-controller' do not match any of the regexes: '^gpio@[0-9a-f]+$', 'pinctrl-[0-9]+'
-	arch/arm64/boot/dts/arm/fvp-base-revc.dtb
-	arch/arm64/boot/dts/arm/rtsm_ve-aemv8a.dtb
-
-sysreg@10000: '#size-cells' is a required property
-	arch/arm64/boot/dts/arm/foundation-v8.dtb
-	arch/arm64/boot/dts/arm/foundation-v8-gicv3.dtb
-	arch/arm64/boot/dts/arm/foundation-v8-gicv3-psci.dtb
-	arch/arm64/boot/dts/arm/foundation-v8-psci.dtb
-	arch/arm64/boot/dts/arm/fvp-base-revc.dtb
-	arch/arm64/boot/dts/arm/rtsm_ve-aemv8a.dtb
+display@f080000: 'arm,malidp-arqos-value' does not match any of the regexes: 'pinctrl-[0-9]+'
+	arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-kbox-a-230-ls.dtb
+	arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28.dtb
+	arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var1.dtb
+	arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var2.dtb
+	arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var3-ads2.dtb
+	arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var4.dtb
+	arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dtb
+	arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dtb
 
