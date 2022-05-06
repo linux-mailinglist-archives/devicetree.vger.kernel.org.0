@@ -2,81 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9982351D6D5
-	for <lists+devicetree@lfdr.de>; Fri,  6 May 2022 13:39:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 56BF551D6DE
+	for <lists+devicetree@lfdr.de>; Fri,  6 May 2022 13:41:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1391429AbiEFLnd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 May 2022 07:43:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41330 "EHLO
+        id S1391438AbiEFLpP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 May 2022 07:45:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43712 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232024AbiEFLnc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 May 2022 07:43:32 -0400
-Received: from us-smtp-delivery-74.mimecast.com (us-smtp-delivery-74.mimecast.com [170.10.129.74])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 39C2660D88
-        for <devicetree@vger.kernel.org>; Fri,  6 May 2022 04:39:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1651837188;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=OcB6fBENu4U2sOdYXIyYqxCfjv8pZ5CyuZGdAtWdXiA=;
-        b=NzbERho6iZ/uWrV81s5MJ09A2dvcvuPEd0zOVykDIJ8kQpSOJctjZztGKuiE6GCZKrhpQ/
-        4QT3ZSqMT0Uife36NkAVvjMAAlXi8jQ8/G6AKqVcZn7DH3xmU8kIAZRfyECi58/Ohnvr2y
-        6gFch9+dei8+x0a18BbpRw1ZS31DrPQ=
-Received: from mimecast-mx02.redhat.com (mimecast-mx02.redhat.com
- [66.187.233.88]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-271-uUHXo2N0O4iTn2v3Yo6D1A-1; Fri, 06 May 2022 07:39:43 -0400
-X-MC-Unique: uUHXo2N0O4iTn2v3Yo6D1A-1
-Received: from smtp.corp.redhat.com (int-mx09.intmail.prod.int.rdu2.redhat.com [10.11.54.9])
-        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        by mimecast-mx02.redhat.com (Postfix) with ESMTPS id 067A3858F14;
-        Fri,  6 May 2022 11:39:42 +0000 (UTC)
-Received: from localhost (ovpn-13-105.pek2.redhat.com [10.72.13.105])
-        by smtp.corp.redhat.com (Postfix) with ESMTPS id D80E1454A5D;
-        Fri,  6 May 2022 11:39:39 +0000 (UTC)
-Date:   Fri, 6 May 2022 19:39:36 +0800
-From:   Baoquan He <bhe@redhat.com>
-To:     Catalin Marinas <catalin.marinas@arm.com>
-Cc:     "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
-        x86@kernel.org, "H . Peter Anvin" <hpa@zytor.com>,
-        linux-kernel@vger.kernel.org, Dave Young <dyoung@redhat.com>,
-        Vivek Goyal <vgoyal@redhat.com>,
-        Eric Biederman <ebiederm@xmission.com>,
-        kexec@lists.infradead.org, Will Deacon <will@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>,
-        linux-doc@vger.kernel.org, Randy Dunlap <rdunlap@infradead.org>,
-        Feng Zhou <zhoufeng.zf@bytedance.com>,
-        Kefeng Wang <wangkefeng.wang@huawei.com>,
-        Chen Zhou <dingguo.cz@antgroup.com>,
-        John Donnelly <John.p.donnelly@oracle.com>,
-        Dave Kleikamp <dave.kleikamp@oracle.com>
-Subject: Re: [PATCH v22 5/9] arm64: kdump: Reimplement crashkernel=X
-Message-ID: <YnUI+PagSCZ/DnkL@MiWiFi-R3L-srv>
-References: <YmlphvZVMsGfFksp@arm.com>
- <YmoMvV1wzHT5V1aw@MiWiFi-R3L-srv>
- <YmoPhvkXQFZQOcIO@MiWiFi-R3L-srv>
- <3fc41a94-4247-40f3-14e7-f11e3001ec33@huawei.com>
- <YmtaiJhwIgP6m2Sk@MiWiFi-R3L-srv>
- <a9c736a0-f2b3-5b8a-94d9-80742ccd2700@huawei.com>
- <23e2dcf4-4e9a-5298-d5d8-8761b0bbbe21@huawei.com>
- <YnGmCwaWkvCrJoU2@arm.com>
- <YnM9w69l5dbE+k15@MiWiFi-R3L-srv>
- <YnPdIvOktZBQYLjg@arm.com>
+        with ESMTP id S1391441AbiEFLpO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 May 2022 07:45:14 -0400
+Received: from mail-yw1-x1136.google.com (mail-yw1-x1136.google.com [IPv6:2607:f8b0:4864:20::1136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74C1E60D8B
+        for <devicetree@vger.kernel.org>; Fri,  6 May 2022 04:41:31 -0700 (PDT)
+Received: by mail-yw1-x1136.google.com with SMTP id 00721157ae682-2f863469afbso78456017b3.0
+        for <devicetree@vger.kernel.org>; Fri, 06 May 2022 04:41:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=l0caGRAl6tw98ep9A0EoSsPJFbAnWVPHA21Iq4Niy6I=;
+        b=SmlsDeNuaHifgGa++k4eP2Y4cdx/p/7EZIENJ+7s92pwcvF2WjC3gxgdsF54R5R5DC
+         4PH4Ea/RXCuBKQE7XpREllSwlcRgOF8zh6Mq2T8oFE7nkIJkmgaxbgo0tcPsqfbw8sIY
+         cqqw8+SzX/McYAnngsSqWYYMUKuAfyaXUfjnY=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=l0caGRAl6tw98ep9A0EoSsPJFbAnWVPHA21Iq4Niy6I=;
+        b=ySFT/IdVF9HjjFFR2FkW8v3yAqa2HLDhffB3ubOg7wyCbM5GiIPbKIAjsKAVw7ioCW
+         Ajrm66U7KqRknckc+FE1ainAjJ1QSqWOds6VX7HOVogqkpy4H3VdPBQYIX0DnXVgT37l
+         B/tVM7C0trP5APfjuxed+G0YmR1Yk05HKK1t/yNm6Uten1QIwJ6FaksGsr0GGZMXv/2q
+         X8szRANtp/SjKRb7C8EzfgvmPNOTOwCuSgFnOfK5jYSnU28P6rLCvoKslUY2stq7W+tw
+         Ei88ygGfvNAZMucJ0tvBerC5Kf7zo4rROuF5JLNbwXdUMIPAp8ncwxSxa0EnQu1MJ9hF
+         xBPg==
+X-Gm-Message-State: AOAM530XOA7EzMXdSd7iXdFLKrKG3wmMSfsvUGIcURg83pUiZTfZbBzG
+        rGh+hW5KDH1GjFADjabiv9/ez4UTPh6f22FVT30a5ey+gLM=
+X-Google-Smtp-Source: ABdhPJzbQ+rVlJvom3mfGzvQGXbWH7u6TQrd+Edczzu9Qcicwk8aE3ctLPVfCmRvvhVM+kMa2a1e2gMRNjVctbIkgO4=
+X-Received: by 2002:a05:690c:110:b0:2ec:2d79:eee1 with SMTP id
+ bd16-20020a05690c011000b002ec2d79eee1mr2266620ywb.21.1651837290727; Fri, 06
+ May 2022 04:41:30 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YnPdIvOktZBQYLjg@arm.com>
-X-Scanned-By: MIMEDefang 2.85 on 10.11.54.9
-X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+References: <20220505194550.3094656-1-nfraprado@collabora.com>
+In-Reply-To: <20220505194550.3094656-1-nfraprado@collabora.com>
+From:   Chen-Yu Tsai <wenst@chromium.org>
+Date:   Fri, 6 May 2022 19:41:19 +0800
+Message-ID: <CAGXv+5Hk2u+1zkVjNEt7wdwAJyoB+-PMAuh7UKWEkDeYxp5zUQ@mail.gmail.com>
+Subject: Re: [PATCH v2 00/16] Introduce support for MediaTek MT8192 Google Chromebooks
+To:     =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
+        <nfraprado@collabora.com>
+Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, kernel@collabora.com,
+        Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
+        Fabien Parent <fparent@baylibre.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Luca Weiss <luca@z3ntu.xyz>, Maxim Kutnij <gtk3@inbox.ru>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sam Shih <sam.shih@mediatek.com>,
+        Sean Wang <sean.wang@mediatek.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -84,91 +75,61 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05/05/22 at 03:20pm, Catalin Marinas wrote:
-> On Thu, May 05, 2022 at 11:00:19AM +0800, Baoquan He wrote:
-> > On 05/03/22 at 11:00pm, Catalin Marinas wrote:
-> > > So, to recap, IIUC you are fine with:
-> > > 
-> > > 	crashkernel=Y		- allocate within ZONE_DMA with fallback
-> > > 				  above with a default in ZONE_DMA (like
-> > > 				  x86, 256M or swiotlb size)
-> > 
-> >         Ack to this one.
-> > 
-> > 
-> > > 	crashkernel=Y,high	- allocate from above ZONE_DMA
-> > 
-> >         Not exactly. If there's only ZONE_DMA, crashkernel,high will
-> >         be reserved in ZONE_DMA, and crashkernel,low will be ignored.
-> >         Other than this, ack.
-> 
-> Yes, that's fine.
-> 
-> > > 	crashkernel=Y,low	- allocate within ZONE_DMA
-> > 
-> >         Ack to this one.
-> > > 
-> > > 'crashkernel' overrides the high and low while the latter two can be
-> > > passed independently.
-> > 
-> >         crashkernel=,high can be passed independently, then a crashkernel=,low
-> >         is needed implicitly. If people don't want crashkernel=,low
-> >         explicitly, crashkernel=0,low need be specified.
-> 
-> I find this complicating the interface. I don't know the background to
-> the x86 implementation but we diverge already on arm64 since we talk
-> about ZONE_DMA rather than 4G limit (though for most platforms these
-> would be the same).
-> 
-> I guess we could restate the difference between crashkernel= and
-> crashkernel=,high as the hint to go for allocation above ZONE_DMA first.
+On Fri, May 6, 2022 at 3:46 AM N=C3=ADcolas F. R. A. Prado
+<nfraprado@collabora.com> wrote:
+>
+>
+> This series introduces Devicetrees for the MT8192-based Asurada platform
+> as well as Asurada Spherion and Asurada Hayato boards.
+>
+> Support for the boards is added to the extent that is currently enabled
+> in the mt8192.dtsi, as to not add any dependencies to this series.
+>
+> Besides the other dt-binding fixes already on linux-next to avoid new
+> warnings by this series, [1] is already merged but not on next yet.
+>
+> This series was peer-reviewed internally before submission.
+>
+> [1] https://lore.kernel.org/all/20220429201325.2205799-1-nfraprado@collab=
+ora.com/
+>
+> v1: https://lore.kernel.org/all/20220316151327.564214-1-nfraprado@collabo=
+ra.com/
+>
+> Changes in v2:
+> - Added patches 1-2 for Mediatek board dt-bindings
+> - Added patches 13-16 enabling hardware for Asurada that has since been
+>   enabled on mt8192.dtsi
+>
+> N=C3=ADcolas F. R. A. Prado (16):
+>   dt-bindings: arm64: dts: mediatek: Add mt8192-asurada-spherion
+>   dt-bindings: arm64: dts: mediatek: Add mt8192-asurada-hayato
+>   arm64: dts: mediatek: Introduce MT8192-based Asurada board family
+>   arm64: dts: mediatek: asurada: Document GPIO names
+>   arm64: dts: mediatek: asurada: Add system-wide power supplies
+>   arm64: dts: mediatek: asurada: Enable and configure I2C and SPI busses
+>   arm64: dts: mediatek: asurada: Add ChromeOS EC
+>   arm64: dts: mediatek: asurada: Add keyboard mapping for the top row
+>   arm64: dts: mediatek: asurada: Add Cr50 TPM
+>   arm64: dts: mediatek: asurada: Add Elan eKTH3000 I2C trackpad
+>   arm64: dts: mediatek: asurada: Add I2C touchscreen
+>   arm64: dts: mediatek: spherion: Add keyboard backlight
+>   arm64: dts: mediatek: asurada: Enable XHCI
+>   arm64: dts: mediatek: asurada: Enable PCIe and add WiFi
+>   arm64: dts: mediatek: asurada: Add MT6359 PMIC
+>   arm64: dts: mediatek: asurada: Add SPMI regulators
 
-Yes, rethinking about this, we can make a straightforward and simpler
-crashkernel=,high|,low on arm64, namely asking for user to clearly
-specify them.
+Tested-by: Chen-Yu Tsai <wenst@chromium.org>
 
-During maintenance of crashkernel= parameter in our distros, we found
-crashkernel=xM is used mostly since most of systems can be satisfied
-with 256M or a little more for kdump. While on some big end servers,
-1G or more crashkernel memory is needed. In this case, crashkernel=,high
-is taken. We don't want to reserve so much low memory during system
-running while just waiting in case rare crash happened. crashkernel=,high
-is rarely used, so making it simple and not so flexible is not so bad.
-We can improve it later with justification.
+I tested all the external peripherals, including touchpad, touchscreen,
+keyboard (which needs a fix), USB, WiFi on both models, and the keyboard
+backlight and (USB-based) Bluetooth on Spherion.
 
-> 
-> >         An independent crashkernel=,low makes no sense. Crashkernel=,low
-> >         should be paird with crashkernel=,high.
-> 
-> You could argue that crashkernel=,low gives the current crashkernel=
-> behaviour, i.e. either all within ZONE_DMA or fail to allocate. So it
-> may have some value on its own.
+Could you also enable the SCP? Otherwise the vcodec generates big warnings
+when it probes.
 
-Yes, crashkernel=,low has the same behaviour as the current crashkernel=
-if we decide not to add fallback mechanism to it. The purpose of
-crahskernel=,low is to assist crashkernel=,high to get kdump kernel
-boot up with satisfing DMA allocation. While allowing independent
-crashkernel=,low will add it another mission, limiting crashkernel only
-reserved in low memory. Up to now, we don't see the need for that.
+And also would like to see MMC. :)
 
-> 
-> >         My personal opinion according to the existed senmantics on x86.
-> >         Otherwise, the guidance of crashkernel= |,high|,low reservation
-> >         will be complicated to write.
-> 
-> It's more that I find the current semantics unnecessarily confusing. But
-> even reading the x86_64 text it's not that clear. For example the
-> default low allocation for crashkernel= and crashkernel=,high is only
-> mentioned in the crashkernel=,low description.
 
-Yeah, we can improve those document if insufficiency is found.
-
-By the way, with my observation, crashkernel= with fallback meet
-99% of our needs. If people really need more than 512M memory or more,
-then please consider crashkernel=,high. Basically on servers, low memory
-is limited, while high memory is very big.
-
-So I agree with you that we can make it step by step, firstly adding
-basic crashkernel=,high and ,low support. We can add those complicated
-cases later. 
-
+Thanks
+ChenYu
