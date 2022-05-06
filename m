@@ -2,155 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DD5C951D3C5
-	for <lists+devicetree@lfdr.de>; Fri,  6 May 2022 10:53:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A278051D3CC
+	for <lists+devicetree@lfdr.de>; Fri,  6 May 2022 10:54:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343895AbiEFI5d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 May 2022 04:57:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46314 "EHLO
+        id S1390287AbiEFI6P convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 6 May 2022 04:58:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46994 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344336AbiEFI5c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 May 2022 04:57:32 -0400
-Received: from honk.sigxcpu.org (honk.sigxcpu.org [24.134.29.49])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A349F5D5D2;
-        Fri,  6 May 2022 01:53:49 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-        by honk.sigxcpu.org (Postfix) with ESMTP id 64CF7FB03;
-        Fri,  6 May 2022 10:53:45 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at honk.sigxcpu.org
-Received: from honk.sigxcpu.org ([127.0.0.1])
-        by localhost (honk.sigxcpu.org [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id pWt2Bo0FRgjE; Fri,  6 May 2022 10:53:44 +0200 (CEST)
-Date:   Fri, 6 May 2022 10:53:39 +0200
-From:   Guido =?iso-8859-1?Q?G=FCnther?= <guido.gunther@puri.sm>
-To:     Liu Ying <victor.liu@nxp.com>
-Cc:     linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org, kishon@ti.com,
-        vkoul@kernel.org, robh@kernel.org, krzk@kernel.org,
-        andrzej.hajda@intel.com, narmstrong@baylibre.com,
-        robert.foss@linaro.org, Laurent.pinchart@ideasonboard.com,
-        jonas@kwiboo.se, jernej.skrabec@gmail.com, airlied@linux.ie,
-        daniel@ffwll.ch, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-        robert.chiras@nxp.com, martin.kepplinger@puri.sm
-Subject: Re: [PATCH resend v8 1/5] drm/bridge: nwl-dsi: Set PHY mode in
- nwl_dsi_mode_set()
-Message-ID: <YnTiEw5Drg4uHHJw@qwark.sigxcpu.org>
-References: <20220419010852.452169-1-victor.liu@nxp.com>
- <20220419010852.452169-2-victor.liu@nxp.com>
- <YmLkv4PYsi+XiFr5@qwark.sigxcpu.org>
- <538339829534d8ef10c68198016d198a9ec037fc.camel@nxp.com>
+        with ESMTP id S1390282AbiEFI6N (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 May 2022 04:58:13 -0400
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E27245DA09
+        for <devicetree@vger.kernel.org>; Fri,  6 May 2022 01:54:28 -0700 (PDT)
+Received: from p508fcb34.dip0.t-ipconnect.de ([80.143.203.52] helo=phil.localnet)
+        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <heiko@sntech.de>)
+        id 1nmtjD-0005t9-LO; Fri, 06 May 2022 10:54:23 +0200
+From:   Heiko Stuebner <heiko@sntech.de>
+To:     Sascha Hauer <s.hauer@pengutronix.de>
+Cc:     dri-devel@lists.freedesktop.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Sandy Huang <hjc@rock-chips.com>,
+        Peter Geis <pgwipeout@gmail.com>, Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v11 16/24] arm64: dts: rockchip: rk356x: Add VOP2 nodes
+Date:   Fri, 06 May 2022 10:54:18 +0200
+Message-ID: <8099476.NyiUUSuA9g@phil>
+In-Reply-To: <20220506071028.GS4012@pengutronix.de>
+References: <20220422072841.2206452-1-s.hauer@pengutronix.de> <2508329.Lt9SDvczpP@diego> <20220506071028.GS4012@pengutronix.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <538339829534d8ef10c68198016d198a9ec037fc.camel@nxp.com>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_FAIL,
-        SPF_HELO_NONE,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8BIT
+Content-Type: text/plain; charset="iso-8859-1"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Liu,
-On Fri, Apr 29, 2022 at 08:30:43PM +0800, Liu Ying wrote:
-> Hi,
-> 
-> On Fri, 2022-04-22 at 19:24 +0200, Guido Günther wrote:
-> > Hi,
-> > On Tue, Apr 19, 2022 at 09:08:48AM +0800, Liu Ying wrote:
-> > > The Northwest Logic MIPI DSI host controller embedded in i.MX8qxp
-> > > works with a Mixel MIPI DPHY + LVDS PHY combo to support either
-> > > a MIPI DSI display or a LVDS display.  So, this patch calls
-> > > phy_set_mode() from nwl_dsi_mode_set() to set PHY mode to MIPI DPHY
-> > > explicitly.
+Am Freitag, 6. Mai 2022, 09:10:28 CEST schrieb Sascha Hauer:
+> On Thu, May 05, 2022 at 09:23:03AM +0200, Heiko Stübner wrote:
+> > Am Donnerstag, 5. Mai 2022, 08:41:31 CEST schrieb Sascha Hauer:
+> > > On Thu, May 05, 2022 at 02:28:24AM +0200, Heiko Stübner wrote:
+> > > > Am Freitag, 22. April 2022, 09:28:33 CEST schrieb Sascha Hauer:
+> > > > > The VOP2 is the display output controller on the RK3568. Add the node
+> > > > > for it to the dtsi file along with the required display-subsystem node
+> > > > > and the iommu node.
+> > > > > 
+> > > > > Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
+> > > > > Acked-by: Rob Herring <robh@kernel.org>
+> > > > > ---
+> > > > > +	vop: vop@fe040000 {
+> > > > > +		reg = <0x0 0xfe040000 0x0 0x3000>, <0x0 0xfe044000 0x0 0x1000>;
+> > > > > +		reg-names = "regs", "gamma_lut";
+> > > > 
+> > > > reg-names does not seem to be part of the dt-binding.
+> > > > Though now in the vop2-driver I see that the code uses that naming.
+> > > > 
+> > > > I guess we might want to just go the vop1-way by using numbered
+> > > > platform-resources via a follow-up patch and drop the regnames here?
 > > > 
-> > > Cc: Guido Günther <agx@sigxcpu.org>
-> > > Cc: Robert Chiras <robert.chiras@nxp.com>
-> > > Cc: Martin Kepplinger <martin.kepplinger@puri.sm>
-> > > Cc: Andrzej Hajda <andrzej.hajda@intel.com>
-> > > Cc: Neil Armstrong <narmstrong@baylibre.com>
-> > > Cc: Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
-> > > Cc: Jonas Karlman <jonas@kwiboo.se>
-> > > Cc: Jernej Skrabec <jernej.skrabec@gmail.com>
-> > > Cc: David Airlie <airlied@linux.ie>
-> > > Cc: Daniel Vetter <daniel@ffwll.ch>
-> > > Cc: NXP Linux Team <linux-imx@nxp.com>
-> > > Signed-off-by: Liu Ying <victor.liu@nxp.com>
+> > > Or we could document the reg-names properties in a follow-up patch.
+> > > Wouldn't that be better?
+> > 
+> > Also a possibility. Although that of course leads us into the naming
+> > bike-shed ;-) ... i.e. for reg-names I'd do "vop" + "gamme-lut" (dash instead
+> > of underscore) - instead of the ones used right now.
 > 
-> Hope this patch won't fall through the cracks.
-> Can someone please apply it to drm-misc-next? Robert?
+> I also like dashes better than underscores and "vop" describes it better
+> than the generic "reg" name, so at least the two of us don't need to
+> dive deeper into the naming bike-shed ;)
 
-Applied to drm-misc-next.
-Cheers,
- -- Guido
+:-D ... one problem solved already
 
+> > While using numbered resources would keep the commonality between
+> > both vops
 > 
-> Thanks,
-> Liu Ying
-> 
-> > > ---
-> > > v7->v8:
-> > > * Resend with Andrzej's and Jernej's mail addressed updated.
-> > > 
-> > > v6->v7:
-> > > * No change.
-> > > 
-> > > v5->v6:
-> > > * Rebase the series upon v5.17-rc1.
-> > > * Set PHY mode in ->mode_set() instead of ->pre_enable() in the
-> > > nwl-dsi
-> > >   bridge driver due to the rebase.
-> > > * Drop Guido's R-b tag due to the rebase.
-> > > 
-> > > v4->v5:
-> > > * No change.
-> > > 
-> > > v3->v4:
-> > > * No change.
-> > > 
-> > > v2->v3:
-> > > * No change.
-> > > 
-> > > v1->v2:
-> > > * Add Guido's R-b tag.
-> > > 
-> > >  drivers/gpu/drm/bridge/nwl-dsi.c | 6 ++++++
-> > >  1 file changed, 6 insertions(+)
-> > > 
-> > > diff --git a/drivers/gpu/drm/bridge/nwl-dsi.c
-> > > b/drivers/gpu/drm/bridge/nwl-dsi.c
-> > > index d5945501a5ee..85bab7372af1 100644
-> > > --- a/drivers/gpu/drm/bridge/nwl-dsi.c
-> > > +++ b/drivers/gpu/drm/bridge/nwl-dsi.c
-> > > @@ -666,6 +666,12 @@ static int nwl_dsi_mode_set(struct nwl_dsi
-> > > *dsi)
-> > >  		return ret;
-> > >  	}
-> > >  
-> > > +	ret = phy_set_mode(dsi->phy, PHY_MODE_MIPI_DPHY);
-> > > +	if (ret < 0) {
-> > > +		DRM_DEV_ERROR(dev, "Failed to set DSI phy mode: %d\n",
-> > > ret);
-> > > +		goto uninit_phy;
-> > > +	}
-> > > +
-> > >  	ret = phy_configure(dsi->phy, phy_cfg);
-> > >  	if (ret < 0) {
-> > >  		DRM_DEV_ERROR(dev, "Failed to configure DSI phy: %d\n",
-> > > ret);
-> > 
-> > I can't currently test this but it still looks good so
-> > 
-> > Reviewed-by: Guido Günther <agx@sigxcpu.org>
-> > 
-> > Cheers,
-> >  -- Guido
-> > 
-> > > -- 
-> > > 2.25.1
-> > > 
-> 
+> I like the named resources better, but I'll leave it up to you. You
+> decide, I'll create fixup patches in either direction.
+
+ok, then let's go with the named-resources. As we'll need an Ack from
+DT-people, we should probably expedite this.
+
+Ideally I guess, do the dt-binding fixup + resend the fixed dt-node patches
+with it. From the original series those dt-nodes + the hdmi rate stuff
+is the only thing missing and the rates can be a separate thing.
+
+Heiko
+
+
