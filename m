@@ -2,71 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BA1DE51CE11
-	for <lists+devicetree@lfdr.de>; Fri,  6 May 2022 04:16:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A31B51CE50
+	for <lists+devicetree@lfdr.de>; Fri,  6 May 2022 04:16:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1388122AbiEFBwu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 May 2022 21:52:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44016 "EHLO
+        id S1380934AbiEFCTo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 May 2022 22:19:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36912 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349717AbiEFBwt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 21:52:49 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ECDB662A1A;
-        Thu,  5 May 2022 18:49:07 -0700 (PDT)
-X-UUID: e22ab0cec2694569aba31fdfa791b297-20220506
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.4,REQID:f32d2ef3-d71b-41f4-a4e3-01aebce32f80,OB:0,LO
-        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,ACT
-        ION:release,TS:45
-X-CID-INFO: VERSION:1.1.4,REQID:f32d2ef3-d71b-41f4-a4e3-01aebce32f80,OB:0,LOB:
-        0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,ACTIO
-        N:release,TS:45
-X-CID-META: VersionHash:faefae9,CLOUDID:c3f46016-2e53-443e-b81a-655c13977218,C
-        OID:IGNORED,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,File:nil,QS:0
-        ,BEC:nil
-X-UUID: e22ab0cec2694569aba31fdfa791b297-20220506
-Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
-        (envelope-from <rex-bc.chen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1728532245; Fri, 06 May 2022 09:49:02 +0800
-Received: from MTKMBS07N2.mediatek.inc (172.21.101.141) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.792.15; Fri, 6 May 2022 09:49:01 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Fri, 6 May 2022 09:49:01 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n2.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
- Transport; Fri, 6 May 2022 09:49:01 +0800
-Message-ID: <774c87ffdcac2ca97efef9fc6140f85ddc30e513.camel@mediatek.com>
-Subject: Re: [PATCH v6 02/10] cpufreq: mediatek: Add
- platform_device_unregister when driver exit
-From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, <rafael@kernel.org>,
-        <viresh.kumar@linaro.org>, <robh+dt@kernel.org>,
-        <krzk+dt@kernel.org>, <matthias.bgg@gmail.com>
-CC:     <jia-wei.chang@mediatek.com>, <roger.lu@mediatek.com>,
-        <hsinyi@google.com>, <khilman@baylibre.com>,
-        <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
+        with ESMTP id S1355450AbiEFCTn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 22:19:43 -0400
+Received: from mx1.cqplus1.com (unknown [113.204.237.245])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id ED7615FF0D
+        for <devicetree@vger.kernel.org>; Thu,  5 May 2022 19:15:52 -0700 (PDT)
+X-MailGates: (flag:1,DYNAMIC,RELAY,NOHOST,LAN:PASS)(compute_score:DELIVE
+        R,40,3)
+Received: from 172.27.96.203
+        by mx1.cqplus1.com with MailGates ESMTP Server V5.0(24036:0:AUTH_RELAY)
+        (envelope-from <qinjian@cqplus1.com>); Fri, 06 May 2022 10:11:01 +0800 (CST)
+Received: from CQEXMAIL01.cqplus1.com (172.27.96.203) by
+ CQEXMAIL01.cqplus1.com (172.27.96.203) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.6; Fri, 6 May 2022 10:10:59 +0800
+Received: from CQEXMAIL01.cqplus1.com ([::1]) by CQEXMAIL01.cqplus1.com
+ ([::1]) with mapi id 15.01.2507.006; Fri, 6 May 2022 10:10:59 +0800
+From:   =?utf-8?B?cWluamlhblvopoPlgaVd?= <qinjian@cqplus1.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     "krzysztof.kozlowski@linaro.org" <krzysztof.kozlowski@linaro.org>,
+        "linux-arm-kernel@lists.infradead.org" 
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Fri, 6 May 2022 09:49:01 +0800
-In-Reply-To: <af9724fe-181d-3ba4-79b9-bf3fab1ca80d@collabora.com>
-References: <20220505115226.20130-1-rex-bc.chen@mediatek.com>
-         <20220505115226.20130-3-rex-bc.chen@mediatek.com>
-         <af9724fe-181d-3ba4-79b9-bf3fab1ca80d@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: RE: [PATCH] dt-bindings: arm: sunplus: Add bindings for Sunplus
+ SP7021 SoC boards
+Thread-Topic: [PATCH] dt-bindings: arm: sunplus: Add bindings for Sunplus
+ SP7021 SoC boards
+Thread-Index: AQHYYEvJxSJNIGo0mkK2E3PzgUGrA60QWceAgADB+hA=
+Date:   Fri, 6 May 2022 02:10:59 +0000
+Message-ID: <cb39f05e5f904360b1f88560252e7506@cqplus1.com>
+References: <20220505064430.124657-1-qinjian@cqplus1.com>
+ <YnRQ4ya2trphqQuo@robh.at.kernel.org>
+In-Reply-To: <YnRQ4ya2trphqQuo@robh.at.kernel.org>
+Accept-Language: zh-CN, en-US
+Content-Language: zh-CN
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.28.110.18]
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,32 +59,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 2022-05-05 at 17:04 +0200, AngeloGioacchino Del Regno wrote:
-> Il 05/05/22 13:52, Rex-BC Chen ha scritto:
-> > We register the platform device when driver inits. However, we do
-> > not
-> > unregister it when driver exits.
-> > To resolve this, we declare the platform data to be a global static
-> > variable and rename it to be "cpufreq_pdev".
-> > With this global variable, we can do platform_device_unregister()
-> > when
-> > driver exits.
-> > 
-> > Signed-off-by: Rex-BC Chen <rex-bc.chen@mediatek.com>
-> 
-> Hello Rex,
-> this commit needs a Fixes: tag.
-> 
-> Cheers,
-> Angelo
-> 
-
-Hello Angelo,
-
-Thanks for the reminder.
-I will add "Fixes: 501c574f4e3a ("cpufreq: mediatek: Add support of
-cpufreq to MT2701/MT7623 SoC")"
-
-BRs,
-Rex
-
+VGhhbmtzIGZvciB5b3VyIHJlcGx5LCBJJ2xsIGtlZXAgdXBkYXRpbmcgdGhlIG9yaWdpbmFsIHBh
+dGNoIHNlcmllcy4NClBsZWFzZSBpZ25vcmUgdGhpcyBwYXRjaC4NCg0KDQpCZXN0IHJlZ2FyZHMs
+DQotLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tDQropoPlgaUg
+UWluSmlhbg0KU3VuTWVkaWEgVGVjaG5vbG9neShDaGVuZ2R1KUNvLixMdGQNCuWHjOmYs+aIkOiK
+r+enkeaKgO+8iOaIkOmDve+8ieaciemZkOWFrOWPuA0KVGVsOjg2LTI4LTg3ODQ4Njg4IEVYVCA1
+NDc2DQpGYXg6ODYtMjgtODc4NDg2ODYNCi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0NCg0KDQo+IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+IEZyb206
+IFJvYiBIZXJyaW5nIDxyb2JoQGtlcm5lbC5vcmc+DQo+IFNlbnQ6IEZyaWRheSwgTWF5IDYsIDIw
+MjIgNjozNCBBTQ0KPiBUbzogcWluamlhblvopoPlgaVdIDxxaW5qaWFuQGNxcGx1czEuY29tPg0K
+PiBDYzoga3J6eXN6dG9mLmtvemxvd3NraUBsaW5hcm8ub3JnOyBsaW51eC1hcm0ta2VybmVsQGxp
+c3RzLmluZnJhZGVhZC5vcmc7IGRldmljZXRyZWVAdmdlci5rZXJuZWwub3JnOyBsaW51eC1rZXJu
+ZWxAdmdlci5rZXJuZWwub3JnDQo+IFN1YmplY3Q6IFJlOiBbUEFUQ0hdIGR0LWJpbmRpbmdzOiBh
+cm06IHN1bnBsdXM6IEFkZCBiaW5kaW5ncyBmb3IgU3VucGx1cyBTUDcwMjEgU29DIGJvYXJkcw0K
+PiANCj4gT24gVGh1LCBNYXkgMDUsIDIwMjIgYXQgMDI6NDQ6MzBQTSArMDgwMCwgUWluIEppYW4g
+d3JvdGU6DQo+ID4gVGhpcyBpbnRyb2R1Y2VzIGJpbmRpbmdzIGZvciBib2FyZHMgYmFzZWQgU3Vu
+cGx1cyBTUDcwMjEgU29DLg0KPiA+DQo+ID4gVGhpcyBwYXRjaCBpcyBzZXBhcmF0ZWQgZnJvbSB0
+aGUgcGF0Y2ggc2VyaWVzOg0KPiA+IEFkZCBTdW5wbHVzIFNQNzAyMSBTb0MgU3VwcG9ydC4gWzFd
+DQo+ID4gVG8gc2ltcGx5IHRoaW5nLCBJIGV4dHJhY3QgaXQgZnJvbSB0aGUgb3JpZ2luYWwgYW5k
+IHJlc2VuZCB0aGlzIHBhdGNoLg0KPiANCj4gVGhpcyBpbmZvcm1hdGlvbiBkb2Vzbid0IGJlbG9u
+ZyBpbiB0aGUgY29tbWl0IG1zZy4gWW91IHNob3VsZCBwdXQNCj4gY29udGV4dCBsaWtlIHRoaXMg
+YmVsb3cgdGhlICctLS0nLg0KPiANCj4gV2hvIHN1Z2dlc3RlZCBzcGxpdHRpbmcgdGhpcyBvdXQ/
+IE5vcm1hbGx5LCBuZXcgU29DIGZhbWlsaWVzIHNlcmllcyBhcmUNCj4gYXBwbGllZCBhcyBhIHdo
+b2xlIGJ5IHRoZSBTb0MgbWFpbnRhaW5lcnMgKEFybmQvT2xvZikuDQo+IA0KPiBSb2INCg==
