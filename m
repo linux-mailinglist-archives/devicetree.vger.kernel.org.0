@@ -2,61 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D94E851E273
-	for <lists+devicetree@lfdr.de>; Sat,  7 May 2022 01:41:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3534A51E28F
+	for <lists+devicetree@lfdr.de>; Sat,  7 May 2022 01:41:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1444814AbiEFWnq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 May 2022 18:43:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50018 "EHLO
+        id S1444914AbiEFXO1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 May 2022 19:14:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50082 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1355771AbiEFWnl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 May 2022 18:43:41 -0400
-Received: from mail-oi1-f172.google.com (mail-oi1-f172.google.com [209.85.167.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D55E5AA48
-        for <devicetree@vger.kernel.org>; Fri,  6 May 2022 15:39:57 -0700 (PDT)
-Received: by mail-oi1-f172.google.com with SMTP id y63so9023454oia.7
-        for <devicetree@vger.kernel.org>; Fri, 06 May 2022 15:39:57 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=h6f3Y9vrDdYYFTDNJT9zpurZsh7x1xQsR89Awh+MrAI=;
-        b=zSum5+pCFN/gPBEb+MUnmu0lR9Sj6BcZSjiV6983Gj6fZcXA1xyZf3HN2gMpZBkr0r
-         59Knq0bYz3z5qjHWfMs3LufjQ4X+G6xhIkXMdFJeApX05Y3tIdhDWW3s3Vp2/rWbgaM4
-         FVQVL+UikzI7wRQWCQVh/5MOMxkc39CoG/egA+9XODyNKCSLf0FMkYl8yfFXelJ6n2zh
-         WES6iM9sPXRLUyvAwOTJWZQCN2jJyzEd5WmyHRKydEYHwRBwIWgqONSKMEjSqTlRmeYI
-         9n5FaAHnYXokutT3pbJi3r7XpT0cFc7Tmr1w+VKrewSvqLGegk9gVcUe4h9A2lCD7I9X
-         5tdg==
-X-Gm-Message-State: AOAM531QCJMZdKEY4VDhp/vcC8Fp6evfdKkGYToWGKbJh9vUYEc/PAFO
-        2QcYQ5mP4er/tshsLTFqvF+L0z/J2g==
-X-Google-Smtp-Source: ABdhPJxYXgg20GjMyoMfP6GFwskmlW2eE/9SxYDmtFmaVd+42Ppf9qzFfTkX/9IUh8dQNSNxLfRU/w==
-X-Received: by 2002:a05:6808:e89:b0:2f7:34db:6915 with SMTP id k9-20020a0568080e8900b002f734db6915mr2475740oil.284.1651876796724;
-        Fri, 06 May 2022 15:39:56 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id r13-20020a9d5ccd000000b005b22a0d826csm2056138oti.1.2022.05.06.15.39.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 06 May 2022 15:39:56 -0700 (PDT)
-Received: (nullmailer pid 2407423 invoked by uid 1000);
-        Fri, 06 May 2022 22:39:53 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Andre Przywara <andre.przywara@arm.com>
-Cc:     Will Deacon <will@kernel.org>, David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        with ESMTP id S1355923AbiEFXO0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 May 2022 19:14:26 -0400
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 202965EDE8
+        for <devicetree@vger.kernel.org>; Fri,  6 May 2022 16:10:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1651878641;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=QDEUBZQi2gkd5vGN65bG0cDs8TDhy97WSz0PhVlgRoE=;
+        b=QehyvxK9vxssxcAaeIMW4ZqUmBjfWfq2Avxxo0n4VXqexANly7NPcqWmhrym3YmpoiMCOi
+        u72ukTxVDj0Pap1JVmP/D1bvz0UoZPNmkrFuYCP3v4WUAhJ54cJuf9H5geYrdO2wWk2/eq
+        YxaCku6uESjbMcvmavgWAOnfc1mZuco=
+Received: from mimecast-mx02.redhat.com (mx3-rdu2.redhat.com
+ [66.187.233.73]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-668-TAhXEYwDNG2uu1lmYE4cTA-1; Fri, 06 May 2022 19:10:38 -0400
+X-MC-Unique: TAhXEYwDNG2uu1lmYE4cTA-1
+Received: from smtp.corp.redhat.com (int-mx01.intmail.prod.int.rdu2.redhat.com [10.11.54.1])
+        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        by mimecast-mx02.redhat.com (Postfix) with ESMTPS id 0110F3C01C00;
+        Fri,  6 May 2022 23:10:37 +0000 (UTC)
+Received: from localhost (ovpn-12-33.pek2.redhat.com [10.72.12.33])
+        by smtp.corp.redhat.com (Postfix) with ESMTPS id A3ABC40CF8E8;
+        Fri,  6 May 2022 23:10:35 +0000 (UTC)
+Date:   Sat, 7 May 2022 07:10:32 +0800
+From:   Baoquan He <bhe@redhat.com>
+To:     Zhen Lei <thunder.leizhen@huawei.com>,
+        Catalin Marinas <catalin.marinas@arm.com>
+Cc:     Thomas Gleixner <tglx@linutronix.de>,
+        Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
+        x86@kernel.org, "H . Peter Anvin" <hpa@zytor.com>,
+        linux-kernel@vger.kernel.org, Dave Young <dyoung@redhat.com>,
+        Vivek Goyal <vgoyal@redhat.com>,
+        Eric Biederman <ebiederm@xmission.com>,
+        kexec@lists.infradead.org, Will Deacon <will@kernel.org>,
         linux-arm-kernel@lists.infradead.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        Robin Murphy <robin.murphy@arm.com>,
-        Liviu Dudau <liviu.dudau@arm.com>
-In-Reply-To: <20220506140533.3566431-10-andre.przywara@arm.com>
-References: <20220506140533.3566431-1-andre.przywara@arm.com> <20220506140533.3566431-10-andre.przywara@arm.com>
-Subject: Re: [PATCH v2 09/11] dt-bindings: display: convert Arm HDLCD to DT schema
-Date:   Fri, 06 May 2022 17:39:53 -0500
-Message-Id: <1651876793.696398.2407422.nullmailer@robh.at.kernel.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>,
+        linux-doc@vger.kernel.org, Randy Dunlap <rdunlap@infradead.org>,
+        Feng Zhou <zhoufeng.zf@bytedance.com>,
+        Kefeng Wang <wangkefeng.wang@huawei.com>,
+        Chen Zhou <dingguo.cz@antgroup.com>,
+        John Donnelly <John.p.donnelly@oracle.com>,
+        Dave Kleikamp <dave.kleikamp@oracle.com>
+Subject: Re: [PATCH v24 3/6] arm64: kdump: Reimplement crashkernel=X
+Message-ID: <20220506231032.GA122876@MiWiFi-R3L-srv>
+References: <20220506114402.365-1-thunder.leizhen@huawei.com>
+ <20220506114402.365-4-thunder.leizhen@huawei.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220506114402.365-4-thunder.leizhen@huawei.com>
+X-Scanned-By: MIMEDefang 2.84 on 10.11.54.1
+X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -64,35 +76,58 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 06 May 2022 15:05:31 +0100, Andre Przywara wrote:
-> The Arm HDLCD is a display controller that scans out a framebuffer and
-> hands a signal to a digital encoder to generate a DVI or HDMI signal.
+On 05/06/22 at 07:43pm, Zhen Lei wrote:
+......  
+> @@ -118,8 +162,7 @@ static void __init reserve_crashkernel(void)
+>  	if (crash_base)
+>  		crash_max = crash_base + crash_size;
+>  
+> -	/* Current arm64 boot protocol requires 2MB alignment */
+> -	crash_base = memblock_phys_alloc_range(crash_size, SZ_2M,
+> +	crash_base = memblock_phys_alloc_range(crash_size, CRASH_ALIGN,
+>  					       crash_base, crash_max);
+>  	if (!crash_base) {
+>  		pr_warn("cannot allocate crashkernel (size:0x%llx)\n",
+> @@ -127,6 +170,11 @@ static void __init reserve_crashkernel(void)
+>  		return;
+>  	}
+>  
+
+There's corner case missed, e.g
+1) ,high and ,low are specified, CONFIG_ZONE_DMA|DMA32 is not enabled;
+2) ,high and ,low are specified, the whole system memory is under 4G.
+
+Below judgement can filter them away:
+        
+	if (crash_base > arm64_dma_phys_limit && crash_low_size &&
+	    reserve_crashkernel_low(crash_low_size)) {
+
+What's your opinion? Leave it and add document to notice user, or fix it
+with code change?
+
+I would suggest merging this series, Lei can add this corner case
+handling on top. Since this is a newly added support, we don't have
+to make it one step. Doing step by step can make reviewing easier.
+
+> +	if (crash_low_size && reserve_crashkernel_low(crash_low_size)) {
+> +		memblock_phys_free(crash_base, crash_size);
+> +		return;
+> +	}
+> +
+>  	pr_info("crashkernel reserved: 0x%016llx - 0x%016llx (%lld MB)\n",
+>  		crash_base, crash_base + crash_size, crash_size >> 20);
+>  
+> @@ -135,6 +183,9 @@ static void __init reserve_crashkernel(void)
+>  	 * map. Inform kmemleak so that it won't try to access it.
+>  	 */
+>  	kmemleak_ignore_phys(crash_base);
+> +	if (crashk_low_res.end)
+> +		kmemleak_ignore_phys(crashk_low_res.start);
+> +
+>  	crashk_res.start = crash_base;
+>  	crashk_res.end = crash_base + crash_size - 1;
+>  	insert_resource(&iomem_resource, &crashk_res);
+> -- 
+> 2.25.1
 > 
-> Convert the existing DT binding to DT schema.
-> 
-> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
-> ---
->  .../devicetree/bindings/display/arm,hdlcd.txt | 79 ----------------
->  .../bindings/display/arm,hdlcd.yaml           | 89 +++++++++++++++++++
->  2 files changed, 89 insertions(+), 79 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/display/arm,hdlcd.txt
->  create mode 100644 Documentation/devicetree/bindings/display/arm,hdlcd.yaml
-> 
-
-Running 'make dtbs_check' with the schema in this patch gives the
-following warnings. Consider if they are expected or the schema is
-incorrect. These may not be new warnings.
-
-Note that it is not yet a requirement to have 0 warnings for dtbs_check.
-This will change in the future.
-
-Full log is available here: https://patchwork.ozlabs.org/patch/
-
-
-hdlcd@2a110000: 'port' is a required property
-	arch/arm/boot/dts/vexpress-v2p-ca5s.dtb
-
-hdlcd@2b000000: 'port' is a required property
-	arch/arm/boot/dts/vexpress-v2p-ca15_a7.dtb
-	arch/arm/boot/dts/vexpress-v2p-ca15-tc1.dtb
 
