@@ -2,76 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3535E51D36D
-	for <lists+devicetree@lfdr.de>; Fri,  6 May 2022 10:29:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C1B8351D37B
+	for <lists+devicetree@lfdr.de>; Fri,  6 May 2022 10:36:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1390145AbiEFIck (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 May 2022 04:32:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49118 "EHLO
+        id S238434AbiEFIjv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 May 2022 04:39:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55894 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1390144AbiEFIci (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 May 2022 04:32:38 -0400
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6BE30674E4
-        for <devicetree@vger.kernel.org>; Fri,  6 May 2022 01:28:55 -0700 (PDT)
-Received: by mail-ej1-x631.google.com with SMTP id j6so13025132ejc.13
-        for <devicetree@vger.kernel.org>; Fri, 06 May 2022 01:28:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :references:cc:from:in-reply-to:content-transfer-encoding;
-        bh=k8gw4JD+CVD/evHIacbhoTM1UmIlcjVCNQ+9z7oYUtI=;
-        b=dDZs4xRsI+XJt34onMwmAZtEAGas5P7kna23XXUg06Y/gztAxn8a54iuBWXYNHBmCX
-         bc9omCyYTSnmd4wyPVEQaM3fJ9qeBaAWNqvOqOrhHgltpmko5+rjky0VeGWALW6WwdqR
-         X8j95OnDoOceNHT0SEmSr/ABL3waSGRPacAK4vCWkbGL4jqK94qZCzk20EvvtfS9e2ek
-         bClBIbWgydbg+7AxUw2bTZhxtAsJwRDiWDDECmrJ1Npw9K8xbMKzewaoC76r4daDMsSa
-         QM5Xf6k4repo+cmcKUjz0K2GGYKSydY1YVPjwyMhtNJK56a6oPnmwgeSIZbwL0ODJwEI
-         f4jA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:references:cc:from:in-reply-to
-         :content-transfer-encoding;
-        bh=k8gw4JD+CVD/evHIacbhoTM1UmIlcjVCNQ+9z7oYUtI=;
-        b=tFiuKToNOwkdZOvgem+YchSJ/mR7awNa25m0aoLdKX/Iw5yJqt853wesxPOCwp6G1J
-         yxXUfc9Oi3AZDde+aihdW5o1z8w40YYYaOb0vWiTZPKEwi2kN4BNjIaTs73Rny0+PbLR
-         pJdk6GuDS29kOHS8wSXixbauhsTKdntRN0McR/iqOByEVUp6cNJZEn8Jto4gdq4O/fYX
-         TNav3Qw5UMVkBVPcGptKk1px3WfolwaUCXVNpr3y57BPQMsU8vYKWWXxg8yMvxq6MV8+
-         TG1RI6Z5yLu0mffq2shFCmaHJ058Nb8Ql8f6rdZPJiiUi982Q1Cg2WkPv1vFa8enH2iL
-         7SQg==
-X-Gm-Message-State: AOAM530rWj7bOTtAiBPDttDDz2RzuiTRw2dly4B5SA0maGsQBTXjVnTp
-        xxnZ33ogE/SJNg6UFxxrMbAefQ==
-X-Google-Smtp-Source: ABdhPJz8nMRZdChtZYB1x22twKxHKUjq6qOsvsEKiRI3qcGnDs0ehoq2wpfQpANDDl8kg3ZNcHVoEw==
-X-Received: by 2002:a17:906:54c3:b0:6ef:d07b:c8ec with SMTP id c3-20020a17090654c300b006efd07bc8ecmr1859082ejp.687.1651825733978;
-        Fri, 06 May 2022 01:28:53 -0700 (PDT)
-Received: from [192.168.0.223] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id r2-20020aa7d582000000b0042617ba6396sm1997301edq.32.2022.05.06.01.28.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 06 May 2022 01:28:53 -0700 (PDT)
-Message-ID: <d6ead111-e2f8-c098-42ff-cda30a1d72bc@linaro.org>
-Date:   Fri, 6 May 2022 10:28:52 +0200
+        with ESMTP id S238317AbiEFIju (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 May 2022 04:39:50 -0400
+Received: from mx1.cqplus1.com (unknown [113.204.237.245])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 1D1D16148
+        for <devicetree@vger.kernel.org>; Fri,  6 May 2022 01:35:49 -0700 (PDT)
+X-MailGates: (flag:1,DYNAMIC,RELAY,NOHOST,LAN:PASS)(compute_score:DELIVE
+        R,40,3)
+Received: from 172.27.96.203
+        by mx1.cqplus1.com with MailGates ESMTP Server V5.0(24042:0:AUTH_RELAY)
+        (envelope-from <qinjian@cqplus1.com>); Fri, 06 May 2022 16:34:24 +0800 (CST)
+Received: from CQEXMAIL01.cqplus1.com (172.27.96.203) by
+ CQEXMAIL01.cqplus1.com (172.27.96.203) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.6; Fri, 6 May 2022 16:34:17 +0800
+Received: from CQEXMAIL01.cqplus1.com ([::1]) by CQEXMAIL01.cqplus1.com
+ ([::1]) with mapi id 15.01.2507.006; Fri, 6 May 2022 16:34:17 +0800
+From:   =?utf-8?B?cWluamlhblvopoPlgaVd?= <qinjian@cqplus1.com>
+To:     Arnd Bergmann <arnd@arndb.de>
+CC:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        "Stephen Boyd" <sboyd@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        "Russell King - ARM Linux" <linux@armlinux.org.uk>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>
+Subject: RE: [PATCH v14 0/9] Add Sunplus SP7021 SoC Support
+Thread-Topic: [PATCH v14 0/9] Add Sunplus SP7021 SoC Support
+Thread-Index: AQHYYPmpoyLFCwENCkOMTsBsGD1pya0Q7muAgACVJHA=
+Date:   Fri, 6 May 2022 08:34:17 +0000
+Message-ID: <23e22e4e8b9e4d7ab02caaa1c3f7b599@cqplus1.com>
+References: <cover.1651805790.git.qinjian@cqplus1.com>
+ <CAK8P3a0W4wpVwDmCXDkm_u9W=JozrnCnxW7zK3h2XD8f_ODy6w@mail.gmail.com>
+In-Reply-To: <CAK8P3a0W4wpVwDmCXDkm_u9W=JozrnCnxW7zK3h2XD8f_ODy6w@mail.gmail.com>
+Accept-Language: zh-CN, en-US
+Content-Language: zh-CN
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.28.110.18]
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH 1/3] dt-bindings: timer: cdns,ttc: drop unneeded minItems
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>
-References: <20220424150333.75172-1-krzysztof.kozlowski@linaro.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Michal Simek <michal.simek@xilinx.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220424150333.75172-1-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,18 +64,34 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/04/2022 17:03, Krzysztof Kozlowski wrote:
-> There is no need to add minItems when it is equal to maxItems.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->  Documentation/devicetree/bindings/timer/cdns,ttc.yaml | 1 -
->  1 file changed, 1 deletion(-)
-Hi Daniel, Thomas,
-
-The patchset was acked by Rob, so he expects you will pick it up. Could
-you let me know if there is anything stopping or you expect the other
-way (via DT-tree)?
-
-Best regards,
-Krzysztof
+PiANCj4gT24gRnJpLCBNYXkgNiwgMjAyMiBhdCA1OjIzIEFNIFFpbiBKaWFuIDxxaW5qaWFuQGNx
+cGx1czEuY29tPiB3cm90ZToNCj4gPg0KPiA+IFRoaXMgcGF0Y2ggc2VyaWVzIGFkZCBTdW5wbHVz
+IFNQNzAyMSBTb0Mgc3VwcG9ydC4NCj4gPg0KPiA+IFN1bnBsdXMgU1A3MDIxIGlzIGFuIEFSTSBD
+b3J0ZXggQTcgKDQgY29yZXMpIGJhc2VkIFNvQy4gSXQgaW50ZWdyYXRlcyBtYW55DQo+ID4gcGVy
+aXBoZXJhbHMgKGV4OiBVQVJULCBJMkMsIFNQSSwgU0RJTywgZU1NQywgVVNCLCBTRCBjYXJkIGFu
+ZCBldGMuKSBpbnRvIGENCj4gPiBzaW5nbGUgY2hpcC4gSXQgaXMgZGVzaWduZWQgZm9yIGluZHVz
+dHJpYWwgY29udHJvbC4NCj4gPg0KPiA+IFNQNzAyMSBjb25zaXN0cyBvZiB0d28gY2hpcHMgKGRp
+ZXMpIGluIGEgcGFja2FnZS4gT25lIGlzIGNhbGxlZCBDLWNoaXANCj4gPiAoY29tcHV0aW5nIGNo
+aXApLiBJdCBpcyBhIDQtY29yZSBBUk0gQ29ydGV4IEE3IENQVS4gSXQgYWRvcHRzIGhpZ2gtbGV2
+ZWwNCj4gPiBwcm9jZXNzICgyMiBubSkgZm9yIGhpZ2ggcGVyZm9ybWFuY2UgY29tcHV0aW5nLiBU
+aGUgb3RoZXIgaXMgY2FsbGVkIFAtDQo+ID4gY2hpcCAocGVyaXBoZXJhbCBjaGlwKS4gSXQgaGFz
+IG1hbnkgcGVyaXBoZXJhbHMgYW5kIGFuIEFSTSBBOTI2IGFkZGVkDQo+ID4gZXNwZWNpYWxseSBm
+b3IgcmVhbC10aW1lIGNvbnRyb2wuIFAtY2hpcCBpcyBtYWRlIGZvciBjdXN0b21lcnMuIEl0IGFk
+b3B0cw0KPiA+IGxvdy1sZXZlbCBwcm9jZXNzIChleDogMC4xMSB1bSkgdG8gcmVkdWNlIGNvc3Qu
+DQo+IA0KPiBKdXN0IGFuIHVwZGF0ZSBmcm9tIG15IHNpZGUgYWJvdXQgbWVyZ2luZyB0aGUgcGxh
+dGZvcm0gY29kZTogdGhlDQo+IHN1Ym1pc3Npb24gbG9va3MgbW9zdGx5IHNlbnNpYmxlIHRvIG1l
+LCBidXQgYXMgbG9uZyBhcyB0aGUgY2xrIGFuZCBpcnFjaGlwDQo+IGRyaXZlcnMgaGF2ZSBub3Qg
+ZmluaXNoZWQgdGhlIHJldmlldywgSSBjYW5ub3QgdGFrZSB0aGlzIHRocm91Z2ggdGhlIHNvYw0K
+PiB0cmVlLiBXZSBjb3VsZCBjb25zaWRlciBtZXJnaW5nIHRoZSBwbGF0Zm9ybSBjb2RlIHdpdGhv
+dXQgdGhvc2UgdHdvDQo+IGRyaXZlcnMsIGJ1dCB0aGF0IHNlZW1zIHBvaW50bGVzcyBiZWNhdXNl
+IGl0IHdpbGwgbm90IGJvb3QuDQo+IA0KDQpUaGUgcmV2aWV3ZXJzIG5vIHJlcGx5LCBJIGRvbuKA
+mXQga25vdyB3aHkuDQoNCj4gV2hhdCBpcyB0aGUgcmVhc29uIHlvdSBkb24ndCBpbmNsdWRlIGEg
+LmR0c2kgZmlsZSBpbiB0aGlzIHNlcmllcz8gVXN1YWxseQ0KPiB0aGVyZSBzaG91bGQgYmUgYXQg
+bGVhc3Qgb25lIGJvYXJkIGFuZCB0aGUgZGVzY3JpcHRpb24gb2YgdGhlIFNvQyBpdHNlbGYuDQo+
+IEFnYWluLCB3aXRob3V0IHRob3NlIEknbSBub3Qgc3VyZSBpdCdzIHdvcnRoIG1lcmdpbmcuDQo+
+IA0KDQpTb3JyeSwgSSdsbCBhZGQgdGhlIGR0cyBmaWxlIGluIG5leHQgcGF0Y2guDQoNCj4gRm9y
+IHRoZSB0aW1pbmcsIHdlIGFyZSBnZXR0aW5nIGNsb3NlIHRvIHRoZSA1LjE5IG1lcmdlIHdpbmRv
+dyB0aGF0DQo+IHN0YXJ0cyBvbmNlIHY1LjE4IGlzIG91dCwgYW5kIEkgZG9uJ3QgZXhwZWN0IHRo
+YXQgYWxsIHRoZSBhYm92ZSB3aWxsDQo+IGJlIHJlc29sdmVkIGluIHRpbWUsIHNvIGl0IGxvb2tz
+IHdlIHdpbGwgaGF2ZSB0byBkZWZlciBpdCBieSBvbmUgbW9yZQ0KPiByZWxlYXNlIHRvIDUuMjAu
+DQo+IA0KPiAgICAgICAgICAgQXJuZA0K
