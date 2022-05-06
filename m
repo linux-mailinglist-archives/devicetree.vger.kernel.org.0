@@ -2,77 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CEE4451D803
-	for <lists+devicetree@lfdr.de>; Fri,  6 May 2022 14:38:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C512F51D7FF
+	for <lists+devicetree@lfdr.de>; Fri,  6 May 2022 14:38:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1392083AbiEFMmS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 May 2022 08:42:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43700 "EHLO
+        id S1392068AbiEFMmJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 May 2022 08:42:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43634 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1392073AbiEFMmO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 May 2022 08:42:14 -0400
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F86F69496
-        for <devicetree@vger.kernel.org>; Fri,  6 May 2022 05:38:30 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id w1so12361910lfa.4
-        for <devicetree@vger.kernel.org>; Fri, 06 May 2022 05:38:30 -0700 (PDT)
+        with ESMTP id S237378AbiEFMmI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 May 2022 08:42:08 -0400
+Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com [IPv6:2607:f8b0:4864:20::1029])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E75E66ACA
+        for <devicetree@vger.kernel.org>; Fri,  6 May 2022 05:38:26 -0700 (PDT)
+Received: by mail-pj1-x1029.google.com with SMTP id j8-20020a17090a060800b001cd4fb60dccso6757681pjj.2
+        for <devicetree@vger.kernel.org>; Fri, 06 May 2022 05:38:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=+oJnfCTdPWSag7AGc8jPKi4ghzl83dJN2OES5/aYaT4=;
-        b=K0LgiS5p/Fz0/dtEboraGPOSwQFdkSth+xonysTtThr4NDxYGzK/K3nu0zsyiFDZT4
-         wH+vkseShFMadY6qbBA9VCYSxJStYbmQ12RP1M1PK2Dr7oMpncHl+awCQ0xKY/4Seud3
-         Qxuw8La5C2Sn7s2ktVCoBLaHLGPw4DaeJBm8Zuj5grwPxwJKD4sVKvP3WaHErXlx+zHB
-         4Qv36qrKnEV1Hn0BAZ424T8LhFExbDFMkBmMfW+3IdQCEwjRtOpPt9epMgHm6ruwSFs1
-         5uzjKg1q05qwpNrTVJwkvRJGgqgbAs+/Us6yj6QhLGbYGCAZM5gYHSST06ZtkmTtrqrU
-         hvHA==
+        bh=8Iv8SoSGBxWhw5qDincZ2Joez8FK0jJmCBzROaO+wX8=;
+        b=kg3X7f76VAhb5/0qlftuTSqLaYMwDIxBDAd1RWI38gWo8rY2zEW0LKoS5c5pqiDXmU
+         J24k3b4+WItGItv4dq6hX/6tcVO2INMZYHVBBX3N+mLn/2Odgb4R2b4uM92As4EHs7YM
+         zzGm1kNGfpBNHNp0KX50x+s9BFvgHnZ+P7rAWwR265PeyT2T63+zTztq/MPTyZeWdTwK
+         Jue4OpVj5v5h1dpZPEK57GToifuoVNn/kyKgfqLyTiLFtBLUY3PK7ooYdwo15NS1HBLP
+         kz5wTinfBSEHFhFy+AJPMISuMWqPdSh/Is+LYy8EcxxZd0RZzpw39zaq+dwcC1vcaeYG
+         MWLw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=+oJnfCTdPWSag7AGc8jPKi4ghzl83dJN2OES5/aYaT4=;
-        b=0wxb7HXaa2WBcGyXkXlbq1nOuzjY/ACvkmUUsFAkF14+pSv4zp3M781+KvGKPYTqDe
-         P5bOK26g2qN1m2YeKzvkmUIu8fuEutxJIT4WXJGt3qO/2839hIBCNTuey23WlPuf26Fv
-         jHJHT8OByEYM2H7H/19txnZ/xaoybppE2SZ81BklnIWhteB1nf8V37CEUqOrLVQKAECN
-         dMlQITjzwCdckMGDFe4tuQxpok70QzJM1BqCDAwdsOMPB3MDjRMsnjUKR0J5wUlfSSUN
-         Nsg3eEfGr7vUwoWfVaAhneoIr3c8+MgW2ChPM8oAEBtnvlgDxY0cGsOfpVVAdXAJAe3Z
-         stUA==
-X-Gm-Message-State: AOAM533UlHeGKdXUuEPsE0aFyEG2whSrFGjj693ZFZy3XuL4VXHLKKgg
-        5cK1QKUCJqqOxY7xwgo5ET0IHJqqLeSRQ4sKwWJZpA==
-X-Google-Smtp-Source: ABdhPJz/OG8nf/9MLik6vYRgPr2lDfjBYFJEYvIXAjy7Uu3UKsDMG/VrjItMgN2nY1YHO2G+QCSuzBVNZ4F4342VvEw=
-X-Received: by 2002:a05:6512:5cb:b0:472:f7e:a5f5 with SMTP id
- o11-20020a05651205cb00b004720f7ea5f5mr2255189lfo.358.1651840708488; Fri, 06
- May 2022 05:38:28 -0700 (PDT)
+        bh=8Iv8SoSGBxWhw5qDincZ2Joez8FK0jJmCBzROaO+wX8=;
+        b=GifzD5Wej5E+oG9LJ/Fc85IAVn1b7GgMiMtxG/6k1QR7eigYmUNUQdkM6oY1QVQG7f
+         knNFEKLMp9WiHG65nfmthfvhnKZ8X6D/avg6EHWwJq/TjweBSR7dG6WHsyNvTX/0eycP
+         37qzlIhZPVXrl5cmW2UsZGLPfd/ozr9HSeMYfV+Ufs6viK1l87jksI1QfDJzGKisOS/k
+         H9xP7UXNLZ3FFJKJU5IEpwYXDWNpMhU4xgrv/niKI6HxIrY4D6XW8uDYzYEMMLEEAc5g
+         kZPfFi2IQQLBlqwmC48dpHQ+B4qOaNVGVx5bpAeezu/FSyeIYEmmafZMm1NqJN8wuNcM
+         r5sA==
+X-Gm-Message-State: AOAM532J2f3PzqWpNOzfwqXjuzTpkPlghBn4mImQxO+fKyGAFDS2CZ31
+        tpHNypidczuQymiObD9s4B2qTPNfibRjtxWwqI24Ye55xbE=
+X-Google-Smtp-Source: ABdhPJy9H58NHSFFT2cxJ8NNbv/IBW8+5AyJ4M/qbkpKhSG/EzIWZIerpt2VYedRbVV5I8pFe97agg11zULt3k/oh3Y=
+X-Received: by 2002:a17:903:2350:b0:15e:93de:763a with SMTP id
+ c16-20020a170903235000b0015e93de763amr3428485plh.117.1651840705693; Fri, 06
+ May 2022 05:38:25 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220504213251.264819-1-sebastian.reichel@collabora.com>
- <20220504213251.264819-10-sebastian.reichel@collabora.com>
- <CAPDyKFqLn4LfPRbhoWw_9BF26Lgmzq_1j=RB31NDGn9YvMnB5w@mail.gmail.com> <20220506091837.bbwupigb4f3hwgp4@mercury.elektranox.org>
-In-Reply-To: <20220506091837.bbwupigb4f3hwgp4@mercury.elektranox.org>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Fri, 6 May 2022 14:37:52 +0200
-Message-ID: <CAPDyKFoiDunWM28fHKDc6q_c3fwUQGxPGurF0tChMJKwvDdhtQ@mail.gmail.com>
-Subject: Re: [PATCHv2 09/21] mmc: sdhci-of-dwcmshc: add reset call back for
- rockchip Socs
-To:     Sebastian Reichel <sebastian.reichel@collabora.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org,
-        linux-mmc@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Yifeng Zhao <yifeng.zhao@rock-chips.com>, kernel@collabora.com
+References: <20220504012601.423644-1-marex@denx.de> <YnKWeAu2MxXA7GzV@robh.at.kernel.org>
+In-Reply-To: <YnKWeAu2MxXA7GzV@robh.at.kernel.org>
+From:   Robert Foss <robert.foss@linaro.org>
+Date:   Fri, 6 May 2022 14:38:14 +0200
+Message-ID: <CAG3jFysE6yjBByBRxdjvOXmZH4Acw=M06toeG3evBZ9NeGifhw@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: display: bridge: ldb: Fill in reg property
+To:     Rob Herring <robh@kernel.org>
+Cc:     Marek Vasut <marex@denx.de>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Sam Ravnborg <sam@ravnborg.org>, Robby Cai <robby.cai@nxp.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Rob Herring <robh+dt@kernel.org>, Peng Fan <peng.fan@nxp.com>
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,120 +71,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 6 May 2022 at 11:18, Sebastian Reichel
-<sebastian.reichel@collabora.com> wrote:
+On Wed, 4 May 2022 at 17:06, Rob Herring <robh@kernel.org> wrote:
 >
-> Hi,
->
-> On Fri, May 06, 2022 at 10:52:42AM +0200, Ulf Hansson wrote:
-> > On Wed, 4 May 2022 at 23:33, Sebastian Reichel
-> > <sebastian.reichel@collabora.com> wrote:
-> > >
-> > > From: Yifeng Zhao <yifeng.zhao@rock-chips.com>
-> > >
-> > > The reset function build in the SDHCI will not reset the logic
-> > > circuit related to the tuning function, which may cause data
-> > > reading errors. Resetting the complete SDHCI controller through
-> > > the reset controller fixes the issue.
-> > >
-> > > Signed-off-by: Yifeng Zhao <yifeng.zhao@rock-chips.com>
-> > > [rebase, use optional variant of reset getter]
-> > > Acked-by: Adrian Hunter <adrian.hunter@intel.com>
-> > > Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+> On Wed, 04 May 2022 03:26:01 +0200, Marek Vasut wrote:
+> > Add missing reg and reg-names properties for both 'LDB_CTRL'
+> > and 'LVDS_CTRL' registers.
 > >
-> > I think this needs a corresponding update of the DT docs. Otherwise
-> > this looks good to me.
->
-> I do have 'resets' and 'reset-names' properties in the rk3588s.dtsi
-> for the sdhci interface and 'make dtbs_check' did not complain about
-> anything but missing 'arm,sdei-1.0' compatible for the rk3588 EVB
-> (sdei binding has not yet been converted to yaml). Thus I assume the
-> resets property is inferred from somewhere?
-
-I don't think it should, but I may be wrong.
-
-How about if you extend the example in the DT doc with a reset
-property, will that cause the DT tools to complain?
-
-Kind regards
-Uffe
-
->
-> -- Sebastian
->
+> > Fixes: 463db5c2ed4ae ("drm: bridge: ldb: Implement simple Freescale i.MX8MP LDB bridge")
+> > Signed-off-by: Marek Vasut <marex@denx.de>
+> > Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > Cc: Lucas Stach <l.stach@pengutronix.de>
+> > Cc: Maxime Ripard <maxime@cerno.tech>
+> > Cc: Peng Fan <peng.fan@nxp.com>
+> > Cc: Rob Herring <robh+dt@kernel.org>
+> > Cc: Robby Cai <robby.cai@nxp.com>
+> > Cc: Robert Foss <robert.foss@linaro.org>
+> > Cc: Sam Ravnborg <sam@ravnborg.org>
+> > Cc: Thomas Zimmermann <tzimmermann@suse.de>
+> > Cc: devicetree@vger.kernel.org
+> > To: dri-devel@lists.freedesktop.org
+> > ---
+> >  .../bindings/display/bridge/fsl,ldb.yaml         | 16 +++++++++++++++-
+> >  1 file changed, 15 insertions(+), 1 deletion(-)
 > >
-> > Kind regards
-> > Uffe
-> >
-> > > ---
-> > >  drivers/mmc/host/sdhci-of-dwcmshc.c | 26 +++++++++++++++++++++++++-
-> > >  1 file changed, 25 insertions(+), 1 deletion(-)
-> > >
-> > > diff --git a/drivers/mmc/host/sdhci-of-dwcmshc.c b/drivers/mmc/host/sdhci-of-dwcmshc.c
-> > > index bac874ab0b33..3a1b5ba36405 100644
-> > > --- a/drivers/mmc/host/sdhci-of-dwcmshc.c
-> > > +++ b/drivers/mmc/host/sdhci-of-dwcmshc.c
-> > > @@ -15,6 +15,7 @@
-> > >  #include <linux/module.h>
-> > >  #include <linux/of.h>
-> > >  #include <linux/of_device.h>
-> > > +#include <linux/reset.h>
-> > >  #include <linux/sizes.h>
-> > >
-> > >  #include "sdhci-pltfm.h"
-> > > @@ -63,6 +64,7 @@
-> > >  struct rk3568_priv {
-> > >         /* Rockchip specified optional clocks */
-> > >         struct clk_bulk_data rockchip_clks[RK3568_MAX_CLKS];
-> > > +       struct reset_control *reset;
-> > >         u8 txclk_tapnum;
-> > >  };
-> > >
-> > > @@ -255,6 +257,21 @@ static void dwcmshc_rk3568_set_clock(struct sdhci_host *host, unsigned int clock
-> > >         sdhci_writel(host, extra, DWCMSHC_EMMC_DLL_STRBIN);
-> > >  }
-> > >
-> > > +static void rk35xx_sdhci_reset(struct sdhci_host *host, u8 mask)
-> > > +{
-> > > +       struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
-> > > +       struct dwcmshc_priv *dwc_priv = sdhci_pltfm_priv(pltfm_host);
-> > > +       struct rk35xx_priv *priv = dwc_priv->priv;
-> > > +
-> > > +       if (mask & SDHCI_RESET_ALL && priv->reset) {
-> > > +               reset_control_assert(priv->reset);
-> > > +               udelay(1);
-> > > +               reset_control_deassert(priv->reset);
-> > > +       }
-> > > +
-> > > +       sdhci_reset(host, mask);
-> > > +}
-> > > +
-> > >  static const struct sdhci_ops sdhci_dwcmshc_ops = {
-> > >         .set_clock              = sdhci_set_clock,
-> > >         .set_bus_width          = sdhci_set_bus_width,
-> > > @@ -269,7 +286,7 @@ static const struct sdhci_ops sdhci_dwcmshc_rk3568_ops = {
-> > >         .set_bus_width          = sdhci_set_bus_width,
-> > >         .set_uhs_signaling      = dwcmshc_set_uhs_signaling,
-> > >         .get_max_clock          = sdhci_pltfm_clk_get_max_clock,
-> > > -       .reset                  = sdhci_reset,
-> > > +       .reset                  = rk35xx_sdhci_reset,
-> > >         .adma_write_desc        = dwcmshc_adma_write_desc,
-> > >  };
-> > >
-> > > @@ -292,6 +309,13 @@ static int dwcmshc_rk3568_init(struct sdhci_host *host, struct dwcmshc_priv *dwc
-> > >         int err;
-> > >         struct rk3568_priv *priv = dwc_priv->priv;
-> > >
-> > > +       priv->reset = devm_reset_control_array_get_optional_exclusive(mmc_dev(host->mmc));
-> > > +       if (IS_ERR(priv->reset)) {
-> > > +               err = PTR_ERR(priv->reset);
-> > > +               dev_err(mmc_dev(host->mmc), "failed to get reset control %d\n", err);
-> > > +               return err;
-> > > +       }
-> > > +
-> > >         priv->rockchip_clks[0].id = "axi";
-> > >         priv->rockchip_clks[1].id = "block";
-> > >         priv->rockchip_clks[2].id = "timer";
-> > > --
-> > > 2.35.1
-> > >
+>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+
+Applied to drm-misc-next
