@@ -2,143 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 48FE451E168
-	for <lists+devicetree@lfdr.de>; Fri,  6 May 2022 23:54:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E33151E242
+	for <lists+devicetree@lfdr.de>; Sat,  7 May 2022 01:40:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1355406AbiEFV6X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 May 2022 17:58:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45996 "EHLO
+        id S1444815AbiEFWnt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 May 2022 18:43:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50064 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234286AbiEFV6V (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 May 2022 17:58:21 -0400
-Received: from mail-qt1-x82b.google.com (mail-qt1-x82b.google.com [IPv6:2607:f8b0:4864:20::82b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C98A6FA15;
-        Fri,  6 May 2022 14:54:37 -0700 (PDT)
-Received: by mail-qt1-x82b.google.com with SMTP id hf18so7030857qtb.0;
-        Fri, 06 May 2022 14:54:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=RwE9cq9p0Nlb5WXcx6miQbDi/yCUsV/mHE4B3DAunEQ=;
-        b=XBjKjnmoAxI4U0zjITutiDy4hvb6gAkXbGpivr33VkTd3yXk046a9ztdGeEmoM8xmq
-         viKWdYYQfgz/9kE4Yg3VViyBRWrngMQ+CYisgxaF7Yy07Hm3KEs0CMQ3wAgV0y/jgMbw
-         hl0m2eg+knwyjh8UOWlDRShpxjXdFrw/zwBADtcDL51HoarIoYBNvfrvg6Fvq8owwl6I
-         03Kj+u1smm7ys8OGB+uymtUOQOY/zU6Oy7idBZl5LsucdrsafoofLKL4QmvpNdPjAYMG
-         a+M81ZX3QL10EVljZXaEtEP2ngXk0DRgDvME1Qrmr88QSHjs23rooxoYa+cgE7svNIBx
-         4pew==
+        with ESMTP id S1355771AbiEFWnr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 May 2022 18:43:47 -0400
+Received: from mail-oa1-f47.google.com (mail-oa1-f47.google.com [209.85.160.47])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CD8162117
+        for <devicetree@vger.kernel.org>; Fri,  6 May 2022 15:40:03 -0700 (PDT)
+Received: by mail-oa1-f47.google.com with SMTP id 586e51a60fabf-deb9295679so8694690fac.6
+        for <devicetree@vger.kernel.org>; Fri, 06 May 2022 15:40:03 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=RwE9cq9p0Nlb5WXcx6miQbDi/yCUsV/mHE4B3DAunEQ=;
-        b=mcJVlRBXAKTqbmyGm/FppKgicHopPS7wVy9p15czdTYVpBtyGyQ2Jkj1dO9qFFSGbP
-         e+beocbA6ExEMBHufts2tv6sa/1ooQXxoMCB2LX5GfAdd3agaYzACxhd4m2Uud8Mo/WJ
-         x5GOOOdOu7ElAoBW+cPgYVWfLNdXXuxwqwSQw1z2v+wJVYfvqQr1wf09q3I6sirGhCaw
-         nf6l6RttoN+/CNnW0CCEZ1fX3ecq4ERLHUkcNZZj4EF/rThVkU9VuRRuv6ob2NyTShJE
-         fRyqf7giJe+MukCGtd+fAmM4MfdVKUBJULH2aO+fYiGf8UQwl/6WhtUtVB+pyVFsBVMI
-         LhUA==
-X-Gm-Message-State: AOAM533NFRpzSJC5lkCAkA52b4GNpK03/b2lvYgQFB/uJxgl6gZ7/1mk
-        I41PKmtun2n2HD3Gz3pvOHH5wGAVLOi4hZnq/II=
-X-Google-Smtp-Source: ABdhPJwxY/50SN1+xVwy4AdOMSL/WvUMQPV+2K5V61Yi3kCKeGyqxkZqly9+WDBG/E9q8eqf/qN7lNQrTbZltStTOzE=
-X-Received: by 2002:a05:622a:155:b0:2f3:9484:c38e with SMTP id
- v21-20020a05622a015500b002f39484c38emr4801986qtw.494.1651874076599; Fri, 06
- May 2022 14:54:36 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220425182249.2753690-1-robimarko@gmail.com> <20220425182249.2753690-2-robimarko@gmail.com>
- <YnSW+mNgAp17e/YE@builder.lan>
-In-Reply-To: <YnSW+mNgAp17e/YE@builder.lan>
-From:   Robert Marko <robimarko@gmail.com>
-Date:   Fri, 6 May 2022 23:54:25 +0200
-Message-ID: <CAOX2RU4B6hqQtJCW3ifXfxd9dMCGE+FygDimGQOP49PRjp_y3g@mail.gmail.com>
-Subject: Re: [PATCH 2/7] clk: qcom: ipq8074: disable USB GDSC-s SW_COLLAPSE
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=jnCduir5pQYlrdkaJpztvPdFvaPDr5xSt6EEmo8r0sk=;
+        b=xv6EMSOdgV3hIEtK1att36Z/KVUvnY647kp0axGVyx4XrvggdCgUU5Gu3NVSTbGCKR
+         TNRR+LGSSjXd6LWjHw2DG5NLv/kJA7KMWW53dxMLK8b/YmVpzC5fKWwdwIUuopnsJtTa
+         DMNhuOMXzeHpkAzPUYE3OTaJ+YnyTdfPLFQ5BjgCddFAoUICkn7FGM0NTUjBZC9phl4W
+         Gr2LsYMVOm0FeX4G20lD2dVDXz2f1YNH1kZDryO3w8pLvt6uSrRQsWikm3LjYAyVS899
+         0QbSzxfPl2YDpf0OhJi5hmEH6QUApixNz4//NdFnNDisZemsRgBhy89NS4Tc6MMuSU3I
+         o4OQ==
+X-Gm-Message-State: AOAM530lqfhyDdoeJIw1BSHj1ppYVaxHGLytMYQpUZZNLgj91e1aWwsF
+        grD9orcaeLpVxfBisILuLA==
+X-Google-Smtp-Source: ABdhPJx32GDw5jkZmie8yU5Cr25cJJIbL1vIbDCLgVtdTOhoqI0NIN+yftvLprwNmgDhM9ToJCpnRg==
+X-Received: by 2002:a05:6870:4623:b0:ed:c502:bf3d with SMTP id z35-20020a056870462300b000edc502bf3dmr2329272oao.100.1651876802445;
+        Fri, 06 May 2022 15:40:02 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id c21-20020a9d75d5000000b0060603221279sm2011155otl.73.2022.05.06.15.40.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 06 May 2022 15:40:01 -0700 (PDT)
+Received: (nullmailer pid 2407419 invoked by uid 1000);
+        Fri, 06 May 2022 22:39:53 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Andre Przywara <andre.przywara@arm.com>
+Cc:     Robin Murphy <robin.murphy@arm.com>,
+        linux-arm-kernel@lists.infradead.org,
         Rob Herring <robh+dt@kernel.org>,
-        krzysztof.kozlowski+dt@linaro.org,
-        Abhishek Sahu <absahu@codeaurora.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        linux-clk@vger.kernel.org,
-        open list <linux-kernel@vger.kernel.org>,
-        Devicetree List <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        Will Deacon <will@kernel.org>, devicetree@vger.kernel.org,
+        Liviu Dudau <liviu.dudau@arm.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+In-Reply-To: <20220506140533.3566431-7-andre.przywara@arm.com>
+References: <20220506140533.3566431-1-andre.przywara@arm.com> <20220506140533.3566431-7-andre.przywara@arm.com>
+Subject: Re: [PATCH v2 06/11] dt-bindings: arm: convert vexpress-sysregs to DT schema
+Date:   Fri, 06 May 2022 17:39:53 -0500
+Message-Id: <1651876793.674154.2407418.nullmailer@robh.at.kernel.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 6 May 2022 at 05:33, Bjorn Andersson <bjorn.andersson@linaro.org> wrote:
->
-> On Mon 25 Apr 13:22 CDT 2022, Robert Marko wrote:
->
-> > Like in IPQ6018 Qualcomm intentionally disables the SW_COLLAPSE on the USB
-> > GDSC-s in the downstream 5.4 kernel.
-> >
-> > This could potentially be better handled by utilizing the GDSC driver, but
-> > I am not familiar with it nor do I have datasheets.
->
-> Could you please give it a try before we pick this up?
-> Look at e.g. drivers/clk/qcom/gcc-sdm845.c how usb30_prim_gdsc and
-> usb30_sec_gdsc are defined, the offsets in specified in .gdscr should be
-> the same offsets you give below.
->
-> Then you specify an array of struct gdsc *, associating the two gdscs
-> you have specified to some identifier (USB30_PRIM_GDSC and
-> USB30_SEC_GDSC is used in sdm845) and reference this list as .gdscs and
-> num_gdscs in the gcc_ipq8074_desc.
->
-> The last part is to tie the USB controllers to the two GDSCs, this is
-> done by simply specifying:
->
->         power-domains = <&gcc USB30_PRIM_GDSC>;
->
-> and USB30_SEC_GDSC, in the two USB nodes in DeviceTree. SW_COLLAPSE will
-> be toggled by the PM state of the USB driver, like it's done on e.g.
-> sdm845.
+On Fri, 06 May 2022 15:05:28 +0100, Andre Przywara wrote:
+> The Arm Versatile Express system control register block provides GPIO
+> functionality to some devices and is also used for board identification.
+> 
+> Extract the first half of the informal vexpress-sysreg.txt binding and
+> make it proper DT schema compliant.
+> 
+> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+> ---
+>  .../bindings/arm/vexpress-sysreg.yaml         | 90 +++++++++++++++++++
+>  1 file changed, 90 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/arm/vexpress-sysreg.yaml
+> 
 
-Hi Bjorn, thanks for the tips, it makes more sense now.
-The only thing I am not sure about are the feature flags for these GDSCs,
-how to figure out which ones are correct as I dont have datasheets and QCA
-does not use GDSCs in the downstream kernel?
-POLL_CFG_GDSCR will cause the GDSC not to get enabled, while VOTABLE
-seems to work.
+Running 'make dtbs_check' with the schema in this patch gives the
+following warnings. Consider if they are expected or the schema is
+incorrect. These may not be new warnings.
 
-Regards,
-Robert
+Note that it is not yet a requirement to have 0 warnings for dtbs_check.
+This will change in the future.
 
->
-> Regards,
-> Bjorn
->
-> >
-> > Signed-off-by: Robert Marko <robimarko@gmail.com>
-> > ---
-> >  drivers/clk/qcom/gcc-ipq8074.c | 5 +++++
-> >  1 file changed, 5 insertions(+)
-> >
-> > diff --git a/drivers/clk/qcom/gcc-ipq8074.c b/drivers/clk/qcom/gcc-ipq8074.c
-> > index 2ebd1462db78..65249a03a672 100644
-> > --- a/drivers/clk/qcom/gcc-ipq8074.c
-> > +++ b/drivers/clk/qcom/gcc-ipq8074.c
-> > @@ -4806,6 +4806,11 @@ static int gcc_ipq8074_probe(struct platform_device *pdev)
-> >       if (IS_ERR(regmap))
-> >               return PTR_ERR(regmap);
-> >
-> > +     /* Disable SW_COLLAPSE for USB0 GDSCR */
-> > +     regmap_update_bits(regmap, 0x3e078, BIT(0), 0x0);
-> > +     /* Disable SW_COLLAPSE for USB1 GDSCR */
-> > +     regmap_update_bits(regmap, 0x3f078, BIT(0), 0x0);
-> > +
-> >       clk_alpha_pll_configure(&ubi32_pll_main, regmap, &ubi32_pll_config);
-> >       clk_alpha_pll_configure(&nss_crypto_pll_main, regmap,
-> >                               &nss_crypto_pll_config);
-> > --
-> > 2.35.1
-> >
+Full log is available here: https://patchwork.ozlabs.org/patch/
+
+
+sysreg@10000: '#address-cells' is a required property
+	arch/arm64/boot/dts/arm/foundation-v8.dtb
+	arch/arm64/boot/dts/arm/foundation-v8-gicv3.dtb
+	arch/arm64/boot/dts/arm/foundation-v8-gicv3-psci.dtb
+	arch/arm64/boot/dts/arm/foundation-v8-psci.dtb
+	arch/arm64/boot/dts/arm/fvp-base-revc.dtb
+	arch/arm64/boot/dts/arm/rtsm_ve-aemv8a.dtb
+
+sysreg@10000: '#gpio-cells', 'gpio-controller' do not match any of the regexes: '^gpio@[0-9a-f]+$', 'pinctrl-[0-9]+'
+	arch/arm64/boot/dts/arm/fvp-base-revc.dtb
+	arch/arm64/boot/dts/arm/rtsm_ve-aemv8a.dtb
+
+sysreg@10000: '#size-cells' is a required property
+	arch/arm64/boot/dts/arm/foundation-v8.dtb
+	arch/arm64/boot/dts/arm/foundation-v8-gicv3.dtb
+	arch/arm64/boot/dts/arm/foundation-v8-gicv3-psci.dtb
+	arch/arm64/boot/dts/arm/foundation-v8-psci.dtb
+	arch/arm64/boot/dts/arm/fvp-base-revc.dtb
+	arch/arm64/boot/dts/arm/rtsm_ve-aemv8a.dtb
+
