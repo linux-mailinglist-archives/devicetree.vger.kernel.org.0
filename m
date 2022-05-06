@@ -2,134 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E3EC51DA73
-	for <lists+devicetree@lfdr.de>; Fri,  6 May 2022 16:23:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 47C1D51DA7A
+	for <lists+devicetree@lfdr.de>; Fri,  6 May 2022 16:26:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1442087AbiEFO0m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 May 2022 10:26:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48794 "EHLO
+        id S1442188AbiEFOaO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 May 2022 10:30:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52694 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238749AbiEFO0l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 May 2022 10:26:41 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 733F05A2C5;
-        Fri,  6 May 2022 07:22:58 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S238749AbiEFOaN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 May 2022 10:30:13 -0400
+Received: from meesny.iki.fi (meesny.iki.fi [IPv6:2001:67c:2b0:1c1::201])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA4036833C;
+        Fri,  6 May 2022 07:26:30 -0700 (PDT)
+Received: from hillosipuli.retiisi.eu (dkvn5pty0gzs3nltj987t-3.rev.dnainternet.fi [IPv6:2001:14ba:4457:9640:1e2d:1f75:a607:ef37])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 1185F6212E;
-        Fri,  6 May 2022 14:22:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 19332C385A8;
-        Fri,  6 May 2022 14:22:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1651846977;
-        bh=E6ckQimwVSaJW0lOSfV/5lkLUMUjbvk41FciJ2SCey8=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=lbg4lp/e+Ro7BaNZuo0VdvKl3tLnLoX4vaXA2rE2jhp3cB8b8PSn9BG/nhEUFTqZd
-         XDK36kHSjqC/LRjmjSWyLzl8JrkegNQRhRyYVaFK/mDbku9OanJaC6mfLlkJOPfHiF
-         u6Eu3EgN+vcR/3klokvMzrURadg6q1IIJ9HFtUZMXEcNYy7PtQUwoIovcrUsXFwO7a
-         QFVkPRGhLD6tG3XM2wwdGsgAspTzCF9H+300lhSVib5p0caRTf5p+If+SHlpB+44gV
-         9ZBOhK1pVcGNqJnmP89axU5KilkZ6DcHd6Wq7yUdfNGdcra4YUpmT3a8gkyO/5dyYK
-         pZ03u0/mRlLmg==
-Received: by pali.im (Postfix)
-        id 220C21141; Fri,  6 May 2022 16:22:54 +0200 (CEST)
-Date:   Fri, 6 May 2022 16:22:54 +0200
-From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
-To:     Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        Marek =?utf-8?B?QmVow7pu?= <kabel@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 0/6] PCI: mvebu: Add support for PME and AER interrupts
-Message-ID: <20220506142254.mzl7jotubvebptlp@pali>
-References: <20220506134029.21470-1-pali@kernel.org>
+        (Authenticated sender: sailus)
+        by meesny.iki.fi (Postfix) with ESMTPSA id 87C7F20050;
+        Fri,  6 May 2022 17:26:26 +0300 (EEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=meesny;
+        t=1651847186;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=Jbcfhtkfj44DUN+KwICkdDcQ2trt5zuMXEyDuwl3YAg=;
+        b=XtaoWl3pLkjVFeCW7D3gP1lm4FuIPVQwoy7HIcZuTjFOAoCgaEjIhR928DkYqL0ij+C6KD
+        wYIIXqzW7zRFfY7l851fK1P5nFU3AbMU0jccb97TbzVYLuJXspgNMu5oUpdLu8P02UKTwQ
+        t8IpXHuxm20Es8K98ZmY71ttVBJAoHg=
+Received: from valkosipuli.retiisi.eu (valkosipuli.localdomain [192.168.4.2])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        by hillosipuli.retiisi.eu (Postfix) with ESMTPS id BB1BE634C91;
+        Fri,  6 May 2022 17:26:24 +0300 (EEST)
+Date:   Fri, 6 May 2022 17:26:24 +0300
+From:   Sakari Ailus <sakari.ailus@iki.fi>
+To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Cc:     jacopo@jmondi.org, paul.j.murphy@intel.com,
+        daniele.alessandrelli@intel.com, mchehab@kernel.org,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        robert.foss@linaro.org, hfink@snap.com, jgrahsl@snap.com,
+        dmitry.baryshkov@linaro.org, vladimir.zapolskiy@linaro.org
+Subject: Re: [PATCH v5 4/4] media: i2c: imx412: Add bulk regulator support
+Message-ID: <YnUwEKkjrbQQBiGZ@valkosipuli.retiisi.eu>
+References: <20220415115954.1649217-1-bryan.odonoghue@linaro.org>
+ <20220415115954.1649217-5-bryan.odonoghue@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220506134029.21470-1-pali@kernel.org>
-User-Agent: NeoMutt/20180716
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20220415115954.1649217-5-bryan.odonoghue@linaro.org>
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi;
+        s=meesny; t=1651847186;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=Jbcfhtkfj44DUN+KwICkdDcQ2trt5zuMXEyDuwl3YAg=;
+        b=tzXMn6Emp0vIsypfxN+0rAq2BaTNeJAC9CfsnOVmsLKI250xj1LmUmQBUwKdTOHsbne2m6
+        vmAKPcxcyWcPjqKAuP0bHaJMht5PehBShQCnWUFW/nzNugx/KILzBNwi2HabAkZVtMryKN
+        AJw1vlWWJ8PYFejN/3APp/5MWGY4hcY=
+ARC-Authentication-Results: i=1;
+        ORIGINATING;
+        auth=pass smtp.auth=sailus smtp.mailfrom=sakari.ailus@iki.fi
+ARC-Seal: i=1; s=meesny; d=iki.fi; t=1651847186; a=rsa-sha256; cv=none;
+        b=Iyyw47v5DEMp3dvQZQU+iyyFOza32BWPd3QZyCPM01kuzZij2aQw3+hmwkW/QFINpvU0wm
+        83WnQzZwJCQU4b9YDY5/FFFM+AjaOh2ChNa4vXfvtkPQvMPL45nDdpByFWgnvGLRdjZTm6
+        aM4/lu72EZ4bBgTNmleJMRABtD3+/u0=
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Friday 06 May 2022 15:40:23 Pali Rohár wrote:
-> mvebu PCIe PME and AER interrupts are reported via PCIe summary
-> interrupt. PCIe summary interrupt is reported via mvebu MPIC SoC error
-> summary interrupt. And MPIC SoC error summary interrupt is reported via
-> MPIC IRQ 4.
+On Fri, Apr 15, 2022 at 12:59:54PM +0100, Bryan O'Donoghue wrote:
+> Depending on the platform we may need to enable and disable three separate
+> regulators for the imx412.
 > 
-> This patch series implements support for interrupts in MPIC SoC error
-> hierarchy in irq-armada-370-xp.c driver and support for interrupts in
-> mvebu PCIe hierarchy in pci-mvebu.c.
+> - DOVDD
+> Digital I/O power
 > 
-> Finally PCIe PME and AER interrupts are routed to the correct PCIe Root
-> Port, which allows kernel PME and AER drivers to take care of them.
+> - AVDD
+> Analog power
 > 
-> Tested on A385 board and kernel PME and AER drivers works correctly:
+> - DVDD
+> Digital core power
 > 
-> [    0.898482] pcieport 0000:00:01.0: PME: Signaling with IRQ 61
-> [    0.904422] pcieport 0000:00:01.0: AER: enabled with IRQ 61
-> [    0.910113] pcieport 0000:00:02.0: enabling device (0140 -> 0142)
-> [    0.916299] pcieport 0000:00:02.0: PME: Signaling with IRQ 62
-> [    0.922216] pcieport 0000:00:02.0: AER: enabled with IRQ 62
-> [    0.927917] pcieport 0000:00:03.0: enabling device (0140 -> 0142)
-> [    0.934090] pcieport 0000:00:03.0: PME: Signaling with IRQ 63
-> [    0.940006] pcieport 0000:00:03.0: AER: enabled with IRQ 63
+> The addition of these regulators shouldn't affect existing users using
+> fixed-on/firmware-controlled regulators.
 > 
-> This change finally allows to debug PCIe issues on A385 boards.
+> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 
-FYI I tested that AER errors are now really handled by kernel AER driver:
+Squashed this bit into the patch:
 
-[ 2733.258661] pcieport 0000:00:02.0: AER: Multiple Uncorrected (Non-Fatal) error received: 0000:02:00.0
-[ 2733.258661] pcieport 0000:00:01.0: AER: Multiple Corrected error received: 0000:01:00.0
-[ 2733.258682] pcieport 0000:00:01.0: PCIe Bus Error: severity=Corrected, type=Physical Layer, (Receiver ID)
-[ 2733.267932] ath10k_pci 0000:02:00.0: PCIe Bus Error: severity=Uncorrected (Non-Fatal), type=Transaction Layer, (Requester ID)
-[ 2733.275956] pcieport 0000:00:01.0:   device [11ab:6820] error status/mask=00000001/00002000
-[ 2733.285547] ath10k_pci 0000:02:00.0:   device [168c:003c] error status/mask=00100000/00000000
-[ 2733.296876] pcieport 0000:00:01.0:    [ 0] RxErr                  (First)
-[ 2733.305245] ath10k_pci 0000:02:00.0:    [20] UnsupReq               (First)
-[ 2733.305251] ath10k_pci 0000:02:00.0: AER:   TLP Header: 30000000 02080030 00000000 00000000
-[ 2733.305282] ath10k_pci 0000:02:00.0: AER: can't recover (no error_detected callback)
-[ 2733.313816] nvme 0000:01:00.0: PCIe Bus Error: severity=Corrected, type=Physical Layer, (Transmitter ID)
-[ 2733.320671] pcieport 0000:00:02.0: AER: device recovery failed
-[ 2733.327609] nvme 0000:01:00.0:   device [1e0f:0001] error status/mask=00001041/00002000
-[ 2733.367127] nvme 0000:01:00.0:    [ 0] RxErr                  (First)
-[ 2733.373591] nvme 0000:01:00.0:    [ 6] BadTLP                
-[ 2733.379358] nvme 0000:01:00.0:    [12] Timeout               
-[ 2733.385120] nvme 0000:01:00.0: AER:   Error of this Agent is reported first
+diff --git a/drivers/media/i2c/imx412.c b/drivers/media/i2c/imx412.c
+index 1795a6180d60d..a1394d6c14320 100644
+--- a/drivers/media/i2c/imx412.c
++++ b/drivers/media/i2c/imx412.c
+@@ -116,6 +116,7 @@ static const char * const imx412_supply_names[] = {
+  * @pad: Media pad. Only one pad supported
+  * @reset_gpio: Sensor reset gpio
+  * @inclk: Sensor input clock
++ * @supplies: Regulator supplies
+  * @ctrl_handler: V4L2 control handler
+  * @link_freq_ctrl: Pointer to link frequency control
+  * @pclk_ctrl: Pointer to pixel clock control
 
-> Pali Rohár (6):
->   dt-bindings: irqchip: armada-370-xp: Update information about MPIC SoC
->     Error
->   irqchip/armada-370-xp: Implement SoC Error interrupts
->   ARM: dts: armada-38x.dtsi: Add node for MPIC SoC Error IRQ controller
->   dt-bindings: PCI: mvebu: Update information about summary interrupt
->   PCI: mvebu: Implement support for interrupts on emulated bridge
->   ARM: dts: armada-385.dtsi: Add definitions for PCIe summary interrupts
-> 
->  .../marvell,armada-370-xp-mpic.txt            |   9 +
->  .../devicetree/bindings/pci/mvebu-pci.txt     |   1 +
->  arch/arm/boot/dts/armada-385.dtsi             |  20 +-
->  arch/arm/boot/dts/armada-38x.dtsi             |   5 +
->  drivers/irqchip/irq-armada-370-xp.c           | 213 +++++++++++++++++-
->  drivers/pci/controller/pci-mvebu.c            | 208 +++++++++++++++--
->  6 files changed, 426 insertions(+), 30 deletions(-)
-> 
-> -- 
-> 2.20.1
-> 
+-- 
+Sakari Ailus
