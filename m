@@ -2,121 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E58A51D5E8
-	for <lists+devicetree@lfdr.de>; Fri,  6 May 2022 12:45:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ABEA051D61C
+	for <lists+devicetree@lfdr.de>; Fri,  6 May 2022 13:01:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241654AbiEFKsq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 May 2022 06:48:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51166 "EHLO
+        id S1391122AbiEFLFG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 May 2022 07:05:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36162 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235825AbiEFKsq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 May 2022 06:48:46 -0400
-Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::226])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BAE4F65402;
-        Fri,  6 May 2022 03:45:02 -0700 (PDT)
-Received: (Authenticated sender: clement.leger@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 7862AC000E;
-        Fri,  6 May 2022 10:44:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1651833901;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=aGQDY12wXijcoD4wVlIl8GRaAeVSN1VXTWLT8MFX0sY=;
-        b=BWZ9TvS5I2P+CsVnRy3GTaTxbed2YCuizlO9DVt7xjLsa1wbjLJfkk2Per51Q8scCAULM1
-        6qaLwEtegTL5lDf+ApWcPZCiFNczIenzAHbHUZDe+ZamGFEmL6lv17FXRnUnvYV3qFpnr/
-        2iBYMOhBGTVDOaRfNf/R3vktAEPB14JDOO38aMNYZ6XQ3BU7lgUgLKPhLeDABc5oRpscXJ
-        oYV7askBk05jakApkWgW86E7GTFeI1mPyyGC+CTqnBn+VvoH4f2GpucadX5e66P/pRX+XU
-        cM4E+vDjAi4wNdY7+/gSHbeZ/qeWHeEtZQNia8bcJMcUze7GLHbYAZBmoM+7bQ==
-Date:   Fri, 6 May 2022 12:43:39 +0200
-From:   =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Michael Ellerman <mpe@ellerman.id.au>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Paul Mackerras <paulus@samba.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Nathan Lynch <nathanl@linux.ibm.com>,
-        Laurent Dufour <ldufour@linux.ibm.com>,
-        Daniel Henrique Barboza <danielhb413@gmail.com>,
-        David Gibson <david@gibson.dropbear.id.au>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        David Hildenbrand <david@redhat.com>,
-        Ohhoon Kwon <ohoono.kwon@samsung.com>,
-        "Aneesh Kumar K.V" <aneesh.kumar@linux.ibm.com>,
-        YueHaibing <yuehaibing@huawei.com>,
-        linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Allan Nielsen <allan.nielsen@microchip.com>,
-        Horatiu Vultur <horatiu.vultur@microchip.com>,
-        Steen Hegelund <steen.hegelund@microchip.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH 2/3] of: dynamic: add of_node_alloc() and of_node_free()
-Message-ID: <20220506124339.2c772fa0@fixe.home>
-In-Reply-To: <YnQo+mdDBuoKA6Fq@robh.at.kernel.org>
-References: <20220504154033.750511-1-clement.leger@bootlin.com>
-        <20220504154033.750511-3-clement.leger@bootlin.com>
-        <YnQo+mdDBuoKA6Fq@robh.at.kernel.org>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.31; x86_64-pc-linux-gnu)
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        with ESMTP id S1350709AbiEFLFE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 May 2022 07:05:04 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25FF456234;
+        Fri,  6 May 2022 04:01:22 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id B6F296115F;
+        Fri,  6 May 2022 11:01:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 11F72C385AA;
+        Fri,  6 May 2022 11:01:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1651834881;
+        bh=pdf513eRJRW8taCkPNHdL4n7nXwz1DwgB5iOGmyyegw=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=CHJ4Z1I7fAK7mH+hZ3eTM3ue3neDqcrBpSdEVJBd5blWySAWi1ICYgZ1XxQxLeSYv
+         0acmpZm5+uoijxVsH2sJSZDsOtllJRmwctnZqC734OUkyssQSRCTuP93g5FfwjKcUk
+         pBeOt6Oc/gSOpXZwqGa0o00LQHZQNtxsqVUgGonK35RYnBDaMDhlQP2meOmbh9PXkr
+         NDgxmbW6X/UDGY+Jek/xqeXtOtcIfWxqyULHLJJxB1Qid5d1BdO5bLX81zrXX6TdKY
+         7nxxwHULU6Vlsl/A6QR+QTpD93tdw6VAWxfFceWLkz8bJtSFqiyQvdL8tHJef75ISH
+         OQsB9Gb5mvY9w==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=why.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <maz@kernel.org>)
+        id 1nmvi2-009RMa-Gz; Fri, 06 May 2022 12:01:18 +0100
+Date:   Fri, 06 May 2022 12:01:18 +0100
+Message-ID: <87sfpn6i2p.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Qin Jian <qinjian@cqplus1.com>
+Cc:     krzysztof.kozlowski@linaro.org, robh+dt@kernel.org,
+        mturquette@baylibre.com, sboyd@kernel.org, tglx@linutronix.de,
+        p.zabel@pengutronix.de, linux@armlinux.org.uk, arnd@arndb.de,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
+Subject: Re: [PATCH v14 7/9] irqchip: Add Sunplus SP7021 interrupt controller driver
+In-Reply-To: <7e469fb049959f88cf2b37649e6f3eb1d0fd3440.1651805790.git.qinjian@cqplus1.com>
+References: <cover.1651805790.git.qinjian@cqplus1.com>
+        <7e469fb049959f88cf2b37649e6f3eb1d0fd3440.1651805790.git.qinjian@cqplus1.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: qinjian@cqplus1.com, krzysztof.kozlowski@linaro.org, robh+dt@kernel.org, mturquette@baylibre.com, sboyd@kernel.org, tglx@linutronix.de, p.zabel@pengutronix.de, linux@armlinux.org.uk, arnd@arndb.de, linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Le Thu, 5 May 2022 14:43:54 -0500,
-Rob Herring <robh@kernel.org> a =C3=A9crit :
+On Fri, 06 May 2022 04:23:21 +0100,
+Qin Jian <qinjian@cqplus1.com> wrote:
+> 
+> Add interrupt controller driver for Sunplus SP7021 SoC.
+> 
+> This is the interrupt controller in P-chip which collects all interrupt
+> sources in P-chip and routes them to parent interrupt controller in C-chip.
+> 
+> Signed-off-by: Qin Jian <qinjian@cqplus1.com>
 
-> On Wed, May 04, 2022 at 05:40:32PM +0200, Cl=C3=A9ment L=C3=A9ger wrote:
-> > Add functions which allows to create and free nodes.
-> >=20
-> > Signed-off-by: Cl=C3=A9ment L=C3=A9ger <clement.leger@bootlin.com>
-> > ---
-> >  drivers/of/dynamic.c | 59 ++++++++++++++++++++++++++++++++++++--------
-> >  include/linux/of.h   |  9 +++++++
-> >  2 files changed, 58 insertions(+), 10 deletions(-)
-> >=20
-> > diff --git a/drivers/of/dynamic.c b/drivers/of/dynamic.c
-> > index e8700e509d2e..ec28e5ba2969 100644
-> > --- a/drivers/of/dynamic.c
-> > +++ b/drivers/of/dynamic.c
-> > @@ -455,6 +455,54 @@ struct property *__of_prop_dup(const struct proper=
-ty *prop, gfp_t allocflags)
-> >  				 prop->length, allocflags);
-> >  }
-> > =20
-> > +/**
-> > + * of_node_free - Free a node allocated dynamically.
-> > + * @node:	Node to be freed
-> > + */
-> > +void of_node_free(const struct device_node *node)
-> > +{
-> > +	kfree(node->full_name);
-> > +	kfree(node->data);
-> > +	kfree(node);
-> > +}
-> > +EXPORT_SYMBOL(of_node_free); =20
->=20
-> This shouldn't be needed. Nodes are refcounted, so any caller should=20
-> just do a put.
+Acked-by: Marc Zyngier <maz@kernel.org>
 
-Acked. Do you want the name to be allocated as part of the node
-allocation also ?
+I expect this to go via the SoC tree with the rest of the platform
+stuff.
 
->=20
-> Rob
+Thanks,
 
+	M.
 
-
---=20
-Cl=C3=A9ment L=C3=A9ger,
-Embedded Linux and Kernel engineer at Bootlin
-https://bootlin.com
+-- 
+Without deviation from the norm, progress is not possible.
