@@ -2,104 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C08B51DB50
-	for <lists+devicetree@lfdr.de>; Fri,  6 May 2022 16:59:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D15751DB62
+	for <lists+devicetree@lfdr.de>; Fri,  6 May 2022 17:03:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1442547AbiEFPCx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 May 2022 11:02:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56804 "EHLO
+        id S1442585AbiEFPG7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 May 2022 11:06:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59760 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347628AbiEFPCw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 May 2022 11:02:52 -0400
-Received: from lahtoruutu.iki.fi (lahtoruutu.iki.fi [IPv6:2a0b:5c81:1c1::37])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CCC6A5D5CE;
-        Fri,  6 May 2022 07:59:08 -0700 (PDT)
-Received: from hillosipuli.retiisi.eu (dkvn5pty0gzs3nltj987t-3.rev.dnainternet.fi [IPv6:2001:14ba:4457:9640:1e2d:1f75:a607:ef37])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: sailus)
-        by lahtoruutu.iki.fi (Postfix) with ESMTPSA id 84F631B00252;
-        Fri,  6 May 2022 17:59:06 +0300 (EEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=lahtoruutu;
-        t=1651849146;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=LbT5IGtky0H4rQRh8Cp6duVvDTunMzK7mUfLU1XT12Q=;
-        b=ZA1zp990cio1fHuBQ9fC/CLwgqo25zcAH+WW22ifRC7j2nOx/mcU21o+2eFjFToBZl3YYB
-        Nnii/SpZz7WGRmRsj6Er3PDJhkAO8JZvXcUfgOp3bpj+V/V70v+0BnQO2EABlQiLVFvpYh
-        AMiL+3lXQhTZ/phFbaiOBqlQdl1wk2hAfCHF0PN9BRDpGgU705coS6iIIozI7GwddzxmMq
-        81KSAupC93VEwi9ga3b5E3onrsmvAjt0/5V/KaT8iSQ+9I06W8j4F7/Kaf9kT5ZRli25I5
-        XgMHNQMAjPaEPTB6rd7QsDWS/jJh0y1ZGOTtSTiG7psP/yWEYt9Zuv1iZCnyXw==
-Received: from valkosipuli.retiisi.eu (valkosipuli.localdomain [192.168.4.2])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        by hillosipuli.retiisi.eu (Postfix) with ESMTPS id 293F8634C91;
-        Fri,  6 May 2022 17:59:06 +0300 (EEST)
-Date:   Fri, 6 May 2022 17:59:06 +0300
-From:   Sakari Ailus <sakari.ailus@iki.fi>
-To:     Jacopo Mondi <jacopo@jmondi.org>
-Cc:     Quentin Schulz <quentin.schulz@theobroma-systems.com>,
-        Quentin Schulz <foss+kernel@0leil.net>, shawnx.tu@intel.com,
-        mchehab@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/3] media: ov5675: add device-tree support
-Message-ID: <YnU3umQnJxvYFmCg@valkosipuli.retiisi.eu>
-References: <20220504135543.59522-1-foss+kernel@0leil.net>
- <20220504135543.59522-2-foss+kernel@0leil.net>
- <20220505074725.4aabembd4uh4tt23@uno.localdomain>
- <YnOKuGqQ74rGUz6q@valkosipuli.retiisi.eu>
- <1344ed86-1505-a1af-1671-67106a4b9cf7@theobroma-systems.com>
- <20220506144300.nv3lqogpkir3i7fz@uno.localdomain>
+        with ESMTP id S1344351AbiEFPG6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 May 2022 11:06:58 -0400
+Received: from mail-oi1-x232.google.com (mail-oi1-x232.google.com [IPv6:2607:f8b0:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44FBE6B085
+        for <devicetree@vger.kernel.org>; Fri,  6 May 2022 08:03:15 -0700 (PDT)
+Received: by mail-oi1-x232.google.com with SMTP id l16so7748731oil.6
+        for <devicetree@vger.kernel.org>; Fri, 06 May 2022 08:03:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=gvoH8ZCcnfut2q0yddyy+EI61mB9kTHgif1bkR8UyTE=;
+        b=MlGDGfV1Cn1Ta1i0dFcaMEd5xxCvPuVIF8txFh+e1Tnbx/zW0SGPjSpZODIxOWvOlg
+         5EWCWj9Xyy3Ru4nGTFi6t/IXZf4c2AQaH2pRBHdbmXP0gK8EbPBhHtPqjjnoNxaTOxzo
+         +MzBIMYiApit1Y/bGe+vfgC0wkSHpEmz/4gdL69paMhTGvabK2awbesBaN0fg9mUAoBX
+         0lJEttKWwieu4/6PNURbCaUwPNeD8eAv+vRf6JjcUq2xFNMNuMv1gJkGVKdLAgI5xSOC
+         ovqwQFK2oiTWHGl4Xr6HSovKKJWXJofG+A6idIY3vWi7UJVF8PxWqQNSPdZF+gSkZVMo
+         2KDg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=gvoH8ZCcnfut2q0yddyy+EI61mB9kTHgif1bkR8UyTE=;
+        b=0VAYxhQ4eJIpz8w83GOLscEDG1Z/+SygQkedKWmL9DIeqRjf97YLFJ4PGluoOfnJRI
+         4PuoRvptj3GfQ2NV6dOj9caYtvwUVyMdGlz/9weF0dPhUoMKy51INn7XCjJLoIphtrrr
+         Y5AxKYO4jQUCMbVIJZkXw8dqzThQn8jT/g2bhTwP4QfQ9qG4EErk7qi+gzMohvGmiz8m
+         DtD2d9UBcRcWhhAAp4VT8yHtOtC6X5MY0u9tvqxqwXUv5Nj3E41WwhV7Gb75ktwBQHIH
+         rujx80Ow0qpEAP4gfWDOB/tS9h71V2j7XXBQDeotx25O+wpiNvhM+xMK+fAEwBPUivGr
+         Ldfw==
+X-Gm-Message-State: AOAM531CPPOYx2wGsBZNbJt6O19+uH/k1myUc8t7F3mkWn1YSXif1jE/
+        R35NJL1g6KMNJcbbh/c9ALqb+Q==
+X-Google-Smtp-Source: ABdhPJw7KRjo7fodRuHUv4feQJ+ELLzrnyXZYloFvWJRv3HLo1gcm1VfqMi88r9DENwA42UCtJIiRQ==
+X-Received: by 2002:aca:add0:0:b0:326:72d:fd64 with SMTP id w199-20020acaadd0000000b00326072dfd64mr5009820oie.294.1651849394558;
+        Fri, 06 May 2022 08:03:14 -0700 (PDT)
+Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id e21-20020a056808111500b00325cda1ffb9sm1665311oih.56.2022.05.06.08.03.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 06 May 2022 08:03:13 -0700 (PDT)
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     phone-devel@vger.kernel.org, Adam Skladowski <a39.skl@gmail.com>
+Cc:     linux-kernel@vger.kernel.org, Stephen Boyd <sboyd@kernel.org>,
+        devicetree@vger.kernel.org,
+        Michael Turquette <mturquette@baylibre.com>,
+        linux-clk@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht
+Subject: Re: [PATCH v2 0/3] MSM8976 GCC updates
+Date:   Fri,  6 May 2022 10:03:03 -0500
+Message-Id: <165184936433.73465.10846500957961033721.b4-ty@linaro.org>
+X-Mailer: git-send-email 2.32.0
+In-Reply-To: <20220426073048.11509-1-a39.skl@gmail.com>
+References: <20220426073048.11509-1-a39.skl@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220506144300.nv3lqogpkir3i7fz@uno.localdomain>
-ARC-Seal: i=1; s=lahtoruutu; d=iki.fi; t=1651849146; a=rsa-sha256;
-        cv=none;
-        b=r7V0iWsvz7F/pm/x1tWejtH6MaAyyOlX+c5HeCcAurpqigfnSy10qXT4xmpbPSgxnlwXHf
-        oCOkN7+QeKuJaYq6DaNoYZmicXau/Hacmx8ZWwRaRQiTb3ieUteJQFnPoR+3dukvSiOUgI
-        TbOTjqqM8CkEnE9VcyTQ5n31OtBj6foObfTZhXAY/bV3IKFV1hqy15+b5QQXhmXy80EVzL
-        8uPCjrtaePG5t2x2t54BDCYfgZMNuw25IMWH/PNGXMvOTXrDhVRacD4sUJz4PzDifEKqH4
-        8BXeNBUAepkKf9/7rsIfxJson0JemVNXm6pjCfVOzQevFDGeyOTBPVmeUHSRHA==
-ARC-Authentication-Results: i=1;
-        ORIGINATING;
-        auth=pass smtp.auth=sailus smtp.mailfrom=sakari.ailus@iki.fi
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi;
-        s=lahtoruutu; t=1651849146;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=LbT5IGtky0H4rQRh8Cp6duVvDTunMzK7mUfLU1XT12Q=;
-        b=uAsp9WyJrf5qEO97HiEWR8T2oJNtC7D4sAJNl0JvL50ILDoY89whjuuZX4rAGUTRzvOJPY
-        FTTX9TAobCeRgLFzfLje3gSqr3JeXO92uYPucku+uNI+Jc3MSwEDzyLzVl5bR2f7/6cYfn
-        SFDByxt1OIQHwK9ReeIBYxnb6PMxcRULwvVd0vUTNw5GR0E5Vh0bXOvS4zDjJttcl3FtUy
-        Ch2t39+MUPGdIPCmP0SpCckbgdFU0v1p54uY5u212tBt+0QkV5W3ZPScVzJcezpF7QGazO
-        EcnaDMQwuJnItK74lXl7rcMB0Zn+KOj7oNvbAr+CoCGofwuhShw9AgphOwoAog==
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jacopo,
+On Tue, 26 Apr 2022 09:30:45 +0200, Adam Skladowski wrote:
+> This patch series brings small fixes for SDCC clocks
+> and adds reset for modem.
+> 
+> Changes since v1
+> ================
+> 1. Adjusted comment line length for SDCC patch.
+> 2. Added Acked-by to dt-bindings patch.
+> 
+> [...]
 
-On Fri, May 06, 2022 at 04:43:00PM +0200, Jacopo Mondi wrote:
-> My understanding is that "clock-frequency" is
-> an ACPI leftover that has been brought into some DT bindings as an
-> historical mistake. OF can work well with the common clock framework,
-> there's no need to introduce a property for the same purpose.
+Applied, thanks!
 
-The other way around actually. It was first used on DT but it's no longer
-the perferred way to set the frequency there. On ACPI it simply indicates
-the frequency without an ability to set it.
+[1/3] clk: qcom: gcc-msm8976: Set floor ops for SDCC
+      commit: 24a8ed12aa00af135fe698061017042532aac5e5
+[2/3] dt-bindings: clk: qcom: gcc-msm8976: Add modem reset
+      commit: 7e555e9975698924d7f3ead154847bcf8f5cd40c
+[3/3] clk: qcom: gcc-msm8976: Add modem reset
+      commit: cadf16c9469e58ba74806f76b3d0f9f553a41b2c
 
+Best regards,
 -- 
-Sakari Ailus
+Bjorn Andersson <bjorn.andersson@linaro.org>
