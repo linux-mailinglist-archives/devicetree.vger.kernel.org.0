@@ -2,286 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9831C51D9DE
-	for <lists+devicetree@lfdr.de>; Fri,  6 May 2022 16:06:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 026F351D9F9
+	for <lists+devicetree@lfdr.de>; Fri,  6 May 2022 16:09:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1441991AbiEFOJn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 May 2022 10:09:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33256 "EHLO
+        id S1391391AbiEFOMp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 May 2022 10:12:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34390 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1442005AbiEFOJm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 May 2022 10:09:42 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 5BB765A2DF
-        for <devicetree@vger.kernel.org>; Fri,  6 May 2022 07:05:56 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 2296E152B;
-        Fri,  6 May 2022 07:05:56 -0700 (PDT)
-Received: from donnerap.arm.com (donnerap.cambridge.arm.com [10.1.197.42])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id A28DA3F885;
-        Fri,  6 May 2022 07:05:54 -0700 (PDT)
-From:   Andre Przywara <andre.przywara@arm.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Liviu Dudau <liviu.dudau@arm.com>,
-        Robin Murphy <robin.murphy@arm.com>,
-        devicetree@vger.kernel.org, Will Deacon <will@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        dri-devel@lists.freedesktop.org
-Subject: [PATCH v2 11/11] dt-bindings: display: convert Arm Komeda to DT schema
-Date:   Fri,  6 May 2022 15:05:33 +0100
-Message-Id: <20220506140533.3566431-12-andre.przywara@arm.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220506140533.3566431-1-andre.przywara@arm.com>
-References: <20220506140533.3566431-1-andre.przywara@arm.com>
+        with ESMTP id S1391048AbiEFOMo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 May 2022 10:12:44 -0400
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.19])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CFC525A2DF;
+        Fri,  6 May 2022 07:09:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+        s=badeba3b8450; t=1651846105;
+        bh=WgytZKjmiBQFX7uZ/jjhSIBiJAj8t5XglcXcRrxeF8Q=;
+        h=X-UI-Sender-Class:Date:In-Reply-To:References:Subject:Reply-to:To:
+         CC:From;
+        b=ZxddAxjw4ulOs6jvFgCz850BHQBqwBs2xNTCt3dcLrC9w5PnoSTdnQJ1L03hIwWHQ
+         pUuf0nkXavc93/GJW3DSgT40dOcGB7oJxiBTm166dhP0rV2y3rK5pH5s+SgoMwwikq
+         6V4CzMHxAHwRU0E5MRb1s6R531VcUhcE1Z6CAaJ0=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from frank-s9 ([80.245.76.19]) by mail.gmx.net (mrgmx004
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1MAwbz-1ng3gO1qMD-00BMAI; Fri, 06
+ May 2022 16:08:25 +0200
+Date:   Fri, 06 May 2022 16:08:17 +0200
+User-Agent: K-9 Mail for Android
+In-Reply-To: <ac70ae6d-7e1a-d6b9-e33e-793035d5606e@linaro.org>
+References: <20220505150008.126627-1-linux@fw-web.de> <6d45f060-85e6-f3ff-ef00-6c68a2ada7a1@linaro.org> <trinity-12061c77-38b6-4b56-bccd-3b54cf9dc0e8-1651819574078@3c-app-gmx-bs21> <ac70ae6d-7e1a-d6b9-e33e-793035d5606e@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: Aw: Re: [RFC v2] dt-bindings: net: dsa: convert binding for mediatek switches
+Reply-to: frank-w@public-files.de
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+CC:     Frank Wunderlich <linux@fw-web.de>,
+        linux-mediatek@lists.infradead.org, Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Landen Chao <Landen.Chao@mediatek.com>,
+        DENG Qingfang <dqfext@gmail.com>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Greg Ungerer <gerg@kernel.org>,
+        =?ISO-8859-1?Q?Ren=E9_van_Dorst?= <opensource@vdorst.com>,
+        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>
+From:   Frank Wunderlich <frank-w@public-files.de>
+Message-ID: <04062F03-43DC-4B92-8C39-2F84ABDE2DE4@public-files.de>
+X-Provags-ID: V03:K1:T2On2gkE0ziiZBeVVFwz7HVvt6s28DOg5a5fA6wmtL/dbrZEuhj
+ Lc6jEaasYReZ2Th3WG9V3OdBFSGLkGFhxjMiEPCQvTEG1WRCcqaUTZMhy2NnvA9H34jRsa6
+ qFVirmd8FSVISD+xDX0OLaoJ58TUm8CgS26ZNmsFg6t9dgkRTpmDwPuiDVIGqnRkLnIACT+
+ I9AxXwRJo8n/w6uDoj2zg==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:wLNzKAt24Gs=:9cXTi89Mx1jhPI9X1MTGb5
+ 2FtlAU0g62zkWejjYg3duxYKExkF8b1BKvybOIwO5PCED+wMAkU0VUcld1JJ5W+o6RxK8rk3X
+ IY4IBtl/Haee4H1h/n2d6ouprEK1lAaQfGirHOihtyfKcWfYc9Q9M7g3iLDdSTpPusWvJh3Ow
+ 0cLYOxQcU4YzBzw3+RPuRv9LjXXb/6UlezyNZGKjCpVbNirIV39c6I6uSm58e5lvYBGibs1X0
+ rfgvE9Tux3JjJ9jtEOmCBD3lSkn5NsK167A6X3CpRUH9OEhKRTiQZpI4k/mvzCT31LStYNBcx
+ vWK/hw+5lG9W8th0sWDjSN9/CR23hYaOQUnwlHw2eJpKd5dlyaZztl9EbLRBne2eUUsNV9Ncd
+ 2IyLcYQXm6crYBI3L5gnrTDB6T4qbDv3PbPbWSF33moVo5WuopCgF+05MXVpRF4wSI2yGZERd
+ 60JKjqOz4fVYbD3UQGpA0TYjUfeSweEuvBIjZhhgLeRSwFIrUqsDfReWlt4JyfFAyewgqYd8N
+ SIUrgTwTeDc3rvPDPn6Bt5n7z/uW9m0gULvr/IPsjwy4kORCKDHKuQ8HX6u8Lif/q3iX5w2Uc
+ Aprol01yvwJ4e00aYhh64WS5G4PfE1Kh/x5tFkvSqpyRoCGpPmzx5X4J8dJxfJw3Jsxtl3qwt
+ d18BPoo1xDyLtYYZ8Fzk1GmuDQGJy5dpkGcbuUh1MzOsPFWA/UKNxwo/7O/TmUZwmQyrT5kFd
+ c9HihY7GMsBKO8BQR9G5Y+LYzuryLVPuj/exy5QSz9pMUR0kgiBCTpfhgLAdrWJhwanRB1G2t
+ swnQPpv5l1IvZOIG///twmFl91e5bACtQR1y1CDMc4Bo3Xcxu3g/zGqx6oXkuphm4ZEqKlXmA
+ FuW4fvoxNXAm2oXj2BbM9zF0te5Wc/hBafKPJMTe+G4NQ0sEaskKFmIXo49cwABeSFgH43mz/
+ zNch3CAozA0grXMaOGIHAYR8RCScF01TDR2WS1bWI1bno9hdxUSe2hL2PCUtxOdjbCHqCRt6o
+ qpLPtz4IavtR/x0mifFRSP07o6/Y2BcDiRXQsDxULMKEg537m0x+ATBus+Nc+BAAE/OC5J9bz
+ zYvdaugEn1ns7Y=
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_LOW,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Arm Komeda (aka Mali-D71) is a display controller that scans out a
-framebuffer and hands a signal to a digital encoder to generate a DVI
-or HDMI signal. It supports up to two pipelines, each frame can be
-composed of up to four layers.
+Am 6=2E Mai 2022 09:15:12 MESZ schrieb Krzysztof Kozlowski <krzysztof=2Ekoz=
+lowski@linaro=2Eorg>:
+>On 06/05/2022 08:46, Frank Wunderlich wrote:
+>>>> +    const: 1
+>>>> +
+>>>> +  "#size-cells":
+>>>> +    const: 0
+>>>> +
+>>>> +  core-supply:
+>>>> +    description: |
+>>>
+>>> Drop | everywhere where it is not needed (so in all places, AFAICT)
+>>=20
+>> is it necessary for multiline-descriptions or is indentation enough?
+>
+>It's necessary only when YAML syntax characters appear in description
+>or
+>when you want specific formatting=2E
+>
+>https://elixir=2Ebootlin=2Ecom/linux/v5=2E18-rc5/source/Documentation/dev=
+icetree/bindings/example-schema=2Eyaml#L97
+>
+>https://yaml-multiline=2Einfo/
 
-Convert the existing DT binding to DT schema.
+Ok then i drop all except on examples
 
-Signed-off-by: Andre Przywara <andre.przywara@arm.com>
----
- .../bindings/display/arm,komeda.txt           |  78 -----------
- .../bindings/display/arm,komeda.yaml          | 130 ++++++++++++++++++
- 2 files changed, 130 insertions(+), 78 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/display/arm,komeda.txt
- create mode 100644 Documentation/devicetree/bindings/display/arm,komeda.yaml
+>>>> +
+>>>> +patternProperties:
+>>>
+>>> patternProperties go before allOf, just after regular properties=2E
+>>=20
+>> after required, right?
+>
+>properties do not go after required, so neither patternProperties
+>should=2E Something like: propertes -> patternProperties -> dependencies
+>-> required -> allOf -> additionalProperties -> examples
 
-diff --git a/Documentation/devicetree/bindings/display/arm,komeda.txt b/Documentation/devicetree/bindings/display/arm,komeda.txt
-deleted file mode 100644
-index 8513695ee47fe..0000000000000
---- a/Documentation/devicetree/bindings/display/arm,komeda.txt
-+++ /dev/null
-@@ -1,78 +0,0 @@
--Device Tree bindings for Arm Komeda display driver
--
--Required properties:
--- compatible: Should be "arm,mali-d71"
--- reg: Physical base address and length of the registers in the system
--- interrupts: the interrupt line number of the device in the system
--- clocks: A list of phandle + clock-specifier pairs, one for each entry
--    in 'clock-names'
--- clock-names: A list of clock names. It should contain:
--      - "aclk": for the main processor clock
--- #address-cells: Must be 1
--- #size-cells: Must be 0
--- iommus: configure the stream id to IOMMU, Must be configured if want to
--    enable iommu in display. for how to configure this node please reference
--        devicetree/bindings/iommu/arm,smmu-v3.txt,
--        devicetree/bindings/iommu/iommu.txt
--
--Required properties for sub-node: pipeline@nq
--Each device contains one or two pipeline sub-nodes (at least one), each
--pipeline node should provide properties:
--- reg: Zero-indexed identifier for the pipeline
--- clocks: A list of phandle + clock-specifier pairs, one for each entry
--    in 'clock-names'
--- clock-names: should contain:
--      - "pxclk": pixel clock
--
--- port: each pipeline connect to an encoder input port. The connection is
--    modeled using the OF graph bindings specified in
--    Documentation/devicetree/bindings/graph.txt
--
--Optional properties:
--  - memory-region: phandle to a node describing memory (see
--    Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt)
--    to be used for the framebuffer; if not present, the framebuffer may
--    be located anywhere in memory.
--
--Example:
--/ {
--	...
--
--	dp0: display@c00000 {
--		#address-cells = <1>;
--		#size-cells = <0>;
--		compatible = "arm,mali-d71";
--		reg = <0xc00000 0x20000>;
--		interrupts = <0 168 4>;
--		clocks = <&dpu_aclk>;
--		clock-names = "aclk";
--		iommus = <&smmu 0>, <&smmu 1>, <&smmu 2>, <&smmu 3>,
--			<&smmu 4>, <&smmu 5>, <&smmu 6>, <&smmu 7>,
--			<&smmu 8>, <&smmu 9>;
--
--		dp0_pipe0: pipeline@0 {
--			clocks = <&fpgaosc2>;
--			clock-names = "pxclk";
--			reg = <0>;
--
--			port {
--				dp0_pipe0_out: endpoint {
--					remote-endpoint = <&db_dvi0_in>;
--				};
--			};
--		};
--
--		dp0_pipe1: pipeline@1 {
--			clocks = <&fpgaosc2>;
--			clock-names = "pxclk";
--			reg = <1>;
--
--			port {
--				dp0_pipe1_out: endpoint {
--					remote-endpoint = <&db_dvi1_in>;
--				};
--			};
--		};
--	};
--	...
--};
-diff --git a/Documentation/devicetree/bindings/display/arm,komeda.yaml b/Documentation/devicetree/bindings/display/arm,komeda.yaml
-new file mode 100644
-index 0000000000000..9f4aade97f10a
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/arm,komeda.yaml
-@@ -0,0 +1,130 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/display/arm,komeda.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Arm Komeda display processor
-+
-+maintainers:
-+  - Liviu Dudau <Liviu.Dudau@arm.com>
-+  - Andre Przywara <andre.przywara@arm.com>
-+
-+description:
-+  The Arm Mali D71 display processor supports up to two displays with up
-+  to a 4K resolution each. Each pipeline can be composed of up to four
-+  layers. It is typically connected to a digital display connector like HDMI.
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - items:
-+          - const: arm,mali-d32
-+          - const: arm,mali-d71
-+      - const: arm,mali-d71
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clock-names:
-+    const: aclk
-+
-+  clocks:
-+    maxItems: 1
-+    description: The main DPU processor clock
-+
-+  "#address-cells":
-+    const: 1
-+
-+  "#size-cells":
-+    const: 0
-+
-+  memory-region:
-+    maxItems: 1
-+    description:
-+      Phandle to a node describing memory to be used for the framebuffer.
-+      If not present, the framebuffer may be located anywhere in memory.
-+
-+  iommus:
-+    description:
-+      The stream IDs for each of the used pipelines, each four IDs for the
-+      four layers, plus one for the write-back stream.
-+    minItems: 5
-+    maxItems: 10
-+
-+patternProperties:
-+  '^pipeline@[01]$':
-+    type: object
-+    description:
-+      clocks
-+
-+    properties:
-+      reg:
-+        enum: [ 0, 1 ]
-+
-+      clock-names:
-+        const: pxclk
-+
-+      clocks:
-+        maxItems: 1
-+        description: The input reference for the pixel clock.
-+
-+      port:
-+        $ref: /schemas/graph.yaml#/$defs/port-base
-+        unevaluatedProperties: false
-+
-+additionalProperties: false
-+
-+required:
-+  - "#address-cells"
-+  - "#size-cells"
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clock-names
-+  - clocks
-+  - pipeline@0
-+
-+examples:
-+  - |
-+    display@c00000 {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+        compatible = "arm,mali-d71";
-+        reg = <0xc00000 0x20000>;
-+        interrupts = <168>;
-+        clocks = <&dpu_aclk>;
-+        clock-names = "aclk";
-+        iommus = <&smmu 0>, <&smmu 1>, <&smmu 2>, <&smmu 3>,
-+                 <&smmu 8>,
-+                 <&smmu 4>, <&smmu 5>, <&smmu 6>, <&smmu 7>,
-+                 <&smmu 9>;
-+
-+        dp0_pipe0: pipeline@0 {
-+            clocks = <&fpgaosc2>;
-+            clock-names = "pxclk";
-+            reg = <0>;
-+
-+            port {
-+                dp0_pipe0_out: endpoint {
-+                    remote-endpoint = <&db_dvi0_in>;
-+                };
-+            };
-+        };
-+
-+        dp0_pipe1: pipeline@1 {
-+            clocks = <&fpgaosc2>;
-+            clock-names = "pxclk";
-+            reg = <1>;
-+
-+            port {
-+                dp0_pipe1_out: endpoint {
-+                    remote-endpoint = <&db_dvi1_in>;
-+                };
-+            };
-+        };
-+    };
-+...
--- 
-2.25.1
+Thx for explanation
 
+So i end up like this:
+
+https://github=2Ecom/frank-w/BPI-R2-4=2E14/blob/5=2E18-mt7531-mainline/Doc=
+umentation/devicetree/bindings/net/dsa/mediatek%2Cmt7530=2Eyaml
+
+Including followup (remove reset-gpios and add rgmii for mt7531)=2E
+
+>>=20
+>>>> +  "^(ethernet-)?ports$":
+>>>> +    type: object
+>>>
+>>> Also on this level:
+>>>     unevaluatedProperties: false
+>>=20
+>> this is imho a bit redundant because in dsa=2Eyaml (which is included
+>now after patternProperties)
+>> it is already set on both levels=2E
+>
+>dsa=2Eyaml does not set it on ethernet-ports=2E
+>
+>> Adding it here will fail in examples because of size/address-cells
+>which are already defined in dsa=2Eyaml=2E=2E=2E
+>> so i need to define them here again=2E
+>
+>You're right, it cannot be set here=2E
+
+So i make no change here,right?
+
+>Best regards,
+>Krzysztof
+
+
+regards Frank
