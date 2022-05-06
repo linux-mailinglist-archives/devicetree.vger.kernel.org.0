@@ -2,114 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 47C1D51DA7A
-	for <lists+devicetree@lfdr.de>; Fri,  6 May 2022 16:26:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A6FC51DAA2
+	for <lists+devicetree@lfdr.de>; Fri,  6 May 2022 16:38:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1442188AbiEFOaO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 May 2022 10:30:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52694 "EHLO
+        id S1442245AbiEFOlt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 May 2022 10:41:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34266 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238749AbiEFOaN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 May 2022 10:30:13 -0400
-Received: from meesny.iki.fi (meesny.iki.fi [IPv6:2001:67c:2b0:1c1::201])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA4036833C;
-        Fri,  6 May 2022 07:26:30 -0700 (PDT)
-Received: from hillosipuli.retiisi.eu (dkvn5pty0gzs3nltj987t-3.rev.dnainternet.fi [IPv6:2001:14ba:4457:9640:1e2d:1f75:a607:ef37])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: sailus)
-        by meesny.iki.fi (Postfix) with ESMTPSA id 87C7F20050;
-        Fri,  6 May 2022 17:26:26 +0300 (EEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=meesny;
-        t=1651847186;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=Jbcfhtkfj44DUN+KwICkdDcQ2trt5zuMXEyDuwl3YAg=;
-        b=XtaoWl3pLkjVFeCW7D3gP1lm4FuIPVQwoy7HIcZuTjFOAoCgaEjIhR928DkYqL0ij+C6KD
-        wYIIXqzW7zRFfY7l851fK1P5nFU3AbMU0jccb97TbzVYLuJXspgNMu5oUpdLu8P02UKTwQ
-        t8IpXHuxm20Es8K98ZmY71ttVBJAoHg=
-Received: from valkosipuli.retiisi.eu (valkosipuli.localdomain [192.168.4.2])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        by hillosipuli.retiisi.eu (Postfix) with ESMTPS id BB1BE634C91;
-        Fri,  6 May 2022 17:26:24 +0300 (EEST)
-Date:   Fri, 6 May 2022 17:26:24 +0300
-From:   Sakari Ailus <sakari.ailus@iki.fi>
-To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc:     jacopo@jmondi.org, paul.j.murphy@intel.com,
-        daniele.alessandrelli@intel.com, mchehab@kernel.org,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        robert.foss@linaro.org, hfink@snap.com, jgrahsl@snap.com,
-        dmitry.baryshkov@linaro.org, vladimir.zapolskiy@linaro.org
-Subject: Re: [PATCH v5 4/4] media: i2c: imx412: Add bulk regulator support
-Message-ID: <YnUwEKkjrbQQBiGZ@valkosipuli.retiisi.eu>
-References: <20220415115954.1649217-1-bryan.odonoghue@linaro.org>
- <20220415115954.1649217-5-bryan.odonoghue@linaro.org>
+        with ESMTP id S1354732AbiEFOls (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 May 2022 10:41:48 -0400
+Received: from mail-ot1-x32e.google.com (mail-ot1-x32e.google.com [IPv6:2607:f8b0:4864:20::32e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 788006A418
+        for <devicetree@vger.kernel.org>; Fri,  6 May 2022 07:38:05 -0700 (PDT)
+Received: by mail-ot1-x32e.google.com with SMTP id 88-20020a9d0ee1000000b005d0ae4e126fso5047523otj.5
+        for <devicetree@vger.kernel.org>; Fri, 06 May 2022 07:38:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
+         :subject:to:cc;
+        bh=C/dvfq7UKDW/S628+lbUbCWkK48n01st45hR/4wo+Z0=;
+        b=JqMnJvg2mt5r4iavW01xjEKcwD9Onfbq6BfkMM5CMLGRRNtg7B+2cQ3t7a9etEiACI
+         lqroy682g14szmQVzx+g2FKuGjcs2kkcbxR05tiSkAIsEupgzPo8d0bpvtLa2rOQwnL5
+         wTsBk6maXiF0rbeFMx++g9251+AM+/1fhu7Xc=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:in-reply-to:references:from
+         :user-agent:date:message-id:subject:to:cc;
+        bh=C/dvfq7UKDW/S628+lbUbCWkK48n01st45hR/4wo+Z0=;
+        b=hIXyay4NtDcGi0IU3slt6iONgI131yKb94VMihRFqrwpPEcvaML1CsckZN/rNyGTzr
+         8S3VsbQiryIh+r+aB7LqzOMy7QAq7EynKp2vrhnztAjf84szFrPwptB7F0TBgtfGngbp
+         aMa0PknXS6KV3jKmRj7Eii2YMSIY/9A34NlBO5iBgwOQRThCa8rEyQrcieVpS3kf/pbd
+         VWhREx99sGO64mBLCg94TiXef08fzbSH8D63TUzbl37kyOGaCbIkSdIkRlFfHnzZv7kg
+         ljq9cF87vs7e38cDiMArAyIgql/Pm5o2Qgbs4EZU3cKv+hfQpWIq7jkpaC1PrcvupQcc
+         2M6Q==
+X-Gm-Message-State: AOAM530fyXfCcq9VySagQ6yzMCoQi8+Igje+beOvfe3zVNBx5VYgP0pL
+        H+iuuDInjqDzK3iLugsY/jfM293fcD4VW+9hbZhjkA==
+X-Google-Smtp-Source: ABdhPJx40iwS6HUc0rwCNu2O7HYUFSU94WfFeFUr/R9tL+AQy2EmEDMc5t9LPfFWR2XJA/lFq1b1829BAl16VL/+sKM=
+X-Received: by 2002:a9d:b85:0:b0:5cb:3eeb:d188 with SMTP id
+ 5-20020a9d0b85000000b005cb3eebd188mr1152126oth.77.1651847884845; Fri, 06 May
+ 2022 07:38:04 -0700 (PDT)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Fri, 6 May 2022 10:38:04 -0400
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220415115954.1649217-5-bryan.odonoghue@linaro.org>
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi;
-        s=meesny; t=1651847186;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=Jbcfhtkfj44DUN+KwICkdDcQ2trt5zuMXEyDuwl3YAg=;
-        b=tzXMn6Emp0vIsypfxN+0rAq2BaTNeJAC9CfsnOVmsLKI250xj1LmUmQBUwKdTOHsbne2m6
-        vmAKPcxcyWcPjqKAuP0bHaJMht5PehBShQCnWUFW/nzNugx/KILzBNwi2HabAkZVtMryKN
-        AJw1vlWWJ8PYFejN/3APp/5MWGY4hcY=
-ARC-Authentication-Results: i=1;
-        ORIGINATING;
-        auth=pass smtp.auth=sailus smtp.mailfrom=sakari.ailus@iki.fi
-ARC-Seal: i=1; s=meesny; d=iki.fi; t=1651847186; a=rsa-sha256; cv=none;
-        b=Iyyw47v5DEMp3dvQZQU+iyyFOza32BWPd3QZyCPM01kuzZij2aQw3+hmwkW/QFINpvU0wm
-        83WnQzZwJCQU4b9YDY5/FFFM+AjaOh2ChNa4vXfvtkPQvMPL45nDdpByFWgnvGLRdjZTm6
-        aM4/lu72EZ4bBgTNmleJMRABtD3+/u0=
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+In-Reply-To: <1651742739-12338-7-git-send-email-quic_c_skakit@quicinc.com>
+References: <1651742739-12338-1-git-send-email-quic_c_skakit@quicinc.com> <1651742739-12338-7-git-send-email-quic_c_skakit@quicinc.com>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.10
+Date:   Fri, 6 May 2022 10:38:04 -0400
+Message-ID: <CAE-0n53N8D=-5K7q9CbVcoGE6g0kSuFmcSpwnOz_8f1vejksZA@mail.gmail.com>
+Subject: Re: [PATCH V11 6/9] mfd: pm8008: Use i2c_new_dummy_device() API
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Satya Priya <quic_c_skakit@quicinc.com>
+Cc:     Lee Jones <lee.jones@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        quic_collinsd@quicinc.com, quic_subbaram@quicinc.com,
+        quic_jprakash@quicinc.com
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 15, 2022 at 12:59:54PM +0100, Bryan O'Donoghue wrote:
-> Depending on the platform we may need to enable and disable three separate
-> regulators for the imx412.
-> 
-> - DOVDD
-> Digital I/O power
-> 
-> - AVDD
-> Analog power
-> 
-> - DVDD
-> Digital core power
-> 
-> The addition of these regulators shouldn't affect existing users using
-> fixed-on/firmware-controlled regulators.
-> 
-> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Quoting Satya Priya (2022-05-05 02:25:36)
+> diff --git a/drivers/mfd/qcom-pm8008.c b/drivers/mfd/qcom-pm8008.c
+> index 40a67f0..25e8d0b 100644
+> --- a/drivers/mfd/qcom-pm8008.c
+> +++ b/drivers/mfd/qcom-pm8008.c
+> @@ -150,6 +151,11 @@ static struct regmap_config qcom_mfd_regmap_cfg = {
+>         .max_register   = 0xFFFF,
+>  };
+>
+> +struct regmap *pm8008_get_regmap(struct pm8008_data *chip)
 
-Squashed this bit into the patch:
+can chip be const?
 
-diff --git a/drivers/media/i2c/imx412.c b/drivers/media/i2c/imx412.c
-index 1795a6180d60d..a1394d6c14320 100644
---- a/drivers/media/i2c/imx412.c
-+++ b/drivers/media/i2c/imx412.c
-@@ -116,6 +116,7 @@ static const char * const imx412_supply_names[] = {
-  * @pad: Media pad. Only one pad supported
-  * @reset_gpio: Sensor reset gpio
-  * @inclk: Sensor input clock
-+ * @supplies: Regulator supplies
-  * @ctrl_handler: V4L2 control handler
-  * @link_freq_ctrl: Pointer to link frequency control
-  * @pclk_ctrl: Pointer to pixel clock control
+> +{
+> +       return chip->regulators_regmap;
+> +}
 
--- 
-Sakari Ailus
+EXPORT_SYMBOL_GPL please. And the include is needed to avoid sparse
+warning.
+
+> +
+>  static int pm8008_init(struct regmap *regmap)
+>  {
+>         int rc;
