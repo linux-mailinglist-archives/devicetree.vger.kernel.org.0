@@ -2,34 +2,36 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A9B951D9D0
-	for <lists+devicetree@lfdr.de>; Fri,  6 May 2022 16:05:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D800A51D9D5
+	for <lists+devicetree@lfdr.de>; Fri,  6 May 2022 16:05:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1441990AbiEFOJ3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 May 2022 10:09:29 -0400
+        id S1441999AbiEFOJb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 May 2022 10:09:31 -0400
 Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32806 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1441993AbiEFOJ2 (ORCPT
+        with ESMTP id S1441987AbiEFOJ2 (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Fri, 6 May 2022 10:09:28 -0400
 Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id C25BF5A2DF
-        for <devicetree@vger.kernel.org>; Fri,  6 May 2022 07:05:43 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 6EAE063503
+        for <devicetree@vger.kernel.org>; Fri,  6 May 2022 07:05:45 -0700 (PDT)
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 9D4061570;
-        Fri,  6 May 2022 07:05:43 -0700 (PDT)
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 467C31576;
+        Fri,  6 May 2022 07:05:45 -0700 (PDT)
 Received: from donnerap.arm.com (donnerap.cambridge.arm.com [10.1.197.42])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 78CC33F885;
-        Fri,  6 May 2022 07:05:42 -0700 (PDT)
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id C66E33F885;
+        Fri,  6 May 2022 07:05:43 -0700 (PDT)
 From:   Andre Przywara <andre.przywara@arm.com>
 To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
 Cc:     Liviu Dudau <liviu.dudau@arm.com>,
         Robin Murphy <robin.murphy@arm.com>,
         devicetree@vger.kernel.org, Will Deacon <will@kernel.org>,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v2 03/11] dt-bindings: arm: sp810: convert to DT schema
-Date:   Fri,  6 May 2022 15:05:25 +0100
-Message-Id: <20220506140533.3566431-4-andre.przywara@arm.com>
+        linux-arm-kernel@lists.infradead.org,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>, alsa-devel@alsa-project.org
+Subject: [PATCH v2 04/11] dt-bindings: sound: add Arm PL041 AACI DT schema
+Date:   Fri,  6 May 2022 15:05:26 +0100
+Message-Id: <20220506140533.3566431-5-andre.przywara@arm.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20220506140533.3566431-1-andre.przywara@arm.com>
 References: <20220506140533.3566431-1-andre.przywara@arm.com>
@@ -44,162 +46,86 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Arm SP810 IP is a "system controller", providing clocks, timer and a
-watchdog.
+The Arm PrimeCell Advanced Audio CODEC Interface (AACI aka PL041) is
+a peripheral that provides communication with an audio CODEC.
 
-Convert the DT binding to DT schema, to allow automatic validation.
-
-The existing .txt binding described all properties as required, but the
-assigned-clock* and clock-output-names are actually not (from a hardware
-perspective). The only existing driver I could find (in Linux) doesn't
-require them either, so drop those properties from the "required" list.
+Add a simple DT schema binding for it, so that DTs can be validated
+automatically.
 
 Signed-off-by: Andre Przywara <andre.przywara@arm.com>
 ---
- .../devicetree/bindings/arm/sp810.txt         | 46 -----------
- .../devicetree/bindings/arm/sp810.yaml        | 80 +++++++++++++++++++
- 2 files changed, 80 insertions(+), 46 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/arm/sp810.txt
- create mode 100644 Documentation/devicetree/bindings/arm/sp810.yaml
+ .../devicetree/bindings/sound/arm,pl041.yaml  | 62 +++++++++++++++++++
+ 1 file changed, 62 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/arm,pl041.yaml
 
-diff --git a/Documentation/devicetree/bindings/arm/sp810.txt b/Documentation/devicetree/bindings/arm/sp810.txt
-deleted file mode 100644
-index 46652bf651478..0000000000000
---- a/Documentation/devicetree/bindings/arm/sp810.txt
-+++ /dev/null
-@@ -1,46 +0,0 @@
--SP810 System Controller
-------------------------
--
--Required properties:
--
--- compatible:	standard compatible string for a Primecell peripheral,
--		see Documentation/devicetree/bindings/arm/primecell.yaml
--		for more details
--		should be: "arm,sp810", "arm,primecell"
--
--- reg:		standard registers property, physical address and size
--		of the control registers
--
--- clock-names:	from the common clock bindings, for more details see
--		Documentation/devicetree/bindings/clock/clock-bindings.txt;
--		should be: "refclk", "timclk", "apb_pclk"
--
--- clocks:	from the common clock bindings, phandle and clock
--		specifier pairs for the entries of clock-names property
--
--- #clock-cells: from the common clock bindings;
--		should be: <1>
--
--- clock-output-names: from the common clock bindings;
--		should be: "timerclken0", "timerclken1", "timerclken2", "timerclken3"
--
--- assigned-clocks: from the common clock binding;
--		should be: clock specifier for each output clock of this
--		provider node
--
--- assigned-clock-parents: from the common clock binding;
--		should be: phandle of input clock listed in clocks
--		property with the highest frequency
--
--Example:
--	v2m_sysctl: sysctl@20000 {
--		compatible = "arm,sp810", "arm,primecell";
--		reg = <0x020000 0x1000>;
--		clocks = <&v2m_refclk32khz>, <&v2m_refclk1mhz>, <&smbclk>;
--		clock-names = "refclk", "timclk", "apb_pclk";
--		#clock-cells = <1>;
--		clock-output-names = "timerclken0", "timerclken1", "timerclken2", "timerclken3";
--		assigned-clocks = <&v2m_sysctl 0>, <&v2m_sysctl 1>, <&v2m_sysctl 3>, <&v2m_sysctl 3>;
--		assigned-clock-parents = <&v2m_refclk1mhz>, <&v2m_refclk1mhz>, <&v2m_refclk1mhz>, <&v2m_refclk1mhz>;
--
--	};
-diff --git a/Documentation/devicetree/bindings/arm/sp810.yaml b/Documentation/devicetree/bindings/arm/sp810.yaml
+diff --git a/Documentation/devicetree/bindings/sound/arm,pl041.yaml b/Documentation/devicetree/bindings/sound/arm,pl041.yaml
 new file mode 100644
-index 0000000000000..bc8e524aa90ad
+index 0000000000000..7896b8150cf0f
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/arm/sp810.yaml
-@@ -0,0 +1,80 @@
++++ b/Documentation/devicetree/bindings/sound/arm,pl041.yaml
+@@ -0,0 +1,62 @@
 +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/arm/sp810.yaml#
++$id: http://devicetree.org/schemas/sound/arm,pl041.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: ARM Versatile Express SP810 System Controller bindings
++title: Arm Ltd. PrimeCell PL041 AACI sound interface
 +
 +maintainers:
 +  - Andre Przywara <andre.przywara@arm.com>
 +
 +description:
-+  The Arm SP810 system controller provides clocks, timers and a watchdog.
++  The Arm PrimeCell Advanced Audio CODEC Interface (AACI) is an AMBA compliant
++  peripheral that provides communication with an audio CODEC using the AC-link
++  protocol.
 +
 +# We need a select here so we don't match all nodes with 'arm,primecell'
 +select:
 +  properties:
 +    compatible:
 +      contains:
-+        const: arm,sp810
++        const: arm,pl041
 +  required:
 +    - compatible
 +
 +properties:
 +  compatible:
 +    items:
-+      - const: arm,sp810
++      - const: arm,pl041
 +      - const: arm,primecell
 +
 +  reg:
 +    maxItems: 1
 +
-+  clock-names:
-+    items:
-+      - const: refclk
-+      - const: timclk
-+      - const: apb_pclk
++  interrupts:
++    maxItems: 1
 +
 +  clocks:
-+    items:
-+      - description: reference clock
-+      - description: timer clock
-+      - description: APB register access clock
++    description: APB register access clock
 +
-+  "#clock-cells":
-+    const: 1
-+
-+  clock-output-names:
-+    maxItems: 4
-+
-+  assigned-clocks:
-+    maxItems: 4
-+
-+  assigned-clock-parents:
-+    maxItems: 4
-+
-+additionalProperties: false
++  clock-names:
++    const: apb_pclk
 +
 +required:
 +  - compatible
 +  - reg
++  - interrupts
 +  - clocks
-+  - clock-names
-+  - "#clock-cells"
++
++additionalProperties: false
 +
 +examples:
 +  - |
-+    sysctl@20000 {
-+        compatible = "arm,sp810", "arm,primecell";
-+        reg = <0x020000 0x1000>;
-+        clocks = <&v2m_refclk32khz>, <&v2m_refclk1mhz>, <&smbclk>;
-+        clock-names = "refclk", "timclk", "apb_pclk";
-+        #clock-cells = <1>;
-+        clock-output-names = "timerclken0", "timerclken1",
-+                             "timerclken2", "timerclken3";
-+        assigned-clocks = <&v2m_sysctl 0>, <&v2m_sysctl 1>,
-+                          <&v2m_sysctl 3>, <&v2m_sysctl 3>;
-+        assigned-clock-parents = <&v2m_refclk1mhz>, <&v2m_refclk1mhz>,
-+                                 <&v2m_refclk1mhz>, <&v2m_refclk1mhz>;
++    audio-controller@40000 {
++        compatible = "arm,pl041", "arm,primecell";
++        reg = <0x040000 0x1000>;
++        interrupts = <11>;
++        clocks = <&v2m_clk24mhz>;
++        clock-names = "apb_pclk";
 +    };
++
++...
 -- 
 2.25.1
 
