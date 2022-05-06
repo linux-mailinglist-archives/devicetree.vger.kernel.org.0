@@ -2,117 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EE6F651DC1C
-	for <lists+devicetree@lfdr.de>; Fri,  6 May 2022 17:30:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 28D4B51DC39
+	for <lists+devicetree@lfdr.de>; Fri,  6 May 2022 17:33:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1443150AbiEFPeP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 May 2022 11:34:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53856 "EHLO
+        id S1443000AbiEFPg7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 May 2022 11:36:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54904 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1442971AbiEFPd0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 May 2022 11:33:26 -0400
-Received: from mout.perfora.net (mout.perfora.net [74.208.4.194])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 714D76D398;
-        Fri,  6 May 2022 08:29:28 -0700 (PDT)
-Received: from toolbox.int.toradex.com ([81.221.85.15]) by mrelay.perfora.net
- (mreueus004 [74.208.5.2]) with ESMTPSA (Nemesis) id 1MdMsu-1oMKdw1p32-00ZMUS;
- Fri, 06 May 2022 17:29:16 +0200
-From:   Marcel Ziswiler <marcel@ziswiler.com>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Russell King <linux@armlinux.org.uk>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v1 19/24] ARM: dts: imx7-colibri: clean-up device enabling/disabling
-Date:   Fri,  6 May 2022 17:28:04 +0200
-Message-Id: <20220506152809.295409-20-marcel@ziswiler.com>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220506152809.295409-1-marcel@ziswiler.com>
-References: <20220506152809.295409-1-marcel@ziswiler.com>
+        with ESMTP id S1443083AbiEFPgb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 May 2022 11:36:31 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8AB449F9D;
+        Fri,  6 May 2022 08:32:47 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: kholk11)
+        with ESMTPSA id AAFC61F46B21
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1651851166;
+        bh=E9l9sl9XPbOxjAAJCEpY1wi9N4oVvcnWNoaRqxjeKaE=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=HwsVlLDRN+mPeE5XOJN9SrgZViyD4n7jTBgI133jgiTtJ270+gEcI1KTmgBO2nVJp
+         3u8Bp/fL1gHcs78xMzxhXbjEyc+93iodMXlCkSyRzsoRN8nLT2Kud6tJazN0Z6a5vA
+         MR39o257cBNwLSvC+emqdRhejNEplfY8ZpWfWg+9r8PQkFiS4Vk0N+V/DE9IIdJDEO
+         g7VRMQA2n2nrR+yiUKFzJBYpjjFT4BS6x/tA7Pm17vjx15zCbbOT7NGz8T8u/dXtYJ
+         bIMHDexQomhLGVOax3oXVaA1tt5TUdieOSAPxgM0fmGAXmURGW8ewY7Pni3UGDUuOO
+         lQhGxClbKNJOg==
+Message-ID: <22c1aa6b-d785-9bb3-354f-0d747e2392a1@collabora.com>
+Date:   Fri, 6 May 2022 17:32:43 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH v2 00/16] Introduce support for MediaTek MT8192 Google
+ Chromebooks
+Content-Language: en-US
+To:     Chen-Yu Tsai <wenst@chromium.org>,
+        =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
+        <nfraprado@collabora.com>
+Cc:     Matthias Brugger <matthias.bgg@gmail.com>, kernel@collabora.com,
+        Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
+        Fabien Parent <fparent@baylibre.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Luca Weiss <luca@z3ntu.xyz>, Maxim Kutnij <gtk3@inbox.ru>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sam Shih <sam.shih@mediatek.com>,
+        Sean Wang <sean.wang@mediatek.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org
+References: <20220505194550.3094656-1-nfraprado@collabora.com>
+ <CAGXv+5Hk2u+1zkVjNEt7wdwAJyoB+-PMAuh7UKWEkDeYxp5zUQ@mail.gmail.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <CAGXv+5Hk2u+1zkVjNEt7wdwAJyoB+-PMAuh7UKWEkDeYxp5zUQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Provags-ID: V03:K1:eDSqjHvYUgUDpPDz2ip0xhz8v56Xm8HmZNsFQ6smeZO9h+EgnB6
- R43ZdDrLnBRKoDgIs2DPwkhHWQBZrKY5mLXoNOC5Ib1QT6N8ZtQDa0b9QCbZ7CaBTIo/0Nv
- yrq81wxJLAEFW15pc0EbDgRmdXn7mnoSi+TX/usDtD14N857nHdt+eXwEqaxaks2I+plTyt
- p4tHz/PsGIsZjsoGaATlQ==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:wXRkrhduIOE=:LuNedX6YpLBvr9MPAV31a5
- 1pJYTM6xS5iHRslRfQJOjWkcGHI7rPPZMUY0wo+Jerlcg5sfX5+aE6IItUk2bxOlDoDYhKT4i
- x+VyxF8Q20aIVTNdpNCc5SeVm/o8PUpWSwM+AYSdxn1SwiD8L/vYIz4W4QuWob3/LzcU2tgjb
- ky+GA5vsbd7LPniOlmlbgUN84wHLccJKdjq/oHgN/WYcel1XXb9aT63sTsvf4aFJmo9jymC91
- aywIRDPTeZXA0VkxbW7HLiWDSb0lqNgk6qaDg/NddndjmVrhvVlhda/+LXSkmDFVIXz2EgzoK
- V/8acMx0xsnSAh1BKfV9MLWyGCDuXeKsM6tPRfjFsrR0b/PElHALDN5IFhbVSlVjLcKIEucJG
- Dnu3l5TJbzvsUi7c+LnX/PSR/RA1lt5pPfrJqru5qz11QdskiaLiH/w8mPDn2/Tsc9WxSQcFM
- 0JGxdza62o6We+UfaMbLlHKzext7Hs7NBKT4Z7SYvWCLBeT+IHNi/29BXNIaI10gd5Wz/r0+3
- ZbdaWsLDVV7+TDHwnFjtl/jKaZL9OUK3eGEOJCrqX74CglqRSkUZuk1EJiCESg3Zv0M0K04vZ
- /Gyq3hakWbtV6I5RgWN+YuGMpcQjF0DMxkjK5/dJ8u8CWLnWWnWfnZre5+EWPsRLoNhVtj1iv
- LooMgsuiLb4KhFlfLXb6FW/cU/Dbg83iO4MlWKliriU8V40dfMLzI0oocthSDW0aeATI=
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Marcel Ziswiler <marcel.ziswiler@toradex.com>
+Il 06/05/22 13:41, Chen-Yu Tsai ha scritto:
+> On Fri, May 6, 2022 at 3:46 AM Nícolas F. R. A. Prado
+> <nfraprado@collabora.com> wrote:
+>>
+>>
+>> This series introduces Devicetrees for the MT8192-based Asurada platform
+>> as well as Asurada Spherion and Asurada Hayato boards.
+>>
+>> Support for the boards is added to the extent that is currently enabled
+>> in the mt8192.dtsi, as to not add any dependencies to this series.
+>>
+>> Besides the other dt-binding fixes already on linux-next to avoid new
+>> warnings by this series, [1] is already merged but not on next yet.
+>>
+>> This series was peer-reviewed internally before submission.
+>>
+>> [1] https://lore.kernel.org/all/20220429201325.2205799-1-nfraprado@collabora.com/
+>>
+>> v1: https://lore.kernel.org/all/20220316151327.564214-1-nfraprado@collabora.com/
+>>
+>> Changes in v2:
+>> - Added patches 1-2 for Mediatek board dt-bindings
+>> - Added patches 13-16 enabling hardware for Asurada that has since been
+>>    enabled on mt8192.dtsi
+>>
+>> Nícolas F. R. A. Prado (16):
+>>    dt-bindings: arm64: dts: mediatek: Add mt8192-asurada-spherion
+>>    dt-bindings: arm64: dts: mediatek: Add mt8192-asurada-hayato
+>>    arm64: dts: mediatek: Introduce MT8192-based Asurada board family
+>>    arm64: dts: mediatek: asurada: Document GPIO names
+>>    arm64: dts: mediatek: asurada: Add system-wide power supplies
+>>    arm64: dts: mediatek: asurada: Enable and configure I2C and SPI busses
+>>    arm64: dts: mediatek: asurada: Add ChromeOS EC
+>>    arm64: dts: mediatek: asurada: Add keyboard mapping for the top row
+>>    arm64: dts: mediatek: asurada: Add Cr50 TPM
+>>    arm64: dts: mediatek: asurada: Add Elan eKTH3000 I2C trackpad
+>>    arm64: dts: mediatek: asurada: Add I2C touchscreen
+>>    arm64: dts: mediatek: spherion: Add keyboard backlight
+>>    arm64: dts: mediatek: asurada: Enable XHCI
+>>    arm64: dts: mediatek: asurada: Enable PCIe and add WiFi
+>>    arm64: dts: mediatek: asurada: Add MT6359 PMIC
+>>    arm64: dts: mediatek: asurada: Add SPMI regulators
+> 
+> Tested-by: Chen-Yu Tsai <wenst@chromium.org>
+> 
+> I tested all the external peripherals, including touchpad, touchscreen,
+> keyboard (which needs a fix), USB, WiFi on both models, and the keyboard
+> backlight and (USB-based) Bluetooth on Spherion.
+> 
+> Could you also enable the SCP? Otherwise the vcodec generates big warnings
+> when it probes.
+> 
+> And also would like to see MMC. :)
+> 
+> 
+> Thanks
+> ChenYu
 
-Disable most nodes on module-level to be enabled on carrier board-level.
+Hello ChenYu,
 
-Signed-off-by: Marcel Ziswiler <marcel.ziswiler@toradex.com>
----
+we avoided enabling the SCP and the MMC because of some things that have to be
+assessed and fixed on our side.
+For the SCP, we have some issues about loading the firmware, we suspect that the
+binary that is in linux-firmware needs different and/or larger carveouts;
+For the MMC, we have some issues with the pin configuration regarding the pins
+drive strength: this should be solved, but we want to make sure that more testing
+gets done before we push that upstream.
 
- arch/arm/boot/dts/imx7-colibri-eval-v3.dtsi | 1 -
- arch/arm/boot/dts/imx7-colibri.dtsi         | 5 -----
- 2 files changed, 6 deletions(-)
+We're trying to upstream the Asurada platform step by step as to see these
+machines present on upstream as soon as possible, with functionality that is
+well tested and clean, so that it would make no sense to modify them again in
+the near future.
 
-diff --git a/arch/arm/boot/dts/imx7-colibri-eval-v3.dtsi b/arch/arm/boot/dts/imx7-colibri-eval-v3.dtsi
-index fea6e4c0d4d6..826f13da5b81 100644
---- a/arch/arm/boot/dts/imx7-colibri-eval-v3.dtsi
-+++ b/arch/arm/boot/dts/imx7-colibri-eval-v3.dtsi
-@@ -44,7 +44,6 @@ mcp2515: can@0 {
- 		spi-max-frequency = <10000000>;
- 		vdd-supply = <&reg_3v3>;
- 		xceiver-supply = <&reg_5v0>;
--		status = "okay";
- 	};
- };
- 
-diff --git a/arch/arm/boot/dts/imx7-colibri.dtsi b/arch/arm/boot/dts/imx7-colibri.dtsi
-index f29096fca54d..065d8f55f326 100644
---- a/arch/arm/boot/dts/imx7-colibri.dtsi
-+++ b/arch/arm/boot/dts/imx7-colibri.dtsi
-@@ -140,9 +140,6 @@ &adc1 {
- };
- 
- /* ADC2 is not available as it conflicts with AD7879 resistive touchscreen. */
--&adc2 {
--	status = "disabled";
--};
- 
- &cpu0 {
- 	cpu-supply = <&reg_DCDC2>;
-@@ -191,13 +188,11 @@ ethphy0: ethernet-phy@0 {
- &flexcan1 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_flexcan1>;
--	status = "disabled";
- };
- 
- &flexcan2 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_flexcan2>;
--	status = "disabled";
- };
- 
- &gpio1 {
--- 
-2.35.1
+As this series gets picked (hopefully) by the maintainer, we will then make sure
+to send one (or more, depending on various factors) followup series enabling more
+and more functionality, until the platform integration reaches 100% completion.
 
+At least, that's the plan :-)
+
+Cheers,
+Angelo
