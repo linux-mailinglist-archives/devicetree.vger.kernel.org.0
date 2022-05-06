@@ -2,73 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C452E51D1B7
-	for <lists+devicetree@lfdr.de>; Fri,  6 May 2022 08:56:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0345751D1DD
+	for <lists+devicetree@lfdr.de>; Fri,  6 May 2022 09:03:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1387310AbiEFG7h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 May 2022 02:59:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48998 "EHLO
+        id S1387938AbiEFHGs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 May 2022 03:06:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54862 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1387252AbiEFG7g (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 May 2022 02:59:36 -0400
-Received: from mail-pg1-x536.google.com (mail-pg1-x536.google.com [IPv6:2607:f8b0:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5717B20191
-        for <devicetree@vger.kernel.org>; Thu,  5 May 2022 23:55:53 -0700 (PDT)
-Received: by mail-pg1-x536.google.com with SMTP id g184so2916646pgc.1
-        for <devicetree@vger.kernel.org>; Thu, 05 May 2022 23:55:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=D4NXdd3YqkdO3IMXdjbzk+SiXyDFtdTRliIhRaIF0uU=;
-        b=csOcQIqCeppAw0bnbA0PAK/KLSkBNEXJGvbbRFUL5u1FD8EeshJ8vsm100ssR6Ppxn
-         usAcP8u5hf++Ngp/PQREyHwtTO1BXYNFWbPhngnUM5A7eYKdOxSqyxRYDf4yMnDC/8NM
-         ij7hJ/5HT+HSdWf/+sNGuOS5UEvbAIu00uFL7dGUbAKptzl/2/7aMt5b9n+BggK+0n5E
-         a6NEub1mlV0DxGT5mVJxfUZ1rvWIVQVJK1R9UspPKKAZrXXjJMlImCJB5TvpKyb9IdM+
-         aaR5Lro6szV2wpztncRzcZLhUGBOd2xR1lxDeN17+mqBaLt70aw0kMBFWLa9/rM2UTcg
-         +ing==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=D4NXdd3YqkdO3IMXdjbzk+SiXyDFtdTRliIhRaIF0uU=;
-        b=geLVrLkTJxWyZNtGqQ8YRE/RfSbXcPgJ9X29rs/6GB1ytyL/tExp1OZEjjOz2eCMSX
-         MooHos/QqgsmH85SGlj1sI2UFYDzoMBw/koP0PW78Y+h+ZmhSIWmipIsvcb7JZtug2MK
-         ex3RVa2/J9vyJGJTwDxKsG9Fnft5X0plqYCupnthk4/UeS4XnwT+r2ShjVURwIozfUhS
-         CIC6zlVKhTi1IsaAY0lkj5d71AggzsymRjiYeXi6P+YiqEU4kEProT/0mOPGTHsz5INk
-         4zp7vxBUe0X7Ga+OypHCszI127buKBJ81p0Z7Ql5H3laOlYyWeQ5nTBZTnU83H1dg4On
-         Ak5A==
-X-Gm-Message-State: AOAM533aMH2kxSFJg78WRB6hOGvwOp6/DONP2cAnUDv1nOMXqM2ntzA6
-        QGhKEVu9VoQFNNmqcdSVA9H/
-X-Google-Smtp-Source: ABdhPJwtcPALIBrmTItLjcphWrDRFNx0TIk+f7DOIPALma//Tvoi/Vyk1N3h9fQS2zZjkCfYSZ8U4g==
-X-Received: by 2002:a65:6a4c:0:b0:39c:f169:b54a with SMTP id o12-20020a656a4c000000b0039cf169b54amr1651752pgu.384.1651820152757;
-        Thu, 05 May 2022 23:55:52 -0700 (PDT)
-Received: from thinkpad ([117.207.26.33])
-        by smtp.gmail.com with ESMTPSA id y19-20020aa78f33000000b0050dc76281b0sm2568308pfr.138.2022.05.05.23.55.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 May 2022 23:55:52 -0700 (PDT)
-Date:   Fri, 6 May 2022 12:25:46 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Greg KH <gregkh@linuxfoundation.org>
-Cc:     Rohit Agarwal <quic_rohiagar@quicinc.com>, agross@kernel.org,
-        bjorn.andersson@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 3/4] ARM: dts: qcom: sdx65: Add USB3 and PHY support
-Message-ID: <20220506065546.GA17659@thinkpad>
-References: <1651482395-29443-1-git-send-email-quic_rohiagar@quicinc.com>
- <1651482395-29443-4-git-send-email-quic_rohiagar@quicinc.com>
- <YnQtQ7Il95bfrif9@kroah.com>
+        with ESMTP id S1387681AbiEFHGr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 May 2022 03:06:47 -0400
+Received: from mx1.cqplus1.com (unknown [113.204.237.245])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 9BBFB4DF52
+        for <devicetree@vger.kernel.org>; Fri,  6 May 2022 00:02:55 -0700 (PDT)
+X-MailGates: (flag:1,DYNAMIC,RELAY,NOHOST,LAN:PASS)(compute_score:DELIVE
+        R,40,3)
+Received: from 172.27.96.203
+        by mx1.cqplus1.com with MailGates ESMTP Server V5.0(24038:0:AUTH_RELAY)
+        (envelope-from <qinjian@cqplus1.com>); Fri, 06 May 2022 15:01:02 +0800 (CST)
+Received: from CQEXMAIL01.cqplus1.com (172.27.96.203) by
+ CQEXMAIL01.cqplus1.com (172.27.96.203) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.6; Fri, 6 May 2022 15:01:00 +0800
+Received: from CQEXMAIL01.cqplus1.com ([::1]) by CQEXMAIL01.cqplus1.com
+ ([::1]) with mapi id 15.01.2507.006; Fri, 6 May 2022 15:01:00 +0800
+From:   =?utf-8?B?cWluamlhblvopoPlgaVd?= <qinjian@cqplus1.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mturquette@baylibre.com" <mturquette@baylibre.com>,
+        "sboyd@kernel.org" <sboyd@kernel.org>,
+        "tglx@linutronix.de" <tglx@linutronix.de>,
+        "maz@kernel.org" <maz@kernel.org>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        "linux@armlinux.org.uk" <linux@armlinux.org.uk>,
+        "arnd@arndb.de" <arnd@arndb.de>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+        Rob Herring <robh@kernel.org>
+Subject: RE: [PATCH v14 6/9] dt-bindings: interrupt-controller: Add bindings
+ for SP7021 interrupt controller
+Thread-Topic: [PATCH v14 6/9] dt-bindings: interrupt-controller: Add bindings
+ for SP7021 interrupt controller
+Thread-Index: AQHYYPmoKr87uTd0mUKH1SxX+WAEFK0Q3wAAgACMdMA=
+Date:   Fri, 6 May 2022 07:01:00 +0000
+Message-ID: <d4ec03ed722349dda9fa3357449ac612@cqplus1.com>
+References: <cover.1651805790.git.qinjian@cqplus1.com>
+ <56fb5e9a35a901f15d8e9721385c7e916c181377.1651805790.git.qinjian@cqplus1.com>
+ <550cd907-be2a-4e90-350c-fbc3bdc03728@linaro.org>
+In-Reply-To: <550cd907-be2a-4e90-350c-fbc3bdc03728@linaro.org>
+Accept-Language: zh-CN, en-US
+Content-Language: zh-CN
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.28.110.18]
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <YnQtQ7Il95bfrif9@kroah.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -76,23 +69,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 05, 2022 at 10:02:11PM +0200, Greg KH wrote:
-> On Mon, May 02, 2022 at 02:36:34PM +0530, Rohit Agarwal wrote:
-> > Add devicetree nodes for enabling USB3 controller, Qcom QMP PHY and
-> > SNPS HS PHY on SDX65.
-> > 
-> > Signed-off-by: Rohit Agarwal <quic_rohiagar@quicinc.com>
-> > ---
-> >  arch/arm/boot/dts/qcom-sdx65.dtsi | 83 +++++++++++++++++++++++++++++++++++++++
-> >  1 file changed, 83 insertions(+)
-> 
-> Does not apply to my tree :(
-
-DTS patches are supposed to go through ARCH trees. So Bjorn will pick it
-through linux-qcom.
-
-Thanks,
-Mani
-
--- 
-மணிவண்ணன் சதாசிவம்
+PiBPbiAwNi8wNS8yMDIyIDA1OjIzLCBRaW4gSmlhbiB3cm90ZToNCj4gPiBBZGQgZG9jdW1lbnRh
+dGlvbiB0byBkZXNjcmliZSBTdW5wbHVzIFNQNzAyMSBpbnRlcnJ1cHQgY29udHJvbGxlciBiaW5k
+aW5ncy4NCj4gPg0KPiA+IFJldmlld2VkLWJ5OiBSb2IgSGVycmluZyA8cm9iaEBrZXJuZWwub3Jn
+Pg0KPiA+IFNpZ25lZC1vZmYtYnk6IFFpbiBKaWFuIDxxaW5qaWFuQGNxcGx1czEuY29tPg0KPiA+
+IC0tLQ0KPiA+ICAuLi4vc3VucGx1cyxzcDcwMjEtaW50Yy55YW1sICAgICAgICAgICAgICAgICAg
+fCA2MiArKysrKysrKysrKysrKysrKysrDQo+ID4gIE1BSU5UQUlORVJTICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICB8ICAxICsNCj4gPiAgMiBmaWxlcyBjaGFuZ2VkLCA2MyBpbnNl
+cnRpb25zKCspDQo+ID4gIGNyZWF0ZSBtb2RlIDEwMDY0NCBEb2N1bWVudGF0aW9uL2RldmljZXRy
+ZWUvYmluZGluZ3MvaW50ZXJydXB0LWNvbnRyb2xsZXIvc3VucGx1cyxzcDcwMjEtaW50Yy55YW1s
+DQo+ID4NCj4gPiBkaWZmIC0tZ2l0IGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdz
+L2ludGVycnVwdC1jb250cm9sbGVyL3N1bnBsdXMsc3A3MDIxLWludGMueWFtbA0KPiBiL0RvY3Vt
+ZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9pbnRlcnJ1cHQtY29udHJvbGxlci9zdW5wbHVz
+LHNwNzAyMS1pbnRjLnlhbWwNCj4gPiBuZXcgZmlsZSBtb2RlIDEwMDY0NA0KPiA+IGluZGV4IDAw
+MDAwMDAwMC4uZjI2ZDhiMjEzDQo+ID4gLS0tIC9kZXYvbnVsbA0KPiA+ICsrKyBiL0RvY3VtZW50
+YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9pbnRlcnJ1cHQtY29udHJvbGxlci9zdW5wbHVzLHNw
+NzAyMS1pbnRjLnlhbWwNCj4gPiBAQCAtMCwwICsxLDYyIEBADQo+ID4gKyMgU1BEWC1MaWNlbnNl
+LUlkZW50aWZpZXI6IChHUEwtMi4wLW9ubHkgT1IgQlNELTItQ2xhdXNlKQ0KPiA+ICsjIENvcHly
+aWdodCAoQykgU3VucGx1cyBDby4sIEx0ZC4gMjAyMQ0KPiA+ICslWUFNTCAxLjINCj4gPiArLS0t
+DQo+ID4gKyRpZDogaHR0cDovL2RldmljZXRyZWUub3JnL3NjaGVtYXMvaW50ZXJydXB0LWNvbnRy
+b2xsZXIvc3VucGx1cyxzcDcwMjEtaW50Yy55YW1sIw0KPiA+ICskc2NoZW1hOiBodHRwOi8vZGV2
+aWNldHJlZS5vcmcvbWV0YS1zY2hlbWFzL2NvcmUueWFtbCMNCj4gPiArDQo+ID4gK3RpdGxlOiBT
+dW5wbHVzIFNQNzAyMSBTb0MgSW50ZXJydXB0IENvbnRyb2xsZXIgRGV2aWNlIFRyZWUgQmluZGlu
+Z3MNCj4gDQo+IFJlbW92ZSAiRGV2aWNlIFRyZWUgQmluZGluZ3MiLiBUaGlzIGFwcGxpZXMgdG8g
+YWxsIGJpbmRpbmdzIHBhdGNoZXMsIG5vdA0KPiBvbmx5IHRvIG9uZS4NCj4gDQoNCkRpZCB5b3Ug
+bWVhbnMgY2hhbmdlDQoidGl0bGU6IFN1bnBsdXMgU1A3MDIxIFNvQyBJbnRlcnJ1cHQgQ29udHJv
+bGxlciBEZXZpY2UgVHJlZSBCaW5kaW5ncyINCnRvIA0KInRpdGxlOiBTdW5wbHVzIFNQNzAyMSBT
+b0MgSW50ZXJydXB0IENvbnRyb2xsZXIiPw0KDQoNCg==
