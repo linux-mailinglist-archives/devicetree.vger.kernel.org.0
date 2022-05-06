@@ -2,191 +2,198 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D994B51D7F5
-	for <lists+devicetree@lfdr.de>; Fri,  6 May 2022 14:35:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CEE4451D803
+	for <lists+devicetree@lfdr.de>; Fri,  6 May 2022 14:38:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346610AbiEFMjb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 May 2022 08:39:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41834 "EHLO
+        id S1392083AbiEFMmS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 May 2022 08:42:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43700 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1392104AbiEFMjU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 May 2022 08:39:20 -0400
-Received: from szxga01-in.huawei.com (szxga01-in.huawei.com [45.249.212.187])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A0F6A53A60;
-        Fri,  6 May 2022 05:35:35 -0700 (PDT)
-Received: from dggpemm500024.china.huawei.com (unknown [172.30.72.55])
-        by szxga01-in.huawei.com (SkyGuard) with ESMTP id 4Kvqkq4mTlzfbMj;
-        Fri,  6 May 2022 20:34:27 +0800 (CST)
-Received: from dggpemm500006.china.huawei.com (7.185.36.236) by
- dggpemm500024.china.huawei.com (7.185.36.203) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.24; Fri, 6 May 2022 20:35:33 +0800
-Received: from [10.174.178.55] (10.174.178.55) by
- dggpemm500006.china.huawei.com (7.185.36.236) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.24; Fri, 6 May 2022 20:35:32 +0800
-Subject: Re: [PATCH v23 3/6] arm64: kdump: Reimplement crashkernel=X
-To:     Catalin Marinas <catalin.marinas@arm.com>
-CC:     Thomas Gleixner <tglx@linutronix.de>,
-        Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
-        <x86@kernel.org>, "H . Peter Anvin" <hpa@zytor.com>,
-        <linux-kernel@vger.kernel.org>, Dave Young <dyoung@redhat.com>,
-        Baoquan He <bhe@redhat.com>, Vivek Goyal <vgoyal@redhat.com>,
-        Eric Biederman <ebiederm@xmission.com>,
-        <kexec@lists.infradead.org>, Will Deacon <will@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        <devicetree@vger.kernel.org>, "Jonathan Corbet" <corbet@lwn.net>,
-        <linux-doc@vger.kernel.org>, Randy Dunlap <rdunlap@infradead.org>,
-        Feng Zhou <zhoufeng.zf@bytedance.com>,
-        Kefeng Wang <wangkefeng.wang@huawei.com>,
-        Chen Zhou <dingguo.cz@antgroup.com>,
-        "John Donnelly" <John.p.donnelly@oracle.com>,
-        Dave Kleikamp <dave.kleikamp@oracle.com>
-References: <20220505091845.167-1-thunder.leizhen@huawei.com>
- <20220505091845.167-4-thunder.leizhen@huawei.com> <YnQC44KVKirH0vyB@arm.com>
- <189f24a8-9e9b-b3e9-7ac5-935433ea575b@huawei.com> <YnUBLgUiZDhRPMzU@arm.com>
-From:   "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
-Message-ID: <e812da1a-e576-5bb7-376e-0d55d7aced98@huawei.com>
-Date:   Fri, 6 May 2022 20:35:21 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
+        with ESMTP id S1392073AbiEFMmO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 May 2022 08:42:14 -0400
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F86F69496
+        for <devicetree@vger.kernel.org>; Fri,  6 May 2022 05:38:30 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id w1so12361910lfa.4
+        for <devicetree@vger.kernel.org>; Fri, 06 May 2022 05:38:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=+oJnfCTdPWSag7AGc8jPKi4ghzl83dJN2OES5/aYaT4=;
+        b=K0LgiS5p/Fz0/dtEboraGPOSwQFdkSth+xonysTtThr4NDxYGzK/K3nu0zsyiFDZT4
+         wH+vkseShFMadY6qbBA9VCYSxJStYbmQ12RP1M1PK2Dr7oMpncHl+awCQ0xKY/4Seud3
+         Qxuw8La5C2Sn7s2ktVCoBLaHLGPw4DaeJBm8Zuj5grwPxwJKD4sVKvP3WaHErXlx+zHB
+         4Qv36qrKnEV1Hn0BAZ424T8LhFExbDFMkBmMfW+3IdQCEwjRtOpPt9epMgHm6ruwSFs1
+         5uzjKg1q05qwpNrTVJwkvRJGgqgbAs+/Us6yj6QhLGbYGCAZM5gYHSST06ZtkmTtrqrU
+         hvHA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=+oJnfCTdPWSag7AGc8jPKi4ghzl83dJN2OES5/aYaT4=;
+        b=0wxb7HXaa2WBcGyXkXlbq1nOuzjY/ACvkmUUsFAkF14+pSv4zp3M781+KvGKPYTqDe
+         P5bOK26g2qN1m2YeKzvkmUIu8fuEutxJIT4WXJGt3qO/2839hIBCNTuey23WlPuf26Fv
+         jHJHT8OByEYM2H7H/19txnZ/xaoybppE2SZ81BklnIWhteB1nf8V37CEUqOrLVQKAECN
+         dMlQITjzwCdckMGDFe4tuQxpok70QzJM1BqCDAwdsOMPB3MDjRMsnjUKR0J5wUlfSSUN
+         Nsg3eEfGr7vUwoWfVaAhneoIr3c8+MgW2ChPM8oAEBtnvlgDxY0cGsOfpVVAdXAJAe3Z
+         stUA==
+X-Gm-Message-State: AOAM533UlHeGKdXUuEPsE0aFyEG2whSrFGjj693ZFZy3XuL4VXHLKKgg
+        5cK1QKUCJqqOxY7xwgo5ET0IHJqqLeSRQ4sKwWJZpA==
+X-Google-Smtp-Source: ABdhPJz/OG8nf/9MLik6vYRgPr2lDfjBYFJEYvIXAjy7Uu3UKsDMG/VrjItMgN2nY1YHO2G+QCSuzBVNZ4F4342VvEw=
+X-Received: by 2002:a05:6512:5cb:b0:472:f7e:a5f5 with SMTP id
+ o11-20020a05651205cb00b004720f7ea5f5mr2255189lfo.358.1651840708488; Fri, 06
+ May 2022 05:38:28 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <YnUBLgUiZDhRPMzU@arm.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.174.178.55]
-X-ClientProxiedBy: dggems703-chm.china.huawei.com (10.3.19.180) To
- dggpemm500006.china.huawei.com (7.185.36.236)
-X-CFilter-Loop: Reflected
-X-Spam-Status: No, score=-7.3 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+References: <20220504213251.264819-1-sebastian.reichel@collabora.com>
+ <20220504213251.264819-10-sebastian.reichel@collabora.com>
+ <CAPDyKFqLn4LfPRbhoWw_9BF26Lgmzq_1j=RB31NDGn9YvMnB5w@mail.gmail.com> <20220506091837.bbwupigb4f3hwgp4@mercury.elektranox.org>
+In-Reply-To: <20220506091837.bbwupigb4f3hwgp4@mercury.elektranox.org>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Fri, 6 May 2022 14:37:52 +0200
+Message-ID: <CAPDyKFoiDunWM28fHKDc6q_c3fwUQGxPGurF0tChMJKwvDdhtQ@mail.gmail.com>
+Subject: Re: [PATCHv2 09/21] mmc: sdhci-of-dwcmshc: add reset call back for
+ rockchip Socs
+To:     Sebastian Reichel <sebastian.reichel@collabora.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org,
+        linux-mmc@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Yifeng Zhao <yifeng.zhao@rock-chips.com>, kernel@collabora.com
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, 6 May 2022 at 11:18, Sebastian Reichel
+<sebastian.reichel@collabora.com> wrote:
+>
+> Hi,
+>
+> On Fri, May 06, 2022 at 10:52:42AM +0200, Ulf Hansson wrote:
+> > On Wed, 4 May 2022 at 23:33, Sebastian Reichel
+> > <sebastian.reichel@collabora.com> wrote:
+> > >
+> > > From: Yifeng Zhao <yifeng.zhao@rock-chips.com>
+> > >
+> > > The reset function build in the SDHCI will not reset the logic
+> > > circuit related to the tuning function, which may cause data
+> > > reading errors. Resetting the complete SDHCI controller through
+> > > the reset controller fixes the issue.
+> > >
+> > > Signed-off-by: Yifeng Zhao <yifeng.zhao@rock-chips.com>
+> > > [rebase, use optional variant of reset getter]
+> > > Acked-by: Adrian Hunter <adrian.hunter@intel.com>
+> > > Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+> >
+> > I think this needs a corresponding update of the DT docs. Otherwise
+> > this looks good to me.
+>
+> I do have 'resets' and 'reset-names' properties in the rk3588s.dtsi
+> for the sdhci interface and 'make dtbs_check' did not complain about
+> anything but missing 'arm,sdei-1.0' compatible for the rk3588 EVB
+> (sdei binding has not yet been converted to yaml). Thus I assume the
+> resets property is inferred from somewhere?
 
+I don't think it should, but I may be wrong.
 
-On 2022/5/6 19:06, Catalin Marinas wrote:
-> On Fri, May 06, 2022 at 11:22:51AM +0800, Leizhen (ThunderTown) wrote:
->> On 2022/5/6 1:01, Catalin Marinas wrote:
->>> On Thu, May 05, 2022 at 05:18:42PM +0800, Zhen Lei wrote:
->>>> From: Chen Zhou <chenzhou10@huawei.com>
->>>>
->>>> There are following issues in arm64 kdump:
->>>> 1. We use crashkernel=X to reserve crashkernel in DMA zone, which
->>>> will fail when there is not enough low memory.
->>>> 2. If reserving crashkernel above DMA zone, in this case, crash dump
->>>> kernel will fail to boot because there is no low memory available
->>>> for allocation.
->>>>
->>>> To solve these issues, introduce crashkernel=X,[high,low].
->>>> The "crashkernel=X,high" is used to select a region above DMA zone, and
->>>> the "crashkernel=Y,low" is used to allocate specified size low memory.
->>>
->>> Thanks for posting the simplified version, though the discussion with
->>> Baoquan is still ongoing. AFAICT there is no fallback if crashkernel=
->>> fails. The advantage with this series is cleaner code, we set the limits
->>> during parsing and don't have to adjust them if some of the first
->>> allocation failed.
->>
->> Yes, I'm currently implementing it in the simplest version, providing only
->> the most basic functions. Because the conclusions of this part of the discussion
->> are clear. I think I can send the fallback, default low size, and mapping optimization
->> patches separately after this basic version is merged. These three functions can
->> be discussed separately.
-> 
-> This works for me. If we decide to go for fallbacks, it can be done as a
-> separate patch.
-> 
->>>> +		ret = parse_crashkernel_high(cmdline, 0, &crash_size, &crash_base);
->>>> +		if (ret || !crash_size)
->>>> +			return;
->>>> +
->>>> +		/*
->>>> +		 * crashkernel=Y,low can be specified or not, but invalid value
->>>> +		 * is not allowed.
->>>> +		 */
->>>> +		ret = parse_crashkernel_low(cmdline, 0, &crash_low_size, &crash_base);
->>>> +		if (ret && (ret != -ENOENT))
->>>> +			return;
->>>> +
->>>> +		crash_max = CRASH_ADDR_HIGH_MAX;
->>>> +	}
->>>>  
->>>>  	crash_size = PAGE_ALIGN(crash_size);
->>>>  
->>>> @@ -118,8 +159,7 @@ static void __init reserve_crashkernel(void)
->>>>  	if (crash_base)
->>>>  		crash_max = crash_base + crash_size;
->>>>  
->>>> -	/* Current arm64 boot protocol requires 2MB alignment */
->>>> -	crash_base = memblock_phys_alloc_range(crash_size, SZ_2M,
->>>> +	crash_base = memblock_phys_alloc_range(crash_size, CRASH_ALIGN,
->>>>  					       crash_base, crash_max);
->>>>  	if (!crash_base) {
->>>>  		pr_warn("cannot allocate crashkernel (size:0x%llx)\n",
->>>
->>> I personally like this but let's see how the other thread goes. I guess
->>
->> Me too. This fallback complicates code logic more than just a little.
->> I'm not sure why someone would rather add fallback than change the bootup
->> options to crashkernel=X,[high|low]. Perhaps fallback to high/low is a better
->> compatible and extended mode when crashkernel=X fails to reserve memory. And
->> the code logic will be much clearer.
->>
->> //parse crashkernel=X		//To simplify the discussion, Ignore [@offset]
->> crash_base = memblock_phys_alloc_range()
->> if (!crash_base || /* crashkernel=X is not specified */) {
->> 	//parse crashkernel=X,[high,low]
->> 	//reserve high/low memory
->> }
->>
->> So that, the following three modes are supported:
->> 1) crashkernel=X[@offset]
->> 2) crashkernel=X,high crashkernel=X,low
->> 3) crashkernel=X[@offset] crashkernel=X,high [crashkernel=Y,low]
-> 
-> The whole interface isn't great but if we add fall-back options, I'd
-> rather stick close to what x86 does. IOW, if crashkernel=X is provided,
-> ignore explicit high/low (so 3 does not exist).
-> 
-> (if I had added it from the beginning, I'd have removed 'high'
-> completely and allow crashkernel=X to fall-back to 'high' with an
-> optional explicit 'low' or 'dma' if the default is not sufficient; but I
+How about if you extend the example in the DT doc with a reset
+property, will that cause the DT tools to complain?
 
-Er, my idea almost coincides with yours. When 3) removes 'high', it's the same
-way you think. Of course, I haven't thought of deleting 'high' yet. So your
-idea is more perfect.
+Kind regards
+Uffe
 
-> think there's too much bikeshedding already)
-
-Yeah, the oldest prince has royal power. There's no choice now.
-
-> 
->>> if we want a fallback, it would come just before the check the above:
->>>
->>> 	if (!crash_base && crash_max != CRASH_ADDR_HIGH_MAX) {
->>> 		/* attempt high allocation with default low */
->>> 		if (!crash_low_size)
->>> 			crash_low_size = some default;
->>> 		crash_max = CRASH_ADDR_LOW_MAX;
->>
->> crash_max = CRASH_ADDR_HIGH_MAX; We should fallback to high memory now.
-> 
-> Yes, that's the idea.
-> 
-> Anyway, please post the current series with the minor updates I
-> mentioned and we can add a fallback patch (or two) on top.
-> 
-> Thanks.
-> 
-
--- 
-Regards,
-  Zhen Lei
+>
+> -- Sebastian
+>
+> >
+> > Kind regards
+> > Uffe
+> >
+> > > ---
+> > >  drivers/mmc/host/sdhci-of-dwcmshc.c | 26 +++++++++++++++++++++++++-
+> > >  1 file changed, 25 insertions(+), 1 deletion(-)
+> > >
+> > > diff --git a/drivers/mmc/host/sdhci-of-dwcmshc.c b/drivers/mmc/host/sdhci-of-dwcmshc.c
+> > > index bac874ab0b33..3a1b5ba36405 100644
+> > > --- a/drivers/mmc/host/sdhci-of-dwcmshc.c
+> > > +++ b/drivers/mmc/host/sdhci-of-dwcmshc.c
+> > > @@ -15,6 +15,7 @@
+> > >  #include <linux/module.h>
+> > >  #include <linux/of.h>
+> > >  #include <linux/of_device.h>
+> > > +#include <linux/reset.h>
+> > >  #include <linux/sizes.h>
+> > >
+> > >  #include "sdhci-pltfm.h"
+> > > @@ -63,6 +64,7 @@
+> > >  struct rk3568_priv {
+> > >         /* Rockchip specified optional clocks */
+> > >         struct clk_bulk_data rockchip_clks[RK3568_MAX_CLKS];
+> > > +       struct reset_control *reset;
+> > >         u8 txclk_tapnum;
+> > >  };
+> > >
+> > > @@ -255,6 +257,21 @@ static void dwcmshc_rk3568_set_clock(struct sdhci_host *host, unsigned int clock
+> > >         sdhci_writel(host, extra, DWCMSHC_EMMC_DLL_STRBIN);
+> > >  }
+> > >
+> > > +static void rk35xx_sdhci_reset(struct sdhci_host *host, u8 mask)
+> > > +{
+> > > +       struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
+> > > +       struct dwcmshc_priv *dwc_priv = sdhci_pltfm_priv(pltfm_host);
+> > > +       struct rk35xx_priv *priv = dwc_priv->priv;
+> > > +
+> > > +       if (mask & SDHCI_RESET_ALL && priv->reset) {
+> > > +               reset_control_assert(priv->reset);
+> > > +               udelay(1);
+> > > +               reset_control_deassert(priv->reset);
+> > > +       }
+> > > +
+> > > +       sdhci_reset(host, mask);
+> > > +}
+> > > +
+> > >  static const struct sdhci_ops sdhci_dwcmshc_ops = {
+> > >         .set_clock              = sdhci_set_clock,
+> > >         .set_bus_width          = sdhci_set_bus_width,
+> > > @@ -269,7 +286,7 @@ static const struct sdhci_ops sdhci_dwcmshc_rk3568_ops = {
+> > >         .set_bus_width          = sdhci_set_bus_width,
+> > >         .set_uhs_signaling      = dwcmshc_set_uhs_signaling,
+> > >         .get_max_clock          = sdhci_pltfm_clk_get_max_clock,
+> > > -       .reset                  = sdhci_reset,
+> > > +       .reset                  = rk35xx_sdhci_reset,
+> > >         .adma_write_desc        = dwcmshc_adma_write_desc,
+> > >  };
+> > >
+> > > @@ -292,6 +309,13 @@ static int dwcmshc_rk3568_init(struct sdhci_host *host, struct dwcmshc_priv *dwc
+> > >         int err;
+> > >         struct rk3568_priv *priv = dwc_priv->priv;
+> > >
+> > > +       priv->reset = devm_reset_control_array_get_optional_exclusive(mmc_dev(host->mmc));
+> > > +       if (IS_ERR(priv->reset)) {
+> > > +               err = PTR_ERR(priv->reset);
+> > > +               dev_err(mmc_dev(host->mmc), "failed to get reset control %d\n", err);
+> > > +               return err;
+> > > +       }
+> > > +
+> > >         priv->rockchip_clks[0].id = "axi";
+> > >         priv->rockchip_clks[1].id = "block";
+> > >         priv->rockchip_clks[2].id = "timer";
+> > > --
+> > > 2.35.1
+> > >
