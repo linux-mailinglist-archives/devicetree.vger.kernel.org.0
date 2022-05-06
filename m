@@ -2,99 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C512F51D7FF
-	for <lists+devicetree@lfdr.de>; Fri,  6 May 2022 14:38:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D1EE451D8C3
+	for <lists+devicetree@lfdr.de>; Fri,  6 May 2022 15:19:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1392068AbiEFMmJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 May 2022 08:42:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43634 "EHLO
+        id S1392371AbiEFNWt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 May 2022 09:22:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44500 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237378AbiEFMmI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 May 2022 08:42:08 -0400
-Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com [IPv6:2607:f8b0:4864:20::1029])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E75E66ACA
-        for <devicetree@vger.kernel.org>; Fri,  6 May 2022 05:38:26 -0700 (PDT)
-Received: by mail-pj1-x1029.google.com with SMTP id j8-20020a17090a060800b001cd4fb60dccso6757681pjj.2
-        for <devicetree@vger.kernel.org>; Fri, 06 May 2022 05:38:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=8Iv8SoSGBxWhw5qDincZ2Joez8FK0jJmCBzROaO+wX8=;
-        b=kg3X7f76VAhb5/0qlftuTSqLaYMwDIxBDAd1RWI38gWo8rY2zEW0LKoS5c5pqiDXmU
-         J24k3b4+WItGItv4dq6hX/6tcVO2INMZYHVBBX3N+mLn/2Odgb4R2b4uM92As4EHs7YM
-         zzGm1kNGfpBNHNp0KX50x+s9BFvgHnZ+P7rAWwR265PeyT2T63+zTztq/MPTyZeWdTwK
-         Jue4OpVj5v5h1dpZPEK57GToifuoVNn/kyKgfqLyTiLFtBLUY3PK7ooYdwo15NS1HBLP
-         kz5wTinfBSEHFhFy+AJPMISuMWqPdSh/Is+LYy8EcxxZd0RZzpw39zaq+dwcC1vcaeYG
-         MWLw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=8Iv8SoSGBxWhw5qDincZ2Joez8FK0jJmCBzROaO+wX8=;
-        b=GifzD5Wej5E+oG9LJ/Fc85IAVn1b7GgMiMtxG/6k1QR7eigYmUNUQdkM6oY1QVQG7f
-         knNFEKLMp9WiHG65nfmthfvhnKZ8X6D/avg6EHWwJq/TjweBSR7dG6WHsyNvTX/0eycP
-         37qzlIhZPVXrl5cmW2UsZGLPfd/ozr9HSeMYfV+Ufs6viK1l87jksI1QfDJzGKisOS/k
-         H9xP7UXNLZ3FFJKJU5IEpwYXDWNpMhU4xgrv/niKI6HxIrY4D6XW8uDYzYEMMLEEAc5g
-         kZPfFi2IQQLBlqwmC48dpHQ+B4qOaNVGVx5bpAeezu/FSyeIYEmmafZMm1NqJN8wuNcM
-         r5sA==
-X-Gm-Message-State: AOAM532J2f3PzqWpNOzfwqXjuzTpkPlghBn4mImQxO+fKyGAFDS2CZ31
-        tpHNypidczuQymiObD9s4B2qTPNfibRjtxWwqI24Ye55xbE=
-X-Google-Smtp-Source: ABdhPJy9H58NHSFFT2cxJ8NNbv/IBW8+5AyJ4M/qbkpKhSG/EzIWZIerpt2VYedRbVV5I8pFe97agg11zULt3k/oh3Y=
-X-Received: by 2002:a17:903:2350:b0:15e:93de:763a with SMTP id
- c16-20020a170903235000b0015e93de763amr3428485plh.117.1651840705693; Fri, 06
- May 2022 05:38:25 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220504012601.423644-1-marex@denx.de> <YnKWeAu2MxXA7GzV@robh.at.kernel.org>
-In-Reply-To: <YnKWeAu2MxXA7GzV@robh.at.kernel.org>
-From:   Robert Foss <robert.foss@linaro.org>
-Date:   Fri, 6 May 2022 14:38:14 +0200
-Message-ID: <CAG3jFysE6yjBByBRxdjvOXmZH4Acw=M06toeG3evBZ9NeGifhw@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: display: bridge: ldb: Fill in reg property
-To:     Rob Herring <robh@kernel.org>
-Cc:     Marek Vasut <marex@denx.de>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Sam Ravnborg <sam@ravnborg.org>, Robby Cai <robby.cai@nxp.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Rob Herring <robh+dt@kernel.org>, Peng Fan <peng.fan@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
+        with ESMTP id S1343556AbiEFNWp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 May 2022 09:22:45 -0400
+Received: from mail.pr-group.ru (mail.pr-group.ru [178.18.215.3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9E52694AA;
+        Fri,  6 May 2022 06:18:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+        d=metrotek.ru; s=mail;
+        h=from:subject:date:message-id:to:cc:mime-version:content-transfer-encoding;
+        bh=mZlBtG1vfSJppBR/w0ltQ2btDeRMYO/PRq8gVzZKsqk=;
+        b=ec2E6S4LBuYKXWmdZ/gjQ9Iqvf+GqPJl1xuhbuX+jNqwc2G1Tl9KqFqw1+CNYmlY549/NndsU6phR
+         pl6XYsgi/s1keDsI6zDd8e4Vi6mgQC+b4Pqn35mOi5BQqA5LLxwsuW0rj2wwzxbHLqGHsZx/cHGcrB
+         riCSvvdg/qi991eqEZFlt3mMYR00VSgokSmpuuWyopfALWr4MtUUmQxCS5uhahauFACTHHhKmgGeS/
+         CXWIlU8J16JbvQxIhos3PMxp6jZUK6OBxM2Gx0K5MO1PDrfaz8v9lfGoEceue62aDEhQvzQ/A8IvjB
+         opHO0atT6jLO2L8EAnlbl6SBnG+0+bg==
+X-Kerio-Anti-Spam:  Build: [Engines: 2.16.3.1422, Stamp: 3], Multi: [Enabled, t: (0.000009,0.010893)], BW: [Enabled, t: (0.000015,0.000001)], RTDA: [Enabled, t: (0.092822), Hit: No, Details: v2.39.0; Id: 15.52k0ot.1g2cobinr.lk2; mclb], total: 0(700)
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Level: 
+X-Footer: bWV0cm90ZWsucnU=
+Received: from localhost.localdomain ([178.70.36.174])
+        (authenticated user i.bornyakov@metrotek.ru)
+        by mail.pr-group.ru with ESMTPSA
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256 bits));
+        Fri, 6 May 2022 16:18:40 +0300
+From:   Ivan Bornyakov <i.bornyakov@metrotek.ru>
+Cc:     mdf@kernel.org, hao.wu@intel.com, yilun.xu@intel.com,
+        trix@redhat.com, conor.dooley@microchip.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-fpga@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        system@metrotek.ru, Ivan Bornyakov <i.bornyakov@metrotek.ru>
+Subject: [PATCH v10 0/3] Microchip Polarfire FPGA manager
+Date:   Fri,  6 May 2022 15:57:07 +0300
+Message-Id: <20220506125710.25550-1-i.bornyakov@metrotek.ru>
+X-Mailer: git-send-email 2.35.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 4 May 2022 at 17:06, Rob Herring <robh@kernel.org> wrote:
->
-> On Wed, 04 May 2022 03:26:01 +0200, Marek Vasut wrote:
-> > Add missing reg and reg-names properties for both 'LDB_CTRL'
-> > and 'LVDS_CTRL' registers.
-> >
-> > Fixes: 463db5c2ed4ae ("drm: bridge: ldb: Implement simple Freescale i.MX8MP LDB bridge")
-> > Signed-off-by: Marek Vasut <marex@denx.de>
-> > Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > Cc: Lucas Stach <l.stach@pengutronix.de>
-> > Cc: Maxime Ripard <maxime@cerno.tech>
-> > Cc: Peng Fan <peng.fan@nxp.com>
-> > Cc: Rob Herring <robh+dt@kernel.org>
-> > Cc: Robby Cai <robby.cai@nxp.com>
-> > Cc: Robert Foss <robert.foss@linaro.org>
-> > Cc: Sam Ravnborg <sam@ravnborg.org>
-> > Cc: Thomas Zimmermann <tzimmermann@suse.de>
-> > Cc: devicetree@vger.kernel.org
-> > To: dri-devel@lists.freedesktop.org
-> > ---
-> >  .../bindings/display/bridge/fsl,ldb.yaml         | 16 +++++++++++++++-
-> >  1 file changed, 15 insertions(+), 1 deletion(-)
-> >
->
-> Reviewed-by: Rob Herring <robh@kernel.org>
+Add support to the FPGA manager for programming Microchip Polarfire
+FPGAs over slave SPI interface with .dat formatted bitsream image.
 
-Applied to drm-misc-next
+Changelog:
+  v1 -> v2: fix printk formating
+  v2 -> v3:
+   * replace "microsemi" with "microchip"
+   * replace prefix "microsemi_fpga_" with "mpf_"
+   * more sensible .compatible and .name strings
+   * remove unused defines STATUS_SPI_VIOLATION and STATUS_SPI_ERROR
+  v3 -> v4: fix unused variable warning
+    Put 'mpf_of_ids' definition under conditional compilation, so it
+    would not hang unused if CONFIG_OF is not enabled.
+  v4 -> v5:
+   * prefix defines with MPF_
+   * mdelay() -> usleep_range()
+   * formatting fixes
+   * add DT bindings doc
+   * rework fpga_manager_ops.write() to fpga_manager_ops.write_sg()
+     We can't parse image header in write_init() because image header
+     size is not known beforehand. Thus parsing need to be done in
+     fpga_manager_ops.write() callback, but fpga_manager_ops.write()
+     also need to be reenterable. On the other hand,
+     fpga_manager_ops.write_sg() is called once. Thus, rework usage of
+     write() callback to write_sg().
+  v5 -> v6: fix patch applying
+     I forgot to clean up unrelated local changes which lead to error on
+     patch 0001-fpga-microchip-spi-add-Microchip-MPF-FPGA-manager.patch
+     applying on vanilla kernel.
+  v6 -> v7: fix binding doc to pass dt_binding_check
+  v7 -> v8: another fix for dt_binding_check warning
+  v8 -> v9:
+   * add another patch to support bitstream offset in FPGA image buffer
+   * rework fpga_manager_ops.write_sg() back to fpga_manager_ops.write()
+   * move image header parsing from write() to write_init()
+  v9 -> v10:
+   * add parse_header() callback to fpga_manager_ops
+   * adjust fpga_mgr_write_init[_buf|_sg]() for parse_header() usage
+   * implement parse_header() in microchip-spi driver
+
+
+Ivan Bornyakov (3):
+  fpga: fpga-mgr: support bitstream offset in image buffer
+  fpga: microchip-spi: add Microchip MPF FPGA manager
+  dt-bindings: fpga: add binding doc for microchip-spi fpga mgr
+
+ .../fpga/microchip,mpf-spi-fpga-mgr.yaml      |  44 +++
+ drivers/fpga/Kconfig                          |   9 +
+ drivers/fpga/Makefile                         |   1 +
+ drivers/fpga/fpga-mgr.c                       | 151 +++++--
+ drivers/fpga/microchip-spi.c                  | 369 ++++++++++++++++++
+ include/linux/fpga/fpga-mgr.h                 |  13 +-
+ 6 files changed, 551 insertions(+), 36 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/fpga/microchip,mpf-spi-fpga-mgr.yaml
+ create mode 100644 drivers/fpga/microchip-spi.c
+
+-- 
+2.35.1
+
+
