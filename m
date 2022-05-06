@@ -2,277 +2,207 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 10A9C51D404
-	for <lists+devicetree@lfdr.de>; Fri,  6 May 2022 11:11:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6E5E651D421
+	for <lists+devicetree@lfdr.de>; Fri,  6 May 2022 11:18:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1356114AbiEFJPU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 May 2022 05:15:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59396 "EHLO
+        id S1390396AbiEFJW0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 May 2022 05:22:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35502 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235148AbiEFJPT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 May 2022 05:15:19 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20FB463385;
-        Fri,  6 May 2022 02:11:31 -0700 (PDT)
-X-UUID: 7ec90e02d7174affa5478d16998bcd79-20220506
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.4,REQID:b11e263e-5739-4ce0-a49f-a69c5d786999,OB:0,LO
-        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
-        ON:release,TS:0
-X-CID-META: VersionHash:faefae9,CLOUDID:883cd3b2-56b5-4c9e-8d83-0070b288eb6a,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,File:nil,QS:0,BEC:nil
-X-UUID: 7ec90e02d7174affa5478d16998bcd79-20220506
-Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw02.mediatek.com
-        (envelope-from <macpaul.lin@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1845255351; Fri, 06 May 2022 17:11:26 +0800
-Received: from mtkmbs07n1.mediatek.inc (172.21.101.16) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.792.15; Fri, 6 May 2022 17:11:25 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Fri, 6 May 2022 17:11:25 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Fri, 6 May 2022 17:11:24 +0800
-Message-ID: <6f4aba72d8224223685bca4c03599281878ae1ab.camel@mediatek.com>
-Subject: Re: [PATCH 5/7] arm64: dts: mediatek: mt8195-demo: enable ethernet
-From:   Macpaul Lin <macpaul.lin@mediatek.com>
-To:     Fabien Parent <fparent@baylibre.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-CC:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S239497AbiEFJWY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 May 2022 05:22:24 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08DD563502;
+        Fri,  6 May 2022 02:18:41 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: sre)
+        with ESMTPSA id 8DAA31F4608C
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1651828719;
+        bh=LagxlbknCNKZ/XfP0so1ZIDtnMrlAsXXeHWaGvHTB4Q=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=cM39Y7h+YdmaL5+yQdLEp+AHGdUEQriZx4EHdV2GwT//rXc7oQCQL3lcs+g8cdL39
+         hK882V/9z4a67vzdMiSeYx9uDsMCiTQgG409tJAEhWWFMJw9NhB3noO08myQXsJtsy
+         BsYPT5MNWPG0R7vjPwUDn/cPhZiytcZw39GZaoZkJsaY7RjKXjvHNh39B2G1ThifMv
+         Kw8Ud/gBiaJnCjHR4v0TOurkPw8ICP6lAIoGV8iA3esDMgEdUslAcabn1vupUfC7ow
+         TQzEjuF7haew1hme03M4bAqfbqajucOj6mCPqWMkCsz5E/PJKS6nhRybyDKxwe9omI
+         H64n/RkSM7ELA==
+Received: by mercury (Postfix, from userid 1000)
+        id 0DAAE1060437; Fri,  6 May 2022 11:18:37 +0200 (CEST)
+Date:   Fri, 6 May 2022 11:18:37 +0200
+From:   Sebastian Reichel <sebastian.reichel@collabora.com>
+To:     Ulf Hansson <ulf.hansson@linaro.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-Date:   Fri, 6 May 2022 17:11:25 +0800
-In-Reply-To: <20220429152203.ppuimwcka5d6rvq4@radium>
-References: <20220426134106.242353-1-fparent@baylibre.com>
-         <20220426134106.242353-6-fparent@baylibre.com>
-         <c0cf89c05ee708ec3648b267c1c0a0baa1331836.camel@mediatek.com>
-         <f4256b5e-e6b8-f9de-fe97-3e9c6cdcb00c@gmail.com>
-         <20220429152203.ppuimwcka5d6rvq4@radium>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Heiko Stuebner <heiko@sntech.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org,
+        linux-mmc@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Yifeng Zhao <yifeng.zhao@rock-chips.com>, kernel@collabora.com
+Subject: Re: [PATCHv2 09/21] mmc: sdhci-of-dwcmshc: add reset call back for
+ rockchip Socs
+Message-ID: <20220506091837.bbwupigb4f3hwgp4@mercury.elektranox.org>
+References: <20220504213251.264819-1-sebastian.reichel@collabora.com>
+ <20220504213251.264819-10-sebastian.reichel@collabora.com>
+ <CAPDyKFqLn4LfPRbhoWw_9BF26Lgmzq_1j=RB31NDGn9YvMnB5w@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,MAY_BE_FORGED,
-        SPF_HELO_NONE,T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="xt2hfq4oogyrqves"
+Content-Disposition: inline
+In-Reply-To: <CAPDyKFqLn4LfPRbhoWw_9BF26Lgmzq_1j=RB31NDGn9YvMnB5w@mail.gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 2022-04-29 at 17:22 +0200, Fabien Parent wrote:
-> On Fri, Apr 29, 2022 at 04:00:32PM +0200, Matthias Brugger wrote:
-> > 
-> > 
-> > On 27/04/2022 08:25, Macpaul Lin wrote:
-> > > On Tue, 2022-04-26 at 15:41 +0200, Fabien Parent wrote:
-> > > > Enable ethernet on the MT8195 demo board.
-> > > > 
-> > > > Signed-off-by: Fabien Parent <fparent@baylibre.com>
-> > > > ---
-> > > >   arch/arm64/boot/dts/mediatek/mt8195-demo.dts | 108
-> > > > +++++++++++++++++++
-> > > >   1 file changed, 108 insertions(+)
-> > > > 
-> > > > diff --git a/arch/arm64/boot/dts/mediatek/mt8195-demo.dts
-> > > > b/arch/arm64/boot/dts/mediatek/mt8195-demo.dts
-> > > > index 08cab3b3943b..0b7985486e2a 100644
-> > > > --- a/arch/arm64/boot/dts/mediatek/mt8195-demo.dts
-> > > > +++ b/arch/arm64/boot/dts/mediatek/mt8195-demo.dts
-> > > > @@ -80,6 +80,30 @@ optee_reserved: optee@43200000 {
-> > > >   	};
-> > > >   };
-> > > > +&eth {
-> > > > +	phy-mode = "rgmii-rxid";
-> > > > +	phy-handle = <&eth_phy>;
-> > > > +	snps,reset-gpio = <&pio 93 GPIO_ACTIVE_HIGH>;
-> > > > +	snps,reset-delays-us = <0 10000 10000>;
-> > > > +	mediatek,tx-delay-ps = <2030>;
-> > > > +	pinctrl-names = "default", "sleep";
-> > > > +	pinctrl-0 = <&eth_default_pins>;
-> > > > +	pinctrl-1 = <&eth_sleep_pins>;
-> > > > +	status = "okay";
-> > > > +
-> > > > +	mdio {
-> > > > +		compatible = "snps,dwmac-mdio";
-> > > > +		#address-cells = <1>;
-> > > > +		#size-cells = <0>;
-> > > > +
-> > > > +		eth_phy: phy@1 {
-> > > > +			compatible = "ethernet-phy-
-> > > > id001c.c916";
-> > > > +			#phy-cells = <0>;
-> > > > +			reg = <0x1>;
-> > > > +		};
-> > > > +	};
-> > > > +};
-> > > > +
-> > > >   &i2c6 {
-> > > >   	clock-frequency = <400000>;
-> > > >   	pinctrl-0 = <&i2c6_pins>;
-> > > > @@ -260,6 +284,90 @@ &mt6359_vsram_others_ldo_reg {
-> > > >   };
-> > > >   &pio {
-> > > > +	eth_default_pins: eth-default-pins {
-> > > > +		pins-cc {
-> > > > +			pinmux = <PINMUX_GPIO85__FUNC_GBE_TXC>,
-> > > > +				 <PINMUX_GPIO88__FUNC_GBE_TXEN>
-> > > > ,
-> > > > +				 <PINMUX_GPIO87__FUNC_GBE_RXDV>
-> > > > ,
-> > > > +				 <PINMUX_GPIO86__FUNC_GBE_RXC>;
-> > > > +			drive-strength = <MTK_DRIVE_8mA>;
-> > > > +		};
-> > > > +
-> > > > +		pins-mdio {
-> > > > +			pinmux = <PINMUX_GPIO89__FUNC_GBE_MDC>,
-> > > > +				 <PINMUX_GPIO90__FUNC_GBE_MDIO>
-> > > > ;
-> > > > +			input-enable;
-> > > > +		};
-> > > > +
-> > > > +		pins-phy-reset {
-> > > > +			pinmux = <PINMUX_GPIO93__FUNC_GPIO93>;
-> > > > +		};
-> > > > +
-> > > > +		pins-power {
-> > > > +			pinmux = <PINMUX_GPIO91__FUNC_GPIO91>,
-> > > > +				 <PINMUX_GPIO92__FUNC_GPIO92>;
-> > > > +			output-high;
-> > > > +		};
-> > > > +
-> > > > +		pins-rxd {
-> > > > +			pinmux =
-> > > > <PINMUX_GPIO81__FUNC_GBE_RXD3>,
-> > > > +				 <PINMUX_GPIO82__FUNC_GBE_RXD2>
-> > > > ,
-> > > > +				 <PINMUX_GPIO83__FUNC_GBE_RXD1>
-> > > > ,
-> > > > +				 <PINMUX_GPIO84__FUNC_GBE_RXD0>
-> > > > ;
-> > > > +		};
-> > > > +
-> > > > +		pins-txd {
-> > > > +			pinmux =
-> > > > <PINMUX_GPIO77__FUNC_GBE_TXD3>,
-> > > > +				 <PINMUX_GPIO78__FUNC_GBE_TXD2>
-> > > > ,
-> > > > +				 <PINMUX_GPIO79__FUNC_GBE_TXD1>
-> > > > ,
-> > > > +				 <PINMUX_GPIO80__FUNC_GBE_TXD0>
-> > > > ;
-> > > > +			drive-strength = <MTK_DRIVE_8mA>;
-> > > > +		};
-> > > > +	};
-> > > > +
-> > > > +	eth_sleep_pins: eth-sleep-pins {
-> > > > +		pins-cc {
-> > > > +			pinmux = <PINMUX_GPIO85__FUNC_GPIO85>,
-> > > > +				 <PINMUX_GPIO88__FUNC_GPIO88>,
-> > > > +				 <PINMUX_GPIO87__FUNC_GPIO87>,
-> > > > +				 <PINMUX_GPIO86__FUNC_GPIO86>;
-> > > > +		};
-> > > > +
-> > > > +		pins-mdio {
-> > > > +			pinmux = <PINMUX_GPIO89__FUNC_GPIO89>,
-> > > > +				 <PINMUX_GPIO90__FUNC_GPIO90>;
-> > > > +			input-disable;
-> > > > +			bias-disable;
-> > > > +		};
-> > > > +
-> > > > +		pins-phy-reset {
-> > > > +			pinmux = <PINMUX_GPIO93__FUNC_GPIO93>;
-> > > > +			input-disable;
-> > > > +			bias-disable;
-> > > > +		};
-> > > > +
-> > > > +		pins-power {
-> > > > +			pinmux = <PINMUX_GPIO91__FUNC_GPIO91>,
-> > > > +				 <PINMUX_GPIO92__FUNC_GPIO92>;
-> > > > +			input-disable;
-> > > > +			bias-disable;
-> > > > +		};
-> > > > +
-> > > > +		pins-rxd {
-> > > > +			pinmux = <PINMUX_GPIO81__FUNC_GPIO81>,
-> > > > +				 <PINMUX_GPIO82__FUNC_GPIO82>,
-> > > > +				 <PINMUX_GPIO83__FUNC_GPIO83>,
-> > > > +				 <PINMUX_GPIO84__FUNC_GPIO84>;
-> > > > +		};
-> > > > +
-> > > > +		pins-txd {
-> > > > +			pinmux = <PINMUX_GPIO77__FUNC_GPIO77>,
-> > > > +				 <PINMUX_GPIO78__FUNC_GPIO78>,
-> > > > +				 <PINMUX_GPIO79__FUNC_GPIO79>,
-> > > > +				 <PINMUX_GPIO80__FUNC_GPIO80>;
-> > > > +		};
-> > > > +	};
-> > > > +
-> > > >   	gpio_keys_pins: gpio-keys-pins {
-> > > >   		pins {
-> > > >   			pinmux =
-> > > > <PINMUX_GPIO106__FUNC_GPIO106>;
-> > > 
-> > > Tested-by: Macpaul Lin <macpaul.lin@mediatek.com>
-> > > 
-> > 
-> > I get the following error:
-> > Error: arch/arm64/boot/dts/mediatek/mt8195.dtsi:582.26-27 syntax
-> > error
-> 
-> I think he used my upstreaming branch where I store the patches I
-> sent
-> and will send to the mailing list: [0].
-> 
-> I forgot there is a dependency between this patch and [1], and I
-> forgot
-> to test this patch serie independenly from the other commits from my
-> branch. I will make sure to not forget next time.
-> 
-> So from this patch serie, only patch 1-2, 6-7 can be applied since
-> they
-> don't have any hidden dependency:
->   dt-bindings: usb: mediatek,mtu3: add binding for MT8195 SoC
->   arm64: dts: mediatek: mt8195: add ssusb support
->   arm64: dts: mediatek: mt8195-demo: Remove input-name property
->   arm64: dts: mediatek: mt8195-demo: enable uart1
-> 
-> [0] https://github.com/Fabo/linux/tree/mt8195-demo
-> [1] 
-> https://lore.kernel.org/all/20210615173233.26682-7-tinghan.shen@mediatek.com/
-> 
-> > 
-> > 
-> > 
-> > How did you test?
-> > 
-> > Regards,
-> > Matthias
 
-Sorry for replying the mail late.
+--xt2hfq4oogyrqves
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Actually, I've maintained a working tree based on 5.18-rc1 with minimum
-changeset support booting to UART. Then pickup required patches for
-testing individaul drivers. I should add the patch dependencies in
-previous mail if there were a dependency list. However, attach a
-dependency list might still be confusing since there is lots of patches
-keep updating everyday for mediatek tree. I guess the best practice for
-avoiding this kind of mess is using for-next tree to verify new patches
-instead of using 5.18-rc1 tree since some of the dependencies were
-already merged. Sorry for wasting your time.
+Hi,
 
-I'll replace my local
-working tree to Matthias's working tree for verifing these kind of
-patches.
+On Fri, May 06, 2022 at 10:52:42AM +0200, Ulf Hansson wrote:
+> On Wed, 4 May 2022 at 23:33, Sebastian Reichel
+> <sebastian.reichel@collabora.com> wrote:
+> >
+> > From: Yifeng Zhao <yifeng.zhao@rock-chips.com>
+> >
+> > The reset function build in the SDHCI will not reset the logic
+> > circuit related to the tuning function, which may cause data
+> > reading errors. Resetting the complete SDHCI controller through
+> > the reset controller fixes the issue.
+> >
+> > Signed-off-by: Yifeng Zhao <yifeng.zhao@rock-chips.com>
+> > [rebase, use optional variant of reset getter]
+> > Acked-by: Adrian Hunter <adrian.hunter@intel.com>
+> > Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+>=20
+> I think this needs a corresponding update of the DT docs. Otherwise
+> this looks good to me.
 
-Thanks!
-Macpaul Lin
+I do have 'resets' and 'reset-names' properties in the rk3588s.dtsi
+for the sdhci interface and 'make dtbs_check' did not complain about
+anything but missing 'arm,sdei-1.0' compatible for the rk3588 EVB
+(sdei binding has not yet been converted to yaml). Thus I assume the
+resets property is inferred from somewhere?
 
+-- Sebastian
+
+>=20
+> Kind regards
+> Uffe
+>=20
+> > ---
+> >  drivers/mmc/host/sdhci-of-dwcmshc.c | 26 +++++++++++++++++++++++++-
+> >  1 file changed, 25 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/drivers/mmc/host/sdhci-of-dwcmshc.c b/drivers/mmc/host/sdh=
+ci-of-dwcmshc.c
+> > index bac874ab0b33..3a1b5ba36405 100644
+> > --- a/drivers/mmc/host/sdhci-of-dwcmshc.c
+> > +++ b/drivers/mmc/host/sdhci-of-dwcmshc.c
+> > @@ -15,6 +15,7 @@
+> >  #include <linux/module.h>
+> >  #include <linux/of.h>
+> >  #include <linux/of_device.h>
+> > +#include <linux/reset.h>
+> >  #include <linux/sizes.h>
+> >
+> >  #include "sdhci-pltfm.h"
+> > @@ -63,6 +64,7 @@
+> >  struct rk3568_priv {
+> >         /* Rockchip specified optional clocks */
+> >         struct clk_bulk_data rockchip_clks[RK3568_MAX_CLKS];
+> > +       struct reset_control *reset;
+> >         u8 txclk_tapnum;
+> >  };
+> >
+> > @@ -255,6 +257,21 @@ static void dwcmshc_rk3568_set_clock(struct sdhci_=
+host *host, unsigned int clock
+> >         sdhci_writel(host, extra, DWCMSHC_EMMC_DLL_STRBIN);
+> >  }
+> >
+> > +static void rk35xx_sdhci_reset(struct sdhci_host *host, u8 mask)
+> > +{
+> > +       struct sdhci_pltfm_host *pltfm_host =3D sdhci_priv(host);
+> > +       struct dwcmshc_priv *dwc_priv =3D sdhci_pltfm_priv(pltfm_host);
+> > +       struct rk35xx_priv *priv =3D dwc_priv->priv;
+> > +
+> > +       if (mask & SDHCI_RESET_ALL && priv->reset) {
+> > +               reset_control_assert(priv->reset);
+> > +               udelay(1);
+> > +               reset_control_deassert(priv->reset);
+> > +       }
+> > +
+> > +       sdhci_reset(host, mask);
+> > +}
+> > +
+> >  static const struct sdhci_ops sdhci_dwcmshc_ops =3D {
+> >         .set_clock              =3D sdhci_set_clock,
+> >         .set_bus_width          =3D sdhci_set_bus_width,
+> > @@ -269,7 +286,7 @@ static const struct sdhci_ops sdhci_dwcmshc_rk3568_=
+ops =3D {
+> >         .set_bus_width          =3D sdhci_set_bus_width,
+> >         .set_uhs_signaling      =3D dwcmshc_set_uhs_signaling,
+> >         .get_max_clock          =3D sdhci_pltfm_clk_get_max_clock,
+> > -       .reset                  =3D sdhci_reset,
+> > +       .reset                  =3D rk35xx_sdhci_reset,
+> >         .adma_write_desc        =3D dwcmshc_adma_write_desc,
+> >  };
+> >
+> > @@ -292,6 +309,13 @@ static int dwcmshc_rk3568_init(struct sdhci_host *=
+host, struct dwcmshc_priv *dwc
+> >         int err;
+> >         struct rk3568_priv *priv =3D dwc_priv->priv;
+> >
+> > +       priv->reset =3D devm_reset_control_array_get_optional_exclusive=
+(mmc_dev(host->mmc));
+> > +       if (IS_ERR(priv->reset)) {
+> > +               err =3D PTR_ERR(priv->reset);
+> > +               dev_err(mmc_dev(host->mmc), "failed to get reset contro=
+l %d\n", err);
+> > +               return err;
+> > +       }
+> > +
+> >         priv->rockchip_clks[0].id =3D "axi";
+> >         priv->rockchip_clks[1].id =3D "block";
+> >         priv->rockchip_clks[2].id =3D "timer";
+> > --
+> > 2.35.1
+> >
+
+--xt2hfq4oogyrqves
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmJ059oACgkQ2O7X88g7
++pp5Cw/9G072+IU/K2eJWP6MsQoWNwQMA5mqxId7SEACncdb+5ywvkilvq4UOtHM
+s2MHQxKpMxWKQFQEYFXh48Dn6OeVElkrO7kIGRSR0M8KuXXKQ4eQm0Q5a0jbryFl
+YqwRShmGpd4urXNhsCRjRjL/u/jTvhYKIzz2AiwFKgiHTZFB6fifmy67KIzAe8lx
+F8v57BW994hmYpABPnybuvMk1VGOJqw9xXrC/mTiGd1HyDBjot1KrIVvWpT9Q3ZL
+nwTP3EzJGIsrCQi9/YOuPCifjxJI2CppJZhy5Hd3aG8H9cZog9yEUalsd7x2sVih
+/eeVopGR+fhM/qwVV4Swya7QL/4/0ZjXCGP5HApLqzewQc6UGkAHkcZTfJ+78Yfc
+upAIXzL4CSJItDkZ2IT1O4hgwEW+933ol4z7gOA3yhvGQ7drLtnrXt65qTrw5k5P
+xt1ouOL76Ru8D9Xm8fMBzcHXOz+9xwLgtDnHHBzIr535biqqhTtRlu6CTbDxEGEn
+UZxNxg2punmcQ82ODHw0cvmGmiCkqPPUYEFxS/5a1P4hyUZE6PSXve+V6Hp21mNL
+jC1TXbbjVeroh11HGuz9yqC/wMvV5U3+951r79DODpIS6rXMIFzVFtTHyHs1kUSw
+WtfO28lxaTfaq7jwpyAvxAs1mIJl7POoaXODSCna+T3lf21nDaM=
+=UBWn
+-----END PGP SIGNATURE-----
+
+--xt2hfq4oogyrqves--
