@@ -2,160 +2,187 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CC07F51D89C
-	for <lists+devicetree@lfdr.de>; Fri,  6 May 2022 15:16:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E463A51D8FD
+	for <lists+devicetree@lfdr.de>; Fri,  6 May 2022 15:24:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1392291AbiEFNUB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 May 2022 09:20:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41988 "EHLO
+        id S1392488AbiEFN2f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 May 2022 09:28:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52412 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343648AbiEFNUB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 May 2022 09:20:01 -0400
-Received: from us-smtp-delivery-74.mimecast.com (us-smtp-delivery-74.mimecast.com [170.10.129.74])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 705F4B7C2
-        for <devicetree@vger.kernel.org>; Fri,  6 May 2022 06:16:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1651842977;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=8wPDA2gsA8PtLts/9kHE8ZGbzgkULXlMPGcav5wmzQU=;
-        b=EgczeQqo1C6cLs/nFOfS/3eCBdQw5fgtVB4jfohiKCLgp/lwntpERTR9UEmlrDrX/JRcD3
-        aVyd1jvW6H02/pBUSo4+d8yqUurl+OnsmOA35Da06Uxdm+pUjxPIN1+72boqZAM3WHYney
-        ua+D5nsJPFKDpZhbbrqwULt0bTBb6EA=
-Received: from mimecast-mx02.redhat.com (mimecast-mx02.redhat.com
- [66.187.233.88]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-583-j9olosgBNA2Z3YsZN10Vzw-1; Fri, 06 May 2022 09:16:14 -0400
-X-MC-Unique: j9olosgBNA2Z3YsZN10Vzw-1
-Received: from smtp.corp.redhat.com (int-mx10.intmail.prod.int.rdu2.redhat.com [10.11.54.10])
-        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        by mimecast-mx02.redhat.com (Postfix) with ESMTPS id 7D9F8803E2E;
-        Fri,  6 May 2022 13:16:13 +0000 (UTC)
-Received: from localhost (ovpn-13-105.pek2.redhat.com [10.72.13.105])
-        by smtp.corp.redhat.com (Postfix) with ESMTPS id A3EAD463EDC;
-        Fri,  6 May 2022 13:16:11 +0000 (UTC)
-Date:   Fri, 6 May 2022 21:16:08 +0800
-From:   Baoquan He <bhe@redhat.com>
-To:     "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
-Cc:     Catalin Marinas <catalin.marinas@arm.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
-        x86@kernel.org, "H . Peter Anvin" <hpa@zytor.com>,
-        linux-kernel@vger.kernel.org, Dave Young <dyoung@redhat.com>,
-        Vivek Goyal <vgoyal@redhat.com>,
-        Eric Biederman <ebiederm@xmission.com>,
-        kexec@lists.infradead.org, Will Deacon <will@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S1392489AbiEFN2d (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 May 2022 09:28:33 -0400
+Received: from mout.perfora.net (mout.perfora.net [74.208.4.194])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABB1A6972F;
+        Fri,  6 May 2022 06:24:50 -0700 (PDT)
+Received: from toolbox.int.toradex.com ([81.221.85.15]) by mrelay.perfora.net
+ (mreueus003 [74.208.5.2]) with ESMTPSA (Nemesis) id 0MCszN-1nePN31ygF-009kFE;
+ Fri, 06 May 2022 15:24:26 +0200
+From:   Marcel Ziswiler <marcel@ziswiler.com>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Fabio Estevam <festevam@gmail.com>,
         Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>,
-        linux-doc@vger.kernel.org, Randy Dunlap <rdunlap@infradead.org>,
-        Feng Zhou <zhoufeng.zf@bytedance.com>,
-        Kefeng Wang <wangkefeng.wang@huawei.com>,
-        Chen Zhou <dingguo.cz@antgroup.com>,
-        John Donnelly <John.p.donnelly@oracle.com>,
-        Dave Kleikamp <dave.kleikamp@oracle.com>
-Subject: Re: [PATCH v23 3/6] arm64: kdump: Reimplement crashkernel=X
-Message-ID: <YnUfmMmON2c1FZrx@MiWiFi-R3L-srv>
-References: <20220505091845.167-1-thunder.leizhen@huawei.com>
- <20220505091845.167-4-thunder.leizhen@huawei.com>
- <YnQC44KVKirH0vyB@arm.com>
- <189f24a8-9e9b-b3e9-7ac5-935433ea575b@huawei.com>
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Olof Johansson <olof@lixom.net>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Russell King <linux@armlinux.org.uk>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, soc@kernel.org
+Subject: [PATCH v3 00/13] ARM: dts: imx6ull-colibri: device tree improvements
+Date:   Fri,  6 May 2022 15:24:03 +0200
+Message-Id: <20220506132416.273965-1-marcel@ziswiler.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <189f24a8-9e9b-b3e9-7ac5-935433ea575b@huawei.com>
-X-Scanned-By: MIMEDefang 2.85 on 10.11.54.10
-X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Provags-ID: V03:K1:4LbxChUdf4uqviwBn03YFCgkv7u66I0UG3NY+rztR+OJd8FhEzx
+ AKNcOF555MPNjmlhIbnZhURXWjOlzY0tp5+usx8oY3QGa+5oB3CbgohmW+KWLA0tNdGkKpW
+ Tcsq8evuFkTZWxPexpLC+abWk/ownxRpq8KwgFbLOCLlqAcvqRweEY5Ljj/XS/yDjr+8ZSr
+ SsBEf3k+vSM0Bn1SH2dBw==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:oZJyg5xR51U=:JdnZtXeUXhmaKTGkc9DoMk
+ g34zH9pQi0d72INFGgUNye3Xb6nawQYJAy8q9uzGS3f2cRZkPyhaf1cZywO+VuZOeAruHlTOm
+ rbSe/wT3lLCrSbLnBZhoSxj+/cOS5P6prH3ZLTt7ZURLZIh6FLz873jN04fPuyIcY/J6EVQxv
+ 01R7tFW2457lHhk7E9ctGoIPygNb7sXTpo1xmcIJj7XTe9v9Iaf2LXFvBnKY6ayLpH+SPrCV0
+ Ht5BbXEYgrVdAU/Kh5LO/Ygcek4AtjQwxkyMbunBBovPlTzPHdkW+xdAYgbQQ2YWg9VgrK8vq
+ 7DrhMyAarkrdqPiA/ErnuPUSkCQAUqLgWbFkWEBixVwBUy01oA7EkS/q8jmq+xXl1JkN08zfY
+ Citfu+B4ViIAoeoAvxyjXsdwNvvK2qcyPKAuSiBGWlqTKF9YedyQo35tMhWHxGtL7fvC5OLsr
+ iP89ReiVzzSbjQuFs6bCWemPmFC9Q2Jk/aX1cQczdcvWFINmlDUknb/L+42gtTISJISy0x/VZ
+ Pl1BEUw0Lo8BHGCG10zQp/j68L75rPf9uB6PTSy+8MHM2Rd5hSwuP0kHiDEZbk0dU17XAxeqV
+ QjjQhy3S08mtJdDN6E2eLUWwccUnB7237d6vsbqD1A+3rfbdBC5B0JxFyT7R53AxGYK/bPEnT
+ bRtsfAvr1b/ThUgPMunYVEdNuPgAE9ZiMs9wW6F0rfgPcm5EquIGpdlxM+ljk20ORdAE=
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05/06/22 at 11:22am, Leizhen (ThunderTown) wrote:
-......  
-> >> @@ -118,8 +159,7 @@ static void __init reserve_crashkernel(void)
-> >>  	if (crash_base)
-> >>  		crash_max = crash_base + crash_size;
-> >>  
-> >> -	/* Current arm64 boot protocol requires 2MB alignment */
-> >> -	crash_base = memblock_phys_alloc_range(crash_size, SZ_2M,
-> >> +	crash_base = memblock_phys_alloc_range(crash_size, CRASH_ALIGN,
-> >>  					       crash_base, crash_max);
-> >>  	if (!crash_base) {
-> >>  		pr_warn("cannot allocate crashkernel (size:0x%llx)\n",
-> > 
-> > I personally like this but let's see how the other thread goes. I guess
-> 
-> Me too. This fallback complicates code logic more than just a little.
-> I'm not sure why someone would rather add fallback than change the bootup
-> options to crashkernel=X,[high|low]. Perhaps fallback to high/low is a better
-> compatible and extended mode when crashkernel=X fails to reserve memory. And
-> the code logic will be much clearer.
+From: Marcel Ziswiler <marcel.ziswiler@toradex.com>
 
-The fallback does complicates code, while it was not made at the
-beginning, but added later. The original crahskernel=xM can only reserve
-low memory under 896M on x86 to be back compatible with the case in which
-normal kernel is x86_64, while kdump kernel could be i386. Then customer
-complained why crashkernel=xM can't be put anywhere so that they don't
-need to know the details of limited low memory and huge high memory fact 
-in system.
 
-The implementation of fallback is truly complicated, but its use is
-quite simple. And it makes crashkernel reservation setting simple.
-Most of users don't need to know crashkernel=,high, ,low things, unless
-the crashkernel region is too big. Nobody wants to take away 1G or more
-from low memory for kdump just in case bad thing happens, while normal
-kernel itself is seriously impacted by limited low memory.
+This is a general update of the Colibri iMX6ULL device tree files.
 
-> 
-> //parse crashkernel=X		//To simplify the discussion, Ignore [@offset]
-> crash_base = memblock_phys_alloc_range()
-> if (!crash_base || /* crashkernel=X is not specified */) {
-> 	//parse crashkernel=X,[high,low]
-> 	//reserve high/low memory
-> }
-> 
-> So that, the following three modes are supported:
-> 1) crashkernel=X[@offset]
-> 2) crashkernel=X,high crashkernel=X,low
-> 3) crashkernel=X[@offset] crashkernel=X,high [crashkernel=Y,low]
-> 
-> For case 3), try "crashkernel=X[@offset]" first, if it can not work, fallback
-> to "crashkernel=X,high crashkernel=X,low". This looks better than the old "crashkernel=X"
-> fallback ---- Select a region under 4G first, and fall back to reserve region above 4G.
+The Toradex Colibri family is composed of a SoM that can be plugged on
+various carrier boards, with carrier boards allowing multiple optional
+accessories (e.g. display, camera, ...).
 
-Don't get it. Aren't they the same?
+The device tree sources are structured into a SoM dtsi and a carrier dts
+which then includes the SoM dtsi. The SoM dtsi defines and enables the
+functionality self-contained on the SoM and prepares for the
+functionality provided by the carrier HW or accessories so that the
+carrier dts then can enable or amend nodes provided. Accessories are
+enabled in overlays depending on HW configuration.
 
-> 
-> Note: when the X of crashkernel=X and crashkernel=X,high are the same, It's equivalent
-> to the old "crashkernel=X" fallback.
-> 
-> > if we want a fallback, it would come just before the check the above:
-> > 
-> > 	if (!crash_base && crash_max != CRASH_ADDR_HIGH_MAX) {
-> > 		/* attempt high allocation with default low */
-> > 		if (!crash_low_size)
-> > 			crash_low_size = some default;
-> > 		crash_max = CRASH_ADDR_LOW_MAX;
-> 
-> crash_max = CRASH_ADDR_HIGH_MAX; We should fallback to high memory now.
-> 
-> > 		crash_base = memblock_phys_alloc_range();
-> > 	}
-> > 
-> > Well, I guess we end up with your earlier proposal but I think I
-> > understand it better now ;).
-> > 
-> 
-> -- 
-> Regards,
->   Zhen Lei
-> 
+Please find the following colibri-imx6ull device trees improvements:
+
+- MMC/SD
+The original Colibri specification only defined 3.3 volt TTL signaling
+and relied on external on-carrier pull-ups for the SD_DATA[0..3] lines.
+The latest carrier boards like Iris V2 on the other hand are now UHS-I
+compliant by leaving such external on-carrier pull-ups away relying on
+module- or even SoC-level ones which pull up to resp. signaling voltage.
+In such cases, the carrier board-level device tree may explicitly delete
+the no-1-8-v property to enable full UHS-I support.
+Also, fix SD/MMC regulator for the carrier boards using UHS-I modes.
+
+- FEC
+Provide a proper phy-supply for the FEC, actually switched by the 50 Mhz
+RMII interface clock using a regulator-fixed-clock that is now properly
+stated. The reference commit for such regulator can be found at commit
+8959e5324485 ("regulator: fixed: add possibility to enable by clock").
+
+- I2C
+Switched on 22 kOhm pull-ups and lower the I2C frequency to 40 kHz to
+get more reliable communication.
+
+- Atmel Touchscreen
+The Toradex 7" Capacitive and 10" LVDS touch screens are Atmel MXT
+peripherals available on the I2C bus for touchscreen events. Add
+atmel_mxt_ts node to the module-level device tree. Also, provide pinmux
+configuration for the INT/RST inputs from SODIMM pins 106/107 for most
+carrier boards or an external touchscreen adapter inputs configured to
+SODIMM pins 28/30.
+
+Changes in v3:
+- Fixed reset GPIO polarity in-line with the following upstream commit:
+  feedaacdadfc ("Input: atmel_mxt_ts - fix up inverted RESET handler")
+- Fixed comment using more common SODIMM followed by number naming.
+- Replaced underscores by dashes in GPIO hog node names.
+- Added more LVDS specific GPIO hogs in-line with other modules.
+- Re-based on top of Shawn's imx/dt branch.
+- Dropped [PATCH v2 08/14] dt-bindings: arm: fsl: add
+  toradex,colibri-imx6ull which already got applied by Shawn. Thanks!
+
+Changes in v2:
+- Fixed pinctrl node names as suggested by Shawn.
+- Fix alphabetical node order as suggested by Shawn.
+- Dropped [PATCH v1 02/14] ARM: dts: imx6ull-colibri: fix vqmmc
+  regulator which already got applied by Shawn. Thanks!
+- New commit with pinctrl node name improvements as suggested by Shawn.
+
+Denys Drozdov (4):
+  ARM: dts: imx6ull-colibri: add touchscreen device nodes
+  ARM: dts: imx6ull-colibri: update device trees to support overlays
+  ARM: dts: imx6ull-colibri: add support for toradex iris carrier boards
+  ARM: dts: imx6ull-colibri: add support for toradex aster carrier
+    boards
+
+Marcel Ziswiler (4):
+  ARM: dts: imx6ull-colibri: fix nand bch geometry
+  ARM: dts: imx6ull-colibri: add/update some comments
+  ARM: dts: imx6ull-colibri: move gpio-keys node to som dtsi
+  ARM: dts: imx6ull-colibri: improve pinctrl node names
+
+Max Krummenacher (1):
+  ARM: dts: imx6ull-colibri: change touch i2c parameters
+
+Oleksandr Suvorov (1):
+  ARM: dts: imx6ull-colibri: add gpio-line-names
+
+Philippe Schenker (3):
+  ARM: dts: imx6ull-colibri: use pull-down for adc pins
+  ARM: dts: imx6ull-colibri: add phy-supply to fec
+  ARM: dts: imx6ull-colibri: update usdhc1 pixmux and signaling
+
+ arch/arm/boot/dts/Makefile                    |   9 +
+ arch/arm/boot/dts/imx6ull-colibri-aster.dts   |  20 ++
+ arch/arm/boot/dts/imx6ull-colibri-aster.dtsi  | 145 +++++++++
+ .../boot/dts/imx6ull-colibri-emmc-aster.dts   |  17 ++
+ .../boot/dts/imx6ull-colibri-emmc-iris-v2.dts |  17 ++
+ .../boot/dts/imx6ull-colibri-emmc-iris.dts    |  17 ++
+ .../dts/imx6ull-colibri-emmc-nonwifi.dtsi     |   8 +-
+ arch/arm/boot/dts/imx6ull-colibri-eval-v3.dts |   6 +-
+ .../arm/boot/dts/imx6ull-colibri-eval-v3.dtsi |  63 +---
+ arch/arm/boot/dts/imx6ull-colibri-iris-v2.dts |  65 ++++
+ .../arm/boot/dts/imx6ull-colibri-iris-v2.dtsi |  27 ++
+ arch/arm/boot/dts/imx6ull-colibri-iris.dts    |  20 ++
+ arch/arm/boot/dts/imx6ull-colibri-iris.dtsi   | 132 ++++++++
+ .../arm/boot/dts/imx6ull-colibri-nonwifi.dtsi | 145 ++++++++-
+ .../boot/dts/imx6ull-colibri-wifi-aster.dts   |  20 ++
+ .../boot/dts/imx6ull-colibri-wifi-eval-v3.dts |   4 +-
+ .../boot/dts/imx6ull-colibri-wifi-iris-v2.dts |  65 ++++
+ .../boot/dts/imx6ull-colibri-wifi-iris.dts    |  20 ++
+ arch/arm/boot/dts/imx6ull-colibri-wifi.dtsi   | 144 ++++++++-
+ arch/arm/boot/dts/imx6ull-colibri.dtsi        | 285 ++++++++++++------
+ 20 files changed, 1065 insertions(+), 164 deletions(-)
+ create mode 100644 arch/arm/boot/dts/imx6ull-colibri-aster.dts
+ create mode 100644 arch/arm/boot/dts/imx6ull-colibri-aster.dtsi
+ create mode 100644 arch/arm/boot/dts/imx6ull-colibri-emmc-aster.dts
+ create mode 100644 arch/arm/boot/dts/imx6ull-colibri-emmc-iris-v2.dts
+ create mode 100644 arch/arm/boot/dts/imx6ull-colibri-emmc-iris.dts
+ create mode 100644 arch/arm/boot/dts/imx6ull-colibri-iris-v2.dts
+ create mode 100644 arch/arm/boot/dts/imx6ull-colibri-iris-v2.dtsi
+ create mode 100644 arch/arm/boot/dts/imx6ull-colibri-iris.dts
+ create mode 100644 arch/arm/boot/dts/imx6ull-colibri-iris.dtsi
+ create mode 100644 arch/arm/boot/dts/imx6ull-colibri-wifi-aster.dts
+ create mode 100644 arch/arm/boot/dts/imx6ull-colibri-wifi-iris-v2.dts
+ create mode 100644 arch/arm/boot/dts/imx6ull-colibri-wifi-iris.dts
+
+-- 
+2.35.1
 
