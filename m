@@ -2,64 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E5E651D421
-	for <lists+devicetree@lfdr.de>; Fri,  6 May 2022 11:18:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 317F451D44E
+	for <lists+devicetree@lfdr.de>; Fri,  6 May 2022 11:25:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1390396AbiEFJW0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 May 2022 05:22:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35502 "EHLO
+        id S1390484AbiEFJ3J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 May 2022 05:29:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42092 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239497AbiEFJWY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 May 2022 05:22:24 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08DD563502;
-        Fri,  6 May 2022 02:18:41 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: sre)
-        with ESMTPSA id 8DAA31F4608C
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1651828719;
-        bh=LagxlbknCNKZ/XfP0so1ZIDtnMrlAsXXeHWaGvHTB4Q=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=cM39Y7h+YdmaL5+yQdLEp+AHGdUEQriZx4EHdV2GwT//rXc7oQCQL3lcs+g8cdL39
-         hK882V/9z4a67vzdMiSeYx9uDsMCiTQgG409tJAEhWWFMJw9NhB3noO08myQXsJtsy
-         BsYPT5MNWPG0R7vjPwUDn/cPhZiytcZw39GZaoZkJsaY7RjKXjvHNh39B2G1ThifMv
-         Kw8Ud/gBiaJnCjHR4v0TOurkPw8ICP6lAIoGV8iA3esDMgEdUslAcabn1vupUfC7ow
-         TQzEjuF7haew1hme03M4bAqfbqajucOj6mCPqWMkCsz5E/PJKS6nhRybyDKxwe9omI
-         H64n/RkSM7ELA==
-Received: by mercury (Postfix, from userid 1000)
-        id 0DAAE1060437; Fri,  6 May 2022 11:18:37 +0200 (CEST)
-Date:   Fri, 6 May 2022 11:18:37 +0200
-From:   Sebastian Reichel <sebastian.reichel@collabora.com>
-To:     Ulf Hansson <ulf.hansson@linaro.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Heiko Stuebner <heiko@sntech.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org,
-        linux-mmc@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Yifeng Zhao <yifeng.zhao@rock-chips.com>, kernel@collabora.com
-Subject: Re: [PATCHv2 09/21] mmc: sdhci-of-dwcmshc: add reset call back for
- rockchip Socs
-Message-ID: <20220506091837.bbwupigb4f3hwgp4@mercury.elektranox.org>
-References: <20220504213251.264819-1-sebastian.reichel@collabora.com>
- <20220504213251.264819-10-sebastian.reichel@collabora.com>
- <CAPDyKFqLn4LfPRbhoWw_9BF26Lgmzq_1j=RB31NDGn9YvMnB5w@mail.gmail.com>
+        with ESMTP id S1390476AbiEFJ3I (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 May 2022 05:29:08 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2E8915A09;
+        Fri,  6 May 2022 02:25:24 -0700 (PDT)
+X-UUID: 688f16e3e7ce450caa638f2f752d7331-20220506
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.4,REQID:ae87eca7-1d53-429e-b0c1-b7b473cea55d,OB:0,LO
+        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:54,FILE:0,RULE:Release_Ham,ACT
+        ION:release,TS:54
+X-CID-INFO: VERSION:1.1.4,REQID:ae87eca7-1d53-429e-b0c1-b7b473cea55d,OB:0,LOB:
+        0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:54,FILE:0,RULE:Release_HamU,ACTI
+        ON:release,TS:54
+X-CID-META: VersionHash:faefae9,CLOUDID:3aced3b2-56b5-4c9e-8d83-0070b288eb6a,C
+        OID:adb1611c2d41,Recheck:0,SF:28|16|19|48,TC:nil,Content:0,EDM:-3,File:nil
+        ,QS:0,BEC:nil
+X-UUID: 688f16e3e7ce450caa638f2f752d7331-20220506
+Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw02.mediatek.com
+        (envelope-from <yunfei.dong@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 911729712; Fri, 06 May 2022 17:25:20 +0800
+Received: from mtkmbs07n1.mediatek.inc (172.21.101.16) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.792.15; Fri, 6 May 2022 17:25:18 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Fri, 6 May 2022 17:25:18 +0800
+Received: from mhfsdcap04 (10.17.3.154) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Fri, 6 May 2022 17:25:17 +0800
+Message-ID: <18560bd9efbcf77bc6b2dc6d2956d7993fcdde85.camel@mediatek.com>
+Subject: Re: [PATCH v10, 16/17] media: mediatek: vcodec: support stateless
+ VP9 decoding
+From:   "yunfei.dong@mediatek.com" <yunfei.dong@mediatek.com>
+To:     "=?ISO-8859-1?Q?N=EDcolas?= F. R. A. Prado" <nfraprado@collabora.com>
+CC:     Alexandre Courbot <acourbot@chromium.org>,
+        Nicolas Dufresne <nicolas@ndufresne.ca>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Tiffany Lin <tiffany.lin@mediatek.com>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Tomasz Figa <tfiga@google.com>,
+        George Sun <george.sun@mediatek.com>,
+        Xiaoyong Lu <xiaoyong.lu@mediatek.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Fritz Koenig <frkoenig@chromium.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Irui Wang <irui.wang@mediatek.com>,
+        Steve Cho <stevecho@chromium.org>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Date:   Fri, 6 May 2022 17:25:17 +0800
+In-Reply-To: <20220505222034.fxw6y7wdf7wy3qi4@notapiano>
+References: <20220426100828.13429-1-yunfei.dong@mediatek.com>
+         <20220426100828.13429-17-yunfei.dong@mediatek.com>
+         <20220505222034.fxw6y7wdf7wy3qi4@notapiano>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="xt2hfq4oogyrqves"
-Content-Disposition: inline
-In-Reply-To: <CAPDyKFqLn4LfPRbhoWw_9BF26Lgmzq_1j=RB31NDGn9YvMnB5w@mail.gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+Content-Transfer-Encoding: 8bit
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -67,142 +89,63 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Nicolas,
 
---xt2hfq4oogyrqves
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Thanks for your suggestion.
 
-Hi,
-
-On Fri, May 06, 2022 at 10:52:42AM +0200, Ulf Hansson wrote:
-> On Wed, 4 May 2022 at 23:33, Sebastian Reichel
-> <sebastian.reichel@collabora.com> wrote:
-> >
-> > From: Yifeng Zhao <yifeng.zhao@rock-chips.com>
-> >
-> > The reset function build in the SDHCI will not reset the logic
-> > circuit related to the tuning function, which may cause data
-> > reading errors. Resetting the complete SDHCI controller through
-> > the reset controller fixes the issue.
-> >
-> > Signed-off-by: Yifeng Zhao <yifeng.zhao@rock-chips.com>
-> > [rebase, use optional variant of reset getter]
-> > Acked-by: Adrian Hunter <adrian.hunter@intel.com>
-> > Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
->=20
-> I think this needs a corresponding update of the DT docs. Otherwise
-> this looks good to me.
-
-I do have 'resets' and 'reset-names' properties in the rk3588s.dtsi
-for the sdhci interface and 'make dtbs_check' did not complain about
-anything but missing 'arm,sdei-1.0' compatible for the rk3588 EVB
-(sdei binding has not yet been converted to yaml). Thus I assume the
-resets property is inferred from somewhere?
-
--- Sebastian
-
->=20
-> Kind regards
-> Uffe
->=20
+On Thu, 2022-05-05 at 18:20 -0400, Nícolas F. R. A. Prado wrote:
+> On Tue, Apr 26, 2022 at 06:08:27PM +0800, Yunfei Dong wrote:
+> > Add support for VP9 decoding using the stateless API,
+> > as supported by MT8192. And the drivers is lat and core
+> > architecture.
+> > 
+> > Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
+> > Signed-off-by: George Sun <george.sun@mediatek.com>
+> > Reviewed-by: AngeloGioacchino Del Regno <
+> > angelogioacchino.delregno@collabora.com>
 > > ---
-> >  drivers/mmc/host/sdhci-of-dwcmshc.c | 26 +++++++++++++++++++++++++-
-> >  1 file changed, 25 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/drivers/mmc/host/sdhci-of-dwcmshc.c b/drivers/mmc/host/sdh=
-ci-of-dwcmshc.c
-> > index bac874ab0b33..3a1b5ba36405 100644
-> > --- a/drivers/mmc/host/sdhci-of-dwcmshc.c
-> > +++ b/drivers/mmc/host/sdhci-of-dwcmshc.c
-> > @@ -15,6 +15,7 @@
-> >  #include <linux/module.h>
-> >  #include <linux/of.h>
-> >  #include <linux/of_device.h>
-> > +#include <linux/reset.h>
-> >  #include <linux/sizes.h>
-> >
-> >  #include "sdhci-pltfm.h"
-> > @@ -63,6 +64,7 @@
-> >  struct rk3568_priv {
-> >         /* Rockchip specified optional clocks */
-> >         struct clk_bulk_data rockchip_clks[RK3568_MAX_CLKS];
-> > +       struct reset_control *reset;
-> >         u8 txclk_tapnum;
-> >  };
-> >
-> > @@ -255,6 +257,21 @@ static void dwcmshc_rk3568_set_clock(struct sdhci_=
-host *host, unsigned int clock
-> >         sdhci_writel(host, extra, DWCMSHC_EMMC_DLL_STRBIN);
-> >  }
-> >
-> > +static void rk35xx_sdhci_reset(struct sdhci_host *host, u8 mask)
-> > +{
-> > +       struct sdhci_pltfm_host *pltfm_host =3D sdhci_priv(host);
-> > +       struct dwcmshc_priv *dwc_priv =3D sdhci_pltfm_priv(pltfm_host);
-> > +       struct rk35xx_priv *priv =3D dwc_priv->priv;
-> > +
-> > +       if (mask & SDHCI_RESET_ALL && priv->reset) {
-> > +               reset_control_assert(priv->reset);
-> > +               udelay(1);
-> > +               reset_control_deassert(priv->reset);
-> > +       }
-> > +
-> > +       sdhci_reset(host, mask);
-> > +}
-> > +
-> >  static const struct sdhci_ops sdhci_dwcmshc_ops =3D {
-> >         .set_clock              =3D sdhci_set_clock,
-> >         .set_bus_width          =3D sdhci_set_bus_width,
-> > @@ -269,7 +286,7 @@ static const struct sdhci_ops sdhci_dwcmshc_rk3568_=
-ops =3D {
-> >         .set_bus_width          =3D sdhci_set_bus_width,
-> >         .set_uhs_signaling      =3D dwcmshc_set_uhs_signaling,
-> >         .get_max_clock          =3D sdhci_pltfm_clk_get_max_clock,
-> > -       .reset                  =3D sdhci_reset,
-> > +       .reset                  =3D rk35xx_sdhci_reset,
-> >         .adma_write_desc        =3D dwcmshc_adma_write_desc,
-> >  };
-> >
-> > @@ -292,6 +309,13 @@ static int dwcmshc_rk3568_init(struct sdhci_host *=
-host, struct dwcmshc_priv *dwc
-> >         int err;
-> >         struct rk3568_priv *priv =3D dwc_priv->priv;
-> >
-> > +       priv->reset =3D devm_reset_control_array_get_optional_exclusive=
-(mmc_dev(host->mmc));
-> > +       if (IS_ERR(priv->reset)) {
-> > +               err =3D PTR_ERR(priv->reset);
-> > +               dev_err(mmc_dev(host->mmc), "failed to get reset contro=
-l %d\n", err);
-> > +               return err;
-> > +       }
-> > +
-> >         priv->rockchip_clks[0].id =3D "axi";
-> >         priv->rockchip_clks[1].id =3D "block";
-> >         priv->rockchip_clks[2].id =3D "timer";
-> > --
-> > 2.35.1
-> >
+> >  .../media/platform/mediatek/vcodec/Makefile   |    1 +
+> >  .../vcodec/mtk_vcodec_dec_stateless.c         |   26 +-
+> >  .../platform/mediatek/vcodec/mtk_vcodec_drv.h |    1 +
+> >  .../vcodec/vdec/vdec_vp9_req_lat_if.c         | 2031
+> > +++++++++++++++++
+> >  .../platform/mediatek/vcodec/vdec_drv_if.c    |    4 +
+> >  .../platform/mediatek/vcodec/vdec_drv_if.h    |    1 +
+> >  6 files changed, 2061 insertions(+), 3 deletions(-)
+> >  create mode 100644
+> > drivers/media/platform/mediatek/vcodec/vdec/vdec_vp9_req_lat_if.c
+> > 
+> 
+> ...
+> 
+> > +		use_128 = !frame_is_intra && !vsi-
+> > >frame.uh.last_frame_type;
+> > +		v4l2_vp9_adapt_coef_probs(pre_frame_ctx_helper,
+> > +					  counts_helper,
+> > +					  use_128,
+> > +					  frame_is_intra);
+> 
+> Hi Yunfei,
+> 
+> I'm getting
+> 
+> ERROR: modpost: "v4l2_vp9_adapt_noncoef_probs"
+> [drivers/media/platform/mediatek/vcodec/mtk-vcodec-dec.ko] undefined!
+> ERROR: modpost: "v4l2_vp9_adapt_coef_probs"
+> [drivers/media/platform/mediatek/vcodec/mtk-vcodec-dec.ko] undefined!
+> 
+> when building this series.
+> 
+> Adding
+> 	select V4L2_VP9
+> to
+> 	config VIDEO_MEDIATEK_VCODEC
+> solved the issue.
+> 
+> Thanks,
+> Nícolas
+I will fix it in next patch
 
---xt2hfq4oogyrqves
-Content-Type: application/pgp-signature; name="signature.asc"
+Best Regards,
+Yunfei Dong
 
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmJ059oACgkQ2O7X88g7
-+pp5Cw/9G072+IU/K2eJWP6MsQoWNwQMA5mqxId7SEACncdb+5ywvkilvq4UOtHM
-s2MHQxKpMxWKQFQEYFXh48Dn6OeVElkrO7kIGRSR0M8KuXXKQ4eQm0Q5a0jbryFl
-YqwRShmGpd4urXNhsCRjRjL/u/jTvhYKIzz2AiwFKgiHTZFB6fifmy67KIzAe8lx
-F8v57BW994hmYpABPnybuvMk1VGOJqw9xXrC/mTiGd1HyDBjot1KrIVvWpT9Q3ZL
-nwTP3EzJGIsrCQi9/YOuPCifjxJI2CppJZhy5Hd3aG8H9cZog9yEUalsd7x2sVih
-/eeVopGR+fhM/qwVV4Swya7QL/4/0ZjXCGP5HApLqzewQc6UGkAHkcZTfJ+78Yfc
-upAIXzL4CSJItDkZ2IT1O4hgwEW+933ol4z7gOA3yhvGQ7drLtnrXt65qTrw5k5P
-xt1ouOL76Ru8D9Xm8fMBzcHXOz+9xwLgtDnHHBzIr535biqqhTtRlu6CTbDxEGEn
-UZxNxg2punmcQ82ODHw0cvmGmiCkqPPUYEFxS/5a1P4hyUZE6PSXve+V6Hp21mNL
-jC1TXbbjVeroh11HGuz9yqC/wMvV5U3+951r79DODpIS6rXMIFzVFtTHyHs1kUSw
-WtfO28lxaTfaq7jwpyAvxAs1mIJl7POoaXODSCna+T3lf21nDaM=
-=UBWn
------END PGP SIGNATURE-----
-
---xt2hfq4oogyrqves--
