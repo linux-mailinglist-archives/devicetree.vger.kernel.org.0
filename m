@@ -2,73 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0F34C51D1EF
-	for <lists+devicetree@lfdr.de>; Fri,  6 May 2022 09:05:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 88D4751D237
+	for <lists+devicetree@lfdr.de>; Fri,  6 May 2022 09:26:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1388485AbiEFHJW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 May 2022 03:09:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57452 "EHLO
+        id S243019AbiEFHa3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 May 2022 03:30:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49106 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1388394AbiEFHJU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 May 2022 03:09:20 -0400
-Received: from mail-pl1-x632.google.com (mail-pl1-x632.google.com [IPv6:2607:f8b0:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 867285DE45
-        for <devicetree@vger.kernel.org>; Fri,  6 May 2022 00:05:37 -0700 (PDT)
-Received: by mail-pl1-x632.google.com with SMTP id i1so6569105plg.7
-        for <devicetree@vger.kernel.org>; Fri, 06 May 2022 00:05:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=cGsWnmcdsW5+Xbz2FC0gnC+YhC9gKY5ai2q+ZLxNWKk=;
-        b=iGfeU6j4YOla+JtEHUOB09UfEODgM9SORI0CjiGCK3q2DfKIne0qOPtu0MdS35Rotn
-         Hx32nUuF+ubpNJfY6lFTixhB70XxgTCUCCJoFGINp7JQUwqslisT8ONxyMiucPfwmVQo
-         BcFb8kYte/P5jcgoSxwC16k4VOUSXc8gItHA/Ex91Ubt4UdlZTQ6mexhIy/yn5JqZsmj
-         Fr6aheufgPglMQ0D7EQSMolgLewxrLfZaHj1bxb3I0gKzPRzRQQemhkTmtazoSrtpyMr
-         nzwuClYjHKZW6ndVApHAanUqj7vWmsckKD0+ywNg+CaxDC4w/gXYRww+HpnawMjnneyQ
-         aFrA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=cGsWnmcdsW5+Xbz2FC0gnC+YhC9gKY5ai2q+ZLxNWKk=;
-        b=aDCfskDzjJBUZ4DYP8kiMUwabM6f99nmeg24IQUJGbPMd8QgOvOFGjbHEHMdyGK4Kg
-         IP2vuUmOCp02hrFTcUg1JpNQLnBPqA8lGIO2tlZRxFkH0JvL+Rcm0ODmPnZOMs6V0rB+
-         Xs7LujDxgiNjQya6dyJQJQC/TnC4h7M/wNAz8f3BiEjIshfMLUM6ci/K7OKg99glmlUe
-         RO2l+jPwPcuKDr/vcLeXsVdUDTC57WJ5PRxsiPGWllNr944fOOGG5ZZNVeKZ/LdU4vrD
-         CxD8Eg05O8wK/onsRO8ksoX8srNtrYbcWeENMlDmi+nlb4Z/HxtUArGoRjf43V6ElSui
-         uvTg==
-X-Gm-Message-State: AOAM533F/96fCei97DtI29FM1kFDjmO6dwVrDnzNWMEU9EyrdOuN4RMG
-        f/v+gPPOvsMpTjLAqoPci2W6
-X-Google-Smtp-Source: ABdhPJzsB3eC1EyI0ybZRmYrUTNiZQMxNEEm9JOshBJBQsw2h5Kg3NaX5TAl6/ej75kNHI1+th2v3Q==
-X-Received: by 2002:a17:903:244c:b0:15e:b3f7:950d with SMTP id l12-20020a170903244c00b0015eb3f7950dmr2086414pls.9.1651820737005;
-        Fri, 06 May 2022 00:05:37 -0700 (PDT)
-Received: from thinkpad ([117.207.26.33])
-        by smtp.gmail.com with ESMTPSA id v1-20020a622f01000000b0050dc76281c5sm2573828pfv.159.2022.05.06.00.05.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 06 May 2022 00:05:36 -0700 (PDT)
-Date:   Fri, 6 May 2022 12:35:31 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Rohit Agarwal <quic_rohiagar@quicinc.com>
-Cc:     agross@kernel.org, bjorn.andersson@linaro.org,
-        gregkh@linuxfoundation.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 4/4] ARM: dts: qcom: sdx65-mtp: Enable USB3 and PHY
- support
-Message-ID: <20220506070531.GE17659@thinkpad>
-References: <1651482395-29443-1-git-send-email-quic_rohiagar@quicinc.com>
- <1651482395-29443-5-git-send-email-quic_rohiagar@quicinc.com>
+        with ESMTP id S240161AbiEFHa2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 May 2022 03:30:28 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E67AD5C351
+        for <devicetree@vger.kernel.org>; Fri,  6 May 2022 00:26:45 -0700 (PDT)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <sha@pengutronix.de>)
+        id 1nms6h-0003k7-Em; Fri, 06 May 2022 09:10:31 +0200
+Received: from sha by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <sha@pengutronix.de>)
+        id 1nms6e-0001g4-87; Fri, 06 May 2022 09:10:28 +0200
+Date:   Fri, 6 May 2022 09:10:28 +0200
+From:   Sascha Hauer <s.hauer@pengutronix.de>
+To:     Heiko =?iso-8859-15?Q?St=FCbner?= <heiko@sntech.de>
+Cc:     dri-devel@lists.freedesktop.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Sandy Huang <hjc@rock-chips.com>,
+        Peter Geis <pgwipeout@gmail.com>, Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v11 16/24] arm64: dts: rockchip: rk356x: Add VOP2 nodes
+Message-ID: <20220506071028.GS4012@pengutronix.de>
+References: <20220422072841.2206452-1-s.hauer@pengutronix.de>
+ <1911394.usQuhbGJ8B@diego>
+ <20220505064131.GF4012@pengutronix.de>
+ <2508329.Lt9SDvczpP@diego>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=iso-8859-15
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <1651482395-29443-5-git-send-email-quic_rohiagar@quicinc.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+In-Reply-To: <2508329.Lt9SDvczpP@diego>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 09:06:01 up 36 days, 19:35, 74 users,  load average: 0.40, 0.33,
+ 0.26
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: sha@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -76,88 +65,49 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 02, 2022 at 02:36:35PM +0530, Rohit Agarwal wrote:
-> Enable the support for USB3 controller, QMP PHY and HS PHY on SDX65 MTP.
+On Thu, May 05, 2022 at 09:23:03AM +0200, Heiko St�bner wrote:
+> Am Donnerstag, 5. Mai 2022, 08:41:31 CEST schrieb Sascha Hauer:
+> > On Thu, May 05, 2022 at 02:28:24AM +0200, Heiko St�bner wrote:
+> > > Am Freitag, 22. April 2022, 09:28:33 CEST schrieb Sascha Hauer:
+> > > > The VOP2 is the display output controller on the RK3568. Add the node
+> > > > for it to the dtsi file along with the required display-subsystem node
+> > > > and the iommu node.
+> > > > 
+> > > > Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
+> > > > Acked-by: Rob Herring <robh@kernel.org>
+> > > > ---
+> > > > +	vop: vop@fe040000 {
+> > > > +		reg = <0x0 0xfe040000 0x0 0x3000>, <0x0 0xfe044000 0x0 0x1000>;
+> > > > +		reg-names = "regs", "gamma_lut";
+> > > 
+> > > reg-names does not seem to be part of the dt-binding.
+> > > Though now in the vop2-driver I see that the code uses that naming.
+> > > 
+> > > I guess we might want to just go the vop1-way by using numbered
+> > > platform-resources via a follow-up patch and drop the regnames here?
+> > 
+> > Or we could document the reg-names properties in a follow-up patch.
+> > Wouldn't that be better?
 > 
-> Signed-off-by: Rohit Agarwal <quic_rohiagar@quicinc.com>
+> Also a possibility. Although that of course leads us into the naming
+> bike-shed ;-) ... i.e. for reg-names I'd do "vop" + "gamme-lut" (dash instead
+> of underscore) - instead of the ones used right now.
 
-I hope you have tested the interface using a gadget driver.
+I also like dashes better than underscores and "vop" describes it better
+than the generic "reg" name, so at least the two of us don't need to
+dive deeper into the naming bike-shed ;)
 
-Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-
-Thanks,
-Mani
-
-> ---
->  arch/arm/boot/dts/qcom-sdx65-mtp.dts | 29 +++++++++++++++++++++++++----
->  1 file changed, 25 insertions(+), 4 deletions(-)
 > 
-> diff --git a/arch/arm/boot/dts/qcom-sdx65-mtp.dts b/arch/arm/boot/dts/qcom-sdx65-mtp.dts
-> index 79dc31a..6920524 100644
-> --- a/arch/arm/boot/dts/qcom-sdx65-mtp.dts
-> +++ b/arch/arm/boot/dts/qcom-sdx65-mtp.dts
-> @@ -123,7 +123,7 @@
->  			regulator-max-microvolt = <1300000>;
->  		};
->  
-> -		ldo1 {
-> +		vreg_l1b_1p2: ldo1 {
->  			regulator-min-microvolt = <1200000>;
->  			regulator-max-microvolt = <1200000>;
->  			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> @@ -141,13 +141,13 @@
->  			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
->  		};
->  
-> -		ldo4 {
-> +		vreg_l4b_0p88: ldo4 {
->  			regulator-min-microvolt = <880000>;
->  			regulator-max-microvolt = <912000>;
->  			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
->  		};
->  
-> -		ldo5 {
-> +		vreg_l5b_1p8: ldo5 {
->  			regulator-min-microvolt = <1800000>;
->  			regulator-max-microvolt = <1800000>;
->  			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> @@ -177,7 +177,7 @@
->  			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
->  		};
->  
-> -		ldo10 {
-> +		vreg_l10b_3p08: ldo10 {
->  			regulator-min-microvolt = <3088000>;
->  			regulator-max-microvolt = <3088000>;
->  			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> @@ -244,3 +244,24 @@
->  		};
->  	};
->  };
-> +
-> +&usb {
-> +	status = "okay";
-> +};
-> +
-> +&usb_dwc3 {
-> +	dr_mode = "peripheral";
-> +};
-> +
-> +&usb_hsphy {
-> +	status = "okay";
-> +	vdda-pll-supply = <&vreg_l4b_0p88>;
-> +	vdda33-supply = <&vreg_l10b_3p08>;
-> +	vdda18-supply = <&vreg_l5b_1p8>;
-> +};
-> +
-> +&usb_qmpphy {
-> +	status = "okay";
-> +	vdda-phy-supply = <&vreg_l4b_0p88>;
-> +	vdda-pll-supply = <&vreg_l1b_1p2>;
-> +};
-> -- 
-> 2.7.4
-> 
+> While using numbered resources would keep the commonality between
+> both vops
+
+I like the named resources better, but I'll leave it up to you. You
+decide, I'll create fixup patches in either direction.
+
+Sascha
 
 -- 
-மணிவண்ணன் சதாசிவம்
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
