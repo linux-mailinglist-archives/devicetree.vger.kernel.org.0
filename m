@@ -2,107 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E9E351D20D
-	for <lists+devicetree@lfdr.de>; Fri,  6 May 2022 09:16:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3765D51D21B
+	for <lists+devicetree@lfdr.de>; Fri,  6 May 2022 09:17:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1355142AbiEFHTe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 May 2022 03:19:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38508 "EHLO
+        id S243749AbiEFHVE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 May 2022 03:21:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39882 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245372AbiEFHT1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 May 2022 03:19:27 -0400
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20F2766FA4
-        for <devicetree@vger.kernel.org>; Fri,  6 May 2022 00:15:43 -0700 (PDT)
-Received: by mail-ej1-x62c.google.com with SMTP id gh6so12806665ejb.0
-        for <devicetree@vger.kernel.org>; Fri, 06 May 2022 00:15:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=7g9JO/Ybw9irKMb1RLnb7HIkga3Dv3dwhtzTDOGzIqI=;
-        b=eunXz/jJ22emEnm9j1ZKkdizjud+RpDosbQw03+WYs/zT4ezzVjJmgyCbF8K9QaChP
-         q8/4A2wtC96OPJuvFDq0ersh77V8L5R7gM8k9azwtSHn9JPcjCrjzAk2LCGO31OT0Z4y
-         PDXCBm/w/BVDih3HHieKmt5so84yoEw1kx2v8SPLu5VEcOlN24qhcFTBh8yKXbVyLbEU
-         PHxv4bAg77gVeDU1RA7bToXYfmRdd5RulyxGNCBTn6FmIVG5hiGX33DHA+Zs3JWDzR/L
-         T6u9XL4pozWRZXW264WrXSVsdHqjp2f7kku5ow7B1eQTp3JJB7TbIIAVpJMtfbnKFXcJ
-         LIwg==
+        with ESMTP id S1389463AbiEFHVD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 May 2022 03:21:03 -0400
+Received: from mail-qv1-f51.google.com (mail-qv1-f51.google.com [209.85.219.51])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A08E466FA3;
+        Fri,  6 May 2022 00:17:21 -0700 (PDT)
+Received: by mail-qv1-f51.google.com with SMTP id eq14so4873608qvb.4;
+        Fri, 06 May 2022 00:17:21 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=7g9JO/Ybw9irKMb1RLnb7HIkga3Dv3dwhtzTDOGzIqI=;
-        b=1fqqkrje64xPP8mkz+ZJCL39aDcQGck2ElsmaokElNQyZOR7MvKtFfGJ7qMzOdApMr
-         CbKdMoGRg4DgxTyphiwh96SQ3yurzRb8iccsTYErag1YFLRi6u7U36/fpOy5cnDXBkhJ
-         pzxBT0O1oZ9KF/frUiS6ofPDK5oR9oi+j251uqSorYk3+tSKIKcam0cY/KGpLvYJR/jB
-         xKEGSJvKmOWTMki9Vaznc+RLHXZG8DSTinrXPfgDlJyM3t638qGehw2yUlOshOwRFIHb
-         eZ0ikAHXZCpydJblVVe8AjBJH/Nuimb8iEWVnTM/r/NpBVN2l+BzAARUY52UQbxZgVvY
-         rQSg==
-X-Gm-Message-State: AOAM530M9IXQqJwkVcjuHub3OpQpLM4YKGpVmhNS6U7B3hjwSn6Xc3Gi
-        XTt7+FPvoKCMYFSjIVKQifv3nQ==
-X-Google-Smtp-Source: ABdhPJxgd3hK/qt9qIuLszkmZtLv2HjclvaSrS1ez9rOxs8wZ1arV9Hioosh6sfq5Fg2Oc7d0T6qxA==
-X-Received: by 2002:a17:907:6e8b:b0:6f4:7147:a6ac with SMTP id sh11-20020a1709076e8b00b006f47147a6acmr1782778ejc.187.1651821342232;
-        Fri, 06 May 2022 00:15:42 -0700 (PDT)
-Received: from [192.168.0.223] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id qz24-20020a170907681800b006f3ef214de6sm1605225ejc.76.2022.05.06.00.15.41
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=7gUvCTF+zeKrO8IXhhvoks9ehUWGZScLpF4J5EMWPB8=;
+        b=P9Y09TMYsGP5Sa49nvp8fv2JGQ6qvaz0VFisV/JJwZPD8fIT0zrOFPXYSfvPVZ67Lp
+         MVHwaKeYhhhZJRWiZIVOqv4Iou3Jp3fPJfiD9zUnx3P7ypbWCnDtS2CV9gy1lMIfOrsp
+         eCnqfVsW2YA10AE3B2OjhqA2to/Cx8/HMoB6VZP+HkeC30oPqEvPCCxb3bCQbZySIT9X
+         fYCbuiSopdNzabeDL0kKL90vxzKGP6suJ8xf0M4tC5ZalFFTouy5ekVMMLIbvvM/sdqS
+         jM0FZu66tT5YQmy28mmrKcxCv0tNp82smbxpKQFPfQ1NsIMeV55FvSZcSozpJ6ZUOXp7
+         JDBQ==
+X-Gm-Message-State: AOAM530LDTZYRB0qE2GSlaxBxxyXNvk3lBl5PoDVMxu/dzMj8KFQC8IS
+        HLrzaYzw80Sb+N4oUOOVThhh5kuiTY4hOw==
+X-Google-Smtp-Source: ABdhPJwNZeIyBW5WSdhqLXco8Z2k2Ug+MDLskdTc00IPsnzQm6QfmMHLxrdSkPBvN3B2vK9R+YmwsA==
+X-Received: by 2002:ad4:4387:0:b0:456:cf82:2b9c with SMTP id s7-20020ad44387000000b00456cf822b9cmr1513922qvr.57.1651821440309;
+        Fri, 06 May 2022 00:17:20 -0700 (PDT)
+Received: from mail-yb1-f169.google.com (mail-yb1-f169.google.com. [209.85.219.169])
+        by smtp.gmail.com with ESMTPSA id g13-20020a05620a40cd00b0069fc13ce1fasm2211931qko.43.2022.05.06.00.17.19
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 06 May 2022 00:15:41 -0700 (PDT)
-Message-ID: <7c4b51a9-6340-ef27-708d-2ad96830edcb@linaro.org>
-Date:   Fri, 6 May 2022 09:15:40 +0200
+        Fri, 06 May 2022 00:17:19 -0700 (PDT)
+Received: by mail-yb1-f169.google.com with SMTP id w187so11430621ybe.2;
+        Fri, 06 May 2022 00:17:19 -0700 (PDT)
+X-Received: by 2002:a05:6902:905:b0:64a:2089:f487 with SMTP id
+ bu5-20020a056902090500b0064a2089f487mr1303655ybb.202.1651821439212; Fri, 06
+ May 2022 00:17:19 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH v14 6/9] dt-bindings: interrupt-controller: Add bindings
- for SP7021 interrupt controller
-Content-Language: en-US
-To:     =?UTF-8?B?cWluamlhblvopoPlgaVd?= <qinjian@cqplus1.com>
-Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mturquette@baylibre.com" <mturquette@baylibre.com>,
-        "sboyd@kernel.org" <sboyd@kernel.org>,
-        "tglx@linutronix.de" <tglx@linutronix.de>,
-        "maz@kernel.org" <maz@kernel.org>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "linux@armlinux.org.uk" <linux@armlinux.org.uk>,
-        "arnd@arndb.de" <arnd@arndb.de>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-        Rob Herring <robh@kernel.org>
-References: <cover.1651805790.git.qinjian@cqplus1.com>
- <56fb5e9a35a901f15d8e9721385c7e916c181377.1651805790.git.qinjian@cqplus1.com>
- <550cd907-be2a-4e90-350c-fbc3bdc03728@linaro.org>
- <d4ec03ed722349dda9fa3357449ac612@cqplus1.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <d4ec03ed722349dda9fa3357449ac612@cqplus1.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+References: <20220505184037.511295-1-biju.das.jz@bp.renesas.com> <20220505184037.511295-2-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20220505184037.511295-2-biju.das.jz@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Fri, 6 May 2022 09:17:07 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdVV=MB8xa-Q-c_aZx9LGrW=9aP9iC3P-FMRSf-HiovOzA@mail.gmail.com>
+Message-ID: <CAMuHMdVV=MB8xa-Q-c_aZx9LGrW=9aP9iC3P-FMRSf-HiovOzA@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: iio: adc: Document Renesas RZ/G2UL ADC
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        linux-iio@vger.kernel.org,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/05/2022 09:01, qinjian[覃健] wrote:
->>> +title: Sunplus SP7021 SoC Interrupt Controller Device Tree Bindings
->>
->> Remove "Device Tree Bindings". This applies to all bindings patches, not
->> only to one.
->>
-> 
-> Did you means change
-> "title: Sunplus SP7021 SoC Interrupt Controller Device Tree Bindings"
-> to 
-> "title: Sunplus SP7021 SoC Interrupt Controller"?
+Hi Biju,
 
-Yes, thank you.
+On Thu, May 5, 2022 at 8:40 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
+> Document Renesas RZ/G2UL ADC bindings. RZ/G2UL ADC is almost identical
+> to RZ/G2L, but it has 2 analog input channels compared to 8 channels
+> on the RZ/G2L.
+>
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> ---
+> v1->v2:
+>  * Started using generic compatible for RZ/G2UL and added SoC specific validation
+>    for channels.
 
+Thanks for the update!
 
-Best regards,
-Krzysztof
+> --- a/Documentation/devicetree/bindings/iio/adc/renesas,rzg2l-adc.yaml
+> +++ b/Documentation/devicetree/bindings/iio/adc/renesas,rzg2l-adc.yaml
+> @@ -74,18 +75,48 @@ patternProperties:
+>        Represents the external channels which are connected to the ADC.
+>
+>      properties:
+> -      reg:
+> -        description: |
+> -          The channel number. It can have up to 8 channels numbered from 0 to 7.
+> -        items:
+> -          - minimum: 0
+> -            maximum: 7
+> -
+> +      reg: true
+>      required:
+>        - reg
+>
+>      additionalProperties: false
+>
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: renesas,r9a07g043-adc
+> +    then:
+> +      patternProperties:
+> +        "^channel@[0-7]$":
+
+[0-1]
+
+> +          type: object
+> +          properties:
+> +            reg:
+> +              description: |
+> +                The channel number. It can have up to 2 channels numbered from 0 to 1.
+> +              items:
+> +                - minimum: 0
+> +                  maximum: 1
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - renesas,r9a07g044-adc
+> +              - renesas,r9a07g054-adc
+> +    then:
+> +      patternProperties:
+> +        "^channel@[0-7]$":
+> +          type: object
+> +          properties:
+> +            reg:
+> +              description: |
+> +                The channel number. It can have up to 8 channels numbered from 0 to 7.
+> +              items:
+> +                - minimum: 0
+> +                  maximum: 7
+> +
+>  additionalProperties: false
+>
+>  examples:
+
+The rest LGTM, but I'm wondering if more of the channel subnodes
+description can be factored out to the common part?
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
