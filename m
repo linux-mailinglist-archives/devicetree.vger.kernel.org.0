@@ -2,68 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D15751DB62
-	for <lists+devicetree@lfdr.de>; Fri,  6 May 2022 17:03:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2EF9151DB75
+	for <lists+devicetree@lfdr.de>; Fri,  6 May 2022 17:03:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1442585AbiEFPG7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 May 2022 11:06:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59760 "EHLO
+        id S1442632AbiEFPHL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 May 2022 11:07:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59862 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344351AbiEFPG6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 May 2022 11:06:58 -0400
-Received: from mail-oi1-x232.google.com (mail-oi1-x232.google.com [IPv6:2607:f8b0:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44FBE6B085
-        for <devicetree@vger.kernel.org>; Fri,  6 May 2022 08:03:15 -0700 (PDT)
-Received: by mail-oi1-x232.google.com with SMTP id l16so7748731oil.6
-        for <devicetree@vger.kernel.org>; Fri, 06 May 2022 08:03:15 -0700 (PDT)
+        with ESMTP id S1348017AbiEFPHC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 May 2022 11:07:02 -0400
+Received: from mail-ot1-x330.google.com (mail-ot1-x330.google.com [IPv6:2607:f8b0:4864:20::330])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F40A8396B6
+        for <devicetree@vger.kernel.org>; Fri,  6 May 2022 08:03:18 -0700 (PDT)
+Received: by mail-ot1-x330.google.com with SMTP id k25-20020a056830169900b00605f215e55dso5079707otr.13
+        for <devicetree@vger.kernel.org>; Fri, 06 May 2022 08:03:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=gvoH8ZCcnfut2q0yddyy+EI61mB9kTHgif1bkR8UyTE=;
-        b=MlGDGfV1Cn1Ta1i0dFcaMEd5xxCvPuVIF8txFh+e1Tnbx/zW0SGPjSpZODIxOWvOlg
-         5EWCWj9Xyy3Ru4nGTFi6t/IXZf4c2AQaH2pRBHdbmXP0gK8EbPBhHtPqjjnoNxaTOxzo
-         +MzBIMYiApit1Y/bGe+vfgC0wkSHpEmz/4gdL69paMhTGvabK2awbesBaN0fg9mUAoBX
-         0lJEttKWwieu4/6PNURbCaUwPNeD8eAv+vRf6JjcUq2xFNMNuMv1gJkGVKdLAgI5xSOC
-         ovqwQFK2oiTWHGl4Xr6HSovKKJWXJofG+A6idIY3vWi7UJVF8PxWqQNSPdZF+gSkZVMo
-         2KDg==
+        bh=5O83A53in6iugv9Za7chnRDs/elYEvhFVSRVxV/cAPQ=;
+        b=JjsAarhXQvuBYdhTwKwB1xG0+3vKZfi2/JtSwspaNA3FG1v1yU1qyfpNtBz8V05odF
+         qsvTZcoYVj/Rm85jVPh7kYBrV4giaBW7SLKOUmiauOcZ9XzrOX7dudSajJx3f9bnF37q
+         Wh1atwX+UWG1itSWYoOf6yuHdyQp9Qb8QdWvnDv9Wis9IfqQ/Ga/SzZWaD2tmGGwE8uT
+         ZnFFNUXSFbt36+fOrZjpJnTrrBr69qp6bY37VW0GOc5U5kWmxAm2JdEE1EkJMyNliWAU
+         WdTUA7O0nMIzhPjdnAVGsN0ujvpEft8m74HMxzFwIzmJXRXCgWeiz+XgKYbDDNiGlIb0
+         HeDw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=gvoH8ZCcnfut2q0yddyy+EI61mB9kTHgif1bkR8UyTE=;
-        b=0VAYxhQ4eJIpz8w83GOLscEDG1Z/+SygQkedKWmL9DIeqRjf97YLFJ4PGluoOfnJRI
-         4PuoRvptj3GfQ2NV6dOj9caYtvwUVyMdGlz/9weF0dPhUoMKy51INn7XCjJLoIphtrrr
-         Y5AxKYO4jQUCMbVIJZkXw8dqzThQn8jT/g2bhTwP4QfQ9qG4EErk7qi+gzMohvGmiz8m
-         DtD2d9UBcRcWhhAAp4VT8yHtOtC6X5MY0u9tvqxqwXUv5Nj3E41WwhV7Gb75ktwBQHIH
-         rujx80Ow0qpEAP4gfWDOB/tS9h71V2j7XXBQDeotx25O+wpiNvhM+xMK+fAEwBPUivGr
-         Ldfw==
-X-Gm-Message-State: AOAM531CPPOYx2wGsBZNbJt6O19+uH/k1myUc8t7F3mkWn1YSXif1jE/
-        R35NJL1g6KMNJcbbh/c9ALqb+Q==
-X-Google-Smtp-Source: ABdhPJw7KRjo7fodRuHUv4feQJ+ELLzrnyXZYloFvWJRv3HLo1gcm1VfqMi88r9DENwA42UCtJIiRQ==
-X-Received: by 2002:aca:add0:0:b0:326:72d:fd64 with SMTP id w199-20020acaadd0000000b00326072dfd64mr5009820oie.294.1651849394558;
-        Fri, 06 May 2022 08:03:14 -0700 (PDT)
+        bh=5O83A53in6iugv9Za7chnRDs/elYEvhFVSRVxV/cAPQ=;
+        b=WaNIBQ6PB9qJhnGAkiAzkgiMbMM2SYkPWhKL+biXmrGZfnSkGqHo7Bi0Kcf3XksiFR
+         GfmvMqLO6Vc18nd7ZM9Y38gyY2S5ORhbIeD2nEySZtCT4w11MRqfWLYOkhyLc7j3iOMS
+         WHEwk63RgTKPGYNa1VQ8uA1A1YZ4gtjqFb0Gd7Y9vaxox/fGTHjmta0APzvWHsxETcM+
+         XRLHh4FCLLvoeQeZix9N9BRmAqnSViFagM7zl/vfjfR+QbkRcGWYfw1ngQEL5WDGaqMN
+         rR5tSP6X4srHYmsAYq/Ue0mlbc1LL8kPtrcBLbBeIzVaxqUHC9zbycuQkANZAtyIfj/o
+         rzrQ==
+X-Gm-Message-State: AOAM533YKqF/mlP7jK5bHfgnRRVNlnx1UD1gh4XzH22viowOoeril/+l
+        qy+LMjsBFnybdiYsDLSut67DTA==
+X-Google-Smtp-Source: ABdhPJxIy5QsYBDm6W0rLDvyCy60sB949cMonKwARD2zLmRg80jb+eZt+5HiHQALKWW0dKI2a9JDaA==
+X-Received: by 2002:a05:6830:2aa1:b0:606:3a07:646b with SMTP id s33-20020a0568302aa100b006063a07646bmr1140552otu.229.1651849398269;
+        Fri, 06 May 2022 08:03:18 -0700 (PDT)
 Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id e21-20020a056808111500b00325cda1ffb9sm1665311oih.56.2022.05.06.08.03.13
+        by smtp.gmail.com with ESMTPSA id e21-20020a056808111500b00325cda1ffb9sm1665311oih.56.2022.05.06.08.03.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 06 May 2022 08:03:13 -0700 (PDT)
+        Fri, 06 May 2022 08:03:17 -0700 (PDT)
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     phone-devel@vger.kernel.org, Adam Skladowski <a39.skl@gmail.com>
-Cc:     linux-kernel@vger.kernel.org, Stephen Boyd <sboyd@kernel.org>,
-        devicetree@vger.kernel.org,
-        Michael Turquette <mturquette@baylibre.com>,
-        linux-clk@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+To:     Douglas Anderson <dianders@chromium.org>
+Cc:     Sankeerth Billakanti <quic_sbillaka@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        linux-kernel@vger.kernel.org, quic_kalyant@quicinc.com,
+        Kuogee Hsieh <quic_khsieh@quicinc.com>,
+        Rob Clark <robdclark@chromium.org>, devicetree@vger.kernel.org,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
         Andy Gross <agross@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht
-Subject: Re: [PATCH v2 0/3] MSM8976 GCC updates
-Date:   Fri,  6 May 2022 10:03:03 -0500
-Message-Id: <165184936433.73465.10846500957961033721.b4-ty@linaro.org>
+        linux-arm-msm@vger.kernel.org, Stephen Boyd <swboyd@chromium.org>
+Subject: Re: (subset) [PATCH v2] arm64: dts: qcom: sc7280: eDP for herobrine boards
+Date:   Fri,  6 May 2022 10:03:06 -0500
+Message-Id: <165184936433.73465.16527836487625041409.b4-ty@linaro.org>
 X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20220426073048.11509-1-a39.skl@gmail.com>
-References: <20220426073048.11509-1-a39.skl@gmail.com>
+In-Reply-To: <20220426124053.v2.1.Iedd71976a78d53c301ce0134832de95a989c9195@changeid>
+References: <20220426124053.v2.1.Iedd71976a78d53c301ce0134832de95a989c9195@changeid>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -77,25 +79,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 26 Apr 2022 09:30:45 +0200, Adam Skladowski wrote:
-> This patch series brings small fixes for SDCC clocks
-> and adds reset for modem.
-> 
-> Changes since v1
-> ================
-> 1. Adjusted comment line length for SDCC patch.
-> 2. Added Acked-by to dt-bindings patch.
+On Tue, 26 Apr 2022 12:41:03 -0700, Douglas Anderson wrote:
+> Add eDP support to herobrine boards, splitting up amongst the
+> different files as makes sense. Rationale for the current split of
+> things:
+> * The eDP connector itself is on qcard. However, not all devices with
+>   a qcard will use an eDP panel. Some might use MIPI and, presumably,
+>   someone could build a device with qcard that had no display at all.
+> * The qcard provides a PWM for backlight that goes to the eDP
+>   connector. This PWM is also provided to the board and it's expected
+>   that it would be used as the backlight PWM even for herobrine
+>   devices with MIPI displays.
+> * It's currently assumed that all herobrine boards will have some sort
+>   of display, either MIPI or eDP (but not both).
+> * We will assume herobrine-rev1 has eDP. The schematics allow for a
+>   MIPI panel to be hooked up but, aside from some testing, nobody is
+>   doing this and most boards don't have all the parts stuffed for
+>   it. The two panels would also share a PWM for backlight, which is
+>   weird.
+> * herobrine-villager and herobrine-hoglin (crd) also have eDP.
+> * herobrine-hoglin (crd) has slightly different regulator setup for
+>   the backlight. It's expected that this is unique to this board. See
+>   comments in the dts file.
+> * There are some regulators that are defined in the qcard schematic
+>   but provided by the board like "vreg_edp_bl" and
+>   "vreg_edp_3p3". While we could put references to these regulators
+>   straight in the qcard.dtsi file, this would force someone using
+>   qcard that didn't provide those regulators to provide a dummy or do
+>   an ugly /delete-node/. Instead, we'll add references in
+>   herobrine.dtsi.
 > 
 > [...]
 
 Applied, thanks!
 
-[1/3] clk: qcom: gcc-msm8976: Set floor ops for SDCC
-      commit: 24a8ed12aa00af135fe698061017042532aac5e5
-[2/3] dt-bindings: clk: qcom: gcc-msm8976: Add modem reset
-      commit: 7e555e9975698924d7f3ead154847bcf8f5cd40c
-[3/3] clk: qcom: gcc-msm8976: Add modem reset
-      commit: cadf16c9469e58ba74806f76b3d0f9f553a41b2c
+[1/1] arm64: dts: qcom: sc7280: eDP for herobrine boards
+      commit: 366a0a194b3b3e3e52bc7b7b1ac35b40a1187902
 
 Best regards,
 -- 
