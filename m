@@ -2,135 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F56251D272
-	for <lists+devicetree@lfdr.de>; Fri,  6 May 2022 09:41:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B37E351D27F
+	for <lists+devicetree@lfdr.de>; Fri,  6 May 2022 09:45:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1389632AbiEFHoo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 May 2022 03:44:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36218 "EHLO
+        id S1389656AbiEFHsr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 May 2022 03:48:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38996 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1389636AbiEFHom (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 May 2022 03:44:42 -0400
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E99465DA4E
-        for <devicetree@vger.kernel.org>; Fri,  6 May 2022 00:40:59 -0700 (PDT)
-Received: by mail-lf1-x133.google.com with SMTP id w1so11200121lfa.4
-        for <devicetree@vger.kernel.org>; Fri, 06 May 2022 00:40:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=yq4oJMCDfCqiuSYPrGiR7TdBoQ/AyiNCejA6X9Nl+ck=;
-        b=dorWGvetxsGHiee41vHh66trGajA/WXxHaOioCCMFnhLOgLF6l/cV99tZXnLtV0BmF
-         PAsja2Dl0CXAnTSrT8yRsPGa8iwAuT7/H0jCoSLoJK0PUwnFDF3AxxSA3VEP9tTesybY
-         uWRbNG+JjmP4NPtPDHx+m+AMyuxsnnamZV+64uujGSzZuB0cM8FTs8OKJMk6AzZ81kjz
-         Eeq7kxVE1d7YbJ9WH112miBPug2PYTcYjktR+s4LrHHqKqBHoQmdBmixBynslQX2oXjo
-         TCBV73G4ZQmlwajOcDRSjW5PX5vxI511uB6+496bT30FVQovW+CKnrK2lg05xmQ1PFog
-         Y9Dw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=yq4oJMCDfCqiuSYPrGiR7TdBoQ/AyiNCejA6X9Nl+ck=;
-        b=zSorJiq/b/WRzuIQdLh6fatDZJC+q5RdAhBZ0XucIYFZugsldsKlwKcwfPAc+LozlF
-         6+WfNZw1lU2vhbbNfq2lkpqGKS+q/K2P/hAjF4d8cfogCbYUUA8wUyVOEEoqAJQc5sVo
-         qC4xMT05imR8ifucNd2JkhyOXws8xea51lq+AMuSARx2RWxMFdfBbczbZrQp+E7p3+g0
-         OdIOM8++7pngw2Qq/uNisBfMmH86lfKMgzDMFVd4YdiUKgV7KVeXA3KTPR7p8RbjoLzm
-         aVfqRXQC56n1DjEg5bvdSYC071ozxhIxjNokAUeAdJHjEu4sZftpjzFtORffP+nd52kP
-         NvqA==
-X-Gm-Message-State: AOAM533ert1/Dx8hz0wUlLoW/jvsUm+84IYJSznASzjn7FAFrgSlTWBQ
-        qHW7vV+quDs+H3/Kz3Y4I1IXaA==
-X-Google-Smtp-Source: ABdhPJx6qUi9SRLbyFFX1g/1yaeZbkNDkB/nwXSfN7TIJM0D6xR1485+MD2fKPk/lbQ9P98gpQLvnA==
-X-Received: by 2002:a05:6512:2386:b0:473:a4e3:d4aa with SMTP id c6-20020a056512238600b00473a4e3d4aamr1639490lfv.448.1651822858278;
-        Fri, 06 May 2022 00:40:58 -0700 (PDT)
-Received: from [192.168.1.211] ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id bt24-20020a056512261800b0047255d2113asm570118lfb.105.2022.05.06.00.40.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 06 May 2022 00:40:57 -0700 (PDT)
-Message-ID: <b334a2e6-69ae-690d-8560-25f8a1319e5c@linaro.org>
-Date:   Fri, 6 May 2022 10:40:56 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH v7 5/7] PCI: qcom: Handle MSIs routed to multiple GIC
- interrupts
-Content-Language: en-GB
+        with ESMTP id S236048AbiEFHsp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 May 2022 03:48:45 -0400
+Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::221])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76BF8674D0;
+        Fri,  6 May 2022 00:45:02 -0700 (PDT)
+Received: (Authenticated sender: clement.leger@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 7B0FE240010;
+        Fri,  6 May 2022 07:44:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1651823100;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=PGzNB4W4WfGK9PIJGUcSrH2CG36WKRbfkNH89DZr2pM=;
+        b=JEfgnl+VgeNXkCi9WmNelq7MqYYGqUqE3V8lLJ1ouTRKtV4ZB+l7Y+vuBy9sONaFi/4Tss
+        TpNmuLn+7xCOsMnTcXpQp1TdMztRBXLDwUtfL8Dx3WvdHairjaIGwDjd03qf61hDvOYOPW
+        3RsFKkZrQ8O7/c4fviwabahTxavVQ4NGYV990U6lWeMHvqUY12Xd0XqvXr0HutdQ7f818m
+        dUq4rLktDIy/KAhfqcn+z7ZwkcgRDZUJmfeKxinV0HLx/aO0hkBoR5fG8lUSmX3a+uOYpL
+        kB0dkTCQE4coldMuQ5k4HA2OuH3CMNo8/V1HkFe2rUkGwHhbSEWoKk2Bnq8FWQ==
+Date:   Fri, 6 May 2022 09:43:39 +0200
+From:   =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
 To:     Rob Herring <robh@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Stanimir Varbanov <svarbanov@mm-sol.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org
-References: <20220505135407.1352382-1-dmitry.baryshkov@linaro.org>
- <20220505135407.1352382-6-dmitry.baryshkov@linaro.org>
- <YnRA//LbCW+IVi3o@robh.at.kernel.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <YnRA//LbCW+IVi3o@robh.at.kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Cc:     Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Paul Mackerras <paulus@samba.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Nathan Lynch <nathanl@linux.ibm.com>,
+        Laurent Dufour <ldufour@linux.ibm.com>,
+        Daniel Henrique Barboza <danielhb413@gmail.com>,
+        David Gibson <david@gibson.dropbear.id.au>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        David Hildenbrand <david@redhat.com>,
+        Ohhoon Kwon <ohoono.kwon@samsung.com>,
+        "Aneesh Kumar K.V" <aneesh.kumar@linux.ibm.com>,
+        YueHaibing <yuehaibing@huawei.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Steen Hegelund <steen.hegelund@microchip.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Allan Nielsen <allan.nielsen@microchip.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
+        Horatiu Vultur <horatiu.vultur@microchip.com>
+Subject: Re: [PATCH 1/3] of: dynamic: add of_property_alloc() and
+ of_property_free()
+Message-ID: <20220506094339.55b8aa63@fixe.home>
+In-Reply-To: <YnQLYjcIc0PjvWYR@robh.at.kernel.org>
+References: <20220504154033.750511-1-clement.leger@bootlin.com>
+        <20220504154033.750511-2-clement.leger@bootlin.com>
+        <9e470414-67a5-10ce-95eb-f8093fde70d4@csgroup.eu>
+        <YnQLYjcIc0PjvWYR@robh.at.kernel.org>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.31; x86_64-pc-linux-gnu)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/05/2022 00:26, Rob Herring wrote:
-> On Thu, May 05, 2022 at 04:54:05PM +0300, Dmitry Baryshkov wrote:
->> On some of Qualcomm platforms each group of 32 MSI vectors is routed to the
->> separate GIC interrupt. Thus to receive higher MSI vectors properly,
->> add separate msi_host_init()/msi_host_deinit() handling additional host
->> IRQs.
-> 
-> msi_host_init() has 1 user (keystone) as it doesn't use the DWC MSI
-> controller. But QCom does given the access to PCIE_MSI_INTR0_STATUS,
-> so mutiple MSI IRQ outputs must have been added in newer versions of the
-> DWC IP. If so, it's only a matter of time for another platform to
-> do the same thing. Maybe someone from Synopsys could confirm?
+Le Thu, 5 May 2022 12:37:38 -0500,
+Rob Herring <robh@kernel.org> a =C3=A9crit :
 
-This is a valid question, and if you check, first iterations of this 
-patchset had this in the dwc core ([1], [2]). Exactly for the reason 
-this might be usable for other platforms.
+> > >  =20
+> > > -	/* mark the property as dynamic */
+> > > -	of_property_set_flag(new, OF_DYNAMIC);
+> > > +	prop->value =3D kzalloc(alloc_len, allocflags);
+> > > +	if (!prop->value)
+> > > +		goto out_err;
+> > >  =20
+> > > -	return new;
+> > > +	if (value)
+> > > +		memcpy(prop->value, value, value_len); =20
+> >=20
+> > Could you use kmemdup() instead of kzalloc+memcpy ? =20
+>=20
+> I'd prefer there be 1 alloc for struct property and value instead of 2.=20
+> And maybe 'name' gets rolled into it too, but that gets a bit more=20
+> complicated to manage I think.=20
 
-Then I did some research for other platforms using DWC PCIe IP core. For 
-example, both Tegra Xavier and iMX6 support up to 256 MSI vectors, they 
-use DWC MSI IRQ controller. The iMX6 TRM explicitly describes using 
-different MSI groups for different endpoints. The diagram shows 8 MSI 
-IRQ signal lines. However in the end the signals from all groups are 
-OR'ed to form a single host msi_ctrl_int. Thus currently I suppose that 
-using multiple MSI IRQs is a peculiarity of Qualcomm platform.
+At least for value it should be easy indeed. i'll check what I can do
+for the name.
 
+>=20
+> With memcpy, note this series[1].
 
-> 
-> Therefore this should all be handled in the DWC core. In general, I
-> don't want to see more users nor more ops if we don't have to. Let's not
-> create ops for what can be handled as data. AFAICT, this is just number
-> of MSIs and # of MSIs per IRQ. It seems plausible another platform could
-> do something similar and supporting it in the core code wouldn't
-> negatively impact other platforms.
+Ok, good to know, should I base my series on that one ?
 
-I wanted to balance adding additional ops vs complicating the core for 
-other platforms. And I still suppose that platform specifics should go 
-to the platform driver. However if you prefer [1] and [2], we can go 
-back to that implementation.
+>=20
+> Rob
+>=20
+> [1] https://lore.kernel.org/all/20220504014440.3697851-30-keescook@chromi=
+um.org/
 
 
-[1]: 
-https://lore.kernel.org/linux-arm-msm/20220427121653.3158569-2-dmitry.baryshkov@linaro.org/[2]: 
-https://lore.kernel.org/linux-arm-msm/20220427121653.3158569-3-dmitry.baryshkov@linaro.org/
-
-
-
--- 
-With best wishes
-Dmitry
+--=20
+Cl=C3=A9ment L=C3=A9ger,
+Embedded Linux and Kernel engineer at Bootlin
+https://bootlin.com
