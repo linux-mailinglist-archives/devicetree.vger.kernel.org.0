@@ -2,54 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4F48751D337
-	for <lists+devicetree@lfdr.de>; Fri,  6 May 2022 10:19:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3535E51D36D
+	for <lists+devicetree@lfdr.de>; Fri,  6 May 2022 10:29:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242864AbiEFIXT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 May 2022 04:23:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39758 "EHLO
+        id S1390145AbiEFIck (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 May 2022 04:32:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49118 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1390053AbiEFIXR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 May 2022 04:23:17 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15B766833B;
-        Fri,  6 May 2022 01:19:34 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id 3899B1F406ED
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1651825173;
-        bh=jOn99sFlUaon4ViUY/sVaReudul+d+g6/yvSUHH5wZw=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=P/LJ16sfqtpixZvqPPI9Eldivz8UZpG+OsTQhiEMvr+i3ngKPKTjqDJ0MdULTrcuf
-         td8j1LluJTlesr9w1N/jDB9QAC1g6EiSWRlYcUTQZfOsGjRmC4E1H1ElsxHpTBr3aj
-         voyGU/GwPspUaW9JtFIq5U+lvoNAubD+Ve4BS/0IXxEAi4CS56/X3qqNOhAaS3xCqE
-         CYow+uNndAhyat7s2LZBek4DzvDyjfhgJzYFFLLghyf1PRm4Z9/1kuuNxXO6DP5a/o
-         HjKWtvm4eU9MK8K3kE/SmYKhWvOBV79luD0WCVS+hSb56kwnZ4YTpXM4MyxZD7X1MJ
-         ILBZuuKYzQ2OA==
-Message-ID: <eb3884ac-56b2-4c37-05bc-82e8e44b22d2@collabora.com>
-Date:   Fri, 6 May 2022 10:19:30 +0200
+        with ESMTP id S1390144AbiEFIci (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 May 2022 04:32:38 -0400
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6BE30674E4
+        for <devicetree@vger.kernel.org>; Fri,  6 May 2022 01:28:55 -0700 (PDT)
+Received: by mail-ej1-x631.google.com with SMTP id j6so13025132ejc.13
+        for <devicetree@vger.kernel.org>; Fri, 06 May 2022 01:28:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :references:cc:from:in-reply-to:content-transfer-encoding;
+        bh=k8gw4JD+CVD/evHIacbhoTM1UmIlcjVCNQ+9z7oYUtI=;
+        b=dDZs4xRsI+XJt34onMwmAZtEAGas5P7kna23XXUg06Y/gztAxn8a54iuBWXYNHBmCX
+         bc9omCyYTSnmd4wyPVEQaM3fJ9qeBaAWNqvOqOrhHgltpmko5+rjky0VeGWALW6WwdqR
+         X8j95OnDoOceNHT0SEmSr/ABL3waSGRPacAK4vCWkbGL4jqK94qZCzk20EvvtfS9e2ek
+         bClBIbWgydbg+7AxUw2bTZhxtAsJwRDiWDDECmrJ1Npw9K8xbMKzewaoC76r4daDMsSa
+         QM5Xf6k4repo+cmcKUjz0K2GGYKSydY1YVPjwyMhtNJK56a6oPnmwgeSIZbwL0ODJwEI
+         f4jA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:references:cc:from:in-reply-to
+         :content-transfer-encoding;
+        bh=k8gw4JD+CVD/evHIacbhoTM1UmIlcjVCNQ+9z7oYUtI=;
+        b=tFiuKToNOwkdZOvgem+YchSJ/mR7awNa25m0aoLdKX/Iw5yJqt853wesxPOCwp6G1J
+         yxXUfc9Oi3AZDde+aihdW5o1z8w40YYYaOb0vWiTZPKEwi2kN4BNjIaTs73Rny0+PbLR
+         pJdk6GuDS29kOHS8wSXixbauhsTKdntRN0McR/iqOByEVUp6cNJZEn8Jto4gdq4O/fYX
+         TNav3Qw5UMVkBVPcGptKk1px3WfolwaUCXVNpr3y57BPQMsU8vYKWWXxg8yMvxq6MV8+
+         TG1RI6Z5yLu0mffq2shFCmaHJ058Nb8Ql8f6rdZPJiiUi982Q1Cg2WkPv1vFa8enH2iL
+         7SQg==
+X-Gm-Message-State: AOAM530rWj7bOTtAiBPDttDDz2RzuiTRw2dly4B5SA0maGsQBTXjVnTp
+        xxnZ33ogE/SJNg6UFxxrMbAefQ==
+X-Google-Smtp-Source: ABdhPJz8nMRZdChtZYB1x22twKxHKUjq6qOsvsEKiRI3qcGnDs0ehoq2wpfQpANDDl8kg3ZNcHVoEw==
+X-Received: by 2002:a17:906:54c3:b0:6ef:d07b:c8ec with SMTP id c3-20020a17090654c300b006efd07bc8ecmr1859082ejp.687.1651825733978;
+        Fri, 06 May 2022 01:28:53 -0700 (PDT)
+Received: from [192.168.0.223] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id r2-20020aa7d582000000b0042617ba6396sm1997301edq.32.2022.05.06.01.28.53
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 06 May 2022 01:28:53 -0700 (PDT)
+Message-ID: <d6ead111-e2f8-c098-42ff-cda30a1d72bc@linaro.org>
+Date:   Fri, 6 May 2022 10:28:52 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH v2 3/3] soc: mediatek: devapc: Add support for MT8186
+ Thunderbird/91.8.1
+Subject: Re: [PATCH 1/3] dt-bindings: timer: cdns,ttc: drop unneeded minItems
 Content-Language: en-US
-To:     Rex-BC Chen <rex-bc.chen@mediatek.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com
-Cc:     runyang.chen@mediatek.com, linux-mediatek@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>
+References: <20220424150333.75172-1-krzysztof.kozlowski@linaro.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Michal Simek <michal.simek@xilinx.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20220504115501.3490-1-rex-bc.chen@mediatek.com>
- <20220504115501.3490-4-rex-bc.chen@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20220504115501.3490-4-rex-bc.chen@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        linux-samsung-soc@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220424150333.75172-1-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -57,11 +79,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 04/05/22 13:55, Rex-BC Chen ha scritto:
-> Add devapc data and compatible to support MT8186 devapc.
+On 24/04/2022 17:03, Krzysztof Kozlowski wrote:
+> There is no need to add minItems when it is equal to maxItems.
 > 
-> Signed-off-by: Runyang Chen <runyang.chen@mediatek.com>
-> Signed-off-by: Rex-BC Chen <rex-bc.chen@mediatek.com>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>  Documentation/devicetree/bindings/timer/cdns,ttc.yaml | 1 -
+>  1 file changed, 1 deletion(-)
+Hi Daniel, Thomas,
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+The patchset was acked by Rob, so he expects you will pick it up. Could
+you let me know if there is anything stopping or you expect the other
+way (via DT-tree)?
 
+Best regards,
+Krzysztof
