@@ -2,93 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 970FE51DB79
-	for <lists+devicetree@lfdr.de>; Fri,  6 May 2022 17:03:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A828951DBB0
+	for <lists+devicetree@lfdr.de>; Fri,  6 May 2022 17:11:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1442609AbiEFPHM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 May 2022 11:07:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59984 "EHLO
+        id S1442771AbiEFPPJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 May 2022 11:15:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41818 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1442619AbiEFPHK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 May 2022 11:07:10 -0400
-Received: from mail-oi1-x22d.google.com (mail-oi1-x22d.google.com [IPv6:2607:f8b0:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27F9F6B098
-        for <devicetree@vger.kernel.org>; Fri,  6 May 2022 08:03:20 -0700 (PDT)
-Received: by mail-oi1-x22d.google.com with SMTP id m25so7764104oih.2
-        for <devicetree@vger.kernel.org>; Fri, 06 May 2022 08:03:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=fGGst/5sLo/Mtz8gaaNmR6S/WriZ7WP7g///+OHqwzk=;
-        b=SHhPPKRU8sU0J8uCvrjzujcKeLbQBe1lmFerx7oZ7PYFHt4JwQ6OFFEAK9da4PK6P7
-         0nV2qHmOCgx6yPwbnTjQblvibLhClyyvgiUiBCeCXCzRsO53ksyMBSuqWUg5aHlNkpH0
-         7t5eka73PAdRPHUTLeRfFkPVTBu6jCilNZh28PONzitOoBuvSHLlALKPBqbN5KY3MW74
-         95c2cb77ZFGm2mHwttjuXNuAbUwRuojeIJjxoPaR6c8aP70OwZ9I3KSzRMkC3hYgRSKK
-         WmLOM9fAFbEbNn2F9Qjp/ehjfK5MOdCGsY4dye1tga0ao/3pCYMAVO6BXeqlhBdNmfGo
-         rb8Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=fGGst/5sLo/Mtz8gaaNmR6S/WriZ7WP7g///+OHqwzk=;
-        b=feFpVFGmSlm/+WUP05gdvCjbGrvUlt5BPUNEkkULUghgOntJo5/Da3nKTVNzDk5Aa1
-         zgKoq2soFdu4RjvidYNA3uTQESfNTKRLX28091+MXZwQBviEEP1/RhdZ8Th2pg3+ecyh
-         2QT5MsHCTsxKmpQiR2UkL9VyHDn1BxDvr+mVOntTuyU28d+9jifC2mqGablrwGW1R5E5
-         Xj3/gw1BSWXtvK7Ij2ot1vFc/IXJepQm3h5Y0Gyars2kAjTIwoD3sFi9oxP//lJrCEEB
-         xTrfDKvR7UIF5dJicID05VV7KrhHVHeDn8YH95aN3vw4+25MeYbSAybw2cSsDbEzi0xs
-         HDBQ==
-X-Gm-Message-State: AOAM531vm7vSpKpkHhbSbWr1APND1MRgzi40oAIwVCTSJ7i//CaRWE1z
-        HvImeeb79vD5BsowjJVN+1Eeog==
-X-Google-Smtp-Source: ABdhPJxkaaYSe7OlnRD8O0rwZcj4/X87+eYvhuoIX7qy1/IZXS9BlEGU+IKjuMiZQL7GoM5ssQ8PYw==
-X-Received: by 2002:a05:6808:300f:b0:2fa:6fd5:9723 with SMTP id ay15-20020a056808300f00b002fa6fd59723mr1615284oib.202.1651849399425;
-        Fri, 06 May 2022 08:03:19 -0700 (PDT)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id e21-20020a056808111500b00325cda1ffb9sm1665311oih.56.2022.05.06.08.03.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 06 May 2022 08:03:18 -0700 (PDT)
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        linux-kernel@vger.kernel.org, Ansuel Smith <ansuelsmth@gmail.com>,
-        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org,
-        Michael Turquette <mturquette@baylibre.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Taniya Das <tdas@codeaurora.org>,
+        with ESMTP id S236500AbiEFPPG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 May 2022 11:15:06 -0400
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 426952F03F;
+        Fri,  6 May 2022 08:11:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1651849883; x=1683385883;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=yHfDzCayxw0smKFpxdbArsN9Ikdnfmg63XFLoA4TdjE=;
+  b=XzWyh365VREPgkfAPJzAQ5UaqEJ06mra9APv5zcu6yR20+vM7kf31nyb
+   5CKTEfzWBmedirYIcciJMAT5NO7zsKoAQ4Xfr1f+jlv5AEKKX3uKmcS1G
+   G09eRwPbXL68+L31MJKch7ODSLBOI8FHQmxCyEL7obx2x57Fm7/zJfmI+
+   NcA5xiPFZxZrgqNBT8cqD6qGU8RxOA15q98M0qvV6MSVI4xxGwc628CFh
+   o06ky60+Q7fZCuY52hf+cZBTLzMQGcJmKiofBuEQSSh5BMf9aw/NjjYQY
+   JymSb4KNU3GGR647ujwhgag1c4cklK9NoP4R3IvbxiYyNPYOnFf4lN9kf
+   w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10339"; a="268096065"
+X-IronPort-AV: E=Sophos;i="5.91,203,1647327600"; 
+   d="scan'208";a="268096065"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 May 2022 08:11:18 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.91,203,1647327600"; 
+   d="scan'208";a="632969449"
+Received: from lkp-server01.sh.intel.com (HELO 5056e131ad90) ([10.239.97.150])
+  by fmsmga004.fm.intel.com with ESMTP; 06 May 2022 08:11:15 -0700
+Received: from kbuild by 5056e131ad90 with local (Exim 4.95)
+        (envelope-from <lkp@intel.com>)
+        id 1nmzbu-000Dai-VH;
+        Fri, 06 May 2022 15:11:14 +0000
+Date:   Fri, 6 May 2022 23:10:47 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Luca Weiss <luca@z3ntu.xyz>, linux-arm-msm@vger.kernel.org
+Cc:     kbuild-all@lists.01.org, ~postmarketos/upstreaming@lists.sr.ht,
+        phone-devel@vger.kernel.org,
+        =?iso-8859-1?Q?Andr=E9?= Almeida <andrealmeid@collabora.com>,
+        Luca Weiss <luca@z3ntu.xyz>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, Andy Gross <agross@kernel.org>
-Cc:     Rob Herring <robh@kernel.org>
-Subject: Re: (subset) [PATCH v2] dt-bindings: clock: qcom,gcc-apq8064: Fix typo in compatible and split apq8084
-Date:   Fri,  6 May 2022 10:03:07 -0500
-Message-Id: <165184936433.73465.8918776302755169232.b4-ty@linaro.org>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20220426064241.6379-1-krzysztof.kozlowski@linaro.org>
-References: <20220426064241.6379-1-krzysztof.kozlowski@linaro.org>
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] ARM: dts: qcom: msm8974-hammerhead: Add notification LED
+Message-ID: <202205062319.gc3Q6aGA-lkp@intel.com>
+References: <20220505164336.13210-1-luca@z3ntu.xyz>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220505164336.13210-1-luca@z3ntu.xyz>
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 26 Apr 2022 08:42:41 +0200, Krzysztof Kozlowski wrote:
-> The qcom,gcc-apq8064.yaml was meant to describe only APQ8064 and APQ8084
-> should have slightly different bindings (without Qualcomm thermal sensor
-> device).  Add new bindings for APQ8084.
-> 
-> 
+Hi Luca,
 
-Applied, thanks!
+I love your patch! Yet something to improve:
 
-[1/1] dt-bindings: clock: qcom,gcc-apq8064: Fix typo in compatible and split apq8084
-      commit: 4ac7e878c15781286c043cff19ec88d82b8e2014
+[auto build test ERROR on next-20220505]
+[cannot apply to robh/for-next v5.18-rc5 v5.18-rc4 v5.18-rc3 v5.18-rc5]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
 
-Best regards,
+url:    https://github.com/intel-lab-lkp/linux/commits/Luca-Weiss/ARM-dts-qcom-msm8974-hammerhead-Add-notification-LED/20220506-004626
+base:    632a8c88e339fe86ae6e420a24dfc641d4dd0ab5
+config: arm-allmodconfig (https://download.01.org/0day-ci/archive/20220506/202205062319.gc3Q6aGA-lkp@intel.com/config)
+compiler: arm-linux-gnueabi-gcc (GCC) 11.3.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/982ec92f3741358d8ce62dd43841b550a6ab6a22
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Luca-Weiss/ARM-dts-qcom-msm8974-hammerhead-Add-notification-LED/20220506-004626
+        git checkout 982ec92f3741358d8ce62dd43841b550a6ab6a22
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.3.0 make.cross W=1 O=build_dir ARCH=arm SHELL=/bin/bash
+
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
+
+All errors (new ones prefixed by >>):
+
+>> Error: arch/arm/boot/dts/qcom-msm8974-lge-nexus5-hammerhead.dts:317.1-12 Label or path pm8941_lpg not found
+>> FATAL ERROR: Syntax error parsing input tree
+
 -- 
-Bjorn Andersson <bjorn.andersson@linaro.org>
+0-DAY CI Kernel Test Service
+https://01.org/lkp
