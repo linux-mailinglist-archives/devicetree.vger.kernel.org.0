@@ -2,469 +2,206 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F03C51D909
-	for <lists+devicetree@lfdr.de>; Fri,  6 May 2022 15:25:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D718651D941
+	for <lists+devicetree@lfdr.de>; Fri,  6 May 2022 15:36:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1392503AbiEFN3W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 May 2022 09:29:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53064 "EHLO
+        id S232051AbiEFNke (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 May 2022 09:40:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39544 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1392606AbiEFN3B (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 May 2022 09:29:01 -0400
-Received: from mout.perfora.net (mout.perfora.net [74.208.4.194])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69AA5193;
-        Fri,  6 May 2022 06:25:17 -0700 (PDT)
-Received: from toolbox.int.toradex.com ([81.221.85.15]) by mrelay.perfora.net
- (mreueus003 [74.208.5.2]) with ESMTPSA (Nemesis) id 0LqBHC-1oHuzW2hrU-00do03;
- Fri, 06 May 2022 15:25:03 +0200
-From:   Marcel Ziswiler <marcel@ziswiler.com>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        with ESMTP id S1347079AbiEFNkd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 May 2022 09:40:33 -0400
+Received: from esa.hc3962-90.iphmx.com (esa.hc3962-90.iphmx.com [216.71.142.165])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B374C5D5CE;
+        Fri,  6 May 2022 06:36:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qccesdkim1;
+  t=1651844209; x=1652449009;
+  h=from:to:cc:subject:date:message-id:references:
+   in-reply-to:content-transfer-encoding:mime-version;
+  bh=40JdjvoiUmxug5Zl0N9lsKhnqp49lEwcv4Bq15+VFSw=;
+  b=IGHFqKrL+7HAGzLQJTFZ/kLr+YYD0bpy70OoAk6rcm6GNqD/P5TFfEWZ
+   qY4Rh0EqKrNWJUe2kogPSqtDloWfVtK7vCpL83KM9eKYmnB76BGb8BJAQ
+   wQlh/TPkIHqFMFIMe41rwv3Oe2GDx3R+HVmOeElzk/6JqCvKH+dTtPQeu
+   M=;
+Received: from mail-dm6nam10lp2103.outbound.protection.outlook.com (HELO NAM10-DM6-obe.outbound.protection.outlook.com) ([104.47.58.103])
+  by ob1.hc3962-90.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 May 2022 13:36:47 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=IU3l+3BEhIWsfkz09IcIP7HPj/Rlry0kTp8jvCdaS34NSAiDevHiXeQGISsB0kY6as2mlUf2WHxqD9zT5GuQzIpEfDUbpXgxnsJPxV2tTS2uyeXWzQZAdfV1f0a93A+ylUcEpoA88pZTmpqGQAiy+ANSKMR+7qZHbe40cnTDXZnHbgidpH4I29l9zLrYP1AwQVPqhPmZhe6uZYnpzKkTVJFzpHdjiI9/YU+FsmRK2cw5jSB8rPwQJgC2LHQUG7tbfbr74RijehY0tdn9uGosoaGkWh5Qfv1axlYr1an7HQQYMDTOH/b7DdsbN4vrGE0cYhihIa6kSRnJBk57BQQnGw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=40JdjvoiUmxug5Zl0N9lsKhnqp49lEwcv4Bq15+VFSw=;
+ b=jnBH/bDOluFNVSjvRTBHnopQL9fU97UtLeaB1H7tZqTJqrAZs6Ex3rCt2FgLxxDXeSuoHQK6pTXeroN2BRtTOwpjsoMXu+S+L9bzhEG3P5RqFgFErTKHbn6yExMXovFfEpsWGVnGL8R1uhf2A49gZyktYrSnyLutQhUs9Dtke3JzzcKbT75Q0TBzFzjiSxJK3PiS96g/F3jw2whfXx21W8N5LYmY6vyo8tvsSKQWBjdOEfTATNRvPm4WAqNx/atkzd4z/cKA9xwTpHUYWbbYa3J5wdf3SxY+Q+7tBHTN1JgAqMVf1mU6Svn4K9bXXV3EY8QwXLXsguCxOhO5NRLWLQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=quicinc.com; dmarc=pass action=none header.from=quicinc.com;
+ dkim=pass header.d=quicinc.com; arc=none
+Received: from MW4PR02MB7186.namprd02.prod.outlook.com (2603:10b6:303:73::6)
+ by DM6PR02MB6057.namprd02.prod.outlook.com (2603:10b6:5:1fe::25) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5206.24; Fri, 6 May
+ 2022 13:36:43 +0000
+Received: from MW4PR02MB7186.namprd02.prod.outlook.com
+ ([fe80::1d18:abb7:c311:543f]) by MW4PR02MB7186.namprd02.prod.outlook.com
+ ([fe80::1d18:abb7:c311:543f%4]) with mapi id 15.20.5206.025; Fri, 6 May 2022
+ 13:36:43 +0000
+From:   "Sankeerth Billakanti (QUIC)" <quic_sbillaka@quicinc.com>
+To:     Stephen Boyd <swboyd@chromium.org>,
+        Doug Anderson <dianders@chromium.org>,
+        "Sankeerth Billakanti (QUIC)" <quic_sbillaka@quicinc.com>
+CC:     "bjorn.andersson@linaro.org" <bjorn.andersson@linaro.org>,
+        "dmitry.baryshkov@linaro.org" <dmitry.baryshkov@linaro.org>,
+        Rob Clark <robdclark@chromium.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Russell King <linux@armlinux.org.uk>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v3 13/13] ARM: dts: imx6ull-colibri: improve pinctrl node names
-Date:   Fri,  6 May 2022 15:24:16 +0200
-Message-Id: <20220506132416.273965-14-marcel@ziswiler.com>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220506132416.273965-1-marcel@ziswiler.com>
-References: <20220506132416.273965-1-marcel@ziswiler.com>
+        Vinod Koul <vkoul@kernel.org>,
+        "Abhinav Kumar (QUIC)" <quic_abhinavk@quicinc.com>,
+        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        freedreno <freedreno@lists.freedesktop.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        "Kalyan Thota (QUIC)" <quic_kalyant@quicinc.com>,
+        "Kuogee Hsieh (QUIC)" <quic_khsieh@quicinc.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>,
+        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>
+Subject: RE: [PATCH 1/2] dt-bindings: msm/dp: List supplies in the bindings
+Thread-Topic: [PATCH 1/2] dt-bindings: msm/dp: List supplies in the bindings
+Thread-Index: AQHYWOh0LkcVWva+fESk6uZPP3V7t60BIRCAgAABL4CAD35OcIAABpoAgAADzZCAAAmXAIABNkSw
+Date:   Fri, 6 May 2022 13:36:43 +0000
+Message-ID: <MW4PR02MB71866E59B844A0842DF7570EE1C59@MW4PR02MB7186.namprd02.prod.outlook.com>
+References: <20220425210643.2420919-1-dianders@chromium.org>
+ <20220425140619.1.Ibfde5a26a7182c4b478d570c23d2649823ac2cce@changeid>
+ <CAE-0n51eZpAKprRQ0HqjLciF_BVQHBDN8SMFNVmmOd=B9UBEzg@mail.gmail.com>
+ <CAD=FV=WmVK3wTQf_EAxSi0WPXedSFGCsKdyqRnHsskmMYTHDQA@mail.gmail.com>
+ <MW4PR02MB718610FAA14F966ADE1B1585E1C29@MW4PR02MB7186.namprd02.prod.outlook.com>
+ <CAE-0n51Q=cGwrMec3JEQENqWHV3pAUjLPT6RwZLA5xV080sgxQ@mail.gmail.com>
+ <MW4PR02MB71867A18732B266DE8FA2040E1C29@MW4PR02MB7186.namprd02.prod.outlook.com>
+ <CAE-0n53MEBYhyRtGWOCmjj923UQU_iVE_SEBQw6_FUci8NLz3w@mail.gmail.com>
+In-Reply-To: <CAE-0n53MEBYhyRtGWOCmjj923UQU_iVE_SEBQw6_FUci8NLz3w@mail.gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=quicinc.com;
+x-ms-exchange-messagesentrepresentingtype: 1
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 51ec83b0-ac78-40de-482f-08da2f657564
+x-ms-traffictypediagnostic: DM6PR02MB6057:EE_
+x-ld-processed: 98e9ba89-e1a1-4e38-9007-8bdabc25de1d,ExtAddr
+x-microsoft-antispam-prvs: <DM6PR02MB605753BC09DED35F892913149DC59@DM6PR02MB6057.namprd02.prod.outlook.com>
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: rd8W00pTQhtfddNzu9pVsnvRryZdHYncQkYkdK4yjThepW/gzzEfZ61EJ5UgAVuCci7aRIQ23tZTG09CELPq7nEMLvXGrmgeLoAUlnv+6BYfv0PXHhA23vWkdOHlJHFPptmB3MyrS3bF4YqsEf3B3BHuxqNtU5Q5keG/Q9TFsr/sqJ0tmtSiDXgWvUoUEOVbNjFFwvbUrTX9eHYQqWa0S0MEcgv/0YrJSD6Iqwvm865WA7RQzXDHoR5NMDMTYFAptuqGzXcwRHNV0VcxJup7y1dA31V7dVCEcYutzoS5/lIU0KrHgIdh8IddrS5m+WKN9Tr7JQkLMbXbB/2y5QKm2+L9kBo8I8NcPXLLld6LBQwg+QKq1bOcEcA3+geN7lH8TtY5E4N1suP3EFbiwLiKWYFZn4bcnUhlvEfcFdoRiYHm4G96T1TUgkujqXFBKGlaGUKEkx2R8H4TyfoTAOL8i7D18jSDe8jrt34B+4u1kT0PaggPpdurjmYgVSGwkRIhH5IAZ5E2WPtggsueogMrguXEd8/FhQH5qcGzNHB9VU+wBDs3Q173J9IdwqN/7gS+L3YWZmbPS9jMjrqksqqmMfa7KDsW3oHmju5c/EbaBmogHhPL3unfTPNaDOdzKE1Zo6Rgt1wQyRYZcF7wPd46tcf0N5X8SGCJCSOkpnpWPqeGpxc3PPDrdAOYJqjSLVXCb0wacVYUFFJzqpkfcfRHSw==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MW4PR02MB7186.namprd02.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(83380400001)(5660300002)(33656002)(66446008)(186003)(76116006)(4326008)(8676002)(66946007)(8936002)(64756008)(66476007)(52536014)(66556008)(9686003)(54906003)(55016003)(26005)(71200400001)(110136005)(7416002)(6506007)(316002)(508600001)(7696005)(2906002)(38100700002)(38070700005)(122000001)(86362001);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?V1ZNSUVrWVA3YndiZ1h1N3hlT0xrQk9NajlHais3aDE4d2tYQnlmajBLZlFP?=
+ =?utf-8?B?aDc0NCttKzQ0YTk5M0ZGTisyMkFwRUN6Sk1NVkFQOWVhTC9zdEpRbzNSeWt2?=
+ =?utf-8?B?Wkp6azJsL0t4THFocmE4ZEV3RjlBQXA5QUFseGZBU1JLSURzL0UvWmFaME9B?=
+ =?utf-8?B?SWd3OFFwYWhPMGttcncvbkxwVWQwalpHT3gxWDN4ZjVEY0N1WmhCcUcyeFVZ?=
+ =?utf-8?B?VUo5STJxTWJsNlZKb3J4RkZuTXN4QU1pUXI5VEg0MER4bXBVOHNvY2NMdkp6?=
+ =?utf-8?B?K1RYYXpvNFVOVTJHQlRwNWVIK3M0VGRHMHNVR0dFS0VzbHRsbkNyMVp1VkZr?=
+ =?utf-8?B?aXkrTmdFc2w2VGdsN1RXT04rbldXRlFBYnVlYkE4T2p0ay95OStiTDBWWlJu?=
+ =?utf-8?B?SVh3dHVGQ09Vek90WkUxdURkc09NS2RiSXIwbWdXWnZmQjdGS0t4eDNWWUlI?=
+ =?utf-8?B?bEFRYXRQL09xbDFaSWhkbU5IemRGS0dvTGdpVEVQNmdQQTBZbUVWR2I1cjVh?=
+ =?utf-8?B?WUwzeWR4SmdJWXZiamdLc21JMXhYRTZIaTFDWnlkaS9ZRXpKYWxxdWwrN1Vx?=
+ =?utf-8?B?K3B4dVZJRzUya1hIS0RFS2YwNjZBT1JqOW5ST28wY0NyK1FSWHBYeDhnbnVD?=
+ =?utf-8?B?c2VRUW8wU0VSVUtkRjNtZnNrVGFlNVZXWHhQUEk4WUhPSWZDK2VLQUUzL0o3?=
+ =?utf-8?B?SlgxUSsvZU5ITEt6TWNIY1JGNjM5bTZjc0dqTWM2WDNGWGNGQlltREE2b2x5?=
+ =?utf-8?B?SjNka0VmVlk0TXVGWmN5N1NxV3A5Q3ZpWGpNTDRWYW5JdExYcUlEbFYvdEF4?=
+ =?utf-8?B?SGtDa3o1TUVYWUFhNG42WjRxazd0eGE1NGg3V2NPN2R5RjlIWFJqaUhhOGVa?=
+ =?utf-8?B?djd4WjZYMXdlNkRtdHJHMlpUd3MwVVplendNVEdHc0NNVVU2OC9zcVRsbk0y?=
+ =?utf-8?B?MWc0UEp6M2JJOTV3OXppNWF4QzZpbkVvZVFZYTE1b0w1TGxSQ2VqdTVmQnVG?=
+ =?utf-8?B?aGROVnAra3ZldGFERFE1bUFjVG9ySEUyMi8zZFNueVZSN3FkYWRXVCtrQmM2?=
+ =?utf-8?B?bUdKa2RYWmJwVmFtQlBaY2NJWkFuMmJiaEtISEpMTkFwUUR4ZzJpY0xtMU5w?=
+ =?utf-8?B?TGU5czNVSEVuL3cxYmZPMHNtYkRVNXJqWHNkWHFERHU2NmNMRXJOQUxjY0gx?=
+ =?utf-8?B?b2t0L0xFWlQyKzFuRDc3dUVESHkrNE5ONFY3Qk5WYjJ4VEpkM1VHbXdZLzRT?=
+ =?utf-8?B?dENjcFNSOXZvMFhGQXhOdFl1ZFpaTXFVM1BmY2V1aGM3NVZ0dHNyTS9xZHAr?=
+ =?utf-8?B?TE14Ym15bHFYN3JjKzVHT1lQempOWTdqcDZMbUdrRW4xQmpGbUxXdGF1bmx5?=
+ =?utf-8?B?dXlES0RHMW5yRTJTS2xiSFNzaFh5QitaTUdWNS9Wa214MlM3UGkyWmlxNjZu?=
+ =?utf-8?B?SjV0VjUzT2tjZWZoUHRWQ2UyT1ZrUWlSU3dWNjQxVnpLa1JrclNKUXpMbEg4?=
+ =?utf-8?B?eDRrNldQTmJUbENjeGg3TGRYNG01S3ZZeGhPUDNxb0JGZ2xWS3RoMHM4bjMy?=
+ =?utf-8?B?b2djZGlucmo0eFJWcGMvR3Roa0laeDg1d3RkV3NYb0dXendZaW90TXdyMGo3?=
+ =?utf-8?B?Mm1aRzNwRlYrWUZNNWh1K25kbVUwVVJyL0RMVGlHZG1GV09sQURia0IzNjBa?=
+ =?utf-8?B?ZmprUVRnTENkTUh3MXFULzZsZkIxenZnK2laWFA3VGlMQ3lrbk9wQUFvbzFB?=
+ =?utf-8?B?ajVIM2krQ2tDUVZrQWwxcnN1eVUwOHhhV243S2kxVUVKOExzWDFiS2Z0UDl3?=
+ =?utf-8?B?eFIxZmdRUzN3VEZNZFJ2QVR6UVJuZUp0S2RpazNkYXJpSkFEblBGa1V2aFJz?=
+ =?utf-8?B?N3dJdDNMYlJWaHFjL2VHdyt1MndCQU1tT1R5YWhJMnpkcnZzSGxqNDV6TEww?=
+ =?utf-8?B?eTk2aVFncUlJU0plWHpFVXA4U2s4bk9UQ1VwN0c4aTBQZjFyV0RhQVQrZFlS?=
+ =?utf-8?B?MlRzeEc5Z1JzOTd1U2xMQXRUOCtxMm9CbnU5eXl3UWJidDJhS0c1QlNuckM2?=
+ =?utf-8?B?cGlBckpUV1lRZWJlSkxicEJKdDRFVEorYUZIeVJKdkE3RkpHbkVhalhHQXNN?=
+ =?utf-8?B?UDI4SStVWFdqZmYvY09vMWhCN1BtS1FtbEtPbzloazdIbDJoNFlPMzZjLytC?=
+ =?utf-8?B?eHFzMm9MOERIc3U4UkthMm5sdzM1UEZlSUJsWFMrVHFuNE1TMktMMXJrWGIr?=
+ =?utf-8?B?R25ocHdvTVc1bDBhNjVSSk5wZnRUb0UzK1pnQjl5L0pMeTFiOUU0U1hEV1R3?=
+ =?utf-8?B?Mi9ZTjNGaThRVVFlTG9TNENjM1FHWUtxcVdkWTlwSlRWMmlhVS9LZz09?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Provags-ID: V03:K1:tRLEt5KRAA5DyaTZ1wVXIj5nAvNNikzNfvudQtmSfN9J8qhom8U
- zVlS2+n1awxkbPmaJlb6b6XfJsFoStqtyLf2Y1aKf7D1HuRmvd5e3/xi79YF9u2js7Uo8Sj
- dSRGAH1GEh+zqfT+h2Eh6tcOCfj/jphNdpSYyiWFKQEERhYhlEkp+SRAR29t7IyV+rCupc2
- p3+gk3uYOUU9dJmyokXiA==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:tbbC5en0/DQ=:0qIjDmZgnYUbc6I6ebWVgi
- e+ivx1af6A8uaQqrlKNjheZZOY+zfk8QHkjV/9nTG5PdnKo09AUmdR/g8FDgRmUHrTPZe2Ssb
- 5N9VC5fQYAm3JcHLmHBJaoeJtwC/9TgnMjfG63kEqmaITd4dpSHtPBOTXnwp8W7fZDgkA7kh7
- aXyFKFik4iA42w4oHPyRjyznnUcc9Q2vhUdp2XpIETEA/JZY1zAE4YR5z+nalRSSNRx3XfwY/
- 2SmcIsSl77qpOMBOvslEf/Ipbo0dV9CaQEpa+ee+BGeuaoc7BnGCkeEqgmHVepKERmlPz5afM
- yluqBQUZD88QgEbLCcyXcqXMTtFWkYzu5Ui4wKigo3aL2Dc9DWHIVX5V9iWmSiXOzorr5+OQd
- 7b+yR4K7e/x7s1Lsdn3GQnZuzg100oFQhP9llzPBD+OZAmtCqGkXPdj3ay6xemP19E3hsQB3J
- 6aMWu692fUxaZiGXuimkxmA/a5DgWcDmL4AS3/olt27umB74lXElxhlPlJRw9KYOZvQDC+Y5F
- sdeM4X5StecL2fSYyIgQdebIPuUIPqxp50oHk9rB56B17J+FxPM6iXJzm0lsJJYuPTvGEdeFr
- TRgEEBBLeUz/e2cpe2ymycIvFlsW+sjCeoDsjyIevPdmLeatSqD4rNDQfgXemW96TVIZ2xbfv
- SBSk8R+c9i1vOj3rhLCcq+Y0rYm52z2ijYJnIHjgjyMiEwrq9ZrgQckEcPWW56BbYOi90S71T
- cP5d40kHrvHOuB9o
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-OriginatorOrg: quicinc.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: MW4PR02MB7186.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 51ec83b0-ac78-40de-482f-08da2f657564
+X-MS-Exchange-CrossTenant-originalarrivaltime: 06 May 2022 13:36:43.3742
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 98e9ba89-e1a1-4e38-9007-8bdabc25de1d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 9+Kds+WwFj5VepbCRgk86aqUuKMzY5rOB5HPVQy4pG0XcaYUQ/mKfnyJYhcWky60lBGTBTgdR7Kz0+EYLsBNUspE0XjCHcfemAZcuZHwR6c=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR02MB6057
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Marcel Ziswiler <marcel.ziswiler@toradex.com>
-
-Improve on pinctrl node names.
-
-Signed-off-by: Marcel Ziswiler <marcel.ziswiler@toradex.com>
-
----
-
-(no changes since v2)
-
-Changes in v2:
-- New commit with pinctrl node name improvements as suggested by Shawn.
-
- arch/arm/boot/dts/imx6ull-colibri.dtsi | 93 +++++++++++++-------------
- 1 file changed, 46 insertions(+), 47 deletions(-)
-
-diff --git a/arch/arm/boot/dts/imx6ull-colibri.dtsi b/arch/arm/boot/dts/imx6ull-colibri.dtsi
-index 4292311bdc6e..15ebabcacfc5 100644
---- a/arch/arm/boot/dts/imx6ull-colibri.dtsi
-+++ b/arch/arm/boot/dts/imx6ull-colibri.dtsi
-@@ -292,7 +292,7 @@ &usdhc1 {
- 	pinctrl-0 = <&pinctrl_usdhc1 &pinctrl_snvs_usdhc1_cd>;
- 	pinctrl-1 = <&pinctrl_usdhc1_100mhz &pinctrl_snvs_usdhc1_cd>;
- 	pinctrl-2 = <&pinctrl_usdhc1_200mhz &pinctrl_snvs_usdhc1_cd>;
--	pinctrl-3 = <&pinctrl_usdhc1 &pinctrl_snvs_usdhc1_sleep_cd>;
-+	pinctrl-3 = <&pinctrl_usdhc1 &pinctrl_snvs_usdhc1_cd_sleep>;
- 	assigned-clocks = <&clks IMX6UL_CLK_USDHC1_SEL>, <&clks IMX6UL_CLK_USDHC1>;
- 	assigned-clock-parents = <&clks IMX6UL_CLK_PLL2_PFD2>;
- 	assigned-clock-rates = <0>, <198000000>;
-@@ -312,7 +312,6 @@ &wdog1 {
- };
- 
- &iomuxc {
--
- 	pinctrl_adc1: adc1grp {
- 		fsl,pins = <
- 			MX6UL_PAD_GPIO1_IO00__GPIO1_IO00        0x3000 /* SODIMM 8 */
-@@ -336,13 +335,13 @@ MX6ULL_PAD_SNVS_TAMPER4__GPIO5_IO04     0xb0a0	/* SODIMM 107 */
- 		>;
- 	};
- 
--	pinctrl_can_int: canint-grp {
-+	pinctrl_can_int: canintgrp {
- 		fsl,pins = <
- 			MX6UL_PAD_ENET1_TX_DATA1__GPIO2_IO04	0x13010	/* SODIMM 73 */
- 		>;
- 	};
- 
--	pinctrl_enet2: enet2-grp {
-+	pinctrl_enet2: enet2grp {
- 		fsl,pins = <
- 			MX6UL_PAD_GPIO1_IO06__ENET2_MDIO	0x1b0b0
- 			MX6UL_PAD_GPIO1_IO07__ENET2_MDC		0x1b0b0
-@@ -357,7 +356,7 @@ MX6UL_PAD_ENET2_TX_EN__ENET2_TX_EN	0x1b0b0
- 		>;
- 	};
- 
--	pinctrl_enet2_sleep: enet2sleepgrp {
-+	pinctrl_enet2_sleep: enet2-sleepgrp {
- 		fsl,pins = <
- 			MX6UL_PAD_GPIO1_IO06__GPIO1_IO06	0x0
- 			MX6UL_PAD_GPIO1_IO07__GPIO1_IO07	0x0
-@@ -372,13 +371,13 @@ MX6UL_PAD_ENET2_TX_EN__GPIO2_IO13	0x0
- 		>;
- 	};
- 
--	pinctrl_ecspi1_cs: ecspi1-cs-grp {
-+	pinctrl_ecspi1_cs: ecspi1csgrp {
- 		fsl,pins = <
- 			MX6UL_PAD_LCD_DATA21__GPIO3_IO26	0x70a0	/* SODIMM 86 */
- 		>;
- 	};
- 
--	pinctrl_ecspi1: ecspi1-grp {
-+	pinctrl_ecspi1: ecspi1grp {
- 		fsl,pins = <
- 			MX6UL_PAD_LCD_DATA20__ECSPI1_SCLK	0x000a0	/* SODIMM 88 */
- 			MX6UL_PAD_LCD_DATA22__ECSPI1_MOSI	0x000a0 /* SODIMM 92 */
-@@ -386,27 +385,27 @@ MX6UL_PAD_LCD_DATA23__ECSPI1_MISO	0x100a0 /* SODIMM 90 */
- 		>;
- 	};
- 
--	pinctrl_flexcan1: flexcan1-grp {
-+	pinctrl_flexcan1: flexcan1grp {
- 		fsl,pins = <
- 			MX6UL_PAD_ENET1_RX_DATA0__FLEXCAN1_TX	0x1b020
- 			MX6UL_PAD_ENET1_RX_DATA1__FLEXCAN1_RX	0x1b020
- 		>;
- 	};
- 
--	pinctrl_flexcan2: flexcan2-grp {
-+	pinctrl_flexcan2: flexcan2grp {
- 		fsl,pins = <
- 			MX6UL_PAD_ENET1_TX_DATA0__FLEXCAN2_RX	0x1b020
- 			MX6UL_PAD_ENET1_RX_EN__FLEXCAN2_TX	0x1b020
- 		>;
- 	};
- 
--	pinctrl_gpio_bl_on: gpio-bl-on-grp {
-+	pinctrl_gpio_bl_on: gpioblongrp {
- 		fsl,pins = <
- 			MX6UL_PAD_JTAG_TMS__GPIO1_IO11		0x30a0	/* SODIMM 71 */
- 		>;
- 	};
- 
--	pinctrl_gpio1: gpio1-grp {
-+	pinctrl_gpio1: gpio1grp {
- 		fsl,pins = <
- 			MX6UL_PAD_UART3_RX_DATA__GPIO1_IO25	0x10b0 /* SODIMM 77 */
- 			MX6UL_PAD_JTAG_TCK__GPIO1_IO14		0x70a0 /* SODIMM 99 */
-@@ -419,7 +418,7 @@ MX6UL_PAD_UART3_RTS_B__GPIO1_IO27	0x10b0 /* SODIMM 186 */
- 		>;
- 	};
- 
--	pinctrl_gpio2: gpio2-grp { /* Camera */
-+	pinctrl_gpio2: gpio2grp { /* Camera */
- 		fsl,pins = <
- 			MX6UL_PAD_CSI_DATA04__GPIO4_IO25	0x10b0 /* SODIMM 69 */
- 			MX6UL_PAD_CSI_MCLK__GPIO4_IO17		0x10b0 /* SODIMM 75 */
-@@ -429,20 +428,20 @@ MX6UL_PAD_CSI_DATA05__GPIO4_IO26	0x10b0 /* SODIMM 98 */
- 		>;
- 	};
- 
--	pinctrl_gpio3: gpio3-grp { /* CAN2 */
-+	pinctrl_gpio3: gpio3grp { /* CAN2 */
- 		fsl,pins = <
- 			MX6UL_PAD_ENET1_RX_EN__GPIO2_IO02	0x10b0 /* SODIMM 178 */
- 			MX6UL_PAD_ENET1_TX_DATA0__GPIO2_IO03	0x10b0 /* SODIMM 188 */
- 		>;
- 	};
- 
--	pinctrl_gpio4: gpio4-grp {
-+	pinctrl_gpio4: gpio4grp {
- 		fsl,pins = <
- 			MX6UL_PAD_CSI_DATA07__GPIO4_IO28	0x10b0 /* SODIMM 65 */
- 		>;
- 	};
- 
--	pinctrl_gpio6: gpio6-grp { /* Wifi pins */
-+	pinctrl_gpio6: gpio6grp { /* Wifi pins */
- 		fsl,pins = <
- 			MX6UL_PAD_GPIO1_IO03__GPIO1_IO03	0x10b0 /* SODIMM 89 */
- 			MX6UL_PAD_CSI_DATA02__GPIO4_IO23	0x10b0 /* SODIMM 79 */
-@@ -454,7 +453,7 @@ MX6UL_PAD_CSI_HSYNC__GPIO4_IO20		0x10b0 /* SODIMM 94 */
- 		>;
- 	};
- 
--	pinctrl_gpio7: gpio7-grp { /* CAN1 */
-+	pinctrl_gpio7: gpio7grp { /* CAN1 */
- 		fsl,pins = <
- 			MX6UL_PAD_ENET1_RX_DATA0__GPIO2_IO00	0xb0b0/* SODIMM 55 */
- 			MX6UL_PAD_ENET1_RX_DATA1__GPIO2_IO01	0xb0b0 /* SODIMM 63 */
-@@ -465,7 +464,7 @@ MX6UL_PAD_ENET1_RX_DATA1__GPIO2_IO01	0xb0b0 /* SODIMM 63 */
- 	 * With an eMMC instead of a raw NAND device the following pins
- 	 * are available at SODIMM pins.
- 	 */
--	pinctrl_gpmi_gpio: gpmi-gpio-grp {
-+	pinctrl_gpmi_gpio: gpmigpiogrp {
- 		fsl,pins = <
- 			MX6UL_PAD_NAND_ALE__GPIO4_IO10		0x10b0 /* SODIMM 140 */
- 			MX6UL_PAD_NAND_CE0_B__GPIO4_IO13	0x10b0 /* SODIMM 144 */
-@@ -474,7 +473,7 @@ MX6UL_PAD_NAND_READY_B__GPIO4_IO12	0x10b0 /* SODIMM 142 */
- 		>;
- 	};
- 
--	pinctrl_gpmi_nand: gpmi-nand-grp {
-+	pinctrl_gpmi_nand: gpminandgrp {
- 		fsl,pins = <
- 			MX6UL_PAD_NAND_DATA00__RAWNAND_DATA00	0x100a9
- 			MX6UL_PAD_NAND_DATA01__RAWNAND_DATA01	0x100a9
-@@ -493,35 +492,35 @@ MX6UL_PAD_NAND_READY_B__RAWNAND_READY_B	0x100a9
- 		>;
- 	};
- 
--	pinctrl_i2c1: i2c1-grp {
-+	pinctrl_i2c1: i2c1grp {
- 		fsl,pins = <
- 			MX6UL_PAD_UART4_TX_DATA__I2C1_SCL 0x4001b8b0	/* SODIMM 196 */
- 			MX6UL_PAD_UART4_RX_DATA__I2C1_SDA 0x4001b8b0	/* SODIMM 194 */
- 		>;
- 	};
- 
--	pinctrl_i2c1_gpio: i2c1-gpio-grp {
-+	pinctrl_i2c1_gpio: i2c1-gpiogrp {
- 		fsl,pins = <
- 			MX6UL_PAD_UART4_TX_DATA__GPIO1_IO28 0x4001b8b0	/* SODIMM 196 */
- 			MX6UL_PAD_UART4_RX_DATA__GPIO1_IO29 0x4001b8b0	/* SODIMM 194 */
- 		>;
- 	};
- 
--	pinctrl_i2c2: i2c2-grp {
-+	pinctrl_i2c2: i2c2grp {
- 		fsl,pins = <
- 			MX6UL_PAD_UART5_TX_DATA__I2C2_SCL 0x4001f8b0
- 			MX6UL_PAD_UART5_RX_DATA__I2C2_SDA 0x4001f8b0
- 		>;
- 	};
- 
--	pinctrl_i2c2_gpio: i2c2-gpio-grp {
-+	pinctrl_i2c2_gpio: i2c2-gpiogrp {
- 		fsl,pins = <
- 			MX6UL_PAD_UART5_TX_DATA__GPIO1_IO30 0x4001f8b0
- 			MX6UL_PAD_UART5_RX_DATA__GPIO1_IO31 0x4001f8b0
- 		>;
- 	};
- 
--	pinctrl_lcdif_dat: lcdif-dat-grp {
-+	pinctrl_lcdif_dat: lcdifdatgrp {
- 		fsl,pins = <
- 			MX6UL_PAD_LCD_DATA00__LCDIF_DATA00 0x00079	/* SODIMM 76 */
- 			MX6UL_PAD_LCD_DATA01__LCDIF_DATA01 0x00079	/* SODIMM 70 */
-@@ -544,7 +543,7 @@ MX6UL_PAD_LCD_DATA17__LCDIF_DATA17 0x00079	/* SODIMM 61 */
- 		>;
- 	};
- 
--	pinctrl_lcdif_ctrl: lcdif-ctrl-grp {
-+	pinctrl_lcdif_ctrl: lcdifctrlgrp {
- 		fsl,pins = <
- 			MX6UL_PAD_LCD_CLK__LCDIF_CLK	    0x00079	/* SODIMM 56 */
- 			MX6UL_PAD_LCD_ENABLE__LCDIF_ENABLE  0x00079	/* SODIMM 44 */
-@@ -553,31 +552,31 @@ MX6UL_PAD_LCD_VSYNC__LCDIF_VSYNC    0x00079	/* SODIMM 82 */
- 		>;
- 	};
- 
--	pinctrl_pwm4: pwm4-grp {
-+	pinctrl_pwm4: pwm4grp {
- 		fsl,pins = <
- 			MX6UL_PAD_NAND_WP_B__PWM4_OUT	0x00079		/* SODIMM 59 */
- 		>;
- 	};
- 
--	pinctrl_pwm5: pwm5-grp {
-+	pinctrl_pwm5: pwm5grp {
- 		fsl,pins = <
- 			MX6UL_PAD_NAND_DQS__PWM5_OUT	0x00079		/* SODIMM 28 */
- 		>;
- 	};
- 
--	pinctrl_pwm6: pwm6-grp {
-+	pinctrl_pwm6: pwm6grp {
- 		fsl,pins = <
- 			MX6UL_PAD_ENET1_TX_EN__PWM6_OUT	0x00079		/* SODIMM 30 */
- 		>;
- 	};
- 
--	pinctrl_pwm7: pwm7-grp {
-+	pinctrl_pwm7: pwm7grp {
- 		fsl,pins = <
- 			MX6UL_PAD_ENET1_TX_CLK__PWM7_OUT	0x00079	/* SODIMM 67 */
- 		>;
- 	};
- 
--	pinctrl_uart1: uart1-grp {
-+	pinctrl_uart1: uart1grp {
- 		fsl,pins = <
- 			MX6UL_PAD_UART1_TX_DATA__UART1_DTE_RX	0x1b0b1	/* SODIMM 33 */
- 			MX6UL_PAD_UART1_RX_DATA__UART1_DTE_TX	0x1b0b1	/* SODIMM 35 */
-@@ -586,7 +585,7 @@ MX6UL_PAD_UART1_CTS_B__UART1_DTE_RTS	0x1b0b1	/* SODIMM 25 */
- 		>;
- 	};
- 
--	pinctrl_uart1_ctrl1: uart1-ctrl1-grp { /* Additional DTR, DCD */
-+	pinctrl_uart1_ctrl1: uart1ctrl1grp { /* Additional DTR, DCD */
- 		fsl,pins = <
- 			MX6UL_PAD_JTAG_TDI__GPIO1_IO13		0x70a0 /* SODIMM 31 / DCD */
- 			MX6UL_PAD_LCD_DATA18__GPIO3_IO23	0x10b0 /* SODIMM 29 / DSR */
-@@ -595,7 +594,7 @@ MX6UL_PAD_LCD_DATA19__GPIO3_IO24        0x10b0 /* SODIMM 37 / RI */
- 		>;
- 	};
- 
--	pinctrl_uart2: uart2-grp {
-+	pinctrl_uart2: uart2grp {
- 		fsl,pins = <
- 			MX6UL_PAD_UART2_TX_DATA__UART2_DTE_RX	0x1b0b1 /* SODIMM 36 */
- 			MX6UL_PAD_UART2_RX_DATA__UART2_DTE_TX	0x1b0b1 /* SODIMM 38 */
-@@ -603,20 +602,20 @@ MX6UL_PAD_UART2_CTS_B__UART2_DTE_RTS	0x1b0b1 /* SODIMM 32 */
- 			MX6UL_PAD_UART2_RTS_B__UART2_DTE_CTS	0x1b0b1 /* SODIMM 34 */
- 		>;
- 	};
--	pinctrl_uart5: uart5-grp {
-+	pinctrl_uart5: uart5grp {
- 		fsl,pins = <
- 			MX6UL_PAD_GPIO1_IO04__UART5_DTE_RX	0x1b0b1 /* SODIMM 19 */
- 			MX6UL_PAD_GPIO1_IO05__UART5_DTE_TX	0x1b0b1 /* SODIMM 21 */
- 		>;
- 	};
- 
--	pinctrl_usbh_reg: gpio-usbh-reg {
-+	pinctrl_usbh_reg: usbhreggrp {
- 		fsl,pins = <
- 			MX6UL_PAD_GPIO1_IO02__GPIO1_IO02	0x10b0 /* SODIMM 129 / USBH_PEN */
- 		>;
- 	};
- 
--	pinctrl_usdhc1: usdhc1-grp {
-+	pinctrl_usdhc1: usdhc1grp {
- 		fsl,pins = <
- 			MX6UL_PAD_SD1_CLK__USDHC1_CLK		0x10059 /* SODIMM 47 */
- 			MX6UL_PAD_SD1_CMD__USDHC1_CMD		0x17059 /* SODIMM 190 */
-@@ -627,7 +626,7 @@ MX6UL_PAD_SD1_DATA3__USDHC1_DATA3	0x17059 /* SODIMM 53 */
- 		>;
- 	};
- 
--	pinctrl_usdhc1_100mhz: usdhc1-100mhz-grp {
-+	pinctrl_usdhc1_100mhz: usdhc1-100mhzgrp {
- 		fsl,pins = <
- 			MX6UL_PAD_SD1_CLK__USDHC1_CLK		0x100b9
- 			MX6UL_PAD_SD1_CMD__USDHC1_CMD		0x170b9
-@@ -638,7 +637,7 @@ MX6UL_PAD_SD1_DATA3__USDHC1_DATA3	0x170b9
- 		>;
- 	};
- 
--	pinctrl_usdhc1_200mhz: usdhc1-200mhz-grp {
-+	pinctrl_usdhc1_200mhz: usdhc1-200mhzgrp {
- 		fsl,pins = <
- 			MX6UL_PAD_SD1_CLK__USDHC1_CLK		0x100f9
- 			MX6UL_PAD_SD1_CMD__USDHC1_CMD		0x170f9
-@@ -649,7 +648,7 @@ MX6UL_PAD_SD1_DATA3__USDHC1_DATA3	0x170f9
- 		>;
- 	};
- 
--	pinctrl_usdhc2: usdhc2-grp {
-+	pinctrl_usdhc2: usdhc2grp {
- 		fsl,pins = <
- 			MX6UL_PAD_CSI_DATA00__USDHC2_DATA0	0x17069
- 			MX6UL_PAD_CSI_DATA01__USDHC2_DATA1	0x17069
-@@ -677,7 +676,7 @@ MX6UL_PAD_NAND_DATA07__USDHC2_DATA7 0x17059
- 		>;
- 	};
- 
--	pinctrl_wdog: wdog-grp {
-+	pinctrl_wdog: wdoggrp {
- 		fsl,pins = <
- 			MX6UL_PAD_LCD_RESET__WDOG1_WDOG_ANY    0x30b0
- 		>;
-@@ -685,7 +684,7 @@ MX6UL_PAD_LCD_RESET__WDOG1_WDOG_ANY    0x30b0
- };
- 
- &iomuxc_snvs {
--	pinctrl_snvs_gpio1: snvs-gpio1-grp {
-+	pinctrl_snvs_gpio1: snvsgpio1grp {
- 		fsl,pins = <
- 			MX6ULL_PAD_SNVS_TAMPER6__GPIO5_IO06	0x110a0	/* SODIMM 93 */
- 			MX6ULL_PAD_SNVS_TAMPER3__GPIO5_IO03	0x110a0	/* SODIMM 95 */
-@@ -695,49 +694,49 @@ MX6ULL_PAD_SNVS_TAMPER8__GPIO5_IO08	0x110a0	/* SODIMM 138 */
- 		>;
- 	};
- 
--	pinctrl_snvs_gpio3: snvs-gpio3-grp { /* Wifi pins */
-+	pinctrl_snvs_gpio3: snvsgpio3grp { /* Wifi pins */
- 		fsl,pins = <
- 			MX6ULL_PAD_BOOT_MODE1__GPIO5_IO11	0x130a0	/* SODIMM 127 */
- 		>;
- 	};
- 
--	pinctrl_snvs_ad7879_int: snvs-ad7879-int-grp { /* TOUCH Interrupt */
-+	pinctrl_snvs_ad7879_int: snvsad7879intgrp { /* TOUCH Interrupt */
- 		fsl,pins = <
- 			MX6ULL_PAD_SNVS_TAMPER7__GPIO5_IO07	0x100b0
- 		>;
- 	};
- 
--	pinctrl_snvs_reg_sd: snvs-reg-sd-grp {
-+	pinctrl_snvs_reg_sd: snvsregsdgrp {
- 		fsl,pins = <
- 			MX6ULL_PAD_SNVS_TAMPER9__GPIO5_IO09	0x400100b0
- 		>;
- 	};
- 
--	pinctrl_snvs_usbc_det: snvs-usbc-det-grp {
-+	pinctrl_snvs_usbc_det: snvsusbcdetgrp {
- 		fsl,pins = <
- 			MX6ULL_PAD_SNVS_TAMPER2__GPIO5_IO02	0x130b0
- 		>;
- 	};
- 
--	pinctrl_snvs_gpiokeys: snvs-gpiokeys-grp {
-+	pinctrl_snvs_gpiokeys: snvsgpiokeysgrp {
- 		fsl,pins = <
- 			MX6ULL_PAD_SNVS_TAMPER1__GPIO5_IO01	0x130a0	/* SODIMM 45 / WAKE_UP */
- 		>;
- 	};
- 
--	pinctrl_snvs_usdhc1_cd: snvs-usdhc1-cd-grp {
-+	pinctrl_snvs_usdhc1_cd: snvsusdhc1cdgrp {
- 		fsl,pins = <
- 			MX6ULL_PAD_SNVS_TAMPER0__GPIO5_IO00	0x1b0a0 /* SODIMM 43 / MMC_CD */
- 		>;
- 	};
- 
--	pinctrl_snvs_usdhc1_sleep_cd: snvs-usdhc1-cd-grp-slp {
-+	pinctrl_snvs_usdhc1_cd_sleep: snvsusdhc1cd-sleepgrp {
- 		fsl,pins = <
- 			MX6ULL_PAD_SNVS_TAMPER0__GPIO5_IO00	0x0
- 		>;
- 	};
- 
--	pinctrl_snvs_wifi_pdn: snvs-wifi-pdn-grp {
-+	pinctrl_snvs_wifi_pdn: snvswifipdngrp {
- 		fsl,pins = <
- 			MX6ULL_PAD_BOOT_MODE1__GPIO5_IO11	0x130a0
- 		>;
--- 
-2.35.1
-
+Pj4gPj4gT3VyIGludGVybmFsIHBvd2VyIGdyaWQgZG9jdW1lbnRzIGxpc3QgdGhlIHJlZ3VsYXRv
+cnMgYXMNCj4+ID4+IFZERF9BXypfMVAyIGFuZCBWRERfQV8qXzBQOSBmb3IgYWxsIHRoZSBwbGF0
+Zm9ybXMuDQo+PiA+DQo+PiA+RG8geW91ciBpbnRlcm5hbCBwb3dlciBncmlkIGRvY3VtZW50cyBp
+bmRpY2F0ZSB3aGF0IHRoZXNlIHN1cHBsaWVzDQo+PiA+YXJlIHBvd2VyaW5nPyBUaGUgcXVlc3Rp
+b24gaXMgaWYgdGhlc2Ugc3VwcGxpZXMgcG93ZXIgYW55IG9mIHRoZQ0KPj4gPmxvZ2ljIGluc2lk
+ZSB0aGUgZURQIGNvbnRyb2xsZXIgb3IgaWYgdGhleSBvbmx5IHN1cHBseSBwb3dlciB0byB0aGUN
+Cj4+ID5hbmFsb2cgY2lyY3VpdHMgaW4gdGhlIGVEUCBwaHkuIElmIGl0J3MgdGhlIGVEUCBwaHkg
+b25seSB0aGVuIHRoZQ0KPj4gPnJlZ3VsYXRvciB1c2FnZSBpbiB0aGUgZURQIGRyaXZlciBzaG91
+bGQgYmUgcmVtb3ZlZC4gSSB3b3VsZCBzdXNwZWN0DQo+PiA+dGhpcyBpcyB0aGUgY2FzZSBiZWNh
+dXNlIHRoZSBjb250cm9sbGVyIGlzIHByb2JhYmx5IGFsbCBkaWdpdGFsIGxvZ2ljDQo+PiA+YW5k
+IHJ1bnMgYXQgdGhlIHR5cGljYWwgMS44ViB0aGF0IHRoZSByZXN0IG9mIHRoZSBTb0MgdXNlcy4N
+Cj4+ID5TaW1pbGFybHksIHRoZXNlIGFyZSB2b2x0YWdlIHJlZmVyZW5jZXMgd2hpY2ggc291bmQg
+bGlrZSBhIFBMTCByZWZlcmVuY2UNCj52b2x0YWdlLg0KPj4gPg0KPj4gPlBsZWFzZSBjbGFyaWZ5
+IHRoaXMgZnVydGhlci4NCj4+ID4NCj4+DQo+PiBGb3IgdGhlIERQIGRyaXZlciB1c2luZyB0aGUg
+dXNiLWRwIGNvbWJvIHBoeSwgdGhlcmUgd2VyZSBjYXNlcyB3aGVyZQ0KPj4gdGhlIHVzYiBkcml2
+ZXIgd2FzIHR1cm5pbmcgb2ZmIHRoZSBwaHkgYW5kIHBsbCByZWd1bGF0b3JzIHdoZW5ldmVyIHVz
+Yi1kcA0KPmNvbmN1cnJlbnQgbW9kZSBuZWVkIG5vdCBiZSBzdXBwb3J0ZWQuDQo+PiBUaGlzIGNh
+dXNlZCBwaHkgYW5kIHBsbCB0byBiZSBwb3dlcmVkIGRvd24gY2F1c2luZyBhdXggdHJhbnNhY3Rp
+b24gZmFpbHVyZXMNCj5hbmQgZGlzcGxheSBibGFua291dHMuDQo+PiBGcm9tIHRoZW4gb24sIGl0
+IGJlY2FtZSBhIHByYWN0aWNlIGZvciB0aGUgY29udHJvbGxlciBkcml2ZXIgdG8gdm90ZSBmb3Ig
+dGhlDQo+cGh5IGFuZCBwbGwgcmVndWxhdG9ycyBhbHNvLg0KPj4NCj4NCj5UaGF0IHNvdW5kcyBs
+aWtlIFVTQi1EUCBjb21ibyBwaHkgZHJpdmVyIGhhZCBpbXByb3BlciByZWd1bGF0b3IgcG93ZXIN
+Cj5tYW5hZ2VtZW50IHdoZXJlIGF1eCB0cmFuc2FjdGlvbnMgZnJvbSBEUCBkaWRuJ3Qga2VlcCB0
+aGUgcG93ZXIgb24gdG8NCj50aGUgcGh5LiBXaGVyZSBkb2VzIHRoZSBwb3dlciBwaHlzaWNhbGx5
+IGdvPyBJZiB0aGUgcG93ZXIgaXNuJ3QgcGh5c2ljYWxseQ0KPmdvaW5nIHRvIHRoZSBEUCBjb250
+cm9sbGVyIGl0IHNob3VsZG4ndCBiZSBjb250cm9sbGVkIGZyb20gdGhlIERQIGNvbnRyb2xsZXIN
+Cj5kcml2ZXIuIElmIHRoZSBhdXggYnVzIG5lZWRzIHRoZSBEUCBwaHkgZW5hYmxlZCwgdGhlIERQ
+IGNvbnRyb2xsZXIgZHJpdmVyDQo+c2hvdWxkIGVuYWJsZSB0aGUgcGh5IHBvd2VyICh2aWEgcGh5
+X3Bvd2VyX29uKCk/KS4NCg0KWWVzLCBpdCB3YXMgbGltaXRhdGlvbiBlYXJsaWVyIHdoZW4gd2Ug
+ZGlkIG5vdCBoYXZlIHByb3BlciBpbnRlcmZhY2UgdG8gaW50ZXJhY3QNCndpdGggdGhlIGNvbWJv
+IHBoeS4NCg0KSW4gdGhpcyBjYXNlLCB0aGUgcG93ZXIgZnJvbSB0aGUgcmVndWxhdG9ycyBnbyB0
+byB0aGUgY29tYm8gcGh5Lg0KDQpOb3cgdGhhdCB0aGVyZSBpcyBhbiBpbnRlcmZhY2UgZm9yIHRo
+ZSBjb250cm9sbGVyIHRvIGludGVyYWN0IHdpdGggdGhlDQpjb21ibyBwaHksIHRoZSBwcm9wb3Nh
+bCB0byBkcm9wIHRoZSBwaHkgcmVndWxhdG9yIHZvdGluZyBmcm9tIHRoZSBjb250cm9sbGVyDQpk
+cml2ZXIgc2VlbXMgcmVhc29uYWJsZSB0byBtZS4NCg0KVGhlIHBoeV9wb3dlcl9vbigpIGlzIHVz
+ZWQgZm9yIGdldHRpbmcgdGhlIHBoeSBvdXQgb2YgbG93IHBvd2VyIHN0YXRlIG9yIGdldHRpbmcN
+Cml0IHJlYWR5IGZvciBkYXRhIHRyYW5zZmVyLg0KDQpUaGUgY29udHJvbGxlciBkcml2ZXIgbmVl
+ZHMgdG8gZW5hYmxlIHRoZSBwaHkgcG93ZXIgdmlhIHRoZSBwaHlfaW5pdCgpIGJlZm9yZQ0KYW55
+IGludGVyYWN0aW9uIHdpdGggdGhlIHNpbmsgbGlrZSB0aGUgYXV4IHRyYW5zYWN0aW9ucyBvciBi
+ZWZvcmUgc2VuZGluZyB0aGUgZGF0YS4NClRoZSBjb250cm9sbGVyIGNhbiBkaXNhYmxlIHRoZSBy
+ZWd1bGF0b3JzIHZpYSB0aGUgcGh5X2V4aXQoKSBjYWxsLg0KDQpUaGFuayB5b3UsDQpTYW5rZWVy
+dGgNCg==
