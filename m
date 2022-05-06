@@ -2,62 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 910D451E28D
-	for <lists+devicetree@lfdr.de>; Sat,  7 May 2022 01:41:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F18451E28A
+	for <lists+devicetree@lfdr.de>; Sat,  7 May 2022 01:41:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348461AbiEFWnl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 May 2022 18:43:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50004 "EHLO
+        id S1356030AbiEFWns (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 May 2022 18:43:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50036 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1355771AbiEFWnk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 May 2022 18:43:40 -0400
-Received: from mail-oa1-f53.google.com (mail-oa1-f53.google.com [209.85.160.53])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2044F5AA48
-        for <devicetree@vger.kernel.org>; Fri,  6 May 2022 15:39:56 -0700 (PDT)
-Received: by mail-oa1-f53.google.com with SMTP id 586e51a60fabf-d39f741ba0so8673993fac.13
-        for <devicetree@vger.kernel.org>; Fri, 06 May 2022 15:39:56 -0700 (PDT)
+        with ESMTP id S1385090AbiEFWnq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 May 2022 18:43:46 -0400
+Received: from mail-ot1-f53.google.com (mail-ot1-f53.google.com [209.85.210.53])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DB6261607
+        for <devicetree@vger.kernel.org>; Fri,  6 May 2022 15:40:00 -0700 (PDT)
+Received: by mail-ot1-f53.google.com with SMTP id y14-20020a9d460e000000b00605ee347da1so5856389ote.8
+        for <devicetree@vger.kernel.org>; Fri, 06 May 2022 15:40:00 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=EARAirmRDARZJDnc2wIGPiTE3SCh1Sk7ihIbfULQouQ=;
-        b=CVH9seEFvroFRFC/9Q3eJEonJLYTxJCvC0MlGqEWCNeZmQ+g4qJNI6oSox9iAlBjsY
-         aioMRE3hupwkRc6evS/Ra+tTVvYpwy07RlDdytOWwJJ2Ih1FJ/kJ3InKewQM6XY78qsL
-         34DkhD5H77wCalTK5BgVAyCRhkDKcHM1FANiqhXtZjORhUbjfqUVjQL/sNm3hCr7jQsw
-         ouEY1GVvqyUU/t9y97auXf0cpWVOMa41m2vNuqhRU7//TC6+94o8VeCZFhJS7cFHvRy7
-         GBu0Cd8S8XNmCR5lz0Hb/P9c/H7lFmUUKvZSyZ0AA9FdyXz30cfqEvWWj2c8xgaZstAy
-         9/Uw==
-X-Gm-Message-State: AOAM530XS/uJEYdcgkT6DhnZ1cJSff9tJWihMAEkMjiZZv1ltgzeJGrf
-        /hgBU/bB9jgW9OrXzpyAtQ==
-X-Google-Smtp-Source: ABdhPJyCG67cLedleTEytlah9EbrGMeFPIlbBbUWhHQVbzJSRnDcIllrDprW/uYuVOEWDyz152z+xg==
-X-Received: by 2002:a05:6870:c59a:b0:e9:3d37:1bbd with SMTP id ba26-20020a056870c59a00b000e93d371bbdmr5428453oab.91.1651876795325;
-        Fri, 06 May 2022 15:39:55 -0700 (PDT)
+        bh=JRAgCq5GM8wuUh6niNskRess02I0uopRoA0TA1SpzX4=;
+        b=oskCL47B0jslAzlJOuY7GqHyHYaFd+x5f2wMbQp2CcFPcztg0WoFsrdGuVvfCRXyfE
+         RbYcgNsvQGZ30/yEqCE7RuQuhCJvljWEJlfCEQQXVNiwGd02cGSLgihmxlHuEBsrBr8j
+         XTD2OQ09SV2jNrHNKRghv1mHALP266gR0/rFrJke1CzgT12K8Ek0H26x4THo20XiXEm4
+         F/ZG3UzCeobzQUSpAvJophSKZBA4jSPtBVSw6VpzzyXwr6yqepE8VJbtgc62XNzXuwWT
+         wTQzDKKt3nPQu2tWxpM2Ai49D5BCuJPNDjLsKyYDJQFJtp32JL5UA23bU73bZ4MPSNpG
+         LMeQ==
+X-Gm-Message-State: AOAM530DilLjN+8UXvcJXEDe3+GmqdBXzZ8wNdWhIlvu7XJAXGOJjatj
+        5gAIskhIY4W+0lGfZJBxJQ==
+X-Google-Smtp-Source: ABdhPJy7nAcwUD36fRri/MP+FHxvQKAxa9ZVmusmeYu/DvmwfbdWNsmVhfw89TJhO1jaQablvim+pw==
+X-Received: by 2002:a9d:5184:0:b0:605:ea2e:72cb with SMTP id y4-20020a9d5184000000b00605ea2e72cbmr1861525otg.234.1651876799632;
+        Fri, 06 May 2022 15:39:59 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id e6-20020aca1306000000b00325cda1ffb5sm2059016oii.52.2022.05.06.15.39.54
+        by smtp.gmail.com with ESMTPSA id 44-20020a9d082f000000b0060603221272sm2089165oty.66.2022.05.06.15.39.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 06 May 2022 15:39:54 -0700 (PDT)
-Received: (nullmailer pid 2407412 invoked by uid 1000);
+        Fri, 06 May 2022 15:39:59 -0700 (PDT)
+Received: (nullmailer pid 2407421 invoked by uid 1000);
         Fri, 06 May 2022 22:39:53 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Lucas Stach <l.stach@pengutronix.de>
-Cc:     Marek Vasut <marex@denx.de>, Robert Foss <robert.foss@linaro.org>,
-        devicetree@vger.kernel.org,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        linux-phy@lists.infradead.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
+To:     Andre Przywara <andre.przywara@arm.com>
+Cc:     David Airlie <airlied@linux.ie>, devicetree@vger.kernel.org,
+        Robin Murphy <robin.murphy@arm.com>,
         dri-devel@lists.freedesktop.org,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Sandor Yu <Sandor.yu@nxp.com>, patchwork-lst@pengutronix.de
-In-Reply-To: <20220506181034.2001548-2-l.stach@pengutronix.de>
-References: <20220506181034.2001548-1-l.stach@pengutronix.de> <20220506181034.2001548-2-l.stach@pengutronix.de>
-Subject: Re: [PATCH v0.5 1/9] dt-bindings: display: imx: add binding for i.MX8MP HDMI TX
+        linux-arm-kernel@lists.infradead.org,
+        Liviu Dudau <liviu.dudau@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Daniel Vetter <daniel@ffwll.ch>
+In-Reply-To: <20220506140533.3566431-9-andre.przywara@arm.com>
+References: <20220506140533.3566431-1-andre.przywara@arm.com> <20220506140533.3566431-9-andre.przywara@arm.com>
+Subject: Re: [PATCH v2 08/11] dt-bindings: display: convert PL110/PL111 to DT schema
 Date:   Fri, 06 May 2022 17:39:53 -0500
-Message-Id: <1651876793.638106.2407411.nullmailer@robh.at.kernel.org>
+Message-Id: <1651876793.685307.2407420.nullmailer@robh.at.kernel.org>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
@@ -69,41 +65,122 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 06 May 2022 20:10:26 +0200, Lucas Stach wrote:
-> The HDMI TX controller on the i.MX8MP SoC is a Synopsys designware IP
-> core with a little bit of SoC integration around it.
+On Fri, 06 May 2022 15:05:30 +0100, Andre Przywara wrote:
+> The Arm PL110 and PL111 are IP blocks that provide a display engine with
+> an LCD interface, being able to drive a variety of LC panels.
 > 
-> Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
+> Convert the binding over to DT schema, to the DTs can be automatically
+> checked.
+> This still contains the deprecated "arm,pl11x,tft-r0g0b0-pads" property,
+> because this is used by several DTs in the tree.
+> 
+> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
 > ---
->  .../bindings/display/imx/fsl,imx8mp-hdmi.yaml | 73 +++++++++++++++++++
->  1 file changed, 73 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx8mp-hdmi.yaml
+>  .../devicetree/bindings/display/arm,pl11x.txt | 110 -----------
+>  .../bindings/display/arm,pl11x.yaml           | 174 ++++++++++++++++++
+>  2 files changed, 174 insertions(+), 110 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/display/arm,pl11x.txt
+>  create mode 100644 Documentation/devicetree/bindings/display/arm,pl11x.yaml
 > 
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Running 'make dtbs_check' with the schema in this patch gives the
+following warnings. Consider if they are expected or the schema is
+incorrect. These may not be new warnings.
 
-yamllint warnings/errors:
+Note that it is not yet a requirement to have 0 warnings for dtbs_check.
+This will change in the future.
 
-dtschema/dtc warnings/errors:
-Error: Documentation/devicetree/bindings/display/imx/fsl,imx8mp-hdmi.example.dts:36.45-46 syntax error
-FATAL ERROR: Unable to parse input tree
-make[1]: *** [scripts/Makefile.lib:364: Documentation/devicetree/bindings/display/imx/fsl,imx8mp-hdmi.example.dtb] Error 1
-make[1]: *** Waiting for unfinished jobs....
-make: *** [Makefile:1401: dt_binding_check] Error 2
+Full log is available here: https://patchwork.ozlabs.org/patch/
 
-doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/patch/
+clcd@10020000: 'oneOf' conditional failed, one must be fixed:
+	arch/arm/boot/dts/arm-realview-eb-11mp-bbrevd-ctrevb.dtb
+	arch/arm/boot/dts/arm-realview-eb-11mp-bbrevd.dtb
+	arch/arm/boot/dts/arm-realview-eb-11mp-ctrevb.dtb
+	arch/arm/boot/dts/arm-realview-eb-11mp.dtb
+	arch/arm/boot/dts/arm-realview-eb-a9mp-bbrevd.dtb
+	arch/arm/boot/dts/arm-realview-eb-a9mp.dtb
 
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
+clcd@31040000: 'interrupt-names' is a required property
+	arch/arm/boot/dts/lpc3250-phy3250.dtb
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+clcd@60000000: 'clock-names' is a required property
+	arch/arm/boot/dts/spear300-evb.dtb
 
-pip3 install dtschema --upgrade
+clcd@60000000: 'clocks' is a required property
+	arch/arm/boot/dts/spear300-evb.dtb
 
-Please check and re-submit.
+clcd@60000000: 'interrupt-names' is a required property
+	arch/arm/boot/dts/spear300-evb.dtb
+
+clcd@60000000: 'port' is a required property
+	arch/arm/boot/dts/spear300-evb.dtb
+
+clcd@90000000: 'clock-names' is a required property
+	arch/arm/boot/dts/spear320-hmi.dtb
+
+clcd@90000000: 'clocks' is a required property
+	arch/arm/boot/dts/spear320-hmi.dtb
+
+clcd@90000000: 'interrupt-names' is a required property
+	arch/arm/boot/dts/spear320-hmi.dtb
+
+clcd@90000000: 'port' is a required property
+	arch/arm/boot/dts/spear320-hmi.dtb
+
+clcd@c0000000: 'interrupt-names' is a required property
+	arch/arm/boot/dts/integratorcp.dtb
+
+clcd@c0000000: 'port@0' does not match any of the regexes: 'pinctrl-[0-9]+'
+	arch/arm/boot/dts/integratorcp.dtb
+
+clcd@c0000000: 'port' is a required property
+	arch/arm/boot/dts/integratorcp.dtb
+
+clcd@fc200000: 'clock-names' is a required property
+	arch/arm/boot/dts/spear600-evb.dtb
+
+clcd@fc200000: 'clocks' is a required property
+	arch/arm/boot/dts/spear600-evb.dtb
+
+clcd@fc200000: 'interrupt-names' is a required property
+	arch/arm/boot/dts/spear600-evb.dtb
+
+clcd@fc200000: 'port' is a required property
+	arch/arm/boot/dts/spear600-evb.dtb
+
+display@1000000: 'interrupt-names' is a required property
+	arch/arm/boot/dts/integratorap-im-pd1.dtb
+
+display@1000000: 'port@0' does not match any of the regexes: 'pinctrl-[0-9]+'
+	arch/arm/boot/dts/integratorap-im-pd1.dtb
+
+display@1000000: 'port' is a required property
+	arch/arm/boot/dts/integratorap-im-pd1.dtb
+
+display@10120000: 'interrupt-names' is a required property
+	arch/arm/boot/dts/versatile-ab.dtb
+	arch/arm/boot/dts/versatile-ab-ib2.dtb
+	arch/arm/boot/dts/versatile-pb.dtb
+
+display@10120000: 'port@0' does not match any of the regexes: 'pinctrl-[0-9]+'
+	arch/arm/boot/dts/versatile-ab.dtb
+	arch/arm/boot/dts/versatile-ab-ib2.dtb
+	arch/arm/boot/dts/versatile-pb.dtb
+
+display@10120000: 'port' is a required property
+	arch/arm/boot/dts/versatile-ab.dtb
+	arch/arm/boot/dts/versatile-ab-ib2.dtb
+	arch/arm/boot/dts/versatile-pb.dtb
+
+lcd@C0000000: 'interrupt-names' is a required property
+	arch/arm/boot/dts/nspire-clp.dtb
+	arch/arm/boot/dts/nspire-cx.dtb
+	arch/arm/boot/dts/nspire-tp.dtb
+
+lcd-controller@40008000: 'resets' does not match any of the regexes: 'pinctrl-[0-9]+'
+	arch/arm/boot/dts/lpc4337-ciaa.dtb
+	arch/arm/boot/dts/lpc4350-hitex-eval.dtb
+	arch/arm/boot/dts/lpc4357-ea4357-devkit.dtb
+	arch/arm/boot/dts/lpc4357-myd-lpc4357.dtb
 
