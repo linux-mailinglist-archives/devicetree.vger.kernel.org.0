@@ -2,203 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 623F851DE16
-	for <lists+devicetree@lfdr.de>; Fri,  6 May 2022 19:05:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D289751DE61
+	for <lists+devicetree@lfdr.de>; Fri,  6 May 2022 19:32:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1444094AbiEFRJD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 May 2022 13:09:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42762 "EHLO
+        id S239355AbiEFRgM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 May 2022 13:36:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34516 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1444093AbiEFRJB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 May 2022 13:09:01 -0400
-Received: from smtp2.infineon.com (smtp2.infineon.com [IPv6:2a00:18f0:1e00:4::4])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C06A84D9E7;
-        Fri,  6 May 2022 10:05:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=infineon.com; i=@infineon.com; q=dns/txt; s=IFXMAIL;
-  t=1651856717; x=1683392717;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=8R9iqVwlSWBcLxOnV282bKq83f750AtG8muuAs3ZADI=;
-  b=HBs7GtUEFQ5Pe2zrwVGT48QaT3OOxGu86ca5aVglAO72xdEFFV5693YE
-   bhm/AVRB6/9Ps9TQKi/OOl2/ALvvkZbGPbk5lmtZFGmBG6gTVBbegCAVm
-   x+INJdBhXBO2w3KPFq2AJaVYu6JZXm3aaLOjSBgZ7UM1/Bmbf0rq/Io57
-   A=;
-X-SBRS: None
-X-IronPort-AV: E=McAfee;i="6400,9594,10339"; a="176373805"
-X-IronPort-AV: E=Sophos;i="5.91,203,1647298800"; 
-   d="scan'208";a="176373805"
-Received: from unknown (HELO mucxv001.muc.infineon.com) ([172.23.11.16])
-  by smtp2.infineon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 May 2022 19:05:15 +0200
-Received: from MUCSE819.infineon.com (MUCSE819.infineon.com [172.23.29.45])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mucxv001.muc.infineon.com (Postfix) with ESMTPS;
-        Fri,  6 May 2022 19:05:15 +0200 (CEST)
-Received: from ISCN5CG1067W80.agb.infineon.com (172.23.8.247) by
- MUCSE819.infineon.com (172.23.29.45) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Fri, 6 May 2022 19:05:14 +0200
-From:   Johannes Holland <johannes.holland@infineon.com>
-To:     <jarkko@kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-integrity@vger.kernel.org>, <robh+dt@kernel.org>,
-        <devicetree@vger.kernel.org>
-CC:     <peterhuewe@gmx.de>, <jgg@ziepe.ca>,
-        <krzysztof.kozlowski+dt@linaro.org>,
-        Johannes Holland <johannes.holland@infineon.com>
-Subject: [PATCH v2 4/4] dt-bindings: doc/devicetree/bindings/security/tpm: Move tpm-i2c.txt to YAML
-Date:   Fri, 6 May 2022 19:00:17 +0200
-Message-ID: <20220506170013.22598-4-johannes.holland@infineon.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220506170013.22598-1-johannes.holland@infineon.com>
-References: <20220506170013.22598-1-johannes.holland@infineon.com>
+        with ESMTP id S1444142AbiEFRgK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 May 2022 13:36:10 -0400
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 33FE05047B;
+        Fri,  6 May 2022 10:32:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1651858347; x=1683394347;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=RJIpyH4aTtIDi9aTnRTxdWTTpZ/zrmSOQtRCRTJZbRw=;
+  b=iTnFYc4gmZeuC0UJYgs0IHP/gXEyWLz5sU5Aae/3yIdSAGaEhjYehT2P
+   jtR7dnX5e3opm0UFej3f3BerB90zB1Ty0Xfg+TUpOIl1q+1qfD31Ou/jx
+   8ZEc0HOp1TUQLfSrgytNjrMNCJU1p+WReTiehU+7RY8hueiTb86hMv1rE
+   rIL3TDSCj6caMQXFsq3rW9ownSDu7LYDeMzPROrcZ1ZvbK+PCyjLN5XfC
+   wGyPDspl9U6bQ6KjeyKPdzCEV8MWe++tG0+cePTP7J58uq53hm3pmmObN
+   qcmBguNYF/C4yQC22M7u1kTZcWlZYGH/kKII92lVG/Bku3bOYaLLxg1vs
+   w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10339"; a="268425255"
+X-IronPort-AV: E=Sophos;i="5.91,205,1647327600"; 
+   d="scan'208";a="268425255"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 May 2022 10:32:26 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.91,205,1647327600"; 
+   d="scan'208";a="812475599"
+Received: from lkp-server01.sh.intel.com (HELO 5056e131ad90) ([10.239.97.150])
+  by fmsmga006.fm.intel.com with ESMTP; 06 May 2022 10:32:23 -0700
+Received: from kbuild by 5056e131ad90 with local (Exim 4.95)
+        (envelope-from <lkp@intel.com>)
+        id 1nn1oV-000DiS-2G;
+        Fri, 06 May 2022 17:32:23 +0000
+Date:   Sat, 7 May 2022 01:31:56 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Luca Weiss <luca@z3ntu.xyz>, linux-arm-msm@vger.kernel.org
+Cc:     kbuild-all@lists.01.org, ~postmarketos/upstreaming@lists.sr.ht,
+        phone-devel@vger.kernel.org, Luca Weiss <luca@z3ntu.xyz>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] ARM: dts: qcom: msm8974-FP2: Add notification LED
+Message-ID: <202205070100.8DCDwfSb-lkp@intel.com>
+References: <20220505163029.6541-1-luca@z3ntu.xyz>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [172.23.8.247]
-X-ClientProxiedBy: MUCSE812.infineon.com (172.23.29.38) To
- MUCSE819.infineon.com (172.23.29.45)
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220505163029.6541-1-luca@z3ntu.xyz>
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Migrate the existing plain text I2c driver schema to YAML and extend by
-the options of the generic TIS driver for I2C TPMs which comply to the
-TCG PC Client Platform TPM Profile (PTP) specification for TPM 2.0 v1.04
-Revision 14.
+Hi Luca,
 
-Signed-off-by: Johannes Holland <johannes.holland@infineon.com>
----
-Changelog:
- * v2:
-   * move existing device tree instead of just adding a new one
-   * do not use wildcard compatibles
-   * make properties "label", "linux,sml-base" and "linux,sml-size"
-     optional, as they should be
+Thank you for the patch! Yet something to improve:
 
-All properties are listed, even if some drivers do not implement them.
+[auto build test ERROR on next-20220505]
+[cannot apply to robh/for-next v5.18-rc5 v5.18-rc4 v5.18-rc3 v5.18-rc5]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
 
-As mentioned, I kept the generic compatible in there because the TPM
-is a standardized device. For vendor-specific features and bugs, the
-specific compatibles can be used. Please let me know if you need it
-removed.
+url:    https://github.com/intel-lab-lkp/linux/commits/Luca-Weiss/ARM-dts-qcom-msm8974-FP2-Add-notification-LED/20220506-003524
+base:    632a8c88e339fe86ae6e420a24dfc641d4dd0ab5
+config: arm-allmodconfig (https://download.01.org/0day-ci/archive/20220507/202205070100.8DCDwfSb-lkp@intel.com/config)
+compiler: arm-linux-gnueabi-gcc (GCC) 11.3.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/45445147f88f2416d7bc32c8a72c714818fe466c
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Luca-Weiss/ARM-dts-qcom-msm8974-FP2-Add-notification-LED/20220506-003524
+        git checkout 45445147f88f2416d7bc32c8a72c714818fe466c
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.3.0 make.cross W=1 O=build_dir ARCH=arm SHELL=/bin/bash
 
- .../bindings/security/tpm/tpm-i2c.txt         | 26 --------
- .../bindings/security/tpm/tpm-i2c.yaml        | 66 +++++++++++++++++++
- 2 files changed, 66 insertions(+), 26 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/security/tpm/tpm-i2c.txt
- create mode 100644 Documentation/devicetree/bindings/security/tpm/tpm-i2c.yaml
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
 
-diff --git a/Documentation/devicetree/bindings/security/tpm/tpm-i2c.txt b/Documentation/devicetree/bindings/security/tpm/tpm-i2c.txt
-deleted file mode 100644
-index a65d7b71e81a..000000000000
---- a/Documentation/devicetree/bindings/security/tpm/tpm-i2c.txt
-+++ /dev/null
-@@ -1,26 +0,0 @@
--* Device Tree Bindings for I2C based Trusted Platform Module(TPM)
--
--Required properties:
--
--- compatible     : 'manufacturer,model', eg. nuvoton,npct650
--- label          : human readable string describing the device, eg. "tpm"
--- linux,sml-base : 64-bit base address of the reserved memory allocated for
--                   the firmware event log
--- linux,sml-size : size of the memory allocated for the firmware event log
--
--Optional properties:
--
--- powered-while-suspended: present when the TPM is left powered on between
--                           suspend and resume (makes the suspend/resume
--                           callbacks do nothing).
--
--Example (for OpenPower Systems with Nuvoton TPM 2.0 on I2C)
------------------------------------------------------------
--
--tpm@57 {
--	reg = <0x57>;
--	label = "tpm";
--	compatible = "nuvoton,npct650", "nuvoton,npct601";
--	linux,sml-base = <0x7f 0xfd450000>;
--	linux,sml-size = <0x10000>;
--};
-diff --git a/Documentation/devicetree/bindings/security/tpm/tpm-i2c.yaml b/Documentation/devicetree/bindings/security/tpm/tpm-i2c.yaml
-new file mode 100644
-index 000000000000..952605ab8611
---- /dev/null
-+++ b/Documentation/devicetree/bindings/security/tpm/tpm-i2c.yaml
-@@ -0,0 +1,66 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/security/tpm/tpm-i2c.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: I2C PTP based TPM Device Tree Bindings
-+
-+maintainers:
-+  - Johannes Holland <johannes.holland@infineon.com>
-+
-+description:
-+  Device Tree Bindings for I2C based Trusted Platform Module (TPM).
-+
-+properties:
-+  compatible:
-+    items:
-+      - enum:
-+          # Infineon's Trusted Platform Module (TPM) (SLB9673)
-+          - infineon,slb9673
-+          - nuvoton,npct601
-+          - nuvoton,npct650
-+      - const: tcg,tpm-tis-i2c
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupt:
-+    maxItems: 1
-+
-+  label:
-+    description: |
-+      Human readable string describing the device, eg. "tpm".
-+
-+  linux,sml-base:
-+    description: |
-+      64-bit base address of the reserved memory allocated
-+      for the firmware event log.
-+
-+  linux,sml-size:
-+    description: |
-+      Size of the memory allocated for the firmware event log.
-+
-+  powered-while-suspended:
-+    description: |
-+      Present when the TPM is left powered on between suspend and
-+      resume (makes the suspend/resume callbacks do nothing).
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    i2c {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+
-+      tpm@2e {
-+        compatible = "infineon,slb9673", "tcg,tpm-tis-i2c";
-+        reg = <0x2e>;
-+      };
-+    };
-+...
+All errors (new ones prefixed by >>):
+
+>> Error: arch/arm/boot/dts/qcom-msm8974pro-fairphone-fp2.dts:123.1-12 Label or path pm8941_lpg not found
+   FATAL ERROR: Syntax error parsing input tree
+
 -- 
-2.34.1
-
+0-DAY CI Kernel Test Service
+https://01.org/lkp
