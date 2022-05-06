@@ -2,70 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C2AF151CF96
-	for <lists+devicetree@lfdr.de>; Fri,  6 May 2022 05:33:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 154A351CFD7
+	for <lists+devicetree@lfdr.de>; Fri,  6 May 2022 05:49:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1388619AbiEFDhL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 May 2022 23:37:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36738 "EHLO
+        id S237204AbiEFDxW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 May 2022 23:53:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51194 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1388625AbiEFDhD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 23:37:03 -0400
-Received: from mail-oa1-x34.google.com (mail-oa1-x34.google.com [IPv6:2001:4860:4864:20::34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48DEB6353E
-        for <devicetree@vger.kernel.org>; Thu,  5 May 2022 20:33:21 -0700 (PDT)
-Received: by mail-oa1-x34.google.com with SMTP id 586e51a60fabf-ed9ac77cbbso6109122fac.1
-        for <devicetree@vger.kernel.org>; Thu, 05 May 2022 20:33:21 -0700 (PDT)
+        with ESMTP id S1383368AbiEFDxU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 23:53:20 -0400
+Received: from mail-ot1-x335.google.com (mail-ot1-x335.google.com [IPv6:2607:f8b0:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64875457A6
+        for <devicetree@vger.kernel.org>; Thu,  5 May 2022 20:49:38 -0700 (PDT)
+Received: by mail-ot1-x335.google.com with SMTP id h10-20020a056830400a00b00605e92cc450so4194194ots.11
+        for <devicetree@vger.kernel.org>; Thu, 05 May 2022 20:49:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to;
-        bh=IO0/vO4FJ1sTb7qZweTSIBe2tfCCOReYy49usyQ9Yho=;
-        b=UDayjcrvBMd3DZhNplOehLV6npjyo4DG4Qxd9K5hcMRE1W0kV+UC6C1jqO//vdj2Zc
-         +Bu9Nj+fYOfUGld6cA6+QESsVCvvAwPTMmBbYQRr5JroQ9gdc4UTDok7gUuiBbVoJWXd
-         SG/9fGhyIqi2a63Fw4bWCwEEWJNeXOthRKpE61RRZaWmNLJ2cdLqBbxxc8tm0AQ1WiAC
-         C5TUidsaSZXlHoX4/lVQyjbV7v+ks81814NTw+xLU/PRUX+KbS6CTkNCxQsO7jRMHpgE
-         OZs9hVXB8GiwgHhvNzhyEEsYm2SM4Ama3XKb2VZbkncCWQWh4OjS2I6dqjx9pIgSaI9x
-         NBlg==
+        bh=gY3JG7TDfX21nMa2WGN3YpZ2LNRhrr+YzDEPbalak5Q=;
+        b=rm12KW9WahZ+pwPBKCJVM2MEWPGf3QaPgdfV77GxfU+PL9qPHhQVxFbBNl1/wX6mMb
+         33mlJ2qzs/GataHnbdbJbQFsz94LjdsexJKnrSK4xud5V34rQsH0Qnjmfl1s3dJ1isoB
+         49+bB0vzHKrwQM2YNOsVxZHVe7mnBW/dsJTBJaUYxSZwR/g4aTpFnDVXJz0BIQBJwGAo
+         csegzBQNKgbI+Cr0+u7SiO4kMSkoFuSfcHOjPE9kFqfD+BQeecZKjqxYmg4gWXdIMx6K
+         t3c3SdZcrqBCnZZb3wt5DxgF2PPaMG6vq3yaTpGrZpvJAHkxUjF8L4FifGsxvJygyJZj
+         LVhQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=IO0/vO4FJ1sTb7qZweTSIBe2tfCCOReYy49usyQ9Yho=;
-        b=M7dsvIg5XW940U7AkWG9WId8bcZvzoNjy2yBsG3NR2BGpspFxZkuyn9rhmyIeuQtAM
-         TM1tBY29tedboerQZ3uAlU2tvtDBWWbJKMl/+Rj4wGhEPJ0xLeYQurm8Uq6MZSe3YFvV
-         0+4cGFhQ9Vr1S8UMxxTIc7TeLEyNdWwpuVkHBhVkp/lgOUYfgo0jRUpnIZYoLvmbFJlq
-         g92fCsQWe6txvRJG1BVFuzUCKjp1lYUwq3/FHopjUDDJUknI8m3QDQQezZsDcn8Z+9kQ
-         ur16uv/sAiR3pkNFWpv9OlTWvW/LKX47pWkf8NT4ngDlbyC43k8UIh16oUP9HWdhKjbC
-         Tbqw==
-X-Gm-Message-State: AOAM532VNfyo/nS9foomfrQ52J0JiYiu/+eYJIqFLx40tJrTr6DOVhGH
-        +0wIyglICNHG0bnCfXJEeglgmA==
-X-Google-Smtp-Source: ABdhPJzVjBK4CW09O5H6maRjYHieeJlhHKNJrwljZxMeaxYgC21vui8itT8aOo+h3kAsq7sdI4jPMg==
-X-Received: by 2002:a05:6870:708a:b0:e9:9349:9410 with SMTP id v10-20020a056870708a00b000e993499410mr3490249oae.265.1651808000619;
-        Thu, 05 May 2022 20:33:20 -0700 (PDT)
+        bh=gY3JG7TDfX21nMa2WGN3YpZ2LNRhrr+YzDEPbalak5Q=;
+        b=jCvxA/tXRk9/KOrr466KUjgCuGipIrPfNsNCsviiTEw46lHN2R0+A960PL5VkUUvCR
+         DOdcovLN+PvHef7Etmesm/YhDNI7Lm42pgh8NoboRxD4DcSB1i9+sqjGM4KqtvYLb/69
+         XKzjvnmzheqEj/yD4vkVqv0jTjWrJb56JhwAHtwvsPubKEyOtzaufOLC/xVc0jMYphXo
+         xVmWXYhqwfd8b3nJ2d7iBb2zweemUbk5gjOG5aqq6Nu6TKG/gWn8Vy1AunyWcjO2TNP2
+         ICmhnSAmC3WuTpCSZVbcrDMtdNaY1YeAwE6ZJ4pxk2u96RQ/mkEkWTnMGjYObZWN+g40
+         0/yA==
+X-Gm-Message-State: AOAM533lhDJs46dfo9F9YKPRT6fSqB2TCgTDHvfqZRrV+3MaEA3HHJlD
+        Xy2iTECPf/PDiNOljY7NlGtvaYRIVe9RKDUM
+X-Google-Smtp-Source: ABdhPJxdBvt/VaAntv7NqdoCyyrKBD09j8Ynb47Z79pap61Oi/wfCocwQtV6PkRBZzAZIdQJH633Kw==
+X-Received: by 2002:a05:6830:4420:b0:606:64a6:1deb with SMTP id q32-20020a056830442000b0060664a61debmr93692otv.236.1651808977637;
+        Thu, 05 May 2022 20:49:37 -0700 (PDT)
 Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id l21-20020a9d7095000000b0060603221263sm1233846otj.51.2022.05.05.20.33.19
+        by smtp.gmail.com with ESMTPSA id w14-20020a056870e2ce00b000e686d13887sm1150364oad.33.2022.05.05.20.49.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 May 2022 20:33:20 -0700 (PDT)
-Date:   Thu, 5 May 2022 22:33:14 -0500
+        Thu, 05 May 2022 20:49:36 -0700 (PDT)
+Date:   Thu, 5 May 2022 22:49:34 -0500
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Robert Marko <robimarko@gmail.com>
-Cc:     agross@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        absahu@codeaurora.org, linux-arm-msm@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/7] clk: qcom: ipq8074: disable USB GDSC-s SW_COLLAPSE
-Message-ID: <YnSW+mNgAp17e/YE@builder.lan>
-References: <20220425182249.2753690-1-robimarko@gmail.com>
- <20220425182249.2753690-2-robimarko@gmail.com>
+To:     Luca Weiss <luca@z3ntu.xyz>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@somainline.org>
+Subject: Re: [PATCH 1/2] ARM: dts: qcom: Add LPG node to pm8941
+Message-ID: <YnSazu3rcBMFPxYw@builder.lan>
+References: <20220504205411.1510667-1-bjorn.andersson@linaro.org>
+ <12122358.O9o76ZdvQC@g550jk>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220425182249.2753690-2-robimarko@gmail.com>
+In-Reply-To: <12122358.O9o76ZdvQC@g550jk>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -73,58 +71,67 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon 25 Apr 13:22 CDT 2022, Robert Marko wrote:
+On Thu 05 May 03:01 CDT 2022, Luca Weiss wrote:
 
-> Like in IPQ6018 Qualcomm intentionally disables the SW_COLLAPSE on the USB
-> GDSC-s in the downstream 5.4 kernel.
+> Hi Bjorn,
 > 
-> This could potentially be better handled by utilizing the GDSC driver, but
-> I am not familiar with it nor do I have datasheets.
+> On Mittwoch, 4. Mai 2022 22:54:10 CEST Bjorn Andersson wrote:
+> > The PM8941 contains 8 LPG channels, as well as TRILED and LUT blocks.
+> > Add a node for these.
+> > 
+> > Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> > ---
+> >  arch/arm/boot/dts/qcom-pm8941.dtsi | 9 +++++++++
+> >  1 file changed, 9 insertions(+)
+> > 
+> > diff --git a/arch/arm/boot/dts/qcom-pm8941.dtsi
+> > b/arch/arm/boot/dts/qcom-pm8941.dtsi index cdd2bdb77b32..7881a071b372
+> > 100644
+> > --- a/arch/arm/boot/dts/qcom-pm8941.dtsi
+> > +++ b/arch/arm/boot/dts/qcom-pm8941.dtsi
+> > @@ -144,6 +144,15 @@ pm8941_1: pm8941@1 {
+> >  		#address-cells = <1>;
+> >  		#size-cells = <0>;
+> > 
+> > +		pm8941_lpg: lpg {
+> > +			compatible = "qcom,pm8941-lpg";
+> > +
+> > +			#address-cells = <1>;
+> > +			#size-cells = <0>;
+> 
+> Just curious, why doesn't pm8941 have #pwm-cells = <2>; like the other lpg 
+> nodes in [0]?
 
-Could you please give it a try before we pick this up?
-Look at e.g. drivers/clk/qcom/gcc-sdm845.c how usb30_prim_gdsc and
-usb30_sec_gdsc are defined, the offsets in specified in .gdscr should be
-the same offsets you give below.
+I guess I didn't have a need for the lpg to be a pwm-chip on this pmic,
+yet. This could be added now, or at a later point when someone has a
+usecase for the pwm-chip.
 
-Then you specify an array of struct gdsc *, associating the two gdscs
-you have specified to some identifier (USB30_PRIM_GDSC and
-USB30_SEC_GDSC is used in sdm845) and reference this list as .gdscs and
-num_gdscs in the gcc_ipq8074_desc.
+> Other than that, the node works fine on pm8941. Will send a patch for enabling 
+> notification LED on msm8974-FP2 soon.
+> 
 
-The last part is to tie the USB controllers to the two GDSCs, this is
-done by simply specifying:
+If you turn that into a Tested-by, and preferably a Reviewed-by, I would
+have what I need to merge the two changes.
 
-	power-domains = <&gcc USB30_PRIM_GDSC>;
+Looking forward to the FP2 patch.
 
-and USB30_SEC_GDSC, in the two USB nodes in DeviceTree. SW_COLLAPSE will
-be toggled by the PM state of the USB driver, like it's done on e.g.
-sdm845.
-
-Regards,
+Thanks,
 Bjorn
 
+> Regards
+> Luca
 > 
-> Signed-off-by: Robert Marko <robimarko@gmail.com>
-> ---
->  drivers/clk/qcom/gcc-ipq8074.c | 5 +++++
->  1 file changed, 5 insertions(+)
+> [0] https://lore.kernel.org/linux-arm-msm/20220505022706.1692554-2-bjorn.andersson@linaro.org/
 > 
-> diff --git a/drivers/clk/qcom/gcc-ipq8074.c b/drivers/clk/qcom/gcc-ipq8074.c
-> index 2ebd1462db78..65249a03a672 100644
-> --- a/drivers/clk/qcom/gcc-ipq8074.c
-> +++ b/drivers/clk/qcom/gcc-ipq8074.c
-> @@ -4806,6 +4806,11 @@ static int gcc_ipq8074_probe(struct platform_device *pdev)
->  	if (IS_ERR(regmap))
->  		return PTR_ERR(regmap);
->  
-> +	/* Disable SW_COLLAPSE for USB0 GDSCR */
-> +	regmap_update_bits(regmap, 0x3e078, BIT(0), 0x0);
-> +	/* Disable SW_COLLAPSE for USB1 GDSCR */
-> +	regmap_update_bits(regmap, 0x3f078, BIT(0), 0x0);
-> +
->  	clk_alpha_pll_configure(&ubi32_pll_main, regmap, &ubi32_pll_config);
->  	clk_alpha_pll_configure(&nss_crypto_pll_main, regmap,
->  				&nss_crypto_pll_config);
-> -- 
-> 2.35.1
+> 
+> > +
+> > +			status = "disabled";
+> > +		};
+> > +
+> >  		pm8941_wled: wled@d800 {
+> >  			compatible = "qcom,pm8941-wled";
+> >  			reg = <0xd800>;
+> 
+> 
+> 
 > 
