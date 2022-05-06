@@ -2,83 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BB50F51CF3C
-	for <lists+devicetree@lfdr.de>; Fri,  6 May 2022 05:04:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A607451CF5D
+	for <lists+devicetree@lfdr.de>; Fri,  6 May 2022 05:23:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1388428AbiEFDHs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 May 2022 23:07:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43084 "EHLO
+        id S1379630AbiEFD0k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 May 2022 23:26:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55032 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1381571AbiEFDHr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 23:07:47 -0400
-Received: from mail-oi1-x22d.google.com (mail-oi1-x22d.google.com [IPv6:2607:f8b0:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 938D763BE2
-        for <devicetree@vger.kernel.org>; Thu,  5 May 2022 20:04:05 -0700 (PDT)
-Received: by mail-oi1-x22d.google.com with SMTP id w194so5082200oie.9
-        for <devicetree@vger.kernel.org>; Thu, 05 May 2022 20:04:05 -0700 (PDT)
+        with ESMTP id S244123AbiEFD0k (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 May 2022 23:26:40 -0400
+Received: from mail-yb1-xb32.google.com (mail-yb1-xb32.google.com [IPv6:2607:f8b0:4864:20::b32])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B775F5EDF3
+        for <devicetree@vger.kernel.org>; Thu,  5 May 2022 20:22:57 -0700 (PDT)
+Received: by mail-yb1-xb32.google.com with SMTP id m128so10797231ybm.5
+        for <devicetree@vger.kernel.org>; Thu, 05 May 2022 20:22:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=T++gZ2GI7rq41AMjJrvK3co4NPdoI+yV6w7aO84fVJk=;
-        b=VuqvPsHxP9tDS82aa7pO4+SreMiPD6SY4GAOI9HhlashyhESlXufqa2tFCTofCaEMn
-         b3sRfxVJoypGDNDf1wLRw4Ej8lDn5c8WBbuthGMJPSBztmg661hcSw6xxC0mH1PJmjQC
-         0icl6ft+6DhZxiR8yqT21jkrI+c+AmQfHXb2GPN/mdk5SjSg1BH2rcoecyIATmlCMxKS
-         1cBpPhjXH5DBxOzUIZ07Nm/8es4FCdPSKa6xDqesXNFNoq4j2X3yC/AJF30EttGmjimz
-         b5EBkv8dmQjs6IOXmROdN586Z0XAVxXNsd8qSmCgpYLBRPPbvsJzZz+Fzlh5MefQAes+
-         9ldg==
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=sYeOKYw6kwfaILJY6bEHCOKM5bFjhmE1ze1/LSaaovw=;
+        b=BLsVEaTG9U91396ZOP2b2MwVake7ojEipUon5OHt1Gy89SB9TslU1tsdVRhaxC4q/1
+         jR53S2m613SbxCgxn+k3UaVkQWznyQ9jxkBYcSvw3h+ZKQN0sfVfZucfjoplsMN+OlSp
+         oj3a/RwNhQcS0xIC9KsOHEHLYceThRr9bvcs0=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=T++gZ2GI7rq41AMjJrvK3co4NPdoI+yV6w7aO84fVJk=;
-        b=UF3NQD/ncc+8ms4x/kXq4kYQ5PzhhPHmbRs0RcEWhIrK8XwfRJlBcf9JzIpbaKH8g7
-         L7KETB2P7/+AfpbE1OkEfIc8N3tlKEkK9NK5uG9UqCoNi/SAqrTBHRCX2Vu1KPKseXwe
-         MuHxAEJHwPw2A0x4XnWYYuwvNcbqX5QpMEEULOTiEt+2WbKuOIw7QRACyoU3yAjRgKyQ
-         AQ+eFBqVw6JX1T1qL2ExZxShNDDiNzr5YXPN1rMcCmjhsdLuFmguors9im28OF+1Yw0h
-         wTpBot/4/HEeYwLrke2sZAgd9u7qysrzS3J3ESlpwDv1jpJL8pZb+BwZQIO6F/AdmmIT
-         dEFw==
-X-Gm-Message-State: AOAM533qGSWNFOlBUALA3QnFzdSnRR9cD4hroaiUR2nb2pvfAqgyamKO
-        umMUiQwwMll8Xk/W9xz9DGCzEw==
-X-Google-Smtp-Source: ABdhPJy74g37LCcwt+8/1z9SyKM1QQtosMJIVHLs8RT7vbfXrKpL4PQ3bb+tUbcjg26/ZZguL1eolw==
-X-Received: by 2002:a05:6808:1244:b0:2f9:e450:4bc4 with SMTP id o4-20020a056808124400b002f9e4504bc4mr607932oiv.290.1651806244880;
-        Thu, 05 May 2022 20:04:04 -0700 (PDT)
-Received: from ripper (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id 42-20020a9d012d000000b006060322124dsm1217775otu.29.2022.05.05.20.04.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 May 2022 20:04:04 -0700 (PDT)
-Date:   Thu, 5 May 2022 20:06:39 -0700
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Matthias Kaehlcke <mka@chromium.org>
-Cc:     Doug Anderson <dianders@chromium.org>,
-        Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        quic_rohkumar@quicinc.com,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Judy Hsiao <judyhsiao@chromium.org>,
-        Venkata Prasad Potturu <quic_potturu@quicinc.com>
-Subject: Re: [PATCH v12 4/4] arm64: dts: qcom: sc7280-herobrine: Add lpi
- pinmux properties for CRD 3.0/3.1
-Message-ID: <YnSQvyAN3v69an8k@ripper>
-References: <1651079383-7665-1-git-send-email-quic_srivasam@quicinc.com>
- <1651079383-7665-5-git-send-email-quic_srivasam@quicinc.com>
- <YmsrB6Q89II5w1+9@google.com>
- <CAD=FV=XxeZsiOVVBDK_vmx0nhT7roB2FqcaPXsH3+jzTHFXMxw@mail.gmail.com>
- <YnKyzxPEolSVUhqD@builder.lan>
- <CAD=FV=VUL4GmjaibAMhKNdpEso_Hg_R=XeMaqah1LSj_9-Ce4Q@mail.gmail.com>
- <YnRvyICa9kxFc/nE@google.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=sYeOKYw6kwfaILJY6bEHCOKM5bFjhmE1ze1/LSaaovw=;
+        b=nfgP5IInAyvnQBihipLLe3ITVZZcIq9cCOb98sLRAaJzSSP5f8JxZRZFjOKM2sL8Tr
+         p2e/zwrEdBukk8KHgr6l9N001UyKcucKNkrLnLSrtppN9KvX14ZjdgdoVNkRPnme4DoH
+         n8lI1Nj9dKyoXm2duJWjhSXKr3o91lyJ+iuXJfwaENNONYFerkBX5CVRvwNwAbtQ61UP
+         Mbz3XN3oSXjHjlHRvxxY35SnaAhgxjGf6WRlu/f/nyDo/MLszgrA9+5d7ueOOUh/18G/
+         hpOcnPWwX8Q5/qwZIPegfTJl5un7i1tkJfFWI7jfu4cct/uUSVgqFYuMmXDqAxLNmwJw
+         kDjA==
+X-Gm-Message-State: AOAM533c3TUAQIRlj6Usm7FPr284GVWRCjhZeM8nkKXJAR3qUpEC5S6R
+        TEeFoK253i7fGSia+R6XMDtSX7qRUOlXDn9uo/IFow==
+X-Google-Smtp-Source: ABdhPJzFrU6lJVs+NCit9LuyTEGNDWdMffiHdTCFRjgdhz+G0uAPff2R6owz9lUHYA3QGONqEJvI6agU3HSeStN62Qk=
+X-Received: by 2002:a25:4c2:0:b0:648:6a77:5da0 with SMTP id
+ 185-20020a2504c2000000b006486a775da0mr867811ybe.203.1651807376928; Thu, 05
+ May 2022 20:22:56 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YnRvyICa9kxFc/nE@google.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+References: <20220505115226.20130-1-rex-bc.chen@mediatek.com>
+ <20220505115226.20130-6-rex-bc.chen@mediatek.com> <89dc58a34ea080ca50a94187e24cabc22aba3304.camel@mediatek.com>
+In-Reply-To: <89dc58a34ea080ca50a94187e24cabc22aba3304.camel@mediatek.com>
+From:   Chen-Yu Tsai <wenst@chromium.org>
+Date:   Fri, 6 May 2022 11:22:45 +0800
+Message-ID: <CAGXv+5EOdXFjwbtZWY4_KBdp6BaQdp389JqUS18ifAgdcQiAtQ@mail.gmail.com>
+Subject: Re: [PATCH v6 05/10] cpufreq: mediatek: Add opp notification support
+To:     Rex-BC Chen <rex-bc.chen@mediatek.com>
+Cc:     rafael@kernel.org, viresh.kumar@linaro.org, robh+dt@kernel.org,
+        krzk+dt@kernel.org, matthias.bgg@gmail.com,
+        jia-wei.chang@mediatek.com, roger.lu@mediatek.com,
+        hsinyi@google.com, khilman@baylibre.com,
+        angelogioacchino.delregno@collabora.com, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        "Andrew-sh . Cheng" <andrew-sh.cheng@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -86,130 +71,242 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu 05 May 17:46 PDT 2022, Matthias Kaehlcke wrote:
+On Fri, May 6, 2022 at 9:56 AM Rex-BC Chen <rex-bc.chen@mediatek.com> wrote:
+>
+> On Thu, 2022-05-05 at 19:52 +0800, Rex-BC Chen wrote:
+> > From this opp notifier, cpufreq should listen to opp notification and
+> > do
+>
+> Hello Viresh,
+>
+> There is still ">" in this patch...
+> I think the root cause could be the "From" word in the beginning of
+> this message.
+> I will not use "From" in next version..
 
-> On Thu, May 05, 2022 at 05:06:08PM -0700, Doug Anderson wrote:
-> > Hi,
-> > 
-> > On Wed, May 4, 2022 at 10:07 AM Bjorn Andersson
-> > <bjorn.andersson@linaro.org> wrote:
-> > >
-> > > On Fri 29 Apr 11:10 CDT 2022, Doug Anderson wrote:
-> > >
-> > > > Hi,
-> > > >
-> > > > On Thu, Apr 28, 2022 at 5:02 PM Matthias Kaehlcke <mka@chromium.org> wrote:
-> > > > >
-> > > > > On Wed, Apr 27, 2022 at 10:39:43PM +0530, Srinivasa Rao Mandadapu wrote:
-> > > > > > Add LPASS LPI pinctrl properties, which are required for Audio
-> > > > > > functionality on herobrine based platforms of rev5+
-> > > > > > (aka CRD 3.0/3.1) boards.
-> > > > > >
-> > > > > > Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-> > > > > > Co-developed-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
-> > > > > > Signed-off-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
-> > > > >
-> > > > > I'm not super firm in pinctrl territory, a few maybe silly questions
-> > > > > below.
-> > > > >
-> > > > > >  arch/arm64/boot/dts/qcom/sc7280-herobrine-crd.dts | 84 +++++++++++++++++++++++
-> > > > > >  1 file changed, 84 insertions(+)
-> > > > > >
-> > > > > > diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-crd.dts b/arch/arm64/boot/dts/qcom/sc7280-herobrine-crd.dts
-> > > > > > index deaea3a..dfc42df 100644
-> > > > > > --- a/arch/arm64/boot/dts/qcom/sc7280-herobrine-crd.dts
-> > > > > > +++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-crd.dts
-> > > > > > @@ -111,6 +111,90 @@ ap_ts_pen_1v8: &i2c13 {
-> > > > > >   * - If a pin is not hooked up on Qcard, it gets no name.
-> > > > > >   */
-> > > > > >
-> > > > > > +&lpass_dmic01 {
-> > > > > > +     clk {
-> > > > > > +             drive-strength = <8>;
-> > > > > > +     };
-> > > >
-> > > > Ugh, I've been distracted and I hadn't realized we were back to the
-> > > > two-level syntax. Definitely not my favorite for all the reasons I
-> > > > talked about [1]. I guess you took Bjorn's silence to my response to
-> > > > mean that you should switch back to this way? :(
-> > > >
-> > > > Bjorn: can you clarify?
-> > > >
-> > >
-> > > I didn't think through the fact that &mi2s0_state was specified in the
-> > > .dtsi and as such will be partially be overridden by the baord dts.
-> > >
-> > >
-> > > I do prefer the two level style and describing full "states", but as you
-> > > say whenever we provide something that will have to be overwritten it's
-> > > suboptimal.
-> > >
-> > > As such, I think your flattened model is preferred in this case
-> > 
-> > How about for future patches we just provided labels at both levels
-> > (I'm not suggesting we churn this patch series more):
-> > 
-> > lpass_dmic01_sleep: dmic01-sleep {
-> 
-> is the outer label ('lpass_dmic01_sleep') actually needed if we don't
-> intend to replicate the hierarchy?
-> 
+Could this be a bug in lore?
 
-Yes, that's what we put in the pinctrl-N reference from the device node.
+I'm not seeing this extra ">" in either the email in my inbox, viewed
+raw, nor the patch downloaded from patchwork [1].
 
-> >   lpass_dmic01_sleep_clk: clk {
-> >     pins = "gpio6";
-> >     function = "dmic1_clk";
-> >   };
-> > 
-> >   lpass_dmic01_sleep_data: data {
-> >     pins = "gpio7";
-> >     function = "dmic1_data";
-> >   };
-> > };
-> > 
 
-I like this suggestion.
+ChenYu
 
-> > Then you can in your pinctrl reference you can just reference the
-> > top-level node but boards can override without having to replicate
-> > hierarchy...
-> > 
-> > > but it
-> > > makes me dislike the partial definition between the dtsi and dts even
-> > > more (but I don't have any better suggestion).
-> > 
-> > One other proposal I'd make is that maybe we should change the rules
-> > about never putting drive strength in the soc.dtsi file. While it
-> > should still be OK for boards to override the drive strength, it seems
-> > like a whole lot of biolerplate code to have every board override
-> > every pin and say that its drive strength is 2. Similarly, if there's
-> > a high speed interface (like eMMC) where a drive strength of 2 is
-> > nonsense for any board, it doesn't seem ridiculous to specify a
-> > default drive strength of something higher in the soc.dtsi file.
-> 
-> Indeed, that could make sense.
-> 
+[1] https://patchwork.kernel.org/project/linux-mediatek/patch/20220505115226.20130-6-rex-bc.chen@mediatek.com/mbox/
 
-Sounds good to me.
 
-> > I would like to say the same thing goes for for pulls, but it's
-> > unfortunately uglier for pulls. :( For instance, nearly everyone has
-> > an external pullup for i2c busses. The strength of the pullup needs to
-> > be tuned for the i2c bus speed and the impedance of the line. Thus, it
-> > would ideally make sense to specify this in the soc.dtsi file.
-> > Unfortunately, if we do that and some board _wants_ to use the
-> > internal pulls (maybe they're running at a really low speed and/or
-> > forgot to add external pulls) then they have to do an ugly
-> > "/delete-property/ bias-disable" because adding the "bias-pull-up"
-> > doesn't delete the other property and you end up with both. :( That
-> > seems bad, so I guess I'd vote to keep banning bias definitions in the
-> > soc.dtsi file.
-> 
-> I agree, having to use 'delete-property' to change a pull setting
-> doesn't seem a good idea.
-
-Same.
-
-Regards,
-Bjorn
+>
+> BRs,
+> Rex
+>
+> > proper actions when receiving events of disable and voltage
+> > adjustment.
+> >
+> > One of the user for this opp notifier is MediaTek SVS.
+> > The MediaTek Smart Voltage Scaling (SVS) is a hardware which
+> > calculates
+> > suitable SVS bank voltages to OPP voltage table.
+> >
+> > Signed-off-by: Andrew-sh.Cheng <andrew-sh.cheng@mediatek.com>
+> > Signed-off-by: Jia-Wei Chang <jia-wei.chang@mediatek.com>
+> > Signed-off-by: Rex-BC Chen <rex-bc.chen@mediatek.com>
+> > Reviewed-by: AngeloGioacchino Del Regno <
+> > angelogioacchino.delregno@collabora.com>
+> > ---
+> >  drivers/cpufreq/mediatek-cpufreq.c | 91 +++++++++++++++++++++++++++-
+> > --
+> >  1 file changed, 83 insertions(+), 8 deletions(-)
+> >
+> > diff --git a/drivers/cpufreq/mediatek-cpufreq.c
+> > b/drivers/cpufreq/mediatek-cpufreq.c
+> > index fe205eca657d..06d80ee06bbf 100644
+> > --- a/drivers/cpufreq/mediatek-cpufreq.c
+> > +++ b/drivers/cpufreq/mediatek-cpufreq.c
+> > @@ -46,6 +46,11 @@ struct mtk_cpu_dvfs_info {
+> >       int intermediate_voltage;
+> >       bool need_voltage_tracking;
+> >       int pre_vproc;
+> > +     /* Avoid race condition for regulators between notify and
+> > policy */
+> > +     struct mutex reg_lock;
+> > +     struct notifier_block opp_nb;
+> > +     unsigned int opp_cpu;
+> > +     unsigned long opp_freq;
+> >       const struct mtk_cpufreq_platform_data *soc_data;
+> >       int vtrack_max;
+> >  };
+> > @@ -182,6 +187,8 @@ static int mtk_cpufreq_set_target(struct
+> > cpufreq_policy *policy,
+> >
+> >       pre_freq_hz = clk_get_rate(cpu_clk);
+> >
+> > +     mutex_lock(&info->reg_lock);
+> > +
+> >       if (unlikely(info->pre_vproc <= 0))
+> >               pre_vproc = regulator_get_voltage(info->proc_reg);
+> >       else
+> > @@ -214,7 +221,7 @@ static int mtk_cpufreq_set_target(struct
+> > cpufreq_policy *policy,
+> >                       dev_err(cpu_dev,
+> >                               "cpu%d: failed to scale up voltage!\n",
+> > policy->cpu);
+> >                       mtk_cpufreq_set_voltage(info, pre_vproc);
+> > -                     return ret;
+> > +                     goto out;
+> >               }
+> >       }
+> >
+> > @@ -224,8 +231,7 @@ static int mtk_cpufreq_set_target(struct
+> > cpufreq_policy *policy,
+> >               dev_err(cpu_dev,
+> >                       "cpu%d: failed to re-parent cpu clock!\n",
+> > policy->cpu);
+> >               mtk_cpufreq_set_voltage(info, pre_vproc);
+> > -             WARN_ON(1);
+> > -             return ret;
+> > +             goto out;
+> >       }
+> >
+> >       /* Set the original PLL to target rate. */
+> > @@ -235,7 +241,7 @@ static int mtk_cpufreq_set_target(struct
+> > cpufreq_policy *policy,
+> >                       "cpu%d: failed to scale cpu clock rate!\n",
+> > policy->cpu);
+> >               clk_set_parent(cpu_clk, armpll);
+> >               mtk_cpufreq_set_voltage(info, pre_vproc);
+> > -             return ret;
+> > +             goto out;
+> >       }
+> >
+> >       /* Set parent of CPU clock back to the original PLL. */
+> > @@ -244,8 +250,7 @@ static int mtk_cpufreq_set_target(struct
+> > cpufreq_policy *policy,
+> >               dev_err(cpu_dev,
+> >                       "cpu%d: failed to re-parent cpu clock!\n",
+> > policy->cpu);
+> >               mtk_cpufreq_set_voltage(info, inter_vproc);
+> > -             WARN_ON(1);
+> > -             return ret;
+> > +             goto out;
+> >       }
+> >
+> >       /*
+> > @@ -260,15 +265,72 @@ static int mtk_cpufreq_set_target(struct
+> > cpufreq_policy *policy,
+> >                       clk_set_parent(cpu_clk, info->inter_clk);
+> >                       clk_set_rate(armpll, pre_freq_hz);
+> >                       clk_set_parent(cpu_clk, armpll);
+> > -                     return ret;
+> > +                     goto out;
+> >               }
+> >       }
+> >
+> > -     return 0;
+> > +     info->opp_freq = freq_hz;
+> > +
+> > +out:
+> > +     mutex_unlock(&info->reg_lock);
+> > +
+> > +     return ret;
+> >  }
+> >
+> >  #define DYNAMIC_POWER "dynamic-power-coefficient"
+> >
+> > +static int mtk_cpufreq_opp_notifier(struct notifier_block *nb,
+> > +                                 unsigned long event, void *data)
+> > +{
+> > +     struct dev_pm_opp *opp = data;
+> > +     struct dev_pm_opp *new_opp;
+> > +     struct mtk_cpu_dvfs_info *info;
+> > +     unsigned long freq, volt;
+> > +     struct cpufreq_policy *policy;
+> > +     int ret = 0;
+> > +
+> > +     info = container_of(nb, struct mtk_cpu_dvfs_info, opp_nb);
+> > +
+> > +     if (event == OPP_EVENT_ADJUST_VOLTAGE) {
+> > +             freq = dev_pm_opp_get_freq(opp);
+> > +
+> > +             mutex_lock(&info->reg_lock);
+> > +             if (info->opp_freq == freq) {
+> > +                     volt = dev_pm_opp_get_voltage(opp);
+> > +                     ret = mtk_cpufreq_set_voltage(info, volt);
+> > +                     if (ret)
+> > +                             dev_err(info->cpu_dev,
+> > +                                     "failed to scale voltage:
+> > %d\n", ret);
+> > +             }
+> > +             mutex_unlock(&info->reg_lock);
+> > +     } else if (event == OPP_EVENT_DISABLE) {
+> > +             freq = dev_pm_opp_get_freq(opp);
+> > +
+> > +             /* case of current opp item is disabled */
+> > +             if (info->opp_freq == freq) {
+> > +                     freq = 1;
+> > +                     new_opp = dev_pm_opp_find_freq_ceil(info-
+> > >cpu_dev,
+> > +                                                         &freq);
+> > +                     if (IS_ERR(new_opp)) {
+> > +                             dev_err(info->cpu_dev,
+> > +                                     "all opp items are
+> > disabled\n");
+> > +                             ret = PTR_ERR(new_opp);
+> > +                             return notifier_from_errno(ret);
+> > +                     }
+> > +
+> > +                     dev_pm_opp_put(new_opp);
+> > +                     policy = cpufreq_cpu_get(info->opp_cpu);
+> > +                     if (policy) {
+> > +                             cpufreq_driver_target(policy, freq /
+> > 1000,
+> > +                                                   CPUFREQ_RELATION_
+> > L);
+> > +                             cpufreq_cpu_put(policy);
+> > +                     }
+> > +             }
+> > +     }
+> > +
+> > +     return notifier_from_errno(ret);
+> > +}
+> > +
+> >  static int mtk_cpu_dvfs_info_init(struct mtk_cpu_dvfs_info *info,
+> > int cpu)
+> >  {
+> >       struct device *cpu_dev;
+> > @@ -357,6 +419,18 @@ static int mtk_cpu_dvfs_info_init(struct
+> > mtk_cpu_dvfs_info *info, int cpu)
+> >       info->intermediate_voltage = dev_pm_opp_get_voltage(opp);
+> >       dev_pm_opp_put(opp);
+> >
+> > +     mutex_init(&info->reg_lock);
+> > +
+> > +     info->opp_cpu = cpu;
+> > +     info->opp_nb.notifier_call = mtk_cpufreq_opp_notifier;
+> > +     ret = dev_pm_opp_register_notifier(cpu_dev, &info->opp_nb);
+> > +     if (ret) {
+> > +             dev_err(cpu_dev, "cpu%d: failed to register opp
+> > notifier\n", cpu);
+> > +             goto out_disable_inter_clock;
+> > +     }
+> > +
+> > +     info->opp_freq = clk_get_rate(info->cpu_clk);
+> > +
+> >       /*
+> >        * If SRAM regulator is present, software "voltage tracking" is
+> > needed
+> >        * for this CPU power domain.
+> > @@ -421,6 +495,7 @@ static void mtk_cpu_dvfs_info_release(struct
+> > mtk_cpu_dvfs_info *info)
+> >       }
+> >
+> >       dev_pm_opp_of_cpumask_remove_table(&info->cpus);
+> > +     dev_pm_opp_unregister_notifier(info->cpu_dev, &info->opp_nb);
+> >  }
+> >
+> >  static int mtk_cpufreq_init(struct cpufreq_policy *policy)
+>
+>
+> _______________________________________________
+> Linux-mediatek mailing list
+> Linux-mediatek@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-mediatek
