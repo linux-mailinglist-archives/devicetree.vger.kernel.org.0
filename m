@@ -2,132 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AD8B051E331
-	for <lists+devicetree@lfdr.de>; Sat,  7 May 2022 03:43:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CB70351E338
+	for <lists+devicetree@lfdr.de>; Sat,  7 May 2022 03:46:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1445244AbiEGBrC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 May 2022 21:47:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60668 "EHLO
+        id S1352647AbiEGBuL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 May 2022 21:50:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34498 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1389810AbiEGBrB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 May 2022 21:47:01 -0400
-Received: from szxga02-in.huawei.com (szxga02-in.huawei.com [45.249.212.188])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7841059306;
-        Fri,  6 May 2022 18:43:16 -0700 (PDT)
-Received: from dggpemm500024.china.huawei.com (unknown [172.30.72.53])
-        by szxga02-in.huawei.com (SkyGuard) with ESMTP id 4Kw99m3bnczGpT7;
-        Sat,  7 May 2022 09:40:28 +0800 (CST)
-Received: from dggpemm500006.china.huawei.com (7.185.36.236) by
- dggpemm500024.china.huawei.com (7.185.36.203) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.24; Sat, 7 May 2022 09:42:45 +0800
-Received: from [10.174.178.55] (10.174.178.55) by
- dggpemm500006.china.huawei.com (7.185.36.236) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.24; Sat, 7 May 2022 09:42:44 +0800
-Subject: Re: [PATCH v24 5/6] of: Support more than one crash kernel regions
- for kexec -s
-To:     Baoquan He <bhe@redhat.com>
-CC:     Thomas Gleixner <tglx@linutronix.de>,
-        Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
-        <x86@kernel.org>, "H . Peter Anvin" <hpa@zytor.com>,
-        <linux-kernel@vger.kernel.org>, Dave Young <dyoung@redhat.com>,
-        Vivek Goyal <vgoyal@redhat.com>,
-        Eric Biederman <ebiederm@xmission.com>,
-        <kexec@lists.infradead.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
+        with ESMTP id S239753AbiEGBuL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 May 2022 21:50:11 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F09DD703F7;
+        Fri,  6 May 2022 18:46:25 -0700 (PDT)
+X-UUID: 8c2ba08f507041d78aad3b5c406289b3-20220507
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.4,REQID:80f0a7e4-7342-4102-9184-b76a07c54bf8,OB:0,LO
+        B:0,IP:0,URL:0,TC:0,Content:-20,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,AC
+        TION:release,TS:-20
+X-CID-META: VersionHash:faefae9,CLOUDID:b4dde4b2-56b5-4c9e-8d83-0070b288eb6a,C
+        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,File:nil,QS:0,BEC:nil
+X-UUID: 8c2ba08f507041d78aad3b5c406289b3-20220507
+Received: from mtkmbs11n2.mediatek.inc [(172.21.101.187)] by mailgw01.mediatek.com
+        (envelope-from <yunfei.dong@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 162061621; Sat, 07 May 2022 09:46:22 +0800
+Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
+ Sat, 7 May 2022 09:46:20 +0800
+Received: from localhost.localdomain (10.17.3.154) by mtkmbs11n2.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
+ Transport; Sat, 7 May 2022 09:46:18 +0800
+From:   Yunfei Dong <yunfei.dong@mediatek.com>
+To:     Yunfei Dong <yunfei.dong@mediatek.com>,
+        Alexandre Courbot <acourbot@chromium.org>,
+        Nicolas Dufresne <nicolas@ndufresne.ca>,
+        "Hans Verkuil" <hverkuil-cisco@xs4all.nl>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Tiffany Lin <tiffany.lin@mediatek.com>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        <devicetree@vger.kernel.org>, "Jonathan Corbet" <corbet@lwn.net>,
-        <linux-doc@vger.kernel.org>, Randy Dunlap <rdunlap@infradead.org>,
-        Feng Zhou <zhoufeng.zf@bytedance.com>,
-        Kefeng Wang <wangkefeng.wang@huawei.com>,
-        Chen Zhou <dingguo.cz@antgroup.com>,
-        "John Donnelly" <John.p.donnelly@oracle.com>,
-        Dave Kleikamp <dave.kleikamp@oracle.com>
-References: <20220506114402.365-1-thunder.leizhen@huawei.com>
- <20220506114402.365-6-thunder.leizhen@huawei.com>
- <20220506231737.GD122876@MiWiFi-R3L-srv>
-From:   "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
-Message-ID: <55e201f1-f136-607c-78f8-eb4ec481909e@huawei.com>
-Date:   Sat, 7 May 2022 09:42:43 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Tomasz Figa <tfiga@google.com>
+CC:     George Sun <george.sun@mediatek.com>,
+        Xiaoyong Lu <xiaoyong.lu@mediatek.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Fritz Koenig <frkoenig@chromium.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Irui Wang <irui.wang@mediatek.com>,
+        "Steve Cho" <stevecho@chromium.org>, <linux-media@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Subject: [PATCH v5, 0/7] support mt8195 decoder
+Date:   Sat, 7 May 2022 09:46:11 +0800
+Message-ID: <20220507014618.29412-1-yunfei.dong@mediatek.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <20220506231737.GD122876@MiWiFi-R3L-srv>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.174.178.55]
-X-ClientProxiedBy: dggems703-chm.china.huawei.com (10.3.19.180) To
- dggpemm500006.china.huawei.com (7.185.36.236)
-X-CFilter-Loop: Reflected
-X-Spam-Status: No, score=-7.3 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Firstly, add mt8195 soc lat hardware and compatible, then add documents.
+For vp8 only support MM21 mode, H264/vp9 support MT21C, need to separate
+them. Lastly, enable H264 inner racing mode to reduce hardware latency.
 
+Patch 1~4 add mt8195 soc lat hardware and compatible, then add documents.
+Patch 5 using different format for different codecs.
+Patch 6 prevent kernel crash when scp reboot.
+Patch 7 enable H264 inner racing mode to reduce hardware latency.
+---
+This patch depends on "add h264 decoder driver for mt8186"[1]
 
-On 2022/5/7 7:17, Baoquan He wrote:
-> On 05/06/22 at 07:44pm, Zhen Lei wrote:
->> When "crashkernel=X,high" is used, there may be two crash regions:
->> high=crashk_res and low=crashk_low_res. But now the syscall
->> kexec_file_load() only add crashk_res into "linux,usable-memory-range",
->> this may cause the second kernel to have no available dma memory.
->>
->> Fix it like kexec tool do for option -c, add both 'high' and 'low' regions
->               ~~~~~~~~~~~~ 
->               kexec-tools does
+[1]  https://patchwork.kernel.org/project/linux-mediatek/cover/20220507013625.29020-1-yunfei.dong@mediatek.com/
+---
+changed with v4:
+- fix sparse and smatch check fail for patch 7.
+changed with v3:
+- rebase driver to the latest media_stage.
+changed with v2:
+- add detail explanation for lat soc hardware for patch 1.
+changed with v1:
+- separate "Init VP9 stateless decode params" patch and remove it to another one.
+- add reviewed-by in patch v3/v4/v6
+---
+Yunfei Dong (7):
+  dt-bindings: media: mediatek: vcodec: Adds decoder dt-bindings for lat
+    soc
+  media: mediatek: vcodec: Add to support lat soc hardware
+  dt-bindings: media: mediatek: vcodec: Adds decoder dt-bindings for
+    mt8195
+  media: mediatek: vcodec: Adds compatible for mt8195
+  media: mediatek: vcodec: Different codec using different capture
+    format
+  media: mediatek: vcodec: prevent kernel crash when scp ipi timeout
+  media: mediatek: vcodec: Add to support H264 inner racing mode
 
-OK, I will update it. Thanks.
-
-> 
-> Other than this, LGTM,
-> 
-> Acked-by: Baoquan He <bhe@redhat.com>
-> 
->> into the dtb.
->>
->> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
->> Acked-by: Rob Herring <robh@kernel.org>
->> ---
->>  drivers/of/kexec.c | 9 +++++++++
->>  1 file changed, 9 insertions(+)
->>
->> diff --git a/drivers/of/kexec.c b/drivers/of/kexec.c
->> index b9bd1cff179388c..8d374cc552be5f2 100644
->> --- a/drivers/of/kexec.c
->> +++ b/drivers/of/kexec.c
->> @@ -386,6 +386,15 @@ void *of_kexec_alloc_and_setup_fdt(const struct kimage *image,
->>  				crashk_res.end - crashk_res.start + 1);
->>  		if (ret)
->>  			goto out;
->> +
->> +		if (crashk_low_res.end) {
->> +			ret = fdt_appendprop_addrrange(fdt, 0, chosen_node,
->> +					"linux,usable-memory-range",
->> +					crashk_low_res.start,
->> +					crashk_low_res.end - crashk_low_res.start + 1);
->> +			if (ret)
->> +				goto out;
->> +		}
->>  	}
->>  
->>  	/* add bootargs */
->> -- 
->> 2.25.1
->>
-> 
-> .
-> 
+ .../media/mediatek,vcodec-subdev-decoder.yaml | 52 +++++++++++++------
+ .../platform/mediatek/vcodec/mtk_vcodec_dec.c | 41 +++++++++++++++
+ .../mediatek/vcodec/mtk_vcodec_dec_drv.c      |  8 +++
+ .../mediatek/vcodec/mtk_vcodec_dec_hw.c       | 12 +++--
+ .../mediatek/vcodec/mtk_vcodec_dec_hw.h       |  2 +
+ .../mediatek/vcodec/mtk_vcodec_dec_pm.c       | 50 ++++++++++++++++++
+ .../platform/mediatek/vcodec/mtk_vcodec_drv.h | 11 ++++
+ .../vcodec/vdec/vdec_h264_req_multi_if.c      | 29 ++++++++---
+ .../platform/mediatek/vcodec/vdec_vpu_if.c    |  5 ++
+ 9 files changed, 183 insertions(+), 27 deletions(-)
 
 -- 
-Regards,
-  Zhen Lei
+2.18.0
+
