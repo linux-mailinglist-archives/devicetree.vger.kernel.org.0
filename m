@@ -2,69 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4AFC651E85E
-	for <lists+devicetree@lfdr.de>; Sat,  7 May 2022 18:01:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B888751E863
+	for <lists+devicetree@lfdr.de>; Sat,  7 May 2022 18:02:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1446628AbiEGQFA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 7 May 2022 12:05:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43842 "EHLO
+        id S1386072AbiEGQGJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 7 May 2022 12:06:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44856 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1446625AbiEGQE6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 7 May 2022 12:04:58 -0400
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27D6D13DF1
-        for <devicetree@vger.kernel.org>; Sat,  7 May 2022 09:01:11 -0700 (PDT)
-Received: by mail-ej1-x631.google.com with SMTP id bv19so19490961ejb.6
-        for <devicetree@vger.kernel.org>; Sat, 07 May 2022 09:01:11 -0700 (PDT)
+        with ESMTP id S1359786AbiEGQGI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 7 May 2022 12:06:08 -0400
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6404CE027
+        for <devicetree@vger.kernel.org>; Sat,  7 May 2022 09:02:21 -0700 (PDT)
+Received: by mail-ej1-x635.google.com with SMTP id kq17so19493478ejb.4
+        for <devicetree@vger.kernel.org>; Sat, 07 May 2022 09:02:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=EEjFelFS20jkO4Qj4ob7I4X5U5OVEQ8vF/HCYLVafkA=;
-        b=TJ/UCa7zjhsvY8f1+l2nJ4qtsnLHQST0Rhd1k4UuUt6txkhhcxyeL6cl1O7/3fzIlw
-         Id6IVxyu6KQLzqBbUiRuNytkbovehemPKUuGguWKer+3FnSkIvwkuWpS+90eOFxADc5l
-         p+TGGxzuyqZamj3prMfE3PPeG1BgnRSJmhXgo5w2UXAt8srzKqE79PmMD0jkVVjawfHj
-         NfMbk/l2ypH2YwaNRX0VwfBrqZceAg4lScENlpY31Vi+utYuNpbUqYl7PXinQgu+Frws
-         IrG8BIA8dvoO0Y/WLGYQG+yU2UXTzFHrdGUmzMSgKaZAvgKXT80O3bEcygRlv1LJ3BAo
-         ipiA==
+        bh=ZGe2WKTSwlYRLM8mEcooO0HHCmXLiPGKlmbzaSTlMLY=;
+        b=Y7CCk9RztVEPm+vsTbcOLJTJtiVj2ZZJjSyaqRNaAkr8Nw8k7Y7ieul8PwDE80gQET
+         6ghxH3wYw/sZgP5FJ4rVQhMSDxO7RJ2x7cEjyIV+VrGketdGNconKGkBLICLp9HVogzo
+         uswvg9behkN+JUFyLCM+cMze1p30wnzMTXHKDzAS6Q8BrdzMJMPJDdCTHCnmkPoFhAwT
+         MmfjPLtn1pWF9Ua9v7RhGlN+mbWMxYvZ2F2TmNGEQNqChh8lN9weHDoCxj9MSCYB5lcT
+         XxsJ/YzVnwIbv9NGUxFV0ope1g4lsOjAmUqLscBnSiC5cAD4/K1guJ5RwgBeAESBVfXJ
+         spDw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=EEjFelFS20jkO4Qj4ob7I4X5U5OVEQ8vF/HCYLVafkA=;
-        b=4k4lpCpnCHPHoqAZ5Zd7/h6hnX52wLU9ZK6qGaXJDE5YGYNtCakp+o0nTGhXI3WfRX
-         EMWYS8VhGZvcmMRrqHqch3EsNyuRuXnbdu4NGL/lOO5Tg+3jO5+bZtYVhluxTJEkvlQL
-         AJO6kR4pBVisPT7FBIiDpN/93SPMApAS14cF71DSj80MIbcjr25ZyXdhWBRglWNPOU4d
-         14k5wjT5nPmM5V/EvbvXaJoYVnXfiKXuQFG/l1e6LZuMQ7Oy4xA7HRHY7N/fzTM9TZjm
-         05iXH/c+42HIHSjbSmQpqTBgdm/YvzYX53/UctQ7VcQ91kaD1i/IIsULx5E3hKR3z0Aw
-         E6EA==
-X-Gm-Message-State: AOAM530IXjs7JGktTF7ZpYTLxdR2NANo9CbJm0n2cFLYFSG0o23vi7ax
-        2nt42T3SxDSz/VnYGtvJLiDNHQ==
-X-Google-Smtp-Source: ABdhPJwtRto5hiYLsR+QHrgUUplzWtci9HQS6vAJ/b/CgrVBQsAbJfaavkt/qpAOhe/i1WEHNnh4yA==
-X-Received: by 2002:a17:907:1b20:b0:6da:649b:d99e with SMTP id mp32-20020a1709071b2000b006da649bd99emr7664191ejc.712.1651939269690;
-        Sat, 07 May 2022 09:01:09 -0700 (PDT)
+        bh=ZGe2WKTSwlYRLM8mEcooO0HHCmXLiPGKlmbzaSTlMLY=;
+        b=oomX0p5NWStDm2NGkOXUFgheBCwSIB/jZ8BpWzBbQ+oDP2ik/S83M5qwNZtlyPhP1w
+         MqJ3bjSGel+J3pKOOnRYtUCk7mx7y5xusptt6WoMIEWK0zuuE06zQm0+7zKhscCy0IZi
+         GXrIJ8lKgfj4dmelf/FckrqGlUPwv0pYRoHkb0g2DwA+9+LAoNa7FFFNe6R8xKaUhm0J
+         5ewt7uaYBJDCHK1ngVcsbHHwbIRPgJRl2NSXleOm9uIgIdJMe4xCZsthGfWkf62hpOQX
+         li1eDnRXiZB866RDstFLNPgCkJYF115eA+sxClabTQI4xT9mpRXWYt/QS6dNfSr7GpYj
+         rlMA==
+X-Gm-Message-State: AOAM530fIsvfg8WZQ1ViQ4ljFQ3BZWyZ8U6DQeZplTWCWeYkNZ9rW0zI
+        u/d59osXmwgUOtYtacXNJVoX3g==
+X-Google-Smtp-Source: ABdhPJzSP4Dy5K1PH+U5uRNNx39K/egsLJrR1KNAavRKOW5qU1KGhssurkrAq+UlSXAI3qM/T90iAw==
+X-Received: by 2002:a17:906:2652:b0:6f3:a042:6b51 with SMTP id i18-20020a170906265200b006f3a0426b51mr7764866ejc.565.1651939340028;
+        Sat, 07 May 2022 09:02:20 -0700 (PDT)
 Received: from [192.168.0.232] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id b26-20020a170906d11a00b006f3ef214dedsm3094167ejz.83.2022.05.07.09.01.08
+        by smtp.gmail.com with ESMTPSA id ee38-20020a056402292600b0042617ba63a2sm3692833edb.44.2022.05.07.09.02.19
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 07 May 2022 09:01:09 -0700 (PDT)
-Message-ID: <7588a043-19b0-f7c6-0f47-7024e2fb1a56@linaro.org>
-Date:   Sat, 7 May 2022 18:01:08 +0200
+        Sat, 07 May 2022 09:02:19 -0700 (PDT)
+Message-ID: <5dca492f-3afd-9da2-913c-00601dece441@linaro.org>
+Date:   Sat, 7 May 2022 18:02:18 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.8.1
-Subject: Re: [PATCH v2 1/4] tpm: Add tpm_tis_i2c backend for tpm_tis_core
+Subject: Re: [PATCH v7 7/8] ARM: dts: Introduce HPE GXP Device tree
 Content-Language: en-US
-To:     Johannes Holland <johannes.holland@infineon.com>,
-        jarkko@kernel.org, linux-kernel@vger.kernel.org,
-        linux-integrity@vger.kernel.org, robh+dt@kernel.org,
+To:     nick.hawkins@hpe.com, verdun@hpe.com, joel@jms.id.au,
+        arnd@arndb.de, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Cc:     Olof Johansson <olof@lixom.net>, soc@kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         devicetree@vger.kernel.org
-Cc:     peterhuewe@gmx.de, jgg@ziepe.ca, krzysztof.kozlowski+dt@linaro.org,
-        Alexander Steffen <alexander.steffen@infineon.com>,
-        Amir Mizinski <amirmizi6@gmail.com>
-References: <20220506170013.22598-1-johannes.holland@infineon.com>
+References: <20220506191339.78617-1-nick.hawkins@hpe.com>
+ <20220506191339.78617-7-nick.hawkins@hpe.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220506170013.22598-1-johannes.holland@infineon.com>
+In-Reply-To: <20220506191339.78617-7-nick.hawkins@hpe.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -77,34 +78,20 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/05/2022 19:00, Johannes Holland wrote:
-> Implement the TCG I2C Interface driver, as specified in the TCG PC
-> Client Platform TPM Profile (PTP) specification for TPM 2.0 v1.04
-> revision 14, section 8, I2C Interface Definition.
+On 06/05/2022 21:13, nick.hawkins@hpe.com wrote:
+> From: Nick Hawkins <nick.hawkins@hpe.com>
 > 
+> The HPE SoC is new to linux. A basic device tree layout with minimum
+> required for linux to boot including a timer and watchdog support has
+> been created.
+> 
+> The dts file is empty at this point but will be updated in subsequent
+> updates as board specific features are enabled.
+> 
+> Signed-off-by: Nick Hawkins <nick.hawkins@hpe.com>
 
-> +static const struct i2c_device_id tpm_tis_i2c_id[] = {
-> +	{ "tpm_tis_i2c", 0 },
-> +	{}
-> +};
-> +MODULE_DEVICE_TABLE(i2c, tpm_tis_i2c_id);
-> +
-> +static const struct of_device_id of_tis_i2c_match[] = {
-> +	{ .compatible = "infineon,slb9673", },
-> +	{ .compatible = "tcg,tpm-tis-i2c", },
-> +	{}
-> +};
-> +MODULE_DEVICE_TABLE(of, of_tis_i2c_match);
-> +
-> +static struct i2c_driver tpm_tis_i2c_driver = {
-> +	.driver = {
-> +		.owner = THIS_MODULE,
-> +		.name = "tpm_tis_i2c",
-> +		.pm = &tpm_tis_pm,
-> +		.of_match_table = of_match_ptr(of_tis_i2c_match),
 
-of_match_ptr does not match your of_device_id table - you will have
-warnings. Either mark them maybe_unused or skip of_match_ptr.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 
 Best regards,
