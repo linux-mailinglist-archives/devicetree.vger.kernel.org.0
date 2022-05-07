@@ -2,105 +2,288 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 147A751E6D0
-	for <lists+devicetree@lfdr.de>; Sat,  7 May 2022 14:09:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9889E51E6E1
+	for <lists+devicetree@lfdr.de>; Sat,  7 May 2022 14:22:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1444398AbiEGMNc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 7 May 2022 08:13:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53466 "EHLO
+        id S239282AbiEGMYl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 7 May 2022 08:24:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60638 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1446346AbiEGMN3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 7 May 2022 08:13:29 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66FCF49FB7
-        for <devicetree@vger.kernel.org>; Sat,  7 May 2022 05:09:36 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id p26so3294109lfh.10
-        for <devicetree@vger.kernel.org>; Sat, 07 May 2022 05:09:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=dwPQGwYOX78/2Wl83+8z+fnO4MGJ5mQqUGO35CgVNpY=;
-        b=IVKPqEQb2InKCXHTHFRvsgnShsBhmaehU5E+ny4szQY410SM3vPzgCiwwUf+zepS15
-         TdpxN4ZYPqUfxi9q0R4t5Rw16taZ/LsuYSHe9RwbFxFijjO2SnwvMzLh3xjRXORZLq24
-         rXhVWQ0IKkKD39LSOYkmF8ldJZOAQOFnlJ3PNZs6KyY5dIjQ4O9PJ/DiJs9k/oS4j+qB
-         jP6HZVpyGbLJGqVLaXKAvYZ0zSHbyXjtBEagIoRravsJFnR/jL/8dt0tzq4Yv8otfp5X
-         nTdlbHR71rGM86C+TCV3MgmXZRJ6/txyyAz4XPpYdighnZL5RZ0oM4e0IswG0Lq22+7U
-         BMlQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=dwPQGwYOX78/2Wl83+8z+fnO4MGJ5mQqUGO35CgVNpY=;
-        b=UjzMpwBwYlVEwCqx0wD3HvKh5/rNHG6kZqNxg7lqcLhSbGG6FP+Ge4D4bZmu3a0ev2
-         TSgSUQkjAZCWYKucl6gM+f4fu1za/mNE1sc0G1Pe32o5LIksAOx6PfxSBIH2h84xvBz/
-         qZs/l6sGUOrsbZdYLDVOb1lDd8HHv9DpT8tJS+I7WA83pP0yd18orW4aFIbMl3pwDu8h
-         rMenlIQDyEfzq6+KIgsxyxx8MhtdhMb8rQ/4Et4IPSd3k+U4O4APT5TnFPwlLzdHAkSR
-         PJPRdBItaVCOMbAxH7NrNMqOVBwfOwHf5vigUHlwcFKaqz6SJcr0oB4IOtrGQ2y1coRf
-         0R0A==
-X-Gm-Message-State: AOAM533FZfm3ddE/FwLjhf/+AVPIMCRBrxzNtl9UruAdMQ+qFEqjwvPC
-        PK4Bd/lRlY0LT85lwGj4di1cZWsXISRr1g==
-X-Google-Smtp-Source: ABdhPJzzbkDhvl8bNtspXcuzOi4bRZ3x37FxH3e90OFZxBBQIyh2Iz6ka1k7KoYniuM1SUbAtRDEeg==
-X-Received: by 2002:a19:5f51:0:b0:471:f43a:d830 with SMTP id a17-20020a195f51000000b00471f43ad830mr6273070lfj.348.1651925374751;
-        Sat, 07 May 2022 05:09:34 -0700 (PDT)
-Received: from [192.168.43.7] ([94.25.229.149])
-        by smtp.gmail.com with ESMTPSA id 14-20020ac24d4e000000b0047255d21117sm1086527lfp.70.2022.05.07.05.09.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 07 May 2022 05:09:34 -0700 (PDT)
-Message-ID: <c2a9f0c4-1d77-acca-c319-c74ef51d9ed3@linaro.org>
-Date:   Sat, 7 May 2022 15:09:32 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: (subset) [PATCH v2] dt-bindings: clock: qcom,gcc-apq8064: Fix
- typo in compatible and split apq8084
-Content-Language: en-GB
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        linux-kernel@vger.kernel.org, Ansuel Smith <ansuelsmth@gmail.com>,
-        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org,
-        Michael Turquette <mturquette@baylibre.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Taniya Das <tdas@codeaurora.org>,
+        with ESMTP id S235109AbiEGMYj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 7 May 2022 08:24:39 -0400
+Received: from szxga03-in.huawei.com (szxga03-in.huawei.com [45.249.212.189])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9CA1D37010;
+        Sat,  7 May 2022 05:20:52 -0700 (PDT)
+Received: from dggpemm500023.china.huawei.com (unknown [172.30.72.55])
+        by szxga03-in.huawei.com (SkyGuard) with ESMTP id 4KwRHB6st8zXdmM;
+        Sat,  7 May 2022 20:16:06 +0800 (CST)
+Received: from dggpemm500006.china.huawei.com (7.185.36.236) by
+ dggpemm500023.china.huawei.com (7.185.36.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.24; Sat, 7 May 2022 20:20:50 +0800
+Received: from [10.174.178.55] (10.174.178.55) by
+ dggpemm500006.china.huawei.com (7.185.36.236) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.24; Sat, 7 May 2022 20:20:49 +0800
+Subject: Re: [PATCH v24 3/6] arm64: kdump: Reimplement crashkernel=X
+From:   "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
+To:     Baoquan He <bhe@redhat.com>
+CC:     Catalin Marinas <catalin.marinas@arm.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
+        <x86@kernel.org>, "H . Peter Anvin" <hpa@zytor.com>,
+        <linux-kernel@vger.kernel.org>, Dave Young <dyoung@redhat.com>,
+        Vivek Goyal <vgoyal@redhat.com>,
+        Eric Biederman <ebiederm@xmission.com>,
+        <kexec@lists.infradead.org>, Will Deacon <will@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
         Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, Andy Gross <agross@kernel.org>
-Cc:     Rob Herring <robh@kernel.org>
-References: <20220426064241.6379-1-krzysztof.kozlowski@linaro.org>
- <165184936433.73465.8918776302755169232.b4-ty@linaro.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <165184936433.73465.8918776302755169232.b4-ty@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        Frank Rowand <frowand.list@gmail.com>,
+        <devicetree@vger.kernel.org>, "Jonathan Corbet" <corbet@lwn.net>,
+        <linux-doc@vger.kernel.org>, Randy Dunlap <rdunlap@infradead.org>,
+        Feng Zhou <zhoufeng.zf@bytedance.com>,
+        Kefeng Wang <wangkefeng.wang@huawei.com>,
+        Chen Zhou <dingguo.cz@antgroup.com>,
+        "John Donnelly" <John.p.donnelly@oracle.com>,
+        Dave Kleikamp <dave.kleikamp@oracle.com>
+References: <20220506114402.365-1-thunder.leizhen@huawei.com>
+ <20220506114402.365-4-thunder.leizhen@huawei.com>
+ <20220506231032.GA122876@MiWiFi-R3L-srv>
+ <d9b21f31-6fd2-a898-9a70-c63ff4f36212@huawei.com>
+ <YnXUSBcFmEpxaqBf@MiWiFi-R3L-srv>
+ <9f6fdbb8-b6c5-3ca0-31b6-617175739e81@huawei.com>
+ <6e892914-74ae-2b8f-954e-342aaf4be870@huawei.com>
+ <0c7e91fb-10a3-f7e6-e856-0c865c71527b@huawei.com>
+Message-ID: <a0da4fdc-ad56-13c1-ad5d-243aa70091a3@huawei.com>
+Date:   Sat, 7 May 2022 20:20:37 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
+MIME-Version: 1.0
+In-Reply-To: <0c7e91fb-10a3-f7e6-e856-0c865c71527b@huawei.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+X-Originating-IP: [10.174.178.55]
+X-ClientProxiedBy: dggems702-chm.china.huawei.com (10.3.19.179) To
+ dggpemm500006.china.huawei.com (7.185.36.236)
+X-CFilter-Loop: Reflected
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/05/2022 18:03, Bjorn Andersson wrote:
-> On Tue, 26 Apr 2022 08:42:41 +0200, Krzysztof Kozlowski wrote:
->> The qcom,gcc-apq8064.yaml was meant to describe only APQ8064 and APQ8084
->> should have slightly different bindings (without Qualcomm thermal sensor
->> device).  Add new bindings for APQ8084.
+
+
+On 2022/5/7 19:49, Leizhen (ThunderTown) wrote:
+> 
+> 
+> On 2022/5/7 17:35, Leizhen (ThunderTown) wrote:
 >>
 >>
-> 
-> Applied, thanks!
-> 
-> [1/1] dt-bindings: clock: qcom,gcc-apq8064: Fix typo in compatible and split apq8084
->        commit: 4ac7e878c15781286c043cff19ec88d82b8e2014
+>> On 2022/5/7 11:37, Leizhen (ThunderTown) wrote:
+>>>
+>>>
+>>> On 2022/5/7 10:07, Baoquan He wrote:
+>>>> On 05/07/22 at 09:34am, Leizhen (ThunderTown) wrote:
+>>>>>
+>>>>>
+>>>>> On 2022/5/7 7:10, Baoquan He wrote:
+>>>>>> On 05/06/22 at 07:43pm, Zhen Lei wrote:
+>>>>>> ......  
+>>>>>>> @@ -118,8 +162,7 @@ static void __init reserve_crashkernel(void)
+>>>>>>>  	if (crash_base)
+>>>>>>>  		crash_max = crash_base + crash_size;
+>>>>>>>  
+>>>>>>> -	/* Current arm64 boot protocol requires 2MB alignment */
+>>>>>>> -	crash_base = memblock_phys_alloc_range(crash_size, SZ_2M,
+>>>>>>> +	crash_base = memblock_phys_alloc_range(crash_size, CRASH_ALIGN,
+>>>>>>>  					       crash_base, crash_max);
+>>>>>>>  	if (!crash_base) {
+>>>>>>>  		pr_warn("cannot allocate crashkernel (size:0x%llx)\n",
+>>>>>>> @@ -127,6 +170,11 @@ static void __init reserve_crashkernel(void)
+>>>>>>>  		return;
+>>>>>>>  	}
+>>>>>>>  
+>>>>>>
+>>>>>> There's corner case missed, e.g
+>>>>>> 1) ,high and ,low are specified, CONFIG_ZONE_DMA|DMA32 is not enabled;
+>>>>>> 2) ,high and ,low are specified, the whole system memory is under 4G.
+>>>>>>
+>>>>>> Below judgement can filter them away:
+>>>>>>         
+>>>>>> 	if (crash_base > arm64_dma_phys_limit && crash_low_size &&
+>>>>>> 	    reserve_crashkernel_low(crash_low_size)) {
+>>>>>>
+>>>>>> What's your opinion? Leave it and add document to notice user, or fix it
+>>>>>> with code change?
 
-I supposed that 
-https://lore.kernel.org/linux-arm-msm/20220426093608.2957210-1-dmitry.baryshkov@linaro.org/ 
-is a slightly better version.
+I've now got the patch ready as suggested, to be as consistent as possible
+with x86.
 
+Just wait for next Monday Catalin's response: a seperate patch or v25?
+
+
+
+>>
+>> I decided to modify the code and document. But the code changes aren't what
+>> you suggested. For the following reasons:
+>> 1. The memory allocated for 'high' may be partially under 4G. So the low
+>>    memory may not be enough. Of course, it's rare.
+>> 2. The second kernel can work properly only when the high and low memory
+>>    are successfully applied for. For example, high=128M, low=128M, but the
+>>    second kernel need 256M.
+>>
+>> So for the cases you listed:
+>> 1) ,high and ,low are specified, CONFIG_ZONE_DMA|DMA32 is not enabled;
+>>    --> Follow you suggestion, ignore crashkernel=Y,low, don't allocate low memory.
+>>
+>> @@ -100,6 +100,14 @@ static int __init reserve_crashkernel_low(unsigned long long low_size)
+>>  {
+>>         unsigned long long low_base;
+>>
+>> +       /*
+>> +        * The kernel does not have any DMA zone, so the range of each DMA
+>> +        * zone is unknown. Please make sure both CONFIG_ZONE_DMA and
+>> +        * CONFIG_ZONE_DMA32 are also not set in the second kernel.
+>> +        */
+>> +       if (!IS_ENABLED(CONFIG_ZONE_DMA) && !IS_ENABLED(CONFIG_ZONE_DMA32))
+>> +               return 0;
+>> +
+>>
+>> 2) ,high and ,low are specified, the whole system memory is under 4G.
+>>    --> two memory ranges will be allocated, the size is what 'high' and 'low' specified.
+>>    --> Yes, the memory of 'low' may be above 'high', but the 'high' just hint allocation
+>>    --> from top, try high memory first. Of course, this may cause kexec to fail to load.
+>>    --> Because the memory of 'low' with small size will be used to store Image, etc..
+>>    --> But the memory of 'low' above 'high' is almost impossible, we use memblock API to
+>>    --> allocate memory from top to bottem, 'low' above 'high' need a sizeable memory block
+>>    --> (128M, 256M?) to be freed at init phase.
+>>    -->  Maybe I should add: crash_max = min(crash_base, CRASH_ADDR_LOW_MAX);
+>>    --> to make sure the memory of 'low' is always under 'high'
+> 
+> I have added the min() above.
+> 
+> Test result:
+> 1) ,high and ,low are specified, CONFIG_ZONE_DMA|DMA32 is not enabled;
+> root@localhost:~# dmesg | grep crash
+> [    0.000000] crashkernel reserved: 0x0000000420000000 - 0x0000000440000000 (512 MB)
+> [    0.000000] Kernel command line: console=ttyAMA0 root=/dev/vda rw panic_on_oops=1 oops=panic crashkernel=512M,high crashkernel=128M,low
+> 
+> 2) ,high and ,low are specified, the whole system memory is under 4G.
+> root@localhost:~# dmesg | grep crash
+> [    0.000000] crashkernel tmp reserved: 0x00000000f2800000 - 0x00000000fa800000 (128 MB)
+> [    0.000000] crashkernel low memory reserved: 0xca800000 - 0xd2800000 (128 MB)
+> [    0.000000] crashkernel reserved: 0x00000000d2800000 - 0x00000000f2800000 (512 MB)
+> [    0.000000] Kernel command line: console=ttyAMA0 root=/dev/vda rw panic_on_oops=1 oops=panic crashkernel=512M,high crashkernel=128M,low
+> 
+> test stub for 2):
+> 
+> diff --git a/arch/arm64/mm/init.c b/arch/arm64/mm/init.c
+> index 5cb73bbd286b100..abbde2158a0976a 100644
+> --- a/arch/arm64/mm/init.c
+> +++ b/arch/arm64/mm/init.c
+> @@ -147,6 +147,7 @@ static void __init reserve_crashkernel(void)
+>         unsigned long long crash_max = CRASH_ADDR_LOW_MAX;
+>         char *cmdline = boot_command_line;
+>         int ret;
+> +       unsigned long long tmp_base;
+> 
+>         if (!IS_ENABLED(CONFIG_KEXEC_CORE))
+>                 return;
+> @@ -179,6 +180,11 @@ static void __init reserve_crashkernel(void)
+>         if (crash_base)
+>                 crash_max = crash_base + crash_size;
+> 
+> +       tmp_base = memblock_phys_alloc_range(crash_low_size, CRASH_ALIGN, crash_base, crash_max);
+> +       BUG_ON(!tmp_base);
+> +       pr_info("crashkernel tmp reserved: 0x%016llx - 0x%016llx (%lld MB)\n",
+> +               tmp_base, tmp_base + crash_low_size, crash_low_size >> 20);
+> +
+>         crash_base = memblock_phys_alloc_range(crash_size, CRASH_ALIGN,
+>                                                crash_base, crash_max);
+>         if (!crash_base) {
+> @@ -186,6 +192,7 @@ static void __init reserve_crashkernel(void)
+>                         crash_size);
+>                 return;
+>         }
+> +       memblock_phys_free(tmp_base, crash_low_size);
+> 
+>         if (crash_low_size && reserve_crashkernel_low(crash_low_size, crash_base)) {
+>                 memblock_phys_free(crash_base, crash_size);
+> 
+>>
+>>>>>
+>>>>> I think maybe we can leave it unchanged. If the user configures two memory ranges,
+>>>>> we'd better apply for two. Otherwise, he'll be confused when he inquires. Currently,
+>>>>> crash_low_size is non-zero only when 'crashkernel=Y,low' is explicitly configured.
+>>>>
+>>>> Then user need know the system information, e.g how much is the high
+>>>> memory, low memory, if CONFIG_ZONE_DMA|DMA32 is enabled. And we need
+>>>> describe these cases in document. Any corner case or exception need
+>>>> be noted if we don't handle it in code.
+>>>>
+>>>> Caring about this very much because we have CI with existed test cases
+>>>> to run on the system, and QA will check these manually too. Support
+>>>> engineer need detailed document if anything special but happened.
+>>>> Anything unclear or uncovered will be reported as bug to our kernel dev.
+>>>> Guess your company do the similar thing like this.
+>>>>
+>>>> This crashkerne,high and crashkernel,low reservation is special if we
+>>>> allow ,high, ,low existing in the same zone. Imagine on system with
+>>>> CONFIG_ZONE_DMA|DMA32 disabled, people copy the crashkernel=512M,high
+>>>> and crashkernel=128M,low from other system, and he could get
+>>>> crash_res at [5G, 5G+512M], while crash_low_res at [6G, 6G+128M]. Guess
+>>>> how they will judge us.
+>>>
+>>> OK, I got it.
+>>>
+>>>>
+>>>>>
+>>>>>>
+>>>>>> I would suggest merging this series, Lei can add this corner case
+>>>>>> handling on top. Since this is a newly added support, we don't have
+>>>>>> to make it one step. Doing step by step can make reviewing easier.
+>>>>>>
+>>>>>>> +	if (crash_low_size && reserve_crashkernel_low(crash_low_size)) {
+>>>>>>> +		memblock_phys_free(crash_base, crash_size);
+>>>>>>> +		return;
+>>>>>>> +	}
+>>>>>>> +
+>>>>>>>  	pr_info("crashkernel reserved: 0x%016llx - 0x%016llx (%lld MB)\n",
+>>>>>>>  		crash_base, crash_base + crash_size, crash_size >> 20);
+>>>>>>>  
+>>>>>>> @@ -135,6 +183,9 @@ static void __init reserve_crashkernel(void)
+>>>>>>>  	 * map. Inform kmemleak so that it won't try to access it.
+>>>>>>>  	 */
+>>>>>>>  	kmemleak_ignore_phys(crash_base);
+>>>>>>> +	if (crashk_low_res.end)
+>>>>>>> +		kmemleak_ignore_phys(crashk_low_res.start);
+>>>>>>> +
+>>>>>>>  	crashk_res.start = crash_base;
+>>>>>>>  	crashk_res.end = crash_base + crash_size - 1;
+>>>>>>>  	insert_resource(&iomem_resource, &crashk_res);
+>>>>>>> -- 
+>>>>>>> 2.25.1
+>>>>>>>
+>>>>>>
+>>>>>> .
+>>>>>>
+>>>>>
+>>>>> -- 
+>>>>> Regards,
+>>>>>   Zhen Lei
+>>>>>
+>>>>
+>>>> .
+>>>>
+>>>
+>>
+> 
 
 -- 
-With best wishes
-Dmitry
+Regards,
+  Zhen Lei
