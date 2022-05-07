@@ -2,170 +2,189 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7660351E8A0
-	for <lists+devicetree@lfdr.de>; Sat,  7 May 2022 18:49:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 20DDF51E8A7
+	for <lists+devicetree@lfdr.de>; Sat,  7 May 2022 18:52:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1446654AbiEGQxI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 7 May 2022 12:53:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49774 "EHLO
+        id S244077AbiEGQ4T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 7 May 2022 12:56:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52776 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242555AbiEGQxH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 7 May 2022 12:53:07 -0400
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94B48205FB;
-        Sat,  7 May 2022 09:49:19 -0700 (PDT)
-Received: by mail-ej1-x635.google.com with SMTP id ks9so13184951ejb.2;
-        Sat, 07 May 2022 09:49:19 -0700 (PDT)
+        with ESMTP id S240158AbiEGQ4S (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 7 May 2022 12:56:18 -0400
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F4F91E3CA
+        for <devicetree@vger.kernel.org>; Sat,  7 May 2022 09:52:31 -0700 (PDT)
+Received: by mail-ej1-x62e.google.com with SMTP id kq17so19624769ejb.4
+        for <devicetree@vger.kernel.org>; Sat, 07 May 2022 09:52:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
+        d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=SAg5g+MiD3SG38RHNPJNJCdug7OG18gamo1tHYzZ8K0=;
-        b=i280AkyD/k7YYL+1wJ2wfg36XhNIeBxwb63mwCGKrwGWwPnYi7vvPpdABCp9jAgfO5
-         /7t99u/THmPeXURNtVM3XaR9gF/t3ozQuEvp67qY5PAwN6+o5t5RgWfY3MEX/Ytu8kNH
-         lNZH4Bs/lZgMj0wR7FeOZjvBGMhX/qMiJyoL+xD0ERceWe4elZe9d2G0aePPQiANX5TC
-         Ods2Uu/GvRNv6E44FWoCxjhjqbqwLvtcEYz1bCKOQM2mYUaLLhBBsUHLoNfY0uBdicqF
-         L6KSqAVeRM8LYRlZNW2P/amybZD2RxqKY9NBQATl9PS3o2ME4KoTzdyoWDi3IFM8piPP
-         htLA==
+        bh=sCvvHWmzhx8NWrjAiZK9ud0UYbDFJ128HXmTkYuDUIg=;
+        b=N0Qpw2sN+/9j7kShmen4Bm5RUlF/vaSuJSXnGywcw6t2glN/vdaUHHRLsdW9wP5iD9
+         AzoEt0NEC0Y82+DDjqmjaPXB8KqWuuW5jSjzIEkeH134dkPUWLcs36o5FjoR7ZyOlgbj
+         +W/ef4D4JJ4YgOboUeuJnYRcaIdNfHQ+z/sNQD4vxYfVr8+L/uI664AS60qSBtWVNWV5
+         W5K49zjQPI8jkcASRCzjZR4/fOcjEFbC6mxrtF5MiqVXFz3S78XKN9OKN+mXQlbk52l7
+         n+DFZiPyBfnNz1Ed+fGZ4/+IZFg7dQfzmENbP3vP4f/PuWwksTuORbXa+gFhjbM2UPmn
+         2l4w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=SAg5g+MiD3SG38RHNPJNJCdug7OG18gamo1tHYzZ8K0=;
-        b=TFNg+vsiMMQHU63iixVUnw5FVttJLyl/jM4tFBnfxvqBwGqExpmQ1TNwAxgHw3V2d/
-         y2jsiZT4UxE9vd/tKyrGWuhDIIAeb01R6cJBQZLek6fooqz1VLtEnCp7+L9+nyDwjfvL
-         7vAYVL1tWxuIbKrh2Tc08SGly2mEUVmDUsnSGbz5n4ymSqEzUnrMdYwIC1n0sX8D+PXd
-         mT9y+MyNiCNMqwFCQukpVvkeoDAZ05jZOwjjaAaMFwUE3GVa8kc5Ma7MLS0hs/gwZLKs
-         bG+COlBICQaj0MkWeXq87nzDVuje3B6WR67CzB1JleqZA/HcmND7yrm03g0GTIGs90A5
-         r0XA==
-X-Gm-Message-State: AOAM530VxfFynbMuCNiz68KaXykXDdXVSGylGpO3rMmE2MTw+EZS6Ozx
-        IGYHI3y/HCAZq00jq5ODGZ38I5tB5+E=
-X-Google-Smtp-Source: ABdhPJyY7NZz5O1Ou2jPQWoXPiPcoJ8tzBFNQMEhwsFaVLYA9qvu2eCeb8hFet3EJ9fenZxzjJJJDw==
-X-Received: by 2002:a17:906:c114:b0:6f5:db6f:71a1 with SMTP id do20-20020a170906c11400b006f5db6f71a1mr5467780ejc.338.1651942158054;
-        Sat, 07 May 2022 09:49:18 -0700 (PDT)
-Received: from [192.168.0.182] ([188.26.79.139])
-        by smtp.gmail.com with ESMTPSA id lh25-20020a170906f8d900b006f3ef214e04sm3149047ejb.106.2022.05.07.09.49.16
+        bh=sCvvHWmzhx8NWrjAiZK9ud0UYbDFJ128HXmTkYuDUIg=;
+        b=PmAl7BlGkAilSMDVHVONqfKu544SGvRYYHAIPO+ghJUPMMJQvx5yczrRcT49Kr8noq
+         BKWmRo8XZlVnUg0Rr9wCNJfts9AynJw9pZdkuyciodoaX+RQtZ1H1tIXLw9TrjvnbWlb
+         ANFajz4EuzyIeETIIokjuMydlyVgxUoL2aHwEjiXzwwGl4QLlyHQtba/CnHLF1XSaZQM
+         TuObjp1QUZs7EKAbXF0ugZQrUIwi2SHZe++/dZUz580Af4mQPcgBCMQ6+jWGuLDy9HvP
+         3YC8UV5B54zyzTPKgSKmB9/PqET6nu1BIYSWKYH8+ZjFMfS96E7Q1bkw8QUu728pADnt
+         HQ2w==
+X-Gm-Message-State: AOAM531fc9cG5IMJBeTjfzoBrRVdnviCGgmrbX5d8Qafvp0Xx8p9/Fqv
+        kjGqGadGLOzKDnFMahg7QviKOg==
+X-Google-Smtp-Source: ABdhPJyLwVc4p6GHtiVwpYvhf72EIYHssdfaGwdyJ8wU7mo4ZxDarLy7Od3kdT7TnhEnxoEZhwaWcg==
+X-Received: by 2002:a17:907:94ca:b0:6da:e637:fa42 with SMTP id dn10-20020a17090794ca00b006dae637fa42mr7981828ejc.347.1651942349579;
+        Sat, 07 May 2022 09:52:29 -0700 (PDT)
+Received: from [192.168.0.233] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id i3-20020a1709061cc300b006f3ef214dfcsm3215191ejh.98.2022.05.07.09.52.28
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 07 May 2022 09:49:17 -0700 (PDT)
-Message-ID: <39cb9ade-14af-c53b-bd42-06a9b965b57f@gmail.com>
-Date:   Sat, 7 May 2022 19:49:17 +0300
+        Sat, 07 May 2022 09:52:29 -0700 (PDT)
+Message-ID: <64376af4-a4b0-9411-33c6-54c3f57e1fa2@linaro.org>
+Date:   Sat, 7 May 2022 18:52:28 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.0
-Subject: Re: [PATCH v3 2/2] iio: adc: ad4130: add AD4130 driver
+ Thunderbird/91.8.1
+Subject: Re: [PATCH 1/2] dt-bindings: usb: Add documentation for sc27xx typec
+ controller
 Content-Language: en-US
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-iio@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Cosmin Tanislav <cosmin.tanislav@analog.com>
-References: <20220419150828.191933-1-cosmin.tanislav@analog.com>
- <20220419150828.191933-3-cosmin.tanislav@analog.com>
- <20220501170807.1e728524@jic23-huawei>
- <5d932a4a-790e-ca95-c5de-c2267e1f365c@gmail.com>
- <20220507173551.1bc45a82@jic23-huawei>
-From:   Cosmin Tanislav <demonsingur@gmail.com>
-In-Reply-To: <20220507173551.1bc45a82@jic23-huawei>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To:     Cixi Geng <gengcixi@gmail.com>, gregkh@linuxfoundation.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        orsonzhai@gmail.com, baolin.wang7@gmail.com, zhang.lyra@gmail.com,
+        heikki.krogerus@linux.intel.com
+Cc:     linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220507092953.2273879-1-gengcixi@gmail.com>
+ <20220507092953.2273879-2-gengcixi@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220507092953.2273879-2-gengcixi@gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 07/05/2022 11:29, Cixi Geng wrote:
+> From: Cixi Geng <cixi.geng1@unisoc.com>
+> 
+> The Spreadtrum PMIC SC27xx integrated typec port controller.
+> add the bindings to describe sc27xx typec controller.
+> 
+> Signed-off-by: Cixi Geng <cixi.geng1@unisoc.com>
+> ---
+>  .../bindings/usb/sprd,sc27xx-typec.yaml       | 72 +++++++++++++++++++
+>  1 file changed, 72 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/usb/sprd,sc27xx-typec.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/usb/sprd,sc27xx-typec.yaml b/Documentation/devicetree/bindings/usb/sprd,sc27xx-typec.yaml
+> new file mode 100644
+> index 000000000000..6e49198c88da
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/usb/sprd,sc27xx-typec.yaml
+> @@ -0,0 +1,72 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +# Copyright 2022 Unisoc Inc.
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/usb/sprd,sc27xx-typec.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: SC27XX Type-C port controller
+> +
+> +description:
+> +  The UNISOC, also know as Spreadtrum, SC27XX is a USB Type-C port controller which
+> +  supports role and plug orientation detection using the CC pins. It is
+> +  compatible with the USB Type-C Cable and Connector Specification v1.2.
+> +
+> +maintainers:
+> +  - Cixi Geng <gengcixi@gmail.com>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - sprd,sc2730-typec
+> +      - sprd,sc2721-typec
+
+Order alphabetically, please.
+
+> +      - sprd,ump96xx-typec
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  sprd,mode:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      The Type-C port mode type
+
+This does not look appropriate. You need to use usb-connector.yaml and
+its power-role property. Check existing examples.
+
+Even without usb-connector.yaml schema, you should not hard-code some
+magical 32-bit unknown numbers without any documented meaning (bindings)...
+
+> +
+> +  nvmem-cells:
+> +    maxItems: 2
+> +    description:
+> +      Reference to an nvmem node for the calibration data.
+> +
+> +  nvmem-cell-names:
+> +    items:
+> +      - const: typec_cc1_cal
+> +      - const: typec_cc2_cal
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - sprd,mode
+> +  - nvmem-cells
+> +  - nvmem-cell-names
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    pmic {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        pmic_typec: typec@380 {
+> +                compatible = "sprd,sc2730-typec";
+> +                interrupt-parent = <&sc2730_pmic>;
+> +                interrupts = <8>;
+> +                reg = <0x380>;
+
+Put reg just after compatible.
+
+> +                sprd,mode = <2>;
+> +                nvmem-cells = <&typec_cc1_cal>, <&typec_cc2_cal>;
+> +                nvmem-cell-names = "typec_cc1_cal", "typec_cc2_cal";
+> +                status = "okay";
+
+Examples do not have status. No point.
+
+> +        };
+> +    };
+> +...
 
 
-On 5/7/22 19:35, Jonathan Cameron wrote:
-> 
->>>    
->>>> +static int ad4130_set_fifo_watermark(struct iio_dev *indio_dev, unsigned int val)
->>>> +{
->>>> +	struct ad4130_state *st = iio_priv(indio_dev);
->>>> +	unsigned int eff;
->>>> +	int ret;
->>>> +
->>>> +	if (val > AD4130_FIFO_SIZE)
->>>> +		return -EINVAL;
->>>> +
->>>> +	/*
->>>> +	 * Always set watermark to a multiple of the number of enabled channels
->>>> +	 * to avoid making the FIFO unaligned.
->>>> +	 */
->>>> +	eff = rounddown(val, st->num_enabled_channels);
->>>> +
->>>> +	mutex_lock(&st->lock);
->>>> +
->>>> +	ret = regmap_update_bits(st->regmap, AD4130_REG_FIFO_CONTROL,
->>>> +				 AD4130_WATERMARK_MASK,
->>>> +				 FIELD_PREP(AD4130_WATERMARK_MASK,
->>>> +					    ad4130_watermark_reg_val(eff)));
->>>> +	if (ret)
->>>> +		goto out;
->>>> +
->>>> +	st->effective_watermark = eff;
->>>> +	st->watermark = val;
->>>
->>> Hmm this is a potential inconsistency in the IIO ABI.
->>> ABI docs describes watermark as being number of 'scan elements' which is
->>> not the clearest text we could have gone with...
->>>
->>> Now I may well have made a mistake in the following as it's rather a long time
->>> since I last looked at the core handling for this...
->>>
->>> The core treats it as number datum (which is same as a scan) when using
->>> it for the main watermark attribute and also when using watermarks with the
->>> kfifo (the IIO fifo is made up of objects each of which is a scan. So kfifo_len()
->>> returns the number of scans.
->>>    
->>> Looking very quickly at a few other drivers
->>> adxl367 seems to use number of samples.
->>> adxl372 is using number of scans.
->>> bmc150 hardware seems to work on basis of frame count which I 'think' is probably scans.
->>> fxls8962 uses 'samples count' which is not clearly defined in the datasheet but there
->>> is an example showing that it's scans (I think)...
->>> lsm6dsx - some of the fifos used with this are based on tagged data so the connection to
->>> what hits the front end buffers is non obvious.
->>>
->>> So, not great for consistency :(
->>>
->>> Going forwards i think we should standardize the hardware fifo watermark on what is being
->>> used for the software watermark which I believe is number of scans.
->>> Not necessary much we can do about old drivers though due to risk of breaking ABI...
->>> We should make the documentation clearer though.
->>>    
->>
->> I was confused too, but this seemed more logical to me at the time, and
->> since you didn't say anything regarding it on ADXL367, I did it the same
->> way here. I guess we can't go back and change it now on ADXL367, I'm
->> sorry for this. I'll fix it.
-> 
-> I missed it.  Review is never perfect (mine definitely aren't!)
-> 
-> Thinking more on the adxl367. We still have a window to  fix that as
-> the driver isn't yet in a release kernel.  Would you mind spinning a
-> patch to fix that one?  Even if we miss the rc cycle (it's a bit tight
-> timing wise) we can sneak it in as an early fix in stable without
-> significant risk of breaking anyone's userspace.
-> 
-
-I hope Monday is not too late to do it?
-I can also try to do the changes tomorrow but I don't have the hardware
-anymore so I won't be able to test until I get it back, which is only
-next week.
-
-> There might be other drivers that have that interpretation we can't
-> fix but if we can reduce the scope of the problem by changing the adxl367
-> that would be great.
-> 
-> We should also definitely improve the docs and perhaps add a note to say
-> that due to need to maintain ABI, a few drivers use scans * number of channels
-> rather than scans.
-
-I guess I could also do that at the same time.
+Best regards,
+Krzysztof
