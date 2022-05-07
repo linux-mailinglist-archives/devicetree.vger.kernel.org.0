@@ -2,106 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E924651E8FD
-	for <lists+devicetree@lfdr.de>; Sat,  7 May 2022 19:36:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D5F7251E91F
+	for <lists+devicetree@lfdr.de>; Sat,  7 May 2022 20:19:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1446705AbiEGRjq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 7 May 2022 13:39:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59130 "EHLO
+        id S1446820AbiEGSXW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 7 May 2022 14:23:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52280 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1390453AbiEGRjp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 7 May 2022 13:39:45 -0400
-Received: from relay08.th.seeweb.it (relay08.th.seeweb.it [IPv6:2001:4b7a:2000:18::169])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F78B27FC7
-        for <devicetree@vger.kernel.org>; Sat,  7 May 2022 10:35:58 -0700 (PDT)
-Received: from [192.168.1.101] (abxi172.neoplus.adsl.tpnet.pl [83.9.2.172])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id A23423ED82;
-        Sat,  7 May 2022 19:35:54 +0200 (CEST)
-Message-ID: <c13621d1-8c33-2979-b455-2e1f4e4bc5c8@somainline.org>
-Date:   Sat, 7 May 2022 19:35:53 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH] arm64: dts: qcom: msm8998: Make regulator voltages
- multiple of step-size
-Content-Language: en-US
-To:     Marijn Suijten <marijn.suijten@somainline.org>,
-        phone-devel@vger.kernel.org
-Cc:     ~postmarketos/upstreaming@lists.sr.ht,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Martin Botka <martin.botka@somainline.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        with ESMTP id S1446795AbiEGSXQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 7 May 2022 14:23:16 -0400
+Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76C542FFF3;
+        Sat,  7 May 2022 11:19:28 -0700 (PDT)
+Received: by mail-wm1-x336.google.com with SMTP id l62-20020a1c2541000000b0038e4570af2fso6114879wml.5;
+        Sat, 07 May 2022 11:19:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references;
+        bh=f9eTxQwBpqmyE5YQv8y/mSGc6BFKrmx/9RtbXRM94yk=;
+        b=q0QvHmJEV199SvJxS8MMwMhMnT/+xhVpVqbOLeHgkt06Xhs2dBC0jVTbeKOwr91pvR
+         ndKaasEP0xJG1RLgJyqL7ROM0gZzZQdJc/q0MNhHsXPKClgmJU88UwkBbKhnyLTjrxeH
+         akHWUnH51O7ewtusDhyChb/efNbilF+VAy0f52Ter98LqUPNVkvzci9eD41asZ+qZHI8
+         cxd6Fw0R6dR9XKl9hBhot2Ml9a+SI7h0b6qTcC3h1dkFbCIGTfD57A7X/PwLBhWUviLJ
+         RMrUlN4pHsO1OCXg4EHqgP/3qgV4jfWL/K1p0l8arjpAUs+e6MkOmajqxI/Xjre5TUMj
+         SXUw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references;
+        bh=f9eTxQwBpqmyE5YQv8y/mSGc6BFKrmx/9RtbXRM94yk=;
+        b=U1Xv2TTj2r2fYvELJfp/iYj9jx148urRPUPZEbC6A6xo+OzEcFrzeGC2dzRbz7dPHu
+         hFWjDzR2BcHvo6vsFjJJKyEMT7IrqJgntXu78W+4R7Gzy/1OIseTyZXWuHrnKAh7yuG2
+         6B87aOGn4LWtJd4EkSmL8JDdk4sgSE5MXTGajvmlDrK5nRZFHAf8nen6+LZTVUusNDj1
+         mzump8e/HKM4e1GtSy5day90OacjflagNYXmJ4X3mKspSeZtdVuHrzbw1k+16bOEvQQb
+         t5W3ZSrqvl5MjNmgd1TI1deux7rRNv4T16W6Q35rPvuLuiRMNYZ+Mm0W0rt0HAydblWV
+         YsGA==
+X-Gm-Message-State: AOAM5333iitphoNfhmzRhnmnqd2vGv/sbAjXY1/EUm8aLEkNUnLRJnyE
+        gHOQ4pQukBbeHrSt/X/LLT8=
+X-Google-Smtp-Source: ABdhPJzhvjQBg6LQrWKFmAkWoYNYrT/dAdUxxfWwxE0Fo8ocoWuRQNu1extz5NXA4crK+Rzl3m2uBw==
+X-Received: by 2002:a05:600c:4f03:b0:394:6499:21c7 with SMTP id l3-20020a05600c4f0300b00394649921c7mr8976554wmq.103.1651947566943;
+        Sat, 07 May 2022 11:19:26 -0700 (PDT)
+Received: from otyshchenko.router ([212.22.223.21])
+        by smtp.gmail.com with ESMTPSA id b10-20020a5d4d8a000000b0020c5253d8f3sm8198457wru.63.2022.05.07.11.19.25
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Sat, 07 May 2022 11:19:26 -0700 (PDT)
+From:   Oleksandr Tyshchenko <olekstysh@gmail.com>
+To:     xen-devel@lists.xenproject.org,
+        virtualization@lists.linux-foundation.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Cc:     Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>,
+        Jason Wang <jasowang@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Markuss Broks <markuss.broks@gmail.com>
-References: <20220507153627.1478268-1-marijn.suijten@somainline.org>
-From:   Konrad Dybcio <konrad.dybcio@somainline.org>
-In-Reply-To: <20220507153627.1478268-1-marijn.suijten@somainline.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Julien Grall <julien@xen.org>, Juergen Gross <jgross@suse.com>,
+        Stefano Stabellini <sstabellini@kernel.org>,
+        "Michael S. Tsirkin" <mst@redhat.com>,
+        Christoph Hellwig <hch@infradead.org>,
+        Jean-Philippe Brucker <jean-philippe@linaro.org>
+Subject: [PATCH V2 5/7] dt-bindings: Add xen,dev-domid property description for xen-grant DMA ops
+Date:   Sat,  7 May 2022 21:19:06 +0300
+Message-Id: <1651947548-4055-6-git-send-email-olekstysh@gmail.com>
+X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1651947548-4055-1-git-send-email-olekstysh@gmail.com>
+References: <1651947548-4055-1-git-send-email-olekstysh@gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>
 
+Introduce Xen specific binding for the virtualized device (e.g. virtio)
+to be used by Xen grant DMA-mapping layer in the subsequent commit.
 
-On 7.05.2022 17:36, Marijn Suijten wrote:
-> These voltages are not a multiple of the given step-size 8000 (with base
-> voltage 1664000) in pm8998_pldo, resulting in PLDO regulators l18 and
-> l22 failing to validate and in turn not probing the rpm-pm8998-regulator
-> driver:
-> 
->     l18: unsupportable voltage constraints 2856000-2848000uV
->     qcom_rpm_smd_regulator rpm-glink:rpm-requests:pm8998-regulators: l18: devm_regulator_register() failed, ret=-22
-> 
-> Round the voltages down for the sake of erring on the safe side, leaving
-> a comment in place to document this discrepancy wrt downstream sources.
-> 
-> Fixes: 390883af89d2 ("arm64: dts: qcom: msm8998: Introduce support for Sony Yoshino platform")
-> Reported-by: Konrad Dybcio <konrad.dybcio@somainline.org>
-> Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
-> Reviewed-by: Konrad Dybcio <konrad.dybcio@somainline.org>
-> ---
-Also:
-Reported-by: Markuss Broks <markuss.broks@gmail.com>
+This binding indicates that Xen grant mappings scheme needs to be
+enabled for the device which DT node contains that property and specifies
+the ID of Xen domain where the corresponding backend resides. The ID
+(domid) is used as an argument to the grant mapping APIs.
 
-Konrad
+This is needed for the option to restrict memory access using Xen grant
+mappings to work which primary goal is to enable using virtio devices
+in Xen guests.
 
+Signed-off-by: Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>
+---
+Changes RFC -> V1:
+   - update commit subject/description and text in description
+   - move to devicetree/bindings/arm/
 
->  .../dts/qcom/msm8998-sony-xperia-yoshino-poplar.dts    | 10 ++++++----
->  1 file changed, 6 insertions(+), 4 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino-poplar.dts b/arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino-poplar.dts
-> index 4a1f98a21031..c21333aa73c2 100644
-> --- a/arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino-poplar.dts
-> +++ b/arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino-poplar.dts
-> @@ -26,11 +26,13 @@ &lab {
->  };
->  
->  &vreg_l18a_2p85 {
-> -	regulator-min-microvolt = <2850000>;
-> -	regulator-max-microvolt = <2850000>;
-> +	/* Note: Round-down from 2850000 to be a multiple of PLDO step-size 8000 */
-> +	regulator-min-microvolt = <2848000>;
-> +	regulator-max-microvolt = <2848000>;
->  };
->  
->  &vreg_l22a_2p85 {
-> -	regulator-min-microvolt = <2700000>;
-> -	regulator-max-microvolt = <2700000>;
-> +	/* Note: Round-down from 2700000 to be a multiple of PLDO step-size 8000 */
-> +	regulator-min-microvolt = <2696000>;
-> +	regulator-max-microvolt = <2696000>;
->  };
+Changes V1 -> V2:
+   - update text in description
+   - change the maintainer of the binding
+   - fix validation issue
+   - reference xen,dev-domid.yaml schema from virtio/mmio.yaml
+---
+ .../devicetree/bindings/arm/xen,dev-domid.yaml     | 37 ++++++++++++++++++++++
+ Documentation/devicetree/bindings/virtio/mmio.yaml |  7 ++++
+ 2 files changed, 44 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/arm/xen,dev-domid.yaml
+
+diff --git a/Documentation/devicetree/bindings/arm/xen,dev-domid.yaml b/Documentation/devicetree/bindings/arm/xen,dev-domid.yaml
+new file mode 100644
+index 00000000..750e89e
+--- /dev/null
++++ b/Documentation/devicetree/bindings/arm/xen,dev-domid.yaml
+@@ -0,0 +1,37 @@
++# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/arm/xen,dev-domid.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Xen specific binding for virtualized devices (e.g. virtio)
++
++maintainers:
++  - Stefano Stabellini <sstabellini@kernel.org>
++
++select: true
++
++description:
++  This binding indicates that Xen grant mappings need to be enabled for
++  the device, and it specifies the ID of the domain where the corresponding
++  device (backend) resides. The property is required to restrict memory
++  access using Xen grant mappings.
++
++properties:
++  xen,dev-domid:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      The domid (domain ID) of the domain where the device (backend) is running.
++
++additionalProperties: true
++
++examples:
++  - |
++    virtio@3000 {
++            compatible = "virtio,mmio";
++            reg = <0x3000 0x100>;
++            interrupts = <41>;
++
++            /* The device is located in Xen domain with ID 1 */
++            xen,dev-domid = <1>;
++    };
+diff --git a/Documentation/devicetree/bindings/virtio/mmio.yaml b/Documentation/devicetree/bindings/virtio/mmio.yaml
+index 10c22b5..29a0932 100644
+--- a/Documentation/devicetree/bindings/virtio/mmio.yaml
++++ b/Documentation/devicetree/bindings/virtio/mmio.yaml
+@@ -13,6 +13,9 @@ description:
+   See https://www.oasis-open.org/committees/tc_home.php?wg_abbrev=virtio for
+   more details.
+ 
++allOf:
++  - $ref: /schemas/arm/xen,dev-domid.yaml#
++
+ properties:
+   compatible:
+     const: virtio,mmio
+@@ -33,6 +36,10 @@ properties:
+     description: Required for devices making accesses thru an IOMMU.
+     maxItems: 1
+ 
++  xen,dev-domid:
++    description: Required when Xen grant mappings need to be enabled for device.
++    $ref: /schemas/types.yaml#/definitions/uint32
++
+ required:
+   - compatible
+   - reg
+-- 
+2.7.4
+
