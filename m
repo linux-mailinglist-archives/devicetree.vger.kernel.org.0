@@ -2,76 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4310551E84D
-	for <lists+devicetree@lfdr.de>; Sat,  7 May 2022 17:49:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 32B5351E858
+	for <lists+devicetree@lfdr.de>; Sat,  7 May 2022 17:58:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1385869AbiEGPxB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 7 May 2022 11:53:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35198 "EHLO
+        id S1446611AbiEGQCd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 7 May 2022 12:02:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41348 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346685AbiEGPxB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 7 May 2022 11:53:01 -0400
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D21CA396B2
-        for <devicetree@vger.kernel.org>; Sat,  7 May 2022 08:49:13 -0700 (PDT)
-Received: by mail-ej1-x62a.google.com with SMTP id j6so19404039ejc.13
-        for <devicetree@vger.kernel.org>; Sat, 07 May 2022 08:49:13 -0700 (PDT)
+        with ESMTP id S239981AbiEGQCc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 7 May 2022 12:02:32 -0400
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6289289A3
+        for <devicetree@vger.kernel.org>; Sat,  7 May 2022 08:58:44 -0700 (PDT)
+Received: by mail-ej1-x62f.google.com with SMTP id g6so19490326ejw.1
+        for <devicetree@vger.kernel.org>; Sat, 07 May 2022 08:58:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=wQNlbBSnCGuXV/datAdDc/iLjhkXcPGRCGM9OyDI6Qs=;
-        b=LnU74xen1fqtuwMfRKvPcwdHMwYCLrdLz5kRQusxol4JUF268MCt2KUk+ZyygvB/LC
-         OJTrtjt2CYTq0mkxUYeCh1BvwrqN4KGJa8PI6D3D/nCLdcz9RyAeplZ+UhMAJX6c3opK
-         ImgmlhJ6v0QRyzqhgfbKLysm/V8DeSV2srYqXjKUgrwo5eMPvb5P31X5bz8oXY3rEshV
-         V7ytloxR+hvbK/aYIq+yQyugHbo5OG/UG59GLa0XD5WCkXpb/6vdIDfyUe7lC3+DAwp/
-         9DTBW8uUJXp0spYRxrr16M3IlWDSn1+GWO0WMtTdPSx91Og2UoT6oBcGHesvAmxxWUGe
-         Wcrw==
+        bh=F4eg3zMRdpKPCGlpzvcFzu7becBtGl7sPy8Sb1qKlmI=;
+        b=PjDkBDm1zFIqM02o+qAceGgf+oG1KkBJ1T5lAaRVXihm94rQqYsfUrzoCiL2cuc7R6
+         jR5tcI7LG+uwqrjEupVKuZ36MYNrghJQyqUno6n8AZi5vTOyDRA2HksqtRqfpqZxPLwe
+         wiamYMcwg250+hguO6aQiSyeNC92aBLYXddXdfEgCcgJLHL6xAQY1Eb2GjQ0LH13kOGd
+         Ql+KqpabkrmXL6OPYY8uTTffb308pclxUmHIkNvec9lXlEOLZFhbyPXLzmided3Wf1u3
+         u/MdhNpd3THj6rlJM/vjo2PULJio5S69mUSKZLxTePCJbjD2oUY13g/75Txyszd9mwvg
+         KlcQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=wQNlbBSnCGuXV/datAdDc/iLjhkXcPGRCGM9OyDI6Qs=;
-        b=1aGhPMKdqDQVfliQaZ/oh39FDUVWD/aRPXlx4csPJQQx8jDSuCnOcgRSOdTAd2buiq
-         5F0Dc53iVGDBQou3X5D9RoVp0eeJTz1D5OS886fV5wA1Ak8TaX0PqrtCjWGzPSt1M2dn
-         66G52hl2lM2zwwOquR0cfgkJa9JRSvbtB2uMd6CJbSNco69VeReVgBUnzjOG9438fbb9
-         tXKatCQnIuHhFTFSCzp7KPYGVgrd1XJWTfmhZKt/g42PzF5TL9eBSdesQorRM87xj44f
-         h3NiZgRLa2AFq+4+CqVFexiJCfF9YeqL7vW7+lL2WbK6hxQxk18d2DP4bJ02upnN4sEZ
-         gX1g==
-X-Gm-Message-State: AOAM530MpQdPV8guTnrVOxpHG1pTMRz1BavlbgG65sp0CHsnj3Ynk716
-        zkEKPPWa6UBGsbhweviOV2QulrhHAwsFor2N
-X-Google-Smtp-Source: ABdhPJyXhwDuCCedPga35pewNG9zUQ8z3RpGmNnelHI+hcibXqKVkpzJ5d43tBc5tCS/VDUgROR2UQ==
-X-Received: by 2002:a17:907:3da4:b0:6f4:ff2b:8299 with SMTP id he36-20020a1709073da400b006f4ff2b8299mr8184708ejc.109.1651938552405;
-        Sat, 07 May 2022 08:49:12 -0700 (PDT)
+        bh=F4eg3zMRdpKPCGlpzvcFzu7becBtGl7sPy8Sb1qKlmI=;
+        b=hUhJzbRQz8yMDKi1qgLqKS29vvZ2bTp+ZuBjaTO7zzTMzxuEOqn3RjWmgQ+jVzzbca
+         +0C3s8IMeMALEIUoT4Wsa2y4gwpSr0T3X5LjHV9N/nGOk/KXxNeSpnCl9Z+G2IhV0Weg
+         9WmK0msLWfsBO3HBEkFSlRKlByjim99V23XEtw/svJ43UqmjlXAfibQQbCH6U9ZgHcKP
+         c9UQx9c2688NMoeIkHEEvafenNf5i7YF0q2Qvj7SxVv6JOAlJW4HEFcpi6It5lOkcv2N
+         6fhT8cYyCRPYt9EDNwmmVLBpUxLQxYg5EJ+W0L8zFoHpDgJNA14Ro9sMtJa7TGt4gkth
+         hA8A==
+X-Gm-Message-State: AOAM531rgrLZXw0TsMTCU7AADjmQXBROqUUwtTHWvxkWbRU74IOa0R9e
+        BKckTOlRkK30cZdiptU5WYQmDJQc2fQgoO0Y
+X-Google-Smtp-Source: ABdhPJxvE6qr6UTyhd8YDsJjT6zrySc6pcTArns0DCeI6aPzPq4IY7FXPd6kYkL+Dez0qO9/jeu9Pw==
+X-Received: by 2002:a17:906:1845:b0:6f4:346f:f767 with SMTP id w5-20020a170906184500b006f4346ff767mr7511895eje.214.1651939123480;
+        Sat, 07 May 2022 08:58:43 -0700 (PDT)
 Received: from [192.168.0.232] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id yl26-20020a17090693fa00b006f3ef214de1sm3121877ejb.71.2022.05.07.08.49.11
+        by smtp.gmail.com with ESMTPSA id zg12-20020a170907248c00b006f3ef214e36sm3162897ejb.156.2022.05.07.08.58.42
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 07 May 2022 08:49:12 -0700 (PDT)
-Message-ID: <08383669-c56e-7956-d724-668e16ea2c98@linaro.org>
-Date:   Sat, 7 May 2022 17:49:10 +0200
+        Sat, 07 May 2022 08:58:42 -0700 (PDT)
+Message-ID: <e49ea1aa-0711-c75a-3694-f8cdc8d56489@linaro.org>
+Date:   Sat, 7 May 2022 17:58:42 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.8.1
-Subject: Re: [PATCH v2 05/16] arm64: dts: mediatek: asurada: Add system-wide
- power supplies
+Subject: Re: [PATCH v2 4/4] dt-bindings: doc/devicetree/bindings/security/tpm:
+ Move tpm-i2c.txt to YAML
 Content-Language: en-US
-To:     =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
-        <nfraprado@collabora.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, kernel@collabora.com,
-        Chen-Yu Tsai <wenst@chromium.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org
-References: <20220505194550.3094656-1-nfraprado@collabora.com>
- <20220505194550.3094656-6-nfraprado@collabora.com>
+To:     Johannes Holland <johannes.holland@infineon.com>,
+        jarkko@kernel.org, linux-kernel@vger.kernel.org,
+        linux-integrity@vger.kernel.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org
+Cc:     peterhuewe@gmx.de, jgg@ziepe.ca, krzysztof.kozlowski+dt@linaro.org
+References: <20220506170013.22598-1-johannes.holland@infineon.com>
+ <20220506170013.22598-4-johannes.holland@infineon.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220505194550.3094656-6-nfraprado@collabora.com>
+In-Reply-To: <20220506170013.22598-4-johannes.holland@infineon.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -82,31 +77,186 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05/05/2022 21:45, Nícolas F. R. A. Prado wrote:
-> Add system-wide power supplies present on all of the boards in the
-> Asurada family.
+On 06/05/2022 19:00, Johannes Holland wrote:
+> Migrate the existing plain text I2c driver schema to YAML and extend by
+> the options of the generic TIS driver for I2C TPMs which comply to the
+> TCG PC Client Platform TPM Profile (PTP) specification for TPM 2.0 v1.04
+> Revision 14.
 > 
-> Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
-> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> Signed-off-by: Johannes Holland <johannes.holland@infineon.com>
 > ---
-> 
-> (no changes since v1)
-> 
->  .../boot/dts/mediatek/mt8192-asurada.dtsi     | 64 +++++++++++++++++++
->  1 file changed, 64 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi b/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi
-> index e10636298639..5cb7580a13cf 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi
-> @@ -19,6 +19,70 @@ memory@40000000 {
->  		device_type = "memory";
->  		reg = <0 0x40000000 0 0x80000000>;
->  	};
-> +
-> +	/* system wide LDO 1.8V power rail */
 
-Generic node names, so regulator-[0-9], or regulator-suffix.
+Please use subject prefix consistent with subsystem:
+git log --oneline -- Documentation/devicetree/bindings/
+
+
+so for example: "dt-bindings: tpm: tpm-i2c: Convert to YAML"
+
+> Changelog:
+>  * v2:
+>    * move existing device tree instead of just adding a new one
+>    * do not use wildcard compatibles
+>    * make properties "label", "linux,sml-base" and "linux,sml-size"
+>      optional, as they should be
+
+Why they should be? Please explain all changes deviating from conversion
+in the commit msg. Adding new features should be in new commits, because
+this is supposed to be only conversion + minor adjustments for the
+conversion needs.
+
+> 
+> All properties are listed, even if some drivers do not implement them.
+> 
+> As mentioned, I kept the generic compatible in there because the TPM
+> is a standardized device. For vendor-specific features and bugs, the
+> specific compatibles can be used. Please let me know if you need it
+> removed.
+
+I think it should be a separate patch because it is not mentioned in
+original bindings at all.
+
+> 
+>  .../bindings/security/tpm/tpm-i2c.txt         | 26 --------
+>  .../bindings/security/tpm/tpm-i2c.yaml        | 66 +++++++++++++++++++
+>  2 files changed, 66 insertions(+), 26 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/security/tpm/tpm-i2c.txt
+>  create mode 100644 Documentation/devicetree/bindings/security/tpm/tpm-i2c.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/security/tpm/tpm-i2c.txt b/Documentation/devicetree/bindings/security/tpm/tpm-i2c.txt
+> deleted file mode 100644
+> index a65d7b71e81a..000000000000
+> --- a/Documentation/devicetree/bindings/security/tpm/tpm-i2c.txt
+> +++ /dev/null
+> @@ -1,26 +0,0 @@
+> -* Device Tree Bindings for I2C based Trusted Platform Module(TPM)
+> -
+> -Required properties:
+> -
+> -- compatible     : 'manufacturer,model', eg. nuvoton,npct650
+> -- label          : human readable string describing the device, eg. "tpm"
+> -- linux,sml-base : 64-bit base address of the reserved memory allocated for
+> -                   the firmware event log
+> -- linux,sml-size : size of the memory allocated for the firmware event log
+> -
+> -Optional properties:
+> -
+> -- powered-while-suspended: present when the TPM is left powered on between
+> -                           suspend and resume (makes the suspend/resume
+> -                           callbacks do nothing).
+> -
+> -Example (for OpenPower Systems with Nuvoton TPM 2.0 on I2C)
+> -----------------------------------------------------------
+> -
+> -tpm@57 {
+> -	reg = <0x57>;
+> -	label = "tpm";
+> -	compatible = "nuvoton,npct650", "nuvoton,npct601";
+> -	linux,sml-base = <0x7f 0xfd450000>;
+> -	linux,sml-size = <0x10000>;
+> -};
+> diff --git a/Documentation/devicetree/bindings/security/tpm/tpm-i2c.yaml b/Documentation/devicetree/bindings/security/tpm/tpm-i2c.yaml
+> new file mode 100644
+> index 000000000000..952605ab8611
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/security/tpm/tpm-i2c.yaml
+> @@ -0,0 +1,66 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/security/tpm/tpm-i2c.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: I2C PTP based TPM Device Tree Bindings
+
+s/Device Tree Bindings//
+
+> +
+> +maintainers:
+> +  - Johannes Holland <johannes.holland@infineon.com>
+> +
+> +description:
+> +  Device Tree Bindings for I2C based Trusted Platform Module (TPM).
+
+s/Device Tree Bindings//
+
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          # Infineon's Trusted Platform Module (TPM) (SLB9673)
+> +          - infineon,slb9673
+
+This was not documented before, so separate commit please.
+
+> +          - nuvoton,npct601
+
+Please remove it from trivial-devices (in this commit).
+
+> +          - nuvoton,npct650
+> +      - const: tcg,tpm-tis-i2c
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupt:
+> +    maxItems: 1
+> +
+> +  label:
+> +    description: |
+
+No need for "|". Also in other cases below.
+
+> +      Human readable string describing the device, eg. "tpm".
+> +
+> +  linux,sml-base:
+> +    description: |
+> +      64-bit base address of the reserved memory allocated
+> +      for the firmware event log.
+
+This does not look like standard type, so it needs a $ref.
+
+> +
+> +  linux,sml-size:
+> +    description: |
+> +      Size of the memory allocated for the firmware event log.
+
+Ditto.
+
+> +
+> +  powered-while-suspended:
+> +    description: |
+> +      Present when the TPM is left powered on between suspend and
+> +      resume (makes the suspend/resume callbacks do nothing).
+
+Missing type, so:
+type:boolean
+
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c {
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +
+> +      tpm@2e {
+> +        compatible = "infineon,slb9673", "tcg,tpm-tis-i2c";
+> +        reg = <0x2e>;
+
+Why changing example? Use the original one, unless it has issues but
+this was not mentioned anywhere.
+
+> +      };
+> +    };
+> +...
+
 
 Best regards,
 Krzysztof
