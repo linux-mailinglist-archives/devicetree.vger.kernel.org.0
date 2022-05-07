@@ -2,75 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B888751E863
-	for <lists+devicetree@lfdr.de>; Sat,  7 May 2022 18:02:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5AB5851E887
+	for <lists+devicetree@lfdr.de>; Sat,  7 May 2022 18:33:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1386072AbiEGQGJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 7 May 2022 12:06:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44856 "EHLO
+        id S1383294AbiEGQhY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 7 May 2022 12:37:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41230 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1359786AbiEGQGI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 7 May 2022 12:06:08 -0400
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6404CE027
-        for <devicetree@vger.kernel.org>; Sat,  7 May 2022 09:02:21 -0700 (PDT)
-Received: by mail-ej1-x635.google.com with SMTP id kq17so19493478ejb.4
-        for <devicetree@vger.kernel.org>; Sat, 07 May 2022 09:02:21 -0700 (PDT)
+        with ESMTP id S1354878AbiEGQhW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 7 May 2022 12:37:22 -0400
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4DCBF183AF
+        for <devicetree@vger.kernel.org>; Sat,  7 May 2022 09:33:35 -0700 (PDT)
+Received: by mail-ed1-x534.google.com with SMTP id c12so4344462edv.10
+        for <devicetree@vger.kernel.org>; Sat, 07 May 2022 09:33:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=ZGe2WKTSwlYRLM8mEcooO0HHCmXLiPGKlmbzaSTlMLY=;
-        b=Y7CCk9RztVEPm+vsTbcOLJTJtiVj2ZZJjSyaqRNaAkr8Nw8k7Y7ieul8PwDE80gQET
-         6ghxH3wYw/sZgP5FJ4rVQhMSDxO7RJ2x7cEjyIV+VrGketdGNconKGkBLICLp9HVogzo
-         uswvg9behkN+JUFyLCM+cMze1p30wnzMTXHKDzAS6Q8BrdzMJMPJDdCTHCnmkPoFhAwT
-         MmfjPLtn1pWF9Ua9v7RhGlN+mbWMxYvZ2F2TmNGEQNqChh8lN9weHDoCxj9MSCYB5lcT
-         XxsJ/YzVnwIbv9NGUxFV0ope1g4lsOjAmUqLscBnSiC5cAD4/K1guJ5RwgBeAESBVfXJ
-         spDw==
+        bh=pKO2GPtNdIghjz6m7nU4lvNqHCZJe8aOfScuIu52lYI=;
+        b=cmLK3WTGMu+JUFTSMOh+sDJVERBH5LGbX9YNBtxSObQUA1nZntQ/c5pTdEdgArSC37
+         XT6tUpq3xiwy+X2rC4oFU4oYhpSyi2ZMdwxuF1/jc+WO3kouQHwmm6wJ1TPVWLB/hVph
+         fdYATZMGIKm4CHf2cx2DsjD7DxSjC+iFUqi1X9vEEz+hmBQg3XbevS6UT+UOjgiL9q+2
+         yBZcs0eoG2RgtAGi7d54VnDIXKApqL7/8x1GGXDOH1gSU3Uy4RFm0CJnxvoCL/pnhNEF
+         sjnStod+/FZH986KzgVqyZ3mXngZX3xkXCl89lVKWoQ3mQEmrEuYparnCmDAjUprWGF2
+         6HDw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=ZGe2WKTSwlYRLM8mEcooO0HHCmXLiPGKlmbzaSTlMLY=;
-        b=oomX0p5NWStDm2NGkOXUFgheBCwSIB/jZ8BpWzBbQ+oDP2ik/S83M5qwNZtlyPhP1w
-         MqJ3bjSGel+J3pKOOnRYtUCk7mx7y5xusptt6WoMIEWK0zuuE06zQm0+7zKhscCy0IZi
-         GXrIJ8lKgfj4dmelf/FckrqGlUPwv0pYRoHkb0g2DwA+9+LAoNa7FFFNe6R8xKaUhm0J
-         5ewt7uaYBJDCHK1ngVcsbHHwbIRPgJRl2NSXleOm9uIgIdJMe4xCZsthGfWkf62hpOQX
-         li1eDnRXiZB866RDstFLNPgCkJYF115eA+sxClabTQI4xT9mpRXWYt/QS6dNfSr7GpYj
-         rlMA==
-X-Gm-Message-State: AOAM530fIsvfg8WZQ1ViQ4ljFQ3BZWyZ8U6DQeZplTWCWeYkNZ9rW0zI
-        u/d59osXmwgUOtYtacXNJVoX3g==
-X-Google-Smtp-Source: ABdhPJzSP4Dy5K1PH+U5uRNNx39K/egsLJrR1KNAavRKOW5qU1KGhssurkrAq+UlSXAI3qM/T90iAw==
-X-Received: by 2002:a17:906:2652:b0:6f3:a042:6b51 with SMTP id i18-20020a170906265200b006f3a0426b51mr7764866ejc.565.1651939340028;
-        Sat, 07 May 2022 09:02:20 -0700 (PDT)
-Received: from [192.168.0.232] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id ee38-20020a056402292600b0042617ba63a2sm3692833edb.44.2022.05.07.09.02.19
+        bh=pKO2GPtNdIghjz6m7nU4lvNqHCZJe8aOfScuIu52lYI=;
+        b=Q7pNz46CW+12TIVReYcjSURqLAx9M7r0/A1HuP6T5FOxPjnvGViCjRQwLKR+KofHBL
+         NZRB5cwaSZ82qJPeTO6CTXiL856SuQxB1fh4q3K4Dof8Xeg5DTvFfwLNCn6ORxTqbrVT
+         HYb2ng3wKRyxIceFKGFL2Orgq5cZPp+HNyzjpqnm2XMSu6pmGAXX/YgfvSbH15rnchjs
+         +koT70fRJlDxQ/Q5DPJIRAUvC51oJ6bBioUKzxw+o1aty3U7tRXqKu22EuIf2z7jo+Wl
+         LQ9p79TKSufDS1sU+hBmt8DkuBG/QVLt3+8vHQOWCVAwVi6s3Nz5eWVN9zfPeIvkpPGB
+         k0Vw==
+X-Gm-Message-State: AOAM533xXGemEyvTfi1xfrvRoDJUfZuWrG+GQHbTAPAmFy/IC6K8JZeG
+        F+O1BWqgirsE8m+RVSrN4A3aNQ==
+X-Google-Smtp-Source: ABdhPJwHYjjrG+KKOOSLs6RtoUUFX0QbyyBt93Asr2h6J9e7iKcP3hEt3PXEy5+GCvVymWXolMYvWw==
+X-Received: by 2002:a05:6402:5255:b0:427:de81:6af with SMTP id t21-20020a056402525500b00427de8106afmr9324701edd.269.1651941213736;
+        Sat, 07 May 2022 09:33:33 -0700 (PDT)
+Received: from [192.168.0.233] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id w26-20020a50fa9a000000b0041d893ed437sm3745988edr.2.2022.05.07.09.33.32
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 07 May 2022 09:02:19 -0700 (PDT)
-Message-ID: <5dca492f-3afd-9da2-913c-00601dece441@linaro.org>
-Date:   Sat, 7 May 2022 18:02:18 +0200
+        Sat, 07 May 2022 09:33:33 -0700 (PDT)
+Message-ID: <d3e027ca-9ccf-cf91-2414-85d2b9b680f0@linaro.org>
+Date:   Sat, 7 May 2022 18:33:31 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.8.1
-Subject: Re: [PATCH v7 7/8] ARM: dts: Introduce HPE GXP Device tree
+Subject: Re: [PATCH v4 1/2] dt-bindings: remoteproc: mediatek: Make l1tcm reg
+ exclusive to mt819x
 Content-Language: en-US
-To:     nick.hawkins@hpe.com, verdun@hpe.com, joel@jms.id.au,
-        arnd@arndb.de, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Cc:     Olof Johansson <olof@lixom.net>, soc@kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
+To:     =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
+        <nfraprado@collabora.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, kernel@collabora.com,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org
-References: <20220506191339.78617-1-nick.hawkins@hpe.com>
- <20220506191339.78617-7-nick.hawkins@hpe.com>
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Tinghan Shen <tinghan.shen@mediatek.com>,
+        Tzung-Bi Shih <tzungbi@google.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org,
+        linux-remoteproc@vger.kernel.org
+References: <20220506213226.257859-1-nfraprado@collabora.com>
+ <20220506213226.257859-2-nfraprado@collabora.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220506191339.78617-7-nick.hawkins@hpe.com>
+In-Reply-To: <20220506213226.257859-2-nfraprado@collabora.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,20 +86,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/05/2022 21:13, nick.hawkins@hpe.com wrote:
-> From: Nick Hawkins <nick.hawkins@hpe.com>
+On 06/05/2022 23:32, Nícolas F. R. A. Prado wrote:
+> Commit ca23ecfdbd44 ("remoteproc/mediatek: support L1TCM") added support
+> for the l1tcm memory region on the MT8192 SCP, adding a new da_to_va
+> callback that handles l1tcm while keeping the old one for
+> back-compatibility with MT8183. However, since the mt8192 compatible was
+> missing from the dt-binding, the accompanying dt-binding commit
+> 503c64cc42f1 ("dt-bindings: remoteproc: mediatek: add L1TCM memory region")
+> mistakenly added this reg as if it were for mt8183. And later
+> it became common to all platforms as their compatibles were added.
 > 
-> The HPE SoC is new to linux. A basic device tree layout with minimum
-> required for linux to boot including a timer and watchdog support has
-> been created.
+> Fix the dt-binding so that the l1tcm reg can, and must, be present only
+> on the supported platforms: mt8192 and mt8195.
 > 
-> The dts file is empty at this point but will be updated in subsequent
-> updates as board specific features are enabled.
+> Fixes: 503c64cc42f1 ("dt-bindings: remoteproc: mediatek: add L1TCM memory region")
+> Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
 > 
-> Signed-off-by: Nick Hawkins <nick.hawkins@hpe.com>
+> ---
+> The if:then: branches became rather long since it seems that it's not
+> possible to override the properties in them, only add new ones. That is,
+> I couldn't leave the items definition for all three regs in the global
+> reg-names and just decrease minItems and maxItems to 2 for
+> mt8183/mt8186.
+> 
+> Also I had to add a description to the global reg-names, since it
+> couldn't be neither missing nor empty.
 
+It is possible:
+https://elixir.bootlin.com/linux/latest/source/Documentation/devicetree/bindings/example-schema.yaml#L91
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Keep constraints and list of names in properties. Then in allOf:if:then
+raise minItems or lower maxItems, depending on the variant.
 
 
 Best regards,
