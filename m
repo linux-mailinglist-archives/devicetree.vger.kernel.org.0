@@ -2,75 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 20DDF51E8A7
-	for <lists+devicetree@lfdr.de>; Sat,  7 May 2022 18:52:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C0E351E8AA
+	for <lists+devicetree@lfdr.de>; Sat,  7 May 2022 18:54:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244077AbiEGQ4T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 7 May 2022 12:56:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52776 "EHLO
+        id S229834AbiEGQ5R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 7 May 2022 12:57:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53318 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240158AbiEGQ4S (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 7 May 2022 12:56:18 -0400
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F4F91E3CA
-        for <devicetree@vger.kernel.org>; Sat,  7 May 2022 09:52:31 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id kq17so19624769ejb.4
-        for <devicetree@vger.kernel.org>; Sat, 07 May 2022 09:52:30 -0700 (PDT)
+        with ESMTP id S233176AbiEGQ5P (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 7 May 2022 12:57:15 -0400
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8480255B9
+        for <devicetree@vger.kernel.org>; Sat,  7 May 2022 09:53:27 -0700 (PDT)
+Received: by mail-ed1-x52d.google.com with SMTP id c12so4374947edv.10
+        for <devicetree@vger.kernel.org>; Sat, 07 May 2022 09:53:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=sCvvHWmzhx8NWrjAiZK9ud0UYbDFJ128HXmTkYuDUIg=;
-        b=N0Qpw2sN+/9j7kShmen4Bm5RUlF/vaSuJSXnGywcw6t2glN/vdaUHHRLsdW9wP5iD9
-         AzoEt0NEC0Y82+DDjqmjaPXB8KqWuuW5jSjzIEkeH134dkPUWLcs36o5FjoR7ZyOlgbj
-         +W/ef4D4JJ4YgOboUeuJnYRcaIdNfHQ+z/sNQD4vxYfVr8+L/uI664AS60qSBtWVNWV5
-         W5K49zjQPI8jkcASRCzjZR4/fOcjEFbC6mxrtF5MiqVXFz3S78XKN9OKN+mXQlbk52l7
-         n+DFZiPyBfnNz1Ed+fGZ4/+IZFg7dQfzmENbP3vP4f/PuWwksTuORbXa+gFhjbM2UPmn
-         2l4w==
+        bh=mULbVU3wCOnYge1dYizSMDuB/AJIXOjjeNx0fYbxyYo=;
+        b=jhnkW8uoHzd4WSqw2VVEUIJzyyCR33UqotHXtcZQhc7859tIdIU1TxEPWAQM0gMc4s
+         +/vz47MJzAd+HCzh/kjl/escbiX74DNzXiLQdIDrsw2QQuzD1M5F2SLYM+SuTsmzyzd3
+         vVPV8kMUxBsMyEuS2D+vIIw+TWvM7zPEyvFrJD9DuWOda/6Lh6ueFQUlTPufTxynoBDy
+         iXSbwt/gDazMJY6R+B8+1hHJiSvHhsU42/5ASr6yrKfq9l+uWNq7ucn/lFVEz/WIsRYL
+         UzhQEgSvRBHxaZ8s7la12Ny3Zk0dxjm8+9rJOVdmkWus2wuTVvRB1gzR8dpzMyz1EhJl
+         RchQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=sCvvHWmzhx8NWrjAiZK9ud0UYbDFJ128HXmTkYuDUIg=;
-        b=PmAl7BlGkAilSMDVHVONqfKu544SGvRYYHAIPO+ghJUPMMJQvx5yczrRcT49Kr8noq
-         BKWmRo8XZlVnUg0Rr9wCNJfts9AynJw9pZdkuyciodoaX+RQtZ1H1tIXLw9TrjvnbWlb
-         ANFajz4EuzyIeETIIokjuMydlyVgxUoL2aHwEjiXzwwGl4QLlyHQtba/CnHLF1XSaZQM
-         TuObjp1QUZs7EKAbXF0ugZQrUIwi2SHZe++/dZUz580Af4mQPcgBCMQ6+jWGuLDy9HvP
-         3YC8UV5B54zyzTPKgSKmB9/PqET6nu1BIYSWKYH8+ZjFMfS96E7Q1bkw8QUu728pADnt
-         HQ2w==
-X-Gm-Message-State: AOAM531fc9cG5IMJBeTjfzoBrRVdnviCGgmrbX5d8Qafvp0Xx8p9/Fqv
-        kjGqGadGLOzKDnFMahg7QviKOg==
-X-Google-Smtp-Source: ABdhPJyLwVc4p6GHtiVwpYvhf72EIYHssdfaGwdyJ8wU7mo4ZxDarLy7Od3kdT7TnhEnxoEZhwaWcg==
-X-Received: by 2002:a17:907:94ca:b0:6da:e637:fa42 with SMTP id dn10-20020a17090794ca00b006dae637fa42mr7981828ejc.347.1651942349579;
-        Sat, 07 May 2022 09:52:29 -0700 (PDT)
+        bh=mULbVU3wCOnYge1dYizSMDuB/AJIXOjjeNx0fYbxyYo=;
+        b=Ew+sgN4aaTZEie0v7Ip+ETjgFw9l0ZOPA/5zYB6JJ6bMe0wlOVKIPv08swwgLmeotU
+         HWBCRqQbAKuQFIh6jsPv00lbVfRJTb4WTuMZk01sW6Ccm9p3hRVfm1Fb1EqJXAtDDGKE
+         ZQBFYryYkv1muYL8CvmgoNTpHU1QsZ+iJUpBz6pLU/g6AUkXUBl29j302cagV2SOmxGD
+         cW8l0t+RnRbG2xuLt3I3twweJeqlv1TImj/1vcUxiblAAIX4SxXhyMTkkstCk619k1VB
+         MFfFRnWgwfTW1CWtZ0GjURkYnqeKgmc4bS5nbQdKUTXw8Rl/nGkPvYr2QUCzKZJA7cLs
+         mhyg==
+X-Gm-Message-State: AOAM5331EengUCe3JwR4tAFSIfiWhtaJdsPE59bIJKcPFgoBo4EMi6SC
+        VD1rXt1fc+FD6wARW3etTwjlhQ==
+X-Google-Smtp-Source: ABdhPJymWFf1Qr25QZQVvNUyaX7gOBGGoTFDURKo9c/7s/4051zUngEsdOBCijOEtBWIkL9lbvqJoA==
+X-Received: by 2002:a05:6402:35c7:b0:427:d231:3740 with SMTP id z7-20020a05640235c700b00427d2313740mr9261858edc.40.1651942406548;
+        Sat, 07 May 2022 09:53:26 -0700 (PDT)
 Received: from [192.168.0.233] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id i3-20020a1709061cc300b006f3ef214dfcsm3215191ejh.98.2022.05.07.09.52.28
+        by smtp.gmail.com with ESMTPSA id h23-20020a1709070b1700b006f3ef214e3fsm3176517ejl.165.2022.05.07.09.53.25
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 07 May 2022 09:52:29 -0700 (PDT)
-Message-ID: <64376af4-a4b0-9411-33c6-54c3f57e1fa2@linaro.org>
-Date:   Sat, 7 May 2022 18:52:28 +0200
+        Sat, 07 May 2022 09:53:26 -0700 (PDT)
+Message-ID: <3a9f9bb5-45fa-3cfa-b7a3-f6c2e630de41@linaro.org>
+Date:   Sat, 7 May 2022 18:53:25 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.8.1
-Subject: Re: [PATCH 1/2] dt-bindings: usb: Add documentation for sc27xx typec
- controller
+Subject: Re: [PATCH V3 1/4] dt-bindings: arm: fsl: add imx93 11x11 evk board
 Content-Language: en-US
-To:     Cixi Geng <gengcixi@gmail.com>, gregkh@linuxfoundation.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        orsonzhai@gmail.com, baolin.wang7@gmail.com, zhang.lyra@gmail.com,
-        heikki.krogerus@linux.intel.com
-Cc:     linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220507092953.2273879-1-gengcixi@gmail.com>
- <20220507092953.2273879-2-gengcixi@gmail.com>
+To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de
+Cc:     kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, Peng Fan <peng.fan@nxp.com>
+References: <20220507065309.3964937-1-peng.fan@oss.nxp.com>
+ <20220507065309.3964937-2-peng.fan@oss.nxp.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220507092953.2273879-2-gengcixi@gmail.com>
+In-Reply-To: <20220507065309.3964937-2-peng.fan@oss.nxp.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,112 +77,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/05/2022 11:29, Cixi Geng wrote:
-> From: Cixi Geng <cixi.geng1@unisoc.com>
+On 07/05/2022 08:53, Peng Fan (OSS) wrote:
+> From: Peng Fan <peng.fan@nxp.com>
 > 
-> The Spreadtrum PMIC SC27xx integrated typec port controller.
-> add the bindings to describe sc27xx typec controller.
+> Add the board imx93-11x11-evk in the binding docuemnt.
 > 
-> Signed-off-by: Cixi Geng <cixi.geng1@unisoc.com>
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
 > ---
->  .../bindings/usb/sprd,sc27xx-typec.yaml       | 72 +++++++++++++++++++
->  1 file changed, 72 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/usb/sprd,sc27xx-typec.yaml
+>  Documentation/devicetree/bindings/arm/fsl.yaml | 5 +++++
+>  1 file changed, 5 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/usb/sprd,sc27xx-typec.yaml b/Documentation/devicetree/bindings/usb/sprd,sc27xx-typec.yaml
-> new file mode 100644
-> index 000000000000..6e49198c88da
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/usb/sprd,sc27xx-typec.yaml
-> @@ -0,0 +1,72 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +# Copyright 2022 Unisoc Inc.
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/usb/sprd,sc27xx-typec.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: SC27XX Type-C port controller
-> +
-> +description:
-> +  The UNISOC, also know as Spreadtrum, SC27XX is a USB Type-C port controller which
-> +  supports role and plug orientation detection using the CC pins. It is
-> +  compatible with the USB Type-C Cable and Connector Specification v1.2.
-> +
-> +maintainers:
-> +  - Cixi Geng <gengcixi@gmail.com>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - sprd,sc2730-typec
-> +      - sprd,sc2721-typec
+> diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+> index b8b0efa55339..391f92282453 100644
+> --- a/Documentation/devicetree/bindings/arm/fsl.yaml
+> +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+> @@ -910,6 +910,11 @@ properties:
+>                - toradex,verdin-imx8mp-wifi  # Verdin iMX8M Plus Wi-Fi / BT Modules
+>            - const: fsl,imx8mp
+>  
+> +      - description: i.MX93 based Boards
+> +        items:
+> +          - const: fsl,imx93-11x11-evk    # i.MX93 11x11 EVK Board
 
-Order alphabetically, please.
+This should be rather an enum, because there will be more boards. With
+that change:
 
-> +      - sprd,ump96xx-typec
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  sprd,mode:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description:
-> +      The Type-C port mode type
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-This does not look appropriate. You need to use usb-connector.yaml and
-its power-role property. Check existing examples.
-
-Even without usb-connector.yaml schema, you should not hard-code some
-magical 32-bit unknown numbers without any documented meaning (bindings)...
-
+> +          - const: fsl,imx93
 > +
-> +  nvmem-cells:
-> +    maxItems: 2
-> +    description:
-> +      Reference to an nvmem node for the calibration data.
-> +
-> +  nvmem-cell-names:
-> +    items:
-> +      - const: typec_cc1_cal
-> +      - const: typec_cc2_cal
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - sprd,mode
-> +  - nvmem-cells
-> +  - nvmem-cell-names
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    pmic {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        pmic_typec: typec@380 {
-> +                compatible = "sprd,sc2730-typec";
-> +                interrupt-parent = <&sc2730_pmic>;
-> +                interrupts = <8>;
-> +                reg = <0x380>;
-
-Put reg just after compatible.
-
-> +                sprd,mode = <2>;
-> +                nvmem-cells = <&typec_cc1_cal>, <&typec_cc2_cal>;
-> +                nvmem-cell-names = "typec_cc1_cal", "typec_cc2_cal";
-> +                status = "okay";
-
-Examples do not have status. No point.
-
-> +        };
-> +    };
-> +...
+>        - description: PHYTEC phyCORE-i.MX8MP SoM based boards
+>          items:
+>            - const: phytec,imx8mp-phyboard-pollux-rdk # phyBOARD-Pollux RDK
 
 
 Best regards,
