@@ -2,122 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8631C51E563
-	for <lists+devicetree@lfdr.de>; Sat,  7 May 2022 10:04:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BC21A51E581
+	for <lists+devicetree@lfdr.de>; Sat,  7 May 2022 10:16:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1446049AbiEGIIb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 7 May 2022 04:08:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60358 "EHLO
+        id S1354598AbiEGIUE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 7 May 2022 04:20:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45074 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1446042AbiEGIIa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 7 May 2022 04:08:30 -0400
-Received: from mail.pr-group.ru (mail.pr-group.ru [178.18.215.3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 603565AECB;
-        Sat,  7 May 2022 01:04:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-        d=metrotek.ru; s=mail;
-        h=from:subject:date:message-id:to:cc:mime-version:content-transfer-encoding:
-         in-reply-to:references;
-        bh=Y+q3Espln8Rodgx5Nn4tnLIErSJz4K4izMOM418Zr7I=;
-        b=cG3OzKcjLqlrVHYxW1JIfwxbTpEQy+qt4LI0m4B/XOe2RA1iELQjiSgCofntmiIljpU5m7EQz5R7g
-         EwITgSBhScsl+NamlL33uvFuBH56g8fQZmvZAkOn4MFqZ4jsw6iRLC0H+mzUzDk8HsLwmAPaOpOpfX
-         h5pGS64nfDthaaP8hj6ZfzzCVWKyys0jcDO8U0r/71llmFN8g9Wy96pUkUpXHxWnSdXcfWgKgigqbr
-         XWywDX++3pKm4BnOyoVNu6Afi7vFz8d7t9SRH64VVZIoAfBrjf6q3vrizs2MFMUZfnpvTiHjU1X3i3
-         qoybMHnnKF0TU4TjPY3Cw55nORxUQ7g==
-X-Kerio-Anti-Spam:  Build: [Engines: 2.16.3.1422, Stamp: 3], Multi: [Enabled, t: (0.000009,0.007970)], BW: [Enabled, t: (0.000020,0.000001)], RTDA: [Enabled, t: (0.065212), Hit: No, Details: v2.39.0; Id: 15.52k867.1g2eoor49.2j01; mclb], total: 0(700)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
-X-Spam-Level: 
-X-Footer: bWV0cm90ZWsucnU=
-Received: from localhost.localdomain ([178.70.36.174])
-        (authenticated user i.bornyakov@metrotek.ru)
-        by mail.pr-group.ru with ESMTPSA
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256 bits));
-        Sat, 7 May 2022 11:04:23 +0300
-From:   Ivan Bornyakov <i.bornyakov@metrotek.ru>
-Cc:     mdf@kernel.org, hao.wu@intel.com, yilun.xu@intel.com,
-        trix@redhat.com, conor.dooley@microchip.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-fpga@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        system@metrotek.ru, Ivan Bornyakov <i.bornyakov@metrotek.ru>,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH v11 3/3] dt-bindings: fpga: add binding doc for microchip-spi fpga mgr
-Date:   Sat,  7 May 2022 10:43:04 +0300
-Message-Id: <20220507074304.11144-4-i.bornyakov@metrotek.ru>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220507074304.11144-1-i.bornyakov@metrotek.ru>
-References: <20220507074304.11144-1-i.bornyakov@metrotek.ru>
+        with ESMTP id S239283AbiEGIUE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 7 May 2022 04:20:04 -0400
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D0DD2C66A
+        for <devicetree@vger.kernel.org>; Sat,  7 May 2022 01:16:18 -0700 (PDT)
+Received: by mail-wm1-x331.google.com with SMTP id i20-20020a05600c355400b0039456976dcaso4537415wmq.1
+        for <devicetree@vger.kernel.org>; Sat, 07 May 2022 01:16:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=ocuJE0gAGEqaqKxUV4jvj8obtrJ431aiQbMs9D9K8C4=;
+        b=Rt3p2REQwsRDFGcxc3f5ldBLgHOLUPQjis5BAVkVrGD/bwgBomG2SR2kPYmDlt7bto
+         rRatI1I614wEHxyZ2Gc4oCwOWThnJQ2EB4EHYxJNi3adcUjk51D8SQGS3B3hTtPtCFKA
+         /Af1ET/T3OXRbb8k5QL0+QmJiuPRAMWrDEhBJztaydK4d3KIvldLJmh4sEMYvQqZNQet
+         eWZd4YXeSHU/6y64khr+LUBIAUZ1/ItXV7hgg/DW9yWYI8PbFt4kUOH/rCwbgghgENHN
+         N+RpSTEhkHVc/lPsGrDzPSZLOn8o+MnHAi8cfsVZaLAUQdom3OCdM6O2cmOO07+QQHFI
+         BM7Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=ocuJE0gAGEqaqKxUV4jvj8obtrJ431aiQbMs9D9K8C4=;
+        b=B7g54jmWO1/jlFyMFQVB4XcL/kHPrjeBYitA1b41XuDtotaOIowCkWMojE20uAilrO
+         MFtvDAPyNqFNHxS1inLM3S2XLVZIRQkRqVNsRAx1M9A772pt2+2U7pDgY7FMlWed4M5p
+         3U7P1ZAZqlW8sRqYndasHO9haWLDN0Z/yr9hplO/v1d5Gx1LQx1lZ/ih1kkzZrV2u8LJ
+         KbYOyatjB3PehlAaVb6UkfaeRvU+X+yzQdMZmpOriSgaSNFp8uADcOjQ7AkxVVvjFykn
+         9+gUOn4zRtjuD8RAriNQFy4o8yaoyiRWFympi5EajzGrBarTZfeBoEpPam+0Gs38259x
+         4/pQ==
+X-Gm-Message-State: AOAM530sQLFfkVlFcWckoYBc58S/WHVWgSBcEQ7ypyYqqOpcyWpruUBo
+        u8ICxq6xF5+6Ug2c+/jycKlWIw==
+X-Google-Smtp-Source: ABdhPJx9s5perey3uFNE4Jbpnstue3qwJxcFldfSIn/vkY0AMcMDK8ljm5rKJAhbcQdtDc/3xKmlcw==
+X-Received: by 2002:a05:600c:281:b0:394:1075:fe3e with SMTP id 1-20020a05600c028100b003941075fe3emr13513613wmk.155.1651911376473;
+        Sat, 07 May 2022 01:16:16 -0700 (PDT)
+Received: from google.com (49.222.77.34.bc.googleusercontent.com. [34.77.222.49])
+        by smtp.gmail.com with ESMTPSA id v128-20020a1cac86000000b003942a244f56sm10957782wme.47.2022.05.07.01.16.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 07 May 2022 01:16:16 -0700 (PDT)
+Date:   Sat, 7 May 2022 08:16:14 +0000
+From:   Sebastian Ene <sebastianene@google.com>
+To:     Sebastian Ene <sebastianene@google.com>
+Cc:     linux-kernel@vger.kernel.org,
+        Derek Kiernan <derek.kiernan@xilinx.com>,
+        Dragan Cvetic <dragan.cvetic@xilinx.com>,
+        Arnd Bergmann <arnd@arndb.de>, devicetree@vger.kernel.org,
+        qperret@google.com, will@kernel.org, maz@kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Guenter Roeck <linux@roeck-us.net>
+Subject: Re: [PATCH v4 1/2] dt-bindings: vm-wdt: Add qemu,vm-watchdog
+ compatible
+Message-ID: <YnYqzkK0JLlCYOw5@google.com>
+References: <20220429083030.3241640-1-sebastianene@google.com>
+ <20220429083030.3241640-2-sebastianene@google.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220429083030.3241640-2-sebastianene@google.com>
+X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
-To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add Device Tree Binding doc for Microchip Polarfire FPGA Manager using
-slave SPI to load .dat formatted bitstream image.
+On Fri, Apr 29, 2022 at 08:30:31AM +0000, Sebastian Ene wrote:
+> The stall detection mechanism allows to configure the expiration
+> duration and the internal counter clock frequency measured in Hz.
+> Add these properties in the schema.
+> 
+> Signed-off-by: Sebastian Ene <sebastianene@google.com>
+> ---
+>  .../devicetree/bindings/misc/vm-watchdog.yaml | 45 +++++++++++++++++++
+>  1 file changed, 45 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/misc/vm-watchdog.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/misc/vm-watchdog.yaml b/Documentation/devicetree/bindings/misc/vm-watchdog.yaml
+> new file mode 100644
+> index 000000000000..d7cca23357ab
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/misc/vm-watchdog.yaml
+> @@ -0,0 +1,45 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/misc/vm-watchdog.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: VM watchdog
+> +
+> +description: |
+> +  This binding describes a CPU stall detector mechanism for virtual cpus
+> +  which is accessed through MMIO.
+> +
+> +maintainers:
+> +  - Sebastian Ene <sebastianene@google.com>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - qemu,vm-watchdog
+> +  clock-frequency:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: |
+> +      The watchdog internal clock measure in Hz used to decrement the
+> +      watchdog counter register on each tick.
+> +      Defaults to 10 if unset.
+> +  timeout-sec:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: |
+> +      The watchdog expiration timeout measured in seconds.
+> +      Defaults to 8 if unset.
+> +
+> +required:
+> +  - compatible
+> +
+> +additionalProperties: false
 
-Signed-off-by: Ivan Bornyakov <i.bornyakov@metrotek.ru>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
- .../fpga/microchip,mpf-spi-fpga-mgr.yaml      | 44 +++++++++++++++++++
- 1 file changed, 44 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/fpga/microchip,mpf-spi-fpga-mgr.yaml
+Hi,
 
-diff --git a/Documentation/devicetree/bindings/fpga/microchip,mpf-spi-fpga-mgr.yaml b/Documentation/devicetree/bindings/fpga/microchip,mpf-spi-fpga-mgr.yaml
-new file mode 100644
-index 000000000000..aee45cb15592
---- /dev/null
-+++ b/Documentation/devicetree/bindings/fpga/microchip,mpf-spi-fpga-mgr.yaml
-@@ -0,0 +1,44 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/fpga/microchip,mpf-spi-fpga-mgr.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Microchip Polarfire FPGA manager.
-+
-+maintainers:
-+  - Ivan Bornyakov <i.bornyakov@metrotek.ru>
-+
-+description:
-+  Device Tree Bindings for Microchip Polarfire FPGA Manager using slave SPI to
-+  load the bitstream in .dat format.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - microchip,mpf-spi-fpga-mgr
-+
-+  reg:
-+    description: SPI chip select
-+    maxItems: 1
-+
-+  spi-max-frequency: true
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    spi {
-+            #address-cells = <1>;
-+            #size-cells = <0>;
-+
-+            fpga_mgr@0 {
-+                    compatible = "microchip,mpf-spi-fpga-mgr";
-+                    spi-max-frequency = <20000000>;
-+                    reg = <0>;
-+            };
-+    };
--- 
-2.35.1
+> +
+> +examples:
+> +  - |
+> +    watchdog {
+> +      compatible = "qemu,vm-watchdog";
+> +      clock-frequency = <10>;
+> +      timeout-sec = <8>;
+> +    };
+> +
+> +...
+> -- 
+> 2.36.0.464.gb9c8b46e94-goog
+>
 
+I was thinking to move the properties clock-frequency and timeout-sec as
+part of the emulated watchdog registers and keep only the registers
+property in the DT.
 
+Thanks,
+Seb
