@@ -2,53 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7962251E830
-	for <lists+devicetree@lfdr.de>; Sat,  7 May 2022 17:35:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 291A351E835
+	for <lists+devicetree@lfdr.de>; Sat,  7 May 2022 17:36:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239597AbiEGPjg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 7 May 2022 11:39:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54990 "EHLO
+        id S239114AbiEGPkX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 7 May 2022 11:40:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55644 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238609AbiEGPjf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 7 May 2022 11:39:35 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A372619024;
-        Sat,  7 May 2022 08:35:48 -0700 (PDT)
+        with ESMTP id S1379343AbiEGPkW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 7 May 2022 11:40:22 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7CF2941631;
+        Sat,  7 May 2022 08:36:31 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 53704B80AE5;
-        Sat,  7 May 2022 15:35:47 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1104AC385A9;
-        Sat,  7 May 2022 15:35:46 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 29F08B80AF5;
+        Sat,  7 May 2022 15:36:30 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C999FC385B5;
+        Sat,  7 May 2022 15:36:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1651937746;
-        bh=5JdWStqnLHVOx/3OlLYMVcxQ/dWOc4viCFvQaLtKBWM=;
+        s=k20201202; t=1651937788;
+        bh=xszih1+Cq3Xjrwud28Q+7VWp3eMq4XebND2xzmMcLkg=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=pjBDxRKcm19ggHCT3GT0gO97hf7JMvQEn4r8VlkDTogfba8iz4MuCfZLMDAuvQCQ0
-         Rg4G0dHTJIK+zNkhSLi7AI9kK/HSudOMYkBii0A02exRIRv1UZdZT1gOO5FtS26TK4
-         r1geeG28gGHRgxOuQWB3YgHUSk06tt7cDV6EbXQF0/xr0HhqyNbzCU18zmWJ2JJGJm
-         oz/gj8GbeCU4cmUMNaR9h9LyQej5J19zUGknAOv+gI4L8a8LaTZJEZ8KKOIGYxxpFM
-         1xtTKnqMAXzRXuT8t90mEjy4OATW/So6JvefbePD5upGqf4oUM2uBMmKG9ZN6MmF7s
-         +gtKvGrUVV6XA==
-Received: by mail-yw1-f179.google.com with SMTP id 00721157ae682-2f7b815ac06so107980507b3.3;
-        Sat, 07 May 2022 08:35:46 -0700 (PDT)
-X-Gm-Message-State: AOAM530dopUEVxh/5DksAPMEXH0CptQkqpE5TpT5fYPQOv0uh3ICnTR/
-        iGezR8fpuyRs5MRF6f57h0qgB352OVZTnJ1CQQ==
-X-Google-Smtp-Source: ABdhPJwDhtthoa7AUtDJmXtXr6BoSIIvTt63knY9cK0lyKPgCmY+/9linfuCKIw9ocYEdDjBwqTrr0a8d1n7WjOKuDw=
-X-Received: by 2002:a81:3214:0:b0:2f4:dc10:33ba with SMTP id
- y20-20020a813214000000b002f4dc1033bamr7214015ywy.3.1651937745103; Sat, 07 May
- 2022 08:35:45 -0700 (PDT)
+        b=IadLKrnIL0OyA/c6zj13NgHO347dnipgKE07v9OnbixpTw7JdBmYYMG+UTrrDMMge
+         m/HM1iqP2tLbIhsqvTP9AKCeJZ+0VA0jrDfYRgWLaGwmZeq31mPK/66y0+hXtePJE0
+         zVPbqFpzrO2/DYAvNr6S1zMZwgQ/bhVaG0B32x6F7fiPUSQuJiIbYo6HLAu/faEdlZ
+         ycFYQnAOEGJyhC3DvS60t5fc1H8FKo8GChWgC4C1onc8ifkqZfSzmNItJxmmcqhNOD
+         /aEYteEjCDnJ8nvSan7scZk/mRbe/gYcRgAGz3wn9ngbA133f5GWsnnqsLFKAe7boj
+         oKk+5WsGu6fRg==
+Received: by mail-yb1-f181.google.com with SMTP id v59so17657514ybi.12;
+        Sat, 07 May 2022 08:36:28 -0700 (PDT)
+X-Gm-Message-State: AOAM531bgVyVeByqXsTeCwfAWL3hLI4BhdaK8mb3jPWO5OgpoRy1QacR
+        +dpsvGmVf0Apo9y8VjbnNIHsK1nDaXGCI8TE0g==
+X-Google-Smtp-Source: ABdhPJxXklXAgapKtKHtY50KvylR5sWyT+dCgpaCeOO2FWhn2I/4IxcIBHR2wcvnENeeXMDw2Ndi4ga5jlg4qlEzM4Y=
+X-Received: by 2002:a25:c842:0:b0:64a:9122:5ec4 with SMTP id
+ y63-20020a25c842000000b0064a91225ec4mr4022064ybf.196.1651937787858; Sat, 07
+ May 2022 08:36:27 -0700 (PDT)
 MIME-Version: 1.0
 References: <20220504115501.3490-1-rex-bc.chen@mediatek.com>
- <20220504115501.3490-3-rex-bc.chen@mediatek.com> <7a4e7d71-4460-21f4-35fa-d3b11559785b@collabora.com>
-In-Reply-To: <7a4e7d71-4460-21f4-35fa-d3b11559785b@collabora.com>
+ <20220504115501.3490-4-rex-bc.chen@mediatek.com> <eb3884ac-56b2-4c37-05bc-82e8e44b22d2@collabora.com>
+In-Reply-To: <eb3884ac-56b2-4c37-05bc-82e8e44b22d2@collabora.com>
 From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Date:   Sat, 7 May 2022 23:35:34 +0800
-X-Gmail-Original-Message-ID: <CAAOTY_-5QLEYyqqiw6WtepHrykXJgatUyxLMYU+61P-21CBVZw@mail.gmail.com>
-Message-ID: <CAAOTY_-5QLEYyqqiw6WtepHrykXJgatUyxLMYU+61P-21CBVZw@mail.gmail.com>
-Subject: Re: [PATCH v2 2/3] soc: mediatek: devapc: Separate register offsets
- from mtk_devapc_data
+Date:   Sat, 7 May 2022 23:36:17 +0800
+X-Gmail-Original-Message-ID: <CAAOTY_-z0buFJ4NRSiEZ9mpSzN7dFUoJYaD8r+GRCFs7cF06_w@mail.gmail.com>
+Message-ID: <CAAOTY_-z0buFJ4NRSiEZ9mpSzN7dFUoJYaD8r+GRCFs7cF06_w@mail.gmail.com>
+Subject: Re: [PATCH v2 3/3] soc: mediatek: devapc: Add support for MT8186
 To:     AngeloGioacchino Del Regno 
         <angelogioacchino.delregno@collabora.com>
 Cc:     Rex-BC Chen <rex-bc.chen@mediatek.com>,
@@ -81,11 +80,9 @@ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com> =E6=96=
 =E5=AF=AB=E9=81=93=EF=BC=9A
 >
 > Il 04/05/22 13:55, Rex-BC Chen ha scritto:
-> > The register offsets is the same between MT6779 and MT8186. To reuse th=
-e
-> > register offsets, we move these register offsets to another structure
-> > "mtk_devapc_regs_ofs".
+> > Add devapc data and compatible to support MT8186 devapc.
 > >
+> > Signed-off-by: Runyang Chen <runyang.chen@mediatek.com>
 > > Signed-off-by: Rex-BC Chen <rex-bc.chen@mediatek.com>
 >
 > Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collab=
