@@ -2,74 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9141551E6C6
-	for <lists+devicetree@lfdr.de>; Sat,  7 May 2022 14:00:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 147A751E6D0
+	for <lists+devicetree@lfdr.de>; Sat,  7 May 2022 14:09:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1446314AbiEGMED (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 7 May 2022 08:04:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48860 "EHLO
+        id S1444398AbiEGMNc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 7 May 2022 08:13:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53466 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1446310AbiEGMEC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 7 May 2022 08:04:02 -0400
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8D1C4832D
-        for <devicetree@vger.kernel.org>; Sat,  7 May 2022 05:00:13 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id p4so11390999edx.0
-        for <devicetree@vger.kernel.org>; Sat, 07 May 2022 05:00:13 -0700 (PDT)
+        with ESMTP id S1446346AbiEGMN3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 7 May 2022 08:13:29 -0400
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66FCF49FB7
+        for <devicetree@vger.kernel.org>; Sat,  7 May 2022 05:09:36 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id p26so3294109lfh.10
+        for <devicetree@vger.kernel.org>; Sat, 07 May 2022 05:09:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=MJ5P80Xm99M8HaZon9Nxr3GNke+ga/P6cYQ3Q9Jg6ZU=;
-        b=MQvTn/dfBEG8PymJS4/L+Db+QkbhwqqGo38F0wmkcKX6yzBdhiVm2s5ehq4K0AUE1b
-         XkDOD8IrNrblq5xgZ6lKFBKnt3giY4kFR9JHEY1B5oiS5Dhq4tO80tltyx61MbWsJvKp
-         vjVGrqQ4o4IFg3d4AhGZ/P2OyXoqWjYKGRV59EbyfYK6hfknDAYRlad6unlOA+7XtvoY
-         +keq5TOdYavisrMfbIhFVznk0F+MC6rbaJzXG6INYPruK6JA+h9Y+eahPZkSuEtAaHDO
-         jxjNN3fzYwVnVox80aye3aHKRsejgt8KmcPcj/giqoipauGHZvaAT3wY7bHc9yovFr5m
-         VwHw==
+        bh=dwPQGwYOX78/2Wl83+8z+fnO4MGJ5mQqUGO35CgVNpY=;
+        b=IVKPqEQb2InKCXHTHFRvsgnShsBhmaehU5E+ny4szQY410SM3vPzgCiwwUf+zepS15
+         TdpxN4ZYPqUfxi9q0R4t5Rw16taZ/LsuYSHe9RwbFxFijjO2SnwvMzLh3xjRXORZLq24
+         rXhVWQ0IKkKD39LSOYkmF8ldJZOAQOFnlJ3PNZs6KyY5dIjQ4O9PJ/DiJs9k/oS4j+qB
+         jP6HZVpyGbLJGqVLaXKAvYZ0zSHbyXjtBEagIoRravsJFnR/jL/8dt0tzq4Yv8otfp5X
+         nTdlbHR71rGM86C+TCV3MgmXZRJ6/txyyAz4XPpYdighnZL5RZ0oM4e0IswG0Lq22+7U
+         BMlQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=MJ5P80Xm99M8HaZon9Nxr3GNke+ga/P6cYQ3Q9Jg6ZU=;
-        b=JnkmLfLKgctkRib1mLxYYpJtnDaA3SyXGS1+6qTFbBV/WxxWpz0GLUz+OJ0l/FdllL
-         46hKk1iF710VvGbTJJrGSrcs2qlVAZn3WzTaovnCtdhmme4O4hskU9wBVDLGrH2LFPJa
-         BA0DnF6JdH6tOm60bzSJ2b9tlE8EGYze4Cke6okVRVgEXHgwbu37kbHd4pIaBqJkShBI
-         IUXB4irnaQhNZ9+gDHiN5CSR3TYQn2Dn/ZUio0vjYdw6GPj3Y5D8tknKWoMf4BazdVT0
-         oCCPZm6awE6M7yD+yK4JhpTbiyFhBQnzDXAtHoQpnbSEC6SvMCLPP0Gxip9dy90JJRbL
-         ji4g==
-X-Gm-Message-State: AOAM530y9HG0ug4RsbHCYzEBPjj1RaUemHOMI09ynq9ohP3NKBkUOeRd
-        CDGeQFj7TFZ33BkIcZLzt6O3gw==
-X-Google-Smtp-Source: ABdhPJxBDiBw/+Y6YqGlDI0kGxCvL6NRopsXdXUCX5l4w4QqNFYvG7MfzHhWwbmJaT0RK+wj1kz73A==
-X-Received: by 2002:aa7:c58e:0:b0:425:b5e3:6c51 with SMTP id g14-20020aa7c58e000000b00425b5e36c51mr8394827edq.99.1651924812215;
-        Sat, 07 May 2022 05:00:12 -0700 (PDT)
-Received: from [192.168.0.231] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id og21-20020a1709071dd500b006f3ef214df8sm2827458ejc.94.2022.05.07.05.00.11
+        bh=dwPQGwYOX78/2Wl83+8z+fnO4MGJ5mQqUGO35CgVNpY=;
+        b=UjzMpwBwYlVEwCqx0wD3HvKh5/rNHG6kZqNxg7lqcLhSbGG6FP+Ge4D4bZmu3a0ev2
+         TSgSUQkjAZCWYKucl6gM+f4fu1za/mNE1sc0G1Pe32o5LIksAOx6PfxSBIH2h84xvBz/
+         qZs/l6sGUOrsbZdYLDVOb1lDd8HHv9DpT8tJS+I7WA83pP0yd18orW4aFIbMl3pwDu8h
+         rMenlIQDyEfzq6+KIgsxyxx8MhtdhMb8rQ/4Et4IPSd3k+U4O4APT5TnFPwlLzdHAkSR
+         PJPRdBItaVCOMbAxH7NrNMqOVBwfOwHf5vigUHlwcFKaqz6SJcr0oB4IOtrGQ2y1coRf
+         0R0A==
+X-Gm-Message-State: AOAM533FZfm3ddE/FwLjhf/+AVPIMCRBrxzNtl9UruAdMQ+qFEqjwvPC
+        PK4Bd/lRlY0LT85lwGj4di1cZWsXISRr1g==
+X-Google-Smtp-Source: ABdhPJzzbkDhvl8bNtspXcuzOi4bRZ3x37FxH3e90OFZxBBQIyh2Iz6ka1k7KoYniuM1SUbAtRDEeg==
+X-Received: by 2002:a19:5f51:0:b0:471:f43a:d830 with SMTP id a17-20020a195f51000000b00471f43ad830mr6273070lfj.348.1651925374751;
+        Sat, 07 May 2022 05:09:34 -0700 (PDT)
+Received: from [192.168.43.7] ([94.25.229.149])
+        by smtp.gmail.com with ESMTPSA id 14-20020ac24d4e000000b0047255d21117sm1086527lfp.70.2022.05.07.05.09.33
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 07 May 2022 05:00:11 -0700 (PDT)
-Message-ID: <324d9977-e8bc-b69f-ce8e-b5156035074e@linaro.org>
-Date:   Sat, 7 May 2022 14:00:10 +0200
+        Sat, 07 May 2022 05:09:34 -0700 (PDT)
+Message-ID: <c2a9f0c4-1d77-acca-c319-c74ef51d9ed3@linaro.org>
+Date:   Sat, 7 May 2022 15:09:32 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.8.1
-Subject: Re: [PATCH v2 1/3] media: dt-bindings: ov5675: document YAML binding
-Content-Language: en-US
-To:     Quentin Schulz <quentin.schulz@theobroma-systems.com>,
-        Quentin Schulz <foss+kernel@0leil.net>
-Cc:     shawnx.tu@intel.com, mchehab@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220504135543.59522-1-foss+kernel@0leil.net>
- <18d1032c-1fee-9de5-bd25-752ff9c39200@linaro.org>
- <889135d8-575e-3f95-4c65-ff3c40f64b05@theobroma-systems.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <889135d8-575e-3f95-4c65-ff3c40f64b05@theobroma-systems.com>
-Content-Type: text/plain; charset=UTF-8
+Subject: Re: (subset) [PATCH v2] dt-bindings: clock: qcom,gcc-apq8064: Fix
+ typo in compatible and split apq8084
+Content-Language: en-GB
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-kernel@vger.kernel.org, Ansuel Smith <ansuelsmth@gmail.com>,
+        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org,
+        Michael Turquette <mturquette@baylibre.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Taniya Das <tdas@codeaurora.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, Andy Gross <agross@kernel.org>
+Cc:     Rob Herring <robh@kernel.org>
+References: <20220426064241.6379-1-krzysztof.kozlowski@linaro.org>
+ <165184936433.73465.8918776302755169232.b4-ty@linaro.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <165184936433.73465.8918776302755169232.b4-ty@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,125 +83,24 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/05/2022 15:48, Quentin Schulz wrote:
->>> +  clock-names:
->>> +    description:
->>> +      Input clock for the sensor.
->>> +    items:
->>> +      - const: xvclk
+On 06/05/2022 18:03, Bjorn Andersson wrote:
+> On Tue, 26 Apr 2022 08:42:41 +0200, Krzysztof Kozlowski wrote:
+>> The qcom,gcc-apq8064.yaml was meant to describe only APQ8064 and APQ8084
+>> should have slightly different bindings (without Qualcomm thermal sensor
+>> device).  Add new bindings for APQ8084.
 >>
->> Just "xv" is preferred.
 >>
 > 
-> The name of the clock in the datasheet is XVCLK though. Wouldn't it be 
-> confusing to describe HW by using names different from the datasheet?
-
-No, because datasheet could call it "xvclk_clk_clk_clk" and it is not a
-reason to use it in the bindings. All of these are clocks, so don't add
-unnecessary suffixes. The same goes to interrupts (wake not wakeirq) or
-DMA (tx not txdma).
-
+> Applied, thanks!
 > 
->>> +
->>> +  clock-frequency:
->>> +    description:
->>> +      Frequency of the xvclk clock in Hertz.
->>> +
->>> +  dovdd-supply:
->>> +    description:
->>> +      Definition of the regulator used as interface power supply.
->>> +
->>> +  avdd-supply:
->>> +    description:
->>> +      Definition of the regulator used as analog power supply.
->>> +
->>> +  dvdd-supply:
->>> +    description:
->>> +      Definition of the regulator used as digital power supply.
->>> +
->>> +  reset-gpios:
->>> +    description:
->>> +      The phandle and specifier for the GPIO that controls sensor reset.
->>> +      This corresponds to the hardware pin XSHUTDOWN which is physically
->>> +      active low.
->>
->> Needs maxItems
->>
->>> +
->>> +  port:
->>> +    type: object
->>
->> Open other bindings and compare how it is done there. This looks like
->> /schemas/graph.yaml#/$defs/port-base
->>
-> 
-> Did that but used an old kernel as base :/
+> [1/1] dt-bindings: clock: qcom,gcc-apq8064: Fix typo in compatible and split apq8084
+>        commit: 4ac7e878c15781286c043cff19ec88d82b8e2014
 
-Then please do not develop on an older kernel.
+I supposed that 
+https://lore.kernel.org/linux-arm-msm/20220426093608.2957210-1-dmitry.baryshkov@linaro.org/ 
+is a slightly better version.
 
-> 
->>> +    additionalProperties: false
->>> +    description:
->>> +      A node containing an output port node with an endpoint definition
->>> +      as documented in
->>> +      Documentation/devicetree/bindings/media/video-interfaces.txt
->>> +
->>> +    properties:
->>> +      endpoint:
->>> +        type: object
->>
->> Missing ref
->>
->>> +
->>> +        properties:
->>> +          data-lanes:
->>> +            description: |-
->>
->> No need for "|-"
->>
->>> +              The driver only supports 2-lane operation.
->>
->> Please remove references to driver. It's not part of hardware.
->>
->>> +            items:
->>> +              - const: 1
->>> +              - const: 2
->>> +
->>> +          link-frequencies:
->>> +            $ref: /schemas/types.yaml#/definitions/uint64-array
->>
->> The ref should be already provided by video-interfaces.
->>
->>> +            description:
->>> +              Allowed data bus frequencies. 450000000Hz is supported by the driver.
->>
->> Again, skip driver reference. However you need to describe the number of
->> items.
->>
-> 
-> Currently, the driver is limited to 450 MHz link-freq and 2 data lanes, 
-> while the HW advertises: "The OV5675 supports a MIPI interface of up to 
-> 2-lanes. The MIPI interface can be configured for 1/2-lane and each lane
-> 
-> is capable of a data transfer rate of up to 900 Mbps."
-> 
-> Was wondering what I am supposed to do in this situation as I see 
-> Documentation/devicetree/bindings/media/i2c/ov8856.yaml mentioning 
-> driver limitations in the dt-bindings.
 
-Bindings describe the hardware and they are used in different projects.
-Let's say Linux implementation supports only 450 MHz, but other project
-supports 450 and 900, so your bindings would be incorrect in such
-case... IOW, bindings should not depend on the implementation.
-
-What is more, the driver might get updated without updating the comments
-in the bindings making them incorrect even for Linux.
-
-In the past several bindings contained actual specifics of
-implementation, but this is usually not the proper way.
-
-There are clear issues with describing implementation in the bindings,
-but what are the benefits?
-
-Best regards,
-Krzysztof
+-- 
+With best wishes
+Dmitry
