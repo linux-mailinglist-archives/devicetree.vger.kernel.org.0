@@ -2,68 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B6B551E814
-	for <lists+devicetree@lfdr.de>; Sat,  7 May 2022 17:14:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0848A51E821
+	for <lists+devicetree@lfdr.de>; Sat,  7 May 2022 17:26:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1446592AbiEGPRj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 7 May 2022 11:17:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41476 "EHLO
+        id S243896AbiEGPak (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 7 May 2022 11:30:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49560 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1382110AbiEGPRj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 7 May 2022 11:17:39 -0400
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A1942D1FE;
-        Sat,  7 May 2022 08:13:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1651936432; x=1683472432;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=SFrfLygWwaKz2niUDCJteyOlvqg0e03MT+XUWT0AuUQ=;
-  b=DL/j5qcK8uvQVXsqw5lD87pV1QXWrlQPP9AGWqBiGoVtDNbtZvgiE5ZG
-   a+rv2WaqX1TYnwl8buzKHNg5e/k7csztqq9/A4iQB2tc/7+E8qjgpOpGa
-   8bDX2ZmQPOtnmOe/GT+mtAEJ3w6s5Qt2D2AW3EfZyDmd1BWA/2e+9/PM4
-   i6JUGT5DEUNCrg+OGVEazyo3/EZxaMaeD5bRye2SBbXNHBg/dEW5e4989
-   kofJ6ay7eqyphvGlfy3xlI7evpgq3n5MdC1Tef/+diuSRVkisUVguE0Bj
-   Pq4IjFC1uCfN5UlHdkEq6EjycOoeQX0e0bvq4RaFkJQcI9CvgzbyEEC2G
-   w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10340"; a="329271612"
-X-IronPort-AV: E=Sophos;i="5.91,207,1647327600"; 
-   d="scan'208";a="329271612"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 May 2022 08:13:52 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.91,207,1647327600"; 
-   d="scan'208";a="709892109"
-Received: from lkp-server01.sh.intel.com (HELO 5056e131ad90) ([10.239.97.150])
-  by fmsmga001.fm.intel.com with ESMTP; 07 May 2022 08:13:48 -0700
-Received: from kbuild by 5056e131ad90 with local (Exim 4.95)
-        (envelope-from <lkp@intel.com>)
-        id 1nnM7w-000Eg3-7k;
-        Sat, 07 May 2022 15:13:48 +0000
-Date:   Sat, 7 May 2022 23:13:14 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Satya Priya <quic_c_skakit@quicinc.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     kbuild-all@lists.01.org, Lee Jones <lee.jones@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        swboyd@chromium.org, quic_collinsd@quicinc.com,
-        quic_subbaram@quicinc.com, quic_jprakash@quicinc.com,
-        Satya Priya <quic_c_skakit@quicinc.com>
-Subject: Re: [PATCH V11 7/9] regulator: Add a regulator driver for the PM8008
- PMIC
-Message-ID: <202205072349.clMXCCaw-lkp@intel.com>
-References: <1651742739-12338-8-git-send-email-quic_c_skakit@quicinc.com>
+        with ESMTP id S240194AbiEGPaj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 7 May 2022 11:30:39 -0400
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A20F711C08
+        for <devicetree@vger.kernel.org>; Sat,  7 May 2022 08:26:51 -0700 (PDT)
+Received: by mail-ej1-x636.google.com with SMTP id ks9so12964206ejb.2
+        for <devicetree@vger.kernel.org>; Sat, 07 May 2022 08:26:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=+cyldYyGeSN8orZdKQgiNqxz5MRewwWDiC7Zpl6m0ZE=;
+        b=EtQEM/nj6x2u8iik/awsZGdMW9VySLzyDHn2hNOsBTfn27fYbkVvNCb/+rddUBX2ye
+         lOk1+3VB9PwuftOi7MlJjWHMOvWY1+q390RvKA4pTjZm2d5rtz8FOZ8VIhp6a6Etw74V
+         Kg2yUbo5WXkeHWgTQ8atIDGs7kIU9L+ehaXjXNXnImkJsVlvWJtP9gRzOSUFroYbH1KC
+         VCnFQV6fglJm1Tj43wlbxyPlXCbG+pxS5fTFh5del3XIHh7Aw1naE+J/OXPl7cScEdAE
+         n+tBw/R7TJqcpaNBMJCZIHUYkr+OUyIkkCO6Xru4EyUjA48CQruoDX28sOqVRuitVuTI
+         LYYA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=+cyldYyGeSN8orZdKQgiNqxz5MRewwWDiC7Zpl6m0ZE=;
+        b=caE1uT8kJKjG9qVgWoe+73k7KC8/xM34ICiBIHg89FSHG/860wtisxuSK/Oww5ZM/c
+         4NDsjpSUceZ5mnFAmDQw3PaKKfxaVCA4yBOVvWR8m94U7YChlgWcZxDttnHYu9BzGT4Z
+         fuMc4z8r6Ws4e4oIbEwWWoF1q/0hM5PeXtzLVhTtz5f/Lqe/BnfRyJx337Q98y42L5/z
+         tRc8O0D4n4ZA3FxfVcdR1jho5N/wbbUYnvzI5iHSW5UKWULSyGggdp++1Esh0cZo40UO
+         88oAP7tJp/11PqBjqYhUtOLjOz5qZL0S3Z6xirRGcO1jxBTi5D/t2UjDXDZo6XCqw4ln
+         HeXg==
+X-Gm-Message-State: AOAM531K0GnKUTYpowCXXW2dGey1sUwyhMPfKWlTQYC+CR2BCp8D8V7h
+        zKqSrf4q+7Sva+wWla6Keajrtw==
+X-Google-Smtp-Source: ABdhPJxhNeIRjFu28/yvbAt+uDadqUI1rvXdoSBxdbri0fQfVOftoRHil6NROgFCt+tIjBJ17hgmNw==
+X-Received: by 2002:a17:906:f2c8:b0:6f5:18a1:c410 with SMTP id gz8-20020a170906f2c800b006f518a1c410mr7442640ejb.281.1651937210283;
+        Sat, 07 May 2022 08:26:50 -0700 (PDT)
+Received: from [192.168.0.232] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id l10-20020a170906938a00b006f3ef214e68sm3129018ejx.206.2022.05.07.08.26.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 07 May 2022 08:26:49 -0700 (PDT)
+Message-ID: <40c22f22-8314-adb6-918e-8288090d1aea@linaro.org>
+Date:   Sat, 7 May 2022 17:26:48 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1651742739-12338-8-git-send-email-quic_c_skakit@quicinc.com>
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH 1/3] dt-bindings: vendor-prefixes: Add prefix for EBBG
+Content-Language: en-US
+To:     Joel Selvaraj <jo@jsfamily.in>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Stanislav Jakubek <stano.jakubek@gmail.com>,
+        Corentin Labbe <clabbe@baylibre.com>,
+        Oleksij Rempel <linux@rempel-privat.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Hao Fang <fanghao11@huawei.com>
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
+References: <cover.1651835715.git.jo@jsfamily.in>
+ <BY5PR02MB7009E985CDB281DC9BE9CF37D9C59@BY5PR02MB7009.namprd02.prod.outlook.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <BY5PR02MB7009E985CDB281DC9BE9CF37D9C59@BY5PR02MB7009.namprd02.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -71,38 +86,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Satya,
+On 06/05/2022 14:17, Joel Selvaraj wrote:
+> Add a prefix for EBBG. They manufacture displays which are used in some
+> Xiaomi phones, but I could not find much details about the company.
+> 
+> Signed-off-by: Joel Selvaraj <jo@jsfamily.in>
 
-Thank you for the patch! Yet something to improve:
 
-[auto build test ERROR on lee-mfd/for-mfd-next]
-[also build test ERROR on robh/for-next broonie-regulator/for-next v5.18-rc5]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Satya-Priya/Add-Qualcomm-Technologies-Inc-PM8008-regulator-driver/20220505-173045
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git for-mfd-next
-config: mips-allmodconfig (https://download.01.org/0day-ci/archive/20220507/202205072349.clMXCCaw-lkp@intel.com/config)
-compiler: mips-linux-gcc (GCC) 11.3.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/66f37a37cac5f149b7f08cc53508ca6363ea575a
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Satya-Priya/Add-Qualcomm-Technologies-Inc-PM8008-regulator-driver/20220505-173045
-        git checkout 66f37a37cac5f149b7f08cc53508ca6363ea575a
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.3.0 make.cross W=1 O=build_dir ARCH=mips SHELL=/bin/bash
 
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
-
-All errors (new ones prefixed by >>, old ones prefixed by <<):
-
->> ERROR: modpost: "pm8008_get_regmap" [drivers/regulator/qcom-pm8008-regulator.ko] undefined!
-
--- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
+Best regards,
+Krzysztof
