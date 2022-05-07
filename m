@@ -2,67 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 43AA551E6B8
-	for <lists+devicetree@lfdr.de>; Sat,  7 May 2022 13:52:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9141551E6C6
+	for <lists+devicetree@lfdr.de>; Sat,  7 May 2022 14:00:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1443213AbiEGL4G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 7 May 2022 07:56:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45522 "EHLO
+        id S1446314AbiEGMED (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 7 May 2022 08:04:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48860 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1384742AbiEGL4F (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 7 May 2022 07:56:05 -0400
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F2724EF67
-        for <devicetree@vger.kernel.org>; Sat,  7 May 2022 04:52:19 -0700 (PDT)
-Received: by mail-ej1-x629.google.com with SMTP id i27so18759423ejd.9
-        for <devicetree@vger.kernel.org>; Sat, 07 May 2022 04:52:19 -0700 (PDT)
+        with ESMTP id S1446310AbiEGMEC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 7 May 2022 08:04:02 -0400
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8D1C4832D
+        for <devicetree@vger.kernel.org>; Sat,  7 May 2022 05:00:13 -0700 (PDT)
+Received: by mail-ed1-x531.google.com with SMTP id p4so11390999edx.0
+        for <devicetree@vger.kernel.org>; Sat, 07 May 2022 05:00:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :references:from:in-reply-to:content-transfer-encoding;
-        bh=ajtsBto4M6/1BH0JjBBk2nEBGrSVElvTMA5sakoQJlc=;
-        b=u3vFVBJbgUKqlTx5RX3kzq8CO3pJ4eeecZFI6XghIayebNTFYI4u4Ywfh51fV10dmH
-         /S2vwbYTsJRDRx2qO3Hgh6KGDtzqPVUDa3E8YKpCT4gXTpShiBdTiYMoJ2MgdNHyIIUD
-         Rg9KwKur5RhaMBAkAY2OodhJYWrs0cftlR6jgotwFueu2HHvmvK8mSS310A5xCiK948X
-         rPefSyx24ohvDk1bY7BsQ4spFvQ8+MdxIgbAyhasgvqwz0Jt0vx9NR5HtwPv07MmvOm3
-         YZLCCU/Ss0eiupJ1Vhi7kT/l0pIQQq6CQCJ8O8pcR/WlNqDKZ/fF1eNoWaxWAxzKQbQ1
-         pJkg==
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=MJ5P80Xm99M8HaZon9Nxr3GNke+ga/P6cYQ3Q9Jg6ZU=;
+        b=MQvTn/dfBEG8PymJS4/L+Db+QkbhwqqGo38F0wmkcKX6yzBdhiVm2s5ehq4K0AUE1b
+         XkDOD8IrNrblq5xgZ6lKFBKnt3giY4kFR9JHEY1B5oiS5Dhq4tO80tltyx61MbWsJvKp
+         vjVGrqQ4o4IFg3d4AhGZ/P2OyXoqWjYKGRV59EbyfYK6hfknDAYRlad6unlOA+7XtvoY
+         +keq5TOdYavisrMfbIhFVznk0F+MC6rbaJzXG6INYPruK6JA+h9Y+eahPZkSuEtAaHDO
+         jxjNN3fzYwVnVox80aye3aHKRsejgt8KmcPcj/giqoipauGHZvaAT3wY7bHc9yovFr5m
+         VwHw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:references:from:in-reply-to
+         :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=ajtsBto4M6/1BH0JjBBk2nEBGrSVElvTMA5sakoQJlc=;
-        b=2edEs4SilgZWzjDyRMxdHWxY4s7D5GXlOvznxZgReMpAmZnGzxvljFX7aNotevcL+i
-         oaYV9MZo1ZkN52yg793jRjxzRUP6DnBoCLQSy1vGeJIkQ4hzpx5MCk1FkAObCpYQa3mO
-         xHDhFAKtVVADptGuN1gmk4AKKdGygWXzAanfm1EFDIsCm4El6uLmL7kHb/Ah4pv/MIFC
-         noveQmwPPtad4NqpP6d4XyNf7ZxF/YEnzbpdvhXR07uC2MTmjlmYXcGxLbQBeqDLProH
-         Irnr3qp+U5x/stT5yIYglW+5YcFJQWAExI7BaKQE4/mwv7jdDRZUaCOckBx8XqM6S80H
-         8BZw==
-X-Gm-Message-State: AOAM532J8UgUk7u5173WFP2q5iqhE00wGNdWsgML3pzPzcDE3ylBV9YV
-        oRsYeZscGaLfDgoi/mUUNlciY89rTVtU6DEY
-X-Google-Smtp-Source: ABdhPJyeYvSqSNs3aZ9gaHsp/pCMclyImzTF2IRZgx996MzZPFR936QCgO/EnELruocqivY9DSnUyw==
-X-Received: by 2002:a17:907:3e0f:b0:6f4:5cfd:e6bb with SMTP id hp15-20020a1709073e0f00b006f45cfde6bbmr7050817ejc.38.1651924337783;
-        Sat, 07 May 2022 04:52:17 -0700 (PDT)
+        bh=MJ5P80Xm99M8HaZon9Nxr3GNke+ga/P6cYQ3Q9Jg6ZU=;
+        b=JnkmLfLKgctkRib1mLxYYpJtnDaA3SyXGS1+6qTFbBV/WxxWpz0GLUz+OJ0l/FdllL
+         46hKk1iF710VvGbTJJrGSrcs2qlVAZn3WzTaovnCtdhmme4O4hskU9wBVDLGrH2LFPJa
+         BA0DnF6JdH6tOm60bzSJ2b9tlE8EGYze4Cke6okVRVgEXHgwbu37kbHd4pIaBqJkShBI
+         IUXB4irnaQhNZ9+gDHiN5CSR3TYQn2Dn/ZUio0vjYdw6GPj3Y5D8tknKWoMf4BazdVT0
+         oCCPZm6awE6M7yD+yK4JhpTbiyFhBQnzDXAtHoQpnbSEC6SvMCLPP0Gxip9dy90JJRbL
+         ji4g==
+X-Gm-Message-State: AOAM530y9HG0ug4RsbHCYzEBPjj1RaUemHOMI09ynq9ohP3NKBkUOeRd
+        CDGeQFj7TFZ33BkIcZLzt6O3gw==
+X-Google-Smtp-Source: ABdhPJxBDiBw/+Y6YqGlDI0kGxCvL6NRopsXdXUCX5l4w4QqNFYvG7MfzHhWwbmJaT0RK+wj1kz73A==
+X-Received: by 2002:aa7:c58e:0:b0:425:b5e3:6c51 with SMTP id g14-20020aa7c58e000000b00425b5e36c51mr8394827edq.99.1651924812215;
+        Sat, 07 May 2022 05:00:12 -0700 (PDT)
 Received: from [192.168.0.231] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id p22-20020a1709060dd600b006f4512e7bc8sm2925688eji.60.2022.05.07.04.52.16
+        by smtp.gmail.com with ESMTPSA id og21-20020a1709071dd500b006f3ef214df8sm2827458ejc.94.2022.05.07.05.00.11
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 07 May 2022 04:52:17 -0700 (PDT)
-Message-ID: <a5b88103-16e2-1dda-3469-78887f91c88c@linaro.org>
-Date:   Sat, 7 May 2022 13:52:16 +0200
+        Sat, 07 May 2022 05:00:11 -0700 (PDT)
+Message-ID: <324d9977-e8bc-b69f-ce8e-b5156035074e@linaro.org>
+Date:   Sat, 7 May 2022 14:00:10 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.8.1
-Subject: Re: [PATCH v3 1/3] dt-bindings: soc: add bindings for Intel HPS Copy
- Engine
+Subject: Re: [PATCH v2 1/3] media: dt-bindings: ov5675: document YAML binding
 Content-Language: en-US
-To:     matthew.gerlach@linux.intel.com, dinguyen@kernel.org,
-        robh+dt@kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org
-References: <20220506154116.365235-1-matthew.gerlach@linux.intel.com>
- <20220506154116.365235-2-matthew.gerlach@linux.intel.com>
+To:     Quentin Schulz <quentin.schulz@theobroma-systems.com>,
+        Quentin Schulz <foss+kernel@0leil.net>
+Cc:     shawnx.tu@intel.com, mchehab@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220504135543.59522-1-foss+kernel@0leil.net>
+ <18d1032c-1fee-9de5-bd25-752ff9c39200@linaro.org>
+ <889135d8-575e-3f95-4c65-ff3c40f64b05@theobroma-systems.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220506154116.365235-2-matthew.gerlach@linux.intel.com>
+In-Reply-To: <889135d8-575e-3f95-4c65-ff3c40f64b05@theobroma-systems.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -75,28 +77,125 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/05/2022 17:41, matthew.gerlach@linux.intel.com wrote:
-> From: Matthew Gerlach <matthew.gerlach@linux.intel.com>
+On 06/05/2022 15:48, Quentin Schulz wrote:
+>>> +  clock-names:
+>>> +    description:
+>>> +      Input clock for the sensor.
+>>> +    items:
+>>> +      - const: xvclk
+>>
+>> Just "xv" is preferred.
+>>
 > 
-> Add device tree bindings documentation for the Intel Hard
-> Processor System (HPS) Copy Engine.
-> 
-> Signed-off-by: Matthew Gerlach <matthew.gerlach@linux.intel.com>
-> ---
-> v3:
->   - remove unused label
->   - move from misc to soc
->   - remove 0x from #address-cells/#size-cells values
->   - change hps_cp_eng@0 to dma-controller@0
->   - remote inaccurate 'items:' tag
-> ---
->  .../bindings/soc/intel,hps-copy-engine.yaml   | 51 +++++++++++++++++++
->  1 file changed, 51 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/soc/intel,hps-copy-engine.yaml
+> The name of the clock in the datasheet is XVCLK though. Wouldn't it be 
+> confusing to describe HW by using names different from the datasheet?
 
-There are no files laying around in bindings/soc. Each is in its own
-vendor subdirectory, so let's don't introduce inconsistencies. Intel
-should not be different/special.
+No, because datasheet could call it "xvclk_clk_clk_clk" and it is not a
+reason to use it in the bindings. All of these are clocks, so don't add
+unnecessary suffixes. The same goes to interrupts (wake not wakeirq) or
+DMA (tx not txdma).
+
+> 
+>>> +
+>>> +  clock-frequency:
+>>> +    description:
+>>> +      Frequency of the xvclk clock in Hertz.
+>>> +
+>>> +  dovdd-supply:
+>>> +    description:
+>>> +      Definition of the regulator used as interface power supply.
+>>> +
+>>> +  avdd-supply:
+>>> +    description:
+>>> +      Definition of the regulator used as analog power supply.
+>>> +
+>>> +  dvdd-supply:
+>>> +    description:
+>>> +      Definition of the regulator used as digital power supply.
+>>> +
+>>> +  reset-gpios:
+>>> +    description:
+>>> +      The phandle and specifier for the GPIO that controls sensor reset.
+>>> +      This corresponds to the hardware pin XSHUTDOWN which is physically
+>>> +      active low.
+>>
+>> Needs maxItems
+>>
+>>> +
+>>> +  port:
+>>> +    type: object
+>>
+>> Open other bindings and compare how it is done there. This looks like
+>> /schemas/graph.yaml#/$defs/port-base
+>>
+> 
+> Did that but used an old kernel as base :/
+
+Then please do not develop on an older kernel.
+
+> 
+>>> +    additionalProperties: false
+>>> +    description:
+>>> +      A node containing an output port node with an endpoint definition
+>>> +      as documented in
+>>> +      Documentation/devicetree/bindings/media/video-interfaces.txt
+>>> +
+>>> +    properties:
+>>> +      endpoint:
+>>> +        type: object
+>>
+>> Missing ref
+>>
+>>> +
+>>> +        properties:
+>>> +          data-lanes:
+>>> +            description: |-
+>>
+>> No need for "|-"
+>>
+>>> +              The driver only supports 2-lane operation.
+>>
+>> Please remove references to driver. It's not part of hardware.
+>>
+>>> +            items:
+>>> +              - const: 1
+>>> +              - const: 2
+>>> +
+>>> +          link-frequencies:
+>>> +            $ref: /schemas/types.yaml#/definitions/uint64-array
+>>
+>> The ref should be already provided by video-interfaces.
+>>
+>>> +            description:
+>>> +              Allowed data bus frequencies. 450000000Hz is supported by the driver.
+>>
+>> Again, skip driver reference. However you need to describe the number of
+>> items.
+>>
+> 
+> Currently, the driver is limited to 450 MHz link-freq and 2 data lanes, 
+> while the HW advertises: "The OV5675 supports a MIPI interface of up to 
+> 2-lanes. The MIPI interface can be configured for 1/2-lane and each lane
+> 
+> is capable of a data transfer rate of up to 900 Mbps."
+> 
+> Was wondering what I am supposed to do in this situation as I see 
+> Documentation/devicetree/bindings/media/i2c/ov8856.yaml mentioning 
+> driver limitations in the dt-bindings.
+
+Bindings describe the hardware and they are used in different projects.
+Let's say Linux implementation supports only 450 MHz, but other project
+supports 450 and 900, so your bindings would be incorrect in such
+case... IOW, bindings should not depend on the implementation.
+
+What is more, the driver might get updated without updating the comments
+in the bindings making them incorrect even for Linux.
+
+In the past several bindings contained actual specifics of
+implementation, but this is usually not the proper way.
+
+There are clear issues with describing implementation in the bindings,
+but what are the benefits?
 
 Best regards,
 Krzysztof
