@@ -2,77 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4CF5F51E68B
-	for <lists+devicetree@lfdr.de>; Sat,  7 May 2022 12:48:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 26B6351E699
+	for <lists+devicetree@lfdr.de>; Sat,  7 May 2022 13:15:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1384438AbiEGKtx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 7 May 2022 06:49:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33134 "EHLO
+        id S232056AbiEGLTA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 7 May 2022 07:19:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47804 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1384181AbiEGKtv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 7 May 2022 06:49:51 -0400
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id EAFD41DA6E
-        for <devicetree@vger.kernel.org>; Sat,  7 May 2022 03:46:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1651920364;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=6tGT96k7wfHK+Y3z3B3U0HcMpQlkBA9WkQzKqYtG1fc=;
-        b=Cs+buR4qKOydpmrXejHNMHfytDiWTlXXVfcgEsd2dBYfWqleF3CNV3LC60RYFuzvPeoEBN
-        TeXGpHprI4ZVuwPAOLuhAEDvw5+CadTJG3ogL00H0x8U7tE5S9qtJPYd0JY9uIUVAnrc2G
-        MfAz3FdcohfS5QG4lQgNLaiTX+uI5ow=
-Received: from mimecast-mx02.redhat.com (mx3-rdu2.redhat.com
- [66.187.233.73]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-591-sMX8Gq8LPiOMk0YdMirfMw-1; Sat, 07 May 2022 06:45:59 -0400
-X-MC-Unique: sMX8Gq8LPiOMk0YdMirfMw-1
-Received: from smtp.corp.redhat.com (int-mx02.intmail.prod.int.rdu2.redhat.com [10.11.54.2])
-        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+        with ESMTP id S231782AbiEGLS7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 7 May 2022 07:18:59 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16FD838DB2;
+        Sat,  7 May 2022 04:15:13 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mimecast-mx02.redhat.com (Postfix) with ESMTPS id A38C91C05ABE;
-        Sat,  7 May 2022 10:45:58 +0000 (UTC)
-Received: from localhost (ovpn-13-110.pek2.redhat.com [10.72.13.110])
-        by smtp.corp.redhat.com (Postfix) with ESMTPS id 5D1F740D2830;
-        Sat,  7 May 2022 10:45:57 +0000 (UTC)
-Date:   Sat, 7 May 2022 18:45:54 +0800
-From:   Baoquan He <bhe@redhat.com>
-To:     Catalin Marinas <catalin.marinas@arm.com>
-Cc:     "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
-        x86@kernel.org, "H . Peter Anvin" <hpa@zytor.com>,
-        linux-kernel@vger.kernel.org, Dave Young <dyoung@redhat.com>,
-        Vivek Goyal <vgoyal@redhat.com>,
-        Eric Biederman <ebiederm@xmission.com>,
-        kexec@lists.infradead.org, Will Deacon <will@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
+        by dfw.source.kernel.org (Postfix) with ESMTPS id A59226115F;
+        Sat,  7 May 2022 11:15:12 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9CB30C385A9;
+        Sat,  7 May 2022 11:15:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1651922112;
+        bh=/LOtxvTggIO6icaWFdhUM6BPOHRmcG034NQXFaL7UfA=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Vyp24Y7Yvi4m4vGqgXthnnoLjM2VFzlYC8FeIDkRH8MPFWeLRXMQZfvV6oH9bvxEL
+         XvduPF6jfOZpCyi8wkn5hvCqtqKVIJXQIPBS3gOJ54UoZ8zU+ieP0dhJ1hgKORmWy4
+         G6buMYACQKPxLOWQEXY6Stct3ESdccQ6yzH87PxBxgsGgeL+bbrcdOIzi9hz8dlDan
+         yqGy44pmiXBLlHfHECrM66QpAT1ebAssdMmPeR3pnrtBXghnon0vTmdDpqqFgGm1Ni
+         ob/cKeL68VLicy7n8emtc2RFhKrtTU/LCFW0lGgH7iDQoKqqjEyfgpf3ZqgmTzXcdg
+         Y4+qQgAO9YsVQ==
+Received: by pali.im (Postfix)
+        id 6ED077F6; Sat,  7 May 2022 13:15:08 +0200 (CEST)
+Date:   Sat, 7 May 2022 13:15:08 +0200
+From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
+To:     Marc Zyngier <maz@kernel.org>
+Cc:     Thomas Gleixner <tglx@linutronix.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>,
-        linux-doc@vger.kernel.org, Randy Dunlap <rdunlap@infradead.org>,
-        Feng Zhou <zhoufeng.zf@bytedance.com>,
-        Kefeng Wang <wangkefeng.wang@huawei.com>,
-        Chen Zhou <dingguo.cz@antgroup.com>,
-        John Donnelly <John.p.donnelly@oracle.com>,
-        Dave Kleikamp <dave.kleikamp@oracle.com>
-Subject: Re: [PATCH v23 3/6] arm64: kdump: Reimplement crashkernel=X
-Message-ID: <20220507104554.GE122876@MiWiFi-R3L-srv>
-References: <20220505091845.167-1-thunder.leizhen@huawei.com>
- <20220505091845.167-4-thunder.leizhen@huawei.com>
- <YnQC44KVKirH0vyB@arm.com>
- <189f24a8-9e9b-b3e9-7ac5-935433ea575b@huawei.com>
- <YnUfmMmON2c1FZrx@MiWiFi-R3L-srv>
- <YnVept85UJCaZp6p@arm.com>
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+        Marek =?utf-8?B?QmVow7pu?= <kabel@kernel.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 2/6] irqchip/armada-370-xp: Implement SoC Error interrupts
+Message-ID: <20220507111508.dk4ztsg7esspoupb@pali>
+References: <20220506134029.21470-1-pali@kernel.org>
+ <20220506134029.21470-3-pali@kernel.org>
+ <87mtfu7ccd.wl-maz@kernel.org>
+ <20220506183051.wimo7p4nuqfnl2aj@pali>
+ <8735hmijlu.wl-maz@kernel.org>
+ <20220506185546.n5rl3chyyauy4bjt@pali>
+ <87levd7m2n.wl-maz@kernel.org>
+ <20220507092054.b7yu23nj667l6xhy@pali>
+ <871qx5ispy.wl-maz@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <YnVept85UJCaZp6p@arm.com>
-X-Scanned-By: MIMEDefang 2.84 on 10.11.54.2
-X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <871qx5ispy.wl-maz@kernel.org>
+User-Agent: NeoMutt/20180716
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,127 +75,137 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05/06/22 at 06:45pm, Catalin Marinas wrote:
-> On Fri, May 06, 2022 at 09:16:08PM +0800, Baoquan He wrote:
-> > On 05/06/22 at 11:22am, Leizhen (ThunderTown) wrote:
-> > ......  
-> > > >> @@ -118,8 +159,7 @@ static void __init reserve_crashkernel(void)
-> > > >>  	if (crash_base)
-> > > >>  		crash_max = crash_base + crash_size;
-> > > >>  
-> > > >> -	/* Current arm64 boot protocol requires 2MB alignment */
-> > > >> -	crash_base = memblock_phys_alloc_range(crash_size, SZ_2M,
-> > > >> +	crash_base = memblock_phys_alloc_range(crash_size, CRASH_ALIGN,
-> > > >>  					       crash_base, crash_max);
-> > > >>  	if (!crash_base) {
-> > > >>  		pr_warn("cannot allocate crashkernel (size:0x%llx)\n",
+On Saturday 07 May 2022 10:42:49 Marc Zyngier wrote:
+> On Sat, 07 May 2022 10:20:54 +0100,
+> Pali Rohár <pali@kernel.org> wrote:
+> > 
+> > On Saturday 07 May 2022 10:01:52 Marc Zyngier wrote:
+> > > On Fri, 06 May 2022 19:55:46 +0100,
+> > > Pali Rohár <pali@kernel.org> wrote:
 > > > > 
-> > > > I personally like this but let's see how the other thread goes. I guess
+> > > > On Friday 06 May 2022 19:47:25 Marc Zyngier wrote:
+> > > > > On Fri, 06 May 2022 19:30:51 +0100,
+> > > > > Pali Rohár <pali@kernel.org> wrote:
+> > > > > > 
+> > > > > > On Friday 06 May 2022 19:19:46 Marc Zyngier wrote:
+> > > > > > > On Fri, 06 May 2022 14:40:25 +0100,
+> > > > > > > Pali Rohár <pali@kernel.org> wrote:
+> > > > > > > > 
+> > > > > > > > +static void armada_370_xp_soc_err_irq_unmask(struct irq_data *d);
+> > > > > > > > +
+> > > > > > > >  static inline bool is_percpu_irq(irq_hw_number_t irq)
+> > > > > > > >  {
+> > > > > > > >  	if (irq <= ARMADA_370_XP_MAX_PER_CPU_IRQS)
+> > > > > > > > @@ -509,6 +517,27 @@ static void armada_xp_mpic_reenable_percpu(void)
+> > > > > > > >  		armada_370_xp_irq_unmask(data);
+> > > > > > > >  	}
+> > > > > > > >  
+> > > > > > > > +	/* Re-enable per-CPU SoC Error interrupts that were enabled before suspend */
+> > > > > > > > +	for (irq = 0; irq < soc_err_irq_num_regs * 32; irq++) {
+> > > > > > > > +		struct irq_data *data;
+> > > > > > > > +		int virq;
+> > > > > > > > +
+> > > > > > > > +		virq = irq_linear_revmap(armada_370_xp_soc_err_domain, irq);
+> > > > > > > > +		if (virq == 0)
+> > > > > > > > +			continue;
+> > > > > > > > +
+> > > > > > > > +		data = irq_get_irq_data(virq);
+> > > > > > > > +
+> > > > > > > > +		if (!irq_percpu_is_enabled(virq))
+> > > > > > > > +			continue;
+> > > > > > > > +
+> > > > > > > > +		armada_370_xp_soc_err_irq_unmask(data);
+> > > > > > > > +	}
+> > > > > > > 
+> > > > > > > So you do this loop and all these lookups, both here and in the resume
+> > > > > > > function (duplicated code!) just to be able to call the unmask
+> > > > > > > function?  This would be better served by two straight writes of the
+> > > > > > > mask register, which you'd conveniently save on suspend.
+> > > > > > > 
+> > > > > > > Yes, you have only duplicated the existing logic. But surely there is
+> > > > > > > something better to do.
+> > > > > > 
+> > > > > > Yes, I just used existing logic.
+> > > > > > 
+> > > > > > I'm not rewriting driver or doing big refactor of it, as this is not in
+> > > > > > the scope of the PCIe AER interrupt support.
+> > > > > 
+> > > > > Fair enough. By the same logic, I'm not taking any change to the
+> > > > > driver until it is put in a better shape. Your call.
+> > > > 
+> > > > If you are maintainer of this code then it is expected from _you_ to
+> > > > move the current code into _better shape_ as you wrote and expect. And
+> > > > then show us exactly, how new changes in this driver should look like,
+> > > > in examples.
 > > > 
-> > > Me too. This fallback complicates code logic more than just a little.
-> > > I'm not sure why someone would rather add fallback than change the bootup
-> > > options to crashkernel=X,[high|low]. Perhaps fallback to high/low is a better
-> > > compatible and extended mode when crashkernel=X fails to reserve memory. And
-> > > the code logic will be much clearer.
+> > > Sorry, but that's not how this works. You are the one willing to
+> > > change a sub-par piece of code, you get to make it better. You
+> > > obviously have the means (the HW) and the incentive (these patches).
+> > > But you don't get to make something even more unmaintainable because
+> > > you're unwilling to do some extra work.
+> > > 
+> > > If you're unhappy with my position, that's fine. I suggest you take it
+> > > with Thomas, and maybe even Linus. As I suggested before, you can also
+> > > post a patch removing me as the irqchip maintainer. I'm sure that will
+> > > spark an interesting discussion.
 > > 
-> > The fallback does complicates code, while it was not made at the
-> > beginning, but added later. The original crahskernel=xM can only reserve
-> > low memory under 896M on x86 to be back compatible with the case in which
-> > normal kernel is x86_64, while kdump kernel could be i386. Then customer
-> > complained why crashkernel=xM can't be put anywhere so that they don't
-> > need to know the details of limited low memory and huge high memory fact 
-> > in system.
+> > You have already suggested it in email [1] but apparently you are _not_
+> > maintainer of mvebu pci controller. get_maintainer.pl for part about
+> > which you have talked in [1] says:
 > > 
-> > The implementation of fallback is truly complicated, but its use is
-> > quite simple. And it makes crashkernel reservation setting simple.
-> > Most of users don't need to know crashkernel=,high, ,low things, unless
-> > the crashkernel region is too big. Nobody wants to take away 1G or more
-> > from low memory for kdump just in case bad thing happens, while normal
-> > kernel itself is seriously impacted by limited low memory.
+> > $ ./scripts/get_maintainer.pl -f drivers/pci/controller/pci-aardvark.c
 > 
-> IIUC, that's exactly what happens even on x86, it may take away a
-> significant chunk of the low memory. Let's say we have 1.2GB of 'low'
-> memory (below 4GB) on an arm64 platform. A crashkernel=1G would succeed
-> in a low allocation, pretty much affecting the whole system. It would
-> only fall back to 'high' _if_ you pass something like crashkernel=1.2G
-> so that the low allocation fails. So if I got this right, I find the
-> fall-back from crashkernel=X pretty useless, we shouldn't even try it.
+> Remind me which file this patch is touching?
 
-Most of time, it's not easy to get 1G contiguous low memory. On x86,
-firmware is mapped into low 4G virt address, and system initialization
-will take some of them too. On arm64, it's hard too, e.g the physical
-memory will start at 1G or 2G position, and firmware need be mapped
-under 4G too, and kernel initialization costing. And we are eager to see
-crashkernel=,high support too because we got a bug that on an arm64
-server, its physical memory is scattered under low 4G so that the
-biggest contiguous memory is less than 300M. (Not sure if it's a prototype
-machine, I would not say its name in public.) In this case, we need
-the fallback implementation to make our default crashkernel=xM setting
-succeed getting the required memory from above 4G.
+So read again what you have presented in the past, in the email to which
+you have referenced. I sent link to that your email in previous email.
 
-So from our experience and feedback given by customer, crashkernel=xM as
-a default setting is the first choice and very easy to use and can
-satisfy 99% of needs. If big crashkernel reservation is required,
-considering low memory is limited and precious, while most of time
-high memory is huge, crashkernel=,high is recommended. The price is about
-200M or less memory for DMA, however much the required high memory is, 2G
-or more. Believe me this kind of big memory requirement happens on very
-few machines, because vmcore dumping tool makedumpfile taking the default
-cyclic buffer method to dump which require not much memory. Unless user
-has their own dumping tool or other dumping method which require much
-memory.
+Or you absolutely incompetent and I should have remind also previous
+email to which you wrote your reaction?
 
-crashkernel=xM, whether it is from its name, or the actual need, had
-better get the fallback mechanism to allow it being put anywhere.
-
+> > The only _toy_ here is your broken mvebu board which your ego was unable
+> > to fix, and you have put it into recycling pile [2] and since than for
+> > months you are trying to reject every change or improvement in mvebu
+> > drivers and trying to find out a way how to remove all mvebu code, like
+> > if you were not able to fix your toy, then broke it also to all other
+> > people. You have already expressed this, but I'm not going to search
+> > emails more and find these your statements.
 > 
-> It makes more sense if crashkernel=X,high is a hint to attempt a high
-> allocation first with a default low (overridden by a ,low option) or
-> even fall-back to low if there's no memory above 4GB.
+> At this stage, this is pure paranoia.
 
-Hmm, maybe not so much. Please also consider the big end servers usually
-carry tons of devices, its rebooting will take half an hour or even more
-time. Imagine in an lab with hundereds of servers, one time of OS upgrading 
-need to attempt high allocation firstly on each machine, then decide
-what is set. That will drive operator mad. So we give them the simplest
-way, crashkernel=xM to make it work. If you want to optimize the memory
-usage and you know each system well, then please use crashkernel=,high
-and crashkernel=,low to make it.
+No, just pure reality of your behavior of what you are doing and what
+you are saying.
 
-In our distros, the policy is if default crashkernel=xM setting with
-OS installation doesn't work well, e.g OOM or reserving too much memory
-causing wasting, bug can be reported. crashkernel=,high and
-crashkernel=,low don't work well, settle by yourself.
+> Do you think I am so emotionally
+> attached to HW purity that I would plot the annihilation of some ugly
+> platform?
 
+I do not think. You personally, have presented this statement, and I'm
+just reminding it to you like you have asked for it.
+
+> > Sorry, I'm stopping here. This is just a prove that you are not
+> > qualified in reviewing mvebu code.
 > 
-> Could you please have a look at Zhen Lei's latest series without any
-> fall-backs? I'd like to queue that if you are happy with it. We can then
-> look at adding some fall-back options on top.
+> Happy not to have to review this code.
 
-I am fine with the v24, except of the corner case I pointed out. I
-personally suggest merging the v24 series, and fix the corner case
-and add fall back on top, with step by step style.
+You are doing it for more than one year. Are you happy with it? Seem
+absolutely.
 
-Thanks
-Baoquan
+> Just stop Cc'ing me on your patches
 
+As there no progress from your side, nor change of your behavior from
+more than one year, I'm accepting this offer.
+
+This is my last email to you and I'm stopping right now to read your
+emails.
+
+I'm not obligated to remind you everything what you are asking just
+because you are lazy to find you what you have wrote in the past.
+
+> and don't expect me to merge any IRQ related patches coming
+> from you.
 > 
-> IMO, we should only aim for:
-> 
-> 	crashkernel=X		ZONE_DMA allocation, no fall-back
-> 	crashkernel=X,high	hint for high allocation, small default
-> 				low, fall back to low if alloc fails
-> 	crashkernel=X,low	control the default low allocation, only
-> 				high is passed
-> 
-> With the above, I'd expect admins to just go for crashkernel=X,high on
-> modern hardware with up to date kexec tools and it does the right thing.
-> The crashkernel=X can lead to unexpected results if it eats up all the
-> low memory. Let's say this option is for backwards compatibility only.
-> 
-> Thanks.
+> 	M.
 > 
 > -- 
-> Catalin
-> 
-
+> Without deviation from the norm, progress is not possible.
