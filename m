@@ -2,102 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C7DB751E92D
-	for <lists+devicetree@lfdr.de>; Sat,  7 May 2022 20:21:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B18751E932
+	for <lists+devicetree@lfdr.de>; Sat,  7 May 2022 20:23:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245587AbiEGSY5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 7 May 2022 14:24:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55874 "EHLO
+        id S1349559AbiEGS0y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 7 May 2022 14:26:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56708 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230521AbiEGSY5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 7 May 2022 14:24:57 -0400
-Received: from mxout02.lancloud.ru (mxout02.lancloud.ru [45.84.86.82])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4CBB76154;
-        Sat,  7 May 2022 11:21:07 -0700 (PDT)
-Received: from LanCloud
-DKIM-Filter: OpenDKIM Filter v2.11.0 mxout02.lancloud.ru 1A3322327E34
-Received: from LanCloud
-Received: from LanCloud
-Received: from LanCloud
-From:   Sergey Shtylyov <s.shtylyov@omp.ru>
-Subject: Re: [PATCH 2/9] dt-bindings: net: renesas,etheravb: Document RZ/V2M
- SoC
-To:     Phil Edworthy <phil.edworthy@renesas.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+        with ESMTP id S230521AbiEGS0x (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 7 May 2022 14:26:53 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C8D624970;
+        Sat,  7 May 2022 11:23:06 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 9C246613F5;
+        Sat,  7 May 2022 18:23:05 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 08741C385A5;
+        Sat,  7 May 2022 18:23:00 +0000 (UTC)
+Date:   Sat, 7 May 2022 19:22:57 +0100
+From:   Catalin Marinas <catalin.marinas@arm.com>
+To:     Baoquan He <bhe@redhat.com>
+Cc:     "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
+        x86@kernel.org, "H . Peter Anvin" <hpa@zytor.com>,
+        linux-kernel@vger.kernel.org, Dave Young <dyoung@redhat.com>,
+        Vivek Goyal <vgoyal@redhat.com>,
+        Eric Biederman <ebiederm@xmission.com>,
+        kexec@lists.infradead.org, Will Deacon <will@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-CC:     Sergei Shtylyov <sergei.shtylyov@gmail.com>,
-        <netdev@vger.kernel.org>, <linux-renesas-soc@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, Biju Das <biju.das.jz@bp.renesas.com>
-References: <20220504145454.71287-1-phil.edworthy@renesas.com>
- <20220504145454.71287-3-phil.edworthy@renesas.com>
-Organization: Open Mobile Platform
-Message-ID: <d0c1800f-8826-207f-35a8-90d3a62a32fe@omp.ru>
-Date:   Sat, 7 May 2022 21:21:02 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.1
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>,
+        linux-doc@vger.kernel.org, Randy Dunlap <rdunlap@infradead.org>,
+        Feng Zhou <zhoufeng.zf@bytedance.com>,
+        Kefeng Wang <wangkefeng.wang@huawei.com>,
+        Chen Zhou <dingguo.cz@antgroup.com>,
+        John Donnelly <John.p.donnelly@oracle.com>,
+        Dave Kleikamp <dave.kleikamp@oracle.com>
+Subject: Re: [PATCH v24 6/6] docs: kdump: Update the crashkernel description
+ for arm64
+Message-ID: <Yna5AVli1IIUd2kg@arm.com>
+References: <20220506114402.365-1-thunder.leizhen@huawei.com>
+ <20220506114402.365-7-thunder.leizhen@huawei.com>
+ <20220506231451.GB122876@MiWiFi-R3L-srv>
+ <6e662eae-e788-13d3-368a-e88ed159fc85@huawei.com>
+ <YnXn87JnfUxI2lC2@MiWiFi-R3L-srv>
 MIME-Version: 1.0
-In-Reply-To: <20220504145454.71287-3-phil.edworthy@renesas.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [192.168.11.198]
-X-ClientProxiedBy: LFEXT02.lancloud.ru (fd00:f066::142) To
- LFEX1907.lancloud.ru (fd00:f066::207)
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YnXn87JnfUxI2lC2@MiWiFi-R3L-srv>
+X-Spam-Status: No, score=-6.7 required=5.0 tests=BAYES_00,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello!
-
-On 5/4/22 5:54 PM, Phil Edworthy wrote:
-
-> Document the Ethernet AVB IP found on RZ/V2M SoC.
-> It includes the Ethernet controller (E-MAC) and Dedicated Direct memory
-> access controller (DMAC) for transferring transmitted Ethernet frames
-> to and received Ethernet frames from respective storage areas in the
-> URAM at high speed.
-
-   I think nobody knows what exactly URAM stands for... you better call it
-just RAM. :-)
-
-> The AVB-DMAC is compliant with IEEE 802.1BA, IEEE 802.1AS timing and
-> synchronization protocol, IEEE 802.1Qav real-time transfer, and the
-> IEEE 802.1Qat stream reservation protocol.
+On Sat, May 07, 2022 at 11:30:59AM +0800, Baoquan He wrote:
+> On 05/07/22 at 09:41am, Leizhen (ThunderTown) wrote:
+> > On 2022/5/7 7:14, Baoquan He wrote:
+> > > On 05/06/22 at 07:44pm, Zhen Lei wrote:
+> > >> Now arm64 has added support for "crashkernel=X,high" and
+> > >> "crashkernel=Y,low". Unlike x86, crash low memory is not allocated if
+> > >> "crashkernel=Y,low" is not specified.
+> > >>
+> > >> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
+> > >> ---
+> > >>  Documentation/admin-guide/kernel-parameters.txt | 9 +++++++--
+> > >>  1 file changed, 7 insertions(+), 2 deletions(-)
+> > >>
+> > >> diff --git a/Documentation/admin-guide/kernel-parameters.txt b/Documentation/admin-guide/kernel-parameters.txt
+> > >> index 3f1cc5e317ed4a5..aa44c61114aa4b8 100644
+> > >> --- a/Documentation/admin-guide/kernel-parameters.txt
+> > >> +++ b/Documentation/admin-guide/kernel-parameters.txt
+> > >> @@ -808,7 +808,7 @@
+> > >>  			Documentation/admin-guide/kdump/kdump.rst for an example.
+> > >>  
+> > >>  	crashkernel=size[KMG],high
+> > >> -			[KNL, X86-64] range could be above 4G. Allow kernel
+> > >> +			[KNL, X86-64, ARM64] range could be above 4G. Allow kernel
+> > >>  			to allocate physical memory region from top, so could
+> > >>  			be above 4G if system have more than 4G ram installed.
+> > >>  			Otherwise memory region will be allocated below 4G, if
+> > >> @@ -821,7 +821,7 @@
+> > >>  			that require some amount of low memory, e.g. swiotlb
+> > >>  			requires at least 64M+32K low memory, also enough extra
+> > >>  			low memory is needed to make sure DMA buffers for 32-bit
+> > >> -			devices won't run out. Kernel would try to allocate at
+> > >> +			devices won't run out. Kernel would try to allocate
+> > >>  			at least 256M below 4G automatically.
+> > >>  			This one let user to specify own low range under 4G
+> > >>  			for second kernel instead.
+> > >> @@ -829,6 +829,11 @@
+> > >>  			It will be ignored when crashkernel=X,high is not used
+> > >>  			or memory reserved is below 4G.
+> > >>  
+> > >> +			[KNL, ARM64] range in low memory.
+> > >> +			This one let user to specify a low range in DMA zone for
+> > >                                           ^ not needed,
+> > >                         Maybe Catalin can fix it when merging.
+> > 
+> > Delete "This one let user to" or the entire sentence? I understand it to be the former.
 > 
-> R-Car has a pair of combined interrupt lines:
->  ch22 = Line0_DiA | Line1_A | Line2_A
->  ch23 = Line0_DiB | Line1_B | Line2_B
-> Line0 for descriptor interrupts.
-> Line1 for error related interrupts (which we call err_a and err_b).
-> Line2 for management and gPTP related interrupts (mgmt_a and mgmt_b).
-> 
-> RZ/V2M hardware has separate interrupt lines for each of these, but
-> we keep the "ch22" name for Line0_DiA.
+> Oh, I mean the 'to' is not needed. "This one let user specify ....". The
+> 'to' is a grammer mistake.
 
-   Not sure I agree here...
-   BTW, aren't the interrupts called "Ethernet ABV.ch<n>" (as on R-Car gen3)
-in your (complete?) manual?
+Slightly more correct is "This one lets the user specify..."
 
-> We also keep the "ch24" name for the Line3 (MAC) interrupt.
-> 
-> It has 3 clocks; the main AXI clock, the AMBA CHI clock and a gPTP
+I can fix them up when applying.
 
-   Could you spell out CHI like below?
-
-> reference clock.
-> 
-> Signed-off-by: Phil Edworthy <phil.edworthy@renesas.com>
-> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
-[...]
-
-MBR, Sergey
+-- 
+Catalin
