@@ -2,84 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9025851EF6B
-	for <lists+devicetree@lfdr.de>; Sun,  8 May 2022 21:12:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F2D351EF39
+	for <lists+devicetree@lfdr.de>; Sun,  8 May 2022 21:11:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235907AbiEHTDt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 8 May 2022 15:03:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54946 "EHLO
+        id S235256AbiEHTDq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 8 May 2022 15:03:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34640 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237066AbiEHRJA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 8 May 2022 13:09:00 -0400
-Received: from mail-yb1-xb2b.google.com (mail-yb1-xb2b.google.com [IPv6:2607:f8b0:4864:20::b2b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB50F64D5;
-        Sun,  8 May 2022 10:05:09 -0700 (PDT)
-Received: by mail-yb1-xb2b.google.com with SMTP id m190so9551213ybf.4;
-        Sun, 08 May 2022 10:05:09 -0700 (PDT)
+        with ESMTP id S236177AbiEHRkE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 8 May 2022 13:40:04 -0400
+Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A852AE023
+        for <devicetree@vger.kernel.org>; Sun,  8 May 2022 10:36:13 -0700 (PDT)
+Received: by mail-lj1-x22f.google.com with SMTP id m23so14643724ljc.0
+        for <devicetree@vger.kernel.org>; Sun, 08 May 2022 10:36:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=W7Hl8BOx+adgs6geATfRW0o3lLPBvMogTGQ28EqLWaA=;
-        b=lkgMS1iIMVf9Fy72wcDl3MPVgbNj/S+8G4i7KuAJf12aCIWl55+lPEek3+Cenow8nR
-         9MKVshPKYtnCcMk0rVsRWXFDArby9lCwKFGx4DgqDTMfaDG5QVPNOwZkTwC9Jxkj/nIJ
-         Fk8j//X0r1kVv6Hg9udaF6oXWF5ny36hAwfrx01HEKaXznS6k51vQHJcyrclwvM51Y4F
-         P8dDk9/UJdLMJqBB3t106A3sIj91Zja4D7bj+rVDqRf4X/8WxBR2+t5oR05XYbHwr0OD
-         gMrsjh8hipq/WHjgIOHvgegA/bDIyxTeulYWnzhA1fAHcwgksc4HHVHiPW2o6Mx4XIQL
-         KsfQ==
+        h=mime-version:subject:from:in-reply-to:date:cc
+         :content-transfer-encoding:message-id:references:to;
+        bh=mc7TiSQQPMEbeG7ZiGyr90EpIeFsqchzoclKo6O9CMM=;
+        b=gUkllS2et5oszpd7JkVRNeiQpsgPZCMyY06ClaMcq2HPeBS55Ms4O6ZxRUvvjJzV7c
+         cxur5bB/6PRxSl+VVwtO0IQliO1EMeiy9/OOjVkRzObOf5FgJBG1HZF2mLaT38abXUVv
+         mdVB8jDgsKPD2lesVSF32r/JfZZv8Kl5JbaghfvbV1f+pXk0RslhW5CyZ6F9u1dqBSA1
+         COFHklgkncn4QH7RvPkwayNxdpXlcnWxV0YHw2kSB/eMqGK9IEb8nhlyPEpyBDDdTt6L
+         KvWkz0Td0+G0pZ6dH6j+CaZUJ0mlx2auQf7w+MqHmSulkD7LyfiGtYJK5Pgw3fHi1Jqk
+         3wsw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=W7Hl8BOx+adgs6geATfRW0o3lLPBvMogTGQ28EqLWaA=;
-        b=NLvw2lJxStQrCuNvjfyO3xqPZop1Y6fSBnXPAyn5Jb16O/nLYkMe8pcacj3AaIMLrU
-         yh80XV/vMjncQnFzaL+IR8hLopiWn4NluKY+MU8joZJAz0VXOKnNU2pJTD3u1wg0V3EF
-         da/DrMgUyQHuOCgaXz4ceZLE214XIgEXdVse3ukVjV8DVspYLjhS4BLmDwl3cwhzlPEK
-         6V0wWkD9usNJoXRSbq4lvHI7OxwI0EFaw0eEyNUjTKPYOq6I2fjZF44JcfkTwGdxFJ17
-         OfSAcFpF6YWOy/3aPnC5s2EFhfmCQqLCWLWXNZutEsqlx3m2l7gy78lSJd8KXtppXc0g
-         43Vg==
-X-Gm-Message-State: AOAM532TsM53Y7Wf5lP6ueTL403WXA9xn+JPbuZi6WHamWYOnxFdGzs3
-        fLzT9h7WVywc7xZc44dKB15BNc5Tjqz23ielG3c=
-X-Google-Smtp-Source: ABdhPJy+9aAnBuxa0JfhTFZ4aaqwddQqqO8njeM70HqTBYBOqN1hLMd22aoooSxKWRQg+5rhDWM0uUI6VEpipsrsGMI=
-X-Received: by 2002:a05:6902:143:b0:628:7cf1:f2a9 with SMTP id
- p3-20020a056902014300b006287cf1f2a9mr9464807ybh.51.1652029508882; Sun, 08 May
- 2022 10:05:08 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220507170440.64005-1-linux@fw-web.de> <06157623-4b9c-6f26-e963-432c75cfc9e5@linaro.org>
- <DC0D3996-DFFE-4E71-B843-8D34C613D498@public-files.de> <2509116.Lt9SDvczpP@phil>
- <trinity-7f04b598-0300-4f3c-80e7-0c2145e8ba8f-1652011928036@3c-app-gmx-bap68>
-In-Reply-To: <trinity-7f04b598-0300-4f3c-80e7-0c2145e8ba8f-1652011928036@3c-app-gmx-bap68>
-From:   Peter Geis <pgwipeout@gmail.com>
-Date:   Sun, 8 May 2022 13:04:56 -0400
-Message-ID: <CAMdYzYrG8bK-Yo15RjhhCQKS4ZQW53ePu1q4gbGxVVNKPJHBWg@mail.gmail.com>
-Subject: Re: Re: [PATCH v3 5/6] dt-bindings: net: dsa: make reset optional and
- add rgmii-mode to mt7531
-To:     Frank Wunderlich <frank-w@public-files.de>
-Cc:     Heiko Stuebner <heiko@sntech.de>,
+        h=x-gm-message-state:mime-version:subject:from:in-reply-to:date:cc
+         :content-transfer-encoding:message-id:references:to;
+        bh=mc7TiSQQPMEbeG7ZiGyr90EpIeFsqchzoclKo6O9CMM=;
+        b=GnT/cKtLB0x3S2iN6BIvZsnoU6v7zH9D3a435PA8h+s0e95SyRuMZHDHZAGfBitPLN
+         3Tvczaqg7xqWrvKMM7d4Qdvw7dzSO9yHp2gn3z0YnhkACBpx4fUzyBUHNHl/Gf57dQg/
+         avGj5r9SIKtri4JoE8Kurw8cbQLP1xY7U+YeFHTOC5GM55t7ABav7JwU/BA93RfzK0K/
+         Uy0lI+nZ6LSKiRLoXRZPUF8Dagqrsf41x8VqCmK7smHzqQVilPTojRbRFFqBgbgk0mDP
+         jqi/oopm2QW3g7QtvExgfpBp+RtfJ1oVLrpiwtpEVV2oL4q2utWav2kNQ4t7+MLA2QrI
+         fC4A==
+X-Gm-Message-State: AOAM531cwQfGcWKRA4PhGKh7hn9vXS3l1xvOT8zE9zQB6oj9KI3j0c7+
+        h+k4srCzw8qek3x/q3Lo9KA=
+X-Google-Smtp-Source: ABdhPJwLMv2nyA/yngcxESrM+hZXLDw0uuoQfsv9WXtNUoRf8+z/DZ4YNbFrhZR6S+KuhO0sh0XJzQ==
+X-Received: by 2002:a2e:b044:0:b0:250:b16e:45df with SMTP id d4-20020a2eb044000000b00250b16e45dfmr4916785ljl.180.1652031371805;
+        Sun, 08 May 2022 10:36:11 -0700 (PDT)
+Received: from smtpclient.apple (31-178-191-245.dynamic.chello.pl. [31.178.191.245])
+        by smtp.gmail.com with ESMTPSA id x12-20020a2e584c000000b0024f3d1daed3sm1486496ljd.91.2022.05.08.10.36.10
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Sun, 08 May 2022 10:36:11 -0700 (PDT)
+Content-Type: text/plain;
+        charset=utf-8
+Mime-Version: 1.0 (Mac OS X Mail 14.0 \(3654.120.0.1.13\))
+Subject: Re: [PATCH v11 20/24] arm64: dts: rockchip: enable vop2 and hdmi tx
+ on rock-3a
+From:   Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
+In-Reply-To: <CAMdYzYoFG3wCQaWXQNJd7mE20OMCj=ZeuewwZfaCJyoCBT-kQQ@mail.gmail.com>
+Date:   Sun, 8 May 2022 19:36:09 +0200
+Cc:     Sascha Hauer <s.hauer@pengutronix.de>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        dri-devel@lists.freedesktop.org,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
         "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Frank Wunderlich <linux@fw-web.de>,
-        linux-mediatek@lists.infradead.org, Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Landen Chao <Landen.Chao@mediatek.com>,
-        DENG Qingfang <dqfext@gmail.com>,
-        Linux Kernel Network Developers <netdev@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        arm-mail-list <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Greg Ungerer <gerg@kernel.org>,
-        =?UTF-8?Q?Ren=C3=A9_van_Dorst?= <opensource@vdorst.com>,
-        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Sandy Huang <hjc@rock-chips.com>,
+        =?utf-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
+        kernel test robot <lkp@intel.com>
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <0E6FE020-C95E-47CF-A9D6-AC3F2B2D334F@gmail.com>
+References: <20220422072841.2206452-1-s.hauer@pengutronix.de>
+ <20220422072841.2206452-21-s.hauer@pengutronix.de>
+ <A86359EC-5291-41BD-966E-EB7890644731@gmail.com>
+ <CAMdYzYoFG3wCQaWXQNJd7mE20OMCj=ZeuewwZfaCJyoCBT-kQQ@mail.gmail.com>
+To:     Peter Geis <pgwipeout@gmail.com>
+X-Mailer: Apple Mail (2.3654.120.0.1.13)
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
@@ -90,76 +85,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, May 8, 2022 at 8:12 AM Frank Wunderlich <frank-w@public-files.de> wrote:
->
-> Hi Heiko
->
-> > Gesendet: Sonntag, 08. Mai 2022 um 11:41 Uhr
-> > Von: "Heiko Stuebner" <heiko@sntech.de>
-> > Am Sonntag, 8. Mai 2022, 08:24:37 CEST schrieb Frank Wunderlich:
-> > > Am 7. Mai 2022 22:01:22 MESZ schrieb Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>:
-> > > >On 07/05/2022 19:04, Frank Wunderlich wrote:
-> > > >> From: Frank Wunderlich <frank-w@public-files.de>
-> > > >>
-> > > >> Make reset optional as driver already supports it,
-> > > >
-> > > >I do not see the connection between hardware needing or not needing a
-> > > >reset GPIO and a driver supporting it or not... What does it mean?
-> > >
-> > > My board has a shared gpio-reset between gmac and switch, so both will resetted if it
-> > > is asserted. Currently it is set to the gmac and is aquired exclusive. Adding it to switch results in 2 problems:
-> > >
-> > > - due to exclusive and already mapped to gmac, switch driver exits as it cannot get the reset-gpio again.
-> > > - if i drop the reset from gmac and add to switch, it resets the gmac and this takes too long for switch
-> > > to get up. Of course i can increase the wait time after reset,but dropping reset here was the easier way.
-> > >
-> > > Using reset only on gmac side brings the switch up.
-> >
-> > I think the issue is more for the description itself.
-> >
-> > Devicetree is only meant to describe the hardware and does in general don't
-> > care how any firmware (Linux-kernel, *BSD, etc) handles it. So going with
-> > "the kernel does it this way" is not a valid reason for a binding change ;-) .
-> >
-> > Instead in general want to reason that there are boards without this reset
-> > facility and thus make it optional for those.
->
-> if only the wording is the problem i try to rephrase it from hardware PoV.
->
-> maybe something like this?
->
-> https://github.com/frank-w/BPI-R2-4.14/commits/5.18-mt7531-mainline2/Documentation/devicetree/bindings/net/dsa/mediatek%2Cmt7530.yaml
->
-> Another way is maybe increasing the delay after the reset (to give more time all
-> come up again), but imho it is no good idea resetting the gmac/mdio-bus from the
-> child device.
->
-> have not looked into the gmac driver if this always  does the initial reset to
-> have a "clean state". In this initial reset the switch will be resetted too
-> and does not need an additional one which needs the gmac/mdio initialization
-> to be done again.
 
-For clarification, the reset gpio line is purely to reset the phy.
-If having the switch driver own the reset gpio instead of the gmac
-breaks initialization that means there's a bug in the gmac driver
-handling phy init.
-In testing I've seen issues moving the reset line to the mdio node
-with other phys and the stmmac gmac driver, so I do believe this is
-the case.
 
->
-> > > >> allow port 5 as
-> > > >> cpu-port
-> > > >
-> > > >How do you allow it here?
-> > >
-> > > Argh, seems i accidentally removed this part and have not recognized while checking :(
-> > >
-> > > It should only change description of reg for ports to:
-> > >
-> > > "Port address described must be 5 or 6 for CPU port and from 0 to 5 for user ports."
->
-> noticed that the target-phase is not removed but squashed in the first bindings-patch.
-> This was a rebasing error and not intented...will fix in next version.
->
-> regards Frank
+> Wiadomo=C5=9B=C4=87 napisana przez Peter Geis <pgwipeout@gmail.com> w =
+dniu 08.05.2022, o godz. 18:53:
+>=20
+>>=20
+>> I was trying to do this in dts https://pastebin.com/67wu9QrH but cec =
+is still non-functional
+>>=20
+>> Maybe You have some hints/pointers here?
+>=20
+> Add the following to the HDMI node:
+> assigned-clocks =3D <&cru CLK_HDMI_CEC>;
+> assigned-clock-rates =3D <32768>;
+
+I think i have this already (pls see L231/L232 in =
+https://pastebin.com/67wu9QrH )
+
+>=20
+>>=20
+>> br
+>>=20
+>> btw: my dts gives me working usb2 port0/port1 and usb3 port0. but =
+usb3 port1 is non-working
+>> maybe you know what is missing?
+>=20
+> You're missing &usb2phy0_otg.
+
+Maybe i miss something but adding:=20
+
+&usb2phy0_otg {
+	phy-supply =3D <&vcc5v0_usb_host>;
+	status =3D "okay";
+};
+
+breaks working usb3 port0
+(so none of usb3 ports are working)
+
+
