@@ -2,90 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ED8AC51EA8A
-	for <lists+devicetree@lfdr.de>; Sun,  8 May 2022 00:47:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9932451EAC4
+	for <lists+devicetree@lfdr.de>; Sun,  8 May 2022 03:23:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229462AbiEGWup (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 7 May 2022 18:50:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60678 "EHLO
+        id S229555AbiEHB1T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 7 May 2022 21:27:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36018 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231383AbiEGWuo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 7 May 2022 18:50:44 -0400
-Received: from relay05.th.seeweb.it (relay05.th.seeweb.it [IPv6:2001:4b7a:2000:18::166])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81CAA1EC70
-        for <devicetree@vger.kernel.org>; Sat,  7 May 2022 15:46:56 -0700 (PDT)
-Received: from Marijn-Arch-PC.localdomain (94-209-165-62.cable.dynamic.v4.ziggo.nl [94.209.165.62])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        with ESMTP id S229528AbiEHB1T (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 7 May 2022 21:27:19 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7256F11A15;
+        Sat,  7 May 2022 18:23:30 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id A96463F612;
-        Sun,  8 May 2022 00:46:54 +0200 (CEST)
-From:   Marijn Suijten <marijn.suijten@somainline.org>
-To:     phone-devel@vger.kernel.org
-Cc:     ~postmarketos/upstreaming@lists.sr.ht,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Martin Botka <martin.botka@somainline.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: qcom: sm6350: Replace literal rpmpd indices with constants
-Date:   Sun,  8 May 2022 00:46:45 +0200
-Message-Id: <20220507224645.2238421-1-marijn.suijten@somainline.org>
-X-Mailer: git-send-email 2.36.0
+        by dfw.source.kernel.org (Postfix) with ESMTPS id B9F1160F7F;
+        Sun,  8 May 2022 01:23:29 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AE52AC385A6;
+        Sun,  8 May 2022 01:23:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1651973009;
+        bh=bkpfuiHpthyo4eMUiXJ6/JZTEy7lTJlasVB2DKI6S8A=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=X+j+lD2+UAojrB2xodzbNxE19De7dQFVtyt/le/bgy8fvWA22kdpcJDwOhCYv0lok
+         g1fCEwLdZHU9knJZxXdN2VJNQdqPqZqugRigzph1cgAt/Dh2diJ8ZafkZdH/Ipgdyo
+         PKcKtWXL1DPoMs2wmwd4G77coyA7h7IwIQW6F/EWSsMeUmehlxejx00NS76TMx8B0o
+         zm7KAci0oRJmswVOE7q+SKx8JOzRZVH+8Dz4s+4cm+iUH7uz3reEfNZ/wGZBpfegcR
+         O9nTRTg/arAYEbVpJrIMr+U1pIZKT4IBulHqVzQwtf8rjrd+zddr0Y0XcIQ6msmuvD
+         hzNl7qClY4Zmg==
+Date:   Sun, 8 May 2022 09:23:21 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        linux-imx@nxp.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Peng Fan <peng.fan@nxp.com>
+Subject: Re: [PATCH V3 1/4] dt-bindings: arm: fsl: add imx93 11x11 evk board
+Message-ID: <20220508012321.GM14615@dragon>
+References: <20220507065309.3964937-1-peng.fan@oss.nxp.com>
+ <20220507065309.3964937-2-peng.fan@oss.nxp.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220507065309.3964937-2-peng.fan@oss.nxp.com>
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-It seems the SM6350_CX definition was temporarily replaced with its
-literal value 0 in 1797e1c9a95c ("arm64: dts: qcom: sm6350: Add SDHCI1/2
-nodes") to prevent a dependency on the qcom-rpmpd.h header patch being
-available prior to this DT patch being applied, similar to c23f1b77358c
-("arm64: dts: qcom: sm6125: Avoid using missing SM6125_VDDCX").
-However, unlike the revert of that in the sm6125 tree the next merge
-window around in a90b8adfa2dd ("Revert "arm64: dts: qcom: sm6125: Avoid
-using missing SM6125_VDDCX""), this has not yet happened for sm6350:
-replace them back now that the definitions are definitely available.
+On Sat, May 07, 2022 at 02:53:06PM +0800, Peng Fan (OSS) wrote:
+> From: Peng Fan <peng.fan@nxp.com>
+> 
+> Add the board imx93-11x11-evk in the binding docuemnt.
+> 
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> ---
+>  Documentation/devicetree/bindings/arm/fsl.yaml | 5 +++++
+>  1 file changed, 5 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+> index b8b0efa55339..391f92282453 100644
+> --- a/Documentation/devicetree/bindings/arm/fsl.yaml
+> +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+> @@ -910,6 +910,11 @@ properties:
+>                - toradex,verdin-imx8mp-wifi  # Verdin iMX8M Plus Wi-Fi / BT Modules
+>            - const: fsl,imx8mp
+>  
+> +      - description: i.MX93 based Boards
+> +        items:
+> +          - const: fsl,imx93-11x11-evk    # i.MX93 11x11 EVK Board
+> +          - const: fsl,imx93
+> +
 
-Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
----
- arch/arm64/boot/dts/qcom/sm6350.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+It breaks the order of the list.  Should be added after
+"i.MX8ULP based Board" entry, I think.
 
-diff --git a/arch/arm64/boot/dts/qcom/sm6350.dtsi b/arch/arm64/boot/dts/qcom/sm6350.dtsi
-index fb1a0f662575..b3160720edcb 100644
---- a/arch/arm64/boot/dts/qcom/sm6350.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm6350.dtsi
-@@ -489,7 +489,7 @@ sdhc_1: sdhci@7c4000 {
- 			clock-names = "iface", "core", "xo";
- 			qcom,dll-config = <0x000f642c>;
- 			qcom,ddr-config = <0x80040868>;
--			power-domains = <&rpmhpd 0>;
-+			power-domains = <&rpmhpd SM6350_CX>;
- 			operating-points-v2 = <&sdhc1_opp_table>;
- 			bus-width = <8>;
- 			non-removable;
-@@ -935,7 +935,7 @@ sdhc_2: sdhci@8804000 {
- 			clock-names = "iface", "core", "xo";
- 			qcom,dll-config = <0x0007642c>;
- 			qcom,ddr-config = <0x80040868>;
--			power-domains = <&rpmhpd 0>;
-+			power-domains = <&rpmhpd SM6350_CX>;
- 			operating-points-v2 = <&sdhc2_opp_table>;
- 			bus-width = <4>;
- 
--- 
-2.36.0
+Shawn
 
+>        - description: PHYTEC phyCORE-i.MX8MP SoM based boards
+>          items:
+>            - const: phytec,imx8mp-phyboard-pollux-rdk # phyBOARD-Pollux RDK
+> -- 
+> 2.25.1
+> 
