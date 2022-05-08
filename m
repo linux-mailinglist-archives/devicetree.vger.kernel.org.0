@@ -2,126 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 534DA51EDD6
-	for <lists+devicetree@lfdr.de>; Sun,  8 May 2022 15:40:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7C33051EDE1
+	for <lists+devicetree@lfdr.de>; Sun,  8 May 2022 15:59:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233583AbiEHNoG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 8 May 2022 09:44:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33866 "EHLO
+        id S233686AbiEHODc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 8 May 2022 10:03:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39812 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233597AbiEHNoE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 8 May 2022 09:44:04 -0400
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69585B1FF
-        for <devicetree@vger.kernel.org>; Sun,  8 May 2022 06:40:13 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id p26so6493559lfh.10
-        for <devicetree@vger.kernel.org>; Sun, 08 May 2022 06:40:13 -0700 (PDT)
+        with ESMTP id S231799AbiEHODa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 8 May 2022 10:03:30 -0400
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5DDEAA1B9
+        for <devicetree@vger.kernel.org>; Sun,  8 May 2022 06:59:40 -0700 (PDT)
+Received: by mail-ej1-x631.google.com with SMTP id m20so22296401ejj.10
+        for <devicetree@vger.kernel.org>; Sun, 08 May 2022 06:59:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:subject:from:in-reply-to:date:cc
-         :content-transfer-encoding:message-id:references:to;
-        bh=hNugHMH0gYmqiT8RdngvmmaCgPBmeqCOezfX1bTdgH8=;
-        b=a1ogE+DV8vt9+H0Mi/fvKmsEtgHDkVWC6eL/ssTxk9jTpRU8qV9U1aspYnGFQdwcgI
-         C+xErjn9SZz3POxD7CLBteDeYzigHg34lyctj8PGHI1w+tVJchdJnfMuqCR0fRI8xD0g
-         XPjOZ4FoEMFvNYhjoXg2IBC5COwrSs9XJdpWAkhq7lDcf5oQFCvgjkc6Cc2S7sGtu+Y1
-         kEywFIW4LF9eQ7UOyHiLaI0HV/ex22GTuipSC+WUFlAYwGPhhWzIyEZc4IEwotgwDZ7c
-         NgIONcyoaugrNAaMmvOpeHNPr0sTcZBfZf1X+g8OHjbzv6uky8kuKgpXBdgdLFkfCnht
-         yjpg==
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Sh7T6F8m5om+p6d8xDQ68KLPKaPzB5rPja3dngsuXmo=;
+        b=NtKDSzlUP2fvL4JyA23q0b8vi1oDivxvbChK+OsldSbCZz8JePXwaNmjBj4zCnJ+aS
+         Fcns5kNZp1u/yIsWy8/8tziBKBjKvCWTRs/l/GcGfhfS9AjOFMpYPhPiEj1vBA9gzKgs
+         fgix0vkkGXtrvcyeQj9gAjBS+kRlG4UbyJNUvTjleDoDKlU8sSVa4h72ulk/88TdamvV
+         ExWOcAUjERKbhlslI0m5V4quLpEPMaw9D4xAMvuRNLi6i022UGeJX8liLDsqy6/7wLmV
+         QlQWgbBPyyqQ6hvnK4Otog0am9qhwq3uNH5FE+PvJ+aK60r+3BOhuUSWmPrG5Vnl82Jg
+         YWHA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:subject:from:in-reply-to:date:cc
-         :content-transfer-encoding:message-id:references:to;
-        bh=hNugHMH0gYmqiT8RdngvmmaCgPBmeqCOezfX1bTdgH8=;
-        b=WhebA/eOG35KxVYuZxBk0cplonEwdIC7BhKCvC2wxoStMSIo+lvEbpRAXupedaZmOX
-         g2wE8JeMgMwVLNF7XatJrFER1F/S+z9drlCZHBdCNQ54OyXIe9PMkMNnz2yqWvHCWdNF
-         PqYu9o/LtwBzyb9wYgF+WNtvL59Ane1HddAKxP99q636tD61D8qNzEHucD1+t0jC7t3p
-         9Y2fuQu+NUngOdnLZ3jqIDw2Jx77feQcpUpOk5jqXbtY2bpJR92BPCNLymXbcDfW9C7S
-         nxz9iJsIi6NrOO8LPmc31rDaEfIGcOL8XcL32DnjDVZhE8m1Y6yf3LPNQI6I9dh89OMI
-         fNXQ==
-X-Gm-Message-State: AOAM530VtStMZepCvmbtr05uTu12D/utJaeljEwbSGn918IZAUGm2ZTh
-        nd3wnRzjsE25pZmxrBBe0mY=
-X-Google-Smtp-Source: ABdhPJzCr7fHU4OjHw+Q2jcxaaAzu3hQtbMSZZC/N9bd3qImeaOgf1Hf2ZyLOdRp09ZiftoRQ44XVg==
-X-Received: by 2002:ac2:57c7:0:b0:472:208d:926f with SMTP id k7-20020ac257c7000000b00472208d926fmr9029878lfo.224.1652017211328;
-        Sun, 08 May 2022 06:40:11 -0700 (PDT)
-Received: from smtpclient.apple (31-178-191-245.dynamic.chello.pl. [31.178.191.245])
-        by smtp.gmail.com with ESMTPSA id a21-20020a2e88d5000000b00250a09889a1sm1035233ljk.16.2022.05.08.06.40.10
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Sun, 08 May 2022 06:40:10 -0700 (PDT)
-Content-Type: text/plain;
-        charset=utf-8
-Mime-Version: 1.0 (Mac OS X Mail 14.0 \(3654.120.0.1.13\))
-Subject: Re: [PATCH v11 20/24] arm64: dts: rockchip: enable vop2 and hdmi tx
- on rock-3a
-From:   Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
-In-Reply-To: <20220422072841.2206452-21-s.hauer@pengutronix.de>
-Date:   Sun, 8 May 2022 15:40:09 +0200
-Cc:     dri-devel@lists.freedesktop.org,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Sandy Huang <hjc@rock-chips.com>,
-        =?utf-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
-        Peter Geis <pgwipeout@gmail.com>,
-        kernel test robot <lkp@intel.com>
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <A86359EC-5291-41BD-966E-EB7890644731@gmail.com>
-References: <20220422072841.2206452-1-s.hauer@pengutronix.de>
- <20220422072841.2206452-21-s.hauer@pengutronix.de>
-To:     Sascha Hauer <s.hauer@pengutronix.de>,
-        Michael Riesch <michael.riesch@wolfvision.net>
-X-Mailer: Apple Mail (2.3654.120.0.1.13)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Sh7T6F8m5om+p6d8xDQ68KLPKaPzB5rPja3dngsuXmo=;
+        b=D+TK389GABlLqtTtPs8vdTlg7C+KsNksr5AZ4CNyx2NbIFAstd19/MdCDIOZT50vZN
+         OFs/7JPFHXA2p3j3UgY59z/OKHHc5q4y1tuIciIPXvT85Qsac0YqK46OkQUuyQ2cjI0/
+         1dQR/Eolui3yaWtvqBeTpqn9ofI0T7qLZnr6RK0btE3PJKiwFZzL6nMQBTc2ZE4XDwJJ
+         9+oUak51Fr4ETgei4yxFe4gbZ8kIigCF6j24JddE1Ut8glOb3e2WOtbOEXwCww23obeC
+         kl/GEEMcpFisxMn/UPgHawpWdU4bdT+Duuo8dflGjQfpaIqdPguk76JJcnJhk8cnenzc
+         2utQ==
+X-Gm-Message-State: AOAM533/2iUiVDVDzaCoQcpyHsl5V6NcvLFMlzK9PFS62lkQwEcqs4Ti
+        HICWex+d6S+95VE6LwXQYYm9Sw==
+X-Google-Smtp-Source: ABdhPJziBkI6CEh1DKheB02szTsJ1avc2cVCCYlcGZVNox06EFkjvLBwYKB9i35qQ73eNqjUnkdEFQ==
+X-Received: by 2002:a17:907:8a0a:b0:6f4:2467:75ff with SMTP id sc10-20020a1709078a0a00b006f4246775ffmr10720043ejc.356.1652018378980;
+        Sun, 08 May 2022 06:59:38 -0700 (PDT)
+Received: from localhost.localdomain (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id qz24-20020a170907681800b006f3ef214dc6sm4075524ejc.44.2022.05.08.06.59.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 08 May 2022 06:59:38 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Luca Weiss <luca@z3ntu.xyz>, David Heidelberg <david@ixit.cz>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 0/4] dt-bindings/pinctrl/arm: qcom: second round of minor cleanups of QCOM PMIC pinctrl
+Date:   Sun,  8 May 2022 15:59:28 +0200
+Message-Id: <20220508135932.132378-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.32.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
 
+Dependencies
+============
+This is on top of:
+dt-bindings/pinctrl/arm: qcom: minor cleanups of QCOM PMIC pinctrl
+https://lore.kernel.org/linux-arm-msm/20220507194913.261121-1-krzysztof.kozlowski@linaro.org/T/#t
 
-> Wiadomo=C5=9B=C4=87 napisana przez Sascha Hauer =
-<s.hauer@pengutronix.de> w dniu 22.04.2022, o godz. 09:28:
->=20
-> From: Michael Riesch <michael.riesch@wolfvision.net>
->=20
-> Enable the RK356x Video Output Processor (VOP) 2 on the Radxa
-> ROCK3 Model A.
->=20
-> Signed-off-by: Michael Riesch <michael.riesch@wolfvision.net>
-> Reported-by: kernel test robot <lkp@intel.com>
-> Link: =
-https://lore.kernel.org/r/20220310210352.451136-4-michael.riesch@wolfvisio=
-n.net
-> Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
-> ---
+Not really tested on hardware (except SDM845).
 
-Sascha, Michael,
+Best regards,
+Krzysztof
 
-I'm using v11 series on 5.18-rc5 on rk3566 tvbox with great success.
-Recently i started to work on rock3-a (rk3568).
-v11 gives me video, audio - but cec is not working on rock3-a.
+Krzysztof Kozlowski (4):
+  dt-bindings: pinctrl: qcom,pmic-gpio: add 'gpio-reserved-ranges'
+  arm64: dts: qcom: add missing gpio-ranges in PMIC GPIOs
+  arm64: dts: qcom: correct interrupt controller on PM8916 and PMS405
+  ARM: dts: qcom: add missing gpio-ranges in PMIC GPIOs
 
-I was told:
+ .../bindings/pinctrl/qcom,pmic-gpio.yaml      | 53 +++++++++++++++++++
+ arch/arm/boot/dts/qcom-pmx55.dtsi             |  1 +
+ arch/arm/boot/dts/qcom-pmx65.dtsi             |  1 +
+ arch/arm64/boot/dts/qcom/pm6350.dtsi          |  1 +
+ arch/arm64/boot/dts/qcom/pm8009.dtsi          |  1 +
+ arch/arm64/boot/dts/qcom/pm8150.dtsi          |  1 +
+ arch/arm64/boot/dts/qcom/pm8150b.dtsi         |  1 +
+ arch/arm64/boot/dts/qcom/pm8150l.dtsi         |  1 +
+ arch/arm64/boot/dts/qcom/pm8350.dtsi          |  1 +
+ arch/arm64/boot/dts/qcom/pm8350b.dtsi         |  1 +
+ arch/arm64/boot/dts/qcom/pm8916.dtsi          |  7 ++-
+ arch/arm64/boot/dts/qcom/pmr735b.dtsi         |  1 +
+ arch/arm64/boot/dts/qcom/pms405.dtsi          | 15 ++----
+ 13 files changed, 69 insertions(+), 16 deletions(-)
 
-32k clock needed for cec and this clock is generated by the rtc which is =
-embedded in the rk8xx regulator.
-So you should make sure it is enabled when hdmi is powerd on, eg adding =
-it to the RK3568_PD_VO powerdomain should help
+-- 
+2.32.0
 
-I was trying to do this in dts https://pastebin.com/67wu9QrH but cec is =
-still non-functional
-
-Maybe You have some hints/pointers here?
-
-br
-
-btw: my dts gives me working usb2 port0/port1 and usb3 port0. but usb3 =
-port1 is non-working
-maybe you know what is missing?=20
- =20=
