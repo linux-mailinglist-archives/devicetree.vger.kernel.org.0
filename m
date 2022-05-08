@@ -2,77 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 294A751EC09
-	for <lists+devicetree@lfdr.de>; Sun,  8 May 2022 09:17:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 08BD351EC16
+	for <lists+devicetree@lfdr.de>; Sun,  8 May 2022 09:50:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229811AbiEHHUy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 8 May 2022 03:20:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44138 "EHLO
+        id S229720AbiEHHyN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 8 May 2022 03:54:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53778 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229599AbiEHHUx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 8 May 2022 03:20:53 -0400
-Received: from mail-pg1-x531.google.com (mail-pg1-x531.google.com [IPv6:2607:f8b0:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75DB1DE80
-        for <devicetree@vger.kernel.org>; Sun,  8 May 2022 00:17:03 -0700 (PDT)
-Received: by mail-pg1-x531.google.com with SMTP id g3so9557265pgg.3
-        for <devicetree@vger.kernel.org>; Sun, 08 May 2022 00:17:03 -0700 (PDT)
+        with ESMTP id S230163AbiEHHxt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 8 May 2022 03:53:49 -0400
+Received: from mail-yb1-xb34.google.com (mail-yb1-xb34.google.com [IPv6:2607:f8b0:4864:20::b34])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8452BC01
+        for <devicetree@vger.kernel.org>; Sun,  8 May 2022 00:49:48 -0700 (PDT)
+Received: by mail-yb1-xb34.google.com with SMTP id y76so19847196ybe.1
+        for <devicetree@vger.kernel.org>; Sun, 08 May 2022 00:49:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=Pmia3f83d9c4z0pslQdQjq3eRCIFxyb8z/IWO9Z38ao=;
-        b=t6kDm7iTCtb4FmyDMxma8umwQwzKL2JupjfLGk02JjYTGCWzc8I9DDOPnVU/JulmG3
-         KszspKzJB8w+ttIZYkI7L9z8UUJJLtx7CRWRGfS4VPRBlXRFRwct2yAOUziTqaForIGg
-         cQ2nzM8vWDrOU+oGjD+0OaCFvvIOTShiAvA3dEbYlt4A1OjormyjvG4wAs5wuCYWCo+v
-         GtVuJvYGKEok/g5gq8PoHIBzscVGuzN6nrWgmAw/Oy8ah9YMJAt0zOlTYX64UPACkMcq
-         6ej+hbT8CBfWY63RjIuDHc97Tm1zW/HQl8Zg9TEzo4m3QuLQ+oD/beHpyUnUbWMgCFBH
-         JeKA==
+        d=atishpatra.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=dFexpI1CcAvP4bPrXFGudL7mJMKDkHsmR67F6Gffao8=;
+        b=dIFqpJll2mKM1G1VvfjcBJezQWJT0RtTazwLhhjeShGNWEsXzIk5BKA8/JaRtUmz5Y
+         kIscbuCsfwKfLDKsPHpc+2NY1/Q1hc6RpYZP8qf17f1Ec7LYruI/Ha6a1lNVqYzhI5Jv
+         47SKUNCi2wMrY38YAlKqYvfVUYiZIHvvhNyD0=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=Pmia3f83d9c4z0pslQdQjq3eRCIFxyb8z/IWO9Z38ao=;
-        b=VI6wVKK6v6/kMiSmexyZqA/GnRFAnQhfhXrWvaHIXV+5gPGADKWwtscO1L443i/6xR
-         uqvG2eNFIxujG4IO+nwJgNTC4oh5El86aSDgix0onSkkBRoVjpbKWeOw62BDzcx2HZaJ
-         z1vzc9zBbSRonzSRzGYFRiK1l0YW5gkeAshqtD+5vM1e69u/psLGdklHfXM/rgK52DOl
-         nCdTWqmVEPIuwyJlhm0hVBX1skDYlIW+Z6B8DpdFLTBEixA5riwDz+BRuaxlbmXfxbI2
-         ZdBbWHMtHjOA4eS8ICaF/U/9N2pM0r2wYT4c5a41QFtvDg4/dKLeLi+Fcs/k6q1GqHcN
-         oYow==
-X-Gm-Message-State: AOAM531YTkydxJGt1e903B7SVT0NlqXbtGkYf26bt20jtQ5W6bsds9y5
-        f4mjXYRReg516poj3zq5eW+V
-X-Google-Smtp-Source: ABdhPJxu5CrFctjLtjT1lTJIK1jFwL+XEsVaS5Sz7j5qObZKbONmEaEZJKQEO5T8vskmUppYOSmqGw==
-X-Received: by 2002:a05:6a00:26cf:b0:4f6:fc52:7b6a with SMTP id p15-20020a056a0026cf00b004f6fc527b6amr10673139pfw.39.1651994222762;
-        Sun, 08 May 2022 00:17:02 -0700 (PDT)
-Received: from thinkpad ([27.111.75.235])
-        by smtp.gmail.com with ESMTPSA id iy11-20020a17090b16cb00b001dc37aef4ffsm6363055pjb.48.2022.05.08.00.16.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 08 May 2022 00:17:02 -0700 (PDT)
-Date:   Sun, 8 May 2022 12:46:56 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Viresh Kumar <viresh.kumar@linaro.org>
-Cc:     Hector Martin <marcan@marcan.st>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Sven Peter <sven@svenpeter.dev>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Marc Zyngier <maz@kernel.org>,
-        Mark Kettenis <mark.kettenis@xs4all.nl>,
-        linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 0/4] Apple SoC cpufreq driver
-Message-ID: <20220508071656.GA42059@thinkpad>
-References: <20220504075153.185208-1-marcan@marcan.st>
- <20220504102745.fv5bl2cphq7ft4lm@vireshk-i7>
- <20220504160019.GB3507@thinkpad>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=dFexpI1CcAvP4bPrXFGudL7mJMKDkHsmR67F6Gffao8=;
+        b=naDYYPtU8O7fIFyIYtegScsJnHzqfjbrkxG5WbGHP48HaJFKmyCO19HsMYsZq97Anc
+         9FimgBhYLPtdTC5B52EC9U0kX3+eVcK/r5mqQTzbSkGCUYIQaV6jxtZPvpRCFX9h77OA
+         TSu2R52lpAeIfwoqW4E3flXeskp8ftKepvi/eF/4zN7QD4Ys5JilWzojLEs5BOxlmH06
+         /AZiV+pq2rWScRqEiVhcFuEo27pUt2y83epNI24wYRzrdYbFxOnqGpbwBnpbp7po4Cjh
+         qGIG5g64p1FynkRUeE2VSzmY+QIem8kBB/sAlkhsSAqtS3wcUAsAvGK0AZDr2ovdx09s
+         Ql7A==
+X-Gm-Message-State: AOAM530k8fVfJqixRkMVxDAbmMv6ojxR5uzqLvT41XjmEn6rJmyrDmbU
+        fWodD1TF9d9RiK06D9X3xETQq0EYffO5DDnoTkvJWJMiY0Zk
+X-Google-Smtp-Source: ABdhPJwPQ84lYi8rBRjQhhobqwrmIAHSMcPKzgiF39Kg5lVWpuCOypczW7YBFUmZ7DuiNrXcrZKIeGyH6wxVLH/3jCc=
+X-Received: by 2002:a25:32d3:0:b0:648:5929:845f with SMTP id
+ y202-20020a2532d3000000b006485929845fmr8272185yby.53.1651996187869; Sun, 08
+ May 2022 00:49:47 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220504160019.GB3507@thinkpad>
+References: <20220426185245.281182-1-atishp@rivosinc.com> <20220426185245.281182-5-atishp@rivosinc.com>
+ <19F90AE1-68AD-4478-B5C3-8ABADD781198@jrtc27.com>
+In-Reply-To: <19F90AE1-68AD-4478-B5C3-8ABADD781198@jrtc27.com>
+From:   Atish Patra <atishp@atishpatra.org>
+Date:   Sun, 8 May 2022 00:49:37 -0700
+Message-ID: <CAOnJCUJQqe=T0x0ErVHX=Eod0Kd1m55VD=Q-GdPnbxav2VbN+g@mail.gmail.com>
+Subject: Re: [PATCH v3 4/4] RISC-V: KVM: Support sstc extension
+To:     Jessica Clarke <jrtc27@jrtc27.com>
+Cc:     Atish Patra <atishp@rivosinc.com>,
+        "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
+        Anup Patel <anup@brainfault.org>,
+        Damien Le Moal <damien.lemoal@wdc.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        Jisheng Zhang <jszhang@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        KVM General <kvm@vger.kernel.org>,
+        "open list:KERNEL VIRTUAL MACHINE FOR RISC-V (KVM/riscv)" 
+        <kvm-riscv@lists.infradead.org>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Rob Herring <robh+dt@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -83,70 +76,388 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 04, 2022 at 09:30:26PM +0530, Manivannan Sadhasivam wrote:
-> Hi Viresh,
-> 
-> On Wed, May 04, 2022 at 03:57:45PM +0530, Viresh Kumar wrote:
-> > On 04-05-22, 16:51, Hector Martin wrote:
-> > > Hi folks,
-> > > 
-> > > Here's a second take on the cpufreq driver for Apple SoCs. This is a
-> > > complete rewrite using a stand-alone cpufreq driver instead of using the
-> > > cpufreq-dt infrastructure.
-> > > 
-> > > Since v1 we ran some experiments on the memory controller performance
-> > > switching and it turns out it doesn't make a huge difference, so it
-> > > makes sense to punt that feature to the future (perhaps once a proper
-> > > memory controller driver exists for other reasons, e.g. for error
-> > > handling).
-> > > 
-> > > One advantage of having a standalone cpufreq driver is that we can
-> > > support fast switching. This also means any future interaction with
-> > > the memory controller will probably use some bespoke mechanism instead
-> > > of the genpd infrastructure, so we can keep the fast path without
-> > > allowing sleeps/etc.
-> > > 
-> > > The driver is based on scpi-cpufreq.c, with some bits (e.g. the
-> > > apple,freq-domain stuff) inspired by how cpufreq-qcom-hw does it.
-> > > I'm not sure if that particular property should be described
-> > > in a binding, since it goes in the cpu nodes (qcom doesn't have it
-> > > anywhere...).
-> > 
-> > Hi Mani,
-> > 
-> > I can see that Rob asked you to add this somewhere, maybe in arm/cpu
-> > stuff, but I don't think you ever sent a patch with that. What
-> > happened ?
-> > 
-> > https://lore.kernel.org/lkml/20201013171800.GA3716411@bogus/
-> > 
-> 
-> Oops. Looks like that one slipped through the cracks. I did add it to my todo
-> list for qcom-cpufreq but missed it completely.
-> 
-> I will look into it.
-> 
+On Tue, Apr 26, 2022 at 2:10 PM Jessica Clarke <jrtc27@jrtc27.com> wrote:
+>
+> On 26 Apr 2022, at 19:52, Atish Patra <atishp@rivosinc.com> wrote:
+> >
+> > Sstc extension allows the guest to program the vstimecmp CSR directly
+> > instead of making an SBI call to the hypervisor to program the next
+> > event. The timer interrupt is also directly injected to the guest by
+> > the hardware in this case. To maintain backward compatibility, the
+> > hypervisors also update the vstimecmp in an SBI set_time call if
+> > the hardware supports it. Thus, the older kernels in guest also
+> > take advantage of the sstc extension.
+>
+> This still violates the following part of the ratified SBI spec:
+>
+> > =E2=80=A2 All registers except a0 & a1 must be preserved across an SBI =
+call by the callee.
+>
+> The Set Timer legacy extension and non-legacy function state they clear
+> the pending timer bit but otherwise make no provision for other S-mode
+> state being clobbered. The stimecmp register is S-mode read/write
+> state. I don=E2=80=99t debate that this is a useful thing to allow, but a=
+s
+> things stand this is in direct violation of the letter of the ratified
+> SBI spec and so if you want to allow this you have to fix your spec
+> first and deal with the ratified spec compatibility issues that brings.
+>
 
-So I did send a patch for adding the qcom specific property [1], but Rob asked
-for a common one and that's where it got lost.
+I tried the approach you suggested by keeping separate context for
+SBI path & vstimecmp but this results in in unreliable behavior for
+guest (which may use SBI call or stimecmp) because hardware will always
+trigger virtual timer interrupt whenever henvcfg.STCE=3D=3D1 and
+"vstimecmp < (time+ htimedelta)".
 
-But in the last revision [2], you've asked for converting the qcom cpufreq
-driver to support the generic performance domains instead. For maintaining
-compatibility with the old dts files, we need to support the qcom specific
-property as well.
+Further, the hypervisor has no idea if the guest wants Sstc extension
+or not unless the hypervisor management tool (QEMU/KVMTOOL)
+explicitly disables the Sstc extension for a specific Guest/VM. In
+general, the hypervisor management tools can't assume anything
+about the features supported by Guest OS so explicitly disabling
+Sstc extension for Guest/VM is not a practical approach.
 
-I will send a series for that.
+Most hypervisors will always have Sstc extension enabled by default
+for Guest/VM by setting the henvcfg.STCE bit whenever hardware
+supports Sstc. Once this bit is set, hardware will actively compare
+vstimecmp value at every CPU clock cycle. vstimecmp value need to be
+saved/restored at vcpu_load/put path always. If the vstimecmp is not
+updated in the SBI path, it may contain stale value which will trigger
+spurious timer interrupts.
 
-Thanks,
-Mani
+Regards,
+Anup
 
-[1] https://patchwork.kernel.org/project/linux-pm/patch/20201020153944.18047-1-manivannan.sadhasivam@linaro.org/#23718065
-[2] https://patchwork.kernel.org/project/linux-pm/patch/20210701105730.322718-4-angelogioacchino.delregno@somainline.org/ 
-> Thanks,
-> Mani
-> 
-> > -- 
-> > viresh
+> Jess
+>
+> > Signed-off-by: Atish Patra <atishp@rivosinc.com>
+> > ---
+> > arch/riscv/include/asm/kvm_host.h       |   1 +
+> > arch/riscv/include/asm/kvm_vcpu_timer.h |   8 +-
+> > arch/riscv/include/uapi/asm/kvm.h       |   1 +
+> > arch/riscv/kvm/main.c                   |  12 ++-
+> > arch/riscv/kvm/vcpu.c                   |   5 +-
+> > arch/riscv/kvm/vcpu_timer.c             | 138 +++++++++++++++++++++++-
+> > 6 files changed, 159 insertions(+), 6 deletions(-)
+> >
+> > diff --git a/arch/riscv/include/asm/kvm_host.h b/arch/riscv/include/asm=
+/kvm_host.h
+> > index 78da839657e5..50a97c821f83 100644
+> > --- a/arch/riscv/include/asm/kvm_host.h
+> > +++ b/arch/riscv/include/asm/kvm_host.h
+> > @@ -135,6 +135,7 @@ struct kvm_vcpu_csr {
+> >       unsigned long hvip;
+> >       unsigned long vsatp;
+> >       unsigned long scounteren;
+> > +     u64 vstimecmp;
+> > };
+> >
+> > struct kvm_vcpu_arch {
+> > diff --git a/arch/riscv/include/asm/kvm_vcpu_timer.h b/arch/riscv/inclu=
+de/asm/kvm_vcpu_timer.h
+> > index 375281eb49e0..a24a265f3ccb 100644
+> > --- a/arch/riscv/include/asm/kvm_vcpu_timer.h
+> > +++ b/arch/riscv/include/asm/kvm_vcpu_timer.h
+> > @@ -28,6 +28,11 @@ struct kvm_vcpu_timer {
+> >       u64 next_cycles;
+> >       /* Underlying hrtimer instance */
+> >       struct hrtimer hrt;
+> > +
+> > +     /* Flag to check if sstc is enabled or not */
+> > +     bool sstc_enabled;
+> > +     /* A function pointer to switch between stimecmp or hrtimer at ru=
+ntime */
+> > +     int (*timer_next_event)(struct kvm_vcpu *vcpu, u64 ncycles);
+> > };
+> >
+> > int kvm_riscv_vcpu_timer_next_event(struct kvm_vcpu *vcpu, u64 ncycles)=
+;
+> > @@ -39,6 +44,7 @@ int kvm_riscv_vcpu_timer_init(struct kvm_vcpu *vcpu);
+> > int kvm_riscv_vcpu_timer_deinit(struct kvm_vcpu *vcpu);
+> > int kvm_riscv_vcpu_timer_reset(struct kvm_vcpu *vcpu);
+> > void kvm_riscv_vcpu_timer_restore(struct kvm_vcpu *vcpu);
+> > +void kvm_riscv_vcpu_timer_save(struct kvm_vcpu *vcpu);
+> > int kvm_riscv_guest_timer_init(struct kvm *kvm);
+> > -
+> > +bool kvm_riscv_vcpu_timer_pending(struct kvm_vcpu *vcpu);
+> > #endif
+> > diff --git a/arch/riscv/include/uapi/asm/kvm.h b/arch/riscv/include/uap=
+i/asm/kvm.h
+> > index 92bd469e2ba6..d2f02ba1947a 100644
+> > --- a/arch/riscv/include/uapi/asm/kvm.h
+> > +++ b/arch/riscv/include/uapi/asm/kvm.h
+> > @@ -96,6 +96,7 @@ enum KVM_RISCV_ISA_EXT_ID {
+> >       KVM_RISCV_ISA_EXT_H,
+> >       KVM_RISCV_ISA_EXT_I,
+> >       KVM_RISCV_ISA_EXT_M,
+> > +     KVM_RISCV_ISA_EXT_SSTC,
+> >       KVM_RISCV_ISA_EXT_MAX,
+> > };
+> >
+> > diff --git a/arch/riscv/kvm/main.c b/arch/riscv/kvm/main.c
+> > index 2e5ca43c8c49..83c4db7fc35f 100644
+> > --- a/arch/riscv/kvm/main.c
+> > +++ b/arch/riscv/kvm/main.c
+> > @@ -32,7 +32,7 @@ int kvm_arch_hardware_setup(void *opaque)
+> >
+> > int kvm_arch_hardware_enable(void)
+> > {
+> > -     unsigned long hideleg, hedeleg;
+> > +     unsigned long hideleg, hedeleg, henvcfg;
+> >
+> >       hedeleg =3D 0;
+> >       hedeleg |=3D (1UL << EXC_INST_MISALIGNED);
+> > @@ -51,6 +51,16 @@ int kvm_arch_hardware_enable(void)
+> >
+> >       csr_write(CSR_HCOUNTEREN, -1UL);
+> >
+> > +     if (riscv_isa_extension_available(NULL, SSTC)) {
+> > +#ifdef CONFIG_64BIT
+> > +             henvcfg =3D csr_read(CSR_HENVCFG);
+> > +             csr_write(CSR_HENVCFG, henvcfg | 1UL<<HENVCFG_STCE);
+> > +#else
+> > +             henvcfg =3D csr_read(CSR_HENVCFGH);
+> > +             csr_write(CSR_HENVCFGH, henvcfg | 1UL<<HENVCFGH_STCE);
+> > +#endif
+> > +     }
+> > +
+> >       csr_write(CSR_HVIP, 0);
+> >
+> >       return 0;
+> > diff --git a/arch/riscv/kvm/vcpu.c b/arch/riscv/kvm/vcpu.c
+> > index 93492eb292fd..da1559725b03 100644
+> > --- a/arch/riscv/kvm/vcpu.c
+> > +++ b/arch/riscv/kvm/vcpu.c
+> > @@ -143,7 +143,7 @@ void kvm_arch_vcpu_destroy(struct kvm_vcpu *vcpu)
+> >
+> > int kvm_cpu_has_pending_timer(struct kvm_vcpu *vcpu)
+> > {
+> > -     return kvm_riscv_vcpu_has_interrupts(vcpu, 1UL << IRQ_VS_TIMER);
+> > +     return kvm_riscv_vcpu_timer_pending(vcpu);
+> > }
+> >
+> > void kvm_arch_vcpu_blocking(struct kvm_vcpu *vcpu)
+> > @@ -374,6 +374,7 @@ static unsigned long kvm_isa_ext_arr[] =3D {
+> >       RISCV_ISA_EXT_h,
+> >       RISCV_ISA_EXT_i,
+> >       RISCV_ISA_EXT_m,
+> > +     RISCV_ISA_EXT_SSTC,
+> > };
+> >
+> > static int kvm_riscv_vcpu_get_reg_isa_ext(struct kvm_vcpu *vcpu,
+> > @@ -754,6 +755,8 @@ void kvm_arch_vcpu_put(struct kvm_vcpu *vcpu)
+> >                                    vcpu->arch.isa);
+> >       kvm_riscv_vcpu_host_fp_restore(&vcpu->arch.host_context);
+> >
+> > +     kvm_riscv_vcpu_timer_save(vcpu);
+> > +
+> >       csr->vsstatus =3D csr_read(CSR_VSSTATUS);
+> >       csr->vsie =3D csr_read(CSR_VSIE);
+> >       csr->vstvec =3D csr_read(CSR_VSTVEC);
+> > diff --git a/arch/riscv/kvm/vcpu_timer.c b/arch/riscv/kvm/vcpu_timer.c
+> > index 5c4c37ff2d48..d226a931de92 100644
+> > --- a/arch/riscv/kvm/vcpu_timer.c
+> > +++ b/arch/riscv/kvm/vcpu_timer.c
+> > @@ -69,7 +69,18 @@ static int kvm_riscv_vcpu_timer_cancel(struct kvm_vc=
+pu_timer *t)
+> >       return 0;
+> > }
+> >
+> > -int kvm_riscv_vcpu_timer_next_event(struct kvm_vcpu *vcpu, u64 ncycles=
+)
+> > +static int kvm_riscv_vcpu_update_vstimecmp(struct kvm_vcpu *vcpu, u64 =
+ncycles)
+> > +{
+> > +#if __riscv_xlen =3D=3D 32
+> > +             csr_write(CSR_VSTIMECMP, ncycles & 0xFFFFFFFF);
+> > +             csr_write(CSR_VSTIMECMPH, ncycles >> 32);
+> > +#else
+> > +             csr_write(CSR_VSTIMECMP, ncycles);
+> > +#endif
+> > +             return 0;
+> > +}
+> > +
+> > +static int kvm_riscv_vcpu_update_hrtimer(struct kvm_vcpu *vcpu, u64 nc=
+ycles)
+> > {
+> >       struct kvm_vcpu_timer *t =3D &vcpu->arch.timer;
+> >       struct kvm_guest_timer *gt =3D &vcpu->kvm->arch.timer;
+> > @@ -88,6 +99,68 @@ int kvm_riscv_vcpu_timer_next_event(struct kvm_vcpu =
+*vcpu, u64 ncycles)
+> >       return 0;
+> > }
+> >
+> > +int kvm_riscv_vcpu_timer_next_event(struct kvm_vcpu *vcpu, u64 ncycles=
+)
+> > +{
+> > +     struct kvm_vcpu_timer *t =3D &vcpu->arch.timer;
+> > +
+> > +     return t->timer_next_event(vcpu, ncycles);
+> > +}
+> > +
+> > +static enum hrtimer_restart kvm_riscv_vcpu_vstimer_expired(struct hrti=
+mer *h)
+> > +{
+> > +     u64 delta_ns;
+> > +     struct kvm_vcpu_timer *t =3D container_of(h, struct kvm_vcpu_time=
+r, hrt);
+> > +     struct kvm_vcpu *vcpu =3D container_of(t, struct kvm_vcpu, arch.t=
+imer);
+> > +     struct kvm_guest_timer *gt =3D &vcpu->kvm->arch.timer;
+> > +
+> > +     if (kvm_riscv_current_cycles(gt) < t->next_cycles) {
+> > +             delta_ns =3D kvm_riscv_delta_cycles2ns(t->next_cycles, gt=
+, t);
+> > +             hrtimer_forward_now(&t->hrt, ktime_set(0, delta_ns));
+> > +             return HRTIMER_RESTART;
+> > +     }
+> > +
+> > +     t->next_set =3D false;
+> > +     kvm_vcpu_kick(vcpu);
+> > +
+> > +     return HRTIMER_NORESTART;
+> > +}
+> > +
+> > +bool kvm_riscv_vcpu_timer_pending(struct kvm_vcpu *vcpu)
+> > +{
+> > +     struct kvm_vcpu_timer *t =3D &vcpu->arch.timer;
+> > +     struct kvm_guest_timer *gt =3D &vcpu->kvm->arch.timer;
+> > +     u64 vstimecmp_val =3D vcpu->arch.guest_csr.vstimecmp;
+> > +
+> > +     if (!kvm_riscv_delta_cycles2ns(vstimecmp_val, gt, t) ||
+> > +         kvm_riscv_vcpu_has_interrupts(vcpu, 1UL << IRQ_VS_TIMER))
+> > +             return true;
+> > +     else
+> > +             return false;
+> > +}
+> > +
+> > +static void kvm_riscv_vcpu_timer_blocking(struct kvm_vcpu *vcpu)
+> > +{
+> > +     struct kvm_vcpu_timer *t =3D &vcpu->arch.timer;
+> > +     struct kvm_guest_timer *gt =3D &vcpu->kvm->arch.timer;
+> > +     u64 delta_ns;
+> > +     u64 vstimecmp_val =3D vcpu->arch.guest_csr.vstimecmp;
+> > +
+> > +     if (!t->init_done)
+> > +             return;
+> > +
+> > +     delta_ns =3D kvm_riscv_delta_cycles2ns(vstimecmp_val, gt, t);
+> > +     if (delta_ns) {
+> > +             t->next_cycles =3D vstimecmp_val;
+> > +             hrtimer_start(&t->hrt, ktime_set(0, delta_ns), HRTIMER_MO=
+DE_REL);
+> > +             t->next_set =3D true;
+> > +     }
+> > +}
+> > +
+> > +static void kvm_riscv_vcpu_timer_unblocking(struct kvm_vcpu *vcpu)
+> > +{
+> > +     kvm_riscv_vcpu_timer_cancel(&vcpu->arch.timer);
+> > +}
+> > +
+> > int kvm_riscv_vcpu_get_reg_timer(struct kvm_vcpu *vcpu,
+> >                                const struct kvm_one_reg *reg)
+> > {
+> > @@ -180,10 +253,20 @@ int kvm_riscv_vcpu_timer_init(struct kvm_vcpu *vc=
+pu)
+> >               return -EINVAL;
+> >
+> >       hrtimer_init(&t->hrt, CLOCK_MONOTONIC, HRTIMER_MODE_REL);
+> > -     t->hrt.function =3D kvm_riscv_vcpu_hrtimer_expired;
+> >       t->init_done =3D true;
+> >       t->next_set =3D false;
+> >
+> > +     /* Enable sstc for every vcpu if available in hardware */
+> > +     if (riscv_isa_extension_available(NULL, SSTC)) {
+> > +             t->sstc_enabled =3D true;
+> > +             t->hrt.function =3D kvm_riscv_vcpu_vstimer_expired;
+> > +             t->timer_next_event =3D kvm_riscv_vcpu_update_vstimecmp;
+> > +     } else {
+> > +             t->sstc_enabled =3D false;
+> > +             t->hrt.function =3D kvm_riscv_vcpu_hrtimer_expired;
+> > +             t->timer_next_event =3D kvm_riscv_vcpu_update_hrtimer;
+> > +     }
+> > +
+> >       return 0;
+> > }
+> >
+> > @@ -202,7 +285,7 @@ int kvm_riscv_vcpu_timer_reset(struct kvm_vcpu *vcp=
+u)
+> >       return kvm_riscv_vcpu_timer_cancel(&vcpu->arch.timer);
+> > }
+> >
+> > -void kvm_riscv_vcpu_timer_restore(struct kvm_vcpu *vcpu)
+> > +static void kvm_riscv_vcpu_update_timedelta(struct kvm_vcpu *vcpu)
+> > {
+> >       struct kvm_guest_timer *gt =3D &vcpu->kvm->arch.timer;
+> >
+> > @@ -214,6 +297,55 @@ void kvm_riscv_vcpu_timer_restore(struct kvm_vcpu =
+*vcpu)
+> > #endif
+> > }
+> >
+> > +void kvm_riscv_vcpu_timer_restore(struct kvm_vcpu *vcpu)
+> > +{
+> > +     struct kvm_vcpu_csr *csr;
+> > +     struct kvm_vcpu_timer *t =3D &vcpu->arch.timer;
+> > +
+> > +     kvm_riscv_vcpu_update_timedelta(vcpu);
+> > +
+> > +     if (!t->sstc_enabled)
+> > +             return;
+> > +
+> > +     csr =3D &vcpu->arch.guest_csr;
+> > +#ifdef CONFIG_64BIT
+> > +     csr_write(CSR_VSTIMECMP, csr->vstimecmp);
+> > +#else
+> > +     csr_write(CSR_VSTIMECMP, (u32)csr->vstimecmp);
+> > +     csr_write(CSR_VSTIMECMPH, (u32)(csr->vstimecmp >> 32));
+> > +#endif
+> > +
+> > +     /* timer should be enabled for the remaining operations */
+> > +     if (unlikely(!t->init_done))
+> > +             return;
+> > +
+> > +     kvm_riscv_vcpu_timer_unblocking(vcpu);
+> > +}
+> > +
+> > +void kvm_riscv_vcpu_timer_save(struct kvm_vcpu *vcpu)
+> > +{
+> > +     struct kvm_vcpu_csr *csr;
+> > +     struct kvm_vcpu_timer *t =3D &vcpu->arch.timer;
+> > +
+> > +     if (!t->sstc_enabled)
+> > +             return;
+> > +
+> > +     csr =3D &vcpu->arch.guest_csr;
+> > +     t =3D &vcpu->arch.timer;
+> > +#ifdef CONFIG_64BIT
+> > +     csr->vstimecmp =3D csr_read(CSR_VSTIMECMP);
+> > +#else
+> > +     csr->vstimecmp =3D csr_read(CSR_VSTIMECMP);
+> > +     csr->vstimecmp |=3D (u64)csr_read(CSR_VSTIMECMPH) << 32;
+> > +#endif
+> > +     /* timer should be enabled for the remaining operations */
+> > +     if (unlikely(!t->init_done))
+> > +             return;
+> > +
+> > +     if (kvm_vcpu_is_blocking(vcpu))
+> > +             kvm_riscv_vcpu_timer_blocking(vcpu);
+> > +}
+> > +
+> > int kvm_riscv_guest_timer_init(struct kvm *kvm)
+> > {
+> >       struct kvm_guest_timer *gt =3D &kvm->arch.timer;
+> > --
+> > 2.25.1
+> >
+> >
+> > _______________________________________________
+> > linux-riscv mailing list
+> > linux-riscv@lists.infradead.org
+> > http://lists.infradead.org/mailman/listinfo/linux-riscv
+>
 
--- 
-மணிவண்ணன் சதாசிவம்
+
+--=20
+Regards,
+Atish
