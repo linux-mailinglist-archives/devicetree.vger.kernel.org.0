@@ -2,303 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0894F51F042
-	for <lists+devicetree@lfdr.de>; Sun,  8 May 2022 21:41:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1214151F0C1
+	for <lists+devicetree@lfdr.de>; Sun,  8 May 2022 21:44:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231318AbiEHTiU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 8 May 2022 15:38:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33318 "EHLO
+        id S230387AbiEHTsM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 8 May 2022 15:48:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36106 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229903AbiEHTiT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 8 May 2022 15:38:19 -0400
-Received: from mailserv1.kapsi.fi (mailserv1.kapsi.fi [IPv6:2001:67c:1be8::25:1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74A6FF1B
-        for <devicetree@vger.kernel.org>; Sun,  8 May 2022 12:34:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=ext.kapsi.fi; s=20161220; h=Subject:Content-Transfer-Encoding:Content-Type:
-        In-Reply-To:From:References:Cc:To:MIME-Version:Date:Message-ID:Sender:
-        Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-        :Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-        List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=nrrNkKSpk9NSw44i01Jn/Wf+I0Zbnh4xzR+DfOHfTmg=; b=kGK+oeB3UdoZkpLlEU9afEQyRk
-        O2S1ZrZwp/PSrpoQUJAJ0mFRzLLDwzw4iejJTvzGlEuFbvt0C71i5dob30PvIFEGHm2sZ2X9IS015
-        R0/EOuRnknCRJYDlWqQO/lQdKmi30jGCT2PM04kbVBfM0mIjws5inBnmX2zrF3Mv1ucCwIcoC7Pef
-        0PI7iFjvC26+32I5X7YBSSNYdMEW6wNiSgV0iBYsGSBgi/FbIbWLs9zOGfCCxVR0Zjgz/Q/GCJsiY
-        Ln8SG9Ogh+n3U6Bjk3s8Um1Rv3aMxsJywjYYIXmRNUbzyhny+LdH8O8x+n0AEqGWPQT197kNHyP48
-        LGLeJNtw==;
-Received: from 249-238-196-88.dyn.estpak.ee ([88.196.238.249]:51732 helo=[10.0.2.15])
-        by mailserv1.kapsi.fi with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
-        (Exim 4.89)
-        (envelope-from <maukka@ext.kapsi.fi>)
-        id 1nnmfc-00013X-GR; Sun, 08 May 2022 22:34:21 +0300
-Message-ID: <a0908aaa-154e-a53b-7538-a0b6557a30ae@ext.kapsi.fi>
-Date:   Sun, 8 May 2022 22:34:19 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Content-Language: en-US
-To:     =?UTF-8?Q?Pali_Roh=c3=a1r?= <pali@kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>
-Cc:     SoC Team <soc@kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Olof Johansson <olof@lixom.net>,
+        with ESMTP id S229522AbiEHTsK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 8 May 2022 15:48:10 -0400
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.21])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0B5DB7EF;
+        Sun,  8 May 2022 12:44:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+        s=badeba3b8450; t=1652039021;
+        bh=F4hpWVjFvpqMCwemAl2z39vRoOEsiSoGp9rSz1F1/+E=;
+        h=X-UI-Sender-Class:From:To:Cc:Subject:Date;
+        b=g+/mU7SoUFXR0pMX0f/tDjz/Ei6WblXyDaJJYkT8nFUbGfwcM+PUfSxUtblVDdIEF
+         EebIZzgocMZj6BY/JBpGvIZfp+md4RcSDBgYSTo3wRm1jkmpULaXx5O4YhvX+l2ZwV
+         0Gd16QIF2p75HHXhVBGwR0S7PU9hWPqKUESO1kLM=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from longitude ([37.201.215.103]) by mail.gmx.net (mrgmx105
+ [212.227.17.168]) with ESMTPSA (Nemesis) id 1MO9z7-1nPu8y2sll-00OWeA; Sun, 08
+ May 2022 21:43:41 +0200
+From:   =?UTF-8?q?Jonathan=20Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
+To:     linux-clk@vger.kernel.org, openbmc@lists.ozlabs.org
+Cc:     linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        =?UTF-8?q?Jonathan=20Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-References: <20220427162123.110458-1-maukka@ext.kapsi.fi>
- <CAK8P3a0p-ev50UfGiHCpMM5Jz5Mf8pdfQtNep0M7qi7PANSBVg@mail.gmail.com>
- <1509d16c-d244-19c7-610b-4c8ea8ca1624@ext.kapsi.fi>
- <CAK8P3a3g4CZjiVHHoBqJLrdN0chghaskODVvtWY1Fjj8TcB8KQ@mail.gmail.com>
- <b09847c4-90f8-509d-835b-85613712344d@ext.kapsi.fi>
- <CAK8P3a1miLk8YU+T5ozyf-X8qUB3sJq6cyTovBs9XWb9MrJxMw@mail.gmail.com>
- <20220508152237.3hw657gcba2fvheq@pali>
-From:   Mauri Sandberg <maukka@ext.kapsi.fi>
-In-Reply-To: <20220508152237.3hw657gcba2fvheq@pali>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 88.196.238.249
-X-SA-Exim-Mail-From: maukka@ext.kapsi.fi
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Avi Fishman <avifishman70@gmail.com>,
+        Tomer Maimon <tmaimon77@gmail.com>,
+        Tali Perry <tali.perry1@gmail.com>,
+        Patrick Venture <venture@google.com>,
+        Nancy Yuen <yuenn@google.com>,
+        Benjamin Fair <benjaminfair@google.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>
+Subject: [PATCH v3 0/7] Nuvoton WPCM450 clock and reset driver
+Date:   Sun,  8 May 2022 21:43:25 +0200
+Message-Id: <20220508194333.2170161-1-j.neuschaefer@gmx.net>
+X-Mailer: git-send-email 2.35.1
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:DUrKjj9a6jTNCSAXIMTL+32UvpFfbMWVMeduiJnOB22p9vBDes/
+ oMOOTY1V99JhK6XGiPLWMCVYKPi8DOI+K8Eig4A5Jl3sfLDTY+KqX6PDQrfHMprT9a8VWWZ
+ MlKLLrx5owTsaZZbVkX2jKVs0ZVyBxJkKLT76b2Y0kC+Cp6xyCh/0z3PtmS76Z1CxB2GOo8
+ tCrWaOTTquoW5AebXdUDg==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:gA7hVeznCgU=:iBXOY2Lo5osORmZNpmZcm/
+ nnJVb0OL1mfMk97XuMqv38zbcNrUQg8yN7O29x0JOAGWJZlie2E3QXwYeQv6GVj4XvZzuS4Wm
+ NL9xBjm/iBNPGi8VK83n69FsbK1KNmXPeSMyxIITmr+nhoCEdIvDI3bJUiow4+YxmgdI7omOH
+ DzWiUTY9OLYyvQ4dkVe0R9C3qMvKZqJbpK28eQeQDAuyNgChq0PTK5rRK4pW5iK0mhGaaXtlQ
+ T3OFqZwtI0kv19VULt3tZZWknrhSCDm+27M5cItZ4Ap2PF0o+Tu4RCmIcVY7tX05YFT36JVoi
+ wHOVGz1hvFeHBx2wuZo65LG8z1bIgpIAlN44g0I+ESFgs37xI/GweP5JCEuRndYzFxECah2Bo
+ NDI6nCl7YsP6nCfaV3GjXt3nNyHB4XanFecAF5KlEk5So3m9HB0gD4RZzG3tkWu7LHwsnPNqq
+ JfMpvRSyleu39IZYUyod9Gbv/UE94oKtW26C6zOXqNDCJljFJsu8lIOkdD0swkL3iq9Sc4hAO
+ DZ06HsFGEDgT6kJWni+m2HTLm2u66rYd8VAXry9hhlDZiYYCeOwUF09ePyslp/10FWauYG0GD
+ BE4uu41aaoqlwuPKhrC+e4NN6Hpp7yZTwDwVQ74EKil6JNGFtxLtDRR+laUXXNAlhH9ySEf8a
+ a02cSskMjKGlo/EiXwjMW6nB0MhPybv3FxHNf4DzwbpV6UkEyeetYN2/V2VVKODzG93n1MEyT
+ yVhA9Vyq50Jg9zHBPm/Ym4fMC5lsTSH4fUrxaEzU6FaKwtYKeB+gWogtAE0YR+7ldDV7HYxuc
+ ulucSr6hUwGvUbFncxK0Fv80DJBGs4qYgpQnm2Dm2BgKwfDbAh2C2gap6vMgfx2/HtF5hJudu
+ BFsIt0FO8RKTTmVfXVsUatkam4fX2V5H8H4y9yL1iAiIIbZZli7ZZCwJQ8uEGvMvo8g1EbOeq
+ o+TXZMaA17Rie6tfyYiMf+R8l0QhU/Z4cEioflxYACjUsuXYbfX0ewMIYFkqfP5P8wgMJezjK
+ RaJlFdVzfEDa2HT2AykTmiBp7Zbhn3RQKQFnHPB0RDUcEzOmbceGmQ5Ci+SqJ6pYM0FCQt5p9
+ xBDLNM1hQb48mY=
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
-X-Spam-Level: 
-X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
-Subject: Re: [RFC RFT PATCH v1 0/1] ARM: orion5x: convert D-Link DNS-323 to
- the Device Tree
-X-SA-Exim-Version: 4.2.1 (built Tue, 02 Aug 2016 21:08:31 +0000)
-X-SA-Exim-Scanned: Yes (on mailserv1.kapsi.fi)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This series adds support for the clock and reset controller in the Nuvoton
+WPCM450 SoC. This means that the clock rates for peripherals will be calcu=
+lated
+automatically based on the clock tree as it was preconfigured by the bootl=
+oader.
+The 24 MHz dummy clock, that is currently in the devicetree, is no longer =
+needed.
+Somewhat unfortunately, this also means that there is a breaking change on=
+ce
+the devicetree starts relying on the clock driver, but I find it acceptabl=
+e in
+this case, because WPCM450 is still at a somewhat early stage.
 
 
-On 08.05.22 18:22, Pali Rohár wrote:
-> On Sunday 08 May 2022 17:02:17 Arnd Bergmann wrote:
->> On Sun, May 8, 2022 at 4:06 PM Mauri Sandberg <maukka@ext.kapsi.fi> wrote:
->>> On 28.4.2022 23.56, Arnd Bergmann wrote:
->>>> On Thu, Apr 28, 2022 at 10:01 PM Mauri Sandberg <maukka@ext.kapsi.fi> wrote:
->>>>> On 27.4.2022 21.10, Arnd Bergmann wrote:
->>>>>> On Wed, Apr 27, 2022 at 6:21 PM Mauri Sandberg <maukka@ext.kapsi.fi> wrote:
->>>>>>> - sata_mv fails to initialise with -22 (-EINVAL)
->>>>>>
->>>>>> No idea, I'd try inserting a printk in every code path that can return -EINVAL
->>>>>> from there
->>>>>>
->>>
->>> With debugging the reason for -EINVAL remains a bit mystery.
->>>    - sata_mv calls ata_host_activate() [1]
->>>    - later on, in request_threaded_irq(), there are sanity checks [2]
->>>    - that fail with irq_settings_can_request() returning 0 [3]
->>>
->>> I cannot really put my finger on why the irq cannot be requested in DT
->>> approach.
->>
->> Are you sure the marvell,orion-intc driver is successfully probed
->> at this point? If not, the interrupt won't be there.
+Upstreaming plan (although other suggestions are welcome):
 
-I made the pci setup to be the very last thing in the boot and
-results are still the same. There are other devices that do get
-their interrupts from intc.
+Once reviewed,
 
->>
->> I see that the "sata_mv" driver can be used either as a platform
->> driver for the orion5x on-chip controller, or as a PCI driver for
->> an add-on chip connected to the external bus. It sounds like
->> your system has both. Do you know which one fails?
->>
->> The PCI driver cannot work unless the PCI host works correctly,
->> and that in turn requires a correct devicetree description for it.
->>
->>>>> Is there a way to describe the PCIe bus in the
->>>>> device tree? The initalisation of that bus is done for rev A1 only.
->>>>
->>>> I'm not too familiar with the platform, but my interpretation is that the
->>>> DT support here is incomplete:
->>>>
->>>> The DT based PCI probe using drivers/pci/controller/pci-mvebu.c
->>>> is not hooked up in orion5x.dtsi, and the traditional pci code does
->>>> not work with DT.
->>>
->>> Can the existing pci code still be used to init the PCI bus and describe
->>> the rest in the DT or is it a futile attempt?
-> 
-> Hello! Orion uses arch/arm/mach-orion5x/pci.c driver for both PCI and
-> PCIe buses. This is not device tree driver.
-> 
->>>> I see that orion5x has two separate blocks --  a PCIe host that is
->>>> similar to the kirkwood one, and a legacy PCI host that needs
->>>> a completely separate driver.
->>>>
->>>> Which of the two do you actually need here?
->>>>
->>>
->>> I really cannot say which one is it. How can I tell? The functions given
->>> in struct hw_pci find their way to drivers/pci/probe.c eventually and
->>> use pci_scan_root_bus_bridge(). Nothing seems to utilising mvebu or
->>> kirkwood explicitly at least.
->>>
->>> Here's the output from lspci if the ids reveal anything.
->>>
->>> # lspci -v -k
->>> 00:00.0 Class 0580: 11ab:5181
->>> 01:00.0 Class 0580: 11ab:5181
->>> 00:01.0 Class 0100: 11ab:7042 sata_mv
->>
->> The first two seem to be the host bridges, but unfortunately they
->>   seem both have the same device ID, despite being very different
->> devices.  The first one (00:00.0) should be the PCIe driver, the
->> second one (01.00.0) the legacy PCI one. In this case, the 11ab:7042
->> device is a PCIe device, and it's on the bus (00) of the first host
->> bridge. I think this should work with drivers/pci/controller/pci-mvebu.c
->> if you add the bits for probing.
-> 
-> Last time when I looked on Orion PCIe controller registers, I though
-> that they are same as in Kirkwood PCIe controller registers. And
-> Kirkwood is already supported by pci-mvebu.c driver.
-> 
+- The ARM/dts changes should go through Joel Stanley's bmc tree
+- The clocksource/timer changes should probably go via Daniel Lezcano and =
+TIP
+- The watchdog patch should go via the watchdog tree
+- The clock controller bindings and driver should go through the clk tree
+- It might make sense to delay the final ARM/dts patch ("ARM: dts: wpcm450=
+:
+  Switch clocks to clock controller") until next cycle to make sure it is
+  merged after the clock driver.
 
-I seemed that way to me too on the first glance. And it looks like there
-are no devices using the PCI driver. I knocked off that part altogether 
-and the boot log looks pretty much the same it was. Perhaps I can do
-with describing the PCIe bus only.
 
-> About PCI host bridge, I do not know.
-> 
-> Beware that PCI Class Id and all PCI registers which are different for
-> Type 0 and Type 1 are _broken_ on all PCIe Root Ports form all 32-bit
-> Marvell SoCs. Those registers on Marvell SoCs have different meaning as
-> what is defined in PCI and PCIe specs. So it means that lspci _may_
-> display bogus information about PCIe Root Port. pci-mvebu.c uses Root
-> Port emulator which fills correct data to make kernel and lspci happy.
-> 
-> If you are going to extend pci-mvebu.c to support also Orion PCIe
-> controller, I could try to help with it. But I do not have any Orion
-> hardware, so just basic help...
+v3:
+- Changed "refclk" string to "ref"
+- Fixed some dead code in the driver
+- Added clk_prepare_enable call to the watchdog restart handler
+- Added a few review tags
 
-I could make an attempt at this. Should I try to look at an existing
-kirkwood based device first, say kirkwood-6281.dtsi? I didn't see
-anything SoC-specific in pci-mvebu.c. All different compatibles seem
-to share the same functionality.
+v2:
+- https://lore.kernel.org/lkml/20220429172030.398011-1-j.neuschaefer@gmx.n=
+et/
+- various small improvements
 
-> 
-> Links to Orion documentations, including PCIe errata is available in
-> kernel documentation. So this could help to understand some details:
-> https://www.kernel.org/doc/html/latest/arm/marvell.html
-> 
-> Anyway, could you please provide 'lspci -nn -vv' and 'lspci -nn -t -v'
-> outputs from Orion?
+v1:
+- https://lore.kernel.org/lkml/20220422183012.444674-1-j.neuschaefer@gmx.n=
+et/
 
-# lspci -nn -vv
-0000:00:00.0 Memory controller [0580]: Marvell Technology Group Ltd. 
-88f5181 [Orion-1] ARM SoC [11ab:5181] (rev 03)
-	Subsystem: Marvell Technology Group Ltd. Device [11ab:11ab]
-	Control: I/O+ Mem+ BusMaster+ SpecCycle- MemWINV- VGASnoop- ParErr+ 
-Stepping- SERR+ FastB2B- DisINTx-
-	Status: Cap+ 66MHz- UDF- FastB2B- ParErr- DEVSEL=fast >TAbort- <TAbort- 
-<MAbort- >SERR- <PERR- INTx-
-	Latency: 0, Cache Line Size: 32 bytes
-	Interrupt: pin A routed to IRQ 0
-	Region 0: Memory at <ignored> (64-bit, prefetchable)
-	Capabilities: [40] Power Management version 2
-		Flags: PMEClk- DSI- D1- D2- AuxCurrent=0mA PME(D0-,D1-,D2-,D3hot-,D3cold-)
-		Status: D0 NoSoftRst- PME-Enable- DSel=0 DScale=0 PME-
-	Capabilities: [50] MSI: Enable- Count=1/1 Maskable- 64bit+
-		Address: 0000000000000000  Data: 0000
-	Capabilities: [60] Express (v1) Root Port (Slot-), MSI 00
-		DevCap:	MaxPayload 128 bytes, PhantFunc 0
-			ExtTag- RBE-
-		DevCtl:	CorrErr- NonFatalErr- FatalErr- UnsupReq-
-			RlxdOrd- ExtTag- PhantFunc- AuxPwr- NoSnoop-
-			MaxPayload 128 bytes, MaxReadReq 512 bytes
-		DevSta:	CorrErr- NonFatalErr- FatalErr- UnsupReq- AuxPwr- TransPend-
-		LnkCap:	Port #0, Speed 2.5GT/s, Width x1, ASPM L0s, Exit Latency L0s 
-<256ns
-			ClockPM- Surprise- LLActRep- BwNot- ASPMOptComp-
-		LnkCtl:	ASPM Disabled; RCB 128 bytes, Disabled- CommClk-
-			ExtSynch- ClockPM- AutWidDis- BWInt- AutBWInt-
-		LnkSta:	Speed 2.5GT/s (ok), Width x1 (ok)
-			TrErr- Train- SlotClk+ DLActive- BWMgmt- ABWMgmt-
-		RootCap: CRSVisible-
-		RootCtl: ErrCorrectable- ErrNon-Fatal- ErrFatal- PMEIntEna- CRSVisible-
-		RootSta: PME ReqID 0000, PMEStatus- PMEPending-
 
-0000:00:01.0 SCSI storage controller [0100]: Marvell Technology Group 
-Ltd. 88SX7042 PCI-e 4-port SATA-II [11ab:7042] (rev 02)
-	Subsystem: Marvell Technology Group Ltd. Device [11ab:11ab]
-	Control: I/O+ Mem+ BusMaster+ SpecCycle- MemWINV- VGASnoop- ParErr+ 
-Stepping- SERR+ FastB2B- DisINTx-
-	Status: Cap+ 66MHz- UDF- FastB2B- ParErr- DEVSEL=fast >TAbort- <TAbort- 
-<MAbort- >SERR- <PERR- INTx-
-	Latency: 0, Cache Line Size: 32 bytes
-	Interrupt: pin A routed to IRQ 12
-	Region 0: Memory at e0000000 (64-bit, non-prefetchable) [size=1M]
-	Region 2: I/O ports at 1000 [size=256]
-	Capabilities: [40] Power Management version 2
-		Flags: PMEClk- DSI- D1- D2- AuxCurrent=0mA PME(D0-,D1-,D2-,D3hot-,D3cold-)
-		Status: D0 NoSoftRst- PME-Enable- DSel=0 DScale=0 PME-
-	Capabilities: [50] MSI: Enable- Count=1/1 Maskable- 64bit+
-		Address: 0000000000000000  Data: 0000
-	Capabilities: [60] Express (v1) Legacy Endpoint, MSI 00
-		DevCap:	MaxPayload 256 bytes, PhantFunc 0, Latency L0s <256ns, L1 <1us
-			ExtTag- AttnBtn- AttnInd- PwrInd- RBE- FLReset-
-		DevCtl:	CorrErr- NonFatalErr- FatalErr- UnsupReq-
-			RlxdOrd- ExtTag- PhantFunc- AuxPwr- NoSnoop-
-			MaxPayload 128 bytes, MaxReadReq 512 bytes
-		DevSta:	CorrErr- NonFatalErr- FatalErr- UnsupReq- AuxPwr- TransPend-
-		LnkCap:	Port #0, Speed 2.5GT/s, Width x4, ASPM L0s, Exit Latency L0s 
-<256ns
-			ClockPM- Surprise- LLActRep- BwNot- ASPMOptComp-
-		LnkCtl:	ASPM Disabled; RCB 128 bytes, Disabled- CommClk-
-			ExtSynch- ClockPM- AutWidDis- BWInt- AutBWInt-
-		LnkSta:	Speed 2.5GT/s (ok), Width x1 (downgraded)
-			TrErr- Train- SlotClk+ DLActive- BWMgmt- ABWMgmt-
-	Kernel driver in use: sata_mv
+Jonathan Neusch=C3=A4fer (7):
+  dt-bindings: timer: nuvoton,npcm7xx-timer: Allow specifying all clocks
+  clocksource: timer-npcm7xx: Enable timer 1 clock before use
+  watchdog: npcm: Enable clock if provided
+  dt-bindings: clock: Add Nuvoton WPCM450 clock/reset controller
+  ARM: dts: wpcm450: Add clock controller node
+  clk: wpcm450: Add Nuvoton WPCM450 clock/reset controller driver
+  ARM: dts: wpcm450: Switch clocks to clock controller
 
-0001:01:00.0 Memory controller [0580]: Marvell Technology Group Ltd. 
-88f5181 [Orion-1] ARM SoC [11ab:5181] (rev 03)
-	Control: I/O+ Mem+ BusMaster+ SpecCycle- MemWINV- VGASnoop- ParErr+ 
-Stepping- SERR+ FastB2B+ DisINTx-
-	Status: Cap+ 66MHz+ UDF- FastB2B+ ParErr- DEVSEL=medium >TAbort- 
-<TAbort- <MAbort+ >SERR- <PERR- INTx-
-	Latency: 0, Cache Line Size: 32 bytes
-	Interrupt: pin A routed to IRQ 0
-	BIST result: 00
-	Region 0: Memory at <unassigned> (64-bit, prefetchable)
-	Region 2: Memory at <ignored> (64-bit, prefetchable)
-	Region 4: Memory at <ignored> (64-bit, non-prefetchable)
-	Expansion ROM at <ignored> [disabled]
-	Capabilities: [40] Power Management version 2
-		Flags: PMEClk+ DSI- D1+ D2+ AuxCurrent=0mA PME(D0+,D1+,D2+,D3hot+,D3cold-)
-		Status: D0 NoSoftRst- PME-Enable- DSel=0 DScale=0 PME+
-	Capabilities: [48] Vital Product Data
-		Not readable
-	Capabilities: [50] MSI: Enable- Count=1/1 Maskable- 64bit+
-		Address: 0000000000000000  Data: 0000
-	Capabilities: [60] PCI-X non-bridge device
-		Command: DPERE- ERO- RBC=512 OST=4
-		Status: Dev=ff:1f.0 64bit+ 133MHz+ SCD- USC- DC=bridge DMMRBC=512 
-DMOST=4 DMCRS=8 RSCEM- 266MHz- 533MHz-
-	Capabilities: [68] CompactPCI hot-swap <?>
+ .../bindings/clock/nuvoton,wpcm450-clk.yaml   |  66 ++++
+ .../bindings/timer/nuvoton,npcm7xx-timer.yaml |   8 +-
+ arch/arm/boot/dts/nuvoton-wpcm450.dtsi        |  29 +-
+ drivers/clk/Makefile                          |   1 +
+ drivers/clk/clk-wpcm450.c                     | 363 ++++++++++++++++++
+ drivers/clocksource/timer-npcm7xx.c           |  10 +
+ drivers/reset/Kconfig                         |   2 +-
+ drivers/watchdog/npcm_wdt.c                   |  18 +
+ .../dt-bindings/clock/nuvoton,wpcm450-clk.h   |  67 ++++
+ 9 files changed, 555 insertions(+), 9 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/nuvoton,wpcm45=
+0-clk.yaml
+ create mode 100644 drivers/clk/clk-wpcm450.c
+ create mode 100644 include/dt-bindings/clock/nuvoton,wpcm450-clk.h
 
-# lspci -nn -t -v
--+-[0001:01]---00.0  Marvell Technology Group Ltd. 88f5181 [Orion-1] ARM 
-SoC [11ab:5181]
-  \-[0000:00]-+-00.0  Marvell Technology Group Ltd. 88f5181 [Orion-1] 
-ARM SoC [11ab:5181]
-              \-01.0  Marvell Technology Group Ltd. 88SX7042 PCI-e 
-4-port SATA-II [11ab:7042]
+=2D-
+2.35.1
 
-> 
->> Thomas Petazzoni originally wrote the new driver, and I think he was
->> planning at one point to use it for orion5x. I don't know if there were
->> any major problems preventing this at the time, or if it just needs to
->> get hooked up in the dtsi file.
->>
->>           Arnd
-
--- Mauri
