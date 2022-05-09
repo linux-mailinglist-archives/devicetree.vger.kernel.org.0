@@ -2,132 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D48A51F7BA
-	for <lists+devicetree@lfdr.de>; Mon,  9 May 2022 11:13:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5466051F7B1
+	for <lists+devicetree@lfdr.de>; Mon,  9 May 2022 11:12:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238294AbiEIJN7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 May 2022 05:13:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34946 "EHLO
+        id S238248AbiEIJNi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 May 2022 05:13:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41000 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237362AbiEII60 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 May 2022 04:58:26 -0400
-Received: from mslow1.mail.gandi.net (mslow1.mail.gandi.net [217.70.178.240])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41FDF1FB2CD;
-        Mon,  9 May 2022 01:54:33 -0700 (PDT)
-Received: from relay2-d.mail.gandi.net (unknown [IPv6:2001:4b98:dc4:8::222])
-        by mslow1.mail.gandi.net (Postfix) with ESMTP id 49986CA961;
-        Mon,  9 May 2022 08:47:29 +0000 (UTC)
-Received: (Authenticated sender: gregory.clement@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 1050240007;
-        Mon,  9 May 2022 08:47:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1652086045;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=ivoK15iFFrCyokd4/a45dZRdTsG0bp4wFqdXqPeAM7k=;
-        b=L+gPH//MEtnEnPB2S1YMtTVv5CEds3o+9pQNMRNwd3Unh17uEomiSh3BUwXgPTpTUxf0Dt
-        49guFFmxTUU+2rqXdBlDOzrVC0g1rpe50N70z04SiHxB/ZREv5OZbGyXxBYeCxNtFEZ0UE
-        Cablq2dqsLtAQCwAPcXAsLbVKnVnWIDhMgTPnH0MksYm8/OntgDPUFD7s9UY6qrjPoh1Q6
-        nzGM/iIdld711XjfVFIw8O9G4gjHWvm6XFdq1suGGT/D7fFKebNnSm6t+RD452gO/IkHGG
-        U0kXhck429GabN3N4WKAtnSEIbvAxOJc3NikFYbSIILE/7aIVmHFOTYon75M2A==
-From:   Gregory CLEMENT <gregory.clement@bootlin.com>
-To:     Robert Marko <robert.marko@sartura.hr>, andrew@lunn.ch,
-        sebastian.hesselbarth@gmail.com, robh+dt@kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, pali@kernel.org, marek.behun@nic.cz
-Cc:     Robert Marko <robert.marko@sartura.hr>
-Subject: Re: [PATCH v2 1/2] arm64: dts: uDPU: update partition table
-In-Reply-To: <20220322105857.1107016-1-robert.marko@sartura.hr>
-References: <20220322105857.1107016-1-robert.marko@sartura.hr>
-Date:   Mon, 09 May 2022 10:47:18 +0200
-Message-ID: <87mtfrrt2h.fsf@BL-laptop>
+        with ESMTP id S237105AbiEIIxV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 May 2022 04:53:21 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 862AE195BE1;
+        Mon,  9 May 2022 01:49:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1652086170; x=1683622170;
+  h=from:to:cc:subject:date:message-id:mime-version;
+  bh=5uZDOrDyWhl4JrBtHMF+1wZx+yLzlXX1NZxBrijfkes=;
+  b=J16So74tH2BhDzM7X286u3P7rBRzFUJK39lgCPEKEeOCBQt6GMu4Tmoy
+   kM6HxTU/9MqqnTNG/3uL5h9hG9zF8fBzWjRP/P2plC9GZ1jzJeX5rQPVB
+   p+oltsteOWLZsRbO9FGj09h6aP21e2Zddt10GoI7iIJrGryevpjssav6B
+   cLagP1+cFpyXc2HQhc1iRt6Pw3gOT3Um1BchP0xcbiII6ZALtfUsrLSaj
+   MwsZKTO5p4NRmbNZW4bZJIf+clMUDJOB8Mx3eTAbJrIerSc6HtQHbdgny
+   A2bKqt3wI0oragKp4VldvfZ8oUK/1NC+Ocg3rzY0NzTaXR7POoElMdKAc
+   Q==;
+X-IronPort-AV: E=Sophos;i="5.91,210,1647327600"; 
+   d="scan'208";a="162812517"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 09 May 2022 01:49:30 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.17; Mon, 9 May 2022 01:49:27 -0700
+Received: from kavya-HP-Compaq-6000-Pro-SFF-PC.microchip.com (10.10.115.15) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
+ 15.1.2375.17 via Frontend Transport; Mon, 9 May 2022 01:49:22 -0700
+From:   Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>
+To:     <krzysztof.kozlowski+dt@linaro.org>, <nicolas.ferre@microchip.com>,
+        <alexandre.belloni@bootlin.com>, <claudiu.beznea@microchip.com>,
+        <peda@axentia.se>
+CC:     <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <lee.jones@linaro.org>,
+        <linux@armlinux.org.uk>, <Manohar.Puri@microchip.com>,
+        <Kavyasree.Kotagiri@microchip.com>, <UNGLinuxDriver@microchip.com>
+Subject: [PATCH v2 0/4] Add support for lan966 flexcom multiplexer
+Date:   Mon, 9 May 2022 14:19:16 +0530
+Message-ID: <20220509084920.14529-1-kavyasree.kotagiri@microchip.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
 Content-Type: text/plain
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Robert Marko <robert.marko@sartura.hr> writes:
+This patch series implements driver for lan966 flexcom multiplexer.
+Converts atmel-flexcom.txt bindings to yaml format and add new
+compatible string for lan966 flexcom.
 
-> Partition currently called "uboot" does not only contain U-boot, but
-> rather it contains TF-A, U-boot and U-boot environment.
->
-> So, to avoid accidentally deleting the U-boot environment which is
-> located at 0x180000 split the partition.
->
-> "uboot" is not the correct name as you can't boot these boards with U-boot
-> only, TF-A must be present as well, so rename the "uboot" partition to
-> "firmware".
->
-> While we are here, describe the NOR node as "spi-flash@0" instead of
-> "m25p80@0" which is the old SPI-NOR driver name.
->
-> This won't break booting for existing devices as the SoC-s BootROM is not
-> partition aware at all, it will simply try booting from 0x0 of the
-> boot device that is set by bootstrap pins.
->
-> This will however prevent accidental or automated flashing of just U-boot
-> to the partition.
->
-> Signed-off-by: Robert Marko <robert.marko@sartura.hr>
-> ---
-> Changes in v2:
-> * Update the commit description by adressing ABI breaking concerns
+This patch also adds dt bindings for lan966 flexcom multiplexer.
 
-Applied on mvebu/dt64
+v1 -> v2:
+- addressed comments for atmel,flexcom.yaml.
+- added child node and its parameters properly in flexcom bindings.
+- added ref to mux-consumer.yaml.
+- added ref to mux-controller.yaml in lan966-flx-mux.yaml
+- added MODULE() stuff in lan966 mux driver.
 
-Thanks,
+Kavyasree Kotagiri (4):
+  dt-bindings: mfd: atmel,flexcom: Convert to json-schema
+  dt-bindings: mfd: atmel,flexcom: Add lan966 compatible string and mux
+    properties
+  dt-bindings: mux: Add lan966 flexcom mux controller
+  mux: lan966: Add support for flexcom mux controller
 
-Gregory
-
-
-> ---
->  arch/arm64/boot/dts/marvell/armada-3720-uDPU.dts | 13 +++++++++----
->  1 file changed, 9 insertions(+), 4 deletions(-)
->
-> diff --git a/arch/arm64/boot/dts/marvell/armada-3720-uDPU.dts b/arch/arm64/boot/dts/marvell/armada-3720-uDPU.dts
-> index 95d46e8d081c..ac64949bb53e 100644
-> --- a/arch/arm64/boot/dts/marvell/armada-3720-uDPU.dts
-> +++ b/arch/arm64/boot/dts/marvell/armada-3720-uDPU.dts
-> @@ -99,7 +99,7 @@ &spi0 {
->  	pinctrl-names = "default";
->  	pinctrl-0 = <&spi_quad_pins>;
->  
-> -	m25p80@0 {
-> +	spi-flash@0 {
->  		compatible = "jedec,spi-nor";
->  		reg = <0>;
->  		spi-max-frequency = <54000000>;
-> @@ -108,10 +108,15 @@ partitions {
->  			compatible = "fixed-partitions";
->  			#address-cells = <1>;
->  			#size-cells = <1>;
-> -			/* only bootloader is located on the SPI */
-> +
->  			partition@0 {
-> -				label = "uboot";
-> -				reg = <0 0x400000>;
-> +				label = "firmware";
-> +				reg = <0x0 0x180000>;
-> +			};
-> +
-> +			partition@180000 {
-> +				label = "u-boot-env";
-> +				reg = <0x180000 0x10000>;
->  			};
->  		};
->  	};
-> -- 
-> 2.35.1
->
+ .../bindings/mfd/atmel,flexcom.yaml           | 142 ++++++++++++++++++
+ .../devicetree/bindings/mfd/atmel-flexcom.txt |  63 --------
+ .../mux/microchip,lan966-flx-mux.yaml         |  51 +++++++
+ arch/arm/mach-at91/Kconfig                    |   2 +
+ drivers/mfd/atmel-flexcom.c                   |  55 ++++++-
+ drivers/mux/Kconfig                           |  12 ++
+ drivers/mux/Makefile                          |   2 +
+ drivers/mux/lan966-flx.c                      | 121 +++++++++++++++
+ 8 files changed, 384 insertions(+), 64 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/mfd/atmel,flexcom.yaml
+ delete mode 100644 Documentation/devicetree/bindings/mfd/atmel-flexcom.txt
+ create mode 100644 Documentation/devicetree/bindings/mux/microchip,lan966-flx-mux.yaml
+ create mode 100644 drivers/mux/lan966-flx.c
 
 -- 
-Gregory Clement, Bootlin
-Embedded Linux and Kernel engineering
-http://bootlin.com
+2.17.1
+
