@@ -2,240 +2,375 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AE00552057F
-	for <lists+devicetree@lfdr.de>; Mon,  9 May 2022 21:52:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 414CB520578
+	for <lists+devicetree@lfdr.de>; Mon,  9 May 2022 21:52:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240676AbiEITxU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 May 2022 15:53:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51618 "EHLO
+        id S240658AbiEITzr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 May 2022 15:55:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33012 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240672AbiEITxS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 May 2022 15:53:18 -0400
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57AD03FDBD
-        for <devicetree@vger.kernel.org>; Mon,  9 May 2022 12:49:20 -0700 (PDT)
-Received: by mail-lf1-x12e.google.com with SMTP id j4so25650851lfh.8
-        for <devicetree@vger.kernel.org>; Mon, 09 May 2022 12:49:20 -0700 (PDT)
+        with ESMTP id S231781AbiEITzr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 May 2022 15:55:47 -0400
+Received: from mail-pg1-x52f.google.com (mail-pg1-x52f.google.com [IPv6:2607:f8b0:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6CA9024FD86
+        for <devicetree@vger.kernel.org>; Mon,  9 May 2022 12:51:51 -0700 (PDT)
+Received: by mail-pg1-x52f.google.com with SMTP id r192so8722271pgr.6
+        for <devicetree@vger.kernel.org>; Mon, 09 May 2022 12:51:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:subject:from:in-reply-to:date:cc
-         :content-transfer-encoding:message-id:references:to;
-        bh=k5+eavqJv4exrkKNYLwOmHOp14d0Q1oE4bipYRwlLow=;
-        b=Rak9MbjTdNbtc5DjqX/X5g6leDv8/HvSjfFURJvhKEjd1WtmRgzJlV9AIyxVkRNIZa
-         Sdc1GFTT9ht1m21wZ0DNAHY/wR8GY5E7R1JzbQUcKL/ozKH7uVt9BxvCvVMasfW8asdr
-         G1mjDIfky2Ll10LtGKmdT7iF7W5EiSJdPNtrQg721ZxhsKxj7w8lf3q1dvBUqTwrPXIA
-         BkD3vflaN139riMJrp6UFJ74XIBTjBq20xPeEJEh+otM0WzxrZTRSTh7sYTFGx0L/E1w
-         yqlmj+XSSB/dLI0Hr5P9luIM27hnOKErgyXVKriiQlSsAX9DsgfjtUk/ysVQ2hEu2foD
-         C1kw==
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=TEzLr1+c/j/6W0CIhbH4F0yiJD/4G9VspAFu27NboiI=;
+        b=NqNrrfxhRcIwJTfOTUqUEVaZqWIU8JLtP7sELCakkxRJIlJzz1KFeUUs/u29Ei0JKn
+         wLSKGm7zN8GJM9wkU1r9AxNlCwr055bnzcoKiPO32mrys+n6MKQwyzHRfzFR2t5Wo1/K
+         bgKdAcZRjsCWfOHsSBmwgGihlXz9/X1KRzjNc=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:subject:from:in-reply-to:date:cc
-         :content-transfer-encoding:message-id:references:to;
-        bh=k5+eavqJv4exrkKNYLwOmHOp14d0Q1oE4bipYRwlLow=;
-        b=0t3aOMmDdwYBvmbvOc90UwGrdy712kHqEV9fJEnraoPeDXpLwjEJ9xaeCRRRyBA26B
-         10BEv4zsqEnnkGHceE7RQ3JDfJ4Kxkzs9L5SrMZoJskmytvxRKe+CioQ7H+T8Dto2w2W
-         csFgx5EHE4Dfk2n8KNp0kZBmUDhQcprclW9GVSyTmAgukMsMdeO4jrKZhLZ7iWCiJlr0
-         uHZxjUMPCxgTbs0b96dx+LE9sCGGwdmjX9paeiZezvHsnEWIRFBf54/Bsjx4cv6bjGnz
-         d7mfRjANGrMUh9btwuW3o6DC1MA26hcrkynWQjRlotLdBXetCmTDsQkTi9jxSw5gthS1
-         IjWg==
-X-Gm-Message-State: AOAM533KtD0FDnvnJdO/zLU1txRrw3ONGcUzc0gWe2LaTxATkqFkuIRn
-        gSXLlzlm7UnoISDs82w0EkA=
-X-Google-Smtp-Source: ABdhPJxftZHd/ebk/ERPxawYj51fcaIMUCfEX9TLUnnV8KowQvlvwmIbYHmfMCtsarE56f0njUmUaQ==
-X-Received: by 2002:a19:ca50:0:b0:471:f556:92b with SMTP id h16-20020a19ca50000000b00471f556092bmr13630335lfj.587.1652125758517;
-        Mon, 09 May 2022 12:49:18 -0700 (PDT)
-Received: from smtpclient.apple (31-178-191-245.dynamic.chello.pl. [31.178.191.245])
-        by smtp.gmail.com with ESMTPSA id j15-20020a2ea90f000000b0024f3d1daea0sm1902744ljq.40.2022.05.09.12.49.17
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 09 May 2022 12:49:18 -0700 (PDT)
-Content-Type: text/plain;
-        charset=us-ascii
-Mime-Version: 1.0 (Mac OS X Mail 14.0 \(3654.120.0.1.13\))
-Subject: Re: [PATCH v11 20/24] arm64: dts: rockchip: enable vop2 and hdmi tx
- on rock-3a
-From:   Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
-In-Reply-To: <CAMdYzYrz7DRj7F9hGaAPaTSiZkQ4eMNujAp8uPuE9geL6kAz4g@mail.gmail.com>
-Date:   Mon, 9 May 2022 21:49:16 +0200
-Cc:     Sascha Hauer <s.hauer@pengutronix.de>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        dri-devel@lists.freedesktop.org,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Sandy Huang <hjc@rock-chips.com>,
-        =?utf-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
-        kernel test robot <lkp@intel.com>
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <812AC0DB-A6D0-4DA3-BCDC-7743E8F61821@gmail.com>
-References: <20220422072841.2206452-1-s.hauer@pengutronix.de>
- <20220422072841.2206452-21-s.hauer@pengutronix.de>
- <A86359EC-5291-41BD-966E-EB7890644731@gmail.com>
- <CAMdYzYoFG3wCQaWXQNJd7mE20OMCj=ZeuewwZfaCJyoCBT-kQQ@mail.gmail.com>
- <0E6FE020-C95E-47CF-A9D6-AC3F2B2D334F@gmail.com>
- <CAMdYzYobfJ7WGN+UQ7t5e1Zy9knjfHLse8KzrGrHPfeMkkG0gw@mail.gmail.com>
- <9F2D8CFF-1EAE-4586-9EE9-82A9D67840BB@gmail.com>
- <CAMdYzYrz7DRj7F9hGaAPaTSiZkQ4eMNujAp8uPuE9geL6kAz4g@mail.gmail.com>
-To:     Peter Geis <pgwipeout@gmail.com>
-X-Mailer: Apple Mail (2.3654.120.0.1.13)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=TEzLr1+c/j/6W0CIhbH4F0yiJD/4G9VspAFu27NboiI=;
+        b=Iwp2WydgaQy4HpohbUj9AZiJ4TIdZoRaGySua2cSf+mACjhN36rAWHwM8uVVBCMDCX
+         yYCCjsoDnhYJbD7b8KT8F25ZJo0RzXAAT6lWvfFH82+GKuQTOx/T8nEjLPxBBPyk5lXO
+         1k73Dt2qf+TGuI0OJF7mtkM/iaf+Yz1PHCKQiGbAALuhCBwZmiV1NTWFl3ijZggqsXQS
+         LY1aBN2SSGpQVqSJxqKk0E+dGS8d07oIZqhQnNW0lsokHv+gjEJ6RN8xa1ndp+vrfq3J
+         blg6/qtm11U/EFbrFC1pmKizr/xeyYbQPRAWml77TGNEfDmRjy6++kaKFD82kudenguO
+         qYzA==
+X-Gm-Message-State: AOAM530crpM1yHZ+YSOySkrExCYiZDmZpTs/M7P+p3XcjKv3fdfkTizF
+        Ixu2obfwg335jVdbeLztsuq7ng==
+X-Google-Smtp-Source: ABdhPJx8xbydSVsypcbd8+bhp9vMEUBMzdQM7wMGwYSzWxV3LmHHTDsNu9U/w4/H89YdLLdjQYwQKA==
+X-Received: by 2002:a05:6a00:1707:b0:510:36b2:1d1f with SMTP id h7-20020a056a00170700b0051036b21d1fmr17548715pfc.32.1652125910937;
+        Mon, 09 May 2022 12:51:50 -0700 (PDT)
+Received: from localhost ([2620:15c:11a:202:753:614a:caf8:e14d])
+        by smtp.gmail.com with UTF8SMTPSA id x14-20020a17090abc8e00b001d6a79768b6sm74631pjr.49.2022.05.09.12.51.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 09 May 2022 12:51:50 -0700 (PDT)
+Date:   Mon, 9 May 2022 12:51:49 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Sibi Sankar <quic_sibis@quicinc.com>
+Cc:     bjorn.andersson@linaro.org, robh+dt@kernel.org, ohad@wizery.com,
+        agross@kernel.org, mathieu.poirier@linaro.org,
+        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        evgreen@chromium.org, dianders@chromium.org, swboyd@chromium.org,
+        krzysztof.kozlowski@canonical.com
+Subject: Re: [PATCH v2 1/2] dt-bindings: remoteproc: qcom: Add SC7280 MSS
+ bindings
+Message-ID: <Ynlw1Z3NqypQde+X@google.com>
+References: <1652082798-5855-1-git-send-email-quic_sibis@quicinc.com>
+ <1652082798-5855-2-git-send-email-quic_sibis@quicinc.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <1652082798-5855-2-git-send-email-quic_sibis@quicinc.com>
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
->=20
-> If you want to confirm the hardware is configured correctly you can
-> remove the cec pin from the hdmi node and set up a cec-gpio node.
-> =
-https://elixir.bootlin.com/linux/v5.18-rc5/source/Documentation/devicetree=
-/bindings/media/cec-gpio.txt
->=20
-> For some reason the board developers decided to make this selectable,
-> check the location of R90652 and R90653.
->=20
+On Mon, May 09, 2022 at 01:23:17PM +0530, Sibi Sankar wrote:
+> Add MSS PIL loading bindings for SC7280 SoCs.
+> 
+> Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
+> ---
+>  .../bindings/remoteproc/qcom,sc7280-mss-pil.yaml   | 261 +++++++++++++++++++++
+>  1 file changed, 261 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/remoteproc/qcom,sc7280-mss-pil.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,sc7280-mss-pil.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,sc7280-mss-pil.yaml
+> new file mode 100644
+> index 000000000000..7e7dee6208b2
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/remoteproc/qcom,sc7280-mss-pil.yaml
+> @@ -0,0 +1,261 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/remoteproc/qcom,sc7280-mss-pil.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm SC7280 MSS Peripheral Image Loader
+> +
+> +maintainers:
+> +  - Sibi Sankar <quic_sibis@quicinc.com>
+> +
+> +description:
+> +  This document defines the binding for a component that loads and boots firmware
+> +  on the Qualcomm Technology Inc. SC7280 Modem Hexagon Core.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - qcom,sc7280-mss-pil
+> +
+> +  reg:
+> +    items:
+> +      - description: MSS QDSP6 registers
+> +      - description: RMB registers
+> +
+> +  reg-names:
+> +    items:
+> +      - const: qdsp6
+> +      - const: rmb
+> +
+> +  iommus:
+> +    items:
+> +      - description: MSA Stream 1
+> +      - description: MSA Stream 2
+> +
+> +  interconnects:
+> +    items:
+> +      - description: Path leading to system memory
+> +
+> +  interrupts:
+> +    items:
+> +      - description: Watchdog interrupt
+> +      - description: Fatal interrupt
+> +      - description: Ready interrupt
+> +      - description: Handover interrupt
+> +      - description: Stop acknowledge interrupt
+> +      - description: Shutdown acknowledge interrupt
+> +
+> +  interrupt-names:
+> +    items:
+> +      - const: wdog
+> +      - const: fatal
+> +      - const: ready
+> +      - const: handover
+> +      - const: stop-ack
+> +      - const: shutdown-ack
+> +
+> +  clocks:
+> +    items:
+> +      - description: GCC MSS IFACE clock
+> +      - description: GCC MSS SNOC_AXI clock
+> +      - description: GCC MSS OFFLINE clock
+> +      - description: RPMH PKA clock
+> +      - description: RPMH XO clock
+> +
+> +  clock-names:
+> +    items:
+> +      - const: iface
+> +      - const: snoc_axi
+> +      - const: offline
+> +      - const: pka
+> +      - const: xo
+> +
+> +  power-domains:
+> +    items:
+> +      - description: CX power domain
+> +      - description: MSS power domain
+> +
+> +  power-domain-names:
+> +    items:
+> +      - const: cx
+> +      - const: mss
+> +
+> +  resets:
+> +    items:
+> +      - description: AOSS restart
+> +      - description: PDC SYNC
+> +
+> +  reset-names:
+> +    items:
+> +      - const: mss_restart
+> +      - const: pdc_sync
+> +
+> +  memory-region:
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> +    description: Phandle reference to the reserved-memory for the MBA region followed
+> +                 by the modem region.
+> +
+> +  firmware-name:
+> +    $ref: /schemas/types.yaml#/definitions/string
+> +    description:
+> +      The name of the firmware which should be loaded for this remote
+> +      processor.
+> +
+> +  qcom,halt-regs:
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> +    description:
+> +      Phandle reference to a syscon representing TCSR followed by the
+> +      four offsets within syscon for q6, modem, nc and vq6 halt registers.
+> +
+> +  qcom,ext-regs:
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> +    description:
+> +      Two phandle references to syscons representing TCSR_REG and TCSR register
+> +      space followed by the two offsets within the syscon to force_clk_en/rscc_disable
+> +      and axim1_clk_off/crypto_clk_off registers respectively.
+> +
+> +  qcom,qaccept-regs:
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> +    description:
+> +      Phandle reference to a syscon representing TCSR followed by the
+> +      three offsets within syscon for mdm, cx and axi qaccept registers.
+> +
+> +  qcom,qmp:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description: Reference to the AOSS side-channel message RAM.
+> +
+> +  qcom,smem-states:
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> +    description: States used by the AP to signal the Hexagon core
+> +    items:
+> +      - description: Stop the modem
+> +
+> +  qcom,smem-state-names:
+> +    $ref: /schemas/types.yaml#/definitions/string
+> +    description: The names of the state bits used for SMP2P output
+> +    const: stop
+> +
+> +  glink-edge:
+> +    type: object
+> +    description: |
+> +      Qualcomm G-Link subnode which represents communication edge, channels
+> +      and devices related to the DSP.
+> +
+> +    properties:
+> +      interrupts:
+> +        items:
+> +          - description: IRQ from MSS to GLINK
+> +
+> +      mboxes:
+> +        items:
+> +          - description: Mailbox for communication between APPS and MSS
+> +
+> +      label:
+> +        description: The names of the state bits used for SMP2P output
+> +        items:
+> +          - const: modem
+> +
+> +      qcom,remote-pid:
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        description: ID of the shared memory used by GLINK for communication with MSS
+> +
+> +    required:
+> +      - interrupts
+> +      - mboxes
+> +      - label
+> +      - qcom,remote-pid
+> +
+> +    additionalProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - reg-names
+> +  - iommus
+> +  - interconnects
+> +  - interrupts
+> +  - interrupt-names
+> +  - clocks
+> +  - clock-names
+> +  - power-domains
+> +  - power-domain-names
+> +  - resets
+> +  - reset-names
+> +  - qcom,halt-regs
+> +  - qcom,ext-regs
+> +  - qcom,qaccept-regs
+> +  - memory-region
+> +  - qcom,qmp
+> +  - qcom,smem-states
+> +  - qcom,smem-state-names
+> +  - glink-edge
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/qcom,gcc-sc7280.h>
+> +    #include <dt-bindings/clock/qcom,rpmh.h>
+> +    #include <dt-bindings/interconnect/qcom,sc7280.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/mailbox/qcom-ipcc.h>
+> +    #include <dt-bindings/power/qcom-rpmpd.h>
+> +    #include <dt-bindings/reset/qcom,sdm845-aoss.h>
+> +    #include <dt-bindings/reset/qcom,sdm845-pdc.h>
+> +
+> +    remoteproc_mpss: remoteproc@4080000 {
+> +        compatible = "qcom,sc7280-mss-pil";
+> +        reg = <0x04080000 0x10000>, <0x04180000 0x48>;
+> +        reg-names = "qdsp6", "rmb";
+> +
+> +        iommus = <&apps_smmu 0x124 0x0>, <&apps_smmu 0x488 0x7>;
+> +
+> +        interconnects = <&mc_virt MASTER_LLCC 0 &mc_virt SLAVE_EBI1 0>;
+> +
+> +        interrupts-extended = <&intc GIC_SPI 264 IRQ_TYPE_EDGE_RISING>,
+> +                              <&modem_smp2p_in 0 IRQ_TYPE_EDGE_RISING>,
+> +                              <&modem_smp2p_in 1 IRQ_TYPE_EDGE_RISING>,
+> +                              <&modem_smp2p_in 2 IRQ_TYPE_EDGE_RISING>,
+> +                              <&modem_smp2p_in 3 IRQ_TYPE_EDGE_RISING>,
+> +                              <&modem_smp2p_in 7 IRQ_TYPE_EDGE_RISING>;
+> +
+> +        interrupt-names = "wdog", "fatal", "ready", "handover",
+> +                          "stop-ack", "shutdown-ack";
+> +
+> +        clocks = <&gcc GCC_MSS_CFG_AHB_CLK>,
+> +                 <&gcc GCC_MSS_OFFLINE_AXI_CLK>,
+> +                 <&gcc GCC_MSS_SNOC_AXI_CLK>,
+> +                 <&rpmhcc RPMH_PKA_CLK>,
+> +                 <&rpmhcc RPMH_CXO_CLK>;
+> +        clock-names = "iface", "offline", "snoc_axi", "pka", "xo";
 
-Peter,
+Shouldn't these be in the same order as specified in the binding?
 
-my board is v1.31 and is using HDMITX_CEC_M1 i think.
-I verified this by temp. changing to HDMITX_CEC_M0
+i.e.:
 
-For M1:
-2022-05-09 21:12:37.130188 I  CECAdapter: Using physical address 1.0.0.0 =
-from EDID
-2022-05-09 21:12:37.173267 I  CECAdapter: Found 1 CEC devices(s).
-2022-05-09 21:12:37.173299 I  CECAdapter: Device 1: path '/dev/cec0' com =
-port 'Linux' SELECTED
-2022-05-09 21:12:37.173307 I  CECAdapter: Trying to open device =
-/dev/cec0 (Linux).
-2022-05-09 21:12:37.180095 I  CECAdapter: connection opened
-2022-05-09 21:12:37.545229 I  CECAdapter: setting HDMI port to 1 on =
-device TV (0)
-2022-05-09 21:12:37.904145 I  CECAdapter: >> source deactivated: =
-Playback 1 (4)
-2022-05-09 21:12:37.904311 I  CECAdapter: Source 4 Deactivated
-2022-05-09 21:12:38.284452 I  CECAdapter: >> source activated: Playback =
-1 (4)
-2022-05-09 21:12:38.284492 I  CECAdapter: Source 4 Activated
-2022-05-09 21:12:38.284694 I  CECAdapter: CEC client registered: libCEC =
-version =3D 6.0.2, client version =3D 6.0.2, firmware version =3D 0, =
-logical address(es) =3D Playback 1 (4) , physical address: 1.0.0.0, git =
-revision: v12.0.0-v32.0-16-g611cac15cc+59-07dc900~dirty, compiled on =
-2022-04-23 05:50:57 by piotro@/bin/sh: hostname: command not found on =
-Linux 5.16.14-arch1-4 (x86_64), features: P8_USB, DRM, P8_detect, randr, =
-Linux
-2022-05-09 21:12:38.519394 I  CECAdapter: Opened CEC device.
-2022-05-09 21:12:38.636950 I  CECAdapter: << powering on 'TV' (0)
-2022-05-09 21:12:38.754023 E  CECAdapter: Failed to turn TV on.
-2022-05-09 21:12:38.754313 I  CECAdapter: >> source activated: Playback =
-1 (4)
-2022-05-09 21:12:38.754343 I  CECAdapter: Source 4 Activated
-2022-05-09 21:12:38.872079 I  CECAdapter: << Playback 1 (4) -> broadcast =
-(F): active source (1000)
-2022-05-09 21:12:38.974698 I  CECAdapter: Asked TV to switch to this =
-input.
-2022-05-09 21:13:07.292069 W  CECAdapter: CEC device can't poll TV: TV =
-does not respond to CEC polls
-2022-05-09 21:13:37.296372 W  CECAdapter: CEC device can't poll TV: TV =
-does not respond to CEC polls=20
+> +  clock-names:
+> +    items:
+> +      - const: iface
+> +      - const: snoc_axi
+> +      - const: offline
+> +      - const: pka
+> +      - const: xo
 
-for M0:
-2022-05-09 21:37:47.632175 I  CECAdapter: Using physical address 1.0.0.0 =
-from EDID
-2022-05-09 21:37:47.680618 I  CECAdapter: Found 1 CEC devices(s).
-2022-05-09 21:37:47.680644 I  CECAdapter: Device 1: path '/dev/cec0' com =
-port 'Linux' SELECTED
-2022-05-09 21:37:47.680654 I  CECAdapter: Trying to open device =
-/dev/cec0 (Linux).
-2022-05-09 21:37:47.694974 I  CECAdapter: connection opened
-2022-05-09 21:37:56.341846 I  CECAdapter: setting HDMI port to 1 on =
-device TV (0)
-2022-05-09 21:38:17.675457 I  CECAdapter: >> source activated: Playback =
-1 (4)
-2022-05-09 21:38:17.675561 I  CECAdapter: Source 4 Activated
-2022-05-09 21:38:17.675657 I  CECAdapter: CEC client registered: libCEC =
-version =3D 6.0.2, client version =3D 6.0.2, firmware version =3D 0, =
-logical address(es) =3D Playback 1 (4) , physical address: 1.0.0.0, git =
-revision: v12.0.0-v32.0-16-g611cac15cc+59-07dc900~dirty, compiled on =
-2022-04-23 05:50:57 by piotro@/bin/sh: hostname: command not found on =
-Linux 5.16.14-arch1-4 (x86_64), features: P8_USB, DRM, P8_detect, randr, =
-Linux
-2022-05-09 21:38:30.475336 I  CECAdapter: Opened CEC device.
-2022-05-09 21:38:34.741846 I  CECAdapter: << Playback 1 (4) -> broadcast =
-(F): active source (1000)
-2022-05-09 21:38:39.008432 I  CECAdapter: << powering on 'TV' (0)
-2022-05-09 21:38:39.008506 E  CECAdapter: =
-CLinuxCECAdapterCommunication::Write - ioctl CEC_TRANSMIT failed - =
-tx_status=3D00 errno=3D22
-2022-05-09 21:38:39.008526 E  CECAdapter: =
-CLinuxCECAdapterCommunication::Write - ioctl CEC_TRANSMIT failed - =
-tx_status=3D00 errno=3D22
-2022-05-09 21:38:43.275094 E  CECAdapter: Failed to turn TV on.
-2022-05-09 21:38:43.275201 I  CECAdapter: >> source activated: Playback =
-1 (4)
-2022-05-09 21:38:43.275224 I  CECAdapter: Source 4 Activated
-2022-05-09 21:38:43.275375 W  CECAdapter: CEC device can't poll TV: TV =
-does not respond to CEC polls
-2022-05-09 21:38:47.541811 I  CECAdapter: << Playback 1 (4) -> broadcast =
-(F): active source (1000)
-2022-05-09 21:38:47.541898 E  CECAdapter: =
-CLinuxCECAdapterCommunication::Write - ioctl CEC_TRANSMIT failed - =
-tx_status=3D00 errno=3D22
-2022-05-09 21:38:47.541909 E  CECAdapter: =
-CLinuxCECAdapterCommunication::Write - ioctl CEC_TRANSMIT failed - =
-tx_status=3D00 errno=3D22
-2022-05-09 21:38:47.541924 E  CECAdapter: Failed to switch to this =
-input.
-2022-05-09 21:38:51.808626 I  CECAdapter: << Playback 1 (4) -> broadcast =
-(F): active source (1000)
-2022-05-09 21:38:51.808722 E  CECAdapter: =
-CLinuxCECAdapterCommunication::Write - ioctl CEC_TRANSMIT failed - =
-tx_status=3D00 errno=3D22
-2022-05-09 21:38:51.808735 E  CECAdapter: =
-CLinuxCECAdapterCommunication::Write - ioctl CEC_TRANSMIT failed - =
-tx_status=3D00 errno=3D22
-2022-05-09 21:38:57.142091 I  CECAdapter: << Playback 1 (4) -> broadcast =
-(F): active source (1000)
-2022-05-09 21:38:57.142109 E  CECAdapter: =
-CLinuxCECAdapterCommunication::Write - ioctl CEC_TRANSMIT failed - =
-tx_status=3D00 errno=3D22
-2022-05-09 21:38:57.142117 E  CECAdapter: =
-CLinuxCECAdapterCommunication::Write - ioctl CEC_TRANSMIT failed - =
-tx_status=3D00 errno=3D22
-2022-05-09 21:39:02.475097 I  CECAdapter: << Playback 1 (4) -> broadcast =
-(F): active source (1000)
-2022-05-09 21:39:02.475115 E  CECAdapter: =
-CLinuxCECAdapterCommunication::Write - ioctl CEC_TRANSMIT failed - =
-tx_status=3D00 errno=3D22
-2022-05-09 21:39:02.475123 E  CECAdapter: =
-CLinuxCECAdapterCommunication::Write - ioctl CEC_TRANSMIT failed - =
-tx_status=3D00 errno=3D22
+> +
+> +        power-domains = <&rpmhpd SC7280_CX>,
+> +                        <&rpmhpd SC7280_MSS>;
+> +        power-domain-names = "cx", "mss";
+> +
+> +        memory-region = <&mba_mem>, <&mpss_mem>;
+> +
+> +        qcom,qmp = <&aoss_qmp>;
+> +
+> +        qcom,smem-states = <&modem_smp2p_out 0>;
+> +        qcom,smem-state-names = "stop";
+> +
+> +        resets = <&aoss_reset AOSS_CC_MSS_RESTART>,
+> +                 <&pdc_reset PDC_MODEM_SYNC_RESET>;
+> +        reset-names = "mss_restart", "pdc_reset";
 
-> I have some concerns about the DTS you've built here. For instance how
-> come you are modifying the power domains?
+The binding calls the second reset 'pdc_sync':
 
-This was experiment as I was advised:
+> +  reset-names:
+> +    items:
+> +      - const: mss_restart
+> +      - const: pdc_sync
 
-"32k clock needed for cec and this clock is generated by the rtc which =
-is embedded in the rk8xx regulator.
-So you should make sure it is enabled when hdmi is powerd on, eg adding =
-it to the RK3568_PD_VO powerdomain should help"
+The driver looks for 'pdc_reset', so I guess the binding needs to be updated.
 
-power domains entries in dts was attempt to play with above cec clock =
-sugestion.
-
-M0/M1 logs in this email are from cleaned dts: =
-https://pastebin.com/0pgwpdsS
-
-> USB3 is broken because the rock3-a is a rk3568 device and you're
-> missing combophy0.
-
-Perfect. all 4 usb ports are now working.
-Also no errors in dmesg.=20
-Thx!
-
+> +
+> +        qcom,halt-regs = <&tcsr_mutex 0x23000 0x25000 0x28000 0x33000>;
+> +        qcom,ext-regs = <&tcsr 0x10000 0x10004 &tcsr_mutex 0x26004 0x26008>;
+> +        qcom,qaccept-regs = <&tcsr_mutex 0x23030 0x23040 0x23020>;
+> +
+> +        glink-edge {
+> +            interrupts-extended = <&ipcc IPCC_CLIENT_MPSS
+> +                                   IPCC_MPROC_SIGNAL_GLINK_QMP
+> +                                   IRQ_TYPE_EDGE_RISING>;
+> +            mboxes = <&ipcc IPCC_CLIENT_MPSS
+> +                      IPCC_MPROC_SIGNAL_GLINK_QMP>;
+> +            label = "modem";
+> +            qcom,remote-pid = <1>;
+> +        };
+> +    };
+> -- 
+> 2.7.4
+> 
