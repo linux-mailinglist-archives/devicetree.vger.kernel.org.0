@@ -2,130 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D070951F601
-	for <lists+devicetree@lfdr.de>; Mon,  9 May 2022 09:55:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 56A0651F5CC
+	for <lists+devicetree@lfdr.de>; Mon,  9 May 2022 09:55:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232158AbiEIHlY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 May 2022 03:41:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51510 "EHLO
+        id S233313AbiEIHlh convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 9 May 2022 03:41:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56810 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234331AbiEIHYH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 May 2022 03:24:07 -0400
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0874D2AD2
-        for <devicetree@vger.kernel.org>; Mon,  9 May 2022 00:20:14 -0700 (PDT)
-Received: by mail-ej1-x635.google.com with SMTP id m20so24975721ejj.10
-        for <devicetree@vger.kernel.org>; Mon, 09 May 2022 00:20:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :references:from:in-reply-to:content-transfer-encoding;
-        bh=ZG0xzzK8vJiWqKJvgd5OTvarjy6BbuTFcq7zDOL5ksc=;
-        b=XO7gafFFxQeFRdf8hllKGPtq//LSJWfx88pfqi+gKjVdl8w1ZlhuyTJWFKwU59FinG
-         43NHj7SCwjWDg5Z88lFScLEsmUSjXHemy3Ox8Kk54V/WrDE6Jlsb0LPjXJeryJWMxQLe
-         A/bRvvJh2Zokjl8Y5Fm9dEWIPTlydNjo4q4vJzfkDFnLQcp5TSJrPHP+gPXlItmFl2QU
-         SLusmSc8FBUS4/87unS5K3OziQ5PmHSSNU7h/o2gf9sCnNwTswriXHGQagwtmkUrHx42
-         HoMHJ7f2Bq7jGKNojfXHww4n56nW2ttCAya8c8Ay08ecdJ0g/afbYdP2CNfvZXn/xPvD
-         +KlA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=ZG0xzzK8vJiWqKJvgd5OTvarjy6BbuTFcq7zDOL5ksc=;
-        b=OkBVm7NX00W7fnzrSPbEK0TG5gzLMEXo8DQ4DyE8GsAcVr61mZz1fFgGHsEAqYk1ei
-         3c0WfaZX2b1ObwXYLQiu1BMLZOhRLhxqZQ8nXvbx/j1OhGPylCCtgjaCbJ+xQKTISQul
-         b4SnapVPXF6C2XK7YVm6frk7C0hGIb451x0Gh1ntDVoYk3ACouPluuvaAi18IOz1ghon
-         Lbwa1IVkeeoHBnxKJMGxzqkAeVBGxQvlqjUAOJZOkKy3x84z9RhWr7ADPu/eMX9CaXo3
-         jmmp2YvaxZrvUK57sRVwwQ2DizHcOPNbuTVTjjFpPdK/3KX1Kkg3fgoAtyKqaff9UeyS
-         7+rg==
-X-Gm-Message-State: AOAM533f+ZumGjCFw5qyZ+anpYEn6kujqFuXkAdultMdcDq06X7o8oP5
-        8F94/PlWyWMKpQqdwaHxy+L2RMI/JY2Ob/Y9
-X-Google-Smtp-Source: ABdhPJygnuXJ8e2NsWg900fCa87FqVybV4/82xORq2vMAtlsPtFIl+iRFaAack+Lm7mwGv+osi0NLw==
-X-Received: by 2002:a17:907:2ce6:b0:6f4:7e8e:af40 with SMTP id hz6-20020a1709072ce600b006f47e8eaf40mr13039893ejc.211.1652080812595;
-        Mon, 09 May 2022 00:20:12 -0700 (PDT)
-Received: from [192.168.0.242] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id o10-20020a1709064f8a00b006f3ef214e35sm4724033eju.155.2022.05.09.00.20.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 09 May 2022 00:20:12 -0700 (PDT)
-Message-ID: <ec05bb3d-220f-383c-9d56-8d9b5066a148@linaro.org>
-Date:   Mon, 9 May 2022 09:20:11 +0200
+        with ESMTP id S236070AbiEIHZn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 May 2022 03:25:43 -0400
+Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.187])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18E6A703F9
+        for <devicetree@vger.kernel.org>; Mon,  9 May 2022 00:21:47 -0700 (PDT)
+Received: from mail-yb1-f170.google.com ([209.85.219.170]) by
+ mrelayeu.kundenserver.de (mreue010 [213.165.67.97]) with ESMTPSA (Nemesis) id
+ 1M89bP-1nkPKa1NRr-005LVG for <devicetree@vger.kernel.org>; Mon, 09 May 2022
+ 09:21:23 +0200
+Received: by mail-yb1-f170.google.com with SMTP id v59so23243774ybi.12
+        for <devicetree@vger.kernel.org>; Mon, 09 May 2022 00:21:23 -0700 (PDT)
+X-Gm-Message-State: AOAM531R7IJl0vf9Ql3pY1NJLcCZpYpWsCTNcKSPdkn/yHSlVNJyKOk3
+        2h2kBy/KP8xFFw01VzO69FfeqNMwvY0fMpDaMTM=
+X-Google-Smtp-Source: ABdhPJwvjfmW3GgAEYucjWilsiTVRxV9KEk9VA/Dchxs5csGbKWTID7oJ1ta/6hj1CCB5EwTLtq6wr0NNUzpVpQcQow=
+X-Received: by 2002:a25:c604:0:b0:645:d969:97a7 with SMTP id
+ k4-20020a25c604000000b00645d96997a7mr11469239ybf.134.1652080882146; Mon, 09
+ May 2022 00:21:22 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH v2 07/11] dt-bindings: clocks: qcom,gcc-ipq8074: support
- power domains
-Content-Language: en-US
-To:     Robert Marko <robimarko@gmail.com>, bjorn.andersson@linaro.org,
-        agross@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        tdas@codeaurora.org, absahu@codeaurora.org,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220507202948.397271-1-robimarko@gmail.com>
- <20220507202948.397271-7-robimarko@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220507202948.397271-7-robimarko@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+References: <20220427162123.110458-1-maukka@ext.kapsi.fi> <CAK8P3a0p-ev50UfGiHCpMM5Jz5Mf8pdfQtNep0M7qi7PANSBVg@mail.gmail.com>
+ <1509d16c-d244-19c7-610b-4c8ea8ca1624@ext.kapsi.fi> <CAK8P3a3g4CZjiVHHoBqJLrdN0chghaskODVvtWY1Fjj8TcB8KQ@mail.gmail.com>
+ <b09847c4-90f8-509d-835b-85613712344d@ext.kapsi.fi> <CAK8P3a1miLk8YU+T5ozyf-X8qUB3sJq6cyTovBs9XWb9MrJxMw@mail.gmail.com>
+ <20220508152237.3hw657gcba2fvheq@pali> <20220508154126.3wubyyunpuxetswm@pali>
+In-Reply-To: <20220508154126.3wubyyunpuxetswm@pali>
+From:   Arnd Bergmann <arnd@arndb.de>
+Date:   Mon, 9 May 2022 09:21:05 +0200
+X-Gmail-Original-Message-ID: <CAK8P3a3WZBOPDH8CxnK3H7bqTbytU_+KJg7SHhAS-PN3KQoxnQ@mail.gmail.com>
+Message-ID: <CAK8P3a3WZBOPDH8CxnK3H7bqTbytU_+KJg7SHhAS-PN3KQoxnQ@mail.gmail.com>
+Subject: Re: [RFC RFT PATCH v1 0/1] ARM: orion5x: convert D-Link DNS-323 to
+ the Device Tree
+To:     =?UTF-8?Q?Pali_Roh=C3=A1r?= <pali@kernel.org>
+Cc:     Arnd Bergmann <arnd@arndb.de>,
+        Mauri Sandberg <maukka@ext.kapsi.fi>,
+        SoC Team <soc@kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Olof Johansson <olof@lixom.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+X-Provags-ID: V03:K1:HdtdMl90G98c0/EiWktVohDCnHoIjKJQqSMGaHbyUDKq0hcJm/j
+ 21/e79WAss/lNZoSwJyDxo8n0jalzzaibJZokCHhVeOBeJSaB5phr20wzgHIB9OStTTiK8A
+ 3e7SQz30TsiAjewohGIEnqav1uiNbybnYsBf0J/GS7cqcUSMcJVgLIemwF8vNm1V8YCcEMu
+ XfVWQawSbnenLBqU7NPfQ==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:+jRh0v+uYFE=:QlGx2pSmqT46cluFg1g4yE
+ mtuOIxNC2SqlhAL3ciQpfsx5ChdbRvQ4yCWrv60QlTP7Jb2JKjiiunzfOnsNRX1t4VAszPwDW
+ 1btRRb+uXia1yZMdu6RLX2Kn6OlGpJ+QFlxC/tH6ZYqjoj+G+xDcwI7CWJJ+1Khyny/RUb6v8
+ iw8CSQkBrA6eMRU35v8gl9ifeayYOqWEN/YYJ+kc9BISJGAmiyybjVtgvjxbIPPWM55BHaPrB
+ prXKpGJMDlgINo+VlNUCrWPOYkY4fshPqvqT4bQN+WaJKCtS4S+udLKc129iflpaya16FPhZC
+ qfC2G+Fr60fAgwwz/ndCxWy0zo2aZvCv4KZ5nQpbbxZIVNmZVKUzGVm6RMyayj7TUbhafpxJX
+ 1/1MliCA28pSdhyNzHnqeNIV2HxFoPBfq7rD4oUgTw705zNJrBEtz6q400HXLucUYdTzNRoH6
+ pKyimlnyy4xdVwJGIR/QOIQfR0aGuuUh7P7c6qBHnFdsDY51QlpL33mj81rCa53k6Q3G7SnWy
+ 4+EM4/Cz4wmEz5JmYbjqBIbYJLn6AuRk08NX7XZyOOcHhE9gFS9cjCg+I+3G9NKY3+iav6UN0
+ dUvH9JKay2Ld8hBmzeuwojr/XtSBJ7OncGPRd0WMpbQSDj1tdyBXKVhyuonL0yelAHqBpQr9g
+ srnMMsMouTDUi4vlFWD4Gt4yT0o/Gh/CBQ7fkf0ce9Z05CWSnw4jYUf7hBd5ZbLog3/WBMGz9
+ gnXEJWpCQaw6U/8SSArmhpSLPY0IN8UX8+Zid6TAuPMsD0jk+kKMsiMkn4cxIQy7rB2W1BBkz
+ tKqOXRfaDatyey+8umbxqMTXgeQJCWlmH7ldFKbwsZgc6ksyfY=
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/05/2022 22:29, Robert Marko wrote:
-> GCC inside of IPQ8074 also provides power management via built-in GDSCs.
-> In order to do so, '#power-domain-cells' must be set to 1.
-> 
-> Signed-off-by: Robert Marko <robimarko@gmail.com>
-> ---
->  .../devicetree/bindings/clock/qcom,gcc-ipq8074.yaml          | 5 +++++
->  1 file changed, 5 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/clock/qcom,gcc-ipq8074.yaml b/Documentation/devicetree/bindings/clock/qcom,gcc-ipq8074.yaml
-> index 98572b4a9b60..e3e236e4ce7d 100644
-> --- a/Documentation/devicetree/bindings/clock/qcom,gcc-ipq8074.yaml
-> +++ b/Documentation/devicetree/bindings/clock/qcom,gcc-ipq8074.yaml
-> @@ -27,6 +27,9 @@ properties:
->    '#reset-cells':
->      const: 1
->  
-> +  '#power-domain-cells':
+On Sun, May 8, 2022 at 5:41 PM Pali Rohár <pali@kernel.org> wrote:
+> On Sunday 08 May 2022 17:22:37 Pali Rohár wrote:
+> > On Sunday 08 May 2022 17:02:17 Arnd Bergmann wrote:
+> > > >
+> > > > Can the existing pci code still be used to init the PCI bus and describe
+> > > > the rest in the DT or is it a futile attempt?
+> >
+> > Hello! Orion uses arch/arm/mach-orion5x/pci.c driver for both PCI and
+> > PCIe buses. This is not device tree driver.
+>
+> Correction, Orion PCIe driver is arch/arm/plat-orion/pcie.c and it calls
+> common functions from mach-orion5x/pci.c driver.
 
-Put it in some order, e.g. before reset-cells.
+FWIW, I have an older patch series that turns the plat-orion/pcie.c and
+mach-orion5x/pci.c into standalone host bridge drivers that no longer
+use the arm/kernel/bios32.c helpers. If anyone wants to work on DT
+support for the legacy-pci side (not for this machine but maybe another
+orion5x one), I can try to rebase those patches to make it easier to
+add the missing DT support.
 
-> +    const: 1
-> +
->    reg:
->      maxItems: 1
->  
-> @@ -39,6 +42,7 @@ required:
->    - reg
->    - '#clock-cells'
->    - '#reset-cells'
-> +  - '#power-domain-cells'
-
-The same.
-
->  
->  additionalProperties: false
->  
-> @@ -49,5 +53,6 @@ examples:
->        reg = <0x01800000 0x80000>;
->        #clock-cells = <1>;
->        #reset-cells = <1>;
-> +      #power-domain-cells = <1>;
-
-The same.
-
->      };
->  ...
-
-
-Best regards,
-Krzysztof
+          Arnd
