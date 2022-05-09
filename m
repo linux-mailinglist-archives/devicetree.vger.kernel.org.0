@@ -2,70 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AAE5951F4BC
-	for <lists+devicetree@lfdr.de>; Mon,  9 May 2022 08:57:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9181751F529
+	for <lists+devicetree@lfdr.de>; Mon,  9 May 2022 09:18:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229556AbiEIGue (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 May 2022 02:50:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38058 "EHLO
+        id S236033AbiEIHGw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 May 2022 03:06:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38126 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233370AbiEIGqc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 May 2022 02:46:32 -0400
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F18D8131F22
-        for <devicetree@vger.kernel.org>; Sun,  8 May 2022 23:42:37 -0700 (PDT)
-Received: by mail-ed1-x52c.google.com with SMTP id y21so15083181edo.2
-        for <devicetree@vger.kernel.org>; Sun, 08 May 2022 23:42:37 -0700 (PDT)
+        with ESMTP id S232550AbiEIGxE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 May 2022 02:53:04 -0400
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8796619B39E
+        for <devicetree@vger.kernel.org>; Sun,  8 May 2022 23:49:11 -0700 (PDT)
+Received: by mail-ej1-x631.google.com with SMTP id gh6so24922255ejb.0
+        for <devicetree@vger.kernel.org>; Sun, 08 May 2022 23:49:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=uJOQksv/Nz7S6hCUok26zJ6fKbWWbQlYtjVxm6ipB6o=;
-        b=rPQ7B5yo6cD6nD6lgS4qglTb9gjR27VlU5Ie1sQOZvcSpF+l8ZfE8rPTipH7OnrLRK
-         zhl/da1BJmVs4UzWOoHQq6rfRV2XWth6NfQnge+zDf39c3wMYvt1OeqnHeN7r0o1UR1m
-         3b8x61LfsD5eo7AaltIOGOU7E70FHi+WRldTtz3+cIFQ14L0VeF6pvgMyPY5QFAGft5T
-         vRYCmHluuHCvORXc6DVO2wxAi7voI9im5N0w1/xfY9cxNkkeDKRnPQs3tzCwXOzrQZHz
-         YZtcXokO7fX+orSZXTie6NyyOS/8Nx4+zoOCpBv3SeLgQDkstwJILvL55tnoWBNtUPyJ
-         SKCA==
+        bh=Q1uIYNMhCGy4rHwwDKHArD0ERJS+cdwEigc/mkUrZDE=;
+        b=Mb0zfiXOc10IiOZfJPPokzGs7XcA/7jpw/OIqiOD+eKHEEsR1Q8LBthkF/q+eCNL29
+         CNGF1orY/xbxnus7pNzHJc2rJ4hOzmuJys+rDQCMyCEucN8qhlKgNcvURUdntg2LzHu7
+         7E7lQyEi2FDEMzsqYFb2X+SLS1EAc6JlpK5VkFRL+zO5uZKLmlpNioK4Fj60HzsZN1vX
+         ec7l2HQWwDeLv+WTTo+80RDvwoc1NYTcGHJmLSv7VC6l6mmS2ZGxNipWSLC08vksFOL0
+         /M3W0fCxSW7ck/tuBf9nezQw4LZIk2fYn+hF5ajNJZzP/Ex0N+VLa979LoJK3QdeyuSK
+         l13g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=uJOQksv/Nz7S6hCUok26zJ6fKbWWbQlYtjVxm6ipB6o=;
-        b=D/j0AS+5I/ZUm0OrC26eBuQQiSvgvCnR0EdeTQaRe0fOLbqRgCpeVo3VWBO+F3zbyL
-         mCWtRe2olb4ahovOGw6kPXRa5dIv52u0vOcUtY6Um6E2a52wCVPaFZ4wVIfLNPbZQDWV
-         WGHCdW8awG6hAJk592bEzZrxuGPpYqF+7Z4pBCYqeJx26cwYhXrr7sCYwOGiAXAS4Rdd
-         K2x2+rmZXnG2oALhW+sEjh9lwUCdYsJotKfsAPDYX0MAjmgo3Hpj+A9KGfki9C+RLfC2
-         lPBBae0Gy9NJfC0csgFMEJ3TUphLf5t/kF7MnHF2ppheYQ1Lpnf9HIckfgEFCwLMHRJZ
-         S5CQ==
-X-Gm-Message-State: AOAM53391buO3+rt4PmbG+WtgiypkYBqe6uUvA7LxCK28BSaeOng2DUB
-        ovTkZb1ZCa6YIv1ysmKcq1wlaA==
-X-Google-Smtp-Source: ABdhPJxtgRhW3ZJj9MbSV+/lI8mw0cEll+Lr/P1aCjNSFND2BqVyrj1DygJfs/9L3aylDRAqiVBMVA==
-X-Received: by 2002:a05:6402:289a:b0:425:d682:105d with SMTP id eg26-20020a056402289a00b00425d682105dmr16072838edb.175.1652078556379;
-        Sun, 08 May 2022 23:42:36 -0700 (PDT)
+        bh=Q1uIYNMhCGy4rHwwDKHArD0ERJS+cdwEigc/mkUrZDE=;
+        b=WRSmuJEv0z1h2ykrHCNVGpSA1AltuDPvTspx2gcHX7Xfqa22nk4iQisEmsO4E6p93M
+         7EDOZTR5YAgSXx9hg2DVMHx5uNbXdpJ9VKheRogSs3453/ba/cDKY4+qNGutnH+ZBj/z
+         tdbUrah9BlbQ3oLl5+Jqafo3Cph9nqQ5+3W5LU6OZaOTuUazE28Quh4tNYuG3qIg4CJU
+         Dc/iosFsIaEj5kmmoLoNoX+TkNs7xwVlWYmPhHDfbAxDcpBjQWFRpbxFGFhVjfGrakZM
+         RPZFbjWHcLz+aD2B1buL6agOd9i9WoKhylbDiLBB+QlyjfEYIJzYKsxXepW9ytl+ewww
+         aTzA==
+X-Gm-Message-State: AOAM530HKfERFq59R7Zel1pnyXRkaOj3prOxlEqHt5TcpkZhonAWd+qz
+        owBxfilx2FQIlKjrH33Q9MNcBA==
+X-Google-Smtp-Source: ABdhPJyVxgI4jg1+VhdIEC/Y1keifAQgLTtp3IHMJw9n628QQP1fmw3bGVB7LsEt9DCpBaOcdsvJsw==
+X-Received: by 2002:a17:907:1623:b0:6f6:e9ce:9926 with SMTP id hb35-20020a170907162300b006f6e9ce9926mr10073326ejc.360.1652078934509;
+        Sun, 08 May 2022 23:48:54 -0700 (PDT)
 Received: from [192.168.0.242] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id cn18-20020a0564020cb200b0042617ba639esm5764601edb.40.2022.05.08.23.42.35
+        by smtp.gmail.com with ESMTPSA id e1-20020a1709062c0100b006f3ef214dafsm4714932ejh.21.2022.05.08.23.48.52
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 08 May 2022 23:42:35 -0700 (PDT)
-Message-ID: <eb0745a6-ecf2-4b70-368b-9ad8a322f208@linaro.org>
-Date:   Mon, 9 May 2022 08:42:34 +0200
+        Sun, 08 May 2022 23:48:53 -0700 (PDT)
+Message-ID: <41d6b00f-d8ac-ca54-99db-ea99c9049e0a@linaro.org>
+Date:   Mon, 9 May 2022 08:48:52 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.8.1
-Subject: Re: [PATCH v6 1/4] dt-bindings: thermal: k3-j72xx: Add VTM bindings
- documentation
+Subject: Re: [PATCH v3 5/6] dt-bindings: net: dsa: make reset optional and add
+ rgmii-mode to mt7531
 Content-Language: en-US
-To:     "J, KEERTHY" <j-keerthy@ti.com>, robh+dt@kernel.org,
-        daniel.lezcano@linaro.org, rui.zhang@intel.com, amitk@kernel.org,
-        kristo@kernel.org, vigneshr@ti.com
-Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220427064635.24898-1-j-keerthy@ti.com>
- <20220427064635.24898-2-j-keerthy@ti.com>
- <5859fed0-82b7-95eb-5719-9b0016916c50@ti.com>
+To:     Peter Geis <pgwipeout@gmail.com>,
+        Frank Wunderlich <frank-w@public-files.de>
+Cc:     Heiko Stuebner <heiko@sntech.de>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        Frank Wunderlich <linux@fw-web.de>,
+        linux-mediatek@lists.infradead.org, Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Landen Chao <Landen.Chao@mediatek.com>,
+        DENG Qingfang <dqfext@gmail.com>,
+        Linux Kernel Network Developers <netdev@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        arm-mail-list <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Greg Ungerer <gerg@kernel.org>,
+        =?UTF-8?Q?Ren=c3=a9_van_Dorst?= <opensource@vdorst.com>,
+        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>
+References: <20220507170440.64005-1-linux@fw-web.de>
+ <06157623-4b9c-6f26-e963-432c75cfc9e5@linaro.org>
+ <DC0D3996-DFFE-4E71-B843-8D34C613D498@public-files.de>
+ <2509116.Lt9SDvczpP@phil>
+ <trinity-7f04b598-0300-4f3c-80e7-0c2145e8ba8f-1652011928036@3c-app-gmx-bap68>
+ <CAMdYzYrG8bK-Yo15RjhhCQKS4ZQW53ePu1q4gbGxVVNKPJHBWg@mail.gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <5859fed0-82b7-95eb-5719-9b0016916c50@ti.com>
+In-Reply-To: <CAMdYzYrG8bK-Yo15RjhhCQKS4ZQW53ePu1q4gbGxVVNKPJHBWg@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -78,35 +101,53 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/05/2022 05:18, J, KEERTHY wrote:
-> 
-> 
-> On 4/27/2022 12:16 PM, Keerthy wrote:
->> Add VTM bindings documentation. In the Voltage Thermal
->> Management Module(VTM), K3 J72XX supplies a voltage
->> reference and a temperature sensor feature that are gathered in the band
->> gap voltage and temperature sensor (VBGAPTS) module. The band
->> gap provides current and voltage reference for its internal
->> circuits and other analog IP blocks. The analog-to-digital
->> converter (ADC) produces an output value that is proportional
->> to the silicon temperature.
-> 
-> Hi krzysztof,
-> 
-> Any comments on this version?
+On 08/05/2022 19:04, Peter Geis wrote:
+> On Sun, May 8, 2022 at 8:12 AM Frank Wunderlich <frank-w@public-files.de> wrote:
+>>>
+>>> I think the issue is more for the description itself.
+>>>
+>>> Devicetree is only meant to describe the hardware and does in general don't
+>>> care how any firmware (Linux-kernel, *BSD, etc) handles it. So going with
+>>> "the kernel does it this way" is not a valid reason for a binding change ;-) .
 
-You got Rob's review, so you don't need also mine.
+Exactly. The argument in commit msg was not matching the change, because
+driver implementation should not be (mostly) a reason for such changes.
 
-If you want, then in general look okay, except the description for "reg"
-you could split per items:
+>>>
+>>> Instead in general want to reason that there are boards without this reset
+>>> facility and thus make it optional for those.
+>>
+>> if only the wording is the problem i try to rephrase it from hardware PoV.
+>>
+>> maybe something like this?
+>>
+>> https://github.com/frank-w/BPI-R2-4.14/commits/5.18-mt7531-mainline2/Documentation/devicetree/bindings/net/dsa/mediatek%2Cmt7530.yaml
 
-reg:
-  items:
-    - description: VTM cfg1 register space
-    - description: VTM cfg2 register space
-    - description: efuse register space
+Looks ok.
 
-It's more obvious what items you expect.
+>>
+>> Another way is maybe increasing the delay after the reset (to give more time all
+>> come up again), but imho it is no good idea resetting the gmac/mdio-bus from the
+>> child device.
+>>
+>> have not looked into the gmac driver if this always  does the initial reset to
+>> have a "clean state". In this initial reset the switch will be resetted too
+>> and does not need an additional one which needs the gmac/mdio initialization
+>> to be done again.
+> 
+> For clarification, the reset gpio line is purely to reset the phy.
+> If having the switch driver own the reset gpio instead of the gmac
+> breaks initialization that means there's a bug in the gmac driver
+> handling phy init.
+> In testing I've seen issues moving the reset line to the mdio node
+> with other phys and the stmmac gmac driver, so I do believe this is
+> the case.
+
+Yes, this seems reasonable, although Frank mentioned that reset is
+shared with gmac, so it resets some part of it as well?
+
+
+
 
 Best regards,
 Krzysztof
