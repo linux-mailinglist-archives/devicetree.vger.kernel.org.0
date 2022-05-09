@@ -2,339 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D675851FD2C
-	for <lists+devicetree@lfdr.de>; Mon,  9 May 2022 14:45:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9DB8451FD28
+	for <lists+devicetree@lfdr.de>; Mon,  9 May 2022 14:45:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234737AbiEIMpi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 May 2022 08:45:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38558 "EHLO
+        id S234652AbiEIMry (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 May 2022 08:47:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46662 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234729AbiEIMpi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 May 2022 08:45:38 -0400
-Received: from andre.telenet-ops.be (andre.telenet-ops.be [IPv6:2a02:1800:120:4::f00:15])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 100F1443F5
-        for <devicetree@vger.kernel.org>; Mon,  9 May 2022 05:41:43 -0700 (PDT)
-Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed40:8886:2b92:63eb:2922])
-        by andre.telenet-ops.be with bizsmtp
-        id Uchg2700Y0moLbn01chgfJ; Mon, 09 May 2022 14:41:41 +0200
-Received: from rox.of.borg ([192.168.97.57])
-        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1no2ho-003XWs-9j; Mon, 09 May 2022 14:41:40 +0200
-Received: from geert by rox.of.borg with local (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1no2hn-003Gm1-S8; Mon, 09 May 2022 14:41:39 +0200
-From:   Geert Uytterhoeven <geert+renesas@glider.be>
-To:     Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc:     Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH] dt-bindings: phy: renesas,rcar-gen2-usb-phy: Convert to json-schema
-Date:   Mon,  9 May 2022 14:41:38 +0200
-Message-Id: <8e48edc5e7b65f8dfd8b76c583e0265b9b97e62b.1652099944.git.geert+renesas@glider.be>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S234682AbiEIMrx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 May 2022 08:47:53 -0400
+Received: from mail-pg1-x531.google.com (mail-pg1-x531.google.com [IPv6:2607:f8b0:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78AC613CA0A;
+        Mon,  9 May 2022 05:43:58 -0700 (PDT)
+Received: by mail-pg1-x531.google.com with SMTP id l11so6369095pgt.13;
+        Mon, 09 May 2022 05:43:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language
+         :from:to:cc:references:in-reply-to:content-transfer-encoding;
+        bh=SVrlMG9sH7kv5I9cl4/OZLrQBXySLyRLsCZbLGDjIqE=;
+        b=Xi9cwvuPhW6vhymMjNEnGLjS2+mLkxi4nu2DYmB22i4hlbz2/AwKHyvl+T6RcixoHM
+         zDy+Wqn7ejmxv55EiO4HmOQ4DfMV3zffSi1/xBMFtvg+ADgCZIXd8gXEVl16BGClyGCp
+         dt/DN4VsFZHhCVA5nkdToHh9ZSMh2cowpfMdyG2O8MCc8AK3x8Xh5TWoxMxXa6efe+/h
+         cPFMmN2r42EOVPBUmYu2cSWPEnHTWDYOo1lFWDPykG/Hg2WtScuDZLoSMrIfVqBBQkZA
+         BY7e7B71BnKr2oA1byD7CJYUAnDGmjpDyg+1wHMTLJ0pqltSr8OJ6TMELYns0utsEumf
+         NvoA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:from:to:cc:references:in-reply-to
+         :content-transfer-encoding;
+        bh=SVrlMG9sH7kv5I9cl4/OZLrQBXySLyRLsCZbLGDjIqE=;
+        b=JgprcD+RC9Rvjd8G8Xy9T7rj1fO0c5dVCK1ovZgfERYnL9wUr8D2A6llh+F6MQh5JQ
+         +qRxduKf0lIMAyFgDKtPXzTZw2Xty801LA6ZH4yHL4ZgjVvEh67Z6GIoCoL0GYFDB4G/
+         hhMA+yTAqK9xVnnbK9Iqxua5+CZK/WyPRtNT+Lpy2gvBvtwmN3Invx6cJmGy8KctiUhY
+         dkdHOynRO2VfTJZ8ppIAU/4LV2FErueujSCTHy4vDdMWUn5cZlK1V33glPNswoqrrwVo
+         a5Ibmm3qL9+3bfP1wrmsriAsPnTW7OalseylN6S3vWXnYPGvHqREqRpn/cZMht9G/nCg
+         qTbw==
+X-Gm-Message-State: AOAM533oRhcm0UEs6+tOzxhoe5Ddf9Hk/jXBMmcLek6YgkDBhlXpB3ZJ
+        rqPH9nIQlDWGD06ijZo7WGEfvfu1+oegMw==
+X-Google-Smtp-Source: ABdhPJz+/c4hjRHJy7STyl9bPPgXdQdXb8akW99y2Ri08rHOz09qfKgRmIitsqwn8L211TZgXqHz/w==
+X-Received: by 2002:a05:6a02:287:b0:3c6:b341:e3ba with SMTP id bk7-20020a056a02028700b003c6b341e3bamr4911328pgb.271.1652100237895;
+        Mon, 09 May 2022 05:43:57 -0700 (PDT)
+Received: from [172.30.1.40] ([14.32.163.5])
+        by smtp.gmail.com with ESMTPSA id lb5-20020a17090b4a4500b001d77f392280sm8770023pjb.30.2022.05.09.05.43.53
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 09 May 2022 05:43:57 -0700 (PDT)
+Message-ID: <3b6a9b8f-d550-8093-5f76-49ea70d1ad62@gmail.com>
+Date:   Mon, 9 May 2022 21:43:50 +0900
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH v3 1/2] dt-bindings: interconnect: Add MediaTek CCI
+ dt-bindings
+Content-Language: en-US
+From:   Chanwoo Choi <cwchoi00@gmail.com>
+To:     Johnson Wang <johnson.wang@mediatek.com>, cw00.choi@samsung.com,
+        krzk+dt@kernel.org, robh+dt@kernel.org, kyungmin.park@samsung.com
+Cc:     khilman@kernel.org, linux-pm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, jia-wei.chang@mediatek.com,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20220425125546.4129-1-johnson.wang@mediatek.com>
+ <20220425125546.4129-2-johnson.wang@mediatek.com>
+ <94efefab-918d-2367-4b74-076dd6f23936@gmail.com>
+In-Reply-To: <94efefab-918d-2367-4b74-076dd6f23936@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-3.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the Renesas R-Car Gen2 USB PHY Device Tree binding documentation
-to json-schema.
+On 22. 5. 9. 21:09, Chanwoo Choi wrote:
+> Hi,
+> 
+> On 22. 4. 25. 21:55, Johnson Wang wrote:
+>> Add devicetree binding of MediaTek CCI on MT8183 and MT8186.
+>>
+>> Signed-off-by: Johnson Wang <johnson.wang@mediatek.com>
+>> Signed-off-by: Jia-Wei Chang <jia-wei.chang@mediatek.com>
+>> ---
+>>   .../bindings/interconnect/mediatek,cci.yaml   | 139 ++++++++++++++++++
+>>   1 file changed, 139 insertions(+)
+>>   create mode 100644 
+>> Documentation/devicetree/bindings/interconnect/mediatek,cci.yaml
+>>
+>> diff --git 
+>> a/Documentation/devicetree/bindings/interconnect/mediatek,cci.yaml 
+>> b/Documentation/devicetree/bindings/interconnect/mediatek,cci.yaml
+>> new file mode 100644
+>> index 000000000000..e5221e17d11b
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/interconnect/mediatek,cci.yaml
+>> @@ -0,0 +1,139 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/interconnect/mediatek,cci.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: MediaTek Cache Coherent Interconnect (CCI) frequency and 
+>> voltage scaling
+>> +
+>> +maintainers:
+>> +  - Jia-Wei Chang <jia-wei.chang@mediatek.com>
+> 
+> Why did you add your author information?
 
-Add missing properties.
-Drop the second example, as it doesn't add any value.
+I'm sorry. I missed 'not' above sentence.
+IMHO, please add your author information.
 
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
-Validation gives:
+(snip)
 
-    Documentation/devicetree/bindings/phy/renesas,rcar-gen2-usb-phy.example.dtb: usb
-    -phy@e6590100: '#phy-cells' is a required property
-	    From schema: dt-schema/dtschema/schemas/phy/phy-provider.yaml
 
-The latter considers '#phy-cells' a required property, as the node name
-matches "usb-phy".  But in this binding the actual PHY providers are the
-child nodes.
-
-Is there a way to fix this? Overriding "#phy-cells" to "false" doesn't
-work.
-Should all nodes and child nodes be renamed? The (Linux) driver doesn't
-care about the names of the children.
-
----
-This is the final conversion to json-schema of DT bindings for Renesas
-ARM SoCs, hurray!
-
-Note that there are still a few plain text bindings left for Renesas IP
-cores that are present on non-Renesas SoCs (nbpfaxi and usdhi6rol0).
-And H8/300 is being removed.
----
- .../devicetree/bindings/phy/rcar-gen2-phy.txt | 112 ----------------
- .../phy/renesas,rcar-gen2-usb-phy.yaml        | 123 ++++++++++++++++++
- 2 files changed, 123 insertions(+), 112 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/phy/rcar-gen2-phy.txt
- create mode 100644 Documentation/devicetree/bindings/phy/renesas,rcar-gen2-usb-phy.yaml
-
-diff --git a/Documentation/devicetree/bindings/phy/rcar-gen2-phy.txt b/Documentation/devicetree/bindings/phy/rcar-gen2-phy.txt
-deleted file mode 100644
-index a3bd1c4499b75bdb..0000000000000000
---- a/Documentation/devicetree/bindings/phy/rcar-gen2-phy.txt
-+++ /dev/null
-@@ -1,112 +0,0 @@
--* Renesas R-Car generation 2 USB PHY
--
--This file provides information on what the device node for the R-Car generation
--2 USB PHY contains.
--
--Required properties:
--- compatible: "renesas,usb-phy-r8a7742" if the device is a part of R8A7742 SoC.
--	      "renesas,usb-phy-r8a7743" if the device is a part of R8A7743 SoC.
--	      "renesas,usb-phy-r8a7744" if the device is a part of R8A7744 SoC.
--	      "renesas,usb-phy-r8a7745" if the device is a part of R8A7745 SoC.
--	      "renesas,usb-phy-r8a77470" if the device is a part of R8A77470 SoC.
--	      "renesas,usb-phy-r8a7790" if the device is a part of R8A7790 SoC.
--	      "renesas,usb-phy-r8a7791" if the device is a part of R8A7791 SoC.
--	      "renesas,usb-phy-r8a7794" if the device is a part of R8A7794 SoC.
--	      "renesas,rcar-gen2-usb-phy" for a generic R-Car Gen2 or
--					  RZ/G1 compatible device.
--
--	      When compatible with the generic version, nodes must list the
--	      SoC-specific version corresponding to the platform first
--	      followed by the generic version.
--
--- reg: offset and length of the register block.
--- #address-cells: number of address cells for the USB channel subnodes, must
--		  be <1>.
--- #size-cells: number of size cells for the USB channel subnodes, must be <0>.
--- clocks: clock phandle and specifier pair.
--- clock-names: string, clock input name, must be "usbhs".
--
--The USB PHY device tree node should have the subnodes corresponding to the USB
--channels. These subnodes must contain the following properties:
--- reg: the USB controller selector; see the table below for the values.
--- #phy-cells: see phy-bindings.txt in the same directory, must be <1>.
--
--The phandle's argument in the PHY specifier is the USB controller selector for
--the USB channel other than r8a77470 SoC; see the selector meanings below:
--
--+-----------+---------------+---------------+
--|\ Selector |               |               |
--+ --------- +       0       |       1       |
--| Channel  \|               |               |
--+-----------+---------------+---------------+
--| 0         | PCI EHCI/OHCI | HS-USB        |
--| 2         | PCI EHCI/OHCI | xHCI          |
--+-----------+---------------+---------------+
--
--For r8a77470 SoC;see the selector meaning below:
--
--+-----------+---------------+---------------+
--|\ Selector |               |               |
--+ --------- +       0       |       1       |
--| Channel  \|               |               |
--+-----------+---------------+---------------+
--| 0         | EHCI/OHCI     | HS-USB        |
--+-----------+---------------+---------------+
--
--Example (Lager board):
--
--	usb-phy@e6590100 {
--		compatible = "renesas,usb-phy-r8a7790", "renesas,rcar-gen2-usb-phy";
--		reg = <0 0xe6590100 0 0x100>;
--		#address-cells = <1>;
--		#size-cells = <0>;
--		clocks = <&cpg CPG_MOD 704>;
--		clock-names = "usbhs";
--		power-domains = <&sysc R8A7790_PD_ALWAYS_ON>;
--		resets = <&cpg 704>;
--
--		usb0: usb-channel@0 {
--			reg = <0>;
--			#phy-cells = <1>;
--		};
--		usb2: usb-channel@2 {
--			reg = <2>;
--			#phy-cells = <1>;
--		};
--	};
--
--Example (iWave RZ/G1C sbc):
--
--	usbphy0: usb-phy0@e6590100 {
--		compatible = "renesas,usb-phy-r8a77470",
--			     "renesas,rcar-gen2-usb-phy";
--		reg = <0 0xe6590100 0 0x100>;
--		#address-cells = <1>;
--		#size-cells = <0>;
--		clocks = <&cpg CPG_MOD 704>;
--		clock-names = "usbhs";
--		power-domains = <&sysc R8A77470_PD_ALWAYS_ON>;
--		resets = <&cpg 704>;
--
--		usb0: usb-channel@0 {
--			reg = <0>;
--			#phy-cells = <1>;
--		};
--	};
--
--	usbphy1: usb-phy@e6598100 {
--		compatible = "renesas,usb-phy-r8a77470",
--			     "renesas,rcar-gen2-usb-phy";
--		reg = <0 0xe6598100 0 0x100>;
--		#address-cells = <1>;
--		#size-cells = <0>;
--		clocks = <&cpg CPG_MOD 706>;
--		clock-names = "usbhs";
--		power-domains = <&sysc R8A77470_PD_ALWAYS_ON>;
--		resets = <&cpg 706>;
--
--		usb1: usb-channel@0 {
--			reg = <0>;
--			#phy-cells = <1>;
--		};
--	};
-diff --git a/Documentation/devicetree/bindings/phy/renesas,rcar-gen2-usb-phy.yaml b/Documentation/devicetree/bindings/phy/renesas,rcar-gen2-usb-phy.yaml
-new file mode 100644
-index 0000000000000000..aa2bbc7e35dd4ace
---- /dev/null
-+++ b/Documentation/devicetree/bindings/phy/renesas,rcar-gen2-usb-phy.yaml
-@@ -0,0 +1,123 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/phy/renesas,rcar-gen2-usb-phy.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Renesas R-Car Gen2 USB PHY
-+
-+maintainers:
-+  - Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-+
-+properties:
-+  compatible:
-+    items:
-+      - enum:
-+          - renesas,usb-phy-r8a7742      # RZ/G1H
-+          - renesas,usb-phy-r8a7743      # RZ/G1M
-+          - renesas,usb-phy-r8a7744      # RZ/G1N
-+          - renesas,usb-phy-r8a7745      # RZ/G1E
-+          - renesas,usb-phy-r8a77470     # RZ/G1C
-+          - renesas,usb-phy-r8a7790      # R-Car H2
-+          - renesas,usb-phy-r8a7791      # R-Car M2-W
-+          - renesas,usb-phy-r8a7794      # R-Car E2
-+      - const: renesas,rcar-gen2-usb-phy # R-Car Gen2 or RZ/G1
-+
-+  reg:
-+    maxItems: 1
-+
-+  '#address-cells':
-+    const: 1
-+
-+  '#size-cells':
-+    const: 0
-+
-+  clocks:
-+    maxItems: 1
-+
-+  clock-names:
-+    items:
-+      - const: usbhs
-+
-+  power-domains:
-+    maxItems: 1
-+
-+  resets:
-+    maxItems: 1
-+
-+patternProperties:
-+  "^usb-channel@[02]$":
-+    type: object
-+    description: Subnode corresponding to a USB channel.
-+
-+    properties:
-+      reg:
-+        description: FIXME RZ/G1C supports channel 0 only
-+        enum: [0, 2]
-+
-+      '#phy-cells':
-+        description: |
-+          The phandle's argument in the PHY specifier is the USB controller
-+          selector for the USB channel.
-+          For RZ/G1C:
-+            - 0 for EHCI/OHCI
-+            - 1 for HS-USB
-+          For all other SoCS:
-+            - 0 for PCI EHCI/OHCI
-+            - 1 for HS-USB (channel 0) or xHCI (channel 2)
-+        const: 1
-+
-+    required:
-+      - reg
-+      - '#phy-cells'
-+
-+    additionalProperties: false
-+
-+required:
-+  - compatible
-+  - reg
-+  - '#address-cells'
-+  - '#size-cells'
-+  - clocks
-+  - clock-names
-+  - resets
-+  - power-domains
-+  - usb-channel@0
-+
-+if:
-+  properties:
-+    compatible:
-+      contains:
-+        const: renesas,usb-phy-r8a77470
-+then:
-+  properties:
-+    usb-channel@2: false
-+else:
-+  required:
-+    - usb-channel@2
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/r8a7790-cpg-mssr.h>
-+    #include <dt-bindings/power/r8a7790-sysc.h>
-+    usb-phy@e6590100 {
-+        compatible = "renesas,usb-phy-r8a7790", "renesas,rcar-gen2-usb-phy";
-+        reg = <0xe6590100 0x100>;
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+        clocks = <&cpg CPG_MOD 704>;
-+        clock-names = "usbhs";
-+        power-domains = <&sysc R8A7790_PD_ALWAYS_ON>;
-+        resets = <&cpg 704>;
-+
-+        usb0: usb-channel@0 {
-+            reg = <0>;
-+            #phy-cells = <1>;
-+        };
-+        usb2: usb-channel@2 {
-+            reg = <2>;
-+            #phy-cells = <1>;
-+        };
-+    };
 -- 
-2.25.1
-
+Best Regards,
+Samsung Electronics
+Chanwoo Choi
