@@ -2,298 +2,243 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 24B7551FC67
-	for <lists+devicetree@lfdr.de>; Mon,  9 May 2022 14:15:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D407851FC7C
+	for <lists+devicetree@lfdr.de>; Mon,  9 May 2022 14:17:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233849AbiEIMSt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 May 2022 08:18:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55128 "EHLO
+        id S234119AbiEIMUh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 May 2022 08:20:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33860 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233844AbiEIMSs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 May 2022 08:18:48 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1686C24DC0E;
-        Mon,  9 May 2022 05:14:50 -0700 (PDT)
-X-UUID: f275fa1f0dca4e9e94cd0b790f38b09c-20220509
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.4,REQID:1f2ad65d-5bd2-47ba-b63c-923c8f5161d7,OB:0,LO
-        B:0,IP:0,URL:8,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
-        ON:release,TS:8
-X-CID-META: VersionHash:faefae9,CLOUDID:b315c116-2e53-443e-b81a-655c13977218,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,File:nil,QS:0,BEC:nil
-X-UUID: f275fa1f0dca4e9e94cd0b790f38b09c-20220509
-Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw02.mediatek.com
-        (envelope-from <johnson.wang@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1362283811; Mon, 09 May 2022 20:14:46 +0800
-Received: from mtkmbs07n1.mediatek.inc (172.21.101.16) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
- Mon, 9 May 2022 20:14:45 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Mon, 9 May 2022 20:14:45 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n2.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
- Transport; Mon, 9 May 2022 20:14:45 +0800
-Message-ID: <a8e5fd9de1feece9051e1624c5cf3b672131a122.camel@mediatek.com>
-Subject: Re: [PATCH v3 1/2] dt-bindings: interconnect: Add MediaTek CCI
- dt-bindings
-From:   Johnson Wang <johnson.wang@mediatek.com>
-To:     Chen-Yu Tsai <wenst@chromium.org>, <krzk+dt@kernel.org>
-CC:     <cw00.choi@samsung.com>, <robh+dt@kernel.org>,
-        <kyungmin.park@samsung.com>, <khilman@kernel.org>,
-        <linux-pm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>, <jia-wei.chang@mediatek.com>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Mon, 9 May 2022 20:14:44 +0800
-In-Reply-To: <CAGXv+5HgyN+kp86M2GgFtbruXSAMSLxsh9vf8zVE5TxRMyTyaA@mail.gmail.com>
-References: <20220425125546.4129-1-johnson.wang@mediatek.com>
-         <20220425125546.4129-2-johnson.wang@mediatek.com>
-         <CAGXv+5HgyN+kp86M2GgFtbruXSAMSLxsh9vf8zVE5TxRMyTyaA@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S234002AbiEIMUe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 May 2022 08:20:34 -0400
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D7B0204;
+        Mon,  9 May 2022 05:16:38 -0700 (PDT)
+Received: (Authenticated sender: clement.leger@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 31E24FF80A;
+        Mon,  9 May 2022 12:16:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1652098597;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=qoCf4Wu4TqA+u/PSfELR7TgbBmtF/N1rQp/oz416fcs=;
+        b=lM4jlzlfFyfyh/PdAMN2fWKwoEgxqk5m7hsvU0WkxpMWSrrWn9SNfZvrG1Kof0yaKgjd55
+        TvHaJc6iMUWASLRKKAm8BYqdxSwjWfuRoDX4++qDt/ahyK9PY0OxVapUb+Y1dlYEZOq3ii
+        qZh8Op0B2V6xdaYR53ZahLR6Zr4OHz5Ld9HDu4Y5YfGbzeAP3n/Te15w52t4Kyn11CnF20
+        uXFGbfEcM5Lnl+UtFvWIzPcLVO7g1qtgrgI7OPrAere4a8L9GHGEsbPWklK5E6hg6GtETf
+        LN+4BuE5Ckxsm1UI9ILAfyfZzSp+RDjFHAZ6R+AoXU9G89Ic6btWRySTZv6xDQ==
+Date:   Mon, 9 May 2022 14:16:34 +0200
+From:   =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
+To:     Frank Rowand <frowand.list@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Allan Nielsen <allan.nielsen@microchip.com>,
+        Horatiu Vultur <horatiu.vultur@microchip.com>,
+        Steen Hegelund <steen.hegelund@microchip.com>,
+        Thomas Petazzoni <thomas.petazonni@bootlin.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Mark Brown <broonie@kernel.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Andrew Lunn <andrew@lunn.ch>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org
+Subject: Re: [PATCH 0/3] add dynamic PCI device of_node creation for overlay
+Message-ID: <20220509141634.16158c38@xps-bootlin>
+In-Reply-To: <96db62bb-18be-f44a-6f53-05b22319f23a@gmail.com>
+References: <20220427094502.456111-1-clement.leger@bootlin.com>
+        <96db62bb-18be-f44a-6f53-05b22319f23a@gmail.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Chen-Yu,
+Le Fri, 6 May 2022 13:33:22 -0500,
+Frank Rowand <frowand.list@gmail.com> a =C3=A9crit :
 
-On Tue, 2022-04-26 at 11:18 +0800, Chen-Yu Tsai wrote:
-> On Mon, Apr 25, 2022 at 8:56 PM Johnson Wang <
-> johnson.wang@mediatek.com> wrote:
-> > 
-> > Add devicetree binding of MediaTek CCI on MT8183 and MT8186.
-> > 
-> > Signed-off-by: Johnson Wang <johnson.wang@mediatek.com>
-> > Signed-off-by: Jia-Wei Chang <jia-wei.chang@mediatek.com>
-> > ---
-> >  .../bindings/interconnect/mediatek,cci.yaml   | 139
-> > ++++++++++++++++++
-> >  1 file changed, 139 insertions(+)
-> >  create mode 100644
-> > Documentation/devicetree/bindings/interconnect/mediatek,cci.yaml
-> > 
-> > diff --git
-> > a/Documentation/devicetree/bindings/interconnect/mediatek,cci.yaml
-> > b/Documentation/devicetree/bindings/interconnect/mediatek,cci.yaml
-> > new file mode 100644
-> > index 000000000000..e5221e17d11b
-> > --- /dev/null
-> > +++
-> > b/Documentation/devicetree/bindings/interconnect/mediatek,cci.yaml
-> > @@ -0,0 +1,139 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: 
-> > https://urldefense.com/v3/__http://devicetree.org/schemas/interconnect/mediatek,cci.yaml*__;Iw!!CTRNKA9wMg0ARbw!zuufEcqpKbditY3eqLTHpL8P8humMCyh4D4QWsximmw124tJUPE3ZBUyBqBtDlQ9pSDO$
-> >  
-> > +$schema: 
-> > https://urldefense.com/v3/__http://devicetree.org/meta-schemas/core.yaml*__;Iw!!CTRNKA9wMg0ARbw!zuufEcqpKbditY3eqLTHpL8P8humMCyh4D4QWsximmw124tJUPE3ZBUyBqBtDoE9YHyu$
-> >  
-> > +
-> > +title: MediaTek Cache Coherent Interconnect (CCI) frequency and
-> > voltage scaling
-> > +
-> > +maintainers:
-> > +  - Jia-Wei Chang <jia-wei.chang@mediatek.com>
-> > +
-> > +description: |
-> > +  MediaTek Cache Coherent Interconnect (CCI) is a hardware engine
-> > used by
-> > +  MT8183 and MT8186 SoCs to scale the frequency and adjust the
-> > voltage in
-> > +  hardware. It can also optimize the voltage to reduce the power
-> > consumption.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - mediatek,mt8183-cci
-> > +      - mediatek,mt8186-cci
-> > +
-> > +  clocks:
-> > +    items:
-> > +      - description:
-> > +          The multiplexer for clock input of CPU cluster.
-> 
-> of the bus, not CPU cluster.
+> On 4/27/22 04:44, Cl=C3=A9ment L=C3=A9ger wrote:
+> > This series adds foundation work to support the lan9662 PCIe card.
+> > This card is meant to be used an ethernet switch with 2 x RJ45
+> > ports and 2 x 2.5G SFPs. The lan966x SoCs can be used in two
+> > different ways:
+> >=20
+> >  - It can run Linux by itself, on ARM64 cores included in the SoC.
+> > This use-case of the lan966x is currently being upstreamed, using a
+> >    traditional Device Tree representation of the lan996x HW blocks
+> > [1] A number of drivers for the different IPs of the SoC have
+> > already been merged in upstream Linux.
+> >=20
+> >  - It can be used as a PCIe endpoint, connected to a separate
+> > platform that acts as the PCIe root complex. In this case, all the
+> > devices that are embedded on this SoC are exposed through PCIe BARs
+> > and the ARM64 cores of the SoC are not used. Since this is a PCIe
+> > card, it can be plugged on any platform, of any architecture
+> > supporting PCIe.
+> >=20
+> > The problem that arose is that we want to reuse all the existing OF
+> > compatible drivers that are used when in SoC mode to instantiate the
+> > PCI device when in PCIe endpoint mode.
+> >=20
+> > A previous attempt to tackle this problem was made using fwnode [1].
+> > However, this proved being way too invasive and it required
+> > modifications in both subsystems and drivers to support fwnode.
+> > First series did not lead to a consensus and multiple ideas to
+> > support this use-case were mentioned (ACPI overlay, fwnode,
+> > device-tree overlay). Since it only seemed that fwnode was not a
+> > totally silly idea, we continued on this way.
+> >=20
+> > However, on the series that added fwnode support to the reset
+> > subsystem, Rob Herring mentioned the fact that OF overlay might
+> > actually be the best way to probe PCI devices and populate platform
+> > drivers using this overlay. He also provided a branch containing
+> > some commits that helped =20
+>=20
+> I need to go look at the various email threads mentioned above before
+> I continue reading this patch series.
+>=20
+> I do have serious concerns with this approach.  I need to investigate
+> more fully before I can determine whether the concerns are addressed
+> sufficiently.
+>=20
+> To give some background to my longstanding response to similar
+> proposals, here is my old statement from
+> https://elinux.org/Device_Tree_Reference:
+>=20
+>    Overlays
+>    Mainline Linux Support
+>    Run time overlay apply and run time overlay remove from user space
+> are not supported in the mainline kernel. There   are out of tree
+> patches to implement this feature via an overlay manager. The overlay
+> manager is used successfully by many users for specific overlays on
+> specific boards with specific environments and use cases. However,
+> there are many issues with the Linux kernel overlay implementation
+> due to incomplete and incorrect code. The overlay manager has not
+> been accepted in mainline due to these issues. Once these issues are
+> resolved, it is expected that some method of run time overlay apply
+> and overlay removal from user space will be supported by the Linux
+> kernel.
+>=20
+>    There is a possibility that overlay apply and overlay remove
+> support could be phased in slowly, feature by feature, as specific
+> issues are resolved.
 
-Thanks for your suggestion.
-I will correct it in the next version.
+Hi Frank,
 
-> 
-> > +      - description:
-> > +          A parent of "cpu" clock which is used as an intermediate
-> > clock source
-> > +          when the original CPU is under transition and not stable
-> > yet.
-> 
-> This really should be handled in the clk controller, and not by every
-> device
-> that happens to take a clock from a mux with upstream PLLs that can
-> change
-> in clock rate. The end device hardware only takes one clock input.
-> That's it.
-> 
+This work uses the kernel space interface (of_overlay_fdt_apply())
+and the device tree overlay is builtin the driver. This interface was
+used until recently by rcu-dcar driver. While the only user (sic),
+this seems to work pretty well and I was able to use it successfully.
 
-To make this intermediate clock works properly, this driver is also
-responsible for handling the Vproc voltage and ensures the voltage is
-high enough to support intermediate clock rate.
+Moreover, this support targets at using this with PCI devices. This
+devices are really well contained and do not interfere with other
+devices. This actually consists in adding a complete subtree into the
+existing device-tree and thus it limits the interactions between
+potentially platform provided devices and PCI ones.
 
-If we move intermediate clock rate control to clock driver, then
-intermediate voltage control may be handled by the clock driver itself
-as well.
+Cl=C3=A9ment
 
-We believe that is not reasonable because clock driver shouldn't handle
-voltage control. On the other hand, DVFS driver is more suitable for
-doing this job.
-
-> > +
-> > +  clock-names:
-> > +    items:
-> > +      - const: cci
-> > +      - const: intermediate
-> > +
-> > +  operating-points-v2: true
-> > +  opp-table: true
-> > +
-> > +  proc-supply:
-> > +    description:
-> > +      Phandle of the regulator for CCI that provides the supply
-> > voltage.
-> > +
-> > +  sram-supply:
-> > +    description:
-> > +      Phandle of the regulator for sram of CCI that provides the
-> > supply
-> > +      voltage. When it presents, the cci devfreq driver needs to
-> > do
-> 
-> When it is present, the implementation needs to ...
-> 
-> ChenYu
-
-I will modify it in the next version.
-
-BRs,
-Johnson Wang
-
-> 
-> > +      "voltage tracking" to step by step scale up/down Vproc and
-> > Vsram to fit
-> > +      SoC specific needs. When absent, the voltage scaling flow is
-> > handled by
-> > +      hardware, hence no software "voltage tracking" is needed.
-> > +
-> > +required:
-> > +  - compatible
-> > +  - clocks
-> > +  - clock-names
-> > +  - operating-points-v2
-> > +  - proc-supply
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/clock/mt8183-clk.h>
-> > +    cci: cci {
-> > +        compatible = "mediatek,mt8183-cci";
-> > +        clocks = <&mcucfg CLK_MCU_BUS_SEL>,
-> > +                 <&topckgen CLK_TOP_ARMPLL_DIV_PLL1>;
-> > +        clock-names = "cci", "intermediate";
-> > +        operating-points-v2 = <&cci_opp>;
-> > +        proc-supply = <&mt6358_vproc12_reg>;
-> > +    };
-> > +
-> > +    cci_opp: opp-table-cci {
-> > +        compatible = "operating-points-v2";
-> > +        opp-shared;
-> > +        opp2_00: opp-273000000 {
-> > +            opp-hz = /bits/ 64 <273000000>;
-> > +            opp-microvolt = <650000>;
-> > +        };
-> > +        opp2_01: opp-338000000 {
-> > +            opp-hz = /bits/ 64 <338000000>;
-> > +            opp-microvolt = <687500>;
-> > +        };
-> > +        opp2_02: opp-403000000 {
-> > +            opp-hz = /bits/ 64 <403000000>;
-> > +            opp-microvolt = <718750>;
-> > +        };
-> > +        opp2_03: opp-463000000 {
-> > +            opp-hz = /bits/ 64 <463000000>;
-> > +            opp-microvolt = <756250>;
-> > +        };
-> > +        opp2_04: opp-546000000 {
-> > +            opp-hz = /bits/ 64 <546000000>;
-> > +            opp-microvolt = <800000>;
-> > +        };
-> > +        opp2_05: opp-624000000 {
-> > +            opp-hz = /bits/ 64 <624000000>;
-> > +            opp-microvolt = <818750>;
-> > +        };
-> > +        opp2_06: opp-689000000 {
-> > +            opp-hz = /bits/ 64 <689000000>;
-> > +            opp-microvolt = <850000>;
-> > +        };
-> > +        opp2_07: opp-767000000 {
-> > +            opp-hz = /bits/ 64 <767000000>;
-> > +            opp-microvolt = <868750>;
-> > +        };
-> > +        opp2_08: opp-845000000 {
-> > +            opp-hz = /bits/ 64 <845000000>;
-> > +            opp-microvolt = <893750>;
-> > +        };
-> > +        opp2_09: opp-871000000 {
-> > +            opp-hz = /bits/ 64 <871000000>;
-> > +            opp-microvolt = <906250>;
-> > +        };
-> > +        opp2_10: opp-923000000 {
-> > +            opp-hz = /bits/ 64 <923000000>;
-> > +            opp-microvolt = <931250>;
-> > +        };
-> > +        opp2_11: opp-962000000 {
-> > +            opp-hz = /bits/ 64 <962000000>;
-> > +            opp-microvolt = <943750>;
-> > +        };
-> > +        opp2_12: opp-1027000000 {
-> > +            opp-hz = /bits/ 64 <1027000000>;
-> > +            opp-microvolt = <975000>;
-> > +        };
-> > +        opp2_13: opp-1092000000 {
-> > +            opp-hz = /bits/ 64 <1092000000>;
-> > +            opp-microvolt = <1000000>;
-> > +        };
-> > +        opp2_14: opp-1144000000 {
-> > +            opp-hz = /bits/ 64 <1144000000>;
-> > +            opp-microvolt = <1025000>;
-> > +        };
-> > +        opp2_15: opp-1196000000 {
-> > +            opp-hz = /bits/ 64 <1196000000>;
-> > +            opp-microvolt = <1050000>;
-> > +        };
-> > +    };
-> > --
-> > 2.18.0
-> > 
-> > 
-> > _______________________________________________
-> > Linux-mediatek mailing list
-> > Linux-mediatek@lists.infradead.org
-> > 
-https://urldefense.com/v3/__http://lists.infradead.org/mailman/listinfo/linux-mediatek__;!!CTRNKA9wMg0ARbw!zuufEcqpKbditY3eqLTHpL8P8humMCyh4D4QWsximmw124tJUPE3ZBUyBqBtDvdNpOFZ$
-> >  
+>=20
+> Those are my words, not Rob's, but I thought that Rob was somewhat in
+> agreement with those ideas.  Apparently either I misunderstood his
+> thoughts, or his thoughts have evolved, since you say that he
+> suggested overlays in one of the above email threads, and you list
+> him as a co-developer.
+>=20
+> In the next line of the elinux info above, I provide a link to more
+> detailed information:
+>=20
+>    Frank's thoughts on what is needed to complete basic overlay
+> support
+>=20
+> The link goes to:
+>=20
+>    https://elinux.org/Frank%27s_Evolving_Overlay_Thoughts
+>=20
+> That page provides an incomplete list of issues to be resolved, and
+> a list of "what has been completed".
+>=20
+> Please read through the elinux.org page to understand the basis of
+> my concerns.
+>=20
+> If after reading through the related email threads, and this thread,
+> I agree that overlays are a good approach, I am already aware of areas
+> that I will have specific comments about on the patches in this
+> thread.
+>=20
+> -Frank
+>=20
+> > to implement this idea on a x86 setup. Due to the dynamic nature of
+> > PCI bus enumeration, some other modifications needs to be applied
+> > on the overlay to apply it correctly. Indeed, it is necessary to
+> > modify the target node of the fragments to apply them correctly on
+> > the PCI device that was probed. Moreover, the 'ranges' must be set
+> > according to the BAR addresses in order to remap devices to the
+> > correct PCI addresses. These modifications are the located into the
+> > driver since the remapping is something that is specific to each
+> > driver.
+> >=20
+> > After modifications, this proves to be successful and a full
+> > support of the aforementioned lan966x PCI card was added. The
+> > modifications to support that (apply an overlay on a dynamically
+> > created PCI of_node) are actually minimal and only touches a few
+> > places (pci/of.c). This series contains the 3 commits that are
+> > necessary to do that:
+> >=20
+> > - First commit creates the root node if not present on a x86 setup
+> >   without a firmware provided device-tree.
+> > - Second one dynamically creates the PCI bus/device device-tree node
+> >   hierarchy using changeset API.
+> > - Finally a last commit allows to apply an overlay by targeting a
+> >   specific device-tree node.
+> >=20
+> > Other problems that might be considered with this series is the fact
+> > that CONFIG_OF is not enabled by default on x86 configuration and
+> > thus the driver can't be used without rebuilding a complete kernel
+> > with CONFIG_OF=3Dy. In order to fully support this PCIe card and
+> > allow lambda user to use this driver, it would be almost mandatory
+> > to enable CONFIG_OF by default on such setup.
+> >=20
+> > A driver using this support was added and can be seen at [3]. This
+> > driver embeds a builtin overlay and applies it to the live tree
+> > using of_overlay_fdt_apply_to_node(). An interrupt driver is also
+> > included and associated to a node that is added by the overlay. The
+> > driver also insert a specific "ranges" property based on the BAR
+> > values which allows to remap the device-tree node to BAR addresses
+> > dynamically. This is needed to allow applying the overlay without
+> > depending on specific enumeration BAR addresses.
+> >=20
+> > This series was tested on a x86 kernel using CONFIG_OF under a
+> > virtual machine using PCI passthrough.
+> >=20
+> > Link: [1] https://lore.kernel.org/lkml/YhQHqDJvahgriDZK@lunn.ch/t/
+> > Link: [2]
+> > https://lore.kernel.org/lkml/20220408174841.34458529@fixe.home/T/
+> > Link: [3]
+> > https://github.com/clementleger/linux/tree/lan966x/of_support
+> >=20
+> > Cl=C3=A9ment L=C3=A9ger (3):
+> >   of: always populate a root node
+> >   PCI: of: create DT nodes for PCI devices if they do not exists
+> >   of: overlay: add of_overlay_fdt_apply_to_node()
+> >=20
+> >  drivers/of/base.c    |  16 +++-
+> >  drivers/of/overlay.c |  21 +++--
+> >  drivers/pci/of.c     | 184
+> > +++++++++++++++++++++++++++++++++++++++++++ include/linux/of.h   |
+> > 17 +++- 4 files changed, 224 insertions(+), 14 deletions(-)
+> >  =20
+>=20
 
