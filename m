@@ -2,315 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B2F85520202
-	for <lists+devicetree@lfdr.de>; Mon,  9 May 2022 18:10:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EB5955201F9
+	for <lists+devicetree@lfdr.de>; Mon,  9 May 2022 18:10:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238867AbiEIQMO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 May 2022 12:12:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51680 "EHLO
+        id S238947AbiEIQN0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 May 2022 12:13:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56756 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238850AbiEIQMN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 May 2022 12:12:13 -0400
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2DF29270C8A;
-        Mon,  9 May 2022 09:08:19 -0700 (PDT)
-Received: by mail-ed1-x52e.google.com with SMTP id ba17so16879052edb.5;
-        Mon, 09 May 2022 09:08:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=qpVSIRHLciQG1lJnk05gcj0OOBt3+jSZsfgixWYIteE=;
-        b=Mci7nN1U48tC8u15wuILJos0lwuwNF9NQhf2lqJGQGj5DaeLz3B2uwGU2VTGbEpAqK
-         jD6wtJqHoxF+knHnwMuQ8aYufm0kUXlXuM7RQD7pe/YymePBq7itDofWQoGOJOVJ5/IC
-         XkStkfFnLV8dQ2cXCvnkOeiwXOgpIxWyJWi3ESdzwZkNU0bY5cSPWsPSnvVeWubQUEVO
-         cxT742mRgLHSg27CEZ1Ms/+yR0nWMcPcXMIz2OuCr70X0KXnxCJUFNYpuAqLjFwabGNs
-         6Q9qIeCh4D7vkFcEzMFAXR2muOsqFNiHV5628vFEDdU2US00RHiwUuSFTjJWt9ZGxNAj
-         oWOA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=qpVSIRHLciQG1lJnk05gcj0OOBt3+jSZsfgixWYIteE=;
-        b=lM9Yw7ZhCvjleRCNQo2PUSdsAoJWn5mCNs+w7pk2yuSNaUJ5O3Hk0de2ox2XJxM9r9
-         24qln7r2hztTRMtYhX1MSBzjT5jA5fv0uTdm2Rf7U/pjxxhy4ympILZkXGr9NJgx9/hK
-         zCFqDc5xfLdW1E7+rg1ITn+TSD80L22N56vP/QDD3sgnVThMprMy029k3Eo29Cu/pmS4
-         vVAIPAp3uwZfLXRcWfN0jegKwiKGoweMbfWWGfXoIUHV+LKCM6Ppa1keSK3ood1beeJt
-         yCjEIV+4/qwzmL8PqLqJzrz+zMSQFJsFRSfFyx2//85M+Oz2EqrYje54T0qDGeWW5U9y
-         KKog==
-X-Gm-Message-State: AOAM533ze9Hn3kE5iEDwEC68L1+vV/rBncijkN7jgPoOcykviPaZPjLH
-        OsvaFMTmFviwHHkS0ddsR2U=
-X-Google-Smtp-Source: ABdhPJzvNkOIu8i7ui8m8hMrQINj908JMFjiHuM+ZFnTOC2FqTY5Y/ZELRXEwKEXntDSN4d3FRS4qg==
-X-Received: by 2002:a05:6402:1a42:b0:424:20bb:3e37 with SMTP id bf2-20020a0564021a4200b0042420bb3e37mr17707069edb.29.1652112497589;
-        Mon, 09 May 2022 09:08:17 -0700 (PDT)
-Received: from skbuf ([188.25.160.86])
-        by smtp.gmail.com with ESMTPSA id ig11-20020a1709072e0b00b006f3ef214e2csm5339743ejc.146.2022.05.09.09.08.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 May 2022 09:08:15 -0700 (PDT)
-Date:   Mon, 9 May 2022 19:08:13 +0300
-From:   Vladimir Oltean <olteanv@gmail.com>
-To:     =?utf-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
-Cc:     Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
+        with ESMTP id S238893AbiEIQN0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 May 2022 12:13:26 -0400
+Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 045B627B30B;
+        Mon,  9 May 2022 09:09:29 -0700 (PDT)
+Received: (Authenticated sender: clement.leger@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 629021BF203;
+        Mon,  9 May 2022 16:09:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1652112566;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=i7GSStgwKryZEOP1Jjq0CJbbm9/kTv+zC1i/HUwHXXA=;
+        b=Q3qHIfx01n4Z6VYb2ZeeD61UZj+SKoqZj/bmrMCXYMZbH02VhkUroQXvu6VEtLpX0el+ZZ
+        /M1Hf1oLfxfe9fgJlQvh4HxcXjJu100FCXHWOl2cVEj4LLGy+jgjGjjt/k5WK/m/aTgf1t
+        uTA5lv+FV/06uzWOikWHCPlpmAZULsl0Am9b8duDWm7Qhryo6xVgA+oCa3GVjKvQdHp27F
+        tllENT/8s1aW+B5NzJU8CJ1BM9bDXHczllL5wztlYqAgSkzLVcIgFvk/OnaLxKYoYckZsp
+        YQ3jgjHOjS9ZoR7jbWY+A/YAYi7zrnVVxqwwJF+Qq+1kkzVWdcpvwlsDDPZvVg==
+Date:   Mon, 9 May 2022 18:09:17 +0200
+From:   =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
+To:     Frank Rowand <frowand.list@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Allan Nielsen <allan.nielsen@microchip.com>,
+        Horatiu Vultur <horatiu.vultur@microchip.com>,
+        Steen Hegelund <steen.hegelund@microchip.com>,
+        Thomas Petazzoni <thomas.petazonni@bootlin.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Mark Brown <broonie@kernel.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
         Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Herve Codina <herve.codina@bootlin.com>,
-        =?utf-8?Q?Miqu=C3=A8l?= Raynal <miquel.raynal@bootlin.com>,
-        Milan Stevanovic <milan.stevanovic@se.com>,
-        Jimmy Lalande <jimmy.lalande@se.com>,
-        Pascal Eberhard <pascal.eberhard@se.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org, netdev@vger.kernel.org,
-        Jean-Pierre Geslin <jean-pierre.geslin@non.se.com>,
-        Phil Edworthy <phil.edworthy@renesas.com>
-Subject: Re: [PATCH net-next v4 06/12] net: dsa: rzn1-a5psw: add Renesas
- RZ/N1 advanced 5 port switch driver
-Message-ID: <20220509160813.stfqb4c2houmfn2g@skbuf>
-References: <20220509131900.7840-1-clement.leger@bootlin.com>
- <20220509131900.7840-7-clement.leger@bootlin.com>
+        Hans de Goede <hdegoede@redhat.com>,
+        Andrew Lunn <andrew@lunn.ch>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org
+Subject: Re: [PATCH 0/3] add dynamic PCI device of_node creation for overlay
+Message-ID: <20220509180917.0f0ae851@xps-bootlin>
+In-Reply-To: <f9b0cbf1-dde2-ff97-cca0-5d2895734f91@gmail.com>
+References: <20220427094502.456111-1-clement.leger@bootlin.com>
+        <96db62bb-18be-f44a-6f53-05b22319f23a@gmail.com>
+        <20220509141634.16158c38@xps-bootlin>
+        <f9b0cbf1-dde2-ff97-cca0-5d2895734f91@gmail.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220509131900.7840-7-clement.leger@bootlin.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 09, 2022 at 03:18:54PM +0200, Clément Léger wrote:
-> Add Renesas RZ/N1 advanced 5 port switch driver. This switch handles 5
-> ports including 1 CPU management port. A MDIO bus is also exposed by
-> this switch and allows to communicate with PHYs connected to the ports.
-> Each switch port (except for the CPU management ports) is connected to
-> the MII converter.
-> 
-> This driver includes basic bridging support, more support will be added
-> later (vlan, etc).
-> 
-> Suggested-by: Jean-Pierre Geslin <jean-pierre.geslin@non.se.com>
-> Suggested-by: Phil Edworthy <phil.edworthy@renesas.com>
-> Signed-off-by: Clément Léger <clement.leger@bootlin.com>
-> ---
-> +static int a5psw_port_bridge_join(struct dsa_switch *ds, int port,
-> +				  struct dsa_bridge bridge,
-> +				  bool *tx_fwd_offload,
-> +				  struct netlink_ext_ack *extack)
-> +{
-> +	struct a5psw *a5psw = ds->priv;
-> +
-> +	/* We only support 1 bridge device */
-> +	if (a5psw->br_dev && bridge.dev != a5psw->br_dev) {
-> +		NL_SET_ERR_MSG_MOD(extack,
-> +				   "Forwarding offload supported for a single bridge");
+Le Mon, 9 May 2022 10:56:36 -0500,
+Frank Rowand <frowand.list@gmail.com> a =C3=A9crit :
 
-I don't think I saw the dsa_slave_changeupper() patch that avoids
-overwriting the extack when dsa_port_bridge_join() returns -EOPNOTSUPP.
+> > Hi Frank,
+> >=20
+> > This work uses the kernel space interface (of_overlay_fdt_apply())
+> > and the device tree overlay is builtin the driver. This interface
+> > was used until recently by rcu-dcar driver. While the only user
+> > (sic), this seems to work pretty well and I was able to use it
+> > successfully. =20
+>=20
+> Yes, of_overlay_fdt_apply() was used by one driver.  But that driver
+> was explicitly recognized as a grandfathered exception, and not an
+> example for other users.  It was finally removed in 5.18-rc1.
 
-> +		return -EOPNOTSUPP;
-> +	}
-> +
-> +	a5psw->br_dev = bridge.dev;
-> +	a5psw_flooding_set_resolution(a5psw, port, true);
-> +	a5psw_port_mgmtfwd_set(a5psw, port, false);
-> +
-> +	return 0;
+I noticed that unfortunately.
 
-By the way, does this switch pass tools/testing/selftests/drivers/net/dsa/no_forwarding.sh?
+>=20
+> You may have used of_overlay_fdt_apply() in a specific use case at
+> a specific kernel version, but if you read through the references
+> I provided you will find that applying overlays after the kernel
+> boots is a fragile endeavor, with expectations of bugs and problems
+> being exposed as usage is changed (simple example is that my adding
+> some overlay notifier unittests exposed yet another memory leak).
+>=20
+> The reference that I provided also shows how the overlay code is
+> being improved over time.  Even with improvements, it will remain
+> fragile.
 
-> +}
-> +
-> +static void a5psw_port_bridge_leave(struct dsa_switch *ds, int port,
-> +				    struct dsa_bridge bridge)
-> +{
-> +	struct a5psw *a5psw = ds->priv;
-> +
-> +	a5psw_flooding_set_resolution(a5psw, port, false);
-> +	a5psw_port_mgmtfwd_set(a5psw, port, true);
-> +
-> +	/* No more ports bridged */
-> +	if (a5psw->bridged_ports == BIT(A5PSW_CPU_PORT))
-> +		a5psw->br_dev = NULL;
-> +}
-> +
-> +static int a5psw_pcs_get(struct a5psw *a5psw)
-> +{
-> +	struct device_node *ports, *port, *pcs_node;
-> +	struct phylink_pcs *pcs;
-> +	int ret;
-> +	u32 reg;
-> +
-> +	ports = of_get_child_by_name(a5psw->dev->of_node, "ethernet-ports");
-> +	if (!ports)
-> +		ports = of_get_child_by_name(a5psw->dev->of_node, "ports");
-> +
-> +	if (!ports)
-> +		return -EINVAL;
-> +
-> +	for_each_available_child_of_node(ports, port) {
-> +		pcs_node = of_parse_phandle(port, "pcs-handle", 0);
-> +		if (!pcs_node)
-> +			continue;
-> +
-> +		if (of_property_read_u32(port, "reg", &reg)) {
-> +			ret = -EINVAL;
-> +			goto free_pcs;
-> +		}
-> +
-> +		if (reg >= ARRAY_SIZE(a5psw->pcs)) {
-> +			ret = -ENODEV;
-> +			goto free_pcs;
-> +		}
-> +
-> +		pcs = miic_create(pcs_node);
-> +		if (IS_ERR(pcs)) {
-> +			dev_err(a5psw->dev, "Failed to create PCS for port %d\n",
-> +				reg);
-> +			ret = PTR_ERR(pcs);
-> +			goto free_pcs;
-> +		}
-> +
-> +		a5psw->pcs[reg] = pcs;
-> +	}
-> +	of_node_put(ports);
-> +
-> +	return 0;
-> +
-> +free_pcs:
+Acked.
 
-The error path is missing of_node_put(ports).
+>=20
+> >=20
+> > Moreover, this support targets at using this with PCI devices. This
+> > devices are really well contained and do not interfere with other
+> > devices. This actually consists in adding a complete subtree into
+> > the existing device-tree and thus it limits the interactions between
+> > potentially platform provided devices and PCI ones. =20
+>=20
+> Yes, that it is very important that you have described this fact, both
+> here and in other emails.  Thank you for that information, it does
+> help understanding the alternatives.
+>=20
+> I've hesitated in recommending a specific solution before better
+> understanding the architecture of your pcie board and drivers, but
+> I've delayed too long, so I am going to go ahead and mention one
+> possibility at the risk of not yet fully understanding the situation.
+>=20
+> On the surface, it appears that your need might be well met by having
+> a base devicetree that describes all of the pcie nodes, but with each
+> node having a status of "disabled" so that they will not be used.
+> Have a devicetree overlay describing the pcie card (as you proposed),
+> where the overlay also includes a status of "ok" for the pcie node.
+> Applying the overlay, with a method of redirecting the target to a
+> specific pcie node would change the status of the pcie node to enable
+> its use.  (You have already proposed a patch to modify
+> of_overlay_fdt_apply() to allow a modified target, so not a new
+> concept from me.)  My suggestion is to apply the overlay devicetree
+> to the base devicetree before the combined FDT devicetree is passed
+> to the kernel at boot.  The overlay apply could be done by several
+> different entities.  It could be before the bootloader executes, it
+> could be done by the bootloader, it could be done by a shim between
+> the bootloader and the kernel.  This method avoids all of the issues
+> of applying an overlay to a running system that I find problematic.
+> It is also a method used by the U-boot bootloader, as an example.
 
-> +	a5psw_pcs_free(a5psw);
-> +
-> +	return ret;
-> +}
-> +
-> +static int a5psw_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct device_node *mdio;
-> +	struct dsa_switch *ds;
-> +	struct a5psw *a5psw;
-> +	int ret;
-> +
-> +	a5psw = devm_kzalloc(dev, sizeof(*a5psw), GFP_KERNEL);
-> +	if (!a5psw)
-> +		return -ENOMEM;
-> +
-> +	a5psw->dev = dev;
-> +	spin_lock_init(&a5psw->lk_lock);
-> +	spin_lock_init(&a5psw->reg_lock);
-> +	a5psw->base = devm_platform_ioremap_resource(pdev, 0);
-> +	if (!a5psw->base)
-> +		return -EINVAL;
-> +
-> +	ret = a5psw_pcs_get(a5psw);
-> +	if (ret)
-> +		return ret;
-> +
-> +	a5psw->hclk = devm_clk_get(dev, "hclk");
-> +	if (IS_ERR(a5psw->hclk)) {
-> +		dev_err(dev, "failed get hclk clock\n");
-> +		ret = PTR_ERR(a5psw->hclk);
-> +		goto free_pcs;
-> +	}
-> +
-> +	a5psw->clk = devm_clk_get(dev, "clk");
-> +	if (IS_ERR(a5psw->clk)) {
-> +		dev_err(dev, "failed get clk_switch clock\n");
-> +		ret = PTR_ERR(a5psw->clk);
-> +		goto free_pcs;
-> +	}
-> +
-> +	ret = clk_prepare_enable(a5psw->clk);
-> +	if (ret)
-> +		goto free_pcs;
-> +
-> +	ret = clk_prepare_enable(a5psw->hclk);
-> +	if (ret)
-> +		goto clk_disable;
-> +
-> +	mdio = of_get_child_by_name(dev->of_node, "mdio");
-> +	if (of_device_is_available(mdio)) {
-> +		ret = a5psw_probe_mdio(a5psw, mdio);
-> +		if (ret) {
-> +			of_node_put(mdio);
-> +			dev_err(&pdev->dev, "Failed to register MDIO: %d\n",
-> +				ret);
-> +			goto hclk_disable;
-> +		}
+Ok, that is actually possible on a system that is given a device-tree
+by the bootloader. But on a system that is desrcibed using ACPI (such
+as the x86), this is much more difficult (at least to my knowledge)...
+We want this feature to be easy to use for the end user. Adding such
+configuration which also differs between various architecture is
+clearly not so easy to setup.
 
-Missing an of_node_put(mdio) if the device is available and ret == 0.
+Moreover, since the PCI is meant to be "Plug and Play", such
+configuration would completely break that. If the user switches the
+PCIe card from one slot to another, the bootloader configuration will
+need to be modified. This seems a big no way for me (and for the user).
 
-> +	} else {
-> +		of_node_put(mdio);
-> +	}
-> +
-> +	ds = &a5psw->ds;
-> +	ds->dev = &pdev->dev;
-> +	ds->num_ports = A5PSW_PORTS_NUM;
-> +	ds->ops = &a5psw_switch_ops;
-> +	ds->priv = a5psw;
-> +
-> +	ret = dsa_register_switch(ds);
-> +	if (ret) {
-> +		dev_err(&pdev->dev, "Failed to register DSA switch: %d\n", ret);
-> +		goto hclk_disable;
-> +	}
-> +
-> +	return 0;
-> +
-> +hclk_disable:
-> +	clk_disable_unprepare(a5psw->hclk);
-> +clk_disable:
-> +	clk_disable_unprepare(a5psw->clk);
-> +free_pcs:
-> +	a5psw_pcs_free(a5psw);
-> +
-> +	return ret;
-> +}
-> +
-> +static int a5psw_remove(struct platform_device *pdev)
-> +{
-> +	struct a5psw *a5psw = platform_get_drvdata(pdev);
+>=20
+> The other big issue is mixing ACPI and devicetree on a single system.
+> Historically, the Linux devicetree community has not been receptive
+> to the ides of that mixture.  Your example might be a specific case
+> where the two can be isolated from each other, or maybe not.  (For
+> disclosure, I am essentially ACPI ignorant.)  I suspect that mixing
+> ACPI and devicetree is a recipe for disaster in the general case.
 
-I hate to repeat myself, but drivers in general can be removed after the device
-was shut down. If that happens, you will dereference a platform_get_drvdata()
-which is NULL, as set by yourself in a5psw_shutdown().
+Agreed, on that fact, it did raised some eyebrows, and it was for that
+specific concern that initially, I proposed the fwnode solution.
+Honestly, the fwnode conversion represent a lot of work (hundreds of
+lines easily) + requires a conversion of all the subsystem that are not
+fwnode ready (spoiler: almost all of them are not ready).=20
 
-> +
-> +	dsa_unregister_switch(&a5psw->ds);
-> +	a5psw_pcs_free(a5psw);
-> +	clk_disable_unprepare(a5psw->hclk);
-> +	clk_disable_unprepare(a5psw->clk);
-> +
-> +	return 0;
-> +}
-> +
-> +static void a5psw_shutdown(struct platform_device *pdev)
-> +{
-> +	struct a5psw *a5psw = platform_get_drvdata(pdev);
-> +
-> +	if (!a5psw)
-> +		return;
-> +
-> +	dsa_switch_shutdown(&a5psw->ds);
-> +
-> +	platform_set_drvdata(pdev, NULL);
-> +}
+After implementing Rob's solution, the device-tree overlay really seems
+the cleaner to me and requires much less modifications.
+
+>=20
+> More to come later as I finish reading through the various threads.
+
+Ok, thanks for your time !
+
+Cl=C3=A9ment
+
+>=20
+> -Frank
+
