@@ -2,224 +2,236 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2723E5205C0
-	for <lists+devicetree@lfdr.de>; Mon,  9 May 2022 22:21:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BD8285205D5
+	for <lists+devicetree@lfdr.de>; Mon,  9 May 2022 22:25:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229557AbiEIUZK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 May 2022 16:25:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44460 "EHLO
+        id S229753AbiEIU31 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 May 2022 16:29:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36246 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229591AbiEIUYL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 May 2022 16:24:11 -0400
-Received: from mail-io1-xd30.google.com (mail-io1-xd30.google.com [IPv6:2607:f8b0:4864:20::d30])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F0612397AE;
-        Mon,  9 May 2022 13:07:21 -0700 (PDT)
-Received: by mail-io1-xd30.google.com with SMTP id f2so16509562ioh.7;
-        Mon, 09 May 2022 13:07:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=xBdVJcHdqbtyx+NxaVm9KQbBrTAdRTKsDdJxxaJYvL4=;
-        b=jFdEHzypiblPDjhn4aC2Ui/AgTaVRieng6vnqO9HHWVYbRcX8g8GBe3vfRS5XjYuke
-         EM4S/qf82a2EpKAEXO2hWOJE7GLPxpX922UpkWp5deDa5DywkHoF7YWA01mC8z4o3tOW
-         +SU55dTflZNYQ6xUgrDCd8k1yjX4xd6O+I2Y0uuTTENuWojfK/V1f7v+TBkpjirwO1Ho
-         xtWY0m85bgrjr1kgLK8n2siBrB6IEdh5g5FJmT79+KvSN4boB6EHpa6mP0Tcg/+j+Ab1
-         ZgjV48F2MUfN+WR/T/dzqlD2IaF4Tuskg5aePmVJxZpgy6APdKKsX5MVCzqwQ1TASLg6
-         QzNw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=xBdVJcHdqbtyx+NxaVm9KQbBrTAdRTKsDdJxxaJYvL4=;
-        b=YxtqsrEzpBCvxbj7MsX6PX+kMBhQYTnj9UvexBpaJqSF34ElhZwNqZ+kEsQFnaYPra
-         lGhpE6zMhAQVGFTG0RjYd4TdebawPHbLy2UyC1Y1sGF/2iYIbjICbcFphTotpLQph5Tw
-         2KTMhJyYs9JWfokiDMqa/NcRhoH3R9b3OW+xMuQIdooc5E9M7rTb4icmUKkIRxsP13q+
-         uVgOo0T8tR/AVQTE50a9LcIT88rYEydqDbsbzgH4s1lv61f9gcm385NbUVZnktfWfG//
-         sUB5dAKkKHUk6fsZbCftnM/Zr7ZjiL0D/k8ws5C5lFPK0ncUS59VPpUyn18qK+dgWWFd
-         z9jg==
-X-Gm-Message-State: AOAM531ma0wFhfBAddfO2GNH1MU8/ptrUEd1okm7daeVltzaHKkoq3VQ
-        iF1mf4CHUlgD3mzf/p23eOSUI9cDD7s=
-X-Google-Smtp-Source: ABdhPJz4BVBpV5Y8VubYvds5o5jdOLxW0I6G/FMgoGe9F8yU5J0pEbLwlQj2Qz8I7jTtIaJvpirSzg==
-X-Received: by 2002:a05:6638:3012:b0:317:9a63:ecd3 with SMTP id r18-20020a056638301200b003179a63ecd3mr8728165jak.210.1652126840675;
-        Mon, 09 May 2022 13:07:20 -0700 (PDT)
-Received: from ?IPV6:2600:1700:2442:6db0:4a3:2265:73fb:e310? ([2600:1700:2442:6db0:4a3:2265:73fb:e310])
-        by smtp.gmail.com with ESMTPSA id e26-20020a026d5a000000b0032b3a781760sm3814847jaf.36.2022.05.09.13.07.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 09 May 2022 13:07:19 -0700 (PDT)
-Message-ID: <e6828dce-3e10-779e-4d12-67e7bdfd0f73@gmail.com>
-Date:   Mon, 9 May 2022 15:07:18 -0500
+        with ESMTP id S229553AbiEIU3M (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 May 2022 16:29:12 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C56B1F8F14;
+        Mon,  9 May 2022 13:11:24 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 35555616D2;
+        Mon,  9 May 2022 20:11:24 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9B133C385C2;
+        Mon,  9 May 2022 20:11:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1652127083;
+        bh=KgbkuAWcAZAtlly2dGO/ru9Wcb6YFEOvc5D53ztwe1g=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=ZroXpDHV8m3uvWP15OxOZr3pOXzhtlgKfqlthkmHP5tgkQlwvIMt7OazQ89NM5Hzv
+         zqS0A/1v5KDNQewtqDIwDIcy+CoLK2VxTEwTF06UsHSjmBc7moCd57WkSmxdObjaWC
+         wRpQu/6Cai7Ov5ynIIr51emPMZWJ3z4xrA/nwKFOsS3m4fbSNcKJS5ka2MBZcQJ9SG
+         y5j+aGdwm953bmtceFEHNJYe9KFhmknNkUNdDToHJGYzD4UrqDAggbPaw94Y3SNYcb
+         mmaRzdE/ScDXoaTrUe7H5Jc7LHHJTP68yTF8ZvKVBRHVvPAk1oZuEbOm9HzQHiwipE
+         3L8/sM/WIAPUw==
+Received: by mail-pf1-f175.google.com with SMTP id bo5so13162187pfb.4;
+        Mon, 09 May 2022 13:11:23 -0700 (PDT)
+X-Gm-Message-State: AOAM530qQHmWkxqvp8nT5jS/Xjb/v5I55B72w0jNtZkeCdFO7VKho5aS
+        7/yqP/ZSzWpZgDOCS9Ex/kZivd1onoEt4K/bCg==
+X-Google-Smtp-Source: ABdhPJyNfsJjiheHv8YpRlfRjiAzEZNoSI2TP/1P0uIzUtueTLIZeAoOJi21y1r/+RutXA01GPq9VsMWBC5AAj8touY=
+X-Received: by 2002:a63:d842:0:b0:3c6:ab6b:5f3c with SMTP id
+ k2-20020a63d842000000b003c6ab6b5f3cmr6788575pgj.148.1652127082959; Mon, 09
+ May 2022 13:11:22 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH 0/3] add dynamic PCI device of_node creation for overlay
-Content-Language: en-US
-To:     =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Allan Nielsen <allan.nielsen@microchip.com>,
-        Horatiu Vultur <horatiu.vultur@microchip.com>,
-        Steen Hegelund <steen.hegelund@microchip.com>,
-        Thomas Petazzoni <thomas.petazonni@bootlin.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Mark Brown <broonie@kernel.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Andrew Lunn <andrew@lunn.ch>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org
-References: <20220427094502.456111-1-clement.leger@bootlin.com>
- <96db62bb-18be-f44a-6f53-05b22319f23a@gmail.com>
- <20220509141634.16158c38@xps-bootlin>
- <f9b0cbf1-dde2-ff97-cca0-5d2895734f91@gmail.com>
- <20220509180917.0f0ae851@xps-bootlin>
-From:   Frank Rowand <frowand.list@gmail.com>
-In-Reply-To: <20220509180917.0f0ae851@xps-bootlin>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+References: <20220217102448.27586-1-zajec5@gmail.com> <Yh/ovYMV104jc+CE@robh.at.kernel.org>
+ <fb18b5e2-d273-adf6-3e14-77628abc4560@gmail.com>
+In-Reply-To: <fb18b5e2-d273-adf6-3e14-77628abc4560@gmail.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Mon, 9 May 2022 15:11:11 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+KPiy4Tg3+qeMYHuSM5y2Y1X6tsAvQsWrWsoQiugtykw@mail.gmail.com>
+Message-ID: <CAL_Jsq+KPiy4Tg3+qeMYHuSM5y2Y1X6tsAvQsWrWsoQiugtykw@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: mtd: partitions: add UBI binding
+To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        MTD Maling List <linux-mtd@lists.infradead.org>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Tom Rini <trini@konsulko.com>,
+        Ricardo Salveti <ricardo@foundries.io>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Jorge Ramirez-Ortiz <jorge@foundries.io>,
+        Sean Anderson <seanga2@gmail.com>,
+        U-Boot Mailing List <u-boot@lists.denx.de>,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 5/9/22 11:09, Clément Léger wrote:
-> Le Mon, 9 May 2022 10:56:36 -0500,
-> Frank Rowand <frowand.list@gmail.com> a écrit :
-> 
->>> Hi Frank,
->>>
->>> This work uses the kernel space interface (of_overlay_fdt_apply())
->>> and the device tree overlay is builtin the driver. This interface
->>> was used until recently by rcu-dcar driver. While the only user
->>> (sic), this seems to work pretty well and I was able to use it
->>> successfully.  
->>
->> Yes, of_overlay_fdt_apply() was used by one driver.  But that driver
->> was explicitly recognized as a grandfathered exception, and not an
->> example for other users.  It was finally removed in 5.18-rc1.
-> 
-> I noticed that unfortunately.
-> 
->>
->> You may have used of_overlay_fdt_apply() in a specific use case at
->> a specific kernel version, but if you read through the references
->> I provided you will find that applying overlays after the kernel
->> boots is a fragile endeavor, with expectations of bugs and problems
->> being exposed as usage is changed (simple example is that my adding
->> some overlay notifier unittests exposed yet another memory leak).
->>
->> The reference that I provided also shows how the overlay code is
->> being improved over time.  Even with improvements, it will remain
->> fragile.
-> 
-> Acked.
-> 
->>
->>>
->>> Moreover, this support targets at using this with PCI devices. This
->>> devices are really well contained and do not interfere with other
->>> devices. This actually consists in adding a complete subtree into
->>> the existing device-tree and thus it limits the interactions between
->>> potentially platform provided devices and PCI ones.  
->>
->> Yes, that it is very important that you have described this fact, both
->> here and in other emails.  Thank you for that information, it does
->> help understanding the alternatives.
->>
->> I've hesitated in recommending a specific solution before better
->> understanding the architecture of your pcie board and drivers, but
->> I've delayed too long, so I am going to go ahead and mention one
->> possibility at the risk of not yet fully understanding the situation.
->>
->> On the surface, it appears that your need might be well met by having
->> a base devicetree that describes all of the pcie nodes, but with each
->> node having a status of "disabled" so that they will not be used.
->> Have a devicetree overlay describing the pcie card (as you proposed),
->> where the overlay also includes a status of "ok" for the pcie node.
->> Applying the overlay, with a method of redirecting the target to a
->> specific pcie node would change the status of the pcie node to enable
->> its use.  (You have already proposed a patch to modify
->> of_overlay_fdt_apply() to allow a modified target, so not a new
->> concept from me.)  My suggestion is to apply the overlay devicetree
->> to the base devicetree before the combined FDT devicetree is passed
->> to the kernel at boot.  The overlay apply could be done by several
->> different entities.  It could be before the bootloader executes, it
->> could be done by the bootloader, it could be done by a shim between
->> the bootloader and the kernel.  This method avoids all of the issues
->> of applying an overlay to a running system that I find problematic.
->> It is also a method used by the U-boot bootloader, as an example.
-> 
+On Thu, Mar 3, 2022 at 2:32 AM Rafa=C5=82 Mi=C5=82ecki <zajec5@gmail.com> w=
+rote:
+>
+> On 2.03.2022 22:59, Rob Herring wrote:
+> > On Thu, Feb 17, 2022 at 11:24:48AM +0100, Rafa=C5=82 Mi=C5=82ecki wrote=
+:
+> >> From: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
+> >>
+> >> UBI is often used on embedded devices to store UBI volumes with device
+> >> configuration / calibration data. Such volumes may need to be document=
+ed
+> >> and referenced for proper boot & setup.
+> >>
+> >> Some examples:
+> >> 1. U-Boot environment variables
+> >> 2. Device calibration data
+> >> 3. Default setup (e.g. initial password)
+> >>
+> >> Signed-off-by: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
+> >> ---
+> >>   .../bindings/mtd/partitions/ubi.yaml          | 67 +++++++++++++++++=
+++
+> >>   1 file changed, 67 insertions(+)
+> >>   create mode 100644 Documentation/devicetree/bindings/mtd/partitions/=
+ubi.yaml
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/mtd/partitions/ubi.yaml=
+ b/Documentation/devicetree/bindings/mtd/partitions/ubi.yaml
+> >> new file mode 100644
+> >> index 000000000000..cd081f06d4cb
+> >> --- /dev/null
+> >> +++ b/Documentation/devicetree/bindings/mtd/partitions/ubi.yaml
+> >> @@ -0,0 +1,67 @@
+> >> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> >> +%YAML 1.2
+> >> +---
+> >> +$id: http://devicetree.org/schemas/mtd/partitions/ubi.yaml#
+> >> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> >> +
+> >> +title: UBI (Unsorted Block Images) device
+> >> +
+> >> +description: |
+> >> +  UBI is a layer providing logical volumes (consisting of logical blo=
+cks) on top
+> >> +  of raw flash devices. It deals with low-level flash issues (bit-fli=
+ps, bad
+> >> +  physical eraseblocks, wearing) providing a reliable data storage.
+> >> +
+> >> +  UBI device is built and stored in a single flash partition.
+> >> +
+> >> +  Some (usually embedded) devices use UBI volumes of specific names o=
+r indexes
+> >> +  to store setup / configuration data. This binding allows describing=
+ such
+> >> +  volumes so they can be identified and referenced by consumers.
+> >> +
+> >> +maintainers:
+> >> +  - Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
+> >> +
+> >> +allOf:
+> >> +  - $ref: partition.yaml#
+> >> +
+> >> +properties:
+> >> +  compatible:
+> >> +    const: ubi
+> >> +
+> >> +patternProperties:
+> >> +  "^volume-[0-9a-f]+$":
+> >> +    type: object
+> >> +    description: UBI volume
+> >> +    properties:
+> >> +      volume-name:
+> >> +        $ref: /schemas/types.yaml#/definitions/string
+> >> +      volume-id:
+> >> +        $ref: /schemas/types.yaml#/definitions/uint32
+> >> +    anyOf:
+> >> +      - required:
+> >> +          - volume-name
+> >> +      - required:
+> >> +          - volume-id
+> >> +
+> >> +unevaluatedProperties: false
+> >> +
+> >> +examples:
+> >> +  - |
+> >> +    partitions {
+> >> +        compatible =3D "fixed-partitions";
+> >> +        #address-cells =3D <1>;
+> >> +        #size-cells =3D <1>;
+> >> +
+> >> +        partition@0 {
+> >> +            compatible =3D "ubi";
+> >> +            reg =3D <0x0000000 0x1000000>;
+> >> +            label =3D "filesystem";
+> >> +
+> >> +            env: volume-0 {
+> >> +                volume-name =3D "u-boot-env";
+> >
+> > Why not do 'compatible =3D "u-boot,env";' to align with normal partitio=
+ns?
+>
+> I mean to reserve "compatible" for describing UBI volume content.
+>
+> If I manage to get
+> [PATCH V3] dt-bindings: nvmem: add U-Boot environment variables binding
+> https://patchwork.ozlabs.org/project/devicetree-bindings/patch/2022022813=
+1250.16943-1-zajec5@gmail.com/
+> accepted, it'll allow me to later work on something like:
+>
+> env: volume-0 {
+>      compatible =3D "u-boot,env";
+>      volume-name =3D "u-boot-env";
+> };
+>
+> (I believe) I'll need (in the final shape) two properties:
+> 1. One for describing UBI volume ("compatible")
+> 2. One for identifying UBI volume ("volume-name" / "volume-id")
+>
+> It's similar design to the "compatible" vs. "reg" in IO hw blocks.
 
-Apologies if my following questions have already been answered in the
-other threads...
+That's what it is vs. what instance. You need a better example if
+that's what you are trying to show. I guess if you were doing A/B
+updates you'd have something like 'volume-name =3D "u-boot-env-b"'?
 
-> Ok, that is actually possible on a system that is given a device-tree
-> by the bootloader. But on a system that is desrcibed using ACPI (such
-> as the x86), this is much more difficult (at least to my knowledge)...
-> We want this feature to be easy to use for the end user. Adding such
-> configuration which also differs between various architecture is
-> clearly not so easy to setup.
+>
+>
+> > Or 'label'?
+>
+> I could replace "volume-name" with "label" but someone once told me that:
+>  > 'label' is supposed to correspond to a sticker on a port or something
+>  > human identifiable
 
-Are you trying to make your card work on any ACPI based system (x86,
-x86-64, etc)?  Or do you have a specific model of computer that you
-want to make this work on for a specific customer or appliance?
+Yes, it could be a human wanting to identify it. The question is
+whether s/w does too.
 
-If for many arbitrary systems, can you limit it to one architecture
-or sub-architecture?
+The other aspect is there's also filesystem/partition label's. Those
+are generally set by humans and opaque to the s/w. If the use is
+aligned with how those labels are used, then I'd be okay with the DT
+'label' here.
 
-> 
-> Moreover, since the PCI is meant to be "Plug and Play", such
-> configuration would completely break that. If the user switches the
-> PCIe card from one slot to another, the bootloader configuration will
-> need to be modified. This seems a big no way for me (and for the user).
+>
+> ;) https://patchwork.ozlabs.org/comment/2812214/
+>
+> So I don't want to abuse "label" here.
+>
+>
+> > We have enough ways to identify things, I don't think we need another.
+> >
+> >> +            };
+> >> +
+> >> +            calibration: volume-1 {
+> >
+> > Are 0 and 1 meaningful or just made up indexing?
+>
+> Made up indexing. I need unique nodenames but @[0-9a-f] doesn't appply he=
+re.
 
-Yes.  I was envisioning the pre-bootloader, bootloader, or Linux pre-boot
-shim dynamically determining the slot containing the card, and applying
-the overlay devicetree to the base devicetree, retargeting the overlay
-to the proper location, before the Linux boot.
+Maybe use "volume-$volumename" or "volume-$volumeid" instead?
 
-The base devicetree would be for a specific type of machine or family
-of machines, just as is the case for all devicetree based systems.
-
-> 
->>
->> The other big issue is mixing ACPI and devicetree on a single system.
->> Historically, the Linux devicetree community has not been receptive
->> to the ides of that mixture.  Your example might be a specific case
->> where the two can be isolated from each other, or maybe not.  (For
->> disclosure, I am essentially ACPI ignorant.)  I suspect that mixing
->> ACPI and devicetree is a recipe for disaster in the general case.
-> 
-> Agreed, on that fact, it did raised some eyebrows, and it was for that
-> specific concern that initially, I proposed the fwnode solution.
-> Honestly, the fwnode conversion represent a lot of work (hundreds of
-> lines easily) + requires a conversion of all the subsystem that are not
-> fwnode ready (spoiler: almost all of them are not ready). 
-> 
-> After implementing Rob's solution, the device-tree overlay really seems
-> the cleaner to me and requires much less modifications.
-> 
->>
->> More to come later as I finish reading through the various threads.
-> 
-> Ok, thanks for your time !
-
-Your welcome.  I'll keep looking deeper into the previous threads.
-
--Frank
-
-> 
-> Clément
-> 
->>
->> -Frank
-> 
-> .
-
+Rob
