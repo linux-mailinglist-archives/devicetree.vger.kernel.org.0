@@ -2,101 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 02AC451FECD
-	for <lists+devicetree@lfdr.de>; Mon,  9 May 2022 15:51:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0BB3751FED0
+	for <lists+devicetree@lfdr.de>; Mon,  9 May 2022 15:51:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236366AbiEINvQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 May 2022 09:51:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57984 "EHLO
+        id S236383AbiEINxG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 May 2022 09:53:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39062 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236541AbiEINvE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 May 2022 09:51:04 -0400
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6F6B19CB79;
-        Mon,  9 May 2022 06:47:10 -0700 (PDT)
-Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 249CkU1q011337;
-        Mon, 9 May 2022 15:46:59 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
- subject : date : message-id : mime-version : content-type; s=selector1;
- bh=YCUzkBMpATH4oafdkH+ZZgiEl4z5yPbRDWExDNymfS0=;
- b=KU41ueLp4zx7fAW+P0ojjYgNwFdPzVZtCJ9dsjkKsRvTs4tUTPOiW0BwEiNOPIoA6uRb
- TGQnTDv5soQDuXNoLoAffj65sk8hUiAFKWdGqprK2vtJYuWQ1dm+msWDFcnjwlV3Ba6K
- TDiTdoQ6Ld0FCEqfA6OXvk7W5AmrNeVnemlTVUmVphyfXZegmjJd/nJ6c1iofD4m0DDp
- XKVTiWSNJvzF9vXxwv3VhzAXbPm2ISwYyZxm8S85zbX6ZaC7sMDmmwWQBatRYEgxB+Ql
- pixTqTG4thhLgKfOsCEZzux4A93g6OCG9y7N0JQbB5Cyj+mGaNejBGUb71QQsmN+2709 Rw== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3fwe6kjfgf-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 09 May 2022 15:46:59 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 0970510002A;
-        Mon,  9 May 2022 15:46:59 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 02E402248D3;
-        Mon,  9 May 2022 15:46:59 +0200 (CEST)
-Received: from localhost (10.75.127.46) by SHFDAG1NODE1.st.com (10.75.129.69)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.2308.20; Mon, 9 May
- 2022 15:46:58 +0200
-From:   Alexandre Torgue <alexandre.torgue@foss.st.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>
-CC:     <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        <linux-stm32@st-md-mailman.stormreply.com>
-Subject: [PATCH] dt-bindings: clock: stm32mp1: adapt example for "st,stm32mp1-rcc-secure"
-Date:   Mon, 9 May 2022 15:46:58 +0200
-Message-ID: <20220509134658.16267-1-alexandre.torgue@foss.st.com>
-X-Mailer: git-send-email 2.17.1
+        with ESMTP id S236398AbiEINw7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 May 2022 09:52:59 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 333A818995A
+        for <devicetree@vger.kernel.org>; Mon,  9 May 2022 06:49:05 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D9C761480;
+        Mon,  9 May 2022 06:49:04 -0700 (PDT)
+Received: from donnerap.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 5639C3F73D;
+        Mon,  9 May 2022 06:49:03 -0700 (PDT)
+Date:   Mon, 9 May 2022 14:49:01 +0100
+From:   Andre Przywara <andre.przywara@arm.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        Robin Murphy <robin.murphy@arm.com>,
+        Liviu Dudau <liviu.dudau@arm.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Will Deacon <will@kernel.org>
+Subject: Re: [PATCH v2 10/11] dt-bindings: display: convert Arm Mali-DP to
+ DT schema
+Message-ID: <20220509144901.26707a1d@donnerap.cambridge.arm.com>
+In-Reply-To: <1651876793.707852.2407424.nullmailer@robh.at.kernel.org>
+References: <20220506140533.3566431-1-andre.przywara@arm.com>
+        <20220506140533.3566431-11-andre.przywara@arm.com>
+        <1651876793.707852.2407424.nullmailer@robh.at.kernel.org>
+Organization: ARM
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.75.127.46]
-X-ClientProxiedBy: SFHDAG2NODE2.st.com (10.75.127.5) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.858,Hydra:6.0.486,FMLib:17.11.64.514
- definitions=2022-05-09_03,2022-05-09_01,2022-02-23_01
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-For "st,stm32mp1-rcc-secure" schema, clocks and clock-names entries are now
-required properties.
+On Fri, 06 May 2022 17:39:53 -0500
+Rob Herring <robh@kernel.org> wrote:
 
-Signed-off-by: Alexandre Torgue <alexandre.torgue@foss.st.com>
+> On Fri, 06 May 2022 15:05:32 +0100, Andre Przywara wrote:
+> > The Arm Mali Display Processor (DP) 5xx/6xx is a series of IP that scans
+> > out a framebuffer and hands the pixels over to a digital signal encoder.
+> > It supports multiple layers, scaling and rotation.
+> > 
+> > Convert the existing DT binding to DT schema.
+> > 
+> > Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+> > ---
+> >  .../bindings/display/arm,malidp.txt           |  68 ----------
+> >  .../bindings/display/arm,malidp.yaml          | 116 ++++++++++++++++++
+> >  2 files changed, 116 insertions(+), 68 deletions(-)
+> >  delete mode 100644 Documentation/devicetree/bindings/display/arm,malidp.txt
+> >  create mode 100644 Documentation/devicetree/bindings/display/arm,malidp.yaml
+> >   
+> 
+> Running 'make dtbs_check' with the schema in this patch gives the
+> following warnings. Consider if they are expected or the schema is
+> incorrect. These may not be new warnings.
+> 
+> Note that it is not yet a requirement to have 0 warnings for dtbs_check.
+> This will change in the future.
+> 
+> Full log is available here: https://patchwork.ozlabs.org/patch/
+> 
+> 
+> display@f080000: 'arm,malidp-arqos-value' does not match any of the regexes: 'pinctrl-[0-9]+'
+> 	arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-kbox-a-230-ls.dtb
+> 	arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28.dtb
+> 	arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var1.dtb
+> 	arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var2.dtb
+> 	arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var3-ads2.dtb
+> 	arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var4.dtb
+> 	arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dtb
+> 	arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dtb
 
-diff --git a/Documentation/devicetree/bindings/clock/st,stm32mp1-rcc.yaml b/Documentation/devicetree/bindings/clock/st,stm32mp1-rcc.yaml
-index bb0e0b92e907..45b94124366c 100644
---- a/Documentation/devicetree/bindings/clock/st,stm32mp1-rcc.yaml
-+++ b/Documentation/devicetree/bindings/clock/st,stm32mp1-rcc.yaml
-@@ -106,10 +106,17 @@ additionalProperties: false
+Ah, good point, I missed that directory when testing. I came up with the
+following change on top:
+
+==============================
+diff --git a/Documentation/devicetree/bindings/display/arm,malidp.yaml b/Documentation/devicetree/bindings/display/arm,malidp.yaml
+index ea7b7100548bf..bc0d3f3ab2b75 100644
+--- a/Documentation/devicetree/bindings/display/arm,malidp.yaml
++++ b/Documentation/devicetree/bindings/display/arm,malidp.yaml
+@@ -76,6 +76,14 @@ properties:
+     description:
+       integer describing the ARQoS levels of DP500's QoS signaling
  
- examples:
-   - |
-+    #include <dt-bindings/clock/stm32mp1-clks.h>
-     rcc: rcc@50000000 {
-         compatible = "st,stm32mp1-rcc-secure", "syscon";
-         reg = <0x50000000 0x1000>;
-         #clock-cells = <1>;
-         #reset-cells = <1>;
-+        clock-names = "hse", "hsi", "csi", "lse", "lsi";
-+        clocks = <&scmi_clk CK_SCMI_HSE>,
-+                 <&scmi_clk CK_SCMI_HSI>,
-+                 <&scmi_clk CK_SCMI_CSI>,
-+                 <&scmi_clk CK_SCMI_LSE>,
-+                 <&scmi_clk CK_SCMI_LSI>;
-     };
- ...
--- 
-2.17.1
++  arm,malidp-arqos-value:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      Quality-of-Service value for the display engine FIFOs, to write
++      into the RQOS register of the DP500.
++      See the ARM Mali-DP500 TRM for details on the encoding.
++      If omitted, the RQOS register will not be changed.
++
+   port:
+     $ref: /schemas/graph.yaml#/properties/port
+     unevaluatedProperties: false
+==============================
 
+Cheers,
+Andre
