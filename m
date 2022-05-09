@@ -2,124 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4F3A05201D2
-	for <lists+devicetree@lfdr.de>; Mon,  9 May 2022 18:01:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D6FE5201E1
+	for <lists+devicetree@lfdr.de>; Mon,  9 May 2022 18:05:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238824AbiEIQEQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 May 2022 12:04:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48682 "EHLO
+        id S238777AbiEIQHQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 May 2022 12:07:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60810 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238713AbiEIQEP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 May 2022 12:04:15 -0400
-Received: from mail-yb1-xb2f.google.com (mail-yb1-xb2f.google.com [IPv6:2607:f8b0:4864:20::b2f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 215EC2A7C0A
-        for <devicetree@vger.kernel.org>; Mon,  9 May 2022 09:00:20 -0700 (PDT)
-Received: by mail-yb1-xb2f.google.com with SMTP id j2so25853730ybu.0
-        for <devicetree@vger.kernel.org>; Mon, 09 May 2022 09:00:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=knnW3YdGHU3dQmhoQ/TIt12Wud5O9OTp/LrpDaN4GjM=;
-        b=gBo755tMf9Osy5tffBppRj7GfJn4ql1mKymzn97tMmsCY7Ovgg3Kvs3yRy3+4Aalcc
-         7KUYzLx4mobr7QA0sQjmav3JM0lT4HGbe90OVpKyYL6B8SqhIMEsUOTQ8KsM8Juyeuoj
-         TCRbl+PuQ1y0LWQOfM8m53FgLypONm6ia1cr2XMvW1Y6NxfAOmb49oqvIxGLafkafPj1
-         oazllSGRNd9UaEK/q76XMrqpgxNvlTLZIoshpDQmPfdewjNWyw5XGAJdDPu2RrosDaW/
-         P1pW1xWg026bNkocIWIl4BBR6IqIgvItap/A6KrxDBotH0mbvIo/KaIyCPpLt0drClE7
-         FxkA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=knnW3YdGHU3dQmhoQ/TIt12Wud5O9OTp/LrpDaN4GjM=;
-        b=eJtDR/rlabemZwB6Pt8XEJlR1Od9JGrvIRIFd2px5nB2BOfP2wahu4445DxI4zY/nH
-         9f2FKb+K5ctXJrxSNXpxbf5+wgWQ1LDouQtrahtHL8I+KX2w/vP8dzDefbVwdyBzzhqL
-         qNY0rtQTJmZsGNS854xAIfmmIAIURFDXjaS/OCVev/mEKQjgVNksifSHb/WNap6pi6QF
-         RluIWJfvXveWN8bGGahMSqsk2FwvE1g1G9eVVa6HM4DC66zoqjbhK6+ODLlkeXIJJuim
-         XATjZO/cKpPX4Zrf4RJ6jWwhf8ZqSifEbxsGPSWw9Cie9hKh0r6RJXWJSCeoZ0CHLyOk
-         mDuA==
-X-Gm-Message-State: AOAM532MQIaBfrKrT3BZVO6NZdsiKBAqNM1Ltdrd67i2jMWnFGrUy5P3
-        4F3Ald9TiAZRLI09Lxtks96w5TaGjysiLXbVFCs=
-X-Google-Smtp-Source: ABdhPJzE0yuDYQajfmjTVe+xPs9zcVxiG4bkyGXxUy+igdOw39M2htAP7fLlOx0fjjDMxhJ38jlzCt8sXC0uyVUM7Aw=
-X-Received: by 2002:a05:6902:706:b0:649:daee:ada1 with SMTP id
- k6-20020a056902070600b00649daeeada1mr14322790ybt.366.1652112020072; Mon, 09
- May 2022 09:00:20 -0700 (PDT)
+        with ESMTP id S238783AbiEIQHP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 May 2022 12:07:15 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3391024D597;
+        Mon,  9 May 2022 09:03:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
+        Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
+        Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
+        In-Reply-To:References; bh=2KEf0T4CWmhmQoo31/SJzrrqOdQJI02kJMyMKQSb7lQ=; b=R4
+        09Do7jt6UfVkMNteQRzXOmQs/aJIanozNpVoC7ZXWqQUxuNjFbRTZrnqsTAaHj5WKLpV0dtm5YGpn
+        coZVSugG5VlQoOmd0fvXfjV+UBk9i+uJaKrnKuKTXxdKnf+XMBghDklpfv9/PNiieVfEZ95nC8XSw
+        thCx7Q0+WbcuCoU=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1no5qZ-001y6d-Me; Mon, 09 May 2022 18:02:55 +0200
+Date:   Mon, 9 May 2022 18:02:55 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     LABBE Corentin <clabbe@baylibre.com>
+Cc:     alexandre.torgue@foss.st.com, broonie@kernel.org,
+        calvin.johnson@oss.nxp.com, davem@davemloft.net,
+        edumazet@google.com, hkallweit1@gmail.com,
+        jernej.skrabec@gmail.com, joabreu@synopsys.com,
+        krzysztof.kozlowski+dt@linaro.org, kuba@kernel.org,
+        lgirdwood@gmail.com, linux@armlinux.org.uk, pabeni@redhat.com,
+        peppe.cavallaro@st.com, robh+dt@kernel.org, samuel@sholland.org,
+        wens@csie.org, netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-sunxi@lists.linux.dev
+Subject: Re: [PATCH 3/6] dt-bindings: net: Add documentation for phy-supply
+Message-ID: <Ynk7L07VH/RFVzl6@lunn.ch>
+References: <20220509074857.195302-1-clabbe@baylibre.com>
+ <20220509074857.195302-4-clabbe@baylibre.com>
+ <YnkGV8DyTlCuT92R@lunn.ch>
+ <YnkWl+xYCX8r9DE7@Red>
 MIME-Version: 1.0
-References: <20220422072841.2206452-1-s.hauer@pengutronix.de>
- <20220422072841.2206452-21-s.hauer@pengutronix.de> <A86359EC-5291-41BD-966E-EB7890644731@gmail.com>
- <CAMdYzYoFG3wCQaWXQNJd7mE20OMCj=ZeuewwZfaCJyoCBT-kQQ@mail.gmail.com>
- <0E6FE020-C95E-47CF-A9D6-AC3F2B2D334F@gmail.com> <CAMdYzYobfJ7WGN+UQ7t5e1Zy9knjfHLse8KzrGrHPfeMkkG0gw@mail.gmail.com>
- <9F2D8CFF-1EAE-4586-9EE9-82A9D67840BB@gmail.com>
-In-Reply-To: <9F2D8CFF-1EAE-4586-9EE9-82A9D67840BB@gmail.com>
-From:   Peter Geis <pgwipeout@gmail.com>
-Date:   Mon, 9 May 2022 12:00:08 -0400
-Message-ID: <CAMdYzYrz7DRj7F9hGaAPaTSiZkQ4eMNujAp8uPuE9geL6kAz4g@mail.gmail.com>
-Subject: Re: [PATCH v11 20/24] arm64: dts: rockchip: enable vop2 and hdmi tx
- on rock-3a
-To:     Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
-Cc:     Sascha Hauer <s.hauer@pengutronix.de>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        dri-devel@lists.freedesktop.org,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Sandy Huang <hjc@rock-chips.com>,
-        =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
-        kernel test robot <lkp@intel.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <YnkWl+xYCX8r9DE7@Red>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, May 8, 2022 at 2:21 PM Piotr Oniszczuk
-<piotr.oniszczuk@gmail.com> wrote:
->
->
-> >>
-> >> I think i have this already (pls see L231/L232 in https://pastebin.com/67wu9QrH )
-> >
-> > I see you have hdmitxm1_cec as the enabled pin. Are you certain it's
-> > the m1 pin and not the m0 pin?
->
-> It depends on board ver.
-> pls look: https://github.com/radxa/kernel/commit/c1d727692e85c0a265913a72e517cf2bd71131ba
+On Mon, May 09, 2022 at 03:26:47PM +0200, LABBE Corentin wrote:
+> Le Mon, May 09, 2022 at 02:17:27PM +0200, Andrew Lunn a écrit :
+> > On Mon, May 09, 2022 at 07:48:54AM +0000, Corentin Labbe wrote:
+> > > Add entries for the 2 new phy-supply and phy-io-supply.
+> > > 
+> > > Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
+> > > ---
+> > >  .../devicetree/bindings/net/ethernet-phy.yaml          | 10 ++++++++++
+> > >  1 file changed, 10 insertions(+)
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/net/ethernet-phy.yaml b/Documentation/devicetree/bindings/net/ethernet-phy.yaml
+> > > index ed1415a4381f..2a6b45ddf010 100644
+> > > --- a/Documentation/devicetree/bindings/net/ethernet-phy.yaml
+> > > +++ b/Documentation/devicetree/bindings/net/ethernet-phy.yaml
+> > > @@ -153,6 +153,16 @@ properties:
+> > >        used. The absence of this property indicates the muxers
+> > >        should be configured so that the external PHY is used.
+> > >  
+> > > +  phy-supply:
+> > > +    description:
+> > > +      Phandle to a regulator that provides power to the PHY. This
+> > > +      regulator will be managed during the PHY power on/off sequence.
+> > > +
+> > > +  phy-io-supply:
+> > > +    description:
+> > > +      Phandle to a regulator that provides power to the PHY. This
+> > > +      regulator will be managed during the PHY power on/off sequence.
+> > 
+> > If you need two differently named regulators, you need to make it clear
+> > how they differ. My _guess_ would be, you only need the io variant in
+> > order to talk to the PHY registers. However, to talk to a link
+> > partner, you need the other one enabled as well. Which means handling
+> > that regulator probably should be in the PHY driver, so it is enabled
+> > only when the interface is configured up.
+> > 
+> 
+> If I enable only the IO one, stmmac fail to reset, so both are needed to be up.
+> I tried also to keep the "phy" one handled by stmmac (by removing patch 2), this lead to the PHY to not be found by MDIO scan.
+> Proably because stmmac enable the "phy" before the "phy-io".
+> 
+> For the difference between the 2, according to my basic read (I am bad a it) of the shematic
+> https://linux-sunxi.org/images/5/50/OrangePi_3_Schematics_v1.5.pdf
+> phy-io(ephy-vdd25) seems to (at least) power MDIO bus.
 
-If you want to confirm the hardware is configured correctly you can
-remove the cec pin from the hdmi node and set up a cec-gpio node.
-https://elixir.bootlin.com/linux/v5.18-rc5/source/Documentation/devicetree/bindings/media/cec-gpio.txt
+So there is nothing in the data sheet of the RTL8211E to suggest you
+can uses these different power supplies independently. The naming
+'phy-io-supply' is very specific to RTL8211E, but you are defining a
+generic binding here. I don't know the regulator binding, it is
+possible to make phy-supply a list?
 
-For some reason the board developers decided to make this selectable,
-check the location of R90652 and R90653.
+	 Andrew
 
->
-> >>
-> >> Maybe i miss something but adding:
-> >>
-> >> &usb2phy0_otg {
-> >>        phy-supply = <&vcc5v0_usb_host>;
-> >>        status = "okay";
-> >> };
-> >>
-> >> breaks working usb3 port0
-> >> (so none of usb3 ports are working)
-> >
-> > Please pass along a full dmesg in this configuration.
->
-> Here it is: https://pastebin.com/uArtBLaZ
-
-I have some concerns about the DTS you've built here. For instance how
-come you are modifying the power domains?
-USB3 is broken because the rock3-a is a rk3568 device and you're
-missing combophy0.
-
->
->
