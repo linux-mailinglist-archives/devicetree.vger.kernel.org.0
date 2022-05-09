@@ -2,101 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 874255201AD
-	for <lists+devicetree@lfdr.de>; Mon,  9 May 2022 17:53:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 648B35201BE
+	for <lists+devicetree@lfdr.de>; Mon,  9 May 2022 17:56:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238681AbiEIP4Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 May 2022 11:56:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44288 "EHLO
+        id S238685AbiEIQAQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 May 2022 12:00:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33646 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238792AbiEIP4Q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 May 2022 11:56:16 -0400
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B20C61C83CB;
-        Mon,  9 May 2022 08:52:21 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id ba17so16823693edb.5;
-        Mon, 09 May 2022 08:52:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=T4W3R+aw33VcSaWnTP2sFL45c75EFxdaakc2vCb8haw=;
-        b=frArOZv2QWXyGt51ho8PKXrVN4tfIm0kqmW/YznWOW70opLM768dlqojLg6C3Ht/mb
-         iPI1bHDjLwoQ24yYKJJzlnjcHx+/DwktNWK47YIqbXzMO8mg7avM+NU1s9lq6UG1uvIL
-         atiILDmXdXkSRSBzTJrfUo9GYsNPt+Rz0Q1KjNRrSeRRCPqxQtX6a5EWcgqRjxs4q7Cw
-         sX3N6ns8rZXlXe4ZBpw2+wGnKM+DqbxIHH0vJ+qoVawK5Swdgp95hP/n5Od/y4pTucpC
-         gIHl2YE/iUoit+CyMAlDVwIwpbPNZb3tlmfaIEsWjSqtj8lJBlm50tstYqy71xXL64oi
-         gVxQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=T4W3R+aw33VcSaWnTP2sFL45c75EFxdaakc2vCb8haw=;
-        b=ZaP/7cghs9UVAI++a5DsM+BbJekKmMShGNK1d/BGO5+Y7D9rPpazsAC0R1y8TvF1G4
-         SlWcjSoI6Wz20843SYdT1m2o0OICgj/5M7B3Dgh5gcRH1B+pA92E22k6Xl8FI0tNh7bA
-         eFgT+dHLbSioXxhnD0gGk37q4WOj2T81AvHY8pGHaAXEBGoinU5mgmrdwfEwL1HUaBpS
-         ElAgCAVio0PAjRRaThergFa1+sEPvUU6zzlzhXv7aKttW33kogz11TH1AInhL4zQ83tW
-         jVngri6i0zaAurzLnb3tikLyCMWfHPBQiEXAPXgaOfH4Q5wm/HKda4EGOm8HtJYudmKL
-         azAQ==
-X-Gm-Message-State: AOAM533ooqwjIiOVqECRgzsMizBskNg1cR8dA4/j9zOly3P5d+fIlVvx
-        wWPwSE9DLBnBrLNpQrXvR7o=
-X-Google-Smtp-Source: ABdhPJwq4n5/jPNzmdbqn/KfhjMByaspFBDbgGXP+1UiPo5jwEWXj1Uc/Z7GfLmkX5XIFy+ZLWRgMQ==
-X-Received: by 2002:a05:6402:cb6:b0:425:f2e0:3644 with SMTP id cn22-20020a0564020cb600b00425f2e03644mr17935888edb.301.1652111540059;
-        Mon, 09 May 2022 08:52:20 -0700 (PDT)
-Received: from skbuf ([188.25.160.86])
-        by smtp.gmail.com with ESMTPSA id u8-20020a50eac8000000b0042617ba63c9sm6472240edp.83.2022.05.09.08.52.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 May 2022 08:52:19 -0700 (PDT)
-Date:   Mon, 9 May 2022 18:52:17 +0300
-From:   Vladimir Oltean <olteanv@gmail.com>
-To:     =?utf-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
-Cc:     Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Herve Codina <herve.codina@bootlin.com>,
-        =?utf-8?Q?Miqu=C3=A8l?= Raynal <miquel.raynal@bootlin.com>,
-        Milan Stevanovic <milan.stevanovic@se.com>,
-        Jimmy Lalande <jimmy.lalande@se.com>,
-        Pascal Eberhard <pascal.eberhard@se.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org, netdev@vger.kernel.org
-Subject: Re: [PATCH net-next v4 02/12] net: dsa: add Renesas RZ/N1 switch tag
- driver
-Message-ID: <20220509155217.jrepbl3j4c5fmbpk@skbuf>
-References: <20220509131900.7840-1-clement.leger@bootlin.com>
- <20220509131900.7840-3-clement.leger@bootlin.com>
+        with ESMTP id S238697AbiEIQAL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 May 2022 12:00:11 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D92961F8C5B;
+        Mon,  9 May 2022 08:56:16 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 8C513B8174E;
+        Mon,  9 May 2022 15:56:15 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B20B0C385B3;
+        Mon,  9 May 2022 15:56:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1652111774;
+        bh=9KBLlJzB+Vn8EeWf4pniCM2esT/SEQ/l/9rRS1+kJdo=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=gnP+8DQ6tWihM/xyf7+uFM3YtvEgh9FtTzBcVXuBL5jEo/mkJLpAT8efdz5K5umnH
+         WXlaEN6NDHlu+O52I7sU/hAAesgl2I+cU2gMoYKBIY66Nd554R1E2Ky3vEL9hLaRLt
+         lG6aG/AEHWwv3wBXD2klFOdGL7FRK5b6WtSKtps4cS1roQAQqb8yqjwDXPxB3DQPPv
+         9MrwKXne9+eNaLSm6VBO7LzpxxmbTm6k/QZvlOjlQByBCXf7FrbkL5V9BnF1ntA/bC
+         xTS0WU3nINx5AOu/ElLmQIKzrtYA9UnEI5E4fsfo/MRPdHGYlZVbnS2AQ8cjxpgknc
+         yACumn3tly7GA==
+Date:   Mon, 9 May 2022 16:56:06 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     LABBE Corentin <clabbe@baylibre.com>
+Cc:     Andrew Lunn <andrew@lunn.ch>, alexandre.torgue@foss.st.com,
+        calvin.johnson@oss.nxp.com, davem@davemloft.net,
+        edumazet@google.com, hkallweit1@gmail.com,
+        jernej.skrabec@gmail.com, joabreu@synopsys.com,
+        krzysztof.kozlowski+dt@linaro.org, kuba@kernel.org,
+        lgirdwood@gmail.com, linux@armlinux.org.uk, pabeni@redhat.com,
+        peppe.cavallaro@st.com, robh+dt@kernel.org, samuel@sholland.org,
+        wens@csie.org, netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-sunxi@lists.linux.dev
+Subject: Re: [PATCH 0/6] arm64: add ethernet to orange pi 3
+Message-ID: <Ynk5loCKWCF4/DLT@sirena.org.uk>
+References: <20220509074857.195302-1-clabbe@baylibre.com>
+ <YnkG9yV+Fbf7WtCh@lunn.ch>
+ <YnkWwrKk4zjPnZLg@Red>
+ <Ynkw9EekNj5Ih5gc@lunn.ch>
+ <YnkyKiRmOEYEtO3z@Red>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="zr6Z+Ap6mhoaAOIZ"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220509131900.7840-3-clement.leger@bootlin.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <YnkyKiRmOEYEtO3z@Red>
+X-Cookie: Boycott meat -- suck your thumb.
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 09, 2022 at 03:18:50PM +0200, Clément Léger wrote:
-> The switch that is present on the Renesas RZ/N1 SoC uses a specific
-> VLAN value followed by 6 bytes which contains forwarding configuration.
-> 
-> Signed-off-by: Clément Léger <clement.leger@bootlin.com>
-> ---
 
-Reviewed-by: Vladimir Oltean <olteanv@gmail.com>
+--zr6Z+Ap6mhoaAOIZ
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Mon, May 09, 2022 at 05:24:26PM +0200, LABBE Corentin wrote:
+> Le Mon, May 09, 2022 at 05:19:16PM +0200, Andrew Lunn a =E9crit :
+
+> > I'm trying to understand the differences between the two different
+> > regulators. If you tell me what the PHY is, i might be able to find
+> > the data sheet, and then understand why two regulators are needed and
+> > if one needs to be controlled by the PHY driver, not the MDIO bus
+> > driver.
+
+> The schematic for the board is https://linux-sunxi.org/images/5/50/Orange=
+Pi_3_Schematics_v1.5.pdf
+> Which show a RTL8211E.
+
+Most hardware will want all the regulators for the device turned on or
+off en masse (possibly in a specific sequence) - it's rare for devices
+to support only having some of their supplies enabled for extended
+periods, I'd be surprised if something like a PHY did that.
+
+--zr6Z+Ap6mhoaAOIZ
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmJ5OZUACgkQJNaLcl1U
+h9Cv2wf/aIdmWmiQUzvAzeDMdKyyzMe0rAEZxUQEmobo8iKvWcHPao0ApwJso55S
+RbO7x97qFZYhpLZYHS/1YByP2+PMkdAOcnpHCAda+REafYnhKSyi2+wjMdHbGTU6
+87yzIt+QaGDrfC1STKmIa2/1YUIe01ktGk6fWV3uR6azy7VRtZMyZBW4WBhZg3sT
+IvzG+P5fdDvQcmQEGJWOhnNgfZs9+mVmMtWsbMym1vCmK5Ub8oPL3tJDJ1YLb/8U
+WosapnoYSDJNUGHaV7vs7HUnqHX/FB/DYB7rPTFOWvJSnuQCTQ4GWV++iKkn85n2
+HnUc4Dak9vj5+jmP30vcnGjXahk5Qg==
+=2ufh
+-----END PGP SIGNATURE-----
+
+--zr6Z+Ap6mhoaAOIZ--
