@@ -2,138 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C055C51F33D
-	for <lists+devicetree@lfdr.de>; Mon,  9 May 2022 06:11:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4B94451F39F
+	for <lists+devicetree@lfdr.de>; Mon,  9 May 2022 06:56:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231311AbiEIENa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 May 2022 00:13:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45838 "EHLO
+        id S231269AbiEIEuP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 May 2022 00:50:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40238 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234083AbiEIEJY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 May 2022 00:09:24 -0400
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id BACDDD5CD0
-        for <devicetree@vger.kernel.org>; Sun,  8 May 2022 21:05:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1652069129;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=FKpZ+Ah3zelx5R9OuHUazNjKjbfFkmtgJjzbVYW/aR4=;
-        b=cG9OCCIvS4aBKtV49/E14WLT6dsvRBKIwVo1SHswme58mptqloh7xTVwd7xEPR6Wp84/wo
-        qB0fLXVqd6eUvDm7FjPnFXDMny8U/McNUp6FW+8kubZHygi+QIvuaQJ7TapipChlHtgA3A
-        +DRoevMj+CwO9Pv1IJNheqGcRXLqpxI=
-Received: from mimecast-mx02.redhat.com (mimecast-mx02.redhat.com
- [66.187.233.88]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-655-DKEPQ_o2MQWLJ-6UYvp_0A-1; Mon, 09 May 2022 00:05:25 -0400
-X-MC-Unique: DKEPQ_o2MQWLJ-6UYvp_0A-1
-Received: from smtp.corp.redhat.com (int-mx02.intmail.prod.int.rdu2.redhat.com [10.11.54.2])
-        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        by mimecast-mx02.redhat.com (Postfix) with ESMTPS id B0C52185A794;
-        Mon,  9 May 2022 04:05:24 +0000 (UTC)
-Received: from localhost (ovpn-13-212.pek2.redhat.com [10.72.13.212])
-        by smtp.corp.redhat.com (Postfix) with ESMTPS id B78CB40D1B9A;
-        Mon,  9 May 2022 04:05:23 +0000 (UTC)
-Date:   Mon, 9 May 2022 12:05:21 +0800
-From:   Baoquan He <bhe@redhat.com>
-To:     Catalin Marinas <catalin.marinas@arm.com>
-Cc:     "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
-        x86@kernel.org, "H . Peter Anvin" <hpa@zytor.com>,
-        linux-kernel@vger.kernel.org, Dave Young <dyoung@redhat.com>,
-        Vivek Goyal <vgoyal@redhat.com>,
-        Eric Biederman <ebiederm@xmission.com>,
-        kexec@lists.infradead.org, Will Deacon <will@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>,
-        linux-doc@vger.kernel.org, Randy Dunlap <rdunlap@infradead.org>,
-        Feng Zhou <zhoufeng.zf@bytedance.com>,
-        Kefeng Wang <wangkefeng.wang@huawei.com>,
-        Chen Zhou <dingguo.cz@antgroup.com>,
-        John Donnelly <John.p.donnelly@oracle.com>,
-        Dave Kleikamp <dave.kleikamp@oracle.com>
-Subject: Re: [PATCH v24 6/6] docs: kdump: Update the crashkernel description
- for arm64
-Message-ID: <YniTAbNIfaLKhFWK@MiWiFi-R3L-srv>
-References: <20220506114402.365-1-thunder.leizhen@huawei.com>
- <20220506114402.365-7-thunder.leizhen@huawei.com>
- <20220506231451.GB122876@MiWiFi-R3L-srv>
- <6e662eae-e788-13d3-368a-e88ed159fc85@huawei.com>
- <YnXn87JnfUxI2lC2@MiWiFi-R3L-srv>
- <Yna5AVli1IIUd2kg@arm.com>
+        with ESMTP id S234230AbiEIErG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 May 2022 00:47:06 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DB4C12DEEE;
+        Sun,  8 May 2022 21:43:10 -0700 (PDT)
+X-UUID: aad7f4781987400a9ce96bddcf1f36bd-20220509
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.4,REQID:0194f2d6-7a50-49b8-b5f0-d8d24349e124,OB:0,LO
+        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
+        ON:release,TS:0
+X-CID-META: VersionHash:faefae9,CLOUDID:e232b016-2e53-443e-b81a-655c13977218,C
+        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,File:nil,QS:0,BEC:nil
+X-UUID: aad7f4781987400a9ce96bddcf1f36bd-20220509
+Received: from mtkmbs11n2.mediatek.inc [(172.21.101.187)] by mailgw01.mediatek.com
+        (envelope-from <rex-bc.chen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 1647454957; Mon, 09 May 2022 12:43:05 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.792.15; Mon, 9 May 2022 12:43:04 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Mon, 9 May 2022 12:43:04 +0800
+From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
+To:     <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <chunkuang.hu@kernel.org>, <p.zabel@pengutronix.de>
+CC:     <airlied@linux.ie>, <matthias.bgg@gmail.com>,
+        <angelogioacchino.delregno@collabora.com>,
+        <jason-jh.lin@mediatek.com>, <nancy.lin@mediatek.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <dri-devel@lists.freedesktop.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        Rex-BC Chen <rex-bc.chen@mediatek.com>
+Subject: [PATCH v2 0/3] MediaTek MT8195 display binding
+Date:   Mon, 9 May 2022 12:42:59 +0800
+Message-ID: <20220509044302.27878-1-rex-bc.chen@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Yna5AVli1IIUd2kg@arm.com>
-X-Scanned-By: MIMEDefang 2.84 on 10.11.54.2
-X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-MTK:  N
+X-Spam-Status: No, score=0.3 required=5.0 tests=BAYES_00,MAY_BE_FORGED,
+        SPF_HELO_NONE,T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05/07/22 at 07:22pm, Catalin Marinas wrote:
-> On Sat, May 07, 2022 at 11:30:59AM +0800, Baoquan He wrote:
-> > On 05/07/22 at 09:41am, Leizhen (ThunderTown) wrote:
-> > > On 2022/5/7 7:14, Baoquan He wrote:
-> > > > On 05/06/22 at 07:44pm, Zhen Lei wrote:
-> > > >> Now arm64 has added support for "crashkernel=X,high" and
-> > > >> "crashkernel=Y,low". Unlike x86, crash low memory is not allocated if
-> > > >> "crashkernel=Y,low" is not specified.
-> > > >>
-> > > >> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
-> > > >> ---
-> > > >>  Documentation/admin-guide/kernel-parameters.txt | 9 +++++++--
-> > > >>  1 file changed, 7 insertions(+), 2 deletions(-)
-> > > >>
-> > > >> diff --git a/Documentation/admin-guide/kernel-parameters.txt b/Documentation/admin-guide/kernel-parameters.txt
-> > > >> index 3f1cc5e317ed4a5..aa44c61114aa4b8 100644
-> > > >> --- a/Documentation/admin-guide/kernel-parameters.txt
-> > > >> +++ b/Documentation/admin-guide/kernel-parameters.txt
-> > > >> @@ -808,7 +808,7 @@
-> > > >>  			Documentation/admin-guide/kdump/kdump.rst for an example.
-> > > >>  
-> > > >>  	crashkernel=size[KMG],high
-> > > >> -			[KNL, X86-64] range could be above 4G. Allow kernel
-> > > >> +			[KNL, X86-64, ARM64] range could be above 4G. Allow kernel
-> > > >>  			to allocate physical memory region from top, so could
-> > > >>  			be above 4G if system have more than 4G ram installed.
-> > > >>  			Otherwise memory region will be allocated below 4G, if
-> > > >> @@ -821,7 +821,7 @@
-> > > >>  			that require some amount of low memory, e.g. swiotlb
-> > > >>  			requires at least 64M+32K low memory, also enough extra
-> > > >>  			low memory is needed to make sure DMA buffers for 32-bit
-> > > >> -			devices won't run out. Kernel would try to allocate at
-> > > >> +			devices won't run out. Kernel would try to allocate
-> > > >>  			at least 256M below 4G automatically.
-> > > >>  			This one let user to specify own low range under 4G
-> > > >>  			for second kernel instead.
-> > > >> @@ -829,6 +829,11 @@
-> > > >>  			It will be ignored when crashkernel=X,high is not used
-> > > >>  			or memory reserved is below 4G.
-> > > >>  
-> > > >> +			[KNL, ARM64] range in low memory.
-> > > >> +			This one let user to specify a low range in DMA zone for
-> > > >                                           ^ not needed,
-> > > >                         Maybe Catalin can fix it when merging.
-> > > 
-> > > Delete "This one let user to" or the entire sentence? I understand it to be the former.
-> > 
-> > Oh, I mean the 'to' is not needed. "This one let user specify ....". The
-> > 'to' is a grammer mistake.
-> 
-> Slightly more correct is "This one lets the user specify..."
-> 
-> I can fix them up when applying.
+Add this series to present MediaTek display binding for MT8195.
+The reason I send this series is Jason and Nancy's binding patches are
+never received by devicetree mail server.
+Therefore, I help them to resend binding patches.
 
-Right, thx.
+Changes for v2:
+1. This patch is based on linux next-20220506.
+2. Jason's patches are accepted and I drop them.
+
+[1]: https://lore.kernel.org/all/20220504091440.2052-2-nancy.lin@mediatek.com/
+
+Nancy.Lin (3):
+  dt-bindings: mediatek: add vdosys1 RDMA definition for mt8195
+  dt-bindings: reset: mt8195: add vdosys1 reset control bit
+  dt-bindings: mediatek: add ethdr definition for mt8195
+
+ .../display/mediatek/mediatek,ethdr.yaml      | 191 ++++++++++++++++++
+ .../display/mediatek/mediatek,mdp-rdma.yaml   |  94 +++++++++
+ include/dt-bindings/reset/mt8195-resets.h     |  45 +++++
+ 3 files changed, 330 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/mediatek/mediatek,ethdr.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/mediatek/mediatek,mdp-rdma.yaml
+
+-- 
+2.18.0
 
