@@ -2,248 +2,221 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 02AF051FFD3
-	for <lists+devicetree@lfdr.de>; Mon,  9 May 2022 16:36:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 76F0551FFE4
+	for <lists+devicetree@lfdr.de>; Mon,  9 May 2022 16:36:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237080AbiEIOb3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 May 2022 10:31:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36682 "EHLO
+        id S237252AbiEIOgm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 May 2022 10:36:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55244 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237088AbiEIObL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 May 2022 10:31:11 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2486D1D500A;
-        Mon,  9 May 2022 07:27:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1652106437; x=1683642437;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=3ojOsUB0BmRtwo5gMeoeGrNl3U9+C7e6Z5b5OxtO0A8=;
-  b=YMNsIjAsIzcwmyjD6vw0WO6/IuANKAru9fAmr9QLJUe9EHqRQxaRyoF2
-   JIqxW8TcY/XiqaiIk7jOhzpq3h3t6txGcAykxCjVJ5u8XhLWufUUh7NOD
-   ckrKIEYnIAOtA6y9oalDbwGNXAldu/2dSkJtF+tfUVRh8OTbKIkLMHilW
-   29VEtr/RX0y7fgPpyCabMu8zDrADYb46MwrOght0CUrpizhzYZmLkG5Qy
-   8Km3T5y0VNOuqhBT1StGF5vubdjQLHq7dFaVYMgwJbf63Z4J3I4XncNfh
-   6NZV9A5whl8rWzQtCojCGbicCQp2FqG0EQSyoN48STOlv3hmGFDKyQoRO
-   g==;
-X-IronPort-AV: E=Sophos;i="5.91,211,1647327600"; 
-   d="scan'208";a="163251770"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 09 May 2022 07:27:17 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17; Mon, 9 May 2022 07:27:16 -0700
-Received: from wendy.microchip.com (10.10.115.15) by chn-vm-ex03.mchp-main.com
- (10.10.85.151) with Microsoft SMTP Server id 15.1.2375.17 via Frontend
- Transport; Mon, 9 May 2022 07:27:14 -0700
-From:   Conor Dooley <conor.dooley@microchip.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>
-CC:     Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@rivosinc.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Daire McNamara <daire.mcnamara@microchip.com>,
-        Cyril Jean <Cyril.Jean@microchip.com>,
-        <devicetree@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <heiko@sntech.de>,
-        Arnd Bergmann <arnd@arndb.de>
-Subject: [PATCH v5 10/10] riscv: dts: icicle: sort nodes alphabetically
-Date:   Mon, 9 May 2022 15:26:11 +0100
-Message-ID: <20220509142610.128590-11-conor.dooley@microchip.com>
-X-Mailer: git-send-email 2.35.2
-In-Reply-To: <20220509142610.128590-1-conor.dooley@microchip.com>
-References: <20220509142610.128590-1-conor.dooley@microchip.com>
+        with ESMTP id S237278AbiEIOgk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 May 2022 10:36:40 -0400
+Received: from relay10.mail.gandi.net (relay10.mail.gandi.net [217.70.178.230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 960A41261C;
+        Mon,  9 May 2022 07:32:45 -0700 (PDT)
+Received: (Authenticated sender: foss@0leil.net)
+        by mail.gandi.net (Postfix) with ESMTPSA id 1EF85240002;
+        Mon,  9 May 2022 14:32:39 +0000 (UTC)
+From:   Quentin Schulz <foss+kernel@0leil.net>
+Cc:     shawnx.tu@intel.com, mchehab@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        foss+kernel@0leil.net,
+        Quentin Schulz <quentin.schulz@theobroma-systems.com>
+Subject: [PATCH v3 1/4] media: dt-bindings: ov5675: document YAML binding
+Date:   Mon,  9 May 2022 16:32:23 +0200
+Message-Id: <20220509143226.531117-1-foss+kernel@0leil.net>
+X-Mailer: git-send-email 2.35.3
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The icicle device tree is in a "random" order, so clean it up and sort
-its elements alphabetically to match the newly added PolarBerry dts.
+From: Quentin Schulz <quentin.schulz@theobroma-systems.com>
 
-Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+This patch adds documentation of device tree in YAML schema for the
+OV5675 CMOS image sensor from Omnivision.
+
+Signed-off-by: Quentin Schulz <quentin.schulz@theobroma-systems.com>
 ---
- .../boot/dts/microchip/mpfs-icicle-kit.dts    | 104 +++++++++---------
- 1 file changed, 52 insertions(+), 52 deletions(-)
 
-diff --git a/arch/riscv/boot/dts/microchip/mpfs-icicle-kit.dts b/arch/riscv/boot/dts/microchip/mpfs-icicle-kit.dts
-index 9cd1a30edf2c..044982a11df5 100644
---- a/arch/riscv/boot/dts/microchip/mpfs-icicle-kit.dts
-+++ b/arch/riscv/boot/dts/microchip/mpfs-icicle-kit.dts
-@@ -43,23 +43,57 @@ ddrc_cache_hi: memory@1000000000 {
- 	};
- };
- 
--&refclk {
--	clock-frequency = <125000000>;
-+&core_pwm0 {
-+	status = "okay";
- };
- 
--&mmuart1 {
-+&gpio2 {
-+	interrupts = <53>, <53>, <53>, <53>,
-+		     <53>, <53>, <53>, <53>,
-+		     <53>, <53>, <53>, <53>,
-+		     <53>, <53>, <53>, <53>,
-+		     <53>, <53>, <53>, <53>,
-+		     <53>, <53>, <53>, <53>,
-+		     <53>, <53>, <53>, <53>,
-+		     <53>, <53>, <53>, <53>;
- 	status = "okay";
- };
- 
--&mmuart2 {
-+&i2c0 {
- 	status = "okay";
- };
- 
--&mmuart3 {
-+&i2c1 {
- 	status = "okay";
- };
- 
--&mmuart4 {
-+&i2c2 {
-+	status = "okay";
-+};
+v3:
+ - removed clock-names,
+ - removed clock-frequency,
+ - added all-of of video-interface-devices schema,
+ - added clock frequency range in description,
+ - rephrased definition of supplies,
+ - fixed name of reset gpio,
+ - used schema ref for port and port->endpoint,
+ - removed mentions to driver,
+ - added HW data transfer speed limitation in comment for
+ link-frequencies,
+ - changed root additionalProperties to unevaluatedProperties to not
+ have to list all properties from video-interface-devices schema, such as
+ orientation or rotation,
+ - added maxItems to reset-gpios,
+ - updated example to use assigned-clocks and assigned-clock-rates
+ instead of clock-frequency and clock-names,
+
+v2:
+ - fixed incorrect id,
+ - fixed device tree example by adding missing dt-bindings headers,
+ - fixed device tree example by using vcc_1v2 for dvdd supply, as requested
+ in datasheet,
+
+ .../bindings/media/i2c/ovti,ov5675.yaml       | 123 ++++++++++++++++++
+ MAINTAINERS                                   |   1 +
+ 2 files changed, 124 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov5675.yaml
+
+diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov5675.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov5675.yaml
+new file mode 100644
+index 000000000000..f0a48707bed7
+--- /dev/null
++++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov5675.yaml
+@@ -0,0 +1,123 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++# Copyright (c) 2022 Theobroma Systems Design und Consulting GmbH
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/media/i2c/ovti,ov5675.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+&mac0 {
-+	phy-mode = "sgmii";
-+	phy-handle = <&phy0>;
-+	status = "okay";
-+};
++title: Omnivision OV5675 CMOS Sensor
 +
-+&mac1 {
-+	phy-mode = "sgmii";
-+	phy-handle = <&phy1>;
-+	status = "okay";
++maintainers:
++  - Quentin Schulz <quentin.schulz@theobroma-systems.com>
 +
-+	phy1: ethernet-phy@9 {
-+		reg = <9>;
-+		ti,fifo-depth = <0x1>;
-+	};
++allOf:
++  - $ref: /schemas/media/video-interface-devices.yaml#
 +
-+	phy0: ethernet-phy@8 {
-+		reg = <8>;
-+		ti,fifo-depth = <0x1>;
-+	};
-+};
++description: |
++  The Omnivision OV5675 is a high performance, 1/5-inch, 5 megapixel, CMOS
++  image sensor that delivers 2592x1944 at 30fps. It provides full-frame,
++  sub-sampled, and windowed 10-bit MIPI images in various formats via the
++  Serial Camera Control Bus (SCCB) interface.
 +
-+&mbox {
- 	status = "okay";
- };
++  This chip is programmable through I2C and two-wire SCCB. The sensor output
++  is available via CSI-2 serial data output (up to 2-lane).
++
++properties:
++  compatible:
++    const: ovti,ov5675
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    description:
++      System input clock (aka XVCLK). From 6 to 27 MHz.
++    maxItems: 1
++
++  dovdd-supply:
++    description:
++      Digital I/O voltage supply, 1.8 volts.
++
++  avdd-supply:
++    description:
++      Analog voltage supply, 2.8 volts.
++
++  dvdd-supply:
++    description:
++      Digital core voltage supply, 1.2 volts.
++
++  reset-gpios:
++    description:
++      The phandle and specifier for the GPIO that controls sensor reset.
++      This corresponds to the hardware pin XSHUTDN which is physically
++      active low.
++    maxItems: 1
++
++  port:
++    $ref: /schemas/graph.yaml#/$defs/port-base
++    additionalProperties: false
++
++    properties:
++      endpoint:
++        $ref: /schemas/media/video-interfaces.yaml#
++        unevaluatedProperties: false
++
++        properties:
++          data-lanes:
++            minItems: 1
++            maxItems: 2
++
++          # Supports max data transfer of 900 Mbps per lane
++          link-frequencies: true
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - dovdd-supply
++  - avdd-supply
++  - dvdd-supply
++  - port
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/px30-cru.h>
++    #include <dt-bindings/gpio/gpio.h>
++    #include <dt-bindings/pinctrl/rockchip.h>
++
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        ov5675: camera@36 {
++            compatible = "ovti,ov5675";
++            reg = <0x36>;
++
++            reset-gpios = <&gpio2 RK_PB1 GPIO_ACTIVE_LOW>;
++            pinctrl-names = "default";
++            pinctrl-0 = <&cif_clkout_m0>;
++
++            clocks = <&cru SCLK_CIF_OUT>;
++            assigned-clocks = <&cru SCLK_CIF_OUT>;
++            assigned-clock-rates = <19200000>;
++
++            avdd-supply = <&vcc_1v8>;
++            dvdd-supply = <&vcc_1v2>;
++            dovdd-supply = <&vcc_2v8>;
++
++            rotation = <90>;
++            orientation = <0>;
++
++            port {
++                ucam_out: endpoint {
++                    remote-endpoint = <&mipi_in_ucam>;
++                    data-lanes = <1 2>;
++                    link-frequencies = /bits/ 64 <450000000>;
++                };
++            };
++        };
++    };
++...
++
+diff --git a/MAINTAINERS b/MAINTAINERS
+index e8c52d0192a6..c7a2d9d3642e 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -14550,6 +14550,7 @@ M:	Shawn Tu <shawnx.tu@intel.com>
+ L:	linux-media@vger.kernel.org
+ S:	Maintained
+ T:	git git://linuxtv.org/media_tree.git
++F:	Documentation/devicetree/bindings/media/i2c/ovti,ov5675.yaml
+ F:	drivers/media/i2c/ov5675.c
  
-@@ -78,74 +112,43 @@ &mmc {
- 	status = "okay";
- };
- 
--&spi0 {
--	status = "okay";
--};
--
--&spi1 {
--	status = "okay";
--};
--
--&qspi {
-+&mmuart1 {
- 	status = "okay";
- };
- 
--&i2c0 {
-+&mmuart2 {
- 	status = "okay";
- };
- 
--&i2c1 {
-+&mmuart3 {
- 	status = "okay";
- };
- 
--&i2c2 {
-+&mmuart4 {
- 	status = "okay";
- };
- 
--&mac0 {
--	phy-mode = "sgmii";
--	phy-handle = <&phy0>;
-+&pcie {
- 	status = "okay";
- };
- 
--&mac1 {
--	phy-mode = "sgmii";
--	phy-handle = <&phy1>;
-+&qspi {
- 	status = "okay";
--
--	phy1: ethernet-phy@9 {
--		reg = <9>;
--		ti,fifo-depth = <0x1>;
--	};
--
--	phy0: ethernet-phy@8 {
--		reg = <8>;
--		ti,fifo-depth = <0x1>;
--	};
- };
- 
--&gpio2 {
--	interrupts = <53>, <53>, <53>, <53>,
--		     <53>, <53>, <53>, <53>,
--		     <53>, <53>, <53>, <53>,
--		     <53>, <53>, <53>, <53>,
--		     <53>, <53>, <53>, <53>,
--		     <53>, <53>, <53>, <53>,
--		     <53>, <53>, <53>, <53>,
--		     <53>, <53>, <53>, <53>;
--	status = "okay";
-+&refclk {
-+	clock-frequency = <125000000>;
- };
- 
- &rtc {
- 	status = "okay";
- };
- 
--&usb {
-+&spi0 {
- 	status = "okay";
--	dr_mode = "host";
- };
- 
--&mbox {
-+&spi1 {
- 	status = "okay";
- };
- 
-@@ -153,10 +156,7 @@ &syscontroller {
- 	status = "okay";
- };
- 
--&pcie {
--	status = "okay";
--};
--
--&core_pwm0 {
-+&usb {
- 	status = "okay";
-+	dr_mode = "host";
- };
+ OMNIVISION OV5693 SENSOR DRIVER
 -- 
-2.35.2
+2.35.3
 
