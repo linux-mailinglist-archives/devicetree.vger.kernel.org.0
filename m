@@ -2,156 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D5C4A5200E2
-	for <lists+devicetree@lfdr.de>; Mon,  9 May 2022 17:16:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3076C5200F5
+	for <lists+devicetree@lfdr.de>; Mon,  9 May 2022 17:19:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238140AbiEIPS2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 May 2022 11:18:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54324 "EHLO
+        id S238154AbiEIPXb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 May 2022 11:23:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49136 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238143AbiEIPSX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 May 2022 11:18:23 -0400
-Received: from mail-pl1-x635.google.com (mail-pl1-x635.google.com [IPv6:2607:f8b0:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0FDAC27CE6;
-        Mon,  9 May 2022 08:14:28 -0700 (PDT)
-Received: by mail-pl1-x635.google.com with SMTP id n8so14153068plh.1;
-        Mon, 09 May 2022 08:14:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=l2qY2cWlLlfG1RUgISmGZpjql0HcXWQoFGn6X90qPgw=;
-        b=HfpJU62BWT0EujKLbfSRY6wrZRaE5cObcOb+ZI6QW3t0fNHohXRezm2t+V8qmyyZ9p
-         IrsG6hw0nFIUodpqCg/hV3cHh+J48WkjRwoRPxbjWisvDKptfa/OM+8aRj3kttpPriGL
-         26lj75O5GGl7QPIucUmRgCkmBayFT3et0YyYPFEfv8byvgBIZn8jeeped/yo3GC6jwtO
-         hJMEdTl4FzAmBgnEqebb9N5oqRwl39/tvhTal9UfnZ4n9m2mUrHd4nd9wkeUc8MgnK4d
-         zQ47MMIZkXNdYj2/a71XRRKOvB2o2ySi780ldxqejtfDPG6RxHcDRW0ni0zpHjqT5OOk
-         66RA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=l2qY2cWlLlfG1RUgISmGZpjql0HcXWQoFGn6X90qPgw=;
-        b=eTPeVbwDahiqJCYt8OcCG2fx40A+kg/fEmyCO1Sd22trQmCuDZAF7qzO/y4sgsZviB
-         FaunnrNyFnkWZGdP4jclA/lH2fBqzW1CGaEJi1r2hkZ+EStoTfR6gx0xqfSqdi1Nu7Fl
-         edOeg5Jzv87mVa8v6VuoQALlyJdqMa+Yrcr0YGOiT+4HKf07GsXJv0vUhEoCsRuj1AyZ
-         EE4yW/6CUG/u2TwALh0nAnZEP2IFgFxTkwpPP2wuT06wFxZ6ewVM4i0IBm8jpPFMvV2U
-         F8yZMHgYHTEMaRl8n1bVcmSpVn0dZwMz7Q08LzRS4jqf5vHUVclsMOM1ulzLB3eusPyO
-         t/Bg==
-X-Gm-Message-State: AOAM530dKiAWe9muDBnKlwY1MtHVtIW3NgIApM/GcZqKWiSoAQwV33hm
-        0w0qDrxpIfmsBwVXPWQLo30=
-X-Google-Smtp-Source: ABdhPJzMRdVCHBfbZqKWcPvtFFQon5E4cmHhyCetrXKiUDqjC2LJYav7DQoCH6sy7+Up3FJ24crgCA==
-X-Received: by 2002:a17:902:e884:b0:15e:bfbc:1a35 with SMTP id w4-20020a170902e88400b0015ebfbc1a35mr16553144plg.51.1652109268422;
-        Mon, 09 May 2022 08:14:28 -0700 (PDT)
-Received: from potin-quanta.dhcpserver.local (125-228-123-29.hinet-ip.hinet.net. [125.228.123.29])
-        by smtp.gmail.com with ESMTPSA id k7-20020a056a00134700b0050dc76281b6sm9221596pfu.144.2022.05.09.08.14.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 May 2022 08:14:28 -0700 (PDT)
-From:   Potin Lai <potin.lai.pt@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>
-Cc:     Patrick Williams <patrick@stwcx.xyz>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        Potin Lai <potin.lai.pt@gmail.com>
-Subject: [PATCH 6/6] ARM: dts: aspeed: bletchley: add eeprom node on each sled
-Date:   Mon,  9 May 2022 23:11:18 +0800
-Message-Id: <20220509151118.4899-7-potin.lai.pt@gmail.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20220509151118.4899-1-potin.lai.pt@gmail.com>
-References: <20220509151118.4899-1-potin.lai.pt@gmail.com>
+        with ESMTP id S238115AbiEIPXb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 May 2022 11:23:31 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6989B233A71;
+        Mon,  9 May 2022 08:19:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
+        Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
+        Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
+        In-Reply-To:References; bh=Vs4pKWIO8ghtfzDiPPWpzVvLUDOdEY+WjcGzBGinpww=; b=Zj
+        38KWpyFIE1rldm9h43e0xD67487kEzzUvJu0jiAurIiK1eG/aBCAn5lYK2s3MmYe+kg8YScajaJ9d
+        biCy4/Wer9aj72+q4NfUzqCR0Y2rcb5zs5RXgTSaenYKATy2gkQn1UB6VWPFo2+WBglXwXaepcfU7
+        xDNBwG2sgOxEw0A=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1no5AK-001xhf-8m; Mon, 09 May 2022 17:19:16 +0200
+Date:   Mon, 9 May 2022 17:19:16 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     LABBE Corentin <clabbe@baylibre.com>
+Cc:     alexandre.torgue@foss.st.com, broonie@kernel.org,
+        calvin.johnson@oss.nxp.com, davem@davemloft.net,
+        edumazet@google.com, hkallweit1@gmail.com,
+        jernej.skrabec@gmail.com, joabreu@synopsys.com,
+        krzysztof.kozlowski+dt@linaro.org, kuba@kernel.org,
+        lgirdwood@gmail.com, linux@armlinux.org.uk, pabeni@redhat.com,
+        peppe.cavallaro@st.com, robh+dt@kernel.org, samuel@sholland.org,
+        wens@csie.org, netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-sunxi@lists.linux.dev
+Subject: Re: [PATCH 0/6] arm64: add ethernet to orange pi 3
+Message-ID: <Ynkw9EekNj5Ih5gc@lunn.ch>
+References: <20220509074857.195302-1-clabbe@baylibre.com>
+ <YnkG9yV+Fbf7WtCh@lunn.ch>
+ <YnkWwrKk4zjPnZLg@Red>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <YnkWwrKk4zjPnZLg@Red>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add eeprom (24c26) on each sled for storing sled fru information.
+On Mon, May 09, 2022 at 03:27:30PM +0200, LABBE Corentin wrote:
+> Le Mon, May 09, 2022 at 02:20:07PM +0200, Andrew Lunn a écrit :
+> > On Mon, May 09, 2022 at 07:48:51AM +0000, Corentin Labbe wrote:
+> > > Hello
+> > > 
+> > > 2 sunxi board still does not have ethernet working, orangepi 1+ and
+> > > orangepi 3.
+> > > This is due to the fact thoses boards have a PHY which need 2 regulators.
+> > 
+> > Why PHY make/module is it which is causing problems?
+> > 
+> 
+> The problem was stmmac support only one regulator for PHY.
 
-Signed-off-by: Potin Lai <potin.lai.pt@gmail.com>
----
- .../dts/aspeed-bmc-facebook-bletchley.dts     | 30 +++++++++++++++++++
- 1 file changed, 30 insertions(+)
+I'm trying to understand the differences between the two different
+regulators. If you tell me what the PHY is, i might be able to find
+the data sheet, and then understand why two regulators are needed and
+if one needs to be controlled by the PHY driver, not the MDIO bus
+driver.
 
-diff --git a/arch/arm/boot/dts/aspeed-bmc-facebook-bletchley.dts b/arch/arm/boot/dts/aspeed-bmc-facebook-bletchley.dts
-index b30986e7cb41..41d2b1535d9a 100644
---- a/arch/arm/boot/dts/aspeed-bmc-facebook-bletchley.dts
-+++ b/arch/arm/boot/dts/aspeed-bmc-facebook-bletchley.dts
-@@ -314,6 +314,11 @@
- 			op-sink-microwatt = <10000000>;
- 		};
- 	};
-+
-+	eeprom@54 {
-+		compatible = "atmel,24c64";
-+		reg = <0x54>;
-+	};
- };
- 
- &i2c1 {
-@@ -395,6 +400,11 @@
- 			op-sink-microwatt = <10000000>;
- 		};
- 	};
-+
-+	eeprom@54 {
-+		compatible = "atmel,24c64";
-+		reg = <0x54>;
-+	};
- };
- 
- &i2c2 {
-@@ -476,6 +486,11 @@
- 			op-sink-microwatt = <10000000>;
- 		};
- 	};
-+
-+	eeprom@54 {
-+		compatible = "atmel,24c64";
-+		reg = <0x54>;
-+	};
- };
- 
- &i2c3 {
-@@ -557,6 +572,11 @@
- 			op-sink-microwatt = <10000000>;
- 		};
- 	};
-+
-+	eeprom@54 {
-+		compatible = "atmel,24c64";
-+		reg = <0x54>;
-+	};
- };
- 
- &i2c4 {
-@@ -638,6 +658,11 @@
- 			op-sink-microwatt = <10000000>;
- 		};
- 	};
-+
-+	eeprom@54 {
-+		compatible = "atmel,24c64";
-+		reg = <0x54>;
-+	};
- };
- 
- &i2c5 {
-@@ -719,6 +744,11 @@
- 			op-sink-microwatt = <10000000>;
- 		};
- 	};
-+
-+	eeprom@54 {
-+		compatible = "atmel,24c64";
-+		reg = <0x54>;
-+	};
- };
- 
- &i2c6 {
--- 
-2.17.1
-
+	Andrew
