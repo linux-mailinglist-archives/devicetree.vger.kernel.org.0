@@ -2,341 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F32551FA8D
-	for <lists+devicetree@lfdr.de>; Mon,  9 May 2022 12:53:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4938351FA95
+	for <lists+devicetree@lfdr.de>; Mon,  9 May 2022 12:55:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231435AbiEIK5E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 May 2022 06:57:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53688 "EHLO
+        id S229599AbiEIK7B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 May 2022 06:59:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32944 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231423AbiEIK5C (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 May 2022 06:57:02 -0400
-Received: from mailserv1.kapsi.fi (mailserv1.kapsi.fi [IPv6:2001:67c:1be8::25:1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ECCCA23AE6E
-        for <devicetree@vger.kernel.org>; Mon,  9 May 2022 03:52:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=ext.kapsi.fi; s=20161220; h=Subject:Content-Transfer-Encoding:Content-Type:
-        In-Reply-To:From:References:To:Cc:MIME-Version:Date:Message-ID:Sender:
-        Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-        :Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-        List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=8+S44rlpkDh/vK3Apd5h6qoJ8f/sLYnvJOjArCxoWQI=; b=cdDkzKPh0hP4ZkEPoBmxk2g0nu
-        hLqv4HynYzsZqVLSuyBU2tGqtvExvcA8wo8/6l7XO3GbmyCUKmlgKTRa681oC2D2erZfqSHoCJQXt
-        Zo01LNZDyZZORln4h6C0Vr5iivUgb/w3qpun38F5173C/Sqa7imhwvPDIZd2IpjxM4lMcMKA7as5n
-        zhVaeQvd36NJYZUfb6DM5WYJBoRkZKdgE+c+fBVI7KOHW5xg6J82WOtrRTU+pMwVgQ6DonFwv+P8P
-        Oked1Bhcawj9mjpmJ/8Qzf++IjuQerpVUpMAfj/YNci2xK4ows2hZXXN2/pLfoeopGXo/8EUD9wte
-        zV6aNpXQ==;
-Received: from 76e7-6de6-c96a-714b-8500-87e2-07d0-2001.dyn.estpak.ee ([2001:7d0:87e2:8500:714b:c96a:6de6:76e7]:50097)
-        by mailserv1.kapsi.fi with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
-        (Exim 4.89)
-        (envelope-from <maukka@ext.kapsi.fi>)
-        id 1no10S-0000op-9r; Mon, 09 May 2022 13:52:49 +0300
-Message-ID: <92686c1c-46c6-43a5-8077-65e02c163561@ext.kapsi.fi>
-Date:   Mon, 9 May 2022 13:52:46 +0300
+        with ESMTP id S229538AbiEIK67 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 May 2022 06:58:59 -0400
+Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2074.outbound.protection.outlook.com [40.107.22.74])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60EC0275D1;
+        Mon,  9 May 2022 03:55:05 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=oMNPi2GkHyzAXDD9C+EkMaK3tgjeK2PsrcrDv341SZ90+pM8NsMZNgtWCErtSqH7l2ZKsHimfR9Aye2Tqm2qoEjRBBV3FQsHAFORRvBK6wgYsT5f1plkh39Kf9u9cPK2IUdC8XE4b/9+EAS/aDSa6vbXxV4MtJediYn7XYKt02oWfVXs74I9ThCDmf1qZPwnlqMgBV+C+X/0uIedyHS++mw1UZETJl5ldabvBkqYRE3uA2bZMh2k4MqgYjb99RkAuUAWBo5QwmguVbyZ0wCOACKfV3sf7/+8dPvrLpJ1M3DlfwKmF5/H/LnL+KrnNTqstbMeGd53YaeVgSqLUJaIFg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=tvVggZC2j8/mIYPqXWF+hYg88SIDq1oEV9wskdFALlU=;
+ b=PeZXCE2zOflcfG45mr3XtA9b7NgkH77BVzuYOqLHYs17P/fl7nAtpin/J/ZSpSwMALGCX3xYO1xv/7u4EGoKryciHaDyJSUOAyUfBrVyKVZHYPUB/49PNDspBCLklsXk27VLydfXKh7b/MFB2nHTIuUeAY3+fvw4aVlHKM2Nc3i0GJWxy2X9NspVLauM0ex2DzpsCVUJwdrsp6TzwxBj7yT8CeA8W5Ks1F5Cy48G6nU8Xbn2QVYSfkVw0jhGtYA7lTFAeW0BOw9ReyoOUP2GUQYR6FCdhrGRAHtk3EFhdtUHKzbiMZsuZwPzvr/hk/5gzMs2isEJfwnZtVssws6LXA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=tvVggZC2j8/mIYPqXWF+hYg88SIDq1oEV9wskdFALlU=;
+ b=nmf5mRPhCGotkVvpFTEzb5Wr08IvHKJRFbenbXtF6gjpKWV1NlZFXK9sqJEFbvgbU5sJRbn+nx5HX+OaIqFwTUrAod8PPgRofJZ5M9ASbVgrv+TPiXZyZCzGDAX1xu2uqsJIZRCaoUJyAtyY/U8MYVZK4fwo8fmf+UwgjcJ6b4M=
+Received: from DB9PR04MB8477.eurprd04.prod.outlook.com (2603:10a6:10:2c3::11)
+ by DBBPR04MB7771.eurprd04.prod.outlook.com (2603:10a6:10:1e6::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5227.23; Mon, 9 May
+ 2022 10:55:02 +0000
+Received: from DB9PR04MB8477.eurprd04.prod.outlook.com
+ ([fe80::1d57:4a64:1c30:a00f]) by DB9PR04MB8477.eurprd04.prod.outlook.com
+ ([fe80::1d57:4a64:1c30:a00f%6]) with mapi id 15.20.5227.023; Mon, 9 May 2022
+ 10:55:02 +0000
+From:   Aisheng Dong <aisheng.dong@nxp.com>
+To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>
+CC:     "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>, Peng Fan <peng.fan@nxp.com>
+Subject: RE: [PATCH V4 3/4] arm64: dts: freescale: add i.MX93 11x11 EVK basic
+ support
+Thread-Topic: [PATCH V4 3/4] arm64: dts: freescale: add i.MX93 11x11 EVK basic
+ support
+Thread-Index: AQHYY3ZBuKXJjmos1kO4VQI5TYCaJq0WXjIg
+Date:   Mon, 9 May 2022 10:55:01 +0000
+Message-ID: <DB9PR04MB847748A8FEAA598E791560EC80C69@DB9PR04MB8477.eurprd04.prod.outlook.com>
+References: <20220509072911.3268668-1-peng.fan@oss.nxp.com>
+ <20220509072911.3268668-4-peng.fan@oss.nxp.com>
+In-Reply-To: <20220509072911.3268668-4-peng.fan@oss.nxp.com>
+Accept-Language: zh-CN, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: ed87b242-a4a8-4eb0-0d95-08da31aa5e5f
+x-ms-traffictypediagnostic: DBBPR04MB7771:EE_
+x-microsoft-antispam-prvs: <DBBPR04MB77712ADCF4589D1A059908E880C69@DBBPR04MB7771.eurprd04.prod.outlook.com>
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: zxq5ARurJZQLnqvZGELhJDI+Qk6qngLM17YFXPn/xYrkIbh+wFCT321ZYpCNA4pqdbz8QTS6QBUwRwO3D/9S5nK0K4Tgmzn15NUFbJK6c845pG8RtHsrno2p9mpgoIiR0vgqAX96I+FYfXXIopt9ejO1O6rJLQ+W03KsfPsUQtOcrjAVwz7xuVNtMaDasdFLizb/xN0OwCkp3ppw4OL06Lagb8I+qcy5MvTSyPEarPb0UAiIm18ZwOVx7S3SQyRx6lrxNgM0RHaaDhTBiamLY/GNSI/FSK5KvLPv5yciiH4sLllyvwTwFa2eKiqJ/hkgxz42/viPZlW2/XuA+PZiKDxL52i49xS2swiNJB6ojUtmtq7oIegHiDy7Jk82/IQ+qs5eG5xPvGoAg1oO4LQ6J9jD5h5HLHZhM8Sa/weX380rOjJEzk/ZTaPnZ8K8zowondTxuWi9Mc+Myp/e/R0PLanNOzJkzfMcpdTQlTQXZFv1x2oSrV8GP91KSu5AbPF7YWRq7brfHgv2uWVj2XENamt80M/IIEO+ZHgFs7jCPUAvF1ms0lUxVIhf33prciXrd55XUVv1q0Wed8jGS7Ie/EptdznDcm7OGyjiKgpBm8W1EbzbYUwrbukcRz+8l08Bi+zNuJit2/BzKc0K32qodGPA2gMzEnlE7YXtiBiNqOCjJmWYyyAaaPzJRAhZ0eOjvPBxJiXCATQeecPCpSGy5Q==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB9PR04MB8477.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(9686003)(7696005)(6506007)(26005)(44832011)(4744005)(71200400001)(122000001)(5660300002)(33656002)(186003)(2906002)(8676002)(508600001)(52536014)(8936002)(38070700005)(38100700002)(316002)(55016003)(76116006)(66446008)(64756008)(66476007)(86362001)(66946007)(4326008)(54906003)(110136005)(66556008);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?WGdoL1NPcUNRNUE0SnVyQndJUU1mZDJtQ3RTZ3NUK0dMYk9mSEF0WGxXYm0y?=
+ =?utf-8?B?c3ZITEpaWkRlV01FK1k4bXFjaWNRNUxIV01pMUJxc2NGVXZlR2JRT1JHNzJX?=
+ =?utf-8?B?NVFwaTI5OSsraG8ycTFOd0dVcUVXNVJDb0l2UEllR0EvcklaQVk4T2tTZVF4?=
+ =?utf-8?B?LzBybUJVT1hEcm91Q0NHMUlnL2M0azFoT0UvRU5EdzhGVGRjWVZXaUpmeHQx?=
+ =?utf-8?B?YXUySDBwMWNUKzVYdTJLcHQzaGpGbW5IWHNwRlcwRnFZa0toRjFPZXh4VFR6?=
+ =?utf-8?B?V054TTdqb2F2WVNoVHRFdmVRRWtqRTFJVDVoakhmNXpLZjlEWGN3WGtST0Zq?=
+ =?utf-8?B?Wis2clh3bkdDTGRKbjFpaXpyRUpSQWJWbUg0YmJxOGhoVFJZUWM1My9Ualhn?=
+ =?utf-8?B?L25TWDZ3Q3RWUHdXY25xZVUxQWhGbDFMNDRiWUZSUDlBZlZpcXRHQmlXSTJC?=
+ =?utf-8?B?NHRnUFp4akpqN0lsQVdCYXAzQ01mN1phYzZRMk9YOXlWUlkydFJVZGJuTTZm?=
+ =?utf-8?B?YTVzeC9ndXQzU2RKb3o5SjNxOGpGdG1BV1hMcGRFamJ1eks4NmlrSGV0cjNi?=
+ =?utf-8?B?bDM1MGdJYmlaSXdBd0hScmJFRG45Z01BRVpYaUpFdUNnSVZuUEw4elQrRjQr?=
+ =?utf-8?B?K01WQTVMd0VjQitjUkNwTUwydjdlK3Rxa2tKdUtqRlMyWXpPaHFpTHJyWnM3?=
+ =?utf-8?B?RFJ6M0ZERW5zUTVYU01TNDlCWndCeUh0SlhxOHEzZkJHS1BrRVJ0MUV3dWph?=
+ =?utf-8?B?RGh1bm5MU0l2ZDlOWWxwQTRaQTM1TDNKUTRJdXQzSGJPMDQ5MTVaRk03ek9i?=
+ =?utf-8?B?L3BLdEtkNUNSTDJCbktjeitVWFVLU1dkaFlyZUF6QUFQejdmSTZOWEFpamZz?=
+ =?utf-8?B?cTdGcGE4TkdmdTFEOVMvOWs5VGg5YjZmVDZJczB4MGxzck5Zd2UrKzlCbzc0?=
+ =?utf-8?B?K2hRVStuME1qNzBNc2FtV3JqbTVWcEJ4YUtuVjZzY0FJUC9CcnlpTUVIRDdH?=
+ =?utf-8?B?OXZVbWNwV0piUFowbDdNUS9MK3VYNE5VaHI3N3ZxY0xPZVZBR3c4WmFlaVRl?=
+ =?utf-8?B?RFpYMXlsbUVmOUU0NnMvOVcwRUJzZHZ0Y29PdW40STZBM3hLVXgwSUs5Sngv?=
+ =?utf-8?B?bmFmRU1wSE1WakhhTUU2d0xFeXpaZm1rMC8wYkh5M3FpL3h4dFNFYnFva3Ru?=
+ =?utf-8?B?YWRWRmdXalh3SG96c0JrWHd6Uk8xSEdJdHVHdVluQ1NBeUllb2dvWDRWZjJz?=
+ =?utf-8?B?WkMzQUpZUExhZFpIYllNZUEzaGpSeEMvNXE2dTlBRzRjbXJhZkdabzlrRFky?=
+ =?utf-8?B?NnJUKy93dDU1L1J6QXdBK1k2RlRGU05iSW1jNjNzNlZxL2hvOHl3ZGZpd2Fj?=
+ =?utf-8?B?L0RMWW1HRnN3aUQ0elZVekl1cnNDN2w1N2NwbGFSc296NmkzTTZ6cElROGpz?=
+ =?utf-8?B?bnRBQlNsekxXRHRvdnFjeHhtNEx0ZUtlSEwvaTZtcG1yN01BZFBYUE5xY0Ra?=
+ =?utf-8?B?RGM1dDNYbnYwN1ZWRTZtTHdYeXh4T2RLZ2crYnEydXc1VWlvTmZ4ODd5TU5v?=
+ =?utf-8?B?bDMveTFpTVpSbWhkVEYvV2lESTZiaEdReTFxUFVwUWVUdUlGcmJ4N29JbUdq?=
+ =?utf-8?B?RGhlQm5mMXZuUGsveXplTGRvYjQxMkE4eElhZTRVNW9QMUJYWCt4YVpRNE43?=
+ =?utf-8?B?b01iR3BMOFRxcmgycGtQTDBJQmRoclFSME1PdVBPcVhsWER1eW9YNU14dm5t?=
+ =?utf-8?B?WXRnK2pTSVdnK0k3R0lOTHFzTjRPdUczclpZWFlhM3lnR0NjNGlhd3VzSXd0?=
+ =?utf-8?B?WWF5bEJTVXp6RkRVNFhpZkVuSTY1MThZWlNFd2xHQnJTMnZvTkp4a3EzeVhJ?=
+ =?utf-8?B?akdkZ2lTVno3cUtiWEtuUkFYeC9MMGQ5NFMwTHBRWU1pM3hPMGYxdU56NVF0?=
+ =?utf-8?B?L3crUVpyVEJiYTNFVGlqa2JFTzV2aFdvYkhqaHdrRHZhU2t3bnJYRVkzNVYv?=
+ =?utf-8?B?bW5NRXVUR08yYmFVWG54Q2tVOVJQRHcwNk1WeXJlUzlrYnJudWJ3ekVJZ1BD?=
+ =?utf-8?B?Y0ZEWlNDOUI5eU5FMDFsSGJtdUNGQjc4MnNyR2NsYmFTa3JrK29hQURkdlV2?=
+ =?utf-8?B?NnNMUUswdy9JVlo1YllFSHV4bnBEcmFDZzZ1Ukc3OWU2dXMvOTJaSFJyV0lo?=
+ =?utf-8?B?SmxQa0lPUmt5OHFHUkR0R3dKc2x5QXd3azNyM2VPVlpoS2dEMnR5MFBMaWF6?=
+ =?utf-8?B?N1JWUGo0ZXhyYSt6R2FhM1RjaWs3M2xBK0pDY1JJbi9XQjJ5bDJVOFBUdnps?=
+ =?utf-8?B?STBMVVB4THFQRWM2VDl3a2lXS05zZXp5b3J3dEM2Q2NiVWtUKy9FUT09?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.0
-Cc:     maukka@ext.kapsi.fi, Arnd Bergmann <arnd@arndb.de>,
-        SoC Team <soc@kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Olof Johansson <olof@lixom.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-To:     =?UTF-8?Q?Pali_Roh=c3=a1r?= <pali@kernel.org>
-References: <20220427162123.110458-1-maukka@ext.kapsi.fi>
- <CAK8P3a0p-ev50UfGiHCpMM5Jz5Mf8pdfQtNep0M7qi7PANSBVg@mail.gmail.com>
- <1509d16c-d244-19c7-610b-4c8ea8ca1624@ext.kapsi.fi>
- <CAK8P3a3g4CZjiVHHoBqJLrdN0chghaskODVvtWY1Fjj8TcB8KQ@mail.gmail.com>
- <b09847c4-90f8-509d-835b-85613712344d@ext.kapsi.fi>
- <CAK8P3a1miLk8YU+T5ozyf-X8qUB3sJq6cyTovBs9XWb9MrJxMw@mail.gmail.com>
- <20220508152237.3hw657gcba2fvheq@pali>
- <a0908aaa-154e-a53b-7538-a0b6557a30ae@ext.kapsi.fi>
- <20220508201044.qyh75mb4x64uuhfc@pali>
-From:   Mauri Sandberg <maukka@ext.kapsi.fi>
-In-Reply-To: <20220508201044.qyh75mb4x64uuhfc@pali>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2001:7d0:87e2:8500:714b:c96a:6de6:76e7
-X-SA-Exim-Mail-From: maukka@ext.kapsi.fi
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DB9PR04MB8477.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ed87b242-a4a8-4eb0-0d95-08da31aa5e5f
+X-MS-Exchange-CrossTenant-originalarrivaltime: 09 May 2022 10:55:02.3679
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: reKIqrZ2lkzBP8Nn1Lux3dbG/ny+QtveGpxVdYUP5rYHHYjKVggszFrRd1NLACPGWHCbmzZpMHlGo/OMLYSF+g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBBPR04MB7771
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
-X-Spam-Level: 
-X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
-Subject: Re: [RFC RFT PATCH v1 0/1] ARM: orion5x: convert D-Link DNS-323 to
- the Device Tree
-X-SA-Exim-Version: 4.2.1 (built Tue, 02 Aug 2016 21:08:31 +0000)
-X-SA-Exim-Scanned: Yes (on mailserv1.kapsi.fi)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 8.5.2022 23.10, Pali Rohár wrote:
-> On Sunday 08 May 2022 22:34:19 Mauri Sandberg wrote:
->> On 08.05.22 18:22, Pali Rohár wrote:
->>> On Sunday 08 May 2022 17:02:17 Arnd Bergmann wrote:
->>>> On Sun, May 8, 2022 at 4:06 PM Mauri Sandberg <maukka@ext.kapsi.fi> wrote:
->>>>> On 28.4.2022 23.56, Arnd Bergmann wrote:
->>>>>> On Thu, Apr 28, 2022 at 10:01 PM Mauri Sandberg <maukka@ext.kapsi.fi> wrote:
->>>>>>> On 27.4.2022 21.10, Arnd Bergmann wrote:
->>>>>>>> On Wed, Apr 27, 2022 at 6:21 PM Mauri Sandberg <maukka@ext.kapsi.fi> wrote:
->>>>>>>>> - sata_mv fails to initialise with -22 (-EINVAL)
->>>>>>>>
->>>>>>>> No idea, I'd try inserting a printk in every code path that can return -EINVAL
->>>>>>>> from there
->>>>>>>>
->>>>>
->>>>> With debugging the reason for -EINVAL remains a bit mystery.
->>>>>    - sata_mv calls ata_host_activate() [1]
->>>>>    - later on, in request_threaded_irq(), there are sanity checks [2]
->>>>>    - that fail with irq_settings_can_request() returning 0 [3]
->>>>>
->>>>> I cannot really put my finger on why the irq cannot be requested in DT
->>>>> approach.
->>>>
->>>> Are you sure the marvell,orion-intc driver is successfully probed
->>>> at this point? If not, the interrupt won't be there.
->>
->> I made the pci setup to be the very last thing in the boot and
->> results are still the same. There are other devices that do get
->> their interrupts from intc.
->>
->>>>
->>>> I see that the "sata_mv" driver can be used either as a platform
->>>> driver for the orion5x on-chip controller, or as a PCI driver for
->>>> an add-on chip connected to the external bus. It sounds like
->>>> your system has both. Do you know which one fails?
->>>>
->>>> The PCI driver cannot work unless the PCI host works correctly,
->>>> and that in turn requires a correct devicetree description for it.
->>>>
->>>>>>> Is there a way to describe the PCIe bus in the
->>>>>>> device tree? The initalisation of that bus is done for rev A1 only.
->>>>>>
->>>>>> I'm not too familiar with the platform, but my interpretation is that the
->>>>>> DT support here is incomplete:
->>>>>>
->>>>>> The DT based PCI probe using drivers/pci/controller/pci-mvebu.c
->>>>>> is not hooked up in orion5x.dtsi, and the traditional pci code does
->>>>>> not work with DT.
->>>>>
->>>>> Can the existing pci code still be used to init the PCI bus and describe
->>>>> the rest in the DT or is it a futile attempt?
->>>
->>> Hello! Orion uses arch/arm/mach-orion5x/pci.c driver for both PCI and
->>> PCIe buses. This is not device tree driver.
->>>
->>>>>> I see that orion5x has two separate blocks --  a PCIe host that is
->>>>>> similar to the kirkwood one, and a legacy PCI host that needs
->>>>>> a completely separate driver.
->>>>>>
->>>>>> Which of the two do you actually need here?
->>>>>>
->>>>>
->>>>> I really cannot say which one is it. How can I tell? The functions given
->>>>> in struct hw_pci find their way to drivers/pci/probe.c eventually and
->>>>> use pci_scan_root_bus_bridge(). Nothing seems to utilising mvebu or
->>>>> kirkwood explicitly at least.
->>>>>
->>>>> Here's the output from lspci if the ids reveal anything.
->>>>>
->>>>> # lspci -v -k
->>>>> 00:00.0 Class 0580: 11ab:5181
->>>>> 01:00.0 Class 0580: 11ab:5181
->>>>> 00:01.0 Class 0100: 11ab:7042 sata_mv
->>>>
->>>> The first two seem to be the host bridges, but unfortunately they
->>>>   seem both have the same device ID, despite being very different
->>>> devices.  The first one (00:00.0) should be the PCIe driver, the
->>>> second one (01.00.0) the legacy PCI one. In this case, the 11ab:7042
->>>> device is a PCIe device, and it's on the bus (00) of the first host
->>>> bridge. I think this should work with drivers/pci/controller/pci-mvebu.c
->>>> if you add the bits for probing.
->>>
->>> Last time when I looked on Orion PCIe controller registers, I though
->>> that they are same as in Kirkwood PCIe controller registers. And
->>> Kirkwood is already supported by pci-mvebu.c driver.
->>>
->>
->> I seemed that way to me too on the first glance. And it looks like there
->> are no devices using the PCI driver. I knocked off that part altogether and
->> the boot log looks pretty much the same it was. Perhaps I can do
->> with describing the PCIe bus only.
->>
->>> About PCI host bridge, I do not know.
->>>
->>> Beware that PCI Class Id and all PCI registers which are different for
->>> Type 0 and Type 1 are _broken_ on all PCIe Root Ports form all 32-bit
->>> Marvell SoCs. Those registers on Marvell SoCs have different meaning as
->>> what is defined in PCI and PCIe specs. So it means that lspci _may_
->>> display bogus information about PCIe Root Port. pci-mvebu.c uses Root
->>> Port emulator which fills correct data to make kernel and lspci happy.
->>>
->>> If you are going to extend pci-mvebu.c to support also Orion PCIe
->>> controller, I could try to help with it. But I do not have any Orion
->>> hardware, so just basic help...
->>
->> I could make an attempt at this. Should I try to look at an existing
->> kirkwood based device first, say kirkwood-6281.dtsi? I didn't see
->> anything SoC-specific in pci-mvebu.c. All different compatibles seem
->> to share the same functionality.
-> 
-> Yes, this could be a good starting point. But you will need new
-> compatible string for orion, specially to implement workaround for
-> accessing config space.
-> 
->>>
->>> Links to Orion documentations, including PCIe errata is available in
->>> kernel documentation. So this could help to understand some details:
->>> https://www.kernel.org/doc/html/latest/arm/marvell.html
->>>
->>> Anyway, could you please provide 'lspci -nn -vv' and 'lspci -nn -t -v'
->>> outputs from Orion?
->>
->> # lspci -nn -vv
->> 0000:00:00.0 Memory controller [0580]: Marvell Technology Group Ltd. 88f5181
->> [Orion-1] ARM SoC [11ab:5181] (rev 03)
->> 	Subsystem: Marvell Technology Group Ltd. Device [11ab:11ab]
->> 	Control: I/O+ Mem+ BusMaster+ SpecCycle- MemWINV- VGASnoop- ParErr+
->> Stepping- SERR+ FastB2B- DisINTx-
->> 	Status: Cap+ 66MHz- UDF- FastB2B- ParErr- DEVSEL=fast >TAbort- <TAbort-
->> <MAbort- >SERR- <PERR- INTx-
->> 	Latency: 0, Cache Line Size: 32 bytes
->> 	Interrupt: pin A routed to IRQ 0
->> 	Region 0: Memory at <ignored> (64-bit, prefetchable)
->> 	Capabilities: [40] Power Management version 2
->> 		Flags: PMEClk- DSI- D1- D2- AuxCurrent=0mA PME(D0-,D1-,D2-,D3hot-,D3cold-)
->> 		Status: D0 NoSoftRst- PME-Enable- DSel=0 DScale=0 PME-
->> 	Capabilities: [50] MSI: Enable- Count=1/1 Maskable- 64bit+
->> 		Address: 0000000000000000  Data: 0000
->> 	Capabilities: [60] Express (v1) Root Port (Slot-), MSI 00
->> 		DevCap:	MaxPayload 128 bytes, PhantFunc 0
->> 			ExtTag- RBE-
->> 		DevCtl:	CorrErr- NonFatalErr- FatalErr- UnsupReq-
->> 			RlxdOrd- ExtTag- PhantFunc- AuxPwr- NoSnoop-
->> 			MaxPayload 128 bytes, MaxReadReq 512 bytes
->> 		DevSta:	CorrErr- NonFatalErr- FatalErr- UnsupReq- AuxPwr- TransPend-
->> 		LnkCap:	Port #0, Speed 2.5GT/s, Width x1, ASPM L0s, Exit Latency L0s
->> <256ns
->> 			ClockPM- Surprise- LLActRep- BwNot- ASPMOptComp-
->> 		LnkCtl:	ASPM Disabled; RCB 128 bytes, Disabled- CommClk-
->> 			ExtSynch- ClockPM- AutWidDis- BWInt- AutBWInt-
->> 		LnkSta:	Speed 2.5GT/s (ok), Width x1 (ok)
->> 			TrErr- Train- SlotClk+ DLActive- BWMgmt- ABWMgmt-
->> 		RootCap: CRSVisible-
->> 		RootCtl: ErrCorrectable- ErrNon-Fatal- ErrFatal- PMEIntEna- CRSVisible-
->> 		RootSta: PME ReqID 0000, PMEStatus- PMEPending-
->>
->> 0000:00:01.0 SCSI storage controller [0100]: Marvell Technology Group Ltd.
->> 88SX7042 PCI-e 4-port SATA-II [11ab:7042] (rev 02)
->> 	Subsystem: Marvell Technology Group Ltd. Device [11ab:11ab]
->> 	Control: I/O+ Mem+ BusMaster+ SpecCycle- MemWINV- VGASnoop- ParErr+
->> Stepping- SERR+ FastB2B- DisINTx-
->> 	Status: Cap+ 66MHz- UDF- FastB2B- ParErr- DEVSEL=fast >TAbort- <TAbort-
->> <MAbort- >SERR- <PERR- INTx-
->> 	Latency: 0, Cache Line Size: 32 bytes
->> 	Interrupt: pin A routed to IRQ 12
->> 	Region 0: Memory at e0000000 (64-bit, non-prefetchable) [size=1M]
->> 	Region 2: I/O ports at 1000 [size=256]
->> 	Capabilities: [40] Power Management version 2
->> 		Flags: PMEClk- DSI- D1- D2- AuxCurrent=0mA PME(D0-,D1-,D2-,D3hot-,D3cold-)
->> 		Status: D0 NoSoftRst- PME-Enable- DSel=0 DScale=0 PME-
->> 	Capabilities: [50] MSI: Enable- Count=1/1 Maskable- 64bit+
->> 		Address: 0000000000000000  Data: 0000
->> 	Capabilities: [60] Express (v1) Legacy Endpoint, MSI 00
->> 		DevCap:	MaxPayload 256 bytes, PhantFunc 0, Latency L0s <256ns, L1 <1us
->> 			ExtTag- AttnBtn- AttnInd- PwrInd- RBE- FLReset-
->> 		DevCtl:	CorrErr- NonFatalErr- FatalErr- UnsupReq-
->> 			RlxdOrd- ExtTag- PhantFunc- AuxPwr- NoSnoop-
->> 			MaxPayload 128 bytes, MaxReadReq 512 bytes
->> 		DevSta:	CorrErr- NonFatalErr- FatalErr- UnsupReq- AuxPwr- TransPend-
->> 		LnkCap:	Port #0, Speed 2.5GT/s, Width x4, ASPM L0s, Exit Latency L0s
->> <256ns
->> 			ClockPM- Surprise- LLActRep- BwNot- ASPMOptComp-
->> 		LnkCtl:	ASPM Disabled; RCB 128 bytes, Disabled- CommClk-
->> 			ExtSynch- ClockPM- AutWidDis- BWInt- AutBWInt-
->> 		LnkSta:	Speed 2.5GT/s (ok), Width x1 (downgraded)
->> 			TrErr- Train- SlotClk+ DLActive- BWMgmt- ABWMgmt-
->> 	Kernel driver in use: sata_mv
->>
->> 0001:01:00.0 Memory controller [0580]: Marvell Technology Group Ltd. 88f5181
->> [Orion-1] ARM SoC [11ab:5181] (rev 03)
->> 	Control: I/O+ Mem+ BusMaster+ SpecCycle- MemWINV- VGASnoop- ParErr+
->> Stepping- SERR+ FastB2B+ DisINTx-
->> 	Status: Cap+ 66MHz+ UDF- FastB2B+ ParErr- DEVSEL=medium >TAbort- <TAbort-
->> <MAbort+ >SERR- <PERR- INTx-
->> 	Latency: 0, Cache Line Size: 32 bytes
->> 	Interrupt: pin A routed to IRQ 0
->> 	BIST result: 00
->> 	Region 0: Memory at <unassigned> (64-bit, prefetchable)
->> 	Region 2: Memory at <ignored> (64-bit, prefetchable)
->> 	Region 4: Memory at <ignored> (64-bit, non-prefetchable)
->> 	Expansion ROM at <ignored> [disabled]
->> 	Capabilities: [40] Power Management version 2
->> 		Flags: PMEClk+ DSI- D1+ D2+ AuxCurrent=0mA PME(D0+,D1+,D2+,D3hot+,D3cold-)
->> 		Status: D0 NoSoftRst- PME-Enable- DSel=0 DScale=0 PME+
->> 	Capabilities: [48] Vital Product Data
->> 		Not readable
->> 	Capabilities: [50] MSI: Enable- Count=1/1 Maskable- 64bit+
->> 		Address: 0000000000000000  Data: 0000
->> 	Capabilities: [60] PCI-X non-bridge device
->> 		Command: DPERE- ERO- RBC=512 OST=4
->> 		Status: Dev=ff:1f.0 64bit+ 133MHz+ SCD- USC- DC=bridge DMMRBC=512 DMOST=4
->> DMCRS=8 RSCEM- 266MHz- 533MHz-
->> 	Capabilities: [68] CompactPCI hot-swap <?>
->>
->> # lspci -nn -t -v
->> -+-[0001:01]---00.0  Marvell Technology Group Ltd. 88f5181 [Orion-1] ARM SoC
->> [11ab:5181]
->>  \-[0000:00]-+-00.0  Marvell Technology Group Ltd. 88f5181 [Orion-1] ARM SoC
->> [11ab:5181]
->>              \-01.0  Marvell Technology Group Ltd. 88SX7042 PCI-e 4-port
->> SATA-II [11ab:7042]
-> 
-> Ok, so domain 0 is PCIe bus for sure.
-> 0000:00:00.0 is PCIe Root Port (PCI-to-PCI bridge) incorrectly detected
-> as Memory controller (known HW issue on all 32-bit Marvell SoCs).
-> 0000:00:01.0 seems to be that SATA controller and this device is
-> connected behind the PCIe Root Port. Topology is also incorrectly
-> reports due to same known issue.
-> 
-> Then there is domain 1 (first line in -t output) on which is just one
-> device 0001:01:00.0 detected as Memory controller and has capability of
-> "PCI-X non-bridge device". This seems to be PCI bus. I guess that Memory
-> controller is also bogus information.
-> 
-> What is "PCI-X non-bridge device"? I thought that "root" of the PCI bus
-> should be Host Bridge.
-> 
-> Anyway, there is my pending patch which should fix Class ID to not
-> report incorrect Memory controller identification:
-> https://lore.kernel.org/linux-pci/20211102171259.9590-1-pali@kernel.org/#Z31arch:arm:mach-orion5x:pci.c
-
-With the patch the roots are identified as follows:
-
-# lspci -nn -vv
-0000:00:00.0 Host bridge [0600]: Marvell Technology Group Ltd. 88f5181
-[Orion-1] ARM SoC [11ab:5181] (rev 03)
-...
-0001:01:00.0 Host bridge [0600]: Marvell Technology Group Ltd. 88f5181
-[Orion-1] ARM SoC [11ab:5181] (rev 03)
-
-Everything else remained the same.
-
-
->>>
->>>> Thomas Petazzoni originally wrote the new driver, and I think he was
->>>> planning at one point to use it for orion5x. I don't know if there were
->>>> any major problems preventing this at the time, or if it just needs to
->>>> get hooked up in the dtsi file.
->>>>
->>>>           Arnd
->>
->> -- Mauri
+PiBGcm9tOiBQZW5nIEZhbiAoT1NTKSA8cGVuZy5mYW5Ab3NzLm54cC5jb20+DQo+IFNlbnQ6IE1v
+bmRheSwgTWF5IDksIDIwMjIgMzoyOSBQTQ0KPiANCj4gRW5hYmxlIGxwdWFydCAmIFNESEMgZm9y
+IGNvbnNvbGUgYW5kIHJvb3Rmcw0KPiANCj4gU2lnbmVkLW9mZi1ieTogUGVuZyBGYW4gPHBlbmcu
+ZmFuQG54cC5jb20+DQoNCkxvb2tzIGdvb2QgdG8gbWUuIA0KT25seSBhIG1pbm9yIGNvbW1lbnQg
+YmVsb3csIG90aGVyd2lzZQ0KUmV2aWV3ZWQtYnk6IERvbmcgQWlzaGVuZyA8YWlzaGVuZy5kb25n
+QG54cC5jb20+DQoNClsuLi5dIA0KDQo+ICsNCj4gKyZpb211eGMgew0KPiArCXN0YXR1cyA9ICJv
+a2F5IjsNCg0KSXMgdGhpcyBsaW5lIHJlYWxseSBuZWNlc3Nhcnk/DQoNClJlZ2FyZHMNCkFpc2hl
+bmcNCg==
