@@ -2,77 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 08AA9520833
-	for <lists+devicetree@lfdr.de>; Tue, 10 May 2022 01:12:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A1A2B52084A
+	for <lists+devicetree@lfdr.de>; Tue, 10 May 2022 01:18:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232244AbiEIXQY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 May 2022 19:16:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49700 "EHLO
+        id S229696AbiEIXWj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 May 2022 19:22:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44060 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232245AbiEIXQX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 May 2022 19:16:23 -0400
-Received: from mail-oa1-f43.google.com (mail-oa1-f43.google.com [209.85.160.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 085B92A3773;
-        Mon,  9 May 2022 16:12:28 -0700 (PDT)
-Received: by mail-oa1-f43.google.com with SMTP id 586e51a60fabf-d6e29fb3d7so16432631fac.7;
-        Mon, 09 May 2022 16:12:27 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=EmgXIp6wMnmBy4zjwHY36GV+5Al3/f1oiVUfAfxCvxk=;
-        b=k5jxUUGjw3xPc9EL8QU3bBdnolB6+FtcBPTVtvBjchZYxk2EGWi08QdyfKmITvU3mD
-         +OoTsNjuJXGcIl1/zR9XT7Z3J5fFePpJ3oxFxsgCwX/aoIMdtriGYcp0tctO+VJIP6bL
-         XRv47Mv/GyUyomS9jBHx1DX9SFFrhbvr5ZE62Yo+OERyZKEbEdoRBWBNa3NDVRlcyJCd
-         PR1gl89jts91sadW81hmuuTC28Av+wEf9ugXSRXp5naG6A7PudcwBcMuTTHUU/XMY4j/
-         F0CPTHbsoSPD0JfnH8Q+S8UTE9JVNpNm1wwDNiwj3tyHG4+IJeqEArLEwAwCfbXXcjdX
-         iJvw==
-X-Gm-Message-State: AOAM532U2XUYrn1g5roxAPFTvXKl97SHwqxbSuDKzHdLiK5jrXkQHpuZ
-        KYWYMmGfMXLRCV3uagUb3w==
-X-Google-Smtp-Source: ABdhPJyQXGVgIQQnFpuDFb8C5WA0aJ+WbyZnIgmYjGPoDZXRH0oKqv26w/MqI6+h2SBJC994xOLNZA==
-X-Received: by 2002:a05:6870:c698:b0:de:8a16:c37 with SMTP id cv24-20020a056870c69800b000de8a160c37mr11542610oab.191.1652137947285;
-        Mon, 09 May 2022 16:12:27 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id x7-20020a056870a78700b000e686d13897sm4746599oao.49.2022.05.09.16.12.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 May 2022 16:12:26 -0700 (PDT)
-Received: (nullmailer pid 393081 invoked by uid 1000);
-        Mon, 09 May 2022 23:12:25 -0000
-Date:   Mon, 9 May 2022 18:12:25 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Pali =?iso-8859-1?Q?Roh=E1r?= <pali@kernel.org>
-Cc:     Marc Zyngier <maz@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 2/6] irqchip/armada-370-xp: Implement SoC Error interrupts
-Message-ID: <Ynmf2SHN90yvsOmP@robh.at.kernel.org>
-References: <20220506134029.21470-1-pali@kernel.org>
- <20220506134029.21470-3-pali@kernel.org>
- <87mtfu7ccd.wl-maz@kernel.org>
- <20220506183051.wimo7p4nuqfnl2aj@pali>
- <8735hmijlu.wl-maz@kernel.org>
- <20220506185546.n5rl3chyyauy4bjt@pali>
- <87levd7m2n.wl-maz@kernel.org>
- <20220507092054.b7yu23nj667l6xhy@pali>
+        with ESMTP id S232336AbiEIXWi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 May 2022 19:22:38 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4851151302;
+        Mon,  9 May 2022 16:18:37 -0700 (PDT)
+X-UUID: bcb3ca1d964c4820a26c9c276bc88abb-20220510
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.4,REQID:dc9a6e72-e91a-4097-bab1-e3017460814d,OB:0,LO
+        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
+        ON:release,TS:0
+X-CID-META: VersionHash:faefae9,CLOUDID:a84ecb16-2e53-443e-b81a-655c13977218,C
+        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,File:nil,QS:0,BEC:nil
+X-UUID: bcb3ca1d964c4820a26c9c276bc88abb-20220510
+Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw02.mediatek.com
+        (envelope-from <miles.chen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1906186339; Tue, 10 May 2022 07:18:30 +0800
+Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
+ Tue, 10 May 2022 07:18:08 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
+ mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.792.3 via Frontend Transport; Tue, 10 May 2022 07:18:08 +0800
+From:   Miles Chen <miles.chen@mediatek.com>
+To:     <robh@kernel.org>
+CC:     <allen-kh.cheng@mediatek.com>,
+        <angelogioacchino.delregno@collabora.com>,
+        <chun-jie.chen@mediatek.com>, <devicetree@vger.kernel.org>,
+        <ikjn@chromium.org>, <krzk+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-clk@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>, <matthias.bgg@gmail.com>,
+        <matthias.bgg@kernel.org>, <miles.chen@mediatek.com>,
+        <mturquette@baylibre.com>, <sboyd@kernel.org>
+Subject: Re: [PATCH v2 1/2] dt-bindings: ARM: Mediatek: Remove msdc binding of mt8192 clock
+Date:   Tue, 10 May 2022 07:18:08 +0800
+Message-ID: <20220509231808.7657-1-miles.chen@mediatek.com>
+X-Mailer: git-send-email 2.18.0
+In-Reply-To: <YnmXX0DldjhmbjY3@robh.at.kernel.org>
+References: <YnmXX0DldjhmbjY3@robh.at.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220507092054.b7yu23nj667l6xhy@pali>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+Content-Type: text/plain
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,95 +63,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, May 07, 2022 at 11:20:54AM +0200, Pali Rohár wrote:
-> On Saturday 07 May 2022 10:01:52 Marc Zyngier wrote:
-> > On Fri, 06 May 2022 19:55:46 +0100,
-> > Pali Rohár <pali@kernel.org> wrote:
-> > > 
-> > > On Friday 06 May 2022 19:47:25 Marc Zyngier wrote:
-> > > > On Fri, 06 May 2022 19:30:51 +0100,
-> > > > Pali Rohár <pali@kernel.org> wrote:
-> > > > > 
-> > > > > On Friday 06 May 2022 19:19:46 Marc Zyngier wrote:
-> > > > > > On Fri, 06 May 2022 14:40:25 +0100,
-> > > > > > Pali Rohár <pali@kernel.org> wrote:
-> > > > > > > 
-> > > > > > > +static void armada_370_xp_soc_err_irq_unmask(struct irq_data *d);
-> > > > > > > +
-> > > > > > >  static inline bool is_percpu_irq(irq_hw_number_t irq)
-> > > > > > >  {
-> > > > > > >  	if (irq <= ARMADA_370_XP_MAX_PER_CPU_IRQS)
-> > > > > > > @@ -509,6 +517,27 @@ static void armada_xp_mpic_reenable_percpu(void)
-> > > > > > >  		armada_370_xp_irq_unmask(data);
-> > > > > > >  	}
-> > > > > > >  
-> > > > > > > +	/* Re-enable per-CPU SoC Error interrupts that were enabled before suspend */
-> > > > > > > +	for (irq = 0; irq < soc_err_irq_num_regs * 32; irq++) {
-> > > > > > > +		struct irq_data *data;
-> > > > > > > +		int virq;
-> > > > > > > +
-> > > > > > > +		virq = irq_linear_revmap(armada_370_xp_soc_err_domain, irq);
-> > > > > > > +		if (virq == 0)
-> > > > > > > +			continue;
-> > > > > > > +
-> > > > > > > +		data = irq_get_irq_data(virq);
-> > > > > > > +
-> > > > > > > +		if (!irq_percpu_is_enabled(virq))
-> > > > > > > +			continue;
-> > > > > > > +
-> > > > > > > +		armada_370_xp_soc_err_irq_unmask(data);
-> > > > > > > +	}
-> > > > > > 
-> > > > > > So you do this loop and all these lookups, both here and in the resume
-> > > > > > function (duplicated code!) just to be able to call the unmask
-> > > > > > function?  This would be better served by two straight writes of the
-> > > > > > mask register, which you'd conveniently save on suspend.
-> > > > > > 
-> > > > > > Yes, you have only duplicated the existing logic. But surely there is
-> > > > > > something better to do.
-> > > > > 
-> > > > > Yes, I just used existing logic.
-> > > > > 
-> > > > > I'm not rewriting driver or doing big refactor of it, as this is not in
-> > > > > the scope of the PCIe AER interrupt support.
-> > > > 
-> > > > Fair enough. By the same logic, I'm not taking any change to the
-> > > > driver until it is put in a better shape. Your call.
-> > > 
-> > > If you are maintainer of this code then it is expected from _you_ to
-> > > move the current code into _better shape_ as you wrote and expect. And
-> > > then show us exactly, how new changes in this driver should look like,
-> > > in examples.
-> > 
-> > Sorry, but that's not how this works. You are the one willing to
-> > change a sub-par piece of code, you get to make it better. You
-> > obviously have the means (the HW) and the incentive (these patches).
-> > But you don't get to make something even more unmaintainable because
-> > you're unwilling to do some extra work.
-> > 
-> > If you're unhappy with my position, that's fine. I suggest you take it
-> > with Thomas, and maybe even Linus. As I suggested before, you can also
-> > post a patch removing me as the irqchip maintainer. I'm sure that will
-> > spark an interesting discussion.
-> 
-> You have already suggested it in email [1] but apparently you are _not_
-> maintainer of mvebu pci controller. get_maintainer.pl for part about
-> which you have talked in [1] says:
-> 
-> $ ./scripts/get_maintainer.pl -f drivers/pci/controller/pci-aardvark.c
-> Thomas Petazzoni <thomas.petazzoni@bootlin.com> (maintainer:PCI DRIVER FOR AARDVARK (Marvell Armada 3700))
-> "Pali Rohár" <pali@kernel.org> (maintainer:PCI DRIVER FOR AARDVARK (Marvell Armada 3700))
-> Lorenzo Pieralisi <lorenzo.pieralisi@arm.com> (supporter:PCI NATIVE HOST BRIDGE AND ENDPOINT DRIVERS)
-> Rob Herring <robh@kernel.org> (reviewer:PCI NATIVE HOST BRIDGE AND ENDPOINT DRIVERS)
+Hi Rob,
 
-Please just refactor the code in question. You've wasted more time 
-arguing about it than it would take to do. Having done a bit of PCI 
-refactoring, I can tell you hardly anyone else does. I can barely even 
-get comments/acks on refactoring until I break platforms (which happens 
-a lot). Maintainers have no other leverage other than what Marc pointed 
-out.
+>On Thu, May 05, 2022 at 01:31:11PM +0800, Miles Chen wrote:
+>> Hi Rob,
+>> 
+>> >> From: Matthias Brugger <matthias.bgg@gmail.com>
+>> >> 
+>> >> The msdc gate is part of the MMC driver. Delete the binding description
+>> >> of this node.
+>> > 
+>> >An ABI break is okay because ...?
+>> 
+>> Sorry for that, 
+>> 
+>> If the mediatek,mt8192-msdc part is removed from the driver, 
+>
+>That's an ABI break too. You just need to explain why as Matthias did in 
+>the commit message if the ABI break is okay.
 
-In any case, I think there's no way the PCI maintainers will take this 
-as-is at this point.
+Thanks for your explanation.
 
-Rob
+I would like to learn more about this. In this case
+If there was a user (say xxx.c) but the user was removed, can I remove mediatek,mt8192-msdc?
+
+thanks,
+Miles
+
+>
+>> Is it ok to keep "mediatek,mt8192-msdc" in the binding document? or 
+>> we should add '# deprecated' to "mediatek,mt8192-msdc" and keep the example.
+>
+>We do that sometimes, but depends on the situation.
+>
+>Rob
+
