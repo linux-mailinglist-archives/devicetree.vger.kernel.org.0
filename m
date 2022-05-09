@@ -2,98 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 80A1951F7AF
-	for <lists+devicetree@lfdr.de>; Mon,  9 May 2022 11:12:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A0C8C51F7B2
+	for <lists+devicetree@lfdr.de>; Mon,  9 May 2022 11:12:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238241AbiEIJNd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 May 2022 05:13:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53438 "EHLO
+        id S238251AbiEIJNj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 May 2022 05:13:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34524 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237997AbiEIJDP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 May 2022 05:03:15 -0400
-Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [217.70.183.194])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF4BB1F2D55;
-        Mon,  9 May 2022 01:59:21 -0700 (PDT)
-Received: (Authenticated sender: gregory.clement@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 72C8840010;
-        Mon,  9 May 2022 08:59:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1652086743;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=GlfE+eMNWZzjVhKznIxmSnTKmF7zpHT4YD9wNmX5k2E=;
-        b=WMevReCeo2A5kiQiz+3netIPtBlgC36e1qsQMUdkXUBOmgSiXgr0s7iAxAKM7kxV9x1F3C
-        U/ZNrFIjK4maROzDydD0u1B4EjgServOkMIcOhUQhCTGM6lOgfN1GmkRRkJuPT488QPUft
-        F9eZgTf4pH0DxoF4Ag0gDu41wZuFk3ahKm0yPkxcI59FxmvyQ7k75x2soRFJtCO3QA/lVG
-        xds9u19AL0tYaAKTo1AIv+Nkqi1p25OPxyCzZZ0JxY5cT4k2fFMpnF2N0xJ1YPD2FmliHW
-        4YoqkukZ2ahSmC66t7ihMZYCpFbt0qem2n5RRMf6tKDOdFjhsNG7fUOM0xIOXQ==
-From:   Gregory CLEMENT <gregory.clement@bootlin.com>
-To:     Robert Marko <robert.marko@sartura.hr>, andrew@lunn.ch,
-        sebastian.hesselbarth@gmail.com, robh+dt@kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, pali@kernel.org
-Cc:     Robert Marko <robert.marko@sartura.hr>
-Subject: Re: [PATCH v3 3/3] arm64: dts: marvell: espressobin-ultra: enable
- front USB3 port
-In-Reply-To: <20210928170919.691845-3-robert.marko@sartura.hr>
-References: <20210928170919.691845-1-robert.marko@sartura.hr>
- <20210928170919.691845-3-robert.marko@sartura.hr>
-Date:   Mon, 09 May 2022 10:58:53 +0200
-Message-ID: <87ee13rsj6.fsf@BL-laptop>
+        with ESMTP id S235875AbiEIJFX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 May 2022 05:05:23 -0400
+Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B63301912C6
+        for <devicetree@vger.kernel.org>; Mon,  9 May 2022 02:01:11 -0700 (PDT)
+Received: by mail-lj1-x22e.google.com with SMTP id v4so16181450ljd.10
+        for <devicetree@vger.kernel.org>; Mon, 09 May 2022 02:01:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Uk0F+pHFme3IX8Eb3GloSmQuUNGPl5g90xgvNBZj1Q0=;
+        b=T8Fkx+HlnRGu+csQwocv2tBOCOgRuBg/8XXN4eYCxquH9wcCL75nYMyC7w71vwlPm+
+         ZvWbpfa5j4F1xqlgpGSd0NxQyWkTN3eva9ZRd1vYB1N/3Tn7T5hY3vAvDs6dXhUwwuPu
+         GlowdfDbdaeMsReG004sKGBeXFhiKA0UDflhGQuy//NNPvuHZSppxxR1RegATSIpxyv4
+         3wg7QkTW6tSKL8fSAjlbkCg1KoAENUwizi9WlHs4BuCfaNvEOiF4YDXyUQ8Dhy9aOpgl
+         jhfOuvB9PZc2V/VY+pOJHNGJQlR9NAT+4bucaMkHdO3xyGtlP6LzHsGboCJSqGJ98ngt
+         ZTdQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Uk0F+pHFme3IX8Eb3GloSmQuUNGPl5g90xgvNBZj1Q0=;
+        b=LIFqYOwCClnhXjJsLCQVcvRnQAI6YfxcCwnP0V0BgJ/RaI4viSCa+ZYAm+cIuP0rYE
+         pfMBlWl1m+Ub2HM6AN93qFxuJmzOQdevRcef/MmwVaaAMkOSRj9I110DpHbMp3hpkW19
+         vgw7c4Fxu8jUH1hbISAykmCrRqM1mCmVinMfjx5X4iOG9L0VdjJGSjjKZCAqVfLgn4/W
+         P9ZGA8feDY2QPEPRv7CemQaZEuf6ULGwiagoqGb9Ct5qSSfe9zeOubrgnR7pFFti9MAp
+         Dij2YGjuz2GDaGKOXX4F24yyWCm+VMR5ZtzraxKaRZrvKQcWqR4MkVctuJSn5rxdnald
+         qzqQ==
+X-Gm-Message-State: AOAM532RopJIIaFW5MDNFi2b+A1QSKRVzEH5qHDXPQ59YCbkHr2+vvpY
+        w1JYJCMdv8XFqMYacE/XK7g2MQ==
+X-Google-Smtp-Source: ABdhPJw4YqikXmTuH3YWOOhGAa9mTdCn4BuRZknaQFg95We20bWB5fgxTha1VNVQ8Yly6Ib2FSFYUQ==
+X-Received: by 2002:a2e:b5d1:0:b0:24f:331d:f9b6 with SMTP id g17-20020a2eb5d1000000b0024f331df9b6mr9821404ljn.302.1652086863539;
+        Mon, 09 May 2022 02:01:03 -0700 (PDT)
+Received: from localhost.localdomain (mobile-access-5672eb-224.dhcp.inet.fi. [86.114.235.224])
+        by smtp.gmail.com with ESMTPSA id t3-20020a2e7803000000b0024f3d1daee8sm1749824ljc.112.2022.05.09.02.01.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 09 May 2022 02:01:02 -0700 (PDT)
+From:   Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-clk@vger.kernel.org
+Subject: [PATCH v5 0/7] clk: qcom: add camera clock controller driver for SM8450 SoC
+Date:   Mon,  9 May 2022 12:00:57 +0300
+Message-Id: <20220509090059.4140941-1-vladimir.zapolskiy@linaro.org>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Robert Marko <robert.marko@sartura.hr> writes:
+The patchset adds support of a camera clock controller found on
+QCOM SM8450 SoC, noticeably a camcc pll2 is a new "rivian evo"
+type of pll, its generic support is added in the series.
 
-> Espressobin Ultra has a front panel USB3.0 Type-A port which works
-> just fine so enable it.
-> I dont see a reason why it was disabled in the first place anyway.
->
-> Fixes: 3404fe15a60f ("arm64: dts: marvell: add DT for ESPRESSObin-Ultra")
-> Signed-off-by: Robert Marko <robert.marko@sartura.hr>
+Note that SM8450 ES variant has a slightly different configurtion,
+the published version is intended to support SM8450 CS SoC.
 
+Changes from v4 to v5:
+* fixed the same typo in a usage example found in yaml file as in v3
+  change.
 
-Applied on mvebu/dt64
+Changes from v3 to v4:
+* fixed a changed path in the yaml file.
 
-Thanks,
+Changes from v2 to v3:
+* fixed a typo in a usage example found in yaml file,
+* renamed dt related files to match the compatible "qcom,sm8450-camcc",
+* minor fixes in the driver per review requests from Bjorn,
+* added Bjorn's tag to a change of exported symbols namespace.
 
-Gregory
+Changes from v1 to v2:
+* updated qcom,camcc-sm8450.yaml according to review comments from Rob,
+* changed qcom,camcc-sm8450.h licence to dual one,
+* disabled camcc device tree node by default,
+* added Stephen's tag,
+* rebased the series on top of clk-for-5.18
 
+Vladimir Zapolskiy (7):
+  dt-bindings: clock: add QCOM SM8450 camera clock bindings
+  arm64: dts: qcom: sm8450: Add description of camera clock controller
+  clk: qcom: clk-alpha-pll: fix clk_trion_pll_configure description
+  clk: qcom: clk-alpha-pll: limit exported symbols to GPL licensed code
+  clk: qcom: clk-alpha-pll: add Lucid EVO PLL configuration interfaces
+  clk: qcom: clk-alpha-pll: add Rivian EVO PLL configuration interfaces
+  clk: qcom: add camera clock controller driver for SM8450 SoC
 
-> ---
-> Changes in v2:
-> * Add Fixes tag
-> ---
->  arch/arm64/boot/dts/marvell/armada-3720-espressobin-ultra.dts | 1 -
->  1 file changed, 1 deletion(-)
->
-> diff --git a/arch/arm64/boot/dts/marvell/armada-3720-espressobin-ultra.dts b/arch/arm64/boot/dts/marvell/armada-3720-espressobin-ultra.dts
-> index 7c786d218f1b..070725b81be5 100644
-> --- a/arch/arm64/boot/dts/marvell/armada-3720-espressobin-ultra.dts
-> +++ b/arch/arm64/boot/dts/marvell/armada-3720-espressobin-ultra.dts
-> @@ -108,7 +108,6 @@ rtc@51 {
->  
->  &usb3 {
->  	usb-phy = <&usb3_phy>;
-> -	status = "disabled";
->  };
->  
->  &mdio {
-> -- 
-> 2.31.1
->
+ .../bindings/clock/qcom,sm8450-camcc.yaml     |   89 +
+ arch/arm64/boot/dts/qcom/sm8450.dtsi          |   20 +
+ drivers/clk/qcom/Kconfig                      |    7 +
+ drivers/clk/qcom/Makefile                     |    1 +
+ drivers/clk/qcom/camcc-sm8450.c               | 2859 +++++++++++++++++
+ drivers/clk/qcom/clk-alpha-pll.c              |  145 +-
+ drivers/clk/qcom/clk-alpha-pll.h              |   11 +-
+ include/dt-bindings/clock/qcom,sm8450-camcc.h |  159 +
+ 8 files changed, 3285 insertions(+), 6 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/qcom,sm8450-camcc.yaml
+ create mode 100644 drivers/clk/qcom/camcc-sm8450.c
+ create mode 100644 include/dt-bindings/clock/qcom,sm8450-camcc.h
 
 -- 
-Gregory Clement, Bootlin
-Embedded Linux and Kernel engineering
-http://bootlin.com
+2.33.0
+
