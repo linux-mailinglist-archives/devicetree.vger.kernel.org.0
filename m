@@ -2,65 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3520B51FC91
-	for <lists+devicetree@lfdr.de>; Mon,  9 May 2022 14:21:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DFB3251FC9D
+	for <lists+devicetree@lfdr.de>; Mon,  9 May 2022 14:23:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234165AbiEIMYQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 May 2022 08:24:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52682 "EHLO
+        id S234283AbiEIMY7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 May 2022 08:24:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55918 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233972AbiEIMYQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 May 2022 08:24:16 -0400
-Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8A35233A67;
-        Mon,  9 May 2022 05:20:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=MVzmwksZEc5xV3HD02y8j5y1x9GRvHeT5B5x20Hc+0I=; b=hOtZV+3Jreg66zFUzHNsrUzalN
-        p6D+X363nLkmBv7oaSZq1VDVIPZ/T1IDPbuqkuQc5Gv1C0L7P/alcPhlD+Y2O7jWBzYqgdyS7vTN+
-        9B+My78PJSGo3Y4689YybuQK6ubPPuU+h3sHlz2bYm+DX5KPC1HIUPWIz8bhR39do6OQ=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1no2Mx-001wIt-3n; Mon, 09 May 2022 14:20:07 +0200
-Date:   Mon, 9 May 2022 14:20:07 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Corentin Labbe <clabbe@baylibre.com>
-Cc:     alexandre.torgue@foss.st.com, broonie@kernel.org,
-        calvin.johnson@oss.nxp.com, davem@davemloft.net,
-        edumazet@google.com, hkallweit1@gmail.com,
-        jernej.skrabec@gmail.com, joabreu@synopsys.com,
-        krzysztof.kozlowski+dt@linaro.org, kuba@kernel.org,
-        lgirdwood@gmail.com, linux@armlinux.org.uk, pabeni@redhat.com,
-        peppe.cavallaro@st.com, robh+dt@kernel.org, samuel@sholland.org,
-        wens@csie.org, netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-sunxi@lists.linux.dev
-Subject: Re: [PATCH 0/6] arm64: add ethernet to orange pi 3
-Message-ID: <YnkG9yV+Fbf7WtCh@lunn.ch>
-References: <20220509074857.195302-1-clabbe@baylibre.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220509074857.195302-1-clabbe@baylibre.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S234301AbiEIMY6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 May 2022 08:24:58 -0400
+Received: from mail-ot1-f47.google.com (mail-ot1-f47.google.com [209.85.210.47])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBDED2555A8;
+        Mon,  9 May 2022 05:21:04 -0700 (PDT)
+Received: by mail-ot1-f47.google.com with SMTP id k25-20020a056830169900b00605f215e55dso9967759otr.13;
+        Mon, 09 May 2022 05:21:04 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=sv2cI5/IIfv5TA9/D1vZuscnav6gHINQOSxljIH5MXs=;
+        b=p/8CkiD6LEAAQPqLNBI2d7HTpuvCZPtmpx0DF5nQok9lBdglM2tM/hFDS31DaN2DTg
+         KiztTXc8s5dLA8afMmYJ10phYBjCh3tTdTczLbWvqZdzRIhV/Y0SDsDBenGAHWYOGDFf
+         Ee5Oqv2DTPZCiN9upPudZMlkg49Y186Q2zzZmQRAJeUiqXSGBk9keps/1hHtpLwinWyx
+         3b15IDgURnIDobvdwdd/CyY5UPAf1x0kTMcCteRjgLGSsELKrE030Ei5+DG1RtcUzM7o
+         QvKg/8KEsVadnOqxK7He6seRYK4xX/eGJdU/fgwDLsq2CpYS1kALPQz5QV8E5oNE9beT
+         0bBw==
+X-Gm-Message-State: AOAM533X5Bo7UHwc+M4rJkR1n0FCPvHHtL0APWqmKtPFfdYNYj6LZvdg
+        2e7QfLw18Izzau8H641yVw==
+X-Google-Smtp-Source: ABdhPJzmgTfUp6EHG/A94h+NBN2R5QfBMhZFGUuuka9lsHg+u9WLwv5BWtw2aG+NwSAp98BLFiz3Zg==
+X-Received: by 2002:a9d:74d8:0:b0:606:42dc:5ce3 with SMTP id a24-20020a9d74d8000000b0060642dc5ce3mr5735048otl.303.1652098863902;
+        Mon, 09 May 2022 05:21:03 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id 52-20020a9d0eb7000000b0060603221241sm4571643otj.17.2022.05.09.05.21.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 09 May 2022 05:21:03 -0700 (PDT)
+Received: (nullmailer pid 3576229 invoked by uid 1000);
+        Mon, 09 May 2022 12:20:58 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Rex-BC Chen <rex-bc.chen@mediatek.com>
+Cc:     airlied@linux.ie, robh+dt@kernel.org,
+        angelogioacchino.delregno@collabora.com, matthias.bgg@gmail.com,
+        krzysztof.kozlowski+dt@linaro.org, chunkuang.hu@kernel.org,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-arm-kernel@lists.infradead.org, p.zabel@pengutronix.de,
+        devicetree@vger.kernel.org, jason-jh.lin@mediatek.com,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        nancy.lin@mediatek.com, linux-mediatek@lists.infradead.org
+In-Reply-To: <20220509044302.27878-2-rex-bc.chen@mediatek.com>
+References: <20220509044302.27878-1-rex-bc.chen@mediatek.com> <20220509044302.27878-2-rex-bc.chen@mediatek.com>
+Subject: Re: [PATCH v2 1/3] dt-bindings: mediatek: add vdosys1 RDMA definition for mt8195
+Date:   Mon, 09 May 2022 07:20:58 -0500
+Message-Id: <1652098858.557372.3576228.nullmailer@robh.at.kernel.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 09, 2022 at 07:48:51AM +0000, Corentin Labbe wrote:
-> Hello
+On Mon, 09 May 2022 12:43:00 +0800, Rex-BC Chen wrote:
+> From: "Nancy.Lin" <nancy.lin@mediatek.com>
 > 
-> 2 sunxi board still does not have ethernet working, orangepi 1+ and
-> orangepi 3.
-> This is due to the fact thoses boards have a PHY which need 2 regulators.
+> Add vdosys1 RDMA definition.
+> 
+> Signed-off-by: Nancy.Lin <nancy.lin@mediatek.com>
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> ---
+>  .../display/mediatek/mediatek,mdp-rdma.yaml   | 94 +++++++++++++++++++
+>  1 file changed, 94 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/mediatek/mediatek,mdp-rdma.yaml
+> 
 
-Why PHY make/module is it which is causing problems?
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-    Andrew
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/display/mediatek/mediatek,mdp-rdma.example.dts:27:18: fatal error: dt-bindings/memory/mt8195-memory-port.h: No such file or directory
+   27 |         #include <dt-bindings/memory/mt8195-memory-port.h>
+      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+make[1]: *** [scripts/Makefile.lib:364: Documentation/devicetree/bindings/display/mediatek/mediatek,mdp-rdma.example.dtb] Error 1
+make[1]: *** Waiting for unfinished jobs....
+make: *** [Makefile:1401: dt_binding_check] Error 2
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
