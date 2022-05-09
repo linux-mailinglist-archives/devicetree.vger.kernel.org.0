@@ -2,130 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 454E551F7B4
-	for <lists+devicetree@lfdr.de>; Mon,  9 May 2022 11:12:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C3A4051F8D4
+	for <lists+devicetree@lfdr.de>; Mon,  9 May 2022 12:00:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238259AbiEIJNq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 May 2022 05:13:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34402 "EHLO
+        id S235414AbiEIJog (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 May 2022 05:44:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39676 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236114AbiEIJFc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 May 2022 05:05:32 -0400
-Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C6181B1767
-        for <devicetree@vger.kernel.org>; Mon,  9 May 2022 02:01:19 -0700 (PDT)
-Received: by mail-lj1-x229.google.com with SMTP id l19so16171083ljb.7
-        for <devicetree@vger.kernel.org>; Mon, 09 May 2022 02:01:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=bHJ6XJyQPeCvPLKk6nbDjSu1vpI5YnaVOsLEeojtwNE=;
-        b=JcWfHnctUH8ce4+49cIHsarGdQMCcUOljWdnzo1OhBGLpCWNka9KlBWQuFVXm56keU
-         mZcunC4ggaR4OY/VkxdE482ovddj2kV67guLy+nEpG7nRiLUuoSf/pV0HJjIbsnLUkKr
-         /ABtvRpUOhN9tfXhBcO9Jy93zFAudQrWcxzRQEBsFU/tcE3Mdm/f7C8aK7jh2mTIhJ/S
-         oPjucvFcuGv1CcDA8sfGyPPtbMyb3r9/sq0o+6Rh6rcWPBWCXefgOcSZXwLm+O/yVyOJ
-         7GKTHCFdx6BuiLGBuplhyJfRU1kfhlAUbPBBDfcK1+NlrB6ItEvDpLGbxzgzWlAwDrXr
-         2dLQ==
+        with ESMTP id S238319AbiEIJOR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 May 2022 05:14:17 -0400
+Received: from mail-qk1-f180.google.com (mail-qk1-f180.google.com [209.85.222.180])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD9321572B;
+        Mon,  9 May 2022 02:10:24 -0700 (PDT)
+Received: by mail-qk1-f180.google.com with SMTP id z126so10288762qkb.2;
+        Mon, 09 May 2022 02:10:24 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=bHJ6XJyQPeCvPLKk6nbDjSu1vpI5YnaVOsLEeojtwNE=;
-        b=Tzw0B7dv5r6BWXc3o3wuk620Ha7AHYFLcQNYwv1T9ChS1WbAvbYT/aNX5VZIwhvj80
-         7z0XIsmUbCYpdzfVqllYq6yvWqJhRxM9v5ncenfPX2zoPbpM1nhCod2TlgTW0U4QFUae
-         TxPvgR+Uskye3oWbe+DXcf1HamKajJipJXmHww7fIbIWrW5RecTAnje1e0hNNaegaItR
-         PVAPNuOqEUpdaQVLtuZn54KfaihX+eaZugGRqKOVKRRe9X66yy+MRNzcJwhGlFOzlM0B
-         zaOEiESX9/Y+/p8jaTG51rAmrVahNwjETQdqLOrFpI0bT2HT8ODwP0R2kG5DaW3WBSgp
-         Y3/g==
-X-Gm-Message-State: AOAM5300DTyUycX7QxahNIfzGcWcj1ZprtzIbIpfAeaJ7yjob0cMvDgY
-        CuPRgl0P0u295hp00zc43yCa7A==
-X-Google-Smtp-Source: ABdhPJwKrKmCsR6/OnKs0fDyvyn5GpSp5OEKT4Jz2rOG+IhN6MT56YERkKnrPPuspC6j699kakmSxA==
-X-Received: by 2002:a2e:91c7:0:b0:24f:1114:86fd with SMTP id u7-20020a2e91c7000000b0024f111486fdmr9812957ljg.147.1652086865600;
-        Mon, 09 May 2022 02:01:05 -0700 (PDT)
-Received: from localhost.localdomain (mobile-access-5672eb-224.dhcp.inet.fi. [86.114.235.224])
-        by smtp.gmail.com with ESMTPSA id t3-20020a2e7803000000b0024f3d1daee8sm1749824ljc.112.2022.05.09.02.01.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 May 2022 02:01:05 -0700 (PDT)
-From:   Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-clk@vger.kernel.org
-Subject: [PATCH v5 2/7] arm64: dts: qcom: sm8450: Add description of camera clock controller
-Date:   Mon,  9 May 2022 12:00:59 +0300
-Message-Id: <20220509090059.4140941-3-vladimir.zapolskiy@linaro.org>
-X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20220509090059.4140941-1-vladimir.zapolskiy@linaro.org>
-References: <20220509090059.4140941-1-vladimir.zapolskiy@linaro.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=CgQLbQVdIN14SPt3YzwHXDrfh8JRKAmJocLk5KwR+yk=;
+        b=CoM3Jn0gY4RTQLUh5mul6q4k1LbmPG7Xf2bLFJAhTx7kGLie8eWTqnko4hlHCMDCiy
+         0zo+vLGC3IALXPbB5lWNjV3SXDjJmoMuFUt9daucrQQ5028/LA4qxs8velATTuGiH3W0
+         65x38TBN5dfliT4mPQRDZXLsEub292mzuYA8xCaho8SOVyK2FGBHNpWCe9Rg87HVl9lC
+         rbNiTm728F5F+SoqirChKn5S7qRR7lMBWcP2C0uEtjGGUUrTpBQHPulSakNWA5YwX9Az
+         whINVSLUA9B9AB0o/gMRHKpPzrdUa+U/bHb/JqCxpt2OjrE3Zuiz+eYckHhtqpPa8+c2
+         GUXA==
+X-Gm-Message-State: AOAM530xVfcw4GbNgMdzlaTn6SBby29Vra/bJZCYfNIpoIXr23XESmQb
+        hnS2MJgz3ivBXS1+Y/cWZQB0a/WNVKAnzw==
+X-Google-Smtp-Source: ABdhPJxdc3uoOtr8jzAZ5g6dgVL6PCn7gBiAhbUBMVoPz6Umt8CKVTgCfE51/93MENuFL2EYnUzhog==
+X-Received: by 2002:a05:620a:444e:b0:6a0:68da:2105 with SMTP id w14-20020a05620a444e00b006a068da2105mr5045212qkp.366.1652087423153;
+        Mon, 09 May 2022 02:10:23 -0700 (PDT)
+Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com. [209.85.128.176])
+        by smtp.gmail.com with ESMTPSA id d5-20020ae9ef05000000b0069fc13ce1ebsm6504891qkg.28.2022.05.09.02.10.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 09 May 2022 02:10:22 -0700 (PDT)
+Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-2f7b815ac06so136900937b3.3;
+        Mon, 09 May 2022 02:10:22 -0700 (PDT)
+X-Received: by 2002:a81:547:0:b0:2f8:6e8:19d7 with SMTP id 68-20020a810547000000b002f806e819d7mr13589711ywf.383.1652087422113;
+ Mon, 09 May 2022 02:10:22 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20220509050953.11005-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20220509050953.11005-3-prabhakar.mahadev-lad.rj@bp.renesas.com> <OS0PR01MB5922B58BB70B92813041745786C69@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+In-Reply-To: <OS0PR01MB5922B58BB70B92813041745786C69@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Mon, 9 May 2022 11:10:10 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdVuLq1Q2KB7gFQ5MsQmyUTv4yuu-GUBVn_xGwKhUwYQZg@mail.gmail.com>
+Message-ID: <CAMuHMdVuLq1Q2KB7gFQ5MsQmyUTv4yuu-GUBVn_xGwKhUwYQZg@mail.gmail.com>
+Subject: Re: [PATCH v2 2/5] irqchip: Add RZ/G2L IA55 Interrupt Controller driver
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>,
+        Prabhakar <prabhakar.csengg@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The change adds description of QCOm SM8450 camera clock controller.
+On Mon, May 9, 2022 at 9:22 AM Biju Das <biju.das.jz@bp.renesas.com> wrote:
+> > Subject: [PATCH v2 2/5] irqchip: Add RZ/G2L IA55 Interrupt Controller
+> > driver
+> >
+> > Add a driver for the Renesas RZ/G2L Interrupt Controller.
+> >
+> > This supports external pins being used as interrupts. It supports one line
+> > for NMI, 8 external pins and 32 GPIO pins (out of 123) to be used as IRQ
+> > lines.
+> >
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
----
-Changes from v3 to v5:
-* none.
+> > --- /dev/null
+> > +++ b/drivers/irqchip/irq-renesas-rzg2l.c
 
-Changes from v2 to v3:
-* account a renamed header file.
+> > +static void rzg2l_irqc_irq_disable(struct irq_data *d) {
+> > +     unsigned int hw_irq = irqd_to_hwirq(d);
+> > +
+> > +     if (hw_irq >= IRQC_TINT_START && hw_irq <= IRQC_TINT_COUNT) {
+> > +             struct rzg2l_irqc_priv *priv = irq_data_to_priv(d);
+> > +             u32 offset = hw_irq - IRQC_TINT_START;
+> > +             u32 tssr_offset = TSSR_OFFSET(offset);
+> > +             u8 tssr_index = TSSR_INDEX(offset);
+> > +             u32 reg;
+> > +
+> > +             raw_spin_lock(&priv->lock);
+> > +             reg = readl_relaxed(priv->base + TSSR(tssr_index));
+> > +             reg &= ~(TSSEL_MASK << tssr_offset);
+> > +             writel_relaxed(reg, priv->base + TSSR(tssr_index));
+> > +             raw_spin_unlock(&priv->lock);
+> > +     }
+> > +     irq_chip_disable_parent(d);
+> > +}
 
-Changes from v1 to v2:
-* disabled camcc device tree node by default
+> > +static int rzg2l_tint_set_edge(struct irq_data *d, unsigned int type) {
+> > +     struct rzg2l_irqc_priv *priv = irq_data_to_priv(d);
+> > +     unsigned int hwirq = irqd_to_hwirq(d);
+> > +     u32 titseln = hwirq - IRQC_TINT_START;
+> > +     u32 offset;
+> > +     u8 sense;
+> > +     u32 reg;
+> > +
+> > +     switch (type & IRQ_TYPE_SENSE_MASK) {
+> > +     case IRQ_TYPE_EDGE_RISING:
+> > +             sense = TITSR_TITSEL_EDGE_RISING;
+> > +             break;
+> > +
+> > +     case IRQ_TYPE_EDGE_FALLING:
+> > +             sense = TITSR_TITSEL_EDGE_FALLING;
+> > +             break;
+> > +
+> > +     default:
+> > +             return -EINVAL;
+> > +     }
+> > +
+>
+> > +     if (titseln < TITSR0_MAX_INT) {
+> > +             offset = TITSR0;
+> > +     } else {
+> > +             titseln /= TITSEL_WIDTH;
+> > +             offset  = TITSR1;
+> > +     }
+>
+> as TITSR0 (0x24) and TITSR1(0x28) are contiguous address location
+>
+> May be like others, above declare it as
+> u32 offset = TITSR0; ??
+>
+> and here
+>  if ((titseln >= TITSR0_MAX_INT) {
+>         titseln /= TITSEL_WIDTH;
+>         offset  += 4;
+>  }
 
- arch/arm64/boot/dts/qcom/sm8450.dtsi | 20 ++++++++++++++++++++
- 1 file changed, 20 insertions(+)
+Why "titseln /= TITSEL_WIDTH"?
+Shouldn't that be "titseln -= TITSR0_MAX_INT"?
+Do I need more coffee?
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-index 934e29b9e153..dc819f2f7651 100644
---- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-@@ -6,6 +6,7 @@
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/clock/qcom,gcc-sm8450.h>
- #include <dt-bindings/clock/qcom,rpmh.h>
-+#include <dt-bindings/clock/qcom,sm8450-camcc.h>
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/mailbox/qcom-ipcc.h>
- #include <dt-bindings/power/qcom-rpmpd.h>
-@@ -1011,6 +1012,25 @@ IPCC_MPROC_SIGNAL_GLINK_QMP
- 			};
- 		};
- 
-+		camcc: clock-controller@ade0000 {
-+			compatible = "qcom,sm8450-camcc";
-+			reg = <0 0x0ade0000 0 0x20000>;
-+			status = "disabled";
-+			clocks = <&gcc GCC_CAMERA_AHB_CLK>,
-+				 <&rpmhcc RPMH_CXO_CLK>,
-+				 <&rpmhcc RPMH_CXO_CLK_A>,
-+				 <&sleep_clk>;
-+			clock-names = "iface",
-+				      "bi_tcxo",
-+				      "bi_tcxo_ao",
-+				      "sleep_clk";
-+			power-domains = <&rpmhpd SM8450_MMCX>;
-+			required-opps = <&rpmhpd_opp_low_svs>;
-+			#clock-cells = <1>;
-+			#reset-cells = <1>;
-+			#power-domain-cells = <1>;
-+		};
-+
- 		pdc: interrupt-controller@b220000 {
- 			compatible = "qcom,sm8450-pdc", "qcom,pdc";
- 			reg = <0 0x0b220000 0 0x30000>, <0 0x174000f0 0 0x64>;
--- 
-2.33.0
+Can't you define TITSR_{OFFSET,INDEX}() helper macros, like for
+TSSR above?
 
+> > +
+> > +     raw_spin_lock(&priv->lock);
+> > +     reg = readl_relaxed(priv->base + offset);
+> > +     reg &= ~(IRQ_MASK << (titseln * TITSEL_WIDTH));
+> > +     reg |= sense << (titseln * TITSEL_WIDTH);
+> > +     writel_relaxed(reg, priv->base + offset);
+> > +     raw_spin_unlock(&priv->lock);
+> > +
+> > +     return 0;
+> > +}
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
