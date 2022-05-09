@@ -2,119 +2,204 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 35A1551FA70
-	for <lists+devicetree@lfdr.de>; Mon,  9 May 2022 12:50:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0065651FA83
+	for <lists+devicetree@lfdr.de>; Mon,  9 May 2022 12:51:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229928AbiEIKuz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 May 2022 06:50:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59432 "EHLO
+        id S229916AbiEIKyW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 May 2022 06:54:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39662 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231446AbiEIKuG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 May 2022 06:50:06 -0400
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C7122181FC
-        for <devicetree@vger.kernel.org>; Mon,  9 May 2022 03:44:47 -0700 (PDT)
-Received: by mail-ed1-x529.google.com with SMTP id p4so15801781edx.0
-        for <devicetree@vger.kernel.org>; Mon, 09 May 2022 03:44:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=M2N9dAOBTm5M6ZFIRAQY9u+xLQ0LwoCVpAUO7hGxwek=;
-        b=Pk61C9v83GjAFziN/8+zsxk25G08lVx7cudhCioDNnXyrKIV1KL4djTZVp1DChfx5p
-         FcWhQhBnsOAoooH2GOHBO8y+b5gmnYM8odQNXrQhYNxHTYOQi+WHI88u0Du0Fs77HD5A
-         HbqcS7wB3CVVilddsZh45uc1iu1GSP6fDMRjYfoK0Mp9G6/Cw1qpGJP23+cUTOUBSMuN
-         EVU+x8T8/cT/LL02P0M9oWcT8go75notJSjcBirQkdAt8Jegk1EbMEzBnBdiExmn+RuY
-         WwEBLj5ehki+d0K/MTG8ep6LT9iuLqfT8LcjJGXlEaWzS5zi3GnytzfmpMn5jup/xEcI
-         Xp8g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=M2N9dAOBTm5M6ZFIRAQY9u+xLQ0LwoCVpAUO7hGxwek=;
-        b=mwPM+nbthN+X6JVV0YCOaqTHa88kEnEx5Yr9zMrXF3GGpxsR0DLja8KS4JY2L5lG3L
-         g3/EqR0gRWrq7NwL5RG8n9AbGjOOxsE2ZjYU0EIIMxS0HP6B24MtB3GtDsxA2dojOMf7
-         O26OvH8eRKMkIFmd6YbuQ2BM1FVeUfuU5gBsb25UIN5xCiDR6cSAuP3ZVa3e6Qxx/t4g
-         eQsLEnjMpuVvZpOIkLFKGvpeTdT/aCueoXvLoC2yuizXfs/60YNrnI6S1p+De7B8KM/u
-         si2YCCnizIgAQOjjmZq4J/PaoxZ4o+X8wZa7GfnFWInM6gsMh3+7yItnpdgqtE0MPL3p
-         Hx1w==
-X-Gm-Message-State: AOAM533a29oI5JpoE3iAjBG/WxWmy9ZgnTNNSgRr+myDnE7d2MbifT/P
-        FNkjsq4hdS5RCgPvOBpIgY+3RA==
-X-Google-Smtp-Source: ABdhPJzzU6EC/aUpRD8D0fRRVVTzWv0vos1RTFGbs9TdRMKFyYlif1jkB+mJxvflJy3XSnfkDqFDeA==
-X-Received: by 2002:a05:6402:2397:b0:426:4967:8574 with SMTP id j23-20020a056402239700b0042649678574mr15621823eda.197.1652093085832;
-        Mon, 09 May 2022 03:44:45 -0700 (PDT)
-Received: from [192.168.0.243] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id e15-20020a50e44f000000b0042617ba63c7sm6152351edm.81.2022.05.09.03.44.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 09 May 2022 03:44:45 -0700 (PDT)
-Message-ID: <98505974-afad-9639-d4f2-814097b0523b@linaro.org>
-Date:   Mon, 9 May 2022 12:44:44 +0200
+        with ESMTP id S231713AbiEIKxd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 May 2022 06:53:33 -0400
+Received: from mailserv1.kapsi.fi (mailserv1.kapsi.fi [IPv6:2001:67c:1be8::25:1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 90507E44D0
+        for <devicetree@vger.kernel.org>; Mon,  9 May 2022 03:49:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=ext.kapsi.fi; s=20161220; h=Subject:Content-Transfer-Encoding:Content-Type:
+        In-Reply-To:From:References:To:Cc:MIME-Version:Date:Message-ID:Sender:
+        Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+        :Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+        List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=wiyv7YKZUKvMHgtizD5I5mEwBqEd65bkA4FJhaegWfM=; b=XAOOSCLXr1i3VPA+fNIHB8sJjR
+        axT5o2d7piol69aakYH+fXnk7LGL+pFRmsQBAy8QVZRXvwPD8XlubgYORKWLINz06WRUOe8Smwj7w
+        iKTKx/SIfTaKTyu1PZwvcRcENY1T/2xzbes5k2BbuU3tWtBDKk1KiqYP7TN0I4BHy0f+GCdmhTT2a
+        BWh0HOe57bIxobtTAxmmEFdhXxNVGzz8NBdrRX1p6xgAD9MxC6XxTXhmCipnmXIvSNIkwPfXMiY1i
+        MvJDy3LX57dPTo/Oi1/3EoVD8Xfmv1vAanVrYglWKj3qkZjLjRGwD8YijqsSB2I0yU/UBoZhbMZN/
+        zCMwNLHw==;
+Received: from 76e7-6de6-c96a-714b-8500-87e2-07d0-2001.dyn.estpak.ee ([2001:7d0:87e2:8500:714b:c96a:6de6:76e7]:50092)
+        by mailserv1.kapsi.fi with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
+        (Exim 4.89)
+        (envelope-from <maukka@ext.kapsi.fi>)
+        id 1no0wi-0000f5-4i; Mon, 09 May 2022 13:48:56 +0300
+Message-ID: <87b47ff7-d92e-8d0c-5c8f-53a74f881e35@ext.kapsi.fi>
+Date:   Mon, 9 May 2022 13:48:53 +0300
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH v2 3/3] dt-bindings: mediatek: add ethdr definition for
- mt8195
-Content-Language: en-US
-To:     Rex-BC Chen <rex-bc.chen@mediatek.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>
-Cc:     "airlied@linux.ie" <airlied@linux.ie>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-        "angelogioacchino.delregno@collabora.com" 
-        <angelogioacchino.delregno@collabora.com>,
-        =?UTF-8?B?SmFzb24tSkggTGluICjmnpfnnb/npaUp?= 
-        <Jason-JH.Lin@mediatek.com>,
-        =?UTF-8?B?TmFuY3kgTGluICjmnpfmrKPonqIp?= <Nancy.Lin@mediatek.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        Project_Global_Chrome_Upstream_Group 
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-References: <20220509044302.27878-1-rex-bc.chen@mediatek.com>
- <20220509044302.27878-4-rex-bc.chen@mediatek.com>
- <46bc32df-e4e8-ac47-426d-8056714f0d5c@linaro.org>
- <5462209c5afb0a638ed777ec1829bb2717c8d76e.camel@mediatek.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <5462209c5afb0a638ed777ec1829bb2717c8d76e.camel@mediatek.com>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.0
+Cc:     maukka@ext.kapsi.fi, SoC Team <soc@kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Olof Johansson <olof@lixom.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+To:     =?UTF-8?Q?Pali_Roh=c3=a1r?= <pali@kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>
+References: <20220427162123.110458-1-maukka@ext.kapsi.fi>
+ <CAK8P3a0p-ev50UfGiHCpMM5Jz5Mf8pdfQtNep0M7qi7PANSBVg@mail.gmail.com>
+ <1509d16c-d244-19c7-610b-4c8ea8ca1624@ext.kapsi.fi>
+ <CAK8P3a3g4CZjiVHHoBqJLrdN0chghaskODVvtWY1Fjj8TcB8KQ@mail.gmail.com>
+ <b09847c4-90f8-509d-835b-85613712344d@ext.kapsi.fi>
+ <CAK8P3a1miLk8YU+T5ozyf-X8qUB3sJq6cyTovBs9XWb9MrJxMw@mail.gmail.com>
+ <20220508152237.3hw657gcba2fvheq@pali> <20220508154126.3wubyyunpuxetswm@pali>
+From:   Mauri Sandberg <maukka@ext.kapsi.fi>
+In-Reply-To: <20220508154126.3wubyyunpuxetswm@pali>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+X-SA-Exim-Connect-IP: 2001:7d0:87e2:8500:714b:c96a:6de6:76e7
+X-SA-Exim-Mail-From: maukka@ext.kapsi.fi
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+X-Spam-Level: 
+X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Subject: Re: [RFC RFT PATCH v1 0/1] ARM: orion5x: convert D-Link DNS-323 to
+ the Device Tree
+X-SA-Exim-Version: 4.2.1 (built Tue, 02 Aug 2016 21:08:31 +0000)
+X-SA-Exim-Scanned: Yes (on mailserv1.kapsi.fi)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/05/2022 10:54, Rex-BC Chen wrote:
->>> +    soc {
->>> +        #address-cells = <2>;
->>> +        #size-cells = <2>;
->>> +
->>> +        disp_ethdr@1c114000 {
+
+
+On 8.5.2022 18.41, Pali Rohár wrote:
+> On Sunday 08 May 2022 17:22:37 Pali Rohár wrote:
+>> On Sunday 08 May 2022 17:02:17 Arnd Bergmann wrote:
+>>> On Sun, May 8, 2022 at 4:06 PM Mauri Sandberg <maukka@ext.kapsi.fi> wrote:
+>>>> On 28.4.2022 23.56, Arnd Bergmann wrote:
+>>>>> On Thu, Apr 28, 2022 at 10:01 PM Mauri Sandberg <maukka@ext.kapsi.fi> wrote:
+>>>>>> On 27.4.2022 21.10, Arnd Bergmann wrote:
+>>>>>>> On Wed, Apr 27, 2022 at 6:21 PM Mauri Sandberg <maukka@ext.kapsi.fi> wrote:
+>>>>>>>> - sata_mv fails to initialise with -22 (-EINVAL)
+>>>>>>>
+>>>>>>> No idea, I'd try inserting a printk in every code path that can return -EINVAL
+>>>>>>> from there
+>>>>>>>
+>>>>
+>>>> With debugging the reason for -EINVAL remains a bit mystery.
+>>>>   - sata_mv calls ata_host_activate() [1]
+>>>>   - later on, in request_threaded_irq(), there are sanity checks [2]
+>>>>   - that fail with irq_settings_can_request() returning 0 [3]
+>>>>
+>>>> I cannot really put my finger on why the irq cannot be requested in DT
+>>>> approach.
+>>>
+>>> Are you sure the marvell,orion-intc driver is successfully probed
+>>> at this point? If not, the interrupt won't be there.
+>>>
+>>> I see that the "sata_mv" driver can be used either as a platform
+>>> driver for the orion5x on-chip controller, or as a PCI driver for
+>>> an add-on chip connected to the external bus. It sounds like
+>>> your system has both. Do you know which one fails?
+>>>
+>>> The PCI driver cannot work unless the PCI host works correctly,
+>>> and that in turn requires a correct devicetree description for it.
+>>>
+>>>>>> Is there a way to describe the PCIe bus in the
+>>>>>> device tree? The initalisation of that bus is done for rev A1 only.
+>>>>>
+>>>>> I'm not too familiar with the platform, but my interpretation is that the
+>>>>> DT support here is incomplete:
+>>>>>
+>>>>> The DT based PCI probe using drivers/pci/controller/pci-mvebu.c
+>>>>> is not hooked up in orion5x.dtsi, and the traditional pci code does
+>>>>> not work with DT.
+>>>>
+>>>> Can the existing pci code still be used to init the PCI bus and describe
+>>>> the rest in the DT or is it a futile attempt?
 >>
->> No underscores in node name. Generic node names, so display-
->> controller?
->>
+>> Hello! Orion uses arch/arm/mach-orion5x/pci.c driver for both PCI and
+>> PCIe buses. This is not device tree driver.
 > 
-> OK, we will change the node name to ethdr like in dts
-> like this:
-> ethdr0: ethdr@1c114000 {
-> ...
-> }
+> Correction, Orion PCIe driver is arch/arm/plat-orion/pcie.c and it calls
+> common functions from mach-orion5x/pci.c driver.
+> 
+>>>>> I see that orion5x has two separate blocks --  a PCIe host that is
+>>>>> similar to the kirkwood one, and a legacy PCI host that needs
+>>>>> a completely separate driver.
+>>>>>
+>>>>> Which of the two do you actually need here?
+>>>>>
+>>>>
+>>>> I really cannot say which one is it. How can I tell? The functions given
+>>>> in struct hw_pci find their way to drivers/pci/probe.c eventually and
+>>>> use pci_scan_root_bus_bridge(). Nothing seems to utilising mvebu or
+>>>> kirkwood explicitly at least.
+>>>>
+>>>> Here's the output from lspci if the ids reveal anything.
+>>>>
+>>>> # lspci -v -k
+>>>> 00:00.0 Class 0580: 11ab:5181
+>>>> 01:00.0 Class 0580: 11ab:5181
+>>>> 00:01.0 Class 0100: 11ab:7042 sata_mv
+>>>
+>>> The first two seem to be the host bridges, but unfortunately they
+>>>  seem both have the same device ID, despite being very different
+>>> devices.  The first one (00:00.0) should be the PCIe driver, the
+>>> second one (01.00.0) the legacy PCI one. In this case, the 11ab:7042
+>>> device is a PCIe device, and it's on the bus (00) of the first host
+>>> bridge. I think this should work with drivers/pci/controller/pci-mvebu.c
+>>> if you add the bits for probing.
+>>
+>> Last time when I looked on Orion PCIe controller registers, I though
+>> that they are same as in Kirkwood PCIe controller registers. And
+>> Kirkwood is already supported by pci-mvebu.c driver.
+>>
+>> About PCI host bridge, I do not know.
+>>
+>> Beware that PCI Class Id and all PCI registers which are different for
+>> Type 0 and Type 1 are _broken_ on all PCIe Root Ports form all 32-bit
+>> Marvell SoCs. Those registers on Marvell SoCs have different meaning as
+>> what is defined in PCI and PCIe specs. So it means that lspci _may_
+>> display bogus information about PCIe Root Port. pci-mvebu.c uses Root
+>> Port emulator which fills correct data to make kernel and lspci happy.
+>>
+>> If you are going to extend pci-mvebu.c to support also Orion PCIe
+>> controller, I could try to help with it. But I do not have any Orion
+>> hardware, so just basic help...
+>>
+>> Links to Orion documentations, including PCIe errata is available in
+>> kernel documentation. So this could help to understand some details:
+>> https://www.kernel.org/doc/html/latest/arm/marvell.html
+>>
+>> Anyway, could you please provide 'lspci -nn -vv' and 'lspci -nn -t -v'
+>> outputs from Orion?
+>>
+>>> Thomas Petazzoni originally wrote the new driver, and I think he was
+>>> planning at one point to use it for orion5x. I don't know if there were
+>>> any major problems preventing this at the time, or if it just needs to
+>>> get hooked up in the dtsi file.
+>>>
+>>>          Arnd
+> 
+> There is Orion-specific errata that config space via CF8/CFC registers
+> is broken. Workaround documented in errata documented (linked from above
+> documentation) does not work when DMA is used and instead other
+> undocumented workaround is needed (implemented in arch/arm) which maps
+> config space to memory (and therefore avoids usage of broken CF8/CFC
+> memory mapped registers).
 
-Is "ethdr" a generic name? Is it an abbreviation of "EnergyTrace™ High
-Dynamic Range"? If yes, it also looks specific to Texas Instruments...
+So basically I should look at arch/arm/plat-orion/pcie.c for the
+configuration part, add new compatible to pci-mvebu.c for orion5x
+and alter the probing function accoringly for the same. Did I get
+it correctly?
 
-Best regards,
-Krzysztof
+If so, sounds simple when said out lout but I might need some more
+pointers to get started. Like with configuration people generally
+mean setting BARs and WINs? Or is there more to it? :) If you
+could lay out the basic steps that are needed I would really
+appreciate it.
