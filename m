@@ -2,110 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 09F8A51F2EF
-	for <lists+devicetree@lfdr.de>; Mon,  9 May 2022 05:27:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9356251F2FA
+	for <lists+devicetree@lfdr.de>; Mon,  9 May 2022 05:39:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230117AbiEIDaE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 8 May 2022 23:30:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40072 "EHLO
+        id S232278AbiEIDlv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 8 May 2022 23:41:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44736 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231785AbiEIDYK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 8 May 2022 23:24:10 -0400
-Received: from alexa-out.qualcomm.com (alexa-out.qualcomm.com [129.46.98.28])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57BCC95A2F;
-        Sun,  8 May 2022 20:20:16 -0700 (PDT)
+        with ESMTP id S233593AbiEIDcu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 8 May 2022 23:32:50 -0400
+Received: from mail-il1-x133.google.com (mail-il1-x133.google.com [IPv6:2607:f8b0:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 563B689335
+        for <devicetree@vger.kernel.org>; Sun,  8 May 2022 20:28:58 -0700 (PDT)
+Received: by mail-il1-x133.google.com with SMTP id h11so8480874ila.5
+        for <devicetree@vger.kernel.org>; Sun, 08 May 2022 20:28:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1652066417; x=1683602417;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=dTZrcfWUgN6fGzVBM2+6gc6m+RANq5DplIKCSgrMy/c=;
-  b=xKFM0RVgohZ7GstS0cDYzhraxOlTssDcZraXehIxhhtP4eVNNGcYNCJl
-   4FAyfmhV5OivhD/pEWOoMY2nbXFiZ+/NTzY0BMUlb7HRndVz8Wd6XvfC7
-   ON/QraL6uLbRpULdrPfN8yBQyaQQwVZT88Fk6bRfImXXJtxXst00vmIp+
-   Y=;
-Received: from ironmsg08-lv.qualcomm.com ([10.47.202.152])
-  by alexa-out.qualcomm.com with ESMTP; 08 May 2022 20:20:15 -0700
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg08-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 May 2022 20:20:15 -0700
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Sun, 8 May 2022 20:20:15 -0700
-Received: from hu-pkondeti-hyd.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Sun, 8 May 2022 20:20:09 -0700
-Date:   Mon, 9 May 2022 08:50:05 +0530
-From:   Pavan Kondeti <quic_pkondeti@quicinc.com>
-To:     Krishna Kurapati <quic_kriskura@quicinc.com>
-CC:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        "Doug Anderson" <dianders@chromium.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Wesley Cheng <wcheng@codeaurora.org>,
-        <devicetree@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-usb@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-phy@lists.infradead.org>, <quic_pkondeti@quicinc.com>,
-        <quic_ppratap@quicinc.com>, <quic_vpulyala@quicinc.com>,
-        Sandeep Maheswaram <quic_c_sanm@quicinc.com>
-Subject: Re: [v3 3/3] arm64: dts: qcom: sc7280: Update SNPS Phy params for
- SC7280 IDP device
-Message-ID: <20220509032005.GJ4640@hu-pkondeti-hyd.qualcomm.com>
-References: <1652011947-18575-1-git-send-email-quic_kriskura@quicinc.com>
- <1652011947-18575-4-git-send-email-quic_kriskura@quicinc.com>
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=AuxSzBelxHq8d0UNsOmfShJlviRHkdA9CleYqkx3TbA=;
+        b=WXSJrZmZdI4eGxvJtEvSuchP80ja1RBntawFS6uGAGMjTcIbjTMIgIoeyw2mcN8LRi
+         a4yuAnTuQQ/ausLIuhqNb9en3aqYZXS9sGnOsGTcQ0WuLTsMdeg8wmpKuIXpkMObiVNM
+         anCwEaPPBSVo51CWWTyAFXw7T79jgu4naJWxMJcnoZ4Svxn1qy3qpefl/YHZdmSWNGqx
+         aTjOKVrCdBCXwKlLjFDPQHGczed8X0czKtLvvJcEGRPpJ+J4bF/JZ/zxGm5H6YpUY78T
+         H0Ab5vf8vL2Q0woEf4QT7iY6XyY1g1+LB1dUAGN18tS+W6xZaQi4r20Mx3LKSPbJF5jq
+         EyOA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=AuxSzBelxHq8d0UNsOmfShJlviRHkdA9CleYqkx3TbA=;
+        b=HBNPIKUxOqI1ZpY5d+2goPYItTK5gk5s4ZbcfC/2zXQKXcfPA3Bab+UE6GSsx3K13S
+         l891RSpxXImwUJbmFaVjvgSjTK0uw9FQdKJtqH9XWU2enU86tBmCdVBtX3xf1LeHTxD+
+         X+GS71B+3fAXB/xDsEgbTPkxUZVkm2zW8ByPeNU/rs9fOlf154GE6MBRf7n9TFCKw33t
+         vG5Wl6ht7WGGm0lHlGvCMcLsQ7k4Uvss6UkQE3oltYy3RbYDS8ftJXTI0J+0E4Z0yH8X
+         A4A8IracyJ4ZTso+ryUIudc5ap3zKzRbjLnmPGOV6TcjCbC/+Wr/vV8UwaacTS/Uqu0P
+         N1bw==
+X-Gm-Message-State: AOAM533q1raxPpt0rG1ekYPNSns08QhRPIXlyOmDchJ0kcbssIl1o0MD
+        /xcUPKrY6weae8tOVbzddcI=
+X-Google-Smtp-Source: ABdhPJyUyq2E2fXDnkUxVWp/j5jWIpuNtqvaMzm+mpXZLAvSnsksROoGwjE4/FO3VhjjbHEuUk4CIw==
+X-Received: by 2002:a05:6e02:1aad:b0:2cf:48d4:52df with SMTP id l13-20020a056e021aad00b002cf48d452dfmr5831793ilv.187.1652066924195;
+        Sun, 08 May 2022 20:28:44 -0700 (PDT)
+Received: from localhost.localdomain (cpe-65-29-252-111.wi.res.rr.com. [65.29.252.111])
+        by smtp.gmail.com with ESMTPSA id a16-20020a92ce50000000b002cde6e352bcsm2869157ilr.6.2022.05.08.20.28.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 08 May 2022 20:28:43 -0700 (PDT)
+From:   Daniel Kaehn <kaehndan@gmail.com>
+To:     tiwai@suse.com, robh@kernel.org
+Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        Daniel Kaehn <kaehndan@gmail.com>
+Subject: [PATCH v6 0/2] Add generic serial MIDI driver using serial bus API
+Date:   Sun,  8 May 2022 22:28:34 -0500
+Message-Id: <20220509032836.1116866-1-kaehndan@gmail.com>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <1652011947-18575-4-git-send-email-quic_kriskura@quicinc.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krishna,
 
-On Sun, May 08, 2022 at 05:42:27PM +0530, Krishna Kurapati wrote:
-> Overriding the SNPS Phy tuning parameters for SC7280 IDP device.
-> 
-> Signed-off-by: Sandeep Maheswaram <quic_c_sanm@quicinc.com>
-> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
-> ---
->  arch/arm64/boot/dts/qcom/sc7280-idp.dtsi | 6 ++++++
->  1 file changed, 6 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-> index 5eb6689..ad85ffb 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-> @@ -325,6 +325,12 @@
->  	vdda-pll-supply = <&vreg_l10c_0p8>;
->  	vdda33-supply = <&vreg_l2b_3p0>;
->  	vdda18-supply = <&vreg_l1c_1p8>;
-> +	qcom,hs-rise-fall-time-bps = <0>;
-> +	qcom,squelch-detector-bps = <(-2090)>;
-> +	qcom,hs-disconnect-bps = <1743>;
-> +	qcom,hs-amplitude-bps = <1780>;
-> +	qcom,hs-crossover-voltage = <(-31)>;
-> +	qcom,hs-output-impedance = <2600>;
->  };
+Generic serial MIDI driver adding support for using serial devices
+compatible with the serial bus as raw MIDI devices, allowing using
+additional serial devices not compatible with the existing
+serial-u16550 driver. Supports only setting standard serial baudrates on
+the underlying serial device; however, the underlying serial device can
+be configured so that a requested 38.4 kBaud is actually the standard MIDI
+31.25 kBaud. Supports DeviceTree configuration.
 
-Is this an example change or do we see any HS electrical compliance failures
-on SC7280 IDP that will get fixed with these override sequence? 
+Changes in v6:    
+- Change compatible "serialmidi" -> serial-midi" 
+- Default current-speed to 38400 (closest baud to MIDI standard speed) 
+- Appropriately stop reading or writing MIDI if input or output
+    _trigger() is called with a parameter of zero, respectively 
+- Zero out corresponding triggered state on close to ensure input and
+    output closing results in the serial port being closed 
+- Fix order of operations in _probe() 
+- Remove "DEBUG" literal from debug messages
+- Remove unused dt-parsing patch checking for existence of node
+- Whitespace / tabbing fixes / improvements
 
-Thanks,
-Pavan
+Changes in v5:
+- Reword description in dt-binding for clarity
+- Change 'speed' dt property to standard 'current-speed'
+- Move MIDI output loop onto workqueue (since this could loop quite a while,
+    if ALSA provides a continuous stream of bytes)
+- Add tx_state bit flags to snd_serial_generic struct
+- Safegard critical section in tx_work with atomic bit ops on tx_state
+- Switch operations on filemode to use atomic bit ops
+
+Changes in v4:
+- Fix regressed typo - Correct 3.84 kBaud -> 38.4 kBaud in DT & Kconfig
+  (sorry about spam - noticed after sending v3 and didn't want to let
+  the error sit around for too long)
+
+Changes in v3:
+- Replace use of snd_printk() with dev_* alternatives
+- Removed unnecessary initialization of err variables
+- Replaced instances of `== SERIAL_MODE_NOT_OPENED` with zero check
+- Loop on output_write to completely fill output buffer if data available
+- Depend on CONFIG_OF in Kconfig
+- Replace use of devm_kzalloc() with extra_size allocation in snd_devm_card_new()
+- Use module_serdev_device_driver() instead of module_init() and module_exit(0)
+
+Changes in v2:
+- Fix 'snd_serial_generic_write_wakeup' missing static keyword 
+- Correct 3.125 kBaud > 31.25 kBaud in documentation for MIDI         
+
+
+The need for this driver arose from a project using a Raspberry Pi4 which
+needed to receive and send raw MIDI with low latency. The pl011 UART
+used is not compatible with the existing serial MIDI driver made for
+u16550-style devices. Using a userspace program such as ttymidi to feed
+input from the TTY device to a virtual ALSA MIDI device was functional,
+but not ideal.
+
+I am not sure if a MIDI driver needing the mentioned 'hack' to clock
+38.4 kBaud down to the standard MIDI baud is permissible in the mainline
+kernel, but am submitting nevertheless in case it is useful. To my knowledge,
+it doesn't seem that there would be any way for this driver to manually
+configure a serial port to 31.25 kBaud using the serial bus API (please 
+correct me f I'm wrong). In my use case, I am actually configuring one port
+to run at 115.2 kBaud for faster communication with a custom onboard MIDI controller.
+
+
+Daniel Kaehn (2):
+  dt-bindings: sound: Add generic serial MIDI device
+  Add generic serial MIDI driver using serial bus API
+
+ .../bindings/sound/serial-midi.yaml           |  50 +++
+ sound/drivers/Kconfig                         |  18 +
+ sound/drivers/Makefile                        |   2 +
+ sound/drivers/serial-generic.c                | 374 ++++++++++++++++++
+ 4 files changed, 444 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/serial-midi.yaml
+ create mode 100644 sound/drivers/serial-generic.c
+
+
+base-commit: c5eb0a61238dd6faf37f58c9ce61c9980aaffd7a
+-- 
+2.33.0
+
