@@ -2,119 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D9C2C51FAF7
-	for <lists+devicetree@lfdr.de>; Mon,  9 May 2022 13:09:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7BFEB51FAF9
+	for <lists+devicetree@lfdr.de>; Mon,  9 May 2022 13:09:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232072AbiEILLx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 May 2022 07:11:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48814 "EHLO
+        id S232115AbiEILML (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 May 2022 07:12:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50508 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232445AbiEILLY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 May 2022 07:11:24 -0400
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68DC21498DD
-        for <devicetree@vger.kernel.org>; Mon,  9 May 2022 04:07:16 -0700 (PDT)
+        with ESMTP id S232174AbiEILL7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 May 2022 07:11:59 -0400
+Received: from alexa-out.qualcomm.com (alexa-out.qualcomm.com [129.46.98.28])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E442F248DF;
+        Mon,  9 May 2022 04:08:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1652094436; x=1683630436;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=Q4uOG2F8w1lAvLkDtMnP2jzgd4wA+OkMvW8BNsAVYBQ=;
-  b=YM/B0ASqICX4z8QI8IRVrqQ4oQp5ejstT7N8LxN1hFQCKiCHB8R/gBW1
-   4eZwNViLljRhh2Mt85fUGq4GDoQXEd2Z4u5wwJsXwq+rLAB/d6xEghUHX
-   f1HTi5ePrLoecRvNj1KPuwUHaRALeT8A1I6X1ZJ026HeKP3MkvWtPlCjz
-   UwfLHW7EDgKQdiuGjJeqC9cZClpBGHOavjCge5CosJT/NWWDEIcGi+wTk
-   aXiHhwg3I314S94g/dbw0YwUjpwK96h60Xgu+Oq+G5ypuuT5rPd2X0Pud
-   ZncRqSaCf2JBw0CKBA3r1FUzl2LdNXJzoM6illn+ZO1hUsqYH4xnhVsrQ
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.91,211,1647298800"; 
-   d="scan'208";a="23751986"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 09 May 2022 13:07:14 +0200
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Mon, 09 May 2022 13:07:14 +0200
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Mon, 09 May 2022 13:07:14 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1652094434; x=1683630434;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=Q4uOG2F8w1lAvLkDtMnP2jzgd4wA+OkMvW8BNsAVYBQ=;
-  b=dDG1stgwQ2ehgRV8X4NqRvJEFf18aR+g8Swhb2yQ3fy4DEKlHo2kjm41
-   KJhyEeCALoy3R+PAFTb7Op/uxZsnKBisEh0YBHtA5VMQoGfcFb6ZF4Eh5
-   QfcRrDbvei+TyKBFXfScth6B6HQ115vAJfHENAzCEm+jDQGJVZurfkmZo
-   ZZBljqMaV1mYbL6f5Iu2nJBFwLDMVDxMs3wXOebO/N++m9b3E2E19DhoW
-   M4sgCwLCt8CSKtKKdi2CNnLtbbCFAG7hryNobG+fj2mphh45dtaA/Ij+u
-   2mVn0/EG+ZISLxYqMapjygTag6/Wgp3mXoJoC05CkocYXOIDo0QE9Oj5d
-   g==;
-X-IronPort-AV: E=Sophos;i="5.91,211,1647298800"; 
-   d="scan'208";a="23751985"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 09 May 2022 13:07:14 +0200
-Received: from steina-w.tq-net.de (unknown [10.123.49.12])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 8B8E8280070;
-        Mon,  9 May 2022 13:07:14 +0200 (CEST)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>
-Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Jun Li <jun.li@nxp.com>
-Subject: [PATCH 1/1] ARM: dts: imx7: Move hsic_phy power domain to HSIC PHY node
-Date:   Mon,  9 May 2022 13:07:08 +0200
-Message-Id: <20220509110708.2190558-1-alexander.stein@ew.tq-group.com>
-X-Mailer: git-send-email 2.25.1
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1652094483; x=1683630483;
+  h=from:subject:to:cc:references:message-id:date:
+   mime-version:in-reply-to:content-transfer-encoding;
+  bh=ssJA0bmg+brCtOxTLgOXtS/A0e6y0MYbmQsr/HcpEoA=;
+  b=coPSt3RwOOmYm0VDHhudfoZK34WpVKQz67wjCvXB5SUGW34qO9Btzgn5
+   VQtVFkhpF9nbwSrzptOxWj+dEhcv5gHMzI8+0wh4fKA1GwpZ8HsZcwPN2
+   K9UVNrnez8Q+PYCl+Kny2LgyTcaLd0VtQ3mVfYo0MS5XAqFdQtf/Rq5aW
+   Q=;
+Received: from ironmsg-lv-alpha.qualcomm.com ([10.47.202.13])
+  by alexa-out.qualcomm.com with ESMTP; 09 May 2022 04:08:01 -0700
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg-lv-alpha.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 May 2022 04:08:00 -0700
+Received: from nalasex01b.na.qualcomm.com (10.47.209.197) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Mon, 9 May 2022 04:08:00 -0700
+Received: from [10.216.4.129] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Mon, 9 May 2022
+ 04:07:56 -0700
+From:   Faiyaz Mohammed <quic_faiyazm@quicinc.com>
+Subject: Re: [PATCH] mm: memblock: avoid to create memmap for memblock nomap
+ regions
+To:     Mike Rapoport <rppt@kernel.org>
+CC:     <quic_vjitta@quicinc.com>, <karahmed@amazon.de>,
+        <qperret@google.com>, <robh@kernel.org>,
+        <akpm@linux-foundation.org>, <linux-mm@kvack.org>,
+        <linux-kernel@vger.kernel.org>, <robh+dt@kernel.org>,
+        <frowand.list@gmail.com>, <devicetree@vger.kernel.org>
+References: <1649704172-13181-1-git-send-email-quic_faiyazm@quicinc.com>
+ <YlW2TO0O8qDHpkGW@kernel.org>
+ <7b18bea8-b996-601d-f490-cb8aadfffa1b@quicinc.com>
+ <YnQBKPWtPa87y4NA@kernel.org>
+Message-ID: <42f28e7b-c001-7d01-1eb6-fe963491898e@quicinc.com>
+Date:   Mon, 9 May 2022 16:37:30 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <YnQBKPWtPa87y4NA@kernel.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Move the power domain to its actual user. This keeps the power domain
-enabled even when the USB host is runtime suspended. This is necessary
-to detect any downstream events, like device attach.
 
-Suggested-by: Jun Li <jun.li@nxp.com>
-Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
----
-This patch superseeds the initial patch from [1].
+On 5/5/2022 10:24 PM, Mike Rapoport wrote:
+> On Thu, May 05, 2022 at 08:46:15PM +0530, Faiyaz Mohammed wrote:
+>> On 4/12/2022 10:56 PM, Mike Rapoport wrote:
+>>> On Tue, Apr 12, 2022 at 12:39:32AM +0530, Faiyaz Mohammed wrote:
+>>>> This 'commit 86588296acbf ("fdt: Properly handle "no-map" field in the
+>>>> memory region")' is keeping the no-map regions in memblock.memory with
+>>>> MEMBLOCK_NOMAP flag set to use no-map memory for EFI using memblock api's,
+>>>> but during the initialization sparse_init mark all memblock.memory as
+>>>> present using for_each_mem_pfn_range, which is creating the memmap for
+>>>> no-map memblock regions. To avoid it skiping the memblock.memory regions
+>>>> set with MEMBLOCK_NOMAP set and with this change we will be able to save
+>>>> ~11MB memory for ~612MB carve out.
+>>> The MEMBLOCK_NOMAP is very fragile and caused a lot of issues already. I
+>>> really don't like the idea if adding more implicit assumptions about how
+>>> NOMAP memory may or may not be used in a generic iterator function.
+>> Sorry for delayed response.
+>> Yes, it is possible that implicit assumption can create
+>> misunderstanding. How about adding command line option and control the
+>> no-map region in fdt.c driver, to decide whether to keep "no-map" region
+>> with NOMAP flag or remove?. Something like below
+> I really don't like memblock_remove() for such cases.
+> Pretending there is a hole when there is an actual DRAM makes things really
+> hairy when it comes to memory map and page allocator initialization.
+> You wouldn't want to trade system stability and random memory corruptions
+> for 11M of "saved" memory.
+Creating memory map for holes memory is adding 11MB overhead which is
+huge on low
 
-[1] https://lore.kernel.org/linux-arm-kernel/5566202.DvuYhMxLoT@steina-w/T/
- arch/arm/boot/dts/imx7s.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+memory target and same time 11MB memory saving is good enough on low
+memory target.
 
-diff --git a/arch/arm/boot/dts/imx7s.dtsi b/arch/arm/boot/dts/imx7s.dtsi
-index 008e3da460f1..039eed79d2e7 100644
---- a/arch/arm/boot/dts/imx7s.dtsi
-+++ b/arch/arm/boot/dts/imx7s.dtsi
-@@ -120,6 +120,7 @@ usbphynop3: usbphynop3 {
- 		compatible = "usb-nop-xceiv";
- 		clocks = <&clks IMX7D_USB_HSIC_ROOT_CLK>;
- 		clock-names = "main_clk";
-+		power-domains = <&pgc_hsic_phy>;
- 		#phy-cells = <0>;
- 	};
- 
-@@ -1153,7 +1154,6 @@ usbh: usb@30b30000 {
- 				compatible = "fsl,imx7d-usb", "fsl,imx27-usb";
- 				reg = <0x30b30000 0x200>;
- 				interrupts = <GIC_SPI 40 IRQ_TYPE_LEVEL_HIGH>;
--				power-domains = <&pgc_hsic_phy>;
- 				clocks = <&clks IMX7D_USB_CTRL_CLK>;
- 				fsl,usbphy = <&usbphynop3>;
- 				fsl,usbmisc = <&usbmisc3 0>;
--- 
-2.25.1
+Or we can have separate list of NOMAP like reserved?.
 
+Any other suggestion to address this issue?.
+
+Thanks and regards,
+Mohammed Faiyaz
