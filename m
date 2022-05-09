@@ -2,266 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 38D1551FC40
-	for <lists+devicetree@lfdr.de>; Mon,  9 May 2022 14:10:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0D68151FC60
+	for <lists+devicetree@lfdr.de>; Mon,  9 May 2022 14:14:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233837AbiEIMNN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 May 2022 08:13:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59990 "EHLO
+        id S234026AbiEIMR1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 May 2022 08:17:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49106 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233895AbiEIMNM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 May 2022 08:13:12 -0400
-Received: from mail-pg1-x529.google.com (mail-pg1-x529.google.com [IPv6:2607:f8b0:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CB83E32;
-        Mon,  9 May 2022 05:09:19 -0700 (PDT)
-Received: by mail-pg1-x529.google.com with SMTP id g184so9370567pgc.1;
-        Mon, 09 May 2022 05:09:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=ZCKR2KVToumZXg10SfRvbk1URc/xJPQvsDbss1BO/1o=;
-        b=ePKFMJwL5M1xzt0w76+6VlSDEby4h4o0iY4YRShL+32c2fNBngdZDBkJ8+lYgsifg1
-         JZ2yaxHPvbFrydTuxN9q91HvF5fv9hZvt35W+3wSMEZNIPaN3Tw5lO0uaNCR2JR2tlt8
-         o/FNAtivqYH3yIf+HOVGe8VtMMZHmkyLbhMRSqrkrXRqjedOxVFYV72tpvxfz9iqDLdS
-         xjO9YXahuk/4G5wCYGnJFObReCScziM3Rl7J9SUv0aDDIx2DGvpYbaLQpPSYgJIDrxLl
-         qjqFUgWKmPx9OGYuJisuhkoMB+226LCqRj+PH30FmG8NSFPalGLRRj2ry/mBRk3Yo+Jx
-         YMtw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=ZCKR2KVToumZXg10SfRvbk1URc/xJPQvsDbss1BO/1o=;
-        b=dYNtyqgnmeSbq7k7y/FPy4GVsYnHBys5lYD9eomYnoDwaF947jSr0NZ0mU3SNTtwik
-         Lisglgl4UnsiASg89SodLbv5lPQXsOyGu+sEdbsYHkL5wGMUwxEsHpHQCoBQ8h7attFo
-         2zPtbKrGAQSW4Id8LjXBvI1ysqQrfNoJi/xaR++auNnMWv7PrzOOayx0dvBFaytAUDNr
-         uQA+/UmnO9GoPWQ4y36FWV7KVH1QsNr+kjnPdU+Kh49DNnCdB/c7oa5Cijxk9zB98aVZ
-         W5RNyTXyG/AEze7+qwUswsvx6NnRJbcej5M2SRB92O5l/pfaBDTOfNGQ6szz9HJSYi9h
-         85sQ==
-X-Gm-Message-State: AOAM531vG7eGFVvKOFkdwYTvtMCzXqlSomb8L8ueYPb1BY77Yi+qMag+
-        qHdIh1d2Ac5ENiemQ9LS4b8=
-X-Google-Smtp-Source: ABdhPJwCNlzwTWdyYUV9nLIUQ8FyUrTnDjVEBuHktiZQfP4Wryqs2YCdeWG4ZYYFdtjeADhw7PCaWg==
-X-Received: by 2002:a05:6a00:1307:b0:4b0:b1c:6fd9 with SMTP id j7-20020a056a00130700b004b00b1c6fd9mr15621633pfu.27.1652098158457;
-        Mon, 09 May 2022 05:09:18 -0700 (PDT)
-Received: from [172.30.1.40] ([14.32.163.5])
-        by smtp.gmail.com with ESMTPSA id y10-20020a170902d64a00b0015e8d4eb2d8sm6916016plh.290.2022.05.09.05.09.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 09 May 2022 05:09:18 -0700 (PDT)
-Message-ID: <94efefab-918d-2367-4b74-076dd6f23936@gmail.com>
-Date:   Mon, 9 May 2022 21:09:11 +0900
+        with ESMTP id S233918AbiEIMR0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 May 2022 08:17:26 -0400
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2EF991EF0A4;
+        Mon,  9 May 2022 05:13:32 -0700 (PDT)
+Received: from localhost.localdomain (85-222-111-42.dynamic.chello.pl [85.222.111.42])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: lukma@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 97F7083B32;
+        Mon,  9 May 2022 14:13:30 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1652098410;
+        bh=42Zy28pg37OAk1vRPr/3wZvq3TQDaK06uRqMNZn/Ujw=;
+        h=From:To:Cc:Subject:Date:From;
+        b=sAUQQOYBMJG1CYDfYTpVColDkqwimfIxjAyr+eXrgiMK2/Aw99hTu/nZWGYRJy/GK
+         byHBj1aNhVdPmJGq6Tszs4uF5WuDA1CyPyh2nUJ1yhx1z2X1ebpKPJhdXMhbATRvm3
+         5cd4vlVOLY76iWLmix4TUNPi3AR7YfYA0eTXOtoX0AgL6l/IW9MVlR3JLXpF0FWtkL
+         LeKHOHX8A/PhfdGxttFnunjrUGMjrxQcinpkGwVBo8bTdQkOO4g3dO/SAoflJDBgjL
+         piCdKfM/c4eOtElJhsHQfAd5hwm7XD3vCHXtB89Ou53HyEoWS/UWcHDQHaN28mtnoT
+         o2lCYw3yyPl0Q==
+From:   Lukasz Majewski <lukma@denx.de>
+To:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>
+Cc:     linux-kernel@vger.kernel.org, patches@opensource.cirrus.com,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
+        Lukasz Majewski <lukma@denx.de>
+Subject: [PATCH 2/2] doc: dts: Add device tree information regarding wm8940 codec
+Date:   Mon,  9 May 2022 14:13:13 +0200
+Message-Id: <20220509121313.31216-1-lukma@denx.de>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH v3 1/2] dt-bindings: interconnect: Add MediaTek CCI
- dt-bindings
-Content-Language: en-US
-To:     Johnson Wang <johnson.wang@mediatek.com>, cw00.choi@samsung.com,
-        krzk+dt@kernel.org, robh+dt@kernel.org, kyungmin.park@samsung.com
-Cc:     khilman@kernel.org, linux-pm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, jia-wei.chang@mediatek.com,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20220425125546.4129-1-johnson.wang@mediatek.com>
- <20220425125546.4129-2-johnson.wang@mediatek.com>
-From:   Chanwoo Choi <cwchoi00@gmail.com>
-In-Reply-To: <20220425125546.4129-2-johnson.wang@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.5 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+This commit provides documentation entry for wm8940 codec.
 
-On 22. 4. 25. 21:55, Johnson Wang wrote:
-> Add devicetree binding of MediaTek CCI on MT8183 and MT8186.
-> 
-> Signed-off-by: Johnson Wang <johnson.wang@mediatek.com>
-> Signed-off-by: Jia-Wei Chang <jia-wei.chang@mediatek.com>
-> ---
->   .../bindings/interconnect/mediatek,cci.yaml   | 139 ++++++++++++++++++
->   1 file changed, 139 insertions(+)
->   create mode 100644 Documentation/devicetree/bindings/interconnect/mediatek,cci.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/interconnect/mediatek,cci.yaml b/Documentation/devicetree/bindings/interconnect/mediatek,cci.yaml
-> new file mode 100644
-> index 000000000000..e5221e17d11b
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/interconnect/mediatek,cci.yaml
-> @@ -0,0 +1,139 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/interconnect/mediatek,cci.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: MediaTek Cache Coherent Interconnect (CCI) frequency and voltage scaling
-> +
-> +maintainers:
-> +  - Jia-Wei Chang <jia-wei.chang@mediatek.com>
+Signed-off-by: Lukasz Majewski <lukma@denx.de>
+---
+ .../devicetree/bindings/sound/wlf,wm8940.yaml | 57 +++++++++++++++++++
+ 1 file changed, 57 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/wlf,wm8940.yaml
 
-Why did you add your author information?
-Please add your author information.
-
-And add this dt-binding information to MAINTAINERS
-as following: because I cannot catch the later patch
-of modification.
-
-cwchoi00@chanwoo:~/kernel/linux.chanwoo$ d
-diff --git a/MAINTAINERS b/MAINTAINERS
-index edc96cdb85e8..a11e9c1947b7 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -5698,6 +5698,7 @@ L:        linux-pm@vger.kernel.org
-  S:     Maintained
-  T:     git git://git.kernel.org/pub/scm/linux/kernel/git/chanwoo/linux.git
-  F:     Documentation/devicetree/bindings/devfreq/
-+F:     Documentation/devicetree/bindings/interconnect/mediatek,cci.yaml
-  F:     drivers/devfreq/
-  F:     include/linux/devfreq.h
-  F:     include/trace/events/devfreq.h
-
-
-> +
-> +description: |
-> +  MediaTek Cache Coherent Interconnect (CCI) is a hardware engine used by
-> +  MT8183 and MT8186 SoCs to scale the frequency and adjust the voltage in
-> +  hardware. It can also optimize the voltage to reduce the power consumption.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - mediatek,mt8183-cci
-> +      - mediatek,mt8186-cci
-> +
-> +  clocks:
-> +    items:
-> +      - description:
-> +          The multiplexer for clock input of CPU cluster.
-> +      - description:
-> +          A parent of "cpu" clock which is used as an intermediate clock source
-> +          when the original CPU is under transition and not stable yet.
-> +
-> +  clock-names:
-> +    items:
-> +      - const: cci
-> +      - const: intermediate
-> +
-> +  operating-points-v2: true
-> +  opp-table: true
-> +
-> +  proc-supply:
-> +    description:
-> +      Phandle of the regulator for CCI that provides the supply voltage.
-> +
-> +  sram-supply:
-> +    description:
-> +      Phandle of the regulator for sram of CCI that provides the supply
-> +      voltage. When it presents, the cci devfreq driver needs to do
-> +      "voltage tracking" to step by step scale up/down Vproc and Vsram to fit
-> +      SoC specific needs. When absent, the voltage scaling flow is handled by
-> +      hardware, hence no software "voltage tracking" is needed.
-> +
-> +required:
-> +  - compatible
-> +  - clocks
-> +  - clock-names
-> +  - operating-points-v2
-> +  - proc-supply
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/mt8183-clk.h>
-> +    cci: cci {
-> +        compatible = "mediatek,mt8183-cci";
-> +        clocks = <&mcucfg CLK_MCU_BUS_SEL>,
-> +                 <&topckgen CLK_TOP_ARMPLL_DIV_PLL1>;
-> +        clock-names = "cci", "intermediate";
-> +        operating-points-v2 = <&cci_opp>;
-> +        proc-supply = <&mt6358_vproc12_reg>;
-> +    };
-> +
-> +    cci_opp: opp-table-cci {
-> +        compatible = "operating-points-v2";
-> +        opp-shared;
-> +        opp2_00: opp-273000000 {
-> +            opp-hz = /bits/ 64 <273000000>;
-> +            opp-microvolt = <650000>;
-> +        };
-> +        opp2_01: opp-338000000 {
-> +            opp-hz = /bits/ 64 <338000000>;
-> +            opp-microvolt = <687500>;
-> +        };
-> +        opp2_02: opp-403000000 {
-> +            opp-hz = /bits/ 64 <403000000>;
-> +            opp-microvolt = <718750>;
-> +        };
-> +        opp2_03: opp-463000000 {
-> +            opp-hz = /bits/ 64 <463000000>;
-> +            opp-microvolt = <756250>;
-> +        };
-> +        opp2_04: opp-546000000 {
-> +            opp-hz = /bits/ 64 <546000000>;
-> +            opp-microvolt = <800000>;
-> +        };
-> +        opp2_05: opp-624000000 {
-> +            opp-hz = /bits/ 64 <624000000>;
-> +            opp-microvolt = <818750>;
-> +        };
-> +        opp2_06: opp-689000000 {
-> +            opp-hz = /bits/ 64 <689000000>;
-> +            opp-microvolt = <850000>;
-> +        };
-> +        opp2_07: opp-767000000 {
-> +            opp-hz = /bits/ 64 <767000000>;
-> +            opp-microvolt = <868750>;
-> +        };
-> +        opp2_08: opp-845000000 {
-> +            opp-hz = /bits/ 64 <845000000>;
-> +            opp-microvolt = <893750>;
-> +        };
-> +        opp2_09: opp-871000000 {
-> +            opp-hz = /bits/ 64 <871000000>;
-> +            opp-microvolt = <906250>;
-> +        };
-> +        opp2_10: opp-923000000 {
-> +            opp-hz = /bits/ 64 <923000000>;
-> +            opp-microvolt = <931250>;
-> +        };
-> +        opp2_11: opp-962000000 {
-> +            opp-hz = /bits/ 64 <962000000>;
-> +            opp-microvolt = <943750>;
-> +        };
-> +        opp2_12: opp-1027000000 {
-> +            opp-hz = /bits/ 64 <1027000000>;
-> +            opp-microvolt = <975000>;
-> +        };
-> +        opp2_13: opp-1092000000 {
-> +            opp-hz = /bits/ 64 <1092000000>;
-> +            opp-microvolt = <1000000>;
-> +        };
-> +        opp2_14: opp-1144000000 {
-> +            opp-hz = /bits/ 64 <1144000000>;
-> +            opp-microvolt = <1025000>;
-> +        };
-> +        opp2_15: opp-1196000000 {
-> +            opp-hz = /bits/ 64 <1196000000>;
-> +            opp-microvolt = <1050000>;
-> +        };
-> +    };
-
-
+diff --git a/Documentation/devicetree/bindings/sound/wlf,wm8940.yaml b/Documentation/devicetree/bindings/sound/wlf,wm8940.yaml
+new file mode 100644
+index 000000000000..8aadcbeed502
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/wlf,wm8940.yaml
+@@ -0,0 +1,57 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/wlf,wm8940.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Wolfson WM8940 Codec Device Tree Bindings
++
++maintainers:
++  - patches@opensource.cirrus.com
++
++properties:
++  '#sound-dai-cells':
++    const: 0
++
++  compatible:
++    const: wlf,wm8940
++
++  reg:
++    maxItems: 1
++
++  spi-max-frequency:
++    maximum: 526000
++
++required:
++  - '#sound-dai-cells'
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    spi {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        codec@0 {
++            #sound-dai-cells = <0>;
++            compatible = "wlf,wm8940";
++            reg = <0>;
++            spi-max-frequency = <500000>;
++        };
++    };
++  - |
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        codec@1a {
++            #sound-dai-cells = <0>;
++            compatible = "wlf,wm8940";
++            reg = <0x1a>;
++        };
++    };
++
++...
 -- 
-Best Regards,
-Samsung Electronics
-Chanwoo Choi
+2.35.1
+
