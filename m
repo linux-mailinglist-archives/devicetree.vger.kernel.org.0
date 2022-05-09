@@ -2,147 +2,218 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CA52C520618
-	for <lists+devicetree@lfdr.de>; Mon,  9 May 2022 22:41:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 22767520621
+	for <lists+devicetree@lfdr.de>; Mon,  9 May 2022 22:45:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229750AbiEIUpI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 May 2022 16:45:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49064 "EHLO
+        id S229570AbiEIUs5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 May 2022 16:48:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38088 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229759AbiEIUpA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 May 2022 16:45:00 -0400
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8F062AC7A;
-        Mon,  9 May 2022 13:40:50 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id gh6so29141918ejb.0;
-        Mon, 09 May 2022 13:40:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=ugeMprRoxrWREeg1RKkYPg4Z7RTTPYWXOFWFyXLKJkY=;
-        b=bl59jxYva+k74U5PvkEkc3+zrF+rXUFUom1CtW2SBk31foyF2caMrx2GZYSVp38Keu
-         309gf5i1sU0v4N0Zup5BKrps+hK6oT1nru9MgDjdcTAC5LeHlQsdXLk/NAJCSg6Zu5Wk
-         Mb/MwkIqd5nHl/omlbTVlZmwHYNyfBmxo1zek0IbrZzgEAGwmPKzsR7xRxsqxrtPTUr/
-         juWDnnAapif2AvymdLXREB14vBTkntOx4dvxFxuJVxv6gbyqqxWqwdaJm+eDa0RSHc9F
-         ZMOmFgsHdKrWLwB/HQRu3PdK4sR5QfeuNN7GiV9GG1yY0wp6fVkhWdAyyCXxKvt4uQWG
-         0nFg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=ugeMprRoxrWREeg1RKkYPg4Z7RTTPYWXOFWFyXLKJkY=;
-        b=Kl4OCKXFVs2XwqibUfYdsDrNxkbN3ezbeMO1tPqXDsFUWMEfBuhhEb+DTaaFwV9G4d
-         p+B1xQB0NB1WU/FIpYXjK3wbmHT2jX/6bywS0JQYJ/nMGE+yG1o566qT7HYzrXBuiLtg
-         aPXuHz3sTC4c38E4TDsASl3sWgEotp17M+96kXrIJjmkUnMCTCVmbC0g4KE+9mlmq49p
-         oo3LguL9dTUdFPvv3o4sgMB2RnQsbGB6lFMIGzmS+gBOKuVLQkmMT8Rr4zymI23tjdvi
-         I4FCOqBaYO3h3MKar7VJg2sSVg0myUkQ6tiWRkNdvb3VgnDb38mXOKpkD+t9dbkNfBAj
-         s2uw==
-X-Gm-Message-State: AOAM5304i3HcKgZzLIZGdJ6nsUZTPKdQXElhX6PDyalNh5NLXchEkkLP
-        06NK3z496NoJ8Rk5o8uEqURv50ndh89kG0VAEGjIZQbA6r4nue6+
-X-Google-Smtp-Source: ABdhPJzXi5SdTvvpc5c8vT3NNNzWo6Cr8z0PXYIhbP3f/ag+dxrEWJge/uMGAdlCnjopMvzTkVtBvaZhJb6ChQO/ERs=
-X-Received: by 2002:a17:907:868e:b0:6fa:2fe2:92d6 with SMTP id
- qa14-20020a170907868e00b006fa2fe292d6mr6920008ejc.639.1652128849246; Mon, 09
- May 2022 13:40:49 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220427094502.456111-1-clement.leger@bootlin.com>
- <96db62bb-18be-f44a-6f53-05b22319f23a@gmail.com> <20220509141634.16158c38@xps-bootlin>
- <f9b0cbf1-dde2-ff97-cca0-5d2895734f91@gmail.com> <20220509180917.0f0ae851@xps-bootlin>
- <YnlIs312R4Temgu3@smile.fi.intel.com> <b476913d-896d-309c-f304-3ab37b81b4a9@gmail.com>
-In-Reply-To: <b476913d-896d-309c-f304-3ab37b81b4a9@gmail.com>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Mon, 9 May 2022 22:40:12 +0200
-Message-ID: <CAHp75VedNAG4EqPkCp-mCSUNJiKPNgaJEtsHQkWimyaYh0Nueg@mail.gmail.com>
-Subject: Re: [PATCH 0/3] add dynamic PCI device of_node creation for overlay
-To:     Frank Rowand <frowand.list@gmail.com>
-Cc:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>,
+        with ESMTP id S229448AbiEIUs4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 May 2022 16:48:56 -0400
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F27428ABA3;
+        Mon,  9 May 2022 13:45:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1652129100; x=1683665100;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=kV3QGIMkK5UaMhz5OyUHz2Njf2odm8K27ZLZvtIEh9Q=;
+  b=GtD2EeDRAdDMJMD0Op0heoq1GIVrupuGNtTZa19wTQ/2cpFUQyVe9af1
+   gfHcAan/ko5zT8miSYLGEuHA6y2ENbaBjb1Fy2IlHe3dy/7BdsQx5Z4V6
+   3OuXx1rTDGb15o41y1MnO42Sy0GJLLoxm9CngQaarCCpuNG0e6IeFtRUD
+   u6rCDEwS33TbE107Boy55p8p6OAKr4E0xqqu8xmmQn1tHm3OqU/3NMmrM
+   q0/KqTFwTV+Ytd4KmWxgv/5ZVxudlB3t3zdq7aD2KXOsuZ4RKqYf3qmSk
+   KQgzAc+3VP7LsBOtQNwOCFVcgn2+R2A9YsKn4q1G7OcvBGNPFfIdfYhqZ
+   Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10342"; a="266756049"
+X-IronPort-AV: E=Sophos;i="5.91,212,1647327600"; 
+   d="scan'208";a="266756049"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 May 2022 13:45:00 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.91,212,1647327600"; 
+   d="scan'208";a="623144724"
+Received: from lkp-server01.sh.intel.com (HELO 5056e131ad90) ([10.239.97.150])
+  by fmsmga008.fm.intel.com with ESMTP; 09 May 2022 13:44:57 -0700
+Received: from kbuild by 5056e131ad90 with local (Exim 4.95)
+        (envelope-from <lkp@intel.com>)
+        id 1noAFV-000GtM-1O;
+        Mon, 09 May 2022 20:44:57 +0000
+Date:   Tue, 10 May 2022 04:44:17 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Sebastian Ene <sebastianene@google.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Allan Nielsen <allan.nielsen@microchip.com>,
-        Horatiu Vultur <horatiu.vultur@microchip.com>,
-        Steen Hegelund <steen.hegelund@microchip.com>,
-        Thomas Petazzoni <thomas.petazonni@bootlin.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Mark Brown <broonie@kernel.org>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-pci <linux-pci@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Dragan Cvetic <dragan.cvetic@xilinx.com>
+Cc:     kbuild-all@lists.01.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, maz@kernel.org, will@kernel.org,
+        qperret@google.com, Guenter Roeck <linux@roeck-us.net>,
+        Sebastian Ene <sebastianene@google.com>
+Subject: Re: [PATCH v5 2/2] misc: Add a mechanism to detect stalls on guest
+ vCPUs
+Message-ID: <202205100420.UlVQD7zP-lkp@intel.com>
+References: <20220509091103.2220604-3-sebastianene@google.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220509091103.2220604-3-sebastianene@google.com>
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 9, 2022 at 10:36 PM Frank Rowand <frowand.list@gmail.com> wrote=
-:
->
-> On 5/9/22 12:00, Andy Shevchenko wrote:
-> > On Mon, May 09, 2022 at 06:09:17PM +0200, Cl=C3=A9ment L=C3=A9ger wrote=
-:
-> >> Le Mon, 9 May 2022 10:56:36 -0500,
-> >> Frank Rowand <frowand.list@gmail.com> a =C3=A9crit :
-> >
-> > ...
-> >
-> >>> On the surface, it appears that your need might be well met by having
-> >>> a base devicetree that describes all of the pcie nodes, but with each
-> >>> node having a status of "disabled" so that they will not be used.
-> >>> Have a devicetree overlay describing the pcie card (as you proposed),
-> >>> where the overlay also includes a status of "ok" for the pcie node.
-> >>> Applying the overlay, with a method of redirecting the target to a
-> >>> specific pcie node would change the status of the pcie node to enable
-> >>> its use.  (You have already proposed a patch to modify
-> >>> of_overlay_fdt_apply() to allow a modified target, so not a new
-> >>> concept from me.)  My suggestion is to apply the overlay devicetree
-> >>> to the base devicetree before the combined FDT devicetree is passed
-> >>> to the kernel at boot.  The overlay apply could be done by several
-> >>> different entities.  It could be before the bootloader executes, it
-> >>> could be done by the bootloader, it could be done by a shim between
-> >>> the bootloader and the kernel.  This method avoids all of the issues
-> >>> of applying an overlay to a running system that I find problematic.
-> >>> It is also a method used by the U-boot bootloader, as an example.
-> >>
-> >> Ok, that is actually possible on a system that is given a device-tree
-> >> by the bootloader. But on a system that is desrcibed using ACPI (such
-> >> as the x86), this is much more difficult (at least to my knowledge)...
-> >> We want this feature to be easy to use for the end user. Adding such
-> >> configuration which also differs between various architecture is
-> >> clearly not so easy to setup.
-> >>
-> >> Moreover, since the PCI is meant to be "Plug and Play", such
-> >> configuration would completely break that. If the user switches the
-> >> PCIe card from one slot to another, the bootloader configuration will
-> >> need to be modified. This seems a big no way for me (and for the user)=
-.
-> >
-> > The main problem here is that Linux does not support hotplugging for th=
-e
-> > devices behind non-hotpluggable buses. You need to develop something to
-> > say that the device tree (in terms of hardware) can morph at run-time
-> > transparently to the user. I think the closest one is what FPGA does,
-> > or at least should do.
->
-> That is something I was not aware of yet.  Is the card in question a
-> hotpluggable card?  Do the systems that you anticipate plugging the
-> card into support hotplug?
+Hi Sebastian,
 
-Any PCIe card is potentially hotpluggable (seems nobody actually cares
-in 90%+ drivers in the Linux kernel). But what I have heard in a
-thread (not this one IIRC) is that the card may have pluggable modules
-and it would be nice to change configuration and notify OS somehow. I
-might be mistaken if it's the case here or not.
+Thank you for the patch! Perhaps something to improve:
 
---=20
-With Best Regards,
-Andy Shevchenko
+[auto build test WARNING on robh/for-next]
+[also build test WARNING on char-misc/char-misc-testing soc/for-next v5.18-rc6]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Sebastian-Ene/Detect-stalls-on-guest-vCPUS/20220509-174959
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+config: h8300-randconfig-s032-20220509 (https://download.01.org/0day-ci/archive/20220510/202205100420.UlVQD7zP-lkp@intel.com/config)
+compiler: h8300-linux-gcc (GCC) 11.3.0
+reproduce:
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # apt-get install sparse
+        # sparse version: v0.6.4-dirty
+        # https://github.com/intel-lab-lkp/linux/commit/d3152372fdd19448b32806c0bffd78d8729d02e4
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Sebastian-Ene/Detect-stalls-on-guest-vCPUS/20220509-174959
+        git checkout d3152372fdd19448b32806c0bffd78d8729d02e4
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.3.0 make.cross C=1 CF='-fdiagnostic-prefix -D__CHECK_ENDIAN__' O=build_dir ARCH=h8300 SHELL=/bin/bash drivers/misc/
+
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
+
+
+sparse warnings: (new ones prefixed by >>)
+>> drivers/misc/vcpu_stall_detector.c:106:33: sparse: sparse: incorrect type in initializer (different address spaces) @@     expected void const [noderef] __percpu *__vpp_verify @@     got struct vm_stall_detect_s * @@
+   drivers/misc/vcpu_stall_detector.c:106:33: sparse:     expected void const [noderef] __percpu *__vpp_verify
+   drivers/misc/vcpu_stall_detector.c:106:33: sparse:     got struct vm_stall_detect_s *
+   drivers/misc/vcpu_stall_detector.c:115:32: sparse: sparse: incorrect type in initializer (different address spaces) @@     expected void const [noderef] __percpu *__vpp_verify @@     got struct vm_stall_detect_s * @@
+   drivers/misc/vcpu_stall_detector.c:115:32: sparse:     expected void const [noderef] __percpu *__vpp_verify
+   drivers/misc/vcpu_stall_detector.c:115:32: sparse:     got struct vm_stall_detect_s *
+>> drivers/misc/vcpu_stall_detector.c:131:25: sparse: sparse: incorrect type in assignment (different address spaces) @@     expected struct vm_stall_detect_s *vm_stall_detect @@     got struct vm_stall_detect_s [noderef] __percpu * @@
+   drivers/misc/vcpu_stall_detector.c:131:25: sparse:     expected struct vm_stall_detect_s *vm_stall_detect
+   drivers/misc/vcpu_stall_detector.c:131:25: sparse:     got struct vm_stall_detect_s [noderef] __percpu *
+   drivers/misc/vcpu_stall_detector.c:154:36: sparse: sparse: incorrect type in initializer (different address spaces) @@     expected void const [noderef] __percpu *__vpp_verify @@     got struct vm_stall_detect_s * @@
+   drivers/misc/vcpu_stall_detector.c:154:36: sparse:     expected void const [noderef] __percpu *__vpp_verify
+   drivers/misc/vcpu_stall_detector.c:154:36: sparse:     got struct vm_stall_detect_s *
+>> drivers/misc/vcpu_stall_detector.c:177:21: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void [noderef] __percpu *__pdata @@     got struct vm_stall_detect_s *vm_stall_detect @@
+   drivers/misc/vcpu_stall_detector.c:177:21: sparse:     expected void [noderef] __percpu *__pdata
+   drivers/misc/vcpu_stall_detector.c:177:21: sparse:     got struct vm_stall_detect_s *vm_stall_detect
+   drivers/misc/vcpu_stall_detector.c:189:36: sparse: sparse: incorrect type in initializer (different address spaces) @@     expected void const [noderef] __percpu *__vpp_verify @@     got struct vm_stall_detect_s * @@
+   drivers/misc/vcpu_stall_detector.c:189:36: sparse:     expected void const [noderef] __percpu *__vpp_verify
+   drivers/misc/vcpu_stall_detector.c:189:36: sparse:     got struct vm_stall_detect_s *
+   drivers/misc/vcpu_stall_detector.c:194:21: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void [noderef] __percpu *__pdata @@     got struct vm_stall_detect_s *vm_stall_detect @@
+   drivers/misc/vcpu_stall_detector.c:194:21: sparse:     expected void [noderef] __percpu *__pdata
+   drivers/misc/vcpu_stall_detector.c:194:21: sparse:     got struct vm_stall_detect_s *vm_stall_detect
+   drivers/misc/vcpu_stall_detector.c: note: in included file (through include/linux/io.h):
+   arch/h8300/include/asm/io.h:44:11: sparse: sparse: cast removes address space '__iomem' of expression
+   arch/h8300/include/asm/io.h:44:11: sparse: sparse: cast removes address space '__iomem' of expression
+   arch/h8300/include/asm/io.h:44:11: sparse: sparse: cast removes address space '__iomem' of expression
+   arch/h8300/include/asm/io.h:44:11: sparse: sparse: cast removes address space '__iomem' of expression
+   arch/h8300/include/asm/io.h:44:11: sparse: sparse: cast removes address space '__iomem' of expression
+
+vim +106 drivers/misc/vcpu_stall_detector.c
+
+   100	
+   101	static int start_stall_detector_on_cpu(unsigned int cpu)
+   102	{
+   103		struct vm_stall_detect_s *vm_stall_detect;
+   104	
+   105		vm_stall_detect = platform_get_drvdata(virt_dev);
+ > 106		vcpu_stall_detect_start(this_cpu_ptr(vm_stall_detect));
+   107		return 0;
+   108	}
+   109	
+   110	static int stop_stall_detector_on_cpu(unsigned int cpu)
+   111	{
+   112		struct vm_stall_detect_s *vm_stall_detect;
+   113	
+   114		vm_stall_detect = platform_get_drvdata(virt_dev);
+   115		vcpu_stall_detect_stop(this_cpu_ptr(vm_stall_detect));
+   116		return 0;
+   117	}
+   118	
+   119	static int vcpu_stall_detect_probe(struct platform_device *dev)
+   120	{
+   121		int cpu, ret, err;
+   122		void __iomem *membase;
+   123		struct resource *r;
+   124		struct vm_stall_detect_s *vm_stall_detect;
+   125		u32 stall_detect_clock, stall_detect_timeout_sec = 0;
+   126	
+   127		r = platform_get_resource(dev, IORESOURCE_MEM, 0);
+   128		if (r == NULL)
+   129			return -ENOENT;
+   130	
+ > 131		vm_stall_detect = alloc_percpu(typeof(struct vm_stall_detect_s));
+   132		if (!vm_stall_detect)
+   133			return -ENOMEM;
+   134	
+   135		membase = ioremap(r->start, resource_size(r));
+   136		if (!membase) {
+   137			ret = -ENXIO;
+   138			goto err_withmem;
+   139		}
+   140	
+   141		virt_dev = dev;
+   142		platform_set_drvdata(dev, vm_stall_detect);
+   143		if (of_property_read_u32(dev->dev.of_node, "clock-frequency",
+   144					 &stall_detect_clock))
+   145			stall_detect_clock = DEFAULT_CLOCK_HZ;
+   146	
+   147		if (of_property_read_u32(dev->dev.of_node, "timeout-sec",
+   148					 &stall_detect_timeout_sec))
+   149			stall_detect_timeout_sec = DEFAULT_TIMEOT_SEC;
+   150	
+   151		for_each_cpu_and(cpu, cpu_online_mask, &watchdog_cpumask) {
+   152			struct vm_stall_detect_s *cpu_stall_detect;
+   153	
+   154			cpu_stall_detect = per_cpu_ptr(vm_stall_detect, cpu);
+   155			cpu_stall_detect->membase = membase + cpu * REG_LEN;
+   156			cpu_stall_detect->clock_freq = stall_detect_clock;
+   157			cpu_stall_detect->expiration_sec = stall_detect_timeout_sec;
+   158			cpu_stall_detect->ping_timeout_ms = stall_detect_timeout_sec *
+   159				MSEC_PER_SEC / 2;
+   160			smp_call_function_single(cpu, vcpu_stall_detect_start,
+   161						 cpu_stall_detect, true);
+   162		}
+   163	
+   164		err = cpuhp_setup_state_nocalls(CPUHP_AP_ONLINE_DYN,
+   165						"virt/vcpu_stall_detector:online",
+   166						start_stall_detector_on_cpu,
+   167						stop_stall_detector_on_cpu);
+   168		if (err < 0) {
+   169			dev_warn(&dev->dev, "failed to install cpu hotplug");
+   170			ret = err;
+   171			goto err_withmem;
+   172		}
+   173	
+   174		return 0;
+   175	
+   176	err_withmem:
+ > 177		free_percpu(vm_stall_detect);
+   178		return ret;
+   179	}
+   180	
+
+-- 
+0-DAY CI Kernel Test Service
+https://01.org/lkp
