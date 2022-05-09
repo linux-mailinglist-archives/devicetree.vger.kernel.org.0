@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4CFDB51F61A
-	for <lists+devicetree@lfdr.de>; Mon,  9 May 2022 09:59:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 11D2C51F5EB
+	for <lists+devicetree@lfdr.de>; Mon,  9 May 2022 09:55:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233832AbiEIH4y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 May 2022 03:56:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33042 "EHLO
+        id S233468AbiEIH4x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 May 2022 03:56:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33156 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236546AbiEIHxD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 May 2022 03:53:03 -0400
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43E99201B3
-        for <devicetree@vger.kernel.org>; Mon,  9 May 2022 00:49:10 -0700 (PDT)
-Received: by mail-wm1-x330.google.com with SMTP id 1-20020a05600c248100b00393fbf11a05so10237456wms.3
-        for <devicetree@vger.kernel.org>; Mon, 09 May 2022 00:49:10 -0700 (PDT)
+        with ESMTP id S236552AbiEIHxF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 May 2022 03:53:05 -0400
+Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8763913C095
+        for <devicetree@vger.kernel.org>; Mon,  9 May 2022 00:49:11 -0700 (PDT)
+Received: by mail-wm1-x336.google.com with SMTP id o12-20020a1c4d0c000000b00393fbe2973dso10261787wmh.2
+        for <devicetree@vger.kernel.org>; Mon, 09 May 2022 00:49:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20210112.gappssmtp.com; s=20210112;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=qMrSL3AMHGC+RTK3h8kNDAa260PauJUqXlYjnxZrCPw=;
-        b=j8P/nWstf2G5gLaKTxZaAiqLCVOFotDTnu2DFmPNl9kH9oH5DoETD+nmuufHH5yH/V
-         MC+xp3DhGDu9f5UrP8EFmn74sOiYY1T7vcCv4vYfDQWbMgAmftI6FWb5fOsi88qZu6/b
-         3oTkMitgehUqVRveNC7/2GmBk26P7cOxsFmePBDbL3QdMvKA8dfoEHcjYCzjUVeXVZAR
-         DXNSbu/WBCnAIdw7L4+TTJR6C9W+hQ+Uzz/HjZPGhF4nRLpxYtUe3Cp/yAHLTZWJ990K
-         FJlFuUkfsYpaOKpdlmX2Llth5Zk1NsSF/pMzV8UlhdJTkwZ7h9eZ7vFSqxxXIL5O29iD
-         KA6Q==
+        bh=uxjt2wTyTk7fEyfPktsHOIoGVxBZKrQOY0kyPg5icoY=;
+        b=AL9GeKmvxYTPP1/F4xINTuPLMQDK3Cc2x2Gi/oKoi8VY5+aQwZBOPVxyAnDyDXfPGB
+         namQPtvoZNhKW4V5gv9opgM9nQg8QQwJMPJ0vYZNK3Da7P6zfFDpq1RzaYjQHTBXzz2D
+         H6Lqzzx/snqzPAtpVsfj724pqn643/4Aq3sTSltXuNd0z96MrbJLLNSssdBDmM7zygVm
+         Zg8015mEJ0Nug/q3IDi7ai0AlzEvNJW9ZKjWy9nLz0rFjlWmTVZGx3YLWwTXa6P6+uph
+         BgWY7S4QM9IzcepdNGcVfGmqOdrC2bHCHfK/wEWXVizY8pOT2m0ZZVAg8KTb6kV+VjMs
+         8t5g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=qMrSL3AMHGC+RTK3h8kNDAa260PauJUqXlYjnxZrCPw=;
-        b=mG+3UoxdHcBwGh+ibmUA78o2JmIUGyJhB8fGnxIFuTYJEKDu1ACYTBGHZZX+wOrj5K
-         qQsJYYiq+tFh2ZFUXXx4EBVKWtaqPMfnOdfDSeC7yzOPmsh7w/DTIOsTqcu0VmOG9REc
-         fHPGM4wPGAG3J1S2G8qEEttC1vCltMTaeVqaEMTnK4D3PbtRMpZ7H3tJ25nS/q01ogqc
-         38dVr0USCJvbPn5QfQ5hVBOAWhJYQMtXzApWhvXiZKyDwLrvp34XCDPQ5PbLbllUqZOq
-         tAOxe97/MpsPxw9HD2meIIK6Jyeg/qrBmd5+/Wya14p+UGRXJlI69OVsU56TCQsykWFI
-         IlJA==
-X-Gm-Message-State: AOAM5337WOy/f8hd4juQOGiL1MgBAzJDM1fhKIMoWpoVLuY7VyvFtC/w
-        nzKaXg9LeyNh/e6FyPPfCozUpQ==
-X-Google-Smtp-Source: ABdhPJyH3fd92bgA2uhnaxAe8vtAphLXWX8wAKMdKQ1ZnKM4LCqbUKVDjIMxph/XhaUGywElhXsEBQ==
-X-Received: by 2002:a05:600c:20e:b0:394:2985:6d0c with SMTP id 14-20020a05600c020e00b0039429856d0cmr21057310wmi.106.1652082548836;
-        Mon, 09 May 2022 00:49:08 -0700 (PDT)
+        bh=uxjt2wTyTk7fEyfPktsHOIoGVxBZKrQOY0kyPg5icoY=;
+        b=fvKMEHI9mnD2qNX4oaMSeM8if+VYbp5U7KTlZpneSTy2afM8APNSUHa7sbn+sEKvaC
+         Zzza1ertw9RhVVlBXhicMIsNL1PUSzV3XW2gDGJeBeSMGFHBkFRLx7qRkvbSN+F2J4OR
+         5CukRHxodaOlzrM+9hnFmyCLYjj0H5z2hsT6th8P0g1r54p6N6mOavWmv2Go3/QeDUNa
+         evyjaxNm+RTm0uHOWM7cBYIzIRlK4HTx/maHoTBo0+ARTctLMT4mAL39J0ENpGw1lBtQ
+         afF2/EP3bwBsHjxBrhWrRr/ehoELNnQQMqyA8qIKIeRVDBuQzGxv7JQujTI4SeVup7Os
+         w0Sg==
+X-Gm-Message-State: AOAM532ak4kGUuzUGxGT87aqnVMNCHMB0vI1KlXC6jlFCRsO/U+gPSNL
+        IPjaasks+SGDkJZvfZynpbaWTQ==
+X-Google-Smtp-Source: ABdhPJzHtT6mjIAy/Bbyly4ZW0phLlVdydi8UKNC+Gmhx9pd4TeHrT2Z+doG663B1pzMfmtcJLBnAw==
+X-Received: by 2002:a05:600c:1d0b:b0:394:737f:e3d with SMTP id l11-20020a05600c1d0b00b00394737f0e3dmr16721006wms.5.1652082550028;
+        Mon, 09 May 2022 00:49:10 -0700 (PDT)
 Received: from localhost.localdomain (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.googlemail.com with ESMTPSA id bw22-20020a0560001f9600b0020c5253d8d8sm11784768wrb.36.2022.05.09.00.49.07
+        by smtp.googlemail.com with ESMTPSA id bw22-20020a0560001f9600b0020c5253d8d8sm11784768wrb.36.2022.05.09.00.49.08
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 May 2022 00:49:08 -0700 (PDT)
+        Mon, 09 May 2022 00:49:09 -0700 (PDT)
 From:   Corentin Labbe <clabbe@baylibre.com>
 To:     alexandre.torgue@foss.st.com, andrew@lunn.ch, broonie@kernel.org,
         calvin.johnson@oss.nxp.com, davem@davemloft.net,
@@ -59,9 +59,9 @@ To:     alexandre.torgue@foss.st.com, andrew@lunn.ch, broonie@kernel.org,
 Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
         linux-sunxi@lists.linux.dev, Corentin Labbe <clabbe@baylibre.com>
-Subject: [PATCH 3/6] dt-bindings: net: Add documentation for phy-supply
-Date:   Mon,  9 May 2022 07:48:54 +0000
-Message-Id: <20220509074857.195302-4-clabbe@baylibre.com>
+Subject: [PATCH 4/6] ARM: dts: sunxi: move phy regulator in PHY node
+Date:   Mon,  9 May 2022 07:48:55 +0000
+Message-Id: <20220509074857.195302-5-clabbe@baylibre.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20220509074857.195302-1-clabbe@baylibre.com>
 References: <20220509074857.195302-1-clabbe@baylibre.com>
@@ -77,33 +77,282 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add entries for the 2 new phy-supply and phy-io-supply.
+Now that PHY core can handle regulators, move regulator handle in PHY
+node.
 
 Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
 ---
- .../devicetree/bindings/net/ethernet-phy.yaml          | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+ arch/arm/boot/dts/sun8i-a83t-bananapi-m3.dts      | 2 +-
+ arch/arm/boot/dts/sun8i-a83t-cubietruck-plus.dts  | 2 +-
+ arch/arm/boot/dts/sun8i-h3-nanopi-m1-plus.dts     | 2 +-
+ arch/arm/boot/dts/sun8i-h3-nanopi-r1.dts          | 2 +-
+ arch/arm/boot/dts/sun8i-h3-orangepi-plus.dts      | 2 +-
+ arch/arm/boot/dts/sun8i-h3-orangepi-plus2e.dts    | 2 +-
+ arch/arm/boot/dts/sun8i-h3-zeropi.dts             | 2 +-
+ arch/arm/boot/dts/sun8i-r40-bananapi-m2-ultra.dts | 2 +-
+ arch/arm/boot/dts/sun8i-r40-oka40i-c.dts          | 2 +-
+ arch/arm/boot/dts/sun8i-v40-bananapi-m2-berry.dts | 2 +-
+ arch/arm/boot/dts/sun9i-a80-cubieboard4.dts       | 2 +-
+ arch/arm/boot/dts/sun9i-a80-optimus.dts           | 2 +-
+ arch/arm/boot/dts/sunxi-bananapi-m2-plus.dtsi     | 2 +-
+ 13 files changed, 13 insertions(+), 13 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/net/ethernet-phy.yaml b/Documentation/devicetree/bindings/net/ethernet-phy.yaml
-index ed1415a4381f..2a6b45ddf010 100644
---- a/Documentation/devicetree/bindings/net/ethernet-phy.yaml
-+++ b/Documentation/devicetree/bindings/net/ethernet-phy.yaml
-@@ -153,6 +153,16 @@ properties:
-       used. The absence of this property indicates the muxers
-       should be configured so that the external PHY is used.
+diff --git a/arch/arm/boot/dts/sun8i-a83t-bananapi-m3.dts b/arch/arm/boot/dts/sun8i-a83t-bananapi-m3.dts
+index 5a7e1bd5f825..b450be0a45ed 100644
+--- a/arch/arm/boot/dts/sun8i-a83t-bananapi-m3.dts
++++ b/arch/arm/boot/dts/sun8i-a83t-bananapi-m3.dts
+@@ -129,7 +129,6 @@ &ehci0 {
+ &emac {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&emac_rgmii_pins>;
+-	phy-supply = <&reg_sw>;
+ 	phy-handle = <&rgmii_phy>;
+ 	phy-mode = "rgmii-id";
+ 	allwinner,rx-delay-ps = <700>;
+@@ -151,6 +150,7 @@ &mdio {
+ 	rgmii_phy: ethernet-phy@1 {
+ 		compatible = "ethernet-phy-ieee802.3-c22";
+ 		reg = <1>;
++		phy-supply = <&reg_sw>;
+ 	};
+ };
  
-+  phy-supply:
-+    description:
-+      Phandle to a regulator that provides power to the PHY. This
-+      regulator will be managed during the PHY power on/off sequence.
-+
-+  phy-io-supply:
-+    description:
-+      Phandle to a regulator that provides power to the PHY. This
-+      regulator will be managed during the PHY power on/off sequence.
-+
-   resets:
-     maxItems: 1
+diff --git a/arch/arm/boot/dts/sun8i-a83t-cubietruck-plus.dts b/arch/arm/boot/dts/sun8i-a83t-cubietruck-plus.dts
+index 870993393fc2..fe70b350cdbb 100644
+--- a/arch/arm/boot/dts/sun8i-a83t-cubietruck-plus.dts
++++ b/arch/arm/boot/dts/sun8i-a83t-cubietruck-plus.dts
+@@ -181,7 +181,6 @@ &ehci1 {
+ &emac {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&emac_rgmii_pins>;
+-	phy-supply = <&reg_dldo4>;
+ 	phy-handle = <&rgmii_phy>;
+ 	phy-mode = "rgmii-id";
+ 	status = "okay";
+@@ -201,6 +200,7 @@ &mdio {
+ 	rgmii_phy: ethernet-phy@1 {
+ 		compatible = "ethernet-phy-ieee802.3-c22";
+ 		reg = <1>;
++		phy-supply = <&reg_dldo4>;
+ 	};
+ };
+ 
+diff --git a/arch/arm/boot/dts/sun8i-h3-nanopi-m1-plus.dts b/arch/arm/boot/dts/sun8i-h3-nanopi-m1-plus.dts
+index a2f2ef2b0092..c393612f44c6 100644
+--- a/arch/arm/boot/dts/sun8i-h3-nanopi-m1-plus.dts
++++ b/arch/arm/boot/dts/sun8i-h3-nanopi-m1-plus.dts
+@@ -103,7 +103,6 @@ &ehci2 {
+ &emac {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&emac_rgmii_pins>;
+-	phy-supply = <&reg_gmac_3v3>;
+ 	phy-handle = <&ext_rgmii_phy>;
+ 	phy-mode = "rgmii";
+ 
+@@ -114,6 +113,7 @@ &external_mdio {
+ 	ext_rgmii_phy: ethernet-phy@1 {
+ 		compatible = "ethernet-phy-ieee802.3-c22";
+ 		reg = <7>;
++		phy-supply = <&reg_gmac_3v3>;
+ 	};
+ };
+ 
+diff --git a/arch/arm/boot/dts/sun8i-h3-nanopi-r1.dts b/arch/arm/boot/dts/sun8i-h3-nanopi-r1.dts
+index 26e2e6172e0d..70bde396856b 100644
+--- a/arch/arm/boot/dts/sun8i-h3-nanopi-r1.dts
++++ b/arch/arm/boot/dts/sun8i-h3-nanopi-r1.dts
+@@ -80,7 +80,6 @@ &ehci2 {
+ &emac {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&emac_rgmii_pins>;
+-	phy-supply = <&reg_gmac_3v3>;
+ 	phy-handle = <&ext_rgmii_phy>;
+ 	phy-mode = "rgmii-id";
+ 	status = "okay";
+@@ -90,6 +89,7 @@ &external_mdio {
+ 	ext_rgmii_phy: ethernet-phy@7 {
+ 		compatible = "ethernet-phy-ieee802.3-c22";
+ 		reg = <7>;
++		phy-supply = <&reg_gmac_3v3>;
+ 	};
+ };
+ 
+diff --git a/arch/arm/boot/dts/sun8i-h3-orangepi-plus.dts b/arch/arm/boot/dts/sun8i-h3-orangepi-plus.dts
+index d05fa679dcd3..c6dcf1af3298 100644
+--- a/arch/arm/boot/dts/sun8i-h3-orangepi-plus.dts
++++ b/arch/arm/boot/dts/sun8i-h3-orangepi-plus.dts
+@@ -83,7 +83,6 @@ &ehci3 {
+ &emac {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&emac_rgmii_pins>;
+-	phy-supply = <&reg_gmac_3v3>;
+ 	phy-handle = <&ext_rgmii_phy>;
+ 	phy-mode = "rgmii-id";
+ 
+@@ -94,6 +93,7 @@ &external_mdio {
+ 	ext_rgmii_phy: ethernet-phy@1 {
+ 		compatible = "ethernet-phy-ieee802.3-c22";
+ 		reg = <0>;
++		phy-supply = <&reg_gmac_3v3>;
+ 	};
+ };
+ 
+diff --git a/arch/arm/boot/dts/sun8i-h3-orangepi-plus2e.dts b/arch/arm/boot/dts/sun8i-h3-orangepi-plus2e.dts
+index b6ca45d18e51..61eb8c003186 100644
+--- a/arch/arm/boot/dts/sun8i-h3-orangepi-plus2e.dts
++++ b/arch/arm/boot/dts/sun8i-h3-orangepi-plus2e.dts
+@@ -65,7 +65,6 @@ reg_gmac_3v3: gmac-3v3 {
+ &emac {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&emac_rgmii_pins>;
+-	phy-supply = <&reg_gmac_3v3>;
+ 	phy-handle = <&ext_rgmii_phy>;
+ 	phy-mode = "rgmii-id";
+ 	status = "okay";
+@@ -75,5 +74,6 @@ &external_mdio {
+ 	ext_rgmii_phy: ethernet-phy@1 {
+ 		compatible = "ethernet-phy-ieee802.3-c22";
+ 		reg = <1>;
++		phy-supply = <&reg_gmac_3v3>;
+ 	};
+ };
+diff --git a/arch/arm/boot/dts/sun8i-h3-zeropi.dts b/arch/arm/boot/dts/sun8i-h3-zeropi.dts
+index 7d3e7323b661..54174ef18823 100644
+--- a/arch/arm/boot/dts/sun8i-h3-zeropi.dts
++++ b/arch/arm/boot/dts/sun8i-h3-zeropi.dts
+@@ -65,13 +65,13 @@ &external_mdio {
+ 	ext_rgmii_phy: ethernet-phy@7 {
+ 		compatible = "ethernet-phy-ieee802.3-c22";
+ 		reg = <7>;
++		phy-supply = <&reg_gmac_3v3>;
+ 	};
+ };
+ 
+ &emac {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&emac_rgmii_pins>;
+-	phy-supply = <&reg_gmac_3v3>;
+ 	phy-handle = <&ext_rgmii_phy>;
+ 	phy-mode = "rgmii-id";
+ 
+diff --git a/arch/arm/boot/dts/sun8i-r40-bananapi-m2-ultra.dts b/arch/arm/boot/dts/sun8i-r40-bananapi-m2-ultra.dts
+index a6a1087a0c9b..b1f269bbd479 100644
+--- a/arch/arm/boot/dts/sun8i-r40-bananapi-m2-ultra.dts
++++ b/arch/arm/boot/dts/sun8i-r40-bananapi-m2-ultra.dts
+@@ -130,7 +130,6 @@ &gmac {
+ 	pinctrl-0 = <&gmac_rgmii_pins>;
+ 	phy-handle = <&phy1>;
+ 	phy-mode = "rgmii-id";
+-	phy-supply = <&reg_dc1sw>;
+ 	status = "okay";
+ };
+ 
+@@ -138,6 +137,7 @@ &gmac_mdio {
+ 	phy1: ethernet-phy@1 {
+ 		compatible = "ethernet-phy-ieee802.3-c22";
+ 		reg = <1>;
++		phy-supply = <&reg_dc1sw>;
+ 	};
+ };
+ 
+diff --git a/arch/arm/boot/dts/sun8i-r40-oka40i-c.dts b/arch/arm/boot/dts/sun8i-r40-oka40i-c.dts
+index 0bd1336206b8..c43476b426df 100644
+--- a/arch/arm/boot/dts/sun8i-r40-oka40i-c.dts
++++ b/arch/arm/boot/dts/sun8i-r40-oka40i-c.dts
+@@ -93,7 +93,6 @@ &gmac {
+ 	pinctrl-0 = <&gmac_rgmii_pins>;
+ 	phy-handle = <&phy1>;
+ 	phy-mode = "rgmii-id";
+-	phy-supply = <&reg_dcdc1>;
+ 	status = "okay";
+ };
+ 
+@@ -101,6 +100,7 @@ &gmac_mdio {
+ 	phy1: ethernet-phy@1 {
+ 		compatible = "ethernet-phy-ieee802.3-c22";
+ 		reg = <1>;
++		phy-supply = <&reg_dcdc1>;
+ 	};
+ };
+ 
+diff --git a/arch/arm/boot/dts/sun8i-v40-bananapi-m2-berry.dts b/arch/arm/boot/dts/sun8i-v40-bananapi-m2-berry.dts
+index 47954551f573..050a649d7bda 100644
+--- a/arch/arm/boot/dts/sun8i-v40-bananapi-m2-berry.dts
++++ b/arch/arm/boot/dts/sun8i-v40-bananapi-m2-berry.dts
+@@ -121,7 +121,6 @@ &gmac {
+ 	pinctrl-0 = <&gmac_rgmii_pins>;
+ 	phy-handle = <&phy1>;
+ 	phy-mode = "rgmii-id";
+-	phy-supply = <&reg_dc1sw>;
+ 	status = "okay";
+ };
+ 
+@@ -129,6 +128,7 @@ &gmac_mdio {
+ 	phy1: ethernet-phy@1 {
+ 		compatible = "ethernet-phy-ieee802.3-c22";
+ 		reg = <1>;
++		phy-supply = <&reg_dc1sw>;
+ 	};
+ };
+ 
+diff --git a/arch/arm/boot/dts/sun9i-a80-cubieboard4.dts b/arch/arm/boot/dts/sun9i-a80-cubieboard4.dts
+index c8ca8cb7f5c9..ab9bf4bf7343 100644
+--- a/arch/arm/boot/dts/sun9i-a80-cubieboard4.dts
++++ b/arch/arm/boot/dts/sun9i-a80-cubieboard4.dts
+@@ -130,7 +130,6 @@ &gmac {
+ 	pinctrl-0 = <&gmac_rgmii_pins>;
+ 	phy-handle = <&phy1>;
+ 	phy-mode = "rgmii-id";
+-	phy-supply = <&reg_cldo1>;
+ 	status = "okay";
+ };
+ 
+@@ -142,6 +141,7 @@ &i2c3 {
+ 
+ &mdio {
+ 	phy1: ethernet-phy@1 {
++		phy-supply = <&reg_cldo1>;
+ 		reg = <1>;
+ 	};
+ };
+diff --git a/arch/arm/boot/dts/sun9i-a80-optimus.dts b/arch/arm/boot/dts/sun9i-a80-optimus.dts
+index 5c3580d712e4..48219b8049b1 100644
+--- a/arch/arm/boot/dts/sun9i-a80-optimus.dts
++++ b/arch/arm/boot/dts/sun9i-a80-optimus.dts
+@@ -125,13 +125,13 @@ &gmac {
+ 	pinctrl-0 = <&gmac_rgmii_pins>;
+ 	phy-handle = <&phy1>;
+ 	phy-mode = "rgmii-id";
+-	phy-supply = <&reg_cldo1>;
+ 	status = "okay";
+ };
+ 
+ &mdio {
+ 	phy1: ethernet-phy@1 {
+ 		reg = <1>;
++		phy-supply = <&reg_cldo1>;
+ 	};
+ };
+ 
+diff --git a/arch/arm/boot/dts/sunxi-bananapi-m2-plus.dtsi b/arch/arm/boot/dts/sunxi-bananapi-m2-plus.dtsi
+index d03f5853ef7b..65f0a3c2af3f 100644
+--- a/arch/arm/boot/dts/sunxi-bananapi-m2-plus.dtsi
++++ b/arch/arm/boot/dts/sunxi-bananapi-m2-plus.dtsi
+@@ -125,7 +125,6 @@ &ehci2 {
+ &emac {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&emac_rgmii_pins>;
+-	phy-supply = <&reg_gmac_3v3>;
+ 	phy-handle = <&ext_rgmii_phy>;
+ 	phy-mode = "rgmii-id";
+ 
+@@ -136,6 +135,7 @@ &external_mdio {
+ 	ext_rgmii_phy: ethernet-phy@1 {
+ 		compatible = "ethernet-phy-ieee802.3-c22";
+ 		reg = <1>;
++		phy-supply = <&reg_gmac_3v3>;
+ 	};
+ };
  
 -- 
 2.35.1
