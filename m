@@ -2,108 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 49E7A51F897
-	for <lists+devicetree@lfdr.de>; Mon,  9 May 2022 11:59:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0916F51F880
+	for <lists+devicetree@lfdr.de>; Mon,  9 May 2022 11:59:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230017AbiEIJod (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 May 2022 05:44:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34432 "EHLO
+        id S236083AbiEIJok (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 May 2022 05:44:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36624 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235313AbiEIJ1I (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 May 2022 05:27:08 -0400
-Received: from wout5-smtp.messagingengine.com (wout5-smtp.messagingengine.com [64.147.123.21])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70A491EEE02;
-        Mon,  9 May 2022 02:23:14 -0700 (PDT)
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-        by mailout.west.internal (Postfix) with ESMTP id E5E6F3200915;
-        Mon,  9 May 2022 05:23:09 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute5.internal (MEProxy); Mon, 09 May 2022 05:23:10 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
-        :cc:content-transfer-encoding:content-type:date:date:from:from
-        :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to; s=fm3; t=1652088189; x=
-        1652174589; bh=Ry+sG7AeUuuSUyeaD2CqDfW56d5oAW3SwnbrciZOPu8=; b=b
-        dkILA9FZ2V2Of/AuvGmRShHZ8HV0pudACEbHev17TrYQVZIL2zudheJnxnVvuXY1
-        GDtkOfAYt3C+X5PCgZs5qCrejhkhf+d3Ovmfi067Tos61i8k6blm4XLsj43abDOS
-        ChWFqcoJNjBzXD03QIYPmPemAOmjICwSg7WenPGkcWZ91egni2UC0g4hRCI+yfkk
-        mt1aVRQisb5sV7j1HYAlVfkzjjeYcsz/mh+d2QIE8YxdDnIwmPOcDocJrv0i/gng
-        w7lnWzCD59uotp8ewhX5ZIfJB19NE6MPnakXoyqt6dZwXn+aVhSwDQVPmSgFT0wx
-        BmJJ7r421yIZB3SZSSM4g==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-transfer-encoding
-        :content-type:date:date:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm1; t=1652088189; x=1652174589; bh=Ry+sG7AeUuuSU
-        yeaD2CqDfW56d5oAW3SwnbrciZOPu8=; b=T2Ij/FDU1n1eCko98Av+rvmtnY2kG
-        N3Pbb/B0+04qsCq0L1whc7KLszmTQDeLv9yeNo5Q4E2qIry1QhiU/lbHns1zAt7L
-        IwRy5oxXDeCpYWg6cWnZpbPl1zG7PbwJeqfS8kRuCqjusGeci7PLZ/9w1cS5c8Ql
-        5lOP5aWb5Dhjd8WgnexuaCjXQ3ZQuJm/GeDP5J0n3u7I4QE9CS3gFwyueY1JTv5V
-        GkitRW7rmYZrUVoCAeiJnHAHdwTw/urAj32z2VEjC+n113ldhbqKZtwsDrt529aW
-        NSmwbY9o0rain9KTuRcn136U8SqsEKEoxRTT2/b+ArHn0LkTD9ag78L9w==
-X-ME-Sender: <xms:fd14YuKh5KxGK6GvdRXY_15ewX9BbTykIyUFFhXDGjViEB8ARyjwQA>
-    <xme:fd14YmIVGIfd3Rh6uzGtmsjxTICWV66k-skXiLYgj5B-BbTGz057XEA7XNOqBzd0B
-    NoBcnIOCeQfws8R1vU>
-X-ME-Received: <xmr:fd14Yut-L9KwQkkgp_UzG2siIEz9w0SNxzicKwGkZWHppbHZFiQCiW30X0KY5EMRYXcVPrYgdCR-E6Ujri7t4HeChHnWv08OUi7ensg>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrfeelgddugecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpeffhffvvefukfhfgggtugfgjgesthhqredttddtvdenucfhrhhomhepofgrgihi
-    mhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrg
-    htthgvrhhnpeetgfelgefggeekkefggfeludeiudffjeffgeevveekjedukedtudeuteef
-    teefgfenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
-    hmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:fd14YjaYxzmOmOV5koXZ5qJFoj64d7iI-AaPJmeKAyZ0cF3Sk_F5Qg>
-    <xmx:fd14YlYXyE6KaXrkoCJVcIDeNzdVToBvqKHz47YRk65sMQ76zeaCgQ>
-    <xmx:fd14YvDPV-jU1B9NaFDHL0ZTp0pp7a31ghhh0XjXjKhNGP9n-9ZasQ>
-    <xmx:fd14Ynkya5CXWwUIPy7ND0GIy_vPeS241DQ5hdRAjlP7fEGp3np8CQ>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
- 9 May 2022 05:23:08 -0400 (EDT)
-Date:   Mon, 9 May 2022 11:23:06 +0200
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Viresh Kumar <viresh.kumar@linaro.org>
-Cc:     qianfanguijin@163.com, linux-sunxi@lists.linux.dev,
-        Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
-Subject: Re: [PATCH v1] drivers: cpufreq: sun8i-r40: Add cpufreq support
-Message-ID: <20220509092306.22ttfunrislztbvh@houat>
-References: <20220509084853.17068-1-qianfanguijin@163.com>
- <20220509091125.tps3zwaq276jlgh3@vireshk-i7>
+        with ESMTP id S235662AbiEIJ1p (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 May 2022 05:27:45 -0400
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B82D1202B1D;
+        Mon,  9 May 2022 02:23:50 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id gh6so25635262ejb.0;
+        Mon, 09 May 2022 02:23:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=vBn4dTWE6t2YjSxYVSZ+XHjDtUdnCLlr7Yub++AF2JY=;
+        b=UMu99fQ7EvMM4azPSGgoeypDXe4MYng1mEZ0U21NvAcrEz1gntIWP1xBSZkWmXmk7F
+         CtpTZeQFa1+/kiBhnXjmM6LvhsoEModffF/1A2VG0q3jwVSUaS5xOF6mztXXnh1etJMb
+         z1yfkcB6Z3iY7Nv3cfYqN7kgyoBM4AbbaUyaUvpshu0X5PkLf1kYrUlIpEFiKcjh6CCb
+         LY2+ypStUcoiH1P/oQWrBIatVc71LtRUUDpNR2RULXF1A9++gxQNRBV7KWp7DdF+mbVo
+         idt0DpZFmRleGWqkd4ti7Rwojh2RsGWU73piA14Z2HLTp8o84T3YcXvBcHj1xGKoNxwk
+         dKaQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=vBn4dTWE6t2YjSxYVSZ+XHjDtUdnCLlr7Yub++AF2JY=;
+        b=DGobrNnbvRM2DncV82gg08LqQ7prH9s4l5ivgIezn+evsOLUFh14XYUHnSE/V9e2CS
+         nU+StEPrFwAjRd7IH1g5sipxL/u4IUUdZwOozKDNNgHe/3pVVj20pmIHvAlu1EjUk4bk
+         yuAEwi4M4OhAzi+ubav1u7hItMO39Zldxrlrfqgm5JB7COi2BcNmLVgZ0bOwdj/SAqhk
+         XtYd1JSMhFknmnGw5mrwZD3M4YlKM2MDCNmrp5jskI9sj5QiAyC1IdoOHEhV+vS1W+hd
+         +criqnseZ0nI7b2wgi+T9wYRaQJBFMLjIvCWhWTyn53WudvFQP+6EB9t8xllfQnMAuzW
+         N5Tw==
+X-Gm-Message-State: AOAM530p8XD/GucnHki00SfEEWKCWQiOPVOvNiJ8FdG72+zuh9cS+etU
+        T+Kp7nb2tqApX1EG+E1Td2n2phYLUKGddyCc1ic=
+X-Google-Smtp-Source: ABdhPJytr5Q53vJpxm+rLJz+lGQrPYFhRJ+0SJnhlbHOhGV5P7N4d3f0afif01iB4K46QbH/ug85c5+SUNjBcOj2+mI=
+X-Received: by 2002:a17:907:628e:b0:6d9:c6fa:6168 with SMTP id
+ nd14-20020a170907628e00b006d9c6fa6168mr13501745ejc.132.1652088229173; Mon, 09
+ May 2022 02:23:49 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20220509091125.tps3zwaq276jlgh3@vireshk-i7>
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+References: <20220509064928.2352796-1-Qing-wu.Li@leica-geosystems.com.cn> <20220509064928.2352796-4-Qing-wu.Li@leica-geosystems.com.cn>
+In-Reply-To: <20220509064928.2352796-4-Qing-wu.Li@leica-geosystems.com.cn>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Mon, 9 May 2022 11:23:13 +0200
+Message-ID: <CAHp75VcAvRkM84XzYtE7T=Zwoa0Ee=OfCbOV-KbsDELAsy+ZiA@mail.gmail.com>
+Subject: Re: [PATCH V4 3/5] iio: accel: sca3300: modified to support multi chips
+To:     LI Qingwu <Qing-wu.Li@leica-geosystems.com.cn>
+Cc:     jic23@kernel.org, lars@metafoo.de, robh+dt@kernel.org,
+        tomas.melin@vaisala.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Mon, May 9, 2022 at 8:49 AM LI Qingwu
+<Qing-wu.Li@leica-geosystems.com.cn> wrote:
+>
+> The driver supports sca3300 only.
+> There are some other similar chips, for instance, SCL3300.
+> Prepare the way for multiple chips and additional channels.
+> Modify the driver to read the device id.
+> Add the tables for the corresponding id to support multiple chips.
+> Add prepares for the addition of extra channels.
+> Add prepares for handling the operation modes for multiple chips.
 
-On Mon, May 09, 2022 at 02:41:25PM +0530, Viresh Kumar wrote:
-> On 09-05-22, 16:48, qianfanguijin@163.com wrote:
-> > From: qianfan Zhao <qianfanguijin@163.com>
-> >=20
-> > OPP table value is get from allwinner lichee 3.10 kernel.
-> >=20
-> > Signed-off-by: qianfan Zhao <qianfanguijin@163.com>
-> > ---
-> >  arch/arm/boot/dts/sun8i-r40.dtsi     | 47 ++++++++++++++++++++++++++++
-> >  drivers/cpufreq/cpufreq-dt-platdev.c |  1 +
-> >  2 files changed, 48 insertions(+)
->=20
-> Applied. Thanks.
+Fancy style. Utilize the entire width of the line, i.e. ~72 characters.
 
-Shouldn't you wait for the maintainers feedback for the DT bits at least?
+...
 
-Maxime
+> +struct sca3300_chip_info {
+> +       const struct iio_chan_spec *channels;
+> +       u8 num_channels;
+> +       const unsigned long *scan_masks;
+> +       const int (*accel_scale)[2];
+> +       const int *accel_scale_map;
+> +       u8 num_accel_scales;
+> +       const int *freq_table;
+> +       const int *freq_map;
+> +       u8 num_freqs;
+> +       const int *avail_modes_table;
+> +       u8 num_avail_modes;
+> +       const char *name;
+> +       u8 chip_id;
+
+I recommend to shuffle it in a way that u8 members go closer to each
+other if possible.
+
+Like:
+
+       const unsigned long *scan_masks;
+       const struct iio_chan_spec *channels;
+       u8 num_channels;
+       u8 num_accel_scales;
+       const int (*accel_scale)[2];
+       const int *accel_scale_map;
+
+It will save a few bytes per object instance due to padding reduction.
+
+The idea about grouping all of them also can be done despite the
+comment given previously by someone.
+
+> +};
+
+...
+
+> +       for (i = 0; i < sca_data->chip->num_avail_modes; i++) {
+> +               if (sca_data->chip->avail_modes_table[i] == reg_val) {
+> +                       *index = i;
+> +                       return 0;
+> +               }
+> +       }
+> +
+> +       return -EINVAL;
+
+Can be modified to use standard pattern (return errors first), but
+it's up to maintainers, because the latter requires an additional
+check after the loop.
+
+...
+
+> +       for (i = 0; i < chip->num_avail_modes; i++) {
+> +               if (val == chip->freq_table[chip->freq_map[i]]) {
+> +                       if (chip->accel_scale[chip->accel_scale_map[index]] ==
+> +                           chip->accel_scale[chip->accel_scale_map[i]])
+> +                               return sca3300_set_op_mode(data, i);
+
+The
+  if (a) {
+    if (b) {
+      ...
+    }
+  }
+
+can be replaced by
+
+  if (a && b) {
+    ...
+  }
+
+> +               }
+> +       }
+> +
+> +       return -EINVAL;
+
+As per above.
+
+-- 
+With Best Regards,
+Andy Shevchenko
