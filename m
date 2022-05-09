@@ -2,84 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B09651FD75
-	for <lists+devicetree@lfdr.de>; Mon,  9 May 2022 14:58:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5861C51FD82
+	for <lists+devicetree@lfdr.de>; Mon,  9 May 2022 15:03:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235018AbiEINA0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 May 2022 09:00:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60686 "EHLO
+        id S234884AbiEINHh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 May 2022 09:07:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56540 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235012AbiEINA0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 May 2022 09:00:26 -0400
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF0B41C15C6;
-        Mon,  9 May 2022 05:56:31 -0700 (PDT)
-Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 2498wA27015065;
-        Mon, 9 May 2022 14:56:05 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=c61MLx6E4ej9po2Y8V6uNppXCuZEpocl/nhObMDCMCM=;
- b=0AYD9grmUmP+HSmPxCjW9/z/3Tq7bdpJ1dVitGXuxZkSvDLbQLD0wpM2jZU7khQiCC9Z
- XzlfEgFyCOFCaWZs8iLJer5bnI8q8GIN5d9BHO0WBGkZFgCiLyS4YAIJgp0pbSVGRXFQ
- YNLbq31rmRRZ6mv8N+HHks3sehMHzfGNfp/eRIqHh61CzM5fVRR1DU42pRroV9dko/5R
- NJQk5cXHRWoyDOnfeQZik4AJCaa5fiHYBMIFBzhvIm75sYhJqHOrG9DXM+w2gAfTBIzh
- HoAzEcf5dyLK2tlGX6Ubc22ONlFWfvDEw8Bw+mJo6Id/XYb1ZA5LsffUCpHoxMhhCjek PQ== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3fwg40sty6-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 09 May 2022 14:56:05 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id F2CED10002A;
-        Mon,  9 May 2022 14:55:56 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 2B1BC21FE86;
-        Mon,  9 May 2022 14:55:56 +0200 (CEST)
-Received: from [10.201.21.93] (10.75.127.46) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.2308.20; Mon, 9 May
- 2022 14:55:55 +0200
-Message-ID: <53f8547c-70f9-139e-68f0-21298fa06ccf@foss.st.com>
-Date:   Mon, 9 May 2022 14:55:55 +0200
+        with ESMTP id S234704AbiEINHg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 May 2022 09:07:36 -0400
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 567272A3BF5;
+        Mon,  9 May 2022 06:03:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1652101421; x=1683637421;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=FbYLaIKP7g0FlMszDm+CahTMzUmE0kCgyZRfv+iusPw=;
+  b=DTABlPkPDLLSJxXO+S2z6KzyLTNg5XEiiR46aiufBzrIMPNrcUkGsP5d
+   ROtNWgezfbHpqdA7b6YJdidY87Up953TlmaSUgzEEG9YjRbCdS2uaz4aA
+   NVdkyPsNlUA+kXea0lRMYkwTjF2W53N3gh3rg952LVm4l17Wy/cnYXXqp
+   o3y41M2xK0E10ER3DJAqBLOA0dJZnnvPcWfatZTmjbLvwdHJvmbtjBhgp
+   vh0hsKTRybZ4BPrkcUBvmmQR9rd2cTMTouep6+q5H/cSp75SS3dzpRm+C
+   uJkH05zTEr/SV1Z7hX4hjQ6ymoEk9Rn24OBUlh+690oFf8IEw9v3by4LU
+   w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10341"; a="355468918"
+X-IronPort-AV: E=Sophos;i="5.91,211,1647327600"; 
+   d="scan'208";a="355468918"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 May 2022 06:03:30 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.91,211,1647327600"; 
+   d="scan'208";a="710515079"
+Received: from kuha.fi.intel.com ([10.237.72.185])
+  by fmsmga001.fm.intel.com with SMTP; 09 May 2022 06:03:26 -0700
+Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Mon, 09 May 2022 16:03:26 +0300
+Date:   Mon, 9 May 2022 16:03:26 +0300
+From:   Heikki Krogerus <heikki.krogerus@linux.intel.com>
+To:     Cixi Geng <gengcixi@gmail.com>
+Cc:     gregkh@linuxfoundation.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, orsonzhai@gmail.com,
+        baolin.wang7@gmail.com, zhang.lyra@gmail.com,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] usb: typec: sprd: Support the SC27CC typec port
+ controller
+Message-ID: <YnkRHi692SJ6wlmZ@kuha.fi.intel.com>
+References: <20220507092953.2273879-1-gengcixi@gmail.com>
+ <20220507092953.2273879-3-gengcixi@gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH 2/8] dt-bindings: clock: stm32mp1: describes clocks if
- "st,stm32mp1-rcc-secure"
-Content-Language: en-US
-To:     Rob Herring <robh+dt@kernel.org>
-CC:     Arnd Bergmann <arnd@arndb.de>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        SoC Team <soc@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/STM32 ARCHITECTURE" 
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Marek Vasut <marex@denx.de>,
-        Ahmad Fatoum <a.fatoum@pengutronix.de>,
-        Etienne Carriere <etienne.carriere@st.com>
-References: <20220422150952.20587-1-alexandre.torgue@foss.st.com>
- <20220422150952.20587-3-alexandre.torgue@foss.st.com>
- <CAL_JsqKU28BNrozg20_a_XMUmBhaoDHdodWkzyRoH=VcM2pDjg@mail.gmail.com>
- <edf8f01b-e850-1734-2909-f31cd8b082c5@foss.st.com>
- <CAL_JsqK5ox681qQFz6b4a8eSaNHJ08XmB2bTE=EZ2Pch0YDJqA@mail.gmail.com>
- <CAL_JsqKfA1joqDiophO4qk0S1XfgxE2EWUBrxqXrGdfjOAe=ew@mail.gmail.com>
-From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
-In-Reply-To: <CAL_JsqKfA1joqDiophO4qk0S1XfgxE2EWUBrxqXrGdfjOAe=ew@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.75.127.46]
-X-ClientProxiedBy: SFHDAG2NODE2.st.com (10.75.127.5) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.858,Hydra:6.0.486,FMLib:17.11.64.514
- definitions=2022-05-09_03,2022-05-09_01,2022-02-23_01
-X-Spam-Status: No, score=-3.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220507092953.2273879-3-gengcixi@gmail.com>
+X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -87,119 +65,661 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 5/9/22 14:36, Rob Herring wrote:
-> On Fri, May 6, 2022 at 11:21 AM Rob Herring <robh+dt@kernel.org> wrote:
->>
->> On Fri, May 6, 2022 at 5:02 AM Alexandre TORGUE
->> <alexandre.torgue@foss.st.com> wrote:
->>>
->>> Hi Rob
->>>
->>> On 5/5/22 16:11, Rob Herring wrote:
->>>> On Fri, Apr 22, 2022 at 10:10 AM Alexandre Torgue
->>>> <alexandre.torgue@foss.st.com> wrote:
->>>>>
->>>>> In case of "st,stm32mp1-rcc-secure" (stm32mp1 clock driver with RCC
->>>>> security support hardened), "clocks" and "clock-names" describe oscillators
->>>>> and are required.
->>>>>
->>>>> Signed-off-by: Alexandre Torgue <alexandre.torgue@foss.st.com>
->>>>
->>>> This is now failing in linux-next:
->>>>
->>>> make[1]: *** Deleting file
->>>> 'Documentation/devicetree/bindings/clock/st,stm32mp1-rcc.example.dts'
->>>> Documentation/devicetree/bindings/clock/st,stm32mp1-rcc.yaml: found
->>>> duplicate key "clocks" with value "{}" (original value: "True")
->>>> make[1]: *** [Documentation/devicetree/bindings/Makefile:26:
->>>> Documentation/devicetree/bindings/clock/st,stm32mp1-rcc.example.dts]
->>>> Error 1
->>>> ./Documentation/devicetree/bindings/clock/st,stm32mp1-rcc.yaml:64:3:
->>>> [error] duplication of key "clocks" in mapping (key-duplicates)
->>>> ./Documentation/devicetree/bindings/clock/st,stm32mp1-rcc.yaml:69:3:
->>>> [error] duplication of key "clock-names" in mapping (key-duplicates)
->>>> Traceback (most recent call last):
->>>>     File "/usr/local/bin/dt-doc-validate", line 25, in check_doc
->>>>       testtree = dtschema.load(filename, line_number=line_number)
->>>>     File "/usr/local/lib/python3.10/dist-packages/dtschema/lib.py", line
->>>> 914, in load
->>>>       return yaml.load(f.read())
->>>>     File "/usr/local/lib/python3.10/dist-packages/ruamel/yaml/main.py",
->>>> line 434, in load
->>>>       return constructor.get_single_data()
->>>>     File "/usr/local/lib/python3.10/dist-packages/ruamel/yaml/constructor.py",
->>>> line 121, in get_single_data
->>>>       return self.construct_document(node)
->>>>     File "/usr/local/lib/python3.10/dist-packages/ruamel/yaml/constructor.py",
->>>> line 131, in construct_document
->>>>       for _dummy in generator:
->>>>     File "/usr/local/lib/python3.10/dist-packages/ruamel/yaml/constructor.py",
->>>> line 674, in construct_yaml_map
->>>>       value = self.construct_mapping(node)
->>>>     File "/usr/local/lib/python3.10/dist-packages/ruamel/yaml/constructor.py",
->>>> line 445, in construct_mapping
->>>>       return BaseConstructor.construct_mapping(self, node, deep=deep)
->>>>     File "/usr/local/lib/python3.10/dist-packages/ruamel/yaml/constructor.py",
->>>> line 263, in construct_mapping
->>>>       if self.check_mapping_key(node, key_node, mapping, key, value):
->>>>     File "/usr/local/lib/python3.10/dist-packages/ruamel/yaml/constructor.py",
->>>> line 294, in check_mapping_key
->>>>       raise DuplicateKeyError(*args)
->>>> ruamel.yaml.constructor.DuplicateKeyError: while constructing a mapping
->>>>     in "<unicode string>", line 49, column 3
->>>> found duplicate key "clocks" with value "{}" (original value: "True")
->>>>     in "<unicode string>", line 64, column 3
->>>> To suppress this check see:
->>>>       http://yaml.readthedocs.io/en/latest/api.html#duplicate-keys
->>>> During handling of the above exception, another exception occurred:
->>>> Traceback (most recent call last):
->>>>     File "/usr/local/bin/dt-doc-validate", line 74, in <module>
->>>>       ret = check_doc(f)
->>>>     File "/usr/local/bin/dt-doc-validate", line 30, in check_doc
->>>>       print(filename + ":", exc.path[-1], exc.message, file=sys.stderr)
->>>> AttributeError: 'DuplicateKeyError' object has no attribute 'path'
->>>
->>> It seems that we have a merge issue between:
->>>
->>> patch "dt-bindings: rcc: Add optional external ethernet RX clock properties"
->>> https://lore.kernel.org/r/20220410220514.21779-1-marex@denx.de
->>>
->>> and this one (dt-bindings: clock: stm32mp1: describes clocks if
->>> "st,stm32mp1-rcc-secure)
->>>
->>> On linux-next following part remains and creates issue above:
->>>
->>>     clocks:
->>>       description:
->>>         Specifies the external RX clock for ethernet MAC.
->>>       maxItems: 1
->>>
->>>     clock-names:
->>>       const: ETH_RX_CLK/ETH_REF_CLK
->>>
->>> I don't know why this part is remaining. In my tree, I took care to take
->>> Marek patch first to avoid this kind of issue.
->>>
->>> Btw, how to fix that ?
->>
->> Looks like I applied "dt-bindings: rcc: Add optional external ethernet
->> RX clock properties" too. I've reverted it in my tree.
-> 
-> Now with it reverted in today's next:
-> 
-> /builds/robherring/linux-dt/Documentation/devicetree/bindings/clock/st,stm32mp1-rcc.example.dtb:
-> rcc@50000000: 'clocks' is a required property
->   From schema: /builds/robherring/linux-dt/Documentation/devicetree/bindings/clock/st,stm32mp1-rcc.yaml
-> /builds/robherring/linux-dt/Documentation/devicetree/bindings/clock/st,stm32mp1-rcc.example.dtb:
-> rcc@50000000: 'clock-names' is a required property
->   From schema: /builds/robherring/linux-dt/Documentation/devicetree/bindings/clock/st,stm32mp1-rcc.yaml
-> 
-> The example needs updating.
+Hi,
 
-Sure, I send an update.
-
-Alex
-
+On Sat, May 07, 2022 at 05:29:53PM +0800, Cixi Geng wrote:
+> From: Cixi Geng <cixi.geng1@unisoc.com>
 > 
-> Rob
+> The Spreadtrum PMIC SC27xx integrated typec port controller.
+> Add a typec class driver for it.
+> 
+> Signed-off-by: Cixi Geng <cixi.geng1@unisoc.com>
+> ---
+>  drivers/usb/typec/Kconfig        |  10 +
+>  drivers/usb/typec/Makefile       |   1 +
+>  drivers/usb/typec/sc27xx-typec.c | 554 +++++++++++++++++++++++++++++++
+>  3 files changed, 565 insertions(+)
+>  create mode 100644 drivers/usb/typec/sc27xx-typec.c
+> 
+> diff --git a/drivers/usb/typec/Kconfig b/drivers/usb/typec/Kconfig
+> index ba24847fb245..3058e3a971ce 100644
+> --- a/drivers/usb/typec/Kconfig
+> +++ b/drivers/usb/typec/Kconfig
+> @@ -111,6 +111,16 @@ config TYPEC_WUSB3801
+>  	  If you choose to build this driver as a dynamically linked module, the
+>  	  module will be called wusb3801.ko.
+>  
+> +config TYPEC_SC27XX
+> +	tristate "Unisoc SC27XX Serials PMICs Type-C controller driver"
+> +	depends on MFD_SC27XX_PMIC || COMPILE_TEST
+> +	help
+> +	  Say Y or M here if system has the Type-C port controller of PMIC
+> +	  SC27XX serials.
+> +
+> +	  If you choose to build this driver as a dynamically linked module, the
+> +	  module will be called sx27xx-typec.ko.
+> +
+>  source "drivers/usb/typec/mux/Kconfig"
+>  
+>  source "drivers/usb/typec/altmodes/Kconfig"
+> diff --git a/drivers/usb/typec/Makefile b/drivers/usb/typec/Makefile
+> index 43626acc0aaf..1df88570e10a 100644
+> --- a/drivers/usb/typec/Makefile
+> +++ b/drivers/usb/typec/Makefile
+> @@ -11,4 +11,5 @@ obj-$(CONFIG_TYPEC_QCOM_PMIC)	+= qcom-pmic-typec.o
+>  obj-$(CONFIG_TYPEC_STUSB160X) 	+= stusb160x.o
+>  obj-$(CONFIG_TYPEC_RT1719)	+= rt1719.o
+>  obj-$(CONFIG_TYPEC_WUSB3801)	+= wusb3801.o
+> +obj-$(CONFIG_TYPEC_SC27XX)	+= sc27xx-typec.o
+>  obj-$(CONFIG_TYPEC)		+= mux/
+> diff --git a/drivers/usb/typec/sc27xx-typec.c b/drivers/usb/typec/sc27xx-typec.c
+> new file mode 100644
+> index 000000000000..6305dd9fed18
+> --- /dev/null
+> +++ b/drivers/usb/typec/sc27xx-typec.c
+> @@ -0,0 +1,554 @@
+> +// SPDX-License-Identifier: GPL
+> +/*
+> + * Driver for Spreadtrum SC27XX USB Type-C
+> + *
+> + * Copyright (C) 2022 Unisoc Inc.
+> + */
+> +
+> +#include <linux/interrupt.h>
+> +#include <linux/module.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/regmap.h>
+> +#include <linux/usb/typec.h>
+> +#include <linux/of.h>
+> +#include <linux/of_device.h>
+> +#include <linux/extcon.h>
+> +#include <linux/kernel.h>
+> +#include <linux/nvmem-consumer.h>
+> +#include <linux/slab.h>
+> +#include <linux/extcon-provider.h>
+> +
+> +/* registers definitions for controller REGS_TYPEC */
+> +#define SC27XX_EN			0x00
+> +#define SC27XX_MODE			0x04
+> +#define SC27XX_INT_EN			0x0c
+> +#define SC27XX_INT_CLR			0x10
+> +#define SC27XX_INT_RAW			0x14
+> +#define SC27XX_INT_MASK			0x18
+> +#define SC27XX_STATUS			0x1c
+> +#define SC27XX_TCCDE_CNT		0x20
+> +#define SC27XX_RTRIM			0x3c
+> +
+> +/* SC27XX_TYPEC_EN */
+> +#define SC27XX_TYPEC_USB20_ONLY		BIT(4)
+> +
+> +/* SC27XX_TYPEC MODE */
+> +#define SC27XX_MODE_SNK			0
+> +#define SC27XX_MODE_SRC			1
+> +#define SC27XX_MODE_DRP			2
+> +#define SC27XX_MODE_MASK		3
+> +
+> +/* SC27XX_INT_EN */
+> +#define SC27XX_ATTACH_INT_EN		BIT(0)
+> +#define SC27XX_DETACH_INT_EN		BIT(1)
+> +
+> +/* SC27XX_INT_CLR */
+> +#define SC27XX_ATTACH_INT_CLR		BIT(0)
+> +#define SC27XX_DETACH_INT_CLR		BIT(1)
+> +
+> +/* SC27XX_INT_MASK */
+> +#define SC27XX_ATTACH_INT		BIT(0)
+> +#define SC27XX_DETACH_INT		BIT(1)
+> +
+> +#define SC27XX_STATE_MASK		GENMASK(4, 0)
+> +#define SC27XX_EVENT_MASK		GENMASK(9, 0)
+> +
+> +#define SC2730_EFUSE_CC1_SHIFT		5
+> +#define SC2730_EFUSE_CC2_SHIFT		0
+> +#define SC2721_EFUSE_CC1_SHIFT		11
+> +#define SC2721_EFUSE_CC2_SHIFT		6
+> +#define UMP9620_EFUSE_CC1_SHIFT		1
+> +#define UMP9620_EFUSE_CC2_SHIFT		11
+> +
+> +#define SC27XX_CC1_MASK(n)		GENMASK((n) + 9, (n) + 5)
+> +#define SC27XX_CC2_MASK(n)		GENMASK((n) + 4, (n))
+> +#define SC27XX_CC_SHIFT(n)		(n)
+> +
+> +/* sc2721 registers definitions for controller REGS_TYPEC */
+> +#define SC2721_EN			0x00
+> +#define SC2721_CLR			0x04
+> +#define SC2721_MODE			0x08
+> +
+> +/* SC2721_INT_EN */
+> +#define SC2721_ATTACH_INT_EN		BIT(5)
+> +#define SC2721_DETACH_INT_EN		BIT(6)
+> +
+> +#define SC2721_STATE_MASK		GENMASK(3, 0)
+> +#define SC2721_EVENT_MASK		GENMASK(6, 0)
+> +
+> +/* modify sc2730 tcc debunce */
+> +#define SC27XX_TCC_DEBOUNCE_CNT		0xc7f
+> +
+> +/* sc2730 registers definitions for controller REGS_TYPEC */
+> +#define SC2730_TYPEC_PD_CFG		0x08
+> +/* SC2730_TYPEC_PD_CFG */
+> +#define SC27XX_VCONN_LDO_EN		BIT(13)
+> +#define SC27XX_VCONN_LDO_RDY		BIT(12)
+> +
+> +enum sc27xx_typec_connection_state {
+> +	SC27XX_DETACHED_SNK,
+> +	SC27XX_ATTACHWAIT_SNK,
+> +	SC27XX_ATTACHED_SNK,
+> +	SC27XX_DETACHED_SRC,
+> +	SC27XX_ATTACHWAIT_SRC,
+> +	SC27XX_ATTACHED_SRC,
+> +	SC27XX_POWERED_CABLE,
+> +	SC27XX_AUDIO_CABLE,
+> +	SC27XX_DEBUG_CABLE,
+> +	SC27XX_TOGGLE_SLEEP,
+> +	SC27XX_ERR_RECOV,
+> +	SC27XX_DISABLED,
+> +	SC27XX_TRY_SNK,
+> +	SC27XX_TRY_WAIT_SRC,
+> +	SC27XX_TRY_SRC,
+> +	SC27XX_TRY_WAIT_SNK,
+> +	SC27XX_UNSUPOORT_ACC,
+> +	SC27XX_ORIENTED_DEBUG,
+> +};
+> +
+> +struct sprd_typec_variant_data {
+> +	u32 efuse_cc1_shift;
+> +	u32 efuse_cc2_shift;
+> +	u32 int_en;
+> +	u32 int_clr;
+> +	u32 mode;
+> +	u32 attach_en;
+> +	u32 detach_en;
+> +	u32 state_mask;
+> +	u32 event_mask;
+> +};
+> +
+> +static const struct sprd_typec_variant_data sc2730_data = {
+> +	.efuse_cc1_shift = SC2730_EFUSE_CC1_SHIFT,
+> +	.efuse_cc2_shift = SC2730_EFUSE_CC2_SHIFT,
+> +	.int_en = SC27XX_INT_EN,
+> +	.int_clr = SC27XX_INT_CLR,
+> +	.mode = SC27XX_MODE,
+> +	.attach_en = SC27XX_ATTACH_INT_EN,
+> +	.detach_en = SC27XX_DETACH_INT_EN,
+> +	.state_mask = SC27XX_STATE_MASK,
+> +	.event_mask = SC27XX_EVENT_MASK,
+> +};
+> +
+> +static const struct sprd_typec_variant_data sc2721_data = {
+> +	.efuse_cc1_shift = SC2721_EFUSE_CC1_SHIFT,
+> +	.efuse_cc2_shift = SC2721_EFUSE_CC2_SHIFT,
+> +	.int_en = SC2721_EN,
+> +	.int_clr = SC2721_CLR,
+> +	.mode = SC2721_MODE,
+> +	.attach_en = SC2721_ATTACH_INT_EN,
+> +	.detach_en = SC2721_DETACH_INT_EN,
+> +	.state_mask = SC2721_STATE_MASK,
+> +	.event_mask = SC2721_EVENT_MASK,
+> +};
+> +
+> +static const struct sprd_typec_variant_data ump9620_data = {
+> +	.efuse_cc1_shift = UMP9620_EFUSE_CC1_SHIFT,
+> +	.efuse_cc2_shift = UMP9620_EFUSE_CC2_SHIFT,
+> +	.int_en = SC27XX_INT_EN,
+> +	.int_clr = SC27XX_INT_CLR,
+> +	.mode = SC27XX_MODE,
+> +	.attach_en = SC27XX_ATTACH_INT_EN,
+> +	.detach_en = SC27XX_DETACH_INT_EN,
+> +	.state_mask = SC27XX_STATE_MASK,
+> +	.event_mask = SC27XX_EVENT_MASK,
+> +};
+> +
+> +struct sc27xx_typec {
+> +	struct device *dev;
+> +	struct regmap *regmap;
+> +	u32 base;
+> +	int irq;
+> +	struct extcon_dev *edev;
+> +	bool usb20_only;
+> +
+> +	enum sc27xx_typec_connection_state state;
+> +	enum sc27xx_typec_connection_state pre_state;
+> +	struct typec_port *port;
+> +	struct typec_partner *partner;
+> +	struct typec_capability typec_cap;
+> +	const struct sprd_typec_variant_data *var_data;
+> +};
+> +
+> +static int sc27xx_typec_connect(struct sc27xx_typec *sc, u32 status)
+> +{
+> +	enum typec_data_role data_role = TYPEC_DEVICE;
+> +	enum typec_role power_role = TYPEC_SOURCE;
+> +	enum typec_role vconn_role = TYPEC_SOURCE;
+> +	struct typec_partner_desc desc;
+> +
+> +	if (sc->partner)
+> +		return 0;
+> +
+> +	switch (sc->state) {
+> +	case SC27XX_ATTACHED_SNK:
+> +	case SC27XX_DEBUG_CABLE:
+> +		power_role = TYPEC_SINK;
+> +		data_role = TYPEC_DEVICE;
+> +		vconn_role = TYPEC_SINK;
+> +		break;
+> +	case SC27XX_ATTACHED_SRC:
+> +	case SC27XX_AUDIO_CABLE:
+> +		power_role = TYPEC_SOURCE;
+> +		data_role = TYPEC_HOST;
+> +		vconn_role = TYPEC_SOURCE;
+> +		break;
+> +	default:
+> +		break;
+> +	}
+> +
+> +	desc.usb_pd = 0;
+> +	desc.accessory = TYPEC_ACCESSORY_NONE;
+> +	desc.identity = NULL;
+> +
+> +	sc->partner = typec_register_partner(sc->port, &desc);
+> +	if (!sc->partner)
+> +		return -ENODEV;
+> +
+> +	typec_set_pwr_opmode(sc->port, TYPEC_PWR_MODE_USB);
+> +	typec_set_pwr_role(sc->port, power_role);
+> +	typec_set_data_role(sc->port, data_role);
+> +	typec_set_vconn_role(sc->port, vconn_role);
+> +
+> +	switch (sc->state) {
+> +	case SC27XX_ATTACHED_SNK:
+> +	case SC27XX_DEBUG_CABLE:
 
+You need to inform the connector class that the partner is a Debug
+Accessory:
+
+        desc.accessory = TYPEC_ACCESSORY_DEBUG;
+
+Is there some reason why are you doing all this only after you have
+registered the partner?
+
+> +		sc->pre_state = SC27XX_ATTACHED_SNK;
+> +		extcon_set_state_sync(sc->edev, EXTCON_USB, true);
+> +		break;
+> +	case SC27XX_ATTACHED_SRC:
+> +		sc->pre_state = SC27XX_ATTACHED_SRC;
+> +		extcon_set_state_sync(sc->edev, EXTCON_USB_HOST, true);
+> +		break;
+> +	case SC27XX_AUDIO_CABLE:
+
+And here it's Audio Accessory:
+
+        desc.accessory = TYPEC_ACCESSORY_AUDIO;
+
+> +		sc->pre_state = SC27XX_AUDIO_CABLE;
+> +		extcon_set_state_sync(sc->edev, EXTCON_JACK_HEADPHONE, true);
+> +		break;
+> +	default:
+> +		break;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static void sc27xx_typec_disconnect(struct sc27xx_typec *sc, u32 status)
+> +{
+> +	typec_unregister_partner(sc->partner);
+> +	sc->partner = NULL;
+> +	typec_set_pwr_opmode(sc->port, TYPEC_PWR_MODE_USB);
+> +	typec_set_pwr_role(sc->port, TYPEC_SINK);
+> +	typec_set_data_role(sc->port, TYPEC_DEVICE);
+> +	typec_set_vconn_role(sc->port, TYPEC_SINK);
+> +
+> +	switch (sc->pre_state) {
+> +	case SC27XX_ATTACHED_SNK:
+> +	case SC27XX_DEBUG_CABLE:
+> +		extcon_set_state_sync(sc->edev, EXTCON_USB, false);
+> +		break;
+> +	case SC27XX_ATTACHED_SRC:
+> +		extcon_set_state_sync(sc->edev, EXTCON_USB_HOST, false);
+> +		break;
+> +	case SC27XX_AUDIO_CABLE:
+> +		extcon_set_state_sync(sc->edev, EXTCON_JACK_HEADPHONE, false);
+> +		break;
+> +	default:
+> +		break;
+> +	}
+> +}
+> +
+> +static irqreturn_t sc27xx_typec_interrupt(int irq, void *data)
+> +{
+> +	struct sc27xx_typec *sc = data;
+> +	u32 event;
+> +	int ret;
+> +
+> +	ret = regmap_read(sc->regmap, sc->base + SC27XX_INT_MASK, &event);
+> +	if (ret)
+> +		return ret;
+> +
+> +	event &= sc->var_data->event_mask;
+> +
+> +	ret = regmap_read(sc->regmap, sc->base + SC27XX_STATUS, &sc->state);
+> +	if (ret)
+> +		goto clear_ints;
+> +
+> +	sc->state &= sc->var_data->state_mask;
+> +
+> +	if (event & SC27XX_ATTACH_INT) {
+> +		ret = sc27xx_typec_connect(sc, sc->state);
+> +		if (ret)
+> +			dev_warn(sc->dev, "failed to register partner\n");
+> +	} else if (event & SC27XX_DETACH_INT) {
+> +		sc27xx_typec_disconnect(sc, sc->state);
+> +	}
+> +
+> +clear_ints:
+> +	regmap_write(sc->regmap, sc->base + sc->var_data->int_clr, event);
+> +
+> +	dev_info(sc->dev, "now works as DRP and is in %d state, event %d\n",
+> +		sc->state, event);
+> +	return IRQ_HANDLED;
+> +}
+> +
+> +static int sc27xx_typec_enable(struct sc27xx_typec *sc)
+> +{
+> +	int ret;
+> +	u32 val;
+> +
+> +	/* Set typec mode */
+> +	ret = regmap_read(sc->regmap, sc->base + sc->var_data->mode, &val);
+> +	if (ret)
+> +		return ret;
+> +
+> +	val &= ~SC27XX_MODE_MASK;
+> +	switch (sc->typec_cap.type) {
+> +	case TYPEC_PORT_DFP:
+> +		val |= SC27XX_MODE_SRC;
+> +		break;
+> +	case TYPEC_PORT_UFP:
+> +		val |= SC27XX_MODE_SNK;
+> +		break;
+> +	case TYPEC_PORT_DRP:
+> +		val |= SC27XX_MODE_DRP;
+> +		break;
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +
+> +	ret = regmap_write(sc->regmap, sc->base + sc->var_data->mode, val);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* typec USB20 only flag, only work in snk mode */
+> +	if (sc->typec_cap.data == TYPEC_PORT_UFP && sc->usb20_only) {
+> +		ret = regmap_update_bits(sc->regmap, sc->base + SC27XX_EN,
+> +					 SC27XX_TYPEC_USB20_ONLY,
+> +					 SC27XX_TYPEC_USB20_ONLY);
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+> +	/* modify sc2730 tcc debounce to 100ms while PD signal occur at 150ms
+> +	 * and effect tccde reginize.Reason is hardware signal and clk not
+> +	 * accurate.
+> +	 */
+> +	if (sc->var_data->efuse_cc2_shift == SC2730_EFUSE_CC2_SHIFT) {
+> +		ret = regmap_write(sc->regmap, sc->base + SC27XX_TCCDE_CNT,
+> +				SC27XX_TCC_DEBOUNCE_CNT);
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+> +	/* Enable typec interrupt and enable typec */
+> +	ret = regmap_read(sc->regmap, sc->base + sc->var_data->int_en, &val);
+> +	if (ret)
+> +		return ret;
+> +
+> +	val |= sc->var_data->attach_en | sc->var_data->detach_en;
+> +	return regmap_write(sc->regmap, sc->base + sc->var_data->int_en, val);
+> +}
+> +
+> +static const u32 sc27xx_typec_cable[] = {
+> +	EXTCON_USB,
+> +	EXTCON_USB_HOST,
+> +	EXTCON_JACK_HEADPHONE,
+> +	EXTCON_NONE,
+> +};
+
+Please note that USB role you will need to handle with a dedicated USB
+role switch (USB role device class) - I'll show you below.
+
+The reason why that is, is because we can not use extcon with the USB
+role on every type of platform that there is (the extcon component for
+the role may be the "provider" but it may also be the "consumer"
+depending on the platform, and that was not acceptable), but we still
+need to have a single way of handling it. That is why we had to
+introduce the USB Role Class in the first place.
+
+So you can only use extcon to expose information to the user space,
+and only for legacy purposes. All the information will be exposed to
+the user space in any case. There is a dedicated "accessory" sysfs
+attribute file for every USB Type-C partner device, and the role you
+can read from the port's "data_role" sysfs attribute file.
+
+So I'm wondering, do you need the extcon device at all?
+
+> +static int sc27xx_typec_get_cc1_efuse(struct sc27xx_typec *sc)
+> +{
+> +	struct nvmem_cell *cell;
+> +	u32 calib_data = 0;
+> +	void *buf;
+> +	size_t len;
+> +
+> +	cell = nvmem_cell_get(sc->dev, "typec_cc1_cal");
+> +	if (IS_ERR(cell))
+> +		return PTR_ERR(cell);
+> +
+> +	buf = nvmem_cell_read(cell, &len);
+> +	nvmem_cell_put(cell);
+> +
+> +	if (IS_ERR(buf))
+> +		return PTR_ERR(buf);
+> +
+> +	memcpy(&calib_data, buf, min(len, sizeof(u32)));
+> +	calib_data = (calib_data & SC27XX_CC1_MASK(sc->var_data->efuse_cc1_shift))
+> +			>> SC27XX_CC_SHIFT(sc->var_data->efuse_cc1_shift);
+> +	kfree(buf);
+> +
+> +	return calib_data;
+> +}
+> +
+> +static int sc27xx_typec_get_cc2_efuse(struct sc27xx_typec *sc)
+> +{
+> +	struct nvmem_cell *cell;
+> +	u32 calib_data = 0;
+> +	void *buf;
+> +	size_t len = 0;
+> +
+> +	cell = nvmem_cell_get(sc->dev, "typec_cc2_cal");
+> +	if (IS_ERR(cell))
+> +		return PTR_ERR(cell);
+> +
+> +	buf = nvmem_cell_read(cell, &len);
+> +	nvmem_cell_put(cell);
+> +
+> +	if (IS_ERR(buf))
+> +		return PTR_ERR(buf);
+> +
+> +	memcpy(&calib_data, buf, min(len, sizeof(u32)));
+> +	calib_data = (calib_data & SC27XX_CC2_MASK(sc->var_data->efuse_cc2_shift))
+> +			>> SC27XX_CC_SHIFT(sc->var_data->efuse_cc2_shift);
+> +	kfree(buf);
+> +
+> +	return calib_data;
+> +}
+> +
+> +static int typec_set_rtrim(struct sc27xx_typec *sc)
+> +{
+> +	int calib_cc1;
+> +	int calib_cc2;
+> +	u32 rtrim;
+> +
+> +	calib_cc1 = sc27xx_typec_get_cc1_efuse(sc);
+> +	if (calib_cc1 < 0)
+> +		return calib_cc1;
+> +	calib_cc2 = sc27xx_typec_get_cc2_efuse(sc);
+> +	if (calib_cc2 < 0)
+> +		return calib_cc2;
+> +
+> +	rtrim = calib_cc1 | calib_cc2<<5;
+> +
+> +	return regmap_write(sc->regmap, sc->base + SC27XX_RTRIM, rtrim);
+> +}
+> +
+> +static int sc27xx_typec_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct device_node *node = pdev->dev.of_node;
+> +	struct sc27xx_typec *sc;
+> +	const struct sprd_typec_variant_data *pdata;
+> +	int mode, ret;
+> +
+> +	pdata = of_device_get_match_data(dev);
+> +	if (!pdata) {
+> +		dev_err(&pdev->dev, "No matching driver data found\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	sc = devm_kzalloc(&pdev->dev, sizeof(*sc), GFP_KERNEL);
+> +	if (!sc)
+> +		return -ENOMEM;
+> +
+> +	sc->edev = devm_extcon_dev_allocate(&pdev->dev, sc27xx_typec_cable);
+> +	if (IS_ERR(sc->edev)) {
+> +		dev_err(&pdev->dev, "failed to allocate extcon device\n");
+> +		return PTR_ERR(sc->edev);
+> +	}
+> +
+> +	ret = devm_extcon_dev_register(&pdev->dev, sc->edev);
+> +	if (ret < 0) {
+> +		dev_err(&pdev->dev, "can't register extcon device: %d\n", ret);
+> +		return ret;
+> +	}
+
+For the USB role switch you'll need to add struct usb_role_switch
+pointer to struct sc27xx_typec. After that:
+
+        sc->sw = usb_role_switch_get(&pdev->dev);
+        if (IS_ERR(sc->sw)) {
+                ...
+        }
+
+Then when you detect the role (in sc27xx_typec_connect() I guess),
+you can set it to the switch with usb_role_switch_set_role().
+
+The bindings for the usb-role-switch I believe are described here:
+Documentation/devicetree/bindings/usb/usb-drd.yaml
+
+> +	sc->dev = &pdev->dev;
+> +	sc->irq = platform_get_irq(pdev, 0);
+> +	if (sc->irq < 0) {
+> +		dev_err(sc->dev, "failed to get typec interrupt.\n");
+> +		return sc->irq;
+> +	}
+> +
+> +	sc->regmap = dev_get_regmap(pdev->dev.parent, NULL);
+> +	if (!sc->regmap) {
+> +		dev_err(sc->dev, "failed to get regmap.\n");
+> +		return -ENODEV;
+> +	}
+> +
+> +	ret = of_property_read_u32(node, "reg", &sc->base);
+> +	if (ret) {
+> +		dev_err(dev, "failed to get reg offset!\n");
+> +		return ret;
+> +	}
+> +
+> +	ret = of_property_read_u32(node, "sprd,mode", &mode);
+> +	if (ret) {
+> +		dev_err(dev, "failed to get typec port mode type\n");
+> +		return ret;
+> +	}
+> +
+> +	if (mode < TYPEC_PORT_DFP || mode > TYPEC_PORT_DRP
+> +	    || mode == TYPEC_PORT_UFP) {
+> +		mode = TYPEC_PORT_UFP;
+> +		sc->usb20_only = true;
+> +		dev_info(dev, "usb 2.0 only is enabled\n");
+> +	}
+> +
+> +	sc->var_data = pdata;
+> +	sc->typec_cap.type = mode;
+> +	sc->typec_cap.data = TYPEC_PORT_DRD;
+> +	sc->typec_cap.revision = USB_TYPEC_REV_1_2;
+> +	sc->typec_cap.prefer_role = TYPEC_NO_PREFERRED_ROLE;
+> +	sc->port = typec_register_port(&pdev->dev, &sc->typec_cap);
+> +	if (!sc->port) {
+> +		dev_err(sc->dev, "failed to register port!\n");
+> +		return -ENODEV;
+> +	}
+> +
+> +	ret = typec_set_rtrim(sc);
+> +	if (ret < 0) {
+> +		dev_err(sc->dev, "failed to set typec rtrim %d\n", ret);
+> +		goto error;
+> +	}
+> +
+> +	ret = devm_request_threaded_irq(sc->dev, sc->irq, NULL,
+> +					sc27xx_typec_interrupt,
+> +					IRQF_EARLY_RESUME | IRQF_ONESHOT,
+> +					dev_name(sc->dev), sc);
+> +	if (ret) {
+> +		dev_err(sc->dev, "failed to request irq %d\n", ret);
+> +		goto error;
+> +	}
+> +
+> +	ret = sc27xx_typec_enable(sc);
+> +	if (ret)
+> +		goto error;
+> +
+> +	platform_set_drvdata(pdev, sc);
+> +	return 0;
+> +
+> +error:
+> +	typec_unregister_port(sc->port);
+> +	return ret;
+> +}
+> +
+> +static int sc27xx_typec_remove(struct platform_device *pdev)
+> +{
+> +	struct sc27xx_typec *sc = platform_get_drvdata(pdev);
+> +
+> +	sc27xx_typec_disconnect(sc, 0);
+> +	typec_unregister_port(sc->port);
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct of_device_id typec_sprd_match[] = {
+> +	{.compatible = "sprd,sc2730-typec", .data = &sc2730_data},
+> +	{.compatible = "sprd,sc2721-typec", .data = &sc2721_data},
+> +	{.compatible = "sprd,ump96xx-typec", .data = &ump9620_data},
+> +	{},
+> +};
+> +MODULE_DEVICE_TABLE(of, typec_sprd_match);
+> +
+> +static struct platform_driver sc27xx_typec_driver = {
+> +	.probe = sc27xx_typec_probe,
+> +	.remove = sc27xx_typec_remove,
+> +	.driver = {
+> +		.name = "sc27xx-typec",
+> +		.of_match_table = typec_sprd_match,
+> +	},
+> +};
+> +module_platform_driver(sc27xx_typec_driver);
+> +MODULE_LICENSE("GPL");
+> +
+> -- 
+> 2.25.1
+
+-- 
+heikki
