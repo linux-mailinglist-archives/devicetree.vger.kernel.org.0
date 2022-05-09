@@ -2,140 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 491EA51F312
-	for <lists+devicetree@lfdr.de>; Mon,  9 May 2022 05:53:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D511D51F33F
+	for <lists+devicetree@lfdr.de>; Mon,  9 May 2022 06:12:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229701AbiEIDxV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 8 May 2022 23:53:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43898 "EHLO
+        id S229759AbiEIEPj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 May 2022 00:15:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45612 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229689AbiEIDm6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 8 May 2022 23:42:58 -0400
-Received: from alexa-out-sd-01.qualcomm.com (alexa-out-sd-01.qualcomm.com [199.106.114.38])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8608AD11F;
-        Sun,  8 May 2022 20:39:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1652067541; x=1683603541;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=Eec18//IsPwyC++u7RUnbqlmOOXMwJSxguy1wuaYhpw=;
-  b=we78HVW9HlOQ/CHVIvPONMrWOEGsHpG9ajgN3+52cChGpxoq7sE2QWfd
-   2tZuSSPTFCrPxCTZD5mGFfA47RMAmrtnxhSLio9EKj+2wmPbvv2F4RBht
-   /xuSguEi6tos0JA23AJfVDJHOnADtepgXVed+iRan6Y3Bd+7lv/EaipsR
-   U=;
-Received: from unknown (HELO ironmsg03-sd.qualcomm.com) ([10.53.140.143])
-  by alexa-out-sd-01.qualcomm.com with ESMTP; 08 May 2022 20:38:53 -0700
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg03-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 May 2022 20:38:53 -0700
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Sun, 8 May 2022 20:38:53 -0700
-Received: from hu-pkondeti-hyd.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Sun, 8 May 2022 20:38:47 -0700
-Date:   Mon, 9 May 2022 09:08:43 +0530
-From:   Pavan Kondeti <quic_pkondeti@quicinc.com>
-To:     Matthias Kaehlcke <mka@chromium.org>
-CC:     Krishna Kurapati <quic_kriskura@quicinc.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        with ESMTP id S234003AbiEIEIu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 May 2022 00:08:50 -0400
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 159D4D5CFA
+        for <devicetree@vger.kernel.org>; Sun,  8 May 2022 21:04:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1652069097;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=h5YXC8yQ1bsRoJU0nyu/b+oJN5MCJQkd8AXSZI7jF8Q=;
+        b=fepuYmzMjhlkIE8W8RLEfOsxQxmUY+XECljkpfh6cet7Q1tYQnZSUVBklRQorNg1MX1ith
+        hGGfB0j6lLIgt1oeo4ncfY6CRH42+F7sB6eLQ+31YiC1wBOpKywePqjFduFf9cj/FM3WYm
+        pSnLxDWgTXjwVKz+AmTuK4f5d0tNNlI=
+Received: from mimecast-mx02.redhat.com (mimecast-mx02.redhat.com
+ [66.187.233.88]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-433-8GgaCYj_MqK_rmUOTlh5Cg-1; Mon, 09 May 2022 00:04:50 -0400
+X-MC-Unique: 8GgaCYj_MqK_rmUOTlh5Cg-1
+Received: from smtp.corp.redhat.com (int-mx08.intmail.prod.int.rdu2.redhat.com [10.11.54.8])
+        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        by mimecast-mx02.redhat.com (Postfix) with ESMTPS id 2F12480B717;
+        Mon,  9 May 2022 04:04:49 +0000 (UTC)
+Received: from localhost (ovpn-13-212.pek2.redhat.com [10.72.13.212])
+        by smtp.corp.redhat.com (Postfix) with ESMTPS id 781DDC27EB3;
+        Mon,  9 May 2022 04:04:46 +0000 (UTC)
+Date:   Mon, 9 May 2022 12:04:43 +0800
+From:   Baoquan He <bhe@redhat.com>
+To:     Catalin Marinas <catalin.marinas@arm.com>
+Cc:     Zhen Lei <thunder.leizhen@huawei.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
+        x86@kernel.org, "H . Peter Anvin" <hpa@zytor.com>,
+        linux-kernel@vger.kernel.org, Dave Young <dyoung@redhat.com>,
+        Vivek Goyal <vgoyal@redhat.com>,
+        Eric Biederman <ebiederm@xmission.com>,
+        kexec@lists.infradead.org, Will Deacon <will@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
         Rob Herring <robh+dt@kernel.org>,
-        "Andy Gross" <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Felipe Balbi <balbi@kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Doug Anderson <dianders@chromium.org>,
-        Mathias Nyman <mathias.nyman@intel.com>,
-        <devicetree@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-usb@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-pm@vger.kernel.org>, <quic_pkondeti@quicinc.com>,
-        <quic_ppratap@quicinc.com>, <quic_vpulyala@quicinc.com>
-Subject: Re: [v15 2/6] usb: host: xhci-plat: Enable wakeup based on children
- wakeup status
-Message-ID: <20220509033843.GB9170@hu-pkondeti-hyd.qualcomm.com>
-References: <1651740973-7944-1-git-send-email-quic_kriskura@quicinc.com>
- <1651740973-7944-3-git-send-email-quic_kriskura@quicinc.com>
- <YnVAZSZYQvIJxOHv@google.com>
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>,
+        linux-doc@vger.kernel.org, Randy Dunlap <rdunlap@infradead.org>,
+        Feng Zhou <zhoufeng.zf@bytedance.com>,
+        Kefeng Wang <wangkefeng.wang@huawei.com>,
+        Chen Zhou <dingguo.cz@antgroup.com>,
+        John Donnelly <John.p.donnelly@oracle.com>,
+        Dave Kleikamp <dave.kleikamp@oracle.com>
+Subject: Re: [PATCH v24 3/6] arm64: kdump: Reimplement crashkernel=X
+Message-ID: <YniS29/Mjabnbs2E@MiWiFi-R3L-srv>
+References: <20220506114402.365-1-thunder.leizhen@huawei.com>
+ <20220506114402.365-4-thunder.leizhen@huawei.com>
+ <20220506231032.GA122876@MiWiFi-R3L-srv>
+ <Yna/bc2nDb7PT40r@arm.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <YnVAZSZYQvIJxOHv@google.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+In-Reply-To: <Yna/bc2nDb7PT40r@arm.com>
+X-Scanned-By: MIMEDefang 2.85 on 10.11.54.8
+X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, May 06, 2022 at 08:36:31AM -0700, Matthias Kaehlcke wrote:
-> On Thu, May 05, 2022 at 02:26:09PM +0530, Krishna Kurapati wrote:
-> > device_wakeup_path() tells if any of the children devices needs
-> > wakeup. Use this hint to enable/disable wakeup of our device. This
-> > helps the parent device of xhci-plat (like sysdev) to retrieve
-> > the wakeup setting via device_wakeup_path().
+On 05/07/22 at 07:50pm, Catalin Marinas wrote:
+> On Sat, May 07, 2022 at 07:10:32AM +0800, Baoquan He wrote:
+> > On 05/06/22 at 07:43pm, Zhen Lei wrote:
+> > ......  
+> > > @@ -118,8 +162,7 @@ static void __init reserve_crashkernel(void)
+> > >  	if (crash_base)
+> > >  		crash_max = crash_base + crash_size;
+> > >  
+> > > -	/* Current arm64 boot protocol requires 2MB alignment */
+> > > -	crash_base = memblock_phys_alloc_range(crash_size, SZ_2M,
+> > > +	crash_base = memblock_phys_alloc_range(crash_size, CRASH_ALIGN,
+> > >  					       crash_base, crash_max);
+> > >  	if (!crash_base) {
+> > >  		pr_warn("cannot allocate crashkernel (size:0x%llx)\n",
+> > > @@ -127,6 +170,11 @@ static void __init reserve_crashkernel(void)
+> > >  		return;
+> > >  	}
+> > >  
 > > 
-> > Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
-> > ---
-> >  drivers/usb/host/xhci-plat.c | 8 ++++++++
-> >  1 file changed, 8 insertions(+)
-> > 
-> > diff --git a/drivers/usb/host/xhci-plat.c b/drivers/usb/host/xhci-plat.c
-> > index 649ffd8..ad585fa 100644
-> > --- a/drivers/usb/host/xhci-plat.c
-> > +++ b/drivers/usb/host/xhci-plat.c
-> > @@ -415,6 +415,14 @@ static int __maybe_unused xhci_plat_suspend(struct device *dev)
-> >  	if (pm_runtime_suspended(dev))
-> >  		pm_runtime_resume(dev);
-> >  
-> > +	if (device_wakeup_path(dev)) {
-> > +		if (!device_may_wakeup(dev))
-> > +			device_wakeup_enable(dev);
-> > +	} else {
-> > +		if (device_may_wakeup(dev))
-> > +			device_wakeup_disable(dev);
-> > +	}
+> > There's corner case missed, e.g
+> > 1) ,high and ,low are specified, CONFIG_ZONE_DMA|DMA32 is not enabled;
+> > 2) ,high and ,low are specified, the whole system memory is under 4G.
 > 
-> This code is not self-explantatory and deserves a comment.
-> 
-> Enabling/disabling wakeup for the purpose if signalling is a bit of a
-> hack. It might be an acceptable hack as long as it has no side effects.
-> However with the current implementation the wakeup state of the xHCI can
-> be different after resuming than it was before going to suspend:
-> 
-> after boot
->   grep -h xhci /sys/class/wakeup/*/name
->     => xhci-hcd.14.auto
-> 
-> after suspend w/o wakeup capable device
->   grep -h xhci /sys/class/wakeup/*/name
->     => no results
-> 
-> after suspend with wakeup capable device
->   grep -h xhci /sys/class/wakeup/*/name
->     => xhci-hcd.14.auto
-> 
-> The hack shouldn't alter the wakeup state 'persistently', i.e. you'll have
-> to restore it on resume, as in Pavan does in his reply to '[PATCH v14 2/7]
-> PM / wakeup: Add device_children_wakeup_capable()' (it needs to be done
-> conditionally though).
+> My view of ,low is that it should only used to override the default
+> ZONE_DMA allocation if that one is not suitable. If no ZONE_DMA exists
+> or everything is ZONE_DMA, ignore it altogether. That's a specialist
+> case for people that know more about the memory layout, otherwise
+> crashkernel=X works in most case with crashkernel=X,high as an
+> alternative to allow high allocation.
 
-I am worried that we are not doing the right thing here. why should the
-xhci-plat goes against the wishes of the user space policy here? Can we NOT
-just do anything here? If some one wants xhci-plat to wakeup all the time,
-dwc3 will be configured to wakeup the system provided that the support is
-available. This way we don't break any existing users of xhci-plat i.e not
-enabling wakeup from the kernel.
+Totally agree with the conclusion.
 
-Thanks,
-Pavan
