@@ -2,116 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C8E2C520302
-	for <lists+devicetree@lfdr.de>; Mon,  9 May 2022 18:56:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D9044520317
+	for <lists+devicetree@lfdr.de>; Mon,  9 May 2022 19:00:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239327AbiEIRAl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 May 2022 13:00:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42972 "EHLO
+        id S239354AbiEIREj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 May 2022 13:04:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59050 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239330AbiEIRAi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 May 2022 13:00:38 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C526F127193;
-        Mon,  9 May 2022 09:56:43 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 5B4F161535;
-        Mon,  9 May 2022 16:56:43 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 307B2C385B1;
-        Mon,  9 May 2022 16:56:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1652115402;
-        bh=ma7KAt89IfR03ZZVvYgYcIHD1fN0+zc6+GsP1F0gGzM=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=BCDBv2RszqfGdCRpA+zNo6nDPlRAGB4Um5Q05dhrDATW6+VY9oikBbL1zqEEv1Jn7
-         S+EIpoJvQVYeXmM8tFhEkKKx2Py1/Sj8lsjxi4v1FYlb9XfOeyCfDdkEsj8rcYdLCX
-         Yjc1DwuItizN4NHPa5fH4f/H/I5rpkFNVCTLa2JS4re+x+jFUqTvmRIBDYZaOUZxKx
-         I2VD9a3K+OINYZeowh3qGTK0kabNNRpINVXSGQCJRCzX7YWFJF6SZ0Drs/GNHxIzVf
-         CYgE+QW/LGYPdDnCLrrc2Xo+l7I7IpZe1gZEE3hoyHKAMeyoG8EitIDQ1xDzGK/onX
-         21/6jYDVL1WKA==
-Date:   Mon, 9 May 2022 17:56:34 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     LABBE Corentin <clabbe@baylibre.com>, alexandre.torgue@foss.st.com,
-        calvin.johnson@oss.nxp.com, davem@davemloft.net,
-        edumazet@google.com, hkallweit1@gmail.com,
-        jernej.skrabec@gmail.com, joabreu@synopsys.com,
-        krzysztof.kozlowski+dt@linaro.org, kuba@kernel.org,
-        lgirdwood@gmail.com, linux@armlinux.org.uk, pabeni@redhat.com,
-        peppe.cavallaro@st.com, robh+dt@kernel.org, samuel@sholland.org,
-        wens@csie.org, netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-sunxi@lists.linux.dev
-Subject: Re: [PATCH 3/6] dt-bindings: net: Add documentation for phy-supply
-Message-ID: <YnlHwpiow9Flgzas@sirena.org.uk>
-References: <20220509074857.195302-1-clabbe@baylibre.com>
- <20220509074857.195302-4-clabbe@baylibre.com>
- <YnkGV8DyTlCuT92R@lunn.ch>
- <YnkWl+xYCX8r9DE7@Red>
- <Ynk7L07VH/RFVzl6@lunn.ch>
- <Ynk9ccoVh32Deg45@sirena.org.uk>
- <YnlDbbegQ1IbbaHy@lunn.ch>
+        with ESMTP id S239351AbiEIREj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 May 2022 13:04:39 -0400
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 382FC2CDFA;
+        Mon,  9 May 2022 10:00:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1652115644; x=1683651644;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=IQAaOGNIHup3dlqcEGLfloOcfZwKgAymQIYObqEo9ug=;
+  b=KPxKsQJXqR+fhIOmVJeVuOGTxP2zwDKVBQIhuweR0v60vkP3n43eGHYJ
+   TxVWu2xHMwbEP7g42rdxQzpevnc+30et/an27vJhJSopwGwOyMtiN+1oj
+   hP4ubsu+bYvZwfKoaV/Jzhqkaq7xOzXtdNPrvHyW5t0jwi75ehD0in75d
+   b/BJd10es0quPNFMcq7I5JbF/xdXnzbzatOCSYPO7kmu5XP7GsklzvoqJ
+   VayQFHIexq+8OB8cmcA0WTACiatGOMDUIlOdbi6v//Bb/gizteqmCsNCO
+   37Ubbl4RQlwFrL5sZMacLEbRULUr+iwjIHKoZnnWnpqNm3hNI3mwOrwA9
+   g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10342"; a="249644226"
+X-IronPort-AV: E=Sophos;i="5.91,211,1647327600"; 
+   d="scan'208";a="249644226"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 May 2022 10:00:43 -0700
+X-IronPort-AV: E=Sophos;i="5.91,211,1647327600"; 
+   d="scan'208";a="634101067"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 May 2022 10:00:39 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.95)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1no6kN-00Dzp9-Tv;
+        Mon, 09 May 2022 20:00:35 +0300
+Date:   Mon, 9 May 2022 20:00:35 +0300
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     =?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <clement.leger@bootlin.com>
+Cc:     Frank Rowand <frowand.list@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Allan Nielsen <allan.nielsen@microchip.com>,
+        Horatiu Vultur <horatiu.vultur@microchip.com>,
+        Steen Hegelund <steen.hegelund@microchip.com>,
+        Thomas Petazzoni <thomas.petazonni@bootlin.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Mark Brown <broonie@kernel.org>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Andrew Lunn <andrew@lunn.ch>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org
+Subject: Re: [PATCH 0/3] add dynamic PCI device of_node creation for overlay
+Message-ID: <YnlIs312R4Temgu3@smile.fi.intel.com>
+References: <20220427094502.456111-1-clement.leger@bootlin.com>
+ <96db62bb-18be-f44a-6f53-05b22319f23a@gmail.com>
+ <20220509141634.16158c38@xps-bootlin>
+ <f9b0cbf1-dde2-ff97-cca0-5d2895734f91@gmail.com>
+ <20220509180917.0f0ae851@xps-bootlin>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="8w1oAQG8zH7Npult"
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <YnlDbbegQ1IbbaHy@lunn.ch>
-X-Cookie: Boycott meat -- suck your thumb.
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220509180917.0f0ae851@xps-bootlin>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, May 09, 2022 at 06:09:17PM +0200, Clément Léger wrote:
+> Le Mon, 9 May 2022 10:56:36 -0500,
+> Frank Rowand <frowand.list@gmail.com> a écrit :
 
---8w1oAQG8zH7Npult
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+...
 
-On Mon, May 09, 2022 at 06:38:05PM +0200, Andrew Lunn wrote:
+> > On the surface, it appears that your need might be well met by having
+> > a base devicetree that describes all of the pcie nodes, but with each
+> > node having a status of "disabled" so that they will not be used.
+> > Have a devicetree overlay describing the pcie card (as you proposed),
+> > where the overlay also includes a status of "ok" for the pcie node.
+> > Applying the overlay, with a method of redirecting the target to a
+> > specific pcie node would change the status of the pcie node to enable
+> > its use.  (You have already proposed a patch to modify
+> > of_overlay_fdt_apply() to allow a modified target, so not a new
+> > concept from me.)  My suggestion is to apply the overlay devicetree
+> > to the base devicetree before the combined FDT devicetree is passed
+> > to the kernel at boot.  The overlay apply could be done by several
+> > different entities.  It could be before the bootloader executes, it
+> > could be done by the bootloader, it could be done by a shim between
+> > the bootloader and the kernel.  This method avoids all of the issues
+> > of applying an overlay to a running system that I find problematic.
+> > It is also a method used by the U-boot bootloader, as an example.
+> 
+> Ok, that is actually possible on a system that is given a device-tree
+> by the bootloader. But on a system that is desrcibed using ACPI (such
+> as the x86), this is much more difficult (at least to my knowledge)...
+> We want this feature to be easy to use for the end user. Adding such
+> configuration which also differs between various architecture is
+> clearly not so easy to setup.
+> 
+> Moreover, since the PCI is meant to be "Plug and Play", such
+> configuration would completely break that. If the user switches the
+> PCIe card from one slot to another, the bootloader configuration will
+> need to be modified. This seems a big no way for me (and for the user).
 
-> So we have a collection of regulators, varying in numbers between
-> different PHYs, with different vendor names and purposes. In general,
-> they all should be turned on. Yet we want them named so it is clear
-> what is going on.
+The main problem here is that Linux does not support hotplugging for the
+devices behind non-hotpluggable buses. You need to develop something to
+say that the device tree (in terms of hardware) can morph at run-time
+transparently to the user. I think the closest one is what FPGA does,
+or at least should do.
 
-> Is there a generic solution here so that the phylib core can somehow
-> enumerate them and turn them on, without actually knowing what they
-> are called because they have vendor specific names in order to be
-> clear what they are?
+> > The other big issue is mixing ACPI and devicetree on a single system.
+> > Historically, the Linux devicetree community has not been receptive
+> > to the ides of that mixture.  Your example might be a specific case
+> > where the two can be isolated from each other, or maybe not.  (For
+> > disclosure, I am essentially ACPI ignorant.)  I suspect that mixing
+> > ACPI and devicetree is a recipe for disaster in the general case.
+> 
+> Agreed, on that fact, it did raised some eyebrows, and it was for that
+> specific concern that initially, I proposed the fwnode solution.
+> Honestly, the fwnode conversion represent a lot of work (hundreds of
+> lines easily) + requires a conversion of all the subsystem that are not
+> fwnode ready (spoiler: almost all of them are not ready). 
 
-> There must be a solution to this, phylib cannot be the first subsystem
-> to have this requirement, so if you could point to an example, that
-> would be great.
+In either case you need to provide a format that would be suitable for
+DT-based as well as ACPI-based platforms.
 
-No, it's not really come up much before - generally things with
-regulator control that have generic drivers tend not to be sophisticated
-enough to have more than one supply, or to be on an enumerable bus where
-the power is part of the bus specification so have the power specified
-as part of the bus.  You'd need to extend the regulator bindings to
-support parallel array of phandles and array of names properties like
-clocks have as an option like you were asking for, which would doubtless
-be fun for validation but is probably the thing here.
+-- 
+With Best Regards,
+Andy Shevchenko
 
---8w1oAQG8zH7Npult
-Content-Type: application/pgp-signature; name="signature.asc"
 
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmJ5R8IACgkQJNaLcl1U
-h9DsBgf/dLCjimiHfZ3BVIqJ24wTWXFg5dJk+Jp65LrpXJ6qSG86NuEHpNdoLTbZ
-9y2PhDrkyF9y28KpLHo26UuISE9N74k2L/ZNzJrsqCVTc933fJ+JaViuvhx+LsdY
-ZXlZG27WBycLjVGqW3BVqiN1h8xFIJZ+4I/LYr832cUHnPrQu+JpoJpvsMjrge3+
-iSm3dqO1KZEGCaw8lK4MlGRS8ZoPBUA1lc4h2yvU8zpJc0OfIq5LU0p0DlggMlLE
-ag0ct9nkNKD96unqDxXIYscDNf/9Kv2UjXR4M18yNnmLDZr4bDuiQAB+L+2jKzbR
-dyOk2GxUf6FtgeOrdPmWMPuAn4+YWw==
-=EKEu
------END PGP SIGNATURE-----
-
---8w1oAQG8zH7Npult--
