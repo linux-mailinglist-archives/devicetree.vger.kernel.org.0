@@ -2,57 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C316520641
-	for <lists+devicetree@lfdr.de>; Mon,  9 May 2022 22:58:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9ED2752064A
+	for <lists+devicetree@lfdr.de>; Mon,  9 May 2022 23:00:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229890AbiEIVCu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 May 2022 17:02:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59214 "EHLO
+        id S229909AbiEIVEC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 May 2022 17:04:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35772 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229885AbiEIVCs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 May 2022 17:02:48 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2F812B8D24;
-        Mon,  9 May 2022 13:58:53 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: nfraprado)
-        with ESMTPSA id 564EA1F42F48
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1652129932;
-        bh=j+wdfrc3FXi43X0VkODadFay6bg9FKNBstYCTMpecA8=;
-        h=From:To:Cc:Subject:Date:From;
-        b=U74Ljn728Csp+ET2xThho9d1REqGnsswajm8GHfb67k2/RQZQWrjH38iHELrF44Nj
-         xjNY6xlKH4B+68AQjDzJ4U9UXWZJZvRQXVg+CE577q+KjYL03FmMa/3TLtBWPFbaJc
-         CZtRlFSbP4P6LvKc4+03hk9wBfEX4V83iyBOVw4o1AuuX92sETE6/YrYOK5HC+RLse
-         usJnlXHQmatb4Tr1cmtTPqJ7rXIY3//R6J9m5ZXiAvwzZW6PwC2awkxQcnstozW5iT
-         i1yFHZ/MGA/PZzO3rWICOJ8hBGFEU41lmBA6aSosZ+mnNFsx4iQ1oOlQOIjrv9EE/V
-         Tc+X6cFr8gC1Q==
-From:   =?UTF-8?q?N=C3=ADcolas=20F=2E=20R=2E=20A=2E=20Prado?= 
-        <nfraprado@collabora.com>
-To:     Mark Brown <broonie@kernel.org>
-Cc:     kernel@collabora.com,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        =?UTF-8?q?N=C3=ADcolas=20F=2E=20R=2E=20A=2E=20Prado?= 
-        <nfraprado@collabora.com>, Jiaxin Yu <jiaxin.yu@mediatek.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shane Chien <shane.chien@mediatek.com>,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org
-Subject: [PATCH v2] ASoC: dt-bindings: mediatek: mt8192: Add i2s-share properties
-Date:   Mon,  9 May 2022 16:58:47 -0400
-Message-Id: <20220509205847.607076-1-nfraprado@collabora.com>
-X-Mailer: git-send-email 2.36.0
+        with ESMTP id S229750AbiEIVEB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 May 2022 17:04:01 -0400
+Received: from mail-oi1-f176.google.com (mail-oi1-f176.google.com [209.85.167.176])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08D462B8D27;
+        Mon,  9 May 2022 14:00:06 -0700 (PDT)
+Received: by mail-oi1-f176.google.com with SMTP id j12so11605202oie.1;
+        Mon, 09 May 2022 14:00:06 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=A4ob0eSSbmcm/QW2p/EojIBNFD858jnW+91YcPxJNWg=;
+        b=4tPZrGD/otv7B/T8daf0PTEEJxZgekmO8/HJKzdyneEQ3Uf2wtKx3DHJVfjBAhJ4W7
+         5/vKNCpkmD3oPFadAS56PNXQiR7OXTFycZxr9bRrlzFYacUdJW8qQq5k68tw622OzoDD
+         GOvwu7k1YNyrw4hKwZcNE1fTrNcjmsv286doLuDWQJtYrLPGFNEpSOULjbeKcm/Cgd4J
+         qpgBw4i3JHpn+CzuCFP45RNrP75XcIBUmWMFeaiPg9xbgBlldPS4AU6CMnLvDtt0g1kv
+         2gVmGsoEaFQzh5RRZGcr10iJ4NaPFgDxd+gQgQpf0QpV9S8S9pspzhBtQULXP7orniVN
+         StEg==
+X-Gm-Message-State: AOAM531acyT/rr21qsR6Lo5wBW5mKc/qkXE+WMNh4IcP79t/AN70M2VO
+        qfbwVF4dOwu+mij9WLPlZI7c1bVq/g==
+X-Google-Smtp-Source: ABdhPJxJjaYbkkOernUyIgfWhKeVU+9U1aYjG8s4i3k9rJRhT3J1gKrWtUXYs97LodSSfta7apCDYw==
+X-Received: by 2002:a05:6808:1451:b0:326:9747:c70 with SMTP id x17-20020a056808145100b0032697470c70mr7576025oiv.106.1652130005303;
+        Mon, 09 May 2022 14:00:05 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id a15-20020a056870b14f00b000e9b8376a7bsm4501892oal.23.2022.05.09.14.00.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 09 May 2022 14:00:04 -0700 (PDT)
+Received: (nullmailer pid 168072 invoked by uid 1000);
+        Mon, 09 May 2022 21:00:03 -0000
+Date:   Mon, 9 May 2022 16:00:03 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Stanimir Varbanov <svarbanov@mm-sol.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v7 5/7] PCI: qcom: Handle MSIs routed to multiple GIC
+ interrupts
+Message-ID: <YnmA02t7BBIPSgnY@robh.at.kernel.org>
+References: <20220505135407.1352382-1-dmitry.baryshkov@linaro.org>
+ <20220505135407.1352382-6-dmitry.baryshkov@linaro.org>
+ <YnRA//LbCW+IVi3o@robh.at.kernel.org>
+ <b334a2e6-69ae-690d-8560-25f8a1319e5c@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <b334a2e6-69ae-690d-8560-25f8a1319e5c@linaro.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -60,60 +74,51 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Mediatek AFE PCM controller for MT8192 allows two I2S interfaces to
-share the same clock and act as a single interface with both input and
-output. Add patterns for these properties in the dt-binding. The
-property is split into two patterns in order to allow all valid
-interface pairings.
+On Fri, May 06, 2022 at 10:40:56AM +0300, Dmitry Baryshkov wrote:
+> On 06/05/2022 00:26, Rob Herring wrote:
+> > On Thu, May 05, 2022 at 04:54:05PM +0300, Dmitry Baryshkov wrote:
+> > > On some of Qualcomm platforms each group of 32 MSI vectors is routed to the
+> > > separate GIC interrupt. Thus to receive higher MSI vectors properly,
+> > > add separate msi_host_init()/msi_host_deinit() handling additional host
+> > > IRQs.
+> > 
+> > msi_host_init() has 1 user (keystone) as it doesn't use the DWC MSI
+> > controller. But QCom does given the access to PCIE_MSI_INTR0_STATUS,
+> > so mutiple MSI IRQ outputs must have been added in newer versions of the
+> > DWC IP. If so, it's only a matter of time for another platform to
+> > do the same thing. Maybe someone from Synopsys could confirm?
+> 
+> This is a valid question, and if you check, first iterations of this
+> patchset had this in the dwc core ([1], [2]). Exactly for the reason this
+> might be usable for other platforms.
+> 
+> Then I did some research for other platforms using DWC PCIe IP core. For
+> example, both Tegra Xavier and iMX6 support up to 256 MSI vectors, they use
+> DWC MSI IRQ controller. The iMX6 TRM explicitly describes using different
+> MSI groups for different endpoints. The diagram shows 8 MSI IRQ signal
+> lines. However in the end the signals from all groups are OR'ed to form a
+> single host msi_ctrl_int. Thus currently I suppose that using multiple MSI
+> IRQs is a peculiarity of Qualcomm platform.
 
-Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+Chip integration very often will just OR together interrupts or not. 
+It's completely at the whim of the SoC design, so I'd say both cases are 
+very likely. Seems to be a feature in newer versions of the IP. Probably 
+requested by some misguided h/w person thinking split interrupts would 
+be 'faster'. (Sorry, too many past discussions with h/w designers on 
+this topic.)
 
----
-The series from v1 of this patch was merged although some changes were
-still needed in this patch, so the v1 of this patch was reverted [1] and
-this standalone commit addresses the feedback from v1 and readds the
-property.
+> > Therefore this should all be handled in the DWC core. In general, I
+> > don't want to see more users nor more ops if we don't have to. Let's not
+> > create ops for what can be handled as data. AFAICT, this is just number
+> > of MSIs and # of MSIs per IRQ. It seems plausible another platform could
+> > do something similar and supporting it in the core code wouldn't
+> > negatively impact other platforms.
+> 
+> I wanted to balance adding additional ops vs complicating the core for other
+> platforms. And I still suppose that platform specifics should go to the
+> platform driver. However if you prefer [1] and [2], we can go back to that
+> implementation.
 
-[1] https://lore.kernel.org/all/20220509185625.580811-1-nfraprado@collabora.com
+Yes, I prefer that implementation.
 
-v1: https://lore.kernel.org/all/20220429203039.2207848-2-nfraprado@collabora.com/
-
-Changes in v2:
-- Added "mediatek," prefix to property
-- Rewrote and added more information to property description
-- Split into two patterns to validate that output-input pairings are
-  done
-
- .../bindings/sound/mt8192-afe-pcm.yaml           | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/sound/mt8192-afe-pcm.yaml b/Documentation/devicetree/bindings/sound/mt8192-afe-pcm.yaml
-index 7a25bc9b8060..2abf43c6c2c3 100644
---- a/Documentation/devicetree/bindings/sound/mt8192-afe-pcm.yaml
-+++ b/Documentation/devicetree/bindings/sound/mt8192-afe-pcm.yaml
-@@ -54,6 +54,22 @@ properties:
-       - const: aud_infra_clk
-       - const: aud_infra_26m_clk
- 
-+patternProperties:
-+  "^mediatek,i2s[13579]-share$":
-+    description:
-+      Each I2S interface has a single data line, input if its index is even or
-+      output if the index is odd. An input and an output I2S interface can be
-+      used together as if they were a single I2S interface with both input and
-+      output data lines by sharing the same clock. This property represents this
-+      pairing. The value should be the name of the interface whose clock is
-+      used, and the property name the other interface that depends on this
-+      clock.
-+    pattern: "^I2S[0268]$"
-+
-+  "^mediatek,i2s[0268]-share$":
-+    description: Same as above.
-+    pattern: "^I2S[13579]$"
-+
- required:
-   - compatible
-   - interrupts
--- 
-2.36.0
-
+Rob
