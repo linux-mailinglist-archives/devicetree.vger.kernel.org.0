@@ -2,116 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B924A520405
-	for <lists+devicetree@lfdr.de>; Mon,  9 May 2022 19:57:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 36D17520426
+	for <lists+devicetree@lfdr.de>; Mon,  9 May 2022 20:06:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239987AbiEISBj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 May 2022 14:01:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52666 "EHLO
+        id S240014AbiEISJh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 May 2022 14:09:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55210 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239970AbiEISBg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 May 2022 14:01:36 -0400
-Received: from gandalf.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77D2C1F7E35;
-        Mon,  9 May 2022 10:57:38 -0700 (PDT)
-Received: from gandalf.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
-        by gandalf.ozlabs.org (Postfix) with ESMTP id 4KxpmK07cmz4xcY;
-        Tue, 10 May 2022 03:57:37 +1000 (AEST)
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        with ESMTP id S240004AbiEISJf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 May 2022 14:09:35 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1EDEA28C9CE;
+        Mon,  9 May 2022 11:05:37 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.ozlabs.org (Postfix) with ESMTPSA id 4KxpmC2sCwz4xVP;
-        Tue, 10 May 2022 03:57:31 +1000 (AEST)
-From:   =?UTF-8?q?C=C3=A9dric=20Le=20Goater?= <clg@kaod.org>
-To:     linux-spi@vger.kernel.org, linux-mtd@lists.infradead.org
-Cc:     Mark Brown <broonie@kernel.org>,
-        Tudor Ambarus <tudor.ambarus@microchip.com>,
-        Pratyush Yadav <p.yadav@ti.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        linux-aspeed@lists.ozlabs.org, Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Potin Lai <potin.lai@quantatw.com>,
-        Jae Hyun Yoo <quic_jaehyoo@quicinc.com>,
-        =?UTF-8?q?C=C3=A9dric=20Le=20Goater?= <clg@kaod.org>
-Subject: [PATCH v7 11/11] mtd: spi-nor: aspeed: set the decoding size to at least 2MB for AST2600
-Date:   Mon,  9 May 2022 19:56:16 +0200
-Message-Id: <20220509175616.1089346-12-clg@kaod.org>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220509175616.1089346-1-clg@kaod.org>
-References: <20220509175616.1089346-1-clg@kaod.org>
+        by ams.source.kernel.org (Postfix) with ESMTPS id BA5A2B818E2;
+        Mon,  9 May 2022 18:05:35 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D7E22C385B4;
+        Mon,  9 May 2022 18:05:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1652119534;
+        bh=XBXSA2sw3mrQpJSKqJ9XNceqpmgmJxCHCn28EwPITvI=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=jGoRYK2JvJ8X7muMC5jItXhoU6lXKZc2ndqY5ze6I2AUV810lSi0ScNauAktbK0AE
+         hrAS006L6ivVdl4ri9RDFGHklW4X6zeHCZSO4Hp/Oq1XZ+KkfCxZ2FUIx2OW39obKe
+         7Pl3k05uEWjiMI/V9DJuML4MLfor0cVZC5gd807yWKw0RcchtH3h9WLLkX3gJNkUNb
+         FtQ5XGBNpT+HxtdpqQsp3TWMpeWH5Ch1H5EdJ0C1yJh4yQP6nfz8bXK/TxvJxyjYVk
+         o/MLEIfAJxiBWp2l2iC5fgENoaqA9coSftUXu75MprcHZjmev1EuqJuRoKBittjbf1
+         uaBUnKTtW3Nhw==
+From:   Mark Brown <broonie@kernel.org>
+To:     lukma@denx.de, Liam Girdwood <lgirdwood@gmail.com>
+Cc:     alsa-devel@alsa-project.org, patches@opensource.cirrus.com,
+        robh+dt@kernel.org, devicetree@vger.kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-kernel@vger.kernel.org
+In-Reply-To: <20220509121313.31216-1-lukma@denx.de>
+References: <20220509121313.31216-1-lukma@denx.de>
+Subject: Re: [PATCH 2/2] doc: dts: Add device tree information regarding wm8940 codec
+Message-Id: <165211953261.1181242.4154346698218256883.b4-ty@kernel.org>
+Date:   Mon, 09 May 2022 19:05:32 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,
-        HEADER_FROM_DIFFERENT_DOMAINS,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Potin Lai <potin.lai@quantatw.com>
+On Mon, 9 May 2022 14:13:13 +0200, Lukasz Majewski wrote:
+> This commit provides documentation entry for wm8940 codec.
+> 
+> 
 
-In AST2600, the unit of SPI CEx decoding range register is 1MB, and end
-address offset is set to the acctual offset - 1MB. If the flash only has
-1MB, the end address will has same value as start address, which will
-causing unexpected errors.
+Applied to
 
-This patch set the decoding size to at least 2MB to avoid decoding errors.
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
-Tested:
-root@bletchley:~# dmesg | grep "aspeed-smc 1e631000.spi: CE0 window"
-[   59.328134] aspeed-smc 1e631000.spi: CE0 window resized to 2MB (AST2600 Decoding)
-[   59.343001] aspeed-smc 1e631000.spi: CE0 window [ 0x50000000 - 0x50200000 ] 2MB
-root@bletchley:~# devmem 0x1e631030
-0x00100000
+Thanks!
 
-Tested-by: Jae Hyun Yoo <quic_jaehyoo@quicinc.com>
-Signed-off-by: Potin Lai <potin.lai@quantatw.com>
-[ clg : Ported on new spi-mem driver ]
-Signed-off-by: Cédric Le Goater <clg@kaod.org>
----
- drivers/spi/spi-aspeed-smc.c | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+[2/2] doc: dts: Add device tree information regarding wm8940 codec
+      commit: 29e87c4f62e2e688c1c91da9f8d54d0f042cb75e
 
-diff --git a/drivers/spi/spi-aspeed-smc.c b/drivers/spi/spi-aspeed-smc.c
-index 35f6934847b7..496f3e1e9079 100644
---- a/drivers/spi/spi-aspeed-smc.c
-+++ b/drivers/spi/spi-aspeed-smc.c
-@@ -474,6 +474,8 @@ static int aspeed_spi_set_window(struct aspeed_spi *aspi,
-  *   is correct.
-  */
- static const struct aspeed_spi_data ast2500_spi_data;
-+static const struct aspeed_spi_data ast2600_spi_data;
-+static const struct aspeed_spi_data ast2600_fmc_data;
- 
- static int aspeed_spi_chip_adjust_window(struct aspeed_spi_chip *chip,
- 					 u32 local_offset, u32 size)
-@@ -497,6 +499,17 @@ static int aspeed_spi_chip_adjust_window(struct aspeed_spi_chip *chip,
- 			 chip->cs, size >> 20);
- 	}
- 
-+	/*
-+	 * The decoding size of AST2600 SPI controller should set at
-+	 * least 2MB.
-+	 */
-+	if ((aspi->data == &ast2600_spi_data || aspi->data == &ast2600_fmc_data) &&
-+	    size < SZ_2M) {
-+		size = SZ_2M;
-+		dev_info(aspi->dev, "CE%d window resized to %dMB (AST2600 Decoding)",
-+			 chip->cs, size >> 20);
-+	}
-+
- 	aspeed_spi_get_windows(aspi, windows);
- 
- 	/* Adjust this chip window */
--- 
-2.35.1
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
 
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
