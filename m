@@ -2,185 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8FD0F5206C6
-	for <lists+devicetree@lfdr.de>; Mon,  9 May 2022 23:39:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DBB245206C4
+	for <lists+devicetree@lfdr.de>; Mon,  9 May 2022 23:39:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230079AbiEIVn0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 May 2022 17:43:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57644 "EHLO
+        id S229708AbiEIVno (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 May 2022 17:43:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58916 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230119AbiEIVnW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 May 2022 17:43:22 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B73712E318;
-        Mon,  9 May 2022 14:39:26 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 19FFBB8199B;
-        Mon,  9 May 2022 21:39:25 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D98FBC385BF;
-        Mon,  9 May 2022 21:39:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1652132363;
-        bh=bGVROk1yCVFbw1tN5TwGGaOX8G0Pd3s1D8n+lUcuavY=;
-        h=Date:From:To:cc:Subject:In-Reply-To:References:From;
-        b=jIjU+8tpltcUUdOqWb8RQToebMMi7jlG6EnTVHQBvz5t4l//CxxmzayoSnWIXtjIq
-         fy84fHDqbtXeMASASk++DG2/cUJ91hHqe+1Of9X3a0Eqm2Ev0LsG2q4HBN1O49pRh/
-         joc0a+YLoJYyXOtV+WB+uOq6+Eg9WZ38FDg+fEdO7rWaYwefXDFa+7Z2682LO0g4He
-         fqu6yjT37l+A8wnb4ZLJ51/OtFAAs5lLs25jPNFrue7rXsnPkmBkwix4cn5/5iwLu6
-         rQglFPRi0M/Wk8iwB4xrNXNUkRTDsHz+TWohutLj7rphd2GX07IfzohFQHQSlMvjcM
-         6uDxuOP7Y4MIQ==
-Date:   Mon, 9 May 2022 14:39:22 -0700 (PDT)
-From:   Stefano Stabellini <sstabellini@kernel.org>
-X-X-Sender: sstabellini@ubuntu-linux-20-04-desktop
-To:     Oleksandr Tyshchenko <olekstysh@gmail.com>
-cc:     xen-devel@lists.xenproject.org,
-        virtualization@lists.linux-foundation.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>,
-        Jason Wang <jasowang@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Julien Grall <julien@xen.org>, Juergen Gross <jgross@suse.com>,
-        Stefano Stabellini <sstabellini@kernel.org>,
-        "Michael S. Tsirkin" <mst@redhat.com>,
-        Christoph Hellwig <hch@infradead.org>,
-        Jean-Philippe Brucker <jean-philippe@linaro.org>
-Subject: Re: [PATCH V2 5/7] dt-bindings: Add xen, dev-domid property description
- for xen-grant DMA ops
-In-Reply-To: <1651947548-4055-6-git-send-email-olekstysh@gmail.com>
-Message-ID: <alpine.DEB.2.22.394.2205091436390.43560@ubuntu-linux-20-04-desktop>
-References: <1651947548-4055-1-git-send-email-olekstysh@gmail.com> <1651947548-4055-6-git-send-email-olekstysh@gmail.com>
-User-Agent: Alpine 2.22 (DEB 394 2020-01-19)
+        with ESMTP id S230213AbiEIVnh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 May 2022 17:43:37 -0400
+Received: from mail-ot1-f45.google.com (mail-ot1-f45.google.com [209.85.210.45])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6CCC135683;
+        Mon,  9 May 2022 14:39:36 -0700 (PDT)
+Received: by mail-ot1-f45.google.com with SMTP id m15-20020a9d608f000000b00606a788887aso986665otj.0;
+        Mon, 09 May 2022 14:39:36 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=+KkqknBI/2K3Eq7hGd53E0RZ8mZ5a02S480GCyvqwzM=;
+        b=cuASTZQktzvZLQKVEMUiK3o557C4G9tnWtxWyr0cfyLRX+WZi82Vg0oqxIWmIA8/cy
+         kFOh2QXu4BCs8CbQkIaF1i2/Z6GYv0Xtb8rVnOsoK2n9NmtM5VC110Kq5twreZPagTyS
+         DeYxUZuguM4YKS5sSKLOzt71C7vpYjL+jxuqmcupr4UojIk5IHaNcqnhx8LwdRpUvcG9
+         Xg5wmpEXcGB7JyzYfgoUE87DDS7Q7eAi0RFL8xu9W9PxEotzDgL8VnVNDkn2S5KeLSBh
+         nIS+n/wwcp2WG+SF6olJaT8BHxOf1N476GiJczf3XfGEFgow6BWTwOI02IyrWUFIc59a
+         b9dg==
+X-Gm-Message-State: AOAM531ANc4kMdMwIpgfu6jBKcEyzt4Bnz25GoeYt748cechEeJN9kc0
+        KnloIyDE/I0Klr2RzFdrNZRMUsfOZg==
+X-Google-Smtp-Source: ABdhPJyBKwsYVpF+613L3NjhkodjdhNhTlNBEVF4zad8+lj7S3V5mZuzad0b7ALO+n88vjbc7x+Mqw==
+X-Received: by 2002:a05:6830:310e:b0:606:638d:cf00 with SMTP id b14-20020a056830310e00b00606638dcf00mr6415474ots.76.1652132375719;
+        Mon, 09 May 2022 14:39:35 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id o24-20020a9d6d18000000b0060603221271sm5086642otp.65.2022.05.09.14.39.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 09 May 2022 14:39:35 -0700 (PDT)
+Received: (nullmailer pid 243241 invoked by uid 1000);
+        Mon, 09 May 2022 21:39:34 -0000
+Date:   Mon, 9 May 2022 16:39:34 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Stephen Boyd <swboyd@chromium.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        linux-kernel@vger.kernel.org, patches@lists.linux.dev,
+        devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
+        Gwendal Grignou <gwendal@chromium.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>
+Subject: Re: [PATCH v2 1/2] dt-bindings: iio: sx9324: Add CS idle/sleep mode
+Message-ID: <YnmKFiFqiR43I7Bb@robh.at.kernel.org>
+References: <20220503193937.3794477-1-swboyd@chromium.org>
+ <20220503193937.3794477-2-swboyd@chromium.org>
+ <faaa4ab4-8190-3cff-998e-3b6a6d3ce27c@linaro.org>
+ <YnKVzvAITXAHqSiX@robh.at.kernel.org>
+ <8aef897f-fff0-526e-62d0-6a92c301eb08@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <8aef897f-fff0-526e-62d0-6a92c301eb08@linaro.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 7 May 2022, Oleksandr Tyshchenko wrote:
-> From: Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>
+On Wed, May 04, 2022 at 05:15:55PM +0200, Krzysztof Kozlowski wrote:
+> On 04/05/2022 17:03, Rob Herring wrote:
+> >>>  
+> >>> +  semtech,cs-idle-sleep:
+> >>> +    description:
+> >>> +      State of CS pins during sleep mode and idle time.
+> >>> +    enum:
+> >>> +      - hi-z
+> >>> +      - gnd
+> >>> +      - vdd
+> >>
+> >> You need a ref to type (string).
+> > 
+> > Actually, it can be implicit for single strings.
 > 
-> Introduce Xen specific binding for the virtualized device (e.g. virtio)
-> to be used by Xen grant DMA-mapping layer in the subsequent commit.
-> 
-> This binding indicates that Xen grant mappings scheme needs to be
-> enabled for the device which DT node contains that property and specifies
-> the ID of Xen domain where the corresponding backend resides. The ID
-> (domid) is used as an argument to the grant mapping APIs.
-> 
-> This is needed for the option to restrict memory access using Xen grant
-> mappings to work which primary goal is to enable using virtio devices
-> in Xen guests.
-> 
-> Signed-off-by: Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>
+> Is this a generic preference?
 
-The binding is OK and the wording is OK too.
+I don't have a preference, just noting that both are allowed. I like 
+having a smaller schema, but then it is a bit of a special case.
 
-Reviewed-by: Stefano Stabellini <sstabellini@kernel.org>
-
-I am not an expert on the details of writing a good schema, I'll defer
-to Rob if he has any comments on that.
-
-
-> ---
-> Changes RFC -> V1:
->    - update commit subject/description and text in description
->    - move to devicetree/bindings/arm/
-> 
-> Changes V1 -> V2:
->    - update text in description
->    - change the maintainer of the binding
->    - fix validation issue
->    - reference xen,dev-domid.yaml schema from virtio/mmio.yaml
-> ---
->  .../devicetree/bindings/arm/xen,dev-domid.yaml     | 37 ++++++++++++++++++++++
->  Documentation/devicetree/bindings/virtio/mmio.yaml |  7 ++++
->  2 files changed, 44 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/arm/xen,dev-domid.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/xen,dev-domid.yaml b/Documentation/devicetree/bindings/arm/xen,dev-domid.yaml
-> new file mode 100644
-> index 00000000..750e89e
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/arm/xen,dev-domid.yaml
-> @@ -0,0 +1,37 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/arm/xen,dev-domid.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Xen specific binding for virtualized devices (e.g. virtio)
-> +
-> +maintainers:
-> +  - Stefano Stabellini <sstabellini@kernel.org>
-> +
-> +select: true
-> +
-> +description:
-> +  This binding indicates that Xen grant mappings need to be enabled for
-> +  the device, and it specifies the ID of the domain where the corresponding
-> +  device (backend) resides. The property is required to restrict memory
-> +  access using Xen grant mappings.
-> +
-> +properties:
-> +  xen,dev-domid:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description:
-> +      The domid (domain ID) of the domain where the device (backend) is running.
-> +
-> +additionalProperties: true
-> +
-> +examples:
-> +  - |
-> +    virtio@3000 {
-> +            compatible = "virtio,mmio";
-> +            reg = <0x3000 0x100>;
-> +            interrupts = <41>;
-> +
-> +            /* The device is located in Xen domain with ID 1 */
-> +            xen,dev-domid = <1>;
-> +    };
-> diff --git a/Documentation/devicetree/bindings/virtio/mmio.yaml b/Documentation/devicetree/bindings/virtio/mmio.yaml
-> index 10c22b5..29a0932 100644
-> --- a/Documentation/devicetree/bindings/virtio/mmio.yaml
-> +++ b/Documentation/devicetree/bindings/virtio/mmio.yaml
-> @@ -13,6 +13,9 @@ description:
->    See https://www.oasis-open.org/committees/tc_home.php?wg_abbrev=virtio for
->    more details.
->  
-> +allOf:
-> +  - $ref: /schemas/arm/xen,dev-domid.yaml#
-> +
->  properties:
->    compatible:
->      const: virtio,mmio
-> @@ -33,6 +36,10 @@ properties:
->      description: Required for devices making accesses thru an IOMMU.
->      maxItems: 1
->  
-> +  xen,dev-domid:
-> +    description: Required when Xen grant mappings need to be enabled for device.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +
->  required:
->    - compatible
->    - reg
-> -- 
-> 2.7.4
-> 
-> 
-> _______________________________________________
-> linux-arm-kernel mailing list
-> linux-arm-kernel@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
-> 
+Rob
