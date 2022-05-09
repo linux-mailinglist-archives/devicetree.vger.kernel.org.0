@@ -2,80 +2,43 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ECCEA51F94B
-	for <lists+devicetree@lfdr.de>; Mon,  9 May 2022 12:05:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AEFB351F963
+	for <lists+devicetree@lfdr.de>; Mon,  9 May 2022 12:09:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229555AbiEIKIg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 May 2022 06:08:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45606 "EHLO
+        id S233969AbiEIKLl convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 9 May 2022 06:11:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59230 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229500AbiEIKIf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 May 2022 06:08:35 -0400
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5BD7B2618CE
-        for <devicetree@vger.kernel.org>; Mon,  9 May 2022 03:04:36 -0700 (PDT)
-Received: by mail-wm1-x336.google.com with SMTP id 125-20020a1c1983000000b003941f354c62so7958021wmz.0
-        for <devicetree@vger.kernel.org>; Mon, 09 May 2022 03:04:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=ycQ/+6Ta9+mte/sUWQMV+qmIHIqajQfCeBORbOifyFU=;
-        b=Vby9QUsO+j2WPmfz2Rz3WWtkCRCpSkEFrhPyH8qmd1g06onlpHiTJdhjTcWl8Qx38o
-         B6Tt26DHvTwdkxI8KIGssdl7sG5nsgvC1gIshawhj+5Cs4WXavF7smnp6eiNT4qUIrqI
-         zMvYvdfU+Mo3qiHTkKoVIBOovs64Uobs/8Dx9ZT6uh9Cpn2vQjWSvNHYOozomcGLr2B+
-         bR0gryxm2iyPqHQLNcpYuuUKxrkzSjVksHzb0pt2Wfi48B+UqDdNJuQco5iCckcpMJlS
-         zMUzpsTYVk/koh1WJLUnITm9oTIJMQHC9D3b+Jm6jnngRK/6h13gAxeRT9iWvCN8+Hcx
-         qoBw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=ycQ/+6Ta9+mte/sUWQMV+qmIHIqajQfCeBORbOifyFU=;
-        b=EFMH9xEuFWfw0wJDlcwsJMm9Nj4+SgTipKexObEGC1hyvQdTFzW8XrJSbPZWhSpyLZ
-         ai8aMkCOtMoF1T95BhT0gGlGpcvCilUqEyKeF3XTbA6iM2HWvIKi8Zr+lO5xNSMc2h1G
-         hqsAFYle09dWg9BReQ0eWVL3BfH57iF5lg0YCly7aKtE4k2S3tj1CWEXi4UeUNMkHjKr
-         qPXLcKEL1RWWdDsv5sGtCgd6ayXSBxVNtwTvFZbRFL0MmF6zyRQzyD0ceZnrDoe9fwTb
-         7SkhaYCN/b6XBHN/gnxvcC/OeubfleszNGzEzSST2/VrEV1M7xfQRpWSodKijp8Ji6it
-         21cQ==
-X-Gm-Message-State: AOAM533mQPMjxWxB4qhuYtdR5jnjJsYx88A+jqdOVH0ZwInnnQTG2opf
-        kx+qTnzYG3FfIQB/di1E1WNw8A==
-X-Google-Smtp-Source: ABdhPJxPZF76H+CGBRbgX6YLx5a+QYaPfBWBP90yRaHKZNaP/CmEcjqLdUZwFR2vF4e4e7f8ZSEw5w==
-X-Received: by 2002:a1c:acc4:0:b0:392:9dd4:fbcc with SMTP id v187-20020a1cacc4000000b003929dd4fbccmr14923623wme.78.1652090427648;
-        Mon, 09 May 2022 03:00:27 -0700 (PDT)
-Received: from [192.168.1.41] (176-182-171-101.abo.bbox.fr. [176.182.171.101])
-        by smtp.googlemail.com with ESMTPSA id f22-20020a1c6a16000000b003948f4e750fsm3663187wmc.23.2022.05.09.03.00.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 09 May 2022 03:00:26 -0700 (PDT)
-Message-ID: <4a44a8ea-7180-7163-126b-641c59024e7c@linaro.org>
-Date:   Mon, 9 May 2022 12:00:25 +0200
+        with ESMTP id S233957AbiEIKLi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 May 2022 06:11:38 -0400
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C83E418C5B4
+        for <devicetree@vger.kernel.org>; Mon,  9 May 2022 03:07:42 -0700 (PDT)
+Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=diego.localnet)
+        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <heiko@sntech.de>)
+        id 1no0GE-0005IK-KZ; Mon, 09 May 2022 12:05:02 +0200
+From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To:     Sascha Hauer <s.hauer@pengutronix.de>
+Cc:     dri-devel@lists.freedesktop.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Sandy Huang <hjc@rock-chips.com>,
+        Peter Geis <pgwipeout@gmail.com>
+Subject: Re: [PATCH v12 0/3] drm/rockchip: RK356x VOP2 support last fixups
+Date:   Mon, 09 May 2022 12:05:01 +0200
+Message-ID: <2101133.irdbgypaU6@diego>
+In-Reply-To: <20220509095559.GC4012@pengutronix.de>
+References: <20220509083738.1246866-1-s.hauer@pengutronix.de> <5819111.lOV4Wx5bFT@diego> <20220509095559.GC4012@pengutronix.de>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH] dt-bindings: thermal: rzg2l-thermal: Document RZ/G2UL
- bindings
-Content-Language: en-US
-To:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     "Rafael J. Wysocki" <rafael@kernel.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        linux-renesas-soc@vger.kernel.org
-References: <20220501081930.23743-1-biju.das.jz@bp.renesas.com>
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <20220501081930.23743-1-biju.das.jz@bp.renesas.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Transfer-Encoding: 8BIT
+Content-Type: text/plain; charset="iso-8859-1"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -83,20 +46,89 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/05/2022 10:19, Biju Das wrote:
-> Document RZ/G2UL TSU bindings. The TSU block on RZ/G2UL is identical to one
-> found on RZ/G2L SoC. No driver changes are required as generic compatible
-> string "renesas,rzg2l-tsu" will be used as a fallback.
+Am Montag, 9. Mai 2022, 11:55:59 CEST schrieb Sascha Hauer:
+> On Mon, May 09, 2022 at 10:44:17AM +0200, Heiko Stübner wrote:
+> > Hi Sascha,
+> > 
+> > Am Montag, 9. Mai 2022, 10:37:35 CEST schrieb Sascha Hauer:
+> > > This is not the full series, if you want that, look for v11.
+> > > 
+> > > This series merely has a last-minute change: The VOP2 driver used
+> > > platform_get_resource_byname() to get its registers, but the reg-names
+> > > property hasn't been documented in the binding. This series adds the
+> > > missing documentation and along the way renames the generic "regs"
+> > > name to "vop" and "gamma_lut" to "gamma-lut".
+> > 
+> > we need a fixup-series though. Both the original binding + vop2 driver
+> > already made it into drm-misc [0]. As this is a shared tree, this can't be
+> > changed anymore ;-) .
+> > 
+> > (Just ignore that the vop2-header moved to the driver-patch, I'll
+> > fix that up when applying to not cause conflicts)
 > 
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> ---
+> Ok, I just sent the series as a fixup series. After I've hit the send
+> button I am not quite sure if that's what you want, you probably want
+> the patches with proper patch description rather than just --fixup
+> patches :(
 
-Applied, thanks
+from the sound of it that was probably the wrong approach :-)
+I.e. drm-misc is a shared tree (with a plethora of people),
+so there is always only a way forward, so fixing things is always
+adding new things on top - like Dan's error handling as well as
+the spelling and coci patches I applied yesterday.
+
+So yes, we need proper patches on top of the drm-misc-next
+branch for the VOP2 + binding changes.
 
 
--- 
-<http://www.linaro.org/> Linaro.org â”‚ Open source software for ARM SoCs
+Heiko
 
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+
+> > 
+> > 
+> > Heiko
+> > 
+> > [0] https://cgit.freedesktop.org/drm/drm-misc/commit/?id=604be85547ce4d61b89292d2f9a78c721b778c16
+> >     https://cgit.freedesktop.org/drm/drm-misc/commit/?id=74015e2650bad641a02100cdf0ac23a96c1a2553
+> > 
+> > 
+> > > Andy Yan (1):
+> > >   drm: rockchip: Add VOP2 driver
+> > > 
+> > > Sascha Hauer (2):
+> > >   arm64: dts: rockchip: rk356x: Add VOP2 nodes
+> > >   dt-bindings: display: rockchip: Add binding for VOP2
+> > > 
+> > >  .../display/rockchip/rockchip-vop2.yaml       |  146 +
+> > >  arch/arm64/boot/dts/rockchip/rk3566.dtsi      |    4 +
+> > >  arch/arm64/boot/dts/rockchip/rk3568.dtsi      |    4 +
+> > >  arch/arm64/boot/dts/rockchip/rk356x.dtsi      |   51 +
+> > >  drivers/gpu/drm/rockchip/Kconfig              |    6 +
+> > >  drivers/gpu/drm/rockchip/Makefile             |    1 +
+> > >  drivers/gpu/drm/rockchip/rockchip_drm_drv.c   |    1 +
+> > >  drivers/gpu/drm/rockchip/rockchip_drm_drv.h   |    6 +-
+> > >  drivers/gpu/drm/rockchip/rockchip_drm_fb.c    |    2 +
+> > >  drivers/gpu/drm/rockchip/rockchip_drm_vop.h   |   15 +
+> > >  drivers/gpu/drm/rockchip/rockchip_drm_vop2.c  | 2706 +++++++++++++++++
+> > >  drivers/gpu/drm/rockchip/rockchip_drm_vop2.h  |  477 +++
+> > >  drivers/gpu/drm/rockchip/rockchip_vop2_reg.c  |  281 ++
+> > >  include/dt-bindings/soc/rockchip,vop2.h       |   14 +
+> > >  14 files changed, 3713 insertions(+), 1 deletion(-)
+> > >  create mode 100644 Documentation/devicetree/bindings/display/rockchip/rockchip-vop2.yaml
+> > >  create mode 100644 drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
+> > >  create mode 100644 drivers/gpu/drm/rockchip/rockchip_drm_vop2.h
+> > >  create mode 100644 drivers/gpu/drm/rockchip/rockchip_vop2_reg.c
+> > >  create mode 100644 include/dt-bindings/soc/rockchip,vop2.h
+> > > 
+> > > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> 
+> 
+
+
+
+
