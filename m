@@ -2,135 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C806C5203B6
-	for <lists+devicetree@lfdr.de>; Mon,  9 May 2022 19:45:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 66C0252036D
+	for <lists+devicetree@lfdr.de>; Mon,  9 May 2022 19:17:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239751AbiEIRmN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 May 2022 13:42:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36840 "EHLO
+        id S239597AbiEIRVm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 May 2022 13:21:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42214 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239747AbiEIRmL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 May 2022 13:42:11 -0400
-Received: from mail.pr-group.ru (mail.pr-group.ru [178.18.215.3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84D30218FF4;
-        Mon,  9 May 2022 10:38:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-        d=metrotek.ru; s=mail;
-        h=from:subject:date:message-id:to:cc:mime-version:content-type:in-reply-to:
-         references;
-        bh=dyMkGRhEXK18co8K6ojKMRdLSlsCCUiGZiN2gvPJQFQ=;
-        b=KAU9UP5Ok7w0r/jxLmL0P/b5746oBxM41MJIfVHMveebQXD7Xe3kxaNRxXpWOoDyuKVUcpeGp5BRP
-         4ndjNXuX0+5Rl5ZNCNr4E0VpLBsM90O6dTGv/5HVxlbIBatYja6tDnp7ZVEma8hnmF1lms2TpqaW1n
-         YSZ2z+PjJojQVzeUvJVu18d711oesJYuGQHtGgvJI2MdV6YDSqL9jaRES2G/x57FbVOIgKnmp5rlvG
-         n2/r1+xKaXj75EKqmo/SuJhR/y4dGFia/E+J2f9GnMvy+1C8G2lyiNXzBKbGH2tX+Awo6NOXHOTTmF
-         ep61Aw76gFOrdauKLjKBjbNZzR7L59Q==
-X-Kerio-Anti-Spam:  Build: [Engines: 2.16.3.1422, Stamp: 3], Multi: [Enabled, t: (0.000013,0.008779)], BW: [Enabled, t: (0.000014,0.000001)], RTDA: [Enabled, t: (0.105748), Hit: No, Details: v2.39.0; Id: 15.52k9mu.1g2kuc2jg.10jil; mclb], total: 0(700)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
-X-Spam-Level: 
-X-Footer: bWV0cm90ZWsucnU=
-Received: from x260 ([178.70.36.174])
-        (authenticated user i.bornyakov@metrotek.ru)
-        by mail.pr-group.ru with ESMTPSA
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256 bits));
-        Mon, 9 May 2022 20:37:46 +0300
-Date:   Mon, 9 May 2022 20:16:21 +0300
-From:   Ivan Bornyakov <i.bornyakov@metrotek.ru>
-To:     Conor.Dooley@microchip.com
-Cc:     mdf@kernel.org, hao.wu@intel.com, yilun.xu@intel.com,
-        trix@redhat.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-fpga@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        system@metrotek.ru
-Subject: Re: [PATCH v11 2/3] fpga: microchip-spi: add Microchip MPF FPGA
- manager
-Message-ID: <20220509171621.zk4owxwlngxjodgz@x260>
-References: <20220507074304.11144-1-i.bornyakov@metrotek.ru>
- <20220507074304.11144-3-i.bornyakov@metrotek.ru>
- <bd5cb37b-ee56-f6d5-2d98-c08566b60728@microchip.com>
+        with ESMTP id S239589AbiEIRVk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 May 2022 13:21:40 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6729224B5BD;
+        Mon,  9 May 2022 10:17:46 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id B81FE6155B;
+        Mon,  9 May 2022 17:17:45 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4641CC385B2;
+        Mon,  9 May 2022 17:17:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1652116665;
+        bh=/vK4hUOw5XVzRCz9/q9BHaDHH7etX4k7UQOvk8DgWS8=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=gCsrO0C+bYZ/fHs1oJCf4AMGfTrJSzwOMuhCfjt/XmGRTrgzPIR+B6p9NmeMLZLCD
+         4LudReQE+eKCtnC9S7sQ3LZ3xJwwh9xwHEUCqWGLixZsWJR/WwX9nfkEjBGwSQ4Cx4
+         Wwo3bqP0R3R45UaLPOeLY4um28DSZm8LC7AA2kU3pPnxayOW3zvdRnXQGWLW5Rjrm2
+         PwLjzvdU67ApymHm6qL8R0fes/Bhkw73qWkujPLE0gIVrVfxA6XYzo/ZfE02zriWpa
+         vMKnO8zadPBp46V5WSXYRGii3ty1lYnyuehqGWxEcWlbY/YAZ1tRRR4RxaSYWHkVUY
+         IcChFz6cpW/mw==
+From:   Mark Brown <broonie@kernel.org>
+To:     nfraprado@collabora.com
+Cc:     matthias.bgg@gmail.com, devicetree@vger.kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, jiaxin.yu@mediatek.com,
+        angelogioacchino.delregno@collabora.com,
+        linux-kernel@vger.kernel.org, shane.chien@mediatek.com,
+        linux-mediatek@lists.infradead.org, lgirdwood@gmail.com,
+        linux-arm-kernel@lists.infradead.org, alsa-devel@alsa-project.org,
+        robh+dt@kernel.org, kernel@collabora.com, tzungbi@google.com
+In-Reply-To: <20220429203039.2207848-1-nfraprado@collabora.com>
+References: <20220429203039.2207848-1-nfraprado@collabora.com>
+Subject: Re: [PATCH 0/3] Add missing dt-binding properties for audio components on mt8192-asurada
+Message-Id: <165211666198.1065748.1151009730882312510.b4-ty@kernel.org>
+Date:   Mon, 09 May 2022 18:17:41 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <bd5cb37b-ee56-f6d5-2d98-c08566b60728@microchip.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 09, 2022 at 11:41:18AM +0000, Conor.Dooley@microchip.com wrote:
-> Hey Ivan, one comment below.
-> Thanks,
-> Conor.
+On Fri, 29 Apr 2022 16:30:36 -0400, Nícolas F. R. A. Prado wrote:
+> These patches add properties that were missing on the dt-bindings of the
+> audio components used by mt8192-asurada. Namely the i2s-share
+> properties for the sound platform and the #sound-dai-cells on the
+> rt1015p and rt5682 codecs when they're referenced by the machine sound
+> node.
 > 
-> On 07/05/2022 08:43, Ivan Bornyakov wrote:
-> > ... snip ...
-> > +static int mpf_read_status(struct spi_device *spi)
-> > +{
-> > +       u8 status, status_command = MPF_SPI_READ_STATUS;
-> > +       struct spi_transfer xfer = {
-> > +               .tx_buf = &status_command,
-> > +               .rx_buf = &status,
-> > +               .len = 1,
-> > +       };
-> > +       int ret = spi_sync_transfer(spi, &xfer, 1);
-> > +
-> > +       if ((status & MPF_STATUS_SPI_VIOLATION) ||
-> > +           (status & MPF_STATUS_SPI_ERROR))
-> > +               ret = -EIO;
-> > +
-> > +       return ret ? : status;
-> > +}
-> > +
-> > ... snip ...
-> > +
-> > +static int poll_status_not_busy(struct spi_device *spi, u8 mask)
-> > +{
-> > +       int status, timeout = MPF_STATUS_POLL_TIMEOUT;
-> > +
-> > +       while (timeout--) {
-> > +               status = mpf_read_status(spi);
-> > +               if (status < 0 ||
-> > +                   (!(status & MPF_STATUS_BUSY) && (!mask || (status & mask))))
-> > +                       return status;
-> > +
-> > +               usleep_range(1000, 2000);
-> > +       }
-> > +
-> > +       return -EBUSY;
-> > +}
 > 
-> Is there a reason you changed this from the snippet you sent me
-> in the responses to version 8:
-> static int poll_status_not_busy(struct spi_device *spi, u8 mask)
-> {
-> 	u8 status, status_command = MPF_SPI_READ_STATUS;
-> 	int ret, timeout = MPF_STATUS_POLL_TIMEOUT;
-> 	struct spi_transfer xfer = {
-> 		.tx_buf = &status_command,
-> 		.rx_buf = &status,
-> 		.len = 1,
-> 	};
-> 
-> 	while (timeout--) {
-> 		ret = spi_sync_transfer(spi, &xfer, 1);
-> 		if (ret < 0)
-> 			return ret;
-> 
-> 		if (!(status & MPF_STATUS_BUSY) && (!mask || (status & mask)))
-> 			return status;
-> 
-> 		usleep_range(1000, 2000);
-> 	}
-> 
-> 	return -EBUSY;
-> }
-> 
-> With the current version, I hit the "Failed to write bitstream
-> frame" check in mpf_ops_write at random points in the transfer.
-> Replacing poll_status_not_busy with the above allows it to run
-> to completion.
+> [...]
 
-In my eyes they are equivalent, aren't they?
+Applied to
 
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+
+Thanks!
+
+[1/3] ASoC: dt-bindings: mediatek: mt8192: Add i2s-share properties
+      commit: e056cf4341ae3f856f1e38da02b27cb04de4c69b
+[2/3] ASoC: dt-bindings: rt1015p: Add #sound-dai-cells
+      commit: 2f45536587e53a7a22024e12fbe97ef13598e623
+[3/3] ASoC: dt-bindings: rt5682: Add #sound-dai-cells
+      commit: 0adccaf1eac91a2c2ee6a54a6de042affe9860f4
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
