@@ -2,139 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7982951F8B5
-	for <lists+devicetree@lfdr.de>; Mon,  9 May 2022 11:59:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 70A7B51F87A
+	for <lists+devicetree@lfdr.de>; Mon,  9 May 2022 11:59:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235998AbiEIJoj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 May 2022 05:44:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39746 "EHLO
+        id S235907AbiEIJoh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 May 2022 05:44:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42626 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237246AbiEIJ2r (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 May 2022 05:28:47 -0400
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 119FF209B5D;
-        Mon,  9 May 2022 02:24:54 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id ba17so15535269edb.5;
-        Mon, 09 May 2022 02:24:53 -0700 (PDT)
+        with ESMTP id S233391AbiEIJ3n (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 May 2022 05:29:43 -0400
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 791CEAE279
+        for <devicetree@vger.kernel.org>; Mon,  9 May 2022 02:25:48 -0700 (PDT)
+Received: by mail-wr1-x434.google.com with SMTP id v12so18498082wrv.10
+        for <devicetree@vger.kernel.org>; Mon, 09 May 2022 02:25:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=LFcgVVJ7bK726HSSPtE+r4B2aXmQmGmr8tjtETzF3YE=;
-        b=SCk+kS+aXSHUKOVJ2iBIKunz+vcKeLZXVRZZHJfW4513NoPDMHM/BlO9OtZ7pastdC
-         W/17ymo2ZabbKF5AqescJlLZ70aU1Y97l5qpVLrA18jRc0OHqWQv8jc26EcjZrcOWJgx
-         dHj0tCBpALYRpyVM+ddvFgwFOppJimHwgMIcd7eh5EABQOJIUoZWVsSh9zUzOph1salq
-         27jvi086X5pbvzJgzxj/oTtHN9/bkaCl2rc7R84n0hivnm28KWv6VgNhxEqHfcwFy1Km
-         FZvm+nMTTAeT0s1Qlvuzm7IvUgUETmh90LwK2vTHxI9i5QZ6N26z1U30HAg3ur85Fc7A
-         avug==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=H+DsutZj1L+ifdMTMDgXzW8ycmvYXow7irv3R3N0G0A=;
+        b=EMVg4qQf/QsULTjsrV0B3/wwtsJ9Vf60yiGAFh/5rTydM1bnxbv6hPXNIE/GuCENIN
+         q0vbAv2ZGCcs1HtKiJuox1M9qD/l2M28yzb0yjVd+CMkkSkHA977QCHazwlls3m0Z184
+         ZiH8eNySBC3/+JNrzj3pDmEg5NvtkNnTosNu/AK0lXNpQ+9kIRweJJBynlJs53Vn1nWQ
+         SEuMUaaaIqkiU0gHNLr8IcQqqgNWo/mUSdzeCcYr1e7zN4CS9qay/S1vbyVD5Io8g2W7
+         U7CGKtOoipiwPY3OiwTrbj0cOJGXPp/Ef5LbBjLXC9D3nxCur4gwoIts/3CilELEOV+C
+         CmpA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=LFcgVVJ7bK726HSSPtE+r4B2aXmQmGmr8tjtETzF3YE=;
-        b=IDm4iiYbLlhGGsSLZxelMdi/705R5RMDyqR7X+ypHUCuKCALZPHFimb/WuJ6knErEs
-         rrroWqPiXD1NRSqU43obj2ONhUgSw1zp5BSODz9uQbg/pdraTvjC5LuHakbhY3m8lqj9
-         0G+UgdugKH7fa7nHvnlTo4X2UkD+uZGnRBCMnopVxiU5ZtbwdUvX76A3UY9WwQJTU676
-         o0f93gazFNX5gyQJuxUl1x86uL+2tRaWOLxSXSp662+w3IX8014i2qd30LSYOqn46QoE
-         icTEDuID6FrZi2LT19K0TlqQUbrV4Um3kuhL2x1hH7ZaBoreDAQ97WWOtIefOmp0L8Uy
-         GAZQ==
-X-Gm-Message-State: AOAM530+P5+0SO2MMJbtvo16q2fOI9YJ8DOfMNYOQ09HQq83qmYJDYHU
-        Bo4IP1DmqCl+l5/NpPtrgIs=
-X-Google-Smtp-Source: ABdhPJx86XxIR0CMtq+ONANDVnTdQClivXE2E+RefrUi2Gb8ihwn5DKx9ngWTXM2K4DIENT7/NS20A==
-X-Received: by 2002:a05:6402:4384:b0:427:b5c0:4bf with SMTP id o4-20020a056402438400b00427b5c004bfmr16757704edc.127.1652088292537;
-        Mon, 09 May 2022 02:24:52 -0700 (PDT)
-Received: from archbook.localnet (84-72-105-84.dclient.hispeed.ch. [84.72.105.84])
-        by smtp.gmail.com with ESMTPSA id gz14-20020a170907a04e00b006f3ef214e62sm4869938ejc.200.2022.05.09.02.24.51
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=H+DsutZj1L+ifdMTMDgXzW8ycmvYXow7irv3R3N0G0A=;
+        b=1jkKiJQzWPDuxVAecLZeRQVU1cQNZBoJBIuOaRlm+QRyaIlUEl356nnLgcAuS+slcb
+         gFfXdPgIn8ujLC8L0ig+kyjfNe4rV0U3iH+nPDG+cTemBOwhlwSFjmCBPAcqJ6C/Vh2V
+         5GtiEGKzU7iVs2NoMXnw8v5EPLrA0x07NZk3irH+YnDkd1KsfsdijuU6aoWWFwEZBqb9
+         YpNJew9kyAmw5ZyNSAUVOgo++dz8eBcyfab89dWCij99XCDeQ8slXdEpgt8rP+aWJS3+
+         0ctjxiMgEUeAWTCyUZImCvDyCTJtuzJyTZ4ZAKdvPADHJfJoJrsitGymd1JFi/SBUt2e
+         RQGw==
+X-Gm-Message-State: AOAM532nmm14L3hZo5+jrB6TKly/vqIy8SXX/D/DmWBzAWpGlaDyVdEa
+        YmuEtNrztKNtJkT3DPzt4sJbHg==
+X-Google-Smtp-Source: ABdhPJwRIgJEwabhbXHOhG62yNCJpaXOkH5nLrt212aoSggBdFxwKKAoFPKPI2PUu9Vk/jJ1E9iVmQ==
+X-Received: by 2002:adf:e104:0:b0:206:109a:c90f with SMTP id t4-20020adfe104000000b00206109ac90fmr12894538wrz.259.1652088346627;
+        Mon, 09 May 2022 02:25:46 -0700 (PDT)
+Received: from google.com (cpc155339-bagu17-2-0-cust87.1-3.cable.virginm.net. [86.27.177.88])
+        by smtp.gmail.com with ESMTPSA id o20-20020a05600c339400b003942a244f33sm15854582wmp.12.2022.05.09.02.25.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 May 2022 02:24:52 -0700 (PDT)
-From:   Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
-To:     Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Mon, 09 May 2022 02:25:46 -0700 (PDT)
+Date:   Mon, 9 May 2022 10:25:44 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     David Heidelberg <david@ixit.cz>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Ezequiel Garcia <ezequiel@collabora.com>,
-        linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Stephen Boyd <sboyd@kernel.org>, ~okias/devicetree@lists.sr.ht,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/3] dt-bindings: media: rockchip-vpu: Add RK3568 VEPU compatible
-Date:   Mon, 09 May 2022 11:24:50 +0200
-Message-ID: <3594222.Ivq9XVSPaC@archbook>
-In-Reply-To: <422bf3bc-7787-97dd-6ab4-7570e5ce2ed8@linaro.org>
-References: <20220508202544.501981-1-frattaroli.nicolas@gmail.com> <20220508202544.501981-2-frattaroli.nicolas@gmail.com> <422bf3bc-7787-97dd-6ab4-7570e5ce2ed8@linaro.org>
+Subject: Re: [PATCH v3] dt-bindings: spmi: convert QCOM PMIC SPMI bindings to
+ yaml
+Message-ID: <YnjeGIGW6Pe1R/gY@google.com>
+References: <20211227170151.73116-1-david@ixit.cz>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20211227170151.73116-1-david@ixit.cz>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Montag, 9. Mai 2022 09:25:23 CEST Krzysztof Kozlowski wrote:
-> On 08/05/2022 22:25, Nicolas Frattaroli wrote:
-> > The RK3568 and RK3566 have a Hantro VPU node solely dedicated to
-> > encoding. This patch adds a compatible for it, and also allows
-> > the bindings to only come with a vepu interrupt.
-> > 
-> > Signed-off-by: Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
-> > ---
-> >  Documentation/devicetree/bindings/media/rockchip-vpu.yaml | 2 ++
-> >  1 file changed, 2 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/media/rockchip-vpu.yaml b/Documentation/devicetree/bindings/media/rockchip-vpu.yaml
-> > index bacb60a34989..4045f107ca4e 100644
-> > --- a/Documentation/devicetree/bindings/media/rockchip-vpu.yaml
-> > +++ b/Documentation/devicetree/bindings/media/rockchip-vpu.yaml
-> > @@ -22,6 +22,7 @@ properties:
-> >            - rockchip,rk3288-vpu
-> >            - rockchip,rk3328-vpu
-> >            - rockchip,rk3399-vpu
-> > +          - rockchip,rk3568-vepu
-> >            - rockchip,px30-vpu
-> >        - items:
-> >            - const: rockchip,rk3188-vpu
-> > @@ -40,6 +41,7 @@ properties:
-> >    interrupt-names:
-> >      oneOf:
-> >        - const: vdpu
-> > +      - const: vepu
+On Mon, 27 Dec 2021, David Heidelberg wrote:
+
+> Convert Qualcomm PMIC SPMI binding to yaml format.
 > 
-> This should be enum (for both lines above) and you should add
-> allOf:if:then with a constraints which variant can have which interrupts.
+> Signed-off-by: David Heidelberg <david@ixit.cz>
 > 
+> ---
+> v2:
+>  - add #address and #size-cells
+>  - add reg and remove spmi include from example
+> v3:
+>  - fix doc reference error (make refcheckdocs)
 > 
-> Best regards,
-> Krzysztof
-> 
+> Signed-off-by: David Heidelberg <david@ixit.cz>
+> ---
+>  .../bindings/mfd/qcom,spmi-pmic.txt           |   2 +-
+>  .../bindings/spmi/qcom,spmi-pmic-arb.txt      |  65 ----------
+>  .../bindings/spmi/qcom,spmi-pmic-arb.yaml     | 120 ++++++++++++++++++
+>  3 files changed, 121 insertions(+), 66 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/spmi/qcom,spmi-pmic-arb.txt
+>  create mode 100644 Documentation/devicetree/bindings/spmi/qcom,spmi-pmic-arb.yaml
 
-So something like this?
+Applied, thanks.
 
-  interrupt-names:
-    oneOf:
-      - enum:
-         - vdpu
-         - vepu
-      - items:
-          - const: vepu
-          - const: vdpu
-
-What's the difference between a list of consts and an enum here?
-I'm not very familiar with dt-schema, my apologies.
-
-Also, since I don't know which of the other variants can have
-the encoding interrupt and this wasn't brought up until now, I think
-my solution will be to have a check for -vepu in the compatible and in
-that case require that only the vepu interrupt is present, if that's
-alright with you.
-
-Regards,
-Nicolas Frattaroli
-
-
+-- 
+Lee Jones [李琼斯]
+Principal Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
