@@ -2,75 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C2D9552054E
-	for <lists+devicetree@lfdr.de>; Mon,  9 May 2022 21:26:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AE00552057F
+	for <lists+devicetree@lfdr.de>; Mon,  9 May 2022 21:52:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240586AbiEITaY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 May 2022 15:30:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52814 "EHLO
+        id S240676AbiEITxU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 May 2022 15:53:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51618 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240567AbiEITaY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 May 2022 15:30:24 -0400
-Received: from mail-yw1-x1129.google.com (mail-yw1-x1129.google.com [IPv6:2607:f8b0:4864:20::1129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B4B0CC4;
-        Mon,  9 May 2022 12:26:29 -0700 (PDT)
-Received: by mail-yw1-x1129.google.com with SMTP id 00721157ae682-2f7b815ac06so156333137b3.3;
-        Mon, 09 May 2022 12:26:29 -0700 (PDT)
+        with ESMTP id S240672AbiEITxS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 May 2022 15:53:18 -0400
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57AD03FDBD
+        for <devicetree@vger.kernel.org>; Mon,  9 May 2022 12:49:20 -0700 (PDT)
+Received: by mail-lf1-x12e.google.com with SMTP id j4so25650851lfh.8
+        for <devicetree@vger.kernel.org>; Mon, 09 May 2022 12:49:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=cwT8TRwwzgeB1cCXJc6QViy1iG1+RNFet3Yocv4TFEE=;
-        b=F3/Td3pGGIimKtAVPNXBwC109dTcvYtqE1fTsRdyd+2qp+6+ecgYzaDmb+avXzJgSl
-         CRg994ex340NoIq4vBGKOtrKl4WJ2U5BbS0dwx5Mk2VcqQE9iizZ7oeNT/x48oTlwJbT
-         4mwwoWr1bgdoHqSsUAav6EbjdLm/pMOhGarUbdmxb6tHSzETMXmR29JpVu2oRrwNH2ou
-         UuutntjcfBEji2KxMnk6eW8Olx1yfQFPvHr13zx8YOucMnG3mjgC5sP67f8PgtpkF7op
-         vnPMUOgoY3+XvBA7XinwoHuHTJq9K4upFI/qYVvLjw2F6VTJnrsDPXIJLYhy9kBHMV9l
-         YruA==
+        h=mime-version:subject:from:in-reply-to:date:cc
+         :content-transfer-encoding:message-id:references:to;
+        bh=k5+eavqJv4exrkKNYLwOmHOp14d0Q1oE4bipYRwlLow=;
+        b=Rak9MbjTdNbtc5DjqX/X5g6leDv8/HvSjfFURJvhKEjd1WtmRgzJlV9AIyxVkRNIZa
+         Sdc1GFTT9ht1m21wZ0DNAHY/wR8GY5E7R1JzbQUcKL/ozKH7uVt9BxvCvVMasfW8asdr
+         G1mjDIfky2Ll10LtGKmdT7iF7W5EiSJdPNtrQg721ZxhsKxj7w8lf3q1dvBUqTwrPXIA
+         BkD3vflaN139riMJrp6UFJ74XIBTjBq20xPeEJEh+otM0WzxrZTRSTh7sYTFGx0L/E1w
+         yqlmj+XSSB/dLI0Hr5P9luIM27hnOKErgyXVKriiQlSsAX9DsgfjtUk/ysVQ2hEu2foD
+         C1kw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=cwT8TRwwzgeB1cCXJc6QViy1iG1+RNFet3Yocv4TFEE=;
-        b=BUMWr7IIm2cQ7CXgkWSAlYmdJI4SIbPyye4lxK5kDiQmpFVJjygOwXMeQgrq63vf2g
-         BCNY/+Y2Gv0WVdWAy4EqG6iMUjfLawPx+YkZjl0VEv36/Ec3lfs3KuVkEYbHEZJtOcaH
-         ckcipHyreaA64Mt6sC1cmR9FUa2qoJZZQmX6kqYJu2ldcoOpoYMJPw+ugjJKls6QfUT3
-         vMkjP6xsGfZmTj8fzS2zViUb8iVDAIKHKzaynzFhgCjuXXePtp7xTekb24lWzjCS2mbu
-         cKpkPImzyjYQdaAQPFQOdT1lxwg0wPxMV/oRAeSPhyNLBlXMim0E8BJKa9cAJM+ToJgC
-         YzRw==
-X-Gm-Message-State: AOAM531PYjNcJy/McwIv8KgQz/OlssmhakW3qMucgaWIKGcJHEsMoKzH
-        A4faW/fAsHgiw4XHn3ClfoAdwDngawtoDqR/yeU=
-X-Google-Smtp-Source: ABdhPJwxE3KV0SiZFumxrvBU0FNmwjoLKE6kPa3NaQiLUdRZLafHYGC7kaJ7AhPuZ5xb9a/k7NPmgkmkqnP7Gw2Ikhs=
-X-Received: by 2002:a0d:dd16:0:b0:2f4:dc1e:e0d8 with SMTP id
- g22-20020a0ddd16000000b002f4dc1ee0d8mr16180775ywe.413.1652124388856; Mon, 09
- May 2022 12:26:28 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220509050953.11005-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20220509050953.11005-6-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <OS0PR01MB59228AE4AF4EE53C382E8BA986C69@OS0PR01MB5922.jpnprd01.prod.outlook.com>
- <CA+V-a8syBvN7czRA7tq0TJSmUcBzmgjLrFmizHD6Ycp5kLXJWw@mail.gmail.com> <OS0PR01MB5922AFCAFF0F2BAA57E7A88486C69@OS0PR01MB5922.jpnprd01.prod.outlook.com>
-In-Reply-To: <OS0PR01MB5922AFCAFF0F2BAA57E7A88486C69@OS0PR01MB5922.jpnprd01.prod.outlook.com>
-From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date:   Mon, 9 May 2022 20:26:02 +0100
-Message-ID: <CA+V-a8sHOsXkCA59S-HNruSNRwivSG7rcKbPkmQgBtMYgF_Wzw@mail.gmail.com>
-Subject: Re: [PATCH v2 5/5] pinctrl: renesas: pinctrl-rzg2l: Add IRQ domain to
- handle GPIO interrupt
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        h=x-gm-message-state:mime-version:subject:from:in-reply-to:date:cc
+         :content-transfer-encoding:message-id:references:to;
+        bh=k5+eavqJv4exrkKNYLwOmHOp14d0Q1oE4bipYRwlLow=;
+        b=0t3aOMmDdwYBvmbvOc90UwGrdy712kHqEV9fJEnraoPeDXpLwjEJ9xaeCRRRyBA26B
+         10BEv4zsqEnnkGHceE7RQ3JDfJ4Kxkzs9L5SrMZoJskmytvxRKe+CioQ7H+T8Dto2w2W
+         csFgx5EHE4Dfk2n8KNp0kZBmUDhQcprclW9GVSyTmAgukMsMdeO4jrKZhLZ7iWCiJlr0
+         uHZxjUMPCxgTbs0b96dx+LE9sCGGwdmjX9paeiZezvHsnEWIRFBf54/Bsjx4cv6bjGnz
+         d7mfRjANGrMUh9btwuW3o6DC1MA26hcrkynWQjRlotLdBXetCmTDsQkTi9jxSw5gthS1
+         IjWg==
+X-Gm-Message-State: AOAM533KtD0FDnvnJdO/zLU1txRrw3ONGcUzc0gWe2LaTxATkqFkuIRn
+        gSXLlzlm7UnoISDs82w0EkA=
+X-Google-Smtp-Source: ABdhPJxftZHd/ebk/ERPxawYj51fcaIMUCfEX9TLUnnV8KowQvlvwmIbYHmfMCtsarE56f0njUmUaQ==
+X-Received: by 2002:a19:ca50:0:b0:471:f556:92b with SMTP id h16-20020a19ca50000000b00471f556092bmr13630335lfj.587.1652125758517;
+        Mon, 09 May 2022 12:49:18 -0700 (PDT)
+Received: from smtpclient.apple (31-178-191-245.dynamic.chello.pl. [31.178.191.245])
+        by smtp.gmail.com with ESMTPSA id j15-20020a2ea90f000000b0024f3d1daea0sm1902744ljq.40.2022.05.09.12.49.17
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 09 May 2022 12:49:18 -0700 (PDT)
+Content-Type: text/plain;
+        charset=us-ascii
+Mime-Version: 1.0 (Mac OS X Mail 14.0 \(3654.120.0.1.13\))
+Subject: Re: [PATCH v11 20/24] arm64: dts: rockchip: enable vop2 and hdmi tx
+ on rock-3a
+From:   Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
+In-Reply-To: <CAMdYzYrz7DRj7F9hGaAPaTSiZkQ4eMNujAp8uPuE9geL6kAz4g@mail.gmail.com>
+Date:   Mon, 9 May 2022 21:49:16 +0200
+Cc:     Sascha Hauer <s.hauer@pengutronix.de>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        dri-devel@lists.freedesktop.org,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
         "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Sandy Huang <hjc@rock-chips.com>,
+        =?utf-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
+        kernel test robot <lkp@intel.com>
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <812AC0DB-A6D0-4DA3-BCDC-7743E8F61821@gmail.com>
+References: <20220422072841.2206452-1-s.hauer@pengutronix.de>
+ <20220422072841.2206452-21-s.hauer@pengutronix.de>
+ <A86359EC-5291-41BD-966E-EB7890644731@gmail.com>
+ <CAMdYzYoFG3wCQaWXQNJd7mE20OMCj=ZeuewwZfaCJyoCBT-kQQ@mail.gmail.com>
+ <0E6FE020-C95E-47CF-A9D6-AC3F2B2D334F@gmail.com>
+ <CAMdYzYobfJ7WGN+UQ7t5e1Zy9knjfHLse8KzrGrHPfeMkkG0gw@mail.gmail.com>
+ <9F2D8CFF-1EAE-4586-9EE9-82A9D67840BB@gmail.com>
+ <CAMdYzYrz7DRj7F9hGaAPaTSiZkQ4eMNujAp8uPuE9geL6kAz4g@mail.gmail.com>
+To:     Peter Geis <pgwipeout@gmail.com>
+X-Mailer: Apple Mail (2.3654.120.0.1.13)
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
@@ -81,149 +89,153 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Biju,
+>=20
+> If you want to confirm the hardware is configured correctly you can
+> remove the cec pin from the hdmi node and set up a cec-gpio node.
+> =
+https://elixir.bootlin.com/linux/v5.18-rc5/source/Documentation/devicetree=
+/bindings/media/cec-gpio.txt
+>=20
+> For some reason the board developers decided to make this selectable,
+> check the location of R90652 and R90653.
+>=20
 
-On Mon, May 9, 2022 at 9:01 AM Biju Das <biju.das.jz@bp.renesas.com> wrote:
->
-> Hi Prabhakar,
->
-> > Subject: Re: [PATCH v2 5/5] pinctrl: renesas: pinctrl-rzg2l: Add IRQ domain
-> > to handle GPIO interrupt
-> >
-> > Hi Biju,
-> >
-> > Thank you for the review.
-> >
-> > On Mon, May 9, 2022 at 7:49 AM Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> > >
-> > > Hi Prabhakar,
-> > >
-> > > Thanks for the patch.
-> > >
-> > > > Subject: [PATCH v2 5/5] pinctrl: renesas: pinctrl-rzg2l: Add IRQ
-> > > > domain to handle GPIO interrupt
-> > > >
-> > > > Add IRQ domian to RZ/G2L pinctrl driver to handle GPIO interrupt.
-> > > >
-> > > > GPIO0-GPIO122 pins can be used as IRQ lines but only 32 pins can be
-> > > > used as IRQ lines at given time. Selection of pins as IRQ lines is
-> > > > handled by IA55 (which is the IRQC block) which sits in between the
-> > GPIO and GIC.
-> > > >
-> > > > Signed-off-by: Lad Prabhakar
-> > > > <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > > > ---
-> > > >  drivers/pinctrl/renesas/pinctrl-rzg2l.c | 205
-> > > > ++++++++++++++++++++++++
-> > > >  1 file changed, 205 insertions(+)
-> > > >
-> > > > diff --git a/drivers/pinctrl/renesas/pinctrl-rzg2l.c
-> > > > b/drivers/pinctrl/renesas/pinctrl-rzg2l.c
-> > > > index a48cac55152c..275dfec74329 100644
-> > > > --- a/drivers/pinctrl/renesas/pinctrl-rzg2l.c
-> > > > +++ b/drivers/pinctrl/renesas/pinctrl-rzg2l.c
-> > > > @@ -9,8 +9,10 @@
-> > > >  #include <linux/clk.h>
-> > > >  #include <linux/gpio/driver.h>
-> > > >  #include <linux/io.h>
-> > > > +#include <linux/interrupt.h>
-> > > >  #include <linux/module.h>
-> > > >  #include <linux/of_device.h>
-> > > > +#include <linux/of_irq.h>
-> > > >  #include <linux/pinctrl/pinconf-generic.h>  #include
-> > > > <linux/pinctrl/pinconf.h>  #include <linux/pinctrl/pinctrl.h> @@
-> > > > -89,6
-> > > > +91,7 @@
-> > > >  #define PIN(n)                       (0x0800 + 0x10 + (n))
-> > > >  #define IOLH(n)                      (0x1000 + (n) * 8)
-> > > >  #define IEN(n)                       (0x1800 + (n) * 8)
-> > > > +#define ISEL(n)                      (0x2c80 + (n) * 8)
-> > > >  #define PWPR                 (0x3014)
-> > > >  #define SD_CH(n)             (0x3000 + (n) * 4)
-> > > >  #define QSPI                 (0x3008)
-> > > > @@ -112,6 +115,10 @@
-> > > >  #define RZG2L_PIN_ID_TO_PORT_OFFSET(id)      (RZG2L_PIN_ID_TO_PORT(id)
-> > +
-> > > > 0x10)
-> > > >  #define RZG2L_PIN_ID_TO_PIN(id)              ((id) %
-> > RZG2L_PINS_PER_PORT)
-> > > >
-> > > > +#define RZG2L_TINT_MAX_INTERRUPT     32
-> > > > +#define RZG2L_TINT_IRQ_START_INDEX   9
-> > > > +#define RZG2L_PACK_HWIRQ(t, i)               (((t) << 16) | (i))
-> > > > +
-> > > >  struct rzg2l_dedicated_configs {
-> > > >       const char *name;
-> > > >       u32 config;
-> > > > @@ -137,6 +144,9 @@ struct rzg2l_pinctrl {
-> > > >
-> > > >       struct gpio_chip                gpio_chip;
-> > > >       struct pinctrl_gpio_range       gpio_range;
-> > > > +     DECLARE_BITMAP(tint_slot, RZG2L_TINT_MAX_INTERRUPT);
-> > > > +     spinlock_t                      bitmap_lock;
-> > > > +     unsigned int                    hwirq[RZG2L_TINT_MAX_INTERRUPT];
-> > > >
-> > > >       spinlock_t                      lock;
-> > > >  };
-> > > > @@ -883,6 +893,8 @@ static int rzg2l_gpio_get(struct gpio_chip
-> > > > *chip, unsigned int offset)
-> > > >
-> > > >  static void rzg2l_gpio_free(struct gpio_chip *chip, unsigned int
-> > > > offset) {
-> > > > +     unsigned int virq;
-> > > > +
-> > > >       pinctrl_gpio_free(chip->base + offset);
-> > > >
-> > > >       /*
-> > > > @@ -890,6 +902,10 @@ static void rzg2l_gpio_free(struct gpio_chip
-> > > > *chip, unsigned int offset)
-> > > >        * drive the GPIO pin as an output.
-> > > >        */
-> > > >       rzg2l_gpio_direction_input(chip, offset);
-> > > > +
-> > > > +     virq = irq_find_mapping(chip->irq.domain, offset);
-> > > > +     if (virq)
-> > > > +             irq_dispose_mapping(virq);
-> > > >  }
-> > > >
-> > > >  static const char * const rzg2l_gpio_names[] = { @@ -1104,14
-> > > > +1120,193 @@ static struct {
-> > > >       }
-> > > >  };
-> > > >
-> > > > +static int rzg2l_gpio_get_gpioint(unsigned int virq) {
-> > > > +     unsigned int gpioint = 0;
-> > > > +     unsigned int i = 0;
-> > > > +     u32 port, bit;
-> > > > +
-> > > > +     port = virq / 8;
-> > > > +     bit = virq % 8;
-> > > > +
-> > > > +     if (port >= ARRAY_SIZE(rzg2l_gpio_configs))
-> > > > +             return -EINVAL;
-> > > > +
-> > > > +     for (i = 0; i < port; i++)
-> > > > +             gpioint +=
-> > > > + RZG2L_GPIO_PORT_GET_PINCNT(rzg2l_gpio_configs[i]);
-> > > > +
-> > > > +     if (bit >= RZG2L_GPIO_PORT_GET_PINCNT(rzg2l_gpio_configs[i]))
-> > > > +             return -EINVAL;
-> > >
-> > > May be combine this statement to above with
-> > >
-> > > || (bit >= RZG2L_GPIO_PORT_GET_PINCNT(rzg2l_gpio_configs[port]))
-> > >                 return -EINVAL;
-> > >
-> > The reason I have kept it outside the loop is that I'll have to check it
-> > only once at the end of the loop instead of repeating the check every time
-> > in the loop.
->
-> I meant above for loop, so that validation happens before the for loop??
->
-> if (port >= ARRAY_SIZE(rzg2l_gpio_configs)) || (bit >= RZG2L_GPIO_PORT_GET_PINCNT(rzg2l_gpio_configs[port]))
->         return -EINVAL;
->
-Got that, will update in v3.
+Peter,
 
-Cheers,
-Prabhakar
+my board is v1.31 and is using HDMITX_CEC_M1 i think.
+I verified this by temp. changing to HDMITX_CEC_M0
+
+For M1:
+2022-05-09 21:12:37.130188 I  CECAdapter: Using physical address 1.0.0.0 =
+from EDID
+2022-05-09 21:12:37.173267 I  CECAdapter: Found 1 CEC devices(s).
+2022-05-09 21:12:37.173299 I  CECAdapter: Device 1: path '/dev/cec0' com =
+port 'Linux' SELECTED
+2022-05-09 21:12:37.173307 I  CECAdapter: Trying to open device =
+/dev/cec0 (Linux).
+2022-05-09 21:12:37.180095 I  CECAdapter: connection opened
+2022-05-09 21:12:37.545229 I  CECAdapter: setting HDMI port to 1 on =
+device TV (0)
+2022-05-09 21:12:37.904145 I  CECAdapter: >> source deactivated: =
+Playback 1 (4)
+2022-05-09 21:12:37.904311 I  CECAdapter: Source 4 Deactivated
+2022-05-09 21:12:38.284452 I  CECAdapter: >> source activated: Playback =
+1 (4)
+2022-05-09 21:12:38.284492 I  CECAdapter: Source 4 Activated
+2022-05-09 21:12:38.284694 I  CECAdapter: CEC client registered: libCEC =
+version =3D 6.0.2, client version =3D 6.0.2, firmware version =3D 0, =
+logical address(es) =3D Playback 1 (4) , physical address: 1.0.0.0, git =
+revision: v12.0.0-v32.0-16-g611cac15cc+59-07dc900~dirty, compiled on =
+2022-04-23 05:50:57 by piotro@/bin/sh: hostname: command not found on =
+Linux 5.16.14-arch1-4 (x86_64), features: P8_USB, DRM, P8_detect, randr, =
+Linux
+2022-05-09 21:12:38.519394 I  CECAdapter: Opened CEC device.
+2022-05-09 21:12:38.636950 I  CECAdapter: << powering on 'TV' (0)
+2022-05-09 21:12:38.754023 E  CECAdapter: Failed to turn TV on.
+2022-05-09 21:12:38.754313 I  CECAdapter: >> source activated: Playback =
+1 (4)
+2022-05-09 21:12:38.754343 I  CECAdapter: Source 4 Activated
+2022-05-09 21:12:38.872079 I  CECAdapter: << Playback 1 (4) -> broadcast =
+(F): active source (1000)
+2022-05-09 21:12:38.974698 I  CECAdapter: Asked TV to switch to this =
+input.
+2022-05-09 21:13:07.292069 W  CECAdapter: CEC device can't poll TV: TV =
+does not respond to CEC polls
+2022-05-09 21:13:37.296372 W  CECAdapter: CEC device can't poll TV: TV =
+does not respond to CEC polls=20
+
+for M0:
+2022-05-09 21:37:47.632175 I  CECAdapter: Using physical address 1.0.0.0 =
+from EDID
+2022-05-09 21:37:47.680618 I  CECAdapter: Found 1 CEC devices(s).
+2022-05-09 21:37:47.680644 I  CECAdapter: Device 1: path '/dev/cec0' com =
+port 'Linux' SELECTED
+2022-05-09 21:37:47.680654 I  CECAdapter: Trying to open device =
+/dev/cec0 (Linux).
+2022-05-09 21:37:47.694974 I  CECAdapter: connection opened
+2022-05-09 21:37:56.341846 I  CECAdapter: setting HDMI port to 1 on =
+device TV (0)
+2022-05-09 21:38:17.675457 I  CECAdapter: >> source activated: Playback =
+1 (4)
+2022-05-09 21:38:17.675561 I  CECAdapter: Source 4 Activated
+2022-05-09 21:38:17.675657 I  CECAdapter: CEC client registered: libCEC =
+version =3D 6.0.2, client version =3D 6.0.2, firmware version =3D 0, =
+logical address(es) =3D Playback 1 (4) , physical address: 1.0.0.0, git =
+revision: v12.0.0-v32.0-16-g611cac15cc+59-07dc900~dirty, compiled on =
+2022-04-23 05:50:57 by piotro@/bin/sh: hostname: command not found on =
+Linux 5.16.14-arch1-4 (x86_64), features: P8_USB, DRM, P8_detect, randr, =
+Linux
+2022-05-09 21:38:30.475336 I  CECAdapter: Opened CEC device.
+2022-05-09 21:38:34.741846 I  CECAdapter: << Playback 1 (4) -> broadcast =
+(F): active source (1000)
+2022-05-09 21:38:39.008432 I  CECAdapter: << powering on 'TV' (0)
+2022-05-09 21:38:39.008506 E  CECAdapter: =
+CLinuxCECAdapterCommunication::Write - ioctl CEC_TRANSMIT failed - =
+tx_status=3D00 errno=3D22
+2022-05-09 21:38:39.008526 E  CECAdapter: =
+CLinuxCECAdapterCommunication::Write - ioctl CEC_TRANSMIT failed - =
+tx_status=3D00 errno=3D22
+2022-05-09 21:38:43.275094 E  CECAdapter: Failed to turn TV on.
+2022-05-09 21:38:43.275201 I  CECAdapter: >> source activated: Playback =
+1 (4)
+2022-05-09 21:38:43.275224 I  CECAdapter: Source 4 Activated
+2022-05-09 21:38:43.275375 W  CECAdapter: CEC device can't poll TV: TV =
+does not respond to CEC polls
+2022-05-09 21:38:47.541811 I  CECAdapter: << Playback 1 (4) -> broadcast =
+(F): active source (1000)
+2022-05-09 21:38:47.541898 E  CECAdapter: =
+CLinuxCECAdapterCommunication::Write - ioctl CEC_TRANSMIT failed - =
+tx_status=3D00 errno=3D22
+2022-05-09 21:38:47.541909 E  CECAdapter: =
+CLinuxCECAdapterCommunication::Write - ioctl CEC_TRANSMIT failed - =
+tx_status=3D00 errno=3D22
+2022-05-09 21:38:47.541924 E  CECAdapter: Failed to switch to this =
+input.
+2022-05-09 21:38:51.808626 I  CECAdapter: << Playback 1 (4) -> broadcast =
+(F): active source (1000)
+2022-05-09 21:38:51.808722 E  CECAdapter: =
+CLinuxCECAdapterCommunication::Write - ioctl CEC_TRANSMIT failed - =
+tx_status=3D00 errno=3D22
+2022-05-09 21:38:51.808735 E  CECAdapter: =
+CLinuxCECAdapterCommunication::Write - ioctl CEC_TRANSMIT failed - =
+tx_status=3D00 errno=3D22
+2022-05-09 21:38:57.142091 I  CECAdapter: << Playback 1 (4) -> broadcast =
+(F): active source (1000)
+2022-05-09 21:38:57.142109 E  CECAdapter: =
+CLinuxCECAdapterCommunication::Write - ioctl CEC_TRANSMIT failed - =
+tx_status=3D00 errno=3D22
+2022-05-09 21:38:57.142117 E  CECAdapter: =
+CLinuxCECAdapterCommunication::Write - ioctl CEC_TRANSMIT failed - =
+tx_status=3D00 errno=3D22
+2022-05-09 21:39:02.475097 I  CECAdapter: << Playback 1 (4) -> broadcast =
+(F): active source (1000)
+2022-05-09 21:39:02.475115 E  CECAdapter: =
+CLinuxCECAdapterCommunication::Write - ioctl CEC_TRANSMIT failed - =
+tx_status=3D00 errno=3D22
+2022-05-09 21:39:02.475123 E  CECAdapter: =
+CLinuxCECAdapterCommunication::Write - ioctl CEC_TRANSMIT failed - =
+tx_status=3D00 errno=3D22
+
+> I have some concerns about the DTS you've built here. For instance how
+> come you are modifying the power domains?
+
+This was experiment as I was advised:
+
+"32k clock needed for cec and this clock is generated by the rtc which =
+is embedded in the rk8xx regulator.
+So you should make sure it is enabled when hdmi is powerd on, eg adding =
+it to the RK3568_PD_VO powerdomain should help"
+
+power domains entries in dts was attempt to play with above cec clock =
+sugestion.
+
+M0/M1 logs in this email are from cleaned dts: =
+https://pastebin.com/0pgwpdsS
+
+> USB3 is broken because the rock3-a is a rk3568 device and you're
+> missing combophy0.
+
+Perfect. all 4 usb ports are now working.
+Also no errors in dmesg.=20
+Thx!
+
