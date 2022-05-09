@@ -2,100 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7414151F2AB
-	for <lists+devicetree@lfdr.de>; Mon,  9 May 2022 04:30:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B8AF51F2C0
+	for <lists+devicetree@lfdr.de>; Mon,  9 May 2022 04:59:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229847AbiEICcS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 8 May 2022 22:32:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40158 "EHLO
+        id S229436AbiEIC7V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 8 May 2022 22:59:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34060 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230370AbiEICb0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 8 May 2022 22:31:26 -0400
-Received: from mail-pf1-x432.google.com (mail-pf1-x432.google.com [IPv6:2607:f8b0:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBF506832A
-        for <devicetree@vger.kernel.org>; Sun,  8 May 2022 19:27:30 -0700 (PDT)
-Received: by mail-pf1-x432.google.com with SMTP id p8so11049752pfh.8
-        for <devicetree@vger.kernel.org>; Sun, 08 May 2022 19:27:30 -0700 (PDT)
+        with ESMTP id S232184AbiEIC5B (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 8 May 2022 22:57:01 -0400
+Received: from alexa-out-sd-01.qualcomm.com (alexa-out-sd-01.qualcomm.com [199.106.114.38])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EFF65719D2;
+        Sun,  8 May 2022 19:53:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=U3aNAbM8I+ZWALbCpblJglIHrWEFwVsku0LCm8q0TXw=;
-        b=bWQ6elsRmVRougkRhVC48ZxYQz39s7b2EvoauAbMVhIhwRGiKUV9e78zuwsOlNivXM
-         UqhfwasYgjW8ucV/oLyEA/o5giweA/xzQWl6YgOdR17YmQdIt8NOaaUhV0B1Fb2gPnnT
-         uA7tFVfPKUdekS1Qz0/cDdwR4VE3qURe8IRd9WqlBsluLrOqnVvWP6VLTEco7FaPPLxP
-         4txIuIE5BAXgoa18yOQkp77CqEi0/sOn5SzUSL6trzR5kEXtuNy4oZORjwJdzzCRfxB9
-         ezCaZWPPi12+AhJxA2aam989TrZhmSwSgV3gMdG+tR9QRe1QUiUFZ5SuCgk9bhtZDH+1
-         3N2w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=U3aNAbM8I+ZWALbCpblJglIHrWEFwVsku0LCm8q0TXw=;
-        b=wZrEDOzQ0jZp4mEjR27Trgguft5Sah4BDzDTsmBrZkbUZUalCcH0aQz8SLqzFOCCY5
-         zs809CdtUhVrIWdInp0VPvg1iF+tZcP4xPBY1txI2FcdsCUU3evHBAb8OzAtmp5z1Kf5
-         tliZH51IbgAyLXCXbUyDA4nOcjF/expaYAAy6v5OwOiB5u8oD5r68khcITKCV7Q2Dj4E
-         o/E8yCEWHDMCSw+Z25iLC5A2mLEIw7LSJe7a5uHfQ5e5gE/ia8YpbPcq6k0xWfLaPK33
-         EEiMK7A3F2q9k3AqRkn5UkWC800awjdkRy0QYB91ezP09kQuQdz6r4Z+YDZq6t3LatQC
-         23TQ==
-X-Gm-Message-State: AOAM531MI0R4i5BlcJy7U26ZI8DoRyVnRm4U4Gc/zxTCG3JB8v2s8mjZ
-        SwBcN6WNNB3+3IvhNuUNd45l6HqR1ENhiBdQPBFz1A==
-X-Google-Smtp-Source: ABdhPJxIvov+FYbYyJNoqxr/0XSGjEr4PbUkRCXh7qR7Q8mXkveolWuhN5u5sSFYomW0y+WRyG2Emg3YUroTFudGCdE=
-X-Received: by 2002:a63:e416:0:b0:3c6:8d10:ea37 with SMTP id
- a22-20020a63e416000000b003c68d10ea37mr5778242pgi.319.1652063249915; Sun, 08
- May 2022 19:27:29 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220506213226.257859-1-nfraprado@collabora.com> <20220506213226.257859-2-nfraprado@collabora.com>
-In-Reply-To: <20220506213226.257859-2-nfraprado@collabora.com>
-From:   Tzung-Bi Shih <tzungbi@google.com>
-Date:   Mon, 9 May 2022 10:27:18 +0800
-Message-ID: <CA+Px+wXQjys8xvTSSJkLXoGp4yQnANbKWBtfuxiYi0UX6DH0jw@mail.gmail.com>
-Subject: Re: [PATCH v4 1/2] dt-bindings: remoteproc: mediatek: Make l1tcm reg
- exclusive to mt819x
-To:     =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
-        <nfraprado@collabora.com>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, kernel@collabora.com,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1652064790; x=1683600790;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=6Wxg3fLn0A0xQwJ99WIYxTRHGTymqsdyy7BxyjO6OG8=;
+  b=u7gbwZ18aTHEIMnAzO1A9IP81w/TiS4bPRJpPAP+mjRPgJ4szV04+NYt
+   7SfBfVg5QdeIWmNc0xOpdA1MTtTSyowkRw+OWTV1rZ0LFI8X40kw7Hct0
+   Fkd+w6tsldqBIlByHunsbnXh42n8SriH4jWvptuIZAYO1xLBrpCk7bTqE
+   w=;
+Received: from unknown (HELO ironmsg05-sd.qualcomm.com) ([10.53.140.145])
+  by alexa-out-sd-01.qualcomm.com with ESMTP; 08 May 2022 19:53:09 -0700
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg05-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 May 2022 19:53:08 -0700
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Sun, 8 May 2022 19:53:08 -0700
+Received: from hu-pkondeti-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Sun, 8 May 2022 19:53:02 -0700
+Date:   Mon, 9 May 2022 08:22:58 +0530
+From:   Pavan Kondeti <quic_pkondeti@quicinc.com>
+To:     Krishna Kurapati <quic_kriskura@quicinc.com>
+CC:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Tinghan Shen <tinghan.shen@mediatek.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        linux-remoteproc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL
-        autolearn=ham autolearn_force=no version=3.4.6
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        "Doug Anderson" <dianders@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Wesley Cheng <wcheng@codeaurora.org>,
+        <devicetree@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-usb@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-phy@lists.infradead.org>, <quic_pkondeti@quicinc.com>,
+        <quic_ppratap@quicinc.com>, <quic_vpulyala@quicinc.com>,
+        Sandeep Maheswaram <quic_c_sanm@quicinc.com>
+Subject: Re: [v3 1/3] dt-bindings: phy: qcom,usb-snps-femto-v2: Add phy
+ override params bindings
+Message-ID: <20220509025258.GH4640@hu-pkondeti-hyd.qualcomm.com>
+References: <1652011947-18575-1-git-send-email-quic_kriskura@quicinc.com>
+ <1652011947-18575-2-git-send-email-quic_kriskura@quicinc.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <1652011947-18575-2-git-send-email-quic_kriskura@quicinc.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, May 7, 2022 at 5:32 AM N=C3=ADcolas F. R. A. Prado
-<nfraprado@collabora.com> wrote:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          enum:
-> +            - mediatek,mt8192-scp
-> +            - mediatek,mt8195-scp
-> +    then:
-> +      properties:
-> +        reg:
-> +          minItems: 3
-> +          maxItems: 3
-> +        reg-names:
-> +          items:
-> +            - const: sram
-> +            - const: cfg
-> +            - const: l1tcm
+Hi Krishna,
 
-"l1tcm" should be optional.  Does it make more sense by using "minItems: 2"=
-?
+On Sun, May 08, 2022 at 05:42:25PM +0530, Krishna Kurapati wrote:
+> From: Sandeep Maheswaram <quic_c_sanm@quicinc.com>
+> 
+> Add device tree bindings for SNPS phy tuning parameters.
+> 
+> Signed-off-by: Sandeep Maheswaram <quic_c_sanm@quicinc.com>
+> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
+> ---
+>  .../bindings/phy/qcom,usb-snps-femto-v2.yaml       | 87 ++++++++++++++++++++++
+>  1 file changed, 87 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml b/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml
+> index 1ce251d..6c2ecdd 100644
+> --- a/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml
+> +++ b/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml
+> @@ -53,6 +53,93 @@ properties:
+>    vdda33-supply:
+>      description: phandle to the regulator 3.3V supply node.
+>  
+
+<snip>
+
+> +
+> +  qcom,hs-rise-fall-time-bps:
+> +    $ref: /schemas/types.yaml#/definitions/int32
+> +    description:
+> +      This adjusts the rise/fall times of the high-speed waveform.
+> +      The values defined are in multiples of basis points (1bp = 0.01%).
+> +      The hardware accepts only discrete values. The value closest to the
+> +      provided input will be chosen as the override value for this param.
+> +
+> +  qcom,hs-crossover-voltage:
+> +    $ref: /schemas/types.yaml#/definitions/int32
+> +    description:
+> +      This adjusts the voltage at which the DP<#> and DM<#>
+> +      signals cross while transmitting in HS mode.
+> +      The values defined are in milli volts. The hardware accepts only
+> +      discrete values. The value closest to the provided input will be
+> +      chosen as the override value for this param.
+> +
+> +  qcom,hs-output-impedance:
+> +    $ref: /schemas/types.yaml#/definitions/int32
+> +    description:
+> +      In some applications, there can be significant series resistance
+> +      on the D+ and D- paths between the transceiver and cable. This adjusts
+> +      the driver source impedance to compensate for added series
+> +      resistance on the USB. The values defined are in milliohms.
+
+%s/milliohms/mill ohms
+
+> +      The hardware accepts only discrete values. The value closest to the
+> +      provided input will be chosen as the override value for this param.
+> +
+
+What are the units for HS crossover voltage and output impedence? can you add
+units as a suffix like other parameters?
+
+Thanks,
+Pavan
