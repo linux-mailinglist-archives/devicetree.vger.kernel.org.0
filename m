@@ -2,137 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E7A0051F3AC
-	for <lists+devicetree@lfdr.de>; Mon,  9 May 2022 07:06:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E7E4A51F3B4
+	for <lists+devicetree@lfdr.de>; Mon,  9 May 2022 07:17:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229613AbiEIFAk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 May 2022 01:00:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49418 "EHLO
+        id S229808AbiEIFPW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 May 2022 01:15:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59352 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234533AbiEIE7n (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 May 2022 00:59:43 -0400
-Received: from out3-smtp.messagingengine.com (out3-smtp.messagingengine.com [66.111.4.27])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12AA0BBF;
-        Sun,  8 May 2022 21:55:49 -0700 (PDT)
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-        by mailout.nyi.internal (Postfix) with ESMTP id AEF995C00F9;
-        Mon,  9 May 2022 00:55:46 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute5.internal (MEProxy); Mon, 09 May 2022 00:55:46 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
-        cc:cc:content-transfer-encoding:content-type:date:date:from:from
-        :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to; s=fm2; t=1652072146; x=
-        1652158546; bh=rqjpnOUJzRgcRrP/waTDuMu336TXRB4V1nDMgbHbydc=; b=a
-        7f31izfTJ1lTX/4z7eDmjD2P0VUB6s6tYswG7DhZ60X3xb6Qy4UOTdlYLgRqaabY
-        Zv6DjzlpJA/nEfRECtqdfRjY9uktz+TUqpTpxTSLCoIurwuJo2gCa/z0BJGKRsqx
-        bbvYMpZqyNeCKTC0y+6xA/FpNMrbKuZyzcEtIGtbTEmkKVJ6JTjEHADwNTLaMyo8
-        1W5fATtOxe6RvBak0ZWVNy43I5ayO9X2NqpUBlcC5OjLPC7eXqBwJ3IgNW7lsPwl
-        lRY0H7525sbjJfGIzTkfJQXcQz5iNxb48SEs8V4ckA/bo4nOMrS26MJEmjmFjzps
-        1yzdbxqfOZCw5+OqN7LrQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-transfer-encoding
-        :content-type:date:date:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm1; t=1652072146; x=1652158546; bh=rqjpnOUJzRgcR
-        rP/waTDuMu336TXRB4V1nDMgbHbydc=; b=CQzJ7jh2Oy1GvhjybovNkgAjl9bQs
-        pmHgxRYueLygNkQZp9BWsk5R3S8qBMktThk3udJjARdwTvwfW1LPls+a794Cb7fI
-        RIJWKrEROsMejphBM8bEjpUPHHlmV3AP8/W8icLgB2lN6JbHc1nq5XfY20kRFGzW
-        WRCzWsCaBqDVpxdMgamNLmgSPxiU8viCvLH2qKEkmRA6+0mcXNtT+9fcMilqBepm
-        EGtvAgEMw/HiO/sbtrnYUHFs6oV/zJ3yu3HxKslGHBSrEcXK2aOxxh11yrFmDmK8
-        PoOB3GAgjCBXjRqoGlNzGz/c404o4JkeY0oE+cu47KPYO8wtjRl5CfwNA==
-X-ME-Sender: <xms:0J54YuSYKVcBpRkMEHBJLCJN_FQkolnHaEa6B4ng-05z6M6m4F4-UA>
-    <xme:0J54YjwNOW610eWDfBM2nhHBM8OIJ4ROnLgxF-oAZpbIuQf1BQGEez0TA5vXkfOnu
-    srlY6VVKMq_LK_9yw>
-X-ME-Received: <xmr:0J54Yr3i3mIc8tIYJ0NimEkZSR1f47XNcJP3pdxsTPR9kw5QH4q63ecJwXbSJQuO3bfGN3sv-ZV2OwZJnZuLgaXhsFZPJTLWXbxoBeaf4YTmtuPbUo5_PXPkmg>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrfeekgdeltdcutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefuvfevfhfhkffffgggjggtgfesthejredttdefjeenucfhrhhomhepufgrmhhu
-    vghlucfjohhllhgrnhguuceoshgrmhhuvghlsehshhholhhlrghnugdrohhrgheqnecugg
-    ftrfgrthhtvghrnhephfffheejteegffefheetjedvleethedugefgheeifeekffegueeg
-    ieeikeegjeeinecuffhomhgrihhnpehgihhthhhusgdrtghomhdpkhgvrhhnvghlrdhorh
-    hgnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepshgr
-    mhhuvghlsehshhholhhlrghnugdrohhrgh
-X-ME-Proxy: <xmx:0J54YqDEu4nx7CbO87WnQdOvi3EVFNEnhHve04UvRKUuRIKp6fx-NA>
-    <xmx:0J54Yng8XpfovBEVT8ETtJ-M_mR-S7K302BuPtpMgu08klqlgfrHcg>
-    <xmx:0J54Ymor-mzCHXt5ekYfXXkajWS1kziT-MXAM3HjBmOdrNN8aXvMDw>
-    <xmx:0p54YmNNy6U-e8BJsKfxePJEJtwDrn4sDVJExauy2mpq4yI-Zk3mBQ>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
- 9 May 2022 00:55:44 -0400 (EDT)
-Subject: Re: [PATCH] arm64: dts: allwinner: h6: Enable CPU opp tables for
- OrangePi One Plus
-To:     Chukun Pan <amadeus@jmu.edu.cn>
-Cc:     Maxime Ripard <maxime@cerno.tech>, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org, x@xff.cz
-References: <ANAAfQDrFEUw2aEo5XZZDqq2.1.1652016541476.Hmail.201821123082@jmu.edu.cn>
-From:   Samuel Holland <samuel@sholland.org>
-Message-ID: <63e88351-2242-b2bf-3e72-1db66cd9d9bf@sholland.org>
-Date:   Sun, 8 May 2022 23:55:43 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.6.0
-MIME-Version: 1.0
-In-Reply-To: <ANAAfQDrFEUw2aEo5XZZDqq2.1.1652016541476.Hmail.201821123082@jmu.edu.cn>
-Content-Type: text/plain; charset=utf-8
+        with ESMTP id S230252AbiEIFMb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 May 2022 01:12:31 -0400
+Received: from NAM02-BN1-obe.outbound.protection.outlook.com (mail-bn1nam07olkn2105.outbound.protection.outlook.com [40.92.15.105])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67CD618342;
+        Sun,  8 May 2022 22:08:35 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=O1d3hvk+5hBAEMw0ki4XMOi/acQfG2zFDmPg2ho6/oTdYSHVb9rocnV5Q1ordbrnUfsQ6wvvpkLIs4WtzXwkE+/GODUls5i/wy5e9QdBAzP0CbUb7ru7FiAhp9d6Ms4NVQv0+EFwAFNBjbtR44Me6wOdcTQMppPO6T9kn3NTi7Snlxk+pcokUERt3NgTB3y6F+br92FaAogrHJV4WAlRQ03+AKP76kTsMWjqlL7aubpw8KpytBpGoNqidmfgXG63qSx7LBGaDcCVDYGODXeAwiQbkXScgUEg5QQxmrbXm8DMdYDqK02q5GSXmZ3tzGoWyMi8B0rKJdVONolxrhU6Lw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=X4hYLaRJ7goFB2pH7XIGgHf7rPaDjljSWFZJhCc+sxM=;
+ b=LxkLMqcb64Gh1j8uWNohVwdIonWbSRBCQK1oVJDCTG3T3x0Ie+7vpXSf8qXQ+4A4+0wQiRR2Sku4BD/Cz+B7CCRy93jAM2b557CsSCKsO9eYy+p9R0FOyh7uk/20HdBVzOiWNkkYzMNFDPu3vM2WUxpWLDPFbcWMqyDm8jawxDjgTFQW3RLl0xIfHLdvLWBuEDppeOCs0M90F23sk1TJFIGRF0kBu3VSemRmuJZILzEOTC50vkYB3iI5HVwwO7UkcjzcYUUfumDmCN6YDlKFf0LAo5pdhhu8pebu/YUgZbjtYIrufDmkj1VUdLpFwtedxv+hm8TdossX6NZ++8ea7A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+Received: from BY5PR02MB7009.namprd02.prod.outlook.com (2603:10b6:a03:236::13)
+ by BYAPR02MB4839.namprd02.prod.outlook.com (2603:10b6:a03:51::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5206.24; Mon, 9 May
+ 2022 05:08:32 +0000
+Received: from BY5PR02MB7009.namprd02.prod.outlook.com
+ ([fe80::303a:ab1:17c1:2d16]) by BY5PR02MB7009.namprd02.prod.outlook.com
+ ([fe80::303a:ab1:17c1:2d16%9]) with mapi id 15.20.5227.023; Mon, 9 May 2022
+ 05:08:32 +0000
+Message-ID: <BY5PR02MB7009A604AC912DC78FAF42A5D9C69@BY5PR02MB7009.namprd02.prod.outlook.com>
+Date:   Mon, 9 May 2022 10:38:18 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.0
+To:     krzysztof.kozlowski@linaro.org
+Cc:     airlied@linux.ie, clabbe@baylibre.com, daniel@ffwll.ch,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        fanghao11@huawei.com, jo@jsfamily.in, linus.walleij@linaro.org,
+        linux-kernel@vger.kernel.org, linux@rempel-privat.de,
+        phone-devel@vger.kernel.org, robh+dt@kernel.org, sam@ravnborg.org,
+        shawnguo@kernel.org, stano.jakubek@gmail.com,
+        thierry.reding@gmail.com, ~postmarketos/upstreaming@lists.sr.ht
+References: <2ab35af2-b067-4243-35ed-a592a7046374@linaro.org>
+Subject: Re: [PATCH 2/3] dt-bindings: display: Add bindings for EBBG FT8719
 Content-Language: en-US
+From:   Joel Selvaraj <jo@jsfamily.in>
+In-Reply-To: <2ab35af2-b067-4243-35ed-a592a7046374@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-TMN:  [u74+zylxvnzsghSPmLvjs/1Tuo1DFy98F5aJcBSEADMOPzYQvTIR4jeFQCrYeYUI]
+X-ClientProxiedBy: PN3PR01CA0102.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:9b::23) To BY5PR02MB7009.namprd02.prod.outlook.com
+ (2603:10b6:a03:236::13)
+X-Microsoft-Original-Message-ID: <d9d6bcd5-9845-e220-c72c-aab5c4c82e93@jsfamily.in>
+MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 690e3eae-3cb5-491d-0e82-08da3179f5cc
+X-MS-TrafficTypeDiagnostic: BYAPR02MB4839:EE_
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 4CMa+ehVjkAcETNvhMluL7lTlsftiRbFFPIXSibhau15TQxVj/vI0loXPoneDcfDl9NXFgFJMJpuJNyp1RvmBRQQd6PVr9Fcos7Emi7sq9nzp74giZcLc1YZL9B8AZuFpxrK7Ag+6R+V2xmAS9t9t6mSspNpj/bqHFwkIv+l6BMOmOyg58rA0g7b2zkJimVGviL34BEPRcDmWtFQ9n9ujneSy1W25EQp84lpXg+14Ms4DfNJRYOxXgedNDXIahA/87dth0L5xIZWmD2k7zekkFwX87FRHdgcRquWPhYv/X0zUh6pNZdJXiH6N4GxiBRzNx0BoVcbFEN+mjHSLCop0q2Q/EbB97U8YYOScZ/VSWC33gpcsxl1XB8G5sV6AZNGUA0El+Zk0/79YaXpLU46Vk+9MlqgCEGGv2koInNglnQPUi96JBizOdUpcfbD/Ft/RfgMbTB6WBDcHuTHLd318j2lG68GuhGgOW9j7j1sQlZndfEJUSvNfQwItl1BM83eF+uXzc9uI5Tw9oQoUBu5Esmcc06tV2KnpvDZYXKVRxBZ1vzY3s4n26/YWGnOLiJEoqBj53SN8M+cbOMHnfn0cezVEINm/XLJ/okqH2PSmb/SExCiebHVQr4jWYTxRdPa
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?QzRqNDFiTzludnNzRGdseXEwTUpCY2ZIOHMyaFQ0TjZuaXRyN011L2I3Z01x?=
+ =?utf-8?B?bnF2VldnT1grS1FtdTFCaW4zeDdmcFFoSVczYkRnQjR3cWpzMXFvOFhZRGMx?=
+ =?utf-8?B?RDM1NUQ1N2tzYWNOenp0WEZiYnNGbnJUbzlNejBKZkwwZFoyLzJHWWxWT2VR?=
+ =?utf-8?B?c1BKQ0QwdWl0UkRENUFyajNtUXo2ZmttNnpJOGdzdzNuZFBIQi9XUUs0RFF1?=
+ =?utf-8?B?VzNjNHd0YUoxd3dCeE1ORlJCaGNOdjFtbUZZYkpnajNUUG9EZ05jUDJIWmQ0?=
+ =?utf-8?B?VXZhU3hHVEFxTjdSQldpYk02aWFMTVRPOTZKSlI1blU4SjZERlgxN3RNOW05?=
+ =?utf-8?B?KzV1dGJ1QWZzKzJTaS9WV0QyZGszdVlXd0g4ZFV1bFFjR05iRnJTcjBQYXRs?=
+ =?utf-8?B?RHlUSzJJcGVWMFNBN3EzRWJzV2h6S0V1Q0kya3psV3RYaUxnM1dxWTlrdDR6?=
+ =?utf-8?B?R1R6R0hFYnhoUkl4Q2xnNmZha2FmUDgwZS9XWmN5cXFRZWRVYXFwQjM3bXJO?=
+ =?utf-8?B?L08rYS9mUlgzQ3ZJYzdDbExYZXRvUXF5elA4UXlmMGJhZWo3WnNjZldkTkg2?=
+ =?utf-8?B?UHgrM3NBU0xPOUhFc2k2eFllVzBGbXd1bzRqNzl0Um9KRzBqUXBYOGNScDFk?=
+ =?utf-8?B?N0R6Q3IrODlWWVhIWWFWRmhiakUzdkovZXFYdmowNGV0ckFwdHpuZWs5R0Zh?=
+ =?utf-8?B?S21ENGRpUWNIODhDekVqdmxCbU9rZExQTUF6UmtDVHg2UTM5VlVLMHM4SnZk?=
+ =?utf-8?B?dU00YWJ4bnlWckVrV1ZvYU91SkVBSDRYMkRvcTZSV0hSSE1hdWsrQjJ0RFJP?=
+ =?utf-8?B?d1J5ZWFKekpiYllqZ3NudWZWUUhQR0p0MHhDUnVhMksvSTJZMlcrenpTZ3Uz?=
+ =?utf-8?B?T0VCTHhKU2FpVExrRjZMQXE0SkEzNXRDaFc4TzdRT014cmEvbXc5dElHaUw1?=
+ =?utf-8?B?TU5NREN1Wm8wOW5HeGJyaEtST1RRR2hYd3dsbmNXL21tTXVqOCtjVkpReTRt?=
+ =?utf-8?B?TzhDeUV6R1ZaK1dGSVVYRDVBRGJpZFlLYlhnbUtHZFhIUCtYQmFkYzZRZW8z?=
+ =?utf-8?B?U1V0cEFwQ3c3RDU1MFI3cnI4ZGFsazNpNkZFOUU0eTJwaHplVFJQT2d5eUJT?=
+ =?utf-8?B?eGFKK1lSMkJsYTdzbGZ3Rll6ZUlOYU9ocDloVGF2S1Z0eklCUlphTU5ZZnJo?=
+ =?utf-8?B?b2ZDMFpRcXhqQ25tb1RPTlpEd0luL2V1YjIzWkRaR0laS213Y0g2ajZyTGRx?=
+ =?utf-8?B?S29PejBZT2Z1djJRa05tdTFjaGhzcjlqVk9vemVoTi9Zb3NOY0ViY0ZoekVk?=
+ =?utf-8?B?UWJSZjl0SmJjMVE4WWtWbWlkb0kxVDA2RGl0dEMwcTg3djlveDEzRzlta3BR?=
+ =?utf-8?B?eTRtQnV0cVZldDFwOFViKzlCdzg4bHdZZ2dCSzc2TXpPMVc5emNNTU5DdU5u?=
+ =?utf-8?B?ZDZnT3cwUjZvQUJXWWFyL0RZUjdETGNWM25YWWhVRGFGYWR6cUhoN1QzNDVD?=
+ =?utf-8?B?aEc5SFpCeFp6TUV2a2p5M1BTMlZaeDJzWTVOOWJBNVVQRDRKeVphK1hxTk1h?=
+ =?utf-8?B?V0dSUWM1ckFKVzNOQlpTWEhHTmd2Qk1JU3pCeThFeHdMajk2cHIyRGU3NVAw?=
+ =?utf-8?B?MW1PTW5TMmhQVCsxZWZNYnN0eGxmREZXM2FhNm5FUHR5cFhuakxKZk91Z2Np?=
+ =?utf-8?B?dXYrZGpaUjFuam5kZ3Q3aW0yRnBYN3pNQTRDWFhNSjBZMENOYXhvbEhrNGVS?=
+ =?utf-8?B?T2RhT0FiUGJaamo5KzhQWjFCVDFpWFp2cENDYzBPTjRmQzJaa3dML1FRRTdn?=
+ =?utf-8?B?UlIwWkxKbDhaQWV4VzNleU9DRnBhZldFbXUrQ3JsYU5pNUR3M2RNZFpnMnpV?=
+ =?utf-8?B?RnlsVWRQcGlDTFVFbEJ6WFlaUzFCNGpmOFNDNWpPZFdBWkszTGx5ek1ibHF6?=
+ =?utf-8?B?TVhJYWtlNDJwY3lPUG45c0E5WWFtNENSZXhjWlFRSU1DZ3hLNkRjdFB4cUcr?=
+ =?utf-8?B?OTY0ZklOUmp3PT0=?=
+X-OriginatorOrg: sct-15-20-4755-11-msonline-outlook-99c3d.templateTenant
+X-MS-Exchange-CrossTenant-Network-Message-Id: 690e3eae-3cb5-491d-0e82-08da3179f5cc
+X-MS-Exchange-CrossTenant-AuthSource: BY5PR02MB7009.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 May 2022 05:08:32.5951
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR02MB4839
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,FORGED_MUA_MOZILLA,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Chukun,
+Hi Krzysztof Kozlowski,
 
-On 5/8/22 8:29 AM, Chukun Pan wrote:
->> The AXP805 datasheet has this information in the description for REG 1A.
->> DVM is disabled by default, and when it is enabled, the default ramp rate
->> is 10mV/15.625 us == 640 uV/us.
->>
->> Did you notice any instability without this delay?
-> 
-> Actually I write this based on the commit https://github.com/torvalds/linux/commit/ebae33c
-> ("arm64: dts: allwinner: h6: Enable CPU opp tables for Orange Pi 3") and https://github.com/
-> torvalds/linux/commit/fe79ea5 ("arm64: dts: allwinner: h6: Enable CPU opp tables for Pine
-> H64"), so I think it's necessary to add this delay.
+A quick question.
 
-Thanks for the context! I think the suggestion comes originally from here:
-https://lore.kernel.org/lkml/20200405115138.vrrvv7spnv6ifm6x@core.my.home/
+On 07/05/22 21:02, Krzysztof Kozlowski wrote:
+ >> +  backlight: true
+ >> +  port: true
+ >
+ > Both should not be needed - they come from panel-common.yaml. They might
+ > stay in list
 
-From my reading of that thread, there appear to have been no reliability issues
-before adding this change. It was just based on the available information at the
-time.
+I see that almost 54 panels mention "port: true" and 46 panels mention
+"backlight: true". Almost all panels refer the panel-common.yaml too.
 
-On the other hand, adding this property will cause the CPU to spin for up to
-112us in _regulator_do_set_voltage() during each CPU frequency change. So this
-adds a lot of latency, which I would like to avoid if possible.
+So I think specifying them as true is just for extra clarity that
+these properties are usually used by this panel? But I am not very sure.
 
-Regards,
-Samuel
+Should I leave them be? or it's still recommended to remove them?
 
->>> @@ -216,6 +222,7 @@ reg_dcdcc: dcdcc {
->>>  				regulator-enable-ramp-delay = <32000>;
->>>  				regulator-min-microvolt = <810000>;
->>>  				regulator-max-microvolt = <1080000>;
->>> +				regulator-ramp-delay = <2500>;
->>
->> This change is not related to CPU frequency scaling, so it belongs in a separate
->> patch (if it is needed).
-> 
-> The two commits mentioned above also add this delay to dcdcc regulator.
-> If there is a need for a separate patch, I will send these separately.
-> 
-> Thanks,
-> Chukun
-> 
-> 
-
+Best Regards,
+Joel Selvaraj
