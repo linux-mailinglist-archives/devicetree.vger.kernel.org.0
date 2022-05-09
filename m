@@ -2,40 +2,41 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 89DC951F250
-	for <lists+devicetree@lfdr.de>; Mon,  9 May 2022 03:28:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E314E51F254
+	for <lists+devicetree@lfdr.de>; Mon,  9 May 2022 03:28:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231951AbiEIBao (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 8 May 2022 21:30:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46032 "EHLO
+        id S233970AbiEIBaq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 8 May 2022 21:30:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47902 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235757AbiEIAvN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 8 May 2022 20:51:13 -0400
-Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC51365CA
-        for <devicetree@vger.kernel.org>; Sun,  8 May 2022 17:47:20 -0700 (PDT)
+        with ESMTP id S235919AbiEIA65 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 8 May 2022 20:58:57 -0400
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C18D4B852
+        for <devicetree@vger.kernel.org>; Sun,  8 May 2022 17:55:04 -0700 (PDT)
 Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
         (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
         (No client certificate requested)
         (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 46CE38010E;
-        Mon,  9 May 2022 02:47:17 +0200 (CEST)
+        by phobos.denx.de (Postfix) with ESMTPSA id 4047D83E97;
+        Mon,  9 May 2022 02:55:02 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1652057238;
-        bh=aaMwZW73eqBNyFeIlh3lkpzFj5DJZEzMGdRfT5LOgxM=;
+        s=phobos-20191101; t=1652057703;
+        bh=6VbSF+hKaVGBfe+6zzKjUIGGJbomWB66Y/CvZtJaWTM=;
         h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=CIYv5V+DJTtrCAyqlV7sAQE5iMHlS/9c1jlQP4UWEWQQaUvJy6rcYSgAmNQkPFYMo
-         S30svEkAncqTboNmRIdXKS9cbdIl0dbc2MaeXMQ1lTwi6IiauuEADXAIQbyPja2EHA
-         invoxsqeNI+FqodhbYvkBKMasv820uGu02VCvEIUU80EgBt6adAmu8LrOWkpwZkaM6
-         HkYbTRzoMF1P8HumNrKsDxOCT4tBEVjqEO2HLWfPlpqFP73p2zXJYcnyGMtcgiwCG6
-         NducV4vgoyRfx4286dSWIuUFzprLwpy2jbM+dOz1GB4a2kLNCF+TZtL4rhC4DvYj1a
-         qAWtB4UolSDwA==
-Message-ID: <1a9a412f-9b3d-022c-f90b-ee46e5beddd1@denx.de>
-Date:   Mon, 9 May 2022 02:47:16 +0200
+        b=qC8JUB/PuORuk0E3CeclZYfPz/8SR3SskEbBBCknLD7SnxdVSfE1sBarVgWIA0GaA
+         EVpNvdWHgLyk14TayIEQ3FVKYXlG7gyYMxeigYNcwGMXGZtBOd4E9WDKRmNsAmVwQU
+         p1ruxlDh50YpUyGvM9MtdXilXibyqk7WM1kyCCphDZaZVnBSedgb+EwwSIDi07YpPe
+         NzhbGmDS5H5Ip85ikOmzAjzi3yZxWO/Pj9HlsLZDIGDdgXIno72EBdpec45zmlDYic
+         MzA4dtaExEcSyE2+8/WU6V9o14oLyAzSaNeU5cCFwf3C4dgI+j7+brwbmIsfEKUZ98
+         z5CJxqe7YStsw==
+Message-ID: <df6572a4-82ed-5f55-2297-2c7fe69941fd@denx.de>
+Date:   Mon, 9 May 2022 02:55:01 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.8.1
-Subject: Re: [PATCH v0.5 6/9] phy: freescale: add Samsung HDMI PHY
+Subject: Re: [PATCH v0.5 1/9] dt-bindings: display: imx: add binding for
+ i.MX8MP HDMI TX
 Content-Language: en-US
 To:     Lucas Stach <l.stach@pengutronix.de>,
         linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
@@ -51,9 +52,9 @@ Cc:     Shawn Guo <shawnguo@kernel.org>,
         Andrzej Hajda <andrzej.hajda@intel.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
 References: <20220506181034.2001548-1-l.stach@pengutronix.de>
- <20220506181034.2001548-7-l.stach@pengutronix.de>
+ <20220506181034.2001548-2-l.stach@pengutronix.de>
 From:   Marek Vasut <marex@denx.de>
-In-Reply-To: <20220506181034.2001548-7-l.stach@pengutronix.de>
+In-Reply-To: <20220506181034.2001548-2-l.stach@pengutronix.de>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Virus-Scanned: clamav-milter 0.103.5 at phobos.denx.de
@@ -68,38 +69,12 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-[...]
+On 5/6/22 20:10, Lucas Stach wrote:
+> The HDMI TX controller on the i.MX8MP SoC is a Synopsys designware IP
+> core with a little bit of SoC integration around it.
 
-> +static int fsl_samsung_hdmi_phy_probe(struct platform_device *pdev)
-> +{
-> +	struct fsl_samsung_hdmi_phy *phy;
-> +	int ret;
-> +
-> +	phy = devm_kzalloc(&pdev->dev, sizeof(*phy), GFP_KERNEL);
-> +	if (!phy)
-> +		return -ENOMEM;
-> +
-> +	platform_set_drvdata(pdev, phy);
-> +	phy->dev = &pdev->dev;
-> +
-> +	phy->regs = devm_platform_ioremap_resource(pdev, 0);
-> +	if (IS_ERR(phy->regs))
-> +		return PTR_ERR(phy->regs);
-> +
-> +	phy->apbclk = devm_clk_get(phy->dev, "apb");
-> +	if (IS_ERR(phy->apbclk))
-> +		return dev_err_probe(phy->dev, PTR_ERR(phy->apbclk),
-> +				     "failed to get apb clk\n");
-> +
-> +	phy->refclk = devm_clk_get(phy->dev, "ref");
-> +	if (IS_ERR(phy->refclk))
-> +		return dev_err_probe(phy->dev, PTR_ERR(phy->refclk),
-> +				     "failed to get ref clk\n");
-> +
-> +	ret = clk_prepare_enable(phy->apbclk);
-> +	if (ret) {
-> +		dev_err(phy->dev, "failed to enable apbclk\n");
-> +		return ret;
-> +	}
+You can add
 
-dev_err_probe() here too ?
+Tested-by: Marek Vasut <marex@denx.de>
+
+to the entire series.
