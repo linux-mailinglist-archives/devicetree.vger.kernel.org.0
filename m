@@ -2,61 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DCF53520211
-	for <lists+devicetree@lfdr.de>; Mon,  9 May 2022 18:14:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 39CE252028E
+	for <lists+devicetree@lfdr.de>; Mon,  9 May 2022 18:36:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238838AbiEIQQi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 May 2022 12:16:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41410 "EHLO
+        id S239184AbiEIQjo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 May 2022 12:39:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46606 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238834AbiEIQQh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 May 2022 12:16:37 -0400
+        with ESMTP id S239176AbiEIQjo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 May 2022 12:39:44 -0400
 Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9662B43AE8;
-        Mon,  9 May 2022 09:12:43 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BECEB19C3E;
+        Mon,  9 May 2022 09:35:48 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 57363B80D3A;
-        Mon,  9 May 2022 16:12:42 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8A191C385AC;
-        Mon,  9 May 2022 16:12:36 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 785C6B817FB;
+        Mon,  9 May 2022 16:35:47 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8D2CCC385AC;
+        Mon,  9 May 2022 16:35:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1652112761;
-        bh=ZELzv0dYPW3+yD6GyYliLIBpFDKrBVzaR8/2zkS7yF8=;
+        s=k20201202; t=1652114146;
+        bh=owjaYKDd7LVWoycl8NoSTqAJLTcH372kDTQxpt06x9k=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=JZA5YtHu3oZSruZwa6S2pu6I1AMiagYfLgT6NavPYw3/HYBi1TY+2SdfVsiVmCx1A
-         LcV2CzVbx6knxQ1yhEcafeD0KLmIxeQ8JGSfShv12BAD0SHZG9k3Fc2lpSi7i3w0Lw
-         6vkP2pYlYkwkMTgQ/zq89OjMVOpKzsXPU+wkDKwWHGKSwxHFQ0LA7NCbncBxyQhZez
-         bmhi8BJbVGHpq3L43b+ZDe6P/syw0qwLrh3VLY/UYsKIbX3GiEs2qTvTt/MpDD8Vp2
-         hO/xcSYNRXCU4ed0ftuRcrxCGzQ/9DNQHG0ycTIo166cvmXvRNkbtWl3gpXh4+itcz
-         JHiLecuyhl4dQ==
-Date:   Mon, 9 May 2022 17:12:33 +0100
-From:   Mark Brown <broonie@kernel.org>
+        b=med84aMy1ptAH/qEVtFQjVurO+LKsXhDopOnBigxUX/dIJg0ffmHKc3chCXKBiy2o
+         /4XXRyx1M+T9dh889LABwu4I0fQwZ0TnXUEHCZhLBvaTKv2Yw/RRexWJRsX+Ai835P
+         N5ZKESjnzYRq5zTqsXgLIhTUe9JVjIH12JqsIfhnGwMdrSFB14nrgts+FLyslkQlPQ
+         xc8+tGNSXcQGAy0cWEx4i2KRJZ5DChBAMi/NhuUCSXxinSJ050eaSRarA6bLxyK3C5
+         Blp/SluhmO/EfGYvy05JaaLQmSek0v3bmccp9W1FJx76ahX2jnXIBXrw4O16LglMtq
+         XzizDwIhdU1ew==
+Date:   Mon, 9 May 2022 18:35:42 +0200
+From:   Lorenzo Bianconi <lorenzo@kernel.org>
 To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     LABBE Corentin <clabbe@baylibre.com>, alexandre.torgue@foss.st.com,
-        calvin.johnson@oss.nxp.com, davem@davemloft.net,
-        edumazet@google.com, hkallweit1@gmail.com,
-        jernej.skrabec@gmail.com, joabreu@synopsys.com,
-        krzysztof.kozlowski+dt@linaro.org, kuba@kernel.org,
-        lgirdwood@gmail.com, linux@armlinux.org.uk, pabeni@redhat.com,
-        peppe.cavallaro@st.com, robh+dt@kernel.org, samuel@sholland.org,
-        wens@csie.org, netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-sunxi@lists.linux.dev
-Subject: Re: [PATCH 3/6] dt-bindings: net: Add documentation for phy-supply
-Message-ID: <Ynk9ccoVh32Deg45@sirena.org.uk>
-References: <20220509074857.195302-1-clabbe@baylibre.com>
- <20220509074857.195302-4-clabbe@baylibre.com>
- <YnkGV8DyTlCuT92R@lunn.ch>
- <YnkWl+xYCX8r9DE7@Red>
- <Ynk7L07VH/RFVzl6@lunn.ch>
+Cc:     netdev@vger.kernel.org, nbd@nbd.name, john@phrozen.org,
+        sean.wang@mediatek.com, Mark-MC.Lee@mediatek.com,
+        davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+        pabeni@redhat.com, Sam.Shih@mediatek.com,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        robh@kernel.org
+Subject: Re: [PATCH net-next 01/14] arm64: dts: mediatek: mt7986: introduce
+ ethernet nodes
+Message-ID: <YnlC3jvYarpV6BP1@lore-desk>
+References: <cover.1651839494.git.lorenzo@kernel.org>
+ <1d555fbbac820e9b580da3e8c0db30e7d003c4b6.1651839494.git.lorenzo@kernel.org>
+ <YnZ8o46pPdKMCbUF@lunn.ch>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="CNycEhaqQp6Or6dX"
+        protocol="application/pgp-signature"; boundary="PCSMGdiYoHExCj3r"
 Content-Disposition: inline
-In-Reply-To: <Ynk7L07VH/RFVzl6@lunn.ch>
-X-Cookie: Boycott meat -- suck your thumb.
+In-Reply-To: <YnZ8o46pPdKMCbUF@lunn.ch>
 X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -68,40 +62,59 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---CNycEhaqQp6Or6dX
+--PCSMGdiYoHExCj3r
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, May 09, 2022 at 06:02:55PM +0200, Andrew Lunn wrote:
-> On Mon, May 09, 2022 at 03:26:47PM +0200, LABBE Corentin wrote:
+> > +&eth {
+> > +	status =3D "okay";
+> > +
+> > +	gmac0: mac@0 {
+> > +		compatible =3D "mediatek,eth-mac";
+> > +		reg =3D <0>;
+> > +		phy-mode =3D "2500base-x";
+> > +
+> > +		fixed-link {
+> > +			speed =3D <2500>;
+> > +			full-duplex;
+> > +			pause;
+> > +		};
+> > +	};
+> > +
+> > +	gmac1: mac@1 {
+> > +		compatible =3D "mediatek,eth-mac";
+> > +		reg =3D <1>;
+> > +		phy-mode =3D "2500base-x";
+> > +
+> > +		fixed-link {
+> > +			speed =3D <2500>;
+> > +			full-duplex;
+> > +			pause;
+> > +		};
+> > +	};
+>=20
+> Are both connected to the switch? It just seems unusual two have two
+> fixed-link ports.
 
-> > For the difference between the 2, according to my basic read (I am bad a it) of the shematic
-> > https://linux-sunxi.org/images/5/50/OrangePi_3_Schematics_v1.5.pdf
-> > phy-io(ephy-vdd25) seems to (at least) power MDIO bus.
+afaik mac design supports autoneg only in 10M/100M/1G mode and mt7986 gmac1
+is connected to a 2.5Gbps phy on mt7986-ref board.
 
-> So there is nothing in the data sheet of the RTL8211E to suggest you
-> can uses these different power supplies independently. The naming
-> 'phy-io-supply' is very specific to RTL8211E, but you are defining a
-> generic binding here. I don't know the regulator binding, it is
-> possible to make phy-supply a list?
+Regards,
+Lorenzo
 
-No, that's not a thing - the supplies are individual, named properties
-and even if there were a list we'd still want them to be named so it's
-clear what's going on.
+>=20
+> 	   Andrew
 
---CNycEhaqQp6Or6dX
+--PCSMGdiYoHExCj3r
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmJ5PXAACgkQJNaLcl1U
-h9Cb+Qf+MfRYbiD4XEpLhP4gge18kGLq3gf/PC8t0oiN1ICJLIo5J94BR0kjYpWS
-eS+xHbhlh+5/sK++BvKLiMKyWcFcwKZhtuEjNJCMO4Wv9yLJmyrwBloMDTlEtEp0
-f6DAFwAMWXN2jF7ArhfNV7fnwSZdJkeeJ4/WgQMxAtkGlcGmwis+lwIfVIAY28A7
-opdj8RSRHjG+KQZy8f5NI3771wmXLhIe8as7zRGt9+57ukrCA++V0degWB/AzDSf
-BzUJqQtFGNsC+B9VfemnyXQzCmIX+Fyz2/Y4EwstUnO5JkxgtFkyvKXSPRbObeot
-1n6utSr2W8/hq3CAgz6mpxnpGFQQIA==
-=9kj+
+iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCYnlC3gAKCRA6cBh0uS2t
+rCm/AP9WkMTnnhB1Nu9L5BHoNXdksU1GeqgTZsI/h6bUpuonaAD9H/lNxLig+hSg
+y4K/G0OA6qVY+cSX9gevZ9vIHjaAFAA=
+=+S5h
 -----END PGP SIGNATURE-----
 
---CNycEhaqQp6Or6dX--
+--PCSMGdiYoHExCj3r--
