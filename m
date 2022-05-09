@@ -2,60 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A899752051B
-	for <lists+devicetree@lfdr.de>; Mon,  9 May 2022 21:18:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 00ECD520534
+	for <lists+devicetree@lfdr.de>; Mon,  9 May 2022 21:21:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240502AbiEITUo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 May 2022 15:20:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46188 "EHLO
+        id S240486AbiEITXu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 May 2022 15:23:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55882 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240486AbiEITUm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 May 2022 15:20:42 -0400
-Received: from mail-oa1-f43.google.com (mail-oa1-f43.google.com [209.85.160.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C473413B8FA;
-        Mon,  9 May 2022 12:16:47 -0700 (PDT)
-Received: by mail-oa1-f43.google.com with SMTP id 586e51a60fabf-edeb6c3642so15842537fac.3;
-        Mon, 09 May 2022 12:16:47 -0700 (PDT)
+        with ESMTP id S240521AbiEITXt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 May 2022 15:23:49 -0400
+Received: from mail-pl1-x635.google.com (mail-pl1-x635.google.com [IPv6:2607:f8b0:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A857A4BFD9
+        for <devicetree@vger.kernel.org>; Mon,  9 May 2022 12:19:50 -0700 (PDT)
+Received: by mail-pl1-x635.google.com with SMTP id x18so14779641plg.6
+        for <devicetree@vger.kernel.org>; Mon, 09 May 2022 12:19:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=KxPqHT2Kr+KyNj+2ntbnJAJv8pZrB8xBI5SfIaP2vFc=;
+        b=B4IwO0nyKOAm5augILPM3hpD8rDu9e6FzqYla0dT2S8wGmnvAM7pRZbRKSnGeFFxpm
+         cNw5/XjodsTZgEN3O/QJ3ymKLQU6m3EkhA+wl5idtToj9//MAKok8i9+vJG5EkTtiQby
+         NFRCqT/KmrHY7WCJANDmfE6basadEMlF+PxpA=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=J9UHLsCgwlEtwC93yM9iNbxfAUErMfSSi5tgfl2OGhA=;
-        b=x4l4b7QYZH/8VG+e8un3hJFaqkzuJYSVh0+KD6z0bqk7/u2fmMA+3I/girlbti7Fyz
-         bj8WFIox0ZRPnPXmR/foBaVfCnewv99VHMD/9u+n8O90OXtq4/jKrkY9n/HYPsdAaYOR
-         1n1XIpk8OugBVOyiTCHhU3C9NfxeikUws3Vct4bZnCmb8CaF8KWFeRspkQ6ML2lMjf8w
-         SfL8Gp6SvJvj4jp9HMclsKhtRCReqXwQmRfDhHrFE2uSmibaerMahNMNgPSIOQt1SDiS
-         2cw08xa4T6QGoHgIQsBkiIMgtDYprWHkGFmHA5WPGZmNL7/+nYXLWoFZeyHc+lHvr3d7
-         gWEA==
-X-Gm-Message-State: AOAM533Rz8fHMu+RjsDU5WSYUvg2nmIi1GeqynmZIZcP6RDd6UrFsTZG
-        4bTQSYdDmgQ1vc6dZwnGIg==
-X-Google-Smtp-Source: ABdhPJyygcw6TMCxSg9TGmvmJfsyB7vAnz1q+HGku1a2ZCtUU9MEEi3VMOYqBXydfOmx6zjApJz/vA==
-X-Received: by 2002:a05:6870:344f:b0:e2:c4c0:86a5 with SMTP id i15-20020a056870344f00b000e2c4c086a5mr8157215oah.189.1652123807049;
-        Mon, 09 May 2022 12:16:47 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id be8-20020a056808218800b00325cf57766bsm4720560oib.1.2022.05.09.12.16.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 May 2022 12:16:46 -0700 (PDT)
-Received: (nullmailer pid 27400 invoked by uid 1000);
-        Mon, 09 May 2022 19:16:45 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Alexandre Torgue <alexandre.torgue@foss.st.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        linux-stm32@st-md-mailman.stormreply.com,
-        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Michael Turquette <mturquette@baylibre.com>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        linux-kernel@vger.kernel.org
-In-Reply-To: <20220509134658.16267-1-alexandre.torgue@foss.st.com>
-References: <20220509134658.16267-1-alexandre.torgue@foss.st.com>
-Subject: Re: [PATCH] dt-bindings: clock: stm32mp1: adapt example for "st,stm32mp1-rcc-secure"
-Date:   Mon, 09 May 2022 14:16:45 -0500
-Message-Id: <1652123805.754133.27398.nullmailer@robh.at.kernel.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=KxPqHT2Kr+KyNj+2ntbnJAJv8pZrB8xBI5SfIaP2vFc=;
+        b=FKjvygdXpCyJAmPj/jA6ITEROIq3EiFg26VsEZoqnWw7pQ4hpH4lnfx5jYZzX7USUw
+         wOtjc6VF6eB+vKrhLsuqz0IpUV+AM7ahqnfk5wqb0W4kPHs3IDgi0ucZdfb7jy6wkrh1
+         grLL0xoO89CGzyf9JtciV0MGIDOBsRFMmVNGqnR9VuOuBjYRIAgjk4VYV2cfV95eBVTd
+         AHPVjgDfNxqfEdtjntaxzApx5yeQpsUyMGJ/c2f7aPOupysvkRM3JVSV6K8BJB+tEN1Y
+         jhM3w6GH85UEaTeseMUTn0g/7aU2FAM2uV6Oxh2W5+7w+vRUscKLcG3lLKklH8KTW5SN
+         rH9w==
+X-Gm-Message-State: AOAM530H9x9TFgyK6cRiEK1pPNM1aZ4vEtrQf9Im3PrtFJce+ZxEYLTJ
+        cHUicjjr4pkdEQQnnEbER7R5Fw==
+X-Google-Smtp-Source: ABdhPJynK+hgyAqxpMUsozaBIsBVXpWHnA1HB/wZaD2Fn2o0ZomfaUwWpc0M5alYMbL3GWwl6Pyb8A==
+X-Received: by 2002:a17:90b:17c1:b0:1dc:a6e6:ef26 with SMTP id me1-20020a17090b17c100b001dca6e6ef26mr28136922pjb.22.1652123989602;
+        Mon, 09 May 2022 12:19:49 -0700 (PDT)
+Received: from localhost ([2620:15c:11a:202:753:614a:caf8:e14d])
+        by smtp.gmail.com with UTF8SMTPSA id f19-20020a63dc53000000b003c14af50631sm8918375pgj.73.2022.05.09.12.19.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 09 May 2022 12:19:49 -0700 (PDT)
+Date:   Mon, 9 May 2022 12:19:47 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Sibi Sankar <quic_sibis@quicinc.com>, swboyd@chromium.org,
+        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+        bjorn.andersson@linaro.org, robh+dt@kernel.org,
+        mathieu.poirier@linaro.org, krzysztof.kozlowski@canonical.com,
+        agross@kernel.org, dianders@chromium.org, ohad@wizery.com,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        evgreen@chromium.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: remoteproc: qcom: Add SC7280 MSS
+ bindings
+Message-ID: <YnlpU+sCfO86+qc2@google.com>
+References: <1652082798-5855-1-git-send-email-quic_sibis@quicinc.com>
+ <1652082798-5855-2-git-send-email-quic_sibis@quicinc.com>
+ <1652098858.589911.3576234.nullmailer@robh.at.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <1652098858.589911.3576234.nullmailer@robh.at.kernel.org>
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -63,37 +74,77 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 09 May 2022 15:46:58 +0200, Alexandre Torgue wrote:
-> For "st,stm32mp1-rcc-secure" schema, clocks and clock-names entries are now
-> required properties.
+On Mon, May 09, 2022 at 07:20:58AM -0500, Rob Herring wrote:
+> On Mon, 09 May 2022 13:23:17 +0530, Sibi Sankar wrote:
+> > Add MSS PIL loading bindings for SC7280 SoCs.
+> > 
+> > Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
+> > ---
+> >  .../bindings/remoteproc/qcom,sc7280-mss-pil.yaml   | 261 +++++++++++++++++++++
+> >  1 file changed, 261 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/remoteproc/qcom,sc7280-mss-pil.yaml
+> > 
 > 
-> Signed-off-by: Alexandre Torgue <alexandre.torgue@foss.st.com>
+> Running 'make dtbs_check' with the schema in this patch gives the
+> following warnings. Consider if they are expected or the schema is
+> incorrect. These may not be new warnings.
 > 
+> Note that it is not yet a requirement to have 0 warnings for dtbs_check.
+> This will change in the future.
+> 
+> Full log is available here: https://patchwork.ozlabs.org/patch/
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+The culprit is this snippet in arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi:
 
-yamllint warnings/errors:
+/* Modem setup is different on Chrome setups than typical Qualcomm setup */
+&remoteproc_mpss {
+	status = "okay";
+	compatible = "qcom,sc7280-mss-pil";
+	iommus = <&apps_smmu 0x124 0x0>, <&apps_smmu 0x488 0x7>;
+	memory-region = <&mba_mem>, <&mpss_mem>;
+};
 
-dtschema/dtc warnings/errors:
-Error: Documentation/devicetree/bindings/clock/st,stm32mp1-rcc.example.dts:27.33-34 syntax error
-FATAL ERROR: Unable to parse input tree
-make[1]: *** [scripts/Makefile.lib:364: Documentation/devicetree/bindings/clock/st,stm32mp1-rcc.example.dtb] Error 1
-make[1]: *** Waiting for unfinished jobs....
-make: *** [Makefile:1401: dt_binding_check] Error 2
+The original compatible string from sc7280.dtsi is 'qcom,sc7280-mpss-pas'.
 
-doc reference errors (make refcheckdocs):
+> remoteproc@4080000: clock-names:1: 'snoc_axi' was expected
+> 	arch/arm64/boot/dts/qcom/sc7280-crd.dtb
+> 	arch/arm64/boot/dts/qcom/sc7280-herobrine-herobrine-r0.dtb
+> 	arch/arm64/boot/dts/qcom/sc7280-herobrine-herobrine-r1.dtb
+> 	arch/arm64/boot/dts/qcom/sc7280-idp2.dtb
+> 	arch/arm64/boot/dts/qcom/sc7280-idp.dtb
+> 
+> remoteproc@4080000: clock-names:2: 'offline' was expected
+> 	arch/arm64/boot/dts/qcom/sc7280-crd.dtb
+> 	arch/arm64/boot/dts/qcom/sc7280-herobrine-herobrine-r0.dtb
+> 	arch/arm64/boot/dts/qcom/sc7280-herobrine-herobrine-r1.dtb
+> 	arch/arm64/boot/dts/qcom/sc7280-idp2.dtb
+> 	arch/arm64/boot/dts/qcom/sc7280-idp.dtb
 
-See https://patchwork.ozlabs.org/patch/
+The fix probably consists in adding overrides for 'clocks' and
+'clock-names' to the extension in sc7280-chrome-common.dtsi, unless
+we add a dedicated 'qcom,sc7280-mss-pil' node to sc7280.dtsi. This
+can be done once the binding landed.
 
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
+> remoteproc@4080000: 'interconnects' is a required property
+> 	arch/arm64/boot/dts/qcom/sc7280-crd.dtb
+> 	arch/arm64/boot/dts/qcom/sc7280-herobrine-herobrine-r0.dtb
+> 	arch/arm64/boot/dts/qcom/sc7280-herobrine-herobrine-r1.dtb
+> 	arch/arm64/boot/dts/qcom/sc7280-idp2.dtb
+> 	arch/arm64/boot/dts/qcom/sc7280-idp.dtb
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+This can be fixed by adding an 'interconnects' to either the
+extension in sc7280-chrome-common.dtsi, or the original node if
+'qcom,sc7280-mpss-pas' uses the same interconnect.
 
-pip3 install dtschema --upgrade
+> remoteproc@4080000: reset-names:1: 'pdc_sync' was expected
+> 	arch/arm64/boot/dts/qcom/sc7280-crd.dtb
+> 	arch/arm64/boot/dts/qcom/sc7280-herobrine-herobrine-r0.dtb
+> 	arch/arm64/boot/dts/qcom/sc7280-herobrine-herobrine-r1.dtb
+> 	arch/arm64/boot/dts/qcom/sc7280-idp2.dtb
+> 	arch/arm64/boot/dts/qcom/sc7280-idp.dtb
+>
 
-Please check and re-submit.
-
+This could be fixed by aligning the reset names of the
+'qcom,sc7280-mpss-pas' and 'qcom,sc7280-mss-pil' bindings.
+The reset is called 'pdc_reset' for 'mpss-pas', and 'pdc_sync'
+for 'mpss-pil'.
