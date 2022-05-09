@@ -2,220 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 922FA51FB03
-	for <lists+devicetree@lfdr.de>; Mon,  9 May 2022 13:11:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4DD7D51FB0B
+	for <lists+devicetree@lfdr.de>; Mon,  9 May 2022 13:12:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232137AbiEILOW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 May 2022 07:14:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58856 "EHLO
+        id S232292AbiEILQW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 May 2022 07:16:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35766 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232214AbiEILOR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 May 2022 07:14:17 -0400
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9CD281A4085;
-        Mon,  9 May 2022 04:10:21 -0700 (PDT)
-Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=diego.localnet)
-        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <heiko@sntech.de>)
-        id 1no1HJ-0005hU-GK; Mon, 09 May 2022 13:10:13 +0200
-From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To:     krzk+dt@kernel.org, palmer@dabbelt.com, robh+dt@kernel.org,
-        Conor Dooley <mail@conchuod.ie>
-Cc:     conor.dooley@microchip.com, Cyril.Jean@microchip.com,
-        daire.mcnamara@microchip.com, paul.walmsley@sifive.com,
-        aou@eecs.berkeley.edu, palmer@rivosinc.com, arnd@arndb.de,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v4 8/8] riscv: dts: microchip: add the sundance polarberry
-Date:   Mon, 09 May 2022 13:10:12 +0200
-Message-ID: <8060906.T7Z3S40VBb@diego>
-In-Reply-To: <20220504203051.1210355-9-mail@conchuod.ie>
-References: <20220504203051.1210355-1-mail@conchuod.ie> <20220504203051.1210355-9-mail@conchuod.ie>
+        with ESMTP id S232281AbiEILQA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 May 2022 07:16:00 -0400
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9DF9714C742;
+        Mon,  9 May 2022 04:12:06 -0700 (PDT)
+Received: by mail-ed1-x530.google.com with SMTP id p18so15833590edr.7;
+        Mon, 09 May 2022 04:12:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=idPGnnRp9pP0FFwfqlTXpXWL0sXolKua3kdnvGGZYcI=;
+        b=je68A1zFVEfEiFtrzG/L9/q7N25aPiRdunrQyDqQUHt8cOrRr01LfItEvoDRAMMYsB
+         vPj+YfJtlssNxrecCOkSRddTaNBnSz9rW/5VKSQM0nx8cQKLwV3o6ReJVsWsnPObBVxT
+         OFCTW7S7r8Ys4iNC3z+Dt0UsZssVSNX0xCXFb36WlQL0/pv+F2jmSBzNip9yh3SqUGDT
+         oDeYheSi3Vha1px3kaEVad/TFI9NXksp42CockgIYKTxy15F/lT5Cx30II0EHzjEfVE1
+         ATB60q8tN3yPmKywQNL22iMpxE4aConJjyUpatff0yKtX9udEwAV8Fx0qHqI4GwuVQsJ
+         VeYw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=idPGnnRp9pP0FFwfqlTXpXWL0sXolKua3kdnvGGZYcI=;
+        b=nyI2hSwsSzhwKcDXYkARVJQY7YyYpGQ+xjqWuhiwpfAs+flkiV5DJl0Lvl6I5YeRMc
+         uhl/OePMj68haP5gcJpeECN2iDPvqDmB7pzKW7m1PzCdcxXlV1AWMOoSurpWWfkhOD9m
+         5OLfKvv4C5eCo0l8IuhbM+l7+twdgPTr6vUDlRBuP4rN5OXHNU9LJMp/WN8W0U9/Y0d8
+         1H/Gw6DFzwOeq09dG+lo2dMTt3IkF3GbXFPOQ/nJLjvRMFxPKs1rTGu2V+jhBqls/VRh
+         gpFcUrD2QorGtU/4XAn2P+sm36cAXfbXPCr9E9C3ym5SNmWkXPKhTN1tklDKH/thuq4G
+         mkKQ==
+X-Gm-Message-State: AOAM533dMd4HVE1yxH0VX8eRDsGNjeCl18BAwbx0ou6fZ+fLlkygyJa5
+        TpzBT+KK6KM7GBGGXfNvKUI=
+X-Google-Smtp-Source: ABdhPJz9wdR1rC08gBIlvkZM1bHaMQ4i3GawbXtkLUVt2W+KDNTvwwFoxPdyd3xvlh6LnBVwfFLhXA==
+X-Received: by 2002:a05:6402:228c:b0:425:d911:fd35 with SMTP id cw12-20020a056402228c00b00425d911fd35mr16682477edb.325.1652094725070;
+        Mon, 09 May 2022 04:12:05 -0700 (PDT)
+Received: from linuxdev2.toradex.int (31-10-206-125.static.upc.ch. [31.10.206.125])
+        by smtp.gmail.com with ESMTPSA id c24-20020aa7c758000000b0042617ba63b4sm6075672eds.62.2022.05.09.04.12.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 09 May 2022 04:12:04 -0700 (PDT)
+From:   Max Krummenacher <max.oss.09@gmail.com>
+To:     max.krummenacher@toradex.com
+Cc:     Fabio Estevam <festevam@gmail.com>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v1 0/3] ARM: dts: imx6dl-colibri: Unify with changes to Apalis iMX6 device trees.
+Date:   Mon,  9 May 2022 13:11:23 +0200
+Message-Id: <20220509111126.7032-1-max.oss.09@gmail.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Mittwoch, 4. Mai 2022, 22:30:52 CEST schrieb Conor Dooley:
-> From: Conor Dooley <conor.dooley@microchip.com>
-> 
-> Add a minimal device tree for the PolarFire SoC based Sundance
-> PolarBerry.
-> 
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-> ---
->  arch/riscv/boot/dts/microchip/Makefile        |  1 +
->  .../dts/microchip/mpfs-polarberry-fabric.dtsi | 16 +++
->  .../boot/dts/microchip/mpfs-polarberry.dts    | 97 +++++++++++++++++++
->  3 files changed, 114 insertions(+)
->  create mode 100644 arch/riscv/boot/dts/microchip/mpfs-polarberry-fabric.dtsi
->  create mode 100644 arch/riscv/boot/dts/microchip/mpfs-polarberry.dts
-> 
-> diff --git a/arch/riscv/boot/dts/microchip/Makefile b/arch/riscv/boot/dts/microchip/Makefile
-> index af3a5059b350..39aae7b04f1c 100644
-> --- a/arch/riscv/boot/dts/microchip/Makefile
-> +++ b/arch/riscv/boot/dts/microchip/Makefile
-> @@ -1,3 +1,4 @@
->  # SPDX-License-Identifier: GPL-2.0
->  dtb-$(CONFIG_SOC_MICROCHIP_POLARFIRE) += mpfs-icicle-kit.dtb
-> +dtb-$(CONFIG_SOC_MICROCHIP_POLARFIRE) += mpfs-polarberry.dtb
->  obj-$(CONFIG_BUILTIN_DTB) += $(addsuffix .o, $(dtb-y))
-> diff --git a/arch/riscv/boot/dts/microchip/mpfs-polarberry-fabric.dtsi b/arch/riscv/boot/dts/microchip/mpfs-polarberry-fabric.dtsi
-> new file mode 100644
-> index 000000000000..49380c428ec9
-> --- /dev/null
-> +++ b/arch/riscv/boot/dts/microchip/mpfs-polarberry-fabric.dtsi
-> @@ -0,0 +1,16 @@
-> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-> +/* Copyright (c) 2020-2022 Microchip Technology Inc */
-> +
-> +/ {
-> +	fabric_clk3: fabric-clk3 {
-> +		compatible = "fixed-clock";
-> +		#clock-cells = <0>;
-> +		clock-frequency = <62500000>;
-> +	};
-> +
-> +	fabric_clk1: fabric-clk1 {
-> +		compatible = "fixed-clock";
-> +		#clock-cells = <0>;
-> +		clock-frequency = <125000000>;
-> +	};
-> +};
-> diff --git a/arch/riscv/boot/dts/microchip/mpfs-polarberry.dts b/arch/riscv/boot/dts/microchip/mpfs-polarberry.dts
-> new file mode 100644
-> index 000000000000..1cad5b0d42e1
-> --- /dev/null
-> +++ b/arch/riscv/boot/dts/microchip/mpfs-polarberry.dts
-> @@ -0,0 +1,97 @@
-> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-> +/* Copyright (c) 2020-2022 Microchip Technology Inc */
-> +
-> +/dts-v1/;
-> +
-> +#include "mpfs.dtsi"
-> +#include "mpfs-polarberry-fabric.dtsi"
-> +
-> +/* Clock frequency (in Hz) of the rtcclk */
-> +#define MTIMER_FREQ	1000000
-> +
-> +/ {
-> +	model = "Sundance PolarBerry";
-> +	compatible = "sundance,polarberry", "microchip,mpfs";
-> +
-> +	aliases {
-> +		ethernet0 = &mac1;
-> +		serial0 = &mmuart0;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path = "serial0:115200n8";
-> +	};
-> +
-> +	cpus {
-> +		timebase-frequency = <MTIMER_FREQ>;
-> +	};
-> +
-> +	ddrc_cache_lo: memory@80000000 {
-> +		device_type = "memory";
-> +		reg = <0x0 0x80000000 0x0 0x2e000000>;
-> +	};
-> +
-> +	ddrc_cache_hi: memory@1000000000 {
-> +		device_type = "memory";
-> +		reg = <0x10 0x00000000 0x0 0xC0000000>;
-> +	};
-> +};
-> +
-> +/*
-> + * phy0 is connected to mac0, but the port itself is on the (optional) carrier
-> + * board.
-> + */
-> +&mac0 {
-> +	status = "disabled";
-> +	phy-mode = "sgmii";
-> +	phy-handle = <&phy0>;
-
-nit: it makes it was easier recognizing the status if it's in the
-same place all the time (for example as the last property)
-like in &mmc below.
-
-Though that may just be my preference ;-) .
-The other option would be to adhere to stricter sorting
-because right now status is neither in one place nor sorted.
+From: Max Krummenacher <max.krummenacher@toradex.com>
 
 
-> +};
-> +
-> +&mac1 {
-> +	status = "okay";
-> +	phy-mode = "sgmii";
-> +	phy-handle = <&phy1>;
-
-nit (1): same as above
-nit (2): blank line between properties and subnodes makes
-  everything more readable.
-
-> +	phy1: ethernet-phy@5 {
-> +		reg = <5>;
-> +		ti,fifo-depth = <0x01>;
-> +	};
-
-nit: blank line?
-
-Otherwise:
-Reviewed-by: Heiko Stuebner <heiko@sntech.de>
-
-> +	phy0: ethernet-phy@4 {
-> +		reg = <4>;
-> +		ti,fifo-depth = <0x01>;
-> +	};
-> +};
-> +
-> +&mbox {
-> +	status = "okay";
-> +};
-> +
-> +&mmc {
-> +	bus-width = <4>;
-> +	disable-wp;
-> +	cap-sd-highspeed;
-> +	cap-mmc-highspeed;
-> +	card-detect-delay = <200>;
-> +	mmc-ddr-1_8v;
-> +	mmc-hs200-1_8v;
-> +	sd-uhs-sdr12;
-> +	sd-uhs-sdr25;
-> +	sd-uhs-sdr50;
-> +	sd-uhs-sdr104;
-> +	status = "okay";
-> +};
-> +
-> +&mmuart0 {
-> +	status = "okay";
-> +};
-> +
-> +&refclk {
-> +	clock-frequency = <125000000>;
-> +};
-> +
-> +&rtc {
-> +	status = "okay";
-> +};
-> +
-> +&syscontroller {
-> +	status = "okay";
-> +};
-> 
+- Follows a change to the SGTL5000 MCLK handling fixed for Apalis iMX6 by
+  Fabio.
+- Simplify handling of inverted PWM backlight
+- Fixes a regression for the capacitive touch introduced with
+  https://lore.kernel.org/all/20220411152234.12678-1-max.oss.09@gmail.com/
 
 
 
+Max Krummenacher (3):
+  ARM: dts: imx6qdl-colibri: Fix capacitive touch reset polarity
+  ARM: dts: imx6qdl-colibri: Mux mclk for sgtl5000 with the codec node
+  ARM: dts: imx6qdl-colibri: backlight pwm: Simplify inverted backlight
+
+ arch/arm/boot/dts/imx6qdl-colibri.dtsi | 21 ++++++++++++++-------
+ 1 file changed, 14 insertions(+), 7 deletions(-)
+
+-- 
+2.20.1
 
