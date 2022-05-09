@@ -2,93 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 67E6651FE53
-	for <lists+devicetree@lfdr.de>; Mon,  9 May 2022 15:29:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 02AC451FECD
+	for <lists+devicetree@lfdr.de>; Mon,  9 May 2022 15:51:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235883AbiEINba (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 May 2022 09:31:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58306 "EHLO
+        id S236366AbiEINvQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 May 2022 09:51:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57984 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236228AbiEINb2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 May 2022 09:31:28 -0400
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3D3D1BDAF9
-        for <devicetree@vger.kernel.org>; Mon,  9 May 2022 06:27:34 -0700 (PDT)
-Received: by mail-wr1-x436.google.com with SMTP id e24so19465448wrc.9
-        for <devicetree@vger.kernel.org>; Mon, 09 May 2022 06:27:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=QFVN/hz05R4qwSXg2D2znBc/cojLhJAL9Em25eSEyUs=;
-        b=6xRVzIssKst/rqxxPREtWICDSxF4w5ikEyLXgYtiyHfwoFR62qzHqhy8MmdXwbFsiH
-         EN1s7NRkVK630kW4S0DZ8IJ4ek3A4DIcX+O5sQVk13Q5lSzHcx+ZBJ6N+nE+qVOEutxO
-         YhmV0NqHQZ6GKsIJ5dcqIY3iRnJ92q4763GClOxJYQgCR2IVAZSWhvlNBcYgqyEf2mdg
-         sL+s9a0M0uDwEKlJN/ZRwI8qqGgM6Pnv9w9kBxO7UHjmLq2VG1/cwAQFjwhwWOk6DmS3
-         WXcsuMHOTqvaPxA2qMLhJfzMUCLGkMXpGJWTgG01bCjZr8SOd9rBJH3+ZJfZg+FsqZvJ
-         mKpQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=QFVN/hz05R4qwSXg2D2znBc/cojLhJAL9Em25eSEyUs=;
-        b=wWl44lDDiu3/lbRPj4dlm+J5nmb1L8vSGz09oMSQxUHSX2QjQFBYYCWicrRqd+S0aB
-         qbITzs0w6m7X8P9JfANEUPieUXurv7wZlSXfDJJrdApI1mNFXAAag8mKPiO6PpQOqSlE
-         h2Q055h8yFPkIn217F0OkZdWAS4udwzh1UonvGzp6lfa0+IrIWZA1aF6e6CjGDs7MrzW
-         hHPUuZxNlHTeDdg5dt5bG7lvVP3hZQrq/e2fpzFDImbo9qeOr+7zsJWC7H+RCcmB+G6B
-         chBRPpgxA29mRaNdG3PpEHy1ry89LFa3SrtU7svfo4G1awh6PJ64iJmQunhwrfhe+XLp
-         n1yA==
-X-Gm-Message-State: AOAM531ZOs+XxkGpD2ySv0e8XtcLUT7jwQLYg+sOFhp+iOEgpRDIuE7k
-        DyaVwrxx9dGUJYkRxSx2oD613cs/qaKiMg==
-X-Google-Smtp-Source: ABdhPJy2ss8Dz2yhDwsiVDbK2gmSF+OzAXLxhmvGcDLqB4SyyXjhEvJqTERDh5KjiXjGgI2r7WmGYw==
-X-Received: by 2002:a05:6000:1f03:b0:20c:4d9e:7400 with SMTP id bv3-20020a0560001f0300b0020c4d9e7400mr13919108wrb.257.1652102853452;
-        Mon, 09 May 2022 06:27:33 -0700 (PDT)
-Received: from Red ([2a01:cb1d:3d5:a100:264b:feff:fe03:2806])
-        by smtp.googlemail.com with ESMTPSA id n7-20020a05600c500700b003942a244ee1sm12434830wmr.38.2022.05.09.06.27.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 May 2022 06:27:33 -0700 (PDT)
-Date:   Mon, 9 May 2022 15:27:30 +0200
-From:   LABBE Corentin <clabbe@baylibre.com>
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     alexandre.torgue@foss.st.com, broonie@kernel.org,
-        calvin.johnson@oss.nxp.com, davem@davemloft.net,
-        edumazet@google.com, hkallweit1@gmail.com,
-        jernej.skrabec@gmail.com, joabreu@synopsys.com,
-        krzysztof.kozlowski+dt@linaro.org, kuba@kernel.org,
-        lgirdwood@gmail.com, linux@armlinux.org.uk, pabeni@redhat.com,
-        peppe.cavallaro@st.com, robh+dt@kernel.org, samuel@sholland.org,
-        wens@csie.org, netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-sunxi@lists.linux.dev
-Subject: Re: [PATCH 0/6] arm64: add ethernet to orange pi 3
-Message-ID: <YnkWwrKk4zjPnZLg@Red>
-References: <20220509074857.195302-1-clabbe@baylibre.com>
- <YnkG9yV+Fbf7WtCh@lunn.ch>
+        with ESMTP id S236541AbiEINvE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 May 2022 09:51:04 -0400
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6F6B19CB79;
+        Mon,  9 May 2022 06:47:10 -0700 (PDT)
+Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 249CkU1q011337;
+        Mon, 9 May 2022 15:46:59 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=selector1;
+ bh=YCUzkBMpATH4oafdkH+ZZgiEl4z5yPbRDWExDNymfS0=;
+ b=KU41ueLp4zx7fAW+P0ojjYgNwFdPzVZtCJ9dsjkKsRvTs4tUTPOiW0BwEiNOPIoA6uRb
+ TGQnTDv5soQDuXNoLoAffj65sk8hUiAFKWdGqprK2vtJYuWQ1dm+msWDFcnjwlV3Ba6K
+ TDiTdoQ6Ld0FCEqfA6OXvk7W5AmrNeVnemlTVUmVphyfXZegmjJd/nJ6c1iofD4m0DDp
+ XKVTiWSNJvzF9vXxwv3VhzAXbPm2ISwYyZxm8S85zbX6ZaC7sMDmmwWQBatRYEgxB+Ql
+ pixTqTG4thhLgKfOsCEZzux4A93g6OCG9y7N0JQbB5Cyj+mGaNejBGUb71QQsmN+2709 Rw== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3fwe6kjfgf-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 09 May 2022 15:46:59 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 0970510002A;
+        Mon,  9 May 2022 15:46:59 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 02E402248D3;
+        Mon,  9 May 2022 15:46:59 +0200 (CEST)
+Received: from localhost (10.75.127.46) by SHFDAG1NODE1.st.com (10.75.129.69)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.2308.20; Mon, 9 May
+ 2022 15:46:58 +0200
+From:   Alexandre Torgue <alexandre.torgue@foss.st.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>
+CC:     <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        <linux-stm32@st-md-mailman.stormreply.com>
+Subject: [PATCH] dt-bindings: clock: stm32mp1: adapt example for "st,stm32mp1-rcc-secure"
+Date:   Mon, 9 May 2022 15:46:58 +0200
+Message-ID: <20220509134658.16267-1-alexandre.torgue@foss.st.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <YnkG9yV+Fbf7WtCh@lunn.ch>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.75.127.46]
+X-ClientProxiedBy: SFHDAG2NODE2.st.com (10.75.127.5) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.858,Hydra:6.0.486,FMLib:17.11.64.514
+ definitions=2022-05-09_03,2022-05-09_01,2022-02-23_01
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Le Mon, May 09, 2022 at 02:20:07PM +0200, Andrew Lunn a écrit :
-> On Mon, May 09, 2022 at 07:48:51AM +0000, Corentin Labbe wrote:
-> > Hello
-> > 
-> > 2 sunxi board still does not have ethernet working, orangepi 1+ and
-> > orangepi 3.
-> > This is due to the fact thoses boards have a PHY which need 2 regulators.
-> 
-> Why PHY make/module is it which is causing problems?
-> 
+For "st,stm32mp1-rcc-secure" schema, clocks and clock-names entries are now
+required properties.
 
-The problem was stmmac support only one regulator for PHY.
+Signed-off-by: Alexandre Torgue <alexandre.torgue@foss.st.com>
+
+diff --git a/Documentation/devicetree/bindings/clock/st,stm32mp1-rcc.yaml b/Documentation/devicetree/bindings/clock/st,stm32mp1-rcc.yaml
+index bb0e0b92e907..45b94124366c 100644
+--- a/Documentation/devicetree/bindings/clock/st,stm32mp1-rcc.yaml
++++ b/Documentation/devicetree/bindings/clock/st,stm32mp1-rcc.yaml
+@@ -106,10 +106,17 @@ additionalProperties: false
+ 
+ examples:
+   - |
++    #include <dt-bindings/clock/stm32mp1-clks.h>
+     rcc: rcc@50000000 {
+         compatible = "st,stm32mp1-rcc-secure", "syscon";
+         reg = <0x50000000 0x1000>;
+         #clock-cells = <1>;
+         #reset-cells = <1>;
++        clock-names = "hse", "hsi", "csi", "lse", "lsi";
++        clocks = <&scmi_clk CK_SCMI_HSE>,
++                 <&scmi_clk CK_SCMI_HSI>,
++                 <&scmi_clk CK_SCMI_CSI>,
++                 <&scmi_clk CK_SCMI_LSE>,
++                 <&scmi_clk CK_SCMI_LSI>;
+     };
+ ...
+-- 
+2.17.1
+
