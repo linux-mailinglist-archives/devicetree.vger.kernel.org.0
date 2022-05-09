@@ -2,162 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 33A9151FF34
-	for <lists+devicetree@lfdr.de>; Mon,  9 May 2022 16:13:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C21D051FF9A
+	for <lists+devicetree@lfdr.de>; Mon,  9 May 2022 16:25:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236709AbiEIONM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 May 2022 10:13:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41158 "EHLO
+        id S237063AbiEIOVT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 May 2022 10:21:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49942 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236692AbiEIONI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 May 2022 10:13:08 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id E1E9B2A18A2;
-        Mon,  9 May 2022 07:09:13 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 8BE2A1480;
-        Mon,  9 May 2022 07:09:13 -0700 (PDT)
-Received: from donnerap.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 945423F73D;
-        Mon,  9 May 2022 07:09:10 -0700 (PDT)
-Date:   Mon, 9 May 2022 15:09:07 +0100
-From:   Andre Przywara <andre.przywara@arm.com>
-To:     Corentin Labbe <clabbe@baylibre.com>
-Cc:     alexandre.torgue@foss.st.com, andrew@lunn.ch, broonie@kernel.org,
-        calvin.johnson@oss.nxp.com, davem@davemloft.net,
-        edumazet@google.com, hkallweit1@gmail.com,
-        jernej.skrabec@gmail.com, joabreu@synopsys.com,
-        krzysztof.kozlowski+dt@linaro.org, kuba@kernel.org,
-        lgirdwood@gmail.com, linux@armlinux.org.uk, pabeni@redhat.com,
-        peppe.cavallaro@st.com, robh+dt@kernel.org, samuel@sholland.org,
-        wens@csie.org, netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-sunxi@lists.linux.dev
-Subject: Re: [PATCH 2/6] net: stmmac: dwmac-sun8i: remove regulator
-Message-ID: <20220509150907.6cf9c4d1@donnerap.cambridge.arm.com>
-In-Reply-To: <20220509074857.195302-3-clabbe@baylibre.com>
-References: <20220509074857.195302-1-clabbe@baylibre.com>
-        <20220509074857.195302-3-clabbe@baylibre.com>
-Organization: ARM
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
+        with ESMTP id S236883AbiEIOVT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 May 2022 10:21:19 -0400
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D9F4200F68
+        for <devicetree@vger.kernel.org>; Mon,  9 May 2022 07:17:16 -0700 (PDT)
+Received: by mail-ej1-x631.google.com with SMTP id kq17so27127265ejb.4
+        for <devicetree@vger.kernel.org>; Mon, 09 May 2022 07:17:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=vanguardiasur-com-ar.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=+8+QqXVKL5wTk1USxhSJy91rHhDM1q+WdZU6lGP6JQ4=;
+        b=Se5eMb8Ygo8+NTsu2WGGmLwSiZe3RssFpzMyc+7jXSDykSJnAVSZVnd/OngGPWZciL
+         TqOhSSgSmDT040EiixkOlRjSjs+ukuyf54/dNj07uwd2adCU7iAHQeyZ6NPWcbIYVPwR
+         pnseMj0cI03Ui9b5xM9w/yOlvf2/OlxlznUm1jexmSPMmaEiax93PQoJ/G6Q+n7fow9z
+         IeuitDasdXBRSpB+6VIA+P3OanKlTTP+m6n8bakAwn+q9cJfZqwF1lR8LLdZPHpM+15i
+         QZvAmWZBOy2/SBull0eHOksCzYbIomn1nr2T6ttdbSEDr1YAhsbO0VVKPlHOwot8XrnA
+         S8LA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=+8+QqXVKL5wTk1USxhSJy91rHhDM1q+WdZU6lGP6JQ4=;
+        b=PhkzfrATEFzl8Go++c4hv7b0f3kEkBQg5E5Ycg/HjNYAKMIIKNp5SQiVzKcY6J8Dg+
+         nu29zfdw3+H4cIkymua+VN8d57Hp5sJw4SVPmkM3pSvqq/UIJ9/n3x0Di20ROiCJVpgw
+         n2odKhl/SRXjbZM57gEBfTcxVZ08IQunvKglwTklZYEoj465TeMniCmoJMIxoHLYzBfF
+         3pD5w4UIC6Msiv5fjEwDrt0b1eoHoWsGo+f44olu8z+NGNZGlaHUg354wEQGc9UHe/y/
+         b/Wm2vMclUsTyBMVuTntn2Ld0rc4TbJmxFawixcb4OVobJI0cjpQFwHTd7CJiJvsvVBk
+         8GOg==
+X-Gm-Message-State: AOAM531fNkD1DGZ5D92YT0PUMVo604x3qADVoX9/tsEf+CLzmPrOHHQ0
+        mEDHQj7+Myh98lq2w66PE9GVf/fmjAom0HQkWdF4hA==
+X-Google-Smtp-Source: ABdhPJz4oPKheaglIPZCKrUFsKejt51Mh50V9/DGs7u8F7syBlw3wHnbVvg9K8d9bl9luUK/vJye5kZrXA5cwi3Keig=
+X-Received: by 2002:a17:907:a0c8:b0:6f7:492e:e74c with SMTP id
+ hw8-20020a170907a0c800b006f7492ee74cmr11393092ejc.670.1652105834875; Mon, 09
+ May 2022 07:17:14 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20220508202544.501981-1-frattaroli.nicolas@gmail.com> <20220508202544.501981-4-frattaroli.nicolas@gmail.com>
+In-Reply-To: <20220508202544.501981-4-frattaroli.nicolas@gmail.com>
+From:   Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
+Date:   Mon, 9 May 2022 11:17:03 -0300
+Message-ID: <CAAEAJfC5aoFmk7hKZ-CSv1=RhzO8YU38Abz8PhD26MvV+X0r-Q@mail.gmail.com>
+Subject: Re: [PATCH v2 3/3] arm64: dts: rockchip: Add Hantro encoder node to rk356x
+To:     Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon,  9 May 2022 07:48:53 +0000
-Corentin Labbe <clabbe@baylibre.com> wrote:
+Hi Nicolas,
 
-Hi,
-
-> Now regulator is handled by phy core, there is no need to handle it in
-> stmmac driver.
-
-I don't think you can do that, since we definitely need to maintain
-compatibility with *older* DTs.
-Is there a real need for this patch, or is it just a cleanup?
-I mean we should be able to keep both approaches in, and the respective
-board and DT version selects which it is using.
-
-Cheers,
-Andre
-
-> Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
+On Sun, May 8, 2022 at 5:26 PM Nicolas Frattaroli
+<frattaroli.nicolas@gmail.com> wrote:
+>
+> The RK3566 and RK3568 come with a dedicated Hantro instance solely for
+> encoding. This patch adds a node for this to the device tree, along with
+> a node for its MMU.
+>
+> Signed-off-by: Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
 > ---
->  .../net/ethernet/stmicro/stmmac/dwmac-sun8i.c | 37 +------------------
->  1 file changed, 2 insertions(+), 35 deletions(-)
-> 
-> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c
-> index f834472599f7..17888813c707 100644
-> --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c
-> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c
-> @@ -17,7 +17,6 @@
->  #include <linux/phy.h>
->  #include <linux/platform_device.h>
->  #include <linux/pm_runtime.h>
-> -#include <linux/regulator/consumer.h>
->  #include <linux/regmap.h>
->  #include <linux/stmmac.h>
->  
-> @@ -59,7 +58,6 @@ struct emac_variant {
->  
->  /* struct sunxi_priv_data - hold all sunxi private data
->   * @ephy_clk:	reference to the optional EPHY clock for the internal PHY
-> - * @regulator:	reference to the optional regulator
->   * @rst_ephy:	reference to the optional EPHY reset for the internal PHY
->   * @variant:	reference to the current board variant
->   * @regmap:	regmap for using the syscon
-> @@ -69,7 +67,6 @@ struct emac_variant {
->   */
->  struct sunxi_priv_data {
->  	struct clk *ephy_clk;
-> -	struct regulator *regulator;
->  	struct reset_control *rst_ephy;
->  	const struct emac_variant *variant;
->  	struct regmap_field *regmap_field;
-> @@ -568,29 +565,11 @@ static int sun8i_dwmac_init(struct platform_device *pdev, void *priv)
->  {
->  	struct net_device *ndev = platform_get_drvdata(pdev);
->  	struct sunxi_priv_data *gmac = priv;
-> -	int ret;
->  
-> -	if (gmac->regulator) {
-> -		ret = regulator_enable(gmac->regulator);
-> -		if (ret) {
-> -			dev_err(&pdev->dev, "Fail to enable regulator\n");
-> -			return ret;
-> -		}
-> -	}
-> -
-> -	if (gmac->use_internal_phy) {
-> -		ret = sun8i_dwmac_power_internal_phy(netdev_priv(ndev));
-> -		if (ret)
-> -			goto err_disable_regulator;
-> -	}
-> +	if (gmac->use_internal_phy)
-> +		return sun8i_dwmac_power_internal_phy(netdev_priv(ndev));
->  
->  	return 0;
-> -
-> -err_disable_regulator:
-> -	if (gmac->regulator)
-> -		regulator_disable(gmac->regulator);
-> -
-> -	return ret;
->  }
->  
->  static void sun8i_dwmac_core_init(struct mac_device_info *hw,
-> @@ -1034,9 +1013,6 @@ static void sun8i_dwmac_exit(struct platform_device *pdev, void *priv)
->  
->  	if (gmac->variant->soc_has_internal_phy)
->  		sun8i_dwmac_unpower_internal_phy(gmac);
-> -
-> -	if (gmac->regulator)
-> -		regulator_disable(gmac->regulator);
->  }
->  
->  static void sun8i_dwmac_set_mac_loopback(void __iomem *ioaddr, bool enable)
-> @@ -1157,15 +1133,6 @@ static int sun8i_dwmac_probe(struct platform_device *pdev)
->  		return -EINVAL;
->  	}
->  
-> -	/* Optional regulator for PHY */
-> -	gmac->regulator = devm_regulator_get_optional(dev, "phy");
-> -	if (IS_ERR(gmac->regulator)) {
-> -		if (PTR_ERR(gmac->regulator) == -EPROBE_DEFER)
-> -			return -EPROBE_DEFER;
-> -		dev_info(dev, "No regulator found\n");
-> -		gmac->regulator = NULL;
-> -	}
-> -
->  	/* The "GMAC clock control" register might be located in the
->  	 * CCU address range (on the R40), or the system control address
->  	 * range (on most other sun8i and later SoCs).
+>  arch/arm64/boot/dts/rockchip/rk356x.dtsi | 21 +++++++++++++++++++++
+>  1 file changed, 21 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/rockchip/rk356x.dtsi b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+> index 7cdef800cb3c..2e3c9e1887e3 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+> @@ -508,6 +508,27 @@ gpu: gpu@fde60000 {
+>                 status = "disabled";
+>         };
+>
+> +       vepu: video-codec@fdee0000 {
+> +               compatible = "rockchip,rk3568-vepu";
+> +               reg = <0x0 0xfdee0000 0x0 0x800>;
+> +               interrupts = <GIC_SPI 64 IRQ_TYPE_LEVEL_HIGH>;
+> +               interrupt-names = "vepu";
 
+It this block "encoder only" and if so, maybe we should remove the
+"interrupt-names" [1]?
+
+The driver is able to handle it. See:
+
+https://elixir.bootlin.com/linux/latest/source/drivers/staging/media/hantro/hantro_drv.c#L962
+
+You might have to adjust the dt-bindings for this.
+
+[1] https://lore.kernel.org/linux-media/20210324151715.GA3070006@robh.at.kernel.org/
+
+Thanks,
+Ezequiel
+
+> +               clocks = <&cru ACLK_JENC>, <&cru HCLK_JENC>;
+> +               clock-names = "aclk", "hclk";
+> +               iommus = <&vepu_mmu>;
+> +               power-domains = <&power RK3568_PD_RGA>;
+> +       };
+> +
+> +       vepu_mmu: iommu@fdee0800 {
+> +               compatible = "rockchip,rk3568-iommu";
+> +               reg = <0x0 0xfdee0800 0x0 0x40>;
+> +               interrupts = <GIC_SPI 63 IRQ_TYPE_LEVEL_HIGH>;
+> +               clocks = <&cru ACLK_JENC>, <&cru HCLK_JENC>;
+> +               clock-names = "aclk", "iface";
+> +               power-domains = <&power RK3568_PD_RGA>;
+> +               #iommu-cells = <0>;
+> +       };
+> +
+>         sdmmc2: mmc@fe000000 {
+>                 compatible = "rockchip,rk3568-dw-mshc", "rockchip,rk3288-dw-mshc";
+>                 reg = <0x0 0xfe000000 0x0 0x4000>;
+> --
+> 2.36.0
+>
+>
+> _______________________________________________
+> Linux-rockchip mailing list
+> Linux-rockchip@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-rockchip
