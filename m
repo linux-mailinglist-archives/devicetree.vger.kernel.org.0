@@ -2,99 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 015525202D1
-	for <lists+devicetree@lfdr.de>; Mon,  9 May 2022 18:45:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B1F2E520307
+	for <lists+devicetree@lfdr.de>; Mon,  9 May 2022 18:56:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239266AbiEIQtA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 May 2022 12:49:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57794 "EHLO
+        id S239300AbiEIQ7L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 May 2022 12:59:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38374 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239252AbiEIQs7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 May 2022 12:48:59 -0400
-Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B3B7EE6CD9;
-        Mon,  9 May 2022 09:45:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=5crOhz1b2Yt/7xhvVXQallsdzBVJYK1M2zVGJWfie0o=; b=WprEvTGHNXuTJ2lhdPuXfQjQrG
-        cbCUQaUc0KpKLXCvCveQNP+OIyUZxj/bNjSKveAEm2tYmhbTrtyA0fhe0huiZZLcXr6D9f8sFYVqJ
-        uqjiShDApZzcmjbHGZfGjYGiNq+cWC/jPkigdMYWaXTDXJzQfrY5q9+OIMhYZ9Q40w2I=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1no6VC-001yeT-Mx; Mon, 09 May 2022 18:44:54 +0200
-Date:   Mon, 9 May 2022 18:44:54 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Lorenzo Bianconi <lorenzo@kernel.org>
-Cc:     netdev@vger.kernel.org, nbd@nbd.name, john@phrozen.org,
-        sean.wang@mediatek.com, Mark-MC.Lee@mediatek.com,
-        davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-        pabeni@redhat.com, Sam.Shih@mediatek.com,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        robh@kernel.org
-Subject: Re: [PATCH net-next 01/14] arm64: dts: mediatek: mt7986: introduce
- ethernet nodes
-Message-ID: <YnlFBr1wgb/hlduy@lunn.ch>
-References: <cover.1651839494.git.lorenzo@kernel.org>
- <1d555fbbac820e9b580da3e8c0db30e7d003c4b6.1651839494.git.lorenzo@kernel.org>
- <YnZ8o46pPdKMCbUF@lunn.ch>
- <YnlC3jvYarpV6BP1@lore-desk>
+        with ESMTP id S239305AbiEIQ7K (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 May 2022 12:59:10 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8DEF32B24F4;
+        Mon,  9 May 2022 09:55:16 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 2A9806138B;
+        Mon,  9 May 2022 16:55:16 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 724D6C385BD;
+        Mon,  9 May 2022 16:55:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1652115315;
+        bh=H9ZzoCsU7OPFUVgovkRT4qyt5DBVCY0Rle9z2kImzrk=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=eijuKVmjFWQILCm+d4ejW1OnRFrE2oH1rPX5DzgPA4UNvJXhmSkQvi+zEF/6MLRzr
+         hcYxot6V+PMCx6l1T9bcxi+1TDJTNszcZLLY31TSV5DXKL9Ho4Ok2lPezUH3IMNzcw
+         cIY724cFq+e4gmMB6ri1hvMvyiCAqWYC1rdbQMh34v9szEb9jOXQlfTMRp3rZRYehX
+         4+YoCOo0ghgT6X1ce8QPu0akgUsYBybZJDHa1yCHcm6UYSPradmWLZJGdogEBAIAOh
+         cAt6UVpojzv+oRDwzEtNFBW9H+hP44EdlVihopWHkIw4SwhDZz4Lzf3ZcYeaghsiLW
+         J2mrZxaI3zAxQ==
+Received: by mail-pl1-f172.google.com with SMTP id n8so14450657plh.1;
+        Mon, 09 May 2022 09:55:15 -0700 (PDT)
+X-Gm-Message-State: AOAM530iWMAGzK79mtEgInt6L1DLY4RSlqIqJ0N2BAXGdua/AMrZuTcN
+        CH6/aKnCADeqG+VS/GFlz2WyTJVW5iae27bNuQ==
+X-Google-Smtp-Source: ABdhPJykBkhHUMt8k4qEM3EG8Muzu5edkjXzGUFd+xneIQ1RUYzfb43ThAvp2F2oq+zfpsKhmllOfvQ8ieanSR38mM0=
+X-Received: by 2002:a17:902:7c0a:b0:15e:f63b:9a14 with SMTP id
+ x10-20020a1709027c0a00b0015ef63b9a14mr13293242pll.35.1652115314773; Mon, 09
+ May 2022 09:55:14 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YnlC3jvYarpV6BP1@lore-desk>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+References: <20220504154033.750511-1-clement.leger@bootlin.com>
+ <20220504154033.750511-3-clement.leger@bootlin.com> <YnQo+mdDBuoKA6Fq@robh.at.kernel.org>
+ <20220506124339.2c772fa0@fixe.home>
+In-Reply-To: <20220506124339.2c772fa0@fixe.home>
+From:   Rob Herring <robh@kernel.org>
+Date:   Mon, 9 May 2022 11:55:02 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+RvygJDe5mug2b9E-gD7LfDt9dBmCx0rOSUEY1yWwHtw@mail.gmail.com>
+Message-ID: <CAL_Jsq+RvygJDe5mug2b9E-gD7LfDt9dBmCx0rOSUEY1yWwHtw@mail.gmail.com>
+Subject: Re: [PATCH 2/3] of: dynamic: add of_node_alloc() and of_node_free()
+To:     =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
+Cc:     Michael Ellerman <mpe@ellerman.id.au>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Paul Mackerras <paulus@samba.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Nathan Lynch <nathanl@linux.ibm.com>,
+        Laurent Dufour <ldufour@linux.ibm.com>,
+        Daniel Henrique Barboza <danielhb413@gmail.com>,
+        David Gibson <david@gibson.dropbear.id.au>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        David Hildenbrand <david@redhat.com>,
+        Ohhoon Kwon <ohoono.kwon@samsung.com>,
+        "Aneesh Kumar K.V" <aneesh.kumar@linux.ibm.com>,
+        YueHaibing <yuehaibing@huawei.com>,
+        linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        Allan Nielsen <allan.nielsen@microchip.com>,
+        Horatiu Vultur <horatiu.vultur@microchip.com>,
+        Steen Hegelund <steen.hegelund@microchip.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 09, 2022 at 06:35:42PM +0200, Lorenzo Bianconi wrote:
-> > > +&eth {
-> > > +	status = "okay";
-> > > +
-> > > +	gmac0: mac@0 {
-> > > +		compatible = "mediatek,eth-mac";
-> > > +		reg = <0>;
-> > > +		phy-mode = "2500base-x";
-> > > +
-> > > +		fixed-link {
-> > > +			speed = <2500>;
-> > > +			full-duplex;
-> > > +			pause;
-> > > +		};
-> > > +	};
-> > > +
-> > > +	gmac1: mac@1 {
-> > > +		compatible = "mediatek,eth-mac";
-> > > +		reg = <1>;
-> > > +		phy-mode = "2500base-x";
-> > > +
-> > > +		fixed-link {
-> > > +			speed = <2500>;
-> > > +			full-duplex;
-> > > +			pause;
-> > > +		};
-> > > +	};
-> > 
-> > Are both connected to the switch? It just seems unusual two have two
-> > fixed-link ports.
-> 
-> afaik mac design supports autoneg only in 10M/100M/1G mode and mt7986 gmac1
-> is connected to a 2.5Gbps phy on mt7986-ref board.
+On Fri, May 6, 2022 at 5:45 AM Cl=C3=A9ment L=C3=A9ger <clement.leger@bootl=
+in.com> wrote:
+>
+> Le Thu, 5 May 2022 14:43:54 -0500,
+> Rob Herring <robh@kernel.org> a =C3=A9crit :
+>
+> > On Wed, May 04, 2022 at 05:40:32PM +0200, Cl=C3=A9ment L=C3=A9ger wrote=
+:
+> > > Add functions which allows to create and free nodes.
+> > >
+> > > Signed-off-by: Cl=C3=A9ment L=C3=A9ger <clement.leger@bootlin.com>
+> > > ---
+> > >  drivers/of/dynamic.c | 59 ++++++++++++++++++++++++++++++++++++------=
+--
+> > >  include/linux/of.h   |  9 +++++++
+> > >  2 files changed, 58 insertions(+), 10 deletions(-)
+> > >
+> > > diff --git a/drivers/of/dynamic.c b/drivers/of/dynamic.c
+> > > index e8700e509d2e..ec28e5ba2969 100644
+> > > --- a/drivers/of/dynamic.c
+> > > +++ b/drivers/of/dynamic.c
+> > > @@ -455,6 +455,54 @@ struct property *__of_prop_dup(const struct prop=
+erty *prop, gfp_t allocflags)
+> > >                              prop->length, allocflags);
+> > >  }
+> > >
+> > > +/**
+> > > + * of_node_free - Free a node allocated dynamically.
+> > > + * @node:  Node to be freed
+> > > + */
+> > > +void of_node_free(const struct device_node *node)
+> > > +{
+> > > +   kfree(node->full_name);
+> > > +   kfree(node->data);
+> > > +   kfree(node);
+> > > +}
+> > > +EXPORT_SYMBOL(of_node_free);
+> >
+> > This shouldn't be needed. Nodes are refcounted, so any caller should
+> > just do a put.
+>
+> Acked. Do you want the name to be allocated as part of the node
+> allocation also ?
 
-The MAC does not normally perform autoneg, the PHY
-does. phylib/phylink then tells the MAC the result of the
-negotiation. If there is a SERDES/PCS involved, and it is performing
-the autoneg, phylink should get told about the result of the autoneg
-and it will tell the MAC the result.
+Yeah, I think that would be fine.
 
-So the gmac1 should just have phy-handle pointing to the PHY, not a
-fixed link.
-
-      Andrew
+Rob
