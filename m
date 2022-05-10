@@ -2,141 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 45D0952266F
-	for <lists+devicetree@lfdr.de>; Tue, 10 May 2022 23:43:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 457A652267A
+	for <lists+devicetree@lfdr.de>; Tue, 10 May 2022 23:51:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231176AbiEJVnn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 May 2022 17:43:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34406 "EHLO
+        id S230057AbiEJVvo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 May 2022 17:51:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34582 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229678AbiEJVnl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 May 2022 17:43:41 -0400
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 295B924F0D0
-        for <devicetree@vger.kernel.org>; Tue, 10 May 2022 14:43:40 -0700 (PDT)
-Received: by mail-ej1-x636.google.com with SMTP id g6so460044ejw.1
-        for <devicetree@vger.kernel.org>; Tue, 10 May 2022 14:43:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=JE1ryK3sFFaZpqLHuF4NT4pM8/q2oJCkuMH2NRrxWwk=;
-        b=UMCjE/GJyeRlpXcLvxAjSgAKgcgANfb//EG2WUd71BZf+62ZGEjKPE+xFJHNrgi25q
-         f/nnP8NBmQAIYJOomN7He1W39UCjnMwXBbwlO4gflTisczQg9XlhUlyVT4rvsCLdU2zp
-         qnyPa9oPLPuPspS+y0RzhTOQVDFihYiyLymU0=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=JE1ryK3sFFaZpqLHuF4NT4pM8/q2oJCkuMH2NRrxWwk=;
-        b=n23rC+Dygc3OqOAg5l56tpM+Sc85l53AUAZg3oFmRxUt7LUiTWC00x43KGHZPZUEZb
-         Q2UZcQkhZHeBg3sWwXKugX4sLUf8MYtd7Vkuzt57lVZxVwl91uZk8WFml3uWp3YXd4gz
-         7x3YBDdxdokARF/lPZgHHJUw8Xy3wWV+heaw+/cCGynwoGjlH0n2dPyJdnkk9sJn4ggw
-         SunuJlmmgzXMGgeRGHXMzxPiuScLzJY5k8FFRj1NO8CEdkNs2E9JymbppbVdAbzWCq00
-         3svBQKDWLQvXUNogRH89fOzvodWuEL0QXkOou7qnzb8K4TDupEOMJBLPZf1PqtPHBR58
-         TvDw==
-X-Gm-Message-State: AOAM531mwtjqSt8PQCehjHMkwJmW/uf8WQkolLjmTtAgL+SLurypKTnJ
-        Q/xdH5h0RkaJ6Ab0DC4HEdCUl+fbZM0R9PmCZsA=
-X-Google-Smtp-Source: ABdhPJwCtdE2yLV7wQigx+Zf+ais+2eMj4lSnZ+HlFe2GCAxLCgipYS4IA6O7XSHw//s6YiMUV3HQw==
-X-Received: by 2002:a17:907:3fa2:b0:6f4:b2a6:4992 with SMTP id hr34-20020a1709073fa200b006f4b2a64992mr22410572ejc.224.1652219018263;
-        Tue, 10 May 2022 14:43:38 -0700 (PDT)
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com. [209.85.128.49])
-        by smtp.gmail.com with ESMTPSA id eg56-20020a05640228b800b00427ae00972dsm167682edb.12.2022.05.10.14.43.37
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 10 May 2022 14:43:37 -0700 (PDT)
-Received: by mail-wm1-f49.google.com with SMTP id bg25so120984wmb.4
-        for <devicetree@vger.kernel.org>; Tue, 10 May 2022 14:43:37 -0700 (PDT)
-X-Received: by 2002:a05:600c:4f13:b0:394:8978:7707 with SMTP id
- l19-20020a05600c4f1300b0039489787707mr1887184wmq.34.1652219016683; Tue, 10
- May 2022 14:43:36 -0700 (PDT)
+        with ESMTP id S229668AbiEJVvn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 May 2022 17:51:43 -0400
+Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [IPv6:2001:df5:b000:5::4])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7929C53B7A
+        for <devicetree@vger.kernel.org>; Tue, 10 May 2022 14:51:42 -0700 (PDT)
+Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (Client did not present a certificate)
+        by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 400D72C046F;
+        Tue, 10 May 2022 21:51:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
+        s=mail181024; t=1652219500;
+        bh=cBvSinLe5Zk/AJFgIIikXUlgXVxVp2m/UQR/YawRuxU=;
+        h=From:To:CC:Subject:Date:References:In-Reply-To:From;
+        b=bFMk8dFNrZPEJbRJWgXCFnCcN86CNGz36beJqOowRTPNZNDBI8vUJrOiTH/aY7J6X
+         0VL5LWKP7bGZCnyxvfmzpvEvf3ohgXLy3dRFtLwLvG1BBrTeMfD2I2TqJZWg6J+b1R
+         MfTpoVsAGFu9obQmossG7TGxlpoj4J2jtDTWbgJ4l5ele8uaxM0u0pMHtWwIelgXxd
+         bpIsFuOalkDz1g8+yvzQSOfSoOQWsBGtg9jkJ61qfw180203u1IKWsQsX4qURnFm4I
+         4kVsrKcwQGYMgJP6Pt6H0mEcTs5UAIcJgh3by4EqTUBD0vePOOM0am7ZuliMdItDnk
+         G/Zm/PdtxUEzg==
+Received: from svr-chch-ex1.atlnz.lc (Not Verified[2001:df5:b000:bc8::77]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
+        id <B627ade6c0001>; Wed, 11 May 2022 09:51:40 +1200
+Received: from svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8:409d:36f5:8899:92e8)
+ by svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8:409d:36f5:8899:92e8) with
+ Microsoft SMTP Server (TLS) id 15.0.1497.32; Wed, 11 May 2022 09:51:39 +1200
+Received: from svr-chch-ex1.atlnz.lc ([fe80::409d:36f5:8899:92e8]) by
+ svr-chch-ex1.atlnz.lc ([fe80::409d:36f5:8899:92e8%12]) with mapi id
+ 15.00.1497.033; Wed, 11 May 2022 09:51:39 +1200
+From:   Chris Packham <Chris.Packham@alliedtelesis.co.nz>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
+        "will@kernel.org" <will@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "andrew@lunn.ch" <andrew@lunn.ch>,
+        "gregory.clement@bootlin.com" <gregory.clement@bootlin.com>,
+        "sebastian.hesselbarth@gmail.com" <sebastian.hesselbarth@gmail.com>,
+        "kostap@marvell.com" <kostap@marvell.com>,
+        "robert.marko@sartura.hr" <robert.marko@sartura.hr>
+CC:     "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v5 1/2] arm64: dts: marvell: Add Armada 98DX2530 SoC and
+ RD-AC5X board
+Thread-Topic: [PATCH v5 1/2] arm64: dts: marvell: Add Armada 98DX2530 SoC and
+ RD-AC5X board
+Thread-Index: AQHYX3HqbCVddS0CWEWMkXLyqck2rq0POn2AgAittYA=
+Date:   Tue, 10 May 2022 21:51:39 +0000
+Message-ID: <8f6272ce-0d25-3a1e-f71e-66444a94a2d4@alliedtelesis.co.nz>
+References: <20220504044624.951841-1-chris.packham@alliedtelesis.co.nz>
+ <20220504044624.951841-2-chris.packham@alliedtelesis.co.nz>
+ <dcc80690-c159-99f8-4686-536b9e87eb69@linaro.org>
+In-Reply-To: <dcc80690-c159-99f8-4686-536b9e87eb69@linaro.org>
+Accept-Language: en-NZ, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-messagesentrepresentingtype: 1
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [10.32.1.11]
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <F219E25187B3064EA53D5932D5CA8077@atlnz.lc>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-References: <20220510104656.1.Id98b473e08c950f9a461826dde187ef7705a928c@changeid>
- <CAD=FV=U33QSjnD7ERdVBb+hk4yooGU5=C0FtnhFsDME_MePR0w@mail.gmail.com> <YnrZQ4ggqxjlacL1@google.com>
-In-Reply-To: <YnrZQ4ggqxjlacL1@google.com>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Tue, 10 May 2022 14:43:24 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=VNNP0k_xS=qDUrO2jyNG3r=HB4nz+C0uRZLDBiBuCYZg@mail.gmail.com>
-Message-ID: <CAD=FV=VNNP0k_xS=qDUrO2jyNG3r=HB4nz+C0uRZLDBiBuCYZg@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: qcom: sc7280: Set modem FW path for Chrome OS boards
-To:     Matthias Kaehlcke <mka@chromium.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        "Joseph S . Barrera III" <joebar@chromium.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+X-SEG-SpamProfiler-Analysis: v=2.3 cv=C7GXNjH+ c=1 sm=1 tr=0 a=Xf/6aR1Nyvzi7BryhOrcLQ==:117 a=xqWC_Br6kY4A:10 a=oKJsc7D3gJEA:10 a=IkcTkHD0fZMA:10 a=oZkIemNP1mAA:10 a=Zpg9Uwi24b-cIoSFnZQA:9 a=QEXdDO2ut3YA:10
+X-SEG-SpamProfiler-Score: 0
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On Tue, May 10, 2022 at 2:29 PM Matthias Kaehlcke <mka@chromium.org> wrote:
->
-> On Tue, May 10, 2022 at 12:49:30PM -0700, Doug Anderson wrote:
-> > Hi,
-> >
-> > On Tue, May 10, 2022 at 10:47 AM Matthias Kaehlcke <mka@chromium.org> wrote:
-> > >
-> > > Specify the path of the modem FW for SC7280 Chrome OS boards in
-> > > the 'remoteproc_mpss' node.
-> > >
-> > > Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
-> > > ---
-> > >
-> > >  arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi | 2 ++
-> > >  1 file changed, 2 insertions(+)
-> > >
-> > > diff --git a/arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi b/arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi
-> > > index 9f4a9c263c35..995c5bd12549 100644
-> > > --- a/arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi
-> > > +++ b/arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi
-> > > @@ -89,6 +89,8 @@ &remoteproc_mpss {
-> > >         compatible = "qcom,sc7280-mss-pil";
-> > >         iommus = <&apps_smmu 0x124 0x0>, <&apps_smmu 0x488 0x7>;
-> > >         memory-region = <&mba_mem>, <&mpss_mem>;
-> > > +       firmware-name = "qcom/sc7280-herobrine/modem/mba.mbn",
-> > > +                       "qcom/sc7280-herobrine/modem/qdsp6sw.mbn";
-> >
-> > We don't necessarily need to change anything, but a few thoughts:
-> >
-> > 1. I guess technically we don't actually need the "modem" subdirectory
-> > for herobrine, right? WiFi works differently on sc7280 so we won't
-> > have a "no modem" modem firmware. ...but I guess it doesn't hurt to
-> > have it and it's nice to keep it symmetric.
->
-> Yeah, it seems nice to keep it symmetric and also indicate for what
-> kind of device the firmware is for. 'sc7280-herobrine' (or
-> 'sc7280-chrome') doesn't reveal that.
->
-> > 2. Whenever we're ready to support WiFi only SKUs then I guess it'll
-> > still be OK to specify the firmware name. We'll just set the status of
-> > "&mdss_dp" to "disabled".
->
-> Yes, specifying the FW name is not a problem. Either we'll set the
-> status of 'remoteproc_mpss' to 'disabled' or have a DT snippet for
-> the modem that is only included for SKUs with a modem.
->
-> > 3. It's slightly weird that we're using the name "herobrine" but
-> > putting the change in the "chrome-common.dtsi" file. Should it be
-> > "sc7280-chrome" instead?
->
-> Currently OS images have the FW in 'qcom/sc7280-herobrine', but we
-> could change that if desired. If we change the path we could also
-> consider to change it to 'qcom/sc7280-q6v5' or 'qcom/sc7280-mpss'
-> instead of 'qcom/sc7280-chrome/modem'.
-
-OK. I'm OK w/ it being "qcom/sc7280-herobrine". So I guess:
-
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
+DQpPbiA1LzA1LzIyIDIxOjE5LCBLcnp5c3p0b2YgS296bG93c2tpIHdyb3RlOg0KPj4gKy8gew0K
+Pj4gKwltb2RlbCA9ICJNYXJ2ZWxsIEFDNSBTb0MiOw0KPj4gKwljb21wYXRpYmxlID0gIm1hcnZl
+bGwsYWM1IjsNCj4gTWlzc2luZyBib2FyZCBiaW5kaW5ncyBwYXRjaC4NCj4NCldoZXJlIGRvIHRo
+ZXNlIHVzdWFsbHkgZW5kIHVwPyBJIGNhbid0IHNlZSBhbnkgb2YgdGhlIG90aGVyIE1hcnZlbGwg
+DQpib2FyZHMgaGF2aW5nIGJpbmRpbmdzICh3aGljaCBtaWdodCBiZSB3aHkgeW91J3JlIHRlbGxp
+bmcgbWUgbm90IHRvIGFkZCANCm5ldyBib2FyZHMvU29DcyB3aXRob3V0IGl0KS7CoCBUaGVyZSdz
+IG9uZSBlbnRyeSBpbiANCkRvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9ib2FyZCBi
+dXQgdGhhdCBzZWVtcyBtb3JlIHJlbGF0ZWQgdG8gDQpzb21lIGJvYXJkIHNwZWNpZmljIG1pc2Mg
+ZGV2aWNlcy4=
