@@ -2,119 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 175B8521CA4
-	for <lists+devicetree@lfdr.de>; Tue, 10 May 2022 16:41:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B5B0A521CC3
+	for <lists+devicetree@lfdr.de>; Tue, 10 May 2022 16:45:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243177AbiEJOpW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 May 2022 10:45:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46696 "EHLO
+        id S244000AbiEJOtb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 May 2022 10:49:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39002 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344591AbiEJOog (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 May 2022 10:44:36 -0400
-Received: from mail-qt1-f172.google.com (mail-qt1-f172.google.com [209.85.160.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 584141D813F;
-        Tue, 10 May 2022 07:02:45 -0700 (PDT)
-Received: by mail-qt1-f172.google.com with SMTP id h3so13557165qtn.4;
-        Tue, 10 May 2022 07:02:45 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Eo4bvoP53C2MoW6V75kNM+g38FmbVeaQf6g2Gfg1ZIw=;
-        b=w9HN3UC6in9VO+I9lJ2TZ4RNLV7Qh2vqRUn9l6ZOU9Suj7HfwDxbslU91D2aGo/sNA
-         qBMW+/2kCEHO3avNzENtmJcm1+Sb4W/pQanR102Sdtfbna2pxoX/ISv4Ug0154IYq4Nj
-         Eg5iXxgcBGlL4NAbengjSzlUBxBltwmCOSdTJP6Y6uI64krdC9WgYLWhbQJrRl9GX3Rl
-         teWcgEYZvZMLudq7pR/Be11TveT/5iZGC0ggjVJKfU7NwSxZRe+RECfmUoKHsgVtL9dg
-         zFopbTek21PurBvLgN6ubMjLe3QCE2ihQqwNT9v2IQYmapCkDvNe76gcVg+ecdRH4DWV
-         WFlQ==
-X-Gm-Message-State: AOAM533di2dewDb5fyUXsEYfYFtmu79usIGIyBA4L1Sm7GHiR05KwaFP
-        0mL5LUyKtYRVzZNj0aYtRj7eZ+IVSLO+FA==
-X-Google-Smtp-Source: ABdhPJwhZWgXKzEZNlxRqwe1qWNt5FrI4bOzM8l7JcsE4GLFOcxOk1BC1zHhNZldQ7CbmAAKW+QBmw==
-X-Received: by 2002:a05:622a:c4:b0:2f3:e383:7386 with SMTP id p4-20020a05622a00c400b002f3e3837386mr3255652qtw.521.1652191364329;
-        Tue, 10 May 2022 07:02:44 -0700 (PDT)
-Received: from mail-yb1-f175.google.com (mail-yb1-f175.google.com. [209.85.219.175])
-        by smtp.gmail.com with ESMTPSA id j11-20020a05620a288b00b0069fcebf9c0asm9386809qkp.37.2022.05.10.07.02.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 10 May 2022 07:02:43 -0700 (PDT)
-Received: by mail-yb1-f175.google.com with SMTP id r1so4180428ybo.7;
-        Tue, 10 May 2022 07:02:43 -0700 (PDT)
-X-Received: by 2002:a05:6902:905:b0:64a:2089:f487 with SMTP id
- bu5-20020a056902090500b0064a2089f487mr18143399ybb.202.1652191363172; Tue, 10
- May 2022 07:02:43 -0700 (PDT)
+        with ESMTP id S242130AbiEJOtX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 May 2022 10:49:23 -0400
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 619076BFF2
+        for <devicetree@vger.kernel.org>; Tue, 10 May 2022 07:08:11 -0700 (PDT)
+Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=diego.localnet)
+        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <heiko@sntech.de>)
+        id 1noQWz-00057J-J3; Tue, 10 May 2022 16:08:05 +0200
+From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To:     dri-devel@lists.freedesktop.org,
+        Sascha Hauer <s.hauer@pengutronix.de>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Sandy Huang <hjc@rock-chips.com>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>, krzk+dt@kernel.org,
+        robh+dt@kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: display: rockchip: make reg-names mandatory for VOP2
+Date:   Tue, 10 May 2022 16:08:02 +0200
+Message-ID: <3353209.QJadu78ljV@diego>
+In-Reply-To: <20220510070914.2346011-2-s.hauer@pengutronix.de>
+References: <20220510070914.2346011-1-s.hauer@pengutronix.de> <20220510070914.2346011-2-s.hauer@pengutronix.de>
 MIME-Version: 1.0
-References: <20220505193143.31826-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20220505193143.31826-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20220505193143.31826-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 10 May 2022 16:02:31 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdX0egGvyu94-=tJdvW0=q6Y==ZNkexCJpnmrNJezuiqDw@mail.gmail.com>
-Message-ID: <CAMuHMdX0egGvyu94-=tJdvW0=q6Y==ZNkexCJpnmrNJezuiqDw@mail.gmail.com>
-Subject: Re: [RFC PATCH 1/4] dt-bindings: clock: r9a07g043-cpg: Add Renesas
- RZ/Five CPG Clock and Reset Definitions
-To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Cc:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Phil Edworthy <phil.edworthy@renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Prabhakar,
+Hi Sascha,
 
-Thanks for your patch!
+Am Dienstag, 10. Mai 2022, 09:09:12 CEST schrieb Sascha Hauer:
+> The VOP2 driver relies on reg-names properties, but these are not
+> documented. Add the missing documentation, make reg-names mandatory
+> and increase minItems to 2 as always both register spaces are needed.
+> 
+> Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
 
-On Thu, May 5, 2022 at 9:32 PM Lad Prabhakar
-<prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
-> Renesas RZ/Five SoC has almost the same clock structure compared to the
-> Renesas RZ/G2UL SoC, re-use the r9a07g043-cpg.h header file and just
-> ammend the RZ/Five CPG clock and reset definitions.
+I'm not sure how the DT-people work - if they only track the devicetree list
+or their x+dt@kernel.org accounts or some mixture, but the patch was
+missing the maintainer email addresses - I've added them here now :-) .
 
-amend
+The change looks good to me and as I merged the original binding
+into drm-misc only some days ago, we also don't have a backwards-
+compat issue yet, so hopefully DT-people will think similarly .
 
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Heiko
 
-> --- a/include/dt-bindings/clock/r9a07g043-cpg.h
-> +++ b/include/dt-bindings/clock/r9a07g043-cpg.h
-> @@ -108,6 +108,15 @@
->  #define R9A07G043_ADC_ADCLK            76
->  #define R9A07G043_ADC_PCLK             77
->  #define R9A07G043_TSU_PCLK             78
-> +#define R9A07G043_NCEPLDM_DM_CLK       79      /* RZ/Five Only */
 
-While NCEPLDM_DM_CLK is listed in the clock list spreadsheet, its
-control bit is not documented.
+> ---
+>  .../bindings/display/rockchip/rockchip-vop2.yaml          | 8 +++++++-
+>  1 file changed, 7 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/rockchip/rockchip-vop2.yaml b/Documentation/devicetree/bindings/display/rockchip/rockchip-vop2.yaml
+> index 655d9b327f7d3..7238cdec9eb8a 100644
+> --- a/Documentation/devicetree/bindings/display/rockchip/rockchip-vop2.yaml
+> +++ b/Documentation/devicetree/bindings/display/rockchip/rockchip-vop2.yaml
+> @@ -22,7 +22,7 @@ properties:
+>        - rockchip,rk3568-vop
+>  
+>    reg:
+> -    minItems: 1
+> +    minItems: 2
+>      items:
+>        - description:
+>            Must contain one entry corresponding to the base address and length
+> @@ -31,6 +31,11 @@ properties:
+>            Can optionally contain a second entry corresponding to
+>            the CRTC gamma LUT address.
+>  
+> +  reg-names:
+> +    items:
+> +      - const: vop
+> +      - const: gamma-lut
+> +
+>    interrupts:
+>      maxItems: 1
+>      description:
+> @@ -86,6 +91,7 @@ properties:
+>  required:
+>    - compatible
+>    - reg
+> +  - reg-names
+>    - interrupts
+>    - clocks
+>    - clock-names
+> 
 
-> +#define R9A07G043_NCEPLDM_ACLK         80      /* RZ/Five Only */
-> +#define R9A07G043_NCEPLDM_TCK          81      /* RZ/Five Only */
 
-While NCEPLDM_TCK is listed in the clock list spreadsheet, its
-control bit is not documented.
 
-The rest LGTM, so with the above clarified
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
