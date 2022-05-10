@@ -2,75 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BFC3F5223DA
-	for <lists+devicetree@lfdr.de>; Tue, 10 May 2022 20:24:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B6BB5223FB
+	for <lists+devicetree@lfdr.de>; Tue, 10 May 2022 20:29:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235548AbiEJS2P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 May 2022 14:28:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33040 "EHLO
+        id S245465AbiEJS3t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 May 2022 14:29:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54032 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349045AbiEJS1U (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 May 2022 14:27:20 -0400
-Received: from mail-oa1-f45.google.com (mail-oa1-f45.google.com [209.85.160.45])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB0F414CB68;
-        Tue, 10 May 2022 11:23:21 -0700 (PDT)
-Received: by mail-oa1-f45.google.com with SMTP id 586e51a60fabf-ed9ac77cbbso14881fac.1;
-        Tue, 10 May 2022 11:23:21 -0700 (PDT)
+        with ESMTP id S244905AbiEJS3q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 May 2022 14:29:46 -0400
+Received: from mail-oi1-f182.google.com (mail-oi1-f182.google.com [209.85.167.182])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96B91238D59;
+        Tue, 10 May 2022 11:29:45 -0700 (PDT)
+Received: by mail-oi1-f182.google.com with SMTP id i66so6918390oia.11;
+        Tue, 10 May 2022 11:29:45 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=j6VUj9Lojhw3KHnOTn3bbGkCrGpPROOfMwN16uub3uA=;
-        b=fYXOE74xEJwI3g61z2Z96/F8SG9Y4J9X3dAkF2y0Y8G7ccZd7ZjbiqCnvn46qo6Xen
-         zUrQR/PAD5qBWdFuykJ9nVRie7cAJYRkJGCfdzmHSmA1Di6a0LEY/OrnMuwoys12+T0J
-         s0/LNBfQ23+Z9nG01JZVk3oJ5jZBqAISzB8X/VID3sy8ZG59du6FuQAP+MIksz+bpqEQ
-         TGv11iCEnokHLsjNuG0ygBo8oMRIAVUtyUe1OKF8rWI3BIQYK42s6FG/sCYdieVDJ5b1
-         SwwZhgSEqCFQuDenpeN+fQ3zGFIHzyI0V6hGZbdycCoKaUQJbmaZ9BuqXhRyk1HR69jH
-         43hw==
-X-Gm-Message-State: AOAM530fvr0V8cjm9APgbtiZG7p45ox2jrAmMLJ94fL95qdpekDJS9sK
-        GgBAZiSJi1TjAICSDdtttZPil76BpQ==
-X-Google-Smtp-Source: ABdhPJwI6HZZicgtT7n4tnN+YTEXRTNNsEMQBJKkWbmNeJZz/g6ItcbzCpRTBS5ZEPqb8fgrNUKVSw==
-X-Received: by 2002:a05:6871:887:b0:ed:4b3b:2bc4 with SMTP id r7-20020a056871088700b000ed4b3b2bc4mr790934oaq.278.1652207001018;
-        Tue, 10 May 2022 11:23:21 -0700 (PDT)
+        bh=8SoyxN+FrrEw5gq5dzBV/CjPfUWLivZhUTW1vpbidYI=;
+        b=5UiG4i6T3Jlza1BIDKFTLY4fCR2WS7ul42oc+CBzT9auTS50jSXd2JEZNogAN+Gfhp
+         hrLe+9A75+3Am8MD1v5PxEuuBcORhTfwtOD1kpzF5r3JBqfakER5KnN97VeeiygpCgjE
+         VKDeLFsV/t5OUtcvH1Ds+J6R/+DRLVGZtt7bt/Iq+quTCd6waOoJx1wNIxQ8nkmqJGw9
+         Zgdd487RnQh1ij4e1Hc74bJUJhG6m+sPgO3rfX+eA2RpI6kP/TMtM+p8ANQ9YOpV8GYO
+         7jHbdpUyMNfnf5ukMYiblGmLqN4em6QiRXaaXNQys2TTzVbhowl2z37twOD2Q9yoSEQZ
+         5N9A==
+X-Gm-Message-State: AOAM531U/Bb5Q4YrbWmPmXTq1Zev83Bop9WVcTmDOvwZYwSK4RLo+MzI
+        qe2lWrDMu2peXqUZAtiIrA==
+X-Google-Smtp-Source: ABdhPJw5ifXMLkY+0j1uPR3RR8lgYZNXwQsm8XngoZo7q8URrMdZtksrquWNx04NC6D04ouKibv1SA==
+X-Received: by 2002:a05:6808:2198:b0:326:8121:5ac4 with SMTP id be24-20020a056808219800b0032681215ac4mr679268oib.207.1652207384895;
+        Tue, 10 May 2022 11:29:44 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id m13-20020a9d400d000000b006060322126bsm5874079ote.59.2022.05.10.11.23.20
+        by smtp.gmail.com with ESMTPSA id m33-20020a056870562100b000edf80be4ecsm5768088oao.58.2022.05.10.11.29.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 May 2022 11:23:20 -0700 (PDT)
-Received: (nullmailer pid 2333804 invoked by uid 1000);
-        Tue, 10 May 2022 18:23:19 -0000
-Date:   Tue, 10 May 2022 13:23:19 -0500
+        Tue, 10 May 2022 11:29:44 -0700 (PDT)
+Received: (nullmailer pid 2349262 invoked by uid 1000);
+        Tue, 10 May 2022 18:29:43 -0000
+Date:   Tue, 10 May 2022 13:29:43 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Alexandre Torgue <alexandre.torgue@foss.st.com>
-Cc:     Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com
-Subject: Re: [PATCH] dt-bindings: clock: stm32mp1: adapt example for
- "st,stm32mp1-rcc-secure"
-Message-ID: <YnqtlwXwKgrvngGf@robh.at.kernel.org>
-References: <20220509134658.16267-1-alexandre.torgue@foss.st.com>
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-pwm@vger.kernel.org,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        linux-renesas-soc@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Thierry Reding <thierry.reding@gmail.com>
+Subject: Re: [RFC 3/8] dt-bindings: pwm: rzg2l-gpt: Document
+ renesas,poeg-group property
+Message-ID: <YnqvF8DeAUlXP8NV@robh.at.kernel.org>
+References: <20220510151112.16249-1-biju.das.jz@bp.renesas.com>
+ <20220510151112.16249-4-biju.das.jz@bp.renesas.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220509134658.16267-1-alexandre.torgue@foss.st.com>
+In-Reply-To: <20220510151112.16249-4-biju.das.jz@bp.renesas.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 09, 2022 at 03:46:58PM +0200, Alexandre Torgue wrote:
-> For "st,stm32mp1-rcc-secure" schema, clocks and clock-names entries are now
-> required properties.
+On Tue, 10 May 2022 16:11:07 +0100, Biju Das wrote:
+> For output disable operation, POEG group needs to be linked with
+> GPT. Document renesas,poeg-group property for linking both GPT and
+> POEG devices.
 > 
-> Signed-off-by: Alexandre Torgue <alexandre.torgue@foss.st.com>
-
-Assuming this works in arm-soc tree,
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> ---
+>  .../devicetree/bindings/pwm/renesas,rzg2l-gpt.yaml        | 8 ++++++++
+>  1 file changed, 8 insertions(+)
+> 
 
 Acked-by: Rob Herring <robh@kernel.org>
