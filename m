@@ -2,461 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7CFBF5210B8
-	for <lists+devicetree@lfdr.de>; Tue, 10 May 2022 11:21:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CCD1A52111D
+	for <lists+devicetree@lfdr.de>; Tue, 10 May 2022 11:38:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238662AbiEJJZD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 May 2022 05:25:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50450 "EHLO
+        id S235563AbiEJJmC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 May 2022 05:42:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34308 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238598AbiEJJZC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 May 2022 05:25:02 -0400
-Received: from mail-pf1-x42b.google.com (mail-pf1-x42b.google.com [IPv6:2607:f8b0:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 663B77306F;
-        Tue, 10 May 2022 02:21:05 -0700 (PDT)
-Received: by mail-pf1-x42b.google.com with SMTP id x23so14432110pff.9;
-        Tue, 10 May 2022 02:21:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=YWsz/Is+10tlbL0C0vChcP/jzEgAiggFZkHtnIfVDN0=;
-        b=GZaBOpUYn006AtjPi/EFltOU7OpEA6b38n6WLafj1iBd8R0lzqXz8zlQw1OlKitECu
-         +9/4th0c8ZFm2zowWx9JtHRMfC1gH76NGtKgPoma49yMBex5bAWnypHoc+JYrI2Q7fVy
-         Wayb+w6lZbJQKJA1m6N7V6Iray2taP+xLJEAQoxAL74u1U8N337L7zVCOJ64SnP1N464
-         89Icx9tYdZIpYmRVutI9QlMwrlu7rkW8xUTnrVKLXhQ8CMSssFj2ta0AynXBAQxTzj7L
-         E4HxuCp5WcjruiELcw6qfiMAwg1HAhKNI5GZK1NKF+1OPRN4VkO5NIUasB5Az5lIQHT5
-         lD1w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=YWsz/Is+10tlbL0C0vChcP/jzEgAiggFZkHtnIfVDN0=;
-        b=JZqidDK/R4q3Tqd6jabnIpl+HpFAvG4pYrxcRlqkqgPGFUI6inOm65php70yaFdcbc
-         LknzFfdiB7oSXmRJrqcrH5k3kIZhcjEVhBWg8TqUU2A0SnQpIyfpSgkNkbesIDHdANX4
-         6HiJH78qB6ubnAqRcBM3RyKOprNo1ujzww4Jn/i1pjgz8n7KJr5BnNFpc4Ewrngxbejm
-         Wu5XTmQsV6lKFV3FXFiLRjdp7+kePTovGWIQeYslXC2jNFniO5To13vMZvkSnLnyXVXK
-         1ecyu/A7EVQFhu1DQm59Xw5lNkgveToiQg/U5B/7bDZFW4Qce9t4ZTa1aGvwEsihCKJt
-         7Yng==
-X-Gm-Message-State: AOAM533YBY81t0O3WpGsexDu/LN60WoJStnKPffSX8oCbSV+UkC9b8Ve
-        R9cWPtuP/r2cdNFcs9dreQ==
-X-Google-Smtp-Source: ABdhPJwCjywP0DUQ8yju2x2K8IYfvSy2/Mgi7xpXRbHsrB0E9xFtwo4i4LyTPSMIY/b2vkHWgwHnjg==
-X-Received: by 2002:a62:3881:0:b0:4b0:b1c:6fd9 with SMTP id f123-20020a623881000000b004b00b1c6fd9mr1104775pfa.27.1652174464679;
-        Tue, 10 May 2022 02:21:04 -0700 (PDT)
-Received: from localhost (2001-b011-7010-358e-c990-a8c9-85a7-1d3e.dynamic-ip6.hinet.net. [2001:b011:7010:358e:c990:a8c9:85a7:1d3e])
-        by smtp.gmail.com with ESMTPSA id g11-20020aa79dcb000000b0050dc7628188sm10429420pfq.98.2022.05.10.02.19.07
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Tue, 10 May 2022 02:21:04 -0700 (PDT)
-From:   Tyrone Ting <warp5tw@gmail.com>
-To:     avifishman70@gmail.com, tmaimon77@gmail.com, tali.perry1@gmail.com,
-        venture@google.com, yuenn@google.com, benjaminfair@google.com,
-        robh+dt@kernel.org, krzysztof.kozlowski@canonical.com,
-        wsa@kernel.org, andriy.shevchenko@linux.intel.com,
-        jarkko.nikula@linux.intel.com, semen.protsenko@linaro.org,
-        sven@svenpeter.dev, jie.deng@intel.com, jsd@semihalf.com,
-        lukas.bulwahn@gmail.com, olof@lixom.net, arnd@arndb.de,
-        warp5tw@gmail.com, tali.perry@nuvoton.com, Avi.Fishman@nuvoton.com,
-        tomer.maimon@nuvoton.com, KWLIU@nuvoton.com, JJLIU0@nuvoton.com,
-        kfting@nuvoton.com
-Cc:     openbmc@lists.ozlabs.org, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v4 9/9] i2c: npcm: Support NPCM845
-Date:   Tue, 10 May 2022 17:16:54 +0800
-Message-Id: <20220510091654.8498-10-warp5tw@gmail.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20220510091654.8498-1-warp5tw@gmail.com>
-References: <20220510091654.8498-1-warp5tw@gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S232245AbiEJJmB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 May 2022 05:42:01 -0400
+Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2045.outbound.protection.outlook.com [40.107.22.45])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5351820BFC;
+        Tue, 10 May 2022 02:38:05 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=RHOglBewSnndDgmOAieQhyJ3gFXHCUM9GZkiHhpvq0jL/mjdnr6ZkqiXS1fY935tYopaziuDP5sTUv7NKLJjHQdaoLKxiKvWfwwqnEzyxGU6jsvBoQEAA0uOZMNef5hvDfk0fcrB8z66VIJwa7270qHcgoSanTWxiPNZiKH4qyJ4bmmcJqgASUJC/+w4g65T8gHpqpwEQMAsmgSkJxz5pPa+aGWUBW5Tp4OfZgZTlZg7BsGoEeobQrYVfsgU1/1DDZ5UmGzTMDu8941DB/Rtybyef70BoVrMh/+v45bpLuFvKg2CMpwaUldtPN2lIMdc60fW/VZ4N/fcP/wmIAuH6A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=bKIx+0KmRpDf7q9uNFOrIRmseAWTxv4+z8ub/YtwChM=;
+ b=VMLG/p3ryVjnyP9cppr9r151QROs8aLnxzwK9bj9JuR42Oj4mbLcxP5QXhaB05CGYRZTWQSbpx56kF0HeAq7emAkvySlEmZVt6pPX7axJMjkucif0g9RCSTbivg8oM5tg/wDbLejKxmAxYfTD8WXCBuvV5s8CPB3F+Y83w0UfuMUvhBSLNiAR8Bh1PlHW16qo1xjeQFeC/NS0/D/NMO7f9g/v88rDESk2Lebnw1iNmq7PE3BtDTv18oVer+cZefs207VxswabWfPcJGka7eytBIkPnjAbh/kxeO4G88lEkz0sGRlIk6iWZ5TKJE58PBMmagcm6gb3L9UGpPSTKMDHA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector2-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=bKIx+0KmRpDf7q9uNFOrIRmseAWTxv4+z8ub/YtwChM=;
+ b=SNz+Di+0jsdiB0EsAgWWPMzfg4C99/mmpI5QcwRde8eYX+BuYiii042TdkPnm9uJdn9Fnjgqr/4GYJIFFFoQHpCKF5/SKrQbZ8S3xEcEcFnmtNMov+aYzkTj9XDjSnHsjHLBqP0wK3VvH/+csdZ1Ee9IierJQJdiXAqYMzOZCK4=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from DU0PR04MB9417.eurprd04.prod.outlook.com (2603:10a6:10:358::11)
+ by DBBPR04MB7514.eurprd04.prod.outlook.com (2603:10a6:10:1f7::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5227.23; Tue, 10 May
+ 2022 09:38:01 +0000
+Received: from DU0PR04MB9417.eurprd04.prod.outlook.com
+ ([fe80::fc66:662f:2a82:1420]) by DU0PR04MB9417.eurprd04.prod.outlook.com
+ ([fe80::fc66:662f:2a82:1420%6]) with mapi id 15.20.5227.023; Tue, 10 May 2022
+ 09:38:01 +0000
+From:   "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de
+Cc:     kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, Peng Fan <peng.fan@nxp.com>
+Subject: [PATCH V5 0/4] arm64: add i.MX93 support
+Date:   Tue, 10 May 2022 17:39:42 +0800
+Message-Id: <20220510093946.335036-1-peng.fan@oss.nxp.com>
+X-Mailer: git-send-email 2.25.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SI2PR02CA0017.apcprd02.prod.outlook.com
+ (2603:1096:4:194::17) To DU0PR04MB9417.eurprd04.prod.outlook.com
+ (2603:10a6:10:358::11)
+MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: a030be28-1d83-4938-fa28-08da3268c676
+X-MS-TrafficTypeDiagnostic: DBBPR04MB7514:EE_
+X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
+X-Microsoft-Antispam-PRVS: <DBBPR04MB75142F1D070488478A233E40C9C99@DBBPR04MB7514.eurprd04.prod.outlook.com>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: GJk8Czl/8yrQiBtJGAPPo1KvxjdwdvgSnyR0VZ27a/OFkZze5nFTtNP6VP/NdrR0hX9WMbLQaBwefD+rwr0pf/Ph/WDHroximx8pQ7H2T0Pu/ue+t+tXwmiTdnUXHjCgKef3Kb1tR8VkeCXCOd2Z0mf/x9aohxwNYaxWAZP1abQcLAJosdKZHowhj5TCeVYRBfa6/+yZc7ByrKvkTErqtcf32MXzZiaL+Nw0eRT40aimkSERE3N5uxqhcDLAesUFyv1FC3EGpLb1YWXO5/YRWfig9WzHCXeo1haWXAoXME18r3i5eb/phTu18PtdzPq7Lp2SlPVzp+UO8gBr/BOGre8gQ5AvRrfrv9ofsxNv0D0IWUCudJrKH6TeTBtIsMOVzdvKbx1YUF/fZePD0jEyoBOH5g4GiFuzxOXwO//WeYx1UHDsMETWO76b5gtUJQzsBbox897c7fIQE7lhHvaI+doZZB8zst20Z++2xF/uZDKHIFNM4owNMatHC6zMvU4Qu1fCSwghqP5O4lJhto0nARkgj8TB15n5zWKxubmAXvpSd5iBGJuVTu+qGuu+Q6DAkZAm/+CyR2zr1EegfNljcNpIka6A0n5IYx2x3ozASnwXFEx4ZrPPopQbYhXWA6j6jzLhiaEjq0zGBE1Luep2jQ+XkVHwJ1ENOmqoIf9La0pU/V7USIGoCcO70gnQ7L/WUdll95BH58f/K9th9El7Yw==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9417.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(2906002)(8936002)(38350700002)(38100700002)(5660300002)(83380400001)(4326008)(508600001)(186003)(1076003)(2616005)(66946007)(66476007)(8676002)(66556008)(316002)(6506007)(52116002)(6486002)(26005)(86362001)(6666004)(6512007);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?VIjgaxMnAaKSEKaDz/58EufxvNxBumvsweWZMNcyi5AQHGgpqEtPstrBWcJ6?=
+ =?us-ascii?Q?4vCVZYJAKlRu5hRbqjRUUhKEzfi5Ogmj0CK+QeXWR4O3AoGLCyuz0Aw1Ouk6?=
+ =?us-ascii?Q?cJS/yTEKhvAQQr6WVujhA9i6VOju54CNYV75xGSmkSUlnhUSSsVzp70AYXMu?=
+ =?us-ascii?Q?cyjqXlHpV5sUNEdTM2Fqn35LVNsVUM+iBAJQIBWJevzmJo/2bHDHkOdVHTg7?=
+ =?us-ascii?Q?B+KU+X4yXueKZ/ciuHBm6oH4YaOaYK/cVer5/Jmd8FewqKDxUfQzE00aTJJU?=
+ =?us-ascii?Q?Bth4o9MjStUiiKkg+CYj25xWqGZGXUmp4d4q1pbcMK4SrQhTG9GZbxH5h1xX?=
+ =?us-ascii?Q?Vph/4y8p80ZqPhah97X84Ao3PiMhgbTUAjcSZJdSFEjMNN+rz0N9l5oj4Aws?=
+ =?us-ascii?Q?vaJhWvjncaQIigK0Y6Ok+3y9g2F2TFnQq7QYOwZ4fg40aockYPQCnGuDxEKy?=
+ =?us-ascii?Q?l5Dojfp5u9lLJjYNlL+1vZv5nMyfFiavxSYfL+SKo9DbfjBcBK2g+xb1kS5l?=
+ =?us-ascii?Q?iy10IJpQYEbRjJAj8ipKpCOLrMX83peBoj08RGoJsoNtOFdarFlhP2LqZmNP?=
+ =?us-ascii?Q?BRaFZJ3XsF4qWSVG29om1EGjzL1Ev5G+Y1BvwLV3vKoiRQSKR4kgskh9YsSH?=
+ =?us-ascii?Q?LfGzctuFe22Dk95zMFVOf3jnL45AZ4/f6lXXFYrmfB5kEYWvKAHjy7qyWlcR?=
+ =?us-ascii?Q?UeggejqCKsl0+Aa0JfRjBS648yRwRVzq/iF7ciRxQQawcu3/tBbKm6WHi8Jy?=
+ =?us-ascii?Q?9q+H96h2n0ZEj9ZD+5mB7pt4nj78AINMq0I/h/Ar/KKBlNHBR7tJRi2EzAjD?=
+ =?us-ascii?Q?endxLK8oR1jbTqjNJ6ivDQUnWmCTVus9jlQ4P1ZNjRTNH4YhL1nOPHI97YX1?=
+ =?us-ascii?Q?L4isr8cyDJUjavEcdZ7r/2ExkKfL3bmTlpmLbCbaq5TtI4zU0v8BOEo/lZlm?=
+ =?us-ascii?Q?XqljvMF9L4LXTrEJo96Mg8wGjYOZFoznCr3ReiX8kXf9jb9PRsv2X1uWJKQb?=
+ =?us-ascii?Q?A/Tq9h45wFbgykQ9P0TmWIGZuJzl9hjJgeUUn2cH/aJ98aigwXD/TBoczG/s?=
+ =?us-ascii?Q?LnT9NT1x3RULrySNT5YzG0Emgbx2QElrK1WtAkL0BSaO1LFw+5/CRnE8azEQ?=
+ =?us-ascii?Q?OxawvFRg4mxz+ceZtq51JAEO70kBcdnG3p3sr0vwgdYXbHbZwQZ8orjg+ndG?=
+ =?us-ascii?Q?aLSXRXtaWQ/XydjTqIUa4klfyOWnKojUlgKP3w/5EPrNmtngMtgQdMr/jCtv?=
+ =?us-ascii?Q?bveIb7BXPYTNHqiO3BqnJAeu1u6J07IrYPUgFFVdkfL5xH5wD45oibhAg/Kr?=
+ =?us-ascii?Q?GlkkoPY4bQFYIOaT/6GQqjeHKrGSy2zeDaV5Np+w5wg8M+OIclIQnCG+MGgy?=
+ =?us-ascii?Q?bBmWw5PH/dWZkncq+8HzYEbeZ+dymGqwT3cCfON6kQqdX3Z62VsmNUvIoMvg?=
+ =?us-ascii?Q?8XV5txW2TyL5Vgy/2HdarEVR7Q0jJmdSr0fEz+6yCL/+9RtWn0RfXGbY9pFK?=
+ =?us-ascii?Q?hsSUdTIr7Ii2pj/5vbU9HOExCxySScb2lEE4OKiDlYOo2JOVzl8BloJWeuuv?=
+ =?us-ascii?Q?TP7DAXPJULoPQB95G/ViZz6Etcm5e4gxqLGKJ6ObzP0aba0HghyuU5WJX3xE?=
+ =?us-ascii?Q?f03dJEpZBc7NL61yUXWgq8QFO/z3E3jAA+yPI6nX6NSM8+OKY81cgD2kPeFK?=
+ =?us-ascii?Q?kEL8NtyL+p2bX3eQkH8vK6dPA71obnEDqZd077mD7O+4AzJrHU6XqNSWffMy?=
+ =?us-ascii?Q?RSi6Gsv5aA=3D=3D?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a030be28-1d83-4938-fa28-08da3268c676
+X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9417.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 May 2022 09:38:01.7457
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: LKb5bZTXjWfH+AKS94IVpLdW2Dm2FVY51+4LPgXbyF6DuB/5mHr/bizpGuZwA1Lrzl3eAkey0qD8XlJ/0UypFA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBBPR04MB7514
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Tyrone Ting <kfting@nuvoton.com>
+From: Peng Fan <peng.fan@nxp.com>
 
-Add NPCM8XX I2C support.
-The NPCM8XX uses a similar i2c module as NPCM7XX.
-The internal HW FIFO is larger in NPCM8XX.
+V5:
+ Add R-b from Aisheng
+ drop iomuxc status from board dts
 
-Signed-off-by: Tyrone Ting <kfting@nuvoton.com>
----
- drivers/i2c/busses/Kconfig       |   8 +--
- drivers/i2c/busses/Makefile      |   2 +-
- drivers/i2c/busses/i2c-npcm7xx.c | 114 +++++++++++++++++++------------
- 3 files changed, 76 insertions(+), 48 deletions(-)
+V4:
+ Add A-b
+ In patch 1 to move imx93 behind imx8ulp
+ Drop a whitespace in patch 2
 
-diff --git a/drivers/i2c/busses/Kconfig b/drivers/i2c/busses/Kconfig
-index a1bae59208e3..b1d7069dd377 100644
---- a/drivers/i2c/busses/Kconfig
-+++ b/drivers/i2c/busses/Kconfig
-@@ -838,13 +838,13 @@ config I2C_NOMADIK
- 	  I2C interface from ST-Ericsson's Nomadik and Ux500 architectures,
- 	  as well as the STA2X11 PCIe I/O HUB.
- 
--config I2C_NPCM7XX
-+config I2C_NPCM
- 	tristate "Nuvoton I2C Controller"
--	depends on ARCH_NPCM7XX || COMPILE_TEST
-+	depends on ARCH_NPCM || COMPILE_TEST
- 	help
- 	  If you say yes to this option, support will be included for the
--	  Nuvoton I2C controller, which is available on the NPCM7xx BMC
--	  controller.
-+	  Nuvoton I2C controller, which is available on the NPCM BMC
-+	  controllers.
- 	  Driver can also support slave mode (select I2C_SLAVE).
- 
- config I2C_OCORES
-diff --git a/drivers/i2c/busses/Makefile b/drivers/i2c/busses/Makefile
-index 479f60e4ee3d..b0a10e5d9ee9 100644
---- a/drivers/i2c/busses/Makefile
-+++ b/drivers/i2c/busses/Makefile
-@@ -84,7 +84,7 @@ obj-$(CONFIG_I2C_MT7621)	+= i2c-mt7621.o
- obj-$(CONFIG_I2C_MV64XXX)	+= i2c-mv64xxx.o
- obj-$(CONFIG_I2C_MXS)		+= i2c-mxs.o
- obj-$(CONFIG_I2C_NOMADIK)	+= i2c-nomadik.o
--obj-$(CONFIG_I2C_NPCM7XX)	+= i2c-npcm7xx.o
-+obj-$(CONFIG_I2C_NPCM)		+= i2c-npcm7xx.o
- obj-$(CONFIG_I2C_OCORES)	+= i2c-ocores.o
- obj-$(CONFIG_I2C_OMAP)		+= i2c-omap.o
- obj-$(CONFIG_I2C_OWL)		+= i2c-owl.o
-diff --git a/drivers/i2c/busses/i2c-npcm7xx.c b/drivers/i2c/busses/i2c-npcm7xx.c
-index 29d8a44b23c4..415a24df78e9 100644
---- a/drivers/i2c/busses/i2c-npcm7xx.c
-+++ b/drivers/i2c/busses/i2c-npcm7xx.c
-@@ -17,6 +17,7 @@
- #include <linux/mfd/syscon.h>
- #include <linux/module.h>
- #include <linux/of.h>
-+#include <linux/of_device.h>
- #include <linux/platform_device.h>
- #include <linux/regmap.h>
- 
-@@ -91,7 +92,6 @@ enum i2c_addr {
- 
- /* init register and default value required to enable module */
- #define NPCM_I2CSEGCTL			0xE4
--#define NPCM_I2CSEGCTL_INIT_VAL		0x0333F000
- 
- /* Common regs */
- #define NPCM_I2CSDA			0x00
-@@ -228,8 +228,7 @@ static const int npcm_i2caddr[I2C_NUM_OWN_ADDR] = {
- #define NPCM_I2CFIF_CTS_CLR_FIFO	BIT(6)
- #define NPCM_I2CFIF_CTS_SLVRSTR		BIT(7)
- 
--/* NPCM_I2CTXF_CTL reg fields */
--#define NPCM_I2CTXF_CTL_TX_THR		GENMASK(4, 0)
-+/* NPCM_I2CTXF_CTL reg field */
- #define NPCM_I2CTXF_CTL_THR_TXIE	BIT(6)
- 
- /* NPCM_I2CT_OUT reg fields */
-@@ -238,22 +237,18 @@ static const int npcm_i2caddr[I2C_NUM_OWN_ADDR] = {
- #define NPCM_I2CT_OUT_T_OUTST		BIT(7)
- 
- /* NPCM_I2CTXF_STS reg fields */
--#define NPCM_I2CTXF_STS_TX_BYTES	GENMASK(4, 0)
- #define NPCM_I2CTXF_STS_TX_THST		BIT(6)
- 
- /* NPCM_I2CRXF_STS reg fields */
--#define NPCM_I2CRXF_STS_RX_BYTES	GENMASK(4, 0)
- #define NPCM_I2CRXF_STS_RX_THST		BIT(6)
- 
- /* NPCM_I2CFIF_CTL reg fields */
- #define NPCM_I2CFIF_CTL_FIFO_EN		BIT(4)
- 
- /* NPCM_I2CRXF_CTL reg fields */
--#define NPCM_I2CRXF_CTL_RX_THR		GENMASK(4, 0)
--#define NPCM_I2CRXF_CTL_LAST_PEC	BIT(5)
- #define NPCM_I2CRXF_CTL_THR_RXIE	BIT(6)
- 
--#define I2C_HW_FIFO_SIZE		16
-+#define MAX_I2C_HW_FIFO_SIZE		32
- 
- /* I2C_VER reg fields */
- #define I2C_VER_VERSION			GENMASK(6, 0)
-@@ -270,11 +265,36 @@ static const int npcm_i2caddr[I2C_NUM_OWN_ADDR] = {
- #define I2C_FREQ_MIN_HZ			10000
- #define I2C_FREQ_MAX_HZ			I2C_MAX_FAST_MODE_PLUS_FREQ
- 
-+struct npcm_i2c_data {
-+	u8 fifo_size;
-+	u32 segctl_init_val;
-+	u8 txf_sts_tx_bytes;
-+	u8 rxf_sts_rx_bytes;
-+	u8 rxf_ctl_last_pec;
-+};
-+
-+static const struct npcm_i2c_data npxm7xx_i2c_data = {
-+	.fifo_size = 16,
-+	.segctl_init_val = 0x0333F000,
-+	.txf_sts_tx_bytes = GENMASK(4, 0),
-+	.rxf_sts_rx_bytes = GENMASK(4, 0),
-+	.rxf_ctl_last_pec = BIT(5),
-+};
-+
-+static const struct npcm_i2c_data npxm8xx_i2c_data = {
-+	.fifo_size = 32,
-+	.segctl_init_val = 0x9333F000,
-+	.txf_sts_tx_bytes = GENMASK(5, 0),
-+	.rxf_sts_rx_bytes = GENMASK(5, 0),
-+	.rxf_ctl_last_pec = BIT(7),
-+};
-+
- /* Status of one I2C module */
- struct npcm_i2c {
- 	struct i2c_adapter adap;
- 	struct device *dev;
- 	unsigned char __iomem *reg;
-+	const struct npcm_i2c_data *data;
- 	spinlock_t lock;   /* IRQ synchronization */
- 	struct completion cmd_complete;
- 	int cmd_err;
-@@ -307,8 +327,8 @@ struct npcm_i2c {
- 	int slv_rd_ind;
- 	int slv_wr_size;
- 	int slv_wr_ind;
--	u8 slv_rd_buf[I2C_HW_FIFO_SIZE];
--	u8 slv_wr_buf[I2C_HW_FIFO_SIZE];
-+	u8 slv_rd_buf[MAX_I2C_HW_FIFO_SIZE];
-+	u8 slv_wr_buf[MAX_I2C_HW_FIFO_SIZE];
- #endif
- 	struct dentry *debugfs; /* debugfs device directory */
- 	u64 ber_cnt;
-@@ -441,7 +461,7 @@ static inline bool npcm_i2c_tx_fifo_empty(struct npcm_i2c *bus)
- 
- 	tx_fifo_sts = ioread8(bus->reg + NPCM_I2CTXF_STS);
- 	/* check if TX FIFO is not empty */
--	if ((tx_fifo_sts & NPCM_I2CTXF_STS_TX_BYTES) == 0)
-+	if ((tx_fifo_sts & bus->data->txf_sts_tx_bytes) == 0)
- 		return false;
- 
- 	/* check if TX FIFO status bit is set: */
-@@ -454,7 +474,7 @@ static inline bool npcm_i2c_rx_fifo_full(struct npcm_i2c *bus)
- 
- 	rx_fifo_sts = ioread8(bus->reg + NPCM_I2CRXF_STS);
- 	/* check if RX FIFO is not empty: */
--	if ((rx_fifo_sts & NPCM_I2CRXF_STS_RX_BYTES) == 0)
-+	if ((rx_fifo_sts & bus->data->rxf_sts_rx_bytes) == 0)
- 		return false;
- 
- 	/* check if rx fifo full status is set: */
-@@ -743,11 +763,11 @@ static void npcm_i2c_callback(struct npcm_i2c *bus,
- static u8 npcm_i2c_fifo_usage(struct npcm_i2c *bus)
- {
- 	if (bus->operation == I2C_WRITE_OPER)
--		return FIELD_GET(NPCM_I2CTXF_STS_TX_BYTES,
--				 ioread8(bus->reg + NPCM_I2CTXF_STS));
-+		return (bus->data->txf_sts_tx_bytes &
-+			ioread8(bus->reg + NPCM_I2CTXF_STS));
- 	if (bus->operation == I2C_READ_OPER)
--		return FIELD_GET(NPCM_I2CRXF_STS_RX_BYTES,
--				 ioread8(bus->reg + NPCM_I2CRXF_STS));
-+		return (bus->data->rxf_sts_rx_bytes &
-+			ioread8(bus->reg + NPCM_I2CRXF_STS));
- 	return 0;
- }
- 
-@@ -759,13 +779,13 @@ static void npcm_i2c_write_to_fifo_master(struct npcm_i2c *bus, u16 max_bytes)
- 	 * Fill the FIFO, while the FIFO is not full and there are more bytes
- 	 * to write
- 	 */
--	size_free_fifo = I2C_HW_FIFO_SIZE - npcm_i2c_fifo_usage(bus);
-+	size_free_fifo = bus->data->fifo_size - npcm_i2c_fifo_usage(bus);
- 	while (max_bytes-- && size_free_fifo) {
- 		if (bus->wr_ind < bus->wr_size)
- 			npcm_i2c_wr_byte(bus, bus->wr_buf[bus->wr_ind++]);
- 		else
- 			npcm_i2c_wr_byte(bus, 0xFF);
--		size_free_fifo = I2C_HW_FIFO_SIZE - npcm_i2c_fifo_usage(bus);
-+		size_free_fifo = bus->data->fifo_size - npcm_i2c_fifo_usage(bus);
- 	}
- }
- 
-@@ -786,11 +806,11 @@ static void npcm_i2c_set_fifo(struct npcm_i2c *bus, int nread, int nwrite)
- 
- 	/* configure RX FIFO */
- 	if (nread > 0) {
--		rxf_ctl = min_t(int, nread, I2C_HW_FIFO_SIZE);
-+		rxf_ctl = min_t(int, nread, bus->data->fifo_size);
- 
- 		/* set LAST bit. if LAST is set next FIFO packet is nacked */
--		if (nread <= I2C_HW_FIFO_SIZE)
--			rxf_ctl |= NPCM_I2CRXF_CTL_LAST_PEC;
-+		if (nread <= bus->data->fifo_size)
-+			rxf_ctl |= bus->data->rxf_ctl_last_pec;
- 
- 		/*
- 		 * if we are about to read the first byte in blk rd mode,
-@@ -808,9 +828,9 @@ static void npcm_i2c_set_fifo(struct npcm_i2c *bus, int nread, int nwrite)
- 
- 	/* configure TX FIFO */
- 	if (nwrite > 0) {
--		if (nwrite > I2C_HW_FIFO_SIZE)
-+		if (nwrite > bus->data->fifo_size)
- 			/* data to send is more then FIFO size. */
--			iowrite8(I2C_HW_FIFO_SIZE, bus->reg + NPCM_I2CTXF_CTL);
-+			iowrite8(bus->data->fifo_size, bus->reg + NPCM_I2CTXF_CTL);
- 		else
- 			iowrite8(nwrite, bus->reg + NPCM_I2CTXF_CTL);
- 
-@@ -879,13 +899,13 @@ static void npcm_i2c_write_fifo_slave(struct npcm_i2c *bus, u16 max_bytes)
- 	npcm_i2c_clear_fifo_int(bus);
- 	npcm_i2c_clear_tx_fifo(bus);
- 	iowrite8(0, bus->reg + NPCM_I2CTXF_CTL);
--	while (max_bytes-- && I2C_HW_FIFO_SIZE != npcm_i2c_fifo_usage(bus)) {
-+	while (max_bytes-- && bus->data->fifo_size != npcm_i2c_fifo_usage(bus)) {
- 		if (bus->slv_wr_size <= 0)
- 			break;
--		bus->slv_wr_ind = bus->slv_wr_ind % I2C_HW_FIFO_SIZE;
-+		bus->slv_wr_ind = bus->slv_wr_ind & (bus->data->fifo_size - 1);
- 		npcm_i2c_wr_byte(bus, bus->slv_wr_buf[bus->slv_wr_ind]);
- 		bus->slv_wr_ind++;
--		bus->slv_wr_ind = bus->slv_wr_ind % I2C_HW_FIFO_SIZE;
-+		bus->slv_wr_ind = bus->slv_wr_ind & (bus->data->fifo_size - 1);
- 		bus->slv_wr_size--;
- 	}
- }
-@@ -900,7 +920,7 @@ static void npcm_i2c_read_fifo_slave(struct npcm_i2c *bus, u8 bytes_in_fifo)
- 	while (bytes_in_fifo--) {
- 		data = npcm_i2c_rd_byte(bus);
- 
--		bus->slv_rd_ind = bus->slv_rd_ind % I2C_HW_FIFO_SIZE;
-+		bus->slv_rd_ind = bus->slv_rd_ind & (bus->data->fifo_size - 1);
- 		bus->slv_rd_buf[bus->slv_rd_ind] = data;
- 		bus->slv_rd_ind++;
- 
-@@ -918,8 +938,8 @@ static int npcm_i2c_slave_get_wr_buf(struct npcm_i2c *bus)
- 	int ret = bus->slv_wr_ind;
- 
- 	/* fill a cyclic buffer */
--	for (i = 0; i < I2C_HW_FIFO_SIZE; i++) {
--		if (bus->slv_wr_size >= I2C_HW_FIFO_SIZE)
-+	for (i = 0; i < bus->data->fifo_size; i++) {
-+		if (bus->slv_wr_size >= bus->data->fifo_size)
- 			break;
- 		if (bus->state == I2C_SLAVE_MATCH) {
- 			i2c_slave_event(bus->slave, I2C_SLAVE_READ_REQUESTED, &value);
-@@ -927,11 +947,11 @@ static int npcm_i2c_slave_get_wr_buf(struct npcm_i2c *bus)
- 		} else {
- 			i2c_slave_event(bus->slave, I2C_SLAVE_READ_PROCESSED, &value);
- 		}
--		ind = (bus->slv_wr_ind + bus->slv_wr_size) % I2C_HW_FIFO_SIZE;
-+		ind = (bus->slv_wr_ind + bus->slv_wr_size) & (bus->data->fifo_size - 1);
- 		bus->slv_wr_buf[ind] = value;
- 		bus->slv_wr_size++;
- 	}
--	return I2C_HW_FIFO_SIZE - ret;
-+	return bus->data->fifo_size - ret;
- }
- 
- static void npcm_i2c_slave_send_rd_buf(struct npcm_i2c *bus)
-@@ -966,7 +986,7 @@ static void npcm_i2c_slave_receive(struct npcm_i2c *bus, u16 nread,
- 	bus->slv_rd_ind = 0;
- 
- 	iowrite8(0, bus->reg + NPCM_I2CTXF_CTL);
--	iowrite8(I2C_HW_FIFO_SIZE, bus->reg + NPCM_I2CRXF_CTL);
-+	iowrite8(bus->data->fifo_size, bus->reg + NPCM_I2CRXF_CTL);
- 	npcm_i2c_clear_tx_fifo(bus);
- 	npcm_i2c_clear_rx_fifo(bus);
- }
-@@ -999,12 +1019,12 @@ static void npcm_i2c_slave_wr_buf_sync(struct npcm_i2c *bus)
- {
- 	int left_in_fifo;
- 
--	left_in_fifo = FIELD_GET(NPCM_I2CTXF_STS_TX_BYTES,
--				 ioread8(bus->reg + NPCM_I2CTXF_STS));
-+	left_in_fifo = bus->data->txf_sts_tx_bytes &
-+			ioread8(bus->reg + NPCM_I2CTXF_STS);
- 
- 	/* fifo already full: */
--	if (left_in_fifo >= I2C_HW_FIFO_SIZE ||
--	    bus->slv_wr_size >= I2C_HW_FIFO_SIZE)
-+	if (left_in_fifo >= bus->data->fifo_size ||
-+	    bus->slv_wr_size >= bus->data->fifo_size)
- 		return;
- 
- 	/* update the wr fifo index back to the untransmitted bytes: */
-@@ -1012,7 +1032,7 @@ static void npcm_i2c_slave_wr_buf_sync(struct npcm_i2c *bus)
- 	bus->slv_wr_size = bus->slv_wr_size + left_in_fifo;
- 
- 	if (bus->slv_wr_ind < 0)
--		bus->slv_wr_ind += I2C_HW_FIFO_SIZE;
-+		bus->slv_wr_ind += bus->data->fifo_size;
- }
- 
- static void npcm_i2c_slave_rd_wr(struct npcm_i2c *bus)
-@@ -1158,7 +1178,7 @@ static irqreturn_t npcm_i2c_int_slave_handler(struct npcm_i2c *bus)
- 		npcm_i2c_clear_rx_fifo(bus);
- 		npcm_i2c_clear_tx_fifo(bus);
- 		iowrite8(0, bus->reg + NPCM_I2CTXF_CTL);
--		iowrite8(I2C_HW_FIFO_SIZE, bus->reg + NPCM_I2CRXF_CTL);
-+		iowrite8(bus->data->fifo_size, bus->reg + NPCM_I2CRXF_CTL);
- 		if (NPCM_I2CST_XMIT & i2cst) {
- 			bus->operation = I2C_WRITE_OPER;
- 		} else {
-@@ -1319,8 +1339,8 @@ static void npcm_i2c_master_fifo_read(struct npcm_i2c *bus)
- 	 * read == FIFO Size + C (where C < FIFO Size)then first read C bytes
- 	 * and in the next int we read rest of the data.
- 	 */
--	if (rcount < (2 * I2C_HW_FIFO_SIZE) && rcount > I2C_HW_FIFO_SIZE)
--		fifo_bytes = rcount - I2C_HW_FIFO_SIZE;
-+	if (rcount < (2 * bus->data->fifo_size) && rcount > bus->data->fifo_size)
-+		fifo_bytes = rcount - bus->data->fifo_size;
- 
- 	if (rcount <= fifo_bytes) {
- 		/* last bytes are about to be read - end of tx */
-@@ -2200,7 +2220,7 @@ static int npcm_i2c_master_xfer(struct i2c_adapter *adap, struct i2c_msg *msgs,
- 	 * It cannot be cleared without resetting the module.
- 	 */
- 	else if (bus->cmd_err &&
--		 (NPCM_I2CRXF_CTL_LAST_PEC & ioread8(bus->reg + NPCM_I2CRXF_CTL)))
-+		 (bus->data->rxf_ctl_last_pec & ioread8(bus->reg + NPCM_I2CRXF_CTL)))
- 		npcm_i2c_reset(bus);
- 
- 	/* after any xfer, successful or not, stall and EOB must be disabled */
-@@ -2271,6 +2291,7 @@ static int npcm_i2c_probe_bus(struct platform_device *pdev)
- 	struct i2c_adapter *adap;
- 	struct clk *i2c_clk;
- 	static struct regmap *gcr_regmap;
-+	struct device *dev = &pdev->dev;
- 	int irq;
- 	int ret;
- 	struct device_node *np = pdev->dev.of_node;
-@@ -2281,6 +2302,12 @@ static int npcm_i2c_probe_bus(struct platform_device *pdev)
- 
- 	bus->dev = &pdev->dev;
- 
-+	bus->data = of_device_get_match_data(dev);
-+	if (!bus->data) {
-+		dev_err(dev, "OF data missing\n");
-+		return -EINVAL;
-+	}
-+
- 	bus->num = of_alias_get_id(pdev->dev.of_node, "i2c");
- 	/* core clk must be acquired to calculate module timing settings */
- 	i2c_clk = devm_clk_get(&pdev->dev, NULL);
-@@ -2294,7 +2321,7 @@ static int npcm_i2c_probe_bus(struct platform_device *pdev)
- 
- 	if (IS_ERR(gcr_regmap))
- 		return PTR_ERR(gcr_regmap);
--	regmap_write(gcr_regmap, NPCM_I2CSEGCTL, NPCM_I2CSEGCTL_INIT_VAL);
-+	regmap_write(gcr_regmap, NPCM_I2CSEGCTL, bus->data->segctl_init_val);
- 
- 	bus->reg = devm_platform_ioremap_resource(pdev, 0);
- 	if (IS_ERR(bus->reg))
-@@ -2356,7 +2383,8 @@ static int npcm_i2c_remove_bus(struct platform_device *pdev)
- }
- 
- static const struct of_device_id npcm_i2c_bus_of_table[] = {
--	{ .compatible = "nuvoton,npcm750-i2c", },
-+	{ .compatible = "nuvoton,npcm750-i2c", .data = &npxm7xx_i2c_data },
-+	{ .compatible = "nuvoton,npcm845-i2c", .data = &npxm8xx_i2c_data },
- 	{}
- };
- MODULE_DEVICE_TABLE(of, npcm_i2c_bus_of_table);
+V3:
+ Add a new patch patch 1 for board binding doc
+ Add A-b from Rob
+ Fix dtb warnings.
+
+V2:
+ Update License
+
+Add i.MX93 dtsi and 11x11 evk board support
+
+The required bindings and drivers has already been in tree.
+There arem checkpatch error for the pin header files as other i.MX pin
+pin header files.
+
+
+Peng Fan (4):
+  dt-bindings: arm: fsl: add imx93 11x11 evk board
+  arm64: dts: freescale: Add i.MX93 dtsi support
+  arm64: dts: freescale: add i.MX93 11x11 EVK basic support
+  arm64: defconfig: enable i.MX93 clk & pinctrl
+
+ .../devicetree/bindings/arm/fsl.yaml          |   6 +
+ arch/arm64/boot/dts/freescale/Makefile        |   1 +
+ .../boot/dts/freescale/imx93-11x11-evk.dts    | 130 ++++
+ arch/arm64/boot/dts/freescale/imx93-pinfunc.h | 623 ++++++++++++++++++
+ arch/arm64/boot/dts/freescale/imx93.dtsi      | 334 ++++++++++
+ arch/arm64/configs/defconfig                  |   2 +
+ 6 files changed, 1096 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx93-11x11-evk.dts
+ create mode 100755 arch/arm64/boot/dts/freescale/imx93-pinfunc.h
+ create mode 100644 arch/arm64/boot/dts/freescale/imx93.dtsi
+
 -- 
-2.17.1
+2.25.1
 
