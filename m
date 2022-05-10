@@ -2,118 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F2CE95222E2
-	for <lists+devicetree@lfdr.de>; Tue, 10 May 2022 19:35:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F49E5222EB
+	for <lists+devicetree@lfdr.de>; Tue, 10 May 2022 19:38:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234930AbiEJRjw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 May 2022 13:39:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50208 "EHLO
+        id S1348311AbiEJRmK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 May 2022 13:42:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59908 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243060AbiEJRjv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 May 2022 13:39:51 -0400
-Received: from alexa-out-sd-01.qualcomm.com (alexa-out-sd-01.qualcomm.com [199.106.114.38])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05B325F63;
-        Tue, 10 May 2022 10:35:52 -0700 (PDT)
+        with ESMTP id S1348288AbiEJRmI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 May 2022 13:42:08 -0400
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8621E66689
+        for <devicetree@vger.kernel.org>; Tue, 10 May 2022 10:38:06 -0700 (PDT)
+Received: by mail-wr1-x42f.google.com with SMTP id j15so24848761wrb.2
+        for <devicetree@vger.kernel.org>; Tue, 10 May 2022 10:38:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1652204153; x=1683740153;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=r8ZcV1vuUcmf0/igLjZxMrCayIbyMQkN9WHg1UvKdEo=;
-  b=G7dRNKVFa30ytU44Y9h0fTme10Y/LSMkJzKcUt3vrqS5kvJ1ot/oS8mZ
-   FdwNDsu6Cn1H3JmmGfHPWY+LK8TlsuVu1oTLF2NOLA3Fq6bwSUVqjkqyb
-   v9HldPJigTu4WYX8kbnwMwlawXHqkUuliP9tuzayxBivShHrLVACJegkm
-   Q=;
-Received: from unknown (HELO ironmsg04-sd.qualcomm.com) ([10.53.140.144])
-  by alexa-out-sd-01.qualcomm.com with ESMTP; 10 May 2022 10:35:52 -0700
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg04-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 May 2022 10:35:51 -0700
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Tue, 10 May 2022 10:35:51 -0700
-Received: from [10.216.55.79] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Tue, 10 May
- 2022 10:35:45 -0700
-Message-ID: <7ef88262-4292-3077-00a1-dc06b2483b10@quicinc.com>
-Date:   Tue, 10 May 2022 23:05:42 +0530
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=ZZMSgeH50EgZ2k2CW9lxM/Z3t0UYa8S+CXFtKaa9+OI=;
+        b=cnCBj0bGQFR5XYbDWXn0VlW306SuJCKc7MGdSWpl7NR783sSAeQ1WTW7RNtiRazkQl
+         yCjh1YUcnuogZEkVuwkgximSRoU6hD56sVsrxBLE3h2W/8RHz2F6LIcsGpkhILIRE+tf
+         OelGPH5OGxf7zoIbxVHqfndGpTMPxhd4Xl34XdQMY1d3Fkh59mcPKwWSaiEbN/17rqAg
+         J+GzjbB5PsHd2Xp1pLE1otBR2asi6OTMLfPN79fxPM7H9THW9R9K9VSOFFkLYhRoTu6f
+         99d+5uiCDLwEFjUgFh2a/5Nc1aW4i1JgTjY3J8v7xHTh/2xczWPN7T7wntYfu4XUEXa6
+         /Knw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=ZZMSgeH50EgZ2k2CW9lxM/Z3t0UYa8S+CXFtKaa9+OI=;
+        b=o9JtFUkDBxbDJZOk2iWzVcrxbx5RYMgXfabpyagRnUph/WQ5O0BheV8O9Mbx0skdzL
+         2G6ZeJkKosbETkLSyxyyiFwl0EvCsnuvWFqHNU9sj4EQgddy0MPxoVqU3xmipjg1wFAZ
+         6lgEFuIHdNlVg0tIugsqn6xYpvvrkihKZxmiT0eM/yqDBYTZopeHfIm6io7xfaL6u+yH
+         J9uQ187Stt0nnjj5XS28eXidqG2s9Aa94+i+s5nuz9UUmEyJZIG+awK/yD1JCmkaGes+
+         hnVBdECrhgHKCHK9xqZV+z6k0Eo0rmqTK9lqnmqcM59/xbEDxtd58M8NiRx/K3immteS
+         nCZw==
+X-Gm-Message-State: AOAM531JFGwJpuPTuZPH7dlOmZ1uaEM7PqlqGUsL0c2o8b2KDzwr+6mS
+        erGPZ5KqujN/X6s5ybD4WS2psGvwdAZS6w==
+X-Google-Smtp-Source: ABdhPJxtGfvXTi8r9vPKDMdTNxnGRRp4Om2umX7iejByqOHJISwdnTIoxYwzFrqbbehOzo/+LkP0uA==
+X-Received: by 2002:a5d:4401:0:b0:20a:d6e8:2c0e with SMTP id z1-20020a5d4401000000b0020ad6e82c0emr19463097wrq.168.1652204284966;
+        Tue, 10 May 2022 10:38:04 -0700 (PDT)
+Received: from [192.168.1.41] (176-182-171-101.abo.bbox.fr. [176.182.171.101])
+        by smtp.googlemail.com with ESMTPSA id n10-20020a5d67ca000000b0020c5253d8cfsm17271569wrw.27.2022.05.10.10.38.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 10 May 2022 10:38:04 -0700 (PDT)
+Message-ID: <76e12c64-9e87-d407-0676-3fa2955c3680@linaro.org>
+Date:   Tue, 10 May 2022 19:38:03 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [v3 3/3] arm64: dts: qcom: sc7280: Update SNPS Phy params for
- SC7280 IDP device
+Subject: Re: [PATCH v6 4/4] thermal: k3_j72xx_bandgap: Add the bandgap driver
+ support
 Content-Language: en-US
-To:     Pavan Kondeti <quic_pkondeti@quicinc.com>
-CC:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        "Doug Anderson" <dianders@chromium.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Wesley Cheng <wcheng@codeaurora.org>,
-        <devicetree@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-usb@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-phy@lists.infradead.org>, <quic_ppratap@quicinc.com>,
-        <quic_vpulyala@quicinc.com>
-References: <1652011947-18575-1-git-send-email-quic_kriskura@quicinc.com>
- <1652011947-18575-4-git-send-email-quic_kriskura@quicinc.com>
- <20220509032005.GJ4640@hu-pkondeti-hyd.qualcomm.com>
-From:   Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
-In-Reply-To: <20220509032005.GJ4640@hu-pkondeti-hyd.qualcomm.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-Spam-Status: No, score=-5.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+To:     "J, KEERTHY" <j-keerthy@ti.com>, robh+dt@kernel.org,
+        rui.zhang@intel.com, amitk@kernel.org, kristo@kernel.org,
+        vigneshr@ti.com, krzysztof.kozlowski@linaro.org
+Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220427064635.24898-1-j-keerthy@ti.com>
+ <20220427064635.24898-5-j-keerthy@ti.com>
+ <78a3cc4d-8ce4-0dae-2f4e-7522a0a3aa0b@ti.com>
+ <d94ea6b0-e138-951d-5405-375255104adb@linaro.org>
+ <ffafc50e-9adb-9d66-3d1f-4ebc9f91f47d@ti.com>
+From:   Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <ffafc50e-9adb-9d66-3d1f-4ebc9f91f47d@ti.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-3.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 10/05/2022 19:17, J, KEERTHY wrote:
+> 
 
-On 5/9/2022 8:50 AM, Pavan Kondeti wrote:
-> Hi Krishna,
->
-> On Sun, May 08, 2022 at 05:42:27PM +0530, Krishna Kurapati wrote:
->> Overriding the SNPS Phy tuning parameters for SC7280 IDP device.
->>
->> Signed-off-by: Sandeep Maheswaram <quic_c_sanm@quicinc.com>
->> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
->> ---
->>   arch/arm64/boot/dts/qcom/sc7280-idp.dtsi | 6 ++++++
->>   1 file changed, 6 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
->> index 5eb6689..ad85ffb 100644
->> --- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
->> @@ -325,6 +325,12 @@
->>   	vdda-pll-supply = <&vreg_l10c_0p8>;
->>   	vdda33-supply = <&vreg_l2b_3p0>;
->>   	vdda18-supply = <&vreg_l1c_1p8>;
->> +	qcom,hs-rise-fall-time-bps = <0>;
->> +	qcom,squelch-detector-bps = <(-2090)>;
->> +	qcom,hs-disconnect-bps = <1743>;
->> +	qcom,hs-amplitude-bps = <1780>;
->> +	qcom,hs-crossover-voltage = <(-31)>;
->> +	qcom,hs-output-impedance = <2600>;
->>   };
-> Is this an example change or do we see any HS electrical compliance failures
-> on SC7280 IDP that will get fixed with these override sequence?
->
-> Thanks,
-> Pavan
+[ ... ]
 
-Hi Pavan,
+> Hi Daniel,
+> 
+> Patch 1 & 4 i.e Documentation patch and driver patch can be picked by 
+> you. I believe Vignesh will take the dts patches.
 
-These results were based on compliance testing results.
+Will you send a V7 with Krzysztof comments fixed ?
 
+
+-- 
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
