@@ -2,101 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3BA0B520DA5
-	for <lists+devicetree@lfdr.de>; Tue, 10 May 2022 08:14:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9DF60520E01
+	for <lists+devicetree@lfdr.de>; Tue, 10 May 2022 08:46:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236993AbiEJGS1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 May 2022 02:18:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45122 "EHLO
+        id S237293AbiEJGuw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 May 2022 02:50:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40152 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236489AbiEJGS0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 May 2022 02:18:26 -0400
-Received: from mx1.molgen.mpg.de (mx3.molgen.mpg.de [141.14.17.11])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 680CA2317EE;
-        Mon,  9 May 2022 23:14:28 -0700 (PDT)
-Received: from [192.168.0.2] (ip5f5aeae3.dynamic.kabel-deutschland.de [95.90.234.227])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        (Authenticated sender: pmenzel)
-        by mx.molgen.mpg.de (Postfix) with ESMTPSA id 5908D61E6478B;
-        Tue, 10 May 2022 08:14:26 +0200 (CEST)
-Message-ID: <8d46eeb8-7926-f842-6105-1975a5adc3fe@molgen.mpg.de>
-Date:   Tue, 10 May 2022 08:14:25 +0200
+        with ESMTP id S237275AbiEJGuv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 May 2022 02:50:51 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28DAF1E2522;
+        Mon,  9 May 2022 23:46:51 -0700 (PDT)
+X-UUID: 5999c81f94e24c03838fd120aa14e5e2-20220510
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.4,REQID:ecb257eb-340b-4900-b87c-78738be5d3bb,OB:0,LO
+        B:0,IP:0,URL:0,TC:0,Content:-20,EDM:0,RT:0,SF:100,FILE:0,RULE:Release_Ham,
+        ACTION:release,TS:80
+X-CID-INFO: VERSION:1.1.4,REQID:ecb257eb-340b-4900-b87c-78738be5d3bb,OB:0,LOB:
+        0,IP:0,URL:0,TC:0,Content:-20,EDM:0,RT:0,SF:100,FILE:0,RULE:Spam_GS981B3D,
+        ACTION:quarantine,TS:80
+X-CID-META: VersionHash:faefae9,CLOUDID:ecce3bb3-56b5-4c9e-8d83-0070b288eb6a,C
+        OID:f42d4b5d8766,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,File:nil
+        ,QS:0,BEC:nil
+X-UUID: 5999c81f94e24c03838fd120aa14e5e2-20220510
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw02.mediatek.com
+        (envelope-from <zhiyong.tao@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 1216660440; Tue, 10 May 2022 14:46:46 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Tue, 10 May 2022 14:46:44 +0800
+Received: from localhost.localdomain (10.17.3.154) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 10 May 2022 14:46:17 +0800
+From:   Zhiyong Tao <zhiyong.tao@mediatek.com>
+To:     <lee.jones@linaro.org>, <robh+dt@kernel.org>,
+        <matthias.bgg@gmail.com>, <lgirdwood@gmail.com>,
+        <broonie@kernel.org>, <eddie.huang@mediatek.com>,
+        <a.zummo@towertech.it>, <alexandre.belloni@bootlin.com>,
+        <fshao@chromium.org>
+CC:     <srv_heupstream@mediatek.com>, <hui.liu@mediatek.com>,
+        <tinghan.shen@mediatek.com>, <zhiyong.tao@mediatek.com>,
+        <hsin-hsiung.wang@mediatek.com>, <sean.wang@mediatek.com>,
+        <macpaul.lin@mediatek.com>, <wen.su@mediatek.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-rtc@vger.kernel.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>
+Subject: [PATCH v1 0/1] Mediatek MT6366 PMIC patch 
+Date:   Tue, 10 May 2022 14:46:02 +0800
+Message-ID: <20220510064603.15920-1-zhiyong.tao@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH v9 2/3] dt-bindings: edac: nuvoton: add NPCM memory
- controller
-Content-Language: en-US
-To:     Medad CChien <medadyoung@gmail.com>
-Cc:     rric@kernel.org, james.morse@arm.com, tony.luck@intel.com,
-        mchehab@kernel.org, bp@alien8.de, robh+dt@kernel.org,
-        benjaminfair@google.com, yuenn@google.com, venture@google.com,
-        KWLIU@nuvoton.com, YSCHU@nuvoton.com, JJLIU0@nuvoton.com,
-        KFTING@nuvoton.com, avifishman70@gmail.com, tmaimon77@gmail.com,
-        tali.perry1@gmail.com, ctcchien@nuvoton.com,
-        devicetree@vger.kernel.org, openbmc@lists.ozlabs.org,
-        linux-kernel@vger.kernel.org, linux-edac@vger.kernel.org
-References: <20220510031056.1657-1-ctcchien@nuvoton.com>
- <20220510031056.1657-3-ctcchien@nuvoton.com>
-From:   Paul Menzel <pmenzel@molgen.mpg.de>
-In-Reply-To: <20220510031056.1657-3-ctcchien@nuvoton.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-5.3 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-MTK:  N
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE,
+        SPF_HELO_NONE,T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dear Medad,
+This patch adds mt6366 binding document
+
+Zhiyong.Tao (1):
+  dt-bindings: pmic: mt6366: add binding document
+
+ .../bindings/regulator/mt6366-regulator.yaml  | 405 ++++++++++++++++++
+ 1 file changed, 405 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/regulator/mt6366-regulator.yaml
+
+--
+2.18.0
 
 
-Thank you for your patch.
-
-Am 10.05.22 um 05:10 schrieb Medad CChien:
-> Document devicetree bindings for the Nuvoton BMC NPCM memory controller.
-> 
-> Signed-off-by: Medad CChien <ctcchien@nuvoton.com>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-> ---
->   .../edac/nuvoton,npcm-memory-controller.yaml  | 61 +++++++++++++++++++
->   1 file changed, 61 insertions(+)
->   create mode 100644 Documentation/devicetree/bindings/edac/nuvoton,npcm-memory-controller.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/edac/nuvoton,npcm-memory-controller.yaml b/Documentation/devicetree/bindings/edac/nuvoton,npcm-memory-controller.yaml
-> new file mode 100644
-> index 000000000000..6f37211796a3
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/edac/nuvoton,npcm-memory-controller.yaml
-> @@ -0,0 +1,61 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/edac/nuvoton,npcm-memory-controller.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Nuvoton NPCM Memory Controller
-> +
-> +maintainers:
-> +  - Medad CChien <ctcchien@nuvoton.com>
-
-Just a side note, that in my experience functional like 
-<linux-npcm-memory-controller@nuvoton.com> instead of personal addresses 
-are useful, as you can configure on your side, who to deliver messages 
-to. For example, if you are on sick leave or vacation, you just 
-configure to deliver the message to a colleague of yours (or they get 
-messages in the first place anyway).
-
-Maybe you can bring that up at Nuvoton.
-
-[…]
-
-
-Kind regards,
-
-Paul
