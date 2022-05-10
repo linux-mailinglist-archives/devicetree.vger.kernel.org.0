@@ -2,69 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EC9CB520E88
-	for <lists+devicetree@lfdr.de>; Tue, 10 May 2022 09:33:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 59D81520E82
+	for <lists+devicetree@lfdr.de>; Tue, 10 May 2022 09:33:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231929AbiEJHgv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 May 2022 03:36:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49756 "EHLO
+        id S231546AbiEJHgn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 May 2022 03:36:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57166 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240961AbiEJH0X (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 May 2022 03:26:23 -0400
-Received: from bombadil.infradead.org (bombadil.infradead.org [IPv6:2607:7c80:54:e::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0081439833;
-        Tue, 10 May 2022 00:22:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=infradead.org; s=bombadil.20210309; h=In-Reply-To:Content-Type:MIME-Version
-        :References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description;
-        bh=FceqXWmZ8bGiO02Mvg6pdY1ldbGSoSPohpsyX45vO1Q=; b=PTQeh3EJrJwHtiCSpNamFAZgC6
-        83sJi4KjX/0Gvl/8L8xcZ8gPFuwQRjdsPc1Td9wEgHybaAKZfVyRIQV7n2Wz4Gz+qtVKxNJPyM+dI
-        tuOLvFSK5ZDxokgb9UtY7RG6kwhhfSQlLUaSTWj9mtK1nt4YvV1PkVE9cBdcYzv0BMreiPS8cO3xi
-        Imj2ANqt5qo9i6W8ossHkyJa1r3qNBIepPVby+8iBsdLgZ23LRYSHDQY7ps9kfdBuIndzRC3tujJ7
-        7ENOzxSVrnsLe7CIztnla2DICFiuG7w/9P2MBHZNOUMc8x+Y7iT4+vFHv9xOGSmdUJo0+ljY3sKvf
-        Xj27w8gQ==;
-Received: from hch by bombadil.infradead.org with local (Exim 4.94.2 #2 (Red Hat Linux))
-        id 1noKCB-000Kdp-AF; Tue, 10 May 2022 07:22:11 +0000
-Date:   Tue, 10 May 2022 00:22:11 -0700
-From:   Christoph Hellwig <hch@infradead.org>
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     Frank Rowand <frowand.list@gmail.com>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        =?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <clement.leger@bootlin.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Allan Nielsen <allan.nielsen@microchip.com>,
-        Horatiu Vultur <horatiu.vultur@microchip.com>,
-        Steen Hegelund <steen.hegelund@microchip.com>,
-        Thomas Petazzoni <thomas.petazonni@bootlin.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Mark Brown <broonie@kernel.org>,
+        with ESMTP id S241123AbiEJH2R (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 May 2022 03:28:17 -0400
+Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB0EB1F63B7;
+        Tue, 10 May 2022 00:24:17 -0700 (PDT)
+Received: (Authenticated sender: clement.leger@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 505051C000A;
+        Tue, 10 May 2022 07:24:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1652167456;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=+GKGEOMV8HdvRtCTi7Q1ZSPYbY21Obt2PJMYQBlni4g=;
+        b=bhhu1IcacSZrxL8ddeSJT6p7EYsCv0sPfh5KN6uv0Ab+Bya349FAyQE7V/xbeYGFTDBJ+1
+        f09y1FQ7SreSrhRVS5hV2mH/cPOo6CO/nx8oKC//l24s9vIdqRe0I8uITZUOTekJvTZ97d
+        SuZnRowWLWuVwoIrEOD4oZ0nJ2isKLtzBkaHWi6o6iD/MXevcZeSAg1qsMax8jW7Prnjtm
+        8GSrbbqxQLqKbzXhsw7TCmRYN6qltcTPWpU+2oHgdHX9Dbpl/tnGCq7bhaWImOFCYgZXEP
+        UGS+bOKGyI4tvhGKW7fVnKOfMbugNW7ia5g1Dx+piTpjTm305dkAD0JWmIQkUA==
+Date:   Tue, 10 May 2022 09:24:10 +0200
+From:   =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
+To:     "Russell King (Oracle)" <linux@armlinux.org.uk>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
         Jakub Kicinski <kuba@kernel.org>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-pci <linux-pci@vger.kernel.org>
-Subject: Re: [PATCH 0/3] add dynamic PCI device of_node creation for overlay
-Message-ID: <YnoSowR8qbrYc6DL@infradead.org>
-References: <20220427094502.456111-1-clement.leger@bootlin.com>
- <96db62bb-18be-f44a-6f53-05b22319f23a@gmail.com>
- <20220509141634.16158c38@xps-bootlin>
- <f9b0cbf1-dde2-ff97-cca0-5d2895734f91@gmail.com>
- <20220509180917.0f0ae851@xps-bootlin>
- <YnlIs312R4Temgu3@smile.fi.intel.com>
- <b476913d-896d-309c-f304-3ab37b81b4a9@gmail.com>
- <CAHp75VedNAG4EqPkCp-mCSUNJiKPNgaJEtsHQkWimyaYh0Nueg@mail.gmail.com>
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Herve Codina <herve.codina@bootlin.com>,
+        =?UTF-8?B?TWlxdcOobA==?= Raynal <miquel.raynal@bootlin.com>,
+        Milan Stevanovic <milan.stevanovic@se.com>,
+        Jimmy Lalande <jimmy.lalande@se.com>,
+        Pascal Eberhard <pascal.eberhard@se.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, netdev@vger.kernel.org
+Subject: Re: [PATCH net-next v4 04/12] net: pcs: add Renesas MII converter
+ driver
+Message-ID: <20220510092410.1c1f5eaa@xps-bootlin>
+In-Reply-To: <Ynl3jpuJFqXLscvE@shell.armlinux.org.uk>
+References: <20220509131900.7840-1-clement.leger@bootlin.com>
+        <20220509131900.7840-5-clement.leger@bootlin.com>
+        <Ynl3jpuJFqXLscvE@shell.armlinux.org.uk>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAHp75VedNAG4EqPkCp-mCSUNJiKPNgaJEtsHQkWimyaYh0Nueg@mail.gmail.com>
-X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by bombadil.infradead.org. See http://www.infradead.org/rpr.html
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,18 +75,82 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 09, 2022 at 10:40:12PM +0200, Andy Shevchenko wrote:
-> > hotpluggable card?  Do the systems that you anticipate plugging the
-> > card into support hotplug?
-> 
-> Any PCIe card is potentially hotpluggable (seems nobody actually cares
-> in 90%+ drivers in the Linux kernel). But what I have heard in a
-> thread (not this one IIRC) is that the card may have pluggable modules
-> and it would be nice to change configuration and notify OS somehow. I
-> might be mistaken if it's the case here or not.
+Le Mon, 9 May 2022 21:20:30 +0100,
+"Russell King (Oracle)" <linux@armlinux.org.uk> a =C3=A9crit :
 
-Well.  M.2 for example is not hotpluggable, as are soldered on BGA
-devices or a lot of not quite PCIe devices that actually sit on CPUs
-or shipset components.  But for all but the last category an upstream
-bridge could still be hot plugged, so not supporting it in drivers is
-indeed generally speaking a bad idea.
+> Hi,
+>=20
+> On Mon, May 09, 2022 at 03:18:52PM +0200, Cl=C3=A9ment L=C3=A9ger wrote:
+> > +#define MIIC_PRCMD			0x0
+> > +#define MIIC_ESID_CODE			0x4
+> > +
+> > +#define MIIC_MODCTRL			0x20
+> > +#define MIIC_MODCTRL_SW_MODE		GENMASK(4, 0)
+> > +
+> > +#define MIIC_CONVCTRL(port)		(0x100 + (port) * 4)
+> > +
+> > +#define MIIC_CONVCTRL_CONV_SPEED	GENMASK(1, 0)
+> > +#define CONV_MODE_10MBPS		0
+> > +#define CONV_MODE_100MBPS		BIT(0)
+> > +#define CONV_MODE_1000MBPS		BIT(1) =20
+>=20
+> I think this is an inappropriate use of the BIT() macro. BIT() should
+> be used for single bit rather than for field values.
+>=20
+> You seem to have a two bit field in bits 1 and 0 of a register, which
+> has the values of:
+> 0 - 10MBPS
+> 1 - 100MBPS
+> 2 - 1GBPS
+>=20
+> I'd guess 3 is listed as "undefined", "do not use" or something
+> similar?
+
+You are right, this is actually values rather than individual bits.
+
+>=20
+> > +
+> > +#define MIIC_CONVCTRL_CONV_MODE		GENMASK(3, 2)
+> > +#define CONV_MODE_MII			0
+> > +#define CONV_MODE_RMII			BIT(0)
+> > +#define CONV_MODE_RGMII			BIT(1) =20
+>=20
+> This looks similar. a 2-bit field in bits 3 and 2 taking values:
+> 0 - MII
+> 1 - RMII
+> 2 - RGMII
+>=20
+> ...
+>=20
+> > +static int miic_config(struct phylink_pcs *pcs, unsigned int mode,
+> > +		       phy_interface_t interface,
+> > +		       const unsigned long *advertising, bool
+> > permit) +{
+> > +	u32 speed =3D CONV_MODE_10MBPS, conv_mode =3D CONV_MODE_MII,
+> > val;
+> > +	struct miic_port *miic_port =3D
+> > phylink_pcs_to_miic_port(pcs);
+> > +	struct miic *miic =3D miic_port->miic;
+> > +	int port =3D miic_port->port;
+> > +
+> > +	switch (interface) {
+> > +	case PHY_INTERFACE_MODE_RMII:
+> > +		conv_mode =3D CONV_MODE_RMII;
+> > +		speed =3D CONV_MODE_100MBPS;
+> > +		break;
+> > +	case PHY_INTERFACE_MODE_RGMII:
+> > +		conv_mode =3D CONV_MODE_RGMII;
+> > +		speed =3D CONV_MODE_1000MBPS;
+> > +		break;
+> > +	case PHY_INTERFACE_MODE_MII: =20
+>=20
+> I'm not sure why you need to initialise "speed" and "conv_mode" above
+> when you could set them here.
+
+It only seemed to me that 0 value was the default init one but I'll
+move that in that case.
+
+>=20
+> Thanks.=20
+>=20
+
