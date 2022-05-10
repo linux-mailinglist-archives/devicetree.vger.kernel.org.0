@@ -2,125 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 66FBF520AAF
-	for <lists+devicetree@lfdr.de>; Tue, 10 May 2022 03:30:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 07B55520AC5
+	for <lists+devicetree@lfdr.de>; Tue, 10 May 2022 03:36:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231863AbiEJBeB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 May 2022 21:34:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33164 "EHLO
+        id S234028AbiEJBj3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 May 2022 21:39:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50474 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231250AbiEJBd7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 May 2022 21:33:59 -0400
-Received: from JPN01-TYC-obe.outbound.protection.outlook.com (mail-tycjpn01on2137.outbound.protection.outlook.com [40.107.114.137])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A943428202F;
-        Mon,  9 May 2022 18:30:03 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=FmDhM043qpbhkZxovkqrEJInpxG05tmqxlDBfzt6wO+wtmoZCjzakifI8eqklo2SEw8Xni3q+uZIo+gTuGQGg/toQPWdySrnCC5NpRXMgmcPy7UdsV67yNfaQ1TcWvvMrxOFTmTYJ+uKb+FCHNhgaLiW/Ek6boeuH/T90SsiiP5/UTpJ0RNE/brJVjeIosKYWRfBjkatdHCvEzovYjTMUo9pgi3yOURA8CGWcD4wZt/25uL4GJEZNmMDMKz9q6pTZI4QRm5yKmXPWKVllqZGB699m4VRj11DKTSy0rCV9oLZOWmJliOvusZpUf3H2vCrjGmRTj4RV9QEszz0n/7CrQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=7se8+BKyEwqsmScSTluMl21lYloFAhnPpdU+5lngDpE=;
- b=fAMsQ5hqNTk6SPn85Xeh5/JLgotWTm/b1bHoglhKubTkfwpWsoZ6PEImwTjlDQT7ECB/TKoCM8oY5ACFjmWZLPv8yvA2NCTUusL2n1xF83e7VsqNMKnhY9q+HaFt7tj3vURMmcPcW/fjxAGRpb5bVuH+4GMvGeY9NejdpF/y3mbbuvDDdjvEakvsnO4Yu2IrZCK4EH26Zu9p6tqD9NjxrSY4Pb4v9HD05pCSXsRGGFdGRr9xYu6DIpMK+Rcxx3TnRVV8/TusMeXOL5StrFN2y7aZYwKe1ozuDuFDAExAgX9rex/w1RmwvK8Fy8KyFHa+cr83WEreT834a858lXBmHg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
- dkim=pass header.d=renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=7se8+BKyEwqsmScSTluMl21lYloFAhnPpdU+5lngDpE=;
- b=a2Cq6wkOawI0SRXkdqWyDMgPtc/0nXxkcKjs/O9sDlcMmdhAN6g6RaQ0I0N0t+G8DjZgJYUI8qlRF5/O3pavSJVa+OQCHZFd092stSWSjo0oc4obBhZG1JTMIQrjYqHYGp6FCn5zbhSeW2x45b97YxeoFYDlZGcVZlpuw4MYxto=
-Received: from TYBPR01MB5341.jpnprd01.prod.outlook.com
- (2603:1096:404:8028::13) by OSAPR01MB1602.jpnprd01.prod.outlook.com
- (2603:1096:603:32::20) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5227.21; Tue, 10 May
- 2022 01:30:01 +0000
-Received: from TYBPR01MB5341.jpnprd01.prod.outlook.com
- ([fe80::205e:c981:34d8:dbcf]) by TYBPR01MB5341.jpnprd01.prod.outlook.com
- ([fe80::205e:c981:34d8:dbcf%9]) with mapi id 15.20.5227.023; Tue, 10 May 2022
- 01:30:01 +0000
-From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-CC:     "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>
-Subject: RE: [PATCH] dt-bindings: phy: renesas: usb3-phy: Spelling
- s/funcional/functional/
-Thread-Topic: [PATCH] dt-bindings: phy: renesas: usb3-phy: Spelling
- s/funcional/functional/
-Thread-Index: AQHYY6PPVd/gl25+SkSRhYnmZ/jQAq0XU0JA
-Date:   Tue, 10 May 2022 01:30:01 +0000
-Message-ID: <TYBPR01MB5341D9150304DDE3D936B2FFD8C99@TYBPR01MB5341.jpnprd01.prod.outlook.com>
-References: <3da9bd360e1c83007af0e0e90fa4e6c2b50fdab3.1652100633.git.geert+renesas@glider.be>
-In-Reply-To: <3da9bd360e1c83007af0e0e90fa4e6c2b50fdab3.1652100633.git.geert+renesas@glider.be>
-Accept-Language: ja-JP, en-US
-Content-Language: ja-JP
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=renesas.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 6818207c-df72-4447-b6c4-08da32249a1f
-x-ms-traffictypediagnostic: OSAPR01MB1602:EE_
-x-microsoft-antispam-prvs: <OSAPR01MB1602C7CCF556F5227E2698CFD8C99@OSAPR01MB1602.jpnprd01.prod.outlook.com>
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: KtX1hzYIm1fjDTwvzMJ4aOlGtWB2VhLLL7P0H3fZJPcL3EmZ3IUq3JJD//pxlDfr+5C5diVtq9I2MkZ/y4r4ke2lMn5Qm0qMRdXxD/E4Wl/pZKY/G0QAq4v0raBJT3Kde7+BMQCbORJxLcg45D44b7Up75henTrr4FwylT00HDi3M3UYybJav7B3uz0oXbydaDM0NaE/M/THJ+b0WOEYl2LSXaPUkg10Ht1TdcV2g+nq99kh9mTlksw4O1Rq1LgoHkuOGH8BX5BJb9k+6qTChvSjoKfV3Uv5DdK7yhlWHsj6Ic8i0PaecDW7xLLjsIr2jeQXn8WqYZkewHxkReIn39gkz1nGncEIGsTJ7l4Q9ilChKVUvK+clapJi8g53bYNzFa0plg/rDqQNJneLhHGvctPvIf0a0TlDT5RBM7N9ngizwnRBb9VFz5Ngo6dUisBT2M8Rt9lXFo1HUM+HKVSYlM9j4vRMtJoOomO4IG7u7yJHeoEeUPxZ/rG85gnR5uJN0/VizoJW2gNRap560b998twg7USdhB+TUBvhEK+iRaLYP4Id7uBP8jfQLrqhMwGkTl2JPAj4+lNVyCbka+7bczoB9YIXs7Dx8bl/iuSWcrEddGAiTvOZzg4FiMaasAg9zsX3CVgfKa4a8/TMRStJl8MuIC+Vy6kNZa1yf/PYNyvvQNBTCb8rBxQU0ma9DTv1EfuoU8fJuLz170jBiKbZA==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYBPR01MB5341.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(508600001)(558084003)(55016003)(71200400001)(33656002)(54906003)(110136005)(38100700002)(38070700005)(122000001)(52536014)(316002)(8676002)(9686003)(4326008)(5660300002)(86362001)(64756008)(66446008)(66556008)(66476007)(66946007)(7696005)(6506007)(76116006)(186003)(2906002)(8936002);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 2
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?LH+Sxa9xBftpkUNZQ26FV0jKyhXtiSSyIcmhk/aMgjdGe012uLy9q2D3GGgH?=
- =?us-ascii?Q?9h22HLPuy9xzEY2uUiQUn5MzhWc+uvnY2dMTr56dFcsbyZ0spGBCwUMfjsbC?=
- =?us-ascii?Q?Mwk+CNjih8FCUcI48Au8AJH710P9q96nXseBuuQQfdi8fgXB7USt8I6ypcNy?=
- =?us-ascii?Q?oDmZA2o+PyG6YPR86MAQqb37VX0u/6kDQZ6KOHshVpV41qp61jEWAxADnwYK?=
- =?us-ascii?Q?6cxRdRskgXG05Kzs3qA3wQFql7c6ZISJ2PAid13sQ3aJJUhyFIEF/9A70d5w?=
- =?us-ascii?Q?jyoci3AgpB2X1bCh7mOw2M3vUtjrRTPmaMdrGWfIDmJP5ZhqLvyqKB/FBvcy?=
- =?us-ascii?Q?XzfycFsUjIh1BkdRTZToNqLBMKjs7uJheIE5Stq21Sc/hYBhfMw6D7HNKcPw?=
- =?us-ascii?Q?7zDRQ/rO7tEaNmINcRFeEhpIXft7o1K/Q9czdxhBe+902M70xUov7mpSYzS6?=
- =?us-ascii?Q?1tPVheWoX+tQECr2ymALzmRNkwIryeLF2YFN0tI8C2UqwbSK6DcQmIjOQ+qF?=
- =?us-ascii?Q?qL8rkBOb89+jy8l9q0UaxgCXEAmFNSH7mgVQ1wy4CG3ETuFHUPBbV4U4nZtO?=
- =?us-ascii?Q?pvf4ggXimqi8HEk5Ltzhki2saxgWl7OwPUAPJ2CtYO8TU3WOH8CU9BWy7MNH?=
- =?us-ascii?Q?GKpyKja5GQDX6VN7iMrVISu1HxE3XVkOQMliMoXMhdljVGoGFv0a9NyZu2/w?=
- =?us-ascii?Q?bC98uvxaNi5IHdsaPMBzW89I038HgMu/JawQ2x4SdnAD+Ag1NYnRK8hr1mct?=
- =?us-ascii?Q?bTuKuCxEfIIyOJpV9l6+MIHtwfkz+r4IBDgUa1sULeQML3xYzhhIdlqSs4wV?=
- =?us-ascii?Q?B3bT37bTXzKtRnhp2wpYyfvotM4MUUBuj/a+3ezPoHKfBd/xA5trYBnl/kze?=
- =?us-ascii?Q?Br50hbWGakeqmfuQm+dihFC/TQ5Xnf3AqPgDsw8vT5O1yYFTkkdC980rvxRh?=
- =?us-ascii?Q?FoX6i06ZgzeSpVPw4XheKmhHnY1rDn48RHEmefmEKzdDLBrKLtmM50ubKP46?=
- =?us-ascii?Q?juTeN8fXy516COy9pCMbKY8MsSVs91XFZYkY7YJItdr16KVmJh0gqp7aNdJN?=
- =?us-ascii?Q?UWMDyQ/AH/mdwScT2b8jP8fPjAx+UpiHaA7yFwzJgBebf8Wvxbkd+HmrwE5R?=
- =?us-ascii?Q?rxyh7EZfVX8erlf5zvIl1uvghWv9K0DIMrLyknwgBsnSbvd2cyx1nq6+YmfW?=
- =?us-ascii?Q?ervNCQDeG2BTw7Ia0j7jK2rh8erE51Vm9RCpBUNmi1YqhcXAhJu64RyJzdOW?=
- =?us-ascii?Q?KhfEf9KBo3KdmJcbG73TyzYKU6BY8UYZpwKSsFtRh+x+P9yMBB0bHytLlrIF?=
- =?us-ascii?Q?4MnncALTQy/WBjxinSuT3zeP/dvuPHcDRitajlGFdPHJijunn+fCX3qQKkdN?=
- =?us-ascii?Q?lNUE04mB+/6DX6rs+smL+JT+ycPmHV3A7XzUrYDgEb0aKUVpeiHOrpMhMZWL?=
- =?us-ascii?Q?9/y/rK/PE0OyH4Cx44rfKiJEXmxoY6DnPMVmAJguRgBKVVGTlQmwB1MbyaDs?=
- =?us-ascii?Q?niM6qCvWohV0VPW5PpplTOgzXic9p3HKxv72iyxRUvIspbW5/gIQGBJ7rqbX?=
- =?us-ascii?Q?tGsSz1I8HGg37xPX2TUVx7zCeG/3ul92Yu7xpiTOxpgpgLGeF+zQmQ3nCdGu?=
- =?us-ascii?Q?Z/kiz1ynvacX0yOY4/am+Gx9oBzavKTJJtaSFqEqvdl/wKXwMDtjAM1oBnrW?=
- =?us-ascii?Q?U2basjb9QdU8mgR9nttnR0AWneA6Wr6DfO+LeLFIP14BL2+/Z1fHOBTSI9Oh?=
- =?us-ascii?Q?VMu8LeaI13UfuIKWnANxiMB+jL5CwLyxWsGG+wRFQoTB0BPZLREbo+bUKkz1?=
-x-ms-exchange-antispam-messagedata-1: ycSThM4Zipu8E4DeM7bjAHdEEVQDCOQqyF8=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        with ESMTP id S232601AbiEJBj2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 May 2022 21:39:28 -0400
+Received: from mail-yb1-xb2f.google.com (mail-yb1-xb2f.google.com [IPv6:2607:f8b0:4864:20::b2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76392286FDA
+        for <devicetree@vger.kernel.org>; Mon,  9 May 2022 18:35:31 -0700 (PDT)
+Received: by mail-yb1-xb2f.google.com with SMTP id i11so6086789ybq.9
+        for <devicetree@vger.kernel.org>; Mon, 09 May 2022 18:35:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=tgQGf37/yajS40wdeiIzg35sz5K80n59MEBz2sxPMrI=;
+        b=KXErh4hMFThoubgEBIieo6bT1B/NZyBuaRv+8dR1aW1o8EoPwumm5ZDo3rLNuEAgkk
+         NfLLeT7M6ziEtGCYHTG19vQW+J/izL5Ob+23RPuTHXQ1HuEYeOEt016Ivrj0Y4pQKV2i
+         IeRa1zG/DivB14+nebwQHE30qm7KgwcZ/qh0LltX9WWlFCNWzFcN0WoGdCy21X8ChP8B
+         RcE1WgJP2A7NvgC6wzq89SQx1JHElSbsPtQlFGspOcpXH5KN9mMTdUcwr9jKVdGWQ7UZ
+         A60gkMONzpGpTKOw20atbM5HbV7d3Rq+BRhYVeVimfDktR9Q3X6YcX3qTXeeN3A/lBkW
+         vHfg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=tgQGf37/yajS40wdeiIzg35sz5K80n59MEBz2sxPMrI=;
+        b=nS0LFFu8OwV38xOqC7G3nuvO4NHroQh+jUizZUZfLvn0qd4REURaI7TDV8z3Hn9wDo
+         blexddg+WtrLDVjurvKb1abFBd7QRY5wz7xONj/36tI1WUa/Gb0xKwzWuCzX2CM0DCHj
+         bdidXvj0qBQ8tfaa6yxQpjH4+DxAxXhbBcR7aPl3q1/9J4E6IVz/Qaub1fPVLgfLoh4w
+         CTuhPfUgs7Trb40Jv3hv8vy6+UH4mzXTwhl1RupWQzXNwFi/fuT0BYEGOSevDWG0fbv3
+         abQxpa+9Bfq+p3PsIJuPr5L7In1lhAqZbrNHuLMb9sGb2U3gw1OypaigrMMCEouHDPTN
+         r+6g==
+X-Gm-Message-State: AOAM533QRUctycs8TJHtvPoGXqpHuwLZq5ybbUPEh5jGdALTqNjGt82q
+        0ijZLuAxN4W6qyfAA+OdMB3Stb7/NET7paEYhcU=
+X-Google-Smtp-Source: ABdhPJxEkQImRUZ82vhUd6TIQzqrS/SPPmEOgD6MF0+jFiIjmm67r7EZh9CkFVFp1FXTF/grJ21E2WgTBnmK74Q9TnM=
+X-Received: by 2002:a05:6902:cf:b0:641:32bb:53fc with SMTP id
+ i15-20020a05690200cf00b0064132bb53fcmr16634535ybs.232.1652146530468; Mon, 09
+ May 2022 18:35:30 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TYBPR01MB5341.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6818207c-df72-4447-b6c4-08da32249a1f
-X-MS-Exchange-CrossTenant-originalarrivaltime: 10 May 2022 01:30:01.2015
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: rRiFT71NJ3mRdn5CqbSZxCkfcrd4GBDQRA/cu/x1+4c+J805x7THXfFewaxvroyMw6guzFkZ7XPdAXhBc7c0Ax6X5tQDlfgseXVeQthzRah67V3wuEqpFe0PLJ+0N1Wa
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: OSAPR01MB1602
+References: <20220422072841.2206452-1-s.hauer@pengutronix.de>
+ <20220422072841.2206452-21-s.hauer@pengutronix.de> <A86359EC-5291-41BD-966E-EB7890644731@gmail.com>
+ <CAMdYzYoFG3wCQaWXQNJd7mE20OMCj=ZeuewwZfaCJyoCBT-kQQ@mail.gmail.com>
+ <0E6FE020-C95E-47CF-A9D6-AC3F2B2D334F@gmail.com> <CAMdYzYobfJ7WGN+UQ7t5e1Zy9knjfHLse8KzrGrHPfeMkkG0gw@mail.gmail.com>
+ <9F2D8CFF-1EAE-4586-9EE9-82A9D67840BB@gmail.com> <CAMdYzYrz7DRj7F9hGaAPaTSiZkQ4eMNujAp8uPuE9geL6kAz4g@mail.gmail.com>
+ <812AC0DB-A6D0-4DA3-BCDC-7743E8F61821@gmail.com>
+In-Reply-To: <812AC0DB-A6D0-4DA3-BCDC-7743E8F61821@gmail.com>
+From:   Peter Geis <pgwipeout@gmail.com>
+Date:   Mon, 9 May 2022 21:35:19 -0400
+Message-ID: <CAMdYzYozewYUbM=Q+iJ2wdM5TrB6dGrjS6zh0qmVgWD4XPVR+Q@mail.gmail.com>
+Subject: Re: [PATCH v11 20/24] arm64: dts: rockchip: enable vop2 and hdmi tx
+ on rock-3a
+To:     Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
+Cc:     Sascha Hauer <s.hauer@pengutronix.de>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        dri-devel@lists.freedesktop.org,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Sandy Huang <hjc@rock-chips.com>,
+        =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
+        kernel test robot <lkp@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
         URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -128,18 +82,149 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Geert-san,
+On Mon, May 9, 2022 at 3:49 PM Piotr Oniszczuk
+<piotr.oniszczuk@gmail.com> wrote:
+>
+> >
+> > If you want to confirm the hardware is configured correctly you can
+> > remove the cec pin from the hdmi node and set up a cec-gpio node.
+> > https://elixir.bootlin.com/linux/v5.18-rc5/source/Documentation/devicet=
+ree/bindings/media/cec-gpio.txt
+> >
+> > For some reason the board developers decided to make this selectable,
+> > check the location of R90652 and R90653.
+> >
+>
+> Peter,
+>
+> my board is v1.31 and is using HDMITX_CEC_M1 i think.
+> I verified this by temp. changing to HDMITX_CEC_M0
+>
+> For M1:
+> 2022-05-09 21:12:37.130188 I  CECAdapter: Using physical address 1.0.0.0 =
+from EDID
+> 2022-05-09 21:12:37.173267 I  CECAdapter: Found 1 CEC devices(s).
+> 2022-05-09 21:12:37.173299 I  CECAdapter: Device 1: path '/dev/cec0' com =
+port 'Linux' SELECTED
+> 2022-05-09 21:12:37.173307 I  CECAdapter: Trying to open device /dev/cec0=
+ (Linux).
+> 2022-05-09 21:12:37.180095 I  CECAdapter: connection opened
+> 2022-05-09 21:12:37.545229 I  CECAdapter: setting HDMI port to 1 on devic=
+e TV (0)
+> 2022-05-09 21:12:37.904145 I  CECAdapter: >> source deactivated: Playback=
+ 1 (4)
+> 2022-05-09 21:12:37.904311 I  CECAdapter: Source 4 Deactivated
+> 2022-05-09 21:12:38.284452 I  CECAdapter: >> source activated: Playback 1=
+ (4)
+> 2022-05-09 21:12:38.284492 I  CECAdapter: Source 4 Activated
+> 2022-05-09 21:12:38.284694 I  CECAdapter: CEC client registered: libCEC v=
+ersion =3D 6.0.2, client version =3D 6.0.2, firmware version =3D 0, logical=
+ address(es) =3D Playback 1 (4) , physical address: 1.0.0.0, git revision: =
+v12.0.0-v32.0-16-g611cac15cc+59-07dc900~dirty, compiled on 2022-04-23 05:50=
+:57 by piotro@/bin/sh: hostname: command not found on Linux 5.16.14-arch1-4=
+ (x86_64), features: P8_USB, DRM, P8_detect, randr, Linux
+> 2022-05-09 21:12:38.519394 I  CECAdapter: Opened CEC device.
+> 2022-05-09 21:12:38.636950 I  CECAdapter: << powering on 'TV' (0)
+> 2022-05-09 21:12:38.754023 E  CECAdapter: Failed to turn TV on.
+> 2022-05-09 21:12:38.754313 I  CECAdapter: >> source activated: Playback 1=
+ (4)
+> 2022-05-09 21:12:38.754343 I  CECAdapter: Source 4 Activated
+> 2022-05-09 21:12:38.872079 I  CECAdapter: << Playback 1 (4) -> broadcast =
+(F): active source (1000)
+> 2022-05-09 21:12:38.974698 I  CECAdapter: Asked TV to switch to this inpu=
+t.
+> 2022-05-09 21:13:07.292069 W  CECAdapter: CEC device can't poll TV: TV do=
+es not respond to CEC polls
+> 2022-05-09 21:13:37.296372 W  CECAdapter: CEC device can't poll TV: TV do=
+es not respond to CEC polls
+>
+> for M0:
+> 2022-05-09 21:37:47.632175 I  CECAdapter: Using physical address 1.0.0.0 =
+from EDID
+> 2022-05-09 21:37:47.680618 I  CECAdapter: Found 1 CEC devices(s).
+> 2022-05-09 21:37:47.680644 I  CECAdapter: Device 1: path '/dev/cec0' com =
+port 'Linux' SELECTED
+> 2022-05-09 21:37:47.680654 I  CECAdapter: Trying to open device /dev/cec0=
+ (Linux).
+> 2022-05-09 21:37:47.694974 I  CECAdapter: connection opened
+> 2022-05-09 21:37:56.341846 I  CECAdapter: setting HDMI port to 1 on devic=
+e TV (0)
+> 2022-05-09 21:38:17.675457 I  CECAdapter: >> source activated: Playback 1=
+ (4)
+> 2022-05-09 21:38:17.675561 I  CECAdapter: Source 4 Activated
+> 2022-05-09 21:38:17.675657 I  CECAdapter: CEC client registered: libCEC v=
+ersion =3D 6.0.2, client version =3D 6.0.2, firmware version =3D 0, logical=
+ address(es) =3D Playback 1 (4) , physical address: 1.0.0.0, git revision: =
+v12.0.0-v32.0-16-g611cac15cc+59-07dc900~dirty, compiled on 2022-04-23 05:50=
+:57 by piotro@/bin/sh: hostname: command not found on Linux 5.16.14-arch1-4=
+ (x86_64), features: P8_USB, DRM, P8_detect, randr, Linux
+> 2022-05-09 21:38:30.475336 I  CECAdapter: Opened CEC device.
+> 2022-05-09 21:38:34.741846 I  CECAdapter: << Playback 1 (4) -> broadcast =
+(F): active source (1000)
+> 2022-05-09 21:38:39.008432 I  CECAdapter: << powering on 'TV' (0)
+> 2022-05-09 21:38:39.008506 E  CECAdapter: CLinuxCECAdapterCommunication::=
+Write - ioctl CEC_TRANSMIT failed - tx_status=3D00 errno=3D22
+> 2022-05-09 21:38:39.008526 E  CECAdapter: CLinuxCECAdapterCommunication::=
+Write - ioctl CEC_TRANSMIT failed - tx_status=3D00 errno=3D22
+> 2022-05-09 21:38:43.275094 E  CECAdapter: Failed to turn TV on.
+> 2022-05-09 21:38:43.275201 I  CECAdapter: >> source activated: Playback 1=
+ (4)
+> 2022-05-09 21:38:43.275224 I  CECAdapter: Source 4 Activated
+> 2022-05-09 21:38:43.275375 W  CECAdapter: CEC device can't poll TV: TV do=
+es not respond to CEC polls
+> 2022-05-09 21:38:47.541811 I  CECAdapter: << Playback 1 (4) -> broadcast =
+(F): active source (1000)
+> 2022-05-09 21:38:47.541898 E  CECAdapter: CLinuxCECAdapterCommunication::=
+Write - ioctl CEC_TRANSMIT failed - tx_status=3D00 errno=3D22
+> 2022-05-09 21:38:47.541909 E  CECAdapter: CLinuxCECAdapterCommunication::=
+Write - ioctl CEC_TRANSMIT failed - tx_status=3D00 errno=3D22
+> 2022-05-09 21:38:47.541924 E  CECAdapter: Failed to switch to this input.
+> 2022-05-09 21:38:51.808626 I  CECAdapter: << Playback 1 (4) -> broadcast =
+(F): active source (1000)
+> 2022-05-09 21:38:51.808722 E  CECAdapter: CLinuxCECAdapterCommunication::=
+Write - ioctl CEC_TRANSMIT failed - tx_status=3D00 errno=3D22
+> 2022-05-09 21:38:51.808735 E  CECAdapter: CLinuxCECAdapterCommunication::=
+Write - ioctl CEC_TRANSMIT failed - tx_status=3D00 errno=3D22
+> 2022-05-09 21:38:57.142091 I  CECAdapter: << Playback 1 (4) -> broadcast =
+(F): active source (1000)
+> 2022-05-09 21:38:57.142109 E  CECAdapter: CLinuxCECAdapterCommunication::=
+Write - ioctl CEC_TRANSMIT failed - tx_status=3D00 errno=3D22
+> 2022-05-09 21:38:57.142117 E  CECAdapter: CLinuxCECAdapterCommunication::=
+Write - ioctl CEC_TRANSMIT failed - tx_status=3D00 errno=3D22
+> 2022-05-09 21:39:02.475097 I  CECAdapter: << Playback 1 (4) -> broadcast =
+(F): active source (1000)
+> 2022-05-09 21:39:02.475115 E  CECAdapter: CLinuxCECAdapterCommunication::=
+Write - ioctl CEC_TRANSMIT failed - tx_status=3D00 errno=3D22
+> 2022-05-09 21:39:02.475123 E  CECAdapter: CLinuxCECAdapterCommunication::=
+Write - ioctl CEC_TRANSMIT failed - tx_status=3D00 errno=3D22
+>
+> > I have some concerns about the DTS you've built here. For instance how
+> > come you are modifying the power domains?
+>
+> This was experiment as I was advised:
+>
+> "32k clock needed for cec and this clock is generated by the rtc which is=
+ embedded in the rk8xx regulator.
+> So you should make sure it is enabled when hdmi is powerd on, eg adding i=
+t to the RK3568_PD_VO powerdomain should help"
 
-> From: Geert Uytterhoeven, Sent: Monday, May 9, 2022 9:54 PM
->=20
-> Fix a misspelling of the word "functional".
->=20
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Could you grab the clock tree from /sys/kernel/debug/clk/clk_summary
+for the clk_hdmi_cec tree?
 
-Thank you for the patch!
+>
+> power domains entries in dts was attempt to play with above cec clock sug=
+estion.
+>
+> M0/M1 logs in this email are from cleaned dts: https://pastebin.com/0pgwp=
+dsS
+>
+> > USB3 is broken because the rock3-a is a rk3568 device and you're
+> > missing combophy0.
+>
+> Perfect. all 4 usb ports are now working.
+> Also no errors in dmesg.
+> Thx!
 
-Reviewed-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Good news!
 
-Best regards,
-Yoshihiro Shimoda
-
+>
