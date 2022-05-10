@@ -2,127 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6DDE2522753
-	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 01:04:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C6F3752275F
+	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 01:10:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237654AbiEJXEO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 May 2022 19:04:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34978 "EHLO
+        id S234175AbiEJXKS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 May 2022 19:10:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56382 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231931AbiEJXEN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 May 2022 19:04:13 -0400
-Received: from mail-pj1-x102b.google.com (mail-pj1-x102b.google.com [IPv6:2607:f8b0:4864:20::102b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69129F61D3
-        for <devicetree@vger.kernel.org>; Tue, 10 May 2022 16:04:12 -0700 (PDT)
-Received: by mail-pj1-x102b.google.com with SMTP id j10-20020a17090a94ca00b001dd2131159aso3269320pjw.0
-        for <devicetree@vger.kernel.org>; Tue, 10 May 2022 16:04:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=rpOOu3yloX9+o7QmB4b1fha0WPYoksvLJ9prqiOWMZA=;
-        b=k00JKarFFBjlfYD+r85hwLg0trPXVpQEixLbgrBOuMBzDyi5b/kKU+CffB5c5ibqTD
-         zxjGv7Zvu0lj5MfTWUoTgBkOspD19gvDGY+tGud+fgVwBXnUHjjkvby3B8BN9MveLS+P
-         S6eZZopSzUB+t2aSvRryNcQnFK9X6XbfLNlJQ=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=rpOOu3yloX9+o7QmB4b1fha0WPYoksvLJ9prqiOWMZA=;
-        b=QU+DP5pYgJJ8yp+B29zI+MOB+q0fvtXGqz7EIFzy5s/20+DNlPdrudFN4CmiL8Hz6V
-         EyThfosboC8BdW2byGwylW4cUMTCFjeoXrmVCjfuHhHhAnV3o5hhfAR3+doq2OhpNpcL
-         xeC7bVcJWlDBsY6HQO63ayhFURobQDqLlVTuYHy3AaQbFVUOgbbEuAKXHnDnmp6X53jE
-         +w3ARu4Y2XWD6RWYuKeUpE0ECmELYVLHv3GIf9Xa/+Vgdf/o90U5kd4VAYE2iotmmkSL
-         T52QegzVXlfnedr2kHcyZqfQzd4M7OUsxAVQvsAHhspuXWjvx6hSUOBMo6B1YXX+7XuD
-         3AeQ==
-X-Gm-Message-State: AOAM530c7EeVhD82eo+OuzDvdWVTgI8kGvRN+wZn2qyoVQBoJeDXP7i0
-        yyBSofH85EQ8frAUS32s827Trg==
-X-Google-Smtp-Source: ABdhPJxEnJFubfWfGEANXo2HCxGCKtq5R1uXvOZ5g1XB3spi/HvrHYO1LvgE8enCGq/BukKn6rfDMw==
-X-Received: by 2002:a17:902:e881:b0:15e:93ac:41ba with SMTP id w1-20020a170902e88100b0015e93ac41bamr22642097plg.160.1652223851502;
-        Tue, 10 May 2022 16:04:11 -0700 (PDT)
-Received: from chromium.org (157.214.185.35.bc.googleusercontent.com. [35.185.214.157])
-        by smtp.gmail.com with ESMTPSA id 137-20020a62178f000000b0050d4d156362sm97625pfx.1.2022.05.10.16.04.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 May 2022 16:04:11 -0700 (PDT)
-Date:   Tue, 10 May 2022 23:04:09 +0000
-From:   Prashant Malani <pmalani@chromium.org>
-To:     Stephen Boyd <swboyd@chromium.org>
-Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        linux-kernel@vger.kernel.org, patches@lists.linux.dev,
-        chrome-platform@lists.linux.dev,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Benson Leung <bleung@chromium.org>,
-        Guenter Roeck <groeck@chromium.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        "Joseph S. Barrera III" <joebar@chromium.org>
-Subject: Re: [PATCH v4 0/2] Input: cros-ec-keyb: Better matrixless support
-Message-ID: <Ynrvadrl/P/6CrMQ@chromium.org>
-References: <20220503204212.3907925-1-swboyd@chromium.org>
+        with ESMTP id S229532AbiEJXKQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 May 2022 19:10:16 -0400
+Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [IPv6:2001:df5:b000:5::4])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68717293B5A
+        for <devicetree@vger.kernel.org>; Tue, 10 May 2022 16:10:13 -0700 (PDT)
+Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (Client did not present a certificate)
+        by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 25D9F2C012A;
+        Tue, 10 May 2022 23:10:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
+        s=mail181024; t=1652224210;
+        bh=PdPm6LJTDTCiiS+YcsT3r34uGQiAI04kijhj/3xrI3k=;
+        h=From:To:Cc:Subject:Date:From;
+        b=NFK4AiDg4zLiDuSId6+Od0mL5vIx32aQdaExPbKhDdowKKbNw1ZTD/J27jbG2q+in
+         JEEFisWXRJPJ6N7Im6OwZMgcLrooo1o1OLgF0vc0xo7XqpEHqTfnigRdKMLeVl4XIk
+         UfLnfnokvpHUS+Dqm2BJwcaZlCJ7EBUBNdDy2xNojdGsKA3metLX74azOaUdVVyO/q
+         UTgSKrjGSduGYDaK7Sopqy5QLcLQsv+ppyOElqW8pjeogXNsZJfE54FyFMZF+o3tx5
+         vO68Mu52b7Xvih+vodzgOtpatHyprBYOktJjaG8UIap/UlTBXfRAPWF3Tdv9QJDvlB
+         TsUG9gdfqVWbg==
+Received: from pat.atlnz.lc (Not Verified[10.32.16.33]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
+        id <B627af0d10000>; Wed, 11 May 2022 11:10:09 +1200
+Received: from chrisp-dl.ws.atlnz.lc (chrisp-dl.ws.atlnz.lc [10.33.22.30])
+        by pat.atlnz.lc (Postfix) with ESMTP id C6A5F13EE40;
+        Wed, 11 May 2022 11:10:09 +1200 (NZST)
+Received: by chrisp-dl.ws.atlnz.lc (Postfix, from userid 1030)
+        id C18F92A00D3; Wed, 11 May 2022 11:10:09 +1200 (NZST)
+From:   Chris Packham <chris.packham@alliedtelesis.co.nz>
+To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        catalin.marinas@arm.com, will@kernel.org, andrew@lunn.ch,
+        gregory.clement@bootlin.com, sebastian.hesselbarth@gmail.com,
+        kostap@marvell.com, robert.marko@sartura.hr
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Chris Packham <chris.packham@alliedtelesis.co.nz>
+Subject: [PATCH v6 0/3] arm64: mvebu: Support for Marvell 98DX2530 (and variants)
+Date:   Wed, 11 May 2022 11:09:59 +1200
+Message-Id: <20220510231002.1160798-1-chris.packham@alliedtelesis.co.nz>
+X-Mailer: git-send-email 2.36.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220503204212.3907925-1-swboyd@chromium.org>
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+X-SEG-SpamProfiler-Analysis: v=2.3 cv=C7GXNjH+ c=1 sm=1 tr=0 a=KLBiSEs5mFS1a/PbTCJxuA==:117 a=oZkIemNP1mAA:10 a=1gLZ1RiacOvl1JNmVH8A:9
+X-SEG-SpamProfiler-Score: 0
+x-atlnz-ls: pat
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Dmitry,
+This series adds support for the Marvell 98DX2530 SoC which is the Contro=
+l and
+Management CPU integrated into the AlleyCat5/AlleyCat5X series of Marvell
+switches.
 
-On May 03 13:42, Stephen Boyd wrote:
-> This is a followup to my previous patch[1] that skips keyboard registration
-> when the matrix properties aren't present. This adds a compatible string
-> for this scenario so we can ease existing DTBs over to the new design.
-> 
-> Changes from v3 (https://lore.kernel.org/r/20220503042242.3597561-1-swboyd@chromium.org):
->  * s/register_keyboard/has_keyboard/
->  * Pick up review tags
->  * Indicate properties are required in example #2 in yaml file
-> 
-> Changes from v2 (https://lore.kernel.org/r/20220429233112.2851665-1-swboyd@chromium.org):
->  * Drop rows/cols check now that compatible schema handles it
->  * Make binding require rows,cols,keymap for cros-ec-keyb compatible
-> 
-> Changes from v1 (https://lore.kernel.org/r/20220427203026.828183-1-swboyd@chromium.org):
->  * Better enforcement of properties in DT binding
->  * Skip registration by means of adding compatible to device id list
-> 
-> Stephen Boyd (2):
->   dt-bindings: google,cros-ec-keyb: Introduce switches only compatible
->   Input: cros-ec-keyb - skip keyboard registration w/o cros-ec-keyb
->     compatible
+The CPU core is an ARM Cortex-A55 with neon, simd and crypto extensions.
 
-Do these need input maintainers Acked-by? Also, should these go through
-the chrome-platform branch?
+This is fairly similar to the Armada-3700 SoC so most of the required
+peripherals are already supported. This series adds a devicetree and pinc=
+trl
+driver for the SoC and the RD-AC5X-32G16HVG6HLG reference board.
 
-Thanks,
+The pinctrl changes from v4 have been picked up and are in linux-next so =
+I
+haven't included them in this round. That leaves just the dts files and a=
+ minor
+Kconfig update for arm64.
 
--Prashant 
-> 
->  .../bindings/input/google,cros-ec-keyb.yaml   | 87 +++++++++++++++++--
->  drivers/input/keyboard/cros_ec_keyb.c         | 19 ++--
->  2 files changed, 91 insertions(+), 15 deletions(-)
-> 
-> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: <devicetree@vger.kernel.org>
-> Cc: Benson Leung <bleung@chromium.org>
-> Cc: Guenter Roeck <groeck@chromium.org>
-> Cc: Douglas Anderson <dianders@chromium.org>
-> Cc: Hsin-Yi Wang <hsinyi@chromium.org>
-> Cc: "Joseph S. Barrera III" <joebar@chromium.org>
-> 
-> [1] https://lore.kernel.org/all/20220425210726.3813477-1-swboyd@chromium.org/
-> 
-> base-commit: 4352e23a7ff2f8a4ff229dd1283ed2f2b708ec51
-> -- 
-> https://chromeos.dev
-> 
-> 
+Chris Packham (3):
+  dt-bindings: marvell: Document the AC5/AC5X compatibles
+  arm64: dts: marvell: Add Armada 98DX2530 SoC and RD-AC5X board
+  arm64: marvell: enable the 98DX2530 pinctrl driver
+
+ .../bindings/arm/marvell/armada-98dx2530.yaml |  27 ++
+ arch/arm64/Kconfig.platforms                  |   2 +
+ arch/arm64/boot/dts/marvell/Makefile          |   1 +
+ .../boot/dts/marvell/armada-98dx2530.dtsi     | 313 ++++++++++++++++++
+ arch/arm64/boot/dts/marvell/rd-ac5x.dts       |  90 +++++
+ 5 files changed, 433 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/arm/marvell/armada-=
+98dx2530.yaml
+ create mode 100644 arch/arm64/boot/dts/marvell/armada-98dx2530.dtsi
+ create mode 100644 arch/arm64/boot/dts/marvell/rd-ac5x.dts
+
+--=20
+2.36.0
+
