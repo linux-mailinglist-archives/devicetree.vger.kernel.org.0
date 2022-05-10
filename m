@@ -2,56 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F2A7B521258
-	for <lists+devicetree@lfdr.de>; Tue, 10 May 2022 12:38:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A9525212EC
+	for <lists+devicetree@lfdr.de>; Tue, 10 May 2022 12:57:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239953AbiEJKmN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 May 2022 06:42:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51010 "EHLO
+        id S236767AbiEJLBl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 May 2022 07:01:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33996 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239827AbiEJKmG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 May 2022 06:42:06 -0400
-Received: from mail-yb1-xb36.google.com (mail-yb1-xb36.google.com [IPv6:2607:f8b0:4864:20::b36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95AE6266F27
-        for <devicetree@vger.kernel.org>; Tue, 10 May 2022 03:38:09 -0700 (PDT)
-Received: by mail-yb1-xb36.google.com with SMTP id i11so7860161ybq.9
-        for <devicetree@vger.kernel.org>; Tue, 10 May 2022 03:38:09 -0700 (PDT)
+        with ESMTP id S240833AbiEJLBO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 May 2022 07:01:14 -0400
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B5D549FA9
+        for <devicetree@vger.kernel.org>; Tue, 10 May 2022 03:57:13 -0700 (PDT)
+Received: by mail-ed1-x52d.google.com with SMTP id w24so11759757edx.3
+        for <devicetree@vger.kernel.org>; Tue, 10 May 2022 03:57:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=18Z/sTz+IhJS4WIQidF8Pkf7x0QFtzeGTd5zgt1XcsI=;
-        b=mce5YmBbmq67J2zhZTHGEv91yobyh5mk7B2CT3fMjjAqcnjQubzRIntpwRppCEnqp+
-         rmbixFACXH1Fa3+8SQbPTl8SgT/K4WNPHtxz5QmUUgQ0SUdbjb5qhG6im/W3dUulSp/u
-         HJ+wUlbTR0YAU9r1YHMPQhrxD5BLUFa1TOZJo=
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=hP5Qt4iyca+XwfT38e5QSOL60aC/HqAALnLY/TUKCos=;
+        b=AEfURBdjsXwWF/lcnLtglije6dm0motmFUJ3sHf/KkiBswiXy9ufjlvwlDrR8WN4PL
+         XMuEpKM07Pqu9NcReVRuZc3A+BIweN6yHXQr1S3nbr8pUlcuHYBz38kRdm64sycaSvXE
+         OXg1rzHEXLqcL9QRpUYewLWV2+dKqOxqw1TLTEQmvpx43S2ZTDtTH6ky3U1jzkqcqGC8
+         AcKmC8TZWXCmrP/cm6i9xBgI0MmH4YIDvYb11g3Pi26OkoxNETSWljjEqQL+GQRrHofK
+         YlsS4Ju/BRl2euM7KPii2RrZs+NzRZf+Ogd1545zbmABGq5xffHTMxTib7OexD0VCOaC
+         Nsyg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=18Z/sTz+IhJS4WIQidF8Pkf7x0QFtzeGTd5zgt1XcsI=;
-        b=Ez3O2SPfz9VpmDznLeYx1Hb2NYNgrXwVTFNuJ6hHO9T3525xcog9wda/5H4Md3fawA
-         uks/HwkKjM6bskPE7WO3mwjcXj1Y8G5qAnvtvXHOmd64rnPJeH5kwvyrUQ+EfZO/jVoJ
-         g9ATYbTOb+y8GNGO5Vy/7oy3Tz0BpO7vDQ8Q3eTJDBo+zC0sJwI8vbosxzbF+SXAxesY
-         UoV+a7xmHGfghBiaQzTg4yJonTiao9zgeUK1ixEgvhdU6jJt1lXsbqi64R3ZCTkDtt0c
-         /mxaYpPvDDGB5f2OUlNfoUESeGZ9T7KM7Cpg8vXX5Wxk5nreWOfaMB0JahQI+uoYn0um
-         igYg==
-X-Gm-Message-State: AOAM533PfVK2y2PC4XTwnFDF1BNhocsQUG35cXe8nJbWd7dG+jy9xN/f
-        uGzx+bVLvHasIzVcJ8S7E6OMidk0UA7h/NB4nuhcVN+gwTGcgw==
-X-Google-Smtp-Source: ABdhPJydfNAKQMhJh5sK/HAXZvb2Kunl4GtH2wnKZ/ZK7z6LCCVG+1efFg9HYbdUR9Jq5koVxnXByhS4ux49LykcTBs=
-X-Received: by 2002:a05:6902:1501:b0:649:ff91:5409 with SMTP id
- q1-20020a056902150100b00649ff915409mr17647450ybu.278.1652179088847; Tue, 10
- May 2022 03:38:08 -0700 (PDT)
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=hP5Qt4iyca+XwfT38e5QSOL60aC/HqAALnLY/TUKCos=;
+        b=dWMV24hpyXF57hARcn5PgS1SaonYKd2vKzqhgsFdd1mVg45hWKWXN1l/4z+qcwnnf3
+         f0o/I74cTKsxaS+yZBXzukcnY68MKYLD62FlUL52Dx2BaDWeFMrsCMb/Vj04AkErjDTy
+         x1txr2iPHPT9AApfwnAamYjoX+UsVKvAsWkhdCJ3yTSAnK6ODvTcUCz9NlGT8j+HmiX9
+         Y9IowIxBBxZEw3Of4rTXSxup+HM+iuK2ZU3b+1BPK61dMHHSncQujwl3zCuUDDGZ/qls
+         Eb+cg6DRFGKPUf2VPHXVTEc3FxnP8wftuwFqGx3282BmpEfAcX0cnRhXN2TzJ14ojsOc
+         fipQ==
+X-Gm-Message-State: AOAM531XWNwlkw8XJrreQq981fRDmrPzmOvvsTnaSgc4FkN2R7pxiNDr
+        hzrKsArFs4Ssxw3++BgfqHlsig==
+X-Google-Smtp-Source: ABdhPJwV2FoRMmaQQWsKESFLsiexggF0TXhfn9LN0RLxYk94n+1r1hcpoWyyOn26z4+WeOxzmE6bzA==
+X-Received: by 2002:a05:6402:b2e:b0:425:d3f7:4c1a with SMTP id bo14-20020a0564020b2e00b00425d3f74c1amr21827716edb.366.1652180232182;
+        Tue, 10 May 2022 03:57:12 -0700 (PDT)
+Received: from [192.168.0.251] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id t3-20020a05640203c300b00428aafb23d0sm1351992edw.57.2022.05.10.03.57.10
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 10 May 2022 03:57:11 -0700 (PDT)
+Message-ID: <0686125d-4984-5dcd-32ca-4eeece09d7c3@linaro.org>
+Date:   Tue, 10 May 2022 12:57:10 +0200
 MIME-Version: 1.0
-References: <20220509044302.27878-1-rex-bc.chen@mediatek.com>
- <20220509044302.27878-2-rex-bc.chen@mediatek.com> <a5c9e7ad-c4b5-e757-cd6d-f79de47d1ff3@linaro.org>
- <fbbbc7e6a951bdde648ddd896f1fa163dafa16f1.camel@mediatek.com> <1c3fd336-1450-9b68-df81-2f01cc2ba32f@linaro.org>
-In-Reply-To: <1c3fd336-1450-9b68-df81-2f01cc2ba32f@linaro.org>
-From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Tue, 10 May 2022 18:37:57 +0800
-Message-ID: <CAGXv+5EHFjqiVQbXgcJWCo+TmaTU_z4e0g85beMLCNjyx5qJcw@mail.gmail.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
 Subject: Re: [PATCH v2 1/3] dt-bindings: mediatek: add vdosys1 RDMA definition
  for mt8195
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Content-Language: en-US
+To:     Chen-Yu Tsai <wenst@chromium.org>
 Cc:     Rex-BC Chen <rex-bc.chen@mediatek.com>,
         "robh+dt@kernel.org" <robh+dt@kernel.org>,
         "krzysztof.kozlowski+dt@linaro.org" 
@@ -74,9 +79,18 @@ Cc:     Rex-BC Chen <rex-bc.chen@mediatek.com>,
         <linux-arm-kernel@lists.infradead.org>,
         "angelogioacchino.delregno@collabora.com" 
         <angelogioacchino.delregno@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+References: <20220509044302.27878-1-rex-bc.chen@mediatek.com>
+ <20220509044302.27878-2-rex-bc.chen@mediatek.com>
+ <a5c9e7ad-c4b5-e757-cd6d-f79de47d1ff3@linaro.org>
+ <fbbbc7e6a951bdde648ddd896f1fa163dafa16f1.camel@mediatek.com>
+ <1c3fd336-1450-9b68-df81-2f01cc2ba32f@linaro.org>
+ <CAGXv+5EHFjqiVQbXgcJWCo+TmaTU_z4e0g85beMLCNjyx5qJcw@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CAGXv+5EHFjqiVQbXgcJWCo+TmaTU_z4e0g85beMLCNjyx5qJcw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -85,38 +99,25 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 10, 2022 at 6:28 PM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 09/05/2022 10:45, Rex-BC Chen wrote:
-> >>> +    soc {
-> >>> +        #address-cells = <2>;
-> >>> +        #size-cells = <2>;
-> >>> +
-> >>> +        vdo1_rdma0: mdp-rdma@1c104000 {
-> >>
-> >> Generic node name. dma-controller (if it does not conflict with
-> >> dma-common.yaml schema)?
-> >
-> > We don't understand what dma-controller you are referring to? Can you
-> > help explain more? Thanks!
->
-> Use a generic node name, as Devicetree spec asks:
-> "The name of a node should be somewhat generic, reflecting the function
-> of the device and not its precise programming
->
-> model. If appropriate, the name should be one of the following choices:"
->
-> I proposed dma-controller, but feel free to find better generic node name.
+On 10/05/2022 12:37, Chen-Yu Tsai wrote:
+>> Use a generic node name, as Devicetree spec asks:
+>> "The name of a node should be somewhat generic, reflecting the function
+>> of the device and not its precise programming
+>>
+>> model. If appropriate, the name should be one of the following choices:"
+>>
+>> I proposed dma-controller, but feel free to find better generic node name.
+> 
+> dma-controller is covered by dma-controller.yaml, which references
+> dma-common.yaml in its entirety, so I don't think that would work.
+> 
+> What about "blitter"? I think that is a generic term that is/was commonly
+> used with display hardware and sort of describes the function of the RDMA
+> & WDMA blocks, and if only one side is memory and the other is the display
+> pipeline.
 
-dma-controller is covered by dma-controller.yaml, which references
-dma-common.yaml in its entirety, so I don't think that would work.
-
-What about "blitter"? I think that is a generic term that is/was commonly
-used with display hardware and sort of describes the function of the RDMA
-& WDMA blocks, and if only one side is memory and the other is the display
-pipeline.
+Sure, sounds fine!
 
 
-Regards
-ChenYu
+Best regards,
+Krzysztof
