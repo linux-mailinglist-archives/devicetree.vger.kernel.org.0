@@ -2,457 +2,357 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 30449521137
-	for <lists+devicetree@lfdr.de>; Tue, 10 May 2022 11:42:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1CF03521154
+	for <lists+devicetree@lfdr.de>; Tue, 10 May 2022 11:46:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239087AbiEJJqm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 May 2022 05:46:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54252 "EHLO
+        id S239219AbiEJJuP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 May 2022 05:50:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38458 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232618AbiEJJqg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 May 2022 05:46:36 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E95D3DDF0;
-        Tue, 10 May 2022 02:42:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1652175759; x=1683711759;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=NuZ+ce14yWDCUZnk+5vM9M6pcF0vrXF4CGc7D2BC69A=;
-  b=xkRWqa8Lli84G7wXhVwoI49L2elEI7iRjy5Y7sel8VGhIGsxALdNV/Zc
-   6cc6sC8nRiVNLqYGPMdQQxQmuMKggcZScL9onJ2YgWxArmxPPcThyI2Xd
-   8MADwwVtrvDjOxfiWOBPRWzpXaUoRN94wPExgYtuFc74lVpmu9iRuBuC4
-   7o6U2HMK12vMiLzSUGitexTWDwcMgVW65dy/TjTDJF2ziRqvHvNuLcDy2
-   t1AJtg5IRRalmmKVMnESqDEQf1D79BN7KzXceynfLhJMKQxZ+3LAaf0cT
-   F55QH31jsndmWEBt2UK07GsMVWk8SApPj3GGM+C/DCjA9lfyzALlYTEvl
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.91,214,1647327600"; 
-   d="scan'208";a="155418771"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 10 May 2022 02:42:38 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.87.72) by
- chn-vm-ex02.mchp-main.com (10.10.87.72) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17; Tue, 10 May 2022 02:42:38 -0700
-Received: from localhost.localdomain (10.10.115.15) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
- 15.1.2375.17 via Frontend Transport; Tue, 10 May 2022 02:42:36 -0700
-From:   Claudiu Beznea <claudiu.beznea@microchip.com>
-To:     <srinivas.kandagatla@linaro.org>, <robh+dt@kernel.org>,
-        <krzk+dt@kernel.org>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Claudiu Beznea <claudiu.beznea@microchip.com>
-Subject: [PATCH 2/2] nvmem: microchip-otpc: add support
-Date:   Tue, 10 May 2022 12:44:57 +0300
-Message-ID: <20220510094457.4070764-3-claudiu.beznea@microchip.com>
-X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20220510094457.4070764-1-claudiu.beznea@microchip.com>
-References: <20220510094457.4070764-1-claudiu.beznea@microchip.com>
+        with ESMTP id S239212AbiEJJuO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 May 2022 05:50:14 -0400
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B3393C486;
+        Tue, 10 May 2022 02:46:12 -0700 (PDT)
+Received: (Authenticated sender: jacopo@jmondi.org)
+        by mail.gandi.net (Postfix) with ESMTPSA id 17B76FF811;
+        Tue, 10 May 2022 09:46:08 +0000 (UTC)
+Date:   Tue, 10 May 2022 11:46:07 +0200
+From:   Jacopo Mondi <jacopo@jmondi.org>
+To:     Quentin Schulz <foss+kernel@0leil.net>
+Cc:     shawnx.tu@intel.com, mchehab@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Quentin Schulz <quentin.schulz@theobroma-systems.com>
+Subject: Re: [PATCH v3 2/4] media: ov5675: add device-tree support and
+ support runtime PM
+Message-ID: <20220510094607.2ijaw6we6jml2bv7@uno.localdomain>
+References: <20220509143226.531117-1-foss+kernel@0leil.net>
+ <20220509143226.531117-2-foss+kernel@0leil.net>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20220509143226.531117-2-foss+kernel@0leil.net>
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for Microchip OTP controller available on SAMA7G5. The OTPC
-controls the access to a non-volatile memory. The memory behind OTPC is
-organized into packets, packets are composed by a fixed length header
-(4 bytes long) and a variable length payload (payload length is available
-in the header). When software request the data at an offset in memory
-the OTPC will return (via header + data registers) the whole packet that
-has a word at that offset. For a packet in OTP memory like below:
+Hi Quentin,
 
-offset  OTP Memory layout
+On Mon, May 09, 2022 at 04:32:24PM +0200, Quentin Schulz wrote:
+> From: Quentin Schulz <quentin.schulz@theobroma-systems.com>
+>
+> Until now, this driver only supported ACPI. This adds support for
+> Device Tree too while enabling clock and regulators in runtime PM.
+>
+> Signed-off-by: Quentin Schulz <quentin.schulz@theobroma-systems.com>
 
-         .           .
-         .    ...    .
-         .           .
-0x0E     +-----------+	<--- packet X
-         | header  X |
-0x12     +-----------+
-         | payload X |
-0x16     |           |
-         |           |
-0x1A     |           |
-         +-----------+
-         .           .
-         .    ...    .
-         .           .
+Thanks for addressing all comments on the previous version.
 
-if user requests data at address 0x16 the data started at 0x0E will be
-returned by controller. User will be able to fetch the whole packet
-starting at 0x0E (or parts of the packet) via proper registers. The same
-packet will be returned if software request the data at offset 0x0E or
-0x12 or 0x1A.
+Looks good to me!
+Reviewed-by: Jacopo Mondi <jacopo@jmondi.org>
 
-The OTP will be populated by Microchip with at least 2 packets first one
-being boot configuration packet and the 2nd one being temperature
-calibration packet. The packet order will be preserved b/w different chip
-revisions but the packet sizes may change.
+Thanks
+  j
 
-For the above reasons and to keep the same software able to work on all
-chip variants the read function of the driver is working with a packet
-id instead of an offset in OTP memory.
-
-Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
----
- MAINTAINERS                    |   8 +
- drivers/nvmem/Kconfig          |   7 +
- drivers/nvmem/Makefile         |   2 +
- drivers/nvmem/microchip-otpc.c | 288 +++++++++++++++++++++++++++++++++
- 4 files changed, 305 insertions(+)
- create mode 100644 drivers/nvmem/microchip-otpc.c
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 1bf57fd937b5..f4b646a801ff 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -12953,6 +12953,14 @@ S:	Supported
- F:	Documentation/devicetree/bindings/mtd/atmel-nand.txt
- F:	drivers/mtd/nand/raw/atmel/*
- 
-+MICROCHIP OTPC DRIVER
-+M:	Claudiu Beznea <claudiu.beznea@microchip.com>
-+L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
-+S:	Supported
-+F:	Documentation/devicetree/bindings/nvmem/microchip-otpc.yaml
-+F:	drivers/nvmem/microchip-otpc.c
-+F:	dt-bindings/nvmem/microchip,otpc.h
-+
- MICROCHIP PWM DRIVER
- M:	Claudiu Beznea <claudiu.beznea@microchip.com>
- L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
-diff --git a/drivers/nvmem/Kconfig b/drivers/nvmem/Kconfig
-index 967d0084800e..d72d879a6d34 100644
---- a/drivers/nvmem/Kconfig
-+++ b/drivers/nvmem/Kconfig
-@@ -107,6 +107,13 @@ config MTK_EFUSE
- 	  This driver can also be built as a module. If so, the module
- 	  will be called efuse-mtk.
- 
-+config MICROCHIP_OTPC
-+	tristate "Microchip OTPC support"
-+	depends on ARCH_AT91 || COMPILE_TEST
-+	help
-+	  This driver enable the OTP controller available on Microchip SAMA7G5
-+	  SoCs. It controlls the access to the OTP memory connected to it.
-+
- config NVMEM_NINTENDO_OTP
- 	tristate "Nintendo Wii and Wii U OTP Support"
- 	depends on WII || COMPILE_TEST
-diff --git a/drivers/nvmem/Makefile b/drivers/nvmem/Makefile
-index 00e136a0a123..c710b64f9fe4 100644
---- a/drivers/nvmem/Makefile
-+++ b/drivers/nvmem/Makefile
-@@ -67,3 +67,5 @@ obj-$(CONFIG_NVMEM_SUNPLUS_OCOTP)	+= nvmem_sunplus_ocotp.o
- nvmem_sunplus_ocotp-y		:= sunplus-ocotp.o
- obj-$(CONFIG_NVMEM_APPLE_EFUSES)	+= nvmem-apple-efuses.o
- nvmem-apple-efuses-y 		:= apple-efuses.o
-+obj-$(CONFIG_MICROCHIP_OTPC)	+= nvmem-microchip-otpc.o
-+nvmem-microchip-otpc-y		:= microchip-otpc.o
-diff --git a/drivers/nvmem/microchip-otpc.c b/drivers/nvmem/microchip-otpc.c
-new file mode 100644
-index 000000000000..5c5ac1bca074
---- /dev/null
-+++ b/drivers/nvmem/microchip-otpc.c
-@@ -0,0 +1,288 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * OTP Memory controller
-+ *
-+ * Copyright (C) 2022 Microchip Technology Inc. and its subsidiaries
-+ *
-+ * Author: Claudiu Beznea <claudiu.beznea@microchip.com>
-+ */
-+
-+#include <linux/bitfield.h>
-+#include <linux/iopoll.h>
-+#include <linux/module.h>
-+#include <linux/nvmem-provider.h>
-+#include <linux/of.h>
-+#include <linux/platform_device.h>
-+
-+#define MCHP_OTPC_CR			(0x0)
-+#define MCHP_OTPC_CR_READ		BIT(6)
-+#define MCHP_OTPC_MR			(0x4)
-+#define MCHP_OTPC_MR_ADDR		GENMASK(31, 16)
-+#define MCHP_OTPC_AR			(0x8)
-+#define MCHP_OTPC_SR			(0xc)
-+#define MCHP_OTPC_SR_READ		BIT(6)
-+#define MCHP_OTPC_HR			(0x20)
-+#define MCHP_OTPC_HR_SIZE		GENMASK(15, 8)
-+#define MCHP_OTPC_DR			(0x24)
-+
-+#define MCHP_OTPC_NAME			"mchp-otpc"
-+#define MCHP_OTPC_SIZE			(11 * 1024)
-+
-+/**
-+ * struct mchp_otpc - OTPC private data structure
-+ * @base: base address
-+ * @dev: struct device pointer
-+ * @packets: list of packets in OTP memory
-+ * @npackets: number of packets in OTP memory
-+ */
-+struct mchp_otpc {
-+	void __iomem *base;
-+	struct device *dev;
-+	struct list_head packets;
-+	u32 npackets;
-+};
-+
-+/**
-+ * struct mchp_otpc_packet - OTPC packet data structure
-+ * @list: list head
-+ * @id: packet ID
-+ * @offset: packet offset (in words) in OTP memory
-+ */
-+struct mchp_otpc_packet {
-+	struct list_head list;
-+	u32 id;
-+	u32 offset;
-+};
-+
-+static struct mchp_otpc_packet *mchp_otpc_id_to_packet(struct mchp_otpc *otpc,
-+						       u32 id)
-+{
-+	struct mchp_otpc_packet *packet;
-+
-+	if (id >= otpc->npackets)
-+		return NULL;
-+
-+	list_for_each_entry(packet, &otpc->packets, list) {
-+		if (packet->id == id)
-+			return packet;
-+	}
-+
-+	return NULL;
-+}
-+
-+static int mchp_otpc_prepare_read(struct mchp_otpc *otpc,
-+				  unsigned int offset)
-+{
-+	u32 tmp;
-+
-+	/* Set address. */
-+	tmp = readl_relaxed(otpc->base + MCHP_OTPC_MR);
-+	tmp &= ~MCHP_OTPC_MR_ADDR;
-+	tmp |= FIELD_PREP(MCHP_OTPC_MR_ADDR, offset);
-+	writel_relaxed(tmp, otpc->base + MCHP_OTPC_MR);
-+
-+	/* Set read. */
-+	tmp = readl_relaxed(otpc->base + MCHP_OTPC_CR);
-+	tmp |= MCHP_OTPC_CR_READ;
-+	writel_relaxed(tmp, otpc->base + MCHP_OTPC_CR);
-+
-+	/* Wait for packet to be transferred into temporary buffers. */
-+	return read_poll_timeout(readl_relaxed, tmp, !(tmp & MCHP_OTPC_SR_READ),
-+				 10000, 2000, false, otpc->base + MCHP_OTPC_SR);
-+}
-+
-+/*
-+ * OTPC memory is organized into packets. Each packets contains a header and
-+ * a payload. Header is 4 bytes long and contains the size of the payload.
-+ * Payload size varies. The memory footprint is something as follows:
-+ *
-+ * Memory offset  Memory footprint     Packet ID
-+ * -------------  ----------------     ---------
-+ *
-+ * 0x0            +------------+   <-- packet 0
-+ *                | header  0  |
-+ * 0x4            +------------+
-+ *                | payload 0  |
-+ *                .            .
-+ *                .    ...     .
-+ *                .            .
-+ * offset1        +------------+   <-- packet 1
-+ *                | header  1  |
-+ * offset1 + 0x4  +------------+
-+ *                | payload 1  |
-+ *                .            .
-+ *                .    ...     .
-+ *                .            .
-+ * offset2        +------------+   <-- packet 2
-+ *                .            .
-+ *                .    ...     .
-+ *                .            .
-+ * offsetN        +------------+   <-- packet N
-+ *                | header  N  |
-+ * offsetN + 0x4  +------------+
-+ *                | payload N  |
-+ *                .            .
-+ *                .    ...     .
-+ *                .            .
-+ *                +------------+
-+ *
-+ * where offset1, offset2, offsetN depends on the size of payload 0, payload 1,
-+ * payload N-1.
-+ *
-+ * The access to memory is done on a per packet basis: the control registers
-+ * need to be updated with an offset address (within a packet range) and the
-+ * data registers will be update by controller with information contained by
-+ * that packet. E.g. if control registers are updated with any address within
-+ * the range [offset1, offset2) the data registers are updated by controller
-+ * with packet 1. Header data is accessible though MCHP_OTPC_HR register.
-+ * Payload data is accessible though MCHP_OTPC_DR and MCHP_OTPC_AR registers.
-+ * There is no direct mapping b/w the offset requested by software and the
-+ * offset returned by hardware.
-+ *
-+ * For this, the read function will return the first requested bytes in the
-+ * packet. The user will have to be aware of the memory footprint before doing
-+ * the read request.
-+ */
-+static int mchp_otpc_read(void *priv, unsigned int off, void *val,
-+			  size_t bytes)
-+{
-+	struct mchp_otpc *otpc = priv;
-+	struct mchp_otpc_packet *packet;
-+	u32 *buf = val;
-+	u32 offset;
-+	size_t len = 0;
-+	int ret, payload_size;
-+
-+	/*
-+	 * We reach this point with off being multiple of stride = 4 to
-+	 * be able to cross the subsystem. Inside the driver we use continuous
-+	 * unsigned integer numbers for packet id, thus devide off by 4
-+	 * before passing it to mchp_otpc_id_to_packet().
-+	 */
-+	packet = mchp_otpc_id_to_packet(otpc, off / 4);
-+	if (!packet)
-+		return -EINVAL;
-+	offset = packet->offset;
-+
-+	while (len < bytes) {
-+		ret = mchp_otpc_prepare_read(otpc, offset);
-+		if (ret)
-+			return ret;
-+
-+		/* Read and save header content. */
-+		*buf++ = readl_relaxed(otpc->base + MCHP_OTPC_HR);
-+		len += sizeof(*buf);
-+		offset++;
-+		if (len >= bytes)
-+			break;
-+
-+		/* Read and save payload content. */
-+		payload_size = FIELD_GET(MCHP_OTPC_HR_SIZE, *(buf - 1));
-+		writel_relaxed(0UL, otpc->base + MCHP_OTPC_AR);
-+		do {
-+			*buf++ = readl_relaxed(otpc->base + MCHP_OTPC_DR);
-+			len += sizeof(*buf);
-+			offset++;
-+			payload_size--;
-+		} while (payload_size >= 0 && len < bytes);
-+	}
-+
-+	return 0;
-+}
-+
-+static int mchp_otpc_init_packets_list(struct mchp_otpc *otpc, u32 *size)
-+{
-+	struct mchp_otpc_packet *packet;
-+	u32 word, word_pos = 0, id = 0, npackets = 0, payload_size;
-+	int ret;
-+
-+	INIT_LIST_HEAD(&otpc->packets);
-+	*size = 0;
-+
-+	while (*size < MCHP_OTPC_SIZE) {
-+		ret = mchp_otpc_prepare_read(otpc, word_pos);
-+		if (ret)
-+			return ret;
-+
-+		word = readl_relaxed(otpc->base + MCHP_OTPC_HR);
-+		payload_size = FIELD_GET(MCHP_OTPC_HR_SIZE, word);
-+		if (!payload_size)
-+			break;
-+
-+		packet = devm_kzalloc(otpc->dev, sizeof(*packet), GFP_KERNEL);
-+		if (!packet)
-+			return -ENOMEM;
-+
-+		packet->id = id++;
-+		packet->offset = word_pos;
-+		INIT_LIST_HEAD(&packet->list);
-+		list_add_tail(&packet->list, &otpc->packets);
-+
-+		/* Count size by adding header and paload sizes. */
-+		*size += 4 * (payload_size + 1);
-+		/* Next word: this packet (header, payload) position + 1. */
-+		word_pos += payload_size + 2;
-+
-+		npackets++;
-+	}
-+
-+	otpc->npackets = npackets;
-+
-+	return 0;
-+}
-+
-+static struct nvmem_config mchp_nvmem_config = {
-+	.name = MCHP_OTPC_NAME,
-+	.type = NVMEM_TYPE_OTP,
-+	.read_only = true,
-+	.word_size = 4,
-+	.stride = 4,
-+	.reg_read = mchp_otpc_read,
-+};
-+
-+static int mchp_otpc_probe(struct platform_device *pdev)
-+{
-+	struct nvmem_device *nvmem;
-+	struct mchp_otpc *otpc;
-+	u32 size;
-+	int ret;
-+
-+	otpc = devm_kzalloc(&pdev->dev, sizeof(*otpc), GFP_KERNEL);
-+	if (!otpc)
-+		return -ENOMEM;
-+
-+	otpc->base = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(otpc->base))
-+		return PTR_ERR(otpc->base);
-+
-+	otpc->dev = &pdev->dev;
-+	ret = mchp_otpc_init_packets_list(otpc, &size);
-+	if (ret)
-+		return ret;
-+
-+	mchp_nvmem_config.dev = otpc->dev;
-+	mchp_nvmem_config.size = size;
-+	mchp_nvmem_config.priv = otpc;
-+	nvmem = devm_nvmem_register(&pdev->dev, &mchp_nvmem_config);
-+
-+	return PTR_ERR_OR_ZERO(nvmem);
-+}
-+
-+static const struct of_device_id mchp_otpc_ids[] = {
-+	{ .compatible = "microchip,sama7g5-otpc", },
-+	{ },
-+};
-+MODULE_DEVICE_TABLE(of, mchp_otpc_ids);
-+
-+static struct platform_driver mchp_otpc_driver = {
-+	.probe = mchp_otpc_probe,
-+	.driver = {
-+		.name = MCHP_OTPC_NAME,
-+		.of_match_table = of_match_ptr(mchp_otpc_ids),
-+	},
-+};
-+module_platform_driver(mchp_otpc_driver);
-+
-+MODULE_AUTHOR("Claudiu Beznea <claudiu.beznea@microchip.com>");
-+MODULE_DESCRIPTION("Microchip SAMA7G5 OTPC driver");
-+MODULE_LICENSE("GPL");
--- 
-2.34.1
-
+> ---
+>
+> v3:
+>  - added linux/mod_devicetable.h include,
+>  - moved delay for reset pulse right after the regulators are enabled,
+>  - removed check on is_acpi_node in favor of checks on presence of OF
+>  properties (e.g. devm_clk_get_optional returns NULL),
+>  - moved power management out of system suspend/resume into runtime PM
+>  callbacks,
+>  - removed ACPI specific comment since it's not specific to this driver,
+>  - changed devm_clk_get to devm_clk_get_optional,
+>  - remove OF use of clock-frequency (handled by devm_clk_get_optional
+>  directly),
+>  - removed name of clock (only one, so no need for anything explicit)
+>  when requesting a clock from OF,
+>  - wrapped lines to 80 chars,
+>
+> v2:
+>  - fixed unused-const-variable warning by removing of_match_ptr in
+>  of_match_table, reported by kernel test robot,
+>
+>  drivers/media/i2c/ov5675.c | 143 +++++++++++++++++++++++++++++++------
+>  1 file changed, 122 insertions(+), 21 deletions(-)
+>
+> diff --git a/drivers/media/i2c/ov5675.c b/drivers/media/i2c/ov5675.c
+> index 82ba9f56baec..cee380196774 100644
+> --- a/drivers/media/i2c/ov5675.c
+> +++ b/drivers/media/i2c/ov5675.c
+> @@ -3,10 +3,14 @@
+>
+>  #include <asm/unaligned.h>
+>  #include <linux/acpi.h>
+> +#include <linux/clk.h>
+>  #include <linux/delay.h>
+> +#include <linux/gpio/consumer.h>
+>  #include <linux/i2c.h>
+> +#include <linux/mod_devicetable.h>
+>  #include <linux/module.h>
+>  #include <linux/pm_runtime.h>
+> +#include <linux/regulator/consumer.h>
+>  #include <media/v4l2-ctrls.h>
+>  #include <media/v4l2-device.h>
+>  #include <media/v4l2-fwnode.h>
+> @@ -17,7 +21,7 @@
+>
+>  #define OV5675_LINK_FREQ_450MHZ		450000000ULL
+>  #define OV5675_SCLK			90000000LL
+> -#define OV5675_MCLK			19200000
+> +#define OV5675_XVCLK_19_2		19200000
+>  #define OV5675_DATA_LANES		2
+>  #define OV5675_RGB_DEPTH		10
+>
+> @@ -76,6 +80,14 @@
+>
+>  #define to_ov5675(_sd)			container_of(_sd, struct ov5675, sd)
+>
+> +static const char * const ov5675_supply_names[] = {
+> +	"avdd",		/* Analog power */
+> +	"dovdd",	/* Digital I/O power */
+> +	"dvdd",		/* Digital core power */
+> +};
+> +
+> +#define OV5675_NUM_SUPPLIES	ARRAY_SIZE(ov5675_supply_names)
+> +
+>  enum {
+>  	OV5675_LINK_FREQ_900MBPS,
+>  };
+> @@ -484,6 +496,9 @@ struct ov5675 {
+>  	struct v4l2_subdev sd;
+>  	struct media_pad pad;
+>  	struct v4l2_ctrl_handler ctrl_handler;
+> +	struct clk		*xvclk;
+> +	struct gpio_desc	*reset_gpio;
+> +	struct regulator_bulk_data supplies[OV5675_NUM_SUPPLIES];
+>
+>  	/* V4L2 Controls */
+>  	struct v4l2_ctrl *link_freq;
+> @@ -944,6 +959,50 @@ static int ov5675_set_stream(struct v4l2_subdev *sd, int enable)
+>  	return ret;
+>  }
+>
+> +static int ov5675_power_off(struct device *dev)
+> +{
+> +	struct v4l2_subdev *sd = dev_get_drvdata(dev);
+> +	struct ov5675 *ov5675 = to_ov5675(sd);
+> +
+> +	gpiod_set_value_cansleep(ov5675->reset_gpio, 1);
+> +	usleep_range(1000, 1200);
+> +
+> +	regulator_bulk_disable(OV5675_NUM_SUPPLIES, ov5675->supplies);
+> +	clk_disable_unprepare(ov5675->xvclk);
+> +
+> +	return 0;
+> +}
+> +
+> +static int ov5675_power_on(struct device *dev)
+> +{
+> +	struct v4l2_subdev *sd = dev_get_drvdata(dev);
+> +	struct ov5675 *ov5675 = to_ov5675(sd);
+> +	int ret;
+> +
+> +	ret = clk_prepare_enable(ov5675->xvclk);
+> +	if (ret < 0) {
+> +		dev_err(dev, "failed to enable xvclk: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	gpiod_set_value_cansleep(ov5675->reset_gpio, 1);
+> +
+> +	ret = regulator_bulk_enable(OV5675_NUM_SUPPLIES, ov5675->supplies);
+> +	if (ret) {
+> +		clk_disable_unprepare(ov5675->xvclk);
+> +		return ret;
+> +	}
+> +
+> +	/* Reset pulse should be at least 2ms */
+> +	usleep_range(2000, 2200);
+> +
+> +	gpiod_set_value_cansleep(ov5675->reset_gpio, 0);
+> +
+> +	usleep_range(1000, 1200);
+> +
+> +	return 0;
+> +}
+> +
+>  static int __maybe_unused ov5675_suspend(struct device *dev)
+>  {
+>  	struct v4l2_subdev *sd = dev_get_drvdata(dev);
+> @@ -1106,32 +1165,60 @@ static const struct v4l2_subdev_internal_ops ov5675_internal_ops = {
+>  	.open = ov5675_open,
+>  };
+>
+> -static int ov5675_check_hwcfg(struct device *dev)
+> +static int ov5675_get_hwcfg(struct ov5675 *ov5675, struct device *dev)
+>  {
+>  	struct fwnode_handle *ep;
+>  	struct fwnode_handle *fwnode = dev_fwnode(dev);
+>  	struct v4l2_fwnode_endpoint bus_cfg = {
+>  		.bus_type = V4L2_MBUS_CSI2_DPHY
+>  	};
+> -	u32 mclk;
+> +	u32 xvclk_rate;
+>  	int ret;
+>  	unsigned int i, j;
+>
+>  	if (!fwnode)
+>  		return -ENXIO;
+>
+> -	ret = fwnode_property_read_u32(fwnode, "clock-frequency", &mclk);
+> +	ov5675->xvclk = devm_clk_get_optional(dev, NULL);
+> +	if (IS_ERR(ov5675->xvclk))
+> +		return dev_err_probe(dev, PTR_ERR(ov5675->xvclk),
+> +				     "failed to get xvclk: %ld\n",
+> +				     PTR_ERR(ov5675->xvclk));
+>
+> -	if (ret) {
+> -		dev_err(dev, "can't get clock frequency");
+> -		return ret;
+> +	if (ov5675->xvclk) {
+> +		xvclk_rate = clk_get_rate(ov5675->xvclk);
+> +	} else {
+> +		ret = fwnode_property_read_u32(fwnode, "clock-frequency",
+> +					       &xvclk_rate);
+> +
+> +		if (ret) {
+> +			dev_err(dev, "can't get clock frequency");
+> +			return ret;
+> +		}
+>  	}
+>
+> -	if (mclk != OV5675_MCLK) {
+> -		dev_err(dev, "external clock %d is not supported", mclk);
+> +	if (xvclk_rate != OV5675_XVCLK_19_2) {
+> +		dev_err(dev, "external clock rate %u is unsupported",
+> +			xvclk_rate);
+>  		return -EINVAL;
+>  	}
+>
+> +	ov5675->reset_gpio = devm_gpiod_get_optional(dev, "reset",
+> +						     GPIOD_OUT_HIGH);
+> +	if (IS_ERR(ov5675->reset_gpio)) {
+> +		ret = PTR_ERR(ov5675->reset_gpio);
+> +		dev_err(dev, "failed to get reset-gpios: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	for (i = 0; i < OV5675_NUM_SUPPLIES; i++)
+> +		ov5675->supplies[i].supply = ov5675_supply_names[i];
+> +
+> +	ret = devm_regulator_bulk_get(dev, OV5675_NUM_SUPPLIES,
+> +				      ov5675->supplies);
+> +	if (ret)
+> +		return ret;
+> +
+>  	ep = fwnode_graph_get_next_endpoint(fwnode, NULL);
+>  	if (!ep)
+>  		return -ENXIO;
+> @@ -1186,6 +1273,9 @@ static int ov5675_remove(struct i2c_client *client)
+>  	pm_runtime_disable(&client->dev);
+>  	mutex_destroy(&ov5675->mutex);
+>
+> +	if (!pm_runtime_status_suspended(&client->dev))
+> +		ov5675_power_off(&client->dev);
+> +
+>  	return 0;
+>  }
+>
+> @@ -1195,25 +1285,31 @@ static int ov5675_probe(struct i2c_client *client)
+>  	bool full_power;
+>  	int ret;
+>
+> -	ret = ov5675_check_hwcfg(&client->dev);
+> +	ov5675 = devm_kzalloc(&client->dev, sizeof(*ov5675), GFP_KERNEL);
+> +	if (!ov5675)
+> +		return -ENOMEM;
+> +
+> +	ret = ov5675_get_hwcfg(ov5675, &client->dev);
+>  	if (ret) {
+> -		dev_err(&client->dev, "failed to check HW configuration: %d",
+> +		dev_err(&client->dev, "failed to get HW configuration: %d",
+>  			ret);
+>  		return ret;
+>  	}
+>
+> -	ov5675 = devm_kzalloc(&client->dev, sizeof(*ov5675), GFP_KERNEL);
+> -	if (!ov5675)
+> -		return -ENOMEM;
+> -
+>  	v4l2_i2c_subdev_init(&ov5675->sd, client, &ov5675_subdev_ops);
+>
+> +	ret = ov5675_power_on(&client->dev);
+> +	if (ret) {
+> +		dev_err(&client->dev, "failed to power on: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+>  	full_power = acpi_dev_state_d0(&client->dev);
+>  	if (full_power) {
+>  		ret = ov5675_identify_module(ov5675);
+>  		if (ret) {
+>  			dev_err(&client->dev, "failed to find sensor: %d", ret);
+> -			return ret;
+> +			goto probe_power_off;
+>  		}
+>  	}
+>
+> @@ -1243,11 +1339,6 @@ static int ov5675_probe(struct i2c_client *client)
+>  		goto probe_error_media_entity_cleanup;
+>  	}
+>
+> -	/*
+> -	 * Device is already turned on by i2c-core with ACPI domain PM.
+> -	 * Enable runtime PM and turn off the device.
+> -	 */
+> -
+>  	/* Set the device's state to active if it's in D0 state. */
+>  	if (full_power)
+>  		pm_runtime_set_active(&client->dev);
+> @@ -1262,12 +1353,15 @@ static int ov5675_probe(struct i2c_client *client)
+>  probe_error_v4l2_ctrl_handler_free:
+>  	v4l2_ctrl_handler_free(ov5675->sd.ctrl_handler);
+>  	mutex_destroy(&ov5675->mutex);
+> +probe_power_off:
+> +	ov5675_power_off(&client->dev);
+>
+>  	return ret;
+>  }
+>
+>  static const struct dev_pm_ops ov5675_pm_ops = {
+>  	SET_SYSTEM_SLEEP_PM_OPS(ov5675_suspend, ov5675_resume)
+> +	SET_RUNTIME_PM_OPS(ov5675_power_off, ov5675_power_on, NULL)
+>  };
+>
+>  #ifdef CONFIG_ACPI
+> @@ -1279,11 +1373,18 @@ static const struct acpi_device_id ov5675_acpi_ids[] = {
+>  MODULE_DEVICE_TABLE(acpi, ov5675_acpi_ids);
+>  #endif
+>
+> +static const struct of_device_id ov5675_of_match[] = {
+> +	{ .compatible = "ovti,ov5675", },
+> +	{ /* sentinel */ },
+> +};
+> +MODULE_DEVICE_TABLE(of, ov5675_of_match);
+> +
+>  static struct i2c_driver ov5675_i2c_driver = {
+>  	.driver = {
+>  		.name = "ov5675",
+>  		.pm = &ov5675_pm_ops,
+>  		.acpi_match_table = ACPI_PTR(ov5675_acpi_ids),
+> +		.of_match_table = ov5675_of_match,
+>  	},
+>  	.probe_new = ov5675_probe,
+>  	.remove = ov5675_remove,
+> --
+> 2.35.3
+>
