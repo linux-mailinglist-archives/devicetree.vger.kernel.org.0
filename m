@@ -2,419 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A0665522722
-	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 00:46:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A56A522732
+	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 00:50:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237363AbiEJWqr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 May 2022 18:46:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52054 "EHLO
+        id S230062AbiEJWt6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 May 2022 18:49:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37546 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237359AbiEJWqi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 May 2022 18:46:38 -0400
-Received: from mail-pj1-x102d.google.com (mail-pj1-x102d.google.com [IPv6:2607:f8b0:4864:20::102d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC83021E310
-        for <devicetree@vger.kernel.org>; Tue, 10 May 2022 15:46:36 -0700 (PDT)
-Received: by mail-pj1-x102d.google.com with SMTP id fv2so505702pjb.4
-        for <devicetree@vger.kernel.org>; Tue, 10 May 2022 15:46:36 -0700 (PDT)
+        with ESMTP id S229561AbiEJWt5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 May 2022 18:49:57 -0400
+Received: from mail-yw1-x1135.google.com (mail-yw1-x1135.google.com [IPv6:2607:f8b0:4864:20::1135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2ECE24DC50
+        for <devicetree@vger.kernel.org>; Tue, 10 May 2022 15:49:55 -0700 (PDT)
+Received: by mail-yw1-x1135.google.com with SMTP id 00721157ae682-2f7ca2ce255so2068577b3.7
+        for <devicetree@vger.kernel.org>; Tue, 10 May 2022 15:49:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=hjptzdLf1gCERRe02HGCOwCzQVmJOB0+x939FyCO2xQ=;
-        b=UTR1LJELBHWGz2oZWIf4FZ9wkS4cdIU5/OPogOMwxbxYC0JxuWTU2Flp7c6ZniAlFu
-         0WIKbumbh5coQaRfZ2SDSdJ1m8UKnNE6K8uv1In//N9qCOZzgG9GsCw+prJ/uOcbvo47
-         e1uXpUN2TH/ZYdB/b7bEjB7Q4B2KS3XC+LjM4=
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=odDeWEQn+dxMMnpuDr3wrpKOZqaMz1USU4YdJsifEC0=;
+        b=mGVIIGo48qdJEBmeO1w/NaPfd+/U0PrKZm7SDFU3SbN7Tp7fphiRm+JQu+KqHJe2ie
+         A9SMDftsnzoqZy0qpCjmn2sSb2MR8pC0t8MMonMGB7SbLRK5I12zJrppZ+BPhQds6RHQ
+         gyyWUuip7bqEn6IfkDfLGaaIVAYN7ncFxF6mSn+mMjlFuKpSx+BNYie+9RoAdawsOTw4
+         FYC05egW3X6pivH7vAsOtytkHVozGLIrsnIAYf/Xu8Jbo0WvA7A8Xh8Yxb424mtt34A3
+         MdXYP9HgwK8uoFD9JXwrriiS962iJ1i2ZpHTmpKV3zMskjx6oEMq+cEgNXVtTt+Or2RR
+         jF/g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=hjptzdLf1gCERRe02HGCOwCzQVmJOB0+x939FyCO2xQ=;
-        b=nkqw/xGocIYbZFa3vH572XxXybJVmzJqrel6Va5yWap+F1LQ455V2FB2NSEaikWG9l
-         XKgJGhiZXJkLSQA/hLFDviGkhrbegC1T+j3AP6z2C5fnIThzOyXEoK+fgNuR3dxSypQY
-         xgA8h3+I5+BQIA2vUcDxoZ54UuIQ036dWQTWdthHtD7stdUkY06b5WC9jlrhA/IrKH8h
-         hxec8WkTcBgj5syGqM/ffqpO9P2eiGE4pLrWPs+/JQYNd1mCJGo993/f2nsoMiVaR3yq
-         OgUN6YtWXIJglhrEP1Hc5V3LiB5yvIexcXbjlmOuvv8HJqxDTqYC0CjS2Wq353paUq6d
-         eL2w==
-X-Gm-Message-State: AOAM531aXu9dJs8RE3ocW15QthJkoi/NoFc/qdlJgnq6/gMaidM+V6Hx
-        U4gRFbcNjyM9CvvwMqO2FfQP3g==
-X-Google-Smtp-Source: ABdhPJzW1E1iZrRpdEmwEsNqWUXZIKICMDN0NFlHOEp7blO5hf+MCQQ/MCKASTYQI79yvuEuTfx02Q==
-X-Received: by 2002:a17:902:e882:b0:15e:b9e8:ba1b with SMTP id w2-20020a170902e88200b0015eb9e8ba1bmr22783526plg.71.1652222796619;
-        Tue, 10 May 2022 15:46:36 -0700 (PDT)
-Received: from joebar-glaptop.lan (c-71-202-34-56.hsd1.ca.comcast.net. [71.202.34.56])
-        by smtp.gmail.com with ESMTPSA id p14-20020a170902b08e00b0015e8da1fb07sm144256plr.127.2022.05.10.15.46.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 May 2022 15:46:36 -0700 (PDT)
-From:   "Joseph S. Barrera III" <joebar@chromium.org>
-To:     LKML <linux-kernel@vger.kernel.org>
-Cc:     Douglas Anderson <dianders@chromium.org>,
-        Alexandru M Stan <amstan@chromium.org>,
-        "Joseph S. Barrera III" <joebar@chromium.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-Subject: [PATCH v5 5/5] arm64: dts: qcom: sc7180: Add kingoftown dts files
-Date:   Tue, 10 May 2022 15:44:27 -0700
-Message-Id: <20220510154406.v5.5.Ib62291487a664a65066d18a3e83c5428a6d2cc6c@changeid>
-X-Mailer: git-send-email 2.31.0
-In-Reply-To: <20220510154406.v5.1.Id769ddc5dbf570ccb511db96da59f97d08f75a9c@changeid>
-References: <20220510154406.v5.1.Id769ddc5dbf570ccb511db96da59f97d08f75a9c@changeid>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=odDeWEQn+dxMMnpuDr3wrpKOZqaMz1USU4YdJsifEC0=;
+        b=ttMgZbPP6A/oX5LBQ1LBIMsjpm+ZRu0l10E0dvd/YOyCTsUrbkU10SbgNqPE6orkjs
+         CMR5ju8CxcWdBUqAZwGI4jJfHofr3LOZ5H+WvkJsaIvR/D/5tYEInIt+VY1UMMrY2jjT
+         hWOYCnCm/wfqTUimS7NXJT6tgFzx6S4YJZYDCSk3jr/kfFWyX4djA107SrxqdQA8cEyc
+         /DFY9yySt7t5FuW47d14vb0+SqvFJBBqx7jDOXnp4hlSMWlvoZXL2wrETKDHL11MshK9
+         agvS7KMcKZp9jZhrmc5bH7ULpU49Y3n2ptsyb/seAKSsS1+Y+HTkew8FTA24QYvka/Ih
+         pNkQ==
+X-Gm-Message-State: AOAM531UbHKt52wyEd/jAzOusk5ERRxBE4MHfTcyeMWnqLAPZ4oTVDyh
+        EkxVfUbnfqCeX1pLB05z+636RfnvvY9RfAKVf84/Rvboi9Esyw==
+X-Google-Smtp-Source: ABdhPJxpA6vOK4J63qUlZcvu8ChGp7/HgqyK3YgIAo7vg2rmQB/NK0dbW3F6axhto0qt7DPlk2lMhcktAMM3vIHK8OE=
+X-Received: by 2002:a81:488b:0:b0:2f7:cc43:ae4c with SMTP id
+ v133-20020a81488b000000b002f7cc43ae4cmr22414095ywa.414.1652222995163; Tue, 10
+ May 2022 15:49:55 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+References: <20220422072841.2206452-1-s.hauer@pengutronix.de>
+ <20220422072841.2206452-21-s.hauer@pengutronix.de> <A86359EC-5291-41BD-966E-EB7890644731@gmail.com>
+ <CAMdYzYoFG3wCQaWXQNJd7mE20OMCj=ZeuewwZfaCJyoCBT-kQQ@mail.gmail.com>
+ <0E6FE020-C95E-47CF-A9D6-AC3F2B2D334F@gmail.com> <CAMdYzYobfJ7WGN+UQ7t5e1Zy9knjfHLse8KzrGrHPfeMkkG0gw@mail.gmail.com>
+ <9F2D8CFF-1EAE-4586-9EE9-82A9D67840BB@gmail.com> <CAMdYzYrz7DRj7F9hGaAPaTSiZkQ4eMNujAp8uPuE9geL6kAz4g@mail.gmail.com>
+ <812AC0DB-A6D0-4DA3-BCDC-7743E8F61821@gmail.com> <CAMdYzYozewYUbM=Q+iJ2wdM5TrB6dGrjS6zh0qmVgWD4XPVR+Q@mail.gmail.com>
+ <ABC61229-B851-4BB7-8B55-688F8A8D841A@gmail.com> <CAMdYzYrsaNED+oMj+z2b4fK7pt32Qg=nXDk3SA0KFDDCJ2XY0g@mail.gmail.com>
+ <F1728C93-CFF8-4C51-B95C-A5049E0DC46A@gmail.com> <CAMdYzYpRVZ2hrGiYeQLqSduOZyKuZenw9bViS7oW7d3MWN7Z8g@mail.gmail.com>
+In-Reply-To: <CAMdYzYpRVZ2hrGiYeQLqSduOZyKuZenw9bViS7oW7d3MWN7Z8g@mail.gmail.com>
+From:   Peter Geis <pgwipeout@gmail.com>
+Date:   Tue, 10 May 2022 18:49:43 -0400
+Message-ID: <CAMdYzYpujdqejDz_K2M0aUhPYNFVgTuqnUwkOA6jcxgDdJ+RoA@mail.gmail.com>
+Subject: Re: [PATCH v11 20/24] arm64: dts: rockchip: enable vop2 and hdmi tx
+ on rock-3a
+To:     Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
+Cc:     Sascha Hauer <s.hauer@pengutronix.de>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        dri-devel@lists.freedesktop.org,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Sandy Huang <hjc@rock-chips.com>,
+        =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
+        kernel test robot <lkp@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Kingoftown is a trogdor-based board. These dts files are unchanged copies
-from the downstream Chrome OS 5.4 kernel.
+On Tue, May 10, 2022 at 4:54 PM Peter Geis <pgwipeout@gmail.com> wrote:
+>
+> On Tue, May 10, 2022 at 9:49 AM Piotr Oniszczuk
+> <piotr.oniszczuk@gmail.com> wrote:
+> >
+> >
+> >
+> > > Wiadomo=C5=9B=C4=87 napisana przez Peter Geis <pgwipeout@gmail.com> w=
+ dniu 10.05.2022, o godz. 14:08:
+> > >
+> > >
+> > > You are on the clk_rtc32k_frac which is a fractional divider that is
+> > > fed from the 24m clock. Your clock likely isn't the issue here. I'd
+> > > recommend setting up the cec-gpio node to validate your hardware
+> > > works.
+> >
+> > Peter,
+> >
+> > Here is what i done to verify my rock3-a HW:
+> >
+> > 1.download & burn on SD Radxa Ubuntu
+> > 2.boot and install v4l-utils
+> > 3.run cec-compliance -v -T. It fails with error -22
+> > 4.decompile Ubunntu DT.
+> > 5.Check what HDMITX_CEC_M hdmi uses. It was M0
+> > 6.Chenge to HDMITX_CEC_M1; compile dtb; install on sd
+> > 7.reboot.
+> > 8.cec-compliance -v -T gives all tests OK
+> > 9.cec-ctl --image-view-on -t0 turns-on my TV
+> >
+> > hope this proves my HW is ok?
+> >
+>
+> That does show that the hardware works with the oem image. It does not
+> unfortunately prove if it works with your current dts. cec-gpio will
+> show if it's an issue with the cec controller or an external problem.
 
-Signed-off-by: Joseph S. Barrera III <joebar@chromium.org>
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
----
-
-(no changes since v4)
-
-Changes in v4:
-- Fixed description (no downstream bits removed).
-- Added missing version history.
-
-Changes in v3:
-- None
-
-Changes in v2:
-- First inclusion in series.
-
- arch/arm64/boot/dts/qcom/Makefile             |   2 +
- .../dts/qcom/sc7180-trogdor-kingoftown-r0.dts |  44 ++++
- .../dts/qcom/sc7180-trogdor-kingoftown-r1.dts |  17 ++
- .../dts/qcom/sc7180-trogdor-kingoftown.dtsi   | 223 ++++++++++++++++++
- 4 files changed, 286 insertions(+)
- create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-kingoftown-r0.dts
- create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-kingoftown-r1.dts
- create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-kingoftown.dtsi
-
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index dc26704dfe34..a9f2ad013179 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -60,6 +60,8 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-coachz-r3-lte.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-homestar-r2.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-homestar-r3.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-homestar-r4.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-kingoftown-r0.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-kingoftown-r1.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-lazor-r0.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-lazor-r1.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-lazor-r1-kb.dtb
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-kingoftown-r0.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-kingoftown-r0.dts
-new file mode 100644
-index 000000000000..85aec1be98fc
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-kingoftown-r0.dts
-@@ -0,0 +1,44 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Google Kingoftown board device tree source
-+ *
-+ * Copyright 2021 Google LLC.
-+ */
-+
-+/dts-v1/;
-+
-+#include "sc7180.dtsi"
-+#include "sc7180-trogdor-ti-sn65dsi86.dtsi"
-+#include "sc7180-trogdor-kingoftown.dtsi"
-+
-+/ {
-+	model = "Google Kingoftown (rev0)";
-+	compatible = "google,kingoftown-rev0", "qcom,sc7180";
-+};
-+
-+/*
-+ * In rev1+, the enable pin of pp3300_fp_tp will be tied to pp1800_l10a
-+ * power rail instead, since kingoftown does not have FP.
-+ */
-+&pp3300_fp_tp {
-+	gpio = <&tlmm 74 GPIO_ACTIVE_HIGH>;
-+	enable-active-high;
-+
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&en_fp_rails>;
-+};
-+
-+&tlmm {
-+	en_fp_rails: en-fp-rails {
-+		pinmux {
-+			pins = "gpio74";
-+			function = "gpio";
-+		};
-+
-+		pinconf {
-+			pins = "gpio74";
-+			drive-strength = <2>;
-+			bias-disable;
-+		};
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-kingoftown-r1.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-kingoftown-r1.dts
-new file mode 100644
-index 000000000000..2be9138ba89f
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-kingoftown-r1.dts
-@@ -0,0 +1,17 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Google Kingoftown board device tree source
-+ *
-+ * Copyright 2021 Google LLC.
-+ */
-+
-+/dts-v1/;
-+
-+#include "sc7180.dtsi"
-+#include "sc7180-trogdor-parade-ps8640.dtsi"
-+#include "sc7180-trogdor-kingoftown.dtsi"
-+
-+/ {
-+	model = "Google Kingoftown (rev1+)";
-+	compatible = "google,kingoftown", "qcom,sc7180";
-+};
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-kingoftown.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-kingoftown.dtsi
-new file mode 100644
-index 000000000000..e7503a5b0403
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-kingoftown.dtsi
-@@ -0,0 +1,223 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Google Kingoftown board device tree source
-+ *
-+ * Copyright 2021 Google LLC.
-+ */
-+
-+ap_ec_spi: &spi6 {};
-+ap_h1_spi: &spi0 {};
-+
-+#include "sc7180-trogdor.dtsi"
-+#include "sc7180-trogdor-lte-sku.dtsi"
-+
-+&alc5682 {
-+	compatible = "realtek,rt5682s";
-+	realtek,dmic1-clk-pin = <2>;
-+	realtek,dmic-clk-rate-hz = <2048000>;
-+};
-+
-+ap_ts_pen_1v8: &i2c4 {
-+	status = "okay";
-+	clock-frequency = <400000>;
-+
-+	ap_ts: touchscreen@10 {
-+		compatible = "elan,ekth3500";
-+		reg = <0x10>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&ts_int_l>, <&ts_reset_l>;
-+
-+		interrupt-parent = <&tlmm>;
-+		interrupts = <9 IRQ_TYPE_LEVEL_LOW>;
-+
-+		vcc33-supply = <&pp3300_ts>;
-+
-+		reset-gpios = <&tlmm 8 GPIO_ACTIVE_LOW>;
-+	};
-+};
-+
-+&keyboard_controller {
-+	function-row-physmap = <
-+		MATRIX_KEY(0x00, 0x02, 0)       /* T1 */
-+		MATRIX_KEY(0x03, 0x02, 0)       /* T2 */
-+		MATRIX_KEY(0x02, 0x02, 0)       /* T3 */
-+		MATRIX_KEY(0x01, 0x02, 0)       /* T4 */
-+		MATRIX_KEY(0x03, 0x04, 0)       /* T5 */
-+		MATRIX_KEY(0x02, 0x04, 0)       /* T6 */
-+		MATRIX_KEY(0x01, 0x04, 0)       /* T7 */
-+		MATRIX_KEY(0x02, 0x09, 0)       /* T8 */
-+		MATRIX_KEY(0x01, 0x09, 0)       /* T9 */
-+		MATRIX_KEY(0x00, 0x04, 0)       /* T10 */
-+	>;
-+	linux,keymap = <
-+		MATRIX_KEY(0x00, 0x02, KEY_BACK)
-+		MATRIX_KEY(0x03, 0x02, KEY_REFRESH)
-+		MATRIX_KEY(0x02, 0x02, KEY_ZOOM)
-+		MATRIX_KEY(0x01, 0x02, KEY_SCALE)
-+		MATRIX_KEY(0x03, 0x04, KEY_SYSRQ)
-+		MATRIX_KEY(0x02, 0x04, KEY_BRIGHTNESSDOWN)
-+		MATRIX_KEY(0x01, 0x04, KEY_BRIGHTNESSUP)
-+		MATRIX_KEY(0x02, 0x09, KEY_MUTE)
-+		MATRIX_KEY(0x01, 0x09, KEY_VOLUMEDOWN)
-+		MATRIX_KEY(0x00, 0x04, KEY_VOLUMEUP)
-+
-+		CROS_STD_MAIN_KEYMAP
-+	>;
-+};
-+
-+&panel {
-+	compatible = "edp-panel";
-+};
-+
-+&pp3300_dx_edp {
-+	gpio = <&tlmm 67 GPIO_ACTIVE_HIGH>;
-+};
-+
-+&sound {
-+	compatible = "google,sc7180-trogdor";
-+	model = "sc7180-rt5682s-max98357a-1mic";
-+};
-+
-+&wifi {
-+	qcom,ath10k-calibration-variant = "GO_KINGOFTOWN";
-+};
-+
-+/* PINCTRL - modifications to sc7180-trogdor.dtsi */
-+
-+&en_pp3300_dx_edp {
-+	pinmux {
-+		pins = "gpio67";
-+	};
-+
-+	pinconf {
-+		pins = "gpio67";
-+	};
-+};
-+
-+/* PINCTRL - board-specific pinctrl */
-+
-+&tlmm {
-+	gpio-line-names = "TP_INT_L",		/* 0 */
-+			  "AP_RAM_ID0",
-+			  "AP_SKU_ID2",
-+			  "AP_RAM_ID1",
-+			  "",
-+			  "AP_RAM_ID2",
-+			  "AP_TP_I2C_SDA",
-+			  "AP_TP_I2C_SCL",
-+			  "TS_RESET_L",
-+			  "TS_INT_L",
-+			  "",			/* 10 */
-+			  "EDP_BRIJ_IRQ",
-+			  "AP_EDP_BKLTEN",
-+			  "",
-+			  "",
-+			  "EDP_BRIJ_I2C_SDA",
-+			  "EDP_BRIJ_I2C_SCL",
-+			  "HUB_RST_L",
-+			  "",
-+			  "",
-+			  "",			/* 20 */
-+			  "",
-+			  "",
-+			  "AMP_EN",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "HP_IRQ",
-+			  "",
-+			  "",			/* 30 */
-+			  "AP_BRD_ID2",
-+			  "BRIJ_SUSPEND",
-+			  "AP_BRD_ID0",
-+			  "AP_H1_SPI_MISO",
-+			  "AP_H1_SPI_MOSI",
-+			  "AP_H1_SPI_CLK",
-+			  "AP_H1_SPI_CS_L",
-+			  "BT_UART_CTS",
-+			  "BT_UART_RTS",
-+			  "BT_UART_TXD",	/* 40 */
-+			  "BT_UART_RXD",
-+			  "H1_AP_INT_ODL",
-+			  "",
-+			  "UART_AP_TX_DBG_RX",
-+			  "UART_DBG_TX_AP_RX",
-+			  "HP_I2C_SDA",
-+			  "HP_I2C_SCL",
-+			  "FORCED_USB_BOOT",
-+			  "AMP_BCLK",
-+			  "AMP_LRCLK",		/* 50 */
-+			  "AMP_DIN",
-+			  "",
-+			  "HP_BCLK",
-+			  "HP_LRCLK",
-+			  "HP_DOUT",
-+			  "HP_DIN",
-+			  "HP_MCLK",
-+			  "AP_SKU_ID0",
-+			  "AP_EC_SPI_MISO",
-+			  "AP_EC_SPI_MOSI",	/* 60 */
-+			  "AP_EC_SPI_CLK",
-+			  "AP_EC_SPI_CS_L",
-+			  "AP_SPI_CLK",
-+			  "AP_SPI_MOSI",
-+			  "AP_SPI_MISO",
-+			  /*
-+			   * AP_FLASH_WP_L is crossystem ABI. Schematics
-+			   * call it BIOS_FLASH_WP_L.
-+			   */
-+			  "AP_FLASH_WP_L",
-+			  "EN_PP3300_DX_EDP",
-+			  "AP_SPI_CS0_L",
-+			  "",
-+			  "",			/* 70 */
-+			  "",
-+			  "",
-+			  "",
-+			  "EN_FP_RAILS",
-+			  "UIM2_DATA",
-+			  "UIM2_CLK",
-+			  "UIM2_RST",
-+			  "UIM2_PRESENT_L",
-+			  "UIM1_DATA",
-+			  "UIM1_CLK",		/* 80 */
-+			  "UIM1_RST",
-+			  "",
-+			  "CODEC_PWR_EN",
-+			  "HUB_EN",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "AP_SKU_ID1",		/* 90 */
-+			  "AP_RST_REQ",
-+			  "",
-+			  "AP_BRD_ID1",
-+			  "AP_EC_INT_L",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "",			/* 100 */
-+			  "",
-+			  "",
-+			  "",
-+			  "EDP_BRIJ_EN",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "",			/* 110 */
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "AP_TS_PEN_I2C_SDA",
-+			  "AP_TS_PEN_I2C_SCL",
-+			  "DP_HOT_PLUG_DET",
-+			  "EC_IN_RW_ODL";
-+};
--- 
-2.31.0
-
+I've pulled your dts and with a few fixes got a working system from
+it. At least on the v1.1 board cec is functional:
+Total for dwhdmi-rockchip device /dev/cec0: 1, Succeeded: 1, Failed:
+0, Warnings: 0
