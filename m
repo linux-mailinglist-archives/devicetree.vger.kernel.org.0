@@ -2,63 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 45434522248
-	for <lists+devicetree@lfdr.de>; Tue, 10 May 2022 19:21:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A230052224A
+	for <lists+devicetree@lfdr.de>; Tue, 10 May 2022 19:21:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347922AbiEJRZJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 May 2022 13:25:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42342 "EHLO
+        id S1347932AbiEJRZT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 May 2022 13:25:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44554 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347919AbiEJRZG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 May 2022 13:25:06 -0400
-Received: from mail-oi1-f172.google.com (mail-oi1-f172.google.com [209.85.167.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5ED123A1BB;
-        Tue, 10 May 2022 10:21:02 -0700 (PDT)
-Received: by mail-oi1-f172.google.com with SMTP id m25so19250828oih.2;
-        Tue, 10 May 2022 10:21:02 -0700 (PDT)
+        with ESMTP id S1347920AbiEJRZR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 May 2022 13:25:17 -0400
+Received: from mail-oi1-f171.google.com (mail-oi1-f171.google.com [209.85.167.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F6E24616F;
+        Tue, 10 May 2022 10:21:16 -0700 (PDT)
+Received: by mail-oi1-f171.google.com with SMTP id r1so19237888oie.4;
+        Tue, 10 May 2022 10:21:16 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=oMzOMHbyZL+xpBkMzkSynF3FtiNncyHat+FTsJFqJKY=;
-        b=nUGKxNtgHCDrU71KcwAm30zju4pEzV5nStIzllUQkojE+80dALxFEmXsA+VLOZhvNK
-         UjV7QleQsyoZAyiHtzGRl8JzUqyIGu/3cffKSsm7B44yU+N8YAJaV3MqkeVl6Tkup1yg
-         bo2Et7zSbJcI5Tgx0b0QYusJBTpOE7Lr5YkyO+cnHkRQxhsH8tH1A3qz9oqOlOIaBkJm
-         C072Ukn9Tld1m7aN2X+YxeZJuIQaFXQykBTYUg+lheV++IXS48z+PFH8/QH7KW6Cxihu
-         bGjmb3iHzonnkhw1lJcJh068X/e6PGQsge7mLvkMQllCL3Xk9g1LfQ+tjggPMm8RCdSm
-         MBXg==
-X-Gm-Message-State: AOAM531uWK1G9HK5dK+zn+i2yosbLquqwzZTdwMbnL5QK5AaR3+jiFaq
-        gjhIz9HYXTjW5mNkosXPUQ==
-X-Google-Smtp-Source: ABdhPJznU/OK4X6N6Bam1z+KQxPFq1bK52J+cIR4GOgkdzKpqKmgFPS7YZjpDW22cMbMfK7vuKe6Lw==
-X-Received: by 2002:aca:502:0:b0:2cd:c24:278f with SMTP id 2-20020aca0502000000b002cd0c24278fmr539112oif.150.1652203262272;
-        Tue, 10 May 2022 10:21:02 -0700 (PDT)
+        bh=h4ryxJ2jrSNExLhhmYzyKGyiel0OoRkU5ralwjePwSY=;
+        b=xVSVdVkxNr+oW1V2xykyF61gjomYNyUsxn8mOG6ISz/BGzqVrnZsE2kKEQfpze27nY
+         z9owEM+iZj8GaQr76an8qwnn2Q9dwdNeQ2IC4SwEpdSmchhcw3gKRnofRG6VAsbPvqkq
+         sml+y/Bh/mQiaBXVXR8OfbiADlDK9zfGYEcpH7JqeZzxjHGYLoy6Rn3u9STpdyZfGVZE
+         7tR59wxevEWuHvUCUsSfWrk4viHWT9QbebaLr21YP3hhKZQStogT6R1QsWiFCoBV5+UD
+         pXrXLdNCS2Up7j83gas0HpNk+Ar16wymaiBy04E4xQqLUDdrQZoiHHQuypE5qZML+DSP
+         J+sg==
+X-Gm-Message-State: AOAM532N0N5QD4a7BqqqRdCsQcrRCo0tjeq1ThCmfWk3zHWyZeLdQHMB
+        FYXCFhC3hDTy2OP+Q1gYvg==
+X-Google-Smtp-Source: ABdhPJxSViFtXleX6ACNx+piFFh2WquKpHvKnusM+eQztCmHieA6RVfY/Tq4ItgXWYejlF4c1oqxQg==
+X-Received: by 2002:a05:6808:150e:b0:328:ab8e:fcfe with SMTP id u14-20020a056808150e00b00328ab8efcfemr314666oiw.120.1652203275435;
+        Tue, 10 May 2022 10:21:15 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id i9-20020a4aab09000000b0035eb4e5a6ccsm6343573oon.34.2022.05.10.10.21.01
+        by smtp.gmail.com with ESMTPSA id s7-20020a0568301c6700b006060322123bsm5886462otg.11.2022.05.10.10.21.14
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 May 2022 10:21:01 -0700 (PDT)
-Received: (nullmailer pid 2231680 invoked by uid 1000);
-        Tue, 10 May 2022 17:21:01 -0000
-Date:   Tue, 10 May 2022 12:21:01 -0500
+        Tue, 10 May 2022 10:21:14 -0700 (PDT)
+Received: (nullmailer pid 2232154 invoked by uid 1000);
+        Tue, 10 May 2022 17:21:14 -0000
+Date:   Tue, 10 May 2022 12:21:14 -0500
 From:   Rob Herring <robh@kernel.org>
 To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-Cc:     linux-kernel@vger.kernel.org, hsinyi@chromium.org,
+Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Ryder Lee <ryder.lee@kernel.org>, hsinyi@chromium.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Chen-Yu Tsai <wenst@chromium.org>,
         Project_Global_Chrome_Upstream_Group@mediatek.com,
-        linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-mediatek@lists.infradead.org,
-        Ryder Lee <ryder.lee@kernel.org>,
-        Chen-Yu Tsai <wenst@chromium.org>
-Subject: Re: [PATCH v10 2/4] dt-bindings: arm: mediatek: Add mt8186 pericfg
- compatible
-Message-ID: <Ynqe/d2+UT1V8Y+3@robh.at.kernel.org>
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v10 3/4] dt-bindings: arm: Add compatible for MediaTek
+ MT8186
+Message-ID: <YnqfCkaBJyFnDMil@robh.at.kernel.org>
 References: <20220510075233.5426-1-allen-kh.cheng@mediatek.com>
- <20220510075233.5426-3-allen-kh.cheng@mediatek.com>
+ <20220510075233.5426-4-allen-kh.cheng@mediatek.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220510075233.5426-3-allen-kh.cheng@mediatek.com>
+In-Reply-To: <20220510075233.5426-4-allen-kh.cheng@mediatek.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -70,13 +69,14 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 10 May 2022 15:52:31 +0800, Allen-KH Cheng wrote:
-> Add mt8186 pericfg compatible to binding document.
+On Tue, 10 May 2022 15:52:32 +0800, Allen-KH Cheng wrote:
+> This commit adds dt-binding documentation for the MediaTek MT8186
+> reference board.
 > 
 > Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
 > ---
->  .../devicetree/bindings/arm/mediatek/mediatek,pericfg.yaml       | 1 +
->  1 file changed, 1 insertion(+)
+>  Documentation/devicetree/bindings/arm/mediatek.yaml | 4 ++++
+>  1 file changed, 4 insertions(+)
 > 
 
 Acked-by: Rob Herring <robh@kernel.org>
