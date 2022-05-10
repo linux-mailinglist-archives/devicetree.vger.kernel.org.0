@@ -2,177 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D9CC5215F2
-	for <lists+devicetree@lfdr.de>; Tue, 10 May 2022 14:51:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 22F70521605
+	for <lists+devicetree@lfdr.de>; Tue, 10 May 2022 14:54:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242108AbiEJMzr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 May 2022 08:55:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39666 "EHLO
+        id S242086AbiEJM6T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 May 2022 08:58:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57014 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242138AbiEJMzP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 May 2022 08:55:15 -0400
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C014122BDF
-        for <devicetree@vger.kernel.org>; Tue, 10 May 2022 05:50:45 -0700 (PDT)
-Received: by mail-ej1-x62c.google.com with SMTP id ch13so4299508ejb.12
-        for <devicetree@vger.kernel.org>; Tue, 10 May 2022 05:50:45 -0700 (PDT)
+        with ESMTP id S242041AbiEJM6F (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 May 2022 08:58:05 -0400
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9239B2AACD7
+        for <devicetree@vger.kernel.org>; Tue, 10 May 2022 05:54:08 -0700 (PDT)
+Received: by mail-ed1-x533.google.com with SMTP id a21so19893328edb.1
+        for <devicetree@vger.kernel.org>; Tue, 10 May 2022 05:54:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=ZF8DHbmS388Np7uc8s/GbJpWl+U//ZF9U03m6TrvUIk=;
-        b=ctEjS1mw40rwGEQrV75cPoX/8cKyE3G3wc99zCNkX/1TgQE/cgMkEPwEe62E7AaiE3
-         nnZ9Rl8xfKJh1NCdVZ8EFwl++UI1129pwpPS1FMtgKe7rmOBQcp8Z41wLEDrI9j1D8yN
-         C3z58X9tesEVEMdWw54jtWTovNwD82aYDPb2qRjxo3boLJ2j/4oWGjQH439PxGU7KIlj
-         eV8U+ZUkWQeDg8OopLJwoJdBpyMvci8UeQfNu8F1gew0ZCn9y9JEMJ6owwOySJvqq6QA
-         IW4rlVqWvwlOHhA3PUAqjlnI+tS6wDy6/9S3GdsTZkp7uqfLnJxZ/yBHhueuHWH1lYrz
-         pgPA==
+        bh=8ZXDhVwfP9b/t3UBf3NPpQNR6CAeGAVJW+qQkAZj5Ko=;
+        b=euXwwMN+44LSnVe58GHN3cQNvSZzRsRMZMrWbY83XR04MkNKGe9KxfYl2XjOBQ2rAm
+         NeGgFovJ7w80bRYLSul/3kupJl1LsM2BjyUFhOUi/HDx2QP1R8Esh4WUOAGEzKNXVWpk
+         DBx3xHnvXB8eYG8dFU00iNwnDbRiATCA8TzNhFRf1kg5vdvS6SxKXjwaUX4a7T2WF6hL
+         h0DTKR2ZqV94fbVJaUTzlNJ7QxFjSv7JdHmd6jCwGXm3rXKiXcy84vB7UDhT65N7O3B9
+         ZzbQHCBhOmCF4blxyvHUJtcyi7t+VCUQAtpcTNDQUhPlZrIoLc2f2+0rW9TOZZ2pk8Sy
+         G8MA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=ZF8DHbmS388Np7uc8s/GbJpWl+U//ZF9U03m6TrvUIk=;
-        b=KwE2oVnRk4+iGGya+B1MSaVmTc6DJPKYZsm68AYH2nB8x2vb8Ap5pXpnTbcsg+MZo3
-         uHfTefYzhFjZJzQf2mU2NciEQJvHwS62MW+X2Jpq/hiA4hQSI/K7myTxQ7oZb6Cbom7c
-         CbHyFstaLQ1p5+6MP4uis9pS4Qbwv94iuR5BnuW1ZD3lc+O3uQ22Q4e1nmAgL9ogQTOC
-         wUsV0kTuXu1zOCgwx1Dm9DicwQ5N6R59Y5FoDCK41Z1VgaUYBpiyJGXFrc3XBXohx4ud
-         Ka7/9myrhaoI2baRbJIPeOXH/DBglDuAesL2/KUCgQhcd5oCZ4zRpivyNgu3DdCNMciz
-         ilWg==
-X-Gm-Message-State: AOAM532fLnGytO8X3IspqwF92iMWmugRUp+rb4eH6wNCeoSbicPrjNjm
-        NkGMjId+tFYMRi1dfwv5C0zUIg==
-X-Google-Smtp-Source: ABdhPJxe0M9EVK6O6ql1Fso5MfAt7H4Somn7p3Sh53wP8LDECzarboslO+4IUO0usgu7zJ0vOUFXUQ==
-X-Received: by 2002:a17:907:d01:b0:6f4:d873:d7a0 with SMTP id gn1-20020a1709070d0100b006f4d873d7a0mr19758976ejc.717.1652187043646;
-        Tue, 10 May 2022 05:50:43 -0700 (PDT)
+        bh=8ZXDhVwfP9b/t3UBf3NPpQNR6CAeGAVJW+qQkAZj5Ko=;
+        b=6tyiCPCX3HZKBRbdAwyl1dZG/rikRSbG10+Ic8mj6xof8xz2DWopJW6Kw7g/1otCn3
+         u0YsiGJVeFvzmuuHq2CE1XXEjxbbIIDSQi6ZFM8MvpUArluk5DgfGINn5g/fTjPQeBim
+         jC3qybNgZlykwOAPYrNam3k1XXhEywK1zdY098DEeHkPJ3+I+rWQ+5dzyPMZivOFyeSn
+         hiCts9t6jtU87GR53prB6QT8UEPzNhWVCnwYOGjO69UrqmppQV9n5P26/ebFZsO7J8bj
+         ny77mHAuYJCpTL9QPkmuw/5qg50AYdzCx3NyBRDiKQVLbQHW2WoYelkZirGkRlAVsgUo
+         G9xg==
+X-Gm-Message-State: AOAM532LhZzwVOq2Vj4FvJ8eEAJQA9IyzC1rcHNt2Fuuc0j391yUFL8O
+        QrcqvweQs/fQaX0kUn95hMt3+g==
+X-Google-Smtp-Source: ABdhPJwih/KHvqR7RfCUpPJRC7LqDV0GHHqs6+c7WhjgmhAopq8u7vTMOgYFocRdLALC7G7Iz1hMpA==
+X-Received: by 2002:a05:6402:50a:b0:426:16c3:4283 with SMTP id m10-20020a056402050a00b0042616c34283mr23282269edv.371.1652187247138;
+        Tue, 10 May 2022 05:54:07 -0700 (PDT)
 Received: from [192.168.0.252] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id en20-20020a17090728d400b006f3ef214e20sm6110205ejc.134.2022.05.10.05.50.41
+        by smtp.gmail.com with ESMTPSA id u17-20020a170906781100b006f3ef214dacsm6228554ejm.18.2022.05.10.05.54.06
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 10 May 2022 05:50:42 -0700 (PDT)
-Message-ID: <0cdf8323-7f23-a291-9d20-6d182bc84913@linaro.org>
-Date:   Tue, 10 May 2022 14:50:41 +0200
+        Tue, 10 May 2022 05:54:06 -0700 (PDT)
+Message-ID: <9365247a-8aa0-bad5-c619-9d5a984b17de@linaro.org>
+Date:   Tue, 10 May 2022 14:54:05 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.8.1
-Subject: Re: [PATCH 2/2] arm64: dts: marvell: add support for Methode eDPU
+Subject: Re: [PATCH v5 1/2] arm64: dts: marvell: Add Armada 98DX2530 SoC and
+ RD-AC5X board
 Content-Language: en-US
-To:     Robert Marko <robert.marko@sartura.hr>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        krzysztof.kozlowski+dt@linaro.org, Andrew Lunn <andrew@lunn.ch>,
-        gregory.clement@bootlin.com, sebastian.hesselbarth@gmail.com,
-        shawnguo@kernel.org, Linus Walleij <linus.walleij@linaro.org>,
-        kostap@marvell.com, devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        =?UTF-8?Q?Pali_Roh=c3=a1r?= <pali@kernel.org>,
-        =?UTF-8?Q?Marek_Beh=c3=ban?= <marek.behun@nic.cz>
-References: <20220509110028.144226-1-robert.marko@sartura.hr>
- <20220509110028.144226-2-robert.marko@sartura.hr>
- <8e22cbf7-eee1-0ec7-10f9-3839ec80dfbf@linaro.org>
- <CA+HBbNE1w5w6c8MwMuSwCFzjnyKOQ7Y0MV4bPijJW3rekWLo4w@mail.gmail.com>
- <fde74400-34aa-df80-5af5-cb4ee89c8e6f@linaro.org>
- <CA+HBbNGWbGu73JtCb68QMhF6o9KrcfZH2AtOL6jUAnxrmCBcsQ@mail.gmail.com>
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     Chris Packham <Chris.Packham@alliedtelesis.co.nz>,
+        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
+        "will@kernel.org" <will@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "gregory.clement@bootlin.com" <gregory.clement@bootlin.com>,
+        "sebastian.hesselbarth@gmail.com" <sebastian.hesselbarth@gmail.com>,
+        "kostap@marvell.com" <kostap@marvell.com>,
+        "robert.marko@sartura.hr" <robert.marko@sartura.hr>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+References: <20220504044624.951841-1-chris.packham@alliedtelesis.co.nz>
+ <20220504044624.951841-2-chris.packham@alliedtelesis.co.nz>
+ <dcc80690-c159-99f8-4686-536b9e87eb69@linaro.org>
+ <6770d320-b998-0c9d-3824-0d429834b289@alliedtelesis.co.nz>
+ <3498643b-cb2e-5685-65e0-7efe1113783f@linaro.org> <Ynpclx4z5z1Emx+b@lunn.ch>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CA+HBbNGWbGu73JtCb68QMhF6o9KrcfZH2AtOL6jUAnxrmCBcsQ@mail.gmail.com>
+In-Reply-To: <Ynpclx4z5z1Emx+b@lunn.ch>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/05/2022 14:43, Robert Marko wrote:
-> On Tue, May 10, 2022 at 1:46 PM Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
->>
->> On 10/05/2022 13:41, Robert Marko wrote:
->>> On Tue, May 10, 2022 at 12:20 PM Krzysztof Kozlowski
->>> <krzysztof.kozlowski@linaro.org> wrote:
->>>>
->>>> On 09/05/2022 13:00, Robert Marko wrote:
->>>>> Methode eDPU is an Armada 3720 powered board based on the Methode uDPU.
->>>>>
->>>>> They feature the same CPU, RAM, and storage as well as the form factor.
->>>>>
->>>>> However, eDPU only has one SFP slot plus a copper G.hn port.
->>>>>
->>>>> In order to reduce duplication, split the uDPU DTS into a common one.
->>>>>
->>>>> Signed-off-by: Robert Marko <robert.marko@sartura.hr>
->>>>> ---
->>>>>  arch/arm64/boot/dts/marvell/Makefile          |   1 +
->>>>>  .../boot/dts/marvell/armada-3720-eDPU.dts     |  14 ++
->>>>>  .../boot/dts/marvell/armada-3720-uDPU.dts     | 148 +---------------
->>>>>  .../boot/dts/marvell/armada-3720-uDPU.dtsi    | 163 ++++++++++++++++++
->>>>>  4 files changed, 179 insertions(+), 147 deletions(-)
->>>>>  create mode 100644 arch/arm64/boot/dts/marvell/armada-3720-eDPU.dts
->>>>>  create mode 100644 arch/arm64/boot/dts/marvell/armada-3720-uDPU.dtsi
->>>>>
->>>>> diff --git a/arch/arm64/boot/dts/marvell/Makefile b/arch/arm64/boot/dts/marvell/Makefile
->>>>> index 1c794cdcb8e6..104d7d7e8215 100644
->>>>> --- a/arch/arm64/boot/dts/marvell/Makefile
->>>>> +++ b/arch/arm64/boot/dts/marvell/Makefile
->>>>> @@ -1,6 +1,7 @@
->>>>>  # SPDX-License-Identifier: GPL-2.0
->>>>>  # Mvebu SoC Family
->>>>>  dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-db.dtb
->>>>> +dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-eDPU.dtb
->>>>>  dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-espressobin.dtb
->>>>>  dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-espressobin-emmc.dtb
->>>>>  dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-espressobin-ultra.dtb
->>>>> diff --git a/arch/arm64/boot/dts/marvell/armada-3720-eDPU.dts b/arch/arm64/boot/dts/marvell/armada-3720-eDPU.dts
->>>>> new file mode 100644
->>>>> index 000000000000..6b573a6854cc
->>>>> --- /dev/null
->>>>> +++ b/arch/arm64/boot/dts/marvell/armada-3720-eDPU.dts
->>>>> @@ -0,0 +1,14 @@
->>>>> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
->>>>> +
->>>>> +/dts-v1/;
->>>>> +
->>>>> +#include "armada-3720-uDPU.dtsi"
->>>>> +
->>>>> +/ {
->>>>> +     model = "Methode eDPU Board";
->>>>> +     compatible = "methode,edpu", "marvell,armada3720";
->>>>
->>>> You need also bindings for the board compatible. Someone should convert
->>>> the Documentation/devicetree/bindings/arm/marvell/armada-37xx.txt to YAML.
+On 10/05/2022 14:37, Andrew Lunn wrote:
+> On Tue, May 10, 2022 at 09:08:08AM +0200, Krzysztof Kozlowski wrote:
+>> On 10/05/2022 06:14, Chris Packham wrote:
 >>>
->>> Ok, I can convert the SoC compatibles at least for now.
->>> Any advice you can give me on how the handle the Espressobin boards
->>> having multiple board-specific compatibles?
->>> For example, Espressobin V7 has:
->>> "globalscale,espressobin-v7", "globalscale,espressobin"
+>>> Based on the information I have (which isn't much) there is a ref_clk 
+>>> input that is connected to a 25MHz oscillator and then I'm assuming 
+>>> these are all generated from that with various dividers. 25MHz is the 
+>>> only documented option.
 >>>
+>>> There doesn't appear to be any documented register where I can read out 
+>>> the divider ratios. It might be nice I could have the fixed osc node and 
+>>> have these 3 clocks derived with fixed divisors but I don't see any what 
+>>> of achieving that.
 >>
->> Documentation/devicetree/bindings/arm/fsl.yaml
-> 
-> Thanks, now it makes sense.
-> 
 >>
->>>>
->>>>> +};
->>>>> +> +  sfp_eth1: sfp-eth1 {
->>>>
->>>> Generic node names, please.
->>>
->>> Can you give me an example of what would be appropriate here because the SFP
->>> bindings example utilizes the same naming scheme as used here?
->>
->> "sfp" if you have only one sfp node.
+>> OK, but where are the dividers? The ref_clk is outside of SoC, so should
+>> be defined in board DTS (at least its rate). If the rest is in the SoC,
+>> they are usually part of clock controller, because usually they belong
+>> to some power domain or have some clock gating.
 > 
-> There are 2 SFP nodes in total, that is why they are named according
-> to the ethernet controller
-> to which they are connected.
-> uDPU has 2 SFP slots while eDPU has 1, so one was moved to uDPU DTS.
+> 25MHz is a 'magic value' in Ethernet, nearly everything is based
+> around it. And remember this SoC is basically an Ethernet switch with
+> a small CPU glued on one side. If you gated clocks derived from the
+> 25MHz reference clock, probably part of your Ethernet switch stops
+> working, which is the whole point of this SoC. So i doubt there are
+> gates on the derived clocks. If there is any gating and power domains,
+> it is generally at a different level. You can power down individual
+> ports of the Ethernet switch. But generally, there is one bit in a
+> register somewhere to do that, and you don't have direct control over
+> clocks and regulators etc.
 
-Ah, then let it be. sfp-1 and sfp-2 would also work, but that's not
-important.
+The 25 MHz input clock I understand, it was about other clocks, like
+spi, axi and core. These clearly look like part of SoC, so defining them
+with a "stubs" (uncontrollable fixed-clock) is not the best way of
+modelling an SoC. Although maybe this SoC does not have a proper clock
+controller and even SPI and AXI clocks are always on?
 
 
 Best regards,
