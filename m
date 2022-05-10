@@ -2,125 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 12E8352209B
-	for <lists+devicetree@lfdr.de>; Tue, 10 May 2022 18:05:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6AC2B522096
+	for <lists+devicetree@lfdr.de>; Tue, 10 May 2022 18:05:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346919AbiEJQJA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 May 2022 12:09:00 -0400
+        id S244663AbiEJQI4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 May 2022 12:08:56 -0400
 Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37526 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348247AbiEJQH7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 May 2022 12:07:59 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA4A0253AA7;
-        Tue, 10 May 2022 09:00:23 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 6BE6FB81D0D;
-        Tue, 10 May 2022 16:00:22 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3664DC385CF;
-        Tue, 10 May 2022 16:00:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1652198421;
-        bh=S+Udw4q/qdeK0LraOCKyvGdFYNsj8SeCKPMsyHplKUA=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=bd/5Hc46ICRKZ/GRK1EzPDUZpvVdDbXat6kSJM4E5TbQlKZubKU7Q0xYWQAGdu49P
-         HzrGtdGnXl7Ca5y0DtQJdXCMKx6FueohFADw/9181wwaVI4S5Qt5nSnpYilSLaIi/b
-         /R8po7N8djAYCS/VSa4xuDPVwkgCAAVM9hZOHYWY5bOCUAbUPiqgtdv0PV3B/sO/D/
-         e9ejuEz8LB/uYkrWG7m2mOmXbty/4t5ISUi96kkS7KWpiLfTBd+tgWItLFwDWNfjAj
-         IKlTEACESiQJVWDhVhB051LOYkqRKnL5M5SamfcufcCq7nq7Si95YKFgrL61CzouBQ
-         xZl5mvOuI08cA==
-Received: by mail-pj1-f53.google.com with SMTP id x88so4708997pjj.1;
-        Tue, 10 May 2022 09:00:21 -0700 (PDT)
-X-Gm-Message-State: AOAM531maTNDYfcD60HSsyvkCF6kkMFkpHUyFd3VWFLEGe4GTicibsnz
-        GuppxMrVNNNFVLg+qrucH3KkKkGL+pQ/I5RgFQ==
-X-Google-Smtp-Source: ABdhPJzy+9cnxPvWe4uU9hmRJqDkSAV91tz5hBrNkP8hlvvVGgf2Y9lpkxy3Vb1bAK9ICTtcwsPKl9+plSF77BUdAmE=
-X-Received: by 2002:a17:902:7884:b0:15e:e6a8:346 with SMTP id
- q4-20020a170902788400b0015ee6a80346mr21417641pll.151.1652198420610; Tue, 10
- May 2022 09:00:20 -0700 (PDT)
+        with ESMTP id S1348436AbiEJQIM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 May 2022 12:08:12 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6879650465
+        for <devicetree@vger.kernel.org>; Tue, 10 May 2022 09:01:02 -0700 (PDT)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1noSI6-0004bX-A3; Tue, 10 May 2022 18:00:50 +0200
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1noSI6-001W9r-2j; Tue, 10 May 2022 18:00:48 +0200
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1noSI4-008q4u-4j; Tue, 10 May 2022 18:00:48 +0200
+Date:   Tue, 10 May 2022 18:00:45 +0200
+From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        linux-renesas-soc@vger.kernel.org
+Subject: Re: [RFC 0/8] Add RZ/G2L POEG support
+Message-ID: <20220510160045.4d3pgvjlbea2jwy5@pengutronix.de>
+References: <20220510151112.16249-1-biju.das.jz@bp.renesas.com>
 MIME-Version: 1.0
-References: <20220429130221.32113-1-bharat.kumar.gogada@xilinx.com>
- <CAL_JsqJkHRbXoHdgDYgeF5JhdPgDhjCg=W7YUmCRdBR8xSKz6A@mail.gmail.com> <eea7db0b-b483-e61c-8f2d-174f2032fd51@xilinx.com>
-In-Reply-To: <eea7db0b-b483-e61c-8f2d-174f2032fd51@xilinx.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Tue, 10 May 2022 11:00:07 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJj_CPPn9+by3rSpSXW9ufUcbsUbNbE3wE5qFRrJ-PjKg@mail.gmail.com>
-Message-ID: <CAL_JsqJj_CPPn9+by3rSpSXW9ufUcbsUbNbE3wE5qFRrJ-PjKg@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: PCI: xilinx-cpm: Change reg property order
-To:     Michal Simek <michal.simek@xilinx.com>
-Cc:     Bharat Kumar Gogada <bharat.kumar.gogada@xilinx.com>,
-        PCI <linux-pci@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Bjorn Helgaas <bhelgaas@google.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="tjk46zng4p3czgo2"
+Content-Disposition: inline
+In-Reply-To: <20220510151112.16249-1-biju.das.jz@bp.renesas.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 10, 2022 at 2:29 AM Michal Simek <michal.simek@xilinx.com> wrote:
->
->
->
-> On 5/4/22 17:43, Rob Herring wrote:
-> > On Fri, Apr 29, 2022 at 8:02 AM Bharat Kumar Gogada
-> > <bharat.kumar.gogada@xilinx.com> wrote:
-> >>
-> >> Describe cpm reg property before cfg reg property to align with
-> >> node name.
-> >
-> > The order is an ABI. If breaking it is okay, explain why here.
->
-> I didn't push any description for versal to upstream u-boot or linux yet but
-> xilinx is using this order for years. DT binding order wasn't aligned to it.
->
-> For example: (Xilinx Linux is in sync with this).
-> https://github.com/Xilinx/u-boot-xlnx/blob/master/arch/arm/dts/versal.dtsi
 
-Good to know, but if there are upstream dts files, what do they use?
+--tjk46zng4p3czgo2
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> Driver itself is working with reg-names and order of regs doesn't matter. It
-> means changed order doesn't break any functionality.
+On Tue, May 10, 2022 at 04:11:04PM +0100, Biju Das wrote:
+> The output pins of the general PWM timer (GPT) can be disabled by using
+> the port output enabling function for the GPT (POEG). Specifically,
+> either of the following ways can be used.
+>   * Input level detection of the GTETRGA to GTETRGD pins.
+>   * Output-disable request from the GPT.
+>   * Register settings.
+>=20
+> Added RZ/G2L POEG support under driver/soc/renesas, as currently I am not=
+ sure about
+> the framework to be used for POEG.
+>=20
+> This patch series add support for controlling output disable function usi=
+ng sysfs.
+>=20
+> For output disable operation, POEG group needs to be linked with
+> GPT. So introduced renesas,poeg-group property in pwm for linking both GP=
+T and
+> POEG devices.
+>=20
+> Please share your valuable comments.
+>=20
+> patch#3 and #4 depend upon [1]
+> [1] https://lore.kernel.org/linux-renesas-soc/20220510144259.9908-1-biju.=
+das.jz@bp.renesas.com/T/#t
 
-While in general I consider the order part of the ABI, if that's
-enough to avoid breakage on anything you care about, then just state
-that.
+I suggest to use the --base switch to git-format-patch for the next
+submission round. This way the built robots can parse this information,
+too.
 
-> Right now reg order really matter in binding doc but would be good in these
-> examples to record that both ways are fine.
-> Would it be better to describe that both ways are fine?
+Best regards
+Uwe
 
-Only if that's what you need. If you are fine with the order changing,
-then make the change and fix all the dts files.
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
 
->
->    reg-names:
->      oneOf:
->      - items:
->        - const: cfg
->        - const: cpm_slcr
->      - items:
->        - const: cpm_slcr
->        - const: cfg
->
->
-> Another small reason is that all hard IPs in Versal are normally placed below
-> 4GB address range. And there are some others which also have mapping above. This
-> is one of that example and we normally aligned with 32bit address.
->
-> And the biggest reason is that current node name is pcie@fca10000 which should
-> be aligned with the first register base which is before this patch 0x600000000
-> but name suggest that the first reg should be cpm_slcr instead of cfg. That's
-> why I consider this patch as a fix and the patch should contain fixed tag.
+--tjk46zng4p3czgo2
+Content-Type: application/pgp-signature; name="signature.asc"
 
-I don't disagree. I'm only asking for a better commit message.
+-----BEGIN PGP SIGNATURE-----
 
-Rob
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmJ6jCoACgkQwfwUeK3K
+7AnJtgf/X2Qug9zfJKeDXJOUlIhTIoaDddPmGFP5jtb+zLMXec3ZPmkSedfiQaKu
+Hgt2zSAeYZfSTu6/rnRnJqnA3/zVBc5mND3z1XkAPxsVhRydLMGHhVEQNU1iFzce
+BEDp3lDrsDF45MlTMiZQg4j0R3e8xkKqB26+0be63h6Ro8zdZhOkyRJD8+wEThpu
+ifVnm/AzVgzaXLyNhqfaJwp6eMjnYTEBiId5QUfZmvpotSrnUjChjdnUuta7/RQ/
+fgh4OZIa12b2UPtmbFuStTATb1n07AkjT9nXeGQRqeFuZo0ixLhHEBThoKe3qZ6B
+MIW6NooQ8r9f5nmne2dD6lNi2U7VOg==
+=4n1b
+-----END PGP SIGNATURE-----
+
+--tjk46zng4p3czgo2--
