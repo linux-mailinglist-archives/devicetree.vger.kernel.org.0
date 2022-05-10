@@ -2,88 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B1781521D25
-	for <lists+devicetree@lfdr.de>; Tue, 10 May 2022 16:53:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B822F521D50
+	for <lists+devicetree@lfdr.de>; Tue, 10 May 2022 16:59:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345308AbiEJO50 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 May 2022 10:57:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40808 "EHLO
+        id S1345539AbiEJPDj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 May 2022 11:03:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39444 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345551AbiEJO4l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 May 2022 10:56:41 -0400
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 380FC24E03B;
-        Tue, 10 May 2022 07:18:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1652192280; x=1683728280;
-  h=date:from:to:cc:subject:in-reply-to:message-id:
-   references:mime-version;
-  bh=o6mrScaTX48VqjqKd2MFL8TBr/caM2QD+9ZIRpnBWTc=;
-  b=CnE/M+LOlGlA+zvUHDlYXQHKTV2Qbkd4zet4k2MK7XbUjU6mBwkNHxMh
-   /L9V6DOhhZEpPqR7bzKhgH9vunMP+oEqDT7xkEsPykI85m6eTHKEA9CmT
-   mxYvLJzgD7ZeaTjNo3yVK9gsgBg8L7sFnVrrJn2Jh4JUU5GHHJms3zJQn
-   DvziNTokJIa8gXI9PRbsd1yKFlfN+xn9vPsjcQRKuhb3en+Few4KdmANJ
-   Ow4qfQIvXQbGWrDvbu6jzPH5T3A7Z97E1P3hwqHqdIR4vL4t5mI+xgJO5
-   izCYATVp26zRfBykcuWGWevZgKAqljrWauwCLYAtmAEMl6AwUnbvQdnps
-   w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10342"; a="269049663"
-X-IronPort-AV: E=Sophos;i="5.91,214,1647327600"; 
-   d="scan'208";a="269049663"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
-  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 May 2022 07:17:59 -0700
-X-IronPort-AV: E=Sophos;i="5.91,214,1647327600"; 
-   d="scan'208";a="570692613"
-Received: from rhweight-wrk1.ra.intel.com ([137.102.106.43])
-  by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 May 2022 07:17:59 -0700
-Date:   Tue, 10 May 2022 07:17:59 -0700 (PDT)
-From:   matthew.gerlach@linux.intel.com
-X-X-Sender: mgerlach@rhweight-WRK1
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-cc:     dinguyen@kernel.org, robh+dt@kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Subject: Re: [PATCH v4 3/3] arm64: dts: intel: add device tree for n6000
-In-Reply-To: <eee2d4f6-703d-d3bb-3949-493f9d65f676@linaro.org>
-Message-ID: <alpine.DEB.2.22.394.2205100717170.612063@rhweight-WRK1>
-References: <20220508142624.491045-1-matthew.gerlach@linux.intel.com> <20220508142624.491045-4-matthew.gerlach@linux.intel.com> <eee2d4f6-703d-d3bb-3949-493f9d65f676@linaro.org>
-User-Agent: Alpine 2.22 (DEB 394 2020-01-19)
+        with ESMTP id S1345478AbiEJPDd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 May 2022 11:03:33 -0400
+Received: from mxout03.lancloud.ru (mxout03.lancloud.ru [45.84.86.113])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87F8B327775;
+        Tue, 10 May 2022 07:27:21 -0700 (PDT)
+Received: from LanCloud
+DKIM-Filter: OpenDKIM Filter v2.11.0 mxout03.lancloud.ru 5242B20EE528
+Received: from LanCloud
+Received: from LanCloud
+Received: from LanCloud
+Subject: Re: [PATCH v3 1/5] dt-bindings: net: renesas,etheravb: Document
+ RZ/V2M SoC
+To:     Phil Edworthy <phil.edworthy@renesas.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+CC:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Sergei Shtylyov <sergei.shtylyov@gmail.com>,
+        <netdev@vger.kernel.org>, <linux-renesas-soc@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, Biju Das <biju.das.jz@bp.renesas.com>
+References: <20220510090336.14272-1-phil.edworthy@renesas.com>
+ <20220510090336.14272-2-phil.edworthy@renesas.com>
+From:   Sergey Shtylyov <s.shtylyov@omp.ru>
+Organization: Open Mobile Platform
+Message-ID: <b3ab3062-9ef9-776a-6977-0f83caac00a9@omp.ru>
+Date:   Tue, 10 May 2022 17:27:17 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII; format=flowed
-X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+In-Reply-To: <20220510090336.14272-2-phil.edworthy@renesas.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [192.168.11.198]
+X-ClientProxiedBy: LFEXT02.lancloud.ru (fd00:f066::142) To
+ LFEX1907.lancloud.ru (fd00:f066::207)
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 5/10/22 12:03 PM, Phil Edworthy wrote:
 
+> Document the Ethernet AVB IP found on RZ/V2M SoC.
+> It includes the Ethernet controller (E-MAC) and Dedicated Direct memory
+> access controller (DMAC) for transferring transmitted Ethernet frames
+> to and received Ethernet frames from respective storage areas in the
+> RAM at high speed.
+> The AVB-DMAC is compliant with IEEE 802.1BA, IEEE 802.1AS timing and
+> synchronization protocol, IEEE 802.1Qav real-time transfer, and the
+> IEEE 802.1Qat stream reservation protocol.
+> 
+> R-Car has a pair of combined interrupt lines:
+>  ch22 = Line0_DiA | Line1_A | Line2_A
+>  ch23 = Line0_DiB | Line1_B | Line2_B
+> Line0 for descriptor interrupts (which we call dia and dib).
+> Line1 for error related interrupts (which we call err_a and err_b).
+> Line2 for management and gPTP related interrupts (mgmt_a and mgmt_b).
+> 
+> RZ/V2M hardware has separate interrupt lines for each of these.
+> 
+> It has 3 clocks; the main AXI clock, the AMBA CHI (Coherent Hub
+> Interface) clock and a gPTP reference clock.
+> 
+> Signed-off-by: Phil Edworthy <phil.edworthy@renesas.com>
+> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
 
-On Mon, 9 May 2022, Krzysztof Kozlowski wrote:
+Reviewed-by: Sergey Shtylyov <s.shtylyov@omp.ru>
 
-> On 08/05/2022 16:26, matthew.gerlach@linux.intel.com wrote:
->> From: Matthew Gerlach <matthew.gerlach@linux.intel.com>
->>
->> Add a device tree for the n6000 instantiation of Agilex
->> Hard Processor System (HPS).
->>
->> Signed-off-by: Matthew Gerlach <matthew.gerlach@linux.intel.com>
->
->
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+   I'm not an expert in the DT bindings, though...
 
-Hi Kryzysztof,
+> ---
+> v3:
+>  - No change
+> v2:
+>  - Instead of reusing ch22 and ch24 interupt names, use the proper names
 
-Thanks for the Acked-by.  I will add your tag to a v5 patch set 
-submission.
+   Interrupt. :-)
 
-Matthew
->
->
-> Best regards,
-> Krzysztof
->
+[...]
+
+MBR, Sergey
