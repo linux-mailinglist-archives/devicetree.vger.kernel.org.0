@@ -2,295 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E34BE522349
-	for <lists+devicetree@lfdr.de>; Tue, 10 May 2022 20:07:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B14A52234F
+	for <lists+devicetree@lfdr.de>; Tue, 10 May 2022 20:07:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348494AbiEJSLT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 May 2022 14:11:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48226 "EHLO
+        id S234017AbiEJSLt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 May 2022 14:11:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50596 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348509AbiEJSLR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 May 2022 14:11:17 -0400
-Received: from mail-oa1-f41.google.com (mail-oa1-f41.google.com [209.85.160.41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 678C65C76C;
-        Tue, 10 May 2022 11:07:19 -0700 (PDT)
-Received: by mail-oa1-f41.google.com with SMTP id 586e51a60fabf-d6e29fb3d7so19233349fac.7;
-        Tue, 10 May 2022 11:07:19 -0700 (PDT)
+        with ESMTP id S243661AbiEJSLn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 May 2022 14:11:43 -0400
+Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com [IPv6:2607:f8b0:4864:20::102f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24A612B186
+        for <devicetree@vger.kernel.org>; Tue, 10 May 2022 11:07:45 -0700 (PDT)
+Received: by mail-pj1-x102f.google.com with SMTP id o69so16534806pjo.3
+        for <devicetree@vger.kernel.org>; Tue, 10 May 2022 11:07:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:reply-to:from:date:message-id:subject:to;
+        bh=xVJHepNq93ePmAbCv1LHbdOWJcqWYQh8v11fr0KUdVw=;
+        b=AQ5p7U+9fLzihURqQ5S7dMHNp80CvrlcNXrJH2DyqKgA/pOxsAVReWVKVGLhgJIlZS
+         g2H+1r3wcIBunso2pxTBGE03g7sHDTwOdaLrPYmWcl0zgOlRLQwl109nOTE1ag9BFhu0
+         BO4YbosmlH2d8GW9MNWEXAIt+3MzNnAL2Zwci3H2+SifS/AVl+7XFNcOh4z12fiR0zI6
+         tsvU9rYaQ19AwQFbsBMWsaAe8q8BffQWCI3q3RVMg8W2efe5CdDm6ZLc7iqKGfweWaHJ
+         8iMJy1oMzta1C67kITuInb2tlk6eAI/KObeDER4MhCMB/bCJ7IJ6uWRJ852Ry4wOFRA6
+         W91w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=3L1rSCpF9l+zeG9AhsUaEM+AudM4l85p/MJLH0e44Qo=;
-        b=M49FWHBVQSQ836/FuvkyRiNntzn+ciM4T2TCuf53VwMvB27Umn5FWB3rpeSg7guDHY
-         WYAObVvqA4YuLblZzn1ej9WW3Gqyb81JX7msyoElf/PTkJEu7kuCSO0n4siCF4436xQR
-         8fYx1rpZQqU5hyZnXEQ709DDM09qJxBhKytmUj+XV5diGdMgxMAL5e2u7KqZKO5OafBS
-         Oe/yjVjpz2eV+0jxRE3XF/GrWNhanutAgvb30ixBn5KZ5QbW7YIoLk7f/4Kf4/n0ZAUy
-         6tW5gs1p3KE1x7LEzYN8lbyr7R/T9gz90VCN0xeNwiX7bYWSENH7RDdxI3GDEvBxg09Y
-         H3ag==
-X-Gm-Message-State: AOAM531YJh9mpWU0YEGJyDHWSxEJiOMFRpgyy9FX/Zk9034oU3TmolM0
-        s4plCqZpEeBH36QMEZt5vzZSEL8m+A==
-X-Google-Smtp-Source: ABdhPJzog2Lk5E4Z3iWOg1giGgAMCsL5o42Z0jQ+v4oRFzdtl7nUweahq97ee0E1EIGIunqy4HAvgg==
-X-Received: by 2002:a05:6870:9694:b0:ec:abf0:cc2f with SMTP id o20-20020a056870969400b000ecabf0cc2fmr735899oaq.235.1652206038579;
-        Tue, 10 May 2022 11:07:18 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id p22-20020a056870831600b000eb0e40b4b8sm6161808oae.48.2022.05.10.11.07.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 May 2022 11:07:17 -0700 (PDT)
-Received: (nullmailer pid 2307606 invoked by uid 1000);
-        Tue, 10 May 2022 18:07:16 -0000
-Date:   Tue, 10 May 2022 13:07:16 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Puranjay Mohan <p-mohan@ti.com>
-Cc:     linux-kernel@vger.kernel.org, davem@davemloft.net,
-        edumazet@google.com, krzysztof.kozlowski+dt@linaro.org,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org, nm@ti.com,
-        ssantosh@kernel.org, s-anna@ti.com,
-        linux-arm-kernel@lists.infradead.org, rogerq@kernel.org,
-        grygorii.strashko@ti.com, vigneshr@ti.com, kishon@ti.com,
-        afd@ti.com, andrew@lunn.ch
-Subject: Re: [PATCH 1/2] dt-bindings: net: Add ICSSG Ethernet Driver bindings
-Message-ID: <Ynqp1LhWWtXjA8kT@robh.at.kernel.org>
-References: <20220506052433.28087-1-p-mohan@ti.com>
- <20220506052433.28087-2-p-mohan@ti.com>
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to;
+        bh=xVJHepNq93ePmAbCv1LHbdOWJcqWYQh8v11fr0KUdVw=;
+        b=APGnJb2Uj6zn3KuqHiCUhfZBnIVQYj6Yvfm1JFZhNWTGnCFUYa3lo50uCl66WI2qyu
+         Ab2PODKsnDTKJ0PSrAIaldGKHHKVsgTu2NczSx6MSYM2YUAW+N7MIkUgx8yO9beh74GT
+         TFGHTX52EDFQ1rJNBBeMwfxogmF9vnqok4Lje5KPx2maN9HQzAMmV7pVN1GvlN2ioZmC
+         5rfYeaWCtWlzQB5udHesf1fmdO16HOm3Mc2XDVKXIHELJQg5Bakud9b0QKfiWRB5vJlh
+         6/YQk0Oy7KHZrGawtuflksHSu8Y23Oemkos6GdH4I0NQtP/b5IcGkWCSzMzD3mlFQwRp
+         r2Mw==
+X-Gm-Message-State: AOAM5305BgxDxObF/BD8cz9Ux4n6zKyaygAZ/TzeLWeshTLQPFr29aqd
+        x5/b07TIlz6WnJvLVvzYhlIfcTUzhNNjmv++ZA4=
+X-Google-Smtp-Source: ABdhPJy6+2O51LBjKb+99Cq9Wps6EmAQ4omKaELYEGQnCG8faSiz4GgcqNRQjtKeIXBSJFxlDQlsctIT4U/Sczk2cPc=
+X-Received: by 2002:a17:903:41cb:b0:15e:b1f4:352f with SMTP id
+ u11-20020a17090341cb00b0015eb1f4352fmr21777496ple.56.1652206064113; Tue, 10
+ May 2022 11:07:44 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220506052433.28087-2-p-mohan@ti.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
+Received: by 2002:a17:90a:be04:0:0:0:0 with HTTP; Tue, 10 May 2022 11:07:43
+ -0700 (PDT)
+Reply-To: lilywilliam989@gmail.com
+From:   Lily William <umarsalehtmw@gmail.com>
+Date:   Tue, 10 May 2022 10:07:43 -0800
+Message-ID: <CAHup-S5JkHdeWHQW==-EvFv9A2mmROLvNfACSbzBt741OWYk4A@mail.gmail.com>
+Subject: Hi Dear,
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: Yes, score=5.3 required=5.0 tests=BAYES_50,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,FREEMAIL_REPLYTO,
+        FREEMAIL_REPLYTO_END_DIGIT,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,UNDISC_FREEM autolearn=no autolearn_force=no
+        version=3.4.6
+X-Spam-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+        *      https://www.dnswl.org/, no trust
+        *      [2607:f8b0:4864:20:0:0:0:102f listed in]
+        [list.dnswl.org]
+        *  0.8 BAYES_50 BODY: Bayes spam probability is 40 to 60%
+        *      [score: 0.4996]
+        *  0.2 FREEMAIL_REPLYTO_END_DIGIT Reply-To freemail username ends in
+        *      digit
+        *      [lilywilliam989[at]gmail.com]
+        *  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+        *      provider
+        *      [umarsalehtmw[at]gmail.com]
+        * -0.0 SPF_PASS SPF: sender matches SPF record
+        *  0.0 SPF_HELO_NONE SPF: HELO does not publish an SPF Record
+        * -0.1 DKIM_VALID_EF Message has a valid DKIM or DK signature from
+        *      envelope-from domain
+        * -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+        * -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+        *      author's domain
+        *  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+        *       valid
+        * -0.0 T_SCC_BODY_TEXT_LINE No description available.
+        *  3.5 UNDISC_FREEM Undisclosed recipients + freemail reply-to
+        *  1.0 FREEMAIL_REPLYTO Reply-To/From or Reply-To/body contain
+        *      different freemails
+X-Spam-Level: *****
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, May 06, 2022 at 10:54:32AM +0530, Puranjay Mohan wrote:
-> Add a YAML binding document for the ICSSG Programmable real time unit
-> based Ethernet driver. This driver uses the PRU and PRUSS consumer APIs
-> to interface the PRUs and load/run the firmware for supporting ethernet
-> functionality.
-> 
-> Signed-off-by: Puranjay Mohan <p-mohan@ti.com>
-> ---
->  .../bindings/net/ti,icssg-prueth.yaml         | 174 ++++++++++++++++++
->  1 file changed, 174 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml b/Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml
-> new file mode 100644
-> index 000000000000..ca6f0af411cf
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml
-> @@ -0,0 +1,174 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/net/ti,icssg-prueth.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: |+
-> +  Texas Instruments ICSSG PRUSS Ethernet
-> +
-> +maintainers:
-> +  - Puranjay Mohan <p-mohan@ti.com>
-> +
-> +description: |+
+-- 
+Hi Dear,
 
-Don't need '|+'
+My name is Lily William, I am from the United States of America. It's my
+pleasure to contact you for a new and special friendship. I will be glad to
+see your reply so we can get to know each other better.
 
-> +  Ethernet based on the Programmable Real-Time Unit and Industrial Communication Subsystem.
-
-Wrap the line at 80.
-
-> +
-> +allOf:
-> +  - $ref: /schemas/remoteproc/ti,pru-consumer.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - ti,am654-icssg-prueth  # for AM65x SoC family
-> +
-> +  sram:
-> +    description: |
-> +      phandle to MSMC SRAM node
-> +
-> +  dmas:
-> +    minItems: 10
-> +    maxItems: 10
-
-Just maxItems is enough.
-
-> +    description: |
-> +      list of phandles and specifiers to UDMA as specified in bindings/dma/ti/k3-udma.txt.
-
-Drop. First, we don't want new references to .txt files. Second, the 
-specific provider is generally outside the scope of a binding.
-
-> +
-> +  dma-names:
-> +    items:
-> +      - const: tx0-0
-> +      - const: tx0-1
-> +      - const: tx0-2
-> +      - const: tx0-3
-> +      - const: tx1-0
-> +      - const: tx1-1
-> +      - const: tx1-2
-> +      - const: tx1-3
-> +      - const: rx0
-> +      - const: rx1
-> +
-> +  ethernet-ports:
-> +    type: object
-> +    properties:
-> +      '#address-cells':
-> +        const: 1
-> +      '#size-cells':
-> +        const: 0
-> +
-> +    patternProperties:
-> +      ^port@[0-1]$:
-
-ethernet-port is preferred.
-
-> +        type: object
-> +        description: ICSSG PRUETH external ports
-> +
-> +        $ref: ethernet-controller.yaml#
-
-           unevaluatedProperties: false
-
-> +
-> +        properties:
-> +          reg:
-> +            items:
-> +              - enum: [0, 1]
-> +            description: ICSSG PRUETH port number
-> +
-> +          ti,syscon-rgmii-delay:
-> +            $ref: /schemas/types.yaml#/definitions/phandle-array
-> +            description:
-> +              phandle to system controller node and register offset
-> +              to ICSSG control register for RGMII transmit delay
-> +
-> +        required:
-> +          - reg
-> +
-> +    additionalProperties: false
-
-For indented cases, I think it is easier to read if this is above 
-'properties'.
-
-> +
-> +  ti,mii-g-rt:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description: |
-> +      phandle to MII_G_RT module's syscon regmap.
-> +
-> +  ti,mii-rt:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description: |
-> +      phandle to MII_RT module's syscon regmap
-> +
-> +  interrupts:
-> +    minItems: 2
-> +    maxItems: 2
-> +    description: |
-> +      Interrupt specifiers to TX timestamp IRQ.
-> +
-> +  interrupt-names:
-> +    items:
-> +      - const: tx_ts0
-> +      - const: tx_ts1
-> +
-> +required:
-> +  - compatible
-> +  - sram
-> +  - ti,mii-g-rt
-> +  - dmas
-> +  - dma-names
-> +  - ethernet-ports
-> +  - interrupts
-> +  - interrupt-names
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +
-> +    /* Example k3-am654 base board SR2.0, dual-emac */
-> +        pruss2_eth: pruss2_eth {
-
-Indentation here should be 4.
-
-> +                compatible = "ti,am654-icssg-prueth";
-> +                pinctrl-names = "default";
-> +                pinctrl-0 = <&icssg2_rgmii_pins_default>;
-> +                sram = <&msmc_ram>;
-> +
-> +                ti,prus = <&pru2_0>, <&rtu2_0>, <&tx_pru2_0>, <&pru2_1>, <&rtu2_1>, <&tx_pru2_1>;
-
-Required?
-
-You should also list this in properties and define how many entries.
-
-> +                firmware-name = "ti-pruss/am65x-pru0-prueth-fw.elf",
-> +                                "ti-pruss/am65x-rtu0-prueth-fw.elf",
-> +                                "ti-pruss/am65x-txpru0-prueth-fw.elf",
-> +                                "ti-pruss/am65x-pru1-prueth-fw.elf",
-> +                                "ti-pruss/am65x-rtu1-prueth-fw.elf",
-> +                                "ti-pruss/am65x-txpru1-prueth-fw.elf";
-> +                ti,pruss-gp-mux-sel = <2>,      /* MII mode */
-> +                                      <2>,
-> +                                      <2>,
-> +                                      <2>,      /* MII mode */
-> +                                      <2>,
-> +                                      <2>;
-> +                ti,mii-g-rt = <&icssg2_mii_g_rt>;
-> +                dmas = <&main_udmap 0xc300>, /* egress slice 0 */
-> +                       <&main_udmap 0xc301>, /* egress slice 0 */
-> +                       <&main_udmap 0xc302>, /* egress slice 0 */
-> +                       <&main_udmap 0xc303>, /* egress slice 0 */
-> +                       <&main_udmap 0xc304>, /* egress slice 1 */
-> +                       <&main_udmap 0xc305>, /* egress slice 1 */
-> +                       <&main_udmap 0xc306>, /* egress slice 1 */
-> +                       <&main_udmap 0xc307>, /* egress slice 1 */
-> +                       <&main_udmap 0x4300>, /* ingress slice 0 */
-> +                       <&main_udmap 0x4301>; /* ingress slice 1 */
-> +                dma-names = "tx0-0", "tx0-1", "tx0-2", "tx0-3",
-> +                            "tx1-0", "tx1-1", "tx1-2", "tx1-3",
-> +                            "rx0", "rx1";
-> +                interrupts = <24 0 2>, <25 1 3>;
-> +                interrupt-names = "tx_ts0", "tx_ts1";
-> +                ethernet-ports {
-> +                        #address-cells = <1>;
-> +                        #size-cells = <0>;
-> +                        pruss2_emac0: port@0 {
-> +                                reg = <0>;
-> +                                phy-handle = <&pruss2_eth0_phy>;
-> +                                phy-mode = "rgmii-rxid";
-> +                                interrupts-extended = <&icssg2_intc 24>;
-> +                                ti,syscon-rgmii-delay = <&scm_conf 0x4120>;
-> +                                /* Filled in by bootloader */
-> +                                local-mac-address = [00 00 00 00 00 00];
-> +                        };
-> +
-> +                        pruss2_emac1: port@1 {
-> +                                reg = <1>;
-> +                                phy-handle = <&pruss2_eth1_phy>;
-> +                                phy-mode = "rgmii-rxid";
-> +                                interrupts-extended = <&icssg2_intc 25>;
-> +                                ti,syscon-rgmii-delay = <&scm_conf 0x4124>;
-> +                                /* Filled in by bootloader */
-> +                                local-mac-address = [00 00 00 00 00 00];
-> +                        };
-> +                };
-> +        };
-> -- 
-> 2.17.1
-> 
-> 
+Yours
+Lily
