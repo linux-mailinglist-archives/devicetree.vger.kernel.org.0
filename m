@@ -2,83 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B0B00520D06
-	for <lists+devicetree@lfdr.de>; Tue, 10 May 2022 06:41:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 389A7520D2D
+	for <lists+devicetree@lfdr.de>; Tue, 10 May 2022 07:20:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236464AbiEJEo4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 May 2022 00:44:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45354 "EHLO
+        id S233829AbiEJFYn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 May 2022 01:24:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57528 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236434AbiEJEoz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 May 2022 00:44:55 -0400
-Received: from mail-pg1-x536.google.com (mail-pg1-x536.google.com [IPv6:2607:f8b0:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A49C01C107
-        for <devicetree@vger.kernel.org>; Mon,  9 May 2022 21:40:56 -0700 (PDT)
-Received: by mail-pg1-x536.google.com with SMTP id e5so13695143pgc.5
-        for <devicetree@vger.kernel.org>; Mon, 09 May 2022 21:40:56 -0700 (PDT)
+        with ESMTP id S233037AbiEJFYl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 May 2022 01:24:41 -0400
+Received: from mail-pl1-x631.google.com (mail-pl1-x631.google.com [IPv6:2607:f8b0:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B7ADCC6
+        for <devicetree@vger.kernel.org>; Mon,  9 May 2022 22:20:42 -0700 (PDT)
+Received: by mail-pl1-x631.google.com with SMTP id x18so15791857plg.6
+        for <devicetree@vger.kernel.org>; Mon, 09 May 2022 22:20:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=lbY1apz0pshrpCAaJ1RrYyZnbJ+UjeS0fVoXXo8j4x4=;
-        b=g1O4yIW8IBZL4UjQArViSLk8BGWFwVVdDj4k3lboHQlTkJQ+rm3mIbeCIIKgBldnDL
-         vemV1tqpX0uc13aujVWctoK7Xgz/Zw9Wdv34dhYv0rS2b96Ryzawc8Q7WTi9VBXsyM8/
-         I5Pi+SicIj63pu9fYM3QYaBG5+AIDSGzQCMOf3QCc6fdmLUVblR7n6tedFbDYuwdUZhu
-         zIuKHv2b8wLek6nQwSIbFcYwuO2pnT7dYWxxulUgiS5fNtP+EASQcqA5eMTg8QKMPEiX
-         u1yAPilOKbWZR5pPKRYIkh4RjlpecE57z8J7ag6lrDvUnChqYht9pXoHxKkm7w1GC0Ey
-         LmBg==
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=yiAVlYJ6ztlaDoBnlRQCGr+0qKRwQo5un6vTJF3zwII=;
+        b=FwajoCxnVrzvs7zHittmhKbuSW7XGOtckqrhWHEEv6UMPnWBd8LN9/o77ThMfLy4WA
+         ynLmWEkXlbZEmCzV0qmPLQZxI2A9oMf0njaIpuQk47v7cAjifFoc0CxmQVsjreMkOUcm
+         jQMdHNmpi/JeG7OAMRCHmAxXGRJlq4vLr5OSU=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=lbY1apz0pshrpCAaJ1RrYyZnbJ+UjeS0fVoXXo8j4x4=;
-        b=dEr2Y47Td5q3L+q40C4OqcXXeb1IAHuGIgQO3aIBWeGNlCnKUq23Ux7koyCOJRBEWv
-         MWzjhfozo0oz6GSXDLYTpGbu3veVCoTPCdwJLNnCdhJw3rEj/Mb9hOh3FAGyzvJAkODL
-         9/OxRnCGKzKM0uP3J5iXxDgbQWHS+KdM9eOGJ4DehTx7vbdskyTCdpEjz24Vs7B+0Dnn
-         IfJhFuE62qotfXAB9r0SPzEKbMMh0IVG1Mo5jROOrs+KJopUJbAtcRUfFtVY3G9aOYB0
-         wqfQviJU0pBz/AWnaywYh1YgvdEVbDk0cDIg3iF+BB5k1UNKHppfGHqvXgWN1cR7CL/U
-         mECg==
-X-Gm-Message-State: AOAM532mm/yaKN1+4tqcWpyVsBPUFFIjfEEqlNoEFTpFn29MW5K3/Y+q
-        DXnhkqdjrO0Ph/QxW4d15Vgr1Q==
-X-Google-Smtp-Source: ABdhPJymevaw8JA+ZHsBCjPJ4j0suFS7f77voPGuje3SGgohExKLxChq+oCh5WRtZK41XqI6SBv0+w==
-X-Received: by 2002:aa7:9110:0:b0:4fa:e388:af57 with SMTP id 16-20020aa79110000000b004fae388af57mr18793150pfh.1.1652157656115;
-        Mon, 09 May 2022 21:40:56 -0700 (PDT)
-Received: from localhost ([122.162.234.2])
-        by smtp.gmail.com with ESMTPSA id a2-20020a170902900200b0015e8d4eb289sm780370plp.211.2022.05.09.21.40.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 May 2022 21:40:55 -0700 (PDT)
-Date:   Tue, 10 May 2022 10:10:53 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Stephen Boyd <sboyd@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Avri Altman <avri.altman@wdc.com>,
-        "James E.J. Bottomley" <jejb@linux.ibm.com>,
-        "Martin K. Petersen" <martin.petersen@oracle.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Taniya Das <tdas@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-scsi@vger.kernel.org
-Subject: Re: [RFC PATCH v2 4/6] PM: opp: allow control of multiple clocks
-Message-ID: <20220510044053.ykn6ygnbeokhzrsa@vireshk-i7>
-References: <20220411154347.491396-1-krzysztof.kozlowski@linaro.org>
- <20220411154347.491396-5-krzysztof.kozlowski@linaro.org>
- <20220425072710.v6gwo4gu3aouezg4@vireshk-i7>
- <dea39b1f-0091-2690-7f07-108d07ef9f3c@linaro.org>
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=yiAVlYJ6ztlaDoBnlRQCGr+0qKRwQo5un6vTJF3zwII=;
+        b=f7H+EuxPltx5z0sKh/NHTzsFd0P50AfThiVuQj0LEJUcv+hYR2ZgHCH9viDa429lS8
+         YVva6upmgflfU9+4bClQydQADQ5mmDmT6GB2B34lL1hYqmGxXuapXpMC1ZmW6gfqkmpi
+         EeevT2v2k6PAk2/7jPls5NWCRSR6sLeOCTdv6jPPcaPePr6KJ+dsjXAenAenV9tjTIyO
+         ENGKY5+T/CJABtMVfMMN2X4JNcRteZQofjTG91KqpdrzvzCO7bitLa+hUh5WUMJH/Ed/
+         5cSb5YND0/uk/boKZn+ygPBEqDoQLe3f8QwsCYvYi1Ut7eoD97b+a07Vy7AbI7Qj3dNT
+         spFQ==
+X-Gm-Message-State: AOAM533Mr3WhGBBCGpsOPI11J1Y5un86/l8NW9c3q/XHisW+pMW9YP1r
+        jkgIVEvjxUYJ7KNX1MXMxo89Gg==
+X-Google-Smtp-Source: ABdhPJwjxXu3ddCJhjoeoEoaYD7lnb8OWIcUfXchwaz/AQ8XpTwpemaQQMCGOyJ1gvv8Tz/eeC5c3Q==
+X-Received: by 2002:a17:90b:33c6:b0:1dc:ba92:41bb with SMTP id lk6-20020a17090b33c600b001dcba9241bbmr21041517pjb.26.1652160042077;
+        Mon, 09 May 2022 22:20:42 -0700 (PDT)
+Received: from localhost ([2401:fa00:9:14:4f4c:708e:ab00:6543])
+        by smtp.gmail.com with UTF8SMTPSA id bi10-20020a170902bf0a00b0015e8d4eb1fcsm898377plb.70.2022.05.09.22.20.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 09 May 2022 22:20:41 -0700 (PDT)
+From:   Eizan Miyamoto <eizan@chromium.org>
+To:     LKML <linux-kernel@vger.kernel.org>
+Cc:     Eizan Miyamoto <eizan@chromium.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+Subject: [PATCH] arm64: dts: mt8173: add aliases for mt8173 mmc device nodes
+Date:   Tue, 10 May 2022 15:20:30 +1000
+Message-Id: <20220510152020.1.I6094f0a935212eabc7d9348d6cb5a2517ccc2514@changeid>
+X-Mailer: git-send-email 2.36.0.512.ge40c2bad7a-goog
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <dea39b1f-0091-2690-7f07-108d07ef9f3c@linaro.org>
-User-Agent: NeoMutt/20180716-391-311a52
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -87,96 +67,34 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09-05-22, 12:38, Krzysztof Kozlowski wrote:
-> On 25/04/2022 09:27, Viresh Kumar wrote:
-> > This is tricky as the OPP core can't really assume the order in which the clocks
-> > needs to be programmed. We had the same problem with multiple regulators and the
-> > same is left for drivers to do via the custom-api.
-> > 
-> > Either we can take the same route here, and let platforms add their own OPP
-> > drivers which can handle this, Or hide this all behind a basic device clock's
-> > driver, which you get with clk_get(dev, NULL).
-> 
-> For my use case, the order of scaling will be the same as in previous
-> implementation, because UFS drivers just got bunch of clocks with
-> freq-table-hz property and were scaling in DT order.
-> 
-> If drivers need something better, they can always provide custom-opp
-> thus replacing my method. My implementation here does not restrict them.
-> 
-> For the drivers where the order does not matter, why forcing each driver
-> to provide its own implementation of clock scaling? Isn't shared generic
-> PM OPP code a way to remove code duplication?
+Doing this makes them get enumerated in a deterministic order so that
+the assigned name in /dev that the mmc devices get assigned is
+consistent across reboots.
 
-Code duplication is a good argument and I am in favor of avoiding it,
-but nevertheless this shouldn't be something which platforms can pick
-by mistake, just because they didn't go through core code. In other
-words, this shouldn't be the default behavior of the core.
+See ead9f7d7ea9 ("arm64: dts: qcom: sc7180: Assign numbers to eMMC and
+SD") for similar work.
 
-If we want, core can provide a helper to get rid of the duplication
-though, but the user explicitly needs to use it.
+Signed-off-by: Eizan Miyamoto <eizan@chromium.org>
+---
 
-> >> diff --git a/drivers/opp/core.c b/drivers/opp/core.c
-> > 
-> >> +static int _generic_set_opp_clks_only(struct device *dev,
-> >> +				      struct opp_table *opp_table,
-> >> +				      struct dev_pm_opp *opp)
-> >> +{
-> >> +	int i, ret;
-> >> +
-> >> +	if (!opp_table->clks)
-> >> +		return 0;
-> >> +
-> >> +	for (i = 0; i < opp_table->clk_count; i++) {
-> >> +		if (opp->rates[i]) {
-> > 
-> > This should mean that we can disable that clock and it isn't required.
-> 
-> No, it does not mean that. The DT might provide several clocks which
-> only some are important for frequency scaling. All others just need to
-> be enabled.
-> 
-> Maybe you prefer to skip getting such clocks in PM OPP?
+ arch/arm64/boot/dts/mediatek/mt8173.dtsi | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-They shouldn't reach the OPP core then. What will the OPP core do if a
-clock has a value for one OPP and not the other ?
-
-> >> @@ -969,8 +1008,8 @@ static void _find_current_opp(struct device *dev, struct opp_table *opp_table)
-> > 
-> > I think this routine breaks as soon as we add support for multiple clocks.
-> > clks[0]'s frequency can be same for multiple OPPs and this won't get you the
-> > right OPP then.
-> 
-> I don't think so and this was raised also by Stephen - only the first
-> clock is considered the one used for all PM OPP frequency operations,
-> like get ceil/floor.
-
-IMHO, this is broken by design. I can easily see that someone wants to
-have few variants of all other frequencies for the same frequency of
-the so called "main" clock, i.e. multiple OPPs with same "main" freq
-value.  I don't think we can mark the clocks "main" or otherwise as
-easily for every platform.
-
-Stephen, any inputs on this ?
-
-> The assumption (which might need better documentation) is that first
-> clock frequency is the main one:
-> 1. It is still in opp->rate field, so it is used everywhere when OPPs
-> are compared/checked for rates.
-> 1. Usually is used also in opp-table nodes names.
-> 
-> The logical explanation is that devices has some main operating
-> frequency, e.g. the core clock, and this determines the performance. In
-> the same time such device might not be able to scale this one core clock
-> independently from others, therefore this set of patches.
-
-I understand what you are saying, but I can feel that it will break or
-will force bad bug-fixes into the core at a later point of time.
-
-I think it would be better to take it slowly and see how it goes. Lets
-first add support for the OPP core to parse and store this data and
-then we can add support to use it, or at least do all this in separate
-patches so they are easier to review/apply.
-
+diff --git a/arch/arm64/boot/dts/mediatek/mt8173.dtsi b/arch/arm64/boot/dts/mediatek/mt8173.dtsi
+index 6b02cff605fbe..9f3cd54116de9 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8173.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8173.dtsi
+@@ -55,6 +55,10 @@ aliases {
+ 		serial1 = &uart1;
+ 		serial2 = &uart2;
+ 		serial3 = &uart3;
++		mmc0 = &mmc0;
++		mmc1 = &mmc1;
++		mmc2 = &mmc2;
++		mmc3 = &mmc3;
+ 	};
+ 
+ 	cluster0_opp: opp_table0 {
 -- 
-viresh
+2.36.0.512.ge40c2bad7a-goog
+
