@@ -2,69 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 845BD52120F
-	for <lists+devicetree@lfdr.de>; Tue, 10 May 2022 12:20:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8AEDE521235
+	for <lists+devicetree@lfdr.de>; Tue, 10 May 2022 12:28:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239730AbiEJKYQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 May 2022 06:24:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45570 "EHLO
+        id S235836AbiEJKcP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 May 2022 06:32:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44000 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239777AbiEJKYO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 May 2022 06:24:14 -0400
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F1F02AC6CD
-        for <devicetree@vger.kernel.org>; Tue, 10 May 2022 03:20:16 -0700 (PDT)
-Received: by mail-ed1-x52c.google.com with SMTP id t5so19383395edw.11
-        for <devicetree@vger.kernel.org>; Tue, 10 May 2022 03:20:16 -0700 (PDT)
+        with ESMTP id S238758AbiEJKcO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 May 2022 06:32:14 -0400
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6DA7D1F9788
+        for <devicetree@vger.kernel.org>; Tue, 10 May 2022 03:28:17 -0700 (PDT)
+Received: by mail-ed1-x533.google.com with SMTP id c12so11965543edv.10
+        for <devicetree@vger.kernel.org>; Tue, 10 May 2022 03:28:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :references:from:in-reply-to:content-transfer-encoding;
-        bh=JAZE3H1GU49hxfnZj4dz1ADpHTYQaP7poHbZZaWlb9w=;
-        b=oFt8LN2qwiQkvu709/jiLgEfOL/3nzC2iBaYdt8tOvH9kklDtTP27FTQHV1j1S3rjv
-         qD3Fs2qCNq6/oAuSU2uPmPGEMfNlOIAyCUNvnVVUf+BcF6+/cMTOEb78zPx11iQUAmjG
-         AyovrymATAnM7csnf3914u9kFxc4/gJGK0lUPATCMspFYwyr42bQiLTCZWnE49jmnVgC
-         4nzzPDDBRh1CKW76njeVzbnpbgyn4ltb04FJ/Y0pb4wpvN01ly5AAOVVQQ5AnvIEFKJE
-         /+Jlv0d6fNft5WiDK82GYzetMg5EGbd7CmSttsx0EPxz+dGnj6su6blz+AVtoclmJZ8K
-         uioA==
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=qB8tiSg9orpGv2oafVz+zb1jhV1wE750MfA0k2QQW9s=;
+        b=rhth6SprFuXZRw9NUufEJzMkPofYa5+szGIs98AV0GVIbzsAA24w4QbdhAH0k6tNsm
+         G9lbp93Qgq5wQy0+CFXT1fi5iMuYA4Cm9U/PxSd8amtshY1+WWPg3Zsj2ouQqfzpm3cT
+         kgoHRoMvtjtr0hTCFuXrxFMAPcuVScNYCBHjhvwd+K12WtE868Zm28gTKB0PPjcHEMOT
+         ul8LCqkXub36kGTu/xSmxsHDmFJH+vm3u7mGVS7NKOKyYshFVlM324rzPLNV2dHsG+Oh
+         n0LVc+nwWpXvQhRwZyGWvq87SlHXW6mR5MmehPz78ndf2YvXFubXASGRbD0PBKSD9hJO
+         nEiw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:references:from:in-reply-to
+         :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=JAZE3H1GU49hxfnZj4dz1ADpHTYQaP7poHbZZaWlb9w=;
-        b=0M3dJrDvx4Lhh5IEMT1MAq1XK0mwWyvSZGv7OFuS3NeYYChMy9pQ0dtWmn9naFfoX7
-         1TsZooQSGUbcnaGAOdlxg9dFa+8XtoUy63aNcGmVOpMdQcDilqEyO3IZ08hilh+79zPg
-         OfHrFoRV34Ygu87raHV8JUxZsCe3WBxsane7AFXsBXw/33qcYQgmhziAxrtiWzgBgQU5
-         xRIZr0zRI5iCfqbtiQpJqwo9cpQ3iRSKG7/v4qd7it8JpRrp5xGfybeo2oWRc5b8iRMO
-         q5Lnff8qsDt+/aELrGYQNu2T1e8Gkmmr95Hde1GGMXMZItTjq2iTzwMdA0N0LCPcDGQ8
-         Rf/A==
-X-Gm-Message-State: AOAM530i+QGUNycXPsrdGXfMgNL5k7VCqKtohfu6hJseehbqGcJpcVUc
-        GEymhrfSy/V2XQqixHSB3VyHnQ==
-X-Google-Smtp-Source: ABdhPJyvoiZDTo7gRyxxJWEXPyfVnVOhX62o9dqmOeexsQlrnzElSpHIuaxfkyFT8WV64l8lsEXooA==
-X-Received: by 2002:a05:6402:2692:b0:427:ddba:d811 with SMTP id w18-20020a056402269200b00427ddbad811mr21982456edd.343.1652178014773;
-        Tue, 10 May 2022 03:20:14 -0700 (PDT)
+        bh=qB8tiSg9orpGv2oafVz+zb1jhV1wE750MfA0k2QQW9s=;
+        b=GKEtCjL/jSW7VXcdlqF6FPDSr5U8/3S0X7K/wx+cmhlfcKCSYz6BlNYhZnlDHDsr7x
+         iaAt03vCpe3sZpU3R29BsPoY9pcM6xxKcpV4AoAhnZYb6q4qer6QXBGlPoVMqWQOdkhJ
+         NUSYXZ2VcOZMhkIgJAl1x7bpEncTr32WK/pW3u51lIypFTFDw8aWi7/8z4EDhCgXUBRU
+         MIXfbbIWfkwQ97z35d9sz51vwW4Sw9QlJ9yMv+m9LQ6l6nXeBq3u7fJ/BjodNSsT25Cq
+         5mMihiiYUFwg2Je3F7NXObCZfsT2HKAaRtk8KJ5iCRYp4RkR0W4Os9mu5ed3crIjnFfQ
+         zO/Q==
+X-Gm-Message-State: AOAM531+VQ8qoQQmcry6ajxs9Po+ddePl9ZalTyMgZ9uk222v/dIxKtp
+        oURukD+AJhQKGHVzRdNls6byYg==
+X-Google-Smtp-Source: ABdhPJw5CAaM7D9q3+CFzPibPNCbcA7gMgHTzab1tVA8q065CZ3vhqKEUGpu1+K0yDXGbet+UCoR+w==
+X-Received: by 2002:a50:ed13:0:b0:426:4939:45a9 with SMTP id j19-20020a50ed13000000b00426493945a9mr22748001eds.303.1652178495995;
+        Tue, 10 May 2022 03:28:15 -0700 (PDT)
 Received: from [192.168.0.251] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id d29-20020a50cd5d000000b0042617ba6391sm7403282edj.27.2022.05.10.03.20.13
+        by smtp.gmail.com with ESMTPSA id qr48-20020a1709068cb000b006f3ef214e13sm6051348ejc.121.2022.05.10.03.28.14
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 10 May 2022 03:20:14 -0700 (PDT)
-Message-ID: <ea77c9a5-107d-dd4b-a87f-5b62d01c51d0@linaro.org>
-Date:   Tue, 10 May 2022 12:20:13 +0200
+        Tue, 10 May 2022 03:28:15 -0700 (PDT)
+Message-ID: <1c3fd336-1450-9b68-df81-2f01cc2ba32f@linaro.org>
+Date:   Tue, 10 May 2022 12:28:14 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.8.1
-Subject: Re: [PATCH 1/2] dt-bindings: vendor-prefixes: add Methode Electronics
+Subject: Re: [PATCH v2 1/3] dt-bindings: mediatek: add vdosys1 RDMA definition
+ for mt8195
 Content-Language: en-US
-To:     Robert Marko <robert.marko@sartura.hr>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, andrew@lunn.ch,
-        gregory.clement@bootlin.com, sebastian.hesselbarth@gmail.com,
-        shawnguo@kernel.org, linus.walleij@linaro.org, kostap@marvell.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, pali@kernel.org,
-        marek.behun@nic.cz
-References: <20220509110028.144226-1-robert.marko@sartura.hr>
+To:     Rex-BC Chen <rex-bc.chen@mediatek.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>
+Cc:     "airlied@linux.ie" <airlied@linux.ie>,
+        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+        "angelogioacchino.delregno@collabora.com" 
+        <angelogioacchino.delregno@collabora.com>,
+        =?UTF-8?B?SmFzb24tSkggTGluICjmnpfnnb/npaUp?= 
+        <Jason-JH.Lin@mediatek.com>,
+        =?UTF-8?B?TmFuY3kgTGluICjmnpfmrKPonqIp?= <Nancy.Lin@mediatek.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+        "linux-mediatek@lists.infradead.org" 
+        <linux-mediatek@lists.infradead.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        Project_Global_Chrome_Upstream_Group 
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+References: <20220509044302.27878-1-rex-bc.chen@mediatek.com>
+ <20220509044302.27878-2-rex-bc.chen@mediatek.com>
+ <a5c9e7ad-c4b5-e757-cd6d-f79de47d1ff3@linaro.org>
+ <fbbbc7e6a951bdde648ddd896f1fa163dafa16f1.camel@mediatek.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220509110028.144226-1-robert.marko@sartura.hr>
+In-Reply-To: <fbbbc7e6a951bdde648ddd896f1fa163dafa16f1.camel@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -77,17 +96,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/05/2022 13:00, Robert Marko wrote:
-> Add vendor prefix for Methode Electronics, Inc. (https://www.methode.com)
+On 09/05/2022 10:45, Rex-BC Chen wrote:
+>>> +    soc {
+>>> +        #address-cells = <2>;
+>>> +        #size-cells = <2>;
+>>> +
+>>> +        vdo1_rdma0: mdp-rdma@1c104000 {
+>>
+>> Generic node name. dma-controller (if it does not conflict with
+>> dma-common.yaml schema)?
 > 
-> Signed-off-by: Robert Marko <robert.marko@sartura.hr>
-> ---
->  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
->  1 file changed, 2 insertions(+)
+> We don't understand what dma-controller you are referring to? Can you
+> help explain more? Thanks!
 
+Use a generic node name, as Devicetree spec asks:
+"The name of a node should be somewhat generic, reflecting the function
+of the device and not its precise programming
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+model. If appropriate, the name should be one of the following choices:"
 
+I proposed dma-controller, but feel free to find better generic node name.
 
 Best regards,
 Krzysztof
