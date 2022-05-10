@@ -2,263 +2,187 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A78C0522122
-	for <lists+devicetree@lfdr.de>; Tue, 10 May 2022 18:23:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D8DD0522125
+	for <lists+devicetree@lfdr.de>; Tue, 10 May 2022 18:24:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347352AbiEJQ1i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 May 2022 12:27:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60748 "EHLO
+        id S234224AbiEJQ2T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 May 2022 12:28:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35274 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237625AbiEJQ1g (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 May 2022 12:27:36 -0400
-Received: from mail-oi1-f178.google.com (mail-oi1-f178.google.com [209.85.167.178])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6B2211C089;
-        Tue, 10 May 2022 09:23:38 -0700 (PDT)
-Received: by mail-oi1-f178.google.com with SMTP id y63so19055073oia.7;
-        Tue, 10 May 2022 09:23:38 -0700 (PDT)
+        with ESMTP id S1345070AbiEJQ2P (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 May 2022 12:28:15 -0400
+Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23F9F132A03;
+        Tue, 10 May 2022 09:24:17 -0700 (PDT)
+Received: by mail-lj1-x22b.google.com with SMTP id s27so21491950ljd.2;
+        Tue, 10 May 2022 09:24:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=Z+YkSbV6bjoznxMCuUfht3UUoaizx6Wbg5BycQIS6zs=;
+        b=A05ZxnXVAWmmDDGxBx9E47mbX7S0Lb5kx3BXIz0LE4ucreSY1X5yTdw7uft1fPn42/
+         aSTUlBrV3mgtTEgdylYx+nll563rrNB3yLv3YfpwcocKTTB2nJlHQuPPZGDOFo9FkApv
+         /nt7jSKjA7VUx7/6XV8T/FD/6BPbfx5kbcMXuaFE9qU1KY5ooZyFiGQsQQjAxe8SV26L
+         n4CchBQ/O/UQcRId+lmCaDgNha4pS/0skcAe5ggQpZbwwC2dvFNIifmWQZeGdp+Mn/9X
+         3IfuPe7QNMlHO9mJiWu7xumyVo9xH3sYL1B7a3UvEOfhiosc9MogVya8LuVtSls1mevH
+         u79A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=AsmH6qO9HwkmcMOMbobeK/VdQk8dmPZzzT3Cf0QWRWs=;
-        b=HmLyyYaIwMMAOtDc46ZxIleEIFV5xhWMh5nZ+JeEEU+dk87Vr7vAQ7l72Mv55CYN1X
-         EosztGYEh5C2Zk7KQCNMJKFYyvBR1lJ3oBtWLhE0+c3Jf30TzjqYRixEFlHbP+qlZN6l
-         xEcqmG/12EfWtK+J5kOOfydecqMmlo8dNYiNQ6yBpm3g4Q51yvaM8hm4Y61TooKtlkS9
-         xImdmiYIx2MtA4Qo54F7id9HO+nQVh214uEXn7QMAaR4s+pru9wHAbUgxtTO00Y0AiMb
-         jhGxV+MU5LdO807dii90eKWWN1HVLH8y8FE3d3Ln0+plUopbfxZ2/uKRtZK2i//Ubd0A
-         cdrA==
-X-Gm-Message-State: AOAM532VMFnXwGRZQurH8qbM3auTCqf1a/XnxFg0Vaed0IMYNsBIfcXA
-        /yOdwNxSVvDsFBFk9WM9Ag==
-X-Google-Smtp-Source: ABdhPJxrg0B07y3+mX7CtbGGxImTXRMtKDadJvvZD01n75pgpAm1PYwoLukdXANtBtPD9rUYwcPUeQ==
-X-Received: by 2002:a05:6808:ec8:b0:2f9:6119:d6ed with SMTP id q8-20020a0568080ec800b002f96119d6edmr415268oiv.215.1652199817829;
-        Tue, 10 May 2022 09:23:37 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id m33-20020a056870562100b000edf80be4ecsm5603899oao.58.2022.05.10.09.23.37
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=Z+YkSbV6bjoznxMCuUfht3UUoaizx6Wbg5BycQIS6zs=;
+        b=Htqzv5IVAxLwP1XzYTQ6YO2Lsz6FFFGZ6B5mDH7uj/4KEoBSh6TLd1ic4zdA67r1aW
+         fjeNXvS1y0G4SW8YvUqJZWny+4IKVa2rggdPsA766U8/d7eYUBbb4O/ttdU4tGp8wBgI
+         Aic0r1e1yGoy3gOupr0bfMG25iZ5vcLf3nDqR7z4+FofFDcn5S0vbHJ2e8uonGR1fYdR
+         6DQibOtNdpb9FtTPFVO/6c4RDFb7m7PVb4MHNnGkWGIVn6d5YIw7xGKm5wZbq89S4h+r
+         7v1jPo839tvsf6RCeBcutfDjKubUN8EAHufbuLjxZ5e+oRdrASgznW32enJLTZD93Mv+
+         cY6A==
+X-Gm-Message-State: AOAM531mrVl8ApK1hwInPPCtECZeZoz+7w8unnyh0vjHEuJJ4v6+pnh/
+        v7V6JtNJDo1a8jdK+yPNWw4=
+X-Google-Smtp-Source: ABdhPJyJMk2lXCJXghy02HIfIaweFY01KpQ6Pmd5e5ocPKNv1uom8v6aOVxqjQNPks87LU5Q4KIkog==
+X-Received: by 2002:a2e:a30a:0:b0:24f:cf6:11ab with SMTP id l10-20020a2ea30a000000b0024f0cf611abmr14027237lje.461.1652199855528;
+        Tue, 10 May 2022 09:24:15 -0700 (PDT)
+Received: from vmu1804.lan ([2a06:a003:501a:a7ce::887])
+        by smtp.googlemail.com with ESMTPSA id r12-20020a19ac4c000000b0047255d2111fsm2338420lfc.78.2022.05.10.09.24.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 May 2022 09:23:37 -0700 (PDT)
-Received: (nullmailer pid 2135880 invoked by uid 1000);
-        Tue, 10 May 2022 16:23:36 -0000
-Date:   Tue, 10 May 2022 11:23:36 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Lorenzo Bianconi <lorenzo@kernel.org>
-Cc:     netdev@vger.kernel.org, nbd@nbd.name, john@phrozen.org,
-        sean.wang@mediatek.com, Mark-MC.Lee@mediatek.com,
-        davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-        pabeni@redhat.com, Sam.Shih@mediatek.com,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next 02/14] dt-bindings: net: mediatek,net: add
- mt7986-eth binding
-Message-ID: <YnqRiEvS8OV20NSY@robh.at.kernel.org>
-References: <cover.1651839494.git.lorenzo@kernel.org>
- <ce9e2975645e81758558201337f50c6693143fd8.1651839494.git.lorenzo@kernel.org>
+        Tue, 10 May 2022 09:24:15 -0700 (PDT)
+From:   Mikhail Zhilkin <csharper2005@gmail.com>
+To:     Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>,
+        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Karim <Karimdplay@gmail.com>,
+        M <x1@disroot.org>, Mikhail Zhilkin <csharper2005@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v4 2/3] dt-bindings: mtd: partitions: Extend fixed-partitions binding
+Date:   Tue, 10 May 2022 16:24:03 +0000
+Message-Id: <20220510162403.20861-1-csharper2005@gmail.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20220510161641.20655-1-csharper2005@gmail.com>
+References: <20220510161641.20655-1-csharper2005@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ce9e2975645e81758558201337f50c6693143fd8.1651839494.git.lorenzo@kernel.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, May 06, 2022 at 02:30:19PM +0200, Lorenzo Bianconi wrote:
-> Introduce dts bindings for mt7986 soc in mediatek,net.yaml.
-> 
-> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
-> ---
->  .../devicetree/bindings/net/mediatek,net.yaml | 133 +++++++++++++++++-
->  1 file changed, 131 insertions(+), 2 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/mediatek,net.yaml b/Documentation/devicetree/bindings/net/mediatek,net.yaml
-> index 43cc4024ef98..da1294083eeb 100644
-> --- a/Documentation/devicetree/bindings/net/mediatek,net.yaml
-> +++ b/Documentation/devicetree/bindings/net/mediatek,net.yaml
-> @@ -21,6 +21,7 @@ properties:
->        - mediatek,mt7623-eth
->        - mediatek,mt7622-eth
->        - mediatek,mt7629-eth
-> +      - mediatek,mt7986-eth
->        - ralink,rt5350-eth
->  
->    reg:
-> @@ -28,7 +29,7 @@ properties:
->  
->    interrupts:
->      minItems: 3
-> -    maxItems: 3
-> +    maxItems: 4
+Extend fixed-partitions binding for support of Sercomm partition parser
+(add "sercomm,sc-partitions" compatible).
 
-What's the new interrupt? This should describe what each entry is.
+Signed-off-by: Mikhail Zhilkin <csharper2005@gmail.com>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ .../mtd/partitions/fixed-partitions.yaml      | 55 ++++++++++++++++++-
+ 1 file changed, 53 insertions(+), 2 deletions(-)
 
-If the mt7986-eth must have all 4 interrupts, then the if/then needs a 
-'minItems: 4'.
+diff --git a/Documentation/devicetree/bindings/mtd/partitions/fixed-partitions.yaml b/Documentation/devicetree/bindings/mtd/partitions/fixed-partitions.yaml
+index ea4cace6a955..ad3ccd250802 100644
+--- a/Documentation/devicetree/bindings/mtd/partitions/fixed-partitions.yaml
++++ b/Documentation/devicetree/bindings/mtd/partitions/fixed-partitions.yaml
+@@ -19,7 +19,11 @@ maintainers:
+ 
+ properties:
+   compatible:
+-    const: fixed-partitions
++    oneOf:
++      - const: fixed-partitions
++      - items:
++          - const: sercomm,sc-partitions
++          - const: fixed-partitions
+ 
+   "#address-cells": true
+ 
+@@ -27,7 +31,24 @@ properties:
+ 
+ patternProperties:
+   "@[0-9a-f]+$":
+-    $ref: "partition.yaml#"
++    allOf:
++      - $ref: "partition.yaml#"
++      - if:
++          properties:
++            compatible:
++              contains:
++                const: sercomm,sc-partitions
++        then:
++          properties:
++            sercomm,scpart-id:
++              description: Partition id in Sercomm partition map. Mtd
++                parser uses this id to find a record in the partition map
++                containing offset and size of the current partition. The
++                values from partition map overrides partition offset and
++                size defined in reg property of the dts. Frequently these
++                values are the same, but may differ if device has bad
++                eraseblocks on a flash.
++              $ref: /schemas/types.yaml#/definitions/uint32
+ 
+ required:
+   - "#address-cells"
+@@ -52,6 +73,7 @@ examples:
+             reg = <0x0100000 0x200000>;
+         };
+     };
++
+   - |
+     partitions {
+         compatible = "fixed-partitions";
+@@ -64,6 +86,7 @@ examples:
+             reg = <0x00000000 0x1 0x00000000>;
+         };
+     };
++
+   - |
+     partitions {
+         compatible = "fixed-partitions";
+@@ -82,6 +105,7 @@ examples:
+             reg = <0x2 0x00000000 0x1 0x00000000>;
+         };
+     };
++
+   - |
+     partitions {
+         compatible = "fixed-partitions";
+@@ -119,3 +143,30 @@ examples:
+             };
+         };
+     };
++
++  - |
++    partitions {
++        compatible = "sercomm,sc-partitions", "fixed-partitions";
++        #address-cells = <1>;
++        #size-cells = <1>;
++
++        partition@0 {
++            label = "u-boot";
++            reg = <0x0 0x100000>;
++            sercomm,scpart-id = <0>;
++            read-only;
++        };
++
++        partition@100000 {
++            label = "dynamic partition map";
++            reg = <0x100000 0x100000>;
++            sercomm,scpart-id = <1>;
++        };
++
++        partition@200000 {
++            label = "Factory";
++            reg = <0x200000 0x100000>;
++            sercomm,scpart-id = <2>;
++            read-only;
++        };
++    };
+-- 
+2.25.1
 
->  
->    power-domains:
->      maxItems: 1
-> @@ -189,6 +190,43 @@ allOf:
->            minItems: 2
->            maxItems: 2
->  
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: mediatek,mt7986-eth
-> +    then:
-> +      properties:
-> +        clocks:
-> +          minItems: 15
-> +          maxItems: 15
-> +
-> +        clock-names:
-> +          items:
-> +            - const: fe
-> +            - const: gp2
-> +            - const: gp1
-> +            - const: wocpu1
-> +            - const: wocpu0
-> +            - const: sgmii_tx250m
-> +            - const: sgmii_rx250m
-> +            - const: sgmii_cdr_ref
-> +            - const: sgmii_cdr_fb
-> +            - const: sgmii2_tx250m
-> +            - const: sgmii2_rx250m
-> +            - const: sgmii2_cdr_ref
-> +            - const: sgmii2_cdr_fb
-> +            - const: netsys0
-> +            - const: netsys1
-> +
-> +        mediatek,sgmiisys:
-> +          minItems: 2
-> +          maxItems: 2
-> +
-
-> +        assigned-clocks: true
-> +
-> +        assigned-clock-parents: true
-
-These are automatically allowed on any node with 'clocks' (and now 
-#clock-cells), so you can drop them.
-
-> +
->  patternProperties:
->    "^mac@[0-1]$":
->      type: object
-> @@ -219,7 +257,6 @@ required:
->    - interrupts
->    - clocks
->    - clock-names
-> -  - power-domains
-
-Is that because this chip doesn't have power domains, or support for 
-them hasn't been added? In the latter case, then you should keep this. 
-
->    - mediatek,ethsys
->  
->  unevaluatedProperties: false
-> @@ -295,3 +332,95 @@ examples:
->          };
->        };
->      };
-> +
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    #include <dt-bindings/clock/mt7622-clk.h>
-> +
-> +    soc {
-> +      #address-cells = <2>;
-> +      #size-cells = <2>;
-> +
-> +      eth: ethernet@15100000 {
-> +        #define CLK_ETH_FE_EN            0
-> +        #define CLK_ETH_WOCPU1_EN        3
-> +        #define CLK_ETH_WOCPU0_EN        4
-> +        #define CLK_TOP_NETSYS_SEL      43
-> +        #define CLK_TOP_NETSYS_500M_SEL 44
-> +        #define CLK_TOP_NETSYS_2X_SEL   46
-> +        #define CLK_TOP_SGM_325M_SEL    47
-> +        #define CLK_APMIXED_NET2PLL      1
-> +        #define CLK_APMIXED_SGMPLL       3
-> +
-> +        compatible = "mediatek,mt7986-eth";
-> +        reg = <0 0x15100000 0 0x80000>;
-> +        interrupts = <GIC_SPI 196 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 197 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 198 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 199 IRQ_TYPE_LEVEL_HIGH>;
-> +        clocks = <&ethsys CLK_ETH_FE_EN>,
-> +                 <&ethsys CLK_ETH_GP2_EN>,
-> +                 <&ethsys CLK_ETH_GP1_EN>,
-> +                 <&ethsys CLK_ETH_WOCPU1_EN>,
-> +                 <&ethsys CLK_ETH_WOCPU0_EN>,
-> +                 <&sgmiisys0 CLK_SGMII_TX250M_EN>,
-> +                 <&sgmiisys0 CLK_SGMII_RX250M_EN>,
-> +                 <&sgmiisys0 CLK_SGMII_CDR_REF>,
-> +                 <&sgmiisys0 CLK_SGMII_CDR_FB>,
-> +                 <&sgmiisys1 CLK_SGMII_TX250M_EN>,
-> +                 <&sgmiisys1 CLK_SGMII_RX250M_EN>,
-> +                 <&sgmiisys1 CLK_SGMII_CDR_REF>,
-> +                 <&sgmiisys1 CLK_SGMII_CDR_FB>,
-> +                 <&topckgen CLK_TOP_NETSYS_SEL>,
-> +                 <&topckgen CLK_TOP_NETSYS_SEL>;
-> +        clock-names = "fe", "gp2", "gp1", "wocpu1", "wocpu0",
-> +                      "sgmii_tx250m", "sgmii_rx250m",
-> +                      "sgmii_cdr_ref", "sgmii_cdr_fb",
-> +                      "sgmii2_tx250m", "sgmii2_rx250m",
-> +                      "sgmii2_cdr_ref", "sgmii2_cdr_fb",
-> +                      "netsys0", "netsys1";
-> +        mediatek,ethsys = <&ethsys>;
-> +        mediatek,sgmiisys = <&sgmiisys0>, <&sgmiisys1>;
-> +        assigned-clocks = <&topckgen CLK_TOP_NETSYS_2X_SEL>,
-> +                          <&topckgen CLK_TOP_SGM_325M_SEL>;
-> +        assigned-clock-parents = <&apmixedsys CLK_APMIXED_NET2PLL>,
-> +                                 <&apmixedsys CLK_APMIXED_SGMPLL>;
-> +
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        mdio: mdio-bus {
-> +          #address-cells = <1>;
-> +          #size-cells = <0>;
-> +
-> +          phy5: ethernet-phy@0 {
-> +            compatible = "ethernet-phy-id67c9.de0a";
-> +            phy-mode = "2500base-x";
-> +            reset-gpios = <&pio 6 1>;
-> +            reset-deassert-us = <20000>;
-> +            reg = <5>;
-> +          };
-> +
-> +          phy6: ethernet-phy@1 {
-> +            compatible = "ethernet-phy-id67c9.de0a";
-> +            phy-mode = "2500base-x";
-> +            reg = <6>;
-> +          };
-> +        };
-> +
-> +        mac0: mac@0 {
-> +          compatible = "mediatek,eth-mac";
-> +          phy-mode = "2500base-x";
-> +          phy-handle = <&phy5>;
-> +          reg = <0>;
-> +        };
-> +
-> +        mac1: mac@1 {
-> +          compatible = "mediatek,eth-mac";
-> +          phy-mode = "2500base-x";
-> +          phy-handle = <&phy6>;
-> +          reg = <1>;
-> +        };
-> +      };
-> +    };
-> -- 
-> 2.35.1
-> 
-> 
