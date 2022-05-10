@@ -2,126 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A56A522732
-	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 00:50:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6DDE2522753
+	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 01:04:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230062AbiEJWt6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 May 2022 18:49:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37546 "EHLO
+        id S237654AbiEJXEO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 May 2022 19:04:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34978 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229561AbiEJWt5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 May 2022 18:49:57 -0400
-Received: from mail-yw1-x1135.google.com (mail-yw1-x1135.google.com [IPv6:2607:f8b0:4864:20::1135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2ECE24DC50
-        for <devicetree@vger.kernel.org>; Tue, 10 May 2022 15:49:55 -0700 (PDT)
-Received: by mail-yw1-x1135.google.com with SMTP id 00721157ae682-2f7ca2ce255so2068577b3.7
-        for <devicetree@vger.kernel.org>; Tue, 10 May 2022 15:49:55 -0700 (PDT)
+        with ESMTP id S231931AbiEJXEN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 May 2022 19:04:13 -0400
+Received: from mail-pj1-x102b.google.com (mail-pj1-x102b.google.com [IPv6:2607:f8b0:4864:20::102b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69129F61D3
+        for <devicetree@vger.kernel.org>; Tue, 10 May 2022 16:04:12 -0700 (PDT)
+Received: by mail-pj1-x102b.google.com with SMTP id j10-20020a17090a94ca00b001dd2131159aso3269320pjw.0
+        for <devicetree@vger.kernel.org>; Tue, 10 May 2022 16:04:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=odDeWEQn+dxMMnpuDr3wrpKOZqaMz1USU4YdJsifEC0=;
-        b=mGVIIGo48qdJEBmeO1w/NaPfd+/U0PrKZm7SDFU3SbN7Tp7fphiRm+JQu+KqHJe2ie
-         A9SMDftsnzoqZy0qpCjmn2sSb2MR8pC0t8MMonMGB7SbLRK5I12zJrppZ+BPhQds6RHQ
-         gyyWUuip7bqEn6IfkDfLGaaIVAYN7ncFxF6mSn+mMjlFuKpSx+BNYie+9RoAdawsOTw4
-         FYC05egW3X6pivH7vAsOtytkHVozGLIrsnIAYf/Xu8Jbo0WvA7A8Xh8Yxb424mtt34A3
-         MdXYP9HgwK8uoFD9JXwrriiS962iJ1i2ZpHTmpKV3zMskjx6oEMq+cEgNXVtTt+Or2RR
-         jF/g==
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=rpOOu3yloX9+o7QmB4b1fha0WPYoksvLJ9prqiOWMZA=;
+        b=k00JKarFFBjlfYD+r85hwLg0trPXVpQEixLbgrBOuMBzDyi5b/kKU+CffB5c5ibqTD
+         zxjGv7Zvu0lj5MfTWUoTgBkOspD19gvDGY+tGud+fgVwBXnUHjjkvby3B8BN9MveLS+P
+         S6eZZopSzUB+t2aSvRryNcQnFK9X6XbfLNlJQ=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=odDeWEQn+dxMMnpuDr3wrpKOZqaMz1USU4YdJsifEC0=;
-        b=ttMgZbPP6A/oX5LBQ1LBIMsjpm+ZRu0l10E0dvd/YOyCTsUrbkU10SbgNqPE6orkjs
-         CMR5ju8CxcWdBUqAZwGI4jJfHofr3LOZ5H+WvkJsaIvR/D/5tYEInIt+VY1UMMrY2jjT
-         hWOYCnCm/wfqTUimS7NXJT6tgFzx6S4YJZYDCSk3jr/kfFWyX4djA107SrxqdQA8cEyc
-         /DFY9yySt7t5FuW47d14vb0+SqvFJBBqx7jDOXnp4hlSMWlvoZXL2wrETKDHL11MshK9
-         agvS7KMcKZp9jZhrmc5bH7ULpU49Y3n2ptsyb/seAKSsS1+Y+HTkew8FTA24QYvka/Ih
-         pNkQ==
-X-Gm-Message-State: AOAM531UbHKt52wyEd/jAzOusk5ERRxBE4MHfTcyeMWnqLAPZ4oTVDyh
-        EkxVfUbnfqCeX1pLB05z+636RfnvvY9RfAKVf84/Rvboi9Esyw==
-X-Google-Smtp-Source: ABdhPJxpA6vOK4J63qUlZcvu8ChGp7/HgqyK3YgIAo7vg2rmQB/NK0dbW3F6axhto0qt7DPlk2lMhcktAMM3vIHK8OE=
-X-Received: by 2002:a81:488b:0:b0:2f7:cc43:ae4c with SMTP id
- v133-20020a81488b000000b002f7cc43ae4cmr22414095ywa.414.1652222995163; Tue, 10
- May 2022 15:49:55 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=rpOOu3yloX9+o7QmB4b1fha0WPYoksvLJ9prqiOWMZA=;
+        b=QU+DP5pYgJJ8yp+B29zI+MOB+q0fvtXGqz7EIFzy5s/20+DNlPdrudFN4CmiL8Hz6V
+         EyThfosboC8BdW2byGwylW4cUMTCFjeoXrmVCjfuHhHhAnV3o5hhfAR3+doq2OhpNpcL
+         xeC7bVcJWlDBsY6HQO63ayhFURobQDqLlVTuYHy3AaQbFVUOgbbEuAKXHnDnmp6X53jE
+         +w3ARu4Y2XWD6RWYuKeUpE0ECmELYVLHv3GIf9Xa/+Vgdf/o90U5kd4VAYE2iotmmkSL
+         T52QegzVXlfnedr2kHcyZqfQzd4M7OUsxAVQvsAHhspuXWjvx6hSUOBMo6B1YXX+7XuD
+         3AeQ==
+X-Gm-Message-State: AOAM530c7EeVhD82eo+OuzDvdWVTgI8kGvRN+wZn2qyoVQBoJeDXP7i0
+        yyBSofH85EQ8frAUS32s827Trg==
+X-Google-Smtp-Source: ABdhPJxEnJFubfWfGEANXo2HCxGCKtq5R1uXvOZ5g1XB3spi/HvrHYO1LvgE8enCGq/BukKn6rfDMw==
+X-Received: by 2002:a17:902:e881:b0:15e:93ac:41ba with SMTP id w1-20020a170902e88100b0015e93ac41bamr22642097plg.160.1652223851502;
+        Tue, 10 May 2022 16:04:11 -0700 (PDT)
+Received: from chromium.org (157.214.185.35.bc.googleusercontent.com. [35.185.214.157])
+        by smtp.gmail.com with ESMTPSA id 137-20020a62178f000000b0050d4d156362sm97625pfx.1.2022.05.10.16.04.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 10 May 2022 16:04:11 -0700 (PDT)
+Date:   Tue, 10 May 2022 23:04:09 +0000
+From:   Prashant Malani <pmalani@chromium.org>
+To:     Stephen Boyd <swboyd@chromium.org>
+Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        linux-kernel@vger.kernel.org, patches@lists.linux.dev,
+        chrome-platform@lists.linux.dev,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Benson Leung <bleung@chromium.org>,
+        Guenter Roeck <groeck@chromium.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        "Joseph S. Barrera III" <joebar@chromium.org>
+Subject: Re: [PATCH v4 0/2] Input: cros-ec-keyb: Better matrixless support
+Message-ID: <Ynrvadrl/P/6CrMQ@chromium.org>
+References: <20220503204212.3907925-1-swboyd@chromium.org>
 MIME-Version: 1.0
-References: <20220422072841.2206452-1-s.hauer@pengutronix.de>
- <20220422072841.2206452-21-s.hauer@pengutronix.de> <A86359EC-5291-41BD-966E-EB7890644731@gmail.com>
- <CAMdYzYoFG3wCQaWXQNJd7mE20OMCj=ZeuewwZfaCJyoCBT-kQQ@mail.gmail.com>
- <0E6FE020-C95E-47CF-A9D6-AC3F2B2D334F@gmail.com> <CAMdYzYobfJ7WGN+UQ7t5e1Zy9knjfHLse8KzrGrHPfeMkkG0gw@mail.gmail.com>
- <9F2D8CFF-1EAE-4586-9EE9-82A9D67840BB@gmail.com> <CAMdYzYrz7DRj7F9hGaAPaTSiZkQ4eMNujAp8uPuE9geL6kAz4g@mail.gmail.com>
- <812AC0DB-A6D0-4DA3-BCDC-7743E8F61821@gmail.com> <CAMdYzYozewYUbM=Q+iJ2wdM5TrB6dGrjS6zh0qmVgWD4XPVR+Q@mail.gmail.com>
- <ABC61229-B851-4BB7-8B55-688F8A8D841A@gmail.com> <CAMdYzYrsaNED+oMj+z2b4fK7pt32Qg=nXDk3SA0KFDDCJ2XY0g@mail.gmail.com>
- <F1728C93-CFF8-4C51-B95C-A5049E0DC46A@gmail.com> <CAMdYzYpRVZ2hrGiYeQLqSduOZyKuZenw9bViS7oW7d3MWN7Z8g@mail.gmail.com>
-In-Reply-To: <CAMdYzYpRVZ2hrGiYeQLqSduOZyKuZenw9bViS7oW7d3MWN7Z8g@mail.gmail.com>
-From:   Peter Geis <pgwipeout@gmail.com>
-Date:   Tue, 10 May 2022 18:49:43 -0400
-Message-ID: <CAMdYzYpujdqejDz_K2M0aUhPYNFVgTuqnUwkOA6jcxgDdJ+RoA@mail.gmail.com>
-Subject: Re: [PATCH v11 20/24] arm64: dts: rockchip: enable vop2 and hdmi tx
- on rock-3a
-To:     Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
-Cc:     Sascha Hauer <s.hauer@pengutronix.de>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        dri-devel@lists.freedesktop.org,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Sandy Huang <hjc@rock-chips.com>,
-        =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
-        kernel test robot <lkp@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220503204212.3907925-1-swboyd@chromium.org>
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 10, 2022 at 4:54 PM Peter Geis <pgwipeout@gmail.com> wrote:
->
-> On Tue, May 10, 2022 at 9:49 AM Piotr Oniszczuk
-> <piotr.oniszczuk@gmail.com> wrote:
-> >
-> >
-> >
-> > > Wiadomo=C5=9B=C4=87 napisana przez Peter Geis <pgwipeout@gmail.com> w=
- dniu 10.05.2022, o godz. 14:08:
-> > >
-> > >
-> > > You are on the clk_rtc32k_frac which is a fractional divider that is
-> > > fed from the 24m clock. Your clock likely isn't the issue here. I'd
-> > > recommend setting up the cec-gpio node to validate your hardware
-> > > works.
-> >
-> > Peter,
-> >
-> > Here is what i done to verify my rock3-a HW:
-> >
-> > 1.download & burn on SD Radxa Ubuntu
-> > 2.boot and install v4l-utils
-> > 3.run cec-compliance -v -T. It fails with error -22
-> > 4.decompile Ubunntu DT.
-> > 5.Check what HDMITX_CEC_M hdmi uses. It was M0
-> > 6.Chenge to HDMITX_CEC_M1; compile dtb; install on sd
-> > 7.reboot.
-> > 8.cec-compliance -v -T gives all tests OK
-> > 9.cec-ctl --image-view-on -t0 turns-on my TV
-> >
-> > hope this proves my HW is ok?
-> >
->
-> That does show that the hardware works with the oem image. It does not
-> unfortunately prove if it works with your current dts. cec-gpio will
-> show if it's an issue with the cec controller or an external problem.
+Hi Dmitry,
 
-I've pulled your dts and with a few fixes got a working system from
-it. At least on the v1.1 board cec is functional:
-Total for dwhdmi-rockchip device /dev/cec0: 1, Succeeded: 1, Failed:
-0, Warnings: 0
+On May 03 13:42, Stephen Boyd wrote:
+> This is a followup to my previous patch[1] that skips keyboard registration
+> when the matrix properties aren't present. This adds a compatible string
+> for this scenario so we can ease existing DTBs over to the new design.
+> 
+> Changes from v3 (https://lore.kernel.org/r/20220503042242.3597561-1-swboyd@chromium.org):
+>  * s/register_keyboard/has_keyboard/
+>  * Pick up review tags
+>  * Indicate properties are required in example #2 in yaml file
+> 
+> Changes from v2 (https://lore.kernel.org/r/20220429233112.2851665-1-swboyd@chromium.org):
+>  * Drop rows/cols check now that compatible schema handles it
+>  * Make binding require rows,cols,keymap for cros-ec-keyb compatible
+> 
+> Changes from v1 (https://lore.kernel.org/r/20220427203026.828183-1-swboyd@chromium.org):
+>  * Better enforcement of properties in DT binding
+>  * Skip registration by means of adding compatible to device id list
+> 
+> Stephen Boyd (2):
+>   dt-bindings: google,cros-ec-keyb: Introduce switches only compatible
+>   Input: cros-ec-keyb - skip keyboard registration w/o cros-ec-keyb
+>     compatible
+
+Do these need input maintainers Acked-by? Also, should these go through
+the chrome-platform branch?
+
+Thanks,
+
+-Prashant 
+> 
+>  .../bindings/input/google,cros-ec-keyb.yaml   | 87 +++++++++++++++++--
+>  drivers/input/keyboard/cros_ec_keyb.c         | 19 ++--
+>  2 files changed, 91 insertions(+), 15 deletions(-)
+> 
+> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: <devicetree@vger.kernel.org>
+> Cc: Benson Leung <bleung@chromium.org>
+> Cc: Guenter Roeck <groeck@chromium.org>
+> Cc: Douglas Anderson <dianders@chromium.org>
+> Cc: Hsin-Yi Wang <hsinyi@chromium.org>
+> Cc: "Joseph S. Barrera III" <joebar@chromium.org>
+> 
+> [1] https://lore.kernel.org/all/20220425210726.3813477-1-swboyd@chromium.org/
+> 
+> base-commit: 4352e23a7ff2f8a4ff229dd1283ed2f2b708ec51
+> -- 
+> https://chromeos.dev
+> 
+> 
