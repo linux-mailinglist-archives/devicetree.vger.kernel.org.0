@@ -2,155 +2,369 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E9407521124
-	for <lists+devicetree@lfdr.de>; Tue, 10 May 2022 11:38:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DF56E521142
+	for <lists+devicetree@lfdr.de>; Tue, 10 May 2022 11:44:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239043AbiEJJmV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 May 2022 05:42:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35636 "EHLO
+        id S239096AbiEJJsX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 May 2022 05:48:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33472 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239021AbiEJJmS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 May 2022 05:42:18 -0400
-Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2057.outbound.protection.outlook.com [40.107.20.57])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5EDEC366B1;
-        Tue, 10 May 2022 02:38:22 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=L+2hd07rwXkk8c/ccYwuIlXYKW2geahyNkWb9WaMDYaQgcMACitCNWW/X2VPmwOHNEmwVjBWCm39WWDtmW5PCn9Z6mlcsa71rkf4BhRJVRfec7f82zvo8nCn+x7RoerCZEpE7k4KUpfB9pwnrivXDfUFTrmj6jWa0guibbTxty4ujDAMGGPpwnURCrEc5iDrAguyZZ1zw1QQ4dF1AnA8hW4YX6bOTijT/Acu3nG51ty4w5IPxAEG4zkadGkb174+VCW1oTGZ+V/ValjGC5hlWFQk4PnMfuj6RWN7ro3YkKhnGHUs+J+jHyonxtf23Km52K4aLShUfgedrNwUPtwr6w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=oeZHd6gAGQXBin3WoV3PxnViKEVNdTe2/MpTBxxr77w=;
- b=i9B+7Ul8KGFwQcs4eVj1NsDG10mtUYvcwgWH53vZQoS4E4DG7S/1SgzfjXHOxnFdu/8tAgFNRYtMgz4rt/b0A17nYo1oTujesiLlt8bVUGk8uNPMzvGJ0Cx4X8anbEd5ELDyEVYTs9n6bK1M449ItAK5rjSwX1SdNHCWtifF8bWfI2jKqmf0A3DDMUHiimV0aEK5CG+ElBQNhZqam1DV8OBn5AHfXoGJ0+OPmk2IhNqcUFthH5RZLcn+w6tTXsbRUlyisCu3xWz3VDpIz5P/t7cT19Zetz+r6klloOS6VDbF/r7PteawNveKZWgB1zcQEHEAZGV/ZJ/SsjVIAmSbdw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector2-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=oeZHd6gAGQXBin3WoV3PxnViKEVNdTe2/MpTBxxr77w=;
- b=Chxx2DaaoJpbN67moAe7GQWOsrZ80mIQyoaf6E4Ed7sI7IOttx/aWJZb4sZ52qbpTbqQZiynKbYpqbHbf9lyfuEKR3QtdyAFN4rG69VwQpWwjhEfZrvmk1R9QOE3KlJsw9Mp+Bnm3Za7aGAHJDq2lcB9NeEjmD3tnZOWaGqUdEc=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from DU0PR04MB9417.eurprd04.prod.outlook.com (2603:10a6:10:358::11)
- by AM0PR04MB6980.eurprd04.prod.outlook.com (2603:10a6:208:17e::23) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5227.23; Tue, 10 May
- 2022 09:38:19 +0000
-Received: from DU0PR04MB9417.eurprd04.prod.outlook.com
- ([fe80::fc66:662f:2a82:1420]) by DU0PR04MB9417.eurprd04.prod.outlook.com
- ([fe80::fc66:662f:2a82:1420%6]) with mapi id 15.20.5227.023; Tue, 10 May 2022
- 09:38:19 +0000
-From:   "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de
-Cc:     kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, Peng Fan <peng.fan@nxp.com>,
-        Dong Aisheng <aisheng.dong@nxp.com>
-Subject: [PATCH V5 4/4] arm64: defconfig: enable i.MX93 clk & pinctrl
-Date:   Tue, 10 May 2022 17:39:46 +0800
-Message-Id: <20220510093946.335036-5-peng.fan@oss.nxp.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220510093946.335036-1-peng.fan@oss.nxp.com>
-References: <20220510093946.335036-1-peng.fan@oss.nxp.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SI2PR02CA0017.apcprd02.prod.outlook.com
- (2603:1096:4:194::17) To DU0PR04MB9417.eurprd04.prod.outlook.com
- (2603:10a6:10:358::11)
+        with ESMTP id S236316AbiEJJsR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 May 2022 05:48:17 -0400
+Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BCA2329B811
+        for <devicetree@vger.kernel.org>; Tue, 10 May 2022 02:44:18 -0700 (PDT)
+Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (Client did not present a certificate)
+        by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 7C6BA2C0230;
+        Tue, 10 May 2022 09:44:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
+        s=mail181024; t=1652175855;
+        bh=CV+nnOcVdQpKcQgRV0xaZ1gbK67yRvqbHUPMIFx963c=;
+        h=From:To:Cc:Subject:Date:From;
+        b=JoFE27gO/Ez8LMOL1AkLzWX4Qkfe7EEJNX2E3ihIR9mvzEzvN1tx8Ox6kSlfMZs8r
+         T9kCoK2rxlnd2y9BHaC1dgVHC2PgjR0lwd102U1UswBkGgDz1FY8Qlnw+xg7ZTs6zR
+         zKQEZxKbKy+lcgE+qfDsCWPR6hJe/f0kkdIKyVFzUqDYNXQpvH5HdW+vwrcxXUjAyD
+         FiBf5gw0egfG6y185RpHzNNWsxb/1n6B4NeXjqDP8QGHHzAYAFfOz+FxEOeobuyTna
+         vslC3W3GM0ypTLfOzEWYigsljbGZFWxcicUK3Lw52Zpz8T888PfK18XdPOQglch3jF
+         hLpONa6On0Bgg==
+Received: from pat.atlnz.lc (Not Verified[10.32.16.33]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
+        id <B627a33ee0000>; Tue, 10 May 2022 21:44:14 +1200
+Received: from chrisp-dl.ws.atlnz.lc (chrisp-dl.ws.atlnz.lc [10.33.22.30])
+        by pat.atlnz.lc (Postfix) with ESMTP id 6F1CC13ECEC;
+        Tue, 10 May 2022 21:44:14 +1200 (NZST)
+Received: by chrisp-dl.ws.atlnz.lc (Postfix, from userid 1030)
+        id 69B952A00D3; Tue, 10 May 2022 21:44:14 +1200 (NZST)
+From:   Chris Packham <chris.packham@alliedtelesis.co.nz>
+To:     linus.walleij@linaro.org, brgl@bgdev.pl, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, thierry.reding@gmail.com,
+        u.kleine-koenig@pengutronix.de, lee.jones@linaro.org
+Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org,
+        Chris Packham <chris.packham@alliedtelesis.co.nz>
+Subject: [PATCH] dt-bindings: gpio: gpio-mvebu: convert txt binding to YAML
+Date:   Tue, 10 May 2022 21:44:04 +1200
+Message-Id: <20220510094404.1020307-1-chris.packham@alliedtelesis.co.nz>
+X-Mailer: git-send-email 2.36.0
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 51d869d8-11ed-4eb2-aef3-08da3268d0dd
-X-MS-TrafficTypeDiagnostic: AM0PR04MB6980:EE_
-X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
-X-Microsoft-Antispam-PRVS: <AM0PR04MB6980FE6E6B5A840DED35C207C9C99@AM0PR04MB6980.eurprd04.prod.outlook.com>
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: i1RPW41ADFk4oF5pnDXWxZ3ddJxb1eTMhQK3k9XkSPZOcf06/ZJhZiuM/0dR+cnBirqUAvHUYYMtsL8uMsZ3eLfg2sWuyj6lGZXlrDama0Piujl1yR5ryLQXtNbq6Ia0PwdNWCLBmEWR5t7QbUBJ6HugzGqEeo2sf7d1PHRTDDLETgi3gZTb+ZckCGdeUU98LhAPKaTMSMdHBaPkPlqP+kop6IMchswBqQTbuewdl13dWAgYtcae7j1e05Suj1bcDhfq129/wfxdKi//Qew5dueSqAM+ex+sHgN9lghLFBg+bIfQu18b0vxwZR9t6W0kpr7aSGZ21gn52h9wkFmu93l32cJDZsvnSfnR0c/UKT+awh2KjDuKPSZQoHQwEOPggmMtOZZFalrxpIqLKK0NKjl3/SstM1Ujmg0ToIJF8niFoVU4nHZskEtH+vXks+PIB6RDKezxUmLOibrKKWdGxNkRdGyw81yEGQIhvjmSDHONp2J1F9FK8z0NztmqWrYvtPsLHyJg1xwHuhvTj4rij8WLa/Bu0ldCefRLvZKXnkgFyzgTSoxWDp91d+UnsZoOiVYTBIC6S07YcnN9JKu7ezz//+pbaJozaWDAgH3dlQ2l6PPUr8UZ1ECZv6uXfDqqAHePV7z1FAva5ZDFGNXqs33ELsH0+INjpaU7tPqIDqvRJGTNNyl7UIWte3NQnI+8UGrfSv+HCR8oBEPFtl8KHQ==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9417.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(52116002)(6506007)(6666004)(38350700002)(38100700002)(508600001)(6486002)(2906002)(26005)(54906003)(8936002)(66946007)(1076003)(5660300002)(186003)(4744005)(8676002)(66476007)(4326008)(66556008)(86362001)(6512007)(316002)(2616005);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?SaDdRl3YNbjH56CW0+v7Nc0Xwb/QtIGqeHcJBtdztLgmFnEs5VNTyKhoejyN?=
- =?us-ascii?Q?OjzhNMhNW477g779FkLCx6jIpIOJ8Bqg6DHjX9vxkBPLCbXkR+qHQWTxkpLQ?=
- =?us-ascii?Q?xsfJSdbH1pwsivZPz786d9OTvUHRrPCq0uWF+an8Ho0b7rj/EZmFu1Fz85XF?=
- =?us-ascii?Q?SbTzSkpHeLEeaC3WsOjrivrdSuSjcb787IMEZk5Wf8qpPcstU4hkexaxPqxt?=
- =?us-ascii?Q?sVkLDzoZDO9WLOyb1rDkQShQu5RKfm6dBJV8Q3JNZxbZ/BdJh+OS7mcmHld4?=
- =?us-ascii?Q?lQ94Txag8CMxpPHYkH4jJqFMDa3TDfc0RvuCxgwUrh9Ji3oqkbw63b0j/u5p?=
- =?us-ascii?Q?WdRScxcjJJUFakYn9sVJ4yIU9ZD813EppnVMvAebise+kI9NciMbYnlA4lik?=
- =?us-ascii?Q?jJRLUxD5muc0OIvJWBRHjdPyNRx4eezYMLnzovOcg7YOJ0BUksYk8U/1zZih?=
- =?us-ascii?Q?uclzZEsZNDTGZmanyhW2s6TWbO+ss9X3v4ar+85QDiiG9R3VVYm4jj7Z33Pm?=
- =?us-ascii?Q?yWwizhFq0rPv+xGwm/25MdZOxiaiazaqixI+chLSOf2hU5x5bBWtvkq0Devc?=
- =?us-ascii?Q?nKFMnjTNpF0yT3b5zdAXduzE9KVOTauVvF7PKETkqbp2W+yXRid039Blu/al?=
- =?us-ascii?Q?X82ClhpvTxKU+cjkV5afjEPFK6tHVHz9XTEE/TmjCinWZQD4vGU0s/dpeyUb?=
- =?us-ascii?Q?VAYCIQ/hNn0CDzJH4LUYj4KZ8XUkUc7XuAtiavDxiUvU8M5jVAVA0xWcU2vY?=
- =?us-ascii?Q?HR5C7+xaN4nvE3k6455apYUvo58SeTTW9i47/XAC8OKnJtBsgwAylBwITF/K?=
- =?us-ascii?Q?HOX4c8OqVTJ4+3sB0XXr9+sDELm5RX9WsNy1bcqZJlmsk1H7pr6Rj+A+p9Zi?=
- =?us-ascii?Q?k3UG4QubYH5HHkx2d05EqENq+rstdfVUMU+jINhkSZVmNau7G8b1odrXOu6P?=
- =?us-ascii?Q?EYdSVWrfmdtPqErmJSarRT88EYiO8L+Weg2YRxaKVwgTb2LM37NCvNERbHxT?=
- =?us-ascii?Q?VoR7Ky5/U2WduZkveyqCt60r5NpMUwj0WGvvB7thpYbPIyHHn7oQ/QF27E6j?=
- =?us-ascii?Q?BMPFFKmdwAugz8PQ28EB3sQjfydDwXe2MJHt2kLWBqo35Fgk4w3CV7mAb90t?=
- =?us-ascii?Q?rwrRZt2Z0Jwt1SmEM0loXHULPezXCzACIfyXaz6RTFj7ufZ3ceIamYBo2CBX?=
- =?us-ascii?Q?oz/WPswqGwAVBd93VwxGCEM/aDVMXzgo995jf94hysqGOEFEPu+yYjlMk24/?=
- =?us-ascii?Q?H8Je2XcHAd14DHO3BhKfUCr6zdE//aP2JacQlThiH62aLxUBml7XMvRXWdP4?=
- =?us-ascii?Q?pR7kp86k2O80MDEKWmH1DHq0amB9MabJ3RpWGM01vjVDN7IbamKte+mi55JE?=
- =?us-ascii?Q?jXsblWf0NeDWapBomMB6SfPaMCVyo+lnL3MQyPXyj0UZT9WOB8cwBKBQBroI?=
- =?us-ascii?Q?tSMbQm5e92eOPsr0iS5/lTmWBS4AVV+6chkkgYD2F8N2CaTkNabKrxBRWUfr?=
- =?us-ascii?Q?V/GuDcXtZdPQVGVGKMnMtkgs0kSsI2nFWUKUiGgjNgKCjS20zKuNQUfuMUHu?=
- =?us-ascii?Q?WzDA7S/z3kIGxC7NH+q628c3KvTs3OojF24whqL5tiy03P/TD0MKLBVXP+Q2?=
- =?us-ascii?Q?eyWirWphqPuOgarcR6tRx36mnXzD7M5+DE9LFEkaS9q1y4ZdL1RB3zn7ByUl?=
- =?us-ascii?Q?eIV4z/lOb8Esa9fs4B0JxS06B6uXcfTURcMFACMSSDsgFmENDTVgar82kEgh?=
- =?us-ascii?Q?n8IKl2yGOA=3D=3D?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 51d869d8-11ed-4eb2-aef3-08da3268d0dd
-X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9417.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 May 2022 09:38:19.2116
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 516AL06KyeOufx2BfHyWFxr6WIUacicO7dKHiimGz3/pgnBgFtMx3K1hsEgw/h/RIlYY1/x5jRs5mNky5ewIuA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB6980
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+X-SEG-SpamProfiler-Analysis: v=2.3 cv=C7GXNjH+ c=1 sm=1 tr=0 a=KLBiSEs5mFS1a/PbTCJxuA==:117 a=oZkIemNP1mAA:10 a=gEfo2CItAAAA:8 a=pGLkceISAAAA:8 a=KKAkSRfTAAAA:8 a=VwQbUJbxAAAA:8 a=voM4FWlXAAAA:8 a=yZ6uvJJHfemicqfEXc0A:9 a=sptkURWiP4Gy88Gu7hUp:22 a=cvBusfyB2V15izCimMoJ:22 a=AjGcO6oz07-iQ99wixmX:22 a=IC2XNlieTeVoXbcui8wp:22
+X-SEG-SpamProfiler-Score: 0
+x-atlnz-ls: pat
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Peng Fan <peng.fan@nxp.com>
+Convert the existing device tree binding to YAML format.
 
-Enable i.MX93 clk and pinctrl driver for booting the system
+The old binding listed the interrupt-controller and related properties
+as required but there are sufficiently many existing usages without it
+that the YAML binding does not make the interrupt properties required.
 
-Reviewed-by: Dong Aisheng <aisheng.dong@nxp.com>
-Signed-off-by: Peng Fan <peng.fan@nxp.com>
+The offset and marvell,pwm-offset properties weren't in the old binding
+and are added to the YAML binding. The offset property is required when
+the marvell,armada-8k-gpio compatible is used.
+
+Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
 ---
- arch/arm64/configs/defconfig | 2 ++
- 1 file changed, 2 insertions(+)
+ .../devicetree/bindings/gpio/gpio-mvebu.txt   |  93 -----------
+ .../devicetree/bindings/gpio/gpio-mvebu.yaml  | 147 ++++++++++++++++++
+ MAINTAINERS                                   |   2 +-
+ 3 files changed, 148 insertions(+), 94 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/gpio/gpio-mvebu.txt
+ create mode 100644 Documentation/devicetree/bindings/gpio/gpio-mvebu.yam=
+l
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index e0aa3a924eb7..148cebd0224a 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -520,6 +520,7 @@ CONFIG_PINCTRL_IMX8QM=y
- CONFIG_PINCTRL_IMX8QXP=y
- CONFIG_PINCTRL_IMX8DXL=y
- CONFIG_PINCTRL_IMX8ULP=y
-+CONFIG_PINCTRL_IMX93=y
- CONFIG_PINCTRL_MSM=y
- CONFIG_PINCTRL_IPQ8074=y
- CONFIG_PINCTRL_IPQ6018=y
-@@ -1006,6 +1007,7 @@ CONFIG_CLK_IMX8MP=y
- CONFIG_CLK_IMX8MQ=y
- CONFIG_CLK_IMX8QXP=y
- CONFIG_CLK_IMX8ULP=y
-+CONFIG_CLK_IMX93=y
- CONFIG_TI_SCI_CLK=y
- CONFIG_COMMON_CLK_QCOM=y
- CONFIG_QCOM_A53PLL=y
--- 
-2.25.1
+diff --git a/Documentation/devicetree/bindings/gpio/gpio-mvebu.txt b/Docu=
+mentation/devicetree/bindings/gpio/gpio-mvebu.txt
+deleted file mode 100644
+index 0fc6700ed800..000000000000
+--- a/Documentation/devicetree/bindings/gpio/gpio-mvebu.txt
++++ /dev/null
+@@ -1,93 +0,0 @@
+-* Marvell EBU GPIO controller
+-
+-Required properties:
+-
+-- compatible : Should be "marvell,orion-gpio", "marvell,mv78200-gpio",
+-  "marvell,armadaxp-gpio" or "marvell,armada-8k-gpio".
+-
+-    "marvell,orion-gpio" should be used for Orion, Kirkwood, Dove,
+-    Discovery (except MV78200) and Armada 370. "marvell,mv78200-gpio"
+-    should be used for the Discovery MV78200.
+-
+-    "marvel,armadaxp-gpio" should be used for all Armada XP SoCs
+-    (MV78230, MV78260, MV78460).
+-
+-    "marvell,armada-8k-gpio" should be used for the Armada 7K and 8K
+-    SoCs (either from AP or CP), see
+-    Documentation/devicetree/bindings/arm/marvell/ap80x-system-controlle=
+r.txt
+-    for specific details about the offset property.
+-
+-- reg: Address and length of the register set for the device. Only one
+-  entry is expected, except for the "marvell,armadaxp-gpio" variant
+-  for which two entries are expected: one for the general registers,
+-  one for the per-cpu registers. Not used for marvell,armada-8k-gpio.
+-
+-- interrupts: The list of interrupts that are used for all the pins
+-  managed by this GPIO bank. There can be more than one interrupt
+-  (example: 1 interrupt per 8 pins on Armada XP, which means 4
+-  interrupts per bank of 32 GPIOs).
+-
+-- interrupt-controller: identifies the node as an interrupt controller
+-
+-- #interrupt-cells: specifies the number of cells needed to encode an
+-  interrupt source. Should be two.
+-  The first cell is the GPIO number.
+-  The second cell is used to specify flags:
+-    bits[3:0] trigger type and level flags:
+-      1 =3D low-to-high edge triggered.
+-      2 =3D high-to-low edge triggered.
+-      4 =3D active high level-sensitive.
+-      8 =3D active low level-sensitive.
+-
+-- gpio-controller: marks the device node as a gpio controller
+-
+-- ngpios: number of GPIOs this controller has
+-
+-- #gpio-cells: Should be two. The first cell is the pin number. The
+-  second cell is reserved for flags, unused at the moment.
+-
+-Optional properties:
+-
+-In order to use the GPIO lines in PWM mode, some additional optional
+-properties are required.
+-
+-- compatible: Must contain "marvell,armada-370-gpio"
+-
+-- reg: an additional register set is needed, for the GPIO Blink
+-  Counter on/off registers.
+-
+-- reg-names: Must contain an entry "pwm" corresponding to the
+-  additional register range needed for PWM operation.
+-
+-- #pwm-cells: Should be two. The first cell is the GPIO line number. The
+-  second cell is the period in nanoseconds.
+-
+-- clocks: Must be a phandle to the clock for the GPIO controller.
+-
+-Example:
+-
+-		gpio0: gpio@d0018100 {
+-			compatible =3D "marvell,armadaxp-gpio";
+-			reg =3D <0xd0018100 0x40>,
+-			    <0xd0018800 0x30>;
+-			ngpios =3D <32>;
+-			gpio-controller;
+-			#gpio-cells =3D <2>;
+-			interrupt-controller;
+-			#interrupt-cells =3D <2>;
+-			interrupts =3D <16>, <17>, <18>, <19>;
+-		};
+-
+-		gpio1: gpio@18140 {
+-			compatible =3D "marvell,armada-370-gpio";
+-			reg =3D <0x18140 0x40>, <0x181c8 0x08>;
+-			reg-names =3D "gpio", "pwm";
+-			ngpios =3D <17>;
+-			gpio-controller;
+-			#gpio-cells =3D <2>;
+-			#pwm-cells =3D <2>;
+-			interrupt-controller;
+-			#interrupt-cells =3D <2>;
+-			interrupts =3D <87>, <88>, <89>;
+-			clocks =3D <&coreclk 0>;
+-		};
+diff --git a/Documentation/devicetree/bindings/gpio/gpio-mvebu.yaml b/Doc=
+umentation/devicetree/bindings/gpio/gpio-mvebu.yaml
+new file mode 100644
+index 000000000000..84b72e506526
+--- /dev/null
++++ b/Documentation/devicetree/bindings/gpio/gpio-mvebu.yaml
+@@ -0,0 +1,147 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/gpio/gpio-mvebu.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Marvell EBU GPIO controller
++
++maintainers:
++  - Thierry Reding <thierry.reding@gmail.com>
++  - Lee Jones <lee.jones@linaro.org>
++
++properties:
++  compatible:
++    oneOf:
++      - enum:
++          - marvell,orion-gpio
++          - marvell,mv78200-gpio
++          - marvell,armada-370-gpio
++          - marvell,armadaxp-gpio
++          - marvell,armada-8k-gpio
++      - items:
++          - const: marvell,armada-370-gpio
++          - const: marvell,orion-gpio
++
++    description: |
++      "marvell,orion-gpio" should be used for Orion, Kirkwood, Dove, Dis=
+covery
++      (except MV78200) and Armada 370. "marvell,mv78200-gpio" should be =
+used
++      for the Discovery MV78200.
++
++      "marvel,armadaxp-gpio" should be used for all Armada XP SoCs (MV78=
+230,
++      MV78260, MV78460).
++
++      "marvell,armada-8k-gpio" should be used for the Armada 7K and 8K S=
+oCs
++      (either from AP or CP), see
++      Documentation/devicetree/bindings/arm/marvell/ap80x-system-control=
+ler.txt
++      for specific details about the offset property.
++
++  reg:
++    description: |
++      Address and length of the register set for the device. Only one en=
+try
++      is expected, except for the "marvell,armadaxp-gpio" variant for wh=
+ich
++      two entries are expected: one for the general registers, one for t=
+he
++      per-cpu registers. Not used for marvell,armada-8k-gpio.
++
++      An additional register set is needed, for the GPIO Blink
++      Counter on/off registers.
++    minItems: 1
++    maxItems: 2
++
++  reg-names:
++    description:
++      Must contain an entry "pwm" corresponding to the
++      additional register range needed for PWM operation.
++    minItems: 1
++    maxItems: 2
++
++  offset:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: Offset in the register map for the gpio registers (in b=
+ytes)
++
++  interrupts:
++    description: |
++      The list of interrupts that are used for all the pins managed by t=
+his
++      GPIO bank. There can be more than one interrupt (example: 1 interr=
+upt
++      per 8 pins on Armada XP, which means 4 interrupts per bank of 32
++      GPIOs).
++    minItems: 1
++    maxItems: 4
++
++  interrupt-controller: true
++
++  "#interrupt-cells":
++    const: 2
++
++  gpio-controller: true
++
++  ngpios:
++    description:
++      number of GPIOs this controller has
++    minimum: 1
++    maximum: 32
++
++  "#gpio-cells":
++    const: 2
++
++  marvell,pwm-offset:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: Offset in the register map for the pwm registers (in by=
+tes)
++
++  "#pwm-cells":
++    description:
++      The first cell is the GPIO line number. The second cell is the per=
+iod
++      in nanoseconds.
++    const: 2
++
++  clocks:
++    minItems: 1
++    maxItems: 2
++
++required:
++  - compatible
++  - gpio-controller
++  - ngpios
++  - "#gpio-cells"
++
++if:
++  properties:
++    compatible:
++      contains:
++        const: marvell,armada-8k-gpio
++then:
++  required:
++    - offset
++else:
++  required:
++    - reg
++
++unevaluatedProperties: true
++
++examples:
++  - |
++      gpio@d0018100 {
++        compatible =3D "marvell,armadaxp-gpio";
++        reg =3D <0xd0018100 0x40>, <0xd0018800 0x30>;
++        ngpios =3D <32>;
++        gpio-controller;
++        #gpio-cells =3D <2>;
++        interrupt-controller;
++        #interrupt-cells =3D <2>;
++        interrupts =3D <16>, <17>, <18>, <19>;
++      };
++
++  - |
++      gpio@18140 {
++        compatible =3D "marvell,armada-370-gpio";
++        reg =3D <0x18140 0x40>, <0x181c8 0x08>;
++        reg-names =3D "gpio", "pwm";
++        ngpios =3D <17>;
++        gpio-controller;
++        #gpio-cells =3D <2>;
++        #pwm-cells =3D <2>;
++        interrupt-controller;
++        #interrupt-cells =3D <2>;
++        interrupts =3D <87>, <88>, <89>;
++        clocks =3D <&coreclk 0>;
++      };
+diff --git a/MAINTAINERS b/MAINTAINERS
+index e8c52d0192a6..6b1c80fd7611 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -16019,7 +16019,7 @@ L:	linux-pwm@vger.kernel.org
+ S:	Maintained
+ Q:	https://patchwork.ozlabs.org/project/linux-pwm/list/
+ T:	git git://git.kernel.org/pub/scm/linux/kernel/git/thierry.reding/linu=
+x-pwm.git
+-F:	Documentation/devicetree/bindings/gpio/gpio-mvebu.txt
++F:	Documentation/devicetree/bindings/gpio/gpio-mvebu.yaml
+ F:	Documentation/devicetree/bindings/pwm/
+ F:	Documentation/driver-api/pwm.rst
+ F:	drivers/gpio/gpio-mvebu.c
+--=20
+2.36.0
 
