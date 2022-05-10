@@ -2,65 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 35A725223B7
-	for <lists+devicetree@lfdr.de>; Tue, 10 May 2022 20:16:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A89F5223D2
+	for <lists+devicetree@lfdr.de>; Tue, 10 May 2022 20:23:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241813AbiEJSUK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 May 2022 14:20:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52410 "EHLO
+        id S233867AbiEJS0s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 May 2022 14:26:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57626 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348822AbiEJSTh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 May 2022 14:19:37 -0400
-Received: from mail-oo1-f42.google.com (mail-oo1-f42.google.com [209.85.161.42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D2252AACCC
-        for <devicetree@vger.kernel.org>; Tue, 10 May 2022 11:14:26 -0700 (PDT)
-Received: by mail-oo1-f42.google.com with SMTP id bm18-20020a056820189200b0035f7e56a3dfso1488529oob.8
-        for <devicetree@vger.kernel.org>; Tue, 10 May 2022 11:14:26 -0700 (PDT)
+        with ESMTP id S1348898AbiEJS0W (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 May 2022 14:26:22 -0400
+Received: from mail-oa1-f50.google.com (mail-oa1-f50.google.com [209.85.160.50])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C2D32EA0D;
+        Tue, 10 May 2022 11:22:23 -0700 (PDT)
+Received: by mail-oa1-f50.google.com with SMTP id 586e51a60fabf-deb9295679so19290915fac.6;
+        Tue, 10 May 2022 11:22:23 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=bqzP6kLC9TvD/eZVDvG+k9Cz3CtHjrwdnS/BDXCrozk=;
-        b=nQGH3A988cNyZntQ7h9PPyd/XK/3nw32yqIwgr3gciWIwkb4BasRPZsdIndcqyxBCg
-         IaAIddQsUn2qAr9W1LB6MMbcToOEaQHd4WjyOvlpP+6ulOsa5/Zi7+To9tU4zrBybjaa
-         96uz6RuWY92kW01DGqdPTM2sF34VvNl1VQGbJSYs2UEoH+T1Xny1IMQ5DvHg8DHHpMqw
-         PuLHmLlTpJ85b+l4UBx2ocSKEii5hn2cnSEhXaP47qDDZp8ealLhCI0RG3kwqZrsLv2G
-         8sAJmsS/wpK4Su5DSJ6D6F6GhPf5ujoUUqVnU0nuHZlVsvHTCpamNvDTCnrJ8XXz5ZkH
-         +L3w==
-X-Gm-Message-State: AOAM530x+eOy2WXBIPwEXPetM6VcbDvItG84m+pX/ZaQLTG64Jr3wBrX
-        v0KfbftgdlszHAp+yUsgJA==
-X-Google-Smtp-Source: ABdhPJyfV9W5KcMMLkxExjfN4a6CpVE64vC6bZ6q+D3QKn6QIc1wk0xfg8j8ZGyynxcm2C2pKY+9IA==
-X-Received: by 2002:a05:6830:3108:b0:606:581b:b7bb with SMTP id b8-20020a056830310800b00606581bb7bbmr8250687ots.270.1652206457584;
-        Tue, 10 May 2022 11:14:17 -0700 (PDT)
+        bh=5eaxIUkfRDs5zSochol4WtIm5357tYweJMGDFI2u4pU=;
+        b=SJlJeaDlw/oBMPbofFuPwipw/4tK+Sp/NHRp8uayvLyQaRpYNqMGha1LedZlot9OkV
+         cnCW3+MF1FYyWpdmvduWXoEL/5caoGHyCVxceqd1ZEXZpLTyiqCGREUORjgE226s7/Mg
+         xyaS2dFfIjmvdn8ZjF/nV9CpKfysbONKdDVS5PJr5H7opdWykSXU0CAgDwIqCLDHLBBs
+         xjDsv/rSlOfoPrx4Hkzmf3spZBrjaGxlqV1KGs/Qcc+Ny754Rl5WkgGKYi2M3I2XO1mA
+         hfwKwrjo0RkdJlds7YeXALloiebengy3sZViL6GCjmknyWG93aGr7pX9WU7OdPmb8gNE
+         7H/w==
+X-Gm-Message-State: AOAM530jDgbR+miSYhWENSdppcUABP58nXCdzNvafSunhFeAR0tCNAmx
+        S9UqLv7wEA5/mDykHSHMfg==
+X-Google-Smtp-Source: ABdhPJzS4rbTDp32QJIoRssqYEpMJ/7t5ksogGydtS0hdk3+FTzqaG5lGb+rFO7ig2cCi/AXJcUl8Q==
+X-Received: by 2002:a05:6870:e613:b0:ec:6564:c7c9 with SMTP id q19-20020a056870e61300b000ec6564c7c9mr787852oag.230.1652206942446;
+        Tue, 10 May 2022 11:22:22 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id h23-20020a4adcd7000000b0035eb4e5a6b6sm27454oou.12.2022.05.10.11.14.16
+        by smtp.gmail.com with ESMTPSA id k2-20020a056870570200b000edae17a8cesm5974143oap.3.2022.05.10.11.22.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 May 2022 11:14:17 -0700 (PDT)
-Received: (nullmailer pid 2319536 invoked by uid 1000);
-        Tue, 10 May 2022 18:14:16 -0000
-Date:   Tue, 10 May 2022 13:14:16 -0500
+        Tue, 10 May 2022 11:22:21 -0700 (PDT)
+Received: (nullmailer pid 2332088 invoked by uid 1000);
+        Tue, 10 May 2022 18:22:21 -0000
+Date:   Tue, 10 May 2022 13:22:21 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Lucas Stach <l.stach@pengutronix.de>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, Shawn Guo <shawnguo@kernel.org>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Marek Vasut <marex@denx.de>, patchwork-lst@pengutronix.de,
-        Sandor Yu <Sandor.yu@nxp.com>, linux-phy@lists.infradead.org,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Robert Foss <robert.foss@linaro.org>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Subject: Re: [PATCH v0.5 5/9] dt-bindings: phy: add binding for the i.MX8MP
- HDMI PHY
-Message-ID: <YnqreMpQI317fq19@robh.at.kernel.org>
-References: <20220506181034.2001548-1-l.stach@pengutronix.de>
- <20220506181034.2001548-6-l.stach@pengutronix.de>
+To:     Alexandre TORGUE <alexandre.torgue@foss.st.com>
+Cc:     linux-stm32@st-md-mailman.stormreply.com,
+        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Michael Turquette <mturquette@baylibre.com>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: clock: stm32mp1: adapt example for
+ "st,stm32mp1-rcc-secure"
+Message-ID: <YnqtXa+NhVUH0oyi@robh.at.kernel.org>
+References: <20220509134658.16267-1-alexandre.torgue@foss.st.com>
+ <1652123805.754133.27398.nullmailer@robh.at.kernel.org>
+ <ddd5d5b2-32a5-6464-80a6-0054c376dd96@foss.st.com>
+ <Ynp9Pu+ZqjaBu8ne@robh.at.kernel.org>
+ <b64e6662-5fd2-5223-1e25-15217d75d06a@foss.st.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220506181034.2001548-6-l.stach@pengutronix.de>
+In-Reply-To: <b64e6662-5fd2-5223-1e25-15217d75d06a@foss.st.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
@@ -72,87 +70,63 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, May 06, 2022 at 08:10:30PM +0200, Lucas Stach wrote:
-> Add a DT binding for the HDMI PHY found on the i.MX8MP SoC.
+On Tue, May 10, 2022 at 06:44:19PM +0200, Alexandre TORGUE wrote:
+> Hi Rob
 > 
-> Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
-> ---
->  .../bindings/phy/fsl,imx8mp-hdmi-phy.yaml     | 62 +++++++++++++++++++
->  1 file changed, 62 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/phy/fsl,imx8mp-hdmi-phy.yaml
+> On 5/10/22 16:57, Rob Herring wrote:
+> > On Tue, May 10, 2022 at 09:47:05AM +0200, Alexandre TORGUE wrote:
+> > > Hi Rob
+> > > 
+> > > On 5/9/22 21:16, Rob Herring wrote:
+> > > > On Mon, 09 May 2022 15:46:58 +0200, Alexandre Torgue wrote:
+> > > > > For "st,stm32mp1-rcc-secure" schema, clocks and clock-names entries are now
+> > > > > required properties.
+> > > > > 
+> > > > > Signed-off-by: Alexandre Torgue <alexandre.torgue@foss.st.com>
+> > > > > 
+> > > > 
+> > > > My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> > > > on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> > > > 
+> > > > yamllint warnings/errors:
+> > > > 
+> > > > dtschema/dtc warnings/errors:
+> > > > Error: Documentation/devicetree/bindings/clock/st,stm32mp1-rcc.example.dts:27.33-34 syntax error
+> > > > FATAL ERROR: Unable to parse input tree
+> > > > make[1]: *** [scripts/Makefile.lib:364: Documentation/devicetree/bindings/clock/st,stm32mp1-rcc.example.dtb] Error 1
+> > > > make[1]: *** Waiting for unfinished jobs....
+> > > > make: *** [Makefile:1401: dt_binding_check] Error 2
+> > > > 
+> > > > doc reference errors (make refcheckdocs):
+> > > > 
+> > > > See https://patchwork.ozlabs.org/patch/
+> > > > 
+> > > > This check can fail if there are any dependencies. The base for a patch
+> > > > series is generally the most recent rc1.
+> > > > 
+> > > > If you already ran 'make dt_binding_check' and didn't see the above
+> > > > error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> > > > date:
+> > > > 
+> > > > pip3 install dtschema --upgrade
+> > > > 
+> > > > Please check and re-submit.
+> > > > 
+> > > 
+> > > I just updated dtschema and yamllint seems to be well installed. I don't see
+> > > the see above. I wrote this patch on top of my stm32-next tree. Do I have to
+> > > send it directly to arm-soc in order to be merged on top of my latest
+> > > pull-request ?
+> > 
+> > That appears to be header related AFAICT. Maybe you have header changes
+> > in your tree. The issue this is fixing is in your tree, so it should be
+> > applied there.
 > 
-> diff --git a/Documentation/devicetree/bindings/phy/fsl,imx8mp-hdmi-phy.yaml b/Documentation/devicetree/bindings/phy/fsl,imx8mp-hdmi-phy.yaml
-> new file mode 100644
-> index 000000000000..bc21c073e92a
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/phy/fsl,imx8mp-hdmi-phy.yaml
-> @@ -0,0 +1,62 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/phy/fsl,imx8mp-hdmi-phy.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Freescale i.MX8MP HDMI PHY binding
-> +
-> +maintainers:
-> +  - Lucas Stach <l.stach@pengutronix.de>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - fsl,imx8mp-hdmi-phy
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  "#clock-cells":
-> +    const: 0
-> +
-> +  clocks:
-> +    minItems: 2
-> +    maxItems: 2
-> +
-> +  clock-names:
-> +    items:
-> +      - const: apb
-> +      - const: ref
-> +
-> +  "#phy-cells":
-> +    const: 0
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - "#clock-cells"
-> +  - clocks
-> +  - clock-names
-> +  - power-domains
+> Ah yes! CK_SCMIxxx have changed in my tree (merged in arm-soc tree) and this
+> patch is done on top of this change. So has to be applied in arm-soc.
+> So I just have to send it directly to Arnd and arm-soc ?
 
-#phy-cells should be required.
+If you don't have a fixes branch for them (or one that will be pulled 
+soonish), then yes.
 
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/imx8mp-clock.h>
-> +    #include <dt-bindings/power/imx8mp-power.h>
-> +
-> +    phy@32fdff00 {
-> +        compatible = "fsl,imx8mp-hdmi-phy";
-> +        reg = <0x32fdff00 0x100>;
-> +        clocks = <&clk IMX8MP_CLK_HDMI_APB>,
-> +                 <&clk IMX8MP_CLK_HDMI_24M>;
-> +        clock-names = "apb", "ref";
-> +        power-domains = <&hdmi_blk_ctrl IMX8MP_HDMIBLK_PD_HDMI_TX_PHY>;
-> +        #clock-cells = <0>;
-> +        #phy-cells = <0>;
-> +    };
-> -- 
-> 2.30.2
-> 
-> 
+Rob
