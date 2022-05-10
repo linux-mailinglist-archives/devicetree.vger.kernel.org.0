@@ -2,130 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 04793520E29
-	for <lists+devicetree@lfdr.de>; Tue, 10 May 2022 08:52:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 27B20520E80
+	for <lists+devicetree@lfdr.de>; Tue, 10 May 2022 09:33:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236920AbiEJG4v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 May 2022 02:56:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33844 "EHLO
+        id S237698AbiEJHgj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 May 2022 03:36:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40320 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235052AbiEJG4t (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 May 2022 02:56:49 -0400
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C77F1A80B;
-        Mon,  9 May 2022 23:52:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1652165572; x=1683701572;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=QSQrQETYh/pxV8qAHgktpIdb0RFfKPYxj6UqNQftZ3k=;
-  b=ZTeJxjpSvZB8BNzu7kwQP+9KQVcJkeQrkdSybwEqVZsMEFv4Ho2VXSvt
-   7vsYvFZsr+k2QQPXE+wDEWW7rdDbHTaeK/dmFMjwZwvQr1UZPvZrXUvDU
-   +GSLk5cMWASvOT15YkYsIMzF19h2hR5rV8Gt42CvgvRzxW61F4PQ7ICmv
-   NO92GqyOJ4NH50rsGo3IV5CkCS9Iew+WR+prm37AN7g4Zm8aliCr+H5ey
-   jy47aV7UQ5gSSy7ni8UgkqvuZRH/XTMWPg/qtgMeAYt+ozkMPl61HzV6O
-   LNrF7M7PSYno67KPcXCZ0l2AmCMK9gFST1sP2O5nVg2IOFU6HOali5sEB
-   Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10342"; a="256821506"
-X-IronPort-AV: E=Sophos;i="5.91,213,1647327600"; 
-   d="scan'208";a="256821506"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 May 2022 23:52:51 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.91,213,1647327600"; 
-   d="scan'208";a="552658004"
-Received: from lkp-server01.sh.intel.com (HELO 5056e131ad90) ([10.239.97.150])
-  by orsmga002.jf.intel.com with ESMTP; 09 May 2022 23:52:48 -0700
-Received: from kbuild by 5056e131ad90 with local (Exim 4.95)
-        (envelope-from <lkp@intel.com>)
-        id 1noJjk-000HQo-6Z;
-        Tue, 10 May 2022 06:52:48 +0000
-Date:   Tue, 10 May 2022 14:51:57 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Sebastian Ene <sebastianene@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Dragan Cvetic <dragan.cvetic@xilinx.com>
-Cc:     kbuild-all@lists.01.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, maz@kernel.org, will@kernel.org,
-        qperret@google.com, Guenter Roeck <linux@roeck-us.net>,
-        Sebastian Ene <sebastianene@google.com>
-Subject: Re: [PATCH v5 2/2] misc: Add a mechanism to detect stalls on guest
- vCPUs
-Message-ID: <202205101453.rxj6blmH-lkp@intel.com>
-References: <20220509091103.2220604-3-sebastianene@google.com>
+        with ESMTP id S238223AbiEJHGR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 May 2022 03:06:17 -0400
+Received: from mout.kundenserver.de (mout.kundenserver.de [217.72.192.74])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B26E89CDE;
+        Tue, 10 May 2022 00:02:19 -0700 (PDT)
+Received: from mail-yb1-f171.google.com ([209.85.219.171]) by
+ mrelayeu.kundenserver.de (mreue107 [213.165.67.113]) with ESMTPSA (Nemesis)
+ id 1M7s1M-1njOCR3gdG-004yY2; Tue, 10 May 2022 09:02:18 +0200
+Received: by mail-yb1-f171.google.com with SMTP id y76so29055581ybe.1;
+        Tue, 10 May 2022 00:02:17 -0700 (PDT)
+X-Gm-Message-State: AOAM533ETVQqOGd98mKKn5I3jsOydLd8pfc9K4zQhooUGt9dJm4p1/8b
+        3UeFHFMLwIhMPqCtbms+ZAofTta2br3qPE7El+M=
+X-Google-Smtp-Source: ABdhPJzCoErVlOlWP+3agvpOC/u6kgO4/gR8EykNKzu19PrW0u0Z98t99jOPlEpsD8ttySzd6YiVB2UWW4A083+k8U4=
+X-Received: by 2002:a25:cbc9:0:b0:645:879a:cdd3 with SMTP id
+ b192-20020a25cbc9000000b00645879acdd3mr15923423ybg.550.1652166136461; Tue, 10
+ May 2022 00:02:16 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220509091103.2220604-3-sebastianene@google.com>
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+References: <20220510032558.10304-1-ychuang3@nuvoton.com> <20220510032558.10304-4-ychuang3@nuvoton.com>
+In-Reply-To: <20220510032558.10304-4-ychuang3@nuvoton.com>
+From:   Arnd Bergmann <arnd@arndb.de>
+Date:   Tue, 10 May 2022 09:01:59 +0200
+X-Gmail-Original-Message-ID: <CAK8P3a1tbvE+PTB-qy2y7o3_i3VP0zkgMueDy3zBd64BsGKssw@mail.gmail.com>
+Message-ID: <CAK8P3a1tbvE+PTB-qy2y7o3_i3VP0zkgMueDy3zBd64BsGKssw@mail.gmail.com>
+Subject: Re: [PATCH V4 3/5] arm64: dts: nuvoton: Add initial support for MA35D1
+To:     Jacky Huang <ychuang3@nuvoton.com>
+Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        ychuang570808@gmail.com, Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, SoC Team <soc@kernel.org>,
+        cfli0@nuvoton.com
+Content-Type: text/plain; charset="UTF-8"
+X-Provags-ID: V03:K1:41uXJV8ZDI63xzuVbY8paB13ziPpltqOnktwNglwfUmNJw9cwCd
+ 5P5mu20L/Nj1xc8WlYqCwvAtU+g/vFs7tbrlxZxKacQTrJIa434jFkbAQTSRxmbOa8wx3qA
+ PTGOpcRLTwidHUrxL/WFup/F9NkJjUsJ1A79nwzzRNgynnIp3dB3zvvkyjGmL+sk0Jbe66W
+ JorYpPblV4AbPGXK6o7YA==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:EywyeRWjnAM=:tgppNxSMe33OniewTBHltP
+ sdTFdQQeI4ME11si5cRlTj8pqdF21LRzNVODnHZJTYonX/jKI4dt3kV1l5pGSfPgDcg4Yi5pm
+ F4yngPZPg55zwDBCOAyFgcqTtidatGFt98rNZMfUOiy7U5IxFcmrbl4dfTf3R9pGyBHmuTjco
+ ZF2p9tmplFKS37hwWL2zChcEExR9UkXrSJY8IkGoOozZHL2CUjNp9QLBBSqcFdDEKdnLGVKO0
+ pmu2ZCvbbM2IYYX+UwoRM0Kad/77LkRDNWJCpFtZO7/SeahAwg7K5JyhuJ0xi9VQMiusB9n6C
+ fNjCog6hWmmqmtLph55AGx0aBcPJxZzLMmotvyLmedU15Eo7b+VT/o87qEjVFWqc+IzX4/Y+S
+ Ul5uVdzNhaiLsrjRheSC5cvJYmuNzOrGqGLSyV3g8zA1lo9SItndZnex4CSmr4BI+FjCZmKJl
+ wSdIF2o83cmogKKZxdihAJCGGEmqNGLc5SMoME7T10fg+6emYUSAB7sXWMLErSCbol5A8P0d/
+ M/PVqAnlTrWHwpZFe8bEvEw01YJPaberRT4nHnLnS7xwwT8Rff+jBn+Tn01NbtleAdK54+pS1
+ qwJw6sBbbpZQoGa5DqvzFR4l7iQHSwVZlsyfj1rCTwgPsS7aSIwZ1PC93Us17D/mxS0+sDvrt
+ ufOzQNe30mZ7+zv2f506yzooqzxSB30NuK+Kp8DhYHrLH6QL17L1H9+ZgMBpeiEtl+nC0DLvy
+ xOvkVHyJoRHuxBgal47FNPOVMogUx4oBdVw7yNw1YAORqXVHnKfddA+9jq/cU6Ikoly7uexoA
+ 0bn3ObIxyt1W4I2uDU3dsn2H+9hQmzXk/Bmj/8AApXSfu+1/Uk=
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sebastian,
+On Tue, May 10, 2022 at 5:25 AM Jacky Huang <ychuang3@nuvoton.com> wrote:
+>
+> Add the initial device tree files for Nuvoton MA35D1 Soc.
+>
+> Signed-off-by: Jacky Huang <ychuang3@nuvoton.com>
+> ---
+> +
+> +/ {
+> +       model = "Nuvoton MA35D1-EVB";
+> +       compatible = "nuvoton,ma35d1-evb", "nuvoton,ma35d1";
+> +
+> +       chosen {
+> +               stdout-path = "serial0:115200n8";
+> +       };
 
-Thank you for the patch! Yet something to improve:
+Something seems to be missing here: you set the console to the serial0
+alias, but that is not defined anywhere, and the ma35d1.dtsi file does not
+appear to define any UART at all. Are you still missing the driver for this?
 
-[auto build test ERROR on robh/for-next]
-[also build test ERROR on char-misc/char-misc-testing soc/for-next v5.18-rc6 next-20220509]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
+Please add a more detailed description in the changelog text above that
+explains what kind of SoC this is (maybe a link to the product web page,
+if there is one), and a status of how complete the support is: which drivers
+are already merged, and which ones are still being worked on?
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Sebastian-Ene/Detect-stalls-on-guest-vCPUS/20220509-174959
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-config: sh-allmodconfig (https://download.01.org/0day-ci/archive/20220510/202205101453.rxj6blmH-lkp@intel.com/config)
-compiler: sh4-linux-gcc (GCC) 11.3.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/d3152372fdd19448b32806c0bffd78d8729d02e4
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Sebastian-Ene/Detect-stalls-on-guest-vCPUS/20220509-174959
-        git checkout d3152372fdd19448b32806c0bffd78d8729d02e4
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.3.0 make.cross W=1 O=build_dir ARCH=sh SHELL=/bin/bash drivers/misc/
-
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
-
-All errors (new ones prefixed by >>):
-
-   In file included from include/linux/device/driver.h:21,
-                    from include/linux/device.h:32,
-                    from include/linux/node.h:18,
-                    from include/linux/cpu.h:17,
-                    from drivers/misc/vcpu_stall_detector.c:6:
->> drivers/misc/vcpu_stall_detector.c:203:25: error: 'vcpu_stall_detector_of_match' undeclared here (not in a function); did you mean 'vcpu_stall_detect_of_match'?
-     203 | MODULE_DEVICE_TABLE(of, vcpu_stall_detector_of_match);
-         |                         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   include/linux/module.h:244:15: note: in definition of macro 'MODULE_DEVICE_TABLE'
-     244 | extern typeof(name) __mod_##type##__##name##_device_table               \
-         |               ^~~~
->> include/linux/module.h:244:21: error: '__mod_of__vcpu_stall_detector_of_match_device_table' aliased to undefined symbol 'vcpu_stall_detector_of_match'
-     244 | extern typeof(name) __mod_##type##__##name##_device_table               \
-         |                     ^~~~~~
-   drivers/misc/vcpu_stall_detector.c:203:1: note: in expansion of macro 'MODULE_DEVICE_TABLE'
-     203 | MODULE_DEVICE_TABLE(of, vcpu_stall_detector_of_match);
-         | ^~~~~~~~~~~~~~~~~~~
-
-
-vim +203 drivers/misc/vcpu_stall_detector.c
-
-   202	
- > 203	MODULE_DEVICE_TABLE(of, vcpu_stall_detector_of_match);
-   204	
-
--- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
+        Arnd
