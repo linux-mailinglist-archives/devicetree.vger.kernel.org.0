@@ -2,124 +2,290 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4609B520F02
-	for <lists+devicetree@lfdr.de>; Tue, 10 May 2022 09:47:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D48C520F0D
+	for <lists+devicetree@lfdr.de>; Tue, 10 May 2022 09:49:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236375AbiEJHvY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 May 2022 03:51:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56180 "EHLO
+        id S237179AbiEJHxt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 May 2022 03:53:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37684 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234014AbiEJHvX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 May 2022 03:51:23 -0400
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3D31189E6C;
-        Tue, 10 May 2022 00:47:26 -0700 (PDT)
-Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 24A4C6ou025914;
-        Tue, 10 May 2022 09:47:10 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=Ty8V9iwX1zolMe/EYzmSOenyETw9D+oy8Fkl2LeWaHc=;
- b=nMFvM5BsDN5UkMt3bfHddX09ptZtFYHlTllgyAlYGez5BLA1uW0f8C1WPwBLaQ4SWLDu
- wWE8fmvgbUAP7a8StH0kx/Z9dwjxt1OaYsgcjufhxYyQDg0ETqqmCaWsz3NrRskrAt7S
- qaJTKIfOPHjMo4zbhEkqR4ize/u6Hpf9GQWxxmRedJCCyLnjai9KQ9kDwgP7utiMFloF
- oiaeGHW52/0l+7+UmJKL3F1n5oQZpDiv4JuFpcFNJhAVKt5ZikDTQ3wBbKR9stJ7UL5o
- tj09jgpruzSTyHZDc/en/GVWoc+6tD1/PND9bZHV1MjHwy7MlY12Tn226GcS/MPliq88 ig== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3fwe6kpm9n-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 10 May 2022 09:47:10 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 1F61D100034;
-        Tue, 10 May 2022 09:47:09 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 0E4B920FA5A;
-        Tue, 10 May 2022 09:47:09 +0200 (CEST)
-Received: from [10.201.21.93] (10.75.127.45) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.2308.20; Tue, 10 May
- 2022 09:47:05 +0200
-Message-ID: <ddd5d5b2-32a5-6464-80a6-0054c376dd96@foss.st.com>
-Date:   Tue, 10 May 2022 09:47:05 +0200
+        with ESMTP id S237104AbiEJHxs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 May 2022 03:53:48 -0400
+Received: from mx1.molgen.mpg.de (mx3.molgen.mpg.de [141.14.17.11])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F71E18FF29;
+        Tue, 10 May 2022 00:49:49 -0700 (PDT)
+Received: from [192.168.0.2] (ip5f5aeae3.dynamic.kabel-deutschland.de [95.90.234.227])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: pmenzel)
+        by mx.molgen.mpg.de (Postfix) with ESMTPSA id E775A61E6478B;
+        Tue, 10 May 2022 09:49:47 +0200 (CEST)
+Message-ID: <0a46ba6f-9eac-7138-c675-99df86750c83@molgen.mpg.de>
+Date:   Tue, 10 May 2022 09:49:47 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH] dt-bindings: clock: stm32mp1: adapt example for
- "st,stm32mp1-rcc-secure"
+ Thunderbird/91.8.1
+Subject: Re: [PATCH v9 3/3] EDAC: nuvoton: Add NPCM memory controller driver
 Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        Stephen Boyd <sboyd@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20220509134658.16267-1-alexandre.torgue@foss.st.com>
- <1652123805.754133.27398.nullmailer@robh.at.kernel.org>
-From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
-In-Reply-To: <1652123805.754133.27398.nullmailer@robh.at.kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.75.127.45]
-X-ClientProxiedBy: SFHDAG2NODE2.st.com (10.75.127.5) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.858,Hydra:6.0.486,FMLib:17.11.64.514
- definitions=2022-05-10_01,2022-05-09_02,2022-02-23_01
-X-Spam-Status: No, score=-3.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+To:     Medad CChien <medadyoung@gmail.com>
+Cc:     rric@kernel.org, james.morse@arm.com, tony.luck@intel.com,
+        mchehab@kernel.org, bp@alien8.de, robh+dt@kernel.org,
+        benjaminfair@google.com, yuenn@google.com, venture@google.com,
+        KWLIU@nuvoton.com, YSCHU@nuvoton.com, JJLIU0@nuvoton.com,
+        KFTING@nuvoton.com, avifishman70@gmail.com, tmaimon77@gmail.com,
+        tali.perry1@gmail.com, ctcchien@nuvoton.com,
+        devicetree@vger.kernel.org, openbmc@lists.ozlabs.org,
+        linux-kernel@vger.kernel.org, linux-edac@vger.kernel.org
+References: <20220510031056.1657-1-ctcchien@nuvoton.com>
+ <20220510031056.1657-4-ctcchien@nuvoton.com>
+From:   Paul Menzel <pmenzel@molgen.mpg.de>
+In-Reply-To: <20220510031056.1657-4-ctcchien@nuvoton.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-5.3 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob
+Dear Medad,
 
-On 5/9/22 21:16, Rob Herring wrote:
-> On Mon, 09 May 2022 15:46:58 +0200, Alexandre Torgue wrote:
->> For "st,stm32mp1-rcc-secure" schema, clocks and clock-names entries are now
->> required properties.
->>
->> Signed-off-by: Alexandre Torgue <alexandre.torgue@foss.st.com>
->>
-> 
-> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
-> 
-> yamllint warnings/errors:
-> 
-> dtschema/dtc warnings/errors:
-> Error: Documentation/devicetree/bindings/clock/st,stm32mp1-rcc.example.dts:27.33-34 syntax error
-> FATAL ERROR: Unable to parse input tree
-> make[1]: *** [scripts/Makefile.lib:364: Documentation/devicetree/bindings/clock/st,stm32mp1-rcc.example.dtb] Error 1
-> make[1]: *** Waiting for unfinished jobs....
-> make: *** [Makefile:1401: dt_binding_check] Error 2
-> 
-> doc reference errors (make refcheckdocs):
-> 
-> See https://patchwork.ozlabs.org/patch/
-> 
-> This check can fail if there are any dependencies. The base for a patch
-> series is generally the most recent rc1.
-> 
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> date:
-> 
-> pip3 install dtschema --upgrade
-> 
-> Please check and re-submit.
-> 
 
-I just updated dtschema and yamllint seems to be well installed. I don't 
-see the see above. I wrote this patch on top of my stm32-next tree. Do I 
-have to send it directly to arm-soc in order to be merged on top of my 
-latest pull-request ?
+Am 10.05.22 um 05:10 schrieb Medad CChien:
+> Add memory controller support for Nuvoton NPCM SoC.
 
-Alex
+It’d be great if you added the datasheet name, revision and section used 
+to implement this.
 
+> Note:
+>     you can force an ecc event by writing a string to edac sysfs node
+>     and remember to define CONFIG_EDAC_DEBUG to enable this feature
+>     example: force a correctable event on checkcode bit 0
+>     echo "CE checkcode 0" > /sys/devices/system/edac/mc/mc0/forced_ecc_error
+> 
+> Fix the following warnings and error:
+> error:
+>     error: macro "edac_printk" requires 4 arguments, but only 2 given in
+>     driver/edac/npcm_edac.c
+>     edac_printk(KERN_INFO, "bit_no for checkcode must be 0~7\n");
+> 
+> warnings:
+>     performing pointer arithmetic on a null pointer has undefined behavior.
+>     logical not is only applied to the left hand side of this bitwise
+>     operator.
+>     mixing declarations and code is a C99 extension.
+> 
+> Reported-by: kernel test robot <lkp@intel.com>
+
+I find this line confusing as the kernel test robot did not report that 
+the memory controller driver is missing.
+
+> Signed-off-by: Medad CChien <ctcchien@nuvoton.com>
+> ---
+>   drivers/edac/Kconfig     |  10 +
+>   drivers/edac/Makefile    |   1 +
+>   drivers/edac/npcm_edac.c | 680 +++++++++++++++++++++++++++++++++++++++
+>   3 files changed, 691 insertions(+)
+>   create mode 100644 drivers/edac/npcm_edac.c
+> 
+> diff --git a/drivers/edac/Kconfig b/drivers/edac/Kconfig
+> index 58ab63642e72..9c83202cbf65 100644
+> --- a/drivers/edac/Kconfig
+> +++ b/drivers/edac/Kconfig
+> @@ -539,4 +539,14 @@ config EDAC_DMC520
+>   	  Support for error detection and correction on the
+>   	  SoCs with ARM DMC-520 DRAM controller.
+>   
+> +config EDAC_NPCM
+> +	tristate "Nuvoton NPCM DDR Memory Controller"
+> +	depends on (ARCH_NPCM || COMPILE_TEST)
+> +	help
+> +	  Support for error detection and correction on the Nuvoton NPCM DDR
+> +	  memory controller.
+
+Maybe add the information from the devicetree documentation:
+
+The Nuvoton BMC SoC supports DDR4 memory with and without ECC (error
+correction check).
+
+The memory controller supports single bit error correction, double bit
+error detection (in-line ECC in which a section (1/8th) of the memory
+device used to store data is used for ECC storage).
+
+> +
+> +	  First, ECC must be configured in the BootBlock header. Then, this driver
+> +	  will expose error counters via the EDAC kernel framework.
+> +
+>   endif # EDAC
+> diff --git a/drivers/edac/Makefile b/drivers/edac/Makefile
+> index 2d1641a27a28..db3c59d3ad84 100644
+> --- a/drivers/edac/Makefile
+> +++ b/drivers/edac/Makefile
+> @@ -84,3 +84,4 @@ obj-$(CONFIG_EDAC_QCOM)			+= qcom_edac.o
+>   obj-$(CONFIG_EDAC_ASPEED)		+= aspeed_edac.o
+>   obj-$(CONFIG_EDAC_BLUEFIELD)		+= bluefield_edac.o
+>   obj-$(CONFIG_EDAC_DMC520)		+= dmc520_edac.o
+> +obj-$(CONFIG_EDAC_NPCM)			+= npcm_edac.o
+> diff --git a/drivers/edac/npcm_edac.c b/drivers/edac/npcm_edac.c
+> new file mode 100644
+> index 000000000000..5552dab242b1
+> --- /dev/null
+> +++ b/drivers/edac/npcm_edac.c
+> @@ -0,0 +1,680 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +// Copyright (c) 2022 Nuvoton Technology corporation.
+
+No dot/period is needed at the end, as corporation is not abbreviated. 
+Maybe also capitalize Corporation as done on the Web site.
+
+> +
+> +#include <linux/delay.h>
+> +#include <linux/of_device.h>
+> +
+> +#include "edac_module.h"
+> +
+> +#define NPCM_EDAC_MOD_NAME "npcm-edac"
+> +#define FORCED_ECC_ERR_EVENT_SUPPORT		BIT(1)
+> +#define EDAC_MSG_SIZE						256
+> +/* Granularity of reported error in bytes */
+> +#define NPCM_EDAC_ERR_GRAIN				1
+> +
+> +#define MEM_TYPE_DDR4						0xA
+> +
+> +#define NPCM7XX_CHIP						0x700
+> +#define NPCM8XX_CHIP						0x800
+> +
+> +/* Control register width definitions */
+> +#define WDTH_16								(2)
+> +#define WDTH_32								(1)
+> +#define WDTH_64								(0)
+> +#define CTL_MEM_MAX_WIDTH_MASK			GENMASK(4, 0)
+> +#define CTL_REG_WIDTH_SHIFT					(32)
+> +#define XOR_CHECK_BIT_SPLIT_WIDTH			(16)
+> +#define CTL_CONTROLLER_BUSY_FLAG			BIT(0)
+> +#define NPCM_ECC_CTL_FORCE_WC				BIT(8)
+> +#define NPCM_ECC_CTL_AUTO_WRITEBACK_EN	BIT(24)
+> +#define NPCM_ECC_CTL_XOR_BITS_MASK			GENMASK(23, 16)
+> +#define NPCM_ECC_CTL_MTYPE_MASK			GENMASK(11, 8)
+> +#define NPCM_ECC_CTL_GLOBAL_INT_DISABLE		BIT(31)
+> +
+> +/* Syndrome values */
+> +#define ECC_DOUBLE_MULTI_ERR_SYND			0x03
+> +
+> +static char data_synd[] = {
+> +			0xf4, 0xf1, 0xec, 0xea, 0xe9, 0xe6, 0xe5, 0xe3,
+> +			0xdc, 0xda, 0xd9, 0xd6, 0xd5, 0xd3, 0xce, 0xcb,
+> +			0xb5, 0xb0, 0xad, 0xab, 0xa8, 0xa7, 0xa4, 0xa2,
+> +			0x9d, 0x9b, 0x98, 0x97, 0x94, 0x92, 0x8f, 0x8a,
+> +			0x75, 0x70, 0x6d, 0x6b, 0x68, 0x67, 0x64, 0x62,
+> +			0x5e, 0x5b, 0x58, 0x57, 0x54, 0x52, 0x4f, 0x4a,
+> +			0x34, 0x31, 0x2c, 0x2a, 0x29, 0x26, 0x25, 0x23,
+> +			0x1c, 0x1a, 0x19, 0x16, 0x15, 0x13, 0x0e, 0x0b
+> +		  };
+
+This does not look correctly indented. At least the } should be at the 
+beginning. The values can just be indented by one tab I believe. (At 
+least that is what `indent --linux-style` does (GNU indent 2.2.12).
+
+> +
+> +static char check_synd[] = {0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80};
+
+At least `indent --linux-style` add a space after { and before }.
+
+> +
+> +struct npcm_edac_platform_data {
+> +	/* force ECC event */
+> +	u32 ip_features;
+> +	u32 ddr_ctl_controller_busy_reg;
+> +	u32 ecc_ctl_xor_check_bits_reg;
+> +
+> +	u32 chip;
+> +
+> +	/* DDR4 Controller Registers */
+> +	u32 ddr_ctl_mem_type_reg;
+> +	u32 ddr_ctl_mem_width_reg;
+> +
+> +	u32 ecc_ctl_en_reg;
+> +	u32 ecc_ctl_int_mask;
+> +	u32 ecc_ctl_int_status;
+> +	u32 ecc_ctl_int_ack;
+> +	u32 ecc_ctl_int_mask_master;
+> +	u32 ecc_ctl_int_mask_ecc;
+> +
+> +	u32 ecc_sig_c_addr_l;
+> +	u32 ecc_sig_c_addr_h;
+> +	u32 ecc_sig_c_data_l;
+> +	u32 ecc_sig_c_data_h;
+> +	u32 ecc_sig_c_id;
+> +	u32 ecc_sig_c_synd;
+> +
+> +	u32 ecc_sig_u_addr_l;
+> +	u32 ecc_sig_u_addr_h;
+> +	u32 ecc_sig_u_data_l;
+> +	u32 ecc_sig_u_data_h;
+> +	u32 ecc_sig_u_id;
+> +	u32 ecc_sig_u_synd;
+> +
+> +	/* MASK */
+> +	u32 ecc_ctl_ecc_enable_mask;
+> +	u32 ecc_ctl_en_int_master_mask;
+> +	u32 ecc_ctl_en_int_ecc_mask;
+> +
+> +	/* ECC IRQ Macros */
+> +	u32 ecc_int_ce_event;
+> +	u32 ecc_int_second_ce_event;
+> +	u32 ecc_int_ue_event;
+> +	u32 ecc_int_second_ue_event;
+> +	u32 ecc_int_ce_ue_mask;
+> +	u32 ecc_ce_intr_mask;
+> +	u32 ecc_ue_intr_mask;
+> +
+> +	/* ECC Signature Macros */
+> +	u32 ecc_sig_c_id_shift;
+> +	u32 ecc_sig_c_synd_shift;
+> +	u32 ecc_sig_c_addr_h_mask;
+> +	u32 ecc_sig_c_id_mask;
+> +	u32 ecc_sig_c_synd_mask;
+> +
+> +	u32 ecc_sig_u_id_shift;
+> +	u32 ecc_sig_u_synd_shift;
+> +	u32 ecc_sig_u_addr_h_mask;
+> +	u32 ecc_sig_u_id_mask;
+> +	u32 ecc_sig_u_synd_mask;
+> +};
+> +
+> +struct priv_data {
+> +	void __iomem *reg;
+> +	u32 ce_cnt;
+> +	u32 ue_cnt; > +	char message[EDAC_MSG_SIZE];
+> +	const struct npcm_edac_platform_data *npcm_chip;
+> +};
+> +
+> +
+> +static void init_mem_layout(struct mem_ctl_info *mci)
+> +{
+> +	struct priv_data *priv = mci->pvt_info;
+> +	const struct npcm_edac_platform_data *npcm_chip = priv->npcm_chip;
+> +	struct csrow_info *csi;
+> +	struct dimm_info *dimm;
+> +	struct sysinfo info;
+> +	enum mem_type mtype;
+> +	u32 val, width;
+> +	u32 size, row;
+> +	u8 j;
+
+At least for loop variables, the default size integers should be used [1].
+
+[…]
+
+
+Kind regards,
+
+Paul
+
+
+[1]: https://notabs.org/coding/smallIntsBigPenalty.htm
