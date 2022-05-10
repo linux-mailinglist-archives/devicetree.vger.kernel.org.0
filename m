@@ -2,203 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C5A665213A4
-	for <lists+devicetree@lfdr.de>; Tue, 10 May 2022 13:25:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C59F65213CD
+	for <lists+devicetree@lfdr.de>; Tue, 10 May 2022 13:31:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240895AbiEJL24 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 May 2022 07:28:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34702 "EHLO
+        id S241038AbiEJLfp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 May 2022 07:35:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58528 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239337AbiEJL2y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 May 2022 07:28:54 -0400
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A33922ABBF7
-        for <devicetree@vger.kernel.org>; Tue, 10 May 2022 04:24:56 -0700 (PDT)
-Received: by mail-wm1-x329.google.com with SMTP id m62so9980265wme.5
-        for <devicetree@vger.kernel.org>; Tue, 10 May 2022 04:24:56 -0700 (PDT)
+        with ESMTP id S238219AbiEJLfe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 May 2022 07:35:34 -0400
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0762F48888;
+        Tue, 10 May 2022 04:31:36 -0700 (PDT)
+Received: by mail-ej1-x636.google.com with SMTP id i19so32280798eja.11;
+        Tue, 10 May 2022 04:31:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=conchuod.ie; s=google;
-        h=message-id:date:mime-version:user-agent:from:subject:to:cc
-         :references:content-language:in-reply-to:content-transfer-encoding;
-        bh=Q9ZRcghSC4Zvb59xWNLpgwQRMRVcmsJ18TNHtRXVuxo=;
-        b=Z8rrIL6/GXzsZMveC2UvwKakgRmDeIw1l90/SleuXTMgs2cSdCxz/gmmODmAv6sEH2
-         h5XIM3/YspFdyoTA0JemciadBa44j3VSGsGllMClineyi7qIFswlQwNAJGfiQd0fUkxm
-         JW66RrO1CCZMUOpvT7wgXBu5XGD8ySg9oIGHC8a2gCLcoqbqw80PAeySedyai8xjaUsv
-         17pQzZ6ahOXkqC0oGwYOtcTjzC8nSyfqjAPMXhzXgy9SJnG4Im7QxKiaRR/7utl42tYA
-         x8ePtZRcgzb8SbMPv4rCE27OwGcwXqrVcPx6VWF9f5I27j6FL+PA+t74BY6wYzapSXgC
-         Q5Dw==
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=zTvtYgLm5MJHzf3gzNp9ho+3ofo4le2oqFshMOa5STQ=;
+        b=fQlovuz90WKzOAsBbHzy/qwjMKSYjxMAJ2+ahMWey3GsanO96epXMtNarlxL5cQeoi
+         ZJPnEuJY3kHzAHx0+q2521qa0Y4mqIv8kHRRerIf14Kf1oPyTUkXCkZy6xACjsDlIEiP
+         NP47T6v1MIYfs6/bxjnR3wM295wPShcFR6wbZEsgZdyUWTlcmrPWNpjBeIyAs5tiy933
+         s4L2OjfnCZRNxwaHnWaKvoPROAgU9r9tjCOIgbDdRTgoq1agUljOWJkuhL+3OqrficmB
+         hJyZf4rG6b0KDZIy/4NCXdnTCzbtmU7g3yj26i02rXGN5suxmvOe0S7KKyTizq9cWLiI
+         o8zg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:from
-         :subject:to:cc:references:content-language:in-reply-to
-         :content-transfer-encoding;
-        bh=Q9ZRcghSC4Zvb59xWNLpgwQRMRVcmsJ18TNHtRXVuxo=;
-        b=0wd3D9h/MTP6grYkJ21PS0jz5OOm5WmlFn2zfYHSTFxKjkQ+C8A5KH/zjMFCdTTxH4
-         CvKxDOmse6k3JHlyZZ1tFeM859h57rwLMbzol7VmUOUf/YqntAUel8RAoHbuP1WVLtTQ
-         N0Y6KMMV/g3UILAegbyX4gFI+42T9dq8BZ8HP2ss39IbSVOKtZ+NVU/PXmj07gWWeIfP
-         qwwRv4/PiZc169sdqbDwjzGtEI8kFqNu2oQPPzVmNAhNlgRiLMCIkMIZ2JTolhJT1s/m
-         TCSp/wN2wuvEzfvGmPvEvP4K7zTkcVxlOF34AgA4axEqdwOZBj9/y96oVB1st10l1tkL
-         J0eg==
-X-Gm-Message-State: AOAM5309uzkLUTqBCFanS+2Avlese7eH5Un1uUY36eIq+Exhh0RasA9c
-        +RNUrB8JEXoUlHJem4/OPV7OlA==
-X-Google-Smtp-Source: ABdhPJzHodgmub9AKZbEZJmNj8kVL+mO6/cqFeW/NflOzT4A4EkxOlFoqbMN5nCm3xonWyHTJZpAmA==
-X-Received: by 2002:a7b:c76e:0:b0:394:8be3:a83c with SMTP id x14-20020a7bc76e000000b003948be3a83cmr12055521wmk.41.1652181895085;
-        Tue, 10 May 2022 04:24:55 -0700 (PDT)
-Received: from [10.205.160.53] ([95.83.233.54])
-        by smtp.gmail.com with ESMTPSA id i6-20020a05600c354600b003942a244f33sm2404493wmq.12.2022.05.10.04.24.54
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 10 May 2022 04:24:54 -0700 (PDT)
-Message-ID: <4b752147-1a09-a4af-bc5d-3b132b84ef49@conchuod.ie>
-Date:   Tue, 10 May 2022 12:29:54 +0100
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=zTvtYgLm5MJHzf3gzNp9ho+3ofo4le2oqFshMOa5STQ=;
+        b=H9PfpRpTXAwk4HPatMcx+xI2Y79d0Rt6JMlh7Y/WIZn99rPLOgnUkybh68NLf2anFa
+         8aOPbUyxSeXJowlVdEkzh1MiR5sKqRdX/SMWvpZJG7m3DyOziCtUFjsYg5Hncd4WzXLS
+         FDQgD3tSRNBWMCo3D8FzCC/T9ESxMwfLaYXyURN65kVNz+0luYu1QT1TeDPe0qO1gGrK
+         LJobHtX/gKjEZbWJhBxyf1y0bPV6FRZ59dg00LlAzEmx4zkyVd4X7412YzS9+861zMVm
+         A8KsIVFZQJYd+J/boXxM5c+q5ls4spcTv95opPubemjulm5wccLZ/gR+TUV85WxXAWWL
+         vNDg==
+X-Gm-Message-State: AOAM532BhuMU2uYw4JWvBAjCM4ReZOIJ6dROVTCTierM0u8LzYbkvzXJ
+        skSnNU6xSvMEMAQadRsxMfZjhkvKSfET7aOmBSI=
+X-Google-Smtp-Source: ABdhPJxFgYA8S1lfcUFxI4IzhmrQkfm6J18L8ukXjafp7GnF1Rr861H0T89WJwOZHVSlVgDA/5Tb+acqVonWZpSzReE=
+X-Received: by 2002:a17:906:58d4:b0:6f4:cebd:c4b with SMTP id
+ e20-20020a17090658d400b006f4cebd0c4bmr18881145ejs.492.1652182295453; Tue, 10
+ May 2022 04:31:35 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-From:   Conor Dooley <mail@conchuod.ie>
-Subject: Re: [PATCH v11 2/3] fpga: microchip-spi: add Microchip MPF FPGA
- manager
-To:     Ivan Bornyakov <i.bornyakov@metrotek.ru>,
-        Conor.Dooley@microchip.com
-Cc:     mdf@kernel.org, hao.wu@intel.com, yilun.xu@intel.com,
-        trix@redhat.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-fpga@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        system@metrotek.ru
-References: <20220507074304.11144-1-i.bornyakov@metrotek.ru>
- <20220507074304.11144-3-i.bornyakov@metrotek.ru>
- <bd5cb37b-ee56-f6d5-2d98-c08566b60728@microchip.com>
- <20220509171621.zk4owxwlngxjodgz@x260>
- <da1e5125-de6b-11a8-a52d-7e6e5f45ab70@conchuod.ie>
-Content-Language: en-US
-In-Reply-To: <da1e5125-de6b-11a8-a52d-7e6e5f45ab70@conchuod.ie>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+References: <20220510093946.335036-1-peng.fan@oss.nxp.com> <20220510093946.335036-4-peng.fan@oss.nxp.com>
+In-Reply-To: <20220510093946.335036-4-peng.fan@oss.nxp.com>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Tue, 10 May 2022 08:31:24 -0300
+Message-ID: <CAOMZO5CG65aLB_qy28V8RbnJoSbzZ-skmdt00EGfswyVLBoE0Q@mail.gmail.com>
+Subject: Re: [PATCH V5 3/4] arm64: dts: freescale: add i.MX93 11x11 EVK basic support
+To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        krzysztof.kozlowski+dt@linaro.org, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        Peng Fan <peng.fan@nxp.com>,
+        Dong Aisheng <aisheng.dong@nxp.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/05/2022 19:56, Conor Dooley wrote:
-> On 09/05/2022 18:16, Ivan Bornyakov wrote:
->> On Mon, May 09, 2022 at 11:41:18AM +0000, Conor.Dooley@microchip.com wrote:
->>> Hey Ivan, one comment below.
->>> Thanks,
->>> Conor.
->>>
->>> On 07/05/2022 08:43, Ivan Bornyakov wrote:
->>>> ... snip ...
->>>> +static int mpf_read_status(struct spi_device *spi)
->>>> +{
->>>> +       u8 status, status_command = MPF_SPI_READ_STATUS;
->>>> +       struct spi_transfer xfer = {
->>>> +               .tx_buf = &status_command,
->>>> +               .rx_buf = &status,
->>>> +               .len = 1,
->>>> +       };
->>>> +       int ret = spi_sync_transfer(spi, &xfer, 1);
->>>> +
->>>> +       if ((status & MPF_STATUS_SPI_VIOLATION) ||
->>>> +           (status & MPF_STATUS_SPI_ERROR))
->>>> +               ret = -EIO;
->>>> +
->>>> +       return ret ? : status;
->>>> +}
->>>> +
->>>> ... snip ...
->>>> +
->>>> +static int poll_status_not_busy(struct spi_device *spi, u8 mask)
->>>> +{
->>>> +       int status, timeout = MPF_STATUS_POLL_TIMEOUT;
->>>> +
->>>> +       while (timeout--) {
->>>> +               status = mpf_read_status(spi);
->>>> +               if (status < 0 ||
->>>> +                   (!(status & MPF_STATUS_BUSY) && (!mask || (status & mask))))
->>>> +                       return status;
->>>> +
->>>> +               usleep_range(1000, 2000);
->>>> +       }
->>>> +
->>>> +       return -EBUSY;
->>>> +}
->>>
->>> Is there a reason you changed this from the snippet you sent me
->>> in the responses to version 8:
->>> static int poll_status_not_busy(struct spi_device *spi, u8 mask)
->>> {
->>> 	u8 status, status_command = MPF_SPI_READ_STATUS;
->>> 	int ret, timeout = MPF_STATUS_POLL_TIMEOUT;
->>> 	struct spi_transfer xfer = {
->>> 		.tx_buf = &status_command,
->>> 		.rx_buf = &status,
->>> 		.len = 1,
->>> 	};
->>>
->>> 	while (timeout--) {
->>> 		ret = spi_sync_transfer(spi, &xfer, 1);
->>> 		if (ret < 0)
->>> 			return ret;
->>>
->>> 		if (!(status & MPF_STATUS_BUSY) && (!mask || (status & mask)))
->>> 			return status;
->>>
->>> 		usleep_range(1000, 2000);
->>> 	}
->>>
->>> 	return -EBUSY;
->>> }
->>>
->>> With the current version, I hit the "Failed to write bitstream
->>> frame" check in mpf_ops_write at random points in the transfer.
->>> Replacing poll_status_not_busy with the above allows it to run
->>> to completion.
->>
->> In my eyes they are equivalent, aren't they?
->>
-> 
-> I was in a bit of a rush today & didn't have time to do proper
-> debugging, I'll put some debug code in tomorrow and try to find
-> exactly what is different between the two.
-> 
-> Off the top of my head, since I don't have a board on me to test,
-> the only difference I can see is that with the snippet you only
-> checked if spi_sync_transfer was negative whereas now you check
-> if it has a value at all w/ that ternary operator.
-> 
-> But even that seems like it *shouldn't* be the problem, since ret
-> should contain -errno or zero, right?
-> Either way, I will do some digging tomorrow.
+On Tue, May 10, 2022 at 6:38 AM Peng Fan (OSS) <peng.fan@oss.nxp.com> wrote:
 
-I put a printk("status %x, ret %d", status, ret); into the failure
-path of mpf_read_status() & it looks like a status 0xA is being
-returned - error & ready? That seems like a very odd combo to be
-getting back out of it. It shouldn't be dodgy driver/connection
-either, b/c that's what I see if I connect my protocol analyser:
-https://i.imgur.com/VbjgfCk.png
+> +       pinctrl_uart2: uart2grp {
+> +               fsl,pins = <
+> +                       MX93_PAD_UART2_TXD__LPUART2_TX                  0x31e
+> +                       MX93_PAD_UART2_RXD__LPUART2_RX                  0x31e
+> +               >;
+> +       };
+> +
+> +       pinctrl_uart5: uart5grp {
+> +               fsl,pins = <
+> +                       MX93_PAD_DAP_TDO_TRACESWO__LPUART5_TX   0x31e
+> +                       MX93_PAD_DAP_TDI__LPUART5_RX            0x31e
+> +                       MX93_PAD_DAP_TMS_SWDIO__LPUART5_RTS_B   0x31e
+> +                       MX93_PAD_DAP_TCLK_SWCLK__LPUART5_CTS_B  0x31e
 
-That's mosi (hex), ss, sclk, mosi, miso (hex), miso in descending
-order.
-
-I think what was happening was with the snippet you returned one
-of the following: -EBUSY, ret (aka -errno) or status. Since status
-is positive, the checks in mpf_spi_write.*() saw nothing wrong at
-all and programming continued despite there being a problem.
-
-The new version fixes this by returning -EIO rather than status from
-poll_status_not_busy().
-
-I wish I had a socketable PolarFire so I could investigate further,
-but this looks like it might a be hardware issue somewhere on my
-end?
-
-So ye, sorry for the noise and carry on! I'll try tofind what is to
-blame for it.
-
-Thanks,
-Conor.
-
-
+uart2 and uart5 are not described, so their pinctrl entries can be removed.
