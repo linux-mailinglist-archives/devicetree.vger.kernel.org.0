@@ -2,124 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5AFF95215E4
-	for <lists+devicetree@lfdr.de>; Tue, 10 May 2022 14:50:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D9CC5215F2
+	for <lists+devicetree@lfdr.de>; Tue, 10 May 2022 14:51:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242016AbiEJMyT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 May 2022 08:54:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39708 "EHLO
+        id S242108AbiEJMzr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 May 2022 08:55:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39666 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242051AbiEJMxy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 May 2022 08:53:54 -0400
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 994062B09D5
-        for <devicetree@vger.kernel.org>; Tue, 10 May 2022 05:49:53 -0700 (PDT)
-Received: by mail-ej1-x630.google.com with SMTP id gh6so32793553ejb.0
-        for <devicetree@vger.kernel.org>; Tue, 10 May 2022 05:49:53 -0700 (PDT)
+        with ESMTP id S242138AbiEJMzP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 May 2022 08:55:15 -0400
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C014122BDF
+        for <devicetree@vger.kernel.org>; Tue, 10 May 2022 05:50:45 -0700 (PDT)
+Received: by mail-ej1-x62c.google.com with SMTP id ch13so4299508ejb.12
+        for <devicetree@vger.kernel.org>; Tue, 10 May 2022 05:50:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sartura-hr.20210112.gappssmtp.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=XtfJqDS+4XXgrs5gmHjTVbohIpUyumGa7vczR+1IPgQ=;
-        b=MtwpI+2Y5HHkHJRTxU0bTMeMgxlQ89RWSAek/hDu5ToZQHYAkXe020B+GyXG2ogIKk
-         LRkAQqDAZCAqhH18aLooifUpeBeuvyo2+Netpbe3chzAmzfNezno3p9nnKT5OFu9W66M
-         TfAZjqoARfpu6x5SlEKyG5goXsAJCNTDslQQWZu3hPy+PMxBBRN/gpHXyHXO3tgu/rLb
-         XMQsrwaPRBGG349iTOJAvZrZx5T/rTKyGUW99Tg+En1YYpFKdpN8BMIsb+PfBOOhdHjy
-         eTALzE/XKmlAudm7xZ2+8FjlqpBGIOeRlUn0nzRizlo2+q87XZxIv8BYnT+tflS2tQ8u
-         uJMg==
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=ZF8DHbmS388Np7uc8s/GbJpWl+U//ZF9U03m6TrvUIk=;
+        b=ctEjS1mw40rwGEQrV75cPoX/8cKyE3G3wc99zCNkX/1TgQE/cgMkEPwEe62E7AaiE3
+         nnZ9Rl8xfKJh1NCdVZ8EFwl++UI1129pwpPS1FMtgKe7rmOBQcp8Z41wLEDrI9j1D8yN
+         C3z58X9tesEVEMdWw54jtWTovNwD82aYDPb2qRjxo3boLJ2j/4oWGjQH439PxGU7KIlj
+         eV8U+ZUkWQeDg8OopLJwoJdBpyMvci8UeQfNu8F1gew0ZCn9y9JEMJ6owwOySJvqq6QA
+         IW4rlVqWvwlOHhA3PUAqjlnI+tS6wDy6/9S3GdsTZkp7uqfLnJxZ/yBHhueuHWH1lYrz
+         pgPA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=XtfJqDS+4XXgrs5gmHjTVbohIpUyumGa7vczR+1IPgQ=;
-        b=10htTrkXFhsQpKZINGckAAprS4lgiJOYF1x6AFnHrHTPB2nzcXGqWXZnC2XK6KNDZf
-         3vCpdr5qMZ9SLqW7mATC+tfLLG8hyJWLQw9c1VkKYe7m3J+++tOXb0RopoAKIdOlKcwg
-         UxmyEcJvfZn5cLmrgBFvbVku9Hg8zTrkrgwz0gQxLkLDaU5N08NdYXgFtiFs48uqWf/X
-         ksIM11RIX4xE+oxSau2KawvEuSvki00bs1KfxWW7h1bZiXSCvnXK0yDobsKUdDAL1nwS
-         MS95SAvWE4+2PvSmR8xHyvi5G8X8xu5nWmKcB+Va3wKepSJ0DpPERs9jPt2vDV8Kkcuz
-         Q85g==
-X-Gm-Message-State: AOAM532HZiH92r68DECqnl237bdugznDdkxr3bxdSh5XSAOcKULWxn4w
-        Bw9OOACEcfwDAT6BV1xvHcLTpA==
-X-Google-Smtp-Source: ABdhPJwY4NsSUB0SG/B2GLVRkNn53wLuF+nbmvKCJINUUfI9kskdAVTgJ7SQN1hLXtMMXsoZ++Xefw==
-X-Received: by 2002:a17:906:a08b:b0:6cf:65bc:e7de with SMTP id q11-20020a170906a08b00b006cf65bce7demr20001419ejy.220.1652186991862;
-        Tue, 10 May 2022 05:49:51 -0700 (PDT)
-Received: from fedora.robimarko.hr (cpezg-94-253-144-75-cbl.xnet.hr. [94.253.144.75])
-        by smtp.googlemail.com with ESMTPSA id gz14-20020a170907a04e00b006f3ef214e62sm6094290ejc.200.2022.05.10.05.49.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 May 2022 05:49:51 -0700 (PDT)
-From:   Robert Marko <robert.marko@sartura.hr>
-To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        andrew@lunn.ch, gregory.clement@bootlin.com,
-        sebastian.hesselbarth@gmail.com, kostap@marvell.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, pali@kernel.org,
-        marek.behun@nic.cz
-Cc:     Robert Marko <robert.marko@sartura.hr>
-Subject: [PATCH v2 11/11] arm64: dts: marvell: add support for Methode eDPU
-Date:   Tue, 10 May 2022 14:49:29 +0200
-Message-Id: <20220510124929.91000-11-robert.marko@sartura.hr>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20220510124929.91000-1-robert.marko@sartura.hr>
-References: <20220510124929.91000-1-robert.marko@sartura.hr>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=ZF8DHbmS388Np7uc8s/GbJpWl+U//ZF9U03m6TrvUIk=;
+        b=KwE2oVnRk4+iGGya+B1MSaVmTc6DJPKYZsm68AYH2nB8x2vb8Ap5pXpnTbcsg+MZo3
+         uHfTefYzhFjZJzQf2mU2NciEQJvHwS62MW+X2Jpq/hiA4hQSI/K7myTxQ7oZb6Cbom7c
+         CbHyFstaLQ1p5+6MP4uis9pS4Qbwv94iuR5BnuW1ZD3lc+O3uQ22Q4e1nmAgL9ogQTOC
+         wUsV0kTuXu1zOCgwx1Dm9DicwQ5N6R59Y5FoDCK41Z1VgaUYBpiyJGXFrc3XBXohx4ud
+         Ka7/9myrhaoI2baRbJIPeOXH/DBglDuAesL2/KUCgQhcd5oCZ4zRpivyNgu3DdCNMciz
+         ilWg==
+X-Gm-Message-State: AOAM532fLnGytO8X3IspqwF92iMWmugRUp+rb4eH6wNCeoSbicPrjNjm
+        NkGMjId+tFYMRi1dfwv5C0zUIg==
+X-Google-Smtp-Source: ABdhPJxe0M9EVK6O6ql1Fso5MfAt7H4Somn7p3Sh53wP8LDECzarboslO+4IUO0usgu7zJ0vOUFXUQ==
+X-Received: by 2002:a17:907:d01:b0:6f4:d873:d7a0 with SMTP id gn1-20020a1709070d0100b006f4d873d7a0mr19758976ejc.717.1652187043646;
+        Tue, 10 May 2022 05:50:43 -0700 (PDT)
+Received: from [192.168.0.252] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id en20-20020a17090728d400b006f3ef214e20sm6110205ejc.134.2022.05.10.05.50.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 10 May 2022 05:50:42 -0700 (PDT)
+Message-ID: <0cdf8323-7f23-a291-9d20-6d182bc84913@linaro.org>
+Date:   Tue, 10 May 2022 14:50:41 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH 2/2] arm64: dts: marvell: add support for Methode eDPU
+Content-Language: en-US
+To:     Robert Marko <robert.marko@sartura.hr>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        krzysztof.kozlowski+dt@linaro.org, Andrew Lunn <andrew@lunn.ch>,
+        gregory.clement@bootlin.com, sebastian.hesselbarth@gmail.com,
+        shawnguo@kernel.org, Linus Walleij <linus.walleij@linaro.org>,
+        kostap@marvell.com, devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        =?UTF-8?Q?Pali_Roh=c3=a1r?= <pali@kernel.org>,
+        =?UTF-8?Q?Marek_Beh=c3=ban?= <marek.behun@nic.cz>
+References: <20220509110028.144226-1-robert.marko@sartura.hr>
+ <20220509110028.144226-2-robert.marko@sartura.hr>
+ <8e22cbf7-eee1-0ec7-10f9-3839ec80dfbf@linaro.org>
+ <CA+HBbNE1w5w6c8MwMuSwCFzjnyKOQ7Y0MV4bPijJW3rekWLo4w@mail.gmail.com>
+ <fde74400-34aa-df80-5af5-cb4ee89c8e6f@linaro.org>
+ <CA+HBbNGWbGu73JtCb68QMhF6o9KrcfZH2AtOL6jUAnxrmCBcsQ@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CA+HBbNGWbGu73JtCb68QMhF6o9KrcfZH2AtOL6jUAnxrmCBcsQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Methode eDPU is an Armada 3720 powered board based on the Methode uDPU.
+On 10/05/2022 14:43, Robert Marko wrote:
+> On Tue, May 10, 2022 at 1:46 PM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+>>
+>> On 10/05/2022 13:41, Robert Marko wrote:
+>>> On Tue, May 10, 2022 at 12:20 PM Krzysztof Kozlowski
+>>> <krzysztof.kozlowski@linaro.org> wrote:
+>>>>
+>>>> On 09/05/2022 13:00, Robert Marko wrote:
+>>>>> Methode eDPU is an Armada 3720 powered board based on the Methode uDPU.
+>>>>>
+>>>>> They feature the same CPU, RAM, and storage as well as the form factor.
+>>>>>
+>>>>> However, eDPU only has one SFP slot plus a copper G.hn port.
+>>>>>
+>>>>> In order to reduce duplication, split the uDPU DTS into a common one.
+>>>>>
+>>>>> Signed-off-by: Robert Marko <robert.marko@sartura.hr>
+>>>>> ---
+>>>>>  arch/arm64/boot/dts/marvell/Makefile          |   1 +
+>>>>>  .../boot/dts/marvell/armada-3720-eDPU.dts     |  14 ++
+>>>>>  .../boot/dts/marvell/armada-3720-uDPU.dts     | 148 +---------------
+>>>>>  .../boot/dts/marvell/armada-3720-uDPU.dtsi    | 163 ++++++++++++++++++
+>>>>>  4 files changed, 179 insertions(+), 147 deletions(-)
+>>>>>  create mode 100644 arch/arm64/boot/dts/marvell/armada-3720-eDPU.dts
+>>>>>  create mode 100644 arch/arm64/boot/dts/marvell/armada-3720-uDPU.dtsi
+>>>>>
+>>>>> diff --git a/arch/arm64/boot/dts/marvell/Makefile b/arch/arm64/boot/dts/marvell/Makefile
+>>>>> index 1c794cdcb8e6..104d7d7e8215 100644
+>>>>> --- a/arch/arm64/boot/dts/marvell/Makefile
+>>>>> +++ b/arch/arm64/boot/dts/marvell/Makefile
+>>>>> @@ -1,6 +1,7 @@
+>>>>>  # SPDX-License-Identifier: GPL-2.0
+>>>>>  # Mvebu SoC Family
+>>>>>  dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-db.dtb
+>>>>> +dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-eDPU.dtb
+>>>>>  dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-espressobin.dtb
+>>>>>  dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-espressobin-emmc.dtb
+>>>>>  dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-espressobin-ultra.dtb
+>>>>> diff --git a/arch/arm64/boot/dts/marvell/armada-3720-eDPU.dts b/arch/arm64/boot/dts/marvell/armada-3720-eDPU.dts
+>>>>> new file mode 100644
+>>>>> index 000000000000..6b573a6854cc
+>>>>> --- /dev/null
+>>>>> +++ b/arch/arm64/boot/dts/marvell/armada-3720-eDPU.dts
+>>>>> @@ -0,0 +1,14 @@
+>>>>> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+>>>>> +
+>>>>> +/dts-v1/;
+>>>>> +
+>>>>> +#include "armada-3720-uDPU.dtsi"
+>>>>> +
+>>>>> +/ {
+>>>>> +     model = "Methode eDPU Board";
+>>>>> +     compatible = "methode,edpu", "marvell,armada3720";
+>>>>
+>>>> You need also bindings for the board compatible. Someone should convert
+>>>> the Documentation/devicetree/bindings/arm/marvell/armada-37xx.txt to YAML.
+>>>
+>>> Ok, I can convert the SoC compatibles at least for now.
+>>> Any advice you can give me on how the handle the Espressobin boards
+>>> having multiple board-specific compatibles?
+>>> For example, Espressobin V7 has:
+>>> "globalscale,espressobin-v7", "globalscale,espressobin"
+>>>
+>>
+>> Documentation/devicetree/bindings/arm/fsl.yaml
+> 
+> Thanks, now it makes sense.
+> 
+>>
+>>>>
+>>>>> +};
+>>>>> +> +  sfp_eth1: sfp-eth1 {
+>>>>
+>>>> Generic node names, please.
+>>>
+>>> Can you give me an example of what would be appropriate here because the SFP
+>>> bindings example utilizes the same naming scheme as used here?
+>>
+>> "sfp" if you have only one sfp node.
+> 
+> There are 2 SFP nodes in total, that is why they are named according
+> to the ethernet controller
+> to which they are connected.
+> uDPU has 2 SFP slots while eDPU has 1, so one was moved to uDPU DTS.
 
-They feature the same CPU, RAM, and storage as well as the form factor.
+Ah, then let it be. sfp-1 and sfp-2 would also work, but that's not
+important.
 
-However, eDPU only has one SFP slot plus a copper G.hn port.
 
-Signed-off-by: Robert Marko <robert.marko@sartura.hr>
-Changes in v2:
-* Make the DTS split a separate commit
----
- arch/arm64/boot/dts/marvell/Makefile             |  1 +
- arch/arm64/boot/dts/marvell/armada-3720-eDPU.dts | 14 ++++++++++++++
- 2 files changed, 15 insertions(+)
- create mode 100644 arch/arm64/boot/dts/marvell/armada-3720-eDPU.dts
-
-diff --git a/arch/arm64/boot/dts/marvell/Makefile b/arch/arm64/boot/dts/marvell/Makefile
-index 1c794cdcb8e6..104d7d7e8215 100644
---- a/arch/arm64/boot/dts/marvell/Makefile
-+++ b/arch/arm64/boot/dts/marvell/Makefile
-@@ -1,6 +1,7 @@
- # SPDX-License-Identifier: GPL-2.0
- # Mvebu SoC Family
- dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-db.dtb
-+dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-eDPU.dtb
- dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-espressobin.dtb
- dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-espressobin-emmc.dtb
- dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-espressobin-ultra.dtb
-diff --git a/arch/arm64/boot/dts/marvell/armada-3720-eDPU.dts b/arch/arm64/boot/dts/marvell/armada-3720-eDPU.dts
-new file mode 100644
-index 000000000000..57fc698e55d0
---- /dev/null
-+++ b/arch/arm64/boot/dts/marvell/armada-3720-eDPU.dts
-@@ -0,0 +1,14 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+
-+/dts-v1/;
-+
-+#include "armada-3720-uDPU.dtsi"
-+
-+/ {
-+	model = "Methode eDPU Board";
-+	compatible = "methode,edpu", "marvell,armada3720", "marvell,armada3710";
-+};
-+
-+&eth0 {
-+	phy-mode = "2500base-x";
-+};
--- 
-2.36.1
-
+Best regards,
+Krzysztof
