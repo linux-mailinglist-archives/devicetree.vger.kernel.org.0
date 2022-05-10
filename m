@@ -2,102 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 531B5522693
-	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 00:00:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E5D7C5226B6
+	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 00:13:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234039AbiEJWAz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 May 2022 18:00:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33742 "EHLO
+        id S232218AbiEJWNy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 May 2022 18:13:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52534 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232939AbiEJWAx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 May 2022 18:00:53 -0400
-Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [IPv6:2001:df5:b000:5::4])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A35761C111
-        for <devicetree@vger.kernel.org>; Tue, 10 May 2022 15:00:51 -0700 (PDT)
-Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (Client did not present a certificate)
-        by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id CE7B82C0538;
-        Tue, 10 May 2022 22:00:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
-        s=mail181024; t=1652220047;
-        bh=phHLbe8Oyxwe+Av7s89xoak9cOF7wZxvdY/6IMgP9DA=;
-        h=From:To:CC:Subject:Date:References:In-Reply-To:From;
-        b=PS5DIVqv8v+6gDDcRLM58PSLzue4awydqpSqSBzuaUwLjInKRKRtrs+cvmeg+QJ5k
-         uX+h8n8xCQKH8E+yLcb1DwxCXTdfpYEtFQiXyFc2jw1zab4h2a4pljEXd0UYoICcPY
-         Kzbsw5191D9BdYGY1Z78BOIruXGQJp1ORL41wgb+YYa6f6X/lQKeXy5PyTloOlmmeb
-         xwJxUvCtEcrzv5tIvtALwMoIwpZ8fxpy18Vyde/RQOTnuRjBhKWZ5sOse2mL6PWgk5
-         Y2B+eswshaD4QM0DsD3AlNAjrf1Xo96OxPKX7st0ehUl/DA2m4/sFX0cXCqntPDy2M
-         9GTgcrlrKwqmA==
-Received: from svr-chch-ex1.atlnz.lc (Not Verified[2001:df5:b000:bc8::77]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
-        id <B627ae08f0001>; Wed, 11 May 2022 10:00:47 +1200
-Received: from svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8:409d:36f5:8899:92e8)
- by svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8:409d:36f5:8899:92e8) with
- Microsoft SMTP Server (TLS) id 15.0.1497.32; Wed, 11 May 2022 10:00:47 +1200
-Received: from svr-chch-ex1.atlnz.lc ([fe80::409d:36f5:8899:92e8]) by
- svr-chch-ex1.atlnz.lc ([fe80::409d:36f5:8899:92e8%12]) with mapi id
- 15.00.1497.033; Wed, 11 May 2022 10:00:47 +1200
-From:   Chris Packham <Chris.Packham@alliedtelesis.co.nz>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
-        "will@kernel.org" <will@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "andrew@lunn.ch" <andrew@lunn.ch>,
-        "gregory.clement@bootlin.com" <gregory.clement@bootlin.com>,
-        "sebastian.hesselbarth@gmail.com" <sebastian.hesselbarth@gmail.com>,
-        "kostap@marvell.com" <kostap@marvell.com>,
-        "robert.marko@sartura.hr" <robert.marko@sartura.hr>
-CC:     "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v5 1/2] arm64: dts: marvell: Add Armada 98DX2530 SoC and
- RD-AC5X board
-Thread-Topic: [PATCH v5 1/2] arm64: dts: marvell: Add Armada 98DX2530 SoC and
- RD-AC5X board
-Thread-Index: AQHYX3HqbCVddS0CWEWMkXLyqck2rq0POn2AgAittYCAAAKMAA==
-Date:   Tue, 10 May 2022 22:00:46 +0000
-Message-ID: <71e28c27-d876-9177-3251-92d0063c4dd6@alliedtelesis.co.nz>
-References: <20220504044624.951841-1-chris.packham@alliedtelesis.co.nz>
- <20220504044624.951841-2-chris.packham@alliedtelesis.co.nz>
- <dcc80690-c159-99f8-4686-536b9e87eb69@linaro.org>
- <8f6272ce-0d25-3a1e-f71e-66444a94a2d4@alliedtelesis.co.nz>
-In-Reply-To: <8f6272ce-0d25-3a1e-f71e-66444a94a2d4@alliedtelesis.co.nz>
-Accept-Language: en-NZ, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.32.1.11]
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <9F1A20137601FA4CAF6598F4E522340D@atlnz.lc>
-Content-Transfer-Encoding: base64
+        with ESMTP id S231802AbiEJWNx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 May 2022 18:13:53 -0400
+Received: from mail-oi1-f171.google.com (mail-oi1-f171.google.com [209.85.167.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3EFD52878C5;
+        Tue, 10 May 2022 15:13:49 -0700 (PDT)
+Received: by mail-oi1-f171.google.com with SMTP id y63so624313oia.7;
+        Tue, 10 May 2022 15:13:49 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=apC+quOopLDJEx5IvNDystjZ/JR51on+Skgly38QLAM=;
+        b=SRBZBC7Kej11hagdqbTWD62yqmgFezFRc5GMeMHY4FagurHR2ch7MGFDlbeTNM8jFw
+         L2L2OPewi/ePfjgykc2zZOMYQgltDLZEeqLOx54xKo20ceJeVZ9cFIWy6B0viPTbaoZE
+         Q5348g00eUB6dquKHnF8DCfSH5rP2VE5/3cXFbRgLlu57JZ9fLK+p/cjk+9DgKZEKpOs
+         rQS44ztm4HQcoqzyXtWcUY68lKQ6ju4Nuc1PKRozvylTmUDEViY+OQTLowXDwxEYLjCp
+         OqG2C9bI52wSQlqVa0TIxrlhV18I2H1hGMAnAlgzEXdSGSSijE4FMrmRmwMmgNNPbU09
+         LD7w==
+X-Gm-Message-State: AOAM5303ybfFpw0zTz4Wg7vvetikxqNd6WF1hlIypa3Myjy7CXto7WpN
+        g5wkgdh9dwy6CspCmgw5qPvpFsM93Q==
+X-Google-Smtp-Source: ABdhPJxxvuT1U5FlExDMnThz74rPcrSQRjagwhztHk5WI7PXZW1elll5YK54z+n8RR4y9Z1TgRlEIg==
+X-Received: by 2002:a05:6808:1448:b0:326:e239:a490 with SMTP id x8-20020a056808144800b00326e239a490mr1086302oiv.253.1652220828525;
+        Tue, 10 May 2022 15:13:48 -0700 (PDT)
+Received: from xps15.. (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.googlemail.com with ESMTPSA id kw43-20020a056870ac2b00b000e686d13879sm83993oab.19.2022.05.10.15.13.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 10 May 2022 15:13:48 -0700 (PDT)
+From:   Rob Herring <robh@kernel.org>
+To:     Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc:     Masahiro Yamada <masahiroy@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: Remove example file on dt-extract-example error
+Date:   Tue, 10 May 2022 17:13:32 -0500
+Message-Id: <20220510221333.2770571-1-robh@kernel.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-X-SEG-SpamProfiler-Analysis: v=2.3 cv=C7GXNjH+ c=1 sm=1 tr=0 a=Xf/6aR1Nyvzi7BryhOrcLQ==:117 a=xqWC_Br6kY4A:10 a=oKJsc7D3gJEA:10 a=IkcTkHD0fZMA:10 a=oZkIemNP1mAA:10 a=UhUHEfIMftsWJk1-XO0A:9 a=QEXdDO2ut3YA:10
-X-SEG-SpamProfiler-Score: 0
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-DQpPbiAxMS8wNS8yMiAwOTo1MSwgQ2hyaXMgUGFja2hhbSB3cm90ZToNCj4NCj4gT24gNS8wNS8y
-MiAyMToxOSwgS3J6eXN6dG9mIEtvemxvd3NraSB3cm90ZToNCj4+PiArLyB7DQo+Pj4gK8KgwqDC
-oCBtb2RlbCA9ICJNYXJ2ZWxsIEFDNSBTb0MiOw0KPj4+ICvCoMKgwqAgY29tcGF0aWJsZSA9ICJt
-YXJ2ZWxsLGFjNSI7DQo+PiBNaXNzaW5nIGJvYXJkIGJpbmRpbmdzIHBhdGNoLg0KPj4NCj4gV2hl
-cmUgZG8gdGhlc2UgdXN1YWxseSBlbmQgdXA/IEkgY2FuJ3Qgc2VlIGFueSBvZiB0aGUgb3RoZXIg
-TWFydmVsbCANCj4gYm9hcmRzIGhhdmluZyBiaW5kaW5ncyAod2hpY2ggbWlnaHQgYmUgd2h5IHlv
-dSdyZSB0ZWxsaW5nIG1lIG5vdCB0byANCj4gYWRkIG5ldyBib2FyZHMvU29DcyB3aXRob3V0IGl0
-KS7CoCBUaGVyZSdzIG9uZSBlbnRyeSBpbiANCj4gRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2Jp
-bmRpbmdzL2JvYXJkIGJ1dCB0aGF0IHNlZW1zIG1vcmUgcmVsYXRlZCB0byANCj4gc29tZSBib2Fy
-ZCBzcGVjaWZpYyBtaXNjIGRldmljZXMuDQpBaCBJIGp1c3QgZm91bmQgDQpEb2N1bWVudGF0aW9u
-L2RldmljZXRyZWUvYmluZGluZ3MvYXJtL21hcnZlbGwvYXJtYWRhLTdrLThrLnlhbWwuIEkgY2Fu
-IA0KcHV0IHNvbWV0aGluZyBuZXh0IHRvIHRoYXQu
+As 'dt-extract-example' writes the example dts files to stdout, a file
+is always created even on an error such as Ctrl-C. The resulting empty
+file(s) then cause unexpected errors on subsequent builds. Fix this by
+removing the output file on any error.
+
+Signed-off-by: Rob Herring <robh@kernel.org>
+---
+ Documentation/devicetree/bindings/Makefile | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Documentation/devicetree/bindings/Makefile b/Documentation/devicetree/bindings/Makefile
+index c9953f86b19d..c9fadff3dd74 100644
+--- a/Documentation/devicetree/bindings/Makefile
++++ b/Documentation/devicetree/bindings/Makefile
+@@ -20,7 +20,7 @@ check_dtschema_version:
+ 	{ echo "ERROR: dtschema minimum version is v$(DT_SCHEMA_MIN_VERSION)" >&2; false; }
+ 
+ quiet_cmd_extract_ex = DTEX    $@
+-      cmd_extract_ex = $(DT_EXTRACT_EX) $< > $@
++      cmd_extract_ex = $(DT_EXTRACT_EX) $< > $@ || rm $@
+ 
+ $(obj)/%.example.dts: $(src)/%.yaml check_dtschema_version FORCE
+ 	$(call if_changed,extract_ex)
+-- 
+2.34.1
+
