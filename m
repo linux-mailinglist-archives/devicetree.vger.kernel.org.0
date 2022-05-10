@@ -2,95 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A9525212EC
-	for <lists+devicetree@lfdr.de>; Tue, 10 May 2022 12:57:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 80CD35212FC
+	for <lists+devicetree@lfdr.de>; Tue, 10 May 2022 13:00:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236767AbiEJLBl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 May 2022 07:01:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33996 "EHLO
+        id S240481AbiEJLEG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 May 2022 07:04:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53920 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240833AbiEJLBO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 May 2022 07:01:14 -0400
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B5D549FA9
-        for <devicetree@vger.kernel.org>; Tue, 10 May 2022 03:57:13 -0700 (PDT)
-Received: by mail-ed1-x52d.google.com with SMTP id w24so11759757edx.3
-        for <devicetree@vger.kernel.org>; Tue, 10 May 2022 03:57:13 -0700 (PDT)
+        with ESMTP id S240100AbiEJLEF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 May 2022 07:04:05 -0400
+Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com [199.106.114.39])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 011C823AE4C;
+        Tue, 10 May 2022 04:00:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=hP5Qt4iyca+XwfT38e5QSOL60aC/HqAALnLY/TUKCos=;
-        b=AEfURBdjsXwWF/lcnLtglije6dm0motmFUJ3sHf/KkiBswiXy9ufjlvwlDrR8WN4PL
-         XMuEpKM07Pqu9NcReVRuZc3A+BIweN6yHXQr1S3nbr8pUlcuHYBz38kRdm64sycaSvXE
-         OXg1rzHEXLqcL9QRpUYewLWV2+dKqOxqw1TLTEQmvpx43S2ZTDtTH6ky3U1jzkqcqGC8
-         AcKmC8TZWXCmrP/cm6i9xBgI0MmH4YIDvYb11g3Pi26OkoxNETSWljjEqQL+GQRrHofK
-         YlsS4Ju/BRl2euM7KPii2RrZs+NzRZf+Ogd1545zbmABGq5xffHTMxTib7OexD0VCOaC
-         Nsyg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=hP5Qt4iyca+XwfT38e5QSOL60aC/HqAALnLY/TUKCos=;
-        b=dWMV24hpyXF57hARcn5PgS1SaonYKd2vKzqhgsFdd1mVg45hWKWXN1l/4z+qcwnnf3
-         f0o/I74cTKsxaS+yZBXzukcnY68MKYLD62FlUL52Dx2BaDWeFMrsCMb/Vj04AkErjDTy
-         x1txr2iPHPT9AApfwnAamYjoX+UsVKvAsWkhdCJ3yTSAnK6ODvTcUCz9NlGT8j+HmiX9
-         Y9IowIxBBxZEw3Of4rTXSxup+HM+iuK2ZU3b+1BPK61dMHHSncQujwl3zCuUDDGZ/qls
-         Eb+cg6DRFGKPUf2VPHXVTEc3FxnP8wftuwFqGx3282BmpEfAcX0cnRhXN2TzJ14ojsOc
-         fipQ==
-X-Gm-Message-State: AOAM531XWNwlkw8XJrreQq981fRDmrPzmOvvsTnaSgc4FkN2R7pxiNDr
-        hzrKsArFs4Ssxw3++BgfqHlsig==
-X-Google-Smtp-Source: ABdhPJwV2FoRMmaQQWsKESFLsiexggF0TXhfn9LN0RLxYk94n+1r1hcpoWyyOn26z4+WeOxzmE6bzA==
-X-Received: by 2002:a05:6402:b2e:b0:425:d3f7:4c1a with SMTP id bo14-20020a0564020b2e00b00425d3f74c1amr21827716edb.366.1652180232182;
-        Tue, 10 May 2022 03:57:12 -0700 (PDT)
-Received: from [192.168.0.251] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id t3-20020a05640203c300b00428aafb23d0sm1351992edw.57.2022.05.10.03.57.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 10 May 2022 03:57:11 -0700 (PDT)
-Message-ID: <0686125d-4984-5dcd-32ca-4eeece09d7c3@linaro.org>
-Date:   Tue, 10 May 2022 12:57:10 +0200
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1652180409; x=1683716409;
+  h=subject:to:cc:references:from:message-id:date:
+   mime-version:in-reply-to:content-transfer-encoding;
+  bh=cWiFpy1BulEe8GzbIrFAcOtXKxm6yh3lnWMPeKAd5LA=;
+  b=nEylUt3h3JH5fVzleoJQMxcr0vs9+PRev0w5jVZ6afIlwVDZk7X+Mkcc
+   yIuY0hIzgRxrco3ZNFH4NB0vnwhCmIcrJrF1HRjT3BCiUIUPPb70jKzkX
+   gkaD8opgDZo9OsYsb5UeGPllhqd8z2eXDHLMOMo0AUZKy3WF2HnXsL44v
+   I=;
+Received: from unknown (HELO ironmsg05-sd.qualcomm.com) ([10.53.140.145])
+  by alexa-out-sd-02.qualcomm.com with ESMTP; 10 May 2022 04:00:08 -0700
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg05-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 May 2022 04:00:07 -0700
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Tue, 10 May 2022 04:00:07 -0700
+Received: from [10.79.43.230] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Tue, 10 May
+ 2022 04:00:02 -0700
+Subject: Re: [PATCH 0/3] Add support for proxy interconnect bandwidth votes
+To:     Stephen Boyd <swboyd@chromium.org>, <bjorn.andersson@linaro.org>,
+        <robh+dt@kernel.org>
+CC:     <ohad@wizery.com>, <agross@kernel.org>,
+        <mathieu.poirier@linaro.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <evgreen@chromium.org>,
+        <dianders@chromium.org>, <mka@chromium.org>,
+        <krzysztof.kozlowski@canonical.com>
+References: <1644813252-12897-1-git-send-email-quic_sibis@quicinc.com>
+ <CAE-0n51qygskCKAv7MwJmM8BVV2D0wT46YCBwxtGKybP4QA+jQ@mail.gmail.com>
+From:   Sibi Sankar <quic_sibis@quicinc.com>
+Message-ID: <8a4ee54e-f648-97a9-e9a6-ccae6ca8ce10@quicinc.com>
+Date:   Tue, 10 May 2022 16:29:50 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH v2 1/3] dt-bindings: mediatek: add vdosys1 RDMA definition
- for mt8195
+In-Reply-To: <CAE-0n51qygskCKAv7MwJmM8BVV2D0wT46YCBwxtGKybP4QA+jQ@mail.gmail.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Language: en-US
-To:     Chen-Yu Tsai <wenst@chromium.org>
-Cc:     Rex-BC Chen <rex-bc.chen@mediatek.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "airlied@linux.ie" <airlied@linux.ie>,
-        =?UTF-8?B?SmFzb24tSkggTGluICjmnpfnnb/npaUp?= 
-        <Jason-JH.Lin@mediatek.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-        Project_Global_Chrome_Upstream_Group 
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        =?UTF-8?B?TmFuY3kgTGluICjmnpfmrKPonqIp?= <Nancy.Lin@mediatek.com>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "angelogioacchino.delregno@collabora.com" 
-        <angelogioacchino.delregno@collabora.com>
-References: <20220509044302.27878-1-rex-bc.chen@mediatek.com>
- <20220509044302.27878-2-rex-bc.chen@mediatek.com>
- <a5c9e7ad-c4b5-e757-cd6d-f79de47d1ff3@linaro.org>
- <fbbbc7e6a951bdde648ddd896f1fa163dafa16f1.camel@mediatek.com>
- <1c3fd336-1450-9b68-df81-2f01cc2ba32f@linaro.org>
- <CAGXv+5EHFjqiVQbXgcJWCo+TmaTU_z4e0g85beMLCNjyx5qJcw@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAGXv+5EHFjqiVQbXgcJWCo+TmaTU_z4e0g85beMLCNjyx5qJcw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-5.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -99,25 +71,23 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/05/2022 12:37, Chen-Yu Tsai wrote:
->> Use a generic node name, as Devicetree spec asks:
->> "The name of a node should be somewhat generic, reflecting the function
->> of the device and not its precise programming
+On 4/5/22 4:47 AM, Stephen Boyd wrote:
+> Quoting Sibi Sankar (2022-02-13 20:34:09)
+>> Add support for proxy interconnect bandwidth votes during modem bootup on
+>> SC7280 SoCs.
 >>
->> model. If appropriate, the name should be one of the following choices:"
->>
->> I proposed dma-controller, but feel free to find better generic node name.
+>> Sibi Sankar (3):
+>>    dt-bindings: remoteproc: qcom: Add interconnects property
+>>    remoteproc: qcom_q6v5_mss: Add support for interconnect bandwidth
+>>      voting
+>>    arm64: dts: qcom: sc7280: Add proxy interconnect requirements for
+>>      modem
 > 
-> dma-controller is covered by dma-controller.yaml, which references
-> dma-common.yaml in its entirety, so I don't think that would work.
+> Is this patch series going to be resent? Does it need to be applied to
+> sc7180 as well?
+
+Stephen,
+The proxy votes are needed on SC7180.
+
+-Sibi
 > 
-> What about "blitter"? I think that is a generic term that is/was commonly
-> used with display hardware and sort of describes the function of the RDMA
-> & WDMA blocks, and if only one side is memory and the other is the display
-> pipeline.
-
-Sure, sounds fine!
-
-
-Best regards,
-Krzysztof
