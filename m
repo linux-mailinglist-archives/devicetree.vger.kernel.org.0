@@ -2,67 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E8962520C0D
-	for <lists+devicetree@lfdr.de>; Tue, 10 May 2022 05:29:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 941BC520C30
+	for <lists+devicetree@lfdr.de>; Tue, 10 May 2022 05:38:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233119AbiEJDde (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 May 2022 23:33:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49590 "EHLO
+        id S235654AbiEJDmE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 May 2022 23:42:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41218 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232713AbiEJDdc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 May 2022 23:33:32 -0400
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6729A5DE60;
-        Mon,  9 May 2022 20:29:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1652153376; x=1683689376;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=t1klwIoGWv+OQ2Kpjn1hI1nlgV8+p4LfkRBvxm2srP4=;
-  b=iapAqaTfuThO3gLSBXbq97bS1pHUb6hilDismWV+6Ga4xts31ONJ6VB7
-   CQLYhV42o04vM0iC+twHLvtjyILWF8TrWNYKJXOeSL6aaFA3Q9IXN/emf
-   XJSgRD7i8q6n87+R1Zejhq6cwqJtNDNykb2nMi8C+fU3s6uOfp2RupmZh
-   lV+UAoavr3h+zR1VXxjvRLM873h+APnN1J8O5yVwK3OQRA27OK9fj2WCp
-   48RRo/YId0bQfEETkH4VIcRnJUi8/ZKlnuiJCvEgduAj7Bv1Xzu2k4QlH
-   ThO50Lh1sS1w27Rqh1g3CuRXI4bdjqA54YmmJpbj6TXN4jFI4aXA9xk+B
-   g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10342"; a="329841522"
-X-IronPort-AV: E=Sophos;i="5.91,213,1647327600"; 
-   d="scan'208";a="329841522"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 May 2022 20:29:36 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.91,213,1647327600"; 
-   d="scan'208";a="552513212"
-Received: from lkp-server01.sh.intel.com (HELO 5056e131ad90) ([10.239.97.150])
-  by orsmga002.jf.intel.com with ESMTP; 09 May 2022 20:29:32 -0700
-Received: from kbuild by 5056e131ad90 with local (Exim 4.95)
-        (envelope-from <lkp@intel.com>)
-        id 1noGZ1-000HFG-Uh;
-        Tue, 10 May 2022 03:29:31 +0000
-Date:   Tue, 10 May 2022 11:28:42 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>,
-        krzysztof.kozlowski+dt@linaro.org, nicolas.ferre@microchip.com,
-        alexandre.belloni@bootlin.com, claudiu.beznea@microchip.com,
-        peda@axentia.se
-Cc:     kbuild-all@lists.01.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        lee.jones@linaro.org, linux@armlinux.org.uk,
-        Manohar.Puri@microchip.com, Kavyasree.Kotagiri@microchip.com,
-        UNGLinuxDriver@microchip.com
-Subject: Re: [PATCH v2 4/4] mux: lan966: Add support for flexcom mux
- controller
-Message-ID: <202205101102.ozG8p9Tv-lkp@intel.com>
-References: <20220509084920.14529-5-kavyasree.kotagiri@microchip.com>
+        with ESMTP id S235727AbiEJDkk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 May 2022 23:40:40 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E83A1AF11;
+        Mon,  9 May 2022 20:36:07 -0700 (PDT)
+X-UUID: 997e40054d824b18a0d998b419c6c56e-20220510
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.4,REQID:8f55eb27-f67a-449c-9bfd-f3b5ec79c8bb,OB:0,LO
+        B:0,IP:0,URL:8,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
+        ON:release,TS:8
+X-CID-META: VersionHash:faefae9,CLOUDID:227234b3-56b5-4c9e-8d83-0070b288eb6a,C
+        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,File:nil,QS:0,BEC:nil
+X-UUID: 997e40054d824b18a0d998b419c6c56e-20220510
+Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw02.mediatek.com
+        (envelope-from <macpaul.lin@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1199608047; Tue, 10 May 2022 11:36:03 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Tue, 10 May 2022 11:36:02 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 10 May 2022 11:36:02 +0800
+Message-ID: <0fed7d2383c1b8367d22fe4f2cccf91b207e14e5.camel@mediatek.com>
+Subject: Re: [PATCH v2 3/4] arm64: dts: mediatek: mt8195: add efuse node and
+ cells
+From:   Macpaul Lin <macpaul.lin@mediatek.com>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+CC:     Fabien Parent <fparent@baylibre.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mathias Nyman <mathias.nyman@intel.com>,
+        <linux-usb@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        Tianping Fang <tianping.fang@mediatek.com>,
+        Eddie Hung <eddie.hung@mediatek.com>,
+        "Linus Walleij" <linus.walleij@linaro.org>,
+        Macpaul Lin <macpaul.lin@gmail.com>
+Date:   Tue, 10 May 2022 11:36:02 +0800
+In-Reply-To: <6e26f483-f4b6-0d0f-7cca-cfa19a39b10a@mediatek.com>
+References: <20220128062902.26273-1-chunfeng.yun@mediatek.com>
+         <20220128062902.26273-3-chunfeng.yun@mediatek.com>
+         <YgY3qvAy5lW1tEdG@kroah.com>
+         <6e26f483-f4b6-0d0f-7cca-cfa19a39b10a@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220509084920.14529-5-kavyasree.kotagiri@microchip.com>
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -70,44 +72,46 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Kavyasree,
+On Wed, 2022-02-16 at 17:38 +0800, Macpaul Lin wrote:
+> 
+> On 2/11/22 6:17 PM, Greg Kroah-Hartman wrote:
+> > On Fri, Jan 28, 2022 at 02:29:01PM +0800, Chunfeng Yun wrote:
+> > > Add efuse node and cells used by t-phy to fix the bit shift issue
+> > > 
+> > > Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
+> > > ---
+> > > v2: use hw auto load for u2phy which has no this issue
+> > > 
+> > > Note:
+> > > 
+> > >   depend on the reviewing patch:
+> > > 
+> > > [v9,3/3] arm64: dts: Add mediatek SoC mt8195 and evaluation board
+> > > 
+https://urldefense.com/v3/__https://patchwork.kernel.org/patch/12711296__;!!CTRNKA9wMg0ARbw!0Jg8kLN4kBw0LcbiAH1HYTq2uQ5VwiD-CE8yoFBD7oApn8YNSdmVpwSdY1q2C7LvY6c$
+> > 
+> > As I don't have that in my tree, I can only take the first 2
+> > patches
+> > here now, thanks.
+> > 
+> > greg k-h
+> > 
+> > _______________________________________________
+> > Linux-mediatek mailing list
+> > Linux-mediatek@lists.infradead.org
+> > 
 
-Thank you for the patch! Yet something to improve:
+Tested-by: Macpaul Lin <macpaul.lin@mediatek.com>
 
-[auto build test ERROR on lee-mfd/for-mfd-next]
-[also build test ERROR on robh/for-next]
-[cannot apply to soc/for-next linus/master v5.18-rc6 next-20220509]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
+This patch has been
+tested with:
+ - "for-next" branch in MediaTek tree [1].
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Kavyasree-Kotagiri/Add-support-for-lan966-flexcom-multiplexer/20220509-171104
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git for-mfd-next
-config: arm64-randconfig-r013-20220509 (https://download.01.org/0day-ci/archive/20220510/202205101102.ozG8p9Tv-lkp@intel.com/config)
-compiler: aarch64-linux-gcc (GCC) 11.3.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/6b77ec16441906d1aa067b60cf97807111abdd72
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Kavyasree-Kotagiri/Add-support-for-lan966-flexcom-multiplexer/20220509-171104
-        git checkout 6b77ec16441906d1aa067b60cf97807111abdd72
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.3.0 make.cross W=1 O=build_dir ARCH=arm64 SHELL=/bin/bash
+https://git.kernel.org/pub/scm/linux/kernel/git/matthias.bgg/linux.git 
+ - added more debug log to confirm efuse probing status at my local.
+  -
+If probe success, it won't show any log.
 
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
+Thanks
+Macpaul Lin
 
-All errors (new ones prefixed by >>):
-
-   aarch64-linux-ld: Unexpected GOT/PLT entries detected!
-   aarch64-linux-ld: Unexpected run-time procedure linkages detected!
-   aarch64-linux-ld: drivers/mfd/atmel-flexcom.o: in function `atmel_flexcom_probe':
-   atmel-flexcom.c:(.text+0x178): undefined reference to `devm_mux_control_get'
->> aarch64-linux-ld: atmel-flexcom.c:(.text+0x1e0): undefined reference to `mux_control_select_delay'
->> aarch64-linux-ld: atmel-flexcom.c:(.text+0x1f4): undefined reference to `mux_control_deselect'
-
--- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
