@@ -2,131 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 85574522356
-	for <lists+devicetree@lfdr.de>; Tue, 10 May 2022 20:08:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0293552239F
+	for <lists+devicetree@lfdr.de>; Tue, 10 May 2022 20:13:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348481AbiEJSMH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 May 2022 14:12:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52604 "EHLO
+        id S1348574AbiEJSRI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 May 2022 14:17:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41732 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348522AbiEJSMG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 May 2022 14:12:06 -0400
-Received: from mailout1.w1.samsung.com (mailout1.w1.samsung.com [210.118.77.11])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 697F21D0F3
-        for <devicetree@vger.kernel.org>; Tue, 10 May 2022 11:08:00 -0700 (PDT)
-Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
-        by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20220510180754euoutp017ef148522cd92682a8839897629b21f6~t0KvHisby2836328363euoutp01a
-        for <devicetree@vger.kernel.org>; Tue, 10 May 2022 18:07:54 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20220510180754euoutp017ef148522cd92682a8839897629b21f6~t0KvHisby2836328363euoutp01a
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1652206074;
-        bh=EIxhLP+tIlQHP4st26qWqlxBxjq78NkAByLwLQ8nxTo=;
-        h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
-        b=TpPxOu+wV/Odg3Vg/pUb2MQoq1GRlmorBZ9I9t/eVnQXdGejcaJyJsAmvhswfJgmR
-         I/kpXqTmjlq3In6YEDpdBtbXmcvm/4oX6QHY6hsFEnrzcxrSYyKJ/Q3P/FD/QYFhAJ
-         DlVTbL+XMLYf5ZAW//LXfAJE1zdCvMEAiHL9Nkds=
-Received: from eusmges1new.samsung.com (unknown [203.254.199.242]) by
-        eucas1p1.samsung.com (KnoxPortal) with ESMTP id
-        20220510180753eucas1p157579d265b6fcc9ef89ce3f830906a88~t0KuG-GpE3030430304eucas1p1v;
-        Tue, 10 May 2022 18:07:53 +0000 (GMT)
-Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
-        eusmges1new.samsung.com (EUCPMTA) with SMTP id 27.19.10009.9F9AA726; Tue, 10
-        May 2022 19:07:53 +0100 (BST)
-Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
-        eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
-        20220510180752eucas1p26e120d9c4026d6a2d7a24744460bea25~t0KtdRC3h2520125201eucas1p2K;
-        Tue, 10 May 2022 18:07:52 +0000 (GMT)
-Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
-        eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
-        20220510180752eusmtrp279ccfe98192aa84ca9815c709573d277~t0KtcgMlS1333413334eusmtrp2g;
-        Tue, 10 May 2022 18:07:52 +0000 (GMT)
-X-AuditID: cbfec7f2-e7fff70000002719-e6-627aa9f9be4f
-Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
-        eusmgms1.samsung.com (EUCPMTA) with SMTP id B9.60.09522.8F9AA726; Tue, 10
-        May 2022 19:07:52 +0100 (BST)
-Received: from [106.210.134.141] (unknown [106.210.134.141]) by
-        eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
-        20220510180751eusmtip2a03a4b379a0f677a5c7b35171686f09a~t0KswbWxT1510215102eusmtip2k;
-        Tue, 10 May 2022 18:07:51 +0000 (GMT)
-Message-ID: <1f2b528d-4b2e-1ba7-5f90-7a0bf78a1869@samsung.com>
-Date:   Tue, 10 May 2022 20:07:51 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0)
-        Gecko/20100101 Thunderbird/91.9.0
-Subject: Re: [PATCH v3 00/12] initial clock support for exynosauto v9 SoC
-Content-Language: en-US
-To:     Chanho Park <chanho61.park@samsung.com>,
-        Tomasz Figa <tomasz.figa@gmail.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S1349443AbiEJSQs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 May 2022 14:16:48 -0400
+Received: from mail-oo1-f44.google.com (mail-oo1-f44.google.com [209.85.161.44])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1315A38BE2
+        for <devicetree@vger.kernel.org>; Tue, 10 May 2022 11:12:47 -0700 (PDT)
+Received: by mail-oo1-f44.google.com with SMTP id l9-20020a4abe09000000b0035eb3d4a2aeso3538004oop.0
+        for <devicetree@vger.kernel.org>; Tue, 10 May 2022 11:12:47 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=HmymxRR+ksr9VrQPHV790/Jh7jRadzKxsCWOza1c70w=;
+        b=DSSRy4V2ywyKqbocwvjKOm4Sfi0l/SNzjmnMKPawQIVnnlP6f6dyr7b9YwcHF9PHnU
+         VEmjFLlmoIaC3SeurSvGZQ9YPEme64hoLazJLfIra8o8Wp84jjURxGXoPJ9M9inzs/kR
+         L5+6BCEgB4K7RYbhT6vfn/vxtCMLvjiWowoVfxnPrsthdaDOue34lFdLejE8z7Ay5rbT
+         0a3jKp+RiJ6jRPf7xkwvhrZ7Z+trXjIoq//GAK/tEGHMspS6n10xrPJl4FNmkg3+r7Zu
+         4tMNdEM/FO3PAwEwUiK2/LmYoISfnn4AxEOedvFbdyF/fH6XOBPudZySJMGfL7mYQxQF
+         PrKQ==
+X-Gm-Message-State: AOAM533O9SmhGg024J/trpTnaPYv3wzxgTeFCi2iIm+zyxaHKw6Y+HNK
+        esM/UnY0zoQizJCHEQaUOA==
+X-Google-Smtp-Source: ABdhPJxAzmwoJIZQQ8eXmfS+c3bMoePPmVC7M/trAZdarHcHlNBnbpOTvXUdIKQcdPb4hVHPegPFiw==
+X-Received: by 2002:a9d:3b5:0:b0:603:f8ac:a780 with SMTP id f50-20020a9d03b5000000b00603f8aca780mr8170434otf.26.1652206366306;
+        Tue, 10 May 2022 11:12:46 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id p1-20020a0568301d4100b0060603221270sm5895979oth.64.2022.05.10.11.12.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 10 May 2022 11:12:45 -0700 (PDT)
+Received: (nullmailer pid 2316486 invoked by uid 1000);
+        Tue, 10 May 2022 18:12:45 -0000
+Date:   Tue, 10 May 2022 13:12:44 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Lucas Stach <l.stach@pengutronix.de>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, Shawn Guo <shawnguo@kernel.org>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Marek Vasut <marex@denx.de>, patchwork-lst@pengutronix.de,
+        Sandor Yu <Sandor.yu@nxp.com>, linux-phy@lists.infradead.org,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Robert Foss <robert.foss@linaro.org>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Sam Protsenko <semen.protsenko@linaro.org>,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org
-From:   Sylwester Nawrocki <s.nawrocki@samsung.com>
-In-Reply-To: <20220504075154.58819-1-chanho61.park@samsung.com>
-Content-Transfer-Encoding: 7bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrLKsWRmVeSWpSXmKPExsWy7djP87o/V1YlGew+K2TxYN42NovL+7Ut
-        rn95zmox/8g5Vou+Fw+ZLfa+3spu8bHnHqvFjPP7mCwunnK1aN17hN3i37WNLBbP+4BCq3b9
-        YXTg9Xh/o5XdY+esu+wem1Z1snncubaHzaNvyypGj8+b5ALYorhsUlJzMstSi/TtErgyGr93
-        MhbsZKyY3dLK3MA4lbGLkZNDQsBE4vONNcxdjFwcQgIrGCU23XrMCOF8YZRobljIBuF8ZpSY
-        9GUxM0zLsQdHoFqWM0rc+PCeHcL5yCgxd9YbsCpeATuJW/Na2UFsFgFViQOn9rFAxAUlTs58
-        AmaLCiRJvHlzFaxeWMBT4v2HTrB6ZgFxiVtP5jOB2CICbcwS29/xQcS7GCUaPhuA2GwChhK9
-        R/uAbuXg4BSwl3i8wQKiRF5i+9s5YMdJCEzmlJg+bzvUoy4SLze0s0DYwhKvjm9hh7BlJP7v
-        hNglIVAvMXnKFTYIu4NR4uteMwjbWmLCphNsILuYBTQl1u/Shwg7Sry/sgssLCHAJ3HjrSDE
-        CXwSk7ZNZ4YI80p0tAlBVKtI/F41HWqRlET3k/8sExiVZiGFySwkv89C8swshL0LGFlWMYqn
-        lhbnpqcWG+allusVJ+YWl+al6yXn525iBKaw0/+Of9rBOPfVR71DjEwcjIcYJTiYlUR49/dV
-        JAnxpiRWVqUW5ccXleakFh9ilOZgURLnTc7ckCgkkJ5YkpqdmlqQWgSTZeLglGpgsjxyLcur
-        YuNFLVb3RWyqdzJ1meuilWQW/Tgw39bpcnIPd2uNotn95KuMmrrt/1+eeBN0fJk+n7TbX4+4
-        i1f+m0hwlS68Yc/DrBJzd5ax4sqWCZOPvI+cFx62+eJOsZba2iiTeXrmEXdma6hXXl6wm3Nl
-        Mzv72kjFU05rP+4X1fo4Y8JhT9a4oPSr39Wcnjodtou6b3eAv/CPkvAFjaakliLNXfnrttQa
-        WPPG/gs213r5zfb6x9/TuPzt/n3jXZw71/xlxNssK71ZvXrZv9QuPjv67VL/Jl+N5g4LB5G9
-        rD3pr2Mcl384bSRd5HYvPiBgdXvjl7MibQ9EzTrnlS/7u7BltlZNxT+LI0G1TV5KLMUZiYZa
-        zEXFiQBs+ExP0AMAAA==
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrHIsWRmVeSWpSXmKPExsVy+t/xe7o/VlYlGfw7pmLxYN42NovL+7Ut
-        rn95zmox/8g5Vou+Fw+ZLfa+3spu8bHnHqvFjPP7mCwunnK1aN17hN3i37WNLBbP+4BCq3b9
-        YXTg9Xh/o5XdY+esu+wem1Z1snncubaHzaNvyypGj8+b5ALYovRsivJLS1IVMvKLS2yVog0t
-        jPQMLS30jEws9QyNzWOtjEyV9O1sUlJzMstSi/TtEvQyGr93MhbsZKyY3dLK3MA4lbGLkZND
-        QsBE4tiDI8xdjFwcQgJLGSWmPr3B0sXIAZSQkpjfogRRIyzx51oXG0TNe0aJa9t7WEASvAJ2
-        ErfmtbKD2CwCqhIHTu2DigtKnJz5BGyOqECSxJHD/CBhYQFPifcfOsHKmQXEJW49mc8EMlNE
-        oINZ4uPMZ2ALmAW6GCU2/n7CBlIlJDCJUeLfM7ChbAKGEr1H+xhBhnIK2Es83mABYjILqEus
-        nycEMVNeYvvbOcwTGIVmIbliFpJ1sxA6ZiHpWMDIsopRJLW0ODc9t9hQrzgxt7g0L10vOT93
-        EyMwYrcd+7l5B+O8Vx/1DjEycTAeYpTgYFYS4d3fV5EkxJuSWFmVWpQfX1Sak1p8iNEUGBIT
-        maVEk/OBKSOvJN7QzMDU0MTM0sDU0sxYSZzXs6AjUUggPbEkNTs1tSC1CKaPiYNTqoGJ/aSD
-        8tQdd5MOiM/TMrlQZvWriLFTtfnB+5+7C/XfVAnvm3tyajCfU4OBeVPyOpu9G15d9/R6adfw
-        MO+WwJsr36w5TyuzvHnItGDWDf2ImiyhxOAZV+5d1/CvNm0M9BMot3hrGPKtTLri3yv3R4vL
-        NKycT8pL/9VscOSYbM1qYvmyfhHj4lOT5s5ycY0T9D+zbOnZvZ+D/ip35iysXxArx7Pq82Im
-        YfvzZzR5eloK3ub3f/XMWpS8LvFi0ZIE+R63V99ZxL2uTOn3kIw6sJllWiHrTJn/8i4/ONPL
-        YiJNxRcWf47IfHb4/tzqft2ju26GP64LW9uY5m7c3FniUij4IOuw0Wy3N+JfHbq2bVZiKc5I
-        NNRiLipOBADC94CwYQMAAA==
-X-CMS-MailID: 20220510180752eucas1p26e120d9c4026d6a2d7a24744460bea25
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20220504075003epcas2p3f6f002e444cab4e39c025b169cba1b80
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20220504075003epcas2p3f6f002e444cab4e39c025b169cba1b80
-References: <CGME20220504075003epcas2p3f6f002e444cab4e39c025b169cba1b80@epcas2p3.samsung.com>
-        <20220504075154.58819-1-chanho61.park@samsung.com>
-X-Spam-Status: No, score=-8.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+Subject: Re: [PATCH v0.5 1/9] dt-bindings: display: imx: add binding for
+ i.MX8MP HDMI TX
+Message-ID: <YnqrHDi6yBT/d9PK@robh.at.kernel.org>
+References: <20220506181034.2001548-1-l.stach@pengutronix.de>
+ <20220506181034.2001548-2-l.stach@pengutronix.de>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220506181034.2001548-2-l.stach@pengutronix.de>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04.05.2022 09:51, Chanho Park wrote:
-> This patchset adds initial clock driver support for Exynos Auto v9 SoC.
+On Fri, May 06, 2022 at 08:10:26PM +0200, Lucas Stach wrote:
+> The HDMI TX controller on the i.MX8MP SoC is a Synopsys designware IP
+> core with a little bit of SoC integration around it.
+> 
+> Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
+> ---
+>  .../bindings/display/imx/fsl,imx8mp-hdmi.yaml | 73 +++++++++++++++++++
+>  1 file changed, 73 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx8mp-hdmi.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/display/imx/fsl,imx8mp-hdmi.yaml b/Documentation/devicetree/bindings/display/imx/fsl,imx8mp-hdmi.yaml
+> new file mode 100644
+> index 000000000000..bd9a2b135176
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/imx/fsl,imx8mp-hdmi.yaml
+> @@ -0,0 +1,73 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/imx/fsl,imx8mp-hdmi.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Freescale i.MX8MP DWC HDMI TX Encoder
+> +
+> +maintainers:
+> +  - Lucas Stach <l.stach@pengutronix.de>
+> +
+> +description: |
+> +  The HDMI transmitter is a Synopsys DesignWare HDMI 2.0 TX controller IP.
+> +
+> +allOf:
+> +  - $ref: ../bridge/synopsys,dw-hdmi.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - fsl,imx8mp-hdmi
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  reg-io-width:
+> +    const: 1
+> +
+> +  clocks:
+> +    maxItems: 5
+> +
+> +  clock-names:
+> +    items:
+> +      - {}
+> +      - {}
+> +      - const: cec
+> +      - const: pix
+> +      - const: fdcc 
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +  - interrupts
+> +  - power-domains
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    #include <dt-bindings/clock/imx8mp-clock.h>
+> +    #include <dt-bindings/power/imx8mp-power.h>
+> +
+> +    hdmi@32fd8000 {
+> +        compatible = "fsl,imx8mp-hdmi";
+> +        reg = <0x32fd8000 0x7eff>;
+> +        interrupts = <0 IRQ_TYPE_LEVEL_HIGH>;
+> +        clocks = <&clk IMX8MP_CLK_HDMI_APB>,
+> +                 <&clk IMX8MP_CLK_HDMI_REF_266M>,
+> +                 <&clk IMX8MP_CLK_32K>,
+> +                 <&hdmi_tx_phy>;
+> +        clock-names = "iahb", "isfr", "cec", "pix";
 
-Thanks, I have applied patches 04...09/12.
+The schema says there are 5 entries.
 
-Regards,
-Sylwester
+> +        power-domains = <&hdmi_blk_ctrl IMX8MP_HDMIBLK_PD_HDMI_TX>;
+> +        reg-io-width = <1>;
+> +    };
+> -- 
+> 2.30.2
+> 
+> 
