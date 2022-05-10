@@ -2,61 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8381E5221B4
-	for <lists+devicetree@lfdr.de>; Tue, 10 May 2022 18:50:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 41C935221B7
+	for <lists+devicetree@lfdr.de>; Tue, 10 May 2022 18:50:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347668AbiEJQy0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 May 2022 12:54:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45576 "EHLO
+        id S1343868AbiEJQyp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 May 2022 12:54:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46166 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347670AbiEJQyV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 May 2022 12:54:21 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9AE952A4717;
-        Tue, 10 May 2022 09:50:23 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: nfraprado)
-        with ESMTPSA id 5AB901F43174
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1652201421;
-        bh=ZLNmt5sdQew7yKceknoOpRxb0cIfVFzschzGJ6r+zG4=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=nhtj6M/AUwaJD8Ja7FlZFjsiFaIu+2p9Y8N17iQhM04EmemSlHuQtSp8lR+/4GUC0
-         CWJEYllptB8/qbDjjto0Pgc1nwfyhkmVcDGy1mhD5zMSnBNb0EYejN7YBX23Jn77Wn
-         TnbYfjal0cvdRR1du/7jQqsr/jA2bbPJWEYSmJIOuxHAj7NNpVnrffixXnYSMasmmz
-         gGsC0WhZbmPh7RsyqSedZNvXaPp4v3hcNKNPdnUmG+SVhSV5am9JLmtEmD/sWfg/G6
-         ob+7yyeog/yNcM2NbUOKZMXvFJW7+gLulAG5RJc6cZNbFNYureITmBWy1qtZxyl6Cq
-         MRyAvkHgirvqA==
-Date:   Tue, 10 May 2022 12:50:16 -0400
-From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
-        <nfraprado@collabora.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, kernel@collabora.com,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
+        with ESMTP id S1347689AbiEJQyn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 May 2022 12:54:43 -0400
+Received: from mail-oi1-f173.google.com (mail-oi1-f173.google.com [209.85.167.173])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C250165B8;
+        Tue, 10 May 2022 09:50:41 -0700 (PDT)
+Received: by mail-oi1-f173.google.com with SMTP id q10so4013224oia.9;
+        Tue, 10 May 2022 09:50:41 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=B3sdHtLCLqCtzcR8PT+tmEwLfguhQ3CqlLtMecSR1Vw=;
+        b=bVI6ge+ebdCQw1aytBwaIVDl9XPGjHzOY6P8xf1wuL2otIwW/7RVjfCK2eTlgb0VVh
+         goxLB5K9DjJqp4i/sr3/FpISLVQ+uXmuLarB6XyHsroaBTHGDz5MeeVAH5/ZxI4f2HeB
+         OJ5WVydbCTHfykIjorJSG2oKM7x7I7j0hvLJoEEh9T/9nGUD3webXLp4zRUeaToNsIJh
+         qi+AdjVSgfqXGjQHszM/Rq4CVM25pY0idaP8EG43Efx0N53rvKeTZZG1jkSWjKo/gCnf
+         8umHMaoCHEYLFdxR5rxV1Mqb9+L/Vih5lIuPG7V+2ENuFxLLHK4ezvE1aOq3prztb0f6
+         yi/Q==
+X-Gm-Message-State: AOAM530AScCWgC5q25536ZToLBx+urSPap5I3fs1OqX3HJPm1Q/Wqouq
+        lMbnWOcH+9F25OJH0yo8tg==
+X-Google-Smtp-Source: ABdhPJwy45fRS0tiYahp1LC3/uI3tPz8OaNKpA9VxUOABysCHuGZ47sXiGRVMbOS3RgvlDnb6zvmtw==
+X-Received: by 2002:aca:62c5:0:b0:326:b067:ac89 with SMTP id w188-20020aca62c5000000b00326b067ac89mr456323oib.281.1652201439460;
+        Tue, 10 May 2022 09:50:39 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id v8-20020a4ade88000000b0035eb4e5a6b2sm6265009oou.8.2022.05.10.09.50.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 10 May 2022 09:50:39 -0700 (PDT)
+Received: (nullmailer pid 2180926 invoked by uid 1000);
+        Tue, 10 May 2022 16:50:38 -0000
+Date:   Tue, 10 May 2022 11:50:38 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        linux-arm-msm@vger.kernel.org, Andy Gross <agross@kernel.org>,
+        Stanimir Varbanov <svarbanov@mm-sol.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        devicetree@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Vinod Koul <vkoul@kernel.org>, linux-pci@vger.kernel.org,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Tinghan Shen <tinghan.shen@mediatek.com>,
-        Tzung-Bi Shih <tzungbi@google.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org,
-        linux-remoteproc@vger.kernel.org
-Subject: Re: [PATCH v4 1/2] dt-bindings: remoteproc: mediatek: Make l1tcm reg
- exclusive to mt819x
-Message-ID: <20220510165016.r7nyck2abt5m4djp@notapiano>
-References: <20220506213226.257859-1-nfraprado@collabora.com>
- <20220506213226.257859-2-nfraprado@collabora.com>
- <d3e027ca-9ccf-cf91-2414-85d2b9b680f0@linaro.org>
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+Subject: Re: [PATCH v6 4/8] dt-bindings: PCI: qcom: Add schema for sc7280
+ chipset
+Message-ID: <YnqX3hCJHoJfUB0V@robh.at.kernel.org>
+References: <20220506152107.1527552-1-dmitry.baryshkov@linaro.org>
+ <20220506152107.1527552-5-dmitry.baryshkov@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <d3e027ca-9ccf-cf91-2414-85d2b9b680f0@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY,URIBL_BLOCKED autolearn=ham
+In-Reply-To: <20220506152107.1527552-5-dmitry.baryshkov@linaro.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -64,88 +73,14 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, May 07, 2022 at 06:33:31PM +0200, Krzysztof Kozlowski wrote:
-> On 06/05/2022 23:32, Nícolas F. R. A. Prado wrote:
-> > Commit ca23ecfdbd44 ("remoteproc/mediatek: support L1TCM") added support
-> > for the l1tcm memory region on the MT8192 SCP, adding a new da_to_va
-> > callback that handles l1tcm while keeping the old one for
-> > back-compatibility with MT8183. However, since the mt8192 compatible was
-> > missing from the dt-binding, the accompanying dt-binding commit
-> > 503c64cc42f1 ("dt-bindings: remoteproc: mediatek: add L1TCM memory region")
-> > mistakenly added this reg as if it were for mt8183. And later
-> > it became common to all platforms as their compatibles were added.
-> > 
-> > Fix the dt-binding so that the l1tcm reg can, and must, be present only
-> > on the supported platforms: mt8192 and mt8195.
-> > 
-> > Fixes: 503c64cc42f1 ("dt-bindings: remoteproc: mediatek: add L1TCM memory region")
-> > Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
-> > 
-> > ---
-> > The if:then: branches became rather long since it seems that it's not
-> > possible to override the properties in them, only add new ones. That is,
-> > I couldn't leave the items definition for all three regs in the global
-> > reg-names and just decrease minItems and maxItems to 2 for
-> > mt8183/mt8186.
-> > 
-> > Also I had to add a description to the global reg-names, since it
-> > couldn't be neither missing nor empty.
+On Fri, 06 May 2022 18:21:03 +0300, Dmitry Baryshkov wrote:
+> Add support for sc7280-specific clock and reset definitions.
 > 
-> It is possible:
-> https://elixir.bootlin.com/linux/latest/source/Documentation/devicetree/bindings/example-schema.yaml#L91
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+>  .../devicetree/bindings/pci/qcom,pcie.yaml    | 32 +++++++++++++++++++
+>  1 file changed, 32 insertions(+)
 > 
-> Keep constraints and list of names in properties. Then in allOf:if:then
-> raise minItems or lower maxItems, depending on the variant.
 
-Hi Krzysztof,
-
-that example only shows setting minItems to override the default value, but the
-issue here is that it's not possible to override minItems/maxItems (after
-they're already set, even if implicitly) with a different value in the if.
-
-That is:
-
-	properties:
-	  reg-names:
-	    items:
-	      - const: sram
-	      - const: cfg
-	      - const: l1tcm
-
-	if:
-	  properties:
-	    compatible:
-	      enum:
-		- mediatek,mt8183-scp
-		- mediatek,mt8186-scp
-	then:
-	  properties:
-	    reg-names:
-	      minItems: 2
-	      maxItems: 2
-
-Generates the error on dtbs_check:
-
-/home/nfraprado/ext/git/linux/arch/arm64/boot/dts/mediatek/mt8183-kukui-kakadu.dtb: scp@10500000: reg-names: ['sram', 'cfg'] is too short
-
-I believe the tooling is implicitly adding
-
-	      minItems: 3
-	      maxItems: 3
-
-to the common reg-names, and since it's not possible to override them, the
-override to 2 doesn't work so they are kept at 3, causing the error.
-
-Moving the minItems/maxItems to the common reg-names as a test gives:
-
-/home/nfraprado/ext/git/linux/Documentation/devicetree/bindings/remoteproc/mtk,scp.yaml: properties:reg-names: {'minItems': 2, 'maxItems': 2, 'items': [{'const': 'sram'}, {'const': 'cfg'}, {'const': 'l1tcm'}]} should not be valid under {'required': ['maxItems']}
-	hint: "maxItems" is not needed with an "items" list
-
-That error, plus looking in the items meta-schema, suggests me that maxItems
-isn't supposed to be set lower then the length of items. So even if the
-minItems/maxItems override is fixed, there's still this issue. It seems like
-defining the reg-names list separetely in each if branch is indeed the right way
-to go.
-
-Thanks,
-Nícolas
+Acked-by: Rob Herring <robh@kernel.org>
