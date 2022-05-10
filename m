@@ -2,128 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BAAE85214E2
-	for <lists+devicetree@lfdr.de>; Tue, 10 May 2022 14:10:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3E3A952159A
+	for <lists+devicetree@lfdr.de>; Tue, 10 May 2022 14:38:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233297AbiEJMOl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 May 2022 08:14:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59794 "EHLO
+        id S241324AbiEJMmA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 May 2022 08:42:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50834 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241542AbiEJMOi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 May 2022 08:14:38 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F66C29955D;
-        Tue, 10 May 2022 05:10:36 -0700 (PDT)
-X-UUID: 92a1bd6914d1409d9db17c935f30dbec-20220510
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.4,REQID:1424fca2-f29c-432f-9896-a60fc4a5f581,OB:0,LO
-        B:0,IP:0,URL:8,TC:0,Content:0,EDM:0,RT:0,SF:100,FILE:0,RULE:Release_Ham,AC
-        TION:release,TS:108
-X-CID-INFO: VERSION:1.1.4,REQID:1424fca2-f29c-432f-9896-a60fc4a5f581,OB:0,LOB:
-        0,IP:0,URL:8,TC:0,Content:0,EDM:0,RT:0,SF:100,FILE:0,RULE:Spam_GS981B3D,AC
-        TION:quarantine,TS:108
-X-CID-META: VersionHash:faefae9,CLOUDID:c69448b3-56b5-4c9e-8d83-0070b288eb6a,C
-        OID:fc5b4ba0009f,Recheck:0,SF:28|16|19|48,TC:nil,Content:0,EDM:-3,File:nil
-        ,QS:0,BEC:nil
-X-UUID: 92a1bd6914d1409d9db17c935f30dbec-20220510
-Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw02.mediatek.com
-        (envelope-from <chunfeng.yun@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1566241701; Tue, 10 May 2022 20:10:30 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
- Tue, 10 May 2022 20:10:30 +0800
-Received: from localhost.localdomain (10.17.3.154) by mtkmbs11n2.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
- Transport; Tue, 10 May 2022 20:10:29 +0800
-From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
-To:     Matthias Brugger <matthias.bgg@gmail.com>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        <devicetree@vger.kernel.org>,
+        with ESMTP id S241865AbiEJMl7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 May 2022 08:41:59 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38109252DCF;
+        Tue, 10 May 2022 05:38:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=L6IMO5LGjDZtfxTxahYjYfLwAJox1qHstZ/tNceRD6k=; b=vxIttA9LVr8/mhICmGcN18z2qt
+        0nsKNihJNly8ercr0LQDyfPRiNnWlmvxpeO6wZS0fdKfVe8OQeds7xi1iByv5x0VcgJT9pSwjbQrN
+        MxmzOMqiaXAsaoyZ6sjuOhU0nGHVlk4bpv3WvVw5Dz1AKLlm/X81+meWvGrhJQg5upNI=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1noP7X-0028N4-R8; Tue, 10 May 2022 14:37:43 +0200
+Date:   Tue, 10 May 2022 14:37:43 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Chris Packham <Chris.Packham@alliedtelesis.co.nz>,
+        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
+        "will@kernel.org" <will@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "gregory.clement@bootlin.com" <gregory.clement@bootlin.com>,
+        "sebastian.hesselbarth@gmail.com" <sebastian.hesselbarth@gmail.com>,
+        "kostap@marvell.com" <kostap@marvell.com>,
+        "robert.marko@sartura.hr" <robert.marko@sartura.hr>,
+        "linux-arm-kernel@lists.infradead.org" 
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Macpaul Lin <macpaul.lin@mediatek.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>
-Subject: [PATCH next v3 2/2] arm64: dts: mediatek: mt8195: enable usb remote wakeup
-Date:   Tue, 10 May 2022 20:10:27 +0800
-Message-ID: <20220510121027.19041-2-chunfeng.yun@mediatek.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220510121027.19041-1-chunfeng.yun@mediatek.com>
-References: <20220510121027.19041-1-chunfeng.yun@mediatek.com>
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v5 1/2] arm64: dts: marvell: Add Armada 98DX2530 SoC and
+ RD-AC5X board
+Message-ID: <Ynpclx4z5z1Emx+b@lunn.ch>
+References: <20220504044624.951841-1-chris.packham@alliedtelesis.co.nz>
+ <20220504044624.951841-2-chris.packham@alliedtelesis.co.nz>
+ <dcc80690-c159-99f8-4686-536b9e87eb69@linaro.org>
+ <6770d320-b998-0c9d-3824-0d429834b289@alliedtelesis.co.nz>
+ <3498643b-cb2e-5685-65e0-7efe1113783f@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-MTK:  N
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE,
-        SPF_HELO_NONE,T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <3498643b-cb2e-5685-65e0-7efe1113783f@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable USB remote wakeup of all four xHCI controller
+On Tue, May 10, 2022 at 09:08:08AM +0200, Krzysztof Kozlowski wrote:
+> On 10/05/2022 06:14, Chris Packham wrote:
+> > 
+> > Based on the information I have (which isn't much) there is a ref_clk 
+> > input that is connected to a 25MHz oscillator and then I'm assuming 
+> > these are all generated from that with various dividers. 25MHz is the 
+> > only documented option.
+> > 
+> > There doesn't appear to be any documented register where I can read out 
+> > the divider ratios. It might be nice I could have the fixed osc node and 
+> > have these 3 clocks derived with fixed divisors but I don't see any what 
+> > of achieving that.
+> 
+> 
+> OK, but where are the dividers? The ref_clk is outside of SoC, so should
+> be defined in board DTS (at least its rate). If the rest is in the SoC,
+> they are usually part of clock controller, because usually they belong
+> to some power domain or have some clock gating.
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
----
-v3: add reviewed-by AngeloGioacchino;
+25MHz is a 'magic value' in Ethernet, nearly everything is based
+around it. And remember this SoC is basically an Ethernet switch with
+a small CPU glued on one side. If you gated clocks derived from the
+25MHz reference clock, probably part of your Ethernet switch stops
+working, which is the whole point of this SoC. So i doubt there are
+gates on the derived clocks. If there is any gating and power domains,
+it is generally at a different level. You can power down individual
+ports of the Ethernet switch. But generally, there is one bit in a
+register somewhere to do that, and you don't have direct control over
+clocks and regulators etc.
 
-NOTE:
-  based on v5.18-next/dts64 of matthias.bgg's branch
-
-v2: no changes, based on new version of mt8195.dtsi
----
- arch/arm64/boot/dts/mediatek/mt8195.dtsi | 8 ++++++++
- 1 file changed, 8 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-index d5bc4cf5f4ac..3ad14e0e0956 100644
---- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-@@ -573,6 +573,8 @@
- 				 <&apmixedsys CLK_APMIXED_USB1PLL>,
- 				 <&infracfg_ao CLK_INFRA_AO_SSUSB_XHCI>;
- 			clock-names = "sys_ck", "ref_ck", "mcu_ck", "xhci_ck";
-+			mediatek,syscon-wakeup = <&pericfg 0x400 103>;
-+			wakeup-source;
- 			status = "disabled";
- 		};
- 
-@@ -636,6 +638,8 @@
- 				 <&apmixedsys CLK_APMIXED_USB1PLL>,
- 				 <&pericfg_ao CLK_PERI_AO_SSUSB_1P_XHCI>;
- 			clock-names = "sys_ck", "ref_ck", "mcu_ck","xhci_ck";
-+			mediatek,syscon-wakeup = <&pericfg 0x400 104>;
-+			wakeup-source;
- 			status = "disabled";
- 		};
- 
-@@ -655,6 +659,8 @@
- 				 <&topckgen CLK_TOP_SSUSB_P2_REF>,
- 				 <&pericfg_ao CLK_PERI_AO_SSUSB_2P_XHCI>;
- 			clock-names = "sys_ck", "ref_ck", "xhci_ck";
-+			mediatek,syscon-wakeup = <&pericfg 0x400 105>;
-+			wakeup-source;
- 			status = "disabled";
- 		};
- 
-@@ -674,6 +680,8 @@
- 				 <&topckgen CLK_TOP_SSUSB_P3_REF>,
- 				 <&pericfg_ao CLK_PERI_AO_SSUSB_3P_XHCI>;
- 			clock-names = "sys_ck", "ref_ck", "xhci_ck";
-+			mediatek,syscon-wakeup = <&pericfg 0x400 106>;
-+			wakeup-source;
- 			status = "disabled";
- 		};
- 
--- 
-2.18.0
-
+       Andrew
