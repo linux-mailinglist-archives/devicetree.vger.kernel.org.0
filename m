@@ -2,76 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D440152124C
-	for <lists+devicetree@lfdr.de>; Tue, 10 May 2022 12:37:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F2A7B521258
+	for <lists+devicetree@lfdr.de>; Tue, 10 May 2022 12:38:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239974AbiEJKlU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 May 2022 06:41:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46668 "EHLO
+        id S239953AbiEJKmN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 May 2022 06:42:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51010 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239928AbiEJKlF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 May 2022 06:41:05 -0400
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 350B92609FC
-        for <devicetree@vger.kernel.org>; Tue, 10 May 2022 03:37:08 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id gh6so32108427ejb.0
-        for <devicetree@vger.kernel.org>; Tue, 10 May 2022 03:37:08 -0700 (PDT)
+        with ESMTP id S239827AbiEJKmG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 May 2022 06:42:06 -0400
+Received: from mail-yb1-xb36.google.com (mail-yb1-xb36.google.com [IPv6:2607:f8b0:4864:20::b36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95AE6266F27
+        for <devicetree@vger.kernel.org>; Tue, 10 May 2022 03:38:09 -0700 (PDT)
+Received: by mail-yb1-xb36.google.com with SMTP id i11so7860161ybq.9
+        for <devicetree@vger.kernel.org>; Tue, 10 May 2022 03:38:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=75/C7h5CNsbW/VVYm2sKiusOMpu9/WpRRE2yjuNNA7Y=;
-        b=mx5dQxDx0ZCxnBFMxuie5AkL72AsDS45domPNjZ/menpLr7TtONaLqhcO3BBJZCAiw
-         fbzrTyl/BaFfLnoney01gyPd88c/7JTL5ibgAtas2kuAcHlN+yq0bEKRHV4V3MW3E+iL
-         4NqM88T61dV8HudyVqQuq6uv3CYTaXkk/GdxvJQS56S0drI07ug3dwN3yKI1lQWnQ3gz
-         LFJ5FMAcThL38AsM+TY1vwNF6TlKe6SUQXoukCGRbmgW4hrChBkqea6DZ3XxkkkCWI61
-         nFlysVi1tfYVVUdnl5DTJkq17vWDQ4Eno0yi3TRLAk4w7lgAdVJkuzrUtKe3u/7W8tT6
-         tasw==
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=18Z/sTz+IhJS4WIQidF8Pkf7x0QFtzeGTd5zgt1XcsI=;
+        b=mce5YmBbmq67J2zhZTHGEv91yobyh5mk7B2CT3fMjjAqcnjQubzRIntpwRppCEnqp+
+         rmbixFACXH1Fa3+8SQbPTl8SgT/K4WNPHtxz5QmUUgQ0SUdbjb5qhG6im/W3dUulSp/u
+         HJ+wUlbTR0YAU9r1YHMPQhrxD5BLUFa1TOZJo=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=75/C7h5CNsbW/VVYm2sKiusOMpu9/WpRRE2yjuNNA7Y=;
-        b=a1/Mka2Idh7DtUILrAj7fRFIg+QXTr1SKY16NjT/y52vSY4orGXh8bwPCHDOXoLW40
-         3gNfm09Yjxt6m743dvYb8LjX/Angj8Nu9NyYqhMznhTp+NOVCdyzSarkWxTJzFzN83dB
-         KnYXESLO1llQfmiAZtIZPw7TWRW6K1Yw/C8jVprFeMug9e//zQMt5o25DAOYDNeXDfVQ
-         qcu+TCcglT3OfcJokm4qGr44Imhr7L3GN8LgbyiKLoNElZSF8bm73RNU7uToDiAfMo6x
-         HD1rKEq3XVQju5Tr5I2Q8dCBPTLKxNdIbXlJ2geVUHZ68VLESmofdTmBmCp+7aS2I154
-         Pg7A==
-X-Gm-Message-State: AOAM5314w13G5R9ASeLIQQXXVFJbjXhMBM+RG9ZQuFjlhc2RLDvbIuXv
-        q3qafktUldd/t79V95ykDXrraQ==
-X-Google-Smtp-Source: ABdhPJwTRNAmvlaJMRk0SNOUSPmD2ohyEdjxYr4vHijwfhtSm7X6ktPpLVAZZ/7kBhdWdOvLAz0QQw==
-X-Received: by 2002:a17:907:6092:b0:6fa:7951:e26 with SMTP id ht18-20020a170907609200b006fa79510e26mr8537235ejc.734.1652179026740;
-        Tue, 10 May 2022 03:37:06 -0700 (PDT)
-Received: from [192.168.0.251] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id hv7-20020a17090760c700b006f3ef214e15sm5983621ejc.123.2022.05.10.03.37.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 10 May 2022 03:37:06 -0700 (PDT)
-Message-ID: <88a0543f-e717-4228-4842-aa69cd7faaf8@linaro.org>
-Date:   Tue, 10 May 2022 12:37:04 +0200
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=18Z/sTz+IhJS4WIQidF8Pkf7x0QFtzeGTd5zgt1XcsI=;
+        b=Ez3O2SPfz9VpmDznLeYx1Hb2NYNgrXwVTFNuJ6hHO9T3525xcog9wda/5H4Md3fawA
+         uks/HwkKjM6bskPE7WO3mwjcXj1Y8G5qAnvtvXHOmd64rnPJeH5kwvyrUQ+EfZO/jVoJ
+         g9ATYbTOb+y8GNGO5Vy/7oy3Tz0BpO7vDQ8Q3eTJDBo+zC0sJwI8vbosxzbF+SXAxesY
+         UoV+a7xmHGfghBiaQzTg4yJonTiao9zgeUK1ixEgvhdU6jJt1lXsbqi64R3ZCTkDtt0c
+         /mxaYpPvDDGB5f2OUlNfoUESeGZ9T7KM7Cpg8vXX5Wxk5nreWOfaMB0JahQI+uoYn0um
+         igYg==
+X-Gm-Message-State: AOAM533PfVK2y2PC4XTwnFDF1BNhocsQUG35cXe8nJbWd7dG+jy9xN/f
+        uGzx+bVLvHasIzVcJ8S7E6OMidk0UA7h/NB4nuhcVN+gwTGcgw==
+X-Google-Smtp-Source: ABdhPJydfNAKQMhJh5sK/HAXZvb2Kunl4GtH2wnKZ/ZK7z6LCCVG+1efFg9HYbdUR9Jq5koVxnXByhS4ux49LykcTBs=
+X-Received: by 2002:a05:6902:1501:b0:649:ff91:5409 with SMTP id
+ q1-20020a056902150100b00649ff915409mr17647450ybu.278.1652179088847; Tue, 10
+ May 2022 03:38:08 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH v2 3/4] dt-bindings: mux: Add lan966 flexcom mux
- controller
-Content-Language: en-US
-To:     Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>,
-        krzysztof.kozlowski+dt@linaro.org, nicolas.ferre@microchip.com,
-        alexandre.belloni@bootlin.com, claudiu.beznea@microchip.com,
-        peda@axentia.se
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, lee.jones@linaro.org,
-        linux@armlinux.org.uk, Manohar.Puri@microchip.com,
-        UNGLinuxDriver@microchip.com
-References: <20220509084920.14529-1-kavyasree.kotagiri@microchip.com>
- <20220509084920.14529-4-kavyasree.kotagiri@microchip.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220509084920.14529-4-kavyasree.kotagiri@microchip.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+References: <20220509044302.27878-1-rex-bc.chen@mediatek.com>
+ <20220509044302.27878-2-rex-bc.chen@mediatek.com> <a5c9e7ad-c4b5-e757-cd6d-f79de47d1ff3@linaro.org>
+ <fbbbc7e6a951bdde648ddd896f1fa163dafa16f1.camel@mediatek.com> <1c3fd336-1450-9b68-df81-2f01cc2ba32f@linaro.org>
+In-Reply-To: <1c3fd336-1450-9b68-df81-2f01cc2ba32f@linaro.org>
+From:   Chen-Yu Tsai <wenst@chromium.org>
+Date:   Tue, 10 May 2022 18:37:57 +0800
+Message-ID: <CAGXv+5EHFjqiVQbXgcJWCo+TmaTU_z4e0g85beMLCNjyx5qJcw@mail.gmail.com>
+Subject: Re: [PATCH v2 1/3] dt-bindings: mediatek: add vdosys1 RDMA definition
+ for mt8195
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Rex-BC Chen <rex-bc.chen@mediatek.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "airlied@linux.ie" <airlied@linux.ie>,
+        =?UTF-8?B?SmFzb24tSkggTGluICjmnpfnnb/npaUp?= 
+        <Jason-JH.Lin@mediatek.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+        Project_Global_Chrome_Upstream_Group 
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        =?UTF-8?B?TmFuY3kgTGluICjmnpfmrKPonqIp?= <Nancy.Lin@mediatek.com>,
+        "linux-mediatek@lists.infradead.org" 
+        <linux-mediatek@lists.infradead.org>,
+        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "angelogioacchino.delregno@collabora.com" 
+        <angelogioacchino.delregno@collabora.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -80,84 +85,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/05/2022 10:49, Kavyasree Kotagiri wrote:
-> This adds DT bindings documentation for lan966 flexcom
-> mux controller.
-> 
-> Signed-off-by: Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>
-> ---
->  .../mux/microchip,lan966-flx-mux.yaml         | 51 +++++++++++++++++++
->  1 file changed, 51 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mux/microchip,lan966-flx-mux.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/mux/microchip,lan966-flx-mux.yaml b/Documentation/devicetree/bindings/mux/microchip,lan966-flx-mux.yaml
-> new file mode 100644
-> index 000000000000..63147a2e8f3a
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mux/microchip,lan966-flx-mux.yaml
-> @@ -0,0 +1,51 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mux/microchip,lan966-flx-mux.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Microchip Lan966 Flexcom multiplexer bindings
+On Tue, May 10, 2022 at 6:28 PM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 09/05/2022 10:45, Rex-BC Chen wrote:
+> >>> +    soc {
+> >>> +        #address-cells = <2>;
+> >>> +        #size-cells = <2>;
+> >>> +
+> >>> +        vdo1_rdma0: mdp-rdma@1c104000 {
+> >>
+> >> Generic node name. dma-controller (if it does not conflict with
+> >> dma-common.yaml schema)?
+> >
+> > We don't understand what dma-controller you are referring to? Can you
+> > help explain more? Thanks!
+>
+> Use a generic node name, as Devicetree spec asks:
+> "The name of a node should be somewhat generic, reflecting the function
+> of the device and not its precise programming
+>
+> model. If appropriate, the name should be one of the following choices:"
+>
+> I proposed dma-controller, but feel free to find better generic node name.
 
-s/bindings//
+dma-controller is covered by dma-controller.yaml, which references
+dma-common.yaml in its entirety, so I don't think that would work.
 
-> +
-> +maintainers:
-> +  - Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>
-> +
-> +description: |+
-
-No need for |+
-
-> +  The Microchip Lan966 have 5 Flexcoms. Each flexcom has 2 chip-selects
-> +  when operating in USART and SPI modes.
-> +  Each chip select of each flexcom can be mapped to 21 flexcom shared pins.
-> +  Define register offset and pin number to map a flexcom chip-select
-> +  to flexcom shared pin.
-> +
-> +allOf:
-> +  - $ref: /schemas/mux/mux-controller.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: microchip,lan966-flx-mux
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  '#mux-control-cells':
-> +    const: 1
-> +
-> +  mux-offset-pin:
-> +    description: an array of register offset and flexcom shared pin(0-20).
-
-This does not look like generic property, so you need vendor prefix and
-type/ref.
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - '#mux-control-cells'
-> +  - mux-offset-pin
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    mux: mux-controller@e2004168 {
-> +        compatible = "microchip,lan966-flx-mux";
-> +        reg = <0xe2004168 0x8>;
-> +        #mux-control-cells = <1>;
-> +        mux-offset-pin = <0x18 9>; /* 0: flx3 cs0 offset, pin-9 */
-> +    };
-> +...
+What about "blitter"? I think that is a generic term that is/was commonly
+used with display hardware and sort of describes the function of the RDMA
+& WDMA blocks, and if only one side is memory and the other is the display
+pipeline.
 
 
-Best regards,
-Krzysztof
+Regards
+ChenYu
