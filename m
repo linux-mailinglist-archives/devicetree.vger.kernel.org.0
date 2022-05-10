@@ -2,113 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 52CA75214D5
-	for <lists+devicetree@lfdr.de>; Tue, 10 May 2022 14:09:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 231B65214E0
+	for <lists+devicetree@lfdr.de>; Tue, 10 May 2022 14:10:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236487AbiEJMM6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 May 2022 08:12:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54500 "EHLO
+        id S241546AbiEJMOk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 May 2022 08:14:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59796 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232322AbiEJMM4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 May 2022 08:12:56 -0400
-Received: from mail-yw1-x1133.google.com (mail-yw1-x1133.google.com [IPv6:2607:f8b0:4864:20::1133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E904238D79
-        for <devicetree@vger.kernel.org>; Tue, 10 May 2022 05:08:58 -0700 (PDT)
-Received: by mail-yw1-x1133.google.com with SMTP id 00721157ae682-2f7d621d1caso176758407b3.11
-        for <devicetree@vger.kernel.org>; Tue, 10 May 2022 05:08:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=j0oL9+kBsnLy6C0ogmrfSuIg/MzgC7W4K7D/KPBvz1A=;
-        b=cWQC53+eDRuJuIWv4FF8BHQ+cdDHd6IiQAsbBqM657B9Zx9tNFCkWMYo4mMD/X9iVb
-         POhpufVfVv5IpatIIDMTN5bnB1p2R9u5BvWkxlgaXKePLxFlJuehqC7k1N+JaE2d8957
-         dJivn2IZxYXCm3Y4v9Ew/SmUt76aj7vFnpL8hCY04rb0XAFS4hYrmXk7k6H7poRkH61l
-         +hTRAZLjpXC/0WTmDFC9swbSR2dOC9BTJdFJ6Eff5LQXfuaHzoK2XVu6izCwVlbCwday
-         wM6kX1jFpGfAHwjNDMjKXXWWN77JsJ4cXhC/F8JePYd9FM5J8wzLiYpGirfcPjkb7Fx0
-         h3Ew==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=j0oL9+kBsnLy6C0ogmrfSuIg/MzgC7W4K7D/KPBvz1A=;
-        b=5TNa7aFAoqwIuZeokgvtAJbmVBVA/Uo9e9FjHSVbnfFUV7ABugG0zVukpGAN3S5YJN
-         XqkuWbMKx2EWfe0By1z0zzzLG9NSucdZpFNWZYDBepPTKi5e8ii0FbeeFh1qNOSf1DJN
-         R4vM1ZrBO62kerLjtB3RSoAwsvZsE3VmC8zfUNcxdcqo2LyRX0y8t3sZdYYg0KaMFeFI
-         +rBqNTZF/W3XRmNvITqsHuipXThHgsz2TmHNiAKNCKNPy8/t5v0NzDmQ6jwmwnGc3ZYn
-         pUG5e2n1Rvcf/+7LtvUOrFvJ/yUpFW+iW7fYC8JDAc5D3J8K6WYh9ubx72VHq9IjW+hJ
-         FSQw==
-X-Gm-Message-State: AOAM531AkAAB/pKBB0wrBVKA5qzh0Kojc0UaMkDvXJv1G8ypN97Bn5Z2
-        Xtxn6qPhZZc97UKgm4wMD0Jt8bMpNaYgSMjgFYs=
-X-Google-Smtp-Source: ABdhPJwRTg7zxeefA+5CviigWYq414sTputJite8EjfxYGbeZqI3BUj/2/O0TjezCb73L1ed25VP23S+1nthZLWKqDI=
-X-Received: by 2002:a81:32c1:0:b0:2f7:cda8:50e1 with SMTP id
- y184-20020a8132c1000000b002f7cda850e1mr19252602ywy.519.1652184537294; Tue, 10
- May 2022 05:08:57 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220422072841.2206452-1-s.hauer@pengutronix.de>
- <20220422072841.2206452-21-s.hauer@pengutronix.de> <A86359EC-5291-41BD-966E-EB7890644731@gmail.com>
- <CAMdYzYoFG3wCQaWXQNJd7mE20OMCj=ZeuewwZfaCJyoCBT-kQQ@mail.gmail.com>
- <0E6FE020-C95E-47CF-A9D6-AC3F2B2D334F@gmail.com> <CAMdYzYobfJ7WGN+UQ7t5e1Zy9knjfHLse8KzrGrHPfeMkkG0gw@mail.gmail.com>
- <9F2D8CFF-1EAE-4586-9EE9-82A9D67840BB@gmail.com> <CAMdYzYrz7DRj7F9hGaAPaTSiZkQ4eMNujAp8uPuE9geL6kAz4g@mail.gmail.com>
- <812AC0DB-A6D0-4DA3-BCDC-7743E8F61821@gmail.com> <CAMdYzYozewYUbM=Q+iJ2wdM5TrB6dGrjS6zh0qmVgWD4XPVR+Q@mail.gmail.com>
- <ABC61229-B851-4BB7-8B55-688F8A8D841A@gmail.com>
-In-Reply-To: <ABC61229-B851-4BB7-8B55-688F8A8D841A@gmail.com>
-From:   Peter Geis <pgwipeout@gmail.com>
-Date:   Tue, 10 May 2022 08:08:45 -0400
-Message-ID: <CAMdYzYrsaNED+oMj+z2b4fK7pt32Qg=nXDk3SA0KFDDCJ2XY0g@mail.gmail.com>
-Subject: Re: [PATCH v11 20/24] arm64: dts: rockchip: enable vop2 and hdmi tx
- on rock-3a
-To:     Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
-Cc:     Sascha Hauer <s.hauer@pengutronix.de>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        dri-devel@lists.freedesktop.org,
-        "linux-arm-kernel@lists.infradead.org" 
+        with ESMTP id S241541AbiEJMOi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 May 2022 08:14:38 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1FF60299567;
+        Tue, 10 May 2022 05:10:36 -0700 (PDT)
+X-UUID: 6e9199e5d31d4d658ece6abf3b3c987f-20220510
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.4,REQID:4d3528c5-1e19-4c16-aaad-777b0a8b0531,OB:0,LO
+        B:0,IP:0,URL:8,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
+        ON:release,TS:8
+X-CID-META: VersionHash:faefae9,CLOUDID:eef1e816-2e53-443e-b81a-655c13977218,C
+        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,File:nil,QS:0,BEC:nil
+X-UUID: 6e9199e5d31d4d658ece6abf3b3c987f-20220510
+Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw02.mediatek.com
+        (envelope-from <chunfeng.yun@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 440288455; Tue, 10 May 2022 20:10:29 +0800
+Received: from mtkmbs07n1.mediatek.inc (172.21.101.16) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.792.15; Tue, 10 May 2022 20:10:29 +0800
+Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
+ mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Tue, 10 May 2022 20:10:29 +0800
+Received: from localhost.localdomain (10.17.3.154) by mtkmbs11n2.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
+ Transport; Tue, 10 May 2022 20:10:28 +0800
+From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
+To:     Matthias Brugger <matthias.bgg@gmail.com>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        <devicetree@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Sandy Huang <hjc@rock-chips.com>,
-        =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
-        kernel test robot <lkp@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Macpaul Lin <macpaul.lin@mediatek.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>
+Subject: [PATCH next v3 1/2] arm64: dts: mediatek: mt8195: add efuse node and cells
+Date:   Tue, 10 May 2022 20:10:26 +0800
+Message-ID: <20220510121027.19041-1-chunfeng.yun@mediatek.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-MTK:  N
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE,
+        SPF_HELO_NONE,T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 10, 2022 at 3:29 AM Piotr Oniszczuk
-<piotr.oniszczuk@gmail.com> wrote:
->
->
->
-> > Wiadomo=C5=9B=C4=87 napisana przez Peter Geis <pgwipeout@gmail.com> w d=
-niu 10.05.2022, o godz. 03:35:
-> >
-> > Could you grab the clock tree from /sys/kernel/debug/clk/clk_summary
-> > for the clk_hdmi_cec tree?
->
-> Here it is:
->                                 enable  prepare  protect                 =
-               duty  hardware
->    clock                          count    count    count        rate   a=
-ccuracy phase  cycle    enable
-> -------------------------------------------------------------------------=
-------------------------------
->    clk_rtc32k_frac                   1        1        0       32768     =
-     0     0  50000         Y
->        clk_rtc_32k                    1        1        0       32768    =
-      0     0  50000         Y
->           clk_hdmi_cec                1        2        0       32768    =
-      0     0  50000         Y
+Add efuse node and cells used by t-phy to fix the bit shift issue
 
-You are on the clk_rtc32k_frac which is a fractional divider that is
-fed from the 24m clock. Your clock likely isn't the issue here. I'd
-recommend setting up the cec-gpio node to validate your hardware
-works.
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Tested-by: Macpaul Lin <macpaul.lin@mediatek.com>
+Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
+---
+v3:
+  add reviewed-by and tested-by;
+  fix duplicated unit-address warning;
+
+NOTE:
+  based on v5.18-next/dts64 of matthias.bgg's branch;
+
+v2: no changes, just based on new mt8195.dtsi
+
+---
+ arch/arm64/boot/dts/mediatek/mt8195.dtsi | 55 ++++++++++++++++++++++++
+ 1 file changed, 55 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+index b57e620c2c72..d5bc4cf5f4ac 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+@@ -691,6 +691,53 @@
+ 			status = "disabled";
+ 		};
+ 
++		efuse: efuse@11c10000 {
++			compatible = "mediatek,mt8195-efuse", "mediatek,efuse";
++			reg = <0 0x11c10000 0 0x1000>;
++			#address-cells = <1>;
++			#size-cells = <1>;
++			u3_tx_imp_p0: usb3-tx-imp@184,1 {
++				reg = <0x184 0x1>;
++				bits = <0 5>;
++			};
++			u3_rx_imp_p0: usb3-rx-imp@184,2 {
++				reg = <0x184 0x2>;
++				bits = <5 5>;
++			};
++			u3_intr_p0: usb3-intr@185 {
++				reg = <0x185 0x1>;
++				bits = <2 6>;
++			};
++			comb_tx_imp_p1: usb3-tx-imp@186,1 {
++				reg = <0x186 0x1>;
++				bits = <0 5>;
++			};
++			comb_rx_imp_p1: usb3-rx-imp@186,2 {
++				reg = <0x186 0x2>;
++				bits = <5 5>;
++			};
++			comb_intr_p1: usb3-intr@187 {
++				reg = <0x187 0x1>;
++				bits = <2 6>;
++			};
++			u2_intr_p0: usb2-intr-p0@188,1 {
++				reg = <0x188 0x1>;
++				bits = <0 5>;
++			};
++			u2_intr_p1: usb2-intr-p1@188,2 {
++				reg = <0x188 0x2>;
++				bits = <5 5>;
++			};
++			u2_intr_p2: usb2-intr-p2@189,1 {
++				reg = <0x189 0x1>;
++				bits = <2 5>;
++			};
++			u2_intr_p3: usb2-intr-p3@189,2 {
++				reg = <0x189 0x2>;
++				bits = <7 5>;
++			};
++		};
++
+ 		u3phy2: t-phy@11c40000 {
+ 			compatible = "mediatek,mt8195-tphy", "mediatek,generic-tphy-v3";
+ 			#address-cells = <1>;
+@@ -873,6 +920,10 @@
+ 				clocks = <&apmixedsys CLK_APMIXED_PLL_SSUSB26M>,
+ 					 <&topckgen CLK_TOP_SSUSB_PHY_P1_REF>;
+ 				clock-names = "ref", "da_ref";
++				nvmem-cells = <&comb_intr_p1>,
++					      <&comb_rx_imp_p1>,
++					      <&comb_tx_imp_p1>;
++				nvmem-cell-names = "intr", "rx_imp", "tx_imp";
+ 				#phy-cells = <1>;
+ 			};
+ 		};
+@@ -897,6 +948,10 @@
+ 				clocks = <&apmixedsys CLK_APMIXED_PLL_SSUSB26M>,
+ 					 <&topckgen CLK_TOP_SSUSB_PHY_REF>;
+ 				clock-names = "ref", "da_ref";
++				nvmem-cells = <&u3_intr_p0>,
++					      <&u3_rx_imp_p0>,
++					      <&u3_tx_imp_p0>;
++				nvmem-cell-names = "intr", "rx_imp", "tx_imp";
+ 				#phy-cells = <1>;
+ 			};
+ 		};
+-- 
+2.18.0
+
