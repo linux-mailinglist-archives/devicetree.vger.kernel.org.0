@@ -2,34 +2,34 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BF11D520AE1
-	for <lists+devicetree@lfdr.de>; Tue, 10 May 2022 03:53:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9EB5E520ADE
+	for <lists+devicetree@lfdr.de>; Tue, 10 May 2022 03:53:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234381AbiEJB5M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S234386AbiEJB5M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Mon, 9 May 2022 21:57:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57876 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57878 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234366AbiEJB5J (ORCPT
+        with ESMTP id S234369AbiEJB5J (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Mon, 9 May 2022 21:57:09 -0400
-Received: from mo-csw.securemx.jp (mo-csw1515.securemx.jp [210.130.202.154])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E16B014041C
+Received: from mo-csw.securemx.jp (mo-csw1116.securemx.jp [210.130.202.158])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E17F2140429
         for <devicetree@vger.kernel.org>; Mon,  9 May 2022 18:53:13 -0700 (PDT)
-Received: by mo-csw.securemx.jp (mx-mo-csw1515) id 24A1qitE021488; Tue, 10 May 2022 10:52:44 +0900
-X-Iguazu-Qid: 34tKMNGQISoOUyKFxf
-X-Iguazu-QSIG: v=2; s=0; t=1652147564; q=34tKMNGQISoOUyKFxf; m=tTZIWtyWe8wzEuERRF1BanNQhESQ6HwBHYCTt79WgW4=
-Received: from imx2-a.toshiba.co.jp (imx2-a.toshiba.co.jp [106.186.93.35])
-        by relay.securemx.jp (mx-mr1510) id 24A1qhl6025328
+Received: by mo-csw.securemx.jp (mx-mo-csw1116) id 24A1qjg0028588; Tue, 10 May 2022 10:52:45 +0900
+X-Iguazu-Qid: 2wGrARG6y18UU1rl0U
+X-Iguazu-QSIG: v=2; s=0; t=1652147565; q=2wGrARG6y18UU1rl0U; m=thu007a9e57J8qiCUHfkQi+xp7PHiJoJ3lDwowbCWK0=
+Received: from imx12-a.toshiba.co.jp (imx12-a.toshiba.co.jp [61.202.160.135])
+        by relay.securemx.jp (mx-mr1111) id 24A1qiSe022817
         (version=TLSv1.2 cipher=AES128-GCM-SHA256 bits=128 verify=NOT);
-        Tue, 10 May 2022 10:52:43 +0900
+        Tue, 10 May 2022 10:52:44 +0900
 From:   Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
 To:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
 Cc:     Rob Herring <robh+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
         Olof Johansson <olof@lixom.net>, yuji2.ishikawa@toshiba.co.jp,
         Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
-Subject: [PATCH 1/9] arm64: dts: visconti: Update the clock providers for UART
-Date:   Tue, 10 May 2022 10:52:21 +0900
+Subject: [PATCH 2/9] arm64: dts: visconti: Update the clock providers for I2C
+Date:   Tue, 10 May 2022 10:52:22 +0900
 X-TSB-HOP2: ON
-Message-Id: <20220510015229.139818-2-nobuhiro1.iwamatsu@toshiba.co.jp>
+Message-Id: <20220510015229.139818-3-nobuhiro1.iwamatsu@toshiba.co.jp>
 X-Mailer: git-send-email 2.36.0
 In-Reply-To: <20220510015229.139818-1-nobuhiro1.iwamatsu@toshiba.co.jp>
 References: <20220510015229.139818-1-nobuhiro1.iwamatsu@toshiba.co.jp>
@@ -44,103 +44,97 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Remove fixed clock and source common clock for UART.
+Replace I2C clock with common clock framework.
 
 Signed-off-by: Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
 ---
- arch/arm64/boot/dts/toshiba/tmpv7708-rm-mbrc.dts   |  4 ----
- .../boot/dts/toshiba/tmpv7708-visrobo-vrb.dts      |  4 ----
- arch/arm64/boot/dts/toshiba/tmpv7708.dtsi          | 14 ++++++++------
- 3 files changed, 8 insertions(+), 14 deletions(-)
+ arch/arm64/boot/dts/toshiba/tmpv7708-visrobo-vrc.dtsi | 1 -
+ arch/arm64/boot/dts/toshiba/tmpv7708.dtsi             | 9 +++++++++
+ 2 files changed, 9 insertions(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/toshiba/tmpv7708-rm-mbrc.dts b/arch/arm64/boot/dts/toshiba/tmpv7708-rm-mbrc.dts
-index 9375b0faeea2..9b0666df6593 100644
---- a/arch/arm64/boot/dts/toshiba/tmpv7708-rm-mbrc.dts
-+++ b/arch/arm64/boot/dts/toshiba/tmpv7708-rm-mbrc.dts
-@@ -32,14 +32,10 @@ memory@80000000 {
+diff --git a/arch/arm64/boot/dts/toshiba/tmpv7708-visrobo-vrc.dtsi b/arch/arm64/boot/dts/toshiba/tmpv7708-visrobo-vrc.dtsi
+index f0a93db6dde6..03827ce06ee3 100644
+--- a/arch/arm64/boot/dts/toshiba/tmpv7708-visrobo-vrc.dtsi
++++ b/arch/arm64/boot/dts/toshiba/tmpv7708-visrobo-vrc.dtsi
+@@ -40,5 +40,4 @@ mmc-slot@0 {
  
- &uart0 {
+ &i2c0 {
  	status = "okay";
--	clocks = <&uart_clk>;
--	clock-names = "apb_pclk";
+-	clocks = <&clk150mhz>;
  };
- 
- &uart1 {
- 	status = "okay";
--	clocks = <&uart_clk>;
--	clock-names = "apb_pclk";
- };
- 
- &piether {
-diff --git a/arch/arm64/boot/dts/toshiba/tmpv7708-visrobo-vrb.dts b/arch/arm64/boot/dts/toshiba/tmpv7708-visrobo-vrb.dts
-index d0817463706e..56701e0e1dab 100644
---- a/arch/arm64/boot/dts/toshiba/tmpv7708-visrobo-vrb.dts
-+++ b/arch/arm64/boot/dts/toshiba/tmpv7708-visrobo-vrb.dts
-@@ -32,14 +32,10 @@ memory@80000000 {
- 
- &uart0 {
- 	status = "okay";
--	clocks = <&uart_clk>;
--	clock-names = "apb_pclk";
- };
- 
- &uart1 {
- 	status = "okay";
--	clocks = <&uart_clk>;
--	clock-names = "apb_pclk";
- };
- 
- &piether {
 diff --git a/arch/arm64/boot/dts/toshiba/tmpv7708.dtsi b/arch/arm64/boot/dts/toshiba/tmpv7708.dtsi
-index 1683113a3c43..3b51e875630c 100644
+index 3b51e875630c..048b5dc7ae18 100644
 --- a/arch/arm64/boot/dts/toshiba/tmpv7708.dtsi
 +++ b/arch/arm64/boot/dts/toshiba/tmpv7708.dtsi
-@@ -129,12 +129,6 @@ timer {
- 			<GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>;
- 	};
- 
--	uart_clk: uart-clk {
--		compatible = "fixed-clock";
--		clock-frequency = <150000000>;
--		#clock-cells = <0>;
--	};
--
- 	clk25mhz: clk25mhz {
- 		compatible = "fixed-clock";
- 		#clock-cells = <0>;
-@@ -243,6 +237,8 @@ uart0: serial@28200000 {
- 			interrupts = <GIC_SPI 133 IRQ_TYPE_LEVEL_HIGH>;
- 			pinctrl-names = "default";
- 			pinctrl-0 = <&uart0_pins>;
-+			clocks = <&pismu TMPV770X_CLK_PIUART0>;
-+			clock-names = "apb_pclk";
+@@ -284,6 +284,7 @@ i2c0: i2c@28030000 {
+ 			clock-frequency = <400000>;
+ 			#address-cells = <1>;
+ 			#size-cells = <0>;
++			clocks = <&pismu TMPV770X_CLK_PII2C0>;
  			status = "disabled";
  		};
  
-@@ -252,6 +248,8 @@ uart1: serial@28201000 {
- 			interrupts = <GIC_SPI 134 IRQ_TYPE_LEVEL_HIGH>;
- 			pinctrl-names = "default";
- 			pinctrl-0 = <&uart1_pins>;
-+			clocks = <&pismu TMPV770X_CLK_PIUART1>;
-+			clock-names = "apb_pclk";
+@@ -296,6 +297,7 @@ i2c1: i2c@28031000 {
+ 			clock-frequency = <400000>;
+ 			#address-cells = <1>;
+ 			#size-cells = <0>;
++			clocks = <&pismu TMPV770X_CLK_PII2C1>;
  			status = "disabled";
  		};
  
-@@ -261,6 +259,8 @@ uart2: serial@28202000 {
- 			interrupts = <GIC_SPI 135 IRQ_TYPE_LEVEL_HIGH>;
- 			pinctrl-names = "default";
- 			pinctrl-0 = <&uart2_pins>;
-+			clocks = <&pismu TMPV770X_CLK_PIUART2>;
-+			clock-names = "apb_pclk";
+@@ -308,6 +310,7 @@ i2c2: i2c@28032000 {
+ 			clock-frequency = <400000>;
+ 			#address-cells = <1>;
+ 			#size-cells = <0>;
++			clocks = <&pismu TMPV770X_CLK_PII2C2>;
  			status = "disabled";
  		};
  
-@@ -270,6 +270,8 @@ uart3: serial@28203000 {
- 			interrupts = <GIC_SPI 136 IRQ_TYPE_LEVEL_HIGH>;
- 			pinctrl-names = "default";
- 			pinctrl-0 = <&uart3_pins>;
-+			clocks = <&pismu TMPV770X_CLK_PIUART2>;
-+			clock-names = "apb_pclk";
+@@ -320,6 +323,7 @@ i2c3: i2c@28033000 {
+ 			clock-frequency = <400000>;
+ 			#address-cells = <1>;
+ 			#size-cells = <0>;
++			clocks = <&pismu TMPV770X_CLK_PII2C3>;
+ 			status = "disabled";
+ 		};
+ 
+@@ -332,6 +336,7 @@ i2c4: i2c@28034000 {
+ 			clock-frequency = <400000>;
+ 			#address-cells = <1>;
+ 			#size-cells = <0>;
++			clocks = <&pismu TMPV770X_CLK_PII2C4>;
+ 			status = "disabled";
+ 		};
+ 
+@@ -344,6 +349,7 @@ i2c5: i2c@28035000 {
+ 			clock-frequency = <400000>;
+ 			#address-cells = <1>;
+ 			#size-cells = <0>;
++			clocks = <&pismu TMPV770X_CLK_PII2C5>;
+ 			status = "disabled";
+ 		};
+ 
+@@ -356,6 +362,7 @@ i2c6: i2c@28036000 {
+ 			clock-frequency = <400000>;
+ 			#address-cells = <1>;
+ 			#size-cells = <0>;
++			clocks = <&pismu TMPV770X_CLK_PII2C6>;
+ 			status = "disabled";
+ 		};
+ 
+@@ -368,6 +375,7 @@ i2c7: i2c@28037000 {
+ 			clock-frequency = <400000>;
+ 			#address-cells = <1>;
+ 			#size-cells = <0>;
++			clocks = <&pismu TMPV770X_CLK_PII2C7>;
+ 			status = "disabled";
+ 		};
+ 
+@@ -380,6 +388,7 @@ i2c8: i2c@28038000 {
+ 			clock-frequency = <400000>;
+ 			#address-cells = <1>;
+ 			#size-cells = <0>;
++			clocks = <&pismu TMPV770X_CLK_PII2C8>;
  			status = "disabled";
  		};
  
