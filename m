@@ -2,137 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CD2A352262B
-	for <lists+devicetree@lfdr.de>; Tue, 10 May 2022 23:15:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 489E7522650
+	for <lists+devicetree@lfdr.de>; Tue, 10 May 2022 23:29:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229902AbiEJVPR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 May 2022 17:15:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44942 "EHLO
+        id S233634AbiEJV3p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 May 2022 17:29:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37742 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229834AbiEJVPQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 May 2022 17:15:16 -0400
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 171D42944BF;
-        Tue, 10 May 2022 14:15:11 -0700 (PDT)
-Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=diego.localnet)
-        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <heiko@sntech.de>)
-        id 1noXCC-0007Ms-0L; Tue, 10 May 2022 23:15:04 +0200
-From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To:     "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Peter Geis <pgwipeout@gmail.com>
-Cc:     Marc Zyngier <maz@kernel.org>, PCI <linux-pci@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        arm-mail-list <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v9 0/5] Enable rk356x PCIe controller
-Date:   Tue, 10 May 2022 23:15:03 +0200
-Message-ID: <2109328.Mh6RI2rZIc@diego>
-In-Reply-To: <CAMdYzYrzq5C61T2NYmHr0g_P7Mm25TUfaDV3iz2LkV8-jpV4kA@mail.gmail.com>
-References: <20220429123832.2376381-1-pgwipeout@gmail.com> <CAMdYzYrzq5C61T2NYmHr0g_P7Mm25TUfaDV3iz2LkV8-jpV4kA@mail.gmail.com>
+        with ESMTP id S232063AbiEJV3n (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 May 2022 17:29:43 -0400
+Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com [IPv6:2607:f8b0:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C456F68A1
+        for <devicetree@vger.kernel.org>; Tue, 10 May 2022 14:29:41 -0700 (PDT)
+Received: by mail-pf1-x433.google.com with SMTP id p8so249796pfh.8
+        for <devicetree@vger.kernel.org>; Tue, 10 May 2022 14:29:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=/IqDQEddmxFMTUC8iSV81NOx7xKeE21hCS6V6VtTJCM=;
+        b=YMKse/febsjCNAJR+1ZcEdHrPHvfo8YkbP8Ipq7ShQ7JblCaf2vKxPDn/GvURTL+ik
+         nJGBDulsj0SiJgysg5FnV/Ve2Js9rwxHVU1yZyRfvb+6lNnVRYp1hOnM9rUQpFGE8jUb
+         /G/4KToJ6vyGy6fYna7SXTJSdpXoh4CIOUZrs=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=/IqDQEddmxFMTUC8iSV81NOx7xKeE21hCS6V6VtTJCM=;
+        b=fMyphKJ4ByTd5WzWE0nK6Cec4KW0BlYFTB5JGAWghMK2uX+xme+8H2RBMp3Z2zkltM
+         L/6UPnnBuF1GFlpjrx03Tc63ejNe2FAPwAdKLzELCuEtol4NzDY6WJONgRFYr9B3sfxi
+         cQxzipWUSXsCNIzf9Ad2VouXutiQStq3U+6BM8N3ULqXPcNZY5D4T5r10Mj8X7v11stG
+         ecYOym3qbFmFoJ3GsjGZ4rK2tFkOnY5Mlr26GCaXYUlqceOof+DNs2TnNZz+Y4H54tht
+         UiaRDHTUQ/lB5CuLOioqzN7fYWtEzxFHWb+c/eB8H4ysCbj/PfiPjQdsedN4yYCGMnUP
+         nB5w==
+X-Gm-Message-State: AOAM532pcWqfrja2OMWzwYFZZV200z2dSY5HyJVjW/gS0dJR8ccrDzYS
+        g+yQWw/ViInB+ISYQ3iCCYi46QK4F2yw2w==
+X-Google-Smtp-Source: ABdhPJwDKLXVW/RgcUysfuiMzy0W7K1TutNey5ZOyYCVMrQuW1aZWAfc4QfoH3dWLVLMS2GMgxmaxQ==
+X-Received: by 2002:aa7:9802:0:b0:50d:4f5d:fef6 with SMTP id e2-20020aa79802000000b0050d4f5dfef6mr22331682pfl.9.1652218180682;
+        Tue, 10 May 2022 14:29:40 -0700 (PDT)
+Received: from localhost ([2620:15c:11a:202:fb50:1192:2874:d4a2])
+        by smtp.gmail.com with UTF8SMTPSA id o7-20020a170902d4c700b0015eb690bee9sm80694plg.196.2022.05.10.14.29.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 10 May 2022 14:29:40 -0700 (PDT)
+Date:   Tue, 10 May 2022 14:29:39 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Doug Anderson <dianders@chromium.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        "Joseph S . Barrera III" <joebar@chromium.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Subject: Re: [PATCH] arm64: dts: qcom: sc7280: Set modem FW path for Chrome
+ OS boards
+Message-ID: <YnrZQ4ggqxjlacL1@google.com>
+References: <20220510104656.1.Id98b473e08c950f9a461826dde187ef7705a928c@changeid>
+ <CAD=FV=U33QSjnD7ERdVBb+hk4yooGU5=C0FtnhFsDME_MePR0w@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <CAD=FV=U33QSjnD7ERdVBb+hk4yooGU5=C0FtnhFsDME_MePR0w@mail.gmail.com>
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Dienstag, 10. Mai 2022, 23:11:18 CEST schrieb Peter Geis:
-> On Fri, Apr 29, 2022 at 8:38 AM Peter Geis <pgwipeout@gmail.com> wrote:
-> >
-> > This series enables the DesignWare based PCIe controller on the rk356x
-> > series of chips. We drop the fallback to the core driver due to
-> > compatibility issues. We reset the PCIe controller at driver probe to
-> > prevent issues in the future when firmware / kexec leaves the controller
-> > in an unknown state. We add support for legacy interrupts for cards that
-> > lack MSI support (which is partially broken currently). We then add the
-> > device tree nodes to enable PCIe on the Quartz64 Model A.
+On Tue, May 10, 2022 at 12:49:30PM -0700, Doug Anderson wrote:
+> Hi,
 > 
-> Good Evening,
+> On Tue, May 10, 2022 at 10:47 AM Matthias Kaehlcke <mka@chromium.org> wrote:
+> >
+> > Specify the path of the modem FW for SC7280 Chrome OS boards in
+> > the 'remoteproc_mpss' node.
+> >
+> > Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
+> > ---
+> >
+> >  arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi | 2 ++
+> >  1 file changed, 2 insertions(+)
+> >
+> > diff --git a/arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi b/arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi
+> > index 9f4a9c263c35..995c5bd12549 100644
+> > --- a/arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi
+> > +++ b/arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi
+> > @@ -89,6 +89,8 @@ &remoteproc_mpss {
+> >         compatible = "qcom,sc7280-mss-pil";
+> >         iommus = <&apps_smmu 0x124 0x0>, <&apps_smmu 0x488 0x7>;
+> >         memory-region = <&mba_mem>, <&mpss_mem>;
+> > +       firmware-name = "qcom/sc7280-herobrine/modem/mba.mbn",
+> > +                       "qcom/sc7280-herobrine/modem/qdsp6sw.mbn";
 > 
-> Just a gentle ping to see if there's anything outstanding here.
-
-From my side it looks good. I'll take patches 4+5 once the binding-change
-from patch1 has been applied to some tree.
-
-
-Heiko
-
-
-> >
-> > Patch 1 drops the snps,dw,pcie fallback from the dt-binding
-> > Patch 2 resets the PCIe controller to prevent configuration bugs
-> > Patch 3 adds legacy interrupt support to the driver
-> > Patch 4 adds the device tree binding to the rk356x.dtsi
-> > Patch 5 enables the PCIe controller on the Quartz64-A
-> >
-> > Changelog:
-> > v9:
-> > - move reset_control_assert out of rockchip_pcie_resource_get
-> > - fix various formatting mistakes
-> > - fix a checkpatch warning
-> >
-> > v8:
-> > - add core reset patch
-> > - simplify IRQ enable/disable functions
-> > - drop spinlock
-> > - only enable/disable IRQ requested
-> > - only pass the IRQ register bits used to irq functions
-> >
-> > v7:
-> > - drop assigned-clocks
-> >
-> > v6:
-> > - fix a ranges issue
-> > - point to GIC instead of ITS
-> >
-> > v5:
-> > - fix incorrect series (apologies for the v4 spam)
-> >
-> > v4:
-> > - drop the ITS modification, poor compatibility is better than
-> >   completely broken
-> >
-> > v3:
-> > - drop select node from dt-binding
-> > - convert to for_each_set_bit
-> > - convert to generic_handle_domain_irq
-> > - drop unncessary dev_err
-> > - reorder irq_chip items
-> > - change to level_irq
-> > - install the handler after initializing the domain
-> >
-> > v2:
-> > - Define PCIE_CLIENT_INTR_STATUS_LEGACY
-> > - Fix PCIE_LEGACY_INT_ENABLE to only enable the RC interrupts
-> > - Add legacy interrupt enable/disable support
-> >
-> >
-> > Peter Geis (5):
-> >   dt-bindings: PCI: Remove fallback from Rockchip DesignWare binding
-> >   PCI: rockchip-dwc: Reset core at driver probe
-> >   PCI: rockchip-dwc: Add legacy interrupt support
-> >   arm64: dts: rockchip: Add rk3568 PCIe2x1 controller
-> >   arm64: dts: rockchip: Enable PCIe controller on quartz64-a
-> >
-> >  .../bindings/pci/rockchip-dw-pcie.yaml        |  12 +-
-> >  .../boot/dts/rockchip/rk3566-quartz64-a.dts   |  34 +++++
-> >  arch/arm64/boot/dts/rockchip/rk356x.dtsi      |  52 ++++++++
-> >  drivers/pci/controller/dwc/pcie-dw-rockchip.c | 119 +++++++++++++++---
-> >  4 files changed, 191 insertions(+), 26 deletions(-)
-> >
-> > --
-> > 2.25.1
-> >
+> We don't necessarily need to change anything, but a few thoughts:
 > 
+> 1. I guess technically we don't actually need the "modem" subdirectory
+> for herobrine, right? WiFi works differently on sc7280 so we won't
+> have a "no modem" modem firmware. ...but I guess it doesn't hurt to
+> have it and it's nice to keep it symmetric.
 
+Yeah, it seems nice to keep it symmetric and also indicate for what
+kind of device the firmware is for. 'sc7280-herobrine' (or
+'sc7280-chrome') doesn't reveal that.
 
+> 2. Whenever we're ready to support WiFi only SKUs then I guess it'll
+> still be OK to specify the firmware name. We'll just set the status of
+> "&mdss_dp" to "disabled".
 
+Yes, specifying the FW name is not a problem. Either we'll set the
+status of 'remoteproc_mpss' to 'disabled' or have a DT snippet for
+the modem that is only included for SKUs with a modem.
 
+> 3. It's slightly weird that we're using the name "herobrine" but
+> putting the change in the "chrome-common.dtsi" file. Should it be
+> "sc7280-chrome" instead?
+
+Currently OS images have the FW in 'qcom/sc7280-herobrine', but we
+could change that if desired. If we change the path we could also
+consider to change it to 'qcom/sc7280-q6v5' or 'qcom/sc7280-mpss'
+instead of 'qcom/sc7280-chrome/modem'.
