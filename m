@@ -2,88 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8AEDE521235
-	for <lists+devicetree@lfdr.de>; Tue, 10 May 2022 12:28:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A004952123E
+	for <lists+devicetree@lfdr.de>; Tue, 10 May 2022 12:32:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235836AbiEJKcP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 May 2022 06:32:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44000 "EHLO
+        id S239871AbiEJKgb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 May 2022 06:36:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57676 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238758AbiEJKcO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 May 2022 06:32:14 -0400
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6DA7D1F9788
-        for <devicetree@vger.kernel.org>; Tue, 10 May 2022 03:28:17 -0700 (PDT)
-Received: by mail-ed1-x533.google.com with SMTP id c12so11965543edv.10
-        for <devicetree@vger.kernel.org>; Tue, 10 May 2022 03:28:17 -0700 (PDT)
+        with ESMTP id S239723AbiEJKga (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 May 2022 06:36:30 -0400
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50934887A4
+        for <devicetree@vger.kernel.org>; Tue, 10 May 2022 03:32:33 -0700 (PDT)
+Received: by mail-ed1-x535.google.com with SMTP id p4so19481260edx.0
+        for <devicetree@vger.kernel.org>; Tue, 10 May 2022 03:32:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=qB8tiSg9orpGv2oafVz+zb1jhV1wE750MfA0k2QQW9s=;
-        b=rhth6SprFuXZRw9NUufEJzMkPofYa5+szGIs98AV0GVIbzsAA24w4QbdhAH0k6tNsm
-         G9lbp93Qgq5wQy0+CFXT1fi5iMuYA4Cm9U/PxSd8amtshY1+WWPg3Zsj2ouQqfzpm3cT
-         kgoHRoMvtjtr0hTCFuXrxFMAPcuVScNYCBHjhvwd+K12WtE868Zm28gTKB0PPjcHEMOT
-         ul8LCqkXub36kGTu/xSmxsHDmFJH+vm3u7mGVS7NKOKyYshFVlM324rzPLNV2dHsG+Oh
-         n0LVc+nwWpXvQhRwZyGWvq87SlHXW6mR5MmehPz78ndf2YvXFubXASGRbD0PBKSD9hJO
-         nEiw==
+        bh=/MqHzowFCN88QrQcwqy6I1tlpSGYuw9Ji/xKQiWYHFY=;
+        b=HCHP+pwGkiGUg/3uVhpfA0cGRi0a6eT9Xs/fvkUpRhX/pFBn/IvuNHnS3+ePCSe0Sq
+         Vp2XsGce4iu7ArAr1nZ0zr6D2KEoCM3H7Ic1NvlSvH0k+T1tleTtaXjh6ecc1/b+GF1S
+         wzedKBvir5/yDBkiMuQPac3jYG+7/pA7PV93tmYd8zn3auI7vmwSTzcFZpnb4VMUYUOV
+         vWD507Pd5lw4W2m55pYyz6kO/GnYR2PpzBfb4e6vA+VuQoozfBVufOSo8Q+7snYZfYPB
+         92gPlKELzNSPrwwZKjJ5OTna/rHw0HayRGGZLUAUb9emXV8gjZDtY04ll1Bewz2zlVEt
+         rb+A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=qB8tiSg9orpGv2oafVz+zb1jhV1wE750MfA0k2QQW9s=;
-        b=GKEtCjL/jSW7VXcdlqF6FPDSr5U8/3S0X7K/wx+cmhlfcKCSYz6BlNYhZnlDHDsr7x
-         iaAt03vCpe3sZpU3R29BsPoY9pcM6xxKcpV4AoAhnZYb6q4qer6QXBGlPoVMqWQOdkhJ
-         NUSYXZ2VcOZMhkIgJAl1x7bpEncTr32WK/pW3u51lIypFTFDw8aWi7/8z4EDhCgXUBRU
-         MIXfbbIWfkwQ97z35d9sz51vwW4Sw9QlJ9yMv+m9LQ6l6nXeBq3u7fJ/BjodNSsT25Cq
-         5mMihiiYUFwg2Je3F7NXObCZfsT2HKAaRtk8KJ5iCRYp4RkR0W4Os9mu5ed3crIjnFfQ
-         zO/Q==
-X-Gm-Message-State: AOAM531+VQ8qoQQmcry6ajxs9Po+ddePl9ZalTyMgZ9uk222v/dIxKtp
-        oURukD+AJhQKGHVzRdNls6byYg==
-X-Google-Smtp-Source: ABdhPJw5CAaM7D9q3+CFzPibPNCbcA7gMgHTzab1tVA8q065CZ3vhqKEUGpu1+K0yDXGbet+UCoR+w==
-X-Received: by 2002:a50:ed13:0:b0:426:4939:45a9 with SMTP id j19-20020a50ed13000000b00426493945a9mr22748001eds.303.1652178495995;
-        Tue, 10 May 2022 03:28:15 -0700 (PDT)
+        bh=/MqHzowFCN88QrQcwqy6I1tlpSGYuw9Ji/xKQiWYHFY=;
+        b=e7BHg1BdckX6S8tH4v765cSpOVGP/asQhrNZpWiVmgkY/yC3Y/+NObwIa/c4nNIN68
+         hs5YUFCsnF0NH7q8rA9qzroTevqRVWLgnZOPwc6r3F7W3JLX8JqhXKWSIVr5Ko6ssO1C
+         CwPmBx1S66SXRn1KGoZTEzAHEMhqhp6nqjU1nb+jjbwo3ntUWh/hlkNOJtTSE/5YSpnC
+         H1AZRr8H+y/03QbYGLOgIOm7e6KvlT4IZjd1hfJ7ZSw/QPBJIoQU+0uBdbBe9wQUJDnB
+         HrIbTeKt874bx6PDPogy44eHvpZqufDi6XjHmDNDbNLcuy5tfUmtuS7sWbnuc2tJP97o
+         Rg6A==
+X-Gm-Message-State: AOAM532oN8vVsfnxXsubRmP5RXBIASQgjudZxSM0h2/jTK3cBkeLKIym
+        BFn+vqd1tl1QnwgpIg3CAqbGCebt7ethyILV
+X-Google-Smtp-Source: ABdhPJzXSwfbjptKkZFNufiI9L3pttyFvhhG+CEF2ObP3xI6dpxIsPq6siVIquVKSZXmsNVuPmRi4w==
+X-Received: by 2002:a05:6402:5108:b0:427:e323:4c67 with SMTP id m8-20020a056402510800b00427e3234c67mr22784859edd.326.1652178751935;
+        Tue, 10 May 2022 03:32:31 -0700 (PDT)
 Received: from [192.168.0.251] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id qr48-20020a1709068cb000b006f3ef214e13sm6051348ejc.121.2022.05.10.03.28.14
+        by smtp.gmail.com with ESMTPSA id gc35-20020a1709072b2300b006f3ef214db7sm5922303ejc.29.2022.05.10.03.32.30
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 10 May 2022 03:28:15 -0700 (PDT)
-Message-ID: <1c3fd336-1450-9b68-df81-2f01cc2ba32f@linaro.org>
-Date:   Tue, 10 May 2022 12:28:14 +0200
+        Tue, 10 May 2022 03:32:31 -0700 (PDT)
+Message-ID: <73d0121c-66cc-9738-d7b5-0f2c72884846@linaro.org>
+Date:   Tue, 10 May 2022 12:32:30 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.8.1
-Subject: Re: [PATCH v2 1/3] dt-bindings: mediatek: add vdosys1 RDMA definition
- for mt8195
+Subject: Re: [PATCH v2 1/4] dt-bindings: mfd: atmel,flexcom: Convert to
+ json-schema
 Content-Language: en-US
-To:     Rex-BC Chen <rex-bc.chen@mediatek.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>
-Cc:     "airlied@linux.ie" <airlied@linux.ie>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-        "angelogioacchino.delregno@collabora.com" 
-        <angelogioacchino.delregno@collabora.com>,
-        =?UTF-8?B?SmFzb24tSkggTGluICjmnpfnnb/npaUp?= 
-        <Jason-JH.Lin@mediatek.com>,
-        =?UTF-8?B?TmFuY3kgTGluICjmnpfmrKPonqIp?= <Nancy.Lin@mediatek.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        Project_Global_Chrome_Upstream_Group 
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-References: <20220509044302.27878-1-rex-bc.chen@mediatek.com>
- <20220509044302.27878-2-rex-bc.chen@mediatek.com>
- <a5c9e7ad-c4b5-e757-cd6d-f79de47d1ff3@linaro.org>
- <fbbbc7e6a951bdde648ddd896f1fa163dafa16f1.camel@mediatek.com>
+To:     Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>,
+        krzysztof.kozlowski+dt@linaro.org, nicolas.ferre@microchip.com,
+        alexandre.belloni@bootlin.com, claudiu.beznea@microchip.com,
+        peda@axentia.se
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, lee.jones@linaro.org,
+        linux@armlinux.org.uk, Manohar.Puri@microchip.com,
+        UNGLinuxDriver@microchip.com
+References: <20220509084920.14529-1-kavyasree.kotagiri@microchip.com>
+ <20220509084920.14529-2-kavyasree.kotagiri@microchip.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <fbbbc7e6a951bdde648ddd896f1fa163dafa16f1.camel@mediatek.com>
+In-Reply-To: <20220509084920.14529-2-kavyasree.kotagiri@microchip.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -96,26 +80,121 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/05/2022 10:45, Rex-BC Chen wrote:
->>> +    soc {
->>> +        #address-cells = <2>;
->>> +        #size-cells = <2>;
->>> +
->>> +        vdo1_rdma0: mdp-rdma@1c104000 {
->>
->> Generic node name. dma-controller (if it does not conflict with
->> dma-common.yaml schema)?
+On 09/05/2022 10:49, Kavyasree Kotagiri wrote:
+> Convert the Atmel flexcom device tree bindings to json schema.
 > 
-> We don't understand what dma-controller you are referring to? Can you
-> help explain more? Thanks!
+> Signed-off-by: Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>
+> ---
+>  .../bindings/mfd/atmel,flexcom.yaml           | 92 +++++++++++++++++++
+>  .../devicetree/bindings/mfd/atmel-flexcom.txt | 63 -------------
+>  2 files changed, 92 insertions(+), 63 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/mfd/atmel,flexcom.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/mfd/atmel-flexcom.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/mfd/atmel,flexcom.yaml b/Documentation/devicetree/bindings/mfd/atmel,flexcom.yaml
+> new file mode 100644
+> index 000000000000..79ec7ebc7055
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mfd/atmel,flexcom.yaml
+> @@ -0,0 +1,92 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mfd/atmel,flexcom.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Device tree bindings for Atmel Flexcom (Flexible Serial Communication Unit)
 
-Use a generic node name, as Devicetree spec asks:
-"The name of a node should be somewhat generic, reflecting the function
-of the device and not its precise programming
+s/Device tree bindings//
+> +
+> +maintainers:
+> +  - Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>
+> +
+> +description:
+> +  The Atmel Flexcom is just a wrapper which embeds a SPI controller,
+> +  an I2C controller and an USART. Only one function can be used at a
+> +  time and is chosen at boot time according to the device tree.
+> +
+> +properties:
+> +  compatible:
+> +    const: atmel,sama5d2-flexcom
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  "#address-cells":
+> +    const: 1
+> +
+> +  "#size-cells":
+> +    const: 1
+> +
+> +  ranges:
+> +    description:
+> +      One range for the full I/O register region. (including USART,
+> +      TWI and SPI registers).
+> +    items:
+> +      maxItems: 3
+> +
+> +  atmel,flexcom-mode:
+> +    description: |
+> +      Specifies the flexcom mode as follows:
+> +      1: USART
+> +      2: SPI
+> +      3: I2C.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [1, 2, 3]
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - "#address-cells"
+> +  - "#size-cells"
+> +  - ranges
+> +  - atmel,flexcom-mode
+> +
+> +additionalProperties: false
+> +
+> +patternProperties:
 
-model. If appropriate, the name should be one of the following choices:"
+This goes after "properties" (before "required").
 
-I proposed dma-controller, but feel free to find better generic node name.
+> +  "^serial@[0-9a-f]+$":
+> +    description: See atmel-usart.txt for details of USART bindings.
+
+type: object
+
+Then a blank line.
+
+
+> +  "^spi@[0-9a-f]+$":
+> +    description: See ../spi/spi_atmel.txt for details of SPI bindings.
+
+type: object
+
+Then a blank line.
+
+> +  "^i2c@[0-9a-f]+$":
+> +    description: See ../i2c/i2c-at91.txt for details of I2C bindings.
+
+type: object
+
+
+> +
+> +examples:
+> +  - |
+> +    flx0: flexcom@f8034000 {
+> +          compatible = "atmel,sama5d2-flexcom";
+> +          reg = <0xf8034000 0x200>;
+> +          clocks = <&flx0_clk>;
+> +          #address-cells = <1>;
+> +          #size-cells = <1>;
+> +          ranges = <0x0 0xf8034000 0x800>;
+> +          atmel,flexcom-mode = <2>;
+> +
 
 Best regards,
 Krzysztof
