@@ -2,120 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BAFF1522503
-	for <lists+devicetree@lfdr.de>; Tue, 10 May 2022 21:49:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F58F52251D
+	for <lists+devicetree@lfdr.de>; Tue, 10 May 2022 21:59:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230070AbiEJTtx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 May 2022 15:49:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53742 "EHLO
+        id S232491AbiEJT70 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 May 2022 15:59:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33172 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229690AbiEJTtt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 May 2022 15:49:49 -0400
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92E782689CE
-        for <devicetree@vger.kernel.org>; Tue, 10 May 2022 12:49:47 -0700 (PDT)
-Received: by mail-ej1-x62a.google.com with SMTP id i27so35001655ejd.9
-        for <devicetree@vger.kernel.org>; Tue, 10 May 2022 12:49:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=ZgwVFN5ZXlnWfmxKkcCyw+qVwt2BQmrdrtZrCkyPCa0=;
-        b=BM+NJmlQLhHE0L9ymWoYJ4kB8ijA58RwwkGxB+c+rn/XAKZCVn1Cn+VfNX96/eHvGd
-         f+OXHbiOVAtesaJYTI1pfk/MRNaHMtTzuX8G+q7Dn3SC37t18dcdhqBhfIoo6DJXm/7B
-         hclx4e1LYUQOt7AuRQwhn2/i7BglcQhY6f19s=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=ZgwVFN5ZXlnWfmxKkcCyw+qVwt2BQmrdrtZrCkyPCa0=;
-        b=jqeNkOW3xCxaYoNyhqe7aRNeHeHjiD1hcvTcycR2nPJ3+PbLfrHc0Yl/bUY94wX4E9
-         YggLQ5yiw+1WOBt212N4/FG7B0MSAwDmfh5CgY4Wc8+IFpWhJtXuEmln/PJLCxi7QU2O
-         JxbPmrfEbvbMbj7rCHz1rjaWnWgDTrmIRai1ExCIYgv/XapIlLTGAjPaSEPbQyyM59uM
-         H9FRr5CeQ3JpesEXFBlrPUEkqNAPeosAhcRRZ64mkTpgiPUBXHGz1Wb/nPsrbQahMEO3
-         epoFtLnk0eGX948GV0tEr/pRp2KJqyvwS0ppRLZjVMQnYiznnWme9X1pNF5pCkiwItTm
-         IEAw==
-X-Gm-Message-State: AOAM53315c8esnvolISMQqnK1mLDTKGQootwHJ7D1mJ4lFfBbUlgTJY6
-        HgDN7oEWPi2HLhcNe/pcQsYn3VDT1Nql+V0I
-X-Google-Smtp-Source: ABdhPJxq7GMkMzg2KXE3lvKRHYJL0bAcNJ/k9RSN8OHOn1jkRekKBvIH/SCCNYgOQ+F/hqrNMnuiVQ==
-X-Received: by 2002:a17:907:eaa:b0:6f8:f86:66d5 with SMTP id ho42-20020a1709070eaa00b006f80f8666d5mr18347725ejc.275.1652212185911;
-        Tue, 10 May 2022 12:49:45 -0700 (PDT)
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com. [209.85.128.45])
-        by smtp.gmail.com with ESMTPSA id oz35-20020a1709077da300b006f3ef214e1csm96567ejc.130.2022.05.10.12.49.44
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 10 May 2022 12:49:44 -0700 (PDT)
-Received: by mail-wm1-f45.google.com with SMTP id bg25so10804109wmb.4
-        for <devicetree@vger.kernel.org>; Tue, 10 May 2022 12:49:44 -0700 (PDT)
-X-Received: by 2002:a05:600c:3d8c:b0:394:6097:9994 with SMTP id
- bi12-20020a05600c3d8c00b0039460979994mr1474094wmb.29.1652212183882; Tue, 10
- May 2022 12:49:43 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220510104656.1.Id98b473e08c950f9a461826dde187ef7705a928c@changeid>
-In-Reply-To: <20220510104656.1.Id98b473e08c950f9a461826dde187ef7705a928c@changeid>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Tue, 10 May 2022 12:49:30 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=U33QSjnD7ERdVBb+hk4yooGU5=C0FtnhFsDME_MePR0w@mail.gmail.com>
-Message-ID: <CAD=FV=U33QSjnD7ERdVBb+hk4yooGU5=C0FtnhFsDME_MePR0w@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: qcom: sc7280: Set modem FW path for Chrome OS boards
-To:     Matthias Kaehlcke <mka@chromium.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S232705AbiEJT7V (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 May 2022 15:59:21 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B0B229839D
+        for <devicetree@vger.kernel.org>; Tue, 10 May 2022 12:59:19 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 0042AB60;
+        Tue, 10 May 2022 21:59:15 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1652212756;
+        bh=VnHTc7MNj7HVzFcbXik+9OgFP5oxXbOik9ebURSeNQs=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=oBtM2gRSaaxlNsKeOugN/MIokH3MlU2tnpEnTwCWjpHGUuHnyQdzxMu1lr4oFGSIq
+         hViOu/H6TcJMzM7h5E4GewCO4hmkoHR4L9zflUSD4DOcJ1u8zoQwHrXIEJySCrXWkt
+         z1gzKd1tNZlnvnuUNgC9vmvqhcgX0Qx+RLy+gAXM=
+Date:   Tue, 10 May 2022 22:59:10 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Lucas Stach <l.stach@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        "Joseph S . Barrera III" <joebar@chromium.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        Fabio Estevam <festevam@gmail.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Paul Elder <paul.elder@ideasonboard.com>,
+        Marek Vasut <marex@denx.de>, devicetree@vger.kernel.org,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v4 03/11] dt-bindings: soc: Add i.MX8MP media block
+ control DT bindings
+Message-ID: <YnrEDq3f+fhCgE2R@pendragon.ideasonboard.com>
+References: <20220406153402.1265474-1-l.stach@pengutronix.de>
+ <20220406153402.1265474-4-l.stach@pengutronix.de>
+ <CAL_JsqJBxWhJpEp6f2kenjX=eOq6MPXTY1w-Jp8zpF7RwQAT1w@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <CAL_JsqJBxWhJpEp6f2kenjX=eOq6MPXTY1w-Jp8zpF7RwQAT1w@mail.gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Mon, May 09, 2022 at 07:39:22AM -0500, Rob Herring wrote:
+> On Wed, Apr 6, 2022 at 10:34 AM Lucas Stach <l.stach@pengutronix.de> wrote:
+> >
+> > From: Paul Elder <paul.elder@ideasonboard.com>
+> >
+> > The i.MX8MP Media Block Control (MEDIA BLK_CTRL) is a top-level
+> > peripheral providing access to the NoC and ensuring proper power
+> > sequencing of the peripherals within the MEDIAMIX domain. Add DT
+> > bindings for it.
+> >
+> > There is already a driver for block controls of other SoCs in the i.MX8M
+> > family, so these bindings will expand upon that.
+> >
+> > Signed-off-by: Paul Elder <paul.elder@ideasonboard.com>
+> > Reviewed-by: Rob Herring <robh@kernel.org>
+> > Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > Reviewed-by: Marek Vasut <marex@denx.de>
+> > Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
+> > ---
+> >  .../soc/imx/fsl,imx8mp-media-blk-ctrl.yaml    | 104 ++++++++++++++++++
+> >  include/dt-bindings/power/imx8mp-power.h      |  10 ++
+> >  2 files changed, 114 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/soc/imx/fsl,imx8mp-media-blk-ctrl.yaml
+> 
+> This is now failing in linux-next:
+> 
+> /builds/robherring/linux-dt/Documentation/devicetree/bindings/soc/imx/fsl,imx8mp-media-blk-ctrl.example.dtb:
+> blk-ctl@32ec0000: power-domain-names:7: 'isp' was expected
+>  From schema: /builds/robherring/linux-dt/Documentation/devicetree/bindings/soc/imx/fsl,imx8mp-media-blk-ctrl.yaml
 
-On Tue, May 10, 2022 at 10:47 AM Matthias Kaehlcke <mka@chromium.org> wrote:
->
-> Specify the path of the modem FW for SC7280 Chrome OS boards in
-> the 'remoteproc_mpss' node.
->
-> Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
-> ---
->
->  arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi | 2 ++
->  1 file changed, 2 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi b/arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi
-> index 9f4a9c263c35..995c5bd12549 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi
-> @@ -89,6 +89,8 @@ &remoteproc_mpss {
->         compatible = "qcom,sc7280-mss-pil";
->         iommus = <&apps_smmu 0x124 0x0>, <&apps_smmu 0x488 0x7>;
->         memory-region = <&mba_mem>, <&mpss_mem>;
-> +       firmware-name = "qcom/sc7280-herobrine/modem/mba.mbn",
-> +                       "qcom/sc7280-herobrine/modem/qdsp6sw.mbn";
+I'm not sure how that went past my tests :-S Sorry about it, I'll submit
+a fix shortly.
 
-We don't necessarily need to change anything, but a few thoughts:
+-- 
+Regards,
 
-1. I guess technically we don't actually need the "modem" subdirectory
-for herobrine, right? WiFi works differently on sc7280 so we won't
-have a "no modem" modem firmware. ...but I guess it doesn't hurt to
-have it and it's nice to keep it symmetric.
-
-2. Whenever we're ready to support WiFi only SKUs then I guess it'll
-still be OK to specify the firmware name. We'll just set the status of
-"&mdss_dp" to "disabled".
-
-3. It's slightly weird that we're using the name "herobrine" but
-putting the change in the "chrome-common.dtsi" file. Should it be
-"sc7280-chrome" instead?
-
--Doug
+Laurent Pinchart
