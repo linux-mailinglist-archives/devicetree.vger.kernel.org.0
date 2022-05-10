@@ -2,122 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ED09252221E
-	for <lists+devicetree@lfdr.de>; Tue, 10 May 2022 19:15:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CA566522227
+	for <lists+devicetree@lfdr.de>; Tue, 10 May 2022 19:18:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244049AbiEJRTa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 May 2022 13:19:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52172 "EHLO
+        id S244529AbiEJRWM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 May 2022 13:22:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33204 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244232AbiEJRT2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 May 2022 13:19:28 -0400
-Received: from mail-oa1-f50.google.com (mail-oa1-f50.google.com [209.85.160.50])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62AC52BF314
-        for <devicetree@vger.kernel.org>; Tue, 10 May 2022 10:15:31 -0700 (PDT)
-Received: by mail-oa1-f50.google.com with SMTP id 586e51a60fabf-edf9ddb312so18137557fac.8
-        for <devicetree@vger.kernel.org>; Tue, 10 May 2022 10:15:31 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=U4enf849MalZJ94BbtP5EjviZoqMa/mYSymuWO+hQes=;
-        b=Un2M/BM3JgVH6kKKhL6u7Mxj3f99Xjin1PP7EoN0ZzCykrivVoFTHghR+88bnn4jdk
-         1iky6X4ragozD4a7JDHraeV5QBEtg2Y+OL1M2DkF+efF24ErqlSY+vbOdJL4yixG2GcH
-         SXazme4vhXc3qS6/EBIvc0U1GCnYjrfbx3Uf4NoKgPruwf3I7EmgNQHxV3Am1vH/D9Ho
-         K/ZS40xHfmKpnb5X6l09p/RttsKtLDEqMp8/Q/xvX7xluuNAV7cOIOIT14Jb33++rt3u
-         EYUWFjRkgZK8o8FAqlpWnKnZ5PWd0jBwAKP9KM7/B9d0jG5IVnZSIuFJMFCUsAPd/OK+
-         /yfw==
-X-Gm-Message-State: AOAM532eAS3anlNJnaRvbc3Yp9TBe1dBF2fFUB2tCbHhPW5ArEw7V9BO
-        X+WSTaK00Rb2AuZj7kz56G+FsDG4eQ==
-X-Google-Smtp-Source: ABdhPJwPVMnLqdMiqMekoFO1BpTerz9mA5hoHbPcCejjGrX5ztBsVFiV9PTz4T6oBBl8FMJlcsz0+A==
-X-Received: by 2002:a05:6871:889:b0:ed:daa1:d08 with SMTP id r9-20020a056871088900b000eddaa10d08mr641546oaq.256.1652202930679;
-        Tue, 10 May 2022 10:15:30 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id m33-20020a056870562100b000edf80be4ecsm5667586oao.58.2022.05.10.10.15.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 May 2022 10:15:30 -0700 (PDT)
-Received: (nullmailer pid 2222946 invoked by uid 1000);
-        Tue, 10 May 2022 17:15:29 -0000
-Date:   Tue, 10 May 2022 12:15:29 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Sascha Hauer <s.hauer@pengutronix.de>
-Cc:     dri-devel@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Sandy Huang <hjc@rock-chips.com>,
-        Heiko =?iso-8859-1?Q?St=FCbner?= <heiko@sntech.de>,
-        Peter Geis <pgwipeout@gmail.com>
-Subject: Re: [PATCH 1/3] dt-bindings: display: rockchip: make reg-names
- mandatory for VOP2
-Message-ID: <YnqdsbYk+XzkVLe9@robh.at.kernel.org>
-References: <20220510070914.2346011-1-s.hauer@pengutronix.de>
- <20220510070914.2346011-2-s.hauer@pengutronix.de>
+        with ESMTP id S243692AbiEJRWL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 May 2022 13:22:11 -0400
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B7643222C35;
+        Tue, 10 May 2022 10:18:11 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 24AHI6oZ079593;
+        Tue, 10 May 2022 12:18:06 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1652203086;
+        bh=vG8qH7Id0KatZxxnzh45gjQie9mxliK6XF0aBz5/SDc=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=i+M2nbjyMujhQv1B9XR/zfYyfNw05HiP4ulC4MND6fiRM3MkqvI49HugvmEh+afG8
+         T9Z/viFLg9IGt6OwlPNnqq1AH+cJ/ld8Yl4EoeSCdEI+x0oXefOfXWk/e2v3O0I24+
+         MiOfkT3mJUNx7FzVw6TjNatoo/oGUZiHzsNSw5/s=
+Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 24AHI66F024926
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 10 May 2022 12:18:06 -0500
+Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Tue, 10
+ May 2022 12:18:04 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Tue, 10 May 2022 12:18:04 -0500
+Received: from [10.250.234.179] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 24AHI0TQ063624;
+        Tue, 10 May 2022 12:18:01 -0500
+Message-ID: <ffafc50e-9adb-9d66-3d1f-4ebc9f91f47d@ti.com>
+Date:   Tue, 10 May 2022 22:47:59 +0530
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220510070914.2346011-2-s.hauer@pengutronix.de>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.0
+Subject: Re: [PATCH v6 4/4] thermal: k3_j72xx_bandgap: Add the bandgap driver
+ support
+Content-Language: en-US
+To:     Daniel Lezcano <daniel.lezcano@linaro.org>, <robh+dt@kernel.org>,
+        <rui.zhang@intel.com>, <amitk@kernel.org>, <kristo@kernel.org>,
+        <vigneshr@ti.com>, <krzysztof.kozlowski@linaro.org>
+CC:     <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20220427064635.24898-1-j-keerthy@ti.com>
+ <20220427064635.24898-5-j-keerthy@ti.com>
+ <78a3cc4d-8ce4-0dae-2f4e-7522a0a3aa0b@ti.com>
+ <d94ea6b0-e138-951d-5405-375255104adb@linaro.org>
+From:   "J, KEERTHY" <j-keerthy@ti.com>
+In-Reply-To: <d94ea6b0-e138-951d-5405-375255104adb@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-5.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 10, 2022 at 09:09:12AM +0200, Sascha Hauer wrote:
-> The VOP2 driver relies on reg-names properties, but these are not
-> documented. Add the missing documentation, make reg-names mandatory
-> and increase minItems to 2 as always both register spaces are needed.
-> 
-> Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
-> ---
->  .../bindings/display/rockchip/rockchip-vop2.yaml          | 8 +++++++-
->  1 file changed, 7 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/rockchip/rockchip-vop2.yaml b/Documentation/devicetree/bindings/display/rockchip/rockchip-vop2.yaml
-> index 655d9b327f7d3..7238cdec9eb8a 100644
-> --- a/Documentation/devicetree/bindings/display/rockchip/rockchip-vop2.yaml
-> +++ b/Documentation/devicetree/bindings/display/rockchip/rockchip-vop2.yaml
-> @@ -22,7 +22,7 @@ properties:
->        - rockchip,rk3568-vop
->  
->    reg:
-> -    minItems: 1
-> +    minItems: 2
 
-You ran the dt checks, right? This should give you a warning. The 
-correct thing is drop minItems if there's always 2 entries.
 
->      items:
->        - description:
->            Must contain one entry corresponding to the base address and length
-> @@ -31,6 +31,11 @@ properties:
->            Can optionally contain a second entry corresponding to
->            the CRTC gamma LUT address.
->  
-> +  reg-names:
-> +    items:
-> +      - const: vop
-> +      - const: gamma-lut
-> +
->    interrupts:
->      maxItems: 1
->      description:
-> @@ -86,6 +91,7 @@ properties:
->  required:
->    - compatible
->    - reg
-> +  - reg-names
->    - interrupts
->    - clocks
->    - clock-names
-> -- 
-> 2.30.2
+On 5/10/2022 8:55 PM, Daniel Lezcano wrote:
+> On 09/05/2022 05:10, J, KEERTHY wrote:
+>>
+>>
+>> On 4/27/2022 12:16 PM, Keerthy wrote:
+>>> Add VTM thermal support. In the Voltage Thermal Management
+>>> Module(VTM), K3 J72XX supplies a voltage reference and a temperature
+>>> sensor feature that are gathered in the band gap voltage and
+>>> temperature sensor (VBGAPTS) module. The band gap provides current and
+>>> voltage reference for its internal circuits and other analog IP
+>>> blocks. The analog-to-digital converter (ADC) produces an output value
+>>> that is proportional to the silicon temperature.
+>>>
+>>> Currently reading temperatures only is supported.  There are no
+>>> active/passive cooling agent supported.
+>>>
+>>> J721e SoCs have errata i2128: https://www.ti.com/lit/pdf/sprz455
+>>>
+>>> The VTM Temperature Monitors (TEMPSENSORs) are trimmed during 
+>>> production,
+>>> with the resulting values stored in software-readable registers. 
+>>> Software
+>>> should use these  register values when translating the Temperature
+>>> Monitor output codes to temperature values.
+>>>
+>>> It has an involved workaround. Software needs to read the error codes 
+>>> for
+>>> -40C, 30C, 125C from the efuse for each device & derive a new look up 
+>>> table
+>>> for adc to temperature conversion. Involved calculating slopes & 
+>>> constants
+>>> using 3 different straight line equations with adc refernce codes as the
+>>> y-axis & error codes in the x-axis.
+>>>
+>>> -40C to 30C
+>>> 30C to 125C
+>>> 125C to 150C
+>>>
+>>> With the above 2 line equations we derive the full look-up table to
+>>> workaround the errata i2128 for j721e SoC.
+>>
+>> Hi Daniel,
+>>
+>> Any feedback on this series? Let me know.
+> 
+> There are a few but that would be nit picking and I don't want to 
+> postpone this driver any longer.
+> 
+> How do you want to proceed? Shall I take it through my tree?
+
+Hi Daniel,
+
+Patch 1 & 4 i.e Documentation patch and driver patch can be picked by 
+you. I believe Vignesh will take the dts patches.
+
+Vignesh,
+
+Can you confirm?
+
+- Keerthy
+
 > 
 > 
