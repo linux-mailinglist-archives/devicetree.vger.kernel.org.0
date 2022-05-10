@@ -2,38 +2,35 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EBE37520FDB
-	for <lists+devicetree@lfdr.de>; Tue, 10 May 2022 10:40:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 172FB521002
+	for <lists+devicetree@lfdr.de>; Tue, 10 May 2022 10:50:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237349AbiEJIof (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 May 2022 04:44:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47568 "EHLO
+        id S238192AbiEJIyP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 May 2022 04:54:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52426 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232706AbiEJIoe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 May 2022 04:44:34 -0400
+        with ESMTP id S235005AbiEJIyO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 May 2022 04:54:14 -0400
 Received: from maillog.nuvoton.com (maillog.nuvoton.com [202.39.227.15])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 5B5F02A1509;
-        Tue, 10 May 2022 01:40:37 -0700 (PDT)
-Received: from NTHCCAS01.nuvoton.com (NTHCCAS01.nuvoton.com [10.1.8.28])
-        by maillog.nuvoton.com (Postfix) with ESMTP id 9532E1C805AF;
-        Tue, 10 May 2022 16:40:36 +0800 (CST)
-Received: from NTHCCAS02.nuvoton.com (10.1.9.121) by NTHCCAS01.nuvoton.com
- (10.1.8.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.7; Tue, 10 May
- 2022 16:40:36 +0800
-Received: from NTHCCAS04.nuvoton.com (10.1.8.29) by NTHCCAS02.nuvoton.com
- (10.1.9.121) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.2176.2; Tue, 10 May
- 2022 16:40:36 +0800
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 47EED1B5495;
+        Tue, 10 May 2022 01:50:18 -0700 (PDT)
+Received: from NTHCCAS04.nuvoton.com (NTHCCAS04.nuvoton.com [10.1.8.29])
+        by maillog.nuvoton.com (Postfix) with ESMTP id 805DD1C80FD8;
+        Tue, 10 May 2022 16:50:17 +0800 (CST)
+Received: from NTHCCAS04.nuvoton.com (10.1.8.29) by NTHCCAS04.nuvoton.com
+ (10.1.8.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Tue, 10
+ May 2022 16:50:17 +0800
 Received: from [172.19.1.47] (172.19.1.47) by NTHCCAS04.nuvoton.com
  (10.1.12.25) with Microsoft SMTP Server id 15.1.2176.2 via Frontend
- Transport; Tue, 10 May 2022 16:40:36 +0800
-Message-ID: <d64f260d-8ee6-808a-5725-e1181f104dfe@nuvoton.com>
-Date:   Tue, 10 May 2022 16:40:36 +0800
+ Transport; Tue, 10 May 2022 16:50:17 +0800
+Message-ID: <47b7ec9f-1ed5-642e-5acc-b1398ca31774@nuvoton.com>
+Date:   Tue, 10 May 2022 16:50:17 +0800
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
  Thunderbird/91.9.0
-Subject: Re: [PATCH V4 0/5] Add initial support for MA35D1 SoC
+Subject: Re: [PATCH V4 3/5] arm64: dts: nuvoton: Add initial support for
+ MA35D1
 Content-Language: en-US
 To:     Arnd Bergmann <arnd@arndb.de>
 CC:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
@@ -48,9 +45,10 @@ CC:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
         Will Deacon <will@kernel.org>, SoC Team <soc@kernel.org>,
         <cfli0@nuvoton.com>
 References: <20220510032558.10304-1-ychuang3@nuvoton.com>
- <CAK8P3a1k8y8U99bBmqBYE1vYAc0q-UeaM0oLP4tTHZCpyYNOgA@mail.gmail.com>
+ <20220510032558.10304-4-ychuang3@nuvoton.com>
+ <CAK8P3a1tbvE+PTB-qy2y7o3_i3VP0zkgMueDy3zBd64BsGKssw@mail.gmail.com>
 From:   Jacky Huang <ychuang3@nuvoton.com>
-In-Reply-To: <CAK8P3a1k8y8U99bBmqBYE1vYAc0q-UeaM0oLP4tTHZCpyYNOgA@mail.gmail.com>
+In-Reply-To: <CAK8P3a1tbvE+PTB-qy2y7o3_i3VP0zkgMueDy3zBd64BsGKssw@mail.gmail.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,NICE_REPLY_A,
@@ -64,58 +62,45 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 2022/5/10 下午 03:07, Arnd Bergmann wrote:
+On 2022/5/10 下午 03:01, Arnd Bergmann wrote:
 > On Tue, May 10, 2022 at 5:25 AM Jacky Huang <ychuang3@nuvoton.com> wrote:
->> This patch series adds initial support for Nuvoton MA35D1 SoC,
->> include initial dts and clock controller binding.
+>> Add the initial device tree files for Nuvoton MA35D1 Soc.
 >>
-> This looks fine in principle, but we are getting close to the merge window and
-> should finalize this quickly to make it into v5.19. I see that you don't have a
-> console device, as commented in the .dts patch. Normally I prefer merging
-> platforms only when there is at least rudimentary support for booting into
-> an initramfs with a serial console, but this is a flexible rule.
+>> Signed-off-by: Jacky Huang <ychuang3@nuvoton.com>
+>> ---
+>> +
+>> +/ {
+>> +       model = "Nuvoton MA35D1-EVB";
+>> +       compatible = "nuvoton,ma35d1-evb", "nuvoton,ma35d1";
+>> +
+>> +       chosen {
+>> +               stdout-path = "serial0:115200n8";
+>> +       };
+> Something seems to be missing here: you set the console to the serial0
+> alias, but that is not defined anywhere, and the ma35d1.dtsi file does not
+> appear to define any UART at all. Are you still missing the driver for this?
 >
-> As with the changelog text for the .dts file, please explain in the [PATCH 0/5]
-> cover letter what the status is.
+> Please add a more detailed description in the changelog text above that
+> explains what kind of SoC this is (maybe a link to the product web page,
+> if there is one), and a status of how complete the support is: which drivers
+> are already merged, and which ones are still being worked on?
 >
-> Regarding continued maintainership, we should discuss how you plan to
-> maintain this platform. In particular, there should be an entry in the
-> MAINTAINERS
-> file for the platform, either pointing to yourself, or adding it to the  NPCM or
-> WPCM450 entries if this chip is in the same family. Is this also a BMC
-> implementation, or is it something different?
->
->         Arnd
+>          Arnd
 
 Hi Arnd,
 
+The serial driver is ready 
+(https://github.com/OpenNuvoton/MA35D1_linux-5.4.y/blob/master/drivers/tty/serial/ma35d1_serial.c),
+but we have to review the coding style and porting it from Linux 5.4.y 
+to 5.18.
+
+In the next patch version, I will added a brief introduction about 
+MA35D1 in the cover-letter [PATCH 0/5].
+
 Thanks for your review.
-
-MA35D1 is target at consumer application, while NPCM is for BMC.
-MA35D1 is equipped with ARM Coretx-A35 dual-core with the M4 co-processor.
-
-Our team has developed Linux application on MA35D1 test chip in the last 
-year, and
-the mass production version is wafer-out in last month. It will be 
-announced soon.
-
-We have ported TF-A, U-Boot, OP-TEE, and Linux 5.4.y to MA35D1 platform, and
-have provided Yocto and Buildroot distribution for beta site evaluation. 
-All the source
-code can be found at https://github.com/OpenNuvoton/MPU-Family, include the
-Linux 5.4.y porting on MA35D1 platform.
-
-Yes, we have console device driver ready. Please refer to 
-https://github.com/OpenNuvoton/MA35D1_linux-5.4.y/blob/master/drivers/tty/serial/ma35d1_serial.c.
-But I think we have to fix coding style and have more review on it. Is 
-the console driver
-must for the initial support submit, or can we submit it later?
-
-And thank you to remind us to create an entry in MAINTAINERS file. I 
-will add
-the patch in the next version.
 
 Sincerely,
 Jacky Huang
+
 
 
