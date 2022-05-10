@@ -2,100 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F49E5222EB
-	for <lists+devicetree@lfdr.de>; Tue, 10 May 2022 19:38:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 217C6522303
+	for <lists+devicetree@lfdr.de>; Tue, 10 May 2022 19:40:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348311AbiEJRmK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 May 2022 13:42:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59908 "EHLO
+        id S1348365AbiEJRov (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 May 2022 13:44:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42918 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348288AbiEJRmI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 May 2022 13:42:08 -0400
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8621E66689
-        for <devicetree@vger.kernel.org>; Tue, 10 May 2022 10:38:06 -0700 (PDT)
-Received: by mail-wr1-x42f.google.com with SMTP id j15so24848761wrb.2
-        for <devicetree@vger.kernel.org>; Tue, 10 May 2022 10:38:06 -0700 (PDT)
+        with ESMTP id S1348362AbiEJRot (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 May 2022 13:44:49 -0400
+Received: from mail-oi1-x22e.google.com (mail-oi1-x22e.google.com [IPv6:2607:f8b0:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5C511E3F1
+        for <devicetree@vger.kernel.org>; Tue, 10 May 2022 10:40:49 -0700 (PDT)
+Received: by mail-oi1-x22e.google.com with SMTP id w130so7454312oig.0
+        for <devicetree@vger.kernel.org>; Tue, 10 May 2022 10:40:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=ZZMSgeH50EgZ2k2CW9lxM/Z3t0UYa8S+CXFtKaa9+OI=;
-        b=cnCBj0bGQFR5XYbDWXn0VlW306SuJCKc7MGdSWpl7NR783sSAeQ1WTW7RNtiRazkQl
-         yCjh1YUcnuogZEkVuwkgximSRoU6hD56sVsrxBLE3h2W/8RHz2F6LIcsGpkhILIRE+tf
-         OelGPH5OGxf7zoIbxVHqfndGpTMPxhd4Xl34XdQMY1d3Fkh59mcPKwWSaiEbN/17rqAg
-         J+GzjbB5PsHd2Xp1pLE1otBR2asi6OTMLfPN79fxPM7H9THW9R9K9VSOFFkLYhRoTu6f
-         99d+5uiCDLwEFjUgFh2a/5Nc1aW4i1JgTjY3J8v7xHTh/2xczWPN7T7wntYfu4XUEXa6
-         /Knw==
+        d=chromium.org; s=google;
+        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
+         :subject:to:cc;
+        bh=UKufSQs9qr2bj9JxpR70M2MLmSNQQ67hZiGFvmJhYoc=;
+        b=mdY/If8uRLEfI44R6YGWNOJxV4pcVZkV2cqgKl6mPn2qSRu9ZEv1lEWDIFC2daiykt
+         2e1RiT9qD3sYV5V/WfZx0zxgjzmxv1dsDsRhjJ9fNdW9WfpT/PoLmKh1gugpSSvyB9OS
+         r5ivIcCI5Z4QdKRZvhVb8GLWcVU4lgDzVyo9E=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=ZZMSgeH50EgZ2k2CW9lxM/Z3t0UYa8S+CXFtKaa9+OI=;
-        b=o9JtFUkDBxbDJZOk2iWzVcrxbx5RYMgXfabpyagRnUph/WQ5O0BheV8O9Mbx0skdzL
-         2G6ZeJkKosbETkLSyxyyiFwl0EvCsnuvWFqHNU9sj4EQgddy0MPxoVqU3xmipjg1wFAZ
-         6lgEFuIHdNlVg0tIugsqn6xYpvvrkihKZxmiT0eM/yqDBYTZopeHfIm6io7xfaL6u+yH
-         J9uQ187Stt0nnjj5XS28eXidqG2s9Aa94+i+s5nuz9UUmEyJZIG+awK/yD1JCmkaGes+
-         hnVBdECrhgHKCHK9xqZV+z6k0Eo0rmqTK9lqnmqcM59/xbEDxtd58M8NiRx/K3immteS
-         nCZw==
-X-Gm-Message-State: AOAM531JFGwJpuPTuZPH7dlOmZ1uaEM7PqlqGUsL0c2o8b2KDzwr+6mS
-        erGPZ5KqujN/X6s5ybD4WS2psGvwdAZS6w==
-X-Google-Smtp-Source: ABdhPJxtGfvXTi8r9vPKDMdTNxnGRRp4Om2umX7iejByqOHJISwdnTIoxYwzFrqbbehOzo/+LkP0uA==
-X-Received: by 2002:a5d:4401:0:b0:20a:d6e8:2c0e with SMTP id z1-20020a5d4401000000b0020ad6e82c0emr19463097wrq.168.1652204284966;
-        Tue, 10 May 2022 10:38:04 -0700 (PDT)
-Received: from [192.168.1.41] (176-182-171-101.abo.bbox.fr. [176.182.171.101])
-        by smtp.googlemail.com with ESMTPSA id n10-20020a5d67ca000000b0020c5253d8cfsm17271569wrw.27.2022.05.10.10.38.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 10 May 2022 10:38:04 -0700 (PDT)
-Message-ID: <76e12c64-9e87-d407-0676-3fa2955c3680@linaro.org>
-Date:   Tue, 10 May 2022 19:38:03 +0200
+        h=x-gm-message-state:mime-version:in-reply-to:references:from
+         :user-agent:date:message-id:subject:to:cc;
+        bh=UKufSQs9qr2bj9JxpR70M2MLmSNQQ67hZiGFvmJhYoc=;
+        b=5bLvK7DYqOJ0M9UOw6GHLH5630+8mh2+LFV4eAwODoir5UOH37NEQ4UlAqsRn9Jo2+
+         Ird4uoCRZLF8fFD5D6At9V4b88tznWmtIYnuijXgm65HGbZ8pLhhMerhkb1wv0AfokmU
+         bSe5s2umgZJSlLewnAWigiltf8dJ4EyiibfgQuFqXcz9bw4OBfEbJwtMarh0C16UotbB
+         ZgoAho7x2FdOsI5C5B+OpCDzS+Pqkw78ui/v5BE9aJdOVWA7Yg7rBBekavdS86YykxcR
+         Tpb0pCBvgVVYuGHnPzA7AsD+vQ42Bo2XriH8LS9/qVutxtkNetPX7agedoaPibdzfKg6
+         gCbA==
+X-Gm-Message-State: AOAM532UFoYEwPn5n+dVqreN8qo+lX0t/vJavcuUCkz2fYtxKM3Xd1FQ
+        11iCdWXrIiOIQGErFHthgV2lGj2sBOmitVw6I83W+w==
+X-Google-Smtp-Source: ABdhPJz95HjcXUXoUbA/7guupIrd/nNtcSppXPf36HaH/0UjgRjU1DiKnHjuUteekXQ3UkimNseRwGrch2RzwVkttFo=
+X-Received: by 2002:a05:6808:14c2:b0:326:c129:d308 with SMTP id
+ f2-20020a05680814c200b00326c129d308mr576354oiw.193.1652204449230; Tue, 10 May
+ 2022 10:40:49 -0700 (PDT)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Tue, 10 May 2022 10:40:48 -0700
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH v6 4/4] thermal: k3_j72xx_bandgap: Add the bandgap driver
- support
-Content-Language: en-US
-To:     "J, KEERTHY" <j-keerthy@ti.com>, robh+dt@kernel.org,
-        rui.zhang@intel.com, amitk@kernel.org, kristo@kernel.org,
-        vigneshr@ti.com, krzysztof.kozlowski@linaro.org
-Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220427064635.24898-1-j-keerthy@ti.com>
- <20220427064635.24898-5-j-keerthy@ti.com>
- <78a3cc4d-8ce4-0dae-2f4e-7522a0a3aa0b@ti.com>
- <d94ea6b0-e138-951d-5405-375255104adb@linaro.org>
- <ffafc50e-9adb-9d66-3d1f-4ebc9f91f47d@ti.com>
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <ffafc50e-9adb-9d66-3d1f-4ebc9f91f47d@ti.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-3.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+In-Reply-To: <20220505104024.v4.1.Id769ddc5dbf570ccb511db96da59f97d08f75a9c@changeid>
+References: <20220505104024.v4.1.Id769ddc5dbf570ccb511db96da59f97d08f75a9c@changeid>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.10
+Date:   Tue, 10 May 2022 10:40:48 -0700
+Message-ID: <CAE-0n511S7dNPetX0dHp2RSPUZQjwGtXM8nMTF0bf03JjbPwfg@mail.gmail.com>
+Subject: Re: [PATCH v4 1/5] arm64: dts: qcom: sc7180: Add wormdingler dts files
+To:     "Joseph S. Barrera III" <joebar@chromium.org>,
+        LKML <linux-kernel@vger.kernel.org>
+Cc:     Douglas Anderson <dianders@chromium.org>,
+        Alexandru M Stan <amstan@chromium.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/05/2022 19:17, J, KEERTHY wrote:
-> 
+Quoting Joseph S. Barrera III (2022-05-05 10:41:12)
+> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler.dtsi
+> new file mode 100644
+> index 000000000000..e947e01d0b3b
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler.dtsi
+> @@ -0,0 +1,417 @@
+[...]
+> +
+> +/* PINCTRL - board-specific pinctrl */
+> +
+> +&tlmm {
+> +       gpio-line-names = "HUB_RST_L",
+[...]
+> +
+> +       vdd_reset_1800: vdd-reset-1800 {
+> +               pinmux {
+> +                       pins = "gpio87";
+> +                       function = "gpio";
+> +               };
+> +
+> +               pinconf {
+> +                       pins = "gpio87";
+> +                       drive-strength = <2>;
+> +                       bias-disable;
+> +               };
+> +       };
+> +
+> +       avdd_lcd_en: avdd-lcd-en {
+> +               pinmux {
+> +                       pins = "gpio88";
+> +                       function = "gpio";
+> +               };
+> +
+> +               pinconf {
+> +                       pins = "gpio88";
+> +                       drive-strength = <2>;
+> +                       bias-disable;
+> +               };
+> +       };
+> +
+> +       avee_lcd_en: avee-lcd_en {
 
-[ ... ]
+avee-lcd-en
 
-> Hi Daniel,
-> 
-> Patch 1 & 4 i.e Documentation patch and driver patch can be picked by 
-> you. I believe Vignesh will take the dts patches.
+No underscores in node names please.
 
-Will you send a V7 with Krzysztof comments fixed ?
+> +               pinmux {
+> +                       pins = "gpio21";
+> +                       function = "gpio";
+> +               };
+> +
+> +               pinconf {
+> +                       pins = "gpio21";
+> +                       drive-strength = <2>;
+> +                       bias-disable;
+> +               };
+> +       };
 
+Are these supposed to be sorted by node name? Or gpio number? Please do
+one of those.
 
--- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
-
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+> +
+> +       mipi_1800_en: mipi-1800-en {
+> +               pinmux {
+> +                       pins = "gpio86";
+> +                       function = "gpio";
+> +               };
+> +
+> +               pinconf {
+> +                       pins = "gpio86";
+> +                       drive-strength = <2>;
+> +                       bias-disable;
+> +               };
+> +       };
+> +};
