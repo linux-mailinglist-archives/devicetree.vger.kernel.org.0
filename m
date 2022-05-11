@@ -2,183 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 388D7523837
-	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 18:10:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F2EB523836
+	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 18:10:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344363AbiEKQKX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 May 2022 12:10:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41000 "EHLO
+        id S1344378AbiEKQKV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 May 2022 12:10:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40634 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344373AbiEKQKR (ORCPT
+        with ESMTP id S1344393AbiEKQKR (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Wed, 11 May 2022 12:10:17 -0400
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4716A2375E0
-        for <devicetree@vger.kernel.org>; Wed, 11 May 2022 09:10:10 -0700 (PDT)
-Received: by mail-ed1-x52b.google.com with SMTP id z19so3138856edx.9
-        for <devicetree@vger.kernel.org>; Wed, 11 May 2022 09:10:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=mtUTymC8Y9rwA+nR5RnPnabs1W1L3QArgmlQfxUtvi0=;
-        b=KejbTgIcaTbt/QNzcRpsI//433QGnVimyV9DcWdNpVyg/b3Kgu3p8PCPgMJjwVjHja
-         fmVl95gma0wX465mkoUCKlfmdRJ1uKxPyyvDWJ24BWigQSe90s3rHSWWhAg9y0arb5Yk
-         sVhhxBQYSc+q6vFjLDE4wZZ6IJrYYIhtcbwPc=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=mtUTymC8Y9rwA+nR5RnPnabs1W1L3QArgmlQfxUtvi0=;
-        b=48n+G3MNL0UzRRJtMRRs8mLTru7iRbBn59dMveHNN1BEgymbiOfZzhkNsS1fXVX1iO
-         j/jI0bJ6L+M5tPpbQv3U55INMahoopPNSvpcca0/oQlNi1LM+NPhoHwjDoGn+y9FBBIf
-         LXDImGepjldV4X3bO1kZdVBHCALTo8umaE5B3puOot5Yl+D9EKHrLXbEjiPXCylns8iG
-         a0AtNTEF4684auJbbcS+NQKSY1sES5Oin0aNe2maWas0Pqi51WvNcPDcdj5dcFpRFyqP
-         /I4IwVzh/udLpZlJqzt4fPzLBdbsLRuZ0AFQPXHk+tBLpilIUECmIAMqgdM0Isv3MV1e
-         EQjA==
-X-Gm-Message-State: AOAM5330J/z8J6eh1X7Aaz89RByh9q1mlO9SqejB5JitPj2Urr3vrRx1
-        d6hi1AMyUOshDxuWqJCuxvDx/O5aVtqobyIA/js=
-X-Google-Smtp-Source: ABdhPJxJ+LZDWU36aP25hr2QTSBmd4Ns7NSiTHXRVspb8rcKf60W6WOZf35ErHBIgvIyaZQkrx89Bg==
-X-Received: by 2002:a05:6402:34cd:b0:428:1043:6231 with SMTP id w13-20020a05640234cd00b0042810436231mr29874162edc.274.1652285408531;
-        Wed, 11 May 2022 09:10:08 -0700 (PDT)
-Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com. [209.85.221.49])
-        by smtp.gmail.com with ESMTPSA id v4-20020a17090610c400b006f3ef214ddesm1119112ejv.68.2022.05.11.09.10.06
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 11 May 2022 09:10:07 -0700 (PDT)
-Received: by mail-wr1-f49.google.com with SMTP id k2so3693369wrd.5
-        for <devicetree@vger.kernel.org>; Wed, 11 May 2022 09:10:06 -0700 (PDT)
-X-Received: by 2002:adf:f50d:0:b0:20a:e096:ef with SMTP id q13-20020adff50d000000b0020ae09600efmr23211050wro.679.1652285406324;
- Wed, 11 May 2022 09:10:06 -0700 (PDT)
+Received: from EUR03-AM5-obe.outbound.protection.outlook.com (mail-eopbgr30123.outbound.protection.outlook.com [40.107.3.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70AED2375EA;
+        Wed, 11 May 2022 09:10:10 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=iQUvvo/tKRxtVrb9m9yiBnjpQrln4x/3EGXt3/BYP+bR4H9sH2guvTtTByoWGQQ6RjqQfehh3+oXvVegQl71IMeRPWXqAHDTLW4PLF5chumZ4IasbOyPaTtWw3RCjKJLOpPLi5xrFaVZcVuJ0fkJad8CgsGbw9bj1FnF293y+MP5bTrJ92HcClabgyE8k683b25cfzZOCe3SHxyH0tBWcDFfkTl3LWgjwwZbXKjz3mqRtnRDMo8mPDjmGfO4YIoQWONmA9y8Dn4wE23KH3PGcEVX9AHa1G/pkYseHgv4H3LoRZtOQrnjn9cN/czmOhHM5A8pDr3gn5qT2ZvUzskJ4Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=5ZkX9psjr8lbrk1WkOwbmhnFKxrKrooGhqbQwJGUExM=;
+ b=nMyDX5X4Vze8ypaviw09MePvGaQg6BVzL/7oRsZKR7L6Zodou0W4UeOBut2PLaoz9b8tyzxtAOhhvD4qlJWwxseAXTvQw9FHE/jTybtLgHCFa/EQZYwgyKf+JNDYN+33rfsOvkKqdofaOV2tAKjPsKRSHujccHWePN4N3WLbekvgYhoPuCEYlMbUcdYfBDyN4GCAKw1mNAG7XH5Gs9be9xRtst3fz3XheWLu0SRxUAxZSshC9o5Ud7qcPsoSKbtvc0Gwb5El+n4QGwMZeazqxnRFMr4pFWxoizWJEI9TEq89Wcps/EuSczOTwD/nnVilxwfKlRz74FZftGQYt0Ma7g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=plvision.eu; dmarc=pass action=none header.from=plvision.eu;
+ dkim=pass header.d=plvision.eu; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=plvision.eu;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=5ZkX9psjr8lbrk1WkOwbmhnFKxrKrooGhqbQwJGUExM=;
+ b=H2k0ju5e+VZn/aBh5FFGuMtzxbpnukLjMmvahPv+UXT4bEx+D55L+sdSxomKmrIpgCtY0uRwS0Uo9RoZ7aAuiROVW65sizyQBlEzbzUmoi3JQYTO+i5lN9JTMA8tMgXIxpN+GJgWjC/eQzC+Rk0iW9WbtmaeB8y54OwVaYcm/dU=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=plvision.eu;
+Received: from VI1P190MB0317.EURP190.PROD.OUTLOOK.COM (2603:10a6:802:38::26)
+ by VI1P190MB0510.EURP190.PROD.OUTLOOK.COM (2603:10a6:802:30::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5227.21; Wed, 11 May
+ 2022 16:10:06 +0000
+Received: from VI1P190MB0317.EURP190.PROD.OUTLOOK.COM
+ ([fe80::8023:4d78:c3d3:424b]) by VI1P190MB0317.EURP190.PROD.OUTLOOK.COM
+ ([fe80::8023:4d78:c3d3:424b%7]) with mapi id 15.20.5227.023; Wed, 11 May 2022
+ 16:10:06 +0000
+Date:   Wed, 11 May 2022 19:10:03 +0300
+From:   Vadym Kochan <vadym.kochan@plvision.eu>
+To:     catalin.marinas@arm.com, will@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, andrew@lunn.ch,
+        gregory.clement@bootlin.com, sebastian.hesselbarth@gmail.com,
+        kostap@marvell.com, robert.marko@sartura.hr
+Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Chris Packham <chris.packham@alliedtelesis.co.nz>,
+        Elad Nachman <enachman@marvell.com>
+Subject: Re: [PATCH v5 1/2] arm64: dts: marvell: Add Armada 98DX2530 SoC and
+ RD-AC5X board
+Message-ID: <20220511161003.GE10145@plvision.eu>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220504044624.951841-1-chris.packham@alliedtelesis.co.nz>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+X-ClientProxiedBy: BE0P281CA0023.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:b10:14::10) To VI1P190MB0317.EURP190.PROD.OUTLOOK.COM
+ (2603:10a6:802:38::26)
 MIME-Version: 1.0
-References: <20220330090947.9100-1-chenxiangrui@huaqin.corp-partner.google.com>
- <a0eb6bf9-256a-29b1-2211-496df710f531@linaro.org> <CAD=FV=UjyLofXZqnj=bL89fza5JS6O5Np9W-A4V4WK+na0hdrw@mail.gmail.com>
- <b7ff08b8-60fb-7629-9399-3d5cca46ab9e@linaro.org> <CAD=FV=Vx5g_xTRZGc9wW=ZLnfsOcubTYFcnYQRC5jLm+n3en0w@mail.gmail.com>
- <606cc762-a0c2-49a4-3e5d-d2dbd4595bc7@linaro.org> <CAD=FV=W_SA-3PfDFi-Gkjk9pew5bchFNjQhXX8MkZyuy5UohEQ@mail.gmail.com>
- <CAJKOXPdt5WTg4VU-TEW3dmPHR76dKg63XVxRQfa7ZSKc_jz6Ag@mail.gmail.com>
- <CAD=FV=XQqQSQDNh-zXqEQkwsrax5Qb3OtfKZoQLkncJj_4mcQw@mail.gmail.com>
- <daf66d41-42ac-50dc-3f8d-c261da8e452d@linaro.org> <CAD=FV=WhA=n_=Ys6NfedPtNPddL81HnG6Qws_R+vq9w8Nrsn5A@mail.gmail.com>
- <ce2ea308-b63d-ad27-4cea-7353268f8ebb@linaro.org> <CAODwPW857CkH0+ZnBaUeowW4te-hSy6nrdeeX6-OLPOs5TptsQ@mail.gmail.com>
- <55dcf917-7ac0-efe9-8531-b77be682125a@linaro.org>
-In-Reply-To: <55dcf917-7ac0-efe9-8531-b77be682125a@linaro.org>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Wed, 11 May 2022 09:09:53 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=UPKo4CxRVmdHr05rRPaNHFYfaQTqmBJAU5ZF61ccKgEA@mail.gmail.com>
-Message-ID: <CAD=FV=UPKo4CxRVmdHr05rRPaNHFYfaQTqmBJAU5ZF61ccKgEA@mail.gmail.com>
-Subject: Re: [PATCH] CHROMIUM: arm64: dts: qcom: Add sc7180-gelarshie
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Julius Werner <jwerner@chromium.org>,
-        =?UTF-8?Q?Krzysztof_Koz=C5=82owski?= <k.kozlowski.k@gmail.com>,
-        Mars Chen <chenxiangrui@huaqin.corp-partner.google.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 3f4211a7-d98c-43cc-b333-08da3368b6ad
+X-MS-TrafficTypeDiagnostic: VI1P190MB0510:EE_
+X-Microsoft-Antispam-PRVS: <VI1P190MB0510A4FB55FE57D3964D4A3095C89@VI1P190MB0510.EURP190.PROD.OUTLOOK.COM>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: ehPG7R1gR7n/JSt07bCsqIa/W2owQzTBjenEugUsbc3COfBj9ScPwmiK4W13cojXXmOr/PJy3IVV99la+omzncjGVVnvoMAHXkBJwBxGT4L7ZCzfv1Y7AtDmXDmNuTvo57CPd+yltv1B+NOfO4WLZxVj8c4edbaR66gg7FUeq7esWKhHKihyn/wUulsZeOD8BZB6FQyIgtMLb3haNijMFfk6pWGbmikWEHnz+8QBFSazMapsWfA6piz2llfpdOgzkKl1u7AabXz8KGCuxU8Lei4unRkjG07QWf0c2irOai3IF+CcJtLCtRx9l2D108UuZFduQO6OQ/oP57psCGetMnLtZsJNo9xutBeuX2RBkv4dCgVwtKLpGr3j0oA3mMKhDaQYRh21UObtsGu1k+rgHta0Qcav3rulYSOIhRFYW2948VnJw2ARmnZmLZm0VyFlAXeJ0ztXqbGYgnyGwdnSuqSE1ATZhoW8JQS5QaV4JRttZFijbtJZVkhB8BdNeazwsKgXrQmRXirjuP+d1b2CAo2uFH2Ya31fl0FwCkTjuP6bSfft2OVhLas/FXWUomY6aeDLSr5sFf2SemXiLEmZcqCQeKHICPD66EKvHHNtIz0DrmG2V07uCYhdjmekK+lPIlg2JqcVhRzyp655xliZv22jJTX256CrEy97ic+lfhj6bE0ZKBAn99fxTDMdnlOtSThQUn4OJCQOyT3dri4DYA==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1P190MB0317.EURP190.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230001)(346002)(366004)(136003)(376002)(39830400003)(396003)(2906002)(508600001)(7416002)(5660300002)(6506007)(4744005)(186003)(86362001)(8936002)(52116002)(2616005)(1076003)(6486002)(36756003)(44832011)(66476007)(4326008)(26005)(33656002)(38100700002)(66946007)(54906003)(8676002)(66556008)(38350700002)(316002)(6512007)(6666004);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?wzNBJOUtZG7qHm8fKYzXz0I4+s72jkkurnZzY4SglCOKZdLMy9io3oYNwgvT?=
+ =?us-ascii?Q?Ex7BoHvU7ds96IyIE2rfk/XXglf+TR0/tCDW6agXIdTWRbQHH6nMoAyDDSwC?=
+ =?us-ascii?Q?RTkxEOWeXqJOZhElLoVxDnzqiPtpFrxhM/+3WmDrXt8gCOuoOPJmIqdKSxb8?=
+ =?us-ascii?Q?SiquOK3MW9kuqS55ctCAaXev3L6AWDkG1KkU2N/99p0U+DLl79uZOvNScVYh?=
+ =?us-ascii?Q?J+ZmAY7leUd5jrKAx0OhWFyc477yEo8pIpWoznX7VXUmLJ7da3SiWgA22Ccw?=
+ =?us-ascii?Q?zDXSWgZ1TRxySmObLGbkz1G6GUy81voXNpDWO2/lSK0HwipcPoJ6Lh4Rm1Xs?=
+ =?us-ascii?Q?Wi2giEUDI1tTGhKppsU0hunY8PgxsldYRO0WMzD2M2gu5LOoye69Jg9OshE3?=
+ =?us-ascii?Q?Y2x2/zAc6nmczGgrEl2+u4/7AdyHKltbogyvhVgx8ge+Zgb3QqDku+A1u0AB?=
+ =?us-ascii?Q?N6+rCm0kFNG7k6gGG3+evdzBiN6H7YO6F2cvW8+XoKBDV7N9UBtGYBHRbQoF?=
+ =?us-ascii?Q?I1p2VSM4pgN/dARkttdiUCthtJMJzzAlpIp3Wex6du/BdflKtTLxJR4iZAMO?=
+ =?us-ascii?Q?XISlvS5Aio8lS2V7h4oweSMjDmCUbd6v7DZrCw+jwoHAoMO9b5Mj55iyxClH?=
+ =?us-ascii?Q?PFYdEc8Qbd48du17SbEzTguo08sOEEsV+S/zUXMStmUjjR+8Xn1tgmauzg+O?=
+ =?us-ascii?Q?xouOP3zgBcAGRYV50KyH2YdpqPNGzEcG8cpZCu9pK3IZ8pDePEgKOexVMUNx?=
+ =?us-ascii?Q?syhwHmSjZdkyOY13C5zEssOvg+dRFQ79dYvtjxhqDXuL4gywZxIqSRgQyFbS?=
+ =?us-ascii?Q?R3wWg8MMKQnh4LuRgsJQwxypt8uqiWLZATonYCj7dEO+3PWB4mcs7fv1ACAp?=
+ =?us-ascii?Q?rM797/SGrwdKMDeTPu46tKGkU40T/BLnsCSluMCCCJ7oT6ui29y4V1uRuOoS?=
+ =?us-ascii?Q?XuWc+bXHKCL9gSk37umT3ij0utENJS8m1XrsQYK5ywK7dy464lZse80KpoeK?=
+ =?us-ascii?Q?06Sa6WK5iy6YNl2f7ICs/lREVZG3TuCaFuZXm2pX6En8AM/cxbR+A5wP8V32?=
+ =?us-ascii?Q?Gz7b/9CZhUNAQxYdiK4HcllgaMxLUSVxARFgyFIR0XqiiatLA4Rl9CS0Dllc?=
+ =?us-ascii?Q?Lvmpx/cTkqv2o1IQEioyrhoYxb7dcTXisD7tpnAwz3S+FX770YSPtu1FhN10?=
+ =?us-ascii?Q?M52Vh4zdochqh14alBNkjlkoDjwd6Adj2tzp9B0XwcDb8WdD1XFhftLWKR6w?=
+ =?us-ascii?Q?vrROEbxQ977KhvR4+iCeVw3n1yYp/6eL+LuGXkzAvgQmqtFBKSuavWZzYWn0?=
+ =?us-ascii?Q?p6p1IzBbaP8/ak0s9VXP8e9dlZ1SjRe4IRpSl65pzFLTIZYC4hzYQ5ycOozt?=
+ =?us-ascii?Q?Au/gRU/NV65uwtIcKVwgsp84Q69pBtHWdnxPHz1FJ6xtGHm/aMc1bmju8MXB?=
+ =?us-ascii?Q?SAmK2Ljurvji/MzljMLmW3IWujz6w9Hcfb+HMSvEq6iKsqm+CeRoRcSW3rS6?=
+ =?us-ascii?Q?JLFuE132nbAoZbte35vgNCaO4uK8ksoNZauhlK9NLHw2nJAvxkqUb3UkR03w?=
+ =?us-ascii?Q?JJZmc/QUKGRRl2LCUlNL5hzbyPx7FgHosXCS4/BIN+mG73sUeFFzBM3ZmmxN?=
+ =?us-ascii?Q?+PqKTb5Y+Gqvy3KIujI/o8pYz62pe/3gmOZoPU5Tom54m8sac/OlxGNnjR2g?=
+ =?us-ascii?Q?2o2stV2ym1j/20zuURkLmoH3O571MztXh4Fsqno8y6ana2ypTPoZg++cSYYC?=
+ =?us-ascii?Q?PhVtsklRlBBH4BYH+kPZ1m1ntLETrqs=3D?=
+X-OriginatorOrg: plvision.eu
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3f4211a7-d98c-43cc-b333-08da3368b6ad
+X-MS-Exchange-CrossTenant-AuthSource: VI1P190MB0317.EURP190.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 May 2022 16:10:06.2361
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 03707b74-30f3-46b6-a0e0-ff0a7438c9c4
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: phnwrVsSVja53PPpU+wOv8laBtOOVbo/jEKtctkwHT8UeCDaHAgoN8H9jlGDYAcbxEQ38+bL8jQJl60iviNx7L+FHMl4z3bzSCwLsIb7WiE=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1P190MB0510
+X-Spam-Status: No, score=-0.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FAKE_REPLY_C,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hi Chris,
 
-On Wed, May 11, 2022 at 12:20 AM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 11/05/2022 04:39, Julius Werner wrote:
-> >> Wait, we agreed that you don't consider them identical, didn't we? If
-> >> they are identical, you do not need rev4 at all. So they are not
-> >> identical...
-> >
-> > Well, they are identical until they're not. We intend them to be
-> > identical. But for practical purposes it does sometimes happen that
-> > two board revisions which were meant to be indistinguishable by
-> > software end up needing to be distinguished at a later point, when
-> > both the hardware and firmware can no longer be changed. We need to
-> > allow an escape hatch for that case. It does not happen often, so just
-> > treating them all as separate boards from the start is not a scalable
-> > solution. DTBs are not free when they all need to be packaged in the
-> > same kernel image.
->
-> You split more important part of my message, ignoring the point.
->
-> So you choose they are not identical, fine. Why insisting on adding
-> fallback compatible while not keeping bindings updated? Just don't add
-> the compatible and work on rev3 or rev4. Doug even once wrote "_we don't
-> know_ if -rev7 and -rev8 are compatible", so don't make them compatible.
-> Don't add fallbacks or some generic unspecified front-compatibles and
-> just work on revision.
+> arch/arm64/boot/dts/marvell/Makefile          |   1 +
+> .../boot/dts/marvell/armada-98dx2530.dtsi     | 310 ++++++++++++++++++
+> arch/arm64/boot/dts/marvell/rd-ac5x.dts       |  90 +++++
+> 3 files changed, 401 insertions(+)
 
-Somehow, it seems like we keep talking past each other here and it
-feels like folks are getting upset and we're not moving forward. Maybe
-the right way to make progress is to find some face-to-face time at a
-future conference and sit in front of a white board and hash it out.
-That being said:
+Marvell is going to start the upstreaming of AC5X boards support, we have also patches with similar .dts(i) files
+but with different naming:
 
-* Without changing our bootloader or having a big explosion in the
-number of dts files, we really can't change our scheme. The best we
-can do is document it.
+    ac5.dtsi
+    ac5_rd.dts
+    ac5_db.dts
+    ac5x_db.dts
 
-* If we want to change our scheme, we'd need to sit down and come to
-an agreement that satisfies everyone, if such a thing is possible.
-That would only be able to affect future boards. We don't want to
-change the bootloader dts loading scheme on old boards.
+What do you think about to use these naming scheme ?
 
-
-> >> Right now it's not possible to validate QCOM DTSes against DT bindings
-> >> because they throw big fat warnings about undocumented top compatibles.
-> >> This is a downside for us.
-> >
-> > But that's a solvable problem, right? As I understand, what Doug was
-> > initially just asking was whether it made _sense_ to document all of
-> > these... not that we couldn't do it. Then this whole thread went down
-> > a rabbit hole of whether our compatible assignments are allowed in the
-> > first place. If we can compromise on this discussion by just doing
-> > whatever needs to be done to make the tool happy, I think(?) we can
-> > provide that.
->
-> None of recent patches from Chromium were doing it, even after
-> complaining from my side, so why do you suddenly believe that it is
-> "doable"? If yes, please start doing it and fix the DTSes which you
-> already submitted without bindings.
->
-> To remind - entire discussion started with Doug saying it is pure
-> overhead for him.
-
-I mean, to be fair I said it _seems_ pure overhead and then said that
-we could do it if it makes some tools happy. ...but before doing that,
-I wanted to make sure it was actually valuable. I still have doubts
-about the assertion that the most specific compatible is guaranteed to
-uniquely identify hardware. So if the whole reason for doing this is
-to make the validation tools happy and there's no other value, then at
-least it's plausible to argue that the tools could simply be fixed to
-allow this and not shout about it. Now, certainly I'm not arguing that
-yaml validation in general is useless. I'm in agreement that we want
-dts files to be able to be formally validated because it catches
-typos, missing properties, and bugs. I am _only_ saying that I still
-haven't seen a good argument for why we need to validate the top-level
-compatible string. Since there no properties associated with the
-top-level compatible string, it's mostly just checking did some one
-copy-paste the compatible string from one file (the dts file) to the
-other file (the yaml file) correctly. To me, that does not feel like a
-useful check.
-
-The other thing I wanted to make sure was that we weren't just going
-to get NAKed later if/when we had to adjust compatible strings on
-existing dts files.
-
-In any case, I guess I'll make an attempt to document the compatibles
-for existing Chromebooks and we'll see what happens. I'm still not
-convinced of the value, but as long as we're not going to get NAKed
-for documenting reality it's fine.
-
--Doug
-
--Doug
+Regards,
+Vadym Kochan
