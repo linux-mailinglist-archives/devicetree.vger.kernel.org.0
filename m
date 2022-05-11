@@ -2,199 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C9FB1522E15
-	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 10:18:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2491D522E16
+	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 10:19:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243448AbiEKISh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 May 2022 04:18:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36384 "EHLO
+        id S234770AbiEKISw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 May 2022 04:18:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37632 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242271AbiEKISh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 May 2022 04:18:37 -0400
-Received: from mail.pr-group.ru (mail.pr-group.ru [178.18.215.3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41801E732F;
-        Wed, 11 May 2022 01:18:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-        d=metrotek.ru; s=mail;
-        h=from:subject:date:message-id:to:cc:mime-version:content-type:in-reply-to:
-         references;
-        bh=3cLMDtKi++EGcvFgiDpFbyfN0+A359izanQW4847Ev8=;
-        b=gZT5C4/+vjvZjryP12QuG8YceC5rhHmll3ZnjxuIZnSi654JWFsmN5svc/VU3+dGf04SIJG/kVIUQ
-         IrdaJqudf49vLrEcqzmt0LPCJyt0yU27PMLv1YEVk640bQBA2I4QHZ0hAJndNJhY0WPzJ169wOePEx
-         2O4NQdZtmq6GLOT2A1Nxf0fRfJ5GBywHn6rhBa2KdR8h4YJEZ/01YM2f2get4VbySyO1xcpZBRu2mQ
-         ATQX8+dbvqIL88X4wCvRdBIN79YZbK770pW5mCQHC19VmD4At8vpuFxEjaWDvLb5WxlEn9Dl7WgQCB
-         BdFkutGExej8kbOdvcBqcu5PVs5+6rw==
-X-Kerio-Anti-Spam:  Build: [Engines: 2.16.3.1422, Stamp: 3], Multi: [Enabled, t: (0.000010,0.017725)], BW: [Enabled, t: (0.000013,0.000001)], RTDA: [Enabled, t: (0.071522), Hit: No, Details: v2.39.0; Id: 15.52k9n0.1g2p35fnb.1p3ve; mclb], total: 0(700)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
-X-Spam-Level: 
-X-Footer: bWV0cm90ZWsucnU=
-Received: from h-e2.ddg ([85.143.252.66])
-        (authenticated user i.bornyakov@metrotek.ru)
-        by mail.pr-group.ru with ESMTPSA
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256 bits));
-        Wed, 11 May 2022 11:18:30 +0300
-Date:   Wed, 11 May 2022 11:18:10 +0300
-From:   Ivan Bornyakov <i.bornyakov@metrotek.ru>
-To:     Conor Dooley <mail@conchuod.ie>
-Cc:     Conor.Dooley@microchip.com, mdf@kernel.org, hao.wu@intel.com,
-        yilun.xu@intel.com, trix@redhat.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-fpga@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        system@metrotek.ru
-Subject: Re: [PATCH v11 2/3] fpga: microchip-spi: add Microchip MPF FPGA
- manager
-Message-ID: <20220511081810.bwxjkhfuzfvov4iw@h-e2.ddg>
-References: <20220507074304.11144-1-i.bornyakov@metrotek.ru>
- <20220507074304.11144-3-i.bornyakov@metrotek.ru>
- <bd5cb37b-ee56-f6d5-2d98-c08566b60728@microchip.com>
- <20220509171621.zk4owxwlngxjodgz@x260>
- <da1e5125-de6b-11a8-a52d-7e6e5f45ab70@conchuod.ie>
- <4b752147-1a09-a4af-bc5d-3b132b84ef49@conchuod.ie>
- <20220511081532.7gkmz3uumzxgwfaf@h-e2.ddg>
+        with ESMTP id S243466AbiEKISv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 May 2022 04:18:51 -0400
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C76CA127181
+        for <devicetree@vger.kernel.org>; Wed, 11 May 2022 01:18:49 -0700 (PDT)
+Received: by mail-ej1-x62c.google.com with SMTP id i19so2426588eja.11
+        for <devicetree@vger.kernel.org>; Wed, 11 May 2022 01:18:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=sBzTMsPXTZY1KLtSUK6HQvUzSLSuD/KbKK3fc7RKOi4=;
+        b=q5x33+8w8V9FYh8m8Q3teVEWeIZiXCGzRtgElsINjmgdbV2jVCgFZAYVRfQ5wfPp/R
+         WTwY+r0CLFIa/P1xIUhybrkXIlDfYRocw2+OCDhCqQOpem+1xb5xmCGlmz3WOgL1aaZY
+         8KVyX0fDXL21nomBfaSjBNp5Q8uxlpcuNV374E5oU+RY263BBtfjHHhahfx2XVW2ydn+
+         Q6rd9QM+Z0YNK+i9eXpZ+UiRyWnnDc9cgaHyQqz8QjcQlRECZjHZAw9bsmNHGD3/CdXn
+         mW5i5uetq59A77bVvk3bx8dFRtOUUcuWNNNKDKlXclYnoveFyYUGluKSYsMU45ewcMzk
+         qDdw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=sBzTMsPXTZY1KLtSUK6HQvUzSLSuD/KbKK3fc7RKOi4=;
+        b=Y9qR6Q0BcpErXA4JuH8eAWkEyUoXYFedItOm+dluSbhLTpFIT5r9uFYwxMle6kYJ/h
+         BM7wAJm1epxcFUvDE8Ye7GPh8TaAalDGm9dGKOk/bWujgh716Z+lYu5KBwXHTAnlSe8O
+         /oFHSTqOZQ7vH8CVvoT0TpekQU/mCkNKrD+4B2Pl2hCfw5+tgoK34qLWM9ECMR6SXT08
+         IM7c5d2oDT4wWgX2W6u7uyDY+8qsyaTC2UWo96yoTxP6iqAilymCE1vxyfD+BcJkoduX
+         SHPlCeF+cAo+BEvg5XlnHCw/CtTtjDSeAWJCE0M/sCLVKKmbymW8Kx+fgdKt7TezIEUB
+         Pb7A==
+X-Gm-Message-State: AOAM532QE2+5UJ+kkhIubSV+KBL6NSMkNELXK5xzQURP629RbRSsjyMw
+        +KeNe0tDGgIfbPeYudqUL2D77A==
+X-Google-Smtp-Source: ABdhPJy+jjf91BnIdjIyJXY3kE+uApYxN3twMoWFjQ7XNd1YDsGZ7YSEO9GFwLy3LQwQvXg/WmvvdA==
+X-Received: by 2002:a17:907:2da5:b0:6f4:7cd1:8cf5 with SMTP id gt37-20020a1709072da500b006f47cd18cf5mr23731800ejc.328.1652257128203;
+        Wed, 11 May 2022 01:18:48 -0700 (PDT)
+Received: from [192.168.0.254] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id u8-20020a170906654800b006f3ef214dccsm684382ejn.50.2022.05.11.01.18.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 11 May 2022 01:18:47 -0700 (PDT)
+Message-ID: <ff26a15e-a9e6-5db6-992a-0a995da33f94@linaro.org>
+Date:   Wed, 11 May 2022 10:18:46 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220511081532.7gkmz3uumzxgwfaf@h-e2.ddg>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH] dt-bindings: arm: fix typos in compatible
+Content-Language: en-US
+To:     Ken Kurematsu <k.kurematsu@nskint.co.jp>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+Cc:     Rob Herring <robh@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Yoshitaka Ikeda <ikeda@nskint.co.jp>,
+        Masahiro Mizutani <m.mizutani@nskint.co.jp>
+References: <OSBPR01MB32880CB4C49E50DAB7C6B664DBC89@OSBPR01MB3288.jpnprd01.prod.outlook.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <OSBPR01MB32880CB4C49E50DAB7C6B664DBC89@OSBPR01MB3288.jpnprd01.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 11, 2022 at 11:15:32AM +0300, Ivan Bornyakov wrote:
-> On Tue, May 10, 2022 at 12:29:54PM +0100, Conor Dooley wrote:
-> > On 09/05/2022 19:56, Conor Dooley wrote:
-> > > On 09/05/2022 18:16, Ivan Bornyakov wrote:
-> > > > On Mon, May 09, 2022 at 11:41:18AM +0000, Conor.Dooley@microchip.com wrote:
-> > > > > Hey Ivan, one comment below.
-> > > > > Thanks,
-> > > > > Conor.
-> > > > > 
-> > > > > On 07/05/2022 08:43, Ivan Bornyakov wrote:
-> > > > > > ... snip ...
-> > > > > > +static int mpf_read_status(struct spi_device *spi)
-> > > > > > +{
-> > > > > > +       u8 status, status_command = MPF_SPI_READ_STATUS;
-> > > > > > +       struct spi_transfer xfer = {
-> > > > > > +               .tx_buf = &status_command,
-> > > > > > +               .rx_buf = &status,
-> > > > > > +               .len = 1,
-> > > > > > +       };
-> > > > > > +       int ret = spi_sync_transfer(spi, &xfer, 1);
-> > > > > > +
-> > > > > > +       if ((status & MPF_STATUS_SPI_VIOLATION) ||
-> > > > > > +           (status & MPF_STATUS_SPI_ERROR))
-> > > > > > +               ret = -EIO;
-> > > > > > +
-> > > > > > +       return ret ? : status;
-> > > > > > +}
-> > > > > > +
-> > > > > > ... snip ...
-> > > > > > +
-> > > > > > +static int poll_status_not_busy(struct spi_device *spi, u8 mask)
-> > > > > > +{
-> > > > > > +       int status, timeout = MPF_STATUS_POLL_TIMEOUT;
-> > > > > > +
-> > > > > > +       while (timeout--) {
-> > > > > > +               status = mpf_read_status(spi);
-> > > > > > +               if (status < 0 ||
-> > > > > > +                   (!(status & MPF_STATUS_BUSY) && (!mask || (status & mask))))
-> > > > > > +                       return status;
-> > > > > > +
-> > > > > > +               usleep_range(1000, 2000);
-> > > > > > +       }
-> > > > > > +
-> > > > > > +       return -EBUSY;
-> > > > > > +}
-> > > > > 
-> > > > > Is there a reason you changed this from the snippet you sent me
-> > > > > in the responses to version 8:
-> > > > > static int poll_status_not_busy(struct spi_device *spi, u8 mask)
-> > > > > {
-> > > > > 	u8 status, status_command = MPF_SPI_READ_STATUS;
-> > > > > 	int ret, timeout = MPF_STATUS_POLL_TIMEOUT;
-> > > > > 	struct spi_transfer xfer = {
-> > > > > 		.tx_buf = &status_command,
-> > > > > 		.rx_buf = &status,
-> > > > > 		.len = 1,
-> > > > > 	};
-> > > > > 
-> > > > > 	while (timeout--) {
-> > > > > 		ret = spi_sync_transfer(spi, &xfer, 1);
-> > > > > 		if (ret < 0)
-> > > > > 			return ret;
-> > > > > 
-> > > > > 		if (!(status & MPF_STATUS_BUSY) && (!mask || (status & mask)))
-> > > > > 			return status;
-> > > > > 
-> > > > > 		usleep_range(1000, 2000);
-> > > > > 	}
-> > > > > 
-> > > > > 	return -EBUSY;
-> > > > > }
-> > > > > 
-> > > > > With the current version, I hit the "Failed to write bitstream
-> > > > > frame" check in mpf_ops_write at random points in the transfer.
-> > > > > Replacing poll_status_not_busy with the above allows it to run
-> > > > > to completion.
-> > > > 
-> > > > In my eyes they are equivalent, aren't they?
-> > > > 
-> > > 
-> > > I was in a bit of a rush today & didn't have time to do proper
-> > > debugging, I'll put some debug code in tomorrow and try to find
-> > > exactly what is different between the two.
-> > > 
-> > > Off the top of my head, since I don't have a board on me to test,
-> > > the only difference I can see is that with the snippet you only
-> > > checked if spi_sync_transfer was negative whereas now you check
-> > > if it has a value at all w/ that ternary operator.
-> > > 
-> > > But even that seems like it *shouldn't* be the problem, since ret
-> > > should contain -errno or zero, right?
-> > > Either way, I will do some digging tomorrow.
-> > 
-> > I put a printk("status %x, ret %d", status, ret); into the failure
-> > path of mpf_read_status() & it looks like a status 0xA is being
-> > returned - error & ready? That seems like a very odd combo to be
-> > getting back out of it. It shouldn't be dodgy driver/connection
-> > either, b/c that's what I see if I connect my protocol analyser:
-> > https://i.imgur.com/VbjgfCk.png
-> > 
-> > That's mosi (hex), ss, sclk, mosi, miso (hex), miso in descending
-> > order.
-> > 
-> > I think what was happening was with the snippet you returned one
-> > of the following: -EBUSY, ret (aka -errno) or status. Since status
-> > is positive, the checks in mpf_spi_write.*() saw nothing wrong at
-> > all and programming continued despite there being a problem.
-> > 
-> > The new version fixes this by returning -EIO rather than status from
-> > poll_status_not_busy().
-> > 
-> > I wish I had a socketable PolarFire so I could investigate further,
-> > but this looks like it might a be hardware issue somewhere on my
-> > end?
-> > 
-> > So ye, sorry for the noise and carry on! I'll try tofind what is to
-> > blame for it.
-> > 
-> > Thanks,
-> > Conor.
-> > 
-> 
-> Hi, Conor.
-> 
-> I've just noticed in SPI-DirectC User Guide [1] ch. 9 SmartFusion2 and
-> IGLOO2 SPI-Slave Programming Waveform Analysis, that hw status checked
-> two times every time. Does MPF family also need double check hw status?
-> Does adding second mpf_read_status() to poll_status_not_busy() routine
-> help with your issue?
+On 11/05/2022 09:01, Ken Kurematsu wrote:
+> Fix typo "cortex"
 
-Sorry, forgot to insert link to SPI-DirectC User Guide. Here it is:
+You could add:
+"in the example DTS."
 
-  [1] https://coredocs.s3.amazonaws.com/DirectC/2021_2/spi_directc.pdf
+Because this is only example, not bindings.
 
+
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+
+Best regards,
+Krzysztof
