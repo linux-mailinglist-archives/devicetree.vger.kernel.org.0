@@ -2,429 +2,264 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 454C5522A63
-	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 05:23:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 11478522A84
+	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 05:47:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230389AbiEKDW4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 May 2022 23:22:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37696 "EHLO
+        id S231319AbiEKDq5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 May 2022 23:46:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34956 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232388AbiEKDWp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 May 2022 23:22:45 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 328A773574;
-        Tue, 10 May 2022 20:22:07 -0700 (PDT)
-X-UUID: 4db11a3136c04ddc8720a80458304ead-20220511
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.4,REQID:28241b3e-b691-40ba-adb3-6ca2732df83b,OB:0,LO
-        B:0,IP:0,URL:8,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
-        ON:release,TS:8
-X-CID-META: VersionHash:faefae9,CLOUDID:90835bb3-56b5-4c9e-8d83-0070b288eb6a,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,File:nil,QS:0,BEC:nil
-X-UUID: 4db11a3136c04ddc8720a80458304ead-20220511
-Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw01.mediatek.com
-        (envelope-from <rex-bc.chen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1454611897; Wed, 11 May 2022 11:22:02 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.792.15; Wed, 11 May 2022 11:22:02 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Wed, 11 May 2022 11:22:01 +0800
-Message-ID: <8affe58a4952d6c405dd41f18c6a7f40b2313fde.camel@mediatek.com>
-Subject: Re: [PATCH v8 2/2] phy: mediatek: Add PCIe PHY driver
-From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
-To:     Jianjun Wang <jianjun.wang@mediatek.com>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        "Vinod Koul" <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Chen-Yu Tsai <wenst@chromium.org>,
-        "AngeloGioacchino Del Regno" 
-        <angelogioacchino.delregno@collabora.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>
-CC:     Wei-Shun Chang <weishunc@google.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <randy.wu@mediatek.com>,
-        <jieyy.yang@mediatek.com>, <chuanjia.liu@mediatek.com>,
-        <qizhong.cheng@mediatek.com>, <jian.yang@mediatek.com>
-Date:   Wed, 11 May 2022 11:22:01 +0800
-In-Reply-To: <20220507060621.32252-3-jianjun.wang@mediatek.com>
-References: <20220507060621.32252-1-jianjun.wang@mediatek.com>
-         <20220507060621.32252-3-jianjun.wang@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S230296AbiEKDq5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 May 2022 23:46:57 -0400
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6322D5372F
+        for <devicetree@vger.kernel.org>; Tue, 10 May 2022 20:46:54 -0700 (PDT)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 24B3krPx014319
+        for <devicetree@vger.kernel.org>; Tue, 10 May 2022 22:46:53 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1652240813;
+        bh=GwtwwxmTCa8Drd0M9PZhWo1+Ki1m7kcB6a2X5zJgaZo=;
+        h=From:To:CC:Subject:Date;
+        b=fvyCy3EZjJ4YUIFPZSVb8qLT3KcKXxCKvNZEj9DXAftM4GZmZ+5OFzufR9j0weRmB
+         QC5VMUZqAi7P6BaX4XwUgyw0184HsTDbFD5LQRF1EqLMu8dIqQ+UmJUQVeM97ZuI20
+         +/J1EGJD4UzxYks0gnNflvmYDqM53X/+xwLaSrKw=
+Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 24B3kqBc067663
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
+        for <devicetree@vger.kernel.org>; Tue, 10 May 2022 22:46:53 -0500
+Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Tue, 10
+ May 2022 22:46:52 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Tue, 10 May 2022 22:46:52 -0500
+Received: from ubuntu.localdomain (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 24B3kmnZ034950;
+        Tue, 10 May 2022 22:46:49 -0500
+From:   Matt Ranostay <mranostay@ti.com>
+To:     <devicetree@vger.kernel.org>
+CC:     Matt Ranostay <mranostay@ti.com>
+Subject: [PATCH RESEND] arm64: dts: k3-j721e-sk: add CAN-FD transceiver nodes
+Date:   Tue, 10 May 2022 20:46:43 -0700
+Message-ID: <20220511034643.3458-1-mranostay@ti.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 2022-05-07 at 14:06 +0800, Jianjun Wang wrote:
-> Add PCIe GEN3 PHY driver support on MediaTek chipsets.
-> 
-> Signed-off-by: Jianjun Wang <jianjun.wang@mediatek.com>
-> Reviewed-by: AngeloGioacchino Del Regno <
-> angelogioacchino.delregno@collabora.com>
-> ---
->  drivers/phy/mediatek/Kconfig        |  11 ++
->  drivers/phy/mediatek/Makefile       |   1 +
->  drivers/phy/mediatek/phy-mtk-pcie.c | 267
-> ++++++++++++++++++++++++++++
->  3 files changed, 279 insertions(+)
->  create mode 100644 drivers/phy/mediatek/phy-mtk-pcie.c
-> 
-> diff --git a/drivers/phy/mediatek/Kconfig
-> b/drivers/phy/mediatek/Kconfig
-> index 55f8e6c048ab..387ed1b3f2cc 100644
-> --- a/drivers/phy/mediatek/Kconfig
-> +++ b/drivers/phy/mediatek/Kconfig
-> @@ -55,3 +55,14 @@ config PHY_MTK_MIPI_DSI
->  	select GENERIC_PHY
->  	help
->  	  Support MIPI DSI for Mediatek SoCs.
-> +
-> +config PHY_MTK_PCIE
-> +	tristate "MediaTek PCIe-PHY Driver"
-> +	depends on ARCH_MEDIATEK || COMPILE_TEST
-> +	depends on OF
-> +	select GENERIC_PHY
-> +	help
-> +	  Say 'Y' here to add support for MediaTek PCIe PHY driver.
-> +	  This driver create the basic PHY instance and provides
-> initialize
-> +	  callback for PCIe GEN3 port, it supports software efuse
-> +	  initialization.
-> diff --git a/drivers/phy/mediatek/Makefile
-> b/drivers/phy/mediatek/Makefile
-> index ace660fbed3a..788c13147f63 100644
-> --- a/drivers/phy/mediatek/Makefile
-> +++ b/drivers/phy/mediatek/Makefile
-> @@ -6,6 +6,7 @@
->  obj-$(CONFIG_PHY_MTK_TPHY)		+= phy-mtk-tphy.o
->  obj-$(CONFIG_PHY_MTK_UFS)		+= phy-mtk-ufs.o
->  obj-$(CONFIG_PHY_MTK_XSPHY)		+= phy-mtk-xsphy.o
-> +obj-$(CONFIG_PHY_MTK_PCIE)		+= phy-mtk-pcie.o
->  
->  phy-mtk-hdmi-drv-y			:= phy-mtk-hdmi.o
->  phy-mtk-hdmi-drv-y			+= phy-mtk-hdmi-mt2701.o
-> diff --git a/drivers/phy/mediatek/phy-mtk-pcie.c
-> b/drivers/phy/mediatek/phy-mtk-pcie.c
-> new file mode 100644
-> index 000000000000..e4bcf1e9941c
-> --- /dev/null
-> +++ b/drivers/phy/mediatek/phy-mtk-pcie.c
-> @@ -0,0 +1,267 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (c) 2022 MediaTek Inc.
-> + * Author: Jianjun Wang <jianjun.wang@mediatek.com>
-> + */
-> +
-> +#include <linux/bitfield.h>
-> +#include <linux/module.h>
-> +#include <linux/nvmem-consumer.h>
-> +#include <linux/of_device.h>
-> +#include <linux/phy/phy.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/slab.h>
-> +
-> +#include "phy-mtk-io.h"
-> +
-> +#define PEXTP_ANA_GLB_00_REG		0x9000
-> +/* Internal Resistor Selection of TX Bias Current */
-> +#define EFUSE_GLB_INTR_SEL		GENMASK(28, 24)
-> +
-> +#define PEXTP_ANA_LN0_TRX_REG		0xa000
-> +
-> +#define PEXTP_ANA_TX_REG		0x04
-> +/* TX PMOS impedance selection */
-> +#define EFUSE_LN_TX_PMOS_SEL		GENMASK(5, 2)
-> +/* TX NMOS impedance selection */
-> +#define EFUSE_LN_TX_NMOS_SEL		GENMASK(11, 8)
-> +
-> +#define PEXTP_ANA_RX_REG		0x3c
-> +/* RX impedance selection */
-> +#define EFUSE_LN_RX_SEL			GENMASK(3, 0)
-> +
-> +#define PEXTP_ANA_LANE_OFFSET		0x100
-> +
-> +/**
-> + * struct mtk_pcie_lane_efuse - eFuse data for each lane
-> + * @tx_pmos: TX PMOS impedance selection data
-> + * @tx_nmos: TX NMOS impedance selection data
-> + * @rx_data: RX impedance selection data
-> + * @lane_efuse_supported: software eFuse data is supported for this
-> lane
-> + */
-> +struct mtk_pcie_lane_efuse {
-> +	u32 tx_pmos;
-> +	u32 tx_nmos;
-> +	u32 rx_data;
-> +	bool lane_efuse_supported;
-> +};
-> +
-> +/**
-> + * struct mtk_pcie_phy_data - phy data for each SoC
-> + * @num_lanes: supported lane numbers
-> + * @sw_efuse_supported: support software to load eFuse data
-> + */
-> +struct mtk_pcie_phy_data {
-> +	int num_lanes;
-> +	bool sw_efuse_supported;
-> +};
-> +
-> +/**
-> + * struct mtk_pcie_phy - PCIe phy driver main structure
-> + * @dev: pointer to device
-> + * @phy: pointer to generic phy
-> + * @sif_base: IO mapped register base address of system interface
-> + * @data: pointer to SoC dependent data
-> + * @sw_efuse_en: software eFuse enable status
-> + * @efuse_glb_intr: internal resistor selection of TX bias current
-> data
-> + * @efuse: pointer to eFuse data for each lane
-> + */
-> +struct mtk_pcie_phy {
-> +	struct device *dev;
-> +	struct phy *phy;
-> +	void __iomem *sif_base;
-> +	const struct mtk_pcie_phy_data *data;
-> +
-> +	bool sw_efuse_en;
-> +	u32 efuse_glb_intr;
-> +	struct mtk_pcie_lane_efuse *efuse;
-> +};
-> +
-> +static void mtk_pcie_efuse_set_lane(struct mtk_pcie_phy *pcie_phy,
-> +				    unsigned int lane)
-> +{
-> +	struct mtk_pcie_lane_efuse *data = &pcie_phy->efuse[lane];
-> +	void __iomem *addr;
-> +
-> +	if (!data->lane_efuse_supported)
-> +		return;
-> +
-> +	addr = pcie_phy->sif_base + PEXTP_ANA_LN0_TRX_REG +
-> +	       lane * PEXTP_ANA_LANE_OFFSET;
-> +
-> +	mtk_phy_update_bits(addr + PEXTP_ANA_TX_REG,
-> EFUSE_LN_TX_PMOS_SEL,
-> +			    FIELD_PREP(EFUSE_LN_TX_PMOS_SEL, data-
-> >tx_pmos));
-> +
-> +	mtk_phy_update_bits(addr + PEXTP_ANA_TX_REG,
-> EFUSE_LN_TX_NMOS_SEL,
-> +			    FIELD_PREP(EFUSE_LN_TX_NMOS_SEL, data-
-> >tx_nmos));
-> +
-> +	mtk_phy_update_bits(addr + PEXTP_ANA_RX_REG, EFUSE_LN_RX_SEL,
-> +			    FIELD_PREP(EFUSE_LN_RX_SEL, data-
-> >rx_data));
-> +}
-> +
-> +/**
-> + * mtk_pcie_phy_init() - Initialize the phy
-> + * @phy: the phy to be initialized
-> + *
-> + * Initialize the phy by setting the efuse data.
-> + * The hardware settings will be reset during suspend, it should be
-> + * reinitialized when the consumer calls phy_init() again on resume.
-> + */
-> +static int mtk_pcie_phy_init(struct phy *phy)
-> +{
-> +	struct mtk_pcie_phy *pcie_phy = phy_get_drvdata(phy);
-> +	int i;
-> +
-> +	if (!pcie_phy->sw_efuse_en)
-> +		return 0;
-> +
-> +	/* Set global data */
-> +	mtk_phy_update_bits(pcie_phy->sif_base + PEXTP_ANA_GLB_00_REG,
-> +			    EFUSE_GLB_INTR_SEL,
-> +			    FIELD_PREP(EFUSE_GLB_INTR_SEL, pcie_phy-
-> >efuse_glb_intr));
-> +
-> +	for (i = 0; i < pcie_phy->data->num_lanes; i++)
-> +		mtk_pcie_efuse_set_lane(pcie_phy, i);
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct phy_ops mtk_pcie_phy_ops = {
-> +	.init	= mtk_pcie_phy_init,
-> +	.owner	= THIS_MODULE,
-> +};
-> +
-> +static int mtk_pcie_efuse_read_for_lane(struct mtk_pcie_phy
-> *pcie_phy,
-> +					unsigned int lane)
-> +{
-> +	struct mtk_pcie_lane_efuse *efuse = &pcie_phy->efuse[lane];
-> +	struct device *dev = pcie_phy->dev;
-> +	char efuse_id[16];
-> +	int ret;
-> +
-> +	snprintf(efuse_id, sizeof(efuse_id), "tx_ln%d_pmos", lane);
-> +	ret = nvmem_cell_read_variable_le_u32(dev, efuse_id, &efuse-
-> >tx_pmos);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "Failed to read %s\n",
-> efuse_id);
-> +
-> +	snprintf(efuse_id, sizeof(efuse_id), "tx_ln%d_nmos", lane);
-> +	ret = nvmem_cell_read_variable_le_u32(dev, efuse_id, &efuse-
-> >tx_nmos);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "Failed to read %s\n",
-> efuse_id);
-> +
-> +	snprintf(efuse_id, sizeof(efuse_id), "rx_ln%d", lane);
-> +	ret = nvmem_cell_read_variable_le_u32(dev, efuse_id, &efuse-
-> >rx_data);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "Failed to read %s\n",
-> efuse_id);
-> +
-> +	if (!(efuse->tx_pmos || efuse->tx_nmos || efuse->rx_data))
-> +		return dev_err_probe(dev, -EINVAL,
-> +				     "No eFuse data found for lane%d,
-> but dts enable it\n",
-> +				     lane);
-> +
-> +	efuse->lane_efuse_supported = true;
-> +
-> +	return 0;
-> +}
-> +
-> +static int mtk_pcie_read_efuse(struct mtk_pcie_phy *pcie_phy)
-> +{
-> +	struct device *dev = pcie_phy->dev;
-> +	bool nvmem_enabled;
-> +	int ret, i;
-> +
-> +	/* nvmem data is optional */
-> +	nvmem_enabled = device_property_present(dev, "nvmem-cells");
-> +	if (!nvmem_enabled)
-> +		return 0;
-> +
-> +	ret = nvmem_cell_read_variable_le_u32(dev, "glb_intr",
-> +					      &pcie_phy-
-> >efuse_glb_intr);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "Failed to read
-> glb_intr\n");
-> +
-> +	pcie_phy->sw_efuse_en = true;
-> +
-> +	pcie_phy->efuse = devm_kzalloc(dev, pcie_phy->data->num_lanes *
-> +				       sizeof(*pcie_phy->efuse),
-> GFP_KERNEL);
-> +	if (!pcie_phy->efuse)
-> +		return -ENOMEM;
-> +
-> +	for (i = 0; i < pcie_phy->data->num_lanes; i++) {
-> +		ret = mtk_pcie_efuse_read_for_lane(pcie_phy, i);
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int mtk_pcie_phy_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct phy_provider *provider;
-> +	struct mtk_pcie_phy *pcie_phy;
-> +	int ret;
-> +
-> +	pcie_phy = devm_kzalloc(dev, sizeof(*pcie_phy), GFP_KERNEL);
-> +	if (!pcie_phy)
-> +		return -ENOMEM;
-> +
-> +	pcie_phy->sif_base =
-> devm_platform_ioremap_resource_byname(pdev, "sif");
-> +	if (IS_ERR(pcie_phy->sif_base))
-> +		return dev_err_probe(dev, PTR_ERR(pcie_phy->sif_base),
-> +				     "Failed to map phy-sif base\n");
-> +
-> +	pcie_phy->phy = devm_phy_create(dev, dev->of_node,
-> &mtk_pcie_phy_ops);
-> +	if (IS_ERR(pcie_phy->phy))
-> +		return dev_err_probe(dev, PTR_ERR(pcie_phy->phy),
-> +				     "Failed to create PCIe phy\n");
-> +
-> +	pcie_phy->dev = dev;
-> +	pcie_phy->data = of_device_get_match_data(dev);
-> +	if (!pcie_phy->data)
-> +		return dev_err_probe(dev, -EINVAL, "Failed to get phy
-> data\n");
-> +
-> +	if (pcie_phy->data->sw_efuse_supported) {
-> +		/*
-> +		 * Failed to read the efuse data is not a fatal
-> problem,
-> +		 * ignore the failure and keep going.
-> +		 */
-> +		ret = mtk_pcie_read_efuse(pcie_phy);
-> +		if (ret == -EPROBE_DEFER)
-> +			return ret;
+Add transceiver, and pincontrol definitions for the CAN-FD interfaces
+on the J721E Starter Kit (e.g. J1, J2, J5, J6 headers). Additionally,
+MCAN interfaces that cannot be accessed are disabled.
 
-Hello Jianjun,
+Largely based on original work from Amarnath MB <amarnath.mb@ti.com>
 
-even though it's not a fatal problem if we can not read efuse, but I
-tink "ret = -ENOMEM" does not mean we can't read it?
+Signed-off-by: Matt Ranostay <mranostay@ti.com>
+---
+ arch/arm64/boot/dts/ti/k3-j721e-sk.dts | 160 +++++++++++++++++++++++++
+ 1 file changed, 160 insertions(+)
 
-Do we need to handle this?
-
-BRs,
-Rex
-> +	}
-> +
-> +	phy_set_drvdata(pcie_phy->phy, pcie_phy);
-> +
-> +	provider = devm_of_phy_provider_register(dev,
-> of_phy_simple_xlate);
-> +	if (IS_ERR(provider))
-> +		return dev_err_probe(dev, PTR_ERR(provider),
-> +				     "PCIe phy probe failed\n");
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct mtk_pcie_phy_data mt8195_data = {
-> +	.num_lanes = 2,
-> +	.sw_efuse_supported = true,
-> +};
-> +
-> +static const struct of_device_id mtk_pcie_phy_of_match[] = {
-> +	{ .compatible = "mediatek,mt8195-pcie-phy", .data =
-> &mt8195_data },
-> +	{ },
-> +};
-> +MODULE_DEVICE_TABLE(of, mtk_pcie_phy_of_match);
-> +
-> +static struct platform_driver mtk_pcie_phy_driver = {
-> +	.probe	= mtk_pcie_phy_probe,
-> +	.driver	= {
-> +		.name = "mtk-pcie-phy",
-> +		.of_match_table = mtk_pcie_phy_of_match,
-> +	},
-> +};
-> +module_platform_driver(mtk_pcie_phy_driver);
-> +
-> +MODULE_DESCRIPTION("MediaTek PCIe PHY driver");
-> +MODULE_AUTHOR("Jianjun Wang <jianjun.wang@mediatek.com>");
-> +MODULE_LICENSE("GPL");
+diff --git a/arch/arm64/boot/dts/ti/k3-j721e-sk.dts b/arch/arm64/boot/dts/ti/k3-j721e-sk.dts
+index 80358cba6954..8f1d4b51aa19 100644
+--- a/arch/arm64/boot/dts/ti/k3-j721e-sk.dts
++++ b/arch/arm64/boot/dts/ti/k3-j721e-sk.dts
+@@ -278,6 +278,42 @@ tfp410_out: endpoint {
+ 			};
+ 		};
+ 	};
++
++	transceiver1: can-phy0 {
++		compatible = "ti,tcan1042";
++		#phy-cells = <0>;
++		max-bitrate = <5000000>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&mcu_mcan0_gpio_pins_default>;
++		standby-gpios = <&wkup_gpio0 3 GPIO_ACTIVE_HIGH>;
++	};
++
++	transceiver2: can-phy1 {
++		compatible = "ti,tcan1042";
++		#phy-cells = <0>;
++		max-bitrate = <5000000>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&main_mcan0_gpio_pins_default>;
++		standby-gpios = <&main_gpio0 65 GPIO_ACTIVE_HIGH>;
++	};
++
++	transceiver3: can-phy2 {
++		compatible = "ti,tcan1042";
++		#phy-cells = <0>;
++		max-bitrate = <5000000>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&main_mcan5_gpio_pins_default>;
++		standby-gpios = <&main_gpio0 66 GPIO_ACTIVE_HIGH>;
++	};
++
++	transceiver4: can-phy3 {
++		compatible = "ti,tcan1042";
++		#phy-cells = <0>;
++		max-bitrate = <5000000>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&main_mcan9_gpio_pins_default>;
++		standby-gpios = <&main_gpio0 67 GPIO_ACTIVE_HIGH>;
++	};
+ };
+ 
+ &main_pmx0 {
+@@ -337,6 +373,45 @@ J721E_IOPAD(0x214, PIN_OUTPUT, 4) /* (V4) MCAN1_TX.USB1_DRVVBUS */
+ 		>;
+ 	};
+ 
++	main_mcan0_pins_default: main-mcan0-pins-default {
++		pinctrl-single,pins = <
++			J721E_IOPAD(0x208, PIN_INPUT, 0) /* (W5) MCAN0_RX */
++			J721E_IOPAD(0x20c, PIN_OUTPUT, 0) /* (W6) MCAN0_TX */
++		>;
++	};
++
++	main_mcan0_gpio_pins_default: main-mcan0-gpio-pins-default {
++		pinctrl-single,pins = <
++			J721E_IOPAD(0x108, PIN_INPUT, 7) /* (AD27) PRG0_PRU1_GPO2.GPIO0_65 */
++		>;
++	};
++
++	main_mcan5_pins_default: main-mcan5-pins-default {
++		pinctrl-single,pins = <
++			J721E_IOPAD(0x50, PIN_INPUT, 6) /* (AE21) PRG1_PRU0_GPO18.MCAN5_RX */
++			J721E_IOPAD(0x4c, PIN_OUTPUT, 6) /* (AJ21) PRG1_PRU0_GPO17.MCAN5_TX */
++		>;
++	};
++
++	main_mcan5_gpio_pins_default: main-mcan5-gpio-pins-default {
++		pinctrl-single,pins = <
++			J721E_IOPAD(0x10c, PIN_INPUT, 7) /* (AC25) PRG0_PRU1_GPO3.GPIO0_66 */
++		>;
++	};
++
++	main_mcan9_pins_default: main-mcan9-pins-default {
++		pinctrl-single,pins = <
++			J721E_IOPAD(0xd0, PIN_INPUT, 6) /* (AC27) PRG0_PRU0_GPO8.MCAN9_RX */
++			J721E_IOPAD(0xcc, PIN_OUTPUT, 6) /* (AC28) PRG0_PRU0_GPO7.MCAN9_TX */
++		>;
++	};
++
++	main_mcan9_gpio_pins_default: main-mcan9-gpio-pins-default {
++		pinctrl-single,pins = <
++			J721E_IOPAD(0x110, PIN_INPUT, 7) /* (AD29) PRG0_PRU1_GPO4.GPIO0_67 */
++		>;
++	};
++
+ 	dp0_pins_default: dp0-pins-default {
+ 		pinctrl-single,pins = <
+ 			J721E_IOPAD(0x1c4, PIN_INPUT, 5) /* SPI0_CS1.DP0_HPD */
+@@ -462,6 +537,19 @@ J721E_WKUP_IOPAD(0xfc, PIN_INPUT_PULLUP, 0) /* (H24) WKUP_I2C0_SDA */
+ 		>;
+ 	};
+ 
++	mcu_mcan0_pins_default: mcu-mcan0-pins-default {
++		pinctrl-single,pins = <
++			J721E_WKUP_IOPAD(0xac, PIN_INPUT, 0) /* (C29) MCU_MCAN0_RX */
++			J721E_WKUP_IOPAD(0xa8, PIN_OUTPUT, 0) /* (D29) MCU_MCAN0_TX */
++		>;
++	};
++
++	mcu_mcan0_gpio_pins_default: mcu-mcan0-gpio-pins-default {
++		pinctrl-single,pins = <
++			J721E_WKUP_IOPAD(0xbc, PIN_INPUT, 7) /* (F27) WKUP_GPIO0_3 */
++		>;
++	};
++
+ 	/* Reset for M.2 M Key slot on PCIe1  */
+ 	mkey_reset_pins_default: mkey-reset-pns-pins-default {
+ 		pinctrl-single,pins = <
+@@ -1129,3 +1217,75 @@ &c71_0 {
+ 	memory-region = <&c71_0_dma_memory_region>,
+ 			<&c71_0_memory_region>;
+ };
++
++&mcu_mcan0 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&mcu_mcan0_pins_default>;
++	phys = <&transceiver1>;
++};
++
++&mcu_mcan1 {
++	status = "disabled";
++};
++
++&main_mcan0 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&main_mcan0_pins_default>;
++	phys = <&transceiver2>;
++};
++
++&main_mcan1 {
++	status = "disabled";
++};
++
++&main_mcan2 {
++	status = "disabled";
++};
++
++&main_mcan3 {
++	status = "disabled";
++};
++
++&main_mcan4 {
++	status = "disabled";
++};
++
++&main_mcan5 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&main_mcan5_pins_default>;
++	phys = <&transceiver3>;
++};
++
++&main_mcan6 {
++	status = "disabled";
++};
++
++&main_mcan7 {
++	status = "disabled";
++};
++
++&main_mcan8 {
++	status = "disabled";
++};
++
++&main_mcan9 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&main_mcan9_pins_default>;
++	phys = <&transceiver4>;
++};
++
++&main_mcan10 {
++	status = "disabled";
++};
++
++&main_mcan11 {
++	status = "disabled";
++};
++
++&main_mcan12 {
++	status = "disabled";
++};
++
++&main_mcan13 {
++	status = "disabled";
++};
+-- 
+2.30.2
 
