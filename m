@@ -2,114 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AFBA2522B95
-	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 07:18:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F1224522BA5
+	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 07:28:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234347AbiEKFSo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 May 2022 01:18:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55214 "EHLO
+        id S238785AbiEKF2o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 May 2022 01:28:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33170 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232943AbiEKFSn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 May 2022 01:18:43 -0400
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA9E0236751;
-        Tue, 10 May 2022 22:18:41 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 24B5IRwB055809;
-        Wed, 11 May 2022 00:18:27 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1652246307;
-        bh=ocp2OFn34/c6itK1bsa20Ar5O4tHoAj1bez1LMem7Mo=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=pdN63RpCupnJe1XBicp1C5TaGRaIm6BHbj7zXahdLcCcUvGMlHeUWpmPsYSlnuAGb
-         ro779RPX2dy9ZQ60Pf9NwiwZZkIAu6DJbOtSLbEaW7ii8+KBys6Kc0NOTZUSTj9zZB
-         Twcp2i2p+khx0IQcsvHIneUHbaXSIHIqleLiU8g0=
-Received: from DLEE110.ent.ti.com (dlee110.ent.ti.com [157.170.170.21])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 24B5IR90122211
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 11 May 2022 00:18:27 -0500
-Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE110.ent.ti.com
- (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Wed, 11
- May 2022 00:18:26 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE101.ent.ti.com
- (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Wed, 11 May 2022 00:18:26 -0500
-Received: from [172.24.145.176] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 24B5IOm2011450;
-        Wed, 11 May 2022 00:18:24 -0500
-Message-ID: <2536fe30-10ec-8e44-ddcc-e3eeb808b7e2@ti.com>
-Date:   Wed, 11 May 2022 10:48:23 +0530
+        with ESMTP id S230153AbiEKF2n (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 May 2022 01:28:43 -0400
+Received: from NAM02-SN1-obe.outbound.protection.outlook.com (mail-sn1anam02olkn2084.outbound.protection.outlook.com [40.92.44.84])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 225DF2438E9;
+        Tue, 10 May 2022 22:28:39 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=FyjvYBS9LiUkBAIebg7Th1g3bsU7d10umVMSWB4bv+cpHl2h1BvDOQ2h46LEF++w7P6Oms/Eh4J5gxV4X3rxws1BTKue6BKzqhcNr/d9wa8rASbDo/Z3/QecHE7XEZPBOJC2RlZdztDexCYd6JOcWaSJqK0+hNwVIvsCAqNZPkHHwOyU609LtL0dBqR6BRya9+dT9s2FOBcbh16s9BYbGdhSy19khXUadZ8MzWyBrwOD7G2q0P95JqXGd3GUhbY4fB4K7pJsJDtW3XSb5eOjXffL44SKG5TtScpQe5BV/uJk0NHw7RdfbIVQntZinjF9SBzJaNZWXLBpq1iEBYNehQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=bB1pL3u/luXjA3VfglqgqHt+krdJRQy+38r7T7uIm8g=;
+ b=LncRzqvEFGEF6PlyisRWbAGhI2W3sAWW4fbMWGzjFfcUx0DEWmEJf6vTyhBavhww6LFKpYn17NMTi1sQID9EIgEuX+fd3CDXdz8nss9K/Mtavs6KGU08Xi1OaYEdlpsldl8Rd0yNx+YXDFS42D4gIba8Q8mz+sTGjoMJTb91ztIX8h8oz4NSA0220wvXFoQaJ8qf/4JigbKzIVO6eMY9nd01/CPXE3//VCeTkIBfwGNwoQNT3phlkPNoh40xcyCKeT6xjIiazrxFy9PN6BI2oQjxXAZ/mRstU6KFExxLnru5lOZjRGjcx8SOl9tjTWhqk1yJ1c93YrJdcOy70HpF3g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+Received: from BY5PR02MB7009.namprd02.prod.outlook.com (2603:10b6:a03:236::13)
+ by PH0PR02MB8407.namprd02.prod.outlook.com (2603:10b6:510:10a::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5250.13; Wed, 11 May
+ 2022 05:28:35 +0000
+Received: from BY5PR02MB7009.namprd02.prod.outlook.com
+ ([fe80::303a:ab1:17c1:2d16]) by BY5PR02MB7009.namprd02.prod.outlook.com
+ ([fe80::303a:ab1:17c1:2d16%9]) with mapi id 15.20.5227.023; Wed, 11 May 2022
+ 05:28:35 +0000
+From:   Joel Selvaraj <jo@jsfamily.in>
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Stanislav Jakubek <stano.jakubek@gmail.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Corentin Labbe <clabbe@baylibre.com>,
+        Oleksij Rempel <linux@rempel-privat.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Hao Fang <fanghao11@huawei.com>
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        Joel Selvaraj <jo@jsfamily.in>
+Subject: [PATCH v2 0/3] Introduce EBBG FT8719 DRM panel driver
+Date:   Wed, 11 May 2022 10:58:08 +0530
+Message-ID: <BY5PR02MB70098599813F51B07057AE4CD9C89@BY5PR02MB7009.namprd02.prod.outlook.com>
+X-Mailer: git-send-email 2.36.1
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-TMN:  [MrTlRE9vkdSuGVkXiWQOOSB4Zmkth5oqtc6jbcgsGx4AFGHjERcDIPj3Xhxxx0LL]
+X-ClientProxiedBy: PN2PR01CA0092.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:27::7) To BY5PR02MB7009.namprd02.prod.outlook.com
+ (2603:10b6:a03:236::13)
+X-Microsoft-Original-Message-ID: <cover.1652245767.git.jo@jsfamily.in>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.0
-Subject: Re: [PATCH v2 4/4] arm64: dts: ti: k3-am625-sk: Add DSS ports, HDMI
- tx & peripherals
-Content-Language: en-US
-To:     Aradhya Bhatia <a-bhatia1@ti.com>
-CC:     Nishanth Menon <nm@ti.com>, Rob Herring <robh+dt@kernel.org>,
-        Linux ARM Kernel List <linux-arm-kernel@lists.infradead.org>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        Linux Kernel List <linux-kernel@vger.kernel.org>,
-        Rahul T R <r-ravikumar@ti.com>
-References: <20220505134303.23208-1-a-bhatia1@ti.com>
- <20220505134303.23208-5-a-bhatia1@ti.com>
-From:   Vignesh Raghavendra <vigneshr@ti.com>
-In-Reply-To: <20220505134303.23208-5-a-bhatia1@ti.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-5.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 634cbcdd-4c07-47dc-9462-08da330f176d
+X-MS-TrafficTypeDiagnostic: PH0PR02MB8407:EE_
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: iqzG9YocUUFovDavDbIHnazG5N+pshkefI1VMOMjc9Fc29xVAxnGXf+ksgQ5KC4JpYnQGwVZbGWQMgZ/a1xZKeGiEquxYKpJG+KzmsR5mxxaBDQix819I+d2gz/DrjP8oFvFe/GJB0nha5zGhhGc5NMOAZgWer9s7hDNt8OVFDsNWbCaRHON0CeYdxEMtsj/n5YbWLAZzNlyZrdewPt0XKxcim/Oa+ZUY4OL3npUlCOHoOaFb4fK0JtRmuK1jGpd68lQcz9hy/hClJEM1mwIpzasce72QSgU5crP7tF7Ry2NLgIgJSu3KWlenD5vgsna1kGPjnA6Txq//feT1HuVkBCzjN+b6rajFPG/P0mqtUln9yZuT4HugeGrIPRei6v3lKfGnjCjv50k9h7BE+1EqOLsUOQV6JpIaRSHHuXKXITruiVmQQht6miTL89Ls3pgItLcikzYkzVC0OBi8tVUbtbf2kiMfPnF2CXtw9bg9GJu6ESerm3gLVEjHsf9o21Gu0qqbKiV+8SlnUhxD/eOsanne5/9XVGSZJ3YxOjFQbxQhRq8b3qbUtpaiWPwdF5Te7lsfKrCD26b1/MugGSkfLkQS9cbk6daqUCquNeP83hXuooRSNvSlTFT3cu2R8k/VsBRORb41IUgY9ZMkbxMgA3RNWK9rLSSZsUqLUHbGQ4=
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?URhDQXlFS6TGjSEuBlv20LKwDbPpCurfFioXe71cPU5qLtQ5OJY+gvHalarJ?=
+ =?us-ascii?Q?1WNJkrh8NNlc70LpKMjWml8wMAe9YNTj3BIp0RVcgC3fjVZfRH0AmWHYvBVQ?=
+ =?us-ascii?Q?qk1KTDxFD/qCBWIbW7opOGlJ4CgoZdLEdSfZMxhTwaYc8pCu/WvW4OScROI4?=
+ =?us-ascii?Q?pw2qczphA1LQfOTB4ABwYFSnzqeIOXR/M0F7B1Twk/9faMYaY+9SGqgGhCtX?=
+ =?us-ascii?Q?S5aC/tc45/Z9Dj/MmYdtF6iLMr5e6i4Tdt3LR/Kjo35Jf4IMibXszhBFxSfe?=
+ =?us-ascii?Q?JlnfZRnk/UuJFa0esC5rMrSvc4ObGuZJ9OjqrH0SzcsECXNJ/+T4Kii4kUvQ?=
+ =?us-ascii?Q?7efdS4k8PRrP1LJMVCDzXLUgx3wkJrjhFuRZVGibun3lQbVri9dc2Ty0/PGh?=
+ =?us-ascii?Q?mZW56J9TuDYu1yVa6YjsQLu9lh8sYK8AybFyIaB9oAJ0sGc53sraQY83NeFE?=
+ =?us-ascii?Q?Fu9/yfqtposfIrORI97eXxhiO4GVI5bVGfZTwKBNnY7kSd953XOtzKTN02ej?=
+ =?us-ascii?Q?JahePFUxxfLla9AYdffNDrWvXpNRQCAcT580PIDPqmMdtBIhhBcUALLpZQia?=
+ =?us-ascii?Q?evhtlCH+u1DvlwhcBm71Dz7zd7hTzXM8nV8fXtJttIZCdPBvIU+gwSJnmlYj?=
+ =?us-ascii?Q?R7R6W47Noe2cfJxPWsqCD7e7NiBweK8VgogotmWtKyzB84z4alUpIMfOlM2U?=
+ =?us-ascii?Q?tbkvOkzIo8h/ZBAAZ+efteoa30qse4+L+kdGkYH/q1byoEMbVXeg4J54StiJ?=
+ =?us-ascii?Q?n/0GNIbbchE0eUUG0qi7LvoiOYoeWvStReDULHr1SFTpBgqYQsAuEWK7TGdU?=
+ =?us-ascii?Q?3SBLpBcZRjYK3bLhT03WdiV7z6WxpHE4J394vzPj53bO0zB8JceaOAfKVRYv?=
+ =?us-ascii?Q?IPGS1JPgCVw2Rx85motrm7XAMYtFFU5H5ihnUULia04xXfpFRYox1dgO12sq?=
+ =?us-ascii?Q?DXw9APSj3cpxDgwPOMHp67u8/jqmGIleVTSCsUMT42G1Xdu8AQMkJzCLZpE4?=
+ =?us-ascii?Q?APlLQeYnC9ZMFLonVnKIRTv2fkdjZrRGxg8IEDQdl+QZHsWvN39SoKRxOrd6?=
+ =?us-ascii?Q?RFc36wcwRLX0GtCsR7Tv2hij0nzb0Tf2c97TmqDFgg5wejhJmFtnrjBl2j4H?=
+ =?us-ascii?Q?R2k6EE6KH/OjcZo4UdeF44Qt0RVptM17+Tl5of3zY0+2Oc+X+yrPSvkU8Vag?=
+ =?us-ascii?Q?ZEJfnXyB9qAr5orEXu4vpc11DbMOVXBV2TkPQOASZIZWT2TwQ/YszlXfj8p6?=
+ =?us-ascii?Q?raq24gzr+1qsD6Z2jkOJgEywPbpuE4jFinxOJiHWEqtFUTgh6b0inCw1gRTi?=
+ =?us-ascii?Q?UlyuVv/n+wJF+VzjszU1vThMav5N08JAt9ZmdZZoDsMYKs81l9ZT4p3dREad?=
+ =?us-ascii?Q?xg69vPy8AbrjxU4o1WIjwCpNTmnWf2uxNr7VM90feE0vhyL2ua9L1RJZ1vXk?=
+ =?us-ascii?Q?2qFL694mr7ICi69ETBrR7YU6JA9iAHLrUvGuBpvMJ3tHw+iPgEFmHA=3D=3D?=
+X-OriginatorOrg: sct-15-20-4755-11-msonline-outlook-99c3d.templateTenant
+X-MS-Exchange-CrossTenant-Network-Message-Id: 634cbcdd-4c07-47dc-9462-08da330f176d
+X-MS-Exchange-CrossTenant-AuthSource: BY5PR02MB7009.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 May 2022 05:28:35.1001
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR02MB8407
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Aradhya,
+Add bindings and DRM panel driver for EBBG FT8719 6.18" 2246x1080 DSI
+video mode panel, which can be found on some Xiaomi Poco F1 phones.
+The panel's backlight is managed through QCOM WLED driver.
 
-On 05/05/22 19:13, Aradhya Bhatia wrote:
-> +
-> +	sii9022: sii9022@3b {
-> +		compatible = "sil,sii9022";
+The driver is built using linux-mdss-dsi-panel-driver-generator[1], and
+additionally support for handling regulators and linking external
+backlight is added.
 
-Please convert 
-Documentation/devicetree/bindings/display/bridge/sii902x.txt to YAML format
+[1] https://github.com/msm8916-mainline/linux-mdss-dsi-panel-driver-generator
 
-> +		reg = <0x3b>;
-> +
-> +		clocks = <&hdmi_mstrclk>;
-> +		clock-names = "mclk";
-> +
-> +		interrupt-parent = <&exp1>;
-> +		interrupts = <16 IRQ_TYPE_EDGE_FALLING>;
-> +
-> +		ports {
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +
-> +			port@0 {
-> +				reg = <0>;
-> +
-> +				sii9022_in: endpoint {
-> +					remote-endpoint = <&dpi1_out>;
-> +				};
-> +			};
-> +
-> +			port@1 {
-> +				reg = <1>;
-> +
-> +				sii9022_out: endpoint {
-> +					remote-endpoint = <&hdmi_connector_in>;
-> +				};
-> +			};
-> +		};
-> +	};
+Changes in v2: (Krzysztof Kozlowski's Suggestions)
+ - dt-bindings: specify maxItems for reg
+ - dt-bindings: cleanup and simplify the panel properties
+ - dt-bindings: in example change "|+" to "|' and "dsi0" to "dsi"
+
+Joel Selvaraj (3):
+  dt-bindings: vendor-prefixes: Add prefix for EBBG
+  dt-bindings: display: Add bindings for EBBG FT8719
+  drm/panel: introduce ebbg,ft8719 panel
+
+ .../bindings/display/panel/ebbg,ft8719.yaml   |  74 ++++
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ MAINTAINERS                                   |   7 +
+ drivers/gpu/drm/panel/Kconfig                 |  11 +
+ drivers/gpu/drm/panel/Makefile                |   1 +
+ drivers/gpu/drm/panel/panel-ebbg-ft8719.c     | 362 ++++++++++++++++++
+ 6 files changed, 457 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/panel/ebbg,ft8719.yaml
+ create mode 100644 drivers/gpu/drm/panel/panel-ebbg-ft8719.c
 
 -- 
-Regards
-Vignesh
+2.36.1
+
