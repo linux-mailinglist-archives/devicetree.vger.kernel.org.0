@@ -2,115 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C83B8522D13
-	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 09:21:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C0D78522D28
+	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 09:24:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242822AbiEKHVy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 May 2022 03:21:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33864 "EHLO
+        id S242665AbiEKHYF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 May 2022 03:24:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44310 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242894AbiEKHVv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 May 2022 03:21:51 -0400
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CBA12612A3
-        for <devicetree@vger.kernel.org>; Wed, 11 May 2022 00:21:46 -0700 (PDT)
-Received: by mail-ej1-x62f.google.com with SMTP id bv19so2193621ejb.6
-        for <devicetree@vger.kernel.org>; Wed, 11 May 2022 00:21:46 -0700 (PDT)
+        with ESMTP id S231971AbiEKHYD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 May 2022 03:24:03 -0400
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6CD5B1B12D8
+        for <devicetree@vger.kernel.org>; Wed, 11 May 2022 00:24:00 -0700 (PDT)
+Received: by mail-ed1-x532.google.com with SMTP id d6so1443172ede.8
+        for <devicetree@vger.kernel.org>; Wed, 11 May 2022 00:24:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=RXqalM416ApPrla/4DErz/ii+vIxKRe2oyKQomPkyMU=;
-        b=weKbfzvbT5aLuUAztiVaLWv9yObZ4ovS1g0mJE8aTbCrP+3IqUzozCgtA/QxA8liBW
-         xlSkA3NAx45i+qKkSJyNGEIM8KOU+jFeBkHHlhAgMVfq/+TLcFlAfJm7dNrr6GFk7bG0
-         kopTrFWc0gM92nLNI340RBiRcX1j5oofa6vOdJFFnie2Cp0DErgv++KsgG6PoI7vQ+a+
-         McjpZqGE8bfJilA5FZ7akhW2HlHFiQxJaBl6rt3iWNUHE9h27q34eX69Bktzx/mDZO/u
-         o/kJY1T+JpaXqfyD2HgBcDyomJlXPrGER93rAJdfCyph8ENxOnQV+GYcMU33YM+lGve9
-         LyxQ==
+        bh=cCXXWwJzIMdAZKFOw/mKJ0j8XdlH3CZr6xlDP/lClgM=;
+        b=MGS8DP7QyP0OM8eXixWMdJDSacfGLRKfeKa8pHid+EQsK5/L/vC91MQ1DquPtnDlDO
+         tE7wI6UN1Lt8uLv0EGczgwwWsF23scuc2CMh7ReucyBPjfRV/XlSL9kuWjljTtMc8TwR
+         41cZ4XxvubKLrUVusIxYlq5WLYSLzjUscSPIFbbx1Yc5S3GRiYUgWeLtitYEdpbsRTPv
+         QclNJGyyCuMFp6e+nku1Gz6J+b32FlgbqA9qFGoCRJEjEEclRF34tfBUH6vlvzuPIDf6
+         4NBok55o2Ndro11jMCz1p+ITNXYepTQT6huIkWKbs1CtXp6IAAO6kJ1lAOOTXRAvlFgy
+         a/dw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=RXqalM416ApPrla/4DErz/ii+vIxKRe2oyKQomPkyMU=;
-        b=KVRNR1Qtz2u8piqfB1k5/0/5f66gS3uVLoqbVi9Yk7gLJD4s53lOR12TQfJexa6dey
-         mZVRgeASj145Z8c2p1PTNCknY8Z4vahz9DWbLk+Iue0ZLCw0OyL0Gkei9mzmMLuNJind
-         g7p0qoxGpE1Au/qXy4nWLYEHNxfeKEoD8nIxLXTXV61Yyi+L7y29on/2Rmx4lhcoNHfS
-         ytAM1WUlNShJkHrIeMWcGNTecoRby665gKSYlpuooQhrUf4+d927E4ALxcd3s+qfcA/F
-         5pRBu/lwx1q7dKBJGP4CkyIgo6M0pjMdlyuuALu5uWX7EE5AWf0bkBLVGMC3woBdOQnq
-         vEEA==
-X-Gm-Message-State: AOAM532MCy6ZTxLChei2BTNF9YlpeedpQSM8ZLPP4UZFecbWMnTbDEBm
-        BqSUZFeArmjq+0H3y9Ko8BE2nQ==
-X-Google-Smtp-Source: ABdhPJxcrj0KplZqqraMGc5jXewWMW7uSDQbjHFyf6/MFSIOrKtW7ZaBrpHpJK+X1+Ie2x65n6aXqA==
-X-Received: by 2002:a17:907:1c82:b0:6f4:d2ee:2f8e with SMTP id nb2-20020a1709071c8200b006f4d2ee2f8emr23589094ejc.714.1652253705131;
-        Wed, 11 May 2022 00:21:45 -0700 (PDT)
+        bh=cCXXWwJzIMdAZKFOw/mKJ0j8XdlH3CZr6xlDP/lClgM=;
+        b=HbqXHZUwR1Er1A1hyF2PZ+PuvysBH802HhAXJuYLyLPMONpiGHos/MtYBYFqsZwKL1
+         tpSb26REe2E7rlTyMy/ZoNJhvOBa/VGiypLlZN7autlAD0rWdz4KkDOkp8LilQopJQF8
+         6oTuqCtQYvFdnPRHkr0Rk0F3vn+M4dU3xwl09c407Uw4xLvdJ4CY5TDqI1oR9B/v9TAg
+         efpyMt7EBR2pkkexdcnCAl+MqYndeZjq3jOl6OfqwLzHu2ZlPu37BpolgAuAZ9oEFfyz
+         owxfRWgua7Dj9p3iLhyam/Tki/JHNldXlg5+am1dsnQAeqAM6GnKd+sxtC9PU+EKqsZt
+         XXAw==
+X-Gm-Message-State: AOAM532+lRizIAVPXtAVn00A2+zhxb4+Y2eJdcRgb05EW8q7n0WgbQPu
+        owrctuxH4i5TPWQi3jPH3/jMeg==
+X-Google-Smtp-Source: ABdhPJyBEz8ER0lMbS2x4R8+BOYqgNo0DIdwGqHile4MHvdF4zsqCX08J9gREnSEPHC5no2E7MFIXA==
+X-Received: by 2002:a05:6402:4304:b0:427:cb08:b085 with SMTP id m4-20020a056402430400b00427cb08b085mr27485799edc.194.1652253839068;
+        Wed, 11 May 2022 00:23:59 -0700 (PDT)
 Received: from [192.168.0.253] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id s4-20020a170906a18400b006f52dbc192bsm633470ejy.37.2022.05.11.00.21.43
+        by smtp.gmail.com with ESMTPSA id c6-20020aa7c746000000b0042617ba63b9sm717411eds.67.2022.05.11.00.23.58
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 11 May 2022 00:21:44 -0700 (PDT)
-Message-ID: <b6ebc33b-dd42-fe01-27be-c0d312548f8f@linaro.org>
-Date:   Wed, 11 May 2022 09:21:43 +0200
+        Wed, 11 May 2022 00:23:58 -0700 (PDT)
+Message-ID: <7376f263-3443-06a0-5ef6-d11be1acd836@linaro.org>
+Date:   Wed, 11 May 2022 09:23:57 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.8.1
-Subject: Re: [PATCH v2 1/3] dt-bindings: mediatek: add vdosys1 RDMA definition
- for mt8195
+Subject: Re: [PATCH] dt-bindings: gpio: gpio-mvebu: convert txt binding to
+ YAML
 Content-Language: en-US
-To:     Rex-BC Chen <rex-bc.chen@mediatek.com>,
-        Chen-Yu Tsai <wenst@chromium.org>
-Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+To:     Chris Packham <Chris.Packham@alliedtelesis.co.nz>,
+        "linus.walleij@linaro.org" <linus.walleij@linaro.org>,
+        "brgl@bgdev.pl" <brgl@bgdev.pl>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
         "krzysztof.kozlowski+dt@linaro.org" 
         <krzysztof.kozlowski+dt@linaro.org>,
-        "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
+        "u.kleine-koenig@pengutronix.de" <u.kleine-koenig@pengutronix.de>,
+        "lee.jones@linaro.org" <lee.jones@linaro.org>
+Cc:     "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
         "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "airlied@linux.ie" <airlied@linux.ie>,
-        =?UTF-8?B?SmFzb24tSkggTGluICjmnpfnnb/npaUp?= 
-        <Jason-JH.Lin@mediatek.com>,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-        Project_Global_Chrome_Upstream_Group 
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        =?UTF-8?B?TmFuY3kgTGluICjmnpfmrKPonqIp?= <Nancy.Lin@mediatek.com>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "angelogioacchino.delregno@collabora.com" 
-        <angelogioacchino.delregno@collabora.com>
-References: <20220509044302.27878-1-rex-bc.chen@mediatek.com>
- <20220509044302.27878-2-rex-bc.chen@mediatek.com>
- <a5c9e7ad-c4b5-e757-cd6d-f79de47d1ff3@linaro.org>
- <fbbbc7e6a951bdde648ddd896f1fa163dafa16f1.camel@mediatek.com>
- <1c3fd336-1450-9b68-df81-2f01cc2ba32f@linaro.org>
- <CAGXv+5EHFjqiVQbXgcJWCo+TmaTU_z4e0g85beMLCNjyx5qJcw@mail.gmail.com>
- <0686125d-4984-5dcd-32ca-4eeece09d7c3@linaro.org>
- <4d2b1c2c4ab27ba96d59b9a0e3adcdab311ec897.camel@mediatek.com>
+        "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>
+References: <20220510094404.1020307-1-chris.packham@alliedtelesis.co.nz>
+ <6db35313-5dcd-c9f2-724c-d157a835c9fc@linaro.org>
+ <eaea4c27-05b3-d26f-d091-99e07d14aae6@alliedtelesis.co.nz>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <4d2b1c2c4ab27ba96d59b9a0e3adcdab311ec897.camel@mediatek.com>
+In-Reply-To: <eaea4c27-05b3-d26f-d091-99e07d14aae6@alliedtelesis.co.nz>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/05/2022 04:26, Rex-BC Chen wrote:
-> Hello Krzysztof and Chen-Yu,
+On 10/05/2022 22:55, Chris Packham wrote:
+> (sigh resend, Thunderbird decided that this needed html)
 > 
-> Nancy thinks our IP is more like rdma.
-> Blitter may be somthing for reading memory and writing to another
-> memory, but we don't have the function of writing memory.
-> If we use rdma, is it ok?
+> On 11/05/22 01:40, Krzysztof Kozlowski wrote:
+>>> +  marvell,pwm-offset:
+>>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>>> +    description: Offset in the register map for the pwm registers (in bytes)
+>> It's the same as offset. Why allowing both? Isn't one deprecated?
+>>
+> This one is in addition to offset. The "offset" is for the gpio 
+> registers "marvell,pwm-offset" is for a separate pwm related register 
+> that is not in the same contiguous block.
 
-Sure.
-
+I see now different in the description. Egh, confusing. But the
+confusion was done earlier, so let it be.
 
 Best regards,
 Krzysztof
