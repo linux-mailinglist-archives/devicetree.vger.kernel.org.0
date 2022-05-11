@@ -2,77 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 244BC52376B
-	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 17:36:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AF998523785
+	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 17:39:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343792AbiEKPgk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 May 2022 11:36:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33238 "EHLO
+        id S1343872AbiEKPjn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 May 2022 11:39:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44052 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343788AbiEKPgj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 May 2022 11:36:39 -0400
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11C286A410
-        for <devicetree@vger.kernel.org>; Wed, 11 May 2022 08:36:38 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id l18so4836585ejc.7
-        for <devicetree@vger.kernel.org>; Wed, 11 May 2022 08:36:37 -0700 (PDT)
+        with ESMTP id S1343876AbiEKPjh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 May 2022 11:39:37 -0400
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14730994EE
+        for <devicetree@vger.kernel.org>; Wed, 11 May 2022 08:39:34 -0700 (PDT)
+Received: by mail-ej1-x636.google.com with SMTP id gh6so4958387ejb.0
+        for <devicetree@vger.kernel.org>; Wed, 11 May 2022 08:39:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=s9lNfI7TcwVigUjSYULy3QOAhvngUhwQle5drwFbVL8=;
-        b=UDgM/7CIdwpg7TQ80bRyU4TfD8ldDTOoKUvXkBAypeBetC/ZXehem74fuUzxgv+673
-         bhZsUJVYmDXQBKCv9mVxNT8DkjGrWu575i4uN/rDyEsQmfOc6vQUpk0YNPBuYIog7qSF
-         2P7vnyyI3dNCAXfw6r4b/OFSIbV3X72g+t/iC2ugWlmt63dHNsvUrFCQag+pIgIRSy/6
-         X36SH1wzjqfPwgFhXAZvmlXcvWdB/VD/2hcsTQ/y3/3g4kKsewQPRK5kEV+ivnAT0Has
-         XPQ1xpoU6Mm7OLy5zsSHsf7Du68T8Kp4P0usibTXcfIPsjW5zgQZt1EAuku2OITtLhZQ
-         Qh8Q==
+        bh=3EnLHFLc0Jk3HBkHlEdbkbS2KROw6hUVo/W0MBRYlKM=;
+        b=OQ46Ckb1vHduf6E2pp3PST82k0EZHs7pmczBztqcLbrnum4AYkflTWi0XtsRpw1JLt
+         tzQ2XXBKJKubuPLOecGFeXxzU1hhKRxcUdgK7sqo8XpXQ05NhrEImWpARHKXWfhBmqFh
+         QKQZ+cWEF4mKU0Z7BUjQZq0c1uSM2UtPFKkCy2yULw73auxdm4SsB0O7M+Q+Hmwuwhdy
+         GfCubg9h5HKOlAxdw7AAnVg6HXAyCP1nZAWmR7jq/cYDcgfdmkJvKAnuF9vT7ZRYCsqU
+         4L9rOcARY+JpPQymTQ6nimmTO4Ole5TY/cBC1Qn3LnNPiBSrbiocj+bN/dbHPBd7i4Xa
+         p3GQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=s9lNfI7TcwVigUjSYULy3QOAhvngUhwQle5drwFbVL8=;
-        b=Bg5J+YpZ9L1le3PdIYX6TAf+BP4FDqU0e1XwEMiXbdHY59srkEFiQdmAd2B8PI3jog
-         HrByuTStcHhY0TFpFHPxwBHaDlNtEuJYEeB8YqVHQeO0eILvRW45gPXglgNgL2zhyFKj
-         Gxkjo+vW37bV/Tc7FgCHPxXt739r0Ez4Qn226bHpOkolTI1PxOhQsdlxNZIgi9EStkBb
-         h4Tr3ymWXejyfq2JTvwGkCtR6R5iQZTipQjjjlWKz3KRxbDtiWUCcBm27ZC+9Ma6p/zt
-         QkT3JRN2mRJIx8QySohydMo7z4HOyw1fkZNpLlQlj0p0uvyrk9JkvGvdeLbxXlWND1iM
-         wmfA==
-X-Gm-Message-State: AOAM532Nhch2wBJ2LC5WvjU3ymswTGjolN/zpVjEAumhedWkxhpqNmMK
-        uH0XQqvmwJVCphVp3LYuGzVh0w==
-X-Google-Smtp-Source: ABdhPJzGKntoTYFAsjQgyRo8QHUf6eZ/sVXe1HlTdWu11CGW4leRLMnpi935aU7hwUOVWkAuFyelPw==
-X-Received: by 2002:a17:906:dc89:b0:6f4:d3a9:6862 with SMTP id cs9-20020a170906dc8900b006f4d3a96862mr25676309ejc.571.1652283396618;
-        Wed, 11 May 2022 08:36:36 -0700 (PDT)
-Received: from [192.168.0.154] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id x1-20020aa7d381000000b0042617ba63casm1356919edq.84.2022.05.11.08.36.35
+        bh=3EnLHFLc0Jk3HBkHlEdbkbS2KROw6hUVo/W0MBRYlKM=;
+        b=45hVEivnx3zdLPBZNEJTm5l+rufcLeEm4eg8t0pJj+Po266ETmms/nOQhEKtBvM1eb
+         rA+4jlfJ8IHlEbz35DK5N8snF4pMUMPkqriB4R27+98Ihn+SiwK0WLxJKMkO7Xh32LWv
+         ZoLWHFvaJz8+bo6zq3VOCd4T0V1TfvtizS8zcJ5r4NGBYwBByLkRzDP7IfxZtstaVK5h
+         /tJXu2qlgGNMSpgSFxllH3Md5hYy2mCcoF+bTHFCa/XzzSdRzYhXFX0mWdEQsPAAv7Po
+         H0iRbdSNp8u+WKX9GquvT3vgbIbdsOPlc0bH3AjztCjpHiAzQi4U9fW+YLw9cRZo4/BE
+         bOFA==
+X-Gm-Message-State: AOAM530qKXHB3Ve5VMCy2nmq1+nthxIHr2HM1OnjAxIxm8IWFV1TR2Ni
+        0bXBPHw0WmDkHEJ+EG506WU/oQ==
+X-Google-Smtp-Source: ABdhPJySKAHxPp8LLhFSHV8vPSGtrR1UdG60EACkRkBfD4ufVPwu4UJ/ureg6z2eSpBxrLmhqGwl3Q==
+X-Received: by 2002:a17:907:628e:b0:6d9:c6fa:6168 with SMTP id nd14-20020a170907628e00b006d9c6fa6168mr24951544ejc.132.1652283572558;
+        Wed, 11 May 2022 08:39:32 -0700 (PDT)
+Received: from [192.168.0.155] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id tk8-20020a170907c28800b006f3ef214e67sm959236ejc.205.2022.05.11.08.39.31
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 11 May 2022 08:36:35 -0700 (PDT)
-Message-ID: <3e5ddde1-9d0c-a5e8-1828-aef1d1165a3e@linaro.org>
-Date:   Wed, 11 May 2022 17:36:34 +0200
+        Wed, 11 May 2022 08:39:32 -0700 (PDT)
+Message-ID: <5847417d-921c-7fca-f5de-00e8a550dcb8@linaro.org>
+Date:   Wed, 11 May 2022 17:39:31 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.8.1
-Subject: Re: [PATCH] dt-bindings: pmic: mt6366: add binding document
+Subject: Re: [PATCH v4] dt-bindings: nvmem: convert mtk-efuse.txt to YAML
+ schema
 Content-Language: en-US
-To:     Rex-BC Chen <rex-bc.chen@mediatek.com>,
-        Zhiyong Tao <zhiyong.tao@mediatek.com>, lee.jones@linaro.org,
-        robh+dt@kernel.org, matthias.bgg@gmail.com, lgirdwood@gmail.com,
-        broonie@kernel.org, eddie.huang@mediatek.com, a.zummo@towertech.it,
-        alexandre.belloni@bootlin.com, fshao@chromium.org
-Cc:     srv_heupstream@mediatek.com, hui.liu@mediatek.com,
-        tinghan.shen@mediatek.com, hsin-hsiung.wang@mediatek.com,
-        sean.wang@mediatek.com, macpaul.lin@mediatek.com,
-        wen.su@mediatek.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-rtc@vger.kernel.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-References: <20220510064603.15920-1-zhiyong.tao@mediatek.com>
- <20220510064603.15920-2-zhiyong.tao@mediatek.com>
- <6614cd3783666caa529106464e7684caf16d6582.camel@mediatek.com>
+To:     Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-phy@lists.infradead.org,
+        Eddie Hung <eddie.hung@mediatek.com>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>
+References: <20220509014521.10248-1-chunfeng.yun@mediatek.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <6614cd3783666caa529106464e7684caf16d6582.camel@mediatek.com>
+In-Reply-To: <20220509014521.10248-1-chunfeng.yun@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -85,30 +80,47 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/05/2022 09:56, Rex-BC Chen wrote:
->> +examples:
->> +  - |
->> +    pmic {
->> +      regulators {
->> +        mt6366_vdram1_reg: buck_vdram1 {
->> +            regulator-name = "vdram1";
->> +            regulator-min-microvolt = <500000>;
->> +            regulator-max-microvolt = <2087500>;
->> +            regulator-ramp-delay = <12500>;
->> +            regulator-enable-ramp-delay = <0>;
->> +            regulator-always-on;
->> +            regulator-allowed-modes = <0 1>;
+On 09/05/2022 03:45, Chunfeng Yun wrote:
+> Convert mtk-efuse.txt to YAML schema mediatek,efuse.yaml
 > 
-> should be two space instead of 4 space?
-> mt6366_vdram1_reg: buck_vdram1 {
->   regulator-name = "vdram1";
->   ...
-> };
-> 
-> There is the same issue for this example.
+> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
+> ---
+> v4: fix duplicated unit-address in example;
+>     drop reviewed-by Rob, due to changes;
 
-Indentation is four spaces.
-https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git/tree/Documentation/devicetree/bindings/writing-schema.rst?h=for-next&id=7a150b0d850e37e7bdfc87459edd0ff302f67478#n111
+That's a small change, you should keep his review tag.
+
+> 
+> v3: add reviewed-by Rob
+> 
+> v2:
+>    1. remove description of subnodes which is covered by nvmem.yaml suggested by Rob
+>    2. change the example which is commoner than mt8173's
+> 
+> ---
+>  .../bindings/nvmem/mediatek,efuse.yaml        | 86 +++++++++++++++++++
+>  .../devicetree/bindings/nvmem/mtk-efuse.txt   | 43 ----------
+>  2 files changed, 86 insertions(+), 43 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/nvmem/mediatek,efuse.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/nvmem/mtk-efuse.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/nvmem/mediatek,efuse.yaml b/Documentation/devicetree/bindings/nvmem/mediatek,efuse.yaml
+> new file mode 100644
+> index 000000000000..abb8b85655fe
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/nvmem/mediatek,efuse.yaml
+> @@ -0,0 +1,86 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/nvmem/mediatek,efuse.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: MediaTek efuse device tree bindings
+
+s/device tree bindings//
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 
 Best regards,
