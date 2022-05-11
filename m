@@ -2,112 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 00D2652368F
-	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 17:01:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CE66D5236A5
+	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 17:04:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245417AbiEKPBs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 May 2022 11:01:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51848 "EHLO
+        id S242450AbiEKPED (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 May 2022 11:04:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34008 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245544AbiEKPBa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 May 2022 11:01:30 -0400
-Received: from mail-qt1-x82f.google.com (mail-qt1-x82f.google.com [IPv6:2607:f8b0:4864:20::82f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83AC8E026;
-        Wed, 11 May 2022 08:01:27 -0700 (PDT)
-Received: by mail-qt1-x82f.google.com with SMTP id hf18so2211602qtb.0;
-        Wed, 11 May 2022 08:01:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=1+0VMWvkb5KhIaQ1vIx5DoEhMwYXv8cN9xgLJnTJYLQ=;
-        b=mRKrlFNGn5IbBhXKT/0K+CcQIBoIcJDeXtaQHe6SoiiJ3T1hka4jtIcnqUuffq725v
-         hPzBAl/d5PCCjf/aFdsx1HSmuwEhBOSHm0CmAlgqWws19GOF0Qw2+6amUhSeXnTuwbrR
-         RbZ1J27qWdAePKn8X195kQVjfqgz0VZDQVPM0Sd2p+u2SB7/yjzRZCJ18dGoOWk+cYcq
-         GIbgTWKbfZoDyV0O6YN02szADxJb0ot8l5O7l6CX+GxKz4OV2mtoEg2gDClc+klt1O/A
-         Eyqij7JRO9QkV342d8baxgcl1dDfGhvmAz9TU1tGP5DJLbkbLbgmrSTJ0vRiFSeX67k1
-         lQEw==
+        with ESMTP id S237091AbiEKPEB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 May 2022 11:04:01 -0400
+Received: from mail-oi1-f172.google.com (mail-oi1-f172.google.com [209.85.167.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57FEC3B3D9;
+        Wed, 11 May 2022 08:04:00 -0700 (PDT)
+Received: by mail-oi1-f172.google.com with SMTP id w130so3089476oig.0;
+        Wed, 11 May 2022 08:04:00 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=1+0VMWvkb5KhIaQ1vIx5DoEhMwYXv8cN9xgLJnTJYLQ=;
-        b=lTVuHtqs05YXg+1d27NLsbbxzxn4wdotEcjFLljusMc03XmxQ02GkQ4TYhsj3KgcaD
-         78xpNdQ/U8ww760WwN/QUC8IFdlp0urndxTfGS2OhGvfLQmDB/bY74BUfVg3Y6PRMjZ7
-         pfVqtTeAKZJzUaNYJJLWuR+YnpTtS6dkxm6+eIqhx3RxAqjmFg6rWYnil7HWXYWmTuTl
-         2gOqLv2BVazMIgKw/U2vxmpRJvKGPuBMqsxGqdYKlVqwxhthmfSP438RDtkLByr5NqD0
-         qM7wZGhg1MAqUKHzoxlfYCWEA1fkfiISQMkzvFVqIsqZw8icPGOTN/a6qG0Q5hbBEoCv
-         nUlg==
-X-Gm-Message-State: AOAM531u4ZBjC1geufnMidjDghXDadw203+FSm8LhvDb+oBcNFt4bDYP
-        k0tZ4dDCuUkcRE47MgHyspA=
-X-Google-Smtp-Source: ABdhPJxjiw+10SAJyJBRk1SuW3dIg3jBhQFMKieH82FSOH5Tb12OHXebD6jBjE/GmPefF6g0dMS8nw==
-X-Received: by 2002:ac8:7f43:0:b0:2f3:d55d:7296 with SMTP id g3-20020ac87f43000000b002f3d55d7296mr15820698qtk.635.1652281286126;
-        Wed, 11 May 2022 08:01:26 -0700 (PDT)
-Received: from master-x64.sparksnet ([2601:153:980:85b1::10])
-        by smtp.gmail.com with ESMTPSA id h1-20020a05620a244100b0069fc6484c06sm1487134qkn.23.2022.05.11.08.01.25
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=K2evvn9klzsMhwX82pTe24yAX2JmTp6isBMJsL/SQV4=;
+        b=Bxr6JdHOJKJhSm+R5/84EJaSvHc6hFVkD39KOl33VzkUPhFt81fglWOHaPqn8jOrFJ
+         EeLdjd1EeoljN97ghljC1g43yYgMFwzmPxVO7kDIwOzto971dTW4jo3MgDJCCVtflhL6
+         aiG89d94N9fQWqOSKYxjSl6I/C7bQzkAqwKQHmKxOu0eYfWlRKZ+y18ZSbFa4ZXdJbtY
+         alrBdBanybsfsmqIhRzemu0gJStP7I50rGWizS3VupTwTRTlatYbJzQDXCkfGtgMfFf9
+         zagtsAhICL+emT5qIgB/VqDVKQypYy1l9CUrbkFPLvZqoKJCimOQEmpz/w3XQOtU6Sxo
+         umxA==
+X-Gm-Message-State: AOAM53271bMu1vcHp1/RE1KprColC1YnovLvXs3V7t9Tql7seD8Si2dd
+        pBoNzb5HKGhtEPVueZ9BfOa7ljDXMg==
+X-Google-Smtp-Source: ABdhPJznLUgFwcBWwKLcRWf+OH0tIjOA6OzYk0qvGxxrS32rYsM1faSHtN+DUWeRWazJRKVqpvGp1Q==
+X-Received: by 2002:a05:6808:a93:b0:326:4a90:5e2a with SMTP id q19-20020a0568080a9300b003264a905e2amr2639437oij.211.1652281439654;
+        Wed, 11 May 2022 08:03:59 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id t142-20020acaaa94000000b0032647f4e437sm820644oie.45.2022.05.11.08.03.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 May 2022 08:01:25 -0700 (PDT)
-From:   Peter Geis <pgwipeout@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>
-Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Peter Geis <pgwipeout@gmail.com>
-Subject: [PATCH v1 6/6] arm64: dts: rockchip: enable sfc controller on Quartz64 Model A
-Date:   Wed, 11 May 2022 11:01:17 -0400
-Message-Id: <20220511150117.113070-7-pgwipeout@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220511150117.113070-1-pgwipeout@gmail.com>
-References: <20220511150117.113070-1-pgwipeout@gmail.com>
+        Wed, 11 May 2022 08:03:59 -0700 (PDT)
+Received: (nullmailer pid 310552 invoked by uid 1000);
+        Wed, 11 May 2022 15:03:58 -0000
+Date:   Wed, 11 May 2022 10:03:58 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Phil Edworthy <phil.edworthy@renesas.com>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        linux-renesas-soc@vger.kernel.org, linux-serial@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 1/2] dt-bindings: serial: renesas,em-uart: Add RZ/V2M
+ clock to access the registers
+Message-ID: <20220511150358.GA305958-robh@kernel.org>
+References: <20220504094456.24386-1-phil.edworthy@renesas.com>
+ <20220504094456.24386-2-phil.edworthy@renesas.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220504094456.24386-2-phil.edworthy@renesas.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the sfc controller binding for the Quartz64 Model A. This is not
-populated by default, so leave it disabled.
+On Wed, May 04, 2022 at 10:44:55AM +0100, Phil Edworthy wrote:
+> The RZ/V2M SoC has an additional clock to access the registers. The HW
+> manual says this clock should not be touched as it is used by the
+> "ISP Firmware".
+> 
+> Signed-off-by: Phil Edworthy <phil.edworthy@renesas.com>
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> ---
+> v4:
+>  - Removed "optional" from description of clock to access the registers
+> v3:
+>  - New patch added
+> ---
+>  .../bindings/serial/renesas,em-uart.yaml      | 32 +++++++++++++++----
+>  1 file changed, 25 insertions(+), 7 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/serial/renesas,em-uart.yaml b/Documentation/devicetree/bindings/serial/renesas,em-uart.yaml
+> index 332c385618e1..40a03f255666 100644
+> --- a/Documentation/devicetree/bindings/serial/renesas,em-uart.yaml
+> +++ b/Documentation/devicetree/bindings/serial/renesas,em-uart.yaml
+> @@ -9,9 +9,6 @@ title: Renesas EMMA Mobile UART Interface
+>  maintainers:
+>    - Magnus Damm <magnus.damm@gmail.com>
+>  
+> -allOf:
+> -  - $ref: serial.yaml#
+> -
+>  properties:
+>    compatible:
+>      oneOf:
+> @@ -29,11 +26,32 @@ properties:
+>    interrupts:
+>      maxItems: 1
+>  
+> -  clocks:
+> -    maxItems: 1
+> +allOf:
+> +  - $ref: serial.yaml#
+>  
+> -  clock-names:
+> -    const: sclk
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: renesas,r9a09g011-uart
+> +    then:
+> +      properties:
 
-Signed-off-by: Peter Geis <pgwipeout@gmail.com>
----
- .../boot/dts/rockchip/rk3566-quartz64-a.dts      | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
+> +        clocks:
+> +          items:
+> +            - description: UART functional clock
+> +            - description: Internal clock to access the registers
+> +        clock-names:
+> +          items:
+> +            - const: sclk
+> +            - const: pclk
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts
-index 71df64655de5..6ec349e7e521 100644
---- a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts
-@@ -603,6 +603,22 @@ &sdmmc1 {
- 	status = "okay";
- };
- 
-+&sfc {
-+	pinctrl-0 = <&fspi_pins>;
-+	pinctrl-names = "default";
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	status = "disabled";
-+
-+	flash@0 {
-+		compatible = "jedec,spi-nor";
-+		reg = <0>;
-+		spi-max-frequency = <24000000>;
-+		spi-rx-bus-width = <4>;
-+		spi-tx-bus-width = <1>;
-+	};
-+};
-+
- /* spdif is exposed on con40 pin 18 */
- &spdif {
- 	status = "okay";
--- 
-2.25.1
+Better to put all this at the top level with 'minItems: 1' and then use 
+minItems/maxItems in the if/then schema to define which platforms have 1 
+or 2 clocks.
 
+> +    else:
+> +      properties:
+> +        clocks:
+> +          items:
+> +            - description: UART functional clock
+> +        clock-names:
+> +          items:
+> +            - const: sclk
+>  
+>  required:
+>    - compatible
+> -- 
+> 2.32.0
+> 
+> 
