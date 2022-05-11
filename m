@@ -2,198 +2,193 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DE1DC522DFD
-	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 10:14:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 59BEB522E09
+	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 10:16:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243372AbiEKIO3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 May 2022 04:14:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51878 "EHLO
+        id S243421AbiEKIQM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 May 2022 04:16:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54054 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243370AbiEKIO2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 May 2022 04:14:28 -0400
-Received: from JPN01-TYC-obe.outbound.protection.outlook.com (mail-tycjpn01on2095.outbound.protection.outlook.com [40.107.114.95])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CCF1BE6B45;
-        Wed, 11 May 2022 01:14:26 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=YncOKlrxU6ltn3T2DPAEqZ4MJ8WVfBsF65pEZmJHR2tt7Tv1N4Kr60K7hpxuix/o5ZkPWzIS5WPDAmjQjedP1haeb5n2we4ODu9t6CbzmNf58LzI8NlqgSZkUNccea/PWIxnof/h4e/glhW8BvQ71cET1vXvzJgCgqROVOW3Oaqjlj4hWBS/DxhGVm/miHVcGGxROrAHpEuw9lOE4ca2e2S3+7xiXW4p2ir/Y1azxsoURmaIvjXKO3np+8GUObPznqX6Z9GVxTuVxuP7braQCZtIXUw4jx2zcZMLEknivHOrLTAYLrH0CSGqkRIBWwxHHoFrbfllcsXwGjkgHzdl1A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=R4EEKE2cLlx0JEQBKcLI6dgNgAGWlzPJbodLlZs/KL8=;
- b=S373dSPixkbnWGTpzf2bBeC9dRW9Xa+DwM0FzgWUs+RKkp7GGB1fIY4EhQ1CCZjI+JTwk6uRifHZfeQgTPlvdygdy1F9zdPjzHnIZqPSk7YfRasHGRiyQy8HkrjeTghcIGgMsGhQ/a+H0kH/rwZkVlSVPJgjoxPbCxupzx7vv74gVC0dUiPaPNojTDPgH/i57mMZXnCcZTd7UfWPh/l9LESBGXIdOXmBMh/4CuSWRvu7jfUtMNjkxyiB0+1Qh72sHvX+3Z6KDdpLhfsf2bHColQ00cfiTNkGlqooNdt/zKWdRTEtjcLkSA1NuytIKf4mxUarIVE8QHfznubZrG4MtA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
- header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=R4EEKE2cLlx0JEQBKcLI6dgNgAGWlzPJbodLlZs/KL8=;
- b=eSOwj8w5EUKifqtyxXBrg2uvmw0/9BtCCUYgDefHiVG4tmsSlacg7bwI7VVxUUUn9tTqxkwwNL80K4ukDHpuAFgjaMBx7e02Wr/VZpKA+WIqivnRVjWNn0crioDzgnFmkbQP7UMbtv/y1M0/yQlMWmVHBu2Cs3SkC5xIq4dnyVY=
-Received: from OS0PR01MB5922.jpnprd01.prod.outlook.com (2603:1096:604:bb::5)
- by OSAPR01MB2802.jpnprd01.prod.outlook.com (2603:1096:603:3d::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5227.20; Wed, 11 May
- 2022 08:14:21 +0000
-Received: from OS0PR01MB5922.jpnprd01.prod.outlook.com
- ([fe80::3e:970b:c238:f57]) by OS0PR01MB5922.jpnprd01.prod.outlook.com
- ([fe80::3e:970b:c238:f57%9]) with mapi id 15.20.5227.023; Wed, 11 May 2022
- 08:14:21 +0000
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-CC:     Jonathan Cameron <jic23@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>
-Subject: RE: [PATCH v3 1/2] dt-bindings: iio: adc: Document Renesas RZ/G2UL
- ADC
-Thread-Topic: [PATCH v3 1/2] dt-bindings: iio: adc: Document Renesas RZ/G2UL
- ADC
-Thread-Index: AQHYZQVtPYCoiRK5X0qgXNrhfCN9w60ZQz8AgAAExjCAAAX6gIAABecw
-Date:   Wed, 11 May 2022 08:14:21 +0000
-Message-ID: <OS0PR01MB5922A4E4B929FC28A025A1AD86C89@OS0PR01MB5922.jpnprd01.prod.outlook.com>
-References: <20220511070443.30231-1-biju.das.jz@bp.renesas.com>
- <20220511070443.30231-2-biju.das.jz@bp.renesas.com>
- <CAMuHMdWNP_H9FNcygXZp0Ysw=wGXzV71Q_U7Hs=wH_Vctnz1pg@mail.gmail.com>
- <OS0PR01MB5922FF4C6F417DFF1C3BED5186C89@OS0PR01MB5922.jpnprd01.prod.outlook.com>
- <CAMuHMdW3+HG+7JXBH2CjwK8GM5frKyP-kbXL1JXUD9R8j2MYkg@mail.gmail.com>
-In-Reply-To: <CAMuHMdW3+HG+7JXBH2CjwK8GM5frKyP-kbXL1JXUD9R8j2MYkg@mail.gmail.com>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=bp.renesas.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 6266e9b4-c205-4dee-9e28-08da33264099
-x-ms-traffictypediagnostic: OSAPR01MB2802:EE_
-x-microsoft-antispam-prvs: <OSAPR01MB280233367874EBDD9315D68086C89@OSAPR01MB2802.jpnprd01.prod.outlook.com>
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: HIJ3PmPOgARGjqVGsgm16jTGDW5Jko49bR7aR3XNlxoSylvemk7D7/mfYgdGzgIi0cwE4mN0lsY9w0iB9d7uEOSQL3+o25EAGZPx7/AIIl05GtyTj9oIS+T+pjhJmnRWXySYxtxkEicL3tnfKi8UUaRKZQ+85wKV68hnh7chtRum24zQkukyOo6kyn4qcC7SHaJD3fwF8KIHsUhZIFgJzgpbVVGIi+RrIOWDJAXKFO8y/xoYVQSDWwKIGJ1ME3FxwOIK1Xq32vj2qf5ghpNknHAXc8U5yORKyaIth1A6JktsQ5+FplvghYTbP44MUgDd+HwX2K2DT2M+TmI79f0uCeaD+tHFYhC+xOVhFENLogylbk3xKF56XlsDzLKwSrASs1sm8X8iDSZFGWLAvLJvrLQlzv05aR++Swy/im9ed1nX0ZyyFh6uDO9b3YEHMHihPoTiHg6+ePAumQlquO8w6zDcH/lKGOiKVZ1liNedZo1Lkavlf3AAOSeZy/uIdQtlhmYVIcBO1nnDQT6fJ65KbSdWad+UGqKtGK2u4+nQvdU8oXwkmFBHAVUE5eTlR0YysF4poxWKDv2bIlxuL0Vh1f1YmvXmYtZMenyRERw6efMf0tN4wIHXeu4a1P+hFPDwpghFTBLyPQbE6tgEqlxNERQvPhWX66gEjnb0aEB9DnsQEMSI66jXAv7+mDjx9TUJx9AM2wrnXfIkW5zI7AUJ9g==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OS0PR01MB5922.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(71200400001)(66446008)(8676002)(4326008)(38070700005)(9686003)(64756008)(26005)(2906002)(7696005)(6506007)(53546011)(8936002)(508600001)(52536014)(66476007)(5660300002)(33656002)(55016003)(54906003)(83380400001)(86362001)(186003)(316002)(66556008)(107886003)(122000001)(6916009)(66946007)(76116006)(38100700002);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?eVV3SnVGTFNwcFZzLzFpUGpUQjZPZUNWL3EvYUpXemhLNmoyRFpGMGp6ZDlm?=
- =?utf-8?B?V2VXeGxpSml1NlNsam1uMnpqS3ZjLzhTS1dYengrcW9jdGdTWm5VMVhkMEpz?=
- =?utf-8?B?Q1NTZGhCbEhXVXViSWZ1YmN1QmZPYjBWMTJzcElFdzUrWHZSMTY4QU1HUmJk?=
- =?utf-8?B?bithMTJLVlcyZzNGa3dOaDNTbDdqVVlkN1RaS0srWjIyVUx5djN6UWZZTWFo?=
- =?utf-8?B?UXdPUU1lRzZERUMyMlMwTTJ4NThkMVRPS0wrOFR6MWNYYURyTS93NkRYQmZl?=
- =?utf-8?B?emdudW52MG4vVUZpS3RzM25Zbm83SlBmNWFIVzdRZ0NST1VZQkVOOEtYNUFO?=
- =?utf-8?B?cXQrUkdhSlNlUS9SZXNwbGJ1cGtYU0R5L1M4TkNqVmNuVkdoVDdIek9SUnBk?=
- =?utf-8?B?eHNFVklNZTFTT1hJS01ZdnBrajRxMlcrVElhU0pGYXZkM0V3U1JEblUxQ3g2?=
- =?utf-8?B?S0I4MWIyYmVWU3N3ZVlyd2wxYUgxdzdDMmJnTEdkVnlHb2tiZ05oWFFGRTBl?=
- =?utf-8?B?WjBXcWkxeERPSHVFWnlXNHRWSzBUdFJBbk1KS1Q1bE5PL2EzMUFEVDgwaDBj?=
- =?utf-8?B?aEZJR2VtT1Z2RmNVU1hudWh4MWN4VjlCWTRGQkFkR1Jxc3MrNnlpV2hFSTZi?=
- =?utf-8?B?N0h3alh4WHEwaEpoM2VES0hjOVBFdHB6NnFWZTNJUWJWdGhETlBQbXpjTUp0?=
- =?utf-8?B?Y25IVDJJcHZxQThKZm94LzdXbitGOG5uak4zMjlJUE0yTDlYazd1TEMyaW1X?=
- =?utf-8?B?TXZJL2NXdVFPalVmL0pydVoySGJBQUNma0Q2VTMvcllib2pHQk41b2ZxWUhi?=
- =?utf-8?B?dWFSOXY1cTUyWVYzeStETWFmdFQvdkhESzVhcEFKVWI1dU0rWkJualZwVnRG?=
- =?utf-8?B?bXdxQ3d4Ym9uR3pTck5Xa1FkVW9jOWtZK3pwd3BMSlR2VWhvK2JJZytvRVM3?=
- =?utf-8?B?SnpsaERObnJtcnp3ZjdubWthSFhma3J1V3F0aG5BNkRZMktNcmt2Qlo4U2VE?=
- =?utf-8?B?aXVkK1IzMHE4OWR2YVpqRWYwRS9ZVkxrSUVlUlZhN3FxUDYvRU1sTm82V1hl?=
- =?utf-8?B?aVlYMVJWb3I4QmM2ZGVTWmhTMDJJZDVMdTBYWjNickJXTS9LUUh1bTZHOEwz?=
- =?utf-8?B?SFdNR2N1ZGRoNEM4SlJrMWhmaTAzbitzWlIxRHdmU2JIYWgzd2wyb05CSGgy?=
- =?utf-8?B?bWhteXExbjh3aGhCaVJXU2cwYmJ5U0hEOXg1eW03cmF3ald2UytUZUFXUzhv?=
- =?utf-8?B?ekVPczhockxPbUxGK0M0Y3I2RGZDWU85UXh6NktDMDRENWFmdlJ5TVVGTm5W?=
- =?utf-8?B?Z0dXS08rVldxNjQwZlRiYmlhaHZzZ2xTT3lJN2h2MGtpSE1CWm52ZnhnMEtO?=
- =?utf-8?B?b2hiK2tqdkhkWWdSakp0RE5lemtnUWRKRUo4KzlLNGR2MDAzbjZhdTNUd0lV?=
- =?utf-8?B?c2NSaU9MWTlKOHE4VUMxT0xsTnVSRjdyUUszNDlxeVByMVd2ekpUZjJ1QWtv?=
- =?utf-8?B?NnRzZ3pVYWJvL0hyQUt6dHJXTnIzenB6bXlvdVVRSWVCZWh1dG9kQlJId21P?=
- =?utf-8?B?d2NjSFNEbEwxWHBuYjZVYTRMTTNVbWVpenFxNXRMdUhuNU1rd3oraVFpdHhn?=
- =?utf-8?B?VzZkczM1bUphc0VDWTBkV3BHQ2RFckZHdVVoeHUrTzQvQVVheXRlcHRuSUNC?=
- =?utf-8?B?M3hleHlNYzVNRnhITlNsZ1o4RVdGd0RsbTFqVFFMc0tHdTRmQ3NhbWJWVjE2?=
- =?utf-8?B?K1hqZi9MSkRIOFBuRlVsS0l2dUhydUI2bUhIa21LYTRGUEdWL3VOKzl5M2Fj?=
- =?utf-8?B?cHRaNzRJb3RwY2pZTHlhamRpdGJ6aUV3MElyRHFLbm1VWVZidVRUc1FwcnhM?=
- =?utf-8?B?VXh5UVk5dFBMUmtlNEQrcDBJelhQUksrRDN6ZGd2RnZVbnd4eUFIbXNJZUtF?=
- =?utf-8?B?cVNYVGJiN1hraXNFSms4RkoyNEJpVkFyUXR3RWhadzZ6VmpJRTE2bnN6aG1u?=
- =?utf-8?B?ckpSY2s4T25ZTmZwdjNWdm01a3NyRGRabVNOd0RUa2d6Y1RRQjZzZk1ZbWd2?=
- =?utf-8?B?eTBFYVMveUFzZ0o4WXJMc3lGc0p5VzRCbVF1NmswQkd0MjFwR252NEJ4Qkow?=
- =?utf-8?B?SzJ2eVJXVEVVY3U5clRNb016RW9NUkViMkZ3Rmh4NUp3QjZoTlIzdEFydnph?=
- =?utf-8?B?Rk1RVk0rTkZvb3hGZ1hHaWs2dFJOUFNSekRHdmpwOXlwS3JvSHdoOXpJQzlP?=
- =?utf-8?B?Y0RENHFuWGxUMzVCYlhJc1hDQXVEaUZ1aTl4bXoxZjNQTGY0elRuM09YamtP?=
- =?utf-8?B?bWY4Y1ppT053blp4RktnbmVoWmVKclpnemxVajMvTTk0a2daeXRUcGpxUXhR?=
- =?utf-8?Q?ac3YNxq4SOb3wjyA=3D?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        with ESMTP id S239529AbiEKIQK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 May 2022 04:16:10 -0400
+Received: from mail.pr-group.ru (mail.pr-group.ru [178.18.215.3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62BD73FBCB;
+        Wed, 11 May 2022 01:15:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+        d=metrotek.ru; s=mail;
+        h=from:subject:date:message-id:to:cc:mime-version:content-type:in-reply-to:
+         references;
+        bh=hTDd4TSeU1fwQ6OaAmsGqmYgAJLDuU+/nhoN5LyCky4=;
+        b=ldKQ+oOIE/MncLwS3922wAbJevpexSt+HIQxIYg1unHt/01VteHHELxNQxNb+R1+KiqjTOsQgy2ne
+         DuHGgS1XmmAtT6yr9aGsyRSS9V2SMw2SyECTM6pZ+CuRcoc9YLffWIuV977YTHC0JpthZYFqsaXMhy
+         0waSNrTrfjWwpheLYEOJ96j+mhDCFYmC8kqIds/088PSv/oRnZ1jyugaljHdWYmeEr8yB1Bc7XOVHU
+         ktKpu8wb7hf8KGl7eKPSX4V3LTEG1XBZCVRQhGQkD6lpTsEGuyLTNeadAGsU/Kg2U4GZWYDRNimAOY
+         betkaC2da3ivsJSOYDg+T51TMwygUiQ==
+X-Kerio-Anti-Spam:  Build: [Engines: 2.16.3.1422, Stamp: 3], Multi: [Enabled, t: (0.000010,0.016053)], BW: [Enabled, t: (0.000015,0.000001)], RTDA: [Enabled, t: (0.071124), Hit: No, Details: v2.39.0; Id: 15.52k1cv.1g2p30lbn.venk; mclb], total: 0(700)
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
+X-Spam-Level: 
+X-Footer: bWV0cm90ZWsucnU=
+Received: from h-e2.ddg ([85.143.252.66])
+        (authenticated user i.bornyakov@metrotek.ru)
+        by mail.pr-group.ru with ESMTPSA
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256 bits));
+        Wed, 11 May 2022 11:15:51 +0300
+Date:   Wed, 11 May 2022 11:15:32 +0300
+From:   Ivan Bornyakov <i.bornyakov@metrotek.ru>
+To:     Conor Dooley <mail@conchuod.ie>
+Cc:     Conor.Dooley@microchip.com, mdf@kernel.org, hao.wu@intel.com,
+        yilun.xu@intel.com, trix@redhat.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-fpga@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        system@metrotek.ru
+Subject: Re: [PATCH v11 2/3] fpga: microchip-spi: add Microchip MPF FPGA
+ manager
+Message-ID: <20220511081532.7gkmz3uumzxgwfaf@h-e2.ddg>
+References: <20220507074304.11144-1-i.bornyakov@metrotek.ru>
+ <20220507074304.11144-3-i.bornyakov@metrotek.ru>
+ <bd5cb37b-ee56-f6d5-2d98-c08566b60728@microchip.com>
+ <20220509171621.zk4owxwlngxjodgz@x260>
+ <da1e5125-de6b-11a8-a52d-7e6e5f45ab70@conchuod.ie>
+ <4b752147-1a09-a4af-bc5d-3b132b84ef49@conchuod.ie>
 MIME-Version: 1.0
-X-OriginatorOrg: bp.renesas.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: OS0PR01MB5922.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6266e9b4-c205-4dee-9e28-08da33264099
-X-MS-Exchange-CrossTenant-originalarrivaltime: 11 May 2022 08:14:21.1617
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: iG1ywGdViqSq5Q+nHFavjCpiCidA2nzWOcNV+4CIiJh+t8BlmGIF6eHEKI37RBKtwnDve4+xhBYOq0484DhVG0nUKEIsxsxReU2FCkJiDYQ=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: OSAPR01MB2802
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <4b752147-1a09-a4af-bc5d-3b132b84ef49@conchuod.ie>
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgR2VlcnQsDQoNClRoYW5rcyBmb3IgdGhlIGZlZWRiYWNrLg0KDQo+IFN1YmplY3Q6IFJlOiBb
-UEFUQ0ggdjMgMS8yXSBkdC1iaW5kaW5nczogaWlvOiBhZGM6IERvY3VtZW50IFJlbmVzYXMgUlov
-RzJVTA0KPiBBREMNCj4gDQo+IEhpIEJpanUsDQo+IA0KPiBPbiBXZWQsIE1heSAxMSwgMjAyMiBh
-dCA5OjM5IEFNIEJpanUgRGFzIDxiaWp1LmRhcy5qekBicC5yZW5lc2FzLmNvbT4NCj4gd3JvdGU6
-DQo+ID4gPiBTdWJqZWN0OiBSZTogW1BBVENIIHYzIDEvMl0gZHQtYmluZGluZ3M6IGlpbzogYWRj
-OiBEb2N1bWVudCBSZW5lc2FzDQo+ID4gPiBSWi9HMlVMIEFEQyBPbiBXZWQsIE1heSAxMSwgMjAy
-MiBhdCA5OjA0IEFNIEJpanUgRGFzDQo+ID4gPiA8YmlqdS5kYXMuanpAYnAucmVuZXNhcy5jb20+
-DQo+ID4gPiB3cm90ZToNCj4gPiA+ID4gRG9jdW1lbnQgUmVuZXNhcyBSWi9HMlVMIEFEQyBiaW5k
-aW5ncy4gUlovRzJVTCBBREMgaXMgYWxtb3N0DQo+ID4gPiA+IGlkZW50aWNhbCB0byBSWi9HMkws
-IGJ1dCBpdCBoYXMgMiBhbmFsb2cgaW5wdXQgY2hhbm5lbHMgY29tcGFyZWQNCj4gPiA+ID4gdG8g
-OCBjaGFubmVscyBvbiB0aGUgUlovRzJMLg0KPiA+ID4gPg0KPiA+ID4gPiBTaWduZWQtb2ZmLWJ5
-OiBCaWp1IERhcyA8YmlqdS5kYXMuanpAYnAucmVuZXNhcy5jb20+DQo+IA0KPiA+ID4gPiAtLS0N
-Cj4gPiA+ID4gYS9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvaWlvL2FkYy9yZW5l
-c2FzLHJ6ZzJsLWFkYy55YW1sDQo+ID4gPiA+ICsrKyBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJl
-ZS9iaW5kaW5ncy9paW8vYWRjL3JlbmVzYXMscnpnMmwtYWRjLg0KPiA+ID4gPiArKysgeWFtbA0K
-PiA+ID4gPiBAQCAtMTksNiArMTksNyBAQCBwcm9wZXJ0aWVzOg0KPiA+ID4gPiAgICBjb21wYXRp
-YmxlOg0KPiA+ID4gPiAgICAgIGl0ZW1zOg0KPiA+ID4gPiAgICAgICAgLSBlbnVtOg0KPiA+ID4g
-PiArICAgICAgICAgIC0gcmVuZXNhcyxyOWEwN2cwNDMtYWRjICAgIyBSWi9HMlVMDQo+ID4gPiA+
-ICAgICAgICAgICAgLSByZW5lc2FzLHI5YTA3ZzA0NC1hZGMgICAjIFJaL0cyTA0KPiA+ID4gPiAg
-ICAgICAgICAgIC0gcmVuZXNhcyxyOWEwN2cwNTQtYWRjICAgIyBSWi9WMkwNCj4gPiA+ID4gICAg
-ICAgIC0gY29uc3Q6IHJlbmVzYXMscnpnMmwtYWRjDQo+ID4gPiA+IEBAIC03NiwxNiArNzcsNDMg
-QEAgcGF0dGVyblByb3BlcnRpZXM6DQo+ID4gPiA+ICAgICAgcHJvcGVydGllczoNCj4gPiA+ID4g
-ICAgICAgIHJlZzoNCj4gPiA+ID4gICAgICAgICAgZGVzY3JpcHRpb246IHwNCj4gPiA+ID4gLSAg
-ICAgICAgICBUaGUgY2hhbm5lbCBudW1iZXIuIEl0IGNhbiBoYXZlIHVwIHRvIDggY2hhbm5lbHMg
-bnVtYmVyZWQNCj4gZnJvbQ0KPiA+ID4gMCB0byA3Lg0KPiA+ID4gPiAtICAgICAgICBpdGVtczoN
-Cj4gPiA+ID4gLSAgICAgICAgICAtIG1pbmltdW06IDANCj4gPiA+ID4gLSAgICAgICAgICAgIG1h
-eGltdW06IDcNCj4gPiA+ID4gKyAgICAgICAgICBUaGUgY2hhbm5lbCBudW1iZXIuDQo+ID4gPiA+
-DQo+ID4gPiA+ICAgICAgcmVxdWlyZWQ6DQo+ID4gPiA+ICAgICAgICAtIHJlZw0KPiA+ID4gPg0K
-PiA+ID4gPiAgICAgIGFkZGl0aW9uYWxQcm9wZXJ0aWVzOiBmYWxzZQ0KPiA+ID4gPg0KPiA+ID4g
-PiArYWxsT2Y6DQo+ID4gPiA+ICsgIC0gaWY6DQo+ID4gPiA+ICsgICAgICBwcm9wZXJ0aWVzOg0K
-PiA+ID4gPiArICAgICAgICBjb21wYXRpYmxlOg0KPiA+ID4gPiArICAgICAgICAgIGNvbnRhaW5z
-Og0KPiA+ID4gPiArICAgICAgICAgICAgY29uc3Q6IHJlbmVzYXMscjlhMDdnMDQzLWFkYw0KPiA+
-ID4gPiArICAgIHRoZW46DQo+ID4gPiA+ICsgICAgICBwYXR0ZXJuUHJvcGVydGllczoNCj4gPiA+
-ID4gKyAgICAgICAgIl5jaGFubmVsQFsyLTddJCI6IGZhbHNlDQo+ID4gPiA+ICsgICAgICAgICJe
-Y2hhbm5lbEBbMC0xXSQiOg0KPiA+ID4gPiArICAgICAgICAgIHR5cGU6IG9iamVjdA0KPiA+ID4g
-PiArICAgICAgICAgIHByb3BlcnRpZXM6DQo+ID4gPiA+ICsgICAgICAgICAgICByZWc6DQo+ID4g
-PiA+ICsgICAgICAgICAgICAgIGRlc2NyaXB0aW9uOiB8DQo+ID4gPiA+ICsgICAgICAgICAgICAg
-ICAgSXQgY2FuIGhhdmUgdXAgdG8gMiBjaGFubmVscyBudW1iZXJlZCBmcm9tIDAgdG8gMS4NCj4g
-PiA+DQo+ID4gPiBJTUhPIHRoZSBkZXNjcmlwdGlvbiBkb2Vzbid0IGFkZCBhbnkgdmFsdWUsIGFz
-IGl0J3MgZXF1aXZhbGVudCB0bw0KPiA+ID4gdGhlIGxvZ2ljIGJlbG93Lg0KPiA+DQo+ID4gSXQg
-aXMgc3VnZ2VzdGVkIGJ5IEpvbmF0aGFuIG9uIG15IHByZXZpb3VzIHZlcnNpb24uIElmIHRoZXJl
-IGlzIG5vDQo+ID4gb2JqZWN0aW9uLCBJIGNhbiBkcm9wIHRoaXMuDQo+IA0KPiBPSy4NCj4gDQo+
-ID4gPiA+ICsgICAgICAgICAgICAgIGl0ZW1zOg0KPiA+ID4NCj4gPiA+IEkgZG9uJ3QgdGhpbmsg
-dGhlICJpdGVtcyIgaXMgbmVlZGVkIG9yIHdhbnRlZCwgYXMgdGhlcmUgY2FuIGJlIG9ubHkNCj4g
-b25lPw0KPiA+DQo+ID4gSXQgd2lsbCBiZSAyIHJpZ2h0PyBlZzotIHJlZyA9IDwwPiBhbmQgcmVn
-ID0gPDE+Ow0KPiA+DQo+ID4gV2l0aG91dCB0aGlzIHJlZyBpbmRleCB2YWxpZGF0aW9uIGZhaWxz
-Lg0KPiANCj4gSSBtZWFuIGp1c3QgZHJvcCB0aGUgIml0ZW1zIiwgYnV0IGtlZXAgdGhlIHJlc3Q6
-DQo+IA0KPiAgICAgcHJvcGVydGllczoNCj4gICAgICAgcmVnOg0KPiAgICAgICAgIG1pbmltdW06
-IDANCj4gICAgICAgICBtYXhpbXVtOiAxDQo+IA0KPiAodGFrZW4gZnJvbSBEb2N1bWVudGF0aW9u
-L2RldmljZXRyZWUvYmluZGluZ3MvYXRhL3BhdGEtY29tbW9uLnlhbWwgOy0pDQoNCkdvdCBpdC4g
-V2lsbCBzZW5kIG5leHQgdmVyc2lvbiB3aXRoIHRoZXNlIGNoYW5nZXMuDQoNCkNoZWVycywNCkJp
-anUNCg==
+On Tue, May 10, 2022 at 12:29:54PM +0100, Conor Dooley wrote:
+> On 09/05/2022 19:56, Conor Dooley wrote:
+> > On 09/05/2022 18:16, Ivan Bornyakov wrote:
+> > > On Mon, May 09, 2022 at 11:41:18AM +0000, Conor.Dooley@microchip.com wrote:
+> > > > Hey Ivan, one comment below.
+> > > > Thanks,
+> > > > Conor.
+> > > > 
+> > > > On 07/05/2022 08:43, Ivan Bornyakov wrote:
+> > > > > ... snip ...
+> > > > > +static int mpf_read_status(struct spi_device *spi)
+> > > > > +{
+> > > > > +       u8 status, status_command = MPF_SPI_READ_STATUS;
+> > > > > +       struct spi_transfer xfer = {
+> > > > > +               .tx_buf = &status_command,
+> > > > > +               .rx_buf = &status,
+> > > > > +               .len = 1,
+> > > > > +       };
+> > > > > +       int ret = spi_sync_transfer(spi, &xfer, 1);
+> > > > > +
+> > > > > +       if ((status & MPF_STATUS_SPI_VIOLATION) ||
+> > > > > +           (status & MPF_STATUS_SPI_ERROR))
+> > > > > +               ret = -EIO;
+> > > > > +
+> > > > > +       return ret ? : status;
+> > > > > +}
+> > > > > +
+> > > > > ... snip ...
+> > > > > +
+> > > > > +static int poll_status_not_busy(struct spi_device *spi, u8 mask)
+> > > > > +{
+> > > > > +       int status, timeout = MPF_STATUS_POLL_TIMEOUT;
+> > > > > +
+> > > > > +       while (timeout--) {
+> > > > > +               status = mpf_read_status(spi);
+> > > > > +               if (status < 0 ||
+> > > > > +                   (!(status & MPF_STATUS_BUSY) && (!mask || (status & mask))))
+> > > > > +                       return status;
+> > > > > +
+> > > > > +               usleep_range(1000, 2000);
+> > > > > +       }
+> > > > > +
+> > > > > +       return -EBUSY;
+> > > > > +}
+> > > > 
+> > > > Is there a reason you changed this from the snippet you sent me
+> > > > in the responses to version 8:
+> > > > static int poll_status_not_busy(struct spi_device *spi, u8 mask)
+> > > > {
+> > > > 	u8 status, status_command = MPF_SPI_READ_STATUS;
+> > > > 	int ret, timeout = MPF_STATUS_POLL_TIMEOUT;
+> > > > 	struct spi_transfer xfer = {
+> > > > 		.tx_buf = &status_command,
+> > > > 		.rx_buf = &status,
+> > > > 		.len = 1,
+> > > > 	};
+> > > > 
+> > > > 	while (timeout--) {
+> > > > 		ret = spi_sync_transfer(spi, &xfer, 1);
+> > > > 		if (ret < 0)
+> > > > 			return ret;
+> > > > 
+> > > > 		if (!(status & MPF_STATUS_BUSY) && (!mask || (status & mask)))
+> > > > 			return status;
+> > > > 
+> > > > 		usleep_range(1000, 2000);
+> > > > 	}
+> > > > 
+> > > > 	return -EBUSY;
+> > > > }
+> > > > 
+> > > > With the current version, I hit the "Failed to write bitstream
+> > > > frame" check in mpf_ops_write at random points in the transfer.
+> > > > Replacing poll_status_not_busy with the above allows it to run
+> > > > to completion.
+> > > 
+> > > In my eyes they are equivalent, aren't they?
+> > > 
+> > 
+> > I was in a bit of a rush today & didn't have time to do proper
+> > debugging, I'll put some debug code in tomorrow and try to find
+> > exactly what is different between the two.
+> > 
+> > Off the top of my head, since I don't have a board on me to test,
+> > the only difference I can see is that with the snippet you only
+> > checked if spi_sync_transfer was negative whereas now you check
+> > if it has a value at all w/ that ternary operator.
+> > 
+> > But even that seems like it *shouldn't* be the problem, since ret
+> > should contain -errno or zero, right?
+> > Either way, I will do some digging tomorrow.
+> 
+> I put a printk("status %x, ret %d", status, ret); into the failure
+> path of mpf_read_status() & it looks like a status 0xA is being
+> returned - error & ready? That seems like a very odd combo to be
+> getting back out of it. It shouldn't be dodgy driver/connection
+> either, b/c that's what I see if I connect my protocol analyser:
+> https://i.imgur.com/VbjgfCk.png
+> 
+> That's mosi (hex), ss, sclk, mosi, miso (hex), miso in descending
+> order.
+> 
+> I think what was happening was with the snippet you returned one
+> of the following: -EBUSY, ret (aka -errno) or status. Since status
+> is positive, the checks in mpf_spi_write.*() saw nothing wrong at
+> all and programming continued despite there being a problem.
+> 
+> The new version fixes this by returning -EIO rather than status from
+> poll_status_not_busy().
+> 
+> I wish I had a socketable PolarFire so I could investigate further,
+> but this looks like it might a be hardware issue somewhere on my
+> end?
+> 
+> So ye, sorry for the noise and carry on! I'll try tofind what is to
+> blame for it.
+> 
+> Thanks,
+> Conor.
+> 
+
+Hi, Conor.
+
+I've just noticed in SPI-DirectC User Guide [1] ch. 9 SmartFusion2 and
+IGLOO2 SPI-Slave Programming Waveform Analysis, that hw status checked
+two times every time. Does MPF family also need double check hw status?
+Does adding second mpf_read_status() to poll_status_not_busy() routine
+help with your issue?
+
