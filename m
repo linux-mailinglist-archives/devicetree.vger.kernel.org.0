@@ -2,119 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 29073523EFB
-	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 22:36:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B7E5A523F2D
+	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 23:05:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347822AbiEKUgZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 May 2022 16:36:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41676 "EHLO
+        id S1347952AbiEKVF2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 May 2022 17:05:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48902 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230383AbiEKUgY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 May 2022 16:36:24 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 643EC22BCB;
-        Wed, 11 May 2022 13:36:22 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id d19so5587338lfj.4;
-        Wed, 11 May 2022 13:36:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=6ojZI9/OD16y8IIbbbbr20+lgWh1L2wXNhWVUJLRxZA=;
-        b=EXDJT9RrmxRequBVKMI7c6eOe90w7mVQaqq4QiDNmHUqbqJ8VnPNCzYocIDEiqf3/C
-         Yf80YZ9W9hPqsX7fWgRmV7KwAunrRz/hz7YfIgERq2aM0h8I2TYShHCYOvVg6kcIlPrD
-         KOmV9Pvobe353TII5xEo8Kbpk2gM6czUyRIyaXZor+6gavWJqF2G4sGSDyHJA4IQPZaS
-         AsxhVWCeyLDokKPOj/XcpUF6w2SPhaO5UD1xLpsoIXjO43pU129wiSWKjA3ZncH0T9YX
-         71yHCV6ff2DlMkfkMy3lUu+0FJ/RpBjYOMq9nYERvOF1V9sSlmmUtxVVICkxS1nkr8Xb
-         /CXg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=6ojZI9/OD16y8IIbbbbr20+lgWh1L2wXNhWVUJLRxZA=;
-        b=ibByB/ro7HguvBPPGBhCLpaz8vXXWGzerzijZYb2Ka03wBDKoGNN5zuxWK2CiS8s26
-         uBx/bRvxj/gR/4YN/qJPM24sNpeN31XNhtbiEN6lfMv2yYB0Xcd+8+Fpl4huBXbJVYM1
-         h56AL8s39HpjoCY8H7jtqTzRrZkBfCNND9oIiSAvZWUuNK0Vec6T+QofWTXi+BW2zrUa
-         b8y/RN8OjV/Yoy2rStYSRoOhLn3V+XjKsmmsPGBVagJ2Xy8CZ9h6xMKGU5jro/wsc/s+
-         6s04qGSwE+UCgiCPcHl5S/Q+Fnbz+VWzmpoPs276ngUVbace+mbaTGIdSrTvoHR9AjvI
-         1VPA==
-X-Gm-Message-State: AOAM533ksTd9ky/KNEY5LT+H4aTJzvb6eXkncshyMLMVxuoGe0WRuGUO
-        kTffmU/n5NB9RpVlXe0ms/6dysDWWHGaHA0r
-X-Google-Smtp-Source: ABdhPJylh9Qce9//Ii3Y9f5x7e7hu+2iWH/wCpknzcJjYjhpdWbDHI2uHBQqfLXBAAteolHXjubtTw==
-X-Received: by 2002:a19:7114:0:b0:473:e3f5:c7ba with SMTP id m20-20020a197114000000b00473e3f5c7bamr21761571lfc.9.1652301380651;
-        Wed, 11 May 2022 13:36:20 -0700 (PDT)
-Received: from [172.22.204.227] ([104.28.230.247])
-        by smtp.gmail.com with ESMTPSA id k42-20020a0565123daa00b0047255d2116csm436333lfv.155.2022.05.11.13.36.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 11 May 2022 13:36:20 -0700 (PDT)
-Message-ID: <10ce5bf1-bf12-b028-49cb-a3f1999f9a07@gmail.com>
-Date:   Wed, 11 May 2022 23:36:18 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.0
-Subject: Re: [PATCH] mtd: parsers: add support for Sercomm partitions
-Content-Language: en-US
-To:     Miquel Raynal <miquel.raynal@bootlin.com>
-Cc:     Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
+        with ESMTP id S229633AbiEKVF1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 May 2022 17:05:27 -0400
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 283D322922E;
+        Wed, 11 May 2022 14:05:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1652303126; x=1683839126;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=fcAVKuqd6YZHzN7purgtSBIoD9bELDVNb4vgy0qU8LA=;
+  b=HxQdqGVMPhXplL8hRLoax5LfcGjF7bU7vpk/oRtT5w8gZFRHHuJ+WPB9
+   SDWmy53D4hLzjUwB6xXB4ERcz3r/+x637r3R5Ax8vdrsQCDCdEOpNFozq
+   tFfMySXrI9Q0hD+dfw2yefWAnumoAr44OYXcA90bbLYq3cgvWHGDIkGno
+   md+dkJs6b2itgzfHS7L8XUVn7lnDJ2Z5LJjVgnFuTXxzZla5CNSLMGOnN
+   iHXwB5uBkiIpmVQ7jS1WfTn3CVrNRJilKs1Rqm+bbXiFEcGHqqp0/YEr1
+   J7EDNVgI7Hp/Wki0tN0e2n3GopNwFJUObsUaOaTLVqaS6QY+WPXfhBcXp
+   w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10344"; a="251865948"
+X-IronPort-AV: E=Sophos;i="5.91,218,1647327600"; 
+   d="scan'208";a="251865948"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 May 2022 14:05:25 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.91,218,1647327600"; 
+   d="scan'208";a="553491065"
+Received: from lkp-server01.sh.intel.com (HELO 5056e131ad90) ([10.239.97.150])
+  by orsmga002.jf.intel.com with ESMTP; 11 May 2022 14:05:21 -0700
+Received: from kbuild by 5056e131ad90 with local (Exim 4.95)
+        (envelope-from <lkp@intel.com>)
+        id 1notWK-000JaW-It;
+        Wed, 11 May 2022 21:05:20 +0000
+Date:   Thu, 12 May 2022 05:04:19 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Krishna Kurapati <quic_kriskura@quicinc.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        NOGUCHI Hiroshi <drvlabo@gmail.com>,
-        Hauke Mehrtens <hauke@hauke-m.de>,
-        Karim <Karimdplay@gmail.com>, M <x1@disroot.org>,
-        linux-mtd@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20220329122016.4122899-1-csharper2005@gmail.com>
- <20220330100958.57dc4d61@xps13>
- <ede9e050-3b60-ba0e-c626-044f7825adb7@gmail.com>
- <20220511091643.064f9d13@xps13>
-From:   Mikhail Zhilkin <csharper2005@gmail.com>
-In-Reply-To: <20220511091643.064f9d13@xps13>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Doug Anderson <dianders@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Wesley Cheng <quic_wcheng@quicinc.com>,
+        Vinod Koul <vkoul@kernel.org>
+Cc:     kbuild-all@lists.01.org, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+        quic_pkondeti@quicinc.com, quic_ppratap@quicinc.com,
+        quic_vpulyala@quicinc.com,
+        Krishna Kurapati <quic_kriskura@quicinc.com>
+Subject: Re: [v4 2/3] phy: qcom-snps: Add support for overriding phy tuning
+ parameters
+Message-ID: <202205120425.gScyEI7N-lkp@intel.com>
+References: <1652282793-5580-3-git-send-email-quic_kriskura@quicinc.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1652282793-5580-3-git-send-email-quic_kriskura@quicinc.com>
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 5/11/2022 10:16 AM, Miquel Raynal wrote:
+Hi Krishna,
 
->>>> This is essentially the same code as proposed by NOGUCHI Hiroshi
->>>> <drvlabo@gmail.com> here:  
->>> I would credit Hiroshi with a Suggested-by at least  
->> I read submitting patches rules again and thought that Signed-off-by is
->> suitable for this case. Is this ok?
-> Either you take his work almost like it is and he must be the author
-> *and* the first signed-off-by line, or you take the authorship if you
-> think you did enough modifications to the code and in this case you can
-> either credit him with a suggested-by before your signed-off, or you
-> can credit him with a co-developed-by + his signed-off and then yours.
+Thank you for the patch! Perhaps something to improve:
 
-Thank you for clarification! My modifications were quite small:
- - Remove redundant braces and logical NOT operator
- - Define pr_fmt
- - Replace kcalloc by kzalloc
- - Use of_get_child_count() and alloc big enough array before the
-   for_each_child_of_node()
+[auto build test WARNING on robh/for-next]
+[also build test WARNING on krzk/for-next linus/master v5.18-rc6 next-20220511]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
 
-Therefore, I prefer to keep the authorship of the original author (NOGUCHI Hiroshi). 
+url:    https://github.com/intel-lab-lkp/linux/commits/Krishna-Kurapati/Add-QCOM-SNPS-PHY-overriding-params-support/20220511-232858
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+config: m68k-allyesconfig (https://download.01.org/0day-ci/archive/20220512/202205120425.gScyEI7N-lkp@intel.com/config)
+compiler: m68k-linux-gcc (GCC) 11.3.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/48c46f24873c92d3e16904af9e654962d0b923f1
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Krishna-Kurapati/Add-QCOM-SNPS-PHY-overriding-params-support/20220511-232858
+        git checkout 48c46f24873c92d3e16904af9e654962d0b923f1
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.3.0 make.cross W=1 O=build_dir ARCH=m68k SHELL=/bin/bash drivers/phy/qualcomm/
 
-Patch is really good and was successfully tested on the hundreds of Sercomm devices (5.4, 5.10, 5.15 Kernel). My motivation for upstreaming is work under official support for these devices in OpenWrt.
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
 
-What are the next steps from my side in this case? Should I wait for review of this patch here (Link: https://lore.kernel.org/linux-mtd/20220510162655.21011-1-csharper2005@gmail.com/T/#u
-) or do I need to do something additionally (for example, send updated set v5 with Acked-by from Krzysztof in the first patch)? 
+All warnings (new ones prefixed by >>):
 
-And sorry for the many questions... I haven't fully mastered the Linux change management process and best practices yet.
+   drivers/phy/qualcomm/phy-qcom-snps-femto-v2.c: In function 'qcom_snps_hsphy_read_override_param_seq':
+>> drivers/phy/qualcomm/phy-qcom-snps-femto-v2.c:541:42: warning: initialization discards 'const' qualifier from pointer target type [-Wdiscarded-qualifiers]
+     541 |         struct override_param_map *cfg = of_device_get_match_data(dev);
+         |                                          ^~~~~~~~~~~~~~~~~~~~~~~~
 
-> Thanks,
-> Miquèl
+
+vim +/const +541 drivers/phy/qualcomm/phy-qcom-snps-femto-v2.c
+
+   534	
+   535	static void qcom_snps_hsphy_read_override_param_seq(struct device *dev)
+   536	{
+   537		struct device_node *node = dev->of_node;
+   538		s32 val;
+   539		int ret, i;
+   540		struct qcom_snps_hsphy *hsphy;
+ > 541		struct override_param_map *cfg = of_device_get_match_data(dev);
+   542	
+   543		hsphy = dev_get_drvdata(dev);
+   544	
+   545		for (i = 0; i < ARRAY_SIZE(phy_seq_props); i++) {
+   546			ret = of_property_read_s32(node, phy_seq_props[i], &val);
+   547			if (!ret) {
+   548				dev_dbg(&hsphy->phy->dev, "Read param: %s val: %d\n",
+   549							phy_seq_props[i], val);
+   550				qcom_snps_hsphy_override_param_update_val(cfg[i], val,
+   551							&hsphy->update_seq_cfg[i]);
+   552			}
+   553		}
+   554	}
+   555	
 
 -- 
-Best regards,
-Mikhail
-
+0-DAY CI Kernel Test Service
+https://01.org/lkp
