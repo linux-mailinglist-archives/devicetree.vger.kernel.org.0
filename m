@@ -2,72 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CDB2F523A4D
-	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 18:28:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 06509523A69
+	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 18:34:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344734AbiEKQ24 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 May 2022 12:28:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51774 "EHLO
+        id S1344836AbiEKQeS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 May 2022 12:34:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44378 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233848AbiEKQ2z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 May 2022 12:28:55 -0400
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97F862380E0
-        for <devicetree@vger.kernel.org>; Wed, 11 May 2022 09:28:54 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id i27so5126827ejd.9
-        for <devicetree@vger.kernel.org>; Wed, 11 May 2022 09:28:54 -0700 (PDT)
+        with ESMTP id S1344818AbiEKQeJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 May 2022 12:34:09 -0400
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9FE7A239D9D
+        for <devicetree@vger.kernel.org>; Wed, 11 May 2022 09:34:06 -0700 (PDT)
+Received: by mail-ej1-x631.google.com with SMTP id i27so5155149ejd.9
+        for <devicetree@vger.kernel.org>; Wed, 11 May 2022 09:34:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=QqzHC4zviczliZl2lLCxrl5rJkRbECBgInAGwGkD9yg=;
-        b=aGEFad1EDE0DpwKvGqYp9ytIwe1hZZbJM5cXMCKj0eWfdc1tZurMgVXSuUztlCVnft
-         vUlxjPa2RxbThLg9fJVZiOZA/be0z/jCvUuheZsVEvMi6dCVYoK4y2fz7W7VSlPrgDQa
-         Y9BI/mX6xu5cafzHd52vqZIo33+AW1NaZ4uUmvHetgRFBp9dv0MnQLQKqcZOiPaGsz8R
-         yZFi3rW/+ogXRT2DpEvPAq0cy5qT5mkHg1pBIezbuMWX1en1nsGLS41cLFt6aTA+mDjh
-         /J+PiIGFzDFcuqIoh/I0DZltweiP2qNS5DhhCSZlDc7ySAWJ1vLGQYiYSaqyOuPJYEgZ
-         fXng==
+        bh=X1iafU9w9HibEKsV7xZQm5z++dkHC0xXg4frhDarPh8=;
+        b=B9Uw9wQQjPnoVHBln/eXPzgTlYXGEZ24QaSAUzzNYCocm/U8kan54zP85xdPM1eZAa
+         milg5R9lfno9eKeJnwaQZt9oZ23h6xqEJOxXXHU/U9rQPvqny3eRi/bZ8HvTpDZskv6f
+         sjTv+O28qv/u0uEzVOH1PEeJsiGbm5Dl9ntCKo2VxsG5mzvDxo2bJ1stJdtlxYrk/pV7
+         7Fq5ueUTuY8Zs/B2NmLACKIAiMPKTq5eFnE+g7rpX8uZGBJaLlCESQThqbdTNmFCX8XP
+         RxJ7Yg7UKEL+9eb6dm0G5FYx/WNO4e6QUgP8yGsGJLTQBC6tUShdelq3Q9RnVV9N3h43
+         CjCw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=QqzHC4zviczliZl2lLCxrl5rJkRbECBgInAGwGkD9yg=;
-        b=eUc86pJ6lMC+m+QCYNUJQ9Ut2DDNGky8Q729k6OoQL9d2gi1OWAyixYGLTqrRqAWJr
-         dS4SJ+qlgcQs/KD5zxXF0rzZwZPjYV4ESO+07HP29qewraIYpm5m5ZxWhxEVQTomlqCz
-         V+b6cg3FEoiVHkO3/LKqnGeCmDfOgIQqyxYsZnWbP/2ERhinNnZ2CEkGTq6vOMb4gMcg
-         MChl8+lcbx1g61C7/ZJScNlYNQOhoqbDJYZlLE8EO0AXgsv/yKwXp/aIHBfLTGNHFWCa
-         twW1nwbb0ZxZjiy6RH3hbSRDuYJL018uC6wMnc8FWmhjF8TxBl4hXTWcog0wv9aUh8gu
-         3Q8Q==
-X-Gm-Message-State: AOAM530iTVC7XkxtnDpY0QmAWEsWnxAjFDA6I5th08I2lnXbFmq1LrFX
-        QWlM+UKmib3151+mbFZk/03DLG80thLWbff/
-X-Google-Smtp-Source: ABdhPJza79RRbAKYTDu5tTXN4HO0mglLsTFqQ57AwDP/1BmnOVX2fWPwZq7D4wi4X8xf/GlOEW8CHg==
-X-Received: by 2002:a17:907:94c4:b0:6f9:f69f:2fd5 with SMTP id dn4-20020a17090794c400b006f9f69f2fd5mr16811024ejc.347.1652286533120;
-        Wed, 11 May 2022 09:28:53 -0700 (PDT)
+        bh=X1iafU9w9HibEKsV7xZQm5z++dkHC0xXg4frhDarPh8=;
+        b=nwRj2ZR346KD0YeENmDnV6xh2xMR1fw6r5WKN6YI1PRB192aadS2SMax7ezJxuUxG8
+         YL1A9EUgG5TlS38X2U65iFHvtNnOAF4fSqBN+8RTCzRDPOPR6Tp0LvMpSmWYmFJESerl
+         965mN+CXU6BmJb2YlBNSmb9pwaBlNx9OX1L4wUVwiOscSBCRGDiC4d8dLe45hf75QbZj
+         e3+Q9BNXuIEZiztRFiDb/XUoP5/golUrHTrKiIfhxteLhQYa9Kf8ixP5JNenpRtlF11u
+         l9VPgrnN/e8fGAuAk0hoygRZgmexGfZLgIGQyBcevA3f2EfqdrioKGAlOHAI7BA+ww7M
+         FoLw==
+X-Gm-Message-State: AOAM533tuHEfqGO/KjMYGSccd4sQuTvVdv/puiiEuoA0GXFEo/TPBbcq
+        vxFexeseNdNXDzCf7xTaqeukvA==
+X-Google-Smtp-Source: ABdhPJzCPDgGc/RsgVEhqtsm8HLW56qr5flZ2YiMoJ2hgzHNSm3o2A11UbEsqX9Z5X9WejdqezUvEA==
+X-Received: by 2002:a17:907:1c8e:b0:6f4:e24f:20e0 with SMTP id nb14-20020a1709071c8e00b006f4e24f20e0mr25175564ejc.227.1652286845508;
+        Wed, 11 May 2022 09:34:05 -0700 (PDT)
 Received: from [192.168.0.155] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id o9-20020aa7c7c9000000b00427afbbf5e8sm1398908eds.11.2022.05.11.09.28.52
+        by smtp.gmail.com with ESMTPSA id l9-20020aa7c3c9000000b0042617ba6388sm1391453edr.18.2022.05.11.09.34.03
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 11 May 2022 09:28:52 -0700 (PDT)
-Message-ID: <d7f124a7-a338-8ada-8d68-9434059db9fc@linaro.org>
-Date:   Wed, 11 May 2022 18:28:51 +0200
+        Wed, 11 May 2022 09:34:04 -0700 (PDT)
+Message-ID: <5c498985-64bb-b8ba-3e77-9cdb36dd1f16@linaro.org>
+Date:   Wed, 11 May 2022 18:34:03 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.8.1
-Subject: Re: [PATCH V2 1/2] dt-bindings: rtc: Add TI K3 RTC description
+Subject: Re: [PATCH v6 1/3] dt-bindings: marvell: Document the AC5/AC5X
+ compatibles
 Content-Language: en-US
-To:     Nishanth Menon <nm@ti.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Alessandro Zummo <a.zummo@towertech.it>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-rtc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Andrew Davis <afd@ti.com>
-References: <20220511002600.27964-1-nm@ti.com>
- <20220511002600.27964-2-nm@ti.com>
+To:     Chris Packham <chris.packham@alliedtelesis.co.nz>,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        catalin.marinas@arm.com, will@kernel.org, andrew@lunn.ch,
+        gregory.clement@bootlin.com, sebastian.hesselbarth@gmail.com,
+        kostap@marvell.com, robert.marko@sartura.hr
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20220510231002.1160798-1-chris.packham@alliedtelesis.co.nz>
+ <20220510231002.1160798-2-chris.packham@alliedtelesis.co.nz>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220511002600.27964-2-nm@ti.com>
+In-Reply-To: <20220510231002.1160798-2-chris.packham@alliedtelesis.co.nz>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -80,85 +79,94 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/05/2022 02:25, Nishanth Menon wrote:
-> This adds the documentation for the devicetree bindings of the Texas
-> Instruments RTC modules on K3 family of SoCs such as AM62x SoCs or
-> newer.
+On 11/05/2022 01:10, Chris Packham wrote:
+> Describe the compatible properties for the Marvell Alleycat5/5X switches
+> with integrated CPUs.
 > 
-> Signed-off-by: Nishanth Menon <nm@ti.com>
+> Alleycat5:
+> * 98DX2538: 24x1G + 2x10G + 2x10G Stack
+> * 98DX2535: 24x1G + 4x1G Stack
+> * 98DX2532: 8x1G + 2x10G + 2x1G Stack
+> * 98DX2531: 8x1G + 4x1G Stack
+> * 98DX2528: 24x1G + 2x10G + 2x10G Stack
+> * 98DX2525: 24x1G + 4x1G Stack
+> * 98DX2522: 8x1G + 2x10G + 2x1G Stack
+> * 98DX2521: 8x1G + 4x1G Stack
+> * 98DX2518: 24x1G + 2x10G + 2x10G Stack
+> * 98DX2515: 24x1G + 4x1G Stack
+> * 98DX2512: 8x1G + 2x10G + 2x1G Stack
+> * 98DX2511: 8x1G + 4x1G Stack
+> 
+> Alleycat5X:
+> * 98DX3500: 24x1G + 6x25G
+> * 98DX3501: 16x1G + 6x10G
+> * 98DX3510: 48x1G + 6x25G
+> * 98DX3520: 24x2.5G + 6x25G
+> * 98DX3530: 48x2.5G + 6x25G
+> * 98DX3540: 12x5G/6x10G + 6x25G
+> * 98DX3550: 24x5G/12x10G + 6x25G
+> 
+> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
 > ---
-> Changes since V1:
-> Krzysztof's comments addressed:
-> * $subject updated
-> * assigned-clocks* dropped
-> * Dropped the un-necessary quotes
-> * Dropped the extra example, which serves no purpose now.
-> * compatible is just an enum now.
 > 
-> V1: https://lore.kernel.org/all/20220412073138.25027-2-nm@ti.com/
+> Notes:
+>     Changes in v6:
+>     - New
 > 
->  .../devicetree/bindings/rtc/ti,k3-rtc.yaml    | 61 +++++++++++++++++++
->  1 file changed, 61 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/rtc/ti,k3-rtc.yaml
+>  .../bindings/arm/marvell/armada-98dx2530.yaml | 27 +++++++++++++++++++
+>  1 file changed, 27 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/arm/marvell/armada-98dx2530.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/rtc/ti,k3-rtc.yaml b/Documentation/devicetree/bindings/rtc/ti,k3-rtc.yaml
+> diff --git a/Documentation/devicetree/bindings/arm/marvell/armada-98dx2530.yaml b/Documentation/devicetree/bindings/arm/marvell/armada-98dx2530.yaml
 > new file mode 100644
-> index 000000000000..444e18df6231
+> index 000000000000..6d9185baf0c5
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/rtc/ti,k3-rtc.yaml
-> @@ -0,0 +1,61 @@
+> +++ b/Documentation/devicetree/bindings/arm/marvell/armada-98dx2530.yaml
+> @@ -0,0 +1,27 @@
 > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/rtc/ti,k3-rtc.yaml#
+> +$id: http://devicetree.org/schemas/arm/marvell/armada-98dx2530.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: Texas Instruments K3 Real Time Clock
+> +title: Marvell Alleycat5/5X Platforms
 > +
 > +maintainers:
-> +  - Nishanth Menon <nm@ti.com>
-> +
-> +description: |
-> +  This RTC appears in the AM62x family of SoCs.
+> +  - Chris Packham <chris.packham@alliedtelesis.co.nz>
 > +
 > +properties:
+> +  $nodename:
+> +    const: '/'
 > +  compatible:
-> +    enum:
-> +      - ti,am62-rtc
+> +    oneOf:
 > +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    items:
-> +      - description: VBUS Interface clock
-> +      - description: 32k Clock source (external or internal).
-> +
-> +  clock-names:
-> +    items:
-> +      - const: vbus
-> +      - const: osc32k
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +  wakeup-source: true
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +  - clock-names
-> +
-> +additionalProperties: false
+> +      - description: Alleycat5 (98DX25xx)
+> +        items:
+> +          - const: marvell,ac5
 
-I didn't brought it earlier (I assumed you used existing RTC examples
-for your schema): why this is not including generic rtc.yaml schema?
-Isn't this a RTC?
+This is confusing and does not look correct. The DTS calls AC5 a SoC and
+you cannot have SoC alone. It's unusable without a SoM or board.
+
+> +
+> +      - description: Alleycat5X (98DX35xx)
+> +        items:
+> +          - const: marvell,ac5x
+> +          - const: marvell,ac5
+
+This entry looks correct except ac5x once is called a SoC and once a
+RD-AC5X board.
+
+It cannot be both. Probably you need third compatible, assuming AC5x is
+a flavor of AC5.
+
+items:
+ - enum:
+     - marvell,rd-ac5x
+ - const: marvell,ac5x
+ - const: marvell,ac5
+
+> +
+> +additionalProperties: true
 
 
 Best regards,
