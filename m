@@ -2,181 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B43F52340D
-	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 15:20:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 59795523441
+	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 15:32:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240474AbiEKNU0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 May 2022 09:20:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44700 "EHLO
+        id S243626AbiEKNct (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 May 2022 09:32:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35558 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243748AbiEKNTz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 May 2022 09:19:55 -0400
-Received: from alexa-out.qualcomm.com (alexa-out.qualcomm.com [129.46.98.28])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7360623E2A3;
-        Wed, 11 May 2022 06:19:51 -0700 (PDT)
+        with ESMTP id S233423AbiEKNcs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 May 2022 09:32:48 -0400
+Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C8EDAFAED;
+        Wed, 11 May 2022 06:32:46 -0700 (PDT)
+Received: by mail-lj1-x22e.google.com with SMTP id 16so2581837lju.13;
+        Wed, 11 May 2022 06:32:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1652275191; x=1683811191;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version;
-  bh=YfT0+uqzgXTXi9KT06D+ODz4hYpjjNqdprrMGF2uXdk=;
-  b=sj2nSzrWC6xq/LR58ixItIuYKRAhL86QE/k61K1uAqlKRuvC5Lf9N3Ai
-   6BCQ112UX3KDrdkVfSuxL5E8WvqVb075EJftH2hfPEB4WlY6hOH3+Ab+X
-   t5oSwsDYZ7xpp4ra0/2L3CNkMVCP7pWqB8KsqJFZTI7FEY4fnY3Tvo8lk
-   E=;
-Received: from ironmsg-lv-alpha.qualcomm.com ([10.47.202.13])
-  by alexa-out.qualcomm.com with ESMTP; 11 May 2022 06:19:51 -0700
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg-lv-alpha.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 May 2022 06:19:50 -0700
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Wed, 11 May 2022 06:19:30 -0700
-Received: from c-skakit-linux.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Wed, 11 May 2022 06:19:26 -0700
-From:   Satya Priya <quic_c_skakit@quicinc.com>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     Lee Jones <lee.jones@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <swboyd@chromium.org>,
-        <quic_collinsd@quicinc.com>, <quic_subbaram@quicinc.com>,
-        <quic_jprakash@quicinc.com>,
-        Satya Priya <quic_c_skakit@quicinc.com>
-Subject: [PATCH V12 9/9] arm64: dts: qcom: sc7280: Add pm8008 support for sc7280-idp
-Date:   Wed, 11 May 2022 18:48:33 +0530
-Message-ID: <1652275113-10277-10-git-send-email-quic_c_skakit@quicinc.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1652275113-10277-1-git-send-email-quic_c_skakit@quicinc.com>
-References: <1652275113-10277-1-git-send-email-quic_c_skakit@quicinc.com>
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Q1H3ona0oTbz59kwRqd1lHBTp5NjIu/8z9f9BOfETVU=;
+        b=DXOECGjzG3bszrjtO/ceGDZrjGl18l8sUxJKu8RYByebsRn/x60DklA5x0HzSBI0/D
+         zywozP4Jmgx3fSCY00Oyz0t48qLY+nAHBzT8nX8drKQsoBDNbn16l2HHRueHPNmzzWfD
+         zu7mLaiu8p6J/ppEl+rKcYp/5E9E83E3Cidh9nWYhhz5JpzEpoM91BBuiYgkscLIr2W1
+         GRPm3RtIWeoVjkj9RlLLrwonPMVC8Dadhr6P8WUsgCLz7bf+L58USaw0uWOqvfFQyevG
+         jia6wei/wDVmVI5JbK6GvfgsA7mDrXhNHnpz29uw9aKOphbBEB78nolexhEyciWukAx3
+         DA6g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Q1H3ona0oTbz59kwRqd1lHBTp5NjIu/8z9f9BOfETVU=;
+        b=Oa/f6nR4ryIToQ6KAQM/LLmxTJUoG8vOvGQxyhGcef5UaVKfG7dxMxTX5WD816m2S2
+         nSZs43ZNDYO75dIgqSAPGyQQn5bIQwdDk6C8C1RloIQSyhhIFnbRpQuAeYSVmjZLqFSL
+         uHzyzNuhsixKTzqOaqZXrLnXQP3s2BNpSv6u/3RXwLDy90aXxrRLBO3K/H2PKVvr+C5T
+         YoGLqXhxQIhCQko+EniL2ChBAOLx2tFrNz+Ht0NoBuhkKwBcFk4ley7gZsAE7uUMlSAo
+         jazsMsLuthODP99wtwAKKME5lVAXnICeAfx2OyqfMyITZ8Gk8T/N47bq4m8gBMwfWRVr
+         Seaw==
+X-Gm-Message-State: AOAM533Ib1p/HjBElktJtcyeFlEkIghsfGf1+GZxTPr9ZZLgULRiftyl
+        Aai+aNgGGl8DGEW23W0yycxWJJ2/lgmWxTMeWkTryUVxSbU=
+X-Google-Smtp-Source: ABdhPJw8Aawwk2AC3bGkcSXGgJuv1DnTvl3XZin4BXHRTdxy10Myt5bWrotb0jdkKhIwPZKrf4nUFjCyH5NabIoQfSU=
+X-Received: by 2002:a2e:a889:0:b0:24f:19df:46ef with SMTP id
+ m9-20020a2ea889000000b0024f19df46efmr17332743ljq.110.1652275964464; Wed, 11
+ May 2022 06:32:44 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20220511115911.54960-1-max.oss.09@gmail.com> <20220511115911.54960-4-max.oss.09@gmail.com>
+ <CAOMZO5AboNfb_E-4QVurZ6UTYephsOakW0QrAU8xRAMe8_zRow@mail.gmail.com>
+In-Reply-To: <CAOMZO5AboNfb_E-4QVurZ6UTYephsOakW0QrAU8xRAMe8_zRow@mail.gmail.com>
+From:   Max Krummenacher <max.oss.09@gmail.com>
+Date:   Wed, 11 May 2022 15:32:33 +0200
+Message-ID: <CAEHkU3U=58qittoNazqXrkYKO9gs7VU3VW_67823fs+dt6r6eA@mail.gmail.com>
+Subject: Re: [PATCH v2 3/4] ARM: dts: imx6qdl-colibri: backlight pwm: Simplify
+ inverted backlight
+To:     Fabio Estevam <festevam@gmail.com>
+Cc:     Max Krummenacher <max.krummenacher@toradex.com>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add pm8008 infra and regulators support for sc7280 idp.
+Hi Fabio
 
-Signed-off-by: Satya Priya <quic_c_skakit@quicinc.com>
-Reviewed-by: Stephen Boyd <swboyd@chromium.org>
----
-Changes in V12:
- - None.
+On Wed, May 11, 2022 at 2:07 PM Fabio Estevam <festevam@gmail.com> wrote:
+>
+> On Wed, May 11, 2022 at 8:59 AM Max Krummenacher <max.oss.09@gmail.com> wrote:
+>
+> >         backlight: backlight {
+> >                 compatible = "pwm-backlight";
+> > -               brightness-levels = <0 127 191 223 239 247 251 255>;
+> > -               default-brightness-level = <1>;
+> > +               brightness-levels = <0 4 8 16 32 64 128 255>;
+> > +               default-brightness-level = <6>;
+>
+> In this patch, you are still changing the brightness levels + passing
+> the polarity.
+>
+> I would suggest that this patch only touches the PWM polarity.
 
-Changes in V11:
- - Add ldos and parent supplies directly under pm8008@8 node.
+I disagree. Just setting the invert without at the same changing the
+brightness-levels does
+change the user experience way more than when one adapts the available
+duty cycles
+at the same time.
 
-Changes in V10:
- - None.
+With the change to use the PWM with inverted polarity the PWM signals
+is inverted to
+how it was before this patch. Keeping the brightness-levels will then
+have a big brightness
+jump from 0 to 127 duty cycle, the other 6 steps will then be barely noticable.
 
-Changes in V9:
- - Added interrupts properties.
+I.e. before the change the brightness for level [0..7] was
+['off', 128/255, 64/255, 32/255, 16/255, 8/255, 4/255, 'off'],
+if one only inverts the polarity it will be
+['off', 128/255, 191/255, 223/255, 239/255, 247/255, 255/255].
+With the proposed patch it will be
+['off', 4/255, 8/255, 16/255, 32/255, 64/255, 128/255, 255/255].
 
-Changes in V8:
- - Add an extra phandle "pm8008_bus" and then include pm8008 dtsi files inside it.
- - Remove output-high from pm8008_active node.
+Max
 
- arch/arm64/boot/dts/qcom/sc7280-idp.dtsi | 66 ++++++++++++++++++++++++++++++++
- 1 file changed, 66 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-index 5eb6689..166812e 100644
---- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-@@ -271,6 +271,63 @@
- 	};
- };
- 
-+pm8008_bus: &i2c1 {
-+	status = "okay";
-+};
-+
-+#include "pm8008.dtsi"
-+
-+&pm8008 {
-+	interrupt-parent = <&tlmm>;
-+	interrupts = <24 IRQ_TYPE_EDGE_RISING>;
-+
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pm8008_active>;
-+
-+	reset-gpios = <&pm8350c_gpios 4 GPIO_ACTIVE_LOW>;
-+
-+	vdd_l1_l2-supply = <&vreg_s8b_1p2>;
-+	vdd_l3_l4-supply = <&vreg_s1b_1p8>;
-+	vdd_l5-supply = <&vreg_bob>;
-+	vdd_l6-supply = <&vreg_bob>;
-+	vdd_l7-supply = <&vreg_bob>;
-+};
-+
-+&pm8008_l1 {
-+	regulator-min-microvolt = <950000>;
-+	regulator-max-microvolt = <1300000>;
-+};
-+
-+&pm8008_l2 {
-+	regulator-min-microvolt = <950000>;
-+	regulator-max-microvolt = <1250000>;
-+};
-+
-+&pm8008_l3 {
-+	regulator-min-microvolt = <1650000>;
-+	regulator-max-microvolt = <3000000>;
-+};
-+
-+&pm8008_l4 {
-+	regulator-min-microvolt = <1504000>;
-+	regulator-max-microvolt = <1600000>;
-+};
-+
-+&pm8008_l5 {
-+	regulator-min-microvolt = <2600000>;
-+	regulator-max-microvolt = <3000000>;
-+};
-+
-+&pm8008_l6 {
-+	regulator-min-microvolt = <2600000>;
-+	regulator-max-microvolt = <3000000>;
-+};
-+
-+&pm8008_l7 {
-+	regulator-min-microvolt = <3000000>;
-+	regulator-max-microvolt = <3544000>;
-+};
-+
- &qfprom {
- 	vcc-supply = <&vreg_l1c_1p8>;
- };
-@@ -383,6 +440,15 @@
- 	drive-strength = <2>;
- };
- 
-+&pm8350c_gpios {
-+	pm8008_active: pm8008-active {
-+		pins = "gpio4";
-+		function = "normal";
-+		bias-disable;
-+		power-source = <0>;
-+	};
-+};
-+
- &qspi_cs0 {
- 	bias-disable;
- };
--- 
-2.7.4
-
+> The next patch could fix the brightness levels.
