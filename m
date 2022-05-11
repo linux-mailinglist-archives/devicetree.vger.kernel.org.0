@@ -2,119 +2,192 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3652D522BC6
-	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 07:35:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 74F36522BCB
+	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 07:38:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237924AbiEKFfN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 May 2022 01:35:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58742 "EHLO
+        id S235645AbiEKFiA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 May 2022 01:38:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40486 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240862AbiEKFfM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 May 2022 01:35:12 -0400
-Received: from lx20.hoststar.hosting (lx20.hoststar.hosting [168.119.41.54])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9121244F2A;
-        Tue, 10 May 2022 22:35:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=emfend.at;
-         s=mail; h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
-        Message-Id:Date:Subject:To:From:Sender:Reply-To:Cc:Content-Type:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-        List-Post:List-Owner:List-Archive;
-        bh=4u/eAvfXIRWynOVm2yX/K2nHB5D3HrlUBcNN2O+qlwI=; b=LZTpFSbGa8ca6fDqhX4S11BFlb
-        J+c5GyB12FVW6SGN9bOTyMCdmWPLY3+Bobwzm+MnZIfZIXiJ/BONqTRtJ7ya6UdgkEUS0begn/vk9
-        es8G4/6ZCSF8svx0zII8THrBZP/Wi8GjRK0s6UrYm6NBk8DkZPd9t9IBizy7sR+NPGQg=;
-Received: from 194-208-208-245.tele.net ([194.208.208.245]:62614 helo=localhost.localdomain)
-        by lx20.hoststar.hosting with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.93)
-        (envelope-from <matthias.fend@emfend.at>)
-        id 1nof02-00Ch9T-W9; Wed, 11 May 2022 07:35:03 +0200
-From:   Matthias Fend <matthias.fend@emfend.at>
-To:     Luca Ceresoli <luca@lucaceresoli.net>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        matthias.fend@emfend.at
-Subject: [PATCH v2 2/2] clk: vc5: Add support for IDT/Renesas VersaClock 5P49V6975
-Date:   Wed, 11 May 2022 07:34:55 +0200
-Message-Id: <20220511053455.360335-2-matthias.fend@emfend.at>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220511053455.360335-1-matthias.fend@emfend.at>
-References: <20220511053455.360335-1-matthias.fend@emfend.at>
+        with ESMTP id S233701AbiEKFh6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 May 2022 01:37:58 -0400
+Received: from mail-vs1-xe33.google.com (mail-vs1-xe33.google.com [IPv6:2607:f8b0:4864:20::e33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B5133B2AF;
+        Tue, 10 May 2022 22:37:56 -0700 (PDT)
+Received: by mail-vs1-xe33.google.com with SMTP id a127so907543vsa.3;
+        Tue, 10 May 2022 22:37:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=99+74zi/ugqpPP/H1BYx5mgxsw+MDJDahwiZMO6/fXg=;
+        b=iSXjFtVdoulAW6NWsq1PlmfC+Qc6T0H6RCPJgN+0OIjZRODULDLwlVSQfCwx2mvpu4
+         LeRNFlmImRZYhJo2Gipt91G9tXQlMJR6esNrSwjqvBDd218CuRg2Ct7WOxdYUoxA3dcy
+         mma0bmpQdUAuxDWaBP4/vx2EshnDFGylyHaeVxK5KWWuW4mZpSOOy0Ogmyd1JaSkxuQg
+         unlANkeTyEalXxWZMCJnsK2WG+XLkJJnMllmD17jQf2zbwj1Yl6Hn4s8ySOGuNUBoc3i
+         si4s7/48IlQJ+tsGWUao50RjPAMdunVkiXKe6wmV9pUS/if4BYYIxycPZe5AqxByEjUE
+         b69g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=99+74zi/ugqpPP/H1BYx5mgxsw+MDJDahwiZMO6/fXg=;
+        b=OoaaEcky3UIAORh7nPF1TaVbpVZW7xQLx+xq6V+GGcybSM/d9lDoSe0fqCWbQYooOl
+         Hpx68uT7zbGA88XX8m0jNBp3ag/8KhKQYSwB6+S+IMeSg70lSNLmQk167RHokcwiXCdK
+         R57lIW+2Gsb/OsqqGD20dBKny+BUNBFJDzyLxqa8rI36GZgGbmy3hJprm2uXaBA9IHnf
+         rIpsx+HfOlrnhKtn38TiKUhyKQkdVlxBsrSbKUgRqQGEoKthQwVKKm8MZrSLytu6+aeM
+         Pg8j9Qc9WFtHq1Zx3Ecf5lQjpCHv+ttWDp5SP9vw9M7uW4VxmdoZ8vOnN9jK7Gh0L6cz
+         Xnsg==
+X-Gm-Message-State: AOAM533qJrhLcYRcMA3k9x9K3uHUkh92JpYZukj/GdJUMRlvpqAs+8AE
+        bXtL0iP9Pvmx/QT2GfkGtu2yocK3z4hfl8YnRg==
+X-Google-Smtp-Source: ABdhPJzGI4xLPZN4cIpW61gkAg41dLMEipuG1mmnFJBEpFDmP97YmzjtAqLMeg6hmzlp8t4UkpaMK8VUfoOjgxnHaNs=
+X-Received: by 2002:a67:b60b:0:b0:32c:e69e:15b3 with SMTP id
+ d11-20020a67b60b000000b0032ce69e15b3mr13088417vsm.2.1652247475469; Tue, 10
+ May 2022 22:37:55 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Score: -0.3
-X-Spam-Bar: /
+References: <20220510091654.8498-1-warp5tw@gmail.com> <20220510091654.8498-8-warp5tw@gmail.com>
+ <Yno7IaBNnR5U2GuF@smile.fi.intel.com>
+In-Reply-To: <Yno7IaBNnR5U2GuF@smile.fi.intel.com>
+From:   Tyrone Ting <warp5tw@gmail.com>
+Date:   Wed, 11 May 2022 13:37:43 +0800
+Message-ID: <CACD3sJYPrQoWzOkOKM5tWuTWS0uEertBSrwMa5QmX0cMAPF4EQ@mail.gmail.com>
+Subject: Re: [PATCH v4 7/9] i2c: npcm: Handle spurious interrupts
+To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc:     avifishman70@gmail.com, tmaimon77@gmail.com, tali.perry1@gmail.com,
+        venture@google.com, yuenn@google.com, benjaminfair@google.com,
+        robh+dt@kernel.org, wsa@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, jarkko.nikula@linux.intel.com,
+        semen.protsenko@linaro.org, sven@svenpeter.dev, jsd@semihalf.com,
+        lukas.bulwahn@gmail.com, olof@lixom.net, arnd@arndb.de,
+        tali.perry@nuvoton.com, Avi.Fishman@nuvoton.com,
+        tomer.maimon@nuvoton.com, KWLIU@nuvoton.com, JJLIU0@nuvoton.com,
+        kfting@nuvoton.com, openbmc@lists.ozlabs.org,
+        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Update IDT VersaClock 5 driver to support 5P49V6975. The 5P49V6975 is a
-member of the VersaClock 6E family and supports four fractional dividers
-(FODs), five clock outputs and an internal oscillator.
+Hi Andy:
 
-Signed-off-by: Matthias Fend <matthias.fend@emfend.at>
----
- drivers/clk/clk-versaclock5.c | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+Thank you for your comments and they will be addressed.
 
-diff --git a/drivers/clk/clk-versaclock5.c b/drivers/clk/clk-versaclock5.c
-index e7be3e54b9be..04fe64d0bd10 100644
---- a/drivers/clk/clk-versaclock5.c
-+++ b/drivers/clk/clk-versaclock5.c
-@@ -153,6 +153,7 @@ enum vc5_model {
- 	IDT_VC5_5P49V5935,
- 	IDT_VC6_5P49V6901,
- 	IDT_VC6_5P49V6965,
-+	IDT_VC6_5P49V6975,
- };
- 
- /* Structure to describe features of a particular VC5 model */
-@@ -725,6 +726,7 @@ static int vc5_map_index_to_output(const enum vc5_model model,
- 	case IDT_VC5_5P49V5935:
- 	case IDT_VC6_5P49V6901:
- 	case IDT_VC6_5P49V6965:
-+	case IDT_VC6_5P49V6975:
- 	default:
- 		return n;
- 	}
-@@ -1214,6 +1216,13 @@ static const struct vc5_chip_info idt_5p49v6965_info = {
- 	.flags = VC5_HAS_BYPASS_SYNC_BIT,
- };
- 
-+static const struct vc5_chip_info idt_5p49v6975_info = {
-+	.model = IDT_VC6_5P49V6975,
-+	.clk_fod_cnt = 4,
-+	.clk_out_cnt = 5,
-+	.flags = VC5_HAS_BYPASS_SYNC_BIT | VC5_HAS_INTERNAL_XTAL,
-+};
-+
- static const struct i2c_device_id vc5_id[] = {
- 	{ "5p49v5923", .driver_data = IDT_VC5_5P49V5923 },
- 	{ "5p49v5925", .driver_data = IDT_VC5_5P49V5925 },
-@@ -1221,6 +1230,7 @@ static const struct i2c_device_id vc5_id[] = {
- 	{ "5p49v5935", .driver_data = IDT_VC5_5P49V5935 },
- 	{ "5p49v6901", .driver_data = IDT_VC6_5P49V6901 },
- 	{ "5p49v6965", .driver_data = IDT_VC6_5P49V6965 },
-+	{ "5p49v6975", .driver_data = IDT_VC6_5P49V6975 },
- 	{ }
- };
- MODULE_DEVICE_TABLE(i2c, vc5_id);
-@@ -1232,6 +1242,7 @@ static const struct of_device_id clk_vc5_of_match[] = {
- 	{ .compatible = "idt,5p49v5935", .data = &idt_5p49v5935_info },
- 	{ .compatible = "idt,5p49v6901", .data = &idt_5p49v6901_info },
- 	{ .compatible = "idt,5p49v6965", .data = &idt_5p49v6965_info },
-+	{ .compatible = "idt,5p49v6975", .data = &idt_5p49v6975_info },
- 	{ },
- };
- MODULE_DEVICE_TABLE(of, clk_vc5_of_match);
--- 
-2.25.1
+Andy Shevchenko <andriy.shevchenko@linux.intel.com> =E6=96=BC 2022=E5=B9=B4=
+5=E6=9C=8810=E6=97=A5 =E9=80=B1=E4=BA=8C =E4=B8=8B=E5=8D=886:15=E5=AF=AB=E9=
+=81=93=EF=BC=9A
+>
+> On Tue, May 10, 2022 at 05:16:52PM +0800, Tyrone Ting wrote:
+> > From: Tali Perry <tali.perry1@gmail.com>
+> >
+> > On some platforms in rare cases (1 to 100,000 transactions),
+> > the i2c gets a spurious interrupt which means that we enter an interrup=
+t
+> > but in the interrupt handler we don't find any status bit that points t=
+o
+> > the reason we got this interrupt.
+> >
+> > This may be a case of a rare HW issue or signal integrity issue that is
+> > still under investigation.
+> >
+> > In order to overcome this we are doing the following:
+> > 1. Disable incoming interrupts in master mode only when slave mode is n=
+ot
+> >    enabled.
+> > 2. Clear end of busy (EOB) after every interrupt.
+> > 3. Clear other status bits (just in case since we found them cleared)
+> > 4. Return correct status during the interrupt that will finish the
+> >    transaction.
+> >
+> > On next xmit transaction if the bus is still busy the master will issue=
+ a
+> > recovery process before issuing the new transaction.
+>
+> ...
+>
+> > +     /* clear status bits for spurious interrupts */
+>
+> Clear
+>
+> ...
+>
+> > +     /*
+> > +      * if irq is not one of the above, make sure EOB is disabled and =
+all
+>
+> If
+>
+> > +      * status bits are cleared.
+> > +      */
+>
+> ...
+>
+> > +             /* verify no status bits are still set after bus is relea=
+sed */
+>
+> Verify
+>
+> ...
+>
+> > +     /* check HW is OK: SDA and SCL should be high at this point. */
+>
+> Check
+>
+> ...
+>
+> > +     if ((npcm_i2c_get_SDA(&bus->adap) =3D=3D 0) ||
+> > +         (npcm_i2c_get_SCL(&bus->adap) =3D=3D 0)) {
+>
+> This fits one line
+>
+> > +             dev_err(bus->dev, "I2C%d init fail: lines are low", bus->=
+num);
+> > +             dev_err(bus->dev, "SDA=3D%d SCL=3D%d", npcm_i2c_get_SDA(&=
+bus->adap),
+> > +                     npcm_i2c_get_SCL(&bus->adap));
+>
+> No '\n' at the end of each?!
+>
+> > +             return -ENXIO;
+> > +     }
+>
+> ...
+>
+> > +     /* clear status bits for spurious interrupts */
+>
+> Clear
+>
+> ...
+>
+> > +     /* after any xfer, successful or not, stall and EOB must be disab=
+led */
+>
+> After
+>
+> ...
+>
+> Maybe you chose the small letter for one-liner comments, but I see even i=
+n the
+> original code the inconsistent style. Please, add an explanation to the c=
+over
+> letter and follow it, assuming you add the patch at the end of the series=
+ that
+> makes comment style consistent (for the one-liners, for the multi-line co=
+mments
+> we have a clear understanding about the style).
+>
+> --
+> With Best Regards,
+> Andy Shevchenko
+>
+>
 
+Best Regards,
+Tyrone
