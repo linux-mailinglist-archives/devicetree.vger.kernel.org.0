@@ -2,139 +2,295 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B1F9523266
-	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 14:03:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A653523291
+	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 14:06:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235216AbiEKMDl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 May 2022 08:03:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55078 "EHLO
+        id S233798AbiEKMFs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 May 2022 08:05:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34904 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233231AbiEKMDk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 May 2022 08:03:40 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 4B2FA69492
-        for <devicetree@vger.kernel.org>; Wed, 11 May 2022 05:03:39 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 1C53F1042
-        for <devicetree@vger.kernel.org>; Wed, 11 May 2022 05:03:39 -0700 (PDT)
-Received: from e110455-lin.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id CB0C43F66F
-        for <devicetree@vger.kernel.org>; Wed, 11 May 2022 05:03:38 -0700 (PDT)
-Date:   Wed, 11 May 2022 13:03:36 +0100
-From:   Liviu Dudau <liviu.dudau@arm.com>
-To:     Andre Przywara <andre.przywara@arm.com>
-Cc:     Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        David Airlie <airlied@linux.ie>, Will Deacon <will@kernel.org>,
-        dri-devel@lists.freedesktop.org, Rob Herring <robh+dt@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 10/11] dt-bindings: display: convert Arm Mali-DP to DT
- schema
-Message-ID: <YnumGEilUblhBx8E@e110455-lin.cambridge.arm.com>
-References: <20220506140533.3566431-1-andre.przywara@arm.com>
- <20220506140533.3566431-11-andre.przywara@arm.com>
- <1651876793.707852.2407424.nullmailer@robh.at.kernel.org>
- <20220509144901.26707a1d@donnerap.cambridge.arm.com>
+        with ESMTP id S241417AbiEKMFn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 May 2022 08:05:43 -0400
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 847752457B9;
+        Wed, 11 May 2022 05:05:28 -0700 (PDT)
+Received: by mail-ej1-x62a.google.com with SMTP id ks9so3624986ejb.2;
+        Wed, 11 May 2022 05:05:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=cRZONrGo4m4Zm2BqEddQgsDFQo2tMgIMWJHr5BUt6uo=;
+        b=HTw8xfh98P0wFyCqbCo+SYlgB3C2HguxWqDe64GMHYYWUFCmjLFjjqRQbJ3rOCF4db
+         lhhSmr/k+HNBqpLnb1Fjvc4jFhvDw0b6Dd1Ir9eW3mWzlpUtbhjzsRaxivkZeUXP4EEo
+         hA/WgSUN69y77Cq6YOYx6k2H9fzROtOCroCxqvxh9GP/yFpuLQalN2jwH4Hu0Hzcr4nF
+         U5/wVcSQwMCckyvRFw/s+NUMc7PxSUA8TqBjtv9HB4cNUuSe+YzVHn0pr0rN+1sMe0sA
+         4TQSb6CnM+39U5ad/FJhoO4dd+YSeVxLRBsIGrN4yD7TnJH3ZBaTB3wCRuPLECyGJpxB
+         FGpw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=cRZONrGo4m4Zm2BqEddQgsDFQo2tMgIMWJHr5BUt6uo=;
+        b=uRnFsYdu2UECuSbBy5dDQTWRWDbVeXNBfpDhxuvvjG9kA9XJUKfiJqDwYiuTyc6N/8
+         +5uhz7VK9c4q847XyAPgZP42cRkdqNi6+jfsdHdJuaKqgsvy+U6Hmuo2Sk8memNNOq3w
+         JzEiPQ53UzlC8kZ7GIfaIFthWR7P6mI0IwRWTFiovEosD8A8rymcxqNezMbKEFpN38gt
+         HndvPIvmIrqAZyxcpsRRtWWbhDwWbeTbGZFx1hN/WDeS/35dV+c0/vNq/Cg6qN8xkPTI
+         BzPQnZXLvhc4dSowg6egt5D/ulTenxG0ET8eVMMcym5MbjPslJTl86YOHACXZSaf6Cph
+         lnjQ==
+X-Gm-Message-State: AOAM533Oy/Xii7sPXXIG2tC5oYx6neAgi450u/CeFPLfOm6MnD336s++
+        67I4ORzHJlcMduGS7v5qcsoDaotuKAL7uTP0KxM=
+X-Google-Smtp-Source: ABdhPJzd1HUuROh8FWEqtZFE3BJGucDjSyp7qGUusUQZeLxhSifLp1o9HdqKMMpaz9LsFZesf2zKVx2JcxMlzEeF06w=
+X-Received: by 2002:a17:907:3e8c:b0:6f4:4fdb:6f24 with SMTP id
+ hs12-20020a1709073e8c00b006f44fdb6f24mr24271617ejc.44.1652270726904; Wed, 11
+ May 2022 05:05:26 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220509144901.26707a1d@donnerap.cambridge.arm.com>
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+References: <20220511094024.175994-1-shreeya.patel@collabora.com> <20220511094024.175994-4-shreeya.patel@collabora.com>
+In-Reply-To: <20220511094024.175994-4-shreeya.patel@collabora.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Wed, 11 May 2022 14:04:50 +0200
+Message-ID: <CAHp75VdfCh0nTc1cYZYxKmvYPfUMg8W4-KREu5RisP=cGykg+Q@mail.gmail.com>
+Subject: Re: [PATCH v4 3/3] iio: light: Add support for ltrf216a sensor
+To:     Shreeya Patel <shreeya.patel@collabora.com>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>, Zhigang.Shi@liteon.com,
+        krisman@collabora.com, linux-iio <linux-iio@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Collabora Kernel ML <kernel@collabora.com>,
+        alvaro.soliverez@collabora.com
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 09, 2022 at 02:49:01PM +0100, Andre Przywara wrote:
-> On Fri, 06 May 2022 17:39:53 -0500
-> Rob Herring <robh@kernel.org> wrote:
-> 
-> > On Fri, 06 May 2022 15:05:32 +0100, Andre Przywara wrote:
-> > > The Arm Mali Display Processor (DP) 5xx/6xx is a series of IP that scans
-> > > out a framebuffer and hands the pixels over to a digital signal encoder.
-> > > It supports multiple layers, scaling and rotation.
-> > > 
-> > > Convert the existing DT binding to DT schema.
-> > > 
-> > > Signed-off-by: Andre Przywara <andre.przywara@arm.com>
-> > > ---
-> > >  .../bindings/display/arm,malidp.txt           |  68 ----------
-> > >  .../bindings/display/arm,malidp.yaml          | 116 ++++++++++++++++++
-> > >  2 files changed, 116 insertions(+), 68 deletions(-)
-> > >  delete mode 100644 Documentation/devicetree/bindings/display/arm,malidp.txt
-> > >  create mode 100644 Documentation/devicetree/bindings/display/arm,malidp.yaml
-> > >   
-> > 
-> > Running 'make dtbs_check' with the schema in this patch gives the
-> > following warnings. Consider if they are expected or the schema is
-> > incorrect. These may not be new warnings.
-> > 
-> > Note that it is not yet a requirement to have 0 warnings for dtbs_check.
-> > This will change in the future.
-> > 
-> > Full log is available here: https://patchwork.ozlabs.org/patch/
-> > 
-> > 
-> > display@f080000: 'arm,malidp-arqos-value' does not match any of the regexes: 'pinctrl-[0-9]+'
-> > 	arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-kbox-a-230-ls.dtb
-> > 	arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28.dtb
-> > 	arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var1.dtb
-> > 	arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var2.dtb
-> > 	arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var3-ads2.dtb
-> > 	arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var4.dtb
-> > 	arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dtb
-> > 	arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dtb
-> 
-> Ah, good point, I missed that directory when testing. I came up with the
-> following change on top:
-> 
-> ==============================
-> diff --git a/Documentation/devicetree/bindings/display/arm,malidp.yaml b/Documentation/devicetree/bindings/display/arm,malidp.yaml
-> index ea7b7100548bf..bc0d3f3ab2b75 100644
-> --- a/Documentation/devicetree/bindings/display/arm,malidp.yaml
-> +++ b/Documentation/devicetree/bindings/display/arm,malidp.yaml
-> @@ -76,6 +76,14 @@ properties:
->      description:
->        integer describing the ARQoS levels of DP500's QoS signaling
->  
-> +  arm,malidp-arqos-value:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description:
-> +      Quality-of-Service value for the display engine FIFOs, to write
-> +      into the RQOS register of the DP500.
-> +      See the ARM Mali-DP500 TRM for details on the encoding.
-> +      If omitted, the RQOS register will not be changed.
+On Wed, May 11, 2022 at 1:11 PM Shreeya Patel
+<shreeya.patel@collabora.com> wrote:
+>
+> From: Zhigang Shi <Zhigang.Shi@liteon.com>
+>
+> Add initial support for ltrf216a ambient light sensor.
+
+> Datasheet: gitlab.steamos.cloud/shreeya/iio/-/blob/main/LTRF216A.pdf
+
+What is the protocol? https? git? ssh?
+
+...
+
+> +obj-$(CONFIG_LTRF216A)         += ltrf216a.o
+
+I believe alphabetically it goes after the below one.
+
+>  obj-$(CONFIG_LTR501)           += ltr501.o
+
+...
+
+> +#include <linux/bitfield.h>
+
++ bits.h
+
+...
+
+> +static const int ltrf216a_int_time_available[5][2] = {
+
+You may drop 5 here and below, correct?
+
+> +       {0, 400000},
+> +       {0, 200000},
+> +       {0, 100000},
+> +       {0, 50000},
+> +       {0, 25000},
+> +};
+
+...
+
+> +/* open air. need to update based on TP transmission rate. */
+
+I didn't get the small letters in conjunction with the period in the
+middle of the phrase. Can you update grammar or spell the shortened
+form of "air." fully?
+
+> +#define WIN_FAC        1
+
+Can it be namespaced?
+
+...
+
+> +static const struct iio_chan_spec ltrf216a_channels[] = {
+> +       {
+> +               .type = IIO_LIGHT,
+> +               .info_mask_separate =
+> +                       BIT(IIO_CHAN_INFO_PROCESSED) |
+> +                       BIT(IIO_CHAN_INFO_INT_TIME),
+> +               .info_mask_separate_available =
+> +                       BIT(IIO_CHAN_INFO_INT_TIME),
+> +       }
+
++ Comma.
+
+> +};
+
+...
+
+> +static int ltrf216a_set_int_time(struct ltrf216a_data *data, int itime)
+> +{
+> +       int i, ret, index = -1;
+
+Redundant assignment, and actually not needed variable 'index', see below.
+
+> +       u8 reg_val;
+> +
+> +       for (i = 0; i < ARRAY_SIZE(ltrf216a_int_time_available); i++) {
+> +               if (ltrf216a_int_time_available[i][1] == itime) {
+> +                       index = i;
+> +                       break;
+> +               }
+
+if (...)
+  break;
+
+> +       }
+
 > +
 
-Actually, this needs to replace 'arm,malidp-arqos-high-level'. Commit ce6eb0253cba
-("dt/bindings: display: Add optional property node define for Mali DP500") is
-introducing the wrong property (it mentions 'arm,malidp-arqos-value' in the commit
-message). There is no user of 'arm,malidp-arqos-high-level' in the kernel.
+You can drop this blank line in order to show the tough connection
+between for-loop and if-cond.
 
-Appologies for signing off on the wrong patch content at that time.
+> +       if (index < 0)
+> +               return -EINVAL;
 
-Best regards,
-Liviu
+if (i == ARRAY_SIZE(...))
+  return ...
 
->    port:
->      $ref: /schemas/graph.yaml#/properties/port
->      unevaluatedProperties: false
-> ==============================
-> 
-> Cheers,
-> Andre
+And use i here, which actually can be typed as unsigned int above.
+
+> +       reg_val = ltrf216a_int_time_reg[index][1];
+> +       data->int_time_fac = ltrf216a_int_time_reg[index][0];
+> +
+> +       ret = i2c_smbus_write_byte_data(data->client, LTRF216A_ALS_MEAS_RES, reg_val);
+> +       if (ret < 0)
+> +               return ret;
+> +
+> +       data->int_time = itime;
+> +
+> +       return 0;
+> +}
+
+...
+
+> +static int ltrf216a_read_data(struct ltrf216a_data *data, u8 addr)
+> +{
+> +       int ret = -1, tries = 25;
+
+No need to assign ret. And please avoid assigning returned values to
+some negative values that may be misinterpreted as error codes.
+
+> +       u8 buf[3];
+> +
+> +       while (tries--) {
+> +               ret = i2c_smbus_read_byte_data(data->client, LTRF216A_MAIN_STATUS);
+> +               if (ret < 0)
+> +                       return ret;
+> +               if (ret & LTRF216A_ALS_DATA_STATUS)
+> +                       break;
+> +               msleep(20);
+> +       }
+
+NIH of a macro from iopoll.h. Use the appropriate one.
+
+> +       ret = i2c_smbus_read_i2c_block_data(data->client, addr, sizeof(buf), buf);
+> +       if (ret < 0)
+> +               return ret;
+> +
+> +       return get_unaligned_le24(&buf[0]);
+> +}
+
+...
+
+> +       greendata = ltrf216a_read_data(data, LTRF216A_ALS_DATA_0);
+> +       cleardata = ltrf216a_read_data(data, LTRF216A_CLEAR_DATA_0);
+> +
+> +       if (greendata < 0 || cleardata < 0)
+
+> +               return -EINVAL;
+
+I am expecting that each of them may contain the actual error code,
+so, please decouple the condition and return the actual error codes.
+
+...
+
+> +       switch (mask) {
+> +       case IIO_CHAN_INFO_PROCESSED:
+> +               ret = ltrf216a_get_lux(data);
+> +               if (ret < 0) {
+
+> +                       mutex_unlock(&data->mutex);
+> +                       return ret;
+
+Wouldn't 'break' suffice?
+
+> +               }
+> +               *val = ret;
+> +               ret = IIO_VAL_INT;
+> +               break;
+> +       case IIO_CHAN_INFO_INT_TIME:
+> +               ret = ltrf216a_get_int_time(data, val, val2);
+> +               break;
+> +       default:
+> +               ret = -EINVAL;
+
+Missed break;.
+
+> +       }
+> +
+> +       mutex_unlock(&data->mutex);
+> +
+> +       return ret;
+
+...
+
+> +       ret = ltrf216a_init(indio_dev);
+> +       if (ret < 0)
+> +               return dev_err_probe(&client->dev, ret,
+> +                                    "ltrf216a chip init failed\n");
+
+One line? Esp. if you create a temporary variable to hold a device pointer.
+
+...
+
+> +       ret = devm_add_action_or_reset(&client->dev, als_ltrf216a_disable,
+> +                                      indio_dev);
+
+Ditto.
+
+> +       if (ret < 0)
+> +               return ret;
+
+...
+
+> +static struct i2c_driver ltrf216a_driver = {
+> +       .driver = {
+> +               .name = LTRF216A_DRV_NAME,
+> +               .pm = pm_sleep_ptr(&ltrf216a_pm_ops),
+> +               .of_match_table = ltrf216a_of_match,
+> +       },
+> +       .probe_new      = ltrf216a_probe,
+> +       .id_table       = ltrf216a_id,
+> +};
+
+> +
+
+Redundant blank line.
+
+> +module_i2c_driver(ltrf216a_driver);
 
 -- 
-====================
-| I would like to |
-| fix the world,  |
-| but they're not |
-| giving me the   |
- \ source code!  /
-  ---------------
-    ¯\_(ツ)_/¯
+With Best Regards,
+Andy Shevchenko
