@@ -2,92 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D9C3E5232B6
-	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 14:10:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 582A1523330
+	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 14:37:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237778AbiEKMJ6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 May 2022 08:09:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49416 "EHLO
+        id S241788AbiEKMhS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 May 2022 08:37:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39540 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242003AbiEKMJE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 May 2022 08:09:04 -0400
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57CBFAE25C;
-        Wed, 11 May 2022 05:07:13 -0700 (PDT)
-Received: by mail-ed1-x530.google.com with SMTP id ba17so2297645edb.5;
-        Wed, 11 May 2022 05:07:13 -0700 (PDT)
+        with ESMTP id S230411AbiEKMhS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 May 2022 08:37:18 -0400
+Received: from mail-vk1-xa29.google.com (mail-vk1-xa29.google.com [IPv6:2607:f8b0:4864:20::a29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EED7227FF8
+        for <devicetree@vger.kernel.org>; Wed, 11 May 2022 05:37:15 -0700 (PDT)
+Received: by mail-vk1-xa29.google.com with SMTP id t12so1084069vkt.5
+        for <devicetree@vger.kernel.org>; Wed, 11 May 2022 05:37:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=WxIW6h+xypAi4uHDqYvQlCn4iNNtT8TT6Dj5XI5z4OU=;
-        b=BYsmLskVQcQq1JrIuIh0lbybwd4wvw3AxfFgZwoIOb9Kfg49kFYYrMMRAsILkrzJR2
-         6U5jdwFR4sI4lF247mjUQwpqKUn39/qAMhc8E3YACJ0hej990YaAXH3YMijT/Zqhiumt
-         OzjGQqypHYptOJhZCXdjLNh016MTDQ3s8jidBXe2BscJNI/SQpRemeyrGbNYV7rhsM4u
-         3btjTtjYGbIl5DrUVc67yYW/PHjmWS6B9VF//IPCOCXEG9msVTzOezlo/Ok2kNv8A061
-         gzjkaKfEyRZnEG/du/EsIsRPXFCkdjj8T5PGct69qTtL6MTjO1nVC53KRP6hlLi3jMWI
-         U+Cg==
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=from:user-agent:references:in-reply-to:mime-version:date:message-id
+         :subject:to:cc;
+        bh=v9Th8rxPiWf3ZnzxeLk5F4SGsw0EdAo79OtQwsPtPNc=;
+        b=qZGqNwBdtTPSsXJ4TudOdVSft1cn0crk+rUA+BXcaAtlIIcDlbrBzGZl1G6ZvqtL0/
+         52aPzGjkDjxenmbtmqIx6HbPYriuF0amTOjLWM4rtPHVTv/9qzizlClERaRHxX71D0ie
+         /JuDIGifRPC2mJZsXUpCyTfdP6nLePIyl87T0VN3BU/AWzRxgidSFlfa9LPoAfc+5GxY
+         LpL/W8t6FtVAAJclUgCOS+NJAgUpE/918VqAruLfHfgduNmM7bpqSwYcGW0lFDx6KmLh
+         z/P+C9mYP3Rw8n+JWR2eJ+XXz039AdpnO9kvyDW1SbdY7w98B+1jppF+iMFrluk/aUcT
+         y8Fw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=WxIW6h+xypAi4uHDqYvQlCn4iNNtT8TT6Dj5XI5z4OU=;
-        b=VMgOjR30ybHY8mOFIH/WpeUkG57bFztYGyRBYWpcJz44DBgSVA8Gos3Y7n1690KhEt
-         ZxcO4H5YuzDSmz+2jlVny3TE3T319/oej0nWeGycURQ3FNWxXQoR6bxqj/1tGlLieTnW
-         4d9jCSWdJtyBcMmx7Xf//rV38Aj92w1ZoNfyeXOl/MosOQvoPrWNjxYUriS3iXXYZyg5
-         freQ2joFOBU9HFh2u/3HUxzVGL4Eu6jlDg1igZfVuHb2DAgMiDmtOgxO6gltjSCWcPRc
-         Y+L7kbSf9RQspcPDwMnG9oI+RCSoYuKg9W9peLq6u4nC3u15fAvh4lRFB451MfA++9L4
-         xg+g==
-X-Gm-Message-State: AOAM530m5WcmwdWk8f+KMD49RjaJFhZLNO2z0YzdGn8HEefJjMmZbp54
-        VrpF4s/GUdoEHtOWZJ1Pvc/svpfu+5dB8BPwv6Q=
-X-Google-Smtp-Source: ABdhPJyn+VJrijVJhyhzoNEW2S+P5R27VeDdu+EvF6J2TEhGsMmoFt/teFNVb7+OcOyZ3maH8Pxbd5aYmLdapKwnYcA=
-X-Received: by 2002:a05:6402:34d6:b0:427:cc9d:a130 with SMTP id
- w22-20020a05640234d600b00427cc9da130mr28447655edc.356.1652270831846; Wed, 11
- May 2022 05:07:11 -0700 (PDT)
+        h=x-gm-message-state:from:user-agent:references:in-reply-to
+         :mime-version:date:message-id:subject:to:cc;
+        bh=v9Th8rxPiWf3ZnzxeLk5F4SGsw0EdAo79OtQwsPtPNc=;
+        b=cPqTa1nW6pfc8CHmJLKFmTuJ0nfPjiyxKeH7eD40Uk0Est5ap3HJqVcEfBO3XWSDlj
+         9Zij61uMe6P4Nsrw2dgM9fhEkTA8D3+X58u3V/a3vo3WK0i0q6wOC6Snjk4bbgf9npAs
+         K2T+1MW2tiNkwPiv3X46VBUp0rpdoCO1/f19aMl0T4A1g/4YOGV5slMCt88kNb4lsRcm
+         bDDp2lNC7zYVCkhM7AQtaL7QiDu8ulVosDFRouR16voSF7sO3B1xe0bMTwcdrYDpdiMV
+         VNDTrTOQSS1wBIQTSWgNzFhV5XGyw6uwuYZu2fN4FAAYlxXBoJyyJ6cm57vesVU0FkDZ
+         YqKw==
+X-Gm-Message-State: AOAM533CJkJYnnhaUKf042gdytnRY9aDlJ5/YbiwNl9Zt0tO0mRkQ4g/
+        9nlCxsZ+StSCS4N0SdVCrxA+qgWGcn7fht2arn8hkg==
+X-Google-Smtp-Source: ABdhPJxBn9ixvONga67IFvsidm0urKpQCjlwF7V0itqftu5rkpNVWoXNuJCCn1qTxzlSqdUM84jEJ4VrTbu4KEramCk=
+X-Received: by 2002:a05:6122:511:b0:34e:e406:a66d with SMTP id
+ x17-20020a056122051100b0034ee406a66dmr14033939vko.6.1652272634992; Wed, 11
+ May 2022 05:37:14 -0700 (PDT)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Wed, 11 May 2022 05:37:13 -0700
+From:   Guillaume Ranquet <granquet@baylibre.com>
+User-Agent: meli 0.7.2
+References: <20220327223927.20848-1-granquet@baylibre.com> <20220327223927.20848-2-granquet@baylibre.com>
+ <20220422105712.bdpbwliificvon4j@houat>
+In-Reply-To: <20220422105712.bdpbwliificvon4j@houat>
 MIME-Version: 1.0
-References: <20220511115911.54960-1-max.oss.09@gmail.com> <20220511115911.54960-4-max.oss.09@gmail.com>
-In-Reply-To: <20220511115911.54960-4-max.oss.09@gmail.com>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Wed, 11 May 2022 09:06:59 -0300
-Message-ID: <CAOMZO5AboNfb_E-4QVurZ6UTYephsOakW0QrAU8xRAMe8_zRow@mail.gmail.com>
-Subject: Re: [PATCH v2 3/4] ARM: dts: imx6qdl-colibri: backlight pwm: Simplify
- inverted backlight
-To:     Max Krummenacher <max.oss.09@gmail.com>
-Cc:     Max Krummenacher <max.krummenacher@toradex.com>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
+Date:   Wed, 11 May 2022 05:37:13 -0700
+Message-ID: <CABnWg9uwMN6yK-xfCPtRsLif5yC7AU5b+OKc0xaHjLKzQ__gJA@mail.gmail.com>
+Subject: Re: [PATCH v9 01/22] dt-bindings: mediatek,dpi: Add DP_INTF compatible
+To:     Maxime Ripard <maxime@cerno.tech>
+Cc:     airlied@linux.ie, angelogioacchino.delregno@collabora.com,
+        chunfeng.yun@mediatek.com, chunkuang.hu@kernel.org,
+        ck.hu@mediatek.com, daniel@ffwll.ch, deller@gmx.de,
+        jitao.shi@mediatek.com, kishon@ti.com, krzk+dt@kernel.org,
+        maarten.lankhorst@linux.intel.com, matthias.bgg@gmail.com,
+        p.zabel@pengutronix.de, robh+dt@kernel.org, tzimmermann@suse.de,
+        vkoul@kernel.org, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org,
+        linux-arm-kernel@lists.infradead.org, linux-fbdev@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        linux-phy@lists.infradead.org, markyacoub@google.com,
+        Markus Schneider-Pargmann <msp@baylibre.com>,
+        Rob Herring <robh@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 11, 2022 at 8:59 AM Max Krummenacher <max.oss.09@gmail.com> wrote:
+On Fri, 22 Apr 2022 12:57, Maxime Ripard <maxime@cerno.tech> wrote:
+>Hi,
+>
+>On Mon, Mar 28, 2022 at 12:39:06AM +0200, Guillaume Ranquet wrote:
+>> From: Markus Schneider-Pargmann <msp@baylibre.com>
+>>
+>> DP_INTF is similar to DPI but does not have the exact same feature set
+>> or register layouts.
+>>
+>> DP_INTF is the sink of the display pipeline that is connected to the
+>> DisplayPort controller and encoder unit. It takes the same clocks as
+>> DPI.
+>>
+>> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
+>> Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
+>> Reviewed-by: Rob Herring <robh@kernel.org>
+>> ---
+>>  .../bindings/display/mediatek/mediatek,dpi.yaml       | 11 ++++++-----
+>>  1 file changed, 6 insertions(+), 5 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yaml
+>> index dd2896a40ff0..2dba80ad3b18 100644
+>> --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yaml
+>> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yaml
+>> @@ -4,16 +4,16 @@
+>>  $id: http://devicetree.org/schemas/display/mediatek/mediatek,dpi.yaml#
+>>  $schema: http://devicetree.org/meta-schemas/core.yaml#
+>>
+>> -title: mediatek DPI Controller Device Tree Bindings
+>> +title: mediatek DPI/DP_INTF Controller
+>>
+>>  maintainers:
+>>    - CK Hu <ck.hu@mediatek.com>
+>>    - Jitao shi <jitao.shi@mediatek.com>
+>>
+>>  description: |
+>> -  The Mediatek DPI function block is a sink of the display subsystem and
+>> -  provides 8-bit RGB/YUV444 or 8/10/10-bit YUV422 pixel data on a parallel
+>> -  output bus.
+>> +  The Mediatek DPI and DP_INTF function blocks are a sink of the display
+>> +  subsystem and provides 8-bit RGB/YUV444 or 8/10/10-bit YUV422 pixel data on a
+>> +  parallel output bus.
+>>
+>>  properties:
+>>    compatible:
+>> @@ -23,6 +23,7 @@ properties:
+>>        - mediatek,mt8173-dpi
+>>        - mediatek,mt8183-dpi
+>>        - mediatek,mt8192-dpi
+>> +      - mediatek,mt8195-dpintf
+>
+>It seems a bit weird to have all instances of DP_INTF with a separator
+>but the compatible doesn't have one?
+>
+>Is there a reason to not use dp-intf?
 
->         backlight: backlight {
->                 compatible = "pwm-backlight";
-> -               brightness-levels = <0 127 191 223 239 247 251 255>;
-> -               default-brightness-level = <1>;
-> +               brightness-levels = <0 4 8 16 32 64 128 255>;
-> +               default-brightness-level = <6>;
+None that I know of, It was taken as is from the vendor tree.
+I'll use dp-intf in v10 for the sake of consistency.
 
-In this patch, you are still changing the brightness levels + passing
-the polarity.
+Thx,
+Guillaume.
 
-I would suggest that this patch only touches the PWM polarity.
-
-The next patch could fix the brightness levels.
+>
+>Maxime
