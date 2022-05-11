@@ -2,145 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 582A1523330
-	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 14:37:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 90A79523362
+	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 14:51:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241788AbiEKMhS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 May 2022 08:37:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39540 "EHLO
+        id S242886AbiEKMvS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 May 2022 08:51:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56492 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230411AbiEKMhS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 May 2022 08:37:18 -0400
-Received: from mail-vk1-xa29.google.com (mail-vk1-xa29.google.com [IPv6:2607:f8b0:4864:20::a29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EED7227FF8
-        for <devicetree@vger.kernel.org>; Wed, 11 May 2022 05:37:15 -0700 (PDT)
-Received: by mail-vk1-xa29.google.com with SMTP id t12so1084069vkt.5
-        for <devicetree@vger.kernel.org>; Wed, 11 May 2022 05:37:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=from:user-agent:references:in-reply-to:mime-version:date:message-id
-         :subject:to:cc;
-        bh=v9Th8rxPiWf3ZnzxeLk5F4SGsw0EdAo79OtQwsPtPNc=;
-        b=qZGqNwBdtTPSsXJ4TudOdVSft1cn0crk+rUA+BXcaAtlIIcDlbrBzGZl1G6ZvqtL0/
-         52aPzGjkDjxenmbtmqIx6HbPYriuF0amTOjLWM4rtPHVTv/9qzizlClERaRHxX71D0ie
-         /JuDIGifRPC2mJZsXUpCyTfdP6nLePIyl87T0VN3BU/AWzRxgidSFlfa9LPoAfc+5GxY
-         LpL/W8t6FtVAAJclUgCOS+NJAgUpE/918VqAruLfHfgduNmM7bpqSwYcGW0lFDx6KmLh
-         z/P+C9mYP3Rw8n+JWR2eJ+XXz039AdpnO9kvyDW1SbdY7w98B+1jppF+iMFrluk/aUcT
-         y8Fw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:user-agent:references:in-reply-to
-         :mime-version:date:message-id:subject:to:cc;
-        bh=v9Th8rxPiWf3ZnzxeLk5F4SGsw0EdAo79OtQwsPtPNc=;
-        b=cPqTa1nW6pfc8CHmJLKFmTuJ0nfPjiyxKeH7eD40Uk0Est5ap3HJqVcEfBO3XWSDlj
-         9Zij61uMe6P4Nsrw2dgM9fhEkTA8D3+X58u3V/a3vo3WK0i0q6wOC6Snjk4bbgf9npAs
-         K2T+1MW2tiNkwPiv3X46VBUp0rpdoCO1/f19aMl0T4A1g/4YOGV5slMCt88kNb4lsRcm
-         bDDp2lNC7zYVCkhM7AQtaL7QiDu8ulVosDFRouR16voSF7sO3B1xe0bMTwcdrYDpdiMV
-         VNDTrTOQSS1wBIQTSWgNzFhV5XGyw6uwuYZu2fN4FAAYlxXBoJyyJ6cm57vesVU0FkDZ
-         YqKw==
-X-Gm-Message-State: AOAM533CJkJYnnhaUKf042gdytnRY9aDlJ5/YbiwNl9Zt0tO0mRkQ4g/
-        9nlCxsZ+StSCS4N0SdVCrxA+qgWGcn7fht2arn8hkg==
-X-Google-Smtp-Source: ABdhPJxBn9ixvONga67IFvsidm0urKpQCjlwF7V0itqftu5rkpNVWoXNuJCCn1qTxzlSqdUM84jEJ4VrTbu4KEramCk=
-X-Received: by 2002:a05:6122:511:b0:34e:e406:a66d with SMTP id
- x17-20020a056122051100b0034ee406a66dmr14033939vko.6.1652272634992; Wed, 11
- May 2022 05:37:14 -0700 (PDT)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Wed, 11 May 2022 05:37:13 -0700
-From:   Guillaume Ranquet <granquet@baylibre.com>
-User-Agent: meli 0.7.2
-References: <20220327223927.20848-1-granquet@baylibre.com> <20220327223927.20848-2-granquet@baylibre.com>
- <20220422105712.bdpbwliificvon4j@houat>
-In-Reply-To: <20220422105712.bdpbwliificvon4j@houat>
+        with ESMTP id S242824AbiEKMvL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 May 2022 08:51:11 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C4D93D1D0;
+        Wed, 11 May 2022 05:51:10 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id EC2B3B82359;
+        Wed, 11 May 2022 12:51:08 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C1872C3410F;
+        Wed, 11 May 2022 12:51:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1652273467;
+        bh=ilKGaxGKhxB0YYV/ztEYYWw7I0QBzPzqY3ODK4muYDQ=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Q4gUwAz+TH/cL8ISyjeXIkdK5QhVVTrbZhwP/mcQHEF8uQUMG1CT/4TaLj/mk1jmZ
+         MTmMaVV6JV4wZjSHrTSmg58dRcpgkiy6C1bBnCjVq4AwD1bVw8aqagwfKy8Z57eABM
+         0MCX5J8aisIjZqpvG3rz/9JyAqSGEvT4Yug5afofW85kCj8L8aeshDNhL4EcB6YW1W
+         GoUCoVwGzB9WkTfHivGVVxtkaxyVoXiiHX3b2vdOTA6DSuQBL1gPd6meQDvZ/d7yJX
+         bhKqwYFeNAv1RXKdFWMLGHN9P6J83yu92ngvN1VcOa0+4D2q58gcks2P1RSwt2BZcD
+         YifGv0I9oBVuA==
+Date:   Wed, 11 May 2022 13:50:59 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     LABBE Corentin <clabbe@baylibre.com>
+Cc:     Andrew Lunn <andrew@lunn.ch>, alexandre.torgue@foss.st.com,
+        calvin.johnson@oss.nxp.com, davem@davemloft.net,
+        edumazet@google.com, hkallweit1@gmail.com,
+        jernej.skrabec@gmail.com, joabreu@synopsys.com,
+        krzysztof.kozlowski+dt@linaro.org, kuba@kernel.org,
+        lgirdwood@gmail.com, linux@armlinux.org.uk, pabeni@redhat.com,
+        peppe.cavallaro@st.com, robh+dt@kernel.org, samuel@sholland.org,
+        wens@csie.org, netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-sunxi@lists.linux.dev
+Subject: Re: [PATCH 3/6] dt-bindings: net: Add documentation for phy-supply
+Message-ID: <YnuxM3StiTuLMBux@sirena.org.uk>
+References: <20220509074857.195302-1-clabbe@baylibre.com>
+ <20220509074857.195302-4-clabbe@baylibre.com>
+ <YnkGV8DyTlCuT92R@lunn.ch>
+ <YnkWl+xYCX8r9DE7@Red>
+ <Ynk7L07VH/RFVzl6@lunn.ch>
+ <Ynk9ccoVh32Deg45@sirena.org.uk>
+ <YnlDbbegQ1IbbaHy@lunn.ch>
+ <YnlHwpiow9Flgzas@sirena.org.uk>
+ <YnttssHyCf8PJJev@Red>
 MIME-Version: 1.0
-Date:   Wed, 11 May 2022 05:37:13 -0700
-Message-ID: <CABnWg9uwMN6yK-xfCPtRsLif5yC7AU5b+OKc0xaHjLKzQ__gJA@mail.gmail.com>
-Subject: Re: [PATCH v9 01/22] dt-bindings: mediatek,dpi: Add DP_INTF compatible
-To:     Maxime Ripard <maxime@cerno.tech>
-Cc:     airlied@linux.ie, angelogioacchino.delregno@collabora.com,
-        chunfeng.yun@mediatek.com, chunkuang.hu@kernel.org,
-        ck.hu@mediatek.com, daniel@ffwll.ch, deller@gmx.de,
-        jitao.shi@mediatek.com, kishon@ti.com, krzk+dt@kernel.org,
-        maarten.lankhorst@linux.intel.com, matthias.bgg@gmail.com,
-        p.zabel@pengutronix.de, robh+dt@kernel.org, tzimmermann@suse.de,
-        vkoul@kernel.org, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org, linux-fbdev@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        linux-phy@lists.infradead.org, markyacoub@google.com,
-        Markus Schneider-Pargmann <msp@baylibre.com>,
-        Rob Herring <robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="sbRn3mnJQka7KUAO"
+Content-Disposition: inline
+In-Reply-To: <YnttssHyCf8PJJev@Red>
+X-Cookie: Look ere ye leap.
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 22 Apr 2022 12:57, Maxime Ripard <maxime@cerno.tech> wrote:
->Hi,
->
->On Mon, Mar 28, 2022 at 12:39:06AM +0200, Guillaume Ranquet wrote:
->> From: Markus Schneider-Pargmann <msp@baylibre.com>
->>
->> DP_INTF is similar to DPI but does not have the exact same feature set
->> or register layouts.
->>
->> DP_INTF is the sink of the display pipeline that is connected to the
->> DisplayPort controller and encoder unit. It takes the same clocks as
->> DPI.
->>
->> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
->> Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
->> Reviewed-by: Rob Herring <robh@kernel.org>
->> ---
->>  .../bindings/display/mediatek/mediatek,dpi.yaml       | 11 ++++++-----
->>  1 file changed, 6 insertions(+), 5 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yaml
->> index dd2896a40ff0..2dba80ad3b18 100644
->> --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yaml
->> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yaml
->> @@ -4,16 +4,16 @@
->>  $id: http://devicetree.org/schemas/display/mediatek/mediatek,dpi.yaml#
->>  $schema: http://devicetree.org/meta-schemas/core.yaml#
->>
->> -title: mediatek DPI Controller Device Tree Bindings
->> +title: mediatek DPI/DP_INTF Controller
->>
->>  maintainers:
->>    - CK Hu <ck.hu@mediatek.com>
->>    - Jitao shi <jitao.shi@mediatek.com>
->>
->>  description: |
->> -  The Mediatek DPI function block is a sink of the display subsystem and
->> -  provides 8-bit RGB/YUV444 or 8/10/10-bit YUV422 pixel data on a parallel
->> -  output bus.
->> +  The Mediatek DPI and DP_INTF function blocks are a sink of the display
->> +  subsystem and provides 8-bit RGB/YUV444 or 8/10/10-bit YUV422 pixel data on a
->> +  parallel output bus.
->>
->>  properties:
->>    compatible:
->> @@ -23,6 +23,7 @@ properties:
->>        - mediatek,mt8173-dpi
->>        - mediatek,mt8183-dpi
->>        - mediatek,mt8192-dpi
->> +      - mediatek,mt8195-dpintf
->
->It seems a bit weird to have all instances of DP_INTF with a separator
->but the compatible doesn't have one?
->
->Is there a reason to not use dp-intf?
 
-None that I know of, It was taken as is from the vendor tree.
-I'll use dp-intf in v10 for the sake of consistency.
+--sbRn3mnJQka7KUAO
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Thx,
-Guillaume.
+On Wed, May 11, 2022 at 10:02:58AM +0200, LABBE Corentin wrote:
+> Le Mon, May 09, 2022 at 05:56:34PM +0100, Mark Brown a =E9crit :
 
->
->Maxime
+> > as part of the bus.  You'd need to extend the regulator bindings to
+> > support parallel array of phandles and array of names properties like
+> > clocks have as an option like you were asking for, which would doubtless
+> > be fun for validation but is probably the thing here.
+
+> Does you mean something like this:
+
+=2E..
+
+> And then for our case, a regulator_get_bulk will be needed.
+> Does I well understood what you mean ?
+
+Yes.
+
+--sbRn3mnJQka7KUAO
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmJ7sTIACgkQJNaLcl1U
+h9CLDAf/WwjQBtzQ6Tt2Pi241jQ9Fv3CvwrQ+/Xb1dJ1V/872V1Ymq99YP0tS7CZ
+LM1m2NWTzuDilJpzAfvyQX5QKp1OnRhT3qgz9Aer6r5zLJmTIByrlCMFlbrn6Q7V
+OkjdV+G0cPYJQdezzzG4OKC24aGBvP/l7eKp1ZBe4sidLGLU6O6d5Hs4WUjgbMXQ
+WGfqSNOR3Cyu+2qA/eDxt+sI8FWdu1zgNWifjYmhbuAgIuOW+fYOJS8atZtZFDQk
+fFTABew0eD/hrBORWPLRpd0BOELQss8jC+TE8l8E83vG1Crl9BAhXoCMDRNk9+2g
+X6a9mbgqEG0AaM1Ct57gLDsTU0mMKg==
+=Nt6t
+-----END PGP SIGNATURE-----
+
+--sbRn3mnJQka7KUAO--
