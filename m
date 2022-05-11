@@ -2,298 +2,206 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 33ABE523B3F
-	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 19:16:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D10FC523BB1
+	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 19:36:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345385AbiEKRQB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 May 2022 13:16:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45898 "EHLO
+        id S1345652AbiEKRg6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 May 2022 13:36:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35046 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242450AbiEKRPz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 May 2022 13:15:55 -0400
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C62122DF
-        for <devicetree@vger.kernel.org>; Wed, 11 May 2022 10:15:49 -0700 (PDT)
-Received: by mail-ed1-x52c.google.com with SMTP id d6so3355698ede.8
-        for <devicetree@vger.kernel.org>; Wed, 11 May 2022 10:15:49 -0700 (PDT)
+        with ESMTP id S234003AbiEKRg5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 May 2022 13:36:57 -0400
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23EEC6898A
+        for <devicetree@vger.kernel.org>; Wed, 11 May 2022 10:36:55 -0700 (PDT)
+Received: by mail-ed1-x52b.google.com with SMTP id y21so3450654edo.2
+        for <devicetree@vger.kernel.org>; Wed, 11 May 2022 10:36:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:from:subject:to:cc
-         :references:content-language:in-reply-to:content-transfer-encoding;
-        bh=2+4MntLHEZNAXBomauNodAZbp3YguNyy5lnTjqXp3Ic=;
-        b=JcBroyxGn8h8fNlXpKBt42ipS1NOhTuZm1+WlKC1/4/wjOusrkG9fFG2b1NrKOGgjD
-         3+c/A1g4tKA44nu30jSUdKPQWqMsaEUq0QT4KIsAATdlOeRXYObF5/D9VZLKYuwC/8Qf
-         1G/sFBlZfzj5soGBelp8EO2Dc4RNtXrGpt4woU67C6HCbcHAhAkLFNrcMsUmx7rmlyGo
-         3RGY+0gx1+GiEb/1QzlKbmTDGqIPnT+DT0r3cLZX49gomPOT7StVdPLDBrnnX2cm9NhH
-         kLs5cBUY6LdZPsj79WXn4wQB4z8BXx+rS2MKNDBU5aRpKqzrgRy3qzoZHFnxlOGJv7KL
-         OQbQ==
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=jwXHsUB6qUpzl3VRnWjzmQKSgk8cDfdgFA5s7nwGaLI=;
+        b=bT22W7fDGAySEG7vBs4hb15DD4bL48uTSAqlVdi3MASn69ux2G7d6N/VKWbxFQeXzu
+         IgyiHQ6LaCd+Jy6MC9n/t37uslzcQJdkPoDj5+cJEJKwpg5f0JFW2jRrHzzzLJkf9iT4
+         QtQSQUI6LtFE/fIizHPmL1xz0u3XWz12sCguANLoXC7jJDbOFe74dMAP5p6lDhtoGNwH
+         DFbFezBtzeZP0nBg/lmOWq7iZL6At0YQIyWc6fyuUn3CK6qOaU17FXZxe0d/AgEW+9TG
+         J7Jt47UJoYkfeT8yAPruPYcESKHLZfst00coEXtq0vevDQTAQYtBInbCq7t9qf1jIkXW
+         U8mg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:from
-         :subject:to:cc:references:content-language:in-reply-to
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=2+4MntLHEZNAXBomauNodAZbp3YguNyy5lnTjqXp3Ic=;
-        b=LD1qmVLC/BkMMW2Ci/4hgYX06m5Mbb+ffZ2es4QalgQJASdnxfIT/gR9QBxN7gR3RL
-         N4xP/zNvw5bVckGobn4YXda9/0z+TLMBR7O7XzMf7wx+Qi/gy96dSAWmlKhr5bMOto2t
-         y2Ah1crPGo9hxQvG93AeY/YxZx+U3Ki23j+hY5gx7ASDw3T2Mp/JqHLccmXTBv7wh0Tt
-         VV6yqd32/uhBXkEsZxnOMiVqxOLtPLNC4b8h/T3oIWkcKkGtKXEHzFquvJhNT1loCegc
-         uxJ2vZuGWWfHyYBJm8viSlXT4w3kOtaC1Mzr3A2OizrHFBVinNRRuXSBc8dFj2No982W
-         vfBA==
-X-Gm-Message-State: AOAM530b7u26EcFT3jEJgRcxSAmsYYkPM0/9B1yLtIZEdXlFDumtaQC1
-        a/hmzapBkIuG3kIwAcSe8MlOAp+czb4IYZS4
-X-Google-Smtp-Source: ABdhPJy+l6Pw2ksp3ZDG3sf8ODxLy1zEongSmEXpjKq9Ts2M24KN/KaNbBfI/Scm7nQ4bUDirR4TPQ==
-X-Received: by 2002:a05:6402:190a:b0:427:efb7:bd81 with SMTP id e10-20020a056402190a00b00427efb7bd81mr30108532edz.63.1652289348324;
-        Wed, 11 May 2022 10:15:48 -0700 (PDT)
+        bh=jwXHsUB6qUpzl3VRnWjzmQKSgk8cDfdgFA5s7nwGaLI=;
+        b=CZHSkNp2XAXNKEfIsXgxFLS+PJgmQCchD9NQFMv++WLiRnKn0DJIcsiJB2yBVs/U42
+         ucZOfye/pcARAljQ4gfk5xuaF/5iNP7t0VVsZ1pEEfhZBTs+HEg7IH6bSgf+d5xgmNX9
+         9Za/61C8zuIfy688Hf8edMDyCuEI9t1ziXpWg+Ifl3lRNPYNzlKQY7okeZKPdWdsGa5l
+         znVw8e1D1Ii6eF0IuIBllog9SCW+NibHx4P92L4YnutQ6wblWKkN6D9N0v9Oxuz1RpqI
+         oYmv9WKWpMugYHek7ZqpEzrvPybWSbWyZPIbb3NBWsSP5JT2BuSyRv2sTQp5BDeMthma
+         xiCw==
+X-Gm-Message-State: AOAM531r5bUf8hP3HYvmY+QTu3rC72kCkYk0uoM7+ktGmAS7730UnacW
+        S/E0KspKv0MZWEoX+a7a3LH+4A==
+X-Google-Smtp-Source: ABdhPJyHrA/Ee4SIk42qzBFrUON01ZYdvbhXAObX8J9n0ciqCBlqDatunWcWgBVW2FLF9m2wVcZ9SQ==
+X-Received: by 2002:a05:6402:2078:b0:428:1071:d9b2 with SMTP id bd24-20020a056402207800b004281071d9b2mr31020035edb.302.1652290613620;
+        Wed, 11 May 2022 10:36:53 -0700 (PDT)
 Received: from [192.168.0.155] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id b5-20020a056402138500b0042a2d9af0f8sm311978edv.79.2022.05.11.10.15.47
+        by smtp.gmail.com with ESMTPSA id y8-20020a170906524800b006f3ef214d9esm1231008ejm.4.2022.05.11.10.36.52
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 11 May 2022 10:15:47 -0700 (PDT)
-Message-ID: <00234f36-9bae-31d5-5b83-ea238e7e3c11@linaro.org>
-Date:   Wed, 11 May 2022 19:15:46 +0200
+        Wed, 11 May 2022 10:36:53 -0700 (PDT)
+Message-ID: <b619b455-c944-0cc6-ca83-e65490612ed7@linaro.org>
+Date:   Wed, 11 May 2022 19:36:52 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.8.1
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH 4/9] dt-bindings: remoteproc: qcom: wcnss: Convert to YAML
-To:     Sireesh Kodali <sireeshkodali1@gmail.com>,
-        linux-remoteproc@vger.kernel.org
-Cc:     linux-arm-msm@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, bjorn.andersson@linaro.org,
-        devicetree@vger.kernel.org, phone-devel@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-References: <20220511161602.117772-1-sireeshkodali1@gmail.com>
- <20220511161602.117772-5-sireeshkodali1@gmail.com>
+Subject: Re: [PATCH] CHROMIUM: arm64: dts: qcom: Add sc7180-gelarshie
 Content-Language: en-US
-In-Reply-To: <20220511161602.117772-5-sireeshkodali1@gmail.com>
+To:     Doug Anderson <dianders@chromium.org>,
+        Rob Herring <robh@kernel.org>
+Cc:     Julius Werner <jwerner@chromium.org>,
+        =?UTF-8?Q?Krzysztof_Koz=c5=82owski?= <k.kozlowski.k@gmail.com>,
+        Mars Chen <chenxiangrui@huaqin.corp-partner.google.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>
+References: <20220330090947.9100-1-chenxiangrui@huaqin.corp-partner.google.com>
+ <a0eb6bf9-256a-29b1-2211-496df710f531@linaro.org>
+ <CAD=FV=UjyLofXZqnj=bL89fza5JS6O5Np9W-A4V4WK+na0hdrw@mail.gmail.com>
+ <b7ff08b8-60fb-7629-9399-3d5cca46ab9e@linaro.org>
+ <CAD=FV=Vx5g_xTRZGc9wW=ZLnfsOcubTYFcnYQRC5jLm+n3en0w@mail.gmail.com>
+ <606cc762-a0c2-49a4-3e5d-d2dbd4595bc7@linaro.org>
+ <CAD=FV=W_SA-3PfDFi-Gkjk9pew5bchFNjQhXX8MkZyuy5UohEQ@mail.gmail.com>
+ <CAJKOXPdt5WTg4VU-TEW3dmPHR76dKg63XVxRQfa7ZSKc_jz6Ag@mail.gmail.com>
+ <CAD=FV=XQqQSQDNh-zXqEQkwsrax5Qb3OtfKZoQLkncJj_4mcQw@mail.gmail.com>
+ <daf66d41-42ac-50dc-3f8d-c261da8e452d@linaro.org>
+ <CAD=FV=WhA=n_=Ys6NfedPtNPddL81HnG6Qws_R+vq9w8Nrsn5A@mail.gmail.com>
+ <ce2ea308-b63d-ad27-4cea-7353268f8ebb@linaro.org>
+ <CAODwPW857CkH0+ZnBaUeowW4te-hSy6nrdeeX6-OLPOs5TptsQ@mail.gmail.com>
+ <55dcf917-7ac0-efe9-8531-b77be682125a@linaro.org>
+ <CAD=FV=UPKo4CxRVmdHr05rRPaNHFYfaQTqmBJAU5ZF61ccKgEA@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CAD=FV=UPKo4CxRVmdHr05rRPaNHFYfaQTqmBJAU5ZF61ccKgEA@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/05/2022 18:15, Sireesh Kodali wrote:
-> Convert the dt-bindings from txt to YAML. This is in preparation for
-> including the relevant bindings for the MSM8953 platform's wcnss pil.
+On 11/05/2022 18:09, Doug Anderson wrote:
+>>
+>> So you choose they are not identical, fine. Why insisting on adding
+>> fallback compatible while not keeping bindings updated? Just don't add
+>> the compatible and work on rev3 or rev4. Doug even once wrote "_we don't
+>> know_ if -rev7 and -rev8 are compatible", so don't make them compatible.
+>> Don't add fallbacks or some generic unspecified front-compatibles and
+>> just work on revision.
 > 
-> Signed-off-by: Sireesh Kodali <sireeshkodali1@gmail.com>
+> Somehow, it seems like we keep talking past each other here and it
+> feels like folks are getting upset and we're not moving forward. Maybe
+> the right way to make progress is to find some face-to-face time at a
+> future conference and sit in front of a white board and hash it out.
+> That being said:
+> 
+> * Without changing our bootloader or having a big explosion in the
+> number of dts files, we really can't change our scheme. The best we
+> can do is document it.
 
-Thank you for your patch. There is something to discuss/improve.
+That's reasonable.
 
-Please use existing bindings or example-schema as a starting point. Half
-of my review could be skipped if you just followed what we already have
-in the tree.
+> 
+> * If we want to change our scheme, we'd need to sit down and come to
+> an agreement that satisfies everyone, if such a thing is possible.
 
-Some of these qcom specific properties already exist but you decided to
-write them differently... please don't, rather reuse the code.
+There is open CFP for ELCE 2022 (in Ireland). Maybe we could organize
+some session there? But we for sure would need Rob, so the arrangements
+should rather focus on him, not on my availability.
 
-(...)
+> That would only be able to affect future boards.
 
-> +
-> +maintainers:
-> +  - Bjorn Andersson <bjorn.andersson@linaro.org>
-> +
-> +description:
-> +  This document defines the binding for a component that loads and boots
-> +  firmware on the Qualcomm WCNSS core.
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - items:
-> +          - enum:
-> +              - qcom,pronto-v2-pil
-> +          - enum:
-> +              - qcom,pronto
+I would like to say that if you had bindings, then obviously we would
+not break them, but since there are no bindings... :)
 
-This does not look correct. The fallback compatible should not change.
-What is more, it was not documented in original binding, so this should
-be done in separate patch.
+> We don't want to
+> change the bootloader dts loading scheme on old boards.
 
-> +      - items:
+Understood.
 
-No need for items, it's just one item.
+>>>> Right now it's not possible to validate QCOM DTSes against DT bindings
+>>>> because they throw big fat warnings about undocumented top compatibles.
+>>>> This is a downside for us.
+>>>
+>>> But that's a solvable problem, right? As I understand, what Doug was
+>>> initially just asking was whether it made _sense_ to document all of
+>>> these... not that we couldn't do it. Then this whole thread went down
+>>> a rabbit hole of whether our compatible assignments are allowed in the
+>>> first place. If we can compromise on this discussion by just doing
+>>> whatever needs to be done to make the tool happy, I think(?) we can
+>>> provide that.
+>>
+>> None of recent patches from Chromium were doing it, even after
+>> complaining from my side, so why do you suddenly believe that it is
+>> "doable"? If yes, please start doing it and fix the DTSes which you
+>> already submitted without bindings.
+>>
+>> To remind - entire discussion started with Doug saying it is pure
+>> overhead for him.
+> 
+> I mean, to be fair I said it _seems_ pure overhead and then said that
+> we could do it if it makes some tools happy. ...but before doing that,
+> I wanted to make sure it was actually valuable. I still have doubts
+> about the assertion that the most specific compatible is guaranteed to
+> uniquely identify hardware. So if the whole reason for doing this is
+> to make the validation tools happy and there's no other value, then at
+> least it's plausible to argue that the tools could simply be fixed to
+> allow this and not shout about it. 
 
-> +          - enum:
-> +              - qcom,riva-pil
-> +              - qcom,pronto-v1-pil
-> +              - qcom,pronto-v2-pil
-> +
-> +  reg:
-> +    description: must specify the base address and size of the CCU, DXE and PMU
-> +      register blocks
+Instead of adding bindings, you can indeed change/fix the tools. Go
+ahead. :)
 
-New line after "decription:", drop "must specify" and start with capital
-letter.
+> Now, certainly I'm not arguing that
+> yaml validation in general is useless. I'm in agreement that we want
+> dts files to be able to be formally validated because it catches
+> typos, missing properties, and bugs. I am _only_ saying that I still
+> haven't seen a good argument for why we need to validate the top-level
+> compatible string.
 
-You need maxItems: 3
+I don't feel expert enough on this topic to give you good answer. Which
+does not prove that there isn't or there is such good answer.
 
+> Since there no properties associated with the
+> top-level compatible string, it's mostly just checking did some one
+> copy-paste the compatible string from one file (the dts file) to the
+> other file (the yaml file) correctly. To me, that does not feel like a
+> useful check.
 
-> +
-> +  reg-names:
-> +    items:
-> +      - const: ccu
-> +      - const: dxe
-> +      - const: pmu
-> +
-> +  interrupts-extended:
-> +    description:
-> +      Interrupt lines
+Still it can detect messing of SoC compatibles or not defining any
+board-level compatible thus pretending that someone's board is just
+SC7180. Imagine now user-space or bootloader trying to parse it...
 
-Skip description, it's obvious.
+BTW, the bindings validation of top-level compatible might actually help
+you - to be sure that DTSes have proper compatibles matching what
+bootloader expects.
 
-It should be only "interrupts", not extended.
+> The other thing I wanted to make sure was that we weren't just going
+> to get NAKed later if/when we had to adjust compatible strings on
+> existing dts files.
 
-> +    minItems: 2
-> +    maxItems: 5
-> +
-> +  interrupt-names:
-> +    minItems: 2
-> +    maxItems: 5
+Stable ABI is more of SoC maintainer decision and I see Bjorn responded
+here.
 
-Names should be clearly defined. They were BTW defined in original
-bindings, so you should not remove them. This makes me wonder what else
-did you remove from original bindings...
-
-Please document all deviations from pure conversion in the commit msg.
-It's a second "hidden" difference.
-
-> +
-> +  firmware-name:
-> +    $ref: /schemas/types.yaml#/definitions/string
-> +    description: Relative firmware image path for the WCNSS core. Defaults to
-> +      "wcnss.mdt".
-
-
-Blank line after "description:". This applies to other places as well.
-
-Remove "Defailts to ..." and just add "default" schema.
-
-> +
-> +  vddpx-supply:
-> +    description: Reference to the PX regulator to be held on behalf of the
-> +      booting of the WCNSS core
-> +
-> +  vddmx-supply:
-> +    description: Reference to the MX regulator to be held on behalf of the
-> +      booting of the WCNSS core.
-> +
-> +  vddcx-supply:
-> +    description: Reference to the CX regulator to be held on behalf of the
-> +      booting of the WCNSS core.
-
-s/Reference to the//
-
-> +
-> +  power-domains:
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> +    description: References to the power domains that need to be held on
-> +      behalf of the booting WCNSS core
-
-1. Ditto.
-2. No need for ref
-3. maxItems
-
-> +
-> +  power-domain-names:
-> +    $ref: /schemas/types.yaml#/definitions/string-array
-
-No need for ref, skip description.
-
-> +    description: Names of the power domains
-> +    items:
-> +      - const: cx
-> +      - const: mx
-> +
-> +  qcom,smem-states:
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> +    description: States used by the AP to signal the WCNSS core that it should
-> +      shutdown
-> +    items:
-> +      - description: Stop the modem
-> +
-> +  qcom,smem-state-names:
-> +    $ref: /schemas/types.yaml#/definitions/string-array
-
-No need for ref. Really, it does not appear in any of existing bindings
-for smem-state-names, so how did you get it?
-
-> +    description: The names of the state bits used for SMP2P output
-> +    items:
-> +      - const: stop
-> +
-> +  memory-region:
-> +    maxItems: 1
-> +    description: Reference to the reserved-memory for the WCNSS core
-> +
-> +  smd-edge:
-> +    type: object
-> +    description:
-> +      Qualcomm Shared Memory subnode which represents communication edge,
-> +      channels and devices related to the ADSP.
-
-You should reference /schemas/soc/qcom/qcom,smd.yaml
-
-> +
-> +  iris:
-
-Generic node name... what is "iris"?
-
-> +    type: object
-> +    description:
-> +      The iris subnode of the WCNSS PIL is used to describe the attached rf module
-
-s/rf/RF/
-
-> +      and its resource dependencies.
-> +
-> +    properties:
-> +      compatible:
-> +        enum:
-> +          - qcom,wcn3620
-> +          - qcom,wcn3660
-> +          - qcom,wcn3660b
-> +          - qcom,wcn3680
-> +
-> +      clocks:
-> +        description: XO clock
-> +
-> +      clock-names:
-> +        items:
-> +          - const: xo
-> +
-> +    required:
-> +      - compatible
-
-clocks and clock-names were required.
-Missing supplies, which were btw as well required.
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - reg-names
-> +  - interrupts-extended
-> +  - interrupt-names
-> +  - vddpx-supply
-> +  - memory-region
-> +  - smd-edge
-> +  - iris
-> +
-> +additionalProperties: false
-> +
-> +if:
-
-Within allOf, please.
-
+> In any case, I guess I'll make an attempt to document the compatibles
+> for existing Chromebooks and we'll see what happens. I'm still not
+> convinced of the value, but as long as we're not going to get NAKed
+> for documenting reality it's fine.
 
 
 Best regards,
