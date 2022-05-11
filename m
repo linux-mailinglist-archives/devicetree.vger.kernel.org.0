@@ -2,71 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7710A523C42
-	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 20:11:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CE983523C4F
+	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 20:16:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346107AbiEKSLp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 May 2022 14:11:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47360 "EHLO
+        id S1346094AbiEKSQn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 May 2022 14:16:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33210 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346098AbiEKSLp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 May 2022 14:11:45 -0400
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F85C606F7
-        for <devicetree@vger.kernel.org>; Wed, 11 May 2022 11:11:43 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id w24so3539325edx.3
-        for <devicetree@vger.kernel.org>; Wed, 11 May 2022 11:11:43 -0700 (PDT)
+        with ESMTP id S243033AbiEKSQm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 May 2022 14:16:42 -0400
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E882D1A38E
+        for <devicetree@vger.kernel.org>; Wed, 11 May 2022 11:16:40 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id i27so5668802ejd.9
+        for <devicetree@vger.kernel.org>; Wed, 11 May 2022 11:16:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=B1sIommB5oiopHgf7KLQUzUatFJzc302ngrnM99CnbU=;
-        b=Bncm1ERZjlJ+C2I71BhUNNvrXo+iHTAiA5u+snQ3KP3WhoLiPOVk3UUcEFxCrbc3YL
-         oJd9CfUY9MfEb9TRmtBQm+tSNWQCSIfpzzZC8ZFUpiBl2yhENsNmzUohewRc5OcOK1Q/
-         AzuSt2dN3/CNM3XGzcostHznROhsNuHr3LLYv6dZXVNwd5FKo+SJNAErujYdxIF3Ywhw
-         NryiSYLfP73Fz2gCjZBALqkKzoWvqb2heHCTgVqdcsz4jRNiq7A4y4ktvw2sLAhUWfIb
-         NBoEdKWCHn67IPzIw8jdGuVvT7TXUTpuUoUS9dwMAOfisyXp0SlMzKyMKgJkpKuV+d0R
-         nW/g==
+        bh=Fhxc5z1KE0Dsp8lGsAgqT5RMsvfNxtef/xd2f9hMnCs=;
+        b=nIm2GVngEEk3Lg9AJjVcCmfvkEXavOLYacnJORi28B8FAVBQMNOp30PKVzqwK4+if3
+         FCjffb9+3YM0w5R2S8CShqzFkx34N/wXw+e3+pm3t3fYy2ThWqU9xY6EX4Z4YR551AOg
+         RpGy3/kSgMq2OPHqh89Q/qQkCkCv5l6RYIN8sSkG+2bU2A7AAqmZJkzzUlh5Gd7bXYuN
+         IzDiNp6+bPtMK30jiZWf/QN9Zy/Rv3HgoZvjJ/UBcoFQco361sOh9nABKb7REI47zQwi
+         FifZqKJSFOCzhZfBlcnBuKsF7J8cOQ+V2F4Bfvd5DxxGOciT5f8mok3Bw/L5Maez5HlE
+         NoIg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=B1sIommB5oiopHgf7KLQUzUatFJzc302ngrnM99CnbU=;
-        b=Hr7LPeqFRVkom93Er+p1pfGsXFFmmrqFSFc+WPS4MTpU394/xkK6q5cg55RtEHakB6
-         SjP6FITQpkL43LoGI2eTpj0Je6YKRPMHW/Rqw+PMzJGzyA/s9gaSFyCaQn19dYeh6ak6
-         16leAwsNO87TB9Ynv8HBu9TLwRR8LmysrOhLjfWLdDDnxuZUQAR9JhfL0535AsNzPr5B
-         ePXYqrqP+Yp51xp9z+0X+XCJdf6TFWREpMVT5vv0Pf6aFXJ4iqWx1gmqt3xei4Wouhuy
-         tyVmD0VkUg32ofMxVuFkHEAAnrn4plPHOxXY0tFrnxVK9BiVK9lATCRdBjBfFjEWU9cM
-         0k2w==
-X-Gm-Message-State: AOAM533DMDjFRAZ+gmAZemoqVkWEyH+mycIxrsK8M36DP/AHUEGu1emC
-        M47WVHVfBJ6T/mOg12c/vAE86Q==
-X-Google-Smtp-Source: ABdhPJyiDHzyY4rY+mnga9H3oSlY4ujZN6q06J9yJ2WZTAhsRJ/Dn4dfk2ee36mq5zINyyfgkHsSLw==
-X-Received: by 2002:aa7:c849:0:b0:427:d464:e66f with SMTP id g9-20020aa7c849000000b00427d464e66fmr30417861edt.411.1652292702040;
-        Wed, 11 May 2022 11:11:42 -0700 (PDT)
+        bh=Fhxc5z1KE0Dsp8lGsAgqT5RMsvfNxtef/xd2f9hMnCs=;
+        b=onGdfsLtJUjuilslwqxcXz0XJxElETL1J+PFSYuhlBDO5mdGoSrFUrYgcYWVzjkHJB
+         oSWtVcEV1HahlaQifdoyT93Q/1sq2RJPop084srwh7zud9/DdFhTARrAuy6DWkl07YX7
+         OV3p8USZ26mexnS6YXqjdOvxxPyCgdl6HgisiaBpl0e3cLXg/RQdsuNen+lwEzpgHq5J
+         Qhdh0A0B9zx8ujLI83PfCnjpnN9lnY+Y2jShhXZxOFNcSJV66f1gj2MYwdpM3wpwVy/D
+         qbOwlzg6pv8dIm8/zBTJEUFAQ4G02IOoKMLJfwFY/QTNUFZO6ZiAuHCY5mzeIQZFzOH1
+         SmMQ==
+X-Gm-Message-State: AOAM533eeLAqkCR9pbrVb2BFORv+7L4U93iP61UjvAEDVbIk7tGkY5/m
+        cwSXEmJ9ccI/7F7+y8n95gjSJQ==
+X-Google-Smtp-Source: ABdhPJx+CJK78zsG3tde6KKXb/fX4e9dE8ABsOUrj+MY0Vc4ravZJADycaEa0z4YWMjmQF5Dr+yZSA==
+X-Received: by 2002:a17:906:6a1b:b0:6f4:a9b8:e027 with SMTP id qw27-20020a1709066a1b00b006f4a9b8e027mr26045450ejc.222.1652292999566;
+        Wed, 11 May 2022 11:16:39 -0700 (PDT)
 Received: from [192.168.0.155] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id sb12-20020a1709076d8c00b006f3ef214e04sm1213887ejc.106.2022.05.11.11.11.41
+        by smtp.gmail.com with ESMTPSA id i1-20020a170906250100b006f3ef214e59sm1206628ejb.191.2022.05.11.11.16.34
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 11 May 2022 11:11:41 -0700 (PDT)
-Message-ID: <81365629-6cf0-f320-e684-4fb40b829399@linaro.org>
-Date:   Wed, 11 May 2022 20:11:40 +0200
+        Wed, 11 May 2022 11:16:36 -0700 (PDT)
+Message-ID: <857a1475-6697-89a9-98e6-b1dad8b917ac@linaro.org>
+Date:   Wed, 11 May 2022 20:16:34 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.8.1
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: msm8916: Fix typo in pronto
- remoteproc node
+Subject: Re: [v4 0/3] Add QCOM SNPS PHY overriding params support
 Content-Language: en-US
-To:     Sireesh Kodali <sireeshkodali1@gmail.com>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-remoteproc@vger.kernel.org
-Cc:     bjorn.andersson@linaro.org, Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Krishna Kurapati <quic_kriskura@quicinc.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        open list <linux-kernel@vger.kernel.org>
-References: <20220510042654.71152-1-sireeshkodali1@gmail.com>
- <20220510042654.71152-3-sireeshkodali1@gmail.com>
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Doug Anderson <dianders@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Wesley Cheng <quic_wcheng@quicinc.com>,
+        Vinod Koul <vkoul@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-phy@lists.infradead.org, quic_pkondeti@quicinc.com,
+        quic_ppratap@quicinc.com, quic_vpulyala@quicinc.com
+References: <1652282793-5580-1-git-send-email-quic_kriskura@quicinc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220510042654.71152-3-sireeshkodali1@gmail.com>
+In-Reply-To: <1652282793-5580-1-git-send-email-quic_kriskura@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -79,16 +85,12 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/05/2022 06:26, Sireesh Kodali wrote:
-> The smem-state properties for the pronto node were incorrectly labelled,
-> reading `qcom,state*` rather than `qcom,smem-state*`. Fix that, allowing
-> the stop state to be used.
-> 
-> Fixes: 88106096cbf8 ("ARM: dts: msm8916: Add and enable wcnss node")
-> 
-> Signed-off-by: Sireesh Kodali <sireeshkodali1@gmail.com>
+On 11/05/2022 17:26, Krishna Kurapati wrote:
+> Added support for overriding tuning parameters in QCOM SNPS PHY
+> from device tree.
 
-No blank lines between tags, please.
+Please use proper PATCH title. The easiest is to use git format-patch to
+create proper patches.
 
 Best regards,
 Krzysztof
