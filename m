@@ -2,142 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 71C91523080
-	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 12:14:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 70482523082
+	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 12:14:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241686AbiEKKOb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 May 2022 06:14:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35526 "EHLO
+        id S242026AbiEKKOd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 May 2022 06:14:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34012 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241161AbiEKKOT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 May 2022 06:14:19 -0400
-Received: from mail-yw1-x1136.google.com (mail-yw1-x1136.google.com [IPv6:2607:f8b0:4864:20::1136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 574F422D600
-        for <devicetree@vger.kernel.org>; Wed, 11 May 2022 03:13:40 -0700 (PDT)
-Received: by mail-yw1-x1136.google.com with SMTP id 00721157ae682-2fb965b34easo15236847b3.1
-        for <devicetree@vger.kernel.org>; Wed, 11 May 2022 03:13:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=LbS9CVLx3YERW8E3AnIjefuENgrYBnFy3iLpPYRS1dE=;
-        b=aZN6cRaNHqHH/Tfe1y8ta5XgMovAikD3irJpErfW8NqP3QAup9QUt917tGuJ1TGBFH
-         vD51ULlUtdB/+hTgybWL1sztV5VmGthR+Sw+1uT1mHLgQlOxwOZVouqMLjPKb9JJoWxv
-         MPJAEBIklP2ahcsQjrKfvdc80Kr8OVrRRvh9Ye+37G3uzNs7fuY+aCHM1vGDVrXQltD3
-         5FV2GxVOFMqzOux86aNE4Dvb7U0JdtevMkteY3/4Fosus97inclmtsYWQICzbwUWw7r0
-         TiQjzGjZsZ0FjXaS1YlA3SrjcC01d1gkwbeCvoVaICtGcRpx3KAnLNChjUU7mor1DMD7
-         93fw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=LbS9CVLx3YERW8E3AnIjefuENgrYBnFy3iLpPYRS1dE=;
-        b=e1EWEQis6e9Wn9Uk5emBgAbUpETi0XFJ8pzoKFP9FkvKUhkiVEhjbtTsn2psvq6yB4
-         t0UvA4jOx6ffRiBn7RtK28ImzoKpFSUUxo4zKuX/ZW9JZr7dfAeKejYWxC76Ff3FEZd8
-         3GRzkY2wcSFqV6zZ2w6aNnMZzUSf3G45gyHwAFbCRGGv1+dstUmHIlOl1Gf0NpJv0dS/
-         dKWJyZmgwr3fr8ewPrEcvsSNSqHky2wYofvWpfsDhAOGTRdZt2Bv1qgY9zKxi5L1Opo1
-         yPKf8S49vSl1RXdQpG6M7L5ZcV1/eQb8bjgU5OhVQ2bAXlM+mNTxQD0Hx6G6dJYLH9yl
-         Bowg==
-X-Gm-Message-State: AOAM53064w3YPlRJsL1m0Rv6T9i6ThNLbo/T4FrmRDjE1BnZKtMIZhv/
-        2hv1L/cEoUNzYprl3w9B4h95eJdAcR+8v5HvzBwmGw==
-X-Google-Smtp-Source: ABdhPJw8o6138qy85Ja2D7d3jz1pg7TDpg0MtrPBdgGEPf6HMr12sOpTpfIueSQxq026AyyT8WC+qMovxe/YjVRJNYU=
-X-Received: by 2002:a0d:db8f:0:b0:2fb:958c:594f with SMTP id
- d137-20020a0ddb8f000000b002fb958c594fmr3143624ywe.490.1652264019542; Wed, 11
- May 2022 03:13:39 -0700 (PDT)
+        with ESMTP id S241584AbiEKKO0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 May 2022 06:14:26 -0400
+Received: from albert.telenet-ops.be (albert.telenet-ops.be [IPv6:2a02:1800:110:4::f00:1a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CBED32218FB
+        for <devicetree@vger.kernel.org>; Wed, 11 May 2022 03:14:12 -0700 (PDT)
+Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed40:c9c1:6ba7:bb0d:8433])
+        by albert.telenet-ops.be with bizsmtp
+        id VNEA2700h1sk9zo06NEAZw; Wed, 11 May 2022 12:14:11 +0200
+Received: from rox.of.borg ([192.168.97.57])
+        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1nojMA-003iep-DD; Wed, 11 May 2022 12:14:10 +0200
+Received: from geert by rox.of.borg with local (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1nojM9-004e6O-Jy; Wed, 11 May 2022 12:14:09 +0200
+From:   Geert Uytterhoeven <geert+renesas@glider.be>
+To:     Magnus Damm <magnus.damm@gmail.com>, Adam Ford <aford173@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-renesas-soc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: [PATCH] arm64: dts: renesas: beacon: Fix regulator node names
+Date:   Wed, 11 May 2022 12:14:06 +0200
+Message-Id: <a9ac82bdf108162487289d091c53a9b3de393f13.1652263918.git.geert+renesas@glider.be>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20220506152107.1527552-1-dmitry.baryshkov@linaro.org> <YnqXxNxFhf/odyka@robh.at.kernel.org>
-In-Reply-To: <YnqXxNxFhf/odyka@robh.at.kernel.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Wed, 11 May 2022 13:13:28 +0300
-Message-ID: <CAA8EJpriMcP4uQ3fjyiCKY+uc82ctXe2VrjO1psPDcp-P++Nhw@mail.gmail.com>
-Subject: Re: [PATCH v6 0/8] dt-bindings: YAMLify pci/qcom,pcie schema
-To:     Rob Herring <robh@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Stanimir Varbanov <svarbanov@mm-sol.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 10 May 2022 at 19:50, Rob Herring <robh@kernel.org> wrote:
->
-> On Fri, May 06, 2022 at 06:20:59PM +0300, Dmitry Baryshkov wrote:
-> > Convert pci/qcom,pcie schema to YAML description. The first patch
-> > introduces several warnings which are fixed by the other patches in the
-> > series.
-> >
-> > Note regarding the snps,dw-pcie compatibility. The Qualcomm PCIe
-> > controller uses Synopsys PCIe IP core. However it is not just fused to
-> > the address space. Accessing PCIe registers requires several clocks and
-> > regulators to be powered up. Thus it can be assumed that the qcom,pcie
-> > bindings are not fully compatible with the snps,dw-pcie schema.
-> >
-> > Changes since v5:
-> >  - s/stance/stanza (pointed out by Bjorn Helgaas)
-> >
-> > Changes since v4:
-> >  - Change subjects to follow convention (suggested by Bjorn Helgaas)
-> >
-> > Changes since v3:
-> >  - Rebase on linux-next to include sm8150 patches
-> >
-> > Changes since v2 (still kudos to Krzyshtof):
-> >  - Readded reg-names conversion patch
-> >  - Mention wake-gpio update in the commit message
-> >  - Remove extra quotes in the schema
-> >
-> > Changes since v1 (all kudos to Krzyshtof):
-> >  - Dropped the reg-names patch. It will be handled separately
-> >  - Squashed the snps,dw-pcie removal (from schema) into the first patch
-> >  - Replaced deprecated perst-gpio and wake-gpio with perst-gpios and
-> >    wake-gpios in the examples and in DT files
-> >  - Moved common clocks/clock-names, resets/reset-names and power-domains
-> >    properties to the top level of the schema, leaving only platform
-> >    specifics in the conditional branches
-> >  - Dropped iommu-map/iommu-map-mask for now
-> >  - Added (missed) interrupt-cells, clocks, clock-names, resets,
-> >    reset-names properties to the required list (resets/reset-names are
-> >    removed in the next patch, as they are not used on msm8996)
-> >  - Fixed IRQ flags in the examples
-> >  - Merged apq8064/ipq8064 into the single condition statement
-> >  - Added extra empty lines
-> >
-> > Dmitry Baryshkov (8):
-> >   dt-bindings: PCI: qcom: Convert to YAML
-> >   dt-bindings: PCI: qcom: Do not require resets on msm8996 platforms
-> >   dt-bindings: PCI: qcom: Specify reg-names explicitly
-> >   dt-bindings: PCI: qcom: Add schema for sc7280 chipset
-> >   arm64: dts: qcom: stop using snps,dw-pcie falback
-> >   arm: dts: qcom: stop using snps,dw-pcie falback
-> >   arm: dts: qcom-*: replace deprecated perst-gpio with perst-gpios
-> >   arm64: dts: qcom: replace deprecated perst-gpio with perst-gpios
-> >
-> >  .../devicetree/bindings/pci/qcom,pcie.txt     | 398 ----------
-> >  .../devicetree/bindings/pci/qcom,pcie.yaml    | 714 ++++++++++++++++++
->
-> What tree do these apply to because they don't apply to rc1. I'm
-> assuming the PCI tree and Lorenzo should take them.
+Currently there are two nodes named "regulator_camera".  This causes the
+former to be overwritten by the latter.
 
-The series depends on the patch in Lorenzo's tree (sm8150 bindings),
-so I'd assume it would be natural to merge these patches through his
-tree too.
+Fix this by renaming them to unique names, using the preferred hyphen
+instead of an underscore.
 
+While at it, update the name of the audio regulator (which was added in
+the same commit) to use a hyphen.
 
+Fixes: a1d8a344f1ca0709 ("arm64: dts: renesas: Introduce r8a774a1-beacon-rzg2m-kit")
+Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+---
+To be queued in renesas-devel for v5.20.
+
+ arch/arm64/boot/dts/renesas/beacon-renesom-baseboard.dtsi | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/renesas/beacon-renesom-baseboard.dtsi b/arch/arm64/boot/dts/renesas/beacon-renesom-baseboard.dtsi
+index 142e7ffbd2bd4281..63e7a39e100e367c 100644
+--- a/arch/arm64/boot/dts/renesas/beacon-renesom-baseboard.dtsi
++++ b/arch/arm64/boot/dts/renesas/beacon-renesom-baseboard.dtsi
+@@ -146,7 +146,7 @@ rgb_panel: endpoint {
+ 		};
+ 	};
+ 
+-	reg_audio: regulator_audio {
++	reg_audio: regulator-audio {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "audio-1.8V";
+ 		regulator-min-microvolt = <1800000>;
+@@ -174,7 +174,7 @@ reg_lcd_reset: regulator-lcd-reset {
+ 		vin-supply = <&reg_lcd>;
+ 	};
+ 
+-	reg_cam0: regulator_camera {
++	reg_cam0: regulator-cam0 {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "reg_cam0";
+ 		regulator-min-microvolt = <1800000>;
+@@ -183,7 +183,7 @@ reg_cam0: regulator_camera {
+ 		enable-active-high;
+ 	};
+ 
+-	reg_cam1: regulator_camera {
++	reg_cam1: regulator-cam1 {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "reg_cam1";
+ 		regulator-min-microvolt = <1800000>;
 -- 
-With best wishes
-Dmitry
+2.25.1
+
