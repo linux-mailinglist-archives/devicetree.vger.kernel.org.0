@@ -2,170 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E6F7523C64
-	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 20:22:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 583E7523C82
+	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 20:32:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346189AbiEKSWV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 May 2022 14:22:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53304 "EHLO
+        id S1346260AbiEKScZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 May 2022 14:32:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55982 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346182AbiEKSWU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 May 2022 14:22:20 -0400
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8AA314C752
-        for <devicetree@vger.kernel.org>; Wed, 11 May 2022 11:22:18 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id m20so5676615ejj.10
-        for <devicetree@vger.kernel.org>; Wed, 11 May 2022 11:22:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=uiYBAkZ/K7TON78jcHgwLk8yR9bWm2DLv+jXS6/7A90=;
-        b=TysY5PPYSJqqGGSP17kFdgyVAcXW0GiDdLa8+M1+Q0ojkz+YMGJOdGZ1g7kkbPZOu6
-         yt+IrWP6PXRoXVf3HH1RNxijEEEziatsJwBR8ffnixgRhgmDKQimGHpCgltyrkDtU5pd
-         QyBownI7LpEYTX9O9gVL+tE6Wpia3KSKpa7tY=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=uiYBAkZ/K7TON78jcHgwLk8yR9bWm2DLv+jXS6/7A90=;
-        b=kCjI/wsalut+8VqCUlEbf41ZfR/fdqVJocUjR9g4upQMFMClt81n4jHAJlMxEGw3OP
-         FVJR890lSgOI1KhNMmZ1Qm8vxv3s0a1+6E/q6jMNW53duwfuIMTIYz/WnFBeesDhJpYz
-         nYHbLfYQsNHUQfePAtOymhFtaoCbZxosuLf7YbJTaDaVbbFyFWiFmGcVmLRZidlTBepJ
-         d04OehidKTMv2evad6raaO800IwS4FQBOo8GggoLScel0boGSRR1msm58POndh3Tdr6b
-         4UDUScPEfPNDWICIAJk3IbDTs6kGk8/JnUIpklL5T2J5X+IeYzWPFRTq+MuWwjQKu5FI
-         UVLg==
-X-Gm-Message-State: AOAM530HoBv+UNDjF5aRcqbdELagDRATeIY8ZDVcVtKchcjcLYy7BH5I
-        4SFNH4s7UL0fFDX+CVB20FphCvStQHvaNIt0LW8=
-X-Google-Smtp-Source: ABdhPJxPCafijTnqubGtC9FWNznlA49DM/4X73Cq0ZBw2A3s3wPnBUkJmXuSI3tq4NoY+8OSWb4c6Q==
-X-Received: by 2002:a17:906:8806:b0:6f5:15aa:1f40 with SMTP id zh6-20020a170906880600b006f515aa1f40mr26080187ejb.595.1652293336990;
-        Wed, 11 May 2022 11:22:16 -0700 (PDT)
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com. [209.85.128.45])
-        by smtp.gmail.com with ESMTPSA id g15-20020aa7c58f000000b0042617ba6383sm1535315edq.13.2022.05.11.11.22.16
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 11 May 2022 11:22:16 -0700 (PDT)
-Received: by mail-wm1-f45.google.com with SMTP id 129so1722914wmz.0
-        for <devicetree@vger.kernel.org>; Wed, 11 May 2022 11:22:16 -0700 (PDT)
-X-Received: by 2002:a05:600c:3c99:b0:392:b49c:7b79 with SMTP id
- bg25-20020a05600c3c9900b00392b49c7b79mr6101308wmb.199.1652293325498; Wed, 11
- May 2022 11:22:05 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220425210643.2420919-1-dianders@chromium.org>
- <20220425140619.1.Ibfde5a26a7182c4b478d570c23d2649823ac2cce@changeid>
- <CAE-0n51eZpAKprRQ0HqjLciF_BVQHBDN8SMFNVmmOd=B9UBEzg@mail.gmail.com>
- <CAD=FV=WmVK3wTQf_EAxSi0WPXedSFGCsKdyqRnHsskmMYTHDQA@mail.gmail.com>
- <MW4PR02MB718610FAA14F966ADE1B1585E1C29@MW4PR02MB7186.namprd02.prod.outlook.com>
- <CAE-0n51Q=cGwrMec3JEQENqWHV3pAUjLPT6RwZLA5xV080sgxQ@mail.gmail.com>
- <MW4PR02MB71867A18732B266DE8FA2040E1C29@MW4PR02MB7186.namprd02.prod.outlook.com>
- <CAE-0n53MEBYhyRtGWOCmjj923UQU_iVE_SEBQw6_FUci8NLz3w@mail.gmail.com> <MW4PR02MB71866E59B844A0842DF7570EE1C59@MW4PR02MB7186.namprd02.prod.outlook.com>
-In-Reply-To: <MW4PR02MB71866E59B844A0842DF7570EE1C59@MW4PR02MB7186.namprd02.prod.outlook.com>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Wed, 11 May 2022 11:21:52 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=WeTK8LBJmc6AkjPyPLVS+2sSRNEFuEOZrWGJr3Kpq58Q@mail.gmail.com>
-Message-ID: <CAD=FV=WeTK8LBJmc6AkjPyPLVS+2sSRNEFuEOZrWGJr3Kpq58Q@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: msm/dp: List supplies in the bindings
-To:     "Sankeerth Billakanti (QUIC)" <quic_sbillaka@quicinc.com>
-Cc:     Stephen Boyd <swboyd@chromium.org>,
-        "bjorn.andersson@linaro.org" <bjorn.andersson@linaro.org>,
-        "dmitry.baryshkov@linaro.org" <dmitry.baryshkov@linaro.org>,
-        Rob Clark <robdclark@chromium.org>,
+        with ESMTP id S1346251AbiEKScY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 May 2022 14:32:24 -0400
+Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 2CA013BF88;
+        Wed, 11 May 2022 11:32:23 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="5.91,217,1647270000"; 
+   d="scan'208";a="119387741"
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie5.idc.renesas.com with ESMTP; 12 May 2022 03:32:21 +0900
+Received: from localhost.localdomain (unknown [10.226.36.204])
+        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 3783140065C7;
+        Thu, 12 May 2022 03:32:16 +0900 (JST)
+From:   Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        "Abhinav Kumar (QUIC)" <quic_abhinavk@quicinc.com>,
-        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        freedreno <freedreno@lists.freedesktop.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        "Kalyan Thota (QUIC)" <quic_kalyant@quicinc.com>,
-        "Kuogee Hsieh (QUIC)" <quic_khsieh@quicinc.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@linux.ie>,
-        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        linux-gpio@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Phil Edworthy <phil.edworthy@renesas.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH v3 0/5] Renesas RZ/G2L IRQC support
+Date:   Wed, 11 May 2022 19:32:05 +0100
+Message-Id: <20220511183210.5248-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.17.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hi All,
 
-On Fri, May 6, 2022 at 6:36 AM Sankeerth Billakanti (QUIC)
-<quic_sbillaka@quicinc.com> wrote:
->
-> >> >> Our internal power grid documents list the regulators as
-> >> >> VDD_A_*_1P2 and VDD_A_*_0P9 for all the platforms.
-> >> >
-> >> >Do your internal power grid documents indicate what these supplies
-> >> >are powering? The question is if these supplies power any of the
-> >> >logic inside the eDP controller or if they only supply power to the
-> >> >analog circuits in the eDP phy. If it's the eDP phy only then the
-> >> >regulator usage in the eDP driver should be removed. I would suspect
-> >> >this is the case because the controller is probably all digital logic
-> >> >and runs at the typical 1.8V that the rest of the SoC uses.
-> >> >Similarly, these are voltage references which sound like a PLL reference
-> >voltage.
-> >> >
-> >> >Please clarify this further.
-> >> >
-> >>
-> >> For the DP driver using the usb-dp combo phy, there were cases where
-> >> the usb driver was turning off the phy and pll regulators whenever usb-dp
-> >concurrent mode need not be supported.
-> >> This caused phy and pll to be powered down causing aux transaction failures
-> >and display blankouts.
-> >> From then on, it became a practice for the controller driver to vote for the
-> >phy and pll regulators also.
-> >>
-> >
-> >That sounds like USB-DP combo phy driver had improper regulator power
-> >management where aux transactions from DP didn't keep the power on to
-> >the phy. Where does the power physically go? If the power isn't physically
-> >going to the DP controller it shouldn't be controlled from the DP controller
-> >driver. If the aux bus needs the DP phy enabled, the DP controller driver
-> >should enable the phy power (via phy_power_on()?).
->
-> Yes, it was limitation earlier when we did not have proper interface to interact
-> with the combo phy.
->
-> In this case, the power from the regulators go to the combo phy.
->
-> Now that there is an interface for the controller to interact with the
-> combo phy, the proposal to drop the phy regulator voting from the controller
-> driver seems reasonable to me.
->
-> The phy_power_on() is used for getting the phy out of low power state or getting
-> it ready for data transfer.
->
-> The controller driver needs to enable the phy power via the phy_init() before
-> any interaction with the sink like the aux transactions or before sending the data.
-> The controller can disable the regulators via the phy_exit() call.
+The RZ/G2L Interrupt Controller is a front-end for the GIC found on
+Renesas RZ/G2L SoC's with below pins:
+- IRQ sense select for 8 external interrupts, mapped to 8 GIC SPI
+  interrupts
+- GPIO pins used as external interrupt input pins out of GPIOINT0-122 a
+  maximum of only 32 can be mapped to 32 GIC SPI interrupts,
+- NMI edge select.
 
-I can confirm that if I stop providing these regulators to the DP
-controller that the screen still comes up. ...but also there are lots
-of other things (including the PHY) that power these regulators up...
+                                                             _____________
+                                                             |    GIC     |
+                                                             |  ________  |
+                                      ____________           | |        | |
+NMI --------------------------------->|          |  SPI0-479 | | GIC-600| |
+             _______                  |          |------------>|        | |
+             |      |                 |          |  PPI16-31 | |        | |
+             |      | IRQ0-IRQ7       |   IRQC   |------------>|        | |
+P0_P48_4 --->| GPIO |---------------->|          |           | |________| |
+             |      |GPIOINT0-122     |          |           |            |
+             |      |---------------->| TINT0-31 |           |            |
+             |______|                 |__________|           |____________|
 
-From offline discussion with folks:
+The proposed patches add hierarchical IRQ domain, one in IRQC driver and
+another in pinctrl driver. Upon interrupt requests map the interrupt to
+GIC. Out of GPIOINT0-122 only 32 can be mapped to GIC SPI, this mapping is
+handled by the pinctrl and IRQC driver.
 
-1. It sounds like maybe the code for handling the regulators in the DP
-controller leaked in from downstream where the DP driver itself
-controls more stuff.
+Cheers,
+Prabhakar
 
-2. We should probably remove these regulators from the DP controller.
+Changes for v2->v3:
+* Updated description for interrupts-cells property in patch #1
+* Included RB tag from Geert for binding patch
+* Fixed review comments pointed by Geert, Biju and Sergei.
 
-3. When we remove this from the DP controller, we'll have to make sure
-that the PHY driver calls regulator_set_load() as needed.
+Changes for v1->v2:
+* Included RB tag from Rob
+* Fixed review comments pointed by Geert
+* included GPIO driver changes
 
-Kuogee has volunteered to own this issue and send out patches fixing
-the stuff up. So for now, please consider ${SUBJECT} patch abandoned.
+Changes for RFCV4 -> V1:
+* Used unevaluatedProperties.
+* Altered the sequence of reg property
+* Set the parent type
+* Used raw_spin_lock() instead of raw_spin_lock_irqsave()
+* Simplified parsing IRQ map.
+* Will send the GPIO and pinctrl changes as part of separate series
 
--Doug
+Changes for RFC v4:
+* Used locking while RMW
+* Now using interrupts property instead of interrupt-map
+* Patch series depends on [0]
+* Updated binding doc
+* Fixed comments pointed by Andy
+
+[0] https://patchwork.kernel.org/project/linux-renesas-soc/patch/
+20220316200633.28974-1-prabhakar.mahadev-lad.rj@xxxxxxxxxxxxxx/
+
+Changes for RFC v3:
+-> Re-structured the driver as a hierarchical irq domain instead of chained
+-> made use of IRQCHIP_* macros
+-> dropped locking
+-> Added support for IRQ0-7 interrupts
+-> Introduced 2 new patches for GPIOLIB
+-> Switched to using GPIOLIB for irqdomains in pinctrl
+
+RFC v2: https://patchwork.kernel.org/project/linux-renesas-soc/cover/
+20210921193028.13099-1-prabhakar.mahadev-lad.rj@xxxxxxxxxxxxxx/
+
+RFC v1: https://patchwork.kernel.org/project/linux-renesas-soc/cover/
+20210803175109.1729-1-prabhakar.mahadev-lad.rj@xxxxxxxxxxxxxx/
+
+Lad Prabhakar (5):
+  dt-bindings: interrupt-controller: Add Renesas RZ/G2L Interrupt
+    Controller
+  irqchip: Add RZ/G2L IA55 Interrupt Controller driver
+  gpio: gpiolib: Allow free() callback to be overridden
+  gpio: gpiolib: Add ngirq member to struct gpio_irq_chip
+  pinctrl: renesas: pinctrl-rzg2l: Add IRQ domain to handle GPIO
+    interrupt
+
+ .../renesas,rzg2l-irqc.yaml                   | 134 ++++++
+ drivers/gpio/gpiolib.c                        |  13 +-
+ drivers/irqchip/Kconfig                       |   8 +
+ drivers/irqchip/Makefile                      |   1 +
+ drivers/irqchip/irq-renesas-rzg2l.c           | 444 ++++++++++++++++++
+ drivers/pinctrl/renesas/pinctrl-rzg2l.c       | 202 ++++++++
+ include/linux/gpio/driver.h                   |   8 +
+ 7 files changed, 805 insertions(+), 5 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/renesas,rzg2l-irqc.yaml
+ create mode 100644 drivers/irqchip/irq-renesas-rzg2l.c
+
+-- 
+2.25.1
+
