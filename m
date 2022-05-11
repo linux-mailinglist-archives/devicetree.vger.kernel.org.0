@@ -2,324 +2,265 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 97EC3523A75
-	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 18:38:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E5936523A93
+	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 18:46:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229538AbiEKQip (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 May 2022 12:38:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58930 "EHLO
+        id S1344951AbiEKQqs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 May 2022 12:46:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32906 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344853AbiEKQio (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 May 2022 12:38:44 -0400
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A0CF16E8EE
-        for <devicetree@vger.kernel.org>; Wed, 11 May 2022 09:38:42 -0700 (PDT)
-Received: by mail-ej1-x636.google.com with SMTP id bv19so5206340ejb.6
-        for <devicetree@vger.kernel.org>; Wed, 11 May 2022 09:38:42 -0700 (PDT)
+        with ESMTP id S1344942AbiEKQqq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 May 2022 12:46:46 -0400
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 462823D4B6
+        for <devicetree@vger.kernel.org>; Wed, 11 May 2022 09:46:44 -0700 (PDT)
+Received: by mail-ed1-x52c.google.com with SMTP id y21so3297234edo.2
+        for <devicetree@vger.kernel.org>; Wed, 11 May 2022 09:46:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=uf6WOD0QQFeOYWAHi4Ca6Vw+411I2zW9BmJTlu4npMU=;
-        b=yRZm29EZD8NXTJOt82y7VgQZCc1i9EbIj3MZa7MCPpOpMZl1VlXFauUHWsCAulBqYR
-         nFlBrfK4z2cWWBUoTLQ+oCE2ohm6xidYwifBoTuf4gnBLMzXbIn4xXY6RQRbFakdWjou
-         A5FZOsXFge9f0nPAAiQejTIZJL5eFRlhbAwc75ZXZFajDb5TUGtgrwzgr7kWRRzA5ZPJ
-         QQb6lCvF7XDOhnodTXk71cCgNYGiKK99bUwX6vbpPeYLfjsU570JKfU+/Wk8h3nsUdOw
-         hBQcb2puFY3zj3m9ZYKGHbfG+Ex3NX6LP3+vYujuhdePqc9ff5PMjxw0O7c1yF1Qf0Qd
-         LuaQ==
+        bh=xj1N8tp59EX/rZwMqCjY9hqLN8tIPGoout6wfaBUGxU=;
+        b=cEEp6hmcXVVy4ZSFnPIvcfzIhYDzl89wvKJCGlfQKoYnT906ulI1E3Ys9qSnpoZ5GA
+         DvvHDxEvAPRvyyGpSH/YiU0FkJ9Z7FjHY7+t3lpKJ1GW9i7VvfHmLacWDhT30XvQaDO4
+         ILdr/4KY2ViUgv+KSGUzzfvdKwXUy9EdyMFJ1dPceMJACuUFJr1KKwa75VK/dOn+TC+r
+         dqWsHuTdtOGZrV+RRpntH47USzG21WJKwGNN1PYGMVrcAsH52neWig8wEbRDqbHZGJq8
+         RfUUXtsp5g1HLsXgpVYiy+kQ4phSE1uwZv+SF4GAHuq6KZLDixLGx4sAzYuqMv1IChW9
+         5n0Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=uf6WOD0QQFeOYWAHi4Ca6Vw+411I2zW9BmJTlu4npMU=;
-        b=DP/OKYgaj9N6ttcon4FRRPsR+jycUXpAHX6Fk5KAEYyeQoled7zd65bIxjwh2PpMPa
-         BIBBC+YKevwn+fxe/tNIsUaL4B3fspY2gg7+ZOLcZhfanQNf7Np6mzeL221eYmSfOJ8x
-         OYsnPTYhTkpbudY8XvBXszm92vKEJLZ9KAYtdVxf+xyX1oCXlLUU2rySoA46ZT8PeygD
-         CJOEHWYWTf0ydvcez23G0+yOe/tT4lMby0Fz1BesSUFmgn6wOc9eOdK2HNLr9bbHSrhk
-         tUFqaCejkieLIqyRdyFjx0BadSE4KYC6MiFyYtzqdYv62KeZTaEX4FOcrNNPlf+tdMey
-         jLmA==
-X-Gm-Message-State: AOAM533a3i1u+zLFpdPG+RgPD2E4yv21N72DEJYIU0NtFiNJzZDN8vho
-        2zNL8XtabkFG1/bp9tW9XwrJ6g==
-X-Google-Smtp-Source: ABdhPJz3YoiEch/iyqhcQH0Imra0Xtoh/3yO71y8URs09mYhK7A3GCg8xwRLkEjryvxhvWjYaeQiMw==
-X-Received: by 2002:a17:907:2d0e:b0:6f4:e29e:5555 with SMTP id gs14-20020a1709072d0e00b006f4e29e5555mr25664302ejc.552.1652287121130;
-        Wed, 11 May 2022 09:38:41 -0700 (PDT)
+        bh=xj1N8tp59EX/rZwMqCjY9hqLN8tIPGoout6wfaBUGxU=;
+        b=RDtV8n2CHEgdPBEdmVPNeJvt67bYVgGTHtOzbCM3lZZw55mUBRUQa+SK/VtwmnK5j0
+         iKJyGwnURou4FLdaPoAJ9LYPp6zjfDwSdCh2kXzATnrRqOycN8NiA/tCi2IztNKiER/T
+         6WdRWUcHxMsyXJ5MJ9cYzZCnr91ksMTTwM8bzRI37XgCdj194GUd5BWaiTrkluFwOiGo
+         8Izxbns/rENrLF0+OkeOjZ3q4qaZ9qQTHdrQIIGwWebc5YP4MuwrQ/8GVhSjmlkvYkOY
+         Lx1RWZWj1uqrVOypw72R9900WZiBw6eDEpXISst3xSbEnchlMGkRq/s75SZGl40XfziO
+         m3+g==
+X-Gm-Message-State: AOAM531hv6MetP0+XqgPu3tDqQ6jc53e3OjvLiP2Zqw99eve9uqcwbcR
+        Hrv3pSp6UQ6S/WU0GOZcl1XJXg==
+X-Google-Smtp-Source: ABdhPJxCXNZvBC03q83kl+F9j8XLH2Ll7BgJt1C9jpNbQv4w1Vv8ths6fhK0V/yL0ur+y8MJw5RLZQ==
+X-Received: by 2002:a50:8a96:0:b0:425:e046:76d9 with SMTP id j22-20020a508a96000000b00425e04676d9mr29906154edj.115.1652287602823;
+        Wed, 11 May 2022 09:46:42 -0700 (PDT)
 Received: from [192.168.0.155] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id eg56-20020a05640228b800b00427ae00972dsm1500038edb.12.2022.05.11.09.38.38
+        by smtp.gmail.com with ESMTPSA id q20-20020a50c354000000b0042617ba639fsm1480656edb.41.2022.05.11.09.46.41
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 11 May 2022 09:38:40 -0700 (PDT)
-Message-ID: <1372f51c-0158-dbe3-a0bf-aeeb83f4fec3@linaro.org>
-Date:   Wed, 11 May 2022 18:38:38 +0200
+        Wed, 11 May 2022 09:46:42 -0700 (PDT)
+Message-ID: <72897af0-6f03-cf25-d84b-830020973a4c@linaro.org>
+Date:   Wed, 11 May 2022 18:46:40 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.8.1
-Subject: Re: [PATCH v6 2/3] arm64: dts: marvell: Add Armada 98DX2530 SoC and
- RD-AC5X board
+Subject: Re: [PATCH v2 2/4] Input: mt-matrix-keypad: Add Bosch mt matrix
+ keypad driver
 Content-Language: en-US
-To:     Chris Packham <chris.packham@alliedtelesis.co.nz>,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        catalin.marinas@arm.com, will@kernel.org, andrew@lunn.ch,
-        gregory.clement@bootlin.com, sebastian.hesselbarth@gmail.com,
-        kostap@marvell.com, robert.marko@sartura.hr
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20220510231002.1160798-1-chris.packham@alliedtelesis.co.nz>
- <20220510231002.1160798-3-chris.packham@alliedtelesis.co.nz>
+To:     Gireesh.Hiremath@in.bosch.com, krzysztof.kozlowski+dt@linaro.org
+Cc:     m.felsch@pengutronix.de, linux-omap@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-input@vger.kernel.org, bcousson@baylibre.com,
+        tony@atomide.com, robh+dt@kernel.org, dmitry.torokhov@gmail.com,
+        mkorpershoek@baylibre.com, davidgow@google.com,
+        swboyd@chromium.org, fengping.yu@mediatek.com,
+        y.oudjana@protonmail.com, rdunlap@infradead.org,
+        colin.king@intel.com, sjoerd.simons@collabora.co.uk,
+        VinayKumar.Shettar@in.bosch.com,
+        Govindaraji.Sivanantham@in.bosch.com, anaclaudia.dias@de.bosch.com
+References: <20220506072737.1590-2-Gireesh.Hiremath@in.bosch.com>
+ <20220510141306.2431-1-Gireesh.Hiremath@in.bosch.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220510231002.1160798-3-chris.packham@alliedtelesis.co.nz>
+In-Reply-To: <20220510141306.2431-1-Gireesh.Hiremath@in.bosch.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/05/2022 01:10, Chris Packham wrote:
-> The 98DX2530 SoC is the Control and Management CPU integrated into
-> the Marvell 98DX25xx and 98DX35xx series of switch chip (internally
-> referred to as AlleyCat5 and AlleyCat5X).
+On 10/05/2022 16:13, Gireesh.Hiremath@in.bosch.com wrote:
+> From: Gireesh Hiremath <Gireesh.Hiremath@in.bosch.com>
 > 
-> These files have been taken from the Marvell SDK and lightly cleaned
-> up with the License and copyright retained.
+> Hi Krzysztof,
 > 
-> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
-> Reviewed-by: Andrew Lunn <andrew@lunn.ch>
-> ---
+>>>>> both matric_keypad.c and mt_matrix_kepad.c logically operate differently,
+>>>>> my openion is not to merge both.
+>>>>
+>>>> IMHO from the user/system-integrator pov it is looking the same and so
+>>>> one driver should be fine. To distinguish between both modes we could
+>>>> add dt-property or add a new dt-compatible like "gpio-matrix-keypad-v2".
+>>>>
+>>>
+>>> as mentioned above our keypad is not complete matrix keypad  and it will
+>>> not be compatible with matrix_keypad diver. that is the reason we derived
+>>> mt matrix keypad driver.
+>>>
+>>> to avoid confusion, we will rename the driver as bosch_mt_keypad.c
+>>> if you suggest.
+>>
+>> Sending a new version while discussions are ongoing is not how we reach
+>> consensus.
 > 
-> Notes:
->     The Marvell SDK has a number of new compatible strings. I've brought
->     through some of the drivers or where possible used an in-tree
->     alternative (e.g. there is SDK code for a ac5-gpio but two instances of
->     the existing marvell,orion-gpio seems to cover what is needed if you use
->     an appropriate binding). I expect that there will a new series of
->     patches when I get some different hardware (or additions to this series
->     depending on if/when it lands).
->     
->     Changes in v6:
->     - Move CPU nodes above the SoC (Krzysztof)
->     - Minor formatting clean ups (Krzysztof)
->     - Run through `make dtbs_check`
->     - Move gic nodes inside SoC
->     - Group clocks under a clock node
->     Changes in v5:
->     - add #{address,size}-cells property to i2c nodes
->     - make i2c nodes disabled in the SoC and enable them in the board
->     - add interrupt controller attributes to gpio nodes
->     - Move fixed-clock nodes up a level and remove unnecessary @0
->     Changes in v4:
->     - use 'phy-handle' instead of 'phy'
->     - move status="okay" on usb nodes to board dts
->     - Add review from Andrew
->     Changes in v3:
->     - Move memory node to board
->     - Use single digit reg value for phy address
->     - Remove MMC node (driver needs work)
->     - Remove syscon & simple-mfd for pinctrl
->     Changes in v2:
->     - Make pinctrl a child node of a syscon node
->     - Use marvell,armada-8k-gpio instead of orion-gpio
->     - Remove nand peripheral. The Marvell SDK does have some changes for the
->       ac5-nand-controller but I currently lack hardware with NAND fitted so
->       I can't test it right now. I've therefore chosen to omit the node and
->       not attempted to bring in the driver or binding.
->     - Remove pcie peripheral. Again there are changes in the SDK and I have
->       no way of testing them.
->     - Remove prestera node.
->     - Remove "marvell,ac5-ehci" compatible from USB node as
->       "marvell,orion-ehci" is sufficient
->     - Remove watchdog node. There is a buggy driver for the ac5 watchdog in
->       the SDK but it needs some work so I've dropped the node for now.
+> I apologize for sending new version.
 > 
->  arch/arm64/boot/dts/marvell/Makefile          |   1 +
->  .../boot/dts/marvell/armada-98dx2530.dtsi     | 313 ++++++++++++++++++
->  arch/arm64/boot/dts/marvell/rd-ac5x.dts       |  90 +++++
->  3 files changed, 404 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/marvell/armada-98dx2530.dtsi
->  create mode 100644 arch/arm64/boot/dts/marvell/rd-ac5x.dts
+>>
+>> Make the driver as part of matrix-keypad driver or bring real arguments
+>> why it cannot be merged.
 > 
-> diff --git a/arch/arm64/boot/dts/marvell/Makefile b/arch/arm64/boot/dts/marvell/Makefile
-> index 1c794cdcb8e6..3905dee558b4 100644
-> --- a/arch/arm64/boot/dts/marvell/Makefile
-> +++ b/arch/arm64/boot/dts/marvell/Makefile
-> @@ -24,3 +24,4 @@ dtb-$(CONFIG_ARCH_MVEBU) += cn9132-db.dtb
->  dtb-$(CONFIG_ARCH_MVEBU) += cn9132-db-B.dtb
->  dtb-$(CONFIG_ARCH_MVEBU) += cn9130-crb-A.dtb
->  dtb-$(CONFIG_ARCH_MVEBU) += cn9130-crb-B.dtb
-> +dtb-$(CONFIG_ARCH_MVEBU) += rd-ac5x.dtb
-> diff --git a/arch/arm64/boot/dts/marvell/armada-98dx2530.dtsi b/arch/arm64/boot/dts/marvell/armada-98dx2530.dtsi
-> new file mode 100644
-> index 000000000000..724e722b4265
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/marvell/armada-98dx2530.dtsi
-> @@ -0,0 +1,313 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Device Tree For AC5.
-> + *
-> + * Copyright (C) 2021 Marvell
-> + *
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +/ {
-> +	model = "Marvell AC5 SoC";
-> +	compatible = "marvell,ac5";
-> +	interrupt-parent = <&gic>;
-> +	#address-cells = <2>;
-> +	#size-cells = <2>;
-> +
-> +	aliases {
-> +		serial0 = &uart0;
-> +		spiflash0 = &spiflash0;
+> I tryied to put real hardware scenario which used in 
+> Bosch Power tool measuring devices.
+> Keypad schematic as below, it is reduced matrix keypad compared
+> to standard matrix keypad 
+> 
+>                      Pin8 (gpio1 16)-----------------------
+>                      Pin7 (gpio1 20)--------------------- |
+>                      Pin6 (gpio1 22)------------------- | |
+>                      Pin5 (gpio2 21)----------------- | | |
+>                      Pin4 (ground  )--------------- | | | |
+>                      Pin3 (gpio1 31)------------- | | | | |
+>                      Pin2 (gpio1 23)----------- | | | | | |
+>                      Pin1 (gpio1 24)--------- | | | | | | |
+>                                             | | | | | | | |
+>                                             | | | | | | | |
+>                                             | | | | | | | |
+>     |------------|---------|----------------- | | | | | | |-----------|
+>     |  Button1   |         |  Button2         | | | | | |    Button3  | 
+>     |      _|_   |         |   _|_            | | | | | |       _|_   | 
+>     |  |--o   o--|         |--o   o-----------| | | | | |------o   o--|       
+>     |  |                                      | | | | | |             |
+>     |  |         |----------------------------| | | | | |             |
+>     |  | Button4 |            Button5           | | | | |  Button6    |
+>     |  |   _|_   |              _|_             | | | | |    _|_      |
+>     |  |--o   o--|         |---o   o------------| | | | |---o   o-----|
+>     |  |                   |                      | | |               |
+>     |  |                   |------------------|---| | |-----------|   |
+>     |  |                                      |     |             |   |
+>     |  |------------------------------|       |     |---------|   |   |
+>     |                                 |       |               |   |   |
+>     |   Button7              Button8  |	      |    Button9    |   |   |
+>     |      _|_                _|_     |	      |       _|_     |   |   |
+>     |-----o   o-----|--------o   o----|       |------o   o----|   |   |
+>                     |                 |                           |   |
+>                     |                 |---------------------------|   |
+>                     |                                                 |
+>                     |-------------------------------------------------|
+> 
+> 
+>     ____________________________________
+>     | Button  | Pin activation| Keymap |
+>     |----------------------------------|
+>     |Button1  |	    1,6       | KEY_7  |
+>     |----------------------------------|
+>     |Button2  |	    1,2       | KEY_8  |
+>     |----------------------------------|
+>     |Button3  |	    7,8       | KEY_9  |
+>     |----------------------------------|
+>     |Button4  |	    2,6       | KEY_4  |
+>     |----------------------------------|
+>     |Button5  |	    3,4       | KEY_5  |
+>     |----------------------------------|
+>     |Button6  |	    6,7       | KEY_6  |
+>     |----------------------------------|
+>     |Button7  |	    1,8       | KEY_1  |
+>     |----------------------------------|
+>     |Button8  |	    6,8       | KEY_2  |
+>     |----------------------------------|
+>     |Button9  |	    4,5       | KEY_3  |
+>     |----------------------------------|
+> 				
+> for Button5 and Button9 we used standard gpio_keys.c driver.
+> 
+> Button1,2,3,4,6,7,8 are not in standard row and column format,
+> found difficulty to apply matrix keypad drive to these button.
+> 
+> to solve this we came with vendor specific driver like
+> mt_matrix_keypad.c by taking matrix_keypad as reference.
+> 
+> after your review comment I felt it should named as
+> bosch_keypad.c to show as vendor specific.
+> 
+> in this driver all gpio lines act as row as well as column,
+> a key can be placed at each intersection of a unique row
+> number not equal to a unique column and they are diagonally
+> symmetric.
+> we can skip keymap for the valid intersection of gpio and
+> invalid keymap for row equal to column.
+> 
+> the matrix table as below for above schematic
+> 
+>     ------------------------------------------------------
+>     |Row\Col |GPIO 0 | GPIO 1 | GPIO 2 | GPIO 3 | GPIO 4 |
+>     ------------------------------------------------------
+>     | GPIO 0 |  X    | KEY_9  | KEY_2  |   X    | KEY_1  |
+>     ------------------------------------------------------
+>     | GPIO 1 | KEY_9 |  X     | KEY_6  |   X    |  X     |
+>     ------------------------------------------------------
+>     | GPIO 2 | KEY_2 | KEY_6  |  X     | KEY_4  | KEY_7  |
+>     ------------------------------------------------------
+>     | GPIO 3 |  X    |  X     | KEY_4  |  X     | KEY_8  |
+>     ------------------------------------------------------
+>     | GPIO 4 | KEY_1 |  X     | KEY_7  | KEY_8  |  X     |
+>     ------------------------------------------------------
+>     X - invalid key
+>     KEY_x - preferred key code
+> 
+> 
+> in Device tree we avoided row and column 
+> and passed gpio info as line-gpios
+> 
+> line-gpios = <
+>           &gpio1 24 1     /*gpio_56*/
+>           &gpio1 23 1     /*gpio_55*/
+>           &gpio1 22 1     /*gpio_54*/
+>           &gpio1 20 1     /*gpio_52*/
+>           &gpio1 16 1     /*gpio_48*/
+>         >;
+>         linux,keymap = <
+>                 0x00000000 /* row 0, col 0, KEY_RESERVED */
+>                 0x0001000a /* row 0, col 1, KEY_9 */
+>                 0x00020003 /* row 0, col 2, KEY_2 */
+>                 0x00030000 /* row 0, col 3, KEY_RESERVED */
+>                 0x00040002 /* row 0, col 4, KEY_1 */
+>                 0x0100000a /* row 1, col 0, KEY_9 */
+>                 0x01010000 /* row 1, col 1, KEY_RESERVED */
+>                 0x01020007 /* row 1, col 2, KEY_6 */
+>                 0x01030000 /* row 1, col 3, KEY_RESERVED */
+>                 0x01040000 /* row 1, col 4, KEY_RESERVED */
+>                 0x02000003 /* row 2, col 0, KEY_2 */
+>                 0x02010007 /* row 2, col 1, KEY_6 */
+>                 0x02020000 /* row 2, col 2, KEY_RESERVED */
+>                 0x02030005 /* row 2, col 3, KEY_4 */
+>                 0x02040008 /* row 2, col 4, KEY_7 */
+>                 0x03000000 /* row 3, col 0, KEY_RESERVED */
+>                 0x03010000 /* row 3, col 1, KEY_RESERVED */
+>                 0x03020005 /* row 3, col 2, KEY_4 */
+>                 0x03030000 /* row 3, col 3, KEY_RESERVED */
+>                 0x03040009 /* row 3, col 4, KEY_8 */
+>                 0x04000002 /* row 4, col 0, KEY_1 */
+>                 0x04010000 /* row 4, col 1, KEY_RESERVED */
+>                 0x04020008 /* row 4, col 2, KEY_7 */
+>                 0x04030009 /* row 4, col 3, KEY_8 */
+>                 0x04040000 /* row 4, col 4, KEY_RESERVED */
+>         >;
+> 
+> this driver approch may be usefull for the embadded device
+> which are using reduced matrix keypad
 
-These should be in board DTS, not SoC.
+You wrote pretty long message explaining how the device works, but I
+still do not see the answer to questions - why it cannot be part of
+matrix keypad?
 
-https://lore.kernel.org/linux-rockchip/CAK8P3a25iYksubCnQb1-e5yj=crEsK37RB9Hn4ZGZMwcVVrG7g@mail.gmail.com/
+"It looks like this driver has smaller number of features than
+matrix-keypad, so it should be integrated into the matrix-keypad.
+matrix-keypad features are superset to this one."
 
-> +		gpio0 = &gpio0;
-> +		gpio1 = &gpio1;
-> +		ethernet0 = &eth0;
-> +		ethernet1 = &eth1;
-
-(...)
-
-> +
-> +	clocks {
-> +		core_clock: core-clock {
-> +			compatible = "fixed-clock";
-> +			#clock-cells = <0>;
-> +			clock-frequency = <400000000>;
-> +		};
-> +
-> +		axi_clock: axi-clock {
-> +			compatible = "fixed-clock";
-> +			#clock-cells = <0>;
-> +			clock-frequency = <325000000>;
-> +		};
-> +
-> +		spi_clock: spi-clock {
-> +			compatible = "fixed-clock";
-> +			#clock-cells = <0>;
-> +			clock-frequency = <200000000>;
-> +		};
-
-My questions about these clocks are still unanswered. Why do you define
-fixed-clocks. Aren't these part of clock controller?
-
-> +	};
-> +};
-> diff --git a/arch/arm64/boot/dts/marvell/rd-ac5x.dts b/arch/arm64/boot/dts/marvell/rd-ac5x.dts
-> new file mode 100644
-> index 000000000000..7ac87413e023
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/marvell/rd-ac5x.dts
-> @@ -0,0 +1,90 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Device Tree For AC5X.
-> + *
-> + * Copyright (C) 2021 Marvell
-> + *
-> + */
-> +/*
-> + * Device Tree file for Marvell Alleycat 5X development board
-> + * This board file supports the B configuration of the board
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "armada-98dx2530.dtsi"
-> +
-> +/ {
-> +	model = "Marvell RD-AC5X Board";
-> +	compatible = "marvell,ac5x", "marvell,ac5";
-
-From the bindings I understood ac5x is a SoC, not board. If ac5x is a
-board, not a SoC, then compatible should be rather "marvell,rd-ac5x".
-
-> +
-> +	memory@0 {
-> +		device_type = "memory";
-> +		reg = <0x2 0x00000000 0x0 0x40000000>;
-> +	};
-> +};
-> +
-> +&mdio {
-> +	phy0: ethernet-phy@0 {
-> +		reg = <0>;
-> +	};
-> +};
-> +
-> +&i2c0 {
-> +	status = "okay";
-> +};
-> +
-> +&i2c1 {
-> +	status = "okay";
-> +};
-> +
-> +&eth0 {
-> +	status = "okay";
-> +	phy-handle = <&phy0>;
-> +};
-> +
-> +&usb0 {
-> +	status = "okay";
-> +};
-> +
-> +&usb1 {
-> +	status = "okay";
-> +};
-> +
-> +&spi0 {
-> +	status = "okay";
-> +
-> +	spiflash0: flash@0 {
-> +		compatible = "jedec,spi-nor";
-> +		spi-max-frequency = <50000000>;
-> +		spi-tx-bus-width = <1>; /* 1-single, 2-dual, 4-quad */
-> +		spi-rx-bus-width = <1>; /* 1-single, 2-dual, 4-quad */
-> +		reg = <0>;
-> +
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-> +
-> +		partition@0 {
-> +			label = "spi_flash_part0";
-> +			reg = <0x0 0x800000>;
-> +		};
-> +
-> +		parition@1 {
-> +			label = "spi_flash_part1";
-> +			reg = <0x800000 0x700000>;
-> +		};
-> +
-> +		parition@2 {
-> +			label = "spi_flash_part2";
-> +			reg = <0xF00000 0x100000>;
-> +		};
-> +	};
-> +};
-> +
-> +&usb1 {
-> +	compatible = "chipidea,usb2";
-
-Why compatible is defined per board?
-
-> +	phys = <&usb1phy>;
-> +	phy-names = "usb-phy";
-> +	dr_mode = "peripheral";
-> +};
-> +
+"But anyway this should be just merged into matrix-keypad. It's a
+simpler set of that binding."
 
 
 Best regards,
