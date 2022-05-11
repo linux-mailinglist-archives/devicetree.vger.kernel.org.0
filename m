@@ -2,56 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C4EF5228EE
-	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 03:26:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A48E75228F0
+	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 03:28:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240492AbiEKB0n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 May 2022 21:26:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51486 "EHLO
+        id S238179AbiEKB2C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 May 2022 21:28:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57180 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238569AbiEKB0j (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 May 2022 21:26:39 -0400
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CAA686FD00;
-        Tue, 10 May 2022 18:26:37 -0700 (PDT)
-Received: by mail-ej1-x62a.google.com with SMTP id i27so1074958ejd.9;
-        Tue, 10 May 2022 18:26:37 -0700 (PDT)
+        with ESMTP id S237040AbiEKB2A (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 May 2022 21:28:00 -0400
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A433B18C06D;
+        Tue, 10 May 2022 18:27:58 -0700 (PDT)
+Received: by mail-ed1-x52e.google.com with SMTP id be20so706028edb.12;
+        Tue, 10 May 2022 18:27:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=bRbUgRTaSaGKFWOQVW0vsPy+my+VkFAnyFE5K6q7L9M=;
-        b=qhyR8P53avM7dqw0RfzKOnZGncdneWha7XFdoMznIeUAqy1T8E3ckkbnYsVgq5Sd+8
-         NKSqqzlLMedZ/ub9Dv+oUWfz+X9M6TikmUvhqrFYZdoY6WuMacjhdqGw0H5tCyuyJtmI
-         WbiRGrmCZqFjSg+0swBR0xzI+xbbNVf2PPKn68hxD9yalmWVBam9AfTFcoKTj3DAnDb4
-         HJkFdrAZAS0edWDdl5FyteiJ9GEzpfwR8bmURf43vXsoQ5wepFu/h98uRb1Qgv7j/M7S
-         j7wwbbZNGoHEuB/7EfR/6TXFOUyrzCCNsg1cTf5IGSruAF757k3gjr2U9932Tdd6slri
-         MruQ==
+        bh=B1NY0AoAg0CnY44TTSpjO00eqVV5HqyRvttB8vt6qWE=;
+        b=I6f+4dunzcqeGA+Jv4IWOi7wI3WXl6YqaT6Ty6CHx1tRLF61QtuORfBftRol1RFWVj
+         s73SLpsQtvaP728lRAogsyKcC77Ov6/t75Gco0MY/tgRbQoB1k3S/aBqIpuXg1Aw5Tef
+         JBfNuoJ7IwiXmRQqXMMRhEjgOBGdrYPjWch86EZyPOlokT0W+pyvtCOMgn2i45dLvMNK
+         OMRYBfHf4tLOJmK9ITCGXgW3zQxwySch7+Q7UpCQ+572pASZPuPP6iNiCH2qTt5it+zT
+         TwQwH8ImxZ8lx8XYkvSHIZ7n59n8d0hIsvpCBAj8NsuskCLVFJyvdADQwAZCLDSlG7pR
+         geGA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=bRbUgRTaSaGKFWOQVW0vsPy+my+VkFAnyFE5K6q7L9M=;
-        b=zVNP90XOTHigLJ0W2wNT0hmnLxxO/5F6XgqKHZlQ4X0KnA5lgaQGZ4Tyxa2ZARS3GQ
-         n23FYuN1GfnSz/KxB/VndCs+KFRtZHyHrWxTbwpeka0I+2W3HFJ1qsiyTbCYq+VdboM/
-         TC5BYB9EPkoGpMiYQRGKuEY5U5N1wHicVd0MZIOP0clvbZlCTW0UQYU/7v2Hia3jyUXR
-         bpVpM00D2W5eKmU+3ZeFpWvk3o5f/wEqQld8yZOyIZSINSbbICKIOqAQepIhAM58jvIm
-         AJk4s6Yz79x33LyHmxSLqlCwj+wU4C6IzlfqUH8+/p2qdQI/wKOnF/LXCJU46Kgz6dUN
-         ObIA==
-X-Gm-Message-State: AOAM532ODFoiLzjLoKuBzJOOwlVfXE//8cLzIHn24OC6a1txDUFgNh3A
-        KEDYvx686BkGsZiG37am4PD4t02vnYtwvypc10M1r++hLas=
-X-Google-Smtp-Source: ABdhPJzGF0MlZtd+4qPm8c00mpqbAg80KAzF9urrIpJUUz5MriRD5cxJF5uvWXYBkvG8VM2ceU378E1aIuzhDzE/YP0=
-X-Received: by 2002:a17:906:c14b:b0:6f8:e6bb:f8d5 with SMTP id
- dp11-20020a170906c14b00b006f8e6bbf8d5mr15304336ejc.4.1652232396394; Tue, 10
- May 2022 18:26:36 -0700 (PDT)
+        bh=B1NY0AoAg0CnY44TTSpjO00eqVV5HqyRvttB8vt6qWE=;
+        b=2i0Ihme6J3v6IY+ZM4HzzvNRZZ+NDxhSoBGFjK2zVG3zm8jvCoHNCWx5m4w8sMQDD4
+         bZSNE3CvXAv4ZhOEhNG9NN6ksHovDsOK+Jb0Tt0VtT5tAR6RAKBe83HFatRdCXgVb4bV
+         RyLb02S1lrOY9OXXv70nxC6UMzPyYLGaeBsPiO9Hu9SnglIGAESDujaOxdlqw02SGRcm
+         4WKh2IsqIg0y4ivJjDI9Aqr//pqKVTAL9IfG8DhcEMqZpHIFYDzCZ1AdnIYsrgXy+AEa
+         J/wH2P0DcdWuFtGfdFMB8zK56wASy9g1hfMbT8LjTfJcNBf83vPRT0v+ozUnQ4B16Zcy
+         D9Rg==
+X-Gm-Message-State: AOAM530BbUeaBQd8g1hnFLJcBsIi4ArK4JuGuSyMTkw2Puv3lAbdYp7k
+        OfmgGbwOQd5+hTVwDy6LIfpd4zykv4aEuDyKreM=
+X-Google-Smtp-Source: ABdhPJzCr465sXWS4MK5Tsco+o/aksr5kOPAtcdQVK2Q+O2MLJA7U/qy14IXebV/VmwfsSn0a/NEH11kI0O9Z3Bii6s=
+X-Received: by 2002:a50:ab57:0:b0:428:9f9b:d8e3 with SMTP id
+ t23-20020a50ab57000000b004289f9bd8e3mr13108696edc.305.1652232477211; Tue, 10
+ May 2022 18:27:57 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220509111126.7032-1-max.oss.09@gmail.com> <20220509111126.7032-3-max.oss.09@gmail.com>
-In-Reply-To: <20220509111126.7032-3-max.oss.09@gmail.com>
+References: <20220509111126.7032-1-max.oss.09@gmail.com> <20220509111126.7032-2-max.oss.09@gmail.com>
+In-Reply-To: <20220509111126.7032-2-max.oss.09@gmail.com>
 From:   Fabio Estevam <festevam@gmail.com>
-Date:   Tue, 10 May 2022 22:26:24 -0300
-Message-ID: <CAOMZO5AGLnf8-c3Birfs8nONMCOX9ZX2dwzfpnH+EseWyVVSpg@mail.gmail.com>
-Subject: Re: [PATCH v1 2/3] ARM: dts: imx6qdl-colibri: Mux mclk for sgtl5000
- with the codec node
+Date:   Tue, 10 May 2022 22:27:45 -0300
+Message-ID: <CAOMZO5A4LW7-5tFGCKPT8otaUozk-0Op+Rsr81NhaWo6THn+7w@mail.gmail.com>
+Subject: Re: [PATCH v1 1/3] ARM: dts: imx6qdl-colibri: Fix capacitive touch
+ reset polarity
 To:     Max Krummenacher <max.oss.09@gmail.com>
 Cc:     Max Krummenacher <max.krummenacher@toradex.com>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -80,15 +80,14 @@ On Mon, May 9, 2022 at 8:12 AM Max Krummenacher <max.oss.09@gmail.com> wrote:
 >
 > From: Max Krummenacher <max.krummenacher@toradex.com>
 >
-> Move the pin muxing for MCLK used by the codec to the codec node
-> instead of placing it inside the audmux pinctrl group.
+> The commit feedaacdadfc ("Input: atmel_mxt_ts - fix up inverted RESET
+> handler") requires the reset GPIO to have GPIO_ACTIVE_LOW.
 >
-> While no negative effects have been observed this should make sure that
-> MCLK is provided when the codec driver is probed.
+> Fixes: 1524b27c94a6 ("ARM: dts: imx6dl-colibri: Move common nodes to SoM dtsi")
 >
-> Follows commit fa51e1dc4b91 ("ARM: dts: imx6qdl-apalis: Fix sgtl5000
-> detection issue")
->
+
+No need for a blank line between Fixes and Signed-off-by line.
+
 > Signed-off-by: Max Krummenacher <max.krummenacher@toradex.com>
 
 Reviewed-by: Fabio Estevam <festevam@gmail.com>
