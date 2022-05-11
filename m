@@ -2,95 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9ECB1523DAA
-	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 21:39:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C960523E0E
+	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 21:55:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245246AbiEKTi7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 May 2022 15:38:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37112 "EHLO
+        id S1347302AbiEKTzC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 May 2022 15:55:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36598 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233312AbiEKTi6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 May 2022 15:38:58 -0400
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6CD8D6D966;
-        Wed, 11 May 2022 12:38:55 -0700 (PDT)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 24BJccSO012928;
-        Wed, 11 May 2022 14:38:38 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1652297918;
-        bh=ppInYVyNYnNWAQ6uYKPHJ4Wd2cyXhSwvm9SJE67M7tQ=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=eLAHC9Un5NU/le3IIaTfatOYjdBuvgU6JVgCJHL1zA2iA7sxhi/lRJZp0cn3CCnA9
-         knHevQ7tdzSI09T8eluUoDJjnVJ7QIIIPwpKRQNpTzBP+wfvObyyN1Q99CSmvtAxJK
-         IheGrNI0nKpbF4qlovqr2LLAQzkVeNhp+LI500C4=
-Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 24BJccDN017999
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 11 May 2022 14:38:38 -0500
-Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE108.ent.ti.com
- (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Wed, 11
- May 2022 14:38:38 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE101.ent.ti.com
- (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Wed, 11 May 2022 14:38:38 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 24BJccuQ019568;
-        Wed, 11 May 2022 14:38:38 -0500
-Date:   Wed, 11 May 2022 14:38:38 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-CC:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        with ESMTP id S1347327AbiEKTy7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 May 2022 15:54:59 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10AFE9C2FC;
+        Wed, 11 May 2022 12:54:59 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: nfraprado)
+        with ESMTPSA id F06951F42CF0
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1652298897;
+        bh=mb8FI9cn+BTWOJjO46oabe4cMLSOl4wn8hXjvFvCuoc=;
+        h=From:To:Cc:Subject:Date:From;
+        b=dpQiAjZI6Jhhxfs09HDMi10UTpbhdgj5qfUkzPgXjjmC7MFCoRAkXh2kPf8Zj/b6n
+         a31L8+kgqyxzLRD2bCYy1OcJv7Xh50hv++mdnTyw+xaxVCcjwvSq37pBLJhzNuJ7zp
+         k8XTHxEU/cPaEhoMXKQTkDl+FkDPjVMgyCBA5HJLq2VQr2UlfS/pmTkE6U1Q/t0XdC
+         rvdJV/8mEr7YgwsBJDPdQE+Lbaj+wFTdrOWFrfm7YiVivvmtDv/wgAnfiDQ7lg0pwF
+         thV44tjSbn8ZL6xGxPObQWwaig4gYkbUK5SwTP2Xs9pWcvs5UWS9lG4KSYBN2rLw73
+         9IwJ0Y27HprkA==
+From:   =?UTF-8?q?N=C3=ADcolas=20F=2E=20R=2E=20A=2E=20Prado?= 
+        <nfraprado@collabora.com>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     kernel@collabora.com,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        =?UTF-8?q?N=C3=ADcolas=20F=2E=20R=2E=20A=2E=20Prado?= 
+        <nfraprado@collabora.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-rtc@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Andrew Davis <afd@ti.com>
-Subject: Re: [PATCH V2 1/2] dt-bindings: rtc: Add TI K3 RTC description
-Message-ID: <20220511193838.o62nvhwfo4fgcg7l@overview>
-References: <20220511002600.27964-1-nm@ti.com>
- <20220511002600.27964-2-nm@ti.com>
- <d7f124a7-a338-8ada-8d68-9434059db9fc@linaro.org>
+        Tinghan Shen <tinghan.shen@mediatek.com>,
+        Tzung-Bi Shih <tzungbi@google.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org,
+        linux-remoteproc@vger.kernel.org
+Subject: [PATCH v5 0/2] Mediatek SCP dt-binding tweaks
+Date:   Wed, 11 May 2022 15:54:50 -0400
+Message-Id: <20220511195452.871897-1-nfraprado@collabora.com>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <d7f124a7-a338-8ada-8d68-9434059db9fc@linaro.org>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18:28-20220511, Krzysztof Kozlowski wrote:
-> On 11/05/2022 02:25, Nishanth Menon wrote:
-[...]
 
-> 
-> I didn't brought it earlier (I assumed you used existing RTC examples
-> for your schema): why this is not including generic rtc.yaml schema?
-> Isn't this a RTC?
+Two simple patches for the Mediatek SCP dt-binding. The first fixes the
+reg/reg-names property while the second adds a new optional
+memory-region property.
 
-Oversight, and I suppose I picked a bad example to emulate :(
+v4: https://lore.kernel.org/all/20220506213226.257859-1-nfraprado@collabora.com
+v3: https://lore.kernel.org/all/20220503211114.2656099-1-nfraprado@collabora.com
+v2: https://lore.kernel.org/all/20220502192420.2548512-1-nfraprado@collabora.com
+v1: https://lore.kernel.org/all/20220429211111.2214119-1-nfraprado@collabora.com
 
-I assume you mean adding:
-allOf:
-  - $ref: "rtc.yaml#"
+Changes in v5:
+- Made l1tcm optional for mt8192/mt8195
+- Greatly simplified the constraints override in the if:then:
 
-Like this:
-https://gist.github.com/nmenon/0c326c92fbadecd042209c0078f0af99 ?
+Changes in v4:
+- Reworked presence of l1tcm reg to be if:then: based and present only
+  on mt8192/mt8195
+
+Changes in v3:
+- Made the cfg reg required again. After looking again into the mtk-scp
+  driver, only l1tcm is optional.
+
+Changes in v2:
+- Dropped type and description from memory-region since it's a
+  well-known property
+- Set memory-region maxItems to 1
+
+Nícolas F. R. A. Prado (2):
+  dt-bindings: remoteproc: mediatek: Make l1tcm reg exclusive to mt819x
+  dt-bindings: remoteproc: mediatek: Add optional memory-region to
+    mtk,scp
+
+ .../bindings/remoteproc/mtk,scp.yaml          | 47 +++++++++++++------
+ 1 file changed, 33 insertions(+), 14 deletions(-)
 
 -- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+2.36.1
+
