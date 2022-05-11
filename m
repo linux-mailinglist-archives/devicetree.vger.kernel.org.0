@@ -2,299 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2AE9B523B02
-	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 18:59:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DF739523B11
+	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 19:02:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345244AbiEKQ7g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 May 2022 12:59:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50860 "EHLO
+        id S1345282AbiEKRCn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 May 2022 13:02:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59392 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345239AbiEKQ7e (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 May 2022 12:59:34 -0400
-Received: from mail-pl1-x636.google.com (mail-pl1-x636.google.com [IPv6:2607:f8b0:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E71813CA2D
-        for <devicetree@vger.kernel.org>; Wed, 11 May 2022 09:59:32 -0700 (PDT)
-Received: by mail-pl1-x636.google.com with SMTP id x18so2464112plg.6
-        for <devicetree@vger.kernel.org>; Wed, 11 May 2022 09:59:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=psIKzhbeiZw9Aftjj4SOmxtdH9ncwPzk8iMLnEGr5bQ=;
-        b=br3daB0N8p/kLYd3rvdlu/42N5uuMMNWC5vbDuU38H/bNftmrx5r5RxSbP1OyY/K6a
-         5RJdt2tVcmtISOviN61hb8DtmcBkGuMY01Z0pqx2idZS7vTzf+KudVdP0p/CCeotBBQi
-         wu7I97Mr3AaxtxNvklCkTkWG0dnRLEC1i+cBA=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=psIKzhbeiZw9Aftjj4SOmxtdH9ncwPzk8iMLnEGr5bQ=;
-        b=1JP1DD8aJdZc4pYRkZD/YDyjOt0oVQBRK3n2UoEfvp6aBkVTDlQWUOUIbLlcUbeuzX
-         HSrbsECGY2+YyTysYgvZnjrtdFKK4V+xCYj+ycFFiReC5A5APdAxK/ZNaAyUhRB11bWf
-         AFV95D3es299ddi7kIc0gT3mlxXtaSODayjwGKSMpUcB+sGfcHjKbKlMU7comPc94DwF
-         UvoJxPDL38e1c/LP8HedbOtotE7l/nKoWBzko+6Rt3VTjyH3/gNGyGZl9t3HKnvP/B12
-         4HQ94lIuZ4vVocwi3It3rNdf/1OgqAklBynv5D4Ym8z2XGp/xUigZMno9aFkMegYimC6
-         8n7w==
-X-Gm-Message-State: AOAM530fD6nQVUKuP6R2wC/b62choxQGQi/wZnuyFkMNeQnvxROZlir2
-        quKfJbWCWcRv+WJidsAJvmqlzA==
-X-Google-Smtp-Source: ABdhPJzMCgYv+v3OfOKwapUQQdn7yf3/lf5sB7Q70QMwgnjGiq1+4OKv65VIOQKiMkXuD95dtadtmg==
-X-Received: by 2002:a17:90a:f2ce:b0:1d9:a18f:87f3 with SMTP id gt14-20020a17090af2ce00b001d9a18f87f3mr6363099pjb.213.1652288371862;
-        Wed, 11 May 2022 09:59:31 -0700 (PDT)
-Received: from localhost ([2620:15c:11a:202:c586:bf93:e960:73b4])
-        by smtp.gmail.com with UTF8SMTPSA id a12-20020aa78e8c000000b0050dc762818dsm2023523pfr.103.2022.05.11.09.59.31
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 11 May 2022 09:59:31 -0700 (PDT)
-Date:   Wed, 11 May 2022 09:59:30 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Sibi Sankar <quic_sibis@quicinc.com>
-Cc:     bjorn.andersson@linaro.org, robh+dt@kernel.org, ohad@wizery.com,
-        agross@kernel.org, mathieu.poirier@linaro.org,
-        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+        with ESMTP id S237247AbiEKRCm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 May 2022 13:02:42 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0A0264733;
+        Wed, 11 May 2022 10:02:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=qGbO2F4BgGoDa01K+lTe/8HxmdXnwujci0ArhS0FRT8=; b=JUpmsc/qHSdRlsIfTcfeWYxkEZ
+        3iA/qnwVbuw8FHxZlWbCoFb5V7vwvxiTxAExDI4kh6ejcKLyu1FpD6K9ZDF+ZgmT7Q5cub6NdzCJt
+        2Nwj6wToecfx/xGR1mZiDtjyBTAoP6lLKBFmMcTKMHDVpbKwPaV/8MmlZaGQ6OUsZYck=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1nopjG-002Ko2-Cq; Wed, 11 May 2022 19:02:26 +0200
+Date:   Wed, 11 May 2022 19:02:26 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Chris Packham <chris.packham@alliedtelesis.co.nz>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        catalin.marinas@arm.com, will@kernel.org,
+        gregory.clement@bootlin.com, sebastian.hesselbarth@gmail.com,
+        kostap@marvell.com, robert.marko@sartura.hr,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        swboyd@chromium.org, krzysztof.kozlowski+dt@linaro.org
-Subject: Re: [PATCH v3 2/2] dt-bindings: remoteproc: qcom: Add SC7280 MSS
- bindings
-Message-ID: <YnvrchuHVKFHE3B2@google.com>
-References: <1652257162-23874-1-git-send-email-quic_sibis@quicinc.com>
- <1652257162-23874-3-git-send-email-quic_sibis@quicinc.com>
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v6 1/3] dt-bindings: marvell: Document the AC5/AC5X
+ compatibles
+Message-ID: <YnvsInrh03BVh7lN@lunn.ch>
+References: <20220510231002.1160798-1-chris.packham@alliedtelesis.co.nz>
+ <20220510231002.1160798-2-chris.packham@alliedtelesis.co.nz>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1652257162-23874-3-git-send-email-quic_sibis@quicinc.com>
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+In-Reply-To: <20220510231002.1160798-2-chris.packham@alliedtelesis.co.nz>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sibi,
-
-On Wed, May 11, 2022 at 01:49:22PM +0530, Sibi Sankar wrote:
-> Add MSS PIL loading bindings for SC7280 SoCs.
+On Wed, May 11, 2022 at 11:10:00AM +1200, Chris Packham wrote:
+> Describe the compatible properties for the Marvell Alleycat5/5X switches
+> with integrated CPUs.
 > 
-> Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
-
-There is already a binding for 'qcom,sc7280-mss-pil' in
-Documentation/devicetree/bindings/remoteproc/qcom,q6v5.txt. Shouldn't
-the entries from that file be deleted?
-
+> Alleycat5:
+> * 98DX2538: 24x1G + 2x10G + 2x10G Stack
+> * 98DX2535: 24x1G + 4x1G Stack
+> * 98DX2532: 8x1G + 2x10G + 2x1G Stack
+> * 98DX2531: 8x1G + 4x1G Stack
+> * 98DX2528: 24x1G + 2x10G + 2x10G Stack
+> * 98DX2525: 24x1G + 4x1G Stack
+> * 98DX2522: 8x1G + 2x10G + 2x1G Stack
+> * 98DX2521: 8x1G + 4x1G Stack
+> * 98DX2518: 24x1G + 2x10G + 2x10G Stack
+> * 98DX2515: 24x1G + 4x1G Stack
+> * 98DX2512: 8x1G + 2x10G + 2x1G Stack
+> * 98DX2511: 8x1G + 4x1G Stack
 > 
-> v3:
->  * Re-ordered clock list, fixed pdc_sync typo [Rob/Matthias]
-> 
->  .../bindings/remoteproc/qcom,sc7280-mss-pil.yaml   | 261 +++++++++++++++++++++
->  1 file changed, 261 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/remoteproc/qcom,sc7280-mss-pil.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,sc7280-mss-pil.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,sc7280-mss-pil.yaml
-> new file mode 100644
-> index 000000000000..2f95bfd7b3eb
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/remoteproc/qcom,sc7280-mss-pil.yaml
-> @@ -0,0 +1,261 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/remoteproc/qcom,sc7280-mss-pil.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm SC7280 MSS Peripheral Image Loader
-> +
-> +maintainers:
-> +  - Sibi Sankar <quic_sibis@quicinc.com>
-> +
-> +description:
-> +  This document defines the binding for a component that loads and boots firmware
-> +  on the Qualcomm Technology Inc. SC7280 Modem Hexagon Core.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - qcom,sc7280-mss-pil
-> +
-> +  reg:
-> +    items:
-> +      - description: MSS QDSP6 registers
-> +      - description: RMB registers
-> +
-> +  reg-names:
-> +    items:
-> +      - const: qdsp6
-> +      - const: rmb
-> +
-> +  iommus:
-> +    items:
-> +      - description: MSA Stream 1
-> +      - description: MSA Stream 2
-> +
-> +  interconnects:
-> +    items:
-> +      - description: Path leading to system memory
-> +
-> +  interrupts:
-> +    items:
-> +      - description: Watchdog interrupt
-> +      - description: Fatal interrupt
-> +      - description: Ready interrupt
-> +      - description: Handover interrupt
-> +      - description: Stop acknowledge interrupt
-> +      - description: Shutdown acknowledge interrupt
-> +
-> +  interrupt-names:
-> +    items:
-> +      - const: wdog
-> +      - const: fatal
-> +      - const: ready
-> +      - const: handover
-> +      - const: stop-ack
-> +      - const: shutdown-ack
+> Alleycat5X:
+> * 98DX3500: 24x1G + 6x25G
+> * 98DX3501: 16x1G + 6x10G
+> * 98DX3510: 48x1G + 6x25G
+> * 98DX3520: 24x2.5G + 6x25G
+> * 98DX3530: 48x2.5G + 6x25G
+> * 98DX3540: 12x5G/6x10G + 6x25G
+> * 98DX3550: 24x5G/12x10G + 6x25G
 
+Hi Chris
 
-The existing binding (qcom,q6v5.txt) also has:
+When looking at this list, is it just the switch which changes, and
+everything else in the package stays the same?
 
-- interrupts-extended:
-        Usage: required
-	Value type: <prop-encoded-array>
-	Definition: reference to the interrupts that match interrupt-names
+I'm thinking back to plain Kirkwood. There were 3 Kirkwood SoCs. We
+had kirkwood.dtsi which described everything common to all three
+SoCs. And then kirkwood-6192.dtsi, kirkwood-6281.dtsi,
+kirkwood-6282.dtsi which extended that base with whatever additional
+things each SoC had.
 
-That's covered implicitly by 'interrupts' I suppose?
+I'm wondering if something similar is needed here?
 
-> +
-> +  clocks:
-> +    items:
-> +      - description: GCC MSS IFACE clock
-> +      - description: GCC MSS OFFLINE clock
-> +      - description: GCC MSS SNOC_AXI clock
-> +      - description: RPMH PKA clock
-> +      - description: RPMH XO clock
-> +
-> +  clock-names:
-> +    items:
-> +      - const: iface
-> +      - const: offline
-> +      - const: snoc_axi
-> +      - const: pka
-> +      - const: xo
-> +
-> +  power-domains:
-> +    items:
-> +      - description: CX power domain
-> +      - description: MSS power domain
-> +
-> +  power-domain-names:
-> +    items:
-> +      - const: cx
-> +      - const: mss
-> +
-> +  resets:
-> +    items:
-> +      - description: AOSS restart
-> +      - description: PDC reset
-> +
-> +  reset-names:
-> +    items:
-> +      - const: mss_restart
-> +      - const: pdc_reset
-> +
-> +  memory-region:
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> +    description: Phandle reference to the reserved-memory for the MBA region followed
-> +                 by the modem region.
-> +
-> +  firmware-name:
-> +    $ref: /schemas/types.yaml#/definitions/string
-> +    description:
-> +      The name of the firmware which should be loaded for this remote
-> +      processor.
-> +
-> +  qcom,halt-regs:
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> +    description:
-> +      Phandle reference to a syscon representing TCSR followed by the
-> +      four offsets within syscon for q6, modem, nc and vq6 halt registers.
-> +
-> +  qcom,ext-regs:
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> +    description:
-> +      Two phandle references to syscons representing TCSR_REG and TCSR register
-> +      space followed by the two offsets within the syscon to force_clk_en/rscc_disable
-> +      and axim1_clk_off/crypto_clk_off registers respectively.
-> +
-> +  qcom,qaccept-regs:
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> +    description:
-> +      Phandle reference to a syscon representing TCSR followed by the
-> +      three offsets within syscon for mdm, cx and axi qaccept registers.
-> +
-> +  qcom,qmp:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description: Reference to the AOSS side-channel message RAM.
-> +
-> +  qcom,smem-states:
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> +    description: States used by the AP to signal the Hexagon core
-> +    items:
-> +      - description: Stop the modem
-> +
-> +  qcom,smem-state-names:
-> +    $ref: /schemas/types.yaml#/definitions/string
-> +    description: The names of the state bits used for SMP2P output
-> +    const: stop
-> +
-> +  glink-edge:
-> +    type: object
-> +    description: |
-> +      Qualcomm G-Link subnode which represents communication edge, channels
-> +      and devices related to the DSP.
-> +
-> +    properties:
-> +      interrupts:
-> +        items:
-> +          - description: IRQ from MSS to GLINK
-> +
-> +      mboxes:
-> +        items:
-> +          - description: Mailbox for communication between APPS and MSS
-> +
-> +      label:
-> +        description: The names of the state bits used for SMP2P output
-> +        items:
-> +          - const: modem
-> +
-> +      qcom,remote-pid:
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +        description: ID of the shared memory used by GLINK for communication with MSS
-> +
-> +    required:
-> +      - interrupts
-> +      - mboxes
-> +      - label
-> +      - qcom,remote-pid
-> +
-> +    additionalProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - reg-names
-> +  - iommus
-> +  - interconnects
-> +  - interrupts
-> +  - interrupt-names
-> +  - clocks
-> +  - clock-names
-> +  - power-domains
-> +  - power-domain-names
-> +  - resets
-> +  - reset-names
-> +  - qcom,halt-regs
-> +  - qcom,ext-regs
-> +  - qcom,qaccept-regs
-> +  - memory-region
-> +  - qcom,qmp
+armada-98DX25xx.dtsi which describes everything common to Alleycat5.
 
-'qcom,qmp' is marked as 'optional' in qcom,q6v5.txt
+armada-98DX35xx.dtsi which describes everything common to Alleycat5X,
+maybe making use of armada-98DX25xx.dtsi?.
+
+armada-98DX2538.dtsi which extends armada-98DX25xx.dtsi
+
+And then a board file which includes armada-98DX2538.dtsi and add the
+board specific bits?
+
+I've no idea how these different devices differ, so i don't know what
+the correct hierarchy should be.
+
+    Andrew
