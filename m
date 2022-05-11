@@ -2,164 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F4DE522E92
-	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 10:39:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 87176522EB1
+	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 10:48:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243869AbiEKIjf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 May 2022 04:39:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57160 "EHLO
+        id S243999AbiEKIsH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 May 2022 04:48:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57106 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243836AbiEKIj0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 May 2022 04:39:26 -0400
-Received: from relay02.th.seeweb.it (relay02.th.seeweb.it [5.144.164.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B28511C37F
-        for <devicetree@vger.kernel.org>; Wed, 11 May 2022 01:39:22 -0700 (PDT)
-Received: from SoMainline.org (94-209-165-62.cable.dynamic.v4.ziggo.nl [94.209.165.62])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id BD5F9205ED;
-        Wed, 11 May 2022 10:39:19 +0200 (CEST)
-Date:   Wed, 11 May 2022 10:39:17 +0200
-From:   Marijn Suijten <marijn.suijten@somainline.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     phone-devel@vger.kernel.org, Pavel Machek <pavel@ucw.cz>,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Martin Botka <martin.botka@somainline.org>,
-        linux-arm-msm@vger.kernel.org, linux-leds@vger.kernel.org,
-        Rob Herring <robh@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Satya Priya <quic_c_skakit@quicinc.com>
-Subject: Re: [PATCH 2/4] leds: qcom-lpg: Add PM660L configuration and
- compatible
-Message-ID: <20220511083917.5xhseah7tuzmrn6f@SoMainline.org>
-Mail-Followup-To: Marijn Suijten <marijn.suijten@somainline.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        phone-devel@vger.kernel.org, Pavel Machek <pavel@ucw.cz>,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Martin Botka <martin.botka@somainline.org>,
-        linux-arm-msm@vger.kernel.org, linux-leds@vger.kernel.org,
-        Rob Herring <robh@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Satya Priya <quic_c_skakit@quicinc.com>
-References: <20220507221123.2201668-1-marijn.suijten@somainline.org>
- <20220507221123.2201668-2-marijn.suijten@somainline.org>
- <YnszX1wdQhUSkgyH@builder.lan>
+        with ESMTP id S243938AbiEKIsA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 May 2022 04:48:00 -0400
+Received: from cpanel.siel.si (cpanel.siel.si [46.19.9.99])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85C0069295;
+        Wed, 11 May 2022 01:47:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=norik.com;
+        s=default; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+        References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+        Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+        List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=uZrqCcYB8V87a970UojFCzLlnS3Bd1oPYpDPFaknOZc=; b=khYEr2vjxElfMXbJ6/LCJP8fFk
+        c9xNsuutJohJ9PnOeWKWu4P5e1FoUqnpP9r3TZC/G3IMFoIUJUAg8Ojrf2eIlNfvzBKS8uZBLR8i4
+        s8jl8MuVfgPUC+Iqr365p4+RBucmv8nUjh4L6jkQez/nzUpGB3d4CwBs2DOhPfVhbDJB3yE7mE+n4
+        cEyJtOBuR2QfQ58uvpLVmfyKQ3kb0CnswApYnbR43/g70hHRFR7jovL+26fRzet7ZnPUrXlun2GQ7
+        rVyJiHuJXDqfQH8yNx8g9CsgZwwV/8EAxyR7iIDQkqgqqhVZKKUS6ax3IOPRyQc14Zl0FYxPusP2a
+        qzzs7sew==;
+Received: from [89.212.21.243] (port=59568 helo=[192.168.69.116])
+        by cpanel.siel.si with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+        (Exim 4.95)
+        (envelope-from <primoz.fiser@norik.com>)
+        id 1noi0W-00EXqO-Cg;
+        Wed, 11 May 2022 10:47:52 +0200
+Message-ID: <210bbfdc-32ac-737e-15ad-a2de12464e52@norik.com>
+Date:   Wed, 11 May 2022 10:47:54 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YnszX1wdQhUSkgyH@builder.lan>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH 2/3] watchdog: da9063: optionally disable watchdog during
+ suspend
+Content-Language: en-US
+To:     DLG Adam Thomson <DLG-Adam.Thomson.Opensource@dm.renesas.com>,
+        "linux-watchdog@vger.kernel.org" <linux-watchdog@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Support Opensource <Support.Opensource@diasemi.com>
+Cc:     Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Marco Felsch <m.felsch@pengutronix.de>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andrej Picej <andrej.picej@norik.com>,
+        "upstream@phytec.de" <upstream@phytec.de>
+References: <20220422072713.3172345-1-primoz.fiser@norik.com>
+ <20220422072713.3172345-2-primoz.fiser@norik.com>
+ <OSAPR01MB50604479A24C65CAD349104DB0C69@OSAPR01MB5060.jpnprd01.prod.outlook.com>
+From:   Primoz Fiser <primoz.fiser@norik.com>
+In-Reply-To: <OSAPR01MB50604479A24C65CAD349104DB0C69@OSAPR01MB5060.jpnprd01.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - cpanel.siel.si
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - norik.com
+X-Get-Message-Sender-Via: cpanel.siel.si: authenticated_id: primoz.fiser@norik.com
+X-Authenticated-Sender: cpanel.siel.si: primoz.fiser@norik.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022-05-10 22:54:07, Bjorn Andersson wrote:
-> On Sat 07 May 17:11 CDT 2022, Marijn Suijten wrote:
+
+On 9. 05. 22 12:38, DLG Adam Thomson wrote:
+> On 22 April 2022 08:27, Primoz Fiser wrote:
 > 
-> > Inherit PM660L PMIC LPG/triled block configuration from downstream
-> > drivers and DT sources, consisting of a triled block with automatic
-> > trickle charge control and source selection, three colored led channels
-> > belonging to the synchronized triled block and one loose PWM channel.
-> > 
-> > Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
-> > ---
-> >  drivers/leds/rgb/leds-qcom-lpg.c | 18 ++++++++++++++++++
-> >  1 file changed, 18 insertions(+)
-> > 
-> > diff --git a/drivers/leds/rgb/leds-qcom-lpg.c b/drivers/leds/rgb/leds-qcom-lpg.c
-> > index cfa3362b2457..30c12ac8eed4 100644
-> > --- a/drivers/leds/rgb/leds-qcom-lpg.c
-> > +++ b/drivers/leds/rgb/leds-qcom-lpg.c
-> > @@ -1271,6 +1271,23 @@ static int lpg_remove(struct platform_device *pdev)
-> >  	return 0;
-> >  }
-> >  
-> > +static const struct lpg_data pm660l_lpg_data = {
-> > +	.lut_base = 0xb000,
-> > +	.lut_size = 0x100,
+>> Optionally disable watchdog during suspend (if enabled) and re-enable
+>> it upon resume.
+>> This enables boards to sleep without being interrupted by the watchdog.
+>>
+>> This patch is based on commit f6c98b08381c ("watchdog: da9062: add
+>> power management ops") and commit 8541673d2a5f ("watchdog: da9062: fix
+>> power management ops") and brings the same functionality to DA9063.
 > 
-> The documentation tells me that you have 49 entries of LUT on the
-> PM660L.
+> There's a WATCHDOG_PD bit (set to 0) to achieve this I believe, and thus
+> removes the need for the suspend/resume PM functions. Is this something you've
+> tried? Also seems to be present for DA9061/2 as well so can't remember why that
+> wasn't used there.
 
-Downstream DT sources report the full 0x100 range starting at 0xb000 is
-used, before the first channel starts at 0xb100:
+Ideally one should be able to use WATCHDOG_PD bit indeed.
 
-    https://git.codelinaro.org/clo/la/kernel/msm-4.14/-/blob/LA.UM.8.2.1.r1-06200-sdm660.0/arch/arm64/boot/dts/qcom/pm660l.dtsi#L84-85
+However there are boards out there which don't have the ability to use 
+the PMIC's powerdown/active mode due to PCB design and thus PMIC is left 
+enabled during suspend i.e. cannot use the POWERDOWN mode.
 
-However, every LUT entry appears to be two bytes in size so this should
-at least be halved.
+Check mailing list correspondence [1] which already gave explanation why 
+there was a need to implement such quirks for da9062 and the need to 
+handle this in software instead of hardware.
 
-The driver does seem to add another 0x42 on top of this base address:
+Links:
 
-    https://git.codelinaro.org/clo/la/kernel/msm-4.14/-/blob/LA.UM.8.2.1.r1-06200-sdm660.0/drivers/pwm/pwm-qti-lpg.c#L104
-
-(Your LPG driver adds 0x40 - I've seen both used in our downstream
-driver) yet that leaves (0x100-0x42) / 2 = 95 spots.
-
-This is still significantly higher than 49.  Is part of this register
-range used for something else, inaccesible for LUT-value readings or is
-the counter hardware in the LPG limiting this?
-
-The driver codes in a max length of 47:
-
-    https://git.codelinaro.org/clo/la/kernel/msm-4.14/-/blob/LA.UM.8.2.1.r1-06200-sdm660.0/drivers/pwm/pwm-qti-lpg.c#L108
-
-If you're confident about this I'll bump it down to 49 or try validating
-what happens if higher registers are used.
-
-> > +
-> > +	.triled_base = 0xd000,
-> > +	.triled_has_atc_ctl = true,
-> > +	.triled_has_src_sel = true,
-> > +
-> > +	.num_channels = 4,
-> > +	.channels = (struct lpg_channel_data[]) {
-> 
-> This can be const
-
-Thanks for spotting!
-
-- Marijn
-
-> 
-> Regards,
-> Bjorn
-> 
-> > +		{ .base = 0xb100, .triled_mask = BIT(5) },
-> > +		{ .base = 0xb200, .triled_mask = BIT(6) },
-> > +		{ .base = 0xb300, .triled_mask = BIT(7) },
-> > +		{ .base = 0xb400 },
-> > +	},
-> > +};
-> > +
-> >  static const struct lpg_data pm8916_pwm_data = {
-> >  	.num_channels = 1,
-> >  	.channels = (const struct lpg_channel_data[]) {
-> > @@ -1391,6 +1408,7 @@ static const struct lpg_data pm8350c_pwm_data = {
-> >  };
-> >  
-> >  static const struct of_device_id lpg_of_table[] = {
-> > +	{ .compatible = "qcom,pm660l-lpg", .data = &pm660l_lpg_data },
-> >  	{ .compatible = "qcom,pm8150b-lpg", .data = &pm8150b_lpg_data },
-> >  	{ .compatible = "qcom,pm8150l-lpg", .data = &pm8150l_lpg_data },
-> >  	{ .compatible = "qcom,pm8350c-pwm", .data = &pm8350c_pwm_data },
-> > -- 
-> > 2.36.0
-> > 
+[1] 
+https://lore.kernel.org/all/20191128171931.22563-1-m.felsch@pengutronix.de/
