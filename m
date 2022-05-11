@@ -2,99 +2,366 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 70482523082
-	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 12:14:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D1DD52308D
+	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 12:18:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242026AbiEKKOd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 May 2022 06:14:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34012 "EHLO
+        id S241199AbiEKKRy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 May 2022 06:17:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49044 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241584AbiEKKO0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 May 2022 06:14:26 -0400
-Received: from albert.telenet-ops.be (albert.telenet-ops.be [IPv6:2a02:1800:110:4::f00:1a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CBED32218FB
-        for <devicetree@vger.kernel.org>; Wed, 11 May 2022 03:14:12 -0700 (PDT)
-Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed40:c9c1:6ba7:bb0d:8433])
-        by albert.telenet-ops.be with bizsmtp
-        id VNEA2700h1sk9zo06NEAZw; Wed, 11 May 2022 12:14:11 +0200
-Received: from rox.of.borg ([192.168.97.57])
-        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1nojMA-003iep-DD; Wed, 11 May 2022 12:14:10 +0200
-Received: from geert by rox.of.borg with local (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1nojM9-004e6O-Jy; Wed, 11 May 2022 12:14:09 +0200
-From:   Geert Uytterhoeven <geert+renesas@glider.be>
-To:     Magnus Damm <magnus.damm@gmail.com>, Adam Ford <aford173@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-renesas-soc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH] arm64: dts: renesas: beacon: Fix regulator node names
-Date:   Wed, 11 May 2022 12:14:06 +0200
-Message-Id: <a9ac82bdf108162487289d091c53a9b3de393f13.1652263918.git.geert+renesas@glider.be>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S233375AbiEKKRv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 May 2022 06:17:51 -0400
+Received: from mail-yw1-x1132.google.com (mail-yw1-x1132.google.com [IPv6:2607:f8b0:4864:20::1132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5B2C275FA
+        for <devicetree@vger.kernel.org>; Wed, 11 May 2022 03:17:49 -0700 (PDT)
+Received: by mail-yw1-x1132.google.com with SMTP id 00721157ae682-2f7d7e3b5bfso15114807b3.5
+        for <devicetree@vger.kernel.org>; Wed, 11 May 2022 03:17:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=y0yk23I1nDnNSowekKcj7K4w/pPnlPvOTvgMIkY+JzY=;
+        b=FqMrW5EntG3ipuoiwVfOM67aT5Gm1MK/Dj1UfRMNCyHfNATyiSW3ZrDxrwwGBSGwX2
+         uRYIGTz6w1YHw1we3DmY4r74fBIcLk/JZZGJmJR3zIoIZ4ZvQeyRD5hwjFODucoaulyB
+         sBZ/ogDveNZh7mMCrLcTz/3qEMkdywakcMfSQX2j+j0Dr0aZc+Yfh2AuRTWnTxRKZ5My
+         ynKDHOBMfqzpfnIr288h41cfsJmxw1zaWJoSs/BA8tVOJHSVFGKvOs7xR8n5MwqnPdqT
+         Dc9CZ9Rf0XHLG2p1e6MJ+KLI68DYjCyEFyMhFePNlgiG+e326oKWPlqv0uckDZ3UuVh6
+         CS0w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=y0yk23I1nDnNSowekKcj7K4w/pPnlPvOTvgMIkY+JzY=;
+        b=GQCqXguGpQ0bnj6l6piB3FMpbc4+/fOsRQ44g0ySW+i2MENvoOxlm/Fb/fDiZc2P7z
+         x7hkIwStAwDniG4f1d5hI+v7tGMu3Y/5eEHIjqScIjAfdNLByOiqYSsKYvUc8Rs8Konh
+         kmmy4C/iNZxEDa8yhtjwxKuiS1juz4ye1vF+WZMvJvuF3J3IkxR0hIYli+6QYxSEx609
+         s7Bmi2VIS9XNaqKE6VO3DzAUTa+0zz9tdIi4F0uHnQrMw74iBy7kn7Og6MKcppeQ+qjq
+         2hqQ/b+tD++2fmuB4W+2EyvMXZlKTNPaSLWirgy3e3w6ah3FLR41wxzjPtoBJiuwBCYA
+         z3TA==
+X-Gm-Message-State: AOAM533Y35Gz6cniyPpOhLUDnlICkXEtYLteSHdxeSJ+8CsN6uOhw22p
+        aclyb/heZVjpr2CP5mj8OeP6O+PvbNZi9GagxU68JA==
+X-Google-Smtp-Source: ABdhPJz4aj17AwoY38RDYc+QLTaQW0WnUvtR/e0tNCPlOO+Qtzk0GrHuH0MhHzWeNLwkVtFwq3xsT3GaGDExEy0dRyc=
+X-Received: by 2002:a81:1985:0:b0:2f7:c16b:3afd with SMTP id
+ 127-20020a811985000000b002f7c16b3afdmr23752186ywz.113.1652264269024; Wed, 11
+ May 2022 03:17:49 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+References: <20220510155744.812471-1-y.oudjana@protonmail.com> <20220510155940.812565-1-y.oudjana@protonmail.com>
+In-Reply-To: <20220510155940.812565-1-y.oudjana@protonmail.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Wed, 11 May 2022 13:17:38 +0300
+Message-ID: <CAA8EJprE-p6m4iAWuo=881=T25AekhsueUxU0LazRMVKBZ26zA@mail.gmail.com>
+Subject: Re: [PATCH v2 2/3] clk: qcom: msm8996-cpu: Add CBF support
+To:     Yassine Oudjana <yassine.oudjana@gmail.com>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Loic Poulain <loic.poulain@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Martin Botka <martin.botka@somainline.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Jami Kettunen <jami.kettunen@somainline.org>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Currently there are two nodes named "regulator_camera".  This causes the
-former to be overwritten by the latter.
+Hi,
 
-Fix this by renaming them to unique names, using the preferred hyphen
-instead of an underscore.
+On Tue, 10 May 2022 at 19:05, Yassine Oudjana <yassine.oudjana@gmail.com> wrote:
+>
+> From: Konrad Dybcio <konrad.dybcio@somainline.org>
+>
+> Add the required code to support the CBF clock, which is responsible for
+> core cluster interconnect frequency on msm8996.
+>
+> Somewhat based on AngeloGioacchino del Regno's work at:
+> https://github.com/sonyxperiadev/kernel/blob/aosp/LE.UM.2.3.2.r1.4/drivers/clk/qcom/clk-cpu-8996.c
+>
+> This fixes the issue with booting with all 4 cores enabled.
+>
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+> Signed-off-by: Yassine Oudjana <yassine.oudjana@gmail.com>
+> ---
+>  drivers/clk/qcom/clk-cpu-8996.c | 162 +++++++++++++++++++++++++++++++-
+>  1 file changed, 159 insertions(+), 3 deletions(-)
+>
+> diff --git a/drivers/clk/qcom/clk-cpu-8996.c b/drivers/clk/qcom/clk-cpu-8996.c
+> index 4a4fde8dd12d..8afc271f92d0 100644
+> --- a/drivers/clk/qcom/clk-cpu-8996.c
+> +++ b/drivers/clk/qcom/clk-cpu-8996.c
+> @@ -68,10 +68,19 @@ enum _pmux_input {
+>         NUM_OF_PMUX_INPUTS
+>  };
+>
+> +enum {
+> +       CBF_PLL_INDEX = 1,
+> +       CBF_DIV_2_INDEX,
+> +       CBF_SAFE_INDEX
+> +};
+> +
+>  #define DIV_2_THRESHOLD                600000000
+>  #define PWRCL_REG_OFFSET 0x0
+>  #define PERFCL_REG_OFFSET 0x80000
+>  #define MUX_OFFSET     0x40
+> +#define CBF_REG_OFFSET 0x0
+> +#define CBF_PLL_OFFSET 0xf000
+> +#define CBF_MUX_OFFSET 0x18
+>  #define ALT_PLL_OFFSET 0x100
+>  #define SSSCTL_OFFSET 0x160
+>
+> @@ -98,6 +107,17 @@ static const u8 alt_pll_regs[PLL_OFF_MAX_REGS] = {
+>         [PLL_OFF_STATUS] = 0x28,
+>  };
+>
+> +static const u8 cbf_pll_regs[PLL_OFF_MAX_REGS] = {
+> +       [PLL_OFF_L_VAL] = 0x08,
+> +       [PLL_OFF_ALPHA_VAL] = 0x10,
+> +       [PLL_OFF_USER_CTL] = 0x18,
+> +       [PLL_OFF_CONFIG_CTL] = 0x20,
+> +       [PLL_OFF_CONFIG_CTL_U] = 0x24,
+> +       [PLL_OFF_TEST_CTL] = 0x30,
+> +       [PLL_OFF_TEST_CTL_U] = 0x34,
+> +       [PLL_OFF_STATUS] = 0x28,
+> +};
+> +
+>  /* PLLs */
+>
+>  static const struct alpha_pll_config hfpll_config = {
+> @@ -111,6 +131,17 @@ static const struct alpha_pll_config hfpll_config = {
+>         .early_output_mask = BIT(3),
+>  };
+>
+> +static const struct alpha_pll_config cbfpll_config = {
+> +       .l = 72,
+> +       .config_ctl_val = 0x200d4aa8,
+> +       .config_ctl_hi_val = 0x006,
+> +       .pre_div_mask = BIT(12),
+> +       .post_div_mask = 0x3 << 8,
+> +       .post_div_val = 0x1 << 8,
+> +       .main_output_mask = BIT(0),
+> +       .early_output_mask = BIT(3),
+> +};
+> +
+>  static struct clk_alpha_pll perfcl_pll = {
+>         .offset = PERFCL_REG_OFFSET,
+>         .regs = prim_pll_regs,
+> @@ -135,6 +166,18 @@ static struct clk_alpha_pll pwrcl_pll = {
+>         },
+>  };
+>
+> +static struct clk_alpha_pll cbf_pll = {
+> +       .offset = CBF_PLL_OFFSET,
+> +       .regs = cbf_pll_regs,
+> +       .flags = SUPPORTS_DYNAMIC_UPDATE | SUPPORTS_FSM_MODE,
+> +       .clkr.hw.init = &(struct clk_init_data){
+> +               .name = "cbf_pll",
+> +               .parent_names = (const char *[]){ "xo" },
+> +               .num_parents = 1,
+> +               .ops = &clk_alpha_pll_huayra_ops,
+> +       },
+> +};
+> +
+>  static const struct pll_vco alt_pll_vco_modes[] = {
+>         VCO(3,  250000000,  500000000),
+>         VCO(2,  500000000,  750000000),
+> @@ -194,6 +237,9 @@ struct clk_cpu_8996_mux {
+>  static int cpu_clk_notifier_cb(struct notifier_block *nb, unsigned long event,
+>                                void *data);
+>
+> +static int cbf_clk_notifier_cb(struct notifier_block *nb, unsigned long event,
+> +                              void *data);
+> +
+>  #define to_clk_cpu_8996_mux_nb(_nb) \
+>         container_of(_nb, struct clk_cpu_8996_mux, nb)
+>
+> @@ -329,6 +375,35 @@ static struct clk_cpu_8996_mux perfcl_pmux = {
+>         },
+>  };
+>
+> +static struct clk_cpu_8996_mux cbf_mux = {
+> +       .reg = CBF_REG_OFFSET + CBF_MUX_OFFSET,
+> +       .shift = 0,
+> +       .width = 2,
+> +       .pll = &cbf_pll.clkr.hw,
+> +       .nb.notifier_call = cbf_clk_notifier_cb,
+> +       .clkr.hw.init = &(struct clk_init_data) {
+> +               .name = "cbf_mux",
+> +               .parent_names = (const char *[]){
+> +                       "xo",
+> +                       "cbf_pll",
+> +                       "cbf_pll_main",
+> +               },
 
-While at it, update the name of the audio regulator (which was added in
-the same commit) to use a hyphen.
+parent_data please.
 
-Fixes: a1d8a344f1ca0709 ("arm64: dts: renesas: Introduce r8a774a1-beacon-rzg2m-kit")
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
-To be queued in renesas-devel for v5.20.
+> +               .num_parents = 3,
+> +               .ops = &clk_cpu_8996_mux_ops,
+> +               /* CPU clock is critical and should never be gated */
+> +               .flags = CLK_SET_RATE_PARENT | CLK_IS_CRITICAL,
+> +       },
+> +};
+> +
+> +static const struct regmap_config cbf_msm8996_regmap_config = {
+> +       .reg_bits               = 32,
+> +       .reg_stride             = 4,
+> +       .val_bits               = 32,
+> +       .max_register           = 0x10000,
+> +       .fast_io                = true,
+> +       .val_format_endian      = REGMAP_ENDIAN_LITTLE,
+> +};
+> +
+>  static const struct regmap_config cpu_msm8996_regmap_config = {
+>         .reg_bits               = 32,
+>         .reg_stride             = 4,
+> @@ -397,6 +472,35 @@ static int qcom_cpu_clk_msm8996_register_clks(struct device *dev,
+>         return ret;
+>  }
+>
+> +static struct clk_regmap *cbf_msm8996_clks[] = {
+> +       &cbf_pll.clkr,
+> +       &cbf_mux.clkr,
+> +};
+> +
+> +static int qcom_cbf_clk_msm8996_register_clks(struct device *dev,
+> +                                             struct regmap *regmap)
+> +{
+> +       int ret;
+> +
+> +       cbf_mux.pll_div_2 = clk_hw_register_fixed_factor(dev, "cbf_pll_main",
+> +                                                     "cbf_pll", CLK_SET_RATE_PARENT,
+> +                                                     1, 2);
+> +       if (IS_ERR(cbf_mux.pll_div_2)) {
+> +               dev_err(dev, "Failed to initialize cbf_pll_main\n");
+> +               return PTR_ERR(cbf_mux.pll_div_2);
+> +       }
+> +
+> +       ret = devm_clk_register_regmap(dev, cbf_msm8996_clks[0]);
+> +       ret = devm_clk_register_regmap(dev, cbf_msm8996_clks[1]);
+> +
+> +       clk_alpha_pll_configure(&cbf_pll, regmap, &cbfpll_config);
+> +       clk_set_rate(cbf_pll.clkr.hw.clk, 614400000);
+> +       clk_prepare_enable(cbf_pll.clkr.hw.clk);
+> +       clk_notifier_register(cbf_mux.clkr.hw.clk, &cbf_mux.nb);
+> +
+> +       return ret;
+> +}
+> +
+>  static int qcom_cpu_clk_msm8996_unregister_clks(void)
+>  {
+>         int ret = 0;
+> @@ -409,8 +513,13 @@ static int qcom_cpu_clk_msm8996_unregister_clks(void)
+>         if (ret)
+>                 return ret;
+>
+> +       ret = clk_notifier_unregister(cbf_mux.clkr.hw.clk, &cbf_mux.nb);
+> +       if (ret)
+> +               return ret;
+> +
+>         clk_hw_unregister(perfcl_smux.pll);
+>         clk_hw_unregister(pwrcl_smux.pll);
+> +       clk_hw_unregister(cbf_mux.pll);
+>
+>         return 0;
+>  }
+> @@ -481,14 +590,48 @@ static int cpu_clk_notifier_cb(struct notifier_block *nb, unsigned long event,
+>         return notifier_from_errno(ret);
+>  };
+>
+> +static int cbf_clk_notifier_cb(struct notifier_block *nb, unsigned long event,
+> +                              void *data)
+> +{
+> +       struct clk_cpu_8996_mux *cbfclk = to_clk_cpu_8996_mux_nb(nb);
+> +       struct clk_notifier_data *cnd = data;
+> +       struct clk_hw *parent;
+> +       int ret;
+> +
+> +       switch (event) {
+> +       case PRE_RATE_CHANGE:
+> +               parent = clk_hw_get_parent_by_index(&cbfclk->clkr.hw, CBF_DIV_2_INDEX);
+> +               ret = clk_cpu_8996_mux_set_parent(&cbfclk->clkr.hw, CBF_DIV_2_INDEX);
+> +
+> +               if (cnd->old_rate > DIV_2_THRESHOLD && cnd->new_rate < DIV_2_THRESHOLD)
+> +                       ret = clk_set_rate(parent->clk, cnd->old_rate / 2);
+> +               break;
+> +       case POST_RATE_CHANGE:
+> +               if (cnd->new_rate < DIV_2_THRESHOLD)
+> +                       ret = clk_cpu_8996_mux_set_parent(&cbfclk->clkr.hw, CBF_DIV_2_INDEX);
+> +               else {
+> +                       parent = clk_hw_get_parent_by_index(&cbfclk->clkr.hw, CBF_PLL_INDEX);
+> +                       ret = clk_set_rate(parent->clk, cnd->new_rate);
+> +                       ret = clk_cpu_8996_mux_set_parent(&cbfclk->clkr.hw, CBF_PLL_INDEX);
+> +               }
+> +               break;
+> +       default:
+> +               ret = 0;
+> +               break;
+> +       }
+> +
+> +       return notifier_from_errno(ret);
+> +};
+> +
+>  static int qcom_cpu_clk_msm8996_driver_probe(struct platform_device *pdev)
+>  {
+> -       struct regmap *regmap;
+> +       struct regmap *regmap, *regmap_cbf;
+>         struct clk_hw_onecell_data *data;
+>         struct device *dev = &pdev->dev;
+> +       static void __iomem *cbf_base;
+>         int ret;
+>
+> -       data = devm_kzalloc(dev, struct_size(data, hws, 2), GFP_KERNEL);
+> +       data = devm_kzalloc(dev, struct_size(data, hws, 3), GFP_KERNEL);
+>         if (!data)
+>                 return -ENOMEM;
+>
+> @@ -506,9 +649,22 @@ static int qcom_cpu_clk_msm8996_driver_probe(struct platform_device *pdev)
+>
+>         qcom_cpu_clk_msm8996_acd_init(base);
+>
+> +       cbf_base = devm_platform_ioremap_resource(pdev, 1);
+> +       if (IS_ERR(cbf_base))
+> +               return PTR_ERR(cbf_base);
 
- arch/arm64/boot/dts/renesas/beacon-renesom-baseboard.dtsi | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+So, if the reg1 is not provided, thr driver will error out, breaking
+the compatibility with existing dts files.
+I'd suggest making reg1 optional (you can add a warning printk
+demanding the dts to be updated).
 
-diff --git a/arch/arm64/boot/dts/renesas/beacon-renesom-baseboard.dtsi b/arch/arm64/boot/dts/renesas/beacon-renesom-baseboard.dtsi
-index 142e7ffbd2bd4281..63e7a39e100e367c 100644
---- a/arch/arm64/boot/dts/renesas/beacon-renesom-baseboard.dtsi
-+++ b/arch/arm64/boot/dts/renesas/beacon-renesom-baseboard.dtsi
-@@ -146,7 +146,7 @@ rgb_panel: endpoint {
- 		};
- 	};
- 
--	reg_audio: regulator_audio {
-+	reg_audio: regulator-audio {
- 		compatible = "regulator-fixed";
- 		regulator-name = "audio-1.8V";
- 		regulator-min-microvolt = <1800000>;
-@@ -174,7 +174,7 @@ reg_lcd_reset: regulator-lcd-reset {
- 		vin-supply = <&reg_lcd>;
- 	};
- 
--	reg_cam0: regulator_camera {
-+	reg_cam0: regulator-cam0 {
- 		compatible = "regulator-fixed";
- 		regulator-name = "reg_cam0";
- 		regulator-min-microvolt = <1800000>;
-@@ -183,7 +183,7 @@ reg_cam0: regulator_camera {
- 		enable-active-high;
- 	};
- 
--	reg_cam1: regulator_camera {
-+	reg_cam1: regulator-cam1 {
- 		compatible = "regulator-fixed";
- 		regulator-name = "reg_cam1";
- 		regulator-min-microvolt = <1800000>;
+> +       regmap_cbf = devm_regmap_init_mmio(dev, cbf_base, &cbf_msm8996_regmap_config);
+> +       if (IS_ERR(regmap_cbf))
+> +               return PTR_ERR(regmap_cbf);
+> +
+> +       ret = qcom_cbf_clk_msm8996_register_clks(dev, regmap_cbf);
+> +       if (ret)
+> +               return ret;
+> +
+>         data->hws[0] = &pwrcl_pmux.clkr.hw;
+>         data->hws[1] = &perfcl_pmux.clkr.hw;
+> -       data->num = 2;
+> +       data->hws[2] = &cbf_mux.clkr.hw;
+> +       data->num = 3;
+>
+>         return devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get, data);
+>  }
+> --
+> 2.36.0
+>
+
+
 -- 
-2.25.1
-
+With best wishes
+Dmitry
