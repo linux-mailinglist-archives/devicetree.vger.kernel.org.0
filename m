@@ -2,159 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7EC87522E5F
-	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 10:30:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F4DE522E92
+	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 10:39:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243674AbiEKIa0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 May 2022 04:30:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52238 "EHLO
+        id S243869AbiEKIjf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 May 2022 04:39:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57160 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235054AbiEKIaW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 May 2022 04:30:22 -0400
-Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id B26B118B97B;
-        Wed, 11 May 2022 01:30:19 -0700 (PDT)
-Received: from localhost.localdomain (unknown [113.200.148.30])
-        by mail.loongson.cn (Coremail) with SMTP id AQAAf9BxkNoPdHtiw+cQAA--.6S4;
-        Wed, 11 May 2022 16:30:10 +0800 (CST)
-From:   Qing Zhang <zhangqing@loongson.cn>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>
-Cc:     devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
-        linux-kernel@vger.kernel.org, yangtiezhu@loongson.cn,
-        zhangqing@loongson.cn
-Subject: [PATCH 3/3] MIPS: Loongson64: Enable CONFIG_SMP and set default NR_CPUS to 2
-Date:   Wed, 11 May 2022 16:30:07 +0800
-Message-Id: <20220511083007.17700-3-zhangqing@loongson.cn>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20220511083007.17700-1-zhangqing@loongson.cn>
-References: <20220511083007.17700-1-zhangqing@loongson.cn>
+        with ESMTP id S243836AbiEKIj0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 May 2022 04:39:26 -0400
+Received: from relay02.th.seeweb.it (relay02.th.seeweb.it [5.144.164.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B28511C37F
+        for <devicetree@vger.kernel.org>; Wed, 11 May 2022 01:39:22 -0700 (PDT)
+Received: from SoMainline.org (94-209-165-62.cable.dynamic.v4.ziggo.nl [94.209.165.62])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id BD5F9205ED;
+        Wed, 11 May 2022 10:39:19 +0200 (CEST)
+Date:   Wed, 11 May 2022 10:39:17 +0200
+From:   Marijn Suijten <marijn.suijten@somainline.org>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     phone-devel@vger.kernel.org, Pavel Machek <pavel@ucw.cz>,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Martin Botka <martin.botka@somainline.org>,
+        linux-arm-msm@vger.kernel.org, linux-leds@vger.kernel.org,
+        Rob Herring <robh@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Satya Priya <quic_c_skakit@quicinc.com>
+Subject: Re: [PATCH 2/4] leds: qcom-lpg: Add PM660L configuration and
+ compatible
+Message-ID: <20220511083917.5xhseah7tuzmrn6f@SoMainline.org>
+Mail-Followup-To: Marijn Suijten <marijn.suijten@somainline.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        phone-devel@vger.kernel.org, Pavel Machek <pavel@ucw.cz>,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Martin Botka <martin.botka@somainline.org>,
+        linux-arm-msm@vger.kernel.org, linux-leds@vger.kernel.org,
+        Rob Herring <robh@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Satya Priya <quic_c_skakit@quicinc.com>
+References: <20220507221123.2201668-1-marijn.suijten@somainline.org>
+ <20220507221123.2201668-2-marijn.suijten@somainline.org>
+ <YnszX1wdQhUSkgyH@builder.lan>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf9BxkNoPdHtiw+cQAA--.6S4
-X-Coremail-Antispam: 1UD129KBjvJXoWxuryDKFW8Cr45KF1UKF1Utrb_yoW5ur4Dpr
-        4fGFWxXay8Kr1UKrWjkr4DGasYqayDJa9FkF47Aw1Du3W8Aa13Xr1Dtr18JrWUXFZrXr4r
-        Xas3Kwn3Aan8Ga7anT9S1TB71UUUUUUqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-        9KBjDU0xBIdaVrnRJUUUBS14x267AKxVWrJVCq3wAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
-        rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2048vs2IY020E87I2jVAFwI0_Jryl82xGYIkIc2
-        x26xkF7I0E14v26r4j6ryUM28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48ve4kI8wA2z4x0
-        Y4vE2Ix0cI8IcVAFwI0_Gr0_Xr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI0_Cr0_Gr1UM2
-        8EF7xvwVC2z280aVAFwI0_Cr1j6rxdM28EF7xvwVC2z280aVCY1x0267AKxVW0oVCq3wAS
-        0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0I7IYx2
-        IY67AKxVWUXVWUAwAv7VC2z280aVAFwI0_Gr0_Cr1lOx8S6xCaFVCjc4AY6r1j6r4UM4x0
-        Y48IcxkI7VAKI48JM4x0x7Aq67IIx4CEVc8vx2IErcIFxwCY02Avz4vE14v_GFyl42xK82
-        IYc2Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_Jr0_Gr1lx2IqxVAqx4xG67AKxVWUJVWUGwC2
-        0s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE14v26r1q6r43MIIYrxkI7VAKI48JMI
-        IF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAIcVC0I7IYx2IY6xkF7I0E14v26r4j6F4UMIIF
-        0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E87Iv67AKxVWUJVW8JwCI42IY6I8E87
-        Iv6xkF7I0E14v26r4j6r4UJbIYCTnIWIevJa73UjIFyTuYvjTRijjyUUUUU
-X-CM-SenderInfo: x2kd0wptlqwqxorr0wxvrqhubq/
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UPPERCASE_50_75 autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YnszX1wdQhUSkgyH@builder.lan>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Signed-off-by: Qing Zhang <zhangqing@loongson.cn>
----
- arch/mips/configs/loongson2k_defconfig | 16 ++++++----------
- 1 file changed, 6 insertions(+), 10 deletions(-)
+On 2022-05-10 22:54:07, Bjorn Andersson wrote:
+> On Sat 07 May 17:11 CDT 2022, Marijn Suijten wrote:
+> 
+> > Inherit PM660L PMIC LPG/triled block configuration from downstream
+> > drivers and DT sources, consisting of a triled block with automatic
+> > trickle charge control and source selection, three colored led channels
+> > belonging to the synchronized triled block and one loose PWM channel.
+> > 
+> > Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
+> > ---
+> >  drivers/leds/rgb/leds-qcom-lpg.c | 18 ++++++++++++++++++
+> >  1 file changed, 18 insertions(+)
+> > 
+> > diff --git a/drivers/leds/rgb/leds-qcom-lpg.c b/drivers/leds/rgb/leds-qcom-lpg.c
+> > index cfa3362b2457..30c12ac8eed4 100644
+> > --- a/drivers/leds/rgb/leds-qcom-lpg.c
+> > +++ b/drivers/leds/rgb/leds-qcom-lpg.c
+> > @@ -1271,6 +1271,23 @@ static int lpg_remove(struct platform_device *pdev)
+> >  	return 0;
+> >  }
+> >  
+> > +static const struct lpg_data pm660l_lpg_data = {
+> > +	.lut_base = 0xb000,
+> > +	.lut_size = 0x100,
+> 
+> The documentation tells me that you have 49 entries of LUT on the
+> PM660L.
 
-diff --git a/arch/mips/configs/loongson2k_defconfig b/arch/mips/configs/loongson2k_defconfig
-index e948ca487e2d..74353a4254eb 100644
---- a/arch/mips/configs/loongson2k_defconfig
-+++ b/arch/mips/configs/loongson2k_defconfig
-@@ -20,7 +20,10 @@ CONFIG_RELAY=y
- CONFIG_BLK_DEV_INITRD=y
- CONFIG_EMBEDDED=y
- CONFIG_MACH_LOONGSON64=y
-+# CONFIG_CPU_LOONGSON3_WORKAROUNDS is not set
- # CONFIG_CPU_LOONGSON3_CPUCFG_EMULATION is not set
-+CONFIG_SMP=y
-+CONFIG_NR_CPUS=2
- CONFIG_HZ_256=y
- CONFIG_MIPS32_O32=y
- CONFIG_MIPS32_N32=y
-@@ -95,7 +98,6 @@ CONFIG_DEVTMPFS=y
- CONFIG_DEVTMPFS_MOUNT=y
- CONFIG_MTD=m
- CONFIG_BLK_DEV_LOOP=y
--CONFIG_BLK_DEV_CRYPTOLOOP=y
- CONFIG_BLK_DEV_RAM=y
- CONFIG_BLK_DEV_RAM_SIZE=8192
- CONFIG_RAID_ATTRS=m
-@@ -144,7 +146,6 @@ CONFIG_TUN=m
- # CONFIG_NET_VENDOR_ARC is not set
- # CONFIG_NET_VENDOR_ATHEROS is not set
- # CONFIG_NET_VENDOR_BROADCOM is not set
--# CONFIG_NET_VENDOR_BROCADE is not set
- # CONFIG_NET_VENDOR_CHELSIO is not set
- # CONFIG_NET_VENDOR_CIRRUS is not set
- # CONFIG_NET_VENDOR_CISCO is not set
-@@ -163,15 +164,16 @@ CONFIG_IXGBE=y
- # CONFIG_NET_VENDOR_MICROCHIP is not set
- # CONFIG_NET_VENDOR_MICROSEMI is not set
- # CONFIG_NET_VENDOR_MYRI is not set
-+# CONFIG_NET_VENDOR_NI is not set
- # CONFIG_NET_VENDOR_NATSEMI is not set
- # CONFIG_NET_VENDOR_NETERION is not set
- # CONFIG_NET_VENDOR_NETRONOME is not set
--# CONFIG_NET_VENDOR_NI is not set
- # CONFIG_NET_VENDOR_NVIDIA is not set
- # CONFIG_NET_VENDOR_OKI is not set
- # CONFIG_NET_VENDOR_PACKET_ENGINES is not set
- # CONFIG_NET_VENDOR_PENSANDO is not set
- # CONFIG_NET_VENDOR_QLOGIC is not set
-+# CONFIG_NET_VENDOR_BROCADE is not set
- # CONFIG_NET_VENDOR_QUALCOMM is not set
- # CONFIG_NET_VENDOR_RDC is not set
- CONFIG_8139CP=y
-@@ -182,9 +184,9 @@ CONFIG_R8169=y
- # CONFIG_NET_VENDOR_ROCKER is not set
- # CONFIG_NET_VENDOR_SAMSUNG is not set
- # CONFIG_NET_VENDOR_SEEQ is not set
--# CONFIG_NET_VENDOR_SOLARFLARE is not set
- # CONFIG_NET_VENDOR_SILAN is not set
- # CONFIG_NET_VENDOR_SIS is not set
-+# CONFIG_NET_VENDOR_SOLARFLARE is not set
- # CONFIG_NET_VENDOR_SMSC is not set
- CONFIG_STMMAC_ETH=y
- # CONFIG_NET_VENDOR_SUN is not set
-@@ -229,7 +231,6 @@ CONFIG_SERIAL_8250_RSA=y
- CONFIG_SERIAL_OF_PLATFORM=y
- CONFIG_SERIAL_NONSTANDARD=y
- CONFIG_HW_RANDOM=y
--CONFIG_RAW_DRIVER=m
- CONFIG_I2C_CHARDEV=y
- CONFIG_I2C_PIIX4=y
- CONFIG_GPIO_LOONGSON=y
-@@ -243,13 +244,9 @@ CONFIG_MEDIA_USB_SUPPORT=y
- CONFIG_USB_VIDEO_CLASS=m
- CONFIG_DRM=y
- CONFIG_DRM_RADEON=y
--CONFIG_FB_RADEON=y
- CONFIG_LCD_CLASS_DEVICE=y
- CONFIG_LCD_PLATFORM=m
- # CONFIG_VGA_CONSOLE is not set
--CONFIG_FRAMEBUFFER_CONSOLE=y
--CONFIG_FRAMEBUFFER_CONSOLE_ROTATION=y
--CONFIG_LOGO=y
- CONFIG_SOUND=y
- CONFIG_SND=y
- CONFIG_SND_VERBOSE_PRINTK=y
-@@ -336,7 +333,6 @@ CONFIG_DEFAULT_SECURITY_DAC=y
- CONFIG_CRYPTO_SEQIV=m
- CONFIG_CRYPTO_HMAC=y
- CONFIG_CRYPTO_MD5=y
--CONFIG_CRYPTO_TGR192=m
- CONFIG_CRYPTO_WP512=m
- CONFIG_CRYPTO_BLOWFISH=m
- CONFIG_CRYPTO_CAST5=m
--- 
-2.20.1
+Downstream DT sources report the full 0x100 range starting at 0xb000 is
+used, before the first channel starts at 0xb100:
 
+    https://git.codelinaro.org/clo/la/kernel/msm-4.14/-/blob/LA.UM.8.2.1.r1-06200-sdm660.0/arch/arm64/boot/dts/qcom/pm660l.dtsi#L84-85
+
+However, every LUT entry appears to be two bytes in size so this should
+at least be halved.
+
+The driver does seem to add another 0x42 on top of this base address:
+
+    https://git.codelinaro.org/clo/la/kernel/msm-4.14/-/blob/LA.UM.8.2.1.r1-06200-sdm660.0/drivers/pwm/pwm-qti-lpg.c#L104
+
+(Your LPG driver adds 0x40 - I've seen both used in our downstream
+driver) yet that leaves (0x100-0x42) / 2 = 95 spots.
+
+This is still significantly higher than 49.  Is part of this register
+range used for something else, inaccesible for LUT-value readings or is
+the counter hardware in the LPG limiting this?
+
+The driver codes in a max length of 47:
+
+    https://git.codelinaro.org/clo/la/kernel/msm-4.14/-/blob/LA.UM.8.2.1.r1-06200-sdm660.0/drivers/pwm/pwm-qti-lpg.c#L108
+
+If you're confident about this I'll bump it down to 49 or try validating
+what happens if higher registers are used.
+
+> > +
+> > +	.triled_base = 0xd000,
+> > +	.triled_has_atc_ctl = true,
+> > +	.triled_has_src_sel = true,
+> > +
+> > +	.num_channels = 4,
+> > +	.channels = (struct lpg_channel_data[]) {
+> 
+> This can be const
+
+Thanks for spotting!
+
+- Marijn
+
+> 
+> Regards,
+> Bjorn
+> 
+> > +		{ .base = 0xb100, .triled_mask = BIT(5) },
+> > +		{ .base = 0xb200, .triled_mask = BIT(6) },
+> > +		{ .base = 0xb300, .triled_mask = BIT(7) },
+> > +		{ .base = 0xb400 },
+> > +	},
+> > +};
+> > +
+> >  static const struct lpg_data pm8916_pwm_data = {
+> >  	.num_channels = 1,
+> >  	.channels = (const struct lpg_channel_data[]) {
+> > @@ -1391,6 +1408,7 @@ static const struct lpg_data pm8350c_pwm_data = {
+> >  };
+> >  
+> >  static const struct of_device_id lpg_of_table[] = {
+> > +	{ .compatible = "qcom,pm660l-lpg", .data = &pm660l_lpg_data },
+> >  	{ .compatible = "qcom,pm8150b-lpg", .data = &pm8150b_lpg_data },
+> >  	{ .compatible = "qcom,pm8150l-lpg", .data = &pm8150l_lpg_data },
+> >  	{ .compatible = "qcom,pm8350c-pwm", .data = &pm8350c_pwm_data },
+> > -- 
+> > 2.36.0
+> > 
