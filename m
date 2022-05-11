@@ -2,142 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C9A5A52384F
-	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 18:15:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EA5BD5238D0
+	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 18:20:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344472AbiEKQO7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 May 2022 12:14:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57808 "EHLO
+        id S1344632AbiEKQUU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 May 2022 12:20:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48092 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344455AbiEKQO5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 May 2022 12:14:57 -0400
-Received: from mail-oi1-x236.google.com (mail-oi1-x236.google.com [IPv6:2607:f8b0:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 250C46EC55
-        for <devicetree@vger.kernel.org>; Wed, 11 May 2022 09:14:56 -0700 (PDT)
-Received: by mail-oi1-x236.google.com with SMTP id w123so3289451oiw.5
-        for <devicetree@vger.kernel.org>; Wed, 11 May 2022 09:14:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=Cf09Je3CtRN58q8NVoc2nPVu33QjMHj88UB5fSrOla4=;
-        b=CTG8yoxyViVJG9wmGrm6SLhEgFT0WuEvMoQXyZI5Kx6YkRB5j28pASLSwuZICqn0Cn
-         WUe9JQtUluE5n2n2m1EPa+FISLLmw74zubXRkCQO7+cPFnDb7SH7eHHvsAv5UmyVzyUV
-         Yg4qwAYNHpV19CvN9+QaSJdKAjMOYPnzZCA3hYz+C9nugper2Z4G1e1AGj+1SszRkaQo
-         moGjWWVVce7nK2CR/KrFugqD3XC1mwkzPeFT8lqC0rXm5ECEPIDRHLahArrblpkSEeOi
-         oarjMZfY1Bm/srauvkhyBWogv1HqzCKX1WkOEQx8b1IIsfASQoQDyYqMHU0Z+3n8xztv
-         Iymw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Cf09Je3CtRN58q8NVoc2nPVu33QjMHj88UB5fSrOla4=;
-        b=Ehig1WiDNSaBV/7woxAOEFltpUvZtKnP1mF4EkFLAJMeTOPV6tpI5VP4f5Su3lstT9
-         z6uRl/tbeqWgScdzkTww4zcMWD4H8D3JABIwpBqrrz03NfVgsvcMYX+6Mzie0VMEy80Q
-         c14GQ+DVQMW0w5cPrZSehXowC0mM5GBGFeesHauQhal1EaQZHK0y2QI+AqCokDx+6BbY
-         8Pbi7mn6O5Wfoo5Ln4XojlS4wbGUGNwmPBF3gl30ga7+vRZ45CDFERqbr6OsEJGyGl2e
-         KrUPFJX3FQcihe60TWLbUS1QnFERGCLuEDd9AKR1BOvLbAZJwRbDa7hMGIGvEG2+H0Iv
-         pHQg==
-X-Gm-Message-State: AOAM532At4Tc4Ijb1RfJlvcAPaW1quP22Dm+lNU8UWIEtqSRjfCpORQU
-        2cFd03+S9HQLL+LVavszUKxgCg==
-X-Google-Smtp-Source: ABdhPJz8wvQ3CXsSwZJgwMBRizoEDzOcZERxCvR6YfvQLmBZIZFLmiRHdvM6kGdBrvW6hOVawnGctg==
-X-Received: by 2002:a05:6808:2199:b0:326:90e2:754b with SMTP id be25-20020a056808219900b0032690e2754bmr2876267oib.227.1652285695478;
-        Wed, 11 May 2022 09:14:55 -0700 (PDT)
-Received: from ripper (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id z18-20020a056808065200b00325cda1ffacsm861218oih.43.2022.05.11.09.14.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 May 2022 09:14:54 -0700 (PDT)
-Date:   Wed, 11 May 2022 09:17:25 -0700
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Pavel Machek <pavel@ucw.cz>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Uwe Kleine-K?nig <u.kleine-koenig@pengutronix.de>,
-        Lee Jones <lee.jones@linaro.org>, Luca Weiss <luca@z3ntu.xyz>,
-        Doug Anderson <dianders@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jonathan Corbet <corbet@lwn.net>, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-doc@vger.kernel.org, linux-pwm@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH v14 2/2] leds: Add driver for Qualcomm LPG
-Message-ID: <YnvhleAI5RW0ZvkV@ripper>
-References: <20220303214300.59468-1-bjorn.andersson@linaro.org>
- <20220303214300.59468-2-bjorn.andersson@linaro.org>
- <20220504073009.GC8204@duo.ucw.cz>
- <YnKTAvQc6eDxTl14@ripper>
- <20220506160901.GA1199@bug>
- <YnVMcaRV86jZslhd@ripper>
- <20220507063659.GA6968@amd>
+        with ESMTP id S1344635AbiEKQUT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 May 2022 12:20:19 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F282B2380C0;
+        Wed, 11 May 2022 09:20:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=aseFt7/82bh+eNTadV1Va2IDS2pSGM2YAvjK7lzG6tw=; b=fv1SDPXQb+MbUfL3RUhuYJpHCb
+        RkDCN5ntA1tJwJQYl8gcG9CqsdxjJgPPW/t7bD1aPC8nhkT1p/vIsJZnXMAaAv4RX5MKaCZrenJSb
+        NsnrmBK+HFpMu99MODtQFCRYGCVIPtXX64dDqId8fSo+yBElDdRhGj641foxPWItttGo=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1nop4C-002KYw-S2; Wed, 11 May 2022 18:20:00 +0200
+Date:   Wed, 11 May 2022 18:20:00 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Vadym Kochan <vadym.kochan@plvision.eu>
+Cc:     catalin.marinas@arm.com, will@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, gregory.clement@bootlin.com,
+        sebastian.hesselbarth@gmail.com, kostap@marvell.com,
+        robert.marko@sartura.hr, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Chris Packham <chris.packham@alliedtelesis.co.nz>,
+        Elad Nachman <enachman@marvell.com>
+Subject: Re: [PATCH v5 1/2] arm64: dts: marvell: Add Armada 98DX2530 SoC and
+ RD-AC5X board
+Message-ID: <YnviMOtXX+us+IA4@lunn.ch>
+References: <20220504044624.951841-1-chris.packham@alliedtelesis.co.nz>
+ <20220511161003.GE10145@plvision.eu>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220507063659.GA6968@amd>
+In-Reply-To: <20220511161003.GE10145@plvision.eu>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri 06 May 23:36 PDT 2022, Pavel Machek wrote:
-
-> Hi!
+On Wed, May 11, 2022 at 07:10:03PM +0300, Vadym Kochan wrote:
+> Hi Chris,
 > 
-> > > > As such the pattern sequence provided to hw_pattern looks to be the
-> > > > smae, but I don't see that it can be made compatible.
-> > > > 
-> > > > > Can I get either patch to disable pattern infrastructure for now or to
-> > > > > get it compatible?
-> > > > > 
-> > > > 
-> > > > I'd be happy to get this updated to your liking, but this was one of the
-> > > > drivers we discussed when we introduced the pattern trigger and led to
-> > > > the conclusion that we need the ability to do hw-specific patterns.
-> > > > 
-> > > > As such this document provides the hardware specific documentation, as
-> > > > we describe under "hw_pattern" in
-> > > > Documentation/ABI/testing/sysfs-class-led-trigger-pattern.
-> > > > 
-> > > > Please advice on what you would like me to do.
-> > > 
-> > > I'd like you to use same format leds-trigger-pattern describes.
-> > > 
-> > > If someone passes "255 500 0 500", that's requesting gradual transitions and
-> > > your hw can not do that. You return -EINVAL.
-> > > 
-> > > If someone wants that kind of blinking, they need to pass "255 0 255 500 0 0 0 500".
-> > > 
-> > 
-> > So the section under hw_pattern in sysfs-class-led-trigger-pattern that
-> > says:
-> > 
-> > "Since different LED hardware can have different semantics of
-> > hardware patterns, each driver is expected to provide its own
-> > description for the hardware patterns in their documentation
-> > file at Documentation/leds/."
-> > 
-> > That doesn't apply to this piece of hardware & driver?
+> > arch/arm64/boot/dts/marvell/Makefile          |   1 +
+> > .../boot/dts/marvell/armada-98dx2530.dtsi     | 310 ++++++++++++++++++
+> > arch/arm64/boot/dts/marvell/rd-ac5x.dts       |  90 +++++
+> > 3 files changed, 401 insertions(+)
 > 
-> It applies: since your hardware can not do arbitrary patterns, you
-> need description of what kinds of patterns it can do.
+> Marvell is going to start the upstreaming of AC5X boards support, we have also patches with similar .dts(i) files
+> but with different naming:
 > 
-> But you should still use compatible format, so that pattern that is
-> valid for hw_pattern file is valid for pattern file, too, and produces
-> same result.
+>     ac5.dtsi
+>     ac5_rd.dts
+>     ac5_db.dts
+>     ac5x_db.dts
 > 
+> What do you think about to use these naming scheme ?
 
-Okay, I didn't understand that the hw_pattern needs to be a subset of
-the pattern. I will prepare a patch to require the pattern to include
-the zero-time entries as well.
+Chris has done all the hard work, he gets to pick the naming. And get
+his files merged first.
 
-> If you believe documentation implies something else, it may need to be
-> clarified.
-> 
+However, now that i come to look in arch/arm64/boot/dts/marvell, i
+think most of the current filenames proposed don't match the current names.
 
-I'll read it again and if needed I'll try to clarify the expectations.
+armada-98dx2530.dtsi fits the current pattern.
 
-Thanks,
-Bjorn
+However, Chris's board files should probably be
+
+armada-98dx2530-rd.dts
+
+and the other files should be
+
+armada-98dx2530-db.dts
+
+armada-98dx2530-x-db.dts
+
+What does the x in x_db mean? Does that refer to the board or the SoC?
+
+	Andrew
