@@ -2,98 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4536B522EFE
-	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 11:08:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6560B522F07
+	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 11:12:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231487AbiEKJIw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 May 2022 05:08:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44318 "EHLO
+        id S232064AbiEKJMx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 May 2022 05:12:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57510 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229972AbiEKJIv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 May 2022 05:08:51 -0400
-Received: from mail-qk1-f182.google.com (mail-qk1-f182.google.com [209.85.222.182])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B26AA2CC88;
-        Wed, 11 May 2022 02:08:50 -0700 (PDT)
-Received: by mail-qk1-f182.google.com with SMTP id m1so1800844qkn.10;
-        Wed, 11 May 2022 02:08:50 -0700 (PDT)
+        with ESMTP id S231479AbiEKJMu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 May 2022 05:12:50 -0400
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA009737A0
+        for <devicetree@vger.kernel.org>; Wed, 11 May 2022 02:12:48 -0700 (PDT)
+Received: by mail-ed1-x532.google.com with SMTP id k27so1771478edk.4
+        for <devicetree@vger.kernel.org>; Wed, 11 May 2022 02:12:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=iSM4KiWX5xiHYNImgQ6cDdJf0LCKtuaDlzcLfop++Jc=;
+        b=FM/vJ5D6P9x5+MqRB5GdGmrNf9cYDyJXebGhlNhF2u1A7m2Q+A93DNdO8nK1CBEXer
+         zqeo1Rkj7fSn7aO7BsPCAjVkbeq1WnvazQSNJeLEGXJzEr9BrC6MptVVEkqRqLDGqy9R
+         ctQbLtbuvZ0bdkBsXU1A1mkJ5FBorUWEZZI9KYJiL/koaHgU+0cm2wnXhQV0KSO0mq5O
+         rAQnl9p0rTja6EPjoI73YbS2GoLZZ5fKSQBQMDLQRaSLpVa3lHf6+czUrqLjcSkyzkfy
+         90h3XmzZ9y/bIriHXMRqYwCUCiUTbZMVemBEwuFENyHguqz3IH6U79m8+QWZZgn6nEMk
+         WHBg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=HhYQv27JmheN+IIAmT/S+0BaIl0u3hjG9Yztl7Q3bYI=;
-        b=TZuPmOW70TUB+sleb5ZQWdRJQPFjoLL1L76Pr20kFnVei9sysu9k2O/m96cm+ckz2q
-         DupDFQRI2E1ZRtMrQgIWmpuTasgbcYgfothSwi8dTqF/9ASeXV5zB183uVm7KymqEgUX
-         bBDbEEWsgn+JUsF+smryPSN0D0It+/3Z4eGwtu3FJkz8+Ljk+vm3ICWho44fXPvfZ2a7
-         P3oTbV7uMEEyM8aV7aZ3LDBFYcqhzpvQjVb0QRbo8DUggq/Vv9jdlMNKzR019gUCaqqW
-         php8NQQcuIrhQxiI/0o269ppFwoW2JKGd2E5HsMf3l/RoKjqKmPmV5u57jisqzXiqtHj
-         5RXQ==
-X-Gm-Message-State: AOAM530GwRAIZsdYyHPWabd/N2gPjpB63x3CeBw1Gc6bwL1/2z09c5/W
-        LJQDYQ47bOdgt8sbFp6mrpgSFClpH3Idog==
-X-Google-Smtp-Source: ABdhPJxg1WI5OjXgKAjZqUrH7ZuN7HnyAf6ZevH92l8Hj5iZ3vCB+TFgdvEUzMVOaRMav2ryCEgAsQ==
-X-Received: by 2002:a05:620a:4449:b0:6a0:3f3c:c29d with SMTP id w9-20020a05620a444900b006a03f3cc29dmr18117946qkp.25.1652260129575;
-        Wed, 11 May 2022 02:08:49 -0700 (PDT)
-Received: from mail-yb1-f178.google.com (mail-yb1-f178.google.com. [209.85.219.178])
-        by smtp.gmail.com with ESMTPSA id v3-20020ac85783000000b002f39b99f6b8sm873292qta.82.2022.05.11.02.08.48
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=iSM4KiWX5xiHYNImgQ6cDdJf0LCKtuaDlzcLfop++Jc=;
+        b=i/MzhMy8lDYqj5aT7wTE49JXjkdXHHQS7zXfVBHu/IpN62jKpM8vtbGN6gxxNNruOP
+         e9xwxzriW1IWl71FKZYG2JRVSgSxCApbciulIKG4LlYuc5fHkqN4SLEWwft8gfJ1RYFc
+         BcE+uIYUD0MhDcdiYG3TJq4wCiR0SRKDzxVMyrOCizH/Bk+MEjv/8DxpdAr8OKN8DoBp
+         XllYy9rH6tYUE22wqVnuekkc/9cDlkfTIn0YW0UlMwC7k7TEf2SDSBB8wtYPRIZlNtOT
+         w/NNXJdj3xrwj5ct2ureJuNXJSDJpFQWZcdIXEMzByp+vYIGb0KgZQldBqyPul4Eqdff
+         Bh2Q==
+X-Gm-Message-State: AOAM5326lvPDdyXEHLOjKWXBd8G5K9u6khvIpLH0TZxs+KIDIK3toIXn
+        G2pRuiQUdPvH4Z/I4hHsw3uB0g==
+X-Google-Smtp-Source: ABdhPJwAJshh0pyoM8iVsERACEz5gij6am1vxgOpfUotlGosF/fppxLJBLF71r5SRAXCzg2PJZXhpA==
+X-Received: by 2002:a05:6402:f13:b0:428:a849:d0c1 with SMTP id i19-20020a0564020f1300b00428a849d0c1mr11917128eda.346.1652260367481;
+        Wed, 11 May 2022 02:12:47 -0700 (PDT)
+Received: from [192.168.0.152] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id cb13-20020a0564020b6d00b0042617ba639asm893261edb.36.2022.05.11.02.12.46
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 11 May 2022 02:08:48 -0700 (PDT)
-Received: by mail-yb1-f178.google.com with SMTP id w187so2780962ybe.2;
-        Wed, 11 May 2022 02:08:48 -0700 (PDT)
-X-Received: by 2002:a05:6902:905:b0:64a:2089:f487 with SMTP id
- bu5-20020a056902090500b0064a2089f487mr22009190ybb.202.1652260128075; Wed, 11
- May 2022 02:08:48 -0700 (PDT)
+        Wed, 11 May 2022 02:12:46 -0700 (PDT)
+Message-ID: <66796853-efe7-f661-9637-ac6cfefc68e5@linaro.org>
+Date:   Wed, 11 May 2022 11:12:45 +0200
 MIME-Version: 1.0
-References: <20220511082325.36185-1-biju.das.jz@bp.renesas.com> <20220511082325.36185-2-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20220511082325.36185-2-biju.das.jz@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Wed, 11 May 2022 11:08:36 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdXpfV-u6Yk+J_fhh1pYd4+uPdJRhv2C4Zr7ajaQdzzDxQ@mail.gmail.com>
-Message-ID: <CAMuHMdXpfV-u6Yk+J_fhh1pYd4+uPdJRhv2C4Zr7ajaQdzzDxQ@mail.gmail.com>
-Subject: Re: [PATCH v4 1/2] dt-bindings: iio: adc: Document Renesas RZ/G2UL ADC
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH v4 1/2] dt-bindings: remoteproc: mediatek: Make l1tcm reg
+ exclusive to mt819x
+Content-Language: en-US
+To:     =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
+        <nfraprado@collabora.com>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, kernel@collabora.com,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        linux-iio@vger.kernel.org,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Tinghan Shen <tinghan.shen@mediatek.com>,
+        Tzung-Bi Shih <tzungbi@google.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org,
+        linux-remoteproc@vger.kernel.org
+References: <20220506213226.257859-1-nfraprado@collabora.com>
+ <20220506213226.257859-2-nfraprado@collabora.com>
+ <d3e027ca-9ccf-cf91-2414-85d2b9b680f0@linaro.org>
+ <20220510165016.r7nyck2abt5m4djp@notapiano>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220510165016.r7nyck2abt5m4djp@notapiano>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 11, 2022 at 10:23 AM Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> Document Renesas RZ/G2UL ADC bindings. RZ/G2UL ADC is almost identical
-> to RZ/G2L, but it has 2 analog input channels compared to 8 channels
-> on the RZ/G2L.
->
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> ---
-> v3->v4:
->  * Removed unnecessary SoC specific reg description as it is
->    equivalent to the logic used in reg.
->  * Removed Items from reg.
+On 10/05/2022 18:50, Nícolas F. R. A. Prado wrote:
+>>> Also I had to add a description to the global reg-names, since it
+>>> couldn't be neither missing nor empty.
+>>
+>> It is possible:
+>> https://elixir.bootlin.com/linux/latest/source/Documentation/devicetree/bindings/example-schema.yaml#L91
+>>
+>> Keep constraints and list of names in properties. Then in allOf:if:then
+>> raise minItems or lower maxItems, depending on the variant.
+> 
+> Hi Krzysztof,
+> 
+> that example only shows setting minItems to override the default value, but the
+> issue here is that it's not possible to override minItems/maxItems (after
+> they're already set, even if implicitly) with a different value in the if.
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+No, this example shows exactly what you need in first step - make one
+item on the list optional.
 
-Gr{oetje,eeting}s,
+There are several other examples for the entire picture or different
+aproach:
+https://elixir.bootlin.com/linux/latest/source/Documentation/devicetree/bindings/example-schema.yaml#L91
 
-                        Geert
+https://elixir.bootlin.com/linux/v5.18-rc2/source/Documentation/devicetree/bindings/clock/samsung,exynos7885-clock.yaml#L53
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+> 
+> That is:
+> 
+> 	properties:
+> 	  reg-names:
+> 	    items:
+> 	      - const: sram
+> 	      - const: cfg
+> 	      - const: l1tcm
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+You did not use the example I gave you. Where is the minItems?
+
+> 
+> 	if:
+> 	  properties:
+> 	    compatible:
+> 	      enum:
+> 		- mediatek,mt8183-scp
+> 		- mediatek,mt8186-scp
+> 	then:
+> 	  properties:
+> 	    reg-names:
+> 	      minItems: 2
+> 	      maxItems: 2
+> 
+> Generates the error on dtbs_check:
+> 
+> /home/nfraprado/ext/git/linux/arch/arm64/boot/dts/mediatek/mt8183-kukui-kakadu.dtb: scp@10500000: reg-names: ['sram', 'cfg'] is too short
+
+Missing minItems in first properties.
+
+> 
+> I believe the tooling is implicitly adding
+> 
+> 	      minItems: 3
+> 	      maxItems: 3
+> 
+> to the common reg-names, and since it's not possible to override them, the
+> override to 2 doesn't work so they are kept at 3, causing the error.
+> 
+> Moving the minItems/maxItems to the common reg-names as a test gives:
+
+You cannot just. You need it in both places.
+
+> 
+> /home/nfraprado/ext/git/linux/Documentation/devicetree/bindings/remoteproc/mtk,scp.yaml: properties:reg-names: {'minItems': 2, 'maxItems': 2, 'items': [{'const': 'sram'}, {'const': 'cfg'}, {'const': 'l1tcm'}]} should not be valid under {'required': ['maxItems']}
+> 	hint: "maxItems" is not needed with an "items" list
+> 
+> That error, plus looking in the items meta-schema, suggests me that maxItems
+> isn't supposed to be set lower then the length of items. So even if the
+> minItems/maxItems override is fixed, there's still this issue. It seems like
+> defining the reg-names list separetely in each if branch is indeed the right way
+> to go.
+
+
+
+Best regards,
+Krzysztof
