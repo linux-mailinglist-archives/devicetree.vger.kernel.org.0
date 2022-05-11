@@ -2,48 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 550445233BB
-	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 15:10:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1FC655233CE
+	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 15:17:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230126AbiEKNKM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 May 2022 09:10:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40154 "EHLO
+        id S243259AbiEKNRZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 May 2022 09:17:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60148 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243148AbiEKNKK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 May 2022 09:10:10 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 27170233A49;
-        Wed, 11 May 2022 06:10:07 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id ABB6AED1;
-        Wed, 11 May 2022 06:10:07 -0700 (PDT)
-Received: from lpieralisi (unknown [10.57.1.148])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id C79FF3F66F;
-        Wed, 11 May 2022 06:10:04 -0700 (PDT)
-Date:   Wed, 11 May 2022 14:09:59 +0100
-From:   Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Rob Herring <robh@kernel.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Stanimir Varbanov <svarbanov@mm-sol.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v6 0/8] dt-bindings: YAMLify pci/qcom,pcie schema
-Message-ID: <Ynu1p1hzqHJNpSp3@lpieralisi>
-References: <20220506152107.1527552-1-dmitry.baryshkov@linaro.org>
- <YnqXxNxFhf/odyka@robh.at.kernel.org>
- <CAA8EJpriMcP4uQ3fjyiCKY+uc82ctXe2VrjO1psPDcp-P++Nhw@mail.gmail.com>
+        with ESMTP id S234166AbiEKNRY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 May 2022 09:17:24 -0400
+Received: from alexa-out.qualcomm.com (alexa-out.qualcomm.com [129.46.98.28])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B95A8737A5;
+        Wed, 11 May 2022 06:17:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1652275042; x=1683811042;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version;
+  bh=2v9dAOsjL4Pp7TIhSagJHphXDNxT9Hyez9gvQcYZ4QI=;
+  b=Qb4e/lXUsWhuH1kerHJ66kn/1UFrJN71lcf9bKtsl2Shp1KbzMNSe/my
+   ujaR69vsYueJm6uzJfHlUAuXeGGLId5DfrChf94y4n+Qwchyv+HLl/JQ7
+   mcV320UyDoKmZsk490Ociw9hDT/Q46ayKuWDP16ARGIsh0SSJpvSCr5AW
+   Y=;
+Received: from ironmsg08-lv.qualcomm.com ([10.47.202.152])
+  by alexa-out.qualcomm.com with ESMTP; 11 May 2022 06:17:22 -0700
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg08-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 May 2022 06:17:21 -0700
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Wed, 11 May 2022 06:17:21 -0700
+Received: from mkshah-linux.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Wed, 11 May 2022 06:17:17 -0700
+From:   Maulik Shah <quic_mkshah@quicinc.com>
+To:     <bjorn.andersson@linaro.org>, <ulf.hansson@linaro.org>
+CC:     <linux-arm-msm@vger.kernel.org>, <linux-pm@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <rafael@kernel.org>,
+        <daniel.lezcano@linaro.org>, <quic_lsrao@quicinc.com>,
+        <quic_rjendra@quicinc.com>, Maulik Shah <quic_mkshah@quicinc.com>,
+        <devicetree@vger.kernel.org>
+Subject: [PATCH v2 1/6] dt-bindings: soc: qcom: Update devicetree binding document for rpmh-rsc
+Date:   Wed, 11 May 2022 18:46:51 +0530
+Message-ID: <1652275016-13423-2-git-send-email-quic_mkshah@quicinc.com>
+X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1652275016-13423-1-git-send-email-quic_mkshah@quicinc.com>
+References: <1652275016-13423-1-git-send-email-quic_mkshah@quicinc.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAA8EJpriMcP4uQ3fjyiCKY+uc82ctXe2VrjO1psPDcp-P++Nhw@mail.gmail.com>
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -51,72 +65,45 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 11, 2022 at 01:13:28PM +0300, Dmitry Baryshkov wrote:
-> On Tue, 10 May 2022 at 19:50, Rob Herring <robh@kernel.org> wrote:
-> >
-> > On Fri, May 06, 2022 at 06:20:59PM +0300, Dmitry Baryshkov wrote:
-> > > Convert pci/qcom,pcie schema to YAML description. The first patch
-> > > introduces several warnings which are fixed by the other patches in the
-> > > series.
-> > >
-> > > Note regarding the snps,dw-pcie compatibility. The Qualcomm PCIe
-> > > controller uses Synopsys PCIe IP core. However it is not just fused to
-> > > the address space. Accessing PCIe registers requires several clocks and
-> > > regulators to be powered up. Thus it can be assumed that the qcom,pcie
-> > > bindings are not fully compatible with the snps,dw-pcie schema.
-> > >
-> > > Changes since v5:
-> > >  - s/stance/stanza (pointed out by Bjorn Helgaas)
-> > >
-> > > Changes since v4:
-> > >  - Change subjects to follow convention (suggested by Bjorn Helgaas)
-> > >
-> > > Changes since v3:
-> > >  - Rebase on linux-next to include sm8150 patches
-> > >
-> > > Changes since v2 (still kudos to Krzyshtof):
-> > >  - Readded reg-names conversion patch
-> > >  - Mention wake-gpio update in the commit message
-> > >  - Remove extra quotes in the schema
-> > >
-> > > Changes since v1 (all kudos to Krzyshtof):
-> > >  - Dropped the reg-names patch. It will be handled separately
-> > >  - Squashed the snps,dw-pcie removal (from schema) into the first patch
-> > >  - Replaced deprecated perst-gpio and wake-gpio with perst-gpios and
-> > >    wake-gpios in the examples and in DT files
-> > >  - Moved common clocks/clock-names, resets/reset-names and power-domains
-> > >    properties to the top level of the schema, leaving only platform
-> > >    specifics in the conditional branches
-> > >  - Dropped iommu-map/iommu-map-mask for now
-> > >  - Added (missed) interrupt-cells, clocks, clock-names, resets,
-> > >    reset-names properties to the required list (resets/reset-names are
-> > >    removed in the next patch, as they are not used on msm8996)
-> > >  - Fixed IRQ flags in the examples
-> > >  - Merged apq8064/ipq8064 into the single condition statement
-> > >  - Added extra empty lines
-> > >
-> > > Dmitry Baryshkov (8):
-> > >   dt-bindings: PCI: qcom: Convert to YAML
-> > >   dt-bindings: PCI: qcom: Do not require resets on msm8996 platforms
-> > >   dt-bindings: PCI: qcom: Specify reg-names explicitly
-> > >   dt-bindings: PCI: qcom: Add schema for sc7280 chipset
-> > >   arm64: dts: qcom: stop using snps,dw-pcie falback
-> > >   arm: dts: qcom: stop using snps,dw-pcie falback
-> > >   arm: dts: qcom-*: replace deprecated perst-gpio with perst-gpios
-> > >   arm64: dts: qcom: replace deprecated perst-gpio with perst-gpios
-> > >
-> > >  .../devicetree/bindings/pci/qcom,pcie.txt     | 398 ----------
-> > >  .../devicetree/bindings/pci/qcom,pcie.yaml    | 714 ++++++++++++++++++
-> >
-> > What tree do these apply to because they don't apply to rc1. I'm
-> > assuming the PCI tree and Lorenzo should take them.
-> 
-> The series depends on the patch in Lorenzo's tree (sm8150 bindings),
-> so I'd assume it would be natural to merge these patches through his
-> tree too.
+The change documents power-domains property for RSC device.
+This optional property points to corresponding PM domain node.
 
-I can take the DT bindings but the dts updates I'd prefer if they
-went via platform trees. Is that OK ?
+Cc: devicetree@vger.kernel.org
+Signed-off-by: Maulik Shah <quic_mkshah@quicinc.com>
+---
+ Documentation/devicetree/bindings/soc/qcom/qcom,rpmh-rsc.yaml | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-Thanks,
-Lorenzo
+diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,rpmh-rsc.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,rpmh-rsc.yaml
+index f5ecf4a..7683cc9 100644
+--- a/Documentation/devicetree/bindings/soc/qcom/qcom,rpmh-rsc.yaml
++++ b/Documentation/devicetree/bindings/soc/qcom/qcom,rpmh-rsc.yaml
+@@ -110,6 +110,9 @@ properties:
+       - const: drv-2
+       - const: drv-3
+ 
++  power-domains:
++    maxItems: 1
++
+   bcm-voter:
+     $ref: /schemas/interconnect/qcom,bcm-voter.yaml#
+ 
+@@ -162,6 +165,7 @@ examples:
+                           <SLEEP_TCS   3>,
+                           <WAKE_TCS    3>,
+                           <CONTROL_TCS 1>;
++        power-domains = <&CLUSTER_PD>;
+       };
+ 
+   - |
+@@ -208,6 +212,7 @@ examples:
+                           <SLEEP_TCS   3>,
+                           <WAKE_TCS    3>,
+                           <CONTROL_TCS 0>;
++        power-domains = <&CLUSTER_PD>;
+ 
+         clock-controller {
+             compatible = "qcom,sm8350-rpmh-clk";
+-- 
+2.7.4
+
