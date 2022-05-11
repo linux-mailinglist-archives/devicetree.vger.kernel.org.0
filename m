@@ -2,73 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8117852374B
-	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 17:27:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4183D523761
+	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 17:33:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241922AbiEKP1x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 May 2022 11:27:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59496 "EHLO
+        id S240224AbiEKPdp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 May 2022 11:33:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55114 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237784AbiEKP1o (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 May 2022 11:27:44 -0400
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A3EA3BBFB
-        for <devicetree@vger.kernel.org>; Wed, 11 May 2022 08:27:43 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id k27so3009773edk.4
-        for <devicetree@vger.kernel.org>; Wed, 11 May 2022 08:27:43 -0700 (PDT)
+        with ESMTP id S244494AbiEKPdo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 May 2022 11:33:44 -0400
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3769562BFD;
+        Wed, 11 May 2022 08:33:43 -0700 (PDT)
+Received: by mail-ej1-x630.google.com with SMTP id gh6so4924290ejb.0;
+        Wed, 11 May 2022 08:33:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=+uroO/vY6XG1xI1X9Ud5Dc476KAfJP3kX2168zNzYO4=;
-        b=fk1P5MGNZl3h9gT/nk2Obg3HmrryEHaslAi7OhrMkdNeVA7xAZBZr30WxMACYnUOyn
-         7UkJGnNIy0nvFOqAmuFyuvYCrHTBjjmmjEaWyarProKucTZzxeRY+UoqKHheTPgwyY/P
-         5/PUCzZ6A3xEXfap2TCG6EHAZgOCOl5Xh0eFKeDgO1oDfYR+5VwEA6oJDSEPIpPEZLEo
-         sDO5y+6zTdcMaUbYDU2e/sj9nUsPpYNHnCYiqfVU3SuBFjR4ABn/oDvsysAlU9CDU3nx
-         QD6H/Gk4grGiQchcEvi6PxhHdhzKBbq3PsPqdsBiDUU08NHEyYqUZcaYWgaAbtY8wcyw
-         lWYA==
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=hwv+tHRthGjMF6T+0E5omfvbRMHbBx+VEPozMcOm4FQ=;
+        b=RCize1dOWO6Z2UQaXjmfoNi90tsIQzVbnmrcQmRSP4yYiMDdA4FWNns0zbKZ9Yja94
+         rGX+NPjMLh2q94s92DsjoCSWkcXIk0E151EhR4Ck7Y4f3EdKmfPd1VZdMUT2JLLmA0oL
+         YjgRWgYqV9CMgF/Cy6XwDDBDlzK+Cock8E6ecPudySXQI/5iGe9zMDFUfhEqwke1psvX
+         xumEJOVBL7fQY2k1xWi9yrA+rKwkAHevwUwMaVtB7EUMiQkP5wpOuG6U4fCH9M3IZKOg
+         w8V28Zjx+7D9j0GVILC6udoWYWo7OEz25YF+YhHGRt+aHV58WMmS8ZCzuRLMiU5kCXBg
+         fpKw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=+uroO/vY6XG1xI1X9Ud5Dc476KAfJP3kX2168zNzYO4=;
-        b=qX7zbnAwqkviNnuh6pATk/xHbPm4OZzr3hEXOW+tmfU8Okw4LyDwHvqEC01lvWlhp4
-         A6MrG6ZDOFXDfV4V6BI9+o0az9NRkmyO6amuyCcjB4wgjDTiIbKbGoFdDBKacyOo69TB
-         nTXwsJJoWgyAItmtRlvy/kC3Jh11kuPN/DhOCXuQHVyBpRo313E9NNdLtxrXmUeWTVUI
-         mkDWENAJ9fnEtuTGAYn044jDkcrJ3f9Mx44yIYYV9nNXmM5TXQ7k1Pnj53J0HOMj4PaM
-         OcrVw3acRLH6s8qjmfLi+UOohwZvqIs+Y4ZmeGSgt7PI/jmzpXkjNUdQ5b167b8LaAZ5
-         Pdrg==
-X-Gm-Message-State: AOAM5337X/WtPQB/yVVTQRmKKDSZcggmLS7pD2AOzqyyUMXhtoM0LgRp
-        itmqoaobgOWZo9faVlrXsPLIrA==
-X-Google-Smtp-Source: ABdhPJy96CstkysGFwN7nKsEZRY2/Sn2Wy/P5Gpj3mO5AwWu9FxTZSfFYCIVl9B5iV03G2Qb26uzaA==
-X-Received: by 2002:a50:9f06:0:b0:425:c1ba:5037 with SMTP id b6-20020a509f06000000b00425c1ba5037mr30308853edf.285.1652282862097;
-        Wed, 11 May 2022 08:27:42 -0700 (PDT)
-Received: from [192.168.0.154] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id bd23-20020a056402207700b0042617ba63a3sm1291335edb.45.2022.05.11.08.27.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 11 May 2022 08:27:41 -0700 (PDT)
-Message-ID: <75ce6291-77c7-c932-e8bb-a8bbae02431d@linaro.org>
-Date:   Wed, 11 May 2022 17:27:40 +0200
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=hwv+tHRthGjMF6T+0E5omfvbRMHbBx+VEPozMcOm4FQ=;
+        b=zBs0W3hkzVvvkOwt5lfwa0NTy2rmRRzfr+8thKsh6S2/iMphaVvaOnh6WXGdlLeZ3F
+         UQjHwVwQnrcnhw6Pn9MxmtSSJScL0+dJ9dWKlivSpqDZCaTVJjSXjb038IcDB2rZyCzk
+         Da4WumETHlElIMCBt43u3MPYP7TZMw80J9KY9EppOkLLaxJKVxcYwA12Nn9GEBkKLuc2
+         51DbHALnaqYWtF7U4PDNG/kxEXyZYKWut2/JxbIOoUM5aY1zdX7ovJpUtXx7YoHQBtjs
+         rtK3XUdetVEvHJJt9CoqpHpvDab0g6lNUniBz1gMPkC2MX7dMLNpQRna492YXRvTbpSn
+         9Rig==
+X-Gm-Message-State: AOAM530JkLsGMUqkRynk+dZubfxKOBdf9O1laYk+795TtZpxzKtl55NN
+        vRHaAq6T1BxyhkawWXC6E7U=
+X-Google-Smtp-Source: ABdhPJzBCHND5vtVrFsSKG9WjTxF0PdeUAJcyug8qK+/StsoULuJ4vsbhThOie/Ko9EIIQLNBpkn6A==
+X-Received: by 2002:a17:907:c2a:b0:6f4:4b49:9cfb with SMTP id ga42-20020a1709070c2a00b006f44b499cfbmr24098814ejc.697.1652283221695;
+        Wed, 11 May 2022 08:33:41 -0700 (PDT)
+Received: from skbuf ([188.25.160.86])
+        by smtp.gmail.com with ESMTPSA id z22-20020a50cd16000000b00426488dce1dsm1337316edi.25.2022.05.11.08.33.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 11 May 2022 08:33:39 -0700 (PDT)
+Date:   Wed, 11 May 2022 18:33:37 +0300
+From:   Vladimir Oltean <olteanv@gmail.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     =?utf-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Herve Codina <herve.codina@bootlin.com>,
+        =?utf-8?Q?Miqu=C3=A8l?= Raynal <miquel.raynal@bootlin.com>,
+        Milan Stevanovic <milan.stevanovic@se.com>,
+        Jimmy Lalande <jimmy.lalande@se.com>,
+        Pascal Eberhard <pascal.eberhard@se.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, netdev@vger.kernel.org
+Subject: Re: [PATCH net-next v4 05/12] dt-bindings: net: dsa: add bindings
+ for Renesas RZ/N1 Advanced 5 port switch
+Message-ID: <20220511153337.deqxawpbbk3actxf@skbuf>
+References: <20220509131900.7840-1-clement.leger@bootlin.com>
+ <20220509131900.7840-6-clement.leger@bootlin.com>
+ <20220511152221.GA334055-robh@kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH 1/2] dt-bindings: microchip-otpc: document Microchip OTPC
-Content-Language: en-US
-To:     Claudiu Beznea <claudiu.beznea@microchip.com>,
-        srinivas.kandagatla@linaro.org, robh+dt@kernel.org,
-        krzk+dt@kernel.org
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220510094457.4070764-1-claudiu.beznea@microchip.com>
- <20220510094457.4070764-2-claudiu.beznea@microchip.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220510094457.4070764-2-claudiu.beznea@microchip.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220511152221.GA334055-robh@kernel.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -76,132 +91,14 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/05/2022 11:44, Claudiu Beznea wrote:
-> Document Microchip OTP controller.
+On Wed, May 11, 2022 at 10:22:21AM -0500, Rob Herring wrote:
+> > +patternProperties:
+> > +  "^ethernet-ports$":
 > 
-> Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
-> ---
->  .../bindings/nvmem/microchip-otpc.yaml        | 55 +++++++++++++++++++
->  include/dt-bindings/nvmem/microchip,otpc.h    | 18 ++++++
->  2 files changed, 73 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/nvmem/microchip-otpc.yaml
->  create mode 040000 include/dt-bindings/nvmem
->  create mode 100644 include/dt-bindings/nvmem/microchip,otpc.h
+> Move to 'properties', not a pattern.
 > 
-> diff --git a/Documentation/devicetree/bindings/nvmem/microchip-otpc.yaml b/Documentation/devicetree/bindings/nvmem/microchip-otpc.yaml
-> new file mode 100644
-> index 000000000000..a8df7fee5c2b
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/nvmem/microchip-otpc.yaml
+> With that,
+> 
+> Reviewed-by: Rob Herring <robh@kernel.org>
 
-vendor,device.yaml
-device should not be a wildcard but first compatible, so
-microchip,sama7g5-otpc.yaml
-
-
-> @@ -0,0 +1,55 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/nvmem/microchip-otpc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Microchip SAMA7G5 OTP Controller (OTPC) device tree bindings
-
-s/device tree bindings//
-
-> +
-> +maintainers:
-> +  - Claudiu Beznea <claudiu.beznea@microchip.com>
-> +
-> +description: |
-> +  This binding represents the OTP controller found on SAMA7G5 SoC.
-
-Entire description is duplicating title. Please describe the hardware or
-skip it.
-
-OTOH, you should mention the header, for example in description.
-
-> +
-> +allOf:
-> +  - $ref: "nvmem.yaml#"
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - const: microchip,sama7g5-otpc
-> +      - const: syscon
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  "#address-cells":
-> +    const: 1
-> +
-> +  "#size-cells":
-> +    const: 1
-
-These come from nvmem.yaml.
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/at91.h>
-
-How the clock is used here?
-
-> +    #include <dt-bindings/nvmem/microchip,otpc.h>
-> +
-> +    otpc: efuse@e8c00000 {
-> +        compatible = "microchip,sama7g5-otpc", "syscon";
-> +        reg = <0xe8c00000 0xec>;
-> +        #address-cells = <1>;
-> +        #size-cells = <1>;
-> +
-> +        temperature_calib: calib@1 {
-> +            reg = <OTP_PKT(1) OTP_PKT_SAMA7G5_TEMP_CALIB_LEN>;
-> +        };
-> +    };
-> +
-> +...
-> diff --git a/include/dt-bindings/nvmem/microchip,otpc.h b/include/dt-bindings/nvmem/microchip,otpc.h
-> new file mode 100644
-> index 000000000000..44b6ed3b8f18
-> --- /dev/null
-> +++ b/include/dt-bindings/nvmem/microchip,otpc.h
-> @@ -0,0 +1,18 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
-
-Same license as bindings.
-
-> +
-> +#ifndef _DT_BINDINGS_NVMEM_MICROCHIP_OTPC_H
-> +#define _DT_BINDINGS_NVMEM_MICROCHIP_OTPC_H
-> +
-> +/*
-> + * Need to have it as a multiple of 4 as NVMEM memory is registered with
-> + * stride = 4.
-> + */
-> +#define OTP_PKT(id)			((id) * 4)
-
-Do I get it correctly - the offset or register address is now part of a
-binding? You write here "id", however you use it as part of "reg", so
-it's confusing.
-
-> +
-> +/*
-> + * Temperature calibration packet length for SAMA7G5: 1 words header,
-> + * 18 words payload.
-> + */
-> +#define OTP_PKT_SAMA7G5_TEMP_CALIB_LEN	(19 * 4)
-
-Length of some memory region also does not look like job for bindings.
-
-Best regards,
-Krzysztof
+Even if it should have been "^(ethernet-)?ports$"?
