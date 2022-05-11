@@ -2,127 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B2FB5523D1D
-	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 21:09:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D9691523D42
+	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 21:16:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346654AbiEKTI6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 May 2022 15:08:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44672 "EHLO
+        id S1346712AbiEKTQK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 May 2022 15:16:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41654 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234118AbiEKTI4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 May 2022 15:08:56 -0400
-Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com [148.163.156.1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D697F6EB10;
-        Wed, 11 May 2022 12:08:55 -0700 (PDT)
-Received: from pps.filterd (m0098393.ppops.net [127.0.0.1])
-        by mx0a-001b2d01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 24BIftZV029492;
-        Wed, 11 May 2022 19:08:39 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=from : to : cc : subject
- : date : message-id : in-reply-to : references : mime-version :
- content-transfer-encoding; s=pp1;
- bh=qlOWqXyfi0rR8T2Ty+QTIJ3Y8i5IUOUaQI1MNmkuf5Y=;
- b=OVTqrNx28vOMpJb0sSyFMSCbcFQ9jbIfWD8ZP4gYo+lPxI8UWtZY/DJqRAWLtUV45eD8
- fzBb0PyT1Cj4Bjq3XFDN7yZCu2QIWwHDhzpEubrHgJyCleZK4lGr0iKezhWu83QqX2NP
- 2og3I1aajaNQHk1XRHkDTH+vGjxLTPtvqG8XixZlnWWRvg4t9+Nb9DtuqvSPayRHoHxe
- B7MNjCePSXoujGXpxDUqR8ted4/zYg4f8ZG6MYzMyXqcWDmmG1AVoI7hCnRKd1bbbTnG
- POhlWceP5hJO5HMXtD/UDHKDhKwl9Y4GvyYMjIambMoOmbcVD4diXnExTKz2OG2DXUUl Uw== 
-Received: from ppma03dal.us.ibm.com (b.bd.3ea9.ip4.static.sl-reverse.com [169.62.189.11])
-        by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3g0jn5rdu2-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 11 May 2022 19:08:39 +0000
-Received: from pps.filterd (ppma03dal.us.ibm.com [127.0.0.1])
-        by ppma03dal.us.ibm.com (8.16.1.2/8.16.1.2) with SMTP id 24BJ8Soj002140;
-        Wed, 11 May 2022 19:08:38 GMT
-Received: from b03cxnp08026.gho.boulder.ibm.com (b03cxnp08026.gho.boulder.ibm.com [9.17.130.18])
-        by ppma03dal.us.ibm.com with ESMTP id 3fwgda5sg0-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 11 May 2022 19:08:38 +0000
-Received: from b03ledav003.gho.boulder.ibm.com (b03ledav003.gho.boulder.ibm.com [9.17.130.234])
-        by b03cxnp08026.gho.boulder.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 24BJ8bqI31654354
-        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Wed, 11 May 2022 19:08:37 GMT
-Received: from b03ledav003.gho.boulder.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id 249F66A04F;
-        Wed, 11 May 2022 19:08:37 +0000 (GMT)
-Received: from b03ledav003.gho.boulder.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id B358D6A04D;
-        Wed, 11 May 2022 19:08:36 +0000 (GMT)
-Received: from v0005c16.aus.stglabs.ibm.com (unknown [9.211.61.211])
-        by b03ledav003.gho.boulder.ibm.com (Postfix) with ESMTP;
-        Wed, 11 May 2022 19:08:36 +0000 (GMT)
-From:   Eddie James <eajames@linux.ibm.com>
-To:     linux-iio@vger.kernel.org
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        jic23@kernel.org, lars@metafoo.de, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, dbarksdale@uplogix.com,
-        eajames@linux.ibm.com
-Subject: [PATCH 2/2] iio: humidity: si7020: Check device property for skipping reset in probe
-Date:   Wed, 11 May 2022 14:08:35 -0500
-Message-Id: <20220511190835.51046-3-eajames@linux.ibm.com>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20220511190835.51046-1-eajames@linux.ibm.com>
-References: <20220511190835.51046-1-eajames@linux.ibm.com>
+        with ESMTP id S242629AbiEKTQJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 May 2022 15:16:09 -0400
+Received: from wout3-smtp.messagingengine.com (wout3-smtp.messagingengine.com [64.147.123.19])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF02E2497F;
+        Wed, 11 May 2022 12:16:03 -0700 (PDT)
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+        by mailout.west.internal (Postfix) with ESMTP id E434F32008FA;
+        Wed, 11 May 2022 15:15:59 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute4.internal (MEProxy); Wed, 11 May 2022 15:16:00 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=stwcx.xyz; h=cc
+        :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to; s=fm2; t=1652296559; x=1652382959; bh=uR1UqOSmk8
+        pEMKPCLyKsAhbJdVyUpDr+WJgxE/2DLik=; b=K2KdYiDqASFoaViNgGxA21rYyO
+        oQ3PBAAsNzLo4rhEcmnqsEvTqunBjKJn0soV6vJ8p64rBwGbljOGzrBqg6mWapOy
+        dobg2WaPcuUGOiIotJKb3Ga34S0JQdVu9QzR/5GBFphrMtFoBqqs4V/qnaFAzjYo
+        cKTvv7BY9CZ8XsaW5bzDa/5gvXbi+OZwWLUZTGFL7Pa05gRbnp2j94cDyBjpaS1J
+        pBZvufJl4JHnyscSeT2E6uvqaWa5zj2RHlmxwRG/HBZI8yl16Wll0yoh0v5Pn8o/
+        YFoK6gNM7XYkXWTCA6F1O1ihqyCTqM3awncfKeqivgJp7zBP5DWBXkO99uJQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-type:date:date:from:from
+        :in-reply-to:in-reply-to:message-id:mime-version:references
+        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1652296559; x=
+        1652382959; bh=uR1UqOSmk8pEMKPCLyKsAhbJdVyUpDr+WJgxE/2DLik=; b=u
+        6yYvWA2Iou103Gdtfgum2YuMD+Ic99qGCRkXeTqw0ma4slv/+V5Ds2MmoObjBUww
+        kymv4/GA28FIEGtTuThp70cLJKog21mlPFOU6pn2WhWZIr6gWrrshnMP32Nxqz2T
+        BG6LdiZJW7hSvkhhGI8R/7hHoFe8Rm5i4R905UM+AaUHOniQgsGBByWpmBYburto
+        6rkNIoVGLf8pb3A5aOdfrcUknWhfYrfKeEexhRLKaYjcvkPcCyq1tkbAcESa4CST
+        N8Ft1HrZQLbSSG+CxnnYVjcfG3iaUOJ5q385le9J6CIHG/5AM2cywjuBd2212B1k
+        qSLaR7CBOKoWx1Z0GMong==
+X-ME-Sender: <xms:bgt8YsWM_VJtAE4nZYsHBBstAuFjykkfgCewtGyTnoQVoBhIsjhwEg>
+    <xme:bgt8YgkKAAbANkR-JXdytbXTToau8IRN-JJST1Xw7GamMkKMno9UyTbLQt9kW1K99
+    LhPnhUIMXhRJEKj2PA>
+X-ME-Received: <xmr:bgt8Yga0tJz-groxhW0sf670pA2OeCAObsi5Cp-x0BD6GZgpqaBvqI5BFkRZATZGO_ctZVZ_t16X2TZSnyaale3wnRykqqgEt8I>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrgeehgddufeduucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    gfrhhlucfvnfffucdludejmdenucfjughrpeffhffvvefukfhfgggtuggjsehgtderredt
+    tddvnecuhfhrohhmpefrrghtrhhitghkucghihhllhhirghmshcuoehprghtrhhitghkse
+    hsthiftgigrdighiiiqeenucggtffrrghtthgvrhhnpeehfeejheeftdejiedvfeekffeh
+    ledukeduleelffekgfdtleduledvtdegtdehkeenucevlhhushhtvghrufhiiigvpedtne
+    curfgrrhgrmhepmhgrihhlfhhrohhmpehprghtrhhitghksehsthiftgigrdighiii
+X-ME-Proxy: <xmx:bgt8YrV2GYH1XD2qnzzR7pCNnjN3r0maDoqBi1bQA-nAB4qLaBjn2A>
+    <xmx:bgt8YmntnXkH6NCuyl9-8XFhCDCLPUIvRtpFrpJoNwg1Qsi6-Wu3iA>
+    <xmx:bgt8YgcIPReim2vby8WDDhNs_72a1wYyHNnUFSZeBEz8H2YnSEK0XQ>
+    <xmx:bwt8YkatK2K9uVgK-OZ2i9N8kemoCHSBVNe9WAkphGl-vd4wWDk18w>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
+ 11 May 2022 15:15:58 -0400 (EDT)
+Date:   Wed, 11 May 2022 14:15:56 -0500
+From:   Patrick Williams <patrick@stwcx.xyz>
+To:     Joel Stanley <joel@jms.id.au>
+Cc:     Potin Lai <potin.lai.pt@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 0/6] ARM: dts: aspeed: bletchley: update dts file base on
+ DVT schematic
+Message-ID: <YnwLbOOq3MnfKaX0@heinlein.stwcx.org.github.beta.tailscale.net>
+References: <20220509151118.4899-1-potin.lai.pt@gmail.com>
+ <CACPK8XfXbay7u5kMDgMoyDTO_Le2i4okNUG8sb8_NDepbPRjxA@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-TM-AS-GCONF: 00
-X-Proofpoint-GUID: -_y8u645Od0zadYsOSuBHFg1MVzJMxeA
-X-Proofpoint-ORIG-GUID: -_y8u645Od0zadYsOSuBHFg1MVzJMxeA
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.858,Hydra:6.0.486,FMLib:17.11.64.514
- definitions=2022-05-11_07,2022-05-11_01,2022-02-23_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- suspectscore=0 adultscore=0 spamscore=0 impostorscore=0 phishscore=0
- malwarescore=0 clxscore=1015 priorityscore=1501 mlxlogscore=999
- bulkscore=0 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2202240000 definitions=main-2205110083
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="13cpD+Gj1qD2RKVb"
+Content-Disposition: inline
+In-Reply-To: <CACPK8XfXbay7u5kMDgMoyDTO_Le2i4okNUG8sb8_NDepbPRjxA@mail.gmail.com>
+X-Spam-Status: No, score=-0.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FROM_SUSPICIOUS_NTLD,
+        PDS_OTHER_BAD_TLD,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-I2C commands issued after the SI7020 is starting up or after reset
-can potentially upset the startup sequence. Therefore, the host
-needs to wait for the startup sequence to finish before issuing
-further i2c commands. This is impractical in cases where the SI7020
-is on a shared bus or behind a mux, which may switch channels at
-any time (generating I2C traffic). Therefore, check for a device
-property that indicates that the driver should skip resetting the
-device when probing.
 
-Signed-off-by: Eddie James <eajames@linux.ibm.com>
----
- drivers/iio/humidity/si7020.c | 14 ++++++++------
- 1 file changed, 8 insertions(+), 6 deletions(-)
+--13cpD+Gj1qD2RKVb
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/drivers/iio/humidity/si7020.c b/drivers/iio/humidity/si7020.c
-index ab6537f136ba..49f6a1b1f5c4 100644
---- a/drivers/iio/humidity/si7020.c
-+++ b/drivers/iio/humidity/si7020.c
-@@ -115,12 +115,14 @@ static int si7020_probe(struct i2c_client *client,
- 				     I2C_FUNC_SMBUS_READ_WORD_DATA))
- 		return -EOPNOTSUPP;
- 
--	/* Reset device, loads default settings. */
--	ret = i2c_smbus_write_byte(client, SI7020CMD_RESET);
--	if (ret < 0)
--		return ret;
--	/* Wait the maximum power-up time after software reset. */
--	msleep(15);
-+	if (!device_property_read_bool(&client->dev, "silabs,skip-reset")) {
-+		/* Reset device, loads default settings. */
-+		ret = i2c_smbus_write_byte(client, SI7020CMD_RESET);
-+		if (ret < 0)
-+			return ret;
-+		/* Wait the maximum power-up time after software reset. */
-+		msleep(15);
-+	}
- 
- 	indio_dev = devm_iio_device_alloc(&client->dev, sizeof(*data));
- 	if (!indio_dev)
--- 
-2.27.0
+On Wed, May 11, 2022 at 06:09:33AM +0000, Joel Stanley wrote:
+> On Mon, 9 May 2022 at 15:14, Potin Lai <potin.lai.pt@gmail.com> wrote:
+> >
+> > This patch series update Facebook Bletchley BMC devicetree base on DVT
+> > schematic.
+> >
+> > - EHCI: enable ehci0 for detecting and accessing usb device on sled
+> > - MDIO Bus: enable mdio0 for accessing switch registers
+> > - SPI2 Flash: switch spi driver back to aspeed-smc to improve performan=
+ce
+> > - EEPROM: add eeprom node on each sled
+> > - GPIO:
+> >   - add PCA9536 IOEPX node on each sled
+> >   - update gpio line names
+>=20
+> These look fine to me.
+>=20
+> Reviewed-by: Joel Stanley <joel@jms.id.au>
+>=20
+> Patrick, did you want to review them before I merge?
 
+Yes, also...
+
+Reviewed-by: Patrick Williams <patrick@stwcx.xyz>
+
+--=20
+Patrick Williams
+
+--13cpD+Gj1qD2RKVb
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEBGD9ii4LE9cNbqJBqwNHzC0AwRkFAmJ8C2oACgkQqwNHzC0A
+wRklZRAAiA6+18+skbpmSRL9kIJ0YGdTR0eF9/lZlFT8e7QprxDuKZabiKsJN7GV
+Vby90wG4AGa7YT6TxkdRtLErxNMaKOVnWwQIMw+7Zdt7mwHYIfrS4Pv6763UfheA
+GEx8atnbs1F1dYRPv+fbfTqvX9cImLHUzMZ5ekXa10L5mhTGYggaQtfcsPgvMq8v
+NyeNzbwyBezF1v1LOiWdiHhmyv8DTSgueJ3vEbRYUWlkPcMzIgNTnnaIkZS2Yras
+6s+fDO6jn11mV10Fe5pGMFu5tYMYDUTnQZ27yu1c0XGZcAHp29NldSmp0OGLdsQo
+8tQ5rQSDekUTld9fJ6nLyAhimIRyNHyUj97l1g3jbtb4mDnCHObRu7rTK2b8v4hE
+THdyNtL59+IVE0hw6raXK7vXyyICrCoXNUu1ZON4Wu1FjrcDaReyuBKj6QcjHwzI
+dLuVRM9A10BYsSCx/g2W+7ZhbK6IyzLycyVVNMvmO4meOvuonBB9Q0D//BVQA6Ug
+1vZ9M6Oom158xAditHOjTzL8kR9TXYbMaCC/JBeLZ50TWYDpbDM0dhhL1EgUIPd1
+9oRuZJbImndgdA4leVyBbgUD4Xdg4rEyIvERnOfcJbXsGUwArrzVXp5UNdnG4txf
+5d+LVZBrFYuafH+sn961jtuX9D5TiJH40Ev7HZI29Z0xVj5+j3M=
+=3yWb
+-----END PGP SIGNATURE-----
+
+--13cpD+Gj1qD2RKVb--
