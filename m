@@ -2,127 +2,203 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D0C1522DAE
-	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 09:53:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F8D6522DD5
+	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 10:03:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238487AbiEKHxk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 May 2022 03:53:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34726 "EHLO
+        id S243314AbiEKIDo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 May 2022 04:03:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38988 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229523AbiEKHxj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 May 2022 03:53:39 -0400
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB7F93EBA2;
-        Wed, 11 May 2022 00:53:36 -0700 (PDT)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 24B7rVFu076044;
-        Wed, 11 May 2022 02:53:31 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1652255611;
-        bh=EJnEbmFbApVtiN+wXk9HgVlWHxYzSRSEn+KPA8du8EE=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=I01caZygZx+nc8YVzLxhhubUUiAH9hfugIuapzejfAot/2LVYJCI2l50InXRAX6Nt
-         wkB1t5YkvrUAsicovdF1Fi0D79ZQIhtJHzj/NSHOAyy7uOf+o0llALAj7LNDgH8/dZ
-         21jJNZ6bD9B5UgGoqLJ45RDiYRszJwUQhAeyrmU8=
-Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 24B7rVbT002016
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 11 May 2022 02:53:31 -0500
-Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Wed, 11
- May 2022 02:53:30 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Wed, 11 May 2022 02:53:31 -0500
-Received: from [172.24.223.48] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 24B7rRRH068143;
-        Wed, 11 May 2022 02:53:28 -0500
-Message-ID: <117f175f-62d1-17b5-742b-bcb250b7866f@ti.com>
-Date:   Wed, 11 May 2022 13:23:27 +0530
+        with ESMTP id S243300AbiEKIDl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 May 2022 04:03:41 -0400
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.22])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D15158D69B;
+        Wed, 11 May 2022 01:03:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+        s=badeba3b8450; t=1652256165;
+        bh=B8FTFbkEKSq9FU1nYtmjnKVxghiXhAC0tTT4mBqiWNo=;
+        h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
+        b=aJuH3WpsbGssY0jxWTz6NtSsyJj/F0xB3cw1/JLXp51ddDUIpUqmQD5Wdp4TqBz2q
+         CyjAL6KdVYo2Ky8npof7tVC9Rz3ydTCsz0+V5soEV9cGcl3c5snAF9lfbdd+Oqk7jz
+         o3Dv6CHPzzSk2VO22pirR0DPXkoP6QVPNaqeZdlQ=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from [80.245.76.65] ([80.245.76.65]) by web-mail.gmx.net
+ (3c-app-gmx-bap47.server.lan [172.19.172.117]) (via HTTP); Wed, 11 May 2022
+ 10:02:45 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.0
-Subject: Re: [PATCH v6 1/4] dt-bindings: thermal: k3-j72xx: Add VTM bindings
- documentation
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <robh+dt@kernel.org>, <daniel.lezcano@linaro.org>,
-        <rui.zhang@intel.com>, <amitk@kernel.org>, <kristo@kernel.org>,
-        <vigneshr@ti.com>
-CC:     <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20220427064635.24898-1-j-keerthy@ti.com>
- <20220427064635.24898-2-j-keerthy@ti.com>
- <5859fed0-82b7-95eb-5719-9b0016916c50@ti.com>
- <eb0745a6-ecf2-4b70-368b-9ad8a322f208@linaro.org>
-From:   "J, KEERTHY" <j-keerthy@ti.com>
-In-Reply-To: <eb0745a6-ecf2-4b70-368b-9ad8a322f208@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-5.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+Message-ID: <trinity-68761fe5-fcca-456b-ba50-ead759f0fb54-1652256165646@3c-app-gmx-bap47>
+From:   Frank Wunderlich <frank-w@public-files.de>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Frank Wunderlich <linux@fw-web.de>,
+        linux-rockchip@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Landen Chao <Landen.Chao@mediatek.com>,
+        DENG Qingfang <dqfext@gmail.com>,
+        Peter Geis <pgwipeout@gmail.com>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Greg Ungerer <gerg@kernel.org>,
+        =?UTF-8?Q?Ren=C3=A9_van_Dorst?= <opensource@vdorst.com>,
+        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>
+Subject: Aw: Re: [PATCH v3 1/6] dt-bindings: net: dsa: convert binding for
+ mediatek switches
+Content-Type: text/plain; charset=UTF-8
+Date:   Wed, 11 May 2022 10:02:45 +0200
+Importance: normal
+Sensitivity: Normal
+In-Reply-To: <YnqymzCbabEjV7GQ@robh.at.kernel.org>
+References: <20220507170440.64005-1-linux@fw-web.de>
+ <20220507170440.64005-2-linux@fw-web.de>
+ <YnqymzCbabEjV7GQ@robh.at.kernel.org>
+X-UI-Message-Type: mail
+X-Priority: 3
+X-Provags-ID: V03:K1:eV/uQqPXza9IH9Y6Gv0NJsaSRebtJEgsDYaeyvL96Y4T6fYpr0o3B2H8VkA557m4XfuMP
+ EJm8YxcfAdgzGs60GWOyMLLyOLwpHUmbcx+QBI57BblTcXBCv083UmF50AdAZIM3kIVCwTi/9e6S
+ RZ31tWDNSxRFhYErWSOsYivD8eVR/a8PeaGq7XD3uTo325JmaNm68SgIKTNEqUSN38nYYXYf2/KT
+ mxvT4xypcXMmCQ4hX3DmI53H0fBjFxbp3EhsginVvb+AQXve2LPZbAm22l28+vdqt1gTW2Vyz3jw
+ 7s=
+X-UI-Out-Filterresults: notjunk:1;V03:K0:IOaqh5ngyBI=:d3wI83YyXXlAM5qDVFD0Bx
+ cMUtUb2TC50x2gRAAJG8+Zg6pLpPDiDW9a92hECLC/VqDTv6yKkWZBeDp/qwthXNsa9xm6kVR
+ LkII6/vwvDGV3DD1wFHaWMKvAH18z0Ufgo41xshVPfGu2lmUbxzjT3RaBtSXyvKTopRWP3gsx
+ sPnFcGXfaVmXoA0AN9//S+VV/PVQ90jQ+9dTtsPEkgTpiGVgCs6FIWGjcyQ7u3tVEaCkNSUyi
+ 6RjE/M2Bo17O3Jb282h/qPFdHf4GS4k2Rq+BaBq7teOgLe/Y8oVScC45CVtGe2j/0XkJ1dbNM
+ LBk4Ts7/2cO8h6hX9BydCCEiX5lwqRNX1rDXTgVxqwdFdpbnnw/l2Pm6Kst1VA2ba4zjjKgJw
+ ZbrTNSqpt2lqPQiymgBt/e5NLYYn4GaUcTofI0j7jaGTiz0UOUMGzZg0uQwWCQoPtuf0afZHR
+ HvYfLGzpoYO3eEkT6DkOM2l4GOQdTADBRzPPl5ExffJfpBVk+rCMG1ZIwsLnBnwz/aOvUv+Hz
+ kctcK4jKKYPSSY+6LgGRFcR/wL2v7ZPEClOrrQE4GJgK0mN8lN66cTCSCP6eVNLjQsd8EuwhD
+ RrKqo97HwEmf5fMgTpUYoefC1aQi9DTIRS3RTk6o82BI9ay5kJO5zy428FX+UX8EVPmZzOC/+
+ 22GIwYHZnZnJrLv7AQAjNoYXx4ZxcMo207iAE1fbEPbcrm6gSuWWnUAdW0VmdjnmFYt4aZ6g5
+ E668W/8r4WDOpD8roFZvuJ12jZJ9N8wm0OhM2CsyQ0j2006xHt3m5PC63Ej5TtMF0KO2MgWMp
+ nupH2rG
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi
 
+thanks for review
 
-On 5/9/2022 12:12 PM, Krzysztof Kozlowski wrote:
-> On 09/05/2022 05:18, J, KEERTHY wrote:
->>
->>
->> On 4/27/2022 12:16 PM, Keerthy wrote:
->>> Add VTM bindings documentation. In the Voltage Thermal
->>> Management Module(VTM), K3 J72XX supplies a voltage
->>> reference and a temperature sensor feature that are gathered in the band
->>> gap voltage and temperature sensor (VBGAPTS) module. The band
->>> gap provides current and voltage reference for its internal
->>> circuits and other analog IP blocks. The analog-to-digital
->>> converter (ADC) produces an output value that is proportional
->>> to the silicon temperature.
->>
->> Hi krzysztof,
->>
->> Any comments on this version?
-> 
-> You got Rob's review, so you don't need also mine.
-> 
-> If you want, then in general look okay, except the description for "reg"
-> you could split per items:
-> 
-> reg:
->    items:
->      - description: VTM cfg1 register space
->      - description: VTM cfg2 register space
->      - description: efuse register space
-> 
-> It's more obvious what items you expect.
+> Gesendet: Dienstag, 10. Mai 2022 um 20:44 Uhr
+> Von: "Rob Herring" <robh@kernel.org>
+> On Sat, May 07, 2022 at 07:04:35PM +0200, Frank Wunderlich wrote:
+> > From: Frank Wunderlich <frank-w@public-files.de>
 
-Hi Krzysztof,
+> > +++ b/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
 
-DTEX 
-Documentation/devicetree/bindings/thermal/ti,j72xx-thermal.example.dts
-Documentation/devicetree/bindings/thermal/ti,j72xx-thermal.yaml: found 
-duplicate key "description" with value "VTM cfg2 register space" 
-(original value: "VTM cfg1 register space")
-Documentation/devicetree/bindings/Makefile:26: recipe for target 
-'Documentation/devicetree/bindings/thermal/ti,j72xx-thermal.example.dts' 
-failed
-make[1]: *** 
-[Documentation/devicetree/bindings/thermal/ti,j72xx-thermal.example.dts] Er
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - mediatek,mt7530
+> > +      - mediatek,mt7531
+> > +      - mediatek,mt7621
+> > +
+>
+> > +  "#address-cells":
+> > +    const: 1
+> > +
+> > +  "#size-cells":
+> > +    const: 0
+>
+> I don't see any child nodes with addresses, so these can be removed.
 
-I believe multiple instances of description is failing. So can i keep 
-the description as is?
+dropping this (and address-cells/size-cells from examples) causes errors l=
+ike this (address-/size-cells set in mdio
+node, so imho it should inherite):
 
-- Keerthy
+Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.example.dts:34.2=
+5-35: Warning (reg_format):
+/example-0/mdio/switch@0/ports/port@0:reg: property has invalid length (4 =
+bytes) (#address-cells =3D=3D 2, #size-cells =3D=3D 1)
+Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.example.dtb: War=
+ning (pci_device_reg): Failed prerequisite 'reg_format'
 
-> 
-> Best regards,
-> Krzysztof
+> > +  interrupt-controller:
+> > +    type: boolean
+>
+> Already has a type. Just:
+>
+> interrupt-controller: true
+>
+> > +
+> > +  interrupts:
+> > +    maxItems: 1
+
+> > +patternProperties:
+> > +  "^(ethernet-)?ports$":
+> > +    type: object
+>
+>        additionalProperties: false
+
+imho this will block address-/size-cells from this level too. looks like i=
+t is needed here too (for port-regs).
+
+> > +
+> > +    patternProperties:
+> > +      "^(ethernet-)?port@[0-9]+$":
+> > +        type: object
+> > +        description: Ethernet switch ports
+> > +
+> > +        unevaluatedProperties: false
+> > +
+> > +        properties:
+> > +          reg:
+> > +            description:
+> > +              Port address described must be 5 or 6 for CPU port and =
+from 0
+> > +              to 5 for user ports.
+> > +
+> > +        allOf:
+> > +          - $ref: dsa-port.yaml#
+> > +          - if:
+> > +              properties:
+> > +                label:
+> > +                  items:
+> > +                    - const: cpu
+> > +            then:
+> > +              required:
+> > +                - reg
+> > +                - phy-mode
+> > +
+
+> > +  - if:
+> > +      required:
+> > +        - interrupt-controller
+> > +    then:
+> > +      required:
+> > +        - interrupts
+>
+> This can be expressed as:
+>
+> dependencies:
+>   interrupt-controller: [ interrupts ]
+
+ok, i will change this
+
+> > +            ports {
+>
+> Use the preferred form: ethernet-ports
+
+current implementation in all existing dts and examples from old binding a=
+re "ports" only.
+should they changed too?
+
+> > +                #address-cells =3D <1>;
+> > +                #size-cells =3D <0>;
+> > +                port@0 {
+
+regards Frank
