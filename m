@@ -2,264 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 11478522A84
-	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 05:47:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6E566522A8D
+	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 05:54:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231319AbiEKDq5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 May 2022 23:46:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34956 "EHLO
+        id S230136AbiEKDyQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 May 2022 23:54:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59456 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230296AbiEKDq5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 May 2022 23:46:57 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6322D5372F
-        for <devicetree@vger.kernel.org>; Tue, 10 May 2022 20:46:54 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 24B3krPx014319
-        for <devicetree@vger.kernel.org>; Tue, 10 May 2022 22:46:53 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1652240813;
-        bh=GwtwwxmTCa8Drd0M9PZhWo1+Ki1m7kcB6a2X5zJgaZo=;
-        h=From:To:CC:Subject:Date;
-        b=fvyCy3EZjJ4YUIFPZSVb8qLT3KcKXxCKvNZEj9DXAftM4GZmZ+5OFzufR9j0weRmB
-         QC5VMUZqAi7P6BaX4XwUgyw0184HsTDbFD5LQRF1EqLMu8dIqQ+UmJUQVeM97ZuI20
-         +/J1EGJD4UzxYks0gnNflvmYDqM53X/+xwLaSrKw=
-Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 24B3kqBc067663
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-        for <devicetree@vger.kernel.org>; Tue, 10 May 2022 22:46:53 -0500
-Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Tue, 10
- May 2022 22:46:52 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Tue, 10 May 2022 22:46:52 -0500
-Received: from ubuntu.localdomain (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 24B3kmnZ034950;
-        Tue, 10 May 2022 22:46:49 -0500
-From:   Matt Ranostay <mranostay@ti.com>
-To:     <devicetree@vger.kernel.org>
-CC:     Matt Ranostay <mranostay@ti.com>
-Subject: [PATCH RESEND] arm64: dts: k3-j721e-sk: add CAN-FD transceiver nodes
-Date:   Tue, 10 May 2022 20:46:43 -0700
-Message-ID: <20220511034643.3458-1-mranostay@ti.com>
-X-Mailer: git-send-email 2.34.1
+        with ESMTP id S235083AbiEKDyM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 May 2022 23:54:12 -0400
+Received: from mail-oa1-x2a.google.com (mail-oa1-x2a.google.com [IPv6:2001:4860:4864:20::2a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C60654C414
+        for <devicetree@vger.kernel.org>; Tue, 10 May 2022 20:54:10 -0700 (PDT)
+Received: by mail-oa1-x2a.google.com with SMTP id 586e51a60fabf-edeb6c3642so1418401fac.3
+        for <devicetree@vger.kernel.org>; Tue, 10 May 2022 20:54:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=0WrSL/b+MR9+m4rRbjGXRX60B+r7zy7wkt64zUH48oY=;
+        b=rDNhyYBHwTL4zR2u6Rh91X182mgiFM7lrZSGXKOmY04hNhVAPm4Dgx0gU5cVJ2vGDC
+         VVK0s4uScAZKYRBD/jNDbgkWWuBV5j+CeByod0LNmbTJY6H1BdD52pzirbR50niNQOWs
+         4UcMfF4B2g4Ic9rYOGzl0LOSN1aaLtLb/R9U55fs4o/J0pMUPrqbzTdJSVKL4Fh78wGH
+         oqA+4Tao/oGIRZvarBpyi6x4Gmuur5E3YRVUVPWpq48UoXcyFBPUo67hsWk85HdW1Iyu
+         UKVBVAQsXQiIpeynG/0M9jNsljMLvTSFcolAfzNWxtFedgaFi3D/S+XxgXcjaVIGS2sh
+         xkqQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=0WrSL/b+MR9+m4rRbjGXRX60B+r7zy7wkt64zUH48oY=;
+        b=vIrjeTTHnrd6YFl+4/9ylWGohMLH5Pa+ouiUgtcxCXlg0rBa9gyUDrRXCgp7yZV5tT
+         OEC5HoissmLCkkbWO5PaotGiLMmSR00KJqEwjToJ36hQ0VMOWy3deKdUQ3sPETbr/+xq
+         YdjF9+lZoIUCVCOkSyZbJG6sbgt7QGwNAuXLs/w0pevxzNgJiLngmV90zxUt3NKND3dS
+         MgGNcb0vWTQWjne3PNJe8a46hJRL8K/cKQh7HjMPS6FhxIiKGEYa59wzSyprI0SeY13a
+         UeRb5KfU8TlizG13CfdioEmEUz1A8hd7gSuvvxmdI43VMWOGGDONgkna2FH+jKBdy3Z1
+         YGwQ==
+X-Gm-Message-State: AOAM530TJMxG8NxB2UEwjaWopgiFZPOiFaNLHl34FrVM+kXHOh1d+6MW
+        Jb4hLsurxEN/L+c0W3zHs9tZ7w==
+X-Google-Smtp-Source: ABdhPJyoFDZ6uvhFkWPUEbCyNMWvl/HBFzH2dTTIdFcRPaK+Uq/uWTzwMP5AeRGfoz4hWcMS4Eo26w==
+X-Received: by 2002:a05:6870:818a:b0:f1:1223:3afd with SMTP id k10-20020a056870818a00b000f112233afdmr497822oae.271.1652241250132;
+        Tue, 10 May 2022 20:54:10 -0700 (PDT)
+Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id l6-20020a056830154600b0060603221269sm397354otp.57.2022.05.10.20.54.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 10 May 2022 20:54:09 -0700 (PDT)
+Date:   Tue, 10 May 2022 22:54:07 -0500
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Marijn Suijten <marijn.suijten@somainline.org>
+Cc:     phone-devel@vger.kernel.org, Pavel Machek <pavel@ucw.cz>,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Martin Botka <martin.botka@somainline.org>,
+        linux-arm-msm@vger.kernel.org, linux-leds@vger.kernel.org,
+        Rob Herring <robh@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Satya Priya <quic_c_skakit@quicinc.com>
+Subject: Re: [PATCH 2/4] leds: qcom-lpg: Add PM660L configuration and
+ compatible
+Message-ID: <YnszX1wdQhUSkgyH@builder.lan>
+References: <20220507221123.2201668-1-marijn.suijten@somainline.org>
+ <20220507221123.2201668-2-marijn.suijten@somainline.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220507221123.2201668-2-marijn.suijten@somainline.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add transceiver, and pincontrol definitions for the CAN-FD interfaces
-on the J721E Starter Kit (e.g. J1, J2, J5, J6 headers). Additionally,
-MCAN interfaces that cannot be accessed are disabled.
+On Sat 07 May 17:11 CDT 2022, Marijn Suijten wrote:
 
-Largely based on original work from Amarnath MB <amarnath.mb@ti.com>
+> Inherit PM660L PMIC LPG/triled block configuration from downstream
+> drivers and DT sources, consisting of a triled block with automatic
+> trickle charge control and source selection, three colored led channels
+> belonging to the synchronized triled block and one loose PWM channel.
+> 
+> Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
+> ---
+>  drivers/leds/rgb/leds-qcom-lpg.c | 18 ++++++++++++++++++
+>  1 file changed, 18 insertions(+)
+> 
+> diff --git a/drivers/leds/rgb/leds-qcom-lpg.c b/drivers/leds/rgb/leds-qcom-lpg.c
+> index cfa3362b2457..30c12ac8eed4 100644
+> --- a/drivers/leds/rgb/leds-qcom-lpg.c
+> +++ b/drivers/leds/rgb/leds-qcom-lpg.c
+> @@ -1271,6 +1271,23 @@ static int lpg_remove(struct platform_device *pdev)
+>  	return 0;
+>  }
+>  
+> +static const struct lpg_data pm660l_lpg_data = {
+> +	.lut_base = 0xb000,
+> +	.lut_size = 0x100,
 
-Signed-off-by: Matt Ranostay <mranostay@ti.com>
----
- arch/arm64/boot/dts/ti/k3-j721e-sk.dts | 160 +++++++++++++++++++++++++
- 1 file changed, 160 insertions(+)
+The documentation tells me that you have 49 entries of LUT on the
+PM660L.
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j721e-sk.dts b/arch/arm64/boot/dts/ti/k3-j721e-sk.dts
-index 80358cba6954..8f1d4b51aa19 100644
---- a/arch/arm64/boot/dts/ti/k3-j721e-sk.dts
-+++ b/arch/arm64/boot/dts/ti/k3-j721e-sk.dts
-@@ -278,6 +278,42 @@ tfp410_out: endpoint {
- 			};
- 		};
- 	};
-+
-+	transceiver1: can-phy0 {
-+		compatible = "ti,tcan1042";
-+		#phy-cells = <0>;
-+		max-bitrate = <5000000>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&mcu_mcan0_gpio_pins_default>;
-+		standby-gpios = <&wkup_gpio0 3 GPIO_ACTIVE_HIGH>;
-+	};
-+
-+	transceiver2: can-phy1 {
-+		compatible = "ti,tcan1042";
-+		#phy-cells = <0>;
-+		max-bitrate = <5000000>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&main_mcan0_gpio_pins_default>;
-+		standby-gpios = <&main_gpio0 65 GPIO_ACTIVE_HIGH>;
-+	};
-+
-+	transceiver3: can-phy2 {
-+		compatible = "ti,tcan1042";
-+		#phy-cells = <0>;
-+		max-bitrate = <5000000>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&main_mcan5_gpio_pins_default>;
-+		standby-gpios = <&main_gpio0 66 GPIO_ACTIVE_HIGH>;
-+	};
-+
-+	transceiver4: can-phy3 {
-+		compatible = "ti,tcan1042";
-+		#phy-cells = <0>;
-+		max-bitrate = <5000000>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&main_mcan9_gpio_pins_default>;
-+		standby-gpios = <&main_gpio0 67 GPIO_ACTIVE_HIGH>;
-+	};
- };
- 
- &main_pmx0 {
-@@ -337,6 +373,45 @@ J721E_IOPAD(0x214, PIN_OUTPUT, 4) /* (V4) MCAN1_TX.USB1_DRVVBUS */
- 		>;
- 	};
- 
-+	main_mcan0_pins_default: main-mcan0-pins-default {
-+		pinctrl-single,pins = <
-+			J721E_IOPAD(0x208, PIN_INPUT, 0) /* (W5) MCAN0_RX */
-+			J721E_IOPAD(0x20c, PIN_OUTPUT, 0) /* (W6) MCAN0_TX */
-+		>;
-+	};
-+
-+	main_mcan0_gpio_pins_default: main-mcan0-gpio-pins-default {
-+		pinctrl-single,pins = <
-+			J721E_IOPAD(0x108, PIN_INPUT, 7) /* (AD27) PRG0_PRU1_GPO2.GPIO0_65 */
-+		>;
-+	};
-+
-+	main_mcan5_pins_default: main-mcan5-pins-default {
-+		pinctrl-single,pins = <
-+			J721E_IOPAD(0x50, PIN_INPUT, 6) /* (AE21) PRG1_PRU0_GPO18.MCAN5_RX */
-+			J721E_IOPAD(0x4c, PIN_OUTPUT, 6) /* (AJ21) PRG1_PRU0_GPO17.MCAN5_TX */
-+		>;
-+	};
-+
-+	main_mcan5_gpio_pins_default: main-mcan5-gpio-pins-default {
-+		pinctrl-single,pins = <
-+			J721E_IOPAD(0x10c, PIN_INPUT, 7) /* (AC25) PRG0_PRU1_GPO3.GPIO0_66 */
-+		>;
-+	};
-+
-+	main_mcan9_pins_default: main-mcan9-pins-default {
-+		pinctrl-single,pins = <
-+			J721E_IOPAD(0xd0, PIN_INPUT, 6) /* (AC27) PRG0_PRU0_GPO8.MCAN9_RX */
-+			J721E_IOPAD(0xcc, PIN_OUTPUT, 6) /* (AC28) PRG0_PRU0_GPO7.MCAN9_TX */
-+		>;
-+	};
-+
-+	main_mcan9_gpio_pins_default: main-mcan9-gpio-pins-default {
-+		pinctrl-single,pins = <
-+			J721E_IOPAD(0x110, PIN_INPUT, 7) /* (AD29) PRG0_PRU1_GPO4.GPIO0_67 */
-+		>;
-+	};
-+
- 	dp0_pins_default: dp0-pins-default {
- 		pinctrl-single,pins = <
- 			J721E_IOPAD(0x1c4, PIN_INPUT, 5) /* SPI0_CS1.DP0_HPD */
-@@ -462,6 +537,19 @@ J721E_WKUP_IOPAD(0xfc, PIN_INPUT_PULLUP, 0) /* (H24) WKUP_I2C0_SDA */
- 		>;
- 	};
- 
-+	mcu_mcan0_pins_default: mcu-mcan0-pins-default {
-+		pinctrl-single,pins = <
-+			J721E_WKUP_IOPAD(0xac, PIN_INPUT, 0) /* (C29) MCU_MCAN0_RX */
-+			J721E_WKUP_IOPAD(0xa8, PIN_OUTPUT, 0) /* (D29) MCU_MCAN0_TX */
-+		>;
-+	};
-+
-+	mcu_mcan0_gpio_pins_default: mcu-mcan0-gpio-pins-default {
-+		pinctrl-single,pins = <
-+			J721E_WKUP_IOPAD(0xbc, PIN_INPUT, 7) /* (F27) WKUP_GPIO0_3 */
-+		>;
-+	};
-+
- 	/* Reset for M.2 M Key slot on PCIe1  */
- 	mkey_reset_pins_default: mkey-reset-pns-pins-default {
- 		pinctrl-single,pins = <
-@@ -1129,3 +1217,75 @@ &c71_0 {
- 	memory-region = <&c71_0_dma_memory_region>,
- 			<&c71_0_memory_region>;
- };
-+
-+&mcu_mcan0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&mcu_mcan0_pins_default>;
-+	phys = <&transceiver1>;
-+};
-+
-+&mcu_mcan1 {
-+	status = "disabled";
-+};
-+
-+&main_mcan0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_mcan0_pins_default>;
-+	phys = <&transceiver2>;
-+};
-+
-+&main_mcan1 {
-+	status = "disabled";
-+};
-+
-+&main_mcan2 {
-+	status = "disabled";
-+};
-+
-+&main_mcan3 {
-+	status = "disabled";
-+};
-+
-+&main_mcan4 {
-+	status = "disabled";
-+};
-+
-+&main_mcan5 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_mcan5_pins_default>;
-+	phys = <&transceiver3>;
-+};
-+
-+&main_mcan6 {
-+	status = "disabled";
-+};
-+
-+&main_mcan7 {
-+	status = "disabled";
-+};
-+
-+&main_mcan8 {
-+	status = "disabled";
-+};
-+
-+&main_mcan9 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_mcan9_pins_default>;
-+	phys = <&transceiver4>;
-+};
-+
-+&main_mcan10 {
-+	status = "disabled";
-+};
-+
-+&main_mcan11 {
-+	status = "disabled";
-+};
-+
-+&main_mcan12 {
-+	status = "disabled";
-+};
-+
-+&main_mcan13 {
-+	status = "disabled";
-+};
--- 
-2.30.2
+> +
+> +	.triled_base = 0xd000,
+> +	.triled_has_atc_ctl = true,
+> +	.triled_has_src_sel = true,
+> +
+> +	.num_channels = 4,
+> +	.channels = (struct lpg_channel_data[]) {
 
+This can be const
+
+Regards,
+Bjorn
+
+> +		{ .base = 0xb100, .triled_mask = BIT(5) },
+> +		{ .base = 0xb200, .triled_mask = BIT(6) },
+> +		{ .base = 0xb300, .triled_mask = BIT(7) },
+> +		{ .base = 0xb400 },
+> +	},
+> +};
+> +
+>  static const struct lpg_data pm8916_pwm_data = {
+>  	.num_channels = 1,
+>  	.channels = (const struct lpg_channel_data[]) {
+> @@ -1391,6 +1408,7 @@ static const struct lpg_data pm8350c_pwm_data = {
+>  };
+>  
+>  static const struct of_device_id lpg_of_table[] = {
+> +	{ .compatible = "qcom,pm660l-lpg", .data = &pm660l_lpg_data },
+>  	{ .compatible = "qcom,pm8150b-lpg", .data = &pm8150b_lpg_data },
+>  	{ .compatible = "qcom,pm8150l-lpg", .data = &pm8150l_lpg_data },
+>  	{ .compatible = "qcom,pm8350c-pwm", .data = &pm8350c_pwm_data },
+> -- 
+> 2.36.0
+> 
