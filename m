@@ -2,88 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4183D523761
-	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 17:33:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 244BC52376B
+	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 17:36:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240224AbiEKPdp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 May 2022 11:33:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55114 "EHLO
+        id S1343792AbiEKPgk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 May 2022 11:36:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33238 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244494AbiEKPdo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 May 2022 11:33:44 -0400
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3769562BFD;
-        Wed, 11 May 2022 08:33:43 -0700 (PDT)
-Received: by mail-ej1-x630.google.com with SMTP id gh6so4924290ejb.0;
-        Wed, 11 May 2022 08:33:43 -0700 (PDT)
+        with ESMTP id S1343788AbiEKPgj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 May 2022 11:36:39 -0400
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11C286A410
+        for <devicetree@vger.kernel.org>; Wed, 11 May 2022 08:36:38 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id l18so4836585ejc.7
+        for <devicetree@vger.kernel.org>; Wed, 11 May 2022 08:36:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=hwv+tHRthGjMF6T+0E5omfvbRMHbBx+VEPozMcOm4FQ=;
-        b=RCize1dOWO6Z2UQaXjmfoNi90tsIQzVbnmrcQmRSP4yYiMDdA4FWNns0zbKZ9Yja94
-         rGX+NPjMLh2q94s92DsjoCSWkcXIk0E151EhR4Ck7Y4f3EdKmfPd1VZdMUT2JLLmA0oL
-         YjgRWgYqV9CMgF/Cy6XwDDBDlzK+Cock8E6ecPudySXQI/5iGe9zMDFUfhEqwke1psvX
-         xumEJOVBL7fQY2k1xWi9yrA+rKwkAHevwUwMaVtB7EUMiQkP5wpOuG6U4fCH9M3IZKOg
-         w8V28Zjx+7D9j0GVILC6udoWYWo7OEz25YF+YhHGRt+aHV58WMmS8ZCzuRLMiU5kCXBg
-         fpKw==
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=s9lNfI7TcwVigUjSYULy3QOAhvngUhwQle5drwFbVL8=;
+        b=UDgM/7CIdwpg7TQ80bRyU4TfD8ldDTOoKUvXkBAypeBetC/ZXehem74fuUzxgv+673
+         bhZsUJVYmDXQBKCv9mVxNT8DkjGrWu575i4uN/rDyEsQmfOc6vQUpk0YNPBuYIog7qSF
+         2P7vnyyI3dNCAXfw6r4b/OFSIbV3X72g+t/iC2ugWlmt63dHNsvUrFCQag+pIgIRSy/6
+         X36SH1wzjqfPwgFhXAZvmlXcvWdB/VD/2hcsTQ/y3/3g4kKsewQPRK5kEV+ivnAT0Has
+         XPQ1xpoU6Mm7OLy5zsSHsf7Du68T8Kp4P0usibTXcfIPsjW5zgQZt1EAuku2OITtLhZQ
+         Qh8Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=hwv+tHRthGjMF6T+0E5omfvbRMHbBx+VEPozMcOm4FQ=;
-        b=zBs0W3hkzVvvkOwt5lfwa0NTy2rmRRzfr+8thKsh6S2/iMphaVvaOnh6WXGdlLeZ3F
-         UQjHwVwQnrcnhw6Pn9MxmtSSJScL0+dJ9dWKlivSpqDZCaTVJjSXjb038IcDB2rZyCzk
-         Da4WumETHlElIMCBt43u3MPYP7TZMw80J9KY9EppOkLLaxJKVxcYwA12Nn9GEBkKLuc2
-         51DbHALnaqYWtF7U4PDNG/kxEXyZYKWut2/JxbIOoUM5aY1zdX7ovJpUtXx7YoHQBtjs
-         rtK3XUdetVEvHJJt9CoqpHpvDab0g6lNUniBz1gMPkC2MX7dMLNpQRna492YXRvTbpSn
-         9Rig==
-X-Gm-Message-State: AOAM530JkLsGMUqkRynk+dZubfxKOBdf9O1laYk+795TtZpxzKtl55NN
-        vRHaAq6T1BxyhkawWXC6E7U=
-X-Google-Smtp-Source: ABdhPJzBCHND5vtVrFsSKG9WjTxF0PdeUAJcyug8qK+/StsoULuJ4vsbhThOie/Ko9EIIQLNBpkn6A==
-X-Received: by 2002:a17:907:c2a:b0:6f4:4b49:9cfb with SMTP id ga42-20020a1709070c2a00b006f44b499cfbmr24098814ejc.697.1652283221695;
-        Wed, 11 May 2022 08:33:41 -0700 (PDT)
-Received: from skbuf ([188.25.160.86])
-        by smtp.gmail.com with ESMTPSA id z22-20020a50cd16000000b00426488dce1dsm1337316edi.25.2022.05.11.08.33.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 May 2022 08:33:39 -0700 (PDT)
-Date:   Wed, 11 May 2022 18:33:37 +0300
-From:   Vladimir Oltean <olteanv@gmail.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     =?utf-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Herve Codina <herve.codina@bootlin.com>,
-        =?utf-8?Q?Miqu=C3=A8l?= Raynal <miquel.raynal@bootlin.com>,
-        Milan Stevanovic <milan.stevanovic@se.com>,
-        Jimmy Lalande <jimmy.lalande@se.com>,
-        Pascal Eberhard <pascal.eberhard@se.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org, netdev@vger.kernel.org
-Subject: Re: [PATCH net-next v4 05/12] dt-bindings: net: dsa: add bindings
- for Renesas RZ/N1 Advanced 5 port switch
-Message-ID: <20220511153337.deqxawpbbk3actxf@skbuf>
-References: <20220509131900.7840-1-clement.leger@bootlin.com>
- <20220509131900.7840-6-clement.leger@bootlin.com>
- <20220511152221.GA334055-robh@kernel.org>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=s9lNfI7TcwVigUjSYULy3QOAhvngUhwQle5drwFbVL8=;
+        b=Bg5J+YpZ9L1le3PdIYX6TAf+BP4FDqU0e1XwEMiXbdHY59srkEFiQdmAd2B8PI3jog
+         HrByuTStcHhY0TFpFHPxwBHaDlNtEuJYEeB8YqVHQeO0eILvRW45gPXglgNgL2zhyFKj
+         Gxkjo+vW37bV/Tc7FgCHPxXt739r0Ez4Qn226bHpOkolTI1PxOhQsdlxNZIgi9EStkBb
+         h4Tr3ymWXejyfq2JTvwGkCtR6R5iQZTipQjjjlWKz3KRxbDtiWUCcBm27ZC+9Ma6p/zt
+         QkT3JRN2mRJIx8QySohydMo7z4HOyw1fkZNpLlQlj0p0uvyrk9JkvGvdeLbxXlWND1iM
+         wmfA==
+X-Gm-Message-State: AOAM532Nhch2wBJ2LC5WvjU3ymswTGjolN/zpVjEAumhedWkxhpqNmMK
+        uH0XQqvmwJVCphVp3LYuGzVh0w==
+X-Google-Smtp-Source: ABdhPJzGKntoTYFAsjQgyRo8QHUf6eZ/sVXe1HlTdWu11CGW4leRLMnpi935aU7hwUOVWkAuFyelPw==
+X-Received: by 2002:a17:906:dc89:b0:6f4:d3a9:6862 with SMTP id cs9-20020a170906dc8900b006f4d3a96862mr25676309ejc.571.1652283396618;
+        Wed, 11 May 2022 08:36:36 -0700 (PDT)
+Received: from [192.168.0.154] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id x1-20020aa7d381000000b0042617ba63casm1356919edq.84.2022.05.11.08.36.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 11 May 2022 08:36:35 -0700 (PDT)
+Message-ID: <3e5ddde1-9d0c-a5e8-1828-aef1d1165a3e@linaro.org>
+Date:   Wed, 11 May 2022 17:36:34 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220511152221.GA334055-robh@kernel.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH] dt-bindings: pmic: mt6366: add binding document
+Content-Language: en-US
+To:     Rex-BC Chen <rex-bc.chen@mediatek.com>,
+        Zhiyong Tao <zhiyong.tao@mediatek.com>, lee.jones@linaro.org,
+        robh+dt@kernel.org, matthias.bgg@gmail.com, lgirdwood@gmail.com,
+        broonie@kernel.org, eddie.huang@mediatek.com, a.zummo@towertech.it,
+        alexandre.belloni@bootlin.com, fshao@chromium.org
+Cc:     srv_heupstream@mediatek.com, hui.liu@mediatek.com,
+        tinghan.shen@mediatek.com, hsin-hsiung.wang@mediatek.com,
+        sean.wang@mediatek.com, macpaul.lin@mediatek.com,
+        wen.su@mediatek.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-rtc@vger.kernel.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+References: <20220510064603.15920-1-zhiyong.tao@mediatek.com>
+ <20220510064603.15920-2-zhiyong.tao@mediatek.com>
+ <6614cd3783666caa529106464e7684caf16d6582.camel@mediatek.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <6614cd3783666caa529106464e7684caf16d6582.camel@mediatek.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -91,14 +85,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 11, 2022 at 10:22:21AM -0500, Rob Herring wrote:
-> > +patternProperties:
-> > +  "^ethernet-ports$":
+On 10/05/2022 09:56, Rex-BC Chen wrote:
+>> +examples:
+>> +  - |
+>> +    pmic {
+>> +      regulators {
+>> +        mt6366_vdram1_reg: buck_vdram1 {
+>> +            regulator-name = "vdram1";
+>> +            regulator-min-microvolt = <500000>;
+>> +            regulator-max-microvolt = <2087500>;
+>> +            regulator-ramp-delay = <12500>;
+>> +            regulator-enable-ramp-delay = <0>;
+>> +            regulator-always-on;
+>> +            regulator-allowed-modes = <0 1>;
 > 
-> Move to 'properties', not a pattern.
+> should be two space instead of 4 space?
+> mt6366_vdram1_reg: buck_vdram1 {
+>   regulator-name = "vdram1";
+>   ...
+> };
 > 
-> With that,
-> 
-> Reviewed-by: Rob Herring <robh@kernel.org>
+> There is the same issue for this example.
 
-Even if it should have been "^(ethernet-)?ports$"?
+Indentation is four spaces.
+https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git/tree/Documentation/devicetree/bindings/writing-schema.rst?h=for-next&id=7a150b0d850e37e7bdfc87459edd0ff302f67478#n111
+
+
+Best regards,
+Krzysztof
