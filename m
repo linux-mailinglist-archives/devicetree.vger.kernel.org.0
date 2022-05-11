@@ -2,100 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A21EF522E38
-	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 10:22:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F5CC522E3C
+	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 10:23:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243580AbiEKIWg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 May 2022 04:22:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51896 "EHLO
+        id S234423AbiEKIXg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 May 2022 04:23:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56244 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243579AbiEKIWa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 May 2022 04:22:30 -0400
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A39F3BA52
-        for <devicetree@vger.kernel.org>; Wed, 11 May 2022 01:22:27 -0700 (PDT)
-Received: by mail-ej1-x633.google.com with SMTP id kq17so2502258ejb.4
-        for <devicetree@vger.kernel.org>; Wed, 11 May 2022 01:22:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=IIOcJgbS1/hMQQvn2DCFX+BHhbtb4xhB0glTejG9nd0=;
-        b=nN+tvnytLjTaJLXUpNkGlrL31C7UW1pB6NFTtmXaTXEc/E6YrG1OIKgpwVMC8S+kVK
-         D0zGHuOSWn6VMDT5RVsCrOPzqDPn+ynX+2xgsLJ+esu5HFhKI1L1FfojyWFbLtSNbXuS
-         1qXyVZ1jTq1c48DPsEHHWi1ElZ8UTZzr57W1iPjRSdUmmWlSe8Hm8Pc0jYi+i4kpwRAW
-         hH+yxI/z9Cc1NoWL0nAk+IMz8mhUv1TWwTqWJaA1lqsWAnJvZ/pbzRI35MVvlcqiK0bh
-         yq9FIOhP2dWozNqsyasJ2s6B/nnu1uuSBahdmKMJDmas8sdvCmBeg2zvG6YZlvRLOBiP
-         0WMw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=IIOcJgbS1/hMQQvn2DCFX+BHhbtb4xhB0glTejG9nd0=;
-        b=CJ7ILawGXhQykN5U6p9UECFy7dGwP6BZG03NnopayvJpqyQYis6B4UzCpArHzaJtio
-         I5B9zQwYUKkM2SuXieLe5Trumkanmm31+FV8v1W8OuXQWXXm/SiOb40C3Qd3e8qwn7Gz
-         6DPzLwmz5b8f8Tzz6Ryk+nujz6SyRtvQAf9ZvACWl8vdohO5u0E3tJbvh1bftGwigkbn
-         pF/Ftsx6mV/93JJzRuJkCv3tQHUHkRHwBHL41oZ9/5Meu9AKX3LyGelG4/V6YyCQVsll
-         35f3i0nq52vxFTF4aXDWcBJdtM+iciRYu/MwssOyEultHcOK3bSSQrXFF4orfteo1D5/
-         KxIA==
-X-Gm-Message-State: AOAM531ZQsH/AwavKWUiibQNFmg8tTlxYwGjfABQKrggQZANQ14+ycE0
-        SwNVVY2FFcc3PZVqgdnVkgjaqQ==
-X-Google-Smtp-Source: ABdhPJyQl+2i2St5QQZxqWfls/5xIarQ0xgPypRKf/p7aX8oprL7xHpOkr9jt2CVt3KlxWwPkWf+7Q==
-X-Received: by 2002:a17:907:16a2:b0:6f4:eeb1:f7de with SMTP id hc34-20020a17090716a200b006f4eeb1f7demr23680710ejc.446.1652257345815;
-        Wed, 11 May 2022 01:22:25 -0700 (PDT)
-Received: from [192.168.0.254] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id q20-20020a17090676d400b006f3ef214dddsm686150ejn.67.2022.05.11.01.22.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 11 May 2022 01:22:25 -0700 (PDT)
-Message-ID: <7783d64c-e48c-5e3d-9560-51197234051a@linaro.org>
-Date:   Wed, 11 May 2022 10:22:23 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH v2 2/3] dt-bindings: display: Add bindings for EBBG FT8719
-Content-Language: en-US
-To:     Joel Selvaraj <jo@jsfamily.in>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        with ESMTP id S231492AbiEKIXe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 May 2022 04:23:34 -0400
+Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 198D73A199;
+        Wed, 11 May 2022 01:23:31 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="5.91,216,1647270000"; 
+   d="scan'208";a="119348855"
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie5.idc.renesas.com with ESMTP; 11 May 2022 17:23:31 +0900
+Received: from localhost.localdomain (unknown [10.226.92.143])
+        by relmlir5.idc.renesas.com (Postfix) with ESMTP id E60414009BF8;
+        Wed, 11 May 2022 17:23:27 +0900 (JST)
+From:   Biju Das <biju.das.jz@bp.renesas.com>
+To:     Jonathan Cameron <jic23@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Stanislav Jakubek <stano.jakubek@gmail.com>,
-        Corentin Labbe <clabbe@baylibre.com>,
-        Oleksij Rempel <linux@rempel-privat.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Hao Fang <fanghao11@huawei.com>
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
-References: <cover.1652245767.git.jo@jsfamily.in>
- <BY5PR02MB7009F6D4CC6CA1C433912C56D9C89@BY5PR02MB7009.namprd02.prod.outlook.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <BY5PR02MB7009F6D4CC6CA1C433912C56D9C89@BY5PR02MB7009.namprd02.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        linux-iio@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>
+Subject: [PATCH v4 0/2] Add RZ/G2UL ADC support
+Date:   Wed, 11 May 2022 09:23:23 +0100
+Message-Id: <20220511082325.36185-1-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=1.1 required=5.0 tests=AC_FROM_MANY_DOTS,BAYES_00,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/05/2022 07:28, Joel Selvaraj wrote:
-> Add bindings for the EBBG FT8719 6.18" 2246x1080 DSI video mode panel,
-> which can be found on some Xiaomi Poco F1 phones. The backlight is
-> managed through the QCOM WLED driver.
-> 
-> Signed-off-by: Joel Selvaraj <jo@jsfamily.in>
+This patch series document ADC found on RZ/G2UL SoC and also removes
+unnecessary channel check from rzg2l_adc_read_label().
 
+v3->v4:
+ * Removed unnecessary SoC specific reg description as it is
+   equivalent to the logic used in reg.
+ * Removed Items from reg.
+v2->v3:
+ * Added generic description for reg.
+ * Improved schema validation by restricting both channel and reg to [0-1].
+ * Added Rb tag from Geert.
+v1->v2:
+ * Started using generic compatible for RZ/G2UL and added SoC specific validation
+   for number of supported channels.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Biju Das (2):
+  dt-bindings: iio: adc: Document Renesas RZ/G2UL ADC
+  iio: adc: rzg2l_adc: Remove unnecessary channel check from
+    rzg2l_adc_read_label()
 
+ .../bindings/iio/adc/renesas,rzg2l-adc.yaml   | 30 ++++++++++++++++---
+ drivers/iio/adc/rzg2l_adc.c                   |  3 --
+ 2 files changed, 26 insertions(+), 7 deletions(-)
 
-Best regards,
-Krzysztof
+-- 
+2.25.1
+
