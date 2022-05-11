@@ -2,268 +2,192 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 93B1552309E
-	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 12:25:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 83C565230F5
+	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 12:48:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235365AbiEKKZI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 May 2022 06:25:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46266 "EHLO
+        id S234873AbiEKKsV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 May 2022 06:48:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41206 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233296AbiEKKZG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 May 2022 06:25:06 -0400
-Received: from baptiste.telenet-ops.be (baptiste.telenet-ops.be [IPv6:2a02:1800:120:4::f00:13])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA4DE41992
-        for <devicetree@vger.kernel.org>; Wed, 11 May 2022 03:25:03 -0700 (PDT)
-Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed40:c9c1:6ba7:bb0d:8433])
-        by baptiste.telenet-ops.be with bizsmtp
-        id VNR1270051sk9zo01NR1h4; Wed, 11 May 2022 12:25:01 +0200
-Received: from rox.of.borg ([192.168.97.57])
-        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1nojWe-003ihb-JW; Wed, 11 May 2022 12:25:00 +0200
-Received: from geert by rox.of.borg with local (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1nojWe-004ebw-1x; Wed, 11 May 2022 12:25:00 +0200
-From:   Geert Uytterhoeven <geert+renesas@glider.be>
-To:     Magnus Damm <magnus.damm@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-renesas-soc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH] arm64: dts: renesas: Rename numbered regulators
-Date:   Wed, 11 May 2022 12:24:59 +0200
-Message-Id: <b90dfeb834c4d7dabd22bf03396f33df58f54507.1652264651.git.geert+renesas@glider.be>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S231895AbiEKKsT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 May 2022 06:48:19 -0400
+Received: from mail-yw1-x112c.google.com (mail-yw1-x112c.google.com [IPv6:2607:f8b0:4864:20::112c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBD624BFEC
+        for <devicetree@vger.kernel.org>; Wed, 11 May 2022 03:48:17 -0700 (PDT)
+Received: by mail-yw1-x112c.google.com with SMTP id 00721157ae682-2f863469afbso16436787b3.0
+        for <devicetree@vger.kernel.org>; Wed, 11 May 2022 03:48:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=drfygkTowvuBLUYKKqSn7wnL9G7tj7fcltIt86mentk=;
+        b=U0Z5PRzaDD8HlY7u+vcRl3tjjLWmlEi4zx9guX+v+HnsRNi1BsPtGOFeWg7v/H8I/n
+         v8vG/2LxavvFpGWW5BtLREFEtxUtULs9eeO/YBB3EKYbe7VGIk6aT6klVarI5nC8mODC
+         7nHyamuW4M6cY0v2L3Jr6ofjaRUER+LJwoBuk=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=drfygkTowvuBLUYKKqSn7wnL9G7tj7fcltIt86mentk=;
+        b=LloisQGKoyc/2gMIKfUaCGvj3IChOve1hPO8bRJ9Io6S9d1KLS+5CLQPT2QGdYZ4wi
+         zQ/+kGk8/hB9jlnuZZn1oMbqKI2OLNOBVBCn80nFkeb90QmRTFQXAHpqLdkCFj9Wu5Sq
+         wRxk7VT02lE39Zgm/rVt8VgdxmQZeagaxlnfhJXqVZXh5eLDbPszqzG7OxqfWsjI/nzj
+         NuUWjN1nLSI5UCPlV78obq9Whwqrbl7MhoYbMlnIRhI+J1rG/5z08agJoD8m3lzkAyqg
+         HG76bwgtGzB2Q+ZIrpxDGGZKcZVmwP+X/BMYOGF5gjf1YICeg6xfNNZcRsMJsiiIsayk
+         32IA==
+X-Gm-Message-State: AOAM5328u08lmrCAOYH3wW0kJ2KgugOlK9vgKwhauN1MAf152i3wUaNr
+        ChwKzIHOzCx2bdrfPEiczSQNYNRvXMM3UnAnon2uyw==
+X-Google-Smtp-Source: ABdhPJxGVBQnozICEIYWYYUmj2XDVy7Iv/cHfh2VaMsWkzahJc7RVRiArSA2H274bdeXvoIWUvYywB06XduA/JHWTxw=
+X-Received: by 2002:a81:23cc:0:b0:2f8:1a60:a215 with SMTP id
+ j195-20020a8123cc000000b002f81a60a215mr24030993ywj.295.1652266097218; Wed, 11
+ May 2022 03:48:17 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+References: <20220425125546.4129-1-johnson.wang@mediatek.com>
+ <20220425125546.4129-2-johnson.wang@mediatek.com> <CAGXv+5HgyN+kp86M2GgFtbruXSAMSLxsh9vf8zVE5TxRMyTyaA@mail.gmail.com>
+ <a8e5fd9de1feece9051e1624c5cf3b672131a122.camel@mediatek.com>
+In-Reply-To: <a8e5fd9de1feece9051e1624c5cf3b672131a122.camel@mediatek.com>
+From:   Chen-Yu Tsai <wenst@chromium.org>
+Date:   Wed, 11 May 2022 18:48:06 +0800
+Message-ID: <CAGXv+5G6Qv1JcsZNrw5=USJSzPkczW42FgXRYqAK=xS-moO6nw@mail.gmail.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: interconnect: Add MediaTek CCI dt-bindings
+To:     Johnson Wang <johnson.wang@mediatek.com>
+Cc:     krzk+dt@kernel.org, cw00.choi@samsung.com, robh+dt@kernel.org,
+        kyungmin.park@samsung.com, khilman@kernel.org,
+        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, jia-wei.chang@mediatek.com,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Numbered regulators are prone to conflicts, causing silent overwrites
-(see e.g. [1]).
+On Mon, May 9, 2022 at 8:14 PM Johnson Wang <johnson.wang@mediatek.com> wrote:
+>
+> Hi Chen-Yu,
+>
+> On Tue, 2022-04-26 at 11:18 +0800, Chen-Yu Tsai wrote:
+> > On Mon, Apr 25, 2022 at 8:56 PM Johnson Wang <
+> > johnson.wang@mediatek.com> wrote:
+> > >
+> > > Add devicetree binding of MediaTek CCI on MT8183 and MT8186.
+> > >
+> > > Signed-off-by: Johnson Wang <johnson.wang@mediatek.com>
+> > > Signed-off-by: Jia-Wei Chang <jia-wei.chang@mediatek.com>
+> > > ---
+> > >  .../bindings/interconnect/mediatek,cci.yaml   | 139
+> > > ++++++++++++++++++
+> > >  1 file changed, 139 insertions(+)
+> > >  create mode 100644
+> > > Documentation/devicetree/bindings/interconnect/mediatek,cci.yaml
+> > >
+> > > diff --git
+> > > a/Documentation/devicetree/bindings/interconnect/mediatek,cci.yaml
+> > > b/Documentation/devicetree/bindings/interconnect/mediatek,cci.yaml
+> > > new file mode 100644
+> > > index 000000000000..e5221e17d11b
+> > > --- /dev/null
+> > > +++
+> > > b/Documentation/devicetree/bindings/interconnect/mediatek,cci.yaml
+> > > @@ -0,0 +1,139 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > +%YAML 1.2
+> > > +---
+> > > +$id:
+> > > https://urldefense.com/v3/__http://devicetree.org/schemas/interconnect/mediatek,cci.yaml*__;Iw!!CTRNKA9wMg0ARbw!zuufEcqpKbditY3eqLTHpL8P8humMCyh4D4QWsximmw124tJUPE3ZBUyBqBtDlQ9pSDO$
+> > >
+> > > +$schema:
+> > > https://urldefense.com/v3/__http://devicetree.org/meta-schemas/core.yaml*__;Iw!!CTRNKA9wMg0ARbw!zuufEcqpKbditY3eqLTHpL8P8humMCyh4D4QWsximmw124tJUPE3ZBUyBqBtDoE9YHyu$
+> > >
+> > > +
+> > > +title: MediaTek Cache Coherent Interconnect (CCI) frequency and
+> > > voltage scaling
+> > > +
+> > > +maintainers:
+> > > +  - Jia-Wei Chang <jia-wei.chang@mediatek.com>
+> > > +
+> > > +description: |
+> > > +  MediaTek Cache Coherent Interconnect (CCI) is a hardware engine
+> > > used by
+> > > +  MT8183 and MT8186 SoCs to scale the frequency and adjust the
+> > > voltage in
+> > > +  hardware. It can also optimize the voltage to reduce the power
+> > > consumption.
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    enum:
+> > > +      - mediatek,mt8183-cci
+> > > +      - mediatek,mt8186-cci
+> > > +
+> > > +  clocks:
+> > > +    items:
+> > > +      - description:
+> > > +          The multiplexer for clock input of CPU cluster.
+> >
+> > of the bus, not CPU cluster.
+>
+> Thanks for your suggestion.
+> I will correct it in the next version.
+>
+> >
+> > > +      - description:
+> > > +          A parent of "cpu" clock which is used as an intermediate
+> > > clock source
+> > > +          when the original CPU is under transition and not stable
+> > > yet.
+> >
+> > This really should be handled in the clk controller, and not by every
+> > device
+> > that happens to take a clock from a mux with upstream PLLs that can
+> > change
+> > in clock rate. The end device hardware only takes one clock input.
+> > That's it.
+> >
+>
+> To make this intermediate clock works properly, this driver is also
+> responsible for handling the Vproc voltage and ensures the voltage is
+> high enough to support intermediate clock rate.
+>
+> If we move intermediate clock rate control to clock driver, then
+> intermediate voltage control may be handled by the clock driver itself
+> as well.
+>
+> We believe that is not reasonable because clock driver shouldn't handle
+> voltage control. On the other hand, DVFS driver is more suitable for
+> doing this job.
 
-Make conflicts less likely to happen by renaming all numbered regulators
-to names reflecting the regulator's purposes.
+Either way the DVFS driver handles the voltage change.
 
-[1] commit 45f5d5a9e34d3fe4 ("arm64: dts: renesas: r8a77995: draak: Fix
-    backlight regulator name").
+Right now the driver is doing:
 
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
-To be queued in renesas-devel for v5.20.
+1. Raise voltage if scaling up
+2. Mux CCI clock over to stable clock
+3. Set rate for CCI PLL
+4. Mux CCI clock back to CCI PLL
+5. Drop voltage if scaling down
 
- arch/arm64/boot/dts/renesas/beacon-renesom-som.dtsi | 4 ++--
- arch/arm64/boot/dts/renesas/ebisu.dtsi              | 6 +++---
- arch/arm64/boot/dts/renesas/hihope-common.dtsi      | 4 ++--
- arch/arm64/boot/dts/renesas/rzg2l-smarc-som.dtsi    | 4 ++--
- arch/arm64/boot/dts/renesas/rzg2lc-smarc-som.dtsi   | 4 ++--
- arch/arm64/boot/dts/renesas/rzg2ul-smarc-som.dtsi   | 4 ++--
- arch/arm64/boot/dts/renesas/salvator-common.dtsi    | 6 +++---
- arch/arm64/boot/dts/renesas/ulcb.dtsi               | 4 ++--
- 8 files changed, 18 insertions(+), 18 deletions(-)
+I'm saying that the clock driver should handle 2+4 transparently when any
+driver requests a rate change on the CCI clock. So instead the driver would
+do:
 
-diff --git a/arch/arm64/boot/dts/renesas/beacon-renesom-som.dtsi b/arch/arm64/boot/dts/renesas/beacon-renesom-som.dtsi
-index 877d076ffcc9bf92..f5c1d74b738b9344 100644
---- a/arch/arm64/boot/dts/renesas/beacon-renesom-som.dtsi
-+++ b/arch/arm64/boot/dts/renesas/beacon-renesom-som.dtsi
-@@ -20,7 +20,7 @@ osc_32k: osc_32k {
- 		clock-output-names = "osc_32k";
- 	};
- 
--	reg_1p8v: regulator0 {
-+	reg_1p8v: regulator-1p8v {
- 		compatible = "regulator-fixed";
- 		regulator-name = "fixed-1.8V";
- 		regulator-min-microvolt = <1800000>;
-@@ -29,7 +29,7 @@ reg_1p8v: regulator0 {
- 		regulator-always-on;
- 	};
- 
--	reg_3p3v: regulator1 {
-+	reg_3p3v: regulator-3p3v {
- 		compatible = "regulator-fixed";
- 		regulator-name = "fixed-3.3V";
- 		regulator-min-microvolt = <3300000>;
-diff --git a/arch/arm64/boot/dts/renesas/ebisu.dtsi b/arch/arm64/boot/dts/renesas/ebisu.dtsi
-index 72f359efa23e78d8..9c311906fdaf395f 100644
---- a/arch/arm64/boot/dts/renesas/ebisu.dtsi
-+++ b/arch/arm64/boot/dts/renesas/ebisu.dtsi
-@@ -145,7 +145,7 @@ memory@48000000 {
- 		reg = <0x0 0x48000000 0x0 0x38000000>;
- 	};
- 
--	reg_1p8v: regulator0 {
-+	reg_1p8v: regulator-1p8v {
- 		compatible = "regulator-fixed";
- 		regulator-name = "fixed-1.8V";
- 		regulator-min-microvolt = <1800000>;
-@@ -154,7 +154,7 @@ reg_1p8v: regulator0 {
- 		regulator-always-on;
- 	};
- 
--	reg_3p3v: regulator1 {
-+	reg_3p3v: regulator-3p3v {
- 		compatible = "regulator-fixed";
- 		regulator-name = "fixed-3.3V";
- 		regulator-min-microvolt = <3300000>;
-@@ -163,7 +163,7 @@ reg_3p3v: regulator1 {
- 		regulator-always-on;
- 	};
- 
--	reg_12p0v: regulator2 {
-+	reg_12p0v: regulator-12p0v {
- 		compatible = "regulator-fixed";
- 		regulator-name = "D12.0V";
- 		regulator-min-microvolt = <12000000>;
-diff --git a/arch/arm64/boot/dts/renesas/hihope-common.dtsi b/arch/arm64/boot/dts/renesas/hihope-common.dtsi
-index 935d06515aa6130b..b062f41ee270124b 100644
---- a/arch/arm64/boot/dts/renesas/hihope-common.dtsi
-+++ b/arch/arm64/boot/dts/renesas/hihope-common.dtsi
-@@ -53,7 +53,7 @@ led4 {
- 		};
- 	};
- 
--	reg_1p8v: regulator0 {
-+	reg_1p8v: regulator-1p8v {
- 		compatible = "regulator-fixed";
- 		regulator-name = "fixed-1.8V";
- 		regulator-min-microvolt = <1800000>;
-@@ -62,7 +62,7 @@ reg_1p8v: regulator0 {
- 		regulator-always-on;
- 	};
- 
--	reg_3p3v: regulator1 {
-+	reg_3p3v: regulator-3p3v {
- 		compatible = "regulator-fixed";
- 		regulator-name = "fixed-3.3V";
- 		regulator-min-microvolt = <3300000>;
-diff --git a/arch/arm64/boot/dts/renesas/rzg2l-smarc-som.dtsi b/arch/arm64/boot/dts/renesas/rzg2l-smarc-som.dtsi
-index aeacd22e9eb019a3..9410796c8ad6b72d 100644
---- a/arch/arm64/boot/dts/renesas/rzg2l-smarc-som.dtsi
-+++ b/arch/arm64/boot/dts/renesas/rzg2l-smarc-som.dtsi
-@@ -34,7 +34,7 @@ memory@48000000 {
- 		reg = <0x0 0x48000000 0x0 0x78000000>;
- 	};
- 
--	reg_1p8v: regulator0 {
-+	reg_1p8v: regulator-1p8v {
- 		compatible = "regulator-fixed";
- 		regulator-name = "fixed-1.8V";
- 		regulator-min-microvolt = <1800000>;
-@@ -43,7 +43,7 @@ reg_1p8v: regulator0 {
- 		regulator-always-on;
- 	};
- 
--	reg_3p3v: regulator1 {
-+	reg_3p3v: regulator-3p3v {
- 		compatible = "regulator-fixed";
- 		regulator-name = "fixed-3.3V";
- 		regulator-min-microvolt = <3300000>;
-diff --git a/arch/arm64/boot/dts/renesas/rzg2lc-smarc-som.dtsi b/arch/arm64/boot/dts/renesas/rzg2lc-smarc-som.dtsi
-index 959a0ad1d3671063..78e6e2376b015ab8 100644
---- a/arch/arm64/boot/dts/renesas/rzg2lc-smarc-som.dtsi
-+++ b/arch/arm64/boot/dts/renesas/rzg2lc-smarc-som.dtsi
-@@ -23,7 +23,7 @@ memory@48000000 {
- 		reg = <0x0 0x48000000 0x0 0x38000000>;
- 	};
- 
--	reg_1p8v: regulator0 {
-+	reg_1p8v: regulator-1p8v {
- 		compatible = "regulator-fixed";
- 		regulator-name = "fixed-1.8V";
- 		regulator-min-microvolt = <1800000>;
-@@ -32,7 +32,7 @@ reg_1p8v: regulator0 {
- 		regulator-always-on;
- 	};
- 
--	reg_3p3v: regulator1 {
-+	reg_3p3v: regulator-3p3v {
- 		compatible = "regulator-fixed";
- 		regulator-name = "fixed-3.3V";
- 		regulator-min-microvolt = <3300000>;
-diff --git a/arch/arm64/boot/dts/renesas/rzg2ul-smarc-som.dtsi b/arch/arm64/boot/dts/renesas/rzg2ul-smarc-som.dtsi
-index a663115f5aae616a..429bdde579c3f052 100644
---- a/arch/arm64/boot/dts/renesas/rzg2ul-smarc-som.dtsi
-+++ b/arch/arm64/boot/dts/renesas/rzg2ul-smarc-som.dtsi
-@@ -24,7 +24,7 @@ memory@48000000 {
- 		reg = <0x0 0x48000000 0x0 0x38000000>;
- 	};
- 
--	reg_1p8v: regulator0 {
-+	reg_1p8v: regulator-1p8v {
- 		compatible = "regulator-fixed";
- 		regulator-name = "fixed-1.8V";
- 		regulator-min-microvolt = <1800000>;
-@@ -33,7 +33,7 @@ reg_1p8v: regulator0 {
- 		regulator-always-on;
- 	};
- 
--	reg_3p3v: regulator1 {
-+	reg_3p3v: regulator-3p3v {
- 		compatible = "regulator-fixed";
- 		regulator-name = "fixed-3.3V";
- 		regulator-min-microvolt = <3300000>;
-diff --git a/arch/arm64/boot/dts/renesas/salvator-common.dtsi b/arch/arm64/boot/dts/renesas/salvator-common.dtsi
-index 7efdf5c80b8ba2d6..5d7f67a1ad1d71b5 100644
---- a/arch/arm64/boot/dts/renesas/salvator-common.dtsi
-+++ b/arch/arm64/boot/dts/renesas/salvator-common.dtsi
-@@ -176,7 +176,7 @@ key-wakeup {
- 		};
- 	};
- 
--	reg_1p8v: regulator0 {
-+	reg_1p8v: regulator-1p8v {
- 		compatible = "regulator-fixed";
- 		regulator-name = "fixed-1.8V";
- 		regulator-min-microvolt = <1800000>;
-@@ -185,7 +185,7 @@ reg_1p8v: regulator0 {
- 		regulator-always-on;
- 	};
- 
--	reg_3p3v: regulator1 {
-+	reg_3p3v: regulator-3p3v {
- 		compatible = "regulator-fixed";
- 		regulator-name = "fixed-3.3V";
- 		regulator-min-microvolt = <3300000>;
-@@ -194,7 +194,7 @@ reg_3p3v: regulator1 {
- 		regulator-always-on;
- 	};
- 
--	reg_12v: regulator2 {
-+	reg_12v: regulator-12v {
- 		compatible = "regulator-fixed";
- 		regulator-name = "fixed-12V";
- 		regulator-min-microvolt = <12000000>;
-diff --git a/arch/arm64/boot/dts/renesas/ulcb.dtsi b/arch/arm64/boot/dts/renesas/ulcb.dtsi
-index 90a4c0629d240fdb..d5f0f75b249b4681 100644
---- a/arch/arm64/boot/dts/renesas/ulcb.dtsi
-+++ b/arch/arm64/boot/dts/renesas/ulcb.dtsi
-@@ -76,7 +76,7 @@ led6 {
- 		};
- 	};
- 
--	reg_1p8v: regulator0 {
-+	reg_1p8v: regulator-1p8v {
- 		compatible = "regulator-fixed";
- 		regulator-name = "fixed-1.8V";
- 		regulator-min-microvolt = <1800000>;
-@@ -85,7 +85,7 @@ reg_1p8v: regulator0 {
- 		regulator-always-on;
- 	};
- 
--	reg_3p3v: regulator1 {
-+	reg_3p3v: regulator-3p3v {
- 		compatible = "regulator-fixed";
- 		regulator-name = "fixed-3.3V";
- 		regulator-min-microvolt = <3300000>;
--- 
-2.25.1
+1. Raise voltage if scaling up
+2. Set rate for CCI _clock_
+   Here the clock driver would do:
+   a. Mux CCI clock over to stable clock
+   b. Change clock rate for original parent, i.e. the CCI PLL
+   c. Mux CCI clock back to original parent, i.e. the CCI PLL
+   and back to the devfreq driver ...
+3. Drop voltage if scaling down
 
+Does that make sense?
+
+
+Regards
+ChenYu
