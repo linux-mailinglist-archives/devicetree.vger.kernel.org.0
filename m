@@ -2,164 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A2842523622
-	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 16:50:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B64D523628
+	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 16:50:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235302AbiEKOuC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 May 2022 10:50:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34704 "EHLO
+        id S245111AbiEKOuh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 May 2022 10:50:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36560 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231956AbiEKOuC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 May 2022 10:50:02 -0400
-Received: from mail-oa1-f44.google.com (mail-oa1-f44.google.com [209.85.160.44])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E33E418A696;
-        Wed, 11 May 2022 07:50:00 -0700 (PDT)
-Received: by mail-oa1-f44.google.com with SMTP id 586e51a60fabf-d6e29fb3d7so3077501fac.7;
-        Wed, 11 May 2022 07:50:00 -0700 (PDT)
+        with ESMTP id S245099AbiEKOue (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 May 2022 10:50:34 -0400
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E23E1B0922
+        for <devicetree@vger.kernel.org>; Wed, 11 May 2022 07:50:26 -0700 (PDT)
+Received: by mail-lj1-x234.google.com with SMTP id a30so2911578ljq.9
+        for <devicetree@vger.kernel.org>; Wed, 11 May 2022 07:50:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=ElWpfj0wGJL50TvRphg5kRjDcZaYvuq2GbVsqJVFYCc=;
+        b=D89wtlNLbOs5yE8adcQ/A2ga2mHXKALISGT/gYSnpbat0i4NuirW4ZCbyUo2MTqHIM
+         DybTUguFzP50B+QC5CPz2TzKjbooVf6vopYcNNMl7ZUovlVPA0oH8Br/q9KFIEAmXniz
+         F0j2NDH2h9QX+6DPv05OnLKU/lCRS2VNa6DQznqwmQB3VBxMPm5cCJbbSmyddqzOtzgw
+         MErApNu6AJbzoTmjvacV0Cjlufn2JPHd7IFrZPxtZuKzx5w77hCDKAFQUpVM50td0iZT
+         WgQtdLpvHIwe6pWOO3tlZhkYS3rM9lzdvgLUrwrDhiGGSwVnAz5iQAYClQs/zR9hV3u3
+         p17Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=vs/jdIARLyUS4R/MgWXE0Jf8IecR+BWK4A0tuDfDDvc=;
-        b=Bj5PQ3Vj8Ojvqwm9ZJP7NyF/317fy0xLoaTCansYx7tsB7pSC1EpiLRr0S7GXMxjWS
-         XmO53syaHI7eK2XQCGKmOLXsKrE1P7quigrMrLyhrH5PndJdTC6D7T9ziSlKYywBgVd0
-         LUlhiwB+GvfCmpF1DQ90RnHF743DDU3UlN0kXYPP7pv9YDJoTcYd4oS4UblnCsWQNndJ
-         g6a4BNiS745Uq3ZWjmTYsS2HsaoNo7yMPPs8y9d0uQ/4HAiUQJt6caWMTFQ0EfIAisps
-         eVZv0vox86c+8eMh25K4RXRybz11seEDM/5L1rV/M6RslT99lHmwu4Hw/k/IBsO1YkmU
-         ZtnQ==
-X-Gm-Message-State: AOAM5321pIotsf2m1A8zcL0BamkwtgJ5nI/SEDX4LPSlilg/962Lq0gB
-        A+xzAvVSEgcTcqhesmQnoi1K5K4elw==
-X-Google-Smtp-Source: ABdhPJzYqCqK6laB4KY/1/LWDt9Koobdw5SCAgQ9xC1F7/rvPhI1m57kq1o2hKFVYDaeySj/7NYuYg==
-X-Received: by 2002:a05:6870:f143:b0:e6:6c21:3593 with SMTP id l3-20020a056870f14300b000e66c213593mr2982132oac.55.1652280600164;
-        Wed, 11 May 2022 07:50:00 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id q31-20020a056830441f00b0060603221257sm944797otv.39.2022.05.11.07.49.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 May 2022 07:49:59 -0700 (PDT)
-Received: (nullmailer pid 290281 invoked by uid 1000);
-        Wed, 11 May 2022 14:49:58 -0000
-Date:   Wed, 11 May 2022 09:49:58 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Sumit Gupta <sumitg@nvidia.com>
-Cc:     linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, thierry.reding@gmail.com,
-        jonathanh@nvidia.com, kbuild-all@lists.01.org, bbasu@nvidia.com,
-        vsethi@nvidia.com, jsequeira@nvidia.com
-Subject: Re: [Patch v5 6/9] dt-bindings: arm: tegra: Add NVIDIA Tegra234
- CBB2.0 binding
-Message-ID: <20220511144958.GA286838-robh@kernel.org>
-References: <20220506111217.8833-1-sumitg@nvidia.com>
- <20220506111217.8833-7-sumitg@nvidia.com>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=ElWpfj0wGJL50TvRphg5kRjDcZaYvuq2GbVsqJVFYCc=;
+        b=nloDfBzd0uNvjNPhlc//lv1eub6Dnrtve6LGQV+/ytX8frdQ+SXyJOqu0u0rudCyVu
+         FPe16mCO8/LntYAJeHOqbI9nvrxZOzV0us1fHfMetb2EwPlWNniNdeI8MndR0E6tY/8P
+         U9YeL/PJyQqi6YbOBVSjWwgI/o3CQL++agK2+ChDpknn9dFbVDOcLifsDDOGHxUaPWxh
+         txrCQBkg4BVQrbLOCEJ+SsQNG2bqdFTpLJeK8tgCpTzRe53pdUUsjL6XrD3el3seYg1z
+         UfYpZUDlYVLei971mEhwFFXhKIx2ZJpYU8R1kJzN300ixkoXcrnhS6PoCteX6jpWJ9Kb
+         SSgA==
+X-Gm-Message-State: AOAM530gHVI2cSiOM/KIJhbOfBqVjG6ruI4kQ6wiK934S5jN1syKM2kS
+        /YEohJs8CU+p0PjXZkZi1TJi3Q==
+X-Google-Smtp-Source: ABdhPJywfHPoACVHlBO9DahbBv/k/o1jSWDDDk9EmMhQ1LcoWNLUQAhoA0UwVt6duF/93+DZe8i4Pw==
+X-Received: by 2002:a2e:9e02:0:b0:249:7d50:bd8c with SMTP id e2-20020a2e9e02000000b002497d50bd8cmr17118916ljk.327.1652280624969;
+        Wed, 11 May 2022 07:50:24 -0700 (PDT)
+Received: from [192.168.1.211] ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id d17-20020ac25ed1000000b0047255d2116bsm315476lfq.154.2022.05.11.07.50.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 11 May 2022 07:50:24 -0700 (PDT)
+Message-ID: <3c126a06-f8fb-bc7a-860b-d4b1f2ef0133@linaro.org>
+Date:   Wed, 11 May 2022 17:50:23 +0300
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220506111217.8833-7-sumitg@nvidia.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH v7 6/7] dt-bindings: PCI: qcom: Support additional MSI
+ interrupts
+Content-Language: en-GB
+To:     Rob Herring <robh@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Stanimir Varbanov <svarbanov@mm-sol.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+References: <20220505135407.1352382-1-dmitry.baryshkov@linaro.org>
+ <20220505135407.1352382-7-dmitry.baryshkov@linaro.org>
+ <YnRB4UxBzFDmsls7@robh.at.kernel.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <YnRB4UxBzFDmsls7@robh.at.kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, May 06, 2022 at 04:42:14PM +0530, Sumit Gupta wrote:
-> Add device-tree binding documentation to represent CBB2.0 (Control
-> Backbone) error handling driver. The driver prints debug information
-> about failed transaction on receiving interrupt from CBB2.0.
+On 06/05/2022 00:30, Rob Herring wrote:
+> On Thu, May 05, 2022 at 04:54:06PM +0300, Dmitry Baryshkov wrote:
+>> On Qualcomm platforms each group of 32 MSI vectors is routed to the
+>> separate GIC interrupt. Document mapping of additional interrupts.
+>>
+>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>> ---
+>>   .../devicetree/bindings/pci/qcom,pcie.yaml    | 45 ++++++++++++++++++-
+>>   1 file changed, 44 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+>> index 0b69b12b849e..fd3290e0e220 100644
+>> --- a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+>> +++ b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+>> @@ -43,11 +43,20 @@ properties:
+>>       maxItems: 5
+>>   
+>>     interrupts:
+>> -    maxItems: 1
+>> +    minItems: 1
+>> +    maxItems: 8
+>>   
+>>     interrupt-names:
+>> +    minItems: 1
+>>       items:
+>>         - const: msi
+>> +      - const: msi2
+> 
+> Is 2 from some documentation or you made up. If the latter, software
+> folks start numbering at 0, not 1. :) I wouldn't care, but I think this
+> may become common.
 
-Same issues in this one that I won't repeat...
+It has been made up, so I will update this.
 
 > 
-> Signed-off-by: Sumit Gupta <sumitg@nvidia.com>
-> ---
->  .../arm/tegra/nvidia,tegra234-cbb.yaml        | 70 +++++++++++++++++++
->  1 file changed, 70 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/arm/tegra/nvidia,tegra234-cbb.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra234-cbb.yaml b/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra234-cbb.yaml
-> new file mode 100644
-> index 000000000000..fa4383be19d8
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra234-cbb.yaml
-> @@ -0,0 +1,70 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: "http://devicetree.org/schemas/arm/tegra/nvidia,tegra234-cbb.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> +
-> +title: NVIDIA Tegra CBB 2.0 Error handling driver device tree bindings
-> +
-> +maintainers:
-> +  - Sumit Gupta <sumitg@nvidia.com>
-> +
-> +description: |+
-> +  The Control Backbone (CBB) is comprised of the physical path from an initiator to a target's
-> +  register configuration space. CBB 2.0 consists of multiple sub-blocks connected to each other
-> +  to create a topology. The Tegra234 SoC has different fabrics based on CBB2.0 architecture which
-> +  include cluster fabrics BPMP, AON, PSC, SCE, RCE, DCE, FSI and "CBB central fabric".
-> +
-> +  In CBB 2.0, each initiator which can issue transactions connects to a Root Master Node (MN)
-> +  before it connects to any other element of the fabric. Each Root MN contains a Error Monitor
-> +  (EM) which detects and logs error. Interrupts from various EM blocks are collated by Error
-> +  Notifier (EN) which is per fabric and presents a single interrupt from fabric to the SoC
-> +  interrupt controller.
-> +
-> +  The driver handles errors from CBB due to illegal register accesses and prints debug information
-> +  about failed transaction on receiving the interrupt from EN. Debug information includes Error
-> +  Code, Error Description, MasterID, Fabric, SlaveID, Address, Cache, Protection, Security Group
-> +  etc on receiving error notification.
-> +
-> +  If the Error Response Disable (ERD) is set/enabled for an initiator, then SError or Data abort
-> +  exception error response is masked and an interrupt is used for reporting errors due to illegal
-> +  accesses from that initiator. The value returned on read failures is '0xFFFFFFFF' for
-> +  compatibility with PCIE.
-> +
-> +properties:
-> +  $nodename:
-> +    pattern: "^[a-z]+-fabric@[0-9a-f]+$"
-> +
-> +  compatible:
-> +    enum:
-> +      - nvidia,tegra234-aon-fabric
-> +      - nvidia,tegra234-bpmp-fabric
-> +      - nvidia,tegra234-cbb-fabric
-> +      - nvidia,tegra234-dce-fabric
-> +      - nvidia,tegra234-rce-fabric
-> +      - nvidia,tegra234-sce-fabric
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    items:
-> +      - description: secure interrupt from error notifier
-> +
-> +additionalProperties: true
-
-True is only allowed for common bindings included in other bindings.
+>> +      - const: msi3
+>> +      - const: msi4
+>> +      - const: msi5
+>> +      - const: msi6
+>> +      - const: msi7
+>> +      - const: msi8
 
 
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +    cbb-fabric@1300000 {
-> +      compatible = "nvidia,tegra234-cbb-fabric";
-> +      reg = <0x13a00000 0x400000>;
-> +      interrupts = <GIC_SPI 231 IRQ_TYPE_LEVEL_HIGH>;
-> +      status = "okay";
-> +    };
-> -- 
-> 2.17.1
-> 
-> 
+-- 
+With best wishes
+Dmitry
