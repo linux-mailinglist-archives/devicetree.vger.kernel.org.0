@@ -2,58 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 113015233D6
-	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 15:17:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DC2D45233E8
+	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 15:19:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242689AbiEKNRd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 May 2022 09:17:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60612 "EHLO
+        id S243438AbiEKNTF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 May 2022 09:19:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37066 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243299AbiEKNRb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 May 2022 09:17:31 -0400
+        with ESMTP id S243309AbiEKNS6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 May 2022 09:18:58 -0400
 Received: from alexa-out-sd-01.qualcomm.com (alexa-out-sd-01.qualcomm.com [199.106.114.38])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2595979811;
-        Wed, 11 May 2022 06:17:30 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C875D994EF;
+        Wed, 11 May 2022 06:18:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
   d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1652275050; x=1683811050;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version;
-  bh=wgT19/nrcztKxJNsA2zYMVdWKXfOvt3qceWBEE5pvag=;
-  b=UEW4orJKmFfW4qkPQ9K2IETIetPDbB9nd0c8ALLtYdg5jOp+0WYlsCxS
-   CTJja/6vXCqBgomkFViVBQbkpfIf9QLRKLGjB9pF2dnHJSNGijUPIlw8u
-   f14vZ+igVmsWhuZl0VYEyt48rnPrWEY8ZDr1aTzmd4l/Bk9BqJhbQYhYT
-   0=;
-Received: from unknown (HELO ironmsg03-sd.qualcomm.com) ([10.53.140.143])
-  by alexa-out-sd-01.qualcomm.com with ESMTP; 11 May 2022 06:17:30 -0700
+  t=1652275131; x=1683811131;
+  h=from:to:cc:subject:date:message-id:mime-version;
+  bh=kCWRql6+7ixpzrNqqMeSm7+icFTkFOfYEAxyfjVrttA=;
+  b=npCGLmjVFiFYtl0g6vD3rHAIMI3ucbO/PYooIM0GqN4SEGisG+ZoOpBB
+   l2E6Renoq0Wg9b5T38xkYyzpXoF8lmFx0ZLml1GaATZFLEnRb30U0Vtnf
+   dYRoGRYGcd+ETfRSlT/cr9EMHP/ZC/+Vekyvb29kypqvr+dYQYjapAW89
+   c=;
+Received: from unknown (HELO ironmsg-SD-alpha.qualcomm.com) ([10.53.140.30])
+  by alexa-out-sd-01.qualcomm.com with ESMTP; 11 May 2022 06:18:50 -0700
 X-QCInternal: smtphost
 Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg03-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 May 2022 06:17:29 -0700
+  by ironmsg-SD-alpha.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 May 2022 06:18:50 -0700
 Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
  nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Wed, 11 May 2022 06:17:29 -0700
-Received: from mkshah-linux.qualcomm.com (10.80.80.8) by
+ 15.2.986.22; Wed, 11 May 2022 06:18:50 -0700
+Received: from c-skakit-linux.qualcomm.com (10.80.80.8) by
  nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Wed, 11 May 2022 06:17:25 -0700
-From:   Maulik Shah <quic_mkshah@quicinc.com>
-To:     <bjorn.andersson@linaro.org>, <ulf.hansson@linaro.org>
-CC:     <linux-arm-msm@vger.kernel.org>, <linux-pm@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <rafael@kernel.org>,
-        <daniel.lezcano@linaro.org>, <quic_lsrao@quicinc.com>,
-        <quic_rjendra@quicinc.com>, Maulik Shah <quic_mkshah@quicinc.com>,
-        <devicetree@vger.kernel.org>
-Subject: [PATCH v2 3/6] arm64: dts: qcom: Add power-domains property for apps_rsc
-Date:   Wed, 11 May 2022 18:46:53 +0530
-Message-ID: <1652275016-13423-4-git-send-email-quic_mkshah@quicinc.com>
+ 15.2.986.22; Wed, 11 May 2022 06:18:45 -0700
+From:   Satya Priya <quic_c_skakit@quicinc.com>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     Lee Jones <lee.jones@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <swboyd@chromium.org>,
+        <quic_collinsd@quicinc.com>, <quic_subbaram@quicinc.com>,
+        <quic_jprakash@quicinc.com>,
+        Satya Priya <quic_c_skakit@quicinc.com>
+Subject: [PATCH V12 0/9] Add Qualcomm Technologies, Inc. PM8008 regulator driver
+Date:   Wed, 11 May 2022 18:48:24 +0530
+Message-ID: <1652275113-10277-1-git-send-email-quic_c_skakit@quicinc.com>
 X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1652275016-13423-1-git-send-email-quic_mkshah@quicinc.com>
-References: <1652275016-13423-1-git-send-email-quic_mkshah@quicinc.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
  nalasex01a.na.qualcomm.com (10.47.209.196)
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
@@ -65,67 +66,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add power-domains property which allows apps_rsc device to attach
-to cluster power domain on sm8150, sm8250, sm8350 and sm8450.
+Satya Priya (9):
+  dt-bindings: mfd: pm8008: Add reset-gpios
+  dt-bindings: mfd: pm8008: Change the address cells
+  dt-bindings: mfd: pm8008: Add regulators for pm8008
+  mfd: pm8008: Add reset-gpios
+  mfd: pm8008: Remove the regmap member from pm8008_data struct
+  mfd: pm8008: Use i2c_new_dummy_device() API
+  regulator: Add a regulator driver for the PM8008 PMIC
+  arm64: dts: qcom: pm8008: Add base dts file
+  arm64: dts: qcom: sc7280: Add pm8008 support for sc7280-idp
 
-Cc: devicetree@vger.kernel.org
-Signed-off-by: Maulik Shah <quic_mkshah@quicinc.com>
-Reviewed-by: Ulf Hansson <ulf.hansson@linaro.org>
----
- arch/arm64/boot/dts/qcom/sm8150.dtsi | 1 +
- arch/arm64/boot/dts/qcom/sm8250.dtsi | 1 +
- arch/arm64/boot/dts/qcom/sm8350.dtsi | 1 +
- arch/arm64/boot/dts/qcom/sm8450.dtsi | 1 +
- 4 files changed, 4 insertions(+)
+ .../devicetree/bindings/mfd/qcom,pm8008.yaml       |  69 ++++++-
+ arch/arm64/boot/dts/qcom/pm8008.dtsi               |  54 +++++
+ arch/arm64/boot/dts/qcom/sc7280-idp.dtsi           |  66 ++++++
+ drivers/mfd/qcom-pm8008.c                          |  60 ++++--
+ drivers/regulator/Kconfig                          |   9 +
+ drivers/regulator/Makefile                         |   1 +
+ drivers/regulator/qcom-pm8008-regulator.c          | 221 +++++++++++++++++++++
+ include/linux/mfd/qcom_pm8008.h                    |   8 +
+ 8 files changed, 470 insertions(+), 18 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/qcom/pm8008.dtsi
+ create mode 100644 drivers/regulator/qcom-pm8008-regulator.c
+ create mode 100644 include/linux/mfd/qcom_pm8008.h
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-index 8ea44c4..9c30b65 100644
---- a/arch/arm64/boot/dts/qcom/sm8150.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-@@ -4018,6 +4018,7 @@
- 					  <SLEEP_TCS   3>,
- 					  <WAKE_TCS    3>,
- 					  <CONTROL_TCS 1>;
-+			power-domains = <&CLUSTER_PD>;
- 
- 			rpmhcc: clock-controller {
- 				compatible = "qcom,sm8150-rpmh-clk";
-diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-index cf0c97b..5ba98c7 100644
---- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-@@ -4939,6 +4939,7 @@
- 			qcom,drv-id = <2>;
- 			qcom,tcs-config = <ACTIVE_TCS  2>, <SLEEP_TCS   3>,
- 					  <WAKE_TCS    3>, <CONTROL_TCS 1>;
-+			power-domains = <&CLUSTER_PD>;
- 
- 			rpmhcc: clock-controller {
- 				compatible = "qcom,sm8250-rpmh-clk";
-diff --git a/arch/arm64/boot/dts/qcom/sm8350.dtsi b/arch/arm64/boot/dts/qcom/sm8350.dtsi
-index 743cba9..1a5f9b0 100644
---- a/arch/arm64/boot/dts/qcom/sm8350.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8350.dtsi
-@@ -2004,6 +2004,7 @@
- 			qcom,drv-id = <2>;
- 			qcom,tcs-config = <ACTIVE_TCS  2>, <SLEEP_TCS   3>,
- 					  <WAKE_TCS    3>, <CONTROL_TCS 0>;
-+			power-domains = <&CLUSTER_PD>;
- 
- 			rpmhcc: clock-controller {
- 				compatible = "qcom,sm8350-rpmh-clk";
-diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-index 7d08fad..9008f61 100644
---- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-@@ -2929,6 +2929,7 @@
- 			qcom,drv-id = <2>;
- 			qcom,tcs-config = <ACTIVE_TCS  3>, <SLEEP_TCS   2>,
- 					  <WAKE_TCS    2>, <CONTROL_TCS 0>;
-+			power-domains = <&CLUSTER_PD>;
- 
- 			apps_bcm_voter: bcm-voter {
- 				compatible = "qcom,bcm-voter";
 -- 
 2.7.4
 
