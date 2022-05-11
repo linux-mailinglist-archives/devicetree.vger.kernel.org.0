@@ -2,92 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F3C452381D
-	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 18:08:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 388D7523837
+	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 18:10:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235088AbiEKQH7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 May 2022 12:07:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60924 "EHLO
+        id S1344363AbiEKQKX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 May 2022 12:10:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41000 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230114AbiEKQH6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 May 2022 12:07:58 -0400
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4497F6B651
-        for <devicetree@vger.kernel.org>; Wed, 11 May 2022 09:07:57 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id l18so5017375ejc.7
-        for <devicetree@vger.kernel.org>; Wed, 11 May 2022 09:07:57 -0700 (PDT)
+        with ESMTP id S1344373AbiEKQKR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 May 2022 12:10:17 -0400
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4716A2375E0
+        for <devicetree@vger.kernel.org>; Wed, 11 May 2022 09:10:10 -0700 (PDT)
+Received: by mail-ed1-x52b.google.com with SMTP id z19so3138856edx.9
+        for <devicetree@vger.kernel.org>; Wed, 11 May 2022 09:10:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :references:from:in-reply-to:content-transfer-encoding;
-        bh=r8lfBq49CvpqwCcxIZTebGdOGfYEQH4rNVpXiGqsOY4=;
-        b=zBrDVbZ+aoW9LO2HjaKaE5TxzqbWcPqbqtbgVWQixSh6GRQ20DEfCklDX1LJ/IWEMh
-         wRD2A1nQt0PilHzHcjFm1BHq+rVxD/vDM0KxPjw6mcU2Dv3flUPxKGuHK18KJ02q8tCR
-         +HnyPolC332d6F+n/uK3KRrj2lND77MlHsPHJfmYbrkyPxbcdTYLRt0MlOG5RlFXsMfh
-         27fT2mpXGXVtB/fymMcwSGGjhLVV1ks2IoS3TkAxUm4It1nJuERh+PywdbN7/063J63w
-         gRIhPSii9vCqFx5rFN9E6FTxNwDRL0Ua0+BrsiPk6tfMXrXd+bF8FjKUuQJ2V2w/VY8i
-         Whag==
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=mtUTymC8Y9rwA+nR5RnPnabs1W1L3QArgmlQfxUtvi0=;
+        b=KejbTgIcaTbt/QNzcRpsI//433QGnVimyV9DcWdNpVyg/b3Kgu3p8PCPgMJjwVjHja
+         fmVl95gma0wX465mkoUCKlfmdRJ1uKxPyyvDWJ24BWigQSe90s3rHSWWhAg9y0arb5Yk
+         sVhhxBQYSc+q6vFjLDE4wZZ6IJrYYIhtcbwPc=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=r8lfBq49CvpqwCcxIZTebGdOGfYEQH4rNVpXiGqsOY4=;
-        b=4k7+NVoGJRMREnZYWQxfRmwXKjxp1TQ1dRMVxm8ssZJFdNdaYoI3N9UNShGfbRyAHz
-         zwCSNgBpMkfe229IouKoi20AtL57c8hnFvEXz1XZRR+UU/QKUYvsdkZjbdeI6w7Y52Wi
-         ZinC8aMQLvgzITfD1naNSrwKPg3Cear8PPDJyLX4tIJVLL268wMqJ/ND0DgmH8wkiql1
-         dc35JbyZE+tDEPASMkASSUZm1RHCmqN9/lY9YgWaRoDlKeDHNv7KlH9iUUlZfRJZNKww
-         s+iBUAn8ZF8LBSdy5eL/h6YDbdzLpoEa33xUymO9b8dTOFVeQvMSDfOHKfcDym8m1sla
-         MQLA==
-X-Gm-Message-State: AOAM531pyWUzs7hYB4w5r1DuyjRdFc07CdKSFuVRnfNAcbxJ/5n0jT1z
-        bY1t3B0LZx0Br+BtbASU51NQVQ==
-X-Google-Smtp-Source: ABdhPJztaxLoLolaMvsN/SCV1RH7GIA07aUJUlY/wRpTHca7AQITjd2axM8ICmxJk2CXFDJSQu/ixA==
-X-Received: by 2002:a17:907:9690:b0:6f5:160a:25b8 with SMTP id hd16-20020a170907969000b006f5160a25b8mr25695788ejc.504.1652285275795;
-        Wed, 11 May 2022 09:07:55 -0700 (PDT)
-Received: from [192.168.0.155] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id rv23-20020a17090710d700b006f3ef214e22sm1087837ejb.136.2022.05.11.09.07.49
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=mtUTymC8Y9rwA+nR5RnPnabs1W1L3QArgmlQfxUtvi0=;
+        b=48n+G3MNL0UzRRJtMRRs8mLTru7iRbBn59dMveHNN1BEgymbiOfZzhkNsS1fXVX1iO
+         j/jI0bJ6L+M5tPpbQv3U55INMahoopPNSvpcca0/oQlNi1LM+NPhoHwjDoGn+y9FBBIf
+         LXDImGepjldV4X3bO1kZdVBHCALTo8umaE5B3puOot5Yl+D9EKHrLXbEjiPXCylns8iG
+         a0AtNTEF4684auJbbcS+NQKSY1sES5Oin0aNe2maWas0Pqi51WvNcPDcdj5dcFpRFyqP
+         /I4IwVzh/udLpZlJqzt4fPzLBdbsLRuZ0AFQPXHk+tBLpilIUECmIAMqgdM0Isv3MV1e
+         EQjA==
+X-Gm-Message-State: AOAM5330J/z8J6eh1X7Aaz89RByh9q1mlO9SqejB5JitPj2Urr3vrRx1
+        d6hi1AMyUOshDxuWqJCuxvDx/O5aVtqobyIA/js=
+X-Google-Smtp-Source: ABdhPJxJ+LZDWU36aP25hr2QTSBmd4Ns7NSiTHXRVspb8rcKf60W6WOZf35ErHBIgvIyaZQkrx89Bg==
+X-Received: by 2002:a05:6402:34cd:b0:428:1043:6231 with SMTP id w13-20020a05640234cd00b0042810436231mr29874162edc.274.1652285408531;
+        Wed, 11 May 2022 09:10:08 -0700 (PDT)
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com. [209.85.221.49])
+        by smtp.gmail.com with ESMTPSA id v4-20020a17090610c400b006f3ef214ddesm1119112ejv.68.2022.05.11.09.10.06
+        for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 11 May 2022 09:07:50 -0700 (PDT)
-Message-ID: <e5055507-1841-1c46-c817-8b1d95ea973e@linaro.org>
-Date:   Wed, 11 May 2022 18:07:48 +0200
+        Wed, 11 May 2022 09:10:07 -0700 (PDT)
+Received: by mail-wr1-f49.google.com with SMTP id k2so3693369wrd.5
+        for <devicetree@vger.kernel.org>; Wed, 11 May 2022 09:10:06 -0700 (PDT)
+X-Received: by 2002:adf:f50d:0:b0:20a:e096:ef with SMTP id q13-20020adff50d000000b0020ae09600efmr23211050wro.679.1652285406324;
+ Wed, 11 May 2022 09:10:06 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH v2 1/2] dt-bindings: clock: vc5: Add 5P49V6975
-Content-Language: en-US
-To:     Matthias Fend <matthias.fend@emfend.at>,
-        Luca Ceresoli <luca@lucaceresoli.net>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+References: <20220330090947.9100-1-chenxiangrui@huaqin.corp-partner.google.com>
+ <a0eb6bf9-256a-29b1-2211-496df710f531@linaro.org> <CAD=FV=UjyLofXZqnj=bL89fza5JS6O5Np9W-A4V4WK+na0hdrw@mail.gmail.com>
+ <b7ff08b8-60fb-7629-9399-3d5cca46ab9e@linaro.org> <CAD=FV=Vx5g_xTRZGc9wW=ZLnfsOcubTYFcnYQRC5jLm+n3en0w@mail.gmail.com>
+ <606cc762-a0c2-49a4-3e5d-d2dbd4595bc7@linaro.org> <CAD=FV=W_SA-3PfDFi-Gkjk9pew5bchFNjQhXX8MkZyuy5UohEQ@mail.gmail.com>
+ <CAJKOXPdt5WTg4VU-TEW3dmPHR76dKg63XVxRQfa7ZSKc_jz6Ag@mail.gmail.com>
+ <CAD=FV=XQqQSQDNh-zXqEQkwsrax5Qb3OtfKZoQLkncJj_4mcQw@mail.gmail.com>
+ <daf66d41-42ac-50dc-3f8d-c261da8e452d@linaro.org> <CAD=FV=WhA=n_=Ys6NfedPtNPddL81HnG6Qws_R+vq9w8Nrsn5A@mail.gmail.com>
+ <ce2ea308-b63d-ad27-4cea-7353268f8ebb@linaro.org> <CAODwPW857CkH0+ZnBaUeowW4te-hSy6nrdeeX6-OLPOs5TptsQ@mail.gmail.com>
+ <55dcf917-7ac0-efe9-8531-b77be682125a@linaro.org>
+In-Reply-To: <55dcf917-7ac0-efe9-8531-b77be682125a@linaro.org>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Wed, 11 May 2022 09:09:53 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=UPKo4CxRVmdHr05rRPaNHFYfaQTqmBJAU5ZF61ccKgEA@mail.gmail.com>
+Message-ID: <CAD=FV=UPKo4CxRVmdHr05rRPaNHFYfaQTqmBJAU5ZF61ccKgEA@mail.gmail.com>
+Subject: Re: [PATCH] CHROMIUM: arm64: dts: qcom: Add sc7180-gelarshie
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Julius Werner <jwerner@chromium.org>,
+        =?UTF-8?Q?Krzysztof_Koz=C5=82owski?= <k.kozlowski.k@gmail.com>,
+        Mars Chen <chenxiangrui@huaqin.corp-partner.google.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org
-References: <20220511053455.360335-1-matthias.fend@emfend.at>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220511053455.360335-1-matthias.fend@emfend.at>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/05/2022 07:34, Matthias Fend wrote:
-> The 5P49V6975 is a member of the VersaClock 6E family and supports four
-> fractional dividers (FODs), five clock outputs and an internal oscillator.
-> 
-> Signed-off-by: Matthias Fend <matthias.fend@emfend.at>
-> ---
->  Documentation/devicetree/bindings/clock/idt,versaclock5.yaml | 2 ++
+Hi,
+
+On Wed, May 11, 2022 at 12:20 AM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 11/05/2022 04:39, Julius Werner wrote:
+> >> Wait, we agreed that you don't consider them identical, didn't we? If
+> >> they are identical, you do not need rev4 at all. So they are not
+> >> identical...
+> >
+> > Well, they are identical until they're not. We intend them to be
+> > identical. But for practical purposes it does sometimes happen that
+> > two board revisions which were meant to be indistinguishable by
+> > software end up needing to be distinguished at a later point, when
+> > both the hardware and firmware can no longer be changed. We need to
+> > allow an escape hatch for that case. It does not happen often, so just
+> > treating them all as separate boards from the start is not a scalable
+> > solution. DTBs are not free when they all need to be packaged in the
+> > same kernel image.
+>
+> You split more important part of my message, ignoring the point.
+>
+> So you choose they are not identical, fine. Why insisting on adding
+> fallback compatible while not keeping bindings updated? Just don't add
+> the compatible and work on rev3 or rev4. Doug even once wrote "_we don't
+> know_ if -rev7 and -rev8 are compatible", so don't make them compatible.
+> Don't add fallbacks or some generic unspecified front-compatibles and
+> just work on revision.
+
+Somehow, it seems like we keep talking past each other here and it
+feels like folks are getting upset and we're not moving forward. Maybe
+the right way to make progress is to find some face-to-face time at a
+future conference and sit in front of a white board and hash it out.
+That being said:
+
+* Without changing our bootloader or having a big explosion in the
+number of dts files, we really can't change our scheme. The best we
+can do is document it.
+
+* If we want to change our scheme, we'd need to sit down and come to
+an agreement that satisfies everyone, if such a thing is possible.
+That would only be able to affect future boards. We don't want to
+change the bootloader dts loading scheme on old boards.
 
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> >> Right now it's not possible to validate QCOM DTSes against DT bindings
+> >> because they throw big fat warnings about undocumented top compatibles.
+> >> This is a downside for us.
+> >
+> > But that's a solvable problem, right? As I understand, what Doug was
+> > initially just asking was whether it made _sense_ to document all of
+> > these... not that we couldn't do it. Then this whole thread went down
+> > a rabbit hole of whether our compatible assignments are allowed in the
+> > first place. If we can compromise on this discussion by just doing
+> > whatever needs to be done to make the tool happy, I think(?) we can
+> > provide that.
+>
+> None of recent patches from Chromium were doing it, even after
+> complaining from my side, so why do you suddenly believe that it is
+> "doable"? If yes, please start doing it and fix the DTSes which you
+> already submitted without bindings.
+>
+> To remind - entire discussion started with Doug saying it is pure
+> overhead for him.
 
+I mean, to be fair I said it _seems_ pure overhead and then said that
+we could do it if it makes some tools happy. ...but before doing that,
+I wanted to make sure it was actually valuable. I still have doubts
+about the assertion that the most specific compatible is guaranteed to
+uniquely identify hardware. So if the whole reason for doing this is
+to make the validation tools happy and there's no other value, then at
+least it's plausible to argue that the tools could simply be fixed to
+allow this and not shout about it. Now, certainly I'm not arguing that
+yaml validation in general is useless. I'm in agreement that we want
+dts files to be able to be formally validated because it catches
+typos, missing properties, and bugs. I am _only_ saying that I still
+haven't seen a good argument for why we need to validate the top-level
+compatible string. Since there no properties associated with the
+top-level compatible string, it's mostly just checking did some one
+copy-paste the compatible string from one file (the dts file) to the
+other file (the yaml file) correctly. To me, that does not feel like a
+useful check.
 
-Best regards,
-Krzysztof
+The other thing I wanted to make sure was that we weren't just going
+to get NAKed later if/when we had to adjust compatible strings on
+existing dts files.
+
+In any case, I guess I'll make an attempt to document the compatibles
+for existing Chromebooks and we'll see what happens. I'm still not
+convinced of the value, but as long as we're not going to get NAKed
+for documenting reality it's fine.
+
+-Doug
+
+-Doug
