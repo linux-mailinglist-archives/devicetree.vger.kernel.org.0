@@ -2,82 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D8E2A5234CE
-	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 15:56:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A25E5234E4
+	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 16:00:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233422AbiEKN4u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 May 2022 09:56:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38980 "EHLO
+        id S244262AbiEKOAn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 May 2022 10:00:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53036 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244345AbiEKN4t (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 May 2022 09:56:49 -0400
-Received: from mail-ot1-f43.google.com (mail-ot1-f43.google.com [209.85.210.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 760473B3C3;
-        Wed, 11 May 2022 06:56:48 -0700 (PDT)
-Received: by mail-ot1-f43.google.com with SMTP id i25-20020a9d6259000000b00605df9afea7so501155otk.1;
-        Wed, 11 May 2022 06:56:48 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=FmFrvxE6312OeOvyzkNliAzUqs60yDfGcYWJC7EnaQw=;
-        b=xCnckxXYGjkINDJa8eQzw4mJkX8nW0kKoGiZhT/NGjbTQn4aD6OE5T9bO7eRYYjuIY
-         0oLqcTn+D1FJ/zdAyjXAxKhXvulfGcxilTLOH0/VVasbwEO4e598Un5qOCy6wSboAIdd
-         TjT0cwlncf8RgncN4XuKe2mZJH2t+1VshBGDQG+WY8tledPPTVEGWEv3t0Hn7111VSCr
-         CjuibE/9m0Ksh4rYxj5UN5EBmj9dtcT0QpgUQsykH8MhllcimakKy5bDAzrHf5j5ioRe
-         DuBBKTNk36xHn6YGF6dPGtFo/MN3rUCRFQn5HjwaiT3UoovKKJa++FLU0iL4m7KbuewP
-         WafA==
-X-Gm-Message-State: AOAM531LMrpaS/sAtMPXbTjcC3LHwmy2ABzU7F/RjM5EQDC8NVdX5t8I
-        fbabu8+GkRklRjy0G/vGO9iCm9eegg==
-X-Google-Smtp-Source: ABdhPJwj+o0HkYjvdeMLQ8/kpoKCvhaXE7BYvxIFSHwmVpC7e1YGvstoLqaZOtoHLCf62AdfOBaMuw==
-X-Received: by 2002:a9d:6853:0:b0:606:aa1e:1181 with SMTP id c19-20020a9d6853000000b00606aa1e1181mr3594176oto.192.1652277407566;
-        Wed, 11 May 2022 06:56:47 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id w11-20020a4aaf0b000000b0035eb4e5a6c0sm973530oon.22.2022.05.11.06.56.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 May 2022 06:56:47 -0700 (PDT)
-Received: (nullmailer pid 212975 invoked by uid 1000);
-        Wed, 11 May 2022 13:56:46 -0000
-Date:   Wed, 11 May 2022 08:56:46 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     LI Qingwu <Qing-wu.Li@leica-geosystems.com.cn>
-Cc:     linux-iio@vger.kernel.org, lars@metafoo.de,
-        andy.shevchenko@gmail.com, tomas.melin@vaisala.com,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org, jic23@kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH V4 1/5] dt-bindings: iio: accel: sca3300: Document
- murata,scl3300
-Message-ID: <20220511135646.GA212868-robh@kernel.org>
-References: <20220509064928.2352796-1-Qing-wu.Li@leica-geosystems.com.cn>
- <20220509064928.2352796-2-Qing-wu.Li@leica-geosystems.com.cn>
+        with ESMTP id S229463AbiEKOAm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 May 2022 10:00:42 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 3502248E40;
+        Wed, 11 May 2022 07:00:40 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id F40D2ED1;
+        Wed, 11 May 2022 07:00:39 -0700 (PDT)
+Received: from lpieralisi (unknown [10.57.1.148])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id BAD333F66F;
+        Wed, 11 May 2022 07:00:37 -0700 (PDT)
+Date:   Wed, 11 May 2022 15:00:33 +0100
+From:   Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Rob Herring <robh@kernel.org>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Stanimir Varbanov <svarbanov@mm-sol.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v6 0/8] dt-bindings: YAMLify pci/qcom,pcie schema
+Message-ID: <YnvBgXsYYv72otXS@lpieralisi>
+References: <20220506152107.1527552-1-dmitry.baryshkov@linaro.org>
+ <YnqXxNxFhf/odyka@robh.at.kernel.org>
+ <CAA8EJpriMcP4uQ3fjyiCKY+uc82ctXe2VrjO1psPDcp-P++Nhw@mail.gmail.com>
+ <Ynu1p1hzqHJNpSp3@lpieralisi>
+ <CAA8EJpoQ0TkY9zVzhB00f9iYKquPauF2JeapSECaPp3=eXWjsw@mail.gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220509064928.2352796-2-Qing-wu.Li@leica-geosystems.com.cn>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+In-Reply-To: <CAA8EJpoQ0TkY9zVzhB00f9iYKquPauF2JeapSECaPp3=eXWjsw@mail.gmail.com>
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 09 May 2022 06:49:24 +0000, LI Qingwu wrote:
-> Add DT bindings for Murata scl3300 inclinometer.
+On Wed, May 11, 2022 at 04:53:43PM +0300, Dmitry Baryshkov wrote:
+> On Wed, 11 May 2022 at 16:10, Lorenzo Pieralisi
+> <lorenzo.pieralisi@arm.com> wrote:
+> >
+> > On Wed, May 11, 2022 at 01:13:28PM +0300, Dmitry Baryshkov wrote:
+> > > On Tue, 10 May 2022 at 19:50, Rob Herring <robh@kernel.org> wrote:
+> > > >
+> > > > On Fri, May 06, 2022 at 06:20:59PM +0300, Dmitry Baryshkov wrote:
+> > > > > Convert pci/qcom,pcie schema to YAML description. The first patch
+> > > > > introduces several warnings which are fixed by the other patches in the
+> > > > > series.
+> > > > >
+> > > > > Note regarding the snps,dw-pcie compatibility. The Qualcomm PCIe
+> > > > > controller uses Synopsys PCIe IP core. However it is not just fused to
+> > > > > the address space. Accessing PCIe registers requires several clocks and
+> > > > > regulators to be powered up. Thus it can be assumed that the qcom,pcie
+> > > > > bindings are not fully compatible with the snps,dw-pcie schema.
+> > > > >
+> > > > > Changes since v5:
+> > > > >  - s/stance/stanza (pointed out by Bjorn Helgaas)
+> > > > >
+> > > > > Changes since v4:
+> > > > >  - Change subjects to follow convention (suggested by Bjorn Helgaas)
+> > > > >
+> > > > > Changes since v3:
+> > > > >  - Rebase on linux-next to include sm8150 patches
+> > > > >
+> > > > > Changes since v2 (still kudos to Krzyshtof):
+> > > > >  - Readded reg-names conversion patch
+> > > > >  - Mention wake-gpio update in the commit message
+> > > > >  - Remove extra quotes in the schema
+> > > > >
+> > > > > Changes since v1 (all kudos to Krzyshtof):
+> > > > >  - Dropped the reg-names patch. It will be handled separately
+> > > > >  - Squashed the snps,dw-pcie removal (from schema) into the first patch
+> > > > >  - Replaced deprecated perst-gpio and wake-gpio with perst-gpios and
+> > > > >    wake-gpios in the examples and in DT files
+> > > > >  - Moved common clocks/clock-names, resets/reset-names and power-domains
+> > > > >    properties to the top level of the schema, leaving only platform
+> > > > >    specifics in the conditional branches
+> > > > >  - Dropped iommu-map/iommu-map-mask for now
+> > > > >  - Added (missed) interrupt-cells, clocks, clock-names, resets,
+> > > > >    reset-names properties to the required list (resets/reset-names are
+> > > > >    removed in the next patch, as they are not used on msm8996)
+> > > > >  - Fixed IRQ flags in the examples
+> > > > >  - Merged apq8064/ipq8064 into the single condition statement
+> > > > >  - Added extra empty lines
+> > > > >
+> > > > > Dmitry Baryshkov (8):
+> > > > >   dt-bindings: PCI: qcom: Convert to YAML
+> > > > >   dt-bindings: PCI: qcom: Do not require resets on msm8996 platforms
+> > > > >   dt-bindings: PCI: qcom: Specify reg-names explicitly
+> > > > >   dt-bindings: PCI: qcom: Add schema for sc7280 chipset
+> > > > >   arm64: dts: qcom: stop using snps,dw-pcie falback
+> > > > >   arm: dts: qcom: stop using snps,dw-pcie falback
+> > > > >   arm: dts: qcom-*: replace deprecated perst-gpio with perst-gpios
+> > > > >   arm64: dts: qcom: replace deprecated perst-gpio with perst-gpios
+> > > > >
+> > > > >  .../devicetree/bindings/pci/qcom,pcie.txt     | 398 ----------
+> > > > >  .../devicetree/bindings/pci/qcom,pcie.yaml    | 714 ++++++++++++++++++
+> > > >
+> > > > What tree do these apply to because they don't apply to rc1. I'm
+> > > > assuming the PCI tree and Lorenzo should take them.
+> > >
+> > > The series depends on the patch in Lorenzo's tree (sm8150 bindings),
+> > > so I'd assume it would be natural to merge these patches through his
+> > > tree too.
+> >
+> > I can take the DT bindings but the dts updates I'd prefer if they
+> > went via platform trees. Is that OK ?
 > 
-> Signed-off-by: LI Qingwu <Qing-wu.Li@leica-geosystems.com.cn>
-> ---
->  Documentation/devicetree/bindings/iio/accel/murata,sca3300.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
+> Yes, that's fine with me. I think Bjorn has sent 5.19 pull request
+> already, I'll track them getting merged into 5.19 or 5.20.
 
+I assume you meant BjornA sent a PR with patches [5-8] in it,
+correct ?
 
-Please add Acked-by/Reviewed-by tags when posting new versions. However,
-there's no need to repost patches *only* to add the tags. The upstream
-maintainer will do that for acks received on the version they apply.
+I will only pull the DT bindings, patches [1-4], please let me
+know if that's what you expect.
 
-If a tag was not added on purpose, please state why and what changed.
-
+Lorenzo
