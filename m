@@ -2,85 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 71E9352351B
-	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 16:12:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E87DB52353C
+	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 16:18:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232628AbiEKOMV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 May 2022 10:12:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39698 "EHLO
+        id S237718AbiEKOSO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 May 2022 10:18:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33570 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229457AbiEKOMU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 May 2022 10:12:20 -0400
-Received: from mail-oa1-f54.google.com (mail-oa1-f54.google.com [209.85.160.54])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B663469B5F;
-        Wed, 11 May 2022 07:12:19 -0700 (PDT)
-Received: by mail-oa1-f54.google.com with SMTP id 586e51a60fabf-edf3b6b0f2so2927153fac.9;
-        Wed, 11 May 2022 07:12:19 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=hVwIirk09yaLIn9W0AnvNQlwP2lkso9U6oZmurIZ4jo=;
-        b=D4zxoAizxuYj5AersHXEtVadWOwLmz7P6VoTfEUToZJP9N2TaEkeuXRFFeBvWiQ1ci
-         M0LkGmkOI0AyQImU4LOfk3RJ5M64Xv8OMDCSe7NOfVsJ7XqY/GajV/oVJIo8OESjWjxu
-         V2oCrbtgOuPWIFODYLy24ZImKVbQE4t1Yda5UQ9FftI41pZhe941jMiniY5lGD394UnB
-         bUevW0cU5EOcxMuKMkm7wljsAcLn+08q9rJkx/B3UH0XXNEi5nmQXXsxQBW6Yj43eVYZ
-         RtF94GOOACPcba2j7c8+A5zA37yEbzu2epRz5ijKXFv9weM0cNyNw+NhUk14cB4YDcpD
-         QeLw==
-X-Gm-Message-State: AOAM530+DrQ01GaOek+BPzrNwVdDzmPH1q09KIXqsXCsCHbudhCMhjhn
-        LU+jVVZZOiwgdvVQr2hRYA==
-X-Google-Smtp-Source: ABdhPJxD+7w4jCYBXpntlQ05yu2K8ufID8l4SDZrOUeqpx/5VE6wlYHK5Le77K7bV0jyOCAjWZSOkw==
-X-Received: by 2002:a05:6870:8888:b0:e9:a3eb:a52d with SMTP id m8-20020a056870888800b000e9a3eba52dmr2742881oam.181.1652278339038;
-        Wed, 11 May 2022 07:12:19 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id bd28-20020a056870d79c00b000e686d1386fsm617236oab.9.2022.05.11.07.12.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 May 2022 07:12:18 -0700 (PDT)
-Received: (nullmailer pid 236095 invoked by uid 1000);
-        Wed, 11 May 2022 14:12:17 -0000
-Date:   Wed, 11 May 2022 09:12:17 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-Cc:     hsinyi@chromium.org, Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Allen-KH Cheng <Allen-KH.Cheng@mediatek.com>,
-        linux-mediatek@lists.infradead.org,
-        Ryder Lee <ryder.lee@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Chen-Yu Tsai <wenst@chromium.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v10 1/4] dt-bindings: timer: Add compatible for Mediatek
- MT8186
-Message-ID: <20220511141217.GA236062-robh@kernel.org>
-References: <20220510075233.5426-1-allen-kh.cheng@mediatek.com>
- <20220510075233.5426-2-allen-kh.cheng@mediatek.com>
+        with ESMTP id S234147AbiEKOSM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 May 2022 10:18:12 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 5EA0C644EE;
+        Wed, 11 May 2022 07:18:11 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 381B3ED1;
+        Wed, 11 May 2022 07:18:11 -0700 (PDT)
+Received: from e123427-lin.arm.com (unknown [10.57.1.148])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 0AF533F66F;
+        Wed, 11 May 2022 07:18:08 -0700 (PDT)
+From:   Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stanimir Varbanov <svarbanov@mm-sol.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Vinod Koul <vkoul@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org
+Subject: Re: (subset) [PATCH v6 0/8] dt-bindings: YAMLify pci/qcom,pcie schema
+Date:   Wed, 11 May 2022 15:18:03 +0100
+Message-Id: <165227865526.22848.18311880619180745069.b4-ty@arm.com>
+X-Mailer: git-send-email 2.31.0
+In-Reply-To: <20220506152107.1527552-1-dmitry.baryshkov@linaro.org>
+References: <20220506152107.1527552-1-dmitry.baryshkov@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220510075233.5426-2-allen-kh.cheng@mediatek.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 10 May 2022 15:52:30 +0800, Allen-KH Cheng wrote:
-> From: Allen-KH Cheng <Allen-KH.Cheng@mediatek.com>
+On Fri, 6 May 2022 18:20:59 +0300, Dmitry Baryshkov wrote:
+> Convert pci/qcom,pcie schema to YAML description. The first patch
+> introduces several warnings which are fixed by the other patches in the
+> series.
 > 
-> This commit adds dt-binding documentation of timer for Mediatek MT8186 SoC
-> Platform.
+> Note regarding the snps,dw-pcie compatibility. The Qualcomm PCIe
+> controller uses Synopsys PCIe IP core. However it is not just fused to
+> the address space. Accessing PCIe registers requires several clocks and
+> regulators to be powered up. Thus it can be assumed that the qcom,pcie
+> bindings are not fully compatible with the snps,dw-pcie schema.
 > 
-> Signed-off-by: Allen-KH Cheng <Allen-KH.Cheng@mediatek.com>
-> ---
->  Documentation/devicetree/bindings/timer/mediatek,mtk-timer.txt | 1 +
->  1 file changed, 1 insertion(+)
-> 
+> [...]
 
-Acked-by: Rob Herring <robh@kernel.org>
+Applied to pci/qcom, thanks!
+
+[1/8] dt-bindings: PCI: qcom: Convert to YAML
+      https://git.kernel.org/lpieralisi/pci/c/5383d16f06
+[2/8] dt-bindings: PCI: qcom: Do not require resets on msm8996 platforms
+      https://git.kernel.org/lpieralisi/pci/c/81dab110d3
+[3/8] dt-bindings: PCI: qcom: Specify reg-names explicitly
+      https://git.kernel.org/lpieralisi/pci/c/a6f2d6b1b3
+[4/8] dt-bindings: PCI: qcom: Add schema for sc7280 chipset
+      https://git.kernel.org/lpieralisi/pci/c/bddedfeb13
+
+Thanks,
+Lorenzo
