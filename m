@@ -2,86 +2,42 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 97784523D5D
-	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 21:26:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BC599523DA7
+	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 21:37:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345016AbiEKT01 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 May 2022 15:26:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48320 "EHLO
+        id S1347026AbiEKThG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 May 2022 15:37:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57564 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346813AbiEKT0T (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 May 2022 15:26:19 -0400
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A98926109;
-        Wed, 11 May 2022 12:26:18 -0700 (PDT)
-Received: by mail-lf1-x135.google.com with SMTP id u23so5316954lfc.1;
-        Wed, 11 May 2022 12:26:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:subject:from:in-reply-to:date:cc
-         :content-transfer-encoding:message-id:references:to;
-        bh=TAIvow1w3Et+3EUX6RKiHJdrCLZdYL3A3uXuaUYdtpA=;
-        b=V713DS1JCS6qIh5Klw7+BbgJh4RBaaNWS8aYlzkD9Nq37WNfYf/Lg4ittzS8AMMVv/
-         kP7VUwtiQoakcEW8e9wk1JC/MIL3mQ7UpJZQQvDMJ/CTABzcj5gkywF68X21Pd/Upr6e
-         1EjOM0VHpDXUSjDUO+RddUBYocL2Kh/6Nnvnd2GTRxUAoHrmSPlX0Pbmd9lrVzAIIKym
-         zJrByGbel8/FGgtqQKnpnOMLPuxUDusCXxzfG92W+tOGisH0AmnLiBuDCbjQLRs3xXEC
-         FExiKLRBw0Wrkejpti0qhRTNmPeyL8swcvymSYnAoeZKQcu2KHfH/lQdMp+r5BxECgXI
-         Qnug==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:subject:from:in-reply-to:date:cc
-         :content-transfer-encoding:message-id:references:to;
-        bh=TAIvow1w3Et+3EUX6RKiHJdrCLZdYL3A3uXuaUYdtpA=;
-        b=btDnBpWgRGcWTK0rHS2HBp8rUecmH6PW48dPb/V0ONTdSdQ4mzzMegNsQhPrGSicL9
-         eRHgT7lb8rFVJv66rqTN3OLJMA6CAl2PTXl+/LSBZl4RFHEPBogvG03iANCI/G8FRDmA
-         pzH306NtJkjYMF+2+TwX2ysywwLQDi+L0tTe7k8wq7uZJQmVe4dUneZgy+odabzfkhfP
-         zDv/LlojwX/r6HpXNoc8ndefQyKToltAmGMXP0AKCvP1qjM9cMA/3kCJsr+IZqONFYty
-         XcmV6R6z3ZtVEK/IVev7XCw13OEdfa66FaSzC99YagItvi00tlyJIIrAi++IQ8Fy++ke
-         7sJw==
-X-Gm-Message-State: AOAM530VwvIEXKPmZmW7M1f/EwmRmNJRvN0LE2/shYNlKy4yr5dwvfdk
-        lHzG0jH0AxUWxFhpv/aYyWs=
-X-Google-Smtp-Source: ABdhPJyu5Qf/d2LtNP4I7uWFCrmVH4cTwPhUEAQWDxrQhVhT85X00ycU/nNHTnxMJIBVbYsl4NwbxA==
-X-Received: by 2002:a05:6512:1196:b0:473:be8f:e921 with SMTP id g22-20020a056512119600b00473be8fe921mr21626419lfr.242.1652297176346;
-        Wed, 11 May 2022 12:26:16 -0700 (PDT)
-Received: from smtpclient.apple (31-178-191-245.dynamic.chello.pl. [31.178.191.245])
-        by smtp.gmail.com with ESMTPSA id d7-20020a05651c088700b0024f3d1dae93sm494219ljq.27.2022.05.11.12.26.11
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 11 May 2022 12:26:15 -0700 (PDT)
-Content-Type: text/plain;
-        charset=utf-8
-Mime-Version: 1.0 (Mac OS X Mail 14.0 \(3654.120.0.1.13\))
-Subject: Re: [RFC/RFT 0/6] RK3568 PCIe V3 support
-From:   Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
-In-Reply-To: <20220416135458.104048-1-linux@fw-web.de>
-Date:   Wed, 11 May 2022 21:26:09 +0200
-Cc:     "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        Frank Wunderlich <frank-w@public-files.de>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        =?utf-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Johan Jonker <jbx6244@gmail.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        linux-phy@lists.infradead.org,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        linux-pci@vger.kernel.org
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <9E2565E4-DBF3-4324-BE1F-4C20C6FB95EA@gmail.com>
-References: <20220416135458.104048-1-linux@fw-web.de>
-To:     Frank Wunderlich <linux@fw-web.de>,
-        Peter Geis <pgwipeout@gmail.com>
-X-Mailer: Apple Mail (2.3654.120.0.1.13)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        with ESMTP id S1347021AbiEKThE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 May 2022 15:37:04 -0400
+Received: from m-r2.th.seeweb.it (m-r2.th.seeweb.it [5.144.164.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6980F6CA85;
+        Wed, 11 May 2022 12:37:00 -0700 (PDT)
+Received: from [192.168.1.101] (abxh168.neoplus.adsl.tpnet.pl [83.9.1.168])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id B829D3F8BC;
+        Wed, 11 May 2022 21:36:58 +0200 (CEST)
+Message-ID: <5f4a1d96-84e1-0387-dee1-e65e9c459051@somainline.org>
+Date:   Wed, 11 May 2022 21:36:57 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.0
+Subject: Re: [PATCH 2/2] ARM: dts: qcom: msm8974-sony: Enable LPG
+Content-Language: en-US
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220504205411.1510667-1-bjorn.andersson@linaro.org>
+ <20220504205411.1510667-2-bjorn.andersson@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@somainline.org>
+In-Reply-To: <20220504205411.1510667-2-bjorn.andersson@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -91,34 +47,115 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-> Wiadomo=C5=9B=C4=87 napisana przez Frank Wunderlich <linux@fw-web.de> =
-w dniu 16.04.2022, o godz. 15:54:
->=20
-> From: Frank Wunderlich <frank-w@public-files.de>
->=20
-> This series adds Rockchip PCIe V3 support found on rk3568 SOC.
->=20
-> It is based on "Enable rk356x PCIe controller" series of Peter Geis
-> v7: =
-https://patchwork.kernel.org/project/linux-rockchip/cover/20220416110507.6=
-42398-1-pgwipeout@gmail.com/
->=20
-> Compared to PCIeV2 which uses the Naneng combphy, pciev3
-> uses a dedicated pci-phy.
->=20
-> Frank Wunderlich (6):
->  dt-bindings: phy: rockchip: add pcie3 phy
->  dt-bindings: soc: grf: add pcie30-{phy,pipe}-grf
->  phy: rockchip: Support pcie v3
->  PCI: rockchip-dwc: add pcie bifurcation
->  arm64: dts: rockchip: rk3568: Add PCIe v3 nodes
->  arm64: dts: rockchip: Add PCIe v3 nodes to BPI-R2-Pro
+On 4.05.2022 22:54, Bjorn Andersson wrote:
+> Both Castor and Honami has RGB LEDs driven by the PM8941 LPG, define
+> these.
+> 
+> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> ---
+>  .../dts/qcom-msm8974-sony-xperia-rhine.dtsi   | 30 +++++++++++++++++++
+>  ...-msm8974pro-sony-xperia-shinano-castor.dts | 30 +++++++++++++++++++
+>  2 files changed, 60 insertions(+)
+> 
+> diff --git a/arch/arm/boot/dts/qcom-msm8974-sony-xperia-rhine.dtsi b/arch/arm/boot/dts/qcom-msm8974-sony-xperia-rhine.dtsi
+> index 1d21de46f85c..9891d0d40945 100644
+> --- a/arch/arm/boot/dts/qcom-msm8974-sony-xperia-rhine.dtsi
+> +++ b/arch/arm/boot/dts/qcom-msm8974-sony-xperia-rhine.dtsi
+> @@ -3,6 +3,7 @@
+>  #include "qcom-pm8841.dtsi"
+>  #include "qcom-pm8941.dtsi"
+>  #include <dt-bindings/input/input.h>
+> +#include <dt-bindings/leds/common.h>
+>  #include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
+>  
+>  / {
+> @@ -172,6 +173,35 @@ gpio_keys_pin_a: gpio-keys-active {
+>  	};
+>  };
+>  
+> +&pm8941_lpg {
+> +	status = "okay";
+> +
+> +	qcom,power-source = <1>;
+> +
+> +	rgb-led {
+> +		color = <LED_COLOR_ID_RGB>;
+> +		function = LED_FUNCTION_STATUS;
+> +
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		led@1 {
+> +			reg = <7>;
+Hi,
 
-Frank, Peter
+please sync regs and unit addresses (and sort them while at it).
 
-FYI:=20
-This series gives me nicely working PCI-e WiFi M2 iwl7265 module on =
-rock3-a.
-Great work!
-
-
+Konrad
+> +			color = <LED_COLOR_ID_RED>;
+> +		};
+> +
+> +		led@2 {
+> +			reg = <6>;
+> +			color = <LED_COLOR_ID_GREEN>;
+> +		};
+> +
+> +		led@3 {
+> +			reg = <5>;
+> +			color = <LED_COLOR_ID_BLUE>;
+> +		};
+> +	};
+> +};
+> +
+>  &pm8941_wled {
+>  	status = "okay";
+>  
+> diff --git a/arch/arm/boot/dts/qcom-msm8974pro-sony-xperia-shinano-castor.dts b/arch/arm/boot/dts/qcom-msm8974pro-sony-xperia-shinano-castor.dts
+> index 9bd8faea61a5..da1593192306 100644
+> --- a/arch/arm/boot/dts/qcom-msm8974pro-sony-xperia-shinano-castor.dts
+> +++ b/arch/arm/boot/dts/qcom-msm8974pro-sony-xperia-shinano-castor.dts
+> @@ -3,6 +3,7 @@
+>  #include "qcom-pm8841.dtsi"
+>  #include "qcom-pm8941.dtsi"
+>  #include <dt-bindings/input/input.h>
+> +#include <dt-bindings/leds/common.h>
+>  #include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
+>  
+>  / {
+> @@ -288,6 +289,35 @@ lcd_dcdc_en_pin_a: lcd-dcdc-en-active {
+>  
+>  };
+>  
+> +&pm8941_lpg {
+> +	status = "okay";
+> +
+> +	qcom,power-source = <1>;
+> +
+> +	rgb-led {
+> +		color = <LED_COLOR_ID_RGB>;
+> +		function = LED_FUNCTION_STATUS;
+> +
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		led@1 {
+> +			reg = <7>;
+> +			color = <LED_COLOR_ID_RED>;
+> +		};
+> +
+> +		led@2 {
+> +			reg = <6>;
+> +			color = <LED_COLOR_ID_GREEN>;
+> +		};
+> +
+> +		led@3 {
+> +			reg = <5>;
+> +			color = <LED_COLOR_ID_BLUE>;
+> +		};
+> +	};
+> +};
+> +
+>  &rpm_requests {
+>  	pm8941-regulators {
+>  		compatible = "qcom,rpm-pm8941-regulators";
+> 
