@@ -2,135 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F6AF522CFF
-	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 09:16:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B0BA522D09
+	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 09:20:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238466AbiEKHQx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 May 2022 03:16:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45788 "EHLO
+        id S242782AbiEKHUu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 May 2022 03:20:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59584 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241184AbiEKHQu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 May 2022 03:16:50 -0400
-Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDAEF66AFE;
-        Wed, 11 May 2022 00:16:47 -0700 (PDT)
-Received: (Authenticated sender: miquel.raynal@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 2F5AF1C0002;
-        Wed, 11 May 2022 07:16:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1652253406;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=fOqxb4Qu9rmih6DzG9zt5c/lYLp6jBz4NYLyC5x7wow=;
-        b=BzgOuVt+7Zca6d+dNLk2gWvrAkAqOfykz9eziVZyd3Z9zJzIwFb2oIETTedQIGbTi6y4sg
-        5Ska0+kn3yD2mX3EOatDjrPVRqosF9cWc8TqaStubN2zIj04GVmiY3J3yLZ85Hw/0W9Glz
-        iYs5UgjNHwcyWrRXrp0N1JNc2K9c2uXetfAz/X+T8Zhgbk5CC4vHdm3R2ckSPZ5euvDjDX
-        hGkO28k69Fs264A8+2uJhsNLNFwgoD8LCq5GavzW0yQgRYtMZIByxNKLPWJA6tHRCiOz7A
-        iaBIrElYm74U2o+vlc1PkgcTQZ9lWGzdvKWorcZF4M28rQCr1xrQ2/ma4mHWqA==
-Date:   Wed, 11 May 2022 09:16:43 +0200
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Mikhail Zhilkin <csharper2005@gmail.com>
-Cc:     Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        NOGUCHI Hiroshi <drvlabo@gmail.com>,
-        Hauke Mehrtens <hauke@hauke-m.de>,
-        Karim <Karimdplay@gmail.com>, M <x1@disroot.org>,
-        linux-mtd@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH] mtd: parsers: add support for Sercomm partitions
-Message-ID: <20220511091643.064f9d13@xps13>
-In-Reply-To: <ede9e050-3b60-ba0e-c626-044f7825adb7@gmail.com>
-References: <20220329122016.4122899-1-csharper2005@gmail.com>
-        <20220330100958.57dc4d61@xps13>
-        <ede9e050-3b60-ba0e-c626-044f7825adb7@gmail.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 3.17.7 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        with ESMTP id S242760AbiEKHUs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 May 2022 03:20:48 -0400
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87FA6E032
+        for <devicetree@vger.kernel.org>; Wed, 11 May 2022 00:20:44 -0700 (PDT)
+Received: by mail-ej1-x62f.google.com with SMTP id m20so2152840ejj.10
+        for <devicetree@vger.kernel.org>; Wed, 11 May 2022 00:20:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=1arvzVCGhx/u2B2mNNK8MUC7PUwBoteRJKwb7bxCHBk=;
+        b=es/5QJb8i1Apn33h4DppkcttqYKh1l7mWyo9SZwDytH2IUHPf0OgM0LCEVhbLeMVeM
+         VZo3MFJkVpTfZqkhS4F5WPCH58M+XOt9VQtYnpvwRXX5QIWhLwjOUQjFOCqiAcaqgkpp
+         sAKFeIbMK45BUZ7PBoGWbWVkSO0gSejrfEVfBp98eJA8Ic4ExwjQy3Lqna5t97aJX4SE
+         ACnygM+6n24f0T6cTEr/mqM9jJJtO6gmnqssQ9a6Rv11ASu/xGj2+524OTdtDFkg6ONl
+         daGlb3NKiR9CQOIyuVCCleVkrAJeMIjd3UYFBu/Si+d2NwXLnXmjwEgeHOyuU397zjzd
+         hoIw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=1arvzVCGhx/u2B2mNNK8MUC7PUwBoteRJKwb7bxCHBk=;
+        b=rvdli+2iyoJeLiZfiAO8iLTG1hvQUlaq6tQtGHi2jDb3bukUt5Nht/fhk4NXCsYZJ8
+         ef3ry2IdpVaWjxUPTnAO6M44ntep1MrVnK/Jv9gyRie99oM0Ma9tIGGN6SEhGaElbfm3
+         YuN0iG5lWGyqsB5vj6QWzubAnuV4XZhNvnIW9TU5ZKgD/dqLpqZLAP1ZeT0497Qzp60J
+         95eUzIpVeNkWMW5I/oehXuLPeOUctSghzM0mxbE77dBsa8eTPWpOi4SwDD6kUl2etXt0
+         m82SNnRvfD2df/rdj/zC/sCl8HiVvL89B1FIBKbNf+EqKD3Pq1MujVPclT7lq55fFFry
+         +9PQ==
+X-Gm-Message-State: AOAM533m8IrPUiErfkxLr0599eydYS6nD0cV74HnJEb99aBOQQ107NlG
+        S+bHbykT9nwp0Y7oRTixangDIQ==
+X-Google-Smtp-Source: ABdhPJzMGjuwnxoY9B7jruVulbsFMLwsfx518TPhcbHoAP0n/EVq1zmT5G6uKK75BZ6E8vUFuG8ZiQ==
+X-Received: by 2002:a17:906:5006:b0:6ce:3762:c72e with SMTP id s6-20020a170906500600b006ce3762c72emr22907379ejj.30.1652253643118;
+        Wed, 11 May 2022 00:20:43 -0700 (PDT)
+Received: from [192.168.0.253] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id q10-20020a1709064c8a00b006f3ef214de2sm616613eju.72.2022.05.11.00.20.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 11 May 2022 00:20:42 -0700 (PDT)
+Message-ID: <55dcf917-7ac0-efe9-8531-b77be682125a@linaro.org>
+Date:   Wed, 11 May 2022 09:20:41 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH] CHROMIUM: arm64: dts: qcom: Add sc7180-gelarshie
+Content-Language: en-US
+To:     Julius Werner <jwerner@chromium.org>
+Cc:     Doug Anderson <dianders@chromium.org>,
+        =?UTF-8?Q?Krzysztof_Koz=c5=82owski?= <k.kozlowski.k@gmail.com>,
+        Mars Chen <chenxiangrui@huaqin.corp-partner.google.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>
+References: <20220330090947.9100-1-chenxiangrui@huaqin.corp-partner.google.com>
+ <a0eb6bf9-256a-29b1-2211-496df710f531@linaro.org>
+ <CAD=FV=UjyLofXZqnj=bL89fza5JS6O5Np9W-A4V4WK+na0hdrw@mail.gmail.com>
+ <b7ff08b8-60fb-7629-9399-3d5cca46ab9e@linaro.org>
+ <CAD=FV=Vx5g_xTRZGc9wW=ZLnfsOcubTYFcnYQRC5jLm+n3en0w@mail.gmail.com>
+ <606cc762-a0c2-49a4-3e5d-d2dbd4595bc7@linaro.org>
+ <CAD=FV=W_SA-3PfDFi-Gkjk9pew5bchFNjQhXX8MkZyuy5UohEQ@mail.gmail.com>
+ <CAJKOXPdt5WTg4VU-TEW3dmPHR76dKg63XVxRQfa7ZSKc_jz6Ag@mail.gmail.com>
+ <CAD=FV=XQqQSQDNh-zXqEQkwsrax5Qb3OtfKZoQLkncJj_4mcQw@mail.gmail.com>
+ <daf66d41-42ac-50dc-3f8d-c261da8e452d@linaro.org>
+ <CAD=FV=WhA=n_=Ys6NfedPtNPddL81HnG6Qws_R+vq9w8Nrsn5A@mail.gmail.com>
+ <ce2ea308-b63d-ad27-4cea-7353268f8ebb@linaro.org>
+ <CAODwPW857CkH0+ZnBaUeowW4te-hSy6nrdeeX6-OLPOs5TptsQ@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CAODwPW857CkH0+ZnBaUeowW4te-hSy6nrdeeX6-OLPOs5TptsQ@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Mikhail,
+On 11/05/2022 04:39, Julius Werner wrote:
+>> Wait, we agreed that you don't consider them identical, didn't we? If
+>> they are identical, you do not need rev4 at all. So they are not
+>> identical...
+> 
+> Well, they are identical until they're not. We intend them to be
+> identical. But for practical purposes it does sometimes happen that
+> two board revisions which were meant to be indistinguishable by
+> software end up needing to be distinguished at a later point, when
+> both the hardware and firmware can no longer be changed. We need to
+> allow an escape hatch for that case. It does not happen often, so just
+> treating them all as separate boards from the start is not a scalable
+> solution. DTBs are not free when they all need to be packaged in the
+> same kernel image.
 
-csharper2005@gmail.com wrote on Tue, 10 May 2022 23:07:23 +0300:
+You split more important part of my message, ignoring the point.
 
-> Hi Miquel,
->=20
-> On 3/30/2022 11:09 AM, Miquel Raynal wrote:
-> > Hi Mikhail,
-> >
-> > csharper2005@gmail.com wrote on Tue, 29 Mar 2022 12:20:16 +0000:
-> > =20
-> >> This adds an MTD partition parser for the Sercomm partition table that
-> >> is used in some Beeline, Netgear and Sercomm routers.
-> >>
-> >> The Sercomm partition map table contains real partition offsets, which
-> >> may differ from device to device depending on the number and location =
-of
-> >> bad blocks on NAND.
-> >>
-> >> Device tree example:
-> >> partitions {
-> >> 	compatible =3D "sercomm,sc-partitions", "fixed-partitions";
-> >> 	#address-cells =3D <1>;
-> >> 	#size-cells =3D <1>;
-> >>
-> >> 	partition@0 {
-> >> 		label =3D "u-boot";
-> >> 		reg =3D <0x0 0x100000>;
-> >> 		scpart-id =3D <0>;
-> >> 		read-only;
-> >> 	};
-> >> }; =20
-> > You'll need a DT binding patch and Rob's ack! =20
->=20
-> I hope that I near to finish with DT binding...
->=20
-> Link:
-> https://lore.kernel.org/all/20220510162314.20810-1-csharper2005@gmail.com/
->=20
-> Link:
-> https://lore.kernel.org/all/20220510162403.20861-1-csharper2005@gmail.com/
->=20
-> >> This is essentially the same code as proposed by NOGUCHI Hiroshi
-> >> <drvlabo@gmail.com> here: =20
-> > I would credit Hiroshi with a Suggested-by at least =20
->=20
-> I read submitting patches rules again and thought that Signed-off-by is
-> suitable for this case. Is this ok?
+So you choose they are not identical, fine. Why insisting on adding
+fallback compatible while not keeping bindings updated? Just don't add
+the compatible and work on rev3 or rev4. Doug even once wrote "_we don't
+know_ if -rev7 and -rev8 are compatible", so don't make them compatible.
+Don't add fallbacks or some generic unspecified front-compatibles and
+just work on revision.
 
-Either you take his work almost like it is and he must be the author
-*and* the first signed-off-by line, or you take the authorship if you
-think you did enough modifications to the code and in this case you can
-either credit him with a suggested-by before your signed-off, or you
-can credit him with a co-developed-by + his signed-off and then yours.
+> 
+>> Right now it's not possible to validate QCOM DTSes against DT bindings
+>> because they throw big fat warnings about undocumented top compatibles.
+>> This is a downside for us.
+> 
+> But that's a solvable problem, right? As I understand, what Doug was
+> initially just asking was whether it made _sense_ to document all of
+> these... not that we couldn't do it. Then this whole thread went down
+> a rabbit hole of whether our compatible assignments are allowed in the
+> first place. If we can compromise on this discussion by just doing
+> whatever needs to be done to make the tool happy, I think(?) we can
+> provide that.
 
->=20
-> Link:
-> https://lore.kernel.org/all/20220510162655.21011-1-csharper2005@gmail.com/
->=20
-> >> https://github.com/openwrt/openwrt/pull/1318#issuecomment-420607394 =20
-> > And use a Link: tag for this.
-> > =20
-> Fixed, thanks!
->=20
-> Link:
-> https://lore.kernel.org/all/20220510162655.21011-1-csharper2005@gmail.com/
->=20
-> > Thanks,
-> > Miqu=C3=A8l =20
+None of recent patches from Chromium were doing it, even after
+complaining from my side, so why do you suddenly believe that it is
+"doable"? If yes, please start doing it and fix the DTSes which you
+already submitted without bindings.
+
+To remind - entire discussion started with Doug saying it is pure
+overhead for him.
+
+> 
+>> Remember, you do not have to use Devicetree or Linux at all if it causes
+>> you some downsides... No one is forced. :) If you choose to use it,
+>> sorry, it comes with some requirements like being following Devicetree
+>> specification or the binding guidelines.
+> 
+> Woah... that is maybe a bit extreme, don't you think? 
+
+Yes, it was sarcasting. :) But yeah, using Linux and DTS comes now with
+DT schema. Please document the bindings in DT schema. That's the
+drawback of using mainline...
 
 
-Thanks,
-Miqu=C3=A8l
+Best regards,
+Krzysztof
