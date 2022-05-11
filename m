@@ -2,137 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3ACDF52290E
-	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 03:40:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4EB24522932
+	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 03:51:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239184AbiEKBkD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 May 2022 21:40:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46782 "EHLO
+        id S240789AbiEKBvT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 May 2022 21:51:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54700 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234515AbiEKBkD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 May 2022 21:40:03 -0400
-Received: from mail-ua1-x930.google.com (mail-ua1-x930.google.com [IPv6:2607:f8b0:4864:20::930])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41111260863;
-        Tue, 10 May 2022 18:40:01 -0700 (PDT)
-Received: by mail-ua1-x930.google.com with SMTP id z15so211647uad.7;
-        Tue, 10 May 2022 18:40:01 -0700 (PDT)
+        with ESMTP id S240796AbiEKBvR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 May 2022 21:51:17 -0400
+Received: from alexa-out-sd-01.qualcomm.com (alexa-out-sd-01.qualcomm.com [199.106.114.38])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6230606E0;
+        Tue, 10 May 2022 18:51:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=CcFxQLzTZRJwr99fvgXAPxv27Gu79cyIN89beQ0h8+I=;
-        b=doQTqwTJY/0aNgS3TuLFjyoXwLksQMSfsszsNSnDHaolf1MYeOl9gG5O24PLVU82fH
-         btXj6S4frOw6tM9Z8GDA3by2QXpXn/WRgFG2WHiPhccEtDXkigJ3McQdvck16+qFbQUE
-         zcajmkr9sYjabxlbjMGVYu3hiaVg9TVfrkJcfEgzK0w/ftyVRIOUzjJrdJFVyHoMfYz1
-         xTTsT4FPfpa6wRskPwjoM8B5YNU8mRgis934ucNRgBsKSZbXoFHAdgPjgO6p5rGhYd9W
-         T+jYjGuPqxjbF18YNLyhCe27fVQsAQxm7h+Farsbe/wFNi60+8nVHRybTq1F8v5W8g5s
-         KStQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=CcFxQLzTZRJwr99fvgXAPxv27Gu79cyIN89beQ0h8+I=;
-        b=jLU/Bi9RKtgj4NsbUgcjCxlFbPqqc7aWU11+PkvTQ/AvHjpmxtRKaHbJ+ULBVYOruA
-         4QM9wVQermynbIW1dHcEKNDBgCZeQ0GxM4ZWi4/KBDkD9tn14Cjkd2SPBpCan/Er6rqW
-         VJH0zmIsV+BxTN55Wfm8dW49zTaW/peo+9YstNxAgQCStpMhso9yn8GF57Pyg2gfVH+G
-         s1pyhjZIjoFhM1pramAArkL5vDks7r+UohvG7IZ7vWFLxmLoGeqjla98a5+R+L6R6hK3
-         5EPfb6TCKWB0iL0xWBarvVEidrW+7EGP6UMzO+6Q63y4/70XECEgF/vH499If+HqLxE7
-         d+QA==
-X-Gm-Message-State: AOAM533bKQXDE8qJrQHnDl6LaI5h1TjUZIwoW3kBXzC1DlHV++Jc0zIY
-        CCK95e/OyCjhWGYuhzeYIuAhDBApFORSimvJFA==
-X-Google-Smtp-Source: ABdhPJwOdeGJuYqe4UdD24r6xFX8A4WORqnypLWn7xKLOUFSl3SkCt3/PITp6+sTRwqH8HOqqFo3SqgByFDcT98cVao=
-X-Received: by 2002:ab0:6f95:0:b0:362:8cb3:36f3 with SMTP id
- f21-20020ab06f95000000b003628cb336f3mr12861637uav.46.1652233200103; Tue, 10
- May 2022 18:40:00 -0700 (PDT)
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1652233872; x=1683769872;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=bGoWUSVkBi0VXKTbuYsdajcXGv1TjqD5Cu56Xf2zl10=;
+  b=CU744RWHpoPzi4UIdfb/vRjLY//Fmll07FWhSeIsVF2pB+ZAzQeK1Jj2
+   VzyO36VkciC4QKRaazlG6IiAfZ1IDXLN/rTaaPcOeaqyIov6Kc3Swru6M
+   D28ioiNm4BPmqI7fHUnmlyP8S3vPm3hTC668yc0V7Sn/1T2cyLw7STWFg
+   k=;
+Received: from unknown (HELO ironmsg05-sd.qualcomm.com) ([10.53.140.145])
+  by alexa-out-sd-01.qualcomm.com with ESMTP; 10 May 2022 18:51:11 -0700
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg05-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 May 2022 18:51:11 -0700
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Tue, 10 May 2022 18:51:11 -0700
+Received: from hu-pkondeti-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Tue, 10 May 2022 18:51:04 -0700
+Date:   Wed, 11 May 2022 07:21:01 +0530
+From:   Pavan Kondeti <quic_pkondeti@quicinc.com>
+To:     Pavan Kondeti <quic_pkondeti@quicinc.com>
+CC:     Matthias Kaehlcke <mka@chromium.org>,
+        Krishna Kurapati <quic_kriskura@quicinc.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Andy Gross" <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Felipe Balbi <balbi@kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Doug Anderson <dianders@chromium.org>,
+        Mathias Nyman <mathias.nyman@intel.com>,
+        <devicetree@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-usb@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-pm@vger.kernel.org>, <quic_ppratap@quicinc.com>,
+        <quic_vpulyala@quicinc.com>
+Subject: Re: [v15 2/6] usb: host: xhci-plat: Enable wakeup based on children
+ wakeup status
+Message-ID: <20220511015101.GB23843@hu-pkondeti-hyd.qualcomm.com>
+References: <1651740973-7944-1-git-send-email-quic_kriskura@quicinc.com>
+ <1651740973-7944-3-git-send-email-quic_kriskura@quicinc.com>
+ <YnVAZSZYQvIJxOHv@google.com>
+ <20220509033843.GB9170@hu-pkondeti-hyd.qualcomm.com>
 MIME-Version: 1.0
-References: <20220510091654.8498-1-warp5tw@gmail.com> <20220510091654.8498-9-warp5tw@gmail.com>
- <Yno8KMycNbJ+VGtc@smile.fi.intel.com>
-In-Reply-To: <Yno8KMycNbJ+VGtc@smile.fi.intel.com>
-From:   Tyrone Ting <warp5tw@gmail.com>
-Date:   Wed, 11 May 2022 09:39:48 +0800
-Message-ID: <CACD3sJYVyV_fFJu9zXJGL1ro02KnkHoeNNSNB8O46FRwd6=-BA@mail.gmail.com>
-Subject: Re: [PATCH v4 8/9] i2c: npcm: Remove own slave addresses 2:10
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc:     avifishman70@gmail.com, tmaimon77@gmail.com, tali.perry1@gmail.com,
-        venture@google.com, yuenn@google.com, benjaminfair@google.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        wsa@kernel.org, jarkko.nikula@linux.intel.com,
-        semen.protsenko@linaro.org, sven@svenpeter.dev, jsd@semihalf.com,
-        lukas.bulwahn@gmail.com, olof@lixom.net, arnd@arndb.de,
-        tali.perry@nuvoton.com, Avi.Fishman@nuvoton.com,
-        tomer.maimon@nuvoton.com, KWLIU@nuvoton.com, JJLIU0@nuvoton.com,
-        kfting@nuvoton.com, openbmc@lists.ozlabs.org,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20220509033843.GB9170@hu-pkondeti-hyd.qualcomm.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andy:
+On Mon, May 09, 2022 at 09:08:43AM +0530, Pavan Kondeti wrote:
+> On Fri, May 06, 2022 at 08:36:31AM -0700, Matthias Kaehlcke wrote:
+> > On Thu, May 05, 2022 at 02:26:09PM +0530, Krishna Kurapati wrote:
+> > > device_wakeup_path() tells if any of the children devices needs
+> > > wakeup. Use this hint to enable/disable wakeup of our device. This
+> > > helps the parent device of xhci-plat (like sysdev) to retrieve
+> > > the wakeup setting via device_wakeup_path().
+> > > 
+> > > Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
+> > > ---
+> > >  drivers/usb/host/xhci-plat.c | 8 ++++++++
+> > >  1 file changed, 8 insertions(+)
+> > > 
+> > > diff --git a/drivers/usb/host/xhci-plat.c b/drivers/usb/host/xhci-plat.c
+> > > index 649ffd8..ad585fa 100644
+> > > --- a/drivers/usb/host/xhci-plat.c
+> > > +++ b/drivers/usb/host/xhci-plat.c
+> > > @@ -415,6 +415,14 @@ static int __maybe_unused xhci_plat_suspend(struct device *dev)
+> > >  	if (pm_runtime_suspended(dev))
+> > >  		pm_runtime_resume(dev);
+> > >  
+> > > +	if (device_wakeup_path(dev)) {
+> > > +		if (!device_may_wakeup(dev))
+> > > +			device_wakeup_enable(dev);
+> > > +	} else {
+> > > +		if (device_may_wakeup(dev))
+> > > +			device_wakeup_disable(dev);
+> > > +	}
+> > 
+> > This code is not self-explantatory and deserves a comment.
+> > 
+> > Enabling/disabling wakeup for the purpose if signalling is a bit of a
+> > hack. It might be an acceptable hack as long as it has no side effects.
+> > However with the current implementation the wakeup state of the xHCI can
+> > be different after resuming than it was before going to suspend:
+> > 
+> > after boot
+> >   grep -h xhci /sys/class/wakeup/*/name
+> >     => xhci-hcd.14.auto
+> > 
+> > after suspend w/o wakeup capable device
+> >   grep -h xhci /sys/class/wakeup/*/name
+> >     => no results
+> > 
+> > after suspend with wakeup capable device
+> >   grep -h xhci /sys/class/wakeup/*/name
+> >     => xhci-hcd.14.auto
+> > 
+> > The hack shouldn't alter the wakeup state 'persistently', i.e. you'll have
+> > to restore it on resume, as in Pavan does in his reply to '[PATCH v14 2/7]
+> > PM / wakeup: Add device_children_wakeup_capable()' (it needs to be done
+> > conditionally though).
+> 
+> I am worried that we are not doing the right thing here. why should the
+> xhci-plat goes against the wishes of the user space policy here? Can we NOT
+> just do anything here? If some one wants xhci-plat to wakeup all the time,
+> dwc3 will be configured to wakeup the system provided that the support is
+> available. This way we don't break any existing users of xhci-plat i.e not
+> enabling wakeup from the kernel.
+> 
+Krishna,
 
-Thank you for your comments and they will be addressed.
+can we please drop this patch and use device_wakeup_path() and verify the
+following cases.
 
-Andy Shevchenko <andriy.shevchenko@linux.intel.com> =E6=96=BC 2022=E5=B9=B4=
-5=E6=9C=8810=E6=97=A5 =E9=80=B1=E4=BA=8C =E4=B8=8B=E5=8D=886:19=E5=AF=AB=E9=
-=81=93=EF=BC=9A
->
-> On Tue, May 10, 2022 at 05:16:53PM +0800, Tyrone Ting wrote:
-> > From: Tali Perry <tali.perry1@gmail.com>
-> >
-> > NPCM can support up to 10 own slave addresses.
-> > In practice, only one address is actually being used.
-> > In order to access addresses 2 and above, need to switch
-> > register banks. The switch needs spinlock.
-> > To avoid using spinlock for this useless feature
-> > removed support of SA >=3D 2.
->
-> > Also fix returned slave event enum.
-> >
-> > Remove some comment since the bank selection is not
-> > required. The bank selection is not required since
-> > the supported slave addresses are reduced.
->
-> Fancy indentation. Please fix it in all your commit messages where it app=
-lies.
->
-> ...
->
-> > +     if (addr_type > I2C_SLAVE_ADDR2 && addr_type <=3D I2C_SLAVE_ADDR1=
-0) {
-> > +             dev_err(bus->dev,
-> > +                     "try to enable more then 2 SA not supported\n");
->
-> Make it one line and drop {}.
->
-> > +     }
->
-> ...
->
-> > +     if (addr_type > I2C_SLAVE_ADDR2 && addr_type <=3D I2C_SLAVE_ADDR1=
-0) {
-> > +             dev_err(bus->dev,
-> > +                     "get slave: try to use more then 2 slave addresse=
-s not supported\n");
->
-> As per above be consistent with abbreviations ("SA" here, which makes lin=
-e
-> shorter) and follow the above recommendation.
->
-> > +     }
->
-> --
-> With Best Regards,
-> Andy Shevchenko
->
->
+1. one of the downstream USB device supports wakeup and xhci-plat wakeup is enabled
+2. one of the downstream USB device supports wakeup and xhci-plat wakeup is
+disabled
+3. none of the downstream USB device supports wakeup (or disable) and
+xhci-plat wakeup is enabled.
+4. none of the downstream USB device supports wakeup (or disable) and
+xhci-plat wakeup is disabled.
 
-Best Regards,
-Tyrone
+We don't want to enable xhci-plat wakeup capability like we do in this patch
+and potentially break any other platform. Lets leave the policy to the user
+space and rely on wakeup path to see if we can achieve the desired result.
+
+Thanks,
+Pavan
