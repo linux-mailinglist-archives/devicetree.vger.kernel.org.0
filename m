@@ -2,75 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C7C53522F49
-	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 11:22:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F389D522F93
+	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 11:39:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231633AbiEKJW6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 May 2022 05:22:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35750 "EHLO
+        id S241259AbiEKJgu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 May 2022 05:36:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53878 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230122AbiEKJW5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 May 2022 05:22:57 -0400
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 787986BFF8
-        for <devicetree@vger.kernel.org>; Wed, 11 May 2022 02:22:54 -0700 (PDT)
-Received: by mail-ej1-x629.google.com with SMTP id ch13so2720546ejb.12
-        for <devicetree@vger.kernel.org>; Wed, 11 May 2022 02:22:54 -0700 (PDT)
+        with ESMTP id S241096AbiEKJgo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 May 2022 05:36:44 -0400
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C19A41A07D;
+        Wed, 11 May 2022 02:36:42 -0700 (PDT)
+Received: by mail-ed1-x529.google.com with SMTP id g20so1826532edw.6;
+        Wed, 11 May 2022 02:36:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=p09vjTM88gJEpe+RFeDanDG0F3s0eSagXk6IVVR5d+Q=;
-        b=gycWNXzYJ83DgmFANHQCSScS3mDGlj0/fGHnB3snL83/1khVXhMdcgDA/lVe0QC3NQ
-         PTMdzh/2DEilxLN+f86HdOJiG7ANb96rA1/Eqvcw+JpqkscQ9TqR/ixo8uP3t3zY94D/
-         C8pY9Wsfdvk1IquI480xzrVuR3/YhBQcv4Dzh96aKNfNJau6GtGpbCRs2vcZ3QNgfoak
-         Uqv7tW05NMOoDfDKFkQNs+KOCNl1HdssIQ9K6k70KIcHho0nH6+WqfSUGyHYdtZGWRVQ
-         fNX755lUVs3MLfEVnA6G/7WE21rqXABlu5DP+je9pdRBXuma0CIV1/HXsxMxnRe4hxw6
-         CLFg==
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=70Qlhkcc4Ow/r5C//bTIZEag8dRv3Msy3Svgs6lC2hI=;
+        b=flahq3cL2dnd5v3fLrVHVfP6KORvv3Nm+FhgP/SSZP+l4mdQ3hpY3kR5byA1sMrvjT
+         bP7q/WMKmli69dcZGaEctSVq0hHf1pjHd+vSIT+ok5ew/Ag03r69OYUYcoZkc+Z3dMZq
+         WIkBDEyaA6im6AIRuFHLyVD6wVpJmIHhWpvZ1Au4nvxsuSWX+8/js4xYyl2w4v2ACn8J
+         oFgsH/ZgjKRklnHzMkmsqXbBwUcDjtCHchd9wMmkSzaxuMX8e0od6at3Q+H4pVaVQ46E
+         7Ci/ROMxCIhJ6BHxuwiPEycQlwFkd1bzE/9IOckbsmLyrgYdAlBu5UrzgLLCl+zm5xsc
+         ydgg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=p09vjTM88gJEpe+RFeDanDG0F3s0eSagXk6IVVR5d+Q=;
-        b=Z/ohZiFRmgK+mDof7ow7p5Hq3262GmlY6gJ7iYJ1hjgwoku3qDMU43NfrKNUrvmz1n
-         4pd85SOBGG1Huowjx/mj0XRtbhEMYAK+qPfOnaLvaX0z4xqpuwD6O15+sCJm1YwuVUJp
-         q/soAubnXQ07fSgGGy19abDwp/BHZSpKQ+PiaHyaq+3KAY4wlQ5mL4L8L1IduxRMtIrC
-         3d1BZHsglI+Ixjk7urwF0rHE9QkTdhe7WAZg/+Inne1yUEbZ6D6hNYUQkOGGZ+AYWh1z
-         Zk1hK/CltSkuV36Z0LuQWrS9ONZJeC7ozV/eN0JC6UePoic8n37xBFjlKZw20WXOWckq
-         en7Q==
-X-Gm-Message-State: AOAM53050w9MDJn+09tFmjqL8utTJomi4PoMdiLd/pNNmk2FFlgXt8f5
-        vVn8+AVC5HG7WcKI0PXiIH4mGQ==
-X-Google-Smtp-Source: ABdhPJxx2qqzNoIfVTNAmwZ1XINIWzZC1gYKAr4taH6uPlmjrldY/hW+qryscbswJfH9nYxE7MOntg==
-X-Received: by 2002:a17:907:3c81:b0:6e6:cf3e:6e14 with SMTP id gl1-20020a1709073c8100b006e6cf3e6e14mr23605572ejc.181.1652260973014;
-        Wed, 11 May 2022 02:22:53 -0700 (PDT)
-Received: from [192.168.0.152] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id cb13-20020a0564020b6d00b0042617ba639asm906797edb.36.2022.05.11.02.22.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 11 May 2022 02:22:52 -0700 (PDT)
-Message-ID: <51742635-23df-a534-eff4-81f021eeb474@linaro.org>
-Date:   Wed, 11 May 2022 11:22:51 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH v4 1/3] dt-bindings: Add Sercomm (Suzhou) Corporation
- vendor prefix
-Content-Language: en-US
-To:     Mikhail Zhilkin <csharper2005@gmail.com>,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=70Qlhkcc4Ow/r5C//bTIZEag8dRv3Msy3Svgs6lC2hI=;
+        b=amIl+OngMofPNL6uZV8nrJLaNT1/WnqzrMEGhGVZtoAjjlGRr2Qafh+EvIbgEffXIr
+         zfy9Qn/k7WVEjZyKPj434OVxte3MmuRPUS8YIef6gtWpD7PqGq6pQNgeNKQUDCTiOUUX
+         WrsD33i1S/HKnn0tubSypFuNyXzcPB05VCmuXkAZI4uVRH3vvp3/JMKPt56id7F7bluN
+         eI8KcL48Wu06Po3MTAVRcFTzBLNWTwU1IrLeWEUJKQYDTIn9qSSVYuXUXQLYF4Jd8eWb
+         pyTDeys1pPS17JgKxba7pMtFCM9uOhE7QTdOHuNGJ3ctDIdjJM+64JQAGUHIe+c8Wr9N
+         lbbw==
+X-Gm-Message-State: AOAM533sojFqHcLyk/afiHtNNvNyzMGjdQxafyERaSiycjdTSpV9ooSw
+        vaXDFKd7WGzy+yXBnueyagk=
+X-Google-Smtp-Source: ABdhPJx8eOqhXvG8IguKS02jcUHHeREfjnKpkk3qk3xLY82RHhp4Lk6jY+vKDSWdDEeIntvpnYiuGg==
+X-Received: by 2002:a05:6402:1a34:b0:425:ca01:58ec with SMTP id be20-20020a0564021a3400b00425ca0158ecmr27804005edb.373.1652261801188;
+        Wed, 11 May 2022 02:36:41 -0700 (PDT)
+Received: from skbuf ([188.25.160.86])
+        by smtp.gmail.com with ESMTPSA id z5-20020aa7cf85000000b00428b4381686sm878579edx.64.2022.05.11.02.36.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 11 May 2022 02:36:40 -0700 (PDT)
+Date:   Wed, 11 May 2022 12:36:38 +0300
+From:   Vladimir Oltean <olteanv@gmail.com>
+To:     =?utf-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Miquel Raynal <miquel.raynal@bootlin.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Karim <Karimdplay@gmail.com>, M <x1@disroot.org>
-References: <20220510161641.20655-1-csharper2005@gmail.com>
- <20220510162314.20810-1-csharper2005@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220510162314.20810-1-csharper2005@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Herve Codina <herve.codina@bootlin.com>,
+        =?utf-8?Q?Miqu=C3=A8l?= Raynal <miquel.raynal@bootlin.com>,
+        Milan Stevanovic <milan.stevanovic@se.com>,
+        Jimmy Lalande <jimmy.lalande@se.com>,
+        Pascal Eberhard <pascal.eberhard@se.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, netdev@vger.kernel.org,
+        Jean-Pierre Geslin <jean-pierre.geslin@non.se.com>,
+        Phil Edworthy <phil.edworthy@renesas.com>
+Subject: Re: [PATCH net-next v4 06/12] net: dsa: rzn1-a5psw: add Renesas
+ RZ/N1 advanced 5 port switch driver
+Message-ID: <20220511093638.kc32n6ldtaqfwupi@skbuf>
+References: <20220509131900.7840-1-clement.leger@bootlin.com>
+ <20220509131900.7840-7-clement.leger@bootlin.com>
+ <20220509160813.stfqb4c2houmfn2g@skbuf>
+ <20220510103458.381aaee2@xps-bootlin>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220510103458.381aaee2@xps-bootlin>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,20 +96,13 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/05/2022 18:23, Mikhail Zhilkin wrote:
-> Add "sercomm" vendor prefix for "Sercomm (Suzhou) Corporation".
+On Tue, May 10, 2022 at 10:34:58AM +0200, Clément Léger wrote:
+> > By the way, does this switch pass
+> > tools/testing/selftests/drivers/net/dsa/no_forwarding.sh?
 > 
-> Company website:
-> Link: https://www.sercomm.com/
-> 
-> Signed-off-by: Mikhail Zhilkin <csharper2005@gmail.com>
-> ---
->  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
->  1 file changed, 2 insertions(+)
+> Unfortunately, the board I have only has 2 ports availables and thus, I
+> can only test one bridge or two separated ports at a time... I *should*
+> receive a 4 ports one in a near future but that not yet sure.
 
-
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-
-Best regards,
-Krzysztof
+2 switch ports or 2 ports in total? h1 and h2 can be non-switch ports
+(should work with USB-Ethernet adapters etc).
