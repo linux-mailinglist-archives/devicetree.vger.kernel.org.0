@@ -2,76 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 06509523A69
-	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 18:34:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 845B7523A77
+	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 18:39:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344836AbiEKQeS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 May 2022 12:34:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44378 "EHLO
+        id S232049AbiEKQj2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 May 2022 12:39:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33742 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344818AbiEKQeJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 May 2022 12:34:09 -0400
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9FE7A239D9D
-        for <devicetree@vger.kernel.org>; Wed, 11 May 2022 09:34:06 -0700 (PDT)
-Received: by mail-ej1-x631.google.com with SMTP id i27so5155149ejd.9
-        for <devicetree@vger.kernel.org>; Wed, 11 May 2022 09:34:06 -0700 (PDT)
+        with ESMTP id S231387AbiEKQj0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 May 2022 12:39:26 -0400
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E46A6E8EE;
+        Wed, 11 May 2022 09:39:25 -0700 (PDT)
+Received: by mail-ej1-x62a.google.com with SMTP id i27so5183520ejd.9;
+        Wed, 11 May 2022 09:39:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=X1iafU9w9HibEKsV7xZQm5z++dkHC0xXg4frhDarPh8=;
-        b=B9Uw9wQQjPnoVHBln/eXPzgTlYXGEZ24QaSAUzzNYCocm/U8kan54zP85xdPM1eZAa
-         milg5R9lfno9eKeJnwaQZt9oZ23h6xqEJOxXXHU/U9rQPvqny3eRi/bZ8HvTpDZskv6f
-         sjTv+O28qv/u0uEzVOH1PEeJsiGbm5Dl9ntCKo2VxsG5mzvDxo2bJ1stJdtlxYrk/pV7
-         7Fq5ueUTuY8Zs/B2NmLACKIAiMPKTq5eFnE+g7rpX8uZGBJaLlCESQThqbdTNmFCX8XP
-         RxJ7Yg7UKEL+9eb6dm0G5FYx/WNO4e6QUgP8yGsGJLTQBC6tUShdelq3Q9RnVV9N3h43
-         CjCw==
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=wuJ85LzoJRTqUhxUdivNhhyhKIi6qZtS9mW54zLXzCI=;
+        b=iiKpqEho+iTsam9OSQMO7b0tE1w9WoUryaoiVxDtMeerHmXp30BR6A59hYZ1uoN+L+
+         cct+2DPf3NvH2LBE7HppPi4ZjBp7n755AdOSmQ98GHrt28pXEd8Qsn3pk/8zu8BP9NpU
+         72jRXVhdkkNo2t5Cgj4k8MkLpI1YnqVglZPeZN5Zh+UfM8HnEaFsT8uAEH706wQRRqpo
+         wZ1AMGdA9WEIvxJY2NMECCM8fUKWeKdAqVCsx3ArMu+Y9cIeWnIwdPOO5IncTe5uX7vg
+         ItbnLe67bUwKKD5GG8z5SQWR0kaLnukpldz07VITIdhIYXqjEM6C7odJ9VGLZXLGFZfC
+         pupA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=X1iafU9w9HibEKsV7xZQm5z++dkHC0xXg4frhDarPh8=;
-        b=nwRj2ZR346KD0YeENmDnV6xh2xMR1fw6r5WKN6YI1PRB192aadS2SMax7ezJxuUxG8
-         YL1A9EUgG5TlS38X2U65iFHvtNnOAF4fSqBN+8RTCzRDPOPR6Tp0LvMpSmWYmFJESerl
-         965mN+CXU6BmJb2YlBNSmb9pwaBlNx9OX1L4wUVwiOscSBCRGDiC4d8dLe45hf75QbZj
-         e3+Q9BNXuIEZiztRFiDb/XUoP5/golUrHTrKiIfhxteLhQYa9Kf8ixP5JNenpRtlF11u
-         l9VPgrnN/e8fGAuAk0hoygRZgmexGfZLgIGQyBcevA3f2EfqdrioKGAlOHAI7BA+ww7M
-         FoLw==
-X-Gm-Message-State: AOAM533tuHEfqGO/KjMYGSccd4sQuTvVdv/puiiEuoA0GXFEo/TPBbcq
-        vxFexeseNdNXDzCf7xTaqeukvA==
-X-Google-Smtp-Source: ABdhPJzCPDgGc/RsgVEhqtsm8HLW56qr5flZ2YiMoJ2hgzHNSm3o2A11UbEsqX9Z5X9WejdqezUvEA==
-X-Received: by 2002:a17:907:1c8e:b0:6f4:e24f:20e0 with SMTP id nb14-20020a1709071c8e00b006f4e24f20e0mr25175564ejc.227.1652286845508;
-        Wed, 11 May 2022 09:34:05 -0700 (PDT)
-Received: from [192.168.0.155] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id l9-20020aa7c3c9000000b0042617ba6388sm1391453edr.18.2022.05.11.09.34.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 11 May 2022 09:34:04 -0700 (PDT)
-Message-ID: <5c498985-64bb-b8ba-3e77-9cdb36dd1f16@linaro.org>
-Date:   Wed, 11 May 2022 18:34:03 +0200
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=wuJ85LzoJRTqUhxUdivNhhyhKIi6qZtS9mW54zLXzCI=;
+        b=wBD+YUOE/rsHQTV0yiabq9yQ1VKW08fdpjmpTgBlqc1gCoXMVGEGBI769ofuDGdEuP
+         pHfj/TvN/I0UCXZCwpz3aXbMeksn0OCTomHq1tf3ylc0pNVB/qMSwcCx+COUJibC2jY5
+         daPY3tJwHLTtSsaArK0VaWs1A1qp18DDd0Y+abGDQNKsJ8jmmsjVPiZI4rZXlpHWBSjs
+         9tLpsQ1WzinX3UpSU/L7mlWGerHH80XtRyUt8XlvLRG0jfLtR99TtUOjryBaGrhWs4Po
+         UvbzpobQKb1RfrAULKC3uqCyP5gvOD1MQX3U4NtbAAOez5FkyDQaiw2xoVpgt3vCsH/P
+         LsMQ==
+X-Gm-Message-State: AOAM531mPF7rfDyEZogeU6OyG/HgIte3JkEnCAsOo4O26H4VWV2RYdoK
+        /mE1vQPCn8v8/R9EkjpPxwM=
+X-Google-Smtp-Source: ABdhPJwVdUjdYNHQDUWiDOlIQIJ3TgAkOAOMXfzEukY8HEFYvt3YDNxs1GNlFUSIle37aTchXgIIDQ==
+X-Received: by 2002:a17:906:4fd5:b0:6f8:5aa9:6f13 with SMTP id i21-20020a1709064fd500b006f85aa96f13mr21390266ejw.267.1652287164116;
+        Wed, 11 May 2022 09:39:24 -0700 (PDT)
+Received: from archbook.localnet (84-72-105-84.dclient.hispeed.ch. [84.72.105.84])
+        by smtp.gmail.com with ESMTPSA id a7-20020a170906670700b006f3ef214e31sm1137536ejp.151.2022.05.11.09.39.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 11 May 2022 09:39:23 -0700 (PDT)
+From:   Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
+To:     Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Ezequiel Garcia <ezequiel@collabora.com>,
+        linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/3] dt-bindings: media: rockchip-vpu: Add RK3568 VEPU compatible
+Date:   Wed, 11 May 2022 18:37:54 +0200
+Message-ID: <2486415.XAZu0pfo7u@archbook>
+In-Reply-To: <bc4c395d-4e21-1d15-96be-00a5cad1d6f7@linaro.org>
+References: <20220511155309.2637-1-frattaroli.nicolas@gmail.com> <20220511155309.2637-2-frattaroli.nicolas@gmail.com> <bc4c395d-4e21-1d15-96be-00a5cad1d6f7@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH v6 1/3] dt-bindings: marvell: Document the AC5/AC5X
- compatibles
-Content-Language: en-US
-To:     Chris Packham <chris.packham@alliedtelesis.co.nz>,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        catalin.marinas@arm.com, will@kernel.org, andrew@lunn.ch,
-        gregory.clement@bootlin.com, sebastian.hesselbarth@gmail.com,
-        kostap@marvell.com, robert.marko@sartura.hr
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20220510231002.1160798-1-chris.packham@alliedtelesis.co.nz>
- <20220510231002.1160798-2-chris.packham@alliedtelesis.co.nz>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220510231002.1160798-2-chris.packham@alliedtelesis.co.nz>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,95 +77,82 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/05/2022 01:10, Chris Packham wrote:
-> Describe the compatible properties for the Marvell Alleycat5/5X switches
-> with integrated CPUs.
+On Mittwoch, 11. Mai 2022 18:00:09 CEST Krzysztof Kozlowski wrote:
+> On 11/05/2022 17:53, Nicolas Frattaroli wrote:
+> > The RK3568 and RK3566 have a Hantro VPU node solely dedicated to
+> > encoding. This patch adds a compatible for it, and also allows
+> > the bindings to only come with a vepu interrupt.
+> > 
+> > Signed-off-by: Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
+> > ---
+> >  .../devicetree/bindings/media/rockchip-vpu.yaml | 17 ++++++++++++++++-
+> >  1 file changed, 16 insertions(+), 1 deletion(-)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/media/rockchip-vpu.yaml b/Documentation/devicetree/bindings/media/rockchip-vpu.yaml
+> > index bacb60a34989..965ca80b5cea 100644
+> > --- a/Documentation/devicetree/bindings/media/rockchip-vpu.yaml
+> > +++ b/Documentation/devicetree/bindings/media/rockchip-vpu.yaml
+> > @@ -22,6 +22,7 @@ properties:
+> >            - rockchip,rk3288-vpu
+> >            - rockchip,rk3328-vpu
+> >            - rockchip,rk3399-vpu
+> > +          - rockchip,rk3568-vepu
+> >            - rockchip,px30-vpu
+> >        - items:
+> >            - const: rockchip,rk3188-vpu
+> > @@ -39,7 +40,9 @@ properties:
+> >  
+> >    interrupt-names:
+> >      oneOf:
+> > -      - const: vdpu
+> > +      - enum:
+> > +          - vdpu
+> > +          - vepu
+> >        - items:
+> >            - const: vepu
+> >            - const: vdpu
+> > @@ -76,6 +79,18 @@ required:
+> >  
+> >  additionalProperties: false
+> >  
+> > +allOf:
+> > +  # compatibles that end in -vepu should only have the vepu interrupt
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            pattern: "^[a-zA-Z0-9\\-,_.]+\\-vepu$"
 > 
-> Alleycat5:
-> * 98DX2538: 24x1G + 2x10G + 2x10G Stack
-> * 98DX2535: 24x1G + 4x1G Stack
-> * 98DX2532: 8x1G + 2x10G + 2x1G Stack
-> * 98DX2531: 8x1G + 4x1G Stack
-> * 98DX2528: 24x1G + 2x10G + 2x10G Stack
-> * 98DX2525: 24x1G + 4x1G Stack
-> * 98DX2522: 8x1G + 2x10G + 2x1G Stack
-> * 98DX2521: 8x1G + 4x1G Stack
-> * 98DX2518: 24x1G + 2x10G + 2x10G Stack
-> * 98DX2515: 24x1G + 4x1G Stack
-> * 98DX2512: 8x1G + 2x10G + 2x1G Stack
-> * 98DX2511: 8x1G + 4x1G Stack
+> Why not listing the compatible how I asked? This is the common way of
+> handling allOf:if:then per variant.
+
+Because I was afraid that if this wasn't general enough to apply to all
+future vepu-only instances of Hantro, then my patch might be bikeshed
+into requiring a v4. Clearly, my worries had the opposite effect.
+
+Also because I thought it was cool to use a pattern for this to enforce
+consistent naming in the bindings.
+
 > 
-> Alleycat5X:
-> * 98DX3500: 24x1G + 6x25G
-> * 98DX3501: 16x1G + 6x10G
-> * 98DX3510: 48x1G + 6x25G
-> * 98DX3520: 24x2.5G + 6x25G
-> * 98DX3530: 48x2.5G + 6x25G
-> * 98DX3540: 12x5G/6x10G + 6x25G
-> * 98DX3550: 24x5G/12x10G + 6x25G
+> https://lore.kernel.org/all/ea94f18d-3172-98bb-0892-a98236a08018@linaro.org/
 > 
-> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
-> ---
+> Your patches do not apply on next, so the set might not have been tested
+> by Rob's bot.
+
+Good to know. Once I send out v4 in a few days and maybe after some more
+opinions so I can stop bombarding the mailing list with tiny revisions
+of the same patch set, I will base it on linux-next.
+
+I'm happy to report though that this passes dt_binding_check with W=1
+without adding any new warnings. I do actually run those checks (and
+checkpatch) before submitting.
+
 > 
-> Notes:
->     Changes in v6:
->     - New
+> Best regards,
+> Krzysztof
 > 
->  .../bindings/arm/marvell/armada-98dx2530.yaml | 27 +++++++++++++++++++
->  1 file changed, 27 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/arm/marvell/armada-98dx2530.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/marvell/armada-98dx2530.yaml b/Documentation/devicetree/bindings/arm/marvell/armada-98dx2530.yaml
-> new file mode 100644
-> index 000000000000..6d9185baf0c5
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/arm/marvell/armada-98dx2530.yaml
-> @@ -0,0 +1,27 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/arm/marvell/armada-98dx2530.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Marvell Alleycat5/5X Platforms
-> +
-> +maintainers:
-> +  - Chris Packham <chris.packham@alliedtelesis.co.nz>
-> +
-> +properties:
-> +  $nodename:
-> +    const: '/'
-> +  compatible:
-> +    oneOf:
-> +
-> +      - description: Alleycat5 (98DX25xx)
-> +        items:
-> +          - const: marvell,ac5
 
-This is confusing and does not look correct. The DTS calls AC5 a SoC and
-you cannot have SoC alone. It's unusable without a SoM or board.
-
-> +
-> +      - description: Alleycat5X (98DX35xx)
-> +        items:
-> +          - const: marvell,ac5x
-> +          - const: marvell,ac5
-
-This entry looks correct except ac5x once is called a SoC and once a
-RD-AC5X board.
-
-It cannot be both. Probably you need third compatible, assuming AC5x is
-a flavor of AC5.
-
-items:
- - enum:
-     - marvell,rd-ac5x
- - const: marvell,ac5x
- - const: marvell,ac5
-
-> +
-> +additionalProperties: true
+Regards,
+Nicolas Frattaroli
 
 
-Best regards,
-Krzysztof
