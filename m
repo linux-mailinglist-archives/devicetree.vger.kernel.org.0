@@ -2,145 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E566522A8D
-	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 05:54:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BAE53522AC0
+	for <lists+devicetree@lfdr.de>; Wed, 11 May 2022 06:17:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230136AbiEKDyQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 May 2022 23:54:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59456 "EHLO
+        id S230269AbiEKEOQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 May 2022 00:14:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41570 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235083AbiEKDyM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 May 2022 23:54:12 -0400
-Received: from mail-oa1-x2a.google.com (mail-oa1-x2a.google.com [IPv6:2001:4860:4864:20::2a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C60654C414
-        for <devicetree@vger.kernel.org>; Tue, 10 May 2022 20:54:10 -0700 (PDT)
-Received: by mail-oa1-x2a.google.com with SMTP id 586e51a60fabf-edeb6c3642so1418401fac.3
-        for <devicetree@vger.kernel.org>; Tue, 10 May 2022 20:54:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=0WrSL/b+MR9+m4rRbjGXRX60B+r7zy7wkt64zUH48oY=;
-        b=rDNhyYBHwTL4zR2u6Rh91X182mgiFM7lrZSGXKOmY04hNhVAPm4Dgx0gU5cVJ2vGDC
-         VVK0s4uScAZKYRBD/jNDbgkWWuBV5j+CeByod0LNmbTJY6H1BdD52pzirbR50niNQOWs
-         4UcMfF4B2g4Ic9rYOGzl0LOSN1aaLtLb/R9U55fs4o/J0pMUPrqbzTdJSVKL4Fh78wGH
-         oqA+4Tao/oGIRZvarBpyi6x4Gmuur5E3YRVUVPWpq48UoXcyFBPUo67hsWk85HdW1Iyu
-         UKVBVAQsXQiIpeynG/0M9jNsljMLvTSFcolAfzNWxtFedgaFi3D/S+XxgXcjaVIGS2sh
-         xkqQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=0WrSL/b+MR9+m4rRbjGXRX60B+r7zy7wkt64zUH48oY=;
-        b=vIrjeTTHnrd6YFl+4/9ylWGohMLH5Pa+ouiUgtcxCXlg0rBa9gyUDrRXCgp7yZV5tT
-         OEC5HoissmLCkkbWO5PaotGiLMmSR00KJqEwjToJ36hQ0VMOWy3deKdUQ3sPETbr/+xq
-         YdjF9+lZoIUCVCOkSyZbJG6sbgt7QGwNAuXLs/w0pevxzNgJiLngmV90zxUt3NKND3dS
-         MgGNcb0vWTQWjne3PNJe8a46hJRL8K/cKQh7HjMPS6FhxIiKGEYa59wzSyprI0SeY13a
-         UeRb5KfU8TlizG13CfdioEmEUz1A8hd7gSuvvxmdI43VMWOGGDONgkna2FH+jKBdy3Z1
-         YGwQ==
-X-Gm-Message-State: AOAM530TJMxG8NxB2UEwjaWopgiFZPOiFaNLHl34FrVM+kXHOh1d+6MW
-        Jb4hLsurxEN/L+c0W3zHs9tZ7w==
-X-Google-Smtp-Source: ABdhPJyoFDZ6uvhFkWPUEbCyNMWvl/HBFzH2dTTIdFcRPaK+Uq/uWTzwMP5AeRGfoz4hWcMS4Eo26w==
-X-Received: by 2002:a05:6870:818a:b0:f1:1223:3afd with SMTP id k10-20020a056870818a00b000f112233afdmr497822oae.271.1652241250132;
-        Tue, 10 May 2022 20:54:10 -0700 (PDT)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id l6-20020a056830154600b0060603221269sm397354otp.57.2022.05.10.20.54.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 May 2022 20:54:09 -0700 (PDT)
-Date:   Tue, 10 May 2022 22:54:07 -0500
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Marijn Suijten <marijn.suijten@somainline.org>
-Cc:     phone-devel@vger.kernel.org, Pavel Machek <pavel@ucw.cz>,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Martin Botka <martin.botka@somainline.org>,
-        linux-arm-msm@vger.kernel.org, linux-leds@vger.kernel.org,
-        Rob Herring <robh@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229445AbiEKEOP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 May 2022 00:14:15 -0400
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF01472228;
+        Tue, 10 May 2022 21:14:11 -0700 (PDT)
+Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=phil.fritz.box)
+        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <heiko@sntech.de>)
+        id 1nodjj-0000V0-71; Wed, 11 May 2022 06:14:07 +0200
+From:   Heiko Stuebner <heiko@sntech.de>
+To:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        linux-rockchip@lists.infradead.org
+Cc:     Heiko Stuebner <heiko@sntech.de>, Liang Chen <cl@rock-chips.com>,
+        Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
+        Peter Geis <pgwipeout@gmail.com>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Satya Priya <quic_c_skakit@quicinc.com>
-Subject: Re: [PATCH 2/4] leds: qcom-lpg: Add PM660L configuration and
- compatible
-Message-ID: <YnszX1wdQhUSkgyH@builder.lan>
-References: <20220507221123.2201668-1-marijn.suijten@somainline.org>
- <20220507221123.2201668-2-marijn.suijten@somainline.org>
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Wunderlich <frank-w@public-files.de>
+Subject: Re: (subset) [PATCH 1/3] arm64: dts: rockchip: enable otg/drd operation of usb_host0_xhci in rk356x
+Date:   Wed, 11 May 2022 06:14:05 +0200
+Message-Id: <165224242948.2009452.15532636093197566420.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.35.1
+In-Reply-To: <20220425133502.405512-1-michael.riesch@wolfvision.net>
+References: <20220425133502.405512-1-michael.riesch@wolfvision.net>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220507221123.2201668-2-marijn.suijten@somainline.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat 07 May 17:11 CDT 2022, Marijn Suijten wrote:
+On Mon, 25 Apr 2022 15:35:00 +0200, Michael Riesch wrote:
+> This USB 3.0 controller is capable of OTG/DRD operation. Enable it in the
+> device tree.
 
-> Inherit PM660L PMIC LPG/triled block configuration from downstream
-> drivers and DT sources, consisting of a triled block with automatic
-> trickle charge control and source selection, three colored led channels
-> belonging to the synchronized triled block and one loose PWM channel.
-> 
-> Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
-> ---
->  drivers/leds/rgb/leds-qcom-lpg.c | 18 ++++++++++++++++++
->  1 file changed, 18 insertions(+)
-> 
-> diff --git a/drivers/leds/rgb/leds-qcom-lpg.c b/drivers/leds/rgb/leds-qcom-lpg.c
-> index cfa3362b2457..30c12ac8eed4 100644
-> --- a/drivers/leds/rgb/leds-qcom-lpg.c
-> +++ b/drivers/leds/rgb/leds-qcom-lpg.c
-> @@ -1271,6 +1271,23 @@ static int lpg_remove(struct platform_device *pdev)
->  	return 0;
->  }
->  
-> +static const struct lpg_data pm660l_lpg_data = {
-> +	.lut_base = 0xb000,
-> +	.lut_size = 0x100,
+Applied, thanks!
 
-The documentation tells me that you have 49 entries of LUT on the
-PM660L.
+[1/3] arm64: dts: rockchip: enable otg/drd operation of usb_host0_xhci in rk356x
+      commit: bc405bb3eeee4b711830ab569e7f3811b92196ab
 
-> +
-> +	.triled_base = 0xd000,
-> +	.triled_has_atc_ctl = true,
-> +	.triled_has_src_sel = true,
-> +
-> +	.num_channels = 4,
-> +	.channels = (struct lpg_channel_data[]) {
-
-This can be const
-
-Regards,
-Bjorn
-
-> +		{ .base = 0xb100, .triled_mask = BIT(5) },
-> +		{ .base = 0xb200, .triled_mask = BIT(6) },
-> +		{ .base = 0xb300, .triled_mask = BIT(7) },
-> +		{ .base = 0xb400 },
-> +	},
-> +};
-> +
->  static const struct lpg_data pm8916_pwm_data = {
->  	.num_channels = 1,
->  	.channels = (const struct lpg_channel_data[]) {
-> @@ -1391,6 +1408,7 @@ static const struct lpg_data pm8350c_pwm_data = {
->  };
->  
->  static const struct of_device_id lpg_of_table[] = {
-> +	{ .compatible = "qcom,pm660l-lpg", .data = &pm660l_lpg_data },
->  	{ .compatible = "qcom,pm8150b-lpg", .data = &pm8150b_lpg_data },
->  	{ .compatible = "qcom,pm8150l-lpg", .data = &pm8150l_lpg_data },
->  	{ .compatible = "qcom,pm8350c-pwm", .data = &pm8350c_pwm_data },
-> -- 
-> 2.36.0
-> 
+Best regards,
+-- 
+Heiko Stuebner <heiko@sntech.de>
