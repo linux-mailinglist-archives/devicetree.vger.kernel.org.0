@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3FACF524A35
-	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 12:24:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C9A3524A3B
+	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 12:28:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352560AbiELKY4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 May 2022 06:24:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56484 "EHLO
+        id S1352597AbiELK2F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 May 2022 06:28:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39186 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1352575AbiELKYu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 06:24:50 -0400
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5EFE76D1A3
-        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 03:24:49 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id d6so5674046ede.8
-        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 03:24:49 -0700 (PDT)
+        with ESMTP id S239143AbiELK2E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 06:28:04 -0400
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 079863D1D6
+        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 03:28:03 -0700 (PDT)
+Received: by mail-ej1-x636.google.com with SMTP id kq17so9296560ejb.4
+        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 03:28:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=VEapW+Top2YENurWwmIy1jknpQzQkhVxUu+ei/y7bf8=;
-        b=AzRFLXUwZB5rVE9Iz1oFwBohYheeKHO+txTLfnNLVvprvZdr0OPxl3Fce94rk2e7OV
-         EhSQjyOUMAihJNE0xxmpsERjOamcrIOTU15wkN1TYaUXKVMnEjoud86GIC8j1KufuTT+
-         dQVGMrNlLbZ4X9p8MSo+TspkoEKsRfL54qvL9ZmRBPgSH0FVQZhePKh1f3+vRhH0lOKZ
-         BhBOlhdsnMpRAKz2n0Z7E+PfiMdwXb15v5BMkm0yeqw9uNgiY5mZDEVt7Q59ttqpfLsV
-         MDtPLNCcuiD3gR63Rn0A+xIuPGi+owmEr7xqgFIeJt84HdQPgDXUAXw3KYJoD26TjwV+
-         Nr0A==
+        bh=GPIjrgvs4BQNA9eCtoSaAMxO4nClRBlQSuiV6w2t7iw=;
+        b=u7QsPViOON0my/3Vld/mwSoBJb7PZwySeGRnOJ3yY24HRVfpYdp7uLLQxmI3PtDrhr
+         udw+fHERr5nBaDWToCkIOcvYPBrd5Rz08CCqtBhNePRwdkbzaFDt+YXqySK15s2BYJ38
+         /sOud++DWMkozAm1jJ3hyXQeU9ZwJVZfm0iBNH02h/TmTDE59fJ1rMhyAwM5wnNijwHD
+         sb+n/ofSHeEezWiLWrmTPUH7hm1Ou7DBFkgEFWwVVN/s68UZx6BP6vut/3e+E5HandL6
+         Dl3Q7pDovpFzmqQxwz8IAe7G07GS0YfatOAkvHq3uJVgau5Y2YEVQokCGDkvm3Gf+efb
+         XIHg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=VEapW+Top2YENurWwmIy1jknpQzQkhVxUu+ei/y7bf8=;
-        b=vVyYfkON39fonizHPN/KFWsfUETcDPY5C9B1u+KfFsYMiqPVuB/Lrlm8CojQarfsz/
-         AWe3qiMFw2iovrCu7mCUfpTuWn+0bqsAh7aaeID7B9p5Lx44VnnLdAhqU8tUrci288Rf
-         EKlXCdNxylZWrkkAPQu2FUN1ClVasvYauZjB+Vx5uFYAcx1JYvuwDzoChiqIPWqlMz+J
-         yVIeFrFXneUVdNAflUCGaX2efF/bZcGXbCbF67oJQp7sVosoTFxz4B2ofPlDgOTnPErM
-         HLo7m9CBA6KBHVEFUGj8CfO4Odp55CRCwNDZwcqJV8TZj8TF6zDARv5AnIMIVIISOSCM
-         sUIg==
-X-Gm-Message-State: AOAM532h1VqmKAgMwWV1jRfO8y5C7YZ69XtM5h8QFp/e2WHhsvUVubDD
-        hNMzc2CFlQdhag7x0yk1qJZU3g==
-X-Google-Smtp-Source: ABdhPJw/FVga7D2wUgL6cuJAsTgAT0uHmO6X/cEonycEE10x0TBwVAsbhwpTzWvejpqD3o1d/qlZCg==
-X-Received: by 2002:aa7:db0a:0:b0:427:db1d:b258 with SMTP id t10-20020aa7db0a000000b00427db1db258mr33681454eds.304.1652351087944;
-        Thu, 12 May 2022 03:24:47 -0700 (PDT)
+        bh=GPIjrgvs4BQNA9eCtoSaAMxO4nClRBlQSuiV6w2t7iw=;
+        b=k9xt5eoYHKXCaGgQZgJwjKNMsv80NsWme5UuzOBXGxkxoKPGe2MJRGtBsukl5TLLCN
+         sd5Ip+4m6SBCB0fsvJnsONXUPJXVlzKz7Ss7PsZ9IEu1Xh+BF8+WtLjgqU9Lko+WWOEF
+         WDJL/AA9qKOMIpu/pJ8CFnGqx8PvM7urtcw1bxZZcD7xPKyJrJA/Ta/5OlfIWJtkiwNo
+         veHhjvdjaVRFkRsM6zvHdwX3TO++GKRuNlkv4T+Dqt/fO3tyJ+n5K86C05OK7G6iv8hi
+         x0Qe/la1rNnK/8wBQxk8oqcrT8sqbXPiu2F+jVXwMkOC9msojAB8bWjctQK+rUT/Nxye
+         Q8ng==
+X-Gm-Message-State: AOAM531vGOtCzeUunQNEXbcKEjp3mGe7+UxJM4SmNppRQnl1A6rCwjcQ
+        zl6vpyJDjWt07EHIGhVd9TnvMA==
+X-Google-Smtp-Source: ABdhPJz6C1/W+PiAfKbM9TB2mSR6hgAMj4ZX8G5/UhG7wrslGlftRqkvDmWlYsTJem5hepeesEMzQA==
+X-Received: by 2002:a17:906:a188:b0:6f4:f5cd:27bd with SMTP id s8-20020a170906a18800b006f4f5cd27bdmr29318356ejy.406.1652351281599;
+        Thu, 12 May 2022 03:28:01 -0700 (PDT)
 Received: from [192.168.0.158] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id p16-20020a170906615000b006f3ef214e5fsm1876701ejl.197.2022.05.12.03.24.47
+        by smtp.gmail.com with ESMTPSA id q18-20020a1709064cd200b006f3ef214e23sm1911302ejt.137.2022.05.12.03.28.00
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 12 May 2022 03:24:47 -0700 (PDT)
-Message-ID: <e9a39eb6-d8e2-bac6-27e2-f63ef8519917@linaro.org>
-Date:   Thu, 12 May 2022 12:24:46 +0200
+        Thu, 12 May 2022 03:28:01 -0700 (PDT)
+Message-ID: <32c80a79-abd5-3fd2-cbb4-e2ae93c539da@linaro.org>
+Date:   Thu, 12 May 2022 12:28:00 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.8.1
-Subject: Re: [PATCH v15 04/10] dt-bindings: clock: Add bindings for SP7021
- clock driver
+Subject: Re: [PATCH v15 10/10] ARM: dts: Add Sunplus SP7021-Demo-V3 board
+ device tree
 Content-Language: en-US
 To:     Qin Jian <qinjian@cqplus1.com>, sboyd@kernel.org
 Cc:     robh+dt@kernel.org, mturquette@baylibre.com, tglx@linutronix.de,
@@ -63,14 +63,14 @@ Cc:     robh+dt@kernel.org, mturquette@baylibre.com, tglx@linutronix.de,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-clk@vger.kernel.org
 References: <cover.1652329411.git.qinjian@cqplus1.com>
- <b5ca5d417be079a2a40a6e79ac1b246b6359a49e.1652329411.git.qinjian@cqplus1.com>
+ <daeccdfb9655e549656af0af955a4697871e3ab0.1652329411.git.qinjian@cqplus1.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <b5ca5d417be079a2a40a6e79ac1b246b6359a49e.1652329411.git.qinjian@cqplus1.com>
+In-Reply-To: <daeccdfb9655e549656af0af955a4697871e3ab0.1652329411.git.qinjian@cqplus1.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,69 +78,172 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/05/2022 08:30, Qin Jian wrote:
-> Add documentation to describe Sunplus SP7021 clock driver bindings.
+On 12/05/2022 08:31, Qin Jian wrote:
+> Add the basic support for Sunplus SP7021-Demo-V3 board.
 > 
 > Signed-off-by: Qin Jian <qinjian@cqplus1.com>
 > ---
-> Remove "Binding" from yaml title
-> Rename sp-sp7021.h to sunplus,sp7021-clkc.h
-
-Thanks.
-
-> ---
->  .../bindings/clock/sunplus,sp7021-clkc.yaml   | 51 +++++++++++
->  MAINTAINERS                                   |  2 +
->  .../dt-bindings/clock/sunplus,sp7021-clkc.h   | 88 +++++++++++++++++++
->  3 files changed, 141 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/sunplus,sp7021-clkc.yaml
->  create mode 100644 include/dt-bindings/clock/sunplus,sp7021-clkc.h
+>  MAINTAINERS                                  |   1 +
+>  arch/arm/boot/dts/sunplus-sp7021-achip.dtsi  |  85 +++++
+>  arch/arm/boot/dts/sunplus-sp7021-demo-v3.dts |  27 ++
+>  arch/arm/boot/dts/sunplus-sp7021.dtsi        | 369 +++++++++++++++++++
+>  4 files changed, 482 insertions(+)
+>  create mode 100644 arch/arm/boot/dts/sunplus-sp7021-achip.dtsi
+>  create mode 100644 arch/arm/boot/dts/sunplus-sp7021-demo-v3.dts
+>  create mode 100644 arch/arm/boot/dts/sunplus-sp7021.dtsi
 > 
-> diff --git a/Documentation/devicetree/bindings/clock/sunplus,sp7021-clkc.yaml b/Documentation/devicetree/bindings/clock/sunplus,sp7021-clkc.yaml
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 9cf30e776..b55ec0768 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -2747,6 +2747,7 @@ F:	Documentation/devicetree/bindings/arm/sunplus,sp7021.yaml
+>  F:	Documentation/devicetree/bindings/clock/sunplus,sp7021-clkc.yaml
+>  F:	Documentation/devicetree/bindings/interrupt-controller/sunplus,sp7021-intc.yaml
+>  F:	Documentation/devicetree/bindings/reset/sunplus,reset.yaml
+> +F:	arch/arm/boot/dts/sunplus-sp7021*.dts*
+>  F:	arch/arm/configs/sp7021_*defconfig
+>  F:	arch/arm/mach-sunplus/
+>  F:	drivers/clk/clk-sp7021.c
+> diff --git a/arch/arm/boot/dts/sunplus-sp7021-achip.dtsi b/arch/arm/boot/dts/sunplus-sp7021-achip.dtsi
 > new file mode 100644
-> index 000000000..119961a17
+> index 000000000..1560c95d9
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/sunplus,sp7021-clkc.yaml
-> @@ -0,0 +1,51 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +# Copyright (C) Sunplus Co., Ltd. 2021
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/clock/sunplus,sp7021-clkc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +++ b/arch/arm/boot/dts/sunplus-sp7021-achip.dtsi
+> @@ -0,0 +1,85 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Device Tree Source for Sunplus SP7021
+> + *
+> + * Copyright (C) 2021 Sunplus Technology Co.
+> + */
 > +
-> +title: Sunplus SP7021 SoC Clock Controller
+> +#include "sunplus-sp7021.dtsi"
 > +
-> +maintainers:
-> +  - Qin Jian <qinjian@cqplus1.com>
-> +
-> +properties:
-> +  compatible:
-> +    const: sunplus,sp7021-clkc
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  "#clock-cells":
-> +    const: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - "#clock-cells"
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +
+> +/ {
+> +	compatible = "sunplus,sp7021-achip";
 
-Same as in v14. Please go through the comments thoroughly so reviewers
-will not waste time repeating the same twice.
+This does not match your bindings.
+
+> +	model = "Sunplus SP7021 (CA7)";
+> +	#address-cells = <1>;
+> +	#size-cells = <1>;
+> +	interrupt-parent = <&gic>;
+> +
+> +	clocks {
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+> +		ranges;
+> +
+> +		extclk: clk@osc0 {
+
+This is not a valid device tree. Please run make dtbs_check and compile
+dtbs with W=1.
+
+> +			compatible = "fixed-clock";
+> +			#clock-cells = <0>;
+> +			clock-frequency = <27000000>;
+> +			clock-output-names = "extclk";
+> +		};
+> +
+> +		divextclk: clk@0 {
+
+How is it suppose to pass any automated checks if there is no unit address?
+
+> +			compatible = "fixed-factor-clock";
+> +			#clock-cells = <0>;
+> +			clocks  = <&extclk>;
+> +			clock-mult = <1>;
+> +			clock-div = <2>;
+> +			clock-output-names = "extdivclk";
+> +		};
+> +
+> +		A_pll0: clk@A_pll0 {
+
+This is not a valid device tree.
+
+> +			compatible = "fixed-clock";
+> +			#clock-cells = <0>;
+> +			clock-frequency = <2000000000>;
+> +			clock-output-names = "A_pll0";
+> +		};
+> +	};
+> +
+> +	cpus {
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		cpu0: cpu@0 {
+> +			compatible = "arm,cortex-a7";
+> +			device_type = "cpu";
+> +			reg = <0>;
+> +			clock-frequency = <931000000>;
+> +		};
+> +		cpu1: cpu@1 {
+> +			compatible = "arm,cortex-a7";
+> +			device_type = "cpu";
+> +			reg = <1>;
+> +			clock-frequency = <931000000>;
+> +		};
+> +		cpu2: cpu@2 {
+> +			compatible = "arm,cortex-a7";
+> +			device_type = "cpu";
+> +			reg = <2>;
+> +			clock-frequency = <931000000>;
+> +		};
+> +		cpu3: cpu@3 {
+> +			compatible = "arm,cortex-a7";
+> +			device_type = "cpu";
+> +			reg = <3>;
+> +			clock-frequency = <931000000>;
+> +		};
+> +	};
+> +
+> +	arm-pmu {
+> +		compatible = "arm,cortex-a7-pmu";
+> +		interrupts = <GIC_SPI 219 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 220 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 221 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 222 IRQ_TYPE_LEVEL_HIGH>;
+> +		interrupt-affinity = <&cpu0>, <&cpu1>, <&cpu2>, <&cpu3>;
+> +	};
+> +
+> +};
+> diff --git a/arch/arm/boot/dts/sunplus-sp7021-demo-v3.dts b/arch/arm/boot/dts/sunplus-sp7021-demo-v3.dts
+> new file mode 100644
+> index 000000000..05e164115
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/sunplus-sp7021-demo-v3.dts
+> @@ -0,0 +1,27 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Device Tree Source for Sunplus SP7021 Demo V3 SBC board
+> + *
+> + * Copyright (C) Sunplus Technology Co.
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include "sunplus-sp7021-achip.dtsi"
+> +
+> +/ {
+> +	compatible = "sunplus,sp7021-demo-v3";
+
+This does not match your bindings.
+
+Please run make dtbs_check.
+
+> +	model = "SP7021/CA7/Demo_V3";
+> +	#address-cells = <1>;
+> +	#size-cells = <1>;
+> +
+> +	chosen {
+> +		bootargs = "console=ttyS0,115200 loglevel=8 earlycon";
+
+No bootargs.
+
+I'll stop reviewing. This either does not compile, does not work or does
+not pass automated checks. There is no point to use reviewers time if
+the tools are doing the same job, so use the tools and then submit DTS.
 
 Best regards,
 Krzysztof
