@@ -2,73 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D77555249DD
-	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 12:02:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A8C42524A06
+	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 12:10:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352513AbiELKAw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 May 2022 06:00:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57202 "EHLO
+        id S1345766AbiELKKn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 May 2022 06:10:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60840 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1352408AbiELKAs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 06:00:48 -0400
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E16292300E9
-        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 03:00:28 -0700 (PDT)
-Received: by mail-ej1-x62c.google.com with SMTP id bv19so9140075ejb.6
-        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 03:00:28 -0700 (PDT)
+        with ESMTP id S1352369AbiELKKm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 06:10:42 -0400
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 256E86437
+        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 03:10:39 -0700 (PDT)
+Received: by mail-ej1-x62f.google.com with SMTP id n10so9210334ejk.5
+        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 03:10:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=MAlRyJ0IHfdwsaWhxry6um/UE2vHbyKkhoLXrIb+qPA=;
-        b=HQIdXAR/JBhklqnlGGuEgsJU1ko85OEMvZbET4FVuTkS/TTDxWbpsRpsew3xKXbcaj
-         /G5Ol+0q/ZlDx0Z/Pl0ui1lNEyj0bQV8fzAWFHrG84sISyZ+XRZQGFg1JWe4CEquN+xX
-         GxVjc+eGWPDg0xSWZd2n6urM72qu42CB1a1ltM+adEJJhMVgUijkACDrFFJ9WWZx/V1k
-         5aEup+9P8KjxgdRADLEhrcvsRHWYs5P1QTgUVNs5tCDzmp2Vjl0QHXx3uPgnI3Y0TVxF
-         sJVU/enibj3KDtfWPj2RvoBw8VmSZd9VivhdrgF09VHE1EAyjuKbXrMUF5p4XtudoNh+
-         xijA==
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=TLmOrCnGCbtCOnhYaNMNPuZv134nUPuNVwiJOouq1bY=;
+        b=d/zkSa15JI97sqvJgUdVvBfkzvw7rsPxpR68vnY6ZEf8EZwKYtcwXsO3eNWU7txmYA
+         DXPPnmW8+roMNH37oWLTlBHuG6cOthWGW36FtF6ha1GzoPgcN4C3rOX18OHwoxMxpzqn
+         0r2MOkiQZ6x8wHtjr67D1vcPjy2w+SQCRQkT61NzrT3y1ChxgTXu2S3DsZVxFErOq4DS
+         F/byfi+r8gxhrJBFgnAvnMkr1Wd0/9+Q9H6k8gUxeqO9lLLh/f1DwiH7idRlyR5h+xn3
+         oXJn86espirujFT0IIztcdy76/JdE4a9ei2ZkaK9T8YzUhArMH8I4g+FdaJWNd1TBk7o
+         6fRg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=MAlRyJ0IHfdwsaWhxry6um/UE2vHbyKkhoLXrIb+qPA=;
-        b=Fi4TaLQnvDIGtR/WZJ4vC0qAKXlrEhAkEwAqfH6h89569D4RvLXA9i5em08+xHWo8m
-         4rWJCeBP/T5wcNzUEFw91WIJOjw9RfBTEdw5xE+D6EMefSSDC0j0/sp6UvEkWTJ2gqhU
-         EpF009x1JokU4ntYPfShFXft07BSyL+aPBDggb/KDAPmTZ8rmfN+co1X+FF/Fpc4J5DQ
-         qTO/cGTQao7GT0wdD48RNKEz9QfH9dk5GE5Wc+HC4rfgoPMz1n0125H+uhy8ewiwmm0C
-         r7+n7sObEGYYBKntR5BisiEuOHsRYtaBKi4Omd0MeY4wP4jKkEdXPSotqTv8VKJPvOIL
-         m+yQ==
-X-Gm-Message-State: AOAM5307GlmaMQJXqauatHoeEbxGCb2K+2FyXYZTuD617yvhAFIMlzq0
-        GOgJoasL1TbSU/Si8mmyyjLZ2w==
-X-Google-Smtp-Source: ABdhPJxGNv2EEGDkjnxhKKuaa6cDWZmaGOgjKIXE75pBz7nY1wlq7c8pHtcpcsD3Aki/Tzwhu9tyfw==
-X-Received: by 2002:a17:906:19c6:b0:6ce:98a4:5ee6 with SMTP id h6-20020a17090619c600b006ce98a45ee6mr29302193ejd.567.1652349628444;
-        Thu, 12 May 2022 03:00:28 -0700 (PDT)
-Received: from localhost.localdomain (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id d17-20020a170906641100b006f3ef214da1sm1970287ejm.7.2022.05.12.03.00.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 12 May 2022 03:00:28 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Sireesh Kodali <sireeshkodali1@gmail.com>,
-        Sibi Sankar <quic_sibis@quicinc.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 10/12] arm64: dts: qcom: sdm630: remove unneeded address/size cells in glink-edge
-Date:   Thu, 12 May 2022 12:00:04 +0200
-Message-Id: <20220512100006.99695-11-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20220512100006.99695-1-krzysztof.kozlowski@linaro.org>
-References: <20220512100006.99695-1-krzysztof.kozlowski@linaro.org>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=TLmOrCnGCbtCOnhYaNMNPuZv134nUPuNVwiJOouq1bY=;
+        b=6kbfH8URe3hQCTiH9wBHTaPgActhKBll8RoQTcv8I/mEbJsbpDZ6vH5FGiSmGkzyLU
+         gIlw0kDluEPam47ZtngpcfvXVf9KALbBLx+vcSGBe5Idqh++YEXeYUryn83ER7J5mmsv
+         8WwuYwPgxqvz2rbNUGJirLqT6upTQwAizrhVmOCQAkv5QWAKBiIyBhVBvDBWWOYT2pir
+         T+H41ACiO43J29NAb84Cm0hSglqIN7Dyo2wOzdihNTc9QFxKRaZcNBjIOH+RcA4h8L8w
+         ZdNuS2fKB3oXi9YyqmwcxcHVygNg3ctFAZxh0EI8/0jfrP4U8EC3VBqIwhiuXCXK78Jc
+         4LSQ==
+X-Gm-Message-State: AOAM533Q8awAr/p1LEDTt0PVK9GFPvMSL7xNvQlvEnGP4qR6ufusK5Qe
+        TYo4Fo6cGnVtWZn8e5Vzx/WXdC9ietPD36E4
+X-Google-Smtp-Source: ABdhPJyETdHKwDAOV3gy5LrQBv+c9Ad1MOy+D3ZCd+9ewsNx903wX3ZkQ7fUp53BZiqKj7K5dJZ6hA==
+X-Received: by 2002:a17:906:6a10:b0:6f5:5e4:9d5 with SMTP id qw16-20020a1709066a1000b006f505e409d5mr28865840ejc.122.1652350237553;
+        Thu, 12 May 2022 03:10:37 -0700 (PDT)
+Received: from [192.168.0.158] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id t8-20020a170906268800b006f3ef214e18sm1876226ejc.126.2022.05.12.03.10.36
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 12 May 2022 03:10:36 -0700 (PDT)
+Message-ID: <1ed03960-77f6-1a9e-2378-07a6c51f42f7@linaro.org>
+Date:   Thu, 12 May 2022 12:10:35 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH v6 1/3] dt-bindings: marvell: Document the AC5/AC5X
+ compatibles
+Content-Language: en-US
+To:     Chris Packham <Chris.Packham@alliedtelesis.co.nz>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
+        "will@kernel.org" <will@kernel.org>,
+        "andrew@lunn.ch" <andrew@lunn.ch>,
+        "gregory.clement@bootlin.com" <gregory.clement@bootlin.com>,
+        "sebastian.hesselbarth@gmail.com" <sebastian.hesselbarth@gmail.com>,
+        "kostap@marvell.com" <kostap@marvell.com>,
+        "robert.marko@sartura.hr" <robert.marko@sartura.hr>,
+        Grzegorz Jaszczyk <jaz@semihalf.com>
+Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+References: <20220510231002.1160798-1-chris.packham@alliedtelesis.co.nz>
+ <20220510231002.1160798-2-chris.packham@alliedtelesis.co.nz>
+ <5c498985-64bb-b8ba-3e77-9cdb36dd1f16@linaro.org>
+ <6d1e121f-847b-3fc5-c27d-6504f380e4ef@alliedtelesis.co.nz>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <6d1e121f-847b-3fc5-c27d-6504f380e4ef@alliedtelesis.co.nz>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -77,28 +90,134 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-glink-edge node does not have children with unit addresses:
+On 12/05/2022 03:20, Chris Packham wrote:
+> 
+> On 12/05/22 04:34, Krzysztof Kozlowski wrote:
+>> On 11/05/2022 01:10, Chris Packham wrote:
+>>> Describe the compatible properties for the Marvell Alleycat5/5X switches
+>>> with integrated CPUs.
+>>>
+>>> Alleycat5:
+>>> * 98DX2538: 24x1G + 2x10G + 2x10G Stack
+>>> * 98DX2535: 24x1G + 4x1G Stack
+>>> * 98DX2532: 8x1G + 2x10G + 2x1G Stack
+>>> * 98DX2531: 8x1G + 4x1G Stack
+>>> * 98DX2528: 24x1G + 2x10G + 2x10G Stack
+>>> * 98DX2525: 24x1G + 4x1G Stack
+>>> * 98DX2522: 8x1G + 2x10G + 2x1G Stack
+>>> * 98DX2521: 8x1G + 4x1G Stack
+>>> * 98DX2518: 24x1G + 2x10G + 2x10G Stack
+>>> * 98DX2515: 24x1G + 4x1G Stack
+>>> * 98DX2512: 8x1G + 2x10G + 2x1G Stack
+>>> * 98DX2511: 8x1G + 4x1G Stack
+>>>
+>>> Alleycat5X:
+>>> * 98DX3500: 24x1G + 6x25G
+>>> * 98DX3501: 16x1G + 6x10G
+>>> * 98DX3510: 48x1G + 6x25G
+>>> * 98DX3520: 24x2.5G + 6x25G
+>>> * 98DX3530: 48x2.5G + 6x25G
+>>> * 98DX3540: 12x5G/6x10G + 6x25G
+>>> * 98DX3550: 24x5G/12x10G + 6x25G
+>>>
+>>> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+>>> ---
+>>>
+>>> Notes:
+>>>      Changes in v6:
+>>>      - New
+>>>
+>>>   .../bindings/arm/marvell/armada-98dx2530.yaml | 27 +++++++++++++++++++
+>>>   1 file changed, 27 insertions(+)
+>>>   create mode 100644 Documentation/devicetree/bindings/arm/marvell/armada-98dx2530.yaml
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/arm/marvell/armada-98dx2530.yaml b/Documentation/devicetree/bindings/arm/marvell/armada-98dx2530.yaml
+>>> new file mode 100644
+>>> index 000000000000..6d9185baf0c5
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/arm/marvell/armada-98dx2530.yaml
+>>> @@ -0,0 +1,27 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://scanmail.trustwave.com/?c=20988&d=heX74s-dh8HSCAJmafRigZHOoyY0XQDl80QSCXWitw&u=http%3a%2f%2fdevicetree%2eorg%2fschemas%2farm%2fmarvell%2farmada-98dx2530%2eyaml%23
+>>> +$schema: http://scanmail.trustwave.com/?c=20988&d=heX74s-dh8HSCAJmafRigZHOoyY0XQDl80oVWnOltA&u=http%3a%2f%2fdevicetree%2eorg%2fmeta-schemas%2fcore%2eyaml%23
+>>> +
+>>> +title: Marvell Alleycat5/5X Platforms
+>>> +
+>>> +maintainers:
+>>> +  - Chris Packham <chris.packham@alliedtelesis.co.nz>
+>>> +
+>>> +properties:
+>>> +  $nodename:
+>>> +    const: '/'
+>>> +  compatible:
+>>> +    oneOf:
+>>> +
+>>> +      - description: Alleycat5 (98DX25xx)
+>>> +        items:
+>>> +          - const: marvell,ac5
+>> This is confusing and does not look correct. The DTS calls AC5 a SoC and
+>> you cannot have SoC alone. It's unusable without a SoM or board.
+>>
+>>> +
+>>> +      - description: Alleycat5X (98DX35xx)
+>>> +        items:
+>>> +          - const: marvell,ac5x
+>>> +          - const: marvell,ac5
+>> This entry looks correct except ac5x once is called a SoC and once a
+>> RD-AC5X board.
+>>
+>> It cannot be both. Probably you need third compatible, assuming AC5x is
+>> a flavor of AC5.
+> 
+> Yeah it's a bit confusing
+> 
+> RD-AC5X-(bunch of extra numbers and letters) is the board I have.
+> AC5X is a L3 switch chip with integrated CPU.
+> AC5 is a L3 switch chip with integrated CPU.
+> 
+> Switch wise the AC5X and AC5 are quite different but the CPU block is 
+> the same between the two.
+> 
+>>
+>> items:
+>>   - enum:
+>>       - marvell,rd-ac5x
+>>   - const: marvell,ac5x
+>>   - const: marvell,ac5
+> 
+> I can go with that but I'm a little vague on what the requirements are. 
+> I was trying to follow the armada-7k-8k.yaml as an example.
+> 
+> If I look at the cn9130-crb-A board it ends up with:
+> 
+>    compatible = "marvell,cn9130", "marvell,armada-ap807-quad", 
+> "marvell,armada-ap807";
+> 
+> I know the ap807 has something to do with the vagaries of the cn9130 SoC 
+> but isn't the "marvell,cn9130" still referring to the SoC. From what 
+> you've said shouldn't there be a "marvell,cn9130-crb" somewhere in the mix?
+> 
+> Perhaps I've picked a bad example but the other dtbs I've poked at don't 
+> have any board binding.
 
-  sdm630-sony-xperia-ganges-kirin.dtb: glink-edge: '#address-cells', '#size-cells' do not match any of the regexes: 'pinctrl-[0-9]
+The CN9130 looks wrong the same way. They have cn9130.dtsi with "Marvell
+Armada CN9130 SoC", so it is clearly a SoC. It has its own compatibles.
+Then this DTSI is included in board DTSes. Till now everything is correct.
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- arch/arm64/boot/dts/qcom/sdm630.dtsi | 2 --
- 1 file changed, 2 deletions(-)
+However the board DTS does not define its own compatible and re-uses SoC
+compatible, so this is wrong.
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm630.dtsi b/arch/arm64/boot/dts/qcom/sdm630.dtsi
-index b72e8e6c52f3..8e32eb3ed599 100644
---- a/arch/arm64/boot/dts/qcom/sdm630.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm630.dtsi
-@@ -2158,8 +2158,6 @@ glink-edge {
- 				label = "lpass";
- 				mboxes = <&apcs_glb 9>;
- 				qcom,remote-pid = <2>;
--				#address-cells = <1>;
--				#size-cells = <0>;
- 
- 				apr {
- 					compatible = "qcom,apr-v2";
--- 
-2.32.0
+It seems it was done like this inf commit 6a380172f171 ("dt-bindings:
+marvell: Declare the CN913x SoC compatibles")
+.
 
+That commit even explains "There are three development boards based on
+these SoCs:" but then fails to define these boards and instead later
+everything uses SoC compatibles as board ones!
+
+Anyone knowing Marvell HW/architecture could fix it?
+
+Best regards,
+Krzysztof
