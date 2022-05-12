@@ -2,75 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 320D7524AB2
-	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 12:46:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 045C4524ABB
+	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 12:47:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352821AbiELKq1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 May 2022 06:46:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44764 "EHLO
+        id S245328AbiELKri (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 May 2022 06:47:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48760 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1352831AbiELKqC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 06:46:02 -0400
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC26013E13
-        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 03:45:55 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id w19so8259144lfu.11
-        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 03:45:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=/l3OrBplyKuh+lUCZVdTTtqDQob9NuPNHt2n4+OQbcw=;
-        b=ao0UtYsepfQYNGS8ezhJdojDj9sJQREJHKA6w9UYt0LLmeSNyEf4PnainujRfM5qoq
-         ZDpPCgWYo4dC3mKpWbRxzpzmq5maetRNxaL3GcawG8U0ubltJ2WqLM+0CDzg78c3DJw1
-         29yL45P66yTyS+rKr0bRugspYNjqGGyHtQ2XIJMHx1jMrrLxAZ0mqyOc9ibtdkkWtiNY
-         TzyoDRxyTbL9pytAfFxejsG+PESCpSJ0LizHWmaJFqaKp0N4o8SUX81fbPottdf7ganR
-         c2cvQLs3wO2sXZcS+FVO+2GYR2hwrz1daXkgaALso39+Kd1xrSSMV4bxEp5cM6hDR3hd
-         WW+Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=/l3OrBplyKuh+lUCZVdTTtqDQob9NuPNHt2n4+OQbcw=;
-        b=xR1JfXU+NrJ5Uwd0rDLIVs+44RTPjh7lpq6QQiH7MaFvAB1OvgYU6V33Gx2PC2Alpw
-         GfOLfF8wzOALBIX4wBZ103R2HlSz97Vmw9SeRdQp1LjcAyYpeipnlm7dQSHZK9EhBGLQ
-         uGnwUkAaKhFtTZMzZ7PVjk7OTRJyD93ZgbYnGK9Kz5W5nsh34M48yMIN7QIKfXwl/vi2
-         hsiNEb1Zalyh+eFVdcqbqkYya7ChO6FRFE0KxBFYUZ+m4tzFT2tvfqjLwHBon6IuTVy4
-         Z3kPKOahDryukdMYsnUCoTgCLekFG7ySVET2YxuA9jmrB9YJd0sUe90+V/8Vm4nZF3F4
-         bfig==
-X-Gm-Message-State: AOAM532yMNie+8FVvOgxMXI3Ll3uCMUl0q7q3oXQvHgDdOh3240DjcGI
-        z23HQ1eI+6HReQWrAEY+SzofXA==
-X-Google-Smtp-Source: ABdhPJzItHyCQQs6weZzdTomB4GgeXIzarfFhevcywCzRSdFC8F1qaDA0jqL+XJnzLr5PfZqZArOhw==
-X-Received: by 2002:a05:6512:b90:b0:473:9e03:c4f3 with SMTP id b16-20020a0565120b9000b004739e03c4f3mr24312500lfv.494.1652352354164;
-        Thu, 12 May 2022 03:45:54 -0700 (PDT)
-Received: from eriador.lan ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id q21-20020a2e9695000000b0024f3d1daeafsm831660lji.55.2022.05.12.03.45.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 12 May 2022 03:45:53 -0700 (PDT)
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Stanimir Varbanov <svarbanov@mm-sol.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc:     Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH v8 10/10] arm64: dts: qcom: sm8250: provide additional MSI interrupts
-Date:   Thu, 12 May 2022 13:45:45 +0300
-Message-Id: <20220512104545.2204523-11-dmitry.baryshkov@linaro.org>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220512104545.2204523-1-dmitry.baryshkov@linaro.org>
-References: <20220512104545.2204523-1-dmitry.baryshkov@linaro.org>
+        with ESMTP id S241206AbiELKrg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 06:47:36 -0400
+Received: from mx1.cqplus1.com (unknown [113.204.237.245])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 437D96FD3B
+        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 03:47:12 -0700 (PDT)
+X-MailGates: (flag:1,DYNAMIC,RELAY,NOHOST,LAN:PASS)(compute_score:DELIVE
+        R,40,3)
+Received: from 172.27.96.203
+        by mx1.cqplus1.com with MailGates ESMTP Server V5.0(26396:0:AUTH_RELAY)
+        (envelope-from <qinjian@cqplus1.com>); Thu, 12 May 2022 18:45:58 +0800 (CST)
+Received: from CQEXMAIL01.cqplus1.com (172.27.96.203) by
+ CQEXMAIL01.cqplus1.com (172.27.96.203) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.6; Thu, 12 May 2022 18:45:55 +0800
+Received: from CQEXMAIL01.cqplus1.com ([::1]) by CQEXMAIL01.cqplus1.com
+ ([::1]) with mapi id 15.01.2507.006; Thu, 12 May 2022 18:45:55 +0800
+From:   =?utf-8?B?cWluamlhblvopoPlgaVd?= <qinjian@cqplus1.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        "sboyd@kernel.org" <sboyd@kernel.org>
+CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mturquette@baylibre.com" <mturquette@baylibre.com>,
+        "tglx@linutronix.de" <tglx@linutronix.de>,
+        "maz@kernel.org" <maz@kernel.org>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        "linux@armlinux.org.uk" <linux@armlinux.org.uk>,
+        "arnd@arndb.de" <arnd@arndb.de>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>
+Subject: RE: [PATCH v15 04/10] dt-bindings: clock: Add bindings for SP7021
+ clock driver
+Thread-Topic: [PATCH v15 04/10] dt-bindings: clock: Add bindings for SP7021
+ clock driver
+Thread-Index: AQHYZcsP5QfLdHxDWUuwmqTXvmezs60ag04AgACLAGA=
+Date:   Thu, 12 May 2022 10:45:54 +0000
+Message-ID: <8a9fa13f66ce4ef9a8f8c9200e1fac5f@cqplus1.com>
+References: <cover.1652329411.git.qinjian@cqplus1.com>
+ <b5ca5d417be079a2a40a6e79ac1b246b6359a49e.1652329411.git.qinjian@cqplus1.com>
+ <e9a39eb6-d8e2-bac6-27e2-f63ef8519917@linaro.org>
+In-Reply-To: <e9a39eb6-d8e2-bac6-27e2-f63ef8519917@linaro.org>
+Accept-Language: zh-CN, en-US
+Content-Language: zh-CN
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.28.110.18]
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,41 +68,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On SM8250 each group of MSI interrupts is mapped to the separate host
-interrupt. Describe each of interrupts in the device tree for PCIe0
-host.
-
-Tested on Qualcomm RB5 platform with first group of MSI interrupts being
-used by the PME and attached ath11k WiFi chip using second group of MSI
-interrupts.
-
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- arch/arm64/boot/dts/qcom/sm8250.dtsi | 11 +++++++++--
- 1 file changed, 9 insertions(+), 2 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-index 410272a1e19b..ef683a2f7412 100644
---- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-@@ -1807,8 +1807,15 @@ pcie0: pci@1c00000 {
- 			ranges = <0x01000000 0x0 0x60200000 0 0x60200000 0x0 0x100000>,
- 				 <0x02000000 0x0 0x60300000 0 0x60300000 0x0 0x3d00000>;
- 
--			interrupts = <GIC_SPI 141 IRQ_TYPE_LEVEL_HIGH>;
--			interrupt-names = "msi";
-+			interrupts = <GIC_SPI 141 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 142 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 143 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 144 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 145 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 146 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 147 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 148 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "msi", "msi1", "msi2", "msi3", "msi4", "msi5", "msi6", "msi7";
- 			#interrupt-cells = <1>;
- 			interrupt-map-mask = <0 0 0 0x7>;
- 			interrupt-map = <0 0 0 1 &intc 0 149 IRQ_TYPE_LEVEL_HIGH>, /* int_a */
--- 
-2.35.1
-
+PiBPbiAxMi8wNS8yMDIyIDA4OjMwLCBRaW4gSmlhbiB3cm90ZToNCj4gPiBBZGQgZG9jdW1lbnRh
+dGlvbiB0byBkZXNjcmliZSBTdW5wbHVzIFNQNzAyMSBjbG9jayBkcml2ZXIgYmluZGluZ3MuDQo+
+ID4NCj4gPiBTaWduZWQtb2ZmLWJ5OiBRaW4gSmlhbiA8cWluamlhbkBjcXBsdXMxLmNvbT4NCj4g
+PiAtLS0NCj4gPiBSZW1vdmUgIkJpbmRpbmciIGZyb20geWFtbCB0aXRsZQ0KPiA+IFJlbmFtZSBz
+cC1zcDcwMjEuaCB0byBzdW5wbHVzLHNwNzAyMS1jbGtjLmgNCj4gDQo+IFRoYW5rcy4NCj4gDQo+
+ID4gLS0tDQo+ID4gIC4uLi9iaW5kaW5ncy9jbG9jay9zdW5wbHVzLHNwNzAyMS1jbGtjLnlhbWwg
+ICB8IDUxICsrKysrKysrKysrDQo+ID4gIE1BSU5UQUlORVJTICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICB8ICAyICsNCj4gPiAgLi4uL2R0LWJpbmRpbmdzL2Nsb2NrL3N1bnBsdXMs
+c3A3MDIxLWNsa2MuaCAgIHwgODggKysrKysrKysrKysrKysrKysrKw0KPiA+ICAzIGZpbGVzIGNo
+YW5nZWQsIDE0MSBpbnNlcnRpb25zKCspDQo+ID4gIGNyZWF0ZSBtb2RlIDEwMDY0NCBEb2N1bWVu
+dGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvY2xvY2svc3VucGx1cyxzcDcwMjEtY2xrYy55YW1s
+DQo+ID4gIGNyZWF0ZSBtb2RlIDEwMDY0NCBpbmNsdWRlL2R0LWJpbmRpbmdzL2Nsb2NrL3N1bnBs
+dXMsc3A3MDIxLWNsa2MuaA0KPiA+DQo+ID4gZGlmZiAtLWdpdCBhL0RvY3VtZW50YXRpb24vZGV2
+aWNldHJlZS9iaW5kaW5ncy9jbG9jay9zdW5wbHVzLHNwNzAyMS1jbGtjLnlhbWwNCj4gYi9Eb2N1
+bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvY2xvY2svc3VucGx1cyxzcDcwMjEtY2xrYy55
+YW1sDQo+ID4gbmV3IGZpbGUgbW9kZSAxMDA2NDQNCj4gPiBpbmRleCAwMDAwMDAwMDAuLjExOTk2
+MWExNw0KPiA+IC0tLSAvZGV2L251bGwNCj4gPiArKysgYi9Eb2N1bWVudGF0aW9uL2RldmljZXRy
+ZWUvYmluZGluZ3MvY2xvY2svc3VucGx1cyxzcDcwMjEtY2xrYy55YW1sDQo+ID4gQEAgLTAsMCAr
+MSw1MSBAQA0KPiA+ICsjIFNQRFgtTGljZW5zZS1JZGVudGlmaWVyOiAoR1BMLTIuMC1vbmx5IE9S
+IEJTRC0yLUNsYXVzZSkNCj4gPiArIyBDb3B5cmlnaHQgKEMpIFN1bnBsdXMgQ28uLCBMdGQuIDIw
+MjENCj4gPiArJVlBTUwgMS4yDQo+ID4gKy0tLQ0KPiA+ICskaWQ6IGh0dHA6Ly9kZXZpY2V0cmVl
+Lm9yZy9zY2hlbWFzL2Nsb2NrL3N1bnBsdXMsc3A3MDIxLWNsa2MueWFtbCMNCj4gPiArJHNjaGVt
+YTogaHR0cDovL2RldmljZXRyZWUub3JnL21ldGEtc2NoZW1hcy9jb3JlLnlhbWwjDQo+ID4gKw0K
+PiA+ICt0aXRsZTogU3VucGx1cyBTUDcwMjEgU29DIENsb2NrIENvbnRyb2xsZXINCj4gPiArDQo+
+ID4gK21haW50YWluZXJzOg0KPiA+ICsgIC0gUWluIEppYW4gPHFpbmppYW5AY3FwbHVzMS5jb20+
+DQo+ID4gKw0KPiA+ICtwcm9wZXJ0aWVzOg0KPiA+ICsgIGNvbXBhdGlibGU6DQo+ID4gKyAgICBj
+b25zdDogc3VucGx1cyxzcDcwMjEtY2xrYw0KPiA+ICsNCj4gPiArICByZWc6DQo+ID4gKyAgICBt
+YXhJdGVtczogMQ0KPiA+ICsNCj4gPiArICBjbG9ja3M6DQo+ID4gKyAgICBtYXhJdGVtczogMQ0K
+PiA+ICsNCj4gPiArICAiI2Nsb2NrLWNlbGxzIjoNCj4gPiArICAgIGNvbnN0OiAxDQo+ID4gKw0K
+PiA+ICtyZXF1aXJlZDoNCj4gPiArICAtIGNvbXBhdGlibGUNCj4gPiArICAtIHJlZw0KPiA+ICsg
+IC0gY2xvY2tzDQo+ID4gKyAgLSAiI2Nsb2NrLWNlbGxzIg0KPiA+ICsNCj4gPiArYWRkaXRpb25h
+bFByb3BlcnRpZXM6IGZhbHNlDQo+ID4gKw0KPiA+ICtleGFtcGxlczoNCj4gPiArICAtIHwNCj4g
+PiArDQo+IA0KPiBTYW1lIGFzIGluIHYxNC4gUGxlYXNlIGdvIHRocm91Z2ggdGhlIGNvbW1lbnRz
+IHRob3JvdWdobHkgc28gcmV2aWV3ZXJzDQo+IHdpbGwgbm90IHdhc3RlIHRpbWUgcmVwZWF0aW5n
+IHRoZSBzYW1lIHR3aWNlLg0KPiANCg0KU29ycnksIEkgZG9u4oCZdCB1bmRlcnN0YW5kIHlvdXIg
+bWVhbmluZy4NCkNvdWxkIHlvdSBleHBsYWluIG1vcmUsIHRoYW5rcy4NCg0KDQo=
