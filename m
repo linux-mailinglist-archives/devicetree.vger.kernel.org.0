@@ -2,132 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D1A30524B92
-	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 13:23:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D0436524BFE
+	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 13:47:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1353314AbiELLWG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 May 2022 07:22:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46012 "EHLO
+        id S1343585AbiELLrj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 May 2022 07:47:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52360 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1353388AbiELLVI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 07:21:08 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E77D015EA42;
-        Thu, 12 May 2022 04:19:52 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 9B5F9B82796;
-        Thu, 12 May 2022 11:19:51 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 664FEC385B8;
-        Thu, 12 May 2022 11:19:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1652354390;
-        bh=8QUBHhVx6onGOMeXELO/RliEcskwHr2ea09LwLCtTwA=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=bnqPpwX5fp24gDNsShY8x9P/lOXXDRMPJGp3H2U8H9x+UOPNMxGJaQjwJ5iy1MXZR
-         JaAQXqflCTaHTd67UeZ4Gka+6NO/ZK4/3h/+Fc9D2CmLX5eWNR2CtSQDAytgr4Z40b
-         RDxF/VmeJSL/Ey7oxPZ8Xm6B4GW3m0FDqYY7vwucmG+JqtAG9sAyJ/iZ+6TC3Yqi59
-         vYlNOtcYFX/mlRvYP5011VbXVeNXtyPDnph562EtCRRFnQayEvLKXTevPMyVkIReLp
-         yGzGulz5qdrHaIjEANR6Nh/yvjAGDHNuv+u5HA89MvpsDcLCbuvA/iiukv9y7xZVwD
-         7MhHzNFwvg8cQ==
-Received: from sofa.misterjones.org ([185.219.108.64] helo=why.misterjones.org)
-        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <maz@kernel.org>)
-        id 1np6rD-00Aqc1-Mz; Thu, 12 May 2022 12:19:47 +0100
-Date:   Thu, 12 May 2022 12:19:47 +0100
-Message-ID: <87y1z75770.wl-maz@kernel.org>
-From:   Marc Zyngier <maz@kernel.org>
-To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
+        with ESMTP id S1353404AbiELLri (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 07:47:38 -0400
+Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 95F734A3EE;
+        Thu, 12 May 2022 04:47:36 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="5.91,219,1647270000"; 
+   d="scan'208";a="120774498"
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie6.idc.renesas.com with ESMTP; 12 May 2022 20:47:36 +0900
+Received: from localhost.localdomain (unknown [10.226.93.50])
+        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 16BFC4006191;
+        Thu, 12 May 2022 20:47:29 +0900 (JST)
+From:   Phil Edworthy <phil.edworthy@renesas.com>
+To:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        Phil Edworthy <phil.edworthy@renesas.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>
+Cc:     Phil Edworthy <phil.edworthy@renesas.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Sergey Shtylyov <s.shtylyov@omp.ru>,
+        Sergei Shtylyov <sergei.shtylyov@gmail.com>,
         Biju Das <biju.das.jz@bp.renesas.com>,
-        Prabhakar <prabhakar.csengg@gmail.com>
-Subject: Re: [PATCH v3 3/5] gpio: gpiolib: Allow free() callback to be overridden
-In-Reply-To: <20220511183210.5248-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20220511183210.5248-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-        <20220511183210.5248-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
- (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: prabhakar.mahadev-lad.rj@bp.renesas.com, geert+renesas@glider.be, linus.walleij@linaro.org, tglx@linutronix.de, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, brgl@bgdev.pl, p.zabel@pengutronix.de, linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, phil.edworthy@renesas.com, biju.das.jz@bp.renesas.com, prabhakar.csengg@gmail.com
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Magnus Damm <magnus.damm@gmail.com>, linux-clk@vger.kernel.org,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org
+Subject: [PATCH v4 0/5] Add Renesas RZ/V2M Ethernet support
+Date:   Thu, 12 May 2022 12:47:17 +0100
+Message-Id: <20220512114722.35965-1-phil.edworthy@renesas.com>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 11 May 2022 19:32:08 +0100,
-Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
-> 
-> Allow free() callback to be overridden from irq_domain_ops for
-> hierarchical chips.
-> 
-> This allows drivers to free any resources which are allocated during
-> populate_parent_alloc_arg().
+The RZ/V2M Ethernet is very similar to R-Car Gen3 Ethernet-AVB, though
+some small parts are the same as R-Car Gen2.
+Other differences are:
+* It has separate data (DI), error (Line 1) and management (Line 2) irqs
+  rather than one irq for all three.
+* Instead of using the High-speed peripheral bus clock for gPTP, it has
+  a separate gPTP reference clock.
 
-Do you mean more than the fwspec? I don't see this being used.
+v4:
+ * Add clk_disable_unprepare() for gptp ref clk
 
-There is also the question of why we need to have dynamic allocation
-for the fwspec itself. Why isn't that a simple stack allocation in the
-context of gpiochip_hierarchy_irq_domain_alloc()?
+v3:
+ * Really renamed irq_en_dis_regs to irq_en_dis this time
+ * Modified ravb_ptp_extts() to use irq_en_dis
+ * Added Reviewed-by tags
 
-	M.
+v2:
+ * Just net patches in this series
+ * Instead of reusing ch22 and ch24 interrupt names, use the proper names
+ * Renamed irq_en_dis_regs to irq_en_dis
+ * Squashed use of GIC reg versus GIE/GID and got rid of separate gptp_ptm_gic feature.
+ * Move err_mgmt_irqs code under multi_irqs
+ * Minor editing of the commit msgs
 
-> 
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> ---
->  drivers/gpio/gpiolib.c | 9 ++++++---
->  1 file changed, 6 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/gpio/gpiolib.c b/drivers/gpio/gpiolib.c
-> index b7694171655c..d36c4a965efc 100644
-> --- a/drivers/gpio/gpiolib.c
-> +++ b/drivers/gpio/gpiolib.c
-> @@ -1187,15 +1187,18 @@ static void gpiochip_hierarchy_setup_domain_ops(struct irq_domain_ops *ops)
->  	ops->activate = gpiochip_irq_domain_activate;
->  	ops->deactivate = gpiochip_irq_domain_deactivate;
->  	ops->alloc = gpiochip_hierarchy_irq_domain_alloc;
-> -	ops->free = irq_domain_free_irqs_common;
->  
->  	/*
-> -	 * We only allow overriding the translate() function for
-> +	 * We only allow overriding the translate() and free() functions for
->  	 * hierarchical chips, and this should only be done if the user
-> -	 * really need something other than 1:1 translation.
-> +	 * really need something other than 1:1 translation for translate()
-> +	 * callback and free if user wants to free up any resources which
-> +	 * were allocated during callbacks, for example populate_parent_alloc_arg.
->  	 */
->  	if (!ops->translate)
->  		ops->translate = gpiochip_hierarchy_irq_domain_translate;
-> +	if (!ops->free)
-> +		ops->free = irq_domain_free_irqs_common;
->  }
->  
->  static int gpiochip_hierarchy_add_domain(struct gpio_chip *gc)
-> -- 
-> 2.25.1
-> 
-> 
+
+Phil Edworthy (5):
+  dt-bindings: net: renesas,etheravb: Document RZ/V2M SoC
+  ravb: Separate handling of irq enable/disable regs into feature
+  ravb: Support separate Line0 (Desc), Line1 (Err) and Line2 (Mgmt) irqs
+  ravb: Use separate clock for gPTP
+  ravb: Add support for RZ/V2M
+
+ .../bindings/net/renesas,etheravb.yaml        |  82 +++++++++----
+ drivers/net/ethernet/renesas/ravb.h           |   6 +
+ drivers/net/ethernet/renesas/ravb_main.c      | 109 ++++++++++++++++--
+ drivers/net/ethernet/renesas/ravb_ptp.c       |   6 +-
+ 4 files changed, 168 insertions(+), 35 deletions(-)
 
 -- 
-Without deviation from the norm, progress is not possible.
+2.34.1
+
