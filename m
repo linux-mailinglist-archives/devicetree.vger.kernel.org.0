@@ -2,112 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 84B9752588A
-	for <lists+devicetree@lfdr.de>; Fri, 13 May 2022 01:41:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 440B752589A
+	for <lists+devicetree@lfdr.de>; Fri, 13 May 2022 01:44:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1359575AbiELXl1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 May 2022 19:41:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34838 "EHLO
+        id S1359614AbiELXn4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 May 2022 19:43:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44840 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1356155AbiELXl1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 19:41:27 -0400
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E36355238;
-        Thu, 12 May 2022 16:41:26 -0700 (PDT)
-Received: by mail-lj1-x234.google.com with SMTP id 4so8343053ljw.11;
-        Thu, 12 May 2022 16:41:26 -0700 (PDT)
+        with ESMTP id S1359598AbiELXnx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 19:43:53 -0400
+Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D62BF289BDB
+        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 16:43:51 -0700 (PDT)
+Received: by mail-lj1-x22f.google.com with SMTP id g16so8396561lja.3
+        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 16:43:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=G9cI8oakPHDWuYiFFBljDMZOYZw1Mkbjku3GoliHgFc=;
-        b=B1CWBB64xhJMs/rCx2iqfL051WBSe6GmObrHiL6dcQS4u1h2Qbg/ERH9H4HRimJgDg
-         b0hSi2MG4MAjmJ/kCWp3CwdIgUc3HSawGHNIugpWO7R0u/C1NbkrksHdO/D0f1iWCNYd
-         n1UBNCZXvxNK3rr0MoaztpnEvhJrloJxdyzjF/LwGdx6rC3iaVGBjixqpAUFf1iCL7Xa
-         12X3eew/mY8/ZrjP+Zoo2XIG4zCF7gIKYtgivbk7HzLnpKAkBKJiYtOwkNrhMJ0PqcIL
-         UuLxxLlXEKfCEQgmQHbCNPkIKBj84nYfrGV3j2TxoxDrsCTuhg/deS1oyRZNfx256FHn
-         wb4Q==
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=nkTe0BL25IlwZDFGto+x4IpihpB/5aYgwtPkphB5qWs=;
+        b=fjEBep4L1zmaVmL/MIZhX4ZR5OVhEekpHpvt1haeSRNEquaW+uUX4VPH7t6eWopF6X
+         Lf93vrQFhFJqVvDK3JNcAbTpp3jfMqKYyDAfE9hg6G7UKSNdxY8fH+S8xnGonJrokq2N
+         3JAXrhyXI3XszG9XnB5VUktSXi5uOY7tVOMMxKdUy6BitECjwO9Zy2hk46oDtx6GHrzR
+         EPbeMsxKfWDP2ApDuUJ+ys7Pag9Cn2pskR73n6/96JzP4CDFKlDGfOAdHOSqzdWKHXbX
+         rM4EW0mx22/f8k7Q8vvFeQkC6b6H7KbBnP6FTkOfIlYXOwAOxCFi8YcOjXqzw/T8Pv76
+         eK2w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=G9cI8oakPHDWuYiFFBljDMZOYZw1Mkbjku3GoliHgFc=;
-        b=MC8Y1rwyg+TzbHpVIcUgszW4RbV8aBTix3z8i+J3PjupcjcNg1bOTKrc1a+QLwk6hp
-         rN9fQOsyrvFrQ7el8pdqM50WmvuJEc0mxMx7khb4nD1cBFD0zQF5HLD/UF35h2rKJR+y
-         3zrH3mrp7CX8W26nHs06dPxbdZUYC/uqt0d47ZKlSh0WeacZmP5Lrc7w3ntGdydgW39t
-         zynohZdwz2gHhPjcvLoML9ORzoqcKB2WmbzJvv6RfAJ4ntrN3g6J5Dcu90h7MuDUcmpX
-         6ReluERcNKfIatMXTO+IT+Zf2yx0sPK+VUL8dbEKDDMN8N5v9FGfSC0WdEBPWR0wjh6P
-         l2Pw==
-X-Gm-Message-State: AOAM532L9JtIbXZm+ufl+r81ocm08uBtEQrYwixsl4TL4aHzPyBlrYAo
-        rzsJ+cCZ7pTjvhPngR+cRaA=
-X-Google-Smtp-Source: ABdhPJwaQgFD0cDr5u0ciJIbXgKaZTOsbiK0ek+aumlxU+KPyzV5SgDLiKuo8X2jVB9AGFXrWuo9yw==
-X-Received: by 2002:a05:651c:160b:b0:24d:a0fa:26cc with SMTP id f11-20020a05651c160b00b0024da0fa26ccmr1449169ljq.150.1652398884840;
-        Thu, 12 May 2022 16:41:24 -0700 (PDT)
-Received: from [192.168.2.145] (109-252-137-244.dynamic.spd-mgts.ru. [109.252.137.244])
-        by smtp.googlemail.com with ESMTPSA id g10-20020ac2538a000000b0047255d2111asm134998lfh.73.2022.05.12.16.41.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 12 May 2022 16:41:24 -0700 (PDT)
-Message-ID: <7a681440-a9bf-d63f-f090-efc96a7b3efe@gmail.com>
-Date:   Fri, 13 May 2022 02:41:23 +0300
+        bh=nkTe0BL25IlwZDFGto+x4IpihpB/5aYgwtPkphB5qWs=;
+        b=ob13So3HrW0ndL//OK9nXD/npsS0bk3OUANMuZ/x0PUu18hTA4flctb/xUrnukdfWr
+         Ht0sNUyqRVgPumQaCn0Ik7iVhby77xmw0unyNwAzp+BbX6+uPWO+8zLVlzNxm69aubSX
+         Jt7HSKexZWlBQEtMNqnNxcMDzUJ2Q3oydBMpelamOkjZkoKsUIz/6Ju0JOJp94YAXyZl
+         jCZ0xBcuIwnEKgE64sy8YpxZlKtLrK1NLFqiZxFbJYjoow39rsqanCUCiQ1T2ShXsBfr
+         DrLzqb51DExylUfAR7q6k0DzdOHn4/mW5ncATNZi+gwyzpU8DvV8FerHLzwi++3qSVmi
+         YFqw==
+X-Gm-Message-State: AOAM530+Z4bdXaRTAmnx+91v/ktM/Mtty9BE6lt7SJmEsZBoZ+hCLpAL
+        X4iFn+/NwnKLQsybSWV0k4x9xQ==
+X-Google-Smtp-Source: ABdhPJyjy3nqdolWyMZ6CqHc0GW6BQWh4op5X9swaS00YII95Cv+GGD2b++Pe3JJU2LFCZw2RJoYnQ==
+X-Received: by 2002:a2e:5845:0:b0:250:7305:1b05 with SMTP id x5-20020a2e5845000000b0025073051b05mr1433056ljd.510.1652399030170;
+        Thu, 12 May 2022 16:43:50 -0700 (PDT)
+Received: from eriador.lan ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id u10-20020ac248aa000000b0047255d211b8sm129976lfg.231.2022.05.12.16.43.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 12 May 2022 16:43:49 -0700 (PDT)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [RESEND v2 0/8] arm64: dts: qcom: initial Inforce IFC6560 board support
+Date:   Fri, 13 May 2022 02:43:41 +0300
+Message-Id: <20220512234349.2673724-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v4 3/3] iio: light: Add support for ltrf216a sensor
-Content-Language: en-US
-To:     Shreeya Patel <shreeya.patel@collabora.com>, jic23@kernel.org,
-        lars@metafoo.de, robh+dt@kernel.org, Zhigang.Shi@liteon.com,
-        krisman@collabora.com
-Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, kernel@collabora.com,
-        alvaro.soliverez@collabora.com
-References: <20220511094024.175994-1-shreeya.patel@collabora.com>
- <20220511094024.175994-4-shreeya.patel@collabora.com>
-From:   Dmitry Osipenko <digetx@gmail.com>
-In-Reply-To: <20220511094024.175994-4-shreeya.patel@collabora.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-11.05.2022 12:40, Shreeya Patel пишет:
-> +static int ltrf216a_probe(struct i2c_client *client)
-> +{
-> +	struct ltrf216a_data *data;
-> +	struct iio_dev *indio_dev;
-> +	int ret;
-> +
-> +	indio_dev = devm_iio_device_alloc(&client->dev, sizeof(*data));
-> +	if (!indio_dev)
-> +		return -ENOMEM;
-> +
-> +	data = iio_priv(indio_dev);
-> +	i2c_set_clientdata(client, indio_dev);
-> +	data->client = client;
-> +
-> +	mutex_init(&data->mutex);
-> +
-> +	indio_dev->info = &ltrf216a_info;
-> +	indio_dev->name = LTRF216A_DRV_NAME;
-> +	indio_dev->channels = ltrf216a_channels;
-> +	indio_dev->num_channels = ARRAY_SIZE(ltrf216a_channels);
-> +	indio_dev->modes = INDIO_DIRECT_MODE;
-> +
-> +	ret = ltrf216a_init(indio_dev);
-> +	if (ret < 0)
-> +		return dev_err_probe(&client->dev, ret,
-> +				     "ltrf216a chip init failed\n");
+Please excuse for the possible duplication, resending the patches
+including DT mailing list and maintainers in the distribution list.
 
-Is it possible to enable sensor only when measurement is made for more
-power savings? Light sensor shouldn't consume much power, but nevertheless.
+This work is largely based on the previous work by Bjorn Andersson ([1])
 
-You'll need to add msleep(power_on_delay + resolution_rate_delay) after
-enabling sensor and before reading the measurement to wait until
-measurement is made by h/w.
+Changes since v1 (mostly based on Kondrad's review):
+- Also disabled dsi0/dsi0 phy in sdm630.dtsi
+- Removed the clock from BAM DMA devices rather than disabling them
+  completely
+- Replaced numbers with symbolic names for interconnects in sdm630.dtsi
+- Switched to "qcom,sda660" as a fallback compatible string
+- Added dt-bindings for the qcom,sda660 compat
+- Removed extra nesting level from the adsp firmware path
+- Replaced numbers with proper symbolic names in the board file
+- Added chassis-type property
+- Changed the order of blsp entries in the board file
+- Removed spurious newlines
+- Changed the order of regulator properties
+- Changed the DSI data-lines to list all four lanes. Still use just
+  three lanes for the adv bridge (and describe the reason in the
+  comment)
+
+Changes since Bjorn's v2:
+- Disable dsi1, dsi1 phy, GPU by default in sdm660.dtsi/sdm630.dtsi
+- Fix qusb2phy ref clock
+- Added USB2 host support to sdm630.dtsi
+- Renamed DTS to follow SoC-vendor-board pattern
+- Fixed vph_pwr voltage
+- Removed extra/unrelated comments
+- Added keys, USB2, USB3,
+- Added configuration for the attached HDMI bridge
+- Enabled MDP, MDSS and DSI0/DSI0 PHY devices
+- Removed uart pinctrl and /reserved-mem nodes (present in main dtsi
+  file)
+- Added card detection for the SDCC2
+- Disabled BLSP BAM DMA devices, they make the board reset during boot
+
+[1] https://lore.kernel.org/linux-arm-msm/20210825221110.1498718-1-bjorn.andersson@linaro.org/#t
+
+Dmitry Baryshkov (8):
+  arm64: dts: qcom: sdm660: disable dsi1/dsi1_phy by default
+  arm64: dts: qcom: sdm630: disable dsi1/dsi1_phy by default
+  arm64: dts: qcom: sdm630: disable GPU by default
+  arm64: dts: qcom: sdm630: fix the qusb2phy ref clock
+  arm64: dts: qcom: sdm630: add second (HS) USB host support
+  arm64: dts: qcom: sdm630: use defined symbols for interconnects
+  arm64: dts: qcom: sdm660: Add initial Inforce IFC6560 board support
+  dt-bindings: arm: qcom: document sda660 SoC and ifc6560 board
+
+ .../devicetree/bindings/arm/qcom.yaml         |   6 +
+ arch/arm64/boot/dts/qcom/Makefile             |   1 +
+ .../boot/dts/qcom/sda660-inforce-ifc6560.dts  | 459 ++++++++++++++++++
+ arch/arm64/boot/dts/qcom/sdm630.dtsi          |  85 +++-
+ arch/arm64/boot/dts/qcom/sdm660.dtsi          |   3 +
+ 5 files changed, 542 insertions(+), 12 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/qcom/sda660-inforce-ifc6560.dts
+
+-- 
+2.35.1
+
