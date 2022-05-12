@@ -2,96 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1648652505D
-	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 16:39:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3E43B525065
+	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 16:40:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1355453AbiELOjm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 May 2022 10:39:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47584 "EHLO
+        id S1345934AbiELOk2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 May 2022 10:40:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48564 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1355480AbiELOjj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 10:39:39 -0400
-Received: from relay12.mail.gandi.net (relay12.mail.gandi.net [IPv6:2001:4b98:dc4:8::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37AAE26197E;
-        Thu, 12 May 2022 07:39:35 -0700 (PDT)
-Received: (Authenticated sender: miquel.raynal@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 6E66A20000B;
-        Thu, 12 May 2022 14:39:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1652366374;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=AeURFA21azT2WZg6+haUTuGeT1PTBOnmz+vdgDPsEgY=;
-        b=ilKLNYSfgOwFBEfbc8RX7DQBztB1FbGT4h1wcKqiiGxaFOR8Eqpm+E1419K6mehHwu1Z+M
-        8rcDmk7Ek5N2YdWfhnll9IpB+8aQIeuaVOGsB1FTHc6c/bfC6JiLB7zSnrn2bUQdxaMgpF
-        XA82/A7AyPNopP9jMAS/jxqVE5TnHOjapKMNzU8ZCr0w7hoWtxJ4LTGXFJxo4CurqXGzx2
-        IFXP/f0RKYn5pWChGdSJpOYfzNkGfMvNdpZqbwwcagHt4OdMNWnZWnSncUcZy9PLU4tw6f
-        5IyHzLrfLbtbcLsDAuE3ao9g99R0iAu3PuEGpR4m7RXe5VtlpaKQ9gQnevXLSg==
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>
-Cc:     Miquel Raynal <miquel.raynal@bootlin.com>,
-        linux-rtc@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Gareth Williams <gareth.williams.jx@renesas.com>,
-        Milan Stevanovic <milan.stevanovic@se.com>,
-        Jimmy Lalande <jimmy.lalande@se.com>,
-        Pascal Eberhard <pascal.eberhard@se.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Herve Codina <herve.codina@bootlin.com>,
-        Clement Leger <clement.leger@bootlin.com>
-Subject: [PATCH v5 5/5] MAINTAINERS: Add myself as maintainer of the RZN1 RTC driver
-Date:   Thu, 12 May 2022 16:39:20 +0200
-Message-Id: <20220512143920.238987-6-miquel.raynal@bootlin.com>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20220512143920.238987-1-miquel.raynal@bootlin.com>
-References: <20220512143920.238987-1-miquel.raynal@bootlin.com>
+        with ESMTP id S245183AbiELOk1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 10:40:27 -0400
+Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04554253A9F;
+        Thu, 12 May 2022 07:40:26 -0700 (PDT)
+Received: by mail-lj1-x235.google.com with SMTP id s27so6806518ljd.2;
+        Thu, 12 May 2022 07:40:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=upk7oiV3ipoyV+9OhHOoOS6ppQQslCnw1gywawi73Rg=;
+        b=cn5+WofiBeYl3bkckxw3lYx+LE9Jtav/Xh3MaQ+D2aG9z8L2oXvBybH4W3MDIJPtH/
+         vRNdjMTDIoc1wgNdcYa5QiqA5B8Bse+yTFmT2iiJBCBUjHhC/FEozLnVAueGBpuKXAJD
+         nmK+CycBUDxLHIJ078FRlEyVDuKZvBqMX7zWyMAHcqHhP7pxNQlvy2KxbUirLxn5Kmfx
+         yctxjglw7h+OxUzlN7ra7WQJg1RP+3IUr4KeMG3yzXPZVafoKX1DUdrbP7vEGsYomGEy
+         BLZn5StPm9yJh30Ixrysmf36KpBDNvj79K08gdwBoNbrYV/xpc4Sq2G3yG2b052245uV
+         gauA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=upk7oiV3ipoyV+9OhHOoOS6ppQQslCnw1gywawi73Rg=;
+        b=2zQ1j9q9idOCf2GidjdzabD6Lwc7g4rRoMwDrtQhPOKwoNpqXOCjm1xDBoq6xwf+Ei
+         Bci5OmmvIvLkGb2OICufrVk8N2uWnROTRqYe+V7VfTcUTStSRlGw/ruV36iJEiguumFp
+         Ph4c1FFiebCQNzd98zMyvVAapp85Kx/8+C7ADp47p01tv2vMdZDS2Ehezq00XDlvHFRV
+         o9qkAWoIukxozq7GGtG7zoG2H3xNrVvoegfRMj7SofW9wJiY+beq/SMM7zA03H+GScVG
+         Vf33M3nQvHd7q+Rg4q/RgQbXP7n+k9BdGDiAGdXErafrF82WEOhekdGF4aarSXp/iCrB
+         W2Pg==
+X-Gm-Message-State: AOAM5318D4bpGd+kuvMMCTkdWcIuEijuF7+plozqnwqrLCd10jHLiLZe
+        9KHvheo+LxkgxTFJuheASt4=
+X-Google-Smtp-Source: ABdhPJyJVUpoR6lTQy3LJSg+JMu71sXFnByGqHc7EeHvKP1Wt6Fb+dZ43gvZWqDzDX1hLIL9vLBY4g==
+X-Received: by 2002:a2e:8744:0:b0:250:9bfe:b777 with SMTP id q4-20020a2e8744000000b002509bfeb777mr178699ljj.523.1652366424277;
+        Thu, 12 May 2022 07:40:24 -0700 (PDT)
+Received: from mobilestation ([95.79.189.214])
+        by smtp.gmail.com with ESMTPSA id n5-20020a056512310500b0047255d211ccsm809816lfb.251.2022.05.12.07.40.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 12 May 2022 07:40:23 -0700 (PDT)
+Date:   Thu, 12 May 2022 17:40:21 +0300
+From:   Serge Semin <fancer.lancer@gmail.com>
+To:     Sergei Shtylyov <sergei.shtylyov@gmail.com>
+Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Jens Axboe <axboe@kernel.dk>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Rob Herring <robh+dt@kernel.org>, linux-ide@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 09/23] ata: libahci_platform: Sanity check the DT
+ child nodes number
+Message-ID: <20220512144021.stkajc7dimgfkldv@mobilestation>
+References: <20220511231810.4928-1-Sergey.Semin@baikalelectronics.ru>
+ <20220511231810.4928-10-Sergey.Semin@baikalelectronics.ru>
+ <42dfc76f-a9d9-8e63-874d-b7459cef326c@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <42dfc76f-a9d9-8e63-874d-b7459cef326c@gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-After contributing it, I'll volunteer to maintain it.
+On Thu, May 12, 2022 at 11:24:22AM +0300, Sergei Shtylyov wrote:
+> On 5/12/22 2:17 AM, Serge Semin wrote:
+> 
+> > Having greater than (AHCI_MAX_PORTS = 32) ports detected isn't that
+> 
 
-Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
-Acked-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
- MAINTAINERS | 8 ++++++++
- 1 file changed, 8 insertions(+)
+>    Having greater than AHCI_MAX_PORTS (32) ports detected?
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 9cf74e4eacce..cc4a3cca022e 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -16847,6 +16847,14 @@ S:	Supported
- F:	Documentation/devicetree/bindings/iio/adc/renesas,rzg2l-adc.yaml
- F:	drivers/iio/adc/rzg2l_adc.c
- 
-+RENESAS RZ/N1 RTC CONTROLLER DRIVER
-+M:	Miquel Raynal <miquel.raynal@bootlin.com>
-+L:	linux-rtc@vger.kernel.org
-+L:	linux-renesas-soc@vger.kernel.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/rtc/renesas,rzn1-rtc.yaml
-+F:	drivers/rtc/rtc-rzn1.c
-+
- RENESAS R-CAR GEN3 & RZ/N1 NAND CONTROLLER DRIVER
- M:	Miquel Raynal <miquel.raynal@bootlin.com>
- L:	linux-mtd@lists.infradead.org
--- 
-2.27.0
+Ok.
 
+> 
+> > critical from the further AHCI-platform initialization point of view since
+> > exceeding the ports upper limit will cause allocating more resources than
+> > will be used afterwards. But detecting too many child DT-nodes doesn't
+> > seem right since it's very unlikely to have it on an ordinary platform. In
+> > accordance with the AHCI specification there can't be more than 32 ports
+> > implemented at least due to having the CAP.NP field of 4 bits wide and the
+> 
+
+>    It's 5 bits wide, actually...
+
+Right =)
+
+The denoted comments will be taken into account in v4. Thanks.
+
+-Sergey
+
+> 
+> > PI register of dword size. Thus if such situation is found the DTB must
+> > have been corrupted and the data read from it shouldn't be reliable. Let's
+> > consider that as an erroneous situation and halt further resources
+> > allocation.
+> > 
+> > Note it's logically more correct to have the nports set only after the
+> > initialization value is checked for being sane. So while at it let's make
+> > sure nports is assigned with a correct value.
+> > 
+> > Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+> 
+> [...]
+> 
+> MBR, Sergey
