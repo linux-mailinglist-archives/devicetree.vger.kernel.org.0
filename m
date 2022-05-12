@@ -2,153 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 171EF524A81
-	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 12:43:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EDE36524A99
+	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 12:46:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344542AbiELKng convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Thu, 12 May 2022 06:43:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38496 "EHLO
+        id S1352782AbiELKqR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 May 2022 06:46:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44552 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242278AbiELKng (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 06:43:36 -0400
-X-Greylist: delayed 66 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 12 May 2022 03:43:33 PDT
-Received: from de-smtp-delivery-63.mimecast.com (de-smtp-delivery-63.mimecast.com [194.104.109.63])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id E768765D2B
-        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 03:43:31 -0700 (PDT)
-Received: from CHE01-ZR0-obe.outbound.protection.outlook.com
- (mail-zr0che01lp2109.outbound.protection.outlook.com [104.47.22.109]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- de-mta-19-ON1_0Q35MvWzHiXY4HjlsA-2; Thu, 12 May 2022 12:42:24 +0200
-X-MC-Unique: ON1_0Q35MvWzHiXY4HjlsA-2
-Received: from GVAP278MB0929.CHEP278.PROD.OUTLOOK.COM (2603:10a6:710:57::6) by
- GVAP278MB0406.CHEP278.PROD.OUTLOOK.COM (2603:10a6:710:37::11) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5250.13; Thu, 12 May 2022 10:42:22 +0000
-Received: from GVAP278MB0929.CHEP278.PROD.OUTLOOK.COM
- ([fe80::7b:8f0a:1d7:60f2]) by GVAP278MB0929.CHEP278.PROD.OUTLOOK.COM
- ([fe80::7b:8f0a:1d7:60f2%5]) with mapi id 15.20.5250.014; Thu, 12 May 2022
- 10:42:22 +0000
-From:   Andrejs Cainikovs <andrejs.cainikovs@toradex.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>
-CC:     Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        Francesco Dolcini <francesco.dolcini@toradex.com>,
-        Andrejs Cainikovs <andrejs.cainikovs@toradex.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v1] arm64: dts: imx8mm-verdin: update CAN clock to 40MHz
-Date:   Thu, 12 May 2022 12:40:19 +0200
-Message-ID: <20220512104019.19725-1-andrejs.cainikovs@toradex.com>
-X-Mailer: git-send-email 2.34.1
-X-ClientProxiedBy: ZR0P278CA0154.CHEP278.PROD.OUTLOOK.COM
- (2603:10a6:910:41::9) To GVAP278MB0929.CHEP278.PROD.OUTLOOK.COM
- (2603:10a6:710:57::6)
+        with ESMTP id S1352778AbiELKp6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 06:45:58 -0400
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4463ABE28
+        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 03:45:48 -0700 (PDT)
+Received: by mail-lf1-x129.google.com with SMTP id h29so8335359lfj.2
+        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 03:45:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=QzR6y+s/rLlcoOu2dDQknc5DKjFo+5yNrwU72UblAeg=;
+        b=ol1JW7fcNHfwQ1YNlwm0Lip823FLYoNhjGWx7m8Cx25T4sg5NVcH7vaWnUvXoIaZlH
+         xO8Dx0bOnZtXQbLF+mUXdC1rfWUZA7BxdNUjTc2f134n9tHay0TJpXmtFYyNR4/tFiJJ
+         2hN1V4IYAMtN5AfTOYlLuCdfKxWjskijvZomJYtgedDLCHgEkaeDo3quwuXokEFlnf7O
+         FlmsyJsMowP/g1Ykq+SfDgsRTtryOP9o2HTY6AdoMd7axSqGN7Ul2d8Z81TwEdC5RzzC
+         Wae3dI7ehvqFyh9PWVI1t+cGRxUI5EfS/pYonu1Jj3R8hj7qiuEpsgjZT8F8PxG6raIi
+         BZzg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=QzR6y+s/rLlcoOu2dDQknc5DKjFo+5yNrwU72UblAeg=;
+        b=C5dxTtOAsa/JKaJNfZoOjE66C95jgAccJeBPmJ6cbCSBg/cjcsfHfR89bHEoTmsNtq
+         idiAbJu5OkQkwfvmQbfJeEJ8JrZnybjBPf7EdMNPTlulGm1l5hCqMUl08iZMX4DLDN0P
+         /bpZ9gCPE3rT9rlI32HNAdvqH7vW/Fz58k6FiHdTtTmzruaRrOqB6LOOtosnK+h9JMN+
+         L+CrinngTME8TCto4KQfvHSb/gPAdSEWD4oc9XvkrZEylYCWEUt/L+/HnUpOdy5AIFkE
+         NrBZxDGpYhGl3FmTbO36qCxCK/FvpEwX421zYh7BYqyXCJjznotAc1xTMgn779wZevBp
+         4E7g==
+X-Gm-Message-State: AOAM532AHDnIMsuW1wkXk6ySZeFA3cQ6Yg/i4edGEcvKvvwJKYr2dCjS
+        MT8Xurx1Q98jBXurSUL4ctqrTw==
+X-Google-Smtp-Source: ABdhPJzgzzVA3Ej3QA6e0x3uM0Ffqjexeynj5QlvErI0QzXLII84XahRJ8xD55yq+CN/RLq64KJsVQ==
+X-Received: by 2002:a19:4942:0:b0:473:e75f:c058 with SMTP id l2-20020a194942000000b00473e75fc058mr24184779lfj.82.1652352346599;
+        Thu, 12 May 2022 03:45:46 -0700 (PDT)
+Received: from eriador.lan ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id q21-20020a2e9695000000b0024f3d1daeafsm831660lji.55.2022.05.12.03.45.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 12 May 2022 03:45:46 -0700 (PDT)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Stanimir Varbanov <svarbanov@mm-sol.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc:     Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH v8 00/10] PCI: qcom: Fix higher MSI vectors handling
+Date:   Thu, 12 May 2022 13:45:35 +0300
+Message-Id: <20220512104545.2204523-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 8da1c0a9-fe6d-45a2-08a8-08da340418d2
-X-MS-TrafficTypeDiagnostic: GVAP278MB0406:EE_
-X-Microsoft-Antispam-PRVS: <GVAP278MB040620CD49B9888821056133E2CB9@GVAP278MB0406.CHEP278.PROD.OUTLOOK.COM>
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0
-X-Microsoft-Antispam-Message-Info: E0Tlj3cJSt1vfW1E7WJ0bcsHItqmqTAOiRgdFsZF6z7ExWINlWo8QlSdK4kt9pFT2YipDpEea5rWmmudOvEefJCLkYSp8XQpsVthfqopWhrYod45UqiRxZ//VB7hm159arocVYFTAb/Rxaj9vP/ggHDf14/HckvnSc9Wkz5FHBVfThpqDkr3MQX1iJsSQ+uu4chEJgMlC5SNReQSg0fdTRpBthp4XeEvt0n8qOh0nSVHn8JuNd+XccECceP4JfX4By9okcKwq7qganHJGoSXzv/ju8hgrjP2I33y2M9XRPO7Tqbe7tJYsnf0Z0wyYrAhn01r6aEbvg/UaPstjWUZAGvg9WV67nMCKqmfuKD5btWt9/8Unc/RbhH8OEpW2TaG28m+ufeJWH+m0uGqgMxUA6lvLQtpW04xAnkUPy9elrZ9aM0rUa+h8ZmloQx99kylNMyHjxzX9s39ENXJhm6GA2L69akzULj3ZXCCpjVbB0U6AQ1gDFpBIJFibj7WbbSy87DX3csaRcZHkoklIFgTeTTytvAwtFMsJGFqHdywJTDMgTyJYu/yQ4XJ88eie2viPUfX3PIkPqTGNy/hwh95eB8MIeAnSgnkmmI2sJezy2yaZ9uEjKE/y6kdDzzVamiEq91fAuUe+Ikj5Jj0my5XDglsCXJhl15/gDNK5A5+VSKxvWzwZ0WzR4p3hbKaqEJQ278kqvthEaR7v7GHHOOJOmCtJZnnOqrQebcfBTGURgA=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:GVAP278MB0929.CHEP278.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230001)(4636009)(396003)(346002)(39850400004)(136003)(376002)(366004)(6506007)(52116002)(6486002)(316002)(54906003)(7416002)(186003)(86362001)(36756003)(6512007)(26005)(44832011)(1076003)(38350700002)(38100700002)(83380400001)(5660300002)(508600001)(8676002)(66556008)(66476007)(6666004)(110136005)(2906002)(8936002)(66946007)(4326008)(2616005)(15650500001)(32563001);DIR:OUT;SFP:1102
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?qaHjhBPzWD57zf70evWcK6zHURO0TSpW4t63uz54IGkLgOghKnmwfERKhxWD?=
- =?us-ascii?Q?+gh8OiyHFOihbuSpSJqBpyvlBXupQvAc17QYU8AuiWd9Lu3m5pYSx9v9no1f?=
- =?us-ascii?Q?YjWsVN3QBTPOYZuo4GvIAf+6P7HB4V0/RGtxAheVCOWNthxVZUjJ+/OwwFWs?=
- =?us-ascii?Q?r4mgi3jtiSckXzSkdB+H57u4zLBG0rfHoHCp2WpdqlytKuzlw3mc5868IHwX?=
- =?us-ascii?Q?K0aws7qvP5DXq0F4Eu+IsLIllT33O3lfoKH085WYaFHX5BExcJETkFrKAJrn?=
- =?us-ascii?Q?8C5QVeVq79icIchVvAlXk7L1dPd9+HK8RcDh0s6kvR/IKX3PQna2oqLryBeR?=
- =?us-ascii?Q?fyvynjq6tDLPVe6Tnn6KjnXif+1bImbaUuu/MKwW+xH+CP9BTFvgpsxEKiSf?=
- =?us-ascii?Q?zS9H1GbYGJG67o59ltP6ATqZTqdFG2uUqzilosXPtBYq2pH6gK/Q1U+n0vn7?=
- =?us-ascii?Q?7gn9cfbgG+JKrhKElR49cazOTxYCsUGHbEJ/LQ6IOlmynDaHu2BgomN++dym?=
- =?us-ascii?Q?GBRt967PX6vddX/fSYX/IFCH8aH8RBitz8NNGVZE173Axdr50yqlLCwAiWc1?=
- =?us-ascii?Q?L1g4mwdfvoUCaJ9NQ6iCCu93DvZMe+HkQzRxTE8zFpE+cvm+g+gEiJODBEnS?=
- =?us-ascii?Q?pl9smRgL+4Wb/A0w8tQOiJoI+sFaagcX7z9cQHw7DAJ9gkQ/JMC58pPPeGsw?=
- =?us-ascii?Q?mXbxcjFjC2/ziQ+oz+oPCla+qmQnBy3B83B2rwINsF0tn8k9NsV1dj/A4tfs?=
- =?us-ascii?Q?AcHdgZG4k61lFfLe5sAxMtQG4Bk+3GxYdjbysdbY1vqnsYkg2PNY6nrjANXF?=
- =?us-ascii?Q?WWNr8o04PmeNy9mMF1bP03rcpoPMHGZN3e0fqjA/Y5PdUkOye/wNkcGufczO?=
- =?us-ascii?Q?N5eU0XnbDICcdvtxmkFvWkbrzFUP9lFR49UeI0CCjclyZz6sNtV0/UT1ZUOh?=
- =?us-ascii?Q?h307lwHtt0pEsNmdSGQ3yBRxGvzM2eYOCBB4dyZGdJ/J28w7zSwgdogcsFTh?=
- =?us-ascii?Q?4Fso4fhkUzi9uP9PBJV9eau0QWaJrrJ/6szM/Nax6hvYIAUKYqzVXGiKQLng?=
- =?us-ascii?Q?HE14e36xEj53NOoLdB5FMqvsGQVGh9igHTPcXhE4ySizNDt9SoTiesBZPw6d?=
- =?us-ascii?Q?FyVFqUR6ABDKEwUS6lhJtxqbryJmpIokUrkSsq8XomvD/lxkvzZWefC/d3tn?=
- =?us-ascii?Q?Xjjll5noUIUbpaAcORU+hBXvycHzl9pMiPInR5yf/XFlkFf0PdO4TuJsq5ct?=
- =?us-ascii?Q?fo0sRP4KRdm3nTP1ibBU4FW/knrL8mlrPXMSJYb6zZC5jQBdjLIJNO/tisP/?=
- =?us-ascii?Q?XfagMenBdn4s5Gih/dDsJZnfBrnCHSgdxgVNR6vFC3E3/HA/cHEXjB2AMNYU?=
- =?us-ascii?Q?I1qtQthG5FOFJv+yNZpce+tyU0/BWiIiFmUs0IZoYTPa1ciZyJFbPrV9uyxU?=
- =?us-ascii?Q?vSqQxpP7sX2mteO4BoxW43g14L8VXK93wSNTEg3W44uxasstwQ4e4ShVReUI?=
- =?us-ascii?Q?POU4pv/Zsu1Kg4zcMpUI+lUdz/f4OVVwQCJNR8rDXeJTiwANhP9IRoYmmaqn?=
- =?us-ascii?Q?ReX2xC7eeTO6ANVD0t7AkU1931PceG3fXxcty2Do7NrZBUPdaWWiV3rd/KVT?=
- =?us-ascii?Q?oHEsbASEH+ZdyI19a6dPbRRZSX3yAiUbXeX7dhE/MQfFSoIyFmnl4mQtd+eK?=
- =?us-ascii?Q?ySDFR6/ZW7izP9J1ux85onu3GMXCjGYPsKANxJjfb28ynkRe+8rKNZrH/otK?=
- =?us-ascii?Q?3iWy4Z2G9/1iyUNW1pdYEM0XF80FHiz//y6FPf7trDVaJ/6SZUFE?=
-X-OriginatorOrg: toradex.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8da1c0a9-fe6d-45a2-08a8-08da340418d2
-X-MS-Exchange-CrossTenant-AuthSource: GVAP278MB0929.CHEP278.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 May 2022 10:42:22.8684
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: d9995866-0d9b-4251-8315-093f062abab4
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: zSVa6hcYhYzH/eg+XHjRtIQZ7Pru600D57pEDq+Io7be3XT3VJFWgc/p0TZCVvSE0sr+RXsKXX/ltNApLOr8ECCS/GOc8xP8SxUZW0x+7pI=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GVAP278MB0406
-Authentication-Results: relay.mimecast.com;
-        auth=pass smtp.auth=CDE13A77 smtp.mailfrom=andrejs.cainikovs@toradex.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: toradex.com
-Content-Transfer-Encoding: 8BIT
-Content-Type: text/plain; charset=WINDOWS-1252
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Update SPI CAN controller clock to match current hardware design.
+I have replied with my Tested-by to the patch at [2], which has landed
+in the linux-next as the commit 20f1bfb8dd62 ("PCI: qcom:
+Add support for handling MSIs from 8 endpoints"). However lately I
+noticed that during the tests I still had 'pcie_pme=nomsi', so the
+device was not forced to use higher MSI vectors.
 
-Signed-off-by: Andrejs Cainikovs <andrejs.cainikovs@toradex.com>
----
- arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+After removing this option I noticed that hight MSI vectors are not
+delivered on tested platforms. After additional research I stumbled upon
+a patch in msm-4.14 ([1]), which describes that each group of MSI
+vectors is mapped to the separate interrupt. Implement corresponding
+mapping.
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi
-index 0d84d29e70f1..d309bc0ab8f6 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi
-@@ -32,10 +32,10 @@ backlight: backlight {
- 	};
- 
- 	/* Fixed clock dedicated to SPI CAN controller */
--	clk20m: oscillator {
-+	clk40m: oscillator {
- 		compatible = "fixed-clock";
- 		#clock-cells = <0>;
--		clock-frequency = <20000000>;
-+		clock-frequency = <40000000>;
- 	};
- 
- 	gpio-keys {
-@@ -194,7 +194,7 @@ &ecspi3 {
- 
- 	can1: can@0 {
- 		compatible = "microchip,mcp251xfd";
--		clocks = <&clk20m>;
-+		clocks = <&clk40m>;
- 		interrupts-extended = <&gpio1 6 IRQ_TYPE_EDGE_FALLING>;
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&pinctrl_can1_int>;
+The first patch in the series is a revert of  [2] (landed in pci-next).
+Either both patches should be applied or both should be dropped.
+
+Patchseries dependecies: [3] (for the schema change).
+
+Changes since v7:
+ - Move code back to the dwc core driver (as required by Rob),
+ - Change dt schema to require either a single "msi" interrupt or an
+   array of "msi0", "msi1", ... "msi7" IRQs. Disallow specifying a
+   part of the array (the DT should specify the exact amount of MSI IRQs
+   allowing fallback to a single "msi" IRQ),
+ - Fix in the DWC init code for the dma_mapping_error() return value.
+
+Changes since v6:
+ - Fix indentation of the arguments as requested by Stanimir
+
+Changes since v5:
+ - Fixed commit subject and in-comment code according to Bjorn's
+   suggestion,
+ - Changed variable idx to i to follow dw_handle_msi_irq() style.
+
+Changes since v4:
+ - Fix the minItems/maxItems properties in the YAML schema.
+
+Changes since v3:
+ - Reimplement MSI handling scheme in the Qualcomm host controller
+   driver.
+
+Changes since v2:
+ - Fix and rephrase commit message for patch 2.
+
+Changes since v1:
+ - Split a huge patch into three patches as suggested by Bjorn Helgaas
+ - snps,dw-pcie removal is now part of [3]
+
+[1] https://git.codelinaro.org/clo/la/kernel/msm-4.14/-/commit/671a3d5f129f4bfe477152292ada2194c8440d22
+[2] https://lore.kernel.org/linux-arm-msm/20211214101319.25258-1-manivannan.sadhasivam@linaro.org/
+[3] https://lore.kernel.org/linux-arm-msm/20220422211002.2012070-1-dmitry.baryshkov@linaro.org/
+
+
+Dmitry Baryshkov (10):
+  PCI: qcom: Revert "PCI: qcom: Add support for handling MSIs from 8
+    endpoints"
+  PCI: dwc: Correct msi_irq condition in dw_pcie_free_msi()
+  PCI: dwc: Convert msi_irq to the array
+  PCI: dwc: Propagate error from dma_mapping_error()
+  PCI: dwc: split MSI IRQ parsing/allocation to a separate function
+  PCI: dwc: Handle MSIs routed to multiple GIC interrupts
+  PCI: qcom: Handle MSIs routed to multiple GIC interrupts
+  PCI: dwc: Implement special ISR handler for split MSI IRQ setup
+  dt-bindings: PCI: qcom: Support additional MSI interrupts
+  arm64: dts: qcom: sm8250: provide additional MSI interrupts
+
+ .../devicetree/bindings/pci/qcom,pcie.yaml    |  53 ++++-
+ arch/arm64/boot/dts/qcom/sm8250.dtsi          |  11 +-
+ drivers/pci/controller/dwc/pci-dra7xx.c       |   2 +-
+ drivers/pci/controller/dwc/pci-exynos.c       |   2 +-
+ .../pci/controller/dwc/pcie-designware-host.c | 214 +++++++++++++-----
+ drivers/pci/controller/dwc/pcie-designware.h  |   3 +-
+ drivers/pci/controller/dwc/pcie-keembay.c     |   2 +-
+ drivers/pci/controller/dwc/pcie-qcom.c        |  13 +-
+ drivers/pci/controller/dwc/pcie-spear13xx.c   |   2 +-
+ drivers/pci/controller/dwc/pcie-tegra194.c    |   2 +-
+ 10 files changed, 231 insertions(+), 73 deletions(-)
+
 -- 
-2.34.1
+2.35.1
 
