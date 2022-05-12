@@ -2,262 +2,175 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D588525627
-	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 22:00:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C0507525642
+	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 22:11:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238924AbiELUAK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 May 2022 16:00:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35308 "EHLO
+        id S1358304AbiELULm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 May 2022 16:11:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46750 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232085AbiELUAK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 16:00:10 -0400
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADA83663C7;
-        Thu, 12 May 2022 13:00:06 -0700 (PDT)
-Received: by mail-ej1-x62b.google.com with SMTP id g6so12361024ejw.1;
-        Thu, 12 May 2022 13:00:06 -0700 (PDT)
+        with ESMTP id S1354491AbiELULl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 16:11:41 -0400
+Received: from mail-oa1-x2c.google.com (mail-oa1-x2c.google.com [IPv6:2001:4860:4864:20::2c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57ADB5AEC4
+        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 13:11:40 -0700 (PDT)
+Received: by mail-oa1-x2c.google.com with SMTP id 586e51a60fabf-e93bbb54f9so7992842fac.12
+        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 13:11:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=BZCyN3u0ukyiZuNWrYZZ3V7T3RNpHS+LzDDyyBy2MCs=;
-        b=kMUJVOVrC2EWJo16vfWhonvgaJjhET679TIiqxfNCeleLoffDUkiF39CbiThlLevuM
-         fUsyHPb/cvs5VpggCiTKlkiYY3AdltcxuEGiMhoe2whAeOotH/qu78sNWJw549+B2PeO
-         u3eX1m6gPbnsFMYXCfdQ1ly7yMpGxZqBHJT3rGLrlaeiX2WQBhhTLOrl5fBZUOav9GLM
-         bQxH0OSR33aaSLA99C2uR2OGLcIOaheqx1elAFnmdFXGJCQ+sUWjP0MrgLLRWEoiEOmI
-         W2vUOOf3I5THXk20qQTCV5K9s0SfMVXEAZ+Z1atUdqelaE+TwjEpK3go/erZu/wqD3bW
-         Z3/Q==
+        d=chromium.org; s=google;
+        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
+         :subject:to:cc;
+        bh=37IX51ckyCTT+yZsWM/kPl+cjpj4hHPN6he08LybAOQ=;
+        b=nkDuxOoAbImXZRcvvj1gfFmpDwftHQWbiObrKwOxshF14hW4hHjhBOTZxvvSZQyjLT
+         +SNjcd0Eha5XO6P0Rb8nczXCqfhxzo3SDR2fgosVoYMzzq0ezEVJg5i221zzPec69DIX
+         cypiO6dAQliJBB0FK5MlRwAOh99s48286unm0=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=BZCyN3u0ukyiZuNWrYZZ3V7T3RNpHS+LzDDyyBy2MCs=;
-        b=tTdJyKoxCJrel0/k20j/rBiprGzE9ucfWvoj6Asaxc2SvwZhVkV9GNvRTzCVXv4E1w
-         FDI+ZWf7zMaeuCkGllH6RXvFkxM8lm/jcQKfZ1UL1q6JIGF3R9HP2tCGxdkTR4wtALt1
-         BCmnAH5CyhHweyFYZhf6ko2RxytZfBAAlcrgS7aFMFnq7Hnc1jRIqSOQDy7J3BkOc/Vv
-         XKWZjuRR7DLYrtRg5vOZ41gS0Xtl0WKoQFlJMUURMQ6qfammqO8k5EsOFR7bqDorYdmK
-         7oKTX6BnAfLc7pvadsIrUxmI3t50dJY8KHYxp/cRYcDYmq2/AmrnurOQswYxcWCN7OZ5
-         AzKQ==
-X-Gm-Message-State: AOAM530OcXc+wpfTeLyV543HJxcCJUGJAZHDB6o5aLYwxH4tlWRjkHO+
-        bNVvbvk3gO9mAqNEs7VsS/nd0ehiKj/nZQ==
-X-Google-Smtp-Source: ABdhPJxbabFA4DADWT1CJdD3y7B1vI3pA8HJkIlx7ApabLXXGcXjj/s1qzF+rkVOJN6CyV4aj717yg==
-X-Received: by 2002:a17:907:6d1e:b0:6f9:ffbd:477a with SMTP id sa30-20020a1709076d1e00b006f9ffbd477amr1410718ejc.104.1652385605026;
-        Thu, 12 May 2022 13:00:05 -0700 (PDT)
-Received: from archbook.localnet (84-72-105-84.dclient.hispeed.ch. [84.72.105.84])
-        by smtp.gmail.com with ESMTPSA id h16-20020a1709066d9000b006f3ef214e73sm55712ejt.217.2022.05.12.13.00.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 12 May 2022 13:00:04 -0700 (PDT)
-From:   Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
-To:     Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 3/3] arm64: dts: rockchip: Add Hantro encoder node to rk356x
-Date:   Thu, 12 May 2022 22:00:03 +0200
-Message-ID: <14624530.8YKtBhKLIE@archbook>
-In-Reply-To: <CAAEAJfAnbJoTLyYoKucy8GFJTJyBVFO=Fcne1EbUVOGa+yC3iA@mail.gmail.com>
-References: <20220508202544.501981-1-frattaroli.nicolas@gmail.com> <1959188.DQhRDO7MrQ@archbook> <CAAEAJfAnbJoTLyYoKucy8GFJTJyBVFO=Fcne1EbUVOGa+yC3iA@mail.gmail.com>
+        h=x-gm-message-state:mime-version:in-reply-to:references:from
+         :user-agent:date:message-id:subject:to:cc;
+        bh=37IX51ckyCTT+yZsWM/kPl+cjpj4hHPN6he08LybAOQ=;
+        b=kmlCaqKyiPU7kC7IDXoDcIxivwnAwiFdaiROtJTYGg5ckju6ay4jMfh9XfWZKtIwVY
+         in28f6xvh8Z0WuGKvZNPsEQUys2rOhUd7j2mY3cZTNkHQ/4L26pATL/ZNEdtI/UOMBwy
+         giac7lDZXoERtRIvIg9ON5k20g1l3l1wR+Gqyvr9Nm6puOUzRCGoTQOkBiAHTJ0lz9WE
+         qvP3QMCmtrBlEKXwjBtcEdXEROAJxKdgEj3KVKexjy6MYNFCBFYAaLVTG62n+AwpLQmR
+         zRyn+8guh4F7Uvr8jT8Mp2dPzHxqVdCkr5HoEGgLBu9YYWfbmJgFDOOUxeF6yLSgPLM0
+         w1NQ==
+X-Gm-Message-State: AOAM531IhAmiyvE0uu1xOibnuhnqAemKZW3lzcWTytDGi+DLatveuQ/E
+        CqVNpaTWMMierxd/TTiTNBFvECQy7TOfNPluuCQZOA==
+X-Google-Smtp-Source: ABdhPJxd7yZSyV1HL3mHq2/BuEuj5XOOzGUA62h40C+z0kI+RzGTIUcxQQWEo5wiqOsSlg5b3aqgF0K7mnODmWwOJdE=
+X-Received: by 2002:a05:6870:40c1:b0:ed:9a12:3f95 with SMTP id
+ l1-20020a05687040c100b000ed9a123f95mr831874oal.193.1652386299686; Thu, 12 May
+ 2022 13:11:39 -0700 (PDT)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Thu, 12 May 2022 13:11:39 -0700
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <CAE-0n50+obQ5qgPNPtUY=OmTgU9bZQ3hNw+MaG9Wi3SQSc-i4A@mail.gmail.com>
+References: <20220429233112.2851665-1-swboyd@chromium.org> <20220429233112.2851665-2-swboyd@chromium.org>
+ <CAD=FV=VX8EEgkeLgKwyKvjztcjbA8UhKOUpTr-sS1_Ec=QcWbA@mail.gmail.com>
+ <CAKdAkRSOtAD6u_cwKhHeMLgz5dC2hfPvVvqmj+17b4i-nspfgg@mail.gmail.com>
+ <CAE-0n50Y8tZD9Djn9TVaAiHxehFJ2cZKZ1Z09piDk47uw3nK+Q@mail.gmail.com>
+ <Ynzf5jEIECLmELK7@google.com> <CAE-0n50+obQ5qgPNPtUY=OmTgU9bZQ3hNw+MaG9Wi3SQSc-i4A@mail.gmail.com>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.10
+Date:   Thu, 12 May 2022 13:11:39 -0700
+Message-ID: <CAE-0n52WVNru5fnyaB_7wcBOk4twL0Q92YpRbd40-o6ZBmbXWQ@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: google,cros-ec-keyb: Introduce
+ switches only compatible
+To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc:     Doug Anderson <dianders@chromium.org>,
+        LKML <linux-kernel@vger.kernel.org>, patches@lists.linux.dev,
+        chrome-platform@lists.linux.dev,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Benson Leung <bleung@chromium.org>,
+        Guenter Roeck <groeck@chromium.org>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        "Joseph S. Barrera III" <joebar@chromium.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Donnerstag, 12. Mai 2022 16:16:52 CEST Ezequiel Garcia wrote:
-> On Tue, May 10, 2022 at 12:28 PM Nicolas Frattaroli
-> <frattaroli.nicolas@gmail.com> wrote:
+Quoting Stephen Boyd (2022-05-12 11:58:02)
+> Quoting Dmitry Torokhov (2022-05-12 03:22:30)
 > >
-> > Hi Ezequiel,
+> > Have we solved module loading in the presence of multiple compatibles?
+> > IIRC we only ever try to load module on the first compatible, so you'd
+> > be breaking autoloading cros-ec-keyb on these older kernels. I think the
+> > cure that is being proposed is worse than the disease.
 > >
-> > On Montag, 9. Mai 2022 16:17:03 CEST Ezequiel Garcia wrote:
-> > > Hi Nicolas,
-> > >
-> > > On Sun, May 8, 2022 at 5:26 PM Nicolas Frattaroli
-> > > <frattaroli.nicolas@gmail.com> wrote:
-> > > >
-> > > > The RK3566 and RK3568 come with a dedicated Hantro instance solely for
-> > > > encoding. This patch adds a node for this to the device tree, along with
-> > > > a node for its MMU.
-> > > >
-> > > > Signed-off-by: Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
-> > > > ---
-> > > >  arch/arm64/boot/dts/rockchip/rk356x.dtsi | 21 +++++++++++++++++++++
-> > > >  1 file changed, 21 insertions(+)
-> > > >
-> > > > diff --git a/arch/arm64/boot/dts/rockchip/rk356x.dtsi b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-> > > > index 7cdef800cb3c..2e3c9e1887e3 100644
-> > > > --- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-> > > > +++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-> > > > @@ -508,6 +508,27 @@ gpu: gpu@fde60000 {
-> > > >                 status = "disabled";
-> > > >         };
-> > > >
-> > > > +       vepu: video-codec@fdee0000 {
-> > > > +               compatible = "rockchip,rk3568-vepu";
-> > > > +               reg = <0x0 0xfdee0000 0x0 0x800>;
-> > > > +               interrupts = <GIC_SPI 64 IRQ_TYPE_LEVEL_HIGH>;
-> > > > +               interrupt-names = "vepu";
-> > >
-> > > It this block "encoder only" and if so, maybe we should remove the
-> > > "interrupt-names" [1]?
-> > >
-> > > The driver is able to handle it. See:
-> > >
-> > > https://elixir.bootlin.com/linux/latest/source/drivers/staging/media/hantro/hantro_drv.c#L962
-> > >
-> > > You might have to adjust the dt-bindings for this.
-> > >
-> > > [1] https://lore.kernel.org/linux-media/20210324151715.GA3070006@robh.at.kernel.org/
-> >
-> > What the Linux driver can handle should not matter to the device tree;
-> > device trees are independent of drivers and kernels.
-> >
-> 
-> I guess my message wasn't clear, no need to lecture me on Device
-> Trees, although I appreciate
-> your friendly reminder of what a Device Tree is.
-> 
-> Having said that, the binding is designed to support both decoders and encoders
-> for instance:
-> 
->         vpu: video-codec@ff9a0000 {
->                 compatible = "rockchip,rk3288-vpu";
->                 reg = <0x0 0xff9a0000 0x0 0x800>;
->                 interrupts = <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>,
->                              <GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>;
->                 interrupt-names = "vepu", "vdpu";
->                 clocks = <&cru ACLK_VCODEC>, <&cru HCLK_VCODEC>;
->                 clock-names = "aclk", "hclk";
->                 iommus = <&vpu_mmu>;
->                 power-domains = <&power RK3288_PD_VIDEO>;
->         };
-> 
-> Hence the question is why do you splitted the encoder to its own node?
+>
+> The first compatible is still cros-ec-keyb in the driver though? Or you
+> mean the first compatible in the node? I'm not aware of this problem at
+> all but I can certainly test out a fake node and module and see if it
+> gets autoloaded.
 
-It has its own IOMMU and is in a different power domain than the decoder.
-I think I have mentioned this multiple times before, including in the
-cover letter.
+I can't get this test module to fail to load no matter what I do. I
+commented out the second match table entry, and kept it there and
+removed 'vendor,switch-compat' from the DTS. Module still autoloads.
 
-Assuming you do not believe me, feel free to check the TRM, of which I
-am sure you also have a copy: page 475 of Part 1 shows the VPU being in
-PD_VPU while the JPEG encoder is in PD_RGA. Pages 478 and 479 of Part 2,
-Section 10.5, shows that the JPEG encoder (VEPU121)'s base is not the
-same as the Hantro decoder (VDPU121)'s base, and their IOMMUs which are
-based relative to their base offset are therefore also not at the same
-address. If you think the TRM must be wrong then, consider the fact that
-I have actually run this patch set, presumably being the only person to
-do so, and found that it works, so no, the addresses and power domains
-are correct.
+----8<----
+diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi
+b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+index 42a87fa4976e..a6173b79ba67 100644
+--- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+@@ -54,6 +54,10 @@ aliases {
+ 		spi11 = &spi11;
+ 	};
 
-I do not see any way in which it would make sense to put this into the
-same node as the decoder. It would not even be possible to do this in
-your bindings, as they specify a maxItems for power-domains and iommus
-of 1. Even if I modified them the driver wouldn't know which PD and
-IOMMU belongs to decoder and encoder.
-
-I think if we put this encoder in the same node as the decoder, we
-might as well take this to its natural conclusion and put the entire
-device tree into a single very large node. It's not the same hardware,
-it cannot be modelled as being the same hardware, just because the
-bindings lets people model some separate hardware as the same hardware
-doesn't mean this applies to this hardware.
-
-Long story short, why did I split the encoder to its own node? The
-answer is that I didn't. I simply refused to combine it into a node
-that it has nothing to do with.
- 
-> If we have good reasons to have separated Device Tree nodes,
-> then having interrupt-names = "vepu" for its only interrupt line
-> doesn't make sense.
-
-How does it not make sense? The bindings allow for a vdpu only
-interrupt-names, which in my understanding makes the same amount
-of sense.
-
-Regards,
-Nicolas Frattaroli
-
-> 
-> > What does matter though is to be consistent in the bindings.
-> > interrupt-names is a required property even if there's only a vdpu
-> > interrupt. I modelled my vepu-only binding after this case.
-> >
-> 
-> The current binding models the idea of decoder and encoder
-> being the same device. This has never been really really accurate,
-> as the encoder and decoders have always been more or less independent.
-> 
-> The reason for having them on a single device are mostly historical,
-> some old devices shared some resource. I don't think this is the case anymore,
-> but the binding was still modeled to support that.
-> 
-> Hopefully this makes sense!
-> Thanks,
-> Ezequiel
-> 
-> 
-> > If robh thinks there is no value to having the interrupt show up
-> > as anything other than "default" in /proc/interrupts, then I respectfully
-> > disagree with that opinion and point out that this should have been brought
-> > up when the vdpu-only case in the bindings was made to require
-> > interrupt-names also.
-> >
-> > Changing the binding now that there theoretically could be drivers out
-> > in the wild (though I doubt it) that do require interrupt-names, because
-> > the binding told them that this is okay to do, seems unwise to me.
-> >
-> > Regards,
-> > Nicolas Frattaroli
-> >
-> > >
-> > > Thanks,
-> > > Ezequiel
-> > >
-> > > > +               clocks = <&cru ACLK_JENC>, <&cru HCLK_JENC>;
-> > > > +               clock-names = "aclk", "hclk";
-> > > > +               iommus = <&vepu_mmu>;
-> > > > +               power-domains = <&power RK3568_PD_RGA>;
-> > > > +       };
-> > > > +
-> > > > +       vepu_mmu: iommu@fdee0800 {
-> > > > +               compatible = "rockchip,rk3568-iommu";
-> > > > +               reg = <0x0 0xfdee0800 0x0 0x40>;
-> > > > +               interrupts = <GIC_SPI 63 IRQ_TYPE_LEVEL_HIGH>;
-> > > > +               clocks = <&cru ACLK_JENC>, <&cru HCLK_JENC>;
-> > > > +               clock-names = "aclk", "iface";
-> > > > +               power-domains = <&power RK3568_PD_RGA>;
-> > > > +               #iommu-cells = <0>;
-> > > > +       };
-> > > > +
-> > > >         sdmmc2: mmc@fe000000 {
-> > > >                 compatible = "rockchip,rk3568-dw-mshc", "rockchip,rk3288-dw-mshc";
-> > > >                 reg = <0x0 0xfe000000 0x0 0x4000>;
-> > > > --
-> > > > 2.36.0
-> > > >
-> > > >
-> > > > _______________________________________________
-> > > > Linux-rockchip mailing list
-> > > > Linux-rockchip@lists.infradead.org
-> > > > http://lists.infradead.org/mailman/listinfo/linux-rockchip
-> > >
-> >
-> >
-> >
-> >
-> 
-
-
-
-
++	mynode {
++		compatible = "vendor,switch-compat", "vendor,keyb-compat";
++	};
++
+ 	clocks {
+ 		xo_board: xo-board {
+ 			compatible = "fixed-clock";
+diff --git a/lib/Makefile b/lib/Makefile
+index a841be5244ac..0a784011feb5 100644
+--- a/lib/Makefile
++++ b/lib/Makefile
+@@ -74,6 +74,7 @@ UBSAN_SANITIZE_test_ubsan.o := y
+ obj-$(CONFIG_TEST_KSTRTOX) += test-kstrtox.o
+ obj-$(CONFIG_TEST_LIST_SORT) += test_list_sort.o
+ obj-$(CONFIG_TEST_MIN_HEAP) += test_min_heap.o
++obj-m += dtmod.o
+ obj-$(CONFIG_TEST_LKM) += test_module.o
+ obj-$(CONFIG_TEST_VMALLOC) += test_vmalloc.o
+ obj-$(CONFIG_TEST_OVERFLOW) += test_overflow.o
+diff --git a/lib/dtmod.c b/lib/dtmod.c
+new file mode 100644
+index 000000000000..c34ae37b8ff0
+--- /dev/null
++++ b/lib/dtmod.c
+@@ -0,0 +1,44 @@
++// SPDX-License-Identifier: GPL-2.0-only
++
++#define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
++
++#include <linux/init.h>
++#include <linux/module.h>
++#include <linux/mod_devicetable.h>
++#include <linux/platform_device.h>
++#include <linux/printk.h>
++
++static int test_probe(struct platform_device *pdev)
++{
++	dev_info(&pdev->dev, "I got probed\n");
++
++	return 0;
++}
++
++static int test_remove(struct platform_device *pdev)
++{
++	dev_info(&pdev->dev, "I got removed\n");
++
++	return 0;
++}
++
++static const struct of_device_id test_of_match[] = {
++	{ .compatible = "vendor,keyb-compat" },
++	{ .compatible = "vendor,switch-compat" }, // comment out
++	{}
++};
++MODULE_DEVICE_TABLE(of, test_of_match);
++
++static struct platform_driver test_keyb_driver = {
++	.probe = test_probe,
++	.remove = test_remove,
++	.driver = {
++		.name = "test-ec-keyb",
++		.of_match_table = test_of_match,
++	},
++};
++
++module_platform_driver(test_keyb_driver);
++
++MODULE_LICENSE("GPL v2");
++MODULE_ALIAS("platform:test-ec-keyb");
