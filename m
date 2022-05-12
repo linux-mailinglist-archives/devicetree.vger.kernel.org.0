@@ -2,81 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8833C5257B9
-	for <lists+devicetree@lfdr.de>; Fri, 13 May 2022 00:24:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 04F905257E5
+	for <lists+devicetree@lfdr.de>; Fri, 13 May 2022 00:40:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1359096AbiELWYd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 May 2022 18:24:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39182 "EHLO
+        id S1359253AbiELWkr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 May 2022 18:40:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60646 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236178AbiELWYd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 18:24:33 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5040281347;
-        Thu, 12 May 2022 15:24:31 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 37A5B61F33;
-        Thu, 12 May 2022 22:24:31 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8351BC385B8;
-        Thu, 12 May 2022 22:24:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1652394270;
-        bh=Lc1EANfP1MQNRs942EGNTUmsGp9phgY1vwN9up7zOUg=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=HxCPOXn5RDIRhIhlPJoSYXFerF91jClgOchhrxJEx6Kbl9hrWzRz5BsaNkSy8gKvY
-         QljXFwyWRICSG6VUm6ymyGO9L17dOZF9h4JTehA4q9AKLKhyY6xUi2lsff280lhl/z
-         836UWmqVTrzexW58AWWlP8ZpnknmG7Oi6JLISQxTXsbw5kJWQlxjeT0dTHbQqqr7+b
-         7g2hFBIJWFu9QcgCBmVkThpoWZ4+0gFsJ5MSXTwkuyPqzPFaT2WE9lBT3hwAoHpkG+
-         UbTTfkX9uVnKCBjfA7ZE7eh6DqnF+40doDQSmV24YJS/wLJ9E4B95m/ltFQUKA2BHf
-         z8jpBQgux/cUw==
-Received: from ip-185-104-136-29.ptr.icomera.net ([185.104.136.29] helo=wait-a-minute.misterjones.org)
-        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <maz@kernel.org>)
-        id 1npHER-00AzZF-VL; Thu, 12 May 2022 23:24:28 +0100
-Date:   Thu, 12 May 2022 23:24:25 +0100
-Message-ID: <87sfpemlt2.wl-maz@kernel.org>
-From:   Marc Zyngier <maz@kernel.org>
-To:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
+        with ESMTP id S1359246AbiELWkp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 18:40:45 -0400
+Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com [IPv6:2607:f8b0:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CFDA1EA1
+        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 15:40:40 -0700 (PDT)
+Received: by mail-pl1-x633.google.com with SMTP id d22so6251109plr.9
+        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 15:40:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=Var06zhUfSCRGoXl/2YsHbPLCV39KwA7ovVK4YO/gYI=;
+        b=lRh8vfKWUKUZwwsK2meeCN8N1RalNIVkqUl9qT9Miv8PTf5mw6HFPPiCt96zBtd98U
+         YNkSyfcIAvU5f7F+qhAIzbiUBhVPvLiDVJ/+KurWq6X1DYubUfQ7Q54ZAbE+tK52azF5
+         xR1ztL15JY3nvuj2ZkBRnM2YM/xp2wKuf5OpE=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=Var06zhUfSCRGoXl/2YsHbPLCV39KwA7ovVK4YO/gYI=;
+        b=XnEcuad/9UHpnPi4oSJs/fmQ5XPjt/8Es7tiC2hP8hGHm5F0q8eHhrc+G0O2NrC6MD
+         4caWB4YG8WIYexMV/sHxiebT3QdA3lAqepEGbq3JpdyxXBRgKtXmU3qNsfl/nn9BJFvH
+         WRQ27UKwybR/HjE68PYcqkgYyrUgftXyWaNhjDaHtR/JSLQrC46s+hkf4sSZop687x9K
+         /4WYQjIAnw1M++dXEIiyxMrlmAnfhtDyVlx4k4iRkaZ4gUGt9yW8Zje/syYHd5qvlESh
+         maaVmRnTzLqdIlvR2Bs0XJRfUxz7cG+EUOA6CaoCTmPYTikHkJganaUXDBVLKfY7GeYJ
+         GSZA==
+X-Gm-Message-State: AOAM532T8MNkHuxITZusrLaXAN7yh7zNxsXDj51m2kdLue90pgo7DFgS
+        YRf4QQDBxlhDM9pIyf2epgAvJg==
+X-Google-Smtp-Source: ABdhPJz/0NAzpj2X0qc6+LmD057ToQ+VV6hPC/AZ4GoKWxAxkwvmbJ/ELD8Ga+7cT1wWr4yCeaBWgw==
+X-Received: by 2002:a17:902:d2c9:b0:15e:a266:6472 with SMTP id n9-20020a170902d2c900b0015ea2666472mr1736829plc.45.1652395240339;
+        Thu, 12 May 2022 15:40:40 -0700 (PDT)
+Received: from localhost ([2620:15c:11a:202:bc87:9632:bcce:8e17])
+        by smtp.gmail.com with UTF8SMTPSA id v21-20020a17090a521500b001d2edf4b513sm275481pjh.56.2022.05.12.15.40.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 12 May 2022 15:40:40 -0700 (PDT)
+Date:   Thu, 12 May 2022 15:40:38 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Krishna Kurapati <quic_kriskura@quicinc.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Phil Edworthy <phil.edworthy@renesas.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-Subject: Re: [PATCH v3 3/5] gpio: gpiolib: Allow free() callback to be overridden
-In-Reply-To: <CA+V-a8sMvjYK5NfkqpD3ertfUOy1zbauXW9gLzG+GLzZtvUygg@mail.gmail.com>
-References: <20220511183210.5248-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-        <20220511183210.5248-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
-        <87y1z75770.wl-maz@kernel.org>
-        <CA+V-a8tf1RmT-cX5y807rTAPES2NXLJHp=u1WUG11fLrtt-5Mg@mail.gmail.com>
-        <87wneq6fz3.wl-maz@kernel.org>
-        <CA+V-a8v9WodNNK7AL4XemDnSrrWc9wG+qDKZb7SmbWixs5Q3Nw@mail.gmail.com>
-        <87v8ua67kt.wl-maz@kernel.org>
-        <CA+V-a8sMvjYK5NfkqpD3ertfUOy1zbauXW9gLzG+GLzZtvUygg@mail.gmail.com>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
- (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-SA-Exim-Connect-IP: 185.104.136.29
-X-SA-Exim-Rcpt-To: prabhakar.csengg@gmail.com, prabhakar.mahadev-lad.rj@bp.renesas.com, geert+renesas@glider.be, linus.walleij@linaro.org, tglx@linutronix.de, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, brgl@bgdev.pl, p.zabel@pengutronix.de, linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, phil.edworthy@renesas.com, biju.das.jz@bp.renesas.com
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Felipe Balbi <balbi@kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Doug Anderson <dianders@chromium.org>,
+        Mathias Nyman <mathias.nyman@intel.com>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org, quic_pkondeti@quicinc.com,
+        quic_ppratap@quicinc.com, quic_vpulyala@quicinc.com,
+        Sandeep Maheswaram <quic_c_sanm@quicinc.com>
+Subject: Re: [v16 2/5] usb: dwc3: core: Host wake up support from system
+ suspend
+Message-ID: <Yn2M5hrah78jro1C@google.com>
+References: <1652379802-8318-1-git-send-email-quic_kriskura@quicinc.com>
+ <1652379802-8318-3-git-send-email-quic_kriskura@quicinc.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <1652379802-8318-3-git-send-email-quic_kriskura@quicinc.com>
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -84,98 +80,177 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 12 May 2022 18:55:38 +0100,
-"Lad, Prabhakar" <prabhakar.csengg@gmail.com> wrote:
+On Thu, May 12, 2022 at 11:53:19PM +0530, Krishna Kurapati wrote:
+> From: Sandeep Maheswaram <quic_c_sanm@quicinc.com>
 > 
-> Hi Marc,
+> During suspend read the status of all port and set hs phy mode
+> based on current speed. Use this hs phy mode to configure wakeup
+> interrupts in qcom glue driver.
 > 
-> On Thu, May 12, 2022 at 5:26 PM Marc Zyngier <maz@kernel.org> wrote:
-> >
-> > On Thu, 12 May 2022 14:50:05 +0100,
-> > "Lad, Prabhakar" <prabhakar.csengg@gmail.com> wrote:
-> > >
-> > > Hi Marc,
-> > >
-> > > On Thu, May 12, 2022 at 2:24 PM Marc Zyngier <maz@kernel.org> wrote:
-> > > >
-> > > > On Thu, 12 May 2022 13:48:53 +0100,
-> > > > "Lad, Prabhakar" <prabhakar.csengg@gmail.com> wrote:
-> > > > >
-> > > > > Hi Marc,
-> > > > >
-> > > > > Thank you for the review.
-> > > > >
-> > > > > On Thu, May 12, 2022 at 12:19 PM Marc Zyngier <maz@kernel.org> wrote:
-> > > > > >
-> > > > > > On Wed, 11 May 2022 19:32:08 +0100,
-> > > > > > Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
-> > > > > > >
-> > > > > > > Allow free() callback to be overridden from irq_domain_ops for
-> > > > > > > hierarchical chips.
-> > > > > > >
-> > > > > > > This allows drivers to free any resources which are allocated during
-> > > > > > > populate_parent_alloc_arg().
-> > > > > >
-> > > > > > Do you mean more than the fwspec? I don't see this being used.
-> > > > > >
-> > > > > The free callback is used in patch 5/5 where free is overridden by
-> > > > > rzg2l_gpio_irq_domain_free. I just gave an example there as an
-> > > > > populate_parent_alloc_arg()  In actual in the child_to_parent_hwirq
-> > > > > callback I am using a bitmap [0] to get a free tint slot, this bitmap
-> > > > > needs freeing up when the GPIO interrupt is released from the driver
-> > > > > that as when overridden free callback frees the allocated tint slot so
-> > > > > that its available for re-use.
-> > > >
-> > > > Right, so that's actually a different life-cycle, and the whole
-> > > > populate_parent_alloc_arg() is a red herring. What you want is to free
-> > > > resources that have been allocated via some other paths. It'd be good
-> > > Is there any other path which I have missed where I can free up resources?
-> >
-> > No, that's the only one. It is just that usually, the alloc()
-> > callback is where you are supposed to perform... allocations.
-> >
-> OK.
+> Check wakeup-source property for dwc3 core node to set the
+> wakeup capability. Drop the device_init_wakeup call from
+> runtime suspend and resume.
 > 
-> > It'd be good if you could move your allocation there, as I would
-> > expect calls to child_to_parent_hwirq() to be idempotent.
-> >
-> For now I'll go with the current implementation, as currently a an
-> array is maintained which is tied with the tint slot and child (which
-> is obtained from child_to_parent_hwirq)
+> Also check during suspend if any wakeup capable devices are
+> connected to the controller (directly or through hubs), if there
+> are none set a flag to indicate that the PHY is powered
+> down during suspend.
 > 
-> > >
-> > > > if your commit message actually reflected this instead of using an
-> > > > example that doesn't actually exist.
-> > > >
-> > > My bad, I will update the commit message.
-> > >
-> > > > >
-> > > > > > There is also the question of why we need to have dynamic allocation
-> > > > > > for the fwspec itself. Why isn't that a simple stack allocation in the
-> > > > > > context of gpiochip_hierarchy_irq_domain_alloc()?
-> > > > > >
-> > > > > you mean gpio core itself should handle the fwspec
-> > > > > allocation/freeing?
-> > > >
-> > > > Yes. The only reason we resort to dynamic allocation is because
-> > > > ThunderX is using MSI-based GPIOs, and thus doesn't use a fwspec (no
-> > > > firmware is involved here).
-> > > >
-> > > I see..
-> > >
-> > > > If we had a union of the two types, we could just have a stack
-> > > > variable, and pass that along, completely sidestepping the whole
-> > > > dynamic allocation/freeing business.
-> > > >
-> > > Right agreed.
-> >
-> > FWIW, I've just posted a PoC patch[1].
-> >
-> I guess I'll have to rebase my changes on top of it now ;)
+> Signed-off-by: Sandeep Maheswaram <quic_c_sanm@quicinc.com>
+> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
+> ---
+>  drivers/usb/dwc3/core.c | 30 +++++++++++++++++-------------
+>  drivers/usb/dwc3/core.h |  4 ++++
+>  drivers/usb/dwc3/host.c | 24 ++++++++++++++++++++++++
+>  3 files changed, 45 insertions(+), 13 deletions(-)
+> 
+> diff --git a/drivers/usb/dwc3/core.c b/drivers/usb/dwc3/core.c
+> index 01115df..8bcabc5 100644
+> --- a/drivers/usb/dwc3/core.c
+> +++ b/drivers/usb/dwc3/core.c
+> @@ -1785,6 +1785,7 @@ static int dwc3_probe(struct platform_device *pdev)
+>  
+>  	platform_set_drvdata(pdev, dwc);
+>  	dwc3_cache_hwparams(dwc);
+> +	device_init_wakeup(&pdev->dev, of_property_read_bool(dev->of_node, "wakeup-source"));
+>  
+>  	spin_lock_init(&dwc->lock);
+>  	mutex_init(&dwc->mutex);
+> @@ -1946,10 +1947,7 @@ static int dwc3_suspend_common(struct dwc3 *dwc, pm_message_t msg)
+>  		dwc3_core_exit(dwc);
+>  		break;
+>  	case DWC3_GCTL_PRTCAP_HOST:
+> -		if (!PMSG_IS_AUTO(msg)) {
+> -			dwc3_core_exit(dwc);
+> -			break;
+> -		}
+> +		dwc3_check_phy_speed_mode(dwc);
+>  
+>  		/* Let controller to suspend HSPHY before PHY driver suspends */
+>  		if (dwc->dis_u2_susphy_quirk ||
+> @@ -1965,6 +1963,15 @@ static int dwc3_suspend_common(struct dwc3 *dwc, pm_message_t msg)
+>  
+>  		phy_pm_runtime_put_sync(dwc->usb2_generic_phy);
+>  		phy_pm_runtime_put_sync(dwc->usb3_generic_phy);
+> +
+> +		if (!PMSG_IS_AUTO(msg)) {
+> +			if (device_may_wakeup(dwc->dev))
 
-Not yet. Let's see what people say about it.
+I think this should be device_can_wakeup(), i.e. hardware capability instead of
+device policy. A drawback of powering the PHYs off is that it causes a high
+power consumption of certain peripherals if VBUS is still supplied, so this
+should be limited to platforms where the PHYs must be powered off (using wakeup
+capability as a proxy for now).
 
-	M.
 
--- 
-Without deviation from the norm, progress is not possible.
+> +				dwc->phy_power_off = false;
+> +			else {
+> +				dwc->phy_power_off = true;
+> +				dwc3_core_exit(dwc);
+> +			}
+> +		}
+>  		break;
+>  	case DWC3_GCTL_PRTCAP_OTG:
+>  		/* do nothing during runtime_suspend */
+> @@ -2008,11 +2015,12 @@ static int dwc3_resume_common(struct dwc3 *dwc, pm_message_t msg)
+>  		break;
+>  	case DWC3_GCTL_PRTCAP_HOST:
+>  		if (!PMSG_IS_AUTO(msg)) {
+> -			ret = dwc3_core_init_for_resume(dwc);
+> -			if (ret)
+> -				return ret;
+> -			dwc3_set_prtcap(dwc, DWC3_GCTL_PRTCAP_HOST);
+> -			break;
+> +			if (dwc->phy_power_off) {
+> +				ret = dwc3_core_init_for_resume(dwc);
+> +				if (ret)
+> +					return ret;
+> +				dwc3_set_prtcap(dwc, DWC3_GCTL_PRTCAP_HOST);
+> +			}
+>  		}
+>  		/* Restore GUSB2PHYCFG bits that were modified in suspend */
+>  		reg = dwc3_readl(dwc->regs, DWC3_GUSB2PHYCFG(0));
+> @@ -2084,8 +2092,6 @@ static int dwc3_runtime_suspend(struct device *dev)
+>  	if (ret)
+>  		return ret;
+>  
+> -	device_init_wakeup(dev, true);
+> -
+>  	return 0;
+>  }
+>  
+> @@ -2094,8 +2100,6 @@ static int dwc3_runtime_resume(struct device *dev)
+>  	struct dwc3     *dwc = dev_get_drvdata(dev);
+>  	int		ret;
+>  
+> -	device_init_wakeup(dev, false);
+> -
+>  	ret = dwc3_resume_common(dwc, PMSG_AUTO_RESUME);
+>  	if (ret)
+>  		return ret;
+> diff --git a/drivers/usb/dwc3/core.h b/drivers/usb/dwc3/core.h
+> index 81c486b..37397a8 100644
+> --- a/drivers/usb/dwc3/core.h
+> +++ b/drivers/usb/dwc3/core.h
+> @@ -1155,6 +1155,9 @@ struct dwc3 {
+>  
+>  	bool			phys_ready;
+>  
+> +	unsigned int            hs_phy_mode;
+> +	bool			phy_power_off;
+> +
+>  	struct ulpi		*ulpi;
+>  	bool			ulpi_ready;
+>  
+> @@ -1539,6 +1542,7 @@ int dwc3_core_soft_reset(struct dwc3 *dwc);
+>  #if IS_ENABLED(CONFIG_USB_DWC3_HOST) || IS_ENABLED(CONFIG_USB_DWC3_DUAL_ROLE)
+>  int dwc3_host_init(struct dwc3 *dwc);
+>  void dwc3_host_exit(struct dwc3 *dwc);
+> +void dwc3_check_phy_speed_mode(struct dwc3 *dwc);
+>  #else
+>  static inline int dwc3_host_init(struct dwc3 *dwc)
+>  { return 0; }
+> diff --git a/drivers/usb/dwc3/host.c b/drivers/usb/dwc3/host.c
+> index f56c30c..e19b40a 100644
+> --- a/drivers/usb/dwc3/host.c
+> +++ b/drivers/usb/dwc3/host.c
+> @@ -12,6 +12,7 @@
+>  #include <linux/platform_device.h>
+>  
+>  #include "core.h"
+> +#include "../host/xhci.h"
+>  
+>  static void dwc3_host_fill_xhci_irq_res(struct dwc3 *dwc,
+>  					int irq, char *name)
+> @@ -136,3 +137,26 @@ void dwc3_host_exit(struct dwc3 *dwc)
+>  {
+>  	platform_device_unregister(dwc->xhci);
+>  }
+> +
+> +void dwc3_check_phy_speed_mode(struct dwc3 *dwc)
+> +{
+> +	int i, num_ports;
+> +	u32 reg;
+> +	struct usb_hcd	*hcd = platform_get_drvdata(dwc->xhci);
+> +	struct xhci_hcd	*xhci_hcd = hcd_to_xhci(hcd);
+> +
+> +	dwc->hs_phy_mode = 0;
+> +
+> +	reg = readl(&xhci_hcd->cap_regs->hcs_params1);
+> +
+> +	num_ports = HCS_MAX_PORTS(reg);
+> +	for (i = 0; i < num_ports; i++) {
+> +		reg = readl(&xhci_hcd->op_regs->port_status_base + i * NUM_PORT_REGS);
+> +		if (reg & PORT_PE) {
+> +			if (DEV_HIGHSPEED(reg) || DEV_FULLSPEED(reg))
+> +				dwc->hs_phy_mode |= PHY_MODE_USB_HOST_HS;
+> +			else if (DEV_LOWSPEED(reg))
+> +				dwc->hs_phy_mode |= PHY_MODE_USB_HOST_LS;
+> +		}
+> +	}
+> +}
+
+I anticipate that it might raise concerns from maintainers that
+dwc3_check_phy_speed_mode() accesses xHCI data structures and
+registers directly. Could there be a generic HCD API that provides
+this functionality (if implemented by the specific HCD)?
