@@ -2,99 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 168C2524676
-	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 09:07:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 04712524681
+	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 09:08:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350733AbiELHHS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 May 2022 03:07:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54280 "EHLO
+        id S1350701AbiELHIV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 May 2022 03:08:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57910 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350754AbiELHHP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 03:07:15 -0400
-Received: from mail-qk1-f177.google.com (mail-qk1-f177.google.com [209.85.222.177])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0FCCF4E3B1;
-        Thu, 12 May 2022 00:07:10 -0700 (PDT)
-Received: by mail-qk1-f177.google.com with SMTP id n8so3972146qke.11;
-        Thu, 12 May 2022 00:07:10 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=OGw8ncaGNVV4G0SqeS2qCZWEWhg4F6MASDrmPWZbwoY=;
-        b=qI1pmKeqotCs7fUyimxURl4MUs87QCAoKQOIOPROsC60J5yqP5kXycFeBQPv+QbYpd
-         XvfSWK7k6rofgzknz/qDI6JjNZPy0pMbrUwXU0hL1zrfbEOZb0KkGzzbJPBclDckVLLr
-         C6DKIY3Rw0mf48xH/Jn1T7DL5WF2WtDFhv4xzBmxnhOa5PurUQn9nH+tXzQyCn0GhCHG
-         SPSIpAywkfSyt+MrIIOH0zRaIIoAcbS9nW4pbalf8VG59LaZ2CNShLrRuWG3neHuVrVo
-         o3FKwbEdgXwD00c8clERNYvs0XVkA3tQINmtsSpi4XhPpRC9GxwoHeGhZHh0O5SkIzSQ
-         0sYg==
-X-Gm-Message-State: AOAM533miV+OPPIJzkOS2tEVfbY//r2RHX3BakvJ6rMQpXe9/vNWz9w+
-        nPq+yaRm6/tfkHg6W2k0voT9Stx4EyVc/w==
-X-Google-Smtp-Source: ABdhPJyEeTMon2D3jM8SxhzMxjsFXJidW/D8zBbzCWizuBD4AIJ+xHGSEI5R1a1L+hJneFlX4kI3Sg==
-X-Received: by 2002:a37:660d:0:b0:6a0:72b9:bb7a with SMTP id a13-20020a37660d000000b006a072b9bb7amr15145794qkc.732.1652339228880;
-        Thu, 12 May 2022 00:07:08 -0700 (PDT)
-Received: from mail-yb1-f179.google.com (mail-yb1-f179.google.com. [209.85.219.179])
-        by smtp.gmail.com with ESMTPSA id z21-20020ac87115000000b002f39b99f6adsm2446948qto.71.2022.05.12.00.07.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 12 May 2022 00:07:08 -0700 (PDT)
-Received: by mail-yb1-f179.google.com with SMTP id g28so8073850ybj.10;
-        Thu, 12 May 2022 00:07:07 -0700 (PDT)
-X-Received: by 2002:a05:6902:389:b0:633:31c1:d0f7 with SMTP id
- f9-20020a056902038900b0063331c1d0f7mr25940095ybs.543.1652339227489; Thu, 12
- May 2022 00:07:07 -0700 (PDT)
+        with ESMTP id S1350766AbiELHIT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 03:08:19 -0400
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.220.28])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6D3B517E5;
+        Thu, 12 May 2022 00:08:10 -0700 (PDT)
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+        (No client certificate requested)
+        by smtp-out1.suse.de (Postfix) with ESMTPS id 7C6A721BB5;
+        Thu, 12 May 2022 07:08:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+        t=1652339289; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+         mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=ZUuA2pZ/f7UU2troMD6CEcY43Cqa5Ipx6IIjJqW0siM=;
+        b=Q9moOVs/8kADcB6JkjtHMxX2aLgaxAmKEGaBxOfflN7JWLHyx+LKdRPRN0R5M6tXTYMIcS
+        rTC9pF7CI5BLGSJM+0HDdahoxTI0SGZvTQWph53fRSVtlJKBnz3Jrda3t8AUZPg24j0tO0
+        jWHcdGSUWyw8n2xjKjT/dyWjZFDXhF4=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+        s=susede2_ed25519; t=1652339289;
+        h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+         mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=ZUuA2pZ/f7UU2troMD6CEcY43Cqa5Ipx6IIjJqW0siM=;
+        b=Nymkhp9ueqTVBIy8ofTEPqJyLT3nXbr9RA9KdKvd+RrEq7vEZxGN7JBypO/heMlEQ3SWPe
+        Z9zRzzeu5rx776Aw==
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+        (No client certificate requested)
+        by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 4E82213A97;
+        Thu, 12 May 2022 07:08:09 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([192.168.254.65])
+        by imap2.suse-dmz.suse.de with ESMTPSA
+        id cN3dElmyfGI+XgAAMHmgww
+        (envelope-from <hare@suse.de>); Thu, 12 May 2022 07:08:09 +0000
+Message-ID: <f6ec7945-e507-c806-ec1b-d65bf8e8f8e7@suse.de>
+Date:   Thu, 12 May 2022 09:08:08 +0200
 MIME-Version: 1.0
-References: <20220511183210.5248-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20220511183210.5248-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20220511183210.5248-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 12 May 2022 09:06:55 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdXNzA=XsoiPAWrHQ_mCDvH9pgC+tEUuKzd+VheyrRVe-g@mail.gmail.com>
-Message-ID: <CAMuHMdXNzA=XsoiPAWrHQ_mCDvH9pgC+tEUuKzd+VheyrRVe-g@mail.gmail.com>
-Subject: Re: [PATCH v3 3/5] gpio: gpiolib: Allow free() callback to be overridden
-To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.4.0
+Subject: Re: [PATCH v3 18/23] dt-bindings: ata: ahci: Add DWC AHCI SATA
+ controller DT schema
+Content-Language: en-US
+To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Jens Axboe <axboe@kernel.dk>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Phil Edworthy <phil.edworthy@renesas.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Prabhakar <prabhakar.csengg@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+        Serge Semin <fancer.lancer@gmail.com>
+Cc:     Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        linux-ide@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20220511231810.4928-1-Sergey.Semin@baikalelectronics.ru>
+ <20220511231810.4928-19-Sergey.Semin@baikalelectronics.ru>
+From:   Hannes Reinecke <hare@suse.de>
+In-Reply-To: <20220511231810.4928-19-Sergey.Semin@baikalelectronics.ru>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-5.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 11, 2022 at 8:32 PM Lad Prabhakar
-<prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
-> Allow free() callback to be overridden from irq_domain_ops for
-> hierarchical chips.
->
-> This allows drivers to free any resources which are allocated during
-> populate_parent_alloc_arg().
->
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+On 5/12/22 01:18, Serge Semin wrote:
+> Synopsys AHCI SATA controller is mainly compatible with the generic AHCI
+> SATA controller except a few peculiarities and the platform environment
+> requirements. In particular it can have one or two reference clocks to
+> feed up its AXI/AHB interface and SATA PHYs domain and at least one reset
+> control for the application clock domain. In addition to that the DMA
+> interface of each port can be tuned up to work with the predefined maximum
+> data chunk size. Note unlike generic AHCI controller DWC AHCI can't have
+> more than 8 ports. All of that is reflected in the new DWC AHCI SATA
+> device DT binding.
+> 
+> Note the DWC AHCI SATA controller DT-schema has been created in a way so
+> to be reused for the vendor-specific DT-schemas (see for example the
+> "snps,dwc-ahci" compatible string binding). One of which we are about to
+> introduce.
+> 
+> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+> 
+> ---
+> 
+> Changelog v2:
+> - Replace min/max constraints of the snps,{tx,rx}-ts-max property with
+>    enum [ 1, 2, 4, ..., 1024 ]. (@Rob)
+> ---
+>   .../bindings/ata/ahci-platform.yaml           |   8 --
+>   .../bindings/ata/snps,dwc-ahci.yaml           | 123 ++++++++++++++++++
+>   2 files changed, 123 insertions(+), 8 deletions(-)
+>   create mode 100644 Documentation/devicetree/bindings/ata/snps,dwc-ahci.yaml
+> 
+Reviewed-by: Hannes Reinecke <hare@suse.de>
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Cheers,
 
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Hannes
+-- 
+Dr. Hannes Reinecke		           Kernel Storage Architect
+hare@suse.de			                  +49 911 74053 688
+SUSE Software Solutions Germany GmbH, Maxfeldstr. 5, 90409 Nürnberg
+HRB 36809 (AG Nürnberg), GF: Felix Imendörffer
