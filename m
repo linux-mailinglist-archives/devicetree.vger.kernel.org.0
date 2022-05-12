@@ -2,148 +2,272 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 88E2F52587D
-	for <lists+devicetree@lfdr.de>; Fri, 13 May 2022 01:39:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 26B2752588C
+	for <lists+devicetree@lfdr.de>; Fri, 13 May 2022 01:41:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1359528AbiELXjF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 May 2022 19:39:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58904 "EHLO
+        id S1359562AbiELXkq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 May 2022 19:40:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60532 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243598AbiELXjE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 19:39:04 -0400
-Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72083286FED
-        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 16:39:03 -0700 (PDT)
-Received: by mail-lj1-x22e.google.com with SMTP id v4so8345807ljd.10
-        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 16:39:03 -0700 (PDT)
+        with ESMTP id S1359559AbiELXkq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 19:40:46 -0400
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1C541116B;
+        Thu, 12 May 2022 16:40:44 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id bu29so11815301lfb.0;
+        Thu, 12 May 2022 16:40:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=gmail.com; s=20210112;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=UxYHPKKpJ3gJqXFoP77Myjabfl2sbzgjV+P+sSNGRWw=;
-        b=dntSTokMCD79xEtTvx5gvFLZ5kcRTVQvoV2VPYYERLJmmXiz8hnZSVDnP5IRfnKQUn
-         ZRfwt04aYzGCx8etnz3Pt4PT37pe+yuK2lDiN0QvmVc3rdyKwtOBvwfFiFPDItgmHizs
-         N21m6rv0vm5mQFGwV1g9g+u1qot7Raepaj9hn6j3Nhyuvgxfg6RnOmRpmQ3oc9WBr70Y
-         SH1B3vHIoDr1PKZOmRqy5Va2boCmz0BaJ9P4FywUSRmsW1zkUrYabqM+ZG+/aGXYknOt
-         rKDATdfV7mPz+Uxn7gKMo82OIsAo1XE631ID/Q0Kzv3fULwtFosMAoDi/Wqej469bHPh
-         326A==
+        bh=LDeSEeG6sYN/4I8BLWwVYheQ8YlAvLVklfd9fc7g84c=;
+        b=l3OJo2qhUsCbaOlrSzfbmQJJYanAByxF2plXQtkDybX8/5nwgM0xdtjBY2suhls6as
+         Ap1Yo00IreihXYoc6JR4QjfeyyeJGnWaoazVyCLYZ5Lbo+9JSv4oRMbVhgGShG2kqzEy
+         tycAx7k9t1c5KCOUk3tpquMF9Kwk11Bx/H2bwLnRHaxqf0uCihqZcn0tgqE+SrL1I6Qh
+         CAeOLylleLsOjDHXBOTunDICcemQkXNbYFqSgVd9OMVIh+x7bKwTlGzcHCxygszwsCs2
+         lm89hyiAXWNiYHSoGHz2Zt+HDWZe0pvW67nLskHwCqgjdw8oMjow2CeA2lGjSCSKCtI5
+         No4Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=UxYHPKKpJ3gJqXFoP77Myjabfl2sbzgjV+P+sSNGRWw=;
-        b=fbkNUJV0dbZKlQySquxtHgio1SXsNbAsT1FmPViO+mb7KF3dXi0QaxqJI7b7dTh1f8
-         DgPmnucYOJZCg5cNrMQAJkvU3cn+QdGVx2G9MoPaVNEp1dwYE+7MfkivmCtlHm1sw9jh
-         Lt4QKbQBenRe40V5dueYOVeS4jq4pgEis5aRq5FMoFStUkuaIm8dGun5NTNw/ddF6Ud5
-         hET8+SxLykmOtNmctjfCXvH1j5ulVh70JvlXJltpxE2rv4hJ2zDp5fQRdGiClER1pRsV
-         M20S/yQPG6CtvmfO3Y/Hw5PkanaKxBoVZR7USKW98AAoAg6JEqgsNFZdp6fLPPMl48Hi
-         wcqg==
-X-Gm-Message-State: AOAM531wLn0PmB8Aew5B8tnMkQ97sziE1D45GiySrWZXAyACCVQySmDS
-        jN1GT7snhjg1sCxhsub2YtuTyQ==
-X-Google-Smtp-Source: ABdhPJzphaFpAg//uJb252NsVwW6dzMlwlzQWV+PmeTT41q4QnXnwikeEwE0h9ga2evmVlZo3558Hg==
-X-Received: by 2002:a05:651c:312:b0:251:f8b8:184e with SMTP id a18-20020a05651c031200b00251f8b8184emr1465068ljp.9.1652398741790;
-        Thu, 12 May 2022 16:39:01 -0700 (PDT)
-Received: from [192.168.1.211] ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id j18-20020a056512345200b004725b701c94sm135316lfr.42.2022.05.12.16.39.00
+        bh=LDeSEeG6sYN/4I8BLWwVYheQ8YlAvLVklfd9fc7g84c=;
+        b=0FtkXK3nz4i2QCC0VSPpn02NFULUaVfuESKOk8klPaODhAZs3R2FCK7pxHIkAIS8VZ
+         WgFwQ7UOpFsysgmkpobfTdIhrWCmSg04YwU0geiQ6OIYmT5oP80BE8nx1fZH9hMPb83D
+         crwsqng2+L7gZqc9csY9n9P8Gs75AsesE8do7YOggUD+b8S3O52NzlIP8hHTJa9tq4od
+         SaMUFETQIeZzG9s5QtDnZqR4pEYcYlTL7JrnyhGlNuRZ+fnAnBiVowB5iGGvA5McTK+d
+         QZmQxkhIHy3rbyTSJ6LrqKg3refjaG8zEn1NpXdzPkq0g9R6tolUIDEcgZPHGPaaoIbm
+         MUIw==
+X-Gm-Message-State: AOAM5327PIglWdXc5A/Ggx+PJz+H7yNHtUXMP/HmBgHCEIRyD+C7he4I
+        9WoUqUZo/xP2s8x3Z2erBTgLz7XVQ2o=
+X-Google-Smtp-Source: ABdhPJyVbbw6czcCKG1dstVn1KQi46G5k084v/U00v3ld5aEAkn+ZmEgHbKxtLbiiJwO0FhVf/PCWQ==
+X-Received: by 2002:a05:6512:acb:b0:473:c2ad:efe5 with SMTP id n11-20020a0565120acb00b00473c2adefe5mr1453355lfu.290.1652398842909;
+        Thu, 12 May 2022 16:40:42 -0700 (PDT)
+Received: from [192.168.2.145] (109-252-137-244.dynamic.spd-mgts.ru. [109.252.137.244])
+        by smtp.googlemail.com with ESMTPSA id h16-20020a05651211d000b0047255d2116dsm132208lfr.156.2022.05.12.16.40.41
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 12 May 2022 16:39:01 -0700 (PDT)
-Message-ID: <49615bc9-c7a4-09ed-c89f-39c50e1d90ba@linaro.org>
-Date:   Fri, 13 May 2022 02:39:00 +0300
+        Thu, 12 May 2022 16:40:42 -0700 (PDT)
+Message-ID: <57bfc915-c761-3ba4-93d0-776f9b5f93b3@gmail.com>
+Date:   Fri, 13 May 2022 02:40:41 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH v5 13/22] dma: qcom: bam_dma: Add support to initialize
- interconnect path
-Content-Language: en-GB
-To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org
-Cc:     bhupesh.linux@gmail.com, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, robh+dt@kernel.org, agross@kernel.org,
-        herbert@gondor.apana.org.au, davem@davemloft.net,
-        stephan@gerhold.net, Thara Gopinath <thara.gopinath@linaro.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-References: <20211110105922.217895-1-bhupesh.sharma@linaro.org>
- <20211110105922.217895-14-bhupesh.sharma@linaro.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20211110105922.217895-14-bhupesh.sharma@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v4 3/3] iio: light: Add support for ltrf216a sensor
+Content-Language: en-US
+To:     Shreeya Patel <shreeya.patel@collabora.com>, jic23@kernel.org,
+        lars@metafoo.de, robh+dt@kernel.org, Zhigang.Shi@liteon.com,
+        krisman@collabora.com
+Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, kernel@collabora.com,
+        alvaro.soliverez@collabora.com
+References: <20220511094024.175994-1-shreeya.patel@collabora.com>
+ <20220511094024.175994-4-shreeya.patel@collabora.com>
+From:   Dmitry Osipenko <digetx@gmail.com>
+In-Reply-To: <20220511094024.175994-4-shreeya.patel@collabora.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/11/2021 13:59, Bhupesh Sharma wrote:
-> From: Thara Gopinath <thara.gopinath@linaro.org>
-> 
-> BAM dma engine associated with certain hardware blocks could require
-> relevant interconnect pieces be initialized prior to the dma engine
-> initialization. For e.g. crypto bam dma engine on sm8250. Such requirement
-> is passed on to the bam dma driver from dt via the "interconnects"
-> property.  Add support in bam_dma driver to check whether the interconnect
-> path is accessible/enabled prior to attempting driver intializations.
-> 
-> Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
-> [Make header file inclusion alphabetical and use 'devm_of_icc_get()']
-> Signed-off-by: Thara Gopinath <thara.gopinath@linaro.org>
-> ---
->   drivers/dma/qcom/bam_dma.c | 11 +++++++++++
->   1 file changed, 11 insertions(+)
-> 
-> diff --git a/drivers/dma/qcom/bam_dma.c b/drivers/dma/qcom/bam_dma.c
-> index c8a77b428b52..19fb17db467f 100644
-> --- a/drivers/dma/qcom/bam_dma.c
-> +++ b/drivers/dma/qcom/bam_dma.c
-> @@ -26,6 +26,7 @@
->   #include <linux/kernel.h>
->   #include <linux/io.h>
->   #include <linux/init.h>
-> +#include <linux/interconnect.h>
->   #include <linux/slab.h>
->   #include <linux/module.h>
->   #include <linux/interrupt.h>
-> @@ -392,6 +393,7 @@ struct bam_device {
->   	const struct reg_offset_data *layout;
->   
->   	struct clk *bamclk;
-> +	struct icc_path *mem_path;
->   	int irq;
->   
->   	/* dma start transaction tasklet */
-> @@ -1284,6 +1286,15 @@ static int bam_dma_probe(struct platform_device *pdev)
->   		return ret;
->   	}
->   
-> +	/* Ensure that interconnects are initialized */
-> +	bdev->mem_path = devm_of_icc_get(bdev->dev, "memory");
+Hello Shreeya,
 
-Also, as a note, the "memory" is not a good name for the ICC path. 
-Usually they take the form of "src-dst". However in this case you can 
-probably use NULL for the first and the only icc path.
+...
+> +#include <linux/init.h>
+> +#include <linux/mod_devicetable.h>
 
+You may safely remove these includes because module.h always provides them.
+
+> +#include <linux/module.h>
+> +#include <linux/mutex.h>
+> +#include <linux/pm.h>
+> +#include <linux/iio/iio.h>
+> +#include <asm/unaligned.h>
+> +
+> +#define LTRF216A_DRV_NAME "ltrf216a"
+
+This define doesn't bring much benefits, you may use "ltrf216a" directly
+in the code.
+
+> +#define LTRF216A_MAIN_CTRL		0x00
+> +
+> +#define LTRF216A_ALS_DATA_STATUS	BIT(3)
+> +#define LTRF216A_ALS_ENABLE_MASK	BIT(1)
+> +
+> +#define LTRF216A_ALS_MEAS_RES		0x04
+> +#define LTRF216A_MAIN_STATUS		0x07
+> +#define LTRF216A_CLEAR_DATA_0		0x0A
 > +
 
-Extra newline, not necessary.
+Is any reason for separating these regs with a newline? If no, then you
+may remove this newline.
 
-> +	if (IS_ERR(bdev->mem_path)) {
-> +		ret = PTR_ERR(bdev->mem_path);
-> +		dev_err(bdev->dev, "failed to acquire icc path %d\n", ret);
-> +		goto err_disable_clk;
+> +#define LTRF216A_ALS_DATA_0		0x0D
+> +
+
+...
+> +struct ltrf216a_data {
+> +	struct i2c_client *client;
+> +	u32 int_time;
+> +	u16 int_time_fac;
+> +	u8 als_gain_fac;
+> +	/*
+> +	 * Ensure cached value of integration time is consistent
+> +	 * with hardware setting and remains constant during a
+> +	 * measurement of Lux.
+> +	 */
+> +	struct mutex mutex;
+
+I'd rename the "mutex" -> "lock".
+
+> +};
+> +
+> +/* open air. need to update based on TP transmission rate. */
+> +#define WIN_FAC	1
+
+Usually all defines are placed before the code. You may move this define
+before struct ltrf216a_data.
+
+...
+> +static int ltrf216a_init(struct iio_dev *indio_dev)
+> +{
+> +	int ret;
+> +	struct ltrf216a_data *data = iio_priv(indio_dev);
+
+Reverse Xmas tree is a common coding style in kernel for the function
+variables.
+
+******
+****
+**
+
+Will be great if you could use the same coding style everywhere in this
+source file, i.e. like this:
+
+struct ltrf216a_data *data = iio_priv(indio_dev);
+int ret;
+
+> +	ret = i2c_smbus_read_byte_data(data->client, LTRF216A_MAIN_CTRL);
+> +	if (ret < 0) {
+> +		dev_err(&data->client->dev, "Error reading LTRF216A_MAIN_CTRL\n");
+> +		return ret;
 > +	}
 > +
->   	ret = bam_init(bdev);
->   	if (ret)
->   		goto err_disable_clk;
+> +	/* enable sensor */
+> +	ret |= FIELD_PREP(LTRF216A_ALS_ENABLE_MASK, 1);
+> +	ret = i2c_smbus_write_byte_data(data->client, LTRF216A_MAIN_CTRL, ret);
+> +	if (ret < 0) {
+> +		dev_err(&data->client->dev, "Error writing LTRF216A_MAIN_CTRL\n");
 
+This message doesn't tell us the error code, which usually is very handy
+to know.
 
--- 
-With best wishes
-Dmitry
+I'd also change all the error messages in this driver to tell which
+action failed, like this:
+
+dev_err(dev, "Failed to enable sensor: %d\n", ret);
+
+> +		return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int ltrf216a_disable(struct iio_dev *indio_dev)
+> +{
+> +	int ret;
+> +	struct ltrf216a_data *data = iio_priv(indio_dev);
+> +
+> +	ret = i2c_smbus_write_byte_data(data->client, LTRF216A_MAIN_CTRL, 0);
+> +	if (ret < 0)
+> +		dev_err(&data->client->dev, "Error writing LTRF216A_MAIN_CTRL\n");
+
+Please add error code to the message here too and reword it. This is
+exactly the same error message as in ltrf216a_init(), so you can't
+distinguish whether it's enabling or disabling that failed.
+
+> +	return ret;
+> +}
+> +
+> +static void als_ltrf216a_disable(void *data)
+> +{
+> +	struct iio_dev *indio_dev = data;
+> +
+> +	ltrf216a_disable(indio_dev);
+> +}
+> +
+> +static int ltrf216a_set_int_time(struct ltrf216a_data *data, int itime)
+> +{
+> +	int i, ret, index = -1;
+> +	u8 reg_val;
+> +
+> +	for (i = 0; i < ARRAY_SIZE(ltrf216a_int_time_available); i++) {
+> +		if (ltrf216a_int_time_available[i][1] == itime) {
+> +			index = i;
+> +			break;
+> +		}
+> +	}
+> +
+> +	if (index < 0)
+> +		return -EINVAL;
+> +
+> +	reg_val = ltrf216a_int_time_reg[index][1];
+> +	data->int_time_fac = ltrf216a_int_time_reg[index][0];
+> +
+> +	ret = i2c_smbus_write_byte_data(data->client, LTRF216A_ALS_MEAS_RES, reg_val);
+> +	if (ret < 0)
+> +		return ret;
+
+Won't hurt to add error message here for consistency.
+
+> +	data->int_time = itime;
+> +
+> +	return 0;
+> +}
+> +
+> +static int ltrf216a_get_int_time(struct ltrf216a_data *data, int *val, int *val2)
+> +{
+> +	*val = 0;
+> +	*val2 = data->int_time;
+> +	return IIO_VAL_INT_PLUS_MICRO;
+> +}
+> +
+> +static int ltrf216a_read_data(struct ltrf216a_data *data, u8 addr)
+> +{
+> +	int ret = -1, tries = 25;
+
+No need to initialize the ret variable.
+
+> +	u8 buf[3];
+> +
+> +	while (tries--) {
+> +		ret = i2c_smbus_read_byte_data(data->client, LTRF216A_MAIN_STATUS);
+> +		if (ret < 0)
+> +			return ret;
+
+Need error message
+
+> +		if (ret & LTRF216A_ALS_DATA_STATUS)
+> +			break;
+> +		msleep(20);
+> +	}
+> +
+> +	ret = i2c_smbus_read_i2c_block_data(data->client, addr, sizeof(buf), buf);
+> +	if (ret < 0)
+> +		return ret;
+
+Same here
+
+..
+> +MODULE_AUTHOR("Shi Zhigang <Zhigang.Shi@liteon.com>");
+
+Driver could have multiple MODULE_AUTHOR(), you may add yourself here:
+
+MODULE_AUTHOR("Shreeya Patel <shreeya.patel@collabora.com>")
