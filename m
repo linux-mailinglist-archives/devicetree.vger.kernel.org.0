@@ -2,74 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 06568524771
-	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 09:54:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 38B9552479B
+	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 10:05:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351241AbiELHyJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 May 2022 03:54:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49508 "EHLO
+        id S1351321AbiELIFl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 May 2022 04:05:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32778 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351244AbiELHyI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 03:54:08 -0400
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F199049273
-        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 00:54:06 -0700 (PDT)
-Received: by mail-ej1-x631.google.com with SMTP id dk23so8510103ejb.8
-        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 00:54:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=xHJnnT01z1m5/aS07o3xcwpyjm9ng8j7p+h8cghz0mg=;
-        b=A/SBKtUr3KfywtKWmieS20zAHGuZFnDIpJbiOl8aFAoL4TK0+DjjJ2fxYk1rGmB6ZK
-         ub1rbkQft+iCWKy4ygN/kwmCKlgGIp5Ks4CVAzNf6gtgDd7Ih4oRrpeSlVnqPsvRLO0/
-         Uy24pj8IOZ4lIMr1FQzTcBQJtndvDBSpYU1bvfmbNZxpFFC3/gGwIquh1qGTgEf8CQtj
-         duWUm4a2OBbc8pPMC5ViPPghhWvDNAr1FkMoO5+yTnCjzbD/nRv2cKEGR8OBfm0Bf0kh
-         M3op9yni3ODEvrTX14yYbJQjoyy7G0FFHNakiO2K9pEkTJjIIHuz3HzfMV0vgVRzpyQn
-         wtFA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=xHJnnT01z1m5/aS07o3xcwpyjm9ng8j7p+h8cghz0mg=;
-        b=R2VQ0FG0ri/vsQP/eLstWg66v4D280Bu29hzKgrJuHEtyFYDXtQhc9E1ae5vMlvaLh
-         q2yaliFgrAcHvgpgnbO10dNqW/PQge/xdNYxCzUcmUUeJJVsfgBqes5pu7FwgJSccg8N
-         cdASx6zx1kAyVRywkvsYWC/Svsp97qAi5rC78uS4Nnktl3uCQftrXEU74h+bV93ESWKj
-         h6nUHEzCMcDy7ZYlCZgJJqpODJmcjJS1KlW2JXIZ9dQfN8hXjOBgGORhVxtwFY4o17b6
-         OgrwwFv+ZpFDKfAQLSZpHNsvnq+VQ+ddtD6gmEyfYL98UD+3PvIowOe7OkGiFGPEdPzV
-         b0QA==
-X-Gm-Message-State: AOAM530dcaHyoeR/TVORw7z7ZoHA0N2V+5BI24x6FWFdVzHdULSUK7dB
-        XvTzzpOikMVOn+t45/Ua56910g==
-X-Google-Smtp-Source: ABdhPJxoSxUbbatzMqng37xCHJror9sIbQPy+9nCPXyfbJ+QGbiKsRtJNf0mmfRO7Uf5x69zPreAnw==
-X-Received: by 2002:a17:907:3f26:b0:6f4:dc59:3cfe with SMTP id hq38-20020a1709073f2600b006f4dc593cfemr28828663ejc.528.1652342045468;
-        Thu, 12 May 2022 00:54:05 -0700 (PDT)
-Received: from [192.168.0.156] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id j29-20020a508a9d000000b0042617ba63d1sm2205862edj.91.2022.05.12.00.54.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 12 May 2022 00:54:05 -0700 (PDT)
-Message-ID: <b5c586de-a3ae-0774-e0bf-e21852b65fa9@linaro.org>
-Date:   Thu, 12 May 2022 09:54:03 +0200
+        with ESMTP id S1351298AbiELIFi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 04:05:38 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3410B21089D;
+        Thu, 12 May 2022 01:05:33 -0700 (PDT)
+X-UUID: 207c2fe1f09a4c99a913b302ca87d276-20220512
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.4,REQID:42ea20ca-315a-4083-be47-db7937daa3c1,OB:0,LO
+        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:95,FILE:0,RULE:Release_Ham,ACT
+        ION:release,TS:95
+X-CID-INFO: VERSION:1.1.4,REQID:42ea20ca-315a-4083-be47-db7937daa3c1,OB:0,LOB:
+        0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:95,FILE:0,RULE:Spam_GS981B3D,ACT
+        ION:quarantine,TS:95
+X-CID-META: VersionHash:faefae9,CLOUDID:f989f3f1-ab23-4aed-a67b-f96514452486,C
+        OID:9788cbe1af47,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,File:nil
+        ,QS:0,BEC:nil
+X-UUID: 207c2fe1f09a4c99a913b302ca87d276-20220512
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
+        (envelope-from <rex-bc.chen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 394341360; Thu, 12 May 2022 16:05:26 +0800
+Received: from mtkmbs07n1.mediatek.inc (172.21.101.16) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.792.15; Thu, 12 May 2022 16:05:25 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Thu, 12 May 2022 16:05:25 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Thu, 12 May 2022 16:05:24 +0800
+From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
+To:     <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <chunkuang.hu@kernel.org>, <p.zabel@pengutronix.de>
+CC:     <airlied@linux.ie>, <matthias.bgg@gmail.com>,
+        <angelogioacchino.delregno@collabora.com>,
+        <jason-jh.lin@mediatek.com>, <nancy.lin@mediatek.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <dri-devel@lists.freedesktop.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        Rex-BC Chen <rex-bc.chen@mediatek.com>
+Subject: [PATCH v3 0/3] MediaTek MT8195 display binding
+Date:   Thu, 12 May 2022 16:05:20 +0800
+Message-ID: <20220512080523.25082-1-rex-bc.chen@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH 1/2] dt-bindings: microchip-otpc: document Microchip OTPC
-Content-Language: en-US
-To:     Claudiu.Beznea@microchip.com, srinivas.kandagatla@linaro.org,
-        robh+dt@kernel.org, krzk+dt@kernel.org
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220510094457.4070764-1-claudiu.beznea@microchip.com>
- <20220510094457.4070764-2-claudiu.beznea@microchip.com>
- <75ce6291-77c7-c932-e8bb-a8bbae02431d@linaro.org>
- <c840c598-0413-5f40-0807-e3c314531f0a@microchip.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <c840c598-0413-5f40-0807-e3c314531f0a@microchip.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Type: text/plain
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,100 +68,34 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/05/2022 09:17, Claudiu.Beznea@microchip.com wrote:
->>
->>> +
->>> +#ifndef _DT_BINDINGS_NVMEM_MICROCHIP_OTPC_H
->>> +#define _DT_BINDINGS_NVMEM_MICROCHIP_OTPC_H
->>> +
->>> +/*
->>> + * Need to have it as a multiple of 4 as NVMEM memory is registered with
->>> + * stride = 4.
->>> + */
->>> +#define OTP_PKT(id)                  ((id) * 4)
->>
->> Do I get it correctly - the offset or register address is now part of a
->> binding? You write here "id", however you use it as part of "reg", so
->> it's confusing.
-> 
-> I agree that reg should describe the offset in OTP memory and its the
-> length for a cell.
-> 
-> However this OTP memory is organized into packets (this is how hardware is
-> designed), the 1st one being the boot configuration packet, the 2nd one
-> being temperature calibration data. At the moment Microchip provides only
-> these 2 packets in OTP memory. Boot configuration packet may vary in length
-> thus it may change the offset the temperature calibration packet resides
-> to. If this happen and we use offset based addressing in device trees then
-> the solution will not work all the time.
-> 
-> OTP hardware is designed to work with packets. For a packet being in memory
-> at offset 0x0E as follows:
-> 
-> offset  OTP Memory layout
-> 
->          .           .
->          .    ...    .
->          .           .
-> 0x0E     +-----------+	<--- packet X
->          | header  X |
-> 0x12     +-----------+
->          | payload X |
-> 0x16     |           |
->          |           |
-> 0x1A     |           |
->          +-----------+
->          .           .
->          .    ...    .
->          .           .
-> 
-> requesting from software data at address 0x16 (through OTP control
-> registers) will return the whole packet starting at offset 0x0E. Same
-> things happens when requesting data at offset 0x0E, 0x12, 0x1A.
-> 
-> Thus, as underlying hardware returns to software chunks of 4 bytes though
-> data registers the driver has been registered with stride = 4. The
-> OTP_PKT() macro expects packet identifier (starting from 0), multiplies it
-> by 4 to be able to pass the NVMEM subsystem accordingly, then the driver
-> which manages a list of the available packets divides this value by 4 and
-> gets the packet ID and the proper offset in memory for the requested packet ID.
-> 
-> The intention was to have the OTP_PKT() macro here to be used in device
-> trees for simpler way of describing different cells in this OTP memory.
-> Also, using OTP_PKT() abstraction looked to me closer to the reality
-> (although the computed value is not reflecting this, it is only an
-> abstraction to be able to pass the NVMEM subsystem).
-> 
-> Would you prefer to have raw values instead of using this macro?
+Add this series to present MediaTek display binding for MT8195.
+The reason I send this series is Jason and Nancy's binding patches are
+never received by devicetree mail server.
+Therefore, I help them to resend binding patches.
 
-Macro is a nice idea if it can be stable. I understood that length of
-packets depends on hardware, so this part could be stable. But what
-about number of packets, so the OTP_PKT_SAMA7G5_TEMP_CALIB_LEN below?
-You wrote "Boot configuration packet may vary in length", so it could be
-changed by Microchip?
+Changes for v3:
+1. Fix rdma and ethdr binding doc.
+2. Nancy's series: [1].
+3. This series is based on linux-next: next-20220511.
 
-Once this value is stored in the bindings, it is not supposed to change.
+Changes for v2:
+1. This patch is based on linux next-20220506.
+2. Jason's patches are accepted and I drop them.
 
-> 
-> Adapting the subsystem for this kind of devices is also an option if
-> Srinivas thinks like this.
-> 
->>
->>> +
->>> +/*
->>> + * Temperature calibration packet length for SAMA7G5: 1 words header,
->>> + * 18 words payload.
->>> + */
->>> +#define OTP_PKT_SAMA7G5_TEMP_CALIB_LEN       (19 * 4)
->>
->> Length of some memory region also does not look like job for bindings.
-> 
-> I added it here to be able to have the same macro in DT and consumer
-> drivers taking as example iio drivers that uses this approach to describe
-> IIO channel identifiers. I can remove it and use necessary macros in the
-> consumer drivers, if it's better this way.
+[1]: https://lore.kernel.org/all/20220512053128.31415-1-nancy.lin@mediatek.com/
 
+Nancy.Lin (3):
+  dt-bindings: mediatek: add vdosys1 RDMA definition for mt8195
+  dt-bindings: reset: mt8195: add vdosys1 reset control bit
+  dt-bindings: mediatek: add ethdr definition for mt8195
 
+ .../display/mediatek/mediatek,ethdr.yaml      | 188 ++++++++++++++++++
+ .../display/mediatek/mediatek,mdp-rdma.yaml   |  88 ++++++++
+ include/dt-bindings/reset/mt8195-resets.h     |  45 +++++
+ 3 files changed, 321 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/mediatek/mediatek,ethdr.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/mediatek/mediatek,mdp-rdma.yaml
 
-Best regards,
-Krzysztof
+-- 
+2.18.0
+
