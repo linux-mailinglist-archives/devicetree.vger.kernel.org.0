@@ -2,85 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 264D2524598
-	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 08:23:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 070AA5245A1
+	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 08:24:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235180AbiELGXP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 May 2022 02:23:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44442 "EHLO
+        id S1348542AbiELGX6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 May 2022 02:23:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47672 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350280AbiELGXM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 02:23:12 -0400
-Received: from m12-11.163.com (m12-11.163.com [220.181.12.11])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id B79CA5710D;
-        Wed, 11 May 2022 23:23:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-        s=s110527; h=Message-ID:Date:MIME-Version:Subject:From; bh=rhTME
-        NYSOsfI37FnghuXHxFoK+Ars+jOQTa9yaXuOxs=; b=eiqZCGRM9VBFw9tZNbSX8
-        JOIN4cqZ2ifVSM1VYGY+nbxBerFd0SXYdWsmnimlAfIXl4ksZJZcweuSM1P8jTsT
-        bNUmRYgjys0dQjrJoJhlbTq4XK5FkXkScKOD9ubt2doiAlR57+2aUobiFYAqmgmb
-        Xcm+Dtw5tAVLaNEQcVqgMI=
-Received: from [192.168.3.102] (unknown [218.201.129.19])
-        by smtp7 (Coremail) with SMTP id C8CowACXlHmpp3xit+KCCA--.5483S2;
-        Thu, 12 May 2022 14:22:34 +0800 (CST)
-Message-ID: <4e5a263d-462b-b17a-d4c2-2b8b02faa589@163.com>
-Date:   Thu, 12 May 2022 14:22:33 +0800
+        with ESMTP id S1350294AbiELGX5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 02:23:57 -0400
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.220.28])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1DDCD59BB1;
+        Wed, 11 May 2022 23:23:54 -0700 (PDT)
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+        (No client certificate requested)
+        by smtp-out1.suse.de (Postfix) with ESMTPS id 17FA621AE4;
+        Thu, 12 May 2022 06:23:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+        t=1652336633; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+         mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=q2Ziuk/8n/V8x8TU5pFnBuxK3RFdRleKuAeFlcwHMJc=;
+        b=vu4hYqFJsyev3Gj8hLLyi8kcnv7HULOzkVHqS06qJ8fLlDDiYRhZc35qSAq/4hp2ZHPqy1
+        FiueDsPPbh9CcmbwZVa5JKduvgtpULsxtlnrqu/8CgMQd8vfDa9ODMplwixcda06v7J8s5
+        N7qSQP6iWBgk8naYH+YtqbN1TcXj9dY=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+        s=susede2_ed25519; t=1652336633;
+        h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+         mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=q2Ziuk/8n/V8x8TU5pFnBuxK3RFdRleKuAeFlcwHMJc=;
+        b=fxThtM4CCSKxbBnru7/B789HB2PG/RVOrKqqr5hjF/B0Z5t3PjM9Ld4jJmKtB6Jvl6Z5+i
+        t+YijYvgsczK3aBw==
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+        (No client certificate requested)
+        by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id A2D4713ABE;
+        Thu, 12 May 2022 06:23:52 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([192.168.254.65])
+        by imap2.suse-dmz.suse.de with ESMTPSA
+        id a4pMJvinfGI5TQAAMHmgww
+        (envelope-from <hare@suse.de>); Thu, 12 May 2022 06:23:52 +0000
+Message-ID: <271251bf-f941-4db3-5ffd-f54439a5434d@suse.de>
+Date:   Thu, 12 May 2022 08:23:52 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.0
-Subject: Re: [PATCH v2] drivers: cpufreq: sun8i-r40: Add cpufreq support
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.4.0
+Subject: Re: [PATCH v3 04/23] dt-bindings: ata: sata: Extend number of SATA
+ ports
 Content-Language: en-US
-To:     Viresh Kumar <viresh.kumar@linaro.org>
-Cc:     =?UTF-8?Q?Jernej_=c5=a0krabec?= <jernej.skrabec@gmail.com>,
-        linux-sunxi@lists.linux.dev, Rob Herring <robh+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
-References: <20220510003611.1812-1-qianfanguijin@163.com>
- <1902551.yKVeVyVuyW@kista> <01c2c11f-71fd-b735-b935-109865d62de5@163.com>
- <20220512045838.tvixosxbey5ksp6j@vireshk-i7>
-From:   qianfan <qianfanguijin@163.com>
-In-Reply-To: <20220512045838.tvixosxbey5ksp6j@vireshk-i7>
+To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Jens Axboe <axboe@kernel.dk>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>
+Cc:     Serge Semin <fancer.lancer@gmail.com>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        linux-ide@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20220511231810.4928-1-Sergey.Semin@baikalelectronics.ru>
+ <20220511231810.4928-5-Sergey.Semin@baikalelectronics.ru>
+From:   Hannes Reinecke <hare@suse.de>
+In-Reply-To: <20220511231810.4928-5-Sergey.Semin@baikalelectronics.ru>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: C8CowACXlHmpp3xit+KCCA--.5483S2
-X-Coremail-Antispam: 1Uf129KBjvdXoWrKF4DCw4xJFykuF43Cr1UAwb_yoW3CFc_Gr
-        Z8Zry0y392qF1rtayfKrn7G39rGa9rCrWUAryrJFs3t3yFva45XayDCa1qqa4UKw409F9r
-        Xw1Yyr4UWFZ09jkaLaAFLSUrUUUUUb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
-        9fnUUvcSsGvfC2KfnxnUUI43ZEXa7IUjiFxUUUUUU==
-X-Originating-IP: [218.201.129.19]
-X-CM-SenderInfo: htld0w5dqj3xxmlqqiywtou0bp/1tbiGgr+7VaEBicASAAAs4
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-5.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 5/12/22 01:17, Serge Semin wrote:
+> The denoted in the description upper limit only concerns the Port
+> Multipliers, but not the actual SATA ports. It's an external device
+> attached to a SATA port in order to access more than one SATA-drive. So
+> when it's attached to a SATA port it just extends the port capability
+> while the number of actual SATA ports stays the same. For instance on AHCI
+> controllers the number of actual ports is determined by the CAP.NP field
+> and the PI (Ports Implemented) register. AFAICS in general the maximum
+> number of SATA ports depends on the particular controller implementation.
+> Generic AHCI controller can't have more than 32 ports (since CAP.NP is of
+> 5 bits wide and PI register is 32-bits size), while DWC AHCI SATA
+> controller can't be configured with more than 8 ports activated. So let's
+> discard the SATA ports reg-property restrictions and just make sure that
+> it consists of a single reg-item.
+> 
+> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+> 
+> ---
+> 
+> Changelog v2:
+> - Add comma and replace "channel" with "SATA port" in the reg property
+>    description (@Damien).
+> ---
+>   Documentation/devicetree/bindings/ata/sata-common.yaml | 7 +++----
+>   1 file changed, 3 insertions(+), 4 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/ata/sata-common.yaml b/Documentation/devicetree/bindings/ata/sata-common.yaml
+> index 7ac77b1c5850..9c9c621761ca 100644
+> --- a/Documentation/devicetree/bindings/ata/sata-common.yaml
+> +++ b/Documentation/devicetree/bindings/ata/sata-common.yaml
+> @@ -41,11 +41,10 @@ patternProperties:
+>       properties:
+>         reg:
+>           minimum: 0
+> -        maximum: 14
+>           description:
+> -          The ID number of the drive port SATA can potentially use a port
+> -          multiplier making it possible to connect up to 15 disks to a single
+> -          SATA port.
+> +          The ID number of the SATA port. Aside with being directly used,
+> +          each port can have a Port Multiplier attached thus allowing to
+> +          access more than one drive by means of a single SATA port.
+>   
+>   additionalProperties: true
+>   
+Reviewed-by: Hannes Reinecke <hare@suse.de>
 
+Cheers,
 
-在 2022/5/12 12:58, Viresh Kumar 写道:
-> On 12-05-22, 12:34, qianfan wrote:
->> Actually I'm not make sure the difference, seems both of them can work.
->> Most of allwinner device_id is added in allowlist, so I did this.
-> For OPP V1 the cpufreq device isn't created by default and hence the allowlist
-> allows us to know the devices for which the device shall be created.
->
-> For OPP V2, we have the compatible string available and with help of that we
-> create a device without need of any entry to any list. The blocklist however
-> allows us to skip creating the device for some platforms, which don't want it.
->
-> As your case is opp-v2 and you want the device, you aren't required to add entry
-> anywhere.
-I read the source code again and understand the behaivors.
-And I will it from allowlist.
-
-Thanks
->
-
+Hannes
+-- 
+Dr. Hannes Reinecke		           Kernel Storage Architect
+hare@suse.de			                  +49 911 74053 688
+SUSE Software Solutions Germany GmbH, Maxfeldstr. 5, 90409 Nürnberg
+HRB 36809 (AG Nürnberg), GF: Felix Imendörffer
