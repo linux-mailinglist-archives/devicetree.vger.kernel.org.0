@@ -2,126 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D4B1525857
-	for <lists+devicetree@lfdr.de>; Fri, 13 May 2022 01:31:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 88E2F52587D
+	for <lists+devicetree@lfdr.de>; Fri, 13 May 2022 01:39:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1359491AbiELXbP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 May 2022 19:31:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33272 "EHLO
+        id S1359528AbiELXjF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 May 2022 19:39:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58904 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1359494AbiELXbO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 19:31:14 -0400
-Received: from mail-pj1-x102c.google.com (mail-pj1-x102c.google.com [IPv6:2607:f8b0:4864:20::102c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B5725DE5B;
-        Thu, 12 May 2022 16:31:13 -0700 (PDT)
-Received: by mail-pj1-x102c.google.com with SMTP id gj17-20020a17090b109100b001d8b390f77bso9241733pjb.1;
-        Thu, 12 May 2022 16:31:13 -0700 (PDT)
+        with ESMTP id S243598AbiELXjE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 19:39:04 -0400
+Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72083286FED
+        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 16:39:03 -0700 (PDT)
+Received: by mail-lj1-x22e.google.com with SMTP id v4so8345807ljd.10
+        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 16:39:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=eYpdJ90sIk3qZfEgX1a80cpN/dFwOCIJBaG2OIahXBc=;
-        b=qKp7BG8mXAqZXqb/q+PqxvmItgFgFMkAAnwKz1ZHXkZUzAmYP1HhV7uDIrl8P5ETsq
-         wcXGlgBZT6WcjLF4FbrqrsOPbP6NYQLlPiTVFfR+/fdNCoT+aOUjWHFviEiJEDWPRe8M
-         QAZVv4pIpo4JlGexYJ02gmNzrN7VyihR6x7qLYq1mKKzPKPZZoiql485/sL4mdIcSlaH
-         qXl8S8sFG43zr08JWElKyp6uI8TS5HgtN4WwArQ9QPt7WWqnpi5JwOLaoVVY6il+NlE4
-         Aft7cZSdhohv0lDf1inYoo0+fKqi5aFjNKon+ogLso8wmA2p1Z/RWkB02i+JU4p0uBbL
-         Vwqg==
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=UxYHPKKpJ3gJqXFoP77Myjabfl2sbzgjV+P+sSNGRWw=;
+        b=dntSTokMCD79xEtTvx5gvFLZ5kcRTVQvoV2VPYYERLJmmXiz8hnZSVDnP5IRfnKQUn
+         ZRfwt04aYzGCx8etnz3Pt4PT37pe+yuK2lDiN0QvmVc3rdyKwtOBvwfFiFPDItgmHizs
+         N21m6rv0vm5mQFGwV1g9g+u1qot7Raepaj9hn6j3Nhyuvgxfg6RnOmRpmQ3oc9WBr70Y
+         SH1B3vHIoDr1PKZOmRqy5Va2boCmz0BaJ9P4FywUSRmsW1zkUrYabqM+ZG+/aGXYknOt
+         rKDATdfV7mPz+Uxn7gKMo82OIsAo1XE631ID/Q0Kzv3fULwtFosMAoDi/Wqej469bHPh
+         326A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=eYpdJ90sIk3qZfEgX1a80cpN/dFwOCIJBaG2OIahXBc=;
-        b=PZcgH/et2KtIg4zaAHykniXJwhSOJ71LUyGULWmqihqatvkTNUW/be0SZMSLZH0pg0
-         Ye04SHYnQw6gOGfG//fHvJLpE9VE8g8t/FDEE8SlJmLjCcEy2GAvLIJloyIk1dxalG7t
-         TPDfDHA1VKIPNiZtX1bVHP/okjblixT4z6YdYaCPKnZ59fzQx5ZVhsdwxRfCJolON+MA
-         KowDd+XRFqvN7KH56dZY5+iPLNr6Ik9dUDozKaKOqvnR72ZiTOg80HqQdoRCkkhl6iiz
-         XAHDO/3DxS+Ixo6/gcllr3+HaVe7YAFzj+9iTTFv84UDQUzpnyGeJiS33NZuskpFVqV+
-         mssQ==
-X-Gm-Message-State: AOAM531VYxd/9ti1g3WpSvCWXx4Ij2mxiifpVaviVHLuvAPqpIuCzMDQ
-        8P76set5+lsahjcPzcqspBI=
-X-Google-Smtp-Source: ABdhPJxGwDjAa20EhqPaHUJXCC4KPV0xgsDoyqJN1XWSOCehFaWL3975iAR5D+4hE6C6ezwHizsd1w==
-X-Received: by 2002:a17:902:f24c:b0:15c:b564:e4cc with SMTP id j12-20020a170902f24c00b0015cb564e4ccmr1893884plc.137.1652398272481;
-        Thu, 12 May 2022 16:31:12 -0700 (PDT)
-Received: from google.com ([2620:15c:202:201:88fd:a79c:b005:79b1])
-        by smtp.gmail.com with ESMTPSA id a3-20020a170902710300b0015e8d4eb22esm443677pll.120.2022.05.12.16.31.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 12 May 2022 16:31:11 -0700 (PDT)
-Date:   Thu, 12 May 2022 16:31:08 -0700
-From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To:     Stephen Boyd <swboyd@chromium.org>
-Cc:     Doug Anderson <dianders@chromium.org>,
-        LKML <linux-kernel@vger.kernel.org>, patches@lists.linux.dev,
-        chrome-platform@lists.linux.dev,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Benson Leung <bleung@chromium.org>,
-        Guenter Roeck <groeck@chromium.org>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        "Joseph S. Barrera III" <joebar@chromium.org>
-Subject: Re: [PATCH v2 1/2] dt-bindings: google,cros-ec-keyb: Introduce
- switches only compatible
-Message-ID: <Yn2YvIFNhaz5GmfI@google.com>
-References: <20220429233112.2851665-1-swboyd@chromium.org>
- <20220429233112.2851665-2-swboyd@chromium.org>
- <CAD=FV=VX8EEgkeLgKwyKvjztcjbA8UhKOUpTr-sS1_Ec=QcWbA@mail.gmail.com>
- <CAKdAkRSOtAD6u_cwKhHeMLgz5dC2hfPvVvqmj+17b4i-nspfgg@mail.gmail.com>
- <CAE-0n50Y8tZD9Djn9TVaAiHxehFJ2cZKZ1Z09piDk47uw3nK+Q@mail.gmail.com>
- <Ynzf5jEIECLmELK7@google.com>
- <CAE-0n50+obQ5qgPNPtUY=OmTgU9bZQ3hNw+MaG9Wi3SQSc-i4A@mail.gmail.com>
- <CAE-0n52WVNru5fnyaB_7wcBOk4twL0Q92YpRbd40-o6ZBmbXWQ@mail.gmail.com>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=UxYHPKKpJ3gJqXFoP77Myjabfl2sbzgjV+P+sSNGRWw=;
+        b=fbkNUJV0dbZKlQySquxtHgio1SXsNbAsT1FmPViO+mb7KF3dXi0QaxqJI7b7dTh1f8
+         DgPmnucYOJZCg5cNrMQAJkvU3cn+QdGVx2G9MoPaVNEp1dwYE+7MfkivmCtlHm1sw9jh
+         Lt4QKbQBenRe40V5dueYOVeS4jq4pgEis5aRq5FMoFStUkuaIm8dGun5NTNw/ddF6Ud5
+         hET8+SxLykmOtNmctjfCXvH1j5ulVh70JvlXJltpxE2rv4hJ2zDp5fQRdGiClER1pRsV
+         M20S/yQPG6CtvmfO3Y/Hw5PkanaKxBoVZR7USKW98AAoAg6JEqgsNFZdp6fLPPMl48Hi
+         wcqg==
+X-Gm-Message-State: AOAM531wLn0PmB8Aew5B8tnMkQ97sziE1D45GiySrWZXAyACCVQySmDS
+        jN1GT7snhjg1sCxhsub2YtuTyQ==
+X-Google-Smtp-Source: ABdhPJzphaFpAg//uJb252NsVwW6dzMlwlzQWV+PmeTT41q4QnXnwikeEwE0h9ga2evmVlZo3558Hg==
+X-Received: by 2002:a05:651c:312:b0:251:f8b8:184e with SMTP id a18-20020a05651c031200b00251f8b8184emr1465068ljp.9.1652398741790;
+        Thu, 12 May 2022 16:39:01 -0700 (PDT)
+Received: from [192.168.1.211] ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id j18-20020a056512345200b004725b701c94sm135316lfr.42.2022.05.12.16.39.00
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 12 May 2022 16:39:01 -0700 (PDT)
+Message-ID: <49615bc9-c7a4-09ed-c89f-39c50e1d90ba@linaro.org>
+Date:   Fri, 13 May 2022 02:39:00 +0300
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAE-0n52WVNru5fnyaB_7wcBOk4twL0Q92YpRbd40-o6ZBmbXWQ@mail.gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH v5 13/22] dma: qcom: bam_dma: Add support to initialize
+ interconnect path
+Content-Language: en-GB
+To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org
+Cc:     bhupesh.linux@gmail.com, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, robh+dt@kernel.org, agross@kernel.org,
+        herbert@gondor.apana.org.au, davem@davemloft.net,
+        stephan@gerhold.net, Thara Gopinath <thara.gopinath@linaro.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+References: <20211110105922.217895-1-bhupesh.sharma@linaro.org>
+ <20211110105922.217895-14-bhupesh.sharma@linaro.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <20211110105922.217895-14-bhupesh.sharma@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 12, 2022 at 01:11:39PM -0700, Stephen Boyd wrote:
-> Quoting Stephen Boyd (2022-05-12 11:58:02)
-> > Quoting Dmitry Torokhov (2022-05-12 03:22:30)
-> > >
-> > > Have we solved module loading in the presence of multiple compatibles?
-> > > IIRC we only ever try to load module on the first compatible, so you'd
-> > > be breaking autoloading cros-ec-keyb on these older kernels. I think the
-> > > cure that is being proposed is worse than the disease.
-> > >
-> >
-> > The first compatible is still cros-ec-keyb in the driver though? Or you
-> > mean the first compatible in the node? I'm not aware of this problem at
-> > all but I can certainly test out a fake node and module and see if it
-> > gets autoloaded.
+On 10/11/2021 13:59, Bhupesh Sharma wrote:
+> From: Thara Gopinath <thara.gopinath@linaro.org>
 > 
-> I can't get this test module to fail to load no matter what I do. I
-> commented out the second match table entry, and kept it there and
-> removed 'vendor,switch-compat' from the DTS. Module still autoloads.
+> BAM dma engine associated with certain hardware blocks could require
+> relevant interconnect pieces be initialized prior to the dma engine
+> initialization. For e.g. crypto bam dma engine on sm8250. Such requirement
+> is passed on to the bam dma driver from dt via the "interconnects"
+> property.  Add support in bam_dma driver to check whether the interconnect
+> path is accessible/enabled prior to attempting driver intializations.
 > 
+> Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+> [Make header file inclusion alphabetical and use 'devm_of_icc_get()']
+> Signed-off-by: Thara Gopinath <thara.gopinath@linaro.org>
+> ---
+>   drivers/dma/qcom/bam_dma.c | 11 +++++++++++
+>   1 file changed, 11 insertions(+)
+> 
+> diff --git a/drivers/dma/qcom/bam_dma.c b/drivers/dma/qcom/bam_dma.c
+> index c8a77b428b52..19fb17db467f 100644
+> --- a/drivers/dma/qcom/bam_dma.c
+> +++ b/drivers/dma/qcom/bam_dma.c
+> @@ -26,6 +26,7 @@
+>   #include <linux/kernel.h>
+>   #include <linux/io.h>
+>   #include <linux/init.h>
+> +#include <linux/interconnect.h>
+>   #include <linux/slab.h>
+>   #include <linux/module.h>
+>   #include <linux/interrupt.h>
+> @@ -392,6 +393,7 @@ struct bam_device {
+>   	const struct reg_offset_data *layout;
+>   
+>   	struct clk *bamclk;
+> +	struct icc_path *mem_path;
+>   	int irq;
+>   
+>   	/* dma start transaction tasklet */
+> @@ -1284,6 +1286,15 @@ static int bam_dma_probe(struct platform_device *pdev)
+>   		return ret;
+>   	}
+>   
+> +	/* Ensure that interconnects are initialized */
+> +	bdev->mem_path = devm_of_icc_get(bdev->dev, "memory");
 
-Ah, indeed, if the module contains both compatibles we will load it. It
-is broken when we have 2 or more modules and DT lists several
-compatibles for a device.
+Also, as a note, the "memory" is not a good name for the ICC path. 
+Usually they take the form of "src-dst". However in this case you can 
+probably use NULL for the first and the only icc path.
 
-OK, it looks like you feel very strongly regarding having a dedicated
-compatible. In this case please make sure that the compatible's behavior
-is properly documented (i.e. google,cros-ec-keyb compatible does not
-imply that there are *NO* switches, and users having buttons and
-switches in addition to matrix keys can also use google,cros-ec-keyb as
-a compatible for their device). We also need to mention that with the
-2nd compatible the device still can report key/button events, it is
-simply that there is no matrix component. Should we call the other
-compatible google,cros-ec-bs?
+> +
 
-We should also abort binding the device if it specifies the new
-compatible, but EC does not report any buttons or switches.
+Extra newline, not necessary.
 
-Thanks.
+> +	if (IS_ERR(bdev->mem_path)) {
+> +		ret = PTR_ERR(bdev->mem_path);
+> +		dev_err(bdev->dev, "failed to acquire icc path %d\n", ret);
+> +		goto err_disable_clk;
+> +	}
+> +
+>   	ret = bam_init(bdev);
+>   	if (ret)
+>   		goto err_disable_clk;
+
 
 -- 
+With best wishes
 Dmitry
