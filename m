@@ -2,74 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C17DD52576D
-	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 23:54:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 22331525779
+	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 23:58:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1358990AbiELVxg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 May 2022 17:53:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42096 "EHLO
+        id S1358980AbiELV6l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 May 2022 17:58:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39464 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1359030AbiELVwz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 17:52:55 -0400
-Received: from mail-yb1-xb2c.google.com (mail-yb1-xb2c.google.com [IPv6:2607:f8b0:4864:20::b2c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 477D15E774
-        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 14:52:12 -0700 (PDT)
-Received: by mail-yb1-xb2c.google.com with SMTP id e12so12134067ybc.11
-        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 14:52:12 -0700 (PDT)
+        with ESMTP id S1358891AbiELV6j (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 17:58:39 -0400
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D7F75DBF0
+        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 14:58:36 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id bq30so11438563lfb.3
+        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 14:58:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=1rN+CwqR+bH7StWcAdqh6rJz6EZ5daE9SrwU7kGYAAg=;
-        b=uey7p3FPmlV8ybbB7CX62wvjMDfYMimWgr7YFNG/RN0kUBvJdIH6yAWPwDblMqcaom
-         44H8zJ5WAZxERa36MnwbaP4ed62zhA5aDd1uF0Orwt5+v7Z3DDA0K3j3dbInN9yIu5Nj
-         XFqhuzYE4eUestUpSIlEffLtN97Yg9+RT92Dgvn+eZtm0DwdQdYI48v7P2nSwQ3jgulR
-         1+JcUs826xZLmLrM6z4OwDDLdy4td6XfnpsVUuH/oNkCS0QFnP5jekD/06uM5gGZNPEP
-         VxsohkXFP5y3Dq7eSWVX5MsDKfnPxV5TyPhLA3N6lksUvuI0fTIGzmwFWa/N1XZxemvW
-         9VEA==
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=l0P9n8l4sqdaGpJYwb8TmYe/pYN9ZOMc6psw005K6W8=;
+        b=r1MgLvAKOWxK17473BnHn1rEYKVN5kTvzRFtC/2J97/fQga/5zikKKgbBLJiuC0Z1K
+         YypSYWWvztIihlbTaAz6X+JG15+4DbmL9g8pI4vNVsKUsXibvYsXntn1jPNaLy6Bakan
+         G1J2LiuA75CnFLN4Uxfsd6Wq3aCH7+AKAsMpVmfpNWtRhbEzNbm9pvj1JCwU2N+1+auC
+         g0xRn30EOBSou4q6FKmf4St64KNo6pco/+G+xdDqh+o8Jnoc2WOBMPumxJB5wEE8Wxu3
+         ChE18T+O6qqyiCrXXh3BlDO23HeI4VecuFySqsau3njHZikMze7Z/ED6zGU0t2x4CLFd
+         EXcQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=1rN+CwqR+bH7StWcAdqh6rJz6EZ5daE9SrwU7kGYAAg=;
-        b=3o5o7ib2CVQy/qWbSNlvMLV/TTzD33JAwppLKzYHiX3/e07P6ptW9H4bn6rLXJAMyg
-         QG33u9hlbpua/cAjI6b4iHf2ETr9Q34eeYPEqKIqMSh6ZQ20smbJQ9TE+57k5hy35ujp
-         Cj6zLbRXOK7HCh/Un/AFnM9uoJJVDXYyIc6U2lTbQ5gWv0qyiBX78NkCTJdsuPXQPNai
-         ZtE+vuR0Hg19pICSyJ6QH8tZM1Yik6KnXWytK2YU3xMMYleCJnwQ++XNPMPv4yni3oXj
-         DC+XFcbRDiqj5ZzFGAFTvB6fYDnK/IN5FlYPRbxIa/QdqaeU34Px5oemRiDAwPibmXx7
-         LOcQ==
-X-Gm-Message-State: AOAM531NCoAs+APxBx3hBzIQO+U/Xwwrx5yyFq2rsIu+I0pZXTk6hD4y
-        p17KWZog/PDbGsJMHAczcKxQvew3swWimGxxYA9kIg==
-X-Google-Smtp-Source: ABdhPJzBciKJzRYibXRHHMHUQNthVJZ1oMHtE0x2iIbQxYaAk1bpoVS2cWCVmfOZEPSsSxUQs6HB561kBnOxHA40g/E=
-X-Received: by 2002:a25:2905:0:b0:649:7a2b:ca72 with SMTP id
- p5-20020a252905000000b006497a2bca72mr1891393ybp.492.1652392331408; Thu, 12
- May 2022 14:52:11 -0700 (PDT)
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=l0P9n8l4sqdaGpJYwb8TmYe/pYN9ZOMc6psw005K6W8=;
+        b=UcqqCA51XlNinMN4BH91wjovRyLeu5Jo21Ab1udXzBtCop8Wj+J9A70KzP6CmsO4Lm
+         PNMSeaV4WKzyUHzD06J1dJPulJQAFawo+FoVFitMlROvWtVHNOzoDM/U2cgygUEyeP0m
+         QiCtlGD+5cA9knvlo5AbuN/pHagjngXRrMya43FhB7yrt+rOZXJOyegJ21++2j6at5yE
+         WXMoKOW4BSSZ13NPqkYDpNIcaxhLXC7oYdpenq35Rgt6TQFrjG9HgG4dedfIeFeyR5ek
+         3ELFPdgvPXs2i8nQtui4vwjB8pLKl1dKYzPzLfZ80uAvv/JNaU9VBnuVH7Uwsn/WFsPL
+         doNw==
+X-Gm-Message-State: AOAM532Ml9oF/++9OxAOnEiONN5O0GbOz0I0cB7h/GxUntFYt5aB0Cd7
+        6/tJL6VlwyOu6f38kKhxyrxI0g==
+X-Google-Smtp-Source: ABdhPJyERGnl7c6n7wtNjcgQljRoguy0RoLnM4HVwXBLlbaWuS/K1RRSFO5ZCpg7ix4qBnIRjjiZsg==
+X-Received: by 2002:a05:6512:1109:b0:473:e582:a60c with SMTP id l9-20020a056512110900b00473e582a60cmr1275217lfg.150.1652392714526;
+        Thu, 12 May 2022 14:58:34 -0700 (PDT)
+Received: from [192.168.1.211] ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id l4-20020ac25544000000b0047255d211edsm100706lfk.284.2022.05.12.14.58.33
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 12 May 2022 14:58:33 -0700 (PDT)
+Message-ID: <410ffede-1419-89a2-2600-8f92fdb4161e@linaro.org>
+Date:   Fri, 13 May 2022 00:58:32 +0300
 MIME-Version: 1.0
-References: <cover.1651835715.git.jo@jsfamily.in> <BY5PR02MB7009B91FB7306503B58C264BD9C59@BY5PR02MB7009.namprd02.prod.outlook.com>
-In-Reply-To: <BY5PR02MB7009B91FB7306503B58C264BD9C59@BY5PR02MB7009.namprd02.prod.outlook.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 12 May 2022 23:51:59 +0200
-Message-ID: <CACRpkdYhkP9RYj98Lu=zkt+6aefx172R=8JtvOFpvh2uJ4byKA@mail.gmail.com>
-Subject: Re: [PATCH 3/3] drm/panel: introduce ebbg,ft8719 panel
-To:     Joel Selvaraj <jo@jsfamily.in>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH v1 1/5] arm64: dts: qcom: sdm660: disable dsi1/dsi1_phy by
+ default
+Content-Language: en-GB
+To:     Marijn Suijten <marijn.suijten@somainline.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Stanislav Jakubek <stano.jakubek@gmail.com>,
         Krzysztof Kozlowski <krzk@kernel.org>,
-        Corentin Labbe <clabbe@baylibre.com>,
-        Oleksij Rempel <linux@rempel-privat.de>,
-        Hao Fang <fanghao11@huawei.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+References: <20220503220927.960821-1-dmitry.baryshkov@linaro.org>
+ <20220503220927.960821-2-dmitry.baryshkov@linaro.org>
+ <20220504081102.g36yjajytvuaba7r@SoMainline.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <20220504081102.g36yjajytvuaba7r@SoMainline.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,88 +79,58 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, May 6, 2022 at 2:18 PM Joel Selvaraj <jo@jsfamily.in> wrote:
+On 04/05/2022 11:11, Marijn Suijten wrote:
+> On 2022-05-04 01:09:23, Dmitry Baryshkov wrote:
+>> Follow the typical practice and keep DSI1/DSI1 PHY disabled by default.
+>> They should be enabled in the board DT files. No existing boards use
+>> them at this moment.
+> 
+> This practice also seems to be applied to dsi0/dsi0_phy across other
+> boards.  Should this also be applied to sdm630.dtsi's dsi0/dsi0_phy
+> nodes, and them subsequently re-enabled in sdm630-sony-xperia-nile.dtsi?
 
-> Add DRM panel driver for EBBG FT8719 6.18" 2246x1080 DSI video mode
-> panel, which can be found on some Xiaomi Poco F1 phones. The panel's
-> backlight is managed through QCOM WLED driver.
->
-> Signed-off-by: Joel Selvaraj <jo@jsfamily.in>
+I will apply corresponding changes to sdm630.dtsi. However enabling them 
+in sdm630-sony-xperia-nile.dtsi doens't make sense at this moment, since 
+neither of nile platforms properly describes the mdss/mdp/panel 
+configuration. I'm looking forward to seeing the updates for these 
+devices trees though.
 
-Cool!
+> 
+>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> 
+> Reviewed-by: Marijn Suijten <marijn.suijten@somainline.org>
+> 
+> - Marijn
+>> ---
+>>   arch/arm64/boot/dts/qcom/sdm660.dtsi | 3 +++
+>>   1 file changed, 3 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/sdm660.dtsi b/arch/arm64/boot/dts/qcom/sdm660.dtsi
+>> index eccf6fde16b4..023b0ac4118c 100644
+>> --- a/arch/arm64/boot/dts/qcom/sdm660.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sdm660.dtsi
+>> @@ -192,6 +192,8 @@ dsi1: dsi@c996000 {
+>>   		phys = <&dsi1_phy>;
+>>   		phy-names = "dsi";
+>>   
+>> +		status = "disabled";
+>> +
+>>   		ports {
+>>   			#address-cells = <1>;
+>>   			#size-cells = <0>;
+>> @@ -225,6 +227,7 @@ dsi1_phy: dsi-phy@c996400 {
+>>   
+>>   		clocks = <&mmcc MDSS_AHB_CLK>, <&rpmcc RPM_SMD_XO_CLK_SRC>;
+>>   		clock-names = "iface", "ref";
+>> +		status = "disabled";
+>>   	};
+>>   };
+>>   
+>> -- 
+>> 2.35.1
+>>
 
-> +#define dsi_generic_write_seq(dsi, seq...) do {                                \
-> +               static const u8 d[] = { seq };                          \
-> +               int ret;                                                \
-> +               ret = mipi_dsi_generic_write(dsi, d, ARRAY_SIZE(d));    \
-> +               if (ret < 0)                                            \
-> +                       return ret;                                     \
-> +       } while (0)
-> +
-> +#define dsi_dcs_write_seq(dsi, seq...) do {                            \
-> +               static const u8 d[] = { seq };                          \
-> +               int ret;                                                \
-> +               ret = mipi_dsi_dcs_write_buffer(dsi, d, ARRAY_SIZE(d)); \
-> +               if (ret < 0)                                            \
-> +                       return ret;                                     \
-> +       } while (0)
 
-First I don't see what the do {} while (0) buys you, just use
-a basic block {}.
-
-Second look at mipi_dbi_command() in include/drm/drm_mipi_dbi.h
-this is very similar.
-
-So this utility macro should be in a generic file such as
-include/drm/drm_mipi_dsi.h. (Can be added in a separate
-patch.)
-
-Third I think you need only one macro (see below).
-
-> +static int ebbg_ft8719_on(struct ebbg_ft8719 *ctx)
-> +{
-> +       struct mipi_dsi_device *dsi = ctx->dsi;
-> +       struct device *dev = &dsi->dev;
-> +       int ret;
-> +
-> +       dsi->mode_flags |= MIPI_DSI_MODE_LPM;
-> +
-> +       dsi_dcs_write_seq(dsi, 0x00, 0x00);
-> +       dsi_generic_write_seq(dsi, 0xff, 0x87, 0x19, 0x01);
-
-It's dubious that you always have dsi_dcs_write_seq()
-followed by dsi_generic_write_seq().
-
-That means mipi_dsi_generic_write() followed by
-mipi_dsi_dcs_write_buffer(). But if you look at these
-commands in drivers/gpu/drm/drm_mipi_dsi.c
-you see that they do the same thing!
-
-Doesn't it work to combine them into one call for each
-pair?
-
-> +       dsi_dcs_write_seq(dsi, 0x00, 0x80);
-> +       dsi_generic_write_seq(dsi, 0xff, 0x87, 0x19);
-
-Lots of magic numbers. You don't have a datasheet do you?
-So you could #define some of the magic?
-
-> +       if (ctx->prepared)
-> +               return 0;
-(...)
-> +       ctx->prepared = true;
-> +       return 0;
-(...)
-> +       if (!ctx->prepared)
-> +               return 0;
-(...)
-> +       ctx->prepared = false;
-> +       return 0;
-
-Drop this state variable it is a reimplementation of something
-that the core will track for you.
-
-The rest looks nice!
-
-Yours,
-Linus Walleij
+-- 
+With best wishes
+Dmitry
