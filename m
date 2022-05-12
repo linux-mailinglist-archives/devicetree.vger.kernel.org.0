@@ -2,53 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9FB72525141
-	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 17:27:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5329A525148
+	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 17:27:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1355936AbiELP1d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 May 2022 11:27:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40054 "EHLO
+        id S1355941AbiELP1k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 May 2022 11:27:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40504 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1355944AbiELP1a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 11:27:30 -0400
-Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC46B6C56D;
-        Thu, 12 May 2022 08:27:28 -0700 (PDT)
+        with ESMTP id S1355939AbiELP1f (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 11:27:35 -0400
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A8B66D38C;
+        Thu, 12 May 2022 08:27:33 -0700 (PDT)
 Received: (Authenticated sender: miquel.raynal@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 9BFC61C0003;
-        Thu, 12 May 2022 15:27:25 +0000 (UTC)
+        by mail.gandi.net (Postfix) with ESMTPSA id 4B979FF80A;
+        Thu, 12 May 2022 15:27:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1652369247;
+        t=1652369252;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
          to:to:cc:cc:mime-version:mime-version:
          content-transfer-encoding:content-transfer-encoding:
          in-reply-to:in-reply-to:references:references;
-        bh=xe6gof0su9adg1T78nGygOfJDwljHm2NDQAvr9m7iDU=;
-        b=UFjVnqD79eYZ3HPa0Iv172QpaHho0LkO+Ptoi6Xc6jTCniR2gbNiY4fPXOX7qbcamAYVJY
-        YtXg6K01OIHYKiEo+aMJZC6mkglf4J6bYd19v1vm9XbyyGPIREP8RFbpUbU6wesZp30+W0
-        CkgRkZbhy4D9Qn0zQvKRpJMcOi/YPwKn8simKQodtnc4bPUSpU4D2m9/gvTtZv5R/IthpX
-        ln33PLd0TjKxCyCYaniL5vzU6f+X7tcp5Vz+i5BJH9uffsbJNyeboMfUVVhiIt4N3c6gpI
-        c5bMdkRoKt9D8TZfcRk+pq59HJgaTJOy0ux/pMbxCz0+l6AV/Ru66I2q284WrA==
+        bh=0jukDAbwzYSWdiOPQ0S4TYjlu0C4+K1D88a+eyX0k8k=;
+        b=TvEpQLCeK9xIbPmHfjanIb5faJSs8CvJ1xFKcZAH2RgxqWqIH3/tvMskKK59xJuC12S/i4
+        SfZbkxqJ2jsmnSZxwmUmHDtfACmvstEKib9+JgdzMkVZMKdbXTK9HA+oWd4XhhijGhRsws
+        uF3bfXJ/D9nYdkAhFCC+uBNLm43yMuMKMtU+PdWFLQIqDIbzXLSbJ/b0NlNqjgXrjCgNCr
+        1SwAYC280rolWSqVS69XnYco3cxAO3s7cDnrMSgG6XCnD5mSXdfA4ONWqScF6MoNRUl+/6
+        WpMGHQj0iazYQaDJ/N5L4XAAQl3K75Ymb+mLW2zjXaRu+PxlBl6RETNCGU5aFQ==
 From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Mikhail Zhilkin <csharper2005@gmail.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
+To:     Miquel Raynal <miquel.raynal@bootlin.com>,
         Richard Weinberger <richard@nod.at>,
         Vignesh Raghavendra <vigneshr@ti.com>,
+        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
+        Pratyush Yadav <p.yadav@ti.com>,
+        Michael Walle <michael@walle.cc>, linux-mtd@lists.infradead.org
+Cc:     linux-renesas-soc@vger.kernel.org,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Gareth Williams <gareth.williams.jx@renesas.com>,
+        Phil Edworthy <phil.edworthy@renesas.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     =?utf-8?b?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Karim <Karimdplay@gmail.com>,
-        M <x1@disroot.org>
-Subject: Re: [PATCH v3 2/3] dt-bindings: mtd: partitions: Extend fixed-partitions binding
-Date:   Thu, 12 May 2022 17:27:25 +0200
-Message-Id: <20220512152725.244872-1-miquel.raynal@bootlin.com>
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        devicetree@vger.kernel.org,
+        Milan Stevanovic <milan.stevanovic@se.com>,
+        Jimmy Lalande <jimmy.lalande@se.com>,
+        Pascal Eberhard <pascal.eberhard@se.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Herve Codina <herve.codina@bootlin.com>,
+        Clement Leger <clement.leger@bootlin.com>
+Subject: Re: [PATCH v2 2/2] mtd: rawnand: renesas: Use runtime PM instead of the raw clock API
+Date:   Thu, 12 May 2022 17:27:29 +0200
+Message-Id: <20220512152729.244940-1-miquel.raynal@bootlin.com>
 X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20220503155007.2339847-1-csharper2005@gmail.com>
+In-Reply-To: <20220509154943.25422-3-miquel.raynal@bootlin.com>
 References: 
 MIME-Version: 1.0
 X-linux-mtd-patch-notification: thanks
-X-linux-mtd-patch-commit: b'33f6106400b60b0e3287efbd0a9f29476d278f06'
+X-linux-mtd-patch-commit: b'7363d3efa9da88ba9ddf4fed660d72499e86dc26'
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
@@ -60,13 +70,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 2022-05-03 at 15:50:07 UTC, Mikhail Zhilkin wrote:
-> Extend fixed-partitions binding for support of Sercomm partition parser
-> (add "sercomm,sc-partitions" compatible).
+On Mon, 2022-05-09 at 15:49:43 UTC, Miquel Raynal wrote:
+> This NAND controller is part of a well defined power domain handled by
+> the runtime PM core. Let's keep the harmony with the other RZ/N1 drivers
+> and exclusively use the runtime PM API to enable/disable the clocks.
 > 
-> Signed-off-by: Mikhail Zhilkin <csharper2005@gmail.com>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> We still need to retrieve the external clock rate in order to derive the
+> NAND timings, but that is not a big deal, we can still do that in the
+> probe and just save this value to reuse it later.
+> 
+> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
 
-Applied to https://git.kernel.org/pub/scm/linux/kernel/git/mtd/linux.git mtd/next, thanks.
+Applied to https://git.kernel.org/pub/scm/linux/kernel/git/mtd/linux.git nand/next.
 
 Miquel
