@@ -2,111 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8CE2E5247D2
-	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 10:25:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 129725247FA
+	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 10:38:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347283AbiELIY2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 May 2022 04:24:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37686 "EHLO
+        id S1351579AbiELIhD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 May 2022 04:37:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48802 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237176AbiELIY1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 04:24:27 -0400
-Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03326633B1;
-        Thu, 12 May 2022 01:24:26 -0700 (PDT)
-Received: by mail-lj1-x229.google.com with SMTP id q130so5543122ljb.5;
-        Thu, 12 May 2022 01:24:25 -0700 (PDT)
+        with ESMTP id S1351546AbiELIhC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 04:37:02 -0400
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A6018FF95
+        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 01:37:00 -0700 (PDT)
+Received: by mail-ej1-x62a.google.com with SMTP id dk23so8712355ejb.8
+        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 01:37:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=Dp5RjKDsRorlt15Q842QS1oD3zaqmbFzxKTc/+h/+tQ=;
-        b=MneGklh48zNq8AAwN3ifgUtyhXr9lX5z/oy2m6O2tLieaDN9QE+UD3cbj/bsLZUqZa
-         DBg6dcCXwHX1uivRZQF8U3eNzSq1Rj0c01fLeNNE6Nt6My9U8l8UZamKDZ+5j4LeVNFL
-         OiAsbqlMfzpEro0I/bv5Jw/jg7gg4kWIK5B29d1fMMh4YmJJs+uPM/UWHy7L73jAnfL1
-         9tgx9SPSIM0cDU4qJuOmj71Hh8eq/jwMXe0wkcF1XIBSTCTa5SUjFewve6xDBBaIfT46
-         G14Xxr+ZfnSxKCISOaFW2d2eAEmTCO85yVFmSz0zsHKgDAjFKQtJ8y9BW7GPwXTy3EoJ
-         OGUw==
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=Nv8lNSH0gbtDRGd36VCloQ6uZGegVPpsw/onrG8x3ew=;
+        b=yzFJE4m26cI254ywYC9KLHQeXSX1cl8syDdlPf27qy+G0mcnTD0mjfjwiZWKfNMCVG
+         bimWGCB8dEaE8pCVPoXHBIvO7B5ruTyh8RbzEW+KTU6Q5Ur68C/0PrfR3gwonkuZILKn
+         XBEDBiRH3pEBoR0p9xzsQt3QSUfqEAs/l0utOohuB3A0+eVfGEEDm4GR//oeVo9nocC3
+         LnRt5HKYPC2gNtKH09R6CWG2p1K7zb/RLei1GCX0WchH+T1PnfXGnQjsTAoGFMoDKMOW
+         H5nABG6HPcz+QYi/kx0YLqNgwtJ8GZFbXjbKK4i/3dOZRUBZIBAgKzxeIiS4MEw/xpHm
+         KeCg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=Dp5RjKDsRorlt15Q842QS1oD3zaqmbFzxKTc/+h/+tQ=;
-        b=nj7gP7bbvSfHbxFpHbrjfJcMpmC5YgWxj7FzN7hrCKqmPXjPZfQD61Jx0fdcDB0d7t
-         ArdJoOZVjikgn/FdIX3WFe1l8cUl6RBgn6zkSMylWA9NRMY8juPxN+XcnPJAPRWhfmsa
-         m8Q7f4oYg77s93TaNY4Ua8LV4iAX6nFJVRrHgyEXavYNmhfKJMYsL1vliBu8tf4x0t/w
-         eQccWhe1Ov7mk7P3nRIcmPQT/C8u8lCBxeHvgDRkthhcsh+jXTWXn/Kp3arsnmgbP9Rx
-         V9Osbx6KTOWiDIjW6dVrFKJVETYzxHaNBOhVfqGToRZB/eFCSWe/01bnOvbGmBSHv0rg
-         6lSA==
-X-Gm-Message-State: AOAM5316d9adEm34j631djJFYbtwOLtyNwqA3dgq4asGU/957hWBn14U
-        sZRCkWYcCkg2XOe0/UK5IiMq4n5UxGQ=
-X-Google-Smtp-Source: ABdhPJyWBOKLTrjc+R7ofT+rL175Kzj+uFEU5bmAzeiLls7z8qDKjLUGSKaVXf2V9tHgoktYGQFqgQ==
-X-Received: by 2002:a2e:bb8e:0:b0:250:76dd:3bd9 with SMTP id y14-20020a2ebb8e000000b0025076dd3bd9mr20340342lje.71.1652343863752;
-        Thu, 12 May 2022 01:24:23 -0700 (PDT)
-Received: from [192.168.1.103] ([31.173.83.174])
-        by smtp.gmail.com with ESMTPSA id u17-20020a05651206d100b00474018dfb76sm673110lff.157.2022.05.12.01.24.22
+        bh=Nv8lNSH0gbtDRGd36VCloQ6uZGegVPpsw/onrG8x3ew=;
+        b=ydqnXU3UudleDb2C5gKJcMOfVs5kM+aYFdAhpuQa17lGUGAtdeUQgFiPCS8XpgpF5n
+         KM0mbSRHY37J6CIjGNca4cb1I135X155cRR4LyLkDQmU4Co6IiZkH0e8AN6D58z9fhBU
+         vXC0MrSdqmO/7TtZoftQCD5JVenOKQsQik9PJ56qzkxGeb9hEt4/gvRIg+BAwnC4ljVt
+         U5MH3b4z+EaeDgHtYRtWrKvbNP/H641kFdR2oURpr14YwxnMfuycCnXb9XnuGum+Fuwh
+         WOy/JOHd4YwaYmLKbGWyXMAwETcgl9pKaklX9vr9cIdScPyEH+6wx5mg4JJWD3EG092Q
+         41zg==
+X-Gm-Message-State: AOAM530VCjwDx/zDHshwVfS4Xr0+Xm5JyRtu/vsnDmoKGID8F2vF5pqh
+        hqjcDrxVWiXkRQCTD1Tvk28UOg==
+X-Google-Smtp-Source: ABdhPJwZLwXF5gGhpt3H78T3NZu8Rwtld52oms13g3NCCt4/CVIBRMHb30iIrWeu9SanSWzwVRzyKQ==
+X-Received: by 2002:a17:907:86a0:b0:6f4:fc1f:30d9 with SMTP id qa32-20020a17090786a000b006f4fc1f30d9mr28654321ejc.708.1652344618652;
+        Thu, 12 May 2022 01:36:58 -0700 (PDT)
+Received: from [192.168.0.156] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id ko21-20020a170907987500b006f3ef214e28sm1881071ejc.142.2022.05.12.01.36.57
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 12 May 2022 01:24:23 -0700 (PDT)
-Subject: Re: [PATCH v3 09/23] ata: libahci_platform: Sanity check the DT child
- nodes number
-To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Jens Axboe <axboe@kernel.dk>
-Cc:     Serge Semin <fancer.lancer@gmail.com>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Rob Herring <robh+dt@kernel.org>, linux-ide@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20220511231810.4928-1-Sergey.Semin@baikalelectronics.ru>
- <20220511231810.4928-10-Sergey.Semin@baikalelectronics.ru>
-From:   Sergei Shtylyov <sergei.shtylyov@gmail.com>
-Message-ID: <42dfc76f-a9d9-8e63-874d-b7459cef326c@gmail.com>
-Date:   Thu, 12 May 2022 11:24:22 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.1
+        Thu, 12 May 2022 01:36:58 -0700 (PDT)
+Message-ID: <30c18480-bf0d-82b9-5b11-daa3b70c40df@linaro.org>
+Date:   Thu, 12 May 2022 10:36:56 +0200
 MIME-Version: 1.0
-In-Reply-To: <20220511231810.4928-10-Sergey.Semin@baikalelectronics.ru>
-Content-Type: text/plain; charset=utf-8
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH 4/9] dt-bindings: remoteproc: qcom: wcnss: Convert to YAML
 Content-Language: en-US
+To:     Sireesh Kodali <sireeshkodali1@gmail.com>,
+        linux-remoteproc@vger.kernel.org
+Cc:     linux-arm-msm@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, bjorn.andersson@linaro.org,
+        devicetree@vger.kernel.org, phone-devel@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Andy Gross <agross@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+References: <20220511161602.117772-1-sireeshkodali1@gmail.com>
+ <20220511161602.117772-5-sireeshkodali1@gmail.com>
+ <00234f36-9bae-31d5-5b83-ea238e7e3c11@linaro.org>
+ <CJXL0SG2GHN1.1IO2JOR5ARNV8@skynet-linux>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CJXL0SG2GHN1.1IO2JOR5ARNV8@skynet-linux>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 5/12/22 2:17 AM, Serge Semin wrote:
+On 12/05/2022 08:50, Sireesh Kodali wrote:
+>>> +    description: The names of the state bits used for SMP2P output
+>>> +    items:
+>>> +      - const: stop
+>>> +
+>>> +  memory-region:
+>>> +    maxItems: 1
+>>> +    description: Reference to the reserved-memory for the WCNSS core
+>>> +
+>>> +  smd-edge:
+>>> +    type: object
+>>> +    description:
+>>> +      Qualcomm Shared Memory subnode which represents communication edge,
+>>> +      channels and devices related to the ADSP.
+>>
+>> You should reference /schemas/soc/qcom/qcom,smd.yaml
 
-> Having greater than (AHCI_MAX_PORTS = 32) ports detected isn't that
+It seems it is not a SMD driver so above reference is not correct. This
+should be probably described in its own schema, I just need to
+understand what's this...
 
-   Having greater than AHCI_MAX_PORTS (32) ports detected?
 
-> critical from the further AHCI-platform initialization point of view since
-> exceeding the ports upper limit will cause allocating more resources than
-> will be used afterwards. But detecting too many child DT-nodes doesn't
-> seem right since it's very unlikely to have it on an ordinary platform. In
-> accordance with the AHCI specification there can't be more than 32 ports
-> implemented at least due to having the CAP.NP field of 4 bits wide and the
-
-   It's 5 bits wide, actually...
-
-> PI register of dword size. Thus if such situation is found the DTB must
-> have been corrupted and the data read from it shouldn't be reliable. Let's
-> consider that as an erroneous situation and halt further resources
-> allocation.
-> 
-> Note it's logically more correct to have the nports set only after the
-> initialization value is checked for being sane. So while at it let's make
-> sure nports is assigned with a correct value.
-> 
-> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-
-[...]
-
-MBR, Sergey
+Best regards,
+Krzysztof
