@@ -2,77 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 49CBA525586
-	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 21:14:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A885E5255A5
+	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 21:22:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1358015AbiELTOT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 May 2022 15:14:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54748 "EHLO
+        id S1357982AbiELTWk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 May 2022 15:22:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57400 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229503AbiELTOR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 15:14:17 -0400
-Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EAE4C277351;
-        Thu, 12 May 2022 12:13:57 -0700 (PDT)
-Received: by mail-lj1-x236.google.com with SMTP id m23so7751058ljc.0;
-        Thu, 12 May 2022 12:13:57 -0700 (PDT)
+        with ESMTP id S229503AbiELTWk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 15:22:40 -0400
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9BF6D6D3BB;
+        Thu, 12 May 2022 12:22:38 -0700 (PDT)
+Received: by mail-lj1-x232.google.com with SMTP id bx33so7696943ljb.12;
+        Thu, 12 May 2022 12:22:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=eqvqGq9Z82oEF1qEGh1yx9lmGGvEQADLPFEeVY8PIpY=;
-        b=Oj3EvGQ34k0DXRehSN9t1u1RTrvzp3dcB9qCIlXz1cW2niVqP5a63GgQF5/aNeqM5V
-         xoT6L/8vaOo4Lz3a1SsVe2anShZJQv9Z0SjEicTWN4EcRF2TLNpHGMEk7+2BP+gItAUo
-         Ub4tYlAWxCxhk0RHcpw1PJO15S4gAWkxDb080GUWzMoXIph/+ZoOCfJpTu7hRrF9TKvz
-         Zrn6dhFtELmFnOmpZ7mRwXCmrQQdg1TbCBuARRaqzjWXLxh91yeSuGp+D6TNOwXXtKuy
-         PeJaqC21aiOJN+Nw9W8MBuzjnkRSZZpqarH4MEvHfQPqBAdTMQysjPCeJptDMGvlW+d9
-         27ug==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=pf8wWHzSaY4Mb0ZLMgAak5YWJzuy/cpG9y80uj1xVZU=;
+        b=hr+q7+kMB9jkRmg8H7tezy493qLUTMW7PXQvpX/bwraZB6EJd9BvwCTlCrVKCEoV5m
+         NaFR6bHmlui0OjYyv9XNjZHe0W26TVle4eSreAEwEuJcFIIbx/vHOhSxmA3iibKDlCSv
+         VvpjBMWH+5sTFoXmXMgcKd1l2NsHi2jCmTEeV/5tjeo5EhwmXRdtKeQpX2w5r/08P4Ci
+         +wxsIV6byNLqbjWG42p3TDhV/lYECCup5urtS6NUlyVnN4iTBQEbbwvgteGXnGPLIf9s
+         wHIV/+RZdzl43ZZe0MQOLi1RGVKuNS1JfWlnVvPnVuS2mMPuBO2dZwFVgUbXzInVNvbc
+         K2HA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=eqvqGq9Z82oEF1qEGh1yx9lmGGvEQADLPFEeVY8PIpY=;
-        b=FGUlQaGuw7E8khxKMLW+0ZgAMYseptgyZK31bMkKngrZ5/j0jgL6WMx5yBvu0CZvmT
-         2vinrPifKMdfAJPc0bDpPgqhO8xvCHacB7zs1fo2yvMgrjNc6DNZ0M0arEu0a3Dczf1B
-         JdtUBo7N/zpRs4n/pey8PXGcI9FNY1pmmvF6h8L4MiZBgTYgF6tW8AOakt4h4vUQDHnz
-         qYNzpnytdJt5udNVOcCPq2tMMSDwFmb/xDq3G65ba6iecgOlvgddbHH96WORDw975gy6
-         ZWOsKpPHP/iwh771+jI288u8xttwARzhYOlZ/pUgQ68+OBN0XkYE4TnzUMyn9kw7NQTH
-         4FjA==
-X-Gm-Message-State: AOAM531prM26cwo/LFsKLnKm+a6zwSqyNwCQjFDYTzkR4NKNAjP2rLz1
-        ADVBxFvS1rT5f9GvuhwJxZLOUTbu+HPvOQ==
-X-Google-Smtp-Source: ABdhPJzbF9eSPF1hlns9LPLPwVQf7Gmlrayz0fVOYafs+7dUkKjowsD5O/7A4Gi3HIEVF0B5CkiAFQ==
-X-Received: by 2002:a2e:9188:0:b0:24f:1a0d:6bbd with SMTP id f8-20020a2e9188000000b0024f1a0d6bbdmr878261ljg.226.1652382836208;
-        Thu, 12 May 2022 12:13:56 -0700 (PDT)
-Received: from nergzd-desktop.localdomain ([194.39.226.133])
-        by smtp.gmail.com with ESMTPSA id y26-20020ac255ba000000b0047255d210f4sm62146lfg.35.2022.05.12.12.13.54
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=pf8wWHzSaY4Mb0ZLMgAak5YWJzuy/cpG9y80uj1xVZU=;
+        b=qRBExr3iHc2RAO4LEFcJpQXE+bKrr0BCEIZk+jMZXirCYLp3l2viIeeS+Mbjlw+xFS
+         h7K2xx5OVX2JcRD9R/4Y6xXRBxuDIEFUmD1CCZWWGpZoye62AYNBbm+UsstSg18kQcWi
+         T3PWlYp144vOUZvBDrFMt4fjTGZ5Br/xSfiPDl1iI2YDI2gMOh03D4feBugBKlsrdnq6
+         E8ts0WsUnvakT//8wPJ7UIMasMx70HlNmgthNU8NU7DT5OWPHd8p1WMPyGjDAA0EZ4CN
+         188LyBfDz3IIIl/GKfdqTgquj1mmzHjs/Lbj/Hurqb6aIXFHXHIM4BCGb8yOuvnYrtdH
+         EWZQ==
+X-Gm-Message-State: AOAM532n7c7LT+zml7uZ9RxtSxnloEnmBPJMKSwZC2QfLnYHObtju2v/
+        DsnMEcgHyN0pt0FQoEvAFyo=
+X-Google-Smtp-Source: ABdhPJyYfrcH0Mi/nzdU0/MeriKQDMsDwfGy91/mVpM6QQFEaDL1VwDoreBrvt8ZfA4zVQ/kL64G3w==
+X-Received: by 2002:a2e:824b:0:b0:24d:c247:c928 with SMTP id j11-20020a2e824b000000b0024dc247c928mr945800ljh.68.1652383356892;
+        Thu, 12 May 2022 12:22:36 -0700 (PDT)
+Received: from mobilestation ([95.79.189.214])
+        by smtp.gmail.com with ESMTPSA id l7-20020a2ea807000000b0024f3d1daed0sm49660ljq.88.2022.05.12.12.22.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 12 May 2022 12:13:55 -0700 (PDT)
-From:   Markuss Broks <markuss.broks@gmail.com>
-To:     linux-kernel@vger.kernel.org
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Markuss Broks <markuss.broks@gmail.com>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Song Qiang <songqiang1304521@gmail.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Subject: [PATCH v4 5/5] arm64: dts: qcom: msm8998-xperia: Introduce ToF sensor support
-Date:   Thu, 12 May 2022 22:13:33 +0300
-Message-Id: <20220512191334.61804-6-markuss.broks@gmail.com>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20220512191334.61804-1-markuss.broks@gmail.com>
-References: <20220512191334.61804-1-markuss.broks@gmail.com>
+        Thu, 12 May 2022 12:22:36 -0700 (PDT)
+Date:   Thu, 12 May 2022 22:22:33 +0300
+From:   Serge Semin <fancer.lancer@gmail.com>
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Frank Li <Frank.Li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 11/17] PCI: dwc: Simplify in/outbound iATU setup
+ methods
+Message-ID: <20220512192233.4ulfev2l2f6mue62@mobilestation>
+References: <20220503214638.1895-1-Sergey.Semin@baikalelectronics.ru>
+ <20220503214638.1895-12-Sergey.Semin@baikalelectronics.ru>
+ <20220512140124.GD35848@thinkpad>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220512140124.GD35848@thinkpad>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
@@ -83,72 +84,77 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds device tree support for the VL53L0X ToF sensor
-found on all Yoshino devices.
+On Thu, May 12, 2022 at 07:31:24PM +0530, Manivannan Sadhasivam wrote:
+> On Wed, May 04, 2022 at 12:46:32AM +0300, Serge Semin wrote:
+> > From maintainability and scalability points of view it has been wrong to
+> > use different iATU inbound and outbound regions accessors for the viewport
+> > and unrolled versions of the iATU CSRs mapping. Seeing the particular iATU
+> > region-wise registers layout is almost fully compatible for different
+> > IP-core versions, there were no much points in splitting the code up that
+> > way since it was possible to implement a common windows setup methods for
+> > both viewport and unrolled iATU CSRs spaces. While what we can observe in
+> > the current driver implementation of these methods, is a lot of code
+> > duplication, which consequently worsen the code readability,
+> > maintainability and scalability. Note the current implementation is a bit
+> > more performant than the one suggested in this commit since it implies
+> > having less MMIO accesses. But the gain just doesn't worth having the
+> > denoted difficulties especially seeing the iATU setup methods are mainly
+> > called on the DW PCIe controller and peripheral devices initialization
+> > stage.
+> > 
+> > Here we suggest to move the iATU viewport and unrolled CSR access
+> > specifics in the dw_pcie_readl_atu() and dw_pcie_writel_atu() method, and
+> > convert the dw_pcie_prog_outbound_atu() and
+> > dw_pcie_prog_{ep_}inbound_atu() functions to being generic instead of
+> > having a different methods for each viewport and unrolled types of iATU
+> > CSRs mapping. Nothing complex really. First of all the dw_pcie_readl_atu()
+> > and dw_pcie_writel_atu() are converted to accept relative iATU CSRs
+> > address together with the iATU region direction (inbound or outbound) and
+> > region index. If DW PCIe controller doesn't have the unrolled iATU CSRs
+> > space, then the accessors will need to activate a iATU viewport based on
+> > the specified direction and index, otherwise a base address for the
+> > corresponding region CSRs will be calculated by means of the
+> > PCIE_ATU_UNROLL_BASE() macro. The CSRs macro have been modified in
+> > accordance with that logic in the pcie-designware.h header file.
+> > 
+> > The rest of the changes in this commit just concern converting the iATU
+> > in-/out-bound setup methods and iATU regions detection procedure to be
+> > compatible with the new accessors semantics. As a result we've dropped the
+> > no more required dw_pcie_prog_outbound_atu_unroll(),
+> > dw_pcie_prog_inbound_atu_unroll() and dw_pcie_iatu_detect_regions_unroll()
+> > methods.
+> > 
+> > Note aside with the denoted code improvements, there is an additional
+> > positive side effect of this change. If at some point an atomic iATU
+> > configs setup procedure is required, it will be possible to be done with
+> > no much effort just by adding the synchronization into the
+> > dw_pcie_readl_atu() and dw_pcie_writel_atu() accessors.
+> > 
+> > Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+> > 
+> > ---
+> > 
+> > Changelog v2:
+> > - Move the iATU region selection procedure into a helper function (@Rob).
+> > - Simplify the iATU region selection procedure by recalculating the base
+> >   address only if the space is unrolled. The iATU viewport base address
+> >   is saved in the pci->atu_base field from now.
+> > ---
+> >  drivers/pci/controller/dwc/pcie-designware.c | 293 ++++++-------------
+> >  drivers/pci/controller/dwc/pcie-designware.h |  48 ++-
+> 
 
-Signed-off-by: Markuss Broks <markuss.broks@gmail.com>
----
- .../dts/qcom/msm8998-sony-xperia-yoshino.dtsi | 33 +++++++++++++++++++
- 1 file changed, 33 insertions(+)
+> In this patch, you also need to fix "pcie-tegra194-acpi.c" driver that makes
+> use of the removed macros.
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino.dtsi b/arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino.dtsi
-index 47488a1aecae..4bd1039d983d 100644
---- a/arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino.dtsi
-@@ -245,6 +245,24 @@ &blsp2_uart1 {
- 	status = "okay";
- };
- 
-+&blsp2_i2c2 {
-+	status = "okay";
-+
-+	proximity@29 {
-+		compatible = "st,vl53l0x";
-+		reg = <0x29>;
-+
-+		interrupt-parent = <&tlmm>;
-+		interrupts = <22 IRQ_TYPE_EDGE_FALLING>;
-+
-+		reset-gpios = <&tlmm 27 GPIO_ACTIVE_LOW>;
-+		vdd-supply = <&cam_vio_vreg>;
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&tof_int &tof_reset>;
-+	};
-+};
-+
- &ibb {
- 	regulator-min-microamp = <800000>;
- 	regulator-max-microamp = <800000>;
-@@ -606,6 +624,14 @@ cam0_vdig_default: cam0-vdig-default {
- 		drive-strength = <2>;
- 	};
- 
-+	tof_int: tof-int {
-+		pins = "gpio22";
-+		function = "gpio";
-+		bias-pull-up;
-+		drive-strength = <2>;
-+		input-enable;
-+	};
-+
- 	cam1_vdig_default: cam1-vdig-default {
- 		pins = "gpio25";
- 		function = "gpio";
-@@ -613,6 +639,13 @@ cam1_vdig_default: cam1-vdig-default {
- 		drive-strength = <2>;
- 	};
- 
-+	tof_reset: tof-reset {
-+		pins = "gpio27";
-+		function = "gpio";
-+		bias-disable;
-+		drive-strength = <2>;
-+	};
-+
- 	hall_sensor0_default: acc-cover-open {
- 		pins = "gpio124";
- 		function = "gpio";
--- 
-2.36.1
+Right. I've missed the ACPI part since it isn't available on my
+platform. Thanks for noticing that.
 
+-Sergey
+
+> 
+> Thanks,
+> Mani
+> 
+> -- 
+> மணிவண்ணன் சதாசிவம்
