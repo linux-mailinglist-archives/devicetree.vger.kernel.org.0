@@ -2,76 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F8F75257F4
-	for <lists+devicetree@lfdr.de>; Fri, 13 May 2022 00:46:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9228852580B
+	for <lists+devicetree@lfdr.de>; Fri, 13 May 2022 00:58:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1359271AbiELWqk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 May 2022 18:46:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47932 "EHLO
+        id S1359334AbiELW6x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 May 2022 18:58:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36442 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244764AbiELWqj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 18:46:39 -0400
-Received: from mail-pl1-x631.google.com (mail-pl1-x631.google.com [IPv6:2607:f8b0:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 839694B85E
-        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 15:46:38 -0700 (PDT)
-Received: by mail-pl1-x631.google.com with SMTP id c9so6291589plh.2
-        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 15:46:38 -0700 (PDT)
+        with ESMTP id S1359333AbiELW6w (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 18:58:52 -0400
+Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B624127EB8A
+        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 15:58:49 -0700 (PDT)
+Received: by mail-lj1-x236.google.com with SMTP id b32so8312502ljf.1
+        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 15:58:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=w7xRYGEEgLlcfSNhLyiae2Suom2+oKJoUELtHjnH1l4=;
-        b=JcxyzS2/X+CTAkdqnryxhc1CdjvPBZ6DX7dJAB08YX/K61V5t4vhFW0BZn/hQ+cbUE
-         4Dju2qWnEnZm4o7CahLxVzBOo6nqKavIFCjlMbGVer+y5zrTtDFDHDrWav+llnze2g0x
-         5x7Jv1JJulg7CUH5L4GwG+2yXJOQ0+bFjF5gs=
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=jkpKnJ/yq/4VufrEoiHCSBT7WZrJ/+EWhFoDfqoJRbI=;
+        b=BnhBqfRuQvIXa0k2pvOjJ/O9b1LJuEsWOb5zYQolEdDiSRUfVEzPIMshLl3o8idQ91
+         5oBjAtvp/6iTXakcyzAZE3wsCy1eTFjv/hVDa23mzMxzr4WFJgVtVBo+xUlfKFAgHIM9
+         Mly6RLpGzyxxGisHDXTR0VYL4G2222Eh0o3HWeKh7sQNzRbhySTaiqZLvkSWxpwDsv6R
+         6OvT9G6NpjX/uVim1TJxkjhLawU5SWO2Tyf9Im2bD7LyUGQbjhgQ0yBmkczhGYoZjhkP
+         hp65TlJMtt3HsRtJnAvoB2ePHd3HAZXktPqHw/QHE198WK3ihIfohlwbj76T+JCHeB3+
+         Nyag==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=w7xRYGEEgLlcfSNhLyiae2Suom2+oKJoUELtHjnH1l4=;
-        b=PYhZlzQFxYBRSF5wFC/jBmb84qdFxazFBRlQa7hBqrxoYlxGZBqFoxjm1dK3zJNnMz
-         4i8i7byvCrvJ+VZQXeHCF1PkepLvhxkxLUu8cnZSo9jrdimnHS9GY2YQW6PhkAapsZ69
-         wKwXoZoR2iE53DfbHm0P14z9z+35AgXvzF5ubJFs9otS14cgY/FC/bJtKf81d0Yt5Wc4
-         qI1dyTpVDetbhjTStwhFjl6LXsuy1cAGth2mPxPXXGby/TMgu4kelfEs5pYio89nrm51
-         7ovfNoIQozF8m8qGlNa0tedPR5XHyBOgmHYPy9Ps2eAHT0c8NWERUgU6BG4RuwCKjHuq
-         HW4Q==
-X-Gm-Message-State: AOAM5326MXbNjkMkXHOPrghMvarrMsrjem/nO2rjbDw8LWxj9CSONsv4
-        tLvHmlZ4znh0ynEtPXggP6P6Gw==
-X-Google-Smtp-Source: ABdhPJxLdQopQQB82M4oh6IUbuLnZifJOaY3RgFRN8NvEkSNVuq88W7hpERHgcLZHkvW2a9p6vFsBw==
-X-Received: by 2002:a17:902:7891:b0:15e:f845:b816 with SMTP id q17-20020a170902789100b0015ef845b816mr1640183pll.60.1652395598075;
-        Thu, 12 May 2022 15:46:38 -0700 (PDT)
-Received: from localhost ([2620:15c:11a:202:bc87:9632:bcce:8e17])
-        by smtp.gmail.com with UTF8SMTPSA id 2-20020a17090a19c200b001d5c571f487sm306302pjj.25.2022.05.12.15.46.36
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=jkpKnJ/yq/4VufrEoiHCSBT7WZrJ/+EWhFoDfqoJRbI=;
+        b=N2yoFLgyN58ph9iCXlDXlHKhpGp4SD2UDT1KDVkuHPUcv29svEAezmimuyvBiOmi4L
+         GqBzm1f9dFtDaJZjTWOFT6wpzHfDkRmmrLsofbA3Hp5FRnBx2NlfsWuxkqs8K1OYlElH
+         4d0N4xJ2//dwzFFjjEN55MU3sJubbgspxhuUeeO178ZpLAOCSjfboWzgXbVEQMgq2IJU
+         Yi3srr7t451YMBvdxOWaMI4VYTYf7/FFMGq8sCSgy8COX96StVJzgjQkvCm5l2G92q+w
+         tlHkQVzs3KMQzKjeOuXAosCfqax6vy54R3om+Y/HLg2LnE1NnBpsbKvhYhbWPLUEZGxV
+         vynA==
+X-Gm-Message-State: AOAM530F3JMZvHDHG7pD/2N6vqs4JhlM+rSD4n9zpk6JVN7c3J8x7iVB
+        N7Lv9HXfbdXN3LkULygyz9fiuQ==
+X-Google-Smtp-Source: ABdhPJzaT7iP0KrmcmP9LaClAfuGYAaA0bF0Hr1bpKK+ozoWANK0hP65k8I4/3Cvwc3WRpMN7gqINw==
+X-Received: by 2002:a2e:8404:0:b0:250:cde7:e9e3 with SMTP id z4-20020a2e8404000000b00250cde7e9e3mr1373508ljg.289.1652396328004;
+        Thu, 12 May 2022 15:58:48 -0700 (PDT)
+Received: from [192.168.1.211] ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id j2-20020a2ea902000000b0024f3d1daeccsm134820ljq.84.2022.05.12.15.58.47
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 12 May 2022 15:46:37 -0700 (PDT)
-Date:   Thu, 12 May 2022 15:46:36 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Krishna Kurapati <quic_kriskura@quicinc.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        Thu, 12 May 2022 15:58:47 -0700 (PDT)
+Message-ID: <ae909313-ef7a-5c40-55b8-a1a802b6cdd5@linaro.org>
+Date:   Fri, 13 May 2022 01:58:47 +0300
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH v1 5/5] arm64: dts: qcom: sdm660: Add initial Inforce
+ IFC6560 board support
+Content-Language: en-GB
+To:     Konrad Dybcio <konrad.dybcio@somainline.org>,
         Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Felipe Balbi <balbi@kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Doug Anderson <dianders@chromium.org>,
-        Mathias Nyman <mathias.nyman@intel.com>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, quic_pkondeti@quicinc.com,
-        quic_ppratap@quicinc.com, quic_vpulyala@quicinc.com,
-        Sandeep Maheswaram <quic_c_sanm@quicinc.com>
-Subject: Re: [v16 5/5] usb: dwc3: qcom: Keep power domain on to retain
- controller status
-Message-ID: <Yn2OTOF07A5jhYSF@google.com>
-References: <1652379802-8318-1-git-send-email-quic_kriskura@quicinc.com>
- <1652379802-8318-6-git-send-email-quic_kriskura@quicinc.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <1652379802-8318-6-git-send-email-quic_kriskura@quicinc.com>
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+References: <20220503220927.960821-1-dmitry.baryshkov@linaro.org>
+ <20220503220927.960821-6-dmitry.baryshkov@linaro.org>
+ <0574f34c-b898-8ccb-05bd-6e3d454fee2c@somainline.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <0574f34c-b898-8ccb-05bd-6e3d454fee2c@somainline.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -80,81 +79,89 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 12, 2022 at 11:53:22PM +0530, Krishna Kurapati wrote:
-> From: Sandeep Maheswaram <quic_c_sanm@quicinc.com>
+On 04/05/2022 19:17, Konrad Dybcio wrote:
 > 
-> Keep the power domain always on during runtime suspend or if the
-> controller supports wakeup in order to retain controller status
-> and to support wakeup from devices.
-> 
-> Signed-off-by: Sandeep Maheswaram <quic_c_sanm@quicinc.com>
-> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
-> ---
->  drivers/usb/dwc3/dwc3-qcom.c | 23 ++++++++++++++++-------
->  1 file changed, 16 insertions(+), 7 deletions(-)
-> 
-> diff --git a/drivers/usb/dwc3/dwc3-qcom.c b/drivers/usb/dwc3/dwc3-qcom.c
-> index 9804a19..1f9589a 100644
-> --- a/drivers/usb/dwc3/dwc3-qcom.c
-> +++ b/drivers/usb/dwc3/dwc3-qcom.c
-> @@ -17,6 +17,7 @@
->  #include <linux/of_platform.h>
->  #include <linux/platform_device.h>
->  #include <linux/phy/phy.h>
-> +#include <linux/pm_domain.h>
->  #include <linux/usb/of.h>
->  #include <linux/reset.h>
->  #include <linux/iopoll.h>
-> @@ -718,12 +719,13 @@ dwc3_qcom_create_urs_usb_platdev(struct device *dev)
->  
->  static int dwc3_qcom_probe(struct platform_device *pdev)
->  {
-> -	struct device_node	*np = pdev->dev.of_node;
-> -	struct device		*dev = &pdev->dev;
-> -	struct dwc3_qcom	*qcom;
-> -	struct resource		*res, *parent_res = NULL;
-> -	int			ret, i;
-> -	bool			ignore_pipe_clk;
-> +	struct device_node *np = pdev->dev.of_node;
-> +	struct device *dev = &pdev->dev;
-> +	struct dwc3_qcom *qcom;
-> +	struct resource	*res, *parent_res = NULL;
-> +	int ret, i;
-> +	bool ignore_pipe_clk;
-> +	struct generic_pm_domain *genpd;
->  
->  	qcom = devm_kzalloc(&pdev->dev, sizeof(*qcom), GFP_KERNEL);
->  	if (!qcom)
-> @@ -732,6 +734,8 @@ static int dwc3_qcom_probe(struct platform_device *pdev)
->  	platform_set_drvdata(pdev, qcom);
->  	qcom->dev = &pdev->dev;
->  
-> +	genpd = pd_to_genpd(qcom->dev->pm_domain);
-> +
->  	if (has_acpi_companion(dev)) {
->  		qcom->acpi_pdata = acpi_device_get_match_data(dev);
->  		if (!qcom->acpi_pdata) {
-> @@ -839,7 +843,12 @@ static int dwc3_qcom_probe(struct platform_device *pdev)
->  	if (ret)
->  		goto interconnect_exit;
->  
-> -	device_init_wakeup(&pdev->dev, 1);
-> +	genpd->flags |= GENPD_FLAG_RPM_ALWAYS_ON;
-> +
-> +	if (device_may_wakeup(&qcom->dwc3->dev)) {
+> On 04/05/2022 00:09, Dmitry Baryshkov wrote:
+>> The IFC6560 is a board from Inforce Computing, built around the SDA660
+>> SoC. This patch describes core clocks, some regulators from the two
+>> PMICs, debug uart, storage, bluetooth and audio DSP remoteproc.
+>>
+>> The regulator settings are inherited from prior work by Konrad Dybcio
+>> and AngeloGioacchino Del Regno.
+>>
+>> Co-developed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>> ---
+>>   arch/arm64/boot/dts/qcom/Makefile             |   1 +
+>>   .../boot/dts/qcom/sda660-inforce-ifc6560.dts  | 455 ++++++++++++++++++
+>>   2 files changed, 456 insertions(+)
+>>   create mode 100644 arch/arm64/boot/dts/qcom/sda660-inforce-ifc6560.dts
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/Makefile 
+>> b/arch/arm64/boot/dts/qcom/Makefile
+>> index f9e6343acd03..5f717fe0e8d0 100644
+>> --- a/arch/arm64/boot/dts/qcom/Makefile
+>> +++ b/arch/arm64/boot/dts/qcom/Makefile
+>> @@ -88,6 +88,7 @@ dtb-$(CONFIG_ARCH_QCOM)    += 
 
-This should probably be device_can_wakeup(), otherwise you'll have to set/clear
-the flag before suspending (the wakeup policy might change after the device is
-probed). Also I'm not sure if switching the domain off can impact the power
-consumption of some connected peripherals, as is observed when the PHYs are
-powered off (I could confirm this if needed).
+[skipped]
 
-> +		genpd->flags |= GENPD_FLAG_ALWAYS_ON;
-> +		device_init_wakeup(&pdev->dev, true);
-> +	}
->  	qcom->is_suspended = false;
->  	pm_runtime_set_active(dev);
->  	pm_runtime_enable(dev);
-> -- 
-> 2.7.4
+>> +
+>> +/* BAM DMA doesn't seem to work on the board */
+> I wonder if these are configured differently on your firmware.. what if 
+> you remove the `qcom,controlled-remotely` property, or in case that 
+> doesn't work, swap out the BAM clock for a fake one, like xo_board?
+
+You know, replacing BAM clock with xo_board makes the devices probe and 
+work. So does adding interconnects property (together with Bhupeshe's 
+patches which didn't land for some reason). I think I will override just 
+the clocks for now and update the core dtsi once the [1] gets merged.
+
+[1] 
+https://lore.kernel.org/linux-arm-msm/20211110105922.217895-14-bhupesh.sharma@linaro.org/
+
+>> +&blsp1_dma {
+>> +    status = "disabled";
+>> +};
 > 
+> This reference should come before blsp1_i2c6 alphabetically
+> 
+> 
+
+[skipped]
+
+
+>> +
+>> +&mdp {
+>> +    status = "okay";
+>> +};
+> 
+> MDP should be always enabled in SoC DTSI instead, as MDSS is borderline 
+> useless without it..
+
+I see your point. sdm845 doesn't disable it, but later platforms 
+(sc7180/sc7280/sm8250) disable mdp and require enabling it explicitly in 
+the board files. I'd tend to follow the example of the later platforms. 
+Not to mention that sdm630.dtsi already contains 'status="disabled"' for 
+this device.
+
+>> +
+>> +&mdss {
+>> +    status = "okay";
+>> +};
+>> +
+>> +&mmss_smmu {
+>> +    status = "okay";
+>> +};
+> 
+> ..and same goes for all the SMMUs (but that's a nit for the future, as I 
+> mentioned in one of the previous emails)
+
+Yes.
+
+[skipped]
+
+
+-- 
+With best wishes
+Dmitry
