@@ -2,66 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E3DE3524E1C
-	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 15:21:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B7E1524E2C
+	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 15:24:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1354301AbiELNVg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 May 2022 09:21:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41142 "EHLO
+        id S1354345AbiELNYx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 May 2022 09:24:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55316 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1354183AbiELNVf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 09:21:35 -0400
-Received: from mail-pg1-x52f.google.com (mail-pg1-x52f.google.com [IPv6:2607:f8b0:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C32134FC42
-        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 06:21:33 -0700 (PDT)
-Received: by mail-pg1-x52f.google.com with SMTP id r71so4242813pgr.0
-        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 06:21:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=4aQRSxerZIfxG75Us/8UUQ0iqFXnrxh04bqlSeNWSLY=;
-        b=IW2hTvHv1ornPaWs/asOavYfPGh3aS+PUX88/ZdhRZDMLMqshfnOIRyKUvRCCDs1XM
-         qXCMMVCR59IvJbT8ZjbP0dxO4VlwnEi8t77fh/0oMrbW/5UfGDDRTzvgvV1prWK1iuNE
-         qbngcanQky/AMov43+2ze9brDGfUUgW1OXOZFvSvKMod4jPOzz3Mpa0jAIdA0sfZgLS8
-         /NQ0YGyYLv1N5YR6qQoz9OvPNMZKrxjkn8mROXnQYa79P+e/c9m9AIyhHCK8jvojCcgR
-         VWtEyQvZE673bHkSeTXWPv05X+f6IbP1V7CnhnSZM66AxXItpKgcoTkmZDbD9Rzo4xi7
-         sRbA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=4aQRSxerZIfxG75Us/8UUQ0iqFXnrxh04bqlSeNWSLY=;
-        b=qn0KOG8Wryl+YHqKEOR5gV/2aD15Y7Jq+mFMAGYHSbxQvu82NC3d/67dZdxrD1eTEU
-         QwEwdPKnqt2N5k05451fgloL1GNj/WaIr33TU6eCHpdltXK+IE3/9Ajr0YEFwIaF2Hbl
-         NRGgZMlduRchDDje5vsZXPaYli9Pu0aE0FryTi8MIlK3sCzOhIs40obwoPZBu1O8nl5Z
-         ppg2djnJPEC71pE4ihBgm7g15+796p7HDIleiEHVowyCMO/+OzfIaR7aRnY7PKIpExHt
-         1W4SBhr8m5hHvkr7xp3UO5VpfQ+JIFwhWiGj3jl3R5To+5cMCHq7lf0gWEONOQ/mmsO4
-         nOjw==
-X-Gm-Message-State: AOAM530RIv5kluOleWYO3QbLHFCI0Up6AVdXh81WymH4ApIZPbYDeAf6
-        lpgcIaOgDFIA46v0atHY+7nTXwcKn2YpJlPcJOQr8Q==
-X-Google-Smtp-Source: ABdhPJyZOET1EER9C9AZQaqJy8BQlI2AbD8N1VzLJbA77Z/dnnf5unDxOdy+QeXxPtAgZWu9NdemKM/OpYLVX4OA/B8=
-X-Received: by 2002:aa7:9110:0:b0:4fa:e388:af57 with SMTP id
- 16-20020aa79110000000b004fae388af57mr29932676pfh.1.1652361693176; Thu, 12 May
- 2022 06:21:33 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220504122725.179262-1-robert.foss@linaro.org>
- <20220504122725.179262-5-robert.foss@linaro.org> <600d13cc-962a-bb6c-6e43-c56fd63b9591@somainline.org>
-In-Reply-To: <600d13cc-962a-bb6c-6e43-c56fd63b9591@somainline.org>
-From:   Robert Foss <robert.foss@linaro.org>
-Date:   Thu, 12 May 2022 15:21:22 +0200
-Message-ID: <CAG3jFysb-ZVr+9jroGs3ibjs9ysOChEz6HqR5NqHj3LvEiFN9Q@mail.gmail.com>
-Subject: Re: [PATCH v3 4/6] clk: qcom: add support for SM8350 DISPCC
-To:     Konrad Dybcio <konrad.dybcio@somainline.org>
-Cc:     agross@kernel.org, bjorn.andersson@linaro.org,
-        mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
-        krzk+dt@kernel.org, jonathan@marek.ca, tdas@codeaurora.org,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        with ESMTP id S242623AbiELNYw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 09:24:52 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F1095F68B5;
+        Thu, 12 May 2022 06:24:51 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 9551660DB6;
+        Thu, 12 May 2022 13:24:51 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E773BC34114;
+        Thu, 12 May 2022 13:24:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1652361891;
+        bh=5DrSkrfZ376gmNIOa8YiJJpftUPjCe49Dwd/ROqERXo=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=J7qNG6aVE39IZKKT8v/WQnNB6GmrEUVTT+cqQRF+fEFqr9rQkU453e6gFDg2B+nVB
+         oQgTybEPyBgP3Dp6ruY8B/xbZM8k3aFyJufroPdmlPd/Sk045P4WW3YyC31dfqB2Z5
+         lg0GHNdV6Hrh2C7/peJJoUKdt4b0Doi3M8GuONodCO8GCpGEbJOgOjkm/AAjNynb8y
+         sqgJea3tlns87y9PxrTl7r+rJ01Wmyu05dl6ob3eZ7csA0aHONfuQL6RHBb66nYYFA
+         LBCTEdwiOKDRWqnboFOXd3skP5K0Joa6hj0tQ40FO/KrTz1qvm9qDF6IAILrv8myi7
+         dTmICfTU7MDdQ==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=why.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <maz@kernel.org>)
+        id 1np8oC-00AsdL-B5; Thu, 12 May 2022 14:24:48 +0100
+Date:   Thu, 12 May 2022 14:24:48 +0100
+Message-ID: <87wneq6fz3.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Phil Edworthy <phil.edworthy@renesas.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Subject: Re: [PATCH v3 3/5] gpio: gpiolib: Allow free() callback to be overridden
+In-Reply-To: <CA+V-a8tf1RmT-cX5y807rTAPES2NXLJHp=u1WUG11fLrtt-5Mg@mail.gmail.com>
+References: <20220511183210.5248-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        <20220511183210.5248-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        <87y1z75770.wl-maz@kernel.org>
+        <CA+V-a8tf1RmT-cX5y807rTAPES2NXLJHp=u1WUG11fLrtt-5Mg@mail.gmail.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: prabhakar.csengg@gmail.com, prabhakar.mahadev-lad.rj@bp.renesas.com, geert+renesas@glider.be, linus.walleij@linaro.org, tglx@linutronix.de, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, brgl@bgdev.pl, p.zabel@pengutronix.de, linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, phil.edworthy@renesas.com, biju.das.jz@bp.renesas.com
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -70,161 +80,57 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 4 May 2022 at 18:23, Konrad Dybcio <konrad.dybcio@somainline.org> wrote:
->
->
-> On 04/05/2022 14:27, Robert Foss wrote:
-> > From: Jonathan Marek <jonathan@marek.ca>
+On Thu, 12 May 2022 13:48:53 +0100,
+"Lad, Prabhakar" <prabhakar.csengg@gmail.com> wrote:
+> 
+> Hi Marc,
+> 
+> Thank you for the review.
+> 
+> On Thu, May 12, 2022 at 12:19 PM Marc Zyngier <maz@kernel.org> wrote:
 > >
-> > Add support to the SM8350 display clock controller by extending the SM8250
-> > display clock controller, which is almost identical but has some minor
-> > differences.
+> > On Wed, 11 May 2022 19:32:08 +0100,
+> > Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
+> > >
+> > > Allow free() callback to be overridden from irq_domain_ops for
+> > > hierarchical chips.
+> > >
+> > > This allows drivers to free any resources which are allocated during
+> > > populate_parent_alloc_arg().
 > >
-> > Signed-off-by: Jonathan Marek <jonathan@marek.ca>
-> > Signed-off-by: Robert Foss <robert.foss@linaro.org>
-> > Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> > ---
+> > Do you mean more than the fwspec? I don't see this being used.
 > >
-> > Changes since v1
-> >   - Remove comment - Dmitry
-> >
-> > Changes since v2
-> >   - Add my SoB - Bjorn
-> >   - Remove CLK_ASSUME_ENABLED_WHEN_UNUSED flag
-> >
-> >
-> >   drivers/clk/qcom/Kconfig         |  4 +--
-> >   drivers/clk/qcom/dispcc-sm8250.c | 60 +++++++++++++++++++++++++++++++-
-> >   2 files changed, 61 insertions(+), 3 deletions(-)
-> >
-> > diff --git a/drivers/clk/qcom/Kconfig b/drivers/clk/qcom/Kconfig
-> > index 9b1f54e634b9..1752ca0ee405 100644
-> > --- a/drivers/clk/qcom/Kconfig
-> > +++ b/drivers/clk/qcom/Kconfig
-> > @@ -609,11 +609,11 @@ config SM_DISPCC_6125
-> >         splash screen
-> >
-> >   config SM_DISPCC_8250
-> > -     tristate "SM8150 and SM8250 Display Clock Controller"
-> > +     tristate "SM8150/SM8250/SM8350 Display Clock Controller"
-> >       depends on SM_GCC_8150 || SM_GCC_8250
->
-> || SM_GCC_8350?
+> The free callback is used in patch 5/5 where free is overridden by
+> rzg2l_gpio_irq_domain_free. I just gave an example there as an
+> populate_parent_alloc_arg()  In actual in the child_to_parent_hwirq
+> callback I am using a bitmap [0] to get a free tint slot, this bitmap
+> needs freeing up when the GPIO interrupt is released from the driver
+> that as when overridden free callback frees the allocated tint slot so
+> that its available for re-use.
 
-Will fix in v4.
+Right, so that's actually a different life-cycle, and the whole
+populate_parent_alloc_arg() is a red herring. What you want is to free
+resources that have been allocated via some other paths. It'd be good
+if your commit message actually reflected this instead of using an
+example that doesn't actually exist.
 
->
-> sidenote: also || SC_GCC_8180X in a separate patch?
+> 
+> > There is also the question of why we need to have dynamic allocation
+> > for the fwspec itself. Why isn't that a simple stack allocation in the
+> > context of gpiochip_hierarchy_irq_domain_alloc()?
+> >
+> you mean gpio core itself should handle the fwspec
+> allocation/freeing?
 
-I haven't been involved in the 8180X work, and am a little bit
-hesitant to include any changes related to it in this series.
+Yes. The only reason we resort to dynamic allocation is because
+ThunderX is using MSI-based GPIOs, and thus doesn't use a fwspec (no
+firmware is involved here).
 
->
-> >       help
-> >         Support for the display clock controller on Qualcomm Technologies, Inc
-> > -       SM8150 and SM8250 devices.
-> > +       SM8150/SM8250/SM8350 devices.
-> >         Say Y if you want to support display devices and functionality such as
-> >         splash screen.
-> >
-> > diff --git a/drivers/clk/qcom/dispcc-sm8250.c b/drivers/clk/qcom/dispcc-sm8250.c
-> > index db9379634fb2..8e6cb990e387 100644
-> > --- a/drivers/clk/qcom/dispcc-sm8250.c
-> > +++ b/drivers/clk/qcom/dispcc-sm8250.c
-> > @@ -43,6 +43,10 @@ static struct pll_vco vco_table[] = {
-> >       { 249600000, 2000000000, 0 },
-> >   };
-> >
-> > +static struct pll_vco lucid_5lpe_vco[] = {
-> > +     { 249600000, 1750000000, 0 },
-> > +};
-> > +
-> >   static struct alpha_pll_config disp_cc_pll0_config = {
-> >       .l = 0x47,
-> >       .alpha = 0xE000,
-> > @@ -1228,6 +1232,7 @@ static const struct of_device_id disp_cc_sm8250_match_table[] = {
-> >       { .compatible = "qcom,sc8180x-dispcc" },
-> >       { .compatible = "qcom,sm8150-dispcc" },
-> >       { .compatible = "qcom,sm8250-dispcc" },
-> > +     { .compatible = "qcom,sm8350-dispcc" },
-> >       { }
-> >   };
-> >   MODULE_DEVICE_TABLE(of, disp_cc_sm8250_match_table);
-> > @@ -1258,7 +1263,7 @@ static int disp_cc_sm8250_probe(struct platform_device *pdev)
-> >               return PTR_ERR(regmap);
-> >       }
-> >
-> > -     /* note: trion == lucid, except for the prepare() op */
-> > +     /* Apply differences for SM8150 and SM8350 */
-> >       BUILD_BUG_ON(CLK_ALPHA_PLL_TYPE_TRION != CLK_ALPHA_PLL_TYPE_LUCID);
-> >       if (of_device_is_compatible(pdev->dev.of_node, "qcom,sc8180x-dispcc") ||
-> >           of_device_is_compatible(pdev->dev.of_node, "qcom,sm8150-dispcc")) {
-> > @@ -1270,6 +1275,59 @@ static int disp_cc_sm8250_probe(struct platform_device *pdev)
-> >               disp_cc_pll1_config.config_ctl_hi1_val = 0x00000024;
-> >               disp_cc_pll1_config.user_ctl_hi1_val = 0x000000D0;
-> >               disp_cc_pll1_init.ops = &clk_alpha_pll_trion_ops;
-> > +     } else if (of_device_is_compatible(pdev->dev.of_node, "qcom,sm8350-dispcc")) {
-> > +             static struct clk_rcg2 * const rcgs[] = {
-> > +                     &disp_cc_mdss_byte0_clk_src,
-> > +                     &disp_cc_mdss_byte1_clk_src,
-> > +                     &disp_cc_mdss_dp_aux1_clk_src,
-> > +                     &disp_cc_mdss_dp_aux_clk_src,
-> > +                     &disp_cc_mdss_dp_link1_clk_src,
-> > +                     &disp_cc_mdss_dp_link_clk_src,
-> > +                     &disp_cc_mdss_dp_pixel1_clk_src,
-> > +                     &disp_cc_mdss_dp_pixel2_clk_src,
-> > +                     &disp_cc_mdss_dp_pixel_clk_src,
-> > +                     &disp_cc_mdss_esc0_clk_src,
-> > +                     &disp_cc_mdss_mdp_clk_src,
-> > +                     &disp_cc_mdss_pclk0_clk_src,
-> > +                     &disp_cc_mdss_pclk1_clk_src,
-> > +                     &disp_cc_mdss_rot_clk_src,
-> > +                     &disp_cc_mdss_vsync_clk_src,
-> > +             };
-> > +             static struct clk_regmap_div * const divs[] = {
-> > +                     &disp_cc_mdss_byte0_div_clk_src,
-> > +                     &disp_cc_mdss_byte1_div_clk_src,
-> > +                     &disp_cc_mdss_dp_link1_div_clk_src,
-> > +                     &disp_cc_mdss_dp_link_div_clk_src,
-> > +             };
-> > +             unsigned int i;
-> > +             static bool offset_applied;
-> > +
-> > +             /* only apply the offsets once (in case of deferred probe) */
-> > +             if (!offset_applied) {
-> > +                     for (i = 0; i < ARRAY_SIZE(rcgs); i++)
-> > +                             rcgs[i]->cmd_rcgr -= 4;
-> > +
-> > +                     for (i = 0; i < ARRAY_SIZE(divs); i++) {
-> > +                             divs[i]->reg -= 4;
-> > +                             divs[i]->width = 4;
-> > +                     }
-> > +
-> > +                     disp_cc_mdss_ahb_clk.halt_reg -= 4;
-> > +                     disp_cc_mdss_ahb_clk.clkr.enable_reg -= 4;
-> > +
-> > +                     offset_applied = true;
-> > +             }
-> > +
-> > +             disp_cc_mdss_ahb_clk_src.cmd_rcgr = 0x22a0;
-> > +
-> > +             disp_cc_pll0_config.config_ctl_hi1_val = 0x2A9A699C;
->
-> Lowercase hex, also below.
+If we had a union of the two types, we could just have a stack
+variable, and pass that along, completely sidestepping the whole
+dynamic allocation/freeing business.
 
-Ack.
+	M.
 
->
->
-> > +             disp_cc_pll0_config.test_ctl_hi1_val = 0x01800000;
-> > +             disp_cc_pll0_init.ops = &clk_alpha_pll_lucid_5lpe_ops;
-> > +             disp_cc_pll0.vco_table = lucid_5lpe_vco;
-> > +             disp_cc_pll1_config.config_ctl_hi1_val = 0x2A9A699C;
-> > +             disp_cc_pll1_config.test_ctl_hi1_val = 0x01800000;
-> > +             disp_cc_pll1_init.ops = &clk_alpha_pll_lucid_5lpe_ops;
-> > +             disp_cc_pll1.vco_table = lucid_5lpe_vco;
-> >       }
-> >
-> >       clk_lucid_pll_configure(&disp_cc_pll0, regmap, &disp_cc_pll0_config);
-> Konrad
-> >
+-- 
+Without deviation from the norm, progress is not possible.
