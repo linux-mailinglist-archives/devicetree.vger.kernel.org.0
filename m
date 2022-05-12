@@ -2,189 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 02533524D57
-	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 14:48:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 88739524D70
+	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 14:50:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1353917AbiELMsM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 May 2022 08:48:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33112 "EHLO
+        id S1353987AbiELMtj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 May 2022 08:49:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38760 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1352242AbiELMsK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 08:48:10 -0400
-Received: from mail-io1-xd2d.google.com (mail-io1-xd2d.google.com [IPv6:2607:f8b0:4864:20::d2d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B21DB1E0582
-        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 05:48:08 -0700 (PDT)
-Received: by mail-io1-xd2d.google.com with SMTP id s23so5123527iog.13
-        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 05:48:08 -0700 (PDT)
+        with ESMTP id S1353969AbiELMta (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 08:49:30 -0400
+Received: from mail-yw1-x1129.google.com (mail-yw1-x1129.google.com [IPv6:2607:f8b0:4864:20::1129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D098C24D5BA;
+        Thu, 12 May 2022 05:49:20 -0700 (PDT)
+Received: by mail-yw1-x1129.google.com with SMTP id 00721157ae682-2fb9a85a124so51744587b3.13;
+        Thu, 12 May 2022 05:49:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sartura-hr.20210112.gappssmtp.com; s=20210112;
+        d=gmail.com; s=20210112;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=vNd3Gm8nUZ7PICSGljzFyVVDd1hZA/GzEUARiHu8reA=;
-        b=P+s6nn3BAqL09cTQZHN1ewg0v6vl8jrsEONJYK8CKGpgYe3lx+uzP9HwD3eQJqN577
-         3pqtxxiCI6YXx6P3O6QUpst4SV+8tyUqwfZWxep4F/+Ifhbf+6pdODLAAHQDQaz4Z3TF
-         x5+2iqnQ9zyy8BDIvOatJegOBDMBt0yT0Y5TRrtUcWrqCnlNmM8flPTXWexwbfuf/dmK
-         b6jyhgL61F6EeHqpnxc3rVnOKTkZzjMACalpFZ1OxT88LKcBij/OTYDUZRf95ZRMqFJs
-         PabNAO8NU0/APnsHy6LFbcCvDl5IDaUR2wsB5mTWC3dOVNMIlrAVj9oZpbRQD3Gki5P7
-         igPg==
+        bh=7DrF5cwoQrpy+nOj+sSKtS5rKw6qKbXX4wWCz3z6jZ8=;
+        b=XEEm8XV4zWeN1/m4PMvtMtMAdviw5CxhEOzn1ytnh1IM04riYkcoUjE0kvHzeKNeEs
+         8Xt+pL1APjslWuydnUY4U00cJgH1WEdhUZriBcwvhgSE+q5IoOq/rfDHoHcaRu8OwsDW
+         nmYBTUhIALP0AvZwAfxxqQj7k6aociLx4m2wxBUe7TV7Dn7B4zmpMLgCszXTonyqU0S+
+         1EQG5fBNblIoO1soU34JR8jDfLLXUfYyIPWhk6/L6ASUTGRMfoBXGOkIBDB1aNjKLnmc
+         XXkDSv3xyjji4R3NkmYZhxQYJ89OVA/ey9SaXgWiPIz94pbBTtqgaqq7xneJPPbsabNs
+         eICw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=vNd3Gm8nUZ7PICSGljzFyVVDd1hZA/GzEUARiHu8reA=;
-        b=JdwjH1BHns2yWn3xCjxQuNuOhpsJ+Z79jaRGq+33C/yL6tHtxSMT1tGFaof56CIyUf
-         fkQIJfwb8IwI63wYFLU6hJmcdF6yv5o6e+EGlDrFTVPXNx7qT7l0VQnWShaZ/ADNbv15
-         mhfR1t3TJ+1IVhf1p+DMWPmJi+bNWGk8UygmlOtSF4KSSZ9vwx42ELTfZg66cYVZnfjB
-         pw3PoaKYw+Fg6RHGzDZhussbXWwqOh+Vp/RVWYUWDftrk5E2hNUbQmWA4G060Hf/rXxo
-         V891o2xZK4wpaa9KZF4cG7ipyWxz4BZE69tJOSZICnAjdWhPauZpfvnS4jLaFTa8QxOk
-         l5cA==
-X-Gm-Message-State: AOAM533J+WtDROdeEZ5JGoHZPj7C8Mnq4RylmIM1+y7FZan8b3W5+UX7
-        Va1JGOy9xAIyhzhH0w51FGTvixPTLv9KAV/Acu3/nw==
-X-Google-Smtp-Source: ABdhPJxmHajQAtmeAOa2hqK9jIE6Fvj7k4Q2daHftWuREJvjw97wdOFcHX4vJ74gWyi2jlegcsdeaAeZ+9EvNgHAy2U=
-X-Received: by 2002:a5d:9e17:0:b0:657:b212:c97e with SMTP id
- h23-20020a5d9e17000000b00657b212c97emr13187580ioh.176.1652359688147; Thu, 12
- May 2022 05:48:08 -0700 (PDT)
+        bh=7DrF5cwoQrpy+nOj+sSKtS5rKw6qKbXX4wWCz3z6jZ8=;
+        b=ClQqZ20X47PDhjW9klsIJKEiM5NCxv9wz14mXy8wfXctZoETCEeIxrwmfl7Ovw0uNv
+         L2PxcXpJNYzDKai4HcLTTETc9CSBFQ2Pi+lSB0YniJkXuSbTwwRKacgeDZGYy/Fw0540
+         luEn68GwZBGbgi7QR8iXyC3+Ha/CB984yLeLhLNR/LgqbPMIqmtVeYXAjV96AlkjI4WQ
+         MgQJzGc4/iEF3ByUpQBfzX4c7dDHw51HLhswGcH8Msi8D0z/XBvAqR56/Y7xFYcwf71+
+         CfqqpVuv5GVGZVU5bZ+v9XLr5gGjqahd+JqZnUZ94JDgrlIW6YnKz1WsETVNsHxMDkeT
+         d+LA==
+X-Gm-Message-State: AOAM531e6haQlZRK5njDE1oofzQv3MSstoqAx+ij/SCbobLWC8Z25dPf
+        bpS1iyPmlRm+MVbe3V5bsSgO1sDMVsUP4tXeGlQ=
+X-Google-Smtp-Source: ABdhPJzSgMI5UURmQJlSkLt97lQZJ7s/A3CPFHlQP8eFxEnwrx5uT1fvSWZ4F2cWet2S4Rs+ffet0qTWPLH7sFVHGT0=
+X-Received: by 2002:a0d:d491:0:b0:2ef:5485:fca with SMTP id
+ w139-20020a0dd491000000b002ef54850fcamr30261598ywd.16.1652359759761; Thu, 12
+ May 2022 05:49:19 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220510124929.91000-1-robert.marko@sartura.hr>
- <20220510124929.91000-2-robert.marko@sartura.hr> <0815f581-ca5b-6fb6-a59e-f5d0a3686caa@linaro.org>
- <CA+HBbNFnXoEghSdhTYoC-VvCMkiEuuee9p8SuNGubYCeLWoYfA@mail.gmail.com> <41cc4506-57be-a831-57d5-e539e8a95610@linaro.org>
-In-Reply-To: <41cc4506-57be-a831-57d5-e539e8a95610@linaro.org>
-From:   Robert Marko <robert.marko@sartura.hr>
-Date:   Thu, 12 May 2022 14:47:57 +0200
-Message-ID: <CA+HBbNGvXtGhuxRgz-7VSPh1HJwdeTOD1fU7rWV2xBEvhf2WYA@mail.gmail.com>
-Subject: Re: [PATCH v2 02/11] dt-bindings: marvell: convert Armada 37xx
- compatibles to YAML
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        krzysztof.kozlowski+dt@linaro.org, Andrew Lunn <andrew@lunn.ch>,
-        gregory.clement@bootlin.com, sebastian.hesselbarth@gmail.com,
-        kostap@marvell.com, devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        =?UTF-8?Q?Pali_Roh=C3=A1r?= <pali@kernel.org>,
-        =?UTF-8?B?TWFyZWsgQmVow7pu?= <marek.behun@nic.cz>
+References: <20220511183210.5248-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20220511183210.5248-4-prabhakar.mahadev-lad.rj@bp.renesas.com> <87y1z75770.wl-maz@kernel.org>
+In-Reply-To: <87y1z75770.wl-maz@kernel.org>
+From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date:   Thu, 12 May 2022 13:48:53 +0100
+Message-ID: <CA+V-a8tf1RmT-cX5y807rTAPES2NXLJHp=u1WUG11fLrtt-5Mg@mail.gmail.com>
+Subject: Re: [PATCH v3 3/5] gpio: gpiolib: Allow free() callback to be overridden
+To:     Marc Zyngier <maz@kernel.org>
+Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Phil Edworthy <phil.edworthy@renesas.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 12, 2022 at 2:36 PM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
+Hi Marc,
+
+Thank you for the review.
+
+On Thu, May 12, 2022 at 12:19 PM Marc Zyngier <maz@kernel.org> wrote:
 >
-> On 12/05/2022 14:26, Robert Marko wrote:
-> > On Wed, May 11, 2022 at 6:52 PM Krzysztof Kozlowski
-> > <krzysztof.kozlowski@linaro.org> wrote:
-> >>
-> >> On 10/05/2022 14:49, Robert Marko wrote:
-> >>
-> >> Thank you for your patch. There is something to discuss/improve.
-> >>
-> >>> -
-> >>> - - compatible: must contain "cznic,turris-mox"
-> >>> diff --git a/Documentation/devicetree/bindings/arm/marvell/armada-37xx.yaml b/Documentation/devicetree/bindings/arm/marvell/armada-37xx.yaml
-> >>> new file mode 100644
-> >>> index 000000000000..3f41ef2c6f3e
-> >>> --- /dev/null
-> >>> +++ b/Documentation/devicetree/bindings/arm/marvell/armada-37xx.yaml
-> >>> @@ -0,0 +1,50 @@
-> >>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> >>> +%YAML 1.2
-> >>> +---
-> >>> +$id: http://devicetree.org/schemas/arm/marvell/armada-37xx.yaml#
-> >>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> >>> +
-> >>> +title: Marvell Armada 37xx Platforms Device Tree Bindings
-> >>> +
-> >>> +maintainers:
-> >>> +  - Robert Marko <robert.marko@sartura.hr>
-> >>> +
-> >>> +properties:
-> >>> +  $nodename:
-> >>> +    const: '/'
-> >>> +  compatible:
-> >>> +    oneOf:
-> >>> +      - description: Armada 3710 SoC
-> >>> +        items:
-> >>> +          - const: marvell,armada3710
-> >>
-> >> This does not look correct. The SoC usually cannot be used by itself,
-> >> it's always a part of some product, SoM, board.
+> On Wed, 11 May 2022 19:32:08 +0100,
+> Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
 > >
-> > Hi Krzysztof,
-> > Currently, there are no Armada 3710 boards present in Linux, so I just
-> > put the SoC compatible.
-> > If that is not appropriate, I can drop it.
+> > Allow free() callback to be overridden from irq_domain_ops for
+> > hierarchical chips.
+> >
+> > This allows drivers to free any resources which are allocated during
+> > populate_parent_alloc_arg().
 >
-> Yes, please drop it.
+> Do you mean more than the fwspec? I don't see this being used.
 >
-> It seems several Marvel boards and bindings use wrong convention for
-> compatibles. We discussed it here:
-> https://lore.kernel.org/all/1ed03960-77f6-1a9e-2378-07a6c51f42f7@linaro.org/
-> AC5 and CN9130 have the same wrong patterns.
+The free callback is used in patch 5/5 where free is overridden by
+rzg2l_gpio_irq_domain_free. I just gave an example there as an
+populate_parent_alloc_arg()  In actual in the child_to_parent_hwirq
+callback I am using a bitmap [0] to get a free tint slot, this bitmap
+needs freeing up when the GPIO interrupt is released from the driver
+that as when overridden free callback frees the allocated tint slot so
+that its available for re-use.
+
+> There is also the question of why we need to have dynamic allocation
+> for the fwspec itself. Why isn't that a simple stack allocation in the
+> context of gpiochip_hierarchy_irq_domain_alloc()?
+>
+you mean gpio core itself should handle the fwspec allocation/freeing?
+
+[0] https://patchwork.kernel.org/project/linux-renesas-soc/patch/20220511183210.5248-6-prabhakar.mahadev-lad.rj@bp.renesas.com/
+
+Cheers,
+Prabhakar
+
+>         M.
 >
 > >
-> >>
-> >>> +
-> >>> +      - description: Armada 3720 SoC
-> >>> +        items:
-> >>> +          - enum:
-> >>> +              - marvell,armada-3720-db
-> >>> +              - globalscale,espressobin
-> >>> +              - cznic,turris-mox
-> >>> +              - methode,udpu
-> >>
-> >> Order by name.
-> > Will fixup in v3.
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > ---
+> >  drivers/gpio/gpiolib.c | 9 ++++++---
+> >  1 file changed, 6 insertions(+), 3 deletions(-)
 > >
-> >>
-> >>> +          - const: marvell,armada3720
-> >>> +          - const: marvell,armada3710
-> >>> +
-> >>> +      - description: Globalscale Espressobin boards
-> >>> +        items:
-> >>> +          - enum:
-> >>> +              - globalscale,espressobin-emmc
-> >>> +              - globalscale,espressobin-ultra
-> >>> +              - globalscale,espressobin-v7
-> >>> +          - const: globalscale,espressobin
-> >>> +          - const: marvell,armada3720
-> >>> +          - const: marvell,armada3710
-> > Do these const compatibles also need to be in alphabetical ordering,
-> > cause I ported them as they are meant to be used with the board and
-> > then 3720 compatibles being in front of 3710 one as required by the current
-> > text bindings.
+> > diff --git a/drivers/gpio/gpiolib.c b/drivers/gpio/gpiolib.c
+> > index b7694171655c..d36c4a965efc 100644
+> > --- a/drivers/gpio/gpiolib.c
+> > +++ b/drivers/gpio/gpiolib.c
+> > @@ -1187,15 +1187,18 @@ static void gpiochip_hierarchy_setup_domain_ops(struct irq_domain_ops *ops)
+> >       ops->activate = gpiochip_irq_domain_activate;
+> >       ops->deactivate = gpiochip_irq_domain_deactivate;
+> >       ops->alloc = gpiochip_hierarchy_irq_domain_alloc;
+> > -     ops->free = irq_domain_free_irqs_common;
+> >
+> >       /*
+> > -      * We only allow overriding the translate() function for
+> > +      * We only allow overriding the translate() and free() functions for
+> >        * hierarchical chips, and this should only be done if the user
+> > -      * really need something other than 1:1 translation.
+> > +      * really need something other than 1:1 translation for translate()
+> > +      * callback and free if user wants to free up any resources which
+> > +      * were allocated during callbacks, for example populate_parent_alloc_arg.
+> >        */
+> >       if (!ops->translate)
+> >               ops->translate = gpiochip_hierarchy_irq_domain_translate;
+> > +     if (!ops->free)
+> > +             ops->free = irq_domain_free_irqs_common;
+> >  }
+> >
+> >  static int gpiochip_hierarchy_add_domain(struct gpio_chip *gc)
+> > --
+> > 2.25.1
+> >
+> >
 >
-> Entries in enum should be ordered alphabetically. Then the entire set "-
-> description: Globalscale Espressobin boards" should have some logical
-> order, not necessarily by name.
->
-> Anyway this is not a requirement but rather suggestion because having
-> things ordered reduces amount of conflicts when two people add new
-> boards (because they add it not at the end, but somewhere in the middle
-> following some order).
-
-Hi,
-understood, will send a v3 soon.
-
-Regards,
-Robert
->
->
-> Best regards,
-> Krzysztof
-
-
-
--- 
-Robert Marko
-Staff Embedded Linux Engineer
-Sartura Ltd.
-Lendavska ulica 16a
-10000 Zagreb, Croatia
-Email: robert.marko@sartura.hr
-Web: www.sartura.hr
+> --
+> Without deviation from the norm, progress is not possible.
