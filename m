@@ -2,265 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 50ECA52444B
-	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 06:36:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F696524463
+	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 06:39:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347266AbiELEgM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 May 2022 00:36:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58154 "EHLO
+        id S1347465AbiELEjK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 May 2022 00:39:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41240 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347286AbiELEgK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 00:36:10 -0400
-Received: from m12-13.163.com (m12-13.163.com [220.181.12.13])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 07C2115A25;
-        Wed, 11 May 2022 21:36:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-        s=s110527; h=Message-ID:Date:MIME-Version:Subject:From; bh=1d1tM
-        H+vnpjo4OFLZKcFG1r3ENVDriGXTVUEOuHNaZI=; b=d9n4eEEfilh7piLG7UENr
-        1Boj9hwQtUtl1CeaNiYFDlYuMRUTBDhRUZJGikc9OnvLgYlFR0xkvUp1YI9vtuJY
-        pgSoSaCc/Fi1/78Q5RTpzeje4bYF9ONLeZuBR5sU/jKzE4obNA4yLCs3sMrbB/bn
-        TY12O6FCtnLzkTlCi8bxIM=
-Received: from [192.168.3.102] (unknown [218.201.129.19])
-        by smtp9 (Coremail) with SMTP id DcCowABHmR9ejnxi3XKFCQ--.35242S2;
-        Thu, 12 May 2022 12:34:39 +0800 (CST)
-Message-ID: <01c2c11f-71fd-b735-b935-109865d62de5@163.com>
-Date:   Thu, 12 May 2022 12:34:38 +0800
+        with ESMTP id S244516AbiELEjJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 00:39:09 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4655953725;
+        Wed, 11 May 2022 21:39:08 -0700 (PDT)
+X-UUID: 7cdcbb28d5ae4a488a76c61a94bcfd28-20220512
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.4,REQID:7ea3971f-0f33-4c2d-8764-fde7748b4ae6,OB:0,LO
+        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
+        ON:release,TS:0
+X-CID-META: VersionHash:faefae9,CLOUDID:f50e5148-e22d-4f1a-9d3f-55c4a2b00ea4,C
+        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,File:nil,QS:0,BEC:nil
+X-UUID: 7cdcbb28d5ae4a488a76c61a94bcfd28-20220512
+Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw02.mediatek.com
+        (envelope-from <chui-hao.chiu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 46550360; Thu, 12 May 2022 12:39:02 +0800
+Received: from mtkmbs07n1.mediatek.inc (172.21.101.16) by
+ mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Thu, 12 May 2022 12:39:01 +0800
+Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
+ mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Thu, 12 May 2022 12:39:01 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
+ mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.792.3 via Frontend Transport; Thu, 12 May 2022 12:39:01 +0800
+From:   Peter Chiu <chui-hao.chiu@mediatek.com>
+To:     Felix Fietkau <nbd@nbd.name>, Rob Herring <robh+dt@kernel.org>
+CC:     Lorenzo Bianconi <lorenzo.bianconi@redhat.com>,
+        Ryder Lee <ryder.Lee@mediatek.com>,
+        Evelyn Tsai <evelyn.tsai@mediatek.com>,
+        Shayne Chen <shayne.chen@mediatek.com>,
+        Sam Shih <sam.shih@mediatek.com>,
+        <linux-wireless@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        Peter Chiu <chui-hao.chiu@mediatek.com>
+Subject: [PATCH] dt-bindings: net: wireless: mt76: add clock description for MT7986.
+Date:   Thu, 12 May 2022 12:38:59 +0800
+Message-ID: <20220512043859.406-1-chui-hao.chiu@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.0
-Subject: Re: [PATCH v2] drivers: cpufreq: sun8i-r40: Add cpufreq support
-Content-Language: en-US
-To:     =?UTF-8?Q?Jernej_=c5=a0krabec?= <jernej.skrabec@gmail.com>,
-        linux-sunxi@lists.linux.dev
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
-References: <20220510003611.1812-1-qianfanguijin@163.com>
- <1902551.yKVeVyVuyW@kista>
-From:   qianfan <qianfanguijin@163.com>
-In-Reply-To: <1902551.yKVeVyVuyW@kista>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: DcCowABHmR9ejnxi3XKFCQ--.35242S2
-X-Coremail-Antispam: 1Uf129KBjvJXoWxKF17GFy3tFW5JFWxKr17Jrb_yoW7Zw15pr
-        1UCFZ5GF4fWr15t34aqw1DGrn7CFyv9FWY9ryUGa48tr1kZrykXr13tr93KrZ5Xr13J3yI
-        vrn5XryI9ws8JaDanT9S1TB71UUUUUUqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-        9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07UXiSLUUUUU=
-X-Originating-IP: [218.201.129.19]
-X-CM-SenderInfo: htld0w5dqj3xxmlqqiywtou0bp/1tbiGhn+7VaEBiT6wwABsY
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add clocks and clock-names for MT7986.
 
+Reviewed-by: Ryder Lee <ryder.lee@mediatek.com>
+Signed-off-by: Peter Chiu <chui-hao.chiu@mediatek.com>
+---
+ .../bindings/net/wireless/mediatek,mt76.yaml        | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
 
-在 2022/5/12 4:13, Jernej Škrabec 写道:
-> Dne torek, 10. maj 2022 ob 02:36:11 CEST je qianfanguijin@163.com napisal(a):
->> From: qianfan Zhao <qianfanguijin@163.com>
->>
->> OPP table value is get from allwinner lichee 3.10 kernel.
->> And completed 'cpu-supply' on sun8i based board.
->>
->> Signed-off-by: qianfan Zhao <qianfanguijin@163.com>
->> ---
->>   .../boot/dts/sun8i-r40-bananapi-m2-ultra.dts  |  4 ++
->>   arch/arm/boot/dts/sun8i-r40-feta40i.dtsi      |  4 ++
->>   arch/arm/boot/dts/sun8i-r40.dtsi              | 47 +++++++++++++++++++
->>   arch/arm/boot/dts/sun8i-t3-cqa3t-bv3.dts      |  4 ++
->>   .../boot/dts/sun8i-v40-bananapi-m2-berry.dts  |  4 ++
->>   drivers/cpufreq/cpufreq-dt-platdev.c          |  1 +
-> This patch needs to be split in two:
-> 1. driver change
-> 2. DT changes
->
-> And please add change log here for next submission.
-Maybe there patch is better? one of driver, one of sun8i-r40.dtsi
-and the others is the board's changes.
->
->>   6 files changed, 64 insertions(+)
->>
->> diff --git a/arch/arm/boot/dts/sun8i-r40-bananapi-m2-ultra.dts b/arch/arm/
-> boot/dts/sun8i-r40-bananapi-m2-ultra.dts
->> index a6a1087a0c9b..4f30018ec4a2 100644
->> --- a/arch/arm/boot/dts/sun8i-r40-bananapi-m2-ultra.dts
->> +++ b/arch/arm/boot/dts/sun8i-r40-bananapi-m2-ultra.dts
->> @@ -113,6 +113,10 @@ &ahci {
->>   	status = "okay";
->>   };
->>   
->> +&cpu0 {
->> +	cpu-supply = <&reg_dcdc2>;
->> +};
->> +
->>   &de {
->>   	status = "okay";
->>   };
->> diff --git a/arch/arm/boot/dts/sun8i-r40-feta40i.dtsi b/arch/arm/boot/dts/
-> sun8i-r40-feta40i.dtsi
->> index 265e0fa57a32..b872b51a346d 100644
->> --- a/arch/arm/boot/dts/sun8i-r40-feta40i.dtsi
->> +++ b/arch/arm/boot/dts/sun8i-r40-feta40i.dtsi
->> @@ -6,6 +6,10 @@
->>   
->>   #include "sun8i-r40.dtsi"
->>   
->> +&cpu0 {
->> +	cpu-supply = <&reg_dcdc2>;
->> +};
->> +
->>   &i2c0 {
->>   	status = "okay";
->>   
->> diff --git a/arch/arm/boot/dts/sun8i-r40.dtsi b/arch/arm/boot/dts/sun8i-
-> r40.dtsi
->> index 291f4784e86c..90de119095fa 100644
->> --- a/arch/arm/boot/dts/sun8i-r40.dtsi
->> +++ b/arch/arm/boot/dts/sun8i-r40.dtsi
->> @@ -54,6 +54,41 @@ / {
->>   	#size-cells = <1>;
->>   	interrupt-parent = <&gic>;
->>   
->> +	cpu0_opp_table: opp_table0 {
->> +		compatible = "operating-points-v2";
->> +		opp-shared;
->> +
->> +		opp-720000000 {
->> +			opp-hz = /bits/ 64 <720000000>;
->> +			opp-microvolt = <1000000 1000000 1300000>;
->> +			clock-latency-ns = <2000000>;
->> +		};
->> +
->> +		opp-912000000 {
->> +			opp-hz = /bits/ 64 <912000000>;
->> +			opp-microvolt = <1100000 1100000 1300000>;
->> +			clock-latency-ns = <2000000>;
->> +		};
->> +
->> +		opp-1008000000 {
->> +			opp-hz = /bits/ 64 <1008000000>;
->> +			opp-microvolt = <1160000 1160000 1300000>;
->> +			clock-latency-ns = <2000000>;
->> +		};
->> +
->> +		opp-1104000000 {
->> +			opp-hz = /bits/ 64 <1104000000>;
->> +			opp-microvolt = <1240000 1240000 1300000>;
->> +			clock-latency-ns = <2000000>;
->> +		};
->> +
->> +		opp-1200000000 {
->> +			opp-hz = /bits/ 64 <1200000000>;
->> +			opp-microvolt = <1300000 1300000 1300000>;
->> +			clock-latency-ns = <2000000>;
->> +		};
->> +	};
->> +
->>   	clocks {
->>   		#address-cells = <1>;
->>   		#size-cells = <1>;
->> @@ -84,24 +119,36 @@ cpu0: cpu@0 {
->>   			compatible = "arm,cortex-a7";
->>   			device_type = "cpu";
->>   			reg = <0>;
->> +			clocks = <&ccu CLK_CPU>;
->> +			clock-names = "cpu";
->> +			operating-points-v2 = <&cpu0_opp_table>;
->>   		};
->>   
->>   		cpu1: cpu@1 {
->>   			compatible = "arm,cortex-a7";
->>   			device_type = "cpu";
->>   			reg = <1>;
->> +			clocks = <&ccu CLK_CPU>;
->> +			clock-names = "cpu";
->> +			operating-points-v2 = <&cpu0_opp_table>;
->>   		};
->>   
->>   		cpu2: cpu@2 {
->>   			compatible = "arm,cortex-a7";
->>   			device_type = "cpu";
->>   			reg = <2>;
->> +			clocks = <&ccu CLK_CPU>;
->> +			clock-names = "cpu";
->> +			operating-points-v2 = <&cpu0_opp_table>;
->>   		};
->>   
->>   		cpu3: cpu@3 {
->>   			compatible = "arm,cortex-a7";
->>   			device_type = "cpu";
->>   			reg = <3>;
->> +			clocks = <&ccu CLK_CPU>;
->> +			clock-names = "cpu";
->> +			operating-points-v2 = <&cpu0_opp_table>;
->>   		};
->>   	};
->>   
->> diff --git a/arch/arm/boot/dts/sun8i-t3-cqa3t-bv3.dts b/arch/arm/boot/dts/
-> sun8i-t3-cqa3t-bv3.dts
->> index 6931aaab2382..0eb1990742ff 100644
->> --- a/arch/arm/boot/dts/sun8i-t3-cqa3t-bv3.dts
->> +++ b/arch/arm/boot/dts/sun8i-t3-cqa3t-bv3.dts
->> @@ -88,6 +88,10 @@ &ahci {
->>   	status = "okay";
->>   };
->>   
->> +&cpu0 {
->> +	cpu-supply = <&reg_dcdc2>;
->> +};
->> +
->>   &de {
->>   	status = "okay";
->>   };
->> diff --git a/arch/arm/boot/dts/sun8i-v40-bananapi-m2-berry.dts b/arch/arm/
-> boot/dts/sun8i-v40-bananapi-m2-berry.dts
->> index 47954551f573..fdf8bd12faaa 100644
->> --- a/arch/arm/boot/dts/sun8i-v40-bananapi-m2-berry.dts
->> +++ b/arch/arm/boot/dts/sun8i-v40-bananapi-m2-berry.dts
->> @@ -107,6 +107,10 @@ &ahci {
->>   	status = "okay";
->>   };
->>   
->> +&cpu0 {
->> +	cpu-supply = <&reg_dcdc2>;
->> +};
->> +
->>   &de {
->>   	status = "okay";
->>   };
->> diff --git a/drivers/cpufreq/cpufreq-dt-platdev.c b/drivers/cpufreq/cpufreq-
-> dt-platdev.c
->> index ca1d103ec449..971a99219d4d 100644
->> --- a/drivers/cpufreq/cpufreq-dt-platdev.c
->> +++ b/drivers/cpufreq/cpufreq-dt-platdev.c
->> @@ -26,6 +26,7 @@ static const struct of_device_id allowlist[] __initconst =
-> {
->>   	{ .compatible = "allwinner,sun8i-a23", },
->>   	{ .compatible = "allwinner,sun8i-a83t", },
->>   	{ .compatible = "allwinner,sun8i-h3", },
->> +	{ .compatible = "allwinner,sun8i-r40", },
-> Why on allow list? Comment says operatings-point-v2 should be on block list,
-> just like H6.
-Actually I'm not make sure the difference, seems both of them can work.
-Most of allwinner device_id is added in allowlist, so I did this.
->
-> Best regards,
-> Jernej
->
->>   
->>   	{ .compatible = "apm,xgene-shadowcat", },
->>   
->> -- 
->> 2.25.1
->>
->>
+diff --git a/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml b/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml
+index 249967d8d..92ff98ffa 100644
+--- a/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml
++++ b/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml
+@@ -54,6 +54,16 @@ properties:
+   reset-name:
+     const: consys
+ 
++  clocks:
++    maxItems: 2
++    description:
++      Specify the consys clocks for mt7986.
++
++  clock-names:
++    items:
++      - const: mcu
++      - const: ap2conn
++
+   mediatek,infracfg:
+     $ref: /schemas/types.yaml#/definitions/phandle
+     description:
+@@ -269,5 +279,8 @@ examples:
+               <0x10003000 0x1000>,
+               <0x11d10000 0x1000>;
+         interrupts = <GIC_SPI 213 IRQ_TYPE_LEVEL_HIGH>;
++        clocks = <&topckgen 50>,
++                 <&topckgen 62>;
++        clock-names = "mcu", "ap2conn";
+         memory-region = <&wmcpu_emi>;
+     };
+-- 
+2.18.0
 
