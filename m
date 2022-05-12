@@ -2,175 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 37D3B524CC6
-	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 14:26:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0FAA4524CE3
+	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 14:32:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232646AbiELM0i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 May 2022 08:26:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39770 "EHLO
+        id S1353792AbiELMcA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 May 2022 08:32:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57876 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1353970AbiELM03 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 08:26:29 -0400
-Received: from mail-il1-x12e.google.com (mail-il1-x12e.google.com [IPv6:2607:f8b0:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1529453B5D
-        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 05:26:24 -0700 (PDT)
-Received: by mail-il1-x12e.google.com with SMTP id i22so3414247ila.1
-        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 05:26:24 -0700 (PDT)
+        with ESMTP id S1353770AbiELMbz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 08:31:55 -0400
+Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 200804AE09;
+        Thu, 12 May 2022 05:31:51 -0700 (PDT)
+Received: by mail-lj1-x22c.google.com with SMTP id m23so6342085ljc.0;
+        Thu, 12 May 2022 05:31:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sartura-hr.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=MwYIAF3cq8G3u9Ili7Yhf5dC/zi9S7Kv9orW3ndyyMo=;
-        b=xTNWxvaZpM3RIRF+c17vz2buBi9TO3q0Z8ZgBNj48ZR9clc2FfK/UCy0G7zvhxlaeJ
-         Aj1uMDAg0bhohTIXxFfKVwSJCKPvgmLY0xLLOdPoX9WY+8GPpLLIVGMT/Nxqi8luuVg5
-         6g9enenQBEath3GvnAy2JD9vjbNdf+q/Sd8OpuoJe/Toalwtap2L+g8jUxiIlQvx2lP4
-         EokHmG0APOOnQZw4EWwASwkkBst1Y0DQ/JVK0JNzO0L4LgvhoH/cXUNcHAM6HtBmF8vG
-         XO2ZVL6BDkZNpGdXKY6o5mBaz/nf9qU+hdKma0/bc8wPMZXLQF9XsNbGsAxZaj7lTRo0
-         Gscg==
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=1nGNpikUs8vk4+aJD/NKpap25jqeBIDRUKybH2Zwqok=;
+        b=E4oAmZY4A0ZUSqx3z+F0WjMqHKJSpUkcD683dWO7uCrk1433e1ylnPkIEdJ3n8tv9d
+         QFyQQsx72iG73vT3HWD1rKAiXNEcjQWAQxeGKXpmmFQ41loK8I74ot5D7OvPPtFyqlGb
+         UR83VoKixoJGUjzGuNgKFTBGLcZxvJjfiDas74G9q8v3CjG/8e6UggEB9RcpvsGWLlyI
+         9VG7hHaswyeZt31MVo1xLcFYYIja6fxXUVMqJCCBVpRgFkbeD8E9iEWV/jMNiCnqMsxJ
+         JLySwvfm0P0333AvGCcLm54fau8RZPwSziskG2cIOxGlQ4BCSh3ptU+vy+xKEfwcch0r
+         tZyg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=MwYIAF3cq8G3u9Ili7Yhf5dC/zi9S7Kv9orW3ndyyMo=;
-        b=IYfUUV58aTLZqN5UkytMXzt4UCI/HRa9Le4WGRpLfp8QnQoOXOwbBvVwC3jy6DnySa
-         33DE4lhDGPVNsL7lANSDPqUpRbMmPwkCKzGaFNzilLQUA8QHQJzktgWg1ft6Dr3lQrp2
-         EBB3mDO+sXK//tKu9OAE5I2xkn3nfmlROeuYF7qUa6zZ4zRVJZJqqYOn8Gh5Zpr5WFx+
-         yO3eEw42s3lCgkPWXIbCod/EdJy1OzxaJvJyYgMSpIeSjhGgrwfLGH5f2lr/1QSLkKKR
-         0Ujs3/kKY79cM12VWteidQlEm2AuHFm0vOku3K7YuLcY6BaMV7QPkrV3Tg4KiKNGUuTD
-         v1KQ==
-X-Gm-Message-State: AOAM530PG2ItPSc4IGrdGALDu415AwYzTLwMlwqVCzJhGULjFtbxBj24
-        96u/JALPewZ676GHRmdjEQJHdt+OjrJJjJNIOE4rYw==
-X-Google-Smtp-Source: ABdhPJw1Mn/rYopWnBcxdUmVQgBRtHp0rWD0yynzcXfeeIA6XHLAfB7cjfGXcYrldDJTX7JH/wSLwSWlfM+XAHtdMug=
-X-Received: by 2002:a05:6e02:154b:b0:2cf:7701:47e3 with SMTP id
- j11-20020a056e02154b00b002cf770147e3mr14459824ilu.40.1652358383440; Thu, 12
- May 2022 05:26:23 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=1nGNpikUs8vk4+aJD/NKpap25jqeBIDRUKybH2Zwqok=;
+        b=DMdvVXqKOXt7itawx5J915+bXmS16EKEo/F6QUgHyPHz4TzQBbxuHFYeLz/JRdFMbE
+         GzKP5IeFNEKglN4jkzcKWsTAqAkLRN+Cf2Gbv+WYfSXXdjce5rS8dvMRGv3njAFYVZil
+         ZmhW/QUOCRk3p2b1VTnEK9OMXsJ26oAxK8pIO12AKuxOLsSbRf4TKuoioHloW0Yby1+7
+         GXnGmHV/HYh1Htv5a8HF8MIsQ27gwOCIsydiU2iDawnWnlvPAwLLWBiIlOc7vnbT7r2D
+         bzg2WOIIp08evh0+IK0FfccoT2jQR7ifNzqQYKNjy1U9jDBVoTBcuYt9NkEfpsdHLsnj
+         D6LA==
+X-Gm-Message-State: AOAM530Ex4WcvReUXlU5OVO3foMUdQSed5z9PqeNcpRmMtX0tnmX5CWV
+        1vnKX1Xf13uyKafsa0W1+aA=
+X-Google-Smtp-Source: ABdhPJzWOhBlKh2AZ9FLigPh2HroCkxI1czqj30olnv2HQZTPhPzwsTMmKpIgl47dJKBJ34Hg+QrEA==
+X-Received: by 2002:a2e:82c3:0:b0:250:c47e:c3ab with SMTP id n3-20020a2e82c3000000b00250c47ec3abmr13518987ljh.393.1652358709589;
+        Thu, 12 May 2022 05:31:49 -0700 (PDT)
+Received: from mobilestation ([95.79.189.214])
+        by smtp.gmail.com with ESMTPSA id n6-20020a195506000000b0047415cd1ec3sm766340lfe.165.2022.05.12.05.31.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 12 May 2022 05:31:48 -0700 (PDT)
+Date:   Thu, 12 May 2022 15:31:46 +0300
+From:   Serge Semin <fancer.lancer@gmail.com>
+To:     Damien Le Moal <damien.lemoal@opensource.wdc.com>,
+        Hannes Reinecke <hare@suse.de>
+Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Jens Axboe <axboe@kernel.dk>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Rob Herring <robh+dt@kernel.org>, linux-ide@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 05/23] ata: libahci_platform: Explicitly set rc on
+ devres_alloc failure
+Message-ID: <20220512123146.zkuftdu7fm26r6mp@mobilestation>
+References: <20220511231810.4928-1-Sergey.Semin@baikalelectronics.ru>
+ <20220511231810.4928-6-Sergey.Semin@baikalelectronics.ru>
+ <4bd4318b-a753-6453-a815-716fbfffab3f@suse.de>
+ <9a1ad8f4-7f60-a941-940d-eca00b1f533b@opensource.wdc.com>
 MIME-Version: 1.0
-References: <20220510124929.91000-1-robert.marko@sartura.hr>
- <20220510124929.91000-2-robert.marko@sartura.hr> <0815f581-ca5b-6fb6-a59e-f5d0a3686caa@linaro.org>
-In-Reply-To: <0815f581-ca5b-6fb6-a59e-f5d0a3686caa@linaro.org>
-From:   Robert Marko <robert.marko@sartura.hr>
-Date:   Thu, 12 May 2022 14:26:12 +0200
-Message-ID: <CA+HBbNFnXoEghSdhTYoC-VvCMkiEuuee9p8SuNGubYCeLWoYfA@mail.gmail.com>
-Subject: Re: [PATCH v2 02/11] dt-bindings: marvell: convert Armada 37xx
- compatibles to YAML
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        krzysztof.kozlowski+dt@linaro.org, Andrew Lunn <andrew@lunn.ch>,
-        gregory.clement@bootlin.com, sebastian.hesselbarth@gmail.com,
-        kostap@marvell.com, devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        =?UTF-8?Q?Pali_Roh=C3=A1r?= <pali@kernel.org>,
-        =?UTF-8?B?TWFyZWsgQmVow7pu?= <marek.behun@nic.cz>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <9a1ad8f4-7f60-a941-940d-eca00b1f533b@opensource.wdc.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 11, 2022 at 6:52 PM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 10/05/2022 14:49, Robert Marko wrote:
->
-> Thank you for your patch. There is something to discuss/improve.
->
-> > -
-> > - - compatible: must contain "cznic,turris-mox"
-> > diff --git a/Documentation/devicetree/bindings/arm/marvell/armada-37xx.yaml b/Documentation/devicetree/bindings/arm/marvell/armada-37xx.yaml
-> > new file mode 100644
-> > index 000000000000..3f41ef2c6f3e
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/arm/marvell/armada-37xx.yaml
-> > @@ -0,0 +1,50 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/arm/marvell/armada-37xx.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Marvell Armada 37xx Platforms Device Tree Bindings
-> > +
-> > +maintainers:
-> > +  - Robert Marko <robert.marko@sartura.hr>
-> > +
-> > +properties:
-> > +  $nodename:
-> > +    const: '/'
-> > +  compatible:
-> > +    oneOf:
-> > +      - description: Armada 3710 SoC
-> > +        items:
-> > +          - const: marvell,armada3710
->
-> This does not look correct. The SoC usually cannot be used by itself,
-> it's always a part of some product, SoM, board.
+On Thu, May 12, 2022 at 12:32:42PM +0200, Damien Le Moal wrote:
+> On 2022/05/12 8:27, Hannes Reinecke wrote:
+> > On 5/12/22 01:17, Serge Semin wrote:
+> >> It's better for readability and maintainability to explicitly assign an
+> >> error number to the variable used then as a return value from the method
+> >> on the cleanup-on-error path. So adding new code in the method we won't
+> >> have to think whether the overridden rc-variable is set afterward in case
+> >> of an error. Saving one line of code doesn't worth it especially seeing
+> >> the rest of the ahci_platform_get_resources() function errors handling
+> >> blocks do explicitly write errno to rc.
+> >>
+> >> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+> >>
+> >> ---
+> >>
+> >> Changelog v2:
+> >> - Drop rc variable initialization (@Damien)
+> >> ---
+> >>   drivers/ata/libahci_platform.c | 6 ++++--
+> >>   1 file changed, 4 insertions(+), 2 deletions(-)
+> >>
+> >> diff --git a/drivers/ata/libahci_platform.c b/drivers/ata/libahci_platform.c
+> >> index 32495ae96567..f7f9bfcfc164 100644
+> >> --- a/drivers/ata/libahci_platform.c
+> >> +++ b/drivers/ata/libahci_platform.c
+> >> @@ -389,7 +389,7 @@ struct ahci_host_priv *ahci_platform_get_resources(struct platform_device *pdev,
+> >>   	struct ahci_host_priv *hpriv;
+> >>   	struct clk *clk;
+> >>   	struct device_node *child;
+> >> -	int i, enabled_ports = 0, rc = -ENOMEM, child_nodes;
+> >> +	int i, enabled_ports = 0, rc, child_nodes;
+> >>   	u32 mask_port_map = 0;
+> >>   
+> >>   	if (!devres_open_group(dev, NULL, GFP_KERNEL))
+> >> @@ -397,8 +397,10 @@ struct ahci_host_priv *ahci_platform_get_resources(struct platform_device *pdev,
+> >>   
+> >>   	hpriv = devres_alloc(ahci_platform_put_resources, sizeof(*hpriv),
+> >>   			     GFP_KERNEL);
+> >> -	if (!hpriv)
+> >> +	if (!hpriv) {
+> >> +		rc = -ENOMEM;
+> >>   		goto err_out;
+> >> +	}
+> >>   
+> >>   	devres_add(dev, hpriv);
+> >>   
 
-Hi Krzysztof,
-Currently, there are no Armada 3710 boards present in Linux, so I just
-put the SoC compatible.
-If that is not appropriate, I can drop it.
+> > I disagree.
+> > As 'rc' is now only initialized within a conditional we're risking 'rc' 
+> > will be left uninitialized.
 
->
-> > +
-> > +      - description: Armada 3720 SoC
-> > +        items:
-> > +          - enum:
-> > +              - marvell,armada-3720-db
-> > +              - globalscale,espressobin
-> > +              - cznic,turris-mox
-> > +              - methode,udpu
->
-> Order by name.
-Will fixup in v3.
+That's what I told to @Damien in v1.
 
->
-> > +          - const: marvell,armada3720
-> > +          - const: marvell,armada3710
-> > +
-> > +      - description: Globalscale Espressobin boards
-> > +        items:
-> > +          - enum:
-> > +              - globalscale,espressobin-emmc
-> > +              - globalscale,espressobin-ultra
-> > +              - globalscale,espressobin-v7
-> > +          - const: globalscale,espressobin
-> > +          - const: marvell,armada3720
-> > +          - const: marvell,armada3710
-Do these const compatibles also need to be in alphabetical ordering,
-cause I ported them as they are meant to be used with the board and
-then 3720 compatibles being in front of 3710 one as required by the current
-text bindings.
+> > And in the end, it's a matter of style; this patch doesn't change the 
+> > flow of events and the benefits are hard to see.
 
-Regards,
-Robert
-> > +
-> > +      - description: Globalscale Espressobin V7 boards
-> > +        items:
-> > +          - enum:
-> > +              - globalscale,espressobin-v7-emmc
-> > +          - const: globalscale,espressobin-v7
-> > +          - const: globalscale,espressobin
-> > +          - const: marvell,armada3720
-> > +          - const: marvell,armada3710
-> > +
-> > +additionalProperties: true
->
->
-> Best regards,
-> Krzysztof
+As a first time reader of the module I've saw them. It was hard
+to comprehend right from the code context whether rc was properly
+initialized especially seeing there are so many local variables
+defined. Unified rc-initialization approach makes code easier to read
+for sure. In this case the rc variable is re-initialized in each
+error-case. So having it defaulted to a value which is relevant to the
+code block in the twenty lines below isn't the most optimized design.
 
+> 
+> Yes. Let's drop this patch. Not improving anything.
 
+It's up to you to decide after all. Even though I disagree with your
+opinions the patch will be dropped in v4.
 
--- 
-Robert Marko
-Staff Embedded Linux Engineer
-Sartura Ltd.
-Lendavska ulica 16a
-10000 Zagreb, Croatia
-Email: robert.marko@sartura.hr
-Web: www.sartura.hr
+-Sergey
+
+> 
+> > 
+> > Cheers,
+> > 
+> > Hannes
+> 
+> 
+> -- 
+> Damien Le Moal
+> Western Digital Research
