@@ -2,116 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CE5FE525159
-	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 17:36:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C5A5252515B
+	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 17:36:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1355998AbiELPgF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 May 2022 11:36:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40980 "EHLO
+        id S1355712AbiELPgR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 May 2022 11:36:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41586 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1356011AbiELPgB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 11:36:01 -0400
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6760A4505C
-        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 08:35:59 -0700 (PDT)
-Received: by mail-ej1-x62a.google.com with SMTP id dk23so10990597ejb.8
-        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 08:35:59 -0700 (PDT)
+        with ESMTP id S1355997AbiELPgP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 11:36:15 -0400
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 097AF25BA74
+        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 08:36:15 -0700 (PDT)
+Received: by mail-wr1-x42a.google.com with SMTP id q23so7807463wra.1
+        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 08:36:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=dY1vl3weSz3HUSkXvbO9oAN90X0HZR151m5rwAkxyvc=;
-        b=h6gb1XURTrzoILQcvobjsYciUnutOsZHjaWMfUjMZKtanNQDuqSZtJqma1bTqKF4km
-         Z+J4yPlE2SCEfwMHpQbejXF5kqd4foRaKIfVeasWXnGwWsJEGqbLBCjnQ7cGVgUPD+YT
-         AjbWVqJOASkz6sksi1ztGgEi5B0EbsmJ8n7+a7iopsqD6M0B30MGLJPGduGXKmwHLAYH
-         ibwrPYP7kDmokefeCIf7W+oStr//4sz3NAzWzP2NSX/6VSJ166nolMjHxXKO72Bq9Bka
-         8rh4ibhsjYgZAF2SSKo1uhx8vHQrf3Ll5FnhrSpur4e3kTLNsU7yQ0+KdY2jA0m+/4fZ
-         tbJw==
+        d=brainfault-org.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=en7uzZk89o5hiivHxHfeVnKjtCja2ainFuPxfO59LJI=;
+        b=IMzreN6mpfvDJ7SDc6lwv2jKc96texJOTvhPVBk52GlqyMl1FGxxf6T5IIeRo5Kqac
+         efDy9w7j3bmlF0L0HzNbH81bNcJMZgRSpsTPt/vihNNNPVH3n3s2orO+/NaMm8VSpCmE
+         QMnZ926A3Or6BMlO4dyXNcQowOht8RYkLEFghKF9dEOgmdRMQ4Fd2X1qo/MByTNGKolo
+         VgnhuzSbYhKrpQoL7pOK87aCCyh+JxwnkJC+mLxOHZ6mF0NIkcabR/Ln0aHbvoZOuG9K
+         a6NcvYDxEA3v4DUtP8d0GcIyz7skG3IDlu+Hux9m1sU1Tr6I/ouaOI8CVpamOwfE6HH/
+         cZkg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=dY1vl3weSz3HUSkXvbO9oAN90X0HZR151m5rwAkxyvc=;
-        b=VXJL5jCGiOErx7Y2VG8jL3Pnmog6+ejRbHpyQccPUxBRZ2xrEY50KLdDgFaig+QZkA
-         Gx6TXfPTIQPFTCn8ysSS7sh5O14Lx3OaHTznzhAL996NDfPNlr0Dhz4toLXiUaOJLnBg
-         O8MpKiY4aEqHiLJTcBv2UYjoJbATy9yGfHHuyQKKbtr1M+1dXwH97e0DZhBdtn02dxVD
-         0OhP42Q/MOX48rK60GlQOVS02JPjnOlU44D6cEKyzYvqvnIopUzaLo5Wjnt367LM4cAr
-         sjrevu5bl8KRyZjythxKtiKRg2FCPlZDyXQeWEYNq2OyC/YA2UuBzZA7epu5MCnKArrw
-         2GLw==
-X-Gm-Message-State: AOAM530D1KbQhZSrd1YwmTnBEGBP4cW3RMdE2RtVUbUDYBSu6sUdHVsS
-        2kdYBcEX1aHzvyIvRvtNmIqwUg==
-X-Google-Smtp-Source: ABdhPJypW6haEmycge0JF+bK+Lw6JxzlTIz9QIlMIt0MXSTRwanuOYTV+IG6WdwtrdjCY0RTVYcWmg==
-X-Received: by 2002:a17:906:7313:b0:6f4:9079:2b2a with SMTP id di19-20020a170906731300b006f490792b2amr404816ejc.377.1652369758021;
-        Thu, 12 May 2022 08:35:58 -0700 (PDT)
-Received: from [192.168.0.162] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id l11-20020a170906414b00b006f3ef214ddcsm2209600ejk.66.2022.05.12.08.35.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 12 May 2022 08:35:57 -0700 (PDT)
-Message-ID: <6ce3c0b1-3f6a-24f6-bcf2-4d4125a97604@linaro.org>
-Date:   Thu, 12 May 2022 17:35:56 +0200
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=en7uzZk89o5hiivHxHfeVnKjtCja2ainFuPxfO59LJI=;
+        b=rb4107VtHLhzoxjboR3hO9LEbuwPCfOSC28rgnHy6y1cvgSyipBtnY/b79lXxhGGYG
+         IOcMP6uDrkijE7bW5Su8+9W5vMJAWKn5DNIwidstnyiQ52eegl6XLqvgRbJATRwyJNbR
+         ZLkXlY1E1tFdqVbUKM3zxPzFiCYELCjaQ6lmd+suzdqjAU4Mp6FpnIW0YkYx947tHrAL
+         WwkQo32DYChEhipAqQ3xFxVaHuThH4hg3mooKa4NS73IaBLA4mfccV6FrHlQgBRfGEyb
+         hiVfVWE3jrs2VUlgZL5p7n33TKGSXWrgf7nzVdaUaFNJUETppY5OS1sIaHyOlCHQdNPN
+         sfvw==
+X-Gm-Message-State: AOAM530KRguZM9qEIXzixv0+ecOmQ/5N43rZb/2l81bYcWN/n4n3nHk0
+        gRrfbMVugd8rkVEuSD3VZuWXT82/bzyPYSKGTLv1eg==
+X-Google-Smtp-Source: ABdhPJwsP4fnvpNb9Kz5Vr1C+7g8TOLYnj9DUFzPUdTfvI/li/yFAn6LhCXOZ20Ez7Okhijet9CC7BSvcnhiYu5zenQ=
+X-Received: by 2002:a05:6000:12d1:b0:20a:d901:3828 with SMTP id
+ l17-20020a05600012d100b0020ad9013828mr197269wrx.313.1652369773255; Thu, 12
+ May 2022 08:36:13 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH 1/2] dt-bindings: microchip-otpc: document Microchip OTPC
-Content-Language: en-US
-To:     Claudiu.Beznea@microchip.com, srinivas.kandagatla@linaro.org,
-        robh+dt@kernel.org, krzk+dt@kernel.org
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220510094457.4070764-1-claudiu.beznea@microchip.com>
- <20220510094457.4070764-2-claudiu.beznea@microchip.com>
- <75ce6291-77c7-c932-e8bb-a8bbae02431d@linaro.org>
- <c840c598-0413-5f40-0807-e3c314531f0a@microchip.com>
- <b5c586de-a3ae-0774-e0bf-e21852b65fa9@linaro.org>
- <59b47f0b-6201-3814-e17f-1435ce5c2dad@microchip.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <59b47f0b-6201-3814-e17f-1435ce5c2dad@microchip.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20220511201107.2311757-1-atishp@rivosinc.com> <CAAhSdy3mbGdK9LrLxZX0JL0mQxP5FrFUuneX1cQS2SABpO=7dw@mail.gmail.com>
+ <23274575.ouqheUzb2q@diego>
+In-Reply-To: <23274575.ouqheUzb2q@diego>
+From:   Anup Patel <anup@brainfault.org>
+Date:   Thu, 12 May 2022 21:06:01 +0530
+Message-ID: <CAAhSdy3t6cnfR02kfHvnKdCcDPvyX4jwccV7qkR_=-dV_m0aGQ@mail.gmail.com>
+Subject: Re: [PATCH 1/2] RISC-V: Fix counter restart during overflow for RV32
+To:     =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>
+Cc:     Atish Patra <atishp@rivosinc.com>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Atish Patra <atishp@atishpatra.org>,
+        Damien Le Moal <damien.lemoal@wdc.com>,
+        DTML <devicetree@vger.kernel.org>,
+        Jisheng Zhang <jszhang@kernel.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Rob Herring <robh+dt@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/05/2022 17:31, Claudiu.Beznea@microchip.com wrote:
+On Thu, May 12, 2022 at 6:12 PM Heiko St=C3=BCbner <heiko@sntech.de> wrote:
+>
+> Am Donnerstag, 12. Mai 2022, 06:44:12 CEST schrieb Anup Patel:
+> > On Thu, May 12, 2022 at 1:41 AM Atish Patra <atishp@rivosinc.com> wrote=
+:
+> > >
+> > > Pass the upper half of the initial value of the counter correctly
+> > > for RV32.
+> > >
+> > > Fixes: 4905ec2fb7e6 ("RISC-V: Add sscofpmf extension support")
+> > >
+> > > Signed-off-by: Atish Patra <atishp@rivosinc.com>
+> > > ---
+> > >  drivers/perf/riscv_pmu_sbi.c | 2 +-
+> > >  1 file changed, 1 insertion(+), 1 deletion(-)
+> > >
+> > > diff --git a/drivers/perf/riscv_pmu_sbi.c b/drivers/perf/riscv_pmu_sb=
+i.c
+> > > index a1317a483512..24cea59612be 100644
+> > > --- a/drivers/perf/riscv_pmu_sbi.c
+> > > +++ b/drivers/perf/riscv_pmu_sbi.c
+> > > @@ -526,7 +526,7 @@ static inline void pmu_sbi_start_overflow_mask(st=
+ruct riscv_pmu *pmu,
+> > >                         max_period =3D riscv_pmu_ctr_get_width_mask(e=
+vent);
+> > >                         init_val =3D local64_read(&hwc->prev_count) &=
+ max_period;
+> > >                         sbi_ecall(SBI_EXT_PMU, SBI_EXT_PMU_COUNTER_ST=
+ART, idx, 1,
+> > > -                                 flag, init_val, 0, 0);
+> > > +                                 flag, init_val, init_val >> 32, 0);
+> >
+> > This should be under "#if __riscv_xlen =3D=3D 32".
+>
+> What's the difference between using CONFIG_32BIT
+> and checking the __riscv_xlen flag value?
 
->>
->> Macro is a nice idea if it can be stable. I understood that length of
->> packets depends on hardware, so this part could be stable. But what
->> about number of packets, so the OTP_PKT_SAMA7G5_TEMP_CALIB_LEN below?
-> 
-> The OTP_PKT_SAMA7G5_TEMP_CALIB_LEN here is the length of thermal
-> calibration packet. This length is fixed and will not be changed.
-> 
-> After these 2 packets (provided by Microchip) user may further flash any
-> number of packets and use them as they wish.
-> 
-> Driver is in charge of scanning the NVMEM for the available packets and
-> prepare a list with their IDs and their starting offsets in NVMEM memory
-> such that when it receives a read request it will be able to decode the
-> packet offset based on packet identifier.
-> 
-> In case different number of packets are available in NVMEM for different
-> kind of setups (boards) these could also be referenced in board specific DT
-> using OTP_PKT() macro and with proper length (which will depend on what
-> user flashed).
-> 
->> You wrote "Boot configuration packet may vary in length", so it could be
->> changed by Microchip?
-> 
-> Yes, between chip revisions its length could be changed.
+It's one and the same.
 
-Chip revisions like different board compatibles thus different
-bindings/macro values? If not, then maybe better skip the length out of
-bindings and just provide the first macro.
+>
+> CONFIG_32BIT seems to be a bit the more kernel'ish
+> way to do this, but it looks like most SBI parts check the
+> __riscv_xlen instead.
 
+I agree with you. We should prefer "#ifdef CONFIG_32BIT"
+in this case to match the kernel coding style.
 
+Currently, OpenSBI does not have CONFIG_xyz defines so
+over there we use "#if __riscv_xlen =3D=3D 32".
 
-Best regards,
-Krzysztof
+Regards,
+Anup
+
+>
+>
+> In any case, looking at the opensbi-side of the call,
+> this fix is abviously correct, so
+>
+> Reviewed-by: Heiko Stuebner <heiko@sntech.de>
+>
+>
+>
