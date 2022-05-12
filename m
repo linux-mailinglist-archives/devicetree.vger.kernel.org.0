@@ -2,174 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 70A3852554B
-	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 21:01:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 30D1C525567
+	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 21:11:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1357832AbiELTBW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 May 2022 15:01:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35760 "EHLO
+        id S1357906AbiELTLc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 May 2022 15:11:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44116 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1355699AbiELTBV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 15:01:21 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B77A3590AC;
-        Thu, 12 May 2022 12:01:19 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id p26so10693692lfh.10;
-        Thu, 12 May 2022 12:01:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=mt2U9a7tnFLCX9wgkrM1HMmN66TcXqkkVi2NC46P4ZM=;
-        b=Gv0Vwl9woZEQrxqNpxwQhwdxKoqNldJwYczn072anBC7urXp/rB7lJUw6WcauN+MH0
-         p0bGBg6cgf/AwYfhwuXjP/0AwzfHfXn5c/gqLlmrOXq/LJ6ptnvHyK2Ska48lxoMZp0U
-         2jozZ2fY5+EujB+GJYzyJc2cSDF6h04MQuZNiVxU5IEkW6adR5PUFhbehHxf2awcpHSD
-         Wkn+2Ylm8od7qxSYbpPul0v5HXuR4cjvALioAQZwc3L9qylXi9ppAAcKByOOap/hpwZF
-         ngLLxHSOJWGez4lyaD6WllzMLlMzt9T/jy1iVgDrSuhBQjjXqQlDxlqoA9h1/xRiY0Vr
-         fa9g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=mt2U9a7tnFLCX9wgkrM1HMmN66TcXqkkVi2NC46P4ZM=;
-        b=dgPtiHZfYRtsbhupaxzGsZVla284FqEQ0G6PzFrpcECxTN/+/peSrRWeLQ+jHF0O5H
-         Hzx/PlWRHznrgDGYQEfAq5H2MVMTBNCuL+3GLMUk83NW4EsKDVYPQfV41f0ZPul/Xec3
-         eovgerujtNXD+RoHXs5t7/d06QGPOmrUTA93EL6GLRz6gr7VPRu+MW9p1CjBcIoUDOTU
-         jW+XzoyfmqucnZ+IihABRGho/BgEptFRKxH80UgBV+QmcAKthy6JQpkNnWUE9DEJ0L/0
-         D4xHgXgilExBAOfkXh7vygBQOtyZenz+yIXy/Vr8gtqwO7jzM9nK5+6xdrNMOZq7hpVx
-         GysQ==
-X-Gm-Message-State: AOAM533+4scPN1LUUMDVjTkD6M+HpeWlXTVOQJ2Ut7DsuiocGbwdRsm5
-        q4JzssTnBQquTZDn912x/tM=
-X-Google-Smtp-Source: ABdhPJywkioOthRkNJKuhIGBnwy5wL2iI/mmTX+U90oMWFMfZ8hE+LZm8XsnwkIgxjq19/qLP4Hvow==
-X-Received: by 2002:a05:6512:33c8:b0:473:9d8f:a01b with SMTP id d8-20020a05651233c800b004739d8fa01bmr805048lfg.619.1652382077969;
-        Thu, 12 May 2022 12:01:17 -0700 (PDT)
-Received: from localhost ([62.96.65.119])
-        by smtp.gmail.com with ESMTPSA id z25-20020a2e9b99000000b0024f3d1daef2sm39660lji.122.2022.05.12.12.01.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 12 May 2022 12:01:16 -0700 (PDT)
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>, Joerg Roedel <joro@8bytes.org>
-Cc:     Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
-        Nicolin Chen <nicolinc@nvidia.com>,
-        Krishna Reddy <vdumpa@nvidia.com>,
-        Dmitry Osipenko <dmitry.osipenko@collabora.com>,
-        Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
-        Janne Grunau <j@jannau.net>, Sameer Pujar <spujar@nvidia.com>,
-        devicetree@vger.kernel.org, iommu@lists.linux-foundation.org,
-        linux-tegra@vger.kernel.org
-Subject: [PATCH v5 5/5] iommu/tegra-smmu: Support managed domains
-Date:   Thu, 12 May 2022 21:00:52 +0200
-Message-Id: <20220512190052.1152377-6-thierry.reding@gmail.com>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20220512190052.1152377-1-thierry.reding@gmail.com>
-References: <20220512190052.1152377-1-thierry.reding@gmail.com>
+        with ESMTP id S1357922AbiELTLb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 15:11:31 -0400
+Received: from mx0a-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com [148.163.158.5])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CCFA83E0C8;
+        Thu, 12 May 2022 12:11:30 -0700 (PDT)
+Received: from pps.filterd (m0098414.ppops.net [127.0.0.1])
+        by mx0b-001b2d01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 24CIRWY9013204;
+        Thu, 12 May 2022 19:11:09 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=pp1;
+ bh=erGBUJ07wNUJV+sPUuGngCGtTCXo+k3qkrV4vWOiECc=;
+ b=NtTZRFqZFca0PWldtWwrZnnw6PSKA6IeSJWa5WxaOL29cn+bfUtYAWlPNhb187G9rzkw
+ Y1twkCN3GyuH/qcxWx4MZfZsbruRaW5smW/+pJ/iIRfjevjhIMMC5lmsacw05HQVlPSH
+ LiVuR0KlcroJg5R0dRjTKrn0AljJYOWUjaBIK0XOTFN1aTMy0lUHHR0Iaf85r/PnIrWH
+ R6WZFN+y8Ubxm4hVXT2/Fg45s7kEkwR+JzUPm+A7kNg/hYFqk/nJTYEdp0cH++C2t0Ze
+ ruuvdKioG75HVKv1AK19Nvm/apP0cNHEb5Nhmdn50TDpYlSRcAQNG8Y7ePc/nIc0Oq+m 9g== 
+Received: from ppma01dal.us.ibm.com (83.d6.3fa9.ip4.static.sl-reverse.com [169.63.214.131])
+        by mx0b-001b2d01.pphosted.com (PPS) with ESMTPS id 3g173b9f2a-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 12 May 2022 19:11:09 +0000
+Received: from pps.filterd (ppma01dal.us.ibm.com [127.0.0.1])
+        by ppma01dal.us.ibm.com (8.16.1.2/8.16.1.2) with SMTP id 24CIvDkX019581;
+        Thu, 12 May 2022 19:11:08 GMT
+Received: from b01cxnp23034.gho.pok.ibm.com (b01cxnp23034.gho.pok.ibm.com [9.57.198.29])
+        by ppma01dal.us.ibm.com with ESMTP id 3fwgdb6jqv-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 12 May 2022 19:11:08 +0000
+Received: from b01ledav001.gho.pok.ibm.com (b01ledav001.gho.pok.ibm.com [9.57.199.106])
+        by b01cxnp23034.gho.pok.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 24CJB7wr23920930
+        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Thu, 12 May 2022 19:11:07 GMT
+Received: from b01ledav001.gho.pok.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id 9BD8E2805E;
+        Thu, 12 May 2022 19:11:07 +0000 (GMT)
+Received: from b01ledav001.gho.pok.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id C72CF28059;
+        Thu, 12 May 2022 19:11:06 +0000 (GMT)
+Received: from [9.211.56.168] (unknown [9.211.56.168])
+        by b01ledav001.gho.pok.ibm.com (Postfix) with ESMTP;
+        Thu, 12 May 2022 19:11:06 +0000 (GMT)
+Message-ID: <c2f7b09d-e046-409e-b65e-153157f84b03@linux.ibm.com>
+Date:   Thu, 12 May 2022 14:11:06 -0500
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.0
+Subject: Re: [PATCH v2 0/2] iio: humidity: si7020: Check device property for
+ skipping reset in probe
+Content-Language: en-US
+To:     Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        robh+dt@kernel.org, lars@metafoo.de, jic23@kernel.org,
+        miltonm@us.ibm.com
+References: <20220512162020.33450-1-eajames@linux.ibm.com>
+ <20220512174859.000042b6@Huawei.com>
+From:   Eddie James <eajames@linux.ibm.com>
+In-Reply-To: <20220512174859.000042b6@Huawei.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-TM-AS-GCONF: 00
+X-Proofpoint-ORIG-GUID: h0MVSw3yJcPGbeM8LBRXqFnnQ43eC3Tx
+X-Proofpoint-GUID: h0MVSw3yJcPGbeM8LBRXqFnnQ43eC3Tx
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.858,Hydra:6.0.486,FMLib:17.11.64.514
+ definitions=2022-05-12_16,2022-05-12_01,2022-02-23_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 lowpriorityscore=0
+ malwarescore=0 phishscore=0 mlxlogscore=999 priorityscore=1501
+ clxscore=1015 impostorscore=0 spamscore=0 bulkscore=0 suspectscore=0
+ adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2202240000 definitions=main-2205120083
+X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Navneet Kumar <navneetk@nvidia.com>
 
-Allow creating identity and DMA API compatible IOMMU domains. When
-creating a DMA API compatible domain, make sure to also create the
-required cookie.
+On 5/12/22 11:48, Jonathan Cameron wrote:
+> On Thu, 12 May 2022 11:20:18 -0500
+> Eddie James <eajames@linux.ibm.com> wrote:
+>
+>> I2C commands issued after the SI7020 is starting up or after reset
+>> can potentially upset the startup sequence. Therefore, the host
+>> needs to wait for the startup sequence to finish before issuing
+>> further i2c commands. This is impractical in cases where the SI7020
+>> is on a shared bus or behind a mux, which may switch channels at
+>> any time (generating I2C traffic). Therefore, check for a device
+>> property that indicates that the driver should skip resetting the
+>> device when probing.
+> Why not lock the bus?  It's not ideal, but then not resetting and hence
+> potentially ending up in an unknown state isn't great either.
 
-Signed-off-by: Navneet Kumar <navneetk@nvidia.com>
-Signed-off-by: Thierry Reding <treding@nvidia.com>
----
-Changes in v5:
-- remove DMA cookie initialization that's now no longer needed
 
- drivers/iommu/tegra-smmu.c | 37 ++++++++++++++++++++-----------------
- 1 file changed, 20 insertions(+), 17 deletions(-)
+Also, I should mention that in our case we can rely on the power on 
+reset, so the device should be in a known state.
 
-diff --git a/drivers/iommu/tegra-smmu.c b/drivers/iommu/tegra-smmu.c
-index 93879c40056c..f8b2b863c111 100644
---- a/drivers/iommu/tegra-smmu.c
-+++ b/drivers/iommu/tegra-smmu.c
-@@ -16,6 +16,7 @@
- #include <linux/slab.h>
- #include <linux/spinlock.h>
- #include <linux/dma-mapping.h>
-+#include <linux/dma-iommu.h>
- 
- #include <soc/tegra/ahb.h>
- #include <soc/tegra/mc.h>
-@@ -277,7 +278,9 @@ static struct iommu_domain *tegra_smmu_domain_alloc(unsigned type)
- {
- 	struct tegra_smmu_as *as;
- 
--	if (type != IOMMU_DOMAIN_UNMANAGED)
-+	if (type != IOMMU_DOMAIN_UNMANAGED &&
-+	    type != IOMMU_DOMAIN_DMA &&
-+	    type != IOMMU_DOMAIN_IDENTITY)
- 		return NULL;
- 
- 	as = kzalloc(sizeof(*as), GFP_KERNEL);
-@@ -287,25 +290,16 @@ static struct iommu_domain *tegra_smmu_domain_alloc(unsigned type)
- 	as->attr = SMMU_PD_READABLE | SMMU_PD_WRITABLE | SMMU_PD_NONSECURE;
- 
- 	as->pd = alloc_page(GFP_KERNEL | __GFP_DMA | __GFP_ZERO);
--	if (!as->pd) {
--		kfree(as);
--		return NULL;
--	}
-+	if (!as->pd)
-+		goto free_as;
- 
- 	as->count = kcalloc(SMMU_NUM_PDE, sizeof(u32), GFP_KERNEL);
--	if (!as->count) {
--		__free_page(as->pd);
--		kfree(as);
--		return NULL;
--	}
-+	if (!as->count)
-+		goto free_pd_range;
- 
- 	as->pts = kcalloc(SMMU_NUM_PDE, sizeof(*as->pts), GFP_KERNEL);
--	if (!as->pts) {
--		kfree(as->count);
--		__free_page(as->pd);
--		kfree(as);
--		return NULL;
--	}
-+	if (!as->pts)
-+		goto free_pts;
- 
- 	spin_lock_init(&as->lock);
- 
-@@ -315,6 +309,15 @@ static struct iommu_domain *tegra_smmu_domain_alloc(unsigned type)
- 	as->domain.geometry.force_aperture = true;
- 
- 	return &as->domain;
-+
-+free_pts:
-+	kfree(as->pts);
-+free_pd_range:
-+	__free_page(as->pd);
-+free_as:
-+	kfree(as);
-+
-+	return NULL;
- }
- 
- static void tegra_smmu_domain_free(struct iommu_domain *domain)
-@@ -1009,7 +1012,7 @@ static const struct iommu_ops tegra_smmu_ops = {
- 	.probe_device = tegra_smmu_probe_device,
- 	.release_device = tegra_smmu_release_device,
- 	.device_group = tegra_smmu_device_group,
--	.get_resv_regions = of_iommu_get_resv_regions,
-+	.get_resv_regions = iommu_dma_get_resv_regions,
- 	.put_resv_regions = generic_iommu_put_resv_regions,
- 	.of_xlate = tegra_smmu_of_xlate,
- 	.pgsize_bitmap = SZ_4K,
--- 
-2.36.1
+Eddie
 
+
+>
+> Jonathan
+>
+>> Changes since v1:
+>>   - Fix dt binding document
+>>
+>> Eddie James (2):
+>>    dt-bindings: iio: humidity: Add si7020 bindings
+>>    iio: humidity: si7020: Check device property for skipping reset in probe
+>>
+>>   .../bindings/iio/humidity/silabs,si7020.yaml  | 47 +++++++++++++++++++
+>>   .../devicetree/bindings/trivial-devices.yaml  |  2 -
+>>   drivers/iio/humidity/si7020.c                 | 14 +++---
+>>   3 files changed, 55 insertions(+), 8 deletions(-)
+>>   create mode 100644 Documentation/devicetree/bindings/iio/humidity/silabs,si7020.yaml
+>>
