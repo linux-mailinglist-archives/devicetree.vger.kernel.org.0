@@ -2,135 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B7E1524E2C
-	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 15:24:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7DB81524E35
+	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 15:26:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1354345AbiELNYx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 May 2022 09:24:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55316 "EHLO
+        id S1354363AbiELN0p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 May 2022 09:26:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59238 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242623AbiELNYw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 09:24:52 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F1095F68B5;
-        Thu, 12 May 2022 06:24:51 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        with ESMTP id S1354404AbiELN0n (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 09:26:43 -0400
+Received: from smtp11.infineon.com (smtp11.infineon.com [IPv6:2a00:18f0:1e00:4::5])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 116294A3DF;
+        Thu, 12 May 2022 06:26:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=infineon.com; i=@infineon.com; q=dns/txt; s=IFXMAIL;
+  t=1652362003; x=1683898003;
+  h=from:to:cc:subject:date:message-id:
+   content-transfer-encoding:mime-version;
+  bh=scQuBtZwAD3ryuQq3jSgTOJJI9J247B/LOMCJ6OFjUY=;
+  b=kEchj86xM/iWvQx8zhS0tSk/QcLjWLVnkwaz9sW0vwNoDzkDgCUE0KwZ
+   xHRKFB4/yiH9f5UwQOFFyfeaIHEfZd6QG+ZtGW+Eyiy7tVVHJkII5z2/9
+   zkBYOIQmo9T3GwOa+YEbhVRdwRpzmv9FtqyFX3myXS7wuBk1GKmRVY1ss
+   Q=;
+X-SBRS: None
+X-IronPort-AV: E=McAfee;i="6400,9594,10344"; a="294335229"
+X-IronPort-AV: E=Sophos;i="5.91,219,1647298800"; 
+   d="scan'208";a="294335229"
+Received: from unknown (HELO mucxv002.muc.infineon.com) ([172.23.11.17])
+  by smtp11.infineon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 May 2022 15:26:40 +0200
+Received: from MUCSE819.infineon.com (MUCSE819.infineon.com [172.23.29.45])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 9551660DB6;
-        Thu, 12 May 2022 13:24:51 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E773BC34114;
-        Thu, 12 May 2022 13:24:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1652361891;
-        bh=5DrSkrfZ376gmNIOa8YiJJpftUPjCe49Dwd/ROqERXo=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=J7qNG6aVE39IZKKT8v/WQnNB6GmrEUVTT+cqQRF+fEFqr9rQkU453e6gFDg2B+nVB
-         oQgTybEPyBgP3Dp6ruY8B/xbZM8k3aFyJufroPdmlPd/Sk045P4WW3YyC31dfqB2Z5
-         lg0GHNdV6Hrh2C7/peJJoUKdt4b0Doi3M8GuONodCO8GCpGEbJOgOjkm/AAjNynb8y
-         sqgJea3tlns87y9PxrTl7r+rJ01Wmyu05dl6ob3eZ7csA0aHONfuQL6RHBb66nYYFA
-         LBCTEdwiOKDRWqnboFOXd3skP5K0Joa6hj0tQ40FO/KrTz1qvm9qDF6IAILrv8myi7
-         dTmICfTU7MDdQ==
-Received: from sofa.misterjones.org ([185.219.108.64] helo=why.misterjones.org)
-        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <maz@kernel.org>)
-        id 1np8oC-00AsdL-B5; Thu, 12 May 2022 14:24:48 +0100
-Date:   Thu, 12 May 2022 14:24:48 +0100
-Message-ID: <87wneq6fz3.wl-maz@kernel.org>
-From:   Marc Zyngier <maz@kernel.org>
-To:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Phil Edworthy <phil.edworthy@renesas.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-Subject: Re: [PATCH v3 3/5] gpio: gpiolib: Allow free() callback to be overridden
-In-Reply-To: <CA+V-a8tf1RmT-cX5y807rTAPES2NXLJHp=u1WUG11fLrtt-5Mg@mail.gmail.com>
-References: <20220511183210.5248-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-        <20220511183210.5248-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
-        <87y1z75770.wl-maz@kernel.org>
-        <CA+V-a8tf1RmT-cX5y807rTAPES2NXLJHp=u1WUG11fLrtt-5Mg@mail.gmail.com>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
- (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: prabhakar.csengg@gmail.com, prabhakar.mahadev-lad.rj@bp.renesas.com, geert+renesas@glider.be, linus.walleij@linaro.org, tglx@linutronix.de, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, brgl@bgdev.pl, p.zabel@pengutronix.de, linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, phil.edworthy@renesas.com, biju.das.jz@bp.renesas.com
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        by mucxv002.muc.infineon.com (Postfix) with ESMTPS;
+        Thu, 12 May 2022 15:26:40 +0200 (CEST)
+Received: from MUCSE811.infineon.com (172.23.29.37) by MUCSE819.infineon.com
+ (172.23.29.45) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Thu, 12 May
+ 2022 15:26:39 +0200
+Received: from MUCSE820.infineon.com (172.23.29.46) by MUCSE811.infineon.com
+ (172.23.29.37) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Thu, 12 May
+ 2022 15:26:39 +0200
+Received: from MUCSE820.infineon.com ([172.23.29.46]) by MUCSE820.infineon.com
+ ([172.23.29.46]) with mapi id 15.02.0986.022; Thu, 12 May 2022 15:26:39 +0200
+From:   <Greg.Schwendimann@infineon.com>
+To:     <linux@roeck-us.net>, <linux-hwmon@vger.kernel.org>
+CC:     <robh+dt@kernel.org>, <krzk+dt@kernel.org>,
+        <devicetree@vger.kernel.org>
+Subject: [PATCH v4 2/2] dt-bindings: trivial-devices: Add xdp152
+Thread-Topic: [PATCH v4 2/2] dt-bindings: trivial-devices: Add xdp152
+Thread-Index: AdhmAatZX66DKqDsT+mZz8c2P2pFMw==
+Date:   Thu, 12 May 2022 13:26:39 +0000
+Message-ID: <052c9885e92243fb99ada46e6a263c09@infineon.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.23.8.247]
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 12 May 2022 13:48:53 +0100,
-"Lad, Prabhakar" <prabhakar.csengg@gmail.com> wrote:
-> 
-> Hi Marc,
-> 
-> Thank you for the review.
-> 
-> On Thu, May 12, 2022 at 12:19 PM Marc Zyngier <maz@kernel.org> wrote:
-> >
-> > On Wed, 11 May 2022 19:32:08 +0100,
-> > Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
-> > >
-> > > Allow free() callback to be overridden from irq_domain_ops for
-> > > hierarchical chips.
-> > >
-> > > This allows drivers to free any resources which are allocated during
-> > > populate_parent_alloc_arg().
-> >
-> > Do you mean more than the fwspec? I don't see this being used.
-> >
-> The free callback is used in patch 5/5 where free is overridden by
-> rzg2l_gpio_irq_domain_free. I just gave an example there as an
-> populate_parent_alloc_arg()  In actual in the child_to_parent_hwirq
-> callback I am using a bitmap [0] to get a free tint slot, this bitmap
-> needs freeing up when the GPIO interrupt is released from the driver
-> that as when overridden free callback frees the allocated tint slot so
-> that its available for re-use.
 
-Right, so that's actually a different life-cycle, and the whole
-populate_parent_alloc_arg() is a red herring. What you want is to free
-resources that have been allocated via some other paths. It'd be good
-if your commit message actually reflected this instead of using an
-example that doesn't actually exist.
+Add Infineon Digital Multi-phase xdp152 family controllers.
 
-> 
-> > There is also the question of why we need to have dynamic allocation
-> > for the fwspec itself. Why isn't that a simple stack allocation in the
-> > context of gpiochip_hierarchy_irq_domain_alloc()?
-> >
-> you mean gpio core itself should handle the fwspec
-> allocation/freeing?
+Signed-off-by: Greg Schwendimann <Greg.Schwendimann@infineon.com>
+---
+ Documentation/devicetree/bindings/trivial-devices.yaml | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-Yes. The only reason we resort to dynamic allocation is because
-ThunderX is using MSI-based GPIOs, and thus doesn't use a fwspec (no
-firmware is involved here).
+diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Docum=
+entation/devicetree/bindings/trivial-devices.yaml
+index 550a2e5c9e05..fc2164c4d108 100644
+--- a/Documentation/devicetree/bindings/trivial-devices.yaml
++++ b/Documentation/devicetree/bindings/trivial-devices.yaml
+@@ -143,6 +143,10 @@ properties:
+           - infineon,xdpe12254
+             # Infineon Multi-phase Digital VR Controller xdpe12284
+           - infineon,xdpe12284
++            # Infineon Multi-phase Digital VR Controller xdpe152c4
++          - infineon,xdpe152c4
++            # Infineon Multi-phase Digital VR Controller xdpe15284
++          - infineon,xdpe15284
+             # Injoinic IP5108 2.0A Power Bank IC with I2C
+           - injoinic,ip5108
+             # Injoinic IP5109 2.1A Power Bank IC with I2C
+--=20
+2.25.1
 
-If we had a union of the two types, we could just have a stack
-variable, and pass that along, completely sidestepping the whole
-dynamic allocation/freeing business.
-
-	M.
-
--- 
-Without deviation from the norm, progress is not possible.
