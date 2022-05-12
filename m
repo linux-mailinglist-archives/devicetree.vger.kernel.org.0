@@ -2,151 +2,401 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8212B524896
-	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 11:09:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ED98D5248C0
+	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 11:20:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351827AbiELJJZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 May 2022 05:09:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49420 "EHLO
+        id S1351879AbiELJT7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 May 2022 05:19:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60950 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245413AbiELJJZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 05:09:25 -0400
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (mail-bn8nam11on2082.outbound.protection.outlook.com [40.107.236.82])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0BB465D3F;
-        Thu, 12 May 2022 02:09:23 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=SA2WnhG0u2IDzidLtnBppa05aRg/IMwSZbznPcT3hXeMiGLVoz8L/STEhWWT4HZS9uxlKpyUFveYnB4tFBqItbAsN5SFeEgpeLNf+IzCkyU43YtNs1WSBzF+jmG+apPgSyUWS225bzdg+57clnmaoN/X+SI+ibcaR7mcdDeCOwha7xUbLhzqG5g2gu5FQa+YyTFf74GY1PshaGvhY6kMypowahARcdPQeRLM7Yqw2uEO4kHZEyop1cfYNnXwwZepwPf2RYb5QseAkqr0kFQys6vvDXDBF8aS1OTns7aU9yXAwlW8+E/MGJx4IMJqQeiP9GhrWLWaCbgLz9to6Yeqrw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=aA2UKXwV+FGgrM8VoDHCj+gPMJu7URsh3LA4rA4IYkI=;
- b=a6KIQa6pMF4fBVODQZju/2vadVACnsLDJ1LgtRLSKhfiXDGdN7vIMOpV5lAQy/pNt4NPkM6RvNTE72iv4bkBeGTk63mJjqmDl/+85i+jaM4FSf8MDVf1WF3VO7Puqx0aCsJ9y7AnIEeSm2gq6dS8YO0YeFWBkwLzu7uVRZov1kM4U+KlevaTw0c6uq1b0t3lQz2ymovzDtC+8QWqgmGqKK47gZQmivyq7qrAdXyyLUaBhTQguXtOToQMHtxkKMCi4Qu5JeASqzRATgeD0iMolIJlCEslpmQA7ddz8T3td2kU/Y1/wfZTgMTS10VtjwpVZrZK2s8omJ33bFWYFhQWcQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=aA2UKXwV+FGgrM8VoDHCj+gPMJu7URsh3LA4rA4IYkI=;
- b=cll+ug7mNxc8nKbQuVMKIG3WbyMk+66HnaOG12+Heks1scy1aTk6mN5kT1JtGSNlYH4asVDLDbkLqh5DHZ/sLtHWVE1DRKouCzXkgBwDfMOIGQulYyq8SLrERGWtUngt117y0lWJKAvU5YfLWOV8NWvR/51eL1MOlDEX3fI92b4iBylJlCTo4Dkhtucz8OgUbFlw1B9BpD+ZooxPeJkNuUn+tOPmUhVwTrSpg2wT7laiyn/erHK0KtVNB4u5+Cv6nSQ5ZDFZ8nXDBbB96yS6RaJeyWxeYnfUE61N0YCahmJmKCAQFuVHIRQ+4sdh3w8gbpJiDORXcP1SR/2QmoiwAw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from CO6PR12MB5444.namprd12.prod.outlook.com (2603:10b6:5:35e::8) by
- DM6PR12MB4861.namprd12.prod.outlook.com (2603:10b6:5:1bd::12) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5250.13; Thu, 12 May 2022 09:09:21 +0000
-Received: from CO6PR12MB5444.namprd12.prod.outlook.com
- ([fe80::a4b2:cd18:51b1:57e0]) by CO6PR12MB5444.namprd12.prod.outlook.com
- ([fe80::a4b2:cd18:51b1:57e0%4]) with mapi id 15.20.5250.014; Thu, 12 May 2022
- 09:09:21 +0000
-Message-ID: <2e2cac21-1071-546b-7091-8be26860f5f0@nvidia.com>
-Date:   Thu, 12 May 2022 10:09:15 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH 0/2] Add GPCDMA support for Tegra234
-Content-Language: en-US
-To:     Akhil R <akhilrajeev@nvidia.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, thierry.reding@gmail.com,
-        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220512090052.47840-1-akhilrajeev@nvidia.com>
-From:   Jon Hunter <jonathanh@nvidia.com>
-In-Reply-To: <20220512090052.47840-1-akhilrajeev@nvidia.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: AM0PR04CA0119.eurprd04.prod.outlook.com
- (2603:10a6:208:55::24) To CO6PR12MB5444.namprd12.prod.outlook.com
- (2603:10b6:5:35e::8)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 07f36e34-2b86-4185-2f18-08da33f719d9
-X-MS-TrafficTypeDiagnostic: DM6PR12MB4861:EE_
-X-Microsoft-Antispam-PRVS: <DM6PR12MB486124420C60D9281EF0E9E9D9CB9@DM6PR12MB4861.namprd12.prod.outlook.com>
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: T2UQxwOpoY2IQeqFVVk20K00p64eoKbjxqNC/+SMbXFn9jITqRwy/ZGMIZEkBdrabI1PADak6dm4KkjCq7wIAH5b7rHAIjnA6NGqfPzaShgo7M22RGEffChcKB2mULYgi3uwKriS0d6ZpIzw7OxRDlZxK0c2AIFNosZGgIQLtdJkGvqWtvh9Fm+s5Qvnt1H2UkmW8DEHVmsCNtO/S3OQ8AiQz0oo8zybU6ji6BocvNSKDJ9IKO98IzVSDRir2VWBCrNwUnIuqqZxAuzcsNh/0VUjiRS64KprHjzUxlcPHon9dc18McNAAg019Y8yzv9SuwS748EzglEu6uHGbt3279lzf+CFta3haTtpviEGiNoKvysf63Ya5bs+/X8J/mvViNpN78z8ic53Dw6Xtl1V4+y2usR9lumzDpVXSXq2Y1hMyoUKXZYSPtSrLD0P4/36GT4YsgUvvq7bEJRbFmarn5k9HhV+7GgX+Tf4B6vVJdlAQdZitr6nxAZ5fnlibz4o3SPFGmI9SG6udjSBveAIdwaTkDcZyOhtWrQS5N/QHV15O+f5h6HrHV+9GasyKM3W7QSMT6sO6YDt9Z4RtZ8kAf3Fwtco7eDIheydQ7YiqsnHxvL9UjD+7hBEHYB001oo8fOx4qN/Pn4oDLb06EgkAPQYKeTUp/ZPWqIuVQNn4PYU3fUiFpAUMZj63pHIsxvBl2oWn42LPiu1S/sE8cONjdEV/jzamA3Gt92kvz/0j50eXM+fyTmnclgA1J0HE8rj
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO6PR12MB5444.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(2906002)(26005)(6512007)(5660300002)(186003)(6506007)(6666004)(8936002)(53546011)(316002)(4744005)(55236004)(38100700002)(31686004)(508600001)(66946007)(6486002)(66476007)(66556008)(31696002)(8676002)(86362001)(36756003)(2616005)(43740500002)(45980500001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?dnZ0cmVwcGI5OG95L2wvNElaaFVZY0RvTW5oZlJRdmc0VU44eEpuQ05LMTda?=
- =?utf-8?B?bVNQc21tUnFqSDdhVjN5TG1OaStjZHFKakZ2QW1xVEhLZHl3TWlIa1llZ0g0?=
- =?utf-8?B?MDVHR3NSVlZrZXM4Y1dkWGNEWDF6VkcvVEJlV1FGQ1A1OW5TVmxqM092NTAv?=
- =?utf-8?B?NW5xWkFBR20ydzRsdW9TSjlnbDlTdGJJcFBvUjBEcDNjcVpmMHZ3MjlBb1lI?=
- =?utf-8?B?cytxZmJ6RUVkYnJVc25qM0NoWmxpb1lnVVZ0S1FVaHJURU4wdXF1RzBlN1lR?=
- =?utf-8?B?a1VYK1pTTmp1ZTBTWUJKQ3hNdnFmMXZWMnNlMUdrOTcwREMrYXAwVUxweDhn?=
- =?utf-8?B?VnU0R09JbTk4R2JtdEhDdUN5TEVZbDNUTlgxZVBnTEd3MEVCR2ZGSUZMN2l2?=
- =?utf-8?B?NWtJWWJGWnBuTGtveU1DLzd3SmVPSmtGMmduYm1ScDI1cmNLL3dlR3JSM1pj?=
- =?utf-8?B?eGFZWEY1WU55RWthbmJRUm9tVXlHVkZkR01NMVcrK1kzbnJGNU5lbUp4MzB5?=
- =?utf-8?B?Si9RVFNrRU1uM1dGalB6NmxUKytvblVHOTlDKzVYaEc3VHF3R2VJZGN6QUN4?=
- =?utf-8?B?QTlvS2RQdEpYa01kNVJhNFN3VDNZSEdFd0dkWVJXWUt1OWoxb1dIbGZ6Q0xw?=
- =?utf-8?B?TnZpRGhBMkdVVWpVS25aTm9rdWVzNVpLYWRUcUJkNkRDUlVqOHMvTkpjTkNm?=
- =?utf-8?B?Z2RiT0dXWC9XRjhLL3h5eEIrMHZ4K3pOb3NzYzZ2NGlLR0ZXRUQ4dllwRVlR?=
- =?utf-8?B?NjFnR1YrVWRJU2NQdWxIRTBJSzBaVVpadHk5K1FyN21tWnQxY0Zuclo4Z3Uz?=
- =?utf-8?B?M0NOUTBzbDZ6ZzVueGxLb3N6OFpBNDIxU2tzNElGNlord2pVbE5WYkh2TkFr?=
- =?utf-8?B?WUVRblFXVUNySnpMY3RiMFFiUjA0NWo4UjM4ZTNHTENPS2VQNFFtL0wzSWZC?=
- =?utf-8?B?c2dad050WkRlYWZmS0xQOVp6MnE2V1BScmZkRnh5Q1IycjlQcm9LNzNvR1Uz?=
- =?utf-8?B?WWZ4NGlCZkREMlhFWEdST1RSSTJGTDdxTXV5UElTanlNQXc1UDNCUkhET1cv?=
- =?utf-8?B?S2tVYW9FZ3V4UVVGZit6QjNKcmlpQXpQUU9ueXlBUEtUcTJ0a01VbjJ5MThE?=
- =?utf-8?B?c1BRQ0NGOUFWeDU2aEZjOWI5cjFlbUo0dlpWVU1yVGRnNnY0Sm5JSStSZ01X?=
- =?utf-8?B?aC94eURSelFvVE11YUFaV090MFVzRHJiZDgranNyTFVNM2NMU1Z1YzVSMWIr?=
- =?utf-8?B?M1ZRN1FTaDFLQUxmSkJSRjZiQ3FXTmxRMXFlbEdMdDRjdDdET2FjbUJBK0xo?=
- =?utf-8?B?L2wxQ1kwa0tKZjVGVStvT1h5RGRTSnZGUEdueU5icDV3bnJHZFFQcXRTRzVr?=
- =?utf-8?B?UWdrcGt0QlF1Ri92Q01peE1XNmpOZlZ5VWVFS3Nqbk5WckVFdzA3RitlN0cr?=
- =?utf-8?B?MGZ5cGRUamQwYlZoZUdDQ01vSXNBQUU4aDVZWm5GaVFZcmgxZ3FJZVd4K09n?=
- =?utf-8?B?ZldhSTFMNGJZS3lJNldEamZaTnhWbDVxK2llZ0RjbHh3YnIyMXNnUi96MzZa?=
- =?utf-8?B?cWJwTWYySno4UE1NcmhEMG1OUCs2cm90ZUtKeU5xb3hzUnB0dkZjaEpvSDd6?=
- =?utf-8?B?eE1OVElTcjV6czQrbW93MCtkaXpsYXZIaEp1aFZUbnZ5UWR0Z1crakxWUzNM?=
- =?utf-8?B?QlQxL1NJME9WQ0JZc2trbmNEQTJkR0krWC9ta0NmTnlaZ3p4MUcxVm0yZnhk?=
- =?utf-8?B?YmNMSXNocFBOMTVjbytxVDhPK3ZWelZxL2JBWFNCdTFKTzFPUWlrTFd6aklF?=
- =?utf-8?B?bzNjWEo4c3NKQ1JsbzJHSkJHQks3a0NPenNHNDFUMnh1Tm9md2JySzFoMXhm?=
- =?utf-8?B?ZzRFUUFBcGhhM2FsSC9xODU0S0c1TnBUWWtEOFdKZEFmWk5wMnFlWkRLeFEz?=
- =?utf-8?B?ZEVPZi9yU0pCMm0rOEVkbEk5NjVYUDUvZk9zZURYSUJJV2w2dStTU21jMVlw?=
- =?utf-8?B?NitKVWE3VFVVSVFWSTNYSWtucW5FUVNnM0JEY3plZzlDaXBUcU5mb3crRWM0?=
- =?utf-8?B?TVFQcExGUGNmV3NBVU54RXNkaE9MYUpNSkVxcGF4VWpMTmZYRUJBdW0vRHVR?=
- =?utf-8?B?ajJBM2hsbkVGbWwzK2RGdjhxRUk2RW4zb1pDZ0xzYUhUa1JMaXhoYlBZUzRY?=
- =?utf-8?B?WUZGckpLQ1RjMEN0OFVOZzF3b3VHc3lPd0dGU2ZvdCt5a2VIeXVsODdraThH?=
- =?utf-8?B?VWxSUkRPWEljc0FLMGpwOGhXOWZiVXRzQzh0ZXBvdzVZTk05MFBTLzNPeHZ4?=
- =?utf-8?B?TURNeUdJYTBNeDlzVkFYWElyaFdtRGp1RmhqR0tvOE04SHdjWmtDNnRHNWNh?=
- =?utf-8?Q?E4FaS5RARzuRHQUU=3D?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 07f36e34-2b86-4185-2f18-08da33f719d9
-X-MS-Exchange-CrossTenant-AuthSource: CO6PR12MB5444.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 May 2022 09:09:21.2917
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: CFU5PHb6V+I/xH68a4OfiTChCnUtmk6EeTQAsmwnV5Yl8weHVbfTFBR37ow/a5IvJvRAJUF1grVvk4cS80h+4g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4861
-X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        with ESMTP id S229485AbiELJT6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 05:19:58 -0400
+Received: from mail-pj1-x102d.google.com (mail-pj1-x102d.google.com [IPv6:2607:f8b0:4864:20::102d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8EC87205F2C;
+        Thu, 12 May 2022 02:19:56 -0700 (PDT)
+Received: by mail-pj1-x102d.google.com with SMTP id l20-20020a17090a409400b001dd2a9d555bso4393075pjg.0;
+        Thu, 12 May 2022 02:19:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:content-transfer-encoding:date:message-id:cc:subject
+         :from:to:references:in-reply-to;
+        bh=Nt7/SSWoDR75mNb090rQF4WPuNxt+chmnIAsdE3g0kU=;
+        b=DNYILr4tgb7B9qV1VlNAdEpvqH3F+SqP+ET2/g5ncLo8iz06RbruAy51IZE5Bk9NGy
+         wCDvMSh9kPQZRe1cZoo53E4sVMe1kioKYuFBG1WjDspni5PB+ge02KFuwmuxNXNgRQ8h
+         FoRDRUbWMHXMXrN4XG67616ksfG9TyN1bvtRkowskjUkaUOCnDldBCYw6D2ESSOwhjVJ
+         bF5qAugGnoUizdMKPj1rP4Ui/JK6gO0WTttZKjb6ljm0Qk5s8+fBuogPIxEpUzDv2orp
+         VU8OetHGA1ov34kXAjs2OUfouPlK3/Hgj6Ee+x8hIyLefueG4YjzxP4n9nrjMxqCvdM2
+         66JQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:content-transfer-encoding:date
+         :message-id:cc:subject:from:to:references:in-reply-to;
+        bh=Nt7/SSWoDR75mNb090rQF4WPuNxt+chmnIAsdE3g0kU=;
+        b=tr0sx6OAgFJT+UdZC1dyG2CXWjDwDSPSJF9D+Z9ixheVXINSFuH38VcjQTxip2IV/z
+         xsp68RaVU9IAvwu/o28UlvIk2hszWvHPn7wB2mmb3MMsvP+DqsnIzuTCVTSR9zldBiw/
+         unr9hlQf5Eh28eYKP2hgL2i1Hyngw+xz/fgC4F/OfFY1UgULCpMlMgM0p1WOPRF8mBk/
+         QC/vAmcwha1P6m3tocYbQwHxR/jfSH37fg0/3utZComtfS5PfzuX5XEqo40wZIh8xdgj
+         Oc+I7PNM+eP0NVYCmtfyQv9eb51U0DuEgTYhMiLjXreFF1+vhhKgDmfsTpgqIBYNSots
+         rvVw==
+X-Gm-Message-State: AOAM532aPgiszejeKGsq64jkGdaCCRpHT6V5h4CGdidAjAvOMfBUFI2V
+        UBZkT8eLlDRLlvAE0wt2mjW0UrAehuT2HQgH
+X-Google-Smtp-Source: ABdhPJynQCNJ9zZfkhh1IFBs8j6FfkoVhqJ9UhqYNRqVm1u9en9mfrs+O1kzL+x5hL+YtLV1RAG5uw==
+X-Received: by 2002:a17:902:b7cb:b0:15c:6650:a58a with SMTP id v11-20020a170902b7cb00b0015c6650a58amr29866078plz.63.1652347195964;
+        Thu, 12 May 2022 02:19:55 -0700 (PDT)
+Received: from localhost ([49.204.239.218])
+        by smtp.gmail.com with ESMTPSA id gc1-20020a17090b310100b001cd4989ff61sm1383206pjb.40.2022.05.12.02.19.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 12 May 2022 02:19:55 -0700 (PDT)
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date:   Thu, 12 May 2022 14:49:49 +0530
+Message-Id: <CJXO6ZMZ454X.M3N9HDKNA5HB@skynet-linux>
+Cc:     <linux-arm-msm@vger.kernel.org>,
+        <~postmarketos/upstreaming@lists.sr.ht>,
+        <bjorn.andersson@linaro.org>, <devicetree@vger.kernel.org>,
+        <phone-devel@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        "Andy Gross" <agross@kernel.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>
+Subject: Re: [PATCH 9/9] arm64: dts: qcom: msm8953: Add remote processor
+ nodes
+From:   "Sireesh Kodali" <sireeshkodali1@gmail.com>
+To:     "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>,
+        <linux-remoteproc@vger.kernel.org>
+X-Mailer: aerc 0.9.0
+References: <20220511161602.117772-1-sireeshkodali1@gmail.com>
+ <20220511161602.117772-10-sireeshkodali1@gmail.com>
+ <2d68e610-e8ae-9e08-257a-3c94c3697334@linaro.org>
+In-Reply-To: <2d68e610-e8ae-9e08-257a-3c94c3697334@linaro.org>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed May 11, 2022 at 11:25 PM IST, Krzysztof Kozlowski wrote:
+> On 11/05/2022 18:16, Sireesh Kodali wrote:
+> > This commit adds the modem (q6v5_mss), WiFi (wcnss-pil) and audio DSP
+> > (q6v5_pas) remote processor nodes for the MSM8953 platform. It also add=
+s
+> > the coresponding SMP2P, SMSM and pinctrl nodes that are needed by these
+> > remote processors.
+> >=20
+> > Signed-off-by: Sireesh Kodali <sireeshkodali1@gmail.com>
+> > +			};
+> > +
+> > +			wcnss_sleep: wcnss-sleep-pins {
+> > +				wcss_wlan2 {
+>
+> No underscores in node names, unless something needs it?
+>
 
+wcnss_sleep is used by the pronto node defined below
 
-On 12/05/2022 10:00, Akhil R wrote:
-> Add headers and device tree node to support GPCDMA in Tegra234
-> 
-> Akhil R (2):
->    dt-bindings: Add headers for Tegra234 GPCDMA
->    arm64: tegra: Add Tegra234 GPCDMA device tree node
-> 
->   arch/arm64/boot/dts/nvidia/tegra234.dtsi   | 43 ++++++++++++++++++++++
->   include/dt-bindings/memory/tegra234-mc.h   |  1 +
->   include/dt-bindings/reset/tegra234-reset.h |  1 +
->   3 files changed, 45 insertions(+)
-> 
+> > +					pins =3D "gpio76";
+> > +					function =3D "wcss_wlan2";
+> > +				};
+> > +				wcss_wlan1 {
+> > +					pins =3D "gpio77";
+> > +					function =3D "wcss_wlan1";
+> > +				};
+> > +				wcss_wlan0 {
+> > +					pins =3D "gpio78";
+> > +					function =3D "wcss_wlan0";
+> > +				};
+> > +				wcss_wlan {
+> > +					pins =3D "gpio79", "gpio80";
+> > +					function =3D "wcss_wlan";
+> > +				};
+> > +
+> > +				pinconf {
+> > +					pins =3D "gpio76", "gpio77",
+> > +					     "gpio78", "gpio79",
+> > +					     "gpio80";
+> > +					drive-strength =3D <2>;
+> > +					bias-pull-down;
+> > +				};
+> > +			};
+> >  		};
+> > =20
+> >  		gcc: clock-controller@1800000 {
+> > @@ -745,6 +892,59 @@ spmi_bus: spmi@200f000 {
+> >  			#size-cells =3D <0>;
+> >  		};
+> > =20
+> > +		modem: remoteproc@4080000 {
+> > +			compatible =3D "qcom,msm8953-mss-pil";
+> > +			reg =3D <0x4080000 0x100>,
+> > +			    <0x4020000 0x040>;
+> > +
+> > +			reg-names =3D "qdsp6", "rmb";
+> > +
+> > +			interrupts-extended =3D <&intc 0 24 1>,
+> > +					      <&modem_smp2p_in 0 0>,
+> > +					      <&modem_smp2p_in 1 0>,
+> > +					      <&modem_smp2p_in 2 0>,
+> > +					      <&modem_smp2p_in 3 0>;
+> > +			interrupt-names =3D "wdog", "fatal", "ready",
+> > +					  "handover", "stop-ack";
+> > +
+> > +			clocks =3D <&gcc GCC_MSS_CFG_AHB_CLK>,
+> > +				 <&gcc GCC_MSS_Q6_BIMC_AXI_CLK>,
+> > +				 <&gcc GCC_BOOT_ROM_AHB_CLK>,
+> > +				 <&xo_board>;
+> > +			clock-names =3D "iface", "bus", "mem", "xo";
+> > +
+> > +			power-domains =3D <&rpmpd MSM8953_VDDCX>, <&rpmpd MSM8953_VDDMX>;
+> > +			power-domain-names =3D "cx", "mx";
+> > +
+> > +			qcom,smem-states =3D <&modem_smp2p_out 0>;
+> > +			qcom,smem-state-names =3D "stop";
+> > +
+> > +			resets =3D <&gcc GCC_MSS_BCR>;
+> > +			reset-names =3D "mss_restart";
+> > +
+> > +			qcom,halt-regs =3D <&tcsr 0x18000 0x19000 0x1a000>;
+> > +
+> > +			status =3D "okay";
+>
+> No need for okay.
 
-This should be V2 right? Otherwise looks good to me.
+I'll drop it in v2
+>
+> > +
+> > +			mba {
+> > +				memory-region =3D <&mba_mem>;
+> > +			};
+> > +
+> > +			mpss {
+> > +				memory-region =3D <&mpss_mem>;
+> > +			};
+> > +
+> > +			smd-edge {
+> > +				interrupts =3D <GIC_SPI 25 IRQ_TYPE_EDGE_RISING>;
+> > +
+> > +				qcom,smd-edge =3D <0>;
+> > +				qcom,ipc =3D <&apcs 8 12>;
+> > +				qcom,remote-pid =3D <1>;
+> > +
+> > +				label =3D "modem";
+> > +			};
+> > +		};
+> > +
+> >  		usb3: usb@70f8800 {
+> >  			compatible =3D "qcom,msm8953-dwc3", "qcom,dwc3";
+> >  			reg =3D <0x70f8800 0x400>;
+> > @@ -1057,6 +1257,74 @@ i2c_8: i2c@7af8000 {
+> >  			status =3D "disabled";
+> >  		};
+> > =20
+> > +		pronto: remoteproc@a21b000 {
+> > +			compatible =3D "qcom,pronto-v3-pil", "qcom,pronto";
+> > +			reg =3D <0xa204000 0x2000>,
+> > +			      <0xa202000 0x1000>,
+> > +			      <0xa21b000 0x3000>;
+> > +			reg-names =3D "ccu", "dxe", "pmu";
+> > +
+> > +			memory-region =3D <&wcnss_fw_mem>;
+> > +
+> > +			interrupts-extended =3D <&intc 0 149 IRQ_TYPE_EDGE_RISING>,
+> > +					      <&wcnss_smp2p_in 0 IRQ_TYPE_EDGE_RISING>,
+> > +					      <&wcnss_smp2p_in 1 IRQ_TYPE_EDGE_RISING>,
+> > +					      <&wcnss_smp2p_in 2 IRQ_TYPE_EDGE_RISING>,
+> > +					      <&wcnss_smp2p_in 3 IRQ_TYPE_EDGE_RISING>;
+> > +			interrupt-names =3D "wdog", "fatal", "ready", "handover", "stop-ack=
+";
+> > +
+> > +			power-domains =3D <&rpmpd MSM8953_VDDCX>, <&rpmpd MSM8953_VDDMX>;
+> > +			power-domain-names =3D "cx", "mx";
+> > +
+> > +			qcom,state =3D <&wcnss_smp2p_out 0>;
+> > +			qcom,state-names =3D "stop";
+> > +
+> > +			pinctrl-names =3D "default", "sleep";
+> > +			pinctrl-0 =3D <&wcnss_default>;
+> > +			pinctrl-1 =3D <&wcnss_sleep>;
+> > +
+> > +			status =3D "okay";
+>
+> No need for status.
 
-Reviewed-by: Jon Hunter <jonathanh@nvidia.com>
+Will be dropped in v2
+>
+> > +
+> > +			iris: iris {
+> > +				compatible =3D "qcom,wcn3660b";
+> > +
+> > +				clocks =3D <&rpmcc RPM_SMD_RF_CLK2>;
+> > +				clock-names =3D "xo";
+> > +			};
+> > +
+> > +			smd-edge {
+> > +				interrupts =3D <GIC_SPI 142 IRQ_TYPE_EDGE_RISING>;
+> > +
+> > +				qcom,ipc =3D <&apcs 8 17>;
+> > +				qcom,smd-edge =3D <6>;
+> > +				qcom,remote-pid =3D <4>;
+> > +
+> > +				label =3D "pronto";
+> > +
+> > +				wcnss {
+> > +					compatible =3D "qcom,wcnss";
+> > +					qcom,smd-channels =3D "WCNSS_CTRL";
+> > +
+> > +					qcom,mmio =3D <&pronto>;
+> > +
+> > +					bt {
+> > +						compatible =3D "qcom,wcnss-bt";
+> > +					};
+> > +
+> > +					wifi {
+> > +						compatible =3D "qcom,wcnss-wlan";
+> > +
+> > +						interrupts =3D <GIC_SPI 145 IRQ_TYPE_LEVEL_HIGH>,
+> > +							     <GIC_SPI 146 IRQ_TYPE_LEVEL_HIGH>;
+> > +						interrupt-names =3D "tx", "rx";
+> > +
+> > +						qcom,smem-states =3D <&apps_smsm 10>, <&apps_smsm 9>;
+> > +						qcom,smem-state-names =3D "tx-enable", "tx-rings-empty";
+> > +					};
+> > +				};
+> > +			};
+> > +		};
+> > +
+> >  		intc: interrupt-controller@b000000 {
+> >  			compatible =3D "qcom,msm-qgic2";
+> >  			interrupt-controller;
+> > @@ -1070,6 +1338,116 @@ apcs: mailbox@b011000 {
+> >  			#mbox-cells =3D <1>;
+> >  		};
+> > =20
+> > +		lpass: remoteproc@c200000 {
+> > +			compatible =3D "qcom,msm8953-adsp-pil";
+> > +			reg =3D <0xc200000 0x100>;
+> > +
+> > +			interrupts-extended =3D <&intc 0 293 IRQ_TYPE_EDGE_RISING>,
+> > +					      <&smp2p_adsp_in 0 IRQ_TYPE_EDGE_RISING>,
+> > +					      <&smp2p_adsp_in 1 IRQ_TYPE_EDGE_RISING>,
+> > +					      <&smp2p_adsp_in 2 IRQ_TYPE_EDGE_RISING>,
+> > +					      <&smp2p_adsp_in 3 IRQ_TYPE_EDGE_RISING>;
+> > +			interrupt-names =3D "wdog", "fatal", "ready",
+> > +					  "handover", "stop-ack";
+> > +			clocks =3D <&xo_board>;
+> > +			clock-names =3D "xo";
+> > +
+> > +			power-domains =3D <&rpmpd MSM8953_VDDCX>;
+> > +			power-domain-names =3D "cx";
+> > +
+> > +			memory-region =3D <&adsp_fw_mem>;
+> > +
+> > +			qcom,smem-states =3D <&smp2p_adsp_out 0>;
+> > +			qcom,smem-state-names =3D "stop";
+> > +
+> > +			smd-edge {
+> > +				interrupts =3D <GIC_SPI 289 IRQ_TYPE_EDGE_RISING>;
+> > +
+> > +				label =3D "lpass";
+> > +				mboxes =3D <&apcs 8>;
+> > +				qcom,smd-edge =3D <1>;
+> > +				qcom,remote-pid =3D <2>;
+> > +				#address-cells =3D <1>;
+> > +				#size-cells =3D <0>;
+> > +
+> > +				apr {
+> > +					compatible =3D "qcom,apr-v2";
+> > +					qcom,smd-channels =3D "apr_audio_svc";
+> > +					qcom,apr-domain =3D <APR_DOMAIN_ADSP>;
+> > +					#address-cells =3D <1>;
+> > +					#size-cells =3D <0>;
+> > +
+> > +					q6core {
+> > +						reg =3D <APR_SVC_ADSP_CORE>;
+> > +						compatible =3D "qcom,q6core";
+> > +					};
+> > +
+> > +					q6afe: q6afe {
+> > +						compatible =3D "qcom,q6afe";
+> > +						reg =3D <APR_SVC_AFE>;
+> > +						q6afedai: dais {
+> > +							compatible =3D "qcom,q6afe-dais";
+> > +							#address-cells =3D <1>;
+> > +							#size-cells =3D <0>;
+> > +							#sound-dai-cells =3D <1>;
+> > +
+> > +							dai@16 {
+> > +								reg =3D <PRIMARY_MI2S_RX>;
+> > +								qcom,sd-lines =3D <0 1>;
+> > +							};
+> > +
+> > +							dai@21 {
+> > +								reg =3D <TERTIARY_MI2S_TX>;
+> > +								qcom,sd-lines =3D <0 1>;
+> > +							};
+> > +						};
+> > +						q6afecc: clock-controller {
+> > +							compatible =3D "qcom,q6afe-clocks";
+> > +							#clock-cells =3D <2>;
+> > +						};
+> > +					};
+> > +
+> > +					q6asm: q6asm {
+> > +						compatible =3D "qcom,q6asm";
+> > +						reg =3D <APR_SVC_ASM>;
+> > +						q6asmdai: dais {
+> > +							compatible =3D "qcom,q6asm-dais";
+> > +							#address-cells =3D <1>;
+> > +							#size-cells =3D <0>;
+> > +							#sound-dai-cells =3D <1>;
+> > +
+> > +							dai@0 {
+> > +								reg =3D <MSM_FRONTEND_DAI_MULTIMEDIA1>;
+> > +							};
+> > +
+> > +							dai@1 {
+> > +								reg =3D <MSM_FRONTEND_DAI_MULTIMEDIA2>;
+> > +							};
+> > +
+> > +							dai@2 {
+> > +								reg =3D <MSM_FRONTEND_DAI_MULTIMEDIA3>;
+> > +							};
+> > +
+> > +							dai@3 {
+> > +								reg =3D <MSM_FRONTEND_DAI_MULTIMEDIA4>;
+> > +								is-compress-dai;
+> > +							};
+> > +						};
+> > +					};
+> > +
+> > +					q6adm: q6adm {
+> > +						compatible =3D "qcom,q6adm";
+> > +						reg =3D <APR_SVC_ADM>;
+> > +						q6routing: routing {
+> > +							compatible =3D "qcom,q6adm-routing";
+> > +							#sound-dai-cells =3D <0>;
+> > +						};
+> > +					};
+> > +				};
+> > +			};
+> > +
+>
+> Remove unneeded blank lines.
 
-Jon
+Will be fixed in v2
+>
+> > +		};
+> > +
+> >  		timer@b120000 {
+> >  			compatible =3D "arm,armv7-timer-mem";
+> >  			reg =3D <0xb120000 0x1000>;
+>
+>
+> Best regards,
+> Krzysztof
+
+Thanks,
+Sireesh Kodali
