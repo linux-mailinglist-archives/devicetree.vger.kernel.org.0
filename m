@@ -2,101 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 769F152502F
-	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 16:35:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D0899525033
+	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 16:35:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343817AbiELOe7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 May 2022 10:34:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56566 "EHLO
+        id S1355365AbiELOfW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 May 2022 10:35:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57628 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1355365AbiELOe4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 10:34:56 -0400
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8AF4C261969
-        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 07:34:55 -0700 (PDT)
-Received: by mail-wr1-x434.google.com with SMTP id k2so7566907wrd.5
-        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 07:34:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=LuprtpJ06dq5t/dfZsOwpuZXBtU4EbDymnv83y3Wy+s=;
-        b=o/mDg4TjUzNPpNIW/8i9F6/aeJmH/CBJyZI9jwvp5rzSJMy4IPk3YDlBdnMQfS21yy
-         LqVhrTq4dmpHvq/zPNXeEUbZnyVUGaOfPo9da8zFwvgVHQwgXBZUXSKAJknTlk1LcIo8
-         +SrmkV6kbr6may6Jfa24nTw90FF4PlUVBhD+zcV2hrRJ0zhGgMVub235ZtUkO4BdWj2q
-         N7DFl/wV8Vr9ESOeBDmVY8140P55Y7w+pjTB41mpgH03af/4BOTqKxgqbpzJhkCV9DUJ
-         XeXD29JtimX8PzskSPpGszgLM0rFXcJ+q2Uz0+Vdk079By9MrnHAbxna1B0K3X+wC6v3
-         7J0A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=LuprtpJ06dq5t/dfZsOwpuZXBtU4EbDymnv83y3Wy+s=;
-        b=ZMN9FgCUYKTAzfQVSPKmO293NI29BIDgE2ucrUGwXXYg1+qZfB/sYO82yC1buC3OG6
-         O4kOXsGyApay5dOkshONJ2/wcwEk2gbUCPw2EULitM4O4OlTjJ3kNmhzkVaxdvQ3kA1+
-         yzaIwg8ZXvgHgqaFu/GwRRpX/aN0Qh1m0B9Mn1H7HnuQmtX+CFI5NEI8SkgI+Wc2Xsgb
-         jIwRfsujh5PlSc/tWNs+A+eLrSxb0LkhVtu/fa72fLWBDFdgLFzFSS8OaofwRkoD9P//
-         Ou8u4nYWUzOu27iRbNsSs4nA+OCp2iSGlMDbuuuVqvReTN6uX9G+UoySLLUtV7F8Yzsy
-         RzaA==
-X-Gm-Message-State: AOAM533hKJQyBeSz823pg+EOxkhnYJgpDG5P+7Wn6mUQNShlnfb9GNzK
-        hOMadd4Y4sfmteMOzrPMA7Vc3Q==
-X-Google-Smtp-Source: ABdhPJz0TUjYL2u5t8YGvfqFdxtaBsYJSXvqDpz+JJ8NWZWCyrdVUzmQm59FGzp+9PHG1T652Q7LeQ==
-X-Received: by 2002:adf:fd4a:0:b0:20a:cee3:5abf with SMTP id h10-20020adffd4a000000b0020acee35abfmr28103117wrs.522.1652366094139;
-        Thu, 12 May 2022 07:34:54 -0700 (PDT)
-Received: from [192.168.0.161] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id o12-20020a05600c4fcc00b003942a244ec8sm3137387wmq.13.2022.05.12.07.34.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 12 May 2022 07:34:53 -0700 (PDT)
-Message-ID: <894e5093-4ad8-dffd-c6b6-6b0a5f90814f@linaro.org>
-Date:   Thu, 12 May 2022 16:34:52 +0200
+        with ESMTP id S1354452AbiELOfW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 10:35:22 -0400
+Received: from mout.kundenserver.de (mout.kundenserver.de [217.72.192.73])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78E9225D130;
+        Thu, 12 May 2022 07:35:20 -0700 (PDT)
+Received: from mail-yw1-f171.google.com ([209.85.128.171]) by
+ mrelayeu.kundenserver.de (mreue106 [213.165.67.113]) with ESMTPSA (Nemesis)
+ id 1MJn8J-1nV91L1dyj-00K7ib; Thu, 12 May 2022 16:35:18 +0200
+Received: by mail-yw1-f171.google.com with SMTP id 00721157ae682-2f16645872fso58979727b3.4;
+        Thu, 12 May 2022 07:35:17 -0700 (PDT)
+X-Gm-Message-State: AOAM531uf/IF/eWxzCferfvFQ6nIMHB2lfFsJRRwsc+S2dpF7nYzmX0X
+        XxBk2ONLjbID075LmHgnLUw4L2odBO2eNk5CZp8=
+X-Google-Smtp-Source: ABdhPJzfbhwoFr1q9juMntgIfHM+m3U1nWpSEbsdjudirAmgYnzjhj8eMLGYhy6XgarB5vhSiUly3q7lBnc1N2pSqgQ=
+X-Received: by 2002:a81:ad7:0:b0:2e6:84de:3223 with SMTP id
+ 206-20020a810ad7000000b002e684de3223mr331249ywk.209.1652366117032; Thu, 12
+ May 2022 07:35:17 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH v4 2/2] dt-bindings: trivial-devices: Add xdp152
-Content-Language: en-US
-To:     Greg.Schwendimann@infineon.com, linux@roeck-us.net,
-        linux-hwmon@vger.kernel.org
-Cc:     robh+dt@kernel.org, krzk+dt@kernel.org, devicetree@vger.kernel.org
-References: <052c9885e92243fb99ada46e6a263c09@infineon.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <052c9885e92243fb99ada46e6a263c09@infineon.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20220510032558.10304-1-ychuang3@nuvoton.com> <CAK8P3a1k8y8U99bBmqBYE1vYAc0q-UeaM0oLP4tTHZCpyYNOgA@mail.gmail.com>
+ <8be62b40-077a-7634-7d34-7776909a2abe@linaro.org>
+In-Reply-To: <8be62b40-077a-7634-7d34-7776909a2abe@linaro.org>
+From:   Arnd Bergmann <arnd@arndb.de>
+Date:   Thu, 12 May 2022 16:35:00 +0200
+X-Gmail-Original-Message-ID: <CAK8P3a3=YD7WV+Www8pf+JTv14DwcnSjD+f=YFCNMxXYT9FAZA@mail.gmail.com>
+Message-ID: <CAK8P3a3=YD7WV+Www8pf+JTv14DwcnSjD+f=YFCNMxXYT9FAZA@mail.gmail.com>
+Subject: Re: [PATCH V4 0/5] Add initial support for MA35D1 SoC
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Arnd Bergmann <arnd@arndb.de>, Jacky Huang <ychuang3@nuvoton.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        ychuang570808@gmail.com, Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Olof Johansson <olof@lixom.net>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, SoC Team <soc@kernel.org>,
+        cfli0@nuvoton.com
+Content-Type: text/plain; charset="UTF-8"
+X-Provags-ID: V03:K1:f35I4VQN5HrjLu+f35ruvI1eR5T9g+bS8hIxq67YP8hU7et8GXq
+ 6/ga5BEAuNysl5lffjUoLFn5i77YASqLm+x0rtNCuyggX++caLY3Lbm2HsCugCp3hMCY4pQ
+ GzzJ+3KwbzZaF4Mjb5Rzfx5AtpBzCIZUdIBhT+5xL2soYf++YgqAUeGSxv91EoCtsvutHh6
+ Nm+mInPbNTW1RvP4obUXQ==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:fkt0tv7tA1I=:UI38Qzf7Hgmuu3pdwo8Sza
+ FIDnSMv87Ew1LeBfkAnGiv96fAvynAjx7G455b/zjgpTOBoAzfHzoWrPpTWD35lL5mjfyVQ2V
+ 3mtXsArw+VU4KZQkllqM+NjGPy06D1Nxc4pcD3EgvrnQVV9G3/1VtFHcjcZRraf1/X1txz+RJ
+ 2cFvvs/zLtqNfHx/z2lmHriraxorAeZipIjhu7s52OgNer4igR3/RZZsUn4N5MKYghbYXbsgN
+ ffCcCy/YR4TOVPT8SRSju9xHnuzSIUxW7P0yfgyfPGo5b2G9PQDC/A5wZ4teKOy0wjXKhbBJm
+ t9zMJJbEz7heT7jMAFuc6p5moRal+sYfFDsvxNIPrjYEA/zLd0mdNoKdhWlE6hPZNkw8B+9wI
+ HIw4cO3rundVs9CHfm3Aq3uSGxT1KvIF6sfEP99SrKjsHf71WIcC3Eka4nhoXi+2S80GbCKPH
+ lvgNvShwFowIcNXg6Qug4Z2bWYVmp0Q67Bg9h1v+JsiGrNt0S+II/l1kUtq3BYP8RplgjJhfj
+ 6rYZVFfKh+7v561mukU2a6Y7gAoD1xDSeDrrDZYiuz6yE/F5zZZQn345YpIAUP03nxjcA6NJR
+ R5BXdcFbeQbQzx+UbeolBUk7+IpjUSZsOGXncmK3sSaenEgUmbLvO/4qkYGp9Fxg7UuRtCOcI
+ u+iMksTTQH++kmbPHfTQKLBEfIc2Tsfn423KoptDxCWPna+ibMYT/5BN+g91V/dR+Hq1NlsMY
+ aF1wrvqsm4xICty0OOHSaRE9MrsaSJYeASF8OA==
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/05/2022 15:26, Greg.Schwendimann@infineon.com wrote:
-> 
-> Add Infineon Digital Multi-phase xdp152 family controllers.
-> 
-> Signed-off-by: Greg Schwendimann <Greg.Schwendimann@infineon.com>
-> ---
->  Documentation/devicetree/bindings/trivial-devices.yaml | 4 ++++
->  1 file changed, 4 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
-> index 550a2e5c9e05..fc2164c4d108 100644
-> --- a/Documentation/devicetree/bindings/trivial-devices.yaml
-> +++ b/Documentation/devicetree/bindings/trivial-devices.yaml
-> @@ -143,6 +143,10 @@ properties:
->            - infineon,xdpe12254
->              # Infineon Multi-phase Digital VR Controller xdpe12284
->            - infineon,xdpe12284
-> +            # Infineon Multi-phase Digital VR Controller xdpe152c4
-> +          - infineon,xdpe152c4
-> +            # Infineon Multi-phase Digital VR Controller xdpe15284
-> +          - infineon,xdpe15284
+On Thu, May 12, 2022 at 4:11 PM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 10/05/2022 09:07, Arnd Bergmann wrote:
+> > On Tue, May 10, 2022 at 5:25 AM Jacky Huang <ychuang3@nuvoton.com> wrote:
+> >>
+> >> This patch series adds initial support for Nuvoton MA35D1 SoC,
+> >> include initial dts and clock controller binding.
+> >>
+> >
+> > This looks fine in principle, but we are getting close to the merge window and
+> > should finalize this quickly to make it into v5.19. I see that you don't have a
+> > console device, as commented in the .dts patch. Normally I prefer merging
+> > platforms only when there is at least rudimentary support for booting into
+> > an initramfs with a serial console, but this is a flexible rule.
+>
+> I disagree. It does not look fine - does not pass `make dtbs_check` even
+> with Nuvoton bindings...
 
-I guess the order is rather '8' before 'c'.
+Ok, thanks for taking a look. It was already late for 5.19 and missing the uart
+driver, so it was clear it had not seen actual runtime testing. Let's try
+aiming for 5.20 then.
 
-
-Best regards,
-Krzysztof
+        Arnd
