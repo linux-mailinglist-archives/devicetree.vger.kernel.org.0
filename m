@@ -2,100 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A712152490B
-	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 11:35:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 60CC2524933
+	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 11:38:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351682AbiELJfb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 May 2022 05:35:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53878 "EHLO
+        id S1352172AbiELJiM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 May 2022 05:38:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60906 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347965AbiELJfa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 05:35:30 -0400
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6BE269B6E
-        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 02:35:28 -0700 (PDT)
-Received: by mail-ed1-x532.google.com with SMTP id k27so5537692edk.4
-        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 02:35:28 -0700 (PDT)
+        with ESMTP id S1352133AbiELJhv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 05:37:51 -0400
+Received: from mail-pj1-x1031.google.com (mail-pj1-x1031.google.com [IPv6:2607:f8b0:4864:20::1031])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D04F26FD1A;
+        Thu, 12 May 2022 02:37:38 -0700 (PDT)
+Received: by mail-pj1-x1031.google.com with SMTP id t11-20020a17090ad50b00b001d95bf21996so7324951pju.2;
+        Thu, 12 May 2022 02:37:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=mime-version:reply-to:from:date:message-id:subject:to;
-        bh=B9r6p7EN07mDvhfVo0cLbZ8Pxn1tf5RBuT3NfjO0k5U=;
-        b=gIAzvAdCgrBKbGDbVeZ9nd+GHGFktf20DnhI7aWA0QSF4/sqIogAy14FjIFzzce66W
-         JO2ZtVIfAP+ZhT/vSttTG1Xei6irUJ0IEg8k9ImhvqbmGPWy/uAPoa+bPrjKY/+xUEJB
-         6pYmelbGUqDuoVzxbmeAi1Oj4SXnHvOH96ManO3X7YqiaJFOzhTBVczvSXknJWE/iO+R
-         WVdaB/FAYU2x9u1fjnGCQou32q3Kp8KiSASwM85tjjDPKJq9+8RtNBKiPdx7/bFQnlkM
-         a8HhGKyfV3yC43POFDVgQPgUcVLNW1toxd9S147DZ2Nl2eCHq9hnTiqSq6HzSYXIBXmM
-         lohw==
+        h=mime-version:content-transfer-encoding:date:message-id:cc:subject
+         :from:to:references:in-reply-to;
+        bh=iZFrk+1WuAX7Uovgz4zajtM6wW58xVr5fx7WagK6QTE=;
+        b=iuLH0XfcHwUlF/vNb9nAe18b2ojIBUCTOjyojcLYaPl/T7OisuyAs147hvM1DKucIB
+         DZ23cJSUA41Gsojj/ZqZ/X81uqu/i/NKlsjSWQgOuI6GSZ+bdoIkTlv8mAaeEv9ry0ci
+         1bBnhdA4CY9RlEuOQXhhb7sgDR9VPA27HPvMuKu/JtntNi3sQmVAp384gNS+BmHiA/fs
+         F+kXkG485qOdYmtwpta5IljifuUEMpVStwRG6QgEepeEez4mIlpv9mejVuKY1z/5cNm6
+         T2F35aXq0/Dm/s+OCm0ufX/idfqkOWH8r/OeBNMYGKN/aa+SoBf9AE8BlwF6Xs2kuMNZ
+         JJJw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to;
-        bh=B9r6p7EN07mDvhfVo0cLbZ8Pxn1tf5RBuT3NfjO0k5U=;
-        b=hM2dtz/l33tsUqWtPq8fu/eIqsEb36VusrBqFbm7o8raHXW6LPLmOUGJ7guO/4QehU
-         BPNwN1VEk2SB6NfivMGlydvpclVqzRMcd7hRm9IX4hV3S65PZyDSFBi51rcomXvCAEHI
-         W2/jycmsKa4OhVFfx9YQ2N66hyec/LYj4gQoactDsvFWyF62nhqI/99dmNkJ+XSvO+Cp
-         jlCsLg3rIxctuQgbTPMuJd2n37Kgq4PqutuULthOyaSBWMuamLikHXd26vzqK7qDn+Pj
-         +r5Bur1wAKj+FZW1Xe7sNt1YXY/+LV01swBS/k7JpoEvf3nbiwRk25QEAMoftsZ9cdRZ
-         j/CQ==
-X-Gm-Message-State: AOAM532dp66JAHBl8FZFFJ4ZW0PAIHaCMcMDAibZl44DEJFnrSXwBxA/
-        UddU6MoWnqPMTZeBRLqvyOkMwyaZ18VJCd1q5SI=
-X-Google-Smtp-Source: ABdhPJyAPzARzT0IQ8zYSPkPwpFiKIGFpb5ZrN+uMTZPO4a6xFk3KvKaK/Tsf+UthCA1Ruu3fUBrtGHR42YfUGfeJ0k=
-X-Received: by 2002:a05:6402:206b:b0:42a:3622:af50 with SMTP id
- bd11-20020a056402206b00b0042a3622af50mr3107675edb.236.1652348127029; Thu, 12
- May 2022 02:35:27 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 2002:a05:6f02:ca19:b0:1b:d6eb:5402 with HTTP; Thu, 12 May 2022
- 02:35:26 -0700 (PDT)
-Reply-To: sj7373313@gmail.com
-From:   "Mis.Sandra Johnson." <bassiroualfs742@gmail.com>
-Date:   Thu, 12 May 2022 10:35:26 +0100
-Message-ID: <CAMqHDfh9MgjP6M7Ra+RhrCHCq0r049BB78F3XxyQGvCwNNcZCA@mail.gmail.com>
-Subject: Sandra J.
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: Yes, score=5.6 required=5.0 tests=BAYES_50,DKIM_SIGNED,
+        h=x-gm-message-state:mime-version:content-transfer-encoding:date
+         :message-id:cc:subject:from:to:references:in-reply-to;
+        bh=iZFrk+1WuAX7Uovgz4zajtM6wW58xVr5fx7WagK6QTE=;
+        b=QJjMbdL0Y+jKWVwhMAHvGYf7r3qYUW01i23kPMa8jAGfZMt2Orn63K5BDhbHMPzRc5
+         pwYOJBqzd4qTwoHciESAWzDEAlbjbPC1a1KHS6dOkM8u1tBawkQlHPKgy1kMahw5rTO0
+         t3zFS15W0kRVcvHlXqYkEuv0sLPmWSx1/TC62qVO2Oam/Kb33FkBHgQhnjLt7AAMASDG
+         RcrxeGmTXqPxQUbbQvHSAOiKJqNsUDORG8O0jyvFnEaJnGFl0K1GaDRLv8aVBoI8nvAQ
+         3dWA1oIqgEEh3ncLwFJM3K6LBVU824UWANllCF1zr6MJqNOvqV+hFdnnq/nAh70w5hrB
+         AeeA==
+X-Gm-Message-State: AOAM530+0nJcWdqbVVWljaXjngK4klVkDLAuodbkybLixv/rWuL0qoky
+        E48wQiW2U0LiqTfyRqRrRSQ=
+X-Google-Smtp-Source: ABdhPJzQfordeKPqWJc5pKiQnLmj2Bbc9ov9S+FxXYv9EgRzW0ywBuhOTZVWRfnZoW1+3gLBwaTWzQ==
+X-Received: by 2002:a17:903:32d0:b0:15e:8cbc:fd39 with SMTP id i16-20020a17090332d000b0015e8cbcfd39mr30500975plr.95.1652348258335;
+        Thu, 12 May 2022 02:37:38 -0700 (PDT)
+Received: from localhost ([49.204.239.218])
+        by smtp.gmail.com with ESMTPSA id a10-20020a170902b58a00b0015e8d4eb2acsm3364350pls.246.2022.05.12.02.37.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 12 May 2022 02:37:37 -0700 (PDT)
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date:   Thu, 12 May 2022 15:07:32 +0530
+Message-Id: <CJXOKK6WT06F.109YU66ZCBP5T@skynet-linux>
+Cc:     <bjorn.andersson@linaro.org>, "Andy Gross" <agross@kernel.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        "open list" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: msm8916: Fix typo in pronto
+ remoteproc node
+From:   "Sireesh Kodali" <sireeshkodali1@gmail.com>
+To:     "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>,
+        <devicetree@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-remoteproc@vger.kernel.org>
+X-Mailer: aerc 0.9.0
+References: <20220510042654.71152-1-sireeshkodali1@gmail.com>
+ <20220510042654.71152-3-sireeshkodali1@gmail.com>
+ <81365629-6cf0-f320-e684-4fb40b829399@linaro.org>
+In-Reply-To: <81365629-6cf0-f320-e684-4fb40b829399@linaro.org>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,FREEMAIL_REPLYTO,FREEMAIL_REPLYTO_END_DIGIT,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        UNDISC_FREEM autolearn=no autolearn_force=no version=3.4.6
-X-Spam-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-        *      https://www.dnswl.org/, no trust
-        *      [2a00:1450:4864:20:0:0:0:532 listed in]
-        [list.dnswl.org]
-        *  0.8 BAYES_50 BODY: Bayes spam probability is 40 to 60%
-        *      [score: 0.4995]
-        *  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-        *      provider
-        *      [bassiroualfs742[at]gmail.com]
-        *  0.2 FREEMAIL_ENVFROM_END_DIGIT Envelope-from freemail username ends
-        *       in digit
-        *      [bassiroualfs742[at]gmail.com]
-        * -0.0 SPF_PASS SPF: sender matches SPF record
-        *  0.0 SPF_HELO_NONE SPF: HELO does not publish an SPF Record
-        *  0.2 FREEMAIL_REPLYTO_END_DIGIT Reply-To freemail username ends in
-        *      digit
-        *      [sj7373313[at]gmail.com]
-        *  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-        *       valid
-        * -0.1 DKIM_VALID_EF Message has a valid DKIM or DK signature from
-        *      envelope-from domain
-        * -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-        * -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-        *      author's domain
-        * -0.0 T_SCC_BODY_TEXT_LINE No description available.
-        *  3.5 UNDISC_FREEM Undisclosed recipients + freemail reply-to
-        *  1.0 FREEMAIL_REPLYTO Reply-To/From or Reply-To/body contain
-        *      different freemails
-X-Spam-Level: *****
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-HI,
-Good day.
-Kindly confirm to me if this is your correct email Address and get
-back to me for our interest.
-Sincerely,
-Sandra J.
+On Wed May 11, 2022 at 11:41 PM IST, Krzysztof Kozlowski wrote:
+> On 10/05/2022 06:26, Sireesh Kodali wrote:
+> > The smem-state properties for the pronto node were incorrectly labelled=
+,
+> > reading `qcom,state*` rather than `qcom,smem-state*`. Fix that, allowin=
+g
+> > the stop state to be used.
+> >=20
+> > Fixes: 88106096cbf8 ("ARM: dts: msm8916: Add and enable wcnss node")
+> >=20
+> > Signed-off-by: Sireesh Kodali <sireeshkodali1@gmail.com>
+>
+> No blank lines between tags, please.
+>
+> Best regards,
+> Krzysztof
+
+Will fix in v2
+
+Thanks,
+Sireesh
