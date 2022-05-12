@@ -2,161 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BFAF3525749
-	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 23:48:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C17DD52576D
+	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 23:54:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1358905AbiELVsJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 May 2022 17:48:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53808 "EHLO
+        id S1358990AbiELVxg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 May 2022 17:53:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42096 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1358907AbiELVr7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 17:47:59 -0400
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id DD60C49CAC
-        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 14:47:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1652392069;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=YWzVrdFw3n8EH2Ce8k4daz33bBf83epcMdzHAJNT8tE=;
-        b=W7fM6+FP2nVc7JqRXicqDnuFbWP7P4eyJiwsZ9YlNakyg97P2QjfN7ffSYjyyBXEiyp1OR
-        lsy8k4LA+7V6KeD/7ZmY6IG3SBOdSwEgfwYbYhk1RRxEMWRaz43Sux5NiiUPm+J7/gM2sP
-        Vlm8DTivFbjlNgY0SJ7DU6wuT+toqS8=
-Received: from mimecast-mx02.redhat.com (mx3-rdu2.redhat.com
- [66.187.233.73]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-617-E2haYQIaNmW7kVC3uepXEg-1; Thu, 12 May 2022 17:47:46 -0400
-X-MC-Unique: E2haYQIaNmW7kVC3uepXEg-1
-Received: from smtp.corp.redhat.com (int-mx02.intmail.prod.int.rdu2.redhat.com [10.11.54.2])
-        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        by mimecast-mx02.redhat.com (Postfix) with ESMTPS id DD7EB383328C;
-        Thu, 12 May 2022 21:47:45 +0000 (UTC)
-Received: from warthog.procyon.org.uk (unknown [10.33.37.67])
-        by smtp.corp.redhat.com (Postfix) with ESMTP id A13B84010E23;
-        Thu, 12 May 2022 21:47:31 +0000 (UTC)
-Organization: Red Hat UK Ltd. Registered Address: Red Hat UK Ltd, Amberley
-        Place, 107-111 Peascod Street, Windsor, Berkshire, SI4 1TE, United
-        Kingdom.
-        Registered in England and Wales under Company Registration No. 3798903
-From:   David Howells <dhowells@redhat.com>
-In-Reply-To: <20220504014440.3697851-1-keescook@chromium.org>
-References: <20220504014440.3697851-1-keescook@chromium.org>
-To:     Kees Cook <keescook@chromium.org>
-Cc:     Alexei Starovoitov <ast@kernel.org>, alsa-devel@alsa-project.org,
-        Al Viro <viro@zeniv.linux.org.uk>,
-        Andrew Gabbasov <andrew_gabbasov@mentor.com>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        Andy Gross <agross@kernel.org>,
-        Andy Lavr <andy.lavr@gmail.com>,
-        Arend van Spriel <aspriel@gmail.com>,
-        Baowen Zheng <baowen.zheng@corigine.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Boris Ostrovsky <boris.ostrovsky@oracle.com>,
-        Bradley Grove <linuxdrivers@attotech.com>,
-        brcm80211-dev-list.pdl@broadcom.com,
-        Christian Brauner <brauner@kernel.org>,
-        Christian =?utf-8?Q?G=C3=B6ttsche?= <cgzones@googlemail.com>,
-        Christian Lamparter <chunkeey@googlemail.com>,
-        Chris Zankel <chris@zankel.net>,
-        Cong Wang <cong.wang@bytedance.com>,
-        Daniel Axtens <dja@axtens.net>,
-        Daniel Vetter <daniel.vetter@ffwll.ch>,
-        Dan Williams <dan.j.williams@intel.com>,
-        David Gow <davidgow@google.com>,
-        David Howells <dhowells@redhat.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Dennis Dalessandro <dennis.dalessandro@cornelisnetworks.com>,
-        devicetree@vger.kernel.org, Dexuan Cui <decui@microsoft.com>,
-        Dmitry Kasatkin <dmitry.kasatkin@gmail.com>,
-        Eli Cohen <elic@nvidia.com>,
-        Eric Dumazet <edumazet@google.com>,
-        Eric Paris <eparis@parisplace.org>,
-        Eugeniu Rosca <erosca@de.adit-jv.com>,
-        Felipe Balbi <balbi@kernel.org>,
-        Francis Laniel <laniel_francis@privacyrequired.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Franky Lin <franky.lin@broadcom.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Gregory Greenman <gregory.greenman@intel.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Haiyang Zhang <haiyangz@microsoft.com>,
-        Hante Meuleman <hante.meuleman@broadcom.com>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        Hulk Robot <hulkci@huawei.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        "James E.J. Bottomley" <jejb@linux.ibm.com>,
-        James Morris <jmorris@namei.org>,
-        Jarkko Sakkinen <jarkko@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Jason Gunthorpe <jgg@ziepe.ca>, Jens Axboe <axboe@kernel.dk>,
-        Johan Hedberg <johan.hedberg@gmail.com>,
-        Johannes Berg <johannes.berg@intel.com>,
-        Johannes Berg <johannes@sipsolutions.net>,
-        John Keeping <john@metanate.com>,
-        Juergen Gross <jgross@suse.com>, Kalle Valo <kvalo@kernel.org>,
-        Keith Packard <keithp@keithp.com>, keyrings@vger.kernel.org,
-        kunit-dev@googlegroups.com,
-        Kuniyuki Iwashima <kuniyu@amazon.co.jp>,
-        "K. Y. Srinivasan" <kys@microsoft.com>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Lee Jones <lee.jones@linaro.org>,
-        Leon Romanovsky <leon@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        linux1394-devel@lists.sourceforge.net,
-        linux-afs@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-arm-msm@vger.kernel.org, linux-bluetooth@vger.kernel.org,
-        linux-hardening@vger.kernel.org, linux-hyperv@vger.kernel.org,
-        linux-integrity@vger.kernel.org, linux-rdma@vger.kernel.org,
-        linux-scsi@vger.kernel.org, linux-security-module@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-wireless@vger.kernel.org,
-        linux-xtensa@linux-xtensa.org, llvm@lists.linux.dev,
-        Loic Poulain <loic.poulain@linaro.org>,
-        Louis Peens <louis.peens@corigine.com>,
-        Luca Coelho <luciano.coelho@intel.com>,
-        Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
-        Marc Dionne <marc.dionne@auristor.com>,
-        Marcel Holtmann <marcel@holtmann.org>,
-        Mark Brown <broonie@kernel.org>,
-        "Martin K. Petersen" <martin.petersen@oracle.com>,
-        Max Filippov <jcmvbkbc@gmail.com>,
-        Mimi Zohar <zohar@linux.ibm.com>,
-        Muchun Song <songmuchun@bytedance.com>,
-        Nathan Chancellor <nathan@kernel.org>, netdev@vger.kernel.org,
-        Nick Desaulniers <ndesaulniers@google.com>,
-        Nuno =?utf-8?Q?S=C3=A1?= <nuno.sa@analog.com>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Paul Moore <paul@paul-moore.com>,
-        Rich Felker <dalias@aerifal.cx>,
-        Rob Herring <robh+dt@kernel.org>,
-        Russell King <linux@armlinux.org.uk>, selinux@vger.kernel.org,
-        "Serge E. Hallyn" <serge@hallyn.com>,
-        SHA-cyfmac-dev-list@infineon.com,
-        Simon Horman <simon.horman@corigine.com>,
-        Stefano Stabellini <sstabellini@kernel.org>,
-        Stefan Richter <stefanr@s5r6.in-berlin.de>,
-        Steffen Klassert <steffen.klassert@secunet.com>,
-        Stephen Hemminger <sthemmin@microsoft.com>,
-        Stephen Smalley <stephen.smalley.work@gmail.com>,
-        Tadeusz Struk <tadeusz.struk@linaro.org>,
-        Takashi Iwai <tiwai@suse.com>, Tom Rix <trix@redhat.com>,
-        Udipto Goswami <quic_ugoswami@quicinc.com>,
-        Vincenzo Frascino <vincenzo.frascino@arm.com>,
-        wcn36xx@lists.infradead.org, Wei Liu <wei.liu@kernel.org>,
-        xen-devel@lists.xenproject.org,
-        Xiu Jianfeng <xiujianfeng@huawei.com>,
-        Yang Yingliang <yangyingliang@huawei.com>
-Subject: Re: [PATCH 00/32] Introduce flexible array struct memcpy() helpers
+        with ESMTP id S1359030AbiELVwz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 17:52:55 -0400
+Received: from mail-yb1-xb2c.google.com (mail-yb1-xb2c.google.com [IPv6:2607:f8b0:4864:20::b2c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 477D15E774
+        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 14:52:12 -0700 (PDT)
+Received: by mail-yb1-xb2c.google.com with SMTP id e12so12134067ybc.11
+        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 14:52:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=1rN+CwqR+bH7StWcAdqh6rJz6EZ5daE9SrwU7kGYAAg=;
+        b=uey7p3FPmlV8ybbB7CX62wvjMDfYMimWgr7YFNG/RN0kUBvJdIH6yAWPwDblMqcaom
+         44H8zJ5WAZxERa36MnwbaP4ed62zhA5aDd1uF0Orwt5+v7Z3DDA0K3j3dbInN9yIu5Nj
+         XFqhuzYE4eUestUpSIlEffLtN97Yg9+RT92Dgvn+eZtm0DwdQdYI48v7P2nSwQ3jgulR
+         1+JcUs826xZLmLrM6z4OwDDLdy4td6XfnpsVUuH/oNkCS0QFnP5jekD/06uM5gGZNPEP
+         VxsohkXFP5y3Dq7eSWVX5MsDKfnPxV5TyPhLA3N6lksUvuI0fTIGzmwFWa/N1XZxemvW
+         9VEA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=1rN+CwqR+bH7StWcAdqh6rJz6EZ5daE9SrwU7kGYAAg=;
+        b=3o5o7ib2CVQy/qWbSNlvMLV/TTzD33JAwppLKzYHiX3/e07P6ptW9H4bn6rLXJAMyg
+         QG33u9hlbpua/cAjI6b4iHf2ETr9Q34eeYPEqKIqMSh6ZQ20smbJQ9TE+57k5hy35ujp
+         Cj6zLbRXOK7HCh/Un/AFnM9uoJJVDXYyIc6U2lTbQ5gWv0qyiBX78NkCTJdsuPXQPNai
+         ZtE+vuR0Hg19pICSyJ6QH8tZM1Yik6KnXWytK2YU3xMMYleCJnwQ++XNPMPv4yni3oXj
+         DC+XFcbRDiqj5ZzFGAFTvB6fYDnK/IN5FlYPRbxIa/QdqaeU34Px5oemRiDAwPibmXx7
+         LOcQ==
+X-Gm-Message-State: AOAM531NCoAs+APxBx3hBzIQO+U/Xwwrx5yyFq2rsIu+I0pZXTk6hD4y
+        p17KWZog/PDbGsJMHAczcKxQvew3swWimGxxYA9kIg==
+X-Google-Smtp-Source: ABdhPJzBciKJzRYibXRHHMHUQNthVJZ1oMHtE0x2iIbQxYaAk1bpoVS2cWCVmfOZEPSsSxUQs6HB561kBnOxHA40g/E=
+X-Received: by 2002:a25:2905:0:b0:649:7a2b:ca72 with SMTP id
+ p5-20020a252905000000b006497a2bca72mr1891393ybp.492.1652392331408; Thu, 12
+ May 2022 14:52:11 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-Date:   Thu, 12 May 2022 22:47:31 +0100
-Message-ID: <899235.1652392051@warthog.procyon.org.uk>
-X-Scanned-By: MIMEDefang 2.84 on 10.11.54.2
-X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+References: <cover.1651835715.git.jo@jsfamily.in> <BY5PR02MB7009B91FB7306503B58C264BD9C59@BY5PR02MB7009.namprd02.prod.outlook.com>
+In-Reply-To: <BY5PR02MB7009B91FB7306503B58C264BD9C59@BY5PR02MB7009.namprd02.prod.outlook.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Thu, 12 May 2022 23:51:59 +0200
+Message-ID: <CACRpkdYhkP9RYj98Lu=zkt+6aefx172R=8JtvOFpvh2uJ4byKA@mail.gmail.com>
+Subject: Re: [PATCH 3/3] drm/panel: introduce ebbg,ft8719 panel
+To:     Joel Selvaraj <jo@jsfamily.in>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Stanislav Jakubek <stano.jakubek@gmail.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Corentin Labbe <clabbe@baylibre.com>,
+        Oleksij Rempel <linux@rempel-privat.de>,
+        Hao Fang <fanghao11@huawei.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -164,26 +77,88 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, May 6, 2022 at 2:18 PM Joel Selvaraj <jo@jsfamily.in> wrote:
 
-Kees Cook <keescook@chromium.org> wrote:
+> Add DRM panel driver for EBBG FT8719 6.18" 2246x1080 DSI video mode
+> panel, which can be found on some Xiaomi Poco F1 phones. The panel's
+> backlight is managed through QCOM WLED driver.
+>
+> Signed-off-by: Joel Selvaraj <jo@jsfamily.in>
 
-> I'm happy to also point out that the conversions (patches 5+) are actually
-> a net reduction in lines of code:
->  49 files changed, 154 insertions(+), 244 deletions(-)
+Cool!
 
-That doesn't mean that it's actually code that's clearer to read.  I would say
-that it's actually less clear.  In a bunch of places, you've done something
-like:
+> +#define dsi_generic_write_seq(dsi, seq...) do {                                \
+> +               static const u8 d[] = { seq };                          \
+> +               int ret;                                                \
+> +               ret = mipi_dsi_generic_write(dsi, d, ARRAY_SIZE(d));    \
+> +               if (ret < 0)                                            \
+> +                       return ret;                                     \
+> +       } while (0)
+> +
+> +#define dsi_dcs_write_seq(dsi, seq...) do {                            \
+> +               static const u8 d[] = { seq };                          \
+> +               int ret;                                                \
+> +               ret = mipi_dsi_dcs_write_buffer(dsi, d, ARRAY_SIZE(d)); \
+> +               if (ret < 0)                                            \
+> +                       return ret;                                     \
+> +       } while (0)
 
--	e = kmalloc(...);
--	if (!e)
-+	if (__mem_to_flex_dup(&e, ...))
+First I don't see what the do {} while (0) buys you, just use
+a basic block {}.
 
-The problem is that, to me at least, it looks like:
+Second look at mipi_dbi_command() in include/drm/drm_mipi_dbi.h
+this is very similar.
 
--	e = kmalloc(...);
--	if (kmalloc failed)
-+	if (__mem_to_flex_dup(&e, ...) succeeded)
+So this utility macro should be in a generic file such as
+include/drm/drm_mipi_dsi.h. (Can be added in a separate
+patch.)
 
-David
+Third I think you need only one macro (see below).
 
+> +static int ebbg_ft8719_on(struct ebbg_ft8719 *ctx)
+> +{
+> +       struct mipi_dsi_device *dsi = ctx->dsi;
+> +       struct device *dev = &dsi->dev;
+> +       int ret;
+> +
+> +       dsi->mode_flags |= MIPI_DSI_MODE_LPM;
+> +
+> +       dsi_dcs_write_seq(dsi, 0x00, 0x00);
+> +       dsi_generic_write_seq(dsi, 0xff, 0x87, 0x19, 0x01);
+
+It's dubious that you always have dsi_dcs_write_seq()
+followed by dsi_generic_write_seq().
+
+That means mipi_dsi_generic_write() followed by
+mipi_dsi_dcs_write_buffer(). But if you look at these
+commands in drivers/gpu/drm/drm_mipi_dsi.c
+you see that they do the same thing!
+
+Doesn't it work to combine them into one call for each
+pair?
+
+> +       dsi_dcs_write_seq(dsi, 0x00, 0x80);
+> +       dsi_generic_write_seq(dsi, 0xff, 0x87, 0x19);
+
+Lots of magic numbers. You don't have a datasheet do you?
+So you could #define some of the magic?
+
+> +       if (ctx->prepared)
+> +               return 0;
+(...)
+> +       ctx->prepared = true;
+> +       return 0;
+(...)
+> +       if (!ctx->prepared)
+> +               return 0;
+(...)
+> +       ctx->prepared = false;
+> +       return 0;
+
+Drop this state variable it is a reimplementation of something
+that the core will track for you.
+
+The rest looks nice!
+
+Yours,
+Linus Walleij
