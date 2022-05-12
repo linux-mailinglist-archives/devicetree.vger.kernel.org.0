@@ -2,54 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4F14F5249AA
-	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 12:00:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B383F5249B1
+	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 12:00:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348751AbiELKAD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 May 2022 06:00:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56718 "EHLO
+        id S1352395AbiELKAV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 May 2022 06:00:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57012 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345876AbiELKAD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 06:00:03 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B545E22EA4C;
-        Thu, 12 May 2022 03:00:01 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 50AA1618C7;
-        Thu, 12 May 2022 10:00:01 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8AE2FC34100;
-        Thu, 12 May 2022 10:00:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1652349600;
-        bh=w1iQpOtJlmC1US6MRv+HaHZPJAJI71Jlklot9VO5VHo=;
-        h=From:To:Cc:Subject:Date:From;
-        b=AKvcEY7pn+36xERzMkKmC0We2v09vEBYSX5NOrqsAvnzCVkF6I8j7KIySPe0Bpfoh
-         KVaO+v0JvtQWpRxxPEwhm6dQuapQ4V7jA+rEixSebzmD0uC1o6OfhVZXQhTtEYJaMj
-         nI3NxZS9yRdy6klXZWz94MLJT/pZDcJQZnnxlEYbhtJM6/CVP+he4hdvfRsMV3jK3n
-         l12k6nm8fHcjafYSObOpJTA6Jv5DZKhmlzch3AWz0kY0w56ftOHV8ZTY5MrzRwblOB
-         3Mw6OPN96J1eysAau4ADJ4TeZgGRDojPZ1z5EhtCNl/bYZXmKmo/lZuwPAjwhSav8d
-         N9s65jQOjHjhw==
-Received: by pali.im (Postfix)
-        id A515D24F5; Thu, 12 May 2022 11:59:57 +0200 (CEST)
-From:   =?UTF-8?q?Pali=20Roh=C3=A1r?= <pali@kernel.org>
-To:     Andrew Lunn <andrew@lunn.ch>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        with ESMTP id S1352384AbiELKAT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 06:00:19 -0400
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95206230200
+        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 03:00:17 -0700 (PDT)
+Received: by mail-ej1-x636.google.com with SMTP id z2so9161403ejj.3
+        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 03:00:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=3Zp+2diUhLqJh/VRlBbOUJIH+1ZusBjmOxNx3/jn12c=;
+        b=Hovk9jpftMlDEMTIOLXZKkYl2INRhhlanGrwxzxRz7NLy9Avh+tY515Qes5jtUwIaz
+         C9uegpk2TtzoApq+arXIioVCnoQFBV7tgqPxA/40jIJpKcZxKG8abP8EtCVPARu/lcEM
+         UlknoUXfVkZHx2tcca3sf9q16LP5tQ8fpNekpH5pwalLmUi/jSivCNWCqHrNXpOup8L7
+         jw9r0EwAkk3asx0eltfTIb85hvZCY542q5qI7duABSDoAdrXuPfiyFiHeF8ZimrVyLTN
+         6TcK0R6hU+ks9olChlsg5ukzqVPL913owG8sJeb0DslrWoj6IC07jx/0CO1VwTFJNb6z
+         R7ww==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=3Zp+2diUhLqJh/VRlBbOUJIH+1ZusBjmOxNx3/jn12c=;
+        b=OLRx8JiWdoSSeOAIgbt0fITaJYWS9o2ShFnG+gwCZhzcjBuiMgIzRSUjKnnRgF8AOe
+         3VhiI+bf9bfNOPbhC9yQN/A41NVslmQABqpmfu5nI82Q4Swh6TUyQAWW5jPM0+0oyPj3
+         N+sV/YsfaD1X1AWhGUg6FQJqWCwqmacV8Q5yOTYjOxBbNKFA86fRhRHIEX7Xm5VPx4y0
+         XbEv+aLETrr0qaUDn0XnhFoBFMXMLkGO3Nx8YCM+oK7UWoasQqvdXoZxWR1NQTVpdutL
+         j3bVImF9/5WEY17q4pSwCmqzxRgWWM989OnPMA8sEMwYPJkUS3dSKwvvmuuZCzMY36KJ
+         wT8A==
+X-Gm-Message-State: AOAM531/OVGr05CrL682oQE7Fj4k/CEyDPT4+bUjubaXIwBUa0tIkVhe
+        x8jiYtvmHSPUo6LGgVSX9sVFKA==
+X-Google-Smtp-Source: ABdhPJycS9G6r3sETF2n3MDCHJPZcx+QFPO7xASHkbyQRcNb5A9u1OQSm1Qu5g3TYJkGf9igP/caYA==
+X-Received: by 2002:a17:907:3e99:b0:6f3:d1e1:23ae with SMTP id hs25-20020a1709073e9900b006f3d1e123aemr29969066ejc.470.1652349616083;
+        Thu, 12 May 2022 03:00:16 -0700 (PDT)
+Received: from localhost.localdomain (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id d17-20020a170906641100b006f3ef214da1sm1970287ejm.7.2022.05.12.03.00.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 12 May 2022 03:00:15 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        =?UTF-8?q?Marek=20Beh=C3=BAn?= <kabel@kernel.org>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] ARM: dts: turris-omnia: Add atsha204a node
-Date:   Thu, 12 May 2022 11:59:39 +0200
-Message-Id: <20220512095939.8595-1-pali@kernel.org>
-X-Mailer: git-send-email 2.20.1
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Sireesh Kodali <sireeshkodali1@gmail.com>,
+        Sibi Sankar <quic_sibis@quicinc.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 00/12] dt-bindings: remoteproc: qcom: cleanups and improvements
+Date:   Thu, 12 May 2022 11:59:54 +0200
+Message-Id: <20220512100006.99695-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -58,32 +75,48 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Crypto module atsha204a is available at i2c address 0x64. Module is used
-for symmetric cryptography and provides also hardware random number
-generator and OTP storage for device serial number and MAC addresses.
+Hi,
 
-Signed-off-by: Pali Rohár <pali@kernel.org>
----
- arch/arm/boot/dts/armada-385-turris-omnia.dts | 6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
+Patches are mostly independent, so they can go via:
+1. Qualcomm SoC (dt-bindings/soc: + arm64)
+2. remoteproc (dt-bindings).
 
-diff --git a/arch/arm/boot/dts/armada-385-turris-omnia.dts b/arch/arm/boot/dts/armada-385-turris-omnia.dts
-index bc778ab8618a..f4eb6898aa6b 100644
---- a/arch/arm/boot/dts/armada-385-turris-omnia.dts
-+++ b/arch/arm/boot/dts/armada-385-turris-omnia.dts
-@@ -349,7 +349,11 @@
- 			#size-cells = <0>;
- 			reg = <5>;
- 
--			/* ATSHA204A at address 0x64 */
-+			/* ATSHA204A-MAHDA-T crypto module */
-+			crypto@64 {
-+				compatible = "atmel,atsha204a";
-+				reg = <0x64>;
-+			};
- 		};
- 
- 		i2c@6 {
+Best regards,
+Krzysztof
+
+Krzysztof Kozlowski (12):
+  dt-bindings: soc: qcom,wcnss: remove unneeded ref for names
+  dt-bindings: remoteproc: remove unneeded ref for names
+  dt-bindings: remoteproc: qcom,adsp: add interconnects
+  dt-bindings: remoteproc: qcom,adsp: simplify interrupts
+  dt-bindings: remoteproc: qcom,adsp: simplify SM8150 power domains
+  dt-bindings: remoteproc: qcom,adsp: use GIC_SPI defines in example
+  dt-bindings: remoteproc: qcom,glink-edge: define re-usable schema for
+    glink-edge
+  dt-bindings: remoteproc: qcom,smd-edge: define re-usable schema for
+    smd-edge
+  arm64: dts: qcom: ipq6018: add label to remoteproc node
+  arm64: dts: qcom: sdm630: remove unneeded address/size cells in
+    glink-edge
+  arm64: dts: qcom: sm8350: remove duplicated glink-edge interrupt
+  arm64: dts: qcom: sm8450: remove duplicated glink-edge interrupt
+
+ .../bindings/remoteproc/qcom,adsp.yaml        | 74 ++++++----------
+ .../bindings/remoteproc/qcom,glink-edge.yaml  | 72 +++++++++++++++
+ .../remoteproc/qcom,qcs404-cdsp-pil.yaml      |  1 -
+ .../remoteproc/qcom,sc7280-wpss-pil.yaml      | 21 ++---
+ .../remoteproc/qcom,sdm845-adsp-pil.yaml      |  1 -
+ .../bindings/remoteproc/qcom,smd-edge.yaml    | 88 +++++++++++++++++++
+ .../bindings/soc/qcom/qcom,smd.yaml           | 53 +----------
+ .../bindings/soc/qcom/qcom,wcnss.yaml         |  1 -
+ arch/arm64/boot/dts/qcom/ipq6018.dtsi         |  1 +
+ arch/arm64/boot/dts/qcom/sdm630.dtsi          |  2 -
+ arch/arm64/boot/dts/qcom/sm8350.dtsi          |  1 -
+ arch/arm64/boot/dts/qcom/sm8450.dtsi          |  1 -
+ 12 files changed, 196 insertions(+), 120 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/remoteproc/qcom,glink-edge.yaml
+ create mode 100644 Documentation/devicetree/bindings/remoteproc/qcom,smd-edge.yaml
+
 -- 
-2.20.1
+2.32.0
 
