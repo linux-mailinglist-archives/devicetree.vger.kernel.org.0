@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 75D04524D73
-	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 14:50:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A0B0524D7B
+	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 14:50:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1353977AbiELMti (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 May 2022 08:49:38 -0400
+        id S1354011AbiELMtl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 May 2022 08:49:41 -0400
 Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38742 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1353986AbiELMtb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 08:49:31 -0400
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3DF524EA06
-        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 05:49:26 -0700 (PDT)
-Received: by mail-ed1-x533.google.com with SMTP id y21so6134087edo.2
-        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 05:49:26 -0700 (PDT)
+        with ESMTP id S1353997AbiELMtc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 08:49:32 -0400
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3330224EA26
+        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 05:49:29 -0700 (PDT)
+Received: by mail-ej1-x630.google.com with SMTP id g6so10064536ejw.1
+        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 05:49:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=sartura-hr.20210112.gappssmtp.com; s=20210112;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=ffQ4orED3aiUEBYoSxBZzhQ5xLKzp9tGr66X/MdgpYE=;
-        b=wwpR3bqanEewTxLg7wS9F7WsDB2jEc7163B2KtFP6RN2s3xUdnTsDuZSPQ2imwuA49
-         JdxEAusdOFqPwN4TG3gwvIsHBwnFJxk68POGam6rePgP3g2lGtA/Osr8JGlRmOTw0ETj
-         YzcMnr6f3x+s5xWsuvX9/QDjIEKPcVP6gxwFMVKqteQ/Wy0Q2Y+h4Vci3k8US261yDlH
-         I4tMNg4UeBH1BO7eBgnDgT8emwRm5GdGGCnf2ZYCLObez2XHOjzSfu750MvaX2eGRtat
-         YIp+59N7Qz/2PmS/D6Onpel4EIYhNvYaa6JAkx+lmyNMJtFkICXUnY0a5hkLR0MUr4dV
-         8+5w==
+        bh=XtfJqDS+4XXgrs5gmHjTVbohIpUyumGa7vczR+1IPgQ=;
+        b=okxummRYoYmm3mndr4IQ4mgnv150u1olNX74O7biUh+HrNqMKUVuUqAIzcm/QxtJTg
+         q/Wppj3fEdtm4aHOGPk4dQedpaKJzGP/07VYffXkh6ial1HBi6dxX/tSmMC3X98lNr/E
+         6fo4ablNWe2hi3uLO6m1lNGDioa303lXvjye1sjYFXCltiBp9kk/QjxtYSBTAp+1LAvX
+         B5z2eHs6kwZ0vXEUsFybyBhskYWK65mVnxJE0a8brcOCFwMFI8Zq28j3jNcdYj1DG7zO
+         /0hn8dRwmcTPOnzs65HkH2IzTWoz9FkvBaGkZWjc7FUuteGlXfMYG8b4BOFVokQY4XRK
+         Nftg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=ffQ4orED3aiUEBYoSxBZzhQ5xLKzp9tGr66X/MdgpYE=;
-        b=OPGiFqHCMNeC/AngTtBCGQDJtIZTjew4v9CdQ2SM8N7a2LHTacVSAgiLGrhVR1Vwci
-         ZrmXxrdT5zMatGh+bc3y1VY2NxnLzIWnmpkOI+ZBUUd94FwEXBFsxDfz+YdY3bvmXNlF
-         Jb655i/p31wd7PnNFfowZP7MVgRGqtfTVUyhrjllALFDJH+Lm1IuOe0lPxnwPQDKQhW1
-         voQijdBekx4qz/wtfziCUqk1hcp3RC+MNOHD3RuRzx71EL62+ZFlx7EbLn3spWo1eAc2
-         zr5qU60R/Yh6vbM3bgYkqSePHTBwAAiJPBukUNUCeBJhTg4aJ9bGXrWj6gy5YHeWl/cr
-         c1OQ==
-X-Gm-Message-State: AOAM531Vd7sKrD3NUexxfEsF6mvq4qexD4/T9a4GdY4Wwe1GyRvcBPMF
-        ir0dCeP2WK1vp737iD8nf0mTbQ==
-X-Google-Smtp-Source: ABdhPJxNaBDvuq2EJfEryi0nCUHgYuhIDbfcTiJwRKQw413HGCsqeJ2CMmt/NO/XMXyqwU1QUeTMJQ==
-X-Received: by 2002:a05:6402:3590:b0:427:ba05:6f19 with SMTP id y16-20020a056402359000b00427ba056f19mr35666281edc.334.1652359766319;
-        Thu, 12 May 2022 05:49:26 -0700 (PDT)
+        bh=XtfJqDS+4XXgrs5gmHjTVbohIpUyumGa7vczR+1IPgQ=;
+        b=oC2VDfiCMMJmZpYG+tKT/ySdsA/2hEf7L6jxQjmlJXZYQkaW+xJAzOBSzC//FVvBjq
+         lM3E0saw1x8uAN1G/3PbTNtvYWvVfK/f2O1r+IhcDPJkH9EKTCTMkqTu/ZtqrYSlVTDy
+         9jfTyVYX8OKeCC3qsJfaHd0fDFSpTzA/0iyLBY95Ihb4v4837KGZUM4ZWGJrj/NHKR/L
+         WMlRm1CMKoyrJgSjklxql743K+9Jm884JR4DBQPGj16QAk0isTCWkIpXtnd5TVKcA+MM
+         04Y1ccR3gAiY771sR54jmv/GwaN5xufOSPgQu50hbHRSGFzLNuts3jJ8e9KnKn9ZayrB
+         sEBQ==
+X-Gm-Message-State: AOAM5309lNPUlNkHnaext7R1vwToWHh3uVCt1lxNg3CX7DsJYXESbA8a
+        5VVUCu+DiIrXYQxhrOeNEUzgPA==
+X-Google-Smtp-Source: ABdhPJx6hUgrDA/sPEgXzBnUZI+wl8Y+4ZV8GUq0JQoFPJlaV4kfSgX/xPyQM3zp8YMWYBx0k8cbVQ==
+X-Received: by 2002:a17:906:6a28:b0:6f4:d368:ccf1 with SMTP id qw40-20020a1709066a2800b006f4d368ccf1mr29868611ejc.35.1652359767733;
+        Thu, 12 May 2022 05:49:27 -0700 (PDT)
 Received: from fedora.robimarko.hr (dh207-98-58.xnet.hr. [88.207.98.58])
-        by smtp.googlemail.com with ESMTPSA id h3-20020a170906828300b006f3ef214dc2sm2109475ejx.40.2022.05.12.05.49.25
+        by smtp.googlemail.com with ESMTPSA id h3-20020a170906828300b006f3ef214dc2sm2109475ejx.40.2022.05.12.05.49.26
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 12 May 2022 05:49:25 -0700 (PDT)
+        Thu, 12 May 2022 05:49:27 -0700 (PDT)
 From:   Robert Marko <robert.marko@sartura.hr>
 To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
         andrew@lunn.ch, gregory.clement@bootlin.com,
@@ -54,9 +54,9 @@ To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org
 Cc:     Robert Marko <robert.marko@sartura.hr>
-Subject: [PATCH v3 10/11] dt-bindings: marvell: armada-37xx: add Methode eDPU compatible
-Date:   Thu, 12 May 2022 14:49:04 +0200
-Message-Id: <20220512124905.49979-10-robert.marko@sartura.hr>
+Subject: [PATCH v3 11/11] arm64: dts: marvell: add support for Methode eDPU
+Date:   Thu, 12 May 2022 14:49:05 +0200
+Message-Id: <20220512124905.49979-11-robert.marko@sartura.hr>
 X-Mailer: git-send-email 2.36.1
 In-Reply-To: <20220512124905.49979-1-robert.marko@sartura.hr>
 References: <20220512124905.49979-1-robert.marko@sartura.hr>
@@ -71,28 +71,53 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document compatible for the Methode eDPU Armada 3720 based board.
+Methode eDPU is an Armada 3720 powered board based on the Methode uDPU.
+
+They feature the same CPU, RAM, and storage as well as the form factor.
+
+However, eDPU only has one SFP slot plus a copper G.hn port.
 
 Signed-off-by: Robert Marko <robert.marko@sartura.hr>
+Changes in v2:
+* Make the DTS split a separate commit
 ---
-Changes in v3:
-* Alphabetical ordering
----
- Documentation/devicetree/bindings/arm/marvell/armada-37xx.yaml | 1 +
- 1 file changed, 1 insertion(+)
+ arch/arm64/boot/dts/marvell/Makefile             |  1 +
+ arch/arm64/boot/dts/marvell/armada-3720-eDPU.dts | 14 ++++++++++++++
+ 2 files changed, 15 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/marvell/armada-3720-eDPU.dts
 
-diff --git a/Documentation/devicetree/bindings/arm/marvell/armada-37xx.yaml b/Documentation/devicetree/bindings/arm/marvell/armada-37xx.yaml
-index 4460608ac1e1..4ace605a8701 100644
---- a/Documentation/devicetree/bindings/arm/marvell/armada-37xx.yaml
-+++ b/Documentation/devicetree/bindings/arm/marvell/armada-37xx.yaml
-@@ -20,6 +20,7 @@ properties:
-               - cznic,turris-mox
-               - globalscale,espressobin
-               - marvell,armada-3720-db
-+              - methode,edpu
-               - methode,udpu
-           - const: marvell,armada3720
-           - const: marvell,armada3710
+diff --git a/arch/arm64/boot/dts/marvell/Makefile b/arch/arm64/boot/dts/marvell/Makefile
+index 1c794cdcb8e6..104d7d7e8215 100644
+--- a/arch/arm64/boot/dts/marvell/Makefile
++++ b/arch/arm64/boot/dts/marvell/Makefile
+@@ -1,6 +1,7 @@
+ # SPDX-License-Identifier: GPL-2.0
+ # Mvebu SoC Family
+ dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-db.dtb
++dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-eDPU.dtb
+ dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-espressobin.dtb
+ dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-espressobin-emmc.dtb
+ dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-espressobin-ultra.dtb
+diff --git a/arch/arm64/boot/dts/marvell/armada-3720-eDPU.dts b/arch/arm64/boot/dts/marvell/armada-3720-eDPU.dts
+new file mode 100644
+index 000000000000..57fc698e55d0
+--- /dev/null
++++ b/arch/arm64/boot/dts/marvell/armada-3720-eDPU.dts
+@@ -0,0 +1,14 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++
++/dts-v1/;
++
++#include "armada-3720-uDPU.dtsi"
++
++/ {
++	model = "Methode eDPU Board";
++	compatible = "methode,edpu", "marvell,armada3720", "marvell,armada3710";
++};
++
++&eth0 {
++	phy-mode = "2500base-x";
++};
 -- 
 2.36.1
 
