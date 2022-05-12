@@ -2,150 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D21D524F34
-	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 16:02:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7752B524F5D
+	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 16:04:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1354919AbiELOBj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 May 2022 10:01:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41556 "EHLO
+        id S1354679AbiELOET (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 May 2022 10:04:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54914 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1354903AbiELOBf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 10:01:35 -0400
-Received: from mail-pj1-x102e.google.com (mail-pj1-x102e.google.com [IPv6:2607:f8b0:4864:20::102e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7825F53E11
-        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 07:01:33 -0700 (PDT)
-Received: by mail-pj1-x102e.google.com with SMTP id o69so5244866pjo.3
-        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 07:01:33 -0700 (PDT)
+        with ESMTP id S1354964AbiELOES (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 10:04:18 -0400
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25DF7580DE
+        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 07:04:17 -0700 (PDT)
+Received: by mail-ed1-x535.google.com with SMTP id w24so6394405edx.3
+        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 07:04:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=LuitxF/LxlyDzAJ6WiMHBPYI6+2/9TqSBGYdKA4Kdbk=;
-        b=hXQKiSvErap40hy+dXmzuEfIjSuO7mQ4+LF6SI7ROCaq0cCea+dX7+6p0kYgipc7r7
-         fAg178C7ZxY+IqXATlnRL/PWrtggp5bfkNR5xPTvVlNa8oMEWEDqlRGJ9oJMB6ZXe86z
-         +ZQrfP6/9HOrmnkiutVcL7IbUW00wvqgViWkgP9Mcuun52KPbP9NdRaRFFz6gO9kwvAS
-         V4NwrLQnBi/ClLHsSCYEj+e1J6kqvb3kHPR7cjYWZv1HP/PkLOMnuG8CwLyhC3AxTRzn
-         A7NZBi+LXLeFf9kCkxUTUpaFh8abRrajqDJZoLIreRRPDK9m4TUh6DTMkeNw4lt/rXF8
-         WQ6g==
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=ObfwnmtrxkKT50YzmCvliwo/dT5DMiUQiO0PH0LTMx0=;
+        b=PQYeTpEbK+tYHe872qmLftAqI/d4BlbDIDFQkTYjTxrBTRNjTmDJ1qyGjiB2HlDqGQ
+         9xauAiYkkluMogshl7JwT76akt+9lCQyiq7k9ZN39Mu+eVSBGvX7Sn6hkPEyMdu76izm
+         wyOvXOhrZ9lEzFlAztS4dKVJ8bDywjg0D9FGFCC3kiHDpyx2kLAcD60elGv8jateClaN
+         jw5WlU4lTHCq2K2YK4364eAdCpSVVA4YjiBJCJYHFiqTp9DzeQMa2j+rHTGzwBm/23oi
+         syJHx5eyczEpaX31duAOMQdfUm8XNHp163ZsIhJ0SkBe82I4N+8ZLekjfg3+6kgd5lA7
+         FbXA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=LuitxF/LxlyDzAJ6WiMHBPYI6+2/9TqSBGYdKA4Kdbk=;
-        b=o5ChMx8pvNKekTRA/1OweZsYoH+hHHa4SM9p3le4AwQkIDGHauoHwUozTmU5wtqVGp
-         /exez+XD4pXc5Fw0M+uv+/SluhDzCv64jhKmeOEiAQh1iOamSPz9YZnTNiq9NLfx+ey+
-         XvmlpZO5ttPCGyTIL/qZPqaU7aghSMMQPJtYgmEZP12J0LMh65iU29phfBaA3XJ+H/Gx
-         NTmqVCcPw1rSLlzIgBHVfwsHerxKn3JFii1RbwHsVOoQsTe6Jw/mh5MUmkueIUJ8Rwfe
-         5ZUdY+S6mc5emEg/g8v/dUfN33Y5Q/jfA9sXojSL02RFpXNIVg5R+yf0VnykYP64Y3hJ
-         zTTw==
-X-Gm-Message-State: AOAM531ImMjAt1FpvlpOtWoM0rnDTDAMXux+0+NxrJQAvoiYNmOkQHEV
-        qhUu1yl4mwH82BtdWJqwf0XW
-X-Google-Smtp-Source: ABdhPJxaAVTBu9QCUOg7jBzjc3IVOzl4NbzJYJxeufqURrOTTpDV1PE/u6pG6jCUU+sYZ0fh/cw2LQ==
-X-Received: by 2002:a17:90a:fcb:b0:1dc:f0ce:69fb with SMTP id 69-20020a17090a0fcb00b001dcf0ce69fbmr11084857pjz.198.1652364092878;
-        Thu, 12 May 2022 07:01:32 -0700 (PDT)
-Received: from thinkpad ([117.202.184.202])
-        by smtp.gmail.com with ESMTPSA id ch9-20020a056a00288900b0050dc76281c2sm3683732pfb.156.2022.05.12.07.01.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 12 May 2022 07:01:32 -0700 (PDT)
-Date:   Thu, 12 May 2022 19:31:24 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
-Cc:     Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        Serge Semin <fancer.lancer@gmail.com>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Frank Li <Frank.Li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 11/17] PCI: dwc: Simplify in/outbound iATU setup
- methods
-Message-ID: <20220512140124.GD35848@thinkpad>
-References: <20220503214638.1895-1-Sergey.Semin@baikalelectronics.ru>
- <20220503214638.1895-12-Sergey.Semin@baikalelectronics.ru>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=ObfwnmtrxkKT50YzmCvliwo/dT5DMiUQiO0PH0LTMx0=;
+        b=15WnoHQhAWTDM94/zIG0sHJwEjNFjVNZnHHYePCyw5fAKxxhEGr/6F4n20k1CrD9ED
+         9d3vswYxmz0FejcfQNxQcMcWTjgLgRHWVNOGlUSuw8b5r18Pj4nOaMmXlL4Yqdh1gCUU
+         yMuRkvAoG7neMCZrYnatxRDoRYO7/rF2NZCRhANsgFshy+nrd9JIn5Cr7GdPAlVOaus7
+         uALTIdnHX8++m1uxJlUA6sXYspr+TYace9UQtizwr6/S2lUnnOB0M14cSV5/B1orcAJH
+         eHgktzDQVcxLJ8GA/SuzfzBW+Qls73sn/u+3DRvCOw1UaN4b0TkmJFvsYKAnpcUuXVSl
+         gCDQ==
+X-Gm-Message-State: AOAM5301+IPJfKEfT89/t+nl4IOiGxNk3plawD2ih8YT2Zwuuy1ObQU9
+        TmvyIp7WMlW11no/hzyhNGU8Kg==
+X-Google-Smtp-Source: ABdhPJyTJw8+7v3GXv2bh38/HEmQHaY6esp5J8bzfqvccK20LUmGMVe7oaS7gE+migdw2SOqftSY1A==
+X-Received: by 2002:a50:ea8b:0:b0:428:7d05:eb7e with SMTP id d11-20020a50ea8b000000b004287d05eb7emr29484883edo.185.1652364255711;
+        Thu, 12 May 2022 07:04:15 -0700 (PDT)
+Received: from [192.168.0.160] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id rv21-20020a17090710d500b006f3ef214e06sm2133546ejb.108.2022.05.12.07.04.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 12 May 2022 07:04:15 -0700 (PDT)
+Message-ID: <f0969769-9f24-7e48-6a60-adeea94404e1@linaro.org>
+Date:   Thu, 12 May 2022 16:04:14 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220503214638.1895-12-Sergey.Semin@baikalelectronics.ru>
-X-Spam-Status: No, score=-0.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_SORBS_WEB,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH V4 2/5] dt-bindings: clock: Document MA35D1 clock
+ controller bindings
+Content-Language: en-US
+To:     Jacky Huang <ychuang3@nuvoton.com>, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, ychuang570808@gmail.com
+Cc:     robh+dt@kernel.org, sboyd@kernel.org, krzk+dt@kernel.org,
+        arnd@arndb.de, olof@lixom.net, catalin.marinas@arm.com,
+        will@kernel.org, soc@kernel.org, cfli0@nuvoton.com
+References: <20220510032558.10304-1-ychuang3@nuvoton.com>
+ <20220510032558.10304-3-ychuang3@nuvoton.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220510032558.10304-3-ychuang3@nuvoton.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 04, 2022 at 12:46:32AM +0300, Serge Semin wrote:
-> From maintainability and scalability points of view it has been wrong to
-> use different iATU inbound and outbound regions accessors for the viewport
-> and unrolled versions of the iATU CSRs mapping. Seeing the particular iATU
-> region-wise registers layout is almost fully compatible for different
-> IP-core versions, there were no much points in splitting the code up that
-> way since it was possible to implement a common windows setup methods for
-> both viewport and unrolled iATU CSRs spaces. While what we can observe in
-> the current driver implementation of these methods, is a lot of code
-> duplication, which consequently worsen the code readability,
-> maintainability and scalability. Note the current implementation is a bit
-> more performant than the one suggested in this commit since it implies
-> having less MMIO accesses. But the gain just doesn't worth having the
-> denoted difficulties especially seeing the iATU setup methods are mainly
-> called on the DW PCIe controller and peripheral devices initialization
-> stage.
+On 10/05/2022 05:25, Jacky Huang wrote:
+> Add documentation to describe Nuvoton MA35D1 clock driver bindings.
 > 
-> Here we suggest to move the iATU viewport and unrolled CSR access
-> specifics in the dw_pcie_readl_atu() and dw_pcie_writel_atu() method, and
-> convert the dw_pcie_prog_outbound_atu() and
-> dw_pcie_prog_{ep_}inbound_atu() functions to being generic instead of
-> having a different methods for each viewport and unrolled types of iATU
-> CSRs mapping. Nothing complex really. First of all the dw_pcie_readl_atu()
-> and dw_pcie_writel_atu() are converted to accept relative iATU CSRs
-> address together with the iATU region direction (inbound or outbound) and
-> region index. If DW PCIe controller doesn't have the unrolled iATU CSRs
-> space, then the accessors will need to activate a iATU viewport based on
-> the specified direction and index, otherwise a base address for the
-> corresponding region CSRs will be calculated by means of the
-> PCIE_ATU_UNROLL_BASE() macro. The CSRs macro have been modified in
-> accordance with that logic in the pcie-designware.h header file.
-> 
-> The rest of the changes in this commit just concern converting the iATU
-> in-/out-bound setup methods and iATU regions detection procedure to be
-> compatible with the new accessors semantics. As a result we've dropped the
-> no more required dw_pcie_prog_outbound_atu_unroll(),
-> dw_pcie_prog_inbound_atu_unroll() and dw_pcie_iatu_detect_regions_unroll()
-> methods.
-> 
-> Note aside with the denoted code improvements, there is an additional
-> positive side effect of this change. If at some point an atomic iATU
-> configs setup procedure is required, it will be possible to be done with
-> no much effort just by adding the synchronization into the
-> dw_pcie_readl_atu() and dw_pcie_writel_atu() accessors.
-> 
-> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-> 
-> ---
-> 
-> Changelog v2:
-> - Move the iATU region selection procedure into a helper function (@Rob).
-> - Simplify the iATU region selection procedure by recalculating the base
->   address only if the space is unrolled. The iATU viewport base address
->   is saved in the pci->atu_base field from now.
-> ---
->  drivers/pci/controller/dwc/pcie-designware.c | 293 ++++++-------------
->  drivers/pci/controller/dwc/pcie-designware.h |  48 ++-
+> Signed-off-by: Jacky Huang <ychuang3@nuvoton.com>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-In this patch, you also need to fix "pcie-tegra194-acpi.c" driver that makes
-use of the removed macros.
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/nuvoton,ma35d1-clk.h>
+> +
+> +    clk: clock-controller@40460200 {
+> +        compatible = "nuvoton,ma35d1-clk";
+> +        reg = <0x0 0x40460200 0x0 0x100>;
 
-Thanks,
-Mani
+I don't think you tested your bindings. This fails.
 
--- 
-மணிவண்ணன் சதாசிவம்
+clock-names below as well. Please do not send untested code.
+
+Testing is explained here:
+https://elixir.bootlin.com/linux/v5.18-rc6/source/Documentation/devicetree/bindings/writing-schema.rst#L111
+
+Best regards,
+Krzysztof
