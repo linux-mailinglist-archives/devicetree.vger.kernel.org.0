@@ -2,103 +2,260 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 05BEA524708
-	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 09:33:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 98C2F524718
+	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 09:38:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350994AbiELHdL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 May 2022 03:33:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60636 "EHLO
+        id S1351097AbiELHig (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 May 2022 03:38:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49780 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347271AbiELHdI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 03:33:08 -0400
-Received: from mail-pg1-x52c.google.com (mail-pg1-x52c.google.com [IPv6:2607:f8b0:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6563437016;
-        Thu, 12 May 2022 00:33:07 -0700 (PDT)
-Received: by mail-pg1-x52c.google.com with SMTP id h186so1212038pgc.3;
-        Thu, 12 May 2022 00:33:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=yplM/Zeq0pEKF0U56fS8NRc7S0PAi8U3tlHusHHziow=;
-        b=BjS1pP17h9/VkM+P3SCwK4Q0gK0VlPq4dk+mL5DNDlg7eS0+LcZ5CRsJfjvawZOx6p
-         Oo+emYdFmuNnltVV/UT6s3y9vDQP0PGD4Gd43zSo3XWp/NVt9e50UOjzs4TpB1LnWDMJ
-         1dmGy/wzYwrY9yAYxLERlo1HxmYwCDNtaCKV+NMp3DcPrXZ+UQY7efE4YXsCnixvNGyS
-         GLxtnxJatwkb8fULHnsapr1FYnGp85jN3yeLr4iGAExenosLs0tg+I71BFj1B3AEG3/d
-         NVI/Sxe/nbfCKXN3/6AKZE/iaQQh0KpjXgMh5N/0DlLBK/LHPgoad77mvMNHI4KL6vLc
-         7QXg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=yplM/Zeq0pEKF0U56fS8NRc7S0PAi8U3tlHusHHziow=;
-        b=2TV3jBnwlnZZtboAwTevTidZmtEE1qsL/GwISHQlC1wJO9OG5WkXdLwdffGYje8x1z
-         d7AQmLuA5iCkl9wWaa3hZZTzvRVG+o5MZFDu9pBcdDSr/q/xCTPqMfwBu63w2/imxO9Y
-         U1xFmLzFxvI+RkhFOpzP2+sqlV6xpjexUBoWSwWlDx6LjKjlhYcWdvdWXTDKe+m1O4wS
-         ZGx8JfS1nzF0WaIey9xaRychL8tRgVIIa9QduVJ7DBIZTlIIT6ms6JFG6J3BXoFXT+LJ
-         wDaYzjFuDISmaePeOhhkUmLpvpMAUty9cemMbMlOhjxnYGEVGVTvxUXkNzc3QxPKEGh8
-         jtcg==
-X-Gm-Message-State: AOAM53231LKVEEwv1eCjZbDzeRiwLVBXVma0Bs+kxJvrqnX8bDwjhX7q
-        jExU4quZQC0ohbjXYtS+Kn2adqLbu9QjE0Kfay4=
-X-Google-Smtp-Source: ABdhPJwA7hXKO7tzzILJ/Si87B0V0C9/OF6fmLWqZ9vJYoR/FQUbQd79YV4b5U5rQI9VfrROoWGxsmz5cg0NAwAOW8M=
-X-Received: by 2002:a62:3881:0:b0:4b0:b1c:6fd9 with SMTP id
- f123-20020a623881000000b004b00b1c6fd9mr10088127pfa.27.1652340786960; Thu, 12
- May 2022 00:33:06 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220510141753.3878390-1-Qing-wu.Li@leica-geosystems.com.cn> <20220510141753.3878390-7-Qing-wu.Li@leica-geosystems.com.cn>
-In-Reply-To: <20220510141753.3878390-7-Qing-wu.Li@leica-geosystems.com.cn>
-From:   Alexandru Ardelean <ardeleanalex@gmail.com>
-Date:   Thu, 12 May 2022 10:32:55 +0300
-Message-ID: <CA+U=DspAtKrDdgrzAyELDULQVjj6eFgMhsZjFCOXXYrxFAW6YQ@mail.gmail.com>
-Subject: Re: [PATCH V2 6/6] dt-bindings: iio: accel: Add bmi085 and bmi090l bindings
-To:     LI Qingwu <Qing-wu.Li@leica-geosystems.com.cn>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        mchehab+huawei@kernel.org, linux-iio <linux-iio@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mike Looijmans <mike.looijmans@topic.nl>,
-        devicetree <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S1351085AbiELHid (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 03:38:33 -0400
+Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F0B3635DE1;
+        Thu, 12 May 2022 00:38:30 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by sin.source.kernel.org (Postfix) with ESMTPS id 0BFD0CE2808;
+        Thu, 12 May 2022 07:38:29 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 25A24C385B8;
+        Thu, 12 May 2022 07:38:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1652341107;
+        bh=ugIyGV0pe1/xrkV0tlYgt/gRuv1slF9T3wv3KtmXcbg=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=lfIcfEwPwHaF+77LvNlCFp1sc8z8jgmzhGnmwTNwPMCmO6Ra6PQd9IO6TUZm6DrMR
+         8ZUz+I+Gazc1Rfiei48ABujuX3aZDEX0jOfdXltvJyKm8o0GC/lAp71xSdDiq6Chhb
+         UQeT0apxvc0fZAiYnYB1PaPWr5EWeB1P7i/vVOwmx1VSiR1uqncN8WnIwkGJNrkMz1
+         5P5XsF1AAnE4f3vWxj0LRRB0SWrN/PP3JgDxNNNcknK1X+Mc1EYNNoewwgtXR0OuCz
+         GYFigyEMDhNif66CZM1RsFksozoiw/+jkstx8GkqZyM/8AT9lgUGNT979P72eNBW1Z
+         tET4QDX7fSXcg==
+Received: from 82-132-234-237.dab.02.net ([82.132.234.237] helo=wait-a-minute.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <maz@kernel.org>)
+        id 1np3Oy-00An74-HK; Thu, 12 May 2022 08:38:24 +0100
+Date:   Thu, 12 May 2022 08:38:23 +0100
+Message-ID: <87wnermc9c.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Chris Packham <chris.packham@alliedtelesis.co.nz>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        catalin.marinas@arm.com, will@kernel.org, andrew@lunn.ch,
+        gregory.clement@bootlin.com, sebastian.hesselbarth@gmail.com,
+        kostap@marvell.com, robert.marko@sartura.hr,
+        vadym.kochan@plvision.eu, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v7 2/3] arm64: dts: marvell: Add Armada 98DX2530 SoC and RD-AC5X board
+In-Reply-To: <20220512042501.3339775-3-chris.packham@alliedtelesis.co.nz>
+References: <20220512042501.3339775-1-chris.packham@alliedtelesis.co.nz>
+        <20220512042501.3339775-3-chris.packham@alliedtelesis.co.nz>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 82.132.234.237
+X-SA-Exim-Rcpt-To: chris.packham@alliedtelesis.co.nz, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, catalin.marinas@arm.com, will@kernel.org, andrew@lunn.ch, gregory.clement@bootlin.com, sebastian.hesselbarth@gmail.com, kostap@marvell.com, robert.marko@sartura.hr, vadym.kochan@plvision.eu, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 10, 2022 at 5:18 PM LI Qingwu
-<Qing-wu.Li@leica-geosystems.com.cn> wrote:
->
-> Adds the device-tree bindings for the Bosch
-> BMI085 and BMI090L IMU, the accelerometer part.
->
-
-I think some datasheet links could be added to this file for the new devices.
-
-The BMI088 has a link to its datasheet.
-
-> Signed-off-by: LI Qingwu <Qing-wu.Li@leica-geosystems.com.cn>
+On Thu, 12 May 2022 05:25:00 +0100,
+Chris Packham <chris.packham@alliedtelesis.co.nz> wrote:
+> 
+> The 98DX2530 SoC is the Control and Management CPU integrated into
+> the Marvell 98DX25xx and 98DX35xx series of switch chip (internally
+> referred to as AlleyCat5 and AlleyCat5X).
+> 
+> These files have been taken from the Marvell SDK and lightly cleaned
+> up with the License and copyright retained.
+> 
+> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+> Reviewed-by: Andrew Lunn <andrew@lunn.ch>
 > ---
->  Documentation/devicetree/bindings/iio/accel/bosch,bmi088.yaml | 2 ++
->  1 file changed, 2 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/iio/accel/bosch,bmi088.yaml b/Documentation/devicetree/bindings/iio/accel/bosch,bmi088.yaml
-> index 911a1ae9c83f..4290f5f88a8f 100644
-> --- a/Documentation/devicetree/bindings/iio/accel/bosch,bmi088.yaml
-> +++ b/Documentation/devicetree/bindings/iio/accel/bosch,bmi088.yaml
-> @@ -18,6 +18,8 @@ properties:
->    compatible:
->      enum:
->        - bosch,bmi088-accel
-> +      - bosch,bmi085-accel
-> +      - bosch,bmi090l-accel
->
->    reg:
->      maxItems: 1
-> --
-> 2.25.1
->
+> 
+> Notes:
+>     The Marvell SDK has a number of new compatible strings. I've brought
+>     through some of the drivers or where possible used an in-tree
+>     alternative (e.g. there is SDK code for a ac5-gpio but two instances of
+>     the existing marvell,orion-gpio seems to cover what is needed if you use
+>     an appropriate binding). I expect that there will a new series of
+>     patches when I get some different hardware (or additions to this series
+>     depending on if/when it lands).
+>     
+>     Changes in v7:
+>     - Add missing compatible on usb1
+>     - Add "rd-ac5x" compatible for board
+>     - Move aliases to board dts
+>     - Move board specific usb info to board dts
+>     - Consolidate usb1 board settings and remove unnecessary compatible
+>     - Add Allied Telesis copyright
+>     - Rename files after mailng-list discussion
+>     Changes in v6:
+>     - Move CPU nodes above the SoC (Krzysztof)
+>     - Minor formatting clean ups (Krzysztof)
+>     - Run through `make dtbs_check`
+>     - Move gic nodes inside SoC
+>     - Group clocks under a clock node
+>     Changes in v5:
+>     - add #{address,size}-cells property to i2c nodes
+>     - make i2c nodes disabled in the SoC and enable them in the board
+>     - add interrupt controller attributes to gpio nodes
+>     - Move fixed-clock nodes up a level and remove unnecessary @0
+>     Changes in v4:
+>     - use 'phy-handle' instead of 'phy'
+>     - move status="okay" on usb nodes to board dts
+>     - Add review from Andrew
+>     Changes in v3:
+>     - Move memory node to board
+>     - Use single digit reg value for phy address
+>     - Remove MMC node (driver needs work)
+>     - Remove syscon & simple-mfd for pinctrl
+>     Changes in v2:
+>     - Make pinctrl a child node of a syscon node
+>     - Use marvell,armada-8k-gpio instead of orion-gpio
+>     - Remove nand peripheral. The Marvell SDK does have some changes for the
+>       ac5-nand-controller but I currently lack hardware with NAND fitted so
+>       I can't test it right now. I've therefore chosen to omit the node and
+>       not attempted to bring in the driver or binding.
+>     - Remove pcie peripheral. Again there are changes in the SDK and I have
+>       no way of testing them.
+>     - Remove prestera node.
+>     - Remove "marvell,ac5-ehci" compatible from USB node as
+>       "marvell,orion-ehci" is sufficient
+>     - Remove watchdog node. There is a buggy driver for the ac5 watchdog in
+>       the SDK but it needs some work so I've dropped the node for now.
+> 
+>  arch/arm64/boot/dts/marvell/Makefile          |   1 +
+>  .../boot/dts/marvell/armada-98dx25xx.dtsi     | 295 ++++++++++++++++++
+>  .../boot/dts/marvell/armada-98dx35xx-rd.dts   | 101 ++++++
+>  .../boot/dts/marvell/armada-98dx35xx.dtsi     |  13 +
+>  4 files changed, 410 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/marvell/armada-98dx25xx.dtsi
+>  create mode 100644 arch/arm64/boot/dts/marvell/armada-98dx35xx-rd.dts
+>  create mode 100644 arch/arm64/boot/dts/marvell/armada-98dx35xx.dtsi
+> 
+> diff --git a/arch/arm64/boot/dts/marvell/Makefile b/arch/arm64/boot/dts/marvell/Makefile
+> index 1c794cdcb8e6..b7a4c715afbb 100644
+> --- a/arch/arm64/boot/dts/marvell/Makefile
+> +++ b/arch/arm64/boot/dts/marvell/Makefile
+> @@ -24,3 +24,4 @@ dtb-$(CONFIG_ARCH_MVEBU) += cn9132-db.dtb
+>  dtb-$(CONFIG_ARCH_MVEBU) += cn9132-db-B.dtb
+>  dtb-$(CONFIG_ARCH_MVEBU) += cn9130-crb-A.dtb
+>  dtb-$(CONFIG_ARCH_MVEBU) += cn9130-crb-B.dtb
+> +dtb-$(CONFIG_ARCH_MVEBU) += armada-98dx35xx-rd.dtb
+> diff --git a/arch/arm64/boot/dts/marvell/armada-98dx25xx.dtsi b/arch/arm64/boot/dts/marvell/armada-98dx25xx.dtsi
+> new file mode 100644
+> index 000000000000..55ab4cd843a9
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/marvell/armada-98dx25xx.dtsi
+> @@ -0,0 +1,295 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Device Tree For AC5.
+> + *
+> + * Copyright (C) 2021 Marvell
+> + * Copyright (C) 2022 Allied Telesis Labs
+> + */
+> +
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/interrupt-controller/arm-gic.h>
+> +
+> +/ {
+> +	model = "Marvell AC5 SoC";
+> +	compatible = "marvell,ac5";
+> +	interrupt-parent = <&gic>;
+> +	#address-cells = <2>;
+> +	#size-cells = <2>;
+> +
+> +	cpus {
+> +		#address-cells = <2>;
+> +		#size-cells = <0>;
+> +
+> +		cpu-map {
+> +			cluster0 {
+> +				core0 {
+> +					cpu = <&cpu0>;
+> +				};
+> +				core1 {
+> +					cpu = <&cpu1>;
+> +				};
+> +			};
+> +		};
+> +
+> +		cpu0: cpu@0 {
+> +			device_type = "cpu";
+> +			compatible = "arm,armv8";
+> +			reg = <0x0 0x0>;
+> +			enable-method = "psci";
+> +			next-level-cache = <&l2>;
+> +		};
+> +
+> +		cpu1: cpu@1 {
+> +			device_type = "cpu";
+> +			compatible = "arm,armv8";
+> +			reg = <0x0 0x100>;
+> +			enable-method = "psci";
+> +			next-level-cache = <&l2>;
+> +		};
+> +
+> +		l2: l2-cache {
+> +			compatible = "cache";
+> +		};
+> +	};
+> +
+> +
+> +	psci {
+> +		compatible = "arm,psci-0.2";
+> +		method = "smc";
+> +	};
+> +
+> +	timer {
+> +		compatible = "arm,armv8-timer";
+> +		interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>,
+> +				 <GIC_PPI 8 IRQ_TYPE_LEVEL_HIGH>,
+> +				 <GIC_PPI 10 IRQ_TYPE_LEVEL_HIGH>,
+> +				 <GIC_PPI 7 IRQ_TYPE_LEVEL_HIGH>;
+> +		clock-frequency = <25000000>;
+
+I said no to this hack in a past version of this patch, and I'm going
+to say it *again*. Please fix your firmware to program CNTFRQ_EL0, and
+remove this useless property.
+
+You are also missing a PPI for the EL2 virtual timer which is present
+on any ARMv8.1+ CPU (and since this system is using A55, it definitely
+has it).
+
+[...]
+
+> +
+> +		gic: interrupt-controller@80600000 {
+> +			compatible = "arm,gic-v3";
+> +			#interrupt-cells = <3>;
+> +			interrupt-controller;
+> +			/*#redistributor-regions = <1>;*/
+> +			redistributor-stride = <0x0 0x20000>;	// 128kB stride
+
+You don't need this at all. This is the architected value for GICv3.
+
+> +			reg = <0x0 0x80600000 0x0 0x10000>, /* GICD */
+> +			      <0x0 0x80660000 0x0 0x40000>; /* GICR */
+> +			interrupts = <GIC_PPI 6 IRQ_TYPE_LEVEL_HIGH>;
+> +		};
+> +	};
+
+Thanks,
+
+	M.
+
+-- 
+Without deviation from the norm, progress is not possible.
