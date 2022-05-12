@@ -2,60 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 67F59525533
-	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 20:55:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 51E48525537
+	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 20:58:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1357814AbiELSzo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 May 2022 14:55:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48972 "EHLO
+        id S1357809AbiELS6F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 May 2022 14:58:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57274 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1356238AbiELSzn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 14:55:43 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62300635E;
-        Thu, 12 May 2022 11:55:41 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id EBB4661A78;
-        Thu, 12 May 2022 18:55:40 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F1199C385B8;
-        Thu, 12 May 2022 18:55:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1652381740;
-        bh=WWAAPtxxtrtCt/U+Ck9agHdEIF6m1EJtXt8aBqRS4zA=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:From;
-        b=E64vmSecjpiNKtMh6u9O9WROcYkltlTr6S5NYbDhQ/JWNCTeE7zbQoDywPEwXIJSo
-         xwpUtZktVDk6EQZHq0HwOyjJw7eDSv+5f0Xrdfy6tg9+pKnJH/EKjC7AWsXK+nO5vF
-         TTLET8ZbiOk2hCFZtu09bURK6ut0khpQ1JlnUnHQU84CaQAcsJuh5pR4mPsGYaohHk
-         QOor43jLv90t2Cfe1YrCryaJ0cYi6/xFQhW+sqTxt3roBA087gsqy0NfZ8QpUyEiSw
-         EHMuBxv7JvovBbD054Zhc3R5Ju8/wD8qhF6Hy5R7+GRJUDBp2QbQ3e1yk+6ZF9Ov/o
-         mdMax5xEvn7vg==
-Date:   Thu, 12 May 2022 13:55:37 -0500
-From:   Bjorn Helgaas <helgaas@kernel.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Stanimir Varbanov <svarbanov@mm-sol.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v8 06/10] PCI: dwc: Handle MSIs routed to multiple GIC
- interrupts
-Message-ID: <20220512185537.GA861067@bhelgaas>
+        with ESMTP id S1357790AbiELS6E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 14:58:04 -0400
+Received: from mail-ot1-x32b.google.com (mail-ot1-x32b.google.com [IPv6:2607:f8b0:4864:20::32b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16925719E4
+        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 11:58:04 -0700 (PDT)
+Received: by mail-ot1-x32b.google.com with SMTP id m6-20020a05683023a600b0060612720715so3363128ots.10
+        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 11:58:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
+         :subject:to:cc;
+        bh=Zhd0MG3OMKsxCCS0DxHYWS6OhXTHRYI9udewsQ9wKKA=;
+        b=a5lZ//ec8iMYjwZDAFJviLOlhtuK/zOhkJ8yY1fP9EOuCDN7H/DKHGYMZLTVmLaSbH
+         7zDVMTp4gtAb4CDJ1R3EfmEKDkhQHR8HOMF8u/8PtjJUzecXveh/v9O18YV7oMq+yfQB
+         7+9QKdmKM/AnFBuJIvt9RolrCx3FNraGV4Zl4=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:in-reply-to:references:from
+         :user-agent:date:message-id:subject:to:cc;
+        bh=Zhd0MG3OMKsxCCS0DxHYWS6OhXTHRYI9udewsQ9wKKA=;
+        b=QRdpuSgUfWPZwH/y0C25jkUOI9et1TyAPLTWE5LZ/rBYVkHvsrAIiZur8ovLm2zoj1
+         h9UJTCOoO7KiSovjB694jqwiYB+SIHJMHtpg5y+frxsovTTOFd7NcO6XmHG3A5Oc+C1m
+         6JB8Bc1ZlZHRXV2rXZfjFksT3a39pvuvkW7WND3+lxSBon45CqWYnfzdLnmjFcSQgnR2
+         gw/pzgXpyodNFKUwXcmNhIfSh0WDRPQEb1zILHyYsVAvdAApF5XhTiGK/4DzDnDEZ/1r
+         Nqpcy1tglpb7Rf06n0tnGkCpVHRyK00a6ArOmyAeqXRJeOV/wIh6Br5RaVJrxKvwPKek
+         tHzw==
+X-Gm-Message-State: AOAM530RV9zJRWJQlxO29QYRdIDbMe9tM8SM+Ax7wkUeVfZRwtAKDEf9
+        mPebSukNfqqxWfIhTTuk5utSksLGXLp4W+BI58xdcA==
+X-Google-Smtp-Source: ABdhPJzuIqTTJcobedsUUMtgNSQxvFm+eNCNAvbYJtV/SGE93UY7OwlQcTO+QqsTxk2XA3PsD5OaOpa6i/+EQ/taytI=
+X-Received: by 2002:a05:6830:13ce:b0:606:702b:87f0 with SMTP id
+ e14-20020a05683013ce00b00606702b87f0mr535356otq.159.1652381883398; Thu, 12
+ May 2022 11:58:03 -0700 (PDT)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Thu, 12 May 2022 11:58:02 -0700
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220512104545.2204523-7-dmitry.baryshkov@linaro.org>
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+In-Reply-To: <Ynzf5jEIECLmELK7@google.com>
+References: <20220429233112.2851665-1-swboyd@chromium.org> <20220429233112.2851665-2-swboyd@chromium.org>
+ <CAD=FV=VX8EEgkeLgKwyKvjztcjbA8UhKOUpTr-sS1_Ec=QcWbA@mail.gmail.com>
+ <CAKdAkRSOtAD6u_cwKhHeMLgz5dC2hfPvVvqmj+17b4i-nspfgg@mail.gmail.com>
+ <CAE-0n50Y8tZD9Djn9TVaAiHxehFJ2cZKZ1Z09piDk47uw3nK+Q@mail.gmail.com> <Ynzf5jEIECLmELK7@google.com>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.10
+Date:   Thu, 12 May 2022 11:58:02 -0700
+Message-ID: <CAE-0n50+obQ5qgPNPtUY=OmTgU9bZQ3hNw+MaG9Wi3SQSc-i4A@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: google,cros-ec-keyb: Introduce
+ switches only compatible
+To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc:     Doug Anderson <dianders@chromium.org>,
+        LKML <linux-kernel@vger.kernel.org>, patches@lists.linux.dev,
+        chrome-platform@lists.linux.dev,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Benson Leung <bleung@chromium.org>,
+        Guenter Roeck <groeck@chromium.org>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        "Joseph S. Barrera III" <joebar@chromium.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -63,89 +76,83 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 12, 2022 at 01:45:41PM +0300, Dmitry Baryshkov wrote:
-> On some of Qualcomm platforms each group of 32 MSI vectors is routed to the
-> separate GIC interrupt. Implement support for such configuraions by
-> parsing "msi0" ... "msi7" interrupts and attaching them to the chained
-> handler.
+Quoting Dmitry Torokhov (2022-05-12 03:22:30)
+> Hi Stephen,
+>
+> Sorry for the delay with my response.
+>
+> On Mon, May 02, 2022 at 01:41:33PM -0700, Stephen Boyd wrote:
+> > Quoting Dmitry Torokhov (2022-05-02 10:43:06)
+> > > On Mon, May 2, 2022 at 10:00 AM Doug Anderson <dianders@chromium.org> wrote:
+> > > >
+> > > > That goes against the recently landed commit 4352e23a7ff2 ("Input:
+> > > > cros-ec-keyb - only register keyboard if rows/columns exist") but
+> > > > perhaps we should just _undo_ that that since it landed pretty
+> > > > recently and say that the truly supported way to specify that you only
+> > > > have keyboards/switches is with the compatible.
+> > > >
+> > > > What do you think?
+> > >
+> > > I am sorry, I am still confused on what exactly we are trying to solve
+> > > here? Having a device with the new device tree somehow run an older
+> > > kernel and fail? Why exactly do we care about this case?
+> >
+> > Yes, we're trying to solve the problem where a new device tree is used
+> > with an older kernel because it doesn't have the driver patch to only
+> > create an input device for the matrix when rows/columns properties are
+> > present. Otherwise applying that devicetree patch to an older kernel
+> > will break bisection.
+>
+> Well, my recommendation here would be: "do not do that". How exactly
+> will you get new DTS into a device with older kernel, and why would you
+> do that?
 
-Again, only if you have some other reason to repost:
+It's about easing the transition to a new programming model of the
+driver. We could "not do that" and consciously decide to only use new
+DTBs with new kernels. Or we could take this multiple compatible
+approach and things work with all combinations. I'd like to make
+transitions smooth so introducing a second compatible string is the
+solution for that.
 
-s/configuraions/configurations/
+Another "what if" scenario is that the rows/columns properties should
+have been required per the DT binding all along. If they were required
+to begin with, I wouldn't have been able to make them optional without
+introducing a new compatible string that the schema keyed off of to
+figure out that they're optional sometimes.
 
-> Note, that if DT doesn't list an array of MSI interrupts and uses single
-> "msi" IRQ, the driver will limit the amount of supported MSI vectors
-> accordingly (to 32).
-> 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
->  .../pci/controller/dwc/pcie-designware-host.c | 33 ++++++++++++++++++-
->  drivers/pci/controller/dwc/pcie-designware.h  |  1 +
->  2 files changed, 33 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/pci/controller/dwc/pcie-designware-host.c b/drivers/pci/controller/dwc/pcie-designware-host.c
-> index 6b0c7b75391f..258bafa306dc 100644
-> --- a/drivers/pci/controller/dwc/pcie-designware-host.c
-> +++ b/drivers/pci/controller/dwc/pcie-designware-host.c
-> @@ -291,7 +291,8 @@ static void dw_pcie_msi_init(struct pcie_port *pp)
->  static int dw_pcie_msi_host_init(struct pcie_port *pp)
->  {
->  	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
-> -	struct platform_device *pdev = to_platform_device(pci->dev);
-> +	struct device *dev = pci->dev;
-> +	struct platform_device *pdev = to_platform_device(dev);
->  	int ret;
->  	u32 ctrl, num_ctrls;
->  
-> @@ -299,6 +300,36 @@ static int dw_pcie_msi_host_init(struct pcie_port *pp)
->  	for (ctrl = 0; ctrl < num_ctrls; ctrl++)
->  		pp->irq_mask[ctrl] = ~0;
->  
-> +	if (pp->has_split_msi_irq) {
-> +		char irq_name[] = "msiXX";
-> +		int irq;
-> +
-> +		if (!pp->msi_irq[0]) {
-> +			irq = platform_get_irq_byname_optional(pdev, irq_name);
-> +			if (irq == -ENXIO) {
-> +				num_ctrls = 1;
-> +				pp->num_vectors = min((u32)MAX_MSI_IRQS_PER_CTRL, pp->num_vectors);
-> +				dev_warn(dev, "No additional MSI IRQs, limiting amount of MSI vectors to %d\n",
-> +					 pp->num_vectors);
-> +			} else {
-> +				pp->msi_irq[0] = irq;
-> +			}
-> +		}
-> +
-> +		/* If we fallback to the single MSI ctrl IRQ, this loop will be skipped as num_ctrls is 1 */
-> +		for (ctrl = 1; ctrl < num_ctrls; ctrl++) {
-> +			if (pp->msi_irq[ctrl])
-> +				continue;
-> +
-> +			snprintf(irq_name, sizeof(irq_name), "msi%d", ctrl);
-> +			irq = platform_get_irq_byname(pdev, irq_name);
-> +			if (irq < 0)
-> +				return irq;
-> +
-> +			pp->msi_irq[ctrl] = irq;
-> +		}
-> +	}
-> +
->  	if (!pp->msi_irq[0]) {
->  		int irq = platform_get_irq_byname_optional(pdev, "msi");
->  
-> diff --git a/drivers/pci/controller/dwc/pcie-designware.h b/drivers/pci/controller/dwc/pcie-designware.h
-> index 9c1a38b0a6b3..3aa840a5b19c 100644
-> --- a/drivers/pci/controller/dwc/pcie-designware.h
-> +++ b/drivers/pci/controller/dwc/pcie-designware.h
-> @@ -179,6 +179,7 @@ struct dw_pcie_host_ops {
->  
->  struct pcie_port {
->  	bool			has_msi_ctrl:1;
-> +	bool			has_split_msi_irq:1;
->  	u64			cfg0_base;
->  	void __iomem		*va_cfg0_base;
->  	u32			cfg0_size;
-> -- 
-> 2.35.1
-> 
+>
+>
+> >
+> > > We have
+> > > implemented the notion that without rows/columns properties we will
+> > > not be creating input device for the matrix portion, all older devices
+> > > should have it defined, so the newer driver is compatible with them...
+> > >
+> >
+> > Agreed, that solves half the problem. This new compatible eases
+> > integration so that devicetrees can say they're compatible with the old
+> > binding that _requires_ the rows/column properties. By making the driver
+> > change we loosened that requirement, but the binding should have been
+> > making the properties required at the start because it fails to bind
+> > otherwise.
+> >
+> > My interpretation of what Doug is saying is that we should maintain that
+> > requirement that rows/columns exists if the original compatible
+> > google,cros-ec-keyb is present and use the new compatible to indicate
+> > that there are switches. Combining the two compatibles means there's
+> > switches and a matrix keyboard, having only the switches compatible
+> > means only switches, and having only the keyboard compatible means only
+> > matrix keyboard.
+> >
+> > It sounds OK to me.
+>
+> Have we solved module loading in the presence of multiple compatibles?
+> IIRC we only ever try to load module on the first compatible, so you'd
+> be breaking autoloading cros-ec-keyb on these older kernels. I think the
+> cure that is being proposed is worse than the disease.
+>
+
+The first compatible is still cros-ec-keyb in the driver though? Or you
+mean the first compatible in the node? I'm not aware of this problem at
+all but I can certainly test out a fake node and module and see if it
+gets autoloaded.
