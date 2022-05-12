@@ -2,248 +2,175 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C2DEA524765
-	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 09:51:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 06568524771
+	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 09:54:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351198AbiELHvR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 May 2022 03:51:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37094 "EHLO
+        id S1351241AbiELHyJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 May 2022 03:54:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49508 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351176AbiELHvP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 03:51:15 -0400
-X-Greylist: delayed 372 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 12 May 2022 00:51:09 PDT
-Received: from wnew4-smtp.messagingengine.com (wnew4-smtp.messagingengine.com [64.147.123.18])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D6841838F;
-        Thu, 12 May 2022 00:51:08 -0700 (PDT)
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailnew.west.internal (Postfix) with ESMTP id DB9CC2B059AE;
-        Thu, 12 May 2022 03:44:50 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute3.internal (MEProxy); Thu, 12 May 2022 03:44:53 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
-        :cc:content-transfer-encoding:content-type:date:date:from:from
-        :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to; s=fm3; t=1652341490; x=
-        1652348690; bh=F/3C1V38ahUzifyHzEs+CWDQJfKIOWf16zUshCZyYK4=; b=f
-        oyo14B5q77HWBztYyB6jy0JiEQ9Ii/BiEb6AG0JsU2fDxdZqUcK68yNGAC7EoaS0
-        MLdiGoW2wTpmdb51vgwhwQiNWtPftgTIU60n5uuzPE360fUVgjTUAya9IPqnwNKb
-        BnviiRI1bsbrEa+UsHZFVi+kJ9LICkw7R3oWYCMgAfhrwml2d5eev3yTn9skCxBg
-        VH8/RSJY4M5b81xtpsc+F9ey0/umPWOxbsk7XMP+7d9G9PDaBbhhl/f5taTsz5RB
-        6dmN6bGq0hhSJ7jW2s6IqG39WvMgsRgpCq0P2vXnglINSYJVGREHl0DALEPDRllK
-        ioGt2OrO1hw7MXf06E+fg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-transfer-encoding
-        :content-type:date:date:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm1; t=1652341490; x=1652348690; bh=F/3C1V38ahUzi
-        fyHzEs+CWDQJfKIOWf16zUshCZyYK4=; b=PwYCoCpllwsaeQDZ/UbNYqufIcU3D
-        ZUWgY8F7k7Saqv2O6zyjaOoYF5xcDIWEnLSGiwdoo9z8lCBMr/tHJh5b0zfeFWE6
-        /Z2RCJLc+r2pnrvNhImcW02ht7w/mv4bgobAnb9k0gXLDcWXAQYuz3K1z9POKN/y
-        S/eqJzDh+501oGPp9exuG3dzomL2dp5vuGlGULmmWXC8cqRqYHf4z9q8S2BE/UHo
-        6LyF8q2ZC7+aDXKLXASdRi94nP7is08wABRLovnl/szz04ritVADLELl1cAAm1+2
-        90qcou1rCuxePxCOn11vTIOW78qBQGe0KsUAxnEyD9NN9GYZScntiuXrg==
-X-ME-Sender: <xms:8bp8YqcK-fdwBudEcm5H1P_35GB8Y7LkLxZ4zJkH7TKJFPY--ts9wQ>
-    <xme:8bp8YkOvhUAnmlQU_F1xaAbi92HOEjaEU2MhKVss9NVtJC1EMVj_Hk3wd-nXqt7XK
-    R68JXUE9Mg8QkPMOf4>
-X-ME-Received: <xmr:8bp8Yrgphjel3L9AUZeENPZqw0iDm42eTLMqQ_jugzMVv5Ex1vLAqdXFGcdo-J9RZVw2IZo3EkihHmK8LVQqL50inCCR6S8SR81EWos>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrgeeigdduvdduucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepfffhvfevuffkfhggtggugfgjsehtqhertddttddvnecuhfhrohhmpeforgig
-    ihhmvgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrf
-    grthhtvghrnhepheejffefgefgieevjedvfffgvdfghedtgfdvueejvdejgfffvdeuteei
-    vedufedvnecuffhomhgrihhnpegsohhothhlihhnrdgtohhmnecuvehluhhsthgvrhfuih
-    iivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordht
-    vggthh
-X-ME-Proxy: <xmx:8bp8Yn9_Hnhd8voI202NNd_FlS4bmUHGt3SBFFkI5a5B-1Sfmlps8Q>
-    <xmx:8bp8Ymsn4HLY6Dqe7h0m9lGhr8Ulxluora9B7319zC42M3vRgIlJhg>
-    <xmx:8bp8YuGGZe5sCyNbypDOt_k8OycLAKInPJrliLcAmGL5wufwJB_p0w>
-    <xmx:8rp8Yu2wRlaVZOp8yBGYU65RItWFtHlRMmFrvZtBCrOu7SA0hzrdwpMFxjs>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 12 May 2022 03:44:48 -0400 (EDT)
-Date:   Thu, 12 May 2022 09:44:46 +0200
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Guillaume Ranquet <granquet@baylibre.com>
-Cc:     airlied@linux.ie, angelogioacchino.delregno@collabora.com,
-        chunfeng.yun@mediatek.com, chunkuang.hu@kernel.org,
-        ck.hu@mediatek.com, daniel@ffwll.ch, deller@gmx.de,
-        jitao.shi@mediatek.com, kishon@ti.com, krzk+dt@kernel.org,
-        maarten.lankhorst@linux.intel.com, matthias.bgg@gmail.com,
-        p.zabel@pengutronix.de, robh+dt@kernel.org, tzimmermann@suse.de,
-        vkoul@kernel.org, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org, linux-fbdev@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        linux-phy@lists.infradead.org, markyacoub@google.com,
-        Markus Schneider-Pargmann <msp@baylibre.com>,
-        kernel test robot <lkp@intel.com>
-Subject: Re: [PATCH v9 18/22] drm/mediatek: Add mt8195 Embedded DisplayPort
- driver
-Message-ID: <20220512074446.ihilbbnbuwesxbbg@houat>
-References: <20220327223927.20848-1-granquet@baylibre.com>
- <20220327223927.20848-19-granquet@baylibre.com>
- <20220429083933.q3w75q3zuyyuvo4w@houat>
- <CABnWg9tzhZjrdKT4chkDrY-uH8BMUoxyNLUSwfuG6Sv1J+8ddg@mail.gmail.com>
+        with ESMTP id S1351244AbiELHyI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 03:54:08 -0400
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F199049273
+        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 00:54:06 -0700 (PDT)
+Received: by mail-ej1-x631.google.com with SMTP id dk23so8510103ejb.8
+        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 00:54:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=xHJnnT01z1m5/aS07o3xcwpyjm9ng8j7p+h8cghz0mg=;
+        b=A/SBKtUr3KfywtKWmieS20zAHGuZFnDIpJbiOl8aFAoL4TK0+DjjJ2fxYk1rGmB6ZK
+         ub1rbkQft+iCWKy4ygN/kwmCKlgGIp5Ks4CVAzNf6gtgDd7Ih4oRrpeSlVnqPsvRLO0/
+         Uy24pj8IOZ4lIMr1FQzTcBQJtndvDBSpYU1bvfmbNZxpFFC3/gGwIquh1qGTgEf8CQtj
+         duWUm4a2OBbc8pPMC5ViPPghhWvDNAr1FkMoO5+yTnCjzbD/nRv2cKEGR8OBfm0Bf0kh
+         M3op9yni3ODEvrTX14yYbJQjoyy7G0FFHNakiO2K9pEkTJjIIHuz3HzfMV0vgVRzpyQn
+         wtFA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=xHJnnT01z1m5/aS07o3xcwpyjm9ng8j7p+h8cghz0mg=;
+        b=R2VQ0FG0ri/vsQP/eLstWg66v4D280Bu29hzKgrJuHEtyFYDXtQhc9E1ae5vMlvaLh
+         q2yaliFgrAcHvgpgnbO10dNqW/PQge/xdNYxCzUcmUUeJJVsfgBqes5pu7FwgJSccg8N
+         cdASx6zx1kAyVRywkvsYWC/Svsp97qAi5rC78uS4Nnktl3uCQftrXEU74h+bV93ESWKj
+         h6nUHEzCMcDy7ZYlCZgJJqpODJmcjJS1KlW2JXIZ9dQfN8hXjOBgGORhVxtwFY4o17b6
+         OgrwwFv+ZpFDKfAQLSZpHNsvnq+VQ+ddtD6gmEyfYL98UD+3PvIowOe7OkGiFGPEdPzV
+         b0QA==
+X-Gm-Message-State: AOAM530dcaHyoeR/TVORw7z7ZoHA0N2V+5BI24x6FWFdVzHdULSUK7dB
+        XvTzzpOikMVOn+t45/Ua56910g==
+X-Google-Smtp-Source: ABdhPJxoSxUbbatzMqng37xCHJror9sIbQPy+9nCPXyfbJ+QGbiKsRtJNf0mmfRO7Uf5x69zPreAnw==
+X-Received: by 2002:a17:907:3f26:b0:6f4:dc59:3cfe with SMTP id hq38-20020a1709073f2600b006f4dc593cfemr28828663ejc.528.1652342045468;
+        Thu, 12 May 2022 00:54:05 -0700 (PDT)
+Received: from [192.168.0.156] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id j29-20020a508a9d000000b0042617ba63d1sm2205862edj.91.2022.05.12.00.54.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 12 May 2022 00:54:05 -0700 (PDT)
+Message-ID: <b5c586de-a3ae-0774-e0bf-e21852b65fa9@linaro.org>
+Date:   Thu, 12 May 2022 09:54:03 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <CABnWg9tzhZjrdKT4chkDrY-uH8BMUoxyNLUSwfuG6Sv1J+8ddg@mail.gmail.com>
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH 1/2] dt-bindings: microchip-otpc: document Microchip OTPC
+Content-Language: en-US
+To:     Claudiu.Beznea@microchip.com, srinivas.kandagatla@linaro.org,
+        robh+dt@kernel.org, krzk+dt@kernel.org
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220510094457.4070764-1-claudiu.beznea@microchip.com>
+ <20220510094457.4070764-2-claudiu.beznea@microchip.com>
+ <75ce6291-77c7-c932-e8bb-a8bbae02431d@linaro.org>
+ <c840c598-0413-5f40-0807-e3c314531f0a@microchip.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <c840c598-0413-5f40-0807-e3c314531f0a@microchip.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On 12/05/2022 09:17, Claudiu.Beznea@microchip.com wrote:
+>>
+>>> +
+>>> +#ifndef _DT_BINDINGS_NVMEM_MICROCHIP_OTPC_H
+>>> +#define _DT_BINDINGS_NVMEM_MICROCHIP_OTPC_H
+>>> +
+>>> +/*
+>>> + * Need to have it as a multiple of 4 as NVMEM memory is registered with
+>>> + * stride = 4.
+>>> + */
+>>> +#define OTP_PKT(id)                  ((id) * 4)
+>>
+>> Do I get it correctly - the offset or register address is now part of a
+>> binding? You write here "id", however you use it as part of "reg", so
+>> it's confusing.
+> 
+> I agree that reg should describe the offset in OTP memory and its the
+> length for a cell.
+> 
+> However this OTP memory is organized into packets (this is how hardware is
+> designed), the 1st one being the boot configuration packet, the 2nd one
+> being temperature calibration data. At the moment Microchip provides only
+> these 2 packets in OTP memory. Boot configuration packet may vary in length
+> thus it may change the offset the temperature calibration packet resides
+> to. If this happen and we use offset based addressing in device trees then
+> the solution will not work all the time.
+> 
+> OTP hardware is designed to work with packets. For a packet being in memory
+> at offset 0x0E as follows:
+> 
+> offset  OTP Memory layout
+> 
+>          .           .
+>          .    ...    .
+>          .           .
+> 0x0E     +-----------+	<--- packet X
+>          | header  X |
+> 0x12     +-----------+
+>          | payload X |
+> 0x16     |           |
+>          |           |
+> 0x1A     |           |
+>          +-----------+
+>          .           .
+>          .    ...    .
+>          .           .
+> 
+> requesting from software data at address 0x16 (through OTP control
+> registers) will return the whole packet starting at offset 0x0E. Same
+> things happens when requesting data at offset 0x0E, 0x12, 0x1A.
+> 
+> Thus, as underlying hardware returns to software chunks of 4 bytes though
+> data registers the driver has been registered with stride = 4. The
+> OTP_PKT() macro expects packet identifier (starting from 0), multiplies it
+> by 4 to be able to pass the NVMEM subsystem accordingly, then the driver
+> which manages a list of the available packets divides this value by 4 and
+> gets the packet ID and the proper offset in memory for the requested packet ID.
+> 
+> The intention was to have the OTP_PKT() macro here to be used in device
+> trees for simpler way of describing different cells in this OTP memory.
+> Also, using OTP_PKT() abstraction looked to me closer to the reality
+> (although the computed value is not reflecting this, it is only an
+> abstraction to be able to pass the NVMEM subsystem).
+> 
+> Would you prefer to have raw values instead of using this macro?
 
-On Wed, May 11, 2022 at 05:59:13AM -0700, Guillaume Ranquet wrote:
-> >> +#include <drm/drm_atomic_helper.h>
-> >> +#include <drm/drm_bridge.h>
-> >> +#include <drm/drm_crtc.h>
-> >> +#include <drm/dp/drm_dp_helper.h>
-> >> +#include <drm/drm_edid.h>
-> >> +#include <drm/drm_of.h>
-> >> +#include <drm/drm_panel.h>
-> >> +#include <drm/drm_print.h>
-> >> +#include <drm/drm_probe_helper.h>
-> >> +#include <linux/arm-smccc.h>
-> >> +#include <linux/clk.h>
-> >> +#include <linux/delay.h>
-> >> +#include <linux/errno.h>
-> >> +#include <linux/kernel.h>
-> >> +#include <linux/mfd/syscon.h>
-> >> +#include <linux/nvmem-consumer.h>
-> >> +#include <linux/of.h>
-> >> +#include <linux/of_irq.h>
-> >> +#include <linux/of_platform.h>
-> >> +#include <linux/phy/phy.h>
-> >> +#include <linux/platform_device.h>
-> >> +#include <linux/pm_runtime.h>
-> >> +#include <linux/regmap.h>
-> >> +#include <sound/hdmi-codec.h>
-> >> +#include <video/videomode.h>
-> >> +
-> >> +#include "mtk_dp_reg.h"
-> >> +
-> >> +#define MTK_DP_AUX_WAIT_REPLY_COUNT 20
-> >> +#define MTK_DP_CHECK_SINK_CAP_TIMEOUT_COUNT 3
-> >> +
-> >> +//TODO: platform/device data or dts?
-> >
-> >DTS :)
->=20
-> It's probably going to be a platform_data struct for v10...
-> If I have time, I'll change it to a dts property for v10.
+Macro is a nice idea if it can be stable. I understood that length of
+packets depends on hardware, so this part could be stable. But what
+about number of packets, so the OTP_PKT_SAMA7G5_TEMP_CALIB_LEN below?
+You wrote "Boot configuration packet may vary in length", so it could be
+changed by Microchip?
 
-I can't really imagine a case where we would need platform_data
-nowadays. If you have a device tree, then it should be part of the
-binding.
+Once this value is stored in the bindings, it is not supposed to change.
 
-What issue would you like to address by using a platform_data?
+> 
+> Adapting the subsystem for this kind of devices is also an option if
+> Srinivas thinks like this.
+> 
+>>
+>>> +
+>>> +/*
+>>> + * Temperature calibration packet length for SAMA7G5: 1 words header,
+>>> + * 18 words payload.
+>>> + */
+>>> +#define OTP_PKT_SAMA7G5_TEMP_CALIB_LEN       (19 * 4)
+>>
+>> Length of some memory region also does not look like job for bindings.
+> 
+> I added it here to be able to have the same macro in DT and consumer
+> drivers taking as example iio drivers that uses this approach to describe
+> IIO channel identifiers. I can remove it and use necessary macros in the
+> consumer drivers, if it's better this way.
 
-> >> +static enum drm_connector_status mtk_dp_bdg_detect(struct drm_bridge =
-*bridge)
-> >> +{
-> >> +	return connector_status_connected;
-> >> +}
-> >
-> >I'm not quite sure what's going on there. You seem to have some support
-> >for HPD interrupts above, but you always report the display as
-> >connected?
-> >
-> >I'd assume that either you don't have HPD support and then always report
-> >it as connected, or you have HPD support and report the current status
-> >in detect, but that combination seems weird.
->=20
-> The HPD logic needs more work, some things have been broken when I split
-> the driver into three patches eDP - DP - Audio
-> The assumption at first was that eDP didn't need any HPD handling... but =
-it
-> seems I was wrong and the eDP driver needs to be reworked.
 
-That can be made into a patch of its own if you prefer.
 
-You first introduce the driver without status reporting (always
-returning connected or unknown), and then add the needed bits for HPD.
-
-However, that first patch shouldn't contain the interrupt plumbing and
-so on, it's just confusing.
-
-> >> +static struct edid *mtk_dp_get_edid(struct drm_bridge *bridge,
-> >> +				    struct drm_connector *connector)
-> >> +{
-> >> +	struct mtk_dp *mtk_dp =3D mtk_dp_from_bridge(bridge);
-> >> +	bool enabled =3D mtk_dp->enabled;
-> >> +	struct edid *new_edid =3D NULL;
-> >> +
-> >> +	if (!enabled)
-> >> +		drm_bridge_chain_pre_enable(bridge);
-> >> +
-> >> +	drm_dp_dpcd_writeb(&mtk_dp->aux, DP_SET_POWER, DP_SET_POWER_D0);
-> >> +	usleep_range(2000, 5000);
-> >> +
-> >> +	if (mtk_dp_plug_state(mtk_dp))
-> >> +		new_edid =3D drm_get_edid(connector, &mtk_dp->aux.ddc);
-> >> +
-> >> +	if (!enabled)
-> >> +		drm_bridge_chain_post_disable(bridge);
-> >
-> >Are you sure we can't get a mode set while get_edid is called?
-> >
-> >If we can, then you could end up disabling the device while it's being
-> >powered on.
->=20
-> I'm a bit unsure, I need to spend more time in the drm stack to make sure.
-> I'll get back to you when I have a definitive answer.
-
-So, it looks like it's ok.
-
-get_edid is your implementation of get_modes, which is called by
-drm_helper_probe_single_connector_modes
-
-https://elixir.bootlin.com/linux/latest/source/drivers/gpu/drm/drm_probe_he=
-lper.c#L416
-
-This is the standard implemantion of fill_modes, which is called
-whenever the get_connector ioctl is called (or similar paths, like
-drm_client_modeset_probe)
-
-drm_helper_probe_single_connector_modes is under the assumption that the
-mode_config.mutex is held though, and that the big lock. So it should be
-serialized there.
-
-Just for future proofing though, it would be better to use refcounting
-there. Would runtime_pm work for you there?
-
-> >> +static void mtk_dp_parse_drm_mode_timings(struct mtk_dp *mtk_dp,
-> >> +					  struct drm_display_mode *mode)
-> >> +{
-> >> +	struct mtk_dp_timings *timings =3D &mtk_dp->info.timings;
-> >> +
-> >> +	drm_display_mode_to_videomode(mode, &timings->vm);
-> >> +	timings->frame_rate =3D mode->clock * 1000 / mode->htotal / mode->vt=
-otal;
-> >
-> >drm_mode_vrefresh()
-> >
-> >> +	timings->htotal =3D mode->htotal;
-> >> +	timings->vtotal =3D mode->vtotal;
-> >> +}
-> >
-> >It's not really clear to me why you need to duplicate drm_display_mode
-> >here?
-> >
-> It's saved to be re-used in mtk_dp_set_msa().
-> It's not ideal, I'll check if I can get the mode directly from mtk_dp_set=
-_msa()
-
-Yeah, it looks like mtk_dp_set_msa() uses fairly straightforward values,
-this will be just as easy with drm_display_mode.
-
-Maxime
+Best regards,
+Krzysztof
