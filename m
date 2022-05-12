@@ -2,80 +2,47 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B7A2D524D04
-	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 14:36:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 94F78524D40
+	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 14:42:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1353841AbiELMgY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 May 2022 08:36:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46420 "EHLO
+        id S1353019AbiELMmy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 May 2022 08:42:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42842 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1353732AbiELMgV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 08:36:21 -0400
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC4C43A709
-        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 05:36:18 -0700 (PDT)
-Received: by mail-ed1-x532.google.com with SMTP id c12so6035156edv.10
-        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 05:36:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=gTmt/B/w9KdHTf7QYSgx9Lzcr6J8CV4S/KB3jkF6w4w=;
-        b=Asda87qLifEtE+BHYL3gQi6+Z17GE80dpOp91GVhNBBOXTsihm20fqchNSL0Y6Z1du
-         qwcZq7hGb35GFlUrEMKbb7FTEt1NLj3bjKEy7c5NGxgSMIx6YzXQtYuZMbgBx7NSTX7e
-         mrrfVfsXNBRVMH/yQkQL06zxGkAwaP6vri5afckZU9UCzwUT8JmrYnK0Xk+Pcz055DqN
-         Ohf8ChHCwnnyokcQu1GrnnfL0LqKxxYhF9D0GaP+7Nkhx0U35ZWjTQLGgoL45y66d6lo
-         MLLaon/ELqKxQBLU2X39oEj+FAsjj+tINlNgT/Zf0DV7o984uYiPktQsjqkZ0XOOeOii
-         lHKA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=gTmt/B/w9KdHTf7QYSgx9Lzcr6J8CV4S/KB3jkF6w4w=;
-        b=40xs2l8gY8F+YpfEdnBY7V0NITrD5ezyvAUbuDA/63bdWyQb3DJrHyga3wDoM6gBL/
-         7eP9ZmXIBBN7GX5wQzg3xP8QR2/tRIt7rdoQIw6x57oIWDyYPEYewsCkSJIduPsGigqQ
-         1vGvEZK9KRxnwQeA3dki24N5ZeNDbTHOq8gCjSxjIGcLVOcFYUPwGx+K1XZokNsUJr69
-         4FP/kcfJrDg4ALFTAazON8H5F00hQx8EEKSnkrdhCveIKKGtafHe30Do/3+q0QlgjGan
-         0+mZ/TGuIxHEq9cRsurK0aKp4j7NboS63rBwmyNLSh7RrWoQe6aH62DGc7hF3CjBQG5I
-         HzCw==
-X-Gm-Message-State: AOAM532Nfx5Se5KNRGtjQy/x40VQwZuot8h/k3rQLYFTsdw2SV07xamf
-        erdytZ9MEgw/FNqUKFt0k3dHZQ==
-X-Google-Smtp-Source: ABdhPJzrnXfJjNzkVC6pBtLHiWz195wT5TQ3D+wYQ2m7mMwooiP7f7xIWg4AUkiO2ihMNDt9xgucMA==
-X-Received: by 2002:aa7:c1d0:0:b0:428:b439:99f5 with SMTP id d16-20020aa7c1d0000000b00428b43999f5mr15515971edp.316.1652358977231;
-        Thu, 12 May 2022 05:36:17 -0700 (PDT)
-Received: from [192.168.0.159] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id g6-20020a50d0c6000000b0042617ba63aasm2460191edf.52.2022.05.12.05.36.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 12 May 2022 05:36:16 -0700 (PDT)
-Message-ID: <41cc4506-57be-a831-57d5-e539e8a95610@linaro.org>
-Date:   Thu, 12 May 2022 14:36:15 +0200
+        with ESMTP id S1348607AbiELMmx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 08:42:53 -0400
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6980166FA3;
+        Thu, 12 May 2022 05:42:50 -0700 (PDT)
+Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=diego.localnet)
+        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <heiko@sntech.de>)
+        id 1np89T-00025a-Rp; Thu, 12 May 2022 14:42:43 +0200
+From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To:     Atish Patra <atishp@rivosinc.com>, linux-riscv@lists.infradead.org
+Cc:     "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Atish Patra <atishp@atishpatra.org>,
+        Damien Le Moal <damien.lemoal@wdc.com>,
+        DTML <devicetree@vger.kernel.org>,
+        Jisheng Zhang <jszhang@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Anup Patel <anup@brainfault.org>
+Subject: Re: [PATCH 1/2] RISC-V: Fix counter restart during overflow for RV32
+Date:   Thu, 12 May 2022 14:42:42 +0200
+Message-ID: <23274575.ouqheUzb2q@diego>
+In-Reply-To: <CAAhSdy3mbGdK9LrLxZX0JL0mQxP5FrFUuneX1cQS2SABpO=7dw@mail.gmail.com>
+References: <20220511201107.2311757-1-atishp@rivosinc.com> <CAAhSdy3mbGdK9LrLxZX0JL0mQxP5FrFUuneX1cQS2SABpO=7dw@mail.gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH v2 02/11] dt-bindings: marvell: convert Armada 37xx
- compatibles to YAML
-Content-Language: en-US
-To:     Robert Marko <robert.marko@sartura.hr>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        krzysztof.kozlowski+dt@linaro.org, Andrew Lunn <andrew@lunn.ch>,
-        gregory.clement@bootlin.com, sebastian.hesselbarth@gmail.com,
-        kostap@marvell.com, devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        =?UTF-8?Q?Pali_Roh=c3=a1r?= <pali@kernel.org>,
-        =?UTF-8?Q?Marek_Beh=c3=ban?= <marek.behun@nic.cz>
-References: <20220510124929.91000-1-robert.marko@sartura.hr>
- <20220510124929.91000-2-robert.marko@sartura.hr>
- <0815f581-ca5b-6fb6-a59e-f5d0a3686caa@linaro.org>
- <CA+HBbNFnXoEghSdhTYoC-VvCMkiEuuee9p8SuNGubYCeLWoYfA@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CA+HBbNFnXoEghSdhTYoC-VvCMkiEuuee9p8SuNGubYCeLWoYfA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -83,98 +50,44 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/05/2022 14:26, Robert Marko wrote:
-> On Wed, May 11, 2022 at 6:52 PM Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
->>
->> On 10/05/2022 14:49, Robert Marko wrote:
->>
->> Thank you for your patch. There is something to discuss/improve.
->>
->>> -
->>> - - compatible: must contain "cznic,turris-mox"
->>> diff --git a/Documentation/devicetree/bindings/arm/marvell/armada-37xx.yaml b/Documentation/devicetree/bindings/arm/marvell/armada-37xx.yaml
->>> new file mode 100644
->>> index 000000000000..3f41ef2c6f3e
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/arm/marvell/armada-37xx.yaml
->>> @@ -0,0 +1,50 @@
->>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/arm/marvell/armada-37xx.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: Marvell Armada 37xx Platforms Device Tree Bindings
->>> +
->>> +maintainers:
->>> +  - Robert Marko <robert.marko@sartura.hr>
->>> +
->>> +properties:
->>> +  $nodename:
->>> +    const: '/'
->>> +  compatible:
->>> +    oneOf:
->>> +      - description: Armada 3710 SoC
->>> +        items:
->>> +          - const: marvell,armada3710
->>
->> This does not look correct. The SoC usually cannot be used by itself,
->> it's always a part of some product, SoM, board.
+Am Donnerstag, 12. Mai 2022, 06:44:12 CEST schrieb Anup Patel:
+> On Thu, May 12, 2022 at 1:41 AM Atish Patra <atishp@rivosinc.com> wrote:
+> >
+> > Pass the upper half of the initial value of the counter correctly
+> > for RV32.
+> >
+> > Fixes: 4905ec2fb7e6 ("RISC-V: Add sscofpmf extension support")
+> >
+> > Signed-off-by: Atish Patra <atishp@rivosinc.com>
+> > ---
+> >  drivers/perf/riscv_pmu_sbi.c | 2 +-
+> >  1 file changed, 1 insertion(+), 1 deletion(-)
+> >
+> > diff --git a/drivers/perf/riscv_pmu_sbi.c b/drivers/perf/riscv_pmu_sbi.c
+> > index a1317a483512..24cea59612be 100644
+> > --- a/drivers/perf/riscv_pmu_sbi.c
+> > +++ b/drivers/perf/riscv_pmu_sbi.c
+> > @@ -526,7 +526,7 @@ static inline void pmu_sbi_start_overflow_mask(struct riscv_pmu *pmu,
+> >                         max_period = riscv_pmu_ctr_get_width_mask(event);
+> >                         init_val = local64_read(&hwc->prev_count) & max_period;
+> >                         sbi_ecall(SBI_EXT_PMU, SBI_EXT_PMU_COUNTER_START, idx, 1,
+> > -                                 flag, init_val, 0, 0);
+> > +                                 flag, init_val, init_val >> 32, 0);
 > 
-> Hi Krzysztof,
-> Currently, there are no Armada 3710 boards present in Linux, so I just
-> put the SoC compatible.
-> If that is not appropriate, I can drop it.
+> This should be under "#if __riscv_xlen == 32".
 
-Yes, please drop it.
+What's the difference between using CONFIG_32BIT
+and checking the __riscv_xlen flag value?
 
-It seems several Marvel boards and bindings use wrong convention for
-compatibles. We discussed it here:
-https://lore.kernel.org/all/1ed03960-77f6-1a9e-2378-07a6c51f42f7@linaro.org/
-AC5 and CN9130 have the same wrong patterns.
-
-> 
->>
->>> +
->>> +      - description: Armada 3720 SoC
->>> +        items:
->>> +          - enum:
->>> +              - marvell,armada-3720-db
->>> +              - globalscale,espressobin
->>> +              - cznic,turris-mox
->>> +              - methode,udpu
->>
->> Order by name.
-> Will fixup in v3.
-> 
->>
->>> +          - const: marvell,armada3720
->>> +          - const: marvell,armada3710
->>> +
->>> +      - description: Globalscale Espressobin boards
->>> +        items:
->>> +          - enum:
->>> +              - globalscale,espressobin-emmc
->>> +              - globalscale,espressobin-ultra
->>> +              - globalscale,espressobin-v7
->>> +          - const: globalscale,espressobin
->>> +          - const: marvell,armada3720
->>> +          - const: marvell,armada3710
-> Do these const compatibles also need to be in alphabetical ordering,
-> cause I ported them as they are meant to be used with the board and
-> then 3720 compatibles being in front of 3710 one as required by the current
-> text bindings.
-
-Entries in enum should be ordered alphabetically. Then the entire set "-
-description: Globalscale Espressobin boards" should have some logical
-order, not necessarily by name.
-
-Anyway this is not a requirement but rather suggestion because having
-things ordered reduces amount of conflicts when two people add new
-boards (because they add it not at the end, but somewhere in the middle
-following some order).
+CONFIG_32BIT seems to be a bit the more kernel'ish
+way to do this, but it looks like most SBI parts check the
+__riscv_xlen instead.
 
 
-Best regards,
-Krzysztof
+In any case, looking at the opensbi-side of the call,
+this fix is abviously correct, so
+
+Reviewed-by: Heiko Stuebner <heiko@sntech.de>
+
+
+
