@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 375F15249C5
-	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 12:00:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E0D4D5249C4
+	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 12:00:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352482AbiELKAv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 May 2022 06:00:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57356 "EHLO
+        id S1352415AbiELKAt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 May 2022 06:00:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57278 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1352422AbiELKA2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 06:00:28 -0400
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61A5622EA71
-        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 03:00:25 -0700 (PDT)
-Received: by mail-ed1-x52a.google.com with SMTP id k27so5604787edk.4
-        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 03:00:25 -0700 (PDT)
+        with ESMTP id S1352414AbiELKA0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 06:00:26 -0400
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D711722EA6D
+        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 03:00:23 -0700 (PDT)
+Received: by mail-ej1-x635.google.com with SMTP id m20so9087091ejj.10
+        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 03:00:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=E5YORnDcbWOJgrpTz/qSCG6/YYMuC3Z8T9fT4bh9Wds=;
-        b=tag+9P2t6thmYxjj7J1BOojXQX1tCri+O11NqGILYUOWqcJ6jw3hpWb5QYILy+FXSY
-         nVdSdVSlhuTRTt/G0wrrozxzJJYIocRWYwpQ2yl3pMhtK5TED1puBrNRuH/6tI5yd093
-         znrmOPCCYUkJ5S+QP4BKUibf0nHpXYo6Abif6Qu8Ut+slVG7r1CIJBW6c1SIhWMX4CsA
-         WIk7F4HqLztUuuHN7zEk55VZZQXN49NeZUYwY83ti4PMfp55YgIOPxoFzEcRpJK5jUte
-         WWjvXkp1lmDFlmppaHxmRRnKPPRqeslms0nimycPHaZylLR2EkJaESCw8YHQUeCG5uI2
-         nmmw==
+        bh=tkpPDqrVq/H+y/puJS4Gb9kI2/A7Lq32jtq9rYl6yb0=;
+        b=IFOCvrs1XcRqoYH+gtMSaRO+jB86LwFrCJlZuTQw6K5wGLZgkWJzdyfIqnB4g/ICx7
+         awvQNRBRVjo2j3c+kx05jfv9MzsjtKKw2TkcoX4TGKnRp6zKSxn93IpM5+Lijs5lMLMk
+         qg4/5SozOIWU5fHhYTz/2pTWlzwDg8/9tZb7wMLguvv08VfJWzSS95AaW7/rJ71klVvm
+         GdJSbN3fl4+qdW9cyliiJBmZHlyEHCWyAtu8voMpalw3WXrn1M2kFZsKDSJ07VEFgsj4
+         n8A3KmJTAnLi3ZA59gbEjr2zj+Vc/Pf+0FRJwk8A5xNrssGWqDXS1KU9cmoWy2TBhGxG
+         fZ3g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=E5YORnDcbWOJgrpTz/qSCG6/YYMuC3Z8T9fT4bh9Wds=;
-        b=Lpc+GX4Uj3vyms1OmZy/x+4N9uzlnIZjwn6KieX2KGJDrSvlk1VIeAabLYpxqO1Hgn
-         XkKtdumn72K09YZE+FqppxJYBYofiOJs3Bc+pn6erSPHraRZUh/DhPWHlY7XzPfII+lY
-         L2RjrcfJaBtkaMx3GcNa/CDq5LutQ0jNOQ1czqbtkI5VNSHwK0A5qLbmJHziFPfUfPh6
-         dZRfBhDFGUFZjvBFC+XEeqwfUUYjIzCCOidv7R5aVYe3zaH7c+k7wRBKR2ttUJf4ntG/
-         fH+Q8aJlZjTKAxcIieZMXfbw2xzu62pl+Z9mX0qQFBIfoQ3j4QEyLXdQBA3BCe4cCv3y
-         GMig==
-X-Gm-Message-State: AOAM532VFz+sA0JlHYWvJ5deQBOQcyvR7sK3Q7tEcVIRyhQcneZw1CeU
-        5TnWEeuTL4vtONzd/SaRImGyLA==
-X-Google-Smtp-Source: ABdhPJwazH+uuaXS24OcpT4IwHOvZL8EGifCrtq+KeCqc3EgGbj2G01XYvk7XHbqVVh8hkxFIwYzaQ==
-X-Received: by 2002:aa7:c306:0:b0:428:414d:e216 with SMTP id l6-20020aa7c306000000b00428414de216mr33733082edq.394.1652349621242;
-        Thu, 12 May 2022 03:00:21 -0700 (PDT)
+        bh=tkpPDqrVq/H+y/puJS4Gb9kI2/A7Lq32jtq9rYl6yb0=;
+        b=7QGasgjXIRV20pnibflM2TP5gbl09ebnUm1aGrHoq+nwDsdxPZYJtnCd3IT7Ysu6GQ
+         xtsYLMMADIRToAoPI+ZvsIVOZc4mvwLLnjhDxOqgv/zamjc0zLrUdFcbJPWu+HNUDekA
+         7XwPL2+RWeNiqhjLOxlQu7lz7GHZ0D0MUUsZCFK39EfRgAxlGzuII525F0zlmW3YoYgl
+         NDAPMHlkDf5llYdQr1zF1gLwFf9c6uC3R32JggYIbdi9esRl8UcHSUL76EumPqumyxSr
+         3toi4/OwnCoSIlGCQVXr845Ho2oYoHtt0ZFGLNJG5gMLyJe92uMiCJB3GW+4E2+iAiGQ
+         zHtA==
+X-Gm-Message-State: AOAM533CpupkUlCrsUzjaPU1+Tk16lfVRooAnSvceCnN23xqlS30FW85
+        Mpb2MZMAp7VCdJvwercBoOs9Eg==
+X-Google-Smtp-Source: ABdhPJyZ8rok39ODYQ+iX33CtABflvZmQXwLGT+B5UvhCCikKYy5X5z8qcmrUVr68U1RX4O9efLIag==
+X-Received: by 2002:a17:907:3e8f:b0:6f4:4f42:a75f with SMTP id hs15-20020a1709073e8f00b006f44f42a75fmr28608981ejc.695.1652349622410;
+        Thu, 12 May 2022 03:00:22 -0700 (PDT)
 Received: from localhost.localdomain (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id d17-20020a170906641100b006f3ef214da1sm1970287ejm.7.2022.05.12.03.00.20
+        by smtp.gmail.com with ESMTPSA id d17-20020a170906641100b006f3ef214da1sm1970287ejm.7.2022.05.12.03.00.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 12 May 2022 03:00:20 -0700 (PDT)
+        Thu, 12 May 2022 03:00:22 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
@@ -59,9 +59,9 @@ To:     Andy Gross <agross@kernel.org>,
 Cc:     Sireesh Kodali <sireeshkodali1@gmail.com>,
         Sibi Sankar <quic_sibis@quicinc.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 04/12] dt-bindings: remoteproc: qcom,adsp: simplify interrupts
-Date:   Thu, 12 May 2022 11:59:58 +0200
-Message-Id: <20220512100006.99695-5-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 05/12] dt-bindings: remoteproc: qcom,adsp: simplify SM8150 power domains
+Date:   Thu, 12 May 2022 11:59:59 +0200
+Message-Id: <20220512100006.99695-6-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.32.0
 In-Reply-To: <20220512100006.99695-1-krzysztof.kozlowski@linaro.org>
 References: <20220512100006.99695-1-krzysztof.kozlowski@linaro.org>
@@ -77,90 +77,46 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Interrupts between variants differ only with presence of last optional
-interrupt, so the constraints can be simplified.
+The SM8150 if cases for power domains can be merged with another entry.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- .../bindings/remoteproc/qcom,adsp.yaml        | 46 ++++++++-----------
- 1 file changed, 18 insertions(+), 28 deletions(-)
+ .../devicetree/bindings/remoteproc/qcom,adsp.yaml | 15 ++-------------
+ 1 file changed, 2 insertions(+), 13 deletions(-)
 
 diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml
-index 6e1fdfe91043..0b2db36e5d14 100644
+index 0b2db36e5d14..e3a193299c4a 100644
 --- a/Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml
 +++ b/Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml
-@@ -72,11 +72,23 @@ properties:
- 
-   interrupts:
-     minItems: 5
--    maxItems: 6
-+    items:
-+      - description: Watchdog interrupt
-+      - description: Fatal interrupt
-+      - description: Ready interrupt
-+      - description: Handover interrupt
-+      - description: Stop acknowledge interrupt
-+      - description: Shutdown acknowledge interrupt
- 
-   interrupt-names:
-     minItems: 5
--    maxItems: 6
-+    items:
-+      - const: wdog
-+      - const: fatal
-+      - const: ready
-+      - const: handover
-+      - const: stop-ack
-+      - const: shutdown-ack
- 
-   resets:
-     minItems: 1
-@@ -317,19 +329,9 @@ allOf:
+@@ -371,6 +371,8 @@ allOf:
+               - qcom,msm8226-adsp-pil
+               - qcom,msm8996-adsp-pil
+               - qcom,msm8998-adsp-pas
++              - qcom,sm8150-adsp-pas
++              - qcom,sm8150-cdsp-pas
      then:
        properties:
-         interrupts:
--          items:
--            - description: Watchdog interrupt
--            - description: Fatal interrupt
--            - description: Ready interrupt
--            - description: Handover interrupt
--            - description: Stop acknowledge interrupt
-+          maxItems: 5
-         interrupt-names:
--          items:
--            - const: wdog
--            - const: fatal
--            - const: ready
--            - const: handover
--            - const: stop-ack
-+          maxItems: 5
+         power-domains:
+@@ -434,19 +436,6 @@ allOf:
+             - const: cx
+             - const: mx
  
+-  - if:
+-      properties:
+-        compatible:
+-          contains:
+-            enum:
+-              - qcom,sm8150-adsp-pas
+-              - qcom,sm8150-cdsp-pas
+-    then:
+-      properties:
+-        power-domains:
+-          items:
+-            - description: CX power domain
+-
    - if:
        properties:
-@@ -347,21 +349,9 @@ allOf:
-     then:
-       properties:
-         interrupts:
--          items:
--            - description: Watchdog interrupt
--            - description: Fatal interrupt
--            - description: Ready interrupt
--            - description: Handover interrupt
--            - description: Stop acknowledge interrupt
--            - description: Shutdown acknowledge interrupt
-+          minItems: 6
-         interrupt-names:
--          items:
--            - const: wdog
--            - const: fatal
--            - const: ready
--            - const: handover
--            - const: stop-ack
--            - const: shutdown-ack
-+          minItems: 6
- 
-   - if:
-       properties:
+         compatible:
 -- 
 2.32.0
 
