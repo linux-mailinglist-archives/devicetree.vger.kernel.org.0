@@ -2,105 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A4AF152503E
-	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 16:37:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B98A525051
+	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 16:39:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1355414AbiELOhH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 May 2022 10:37:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35638 "EHLO
+        id S1355442AbiELOj3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 May 2022 10:39:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45830 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1355419AbiELOhF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 10:37:05 -0400
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE6A24F9F4
-        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 07:37:03 -0700 (PDT)
-Received: by mail-wm1-x334.google.com with SMTP id m62so3144749wme.5
-        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 07:37:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=398I+siT7kQxb7ToNmEqTjbhjJR5QW8v3WeVYoiUi18=;
-        b=LjM9msCI8O9qV0jOlCLZIr4ytuS+FR/3n43jLMsVo6PsQfVwpZsbw3B2V8ZpJ47Nic
-         Eacg4BKu6Wa1rXQD1r3Mc97pOu3Ti1D0yEO/6Px7fTkJgvkB9gAi0/KpU+GA712t3QQJ
-         ZBBb38aG1PSrTDrNxFJz+O9ms82rglnLBRI+GIiTawGOvMdqbhI9dORb+nopzg6YFzFi
-         MLNtWkx3pefZSGxM0KOTvwUZfUNIIDuh5WCCCOCFmzS9eAj5ay2IjoVUY1prDQh+kJFl
-         Y6oGRfYJ4L9c1+S8SIEySVeE80AEDd/YIV7UNAtSg8Xw0mqk41LKzbfvtKH+xKavsaO0
-         t1ww==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=398I+siT7kQxb7ToNmEqTjbhjJR5QW8v3WeVYoiUi18=;
-        b=kz8EPz6beCfrl5tWFRZ2l5fQ4zqC27O/KjY0zuJM1wgvBZtBp4kZVH8bpGJBA6kOWc
-         DX6gdb1RKd90MPsvh/MmACqQsY5wvi5FBp41Dkm0e1b2OwQpTd3IlKC+2TrqtJM5l8PF
-         YNHoJncBI2BzzarQrEZG4PoK8sgPqTx+uNiHKixRbKwL882/8bY2HwtQLs1tzCvUAIqa
-         h9zSSibNYcryT9dM/OANd7gc8KH91EiY4zy5CE1lmK02kVArMi+YWpEJUcpwaghUUcsh
-         +aKDz+FAyXG6zl3zVsJWBjW25LQoIrDqB7tEonPGMbfvHciCODgSlrPy1hwmL8DtwuWr
-         5sug==
-X-Gm-Message-State: AOAM533kHtDyQEOuy8lQAAviCe0dghe3ca3KBfzCeGEkkxNMup5L5m5Z
-        jlczbtSes7DZpDOn4UPSajIblw==
-X-Google-Smtp-Source: ABdhPJyUyJvCmAGVIMf+AcMLEvqljsZojjnbmhouIwgq3Hc8CFxYnzi0slqW3aVLUOyCHPslUzwg6w==
-X-Received: by 2002:a05:600c:a4b:b0:37b:ea2b:5583 with SMTP id c11-20020a05600c0a4b00b0037bea2b5583mr10654441wmq.139.1652366222624;
-        Thu, 12 May 2022 07:37:02 -0700 (PDT)
-Received: from [192.168.0.161] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id b11-20020adff24b000000b0020adc114136sm5525903wrp.0.2022.05.12.07.37.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 12 May 2022 07:37:02 -0700 (PDT)
-Message-ID: <4c35f605-4fa0-13d0-db09-229f718c5c7c@linaro.org>
-Date:   Thu, 12 May 2022 16:37:00 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH 9/9] arm64: dts: qcom: msm8953: Add remote processor nodes
-Content-Language: en-US
-To:     Sireesh Kodali <sireeshkodali1@gmail.com>,
-        linux-remoteproc@vger.kernel.org
-Cc:     linux-arm-msm@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, bjorn.andersson@linaro.org,
-        devicetree@vger.kernel.org, phone-devel@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Andy Gross <agross@kernel.org>,
+        with ESMTP id S1355071AbiELOj0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 10:39:26 -0400
+Received: from relay12.mail.gandi.net (relay12.mail.gandi.net [217.70.178.232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50C0B26197D;
+        Thu, 12 May 2022 07:39:24 -0700 (PDT)
+Received: (Authenticated sender: miquel.raynal@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 2E3C820000A;
+        Thu, 12 May 2022 14:39:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1652366362;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=Y8Q8PUTBehY+tn9jgIuohlr4xyjhUPPOjt8DiFB/M08=;
+        b=Z/osUR+FF/oOteSlo1iDCesBiu7WNLgDpfuUwye+kCWtOj0igx1YEHaP0wLkXR9Ui9taIo
+        DdWAIJz6rrBVGlg4IRu30zEWZj6i0+Pb5IawMUYMY7MjvlPMQZWWM8yaYN/dXMFAW+WGVn
+        0gPBlfP58KbyiCFNvsKrNArepgbo1llEyS4Vf+8LDmzPPal3yJSwWJAHtab7pRaHX0jMQm
+        uYKyrGxVtrHSR5u7zxtH0XzaYqvLiGpz4oLEE2bB0TTLee8RJiQwZPIsd6+Cgmi0DL0Zmm
+        ccjwprV1wbldO1GkUaDEexbCQcAeMMiPmVx+WWLVtN+cbuDb9AtkgoN76OSmfA==
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-References: <20220511161602.117772-1-sireeshkodali1@gmail.com>
- <20220511161602.117772-10-sireeshkodali1@gmail.com>
- <2d68e610-e8ae-9e08-257a-3c94c3697334@linaro.org>
- <CJXO6ZMZ454X.M3N9HDKNA5HB@skynet-linux>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CJXO6ZMZ454X.M3N9HDKNA5HB@skynet-linux>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>
+Cc:     Miquel Raynal <miquel.raynal@bootlin.com>,
+        linux-rtc@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Gareth Williams <gareth.williams.jx@renesas.com>,
+        Milan Stevanovic <milan.stevanovic@se.com>,
+        Jimmy Lalande <jimmy.lalande@se.com>,
+        Pascal Eberhard <pascal.eberhard@se.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Herve Codina <herve.codina@bootlin.com>,
+        Clement Leger <clement.leger@bootlin.com>
+Subject: [PATCH v5 0/5] RZ/N1 RTC support
+Date:   Thu, 12 May 2022 16:39:15 +0200
+Message-Id: <20220512143920.238987-1-miquel.raynal@bootlin.com>
+X-Mailer: git-send-email 2.27.0
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/05/2022 11:19, Sireesh Kodali wrote:
-> On Wed May 11, 2022 at 11:25 PM IST, Krzysztof Kozlowski wrote:
->> On 11/05/2022 18:16, Sireesh Kodali wrote:
->>> This commit adds the modem (q6v5_mss), WiFi (wcnss-pil) and audio DSP
->>> (q6v5_pas) remote processor nodes for the MSM8953 platform. It also adds
->>> the coresponding SMP2P, SMSM and pinctrl nodes that are needed by these
->>> remote processors.
->>>
->>> Signed-off-by: Sireesh Kodali <sireeshkodali1@gmail.com>
->>> +			};
->>> +
->>> +			wcnss_sleep: wcnss-sleep-pins {
->>> +				wcss_wlan2 {
->>
->> No underscores in node names, unless something needs it?
->>
-> 
-> wcnss_sleep is used by the pronto node defined below
+Hello,
 
-wcnss_sleep is not a node name and it is not in the line where I commented.
+This small series adds support for the RZ/N1 RTC.
 
-Best regards,
-Krzysztof
+Despite its limitations, I found useful to at least have alarm and
+offset support.
+
+Cheers,
+Miquèl
+
+Changes in v5:
+* Dropped a (now) useless header that could produce a build error.
+
+Changes in v4:
+* Collected more tags (on the DT bindings).
+* Fixed the name of the SoC in the header: RZ/N1 instead of RZN1.
+* Dropped the error message when the alarm IRQ is not available (already
+  handled by the core)
+* Used pm_runtime_put() instead of pm_runtime_put_sync().
+* Used pm_runtime_resume_and_get() instead of pm_runtime_get().
+* Used devm_pm_runtime_enable() instead of pm_runtime_enable().
+
+Changes in v3:
+* Collected tags.
+* s/soc:/clk:/ in the clock commit title.
+* Dropped the RTC hclk fix which has already been applied.
+* Added the power-domain properties both in the bindings and in the DT.
+* Used runtime PM to enable the clock instead of using the clk API
+  directly. 
+
+Changes in v2:
+* Fixed the error path in the clk driver, where I missed to release a
+  spin_lock.
+* Collected tags.
+* Moved the rtc subnode in the dt to keep the nodes ordered by unit
+  address.
+* Dropped the useless "oneOf" statement in the bindings (compatible
+  property).
+* Dropped the start-year property in the bindings (already defined).
+* Avoided rollover calculations that could be more easily handled (and
+  reviewed) with a time64_t conversion.
+* Returned ERANGE instead of EOPNOTSUPP when the alarm date is not
+  valid.
+* Cleared RTC_FEATURE_UPDATE_INTERRUPT to avoid warning from the tools.
+* Dropped the sysctl patch adding the reset helper, instead fulfilled
+  the description of the RTC clock so that when requesting this clock to
+  be enabled, the idle bit is released.
+* Avoided rollover calculations that could be more easily handled
+  (and reviewed) with a time64_t conversion.
+* Fixed the max_range value, after a rtc-range test and looking at other
+  implementations.
+
+Michel Pollet (1):
+  rtc: rzn1: Add new RTC driver
+
+Miquel Raynal (4):
+  dt-bindings: rtc: rzn1: Describe the RZN1 RTC
+  rtc: rzn1: Add alarm support
+  rtc: rzn1: Add oscillator offset support
+  MAINTAINERS: Add myself as maintainer of the RZN1 RTC driver
+
+ .../bindings/rtc/renesas,rzn1-rtc.yaml        |  70 +++
+ MAINTAINERS                                   |   8 +
+ drivers/rtc/Kconfig                           |   7 +
+ drivers/rtc/Makefile                          |   1 +
+ drivers/rtc/rtc-rzn1.c                        | 422 ++++++++++++++++++
+ 5 files changed, 508 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/rtc/renesas,rzn1-rtc.yaml
+ create mode 100644 drivers/rtc/rtc-rzn1.c
+
+-- 
+2.27.0
+
