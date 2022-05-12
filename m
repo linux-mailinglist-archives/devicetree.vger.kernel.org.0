@@ -2,124 +2,196 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A200E52528A
-	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 18:29:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BCB705252CB
+	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 18:40:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345484AbiELQ3L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 May 2022 12:29:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52894 "EHLO
+        id S1356612AbiELQkY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 May 2022 12:40:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36550 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241673AbiELQ3K (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 12:29:10 -0400
-Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3EC760BB7;
-        Thu, 12 May 2022 09:29:08 -0700 (PDT)
-Received: by mail-lj1-x22d.google.com with SMTP id bx33so7146734ljb.12;
-        Thu, 12 May 2022 09:29:08 -0700 (PDT)
+        with ESMTP id S1356588AbiELQkT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 12:40:19 -0400
+Received: from NAM04-DM6-obe.outbound.protection.outlook.com (mail-dm6nam08on2059.outbound.protection.outlook.com [40.107.102.59])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0418C268229;
+        Thu, 12 May 2022 09:40:15 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=nVdS1t0B/09BtnZf11DMMnjXImCrgiOfj8M3nNiHgF2sxyCaYo2X3VcI+65oMCPaobFTovxIH9j0B063teNXN8JJCTReFHWHWj8pwf5nfbNU1su8HB6qoVDMenIwKJa3P2OUhJ+8a/R+5DLenIJL2Fg/zgxlXFvL8vLHFjQiRVN8y+ILLMFesEhfzWmVFo9MGJpG8z+ba9xNaK2Lyt3+E4iL63LiYB0b2B7ScTf6f7G68FRh0012sBubhQRoSi5Xrb7Q31+0Xkt+I9iiipEfef6ZvJgoUJbS42gfxMSS8d5F3uI1LD7Kk8QWe+9hsS3NsCM2NsZdSUqXy9Wt6brQgg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=LQzYd9RjaqU/NU1wzmH7zJP9qrcEQw8w+KK2aq0qNZw=;
+ b=lqlWLlf//fXVkXMfkfRNdm8OsJpBOFS/DZvG0TVc/OkgMArn7r0DISlaWhxQCGHA5KAfpC45aX/ZRSEKQA+jf4l+oaxkWaslGOqSW+/oRULF8laYfh/S0RLhBwPidyyISkpnbJtZhxBv7xRIXEkIURCFjYYdz4zTywImWw4HQDyiAErRK2HYMWlb8uDSnsK8M+C8M/MW0um0W683LxkdUrawkjEWwknWtsyZHzwoxJpxfH0Qk1UmMQrck7AfAhrW5AbKtsuj4Ce3hllrejZm/VnXIzdBZd6j0ctNiXxjN5bEQLwKaDpC4NcxDHkLtBBhdJaAANiKZiXYRIPJW7en6g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 149.199.62.198) smtp.rcpttodomain=davemloft.net smtp.mailfrom=xilinx.com;
+ dmarc=pass (p=none sp=none pct=100) action=none header.from=xilinx.com;
+ dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=gLe5l9DAolzLphi8/wPvIZln9njciDHas8G30cxiyRE=;
-        b=f+myMvIiz2tjwVtbg/kwFeqyRkKhEUyloCObDSYMuAm4tqelGuM/cpPuvE4abEDHe+
-         qm+HgiUExaRlIQs4cDQUnEvlh0RUFpxHKSURPyRKEAeQf2AP1iZi8x5Xh8Y3roofRHAD
-         2iAu3rnA6ggRtCqTCdqaf6WWpko4Q+Rv7Fs1zgnuSkUAmpz6Nc9O7glhWXixIZvYDQvi
-         dQAuRaRUmMj2HLxwtdL+K/g+gfjKPQ80Ai4pn7i/Akk1wptzy9c3TTk5X25l989641OK
-         o0V5oLpfH9KkNs6aoRfAFtdf0KYaTOTT4YZiK4wAQIH0I9Uhozm4kuEg3jnUedPuiWd8
-         TNPw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=gLe5l9DAolzLphi8/wPvIZln9njciDHas8G30cxiyRE=;
-        b=O9BpZomNF3I+8+2yd85mQPlAHpnLXt1+wnGOPJUHcQUfSRGGLFbkIolUSdVuZehCtS
-         NPnN4ysNBw9DyZpd1F5vR/aof4crECHraK8aZDoZ4IeIfhAo/xBWtj4mvXHn15DWIgJK
-         gaAkAVYfKZsJhHn3sSsrFWiUNWTtmwVO8xG98H9TWsgoqQjv649uIANwxZcCAuV+hE/l
-         ZdXAoikDgFnC6u8NbQnTPkLooeqyBSUe84erwHxO7nmIvQIn2n2ncaEndSilOk3C2UEG
-         PvHeiKrkp3PeKA/6/D3PXNjcltkWuoD28JXYbkRTqxyACnp5OfghmLsymEH02JCEk9WP
-         fXMQ==
-X-Gm-Message-State: AOAM531NJTIKtGNXVFW10FxSNyySCbgpDhhb2nkVgNZde1iQN3TW/Avf
-        rnVJj40L3YAkzUiNFZY0SIQapEyJsLIDDA==
-X-Google-Smtp-Source: ABdhPJw9rrsJElQQstE2Px12+IH9oT7SX+diGL9CcP696w8ibA9VJFrOK2y6+hnOk766xAI059XEXw==
-X-Received: by 2002:a2e:9556:0:b0:24f:1c4f:cade with SMTP id t22-20020a2e9556000000b0024f1c4fcademr496981ljh.39.1652372946377;
-        Thu, 12 May 2022 09:29:06 -0700 (PDT)
-Received: from mobilestation ([95.79.189.214])
-        by smtp.gmail.com with ESMTPSA id n11-20020a05651203eb00b0047255d211adsm2738lfq.220.2022.05.12.09.29.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 12 May 2022 09:29:05 -0700 (PDT)
-Date:   Thu, 12 May 2022 19:29:03 +0300
-From:   Serge Semin <fancer.lancer@gmail.com>
-To:     Hannes Reinecke <hare@suse.de>
-Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Jens Axboe <axboe@kernel.dk>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Rob Herring <robh+dt@kernel.org>, linux-ide@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 21/23] ata: ahci-dwc: Add platform-specific quirks
- support
-Message-ID: <20220512162903.ehqrbqm5wngznwjl@mobilestation>
-References: <20220511231810.4928-1-Sergey.Semin@baikalelectronics.ru>
- <20220511231810.4928-22-Sergey.Semin@baikalelectronics.ru>
- <f89f34e6-eb04-4ed4-0323-292c2e332948@suse.de>
+ d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=LQzYd9RjaqU/NU1wzmH7zJP9qrcEQw8w+KK2aq0qNZw=;
+ b=IlFhSOPx8yQ1EUIzXJwOe+tr9/6EbMfPpTMK5PtI/HV4vdnDni4VxdRKgKHvvL7OvPkY+KuNYQ2Hf4TLTZI/nl2+lp5zjbw0sx8UP10eRavzO3a3UR/udHuvnNBdohpM7CfHg4HIAdsLGFrQKuXiKpIt6RAMj9/gnAkls+u/Lok=
+Received: from SA9PR13CA0058.namprd13.prod.outlook.com (2603:10b6:806:22::33)
+ by CY5PR02MB8872.namprd02.prod.outlook.com (2603:10b6:930:3c::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5206.27; Thu, 12 May
+ 2022 16:40:13 +0000
+Received: from SN1NAM02FT0018.eop-nam02.prod.protection.outlook.com
+ (2603:10b6:806:22:cafe::10) by SA9PR13CA0058.outlook.office365.com
+ (2603:10b6:806:22::33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5250.13 via Frontend
+ Transport; Thu, 12 May 2022 16:40:13 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
+ smtp.mailfrom=xilinx.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=xilinx.com;
+Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
+ 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=149.199.62.198; helo=xsj-pvapexch01.xlnx.xilinx.com;
+Received: from xsj-pvapexch01.xlnx.xilinx.com (149.199.62.198) by
+ SN1NAM02FT0018.mail.protection.outlook.com (10.97.5.8) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.5250.13 via Frontend Transport; Thu, 12 May 2022 16:40:12 +0000
+Received: from xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) by
+ xsj-pvapexch01.xlnx.xilinx.com (172.19.86.40) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.14; Thu, 12 May 2022 09:40:11 -0700
+Received: from smtp.xilinx.com (172.19.127.95) by
+ xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server id
+ 15.1.2176.14 via Frontend Transport; Thu, 12 May 2022 09:40:10 -0700
+Envelope-to: git@xilinx.com,
+ davem@davemloft.net,
+ edumazet@google.com,
+ kuba@kernel.org,
+ robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org,
+ pabeni@redhat.com,
+ devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org,
+ netdev@vger.kernel.org
+Received: from [172.23.64.5] (port=50785 helo=xhdvnc105.xilinx.com)
+        by smtp.xilinx.com with esmtp (Exim 4.90)
+        (envelope-from <radhey.shyam.pandey@xilinx.com>)
+        id 1npBrG-000ELL-Cc; Thu, 12 May 2022 09:40:10 -0700
+Received: by xhdvnc105.xilinx.com (Postfix, from userid 13245)
+        id 970C960519; Thu, 12 May 2022 22:10:09 +0530 (IST)
+From:   Radhey Shyam Pandey <radhey.shyam.pandey@xilinx.com>
+To:     <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
+        <pabeni@redhat.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <harini.katakam@xilinx.com>
+CC:     <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <git@xilinx.com>,
+        Radhey Shyam Pandey <radhey.shyam.pandey@xilinx.com>
+Subject: [RFC net-next] dt-bindings: net: xilinx: document xilinx emaclite driver binding
+Date:   Thu, 12 May 2022 22:09:56 +0530
+Message-ID: <1652373596-5994-1-git-send-email-radhey.shyam.pandey@xilinx.com>
+X-Mailer: git-send-email 2.1.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <f89f34e6-eb04-4ed4-0323-292c2e332948@suse.de>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 16b27781-3122-4cb1-b298-08da343615fc
+X-MS-TrafficTypeDiagnostic: CY5PR02MB8872:EE_
+X-Microsoft-Antispam-PRVS: <CY5PR02MB887274AA18AB64E8E60D2F45C7CB9@CY5PR02MB8872.namprd02.prod.outlook.com>
+X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 9SjtrqDDvJ7XEsWl2aDPoD2AXRCuVjwSpxof700scfJfny5F68kVzVUXQhN5xSHs4kT1XPxEF7mO2Ypp/z/oULHSybqNqlPnrKjF4KTGq4tZG2tIrAnOxyGK4ejJnreu+7Ra5+vxFdQl+HQ3xQZ7LD7dtUgSndIoOamLq4/MRyzGAZx2RjbThAG3iwz1wbyS0qHsgR7GFa9b7BKJz4wGmVUwVtsnGPofggKoqmIKk4IWcvRgGei1pZHcEn+dfgw3wvr2WWDbUu0XpQ6Y/w7eCYDzwB6YIZebxo5KHb9bRONIEjt7XEbJiH6ZmKpz6BeuEpm8VWtupTto96JqDDRWPyWpZG9nsUxUzo/Eb9OKUKMiokk9YOurZasc208Z4Z2bIwgKR7Xie95NtpY+u7AMqFLKAKcgsdEZuBzJEWtKYakHqDeToh4cLb985no9umvpWheIJybYYGtbmfNZQIuU65GoyzlharDgiu/Zju6QhNPyCU95CpNpzuIbt+HJzrQrQpth2/hUa5qX/lRlZlOezcunepYPrL0OuDB7NDPwhgNbkh4drP5Ss0GBwaNJwEZ6EzML9u2Nol7pEKS51/JqS+SdLP0oIyJ90yeNLOlLSN+5c/xZqLgBkwsAIrKxeaUkePGWvzU2vv1AfkDwFVJyV/mzn5uunWCJX6WcMk6aYAJQEwKa/CyLg69VuP5xwfhPKHzVw3Yapca+S0fPV8S69dqi9asUTn2YuSRGmwxwg4VAncZtUpOMOHiKYYXUkxzQu3y1P5yfzs9QoHhJYGzBoeEi1kBkQtDSkbuCxxmd0yKhlJSaI7vdT8n1WBkh7WZfNlY3X6yCBAyz0KblSjPNAw==
+X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch01.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(13230001)(4636009)(46966006)(40470700004)(36840700001)(5660300002)(8936002)(107886003)(26005)(966005)(2616005)(6266002)(186003)(47076005)(426003)(2906002)(42186006)(36756003)(316002)(336012)(54906003)(82310400005)(6636002)(4326008)(36860700001)(8676002)(6666004)(40460700003)(70586007)(110136005)(70206006)(508600001)(356005)(7636003)(102446001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: xilinx.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 May 2022 16:40:12.7169
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 16b27781-3122-4cb1-b298-08da343615fc
+X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch01.xlnx.xilinx.com]
+X-MS-Exchange-CrossTenant-AuthSource: SN1NAM02FT0018.eop-nam02.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR02MB8872
+X-Spam-Status: No, score=1.1 required=5.0 tests=AC_FROM_MANY_DOTS,BAYES_00,
+        DKIM_SIGNED,DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 12, 2022 at 09:12:46AM +0200, Hannes Reinecke wrote:
-> On 5/12/22 01:18, Serge Semin wrote:
-> > Some DWC AHCI SATA IP-core derivatives require to perform small platform
-> > or IP-core specific setups. They are too small to be placed in a dedicated
-> > driver. It's just much easier to have a set of quirks for them right in
-> > the DWC AHCI driver code. Since we are about to add such platform support,
-> > as a pre-requisite we introduce a platform-data based DWC AHCI quirks API.
-> > The platform data can be used to define the flags passed to the
-> > ahci_platform_get_resources() method, additional AHCI host-flags and a set
-> > of callbacks to initialize, re-initialize and clear the platform settings.
-> > 
-> > Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-> > 
-> > ---
-> > 
-> > Changelog v2:
-> > - Change the local objects prefix from 'dwc_ahci_' to 'ahci_dwc_'.
-> >    (@Damien)
-> > ---
-> >   drivers/ata/ahci_dwc.c | 52 ++++++++++++++++++++++++++++++++++++++----
-> >   1 file changed, 48 insertions(+), 4 deletions(-)
-> > 
+Add basic description for the xilinx emaclite driver DT bindings.
 
-> This really could be merged with patch 19; as you're adding a new driver you
-> might as well fold this patch in to avoid further modifications.
+Signed-off-by: Radhey Shyam Pandey <radhey.shyam.pandey@xilinx.com>
+---
+ .../bindings/net/xlnx,emaclite.yaml           | 60 +++++++++++++++++++
+ 1 file changed, 60 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/net/xlnx,emaclite.yaml
 
-That merely depends on the development approach. I saw and reviewed
-not one kernel patchsets introducing new drivers and adding features
-one after another. Moreover there is no kernel patches requirement
-which would constitutes not to do so. In this particular case the
-modification isn't complicated at all thus can be reviewed as is.
+diff --git a/Documentation/devicetree/bindings/net/xlnx,emaclite.yaml b/Documentation/devicetree/bindings/net/xlnx,emaclite.yaml
+new file mode 100644
+index 000000000000..a3e2a0e89b24
+--- /dev/null
++++ b/Documentation/devicetree/bindings/net/xlnx,emaclite.yaml
+@@ -0,0 +1,60 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/net/xlnx,emaclite.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Xilinx Emaclite Ethernet controller
++
++maintainers:
++  - Radhey Shyam Pandey <radhey.shyam.pandey@xilinx.com>
++  - Harini Katakam <harini.katakam@xilinx.com>
++
++properties:
++  compatible:
++    enum:
++      - xlnx,opb-ethernetlite-1.01.a
++      - xlnx,opb-ethernetlite-1.01.b
++      - xlnx,xps-ethernetlite-1.00.a
++      - xlnx,xps-ethernetlite-2.00.a
++      - xlnx,xps-ethernetlite-2.01.a
++      - xlnx,xps-ethernetlite-3.00.a
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  phy-handle: true
++
++  local-mac-address: true
++
++  xlnx,tx-ping-pong:
++    type: boolean
++    description: hardware supports tx ping pong buffer.
++
++  xlnx,rx-ping-pong:
++    type: boolean
++    description: hardware supports rx ping pong buffer.
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - phy-handle
++
++additionalProperties: false
++
++examples:
++  - |
++    axi_ethernetlite_1: ethernet@40e00000 {
++            compatible = "xlnx,xps-ethernetlite-3.00.a";
++            interrupt-parent = <&axi_intc_1>;
++            interrupts = <1 0>;
++            local-mac-address = [00 0a 35 00 00 00];
++            phy-handle = <&phy0>;
++            reg = <0x40e00000 0x10000>;
++            xlnx,rx-ping-pong;
++            xlnx,tx-ping-pong;
++    };
+-- 
+2.25.1
 
--Sergey
-
-> 
-> Cheers,
-> 
-> Hannes
-> -- 
-> Dr. Hannes Reinecke		           Kernel Storage Architect
-> hare@suse.de			                  +49 911 74053 688
-> SUSE Software Solutions Germany GmbH, Maxfeldstr. 5, 90409 Nürnberg
-> HRB 36809 (AG Nürnberg), GF: Felix Imendörffer
