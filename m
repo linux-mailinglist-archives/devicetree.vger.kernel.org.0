@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3961D5249CF
-	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 12:02:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C06525249D8
+	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 12:02:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244850AbiELKBu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 May 2022 06:01:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57200 "EHLO
+        id S1352417AbiELKA6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 May 2022 06:00:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57374 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1352432AbiELKAr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 06:00:47 -0400
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB0A12300CD
-        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 03:00:26 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id ks9so9169426ejb.2
-        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 03:00:26 -0700 (PDT)
+        with ESMTP id S1352462AbiELKAt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 06:00:49 -0400
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 120F82311E3
+        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 03:00:32 -0700 (PDT)
+Received: by mail-ed1-x52f.google.com with SMTP id a21so5625342edb.1
+        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 03:00:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=PrL26VFPR3bSShQRaBht+QhZehTfEgJWGZ9tOVoazls=;
-        b=DD8sEFTqDx2Ah5PWZMyR7GwBJhJ0W2mLmFW3dbmCvZRUdPz6iyjrxoJhA7ONXyxucN
-         dh0tt7nrz5SqQmtKlURYrq1jz9Jv7/N+g1EepRAuOYjBW8eY2KYsMqk9nIpkgMAvE7S8
-         1q45emo7Cig/o6axWfWpqARC8xB3a9eIetuOw+txzG/wA6jheZIvOG+2i7kkdZC6jz5j
-         AFHQy0TZyByinrnFWHADr6szamdRpCtuVCTFAnlWBTZUlqiIcu+TmHiV085W0CCShjBQ
-         nic01R/tkTKVBbQmcr50EDDrRgTXwRFSJDm/pE/I0Bx427kVIVMzvQDgjz11egz0vEp+
-         UDWQ==
+        bh=CmuWp0Z1UVnCg5DS3PV2nhWRslglfQ6c3PLNijBuXeM=;
+        b=RgU+pV0cR8X12x3s8Xx8Odi4almmsZsrZohor5WGTrdi+lqF1xhOWH/zPIK7F1Ol4U
+         JZwwByeGr+g0DIRfPAT0rFR/tAMKPTLuRty3tne+R8qugiUYvLWe8mNHT9idRMmAghQU
+         Lg83JSRv6rhZIemXuLvwpagHrX4Yeo90kn5aJ7XJAbRWTHln2bejefhgov8rrsyhN/lO
+         sS4WwdiGWOFYZXckwlwjJ4HTtnEzDlKJAAAP5MVVj9iLCjNai32fgvMMPS8iuqgh/s0G
+         zjy4DewTK/oZfMpQk0A0uQH5YAQtyhGCdYCStXFliv4nHCJnteo5nk6arWg1tYkM1B6v
+         TgvA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=PrL26VFPR3bSShQRaBht+QhZehTfEgJWGZ9tOVoazls=;
-        b=AfLpAR5/GKju8olGyxMO7Y+j/aTPHl6HjP92OjV9u6xXt6NAIch5KfYQ1sBzcEeK2a
-         1ShcED5qa5gEPj1ua0SwWO50DUf8k+bi6alPRR8lLPSzV/wmiTZvF/FPGxhOqeH3A51q
-         +V7Jyq89GI8uHH2XtKf8PKMdXnURMi/DLV9gxlDqcUSUSu4HLdA7h3xMUYSL2NrwFhcN
-         WU2f42IPUKqCBzhZc5YzCAEPb5+XY4CgqBK7VG2+0+bF67aGb1YCCV054pbiz7HF8iHO
-         Ll+264HggmfFp5asZ9lGXbLC1dss+AjR3A126Zzoer3lUDR6lrZi1jP3bMsTexObG8m1
-         c+mA==
-X-Gm-Message-State: AOAM533d0aImlEvI1TbzHjYsFFJBxg7lTHqCTaUjfn47hWkXb+YACVNK
-        1MBcMFyMVVzwQSxIvgpEleJ7KA==
-X-Google-Smtp-Source: ABdhPJxHMR0bBW/SrPBZURI0In45z9hjlYzniRADDROA40gnmEO3TStOX0rxmeWcPEUGVLbU+QifPw==
-X-Received: by 2002:a17:907:7ea9:b0:6f3:de9c:c6fb with SMTP id qb41-20020a1709077ea900b006f3de9cc6fbmr29593860ejc.304.1652349624727;
-        Thu, 12 May 2022 03:00:24 -0700 (PDT)
+        bh=CmuWp0Z1UVnCg5DS3PV2nhWRslglfQ6c3PLNijBuXeM=;
+        b=aboYryb53xh9AVwoM6N5OprdCek5VIiosmelYAuXc5sXllhAUAH8g2PG5p+AVr1dOu
+         YlNObi8eAdf3Gk2rMQFClbvbatTZdWoj2PDdaCREsdjBOO8qDe68PsnxS+wK1jL/Mq8w
+         Ep+2pypTKo7kV2JenvhtYEyJJw6l50zqjHWEX+5lh0RwN436QkQvyR8vLSoz4FmX1obi
+         86RgEfPaRX2fNUcxci+y6I74DarhHFhB6bk7LITnUpRHsZ9wv7zkng8iP9iqNm7svtak
+         KnCQ4E6e3WO6NLECfYFm56VvHjr78xMi25ZEpdnTy0QooZhy6D1JaCEJADGLaVaEv8TZ
+         ZFrg==
+X-Gm-Message-State: AOAM531hQIKBBiD+jYuA9jRsSpWaMumAbAFQU4qxJLdspA2iLsRjLzqn
+        V4d4tRIBOxN48oOqLEX8fNwUUA==
+X-Google-Smtp-Source: ABdhPJwyAO/WEqO2ApMogtBoxzawzBDWPuYeMjv2giNzk9gMuB/48Wz93YjmMFqvooQ99nWXBDBqKg==
+X-Received: by 2002:a05:6402:4492:b0:428:a206:8912 with SMTP id er18-20020a056402449200b00428a2068912mr20551855edb.279.1652349625844;
+        Thu, 12 May 2022 03:00:25 -0700 (PDT)
 Received: from localhost.localdomain (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id d17-20020a170906641100b006f3ef214da1sm1970287ejm.7.2022.05.12.03.00.23
+        by smtp.gmail.com with ESMTPSA id d17-20020a170906641100b006f3ef214da1sm1970287ejm.7.2022.05.12.03.00.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 12 May 2022 03:00:24 -0700 (PDT)
+        Thu, 12 May 2022 03:00:25 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
@@ -59,9 +59,9 @@ To:     Andy Gross <agross@kernel.org>,
 Cc:     Sireesh Kodali <sireeshkodali1@gmail.com>,
         Sibi Sankar <quic_sibis@quicinc.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 07/12] dt-bindings: remoteproc: qcom,glink-edge: define re-usable schema for glink-edge
-Date:   Thu, 12 May 2022 12:00:01 +0200
-Message-Id: <20220512100006.99695-8-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 08/12] dt-bindings: remoteproc: qcom,smd-edge: define re-usable schema for smd-edge
+Date:   Thu, 12 May 2022 12:00:02 +0200
+Message-Id: <20220512100006.99695-9-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.32.0
 In-Reply-To: <20220512100006.99695-1-krzysztof.kozlowski@linaro.org>
 References: <20220512100006.99695-1-krzysztof.kozlowski@linaro.org>
@@ -77,145 +77,198 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-'glink-edge' property appears in multiple bindings, so split it into one
+'smd-edge' property appears in multiple bindings, so split it into one
 place which can be re-used.  This reduces code duplication and strict
-schema matching for glink-edge nodes (instead of just "type:object").
+schema matching for smd-edge nodes (instead of just "type:object").
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
  .../bindings/remoteproc/qcom,adsp.yaml        |  2 +-
- .../bindings/remoteproc/qcom,glink-edge.yaml  | 72 +++++++++++++++++++
- .../remoteproc/qcom,sc7280-wpss-pil.yaml      | 18 ++---
- 3 files changed, 77 insertions(+), 15 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/remoteproc/qcom,glink-edge.yaml
+ .../bindings/remoteproc/qcom,smd-edge.yaml    | 88 +++++++++++++++++++
+ .../bindings/soc/qcom/qcom,smd.yaml           | 53 +----------
+ 3 files changed, 91 insertions(+), 52 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/remoteproc/qcom,smd-edge.yaml
 
 diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml
-index d04de60ae017..4dfbfece1ec7 100644
+index 4dfbfece1ec7..3072af5f9d79 100644
 --- a/Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml
 +++ b/Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml
-@@ -154,7 +154,7 @@ properties:
-       channels and devices related to the ADSP.
+@@ -148,7 +148,7 @@ properties:
+       three offsets within syscon for q6, modem and nc halt registers.
  
-   glink-edge:
+   smd-edge:
 -    type: object
-+    $ref: /schemas/remoteproc/qcom,glink-edge.yaml#
++    $ref: /schemas/remoteproc/qcom,smd-edge.yaml#
      description:
-       Qualcomm G-Link subnode which represents communication edge, channels
-       and devices related to the ADSP.
-diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,glink-edge.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,glink-edge.yaml
+       Qualcomm Shared Memory subnode which represents communication edge,
+       channels and devices related to the ADSP.
+diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,smd-edge.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,smd-edge.yaml
 new file mode 100644
-index 000000000000..fa69f7b21eed
+index 000000000000..fde2c450e8b5
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/remoteproc/qcom,glink-edge.yaml
-@@ -0,0 +1,72 @@
++++ b/Documentation/devicetree/bindings/remoteproc/qcom,smd-edge.yaml
+@@ -0,0 +1,88 @@
 +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/remoteproc/qcom,glink-edge.yaml#
++$id: http://devicetree.org/schemas/remoteproc/qcom,smd-edge.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: Qualcomm G-Link Edge communication channel nodes
++title: Qualcomm SMD Edge communication channel nodes
 +
 +maintainers:
 +  - Bjorn Andersson <bjorn.andersson@linaro.org>
 +
 +description:
-+  Qualcomm G-Link subnode represents communication edge, channels and devices
-+  related to the remote processor.
++  Qualcomm SMD subnode represents a remote subsystem or a remote processor of
++  some sort - or in SMD language an "edge". The name of the edges are not
++  important.
++
++
++  See also Documentation/devicetree/bindings/soc/qcom/qcom,smd.yaml
 +
 +properties:
 +  $nodename:
-+    const: "glink-edge"
-+
-+  apr:
-+    $ref: /schemas/soc/qcom/qcom,apr.yaml#
-+    description:
-+      Qualcomm APR/GPR (Asynchronous/Generic Packet Router)
-+
-+  fastrpc:
-+    type: object
-+    description:
-+      See Documentation/devicetree/bindings/misc/qcom,fastrpc.txt
++    const: "smd-edge"
 +
 +  interrupts:
 +    maxItems: 1
 +
 +  label:
-+    description: The names of the state bits used for SMP2P output
++    $ref: /schemas/types.yaml#/definitions/string
++    description:
++      Name of the edge, used for debugging and identification purposes. The
++      node name will be used if this is not present.
 +
 +  mboxes:
 +    maxItems: 1
++    description:
++      Reference to the mailbox representing the outgoing doorbell in APCS for
++      this client.
++
++  qcom,ipc:
++    $ref: /schemas/types.yaml#/definitions/phandle-array
++    items:
++      - items:
++          - description: phandle to a syscon node representing the APCS registers
++          - description: u32 representing offset to the register within the syscon
++          - description: u32 representing the ipc bit within the register
++    description:
++      Three entries specifying the outgoing ipc bit used for signaling the
++      remote processor.
++
++  qcom,smd-edge:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      The identifier of the remote processor in the smd channel allocation
++      table.
 +
 +  qcom,remote-pid:
 +    $ref: /schemas/types.yaml#/definitions/uint32
 +    description:
-+      ID of the shared memory used by GLINK for communication with remote
-+      processor.
++      The identifier for the remote processor as known by the rest of the
++      system.
 +
 +required:
 +  - interrupts
-+  - label
-+  - mboxes
-+  - qcom,remote-pid
++  - qcom,smd-edge
 +
-+additionalProperties: false
++oneOf:
++  - required:
++      - mboxes
++  - required:
++      - qcom,ipc
++
++additionalProperties: true
 +
 +examples:
 +  - |
 +    #include <dt-bindings/interrupt-controller/arm-gic.h>
 +    #include <dt-bindings/mailbox/qcom-ipcc.h>
 +
-+    remoteproc@8a00000 {
-+        reg = <0x08a00000 0x10000>;
++    remoteproc {
 +        // ...
 +
-+        glink-edge {
-+            interrupts-extended = <&ipcc IPCC_CLIENT_WPSS
-+                                         IPCC_MPROC_SIGNAL_GLINK_QMP
-+                                         IRQ_TYPE_EDGE_RISING>;
-+            mboxes = <&ipcc IPCC_CLIENT_WPSS
-+                            IPCC_MPROC_SIGNAL_GLINK_QMP>;
++        smd-edge {
++            interrupts = <GIC_SPI 156 IRQ_TYPE_EDGE_RISING>;
 +
-+            label = "wpss";
-+            qcom,remote-pid = <13>;
++            qcom,ipc = <&apcs 8 8>;
++            qcom,smd-edge = <1>;
 +        };
 +    };
-diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,sc7280-wpss-pil.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,sc7280-wpss-pil.yaml
-index ade932468c38..3f06d66cbe47 100644
---- a/Documentation/devicetree/bindings/remoteproc/qcom,sc7280-wpss-pil.yaml
-+++ b/Documentation/devicetree/bindings/remoteproc/qcom,sc7280-wpss-pil.yaml
-@@ -106,8 +106,8 @@ properties:
-     const: stop
+diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,smd.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,smd.yaml
+index e6f9ffa1c0ea..a609c3425816 100644
+--- a/Documentation/devicetree/bindings/soc/qcom/qcom,smd.yaml
++++ b/Documentation/devicetree/bindings/soc/qcom/qcom,smd.yaml
+@@ -21,51 +21,12 @@ properties:
  
-   glink-edge:
+ patternProperties:
+   "^.*-edge|rpm$":
 -    type: object
--    description: |
-+    $ref: qcom,glink-edge.yaml#
-+    description:
-       Qualcomm G-Link subnode which represents communication edge, channels
-       and devices related to the ADSP.
++    $ref: /schemas/remoteproc/qcom,smd-edge.yaml#
+     description:
+       Each subnode of the SMD node represents a remote subsystem or a remote
+       processor of some sort - or in SMD language an "edge". The name of the
+       edges are not important.
  
-@@ -121,21 +121,11 @@ properties:
-           - description: Mailbox for communication between APPS and WPSS
- 
-       label:
--        description: The names of the state bits used for SMP2P output
-         items:
-           - const: wpss
- 
+-    properties:
+-      interrupts:
+-        maxItems: 1
+-
+-      label:
+-        $ref: /schemas/types.yaml#/definitions/string
+-        description:
+-          Name of the edge, used for debugging and identification purposes. The
+-          node name will be used if this is not present.
+-
+-      mboxes:
+-        maxItems: 1
+-        description:
+-          Reference to the mailbox representing the outgoing doorbell in APCS for
+-          this client.
+-
+-      qcom,ipc:
+-        $ref: /schemas/types.yaml#/definitions/phandle-array
+-        items:
+-          - items:
+-              - description: phandle to a syscon node representing the APCS registers
+-              - description: u32 representing offset to the register within the syscon
+-              - description: u32 representing the ipc bit within the register
+-        description:
+-          Three entries specifying the outgoing ipc bit used for signaling the
+-          remote processor.
+-
+-      qcom,smd-edge:
+-        $ref: /schemas/types.yaml#/definitions/uint32
+-        description:
+-          The identifier of the remote processor in the smd channel allocation
+-          table.
+-
 -      qcom,remote-pid:
 -        $ref: /schemas/types.yaml#/definitions/uint32
--        description: ID of the shared memory used by GLINK for communication with WPSS
+-        description:
+-          The identifier for the remote processor as known by the rest of the
+-          system.
 -
+     # Binding for edge subnodes is not complete
+     patternProperties:
+       "^rpm-requests$":
+@@ -91,17 +52,7 @@ patternProperties:
+ 
+         additionalProperties: true
+ 
 -    required:
 -      - interrupts
--      - mboxes
--      - label
--      - qcom,remote-pid
+-      - qcom,smd-edge
+-
+-    oneOf:
+-      - required:
+-          - mboxes
+-      - required:
+-          - qcom,ipc
 -
 -    additionalProperties: false
-+      apr: false
-+      fastrpc: false
++    unevaluatedProperties: false
  
  required:
    - compatible
