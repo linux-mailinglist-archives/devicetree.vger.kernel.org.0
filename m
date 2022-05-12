@@ -2,98 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D0899525033
-	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 16:35:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A4AF152503E
+	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 16:37:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1355365AbiELOfW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 May 2022 10:35:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57628 "EHLO
+        id S1355414AbiELOhH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 May 2022 10:37:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35638 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1354452AbiELOfW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 10:35:22 -0400
-Received: from mout.kundenserver.de (mout.kundenserver.de [217.72.192.73])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78E9225D130;
-        Thu, 12 May 2022 07:35:20 -0700 (PDT)
-Received: from mail-yw1-f171.google.com ([209.85.128.171]) by
- mrelayeu.kundenserver.de (mreue106 [213.165.67.113]) with ESMTPSA (Nemesis)
- id 1MJn8J-1nV91L1dyj-00K7ib; Thu, 12 May 2022 16:35:18 +0200
-Received: by mail-yw1-f171.google.com with SMTP id 00721157ae682-2f16645872fso58979727b3.4;
-        Thu, 12 May 2022 07:35:17 -0700 (PDT)
-X-Gm-Message-State: AOAM531uf/IF/eWxzCferfvFQ6nIMHB2lfFsJRRwsc+S2dpF7nYzmX0X
-        XxBk2ONLjbID075LmHgnLUw4L2odBO2eNk5CZp8=
-X-Google-Smtp-Source: ABdhPJzfbhwoFr1q9juMntgIfHM+m3U1nWpSEbsdjudirAmgYnzjhj8eMLGYhy6XgarB5vhSiUly3q7lBnc1N2pSqgQ=
-X-Received: by 2002:a81:ad7:0:b0:2e6:84de:3223 with SMTP id
- 206-20020a810ad7000000b002e684de3223mr331249ywk.209.1652366117032; Thu, 12
- May 2022 07:35:17 -0700 (PDT)
+        with ESMTP id S1355419AbiELOhF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 10:37:05 -0400
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE6A24F9F4
+        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 07:37:03 -0700 (PDT)
+Received: by mail-wm1-x334.google.com with SMTP id m62so3144749wme.5
+        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 07:37:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=398I+siT7kQxb7ToNmEqTjbhjJR5QW8v3WeVYoiUi18=;
+        b=LjM9msCI8O9qV0jOlCLZIr4ytuS+FR/3n43jLMsVo6PsQfVwpZsbw3B2V8ZpJ47Nic
+         Eacg4BKu6Wa1rXQD1r3Mc97pOu3Ti1D0yEO/6Px7fTkJgvkB9gAi0/KpU+GA712t3QQJ
+         ZBBb38aG1PSrTDrNxFJz+O9ms82rglnLBRI+GIiTawGOvMdqbhI9dORb+nopzg6YFzFi
+         MLNtWkx3pefZSGxM0KOTvwUZfUNIIDuh5WCCCOCFmzS9eAj5ay2IjoVUY1prDQh+kJFl
+         Y6oGRfYJ4L9c1+S8SIEySVeE80AEDd/YIV7UNAtSg8Xw0mqk41LKzbfvtKH+xKavsaO0
+         t1ww==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=398I+siT7kQxb7ToNmEqTjbhjJR5QW8v3WeVYoiUi18=;
+        b=kz8EPz6beCfrl5tWFRZ2l5fQ4zqC27O/KjY0zuJM1wgvBZtBp4kZVH8bpGJBA6kOWc
+         DX6gdb1RKd90MPsvh/MmACqQsY5wvi5FBp41Dkm0e1b2OwQpTd3IlKC+2TrqtJM5l8PF
+         YNHoJncBI2BzzarQrEZG4PoK8sgPqTx+uNiHKixRbKwL882/8bY2HwtQLs1tzCvUAIqa
+         h9zSSibNYcryT9dM/OANd7gc8KH91EiY4zy5CE1lmK02kVArMi+YWpEJUcpwaghUUcsh
+         +aKDz+FAyXG6zl3zVsJWBjW25LQoIrDqB7tEonPGMbfvHciCODgSlrPy1hwmL8DtwuWr
+         5sug==
+X-Gm-Message-State: AOAM533kHtDyQEOuy8lQAAviCe0dghe3ca3KBfzCeGEkkxNMup5L5m5Z
+        jlczbtSes7DZpDOn4UPSajIblw==
+X-Google-Smtp-Source: ABdhPJyUyJvCmAGVIMf+AcMLEvqljsZojjnbmhouIwgq3Hc8CFxYnzi0slqW3aVLUOyCHPslUzwg6w==
+X-Received: by 2002:a05:600c:a4b:b0:37b:ea2b:5583 with SMTP id c11-20020a05600c0a4b00b0037bea2b5583mr10654441wmq.139.1652366222624;
+        Thu, 12 May 2022 07:37:02 -0700 (PDT)
+Received: from [192.168.0.161] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id b11-20020adff24b000000b0020adc114136sm5525903wrp.0.2022.05.12.07.37.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 12 May 2022 07:37:02 -0700 (PDT)
+Message-ID: <4c35f605-4fa0-13d0-db09-229f718c5c7c@linaro.org>
+Date:   Thu, 12 May 2022 16:37:00 +0200
 MIME-Version: 1.0
-References: <20220510032558.10304-1-ychuang3@nuvoton.com> <CAK8P3a1k8y8U99bBmqBYE1vYAc0q-UeaM0oLP4tTHZCpyYNOgA@mail.gmail.com>
- <8be62b40-077a-7634-7d34-7776909a2abe@linaro.org>
-In-Reply-To: <8be62b40-077a-7634-7d34-7776909a2abe@linaro.org>
-From:   Arnd Bergmann <arnd@arndb.de>
-Date:   Thu, 12 May 2022 16:35:00 +0200
-X-Gmail-Original-Message-ID: <CAK8P3a3=YD7WV+Www8pf+JTv14DwcnSjD+f=YFCNMxXYT9FAZA@mail.gmail.com>
-Message-ID: <CAK8P3a3=YD7WV+Www8pf+JTv14DwcnSjD+f=YFCNMxXYT9FAZA@mail.gmail.com>
-Subject: Re: [PATCH V4 0/5] Add initial support for MA35D1 SoC
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Arnd Bergmann <arnd@arndb.de>, Jacky Huang <ychuang3@nuvoton.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        ychuang570808@gmail.com, Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Olof Johansson <olof@lixom.net>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, SoC Team <soc@kernel.org>,
-        cfli0@nuvoton.com
-Content-Type: text/plain; charset="UTF-8"
-X-Provags-ID: V03:K1:f35I4VQN5HrjLu+f35ruvI1eR5T9g+bS8hIxq67YP8hU7et8GXq
- 6/ga5BEAuNysl5lffjUoLFn5i77YASqLm+x0rtNCuyggX++caLY3Lbm2HsCugCp3hMCY4pQ
- GzzJ+3KwbzZaF4Mjb5Rzfx5AtpBzCIZUdIBhT+5xL2soYf++YgqAUeGSxv91EoCtsvutHh6
- Nm+mInPbNTW1RvP4obUXQ==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:fkt0tv7tA1I=:UI38Qzf7Hgmuu3pdwo8Sza
- FIDnSMv87Ew1LeBfkAnGiv96fAvynAjx7G455b/zjgpTOBoAzfHzoWrPpTWD35lL5mjfyVQ2V
- 3mtXsArw+VU4KZQkllqM+NjGPy06D1Nxc4pcD3EgvrnQVV9G3/1VtFHcjcZRraf1/X1txz+RJ
- 2cFvvs/zLtqNfHx/z2lmHriraxorAeZipIjhu7s52OgNer4igR3/RZZsUn4N5MKYghbYXbsgN
- ffCcCy/YR4TOVPT8SRSju9xHnuzSIUxW7P0yfgyfPGo5b2G9PQDC/A5wZ4teKOy0wjXKhbBJm
- t9zMJJbEz7heT7jMAFuc6p5moRal+sYfFDsvxNIPrjYEA/zLd0mdNoKdhWlE6hPZNkw8B+9wI
- HIw4cO3rundVs9CHfm3Aq3uSGxT1KvIF6sfEP99SrKjsHf71WIcC3Eka4nhoXi+2S80GbCKPH
- lvgNvShwFowIcNXg6Qug4Z2bWYVmp0Q67Bg9h1v+JsiGrNt0S+II/l1kUtq3BYP8RplgjJhfj
- 6rYZVFfKh+7v561mukU2a6Y7gAoD1xDSeDrrDZYiuz6yE/F5zZZQn345YpIAUP03nxjcA6NJR
- R5BXdcFbeQbQzx+UbeolBUk7+IpjUSZsOGXncmK3sSaenEgUmbLvO/4qkYGp9Fxg7UuRtCOcI
- u+iMksTTQH++kmbPHfTQKLBEfIc2Tsfn423KoptDxCWPna+ibMYT/5BN+g91V/dR+Hq1NlsMY
- aF1wrvqsm4xICty0OOHSaRE9MrsaSJYeASF8OA==
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH 9/9] arm64: dts: qcom: msm8953: Add remote processor nodes
+Content-Language: en-US
+To:     Sireesh Kodali <sireeshkodali1@gmail.com>,
+        linux-remoteproc@vger.kernel.org
+Cc:     linux-arm-msm@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, bjorn.andersson@linaro.org,
+        devicetree@vger.kernel.org, phone-devel@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+References: <20220511161602.117772-1-sireeshkodali1@gmail.com>
+ <20220511161602.117772-10-sireeshkodali1@gmail.com>
+ <2d68e610-e8ae-9e08-257a-3c94c3697334@linaro.org>
+ <CJXO6ZMZ454X.M3N9HDKNA5HB@skynet-linux>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CJXO6ZMZ454X.M3N9HDKNA5HB@skynet-linux>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 12, 2022 at 4:11 PM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 10/05/2022 09:07, Arnd Bergmann wrote:
-> > On Tue, May 10, 2022 at 5:25 AM Jacky Huang <ychuang3@nuvoton.com> wrote:
-> >>
-> >> This patch series adds initial support for Nuvoton MA35D1 SoC,
-> >> include initial dts and clock controller binding.
-> >>
-> >
-> > This looks fine in principle, but we are getting close to the merge window and
-> > should finalize this quickly to make it into v5.19. I see that you don't have a
-> > console device, as commented in the .dts patch. Normally I prefer merging
-> > platforms only when there is at least rudimentary support for booting into
-> > an initramfs with a serial console, but this is a flexible rule.
->
-> I disagree. It does not look fine - does not pass `make dtbs_check` even
-> with Nuvoton bindings...
+On 12/05/2022 11:19, Sireesh Kodali wrote:
+> On Wed May 11, 2022 at 11:25 PM IST, Krzysztof Kozlowski wrote:
+>> On 11/05/2022 18:16, Sireesh Kodali wrote:
+>>> This commit adds the modem (q6v5_mss), WiFi (wcnss-pil) and audio DSP
+>>> (q6v5_pas) remote processor nodes for the MSM8953 platform. It also adds
+>>> the coresponding SMP2P, SMSM and pinctrl nodes that are needed by these
+>>> remote processors.
+>>>
+>>> Signed-off-by: Sireesh Kodali <sireeshkodali1@gmail.com>
+>>> +			};
+>>> +
+>>> +			wcnss_sleep: wcnss-sleep-pins {
+>>> +				wcss_wlan2 {
+>>
+>> No underscores in node names, unless something needs it?
+>>
+> 
+> wcnss_sleep is used by the pronto node defined below
 
-Ok, thanks for taking a look. It was already late for 5.19 and missing the uart
-driver, so it was clear it had not seen actual runtime testing. Let's try
-aiming for 5.20 then.
+wcnss_sleep is not a node name and it is not in the line where I commented.
 
-        Arnd
+Best regards,
+Krzysztof
