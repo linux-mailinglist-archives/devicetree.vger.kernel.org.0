@@ -2,127 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 606D952525F
-	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 18:21:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D11F552527A
+	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 18:26:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1356401AbiELQUs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 May 2022 12:20:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50838 "EHLO
+        id S1353433AbiELQ0h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 May 2022 12:26:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42334 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1356402AbiELQUn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 12:20:43 -0400
-Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com [148.163.156.1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D47F4E3BC;
-        Thu, 12 May 2022 09:20:39 -0700 (PDT)
-Received: from pps.filterd (m0098409.ppops.net [127.0.0.1])
-        by mx0a-001b2d01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 24CGGJ1T011323;
-        Thu, 12 May 2022 16:20:26 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=from : to : cc : subject
- : date : message-id : in-reply-to : references : mime-version :
- content-transfer-encoding; s=pp1;
- bh=qlOWqXyfi0rR8T2Ty+QTIJ3Y8i5IUOUaQI1MNmkuf5Y=;
- b=ajCSLZXNoiOzc0MuSoezQqR5LBPSXbM8zcaqPKqq5uZcP2uqXhmRrCt6ZF2cg0XkZWJw
- jgiQYtIwSuD08vmUnUMcW0mwRCPHlyrKsXV3miH8PWvHyYx4XBt9FACXKs6kTp0QYHBr
- Wm6XrnTBVt6oB4tpmTQdoZMC+Q9lP0P9dpb63qS97zny50fwnkFyoDjsKE4caVRh2z5Q
- ZWvUhlJxZEdNgKzFLJP8lbR9NLZHDe9kVnNcSEi+d2H79gbMEEGxyr6WO/wTN9f1SqzJ
- Ba3zl3/GNjt5650uFoyH775l14tTbAx6nFMsO2Eb1IdxLUGR3c70Qu4UcVEntnDK+0Iu JA== 
-Received: from ppma03wdc.us.ibm.com (ba.79.3fa9.ip4.static.sl-reverse.com [169.63.121.186])
-        by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3g15m102qw-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 12 May 2022 16:20:26 +0000
-Received: from pps.filterd (ppma03wdc.us.ibm.com [127.0.0.1])
-        by ppma03wdc.us.ibm.com (8.16.1.2/8.16.1.2) with SMTP id 24CGHGoO008370;
-        Thu, 12 May 2022 16:20:25 GMT
-Received: from b01cxnp22036.gho.pok.ibm.com (b01cxnp22036.gho.pok.ibm.com [9.57.198.26])
-        by ppma03wdc.us.ibm.com with ESMTP id 3fwgd9vgwq-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 12 May 2022 16:20:25 +0000
-Received: from b01ledav004.gho.pok.ibm.com (b01ledav004.gho.pok.ibm.com [9.57.199.109])
-        by b01cxnp22036.gho.pok.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 24CGKOiI7930398
-        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Thu, 12 May 2022 16:20:24 GMT
-Received: from b01ledav004.gho.pok.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id 3ECFF112064;
-        Thu, 12 May 2022 16:20:24 +0000 (GMT)
-Received: from b01ledav004.gho.pok.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id 59CB6112061;
-        Thu, 12 May 2022 16:20:23 +0000 (GMT)
-Received: from v0005c16.aus.stglabs.ibm.com (unknown [9.211.56.168])
-        by b01ledav004.gho.pok.ibm.com (Postfix) with ESMTP;
-        Thu, 12 May 2022 16:20:23 +0000 (GMT)
-From:   Eddie James <eajames@linux.ibm.com>
-To:     linux-iio@vger.kernel.org
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-        lars@metafoo.de, jic23@kernel.org, miltonm@us.ibm.com,
-        eajames@linux.ibm.com
-Subject: [PATCH v2 2/2] iio: humidity: si7020: Check device property for skipping reset in probe
-Date:   Thu, 12 May 2022 11:20:20 -0500
-Message-Id: <20220512162020.33450-3-eajames@linux.ibm.com>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20220512162020.33450-1-eajames@linux.ibm.com>
-References: <20220512162020.33450-1-eajames@linux.ibm.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-TM-AS-GCONF: 00
-X-Proofpoint-GUID: Sy1-cqgIabPnJkxxmFtJ1oADa_P0uQ2o
-X-Proofpoint-ORIG-GUID: Sy1-cqgIabPnJkxxmFtJ1oADa_P0uQ2o
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.858,Hydra:6.0.486,FMLib:17.11.64.514
- definitions=2022-05-12_13,2022-05-12_01,2022-02-23_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 adultscore=0
- spamscore=0 clxscore=1015 mlxscore=0 phishscore=0 mlxlogscore=999
- lowpriorityscore=0 priorityscore=1501 bulkscore=0 suspectscore=0
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2202240000 definitions=main-2205120076
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S1356473AbiELQ0P (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 12:26:15 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 688951D0C4;
+        Thu, 12 May 2022 09:26:14 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id F2D2261F38;
+        Thu, 12 May 2022 16:26:13 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 513FCC34117;
+        Thu, 12 May 2022 16:26:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1652372773;
+        bh=VwS1IMdx40foTuyZRyqzdlwtdVrEe4ScwvbrYNkBDzM=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=E7cD59b6uJMxohBzVdnByQtXEmY0oS0T+j4/7WzT96YUwGZYXR/BMex9Wr8n45c2k
+         X0GgsDM7dDRAbxGEEU+7OfQyjCOQOBmajODJo7jApm6Nn/eoylx52v2qnX86M7ksJr
+         I0EkxjUwrt3w+D+bzyK4+YLIrwbOEIgDrGP2G2rRak5r/O5B2c9tVacni+pzm+mK7k
+         EQSq5o79f9N34MH+/BBiUXYNVG3j9ICCz/WlvoQna+nrDlXczDvJeyqD5qzyTCFkCO
+         +axOrOrQ1I2yUlVTnXyiSWQTO+ED6K8vfiIKkSG24aoBzsYI11iTlGEKMzlmU0RuJo
+         aVB81tiVSd6GQ==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=why.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <maz@kernel.org>)
+        id 1npBdi-00Avri-QG; Thu, 12 May 2022 17:26:10 +0100
+Date:   Thu, 12 May 2022 17:26:10 +0100
+Message-ID: <87v8ua67kt.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Phil Edworthy <phil.edworthy@renesas.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Subject: Re: [PATCH v3 3/5] gpio: gpiolib: Allow free() callback to be overridden
+In-Reply-To: <CA+V-a8v9WodNNK7AL4XemDnSrrWc9wG+qDKZb7SmbWixs5Q3Nw@mail.gmail.com>
+References: <20220511183210.5248-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        <20220511183210.5248-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        <87y1z75770.wl-maz@kernel.org>
+        <CA+V-a8tf1RmT-cX5y807rTAPES2NXLJHp=u1WUG11fLrtt-5Mg@mail.gmail.com>
+        <87wneq6fz3.wl-maz@kernel.org>
+        <CA+V-a8v9WodNNK7AL4XemDnSrrWc9wG+qDKZb7SmbWixs5Q3Nw@mail.gmail.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: prabhakar.csengg@gmail.com, prabhakar.mahadev-lad.rj@bp.renesas.com, geert+renesas@glider.be, linus.walleij@linaro.org, tglx@linutronix.de, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, brgl@bgdev.pl, p.zabel@pengutronix.de, linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, phil.edworthy@renesas.com, biju.das.jz@bp.renesas.com
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-I2C commands issued after the SI7020 is starting up or after reset
-can potentially upset the startup sequence. Therefore, the host
-needs to wait for the startup sequence to finish before issuing
-further i2c commands. This is impractical in cases where the SI7020
-is on a shared bus or behind a mux, which may switch channels at
-any time (generating I2C traffic). Therefore, check for a device
-property that indicates that the driver should skip resetting the
-device when probing.
+On Thu, 12 May 2022 14:50:05 +0100,
+"Lad, Prabhakar" <prabhakar.csengg@gmail.com> wrote:
+> 
+> Hi Marc,
+> 
+> On Thu, May 12, 2022 at 2:24 PM Marc Zyngier <maz@kernel.org> wrote:
+> >
+> > On Thu, 12 May 2022 13:48:53 +0100,
+> > "Lad, Prabhakar" <prabhakar.csengg@gmail.com> wrote:
+> > >
+> > > Hi Marc,
+> > >
+> > > Thank you for the review.
+> > >
+> > > On Thu, May 12, 2022 at 12:19 PM Marc Zyngier <maz@kernel.org> wrote:
+> > > >
+> > > > On Wed, 11 May 2022 19:32:08 +0100,
+> > > > Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
+> > > > >
+> > > > > Allow free() callback to be overridden from irq_domain_ops for
+> > > > > hierarchical chips.
+> > > > >
+> > > > > This allows drivers to free any resources which are allocated during
+> > > > > populate_parent_alloc_arg().
+> > > >
+> > > > Do you mean more than the fwspec? I don't see this being used.
+> > > >
+> > > The free callback is used in patch 5/5 where free is overridden by
+> > > rzg2l_gpio_irq_domain_free. I just gave an example there as an
+> > > populate_parent_alloc_arg()  In actual in the child_to_parent_hwirq
+> > > callback I am using a bitmap [0] to get a free tint slot, this bitmap
+> > > needs freeing up when the GPIO interrupt is released from the driver
+> > > that as when overridden free callback frees the allocated tint slot so
+> > > that its available for re-use.
+> >
+> > Right, so that's actually a different life-cycle, and the whole
+> > populate_parent_alloc_arg() is a red herring. What you want is to free
+> > resources that have been allocated via some other paths. It'd be good
+> Is there any other path which I have missed where I can free up resources?
 
-Signed-off-by: Eddie James <eajames@linux.ibm.com>
----
- drivers/iio/humidity/si7020.c | 14 ++++++++------
- 1 file changed, 8 insertions(+), 6 deletions(-)
+No, that's the only one. It is just that usually, the alloc()
+callback is where you are supposed to perform... allocations.
 
-diff --git a/drivers/iio/humidity/si7020.c b/drivers/iio/humidity/si7020.c
-index ab6537f136ba..49f6a1b1f5c4 100644
---- a/drivers/iio/humidity/si7020.c
-+++ b/drivers/iio/humidity/si7020.c
-@@ -115,12 +115,14 @@ static int si7020_probe(struct i2c_client *client,
- 				     I2C_FUNC_SMBUS_READ_WORD_DATA))
- 		return -EOPNOTSUPP;
- 
--	/* Reset device, loads default settings. */
--	ret = i2c_smbus_write_byte(client, SI7020CMD_RESET);
--	if (ret < 0)
--		return ret;
--	/* Wait the maximum power-up time after software reset. */
--	msleep(15);
-+	if (!device_property_read_bool(&client->dev, "silabs,skip-reset")) {
-+		/* Reset device, loads default settings. */
-+		ret = i2c_smbus_write_byte(client, SI7020CMD_RESET);
-+		if (ret < 0)
-+			return ret;
-+		/* Wait the maximum power-up time after software reset. */
-+		msleep(15);
-+	}
- 
- 	indio_dev = devm_iio_device_alloc(&client->dev, sizeof(*data));
- 	if (!indio_dev)
+It'd be good if you could move your allocation there, as I would
+expect calls to child_to_parent_hwirq() to be idempotent.
+
+>
+> > if your commit message actually reflected this instead of using an
+> > example that doesn't actually exist.
+> >
+> My bad, I will update the commit message.
+> 
+> > >
+> > > > There is also the question of why we need to have dynamic allocation
+> > > > for the fwspec itself. Why isn't that a simple stack allocation in the
+> > > > context of gpiochip_hierarchy_irq_domain_alloc()?
+> > > >
+> > > you mean gpio core itself should handle the fwspec
+> > > allocation/freeing?
+> >
+> > Yes. The only reason we resort to dynamic allocation is because
+> > ThunderX is using MSI-based GPIOs, and thus doesn't use a fwspec (no
+> > firmware is involved here).
+> >
+> I see..
+> 
+> > If we had a union of the two types, we could just have a stack
+> > variable, and pass that along, completely sidestepping the whole
+> > dynamic allocation/freeing business.
+> >
+> Right agreed.
+
+FWIW, I've just posted a PoC patch[1].
+
+Thanks,
+
+	M.
+
+[1] https://lore.kernel.org/r/20220512162320.2213488-1-maz@kernel.org
+
 -- 
-2.27.0
-
+Without deviation from the norm, progress is not possible.
