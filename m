@@ -2,212 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 10A915250A9
-	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 16:52:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A7E865250D3
+	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 17:05:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1355625AbiELOww (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 May 2022 10:52:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35142 "EHLO
+        id S1355356AbiELPFJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 May 2022 11:05:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45482 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1355635AbiELOwu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 10:52:50 -0400
-Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6847A14B675;
-        Thu, 12 May 2022 07:52:49 -0700 (PDT)
-Received: (Authenticated sender: miquel.raynal@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 568FFFF80B;
-        Thu, 12 May 2022 14:52:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1652367168;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=KyAPKLax444UE/Ovddfs/2qOIeElJEV9UkmQQJ9oUjU=;
-        b=dKoOD0xwp9h3COQ6Fy/MVyAbYgv6aB+Kg5NDgDKqx5RZy53A+4FmtvoBWqSB2gr634cSpX
-        FXrB9J5axNP4k1L+stDJDyT6QduhXr0BSN8gWBV77iTJZppiJkd5UBOAWv0QcaxF8LPS8C
-        WYoB8B+Fal0wkCSJ0Znl8KFGgrudqzyLQ/8csYRarOFmTP/CSZPm5uB5FNpxTbSyZP/mYb
-        +6WN6yDYZfGuvllBS2LI9rzVKFV4/G0iuoaTZr3xWFzyeRjHeOqym7oLwGzjY6g2lSl/dP
-        TAQl9iPJ8QRRIW1AkR8qWLKIl9Tm6W3wow/RTY0bLvOpmt4zcAB9Z9XwWns/zw==
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
-        Pratyush Yadav <p.yadav@ti.com>,
-        Michael Walle <michael@walle.cc>,
-        <linux-mtd@lists.infradead.org>
-Cc:     linux-renesas-soc@vger.kernel.org,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Gareth Williams <gareth.williams.jx@renesas.com>,
-        Phil Edworthy <phil.edworthy@renesas.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Milan Stevanovic <milan.stevanovic@se.com>,
-        Jimmy Lalande <jimmy.lalande@se.com>,
-        Pascal Eberhard <pascal.eberhard@se.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Herve Codina <herve.codina@bootlin.com>,
-        Clement Leger <clement.leger@bootlin.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        devicetree@vger.kernel.org,
-        Miquel Raynal <miquel.raynal@bootlin.com>
-Subject: [PATCH v3 2/2] mtd: rawnand: renesas: Use runtime PM instead of the raw clock API
-Date:   Thu, 12 May 2022 16:52:40 +0200
-Message-Id: <20220512145240.243469-3-miquel.raynal@bootlin.com>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20220512145240.243469-1-miquel.raynal@bootlin.com>
-References: <20220512145240.243469-1-miquel.raynal@bootlin.com>
+        with ESMTP id S231782AbiELPFI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 11:05:08 -0400
+Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8549B255098;
+        Thu, 12 May 2022 08:05:07 -0700 (PDT)
+Received: by mail-lj1-x236.google.com with SMTP id y19so6886628ljd.4;
+        Thu, 12 May 2022 08:05:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=NbrPLO5f80Fgr4pkih0UW7c1y1en5FoEIT51dqIUABU=;
+        b=T4/pRiB0gG8qKpHvxG5wzXi041AjJ7RNXcavuodhvKhL0St/j2CypCgv0hj1pBROYW
+         ahm+lGdGKqlVR7raalF632or3hCWzCGXZAiy2R4DFdBIQBVDmXQU4JepA8A9DvhpJXPT
+         N/ytJrV4csCfL+okod6dqA1BuDRCgCpparBYVza2N7mepP6PgzRjf32X3yptDVGkrzXZ
+         X5qG2Py5CzaM2o2Bkpl52daEYAvQMm2vImmF0UHpZ2Xs6zAKGBrZ6eU+UDZ985SP9O4Y
+         KzwHU3IVTv+hnaIdsayBTAuZ+iwuAIVxQqOm8YFAjZvwL8j2l2O8GOtp8YUN7irGemQr
+         cQCQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=NbrPLO5f80Fgr4pkih0UW7c1y1en5FoEIT51dqIUABU=;
+        b=iL5J/sX0o+H4Jhae4pLtiL4Hogq1+J/0ZEY2A2cFblhebSM1oRQU4fujbeErbNcpf8
+         84QJzxoXwFceHPJteKrJhoJjoe6m3bILfwaFiUrYUsyUabzl5LzOA01Usj8/b8YIwXwR
+         XWXOjBh6+T2UKHevozr1IF9kwZ5aeEurCRsln7NNkXo+E0INenNpgugdLGKkTnIRvQyS
+         YnlEoyiWkI5glTWyyrPpCzE42TzpW8iFCcljOJUD89169YaTnRK4SYSbPQ2wip8h3QL7
+         keYt2/7PFldhV7T20b6BJGm8abp21Mk0MqRnZu5AwGqqZMHpacde7k9kZhXd5PzDhgrs
+         jksg==
+X-Gm-Message-State: AOAM531T8x7plOFEp711PcxxYsTf0iFTjcI8QEbshl74D2q2TG/u+3Jm
+        tqpQKhzCNPOp7kMyW5WJlJI=
+X-Google-Smtp-Source: ABdhPJwu5RZKqoup6YD08X1MAMMVsO9re9t/o4FDDvNu0taMK00x3Mc0VisaC962QTBtonmG2ZVFTg==
+X-Received: by 2002:a05:651c:1502:b0:250:2328:d127 with SMTP id e2-20020a05651c150200b002502328d127mr267441ljf.183.1652367905862;
+        Thu, 12 May 2022 08:05:05 -0700 (PDT)
+Received: from mobilestation ([95.79.189.214])
+        by smtp.gmail.com with ESMTPSA id m19-20020a2e5813000000b0024f3d1daef0sm911302ljb.120.2022.05.12.08.05.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 12 May 2022 08:05:04 -0700 (PDT)
+Date:   Thu, 12 May 2022 18:05:02 +0300
+From:   Serge Semin <fancer.lancer@gmail.com>
+To:     Hannes Reinecke <hare@suse.de>
+Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Jens Axboe <axboe@kernel.dk>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Rob Herring <robh+dt@kernel.org>, linux-ide@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 13/23] ata: libahci: Extend port-cmd flags set with
+ port capabilities
+Message-ID: <20220512150502.l6gmh3d4uosmvxwg@mobilestation>
+References: <20220511231810.4928-1-Sergey.Semin@baikalelectronics.ru>
+ <20220511231810.4928-14-Sergey.Semin@baikalelectronics.ru>
+ <7fd1c122-12b2-adff-856f-50ffc5fc6bd1@suse.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+In-Reply-To: <7fd1c122-12b2-adff-856f-50ffc5fc6bd1@suse.de>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This NAND controller is part of a well defined power domain handled by
-the runtime PM core. Let's keep the harmony with the other RZ/N1 drivers
-and exclusively use the runtime PM API to enable/disable the clocks.
+On Thu, May 12, 2022 at 08:57:55AM +0200, Hannes Reinecke wrote:
+> On 5/12/22 01:18, Serge Semin wrote:
+> > Currently not all of the Port-specific capabilities listed in the
+> > PORT_CMD-enumeration. Let's extend that set with the Cold Presence
+> > Detection and Mechanical Presence Switch attached to the Port flags [1] so
+> > to closeup the set of the platform-specific port-capabilities flags.  Note
+> > these flags are supposed to be set by the platform firmware if there is
+> > one. Alternatively as we are about to do they can be set by means of the
+> > OF properties.
+> > 
+> > While at it replace PORT_IRQ_DEV_ILCK with PORT_IRQ_DEV_MPS and fix the
+> > comment there. In accordance with [2] that IRQ flag is supposed to
+> > indicate the state of the signal coming from the Mechanical Presence
+> > Switch.
+> > 
+> > [1] Serial ATA AHCI 1.3.1 Specification, p.27
+> > [2] Serial ATA AHCI 1.3.1 Specification, p.7
+> > 
+> > Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+> > ---
+> >   drivers/ata/ahci.h | 7 ++++++-
+> >   1 file changed, 6 insertions(+), 1 deletion(-)
+> > 
 
-We still need to retrieve the external clock rate in order to derive the
-NAND timings, but that is not a big deal, we can still do that in the
-probe and just save this value to reuse it later.
+> You might want to adapt the subject line, as this patch doesn't touch
+> libahci at all.
 
-Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
----
- .../mtd/nand/raw/renesas-nand-controller.c    | 51 +++++++++----------
- 1 file changed, 23 insertions(+), 28 deletions(-)
+AFAICS ahci.h is mainly (if not to say only) the header file of the
+libahci.c module interface. Modifying ahci.h I basically update the
+libahci interface. So based on that the subject is fully correct.
 
-diff --git a/drivers/mtd/nand/raw/renesas-nand-controller.c b/drivers/mtd/nand/raw/renesas-nand-controller.c
-index 6db063b230a9..c2fb6900de0c 100644
---- a/drivers/mtd/nand/raw/renesas-nand-controller.c
-+++ b/drivers/mtd/nand/raw/renesas-nand-controller.c
-@@ -16,6 +16,7 @@
- #include <linux/mtd/rawnand.h>
- #include <linux/of.h>
- #include <linux/platform_device.h>
-+#include <linux/pm_runtime.h>
- #include <linux/slab.h>
- 
- #define COMMAND_REG 0x00
-@@ -216,8 +217,7 @@ struct rnandc {
- 	struct nand_controller controller;
- 	struct device *dev;
- 	void __iomem *regs;
--	struct clk *hclk;
--	struct clk *eclk;
-+	unsigned long ext_clk_rate;
- 	unsigned long assigned_cs;
- 	struct list_head chips;
- 	struct nand_chip *selected_chip;
-@@ -891,7 +891,7 @@ static int rnandc_setup_interface(struct nand_chip *chip, int chipnr,
- {
- 	struct rnand_chip *rnand = to_rnand(chip);
- 	struct rnandc *rnandc = to_rnandc(chip->controller);
--	unsigned int period_ns = 1000000000 / clk_get_rate(rnandc->eclk);
-+	unsigned int period_ns = 1000000000 / rnandc->ext_clk_rate;
- 	const struct nand_sdr_timings *sdr;
- 	unsigned int cyc, cle, ale, bef_dly, ca_to_data;
- 
-@@ -1319,6 +1319,7 @@ static int rnandc_chips_init(struct rnandc *rnandc)
- static int rnandc_probe(struct platform_device *pdev)
- {
- 	struct rnandc *rnandc;
-+	struct clk *eclk;
- 	int irq, ret;
- 
- 	rnandc = devm_kzalloc(&pdev->dev, sizeof(*rnandc), GFP_KERNEL);
-@@ -1335,29 +1336,26 @@ static int rnandc_probe(struct platform_device *pdev)
- 	if (IS_ERR(rnandc->regs))
- 		return PTR_ERR(rnandc->regs);
- 
--	/* APB clock */
--	rnandc->hclk = devm_clk_get(&pdev->dev, "hclk");
--	if (IS_ERR(rnandc->hclk))
--		return PTR_ERR(rnandc->hclk);
--
--	/* External NAND bus clock */
--	rnandc->eclk = devm_clk_get(&pdev->dev, "eclk");
--	if (IS_ERR(rnandc->eclk))
--		return PTR_ERR(rnandc->eclk);
--
--	ret = clk_prepare_enable(rnandc->hclk);
--	if (ret)
-+	devm_pm_runtime_enable(&pdev->dev);
-+	ret = pm_runtime_get_sync(&pdev->dev);
-+	if (ret < 0)
- 		return ret;
- 
--	ret = clk_prepare_enable(rnandc->eclk);
--	if (ret)
--		goto disable_hclk;
-+	/* The external NAND bus clock rate is needed for computing timings */
-+	eclk = clk_get(&pdev->dev, "eclk");
-+	if (IS_ERR(eclk)) {
-+		ret = PTR_ERR(eclk);
-+		goto dis_runtime_pm;
-+	}
-+
-+	rnandc->ext_clk_rate = clk_get_rate(eclk);
-+	clk_put(eclk);
- 
- 	rnandc_dis_interrupts(rnandc);
- 	irq = platform_get_irq_optional(pdev, 0);
- 	if (irq == -EPROBE_DEFER) {
- 		ret = irq;
--		goto disable_eclk;
-+		goto dis_runtime_pm;
- 	} else if (irq < 0) {
- 		dev_info(&pdev->dev, "No IRQ found, fallback to polling\n");
- 		rnandc->use_polling = true;
-@@ -1365,12 +1363,12 @@ static int rnandc_probe(struct platform_device *pdev)
- 		ret = devm_request_irq(&pdev->dev, irq, rnandc_irq_handler, 0,
- 				       "renesas-nand-controller", rnandc);
- 		if (ret < 0)
--			goto disable_eclk;
-+			goto dis_runtime_pm;
- 	}
- 
- 	ret = dma_set_mask(&pdev->dev, DMA_BIT_MASK(32));
- 	if (ret)
--		goto disable_eclk;
-+		goto dis_runtime_pm;
- 
- 	rnandc_clear_fifo(rnandc);
- 
-@@ -1378,14 +1376,12 @@ static int rnandc_probe(struct platform_device *pdev)
- 
- 	ret = rnandc_chips_init(rnandc);
- 	if (ret)
--		goto disable_eclk;
-+		goto dis_runtime_pm;
- 
- 	return 0;
- 
--disable_eclk:
--	clk_disable_unprepare(rnandc->eclk);
--disable_hclk:
--	clk_disable_unprepare(rnandc->hclk);
-+dis_runtime_pm:
-+	pm_runtime_put(&pdev->dev);
- 
- 	return ret;
- }
-@@ -1396,8 +1392,7 @@ static int rnandc_remove(struct platform_device *pdev)
- 
- 	rnandc_chips_cleanup(rnandc);
- 
--	clk_disable_unprepare(rnandc->eclk);
--	clk_disable_unprepare(rnandc->hclk);
-+	pm_runtime_put(&pdev->dev);
- 
- 	return 0;
- }
--- 
-2.27.0
+> Other than that:
+> 
+> Reviewed-by: Hannes Reinecke <hare@suse.de>
 
+Thanks.
+
+-Sergey
+
+> 
+> Cheers,
+> 
+> Hannes
+> -- 
+> Dr. Hannes Reinecke		           Kernel Storage Architect
+> hare@suse.de			                  +49 911 74053 688
+> SUSE Software Solutions Germany GmbH, Maxfeldstr. 5, 90409 Nürnberg
+> HRB 36809 (AG Nürnberg), GF: Felix Imendörffer
