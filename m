@@ -2,196 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BCB705252CB
-	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 18:40:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E7F055252ED
+	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 18:47:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1356612AbiELQkY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 May 2022 12:40:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36550 "EHLO
+        id S1356442AbiELQrl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 May 2022 12:47:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35462 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1356588AbiELQkT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 12:40:19 -0400
-Received: from NAM04-DM6-obe.outbound.protection.outlook.com (mail-dm6nam08on2059.outbound.protection.outlook.com [40.107.102.59])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0418C268229;
-        Thu, 12 May 2022 09:40:15 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=nVdS1t0B/09BtnZf11DMMnjXImCrgiOfj8M3nNiHgF2sxyCaYo2X3VcI+65oMCPaobFTovxIH9j0B063teNXN8JJCTReFHWHWj8pwf5nfbNU1su8HB6qoVDMenIwKJa3P2OUhJ+8a/R+5DLenIJL2Fg/zgxlXFvL8vLHFjQiRVN8y+ILLMFesEhfzWmVFo9MGJpG8z+ba9xNaK2Lyt3+E4iL63LiYB0b2B7ScTf6f7G68FRh0012sBubhQRoSi5Xrb7Q31+0Xkt+I9iiipEfef6ZvJgoUJbS42gfxMSS8d5F3uI1LD7Kk8QWe+9hsS3NsCM2NsZdSUqXy9Wt6brQgg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=LQzYd9RjaqU/NU1wzmH7zJP9qrcEQw8w+KK2aq0qNZw=;
- b=lqlWLlf//fXVkXMfkfRNdm8OsJpBOFS/DZvG0TVc/OkgMArn7r0DISlaWhxQCGHA5KAfpC45aX/ZRSEKQA+jf4l+oaxkWaslGOqSW+/oRULF8laYfh/S0RLhBwPidyyISkpnbJtZhxBv7xRIXEkIURCFjYYdz4zTywImWw4HQDyiAErRK2HYMWlb8uDSnsK8M+C8M/MW0um0W683LxkdUrawkjEWwknWtsyZHzwoxJpxfH0Qk1UmMQrck7AfAhrW5AbKtsuj4Ce3hllrejZm/VnXIzdBZd6j0ctNiXxjN5bEQLwKaDpC4NcxDHkLtBBhdJaAANiKZiXYRIPJW7en6g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 149.199.62.198) smtp.rcpttodomain=davemloft.net smtp.mailfrom=xilinx.com;
- dmarc=pass (p=none sp=none pct=100) action=none header.from=xilinx.com;
- dkim=none (message not signed); arc=none
+        with ESMTP id S231565AbiELQrl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 12:47:41 -0400
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE8F424F0FC;
+        Thu, 12 May 2022 09:47:39 -0700 (PDT)
+Received: by mail-lf1-x12e.google.com with SMTP id bu29so10214351lfb.0;
+        Thu, 12 May 2022 09:47:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=LQzYd9RjaqU/NU1wzmH7zJP9qrcEQw8w+KK2aq0qNZw=;
- b=IlFhSOPx8yQ1EUIzXJwOe+tr9/6EbMfPpTMK5PtI/HV4vdnDni4VxdRKgKHvvL7OvPkY+KuNYQ2Hf4TLTZI/nl2+lp5zjbw0sx8UP10eRavzO3a3UR/udHuvnNBdohpM7CfHg4HIAdsLGFrQKuXiKpIt6RAMj9/gnAkls+u/Lok=
-Received: from SA9PR13CA0058.namprd13.prod.outlook.com (2603:10b6:806:22::33)
- by CY5PR02MB8872.namprd02.prod.outlook.com (2603:10b6:930:3c::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5206.27; Thu, 12 May
- 2022 16:40:13 +0000
-Received: from SN1NAM02FT0018.eop-nam02.prod.protection.outlook.com
- (2603:10b6:806:22:cafe::10) by SA9PR13CA0058.outlook.office365.com
- (2603:10b6:806:22::33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5250.13 via Frontend
- Transport; Thu, 12 May 2022 16:40:13 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
- smtp.mailfrom=xilinx.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=xilinx.com;
-Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
- 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
- client-ip=149.199.62.198; helo=xsj-pvapexch01.xlnx.xilinx.com;
-Received: from xsj-pvapexch01.xlnx.xilinx.com (149.199.62.198) by
- SN1NAM02FT0018.mail.protection.outlook.com (10.97.5.8) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5250.13 via Frontend Transport; Thu, 12 May 2022 16:40:12 +0000
-Received: from xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) by
- xsj-pvapexch01.xlnx.xilinx.com (172.19.86.40) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.14; Thu, 12 May 2022 09:40:11 -0700
-Received: from smtp.xilinx.com (172.19.127.95) by
- xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server id
- 15.1.2176.14 via Frontend Transport; Thu, 12 May 2022 09:40:10 -0700
-Envelope-to: git@xilinx.com,
- davem@davemloft.net,
- edumazet@google.com,
- kuba@kernel.org,
- robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org,
- pabeni@redhat.com,
- devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org,
- netdev@vger.kernel.org
-Received: from [172.23.64.5] (port=50785 helo=xhdvnc105.xilinx.com)
-        by smtp.xilinx.com with esmtp (Exim 4.90)
-        (envelope-from <radhey.shyam.pandey@xilinx.com>)
-        id 1npBrG-000ELL-Cc; Thu, 12 May 2022 09:40:10 -0700
-Received: by xhdvnc105.xilinx.com (Postfix, from userid 13245)
-        id 970C960519; Thu, 12 May 2022 22:10:09 +0530 (IST)
-From:   Radhey Shyam Pandey <radhey.shyam.pandey@xilinx.com>
-To:     <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
-        <pabeni@redhat.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <harini.katakam@xilinx.com>
-CC:     <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <git@xilinx.com>,
-        Radhey Shyam Pandey <radhey.shyam.pandey@xilinx.com>
-Subject: [RFC net-next] dt-bindings: net: xilinx: document xilinx emaclite driver binding
-Date:   Thu, 12 May 2022 22:09:56 +0530
-Message-ID: <1652373596-5994-1-git-send-email-radhey.shyam.pandey@xilinx.com>
-X-Mailer: git-send-email 2.1.1
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=ZkeVSJkmptp9qNf3NXGzCw01fTFE3/b+0l0GX9neAqk=;
+        b=n7WaurAF6TaHWnFHl5YNZkxg460sfhrGuGaFN1mwenC6UaLF99GCjJI2LiEPky3A92
+         fHJf6y9l+fzLxEahqM0iZ6iY0zKGRGkppGMH3aSPEPU1Ajom34iQtL8ZSqexBboSu38T
+         7R/MWomkDyoPZIqlosFrChTl2cTk1xhSuXV3xAkv9/mMT9pTkLHmHO1Hx3jNPUqRJrlI
+         70zyxPuc11D0mHHbGeTgVsSAOn1na/cL4uhkfLKDeOwMqkZSkb+u6LyQ8zFrQ/ymhVQ6
+         PuV7w59WCvm/etpCasQZ7kD5h/CqkGztjMwfBhIqNdz+pxLg++HaadeC4+Te9sJiTlJ9
+         rfSg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=ZkeVSJkmptp9qNf3NXGzCw01fTFE3/b+0l0GX9neAqk=;
+        b=ooTC3Qwb6CPrKOmY03jX+GzKfWw4Z/ULu3nctZdSir3/PbtVo6xuY/8DeuBBdAW7Zo
+         0DeahmDqTfBF6gOGlqzkxMEPRx1CjO2UQN4kh4yI8lpWorKrUbtEZHOs1qiJx4K3skex
+         8HMTq8eXLmDUg1njGbl712QsD43whA55yA05IsUrjqWzOMkWDKtRvTOpiX91KGy99MhF
+         1DbbdrSj3QHYW9UZW2AjUAjue7HLHAAmoPy8Lw8dmNNVbphCQ/TG1A/UJ3R7D0RbMS0X
+         SYjia+66NZWegjLXJTp1HiVFRNPA9HbOsfQ5adPIK6qF3AcU9Etysj2Z3vIuJXcI/Twe
+         zBhw==
+X-Gm-Message-State: AOAM532ujaTwJYDwV46aUqtdJzmq3gkZk0cUGNmCv+zeXZZtOnCdHe6u
+        kuiYafhka3e7hWYLecFcKXn1Nv6EorrahA==
+X-Google-Smtp-Source: ABdhPJzqk5KmZ9a6wq/NaIpiHmX+MF1xFmmTzEyzFddNC52ar10S84jdxsr9ycFr+FGWAA9i/1GkSg==
+X-Received: by 2002:a05:6512:25e:b0:472:251f:9611 with SMTP id b30-20020a056512025e00b00472251f9611mr487694lfo.164.1652374058071;
+        Thu, 12 May 2022 09:47:38 -0700 (PDT)
+Received: from mobilestation ([95.79.189.214])
+        by smtp.gmail.com with ESMTPSA id g11-20020a2eb5cb000000b0024f3d1daeabsm962450ljn.51.2022.05.12.09.47.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 12 May 2022 09:47:37 -0700 (PDT)
+Date:   Thu, 12 May 2022 19:47:34 +0300
+From:   Serge Semin <fancer.lancer@gmail.com>
+To:     Hannes Reinecke <hare@suse.de>
+Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Jens Axboe <axboe@kernel.dk>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Rob Herring <robh+dt@kernel.org>, linux-ide@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 23/23] MAINTAINERS: Add maintainers for DWC AHCI SATA
+ driver
+Message-ID: <20220512164734.hmoeuyf3fscqcpts@mobilestation>
+References: <20220511231810.4928-1-Sergey.Semin@baikalelectronics.ru>
+ <20220511231810.4928-24-Sergey.Semin@baikalelectronics.ru>
+ <5b2b3f12-ba1f-45b5-cb05-6f5376e4e2c6@suse.de>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 16b27781-3122-4cb1-b298-08da343615fc
-X-MS-TrafficTypeDiagnostic: CY5PR02MB8872:EE_
-X-Microsoft-Antispam-PRVS: <CY5PR02MB887274AA18AB64E8E60D2F45C7CB9@CY5PR02MB8872.namprd02.prod.outlook.com>
-X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 9SjtrqDDvJ7XEsWl2aDPoD2AXRCuVjwSpxof700scfJfny5F68kVzVUXQhN5xSHs4kT1XPxEF7mO2Ypp/z/oULHSybqNqlPnrKjF4KTGq4tZG2tIrAnOxyGK4ejJnreu+7Ra5+vxFdQl+HQ3xQZ7LD7dtUgSndIoOamLq4/MRyzGAZx2RjbThAG3iwz1wbyS0qHsgR7GFa9b7BKJz4wGmVUwVtsnGPofggKoqmIKk4IWcvRgGei1pZHcEn+dfgw3wvr2WWDbUu0XpQ6Y/w7eCYDzwB6YIZebxo5KHb9bRONIEjt7XEbJiH6ZmKpz6BeuEpm8VWtupTto96JqDDRWPyWpZG9nsUxUzo/Eb9OKUKMiokk9YOurZasc208Z4Z2bIwgKR7Xie95NtpY+u7AMqFLKAKcgsdEZuBzJEWtKYakHqDeToh4cLb985no9umvpWheIJybYYGtbmfNZQIuU65GoyzlharDgiu/Zju6QhNPyCU95CpNpzuIbt+HJzrQrQpth2/hUa5qX/lRlZlOezcunepYPrL0OuDB7NDPwhgNbkh4drP5Ss0GBwaNJwEZ6EzML9u2Nol7pEKS51/JqS+SdLP0oIyJ90yeNLOlLSN+5c/xZqLgBkwsAIrKxeaUkePGWvzU2vv1AfkDwFVJyV/mzn5uunWCJX6WcMk6aYAJQEwKa/CyLg69VuP5xwfhPKHzVw3Yapca+S0fPV8S69dqi9asUTn2YuSRGmwxwg4VAncZtUpOMOHiKYYXUkxzQu3y1P5yfzs9QoHhJYGzBoeEi1kBkQtDSkbuCxxmd0yKhlJSaI7vdT8n1WBkh7WZfNlY3X6yCBAyz0KblSjPNAw==
-X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch01.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(13230001)(4636009)(46966006)(40470700004)(36840700001)(5660300002)(8936002)(107886003)(26005)(966005)(2616005)(6266002)(186003)(47076005)(426003)(2906002)(42186006)(36756003)(316002)(336012)(54906003)(82310400005)(6636002)(4326008)(36860700001)(8676002)(6666004)(40460700003)(70586007)(110136005)(70206006)(508600001)(356005)(7636003)(102446001);DIR:OUT;SFP:1101;
-X-OriginatorOrg: xilinx.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 May 2022 16:40:12.7169
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 16b27781-3122-4cb1-b298-08da343615fc
-X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch01.xlnx.xilinx.com]
-X-MS-Exchange-CrossTenant-AuthSource: SN1NAM02FT0018.eop-nam02.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR02MB8872
-X-Spam-Status: No, score=1.1 required=5.0 tests=AC_FROM_MANY_DOTS,BAYES_00,
-        DKIM_SIGNED,DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
-X-Spam-Level: *
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <5b2b3f12-ba1f-45b5-cb05-6f5376e4e2c6@suse.de>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add basic description for the xilinx emaclite driver DT bindings.
+On Thu, May 12, 2022 at 09:16:19AM +0200, Hannes Reinecke wrote:
+> On 5/12/22 01:18, Serge Semin wrote:
+> > Add myself as a maintainer of the new DWC AHCI SATA driver and
+> > its DT-bindings schema.
+> > 
+> > Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+> > 
+> > ---
+> > 
+> > Changelog v2:
+> > - Use dlemoal/libata.git git tree for the LIBATA SATA AHCI SYNOPSYS
+> >    DWC driver (@Damien).
+> > ---
+> >   MAINTAINERS | 9 +++++++++
+> >   1 file changed, 9 insertions(+)
+> > 
+> > diff --git a/MAINTAINERS b/MAINTAINERS
+> > index 40fa1955ca3f..04f470519708 100644
+> > --- a/MAINTAINERS
+> > +++ b/MAINTAINERS
+> > @@ -11135,6 +11135,15 @@ F:	drivers/ata/ahci_platform.c
+> >   F:	drivers/ata/libahci_platform.c
+> >   F:	include/linux/ahci_platform.h
+> > +LIBATA SATA AHCI SYNOPSYS DWC CONTROLLER DRIVER
+> > +M:	Serge Semin <fancer.lancer@gmail.com>
+> > +L:	linux-ide@vger.kernel.org
+> > +S:	Maintained
+> > +T:	git git://git.kernel.org/pub/scm/linux/kernel/git/dlemoal/libata.git
+> > +F:	Documentation/devicetree/bindings/ata/baikal,bt1-ahci.yaml
+> > +F:	Documentation/devicetree/bindings/ata/snps,dwc-ahci.yaml
+> > +F:	drivers/ata/ahci_dwc.c
+> > +
+> >   LIBATA SATA PROMISE TX2/TX4 CONTROLLER DRIVER
+> >   M:	Mikael Pettersson <mikpelinux@gmail.com>
+> >   L:	linux-ide@vger.kernel.org
+> Tsk.
+> 
+> One would have thought that you'd be using the same email address for
+> sending patches, and not specifying a different one for the maintainers
+> file. There is this thing about proof of authenticity and all that ...
+> 
+> I'm not really comfortable with this. Please use the same email address for
+> both the Maintainers file and for sending patches.
 
-Signed-off-by: Radhey Shyam Pandey <radhey.shyam.pandey@xilinx.com>
----
- .../bindings/net/xlnx,emaclite.yaml           | 60 +++++++++++++++++++
- 1 file changed, 60 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/net/xlnx,emaclite.yaml
+I am more comfortable with reviewing and emailing from my private
+email box rather than from the corporate one. Moreover the corporate
+email address tends to get changed much more frequent than the private
+one while the person role still preserves. Keeping more stable address
+in the MAINTAINERS file gives a benefit of providing better review
+service and causes less consequent modifications. So to speak I'd stick
+with keeping the email address as is here.
 
-diff --git a/Documentation/devicetree/bindings/net/xlnx,emaclite.yaml b/Documentation/devicetree/bindings/net/xlnx,emaclite.yaml
-new file mode 100644
-index 000000000000..a3e2a0e89b24
---- /dev/null
-+++ b/Documentation/devicetree/bindings/net/xlnx,emaclite.yaml
-@@ -0,0 +1,60 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/net/xlnx,emaclite.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Xilinx Emaclite Ethernet controller
-+
-+maintainers:
-+  - Radhey Shyam Pandey <radhey.shyam.pandey@xilinx.com>
-+  - Harini Katakam <harini.katakam@xilinx.com>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - xlnx,opb-ethernetlite-1.01.a
-+      - xlnx,opb-ethernetlite-1.01.b
-+      - xlnx,xps-ethernetlite-1.00.a
-+      - xlnx,xps-ethernetlite-2.00.a
-+      - xlnx,xps-ethernetlite-2.01.a
-+      - xlnx,xps-ethernetlite-3.00.a
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  phy-handle: true
-+
-+  local-mac-address: true
-+
-+  xlnx,tx-ping-pong:
-+    type: boolean
-+    description: hardware supports tx ping pong buffer.
-+
-+  xlnx,rx-ping-pong:
-+    type: boolean
-+    description: hardware supports rx ping pong buffer.
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - phy-handle
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    axi_ethernetlite_1: ethernet@40e00000 {
-+            compatible = "xlnx,xps-ethernetlite-3.00.a";
-+            interrupt-parent = <&axi_intc_1>;
-+            interrupts = <1 0>;
-+            local-mac-address = [00 0a 35 00 00 00];
-+            phy-handle = <&phy0>;
-+            reg = <0x40e00000 0x10000>;
-+            xlnx,rx-ping-pong;
-+            xlnx,tx-ping-pong;
-+    };
--- 
-2.25.1
+-Sergey
 
+> 
+> Cheers,
+> 
+> Hannes
+> -- 
+> Dr. Hannes Reinecke		           Kernel Storage Architect
+> hare@suse.de			                  +49 911 74053 688
+> SUSE Software Solutions Germany GmbH, Maxfeldstr. 5, 90409 Nürnberg
+> HRB 36809 (AG Nürnberg), GF: Felix Imendörffer
