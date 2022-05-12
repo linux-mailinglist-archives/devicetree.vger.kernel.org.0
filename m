@@ -2,159 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B9DE5241FA
-	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 03:21:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C38CD524207
+	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 03:30:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234973AbiELBVR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 May 2022 21:21:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38198 "EHLO
+        id S229823AbiELBaN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 May 2022 21:30:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37868 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349881AbiELBU4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 May 2022 21:20:56 -0400
-Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81DF65A17F
-        for <devicetree@vger.kernel.org>; Wed, 11 May 2022 18:20:54 -0700 (PDT)
-Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (Client did not present a certificate)
-        by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id D8DD72C0230;
-        Thu, 12 May 2022 01:20:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
-        s=mail181024; t=1652318451;
-        bh=LHGs9FWAGvFpn80TD3Uz6Mq+uY0dfK8ZhP13SYUe9xc=;
-        h=From:To:CC:Subject:Date:References:In-Reply-To:From;
-        b=FIWHfW7aJo63PWItt9JVvE/515Nbv4SRi6+Yq6HTwJPrOl50GPRYNGtz4v+uRAz5C
-         FB+c0b9RJp5XptTrQAXvs7Njio/bBTuja3hNSdvXC9DDkrnqRSl8H+XIWRxxbAxSsA
-         7vS/aOY18FsKswUwTcDngx5FLuoLnm0qy6wQBtZ7H3/fcp6Kzh3DANAual0usB9Qak
-         cOiN3mNLK/ndxeBG+K1E0bkv2uZ2NPJPRGfArbx/lYoA13Kux5txNEawE55RH6nDFm
-         TQSZzDQSIV1F1U7uv0eteUCpSIK6roDqo2xRcecMQoF+Pb/yMba/pRtcrw6uOFxzuG
-         MTpSN879GFpIA==
-Received: from svr-chch-ex1.atlnz.lc (Not Verified[2001:df5:b000:bc8::77]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
-        id <B627c60f30001>; Thu, 12 May 2022 13:20:51 +1200
-Received: from svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8::77) by
- svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8::77) with Microsoft SMTP Server
- (TLS) id 15.0.1497.32; Thu, 12 May 2022 13:20:51 +1200
-Received: from svr-chch-ex1.atlnz.lc ([fe80::409d:36f5:8899:92e8]) by
- svr-chch-ex1.atlnz.lc ([fe80::409d:36f5:8899:92e8%12]) with mapi id
- 15.00.1497.033; Thu, 12 May 2022 13:20:51 +1200
-From:   Chris Packham <Chris.Packham@alliedtelesis.co.nz>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
-        "will@kernel.org" <will@kernel.org>,
-        "andrew@lunn.ch" <andrew@lunn.ch>,
-        "gregory.clement@bootlin.com" <gregory.clement@bootlin.com>,
-        "sebastian.hesselbarth@gmail.com" <sebastian.hesselbarth@gmail.com>,
-        "kostap@marvell.com" <kostap@marvell.com>,
-        "robert.marko@sartura.hr" <robert.marko@sartura.hr>
-CC:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v6 1/3] dt-bindings: marvell: Document the AC5/AC5X
- compatibles
-Thread-Topic: [PATCH v6 1/3] dt-bindings: marvell: Document the AC5/AC5X
- compatibles
-Thread-Index: AQHYZMMYWG5Tfvy6g0WGHR9i+piz6K0ZFyiAgACTLwA=
-Date:   Thu, 12 May 2022 01:20:50 +0000
-Message-ID: <6d1e121f-847b-3fc5-c27d-6504f380e4ef@alliedtelesis.co.nz>
-References: <20220510231002.1160798-1-chris.packham@alliedtelesis.co.nz>
- <20220510231002.1160798-2-chris.packham@alliedtelesis.co.nz>
- <5c498985-64bb-b8ba-3e77-9cdb36dd1f16@linaro.org>
-In-Reply-To: <5c498985-64bb-b8ba-3e77-9cdb36dd1f16@linaro.org>
-Accept-Language: en-NZ, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.32.1.11]
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <D93BABB03082EA4681171998568AB7F8@atlnz.lc>
-Content-Transfer-Encoding: base64
+        with ESMTP id S229471AbiELBaI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 May 2022 21:30:08 -0400
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9C89154B3F;
+        Wed, 11 May 2022 18:30:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1652319006; x=1683855006;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=FmzxLobn0K8eUJokt43bdYb1Kp6hZ00M7lRWrjyhUwY=;
+  b=SKeOnlZmmXRXW1DKAasjKtvf6ApCGk+x3DLPODK8l0L+JabxLMnFJfzp
+   m7UVKz3uculOAPYDdc64yIkSIEj3KpWJR9tKlmnn5h5qZrvWsoUgrfDVl
+   SLhrv4GOGlWmIZj+HEvqItztlQypeWYlMk534fxnCb61TeSqkKXnI9BbR
+   x5zgwbY4B6CZGGBKL9dZTagQvSb14XMVDA/GXpWMgVv0W2MWFUuVRfIYF
+   57sM0W2rw+IqipldUXxK2G5dChfh3rSH+aPd2tP5Csj/IvSbtlPMBPBQi
+   LL2cHJK6GRX1ZnLwMc7oo5GwUDtuuIghxvpVa8wnTEXLDxga2TOvaT0Qw
+   Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10344"; a="330460649"
+X-IronPort-AV: E=Sophos;i="5.91,218,1647327600"; 
+   d="scan'208";a="330460649"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 May 2022 18:30:06 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.91,218,1647327600"; 
+   d="scan'208";a="542554715"
+Received: from lkp-server01.sh.intel.com (HELO 5056e131ad90) ([10.239.97.150])
+  by orsmga006.jf.intel.com with ESMTP; 11 May 2022 18:29:58 -0700
+Received: from kbuild by 5056e131ad90 with local (Exim 4.95)
+        (envelope-from <lkp@intel.com>)
+        id 1noxeQ-000Jmk-2Z;
+        Thu, 12 May 2022 01:29:58 +0000
+Date:   Thu, 12 May 2022 09:29:38 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Krishna Kurapati <quic_kriskura@quicinc.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Doug Anderson <dianders@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Wesley Cheng <quic_wcheng@quicinc.com>,
+        Vinod Koul <vkoul@kernel.org>
+Cc:     llvm@lists.linux.dev, kbuild-all@lists.01.org,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-phy@lists.infradead.org, quic_pkondeti@quicinc.com,
+        quic_ppratap@quicinc.com, quic_vpulyala@quicinc.com,
+        Krishna Kurapati <quic_kriskura@quicinc.com>
+Subject: Re: [v4 2/3] phy: qcom-snps: Add support for overriding phy tuning
+ parameters
+Message-ID: <202205120931.JrA2orb3-lkp@intel.com>
+References: <1652282793-5580-3-git-send-email-quic_kriskura@quicinc.com>
 MIME-Version: 1.0
-X-SEG-SpamProfiler-Analysis: v=2.3 cv=U+Hs8tju c=1 sm=1 tr=0 a=Xf/6aR1Nyvzi7BryhOrcLQ==:117 a=xqWC_Br6kY4A:10 a=oKJsc7D3gJEA:10 a=IkcTkHD0fZMA:10 a=oZkIemNP1mAA:10 a=62ntRvTiAAAA:8 a=gEfo2CItAAAA:8 a=l9mEoNynZyQPEb8fsREA:9 a=QEXdDO2ut3YA:10 a=pToNdpNmrtiFLRE6bQ9Z:22 a=sptkURWiP4Gy88Gu7hUp:22
-X-SEG-SpamProfiler-Score: 0
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1652282793-5580-3-git-send-email-quic_kriskura@quicinc.com>
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-DQpPbiAxMi8wNS8yMiAwNDozNCwgS3J6eXN6dG9mIEtvemxvd3NraSB3cm90ZToNCj4gT24gMTEv
-MDUvMjAyMiAwMToxMCwgQ2hyaXMgUGFja2hhbSB3cm90ZToNCj4+IERlc2NyaWJlIHRoZSBjb21w
-YXRpYmxlIHByb3BlcnRpZXMgZm9yIHRoZSBNYXJ2ZWxsIEFsbGV5Y2F0NS81WCBzd2l0Y2hlcw0K
-Pj4gd2l0aCBpbnRlZ3JhdGVkIENQVXMuDQo+Pg0KPj4gQWxsZXljYXQ1Og0KPj4gKiA5OERYMjUz
-ODogMjR4MUcgKyAyeDEwRyArIDJ4MTBHIFN0YWNrDQo+PiAqIDk4RFgyNTM1OiAyNHgxRyArIDR4
-MUcgU3RhY2sNCj4+ICogOThEWDI1MzI6IDh4MUcgKyAyeDEwRyArIDJ4MUcgU3RhY2sNCj4+ICog
-OThEWDI1MzE6IDh4MUcgKyA0eDFHIFN0YWNrDQo+PiAqIDk4RFgyNTI4OiAyNHgxRyArIDJ4MTBH
-ICsgMngxMEcgU3RhY2sNCj4+ICogOThEWDI1MjU6IDI0eDFHICsgNHgxRyBTdGFjaw0KPj4gKiA5
-OERYMjUyMjogOHgxRyArIDJ4MTBHICsgMngxRyBTdGFjaw0KPj4gKiA5OERYMjUyMTogOHgxRyAr
-IDR4MUcgU3RhY2sNCj4+ICogOThEWDI1MTg6IDI0eDFHICsgMngxMEcgKyAyeDEwRyBTdGFjaw0K
-Pj4gKiA5OERYMjUxNTogMjR4MUcgKyA0eDFHIFN0YWNrDQo+PiAqIDk4RFgyNTEyOiA4eDFHICsg
-MngxMEcgKyAyeDFHIFN0YWNrDQo+PiAqIDk4RFgyNTExOiA4eDFHICsgNHgxRyBTdGFjaw0KPj4N
-Cj4+IEFsbGV5Y2F0NVg6DQo+PiAqIDk4RFgzNTAwOiAyNHgxRyArIDZ4MjVHDQo+PiAqIDk4RFgz
-NTAxOiAxNngxRyArIDZ4MTBHDQo+PiAqIDk4RFgzNTEwOiA0OHgxRyArIDZ4MjVHDQo+PiAqIDk4
-RFgzNTIwOiAyNHgyLjVHICsgNngyNUcNCj4+ICogOThEWDM1MzA6IDQ4eDIuNUcgKyA2eDI1Rw0K
-Pj4gKiA5OERYMzU0MDogMTJ4NUcvNngxMEcgKyA2eDI1Rw0KPj4gKiA5OERYMzU1MDogMjR4NUcv
-MTJ4MTBHICsgNngyNUcNCj4+DQo+PiBTaWduZWQtb2ZmLWJ5OiBDaHJpcyBQYWNraGFtIDxjaHJp
-cy5wYWNraGFtQGFsbGllZHRlbGVzaXMuY28ubno+DQo+PiAtLS0NCj4+DQo+PiBOb3RlczoNCj4+
-ICAgICAgQ2hhbmdlcyBpbiB2NjoNCj4+ICAgICAgLSBOZXcNCj4+DQo+PiAgIC4uLi9iaW5kaW5n
-cy9hcm0vbWFydmVsbC9hcm1hZGEtOThkeDI1MzAueWFtbCB8IDI3ICsrKysrKysrKysrKysrKysr
-KysNCj4+ICAgMSBmaWxlIGNoYW5nZWQsIDI3IGluc2VydGlvbnMoKykNCj4+ICAgY3JlYXRlIG1v
-ZGUgMTAwNjQ0IERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9hcm0vbWFydmVsbC9h
-cm1hZGEtOThkeDI1MzAueWFtbA0KPj4NCj4+IGRpZmYgLS1naXQgYS9Eb2N1bWVudGF0aW9uL2Rl
-dmljZXRyZWUvYmluZGluZ3MvYXJtL21hcnZlbGwvYXJtYWRhLTk4ZHgyNTMwLnlhbWwgYi9Eb2N1
-bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvYXJtL21hcnZlbGwvYXJtYWRhLTk4ZHgyNTMw
-LnlhbWwNCj4+IG5ldyBmaWxlIG1vZGUgMTAwNjQ0DQo+PiBpbmRleCAwMDAwMDAwMDAwMDAuLjZk
-OTE4NWJhZjBjNQ0KPj4gLS0tIC9kZXYvbnVsbA0KPj4gKysrIGIvRG9jdW1lbnRhdGlvbi9kZXZp
-Y2V0cmVlL2JpbmRpbmdzL2FybS9tYXJ2ZWxsL2FybWFkYS05OGR4MjUzMC55YW1sDQo+PiBAQCAt
-MCwwICsxLDI3IEBADQo+PiArIyBTUERYLUxpY2Vuc2UtSWRlbnRpZmllcjogKEdQTC0yLjAtb25s
-eSBPUiBCU0QtMi1DbGF1c2UpDQo+PiArJVlBTUwgMS4yDQo+PiArLS0tDQo+PiArJGlkOiBodHRw
-Oi8vc2Nhbm1haWwudHJ1c3R3YXZlLmNvbS8/Yz0yMDk4OCZkPWhlWDc0cy1kaDhIU0NBSm1hZlJp
-Z1pIT295WTBYUURsODBRU0NYV2l0dyZ1PWh0dHAlM2ElMmYlMmZkZXZpY2V0cmVlJTJlb3JnJTJm
-c2NoZW1hcyUyZmFybSUyZm1hcnZlbGwlMmZhcm1hZGEtOThkeDI1MzAlMmV5YW1sJTIzDQo+PiAr
-JHNjaGVtYTogaHR0cDovL3NjYW5tYWlsLnRydXN0d2F2ZS5jb20vP2M9MjA5ODgmZD1oZVg3NHMt
-ZGg4SFNDQUptYWZSaWdaSE9veVkwWFFEbDgwb1ZXbk9sdEEmdT1odHRwJTNhJTJmJTJmZGV2aWNl
-dHJlZSUyZW9yZyUyZm1ldGEtc2NoZW1hcyUyZmNvcmUlMmV5YW1sJTIzDQo+PiArDQo+PiArdGl0
-bGU6IE1hcnZlbGwgQWxsZXljYXQ1LzVYIFBsYXRmb3Jtcw0KPj4gKw0KPj4gK21haW50YWluZXJz
-Og0KPj4gKyAgLSBDaHJpcyBQYWNraGFtIDxjaHJpcy5wYWNraGFtQGFsbGllZHRlbGVzaXMuY28u
-bno+DQo+PiArDQo+PiArcHJvcGVydGllczoNCj4+ICsgICRub2RlbmFtZToNCj4+ICsgICAgY29u
-c3Q6ICcvJw0KPj4gKyAgY29tcGF0aWJsZToNCj4+ICsgICAgb25lT2Y6DQo+PiArDQo+PiArICAg
-ICAgLSBkZXNjcmlwdGlvbjogQWxsZXljYXQ1ICg5OERYMjV4eCkNCj4+ICsgICAgICAgIGl0ZW1z
-Og0KPj4gKyAgICAgICAgICAtIGNvbnN0OiBtYXJ2ZWxsLGFjNQ0KPiBUaGlzIGlzIGNvbmZ1c2lu
-ZyBhbmQgZG9lcyBub3QgbG9vayBjb3JyZWN0LiBUaGUgRFRTIGNhbGxzIEFDNSBhIFNvQyBhbmQN
-Cj4geW91IGNhbm5vdCBoYXZlIFNvQyBhbG9uZS4gSXQncyB1bnVzYWJsZSB3aXRob3V0IGEgU29N
-IG9yIGJvYXJkLg0KPg0KPj4gKw0KPj4gKyAgICAgIC0gZGVzY3JpcHRpb246IEFsbGV5Y2F0NVgg
-KDk4RFgzNXh4KQ0KPj4gKyAgICAgICAgaXRlbXM6DQo+PiArICAgICAgICAgIC0gY29uc3Q6IG1h
-cnZlbGwsYWM1eA0KPj4gKyAgICAgICAgICAtIGNvbnN0OiBtYXJ2ZWxsLGFjNQ0KPiBUaGlzIGVu
-dHJ5IGxvb2tzIGNvcnJlY3QgZXhjZXB0IGFjNXggb25jZSBpcyBjYWxsZWQgYSBTb0MgYW5kIG9u
-Y2UgYQ0KPiBSRC1BQzVYIGJvYXJkLg0KPg0KPiBJdCBjYW5ub3QgYmUgYm90aC4gUHJvYmFibHkg
-eW91IG5lZWQgdGhpcmQgY29tcGF0aWJsZSwgYXNzdW1pbmcgQUM1eCBpcw0KPiBhIGZsYXZvciBv
-ZiBBQzUuDQoNClllYWggaXQncyBhIGJpdCBjb25mdXNpbmcNCg0KUkQtQUM1WC0oYnVuY2ggb2Yg
-ZXh0cmEgbnVtYmVycyBhbmQgbGV0dGVycykgaXMgdGhlIGJvYXJkIEkgaGF2ZS4NCkFDNVggaXMg
-YSBMMyBzd2l0Y2ggY2hpcCB3aXRoIGludGVncmF0ZWQgQ1BVLg0KQUM1IGlzIGEgTDMgc3dpdGNo
-IGNoaXAgd2l0aCBpbnRlZ3JhdGVkIENQVS4NCg0KU3dpdGNoIHdpc2UgdGhlIEFDNVggYW5kIEFD
-NSBhcmUgcXVpdGUgZGlmZmVyZW50IGJ1dCB0aGUgQ1BVIGJsb2NrIGlzIA0KdGhlIHNhbWUgYmV0
-d2VlbiB0aGUgdHdvLg0KDQo+DQo+IGl0ZW1zOg0KPiAgIC0gZW51bToNCj4gICAgICAgLSBtYXJ2
-ZWxsLHJkLWFjNXgNCj4gICAtIGNvbnN0OiBtYXJ2ZWxsLGFjNXgNCj4gICAtIGNvbnN0OiBtYXJ2
-ZWxsLGFjNQ0KDQpJIGNhbiBnbyB3aXRoIHRoYXQgYnV0IEknbSBhIGxpdHRsZSB2YWd1ZSBvbiB3
-aGF0IHRoZSByZXF1aXJlbWVudHMgYXJlLiANCkkgd2FzIHRyeWluZyB0byBmb2xsb3cgdGhlIGFy
-bWFkYS03ay04ay55YW1sIGFzIGFuIGV4YW1wbGUuDQoNCklmIEkgbG9vayBhdCB0aGUgY245MTMw
-LWNyYi1BIGJvYXJkIGl0IGVuZHMgdXAgd2l0aDoNCg0KIMKgIGNvbXBhdGlibGUgPSAibWFydmVs
-bCxjbjkxMzAiLCAibWFydmVsbCxhcm1hZGEtYXA4MDctcXVhZCIsIA0KIm1hcnZlbGwsYXJtYWRh
-LWFwODA3IjsNCg0KSSBrbm93IHRoZSBhcDgwNyBoYXMgc29tZXRoaW5nIHRvIGRvIHdpdGggdGhl
-IHZhZ2FyaWVzIG9mIHRoZSBjbjkxMzAgU29DIA0KYnV0IGlzbid0IHRoZSAibWFydmVsbCxjbjkx
-MzAiIHN0aWxsIHJlZmVycmluZyB0byB0aGUgU29DLiBGcm9tIHdoYXQgDQp5b3UndmUgc2FpZCBz
-aG91bGRuJ3QgdGhlcmUgYmUgYSAibWFydmVsbCxjbjkxMzAtY3JiIiBzb21ld2hlcmUgaW4gdGhl
-IG1peD8NCg0KUGVyaGFwcyBJJ3ZlIHBpY2tlZCBhIGJhZCBleGFtcGxlIGJ1dCB0aGUgb3RoZXIg
-ZHRicyBJJ3ZlIHBva2VkIGF0IGRvbid0IA0KaGF2ZSBhbnkgYm9hcmQgYmluZGluZy4NCg0KPj4g
-Kw0KPj4gK2FkZGl0aW9uYWxQcm9wZXJ0aWVzOiB0cnVlDQo+DQo+IEJlc3QgcmVnYXJkcywNCj4g
-S3J6eXN6dG9m
+Hi Krishna,
+
+Thank you for the patch! Yet something to improve:
+
+[auto build test ERROR on robh/for-next]
+[also build test ERROR on krzk/for-next linus/master v5.18-rc6 next-20220511]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Krishna-Kurapati/Add-QCOM-SNPS-PHY-overriding-params-support/20220511-232858
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+config: riscv-randconfig-r033-20220509 (https://download.01.org/0day-ci/archive/20220512/202205120931.JrA2orb3-lkp@intel.com/config)
+compiler: clang version 15.0.0 (https://github.com/llvm/llvm-project 18dd123c56754edf62c7042dcf23185c3727610f)
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # install riscv cross compiling tool for clang build
+        # apt-get install binutils-riscv64-linux-gnu
+        # https://github.com/intel-lab-lkp/linux/commit/48c46f24873c92d3e16904af9e654962d0b923f1
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Krishna-Kurapati/Add-QCOM-SNPS-PHY-overriding-params-support/20220511-232858
+        git checkout 48c46f24873c92d3e16904af9e654962d0b923f1
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=riscv SHELL=/bin/bash
+
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
+
+All errors (new ones prefixed by >>):
+
+>> drivers/phy/qualcomm/phy-qcom-snps-femto-v2.c:541:29: error: initializing 'struct override_param_map *' with an expression of type 'const void *' discards qualifiers [-Werror,-Wincompatible-pointer-types-discards-qualifiers]
+           struct override_param_map *cfg = of_device_get_match_data(dev);
+                                      ^     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   1 error generated.
+
+
+vim +541 drivers/phy/qualcomm/phy-qcom-snps-femto-v2.c
+
+   534	
+   535	static void qcom_snps_hsphy_read_override_param_seq(struct device *dev)
+   536	{
+   537		struct device_node *node = dev->of_node;
+   538		s32 val;
+   539		int ret, i;
+   540		struct qcom_snps_hsphy *hsphy;
+ > 541		struct override_param_map *cfg = of_device_get_match_data(dev);
+   542	
+   543		hsphy = dev_get_drvdata(dev);
+   544	
+   545		for (i = 0; i < ARRAY_SIZE(phy_seq_props); i++) {
+   546			ret = of_property_read_s32(node, phy_seq_props[i], &val);
+   547			if (!ret) {
+   548				dev_dbg(&hsphy->phy->dev, "Read param: %s val: %d\n",
+   549							phy_seq_props[i], val);
+   550				qcom_snps_hsphy_override_param_update_val(cfg[i], val,
+   551							&hsphy->update_seq_cfg[i]);
+   552			}
+   553		}
+   554	}
+   555	
+
+-- 
+0-DAY CI Kernel Test Service
+https://01.org/lkp
