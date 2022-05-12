@@ -2,77 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DDB555257AD
-	for <lists+devicetree@lfdr.de>; Fri, 13 May 2022 00:19:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8833C5257B9
+	for <lists+devicetree@lfdr.de>; Fri, 13 May 2022 00:24:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351294AbiELWTt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 May 2022 18:19:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53192 "EHLO
+        id S1359096AbiELWYd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 May 2022 18:24:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39182 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1359098AbiELWTs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 18:19:48 -0400
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 990272802F8
-        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 15:19:45 -0700 (PDT)
-Received: by mail-ej1-x632.google.com with SMTP id g6so12910257ejw.1
-        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 15:19:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=McSS2ps7lAda0B7Hjqm4GcEs6ir76cLprhYeL3EvtQM=;
-        b=FpKUMneT2lkBkxD8QufbxsbC3iS2M4kA4XRmF3F+SntKp7qqDK9yyAtfeOxgnr9a3j
-         wwP3HiFOGA9hJIaks57Co+DyFPOq1f1kjR1dq4QGVQ0NSV6f5vppoZjBxU3toP3xQccx
-         Z0uZZ9G3jvEjNFvB4TkXgwrYoNmR0Hgz+ts1M=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=McSS2ps7lAda0B7Hjqm4GcEs6ir76cLprhYeL3EvtQM=;
-        b=p94YtHrP/BiV1f6DziHQAPlNE3BDiCGlJHSZAVhuDTHzS4JkdyISBFQFEtXC/ZzISG
-         EfHtXpOMV6gakL6gFvUkCn7u0GY4A97SSay24buGg6Pe97ShmQOQrAQrhnzTAeJ9nzvO
-         CNesCTpELVy04eUHAnOfuRlcJ0iIDkMirKuSLJ9ck0EwGpe9p3UsKML0g8uQ/NjY4+Js
-         7ad1FCdibPCCUx9E0cNtYZ1vECL4UBVHG0pJbUlLjRNcIXmcCVZkBK3NCrmtyaEr1x4j
-         L/6fZwOdTssPVnJkx5ZQkROU8h7qUyIOgq2JqUCit+9UhIIM+jV1UhV6Qc+1ic5vgGUc
-         uyMw==
-X-Gm-Message-State: AOAM531vLA9qVrj7/oWIgPvQ8QWqsGDsmj98dAfVlqikaSviCDVM3QDO
-        mwmvI9BsltUCkZqdsLYBZ6Vx5ifYlOVSE/oi
-X-Google-Smtp-Source: ABdhPJx8kYfp6XShR5dx7s3CPNf8FzRNwIPZmqF21mo5Qk8o/rTXg5YUhhzTa0LnMERa+z9zgYMiyA==
-X-Received: by 2002:a17:906:a10e:b0:6f3:e70b:b572 with SMTP id t14-20020a170906a10e00b006f3e70bb572mr1737775ejy.546.1652393983937;
-        Thu, 12 May 2022 15:19:43 -0700 (PDT)
-Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com. [209.85.221.51])
-        by smtp.gmail.com with ESMTPSA id gk8-20020a17090790c800b006f3ef214db3sm171005ejb.25.2022.05.12.15.19.43
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 12 May 2022 15:19:43 -0700 (PDT)
-Received: by mail-wr1-f51.google.com with SMTP id d5so9089814wrb.6
-        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 15:19:43 -0700 (PDT)
-X-Received: by 2002:a5d:6d09:0:b0:20c:53a9:cc30 with SMTP id
- e9-20020a5d6d09000000b0020c53a9cc30mr1382071wrq.513.1652393982520; Thu, 12
- May 2022 15:19:42 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220510154406.v5.1.Id769ddc5dbf570ccb511db96da59f97d08f75a9c@changeid>
-In-Reply-To: <20220510154406.v5.1.Id769ddc5dbf570ccb511db96da59f97d08f75a9c@changeid>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Thu, 12 May 2022 15:19:30 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=Vkiqxv5QRiEqCjZVSNUH=K1N+JuYEsXu=XtFNxRtvttw@mail.gmail.com>
-Message-ID: <CAD=FV=Vkiqxv5QRiEqCjZVSNUH=K1N+JuYEsXu=XtFNxRtvttw@mail.gmail.com>
-Subject: Re: [PATCH v5 1/5] arm64: dts: qcom: sc7180: Add wormdingler dts files
-To:     "Joseph S. Barrera III" <joebar@chromium.org>
-Cc:     LKML <linux-kernel@vger.kernel.org>,
-        Alexandru M Stan <amstan@chromium.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        with ESMTP id S236178AbiELWYd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 18:24:33 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5040281347;
+        Thu, 12 May 2022 15:24:31 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 37A5B61F33;
+        Thu, 12 May 2022 22:24:31 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8351BC385B8;
+        Thu, 12 May 2022 22:24:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1652394270;
+        bh=Lc1EANfP1MQNRs942EGNTUmsGp9phgY1vwN9up7zOUg=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=HxCPOXn5RDIRhIhlPJoSYXFerF91jClgOchhrxJEx6Kbl9hrWzRz5BsaNkSy8gKvY
+         QljXFwyWRICSG6VUm6ymyGO9L17dOZF9h4JTehA4q9AKLKhyY6xUi2lsff280lhl/z
+         836UWmqVTrzexW58AWWlP8ZpnknmG7Oi6JLISQxTXsbw5kJWQlxjeT0dTHbQqqr7+b
+         7g2hFBIJWFu9QcgCBmVkThpoWZ4+0gFsJ5MSXTwkuyPqzPFaT2WE9lBT3hwAoHpkG+
+         UbTTfkX9uVnKCBjfA7ZE7eh6DqnF+40doDQSmV24YJS/wLJ9E4B95m/ltFQUKA2BHf
+         z8jpBQgux/cUw==
+Received: from ip-185-104-136-29.ptr.icomera.net ([185.104.136.29] helo=wait-a-minute.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <maz@kernel.org>)
+        id 1npHER-00AzZF-VL; Thu, 12 May 2022 23:24:28 +0100
+Date:   Thu, 12 May 2022 23:24:25 +0100
+Message-ID: <87sfpemlt2.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
         Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        Phil Edworthy <phil.edworthy@renesas.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Subject: Re: [PATCH v3 3/5] gpio: gpiolib: Allow free() callback to be overridden
+In-Reply-To: <CA+V-a8sMvjYK5NfkqpD3ertfUOy1zbauXW9gLzG+GLzZtvUygg@mail.gmail.com>
+References: <20220511183210.5248-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        <20220511183210.5248-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        <87y1z75770.wl-maz@kernel.org>
+        <CA+V-a8tf1RmT-cX5y807rTAPES2NXLJHp=u1WUG11fLrtt-5Mg@mail.gmail.com>
+        <87wneq6fz3.wl-maz@kernel.org>
+        <CA+V-a8v9WodNNK7AL4XemDnSrrWc9wG+qDKZb7SmbWixs5Q3Nw@mail.gmail.com>
+        <87v8ua67kt.wl-maz@kernel.org>
+        <CA+V-a8sMvjYK5NfkqpD3ertfUOy1zbauXW9gLzG+GLzZtvUygg@mail.gmail.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.104.136.29
+X-SA-Exim-Rcpt-To: prabhakar.csengg@gmail.com, prabhakar.mahadev-lad.rj@bp.renesas.com, geert+renesas@glider.be, linus.walleij@linaro.org, tglx@linutronix.de, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, brgl@bgdev.pl, p.zabel@pengutronix.de, linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, phil.edworthy@renesas.com, biju.das.jz@bp.renesas.com
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,53 +84,98 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Thu, 12 May 2022 18:55:38 +0100,
+"Lad, Prabhakar" <prabhakar.csengg@gmail.com> wrote:
+> 
+> Hi Marc,
+> 
+> On Thu, May 12, 2022 at 5:26 PM Marc Zyngier <maz@kernel.org> wrote:
+> >
+> > On Thu, 12 May 2022 14:50:05 +0100,
+> > "Lad, Prabhakar" <prabhakar.csengg@gmail.com> wrote:
+> > >
+> > > Hi Marc,
+> > >
+> > > On Thu, May 12, 2022 at 2:24 PM Marc Zyngier <maz@kernel.org> wrote:
+> > > >
+> > > > On Thu, 12 May 2022 13:48:53 +0100,
+> > > > "Lad, Prabhakar" <prabhakar.csengg@gmail.com> wrote:
+> > > > >
+> > > > > Hi Marc,
+> > > > >
+> > > > > Thank you for the review.
+> > > > >
+> > > > > On Thu, May 12, 2022 at 12:19 PM Marc Zyngier <maz@kernel.org> wrote:
+> > > > > >
+> > > > > > On Wed, 11 May 2022 19:32:08 +0100,
+> > > > > > Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
+> > > > > > >
+> > > > > > > Allow free() callback to be overridden from irq_domain_ops for
+> > > > > > > hierarchical chips.
+> > > > > > >
+> > > > > > > This allows drivers to free any resources which are allocated during
+> > > > > > > populate_parent_alloc_arg().
+> > > > > >
+> > > > > > Do you mean more than the fwspec? I don't see this being used.
+> > > > > >
+> > > > > The free callback is used in patch 5/5 where free is overridden by
+> > > > > rzg2l_gpio_irq_domain_free. I just gave an example there as an
+> > > > > populate_parent_alloc_arg()  In actual in the child_to_parent_hwirq
+> > > > > callback I am using a bitmap [0] to get a free tint slot, this bitmap
+> > > > > needs freeing up when the GPIO interrupt is released from the driver
+> > > > > that as when overridden free callback frees the allocated tint slot so
+> > > > > that its available for re-use.
+> > > >
+> > > > Right, so that's actually a different life-cycle, and the whole
+> > > > populate_parent_alloc_arg() is a red herring. What you want is to free
+> > > > resources that have been allocated via some other paths. It'd be good
+> > > Is there any other path which I have missed where I can free up resources?
+> >
+> > No, that's the only one. It is just that usually, the alloc()
+> > callback is where you are supposed to perform... allocations.
+> >
+> OK.
+> 
+> > It'd be good if you could move your allocation there, as I would
+> > expect calls to child_to_parent_hwirq() to be idempotent.
+> >
+> For now I'll go with the current implementation, as currently a an
+> array is maintained which is tied with the tint slot and child (which
+> is obtained from child_to_parent_hwirq)
+> 
+> > >
+> > > > if your commit message actually reflected this instead of using an
+> > > > example that doesn't actually exist.
+> > > >
+> > > My bad, I will update the commit message.
+> > >
+> > > > >
+> > > > > > There is also the question of why we need to have dynamic allocation
+> > > > > > for the fwspec itself. Why isn't that a simple stack allocation in the
+> > > > > > context of gpiochip_hierarchy_irq_domain_alloc()?
+> > > > > >
+> > > > > you mean gpio core itself should handle the fwspec
+> > > > > allocation/freeing?
+> > > >
+> > > > Yes. The only reason we resort to dynamic allocation is because
+> > > > ThunderX is using MSI-based GPIOs, and thus doesn't use a fwspec (no
+> > > > firmware is involved here).
+> > > >
+> > > I see..
+> > >
+> > > > If we had a union of the two types, we could just have a stack
+> > > > variable, and pass that along, completely sidestepping the whole
+> > > > dynamic allocation/freeing business.
+> > > >
+> > > Right agreed.
+> >
+> > FWIW, I've just posted a PoC patch[1].
+> >
+> I guess I'll have to rebase my changes on top of it now ;)
 
-On Tue, May 10, 2022 at 3:46 PM Joseph S. Barrera III
-<joebar@chromium.org> wrote:
->
-> Wormdingler is a trogdor-based board, shipping to customers as the
-> Lenovo IdeaPad Chromebook Duet 3. These dts files are copies from
-> the downstream Chrome OS 5.4 kernel, but with the camera
-> (sc7180-trogdor-mipi-camera.dtsi) #include removed.
->
-> Signed-off-by: Joseph S. Barrera III <joebar@chromium.org>
->
-> ---
->
-> Changes in v5:
-> - Replaced _ in node name with -
-> - Ordered nodes by name
+Not yet. Let's see what people say about it.
 
-So it's a bit of a judgement call, but generally the rule is that if
-you didn't make very big changes from one version of a patch to the
-next that you should keep "Reviewed-by" tags that you've already
-received. In this case the changes you made from v4 to v5 were very
-small and also very non-controversial (it's hard to believe I would
-object to these changes). Thus, it would have been better to keep my
-Reviewed-by tag. Everyone understands that it's a judgement call so as
-long as it's within reason people won't be too upset at you for making
-your best guess. If you're unsure, you can always add a note "after
-the cut" (AKA "Commit-notes" in patman speak) explaining why you did
-or didn't choose to keep someone's tags.
+	M.
 
-That being said, offline Stephen pointed out a problem with all of
-your v5 patches. Specifically, in the meantime while you were spinning
-your patches, Stephen's patch series landed in the upstream tree.
-Namely:
-
-19794489fa24 arm64: dts: qcom: Only include sc7180.dtsi in sc7180-trogdor.dtsi
-d277cab7afc7 arm64: dts: qcom: sc7180-trogdor: Simplify spi0/spi6 labeling
-51d30402be75 arm64: dts: qcom: sc7180-trogdor: Simplify trackpad enabling
-
-Since he won the race of getting the patches landed, that means it's
-on you to adjust. You should modify your patches to match what Stephen
-did in those 3. ...and, presumably, the changes Stephen is requesting
-here probably _are_ big enough that you'd want to remove my
-Reviewed-by tag for v6.
-
-Speaking of Stephen, he reviewed your v4 patches, but you didn't copy
-him on v5. In general if someone responds to a patch in the series you
-should CC them on the next version.
-
--Doug
+-- 
+Without deviation from the norm, progress is not possible.
