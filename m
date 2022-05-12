@@ -2,87 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E6B61524D4B
-	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 14:46:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 80571524D4D
+	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 14:47:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1353923AbiELMq2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 May 2022 08:46:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52782 "EHLO
+        id S1352114AbiELMr0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 May 2022 08:47:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57582 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1353967AbiELMq1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 08:46:27 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 08D6D1CEEE7;
-        Thu, 12 May 2022 05:46:19 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 90B5E106F;
-        Thu, 12 May 2022 05:46:19 -0700 (PDT)
-Received: from [10.57.80.111] (unknown [10.57.80.111])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 4D0D03F66F;
-        Thu, 12 May 2022 05:46:17 -0700 (PDT)
-Message-ID: <695be0af-b642-af0c-052a-f4c05df7424f@arm.com>
-Date:   Thu, 12 May 2022 13:46:11 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101
- Thunderbird/91.9.0
-Subject: Re: [PATCH v5 0/6] auxdisplay: Add support for the Titanmec TM1628 7
- segment display controller
-Content-Language: en-GB
-To:     Heiner Kallweit <hkallweit1@gmail.com>,
-        Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        =?UTF-8?Q?Andreas_F=c3=a4rber?= <afaerber@suse.de>,
-        Miguel Ojeda <ojeda@kernel.org>,
-        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        with ESMTP id S1345760AbiELMr0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 08:47:26 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1972939167;
+        Thu, 12 May 2022 05:47:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=E7JXfgKDXyXBuDHtThgJmopN/mj/yocwISb9cNT//xM=; b=lzvobPJpPlp7weaceib4oOVQx9
+        qi0PA9B9wsGk1IHh9oBx6iTmD2+Rq9Qvn+c6MaFmzXtKY/cXhTfuyCuAUdDoZQRadRAnBfd/W0fsR
+        Y2J+Flows69UiKNtrPTpSZ8Fza1jJaK/T2sB7sLeKrs5G8Fhh9qm6DDRyL8eOTwKHvGY=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1np8Di-002S27-1F; Thu, 12 May 2022 14:47:06 +0200
+Date:   Thu, 12 May 2022 14:47:06 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Elad Nachman <enachman@marvell.com>
+Cc:     Chris Packham <Chris.Packham@alliedtelesis.co.nz>,
+        Vadym Kochan <vadym.kochan@plvision.eu>,
+        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
+        "will@kernel.org" <will@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "gregory.clement@bootlin.com" <gregory.clement@bootlin.com>,
+        "sebastian.hesselbarth@gmail.com" <sebastian.hesselbarth@gmail.com>,
+        Kostya Porotchkin <kostap@marvell.com>,
+        "robert.marko@sartura.hr" <robert.marko@sartura.hr>,
         "linux-arm-kernel@lists.infradead.org" 
         <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-References: <90668779-b53d-b3e7-5327-af11ff4a1d18@gmail.com>
- <CANiq72m+OVcX1gPit94D1hjzkduyVFoCWXKSXTxpUDFtKs8z6g@mail.gmail.com>
- <aa97c09e-aa82-e2c4-326e-991330e65de7@gmail.com>
-From:   Robin Murphy <robin.murphy@arm.com>
-In-Reply-To: <aa97c09e-aa82-e2c4-326e-991330e65de7@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-9.8 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: Re: [EXT] Re: [PATCH v5 1/2] arm64: dts: marvell: Add Armada
+ 98DX2530 SoC and RD-AC5X board
+Message-ID: <Yn0ByoU6Ta5Kmq0u@lunn.ch>
+References: <20220504044624.951841-1-chris.packham@alliedtelesis.co.nz>
+ <20220511161003.GE10145@plvision.eu>
+ <YnviMOtXX+us+IA4@lunn.ch>
+ <c781f7eb-86f2-16c4-1380-b08b974900ff@alliedtelesis.co.nz>
+ <YnxXWIloDzfg8bh0@lunn.ch>
+ <BN9PR18MB4251F84C9D4C538DB6D63CFCDBCB9@BN9PR18MB4251.namprd18.prod.outlook.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <BN9PR18MB4251F84C9D4C538DB6D63CFCDBCB9@BN9PR18MB4251.namprd18.prod.outlook.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022-04-24 10:06, Heiner Kallweit wrote:
-> On 23.04.2022 22:57, Miguel Ojeda wrote:
->> On Fri, Feb 25, 2022 at 10:09 PM Heiner Kallweit <hkallweit1@gmail.com> wrote:
->>>
->>> This series adds support for the Titanmec TM1628 7 segment display
->>> controller. It's based on previous RFC work from Andreas Färber.
->>
->> AFAIU the discussion has converged at this point, correct? Is there
->> any feedback left to address?
->>
-> Still open is to define DT bindings that can support also the key input
-> feature of the chip. Robin picked up this topic and has some ideas.
+> Basically, the cpu-subsystems of Prestera 98DX25xx (AC5) and Prestera 98DX35xx (AC5X) are the same.
 
-Sorry this slipped through the cracks again... :(
+Great, thanks for the conformation.
 
-As mentioned, I think the discovery of the "linux,keymap" alleviates the 
-concern I had with the binding - it seemed ugly to have to invent a 
-device-specific property that worked that way, but if a common one 
-already exists that's a different matter. I'm pretty confident now that 
-the ideas I have for supporting the input side of things and the other 
-16x8 chips that I have here can all be done as pure additions with no 
-compatibility concerns, so from my PoV I'm happy if you want to go ahead 
-and land this as-is for 5.19, and I can send patches later.
+> The DTSI Chris proposed had the PCIe portion removed.
 
-Cheers,
-Robin.
+> We have PCIe support for AC5/AC5X so we would obviously like to
+> include this portion in both the DTSI and as a patch to the Armada8K
+> PCIe driver.
+
+So you can add the needed node to the .dtsi as part of the patch to
+the pci-aardvark.c driver. That sounds O.K.
+
+    Andrew
