@@ -2,73 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 20933524FDB
-	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 16:21:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5AAB2524FE7
+	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 16:26:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347099AbiELOVW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 May 2022 10:21:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33630 "EHLO
+        id S1355292AbiELO0M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 May 2022 10:26:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53548 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1355229AbiELOVH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 10:21:07 -0400
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91A26275E9
-        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 07:21:06 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id n10so10581635ejk.5
-        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 07:21:06 -0700 (PDT)
+        with ESMTP id S1355263AbiELOZ5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 10:25:57 -0400
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72D4413F3C
+        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 07:25:55 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id j6so10540227ejc.13
+        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 07:25:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=gwwa4KEdZsBSVIiZ/u69uGht/OG8CUxR+7OXw5afM9A=;
-        b=kKpsHtTMFWb7QKuSduAjkuTKGuBKLnVZAlGB9pHwkmj6zu0GHNa1piAzog2sZfXWVq
-         SsykJv5I7rqCnx2C5Vu+umu7lKGRXsEEwkCZL/JpNSj4vKZqhHYvD+GCPOpT7Gz+O9s3
-         q4fuVJINtOwaBuGubVBqax1UabAvSVWiKKzHEC8/DAxcE/UURqPoKahqVCtEETIT8bIC
-         ihn0OOTZ0ZjHgcIdy48yrBvSKR47PW/NMP/fMPcqiTDqbdGlO51GtijSmARDMsuhyuwN
-         00ADURgTXmcFTpeqM56tT/7R/tGxRxrjRLwpe59SIX+gbavbR9GvxVGJ534dhRomN8wR
-         fy/A==
+        bh=e7wJLjfJ1iVilvpq3jQ/LuI1I5wd6zNBUq4hxK7yISQ=;
+        b=r5ualuxQ0leFqfg+jbNOvJJk8d5rLmW6rQULOQ0IRnTzgGR9H/PIWd9zWwzi3fs9WC
+         S1+FtRFMKsim/XCxLByVyAPekRdEM+FkcCbXi0+pkaqQrGQuMKAqH4LWlJgqhnW90b53
+         hUcHLI6ng/MAOx3Ixjn4Bte8v2Le82Buhh1GjWKoq0c0Q8nk9dyi3F42U34U10f6fyyO
+         +hMWt5oUXdRHyqZvXq4fpzcyQ+u/x9RJ318MWMw/PSTuk7Wo0+iY86IzDn6FKEzxbT8x
+         EG0pnu9SrvZgNIOARlKvfuwqyU1AOdJqhDncYUpZLB5LqJs2JwSHle88uuT735DJAPAC
+         y0cg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=gwwa4KEdZsBSVIiZ/u69uGht/OG8CUxR+7OXw5afM9A=;
-        b=6e3FzI/9F4ueSQweYg2ttI8v98E0pUxrgBKVvfjzwFzrEvKWkRnaH5T86j1QbI7ZW4
-         3H8iiQ67irKaQQa/2lbPsWb6sco2up5ooDz/WsRpJj/Bb70CK6V9cS4KS8pswA7oCzfB
-         /Fx82Za4wpyfSzTAff7H8gCGgTLajcKurnYMHLmxIMck+M07N7szGAh2D6kgoJvlpaA3
-         O4AIszIXV10C6Dw3292ozmiX5P7kwO2/yE7Y9yC/fX4HQJOHwQrMDHTMoGTbS+QG8XlF
-         YsURVsn83zvLK6kp1Nm3mVFMUQ7mxfwiJq3CduNTYJa+zyU4COPt9IZzQ53yorIWfyZj
-         dA+w==
-X-Gm-Message-State: AOAM5328NFnA1rojk/x5xjwYtYKf+7ZTzTX6YVqDbAOF6zttoG8/R4ny
-        gwrFrgyrtNMMzqR+/Si8NfVWyA==
-X-Google-Smtp-Source: ABdhPJy6oM6zHB6ogbyacVZojXHJSVoOXoEbk7yyqF8wbuQPWR8uijnU02sDtFjZFSsAMWEdcDB8xQ==
-X-Received: by 2002:a17:906:58d2:b0:6fd:daa7:3a6e with SMTP id e18-20020a17090658d200b006fddaa73a6emr176871ejs.0.1652365265105;
-        Thu, 12 May 2022 07:21:05 -0700 (PDT)
+        bh=e7wJLjfJ1iVilvpq3jQ/LuI1I5wd6zNBUq4hxK7yISQ=;
+        b=Mf1aYcbZgDQiy0T9wZ4D3Zj8I5qObRvalXfBva2Wy1a6665N9j2xQT4QEpvkiyscs4
+         QZ/yhiA+ttYmodMxWcB1eoksp5++NyV4zWZQ+DOKt+cB0rnj0+I1q4rjyTKbVy91bXvR
+         GBscIVuuN1yzlcmG0r3a3MqiDB2n9HE4/0SrkEHA0bPcC8V5zz4n8vADgm/LuTrjtLh0
+         9bZ5iI/x9kmDr2Suv3S8P5zH8OwnDk2x2je1PJ5AolqXCeE1Bike3AqMmmuDtSgKkL9A
+         yIr3xpZf9Y1TgZMoxo0vYXNXlw+LWPzOIUWzuw5uwqfFQPtLRJAf6OjC8NpN5NmJWIqV
+         8t+w==
+X-Gm-Message-State: AOAM531OFTE4t5UhIIKsf2x2RbGaEGWF2jylvbVd9rn15IGO1hJtO+62
+        q0z8MDrajsbS4g5t3DdQwXuvyg==
+X-Google-Smtp-Source: ABdhPJxfn8AF52a6nAcaWJI5jbWZNRWTIkVKS2zEyi9i2MQCsxmdkfWrb5DIJvkdV6aURcKf/+NZ2w==
+X-Received: by 2002:a17:907:6e88:b0:6fa:888d:74a7 with SMTP id sh8-20020a1709076e8800b006fa888d74a7mr141867ejc.335.1652365553928;
+        Thu, 12 May 2022 07:25:53 -0700 (PDT)
 Received: from [192.168.0.161] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id ws20-20020a170907705400b006f3ef214e5bsm2150543ejb.193.2022.05.12.07.21.03
+        by smtp.gmail.com with ESMTPSA id n14-20020a170906700e00b006f3ef214e34sm2134511ejj.154.2022.05.12.07.25.51
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 12 May 2022 07:21:04 -0700 (PDT)
-Message-ID: <82a89be7-ea69-992b-ec66-3fba0c0103e1@linaro.org>
-Date:   Thu, 12 May 2022 16:21:03 +0200
+        Thu, 12 May 2022 07:25:53 -0700 (PDT)
+Message-ID: <546ddbd4-927d-2e28-6e82-a67b4584a17f@linaro.org>
+Date:   Thu, 12 May 2022 16:25:51 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.8.1
-Subject: Re: [PATCH v1 1/6] dt-binding: clock: Add missing rk3568 cru bindings
+Subject: Re: [PATCH v6 2/7] dt-bindings: thermal: Add binding document for
+ mt6873 thermal controller
 Content-Language: en-US
-To:     Peter Geis <pgwipeout@gmail.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Elaine Zhang <zhangqing@rock-chips.com>
-Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+To:     Alexandre Bailon <abailon@baylibre.com>, robh+dt@kernel.org,
+        krzk+dt@kernel.org, matthias.bgg@gmail.com, p.zabel@pengutronix.de
+Cc:     rafael@kernel.org, daniel.lezcano@linaro.org, amitk@kernel.org,
+        rui.zhang@intel.com, michael.kao@mediatek.com,
+        ben.tseng@mediatek.com, ethan.chang@mediatek.com,
+        frank-w@public-files.de, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20220511150117.113070-1-pgwipeout@gmail.com>
- <20220511150117.113070-2-pgwipeout@gmail.com>
+        linux-mediatek@lists.infradead.org, khilman@baylibre.com
+References: <20220512122433.1399802-1-abailon@baylibre.com>
+ <20220512122433.1399802-3-abailon@baylibre.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220511150117.113070-2-pgwipeout@gmail.com>
+In-Reply-To: <20220512122433.1399802-3-abailon@baylibre.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -81,18 +81,130 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/05/2022 17:01, Peter Geis wrote:
-> The rk3568 cru requires a clock input and a phandle to the grf node. Add
-> these bindings to clear some dtbs_check warnings.
+On 12/05/2022 14:24, Alexandre Bailon wrote:
+> From: Michael Kao <michael.kao@mediatek.com>
 > 
-> Signed-off-by: Peter Geis <pgwipeout@gmail.com>
+> This patch adds binding document for mt6873 thermal controller.
+
+Thank you for your patch. There is something to discuss/improve.
+
+> 
+> Signed-off-by: Michael Kao <michael.kao@mediatek.com>
+> Signed-off-by: Ben Tseng <ben.tseng@mediatek.com>
 > ---
->  .../bindings/clock/rockchip,rk3568-cru.yaml         | 13 +++++++++++++
->  1 file changed, 13 insertions(+)
+>  .../thermal/mediatek-thermal-lvts.yaml        | 81 +++++++++++++++++++
+>  1 file changed, 81 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/thermal/mediatek-thermal-lvts.yaml
 > 
+> diff --git a/Documentation/devicetree/bindings/thermal/mediatek-thermal-lvts.yaml b/Documentation/devicetree/bindings/thermal/mediatek-thermal-lvts.yaml
+> new file mode 100644
+> index 000000000000..69ffe7b14c21
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/thermal/mediatek-thermal-lvts.yaml
 
+filename: vendor,device
+so something like mediatek,mt6873-lvts.yaml or
+mediatek,mt6873-lvts-thermal.yaml
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> @@ -0,0 +1,81 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/thermal/mediatek-thermal-lvts.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Mediatek SoC LVTS thermal controller (DTS) binding
+
+s/(DTS) binding//
+(unless DTS means something related to hardware)
+
+> +
+> +maintainers:
+> +  - Yu-Chia Chang <ethan.chang@mediatek.com>
+> +  - Ben Tseng <ben.tseng@mediatek.com>
+> +
+> +properties:
+> +  compatible:
+> +    const: mediatek,mt6873-lvts
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  clock-names:
+> +    items:
+> +      - const: lvts_clk
+
+Skip "_clk" suffix, so just lvts.
+
+> +
+> +  "#thermal-sensor-cells":
+> +    const: 0
+> +
+> +required:
+> +  - "#thermal-sensor-cells"
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +  - clock-names
+
+You should reference in allOf therma-sensor.yaml unless this is not a
+thermal sensor?
+
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/thermal/thermal.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/clock/mt8192-clk.h>
+> +    dts: lvts@1100b000 {
+
+Generic node name, so thermal-sensor
+
+> +        compatible = "mediatek,mt6873-lvts";
+> +        reg = <0x1100b000 0x1000>;
+> +        clocks = <&infracfg CLK_INFRA_THERM>;
+> +        clock-names = "lvts_clk";
+> +        #thermal-sensor-cells = <0>;
+> +        interrupts = <GIC_SPI 147 IRQ_TYPE_LEVEL_HIGH>;
+> +    };
+> +
+> +    thermal-zones {
+> +        cpu_thermal: cpu-thermal {
+> +            polling-delay-passive = <0>;
+> +            polling-delay = <0>;
+> +
+> +            thermal-sensors = <&dts>;
+> +            trips {
+> +                cpu_alert1: cpu-alert1 {
+> +                    temperature = <85000>;
+> +                    hysteresis = <0>;
+> +                    type = "passive";
+> +                };
+> +
+> +                cpu_crit: cpu-crit {
+> +                    temperature = <120000>;
+> +                    hysteresis = <0>;
+> +                    type = "critical";
+> +                };
+> +            };
+> +
+> +            cooling-maps {
+> +            };
+
+Empty node? Is it used anyhow here?
+
+> +        };
+> +    };
+> +...
 
 
 Best regards,
