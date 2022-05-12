@@ -2,149 +2,320 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D065252460D
-	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 08:43:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9E890524613
+	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 08:45:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240932AbiELGnY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 May 2022 02:43:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58796 "EHLO
+        id S1344848AbiELGpt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 May 2022 02:45:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38862 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240920AbiELGnX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 02:43:23 -0400
-Received: from mail-qt1-f176.google.com (mail-qt1-f176.google.com [209.85.160.176])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 729251B7939;
-        Wed, 11 May 2022 23:43:21 -0700 (PDT)
-Received: by mail-qt1-f176.google.com with SMTP id x9so3659174qts.6;
-        Wed, 11 May 2022 23:43:21 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=OFP7hJ6KzfffhBpGLIJzVwzD4tIyuujgKC17ziO4XoU=;
-        b=avCH17pglDxmMCfl7OkvHBzImsz656JoTuS/IJLq9lWbGYQaHojSjiPcQiG+FX2VnF
-         RZv6kqjrOf645WExuTWKoUnHH/IzxekgDxFBHl4tOg69Lf5Fbeq+ZWW+JDdyGrcfMfpt
-         AEcaAqDAiak1yxHoJhgvaHdgGAR0U/h3uFTGFl3WXd6dCO6OxhIJIA9OnPXY3wrnLDvO
-         RQ+yOuk12CH+1NoMtmKiyyXyFad5glzXDaHJS71C+QFoDM1JTdgQ+b+uY8/Ey9nrm54h
-         4az3xiCxfX+yqKfVq4xbx49xa34GoSuf2DOJq8Ezjht9k1lmAexH8NJ0Xfrf7AxfyzWK
-         NLlg==
-X-Gm-Message-State: AOAM5316ajdwnoLi80+7K1LxaEiAzKj1yDenlI3xOuB2GpBJlbXvql7H
-        WIimQXNIAWK/YCPGfQ5a+aLJF3qNjex+Ng==
-X-Google-Smtp-Source: ABdhPJw2bcXzPmoifc4THsehp38cXvXYfniJ7FLd6SN3l45Ep7p7ZWAAPjnwgIaj1qo0zSiJHyCIIQ==
-X-Received: by 2002:a05:622a:591:b0:2f3:d8fc:1967 with SMTP id c17-20020a05622a059100b002f3d8fc1967mr17660497qtb.353.1652337800334;
-        Wed, 11 May 2022 23:43:20 -0700 (PDT)
-Received: from mail-yw1-f171.google.com (mail-yw1-f171.google.com. [209.85.128.171])
-        by smtp.gmail.com with ESMTPSA id y30-20020a05620a0e1e00b0069fd9de088esm2345779qkm.93.2022.05.11.23.43.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 11 May 2022 23:43:19 -0700 (PDT)
-Received: by mail-yw1-f171.google.com with SMTP id 00721157ae682-2f16645872fso45269287b3.4;
-        Wed, 11 May 2022 23:43:18 -0700 (PDT)
-X-Received: by 2002:a81:6588:0:b0:2f8:b75e:1e1a with SMTP id
- z130-20020a816588000000b002f8b75e1e1amr29899309ywb.358.1652337798506; Wed, 11
- May 2022 23:43:18 -0700 (PDT)
+        with ESMTP id S243685AbiELGps (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 02:45:48 -0400
+Received: from alexa-out.qualcomm.com (alexa-out.qualcomm.com [129.46.98.28])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CBBB5CD5;
+        Wed, 11 May 2022 23:45:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1652337947; x=1683873947;
+  h=subject:to:cc:references:from:message-id:date:
+   mime-version:in-reply-to:content-transfer-encoding;
+  bh=2biuyDFgnzEb6wCJFjhSWCD7gu2Xo4QJvuepaHaeyxY=;
+  b=BKIfJiHKKV6sON/Lj2n1BAJ9StU8ASu9WHafHstUrMJOcHupnXnpiB3/
+   qXUU791drVGH5id3Q7ppEWhDx90n6qayaXpUPbi+llaaVWh8Nx91aJbsE
+   8OF+BIx4Ay06I7AcP5TbXXq8Aymtvb4XnXzbGAMeTQqt28ya/+im85Pfx
+   s=;
+Received: from ironmsg07-lv.qualcomm.com ([10.47.202.151])
+  by alexa-out.qualcomm.com with ESMTP; 11 May 2022 23:45:46 -0700
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg07-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 May 2022 23:45:46 -0700
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Wed, 11 May 2022 23:45:45 -0700
+Received: from [10.79.43.230] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Wed, 11 May
+ 2022 23:45:42 -0700
+Subject: Re: [PATCH v3 2/2] dt-bindings: remoteproc: qcom: Add SC7280 MSS
+ bindings
+To:     Matthias Kaehlcke <mka@chromium.org>
+CC:     <bjorn.andersson@linaro.org>, <robh+dt@kernel.org>,
+        <ohad@wizery.com>, <agross@kernel.org>,
+        <mathieu.poirier@linaro.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <swboyd@chromium.org>,
+        <krzysztof.kozlowski+dt@linaro.org>
+References: <1652257162-23874-1-git-send-email-quic_sibis@quicinc.com>
+ <1652257162-23874-3-git-send-email-quic_sibis@quicinc.com>
+ <YnvrchuHVKFHE3B2@google.com>
+From:   Sibi Sankar <quic_sibis@quicinc.com>
+Message-ID: <3c26d566-5c83-4322-414a-0830a0ec160c@quicinc.com>
+Date:   Thu, 12 May 2022 12:15:38 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-References: <20220511183210.5248-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20220511183210.5248-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20220511183210.5248-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 12 May 2022 08:43:06 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdU6-cfgYE0DLyWSxzDmQ3Z67qTJAKzi75qNt8p=PMuEnA@mail.gmail.com>
-Message-ID: <CAMuHMdU6-cfgYE0DLyWSxzDmQ3Z67qTJAKzi75qNt8p=PMuEnA@mail.gmail.com>
-Subject: Re: [PATCH v3 1/5] dt-bindings: interrupt-controller: Add Renesas
- RZ/G2L Interrupt Controller
-To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Phil Edworthy <phil.edworthy@renesas.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Prabhakar <prabhakar.csengg@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+In-Reply-To: <YnvrchuHVKFHE3B2@google.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Prabhakar,
+Hey Matthias,
 
-On Wed, May 11, 2022 at 8:32 PM Lad Prabhakar
-<prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
-> Add DT bindings for the Renesas RZ/G2L Interrupt Controller.
->
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+On 5/11/22 10:29 PM, Matthias Kaehlcke wrote:
+> Hi Sibi,
+> 
+> On Wed, May 11, 2022 at 01:49:22PM +0530, Sibi Sankar wrote:
+>> Add MSS PIL loading bindings for SC7280 SoCs.
+>>
+>> Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
+> 
+> There is already a binding for 'qcom,sc7280-mss-pil' in
+> Documentation/devicetree/bindings/remoteproc/qcom,q6v5.txt. Shouldn't
+> the entries from that file be deleted?
+> 
+>>
+>> v3:
+>>   * Re-ordered clock list, fixed pdc_sync typo [Rob/Matthias]
+>>
+>>   .../bindings/remoteproc/qcom,sc7280-mss-pil.yaml   | 261 +++++++++++++++++++++
+>>   1 file changed, 261 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/remoteproc/qcom,sc7280-mss-pil.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,sc7280-mss-pil.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,sc7280-mss-pil.yaml
+>> new file mode 100644
+>> index 000000000000..2f95bfd7b3eb
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/remoteproc/qcom,sc7280-mss-pil.yaml
+>> @@ -0,0 +1,261 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/remoteproc/qcom,sc7280-mss-pil.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Qualcomm SC7280 MSS Peripheral Image Loader
+>> +
+>> +maintainers:
+>> +  - Sibi Sankar <quic_sibis@quicinc.com>
+>> +
+>> +description:
+>> +  This document defines the binding for a component that loads and boots firmware
+>> +  on the Qualcomm Technology Inc. SC7280 Modem Hexagon Core.
+>> +
+>> +properties:
+>> +  compatible:
+>> +    enum:
+>> +      - qcom,sc7280-mss-pil
+>> +
+>> +  reg:
+>> +    items:
+>> +      - description: MSS QDSP6 registers
+>> +      - description: RMB registers
+>> +
+>> +  reg-names:
+>> +    items:
+>> +      - const: qdsp6
+>> +      - const: rmb
+>> +
+>> +  iommus:
+>> +    items:
+>> +      - description: MSA Stream 1
+>> +      - description: MSA Stream 2
+>> +
+>> +  interconnects:
+>> +    items:
+>> +      - description: Path leading to system memory
+>> +
+>> +  interrupts:
+>> +    items:
+>> +      - description: Watchdog interrupt
+>> +      - description: Fatal interrupt
+>> +      - description: Ready interrupt
+>> +      - description: Handover interrupt
+>> +      - description: Stop acknowledge interrupt
+>> +      - description: Shutdown acknowledge interrupt
+>> +
+>> +  interrupt-names:
+>> +    items:
+>> +      - const: wdog
+>> +      - const: fatal
+>> +      - const: ready
+>> +      - const: handover
+>> +      - const: stop-ack
+>> +      - const: shutdown-ack
+> 
+> 
+> The existing binding (qcom,q6v5.txt) also has:
+> 
+> - interrupts-extended:
+>          Usage: required
+> 	Value type: <prop-encoded-array>
+> 	Definition: reference to the interrupts that match interrupt-names
+> 
+> That's covered implicitly by 'interrupts' I suppose?
 
-Thanks for the update!
 
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/interrupt-controller/renesas,rzg2l-irqc.yaml
-> @@ -0,0 +1,134 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/interrupt-controller/renesas,rzg2l-irqc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Renesas RZ/G2L (and alike SoC's) Interrupt Controller (IA55)
-> +
-> +maintainers:
-> +  - Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> +  - Geert Uytterhoeven <geert+renesas@glider.be>
-> +
-> +description: |
-> +  IA55 performs various interrupt controls including synchronization for the external
-> +  interrupts of NMI, IRQ, and GPIOINT and the interrupts of the built-in peripheral
-> +  interrupts output by each IP. And it notifies the interrupt to the GIC
-> +    - IRQ sense select for 8 external interrupts, mapped to 8 GIC SPI interrupts
-> +    - GPIO pins used as external interrupt input pins, mapped to 32 GIC SPI interrupts
-> +    - NMI edge select (NMI is not treated as NMI exception and supports fall edge and
-> +      stand-up edge detection interrupts)
-> +
-> +allOf:
-> +  - $ref: /schemas/interrupt-controller.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - renesas,r9a07g044-irqc    # RZ/G2L
-> +      - const: renesas,rzg2l-irqc
-> +
-> +  '#interrupt-cells':
-> +    description: The first cell should contain interrupt number and the second cell
-> +                 is used to specify the flag.
+Yeah ^^ was discussed before during the sc7280 wpss patch series. Rob
+said the tooling handles both the same way.
 
-The important part is still missing: which interrupt number (the general
-description mentions 3 types)?
-I believe the answer is "external interrupt number".
+https://lore.kernel.org/lkml/CAL_Jsq+khyhbwJ5-GPZ5ZGkY4nX_obq4t92Z0V6sZH3Oyj4Fow@mail.gmail.com/
 
-> +    const: 2
-> +
-> +
 
-Double blank line.
+> 
+>> +
+>> +  clocks:
+>> +    items:
+>> +      - description: GCC MSS IFACE clock
+>> +      - description: GCC MSS OFFLINE clock
+>> +      - description: GCC MSS SNOC_AXI clock
+>> +      - description: RPMH PKA clock
+>> +      - description: RPMH XO clock
+>> +
+>> +  clock-names:
+>> +    items:
+>> +      - const: iface
+>> +      - const: offline
+>> +      - const: snoc_axi
+>> +      - const: pka
+>> +      - const: xo
+>> +
+>> +  power-domains:
+>> +    items:
+>> +      - description: CX power domain
+>> +      - description: MSS power domain
+>> +
+>> +  power-domain-names:
+>> +    items:
+>> +      - const: cx
+>> +      - const: mss
+>> +
+>> +  resets:
+>> +    items:
+>> +      - description: AOSS restart
+>> +      - description: PDC reset
+>> +
+>> +  reset-names:
+>> +    items:
+>> +      - const: mss_restart
+>> +      - const: pdc_reset
+>> +
+>> +  memory-region:
+>> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+>> +    description: Phandle reference to the reserved-memory for the MBA region followed
+>> +                 by the modem region.
+>> +
+>> +  firmware-name:
+>> +    $ref: /schemas/types.yaml#/definitions/string
+>> +    description:
+>> +      The name of the firmware which should be loaded for this remote
+>> +      processor.
+>> +
+>> +  qcom,halt-regs:
+>> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+>> +    description:
+>> +      Phandle reference to a syscon representing TCSR followed by the
+>> +      four offsets within syscon for q6, modem, nc and vq6 halt registers.
+>> +
+>> +  qcom,ext-regs:
+>> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+>> +    description:
+>> +      Two phandle references to syscons representing TCSR_REG and TCSR register
+>> +      space followed by the two offsets within the syscon to force_clk_en/rscc_disable
+>> +      and axim1_clk_off/crypto_clk_off registers respectively.
+>> +
+>> +  qcom,qaccept-regs:
+>> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+>> +    description:
+>> +      Phandle reference to a syscon representing TCSR followed by the
+>> +      three offsets within syscon for mdm, cx and axi qaccept registers.
+>> +
+>> +  qcom,qmp:
+>> +    $ref: /schemas/types.yaml#/definitions/phandle
+>> +    description: Reference to the AOSS side-channel message RAM.
+>> +
+>> +  qcom,smem-states:
+>> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+>> +    description: States used by the AP to signal the Hexagon core
+>> +    items:
+>> +      - description: Stop the modem
+>> +
+>> +  qcom,smem-state-names:
+>> +    $ref: /schemas/types.yaml#/definitions/string
+>> +    description: The names of the state bits used for SMP2P output
+>> +    const: stop
+>> +
+>> +  glink-edge:
+>> +    type: object
+>> +    description: |
+>> +      Qualcomm G-Link subnode which represents communication edge, channels
+>> +      and devices related to the DSP.
+>> +
+>> +    properties:
+>> +      interrupts:
+>> +        items:
+>> +          - description: IRQ from MSS to GLINK
+>> +
+>> +      mboxes:
+>> +        items:
+>> +          - description: Mailbox for communication between APPS and MSS
+>> +
+>> +      label:
+>> +        description: The names of the state bits used for SMP2P output
+>> +        items:
+>> +          - const: modem
+>> +
+>> +      qcom,remote-pid:
+>> +        $ref: /schemas/types.yaml#/definitions/uint32
+>> +        description: ID of the shared memory used by GLINK for communication with MSS
+>> +
+>> +    required:
+>> +      - interrupts
+>> +      - mboxes
+>> +      - label
+>> +      - qcom,remote-pid
+>> +
+>> +    additionalProperties: false
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - reg-names
+>> +  - iommus
+>> +  - interconnects
+>> +  - interrupts
+>> +  - interrupt-names
+>> +  - clocks
+>> +  - clock-names
+>> +  - power-domains
+>> +  - power-domain-names
+>> +  - resets
+>> +  - reset-names
+>> +  - qcom,halt-regs
+>> +  - qcom,ext-regs
+>> +  - qcom,qaccept-regs
+>> +  - memory-region
+>> +  - qcom,qmp
+> 
+> 'qcom,qmp' is marked as 'optional' in qcom,q6v5.txt
 
-> +  '#address-cells':
-> +    const: 0
+Yeah even though we were forced to mark/implement it as optional in the
+original bindings file/driver (since it was a single bindings file
+covering all the SoCs), it is functionally required for sc7280 mss to
+reach xo-shutdown.
 
-Gr{oetje,eeting}s,
+> 
 
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+-Sibi
