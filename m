@@ -2,103 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D228524F89
-	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 16:12:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1549152503C
+	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 16:36:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345301AbiELOL6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 May 2022 10:11:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55090 "EHLO
+        id S1351300AbiELOfq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 May 2022 10:35:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58394 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1355092AbiELOL5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 10:11:57 -0400
-Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72F2C6212F
-        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 07:11:51 -0700 (PDT)
-Received: by mail-wm1-x32b.google.com with SMTP id q20so3119342wmq.1
-        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 07:11:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=SRwpNt4DH8DqblGWpeI/m6J/HBl7UK2S+eeIMKh0Tkc=;
-        b=vRz7pNegaN7s9ys9HBCJZgVKbR7C5L5hdBVEje78wDlPADH7OwcoBwoJe5pSSFdPSW
-         wQJPQ8btIA1ek+0e3nSIOG4/saxP04npfrnUgaRlbMROopUfJYN1YK9a7tTqYLEoT9C4
-         MMdralMo+iefdxRWSMpSIuXOSjzIQv/refS4Pm1xmr3ukOSXv/8QglMGSh/wLO+QSWd4
-         Qw+fNNaJXTH9zoZH7LidmmPy+YNNQX1qDNULasFY9OMpl7hIvDKeIt4Ti/irDm1nO2h3
-         GTodUdX+gSH+/cGGqpsZ2T6aHaQjGfX2p4nxbRG7zX3+jMk92Mbjvqz9vcx51QnIMtl/
-         LX5Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=SRwpNt4DH8DqblGWpeI/m6J/HBl7UK2S+eeIMKh0Tkc=;
-        b=kyFe8J3VZMNaRn96meWAHqamo/Ippc2m1czJiPBVY8H6b7iDA9vLQTsCcO+DeRtbam
-         bNt1QCdkOA/z7HSPPt/7xP9q4VcmmUSwSxIQt3Io7tDIcitCYNHhDGoU6qYE6j6+qaMN
-         pN5PdadrZAsa779a/eKCWo/UhoAVvt4ls2CNHildVFwX3VsnVqnk+aMNfqF93th2PMIM
-         kda46TFcR73Io/Vo4Fwpx1ZEcBFRuwaoGN5RdRTAXindfxd/XMTywN4UoPxYRVhYrrbl
-         GG690lNsFNGmYXJRdzN9vn18avqm/FY9apqxXwg+6Xw+n0kwlJZNmOXbBoEMxuQfvnVa
-         N3WQ==
-X-Gm-Message-State: AOAM533gGkHS156REghQFklNn4djAB66WU7b6qK0TqvsyEbdTyeXmeD/
-        oor/1vLmser6rv4iDsLR7wOIFQ==
-X-Google-Smtp-Source: ABdhPJxbXnBKFPQ09ZKP2iaCL8DUkX2cQXFCc0U3GkQ6NUUF3YBxMC4DeHvJ+itvzyH5DnaZCjP1Bw==
-X-Received: by 2002:a05:600c:4f95:b0:394:8919:7557 with SMTP id n21-20020a05600c4f9500b0039489197557mr3001wmq.166.1652364709980;
-        Thu, 12 May 2022 07:11:49 -0700 (PDT)
-Received: from [192.168.0.160] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id w9-20020a5d4049000000b0020c5253d8cfsm5165586wrp.27.2022.05.12.07.11.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 12 May 2022 07:11:49 -0700 (PDT)
-Message-ID: <8be62b40-077a-7634-7d34-7776909a2abe@linaro.org>
-Date:   Thu, 12 May 2022 16:11:48 +0200
+        with ESMTP id S1355407AbiELOfo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 10:35:44 -0400
+Received: from hostingweb31-40.netsons.net (hostingweb31-40.netsons.net [89.40.174.40])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E18243A1
+        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 07:35:39 -0700 (PDT)
+Received: from lmontsouris-655-1-15-199.w80-11.abo.wanadoo.fr ([80.11.122.199]:54252 helo=[192.168.1.105])
+        by hostingweb31.netsons.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+        (Exim 4.94.2)
+        (envelope-from <luca@lucaceresoli.net>)
+        id 1np9ao-0003LC-35; Thu, 12 May 2022 16:15:02 +0200
+Message-ID: <8f4158e1-b7c7-d2e1-8d7f-80c98b3df58f@lucaceresoli.net>
+Date:   Thu, 12 May 2022 16:15:00 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.8.1
-Subject: Re: [PATCH V4 0/5] Add initial support for MA35D1 SoC
-Content-Language: en-US
-To:     Arnd Bergmann <arnd@arndb.de>, Jacky Huang <ychuang3@nuvoton.com>
-Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        ychuang570808@gmail.com, Rob Herring <robh+dt@kernel.org>,
+Subject: Re: [PATCH v2 1/2] dt-bindings: clock: vc5: Add 5P49V6975
+Content-Language: it-IT
+To:     Matthias Fend <matthias.fend@emfend.at>,
+        Michael Turquette <mturquette@baylibre.com>,
         Stephen Boyd <sboyd@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Olof Johansson <olof@lixom.net>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, SoC Team <soc@kernel.org>,
-        cfli0@nuvoton.com
-References: <20220510032558.10304-1-ychuang3@nuvoton.com>
- <CAK8P3a1k8y8U99bBmqBYE1vYAc0q-UeaM0oLP4tTHZCpyYNOgA@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAK8P3a1k8y8U99bBmqBYE1vYAc0q-UeaM0oLP4tTHZCpyYNOgA@mail.gmail.com>
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org
+References: <20220511053455.360335-1-matthias.fend@emfend.at>
+From:   Luca Ceresoli <luca@lucaceresoli.net>
+In-Reply-To: <20220511053455.360335-1-matthias.fend@emfend.at>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - hostingweb31.netsons.net
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - lucaceresoli.net
+X-Get-Message-Sender-Via: hostingweb31.netsons.net: authenticated_id: luca@lucaceresoli.net
+X-Authenticated-Sender: hostingweb31.netsons.net: luca@lucaceresoli.net
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/05/2022 09:07, Arnd Bergmann wrote:
-> On Tue, May 10, 2022 at 5:25 AM Jacky Huang <ychuang3@nuvoton.com> wrote:
->>
->> This patch series adds initial support for Nuvoton MA35D1 SoC,
->> include initial dts and clock controller binding.
->>
+Hi Matthias,
+
+On 11/05/22 07:34, Matthias Fend wrote:
+> The 5P49V6975 is a member of the VersaClock 6E family and supports four
+> fractional dividers (FODs), five clock outputs and an internal oscillator.
 > 
-> This looks fine in principle, but we are getting close to the merge window and
-> should finalize this quickly to make it into v5.19. I see that you don't have a
-> console device, as commented in the .dts patch. Normally I prefer merging
-> platforms only when there is at least rudimentary support for booting into
-> an initramfs with a serial console, but this is a flexible rule.
+> Signed-off-by: Matthias Fend <matthias.fend@emfend.at>
 
-I disagree. It does not look fine - does not pass `make dtbs_check` even
-with Nuvoton bindings...
+Reviewed-by: Luca Ceresoli <luca@lucaceresoli.net>
 
-
-Best regards,
-Krzysztof
+-- 
+Luca
