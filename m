@@ -2,114 +2,232 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9350A525070
-	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 16:42:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 28FBA52507E
+	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 16:45:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1355510AbiELOmF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 May 2022 10:42:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53698 "EHLO
+        id S1355527AbiELOpb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 May 2022 10:45:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39522 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1355511AbiELOmC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 10:42:02 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 343F263397;
-        Thu, 12 May 2022 07:42:00 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 5F5B3B8286C;
-        Thu, 12 May 2022 14:41:59 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8D7CDC385B8;
-        Thu, 12 May 2022 14:41:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1652366518;
-        bh=lO/Qu5Nf2ml3fZ177q4ahOGbvoGlU6Rf0HczodM1aWU=;
-        h=Date:Subject:To:References:From:In-Reply-To:From;
-        b=jiRwg7s0maDYdE7dhVB9Xl/S30cPI855qHNrqNH66GzO65xBOy3wV3jl5NWw/87XK
-         ySpz4YIBnAtGKY/0WqrUXbq63+7vq54St+rWdGxe5nmiRKNCY2dXy2kwWz4RsIkjmJ
-         /GnxKGyi6uSi0GhWzTagDrTDno3otI3NzYTP/ltNy0cx8ERTDaKAsC0ybXtDx4zChj
-         m1tjIhC5nrvmDJI7IF0lTJkkowGlGF3Wy80+Zv/OBbe7V+bICw+HEsIy03vj2ASwO6
-         imSHytriwbUwSYILs80ceL3wbeeYpPu9Mm/WUeG4cI/3+VHWvIyLipaF6LCCXM57en
-         ekUxHdZzZ1Hfw==
-Message-ID: <98d7e84c-086a-794f-019d-849bcc2570c9@kernel.org>
-Date:   Thu, 12 May 2022 09:41:56 -0500
+        with ESMTP id S1355519AbiELOp3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 10:45:29 -0400
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C076A233A57
+        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 07:45:27 -0700 (PDT)
+Received: by mail-ed1-x530.google.com with SMTP id c12so6515626edv.10
+        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 07:45:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=86Y3qB2Q1oABTG6e44OykaTrEHahmd3AvCtiNg4nxpQ=;
+        b=LKZ8InSLVqhaLckt9graInopCDghzh23IQLi6bZa0Gn3VD/huah0HRk9cMwuwePD0I
+         xM/uLMYjArAzV514ulNocAlSSn28zvAfQ538sU9lVzd9E7L1ubNLKCVHgOwzWkwGGwqg
+         Jn2Jmqt7VwLU38PIN6zrhzKCDpaNFHAg7oEyyHU7JuwKDifwXNrEz4UVOjfkUjDhNM4s
+         TgGFFwjQSHh6GFypJWP9mXBRu6g3zEh1kAkjm1jmPj+8QSzQWT/LMmex9jHhrAFJg7Pn
+         LZkf/5CWOwP6UqKg2afYIn3ihmcQIARNqscAyBr6ArJcioPn79Pkd3L6lHMg7z3HfePD
+         hdOQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=86Y3qB2Q1oABTG6e44OykaTrEHahmd3AvCtiNg4nxpQ=;
+        b=RQxJrL+CCzX/xwe37BHlbqNucQ1a6Hi4K0wCl5hFlw3XzRdvI4+iP/88Jpy4r8lVGX
+         lOai8q6c0QQIaAC+MCeuEcAVQwlH8JIaRhSU4nlJXBxt3gGIDNohASsaSqPRfPnIl1yu
+         +cT1d3P0vZRp0rDs3ARecQe3WpLOL2JRcA70Mk29RYweiDbZOiMrhWFOaqkod170TZwT
+         UkW5hA7bQQRhv2Nwnogf7X1MrOfsUoTfQ+Nr8ZhbW/30z03h//94MVZ8Yauop7QYod7A
+         lsMik3SIQCTGAc3+HI1lz2VSFi9u4E7YqA3iKu4anVWOOLRDlMHEzmJN/533q2/2qRQz
+         vuMw==
+X-Gm-Message-State: AOAM532qMP3L1NBWdtTS5ZDBdESCQsfFlPVBAnjHB2qig1bGey+F0QmE
+        Db0ABqZCNDR23Fhv97T13VuCTw==
+X-Google-Smtp-Source: ABdhPJwjNCFMDty7OszTUnQ7n5hySx0R/Cjtvd6LjeVbwgLA/J+s5+SVWUtKKOaSIWSe5+4XSC0agA==
+X-Received: by 2002:a05:6402:2750:b0:428:53bb:3433 with SMTP id z16-20020a056402275000b0042853bb3433mr35611673edd.22.1652366726344;
+        Thu, 12 May 2022 07:45:26 -0700 (PDT)
+Received: from [192.168.0.161] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id sb12-20020a1709076d8c00b006f3ef214e04sm2129101ejc.106.2022.05.12.07.45.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 12 May 2022 07:45:25 -0700 (PDT)
+Message-ID: <5ec00142-dc46-06e6-c991-c33394db614c@linaro.org>
+Date:   Thu, 12 May 2022 16:45:24 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH v4 0/3] Add device tree for Intel n6000
+ Thunderbird/91.8.1
+Subject: Re: [PATCH v6 2/3] arm64: dts: marvell: Add Armada 98DX2530 SoC and
+ RD-AC5X board
 Content-Language: en-US
-To:     matthew.gerlach@linux.intel.com, robh+dt@kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-References: <20220508142624.491045-1-matthew.gerlach@linux.intel.com>
-From:   Dinh Nguyen <dinguyen@kernel.org>
-In-Reply-To: <20220508142624.491045-1-matthew.gerlach@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To:     Chris Packham <Chris.Packham@alliedtelesis.co.nz>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
+        "will@kernel.org" <will@kernel.org>,
+        "andrew@lunn.ch" <andrew@lunn.ch>,
+        "gregory.clement@bootlin.com" <gregory.clement@bootlin.com>,
+        "sebastian.hesselbarth@gmail.com" <sebastian.hesselbarth@gmail.com>,
+        "kostap@marvell.com" <kostap@marvell.com>,
+        "robert.marko@sartura.hr" <robert.marko@sartura.hr>,
+        Vadym Kochan <vadym.kochan@plvision.eu>
+Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+References: <20220510231002.1160798-1-chris.packham@alliedtelesis.co.nz>
+ <20220510231002.1160798-3-chris.packham@alliedtelesis.co.nz>
+ <1372f51c-0158-dbe3-a0bf-aeeb83f4fec3@linaro.org>
+ <48c5ce46-906b-3aaa-afcc-8d0eafbd098c@alliedtelesis.co.nz>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <48c5ce46-906b-3aaa-afcc-8d0eafbd098c@alliedtelesis.co.nz>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-10.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 12/05/2022 01:49, Chris Packham wrote:
+> 
+>>> +		spi_clock: spi-clock {
+>>> +			compatible = "fixed-clock";
+>>> +			#clock-cells = <0>;
+>>> +			clock-frequency = <200000000>;
+>>> +		};
+>> My questions about these clocks are still unanswered. Why do you define
+>> fixed-clocks. Aren't these part of clock controller?
+> 
+> Not one that I have any information on. Marvell don't put it in their 
+> customer facing documentation so I can only speculate. The 25MHz 
+> oscillator goes into the chip, from there I guess that it is fed in some 
+> fashion to both the CPU block (CnM in Marvell speak) and to the switch 
+> block. Where exactly it gets divided into these individual peripheral 
+> clocks I don't really know.
 
+Hm, so it seems you do not have a proper clock-controller (or cannot
+create one). OK then, but these are silly stubs, you know. :)
 
-On 5/8/22 09:26, matthew.gerlach@linux.intel.com wrote:
-> From: Matthew Gerlach <matthew.gerlach@linux.intel.com>
 > 
-> This patch set adds a device tree for the Hard Processor System (HPS)
-> on an Agilex based Intel n6000 board.
+>>> +	};
+>>> +};
+>>> diff --git a/arch/arm64/boot/dts/marvell/rd-ac5x.dts b/arch/arm64/boot/dts/marvell/rd-ac5x.dts
+>>> new file mode 100644
+>>> index 000000000000..7ac87413e023
+>>> --- /dev/null
+>>> +++ b/arch/arm64/boot/dts/marvell/rd-ac5x.dts
+>>> @@ -0,0 +1,90 @@
+>>> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+>>> +/*
+>>> + * Device Tree For AC5X.
+>>> + *
+>>> + * Copyright (C) 2021 Marvell
+>>> + *
+>>> + */
+>>> +/*
+>>> + * Device Tree file for Marvell Alleycat 5X development board
+>>> + * This board file supports the B configuration of the board
+>>> + */
+>>> +
+>>> +/dts-v1/;
+>>> +
+>>> +#include "armada-98dx2530.dtsi"
+>>> +
+>>> +/ {
+>>> +	model = "Marvell RD-AC5X Board";
+>>> +	compatible = "marvell,ac5x", "marvell,ac5";
+>>  From the bindings I understood ac5x is a SoC, not board. If ac5x is a
+>> board, not a SoC, then compatible should be rather "marvell,rd-ac5x".
 > 
-> Patch 1 defines the device tree binding for the HPS Copy Engine IP
-> used to copy a bootable image from host memory to HPS DDR.
+> So If I understand the convention the full compatible would be:
 > 
-> Patch 2 defines the binding for the Intel n6000 board itself.
-> 
-> Patch 3 adds the device tree for the n6000 board.
-> 
-> Changelog v3 -> v4:
->    - move binding yaml from soc to soc/intel
-> 
-> Changelog v2 -> v3:
->    - remove unused label
->    - move from misc to soc
->    - remove 0x from #address-cells/#size-cells values
->    - change hps_cp_eng@0 to dma-controller@0
->    - remote inaccurate 'items:' tag
->    - added Acked-by
->    - add unit number to memory node
->    - remove spi node with unaccepted compatible value
-> 
-> Changelog v1 -> v2:
->    - add dt binding for copy enging
->    - add dt binding for n6000 board
->    - fix copy engine node name
->    - fix compatible field for copy engine
->    - remove redundant status field
->    - add compatibility field for the board
->    - fix SPDX
->    - fix how osc1 clock frequency is set
-> 
-> Matthew Gerlach (3):
->    dt-bindings: soc: add bindings for Intel HPS Copy Engine
->    dt-bindings: intel: add binding for Intel n6000
->    arm64: dts: intel: add device tree for n6000
-> 
->   .../bindings/arm/intel,socfpga.yaml           |  1 +
->   .../soc/intel/intel,hps-copy-engine.yaml      | 51 ++++++++++++++
->   arch/arm64/boot/dts/intel/Makefile            |  3 +-
->   .../boot/dts/intel/socfpga_agilex_n6000.dts   | 66 +++++++++++++++++++
->   4 files changed, 120 insertions(+), 1 deletion(-)
->   create mode 100644 Documentation/devicetree/bindings/soc/intel/intel,hps-copy-engine.yaml
->   create mode 100644 arch/arm64/boot/dts/intel/socfpga_agilex_n6000.dts
-> 
+> compatible = "marvell,rd-ac5x", "marvell,ac5x", "marvell,ac5";
 
-Applied!
+Yes, this looks correct.
 
-Thanks,
+> 
+>>
+>>> +
+>>> +	memory@0 {
+>>> +		device_type = "memory";
+>>> +		reg = <0x2 0x00000000 0x0 0x40000000>;
+>>> +	};
+>>> +};
+>>> +
+>>> +&mdio {
+>>> +	phy0: ethernet-phy@0 {
+>>> +		reg = <0>;
+>>> +	};
+>>> +};
+>>> +
+>>> +&i2c0 {
+>>> +	status = "okay";
+>>> +};
+>>> +
+>>> +&i2c1 {
+>>> +	status = "okay";
+>>> +};
+>>> +
+>>> +&eth0 {
+>>> +	status = "okay";
+>>> +	phy-handle = <&phy0>;
+>>> +};
+>>> +
+>>> +&usb0 {
+>>> +	status = "okay";
+>>> +};
+>>> +
+>>> +&usb1 {
+>>> +	status = "okay";
+>>> +};
+>>> +
+>>> +&spi0 {
+>>> +	status = "okay";
+>>> +
+>>> +	spiflash0: flash@0 {
+>>> +		compatible = "jedec,spi-nor";
+>>> +		spi-max-frequency = <50000000>;
+>>> +		spi-tx-bus-width = <1>; /* 1-single, 2-dual, 4-quad */
+>>> +		spi-rx-bus-width = <1>; /* 1-single, 2-dual, 4-quad */
+>>> +		reg = <0>;
+>>> +
+>>> +		#address-cells = <1>;
+>>> +		#size-cells = <1>;
+>>> +
+>>> +		partition@0 {
+>>> +			label = "spi_flash_part0";
+>>> +			reg = <0x0 0x800000>;
+>>> +		};
+>>> +
+>>> +		parition@1 {
+>>> +			label = "spi_flash_part1";
+>>> +			reg = <0x800000 0x700000>;
+>>> +		};
+>>> +
+>>> +		parition@2 {
+>>> +			label = "spi_flash_part2";
+>>> +			reg = <0xF00000 0x100000>;
+>>> +		};
+>>> +	};
+>>> +};
+>>> +
+>>> +&usb1 {
+>>> +	compatible = "chipidea,usb2";
+>> Why compatible is defined per board?
+> 
+> That came from the Marvell SDK. On some boards this is used as a 
+> device/OTG interface. But regardless it should have one in the SoC dtsi. 
 
-Dinh
+Yes, please.
+
+> As for why they used the "chipidea,usb2" compatible I have no idea. I'll 
+> remove this and add the correct compatible to the SoC.
+
+They could reuse some other block. Pretty often for such cases there is
+a dedicated compatible and fallback, e.g.:
+Documentation/devicetree/bindings/usb/rockchip,dwc3.yaml
+
+Best regards,
+Krzysztof
