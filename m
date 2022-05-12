@@ -2,129 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A7E865250D3
-	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 17:05:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 363B4525103
+	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 17:15:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1355356AbiELPFJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 May 2022 11:05:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45482 "EHLO
+        id S1355503AbiELPPS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 May 2022 11:15:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53078 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231782AbiELPFI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 11:05:08 -0400
-Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8549B255098;
-        Thu, 12 May 2022 08:05:07 -0700 (PDT)
-Received: by mail-lj1-x236.google.com with SMTP id y19so6886628ljd.4;
-        Thu, 12 May 2022 08:05:07 -0700 (PDT)
+        with ESMTP id S1344515AbiELPPR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 11:15:17 -0400
+Received: from mail-pj1-x102e.google.com (mail-pj1-x102e.google.com [IPv6:2607:f8b0:4864:20::102e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7539D262709;
+        Thu, 12 May 2022 08:15:16 -0700 (PDT)
+Received: by mail-pj1-x102e.google.com with SMTP id qe3-20020a17090b4f8300b001dc24e4da73so6003043pjb.1;
+        Thu, 12 May 2022 08:15:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=NbrPLO5f80Fgr4pkih0UW7c1y1en5FoEIT51dqIUABU=;
-        b=T4/pRiB0gG8qKpHvxG5wzXi041AjJ7RNXcavuodhvKhL0St/j2CypCgv0hj1pBROYW
-         ahm+lGdGKqlVR7raalF632or3hCWzCGXZAiy2R4DFdBIQBVDmXQU4JepA8A9DvhpJXPT
-         N/ytJrV4csCfL+okod6dqA1BuDRCgCpparBYVza2N7mepP6PgzRjf32X3yptDVGkrzXZ
-         X5qG2Py5CzaM2o2Bkpl52daEYAvQMm2vImmF0UHpZ2Xs6zAKGBrZ6eU+UDZ985SP9O4Y
-         KzwHU3IVTv+hnaIdsayBTAuZ+iwuAIVxQqOm8YFAjZvwL8j2l2O8GOtp8YUN7irGemQr
-         cQCQ==
+        h=mime-version:content-transfer-encoding:date:message-id:to:cc
+         :subject:from:references:in-reply-to;
+        bh=GgS0ovsnzIl+XbPdqcV3z69dQ1L8vgRNNmtPd1a560g=;
+        b=iVGlYlXZyiZJ4+m4ZBMGPCqhvt8he9j9el2DQHfKlwgf+mjUwvqRQgB1E2lDLqePKr
+         yFn9Tf4NAnfef8uuIUg+C8wZm1DyDa5J7plCFoL+dtAPrWBKooCDTEbECC/ChjYQIdbE
+         4BAzt3raxDol3U7vxXFOILgyiWFanRoIDMA1ygO6pYBpabGVTbtc+HiDHPX0wKV3wuHO
+         k4KOZEmXdXALOkTvyusvBv+PH5JxEUKIY33W7nggQk+AewiDA5TATQYjvHvVrvfN9ICZ
+         /1Jw8U/nGZEdiR2bzKg/tcpiqZSuv8Sn9bwDM4970lBQ7lpUrW10IOSW8qjt1kNGoUMS
+         63sA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=NbrPLO5f80Fgr4pkih0UW7c1y1en5FoEIT51dqIUABU=;
-        b=iL5J/sX0o+H4Jhae4pLtiL4Hogq1+J/0ZEY2A2cFblhebSM1oRQU4fujbeErbNcpf8
-         84QJzxoXwFceHPJteKrJhoJjoe6m3bILfwaFiUrYUsyUabzl5LzOA01Usj8/b8YIwXwR
-         XWXOjBh6+T2UKHevozr1IF9kwZ5aeEurCRsln7NNkXo+E0INenNpgugdLGKkTnIRvQyS
-         YnlEoyiWkI5glTWyyrPpCzE42TzpW8iFCcljOJUD89169YaTnRK4SYSbPQ2wip8h3QL7
-         keYt2/7PFldhV7T20b6BJGm8abp21Mk0MqRnZu5AwGqqZMHpacde7k9kZhXd5PzDhgrs
-         jksg==
-X-Gm-Message-State: AOAM531T8x7plOFEp711PcxxYsTf0iFTjcI8QEbshl74D2q2TG/u+3Jm
-        tqpQKhzCNPOp7kMyW5WJlJI=
-X-Google-Smtp-Source: ABdhPJwu5RZKqoup6YD08X1MAMMVsO9re9t/o4FDDvNu0taMK00x3Mc0VisaC962QTBtonmG2ZVFTg==
-X-Received: by 2002:a05:651c:1502:b0:250:2328:d127 with SMTP id e2-20020a05651c150200b002502328d127mr267441ljf.183.1652367905862;
-        Thu, 12 May 2022 08:05:05 -0700 (PDT)
-Received: from mobilestation ([95.79.189.214])
-        by smtp.gmail.com with ESMTPSA id m19-20020a2e5813000000b0024f3d1daef0sm911302ljb.120.2022.05.12.08.05.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 12 May 2022 08:05:04 -0700 (PDT)
-Date:   Thu, 12 May 2022 18:05:02 +0300
-From:   Serge Semin <fancer.lancer@gmail.com>
-To:     Hannes Reinecke <hare@suse.de>
-Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Jens Axboe <axboe@kernel.dk>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Rob Herring <robh+dt@kernel.org>, linux-ide@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 13/23] ata: libahci: Extend port-cmd flags set with
- port capabilities
-Message-ID: <20220512150502.l6gmh3d4uosmvxwg@mobilestation>
-References: <20220511231810.4928-1-Sergey.Semin@baikalelectronics.ru>
- <20220511231810.4928-14-Sergey.Semin@baikalelectronics.ru>
- <7fd1c122-12b2-adff-856f-50ffc5fc6bd1@suse.de>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <7fd1c122-12b2-adff-856f-50ffc5fc6bd1@suse.de>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        h=x-gm-message-state:mime-version:content-transfer-encoding:date
+         :message-id:to:cc:subject:from:references:in-reply-to;
+        bh=GgS0ovsnzIl+XbPdqcV3z69dQ1L8vgRNNmtPd1a560g=;
+        b=f7yAK5KBgmj620y0mwZOBIj64byLCy7jLYcyx/1sZJKRt7ORMoa7mUsoH6h4m5xv+W
+         +puBDRVLwYmlLXdtby+4sZwyI4R2efLthC/cMatf/RPynlNdKYxljithopUPiB/Inw6k
+         Vjbkg7DxyQD4bMxR/EMQShtyKzXFwlMMjU9nGlAxc97qETwkONlHDW/1ZaBefHgsJ6k/
+         sDWBcXk3qUH3DgO1oLcvkoof37rUwxAZ/ddNTuUwygdFGzxwDpFK6hC/jQDaubaPzxBz
+         Tp0BzBa3Y0AlD+p3yiCcRZzJ1Q6a2YDCAt19OUKzZjuRkBaIbE0lfV8bXpX5r+pkZ2V9
+         W3Eg==
+X-Gm-Message-State: AOAM53315f4s2YkA8MWy36nRKC/ghBMEwfk1+xNdn9iq0jjl2nUfl5Y3
+        NeMv2/Wpd43XeJMmgIRzU6U=
+X-Google-Smtp-Source: ABdhPJxC2So97x6pv0JyW4D6Tlkd964QX6zgOdt5/5Flx+sqhYg9Rx/Z6eRy6qX69MCFQqgQ7/TDlw==
+X-Received: by 2002:a17:902:ef43:b0:156:9c5d:b0fe with SMTP id e3-20020a170902ef4300b001569c5db0femr73540plx.158.1652368515863;
+        Thu, 12 May 2022 08:15:15 -0700 (PDT)
+Received: from localhost ([49.204.239.218])
+        by smtp.gmail.com with ESMTPSA id gd9-20020a17090b0fc900b001d90c8b6141sm1955741pjb.53.2022.05.12.08.15.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 12 May 2022 08:15:15 -0700 (PDT)
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date:   Thu, 12 May 2022 20:45:09 +0530
+Message-Id: <CJXVR1WTNWBR.2YTXMB8GZU84K@skynet-linux>
+To:     "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>,
+        <linux-remoteproc@vger.kernel.org>
+Cc:     <linux-arm-msm@vger.kernel.org>,
+        <~postmarketos/upstreaming@lists.sr.ht>,
+        <bjorn.andersson@linaro.org>, <devicetree@vger.kernel.org>,
+        <phone-devel@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        "Andy Gross" <agross@kernel.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>
+Subject: Re: [PATCH 9/9] arm64: dts: qcom: msm8953: Add remote processor
+ nodes
+From:   "Sireesh Kodali" <sireeshkodali1@gmail.com>
+X-Mailer: aerc 0.9.0
+References: <20220511161602.117772-1-sireeshkodali1@gmail.com>
+ <20220511161602.117772-10-sireeshkodali1@gmail.com>
+ <2d68e610-e8ae-9e08-257a-3c94c3697334@linaro.org>
+ <CJXO6ZMZ454X.M3N9HDKNA5HB@skynet-linux>
+ <4c35f605-4fa0-13d0-db09-229f718c5c7c@linaro.org>
+In-Reply-To: <4c35f605-4fa0-13d0-db09-229f718c5c7c@linaro.org>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 12, 2022 at 08:57:55AM +0200, Hannes Reinecke wrote:
-> On 5/12/22 01:18, Serge Semin wrote:
-> > Currently not all of the Port-specific capabilities listed in the
-> > PORT_CMD-enumeration. Let's extend that set with the Cold Presence
-> > Detection and Mechanical Presence Switch attached to the Port flags [1] so
-> > to closeup the set of the platform-specific port-capabilities flags.  Note
-> > these flags are supposed to be set by the platform firmware if there is
-> > one. Alternatively as we are about to do they can be set by means of the
-> > OF properties.
-> > 
-> > While at it replace PORT_IRQ_DEV_ILCK with PORT_IRQ_DEV_MPS and fix the
-> > comment there. In accordance with [2] that IRQ flag is supposed to
-> > indicate the state of the signal coming from the Mechanical Presence
-> > Switch.
-> > 
-> > [1] Serial ATA AHCI 1.3.1 Specification, p.27
-> > [2] Serial ATA AHCI 1.3.1 Specification, p.7
-> > 
-> > Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-> > ---
-> >   drivers/ata/ahci.h | 7 ++++++-
-> >   1 file changed, 6 insertions(+), 1 deletion(-)
-> > 
+On Thu May 12, 2022 at 8:07 PM IST, Krzysztof Kozlowski wrote:
+> On 12/05/2022 11:19, Sireesh Kodali wrote:
+> > On Wed May 11, 2022 at 11:25 PM IST, Krzysztof Kozlowski wrote:
+> >> On 11/05/2022 18:16, Sireesh Kodali wrote:
+> >>> This commit adds the modem (q6v5_mss), WiFi (wcnss-pil) and audio DSP
+> >>> (q6v5_pas) remote processor nodes for the MSM8953 platform. It also a=
+dds
+> >>> the coresponding SMP2P, SMSM and pinctrl nodes that are needed by the=
+se
+> >>> remote processors.
+> >>>
+> >>> Signed-off-by: Sireesh Kodali <sireeshkodali1@gmail.com>
+> >>> +			};
+> >>> +
+> >>> +			wcnss_sleep: wcnss-sleep-pins {
+> >>> +				wcss_wlan2 {
+> >>
+> >> No underscores in node names, unless something needs it?
+> >>
+> >=20
+> > wcnss_sleep is used by the pronto node defined below
+>
+> wcnss_sleep is not a node name and it is not in the line where I commente=
+d.
+>
+Sorry, I'll fix it in v2
+> Best regards,
+> Krzysztof
 
-> You might want to adapt the subject line, as this patch doesn't touch
-> libahci at all.
-
-AFAICS ahci.h is mainly (if not to say only) the header file of the
-libahci.c module interface. Modifying ahci.h I basically update the
-libahci interface. So based on that the subject is fully correct.
-
-> Other than that:
-> 
-> Reviewed-by: Hannes Reinecke <hare@suse.de>
-
-Thanks.
-
--Sergey
-
-> 
-> Cheers,
-> 
-> Hannes
-> -- 
-> Dr. Hannes Reinecke		           Kernel Storage Architect
-> hare@suse.de			                  +49 911 74053 688
-> SUSE Software Solutions Germany GmbH, Maxfeldstr. 5, 90409 Nürnberg
-> HRB 36809 (AG Nürnberg), GF: Felix Imendörffer
+Thanks,
+Sireesh
