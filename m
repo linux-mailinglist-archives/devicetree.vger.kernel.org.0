@@ -2,106 +2,241 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 33089524DAF
-	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 15:02:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DB3ED524DBC
+	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 15:05:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234429AbiELNCm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 May 2022 09:02:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57366 "EHLO
+        id S1354116AbiELNFO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 May 2022 09:05:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40554 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1354055AbiELNCk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 09:02:40 -0400
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 435C362A1F;
-        Thu, 12 May 2022 06:02:39 -0700 (PDT)
-Received: from fraeml713-chm.china.huawei.com (unknown [172.18.147.206])
-        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4KzX0W64fQz67nWs;
-        Thu, 12 May 2022 20:59:07 +0800 (CST)
-Received: from lhreml710-chm.china.huawei.com (10.201.108.61) by
- fraeml713-chm.china.huawei.com (10.206.15.32) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.24; Thu, 12 May 2022 15:02:36 +0200
-Received: from localhost (10.81.210.133) by lhreml710-chm.china.huawei.com
- (10.201.108.61) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.24; Thu, 12 May
- 2022 14:02:35 +0100
-Date:   Thu, 12 May 2022 14:02:32 +0100
-From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-To:     Peter Rosin <peda@axentia.se>
-CC:     Jonathan Cameron <jic23@kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sean Nyekjaer <sean@geanix.com>, <linux-iio@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v2 0/2] Add support for texas dac121c081 to the dac5571
- driver
-Message-ID: <20220512140232.000078c1@Huawei.com>
-In-Reply-To: <06546c40-639a-01e4-ed99-4895edfe8211@axentia.se>
-References: <42db911c-5eba-0511-3e8c-8011a2a5b44a@axentia.se>
-        <20220428204439.4ec2b4ae@jic23-huawei>
-        <20220501190349.54aa48a3@jic23-huawei>
-        <06546c40-639a-01e4-ed99-4895edfe8211@axentia.se>
-Organization: Huawei Technologies Research and Development (UK) Ltd.
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.29; i686-w64-mingw32)
+        with ESMTP id S1354113AbiELNFN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 09:05:13 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4BE320F4F1;
+        Thu, 12 May 2022 06:05:05 -0700 (PDT)
+X-UUID: 87dee6ed4fa44a5f9c12b7f8518422a7-20220512
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.4,REQID:0c1c24e1-58a1-4cc5-bb7d-54c0783dc77c,OB:0,LO
+        B:0,IP:0,URL:5,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
+        ON:release,TS:5
+X-CID-META: VersionHash:faefae9,CLOUDID:3eb212a7-eab7-4b74-a74d-5359964535a9,C
+        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,File:nil,QS:0,BEC:nil
+X-UUID: 87dee6ed4fa44a5f9c12b7f8518422a7-20220512
+Received: from mtkmbs11n2.mediatek.inc [(172.21.101.187)] by mailgw01.mediatek.com
+        (envelope-from <johnson.wang@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 2047737170; Thu, 12 May 2022 21:04:59 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Thu, 12 May 2022 21:04:59 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Thu, 12 May 2022 21:04:59 +0800
+Message-ID: <14cdb1e17015e299231e72356e661203d4beda17.camel@mediatek.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: interconnect: Add MediaTek CCI
+ dt-bindings
+From:   Johnson Wang <johnson.wang@mediatek.com>
+To:     Chen-Yu Tsai <wenst@chromium.org>
+CC:     <krzk+dt@kernel.org>, <cw00.choi@samsung.com>,
+        <robh+dt@kernel.org>, <kyungmin.park@samsung.com>,
+        <khilman@kernel.org>, <linux-pm@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>, <jia-wei.chang@mediatek.com>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Date:   Thu, 12 May 2022 21:04:59 +0800
+In-Reply-To: <CAGXv+5G6Qv1JcsZNrw5=USJSzPkczW42FgXRYqAK=xS-moO6nw@mail.gmail.com>
+References: <20220425125546.4129-1-johnson.wang@mediatek.com>
+         <20220425125546.4129-2-johnson.wang@mediatek.com>
+         <CAGXv+5HgyN+kp86M2GgFtbruXSAMSLxsh9vf8zVE5TxRMyTyaA@mail.gmail.com>
+         <a8e5fd9de1feece9051e1624c5cf3b672131a122.camel@mediatek.com>
+         <CAGXv+5G6Qv1JcsZNrw5=USJSzPkczW42FgXRYqAK=xS-moO6nw@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.81.210.133]
-X-ClientProxiedBy: lhreml720-chm.china.huawei.com (10.201.108.71) To
- lhreml710-chm.china.huawei.com (10.201.108.61)
-X-CFilter-Loop: Reflected
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-MTK:  N
+X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,MAY_BE_FORGED,
+        SPF_HELO_NONE,T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 12 May 2022 10:59:48 +0200
-Peter Rosin <peda@axentia.se> wrote:
-
-> HI!
-> 
-> 2022-05-01 at 20:03, Jonathan Cameron wrote:
-> > On Thu, 28 Apr 2022 20:44:39 +0100
-> > Jonathan Cameron <jic23@kernel.org> wrote:
-> >   
-> >> On Mon, 25 Apr 2022 22:46:30 +0200
-> >> Peter Rosin <peda@axentia.se> wrote:
-> >>  
-> >>> Hi!
-> >>>
-> >>> The new chip works much like the other chips supported by the driver, so
-> >>> this is just adding another compatible to the list.
-> >>>
-> >>> Chenages since v1:
-> >>> - Guenter Roeck noticed elsewhere that my mail setup was botched and
-> >>>   that my patches were clobbered. Hopefully fixed. *blush*
-> >>> - added tags from Sean Nyekjaer and Rob Herring    
-> >>
-> >> Applied.  Thanks  
+On Wed, 2022-05-11 at 18:48 +0800, Chen-Yu Tsai wrote:
+> On Mon, May 9, 2022 at 8:14 PM Johnson Wang <
+> johnson.wang@mediatek.com> wrote:
 > > 
-> > Backed out temporarily because they have crossed with a fix (that I'd
-> > forgotten about) and were requiring a non trivial merge in linux-next.
+> > Hi Chen-Yu,
 > > 
-> > https://patchwork.kernel.org/project/linux-iio/patch/20220324234340.32402-1-laurent.pinchart@ideasonboard.com/
+> > On Tue, 2022-04-26 at 11:18 +0800, Chen-Yu Tsai wrote:
+> > > On Mon, Apr 25, 2022 at 8:56 PM Johnson Wang <
+> > > johnson.wang@mediatek.com> wrote:
+> > > > 
+> > > > Add devicetree binding of MediaTek CCI on MT8183 and MT8186.
+> > > > 
+> > > > Signed-off-by: Johnson Wang <johnson.wang@mediatek.com>
+> > > > Signed-off-by: Jia-Wei Chang <jia-wei.chang@mediatek.com>
+> > > > ---
+> > > >  .../bindings/interconnect/mediatek,cci.yaml   | 139
+> > > > ++++++++++++++++++
+> > > >  1 file changed, 139 insertions(+)
+> > > >  create mode 100644
+> > > > Documentation/devicetree/bindings/interconnect/mediatek,cci.yam
+> > > > l
+> > > > 
+> > > > diff --git
+> > > > a/Documentation/devicetree/bindings/interconnect/mediatek,cci.y
+> > > > aml
+> > > > b/Documentation/devicetree/bindings/interconnect/mediatek,cci.y
+> > > > aml
+> > > > new file mode 100644
+> > > > index 000000000000..e5221e17d11b
+> > > > --- /dev/null
+> > > > +++
+> > > > b/Documentation/devicetree/bindings/interconnect/mediatek,cci.y
+> > > > aml
+> > > > @@ -0,0 +1,139 @@
+> > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > > +%YAML 1.2
+> > > > +---
+> > > > +$id:
+> > > > 
+https://urldefense.com/v3/__http://devicetree.org/schemas/interconnect/mediatek,cci.yaml*__;Iw!!CTRNKA9wMg0ARbw!zuufEcqpKbditY3eqLTHpL8P8humMCyh4D4QWsximmw124tJUPE3ZBUyBqBtDlQ9pSDO$
+> > > > 
+> > > > +$schema:
+> > > > 
+https://urldefense.com/v3/__http://devicetree.org/meta-schemas/core.yaml*__;Iw!!CTRNKA9wMg0ARbw!zuufEcqpKbditY3eqLTHpL8P8humMCyh4D4QWsximmw124tJUPE3ZBUyBqBtDoE9YHyu$
+> > > > 
+> > > > +
+> > > > +title: MediaTek Cache Coherent Interconnect (CCI) frequency
+> > > > and
+> > > > voltage scaling
+> > > > +
+> > > > +maintainers:
+> > > > +  - Jia-Wei Chang <jia-wei.chang@mediatek.com>
+> > > > +
+> > > > +description: |
+> > > > +  MediaTek Cache Coherent Interconnect (CCI) is a hardware
+> > > > engine
+> > > > used by
+> > > > +  MT8183 and MT8186 SoCs to scale the frequency and adjust the
+> > > > voltage in
+> > > > +  hardware. It can also optimize the voltage to reduce the
+> > > > power
+> > > > consumption.
+> > > > +
+> > > > +properties:
+> > > > +  compatible:
+> > > > +    enum:
+> > > > +      - mediatek,mt8183-cci
+> > > > +      - mediatek,mt8186-cci
+> > > > +
+> > > > +  clocks:
+> > > > +    items:
+> > > > +      - description:
+> > > > +          The multiplexer for clock input of CPU cluster.
+> > > 
+> > > of the bus, not CPU cluster.
 > > 
-> > Hopefully that will get resolved in my upstream fairly soon and I can
-> > fix this one up whilst applying it myself.  
+> > Thanks for your suggestion.
+> > I will correct it in the next version.
+> > 
+> > > 
+> > > > +      - description:
+> > > > +          A parent of "cpu" clock which is used as an
+> > > > intermediate
+> > > > clock source
+> > > > +          when the original CPU is under transition and not
+> > > > stable
+> > > > yet.
+> > > 
+> > > This really should be handled in the clk controller, and not by
+> > > every
+> > > device
+> > > that happens to take a clock from a mux with upstream PLLs that
+> > > can
+> > > change
+> > > in clock rate. The end device hardware only takes one clock
+> > > input.
+> > > That's it.
+> > > 
+> > 
+> > To make this intermediate clock works properly, this driver is also
+> > responsible for handling the Vproc voltage and ensures the voltage
+> > is
+> > high enough to support intermediate clock rate.
+> > 
+> > If we move intermediate clock rate control to clock driver, then
+> > intermediate voltage control may be handled by the clock driver
+> > itself
+> > as well.
+> > 
+> > We believe that is not reasonable because clock driver shouldn't
+> > handle
+> > voltage control. On the other hand, DVFS driver is more suitable
+> > for
+> > doing this job.
 > 
-> Looks like it might be time to bring this one in from the cold?
-
-Nearly.  I have a pull request out to Greg. Once he's taken that
-I'll fastforward the togreg branch to include the fix and
-can then apply this.
-
-Jonathan
-
+> Either way the DVFS driver handles the voltage change.
 > 
-> Cheers,
-> Peter
+> Right now the driver is doing:
+> 
+> 1. Raise voltage if scaling up
+> 2. Mux CCI clock over to stable clock
+> 3. Set rate for CCI PLL
+> 4. Mux CCI clock back to CCI PLL
+> 5. Drop voltage if scaling down
+> 
+> I'm saying that the clock driver should handle 2+4 transparently when
+> any
+> driver requests a rate change on the CCI clock. So instead the driver
+> would
+> do:
+> 
+> 1. Raise voltage if scaling up
+> 2. Set rate for CCI _clock_
+>    Here the clock driver would do:
+>    a. Mux CCI clock over to stable clock
+>    b. Change clock rate for original parent, i.e. the CCI PLL
+>    c. Mux CCI clock back to original parent, i.e. the CCI PLL
+>    and back to the devfreq driver ...
+> 3. Drop voltage if scaling down
+> 
+> Does that make sense?
+> 
+> 
+> Regards
+> ChenYu
+
+Hi Chen-Yu,
+
+Before we mux the CCI clock to an intermediate clock(MAINPLL), we must
+ensure that regulator voltage is high enough (we call it intermediate
+voltage) to support the intermediate clock rate.
+
+Based on this concept, if we move mux control to clock driver, there
+will be a dilemma about which driver to adjust the voltage.
+
+1)When DVFS calls clk_set_rate(), clock driver scales up the regulator
+voltage to higher than intermediate voltage and then mux the CCI clock.
+
+This option is not reasonable because clock driver shouldn't handle the
+regulators.
+
+
+2)DVFS scales up the regulator voltage, then calls clk_set_rate(). 
+Clock driver mux the CCI clock to the intermediate clock.
+
+This option isn't straightforward and makes one confused easily. For a
+person who reads this driver, he may not understand why we adjust the
+voltage before clk_set_rate().
+
+That's why we put intermediate voltage/freq together in the DVFS.
+
+BRs,
+Johnson Wang
 
