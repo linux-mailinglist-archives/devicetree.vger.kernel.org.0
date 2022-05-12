@@ -2,73 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2BAE3525009
-	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 16:32:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 769F152502F
+	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 16:35:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1355035AbiELOcr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 May 2022 10:32:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49310 "EHLO
+        id S1343817AbiELOe7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 May 2022 10:34:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56566 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1355294AbiELOcq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 10:32:46 -0400
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10FE65D658
-        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 07:32:45 -0700 (PDT)
-Received: by mail-wm1-x333.google.com with SMTP id i20-20020a05600c355400b0039456976dcaso4054876wmq.1
-        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 07:32:44 -0700 (PDT)
+        with ESMTP id S1355365AbiELOe4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 10:34:56 -0400
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8AF4C261969
+        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 07:34:55 -0700 (PDT)
+Received: by mail-wr1-x434.google.com with SMTP id k2so7566907wrd.5
+        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 07:34:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=gfV6hdj+G/eKhil+K8KKf6Xy30nkm2zLFDY36R9t3Bg=;
-        b=N2yYG9TriNOJkpOXXy+kvvvM/AVOyWksfsEqkamccWwpC1p89jHbnFVmMIbjpVpHqn
-         ijVwQn5PbA+yltYmAjcbEzdfyMcGeik0hu/dBbEjKrW96bUcGb/31M2/C2xVd75uvGxQ
-         7Lu+Ojd2bUFvks7wdtkzdhLxEf1xlOe2mO+vit3gJb4HFJ3V/J/gDz6mwInwXvjDlMS7
-         Bu8hBAteXfuNqmRV0VLeKs0YUIIa6pUjdm+qvUS2f/h2cl2LauaSzKOh6WE8miCAm/VN
-         CaNlV4gGIPF67/MjFTemRYxuNztld9/UNCXJm51mBxAgRN3DowKDKH3mOu5UnjLxaV6n
-         cbhw==
+        bh=LuprtpJ06dq5t/dfZsOwpuZXBtU4EbDymnv83y3Wy+s=;
+        b=o/mDg4TjUzNPpNIW/8i9F6/aeJmH/CBJyZI9jwvp5rzSJMy4IPk3YDlBdnMQfS21yy
+         LqVhrTq4dmpHvq/zPNXeEUbZnyVUGaOfPo9da8zFwvgVHQwgXBZUXSKAJknTlk1LcIo8
+         +SrmkV6kbr6may6Jfa24nTw90FF4PlUVBhD+zcV2hrRJ0zhGgMVub235ZtUkO4BdWj2q
+         N7DFl/wV8Vr9ESOeBDmVY8140P55Y7w+pjTB41mpgH03af/4BOTqKxgqbpzJhkCV9DUJ
+         XeXD29JtimX8PzskSPpGszgLM0rFXcJ+q2Uz0+Vdk079By9MrnHAbxna1B0K3X+wC6v3
+         7J0A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=gfV6hdj+G/eKhil+K8KKf6Xy30nkm2zLFDY36R9t3Bg=;
-        b=MvmmI/FNv4Y1aOZrcVq5zqRvaFUXQ+2f5ZDSB0w6om84qpJZT74mTtks+MpsCesAk2
-         aamQEyW93Uc2wjhLl8nIK6VPQL5TOWjOB629nSNXk5I5N0r9LZR8V74SrkD8oyNFJ8B5
-         2l0lfvsznqSZZjK39Pth9ckduwdiCr09rO3amUuJNIHqvGzZw+beo3+z9OyIZqdLl2ti
-         vXWyVuned/2dsDBvQk1jzS4lIpUdefA7mTG1eXnsKs012vt+sF9czx2lPAtnwuJQ9fFf
-         YhPqrldr8apfWll99gEUlp7NJYSUyhDVyYRvY2Rm5CMwxcCHa80GLQ7UDodQnK7S+e1x
-         +Ocw==
-X-Gm-Message-State: AOAM532YlD+hgq7pa10SwWer8ZhFtuiQT9fWp9e5AMDkfRzU7MK9mSLK
-        MQwo/M/b31izm9VHG6Rg4SC8Xw==
-X-Google-Smtp-Source: ABdhPJzn0NdYnZ6arUr+7JV+G5AsR7rJ0k6j66fzM/lksa0zMGVqxos0KZ1oxRF7R+mdChnOviCSnQ==
-X-Received: by 2002:a05:600c:b47:b0:394:1200:957b with SMTP id k7-20020a05600c0b4700b003941200957bmr10506789wmr.2.1652365963660;
-        Thu, 12 May 2022 07:32:43 -0700 (PDT)
+        bh=LuprtpJ06dq5t/dfZsOwpuZXBtU4EbDymnv83y3Wy+s=;
+        b=ZMN9FgCUYKTAzfQVSPKmO293NI29BIDgE2ucrUGwXXYg1+qZfB/sYO82yC1buC3OG6
+         O4kOXsGyApay5dOkshONJ2/wcwEk2gbUCPw2EULitM4O4OlTjJ3kNmhzkVaxdvQ3kA1+
+         yzaIwg8ZXvgHgqaFu/GwRRpX/aN0Qh1m0B9Mn1H7HnuQmtX+CFI5NEI8SkgI+Wc2Xsgb
+         jIwRfsujh5PlSc/tWNs+A+eLrSxb0LkhVtu/fa72fLWBDFdgLFzFSS8OaofwRkoD9P//
+         Ou8u4nYWUzOu27iRbNsSs4nA+OCp2iSGlMDbuuuVqvReTN6uX9G+UoySLLUtV7F8Yzsy
+         RzaA==
+X-Gm-Message-State: AOAM533hKJQyBeSz823pg+EOxkhnYJgpDG5P+7Wn6mUQNShlnfb9GNzK
+        hOMadd4Y4sfmteMOzrPMA7Vc3Q==
+X-Google-Smtp-Source: ABdhPJz0TUjYL2u5t8YGvfqFdxtaBsYJSXvqDpz+JJ8NWZWCyrdVUzmQm59FGzp+9PHG1T652Q7LeQ==
+X-Received: by 2002:adf:fd4a:0:b0:20a:cee3:5abf with SMTP id h10-20020adffd4a000000b0020acee35abfmr28103117wrs.522.1652366094139;
+        Thu, 12 May 2022 07:34:54 -0700 (PDT)
 Received: from [192.168.0.161] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id o15-20020a5d684f000000b0020c5253d8fesm4459561wrw.74.2022.05.12.07.32.41
+        by smtp.gmail.com with ESMTPSA id o12-20020a05600c4fcc00b003942a244ec8sm3137387wmq.13.2022.05.12.07.34.52
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 12 May 2022 07:32:42 -0700 (PDT)
-Message-ID: <a219c974-a291-7fb5-bdd0-1979d9083eb1@linaro.org>
-Date:   Thu, 12 May 2022 16:32:41 +0200
+        Thu, 12 May 2022 07:34:53 -0700 (PDT)
+Message-ID: <894e5093-4ad8-dffd-c6b6-6b0a5f90814f@linaro.org>
+Date:   Thu, 12 May 2022 16:34:52 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.8.1
-Subject: Re: [PATCH v6 7/7] arm64: dts: mt8195: Add thermal zone
+Subject: Re: [PATCH v4 2/2] dt-bindings: trivial-devices: Add xdp152
 Content-Language: en-US
-To:     Alexandre Bailon <abailon@baylibre.com>, robh+dt@kernel.org,
-        krzk+dt@kernel.org, matthias.bgg@gmail.com, p.zabel@pengutronix.de
-Cc:     rafael@kernel.org, daniel.lezcano@linaro.org, amitk@kernel.org,
-        rui.zhang@intel.com, michael.kao@mediatek.com,
-        ben.tseng@mediatek.com, ethan.chang@mediatek.com,
-        frank-w@public-files.de, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, khilman@baylibre.com,
-        Tinghan Shen <tinghan.shen@mediatek.com>
-References: <20220512122433.1399802-1-abailon@baylibre.com>
- <20220512122433.1399802-8-abailon@baylibre.com>
+To:     Greg.Schwendimann@infineon.com, linux@roeck-us.net,
+        linux-hwmon@vger.kernel.org
+Cc:     robh+dt@kernel.org, krzk+dt@kernel.org, devicetree@vger.kernel.org
+References: <052c9885e92243fb99ada46e6a263c09@infineon.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220512122433.1399802-8-abailon@baylibre.com>
+In-Reply-To: <052c9885e92243fb99ada46e6a263c09@infineon.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -81,58 +73,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/05/2022 14:24, Alexandre Bailon wrote:
-> From: Tinghan Shen <tinghan.shen@mediatek.com>
+On 12/05/2022 15:26, Greg.Schwendimann@infineon.com wrote:
 > 
-> This adds the thermal zone for the mt8195.
+> Add Infineon Digital Multi-phase xdp152 family controllers.
 > 
-> Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
-> Signed-off-by: Ben Tseng <ben.tseng@mediatek.com>
-> Signed-off-by: Alexandre Bailon <abailon@baylibre.com>
+> Signed-off-by: Greg Schwendimann <Greg.Schwendimann@infineon.com>
 > ---
->  arch/arm64/boot/dts/mediatek/mt8195.dtsi | 103 +++++++++++++++++++++++
->  1 file changed, 103 insertions(+)
+>  Documentation/devicetree/bindings/trivial-devices.yaml | 4 ++++
+>  1 file changed, 4 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-> index 12887fb4d0d1..d6e5b595a89f 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-> @@ -823,6 +823,21 @@ spi0: spi@1100a000 {
->  			status = "disabled";
->  		};
->  
-> +		lvts: lvts@1100b000 {
+> diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
+> index 550a2e5c9e05..fc2164c4d108 100644
+> --- a/Documentation/devicetree/bindings/trivial-devices.yaml
+> +++ b/Documentation/devicetree/bindings/trivial-devices.yaml
+> @@ -143,6 +143,10 @@ properties:
+>            - infineon,xdpe12254
+>              # Infineon Multi-phase Digital VR Controller xdpe12284
+>            - infineon,xdpe12284
+> +            # Infineon Multi-phase Digital VR Controller xdpe152c4
+> +          - infineon,xdpe152c4
+> +            # Infineon Multi-phase Digital VR Controller xdpe15284
+> +          - infineon,xdpe15284
 
-Generic node names.
+I guess the order is rather '8' before 'c'.
 
-> +			compatible = "mediatek,mt8195-lvts";
-> +			#thermal-sensor-cells = <1>;
-> +			reg = <0 0x1100b000 0 0x1000>,
-> +				<0 0x11278000 0 0x1000>;
-> +			interrupts = <GIC_SPI 169 IRQ_TYPE_LEVEL_HIGH 0>,
-> +					<GIC_SPI 170 IRQ_TYPE_LEVEL_HIGH 0>;
-> +			clocks = <&infracfg_ao CLK_INFRA_AO_THERM>;
-> +			clock-names = "lvts_clk";
-> +			resets = <&infracfg_rst 1>,
-> +					<&infracfg_rst 2>;
-> +			nvmem-cells = <&lvts_e_data1 &lvts_e_data2>;
-> +			nvmem-cell-names = "e_data1","e_data2";
-> +		};
-> +
->  		spi1: spi@11010000 {
->  			compatible = "mediatek,mt8195-spi",
->  				     "mediatek,mt6765-spi";
-> @@ -1627,4 +1642,92 @@ vencsys_core1: clock-controller@1b000000 {
->  			#clock-cells = <1>;
->  		};
->  	};
-> +
-> +	thermal_zones: thermal-zones {
-> +		cpu_big1 {
-
-No underscores in node names. Generic node names - please open existing
-thermal zones schema and look how it is done. This probably fails
-validation, so be sure your DTS passes make dtbs_check.
 
 Best regards,
 Krzysztof
