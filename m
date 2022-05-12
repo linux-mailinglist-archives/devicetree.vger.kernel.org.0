@@ -2,294 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F09895247AF
-	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 10:14:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8CE2E5247D2
+	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 10:25:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351300AbiELIOX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 May 2022 04:14:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33556 "EHLO
+        id S1347283AbiELIY2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 May 2022 04:24:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37686 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233612AbiELIOW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 04:14:22 -0400
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4CD5E5DBE3
-        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 01:14:20 -0700 (PDT)
-Received: by mail-ed1-x52a.google.com with SMTP id z19so5286186edx.9
-        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 01:14:20 -0700 (PDT)
+        with ESMTP id S237176AbiELIY1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 04:24:27 -0400
+Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03326633B1;
+        Thu, 12 May 2022 01:24:26 -0700 (PDT)
+Received: by mail-lj1-x229.google.com with SMTP id q130so5543122ljb.5;
+        Thu, 12 May 2022 01:24:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=dKj3Wkk5G60lVyTD5qpq1NcTw9sWsRvLava+2G5nJbs=;
-        b=etNSNPWcfTj3Ga3QAPpZ99dN9/OxZpengwlNA+k1El504Pf3TOhGGS+VGx3NSKyx4B
-         DT+//kgDlbF17wpaOmvjiihu/ZsVyNB/o/fC+oXm4N14dv3riYtOHKrGwvn2TdZDLduJ
-         gVAiJffesApMhZvLIozNhGfyVgn37kNp+WhoxQt5pP1PrgWR8Xki/sw/UWCtY8tBSorj
-         x+HoeSklzYpg0BeZ7h7vnZDTu6e+pIhT4VYztwJgzukZRkT4SzgdA9WVO2FexrhD1dpZ
-         DO/+S+oEvmXnN1/A5YFo8aL2L2Yx5ihvDVKPt0EjoZejF2foomYWP0PiTRyFHwAMdE6N
-         CZHw==
+        d=gmail.com; s=20210112;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=Dp5RjKDsRorlt15Q842QS1oD3zaqmbFzxKTc/+h/+tQ=;
+        b=MneGklh48zNq8AAwN3ifgUtyhXr9lX5z/oy2m6O2tLieaDN9QE+UD3cbj/bsLZUqZa
+         DBg6dcCXwHX1uivRZQF8U3eNzSq1Rj0c01fLeNNE6Nt6My9U8l8UZamKDZ+5j4LeVNFL
+         OiAsbqlMfzpEro0I/bv5Jw/jg7gg4kWIK5B29d1fMMh4YmJJs+uPM/UWHy7L73jAnfL1
+         9tgx9SPSIM0cDU4qJuOmj71Hh8eq/jwMXe0wkcF1XIBSTCTa5SUjFewve6xDBBaIfT46
+         G14Xxr+ZfnSxKCISOaFW2d2eAEmTCO85yVFmSz0zsHKgDAjFKQtJ8y9BW7GPwXTy3EoJ
+         OGUw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=dKj3Wkk5G60lVyTD5qpq1NcTw9sWsRvLava+2G5nJbs=;
-        b=cLlP3ftW8+YRapX/2XShGhNuE90ti38tO36qRfjQ0Rxi6r6M0txRTlqCYNwxsRAXXL
-         GSTHEhrSEVQCqhOkSMsXXMjlhjbTF/QE7LenYbsl3vePSK8Cn0soCYAxPvi7ufSI9G/h
-         /joVNRQqm+/Z9H9X4OtGt1+I0rSp5G2kkdZNB8qNatDMLEjOogNlE3xzzQJ479hBAQZR
-         7wulFlfge4i1lAP/ubdqLMjzKoveMN6SJIFA4jsOvZo1WRiJ5ERqjRhwmE8jlgIK+gpa
-         ZNbxPllFwBOUKZ/75bYHtqGLrMIKeZK/HEsscsFyupKehpm6EAJ0q62PsUWqhrXI9fkn
-         2xmQ==
-X-Gm-Message-State: AOAM532heWHpaISyF6I6/9HE1Mk9LQnKxOISltV6A9+IYeYUXMF2kATZ
-        ncs89E4JEn2uJAwTk/IBOodXKg==
-X-Google-Smtp-Source: ABdhPJzkxgOSxH40scNowpHv6e6D0YUfb9fvbfZ7RnSikZ9iUxIxoKqkCYnsmEcVrB2Pn0jmTUywIw==
-X-Received: by 2002:a05:6402:128b:b0:425:d1d7:b321 with SMTP id w11-20020a056402128b00b00425d1d7b321mr33309173edv.179.1652343258888;
-        Thu, 12 May 2022 01:14:18 -0700 (PDT)
-Received: from [192.168.0.156] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id h3-20020aa7c603000000b0042a41ad4688sm71edq.65.2022.05.12.01.14.17
+        bh=Dp5RjKDsRorlt15Q842QS1oD3zaqmbFzxKTc/+h/+tQ=;
+        b=nj7gP7bbvSfHbxFpHbrjfJcMpmC5YgWxj7FzN7hrCKqmPXjPZfQD61Jx0fdcDB0d7t
+         ArdJoOZVjikgn/FdIX3WFe1l8cUl6RBgn6zkSMylWA9NRMY8juPxN+XcnPJAPRWhfmsa
+         m8Q7f4oYg77s93TaNY4Ua8LV4iAX6nFJVRrHgyEXavYNmhfKJMYsL1vliBu8tf4x0t/w
+         eQccWhe1Ov7mk7P3nRIcmPQT/C8u8lCBxeHvgDRkthhcsh+jXTWXn/Kp3arsnmgbP9Rx
+         V9Osbx6KTOWiDIjW6dVrFKJVETYzxHaNBOhVfqGToRZB/eFCSWe/01bnOvbGmBSHv0rg
+         6lSA==
+X-Gm-Message-State: AOAM5316d9adEm34j631djJFYbtwOLtyNwqA3dgq4asGU/957hWBn14U
+        sZRCkWYcCkg2XOe0/UK5IiMq4n5UxGQ=
+X-Google-Smtp-Source: ABdhPJyWBOKLTrjc+R7ofT+rL175Kzj+uFEU5bmAzeiLls7z8qDKjLUGSKaVXf2V9tHgoktYGQFqgQ==
+X-Received: by 2002:a2e:bb8e:0:b0:250:76dd:3bd9 with SMTP id y14-20020a2ebb8e000000b0025076dd3bd9mr20340342lje.71.1652343863752;
+        Thu, 12 May 2022 01:24:23 -0700 (PDT)
+Received: from [192.168.1.103] ([31.173.83.174])
+        by smtp.gmail.com with ESMTPSA id u17-20020a05651206d100b00474018dfb76sm673110lff.157.2022.05.12.01.24.22
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 12 May 2022 01:14:18 -0700 (PDT)
-Message-ID: <a62822a4-a771-dfa9-f46d-586fdccedf66@linaro.org>
-Date:   Thu, 12 May 2022 10:14:17 +0200
+        Thu, 12 May 2022 01:24:23 -0700 (PDT)
+Subject: Re: [PATCH v3 09/23] ata: libahci_platform: Sanity check the DT child
+ nodes number
+To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Jens Axboe <axboe@kernel.dk>
+Cc:     Serge Semin <fancer.lancer@gmail.com>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Rob Herring <robh+dt@kernel.org>, linux-ide@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20220511231810.4928-1-Sergey.Semin@baikalelectronics.ru>
+ <20220511231810.4928-10-Sergey.Semin@baikalelectronics.ru>
+From:   Sergei Shtylyov <sergei.shtylyov@gmail.com>
+Message-ID: <42dfc76f-a9d9-8e63-874d-b7459cef326c@gmail.com>
+Date:   Thu, 12 May 2022 11:24:22 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH 4/9] dt-bindings: remoteproc: qcom: wcnss: Convert to YAML
+In-Reply-To: <20220511231810.4928-10-Sergey.Semin@baikalelectronics.ru>
+Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
-To:     Sireesh Kodali <sireeshkodali1@gmail.com>,
-        linux-remoteproc@vger.kernel.org
-Cc:     linux-arm-msm@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, bjorn.andersson@linaro.org,
-        devicetree@vger.kernel.org, phone-devel@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-References: <20220511161602.117772-1-sireeshkodali1@gmail.com>
- <20220511161602.117772-5-sireeshkodali1@gmail.com>
- <00234f36-9bae-31d5-5b83-ea238e7e3c11@linaro.org>
- <CJXL0SG2GHN1.1IO2JOR5ARNV8@skynet-linux>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CJXL0SG2GHN1.1IO2JOR5ARNV8@skynet-linux>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/05/2022 08:50, Sireesh Kodali wrote:
-> On Wed May 11, 2022 at 10:45 PM IST, Krzysztof Kozlowski wrote:
->> On 11/05/2022 18:15, Sireesh Kodali wrote:
->>> Convert the dt-bindings from txt to YAML. This is in preparation for
->>> including the relevant bindings for the MSM8953 platform's wcnss pil.
->>>
->>> Signed-off-by: Sireesh Kodali <sireeshkodali1@gmail.com>
->>
->> Thank you for your patch. There is something to discuss/improve.
->>
->> Please use existing bindings or example-schema as a starting point. Half
->> of my review could be skipped if you just followed what we already have
->> in the tree.
->>
->> Some of these qcom specific properties already exist but you decided to
->> write them differently... please don't, rather reuse the code.
->>
+On 5/12/22 2:17 AM, Serge Semin wrote:
+
+> Having greater than (AHCI_MAX_PORTS = 32) ports detected isn't that
+
+   Having greater than AHCI_MAX_PORTS (32) ports detected?
+
+> critical from the further AHCI-platform initialization point of view since
+> exceeding the ports upper limit will cause allocating more resources than
+> will be used afterwards. But detecting too many child DT-nodes doesn't
+> seem right since it's very unlikely to have it on an ordinary platform. In
+> accordance with the AHCI specification there can't be more than 32 ports
+> implemented at least due to having the CAP.NP field of 4 bits wide and the
+
+   It's 5 bits wide, actually...
+
+> PI register of dword size. Thus if such situation is found the DTB must
+> have been corrupted and the data read from it shouldn't be reliable. Let's
+> consider that as an erroneous situation and halt further resources
+> allocation.
 > 
-> Thank you for your review, I will make the chnages as appropriate in v2.
->> (...)
->>
->>> +
->>> +maintainers:
->>> +  - Bjorn Andersson <bjorn.andersson@linaro.org>
->>> +
->>> +description:
->>> +  This document defines the binding for a component that loads and boots
->>> +  firmware on the Qualcomm WCNSS core.
->>> +
->>> +properties:
->>> +  compatible:
->>> +    oneOf:
->>> +      - items:
->>> +          - enum:
->>> +              - qcom,pronto-v2-pil
->>> +          - enum:
->>> +              - qcom,pronto
->>
->> This does not look correct. The fallback compatible should not change.
->> What is more, it was not documented in original binding, so this should
->> be done in separate patch.
->>
+> Note it's logically more correct to have the nports set only after the
+> initialization value is checked for being sane. So while at it let's make
+> sure nports is assigned with a correct value.
 > 
-> This was not a change to the fallback compatible. 
+> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
 
-You made it an enum, so you expect it to use different fallback for
-different cases.
+[...]
 
-> msm8916.dtsi's wcnss
-> node has "qcom,pronto" as the compatible string, which is why this was
-> added. It is however not documented in the txt file. Is it sufficient to
-> add a note in the commit message, or should it be split into a separate
-> commit?
-
-Please split it, assuming that fallback is correct. Maybe the fallback
-is wrong?
-
-> 
->>> +      - items:
->>
->> No need for items, it's just one item.
->>
->>> +          - enum:
->>> +              - qcom,riva-pil
->>> +              - qcom,pronto-v1-pil
->>> +              - qcom,pronto-v2-pil
->>> +
->>> +  reg:
->>> +    description: must specify the base address and size of the CCU, DXE and PMU
->>> +      register blocks
->>
->> New line after "decription:", drop "must specify" and start with capital
->> letter.
->>
->> You need maxItems: 3
->>
-> 
-> Will fix in v2
->>
->>> +
->>> +  reg-names:
->>> +    items:
->>> +      - const: ccu
->>> +      - const: dxe
->>> +      - const: pmu
->>> +
->>> +  interrupts-extended:
->>> +    description:
->>> +      Interrupt lines
->>
->> Skip description, it's obvious.
->>
->> It should be only "interrupts", not extended.
->>
->>> +    minItems: 2
->>> +    maxItems: 5
->>> +
->>> +  interrupt-names:
->>> +    minItems: 2
->>> +    maxItems: 5
->>
->> Names should be clearly defined. They were BTW defined in original
->> bindings, so you should not remove them. This makes me wonder what else
->> did you remove from original bindings...
->>
->> Please document all deviations from pure conversion in the commit msg.
->> It's a second "hidden" difference.
->>
-> 
-> Sorry, this was meant to be a pure txt->YAML conversion. The missing
-> interrupt names was accidental, and will be fixed in v2.
->>> +
->>> +  firmware-name:
->>> +    $ref: /schemas/types.yaml#/definitions/string
->>> +    description: Relative firmware image path for the WCNSS core. Defaults to
->>> +      "wcnss.mdt".
->>
->>
->> Blank line after "description:". This applies to other places as well.
->>
->> Remove "Defailts to ..." and just add "default" schema.
->>
-> 
-> Will be fixed in v2
->>> +
->>> +  vddpx-supply:
->>> +    description: Reference to the PX regulator to be held on behalf of the
->>> +      booting of the WCNSS core
->>> +
->>> +  vddmx-supply:
->>> +    description: Reference to the MX regulator to be held on behalf of the
->>> +      booting of the WCNSS core.
->>> +
->>> +  vddcx-supply:
->>> +    description: Reference to the CX regulator to be held on behalf of the
->>> +      booting of the WCNSS core.
->>
->> s/Reference to the//
->>
->>> +
->>> +  power-domains:
->>> +    $ref: /schemas/types.yaml#/definitions/phandle-array
->>> +    description: References to the power domains that need to be held on
->>> +      behalf of the booting WCNSS core
->>
->> 1. Ditto.
->> 2. No need for ref
->> 3. maxItems
->>
->>> +
->>> +  power-domain-names:
->>> +    $ref: /schemas/types.yaml#/definitions/string-array
->>
->> No need for ref, skip description.
->>
->>> +    description: Names of the power domains
->>> +    items:
->>> +      - const: cx
->>> +      - const: mx
->>> +
->>> +  qcom,smem-states:
->>> +    $ref: /schemas/types.yaml#/definitions/phandle-array
->>> +    description: States used by the AP to signal the WCNSS core that it should
->>> +      shutdown
->>> +    items:
->>> +      - description: Stop the modem
->>> +
->>> +  qcom,smem-state-names:
->>> +    $ref: /schemas/types.yaml#/definitions/string-array
->>
->> No need for ref. Really, it does not appear in any of existing bindings
->> for smem-state-names, so how did you get it?
->>
-> 
-> The smem nodes were copied from /remoteproc/qcom,sdm845-adsp-pil.yaml
-
-Hm, indeed, you're right. There are few files having here ref. I'll fix
-these.
-
-> 
->>> +    description: The names of the state bits used for SMP2P output
->>> +    items:
->>> +      - const: stop
->>> +
->>> +  memory-region:
->>> +    maxItems: 1
->>> +    description: Reference to the reserved-memory for the WCNSS core
->>> +
->>> +  smd-edge:
->>> +    type: object
->>> +    description:
->>> +      Qualcomm Shared Memory subnode which represents communication edge,
->>> +      channels and devices related to the ADSP.
->>
->> You should reference /schemas/soc/qcom/qcom,smd.yaml
-> 
-> Will be done in v2
->>
->>> +
->>> +  iris:
->>
->> Generic node name... what is "iris"?
->>
-> Iris is the RF module, I'll make the description better
-
-RF like wifi? Then the property name should be "wifi".
-
-
-
-Best regards,
-Krzysztof
+MBR, Sergey
