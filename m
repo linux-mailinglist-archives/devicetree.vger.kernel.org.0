@@ -2,62 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 80571524D4D
-	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 14:47:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 02533524D57
+	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 14:48:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352114AbiELMr0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 May 2022 08:47:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57582 "EHLO
+        id S1353917AbiELMsM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 May 2022 08:48:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33112 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345760AbiELMr0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 08:47:26 -0400
-Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1972939167;
-        Thu, 12 May 2022 05:47:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=E7JXfgKDXyXBuDHtThgJmopN/mj/yocwISb9cNT//xM=; b=lzvobPJpPlp7weaceib4oOVQx9
-        qi0PA9B9wsGk1IHh9oBx6iTmD2+Rq9Qvn+c6MaFmzXtKY/cXhTfuyCuAUdDoZQRadRAnBfd/W0fsR
-        Y2J+Flows69UiKNtrPTpSZ8Fza1jJaK/T2sB7sLeKrs5G8Fhh9qm6DDRyL8eOTwKHvGY=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1np8Di-002S27-1F; Thu, 12 May 2022 14:47:06 +0200
-Date:   Thu, 12 May 2022 14:47:06 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Elad Nachman <enachman@marvell.com>
-Cc:     Chris Packham <Chris.Packham@alliedtelesis.co.nz>,
-        Vadym Kochan <vadym.kochan@plvision.eu>,
-        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
-        "will@kernel.org" <will@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "gregory.clement@bootlin.com" <gregory.clement@bootlin.com>,
-        "sebastian.hesselbarth@gmail.com" <sebastian.hesselbarth@gmail.com>,
-        Kostya Porotchkin <kostap@marvell.com>,
-        "robert.marko@sartura.hr" <robert.marko@sartura.hr>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: Re: [EXT] Re: [PATCH v5 1/2] arm64: dts: marvell: Add Armada
- 98DX2530 SoC and RD-AC5X board
-Message-ID: <Yn0ByoU6Ta5Kmq0u@lunn.ch>
-References: <20220504044624.951841-1-chris.packham@alliedtelesis.co.nz>
- <20220511161003.GE10145@plvision.eu>
- <YnviMOtXX+us+IA4@lunn.ch>
- <c781f7eb-86f2-16c4-1380-b08b974900ff@alliedtelesis.co.nz>
- <YnxXWIloDzfg8bh0@lunn.ch>
- <BN9PR18MB4251F84C9D4C538DB6D63CFCDBCB9@BN9PR18MB4251.namprd18.prod.outlook.com>
+        with ESMTP id S1352242AbiELMsK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 08:48:10 -0400
+Received: from mail-io1-xd2d.google.com (mail-io1-xd2d.google.com [IPv6:2607:f8b0:4864:20::d2d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B21DB1E0582
+        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 05:48:08 -0700 (PDT)
+Received: by mail-io1-xd2d.google.com with SMTP id s23so5123527iog.13
+        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 05:48:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sartura-hr.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=vNd3Gm8nUZ7PICSGljzFyVVDd1hZA/GzEUARiHu8reA=;
+        b=P+s6nn3BAqL09cTQZHN1ewg0v6vl8jrsEONJYK8CKGpgYe3lx+uzP9HwD3eQJqN577
+         3pqtxxiCI6YXx6P3O6QUpst4SV+8tyUqwfZWxep4F/+Ifhbf+6pdODLAAHQDQaz4Z3TF
+         x5+2iqnQ9zyy8BDIvOatJegOBDMBt0yT0Y5TRrtUcWrqCnlNmM8flPTXWexwbfuf/dmK
+         b6jyhgL61F6EeHqpnxc3rVnOKTkZzjMACalpFZ1OxT88LKcBij/OTYDUZRf95ZRMqFJs
+         PabNAO8NU0/APnsHy6LFbcCvDl5IDaUR2wsB5mTWC3dOVNMIlrAVj9oZpbRQD3Gki5P7
+         igPg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=vNd3Gm8nUZ7PICSGljzFyVVDd1hZA/GzEUARiHu8reA=;
+        b=JdwjH1BHns2yWn3xCjxQuNuOhpsJ+Z79jaRGq+33C/yL6tHtxSMT1tGFaof56CIyUf
+         fkQIJfwb8IwI63wYFLU6hJmcdF6yv5o6e+EGlDrFTVPXNx7qT7l0VQnWShaZ/ADNbv15
+         mhfR1t3TJ+1IVhf1p+DMWPmJi+bNWGk8UygmlOtSF4KSSZ9vwx42ELTfZg66cYVZnfjB
+         pw3PoaKYw+Fg6RHGzDZhussbXWwqOh+Vp/RVWYUWDftrk5E2hNUbQmWA4G060Hf/rXxo
+         V891o2xZK4wpaa9KZF4cG7ipyWxz4BZE69tJOSZICnAjdWhPauZpfvnS4jLaFTa8QxOk
+         l5cA==
+X-Gm-Message-State: AOAM533J+WtDROdeEZ5JGoHZPj7C8Mnq4RylmIM1+y7FZan8b3W5+UX7
+        Va1JGOy9xAIyhzhH0w51FGTvixPTLv9KAV/Acu3/nw==
+X-Google-Smtp-Source: ABdhPJxmHajQAtmeAOa2hqK9jIE6Fvj7k4Q2daHftWuREJvjw97wdOFcHX4vJ74gWyi2jlegcsdeaAeZ+9EvNgHAy2U=
+X-Received: by 2002:a5d:9e17:0:b0:657:b212:c97e with SMTP id
+ h23-20020a5d9e17000000b00657b212c97emr13187580ioh.176.1652359688147; Thu, 12
+ May 2022 05:48:08 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <BN9PR18MB4251F84C9D4C538DB6D63CFCDBCB9@BN9PR18MB4251.namprd18.prod.outlook.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+References: <20220510124929.91000-1-robert.marko@sartura.hr>
+ <20220510124929.91000-2-robert.marko@sartura.hr> <0815f581-ca5b-6fb6-a59e-f5d0a3686caa@linaro.org>
+ <CA+HBbNFnXoEghSdhTYoC-VvCMkiEuuee9p8SuNGubYCeLWoYfA@mail.gmail.com> <41cc4506-57be-a831-57d5-e539e8a95610@linaro.org>
+In-Reply-To: <41cc4506-57be-a831-57d5-e539e8a95610@linaro.org>
+From:   Robert Marko <robert.marko@sartura.hr>
+Date:   Thu, 12 May 2022 14:47:57 +0200
+Message-ID: <CA+HBbNGvXtGhuxRgz-7VSPh1HJwdeTOD1fU7rWV2xBEvhf2WYA@mail.gmail.com>
+Subject: Re: [PATCH v2 02/11] dt-bindings: marvell: convert Armada 37xx
+ compatibles to YAML
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        krzysztof.kozlowski+dt@linaro.org, Andrew Lunn <andrew@lunn.ch>,
+        gregory.clement@bootlin.com, sebastian.hesselbarth@gmail.com,
+        kostap@marvell.com, devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        =?UTF-8?Q?Pali_Roh=C3=A1r?= <pali@kernel.org>,
+        =?UTF-8?B?TWFyZWsgQmVow7pu?= <marek.behun@nic.cz>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -65,17 +73,118 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> Basically, the cpu-subsystems of Prestera 98DX25xx (AC5) and Prestera 98DX35xx (AC5X) are the same.
+On Thu, May 12, 2022 at 2:36 PM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 12/05/2022 14:26, Robert Marko wrote:
+> > On Wed, May 11, 2022 at 6:52 PM Krzysztof Kozlowski
+> > <krzysztof.kozlowski@linaro.org> wrote:
+> >>
+> >> On 10/05/2022 14:49, Robert Marko wrote:
+> >>
+> >> Thank you for your patch. There is something to discuss/improve.
+> >>
+> >>> -
+> >>> - - compatible: must contain "cznic,turris-mox"
+> >>> diff --git a/Documentation/devicetree/bindings/arm/marvell/armada-37xx.yaml b/Documentation/devicetree/bindings/arm/marvell/armada-37xx.yaml
+> >>> new file mode 100644
+> >>> index 000000000000..3f41ef2c6f3e
+> >>> --- /dev/null
+> >>> +++ b/Documentation/devicetree/bindings/arm/marvell/armada-37xx.yaml
+> >>> @@ -0,0 +1,50 @@
+> >>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> >>> +%YAML 1.2
+> >>> +---
+> >>> +$id: http://devicetree.org/schemas/arm/marvell/armada-37xx.yaml#
+> >>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> >>> +
+> >>> +title: Marvell Armada 37xx Platforms Device Tree Bindings
+> >>> +
+> >>> +maintainers:
+> >>> +  - Robert Marko <robert.marko@sartura.hr>
+> >>> +
+> >>> +properties:
+> >>> +  $nodename:
+> >>> +    const: '/'
+> >>> +  compatible:
+> >>> +    oneOf:
+> >>> +      - description: Armada 3710 SoC
+> >>> +        items:
+> >>> +          - const: marvell,armada3710
+> >>
+> >> This does not look correct. The SoC usually cannot be used by itself,
+> >> it's always a part of some product, SoM, board.
+> >
+> > Hi Krzysztof,
+> > Currently, there are no Armada 3710 boards present in Linux, so I just
+> > put the SoC compatible.
+> > If that is not appropriate, I can drop it.
+>
+> Yes, please drop it.
+>
+> It seems several Marvel boards and bindings use wrong convention for
+> compatibles. We discussed it here:
+> https://lore.kernel.org/all/1ed03960-77f6-1a9e-2378-07a6c51f42f7@linaro.org/
+> AC5 and CN9130 have the same wrong patterns.
+>
+> >
+> >>
+> >>> +
+> >>> +      - description: Armada 3720 SoC
+> >>> +        items:
+> >>> +          - enum:
+> >>> +              - marvell,armada-3720-db
+> >>> +              - globalscale,espressobin
+> >>> +              - cznic,turris-mox
+> >>> +              - methode,udpu
+> >>
+> >> Order by name.
+> > Will fixup in v3.
+> >
+> >>
+> >>> +          - const: marvell,armada3720
+> >>> +          - const: marvell,armada3710
+> >>> +
+> >>> +      - description: Globalscale Espressobin boards
+> >>> +        items:
+> >>> +          - enum:
+> >>> +              - globalscale,espressobin-emmc
+> >>> +              - globalscale,espressobin-ultra
+> >>> +              - globalscale,espressobin-v7
+> >>> +          - const: globalscale,espressobin
+> >>> +          - const: marvell,armada3720
+> >>> +          - const: marvell,armada3710
+> > Do these const compatibles also need to be in alphabetical ordering,
+> > cause I ported them as they are meant to be used with the board and
+> > then 3720 compatibles being in front of 3710 one as required by the current
+> > text bindings.
+>
+> Entries in enum should be ordered alphabetically. Then the entire set "-
+> description: Globalscale Espressobin boards" should have some logical
+> order, not necessarily by name.
+>
+> Anyway this is not a requirement but rather suggestion because having
+> things ordered reduces amount of conflicts when two people add new
+> boards (because they add it not at the end, but somewhere in the middle
+> following some order).
 
-Great, thanks for the conformation.
+Hi,
+understood, will send a v3 soon.
 
-> The DTSI Chris proposed had the PCIe portion removed.
+Regards,
+Robert
+>
+>
+> Best regards,
+> Krzysztof
 
-> We have PCIe support for AC5/AC5X so we would obviously like to
-> include this portion in both the DTSI and as a patch to the Armada8K
-> PCIe driver.
 
-So you can add the needed node to the .dtsi as part of the patch to
-the pci-aardvark.c driver. That sounds O.K.
 
-    Andrew
+-- 
+Robert Marko
+Staff Embedded Linux Engineer
+Sartura Ltd.
+Lendavska ulica 16a
+10000 Zagreb, Croatia
+Email: robert.marko@sartura.hr
+Web: www.sartura.hr
