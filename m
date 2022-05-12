@@ -2,123 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 578D352452A
-	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 07:51:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EDDDA524522
+	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 07:48:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349973AbiELFvZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 May 2022 01:51:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52398 "EHLO
+        id S1349981AbiELFsc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 May 2022 01:48:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45126 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237798AbiELFvY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 01:51:24 -0400
-X-Greylist: delayed 366 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 11 May 2022 22:51:18 PDT
-Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [IPv6:2001:67c:2050:0:465::202])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0033E506C6;
-        Wed, 11 May 2022 22:51:17 -0700 (PDT)
-Received: from smtp1.mailbox.org (smtp1.mailbox.org [10.196.197.1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4KzLMh0dpMz9t2F;
-        Thu, 12 May 2022 07:45:04 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dylanvanassche.be;
-        s=MBO0001; t=1652334304;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding;
-        bh=Mjrv/G6HrIBpduWu1g0fC288vFkgwsi6v+XkaQ1EIAw=;
-        b=fyaBxxNAJxPwOOSm4Ko49ricSxn6uh/uoCvNEjbnzlK9D6D+JvaYq4SVn3wuRfS902o1It
-        mVW7wJRowWQ7hOBLhWtC040pkFck2OWyHOmeD/ffcaLpG4jb7aF8x+Z/N1rcc5RYAxcWtH
-        HSRAAL/d2qjSLFrTMDSM6GDSua39ssYm38AKrc8T1sTeooZAGhaZvLRS/BaOWrJBS2+njE
-        5PMrFcAXbkAEW/g4cSk/GWcZAjalBNscC4cXMP9OYF0XY6hho1GB8Zj2DzjVpzaPK5Zfhq
-        oAbjT1Mpq0VyJ0H4TvY7ubxKVa3o70QNTOPt9dS+I/Cn8qbamD/3wp0zxbOY9Q==
-From:   Dylan Van Assche <me@dylanvanassche.be>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Dylan Van Assche <me@dylanvanassche.be>
-Subject: [PATCH] arm64: dts: qcom/sdm845-shift-axolotl: Enable pmi9889 LPG LED
-Date:   Thu, 12 May 2022 07:44:39 +0200
-Message-Id: <20220512054439.13971-1-me@dylanvanassche.be>
+        with ESMTP id S230050AbiELFsb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 01:48:31 -0400
+Received: from mail-pj1-x1031.google.com (mail-pj1-x1031.google.com [IPv6:2607:f8b0:4864:20::1031])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98AAD4B41D
+        for <devicetree@vger.kernel.org>; Wed, 11 May 2022 22:48:29 -0700 (PDT)
+Received: by mail-pj1-x1031.google.com with SMTP id fv2so4180370pjb.4
+        for <devicetree@vger.kernel.org>; Wed, 11 May 2022 22:48:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=Xuxuada9VjQWUI1huyzXxe5QzMXan59Iyu/e0FTIM3E=;
+        b=ASJQRBuMuNpLQOOTO1/95U8uONu/PxLK1NQwtEc5uIIinPwbzZ+EiMTqvJW4QuLzs5
+         Dvqj2QCJsNx8sPa/tDARlduwW3wdhQ0FGWnBcOUYQPrLWhXtmvZ6L3lTWYbNMl4MuYAf
+         A/PyOdptPDjw6TlGMudLwSFxHjVnS2Te9OSnDg+gxoZsDP/tNurbNk44BFro9n430bhV
+         vCHyXSBVgahfrymdhsL+5cRgGU7FA/ts3WzupsI2VR2OSHHZ3vUiHxnlMmFDF5i3eP0d
+         +FD1eSppYkkUwZIlNxuO6EhS0yW5e5kxoU1rlLL/KgKIpZGwrK/dbcF9nIeuXBhIBiHy
+         o7dw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=Xuxuada9VjQWUI1huyzXxe5QzMXan59Iyu/e0FTIM3E=;
+        b=lXRNV6mbi7pY+2JlHDYfZN8N7cuVab1PK1ySidVicY/SlxRfYOK1N/ulByCRCjzWH3
+         pAbbHT3OsdPH1FV47IDhLTrz9LgMt7QPxGJYA7Xyl/imt2G9HVTLqVDejAschtwMP1DF
+         dOoQtJ0kV+egTG3wlFZXx7bXfSyaOe/gA5tRzEBQED5utq9w+XWAoG3EP/sQ0onlto29
+         KzJAfUPBx5v8ygBL/ED+idCiiSVfBtKB3AFjNF7CD1PXzfSVSm/F12RZ+Y807nav5Ptv
+         KUkSxY3q34d8GghgvdWrRNcbqL75VxIVTVLDPwHxF7sb7Bhy5x8NVhERJFdlOZEOJ6T2
+         4/Yg==
+X-Gm-Message-State: AOAM533GUnCO4bHKp6qPkrK8WGNzR/u1cHxys547OfQp+L42QFfklyJC
+        InZid05iXyEDxi9Y8SEthnRMpA==
+X-Google-Smtp-Source: ABdhPJy/83UwXF9qp2QmxMhj6rkiPyZePvTFVEifIrC1Ee9PJQriq+WUh+dvyq4lN3UFDvlBYmDWUg==
+X-Received: by 2002:a17:902:e989:b0:15f:1545:326d with SMTP id f9-20020a170902e98900b0015f1545326dmr16902177plb.119.1652334509123;
+        Wed, 11 May 2022 22:48:29 -0700 (PDT)
+Received: from localhost ([122.162.234.2])
+        by smtp.gmail.com with ESMTPSA id p21-20020a1709028a9500b0015e8d4eb245sm2868086plo.143.2022.05.11.22.48.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 11 May 2022 22:48:28 -0700 (PDT)
+Date:   Thu, 12 May 2022 11:18:25 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Rex-BC Chen <rex-bc.chen@mediatek.com>
+Cc:     rafael@kernel.org, robh+dt@kernel.org, krzk+dt@kernel.org,
+        matthias.bgg@gmail.com, jia-wei.chang@mediatek.com,
+        roger.lu@mediatek.com, hsinyi@google.com, khilman@baylibre.com,
+        angelogioacchino.delregno@collabora.com, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+Subject: Re: [PATCH v6 00/10] cpufreq: mediatek: Cleanup and support MT8183
+ and MT8186
+Message-ID: <20220512054825.aqe4g4lupuqj3rcq@vireshk-i7>
+References: <20220505115226.20130-1-rex-bc.chen@mediatek.com>
+ <20220506042004.hqzpb66shak4y7rz@vireshk-i7>
+ <86851bd03128cc61082d516ebff929d3637063cb.camel@mediatek.com>
+ <20220512052732.iqphgpveoyrqjlqg@vireshk-i7>
+ <af82434adea0b648d74ed5ffd123e0faaaac6508.camel@mediatek.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <af82434adea0b648d74ed5ffd123e0faaaac6508.camel@mediatek.com>
+User-Agent: NeoMutt/20180716-391-311a52
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enables the RGB notification LED on the SHIFT 6mq (sdm845-shift-axolotl)
-with the Qualcomm Light Pulse Generator bindings by Bjorn Andersson [1].
-Patches are merged in for-next branch of linux-leds.
-Tested these changes on the SHIFT 6mq.
+On 12-05-22, 13:33, Rex-BC Chen wrote:
+> Matthias is not the member of mediatek, so I think we still need his
+> feedback for these three patches.
 
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/pavel/linux-leds.git/commit/?h=for-next&id=a8e53db46f19f67be6a26488aafb7d10c78e33bd
+Please ping him and ask for his feedback then.
 
-Signed-off-by: Dylan Van Assche <me@dylanvanassche.be>
----
- .../boot/dts/qcom/sdm845-shift-axolotl.dts    | 29 +++++++++++++++++++
- 1 file changed, 29 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts b/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts
-index 847f6217a77b..af412ac2c9d0 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts
-+++ b/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts
-@@ -2,11 +2,13 @@
- /*
-  * Copyright (c) 2022, Alexander Martinz <amartinz@shiftphones.com>
-  * Copyright (c) 2022, Caleb Connolly <caleb@connolly.tech>
-+ * Copyright (c) 2022, Dylan Van Assche <me@dylanvanassche.be>
-  */
- 
- /dts-v1/;
- 
- #include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/leds/common.h>
- #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
- #include "sdm845.dtsi"
- #include "pm8998.dtsi"
-@@ -554,6 +556,33 @@ &pmi8998_smb2 {
- 	monitored-battery = <&battery>;
- };
- 
-+&pmi8998_lpg {
-+	status = "okay";
-+
-+	multi-led {
-+		color = <LED_COLOR_ID_RGB>;
-+		function = LED_FUNCTION_STATUS;
-+
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		led@3 {
-+			reg = <3>;
-+			color = <LED_COLOR_ID_BLUE>;
-+		};
-+
-+		led@4 {
-+			reg = <4>;
-+			color = <LED_COLOR_ID_GREEN>;
-+		};
-+
-+		led@5 {
-+			reg = <5>;
-+			color = <LED_COLOR_ID_RED>;
-+		};
-+	};
-+};
-+
- &qup_uart9_default {
- 	pinconf-rx {
- 		pins = "gpio5";
 -- 
-2.36.1
-
+viresh
