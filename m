@@ -2,86 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DC4A5525849
-	for <lists+devicetree@lfdr.de>; Fri, 13 May 2022 01:28:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D4B1525857
+	for <lists+devicetree@lfdr.de>; Fri, 13 May 2022 01:31:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1359461AbiELX2b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 May 2022 19:28:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52468 "EHLO
+        id S1359491AbiELXbP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 May 2022 19:31:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33272 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1359472AbiELX2X (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 19:28:23 -0400
-Received: from mxd2.seznam.cz (mxd2.seznam.cz [IPv6:2a02:598:2::210])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1AF6D34B81;
-        Thu, 12 May 2022 16:28:21 -0700 (PDT)
-Received: from email.seznam.cz
-        by email-smtpc17a.ng.seznam.cz (email-smtpc17a.ng.seznam.cz [10.23.18.18])
-        id 3b4a8071dfe6534f3a97211f;
-        Fri, 13 May 2022 01:28:13 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=seznam.cz; s=beta;
-        t=1652398093; bh=Irz5y4Fs6NYHzyfuWBHo/6l/ndZWpdRu3zSk1CvfZSg=;
-        h=Received:From:To:Cc:Subject:Date:Message-Id:X-Mailer:In-Reply-To:
-         References:MIME-Version:Content-Transfer-Encoding:X-szn-frgn:
-         X-szn-frgc;
-        b=d2ZQldvb9eKhCHkPsE+x6XnBv+m+PpcmvYKCwP8IdV9uq9EHzKSTwcO3VfP9BdLQM
-         jBnV+nknzSoKA8KO86+3Xjn4lnQWw1ZSppN0WdysYBFFTm8TfyADsqQw/qJS02y9oH
-         zjzvnWkbewYQWiG+MU5rRRpvLTucF5XxVuudP/gY=
-Received: from localhost.localdomain (ip-89-176-234-80.net.upcbroadband.cz [89.176.234.80])
-        by email-relay29.ng.seznam.cz (Seznam SMTPD 1.3.136) with ESMTP;
-        Fri, 13 May 2022 01:28:08 +0200 (CEST)  
-From:   Matej Vasilevski <matej.vasilevski@seznam.cz>
-To:     linux-can@vger.kernel.org, mkl@pengutronix.de,
-        pisa@cmp.felk.cvut.cz
-Cc:     devicetree@vger.kernel.org, netdev@vger.kernel.org,
-        ondrej.ille@gmail.com, martin.jerabek01@gmail.com,
-        matej.vasilevski@seznam.cz
-Subject: [RFC PATCH 3/3] doc: ctucanfd: RX frames timestamping for platform devices
-Date:   Fri, 13 May 2022 01:27:07 +0200
-Message-Id: <20220512232706.24575-4-matej.vasilevski@seznam.cz>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220512232706.24575-1-matej.vasilevski@seznam.cz>
-References: <20220512232706.24575-1-matej.vasilevski@seznam.cz>
+        with ESMTP id S1359494AbiELXbO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 19:31:14 -0400
+Received: from mail-pj1-x102c.google.com (mail-pj1-x102c.google.com [IPv6:2607:f8b0:4864:20::102c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B5725DE5B;
+        Thu, 12 May 2022 16:31:13 -0700 (PDT)
+Received: by mail-pj1-x102c.google.com with SMTP id gj17-20020a17090b109100b001d8b390f77bso9241733pjb.1;
+        Thu, 12 May 2022 16:31:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=eYpdJ90sIk3qZfEgX1a80cpN/dFwOCIJBaG2OIahXBc=;
+        b=qKp7BG8mXAqZXqb/q+PqxvmItgFgFMkAAnwKz1ZHXkZUzAmYP1HhV7uDIrl8P5ETsq
+         wcXGlgBZT6WcjLF4FbrqrsOPbP6NYQLlPiTVFfR+/fdNCoT+aOUjWHFviEiJEDWPRe8M
+         QAZVv4pIpo4JlGexYJ02gmNzrN7VyihR6x7qLYq1mKKzPKPZZoiql485/sL4mdIcSlaH
+         qXl8S8sFG43zr08JWElKyp6uI8TS5HgtN4WwArQ9QPt7WWqnpi5JwOLaoVVY6il+NlE4
+         Aft7cZSdhohv0lDf1inYoo0+fKqi5aFjNKon+ogLso8wmA2p1Z/RWkB02i+JU4p0uBbL
+         Vwqg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=eYpdJ90sIk3qZfEgX1a80cpN/dFwOCIJBaG2OIahXBc=;
+        b=PZcgH/et2KtIg4zaAHykniXJwhSOJ71LUyGULWmqihqatvkTNUW/be0SZMSLZH0pg0
+         Ye04SHYnQw6gOGfG//fHvJLpE9VE8g8t/FDEE8SlJmLjCcEy2GAvLIJloyIk1dxalG7t
+         TPDfDHA1VKIPNiZtX1bVHP/okjblixT4z6YdYaCPKnZ59fzQx5ZVhsdwxRfCJolON+MA
+         KowDd+XRFqvN7KH56dZY5+iPLNr6Ik9dUDozKaKOqvnR72ZiTOg80HqQdoRCkkhl6iiz
+         XAHDO/3DxS+Ixo6/gcllr3+HaVe7YAFzj+9iTTFv84UDQUzpnyGeJiS33NZuskpFVqV+
+         mssQ==
+X-Gm-Message-State: AOAM531VYxd/9ti1g3WpSvCWXx4Ij2mxiifpVaviVHLuvAPqpIuCzMDQ
+        8P76set5+lsahjcPzcqspBI=
+X-Google-Smtp-Source: ABdhPJxGwDjAa20EhqPaHUJXCC4KPV0xgsDoyqJN1XWSOCehFaWL3975iAR5D+4hE6C6ezwHizsd1w==
+X-Received: by 2002:a17:902:f24c:b0:15c:b564:e4cc with SMTP id j12-20020a170902f24c00b0015cb564e4ccmr1893884plc.137.1652398272481;
+        Thu, 12 May 2022 16:31:12 -0700 (PDT)
+Received: from google.com ([2620:15c:202:201:88fd:a79c:b005:79b1])
+        by smtp.gmail.com with ESMTPSA id a3-20020a170902710300b0015e8d4eb22esm443677pll.120.2022.05.12.16.31.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 12 May 2022 16:31:11 -0700 (PDT)
+Date:   Thu, 12 May 2022 16:31:08 -0700
+From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To:     Stephen Boyd <swboyd@chromium.org>
+Cc:     Doug Anderson <dianders@chromium.org>,
+        LKML <linux-kernel@vger.kernel.org>, patches@lists.linux.dev,
+        chrome-platform@lists.linux.dev,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Benson Leung <bleung@chromium.org>,
+        Guenter Roeck <groeck@chromium.org>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        "Joseph S. Barrera III" <joebar@chromium.org>
+Subject: Re: [PATCH v2 1/2] dt-bindings: google,cros-ec-keyb: Introduce
+ switches only compatible
+Message-ID: <Yn2YvIFNhaz5GmfI@google.com>
+References: <20220429233112.2851665-1-swboyd@chromium.org>
+ <20220429233112.2851665-2-swboyd@chromium.org>
+ <CAD=FV=VX8EEgkeLgKwyKvjztcjbA8UhKOUpTr-sS1_Ec=QcWbA@mail.gmail.com>
+ <CAKdAkRSOtAD6u_cwKhHeMLgz5dC2hfPvVvqmj+17b4i-nspfgg@mail.gmail.com>
+ <CAE-0n50Y8tZD9Djn9TVaAiHxehFJ2cZKZ1Z09piDk47uw3nK+Q@mail.gmail.com>
+ <Ynzf5jEIECLmELK7@google.com>
+ <CAE-0n50+obQ5qgPNPtUY=OmTgU9bZQ3hNw+MaG9Wi3SQSc-i4A@mail.gmail.com>
+ <CAE-0n52WVNru5fnyaB_7wcBOk4twL0Q92YpRbd40-o6ZBmbXWQ@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-szn-frgn: <86776cbb-31ff-433e-8494-c9ed56c96341>
-X-szn-frgc: <0>
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAE-0n52WVNru5fnyaB_7wcBOk4twL0Q92YpRbd40-o6ZBmbXWQ@mail.gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Update the section about timestamping RX frames with instructions
-how to enable it.
+On Thu, May 12, 2022 at 01:11:39PM -0700, Stephen Boyd wrote:
+> Quoting Stephen Boyd (2022-05-12 11:58:02)
+> > Quoting Dmitry Torokhov (2022-05-12 03:22:30)
+> > >
+> > > Have we solved module loading in the presence of multiple compatibles?
+> > > IIRC we only ever try to load module on the first compatible, so you'd
+> > > be breaking autoloading cros-ec-keyb on these older kernels. I think the
+> > > cure that is being proposed is worse than the disease.
+> > >
+> >
+> > The first compatible is still cros-ec-keyb in the driver though? Or you
+> > mean the first compatible in the node? I'm not aware of this problem at
+> > all but I can certainly test out a fake node and module and see if it
+> > gets autoloaded.
+> 
+> I can't get this test module to fail to load no matter what I do. I
+> commented out the second match table entry, and kept it there and
+> removed 'vendor,switch-compat' from the DTS. Module still autoloads.
+> 
 
-Signed-off-by: Matej Vasilevski <matej.vasilevski@seznam.cz>
----
- .../networking/device_drivers/can/ctu/ctucanfd-driver.rst | 8 ++++++--
- 1 file changed, 6 insertions(+), 2 deletions(-)
+Ah, indeed, if the module contains both compatibles we will load it. It
+is broken when we have 2 or more modules and DT lists several
+compatibles for a device.
 
-diff --git a/Documentation/networking/device_drivers/can/ctu/ctucanfd-driver.rst b/Documentation/networking/device_drivers/can/ctu/ctucanfd-driver.rst
-index 2fde5551e756..53ebdde3fffe 100644
---- a/Documentation/networking/device_drivers/can/ctu/ctucanfd-driver.rst
-+++ b/Documentation/networking/device_drivers/can/ctu/ctucanfd-driver.rst
-@@ -386,8 +386,12 @@ The CTU CAN FD core reports the exact timestamp when the frame has been
- received. The timestamp is by default captured at the sample point of
- the last bit of EOF but is configurable to be captured at the SOF bit.
- The timestamp source is external to the core and may be up to 64 bits
--wide. At the time of writing, passing the timestamp from kernel to
--userspace is not yet implemented, but is planned in the future.
-+wide. Currently only timestamps from platform devices are supported,
-+no support for PCI devices yet. To enable timestamping, recompile the
-+kernel with CAN_CTUCANFD_PLATFORM_ENABLE_HW_TIMESTAMPS set to yes. You
-+will also have to provide the timestamping counter frequency and bit
-+width in the device tree, see the dt-bindings documentation for more
-+details.
- 
- Handling TX
- ~~~~~~~~~~~
+OK, it looks like you feel very strongly regarding having a dedicated
+compatible. In this case please make sure that the compatible's behavior
+is properly documented (i.e. google,cros-ec-keyb compatible does not
+imply that there are *NO* switches, and users having buttons and
+switches in addition to matrix keys can also use google,cros-ec-keyb as
+a compatible for their device). We also need to mention that with the
+2nd compatible the device still can report key/button events, it is
+simply that there is no matrix component. Should we call the other
+compatible google,cros-ec-bs?
+
+We should also abort binding the device if it specifies the new
+compatible, but EC does not report any buttons or switches.
+
+Thanks.
+
 -- 
-2.25.1
-
+Dmitry
