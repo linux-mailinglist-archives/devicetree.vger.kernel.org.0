@@ -2,88 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9D0E952533B
-	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 19:09:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 36F81525377
+	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 19:22:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1356862AbiELRJa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 May 2022 13:09:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57410 "EHLO
+        id S1356984AbiELRWN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 May 2022 13:22:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41936 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238286AbiELRJY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 13:09:24 -0400
-Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com [148.163.156.1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 363D2269EF6;
-        Thu, 12 May 2022 10:09:23 -0700 (PDT)
-Received: from pps.filterd (m0098394.ppops.net [127.0.0.1])
-        by mx0a-001b2d01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 24CGqWDG004183;
-        Thu, 12 May 2022 17:09:00 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=message-id : date :
- subject : to : cc : references : from : in-reply-to : content-type :
- content-transfer-encoding : mime-version; s=pp1;
- bh=ePKra5FZpkKBNQOtZOHRk5h8AEU0vcuB/nXrxlxQZMI=;
- b=W7pXY+mF9c157K7UF/UpoCPupzyRkgWNvmeFE44FXujyi1+OlQGcAMuXLLNlO9uKJeRT
- QTaSAWdLFqky2fE8FFj+Q7veFXCkCGoZrHmtGw6hNG8aLJdrQlYAxmX4k73+OhuW26Mj
- dVlSIp9YhXKVkiSVPewOgvviMO3sStmMHW2oy00ZpVXqoLzh7szxFWsX+s2N/dF/xRAb
- ECMEtTJ+pGE0mcJFpbYlZP7zieApdtjkCu5kyafS2ywU+7ectrNW4zRhmrJre/4NiK6z
- ASK7E8SpSsAhuFm8dS9RD2c/pLiJlS8iILZdIgwVXt52X6fAoYwZENraV3zDefdEgUJj 6w== 
-Received: from ppma03dal.us.ibm.com (b.bd.3ea9.ip4.static.sl-reverse.com [169.62.189.11])
-        by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3g15tgrubh-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 12 May 2022 17:09:00 +0000
-Received: from pps.filterd (ppma03dal.us.ibm.com [127.0.0.1])
-        by ppma03dal.us.ibm.com (8.16.1.2/8.16.1.2) with SMTP id 24CGmU3I030362;
-        Thu, 12 May 2022 17:08:59 GMT
-Received: from b01cxnp23034.gho.pok.ibm.com (b01cxnp23034.gho.pok.ibm.com [9.57.198.29])
-        by ppma03dal.us.ibm.com with ESMTP id 3fwgdadsp2-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 12 May 2022 17:08:59 +0000
-Received: from b01ledav001.gho.pok.ibm.com (b01ledav001.gho.pok.ibm.com [9.57.199.106])
-        by b01cxnp23034.gho.pok.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 24CH8wrX27460066
-        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Thu, 12 May 2022 17:08:58 GMT
-Received: from b01ledav001.gho.pok.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id CC80628060;
-        Thu, 12 May 2022 17:08:58 +0000 (GMT)
-Received: from b01ledav001.gho.pok.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id E3C052805E;
-        Thu, 12 May 2022 17:08:57 +0000 (GMT)
-Received: from [9.211.56.168] (unknown [9.211.56.168])
-        by b01ledav001.gho.pok.ibm.com (Postfix) with ESMTP;
-        Thu, 12 May 2022 17:08:57 +0000 (GMT)
-Message-ID: <306c28b7-7318-9b8d-f512-d6e78bd05e51@linux.ibm.com>
-Date:   Thu, 12 May 2022 12:08:57 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.0
-Subject: Re: [PATCH v2 1/2] dt-bindings: iio: humidity: Add si7020 bindings
-Content-Language: en-US
-To:     Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        robh+dt@kernel.org, lars@metafoo.de, jic23@kernel.org,
-        miltonm@us.ibm.com, David Barksdale <dbarksdale@uplogix.com>
-References: <20220512162020.33450-1-eajames@linux.ibm.com>
- <20220512162020.33450-2-eajames@linux.ibm.com>
- <20220512175125.00001a5a@Huawei.com>
-From:   Eddie James <eajames@linux.ibm.com>
-In-Reply-To: <20220512175125.00001a5a@Huawei.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-X-TM-AS-GCONF: 00
-X-Proofpoint-GUID: U9Osxt7RygooQvY3l0MSKtC5k4iFU75u
-X-Proofpoint-ORIG-GUID: U9Osxt7RygooQvY3l0MSKtC5k4iFU75u
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-UnRewURL: 0 URL was un-rewritten
+        with ESMTP id S1356986AbiELRWL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 13:22:11 -0400
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9D1A663D8
+        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 10:22:09 -0700 (PDT)
+Received: by mail-lj1-x22a.google.com with SMTP id q130so7345838ljb.5
+        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 10:22:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=rivosinc-com.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=k5uBtUuVEeyc/uDRq1ERjuwGFNzbvMoQDv2ORcXlb34=;
+        b=zSde4TismK45+H65/WKteA+kIU8dYdT5m6nUNBnPGE10a/oyMx9hE8U3rDy16Xu1eQ
+         5vWYkxU0GKQp6i6p6DMtPshoptRmUTYUYsUWN/vePrAPF5fClSkzPdwBZGYs4dzlulKF
+         3mg7REuBmBQrPAJsvOPivBw3HuAXK9PIwQRoVEmM2bXYJers3CHKHzuva4OQ6cAW80Vw
+         Hatmw/L8aLsB4rJ8IyF4OGEEf3na/ogfoTln7b/NDIDnoVAmREbxmA1FdstbMiU8i3WQ
+         iFXW3Qb62yRy+N0sGcJo7YJR4i0sfyNVx9bND0XVIZ8BhwvhFJ9lFaz/4QJt43NMNFq/
+         hRuw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=k5uBtUuVEeyc/uDRq1ERjuwGFNzbvMoQDv2ORcXlb34=;
+        b=x7I526jk5+OccIzb58U3A7MLH6odETHaT2YNcNj3Ezg/c7qApeuPC+Sz6EzVRPrKGY
+         gjFUhFSlm/GDr3k+UXacj1Y2NyA65M8UmsQlERuTxK4WpAq7lQSf5eYQYEqDxVZe0hzO
+         SwFj/ck8pK88tQ/NoCQh3fdwCUuMX/iavhsVOY3JK4TuSJOwoQbYl9v0PNPqtWSlXkjk
+         sNJDm87y7+Ub2iW6bddGo3+vUSVdsbhfun/K5ohWJp35MVIU+H3gNWIwt0fv9VITQQYe
+         BnFMwe6P5W4uHJIaJMacrDz8HTdJDO9FQv3Nvk2wBO/kDOIMWyAFovi1c4KGwdQLfthe
+         AyNg==
+X-Gm-Message-State: AOAM531ED2vJuEFmNtk1CNonTInZgkPGVQkdqI1kVCq87IrVoDPPu30m
+        rUVslG9V9OPW1USb3ct5pArq7xqcHjkBXMyr8n3inQ==
+X-Google-Smtp-Source: ABdhPJwRQYyKvWXSdO1RUyMSIOChIO0JcTz2B2sJ96JajpdlrOav1FcCfG0mrPRe+zl3iw+NxE/6pYCDfEEZBBurGtA=
+X-Received: by 2002:a2e:82c5:0:b0:247:e81f:8b02 with SMTP id
+ n5-20020a2e82c5000000b00247e81f8b02mr644883ljh.90.1652376128189; Thu, 12 May
+ 2022 10:22:08 -0700 (PDT)
 MIME-Version: 1.0
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.858,Hydra:6.0.486,FMLib:17.11.64.514
- definitions=2022-05-12_14,2022-05-12_01,2022-02-23_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- impostorscore=0 malwarescore=0 clxscore=1011 bulkscore=0 adultscore=0
- spamscore=0 suspectscore=0 mlxscore=0 lowpriorityscore=0 mlxlogscore=999
- phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2202240000 definitions=main-2205120079
-X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+References: <20220511201107.2311757-1-atishp@rivosinc.com> <CAAhSdy3mbGdK9LrLxZX0JL0mQxP5FrFUuneX1cQS2SABpO=7dw@mail.gmail.com>
+ <23274575.ouqheUzb2q@diego> <CAAhSdy3t6cnfR02kfHvnKdCcDPvyX4jwccV7qkR_=-dV_m0aGQ@mail.gmail.com>
+In-Reply-To: <CAAhSdy3t6cnfR02kfHvnKdCcDPvyX4jwccV7qkR_=-dV_m0aGQ@mail.gmail.com>
+From:   Atish Kumar Patra <atishp@rivosinc.com>
+Date:   Thu, 12 May 2022 10:21:56 -0700
+Message-ID: <CAHBxVyF5T7r26nAp1Hep+DRkZErr2PH43k=HwLi6iuqMXWju6Q@mail.gmail.com>
+Subject: Re: [PATCH 1/2] RISC-V: Fix counter restart during overflow for RV32
+To:     Anup Patel <anup@brainfault.org>
+Cc:     =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Atish Patra <atishp@atishpatra.org>,
+        Damien Le Moal <damien.lemoal@wdc.com>,
+        DTML <devicetree@vger.kernel.org>,
+        Jisheng Zhang <jszhang@kernel.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Rob Herring <robh+dt@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -91,92 +76,77 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On 5/12/22 11:51, Jonathan Cameron wrote:
-> On Thu, 12 May 2022 11:20:19 -0500
-> Eddie James <eajames@linux.ibm.com> wrote:
+On Thu, May 12, 2022 at 8:36 AM Anup Patel <anup@brainfault.org> wrote:
 >
->> Document the si7020 bindings with a new "silabs,skip-reset" property.
->>
->> Signed-off-by: Eddie James <eajames@linux.ibm.com>
->> ---
->>   .../bindings/iio/humidity/silabs,si7020.yaml  | 47 +++++++++++++++++++
->>   .../devicetree/bindings/trivial-devices.yaml  |  2 -
->>   2 files changed, 47 insertions(+), 2 deletions(-)
->>   create mode 100644 Documentation/devicetree/bindings/iio/humidity/silabs,si7020.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/iio/humidity/silabs,si7020.yaml b/Documentation/devicetree/bindings/iio/humidity/silabs,si7020.yaml
->> new file mode 100644
->> index 000000000000..9bee010f8d56
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/iio/humidity/silabs,si7020.yaml
->> @@ -0,0 +1,47 @@
->> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/iio/humidity/silabs,si7020.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: SI7020 humidity + temperature sensor
->> +
->> +maintainers:
->> +  - David Barksdale <dbarksdale@uplogix.com>
-> At least cc David if you are going to commit him to maintaining this binding :)
-> +CC David at that address.
-
-
-Yes, my mail to him for v1 was undeliverable... I guess I should put 
-myself instead.
-
-
+> On Thu, May 12, 2022 at 6:12 PM Heiko St=C3=BCbner <heiko@sntech.de> wrot=
+e:
+> >
+> > Am Donnerstag, 12. Mai 2022, 06:44:12 CEST schrieb Anup Patel:
+> > > On Thu, May 12, 2022 at 1:41 AM Atish Patra <atishp@rivosinc.com> wro=
+te:
+> > > >
+> > > > Pass the upper half of the initial value of the counter correctly
+> > > > for RV32.
+> > > >
+> > > > Fixes: 4905ec2fb7e6 ("RISC-V: Add sscofpmf extension support")
+> > > >
+> > > > Signed-off-by: Atish Patra <atishp@rivosinc.com>
+> > > > ---
+> > > >  drivers/perf/riscv_pmu_sbi.c | 2 +-
+> > > >  1 file changed, 1 insertion(+), 1 deletion(-)
+> > > >
+> > > > diff --git a/drivers/perf/riscv_pmu_sbi.c b/drivers/perf/riscv_pmu_=
+sbi.c
+> > > > index a1317a483512..24cea59612be 100644
+> > > > --- a/drivers/perf/riscv_pmu_sbi.c
+> > > > +++ b/drivers/perf/riscv_pmu_sbi.c
+> > > > @@ -526,7 +526,7 @@ static inline void pmu_sbi_start_overflow_mask(=
+struct riscv_pmu *pmu,
+> > > >                         max_period =3D riscv_pmu_ctr_get_width_mask=
+(event);
+> > > >                         init_val =3D local64_read(&hwc->prev_count)=
+ & max_period;
+> > > >                         sbi_ecall(SBI_EXT_PMU, SBI_EXT_PMU_COUNTER_=
+START, idx, 1,
+> > > > -                                 flag, init_val, 0, 0);
+> > > > +                                 flag, init_val, init_val >> 32, 0=
+);
+> > >
+> > > This should be under "#if __riscv_xlen =3D=3D 32".
+> >
+> > What's the difference between using CONFIG_32BIT
+> > and checking the __riscv_xlen flag value?
 >
->> +
->> +description: |
->> +   The Silicon Labs Si7013/20/21 Relative Humidity and Temperature Sensors
->> +   are i2c devices which have an identical programming interface for
->> +   measuring relative humidity and temperature.
->> +
->> +properties:
->> +  compatible:
->> +    const: silabs,si7020
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  siliabs,skip-reset:
->> +    $ref: /schemas/types.yaml#/definitions/flag
->> +    description:
->> +      Disables resetting of the device during probe
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    i2c0 {
->> +      #address-cells = <1>;
->> +      #size-cells = <0>;
->> +
->> +      si7021-a20@40 {
->> +        silabs,skip-reset;
->> +        compatible = "silabs,si7020";
->> +        reg = <0x40>;
->> +      };
->> +    };
->> +...
->> diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
->> index e5295faef52f..47a00b478867 100644
->> --- a/Documentation/devicetree/bindings/trivial-devices.yaml
->> +++ b/Documentation/devicetree/bindings/trivial-devices.yaml
->> @@ -317,8 +317,6 @@ properties:
->>             - sensortek,stk8ba50
->>               # SGX Sensortech VZ89X Sensors
->>             - sgx,vz89x
->> -            # Relative Humidity and Temperature Sensors
->> -          - silabs,si7020
->>               # Skyworks SKY81452: Six-Channel White LED Driver with Touch Panel Bias Supply
->>             - skyworks,sky81452
->>               # Socionext SynQuacer TPM MMIO module
+> It's one and the same.
+>
+> >
+> > CONFIG_32BIT seems to be a bit the more kernel'ish
+> > way to do this, but it looks like most SBI parts check the
+> > __riscv_xlen instead.
+>
+
+Not only SBI parts, there are more users of __riscv_xlen compared
+CONFIG_32BIT in arch/riscv.
+
+> I agree with you. We should prefer "#ifdef CONFIG_32BIT"
+> in this case to match the kernel coding style.
+>
+
+Sure. I will change it to CONFIG_32BIT.
+
+
+> Currently, OpenSBI does not have CONFIG_xyz defines so
+> over there we use "#if __riscv_xlen =3D=3D 32".
+>
+> Regards,
+> Anup
+>
+> >
+> >
+> > In any case, looking at the opensbi-side of the call,
+> > this fix is abviously correct, so
+> >
+> > Reviewed-by: Heiko Stuebner <heiko@sntech.de>
+> >
+> >
+> >
