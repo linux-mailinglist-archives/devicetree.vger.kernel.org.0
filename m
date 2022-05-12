@@ -2,122 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 22EB5525124
-	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 17:20:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9FB72525141
+	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 17:27:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350961AbiELPUj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 May 2022 11:20:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44080 "EHLO
+        id S1355936AbiELP1d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 May 2022 11:27:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40054 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1355874AbiELPUi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 11:20:38 -0400
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0473725AFBC
-        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 08:20:36 -0700 (PDT)
-Received: by mail-ej1-x631.google.com with SMTP id i27so10894138ejd.9
-        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 08:20:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=LSVMi3sIF030EU435n7TSz+80CX0XXIOGq6LT9c1iJs=;
-        b=R93hpC55nIrmmOwCv9ozgHF6+ZEnHvkBliQAm+PzjJ4fRxcR9juR4MHn1tg0IZlYnP
-         CnQQh8Snsq7U3+rULyhqoiz6ewotSFb6k/70frKD9FgAmPUEXNDgHCmE/oxf4DpP8f5D
-         IBXQ/CfEcH2+c2yK7DrvTsPyCchAC3lE46gfrRIGfS2p659nmV/QAxG+5p3JnZ7EyOSR
-         HqmpNvG18HLlgazoMmkwGhjOcarZiv4QymzOCYa/SFtOgOSLbYJGOsd8/MfvIjM9rJ+W
-         L2ds0d3chFwZnUa4ex//ufhmLgYweHJ3dVMPse4gNyK1LA6iB1xuJzP+BJAJZvJHQTLI
-         vNmA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=LSVMi3sIF030EU435n7TSz+80CX0XXIOGq6LT9c1iJs=;
-        b=TEVlkrAvdx0bumKY94IadsU5Coib9Wv/JtM2qOwv4FyG/3vgyO9SnjMGdw5zft94wt
-         Jgp1kLTKPo0MHpYRuFzkNfXvnDgwb4LqAvnCSvj/dIKFzxmo+HxSFgBwWxopcGYKpIr+
-         Yw/TdknalTY7pgyTLGvy44ZIU2qbAhugmZjJiGt8nJo7cQxsSD8FrCH3Rvb4rXo5+bVN
-         LcCjGw8+IIVuUVWTLmTjjnpLgpyS0cDY6KLVrZuHkNH9IF3Wpojvq9Ai5O4b+Vy3CflG
-         9Sn2cnsRK38GI2X9LWDblErupzo8powqVfgGRgqLkmWjx/sDAT00in5u3jL+y38DKs1K
-         962w==
-X-Gm-Message-State: AOAM5319X22w9eGhgWKt1geeb9oRf4OPOLoeWtuIhnswRYJcd/tDzlG5
-        uY0Nj/GOD13ePa2cUpvLuYPgJmLcDxZCFKQl4JPjm7kBKAVab+dq
-X-Google-Smtp-Source: ABdhPJyfOvuHWuBNEzCDaf6KWjVCW5+Yh5xV+7u/r/xrZNVTzYvg+dpYbastpgLiZn/zH67ln5iDNrujvtfmyJbpnMI=
-X-Received: by 2002:a17:906:58d4:b0:6f4:cebd:c4b with SMTP id
- e20-20020a17090658d400b006f4cebd0c4bmr385389ejs.492.1652368834342; Thu, 12
- May 2022 08:20:34 -0700 (PDT)
+        with ESMTP id S1355944AbiELP1a (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 11:27:30 -0400
+Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC46B6C56D;
+        Thu, 12 May 2022 08:27:28 -0700 (PDT)
+Received: (Authenticated sender: miquel.raynal@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 9BFC61C0003;
+        Thu, 12 May 2022 15:27:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1652369247;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=xe6gof0su9adg1T78nGygOfJDwljHm2NDQAvr9m7iDU=;
+        b=UFjVnqD79eYZ3HPa0Iv172QpaHho0LkO+Ptoi6Xc6jTCniR2gbNiY4fPXOX7qbcamAYVJY
+        YtXg6K01OIHYKiEo+aMJZC6mkglf4J6bYd19v1vm9XbyyGPIREP8RFbpUbU6wesZp30+W0
+        CkgRkZbhy4D9Qn0zQvKRpJMcOi/YPwKn8simKQodtnc4bPUSpU4D2m9/gvTtZv5R/IthpX
+        ln33PLd0TjKxCyCYaniL5vzU6f+X7tcp5Vz+i5BJH9uffsbJNyeboMfUVVhiIt4N3c6gpI
+        c5bMdkRoKt9D8TZfcRk+pq59HJgaTJOy0ux/pMbxCz0+l6AV/Ru66I2q284WrA==
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Mikhail Zhilkin <csharper2005@gmail.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     =?utf-8?b?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Karim <Karimdplay@gmail.com>,
+        M <x1@disroot.org>
+Subject: Re: [PATCH v3 2/3] dt-bindings: mtd: partitions: Extend fixed-partitions binding
+Date:   Thu, 12 May 2022 17:27:25 +0200
+Message-Id: <20220512152725.244872-1-miquel.raynal@bootlin.com>
+X-Mailer: git-send-email 2.27.0
+In-Reply-To: <20220503155007.2339847-1-csharper2005@gmail.com>
+References: 
 MIME-Version: 1.0
-References: <20220512013921.164637-1-swboyd@chromium.org> <20220512013921.164637-2-swboyd@chromium.org>
-In-Reply-To: <20220512013921.164637-2-swboyd@chromium.org>
-From:   Guenter Roeck <groeck@google.com>
-Date:   Thu, 12 May 2022 08:20:23 -0700
-Message-ID: <CABXOdTe9KAs8conb-LNh09dqZLkbuuhtxFirwtvZaeO=agfROQ@mail.gmail.com>
-Subject: Re: [PATCH v5 1/3] dt-bindings: cros-ec: Fix a typo in description
-To:     Stephen Boyd <swboyd@chromium.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        patches@lists.linux.dev,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE" 
-        <devicetree@vger.kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        chrome-platform@lists.linux.dev,
-        Guenter Roeck <groeck@chromium.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Craig Hesling <hesling@chromium.org>,
-        Tom Hughes <tomhughes@chromium.org>,
-        Alexandru M Stan <amstan@chromium.org>,
-        Tzung-Bi Shih <tzungbi@kernel.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Benson Leung <bleung@chromium.org>,
-        Lee Jones <lee.jones@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL
-        autolearn=ham autolearn_force=no version=3.4.6
+X-linux-mtd-patch-notification: thanks
+X-linux-mtd-patch-commit: b'33f6106400b60b0e3287efbd0a9f29476d278f06'
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 11, 2022 at 6:39 PM Stephen Boyd <swboyd@chromium.org> wrote:
->
-> A 's/pf/of/' on rpmsg-name description.
->
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> Cc: <devicetree@vger.kernel.org>
-> Cc: <chrome-platform@lists.linux.dev>
-> Cc: Guenter Roeck <groeck@chromium.org>
-> Cc: Douglas Anderson <dianders@chromium.org>
-> Cc: Craig Hesling <hesling@chromium.org>
-> Cc: Tom Hughes <tomhughes@chromium.org>
-> Cc: Alexandru M Stan <amstan@chromium.org>
-> Cc: Tzung-Bi Shih <tzungbi@kernel.org>
-> Cc: Matthias Kaehlcke <mka@chromium.org>
-> Cc: Benson Leung <bleung@chromium.org>
-> Cc: Lee Jones <lee.jones@linaro.org>
-> Signed-off-by: Stephen Boyd <swboyd@chromium.org>
+On Tue, 2022-05-03 at 15:50:07 UTC, Mikhail Zhilkin wrote:
+> Extend fixed-partitions binding for support of Sercomm partition parser
+> (add "sercomm,sc-partitions" compatible).
+> 
+> Signed-off-by: Mikhail Zhilkin <csharper2005@gmail.com>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Reviewed-by: Guenter Roeck <groeck@chromium.org>
+Applied to https://git.kernel.org/pub/scm/linux/kernel/git/mtd/linux.git mtd/next, thanks.
 
-> ---
->  Documentation/devicetree/bindings/mfd/google,cros-ec.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml b/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
-> index d1f53bd449f7..99eda9ab0651 100644
-> --- a/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
-> +++ b/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
-> @@ -61,7 +61,7 @@ properties:
->    mediatek,rpmsg-name:
->      description:
->        Must be defined if the cros-ec is a rpmsg device for a Mediatek
-> -      ARM Cortex M4 Co-processor. Contains the name pf the rpmsg
-> +      ARM Cortex M4 Co-processor. Contains the name of the rpmsg
->        device. Used to match the subnode to the rpmsg device announced by
->        the SCP.
->      $ref: "/schemas/types.yaml#/definitions/string"
-> --
-> https://chromeos.dev
->
+Miquel
