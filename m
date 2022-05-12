@@ -2,137 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6708C52511B
-	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 17:19:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 22EB5525124
+	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 17:20:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1355557AbiELPTD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 May 2022 11:19:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39108 "EHLO
+        id S1350961AbiELPUj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 May 2022 11:20:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44080 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1355535AbiELPTD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 11:19:03 -0400
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ECDCB1B7921;
-        Thu, 12 May 2022 08:19:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1652368741; x=1683904741;
-  h=date:from:to:cc:subject:in-reply-to:message-id:
-   references:mime-version;
-  bh=2FxysYr9kxWMHnyew6A3AGuoWPoDUWpnlJdlKIYnGFQ=;
-  b=adQoGU63iP6HZbajoNXR0FKG49gEsAeFv23ZuYYkpDd9aHQG18Xq37gH
-   coaXhEiemavEE86tMXvoBdvHnafM6RvdP5Uf5eNLtCmBjq++Xvg5WH+2z
-   ccjaA3YGCy4g5yFBve0LadYwA5sFYY68fQDjYQkZGeyFg4tXtfGiLPOSb
-   xwvZngA9Yr7ttHT+uQXIikHdxV/XPEvHdhbwGCUAy6HTyBNig9GWXOmlJ
-   J3Y+C8vWhDaLEy5feuvIrtzl/1w6H0AekMEYbC3ResNvP8GhFUVQfEEaH
-   ty303dXjrb03CI4hu3vilKfqroJlPPOZPmHVVqNwCVuYpZPLIXSaFIyFg
-   Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10345"; a="250553789"
-X-IronPort-AV: E=Sophos;i="5.91,220,1647327600"; 
-   d="scan'208";a="250553789"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
-  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 May 2022 08:19:01 -0700
-X-IronPort-AV: E=Sophos;i="5.91,220,1647327600"; 
-   d="scan'208";a="542813080"
-Received: from rhweight-wrk1.ra.intel.com ([137.102.106.43])
-  by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 May 2022 08:19:01 -0700
-Date:   Thu, 12 May 2022 08:18:56 -0700 (PDT)
-From:   matthew.gerlach@linux.intel.com
-X-X-Sender: mgerlach@rhweight-WRK1
-To:     Dinh Nguyen <dinguyen@kernel.org>
-cc:     robh+dt@kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org
-Subject: Re: [PATCH v4 0/3] Add device tree for Intel n6000
-In-Reply-To: <98d7e84c-086a-794f-019d-849bcc2570c9@kernel.org>
-Message-ID: <alpine.DEB.2.22.394.2205120812410.4082310@rhweight-WRK1>
-References: <20220508142624.491045-1-matthew.gerlach@linux.intel.com> <98d7e84c-086a-794f-019d-849bcc2570c9@kernel.org>
-User-Agent: Alpine 2.22 (DEB 394 2020-01-19)
+        with ESMTP id S1355874AbiELPUi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 11:20:38 -0400
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0473725AFBC
+        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 08:20:36 -0700 (PDT)
+Received: by mail-ej1-x631.google.com with SMTP id i27so10894138ejd.9
+        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 08:20:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=LSVMi3sIF030EU435n7TSz+80CX0XXIOGq6LT9c1iJs=;
+        b=R93hpC55nIrmmOwCv9ozgHF6+ZEnHvkBliQAm+PzjJ4fRxcR9juR4MHn1tg0IZlYnP
+         CnQQh8Snsq7U3+rULyhqoiz6ewotSFb6k/70frKD9FgAmPUEXNDgHCmE/oxf4DpP8f5D
+         IBXQ/CfEcH2+c2yK7DrvTsPyCchAC3lE46gfrRIGfS2p659nmV/QAxG+5p3JnZ7EyOSR
+         HqmpNvG18HLlgazoMmkwGhjOcarZiv4QymzOCYa/SFtOgOSLbYJGOsd8/MfvIjM9rJ+W
+         L2ds0d3chFwZnUa4ex//ufhmLgYweHJ3dVMPse4gNyK1LA6iB1xuJzP+BJAJZvJHQTLI
+         vNmA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=LSVMi3sIF030EU435n7TSz+80CX0XXIOGq6LT9c1iJs=;
+        b=TEVlkrAvdx0bumKY94IadsU5Coib9Wv/JtM2qOwv4FyG/3vgyO9SnjMGdw5zft94wt
+         Jgp1kLTKPo0MHpYRuFzkNfXvnDgwb4LqAvnCSvj/dIKFzxmo+HxSFgBwWxopcGYKpIr+
+         Yw/TdknalTY7pgyTLGvy44ZIU2qbAhugmZjJiGt8nJo7cQxsSD8FrCH3Rvb4rXo5+bVN
+         LcCjGw8+IIVuUVWTLmTjjnpLgpyS0cDY6KLVrZuHkNH9IF3Wpojvq9Ai5O4b+Vy3CflG
+         9Sn2cnsRK38GI2X9LWDblErupzo8powqVfgGRgqLkmWjx/sDAT00in5u3jL+y38DKs1K
+         962w==
+X-Gm-Message-State: AOAM5319X22w9eGhgWKt1geeb9oRf4OPOLoeWtuIhnswRYJcd/tDzlG5
+        uY0Nj/GOD13ePa2cUpvLuYPgJmLcDxZCFKQl4JPjm7kBKAVab+dq
+X-Google-Smtp-Source: ABdhPJyfOvuHWuBNEzCDaf6KWjVCW5+Yh5xV+7u/r/xrZNVTzYvg+dpYbastpgLiZn/zH67ln5iDNrujvtfmyJbpnMI=
+X-Received: by 2002:a17:906:58d4:b0:6f4:cebd:c4b with SMTP id
+ e20-20020a17090658d400b006f4cebd0c4bmr385389ejs.492.1652368834342; Thu, 12
+ May 2022 08:20:34 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII; format=flowed
-X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+References: <20220512013921.164637-1-swboyd@chromium.org> <20220512013921.164637-2-swboyd@chromium.org>
+In-Reply-To: <20220512013921.164637-2-swboyd@chromium.org>
+From:   Guenter Roeck <groeck@google.com>
+Date:   Thu, 12 May 2022 08:20:23 -0700
+Message-ID: <CABXOdTe9KAs8conb-LNh09dqZLkbuuhtxFirwtvZaeO=agfROQ@mail.gmail.com>
+Subject: Re: [PATCH v5 1/3] dt-bindings: cros-ec: Fix a typo in description
+To:     Stephen Boyd <swboyd@chromium.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        patches@lists.linux.dev,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE" 
+        <devicetree@vger.kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        chrome-platform@lists.linux.dev,
+        Guenter Roeck <groeck@chromium.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        Craig Hesling <hesling@chromium.org>,
+        Tom Hughes <tomhughes@chromium.org>,
+        Alexandru M Stan <amstan@chromium.org>,
+        Tzung-Bi Shih <tzungbi@kernel.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Benson Leung <bleung@chromium.org>,
+        Lee Jones <lee.jones@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On Thu, 12 May 2022, Dinh Nguyen wrote:
-
+On Wed, May 11, 2022 at 6:39 PM Stephen Boyd <swboyd@chromium.org> wrote:
 >
+> A 's/pf/of/' on rpmsg-name description.
 >
-> On 5/8/22 09:26, matthew.gerlach@linux.intel.com wrote:
->> From: Matthew Gerlach <matthew.gerlach@linux.intel.com>
->> 
->> This patch set adds a device tree for the Hard Processor System (HPS)
->> on an Agilex based Intel n6000 board.
->> 
->> Patch 1 defines the device tree binding for the HPS Copy Engine IP
->> used to copy a bootable image from host memory to HPS DDR.
->> 
->> Patch 2 defines the binding for the Intel n6000 board itself.
->> 
->> Patch 3 adds the device tree for the n6000 board.
->> 
->> Changelog v3 -> v4:
->>    - move binding yaml from soc to soc/intel
->> 
->> Changelog v2 -> v3:
->>    - remove unused label
->>    - move from misc to soc
->>    - remove 0x from #address-cells/#size-cells values
->>    - change hps_cp_eng@0 to dma-controller@0
->>    - remote inaccurate 'items:' tag
->>    - added Acked-by
->>    - add unit number to memory node
->>    - remove spi node with unaccepted compatible value
->> 
->> Changelog v1 -> v2:
->>    - add dt binding for copy enging
->>    - add dt binding for n6000 board
->>    - fix copy engine node name
->>    - fix compatible field for copy engine
->>    - remove redundant status field
->>    - add compatibility field for the board
->>    - fix SPDX
->>    - fix how osc1 clock frequency is set
->> 
->> Matthew Gerlach (3):
->>    dt-bindings: soc: add bindings for Intel HPS Copy Engine
->>    dt-bindings: intel: add binding for Intel n6000
->>    arm64: dts: intel: add device tree for n6000
->>
->>   .../bindings/arm/intel,socfpga.yaml           |  1 +
->>   .../soc/intel/intel,hps-copy-engine.yaml      | 51 ++++++++++++++
->>   arch/arm64/boot/dts/intel/Makefile            |  3 +-
->>   .../boot/dts/intel/socfpga_agilex_n6000.dts   | 66 +++++++++++++++++++
->>   4 files changed, 120 insertions(+), 1 deletion(-)
->>   create mode 100644 
->> Documentation/devicetree/bindings/soc/intel/intel,hps-copy-engine.yaml
->>   create mode 100644 arch/arm64/boot/dts/intel/socfpga_agilex_n6000.dts
->> 
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> Cc: <devicetree@vger.kernel.org>
+> Cc: <chrome-platform@lists.linux.dev>
+> Cc: Guenter Roeck <groeck@chromium.org>
+> Cc: Douglas Anderson <dianders@chromium.org>
+> Cc: Craig Hesling <hesling@chromium.org>
+> Cc: Tom Hughes <tomhughes@chromium.org>
+> Cc: Alexandru M Stan <amstan@chromium.org>
+> Cc: Tzung-Bi Shih <tzungbi@kernel.org>
+> Cc: Matthias Kaehlcke <mka@chromium.org>
+> Cc: Benson Leung <bleung@chromium.org>
+> Cc: Lee Jones <lee.jones@linaro.org>
+> Signed-off-by: Stephen Boyd <swboyd@chromium.org>
+
+Reviewed-by: Guenter Roeck <groeck@chromium.org>
+
+> ---
+>  Documentation/devicetree/bindings/mfd/google,cros-ec.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 >
-> Applied!
-
-Hi Dinh,
-
-Rob Herring suggested I move 
-Documentation/devicetree/bindings/soc/intel/intel,hps-copy-engine.yaml to 
-Documentation/devicetree/bindings/dma/intel,hps-copy-engine.yaml as well 
-as some cleanup to the yaml.  Rob also had some concerns about the h2f(lw) 
-bus that I was considering some changes.  Should I send a v6 patch set or 
-a new patchset on top of the v4 to address Rob's concerns, or do you have 
-some other suggestion?
-
-Thanks,
-Matthew
-
-
-> Thanks,
->
-> Dinh
+> diff --git a/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml b/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
+> index d1f53bd449f7..99eda9ab0651 100644
+> --- a/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
+> +++ b/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
+> @@ -61,7 +61,7 @@ properties:
+>    mediatek,rpmsg-name:
+>      description:
+>        Must be defined if the cros-ec is a rpmsg device for a Mediatek
+> -      ARM Cortex M4 Co-processor. Contains the name pf the rpmsg
+> +      ARM Cortex M4 Co-processor. Contains the name of the rpmsg
+>        device. Used to match the subnode to the rpmsg device announced by
+>        the SCP.
+>      $ref: "/schemas/types.yaml#/definitions/string"
+> --
+> https://chromeos.dev
 >
