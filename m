@@ -2,76 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 74DE3524C5A
-	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 14:04:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2AB46524C83
+	for <lists+devicetree@lfdr.de>; Thu, 12 May 2022 14:17:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349117AbiELMEq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 May 2022 08:04:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58324 "EHLO
+        id S1352872AbiELMRf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 May 2022 08:17:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42104 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346106AbiELMEq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 08:04:46 -0400
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77EFA22A89A;
-        Thu, 12 May 2022 05:04:44 -0700 (PDT)
-Received: by mail-lf1-x12a.google.com with SMTP id b18so8625297lfv.9;
-        Thu, 12 May 2022 05:04:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=5KdZkGPOMKFoYWGn89lEH4wEYbxX5oNPD2nPGAq2itM=;
-        b=YDfCLtXCLPWwDETkhJdG6lt+L0IATMHdACKjlCie0JtR+zxfARZzWLfKVQRQGhez29
-         v+LjTnCzCImXRWYO9TjE4dDVFag001hDJmwU9g9hDrwa3IFpAFTSgoLeAEljUYtz765B
-         xFjjNKRoXuAj32jnlD/iVFCKVXFXpi5ou5dcD2bixzARGhP3J8pJwdrna6JYfhqam/TW
-         tTeaaVTnM+M5rENqICgX093HvrATRiP7nSNCYSGeZczs3pZcxJ05nn/nMOmrIXfLLmub
-         lD/NEX+qYzPgHGGHG/vTvUEPTneOWFVPhFB0mHPlgoUvhMTXydZC7YD+9naDrfmCAjrp
-         cdpw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=5KdZkGPOMKFoYWGn89lEH4wEYbxX5oNPD2nPGAq2itM=;
-        b=tXeDJsWo9EENPqsnIoaHxEtz9r4nZuBp3BiOhQdV8cfDJOLrUw2LAMhKzalUuH4j8U
-         ufi+YU9EvOvysNHlUzB5GTWpnjRLETfE90OhbTgy3bqg4CF1xzgmasMEh37SaUo3lxxg
-         u/xswYoUtd/FahD6rLZrzpGxQzKdCKLNj48fUFjXXfWEzz8Z5+iH2ikA5nHxE8AaQkLD
-         cExBKJDSDqyN39h7agp8onOAtbh2mTSe3dgtzWNZkqvFk2tss8ttpUpAvLf7LJWh4RAN
-         ZlcNX8Mp7CnJH+mfgwPjjgH+Isvc667aAAC/wsOd8sC8BkJj5hTUGGlPFXgujuToFcw/
-         LE8A==
-X-Gm-Message-State: AOAM531ngtelU3hMXKzCGYCEZH1vZPdwPOqmE7D2xLx+pZHQYWNn2N9w
-        V9ot96WM1N3d1NVFENAi/dM=
-X-Google-Smtp-Source: ABdhPJxhedCMd7PTu1DAntYZHh0feSOaw5PZ7n6Eg55nP+HDLFfR4rMnWT75CnH+2j+xEO0U92Wx9Q==
-X-Received: by 2002:a05:6512:554:b0:472:1891:a14b with SMTP id h20-20020a056512055400b004721891a14bmr23815604lfl.677.1652357081972;
-        Thu, 12 May 2022 05:04:41 -0700 (PDT)
-Received: from mobilestation ([95.79.189.214])
-        by smtp.gmail.com with ESMTPSA id m3-20020a056512114300b0047255d21193sm757969lfg.194.2022.05.12.05.04.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 12 May 2022 05:04:41 -0700 (PDT)
-Date:   Thu, 12 May 2022 15:04:39 +0300
-From:   Serge Semin <fancer.lancer@gmail.com>
-To:     Sergei Shtylyov <sergei.shtylyov@gmail.com>
-Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Jens Axboe <axboe@kernel.dk>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        linux-ide@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 03/23] dt-bindings: ata: ahci-platform: Clarify common
- AHCI props constraints
-Message-ID: <20220512120439.uysohhdllax6upim@mobilestation>
-References: <20220511231810.4928-1-Sergey.Semin@baikalelectronics.ru>
- <20220511231810.4928-4-Sergey.Semin@baikalelectronics.ru>
- <68d51092-1a4c-0d42-e28d-c3b5316d580a@gmail.com>
+        with ESMTP id S1353589AbiELMRe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 08:17:34 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id E2A0C54BDB
+        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 05:17:32 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 1383A106F;
+        Thu, 12 May 2022 05:17:32 -0700 (PDT)
+Received: from [10.57.80.111] (unknown [10.57.80.111])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 84F843F66F;
+        Thu, 12 May 2022 05:17:29 -0700 (PDT)
+Message-ID: <a85eca2e-61f0-8d4b-64db-dfcc2b97d6f7@arm.com>
+Date:   Thu, 12 May 2022 13:17:23 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <68d51092-1a4c-0d42-e28d-c3b5316d580a@gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.0
+Subject: Re: [PATCH v11 20/24] arm64: dts: rockchip: enable vop2 and hdmi tx
+ on rock-3a
+Content-Language: en-GB
+To:     Peter Geis <pgwipeout@gmail.com>,
+        Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
+Cc:     Sascha Hauer <s.hauer@pengutronix.de>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        dri-devel@lists.freedesktop.org,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Sandy Huang <hjc@rock-chips.com>,
+        =?UTF-8?Q?Heiko_St=c3=bcbner?= <heiko@sntech.de>,
+        kernel test robot <lkp@intel.com>
+References: <20220422072841.2206452-1-s.hauer@pengutronix.de>
+ <20220422072841.2206452-21-s.hauer@pengutronix.de>
+ <A86359EC-5291-41BD-966E-EB7890644731@gmail.com>
+ <CAMdYzYoFG3wCQaWXQNJd7mE20OMCj=ZeuewwZfaCJyoCBT-kQQ@mail.gmail.com>
+From:   Robin Murphy <robin.murphy@arm.com>
+In-Reply-To: <CAMdYzYoFG3wCQaWXQNJd7mE20OMCj=ZeuewwZfaCJyoCBT-kQQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-9.8 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,40 +59,68 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 12, 2022 at 11:11:22AM +0300, Sergei Shtylyov wrote:
-> Hello!
+On 2022-05-08 17:53, Peter Geis wrote:
+> On Sun, May 8, 2022 at 9:40 AM Piotr Oniszczuk
+> <piotr.oniszczuk@gmail.com> wrote:
+>>
+>>
+>>
+>>> Wiadomość napisana przez Sascha Hauer <s.hauer@pengutronix.de> w dniu 22.04.2022, o godz. 09:28:
+>>>
+>>> From: Michael Riesch <michael.riesch@wolfvision.net>
+>>>
+>>> Enable the RK356x Video Output Processor (VOP) 2 on the Radxa
+>>> ROCK3 Model A.
+>>>
+>>> Signed-off-by: Michael Riesch <michael.riesch@wolfvision.net>
+>>> Reported-by: kernel test robot <lkp@intel.com>
+>>> Link: https://lore.kernel.org/r/20220310210352.451136-4-michael.riesch@wolfvision.net
+>>> Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
+>>> ---
+>>
+>> Sascha, Michael,
 > 
-> On 5/12/22 2:17 AM, Serge Semin wrote:
+> Good Afternoon,
+>>
+>> I'm using v11 series on 5.18-rc5 on rk3566 tvbox with great success.
+>> Recently i started to work on rock3-a (rk3568).
+>> v11 gives me video, audio - but cec is not working on rock3-a.
+>>
+>> I was told:
+>>
+>> 32k clock needed for cec and this clock is generated by the rtc which is embedded in the rk8xx regulator.
+>> So you should make sure it is enabled when hdmi is powerd on, eg adding it to the RK3568_PD_VO powerdomain should help
+>>
+>> I was trying to do this in dts https://pastebin.com/67wu9QrH but cec is still non-functional
+>>
+>> Maybe You have some hints/pointers here?
 > 
-> > Indeed in accordance with what is imeplemtned in the AHCI paltform driver
+> Add the following to the HDMI node:
+> assigned-clocks = <&cru CLK_HDMI_CEC>;
+> assigned-clock-rates = <32768>;
 > 
+> The issue is the clk_rtc32k_frac clock that feeds clk_rtc_32k which
+> feeds clk_hdmi_cec is 24mhz at boot, which is too high for CEC to
+> function.
+> I submitted a patch to have the hdmi driver handle this, but it broke
+> other SoCs because 32k is an optional clock.
+> Since this is the case, I'd like Robin to weigh in on going the
+> assigned-clock route again.
 
->    Implemented? :-)
+(did you mean to CC me or have I missed another thread elsewhere?)
 
-The "paltform" word is misspelled too. Thanks for noting.
+FWIW I still think it would be good to fix the clock driver(s) and/or 
+DTs to correctly deal with the availability and configuration of xin_32k 
+where appropriate. However, much like the HCLK_VO mess I guess that's a 
+larger cleanup tangent in its own right, so using "assigned-clocks" for 
+this one case in the meantime doesn't seem unreasonable. I was 
+optimistic for the cleanest, most generic solution, but if reality gets 
+in the way then oh well.
 
-> 
-> > and the way the AHCI DT nodes are defined in the DT files we can add the
-> > next AHCI DT properties constraints: AHCI CSR ID is fixed to 'ahci', PHY
-> > name is fixed to 'sata-phy', AHCI controller can't have more than 32 ports
-> > by design.
-> > 
-> > Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-> > 
-> > Changelog v2:
-> > - This is a new patch created after rebasing v1 onto the 5.18-rc3 kernel.
-> 
+Judging by the datasheet, RK3568 might actually have a similar situation 
+with its clk32k_in pin, so you may want "assigned-clock-parents" as well 
+to ensure the whole clk_rtc32k branch is really set up the way you 
+currently expect - baking any more assumptions into DTBs now only seems 
+to add potential for breakage if kernel behaviour changes in future.
 
->    This normally goes after ---...
-
-Right. I've got it noticed too on taking the @Hannes comments into
-account.
-
-All of the denoted problems will be fixed in v3.
-
--Sergey
-
-> 
-> [...]
-> 
-> MBR, Sergey
+Robin.
