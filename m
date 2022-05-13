@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E5459525B6A
-	for <lists+devicetree@lfdr.de>; Fri, 13 May 2022 08:18:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3CFEB525B3B
+	for <lists+devicetree@lfdr.de>; Fri, 13 May 2022 08:18:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1377213AbiEMGOj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 May 2022 02:14:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48370 "EHLO
+        id S1377200AbiEMGOY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 May 2022 02:14:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48446 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1377203AbiEMGOP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 May 2022 02:14:15 -0400
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D1D226FA16
-        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 23:14:13 -0700 (PDT)
-Received: by mail-wm1-x330.google.com with SMTP id o12-20020a1c4d0c000000b00393fbe2973dso6342288wmh.2
-        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 23:14:13 -0700 (PDT)
+        with ESMTP id S1377208AbiEMGOQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 May 2022 02:14:16 -0400
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2214C26FA1F
+        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 23:14:15 -0700 (PDT)
+Received: by mail-wr1-x436.google.com with SMTP id f2so2990431wrc.0
+        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 23:14:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=j60Q+m0nDVDVeq/kqo9om6jZKItdmd/25D1fiKUieoo=;
-        b=RXdzPf6RIzYbLiWfscYfUw6T2WzdY+PgkUVapfUOjjVwymUsMjbC26PCR35K/9ros3
-         NFCHpbJFnlIG89xtEy3Y8fJuHDs+f8y2VWtdjyFzlJNHqMWyxu/4TS0DPZBsmdXlvRfO
-         gOLDtt3A/M8SMk1hz6AeH3bZfptUbnH8srkE0oGQgkPBc4uhxYckRGx+iphp7MkOWgBT
-         Ebk/eV5bimzuyoo0GoKPNTzwrrxVsJuRM3lyE2FTid1oRakLXfLEAbUMBbZ6azdMuZck
-         AT14UTj/IIsDlEaeXLMvp4YOFlzorgSQCY7QkLrxR7FJ5oZSqzKhgU4mKwztI8qW8DHA
-         pRHA==
+        bh=2QnLrd3aQG4x4XRKBeZ9JG1UWhf0XATvYFxcEhWYbS4=;
+        b=F9+/MjIyLcTvcR1BJUDgg0hsFVaPyYtyTtFv2BGsFvgPi1jYrt9LIO7KKPxj40kLGj
+         qW16X7HTzpFZcQXbRkMY7x5C+OiDC1hiishMwQt9XXr1HsFf5xCLnmgpktv9gurX7350
+         B5GNOBgSoNBSIdzlr1P/uNFsBkjbOtzG+Kzy6idCPJ7q8CeiHs6gtzwc4X2v4cASoWfW
+         jgJCriYt1rst1Tyg/q3RwW+Lzoqs3M8riw7W4c2kAV5s9NWf0YQD4NlsIEqFFAnMVVJ+
+         OxpYhfHTf6Zk2gt/rqjEaAtZKYnmvY8tiuG+uLzmFPp53H1Nlvtz9A56Pu1Mm8CSStC9
+         GbEw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=j60Q+m0nDVDVeq/kqo9om6jZKItdmd/25D1fiKUieoo=;
-        b=gJaF43SZK+wa0ixiV6+WIGs6LAW3MzDwOY51agf4TMo4rj4n1C/o3baESVdxjTKjfP
-         MrvCg0pxdU8mrtoqXhBPX9Rjuj7mT/K2cuI88VFufcQJKe8vnqnploph2I+TQxSFTdTF
-         OuM4+wBpbtTg0aQlThJCzFR9h6mAMFtYi1rmPLdXHBDHLjdnzEoWSmD5pNROO1P/sANZ
-         q7rhoAEVJ3PlYA27Sac1hfvk0ZBIWXuBN7cXbwhuHlfWeLlUyx0VtszdxVX07tPqOdjs
-         Wi2BZ2mClxJC853VW6Jh0OK8W9mMBmmXOhF60ufjNe+AVrgZlxcr+UOGt+Orr9jJOwPI
-         id0w==
-X-Gm-Message-State: AOAM533pOebMVKC/CIjXJQlKXFfT01VPkWAugh/8anFzPQpoo12Lbr5n
-        8vz6FNuxIN3TlVixkgkCLsrJaQ==
-X-Google-Smtp-Source: ABdhPJxxiNFky+FKvagxgESN3eexGwvVdyb6o64BeUJIDlYUYHYzW412ZYFbVs0kakubT1n7lNKQ5A==
-X-Received: by 2002:a1c:19c1:0:b0:393:a19f:8f95 with SMTP id 184-20020a1c19c1000000b00393a19f8f95mr2940751wmz.149.1652422451913;
-        Thu, 12 May 2022 23:14:11 -0700 (PDT)
+        bh=2QnLrd3aQG4x4XRKBeZ9JG1UWhf0XATvYFxcEhWYbS4=;
+        b=QJGJ21UnNpkKi+RHq98yLzLdln7+oK/R1qBnysOoW3deELjIuX2vu9yII5bXtn2l9R
+         24Oinjjour2sIlB/JfOr+0GfPtxhfPjy4YhdHue8i1H8SpZhERa5wI9OWTwhMf4MxEjt
+         cO6Ks4EBvIFKwoRIwjYu7nKGIl7bCmYif6dZhdsmeLVvdXH9hx6tz0mieikUSLacGVRD
+         +NWal0j706sYdSYMk4fXpzTa6I6YU242gy9hdd5QqMSpZgTuICSxWYECU4/yRA1Fo/II
+         wEoqoQ2w9TumuDDdXvvQpoHxZkKLFBOaY+foTl8b6lMR78lb34WALmGYZI5eVVZa4el/
+         Zw/Q==
+X-Gm-Message-State: AOAM533Qt5MvNbUqU5sz0tH47/8vaH66NGADOApBOk0FrhxcNL0bA/Se
+        92ne/C9iZu4BtGpEFeOxIt6Kgg==
+X-Google-Smtp-Source: ABdhPJyxlT4LTSxCcbfKaqSmTY40Q1OhX2cXOOeh7WoWgy+4treWyWheDFYdpt7Ykc/JFDcvcDXSNw==
+X-Received: by 2002:adf:facd:0:b0:20a:de99:403c with SMTP id a13-20020adffacd000000b0020ade99403cmr2477557wrs.123.1652422453624;
+        Thu, 12 May 2022 23:14:13 -0700 (PDT)
 Received: from localhost.localdomain (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id g4-20020adfbc84000000b0020c5253d8f3sm1477760wrh.63.2022.05.12.23.14.10
+        by smtp.gmail.com with ESMTPSA id g4-20020adfbc84000000b0020c5253d8f3sm1477760wrh.63.2022.05.12.23.14.12
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 12 May 2022 23:14:11 -0700 (PDT)
+        Thu, 12 May 2022 23:14:12 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
@@ -67,9 +67,9 @@ To:     Andy Gross <agross@kernel.org>,
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Rob Herring <robh@kernel.org>,
         Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Subject: [PATCH v3 1/7] dt-bindings: clock: qcom,gcc-sdm845: add parent power domain
-Date:   Fri, 13 May 2022 08:13:41 +0200
-Message-Id: <20220513061347.46480-2-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v3 2/7] dt-bindings: opp: accept array of frequencies
+Date:   Fri, 13 May 2022 08:13:42 +0200
+Message-Id: <20220513061347.46480-3-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.32.0
 In-Reply-To: <20220513061347.46480-1-krzysztof.kozlowski@linaro.org>
 References: <20220513061347.46480-1-krzysztof.kozlowski@linaro.org>
@@ -85,8 +85,9 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Allow Qualcomm GCC to register its parent power domain (e.g. RPMHPD) to
-properly pass performance state from children.
+Devices might need to control several clocks when scaling the frequency
+and voltage.  Allow passing array of clock frequencies, similarly to the
+voltages.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
@@ -96,23 +97,30 @@ Acked-by: Rob Herring <robh@kernel.org>
 
 Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 ---
- Documentation/devicetree/bindings/clock/qcom,gcc-sdm845.yaml | 3 +++
- 1 file changed, 3 insertions(+)
+ Documentation/devicetree/bindings/opp/opp-v2-base.yaml | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/clock/qcom,gcc-sdm845.yaml b/Documentation/devicetree/bindings/clock/qcom,gcc-sdm845.yaml
-index d902f137ab17..daf7906ebc40 100644
---- a/Documentation/devicetree/bindings/clock/qcom,gcc-sdm845.yaml
-+++ b/Documentation/devicetree/bindings/clock/qcom,gcc-sdm845.yaml
-@@ -43,6 +43,9 @@ properties:
-   '#reset-cells':
-     const: 1
+diff --git a/Documentation/devicetree/bindings/opp/opp-v2-base.yaml b/Documentation/devicetree/bindings/opp/opp-v2-base.yaml
+index 76c8acd981b3..66d0ec763f0b 100644
+--- a/Documentation/devicetree/bindings/opp/opp-v2-base.yaml
++++ b/Documentation/devicetree/bindings/opp/opp-v2-base.yaml
+@@ -50,6 +50,16 @@ patternProperties:
+           property to uniquely identify the OPP nodes exists. Devices like power
+           domains must have another (implementation dependent) property.
  
-+  power-domains:
-+    maxItems: 1
++          Entries for multiple clocks shall be provided in the same field, as
++          array of frequencies.  The OPP binding doesn't provide any provisions
++          to relate the values to their clocks or the order in which the clocks
++          need to be configured and that is left for the implementation
++          specific binding.
++        minItems: 1
++        maxItems: 16
++        items:
++          maxItems: 1
 +
-   '#power-domain-cells':
-     const: 1
- 
+       opp-microvolt:
+         description: |
+           Voltage for the OPP
 -- 
 2.32.0
 
