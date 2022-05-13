@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 92843526F6B
-	for <lists+devicetree@lfdr.de>; Sat, 14 May 2022 09:15:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F01DC526E6A
+	for <lists+devicetree@lfdr.de>; Sat, 14 May 2022 09:14:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229604AbiENBlY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 May 2022 21:41:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57608 "EHLO
+        id S229613AbiENBlm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 May 2022 21:41:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58282 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229707AbiENBlR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 May 2022 21:41:17 -0400
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2BAE53AAB27
-        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 16:45:59 -0700 (PDT)
-Received: by mail-lj1-x233.google.com with SMTP id y19so11977922ljd.4
-        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 16:45:59 -0700 (PDT)
+        with ESMTP id S229610AbiENBll (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 May 2022 21:41:41 -0400
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 685953AC65E
+        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 16:46:16 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id bq30so16992186lfb.3
+        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 16:46:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=x2qQH918JYdrczWJIIm8XRXT3abBOAyM4GeAzsiuGrc=;
-        b=SeoS+Ay7JrwJplYt71eGo1y7KdWEdpebHQHUFH7uc44/Oiokf9Xuhq5HUcR0IlcZQB
-         5nSeDFF8qJmowEkvBKERSetRLJp5V21ZNpTUzooXmuCVqrM3DOTUL8FpzV94OLKU0ZK+
-         ngeqho+zdHKi7nMqCcM2zSe5j9eL0SWtpsUzjP84bLAxdPilwcVvPfBUg0kc8wlfJymz
-         g7RPXVhTwmTeMterfjNpJpLqf7Ab/HOGHRXJnbW8sHyZqlcmR74Rdb1Mtcnq8akIK88f
-         s6wshgspnpJodCwqLEhdIuo9M5z/hT4hRtJArcVcU3d+h9tQgCek9HWnu65t6yJ+ejdP
-         DsVg==
+        bh=Mfq8artsCmgPridHwXtCTWz4VD26jC/9nXCO2mqCNlk=;
+        b=XSu+uAWOy0CcoMHUyluXhZWWtkc4qUBo0qI4viCQ30cyuYrMUpJ3JFQokxuFZU/vBQ
+         CzbhruHa32gAU6FkZu74erzyaQbPTxrPEnv8gauzo2Qfr2k0BclPXxjuFUXr4UlamA2R
+         eAg0X8TOs9c8Q5JoA/TtDl4ehSCa3FDwcvVxIlT09RZxpGQNYQ0jSHAhBZE5itmfJhsX
+         y+F5hkkwEJ4pEolu4xYhGop01VNtvFotkWrSZAvwKkaDO0oRLWy/QRGkRlLY3t3LoE/O
+         Va7jS2pEf9h94H4DYC6B+dhMAQeRT05bYyN6u/+S5RcUc2bNndVP8mdtpZ9VGVqjdj19
+         yvVg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=x2qQH918JYdrczWJIIm8XRXT3abBOAyM4GeAzsiuGrc=;
-        b=etffDFJ9wfxiNhTSNpzvQlP7JDSz1tBbvF6jW8y1IAZuDg3extVu+WMq4eTOCnzxL1
-         e6Hy7ZNx/2nKuAj4ft6DGTZpO3RCaq9SIqlbev1J5Bz3IJDGia8OF1l+SorPdJYwMHin
-         HoHNFCbr0o68+NIp376XEg2luTIUWwODTiVBtSysfTttpxAlnUofxg5QZTIJ0WQSIA7e
-         BRO3RVaLWLfGRgp4AxvR3a7xUuVOUnVosRdEOgF3yx408Sya058i7uJvykk8u30G9aWU
-         Yap0mtgDfO5tQUnvKh+00cU+iItpb5yRSTWz400V1h1WSchC2QeECx4YvdiPWY/UHjHl
-         Tstw==
-X-Gm-Message-State: AOAM531sKe5yxxmuJRtfK/F5ecj5BqF/xE0KrSYddiBFVMS5Og6yAx3p
-        7gUfzCbXs6CwBigmwdQgCOHoVQ==
-X-Google-Smtp-Source: ABdhPJxXCLHqAqEgg5HzVVhdNjvALIvlwrJyELVKyeOj4unPswlBVhSCXGXRpYs8nUuM3N/R2b3udA==
-X-Received: by 2002:a2e:a552:0:b0:250:6297:8109 with SMTP id e18-20020a2ea552000000b0025062978109mr4420350ljn.504.1652485522710;
-        Fri, 13 May 2022 16:45:22 -0700 (PDT)
+        bh=Mfq8artsCmgPridHwXtCTWz4VD26jC/9nXCO2mqCNlk=;
+        b=XBPivk7Elgntg0kh1b0i7eb0fJObHcMWjemTzIgp6XrwbMMB1nRLdjxvuu1hqQX+0x
+         OVIddZNM7rSjJoNnfA9q2kr3iBx9dWhSRSqIvGfPLQp527tEDY+HKskuXc02BN+q0rXp
+         2hC/r2NE5FUaWSUw3aL+5YxdGJcMu7cjcgFvAJ1y+82sjJ+FYselqhKt8aSoVYin261c
+         Ks/qcupt44iz9Ut7VyI4P89C1lEmq6zcgWuDXbFFifMBiQGnSilJ2U2FhO6/aO7YDjZb
+         13Yb6mhhyI8iqEol/pvCk1leKNKMEmLE02Kxff/jixY0PEtO0UsOMXFuaN7oEnDMI/jF
+         +cUw==
+X-Gm-Message-State: AOAM530ctlVfBBRvxa+gRrd8qA5U/Rn5beqD+CIshJBQeBWswBthWayl
+        JCO6tDCAxlIR+nMR7yLJl5P+nw==
+X-Google-Smtp-Source: ABdhPJybJui+e0tOiXg4NBLVDYB4zu5tflcrM6PWhZali78ufv+JJvtCwsvkH2bvnH6e6+mA7pQZCg==
+X-Received: by 2002:a05:6512:3045:b0:473:d457:1541 with SMTP id b5-20020a056512304500b00473d4571541mr5019548lfb.308.1652485529399;
+        Fri, 13 May 2022 16:45:29 -0700 (PDT)
 Received: from eriador.lan ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id o8-20020a05651205c800b0047255d2118csm527342lfo.187.2022.05.13.16.45.22
+        by smtp.gmail.com with ESMTPSA id o8-20020a05651205c800b0047255d2118csm527342lfo.187.2022.05.13.16.45.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 May 2022 16:45:22 -0700 (PDT)
+        Fri, 13 May 2022 16:45:28 -0700 (PDT)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
@@ -54,9 +54,9 @@ To:     Andy Gross <agross@kernel.org>,
         Krzysztof Kozlowski <krzk@kernel.org>,
         Konrad Dybcio <konrad.dybcio@somainline.org>
 Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH v3 4/8] arm64: dts: qcom: sdm630: fix the qusb2phy ref clock
-Date:   Sat, 14 May 2022 02:45:14 +0300
-Message-Id: <20220513234518.3068480-5-dmitry.baryshkov@linaro.org>
+Subject: [PATCH v3 8/8] dt-bindings: arm: qcom: document sda660 SoC and ifc6560 board
+Date:   Sat, 14 May 2022 02:45:18 +0300
+Message-Id: <20220513234518.3068480-9-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20220513234518.3068480-1-dmitry.baryshkov@linaro.org>
 References: <20220513234518.3068480-1-dmitry.baryshkov@linaro.org>
@@ -72,30 +72,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-According to the downstram DT file, the qusb2phy ref clock should be
-GCC_RX0_USB2_CLKREF_CLK, not GCC_RX1_USB2_CLKREF_CLK.
+Add binding documentation for the Inforce IFC6560 board which uses
+Snapdragon SDA660.
 
-Fixes: c65a4ed2ea8b ("arm64: dts: qcom: sdm630: Add USB configuration")
-Cc: Konrad Dybcio <konrad.dybcio@somainline.org>
-Reviewed-by: Konrad Dybcio <konrad.dybcio@somainline.org>
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sdm630.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ Documentation/devicetree/bindings/arm/qcom.yaml | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm630.dtsi b/arch/arm64/boot/dts/qcom/sdm630.dtsi
-index e8bb170e8b2f..cca56f2fad96 100644
---- a/arch/arm64/boot/dts/qcom/sdm630.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm630.dtsi
-@@ -1262,7 +1262,7 @@ qusb2phy: phy@c012000 {
- 			#phy-cells = <0>;
+diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
+index 129cdd246223..ac4ee0f874ea 100644
+--- a/Documentation/devicetree/bindings/arm/qcom.yaml
++++ b/Documentation/devicetree/bindings/arm/qcom.yaml
+@@ -41,6 +41,7 @@ description: |
+         sa8155p
+         sc7180
+         sc7280
++        sda660
+         sdm630
+         sdm632
+         sdm660
+@@ -225,6 +226,11 @@ properties:
+               - google,senor
+           - const: qcom,sc7280
  
- 			clocks = <&gcc GCC_USB_PHY_CFG_AHB2PHY_CLK>,
--				<&gcc GCC_RX1_USB2_CLKREF_CLK>;
-+				<&gcc GCC_RX0_USB2_CLKREF_CLK>;
- 			clock-names = "cfg_ahb", "ref";
- 
- 			resets = <&gcc GCC_QUSB2PHY_PRIM_BCR>;
++      - items:
++          - enum:
++              - inforce,ifc6560
++          - const: qcom,sda660
++
+       - items:
+           - enum:
+               - fairphone,fp3
 -- 
 2.35.1
 
