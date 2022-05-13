@@ -2,73 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 40361525C86
-	for <lists+devicetree@lfdr.de>; Fri, 13 May 2022 09:49:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E37E3525CC2
+	for <lists+devicetree@lfdr.de>; Fri, 13 May 2022 10:03:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1377870AbiEMHt3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 May 2022 03:49:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34886 "EHLO
+        id S1377972AbiEMH5i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 May 2022 03:57:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34564 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1377871AbiEMHt0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 May 2022 03:49:26 -0400
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0FBCF13B8C0
-        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 00:49:24 -0700 (PDT)
-Received: by mail-wr1-x42a.google.com with SMTP id w4so10233879wrg.12
-        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 00:49:23 -0700 (PDT)
+        with ESMTP id S1349747AbiEMH5g (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 May 2022 03:57:36 -0400
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27E586CA96
+        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 00:57:34 -0700 (PDT)
+Received: by mail-wm1-x32f.google.com with SMTP id a14-20020a7bc1ce000000b00393fb52a386so6469716wmj.1
+        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 00:57:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=T7SkTWtVcaUJFA1inMQxmGveqj+WUmVd9hfsAIt4rws=;
-        b=vXVP6SybAcGRcWHaJGwl1QW04uMH1U/m0KcFa33zCRPfo0VGsYZqM0Ah7f8NawjAnW
-         HBlAocyjLH8ZDlJNKr1PBhbI82/pvNmjdhTZrkFJTgxNl25KwHiu0wW2x6DmEk0D/6JN
-         k0cfQ9PEfmlbCYsn1U5M0lkyGhKhhg1j7c8Cu1ndo89yEDJFKIJdelcpMnORf+NhOlFr
-         hHV5z2lE3v5FSyBWeiL4tn7/F0G/bBrulnBjgA2NPoOnkM0Pge7r5nxlMg31RmhSXBfD
-         w/5h57v8YfkdI13YntDUaHUIiEPgtAaJLZHxgVIAVg/vq95hqLIQ+XCtFZGelYa5RWDX
-         6QMg==
+        bh=Z+VCyQ4FdNddQ9JeHnVFC+z2HG9qAdxbs5Dzgp/YOGU=;
+        b=U7l70itwvDOp59iGQBatgtEC7/68noHv/4vGH1xx/gK7xvyggOGACYW2HTnqYKz3ee
+         sJOFgdqbHCFjCU3aQQl/Rg1oYM5N1KLbqe1vKRIzZJVZGp8F92oIuvvKTgXHunrypO6S
+         ario2rMzTUHJpt5W1RyDo5AEHkPMHc+amiz8oaY8qUe5AE3xTHUlsBYYKgvlD51IrLri
+         vRObZRK8TQUiyUGNtiuAcZZd2XHd8DuG6vzyk5VAodEsSQguBUEFDQ4fWttJWbeAXFoe
+         1t5doi5ttGiH+QvcINZYalUci9oo4Y9W/Xu2cBhRwzX7WUqbRGIPgfJBfrb++xH3GSeH
+         Q26A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=T7SkTWtVcaUJFA1inMQxmGveqj+WUmVd9hfsAIt4rws=;
-        b=lT6RdXwHpCuKxI0O5wZqqm7gBjlvlK7oOe1frlLDXIGBsS2SVMTyiEkhpe63HodO/r
-         pv3AgAE1fq7TPk1XmgNHhl8wdYWFQRs04WiXkXYyezSiQgb8pUir1c6+sQN/IgLLV4Ha
-         Uo/LWVEQRahAXNys5xogAzkCJhWhx9EM6mbhnv6Jjud2yM16Ampq3L4N00daMB9n9oV1
-         OGUAjQ1RNVz4ipBLZEXMY2t2fR4CKB0AYislbss4KoFWD2iB74h76+YxnHT15RWS6bId
-         N1ffRyz7fcCmkrHWaqOTwqSYEoCH+nPZAtFn62XOEaHB9WumGuPyLY2f5buS2Ee+EFXQ
-         T8cA==
-X-Gm-Message-State: AOAM530c7RhTe/n44xWCcnNI89hz1Uuj9QybBY6F3vNMs2oHouPfJWvW
-        PHWx1swyBjsWCL1mLGjayuw46Q==
-X-Google-Smtp-Source: ABdhPJzEyrDYVt4SxO7Q7S2buSlfZjJ64PyX80Z/Ig4fSi0Sw/E1SgosR6/O2NnLKFwnj9lR2J/p1w==
-X-Received: by 2002:a05:6000:716:b0:20c:4cda:b38c with SMTP id bs22-20020a056000071600b0020c4cdab38cmr2813646wrb.226.1652428162609;
-        Fri, 13 May 2022 00:49:22 -0700 (PDT)
+        bh=Z+VCyQ4FdNddQ9JeHnVFC+z2HG9qAdxbs5Dzgp/YOGU=;
+        b=rsE5wxbxi+VAm71urf8t5E1yT9XqYKVG7FayakDpLD1ttnFxI0Y1jKOrkEisROUOCx
+         /wngLTFK6hEoeWvpi/QcUB1p5fiwVHJg/mWfLYmgeLicK5Ygu5uchzIm/BctrZT1mLiY
+         ncsnstr5z3b2r6BAAl2ZLJ5lWyjdK9WW8kGboNO2f72zAhmVopFt5Q9V8cVs8e4s0Qom
+         C576QakdCilzVSQ7/Bda7NFzzpn/+a2VYiQ19QiyiI1ETRtXlm1v8K1sAvl6PfnhhjDH
+         SUtpYLCueyeQgak5yYfsKmepB2T8fwdLaKre8a1b1hc/SO+6cJjsAnPHSR57lxUg2/VM
+         vmkQ==
+X-Gm-Message-State: AOAM531RvKcwbuNNVDojWNxicAY5lVc5coJi7TW11fHxHqP55XlpnWTO
+        KK8K1JVPdmdynOLLZTtdu+9RCA==
+X-Google-Smtp-Source: ABdhPJy4D3xJsnTbYAm3729KW2bXLN3aezoJhW288ATXwZYtmBFLJxapQ5HevWL2cU0I7YpH37KeGw==
+X-Received: by 2002:a7b:c0c3:0:b0:394:4c67:b9df with SMTP id s3-20020a7bc0c3000000b003944c67b9dfmr13853307wmh.8.1652428652625;
+        Fri, 13 May 2022 00:57:32 -0700 (PDT)
 Received: from [192.168.0.168] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id d3-20020a1c7303000000b003942a244ee6sm1601972wmb.43.2022.05.13.00.49.21
+        by smtp.gmail.com with ESMTPSA id y11-20020adfc7cb000000b0020cf41017b4sm297862wrg.19.2022.05.13.00.57.31
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 13 May 2022 00:49:21 -0700 (PDT)
-Message-ID: <04a95089-cd39-2628-f333-0da24e55a967@linaro.org>
-Date:   Fri, 13 May 2022 09:49:20 +0200
+        Fri, 13 May 2022 00:57:31 -0700 (PDT)
+Message-ID: <828bc65f-e585-0fe7-c038-c750861c9446@linaro.org>
+Date:   Fri, 13 May 2022 09:57:30 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.8.1
-Subject: Re: [PATCH 1/2] dt-bindings: microchip-otpc: document Microchip OTPC
+Subject: Re: [PATCH 1/3] dt-bindings: arm: qcom: Add sc7180 Chromebook board
+ bindings
 Content-Language: en-US
-To:     Claudiu.Beznea@microchip.com, srinivas.kandagatla@linaro.org,
-        robh+dt@kernel.org, krzk+dt@kernel.org
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+To:     Douglas Anderson <dianders@chromium.org>,
+        Rob Herring <robh@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Stephen Boyd <swboyd@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Alexandru M Stan <amstan@chromium.org>,
+        Rajendra Nayak <quic_rjendra@quicinc.com>,
+        "Joseph S . Barrera III" <joebar@chromium.org>,
+        Julius Werner <jwerner@chromium.org>,
+        Andy Gross <agross@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@codeaurora.org>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
         linux-kernel@vger.kernel.org
-References: <20220510094457.4070764-1-claudiu.beznea@microchip.com>
- <20220510094457.4070764-2-claudiu.beznea@microchip.com>
- <75ce6291-77c7-c932-e8bb-a8bbae02431d@linaro.org>
- <c840c598-0413-5f40-0807-e3c314531f0a@microchip.com>
- <b5c586de-a3ae-0774-e0bf-e21852b65fa9@linaro.org>
- <59b47f0b-6201-3814-e17f-1435ce5c2dad@microchip.com>
- <6ce3c0b1-3f6a-24f6-bcf2-4d4125a97604@linaro.org>
- <706eb7b4-07ce-ffd2-3366-5656ddba21d6@microchip.com>
+References: <20220512090429.1.I9804fcd5d6c8552ab25f598dd7a3ea71b15b55f0@changeid>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <706eb7b4-07ce-ffd2-3366-5656ddba21d6@microchip.com>
+In-Reply-To: <20220512090429.1.I9804fcd5d6c8552ab25f598dd7a3ea71b15b55f0@changeid>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -81,69 +86,59 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/05/2022 18:04, Claudiu.Beznea@microchip.com wrote:
-> On 12.05.2022 18:35, Krzysztof Kozlowski wrote:
->> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
->>
->> On 12/05/2022 17:31, Claudiu.Beznea@microchip.com wrote:
->>
->>>>
->>>> Macro is a nice idea if it can be stable. I understood that length of
->>>> packets depends on hardware, so this part could be stable. But what
->>>> about number of packets, so the OTP_PKT_SAMA7G5_TEMP_CALIB_LEN below?
->>>
->>> The OTP_PKT_SAMA7G5_TEMP_CALIB_LEN here is the length of thermal
->>> calibration packet. This length is fixed and will not be changed.
->>>
->>> After these 2 packets (provided by Microchip) user may further flash any
->>> number of packets and use them as they wish.
->>>
->>> Driver is in charge of scanning the NVMEM for the available packets and
->>> prepare a list with their IDs and their starting offsets in NVMEM memory
->>> such that when it receives a read request it will be able to decode the
->>> packet offset based on packet identifier.
->>>
->>> In case different number of packets are available in NVMEM for different
->>> kind of setups (boards) these could also be referenced in board specific DT
->>> using OTP_PKT() macro and with proper length (which will depend on what
->>> user flashed).
->>>
->>>> You wrote "Boot configuration packet may vary in length", so it could be
->>>> changed by Microchip?
->>>
->>> Yes, between chip revisions its length could be changed.
->>
->> Chip revisions like different board compatibles thus different
->> bindings/macro values?
+On 12/05/2022 18:04, Douglas Anderson wrote:
+> This copy-pastes compatibles from sc7180-based boards from the device
+> trees to the yaml file so that `make dtbs_check` will be happy.
 > 
-> Not necessarily. It may happen that only ROM code to be updated (1st stage
-> bootloader) end everything else on Linux side to be able to run as is. Or
-> to just fix some bugs in different IPs. Things that will not necessarily
-> need adding new compatibles for the new chip. And it may happen that new
-> chip revisions to be populated on previous board revisions.
+> NOTES:
+> - I make no attempt to try to share an "item" for all sc7180 based
+>   Chromebooks. Because of the revision matching scheme used by the
+>   Chromebook bootloader, at times we need a different number of
+>   revisions listed.
+> - Some of the odd entries in here (like google,homestar-rev23 or the
+>   fact that "Google Lazor Limozeen without Touchscreen" changed from
+>   sku5 to sku6) are not typos but simply reflect reality.
+> - Many revisions of boards here never actually went to consumers, but
+>   they are still in use within various companies that were involved in
+>   Chromebook development. Since Chromebooks are developed with an
+>   "upstream first" methodology, having these revisions supported with
+>   upstream Linux is important. Making it easy for Chromebooks to be
+>   developed with an "upstream first" methodology is valuable to the
+>   upstream community because it improves the quality of upstream and
+>   gets Chromebooks supported with vanilla upstream faster.
 > 
->> Chip revisions like different board compatibles thus different
->> *macro* values?
+> Signed-off-by: Douglas Anderson <dianders@chromium.org>
+> ---
 > 
-> If you're referring to the OTP_PKT_SAMA7G5_TEMP_CALIB_LEN macro, this is
-> established that will remain fixed b/w revisions. This is the length of the
-> 2nd packet in NVMEM (that is of interest for thermal management).
+>  .../devicetree/bindings/arm/qcom.yaml         | 180 ++++++++++++++++++
+>  1 file changed, 180 insertions(+)
 > 
-> Only the length of the 1st packet may change. And addressing the NVMEM with
-> packet id based index should take care of temperature calibration NVMEM DT
-> binding to work all the time.
-> 
->> If not, then maybe better skip the length out of
->> bindings and just provide the first macro.
-> 
-> As far as I know the length is part of the way the NVMEM cells are
-> described in DT: it needs the offset in memory (for the data to be
-> retrieved) and its length.
+> diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
+> index 5c06d1bfc046..399be67eb5d2 100644
+> --- a/Documentation/devicetree/bindings/arm/qcom.yaml
+> +++ b/Documentation/devicetree/bindings/arm/qcom.yaml
+> @@ -214,11 +214,191 @@ properties:
+>                - qcom,ipq8074-hk10-c2
+>            - const: qcom,ipq8074
+>  
+> +      # Qualcomm Technologies, Inc. SC7180 IDP
+>        - items:
+>            - enum:
+>                - qcom,sc7180-idp
+>            - const: qcom,sc7180
+>  
+> +      # Google CoachZ (rev1 - 2)
+> +      - items:
+> +          - const: google,coachz-rev1
+> +          - const: google,coachz-rev2
 
-In DT yes, but now you put the length in the bindings. It means DTS must
-have exactly that value and cannot use anything more. It's the same as
-hard-coding unit addresses in the bindings.
+The inverted pattern of old revision being compatible with the new one,
+is done on purpose? You claim here every rev1 is always compatible with
+rev2 ...
 
+I don't think we discussed such patterns in previous talk. I quickly
+went through it and there were only skuX moving around, not rev1 being
+newer then rev2.
 
 Best regards,
 Krzysztof
