@@ -2,111 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B19AB525D4E
-	for <lists+devicetree@lfdr.de>; Fri, 13 May 2022 10:24:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 13710525D29
+	for <lists+devicetree@lfdr.de>; Fri, 13 May 2022 10:24:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1377896AbiEMIU4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 May 2022 04:20:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54676 "EHLO
+        id S1378121AbiEMIW6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 May 2022 04:22:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33724 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1378168AbiEMIUM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 May 2022 04:20:12 -0400
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A78FF2A7697
-        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 01:19:59 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id dk23so14731439ejb.8
-        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 01:19:59 -0700 (PDT)
+        with ESMTP id S1378091AbiEMIWw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 May 2022 04:22:52 -0400
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0DC5B262672;
+        Fri, 13 May 2022 01:22:49 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id c24so3730149lfv.11;
+        Fri, 13 May 2022 01:22:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=TXXtxk4/zRV/azu90zaoknCSwg8YNFPSO9Vmn6Wx84Q=;
-        b=MNGRWTPIXS3qQdhzKLJqftqcmNJb3YAhzFu0XK9shDr0nVZW2KqLNz58KFpFr4nnSR
-         xCWwaq9eJrxFuBDYw/9ctILoH9T29QogEmyhKhxU2v2pbKtphq8ZS0PvubxQBtyDoRWM
-         iA65BP7n4WDjsTuxanI5NnVp5KGaNzh3A/PCrcTLFwO3uij1ITELlNx+3ja2gHSYqBSs
-         +V3XaRmoZpJNZ9vSakl3Krp1q8o83lOp9e3hRaPrtefzfDpUNt/O8MfcpyA4d1vOy0ui
-         HSVAR6GcKVVq8FEt0+WHrDmIqZhJ03tmNf7d3Be0nkugchg8AzjzgL5JiZOBHzSaRBGj
-         qdWA==
+        d=gmail.com; s=20210112;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=bHr/LN3gH4J18SZqSPlyS5LBwKeIhV3WXsMlgOi6f+4=;
+        b=XMgBiIJSaZ7yHO4F9FFyh4HHsDzgwZIc4ROUHt/XnJTZwDoCGLlUf0jmBOhMlJUneq
+         PdynIO8s2ISkn1/WAhVMYiuz1CIU/JH64vo0cGEkqvx2d8tJM7M3aY+P2guwTeVDqq2e
+         aDs9vLoKwGFgLXH7VFbdoRofSmEdjAg9pXXuBy2rJ0JQDJzRw28lrMb0HWdW69GBG7Ro
+         PbB42o+ip83alHR8cSOYN5OlMKVp3LwEM2klfmNpRUABn+3nLswfeRyvIJLRM3kQnMWe
+         FAm89zG5JnMnPy8tRcReAxncvZ4huoqs7gjMBERp2M9AWUJj5ANU37+rxoItLT6jq0Yz
+         pIdw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=TXXtxk4/zRV/azu90zaoknCSwg8YNFPSO9Vmn6Wx84Q=;
-        b=LW5Np4ovYQ7myaOyEWosWhlIX3sMTOlZcatY7ZZ5oubIccUp5zyJo9jwVHzyuBc0Q/
-         F9HyQOVPRYEGXMIS7KLX3YXzOsOEFMi9G5x6YPS+USPuQbiSxcfrMJPXSDCEktTbQsZo
-         9H6nQbAmUtlu3ttxvqZC0tkbTwqAFo4VclSM+GTUnBJr83lfRsHpQwTgYJ+2Krv4NbGw
-         gezXrjiL+ydKlRKB2NtpLwbt/y+9IP6IMLf6sVn+cNZ3Vs8+54Z3Zs61UGtWu76jXSpI
-         TloSxtNgMBiG1xKkF5ZlQHBJyrWn7S2buEryjRzdZShGR1QqXj8z3I/Sbp8g5GWPQMKG
-         8YhQ==
-X-Gm-Message-State: AOAM53051UMv687zK5PrLHF8yY0V436gHhSJSFZbcRM8+AINqAKRD4j7
-        aMd37z3zw3kfauGIL3yf6+6KJA==
-X-Google-Smtp-Source: ABdhPJxklCsXB9SJsl5gdraUIi2jz7rJ4AWpTj7K5UOqWzYgbXMjqn5QqncQCk3SD3iUdKyMUSM1UQ==
-X-Received: by 2002:a17:907:1b10:b0:6e4:bac5:f080 with SMTP id mp16-20020a1709071b1000b006e4bac5f080mr3267436ejc.24.1652429998225;
-        Fri, 13 May 2022 01:19:58 -0700 (PDT)
-Received: from [192.168.0.168] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id y24-20020aa7ccd8000000b0042617ba6397sm655801edt.33.2022.05.13.01.19.56
+        bh=bHr/LN3gH4J18SZqSPlyS5LBwKeIhV3WXsMlgOi6f+4=;
+        b=uN6KQaUXbtPmKI9zmAaV5tBMxYqf9SJ4jI73Db0qGXU16Q74YuYyA5BWJrIHktcXRH
+         Xuxa9YBFtLcTHDLLY5Qvqb9Zr5RxT8KSqbGaA0NvWPfS/4sF/1mv6RfSok8r+/LiNl/I
+         HnQibfPEHHuRCHOaNwReTzD/r5YxRvN1TFT0+/T/B0d/lrVQ4qLkY7blhopKxA6ZJicg
+         rqtMS5RPDSx5QNOdNHzU0AnStkb/bZ2QEvTwcA9k9aXkb7zM65mnIWpZtibdT3NBOa8V
+         Eb1s7HO4sl2ti0heKO1ju+Ck+76dTGB5+DVKAo8PPEssT/Rt3Sy2r5Z1oQsXqBH5qME7
+         +fyg==
+X-Gm-Message-State: AOAM5332KAGSY/BbTddvNPc7Y+HyXODZV0K+f+w3E2spRBpxgcaVaHuq
+        5bWeLDk5vYYROA+rjbSGxKi4ftWsjoM=
+X-Google-Smtp-Source: ABdhPJx1GDgivsFZ/N+yg7hu65wIxi09RSSRjKzQnH/8QUBVM9jo2ssm4vEaZeluX4loQWBMs2fudg==
+X-Received: by 2002:ac2:5f84:0:b0:471:fd0f:a6e7 with SMTP id r4-20020ac25f84000000b00471fd0fa6e7mr2589134lfe.41.1652430167053;
+        Fri, 13 May 2022 01:22:47 -0700 (PDT)
+Received: from [192.168.1.103] ([31.173.80.171])
+        by smtp.gmail.com with ESMTPSA id n2-20020a195502000000b0047255d21164sm286121lfe.147.2022.05.13.01.22.45
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 13 May 2022 01:19:57 -0700 (PDT)
-Message-ID: <d2507298-00a6-a1cc-0302-f96597fb4127@linaro.org>
-Date:   Fri, 13 May 2022 10:19:56 +0200
+        Fri, 13 May 2022 01:22:46 -0700 (PDT)
+Subject: Re: [PATCH v3 13/23] ata: libahci: Extend port-cmd flags set with
+ port capabilities
+To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Jens Axboe <axboe@kernel.dk>
+Cc:     Serge Semin <fancer.lancer@gmail.com>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Rob Herring <robh+dt@kernel.org>, linux-ide@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20220511231810.4928-1-Sergey.Semin@baikalelectronics.ru>
+ <20220511231810.4928-14-Sergey.Semin@baikalelectronics.ru>
+From:   Sergei Shtylyov <sergei.shtylyov@gmail.com>
+Message-ID: <887a7537-5400-f3e2-235c-033871d413bc@gmail.com>
+Date:   Fri, 13 May 2022 11:22:44 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH 2/7] dt-bindings: pinctrl: qcom-pmic-gpio: Add pm6125
- compatible
+In-Reply-To: <20220511231810.4928-14-Sergey.Semin@baikalelectronics.ru>
+Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
-To:     Marijn Suijten <marijn.suijten@somainline.org>,
-        phone-devel@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     ~postmarketos/upstreaming@lists.sr.ht,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Martin Botka <martin.botka@somainline.org>,
-        Jami Kettunen <jami.kettunen@somainline.org>,
-        Andy Gross <agross@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220511220613.1015472-1-marijn.suijten@somainline.org>
- <20220511220613.1015472-3-marijn.suijten@somainline.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220511220613.1015472-3-marijn.suijten@somainline.org>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/05/2022 00:06, Marijn Suijten wrote:
-> The pm6125 comes with 9 GPIOs, without holes.
+On 5/12/22 2:18 AM, Serge Semin wrote:
+
+> Currently not all of the Port-specific capabilities listed in the
+> PORT_CMD-enumeration. Let's extend that set with the Cold Presence
+> Detection and Mechanical Presence Switch attached to the Port flags [1] so
+> to closeup the set of the platform-specific port-capabilities flags.  Note
+> these flags are supposed to be set by the platform firmware if there is
+> one. Alternatively as we are about to do they can be set by means of the
+> OF properties.
 > 
-> Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
-> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
+> While at it replace PORT_IRQ_DEV_ILCK with PORT_IRQ_DEV_MPS and fix the
 
-It's the first version, how did the tag appear here?
+   Your code has PORT_IRQ_DMPS instead...
 
+> comment there. In accordance with [2] that IRQ flag is supposed to
+> indicate the state of the signal coming from the Mechanical Presence
+> Switch.
+> 
+> [1] Serial ATA AHCI 1.3.1 Specification, p.27
+> [2] Serial ATA AHCI 1.3.1 Specification, p.7
+> 
+> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
 > ---
->  Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml | 2 ++
->  1 file changed, 2 insertions(+)
+>  drivers/ata/ahci.h | 7 ++++++-
+>  1 file changed, 6 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/ata/ahci.h b/drivers/ata/ahci.h
+> index 7d834deefeb9..f501531bd1b3 100644
+> --- a/drivers/ata/ahci.h
+> +++ b/drivers/ata/ahci.h
+> @@ -138,7 +138,7 @@ enum {
+>  	PORT_IRQ_BAD_PMP	= (1 << 23), /* incorrect port multiplier */
+>  
+>  	PORT_IRQ_PHYRDY		= (1 << 22), /* PhyRdy changed */
+> -	PORT_IRQ_DEV_ILCK	= (1 << 7), /* device interlock */
+> +	PORT_IRQ_DMPS		= (1 << 7), /* mechanical presence status */
+>  	PORT_IRQ_CONNECT	= (1 << 6), /* port connect change status */
+>  	PORT_IRQ_SG_DONE	= (1 << 5), /* descriptor processed */
+>  	PORT_IRQ_UNK_FIS	= (1 << 4), /* unknown FIS rx'd */
+[...]
 
-
-This will need fixups or rebasing on my sets of PMIC gpio schema cleanup:
-
-https://lore.kernel.org/all/20220507194913.261121-1-krzysztof.kozlowski@linaro.org/
-https://lore.kernel.org/all/20220508135932.132378-2-krzysztof.kozlowski@linaro.org/
-
-Bjorn,
-let us know preferred order (who should rebase on who).
-
-Best regards,
-Krzysztof
+MBR, Sergey
