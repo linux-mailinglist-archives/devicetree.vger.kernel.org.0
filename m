@@ -2,180 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 70E0952689D
-	for <lists+devicetree@lfdr.de>; Fri, 13 May 2022 19:40:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6741A5268DF
+	for <lists+devicetree@lfdr.de>; Fri, 13 May 2022 19:59:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1383122AbiEMRkY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 May 2022 13:40:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41074 "EHLO
+        id S241034AbiEMR7e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 May 2022 13:59:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49826 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1383115AbiEMRkW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 May 2022 13:40:22 -0400
-Received: from mail-pg1-x52a.google.com (mail-pg1-x52a.google.com [IPv6:2607:f8b0:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CEC53703E
-        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 10:40:21 -0700 (PDT)
-Received: by mail-pg1-x52a.google.com with SMTP id a191so8151810pge.2
-        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 10:40:21 -0700 (PDT)
+        with ESMTP id S234536AbiEMR7e (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 May 2022 13:59:34 -0400
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B3152610A;
+        Fri, 13 May 2022 10:59:32 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id y32so15801241lfa.6;
+        Fri, 13 May 2022 10:59:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=Ww/qFjWwrZ3PoYuCt3E6efWcKpC5tEXZBrJvZ8cR1LI=;
-        b=O93qK4w/S03z5gd4Z+CP5yG9MFg/tvmoc9kyyCQqcV/Mz2YexNCrZo01E2mtLKBtxR
-         TRkAlkWmi6D9g3qdIzer7hfnNqJj2J3f4FljvBmblziDyWfSxhbe/vKfL1AGgTuUTsKr
-         DoWTcCkB9v6g+skYiRdCfCo3rbG2J6gdkmU3bmnAh3vq1mscALwOR24Gisf+2WZJxLKE
-         8uNwQeg9/6kOmzB5byZmOYqLib0M+Y0lvl1FKEpi7xjYOm4zxe+J52sJOtAJy30DiobH
-         8xcYSXp/WP6NWt85a5xY4DktYxvQ7eMPBZPMGHG3qn+uit9yW3UN2bZmVArwGTQ88de9
-         dxlg==
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=F9nVmxbxhPUjXlAFgxWdPottc/POpyAnJKeZJvdJb3Q=;
+        b=nDJ5l8PJQN6ErdgB5BQL9UoNqthpJEj8Ph+b6M5H6gCD5YJQOQLn9uVZW0TCxjV5d3
+         xWk/gd9SFSNISUuInNDzkEePTpVfVBA82xTxYgz5IIksYKh91DVz57K7Ikjnqx0K5gC5
+         5sKzwXwNFBue6IdUNQxncSJksQy+MYHAg25vbmbX80bMyfKEjLGNPP7es0kWv/bEIXKR
+         Hw2wsGYZbmfkXrLAalGWqMQX32xsODTl1Ushj8HBKuAr5avV2/t2JEnXWEirtKL+Sar9
+         4Sv0KYKsLnXHqFGPaKEcjshoSESRb+QNIW0Nieq1iie2dzne+s2KLGhMaZVnk6JSujr3
+         SLww==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=Ww/qFjWwrZ3PoYuCt3E6efWcKpC5tEXZBrJvZ8cR1LI=;
-        b=EH7sbFdnUI1C2/0R8D+XdoQhxGLsEnm1tvAv54+mAZ0V1GR5BrucUIyGp6CyfWRZwH
-         qKglKVyOoeWNVZwOoB4/8cFIXzE4P6NaccS5xG9fkDuQ4Dg+LjmheV9+7xQzoBXkZGIQ
-         H/gMScvYGtZwkIVnz7dkaKtW61uNkqw3l4WEwxdhurxckdQUVoHdYMDWccwH+XwYXC60
-         nQRZdToZoVPboW8XJRzjhAQChFi2Fx8Z6ePsPFBeblJuwLfABvQx33hxpOzA/7O7+U+O
-         BBAJyyvwG9Z1E4cH19vdUauKLSlHK8zITdyVsywT6LxHEDPTFPJllX0Ni+zzLTYBiCCr
-         bGwQ==
-X-Gm-Message-State: AOAM533/tbBZYXEJ3xzEKU9tRj+fq852aU/XBKjdB8UtsO6IXDebxVIQ
-        mn4ab2Jm+2nh5q8OLPdIIhcp
-X-Google-Smtp-Source: ABdhPJzraGPi1ax/y/zer2RyzKcWfeu62crVSXxE94AtGdfKOMGGkKDp4NJOyHwJem3eCBrEO733Rw==
-X-Received: by 2002:a05:6a00:a85:b0:506:b9e:7f43 with SMTP id b5-20020a056a000a8500b005060b9e7f43mr5524669pfl.5.1652463620335;
-        Fri, 13 May 2022 10:40:20 -0700 (PDT)
-Received: from thinkpad ([117.202.184.246])
-        by smtp.gmail.com with ESMTPSA id j18-20020a170902da9200b0015e8d4eb272sm2160673plx.188.2022.05.13.10.40.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 May 2022 10:40:19 -0700 (PDT)
-Date:   Fri, 13 May 2022 23:10:10 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Avri Altman <avri.altman@wdc.com>,
-        "James E.J. Bottomley" <jejb@linux.ibm.com>,
-        "Martin K. Petersen" <martin.petersen@oracle.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Taniya Das <tdas@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-scsi@vger.kernel.org,
-        Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v3 3/7] dt-bindings: ufs: common: add OPP table
-Message-ID: <20220513174010.GC1922@thinkpad>
-References: <20220513061347.46480-1-krzysztof.kozlowski@linaro.org>
- <20220513061347.46480-4-krzysztof.kozlowski@linaro.org>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=F9nVmxbxhPUjXlAFgxWdPottc/POpyAnJKeZJvdJb3Q=;
+        b=QemadDMPwANQifbO4+RxC3dlgF4fdEU9f36FLZhfXzRU00Zttk24YcmArwB8EVGnbg
+         7j3wLEHzDXrkcXyzkow7AQrQVOfFQABTxNurNXWWDFHeKG+TLrcAjcsbI+/LA+zzzP+w
+         UHsbETeHkz0zJeuFJLaYnQrDPYQOqdRnvViDrCpIaO7oOj3HNroiVLMzZ25EhYF1Ar5S
+         pGTOBIdieLVk+gfnkr1UgmCY/amcuQ9haDfGIZsXBT0LNjeju9sRK4h+/s88elQ8uvl7
+         E3r8CcmXW6mKq2G8YPrXSOiiX/uTp7NWhFPjsQACKoQFfhsHhebGQNqanC4EUMTgxmHi
+         9Yfw==
+X-Gm-Message-State: AOAM533u0lQv0RFSNQeCp02s24wIt7k5jivUSwSh/8ZlA2NgIH2C2skz
+        endCmYkkVGgNvNqSO7bU4k6gFJzL8mc=
+X-Google-Smtp-Source: ABdhPJzROlR9JfnWELD1llXgexuPYrFMoAc1dOTyPtjP64jGm4kWCWLf8hy56AAM4zb4yA/N6eu63g==
+X-Received: by 2002:a05:6512:b11:b0:474:2b91:99c4 with SMTP id w17-20020a0565120b1100b004742b9199c4mr4252868lfu.347.1652464770749;
+        Fri, 13 May 2022 10:59:30 -0700 (PDT)
+Received: from [192.168.2.145] (109-252-137-244.dynamic.spd-mgts.ru. [109.252.137.244])
+        by smtp.googlemail.com with ESMTPSA id b20-20020a05651c099400b0024f3d1dae82sm527639ljq.10.2022.05.13.10.59.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 13 May 2022 10:59:30 -0700 (PDT)
+Message-ID: <a3fa2e6d-55bc-2da0-9796-fc936583d78a@gmail.com>
+Date:   Fri, 13 May 2022 20:59:29 +0300
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v4 3/3] iio: light: Add support for ltrf216a sensor
+Content-Language: en-US
+To:     Shreeya Patel <shreeya.patel@collabora.com>, jic23@kernel.org,
+        lars@metafoo.de, robh+dt@kernel.org, Zhigang.Shi@liteon.com,
+        krisman@collabora.com
+Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, kernel@collabora.com,
+        alvaro.soliverez@collabora.com
+References: <20220511094024.175994-1-shreeya.patel@collabora.com>
+ <20220511094024.175994-4-shreeya.patel@collabora.com>
+ <a5929558-d09a-cb67-cba9-1dcfb5e43525@gmail.com>
+ <88b33ada-e997-05e9-f555-b9c1ed369fb7@collabora.com>
+From:   Dmitry Osipenko <digetx@gmail.com>
+In-Reply-To: <88b33ada-e997-05e9-f555-b9c1ed369fb7@collabora.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220513061347.46480-4-krzysztof.kozlowski@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, May 13, 2022 at 08:13:43AM +0200, Krzysztof Kozlowski wrote:
-> Except scaling UFS and bus clocks, it's necessary to scale also the
-> voltages of regulators or power domain performance state levels.  Adding
-> Operating Performance Points table allows to adjust power domain
-> performance state, depending on the UFS clock speed.
+13.05.2022 16:40, Shreeya Patel пишет:
+> Also, why would we want to do a SW reset here?
 > 
-> OPPv2 deprecates previous property limited to clock scaling:
-> freq-table-hz.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> 
-> ---
-> 
-> Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> ---
->  .../devicetree/bindings/ufs/ufs-common.yaml   | 34 +++++++++++++++++--
->  1 file changed, 31 insertions(+), 3 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/ufs/ufs-common.yaml b/Documentation/devicetree/bindings/ufs/ufs-common.yaml
-> index 47a4e9e1a775..d7d2c8a136bb 100644
-> --- a/Documentation/devicetree/bindings/ufs/ufs-common.yaml
-> +++ b/Documentation/devicetree/bindings/ufs/ufs-common.yaml
-> @@ -20,11 +20,24 @@ properties:
->        items:
->          - description: Minimum frequency for given clock in Hz
->          - description: Maximum frequency for given clock in Hz
-> +    deprecated: true
->      description: |
-> +      Preferred is operating-points-v2.
-> +
->        Array of <min max> operating frequencies in Hz stored in the same order
-> -      as the clocks property. If this property is not defined or a value in the
-> -      array is "0" then it is assumed that the frequency is set by the parent
-> -      clock or a fixed rate clock source.
-> +      as the clocks property. If either this property or operating-points-v2 is
-> +      not defined or a value in the array is "0" then it is assumed that the
-> +      frequency is set by the parent clock or a fixed rate clock source.
-> +
-> +  operating-points-v2:
-> +    description:
-> +      Preferred over freq-table-hz.
-> +      If present, each OPP must contain array of frequencies stored in the same
-> +      order for each clock.  If clock frequency in the array is "0" then it is
-> +      assumed that the frequency is set by the parent clock or a fixed rate
-> +      clock source.
+> In the datasheet, I could see the following steps to enable the sensor
+> Supply VDD to Sensor (Sensor in Standby Mode) ---> Wait 100 ms (min) -
+> initial startup time
+> ---> I2C Command (Write) To enable sensor to Active Mode
 
-This description mentions only the clocks and not voltages. But in theory, the
-OPP table can contain other parameters like current, bandwidth, etc,... So to
-avoid confusion, I'd suggest to get rid of the description.
+For example, if you'll do kexec from other kernel, say downstream
+kernel, then the h/w state is undetermined for us. It's a common problem
+with downstream drivers that they rely on a specific state left from
+bootloader, which is often unacceptable for upstream.
 
-> +
-> +  opp-table: true
->  
->    interrupts:
->      maxItems: 1
-> @@ -75,8 +88,23 @@ properties:
->  
->  dependencies:
->    freq-table-hz: [ 'clocks' ]
-> +  operating-points-v2: [ 'clocks', 'clock-names' ]
-
-What about voltage regulators if relevant opp property is present?
-
-Thanks,
-Mani
-
->  
->  required:
->    - interrupts
->  
-> +allOf:
-> +  - if:
-> +      required:
-> +        - freq-table-hz
-> +    then:
-> +      properties:
-> +        operating-points-v2: false
-> +  - if:
-> +      required:
-> +        - operating-points-v2
-> +    then:
-> +      properties:
-> +        freq-table-hz: false
-> +
->  additionalProperties: true
-> -- 
-> 2.32.0
-> 
-
--- 
-மணிவண்ணன் சதாசிவம்
+If we'll do the SW reset on probe, then we'll bring h/w into the
+predictable state and won't depend on state left from bootloader or
+anything else that touched h/w before us.
