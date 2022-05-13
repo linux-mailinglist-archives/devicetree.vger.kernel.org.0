@@ -2,48 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 952025267BC
-	for <lists+devicetree@lfdr.de>; Fri, 13 May 2022 18:59:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4EA685267C1
+	for <lists+devicetree@lfdr.de>; Fri, 13 May 2022 19:00:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1382603AbiEMQ7u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 May 2022 12:59:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41332 "EHLO
+        id S1382589AbiEMQ7w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 May 2022 12:59:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41390 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1382589AbiEMQ7s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 May 2022 12:59:48 -0400
-Received: from mail-pg1-x534.google.com (mail-pg1-x534.google.com [IPv6:2607:f8b0:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD56B193CC
-        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 09:59:47 -0700 (PDT)
-Received: by mail-pg1-x534.google.com with SMTP id 31so8033967pgp.8
-        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 09:59:47 -0700 (PDT)
+        with ESMTP id S1382602AbiEMQ7u (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 May 2022 12:59:50 -0400
+Received: from mail-pj1-x102a.google.com (mail-pj1-x102a.google.com [IPv6:2607:f8b0:4864:20::102a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23ABC29805
+        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 09:59:49 -0700 (PDT)
+Received: by mail-pj1-x102a.google.com with SMTP id a15-20020a17090ad80f00b001dc2e23ad84so11328054pjv.4
+        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 09:59:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=Z+QQA0s7nyDs9BM2EhvV+3A+fminA8LpaU1NJGXjcLo=;
-        b=hL1NBu4POZdPxhSikhfLyBRG4riwOdOJ/CPbSr+/jJsUJRmN7HqBSgM2de468tghgL
-         Q+ESZ11vD6nLA380hIKLidIfwmAVii8qeZvC7TDx9t6wh3DViJxfoM/qsk3OQLMnPqOV
-         OMJgsJ22NR3I38htH0K6C8NfCkF+fKAwqN4JU=
+        bh=akI0HHvtv/s/0pYeEJ5z0Kcqmea/A/JWqccnsMWH/Bc=;
+        b=ESma4KX3+jT8KWhTcJtBAzLW4Tb8V6hUsR8CIKfFbN7/2k+fJve/LLDaVNp2SOIsPW
+         ivHOJxEGI1QClXGOJybL8HXZOhIzXaSmWH2B5vnHryfSNOW4eT9Zn0nkJX8ftQiDeQvn
+         L4qevS03Y7JrWKCCxFvoUgqn8lS1jZUQJg9Jk=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=Z+QQA0s7nyDs9BM2EhvV+3A+fminA8LpaU1NJGXjcLo=;
-        b=zBL13mG718Kmjuk8Sp4L1Du9+w5PfDoLFbJoKPXtGW+hgULsrpDB1JBGUN2lJ34tmq
-         83bZjZwXon0LElpugZA8/HuIPWDU2Pqdfo8xq5dxaonOF1Y3f2XpNsdVaLdD3JAwwJW2
-         z7MdxOQm5yfF08mJGP5Y4UqNSAnh0gl/C4TEX8zQ6HAi9ZRqn3E5e90D1mu77v2e8xsu
-         87dmA8Eje0T8/eaWEIAnOpanJ6dWtHd22wC8bE425qGWzIMWjXW6NMJJGnM6OYuvBxf0
-         JUsLszpfNRIWsNsIndEVEj3vaRzLrHBya4HPggl05tAKGPCUcNIhciK7aekIQSeKvRIG
-         nlhw==
-X-Gm-Message-State: AOAM533QNHgJ4DA8HLMiI41FwU/2XZHT+NzkvdR1a8nBZgNq6uZCjNEl
-        VM0v40d/FecG51u54TUIQtc6qQ==
-X-Google-Smtp-Source: ABdhPJxnX5aT2CaKMHadwtsb1I27ePUchFw0f0cLKhqXTK4o8m4H2OG2UYB3TuqVqD4f3kl1t7L6rQ==
-X-Received: by 2002:a05:6a00:2408:b0:4f7:a8cb:9b63 with SMTP id z8-20020a056a00240800b004f7a8cb9b63mr5416931pfh.33.1652461187378;
-        Fri, 13 May 2022 09:59:47 -0700 (PDT)
+        bh=akI0HHvtv/s/0pYeEJ5z0Kcqmea/A/JWqccnsMWH/Bc=;
+        b=2vxL+qNx+oOGuXtm+oOG4sqqhlnR0ATTxktO7XBUJfzUdrS7o+fO7L32aHCUB5hAPW
+         8WjytEdQv8tKVAjPOyrmWE4UAjfibH9ZZQelTtSv1bHRuhQD1DezImQQZp8s3W6SYHVq
+         XbXbb8YGvFfUwxBaUZZIiFSElt3msp+uw3MmOTuDlG6uaKiFusI4ekEmKm01D7AYJzDg
+         tNOYiDR2ar0ImAmgrai0GcXAdDTk1ND3b/85gWCLJUpzTKS0pQmThVzT/pAePU8TXxp0
+         jiL4D0W1k+JqlZaLROAEtr03VhA80wi5Ce6wE4Xq2lGuybQ9qykDcWkfHN+Suh0v4ng9
+         d/Mw==
+X-Gm-Message-State: AOAM530UOySVx0e7xVb/+UBeEyG+6FvVSIzTL0AjJn8w2n4Q10eGmECb
+        aKBeC/GNxDLc9xbgCjGp6d7tNpy2qemWn8XOA9tIiA==
+X-Google-Smtp-Source: ABdhPJxOwiVCRMWvIXzR7DXZ9hmayF1Kb036D4jPInNvsL5Hjh7pF0J0LTyja7wpNVc77s8EZ+hZBg==
+X-Received: by 2002:a17:903:41cb:b0:15e:ab0c:5172 with SMTP id u11-20020a17090341cb00b0015eab0c5172mr5336743ple.170.1652461188656;
+        Fri, 13 May 2022 09:59:48 -0700 (PDT)
 Received: from tictac2.mtv.corp.google.com ([2620:15c:202:201:f334:6f80:82ed:5653])
-        by smtp.gmail.com with ESMTPSA id m1-20020a17090a7f8100b001d97f7fca06sm1824548pjl.24.2022.05.13.09.59.46
+        by smtp.gmail.com with ESMTPSA id m1-20020a17090a7f8100b001d97f7fca06sm1824548pjl.24.2022.05.13.09.59.47
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 May 2022 09:59:46 -0700 (PDT)
+        Fri, 13 May 2022 09:59:48 -0700 (PDT)
 From:   Douglas Anderson <dianders@chromium.org>
 To:     Rob Herring <robh@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>
@@ -61,9 +61,9 @@ Cc:     Stephen Boyd <swboyd@chromium.org>,
         Stephen Boyd <sboyd@codeaurora.org>,
         devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: [PATCH v2 3/4] dt-bindings: arm: qcom: Add / fix sc7280 board bindings
-Date:   Fri, 13 May 2022 09:59:19 -0700
-Message-Id: <20220513095722.v2.3.I1318c1ae2ce55ade1d092fc21df846360b15c560@changeid>
+Subject: [PATCH v2 4/4] dt-bindings: arm: qcom: Add more sc7180 Chromebook board bindings
+Date:   Fri, 13 May 2022 09:59:20 -0700
+Message-Id: <20220513095722.v2.4.Ie8713bc0377672ed8dd71189e66fc0b77226fb85@changeid>
 X-Mailer: git-send-email 2.36.0.550.gb090851708-goog
 In-Reply-To: <20220513095722.v2.1.I71e42c6174f1cec17da3024c9f73ba373263b9b6@changeid>
 References: <20220513095722.v2.1.I71e42c6174f1cec17da3024c9f73ba373263b9b6@changeid>
@@ -71,7 +71,7 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,75 +79,143 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This copy-pastes compatibles from sc7280-based boards from the device
-trees to the yaml file. It also fixes the CRD/IDP bindings which had
-gotten stale.
+This adds board bindings for boards that are downstream but not quite
+upstream yet.
 
 Signed-off-by: Douglas Anderson <dianders@chromium.org>
 ---
-It should be noted that these match the sc7280 boards as of the top of
-the "for-next" branch of the tree
-git.kernel.org/pub/scm/linux/kernel/git/qcom/linux.git
 
 Changes in v2:
 - Use a "description" instead of a comment for each item.
+- Use the marketing name instead of the code name where possible.
 
- .../devicetree/bindings/arm/qcom.yaml         | 42 +++++++++++++++----
- 1 file changed, 34 insertions(+), 8 deletions(-)
+ .../devicetree/bindings/arm/qcom.yaml         | 92 +++++++++++++++++++
+ 1 file changed, 92 insertions(+)
 
 diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
-index 8ec0805f4996..c76ea703c2e6 100644
+index c76ea703c2e6..6d1d44b48289 100644
 --- a/Documentation/devicetree/bindings/arm/qcom.yaml
 +++ b/Documentation/devicetree/bindings/arm/qcom.yaml
-@@ -404,14 +404,40 @@ properties:
+@@ -263,6 +263,16 @@ properties:
+           - const: google,homestar
+           - const: qcom,sc7180
+ 
++      - description: Google Kingoftown (rev0)
++        items:
++          - const: google,kingoftown-rev0
++          - const: qcom,sc7180
++
++      - description: Google Kingoftown (newest rev)
++        items:
++          - const: google,kingoftown
++          - const: qcom,sc7180
++
+       - description: Acer Chromebook Spin 513 (rev0)
+         items:
+           - const: google,lazor-rev0
+@@ -364,6 +374,48 @@ properties:
+           - const: google,lazor-sku6
+           - const: qcom,sc7180
+ 
++      - description: Google Mrbland with AUO panel (rev0)
++        items:
++          - const: google,mrbland-rev0-sku0
++          - const: qcom,sc7180
++
++      - description: Google Mrbland with AUO panel (newest rev)
++        items:
++          - const: google,mrbland-sku1536
++          - const: qcom,sc7180
++
++      - description: Google Mrbland with BOE panel (rev0)
++        items:
++          - const: google,mrbland-rev0-sku16
++          - const: qcom,sc7180
++
++      - description: Google Mrbland with BOE panel (newest rev)
++        items:
++          - const: google,mrbland-sku1024
++          - const: google,mrbland-sku768
++          - const: qcom,sc7180
++
++      - description: Google Pazquel with Parade (newest rev)
++        items:
++          - const: google,pazquel-sku5
++          - const: qcom,sc7180
++
++      - description: Google Pazquel with TI (newest rev)
++        items:
++          - const: google,pazquel-sku1
++          - const: qcom,sc7180
++
++      - description: Google Pazquel with LTE and Parade (newest rev)
++        items:
++          - const: google,pazquel-sku4
++          - const: qcom,sc7180
++
++      - description: Google Pazquel with LTE and TI (newest rev)
++        items:
++          - const: google,pazquel-sku0
++          - const: google,pazquel-sku2
++          - const: qcom,sc7180
++
+       - description: Sharp Dynabook Chromebook C1 (rev1)
+         items:
+           - const: google,pompom-rev1
+@@ -394,6 +446,16 @@ properties:
+           - const: google,pompom-sku0
+           - const: qcom,sc7180
+ 
++      - description: Google Quackingstick (newest rev)
++        items:
++          - const: google,quackingstick-sku1537
++          - const: qcom,sc7180
++
++      - description: Google Quackingstick with LTE (newest rev)
++        items:
++          - const: google,quackingstick-sku1536
++          - const: qcom,sc7180
++
+       - description: Google Trogdor (newest rev)
+         items:
+           - const: google,trogdor
+@@ -404,6 +466,36 @@ properties:
            - const: google,trogdor-sku0
            - const: qcom,sc7180
  
--      - items:
--          - enum:
--              - qcom,sc7280-crd
--              - qcom,sc7280-idp
--              - qcom,sc7280-idp2
--              - google,hoglin
--              - google,piglin
--              - google,senor
-+      - description: Qualcomm Technologies, Inc. sc7280 CRD platform (rev3 - 4)
++      - description: Lenovo IdeaPad Chromebook Duet 3 with BOE panel (rev0)
 +        items:
-+          - const: qcom,sc7280-crd
-+          - const: google,hoglin-rev3
-+          - const: google,hoglin-rev4
-+          - const: google,piglin-rev3
-+          - const: google,piglin-rev4
-+          - const: qcom,sc7280
++          - const: google,wormdingler-rev0-sku16
++          - const: qcom,sc7180
 +
-+      - description: Qualcomm Technologies, Inc. sc7280 CRD platform (newest rev)
++      - description: Lenovo IdeaPad Chromebook Duet 3 with BOE panel (newest rev)
 +        items:
-+          - const: google,hoglin
-+          - const: qcom,sc7280
++          - const: google,wormdingler-sku1024
++          - const: qcom,sc7180
 +
-+      - description: Qualcomm Technologies, Inc. sc7280 IDP SKU1 platform
++      - description: Lenovo IdeaPad Chromebook Duet 3 with BOE panel and rt5682s (newest rev)
 +        items:
-+          - const: qcom,sc7280-idp
-+          - const: google,senor
-+          - const: qcom,sc7280
++          - const: google,wormdingler-sku1025
++          - const: qcom,sc7180
 +
-+      - description: Qualcomm Technologies, Inc. sc7280 IDP SKU2 platform
++      - description: Lenovo IdeaPad Chromebook Duet 3 with INX panel (rev0)
 +        items:
-+          - const: qcom,sc7280-idp2
-+          - const: google,piglin
-+          - const: qcom,sc7280
++          - const: google,wormdingler-rev0-sku0
++          - const: qcom,sc7180
 +
-+      - description: Google Herobrine (newest rev)
++      - description: Lenovo IdeaPad Chromebook Duet 3 with INX panel (newest rev)
 +        items:
-+          - const: google,herobrine
-+          - const: qcom,sc7280
++          - const: google,wormdingler-sku0
++          - const: qcom,sc7180
 +
-+      - description: Google Villager (newest rev)
++      - description: Lenovo IdeaPad Chromebook Duet 3 with INX panel and rt5682s (newest rev)
 +        items:
-+          - const: google,villager
-           - const: qcom,sc7280
- 
-       - items:
++          - const: google,wormdingler-sku1
++          - const: qcom,sc7180
++
+       - description: Qualcomm Technologies, Inc. sc7280 CRD platform (rev3 - 4)
+         items:
+           - const: qcom,sc7280-crd
 -- 
 2.36.0.550.gb090851708-goog
 
