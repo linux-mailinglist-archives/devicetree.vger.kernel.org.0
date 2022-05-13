@@ -2,262 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 875F1525A70
-	for <lists+devicetree@lfdr.de>; Fri, 13 May 2022 05:58:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 06F54525ACA
+	for <lists+devicetree@lfdr.de>; Fri, 13 May 2022 06:36:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1376839AbiEMD6a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 May 2022 23:58:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46842 "EHLO
+        id S1353680AbiEMEbD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 May 2022 00:31:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40306 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1353234AbiEMD63 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 23:58:29 -0400
-Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com [199.106.114.39])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0277B61284;
-        Thu, 12 May 2022 20:58:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1652414307; x=1683950307;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=ncB+8XgICxsWrmIQFS+DFHIYDncUBCYudRXyg37O6lc=;
-  b=WzyrJJ0QnXNIkCOouDpZ9vuAmKjJGhio675Wdu7HZgXX+bKLfzT3eXMg
-   U9vuJjslAUo6JqqcmeqefVWIhnDsj6EAt4VmLvxrsaiMF90JSpdl5JRs2
-   MVndaBCPdz9aZHmdCIuuOo7r3DzIk6OHvackBRezlj4z/IVg9xMv1t+vI
-   M=;
-Received: from unknown (HELO ironmsg01-sd.qualcomm.com) ([10.53.140.141])
-  by alexa-out-sd-02.qualcomm.com with ESMTP; 12 May 2022 20:58:26 -0700
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg01-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 May 2022 20:58:27 -0700
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Thu, 12 May 2022 20:58:26 -0700
-Received: from [10.216.41.245] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Thu, 12 May
- 2022 20:58:19 -0700
-Message-ID: <4124392b-a40f-c204-f9b0-68c3b22dd652@quicinc.com>
-Date:   Fri, 13 May 2022 09:28:16 +0530
+        with ESMTP id S1346255AbiEMEa6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 May 2022 00:30:58 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6BA062BB3D;
+        Thu, 12 May 2022 21:30:51 -0700 (PDT)
+X-UUID: 6aa3c49978d0498489f77b9ed50246db-20220513
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.5,REQID:01a3c9d9-087f-46fb-b109-acc0c979a54a,OB:0,LO
+        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
+        ON:release,TS:0
+X-CID-META: VersionHash:2a19b09,CLOUDID:673e11f2-ab23-4aed-a67b-f96514452486,C
+        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil
+        ,QS:0,BEC:nil
+X-UUID: 6aa3c49978d0498489f77b9ed50246db-20220513
+Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw02.mediatek.com
+        (envelope-from <rex-bc.chen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 123668449; Fri, 13 May 2022 12:30:48 +0800
+Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
+ mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
+ Fri, 13 May 2022 12:30:47 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n2.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
+ Transport; Fri, 13 May 2022 12:30:47 +0800
+Message-ID: <e70280d5bbc42a7d31602e68e98f3d33e24836ac.camel@mediatek.com>
+Subject: Re: [PATCH v4] pwrap: mediatek: fix FSM timeout issue
+From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
+To:     Zhiyong Tao <zhiyong.tao@mediatek.com>, <lee.jones@linaro.org>,
+        <robh+dt@kernel.org>, <matthias.bgg@gmail.com>,
+        <lgirdwood@gmail.com>, <broonie@kernel.org>,
+        <eddie.huang@mediatek.com>, <a.zummo@towertech.it>,
+        <alexandre.belloni@bootlin.com>, <fshao@chromium.org>
+CC:     <srv_heupstream@mediatek.com>, <hui.liu@mediatek.com>,
+        <tinghan.shen@mediatek.com>, <hsin-hsiung.wang@mediatek.com>,
+        <sean.wang@mediatek.com>, <macpaul.lin@mediatek.com>,
+        <wen.su@mediatek.com>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-rtc@vger.kernel.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>
+Date:   Fri, 13 May 2022 12:30:47 +0800
+In-Reply-To: <20220513034356.5268-2-zhiyong.tao@mediatek.com>
+References: <20220513034356.5268-1-zhiyong.tao@mediatek.com>
+         <20220513034356.5268-2-zhiyong.tao@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.0
-Subject: Re: [v16 2/5] usb: dwc3: core: Host wake up support from system
- suspend
-Content-Language: en-US
-To:     Matthias Kaehlcke <mka@chromium.org>
-CC:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Felipe Balbi <balbi@kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Doug Anderson <dianders@chromium.org>,
-        Mathias Nyman <mathias.nyman@intel.com>,
-        <devicetree@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-usb@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-pm@vger.kernel.org>, <quic_pkondeti@quicinc.com>,
-        <quic_ppratap@quicinc.com>, <quic_vpulyala@quicinc.com>,
-        Sandeep Maheswaram <quic_c_sanm@quicinc.com>
-References: <1652379802-8318-1-git-send-email-quic_kriskura@quicinc.com>
- <1652379802-8318-3-git-send-email-quic_kriskura@quicinc.com>
- <Yn2M5hrah78jro1C@google.com>
-From:   Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
-In-Reply-To: <Yn2M5hrah78jro1C@google.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-Spam-Status: No, score=-7.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-MTK:  N
+X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,MAY_BE_FORGED,
+        SPF_HELO_NONE,T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, 2022-05-13 at 11:43 +0800, Zhiyong Tao wrote:
+> From: "Zhiyong.Tao" <zhiyong.tao@mediatek.com>
+> 
+> Fix pwrap FSM timeout issue which leads the system crash on GFX VSRAM
+> power on.
+> The crash log:
+> [ 3986.543401] mediatek-drm-dp 1c500000.edp_tx:
+> drm_helper_hpd_irq_event
+> [ 3986.670756] vsram_others: is_enabled() failed: -ETIMEDOUT
+> [ 3986.670765] mali 13000000.mali: Power on reg 1 failed error = -110
+> [ 3986.670768] ------------[ cut here ]------------
+> [ 3986.670770] unbalanced disables for vsram_others
+> [ 3986.670783] WARNING: CPU: 7 PID: 4125 at
+> drivers/regulator/core.c:2761 _regulator_disable+0x194/0x1a0
+> [ 3986.670785] Modules linked in: rfcomm algif_hash algif_skcipher
+> af_alg veth uinput btusb btmtk btintel btbcm btrtl xt_cgroup
+> bluetooth uvcvideo videobuf2_vmalloc ecdh_generic ecc mtk_vcodec_dec
+> mtk_vcodec_enc mtk_mdp3 v4l2_h264 mtk_vcodec_common
+> videobuf2_dma_contig mtk_vpu videobuf2_memops v4l2_mem2mem
+> xt_MASQUERADE videobuf2_v4l2 videobuf2_common cros_ec_rpmsg mtk_scp
+> mtk_rpmsg rpmsg_core mtk_scp_ipi ip6table_nat fuse 8021q
+> iio_trig_sysfs cros_ec_sensors cros_ec_lid_angle cros_ec_sensors_core
+> industrialio_triggered_buffer kfifo_buf cros_ec_sensorhub mt7921e
+> mt7921_common mt76_connac_lib lzo_rle mt76 lzo_compress mac80211
+> cfg80211 zram r8152 mii joydev
+> [ 3986.670830] CPU: 7 PID: 4125 Comm: mali-cmar-backe Not tainted
+> 5.10.78-CL2781499-v287 #1 b899b40a63da40d4767c6c0e96b6700d2f3eb242
+> [ 3986.670832] Hardware name: MediaTek Tomato board (DT)
+> [ 3986.670835] pstate: 60400009 (nZCv daif +PAN -UAO -TCO BTYPE=--)
+> [ 3986.670838] pc : _regulator_disable+0x194/0x1a0
+> [ 3986.670840] lr : _regulator_disable+0x194/0x1a0
+> [ 3986.670842] sp : ffffffc016203a10
+> [ 3986.670843] x29: ffffffc016203a10 x28: ffffffb7c3186b28
+> [ 3986.670846] x27: 0000000000000002 x26: fffffffffffffdc8
+> [ 3986.670848] x25: ffffffc017225000 x24: ffffffb7c0e94880
+> [ 3986.670851] x23: ffffffb7c31840f0 x22: ffffffd6b4f3e275
+> [ 3986.670853] x21: ffffffb7c3181a00 x20: ffffffb7c27e7800
+> [ 3986.670855] x19: ffffffb7c27e7800 x18: 00000000ffff0a10
+> [ 3986.670857] x17: 0000000000000020 x16: 00000000000000ec
+> [ 3986.670860] x15: ffffffd6b44fa17c x14: 0000000000000003
+> [ 3986.670862] x13: 0000000000000004 x12: 0000000000fd8318
+> [ 3986.670864] x11: c000000100029ccd x10: 00000000ffffffff
+> [ 3986.670866] x9 : 7dd6d080afd6f400 x8 : 7dd6d080afd6f400
+> [ 3986.670868] x7 : 0000000000000000 x6 : ffffffd6b5459f0c
+> [ 3986.670871] x5 : ffffffc016203a58 x4 : 0000000000000000
+> [ 3986.670873] x3 : ffffffc016203668 x2 : ffffffc016203670
+> [ 3986.670875] x1 : 0000000100029ccd x0 : 0000000000000024
+> [ 3986.670878] Call trace:
+> [ 3986.670880]  _regulator_disable+0x194/0x1a0
+> [ 3986.670883]  regulator_disable+0x4c/0x8c
+> 
+> Add a usleep delay to avoid busy read for the H/W status.
+> If (time_after()) be turn first, it maybe cause the system behavior
+> crash problem like above. so we change it after sleep delay.
+> 
+> Fixes: 1f022d84bd19 ("soc: mediatek: Add PMIC wrapper for MT8135 and
+> MT8173 SoCs")
+> 
+> Signed-off-by: Zhiyong.Tao <zhiyong.tao@mediatek.com>
+> ---
+>  drivers/soc/mediatek/mtk-pmic-wrap.c | 8 ++++++--
+>  1 file changed, 6 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/soc/mediatek/mtk-pmic-wrap.c
+> b/drivers/soc/mediatek/mtk-pmic-wrap.c
+> index 952bc554f443..f9e7c2f35157 100644
+> --- a/drivers/soc/mediatek/mtk-pmic-wrap.c
+> +++ b/drivers/soc/mediatek/mtk-pmic-wrap.c
+> @@ -4,6 +4,7 @@
+>   * Author: Flora Fu, MediaTek
+>   */
+>  #include <linux/clk.h>
+> +#include <linux/delay.h>
+>  #include <linux/interrupt.h>
+>  #include <linux/io.h>
+>  #include <linux/kernel.h>
+> @@ -1197,10 +1198,13 @@ static int pwrap_wait_for_state(struct
+> pmic_wrapper *wrp,
+>  	timeout = jiffies + usecs_to_jiffies(10000);
+>  
+>  	do {
+> -		if (time_after(jiffies, timeout))
+> -			return fp(wrp) ? 0 : -ETIMEDOUT;
+>  		if (fp(wrp))
+>  			return 0;
+> +
+> +		usleep_range(10, 11);
+> +
+> +		if (time_after(jiffies, timeout))
+> +			return fp(wrp) ? 0 : -ETIMEDOUT;
+>  	} while (1);
+>  }
+>  
 
-On 5/13/2022 4:10 AM, Matthias Kaehlcke wrote:
-> On Thu, May 12, 2022 at 11:53:19PM +0530, Krishna Kurapati wrote:
->> From: Sandeep Maheswaram <quic_c_sanm@quicinc.com>
->>
->> During suspend read the status of all port and set hs phy mode
->> based on current speed. Use this hs phy mode to configure wakeup
->> interrupts in qcom glue driver.
->>
->> Check wakeup-source property for dwc3 core node to set the
->> wakeup capability. Drop the device_init_wakeup call from
->> runtime suspend and resume.
->>
->> Also check during suspend if any wakeup capable devices are
->> connected to the controller (directly or through hubs), if there
->> are none set a flag to indicate that the PHY is powered
->> down during suspend.
->>
->> Signed-off-by: Sandeep Maheswaram <quic_c_sanm@quicinc.com>
->> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
->> ---
->>   drivers/usb/dwc3/core.c | 30 +++++++++++++++++-------------
->>   drivers/usb/dwc3/core.h |  4 ++++
->>   drivers/usb/dwc3/host.c | 24 ++++++++++++++++++++++++
->>   3 files changed, 45 insertions(+), 13 deletions(-)
->>
->> diff --git a/drivers/usb/dwc3/core.c b/drivers/usb/dwc3/core.c
->> index 01115df..8bcabc5 100644
->> --- a/drivers/usb/dwc3/core.c
->> +++ b/drivers/usb/dwc3/core.c
->> @@ -1785,6 +1785,7 @@ static int dwc3_probe(struct platform_device *pdev)
->>   
->>   	platform_set_drvdata(pdev, dwc);
->>   	dwc3_cache_hwparams(dwc);
->> +	device_init_wakeup(&pdev->dev, of_property_read_bool(dev->of_node, "wakeup-source"));
->>   
->>   	spin_lock_init(&dwc->lock);
->>   	mutex_init(&dwc->mutex);
->> @@ -1946,10 +1947,7 @@ static int dwc3_suspend_common(struct dwc3 *dwc, pm_message_t msg)
->>   		dwc3_core_exit(dwc);
->>   		break;
->>   	case DWC3_GCTL_PRTCAP_HOST:
->> -		if (!PMSG_IS_AUTO(msg)) {
->> -			dwc3_core_exit(dwc);
->> -			break;
->> -		}
->> +		dwc3_check_phy_speed_mode(dwc);
->>   
->>   		/* Let controller to suspend HSPHY before PHY driver suspends */
->>   		if (dwc->dis_u2_susphy_quirk ||
->> @@ -1965,6 +1963,15 @@ static int dwc3_suspend_common(struct dwc3 *dwc, pm_message_t msg)
->>   
->>   		phy_pm_runtime_put_sync(dwc->usb2_generic_phy);
->>   		phy_pm_runtime_put_sync(dwc->usb3_generic_phy);
->> +
->> +		if (!PMSG_IS_AUTO(msg)) {
->> +			if (device_may_wakeup(dwc->dev))
-> I think this should be device_can_wakeup(), i.e. hardware capability instead of
-> device policy. A drawback of powering the PHYs off is that it causes a high
-> power consumption of certain peripherals if VBUS is still supplied, so this
-> should be limited to platforms where the PHYs must be powered off (using wakeup
-> capability as a proxy for now).
-Thnaks Mathias for the review. Will make this change in the next patchset.
->> +				dwc->phy_power_off = false;
->> +			else {
->> +				dwc->phy_power_off = true;
->> +				dwc3_core_exit(dwc);
->> +			}
->> +		}
->>   		break;
->>   	case DWC3_GCTL_PRTCAP_OTG:
->>   		/* do nothing during runtime_suspend */
->> @@ -2008,11 +2015,12 @@ static int dwc3_resume_common(struct dwc3 *dwc, pm_message_t msg)
->>   		break;
->>   	case DWC3_GCTL_PRTCAP_HOST:
->>   		if (!PMSG_IS_AUTO(msg)) {
->> -			ret = dwc3_core_init_for_resume(dwc);
->> -			if (ret)
->> -				return ret;
->> -			dwc3_set_prtcap(dwc, DWC3_GCTL_PRTCAP_HOST);
->> -			break;
->> +			if (dwc->phy_power_off) {
->> +				ret = dwc3_core_init_for_resume(dwc);
->> +				if (ret)
->> +					return ret;
->> +				dwc3_set_prtcap(dwc, DWC3_GCTL_PRTCAP_HOST);
->> +			}
->>   		}
->>   		/* Restore GUSB2PHYCFG bits that were modified in suspend */
->>   		reg = dwc3_readl(dwc->regs, DWC3_GUSB2PHYCFG(0));
->> @@ -2084,8 +2092,6 @@ static int dwc3_runtime_suspend(struct device *dev)
->>   	if (ret)
->>   		return ret;
->>   
->> -	device_init_wakeup(dev, true);
->> -
->>   	return 0;
->>   }
->>   
->> @@ -2094,8 +2100,6 @@ static int dwc3_runtime_resume(struct device *dev)
->>   	struct dwc3     *dwc = dev_get_drvdata(dev);
->>   	int		ret;
->>   
->> -	device_init_wakeup(dev, false);
->> -
->>   	ret = dwc3_resume_common(dwc, PMSG_AUTO_RESUME);
->>   	if (ret)
->>   		return ret;
->> diff --git a/drivers/usb/dwc3/core.h b/drivers/usb/dwc3/core.h
->> index 81c486b..37397a8 100644
->> --- a/drivers/usb/dwc3/core.h
->> +++ b/drivers/usb/dwc3/core.h
->> @@ -1155,6 +1155,9 @@ struct dwc3 {
->>   
->>   	bool			phys_ready;
->>   
->> +	unsigned int            hs_phy_mode;
->> +	bool			phy_power_off;
->> +
->>   	struct ulpi		*ulpi;
->>   	bool			ulpi_ready;
->>   
->> @@ -1539,6 +1542,7 @@ int dwc3_core_soft_reset(struct dwc3 *dwc);
->>   #if IS_ENABLED(CONFIG_USB_DWC3_HOST) || IS_ENABLED(CONFIG_USB_DWC3_DUAL_ROLE)
->>   int dwc3_host_init(struct dwc3 *dwc);
->>   void dwc3_host_exit(struct dwc3 *dwc);
->> +void dwc3_check_phy_speed_mode(struct dwc3 *dwc);
->>   #else
->>   static inline int dwc3_host_init(struct dwc3 *dwc)
->>   { return 0; }
->> diff --git a/drivers/usb/dwc3/host.c b/drivers/usb/dwc3/host.c
->> index f56c30c..e19b40a 100644
->> --- a/drivers/usb/dwc3/host.c
->> +++ b/drivers/usb/dwc3/host.c
->> @@ -12,6 +12,7 @@
->>   #include <linux/platform_device.h>
->>   
->>   #include "core.h"
->> +#include "../host/xhci.h"
->>   
->>   static void dwc3_host_fill_xhci_irq_res(struct dwc3 *dwc,
->>   					int irq, char *name)
->> @@ -136,3 +137,26 @@ void dwc3_host_exit(struct dwc3 *dwc)
->>   {
->>   	platform_device_unregister(dwc->xhci);
->>   }
->> +
->> +void dwc3_check_phy_speed_mode(struct dwc3 *dwc)
->> +{
->> +	int i, num_ports;
->> +	u32 reg;
->> +	struct usb_hcd	*hcd = platform_get_drvdata(dwc->xhci);
->> +	struct xhci_hcd	*xhci_hcd = hcd_to_xhci(hcd);
->> +
->> +	dwc->hs_phy_mode = 0;
->> +
->> +	reg = readl(&xhci_hcd->cap_regs->hcs_params1);
->> +
->> +	num_ports = HCS_MAX_PORTS(reg);
->> +	for (i = 0; i < num_ports; i++) {
->> +		reg = readl(&xhci_hcd->op_regs->port_status_base + i * NUM_PORT_REGS);
->> +		if (reg & PORT_PE) {
->> +			if (DEV_HIGHSPEED(reg) || DEV_FULLSPEED(reg))
->> +				dwc->hs_phy_mode |= PHY_MODE_USB_HOST_HS;
->> +			else if (DEV_LOWSPEED(reg))
->> +				dwc->hs_phy_mode |= PHY_MODE_USB_HOST_LS;
->> +		}
->> +	}
->> +}
-> I anticipate that it might raise concerns from maintainers that
-> dwc3_check_phy_speed_mode() accesses xHCI data structures and
-> registers directly. Could there be a generic HCD API that provides
-> this functionality (if implemented by the specific HCD)?
-
-Hi Mathias, we are not sure if there is any such API present currently.
-
-Hi Alan, can you help suggest any API (if present) that we can reuse 
-here to avoid
-
-xhci registers and structs here in dwc3.
+Reviewed-by: Rex-BC Chen <rex-bc.chen@mediatek.com>
 
