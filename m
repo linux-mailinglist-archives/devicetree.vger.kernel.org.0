@@ -2,180 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 218055267D5
-	for <lists+devicetree@lfdr.de>; Fri, 13 May 2022 19:02:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BDFA2526802
+	for <lists+devicetree@lfdr.de>; Fri, 13 May 2022 19:16:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349516AbiEMRBR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 May 2022 13:01:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43426 "EHLO
+        id S1358421AbiEMRQ0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 May 2022 13:16:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46156 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1382711AbiEMRAi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 May 2022 13:00:38 -0400
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF6602C648
-        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 10:00:36 -0700 (PDT)
-Received: by mail-ed1-x532.google.com with SMTP id k27so10680098edk.4
-        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 10:00:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=NNVOaJHWY8Riu+9WPnHNOiy+A9MzK1I1aBmjMYCZcaI=;
-        b=PJhPlBJT6uXyV2dwAoJkXnRbHOUPfkcJ1Zrdw/D8tDB46vybU0WGRBD/HcJWY1jwJS
-         KgiJHHqppcp50s1Y6YHNHOY3o6lhGnHiuuQy4r+dIxIsWQaenEgpM0ABYV2rO4jQqfU+
-         12gqI+v9gC9SzD+YJNnJDYiuqReB0g0fhSYKE=
+        with ESMTP id S238350AbiEMRQX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 May 2022 13:16:23 -0400
+Received: from mail-qv1-f53.google.com (mail-qv1-f53.google.com [209.85.219.53])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91FC163A0;
+        Fri, 13 May 2022 10:16:21 -0700 (PDT)
+Received: by mail-qv1-f53.google.com with SMTP id js14so7100764qvb.12;
+        Fri, 13 May 2022 10:16:21 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=NNVOaJHWY8Riu+9WPnHNOiy+A9MzK1I1aBmjMYCZcaI=;
-        b=HEu5hjdw3lT7J6NkYked2y2jqnhUYBDVKcib+AS+EpCNyv0uyMZA6nN7IiYYRMLnM0
-         ykSISStL9MiiUt52Bu7AFrksD1BjiXXg1ZXAXf1E+IYuT3ap3fynPQHUZI7sfFCm1L5+
-         Qm598IV5IXckcS/xsNc5myLmUwKOG79xagPg3BUEKRl8rsOp5VWaocfW5qsGCX1AzDGR
-         Ux1y44G2QORb2JlbDCUTDlrkPpnly6SNKlSyL3OjvcCF6cpkBiRLXS3+PV+WM+0KN0p4
-         zvH6+3mVsoNvV4ryeGwb3TJxxwQSmrxqXC1Mvlcd4V/5q5tyCht9hUYJmqcJ2u3ThetC
-         dYCw==
-X-Gm-Message-State: AOAM530nRHTQSIhWK6NaTmVNhPYE3P3HSJG08qPfsEWsrSf3dQdWuv5r
-        jIvCzztVoJc7WLCni9mf1tAHOUzvGVMx2OZM9vk=
-X-Google-Smtp-Source: ABdhPJzCd8Xf66H4S3rRLlcM+epHnJc7AGnfePMSoeczTs+YuS9g5lVFft+85EM/ZqvX8lKnKCCuaA==
-X-Received: by 2002:a05:6402:42d4:b0:416:5cac:a9a0 with SMTP id i20-20020a05640242d400b004165caca9a0mr41617698edc.86.1652461234681;
-        Fri, 13 May 2022 10:00:34 -0700 (PDT)
-Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com. [209.85.221.51])
-        by smtp.gmail.com with ESMTPSA id o6-20020aa7c7c6000000b0042617ba63aesm1143974eds.56.2022.05.13.10.00.33
-        for <devicetree@vger.kernel.org>
+        bh=raRyjvi/nNYnyN2p2YoiBhtLtPa6DvP11Zh+f/IjRsk=;
+        b=nlFUNmeea732A2hRNrh9aFbxDJKP78DInq78e0LVlzmKNwYjlMLkkvqIyOfaqaB7sp
+         omfNNtR6hui62pGc031a/rQMvagv4mFehULZOfVga0XbWcXo/H+zTuCoqjO/ukf0aPeF
+         XNZAaKU7bbUDmES9jlcurW0/2ruiTQTo0bJsQAfdj7EoU/mr4ecyhpCy5lt/GuqTwrsh
+         8qW2BQOid/W4S+R5SgfF+Fzg9+GgiruuuzjWVNxZOkjovFADXmCrhv4k1h1r+xm5sOVR
+         0hOi4EJ/gu6X6gq4YjZ28hpr8LwE2upBptrPsNBtaHG0zlvYSNai0tQIxL62mlAe2eEB
+         BFNQ==
+X-Gm-Message-State: AOAM531rq3LQewjB1FPmaIf2H0K7BXKqR73bcA0y+6DHsfCjOtH36+ui
+        bTACLWPWDeyEWmFpFJbIz+D2jSPgzg/66w==
+X-Google-Smtp-Source: ABdhPJy5895WUGhzok/gOxcerwdT15xONRPO6cx9ZKH09oiy1dioaBOeuhY9EujN4C7nvHRoT44/Mg==
+X-Received: by 2002:a05:6214:1c87:b0:42d:20cb:e484 with SMTP id ib7-20020a0562141c8700b0042d20cbe484mr5180142qvb.10.1652462180474;
+        Fri, 13 May 2022 10:16:20 -0700 (PDT)
+Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com. [209.85.128.176])
+        by smtp.gmail.com with ESMTPSA id g20-20020a37e214000000b0069fc13ce23csm1573828qki.109.2022.05.13.10.16.19
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 13 May 2022 10:00:33 -0700 (PDT)
-Received: by mail-wr1-f51.google.com with SMTP id u3so12253157wrg.3
-        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 10:00:33 -0700 (PDT)
-X-Received: by 2002:a5d:42c8:0:b0:20a:d91f:87b5 with SMTP id
- t8-20020a5d42c8000000b0020ad91f87b5mr4900541wrr.301.1652461232723; Fri, 13
- May 2022 10:00:32 -0700 (PDT)
+        Fri, 13 May 2022 10:16:19 -0700 (PDT)
+Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-2f863469afbso97688987b3.0;
+        Fri, 13 May 2022 10:16:19 -0700 (PDT)
+X-Received: by 2002:a81:2143:0:b0:2fb:1274:247e with SMTP id
+ h64-20020a812143000000b002fb1274247emr6840940ywh.384.1652462179266; Fri, 13
+ May 2022 10:16:19 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220512090429.1.I9804fcd5d6c8552ab25f598dd7a3ea71b15b55f0@changeid>
- <828bc65f-e585-0fe7-c038-c750861c9446@linaro.org> <48d96a4e-ce1b-03a1-1831-36555efd7080@linaro.org>
-In-Reply-To: <48d96a4e-ce1b-03a1-1831-36555efd7080@linaro.org>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Fri, 13 May 2022 10:00:20 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=WNSv+kgTZwjHVq+YNQAG0uB42QUPaU-BPTV_W+j=5aYg@mail.gmail.com>
-Message-ID: <CAD=FV=WNSv+kgTZwjHVq+YNQAG0uB42QUPaU-BPTV_W+j=5aYg@mail.gmail.com>
-Subject: Re: [PATCH 1/3] dt-bindings: arm: qcom: Add sc7180 Chromebook board bindings
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Rob Herring <robh@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Alexandru M Stan <amstan@chromium.org>,
-        Rajendra Nayak <quic_rjendra@quicinc.com>,
-        "Joseph S . Barrera III" <joebar@chromium.org>,
-        Julius Werner <jwerner@chromium.org>,
-        Andy Gross <agross@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+References: <20220513104957.257721-1-miquel.raynal@bootlin.com> <20220513104957.257721-3-miquel.raynal@bootlin.com>
+In-Reply-To: <20220513104957.257721-3-miquel.raynal@bootlin.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Fri, 13 May 2022 19:16:07 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdWFV0PcvEYJht__pTDTq3jj-CW2KegwGMyDgfeJhtpSRw@mail.gmail.com>
+Message-ID: <CAMuHMdWFV0PcvEYJht__pTDTq3jj-CW2KegwGMyDgfeJhtpSRw@mail.gmail.com>
+Subject: Re: [PATCH v4 2/2] mtd: rawnand: renesas: Use runtime PM instead of
+ the raw clock API
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Gareth Williams <gareth.williams.jx@renesas.com>,
+        Phil Edworthy <phil.edworthy@renesas.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
+        Pratyush Yadav <p.yadav@ti.com>,
+        Michael Walle <michael@walle.cc>,
+        MTD Maling List <linux-mtd@lists.infradead.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@codeaurora.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>
+        Milan Stevanovic <milan.stevanovic@se.com>,
+        Jimmy Lalande <jimmy.lalande@se.com>,
+        Pascal Eberhard <pascal.eberhard@se.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Herve Codina <herve.codina@bootlin.com>,
+        Clement Leger <clement.leger@bootlin.com>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On Fri, May 13, 2022 at 2:01 AM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
+On Fri, May 13, 2022 at 12:50 PM Miquel Raynal
+<miquel.raynal@bootlin.com> wrote:
+> This NAND controller is part of a well defined power domain handled by
+> the runtime PM core. Let's keep the harmony with the other RZ/N1 drivers
+> and exclusively use the runtime PM API to enable/disable the clocks.
 >
-> On 13/05/2022 09:57, Krzysztof Kozlowski wrote:
-> > On 12/05/2022 18:04, Douglas Anderson wrote:
-> >> This copy-pastes compatibles from sc7180-based boards from the device
-> >> trees to the yaml file so that `make dtbs_check` will be happy.
-> >>
-> >> NOTES:
-> >> - I make no attempt to try to share an "item" for all sc7180 based
-> >>   Chromebooks. Because of the revision matching scheme used by the
-> >>   Chromebook bootloader, at times we need a different number of
-> >>   revisions listed.
-> >> - Some of the odd entries in here (like google,homestar-rev23 or the
-> >>   fact that "Google Lazor Limozeen without Touchscreen" changed from
-> >>   sku5 to sku6) are not typos but simply reflect reality.
-> >> - Many revisions of boards here never actually went to consumers, but
-> >>   they are still in use within various companies that were involved in
-> >>   Chromebook development. Since Chromebooks are developed with an
-> >>   "upstream first" methodology, having these revisions supported with
-> >>   upstream Linux is important. Making it easy for Chromebooks to be
-> >>   developed with an "upstream first" methodology is valuable to the
-> >>   upstream community because it improves the quality of upstream and
-> >>   gets Chromebooks supported with vanilla upstream faster.
-> >>
-> >> Signed-off-by: Douglas Anderson <dianders@chromium.org>
-> >> ---
-> >>
-> >>  .../devicetree/bindings/arm/qcom.yaml         | 180 ++++++++++++++++++
-> >>  1 file changed, 180 insertions(+)
-> >>
-> >> diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
-> >> index 5c06d1bfc046..399be67eb5d2 100644
-> >> --- a/Documentation/devicetree/bindings/arm/qcom.yaml
-> >> +++ b/Documentation/devicetree/bindings/arm/qcom.yaml
-> >> @@ -214,11 +214,191 @@ properties:
-> >>                - qcom,ipq8074-hk10-c2
-> >>            - const: qcom,ipq8074
-> >>
-> >> +      # Qualcomm Technologies, Inc. SC7180 IDP
-> >>        - items:
-> >>            - enum:
-> >>                - qcom,sc7180-idp
-> >>            - const: qcom,sc7180
-> >>
-> >> +      # Google CoachZ (rev1 - 2)
-> >> +      - items:
-> >> +          - const: google,coachz-rev1
-> >> +          - const: google,coachz-rev2
-> >
-> > The inverted pattern of old revision being compatible with the new one,
-> > is done on purpose? You claim here every rev1 is always compatible with
-> > rev2 ...
-> >
-> > I don't think we discussed such patterns in previous talk. I quickly
-> > went through it and there were only skuX moving around, not rev1 being
-> > newer then rev2.
+> We still need to retrieve the external clock rate in order to derive the
+> NAND timings, but that is not a big deal, we can still do that in the
+> probe and just save this value to reuse it later.
+>
+> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
 
-Isn't this what we just had a whole discussion about?
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-Oh, I see. You're objecting to the fact that the order here lists
-"rev1" first and "rev2" second.
+Gr{oetje,eeting}s,
 
-I think the issue here is that for the purposes of booting Chromebooks
-the order here doesn't matter. Certainly we can pick a fixed order and
-we can validate that the order in the yaml matches the order in the
-device tree, but for all intents and purposes it doesn't matter to
-anything. The same device tree is compatible with _both_ rev1 and rev2
-coachz devices. Neither of those two devices is inherently better
-supported by this device tree than the other.
+                        Geert
 
-We can reorder them if it's important for some reason, but it doesn't
-change the facts of the matter. You can't tell whether you've booted a
-"-rev1" Chromebook or a "-rev2" Chromebook based on the most specific
-compatible string.
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-As per the other discussion, we could "solve" this by making two
-device trees that were exactly the same but one of them had the
-compatible "-rev1" the other "-rev2". This would result in a big
-explosion in the number of device trees in our FIT Image for very
-little gain. It also fails to solve the "newest rev" problem.
-
-
-OK, so I've written up a description of the whole system. Maybe it
-will be clearer with that and we can continue the discussion in my v2
-if needed.
-
-https://lore.kernel.org/r/20220513095722.v2.1.I71e42c6174f1cec17da3024c9f73ba373263b9b6@changeid
-
--Doug
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
