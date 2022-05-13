@@ -2,127 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ADEDB52621F
-	for <lists+devicetree@lfdr.de>; Fri, 13 May 2022 14:40:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 120E9526224
+	for <lists+devicetree@lfdr.de>; Fri, 13 May 2022 14:41:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1377778AbiEMMkE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 May 2022 08:40:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40302 "EHLO
+        id S1380277AbiEMMlr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 May 2022 08:41:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43358 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239666AbiEMMkC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 May 2022 08:40:02 -0400
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3FA378B099
-        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 05:40:01 -0700 (PDT)
-Received: by mail-lf1-x129.google.com with SMTP id t25so14286790lfg.7
-        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 05:40:01 -0700 (PDT)
+        with ESMTP id S230340AbiEMMlq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 May 2022 08:41:46 -0400
+Received: from EUR01-DB5-obe.outbound.protection.outlook.com (mail-eopbgr150122.outbound.protection.outlook.com [40.107.15.122])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6449536317;
+        Fri, 13 May 2022 05:41:41 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Jo4Jc3ITjKHHf9EsJj43U9BNqcN0zWz6Z5G8La9zJtPsKx4ADvuLoZd3ULWxV8P2yHUeF/90RnFmDOGM4qkaMiHg24wJUvqHpj6YkifNkLlKbVhETYxINYd58YrTAJZBPIlP4Kub4FvImAfqcLTcIBx9pVwwUmcYw1wS5+qhFN7PSl//0vbspFbgZpHLGE9yIMfa18DBRTTZvk9p8vmlTxTd3GJwwGdv8bIskwqGHrL0CSYBc7Nia+hhqhbB5zS4CW3Glsb+K5DLCtQH9w1KjyrGucpPHPQvHgslrMYfqppaOrbJrn5sPdETh7BfMR8J9AsU5YHxVFKs6QNGlEwLpw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ELU1WXMI2cudFkUdRUNXSRoO0+8T5o07hwjHqKh4/r8=;
+ b=NTkCdB7XGpF06cCnvPgxblBWtYdF45JXY+8zIs3L5xNf/cZvnnZWMo9nlyWNg0rLAvG1JZ2H69FpFOVVFPrGrLKSWBTxVcXUHyT6nSBwnqt8ZYTeMkT6U5iWVioxc6q9xbFrqFdyYI+aJ3PJhS4C/RFkEZv56vVZSkKSNCnGAJSuAfZTtv9oFQqTrhLbIx1OktskfT2wtlWxGm19OoSahv0QDv+cumYh6YPg3qvwuG9fjWqEs0MjxGhcAy7xdVhZ1IOAawBLaSmejJhgKGNWgL3AIGqA82kJzfCp2n/+0Q2L9IokyvcsQ6GKp/6oUBK/YYs7BOX6Jp9tbQn9iktFZg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 193.8.40.94) smtp.rcpttodomain=kernel.org
+ smtp.mailfrom=leica-geosystems.com.cn; dmarc=pass (p=quarantine sp=quarantine
+ pct=100) action=none header.from=leica-geosystems.com.cn; dkim=none (message
+ not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=WZDB7Z12eDc46BTLC2lfW32G/wF1AJbeefP857zfk1I=;
-        b=AXHG4xCifCU8eHr3vEVmEVz7CX1ab+ISwd6QZJXhvTQ077OK2ogJya3YTgriZv8BR4
-         Fg57x4oH2fk9fM8djQr7SQyu2KJG0ASZ3k4jhDvy2zxlHTecnJZwAmt2V+Y2SlVk5Krl
-         GBsU2ZEtg+BEbEzkcK6KqRgy3NjEYpZf6QRc432NggntsGLNXD7s6zjkhQzL5XrZyKCK
-         77Pqvf9mQLSahMgUR9MyNPKH1//EPXcrP4tirm/jk4NcAiB7muP9mrT+F/rg5bnIuvdL
-         Nyn+47x3QQuB8vekMTt2+l1CXWQpUFFJUyprxU8jPw0KCIa5o/JRD80rIajD778t1+D+
-         B1+A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=WZDB7Z12eDc46BTLC2lfW32G/wF1AJbeefP857zfk1I=;
-        b=8MBgdDWgpIRxkAbra2Ij6oUbkYH1ScUOQlmrAo8NtDdWBajD8MjWNJFZx8w/slNkjr
-         96x4D4JGb4J3Sk1Hk5OrIHFVxSydz0/aW52ZFihrJcJhXOHkOoF8yid4s+/D7t7Ys8b6
-         jnofPfeaQGr+JNQpLLUKZZTnJDnJLbOxpbtOAzGqKH3kvtv4ObBWE+wVh+eVf9PiIKgb
-         5sYaviQGzX1XIVWOwwx2kMGZ63TnOrdghYywf6MOmKQCS8D2WNeSHw3HyKAzc+v8XgP4
-         +DOCpNTxmBu4VJY4wqhKi0ta5/wU3Llnij10fEdJryej6D/KX0GaVTcMcVTrvVofBjV1
-         39HA==
-X-Gm-Message-State: AOAM5324cndReswUhekCnfBeKhYIfsN1joti18ubOCI9B5RzQBwxvLcL
-        aKy/cJSljxv2iipeTVoKzDb75g==
-X-Google-Smtp-Source: ABdhPJzzy191PGmD87/Teiyji239CVjb4mjOGOtcjLzQQh2m4VRudIAadvHZQC+uvLNg1xi6n+NDUQ==
-X-Received: by 2002:a05:6512:1684:b0:448:a0e6:9fa6 with SMTP id bu4-20020a056512168400b00448a0e69fa6mr3309307lfb.592.1652445599514;
-        Fri, 13 May 2022 05:39:59 -0700 (PDT)
-Received: from [192.168.1.211] ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id h10-20020ac2596a000000b0047255d210fasm367963lfp.41.2022.05.13.05.39.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 13 May 2022 05:39:59 -0700 (PDT)
-Message-ID: <c35595ff-f789-5452-d9a8-b5dfcb920141@linaro.org>
-Date:   Fri, 13 May 2022 15:39:58 +0300
+ d=leica-geosystems.com.cn; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ELU1WXMI2cudFkUdRUNXSRoO0+8T5o07hwjHqKh4/r8=;
+ b=bhT3B+kvFAvYN9xae3tcD+c7XzxyPnqVrSPMlnFSjE8hRgJDnBzQTrlIO6rEaMmMvjzp86vR0kJZYv8t8C4d53fye02a+THVVEBsyt6VBSru4H+0MtYsyTPErQGMFKEi6JykszcfWeQPZQ2NHNCeuRazqU/0QI6FesHYGRLhUqw=
+Received: from AM6P194CA0100.EURP194.PROD.OUTLOOK.COM (2603:10a6:209:8f::41)
+ by PR3PR06MB6890.eurprd06.prod.outlook.com (2603:10a6:102:88::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5250.14; Fri, 13 May
+ 2022 12:41:38 +0000
+Received: from VE1EUR02FT036.eop-EUR02.prod.protection.outlook.com
+ (2603:10a6:209:8f:cafe::1d) by AM6P194CA0100.outlook.office365.com
+ (2603:10a6:209:8f::41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5250.13 via Frontend
+ Transport; Fri, 13 May 2022 12:41:38 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 193.8.40.94)
+ smtp.mailfrom=leica-geosystems.com.cn; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=leica-geosystems.com.cn;
+Received-SPF: Pass (protection.outlook.com: domain of leica-geosystems.com.cn
+ designates 193.8.40.94 as permitted sender) receiver=protection.outlook.com;
+ client-ip=193.8.40.94; helo=aherlnxbspsrv01.lgs-net.com;
+Received: from aherlnxbspsrv01.lgs-net.com (193.8.40.94) by
+ VE1EUR02FT036.mail.protection.outlook.com (10.152.13.197) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5250.13 via Frontend Transport; Fri, 13 May 2022 12:41:37 +0000
+From:   LI Qingwu <Qing-wu.Li@leica-geosystems.com.cn>
+To:     jic23@kernel.org, lars@metafoo.de, robh+dt@kernel.org,
+        tomas.melin@vaisala.com, andy.shevchenko@gmail.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Qing-wu.Li@leica-geosystems.com.cn
+Cc:     linux-iio@vger.kernel.org
+Subject: [PATCH V6 0/5] iio: accel: sca3300: add compatible for scl3300
+Date:   Fri, 13 May 2022 12:41:30 +0000
+Message-Id: <20220513124135.1295822-1-Qing-wu.Li@leica-geosystems.com.cn>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH v8 00/10] PCI: qcom: Fix higher MSI vectors handling
-Content-Language: en-GB
-To:     Johan Hovold <johan@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Stanimir Varbanov <svarbanov@mm-sol.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org
-References: <20220512104545.2204523-1-dmitry.baryshkov@linaro.org>
- <Yn4dvpgezdrKmSro@hovoldconsulting.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <Yn4dvpgezdrKmSro@hovoldconsulting.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+Content-Type: text/plain
+X-MS-Office365-Filtering-Correlation-Id: d02795fb-835c-4970-0994-08da34ddec36
+X-MS-TrafficTypeDiagnostic: PR3PR06MB6890:EE_
+X-Microsoft-Antispam-PRVS: <PR3PR06MB689052EC5D1537298A9A1801D7CA9@PR3PR06MB6890.eurprd06.prod.outlook.com>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: GOo4L5eZR3RgE4MY9Ll7iOtI5tseK7yVlBPWjYMU4S6aH1HbaLTvE8jYi7wtcgcKtPzQWBT/tXI7z+gBEqURuRFWsdaH6XcI9CfPHjKWOpOhIuWDmUpSCVjcU/kyKgkixdNWN2P7gsRynWrrrWC+AYAauRrjJw30nXk+R6ReK4H4Q+MW5ZDUYq2gCLM11FpBRwL96S9+WPD4Y6XKvYkNn11yp+tO2lEzQCbRFegS4K0zLyK2M7UqfYvI2J4HxgENV16gC8sKMIwP9wETTcFFliCoTgpsnn9cM5EotnQNXxKTdnlDAu1tLlUuwWpnaM+dhJfax4lcCO2R87eBWG2SCLD5Z4liZoREW9VR8tWIm9E9l2LhLfAZaPU2WMv0qJtDBSZw0Hz4e5Z4jnqS8q00UhkGJyIlzzGCPMcdXHzwRzqpnPEeji4weot5XlmysdZWVn9vIykMPRPzDH00joXS6KbtQN0lCcW9KJvkGf0IigJag2lzK6xbWZdi344aJaPlmUmsPVbB/gPkDwW5403UdvCg01n2FKnTJkczTkwT2j6eK7Hvb1eYKP5X2hOHtY8nO739xX5fbB/Hfd99WzfxkFuFON9vO88FkvmEBgzRI/PHjTBjPh2+Y+zoAXDIEKhLfd0NCg0+IcTVSwWn8lZunehbC9/Hpt78WJP5Ecf9OfQ1Fo9ESMtxSLQy6GiVo5Ic
+X-Forefront-Antispam-Report: CIP:193.8.40.94;CTRY:CH;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:aherlnxbspsrv01.lgs-net.com;PTR:ahersrvdom50.leica-geosystems.com;CAT:NONE;SFS:(13230001)(4636009)(36840700001)(40470700004)(46966006)(316002)(6506007)(82310400005)(2906002)(36736006)(336012)(47076005)(86362001)(6666004)(36756003)(4744005)(6512007)(1076003)(83380400001)(5660300002)(26005)(40460700003)(186003)(81166007)(356005)(118246002)(508600001)(8936002)(36860700001)(70586007)(6486002)(4326008)(70206006)(2616005)(956004)(8676002);DIR:OUT;SFP:1102;
+X-OriginatorOrg: leica-geosystems.com.cn
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 May 2022 12:41:37.9540
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: d02795fb-835c-4970-0994-08da34ddec36
+X-MS-Exchange-CrossTenant-Id: 1b16ab3e-b8f6-4fe3-9f3e-2db7fe549f6a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=1b16ab3e-b8f6-4fe3-9f3e-2db7fe549f6a;Ip=[193.8.40.94];Helo=[aherlnxbspsrv01.lgs-net.com]
+X-MS-Exchange-CrossTenant-AuthSource: VE1EUR02FT036.eop-EUR02.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PR3PR06MB6890
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/05/2022 11:58, Johan Hovold wrote:
-> On Thu, May 12, 2022 at 01:45:35PM +0300, Dmitry Baryshkov wrote:
->> I have replied with my Tested-by to the patch at [2], which has landed
->> in the linux-next as the commit 20f1bfb8dd62 ("PCI: qcom:
->> Add support for handling MSIs from 8 endpoints"). However lately I
->> noticed that during the tests I still had 'pcie_pme=nomsi', so the
->> device was not forced to use higher MSI vectors.
->>
->> After removing this option I noticed that hight MSI vectors are not
->> delivered on tested platforms. After additional research I stumbled upon
->> a patch in msm-4.14 ([1]), which describes that each group of MSI
->> vectors is mapped to the separate interrupt. Implement corresponding
->> mapping.
->>
->> The first patch in the series is a revert of  [2] (landed in pci-next).
->> Either both patches should be applied or both should be dropped.
->>
->> Patchseries dependecies: [3] (for the schema change).
->>
->> Changes since v7:
->>   - Move code back to the dwc core driver (as required by Rob),
->>   - Change dt schema to require either a single "msi" interrupt or an
->>     array of "msi0", "msi1", ... "msi7" IRQs. Disallow specifying a
->>     part of the array (the DT should specify the exact amount of MSI IRQs
->>     allowing fallback to a single "msi" IRQ),
-> 
-> Why this new constraint?
-> 
-> I've been using your v7 with an sc8280xp which only has four IRQs (and
-> hence 128 MSIs).
-> 
-> Looks like this version of the series would not allow that anymore.
+The current driver support sca3300 only, modified to support SCL3300.
+Verified with SCL3300 on IMX8MM.
 
-As a second thought, let's relax parsing needs.
+SCL3300 is a three-axis accelerometer sensor with angle output, 
+the change adds the support of scl3300 and inclination data output.
 
-> 
-> Johan
 
+Changes in v6: 
+  - Fix the warning of precedence issue,
+    Reported-by: kernel test robot <lkp@intel.com>
+  - Modify the commit message.
+  - Fix the check of the for-loop issue,
+    delete the blank line, and change ">=" to "==".
+
+LI Qingwu (5):
+  dt-bindings: iio: accel: sca3300: Document murata,scl3300
+  iio: accel: sca3300: add define for temp channel for reuse.
+  iio: accel: sca3300: modified to support multi chips
+  iio: accel: sca3300: Add support for SCL3300
+  iio: accel: sca3300: Add inclination channels
+
+ .../bindings/iio/accel/murata,sca3300.yaml    |   1 +
+ drivers/iio/accel/sca3300.c                   | 312 +++++++++++++++---
+ 2 files changed, 260 insertions(+), 53 deletions(-)
 
 -- 
-With best wishes
-Dmitry
+2.25.1
+
