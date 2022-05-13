@@ -2,77 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 53D7A525E46
-	for <lists+devicetree@lfdr.de>; Fri, 13 May 2022 11:19:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EC520525E65
+	for <lists+devicetree@lfdr.de>; Fri, 13 May 2022 11:19:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1378657AbiEMJMJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 May 2022 05:12:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44184 "EHLO
+        id S231523AbiEMJOk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 May 2022 05:14:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55048 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231563AbiEMJMJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 May 2022 05:12:09 -0400
+        with ESMTP id S1378928AbiEMJOj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 May 2022 05:14:39 -0400
 Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF2123D4AD
-        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 02:12:07 -0700 (PDT)
-Received: by mail-wr1-x432.google.com with SMTP id q23so10567633wra.1
-        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 02:12:07 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD97B188E5A
+        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 02:14:37 -0700 (PDT)
+Received: by mail-wr1-x432.google.com with SMTP id u3so10593106wrg.3
+        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 02:14:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=FgorTPbnFvVixyR8EXfPPsDvCseGItjIY4UCOJ+wbp8=;
-        b=os8I3KHn5Lu7+abAV1auwe2u9XMcOJElEI12ti+iHbGswucuLcHhRoY3UB+gEYtS9C
-         zwREa+Fa0CzA/sSSDTxBHU1x/i+BLMHjolY9XfHp+WYn/hRgdn+gBBX7X/vftjNxeV5s
-         txWsCT6ORZm9Ly8xfbWn8SGPlrAlFlZNiOelarOqArD/LOzXqRPC7I55srgkwIacwPCL
-         YO9NnPFbYmXtomkuUIzZNNQAJ3BZ7HJjBw5BAvz5lBDWiYoMfYc7gcIMmRnbeOE6/Cm+
-         m/Bqqaq7GxMQkIOKlynmX+uRMyFSW52jawwkw0CrVeEGKR4yl7B1KzANfVrh/kzz9Si5
-         90Ww==
+         :references:from:in-reply-to:content-transfer-encoding;
+        bh=CW5oysuhHH0T6UKtZPWsecK0beDO6jnAZmenUi2ss0E=;
+        b=A7psNxJmGrVJ+J9U+bnAM2YX+yTLW5VbSz6c24Bqm0Qpq6rJ+EDTy/WrUPXaauaxFk
+         GNkJNkr2xOwxoUjJcAGTw4u6M9FuEw7F1L3Lkw8JVnhsYKXq4T4EVomWhYTrF/+smORy
+         bhP/jfgiW5VyoirUiVgOqnuBlV+DGbBT0QI3Ob0mA71laitPMBPHLiS+1gcgzcKCbVq0
+         y9muAAMOWhUX5u1x8/LWVh9FOnNZHD7RGExP4C3G0Jfd0lxOZhrgwxXxBFrNV4CqmWgA
+         epuDPPHyciGABwoK4PnoPpRlicg/4rgLgFJmaQ0/HzTM+03yS/HnTdtx6dS7XUbIiy9V
+         GNXg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
+         :content-language:to:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=FgorTPbnFvVixyR8EXfPPsDvCseGItjIY4UCOJ+wbp8=;
-        b=2b0R6qEL8wekXZpk4ZQwQ68amcpgGq1jyr037GNN17ByfOEkgM7x8oLUEdX4LyppbW
-         XzYIY63KFuwJlU+QSVcF6QgZ3cGY5Uh98sM8oIT2PeksAuo/Lx0/8ifYqd+GmxesfTx1
-         J4t5xsyk29v2XUQhZTz/SRq/5945AYMhpc0++543kSdzZGEekd+2Id1kYJ02Z24ky+/X
-         fL2u0023n2VW+tf6d+Cg1BdIhKGqRd93mnTdWgz61aZyhccvRkmVG7MwwQ8gYQQF6mwG
-         agqvRqRzT1DjR7NAbBd47WiVMO7qmpotzZzp41ly5qNgoWa7pupbF0QKn27vxYViVkaj
-         /TGA==
-X-Gm-Message-State: AOAM532nOW24fUqICbDzR9zIT4oBm+b72NlXIAyVnVK4Py4zJboHh9Uu
-        N+5JfcWXRZllXNXQI0gYk+FRCA==
-X-Google-Smtp-Source: ABdhPJyW9FzscuEPUGlS7ChUMHGjRxjtug2/EnQzJ/+FjnbBd7cqELKWMnSCuHntRMfk6p2pp72A7g==
-X-Received: by 2002:a05:6000:1d98:b0:20c:c29d:76db with SMTP id bk24-20020a0560001d9800b0020cc29d76dbmr3107683wrb.710.1652433126624;
-        Fri, 13 May 2022 02:12:06 -0700 (PDT)
+        bh=CW5oysuhHH0T6UKtZPWsecK0beDO6jnAZmenUi2ss0E=;
+        b=MvUr38FA0+o5AldeHDSJX/OvbIabfQqCIeIyIvaTNfMivHtmDeb5YPyuO93nrVzaOY
+         YKhFtxLwh3JbnQnbo7hu2D4bzu4TKw/jTn5A2ofNvtcQHiGAisW0PSGljbiF3LO7QAih
+         8ku+vhtEAugiupmCsc3AwqPrqh+g+YgE4UJER7R+c/Iob9TTKqqSGdxcKW1tfMJfCeUX
+         Hqq9c2POmt8QcTFr1YL/c88aeFABUhqLX4ZZtQ1LgJO6SlZe0zA/k0/1kVKJr+6PDCOn
+         +dlmOQHOoKy3LRS8P6od4wrVXGtu660jglrc2AjL0KhUiMNO9WuSOPd5JZBYDrHNSF1U
+         9O0w==
+X-Gm-Message-State: AOAM531z19yv2ff8wSFIn5umSoJ/gsWz0ZThhD1IWP7Bb9e4iPppBX9Y
+        Z3N9dXMmIqZXPJiAz8geMMX4eg==
+X-Google-Smtp-Source: ABdhPJzmx072v4Jw3a4mFgDvXSy2gaV5qpVtsOb0dnOo4Q5dT0UugJORKQp3EpEkhkA9UMinsUo+dQ==
+X-Received: by 2002:a05:6000:2aa:b0:20c:5a12:20dc with SMTP id l10-20020a05600002aa00b0020c5a1220dcmr3164173wry.316.1652433276220;
+        Fri, 13 May 2022 02:14:36 -0700 (PDT)
 Received: from [192.168.0.169] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id z23-20020a1c4c17000000b0039456fb80b3sm4711757wmf.43.2022.05.13.02.12.05
+        by smtp.gmail.com with ESMTPSA id e23-20020adf9bd7000000b0020aca418f26sm1660330wrc.1.2022.05.13.02.14.35
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 13 May 2022 02:12:06 -0700 (PDT)
-Message-ID: <dc1e8f4e-08d5-09a9-95ee-c292a61561b9@linaro.org>
-Date:   Fri, 13 May 2022 11:12:05 +0200
+        Fri, 13 May 2022 02:14:35 -0700 (PDT)
+Message-ID: <8b678b2a-dbb1-f29e-4090-698badf078fe@linaro.org>
+Date:   Fri, 13 May 2022 11:14:34 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.8.1
-Subject: Re: [PATCH v7 1/3] dt-bindings: marvell: Document the AC5/AC5X
- compatibles
+Subject: Re: [PATCH 2/2] arm64: tegra: Add Tegra234 GPCDMA device tree node
 Content-Language: en-US
-To:     Chris Packham <chris.packham@alliedtelesis.co.nz>,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        catalin.marinas@arm.com, will@kernel.org, andrew@lunn.ch,
-        gregory.clement@bootlin.com, sebastian.hesselbarth@gmail.com,
-        kostap@marvell.com, robert.marko@sartura.hr,
-        vadym.kochan@plvision.eu
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20220512042501.3339775-1-chris.packham@alliedtelesis.co.nz>
- <20220512042501.3339775-2-chris.packham@alliedtelesis.co.nz>
+To:     Jon Hunter <jonathanh@nvidia.com>,
+        Akhil R <akhilrajeev@nvidia.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, thierry.reding@gmail.com,
+        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220512090052.47840-1-akhilrajeev@nvidia.com>
+ <20220512090052.47840-3-akhilrajeev@nvidia.com>
+ <36bb53d0-80b3-f79e-a599-6acb98d0c872@linaro.org>
+ <6510d8be-38a7-8470-d832-15b948671703@nvidia.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220512042501.3339775-2-chris.packham@alliedtelesis.co.nz>
+In-Reply-To: <6510d8be-38a7-8470-d832-15b948671703@nvidia.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,13 +78,76 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/05/2022 06:24, Chris Packham wrote:
-> Describe the compatible properties for the Marvell Alleycat5/5X switches
-> with integrated CPUs.
+On 13/05/2022 10:39, Jon Hunter wrote:
 > 
+> On 13/05/2022 09:32, Krzysztof Kozlowski wrote:
+>> On 12/05/2022 11:00, Akhil R wrote:
+>>> Add device tree nodes for Tegra234 GPCDMA
+>>>
+>>> Signed-off-by: Akhil R <akhilrajeev@nvidia.com>
+>>> ---
+>>>   arch/arm64/boot/dts/nvidia/tegra234.dtsi | 43 ++++++++++++++++++++++++
+>>>   1 file changed, 43 insertions(+)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/nvidia/tegra234.dtsi b/arch/arm64/boot/dts/nvidia/tegra234.dtsi
+>>> index cb3af539e477..860c3cc68cea 100644
+>>> --- a/arch/arm64/boot/dts/nvidia/tegra234.dtsi
+>>> +++ b/arch/arm64/boot/dts/nvidia/tegra234.dtsi
+>>> @@ -21,6 +21,49 @@
+>>>   
+>>>   		ranges = <0x0 0x0 0x0 0x40000000>;
+>>>   
+>>> +		gpcdma: dma-controller@2600000 {
+>>> +			compatible = "nvidia,tegra194-gpcdma",
+>>> +				      "nvidia,tegra186-gpcdma";
+>>> +			reg = <0x2600000 0x210000>;
+>>> +			resets = <&bpmp TEGRA234_RESET_GPCDMA>;
+>>> +			reset-names = "gpcdma";
+>>> +			interrupts = <GIC_SPI 76 IRQ_TYPE_LEVEL_HIGH>,
+>>> +				     <GIC_SPI 77 IRQ_TYPE_LEVEL_HIGH>,
+>>> +				     <GIC_SPI 78 IRQ_TYPE_LEVEL_HIGH>,
+>>> +				     <GIC_SPI 79 IRQ_TYPE_LEVEL_HIGH>,
+>>> +				     <GIC_SPI 80 IRQ_TYPE_LEVEL_HIGH>,
+>>> +				     <GIC_SPI 81 IRQ_TYPE_LEVEL_HIGH>,
+>>> +				     <GIC_SPI 82 IRQ_TYPE_LEVEL_HIGH>,
+>>> +				     <GIC_SPI 83 IRQ_TYPE_LEVEL_HIGH>,
+>>> +				     <GIC_SPI 84 IRQ_TYPE_LEVEL_HIGH>,
+>>> +				     <GIC_SPI 85 IRQ_TYPE_LEVEL_HIGH>,
+>>> +				     <GIC_SPI 86 IRQ_TYPE_LEVEL_HIGH>,
+>>> +				     <GIC_SPI 87 IRQ_TYPE_LEVEL_HIGH>,
+>>> +				     <GIC_SPI 88 IRQ_TYPE_LEVEL_HIGH>,
+>>> +				     <GIC_SPI 89 IRQ_TYPE_LEVEL_HIGH>,
+>>> +				     <GIC_SPI 90 IRQ_TYPE_LEVEL_HIGH>,
+>>> +				     <GIC_SPI 91 IRQ_TYPE_LEVEL_HIGH>,
+>>> +				     <GIC_SPI 92 IRQ_TYPE_LEVEL_HIGH>,
+>>> +				     <GIC_SPI 93 IRQ_TYPE_LEVEL_HIGH>,
+>>> +				     <GIC_SPI 94 IRQ_TYPE_LEVEL_HIGH>,
+>>> +				     <GIC_SPI 95 IRQ_TYPE_LEVEL_HIGH>,
+>>> +				     <GIC_SPI 96 IRQ_TYPE_LEVEL_HIGH>,
+>>> +				     <GIC_SPI 97 IRQ_TYPE_LEVEL_HIGH>,
+>>> +				     <GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH>,
+>>> +				     <GIC_SPI 99 IRQ_TYPE_LEVEL_HIGH>,
+>>> +				     <GIC_SPI 100 IRQ_TYPE_LEVEL_HIGH>,
+>>> +				     <GIC_SPI 101 IRQ_TYPE_LEVEL_HIGH>,
+>>> +				     <GIC_SPI 102 IRQ_TYPE_LEVEL_HIGH>,
+>>> +				     <GIC_SPI 103 IRQ_TYPE_LEVEL_HIGH>,
+>>> +				     <GIC_SPI 104 IRQ_TYPE_LEVEL_HIGH>,
+>>> +				     <GIC_SPI 105 IRQ_TYPE_LEVEL_HIGH>,
+>>> +				     <GIC_SPI 106 IRQ_TYPE_LEVEL_HIGH>;
+>>> +			#dma-cells = <1>;
+>>> +			iommus = <&smmu_niso0 TEGRA234_SID_GPCDMA>;
+>>> +			dma-coherent;
+>>> +			status = "okay";
+>>
+>> okay is by default for new nodes.
+> 
+> Just so I know, is it recommended then to drop the status in this case 
+> or is it OK to leave as is?
 
+If this is a new node, then please drop it. Less code.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Of course it would be entirely different if this was overriding an
+existing node with status=disabled.
 
 
 Best regards,
