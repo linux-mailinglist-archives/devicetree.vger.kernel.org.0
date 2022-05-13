@@ -2,73 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F2AF15261AF
-	for <lists+devicetree@lfdr.de>; Fri, 13 May 2022 14:19:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 045305261B5
+	for <lists+devicetree@lfdr.de>; Fri, 13 May 2022 14:20:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351785AbiEMMTX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 May 2022 08:19:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44514 "EHLO
+        id S1380181AbiEMMUL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 May 2022 08:20:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48044 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346758AbiEMMTW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 May 2022 08:19:22 -0400
-Received: from mail-qt1-x82a.google.com (mail-qt1-x82a.google.com [IPv6:2607:f8b0:4864:20::82a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A7FFF73045
-        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 05:19:20 -0700 (PDT)
-Received: by mail-qt1-x82a.google.com with SMTP id h3so6663308qtn.4
-        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 05:19:20 -0700 (PDT)
+        with ESMTP id S1378077AbiEMMUK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 May 2022 08:20:10 -0400
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A51E2992E0
+        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 05:20:08 -0700 (PDT)
+Received: by mail-ej1-x62a.google.com with SMTP id bv19so15915490ejb.6
+        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 05:20:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=yh7Ds3nqFPkMrrrTYXJbK8sBHDDYq37d1oj3cOHsPo8=;
-        b=C/hd6Yj0PsOF0obMq2Vte9XSit4yVtODYCuhGUpodF+La3PC9EJevKwyI/+/2hgr2O
-         4x3+FVQ0Hu6IYvoQd6t0ZYcSoO4vEH19bkKLCvYaTgum/EY1Gss6u9yp8lVLnGHs4Ywj
-         h7SxH+dTPriqpyUlT96pXKB87dxN9NIvASh5UT1DbtJ174AqIJWhT5EXhr3Zm7tfsn/d
-         PLqvOm7LxVIXakp9c2zemmiW8NQG1LipCDn+XrM1tOy/X3xm1tc38bAdi7Bh5FnNO/AL
-         1OZ2YA682Viwlnr/1TVPGxM9NTDD8zoeHNTzQoUcB8EJpBIhvnkijv2T1biIod6levTX
-         Uhzg==
+        h=message-id:date:mime-version:user-agent:subject:content-language
+         :from:to:cc:references:in-reply-to:content-transfer-encoding;
+        bh=pFSJMVLvr3/zffWl+GK0lBhxfYPYYpTt+eChKG6Zku0=;
+        b=w5GCpMOIG+eMQkvHAEyYXG6zXVO93bTa/IKwxKINmyJT94SY/TCo5xhLQbhllGxpcM
+         0vvXlLE3HzHOeagb/z7scfVvhETIxN16zD6am+E9UxOwg8b+rQoRXqbb+RAYDFzIyi/h
+         MpmFTLWqWhA0w/EZJ5bXNQptF40QC6P/NzZ7sPg09u9s99xPR4bA3W4gQ7RMkG47Eyfw
+         hPLi6XYnV44bBZvwLv1YRtT1Vr5qUxkxcBI6SZUQBbQ3jEDZJ6F6vqQGjBtkep6i+Ozs
+         D/FygOrIbGqTsFkJLBzgCcbR6gd7t89zlOiLLZYXt/zqC6/TFwulhS1tFtF+6bwf0mNU
+         R2gQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=yh7Ds3nqFPkMrrrTYXJbK8sBHDDYq37d1oj3cOHsPo8=;
-        b=ErGRt+76ZvoCuKnj4thYV9sxYJWgJGMtKVvu5/95g79yzzQj/fMUMbwJcyKPPvuuMU
-         StRi+PXU/HNd1xWrJAuAL93oSLkEP60/QIAkYCPEwZDoRvQyxnuMO7dGtHexU3ZmGJ7J
-         HniKxlvn1rSsFcxesL83BR/sdWuzNUfy/A6fJp9uT5H9DGn8wD0RXB63tXH8vjbuKzKT
-         SNHqhHcx4tKB8c2pj1qMcggMorH9QkpXO9agb34GK3ZC8VaTpJnVpsvlEtv/WHBcLtzk
-         XtpszYSx9DFFXWEY6qTWV76FP5dD3PDskTBLVr3IxhCWMyPdp3vMteB+6X4zp1kJk8CI
-         /vBg==
-X-Gm-Message-State: AOAM5314kB9ePfwltGD8wsgPiiP1RdV6Zp2FWOclkEgfMXiY0OzM7uNo
-        a3ktH8GLbXbUvTMOb0roryARVcm3WyjVxhUyPg2wMQ==
-X-Google-Smtp-Source: ABdhPJwz/jsKMLSl033x/2/+66SPPDBunORwAq9KquUCwcUxVfaETxM9qTpTZoxXDgUPRCy32wLthedhYTZl7Z63y/Y=
-X-Received: by 2002:a05:622a:4f:b0:2f3:e77c:2c7e with SMTP id
- y15-20020a05622a004f00b002f3e77c2c7emr4195838qtw.62.1652444359788; Fri, 13
- May 2022 05:19:19 -0700 (PDT)
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:from:to:cc:references:in-reply-to
+         :content-transfer-encoding;
+        bh=pFSJMVLvr3/zffWl+GK0lBhxfYPYYpTt+eChKG6Zku0=;
+        b=5CYDudw+MmO3Bm018X58UX300t0T3qy9dC8L0Lr6szapSKVVAUQxAgy+XEwF5jRLqH
+         hsrhbMBibMOwAj0ECfVnEvY/tpihwbEjmMrbxKsQdpj4TL5hyIgKkWAvVXtfOPgUwymf
+         CjeCggHUj/XPnI+3QctZYEMeOFEiXvoiLX1OZSKmqFeM3D+i8WwWPnFP7bo2M6Ktn/4B
+         WEorOh8oEG7wyV5lRtHh2NtGsalnrEAy3Ck6HGBNCeGR6/+G16UTMHH7j26/fxtSBs5b
+         pNWfonF48wbF/qhRioE0l2Bao2twLZCLAnbaWYOUGjHEiQST5JmaAUZood8whFiI2y8g
+         2OWw==
+X-Gm-Message-State: AOAM5303/RLdn+Pz+HfrBSO2D0sM9zRL6YrPK97RtMUCwfneY38pmsse
+        k5+KQRqYljb6B9Yr/E+JcUQRtg==
+X-Google-Smtp-Source: ABdhPJz0H7FbroNYXpYWXVRyzNzhzAbYpnfXABT7xGUonv5DG8TcItHiR7y1/5qSbhhFgEsINRHc6Q==
+X-Received: by 2002:a17:907:c0d:b0:6f3:ed89:d9c with SMTP id ga13-20020a1709070c0d00b006f3ed890d9cmr4022920ejc.502.1652444406966;
+        Fri, 13 May 2022 05:20:06 -0700 (PDT)
+Received: from [192.168.0.172] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id 9-20020a170906028900b006f3ef214e54sm712712ejf.186.2022.05.13.05.20.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 13 May 2022 05:20:06 -0700 (PDT)
+Message-ID: <75d18fec-44fe-6bc6-5ff2-af5d87b43787@linaro.org>
+Date:   Fri, 13 May 2022 14:20:05 +0200
 MIME-Version: 1.0
-References: <20220512104545.2204523-1-dmitry.baryshkov@linaro.org>
- <20220512104545.2204523-7-dmitry.baryshkov@linaro.org> <Yn5GlR0UD2/pcOiy@hovoldconsulting.com>
-In-Reply-To: <Yn5GlR0UD2/pcOiy@hovoldconsulting.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Fri, 13 May 2022 15:19:08 +0300
-Message-ID: <CAA8EJpqv8QfYhXfF875Y898=9GAZUfe6db=pYVAEq_DkpOcSGA@mail.gmail.com>
-Subject: Re: [PATCH v8 06/10] PCI: dwc: Handle MSIs routed to multiple GIC interrupts
-To:     Johan Hovold <johan@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [v4 1/3] dt-bindings: phy: qcom,usb-snps-femto-v2: Add phy
+ override params bindings
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Stanimir Varbanov <svarbanov@mm-sol.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Doug Anderson <dianders@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Wesley Cheng <quic_wcheng@quicinc.com>,
+        Vinod Koul <vkoul@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-phy@lists.infradead.org, quic_pkondeti@quicinc.com,
+        quic_ppratap@quicinc.com, quic_vpulyala@quicinc.com,
+        Sandeep Maheswaram <quic_c_sanm@quicinc.com>
+References: <1652282793-5580-1-git-send-email-quic_kriskura@quicinc.com>
+ <1652282793-5580-2-git-send-email-quic_kriskura@quicinc.com>
+ <d296720d-ccbe-27f0-8ba1-9653af25dd52@linaro.org>
+ <3abbb26f-9396-d024-67f6-f24f7db3408d@quicinc.com>
+ <5f7dfcba-7e65-4f54-8699-e44ce11e216e@linaro.org>
+In-Reply-To: <5f7dfcba-7e65-4f54-8699-e44ce11e216e@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -76,85 +91,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 13 May 2022 at 14:52, Johan Hovold <johan@kernel.org> wrote:
->
-> On Thu, May 12, 2022 at 01:45:41PM +0300, Dmitry Baryshkov wrote:
-> > On some of Qualcomm platforms each group of 32 MSI vectors is routed to the
-> > separate GIC interrupt. Implement support for such configuraions by
-> > parsing "msi0" ... "msi7" interrupts and attaching them to the chained
-> > handler.
-> >
-> > Note, that if DT doesn't list an array of MSI interrupts and uses single
-> > "msi" IRQ, the driver will limit the amount of supported MSI vectors
-> > accordingly (to 32).
-> >
-> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> > ---
-> >  .../pci/controller/dwc/pcie-designware-host.c | 33 ++++++++++++++++++-
-> >  drivers/pci/controller/dwc/pcie-designware.h  |  1 +
-> >  2 files changed, 33 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/drivers/pci/controller/dwc/pcie-designware-host.c b/drivers/pci/controller/dwc/pcie-designware-host.c
-> > index 6b0c7b75391f..258bafa306dc 100644
-> > --- a/drivers/pci/controller/dwc/pcie-designware-host.c
-> > +++ b/drivers/pci/controller/dwc/pcie-designware-host.c
-> > @@ -291,7 +291,8 @@ static void dw_pcie_msi_init(struct pcie_port *pp)
-> >  static int dw_pcie_msi_host_init(struct pcie_port *pp)
-> >  {
-> >       struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
-> > -     struct platform_device *pdev = to_platform_device(pci->dev);
-> > +     struct device *dev = pci->dev;
-> > +     struct platform_device *pdev = to_platform_device(dev);
-> >       int ret;
-> >       u32 ctrl, num_ctrls;
-> >
-> > @@ -299,6 +300,36 @@ static int dw_pcie_msi_host_init(struct pcie_port *pp)
-> >       for (ctrl = 0; ctrl < num_ctrls; ctrl++)
-> >               pp->irq_mask[ctrl] = ~0;
-> >
-> > +     if (pp->has_split_msi_irq) {
-> > +             char irq_name[] = "msiXX";
-> > +             int irq;
-> > +
-> > +             if (!pp->msi_irq[0]) {
-> > +                     irq = platform_get_irq_byname_optional(pdev, irq_name);
->
-> This looks broken; you're requesting "msiXX", not "msi0".
-
-Yes, I'm preparing the updated patch.
-
->
-> > +                     if (irq == -ENXIO) {
-> > +                             num_ctrls = 1;
-> > +                             pp->num_vectors = min((u32)MAX_MSI_IRQS_PER_CTRL, pp->num_vectors);
-> > +                             dev_warn(dev, "No additional MSI IRQs, limiting amount of MSI vectors to %d\n",
-> > +                                      pp->num_vectors);
-> > +                     } else {
-> > +                             pp->msi_irq[0] = irq;
-> > +                     }
-> > +             }
-> > +
-> > +             /* If we fallback to the single MSI ctrl IRQ, this loop will be skipped as num_ctrls is 1 */
-> > +             for (ctrl = 1; ctrl < num_ctrls; ctrl++) {
-> > +                     if (pp->msi_irq[ctrl])
-> > +                             continue;
-> > +
-> > +                     snprintf(irq_name, sizeof(irq_name), "msi%d", ctrl);
-> > +                     irq = platform_get_irq_byname(pdev, irq_name);
-> > +                     if (irq < 0)
-> > +                             return irq;
-> > +
-> > +                     pp->msi_irq[ctrl] = irq;
-> > +             }
-> > +     }
-> > +
-> >       if (!pp->msi_irq[0]) {
-> >               int irq = platform_get_irq_byname_optional(pdev, "msi");
->
-> Johan
+On 13/05/2022 12:32, Krzysztof Kozlowski wrote:
+>>
+>> Would it be possible to add bps (basis point) to the list of standard 
+>> units if it makes sense to use it ?
+> 
+> There is already 'percent' so 'bp' could be as well, makes sense to me.
+> I can send a patch for it and we'll see what Rob says.
 
 
+Merged:
+https://github.com/devicetree-org/dt-schema/pull/73
 
--- 
-With best wishes
-Dmitry
+
+Best regards,
+Krzysztof
