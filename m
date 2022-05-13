@@ -2,81 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D06BB526838
-	for <lists+devicetree@lfdr.de>; Fri, 13 May 2022 19:23:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AFC2B52684C
+	for <lists+devicetree@lfdr.de>; Fri, 13 May 2022 19:26:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1382941AbiEMRXD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 May 2022 13:23:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33446 "EHLO
+        id S1382981AbiEMR02 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 May 2022 13:26:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40720 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1382929AbiEMRXC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 May 2022 13:23:02 -0400
-Received: from mail-pl1-x62e.google.com (mail-pl1-x62e.google.com [IPv6:2607:f8b0:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8851D66ADC
-        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 10:23:00 -0700 (PDT)
-Received: by mail-pl1-x62e.google.com with SMTP id i17so8550438pla.10
-        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 10:23:00 -0700 (PDT)
+        with ESMTP id S1382442AbiEMR01 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 May 2022 13:26:27 -0400
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43E966FD1B
+        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 10:26:25 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id p26so15642343lfh.10
+        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 10:26:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=LmlkxE85vc6UhxNoZfZV20UnauAx9uE6Cz/0zHf9/y0=;
-        b=tHn0ufT6L+atomup5vtndYLuPbMdYYrBkYgqv6ommywwIMqpqT+wemVju040dVYiUM
-         kH2sDLqTKFFja93w7x9kbQpl9GqnJp1u3YyOKs2jmxb5gAIf/KEoY7mvWNSKidlC9PoQ
-         /l7ch9/cWgGlO7IMtxkC9iysiHdTobTx7CwOg8CS02y2iEfr5/Ql5D/VFE7owQevuT3f
-         Xrv954YQ0D49HAaesYjBUxxiIZ6jShsY1k9DXGXiVGECWWZYEGGNvYVr0LE/pCyRxvHo
-         /IQ2La+xI0613nRYpdMCTlA97L8SOInyE0o7FpeSvEWszNbxcperG4TGzjloH1rByJ5w
-         XgKQ==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Pbko96crE4TzzX/Ak0XuHEKRtxla1hBVnyQSgu2Jr0A=;
+        b=bNyrZ27wp+y18TJWzKJz+8icZvv5URoY2m/R90LErO+4SfNUpr5jaiCJGPqVVr4shO
+         VBhlBjIKYJDRDWYqyWpACBj53NryvcmURxIVUvpoHmjdNS136kbhc07APw4PAatMJIQE
+         FVnpO+KuLSzzd2OEm/0MrlnrjROIowfDH6/kLzIuULP0vJN+n8Cud2zryj6znEXcKN+3
+         7DyV55NxkFUAaHszt2wGm3tm2NU/PZobrxno2DMX4hx8WlLA4rqewKKtg3JPY6qsJAsw
+         qOwh29OLJt1ouHKWT8PMXCYFlVwFHa4fB7uVQSvCmXbYWYSE8J1Tgw0Lw+jkwgj03i+H
+         oPEw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=LmlkxE85vc6UhxNoZfZV20UnauAx9uE6Cz/0zHf9/y0=;
-        b=BgIzNNvcYfoyO1ijYADR83qzQk0uqwOx1tq3Q7nwc/jOMO5HBWUkmaNVBkCLMv9vG6
-         PwAjwvMFNJeH8KrrhqJhOdiYrrTP0fqhtN9xqSSumgRN6f8X2oEpA8QPRyS1NxrPIAbX
-         qHAXiNjxDJj5ob0EAE+A9XuEIOqZYBt+B4834ABp0exL+8OA0waf04kNGQnSEFChpgoG
-         MupT5s6/sNHc+fJ5GJhc9AubWLkafK42pbqUzhsfY877xm4UJw5Wy01TYFZT8GeC64/K
-         KaXBhhI4l3MqJGtvWf7aWmq+DuGGf6NSuTJZtT46KfEmmea0GO5RbS6bTPT62oUMTLyy
-         94dg==
-X-Gm-Message-State: AOAM532T0JmtDtrf/2WSXbDXqQ59gjwCd05XOt95uK1ipr71FP1RaVN/
-        QLlBchJj+OciPeHmmDnVN7tB
-X-Google-Smtp-Source: ABdhPJyZY6dt5VXk1vcXI7ZjHApuVJAr163atWieL5kinllyl84dovJtGvw031JvaqN7voVZHkCwew==
-X-Received: by 2002:a17:90b:4c0a:b0:1dc:e81a:f0c with SMTP id na10-20020a17090b4c0a00b001dce81a0f0cmr6068132pjb.2.1652462580028;
-        Fri, 13 May 2022 10:23:00 -0700 (PDT)
-Received: from thinkpad ([117.202.184.246])
-        by smtp.gmail.com with ESMTPSA id f10-20020a6547ca000000b003c5e836eddasm1886683pgs.94.2022.05.13.10.22.52
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Pbko96crE4TzzX/Ak0XuHEKRtxla1hBVnyQSgu2Jr0A=;
+        b=XZA2V7V/eH+TK1UMQgz56xDmCMHWc7UZni9Ipu6O487RYBH9yVvMqYtDJyB+gIuGwS
+         H3dUBubhpxLagLmg4SRzWYTLEjg+KD4cnCSt0t9bm8H9/8P+a5HZAvaqKTbUdRklSImM
+         Td2dvVAfMB7O3qzI62c8rU8ItjNTCSBUrBS3rN5yy2FfaoOGQDWs5ZY35MWyPPjjTNLj
+         zWXiQ83Lt/AHWuXCfjP7+LaWzybYdlnjg8zTjysrpp45ix2Twdm7+d1K8Ug9kuOmSJAe
+         iEyahQFh1s4JbWEzCpuHlDId8+WORmmKCRM3kuxGZIZJusLCFA+hQpKQE4bwCh9AtQ4T
+         seWw==
+X-Gm-Message-State: AOAM531jN/8HBSa2WnSd1x3C0wd44JORsZRYqFPyUvw+unhEe4zQCdBg
+        xIs3gJiGTxkk6mxKl3CUHc1wGQ==
+X-Google-Smtp-Source: ABdhPJzuQGBiIe3LyTOZcj9QUZq8ieO+lVchyXImkwrPqp0TvLrK71NHUMBFMStgVzdK2Ly1V24trA==
+X-Received: by 2002:ac2:561b:0:b0:472:586b:3209 with SMTP id v27-20020ac2561b000000b00472586b3209mr4098779lfd.234.1652462783510;
+        Fri, 13 May 2022 10:26:23 -0700 (PDT)
+Received: from eriador.lan ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id e3-20020a2e8183000000b0024f3d1daec0sm511157ljg.72.2022.05.13.10.26.22
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 May 2022 10:22:59 -0700 (PDT)
-Date:   Fri, 13 May 2022 22:52:49 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
+        Fri, 13 May 2022 10:26:23 -0700 (PDT)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Avri Altman <avri.altman@wdc.com>,
-        "James E.J. Bottomley" <jejb@linux.ibm.com>,
-        "Martin K. Petersen" <martin.petersen@oracle.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Taniya Das <tdas@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-scsi@vger.kernel.org,
-        Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v3 2/7] dt-bindings: opp: accept array of frequencies
-Message-ID: <20220513172249.GB1922@thinkpad>
-References: <20220513061347.46480-1-krzysztof.kozlowski@linaro.org>
- <20220513061347.46480-3-krzysztof.kozlowski@linaro.org>
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Stanimir Varbanov <svarbanov@mm-sol.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Johan Hovold <johan@kernel.org>
+Cc:     Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH v10 00/10] PCI: qcom: Fix higher MSI vectors handling
+Date:   Fri, 13 May 2022 20:26:12 +0300
+Message-Id: <20220513172622.2968887-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220513061347.46480-3-krzysztof.kozlowski@linaro.org>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
@@ -87,52 +77,94 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, May 13, 2022 at 08:13:42AM +0200, Krzysztof Kozlowski wrote:
-> Devices might need to control several clocks when scaling the frequency
-> and voltage.  Allow passing array of clock frequencies, similarly to the
-> voltages.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+ have replied with my Tested-by to the patch at [2], which has landed
+in the linux-next as the commit 20f1bfb8dd62 ("PCI: qcom:
+Add support for handling MSIs from 8 endpoints"). However lately I
+noticed that during the tests I still had 'pcie_pme=nomsi', so the
+device was not forced to use higher MSI vectors.
 
-Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+After removing this option I noticed that hight MSI vectors are not
+delivered on tested platforms. After additional research I stumbled upon
+a patch in msm-4.14 ([1]), which describes that each group of MSI
+vectors is mapped to the separate interrupt. Implement corresponding
+mapping.
 
-Thanks,
-Mani
+The first patch in the series is a revert of  [2] (landed in pci-next).
+Either both patches should be applied or both should be dropped.
 
-> Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> Acked-by: Rob Herring <robh@kernel.org>
-> 
-> ---
-> 
-> Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> ---
->  Documentation/devicetree/bindings/opp/opp-v2-base.yaml | 10 ++++++++++
->  1 file changed, 10 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/opp/opp-v2-base.yaml b/Documentation/devicetree/bindings/opp/opp-v2-base.yaml
-> index 76c8acd981b3..66d0ec763f0b 100644
-> --- a/Documentation/devicetree/bindings/opp/opp-v2-base.yaml
-> +++ b/Documentation/devicetree/bindings/opp/opp-v2-base.yaml
-> @@ -50,6 +50,16 @@ patternProperties:
->            property to uniquely identify the OPP nodes exists. Devices like power
->            domains must have another (implementation dependent) property.
->  
-> +          Entries for multiple clocks shall be provided in the same field, as
-> +          array of frequencies.  The OPP binding doesn't provide any provisions
-> +          to relate the values to their clocks or the order in which the clocks
-> +          need to be configured and that is left for the implementation
-> +          specific binding.
-> +        minItems: 1
-> +        maxItems: 16
-> +        items:
-> +          maxItems: 1
-> +
->        opp-microvolt:
->          description: |
->            Voltage for the OPP
-> -- 
-> 2.32.0
-> 
+Patchseries dependecies: [3] (for the schema change).
+
+Changes since v9:
+ - Relax requirements and stop validating the DT. If the has_split_msi
+   was specified, parse as many msiN irqs as specified in DT. If there
+   are none, fallback to the single "msi" IRQ.
+
+Changes since v8:
+ - Fix typos noted by Bjorn Helgaas
+ - Add missing links to the patch 1 (revert)
+ - Fix sm8250 interrupt-names (Johan)
+ - Specify num_vectors in qcom configuration data (Johan)
+ - Rework parsing of MSI IRQs (Johan)
+
+Changes since v7:
+ - Move code back to the dwc core driver (as required by Rob),
+ - Change dt schema to require either a single "msi" interrupt or an
+   array of "msi0", "msi1", ... "msi7" IRQs. Disallow specifying a
+   part of the array (the DT should specify the exact amount of MSI IRQs
+   allowing fallback to a single "msi" IRQ),
+ - Fix in the DWC init code for the dma_mapping_error() return value.
+
+Changes since v6:
+ - Fix indentation of the arguments as requested by Stanimir
+
+Changes since v5:
+ - Fixed commit subject and in-comment code according to Bjorn's
+   suggestion,
+ - Changed variable idx to i to follow dw_handle_msi_irq() style.
+
+Changes since v4:
+ - Fix the minItems/maxItems properties in the YAML schema.
+
+Changes since v3:
+ - Reimplement MSI handling scheme in the Qualcomm host controller
+   driver.
+
+Changes since v2:
+ - Fix and rephrase commit message for patch 2.
+
+Changes since v1:
+ - Split a huge patch into three patches as suggested by Bjorn Helgaas
+ - snps,dw-pcie removal is now part of [3]
+
+[1] https://git.codelinaro.org/clo/la/kernel/msm-4.14/-/commit/671a3d5f129f4bfe477152292ada2194c8440d22
+[2] https://lore.kernel.org/linux-arm-msm/20211214101319.25258-1-manivannan.sadhasivam@linaro.org/
+[3] https://lore.kernel.org/linux-arm-msm/20220422211002.2012070-1-dmitry.baryshkov@linaro.org/
+
+Dmitry Baryshkov (10):
+  PCI: qcom: Revert "PCI: qcom: Add support for handling MSIs from 8
+    endpoints"
+  PCI: dwc: Propagate error from dma_mapping_error()
+  PCI: dwc: Correct msi_irq condition in dw_pcie_free_msi()
+  PCI: dwc: Convert msi_irq to the array
+  PCI: dwc: split MSI IRQ parsing/allocation to a separate function
+  PCI: dwc: Handle MSIs routed to multiple GIC interrupts
+  PCI: dwc: Implement special ISR handler for split MSI IRQ setup
+  PCI: qcom: Handle MSIs routed to multiple GIC interrupts
+  dt-bindings: PCI: qcom: Support additional MSI interrupts
+  arm64: dts: qcom: sm8250: provide additional MSI interrupts
+
+ .../devicetree/bindings/pci/qcom,pcie.yaml    |  53 ++++-
+ arch/arm64/boot/dts/qcom/sm8250.dtsi          |  12 +-
+ drivers/pci/controller/dwc/pci-dra7xx.c       |   2 +-
+ drivers/pci/controller/dwc/pci-exynos.c       |   2 +-
+ .../pci/controller/dwc/pcie-designware-host.c | 220 +++++++++++++-----
+ drivers/pci/controller/dwc/pcie-designware.h  |   3 +-
+ drivers/pci/controller/dwc/pcie-keembay.c     |   2 +-
+ drivers/pci/controller/dwc/pcie-qcom.c        |  13 +-
+ drivers/pci/controller/dwc/pcie-spear13xx.c   |   2 +-
+ drivers/pci/controller/dwc/pcie-tegra194.c    |   2 +-
+ 10 files changed, 238 insertions(+), 73 deletions(-)
 
 -- 
-மணிவண்ணன் சதாசிவம்
+2.35.1
+
