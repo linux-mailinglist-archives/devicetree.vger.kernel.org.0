@@ -2,79 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0861E525D96
+	by mail.lfdr.de (Postfix) with ESMTP id EBF4C525D99
 	for <lists+devicetree@lfdr.de>; Fri, 13 May 2022 10:39:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1378280AbiEMIbp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 May 2022 04:31:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57908 "EHLO
+        id S1378319AbiEMIcj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 May 2022 04:32:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33126 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1378260AbiEMIbn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 May 2022 04:31:43 -0400
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B324E64BD0
-        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 01:31:41 -0700 (PDT)
-Received: by mail-ej1-x632.google.com with SMTP id dk23so14782968ejb.8
-        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 01:31:41 -0700 (PDT)
+        with ESMTP id S1378296AbiEMIcd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 May 2022 04:32:33 -0400
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BCE2763516
+        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 01:32:31 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id ch13so14738710ejb.12
+        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 01:32:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=TNsY3qFCwXQblJPsVdG0LCyrHmw8JZ3ev2jxwT+LE+k=;
-        b=UmoVPN2ActdAg0q/sV9x+QJ52g/PRzhZYttsOVqZVE9TDTLQCLgWe93efuunDeoxjT
-         JKwn69yqazKwiIaopRnbqE/8GHCsx9Kv3ntH8qnhKygS8mJ14jDjtAMFSBOuwvQoa9Ct
-         YaPjpGSl6DdFPek+/OyRhTvuFBMcBwG4+Yk2cQpAKzZkUcphG0Vf2zGx0nVsw0faKeTK
-         +BbguEHyFGfTnEpGH1atu8e3E0LvKRJDWkjkwgUEPXC1VGmuX+j9/BJpwEneLkcWH5D/
-         wgq8A4ncwnOA/+xOuHfLxxt9VhVLX9oUdfWFMKIV0b8g1C4gBIBClbHFabaBUYNMiIvg
-         7C3w==
+         :references:from:in-reply-to:content-transfer-encoding;
+        bh=vFW7c8oYKguehFMQb8jYFUEM93d/T6iAFsYnDrwQpGQ=;
+        b=MZXTiXjjOeUYFZgp12vGO1wwFcBLxT3m9XELyPJ3MlS+0y5TcXbfWBAjM7IkQV9Pjd
+         MujmPbzsY0PXgobKZN1WaopA5AOXoNyKVUd70hUAd+XOT+aj/mAGnvt4DD1Y5QW8j6eE
+         7htL9FPCjgRBoykbfiRQA6Jxp2MtRqIcFd0QsBYMLHNjUJTcxlj0GONe8oGiBLusv3Od
+         B2Cx4xGrmGMxGv0RXsnmTU0ssqTTvhDCH21f2LPGQTRLK8Vg0lNl2cmZTp+OwZhZQlXt
+         kaZDnA+z1RTc6e1Qt1m4Th/LKl6p4/LC6zUvUvdvNUQAiH5+yKRlholNX0mPPpqfxnHh
+         JCPw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
+         :content-language:to:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=TNsY3qFCwXQblJPsVdG0LCyrHmw8JZ3ev2jxwT+LE+k=;
-        b=581qLODs2fwSpe0boH2aeOT85QoutDpKpEuxHCJXpcQvWwr4EhdnUMYOyfVvRReawE
-         dg1bYVVUblUv8xgMAIW0qRy9214zDnS/mQWvCoSqI/ty6+PUf4O+CI08DoX3OOrcOObn
-         ZEc5yusksJQs6GHPiocLs00eIHytLyYP5bf9Km35gBFCEbieGtlYGz51+9dTORneO15f
-         iudKTETiTBy6s27man+6Vi9UuKeHC7AWUBPaaj6XjGUEtiAgh7I96DsFTXHyxoLLbRjF
-         U03W3CVbdZc8IhfhDsUUIIecUMDHRapSicx9jGjiOZu9hXApg6yMamF9qGgrMSATJsku
-         RRdg==
-X-Gm-Message-State: AOAM532f+neDgjfd/8mr6O2U1SX2WUmGVUXX1l/8zaYqpo0gPyXkVMeA
-        N7oScinJXHoVHh606yH7MjXgIQ==
-X-Google-Smtp-Source: ABdhPJxqCWpvbuwp3Q2VpbEQTmfvZ/vEwaSon3Dgg8K2eunwuY85dxL2dgA71OmAhW/k9YjTGKOZCA==
-X-Received: by 2002:a17:907:3e94:b0:6f4:64ad:1e2 with SMTP id hs20-20020a1709073e9400b006f464ad01e2mr3241417ejc.464.1652430700338;
-        Fri, 13 May 2022 01:31:40 -0700 (PDT)
+        bh=vFW7c8oYKguehFMQb8jYFUEM93d/T6iAFsYnDrwQpGQ=;
+        b=sewFF0fZeXQpE0Q3iVJmoD0bstFVmF3Wh6x3aRhMx89IQHv/Ey7tlhpqDscNEytoui
+         +uqyezEtTjXjZ6oF60onoPtf0Wxt+OEZWgZnXJ6Pk/P4x7XCthLglHZKtXbUPOResOH1
+         aEUqTdp1mGUriDi2dvavAHmr7TJxNqqzxF23M8bZd6HO8wE6D47xXpK+JSxLH1piaJie
+         S1vXo7R0jyWRKqSREYek8SEmwqHximmUwRD//A6SkRdmtZseXej1/pBq9I82/mK+rdf4
+         3uqgcwmggWZo5NEfhNb8Ni4PYP0IdtJLaa4mMh7GBHW1nX29EXIU6RG2MPtZmpByAwJK
+         VFIQ==
+X-Gm-Message-State: AOAM5312L+wvX4Xlp0nBuptaKk6EuK8BylWYIpSdelcagZ6fyQ8retx2
+        7rBr0sNTYrPnQIkfYbM/NJMtGQ==
+X-Google-Smtp-Source: ABdhPJxGvgzNmK3qdv64gFjNuTj3KarkSYk6qgd+Z76CVPxOMmJ9ydSWZ7NZmT4bAVz9T7FTfINA4g==
+X-Received: by 2002:a17:907:1c8d:b0:6f2:eb2:1cd6 with SMTP id nb13-20020a1709071c8d00b006f20eb21cd6mr3159377ejc.568.1652430750358;
+        Fri, 13 May 2022 01:32:30 -0700 (PDT)
 Received: from [192.168.0.169] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id eb22-20020a170907281600b006f3ef214e51sm511129ejc.183.2022.05.13.01.31.39
+        by smtp.gmail.com with ESMTPSA id b1-20020a05640202c100b00427ae00972dsm687144edx.12.2022.05.13.01.32.29
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 13 May 2022 01:31:39 -0700 (PDT)
-Message-ID: <cded90e2-b060-d144-b20c-cb8fdfcd4a7d@linaro.org>
-Date:   Fri, 13 May 2022 10:31:38 +0200
+        Fri, 13 May 2022 01:32:29 -0700 (PDT)
+Message-ID: <b8029466-2f6f-4bc9-b910-61577363da73@linaro.org>
+Date:   Fri, 13 May 2022 10:32:28 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.8.1
-Subject: Re: [PATCH v3 3/3] dt-bindings: mediatek: add ethdr definition for
- mt8195
+Subject: Re: [PATCH 1/2] dt-bindings: Add headers for Tegra234 GPCDMA
 Content-Language: en-US
-To:     Rex-BC Chen <rex-bc.chen@mediatek.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, chunkuang.hu@kernel.org,
-        p.zabel@pengutronix.de
-Cc:     airlied@linux.ie, matthias.bgg@gmail.com,
-        angelogioacchino.delregno@collabora.com, jason-jh.lin@mediatek.com,
-        nancy.lin@mediatek.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20220512080523.25082-1-rex-bc.chen@mediatek.com>
- <20220512080523.25082-4-rex-bc.chen@mediatek.com>
+To:     Akhil R <akhilrajeev@nvidia.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, thierry.reding@gmail.com,
+        jonathanh@nvidia.com, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220512090052.47840-1-akhilrajeev@nvidia.com>
+ <20220512090052.47840-2-akhilrajeev@nvidia.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220512080523.25082-4-rex-bc.chen@mediatek.com>
+In-Reply-To: <20220512090052.47840-2-akhilrajeev@nvidia.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -82,17 +75,13 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/05/2022 10:05, Rex-BC Chen wrote:
-> From: "Nancy.Lin" <nancy.lin@mediatek.com>
+On 12/05/2022 11:00, Akhil R wrote:
+> Add reset and IOMMU header for Tegra234 GPCDMA
 > 
-> Add vdosys1 ETHDR definition.
-> 
-> Signed-off-by: Nancy.Lin <nancy.lin@mediatek.com>
-> Reviewed-by: Chun-Kuang Hu <chunkuang.hu@kernel.org>
-> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> Signed-off-by: Akhil R <akhilrajeev@nvidia.com>
 
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 
 Best regards,
