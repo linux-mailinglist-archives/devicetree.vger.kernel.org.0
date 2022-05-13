@@ -2,156 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 081E2526765
-	for <lists+devicetree@lfdr.de>; Fri, 13 May 2022 18:47:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 25EDC52677F
+	for <lists+devicetree@lfdr.de>; Fri, 13 May 2022 18:52:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1382227AbiEMQrG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 May 2022 12:47:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41702 "EHLO
+        id S1382576AbiEMQvO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 May 2022 12:51:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48306 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1382476AbiEMQrF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 May 2022 12:47:05 -0400
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 538E751E50;
-        Fri, 13 May 2022 09:47:04 -0700 (PDT)
-Received: from fraeml710-chm.china.huawei.com (unknown [172.18.147.226])
-        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4L0Dwy2Fz9z67xX9;
-        Sat, 14 May 2022 00:43:30 +0800 (CST)
-Received: from lhreml710-chm.china.huawei.com (10.201.108.61) by
- fraeml710-chm.china.huawei.com (10.206.15.59) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.24; Fri, 13 May 2022 18:47:02 +0200
-Received: from localhost (10.202.226.42) by lhreml710-chm.china.huawei.com
- (10.201.108.61) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.2375.24; Fri, 13 May
- 2022 17:47:01 +0100
-Date:   Fri, 13 May 2022 17:47:00 +0100
-From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-To:     Eddie James <eajames@linux.ibm.com>
-CC:     <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <robh+dt@kernel.org>,
-        <lars@metafoo.de>, <jic23@kernel.org>, <miltonm@us.ibm.com>,
-        David Barksdale <dbarksdale@uplogix.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: iio: humidity: Add si7020 bindings
-Message-ID: <20220513174700.00005ef4@Huawei.com>
-In-Reply-To: <306c28b7-7318-9b8d-f512-d6e78bd05e51@linux.ibm.com>
-References: <20220512162020.33450-1-eajames@linux.ibm.com>
-        <20220512162020.33450-2-eajames@linux.ibm.com>
-        <20220512175125.00001a5a@Huawei.com>
-        <306c28b7-7318-9b8d-f512-d6e78bd05e51@linux.ibm.com>
-Organization: Huawei Technologies Research and Development (UK) Ltd.
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.29; i686-w64-mingw32)
+        with ESMTP id S1382697AbiEMQvA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 May 2022 12:51:00 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4A06527F6;
+        Fri, 13 May 2022 09:50:58 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: kholk11)
+        with ESMTPSA id C50451F42289
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1652460656;
+        bh=+xBBNGyIiNxlh6qLU8iRTsoeX33SDyUBO7XLJdSH9/M=;
+        h=From:To:Cc:Subject:Date:From;
+        b=Zx2VB73ycSD3mUzLcQJqWOApz3Bvr1a+l5B8r0QHnAL5qfwVcFaavfrux37fkmnyl
+         7OumPCp6ZmD5caW0EBMEDKSMHkI7KijmqLHYAQfESCfDU5wsR461rBhNMljydmbhi8
+         yx4ltQQ+2pB7x5KG+Rqa9fFi7GJVQnAib5mSQTqwBcCM3wwGUeP5Ts6TIsXSU2L/bt
+         0N3y0UCx75DgvLF3pnJe8g+2TvHRHBP6j1yLuB6447fvkEyr2mm/pro9Gt7e7+iLGi
+         WXG3tP3v92bxwGtRsCPOS8iGFtvMT8a/OUoOZAzHLA8hdglfx3RDCgaSsRJtHKZsbz
+         OptOodXSQvmBA==
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+To:     robh+dt@kernel.org
+Cc:     krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
+        mturquette@baylibre.com, sboyd@kernel.org, p.zabel@pengutronix.de,
+        y.oudjana@protonmail.com, angelogioacchino.delregno@collabora.com,
+        jason-jh.lin@mediatek.com, ck.hu@mediatek.com,
+        fparent@baylibre.com, rex-bc.chen@mediatek.com,
+        tinghan.shen@mediatek.com, chun-jie.chen@mediatek.com,
+        weiyi.lu@mediatek.com, ikjn@chromium.org, miles.chen@mediatek.com,
+        sam.shih@mediatek.com, wenst@chromium.org,
+        bgolaszewski@baylibre.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-clk@vger.kernel.org,
+        konrad.dybcio@somainline.org, marijn.suijten@somainline.org,
+        martin.botka@somainline.org, ~postmarketos/upstreaming@lists.sr.ht,
+        phone-devel@vger.kernel.org, paul.bouchara@somainline.org,
+        kernel@collabora.com
+Subject: [PATCH 0/5] MediaTek Helio X10 MT6795 - Clock drivers
+Date:   Fri, 13 May 2022 18:50:45 +0200
+Message-Id: <20220513165050.500831-1-angelogioacchino.delregno@collabora.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.202.226.42]
-X-ClientProxiedBy: lhreml708-chm.china.huawei.com (10.201.108.57) To
- lhreml710-chm.china.huawei.com (10.201.108.61)
-X-CFilter-Loop: Reflected
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 12 May 2022 12:08:57 -0500
-Eddie James <eajames@linux.ibm.com> wrote:
+In an effort to give some love to the apparently forgotten MT6795 SoC,
+I am upstreaming more components that are necessary to support platforms
+powered by this one apart from a simple boot to serial console.
 
-> On 5/12/22 11:51, Jonathan Cameron wrote:
-> > On Thu, 12 May 2022 11:20:19 -0500
-> > Eddie James <eajames@linux.ibm.com> wrote:
-> >  
-> >> Document the si7020 bindings with a new "silabs,skip-reset" property.
-> >>
-> >> Signed-off-by: Eddie James <eajames@linux.ibm.com>
-> >> ---
-> >>   .../bindings/iio/humidity/silabs,si7020.yaml  | 47 +++++++++++++++++++
-> >>   .../devicetree/bindings/trivial-devices.yaml  |  2 -
-> >>   2 files changed, 47 insertions(+), 2 deletions(-)
-> >>   create mode 100644 Documentation/devicetree/bindings/iio/humidity/silabs,si7020.yaml
-> >>
-> >> diff --git a/Documentation/devicetree/bindings/iio/humidity/silabs,si7020.yaml b/Documentation/devicetree/bindings/iio/humidity/silabs,si7020.yaml
-> >> new file mode 100644
-> >> index 000000000000..9bee010f8d56
-> >> --- /dev/null
-> >> +++ b/Documentation/devicetree/bindings/iio/humidity/silabs,si7020.yaml
-> >> @@ -0,0 +1,47 @@
-> >> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> >> +%YAML 1.2
-> >> +---
-> >> +$id: http://devicetree.org/schemas/iio/humidity/silabs,si7020.yaml#
-> >> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> >> +
-> >> +title: SI7020 humidity + temperature sensor
-> >> +
-> >> +maintainers:
-> >> +  - David Barksdale <dbarksdale@uplogix.com>  
-> > At least cc David if you are going to commit him to maintaining this binding :)
-> > +CC David at that address.  
-> 
-> 
-> Yes, my mail to him for v1 was undeliverable... I guess I should put 
-> myself instead.
-> 
+This (very big) series introduces system clock, multimedia clock drivers
+(including resets) for this SoC.
 
-That's the best answer :)
-(backup is to rely on the fallback which is me but I'd definitely rather bindings
-had attentive maintainers where possible!).
+Tested on a MT6795 Sony Xperia M5 (codename "Holly") smartphone.
 
-> 
-> >  
-> >> +
-> >> +description: |
-> >> +   The Silicon Labs Si7013/20/21 Relative Humidity and Temperature Sensors
-> >> +   are i2c devices which have an identical programming interface for
-> >> +   measuring relative humidity and temperature.
-> >> +
-> >> +properties:
-> >> +  compatible:
-> >> +    const: silabs,si7020
-> >> +
-> >> +  reg:
-> >> +    maxItems: 1
-> >> +
-> >> +  siliabs,skip-reset:
-> >> +    $ref: /schemas/types.yaml#/definitions/flag
-> >> +    description:
-> >> +      Disables resetting of the device during probe
-> >> +
-> >> +required:
-> >> +  - compatible
-> >> +  - reg
-> >> +
-> >> +additionalProperties: false
-> >> +
-> >> +examples:
-> >> +  - |
-> >> +    i2c0 {
-> >> +      #address-cells = <1>;
-> >> +      #size-cells = <0>;
-> >> +
-> >> +      si7021-a20@40 {
-> >> +        silabs,skip-reset;
-> >> +        compatible = "silabs,si7020";
-> >> +        reg = <0x40>;
-> >> +      };
-> >> +    };
-> >> +...
-> >> diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
-> >> index e5295faef52f..47a00b478867 100644
-> >> --- a/Documentation/devicetree/bindings/trivial-devices.yaml
-> >> +++ b/Documentation/devicetree/bindings/trivial-devices.yaml
-> >> @@ -317,8 +317,6 @@ properties:
-> >>             - sensortek,stk8ba50
-> >>               # SGX Sensortech VZ89X Sensors
-> >>             - sgx,vz89x
-> >> -            # Relative Humidity and Temperature Sensors
-> >> -          - silabs,si7020
-> >>               # Skyworks SKY81452: Six-Channel White LED Driver with Touch Panel Bias Supply
-> >>             - skyworks,sky81452
-> >>               # Socionext SynQuacer TPM MMIO module  
+
+AngeloGioacchino Del Regno (5):
+  dt-bindings: mediatek: Document MT6795 system controllers bindings
+  dt-bindings: clock: Add MediaTek Helio X10 MT6795 clock bindings
+  dt-bindings: reset: Add bindings for MT6795 Helio X10 reset
+    controllers
+  dt-bindings: arm: mediatek: Add clock driver bindings for MT6795
+  clk: mediatek: Add MediaTek Helio X10 MT6795 clock drivers
+
+ .../arm/mediatek/mediatek,infracfg.yaml       |   2 +
+ .../bindings/arm/mediatek/mediatek,mmsys.yaml |   1 +
+ .../arm/mediatek/mediatek,mt6795-clock.yaml   |  67 ++
+ .../mediatek/mediatek,mt6795-sys-clock.yaml   |  73 +++
+ .../arm/mediatek/mediatek,pericfg.yaml        |   1 +
+ .../bindings/clock/mediatek,apmixedsys.yaml   |   1 +
+ .../bindings/clock/mediatek,topckgen.yaml     |   1 +
+ drivers/clk/mediatek/Kconfig                  |  37 ++
+ drivers/clk/mediatek/Makefile                 |   6 +
+ drivers/clk/mediatek/clk-mt6795-apmixedsys.c  | 154 +++++
+ drivers/clk/mediatek/clk-mt6795-infracfg.c    | 145 +++++
+ drivers/clk/mediatek/clk-mt6795-mfg.c         |  47 ++
+ drivers/clk/mediatek/clk-mt6795-mm.c          | 103 +++
+ drivers/clk/mediatek/clk-mt6795-pericfg.c     | 157 +++++
+ drivers/clk/mediatek/clk-mt6795-topckgen.c    | 607 ++++++++++++++++++
+ drivers/clk/mediatek/clk-mt6795-vdecsys.c     |  52 ++
+ drivers/clk/mediatek/clk-mt6795-vencsys.c     |  46 ++
+ include/dt-bindings/clock/mt6795-clk.h        | 275 ++++++++
+ include/dt-bindings/reset/mt6795-resets.h     |  50 ++
+ 19 files changed, 1825 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/arm/mediatek/mediatek,mt6795-clock.yaml
+ create mode 100644 Documentation/devicetree/bindings/arm/mediatek/mediatek,mt6795-sys-clock.yaml
+ create mode 100644 drivers/clk/mediatek/clk-mt6795-apmixedsys.c
+ create mode 100644 drivers/clk/mediatek/clk-mt6795-infracfg.c
+ create mode 100644 drivers/clk/mediatek/clk-mt6795-mfg.c
+ create mode 100644 drivers/clk/mediatek/clk-mt6795-mm.c
+ create mode 100644 drivers/clk/mediatek/clk-mt6795-pericfg.c
+ create mode 100644 drivers/clk/mediatek/clk-mt6795-topckgen.c
+ create mode 100644 drivers/clk/mediatek/clk-mt6795-vdecsys.c
+ create mode 100644 drivers/clk/mediatek/clk-mt6795-vencsys.c
+ create mode 100644 include/dt-bindings/clock/mt6795-clk.h
+ create mode 100644 include/dt-bindings/reset/mt6795-resets.h
+
+-- 
+2.35.1
 
