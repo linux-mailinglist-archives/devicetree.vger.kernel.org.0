@@ -2,86 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B6360525E09
-	for <lists+devicetree@lfdr.de>; Fri, 13 May 2022 11:19:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F751525E64
+	for <lists+devicetree@lfdr.de>; Fri, 13 May 2022 11:19:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1378760AbiEMI46 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 May 2022 04:56:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45048 "EHLO
+        id S243338AbiEMI6p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 May 2022 04:58:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53176 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1378756AbiEMI44 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 May 2022 04:56:56 -0400
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 854936006A
-        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 01:56:53 -0700 (PDT)
-Received: by mail-wr1-x434.google.com with SMTP id w4so10460144wrg.12
-        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 01:56:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=9LZPjNhuvRomocP2/C/cikB/ZwgE3e5tXIGq6A9Dd3U=;
-        b=qHMJFfDHWXgRe9cj8rwpJ9r0DdwUvJDrktJiIrvLfjKRutQVzpGaNRC1lIzLXlNUkS
-         IQqFJaVM8oVcsmyvdf75GewbHOgM9ZrrQMCC0wg9lt5ak7htqw6/3J8eibSD+KB/yk64
-         k1OJWvR1yYc2xYDMUvPAmuRjbeZn+aH2H94NPlCDh8Ghm0mnHbJzoXWiaiowbDxZH1J2
-         nqwKSEEwwzrT1ZSbxaZC1pt1IhxrzJwrCqolbfhc2mMee4g9FHZme78zR21Np7JIAG++
-         4M1AI+65hU/SvWfS7OjJgBTM0fpaMd7s+yLJmOdwEEGnVkoxX3+RpLeaVYcGFmsP+VBF
-         tY7g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=9LZPjNhuvRomocP2/C/cikB/ZwgE3e5tXIGq6A9Dd3U=;
-        b=3+ZJb5NaRvGvI82imVTj7JBQQHG6d59vMetF4MPMeXZiyofbhgU/31VSVM8o2OHySE
-         ezJhaMiL02D0N+A3ZM/C/9jHismuMCCdsI3ACPANBK2xndhVsGf6XV7aue3sKFhRPy1h
-         6OkfVl9931qUAU2nIW33FqE4kvRS0qyszgUwS5DZvsGWt9miCOp3D3aYm5VpPE6AdiTv
-         Z/4wq0E1AWkLwTcZdPkSvNdOiCnE83d1FB/qhap+NF3vbgJL/8R4MkDKt1teenFZQiIU
-         noaxUiJ1ViVGDr/8WX7SqqcB6bTShajSUrjEwHTAU8OWOvHXuWRXA0EuZFHPFzs46M+6
-         gR1Q==
-X-Gm-Message-State: AOAM533pOwyFTXO1YhRaMPGmOlP2r7pO7EFiyxd0xHABLWvqbLdheM8L
-        QqUoa0E2Ptqr677/KrAU4GLcKA==
-X-Google-Smtp-Source: ABdhPJzMCmIw70cxsQMEoBTBP7pBJdUhXTnr3+T1ukoLP9UrfKIWuPKOQ/eCTJs6c499Mm4I0cCJ+g==
-X-Received: by 2002:adf:ecc7:0:b0:20a:dba3:a516 with SMTP id s7-20020adfecc7000000b0020adba3a516mr2989066wro.143.1652432212121;
-        Fri, 13 May 2022 01:56:52 -0700 (PDT)
-Received: from [192.168.0.169] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id l12-20020adfbd8c000000b0020c547f75easm1527915wrh.101.2022.05.13.01.56.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 13 May 2022 01:56:51 -0700 (PDT)
-Message-ID: <f5ec4fd9-b9d7-10fa-1c27-2f268466274f@linaro.org>
-Date:   Fri, 13 May 2022 10:56:50 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH v4 1/5] dt-bindings: proximity: vl53l0x: Document optional
- supply and GPIO properties
-Content-Language: en-US
-To:     Markuss Broks <markuss.broks@gmail.com>,
-        linux-kernel@vger.kernel.org
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Song Qiang <songqiang1304521@gmail.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
+        with ESMTP id S1378574AbiEMI6o (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 May 2022 04:58:44 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BED732B24D7;
+        Fri, 13 May 2022 01:58:43 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 4821E62171;
+        Fri, 13 May 2022 08:58:43 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 997CAC34100;
+        Fri, 13 May 2022 08:58:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1652432322;
+        bh=y5hNXUrGNvO6cEunrd+P8GV2IaK4KDe9YPvw8H7DMF8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=g+QV87M3tdWV5smAyn+8sRCKFz9jK2E+B97C/kP1V0wK4E5fLM053u2uRdcgZ70v2
+         IfcXyJ6B7hjiDMG2ejbI/gcY5CjS+O01EnGcm+ly7bao1pcN6uB6NTNGI7gWJeGDkZ
+         98WfcXiKiofN7G43igJGQopjGZfHburt+hIWLnC27bWNkSKIfwJX6UFW8XoW9yu1/o
+         GYgOc1ITjNo1Sosn93qmSU4CMRoocQQGuQ8ebAIajGj+dTkdMtyAxteqKMzC8jBgcf
+         3Cwqw+5uGlhQQoSqZjmLR3le+kxlpRc+1Z/2dTXj62/sgxc3gjHk/9r0tKjf+4JiFq
+         D9JxQeSr15QLg==
+Received: from johan by xi.lan with local (Exim 4.94.2)
+        (envelope-from <johan@kernel.org>)
+        id 1npR8A-0007U9-8a; Fri, 13 May 2022 10:58:39 +0200
+Date:   Fri, 13 May 2022 10:58:38 +0200
+From:   Johan Hovold <johan@kernel.org>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org
-References: <20220512191334.61804-1-markuss.broks@gmail.com>
- <20220512191334.61804-2-markuss.broks@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220512191334.61804-2-markuss.broks@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Stanimir Varbanov <svarbanov@mm-sol.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v8 00/10] PCI: qcom: Fix higher MSI vectors handling
+Message-ID: <Yn4dvpgezdrKmSro@hovoldconsulting.com>
+References: <20220512104545.2204523-1-dmitry.baryshkov@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220512104545.2204523-1-dmitry.baryshkov@linaro.org>
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -89,17 +66,36 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/05/2022 21:13, Markuss Broks wrote:
-> This patch adds the optional properties for the VL53L0X ToF sensor to the
-> device-tree binding.
+On Thu, May 12, 2022 at 01:45:35PM +0300, Dmitry Baryshkov wrote:
+> I have replied with my Tested-by to the patch at [2], which has landed
+> in the linux-next as the commit 20f1bfb8dd62 ("PCI: qcom:
+> Add support for handling MSIs from 8 endpoints"). However lately I
+> noticed that during the tests I still had 'pcie_pme=nomsi', so the
+> device was not forced to use higher MSI vectors.
 > 
-> Signed-off-by: Markuss Broks <markuss.broks@gmail.com>
+> After removing this option I noticed that hight MSI vectors are not
+> delivered on tested platforms. After additional research I stumbled upon
+> a patch in msm-4.14 ([1]), which describes that each group of MSI
+> vectors is mapped to the separate interrupt. Implement corresponding
+> mapping.
+> 
+> The first patch in the series is a revert of  [2] (landed in pci-next).
+> Either both patches should be applied or both should be dropped.
+> 
+> Patchseries dependecies: [3] (for the schema change).
+> 
+> Changes since v7:
+>  - Move code back to the dwc core driver (as required by Rob),
+>  - Change dt schema to require either a single "msi" interrupt or an
+>    array of "msi0", "msi1", ... "msi7" IRQs. Disallow specifying a
+>    part of the array (the DT should specify the exact amount of MSI IRQs
+>    allowing fallback to a single "msi" IRQ),
 
-Wait, two days and three versions? Please give some time before
-resending entire patchset.
+Why this new constraint?
 
-Same comments apply as for v2 and v3...
+I've been using your v7 with an sc8280xp which only has four IRQs (and
+hence 128 MSIs).
 
+Looks like this version of the series would not allow that anymore.
 
-Best regards,
-Krzysztof
+Johan
