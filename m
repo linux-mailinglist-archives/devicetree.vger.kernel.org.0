@@ -2,87 +2,40 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D03F4525FC3
-	for <lists+devicetree@lfdr.de>; Fri, 13 May 2022 12:39:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D1E50525FE9
+	for <lists+devicetree@lfdr.de>; Fri, 13 May 2022 12:39:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1355585AbiEMKc7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 May 2022 06:32:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37154 "EHLO
+        id S1379478AbiEMKdO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 May 2022 06:33:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38550 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1379448AbiEMKc6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 May 2022 06:32:58 -0400
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17DA2C9EDA
-        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 03:32:55 -0700 (PDT)
-Received: by mail-ed1-x52d.google.com with SMTP id w24so9449906edx.3
-        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 03:32:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=O6FiHPs6TyRR3hcZC36X6uXYX5doF+6brHiz72Bmp3Y=;
-        b=ESeWu6hBSMOQJBwvo98owd3dc9xTpa8qMO8//YKXHXjKIGYKVo1JsZBsr6njl8ehSu
-         7E1K+hGXZtM2f9CE3cbGjof/WV4EeK9S3SwF2jFtH+1afXmrnnCG/m/TFRosldC1dzWE
-         WedDyoMKeks19xDflSrq+4Lb4tbSwRJlFibN7/nxnKkcAJs/8FxuNqxnE4XRZU9pHnJ7
-         JM4np+n5LBPtvfY53RW7yyQA3Hi75fahXxsFnjbTUtIIxFXYgF2S2PMu2mvZ8Ge0cXwj
-         50/0sMzC+4ZHJQmdQHlZTZmbnp6vvML/MgMuPyLPXdtR6IwLZ8ydrhWtTncdxn5sLF0y
-         a9sA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=O6FiHPs6TyRR3hcZC36X6uXYX5doF+6brHiz72Bmp3Y=;
-        b=zpIIepsQ+hgKtT7KNNoq+0s0z7f7GbCpV/fGHbCvmNPydcQQywO98dP8/LeIFJMxhF
-         FAnymwYURsCwM5jGY45zYdSJD4JFode+gFz6ztStD9q0/jMoGKvamqRmgPvfO6Jf3RIr
-         QX+NehkKsIDVUZ4FZq7BsQc+FVXl0uJviiSICDaazRU92citG4Q/dscY+5ewzbxk3AV9
-         U9sfJacncpdgCx8EiEgO/VxfQPsLXWJ0VFh29zI1J/hVtH6hMKw060tBq8iJOB4tV1cr
-         o687VNaEu6yBWLYCEqpvmSFZc7ic4O91Oa1hlY9/5kj1LiDfJ9JT8w8OoHV2lS679eTQ
-         C1kA==
-X-Gm-Message-State: AOAM531UI3J33wnqKXQBNuHrX44GQO5xPpn2Shc/bg9erm+yzCiRnovA
-        lXFQ3fA80VUrTVNs9l1n5wAO6A==
-X-Google-Smtp-Source: ABdhPJxnxBRqoRRtonBw76pxckczcwui8tR3W20OfcDi/UUxotwJDJc16TYmbr5VAXgcERSaecmHyQ==
-X-Received: by 2002:aa7:ca0d:0:b0:428:90ee:322c with SMTP id y13-20020aa7ca0d000000b0042890ee322cmr30383575eds.100.1652437973639;
-        Fri, 13 May 2022 03:32:53 -0700 (PDT)
-Received: from [192.168.0.171] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id gv2-20020a1709072bc200b006f3ef214df5sm636959ejc.91.2022.05.13.03.32.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 13 May 2022 03:32:53 -0700 (PDT)
-Message-ID: <5f7dfcba-7e65-4f54-8699-e44ce11e216e@linaro.org>
-Date:   Fri, 13 May 2022 12:32:51 +0200
+        with ESMTP id S1379475AbiEMKdN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 May 2022 06:33:13 -0400
+Received: from relay11.mail.gandi.net (relay11.mail.gandi.net [IPv6:2001:4b98:dc4:8::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D91CA10F7F6;
+        Fri, 13 May 2022 03:33:11 -0700 (PDT)
+Received: (Authenticated sender: jacopo@jmondi.org)
+        by mail.gandi.net (Postfix) with ESMTPSA id ACAD4100007;
+        Fri, 13 May 2022 10:33:08 +0000 (UTC)
+Date:   Fri, 13 May 2022 12:33:01 +0200
+From:   Jacopo Mondi <jacopo@jmondi.org>
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     Sakari Ailus <sakari.ailus@linux.intel.com>,
+        linux-media@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] media: dt-bindings: media: i2c: Add MT9M114
+ camera sensor binding
+Message-ID: <20220513103301.ocj56zyvl4ls5cmz@uno.localdomain>
+References: <20220207012055.15158-1-laurent.pinchart@ideasonboard.com>
+ <20220207012055.15158-2-laurent.pinchart@ideasonboard.com>
+ <YgKfdR72TNavj68v@paasikivi.fi.intel.com>
+ <YgK6xAgAVHUSsQND@pendragon.ideasonboard.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [v4 1/3] dt-bindings: phy: qcom,usb-snps-femto-v2: Add phy
- override params bindings
-Content-Language: en-US
-To:     Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Doug Anderson <dianders@chromium.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Wesley Cheng <quic_wcheng@quicinc.com>,
-        Vinod Koul <vkoul@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-phy@lists.infradead.org, quic_pkondeti@quicinc.com,
-        quic_ppratap@quicinc.com, quic_vpulyala@quicinc.com,
-        Sandeep Maheswaram <quic_c_sanm@quicinc.com>
-References: <1652282793-5580-1-git-send-email-quic_kriskura@quicinc.com>
- <1652282793-5580-2-git-send-email-quic_kriskura@quicinc.com>
- <d296720d-ccbe-27f0-8ba1-9653af25dd52@linaro.org>
- <3abbb26f-9396-d024-67f6-f24f7db3408d@quicinc.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <3abbb26f-9396-d024-67f6-f24f7db3408d@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <YgK6xAgAVHUSsQND@pendragon.ideasonboard.com>
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -90,117 +43,175 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/05/2022 09:33, Krishna Kurapati PSSNV wrote:
-> 
-> On 5/11/2022 11:49 PM, Krzysztof Kozlowski wrote:
->> On 11/05/2022 17:26, Krishna Kurapati wrote:
->>> From: Sandeep Maheswaram <quic_c_sanm@quicinc.com>
->>>
->>> Add device tree bindings for SNPS phy tuning parameters.
->>>
->>> Signed-off-by: Sandeep Maheswaram <quic_c_sanm@quicinc.com>
->>> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
->>> ---
->>>   .../bindings/phy/qcom,usb-snps-femto-v2.yaml       | 87 ++++++++++++++++++++++
->>>   1 file changed, 87 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml b/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml
->>> index 1ce251d..70efffe 100644
->>> --- a/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml
->>> +++ b/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml
->>> @@ -53,6 +53,93 @@ properties:
->>>     vdda33-supply:
->>>       description: phandle to the regulator 3.3V supply node.
->>>   
->>> +  qcom,hs-disconnect-bps:
->>> +    $ref: /schemas/types.yaml#/definitions/int32
->>> +    description:
->>> +      This adjusts the voltage level for the threshold used to
->>> +      detect a disconnect event at the host. Possible values are.
->>> +      The values defined are in multiples of basis points (1bp = 0.01%).
->> This means there is some minimum and maximum (100%)?
->>
->>> +      The hardware accepts only discrete values. The value closest to the
->>> +      provided input will be chosen as the override value for this param.
->>> +
->>> +  qcom,squelch-detector-bps:
->>> +    $ref: /schemas/types.yaml#/definitions/int32
->>> +    description:
->>> +      This adjusts the voltage level for the threshold used to
->>> +      detect valid high-speed data.
->>> +      The values defined are in multiples of basis points (1bp = 0.01%).
->>> +      The hardware accepts only discrete values. The value closest to the
->>> +      provided input will be chosen as the override value for this param.
->>> +
->>> +  qcom,hs-amplitude-bps:
->>> +    $ref: /schemas/types.yaml#/definitions/int32
->>> +    description:
->>> +      This adjusts the high-speed DC level voltage.
->>> +      The values defined are in multiples of basis points (1bp = 0.01%).
->>> +      The hardware accepts only discrete values. The value closest to the
->>> +      provided input will be chosen as the override value for this param.
->>> +
->>> +  qcom,pre-emphasis-duration-bps:
->>> +    $ref: /schemas/types.yaml#/definitions/int32
->>> +    description:
->>> +      This signal controls the duration for which the
->>> +      HS pre-emphasis current is sourced onto DP<#> or DM<#>.
->>> +      The HS Transmitter pre-emphasis duration is defined in terms of
->>> +      unit amounts. One unit of pre-emphasis duration is approximately
->>> +      650 ps and is defined as 1X pre-emphasis duration.
->>> +      The values defined are in multiples of basis points (1bp = 0.01%).
->>> +      The hardware accepts only discrete values. The value closest to the
->>> +      provided input will be chosen as the override value for this param.
->>> +
->>> +  qcom,pre-emphasis-amplitude-bps:
->>> +    $ref: /schemas/types.yaml#/definitions/int32
->>> +    description:
->>> +      This signal controls the amount of current sourced to
->>> +      DP<#> and DM<#> after a J-to-K or K-to-J transition.
->>> +      The HS Transmitter pre-emphasis current is defined in terms of unit
->>> +      amounts. One unit amount is approximately 2 mA and is defined as
->>> +      1X pre-emphasis current.
->>> +      The values defined are in multiples of basis points (1bp = 0.01%).
->>> +      The hardware accepts only discrete values. The value closest to the
->>> +      provided input will be chosen as the override value for this param.
->>> +
->>> +  qcom,hs-rise-fall-time-bps:
->>> +    $ref: /schemas/types.yaml#/definitions/int32
->>> +    description:
->>> +      This adjusts the rise/fall times of the high-speed waveform.
->>> +      The values defined are in multiples of basis points (1bp = 0.01%).
->>> +      The hardware accepts only discrete values. The value closest to the
->>> +      provided input will be chosen as the override value for this param.
->>> +
->>> +  qcom,hs-crossover-voltage-mv:
->>> +    $ref: /schemas/types.yaml#/definitions/int32
->>> +    description:
->>> +      This adjusts the voltage at which the DP<#> and DM<#>
->>> +      signals cross while transmitting in HS mode.
->>> +      The values defined are in milli volts. The hardware accepts only
->>> +      discrete values. The value closest to the provided input will be
->>> +      chosen as the override value for this param.
->>> +
->>> +  qcom,hs-output-impedance-mohm:
->>> +    $ref: /schemas/types.yaml#/definitions/int32
->> Here and in other places, please use standard units. See
->> dtschema/schemas/property-units.yaml in dtschema repo.
->>
->>
->> Best regards,
->> Krzysztof
-> 
-> Hi Krzystof, thanks for the input.
-> 
-> I see there are microvolt and microohm units present in 
-> schemas/property-units.yaml
-> 
-> Would it be possible to add bps (basis point) to the list of standard 
-> units if it makes sense to use it ?
+Hi Laurent
 
-There is already 'percent' so 'bp' could be as well, makes sense to me.
-I can send a patch for it and we'll see what Rob says.
+On Tue, Feb 08, 2022 at 08:47:32PM +0200, Laurent Pinchart wrote:
+> Hi Sakari,
+>
+> On Tue, Feb 08, 2022 at 06:51:01PM +0200, Sakari Ailus wrote:
+> > On Mon, Feb 07, 2022 at 03:20:54AM +0200, Laurent Pinchart wrote:
+> > > Add device tree binding for the onsemi MT9M114 CMOS camera sensor.
+> > >
+> > > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > > ---
+> > > Changes since v1:
+> > >
+> > > - Use graph schema
+> > > - Drop unneeded properties
+> > > - Rename ON Semiconductor to onsemi
+> > > ---
+> > >  .../bindings/media/i2c/onnn,mt9m114.yaml      | 110 ++++++++++++++++++
+> > >  MAINTAINERS                                   |   7 ++
+> > >  2 files changed, 117 insertions(+)
+> > >  create mode 100644 Documentation/devicetree/bindings/media/i2c/onnn,mt9m114.yaml
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/media/i2c/onnn,mt9m114.yaml b/Documentation/devicetree/bindings/media/i2c/onnn,mt9m114.yaml
+> > > new file mode 100644
+> > > index 000000000000..55b67833f9a1
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/media/i2c/onnn,mt9m114.yaml
+> > > @@ -0,0 +1,110 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/media/i2c/onnn,mt9m114.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: onsemi 1/6-inch 720p CMOS Digital Image Sensor
+> > > +
+> > > +maintainers:
+> > > +  - Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > > +
+> > > +description: |-
+> > > +  The onsemi MT9M114 is a 1/6-inch 720p (1.26 Mp) CMOS digital image sensor
+> > > +  with an active pixel-array size of 1296H x 976V. It is programmable through
+> > > +  an I2C interface and outputs image data over a 8-bit parallel or 1-lane MIPI
+> > > +  CSI-2 connection.
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    const: onnn,mt9m114
+> > > +
+> > > +  reg:
+> > > +    description: I2C device address
+> > > +    enum:
+> > > +      - 0x48
+> > > +      - 0x5d
+> > > +
+> > > +  clocks:
+> > > +    description: EXTCLK clock signal
+> > > +    maxItems: 1
+> > > +
+> > > +  vdd-supply:
+> > > +    description:
+> > > +      Core digital voltage supply, 1.8V
+> > > +
+> > > +  vddio-supply:
+> > > +    description:
+> > > +      I/O digital voltage supply, 1.8V or 2.8V
+> > > +
+> > > +  vaa-supply:
+> > > +    description:
+> > > +      Analog voltage supply, 2.8V
+> > > +
+> > > +  reset-gpios:
+> > > +    description: |-
+> > > +      Reference to the GPIO connected to the RESET_BAR pin, if any (active
+> > > +      low).
+> > > +
+> > > +  port:
+> > > +    $ref: /schemas/graph.yaml#/$defs/port-base
+> > > +    additionalProperties: false
+> > > +
+> > > +    properties:
+> > > +      endpoint:
+> > > +        $ref: /schemas/media/video-interfaces.yaml#
+> > > +        additionalProperties: false
+> > > +
+> > > +        properties:
+> > > +          bus-type:
+> > > +            enum: [4, 5, 6]
+> >
+> > With bus-type 5, shouldn't you have the parallel interface sync signal
+> > polarity properties? Possibly also others if the hardware supports them.
+>
+> As far as I can tell, the hardware has fixed polarities for all signals.
+> Both hsync and vsync (called LINE_VALID and FRAME_VALID here) are active
+> high.
+>
 
+Although it seems the pixel clock polarity can be controlled ?
 
-Best regards,
-Krzysztof
+> > > +
+> > > +          remote-endpoint: true
+> > > +
+> > > +          # The number and mapping of lanes (for CSI-2), and the bus width and
+> > > +          # signal polarities (for parallel and BT.656) are fixed and must not
+> > > +          # be specified.
+> > > +
+> > > +        required:
+> > > +          - bus-type
+> > > +
+> > > +required:
+> > > +  - compatible
+> > > +  - reg
+> > > +  - clocks
+> > > +  - vdd-supply
+> > > +  - vddio-supply
+> > > +  - vaa-supply
+> > > +  - port
+> > > +
+> > > +additionalProperties: false
+> > > +
+> > > +examples:
+> > > +  - |
+> > > +    #include <dt-bindings/gpio/gpio.h>
+> > > +
+> > > +    i2c0 {
+> > > +        #address-cells = <1>;
+> > > +        #size-cells = <0>;
+> > > +
+> > > +        sensor@48 {
+> > > +            compatible = "onnn,mt9m114";
+> > > +            reg = <0x48>;
+> > > +
+> > > +            clocks = <&clk24m 0>;
+> > > +
+> > > +            reset-gpios = <&gpio5 21 GPIO_ACTIVE_LOW>;
+> > > +
+> > > +            vddio-supply = <&reg_cam_1v8>;
+> > > +            vdd-supply = <&reg_cam_1v8>;
+> > > +            vaa-supply = <&reg_2p8v>;
+> > > +
+> > > +            port {
+> > > +                endpoint {
+> > > +                    bus-type = <4>;
+> > > +                    remote-endpoint = <&mipi_csi_in>;
+> > > +                };
+> > > +            };
+> > > +        };
+> > > +    };
+> > > +...
+> > > diff --git a/MAINTAINERS b/MAINTAINERS
+> > > index f41088418aae..e9919a359c12 100644
+> > > --- a/MAINTAINERS
+> > > +++ b/MAINTAINERS
+> > > @@ -13096,6 +13096,13 @@ T:	git git://linuxtv.org/media_tree.git
+> > >  F:	drivers/media/i2c/mt9m032.c
+> > >  F:	include/media/i2c/mt9m032.h
+> > >
+> > > +MT9M114 ONSEMI SENSOR DRIVER
+> > > +M:	Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > > +L:	linux-media@vger.kernel.org
+> > > +S:	Maintained
+> > > +T:	git git://linuxtv.org/media_tree.git
+> > > +F:	Documentation/devicetree/bindings/media/i2c.onnn,mt9m114.yaml
+> > > +
+> > >  MT9P031 APTINA CAMERA SENSOR
+> > >  M:	Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > >  L:	linux-media@vger.kernel.org
+>
+> --
+> Regards,
+>
+> Laurent Pinchart
