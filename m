@@ -2,62 +2,193 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A6869525C65
-	for <lists+devicetree@lfdr.de>; Fri, 13 May 2022 09:37:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C98B0525C5E
+	for <lists+devicetree@lfdr.de>; Fri, 13 May 2022 09:34:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1377824AbiEMHhS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 May 2022 03:37:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48554 "EHLO
+        id S229562AbiEMHeG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 May 2022 03:34:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37056 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1377832AbiEMHhQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 May 2022 03:37:16 -0400
-Received: from mail.greatagencyonline.pl (mail.greatagencyonline.pl [89.40.125.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E5A55A58A
-        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 00:37:11 -0700 (PDT)
-Received: by mail.greatagencyonline.pl (Postfix, from userid 1001)
-        id 9FC84AEC3A; Fri, 13 May 2022 08:32:55 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=greatagencyonline.pl;
-        s=mail; t=1652427178;
-        bh=ksvwLPFdjL017OLwir5xHXy3Vmrj/5fhZ5DwBI62qzc=;
-        h=Date:From:To:Subject:From;
-        b=bVynRppwUf12TvjpJQ9Q3VgmUP6QQyhlSYRtMVzjZgFwm3be9N2PWK8uH/jCrU4Eo
-         HcCIZxFKzhr6bZzHQ//lPlExBa/jJeHVDUmB+hptask18w7iuzy/M1YE+ZDIyCJ/qR
-         CW4bcN46y8NXud9TaBgKnxMvWIhbwXuCAs6Iz1kSf5p9fi6pysAvXrqcxyco4qLyOj
-         IUqeiOtIlILogfO3ZDxMyTNq87xMy3X4NawvSHEEinWYje/zua5QV78/F6rnWmJP0a
-         asJTUi13QSyZCTxC+CLFgloz43bP8Pi8FRUEkJavNwC3KadQRWnCugTJdHJiDnNtEB
-         JwXSPfS7G/vUA==
-Received: by mail.greatagencyonline.pl for <devicetree@vger.kernel.org>; Fri, 13 May 2022 07:30:44 GMT
-Message-ID: <20220513073003-0.1.3w.o6mz.0.w1th1dr5c7@greatagencyonline.pl>
-Date:   Fri, 13 May 2022 07:30:44 GMT
-From:   =?UTF-8?Q? "Miko=C5=82aj_Rudzik" ?= 
-        <mikolaj.rudzik@greatagencyonline.pl>
-To:     <devicetree@vger.kernel.org>
-Subject: =?UTF-8?Q?Nap=C5=82yw_Klient=C3=B3w_ze_strony?=
-X-Mailer: mail.greatagencyonline.pl
+        with ESMTP id S1377799AbiEMHeF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 May 2022 03:34:05 -0400
+Received: from alexa-out-sd-01.qualcomm.com (alexa-out-sd-01.qualcomm.com [199.106.114.38])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7BD6A26CC67;
+        Fri, 13 May 2022 00:34:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1652427244; x=1683963244;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=yo78rzdHQ7MtB+XjdOalcRXdM1gAh94x2EuY0h91QFY=;
+  b=tET2GvrLEngFH0MJS/gXb08pzmKuDRiZwK3DglQkscn/rmYuAXyL+onx
+   624FzpyIqsqd4Z/z/M0VuwdceQfTOtf460rRfOK1gg05PETrnfLzUKH3r
+   SzR4ivgg7V9B+ffOfdTjDiuhitYSkJt+yBZSqFC2AAecfZliQ8jMndbrR
+   c=;
+Received: from unknown (HELO ironmsg03-sd.qualcomm.com) ([10.53.140.143])
+  by alexa-out-sd-01.qualcomm.com with ESMTP; 13 May 2022 00:34:04 -0700
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg03-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 May 2022 00:34:02 -0700
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Fri, 13 May 2022 00:34:02 -0700
+Received: from [10.206.28.16] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Fri, 13 May
+ 2022 00:33:56 -0700
+Message-ID: <3abbb26f-9396-d024-67f6-f24f7db3408d@quicinc.com>
+Date:   Fri, 13 May 2022 13:03:53 +0530
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.0
+Subject: Re: [v4 1/3] dt-bindings: phy: qcom,usb-snps-femto-v2: Add phy
+ override params bindings
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Andy Gross" <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Doug Anderson <dianders@chromium.org>,
+        "Matthias Kaehlcke" <mka@chromium.org>,
+        Wesley Cheng <quic_wcheng@quicinc.com>,
+        "Vinod Koul" <vkoul@kernel.org>
+CC:     <devicetree@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-usb@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-phy@lists.infradead.org>, <quic_pkondeti@quicinc.com>,
+        <quic_ppratap@quicinc.com>, <quic_vpulyala@quicinc.com>,
+        Sandeep Maheswaram <quic_c_sanm@quicinc.com>
+References: <1652282793-5580-1-git-send-email-quic_kriskura@quicinc.com>
+ <1652282793-5580-2-git-send-email-quic_kriskura@quicinc.com>
+ <d296720d-ccbe-27f0-8ba1-9653af25dd52@linaro.org>
+From:   Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
+In-Reply-To: <d296720d-ccbe-27f0-8ba1-9653af25dd52@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-7.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dzie=C5=84 dobry,
 
-chcia=C5=82bym poinformowa=C4=87 Pa=C5=84stwa o mo=C5=BCliwo=C5=9Bci pozy=
-skania nowych zlece=C5=84 ze strony www.
+On 5/11/2022 11:49 PM, Krzysztof Kozlowski wrote:
+> On 11/05/2022 17:26, Krishna Kurapati wrote:
+>> From: Sandeep Maheswaram <quic_c_sanm@quicinc.com>
+>>
+>> Add device tree bindings for SNPS phy tuning parameters.
+>>
+>> Signed-off-by: Sandeep Maheswaram <quic_c_sanm@quicinc.com>
+>> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
+>> ---
+>>   .../bindings/phy/qcom,usb-snps-femto-v2.yaml       | 87 ++++++++++++++++++++++
+>>   1 file changed, 87 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml b/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml
+>> index 1ce251d..70efffe 100644
+>> --- a/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml
+>> +++ b/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml
+>> @@ -53,6 +53,93 @@ properties:
+>>     vdda33-supply:
+>>       description: phandle to the regulator 3.3V supply node.
+>>   
+>> +  qcom,hs-disconnect-bps:
+>> +    $ref: /schemas/types.yaml#/definitions/int32
+>> +    description:
+>> +      This adjusts the voltage level for the threshold used to
+>> +      detect a disconnect event at the host. Possible values are.
+>> +      The values defined are in multiples of basis points (1bp = 0.01%).
+> This means there is some minimum and maximum (100%)?
+>
+>> +      The hardware accepts only discrete values. The value closest to the
+>> +      provided input will be chosen as the override value for this param.
+>> +
+>> +  qcom,squelch-detector-bps:
+>> +    $ref: /schemas/types.yaml#/definitions/int32
+>> +    description:
+>> +      This adjusts the voltage level for the threshold used to
+>> +      detect valid high-speed data.
+>> +      The values defined are in multiples of basis points (1bp = 0.01%).
+>> +      The hardware accepts only discrete values. The value closest to the
+>> +      provided input will be chosen as the override value for this param.
+>> +
+>> +  qcom,hs-amplitude-bps:
+>> +    $ref: /schemas/types.yaml#/definitions/int32
+>> +    description:
+>> +      This adjusts the high-speed DC level voltage.
+>> +      The values defined are in multiples of basis points (1bp = 0.01%).
+>> +      The hardware accepts only discrete values. The value closest to the
+>> +      provided input will be chosen as the override value for this param.
+>> +
+>> +  qcom,pre-emphasis-duration-bps:
+>> +    $ref: /schemas/types.yaml#/definitions/int32
+>> +    description:
+>> +      This signal controls the duration for which the
+>> +      HS pre-emphasis current is sourced onto DP<#> or DM<#>.
+>> +      The HS Transmitter pre-emphasis duration is defined in terms of
+>> +      unit amounts. One unit of pre-emphasis duration is approximately
+>> +      650 ps and is defined as 1X pre-emphasis duration.
+>> +      The values defined are in multiples of basis points (1bp = 0.01%).
+>> +      The hardware accepts only discrete values. The value closest to the
+>> +      provided input will be chosen as the override value for this param.
+>> +
+>> +  qcom,pre-emphasis-amplitude-bps:
+>> +    $ref: /schemas/types.yaml#/definitions/int32
+>> +    description:
+>> +      This signal controls the amount of current sourced to
+>> +      DP<#> and DM<#> after a J-to-K or K-to-J transition.
+>> +      The HS Transmitter pre-emphasis current is defined in terms of unit
+>> +      amounts. One unit amount is approximately 2 mA and is defined as
+>> +      1X pre-emphasis current.
+>> +      The values defined are in multiples of basis points (1bp = 0.01%).
+>> +      The hardware accepts only discrete values. The value closest to the
+>> +      provided input will be chosen as the override value for this param.
+>> +
+>> +  qcom,hs-rise-fall-time-bps:
+>> +    $ref: /schemas/types.yaml#/definitions/int32
+>> +    description:
+>> +      This adjusts the rise/fall times of the high-speed waveform.
+>> +      The values defined are in multiples of basis points (1bp = 0.01%).
+>> +      The hardware accepts only discrete values. The value closest to the
+>> +      provided input will be chosen as the override value for this param.
+>> +
+>> +  qcom,hs-crossover-voltage-mv:
+>> +    $ref: /schemas/types.yaml#/definitions/int32
+>> +    description:
+>> +      This adjusts the voltage at which the DP<#> and DM<#>
+>> +      signals cross while transmitting in HS mode.
+>> +      The values defined are in milli volts. The hardware accepts only
+>> +      discrete values. The value closest to the provided input will be
+>> +      chosen as the override value for this param.
+>> +
+>> +  qcom,hs-output-impedance-mohm:
+>> +    $ref: /schemas/types.yaml#/definitions/int32
+> Here and in other places, please use standard units. See
+> dtschema/schemas/property-units.yaml in dtschema repo.
+>
+>
+> Best regards,
+> Krzysztof
 
-Widzimy zainteresowanie potencjalnych Klient=C3=B3w Pa=C5=84stwa firm=C4=85=
-, dlatego ch=C4=99tnie pomo=C5=BCemy Pa=C5=84stwu dotrze=C4=87 z ofert=C4=
-=85 do wi=C4=99kszego grona odbiorc=C3=B3w poprzez efektywne metody pozyc=
-jonowania strony w Google.
+Hi Krzystof, thanks for the input.
 
-Czy m=C3=B3g=C5=82bym liczy=C4=87 na kontakt zwrotny?
+I see there are microvolt and microohm units present in 
+schemas/property-units.yaml
 
+Would it be possible to add bps (basis point) to the list of standard 
+units if it makes sense to use it ?
 
-Pozdrawiam,
-Miko=C5=82aj Rudzik
+Regards,
+
+Krishna,
+
