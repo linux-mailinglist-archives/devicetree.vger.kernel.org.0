@@ -2,165 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BBA945265E2
-	for <lists+devicetree@lfdr.de>; Fri, 13 May 2022 17:20:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F4255265FA
+	for <lists+devicetree@lfdr.de>; Fri, 13 May 2022 17:24:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1381884AbiEMPUI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 May 2022 11:20:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39284 "EHLO
+        id S235550AbiEMPYC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 May 2022 11:24:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48690 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1381906AbiEMPUD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 May 2022 11:20:03 -0400
-Received: from NAM02-SN1-obe.outbound.protection.outlook.com (mail-sn1anam02on2056.outbound.protection.outlook.com [40.107.96.56])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68D5C67D3B;
-        Fri, 13 May 2022 08:19:54 -0700 (PDT)
-ARC-Seal: i=2; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=pass;
- b=c0EtEFy7ZIDa/VguUBKw4Tb/KFP/b2fCOqSZK6pCmPetbB5Sgju7JZqRePCrMfudrJdgnES4cFWz916+FLSGiqRw8U/o1ayE0WI7gdo27Euovu7C5s/6pIt45wTuoNhVwDgTH7MTHsDgnnMft/oWogSEHwJ5EiD/apqIyiUg/4+PyYgGsOzWHQSRyhwmumkh/VSB2kFM9775s/n0zJp8PAtyAQQUgC2gBNZQW9lZ9eg074k5Yt5HPSWe1GC7lLPlAauuyaSIIuKJe3jW254WXL1rJtdLDRD7C12dTdjGnwMHHJW6R12IZjcSCOx1SnPVPcUVXGLhZCrCsWmAV4Mu0Q==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=PAjxc/RPPY3iT6yLtXygdrZuuqNaX/6cCUTsnQX4luc=;
- b=GfcIgrNpJdSqquINc5L2P0LTKtSLejU9LUrF1YonLjqjOtdym402UhosPQSS8ZvdHEp75IS6ZLxdpZwYrJiB3f1pFkNDeaqC0pyFrkaty2TpyjbTRLTVWRgSbAtXPq8J0cVq+vi4InSS8MYuxZMqP+DWLKhFTvzYPu8TQxMhD1kWsxDtQiDIl1RoNY5RRV4F6ApEWN3K0trGn3J1Cq5tRZ1KzK/t9X8LzyK4ye1boPxsoHtsh2SRqFBWCG0BW3e2D75kl5SAHjgDzHqpQFBaJYmGQEzKfqWVcBrWAhnxX7obJHhjyGJAH1mwKCieddpsVf5mBejeScVYipiA7WEm0A==
-ARC-Authentication-Results: i=2; mx.microsoft.com 1; spf=pass (sender ip is
- 20.83.241.18) smtp.rcpttodomain=infradead.org smtp.mailfrom=xilinx.com;
- dmarc=pass (p=none sp=none pct=100) action=none header.from=xilinx.com;
- dkim=none (message not signed); arc=pass (0 oda=1 ltdi=1
- spf=[1,1,smtp.mailfrom=xilinx.com] dmarc=[1,1,header.from=xilinx.com])
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=PAjxc/RPPY3iT6yLtXygdrZuuqNaX/6cCUTsnQX4luc=;
- b=oih6gUKqJ5Z+Ep+M8YBgtSTLvrh2kTIcfiGbFMiUdXn46rMOH8Q3DOVI79m+kEe3xOv3ie8806kJnK7v/HwbyKEI6p7KriP/ujYEIVeXpMq4faNbEFZMlCeJ5gRRyiNSAQKGyqE0JA2g2VOTLKy84YiwHsH7SZT4VLahhy5w0js=
-Received: from SN7PR04CA0230.namprd04.prod.outlook.com (2603:10b6:806:127::25)
- by MWHPR02MB3280.namprd02.prod.outlook.com (2603:10b6:301:64::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5250.13; Fri, 13 May
- 2022 15:19:50 +0000
-Received: from SN1NAM02FT0052.eop-nam02.prod.protection.outlook.com
- (2603:10b6:806:127:cafe::63) by SN7PR04CA0230.outlook.office365.com
- (2603:10b6:806:127::25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5250.14 via Frontend
- Transport; Fri, 13 May 2022 15:19:50 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 20.83.241.18)
- smtp.mailfrom=xilinx.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=xilinx.com;
-Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
- 20.83.241.18 as permitted sender) receiver=protection.outlook.com;
- client-ip=20.83.241.18;
- helo=mailrelay000001.14r1f435wfvunndds3vy4cdalc.xx.internal.cloudapp.net;
-Received: from
- mailrelay000001.14r1f435wfvunndds3vy4cdalc.xx.internal.cloudapp.net
- (20.83.241.18) by SN1NAM02FT0052.mail.protection.outlook.com (10.97.5.70)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5250.13 via Frontend
- Transport; Fri, 13 May 2022 15:19:50 +0000
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (mail-mw2nam10lp2105.outbound.protection.outlook.com [104.47.55.105])
-        by mailrelay000001.14r1f435wfvunndds3vy4cdalc.xx.internal.cloudapp.net (Postfix) with ESMTPS id C248A41D2B;
-        Fri, 13 May 2022 15:19:49 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=EAP0oDk8zd/mzHSq7kOEweoC/upJkMv0krUP7g9fmkkXmARr8UUqmYrvss1ttf/8fY5Up7ZSmf0eB7c0W8GtQwl+0RtXrhFYbeYIf4JojujE/6hd6NKXH9QIdaAOXBFgtTxkC6WQMF3ma3hvPsG7jWl104HLG6YrZ527pWJZcInqeFQRM5BfM2GUaYdZ7YdG1gRCJvSBAt/Bsk/UMw6zxUn9gsj43IOcnSpSZQcAeVisPnPf+x/1M7+uSpz106OB6vr0cWJjrPDloYdnHv6cydxQryItQscIt+MvbiO1B4IZN/k4KF0om7u3qHBewSBswNBOrROmI+dZD4OkwR2Pbg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=PAjxc/RPPY3iT6yLtXygdrZuuqNaX/6cCUTsnQX4luc=;
- b=djJPtAnmVRPJE94g1ieJ2dI2Si0RXtlj6hJatyfx5Mf0Vd0jCQVqJuCXImdX582FYzkXeuBsTyqdPQEPfUuefnwEA+gMHHbSdVv6BPpT/WU/d69fVGYuFmf4byAYcyXgYHmEi73/aEFsuQYYlQdPeMZvG10HQSaFr01FW1G/e/0dGLymSIzYoyKK/JfIXwNTMriQzy/lKqw7ZET8m1duB+bX7akx8QRQ/4S30+5PfCkRVva1W/nHSqSwRFKEF7Y4jF0GhmfdWauSKlSO1XZu26WHhixpwRUsQMufSCL8HCO56MgK3YvWmbAhRfWxgku9YlbpyY+6XnOHFBZE4i2xEQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 149.199.62.198) smtp.rcpttodomain=kernel.org smtp.mailfrom=xilinx.com;
- dmarc=pass (p=none sp=none pct=100) action=none header.from=xilinx.com;
- dkim=none (message not signed); arc=none
-Received: from BN9PR03CA0213.namprd03.prod.outlook.com (2603:10b6:408:f8::8)
- by CY4PR02MB2712.namprd02.prod.outlook.com (2603:10b6:903:11a::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5227.22; Fri, 13 May
- 2022 15:19:47 +0000
-Received: from BN1NAM02FT005.eop-nam02.prod.protection.outlook.com
- (2603:10b6:408:f8:cafe::a2) by BN9PR03CA0213.outlook.office365.com
- (2603:10b6:408:f8::8) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5250.14 via Frontend
- Transport; Fri, 13 May 2022 15:19:47 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
- smtp.mailfrom=xilinx.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=xilinx.com;
-Received: from xsj-pvapexch02.xlnx.xilinx.com (149.199.62.198) by
- BN1NAM02FT005.mail.protection.outlook.com (10.13.2.124) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5250.13 via Frontend Transport; Fri, 13 May 2022 15:19:47 +0000
-Received: from xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) by
- xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.14; Fri, 13 May 2022 08:19:44 -0700
-Received: from smtp.xilinx.com (172.19.127.95) by
- xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server id
- 15.1.2176.14 via Frontend Transport; Fri, 13 May 2022 08:19:44 -0700
-Envelope-to: robh@kernel.org,
- trix@redhat.com,
- linux-pci@vger.kernel.org,
- devicetree@vger.kernel.org,
- yilun.xu@intel.com,
- mdf@kernel.org,
- dwmw2@infradead.org,
- linux-kernel@vger.kernel.org
-Received: from [172.19.74.144] (port=39254)
-        by smtp.xilinx.com with esmtp (Exim 4.90)
-        (envelope-from <lizhi.hou@xilinx.com>)
-        id 1npX4y-000G3w-4j; Fri, 13 May 2022 08:19:44 -0700
-Message-ID: <62e98217-e068-35fc-6809-11d75f4c7933@xilinx.com>
-Date:   Fri, 13 May 2022 08:19:44 -0700
+        with ESMTP id S233504AbiEMPYB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 May 2022 11:24:01 -0400
+Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com [209.85.167.170])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9205F10E8;
+        Fri, 13 May 2022 08:24:00 -0700 (PDT)
+Received: by mail-oi1-f170.google.com with SMTP id y63so10493715oia.7;
+        Fri, 13 May 2022 08:24:00 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=1J6Zu4Y3tOCa7n+k1s3WdHdTjmsh4OIORv9TDHyhOcA=;
+        b=ZcNTRQT2JuijcTjsx5rT9wDW4pdmHcBSbzjNHXKRWjXhoFXxdczFmG0bbpu6nmY5NK
+         +4ZdiLZwma6DCDQBe3ChBy92NObcMmRnJ2Y9m22R83AsQdbAD4xbqubC1quWjWUtEwqU
+         kv5c7PcMvf1gTm9dj9fm3BVChXPoLrvK9vTA4Q7Fd21RZ+ONUpumkp4LjmOptST8Io+k
+         6ZmlVmY+KxrqZ7EpXFdv0rLB7TnZFlkcYu6cIVEXXJpHxodKa1Dyv1WuF5FCu9u2RDIw
+         cxESxYIwBIEX7yp2atMKcOKhu80zXt5zz72004DUNqxdap3d/Ghou2bWB+hjoJFcvSG0
+         4AYQ==
+X-Gm-Message-State: AOAM533lD1E0t3RtpEnuttHe+KZ40W+B+aH0S0DZ44S+dPljHfPMgY5s
+        H05UjigSqyM1NyFr/NVNLw==
+X-Google-Smtp-Source: ABdhPJzk7/dBLs+2vZIqFSUcjyOfATh31/401J+2A7wbSC1AORySmWax4qvXEnqYgRlz796HZj7exg==
+X-Received: by 2002:aca:4154:0:b0:322:7a9c:7daa with SMTP id o81-20020aca4154000000b003227a9c7daamr7908697oia.52.1652455439736;
+        Fri, 13 May 2022 08:23:59 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id e2-20020a056870a60200b000e99b1909d4sm1064987oam.25.2022.05.13.08.23.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 13 May 2022 08:23:59 -0700 (PDT)
+Received: (nullmailer pid 363506 invoked by uid 1000);
+        Fri, 13 May 2022 15:23:58 -0000
+Date:   Fri, 13 May 2022 10:23:58 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
+Cc:     Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 3/3] arm64: dts: rockchip: Add Hantro encoder node to
+ rk356x
+Message-ID: <20220513152358.GA334264-robh@kernel.org>
+References: <20220508202544.501981-1-frattaroli.nicolas@gmail.com>
+ <14624530.8YKtBhKLIE@archbook>
+ <CAAEAJfBczhKTmRQfteacN4rYmJPRSuWZBs1LUuVnMKJ_z0EUwQ@mail.gmail.com>
+ <2024120.v6J0oxdlOP@archbook>
+ <CAAEAJfDMG9ykJQHUf6oB5gjV_J0M+eycCqiUvDv2WjpC3g8dKQ@mail.gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.0
-Subject: Re: [PATCH V1 RESEND 2/4] Documentation: devicetree: bindings: add
- binding for PCIe endpoint bus
-Content-Language: en-US
-From:   Lizhi Hou <lizhi.hou@xilinx.com>
-To:     Rob Herring <robh@kernel.org>, Tom Rix <trix@redhat.com>
-CC:     PCI <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Xu Yilun <yilun.xu@intel.com>, Max Zhen <maxz@xilinx.com>,
-        Sonal Santan <sonal.santan@xilinx.com>,
-        Yu Liu <larryliu@amd.com>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Stefano Stabellini <stefanos@xilinx.com>,
-        Moritz Fischer <mdf@kernel.org>,
-        David Woodhouse <dwmw2@infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Max Zhen <max.zhen@xilinx.com>
-References: <20220305052304.726050-1-lizhi.hou@xilinx.com>
- <20220305052304.726050-3-lizhi.hou@xilinx.com>
- <e4c058e9-6549-4ce2-be05-d09d5b1a9fc9@redhat.com>
- <CAL_JsqKzxq8T=obPQwXeNyqedQOKkmm8hwHdfVgKr15EyAgBnQ@mail.gmail.com>
- <79e4c876-e5a4-861f-cfbc-c75ed1a07ddd@xilinx.com>
-In-Reply-To: <79e4c876-e5a4-861f-cfbc-c75ed1a07ddd@xilinx.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-EOPAttributedMessage: 1
-X-MS-Office365-Filtering-Correlation-Id: 60694d12-1497-4701-bb83-08da34f40610
-X-MS-TrafficTypeDiagnostic: CY4PR02MB2712:EE_|SN1NAM02FT0052:EE_|MWHPR02MB3280:EE_
-X-Microsoft-Antispam-PRVS: <MWHPR02MB328086FAE5AB95EBD0E8C46FA1CA9@MWHPR02MB3280.namprd02.prod.outlook.com>
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam-Untrusted: BCL:0;
-X-Microsoft-Antispam-Message-Info-Original: 5x1PYgYcaM7eMWL9e/yptTWCVwIR5V9nVTEF4cyuAD5GTaajJ8ZYB+FapU+MdlyVHC7zSzNdOzcaR0GfOxH+D/sL43CPRZ12XXxJJt31qAhHmlIprSF08+av/2L0xYFmtdwZ6xU6jwxrG+EoJpQKajkQghJoCb9vNzxsRUaRb6DuZpiiANIzb6x1F3kwTmTa0Ng6Tte6gq5VwEm1PEFegfKqkE0i4xXMJiQXcs69bnkRMVx6EkbjpUTkoBhth4TkLwEqmOjKTe6Exgk5zr1UayevT99QoiiFz2DKQiHZdxt8mbH5k+kowPdESHI12DDxGCP2bMa/W9lH4vEmm/8xuHPLKfn15FaoFK2whIsCAqeq9JYSo7y9Gal2u2vf6G/ruNGfv6iTA92jj7EngsLCrmBAcgoopj/UYTcp6J+ekFmncd0qPeMqA3IJ0c8qtXBXDQml7GjzaQwX0xWyIAx/j9rlKy3WSBxesUo1GqfO3rLWqRxIKgU/32dukyE2lCOs2yMfS3zvZM0ZD1/3YSWpuE2EwsPrzkcZlQ7VnHJSyCNWVYNhoVPvqMgqnLBiMTDUiPMUDUAv6hHqFaqVS79YRW6vkeHdSNeizB8jueeqNSXyTwhLP/2BB3oFSLB1e9QVJKEH5ZtYCUqhe0i3Ca9gFf3QxZLSbjPp0mgXbZ2zWXz+w6A/p3Y4rTkST0ACZNKK63goA9bUqChPzqsfAYnowtTY3rsACgH2BvLXGcpFmVjgJwf115FGSYJAWgK/WFvgvhyhmzjTmF0pDum+fw4mrVAYoL5TIMPjO/xIPhmeWOOP2EoWbfvskJokr83QFb0I5iPQLSXYjkOE21RxtjMA8BY+G8AT5EzibORVTm7UJeI=
-X-Forefront-Antispam-Report-Untrusted: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch02.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(13230001)(4636009)(36840700001)(46966006)(40470700004)(4326008)(8676002)(26005)(70206006)(70586007)(2616005)(40460700003)(5660300002)(356005)(8936002)(9786002)(83380400001)(508600001)(7636003)(966005)(36860700001)(36756003)(2906002)(53546011)(426003)(47076005)(186003)(336012)(82310400005)(54906003)(110136005)(316002)(44832011)(31686004)(107886003)(31696002)(50156003)(43740500002);DIR:OUT;SFP:1101;
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR02MB2712
-X-MS-Exchange-Transport-CrossTenantHeadersStripped: SN1NAM02FT0052.eop-nam02.prod.protection.outlook.com
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id-Prvs: af6c84e2-ad1c-49c2-b6d5-08da34f40435
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: uMSLpV8hFJ8s7DDwbggNvIFfC6UT1ccCAjFBdfVk9feQmnkwXdWid9LlhJQ6h4xyOnbMujWQNxnQ7wn0JiyXPmL2JaZVBqjQzy2Yo2CXrxgt5rAFoLeWcEpQHKfFXh0NAL0zJo1iLnOE559tqcOVtg2umViSXWEe4YK3QP+YvDj8csfbiNd5ESXmpJxEnYrf3BYMzviS26zAK2TKKAAXTUMe8jctRbrawAkWXQ7IeUcO1pwmw49ngBE1c44t3j312GVYeQ0ZXQAgJiEDMI9sp1LML9Sur180kcjxflPnLJBaY5Rzt3nIIvK9YA3fYuatlYzNYhZBCkgBgURxEknOGqrOEQ88dRRz1ocyUVt39wpWANOcDpnsaIvvrcvz3D3+pZPfAAjpeNO9SQGlQ0R8xQApkYk8GlJ5gIkGUwM3GXDppZT4HztQCLpKDL+OrcWvrc6zP/899ZXp8169yPNeZjrMpO62zbfoPsjoRcbV4unMigJvUsDfo+TFk3+3U2+EEagDo46WgYy8hLH8ZpydlZ4rtvmz1e0TvdimpYeBtio+FgEr5/n/08qinxs7dZKLdZ1a39aeDr4j3ekiKPStYWzq2odz+L253vRD/yfock3d/ald1NIYNCeu1gdb5HqSNDagy5O5JdI4oRcfkvoVsa0RH7OH1ZMyWfvhUZ0NFgeVoI3+i9nh4j/sDxXSVEF1l/TdDzOHLAEDb5XsOQHsmg+pQqYeG7RtAHUncDXc9DTZPcVaJvMJCemIJgYNIOm+sZDhEmZPfm9b/NNkem5JKO9huivgNDRx7rCnKhhjg/cTuu8N5QE156JItd1EbCBi9bvdRBtgKsQ1kJgS6X4/DyrSZv+KsS6KksBaorLgfQfk9HiCmvjY7l4OMwwCGmW5xaY8ytIur/nZgcU3EIZ01A==
-X-Forefront-Antispam-Report: CIP:20.83.241.18;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mailrelay000001.14r1f435wfvunndds3vy4cdalc.xx.internal.cloudapp.net;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230001)(4636009)(36840700001)(40470700004)(46966006)(186003)(110136005)(316002)(82310400005)(83380400001)(426003)(54906003)(40460700003)(47076005)(2616005)(4326008)(336012)(31696002)(107886003)(8676002)(508600001)(70206006)(36860700001)(53546011)(966005)(26005)(81166007)(44832011)(8936002)(2906002)(31686004)(5660300002)(9786002)(36756003)(50156003)(36900700001)(43740500002);DIR:OUT;SFP:1101;
-X-OriginatorOrg: xilinx.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 May 2022 15:19:50.3521
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 60694d12-1497-4701-bb83-08da34f40610
-X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[20.83.241.18];Helo=[mailrelay000001.14r1f435wfvunndds3vy4cdalc.xx.internal.cloudapp.net]
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TreatMessagesAsInternal-SN1NAM02FT0052.eop-nam02.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR02MB3280
-X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAAEAJfDMG9ykJQHUf6oB5gjV_J0M+eycCqiUvDv2WjpC3g8dKQ@mail.gmail.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -168,201 +71,187 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+On Fri, May 13, 2022 at 10:07:51AM -0300, Ezequiel Garcia wrote:
+> Hi Nicolas,
+> 
+> On Fri, May 13, 2022 at 3:23 AM Nicolas Frattaroli
+> <frattaroli.nicolas@gmail.com> wrote:
+> >
+> > On Donnerstag, 12. Mai 2022 23:33:03 CEST Ezequiel Garcia wrote:
+> > > On Thu, May 12, 2022 at 5:00 PM Nicolas Frattaroli
+> > > <frattaroli.nicolas@gmail.com> wrote:
+> > > >
+> > > > On Donnerstag, 12. Mai 2022 16:16:52 CEST Ezequiel Garcia wrote:
+> > > > > On Tue, May 10, 2022 at 12:28 PM Nicolas Frattaroli
+> > > > > <frattaroli.nicolas@gmail.com> wrote:
+> > > > > >
+> > > > > > Hi Ezequiel,
+> > > > > >
+> > > > > > On Montag, 9. Mai 2022 16:17:03 CEST Ezequiel Garcia wrote:
+> > > > > > > Hi Nicolas,
+> > > > > > >
+> > > > > > > On Sun, May 8, 2022 at 5:26 PM Nicolas Frattaroli
+> > > > > > > <frattaroli.nicolas@gmail.com> wrote:
+> > > > > > > >
+> > > > > > > > The RK3566 and RK3568 come with a dedicated Hantro instance solely for
+> > > > > > > > encoding. This patch adds a node for this to the device tree, along with
+> > > > > > > > a node for its MMU.
+> > > > > > > >
+> > > > > > > > Signed-off-by: Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
+> > > > > > > > ---
+> > > > > > > >  arch/arm64/boot/dts/rockchip/rk356x.dtsi | 21 +++++++++++++++++++++
+> > > > > > > >  1 file changed, 21 insertions(+)
+> > > > > > > >
+> > > > > > > > diff --git a/arch/arm64/boot/dts/rockchip/rk356x.dtsi b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+> > > > > > > > index 7cdef800cb3c..2e3c9e1887e3 100644
+> > > > > > > > --- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+> > > > > > > > +++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+> > > > > > > > @@ -508,6 +508,27 @@ gpu: gpu@fde60000 {
+> > > > > > > >                 status = "disabled";
+> > > > > > > >         };
+> > > > > > > >
+> > > > > > > > +       vepu: video-codec@fdee0000 {
+> > > > > > > > +               compatible = "rockchip,rk3568-vepu";
+> > > > > > > > +               reg = <0x0 0xfdee0000 0x0 0x800>;
+> > > > > > > > +               interrupts = <GIC_SPI 64 IRQ_TYPE_LEVEL_HIGH>;
+> > > > > > > > +               interrupt-names = "vepu";
+> > > > > > >
+> > > > > > > It this block "encoder only" and if so, maybe we should remove the
+> > > > > > > "interrupt-names" [1]?
+
+Please raise binding design questions on binding patches. I don't 
+regularly review dts files.
+
+> > > > > > >
+> > > > > > > The driver is able to handle it. See:
+> > > > > > >
+> > > > > > > https://elixir.bootlin.com/linux/latest/source/drivers/staging/media/hantro/hantro_drv.c#L962
+> > > > > > >
+> > > > > > > You might have to adjust the dt-bindings for this.
+> > > > > > >
+> > > > > > > [1] https://lore.kernel.org/linux-media/20210324151715.GA3070006@robh.at.kernel.org/
+> > > > > >
+> > > > > > What the Linux driver can handle should not matter to the device tree;
+> > > > > > device trees are independent of drivers and kernels.
+> > > > > >
+> > > > >
+> > > > > I guess my message wasn't clear, no need to lecture me on Device
+> > > > > Trees, although I appreciate
+> > > > > your friendly reminder of what a Device Tree is.
+
+The independence is not universally known, understood, nor liked, so not 
+unreasonable to point out. Your tone here is not any better.
 
 
-Do you have any comment on this? We are looking for guidance on the 
-approaches suggested.
+> > > > > Having said that, the binding is designed to support both decoders and encoders
+> > > > > for instance:
+> > > > >
+> > > > >         vpu: video-codec@ff9a0000 {
+> > > > >                 compatible = "rockchip,rk3288-vpu";
+> > > > >                 reg = <0x0 0xff9a0000 0x0 0x800>;
+> > > > >                 interrupts = <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>,
+> > > > >                              <GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>;
+> > > > >                 interrupt-names = "vepu", "vdpu";
+> > > > >                 clocks = <&cru ACLK_VCODEC>, <&cru HCLK_VCODEC>;
+> > > > >                 clock-names = "aclk", "hclk";
+> > > > >                 iommus = <&vpu_mmu>;
+> > > > >                 power-domains = <&power RK3288_PD_VIDEO>;
+> > > > >         };
+> > > > >
+> > > > > Hence the question is why do you splitted the encoder to its own node?
+> > > >
+> > > > It has its own IOMMU and is in a different power domain than the decoder.
+> > > > I think I have mentioned this multiple times before, including in the
+> > > > cover letter.
+> > > >
+> > > > Assuming you do not believe me, feel free to check the TRM, of which I
+> > > > am sure you also have a copy: page 475 of Part 1 shows the VPU being in
+> > > > PD_VPU while the JPEG encoder is in PD_RGA. Pages 478 and 479 of Part 2,
+> > > > Section 10.5, shows that the JPEG encoder (VEPU121)'s base is not the
+> > > > same as the Hantro decoder (VDPU121)'s base, and their IOMMUs which are
+> > > > based relative to their base offset are therefore also not at the same
+> > > > address. If you think the TRM must be wrong then, consider the fact that
+> > > > I have actually run this patch set, presumably being the only person to
+> > > > do so, and found that it works, so no, the addresses and power domains
+> > > > are correct.
+> > > >
+> > > > I do not see any way in which it would make sense to put this into the
+> > > > same node as the decoder. It would not even be possible to do this in
+> > > > your bindings, as they specify a maxItems for power-domains and iommus
+> > > > of 1. Even if I modified them the driver wouldn't know which PD and
+> > > > IOMMU belongs to decoder and encoder.
+> > > >
+> > > > I think if we put this encoder in the same node as the decoder, we
+> > > > might as well take this to its natural conclusion and put the entire
+> > > > device tree into a single very large node. It's not the same hardware,
+> > > > it cannot be modelled as being the same hardware, just because the
+> > > > bindings lets people model some separate hardware as the same hardware
+> > > > doesn't mean this applies to this hardware.
+> > > >
+> > > > Long story short, why did I split the encoder to its own node? The
+> > > > answer is that I didn't. I simply refused to combine it into a node
+> > > > that it has nothing to do with.
+> > > >
+> > >
+> > > As I've mentioned:
+> > >
+> > > """
+> > > the current binding models the idea of decoder and encoder
+> > > being the same device. This has never been really really accurate,
+> > > as the encoder and decoders have always been more or less independent.
+> > >
+> > > The reason for having them on a single device are mostly historical,
+> > > some old devices shared some resource. I don't think this is the case anymore,
+> > > but the binding was still modeled to support that.
+> > > """
+> > >
+> > > The PX30 and RK3399 VPUs are probably pretty independent as well,
+> > > and in retrospective, we should have done separated Device Tree nodes.
+> > > For historical reasons, we didn't, and we introduced those weird "enc_offset"
+> > > and "dec_offset" fields:
+> > >
+> > > const struct hantro_variant px30_vpu_variant = {
+> > >         .enc_offset = 0x0,
+> > >         .enc_fmts = rockchip_vpu_enc_fmts,
+> > >         .num_enc_fmts = ARRAY_SIZE(rockchip_vpu_enc_fmts),
+> > >         .dec_offset = 0x400,
+> > >         .dec_fmts = rk3399_vpu_dec_fmts,
+> > >
+> >
+> > As I've mentioned: that doesn't work for this hardware. It's not just the
+> > memory addresses. You literally quoted the part where I explain this, and
+> > then decided to completely ignore it.
+> 
+> I didn't ignore anything. I was just trying to explain you,
+> how the decoder and the encoder could have been separated for almost
+> all the other Rockchip devices, just like you are doing here.
+> 
+> > I will not explain it again, you
+> > have the explanation once more right in this e-mail. Read it.
+> >
+> > Not to mention that you've also ignored that I disagree with rob's
+> > assessment about interrupt-names.
+> >
+> 
+> I didn't ignore it, I just didn't reply to it. You think this is about
+> changing a dt-binding, but you are actually introducing a new dt-binding
+> since you are adding a new compatible string.
+> 
+> You are doing so by extending an existing dt-binding.
+> 
+> I am explaining you the _existing_ dt-binding models the (incorrect) idea
+> of a combined decoder and encoder. Since your device is encoder-only
+> and has a single interrupt line, you should omit the interrupt-names,
+> because it doesn't not add anything.
 
+While in general I agree on single entries don't need -names, given just 
+'vdpu' is already allowed I would go with symmetry here and allow it for 
+the encoder.
 
-Thanks,
+If you wanted to mark 'vdpu' alone as deprecated, then that would be 
+fine too. No need for an if/then schema to disallow interrupt-names 
+either. Eventually, I plan to (optionally) remove deprecated schemas 
+from validation and that would have the effect of requiring 
+interrupt-names to have 2 entries here.
 
-Lizhi
-
-On 4/22/22 14:57, Lizhi Hou wrote:
-> Hi Rob,
->
-> On 3/7/22 06:07, Rob Herring wrote:
->> On Sun, Mar 6, 2022 at 9:37 AM Tom Rix <trix@redhat.com> wrote:
->>> Lizhi,
->>>
->>> Sorry for the delay, I am fighting with checking this with 'make
->>> dt_binding_check'
->>>
->>> There is a recent failure in linux-next around display/mediatek,*
->>> between next-20220301 and next-20220302 that I am bisecting.
->> There's already patches for that posted.
->>
->> Just use 'make -k'.
->>
->>> There are a couple of checkpatch --strict warnings for this set, the
->>> obvious one is adding to the MAINTAINERS for new files.
->>>
->>> Tom
->>>
->>> On 3/4/22 9:23 PM, Lizhi Hou wrote:
->>>> Create device tree binding document for PCIe endpoint bus.
->>>>
->>>> Signed-off-by: Sonal Santan <sonal.santan@xilinx.com>
->>>> Signed-off-by: Max Zhen <max.zhen@xilinx.com>
->>>> Signed-off-by: Lizhi Hou <lizhi.hou@xilinx.com>
->>>> ---
->>>>    .../devicetree/bindings/bus/pci-ep-bus.yaml   | 72 
->>>> +++++++++++++++++++
->>>>    1 file changed, 72 insertions(+)
->>>>    create mode 100644 
->>>> Documentation/devicetree/bindings/bus/pci-ep-bus.yaml
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/bus/pci-ep-bus.yaml 
->>>> b/Documentation/devicetree/bindings/bus/pci-ep-bus.yaml
->>>> new file mode 100644
->>>> index 000000000000..0ca96298db6f
->>>> --- /dev/null
->>>> +++ b/Documentation/devicetree/bindings/bus/pci-ep-bus.yaml
->>>> @@ -0,0 +1,72 @@
->>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>>> +%YAML 1.2
->>>> +---
->>>> +$id: http://devicetree.org/schemas/bus/pci-ep-bus.yaml#
->>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>> +
->>>> +title: PCIe Endpoint Bus binding
->>>> +
->>>> +description: |
->>>> +  PCIe device may use flattened device tree to describe apertures 
->>>> in its
->>>> +  PCIe BARs. The Bus PCIe endpoint node is created and attached 
->>>> under the
->>>> +  device tree root node for this kind of device. Then the flatten 
->>>> device
->>>> +  tree overlay for this device is attached under the endpoint node.
->>>> +
->>>> +  The aperture address which is under the endpoint node consists 
->>>> of BAR
->>>> +  index and offset. It uses the following encoding:
->>>> +
->>>> +    0xIooooooo 0xoooooooo
->>>> +
->>>> +  Where:
->>>> +
->>>> +    I = BAR index
->>>> +    oooooo oooooooo = BAR offset
->>>> +
->>>> +  The endpoint is compatible with 'simple-bus' and contains 'ranges'
->>>> +  property for translating aperture address to CPU address.
->>
->> This binding is completely confusing because 'PCIe endpoint' is
->> generally used (in context of bindings and Linux) for describing the
->> endpoint's system (i.e. the internal structure of a PCIe device (e.g.
->> add-in card) from the view of its own processor (not the host
->> system)). This binding seems to be describing the host system's view
->> of a PCIe device. We already have that! That's just the PCI bus
->> binding[1] which has existed for ~25 years.
->>
->> For a non-DT system, what you are going to need here is some way to
->> create DT nodes of the PCI bus hierarchy or at least from your device
->> back up to the host bridge. I would suggest you solve that problem
->> separately from implementing the FPGA driver by making it work first
->> on a DT based system.
->>
->> Rob
->>
->> [1] https://www.devicetree.org/open-firmware/bindings/pci/pci2_1.pdf
->>
->>
-> I investigated the implementation detail for adding device tree node for
-> PCIe devices. Based on my findings this is quite involved and so would
-> like to bounce off my approach with you before I start making changes.
->
-> We will start with DT-Base system which already has device node for PCIe
-> controller in base device tree. And we will focus on:
->
-> - Adding functions to generate device tree node for all PCIe devices.
-> - Linking dynamically generated DT nodes to the PCIe to the PCIe devices.
->
-> So the first question to resolve is when the PCIe DT node will be created
-> and destroyed. Here are the different options:
->
-> - Option #1: Add functions in pci_bus_add_device()/pci_stop_dev()
->   - The same place for creating/destroying device sysfs node. This should
->     be able to handle different cases: SR-IOV vf, hotplug, virtual device
->     etc.
->   - Leverage existing PCI enumeration and get the device information
->     directly from pci_dev structure.
->
-> -  Option #2: Enumerate PCIe devices and create DT node without relying
->    on PCI subsystem enumeration.
->   - E.g. Enumerating and creating PCIe dt node in an init callback
->     pure_initcall()
->   - Linking dt node to PCIe device is already supported in
->     pci_setup_device()
->   - Eventually need to handle hotplug case separately.
->
-> Option #1 looks an easier and cleaner way to implement.
->
-> The second question is for linking the dynamic generated dt node to PCIe
-> device through pci_dev->dev.of_node. The biggest concern is that current
-> kernel and driver code may check of_node pointer and run complete 
-> different
-> code path if of_node is not NULL. Here are some examples.
->
->  - of_irq_parse_pci(): 
-> https://elixir.bootlin.com/linux/v5.18-rc2/source/drivers/pci/of.c#L492
->  - pci_msi_domain_get_msi_rid(): 
-> https://elixir.bootlin.com/linux/v5.18-rc2/source/drivers/pci/msi/irqdomain.c#L233
->  - pci_dma_configure(): 
-> https://elixir.bootlin.com/linux/v5.18-rc2/source/drivers/pci/pci-driver.c#L1610
->
-> It needs to identify all the places which use of_node and make sure using
-> dynamic generated of_node is equivalent with the code without using
-> of_node. Considering there are so many hardware and virtualization Linux
-> support, the risk might high for changing the code which has been 
-> existing
-> for long time. And how to validate the change could be another challenge.
-> Introducing compiling option (e.g. CONFIG_PCI_DT_NODE) may lower the 
-> risk.
->
-> There are other approaches for linking dt node to PCIe device.
-> - Option #a: Add a special flag or property to dynamic generated PCIe DT
->   node. Then convert the code.
->
->       if (pdev->dev.of_node)
->           funcA();
->       else
->           funcB();
->
->    to
->       struct device_node *pci_get_of_node(pdev)
->       {
->           if (pdev->dev.of_node is dynamic generated)
->               return NULL;
->           return pdev->dev.of_node;
->       }
->
->       if (pci_get_of_node(pdev))
->           funcA ();
->       else
->           funcB ();
->
-> - Option #b: Introduce a new data member "dyn_of_node" in struct device
->   to link the dynamic generated PCIe dt node.
->
->       struct device {
->           ...
->           of_node: Associated device tree node.
->           fwnode: Associated device node supplied by platform firmware.
->           dyn_of_node: Associated dynamic generated device tree node.
->           ...
->
-> Could we implement Option #b for now because it is lower risk?
->
-> The last question is about the properties for each dynamic generated
-> PCIe dt node. To keep the generated device node lightweight, what will be
-> the desired (minimum) set of properties to generate? Besides the 
-> properties
-> defined in IEEE Std 1275, it looks more properties are needed. E.g.
->     interrupt-map, interrupt-map-mask, ...
->
-> Thanks,
-> Lizhi
->
+Rob
