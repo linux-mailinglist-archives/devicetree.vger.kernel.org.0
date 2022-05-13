@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F959525E90
-	for <lists+devicetree@lfdr.de>; Fri, 13 May 2022 11:19:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6797B525E1D
+	for <lists+devicetree@lfdr.de>; Fri, 13 May 2022 11:19:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1378445AbiEMInI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 May 2022 04:43:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46714 "EHLO
+        id S1378456AbiEMInW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 May 2022 04:43:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47748 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1378411AbiEMInH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 May 2022 04:43:07 -0400
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 676BD27E691
-        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 01:43:05 -0700 (PDT)
-Received: by mail-ej1-x630.google.com with SMTP id j6so14804291ejc.13
-        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 01:43:05 -0700 (PDT)
+        with ESMTP id S1378317AbiEMInU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 May 2022 04:43:20 -0400
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B52027E3FA
+        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 01:43:19 -0700 (PDT)
+Received: by mail-wr1-x42b.google.com with SMTP id k2so10470110wrd.5
+        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 01:43:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :references:from:in-reply-to:content-transfer-encoding;
-        bh=TjKayUeoGz9LcIPFjCuV1lUpAVC89m1KwyIymwOanYQ=;
-        b=vebrQ2nEECjiJZIr4ASXEoRcwne89Vrt3XKYPxQn4Ngn5/KBA/+djvWEsFiSxvWEnR
-         tOj6z+9HaqKgydCp3ETVn3UVjPDr74U92gVOBSwyUNMMnr01Nqvyxr9kC5TaEecTGl+P
-         GnVOIryzImESKHkZejPJx+xOeZnC1mD6bVxdNBIDrrO8WZXJ63f3PSHy65nlekrUNvBh
-         bYYTwOaC/YsdPodku2hfrHkTZhMxdDqEOnjOg/7jQlfDN/NOOaPS4MtJdQUnekPZ4Oec
-         h/OsVPS0LIoLihQAZAcoiAjqxBSwgVHRKH2fFHtK3IK9FajYXNi1FCKXw/nicd7SvGp8
-         sPcw==
+        bh=/oUtUHOBPRzkpU69NgRbxeNPAKdNVn3BJh6gwBygmcw=;
+        b=J7ZZ8Q6o70r3XUjLCowaXYXvP6NAuYGycMg6K/LKrCJOt7h3oDhIEXloqEx+/SJ9eB
+         cv7TWSz6eHazluaHq6iZpfDG7baRvjp/QJ23MdXEc78eqlSGLfu+nkdXoSfzWjP2GoYE
+         vosg5Pw1L0hmc2pUdOv9+YKbYOoOha7LwPXOxQRjte7mCCYQjVmjMVa+5o6oXfCxptsK
+         B++m2+wAqAb0uIpcBknS1imzG+QLn6J3kPr/etsRr3ZTYqd7PQaQa1k+pzp7Ovv0UEJC
+         3PHoDsVN3qR7VazFZO5QK7d8Opms2Fmodd+1CPQfnmQC92ZF+G6H2s5vvpUGZucR3y5v
+         hdcw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=TjKayUeoGz9LcIPFjCuV1lUpAVC89m1KwyIymwOanYQ=;
-        b=qs9UXmrNMCQT1wGkFRc5glr/hen9XQYXz+xmoy0iYqT7g8xnfQdRnqDuvuvIWyvqJ0
-         6XfgWh30q4t0bOQIfsFGqUSMHYaZ/1lodyOo724g6e2lNIjg3QAjWvXwAIBZ2gMM76ZE
-         G7EnLVKAoqm8I5d3VyXcVeUBfeIDGv5c9ZjE76wyJS/0evTCJui4VNnU/3gLFTmQOrpb
-         F53ksib2eXnn6LGl7LPDyrOEZre2qbYYDYd8sLRra7RUsRCj/eC7l8E8tPMYeoLw3i/f
-         /73YuuAocVga9HodIwxhsvzAEHzVJgjB236tLuuBD+3yvmMH8ot5FFVo+IRDsAbtWJUv
-         ksGw==
-X-Gm-Message-State: AOAM533n+Gesqlq9krfualk3qrD8PNBzK/NdpneXc5Xbz2BJvBnQzzEE
-        MmPxQyfqDkjcSnehA6i/2oOo/V1BzHu42pja
-X-Google-Smtp-Source: ABdhPJyXPkNCKq60uQ93gjwtZY8bIgP996nqib162PCEJlF7JFjR6xldyp/iixY9xzYTBoSdSBwAVQ==
-X-Received: by 2002:a17:907:1c1b:b0:6f4:a763:ac67 with SMTP id nc27-20020a1709071c1b00b006f4a763ac67mr3243379ejc.252.1652431383949;
-        Fri, 13 May 2022 01:43:03 -0700 (PDT)
+        bh=/oUtUHOBPRzkpU69NgRbxeNPAKdNVn3BJh6gwBygmcw=;
+        b=iorOcn1gU8SA+DdxBAthpTnUNZKojinlmWGClaLlLbGQpwvIQDjkJRV2qpbgnwuE7H
+         pMWCBimjDxC5f5t15jWv+vp3/8G35QbnYjM685tKYrpce2xH4T2xNyinHaZGpXFFiQce
+         jreSk2Pm3Qj28EL56JFkWBr016QTqxnesAWpQisaW2OsQ6t24uRLd85K622NYbNYmGjS
+         G60baRAW7x1aJTfbOHTpmvsIDSkrDPHPvIOEbX96ZVq/0GBlPrSuxbC1/It7AvnuZdHm
+         RE7lktZdkAw5goytKfNNzaJ5g8d03OKLPhPRJDkLBgIjEW6obG+GzzYH/mJepFC7sPkG
+         0s2w==
+X-Gm-Message-State: AOAM5316zIbjSmzEU0aLqLlWhu2soUtwjQVnsXC1hlE4etyb1kJLZD4F
+        V31bm75yhXLl+9P1raBWXhLjNQ==
+X-Google-Smtp-Source: ABdhPJyPnXyPYFlYNhmKv6HlpR9kp6cusChdNu3DUslg97TxmV52KAs+1ePCGN4+/Q5a+p0aLOKe1w==
+X-Received: by 2002:adf:e74e:0:b0:20a:e015:b575 with SMTP id c14-20020adfe74e000000b0020ae015b575mr2969871wrn.151.1652431397621;
+        Fri, 13 May 2022 01:43:17 -0700 (PDT)
 Received: from [192.168.0.169] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id 22-20020a17090600d600b006f3ef214dddsm533788eji.67.2022.05.13.01.43.02
+        by smtp.gmail.com with ESMTPSA id m18-20020adfa3d2000000b0020c5253d8ffsm1524420wrb.75.2022.05.13.01.43.16
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 13 May 2022 01:43:03 -0700 (PDT)
-Message-ID: <08e1bf5a-5ac5-ddc4-fe0e-765883709c43@linaro.org>
-Date:   Fri, 13 May 2022 10:43:02 +0200
+        Fri, 13 May 2022 01:43:16 -0700 (PDT)
+Message-ID: <b66faff6-a984-1417-cabe-de1e70a80dab@linaro.org>
+Date:   Fri, 13 May 2022 10:43:15 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.8.1
-Subject: Re: [PATCH v3 05/11] arm64: dts: marvell: uDPU: align SPI-NOR node
- with bindings
+Subject: Re: [PATCH v3 03/11] arm64: dts: marvell: espressobin-ultra: add
+ generic Espressobin compatible
 Content-Language: en-US
 To:     Robert Marko <robert.marko@sartura.hr>, robh+dt@kernel.org,
         krzysztof.kozlowski+dt@linaro.org, andrew@lunn.ch,
@@ -62,9 +62,9 @@ To:     Robert Marko <robert.marko@sartura.hr>, robh+dt@kernel.org,
         kostap@marvell.com, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
 References: <20220512124905.49979-1-robert.marko@sartura.hr>
- <20220512124905.49979-5-robert.marko@sartura.hr>
+ <20220512124905.49979-3-robert.marko@sartura.hr>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220512124905.49979-5-robert.marko@sartura.hr>
+In-Reply-To: <20220512124905.49979-3-robert.marko@sartura.hr>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -78,15 +78,17 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 12/05/2022 14:48, Robert Marko wrote:
-> SPI-NOR node should be "flash@0" according to the bindings, so fix it.
+> Espressobin Ultra is part of the Espressobin family and shares the basic
+> design, so add the generic "globalscale,espressobin" compatible to it as
+> well.
 > 
 > Signed-off-by: Robert Marko <robert.marko@sartura.hr>
 > ---
->  arch/arm64/boot/dts/marvell/armada-3720-uDPU.dts | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
+>  arch/arm64/boot/dts/marvell/armada-3720-espressobin-ultra.dts | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
 
-This is already done and should be in arm-soc. Please rebase on linux-next.
+
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 
 Best regards,
