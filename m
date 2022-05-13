@@ -2,73 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A6FF4525FFA
-	for <lists+devicetree@lfdr.de>; Fri, 13 May 2022 12:39:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 02768525FD4
+	for <lists+devicetree@lfdr.de>; Fri, 13 May 2022 12:39:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1379285AbiEMKK7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 May 2022 06:10:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36672 "EHLO
+        id S1377213AbiEMK0k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 May 2022 06:26:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39458 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1379275AbiEMKK6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 May 2022 06:10:58 -0400
-Received: from mail-qt1-x834.google.com (mail-qt1-x834.google.com [IPv6:2607:f8b0:4864:20::834])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52799140F9
-        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 03:10:56 -0700 (PDT)
-Received: by mail-qt1-x834.google.com with SMTP id t16so6418939qtr.9
-        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 03:10:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=+6a24hmutHKBGPmKdmfzo+GbqGc2VGX64fsVUBoQOak=;
-        b=ZJ2qfJ31vR6PlkYcXNCuvVB0LtzyBMrsX39x7zgy56oWu2NbHtdhnoTyNB8YvPOhdN
-         FK4B91mKUm+XHUNlEhbILynY9HJ0PNWsjhBHGSZ+NVY2IDa9AsBhGhy+xVHWkV5QaWT1
-         FL3oiJZrjcjas7G7EHOJk74E5UNCEKOPuV6nyXWCOVc2HeauNkBBJRqEnkLZDUPtuerW
-         PCXTUk6z8PzlF6d1sZg2f7HjzElZhW6twJjLW0Gol/Ula5tDl09rfYNaN4cRpk86FwMM
-         H7wFub9pyV/v5BqxQbFYQZ/S8ZfXTw1grLI3LqZ8rwL72MixXrBJSE2Gsj6QM/cKrsJT
-         13zg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=+6a24hmutHKBGPmKdmfzo+GbqGc2VGX64fsVUBoQOak=;
-        b=HWN5xgATbLRU1A3Qr46aMShAOQXFgRI3krvxqpJQxDIXJSDr/slj0KWr462OCYBxjf
-         js4m8hNplXQ8YFEiC2axUfCSREKWAMVJ4EjRc7ub/p2EvrIje3CkeleZBZpEewMOSpub
-         5A2xq/ELSAMltR72/9kVxO64duUA/BZdmZl2ENiZEfONwhuhwL8u43gQjfgncB2UJmTg
-         AvA6Mf9nax/JKyGLt1HnEOc/0pk0CdIax3gZMZw/Tk9rZZCxKj54qWPS87x1GznGnGZ5
-         NqsZGaLVTMGJyg8qDc2+onK1fYh85MnXJCegry/M0/6mnXGGSprNa77g/hfG8m69Gm7X
-         AzlA==
-X-Gm-Message-State: AOAM533HrDniVP1b4z/Dk9U5UDCBkyBsjlYC6bZa4UNEV8EcnyIPwgmI
-        MMPURt+xY5FdgfoorW9FIoh5sWlzb7hwS9nQNCWs8w==
-X-Google-Smtp-Source: ABdhPJzAi/elIkBWOFcWmkdVB2d0z/x9dKi584KPCw1vkuUCARdqrVdlFvWzZG61xwKYSxSJZ6Anb6jvV8IDKkg/xGY=
-X-Received: by 2002:a05:622a:188e:b0:2f3:dc9f:946 with SMTP id
- v14-20020a05622a188e00b002f3dc9f0946mr3736913qtc.682.1652436655475; Fri, 13
- May 2022 03:10:55 -0700 (PDT)
+        with ESMTP id S229569AbiEMK0L (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 May 2022 06:26:11 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE7CE23157;
+        Fri, 13 May 2022 03:26:09 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 52CDFB82D74;
+        Fri, 13 May 2022 10:26:08 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 94B97C34100;
+        Fri, 13 May 2022 10:26:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1652437567;
+        bh=DEFM/ExGoGjPo7YWItOfWKTXxJvHjRhr22Z8ZUxBr9A=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=UhRSw3oowHz1/rZVLRKQ4Eel4zp46N36DXc61//DDlgO3fL9mmlF8BJU/NZSUu59m
+         cKLJGs3ECK2rzz7JWSkdMhqqI43mVn+2TRnG5yATciHkOZ7AM8av9l4dpdp0j0+6+h
+         e0bnyhEEt61MNZNUt+vwrIV/V88LUpPTAItxaG2n6rD8eTB6v+Q3My5edVgXqbDixV
+         4zB36pxb/DkVgxsxxh3oIgVUMVDNKxNYGTaCSwvFnXLM27CmDSUkor0dCHmu+Vrw3l
+         OEWW4ggl+M1VakqBFA+z4jY4Gmbr3dvjBJK+uMrD8K/WKzUgQAOTFMX9OwBmjK3nYz
+         EXK1l0fVk7bhA==
+Date:   Fri, 13 May 2022 12:26:03 +0200
+From:   Lorenzo Bianconi <lorenzo@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     netdev@vger.kernel.org, nbd@nbd.name, john@phrozen.org,
+        sean.wang@mediatek.com, Mark-MC.Lee@mediatek.com,
+        davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+        pabeni@redhat.com, Sam.Shih@mediatek.com,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next 02/14] dt-bindings: net: mediatek,net: add
+ mt7986-eth binding
+Message-ID: <Yn4yO6kf3Y6Vpco3@lore-desk>
+References: <cover.1651839494.git.lorenzo@kernel.org>
+ <ce9e2975645e81758558201337f50c6693143fd8.1651839494.git.lorenzo@kernel.org>
+ <YnqRiEvS8OV20NSY@robh.at.kernel.org>
 MIME-Version: 1.0
-References: <20220512104545.2204523-1-dmitry.baryshkov@linaro.org>
- <Yn4dvpgezdrKmSro@hovoldconsulting.com> <CAA8EJppzx5nkyk3gCcgFd2G_QewU0Z6q6DAKb-Lyj9yZyMo_AA@mail.gmail.com>
- <Yn4ms7dKIzeAqt7A@hovoldconsulting.com>
-In-Reply-To: <Yn4ms7dKIzeAqt7A@hovoldconsulting.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Fri, 13 May 2022 13:10:44 +0300
-Message-ID: <CAA8EJppt4kiG45j62W-Z7Ech8WLNnkPYiVv7T0AK-+Dxtc_KDQ@mail.gmail.com>
-Subject: Re: [PATCH v8 00/10] PCI: qcom: Fix higher MSI vectors handling
-To:     Johan Hovold <johan@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Stanimir Varbanov <svarbanov@mm-sol.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="KaswaBvxQsQ7svxS"
+Content-Disposition: inline
+In-Reply-To: <YnqRiEvS8OV20NSY@robh.at.kernel.org>
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -77,93 +60,234 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 13 May 2022 at 12:36, Johan Hovold <johan@kernel.org> wrote:
->
-> On Fri, May 13, 2022 at 12:28:40PM +0300, Dmitry Baryshkov wrote:
-> > On Fri, 13 May 2022 at 11:58, Johan Hovold <johan@kernel.org> wrote:
-> > >
-> > > On Thu, May 12, 2022 at 01:45:35PM +0300, Dmitry Baryshkov wrote:
-> > > > I have replied with my Tested-by to the patch at [2], which has landed
-> > > > in the linux-next as the commit 20f1bfb8dd62 ("PCI: qcom:
-> > > > Add support for handling MSIs from 8 endpoints"). However lately I
-> > > > noticed that during the tests I still had 'pcie_pme=nomsi', so the
-> > > > device was not forced to use higher MSI vectors.
-> > > >
-> > > > After removing this option I noticed that hight MSI vectors are not
-> > > > delivered on tested platforms. After additional research I stumbled upon
-> > > > a patch in msm-4.14 ([1]), which describes that each group of MSI
-> > > > vectors is mapped to the separate interrupt. Implement corresponding
-> > > > mapping.
-> > > >
-> > > > The first patch in the series is a revert of  [2] (landed in pci-next).
-> > > > Either both patches should be applied or both should be dropped.
-> > > >
-> > > > Patchseries dependecies: [3] (for the schema change).
-> > > >
-> > > > Changes since v7:
-> > > >  - Move code back to the dwc core driver (as required by Rob),
-> > > >  - Change dt schema to require either a single "msi" interrupt or an
-> > > >    array of "msi0", "msi1", ... "msi7" IRQs. Disallow specifying a
-> > > >    part of the array (the DT should specify the exact amount of MSI IRQs
-> > > >    allowing fallback to a single "msi" IRQ),
-> > >
-> > > Why this new constraint?
-> > >
-> > > I've been using your v7 with an sc8280xp which only has four IRQs (and
-> > > hence 128 MSIs).
-> > >
-> > > Looks like this version of the series would not allow that anymore.
-> >
-> > It allows it, provided that you set pp->num_vectors correctly (to 128
-> > in your case).
-> > The main idea was to disallow mistakes in the platform configuration.
-> > If the platform says that it supports 256 vectors (and 8 groups),
-> > there must be 8 groups. Or a single backwards-compatible group.
->
-> But you also added
->
-> +        - properties:
-> +            interrupts:
-> +              minItems: 8
-> +            interrupt-names:
-> +              minItems: 8
-> +              items:
-> +                - const: msi0
-> +                - const: msi1
-> +                - const: msi2
-> +                - const: msi3
-> +                - const: msi4
-> +                - const: msi5
-> +                - const: msi6
-> +                - const: msi7
->
-> which means that I can no longer describe the four interrupts in DT.
->
-> I didn't check the implementation, but it seems you should derive the
-> number of MSIs based on the devicetree as I guess you did in v7.
 
-It is a conditional, so you can add another conditional for the
-sc8280xp platform describing just 4 interrupts. And as you don't have
-legacy DTS, you can completely omit the backwards compatible clause in
-your case.
-So, something like:
- - if:
-   properties:
-      contains:
-         enum:
-            - qcom,pcie-sc8280xp
-  then:
-    properties:
-       interrupts:
-          minItems: 4
-          maxItems: 4
-       interrupt-names:
-           items:
-              - const: msi0
-              - const: msi1
-              - const: msi2
-              - const: msi3
+--KaswaBvxQsQ7svxS
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
--- 
-With best wishes
-Dmitry
+> On Fri, May 06, 2022 at 02:30:19PM +0200, Lorenzo Bianconi wrote:
+> > Introduce dts bindings for mt7986 soc in mediatek,net.yaml.
+> >=20
+> > Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
+> > ---
+> >  .../devicetree/bindings/net/mediatek,net.yaml | 133 +++++++++++++++++-
+> >  1 file changed, 131 insertions(+), 2 deletions(-)
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/net/mediatek,net.yaml b/=
+Documentation/devicetree/bindings/net/mediatek,net.yaml
+> > index 43cc4024ef98..da1294083eeb 100644
+> > --- a/Documentation/devicetree/bindings/net/mediatek,net.yaml
+> > +++ b/Documentation/devicetree/bindings/net/mediatek,net.yaml
+> > @@ -21,6 +21,7 @@ properties:
+> >        - mediatek,mt7623-eth
+> >        - mediatek,mt7622-eth
+> >        - mediatek,mt7629-eth
+> > +      - mediatek,mt7986-eth
+> >        - ralink,rt5350-eth
+> > =20
+> >    reg:
+> > @@ -28,7 +29,7 @@ properties:
+> > =20
+> >    interrupts:
+> >      minItems: 3
+> > -    maxItems: 3
+> > +    maxItems: 4
+>=20
+> What's the new interrupt? This should describe what each entry is.
+>=20
+> If the mt7986-eth must have all 4 interrupts, then the if/then needs a=20
+> 'minItems: 4'.
+
+ack, I will fix it in v2.
+
+>=20
+> > =20
+> >    power-domains:
+> >      maxItems: 1
+> > @@ -189,6 +190,43 @@ allOf:
+> >            minItems: 2
+> >            maxItems: 2
+> > =20
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            const: mediatek,mt7986-eth
+> > +    then:
+> > +      properties:
+> > +        clocks:
+> > +          minItems: 15
+> > +          maxItems: 15
+> > +
+> > +        clock-names:
+> > +          items:
+> > +            - const: fe
+> > +            - const: gp2
+> > +            - const: gp1
+> > +            - const: wocpu1
+> > +            - const: wocpu0
+> > +            - const: sgmii_tx250m
+> > +            - const: sgmii_rx250m
+> > +            - const: sgmii_cdr_ref
+> > +            - const: sgmii_cdr_fb
+> > +            - const: sgmii2_tx250m
+> > +            - const: sgmii2_rx250m
+> > +            - const: sgmii2_cdr_ref
+> > +            - const: sgmii2_cdr_fb
+> > +            - const: netsys0
+> > +            - const: netsys1
+> > +
+> > +        mediatek,sgmiisys:
+> > +          minItems: 2
+> > +          maxItems: 2
+> > +
+>=20
+> > +        assigned-clocks: true
+> > +
+> > +        assigned-clock-parents: true
+>=20
+> These are automatically allowed on any node with 'clocks' (and now=20
+> #clock-cells), so you can drop them.
+
+ack, I will fix it in v2.
+
+>=20
+> > +
+> >  patternProperties:
+> >    "^mac@[0-1]$":
+> >      type: object
+> > @@ -219,7 +257,6 @@ required:
+> >    - interrupts
+> >    - clocks
+> >    - clock-names
+> > -  - power-domains
+>=20
+> Is that because this chip doesn't have power domains, or support for=20
+> them hasn't been added? In the latter case, then you should keep this.=20
+
+power domain are not supported in mt7986 since the soc is intendent mainly =
+for
+router soc where the device is connected to a power adapter and so the power
+domain is always on.
+
+Regards,
+Lorenzo
+
+>=20
+> >    - mediatek,ethsys
+> > =20
+> >  unevaluatedProperties: false
+> > @@ -295,3 +332,95 @@ examples:
+> >          };
+> >        };
+> >      };
+> > +
+> > +  - |
+> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> > +    #include <dt-bindings/interrupt-controller/irq.h>
+> > +    #include <dt-bindings/clock/mt7622-clk.h>
+> > +
+> > +    soc {
+> > +      #address-cells =3D <2>;
+> > +      #size-cells =3D <2>;
+> > +
+> > +      eth: ethernet@15100000 {
+> > +        #define CLK_ETH_FE_EN            0
+> > +        #define CLK_ETH_WOCPU1_EN        3
+> > +        #define CLK_ETH_WOCPU0_EN        4
+> > +        #define CLK_TOP_NETSYS_SEL      43
+> > +        #define CLK_TOP_NETSYS_500M_SEL 44
+> > +        #define CLK_TOP_NETSYS_2X_SEL   46
+> > +        #define CLK_TOP_SGM_325M_SEL    47
+> > +        #define CLK_APMIXED_NET2PLL      1
+> > +        #define CLK_APMIXED_SGMPLL       3
+> > +
+> > +        compatible =3D "mediatek,mt7986-eth";
+> > +        reg =3D <0 0x15100000 0 0x80000>;
+> > +        interrupts =3D <GIC_SPI 196 IRQ_TYPE_LEVEL_HIGH>,
+> > +                     <GIC_SPI 197 IRQ_TYPE_LEVEL_HIGH>,
+> > +                     <GIC_SPI 198 IRQ_TYPE_LEVEL_HIGH>,
+> > +                     <GIC_SPI 199 IRQ_TYPE_LEVEL_HIGH>;
+> > +        clocks =3D <&ethsys CLK_ETH_FE_EN>,
+> > +                 <&ethsys CLK_ETH_GP2_EN>,
+> > +                 <&ethsys CLK_ETH_GP1_EN>,
+> > +                 <&ethsys CLK_ETH_WOCPU1_EN>,
+> > +                 <&ethsys CLK_ETH_WOCPU0_EN>,
+> > +                 <&sgmiisys0 CLK_SGMII_TX250M_EN>,
+> > +                 <&sgmiisys0 CLK_SGMII_RX250M_EN>,
+> > +                 <&sgmiisys0 CLK_SGMII_CDR_REF>,
+> > +                 <&sgmiisys0 CLK_SGMII_CDR_FB>,
+> > +                 <&sgmiisys1 CLK_SGMII_TX250M_EN>,
+> > +                 <&sgmiisys1 CLK_SGMII_RX250M_EN>,
+> > +                 <&sgmiisys1 CLK_SGMII_CDR_REF>,
+> > +                 <&sgmiisys1 CLK_SGMII_CDR_FB>,
+> > +                 <&topckgen CLK_TOP_NETSYS_SEL>,
+> > +                 <&topckgen CLK_TOP_NETSYS_SEL>;
+> > +        clock-names =3D "fe", "gp2", "gp1", "wocpu1", "wocpu0",
+> > +                      "sgmii_tx250m", "sgmii_rx250m",
+> > +                      "sgmii_cdr_ref", "sgmii_cdr_fb",
+> > +                      "sgmii2_tx250m", "sgmii2_rx250m",
+> > +                      "sgmii2_cdr_ref", "sgmii2_cdr_fb",
+> > +                      "netsys0", "netsys1";
+> > +        mediatek,ethsys =3D <&ethsys>;
+> > +        mediatek,sgmiisys =3D <&sgmiisys0>, <&sgmiisys1>;
+> > +        assigned-clocks =3D <&topckgen CLK_TOP_NETSYS_2X_SEL>,
+> > +                          <&topckgen CLK_TOP_SGM_325M_SEL>;
+> > +        assigned-clock-parents =3D <&apmixedsys CLK_APMIXED_NET2PLL>,
+> > +                                 <&apmixedsys CLK_APMIXED_SGMPLL>;
+> > +
+> > +        #address-cells =3D <1>;
+> > +        #size-cells =3D <0>;
+> > +
+> > +        mdio: mdio-bus {
+> > +          #address-cells =3D <1>;
+> > +          #size-cells =3D <0>;
+> > +
+> > +          phy5: ethernet-phy@0 {
+> > +            compatible =3D "ethernet-phy-id67c9.de0a";
+> > +            phy-mode =3D "2500base-x";
+> > +            reset-gpios =3D <&pio 6 1>;
+> > +            reset-deassert-us =3D <20000>;
+> > +            reg =3D <5>;
+> > +          };
+> > +
+> > +          phy6: ethernet-phy@1 {
+> > +            compatible =3D "ethernet-phy-id67c9.de0a";
+> > +            phy-mode =3D "2500base-x";
+> > +            reg =3D <6>;
+> > +          };
+> > +        };
+> > +
+> > +        mac0: mac@0 {
+> > +          compatible =3D "mediatek,eth-mac";
+> > +          phy-mode =3D "2500base-x";
+> > +          phy-handle =3D <&phy5>;
+> > +          reg =3D <0>;
+> > +        };
+> > +
+> > +        mac1: mac@1 {
+> > +          compatible =3D "mediatek,eth-mac";
+> > +          phy-mode =3D "2500base-x";
+> > +          phy-handle =3D <&phy6>;
+> > +          reg =3D <1>;
+> > +        };
+> > +      };
+> > +    };
+> > --=20
+> > 2.35.1
+> >=20
+> >=20
+
+--KaswaBvxQsQ7svxS
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCYn4yOwAKCRA6cBh0uS2t
+rN1rAQDdB83zL+UIsyVTlMdO1rT/bqpljEXmI4hSFAGKgirP7gD+ImkqQLhgsN0X
+bZxpsGiwB7mKAvtxO9l0PdM7hQSBrQ8=
+=ZBxy
+-----END PGP SIGNATURE-----
+
+--KaswaBvxQsQ7svxS--
