@@ -2,171 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 349B952609A
-	for <lists+devicetree@lfdr.de>; Fri, 13 May 2022 13:03:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AA64752608C
+	for <lists+devicetree@lfdr.de>; Fri, 13 May 2022 13:03:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1379702AbiEMLDs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 May 2022 07:03:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45312 "EHLO
+        id S1350219AbiEMLDl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 May 2022 07:03:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45030 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1379714AbiEMLDq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 May 2022 07:03:46 -0400
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 682462A2F4A;
-        Fri, 13 May 2022 04:03:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1652439824; x=1683975824;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=TLKqQ2wymwAEhGiToADns1nYw8QR22hogOXokBFX7Cc=;
-  b=kms9Ifd2mp/sXw2B2Tz8jGDXUSKHu/1lcHqIXUpkOK5Ioxvi/stf2t48
-   VFNtmbp6Wza75nzRYuZKVkHlRh1qkv+qZO8lDyGxcIQ3c0YB6V02Qw0ys
-   G/1+E6sKzwN9tcczv2pxiMVtxFPaV9wBZhh3mikF1qHZWsnVV/YdfN/BR
-   F0/s+f7/F8fv+tFZTotGXdjQHE5ebUQzM9od45WEH3ZxQxquRJ0ShdKxi
-   +Momb0oBJjMCKdQxbFjenFLJ8a7JpoyuiHTItJFHKri7B9HgKlXzC9ZUP
-   RXmH+MaDLbShwGaTz8mPwOxjAs812gRz9bxwk24bJO0KuNFHCwvIMxl20
-   Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10345"; a="269950743"
-X-IronPort-AV: E=Sophos;i="5.91,221,1647327600"; 
-   d="scan'208";a="269950743"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
-  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 May 2022 04:03:41 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.91,221,1647327600"; 
-   d="scan'208";a="815340352"
-Received: from lkp-server01.sh.intel.com (HELO 5056e131ad90) ([10.239.97.150])
-  by fmsmga006.fm.intel.com with ESMTP; 13 May 2022 04:03:36 -0700
-Received: from kbuild by 5056e131ad90 with local (Exim 4.95)
-        (envelope-from <lkp@intel.com>)
-        id 1npT55-000LfU-DL;
-        Fri, 13 May 2022 11:03:35 +0000
-Date:   Fri, 13 May 2022 19:03:22 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Neal Liu <neal_liu@aspeedtech.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        with ESMTP id S1379709AbiEMLDk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 May 2022 07:03:40 -0400
+Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70E4F2A28ED;
+        Fri, 13 May 2022 04:03:38 -0700 (PDT)
+Received: (Authenticated sender: miquel.raynal@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id F144A20003;
+        Fri, 13 May 2022 11:03:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1652439816;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=8ahdxlylHUe3mADgzeD98ByHKZe3nsmtka5ti0feGmk=;
+        b=HuYnnx07zmqCg9+uuHwAC60uFb6rx3ktyi8YPR+1CaAmYtXAmazIY0T7SbftMDwrATl/xm
+        1uGFjOWzEfg4E6BaasG4YXKcXtQqgDw54UeS8OHgQL+rm6mc3tLybRB6wl1lmaxaJLnS3u
+        1TJBboUFt08dE/OjLtF9QC080EEjKa22lryVGaj2/G+ipxLKldTaPE/uhYT4UNIfulKvNn
+        cNvuxeFyZZsAfKXt1xH4NMW3Oeoogp12tDoMKCo52bPG6VFGkOkBg/9QRzyuwn3OekLLPi
+        HAcJmlyUQfvhYFHMLRodHaDbj03wGnpIGvh1eEMhTC8peItI5eOa+XqswoAWBQ==
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Felipe Balbi <balbi@kernel.org>,
-        Sumit Semwal <sumit.semwal@linaro.org>,
-        Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Li Yang <leoyang.li@nxp.com>
-Cc:     kbuild-all@lists.01.org, Neal Liu <neal_liu@aspeedtech.com>,
-        linux-aspeed@lists.ozlabs.org, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org,
-        BMC-SW@aspeedtech.com
-Subject: Re: [PATCH 1/3] usb: gadget: add Aspeed ast2600 udc driver
-Message-ID: <202205131836.QEUySDoN-lkp@intel.com>
-References: <20220513065728.857722-2-neal_liu@aspeedtech.com>
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>
+Cc:     Miquel Raynal <miquel.raynal@bootlin.com>,
+        linux-rtc@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Gareth Williams <gareth.williams.jx@renesas.com>,
+        Milan Stevanovic <milan.stevanovic@se.com>,
+        Jimmy Lalande <jimmy.lalande@se.com>,
+        Pascal Eberhard <pascal.eberhard@se.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Herve Codina <herve.codina@bootlin.com>,
+        Clement Leger <clement.leger@bootlin.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v6 1/5] dt-bindings: rtc: rzn1: Describe the RZN1 RTC
+Date:   Fri, 13 May 2022 13:03:23 +0200
+Message-Id: <20220513110327.261652-2-miquel.raynal@bootlin.com>
+X-Mailer: git-send-email 2.27.0
+In-Reply-To: <20220513110327.261652-1-miquel.raynal@bootlin.com>
+References: <20220513110327.261652-1-miquel.raynal@bootlin.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220513065728.857722-2-neal_liu@aspeedtech.com>
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Neal,
+Add new binding file for this RTC.
 
-I love your patch! Perhaps something to improve:
+Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+---
+ .../bindings/rtc/renesas,rzn1-rtc.yaml        | 70 +++++++++++++++++++
+ 1 file changed, 70 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/rtc/renesas,rzn1-rtc.yaml
 
-[auto build test WARNING on usb/usb-testing]
-[also build test WARNING on robh/for-next v5.18-rc6 next-20220513]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Neal-Liu/add-Aspeed-udc-driver-for-ast2600/20220513-150314
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usb.git usb-testing
-config: alpha-allyesconfig (https://download.01.org/0day-ci/archive/20220513/202205131836.QEUySDoN-lkp@intel.com/config)
-compiler: alpha-linux-gcc (GCC) 11.3.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/272ae26f9fe89f60d584cf445431d0fa566eb24b
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Neal-Liu/add-Aspeed-udc-driver-for-ast2600/20220513-150314
-        git checkout 272ae26f9fe89f60d584cf445431d0fa566eb24b
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.3.0 make.cross W=1 O=build_dir ARCH=alpha SHELL=/bin/bash drivers/usb/gadget/udc/
-
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
-
-All warnings (new ones prefixed by >>):
-
-   drivers/usb/gadget/udc/aspeed_udc.c: In function 'ast_udc_ep0_out':
->> drivers/usb/gadget/udc/aspeed_udc.c:790:13: warning: variable 'buf' set but not used [-Wunused-but-set-variable]
-     790 |         u8 *buf;
-         |             ^~~
-   drivers/usb/gadget/udc/aspeed_udc.c: In function 'ast_udc_ep0_handle_setup':
->> drivers/usb/gadget/udc/aspeed_udc.c:1099:60: warning: suggest braces around empty body in an 'else' statement [-Wempty-body]
-    1099 |                 SETUP_DBG(udc, "No gadget for request !\n");
-         |                                                            ^
->> drivers/usb/gadget/udc/aspeed_udc.c:1034:13: warning: variable 'ep_num' set but not used [-Wunused-but-set-variable]
-    1034 |         u16 ep_num = 0;
-         |             ^~~~~~
-
-
-vim +/buf +790 drivers/usb/gadget/udc/aspeed_udc.c
-
-   783	
-   784	static void ast_udc_ep0_out(struct ast_udc_dev *udc)
-   785	{
-   786		struct device *dev = &udc->pdev->dev;
-   787		struct ast_udc_ep *ep = &udc->ep[0];
-   788		struct ast_udc_request *req;
-   789		u16 rx_len;
- > 790		u8 *buf;
-   791	
-   792		if (list_empty(&ep->queue))
-   793			return;
-   794	
-   795		req = list_entry(ep->queue.next, struct ast_udc_request, queue);
-   796	
-   797		buf = req->req.buf;
-   798		rx_len = EP0_GET_RX_LEN(ast_udc_read(udc, AST_UDC_EP0_CTRL));
-   799		req->req.actual += rx_len;
-   800	
-   801		SETUP_DBG(udc, "req %p (%d/%d)\n", req,
-   802			  req->req.actual, req->req.length);
-   803	
-   804		if ((rx_len < ep->ep.maxpacket) ||
-   805		    (req->req.actual == req->req.length)) {
-   806			ast_udc_ep0_tx(udc);
-   807			if (!ep->dir_in)
-   808				ast_udc_done(ep, req, 0);
-   809	
-   810		} else {
-   811			if (rx_len > req->req.length) {
-   812				// Issue Fix
-   813				dev_warn(dev, "Something wrong (%d/%d)\n",
-   814					 req->req.actual, req->req.length);
-   815				ast_udc_ep0_tx(udc);
-   816				ast_udc_done(ep, req, 0);
-   817				return;
-   818			}
-   819	
-   820			ep->dir_in = 0;
-   821	
-   822			/* More works */
-   823			ast_udc_ep0_queue(ep, req);
-   824		}
-   825	}
-   826	
-
+diff --git a/Documentation/devicetree/bindings/rtc/renesas,rzn1-rtc.yaml b/Documentation/devicetree/bindings/rtc/renesas,rzn1-rtc.yaml
+new file mode 100644
+index 000000000000..2d4741f51663
+--- /dev/null
++++ b/Documentation/devicetree/bindings/rtc/renesas,rzn1-rtc.yaml
+@@ -0,0 +1,70 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/rtc/renesas,rzn1-rtc.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Renesas RZ/N1 SoCs Real-Time Clock DT bindings
++
++maintainers:
++  - Miquel Raynal <miquel.raynal@bootlin.com>
++
++allOf:
++  - $ref: rtc.yaml#
++
++properties:
++  compatible:
++    items:
++      - enum:
++          - renesas,r9a06g032-rtc
++      - const: renesas,rzn1-rtc
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    minItems: 3
++    maxItems: 3
++
++  interrupt-names:
++    items:
++      - const: alarm
++      - const: timer
++      - const: pps
++
++  clocks:
++    maxItems: 1
++
++  clock-names:
++    const: hclk
++
++  power-domains:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - interrupt-names
++  - clocks
++  - clock-names
++  - power-domains
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    #include <dt-bindings/clock/r9a06g032-sysctrl.h>
++    rtc@40006000 {
++       compatible = "renesas,r9a06g032-rtc", "renesas,rzn1-rtc";
++       reg = <0x40006000 0x1000>;
++       interrupts = <GIC_SPI 66 IRQ_TYPE_EDGE_RISING>,
++                    <GIC_SPI 67 IRQ_TYPE_EDGE_RISING>,
++                    <GIC_SPI 68 IRQ_TYPE_EDGE_RISING>;
++       interrupt-names = "alarm", "timer", "pps";
++       clocks = <&sysctrl R9A06G032_HCLK_RTC>;
++       clock-names = "hclk";
++       power-domains = <&sysctrl>;
++       start-year = <2000>;
++     };
 -- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
+2.27.0
+
