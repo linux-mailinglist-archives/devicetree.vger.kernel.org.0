@@ -2,63 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D4B7525A26
-	for <lists+devicetree@lfdr.de>; Fri, 13 May 2022 05:35:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2BA09525A51
+	for <lists+devicetree@lfdr.de>; Fri, 13 May 2022 05:44:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1376793AbiEMDfg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 May 2022 23:35:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53396 "EHLO
+        id S1376870AbiEMDoQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 May 2022 23:44:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54666 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1376787AbiEMDff (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 23:35:35 -0400
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB6142983AA
-        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 20:35:32 -0700 (PDT)
-Received: by mail-ed1-x52a.google.com with SMTP id g23so8388116edy.13
-        for <devicetree@vger.kernel.org>; Thu, 12 May 2022 20:35:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=hp5XW+EPUgNO9juHKBfPepcJCtSp8113Ul6jaPu0DAQ=;
-        b=GDSDCn+HYVu7o6UcrQY7lfpYOfUai0qVrApLd9h412Qrq2pirSRC/X/vIGsbko6Xzr
-         u3u5darEcYyz1M2dEJRf6XEL1U+gNibYj54aLOA6Sy+/Fx6sALMc8GvkVgl/2TEaeP51
-         6K5WH0O4bOLy61rVkroPJh9crDW+fddMKEZzU=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=hp5XW+EPUgNO9juHKBfPepcJCtSp8113Ul6jaPu0DAQ=;
-        b=Q0Chf/SEFk7kciPoHKQhcEjWGFckBvpbMfB6AnxNIWZLP/PZ9utn1eOF2y5IP9SJXR
-         DTBe5A+Q2tQr3ESuw/MtXLNOXA9iUNOcX8jxD5VzRg41dmOYUgLghNIL6BfjsObD18By
-         C8m4mRJfWWY5ET+AwU1jc83C2MPtO4nqpwTUGGR9oada7D0x3OnUCG5eFCUq74805I1C
-         peD+qiErejuZCW9u4li3YFKGIwB07IvvJAut8fv+2zY472KSbfbPeITJq1K8gXwqHcF2
-         ZqmyCv7KuC0vf0M/WrmB8R7X9f55L+5RgUMumOVPSYwdrbyhnKEb5GwETjn2A2LBKX0i
-         HlFw==
-X-Gm-Message-State: AOAM532w45bW8RxpriKY1PVYe2YBmFUYNJbM0jJjfY4p6+qMct0C7bYw
-        1N6nf9LGQr1oFs7TsMyAK7CA+jlXquPcEORLWgYK3w==
-X-Google-Smtp-Source: ABdhPJwCxuakH0MPfmD4BsVGbk8H/0s+6mFVVZ6p1DZEFE3K2V6LRK/oXrI3wQNquf51Rr/hHpcAOHj5MVbVUnJKE6w=
-X-Received: by 2002:a50:9ecc:0:b0:428:73bd:4667 with SMTP id
- a70-20020a509ecc000000b0042873bd4667mr34262382edf.165.1652412931525; Thu, 12
- May 2022 20:35:31 -0700 (PDT)
+        with ESMTP id S1376864AbiEMDoJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 23:44:09 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 134FC26CC68;
+        Thu, 12 May 2022 20:44:07 -0700 (PDT)
+X-UUID: 971f7591472a4048a6b3198d032b9fc0-20220513
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.4,REQID:152c66f0-4af6-4e2e-af5a-a5c32c7c8e91,OB:0,LO
+        B:0,IP:0,URL:0,TC:0,Content:-20,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,AC
+        TION:release,TS:-20
+X-CID-META: VersionHash:faefae9,CLOUDID:44780ff2-ab23-4aed-a67b-f96514452486,C
+        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,File:nil,QS:0,BEC:nil
+X-UUID: 971f7591472a4048a6b3198d032b9fc0-20220513
+Received: from mtkmbs11n1.mediatek.inc [(172.21.101.185)] by mailgw01.mediatek.com
+        (envelope-from <zhiyong.tao@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 1356785638; Fri, 13 May 2022 11:44:00 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Fri, 13 May 2022 11:43:59 +0800
+Received: from localhost.localdomain (10.17.3.154) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Fri, 13 May 2022 11:43:57 +0800
+From:   Zhiyong Tao <zhiyong.tao@mediatek.com>
+To:     <lee.jones@linaro.org>, <robh+dt@kernel.org>,
+        <matthias.bgg@gmail.com>, <lgirdwood@gmail.com>,
+        <broonie@kernel.org>, <eddie.huang@mediatek.com>,
+        <a.zummo@towertech.it>, <alexandre.belloni@bootlin.com>,
+        <fshao@chromium.org>
+CC:     <srv_heupstream@mediatek.com>, <hui.liu@mediatek.com>,
+        <tinghan.shen@mediatek.com>, <zhiyong.tao@mediatek.com>,
+        <hsin-hsiung.wang@mediatek.com>, <sean.wang@mediatek.com>,
+        <macpaul.lin@mediatek.com>, <wen.su@mediatek.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-rtc@vger.kernel.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>
+Subject: [PATCH v4 0/1] Mediatek PMIC patch 
+Date:   Fri, 13 May 2022 11:43:55 +0800
+Message-ID: <20220513034356.5268-1-zhiyong.tao@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-References: <20220513032832.17645-1-johnson.wang@mediatek.com> <20220513032832.17645-2-johnson.wang@mediatek.com>
-In-Reply-To: <20220513032832.17645-2-johnson.wang@mediatek.com>
-From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Fri, 13 May 2022 11:35:20 +0800
-Message-ID: <CAGXv+5FqjDX7y_bR0Y=2xCnCqwtAB2S+3Fn==adxJJqanv8=YQ@mail.gmail.com>
-Subject: Re: [RESEND v4 1/2] dt-bindings: interconnect: Add MediaTek CCI dt-bindings
-To:     Johnson Wang <johnson.wang@mediatek.com>
-Cc:     cw00.choi@samsung.com, krzk+dt@kernel.org, robh+dt@kernel.org,
-        kyungmin.park@samsung.com, djakov@kernel.org, khilman@kernel.org,
-        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, jia-wei.chang@mediatek.com,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Type: text/plain
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -66,63 +64,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, May 13, 2022 at 11:31 AM Johnson Wang <johnson.wang@mediatek.com> wrote:
->
-> Add devicetree binding of MediaTek CCI on MT8183 and MT8186.
->
-> Signed-off-by: Jia-Wei Chang <jia-wei.chang@mediatek.com>
-> Signed-off-by: Johnson Wang <johnson.wang@mediatek.com>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Acked-by: Chanwoo Choi <cw00.choi@samsung.com>
-> ---
->  .../bindings/interconnect/mediatek,cci.yaml   | 140 ++++++++++++++++++
->  MAINTAINERS                                   |   1 +
->  2 files changed, 141 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/interconnect/mediatek,cci.yaml
->
-> diff --git a/Documentation/devicetree/bindings/interconnect/mediatek,cci.yaml b/Documentation/devicetree/bindings/interconnect/mediatek,cci.yaml
-> new file mode 100644
-> index 000000000000..034c3b38ca3d
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/interconnect/mediatek,cci.yaml
-> @@ -0,0 +1,140 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/interconnect/mediatek,cci.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: MediaTek Cache Coherent Interconnect (CCI) frequency and voltage scaling
-> +
-> +maintainers:
-> +  - Jia-Wei Chang <jia-wei.chang@mediatek.com>
-> +  - Johnson Wang <johnson.wang@mediatek.com>
-> +
-> +description: |
-> +  MediaTek Cache Coherent Interconnect (CCI) is a hardware engine used by
-> +  MT8183 and MT8186 SoCs to scale the frequency and adjust the voltage in
-> +  hardware. It can also optimize the voltage to reduce the power consumption.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - mediatek,mt8183-cci
-> +      - mediatek,mt8186-cci
-> +
-> +  clocks:
-> +    items:
-> +      - description:
-> +          The multiplexer for clock input of the bus.
-> +      - description:
-> +          A parent of "cpu" clock which is used as an intermediate clock source
+This patch fix pwrap time out issue.
 
-Replace "cpu" with "bus"?
+Changes in patch v4:
+1)fix commit fixes tag coding style.
+2)adjust include header file order by alphabet.
+3)add crash log in commit message to explain the problem.
 
-> +          when the original CPU is under transition and not stable yet.
+Changes in patch v3:
+1)add fix tag in patch commmit message
+2)fix file mode from "100755" to "100644"
+
+Changes in patch v2:
+1)add explation commit message on the patch.
+
+Zhiyong.Tao (1):
+  pwrap: mediatek: fix FSM timeout issue
+
+ drivers/soc/mediatek/mtk-pmic-wrap.c | 8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
+
+--
+2.18.0
 
 
-And also, "when the original clock source (PLL) is under transition ..."
-
-Otherwise,
-
-Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
