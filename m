@@ -2,138 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8E5A7526B16
-	for <lists+devicetree@lfdr.de>; Fri, 13 May 2022 22:19:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 84B37526B4F
+	for <lists+devicetree@lfdr.de>; Fri, 13 May 2022 22:29:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1384065AbiEMUTz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 May 2022 16:19:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38700 "EHLO
+        id S1384248AbiEMU3A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 May 2022 16:29:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59712 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1383936AbiEMUTy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 May 2022 16:19:54 -0400
-Received: from mail-pg1-x536.google.com (mail-pg1-x536.google.com [IPv6:2607:f8b0:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73C2841608;
-        Fri, 13 May 2022 13:19:52 -0700 (PDT)
-Received: by mail-pg1-x536.google.com with SMTP id a19so8279122pgw.6;
-        Fri, 13 May 2022 13:19:52 -0700 (PDT)
+        with ESMTP id S1384267AbiEMU26 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 May 2022 16:28:58 -0400
+Received: from mail-yb1-xb2c.google.com (mail-yb1-xb2c.google.com [IPv6:2607:f8b0:4864:20::b2c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3C9F70936
+        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 13:28:48 -0700 (PDT)
+Received: by mail-yb1-xb2c.google.com with SMTP id r11so17187840ybg.6
+        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 13:28:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=FvZttYhUnQZO05Iul5VPuf2RdNy/ac1Sb29Ps74XOGg=;
-        b=dCr8d2xzcHEb/GjkcDn9ZAojzAUWLNRxE8qELtBBzGupMbxdqYogWT69eStBwGl5jO
-         RW/+dysJ9s3y2teQTCleZMVJrs4rCsF5CaHUUx5M+SyNglRZJYdOQwIYuhTqoNA2SLw7
-         WTy5iEFleBmQh1Je/gcIFcHr52kRihX7K4nsVy4T7B69vKIveVi5+Aha3STUlOf9Vnbg
-         44JijqG1wfavkFszhpG8hunbXSYcj6k9O8GDrgsUqDjM3Ykf/dz2+4B6Zv/LOxYwhR6N
-         XJZn+IHpGeMqpR8XAcVS6WaH8h6t7SYHxFWTz5lEBvTG1P7r2igfxg8f1ZT+8Qbqtbwu
-         IW2g==
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=J2l+7pycfnV5tL/FeqC4BRRTmDMvEO1d4ShvU8Pi4JY=;
+        b=Z8HRsEVnERpdmjZslZsddk0NgJt8PEAh8MLOqTqCEajMguIFpTBGJVNEC721C/Z7PM
+         +/Sit+OyXmXiBrLslU5E+sr2R6BWDwkSRBIGVRonJqwM4SASdDDcdcSAbDxwglEOOfOk
+         xDXSkH+WKLARytcpIm6K8R7RbOwnLmQNuJ49g97xOc+HKI2SqLQT/OA3xTH5YzZga8AF
+         tkdZqb2wMTsdoXNwz3OKQDe6n1SbT8104I2jd7mY1gh4p0AnmhmoK/nyrETO2rDTRZne
+         G3p6f3NXN3BNYnx8ckYsKss5J5EYCea2C7tt6x/DUfZehN/XxeU8ljG/iEmJ4dxc46St
+         Itqg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=FvZttYhUnQZO05Iul5VPuf2RdNy/ac1Sb29Ps74XOGg=;
-        b=boSuZ3wwzPgU5+AfLBs5VkIs9EyzzkSetJkIhZ2BhKCi1KzHYtogYo+vxG/8cRCEvd
-         oPj3kNvJtuIR/ZlCEFoX4L7YAtwgXJDRl7X/oTk+1W25xQZ2Q09R8ZLmQRG/hyO8Qquz
-         670uEBS9Q4UCMbn+UZhOwKGtIZjlzVP2QvoEq9jL50o2z0OLlZXOHxAPeUMQPwsm1wVI
-         zDuuS12rXIS+LNqbJRMTUwRU75/5cmCiqkKyhtock5417YpszuFAiDFBov4Dl3QzCtOn
-         DMMYFo43GWX5Xt9ZH4NQg7h41sIt8U/OdDw3A1cszIVsASQ1PTqKFsy600jM7Hian99y
-         Fimg==
-X-Gm-Message-State: AOAM530X4TfB7SELgk0R/axJV09MO8xTyz4CavO0PjgfTq8cr4qfFhe7
-        usf3dhqVhvQoG86gi/1RKL0=
-X-Google-Smtp-Source: ABdhPJyClCIC5/EqwKMj94z5OEHG8u3Ck8jtsh9Dt0XyeYJaiz19WQSq2NubicQM220UOeUiEumOCQ==
-X-Received: by 2002:a05:6a00:2181:b0:4f6:f1b1:1ba7 with SMTP id h1-20020a056a00218100b004f6f1b11ba7mr5976072pfi.73.1652473191575;
-        Fri, 13 May 2022 13:19:51 -0700 (PDT)
-Received: from mail.broadcom.net ([192.19.11.250])
-        by smtp.gmail.com with ESMTPSA id b190-20020a621bc7000000b0050dc762819csm2182229pfb.118.2022.05.13.13.19.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 May 2022 13:19:51 -0700 (PDT)
-From:   Kamal Dasu <kdasu.kdev@gmail.com>
-To:     ulf.hansson@linaro.org, robh+dt@kernel.org, krzk+dt@kernel.org,
-        alcooperx@gmail.com
-Cc:     f.fainelli@gmail.com, bcm-kernel-feedback-list@broadcom.com,
-        adrian.hunter@intel.com, linux-mmc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Kamal Dasu <kdasu.kdev@gmail.com>
-Subject: [PATCH 2/2] mmc: sdhci-brcmstb: Add ability to increase max clock rate for 72116b0
-Date:   Fri, 13 May 2022 16:19:07 -0400
-Message-Id: <20220513201907.36470-3-kdasu.kdev@gmail.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20220513201907.36470-1-kdasu.kdev@gmail.com>
-References: <20220513201907.36470-1-kdasu.kdev@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=J2l+7pycfnV5tL/FeqC4BRRTmDMvEO1d4ShvU8Pi4JY=;
+        b=vVEFV4sKdU38+u1obAljFcsUUPHf4TZIoxLoJXw/MlGPwjzMkeBEY0mbL1QO4kGjQs
+         UZ3i4Wkc9+IivEJpHDI/l2PrRJCRiFf+XxORCm+oZg4u4PUirLuYHXoHC0l/1CXOT6Rl
+         Fcfz3N2zYG9gSAemjl7IElzka4Ub5vYNdlQq492gfVhH2LcJWTgP57YeWA6mLYy0Hxt7
+         wPA3e0disPFOrTnPf4n2Fxp1agVtKujF/CUMTiiXT6U6yQcRnnPgWrTE53Zyu0bTOMTd
+         QGOWX3lZ2cOM81IdqR7eaXvy6IsK8/aMPMMaDJJRfOadmVPC77TG0HwwNweVZOMOwYoF
+         FgCA==
+X-Gm-Message-State: AOAM530/jGlZlJgRJmHvnhKHVBKy5x4pgXqZExlHFNtimpjU1iekjG9Y
+        kMeNnQT2C37xlTfaodyyMvakib/xsh/8X7OPIeArew==
+X-Google-Smtp-Source: ABdhPJzpsIprE1mVevIiKrqLa1rexOsJwYJXY46LUj9YMdYjW6XP8MscpQDLdK6N5tP7dIpU5bfhNO1Vc+OXpXCWczg=
+X-Received: by 2002:a25:e684:0:b0:645:d429:78e9 with SMTP id
+ d126-20020a25e684000000b00645d42978e9mr6876546ybh.369.1652473727879; Fri, 13
+ May 2022 13:28:47 -0700 (PDT)
+MIME-Version: 1.0
+References: <cover.1652245767.git.jo@jsfamily.in> <BY5PR02MB7009F6D4CC6CA1C433912C56D9C89@BY5PR02MB7009.namprd02.prod.outlook.com>
+In-Reply-To: <BY5PR02MB7009F6D4CC6CA1C433912C56D9C89@BY5PR02MB7009.namprd02.prod.outlook.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Fri, 13 May 2022 22:28:36 +0200
+Message-ID: <CACRpkdb=Ub7sEQQAhjvhOq7xYdd0yZBnT8W6xi7QrD+j7T8j1A@mail.gmail.com>
+Subject: Re: [PATCH v2 2/3] dt-bindings: display: Add bindings for EBBG FT8719
+To:     Joel Selvaraj <jo@jsfamily.in>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Stanislav Jakubek <stano.jakubek@gmail.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Corentin Labbe <clabbe@baylibre.com>,
+        Oleksij Rempel <linux@rempel-privat.de>,
+        Hao Fang <fanghao11@huawei.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Al Cooper <alcooperx@gmail.com>
+On Wed, May 11, 2022 at 7:28 AM Joel Selvaraj <jo@jsfamily.in> wrote:
 
-The 72116B0 has improved SDIO controllers that allow the max clock
-rate to be increased from a max of 100MHz to a max of 150MHz. The
-driver will need to get the clock and increase it's default rate
-and override the caps register, that still indicates a max of 100MHz.
-The new clock will be named "sdio_freq" in the DT node's "clock-names"
-list. The driver will use a DT property, "clock-frequency", to
-enable this functionality and will get the actual rate in MHz
-from the property to allow various speeds to be requested.
+> Add bindings for the EBBG FT8719 6.18" 2246x1080 DSI video mode panel,
+> which can be found on some Xiaomi Poco F1 phones. The backlight is
+> managed through the QCOM WLED driver.
+>
+> Signed-off-by: Joel Selvaraj <jo@jsfamily.in>
+> ---
+> Changes in v2: (Krzysztof Kozlowski's Suggestions)
+>  - Specify maxItems for reg
+>  - Cleanup and simplify the panel properties
+>  - In example change "|+" to "|' and "dsi0" to "dsi"
 
-Signed-off-by: Al Cooper <alcooperx@gmail.com>
-Signed-off-by: Kamal Dasu <kdasu.kdev@gmail.com>
----
- drivers/mmc/host/sdhci-brcmstb.c | 30 ++++++++++++++++++++++++++++++
- 1 file changed, 30 insertions(+)
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
-diff --git a/drivers/mmc/host/sdhci-brcmstb.c b/drivers/mmc/host/sdhci-brcmstb.c
-index 8eb57de48e0c..a1ffdd3f1640 100644
---- a/drivers/mmc/host/sdhci-brcmstb.c
-+++ b/drivers/mmc/host/sdhci-brcmstb.c
-@@ -250,6 +250,9 @@ static int sdhci_brcmstb_probe(struct platform_device *pdev)
- 	struct sdhci_pltfm_host *pltfm_host;
- 	const struct of_device_id *match;
- 	struct sdhci_brcmstb_priv *priv;
-+	struct clk *master_clk;
-+	u32 base_clock_hz = 0;
-+	u32 actual_clock_mhz;
- 	struct sdhci_host *host;
- 	struct resource *iomem;
- 	struct clk *clk;
-@@ -330,6 +333,33 @@ static int sdhci_brcmstb_probe(struct platform_device *pdev)
- 	if (match_priv->flags & BRCMSTB_MATCH_FLAGS_BROKEN_TIMEOUT)
- 		host->quirks |= SDHCI_QUIRK_BROKEN_TIMEOUT_VAL;
- 
-+	/* Change the base clock frequency if the DT property exists */
-+	if (device_property_read_u32(&pdev->dev, "max-frequency",
-+				     &base_clock_hz) != 0)
-+		goto add_host;
-+
-+	master_clk = devm_clk_get(&pdev->dev, "sdio_freq");
-+	if (IS_ERR(master_clk)) {
-+		dev_warn(&pdev->dev, "Clock for \"sdio_freq\" not found\n");
-+		goto add_host;
-+	} else {
-+		res = clk_prepare_enable(master_clk);
-+		if (res)
-+			goto err;
-+	}
-+
-+	/* set improved clock rate */
-+	clk_set_rate(master_clk, base_clock_hz);
-+	actual_clock_mhz = clk_get_rate(master_clk) / 1000000;
-+
-+	host->caps &= ~SDHCI_CLOCK_V3_BASE_MASK;
-+	host->caps |= (actual_clock_mhz << SDHCI_CLOCK_BASE_SHIFT);
-+	/* Disable presets because they are now incorrect */
-+	host->quirks2 |= SDHCI_QUIRK2_PRESET_VALUE_BROKEN;
-+	dev_dbg(&pdev->dev, "Base Clock Frequency changed to %dMHz\n",
-+		actual_clock_mhz);
-+
-+add_host:
- 	res = sdhci_brcmstb_add_host(host, priv);
- 	if (res)
- 		goto err;
--- 
-2.17.1
-
+Yours,
+Linus Walleij
