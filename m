@@ -2,73 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F1D90525FFB
-	for <lists+devicetree@lfdr.de>; Fri, 13 May 2022 12:39:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D03F4525FC3
+	for <lists+devicetree@lfdr.de>; Fri, 13 May 2022 12:39:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230148AbiEMK3J convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Fri, 13 May 2022 06:29:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45186 "EHLO
+        id S1355585AbiEMKc7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 May 2022 06:32:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37154 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1379399AbiEMK2v (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 May 2022 06:28:51 -0400
-Received: from mail-vs1-f41.google.com (mail-vs1-f41.google.com [209.85.217.41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 642FF5DA56;
-        Fri, 13 May 2022 03:28:26 -0700 (PDT)
-Received: by mail-vs1-f41.google.com with SMTP id z144so7886235vsz.13;
-        Fri, 13 May 2022 03:28:26 -0700 (PDT)
+        with ESMTP id S1379448AbiEMKc6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 May 2022 06:32:58 -0400
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17DA2C9EDA
+        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 03:32:55 -0700 (PDT)
+Received: by mail-ed1-x52d.google.com with SMTP id w24so9449906edx.3
+        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 03:32:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=O6FiHPs6TyRR3hcZC36X6uXYX5doF+6brHiz72Bmp3Y=;
+        b=ESeWu6hBSMOQJBwvo98owd3dc9xTpa8qMO8//YKXHXjKIGYKVo1JsZBsr6njl8ehSu
+         7E1K+hGXZtM2f9CE3cbGjof/WV4EeK9S3SwF2jFtH+1afXmrnnCG/m/TFRosldC1dzWE
+         WedDyoMKeks19xDflSrq+4Lb4tbSwRJlFibN7/nxnKkcAJs/8FxuNqxnE4XRZU9pHnJ7
+         JM4np+n5LBPtvfY53RW7yyQA3Hi75fahXxsFnjbTUtIIxFXYgF2S2PMu2mvZ8Ge0cXwj
+         50/0sMzC+4ZHJQmdQHlZTZmbnp6vvML/MgMuPyLPXdtR6IwLZ8ydrhWtTncdxn5sLF0y
+         a9sA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=TCFzo+ZD7qnkAFD88dWZtIU33M2yQsfHtS7BKLVGmW0=;
-        b=UuBotEAs2UWVU1/qrzd7rqTjYzvvfPbicqppfTYr8dOwrmtbznxGarlLtHX9ZmKGh/
-         55oI+9MIJMqOjGrcUxkwqMSRToZQJu8r2Mzlta1jx88W29u2Cj7g4+Hjg7eqCULuHROO
-         XazhDMXdn75J8EobM+hxhZBPtPTtzuVRVL8JAQqG7LvYZ6zW4TdZ06FA7Dyq5e/7BoTN
-         QChL6WKjdnbFHe4awhv2FIxysK+wz3qBxWIoXDkMaovFTV5WFmoJJa93JztAGLyLyKI4
-         Nh4E4936eQgqEqLX8qsZOLm2/4ZZTNg1vIw8eIqrN6VFE/mDfCa11aD6kC9IAuFiOn/K
-         Xevg==
-X-Gm-Message-State: AOAM530Xt8EXZCVsbP+Fykxvxf821d5jm6DC7cCnXq0Xbspz9aA3HfYW
-        yFROjji+9WgzPDjfIbi8JmuZbaQxcATh+5kP
-X-Google-Smtp-Source: ABdhPJz4bthGf3rUgg3o7DBLZz3fkspLI9X2QuHnQgVdXjMDUUNhIsBAHdm/y6SpeBzRUmdfqCuaWg==
-X-Received: by 2002:a67:b304:0:b0:32c:fb41:9f43 with SMTP id a4-20020a67b304000000b0032cfb419f43mr1969929vsm.83.1652437705237;
-        Fri, 13 May 2022 03:28:25 -0700 (PDT)
-Received: from mail-ua1-f41.google.com (mail-ua1-f41.google.com. [209.85.222.41])
-        by smtp.gmail.com with ESMTPSA id u99-20020ab045ec000000b00364e6da2ea5sm300728uau.18.2022.05.13.03.28.24
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=O6FiHPs6TyRR3hcZC36X6uXYX5doF+6brHiz72Bmp3Y=;
+        b=zpIIepsQ+hgKtT7KNNoq+0s0z7f7GbCpV/fGHbCvmNPydcQQywO98dP8/LeIFJMxhF
+         FAnymwYURsCwM5jGY45zYdSJD4JFode+gFz6ztStD9q0/jMoGKvamqRmgPvfO6Jf3RIr
+         QX+NehkKsIDVUZ4FZq7BsQc+FVXl0uJviiSICDaazRU92citG4Q/dscY+5ewzbxk3AV9
+         U9sfJacncpdgCx8EiEgO/VxfQPsLXWJ0VFh29zI1J/hVtH6hMKw060tBq8iJOB4tV1cr
+         o687VNaEu6yBWLYCEqpvmSFZc7ic4O91Oa1hlY9/5kj1LiDfJ9JT8w8OoHV2lS679eTQ
+         C1kA==
+X-Gm-Message-State: AOAM531UI3J33wnqKXQBNuHrX44GQO5xPpn2Shc/bg9erm+yzCiRnovA
+        lXFQ3fA80VUrTVNs9l1n5wAO6A==
+X-Google-Smtp-Source: ABdhPJxnxBRqoRRtonBw76pxckczcwui8tR3W20OfcDi/UUxotwJDJc16TYmbr5VAXgcERSaecmHyQ==
+X-Received: by 2002:aa7:ca0d:0:b0:428:90ee:322c with SMTP id y13-20020aa7ca0d000000b0042890ee322cmr30383575eds.100.1652437973639;
+        Fri, 13 May 2022 03:32:53 -0700 (PDT)
+Received: from [192.168.0.171] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id gv2-20020a1709072bc200b006f3ef214df5sm636959ejc.91.2022.05.13.03.32.52
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 13 May 2022 03:28:24 -0700 (PDT)
-Received: by mail-ua1-f41.google.com with SMTP id x5so3029040uap.8;
-        Fri, 13 May 2022 03:28:24 -0700 (PDT)
-X-Received: by 2002:ab0:6f8f:0:b0:35d:5045:46c4 with SMTP id
- f15-20020ab06f8f000000b0035d504546c4mr1886627uav.116.1652437703966; Fri, 13
- May 2022 03:28:23 -0700 (PDT)
+        Fri, 13 May 2022 03:32:53 -0700 (PDT)
+Message-ID: <5f7dfcba-7e65-4f54-8699-e44ce11e216e@linaro.org>
+Date:   Fri, 13 May 2022 12:32:51 +0200
 MIME-Version: 1.0
-References: <20220511214132.2281431-1-heiko@sntech.de> <20220511214132.2281431-2-heiko@sntech.de>
- <CAAhSdy2PN8knGzyLadq-aoXVZqN3YASVVu7HxiO3YEb6XyqRxA@mail.gmail.com>
-In-Reply-To: <CAAhSdy2PN8knGzyLadq-aoXVZqN3YASVVu7HxiO3YEb6XyqRxA@mail.gmail.com>
-From:   =?UTF-8?Q?Christoph_M=C3=BCllner?= <cmuellner@linux.com>
-Date:   Fri, 13 May 2022 12:28:12 +0200
-X-Gmail-Original-Message-ID: <CAHB2gtTLF7GHsAf=vY6zcGgFzAi7igO0XRRDM0f_Hy7Ubs8piQ@mail.gmail.com>
-Message-ID: <CAHB2gtTLF7GHsAf=vY6zcGgFzAi7igO0XRRDM0f_Hy7Ubs8piQ@mail.gmail.com>
-Subject: Re: [PATCH v2 1/3] dt-bindings: riscv: document cbom-block-size
-To:     Anup Patel <anup@brainfault.org>
-Cc:     Heiko Stuebner <heiko@sntech.de>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
-        Wei Fu <wefu@redhat.com>, Guo Ren <guoren@kernel.org>,
-        Atish Patra <atishp@atishpatra.org>,
-        Nick Kossifidis <mick@ics.forth.gr>,
-        Samuel Holland <samuel@sholland.org>,
-        Philipp Tomsich <philipp.tomsich@vrull.eu>,
-        Rob Herring <robh+dt@kernel.org>, krzk+dt@kernel.org,
-        DTML <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [v4 1/3] dt-bindings: phy: qcom,usb-snps-femto-v2: Add phy
+ override params bindings
+Content-Language: en-US
+To:     Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Doug Anderson <dianders@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Wesley Cheng <quic_wcheng@quicinc.com>,
+        Vinod Koul <vkoul@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-phy@lists.infradead.org, quic_pkondeti@quicinc.com,
+        quic_ppratap@quicinc.com, quic_vpulyala@quicinc.com,
+        Sandeep Maheswaram <quic_c_sanm@quicinc.com>
+References: <1652282793-5580-1-git-send-email-quic_kriskura@quicinc.com>
+ <1652282793-5580-2-git-send-email-quic_kriskura@quicinc.com>
+ <d296720d-ccbe-27f0-8ba1-9653af25dd52@linaro.org>
+ <3abbb26f-9396-d024-67f6-f24f7db3408d@quicinc.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <3abbb26f-9396-d024-67f6-f24f7db3408d@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -76,67 +90,117 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Anup and Heiko,
+On 13/05/2022 09:33, Krishna Kurapati PSSNV wrote:
+> 
+> On 5/11/2022 11:49 PM, Krzysztof Kozlowski wrote:
+>> On 11/05/2022 17:26, Krishna Kurapati wrote:
+>>> From: Sandeep Maheswaram <quic_c_sanm@quicinc.com>
+>>>
+>>> Add device tree bindings for SNPS phy tuning parameters.
+>>>
+>>> Signed-off-by: Sandeep Maheswaram <quic_c_sanm@quicinc.com>
+>>> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
+>>> ---
+>>>   .../bindings/phy/qcom,usb-snps-femto-v2.yaml       | 87 ++++++++++++++++++++++
+>>>   1 file changed, 87 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml b/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml
+>>> index 1ce251d..70efffe 100644
+>>> --- a/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml
+>>> +++ b/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml
+>>> @@ -53,6 +53,93 @@ properties:
+>>>     vdda33-supply:
+>>>       description: phandle to the regulator 3.3V supply node.
+>>>   
+>>> +  qcom,hs-disconnect-bps:
+>>> +    $ref: /schemas/types.yaml#/definitions/int32
+>>> +    description:
+>>> +      This adjusts the voltage level for the threshold used to
+>>> +      detect a disconnect event at the host. Possible values are.
+>>> +      The values defined are in multiples of basis points (1bp = 0.01%).
+>> This means there is some minimum and maximum (100%)?
+>>
+>>> +      The hardware accepts only discrete values. The value closest to the
+>>> +      provided input will be chosen as the override value for this param.
+>>> +
+>>> +  qcom,squelch-detector-bps:
+>>> +    $ref: /schemas/types.yaml#/definitions/int32
+>>> +    description:
+>>> +      This adjusts the voltage level for the threshold used to
+>>> +      detect valid high-speed data.
+>>> +      The values defined are in multiples of basis points (1bp = 0.01%).
+>>> +      The hardware accepts only discrete values. The value closest to the
+>>> +      provided input will be chosen as the override value for this param.
+>>> +
+>>> +  qcom,hs-amplitude-bps:
+>>> +    $ref: /schemas/types.yaml#/definitions/int32
+>>> +    description:
+>>> +      This adjusts the high-speed DC level voltage.
+>>> +      The values defined are in multiples of basis points (1bp = 0.01%).
+>>> +      The hardware accepts only discrete values. The value closest to the
+>>> +      provided input will be chosen as the override value for this param.
+>>> +
+>>> +  qcom,pre-emphasis-duration-bps:
+>>> +    $ref: /schemas/types.yaml#/definitions/int32
+>>> +    description:
+>>> +      This signal controls the duration for which the
+>>> +      HS pre-emphasis current is sourced onto DP<#> or DM<#>.
+>>> +      The HS Transmitter pre-emphasis duration is defined in terms of
+>>> +      unit amounts. One unit of pre-emphasis duration is approximately
+>>> +      650 ps and is defined as 1X pre-emphasis duration.
+>>> +      The values defined are in multiples of basis points (1bp = 0.01%).
+>>> +      The hardware accepts only discrete values. The value closest to the
+>>> +      provided input will be chosen as the override value for this param.
+>>> +
+>>> +  qcom,pre-emphasis-amplitude-bps:
+>>> +    $ref: /schemas/types.yaml#/definitions/int32
+>>> +    description:
+>>> +      This signal controls the amount of current sourced to
+>>> +      DP<#> and DM<#> after a J-to-K or K-to-J transition.
+>>> +      The HS Transmitter pre-emphasis current is defined in terms of unit
+>>> +      amounts. One unit amount is approximately 2 mA and is defined as
+>>> +      1X pre-emphasis current.
+>>> +      The values defined are in multiples of basis points (1bp = 0.01%).
+>>> +      The hardware accepts only discrete values. The value closest to the
+>>> +      provided input will be chosen as the override value for this param.
+>>> +
+>>> +  qcom,hs-rise-fall-time-bps:
+>>> +    $ref: /schemas/types.yaml#/definitions/int32
+>>> +    description:
+>>> +      This adjusts the rise/fall times of the high-speed waveform.
+>>> +      The values defined are in multiples of basis points (1bp = 0.01%).
+>>> +      The hardware accepts only discrete values. The value closest to the
+>>> +      provided input will be chosen as the override value for this param.
+>>> +
+>>> +  qcom,hs-crossover-voltage-mv:
+>>> +    $ref: /schemas/types.yaml#/definitions/int32
+>>> +    description:
+>>> +      This adjusts the voltage at which the DP<#> and DM<#>
+>>> +      signals cross while transmitting in HS mode.
+>>> +      The values defined are in milli volts. The hardware accepts only
+>>> +      discrete values. The value closest to the provided input will be
+>>> +      chosen as the override value for this param.
+>>> +
+>>> +  qcom,hs-output-impedance-mohm:
+>>> +    $ref: /schemas/types.yaml#/definitions/int32
+>> Here and in other places, please use standard units. See
+>> dtschema/schemas/property-units.yaml in dtschema repo.
+>>
+>>
+>> Best regards,
+>> Krzysztof
+> 
+> Hi Krzystof, thanks for the input.
+> 
+> I see there are microvolt and microohm units present in 
+> schemas/property-units.yaml
+> 
+> Would it be possible to add bps (basis point) to the list of standard 
+> units if it makes sense to use it ?
 
-The CBO specification says:
-"""
-2.7. Software Discovery
-The initial set of CMO extensions requires the following information
-to be discovered by software:
-• The size of the cache block for management and prefetch instructions
-• The size of the cache block for zero instructions
-"""
+There is already 'percent' so 'bp' could be as well, makes sense to me.
+I can send a patch for it and we'll see what Rob says.
 
-Therefore we should add riscv,cboz-block-size as well, or?
-Additionally, should we add riscv,cbop-block-size as well or rename
-riscv,cbom-block-size into
-riscv,cbom-cbop-block-size to reflect that this size is also used for
-prefetch instructions?
 
-BR
-Christoph
-
-On Thu, May 12, 2022 at 6:18 AM Anup Patel <anup@brainfault.org> wrote:
->
-> On Thu, May 12, 2022 at 3:11 AM Heiko Stuebner <heiko@sntech.de> wrote:
-> >
-> > The Zicbom operates on a block-size defined for the cpu-core,
-> > which does not necessarily match other cache-sizes used.
-> >
-> > So add the necessary property for the system to know the core's
-> > block-size.
-> >
-> > Signed-off-by: Heiko Stuebner <heiko@sntech.de>
->
-> Looks good to me.
->
-> Reviewed-by: Anup Patel <anup@brainfault.org>
->
-> Regards,
-> Anup
->
-> > ---
-> >  Documentation/devicetree/bindings/riscv/cpus.yaml | 7 +++++++
-> >  1 file changed, 7 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/riscv/cpus.yaml b/Documentation/devicetree/bindings/riscv/cpus.yaml
-> > index d632ac76532e..b179bfd155a3 100644
-> > --- a/Documentation/devicetree/bindings/riscv/cpus.yaml
-> > +++ b/Documentation/devicetree/bindings/riscv/cpus.yaml
-> > @@ -63,6 +63,13 @@ properties:
-> >        - riscv,sv48
-> >        - riscv,none
-> >
-> > +  riscv,cbom-block-size:
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    description:
-> > +      Blocksize in bytes for the Zicbom cache operations. The block
-> > +      size is a property of the core itself and does not necessarily
-> > +      match other software defined cache sizes.
-> > +
-> >    riscv,isa:
-> >      description:
-> >        Identifies the specific RISC-V instruction set architecture
-> > --
-> > 2.35.1
-> >
+Best regards,
+Krzysztof
