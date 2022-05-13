@@ -2,97 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C15CC52606D
-	for <lists+devicetree@lfdr.de>; Fri, 13 May 2022 12:59:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5DDE852608B
+	for <lists+devicetree@lfdr.de>; Fri, 13 May 2022 13:03:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1379637AbiEMK7L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 May 2022 06:59:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60742 "EHLO
+        id S1379706AbiEMLDk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 May 2022 07:03:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44666 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1379651AbiEMK7K (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 May 2022 06:59:10 -0400
-Received: from relay11.mail.gandi.net (relay11.mail.gandi.net [217.70.178.231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85E942A28F6;
-        Fri, 13 May 2022 03:59:08 -0700 (PDT)
-Received: (Authenticated sender: herve.codina@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPA id 778A810000C;
-        Fri, 13 May 2022 10:59:05 +0000 (UTC)
+        with ESMTP id S1379691AbiEMLDe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 May 2022 07:03:34 -0400
+Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::227])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F1BB22A28C1;
+        Fri, 13 May 2022 04:03:31 -0700 (PDT)
+Received: (Authenticated sender: miquel.raynal@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id D2CE920009;
+        Fri, 13 May 2022 11:03:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1652439547;
+        t=1652439809;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=yDbhCUB50i3TiYKzQUORArQ45Vtm0wzVgFF/9jjJq7k=;
-        b=EjIfoxCZEAaI659zwbW5ETc78Lfde1yiNztIhoL9nhnZxcvo7Uy0pVD/CRVcL6DO2KC1ah
-        6rkxF6Ef6/E81TmwXTWa6XHWwlK25WPDuykl3SZLV6ISgrSz1q/ti0zTQnMJwowlnwLM6/
-        JeeSo8fRDiPBwzHmtBAUMv2iKpKEc+jpRpWzWWBPYWCbC9eFwU+Tdg/RcRC4yhtuahCoww
-        ueFgo8QJpwtI1Def90xEqdCpVIfMZufEiBEaPASFQKPvJRW2Q/+mzCC4TOgqEgpuV+KNC9
-        S1YAl3AQ8xTBDEfVO063yJyffJPGhmvrMtvn9yHMYgsikmW0VPFXgBcu57VuvQ==
-From:   Herve Codina <herve.codina@bootlin.com>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=c1EFbc9LMraNajakBircBlojutJVKorAQPiqxHB6qVw=;
+        b=NJeSiL5aRAYVzCPjCFbvPP1mxFOEGD0PHnU/+HMdijTT8c/rec8DU5ef64W/2eOlFwPCyx
+        EgDzvhaRtgb+d32aH+DTd365B4O5bZaAsAacobi09Xg9yTpfVYfYaMJ/HWNFkjmKG+NXvD
+        eFzeSJoozVjqICoJil0DN477lz9fIIg0HinEfI5OSJtXpYw49w05gVMo5A+jTedUQhFf0S
+        H3OgDi0ZLpURIYnLLQ6QZ6RvhZGRuuFWp+RRndTbsuX4NUrabgI9iRwAsnm/n+Gz47fUH0
+        X1PSR7YQg5sDrZGLE+wGVv5r6S2w+h4Ubo5eMiBPE+3trz4arPrEOfpjQyDqSw==
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Alessandro Zummo <a.zummo@towertech.it>,
         Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Claudiu Beznea <claudiu.beznea@microchip.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Horatiu Vultur <horatiu.vultur@microchip.com>
-Cc:     linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-clk@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>
+Cc:     Miquel Raynal <miquel.raynal@bootlin.com>,
+        linux-rtc@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Gareth Williams <gareth.williams.jx@renesas.com>,
+        Milan Stevanovic <milan.stevanovic@se.com>,
+        Jimmy Lalande <jimmy.lalande@se.com>,
+        Pascal Eberhard <pascal.eberhard@se.com>,
         Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Herve Codina <herve.codina@bootlin.com>
-Subject: [PATCH 3/3] ARM: dts: lan966x: Add UDPHS support
-Date:   Fri, 13 May 2022 12:58:50 +0200
-Message-Id: <20220513105850.310375-4-herve.codina@bootlin.com>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220513105850.310375-1-herve.codina@bootlin.com>
-References: <20220513105850.310375-1-herve.codina@bootlin.com>
+        Herve Codina <herve.codina@bootlin.com>,
+        Clement Leger <clement.leger@bootlin.com>
+Subject: [PATCH v6 0/5] RZ/N1 RTC support
+Date:   Fri, 13 May 2022 13:03:22 +0200
+Message-Id: <20220513110327.261652-1-miquel.raynal@bootlin.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_BL_SPAMCOP_NET,
-        RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add UDPHS (the USB High Speed Device Port controller) support.
-The UDPHS IP present in the lan966x SOC is the same as the one
-present in the SAMA5D3 SOC
+Hello,
 
-Signed-off-by: Herve Codina <herve.codina@bootlin.com>
----
- arch/arm/boot/dts/lan966x.dtsi | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+This small series adds support for the RZ/N1 RTC.
 
-diff --git a/arch/arm/boot/dts/lan966x.dtsi b/arch/arm/boot/dts/lan966x.dtsi
-index 7d2869648050..4c09f3166d27 100644
---- a/arch/arm/boot/dts/lan966x.dtsi
-+++ b/arch/arm/boot/dts/lan966x.dtsi
-@@ -211,6 +211,17 @@ can0: can@e081c000 {
- 			status = "disabled";
- 		};
- 
-+		udc: udphs@e0808000 {
-+			compatible = "microchip,lan996x-udc",
-+				     "atmel,sama5d3-udc";
-+			reg = <0x00200000 0x80000>,
-+			      <0xe0808000 0x400>;
-+			interrupts = <GIC_SPI 76 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clks GCK_GATE_UDPHS>, <&nic_clk>;
-+			clock-names = "pclk", "hclk";
-+			status = "disabled";
-+		};
-+
- 		gpio: pinctrl@e2004064 {
- 			compatible = "microchip,lan966x-pinctrl";
- 			reg = <0xe2004064 0xb4>,
+Despite its limitations, I found useful to at least have alarm and
+offset support.
+
+Cheers,
+Miquèl
+
+Changes in v6:
+* Fix a sparse warning by dropping a variable not really used and
+  replaced by a comment.
+
+Changes in v5:
+* Dropped a (now) useless header that could produce a build error.
+
+Changes in v4:
+* Collected more tags (on the DT bindings).
+* Fixed the name of the SoC in the header: RZ/N1 instead of RZN1.
+* Dropped the error message when the alarm IRQ is not available (already
+  handled by the core)
+* Used pm_runtime_put() instead of pm_runtime_put_sync().
+* Used pm_runtime_resume_and_get() instead of pm_runtime_get().
+* Used devm_pm_runtime_enable() instead of pm_runtime_enable().
+
+Changes in v3:
+* Collected tags.
+* s/soc:/clk:/ in the clock commit title.
+* Dropped the RTC hclk fix which has already been applied.
+* Added the power-domain properties both in the bindings and in the DT.
+* Used runtime PM to enable the clock instead of using the clk API
+  directly. 
+
+Changes in v2:
+* Fixed the error path in the clk driver, where I missed to release a
+  spin_lock.
+* Collected tags.
+* Moved the rtc subnode in the dt to keep the nodes ordered by unit
+  address.
+* Dropped the useless "oneOf" statement in the bindings (compatible
+  property).
+* Dropped the start-year property in the bindings (already defined).
+* Avoided rollover calculations that could be more easily handled (and
+  reviewed) with a time64_t conversion.
+* Returned ERANGE instead of EOPNOTSUPP when the alarm date is not
+  valid.
+* Cleared RTC_FEATURE_UPDATE_INTERRUPT to avoid warning from the tools.
+* Dropped the sysctl patch adding the reset helper, instead fulfilled
+  the description of the RTC clock so that when requesting this clock to
+  be enabled, the idle bit is released.
+* Avoided rollover calculations that could be more easily handled
+  (and reviewed) with a time64_t conversion.
+* Fixed the max_range value, after a rtc-range test and looking at other
+  implementations.
+
+Michel Pollet (1):
+  rtc: rzn1: Add new RTC driver
+
+Miquel Raynal (4):
+  dt-bindings: rtc: rzn1: Describe the RZN1 RTC
+  rtc: rzn1: Add alarm support
+  rtc: rzn1: Add oscillator offset support
+  MAINTAINERS: Add myself as maintainer of the RZN1 RTC driver
+
+ .../bindings/rtc/renesas,rzn1-rtc.yaml        |  70 +++
+ MAINTAINERS                                   |   8 +
+ drivers/rtc/Kconfig                           |   7 +
+ drivers/rtc/Makefile                          |   1 +
+ drivers/rtc/rtc-rzn1.c                        | 422 ++++++++++++++++++
+ 5 files changed, 508 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/rtc/renesas,rzn1-rtc.yaml
+ create mode 100644 drivers/rtc/rtc-rzn1.c
+
 -- 
-2.35.1
+2.27.0
 
