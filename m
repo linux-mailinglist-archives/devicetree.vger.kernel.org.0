@@ -2,74 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E7B96526D4B
-	for <lists+devicetree@lfdr.de>; Sat, 14 May 2022 01:02:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A35DA526D50
+	for <lists+devicetree@lfdr.de>; Sat, 14 May 2022 01:06:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232502AbiEMXCg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 May 2022 19:02:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41620 "EHLO
+        id S229517AbiEMXGT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 May 2022 19:06:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58502 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229437AbiEMXCg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 May 2022 19:02:36 -0400
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D2B2689AC;
-        Fri, 13 May 2022 16:02:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1652482948; x=1684018948;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=bKBFNxyjnCkMsxqdrqa/uxOzIiSmy1cjAExYWSR7qr8=;
-  b=f5VUS4FCIyLj03nttRbtDw9t69x6D+oTtg1h60/nOfwxVCLvl3Kp+EuA
-   TNNTfFIvVnJrXF3lsjWHpnVkTBexseVE+ossu2FFtx6oiS3FFb+wVabD6
-   CTRD+ZyGKGJt9f55TIAbeTH4khlq5p3od9nrFx89cOIUDwjZnNfXwNA/X
-   OFA/Rb9yVwSIjiIevB+j4oBUsAxCCBdRqnuU7+U9tgpmIV99eYHn7lZ93
-   LKqUgq2laJ4zn9BzMCmBT+Qkuvul3SAar7QgxsAHZmZ7KJVus01EoMvRy
-   Gj4xh/7tY5lXP5RZl6G5GFo7szZIQtP1JCmP52aQeyKAz5f4oduyw8GAQ
-   g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10346"; a="270365447"
-X-IronPort-AV: E=Sophos;i="5.91,223,1647327600"; 
-   d="scan'208";a="270365447"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 May 2022 16:02:26 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.91,223,1647327600"; 
-   d="scan'208";a="671531657"
-Received: from lkp-server01.sh.intel.com (HELO 5056e131ad90) ([10.239.97.150])
-  by fmsmga002.fm.intel.com with ESMTP; 13 May 2022 16:02:19 -0700
-Received: from kbuild by 5056e131ad90 with local (Exim 4.95)
-        (envelope-from <lkp@intel.com>)
-        id 1npeIX-000MCA-6q;
-        Fri, 13 May 2022 23:02:13 +0000
-Date:   Sat, 14 May 2022 07:01:24 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, robh+dt@kernel.org
-Cc:     kbuild-all@lists.01.org, krzysztof.kozlowski+dt@linaro.org,
-        matthias.bgg@gmail.com, mturquette@baylibre.com, sboyd@kernel.org,
-        p.zabel@pengutronix.de, y.oudjana@protonmail.com,
-        angelogioacchino.delregno@collabora.com, jason-jh.lin@mediatek.com,
-        ck.hu@mediatek.com, fparent@baylibre.com, rex-bc.chen@mediatek.com,
-        tinghan.shen@mediatek.com, chun-jie.chen@mediatek.com,
-        weiyi.lu@mediatek.com, ikjn@chromium.org, miles.chen@mediatek.com,
-        sam.shih@mediatek.com, wenst@chromium.org,
-        bgolaszewski@baylibre.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-clk@vger.kernel.org,
-        konrad.dybcio@somainline.org, marijn.suijten@somainline.org,
-        martin.botka@somainline.org, ~postmarketos/upstreaming@lists.sr.ht,
-        phone-devel@vger.kernel.org
-Subject: Re: [PATCH 5/5] clk: mediatek: Add MediaTek Helio X10 MT6795 clock
- drivers
-Message-ID: <202205140634.WJLdMWaS-lkp@intel.com>
-References: <20220513165050.500831-6-angelogioacchino.delregno@collabora.com>
+        with ESMTP id S229701AbiEMXF4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 May 2022 19:05:56 -0400
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07C4823E35D
+        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 16:05:37 -0700 (PDT)
+Received: by mail-lf1-x12e.google.com with SMTP id i10so16810427lfg.13
+        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 16:05:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=5b2MhcmHs2O9qxlc70fS9UjNyboVfpLM5YasmFpVheg=;
+        b=QOxg2C93uLuxx6QicraazQk+SNWvpTPhKIsWHUmJr2VGtuQoKxVkS5cCX5bOlWzx1W
+         bhc+GWM4w+0D1TOjLKvO5k3PIFa4RqIY2d5iu3EIpTS2jtvnaK+R4KIp7+eOoYEcelVA
+         NfYY4yfD2PLEhw+lzgZ9rEtuRN578UiDfJvbLPXLHKlQOQtzx0Nfj5GxqOVD9v+znSXy
+         4YW7BEuEtGnG4TCbrUmu/I8zrYrDpqFPaZiADjf2JR0JbdmpPIpW9UyX4suejX0nwY9f
+         UQ2/v3Wh9lnFFB3fdBA/zlZkF7BjrSubTUHayluXtYcijUZfYRwA9cH3kkdGsWY0n+00
+         BF4Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=5b2MhcmHs2O9qxlc70fS9UjNyboVfpLM5YasmFpVheg=;
+        b=3vqPzvTyPNog95cvLpNRKYMxvRx8rII0KrcLwMRYkHW5oh0pIlJDmzcSWkEI5xGabs
+         I34v/6Y/r3H9cslNvg7s65T44NRPnVt75adVRHSPz1y88M+Ll8WHQVy35I3XSFds9xcl
+         4w/tdr2W3W62cd8CPU0W3yH5VE5uE7h3qlB3hXDmWhLgSMdTAfG7YVEYPAPqriGIALHu
+         ATfXQ4EJ1jyi+uJmW2ynwN3Tz8odl//ep6INzTU4lEd5lR1kxt946+uTk08s2wjVWmGD
+         Vq9eo9OJiYBFEUeCZ/SeMFCfN1cKfNIPLTUbbR6zqpRRrNN6Q4YGIuBN9qBbJrIMCO4F
+         Sabw==
+X-Gm-Message-State: AOAM532daSmCPiZp0gsovGUxgWHdDO/rAtPnZfECYI3P66zOxl5Lq/5e
+        byWbKuU0QocCWCZaAI6SSXzOOg==
+X-Google-Smtp-Source: ABdhPJzunuJKrHrbB+iySQolNPmo8FQWC4g4UA0ja1lh3mfpPbEoHjPP+P7+OPHmIAiKsdXqTaydsg==
+X-Received: by 2002:a05:6512:e88:b0:474:2d05:7fee with SMTP id bi8-20020a0565120e8800b004742d057feemr4942528lfb.44.1652483136107;
+        Fri, 13 May 2022 16:05:36 -0700 (PDT)
+Received: from [192.168.1.211] ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id q7-20020ac246e7000000b0047255d2116asm520853lfo.153.2022.05.13.16.05.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 13 May 2022 16:05:35 -0700 (PDT)
+Message-ID: <24d13c3e-9e00-43f5-aac5-4cc7aa577f72@linaro.org>
+Date:   Sat, 14 May 2022 02:05:34 +0300
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220513165050.500831-6-angelogioacchino.delregno@collabora.com>
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH v1 5/5] arm64: dts: qcom: sdm660: Add initial Inforce
+ IFC6560 board support
+Content-Language: en-GB
+To:     Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+References: <20220503220927.960821-1-dmitry.baryshkov@linaro.org>
+ <20220503220927.960821-6-dmitry.baryshkov@linaro.org>
+ <0574f34c-b898-8ccb-05bd-6e3d454fee2c@somainline.org>
+ <ae909313-ef7a-5c40-55b8-a1a802b6cdd5@linaro.org>
+ <89049083-9336-7490-ff89-f4337d4cea1a@somainline.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <89049083-9336-7490-ff89-f4337d4cea1a@somainline.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,307 +81,95 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi AngeloGioacchino,
+On 13/05/2022 22:18, Konrad Dybcio wrote:
+> 
+> 
+> On 13.05.2022 00:58, Dmitry Baryshkov wrote:
+>> On 04/05/2022 19:17, Konrad Dybcio wrote:
+>>>
+>>> On 04/05/2022 00:09, Dmitry Baryshkov wrote:
+>>>> The IFC6560 is a board from Inforce Computing, built around the SDA660
+>>>> SoC. This patch describes core clocks, some regulators from the two
+>>>> PMICs, debug uart, storage, bluetooth and audio DSP remoteproc.
+>>>>
+>>>> The regulator settings are inherited from prior work by Konrad Dybcio
+>>>> and AngeloGioacchino Del Regno.
+>>>>
+>>>> Co-developed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+>>>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>>>> ---
+>>>>    arch/arm64/boot/dts/qcom/Makefile             |   1 +
+>>>>    .../boot/dts/qcom/sda660-inforce-ifc6560.dts  | 455 ++++++++++++++++++
+>>>>    2 files changed, 456 insertions(+)
+>>>>    create mode 100644 arch/arm64/boot/dts/qcom/sda660-inforce-ifc6560.dts
+>>>>
+>>>> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+>>>> index f9e6343acd03..5f717fe0e8d0 100644
+>>>> --- a/arch/arm64/boot/dts/qcom/Makefile
+>>>> +++ b/arch/arm64/boot/dts/qcom/Makefile
+>>>> @@ -88,6 +88,7 @@ dtb-$(CONFIG_ARCH_QCOM)    +=
+>>
+>> [skipped]
+>>
+>>>> +
+>>>> +/* BAM DMA doesn't seem to work on the board */
+>>> I wonder if these are configured differently on your firmware.. what if you remove the `qcom,controlled-remotely` property, or in case that doesn't work, swap out the BAM clock for a fake one, like xo_board?
+>>
+>> You know, replacing BAM clock with xo_board makes the devices probe and work. So does adding interconnects property (together with Bhupeshe's patches which didn't land for some reason). I think I will override just the clocks for now and update the core dtsi once the [1] gets merged.
+> Hm, perhaps that clock should be marked as protected on this board then, since interactions with it can cause the board to hang.. Can you read the rate in, for example, debugfs without it going crazy?
 
-Thank you for the patch! Yet something to improve:
+No, didn't try that. I'll check it next time I boot the board (might 
+take a few days).
 
-[auto build test ERROR on robh/for-next]
-[also build test ERROR on next-20220513]
-[cannot apply to clk/clk-next pza/reset/next v5.18-rc6]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
+> 
+>>
+>> [1] https://lore.kernel.org/linux-arm-msm/20211110105922.217895-14-bhupesh.sharma@linaro.org/
+>>
+>>>> +&blsp1_dma {
+>>>> +    status = "disabled";
+>>>> +};
+>>>
+>>> This reference should come before blsp1_i2c6 alphabetically
+>>>
+>>>
+>>
+>> [skipped]
+>>
+>>
+>>>> +
+>>>> +&mdp {
+>>>> +    status = "okay";
+>>>> +};
+>>>
+>>> MDP should be always enabled in SoC DTSI instead, as MDSS is borderline useless without it..
+>>
+>> I see your point. sdm845 doesn't disable it, but later platforms (sc7180/sc7280/sm8250) disable mdp and require enabling it explicitly in the board files. I'd tend to follow the example of the later platforms. Not to mention that sdm630.dtsi already contains 'status="disabled"' for this device.
+> 845 and 8250 do not, I changed that myself some time ago :P As for sc7x80, I just haven't gotten to play with these just yet..
 
-url:    https://github.com/intel-lab-lkp/linux/commits/AngeloGioacchino-Del-Regno/MediaTek-Helio-X10-MT6795-Clock-drivers/20220514-005314
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-config: alpha-allyesconfig (https://download.01.org/0day-ci/archive/20220514/202205140634.WJLdMWaS-lkp@intel.com/config)
-compiler: alpha-linux-gcc (GCC) 11.3.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/991f92f26cc545a1836a3120408ce27ba7ddadab
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review AngeloGioacchino-Del-Regno/MediaTek-Helio-X10-MT6795-Clock-drivers/20220514-005314
-        git checkout 991f92f26cc545a1836a3120408ce27ba7ddadab
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.3.0 make.cross W=1 O=build_dir ARCH=alpha SHELL=/bin/bash
+ok. Then we should probably cleanup board files which still manually 
+enable mdp nodes.
 
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
+> 
+> Konrad
+>>
+>>>> +
+>>>> +&mdss {
+>>>> +    status = "okay";
+>>>> +};
+>>>> +
+>>>> +&mmss_smmu {
+>>>> +    status = "okay";
+>>>> +};
+>>>
+>>> ..and same goes for all the SMMUs (but that's a nit for the future, as I mentioned in one of the previous emails)
+>>
+>> Yes.
+>>
+>> [skipped]
+>>
+>>
 
-All errors (new ones prefixed by >>):
-
-   drivers/clk/mediatek/clk-mt6795-topckgen.c: In function 'clk_mt6795_topckgen_probe':
->> drivers/clk/mediatek/clk-mt6795-topckgen.c:543:18: error: assignment to 'struct clk_hw_onecell_data *' from incompatible pointer type 'struct clk_onecell_data *' [-Werror=incompatible-pointer-types]
-     543 |         clk_data = mtk_alloc_clk_data(CLK_TOP_NR_CLK);
-         |                  ^
->> drivers/clk/mediatek/clk-mt6795-topckgen.c:547:79: error: passing argument 3 of 'mtk_clk_register_fixed_clks' from incompatible pointer type [-Werror=incompatible-pointer-types]
-     547 |         ret = mtk_clk_register_fixed_clks(fixed_clks, ARRAY_SIZE(fixed_clks), clk_data);
-         |                                                                               ^~~~~~~~
-         |                                                                               |
-         |                                                                               struct clk_hw_onecell_data *
-   In file included from drivers/clk/mediatek/clk-mt6795-topckgen.c:11:
-   drivers/clk/mediatek/clk-mtk.h:38:58: note: expected 'struct clk_onecell_data *' but argument is of type 'struct clk_hw_onecell_data *'
-      38 |                                 struct clk_onecell_data *clk_data);
-         |                                 ~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~
->> drivers/clk/mediatek/clk-mt6795-topckgen.c:551:72: error: passing argument 3 of 'mtk_clk_register_factors' from incompatible pointer type [-Werror=incompatible-pointer-types]
-     551 |         ret = mtk_clk_register_factors(top_divs, ARRAY_SIZE(top_divs), clk_data);
-         |                                                                        ^~~~~~~~
-         |                                                                        |
-         |                                                                        struct clk_hw_onecell_data *
-   In file included from drivers/clk/mediatek/clk-mt6795-topckgen.c:11:
-   drivers/clk/mediatek/clk-mtk.h:59:55: note: expected 'struct clk_onecell_data *' but argument is of type 'struct clk_hw_onecell_data *'
-      59 |                              struct clk_onecell_data *clk_data);
-         |                              ~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~
->> drivers/clk/mediatek/clk-mt6795-topckgen.c:556:60: error: passing argument 5 of 'mtk_clk_register_muxes' from incompatible pointer type [-Werror=incompatible-pointer-types]
-     556 |                                      &mt6795_top_clk_lock, clk_data);
-         |                                                            ^~~~~~~~
-         |                                                            |
-         |                                                            struct clk_hw_onecell_data *
-   In file included from drivers/clk/mediatek/clk-mt6795-topckgen.c:12:
-   drivers/clk/mediatek/clk-mux.h:87:53: note: expected 'struct clk_onecell_data *' but argument is of type 'struct clk_hw_onecell_data *'
-      87 |                            struct clk_onecell_data *clk_data);
-         |                            ~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~
->> drivers/clk/mediatek/clk-mt6795-topckgen.c:561:65: error: passing argument 5 of 'mtk_clk_register_composites' from incompatible pointer type [-Werror=incompatible-pointer-types]
-     561 |                                           &mt6795_top_clk_lock, clk_data);
-         |                                                                 ^~~~~~~~
-         |                                                                 |
-         |                                                                 struct clk_hw_onecell_data *
-   In file included from drivers/clk/mediatek/clk-mt6795-topckgen.c:11:
-   drivers/clk/mediatek/clk-mtk.h:155:58: note: expected 'struct clk_onecell_data *' but argument is of type 'struct clk_hw_onecell_data *'
-     155 |                                 struct clk_onecell_data *clk_data);
-         |                                 ~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~
->> drivers/clk/mediatek/clk-mt6795-topckgen.c:572:79: error: passing argument 3 of 'mtk_clk_unregister_composites' from incompatible pointer type [-Werror=incompatible-pointer-types]
-     572 |         mtk_clk_unregister_composites(top_aud_divs, ARRAY_SIZE(top_aud_divs), clk_data);
-         |                                                                               ^~~~~~~~
-         |                                                                               |
-         |                                                                               struct clk_hw_onecell_data *
-   In file included from drivers/clk/mediatek/clk-mt6795-topckgen.c:11:
-   drivers/clk/mediatek/clk-mtk.h:157:61: note: expected 'struct clk_onecell_data *' but argument is of type 'struct clk_hw_onecell_data *'
-     157 |                                    struct clk_onecell_data *clk_data);
-         |                                    ~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~
->> drivers/clk/mediatek/clk-mt6795-topckgen.c:574:68: error: passing argument 3 of 'mtk_clk_unregister_muxes' from incompatible pointer type [-Werror=incompatible-pointer-types]
-     574 |         mtk_clk_unregister_muxes(top_muxes, ARRAY_SIZE(top_muxes), clk_data);
-         |                                                                    ^~~~~~~~
-         |                                                                    |
-         |                                                                    struct clk_hw_onecell_data *
-   In file included from drivers/clk/mediatek/clk-mt6795-topckgen.c:12:
-   drivers/clk/mediatek/clk-mux.h:90:56: note: expected 'struct clk_onecell_data *' but argument is of type 'struct clk_hw_onecell_data *'
-      90 |                               struct clk_onecell_data *clk_data);
-         |                               ~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~
->> drivers/clk/mediatek/clk-mt6795-topckgen.c:576:68: error: passing argument 3 of 'mtk_clk_unregister_factors' from incompatible pointer type [-Werror=incompatible-pointer-types]
-     576 |         mtk_clk_unregister_factors(top_divs, ARRAY_SIZE(top_divs), clk_data);
-         |                                                                    ^~~~~~~~
-         |                                                                    |
-         |                                                                    struct clk_hw_onecell_data *
-   In file included from drivers/clk/mediatek/clk-mt6795-topckgen.c:11:
-   drivers/clk/mediatek/clk-mtk.h:61:58: note: expected 'struct clk_onecell_data *' but argument is of type 'struct clk_hw_onecell_data *'
-      61 |                                 struct clk_onecell_data *clk_data);
-         |                                 ~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~
->> drivers/clk/mediatek/clk-mt6795-topckgen.c:578:75: error: passing argument 3 of 'mtk_clk_unregister_fixed_clks' from incompatible pointer type [-Werror=incompatible-pointer-types]
-     578 |         mtk_clk_unregister_fixed_clks(fixed_clks, ARRAY_SIZE(fixed_clks), clk_data);
-         |                                                                           ^~~~~~~~
-         |                                                                           |
-         |                                                                           struct clk_hw_onecell_data *
-   In file included from drivers/clk/mediatek/clk-mt6795-topckgen.c:11:
-   drivers/clk/mediatek/clk-mtk.h:40:61: note: expected 'struct clk_onecell_data *' but argument is of type 'struct clk_hw_onecell_data *'
-      40 |                                    struct clk_onecell_data *clk_data);
-         |                                    ~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~
->> drivers/clk/mediatek/clk-mt6795-topckgen.c:580:27: error: passing argument 1 of 'mtk_free_clk_data' from incompatible pointer type [-Werror=incompatible-pointer-types]
-     580 |         mtk_free_clk_data(clk_data);
-         |                           ^~~~~~~~
-         |                           |
-         |                           struct clk_hw_onecell_data *
-   In file included from drivers/clk/mediatek/clk-mt6795-topckgen.c:11:
-   drivers/clk/mediatek/clk-mtk.h:188:49: note: expected 'struct clk_onecell_data *' but argument is of type 'struct clk_hw_onecell_data *'
-     188 | void mtk_free_clk_data(struct clk_onecell_data *clk_data);
-         |                        ~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~
-   drivers/clk/mediatek/clk-mt6795-topckgen.c: In function 'clk_mt6795_topckgen_remove':
-   drivers/clk/mediatek/clk-mt6795-topckgen.c:590:79: error: passing argument 3 of 'mtk_clk_unregister_composites' from incompatible pointer type [-Werror=incompatible-pointer-types]
-     590 |         mtk_clk_unregister_composites(top_aud_divs, ARRAY_SIZE(top_aud_divs), clk_data);
-         |                                                                               ^~~~~~~~
-         |                                                                               |
-         |                                                                               struct clk_hw_onecell_data *
-   In file included from drivers/clk/mediatek/clk-mt6795-topckgen.c:11:
-   drivers/clk/mediatek/clk-mtk.h:157:61: note: expected 'struct clk_onecell_data *' but argument is of type 'struct clk_hw_onecell_data *'
-     157 |                                    struct clk_onecell_data *clk_data);
-         |                                    ~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~
-   drivers/clk/mediatek/clk-mt6795-topckgen.c:591:68: error: passing argument 3 of 'mtk_clk_unregister_muxes' from incompatible pointer type [-Werror=incompatible-pointer-types]
-     591 |         mtk_clk_unregister_muxes(top_muxes, ARRAY_SIZE(top_muxes), clk_data);
-         |                                                                    ^~~~~~~~
-         |                                                                    |
-         |                                                                    struct clk_hw_onecell_data *
-   In file included from drivers/clk/mediatek/clk-mt6795-topckgen.c:12:
-   drivers/clk/mediatek/clk-mux.h:90:56: note: expected 'struct clk_onecell_data *' but argument is of type 'struct clk_hw_onecell_data *'
-      90 |                               struct clk_onecell_data *clk_data);
-         |                               ~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~
-   drivers/clk/mediatek/clk-mt6795-topckgen.c:592:68: error: passing argument 3 of 'mtk_clk_unregister_factors' from incompatible pointer type [-Werror=incompatible-pointer-types]
-     592 |         mtk_clk_unregister_factors(top_divs, ARRAY_SIZE(top_divs), clk_data);
-         |                                                                    ^~~~~~~~
-         |                                                                    |
-         |                                                                    struct clk_hw_onecell_data *
-   In file included from drivers/clk/mediatek/clk-mt6795-topckgen.c:11:
-   drivers/clk/mediatek/clk-mtk.h:61:58: note: expected 'struct clk_onecell_data *' but argument is of type 'struct clk_hw_onecell_data *'
-      61 |                                 struct clk_onecell_data *clk_data);
-         |                                 ~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~
-   drivers/clk/mediatek/clk-mt6795-topckgen.c:593:75: error: passing argument 3 of 'mtk_clk_unregister_fixed_clks' from incompatible pointer type [-Werror=incompatible-pointer-types]
-     593 |         mtk_clk_unregister_fixed_clks(fixed_clks, ARRAY_SIZE(fixed_clks), clk_data);
-         |                                                                           ^~~~~~~~
-         |                                                                           |
-         |                                                                           struct clk_hw_onecell_data *
-   In file included from drivers/clk/mediatek/clk-mt6795-topckgen.c:11:
-   drivers/clk/mediatek/clk-mtk.h:40:61: note: expected 'struct clk_onecell_data *' but argument is of type 'struct clk_hw_onecell_data *'
-      40 |                                    struct clk_onecell_data *clk_data);
-         |                                    ~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~
-   drivers/clk/mediatek/clk-mt6795-topckgen.c:594:27: error: passing argument 1 of 'mtk_free_clk_data' from incompatible pointer type [-Werror=incompatible-pointer-types]
-     594 |         mtk_free_clk_data(clk_data);
-         |                           ^~~~~~~~
-         |                           |
-         |                           struct clk_hw_onecell_data *
-   In file included from drivers/clk/mediatek/clk-mt6795-topckgen.c:11:
-   drivers/clk/mediatek/clk-mtk.h:188:49: note: expected 'struct clk_onecell_data *' but argument is of type 'struct clk_hw_onecell_data *'
-     188 | void mtk_free_clk_data(struct clk_onecell_data *clk_data);
-         |                        ~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~
-   cc1: some warnings being treated as errors
---
-   drivers/clk/mediatek/clk-mt6795-mm.c: In function 'clk_mt6795_mm_probe':
->> drivers/clk/mediatek/clk-mt6795-mm.c:86:18: error: assignment to 'struct clk_hw_onecell_data *' from incompatible pointer type 'struct clk_onecell_data *' [-Werror=incompatible-pointer-types]
-      86 |         clk_data = mtk_alloc_clk_data(CLK_MM_NR_CLK);
-         |                  ^
->> drivers/clk/mediatek/clk-mt6795-mm.c:90:76: error: passing argument 4 of 'mtk_clk_register_gates' from incompatible pointer type [-Werror=incompatible-pointer-types]
-      90 |         ret = mtk_clk_register_gates(node, mm_gates, ARRAY_SIZE(mm_gates), clk_data);
-         |                                                                            ^~~~~~~~
-         |                                                                            |
-         |                                                                            struct clk_hw_onecell_data *
-   In file included from drivers/clk/mediatek/clk-mt6795-mm.c:10:
-   drivers/clk/mediatek/clk-gate.h:55:53: note: expected 'struct clk_onecell_data *' but argument is of type 'struct clk_hw_onecell_data *'
-      55 |                            struct clk_onecell_data *clk_data);
-         |                            ~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~
-   cc1: some warnings being treated as errors
---
-   drivers/clk/mediatek/clk-mt6795-apmixedsys.c: In function 'clk_mt6795_apmixed_probe':
->> drivers/clk/mediatek/clk-mt6795-apmixedsys.c:96:18: error: assignment to 'struct clk_hw_onecell_data *' from incompatible pointer type 'struct clk_onecell_data *' [-Werror=incompatible-pointer-types]
-      96 |         clk_data = mtk_alloc_clk_data(CLK_APMIXED_NR_CLK);
-         |                  ^
->> drivers/clk/mediatek/clk-mt6795-apmixedsys.c:100:67: error: passing argument 4 of 'mtk_clk_register_plls' from incompatible pointer type [-Werror=incompatible-pointer-types]
-     100 |         ret = mtk_clk_register_plls(node, plls, ARRAY_SIZE(plls), clk_data);
-         |                                                                   ^~~~~~~~
-         |                                                                   |
-         |                                                                   struct clk_hw_onecell_data *
-   In file included from drivers/clk/mediatek/clk-mt6795-apmixedsys.c:11:
-   drivers/clk/mediatek/clk-pll.h:53:52: note: expected 'struct clk_onecell_data *' but argument is of type 'struct clk_hw_onecell_data *'
-      53 |                           struct clk_onecell_data *clk_data);
-         |                           ~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~
->> drivers/clk/mediatek/clk-mt6795-apmixedsys.c:104:12: error: assignment to 'struct clk_hw *' from incompatible pointer type 'struct clk *' [-Werror=incompatible-pointer-types]
-     104 |         hw = mtk_clk_register_ref2usb_tx("ref2usb_tx", "clk26m", base + REG_REF2USB);
-         |            ^
->> drivers/clk/mediatek/clk-mt6795-apmixedsys.c:127:57: error: passing argument 3 of 'mtk_clk_unregister_plls' from incompatible pointer type [-Werror=incompatible-pointer-types]
-     127 |         mtk_clk_unregister_plls(plls, ARRAY_SIZE(plls), clk_data);
-         |                                                         ^~~~~~~~
-         |                                                         |
-         |                                                         struct clk_hw_onecell_data *
-   In file included from drivers/clk/mediatek/clk-mt6795-apmixedsys.c:11:
-   drivers/clk/mediatek/clk-pll.h:55:55: note: expected 'struct clk_onecell_data *' but argument is of type 'struct clk_hw_onecell_data *'
-      55 |                              struct clk_onecell_data *clk_data);
-         |                              ~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~
->> drivers/clk/mediatek/clk-mt6795-apmixedsys.c:129:27: error: passing argument 1 of 'mtk_free_clk_data' from incompatible pointer type [-Werror=incompatible-pointer-types]
-     129 |         mtk_free_clk_data(clk_data);
-         |                           ^~~~~~~~
-         |                           |
-         |                           struct clk_hw_onecell_data *
-   In file included from drivers/clk/mediatek/clk-mt6795-apmixedsys.c:10:
-   drivers/clk/mediatek/clk-mtk.h:188:49: note: expected 'struct clk_onecell_data *' but argument is of type 'struct clk_hw_onecell_data *'
-     188 | void mtk_free_clk_data(struct clk_onecell_data *clk_data);
-         |                        ~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~
-   drivers/clk/mediatek/clk-mt6795-apmixedsys.c: In function 'clk_mt6795_apmixed_remove':
-   drivers/clk/mediatek/clk-mt6795-apmixedsys.c:140:57: error: passing argument 3 of 'mtk_clk_unregister_plls' from incompatible pointer type [-Werror=incompatible-pointer-types]
-     140 |         mtk_clk_unregister_plls(plls, ARRAY_SIZE(plls), clk_data);
-         |                                                         ^~~~~~~~
-         |                                                         |
-         |                                                         struct clk_hw_onecell_data *
-   In file included from drivers/clk/mediatek/clk-mt6795-apmixedsys.c:11:
-   drivers/clk/mediatek/clk-pll.h:55:55: note: expected 'struct clk_onecell_data *' but argument is of type 'struct clk_hw_onecell_data *'
-      55 |                              struct clk_onecell_data *clk_data);
-         |                              ~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~
-   drivers/clk/mediatek/clk-mt6795-apmixedsys.c:141:27: error: passing argument 1 of 'mtk_free_clk_data' from incompatible pointer type [-Werror=incompatible-pointer-types]
-     141 |         mtk_free_clk_data(clk_data);
-         |                           ^~~~~~~~
-         |                           |
-         |                           struct clk_hw_onecell_data *
-   In file included from drivers/clk/mediatek/clk-mt6795-apmixedsys.c:10:
-   drivers/clk/mediatek/clk-mtk.h:188:49: note: expected 'struct clk_onecell_data *' but argument is of type 'struct clk_hw_onecell_data *'
-     188 | void mtk_free_clk_data(struct clk_onecell_data *clk_data);
-         |                        ~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~
-   cc1: some warnings being treated as errors
---
->> drivers/clk/mediatek/clk-mt6795-infracfg.c:14:10: fatal error: reset.h: No such file or directory
-      14 | #include "reset.h"
-         |          ^~~~~~~~~
-   compilation terminated.
---
->> drivers/clk/mediatek/clk-mt6795-pericfg.c:13:10: fatal error: reset.h: No such file or directory
-      13 | #include "reset.h"
-         |          ^~~~~~~~~
-   compilation terminated.
-
-
-vim +543 drivers/clk/mediatek/clk-mt6795-topckgen.c
-
-   531	
-   532	static int clk_mt6795_topckgen_probe(struct platform_device *pdev)
-   533	{
-   534		struct clk_hw_onecell_data *clk_data;
-   535		struct device_node *node = pdev->dev.of_node;
-   536		void __iomem *base;
-   537		int ret;
-   538	
-   539		base = devm_platform_ioremap_resource(pdev, 0);
-   540		if (IS_ERR(base))
-   541			return PTR_ERR(base);
-   542	
- > 543		clk_data = mtk_alloc_clk_data(CLK_TOP_NR_CLK);
-   544		if (!clk_data)
-   545			return -ENOMEM;
-   546	
- > 547		ret = mtk_clk_register_fixed_clks(fixed_clks, ARRAY_SIZE(fixed_clks), clk_data);
-   548		if (ret)
-   549			goto free_clk_data;
-   550	
- > 551		ret = mtk_clk_register_factors(top_divs, ARRAY_SIZE(top_divs), clk_data);
-   552		if (ret)
-   553			goto unregister_fixed_clks;
-   554	
-   555		ret = mtk_clk_register_muxes(top_muxes, ARRAY_SIZE(top_muxes), node,
- > 556					     &mt6795_top_clk_lock, clk_data);
-   557		if (ret)
-   558			goto unregister_factors;
-   559	
-   560		ret = mtk_clk_register_composites(top_aud_divs, ARRAY_SIZE(top_aud_divs), base,
- > 561						  &mt6795_top_clk_lock, clk_data);
-   562		if (ret)
-   563			goto unregister_muxes;
-   564	
-   565		ret = of_clk_add_hw_provider(node, of_clk_hw_onecell_get, clk_data);
-   566		if (ret)
-   567			goto unregister_composites;
-   568	
-   569		return 0;
-   570	
-   571	unregister_composites:
- > 572		mtk_clk_unregister_composites(top_aud_divs, ARRAY_SIZE(top_aud_divs), clk_data);
-   573	unregister_muxes:
- > 574		mtk_clk_unregister_muxes(top_muxes, ARRAY_SIZE(top_muxes), clk_data);
-   575	unregister_factors:
- > 576		mtk_clk_unregister_factors(top_divs, ARRAY_SIZE(top_divs), clk_data);
-   577	unregister_fixed_clks:
- > 578		mtk_clk_unregister_fixed_clks(fixed_clks, ARRAY_SIZE(fixed_clks), clk_data);
-   579	free_clk_data:
- > 580		mtk_free_clk_data(clk_data);
-   581		return ret;
-   582	}
-   583	
 
 -- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
+With best wishes
+Dmitry
