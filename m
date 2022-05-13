@@ -2,138 +2,234 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B6E93525D7A
-	for <lists+devicetree@lfdr.de>; Fri, 13 May 2022 10:38:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C2F6F525DBD
+	for <lists+devicetree@lfdr.de>; Fri, 13 May 2022 10:39:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1378393AbiEMIdM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 May 2022 04:33:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35678 "EHLO
+        id S241051AbiEMIjG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 May 2022 04:39:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59506 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1377165AbiEMIdI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 May 2022 04:33:08 -0400
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69B252A83C2
-        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 01:32:54 -0700 (PDT)
-Received: by mail-ed1-x52c.google.com with SMTP id a21so9124311edb.1
-        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 01:32:54 -0700 (PDT)
+        with ESMTP id S1350072AbiEMIjC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 May 2022 04:39:02 -0400
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21B75263DAD
+        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 01:39:01 -0700 (PDT)
+Received: by mail-ed1-x52d.google.com with SMTP id w24so9123095edx.3
+        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 01:39:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :references:from:in-reply-to:content-transfer-encoding;
-        bh=HC3yljNj2K6Qd4UmDX7DAfOGopnqGFVg1u5g37pKWRs=;
-        b=VBIX9JKu6EVYVwZtOycZz+bR9Jhlq8p4eT59phZ+I6HFpQ2yXk6F1H2KUPPqb1zVzb
-         5/6KPn61734JpCU5E+Z2p30Nq3NPvtfXNrMvj8bCCPqnHQiFlsopO9rYuETdfvCiLA4X
-         cYo43x1CZkHtm/Vps9eh51Hxqs9cq32BvkRtGztVteQ5zryUOO/wEnVgnyYixAqXFfGp
-         8MSX1E6fGxnJyfJAIzTYSbRIXEwM5Syu5ZQMiDwHZfSHNJgd2/w/rx06PI1EMpEmUHvI
-         3Xeo+gzDPTXn6rz90+iwsWAncVoketOrz9WtTevx0B1OnuhZc6/ndt7jdkOVtXJDmUJb
-         OAnw==
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=5eGnaTrZ5QL37vftbdKCPQxPP9FiPYVF4w7vRXHzsMM=;
+        b=LG1nKsPb416GGdMtYA81IjhMhD/KCV58tHHZskrSiRF15YyXN+VUzIYUALgby/QHon
+         u2xJFOKT5lYsGSdFD05dRm4immZir8XX/Zy+cktKtuCVh4yloZuqff//IsM1QzUOR8kt
+         5Q3MJ2A7NXkZcQHV1f6djfKYOD+HdnbNGRgVkM4Lymq/QRUUa1rs5jXMuuyZhxgiCB3Y
+         dxw7pFt8FzAeB+W5JCOIwLs/6btd+Cdgy3XjgyyhnrWolcYAj8p0AReh/hqCYN3Y+SKL
+         VZPadeqs4afvv8f39xumhbXS0ZG+VrPn6/0A0BdsSWQlH/69yV3/tdMxT8EJU1pNZVH9
+         8SFg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:references:from:in-reply-to
+         :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=HC3yljNj2K6Qd4UmDX7DAfOGopnqGFVg1u5g37pKWRs=;
-        b=jA/rkgkMnA+GJpDucTisIdFE2GhBrDgeQQ4Vr1yC27KwX6wWC03hajJzQLCXetyLJg
-         nZz7sXOBHyp4XCRf778Btj3fxZY//8t7c9dPIJQU+dx/LQcg7HPtIvOSj2R6Tgyzvr4l
-         QCQsru/J7+41s/cf1LjuYkUZE+nWR7RCY55Q+hWQKpjhPupzgv+AnAi60/Jn49bqzVgl
-         AK0wFNdt8ValMZdJzvjo2DslOnkKAhJ6uKUMIaHt0WbVcP1RvIg0KHBfWioETrJzlWC9
-         i2S+1sTgIGabpQCYVfkFQrB8rcMNAyAU8KV0QoXTv8SgO97tpoA5MhW+UhRJLcfqrzf5
-         WptQ==
-X-Gm-Message-State: AOAM5300neK1Ti/TgEJBmagLx9o63+148HIdq1w5MeiyK7FjHyifVtGn
-        0DQTleLucVThb/Qg0VFvjMxsvg==
-X-Google-Smtp-Source: ABdhPJwtXp4Y40MA3HvhzuRqvn8vt/xw5i/AAbIP0KKD3pMIAqy2aj14G4PmcEcL1gdIyTuiUYkV+w==
-X-Received: by 2002:a05:6402:34c6:b0:427:c65d:c254 with SMTP id w6-20020a05640234c600b00427c65dc254mr39158799edc.88.1652430772967;
-        Fri, 13 May 2022 01:32:52 -0700 (PDT)
+        bh=5eGnaTrZ5QL37vftbdKCPQxPP9FiPYVF4w7vRXHzsMM=;
+        b=CK6bUJ5Rn9EUtYWCDk1DfYs55oy8w2hsWh3D0s9vawvOxwkwEh9JHF30SfVOg98tBd
+         KHUvhp+zUJr1upxu+HsUVCE6oeyakmmW9okmD66EbQ0TtbX7PnSU9y9VTB6KnZOwCalf
+         GH6BUW/4/AyrOowofXUoZWHdp/Ducfv/DMnN1MvDfz4+/cCSmVOp3CdoDl/OJTKsIsAd
+         cOzYOjFsP/dd8O4/lcwUeaJxN2FrnFEwMRBpWTWeEJUy2esPX4I1+51jQOEas5FfoeGA
+         JzXiB21u456bONVo6Jt2dsG2g4F9xs6B+spwFTCsRRCu7maIJs4Z3cYQGotO9+dGgHDu
+         32iQ==
+X-Gm-Message-State: AOAM533Ld4drVEcxh9Wshp07AOWMTsMeup8hTULv0/IW8DU0gKU78dHl
+        J1Oonnt+g2A8Lzylr5HoYGhB/A==
+X-Google-Smtp-Source: ABdhPJx1ZUddn9oRkISOeRqNayJCSyiC/ExqIWCAeF8ygLNluQ/SklXUZsGOXJUeCR3R7X8C8EPu3A==
+X-Received: by 2002:a05:6402:5190:b0:427:df4a:19d9 with SMTP id q16-20020a056402519000b00427df4a19d9mr39905569edd.384.1652431139697;
+        Fri, 13 May 2022 01:38:59 -0700 (PDT)
 Received: from [192.168.0.169] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id er9-20020a170907738900b006f3ef214e32sm521932ejc.152.2022.05.13.01.32.51
+        by smtp.gmail.com with ESMTPSA id yl15-20020a17090693ef00b006f3ef214de7sm540660ejb.77.2022.05.13.01.38.58
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 13 May 2022 01:32:52 -0700 (PDT)
-Message-ID: <36bb53d0-80b3-f79e-a599-6acb98d0c872@linaro.org>
-Date:   Fri, 13 May 2022 10:32:51 +0200
+        Fri, 13 May 2022 01:38:59 -0700 (PDT)
+Message-ID: <32aab734-5890-99b2-09c9-8ec7418c7649@linaro.org>
+Date:   Fri, 13 May 2022 10:38:58 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.8.1
-Subject: Re: [PATCH 2/2] arm64: tegra: Add Tegra234 GPCDMA device tree node
+Subject: Re: [PATCH v3 1/2] dt-bindings: gpio: gpio-mvebu: convert txt binding
+ to YAML
 Content-Language: en-US
-To:     Akhil R <akhilrajeev@nvidia.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, thierry.reding@gmail.com,
-        jonathanh@nvidia.com, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220512090052.47840-1-akhilrajeev@nvidia.com>
- <20220512090052.47840-3-akhilrajeev@nvidia.com>
+To:     Chris Packham <chris.packham@alliedtelesis.co.nz>,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        linus.walleij@linaro.org, brgl@bgdev.pl, thierry.reding@gmail.com,
+        u.kleine-koenig@pengutronix.de, lee.jones@linaro.org,
+        andrew@lunn.ch
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org
+References: <20220512094125.3748197-1-chris.packham@alliedtelesis.co.nz>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220512090052.47840-3-akhilrajeev@nvidia.com>
+In-Reply-To: <20220512094125.3748197-1-chris.packham@alliedtelesis.co.nz>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,UPPERCASE_50_75
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/05/2022 11:00, Akhil R wrote:
-> Add device tree nodes for Tegra234 GPCDMA
+On 12/05/2022 11:41, Chris Packham wrote:
+> Convert the existing device tree binding to YAML format.
 > 
-> Signed-off-by: Akhil R <akhilrajeev@nvidia.com>
+> The old binding listed the interrupt-controller and related properties
+> as required but there are sufficiently many existing usages without it
+> that the YAML binding does not make the interrupt properties required.
+> 
+> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+> Reviewed-by: Andrew Lunn <andrew@lunn.ch>
 > ---
->  arch/arm64/boot/dts/nvidia/tegra234.dtsi | 43 ++++++++++++++++++++++++
->  1 file changed, 43 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/nvidia/tegra234.dtsi b/arch/arm64/boot/dts/nvidia/tegra234.dtsi
-> index cb3af539e477..860c3cc68cea 100644
-> --- a/arch/arm64/boot/dts/nvidia/tegra234.dtsi
-> +++ b/arch/arm64/boot/dts/nvidia/tegra234.dtsi
-> @@ -21,6 +21,49 @@
->  
->  		ranges = <0x0 0x0 0x0 0x40000000>;
->  
-> +		gpcdma: dma-controller@2600000 {
-> +			compatible = "nvidia,tegra194-gpcdma",
-> +				      "nvidia,tegra186-gpcdma";
-> +			reg = <0x2600000 0x210000>;
-> +			resets = <&bpmp TEGRA234_RESET_GPCDMA>;
-> +			reset-names = "gpcdma";
-> +			interrupts = <GIC_SPI 76 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 77 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 78 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 79 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 80 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 81 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 82 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 83 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 84 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 85 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 86 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 87 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 88 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 89 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 90 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 91 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 92 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 93 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 94 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 95 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 96 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 97 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 99 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 100 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 101 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 102 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 103 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 104 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 105 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 106 IRQ_TYPE_LEVEL_HIGH>;
-> +			#dma-cells = <1>;
-> +			iommus = <&smmu_niso0 TEGRA234_SID_GPCDMA>;
-> +			dma-coherent;
-> +			status = "okay";
+> Notes:
+>     Changes in v3:
+>     - Correct indent in example
+>     - Move offset and marvell,pwm-offset to separate patch
+>     - Correct some documentation cross references
 
-okay is by default for new nodes.
+Thank you for your patch. There is something to discuss/improve.
+
+> diff --git a/Documentation/devicetree/bindings/gpio/gpio-mvebu.yaml b/Documentation/devicetree/bindings/gpio/gpio-mvebu.yaml
+> new file mode 100644
+> index 000000000000..2d95ef707f53
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/gpio/gpio-mvebu.yaml
+> @@ -0,0 +1,143 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/gpio/gpio-mvebu.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Marvell EBU GPIO controller
+> +
+> +maintainers:
+> +  - Thierry Reding <thierry.reding@gmail.com>
+> +  - Lee Jones <lee.jones@linaro.org>
+
+These should be rather platform or driver maintainers, not subsystem
+folks. Unless it happens that Thierry and Lee are for platform?
+
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - enum:
+> +          - marvell,armada-8k-gpio
+> +          - marvell,orion-gpio
+> +
+> +      - items:
+> +          - enum:
+> +              - marvell,mv78200-gpio
+> +              - marvell,armada-370-gpio
+> +              - marvell,armadaxp-gpio
+> +          - const: marvell,orion-gpio
+> +
+> +  reg:
+> +    description: |
+> +      Address and length of the register set for the device. Not used for
+> +      marvell,armada-8k-gpio.
+> +
+> +      For the "marvell,armadaxp-gpio" variant a second entry is expected for
+> +      the per-cpu registers. For other variants second entry can be provided,
+> +      for the PWM function using the GPIO Blink Counter on/off registers.
+> +    minItems: 1
+> +    maxItems: 2
+> +
+> +  reg-names:
+> +    items:
+> +      - const: gpio
+> +      - const: pwm
+> +    minItems: 1
+> +
+> +  interrupts:
+> +    description: |
+> +      The list of interrupts that are used for all the pins managed by this
+> +      GPIO bank. There can be more than one interrupt (example: 1 interrupt
+> +      per 8 pins on Armada XP, which means 4 interrupts per bank of 32
+> +      GPIOs).
+> +    minItems: 1
+> +    maxItems: 4
+> +
+> +  interrupt-controller: true
+> +
+> +  "#interrupt-cells":
+> +    const: 2
+> +
+> +  gpio-controller: true
+> +
+> +  ngpios:
+> +    minimum: 1
+> +    maximum: 32
+> +
+> +  "#gpio-cells":
+> +    const: 2
+> +
+> +  "#pwm-cells":
+> +    description:
+> +      The first cell is the GPIO line number. The second cell is the period
+> +      in nanoseconds.
+> +    const: 2
+> +
+> +  clocks:
+> +    description:
+> +      Clock(s) used for PWM function.
+> +    items:
+> +      - description: Core clock
+> +      - description: AXI bus clock
+> +    minItems: 1
+> +
+> +  clock-names:
+> +    items:
+> +      - const: core
+> +      - const: axi
+> +    minItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - gpio-controller
+> +  - ngpios
+> +  - "#gpio-cells"
+> +
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: marvell,armada-8k-gpio
+> +    then:
+> +      required:
+> +        - offset
+> +    else:
+> +      required:
+> +        - reg
+
+one blank line please
+
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: marvell,armadaxp-gpio
+
+Original bindings are saying that second reg is optional for
+marvell,armada-370-gpio. What about other cases, e.g. mv78200-gpio? Is
+it also allowed (and optional) there?
+
+> +    then:
+> +      properties:
+> +        reg:
+> +          minItems: 2
+
+Then you also should require two reg-names.
 
 
 Best regards,
