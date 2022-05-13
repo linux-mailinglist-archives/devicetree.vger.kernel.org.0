@@ -2,77 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5BCAD526A74
-	for <lists+devicetree@lfdr.de>; Fri, 13 May 2022 21:36:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1CB3B526AAF
+	for <lists+devicetree@lfdr.de>; Fri, 13 May 2022 21:45:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1355895AbiEMTgo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 May 2022 15:36:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40750 "EHLO
+        id S1359169AbiEMTpX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 May 2022 15:45:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57356 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1383717AbiEMTgo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 May 2022 15:36:44 -0400
-Received: from mail-pf1-x431.google.com (mail-pf1-x431.google.com [IPv6:2607:f8b0:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D8C32DDD
-        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 12:36:42 -0700 (PDT)
-Received: by mail-pf1-x431.google.com with SMTP id d25so8510872pfo.10
-        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 12:36:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=MVy7iZsksoOMOAm3NNokxlKH1OgviSGLirV/jH2bp6g=;
-        b=oT5OvAp1Zz7AUlM0aKl+8ZIvs1C599gkbilzsnIpz1AO0oVZtegSofmqZGgF3owSwx
-         e8aeEmF7v4n8qZXGa+DBCVXRNsxBwn4zoGlpEV6qhQ787uUrQWaSqVnM7yebGfhktUlW
-         vTbi4mb7fLQDubyl82mTHh+SczIl1wnGaEF44=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=MVy7iZsksoOMOAm3NNokxlKH1OgviSGLirV/jH2bp6g=;
-        b=kRQA/bWe1KOMnB8hrLkBPc5E/PQlLYaXxKKXwpC1zh/SxuARC39bHiIaY35BpJy6TS
-         FjTbd/tdjhn7+7CKSp2rvR2onJaERD56RvNzR53XRg+MQ2m8ofm8X82HJJ7YjMAzjHND
-         n6xoFRLu0FEmiW9ryIr3j40byuuientpTQ4bEf4lhrYpTKxxXpIGlbYVRt6A7rOl0z5o
-         Yhe74Lk1MAhcd69x3npzacGEp6S6wIh/uSq7aRPyEEDLJkdJng4+hKvuWstWjMVllrUN
-         ao1ci+6Yb9O/erjswF3q2OFw/DS2pcdr4i3/h+n5sm/lAynHCQW0nj+pkYPtXO7enr2C
-         dUpg==
-X-Gm-Message-State: AOAM531Xhtfold6lIf7q3Xa3tIVe0XCkghaSUw6iDvWf8sWWzcoJrmaA
-        AP3br/9FeQQ+6NTFb3IauJ1gdw==
-X-Google-Smtp-Source: ABdhPJxGphb+a3j/4IMs2jeADD8wkkmOnIgagtQf5njkuMbaHesyMm7dlmo28dn15Im4KjxHYXi02A==
-X-Received: by 2002:a63:605:0:b0:3db:a8bc:fb71 with SMTP id 5-20020a630605000000b003dba8bcfb71mr2548020pgg.125.1652470601682;
-        Fri, 13 May 2022 12:36:41 -0700 (PDT)
-Received: from localhost ([2620:15c:11a:202:bc87:9632:bcce:8e17])
-        by smtp.gmail.com with UTF8SMTPSA id l17-20020a629111000000b0050dc7628186sm2181056pfe.96.2022.05.13.12.36.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 13 May 2022 12:36:41 -0700 (PDT)
-Date:   Fri, 13 May 2022 12:36:39 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Douglas Anderson <dianders@chromium.org>
-Cc:     Rob Herring <robh@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rajendra Nayak <quic_rjendra@quicinc.com>,
-        Alexandru M Stan <amstan@chromium.org>,
-        Julius Werner <jwerner@chromium.org>,
-        "Joseph S . Barrera III" <joebar@chromium.org>,
-        Andy Gross <agross@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        with ESMTP id S239033AbiEMTpV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 May 2022 15:45:21 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B18095047D;
+        Fri, 13 May 2022 12:45:19 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 24DJiwx4111958;
+        Fri, 13 May 2022 14:44:58 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1652471098;
+        bh=7zqVF9gee06v9UNFxBmER3A1z4bsxkTiqQMCrtf4vA8=;
+        h=From:To:CC:Subject:Date;
+        b=i7yZ4CQAG+1p12YSx86mkqzScBeve/ZNND5u8TjtA88D2jcies3Xw6cQ/974HlVaK
+         xp3ko11y482haz+ajfYJml80xxk28jOgRUBnws8IPIxGk3LLArpTdfRJDOQwYtJsum
+         VqIGtIKmo0ILWtRxEAO/UUhxPwgx3NEfFWVPH2Nw=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 24DJiwiG037671
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 13 May 2022 14:44:58 -0500
+Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Fri, 13
+ May 2022 14:44:58 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Fri, 13 May 2022 14:44:58 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 24DJiws4019326;
+        Fri, 13 May 2022 14:44:58 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@codeaurora.org>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 3/4] dt-bindings: arm: qcom: Add / fix sc7280 board
- bindings
-Message-ID: <Yn6zR5k5EwP+qFBr@google.com>
-References: <20220513095722.v2.1.I71e42c6174f1cec17da3024c9f73ba373263b9b6@changeid>
- <20220513095722.v2.3.I1318c1ae2ce55ade1d092fc21df846360b15c560@changeid>
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Alessandro Zummo <a.zummo@towertech.it>
+CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-rtc@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Andrew Davis <afd@ti.com>, Nishanth Menon <nm@ti.com>
+Subject: [PATCH V3 0/2] rtc: Introduce rtc-ti-k3
+Date:   Fri, 13 May 2022 14:44:55 -0500
+Message-ID: <20220513194457.25942-1-nm@ti.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20220513095722.v2.3.I1318c1ae2ce55ade1d092fc21df846360b15c560@changeid>
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,11 +67,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, May 13, 2022 at 09:59:19AM -0700, Douglas Anderson wrote:
-> This copy-pastes compatibles from sc7280-based boards from the device
-> trees to the yaml file. It also fixes the CRD/IDP bindings which had
-> gotten stale.
-> 
-> Signed-off-by: Douglas Anderson <dianders@chromium.org>
+Hi Folks,
 
-Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
+Hopefully third time is a charm ;).
+
+This series adds support for TI K3 RTC as instantiated on TI's AM625
+SoC.
+
+Documentation in the current early release version of Technical
+Reference Manual is incomplete at the moment, but due to be updated
+later this year.
+https://www.ti.com/lit/pdf/spruiv7
+
+Testing log can be found here (next-20220509 + additional node for dts):
+https://gist.github.com/nmenon/2139c57212605bb38a4624ad0523416f
+
+Changes since V2:
+* bindings updated for review comments
+* Driver updated with fixes for issues caught during system level tests in
+  5.10 backport testing.
+* Picked up Andrew's Acked-by
+
+V2: https://lore.kernel.org/all/20220511002600.27964-1-nm@ti.com/
+V1: https://lore.kernel.org/all/20220412073138.25027-1-nm@ti.com/
+
+Nishanth Menon (2):
+  dt-bindings: rtc: Add TI K3 RTC description
+  rtc: Introduce ti-k3-rtc
+
+ .../devicetree/bindings/rtc/ti,k3-rtc.yaml    |  62 ++
+ drivers/rtc/Kconfig                           |  11 +
+ drivers/rtc/Makefile                          |   1 +
+ drivers/rtc/rtc-ti-k3.c                       | 695 ++++++++++++++++++
+ 4 files changed, 769 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/rtc/ti,k3-rtc.yaml
+ create mode 100644 drivers/rtc/rtc-ti-k3.c
+
+-- 
+2.31.1
+
