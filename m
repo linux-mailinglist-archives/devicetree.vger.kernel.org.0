@@ -2,86 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F2F90525F36
-	for <lists+devicetree@lfdr.de>; Fri, 13 May 2022 12:08:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F9A5525EF8
+	for <lists+devicetree@lfdr.de>; Fri, 13 May 2022 12:07:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1379129AbiEMJhT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 May 2022 05:37:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43226 "EHLO
+        id S1350600AbiEMJy7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 May 2022 05:54:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40804 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1379163AbiEMJhQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 May 2022 05:37:16 -0400
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 674CC28C9C1
-        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 02:37:14 -0700 (PDT)
-Received: by mail-wr1-x429.google.com with SMTP id t6so10658607wra.4
-        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 02:37:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :references:from:in-reply-to:content-transfer-encoding;
-        bh=LPeFc4kVcTNm4urAkRDIpRauCxNaO73GMMKzZ0JovMs=;
-        b=im5D1li6iayjNq5cJbXexWNAdwbevtRT0YNi61YD5Dlb7O+v4d+zj1Uq9SpmE0WpsF
-         zDtgfhR5K4BTl47cxta7rzqmnvmp6bDDI49DV/fmr/PQlV00wYyGEwyt78RGRfLFIKEf
-         tpPiDTrQnqoo6WEuezuxWi6XWtBCDypmq/23Cbso3DdfxfXbijZ8KpRaAVt0n+NXPxvx
-         PAACqWfJA0Djcoze1ircxojt62AINFqj6kyxIWhI5u+ndn33F/1mL2eKAP8GatwVdl9P
-         /GvTgbRwH85LINuDvCYS+4V15Vu2Bfh+l0FrrIFukTKyi+Mab9I5tXcmVkTCdQEAOI0/
-         66Sg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=LPeFc4kVcTNm4urAkRDIpRauCxNaO73GMMKzZ0JovMs=;
-        b=8JCykGW2fCsPhyTEn299mrhI4UjyzyzjTsXBKfWF4wicTHv9Z45z+IILOcb6OyJbfs
-         ZRfJvM0JjHCij671yGLqshKsEO1ba4JTXeq/BBPdiu3EgAFeFobFhsMqYKy/ZJ38rDUa
-         egHIMN/nZuEIE06phOwJmBLZr3fPapdCMQShJRwo4odAgtG2Kpeafp0uwihJN9xisWw/
-         cZGD+PVgqazLZpCeWeWL1hW3GQ9jaKgbU+p8tNQiVbGlaalNKKCaGZViZvuqe2t/Q85P
-         4pedp17JSemFpArHOWEeVf0nF/YAkcqqJE4lS8E8A8PBbHrIC/cQTZpPWkBwVriKZToP
-         0PDA==
-X-Gm-Message-State: AOAM5310j/s/8NVKL8iXI5QGnn7/E/lwypiJ6ZPzC5WNAFJKRo/JnuuI
-        Fckk/05kghHSO2PJBkoBNL8c/A==
-X-Google-Smtp-Source: ABdhPJwW3cU+uyE+Io9UlgPZ79ftGJYHlU0vLFfIIytqKHzkojl5dsNGL+ZhUq/QdL1OwweAvqQPzw==
-X-Received: by 2002:a5d:6088:0:b0:20a:e81e:c76a with SMTP id w8-20020a5d6088000000b0020ae81ec76amr3138108wrt.182.1652434632703;
-        Fri, 13 May 2022 02:37:12 -0700 (PDT)
-Received: from [192.168.0.171] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id g2-20020adfa482000000b0020c5253d8dfsm1728148wrb.43.2022.05.13.02.37.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 13 May 2022 02:37:12 -0700 (PDT)
-Message-ID: <5cce491d-c673-d2a6-3aae-79b2e5902a01@linaro.org>
-Date:   Fri, 13 May 2022 11:37:11 +0200
+        with ESMTP id S1346122AbiEMJy6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 May 2022 05:54:58 -0400
+Received: from mx1.cqplus1.com (unknown [113.204.237.245])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 94F1426C4D8
+        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 02:54:37 -0700 (PDT)
+X-MailGates: (flag:1,DYNAMIC,RELAY,NOHOST,LAN:PASS)(compute_score:DELIVE
+        R,40,3)
+Received: from 172.27.96.203
+        by mx1.cqplus1.com with MailGates ESMTP Server V5.0(7678:0:AUTH_RELAY)
+        (envelope-from <qinjian@cqplus1.com>); Fri, 13 May 2022 17:47:40 +0800 (CST)
+Received: from CQEXMAIL01.cqplus1.com (172.27.96.203) by
+ CQEXMAIL01.cqplus1.com (172.27.96.203) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.6; Fri, 13 May 2022 17:47:38 +0800
+Received: from CQEXMAIL01.cqplus1.com ([::1]) by CQEXMAIL01.cqplus1.com
+ ([::1]) with mapi id 15.01.2507.006; Fri, 13 May 2022 17:47:38 +0800
+From:   =?utf-8?B?cWluamlhblvopoPlgaVd?= <qinjian@cqplus1.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        "sboyd@kernel.org" <sboyd@kernel.org>
+CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mturquette@baylibre.com" <mturquette@baylibre.com>,
+        "tglx@linutronix.de" <tglx@linutronix.de>,
+        "maz@kernel.org" <maz@kernel.org>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        "linux@armlinux.org.uk" <linux@armlinux.org.uk>,
+        "arnd@arndb.de" <arnd@arndb.de>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>
+Subject: RE: [PATCH v15 10/10] ARM: dts: Add Sunplus SP7021-Demo-V3 board
+ device tree
+Thread-Topic: [PATCH v15 10/10] ARM: dts: Add Sunplus SP7021-Demo-V3 board
+ device tree
+Thread-Index: AQHYZcsUOdNmnhD0gkKqn75ry15Nq60ahDUAgAHng+D//4R3gIAAnWgA
+Date:   Fri, 13 May 2022 09:47:38 +0000
+Message-ID: <878e3edf42434620b31cf7f8bf97209f@cqplus1.com>
+References: <cover.1652329411.git.qinjian@cqplus1.com>
+ <daeccdfb9655e549656af0af955a4697871e3ab0.1652329411.git.qinjian@cqplus1.com>
+ <32c80a79-abd5-3fd2-cbb4-e2ae93c539da@linaro.org>
+ <3a01fe9aa860407694ee77133459a9ab@cqplus1.com>
+ <85c40d22-afaa-0f7b-01bd-6de9e592079f@linaro.org>
+In-Reply-To: <85c40d22-afaa-0f7b-01bd-6de9e592079f@linaro.org>
+Accept-Language: zh-CN, en-US
+Content-Language: zh-CN
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.28.110.18]
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH 2/7] dt-bindings: pinctrl: qcom-pmic-gpio: Add pm6125
- compatible
-Content-Language: en-US
-To:     Marijn Suijten <marijn.suijten@somainline.org>,
-        phone-devel@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Martin Botka <martin.botka@somainline.org>,
-        Jami Kettunen <jami.kettunen@somainline.org>,
-        Andy Gross <agross@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220511220613.1015472-1-marijn.suijten@somainline.org>
- <20220511220613.1015472-3-marijn.suijten@somainline.org>
- <d2507298-00a6-a1cc-0302-f96597fb4127@linaro.org>
- <20220513091734.hivkkbpc6inyb4la@SoMainline.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220513091734.hivkkbpc6inyb4la@SoMainline.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -89,57 +70,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/05/2022 11:17, Marijn Suijten wrote:
-> On 2022-05-13 10:19:56, Krzysztof Kozlowski wrote:
->> On 12/05/2022 00:06, Marijn Suijten wrote:
->>> The pm6125 comes with 9 GPIOs, without holes.
->>>
->>> Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
->>> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
->>
->> It's the first version, how did the tag appear here?
-> 
-> We are friends and review each-others patches offline before spamming
-> the mailing list with them, to save readers and maintainers here from
-> pointing out glaring mistakes.  I hope this is standard practice in
-> companies too, or do you recommend aganst us doing this?
-
-I personally recommend against it because I prefer public discussions.
-Especially that such practice in some companies mean that tag is added
-automatically, without actual review. There are some folks, from other
-subsystems and architectures, which never publicly replied to anything
-(so we don't know if they actually exist, what's their credibility,
-knowledge, experience etc) but they appear on hundreds of reviews.
-
-Other people don't mind this practice.
-
-Anyway, it's not a stopper from anything, I was wondering.
-
-> 
->>> ---
->>>  Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml | 2 ++
->>>  1 file changed, 2 insertions(+)
->>
->>
->> This will need fixups or rebasing on my sets of PMIC gpio schema cleanup:
-> 
-> Ack.
-> 
->> https://lore.kernel.org/all/20220507194913.261121-1-krzysztof.kozlowski@linaro.org/
->> https://lore.kernel.org/all/20220508135932.132378-2-krzysztof.kozlowski@linaro.org/
->>
->> Bjorn,
->> let us know preferred order (who should rebase on who).
-> 
-> I prefer yours to be applied first, so that I can retest this
-> patchseries with stricter / more correct dt-bindings introduced by it.
-> My series can also be resent with the notice that it has already been
-> rebased on top of your series, after collecting more reviews.  Where
-> necessary, I can review your series too if that helps getting it in
-> sooner.
-
-Sounds good. It's in Bjorn's hands now. :)
-
-
-Best regards,
-Krzysztof
+PiA+DQo+ID4gSSBkaWQgcGFzc2VkIHRoZSBtYWtlIGR0YnNfY2hlY2suDQo+ID4gY29tcGF0aWJs
+ZSBzdHJpbmc6ICJzdW5wbHVzLHNwNzAyMSIsICJzdW5wbHVzLHNwNzAyMS1hY2hpcCIsICJzdW5w
+bHVzLHNwNzAyMS1kZW1vLXYzIg0KPiA+IGFsbCBkZWZpbmVkIEAgRG9jdW1lbnRhdGlvbi9kZXZp
+Y2V0cmVlL2JpbmRpbmdzL2FybS9zdW5wbHVzLHNwNzAyMS55YW1sIFsxXQ0KPiANCj4gSG93IHRo
+aXMgY2FuIHBhc3MgdGhlIGNoZWNrIGlmIGl0IGlzIGVudGlyZWx5IGRpZmZlcmVudCBjb21wYXRp
+YmxlIGFuZA0KPiBkb2VzIG5vdCBtYXRjaCBzY2hlbWE/IFRoZSBjb2RlIGlzIG5vdCBjb3JyZWN0
+LiBJZiB5b3UgdGVzdCB5b3VyIERUUw0KPiB3aXRoIGR0YnNfY2hlY2sgeW91IHdpbGwgc2VlOg0K
+PiANCj4gCXN1bnBsdXMtc3A3MDIxLWRlbW8tdjMuZHRiOiAvOiBjb21wYXRpYmxlOiBbJ3N1bnBs
+dXMsc3A3MDIxLWRlbW8tdjMnXQ0KPiBpcyB0b28gc2hvcnQNCj4gDQo+IA0KPiBBZGRpdGlvbmFs
+bHk6DQo+IDEuIFlvdXIgRFRCcyBkbyBub3QgY29tcGlsZSwgbWlzc2luZyBNYWtlZmlsZSBlbnRy
+eS4NCj4gDQoNCkdvdCBpdCwgSSBjb21waWxlZCB0aGUgZHRiIHdpdGggY29tbWFuZDogbWFrZSBz
+dW5wbHVzLXNwNzAyMS1kZW1vLXYzLmR0Yg0KQWZ0ZXIgSSBhZGQgaXQgdG8gYXJjaC9hcm0vYm9v
+dC9kdHMvTWFrZWZpbGUsDQptYWtlIGR0YnNfY2hlY2sgZ290IHRoZSBlcnJvci4NClRoYW5rcyBm
+b3IgeW91ciBwYXRpZW50IGd1aWRhbmNlLg0KDQo=
