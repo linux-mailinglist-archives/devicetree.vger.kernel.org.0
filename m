@@ -2,83 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E37E3525CC2
-	for <lists+devicetree@lfdr.de>; Fri, 13 May 2022 10:03:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 72AF5525CCA
+	for <lists+devicetree@lfdr.de>; Fri, 13 May 2022 10:14:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1377972AbiEMH5i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 May 2022 03:57:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34564 "EHLO
+        id S1378052AbiEMIGi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 May 2022 04:06:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38814 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349747AbiEMH5g (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 May 2022 03:57:36 -0400
-Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27E586CA96
-        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 00:57:34 -0700 (PDT)
-Received: by mail-wm1-x32f.google.com with SMTP id a14-20020a7bc1ce000000b00393fb52a386so6469716wmj.1
-        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 00:57:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=Z+VCyQ4FdNddQ9JeHnVFC+z2HG9qAdxbs5Dzgp/YOGU=;
-        b=U7l70itwvDOp59iGQBatgtEC7/68noHv/4vGH1xx/gK7xvyggOGACYW2HTnqYKz3ee
-         sJOFgdqbHCFjCU3aQQl/Rg1oYM5N1KLbqe1vKRIzZJVZGp8F92oIuvvKTgXHunrypO6S
-         ario2rMzTUHJpt5W1RyDo5AEHkPMHc+amiz8oaY8qUe5AE3xTHUlsBYYKgvlD51IrLri
-         vRObZRK8TQUiyUGNtiuAcZZd2XHd8DuG6vzyk5VAodEsSQguBUEFDQ4fWttJWbeAXFoe
-         1t5doi5ttGiH+QvcINZYalUci9oo4Y9W/Xu2cBhRwzX7WUqbRGIPgfJBfrb++xH3GSeH
-         Q26A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=Z+VCyQ4FdNddQ9JeHnVFC+z2HG9qAdxbs5Dzgp/YOGU=;
-        b=rsE5wxbxi+VAm71urf8t5E1yT9XqYKVG7FayakDpLD1ttnFxI0Y1jKOrkEisROUOCx
-         /wngLTFK6hEoeWvpi/QcUB1p5fiwVHJg/mWfLYmgeLicK5Ygu5uchzIm/BctrZT1mLiY
-         ncsnstr5z3b2r6BAAl2ZLJ5lWyjdK9WW8kGboNO2f72zAhmVopFt5Q9V8cVs8e4s0Qom
-         C576QakdCilzVSQ7/Bda7NFzzpn/+a2VYiQ19QiyiI1ETRtXlm1v8K1sAvl6PfnhhjDH
-         SUtpYLCueyeQgak5yYfsKmepB2T8fwdLaKre8a1b1hc/SO+6cJjsAnPHSR57lxUg2/VM
-         vmkQ==
-X-Gm-Message-State: AOAM531RvKcwbuNNVDojWNxicAY5lVc5coJi7TW11fHxHqP55XlpnWTO
-        KK8K1JVPdmdynOLLZTtdu+9RCA==
-X-Google-Smtp-Source: ABdhPJy4D3xJsnTbYAm3729KW2bXLN3aezoJhW288ATXwZYtmBFLJxapQ5HevWL2cU0I7YpH37KeGw==
-X-Received: by 2002:a7b:c0c3:0:b0:394:4c67:b9df with SMTP id s3-20020a7bc0c3000000b003944c67b9dfmr13853307wmh.8.1652428652625;
-        Fri, 13 May 2022 00:57:32 -0700 (PDT)
-Received: from [192.168.0.168] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id y11-20020adfc7cb000000b0020cf41017b4sm297862wrg.19.2022.05.13.00.57.31
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 13 May 2022 00:57:31 -0700 (PDT)
-Message-ID: <828bc65f-e585-0fe7-c038-c750861c9446@linaro.org>
-Date:   Fri, 13 May 2022 09:57:30 +0200
+        with ESMTP id S1378045AbiEMIGh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 May 2022 04:06:37 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 455844ECFC;
+        Fri, 13 May 2022 01:06:31 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: kholk11)
+        with ESMTPSA id 35F7D1F45D41
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1652429190;
+        bh=ZI6wzdoqnJpZaI9O6789OwrBHqpXwo3joMPdEwRzXpE=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=ACtYtZm3nPrQX/Loy48UlYk9vfJa6ETK0abgly3cu3X1tgHT4OAB6CB5d/CRTQpt9
+         amrdAsrm1WJYGlgpG8/QXPiOAjouDNqPgaHb59GExHJF59kKCNgEq+lvOmHyxdDmn7
+         GHYK9+YR+WLcrEGAVRO9nb8GVAY804GUvcmp97D/+aAGvZsb2MJJzef27r1xgWwSPT
+         5DGPxF+xTZzMKyEjhIGAQG0oslLH3OWuaxcLOl9WD8Q413A7HQT52wNJSDZG0fxPM4
+         OYmbKoUAV3eksDMqPfUJ/1Jif8l5KxMuoa8WwThc2ilHAhip097IVnqOGpE2p8JkdA
+         wztwinkpeFDGQ==
+Message-ID: <d015e667-f7a6-d635-a2ea-c0638881af10@collabora.com>
+Date:   Fri, 13 May 2022 10:06:26 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH 1/3] dt-bindings: arm: qcom: Add sc7180 Chromebook board
- bindings
+ Thunderbird/91.9.0
+Subject: Re: [PATCH v4] pwrap: mediatek: fix FSM timeout issue
 Content-Language: en-US
-To:     Douglas Anderson <dianders@chromium.org>,
-        Rob Herring <robh@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Stephen Boyd <swboyd@chromium.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Alexandru M Stan <amstan@chromium.org>,
-        Rajendra Nayak <quic_rjendra@quicinc.com>,
-        "Joseph S . Barrera III" <joebar@chromium.org>,
-        Julius Werner <jwerner@chromium.org>,
-        Andy Gross <agross@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@codeaurora.org>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220512090429.1.I9804fcd5d6c8552ab25f598dd7a3ea71b15b55f0@changeid>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220512090429.1.I9804fcd5d6c8552ab25f598dd7a3ea71b15b55f0@changeid>
-Content-Type: text/plain; charset=UTF-8
+To:     Zhiyong Tao <zhiyong.tao@mediatek.com>, lee.jones@linaro.org,
+        robh+dt@kernel.org, matthias.bgg@gmail.com, lgirdwood@gmail.com,
+        broonie@kernel.org, eddie.huang@mediatek.com, a.zummo@towertech.it,
+        alexandre.belloni@bootlin.com, fshao@chromium.org
+Cc:     srv_heupstream@mediatek.com, hui.liu@mediatek.com,
+        tinghan.shen@mediatek.com, hsin-hsiung.wang@mediatek.com,
+        sean.wang@mediatek.com, macpaul.lin@mediatek.com,
+        wen.su@mediatek.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-rtc@vger.kernel.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+References: <20220513034356.5268-1-zhiyong.tao@mediatek.com>
+ <20220513034356.5268-2-zhiyong.tao@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20220513034356.5268-2-zhiyong.tao@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -86,59 +63,53 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/05/2022 18:04, Douglas Anderson wrote:
-> This copy-pastes compatibles from sc7180-based boards from the device
-> trees to the yaml file so that `make dtbs_check` will be happy.
+Il 13/05/22 05:43, Zhiyong Tao ha scritto:
+> From: "Zhiyong.Tao" <zhiyong.tao@mediatek.com>
 > 
-> NOTES:
-> - I make no attempt to try to share an "item" for all sc7180 based
->   Chromebooks. Because of the revision matching scheme used by the
->   Chromebook bootloader, at times we need a different number of
->   revisions listed.
-> - Some of the odd entries in here (like google,homestar-rev23 or the
->   fact that "Google Lazor Limozeen without Touchscreen" changed from
->   sku5 to sku6) are not typos but simply reflect reality.
-> - Many revisions of boards here never actually went to consumers, but
->   they are still in use within various companies that were involved in
->   Chromebook development. Since Chromebooks are developed with an
->   "upstream first" methodology, having these revisions supported with
->   upstream Linux is important. Making it easy for Chromebooks to be
->   developed with an "upstream first" methodology is valuable to the
->   upstream community because it improves the quality of upstream and
->   gets Chromebooks supported with vanilla upstream faster.
+> Fix pwrap FSM timeout issue which leads the system crash on GFX VSRAM
+> power on.
+> The crash log:
+> [ 3986.543401] mediatek-drm-dp 1c500000.edp_tx: drm_helper_hpd_irq_event
+> [ 3986.670756] vsram_others: is_enabled() failed: -ETIMEDOUT
+> [ 3986.670765] mali 13000000.mali: Power on reg 1 failed error = -110
+> [ 3986.670768] ------------[ cut here ]------------
+> [ 3986.670770] unbalanced disables for vsram_others
+> [ 3986.670783] WARNING: CPU: 7 PID: 4125 at drivers/regulator/core.c:2761 _regulator_disable+0x194/0x1a0
+> [ 3986.670785] Modules linked in: rfcomm algif_hash algif_skcipher af_alg veth uinput btusb btmtk btintel btbcm btrtl xt_cgroup bluetooth uvcvideo videobuf2_vmalloc ecdh_generic ecc mtk_vcodec_dec mtk_vcodec_enc mtk_mdp3 v4l2_h264 mtk_vcodec_common videobuf2_dma_contig mtk_vpu videobuf2_memops v4l2_mem2mem xt_MASQUERADE videobuf2_v4l2 videobuf2_common cros_ec_rpmsg mtk_scp mtk_rpmsg rpmsg_core mtk_scp_ipi ip6table_nat fuse 8021q iio_trig_sysfs cros_ec_sensors cros_ec_lid_angle cros_ec_sensors_core industrialio_triggered_buffer kfifo_buf cros_ec_sensorhub mt7921e mt7921_common mt76_connac_lib lzo_rle mt76 lzo_compress mac80211 cfg80211 zram r8152 mii joydev
+> [ 3986.670830] CPU: 7 PID: 4125 Comm: mali-cmar-backe Not tainted 5.10.78-CL2781499-v287 #1 b899b40a63da40d4767c6c0e96b6700d2f3eb242
+> [ 3986.670832] Hardware name: MediaTek Tomato board (DT)
+> [ 3986.670835] pstate: 60400009 (nZCv daif +PAN -UAO -TCO BTYPE=--)
+> [ 3986.670838] pc : _regulator_disable+0x194/0x1a0
+> [ 3986.670840] lr : _regulator_disable+0x194/0x1a0
+> [ 3986.670842] sp : ffffffc016203a10
+> [ 3986.670843] x29: ffffffc016203a10 x28: ffffffb7c3186b28
+> [ 3986.670846] x27: 0000000000000002 x26: fffffffffffffdc8
+> [ 3986.670848] x25: ffffffc017225000 x24: ffffffb7c0e94880
+> [ 3986.670851] x23: ffffffb7c31840f0 x22: ffffffd6b4f3e275
+> [ 3986.670853] x21: ffffffb7c3181a00 x20: ffffffb7c27e7800
+> [ 3986.670855] x19: ffffffb7c27e7800 x18: 00000000ffff0a10
+> [ 3986.670857] x17: 0000000000000020 x16: 00000000000000ec
+> [ 3986.670860] x15: ffffffd6b44fa17c x14: 0000000000000003
+> [ 3986.670862] x13: 0000000000000004 x12: 0000000000fd8318
+> [ 3986.670864] x11: c000000100029ccd x10: 00000000ffffffff
+> [ 3986.670866] x9 : 7dd6d080afd6f400 x8 : 7dd6d080afd6f400
+> [ 3986.670868] x7 : 0000000000000000 x6 : ffffffd6b5459f0c
+> [ 3986.670871] x5 : ffffffc016203a58 x4 : 0000000000000000
+> [ 3986.670873] x3 : ffffffc016203668 x2 : ffffffc016203670
+> [ 3986.670875] x1 : 0000000100029ccd x0 : 0000000000000024
+> [ 3986.670878] Call trace:
+> [ 3986.670880]  _regulator_disable+0x194/0x1a0
+> [ 3986.670883]  regulator_disable+0x4c/0x8c
 > 
-> Signed-off-by: Douglas Anderson <dianders@chromium.org>
-> ---
+> Add a usleep delay to avoid busy read for the H/W status.
+> If (time_after()) be turn first, it maybe cause the system behavior
+> crash problem like above. so we change it after sleep delay.
 > 
->  .../devicetree/bindings/arm/qcom.yaml         | 180 ++++++++++++++++++
->  1 file changed, 180 insertions(+)
+> Fixes: 1f022d84bd19 ("soc: mediatek: Add PMIC wrapper for MT8135 and
+> MT8173 SoCs")
 > 
-> diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
-> index 5c06d1bfc046..399be67eb5d2 100644
-> --- a/Documentation/devicetree/bindings/arm/qcom.yaml
-> +++ b/Documentation/devicetree/bindings/arm/qcom.yaml
-> @@ -214,11 +214,191 @@ properties:
->                - qcom,ipq8074-hk10-c2
->            - const: qcom,ipq8074
->  
-> +      # Qualcomm Technologies, Inc. SC7180 IDP
->        - items:
->            - enum:
->                - qcom,sc7180-idp
->            - const: qcom,sc7180
->  
-> +      # Google CoachZ (rev1 - 2)
-> +      - items:
-> +          - const: google,coachz-rev1
-> +          - const: google,coachz-rev2
+> Signed-off-by: Zhiyong.Tao <zhiyong.tao@mediatek.com>
+> Reviewed-by: Rex-BC Chen <rex-bc.chen@mediatek.com>
 
-The inverted pattern of old revision being compatible with the new one,
-is done on purpose? You claim here every rev1 is always compatible with
-rev2 ...
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-I don't think we discussed such patterns in previous talk. I quickly
-went through it and there were only skuX moving around, not rev1 being
-newer then rev2.
-
-Best regards,
-Krzysztof
