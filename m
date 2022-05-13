@@ -2,60 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 33BA6525C89
-	for <lists+devicetree@lfdr.de>; Fri, 13 May 2022 09:49:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 40361525C86
+	for <lists+devicetree@lfdr.de>; Fri, 13 May 2022 09:49:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1377881AbiEMHtj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 May 2022 03:49:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35582 "EHLO
+        id S1377870AbiEMHt3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 May 2022 03:49:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34886 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1377872AbiEMHtg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 May 2022 03:49:36 -0400
-Received: from m12-18.163.com (m12-18.163.com [220.181.12.18])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 41B51134E1D;
-        Fri, 13 May 2022 00:49:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-        s=s110527; h=Message-ID:Date:MIME-Version:Subject:From; bh=I1PW+
-        UgrxtpOrGKAmIK6mKmMXNBZW3K0uImlgxDg5uk=; b=LomQvD4CK/f2fzw6gLHeW
-        9p3/uY6i69F9rBDSzSdN0wmUuQC5KcOIG+B8yEJtJnxOblL4sgXEghC7MLiUzA2F
-        CaIdcukEgvSzMC0bin2E1nzvRZ2cJFhonh51eyS5wC3KqjjKQ6HVvBxFZraZCjey
-        8QXsvnC3KnjlkrCrYxbGso=
-Received: from [192.168.3.102] (unknown [218.201.129.19])
-        by smtp14 (Coremail) with SMTP id EsCowABnVAViDX5iXlrTCA--.56204S2;
-        Fri, 13 May 2022 15:48:50 +0800 (CST)
-Message-ID: <1352b9d7-5219-af09-948b-6462def39ea5@163.com>
-Date:   Fri, 13 May 2022 15:48:50 +0800
+        with ESMTP id S1377871AbiEMHt0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 May 2022 03:49:26 -0400
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0FBCF13B8C0
+        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 00:49:24 -0700 (PDT)
+Received: by mail-wr1-x42a.google.com with SMTP id w4so10233879wrg.12
+        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 00:49:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=T7SkTWtVcaUJFA1inMQxmGveqj+WUmVd9hfsAIt4rws=;
+        b=vXVP6SybAcGRcWHaJGwl1QW04uMH1U/m0KcFa33zCRPfo0VGsYZqM0Ah7f8NawjAnW
+         HBlAocyjLH8ZDlJNKr1PBhbI82/pvNmjdhTZrkFJTgxNl25KwHiu0wW2x6DmEk0D/6JN
+         k0cfQ9PEfmlbCYsn1U5M0lkyGhKhhg1j7c8Cu1ndo89yEDJFKIJdelcpMnORf+NhOlFr
+         hHV5z2lE3v5FSyBWeiL4tn7/F0G/bBrulnBjgA2NPoOnkM0Pge7r5nxlMg31RmhSXBfD
+         w/5h57v8YfkdI13YntDUaHUIiEPgtAaJLZHxgVIAVg/vq95hqLIQ+XCtFZGelYa5RWDX
+         6QMg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=T7SkTWtVcaUJFA1inMQxmGveqj+WUmVd9hfsAIt4rws=;
+        b=lT6RdXwHpCuKxI0O5wZqqm7gBjlvlK7oOe1frlLDXIGBsS2SVMTyiEkhpe63HodO/r
+         pv3AgAE1fq7TPk1XmgNHhl8wdYWFQRs04WiXkXYyezSiQgb8pUir1c6+sQN/IgLLV4Ha
+         Uo/LWVEQRahAXNys5xogAzkCJhWhx9EM6mbhnv6Jjud2yM16Ampq3L4N00daMB9n9oV1
+         OGUAjQ1RNVz4ipBLZEXMY2t2fR4CKB0AYislbss4KoFWD2iB74h76+YxnHT15RWS6bId
+         N1ffRyz7fcCmkrHWaqOTwqSYEoCH+nPZAtFn62XOEaHB9WumGuPyLY2f5buS2Ee+EFXQ
+         T8cA==
+X-Gm-Message-State: AOAM530c7RhTe/n44xWCcnNI89hz1Uuj9QybBY6F3vNMs2oHouPfJWvW
+        PHWx1swyBjsWCL1mLGjayuw46Q==
+X-Google-Smtp-Source: ABdhPJzEyrDYVt4SxO7Q7S2buSlfZjJ64PyX80Z/Ig4fSi0Sw/E1SgosR6/O2NnLKFwnj9lR2J/p1w==
+X-Received: by 2002:a05:6000:716:b0:20c:4cda:b38c with SMTP id bs22-20020a056000071600b0020c4cdab38cmr2813646wrb.226.1652428162609;
+        Fri, 13 May 2022 00:49:22 -0700 (PDT)
+Received: from [192.168.0.168] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id d3-20020a1c7303000000b003942a244ee6sm1601972wmb.43.2022.05.13.00.49.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 13 May 2022 00:49:21 -0700 (PDT)
+Message-ID: <04a95089-cd39-2628-f333-0da24e55a967@linaro.org>
+Date:   Fri, 13 May 2022 09:49:20 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.0
-Subject: Re: [PATCH v3 2/2] ARM: dts: sun8i-r40: Add "cpu-supply" node for
- sun8i-r40 based board
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH 1/2] dt-bindings: microchip-otpc: document Microchip OTPC
 Content-Language: en-US
-To:     Maxime Ripard <maxime@cerno.tech>
-Cc:     linux-sunxi@lists.linux.dev, Rob Herring <robh+dt@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
-References: <20220512071858.10805-1-qianfanguijin@163.com>
- <20220512071858.10805-2-qianfanguijin@163.com>
- <20220513073849.cu4jzykefat2sepg@houat>
-From:   qianfan <qianfanguijin@163.com>
-In-Reply-To: <20220513073849.cu4jzykefat2sepg@houat>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: EsCowABnVAViDX5iXlrTCA--.56204S2
-X-Coremail-Antispam: 1Uf129KBjvJXoWxJr1DZF13AF45KrykXr4Utwb_yoW8Cr4rp3
-        yxuF4DCrs7WF1rKry2grWUJry7AFyrWr4jqF15Gw1rJrn8XF9rtrn3KwnakrZ8Xr4fGw40
-        vrW8ur97Ww4DZa7anT9S1TB71UUUUUUqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-        9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07UGQ6XUUUUU=
-X-Originating-IP: [218.201.129.19]
-X-CM-SenderInfo: htld0w5dqj3xxmlqqiywtou0bp/xtbB2AIA7WBHKY57KgAAsm
+To:     Claudiu.Beznea@microchip.com, srinivas.kandagatla@linaro.org,
+        robh+dt@kernel.org, krzk+dt@kernel.org
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220510094457.4070764-1-claudiu.beznea@microchip.com>
+ <20220510094457.4070764-2-claudiu.beznea@microchip.com>
+ <75ce6291-77c7-c932-e8bb-a8bbae02431d@linaro.org>
+ <c840c598-0413-5f40-0807-e3c314531f0a@microchip.com>
+ <b5c586de-a3ae-0774-e0bf-e21852b65fa9@linaro.org>
+ <59b47f0b-6201-3814-e17f-1435ce5c2dad@microchip.com>
+ <6ce3c0b1-3f6a-24f6-bcf2-4d4125a97604@linaro.org>
+ <706eb7b4-07ce-ffd2-3366-5656ddba21d6@microchip.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <706eb7b4-07ce-ffd2-3366-5656ddba21d6@microchip.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -63,52 +81,69 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 12/05/2022 18:04, Claudiu.Beznea@microchip.com wrote:
+> On 12.05.2022 18:35, Krzysztof Kozlowski wrote:
+>> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
+>>
+>> On 12/05/2022 17:31, Claudiu.Beznea@microchip.com wrote:
+>>
+>>>>
+>>>> Macro is a nice idea if it can be stable. I understood that length of
+>>>> packets depends on hardware, so this part could be stable. But what
+>>>> about number of packets, so the OTP_PKT_SAMA7G5_TEMP_CALIB_LEN below?
+>>>
+>>> The OTP_PKT_SAMA7G5_TEMP_CALIB_LEN here is the length of thermal
+>>> calibration packet. This length is fixed and will not be changed.
+>>>
+>>> After these 2 packets (provided by Microchip) user may further flash any
+>>> number of packets and use them as they wish.
+>>>
+>>> Driver is in charge of scanning the NVMEM for the available packets and
+>>> prepare a list with their IDs and their starting offsets in NVMEM memory
+>>> such that when it receives a read request it will be able to decode the
+>>> packet offset based on packet identifier.
+>>>
+>>> In case different number of packets are available in NVMEM for different
+>>> kind of setups (boards) these could also be referenced in board specific DT
+>>> using OTP_PKT() macro and with proper length (which will depend on what
+>>> user flashed).
+>>>
+>>>> You wrote "Boot configuration packet may vary in length", so it could be
+>>>> changed by Microchip?
+>>>
+>>> Yes, between chip revisions its length could be changed.
+>>
+>> Chip revisions like different board compatibles thus different
+>> bindings/macro values?
+> 
+> Not necessarily. It may happen that only ROM code to be updated (1st stage
+> bootloader) end everything else on Linux side to be able to run as is. Or
+> to just fix some bugs in different IPs. Things that will not necessarily
+> need adding new compatibles for the new chip. And it may happen that new
+> chip revisions to be populated on previous board revisions.
+> 
+>> Chip revisions like different board compatibles thus different
+>> *macro* values?
+> 
+> If you're referring to the OTP_PKT_SAMA7G5_TEMP_CALIB_LEN macro, this is
+> established that will remain fixed b/w revisions. This is the length of the
+> 2nd packet in NVMEM (that is of interest for thermal management).
+> 
+> Only the length of the 1st packet may change. And addressing the NVMEM with
+> packet id based index should take care of temperature calibration NVMEM DT
+> binding to work all the time.
+> 
+>> If not, then maybe better skip the length out of
+>> bindings and just provide the first macro.
+> 
+> As far as I know the length is part of the way the NVMEM cells are
+> described in DT: it needs the offset in memory (for the data to be
+> retrieved) and its length.
+
+In DT yes, but now you put the length in the bindings. It means DTS must
+have exactly that value and cannot use anything more. It's the same as
+hard-coding unit addresses in the bindings.
 
 
-在 2022/5/13 15:38, Maxime Ripard 写道:
-> Hi,
->
-> On Thu, May 12, 2022 at 03:18:58PM +0800, qianfanguijin@163.com wrote:
->> From: qianfan Zhao <qianfanguijin@163.com>
->>
->> sun8i-r40 actived cpufreq feature now, let's add "cpu-supply" node on
->> board.
->>
->> Signed-off-by: qianfan Zhao <qianfanguijin@163.com>
->> ---
->>   arch/arm/boot/dts/sun8i-r40-bananapi-m2-ultra.dts | 4 ++++
->>   arch/arm/boot/dts/sun8i-r40-feta40i.dtsi          | 4 ++++
->>   arch/arm/boot/dts/sun8i-t3-cqa3t-bv3.dts          | 4 ++++
->>   arch/arm/boot/dts/sun8i-v40-bananapi-m2-berry.dts | 4 ++++
->>   4 files changed, 16 insertions(+)
->>
->> diff --git a/arch/arm/boot/dts/sun8i-r40-bananapi-m2-ultra.dts b/arch/arm/boot/dts/sun8i-r40-bananapi-m2-ultra.dts
->> index a6a1087a0c9b..4f30018ec4a2 100644
->> --- a/arch/arm/boot/dts/sun8i-r40-bananapi-m2-ultra.dts
->> +++ b/arch/arm/boot/dts/sun8i-r40-bananapi-m2-ultra.dts
->> @@ -113,6 +113,10 @@ &ahci {
->>   	status = "okay";
->>   };
->>   
->> +&cpu0 {
->> +	cpu-supply = <&reg_dcdc2>;
->> +};
->> +
-> This will break bisection on those boards. Indeed, you added the OPPs on
-> the first patch, and if you only apply that patch, the boards in the
-> second patch will be missing their CPU regulator. The kernel will then
-> ramp up the frequency to the highest OPP, but will not change the
-> voltage, resulting in a crash.
-This is a good point and I will merge those two patch.
->
-> There's a similar issue for all the boards that don't have a regulator
-> in the first place.
->
-> The way we worked around this for the other SoCs is to have a DTSI with
-> the OPPs with a frequency higher than what U-Boot boots with (1008MHz?),
-> and only include that DTSI on boards that have a CPU regulator hooked in.
-Is this really necessary? It seems like every board based on sun8i-r40
-have a cpu regulator.
->
-> Maxime
-
+Best regards,
+Krzysztof
