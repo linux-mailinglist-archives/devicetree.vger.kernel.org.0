@@ -2,73 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 36482525A0E
-	for <lists+devicetree@lfdr.de>; Fri, 13 May 2022 05:25:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7CC7F525A14
+	for <lists+devicetree@lfdr.de>; Fri, 13 May 2022 05:29:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1376728AbiEMDZG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 May 2022 23:25:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50160 "EHLO
+        id S232866AbiEMD3B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 May 2022 23:29:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34502 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1376671AbiEMDZF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 23:25:05 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50AFD28FE9E;
-        Thu, 12 May 2022 20:25:03 -0700 (PDT)
-X-UUID: e0b939beb29a47cf9303ec2e25af5571-20220513
+        with ESMTP id S1376680AbiEMD27 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 May 2022 23:28:59 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D05A20D54F;
+        Thu, 12 May 2022 20:28:58 -0700 (PDT)
+X-UUID: 3626f32028004edc8a0e213f8c69ddad-20220513
 X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.4,REQID:e194aacb-28e5-483b-aaf1-8934bbe63ff2,OB:0,LO
-        B:0,IP:0,URL:5,TC:0,Content:-20,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,AC
-        TION:release,TS:-15
-X-CID-META: VersionHash:faefae9,CLOUDID:ec5224a7-eab7-4b74-a74d-5359964535a9,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,File:nil,QS:0,BEC:nil
-X-UUID: e0b939beb29a47cf9303ec2e25af5571-20220513
-Received: from mtkmbs11n1.mediatek.inc [(172.21.101.185)] by mailgw02.mediatek.com
-        (envelope-from <yunfei.dong@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1995915734; Fri, 13 May 2022 11:24:56 +0800
-Received: from mtkmbs07n1.mediatek.inc (172.21.101.16) by
- mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
- Fri, 13 May 2022 11:24:56 +0800
+X-CID-O-INFO: VERSION:1.1.4,REQID:5e28f167-d693-4df4-b46a-ecfdd3617f71,OB:0,LO
+        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:100,FILE:0,RULE:Release_Ham,AC
+        TION:release,TS:100
+X-CID-INFO: VERSION:1.1.4,REQID:5e28f167-d693-4df4-b46a-ecfdd3617f71,OB:0,LOB:
+        0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:100,FILE:0,RULE:Spam_GS981B3D,AC
+        TION:quarantine,TS:100
+X-CID-META: VersionHash:faefae9,CLOUDID:11d50ef2-ab23-4aed-a67b-f96514452486,C
+        OID:1dd3cbf39b17,Recheck:0,SF:28|16|19|48,TC:nil,Content:0,EDM:-3,File:nil
+        ,QS:0,BEC:nil
+X-UUID: 3626f32028004edc8a0e213f8c69ddad-20220513
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
+        (envelope-from <johnson.wang@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 99416010; Fri, 13 May 2022 11:28:52 +0800
 Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Fri, 13 May 2022 11:24:55 +0800
-Received: from localhost.localdomain (10.17.3.154) by mtkcas11.mediatek.inc
+ mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Fri, 13 May 2022 11:28:51 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas11.mediatek.inc
  (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Fri, 13 May 2022 11:24:54 +0800
-From:   Yunfei Dong <yunfei.dong@mediatek.com>
-To:     Yunfei Dong <yunfei.dong@mediatek.com>,
-        Alexandre Courbot <acourbot@chromium.org>,
-        Nicolas Dufresne <nicolas@ndufresne.ca>,
-        "Hans Verkuil" <hverkuil-cisco@xs4all.nl>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Tiffany Lin <tiffany.lin@mediatek.com>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Tomasz Figa <tfiga@google.com>
-CC:     George Sun <george.sun@mediatek.com>,
-        Xiaoyong Lu <xiaoyong.lu@mediatek.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Fritz Koenig <frkoenig@chromium.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Irui Wang <irui.wang@mediatek.com>,
-        "Steve Cho" <stevecho@chromium.org>, <linux-media@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ Transport; Fri, 13 May 2022 11:28:50 +0800
+From:   Johnson Wang <johnson.wang@mediatek.com>
+To:     <cw00.choi@samsung.com>, <krzk+dt@kernel.org>,
+        <robh+dt@kernel.org>, <kyungmin.park@samsung.com>
+CC:     <djakov@kernel.org>, <khilman@kernel.org>,
+        <linux-pm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Subject: [RESEND, v4] media: mediatek: vcodec: Fix v4l2 compliance decoder cmd test fail
-Date:   Fri, 13 May 2022 11:24:53 +0800
-Message-ID: <20220513032453.4997-1-yunfei.dong@mediatek.com>
-X-Mailer: git-send-email 2.25.1
+        <linux-mediatek@lists.infradead.org>, <jia-wei.chang@mediatek.com>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        Johnson Wang <johnson.wang@mediatek.com>
+Subject: [RESEND v4 0/2] Introduce MediaTek CCI devfreq driver
+Date:   Fri, 13 May 2022 11:28:30 +0800
+Message-ID: <20220513032832.17645-1-johnson.wang@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
+Content-Type: text/plain
 X-MTK:  N
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
         SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
@@ -79,72 +63,59 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Will return -EINVAL using standard framework api when test stateless
-decoder with cmd VIDIOC_(TRY)DECODER_CMD. Disable them to adjust v4l2
-compliance test for user driver(GStreamer/Chrome) won't use decoder cmd.
+The Cache Coherent Interconnect (CCI) is the management of cache
+coherency by hardware. CCI DEVFREQ is DVFS driver for power saving by
+scaling clock frequency and supply voltage of CCI. CCI uses the same
+input clock source and power rail as LITTLE CPUs on Mediatek SoCs.
 
-Fixes: 8cdc3794b2e3 ("media: mtk-vcodec: vdec: support stateless API")
-Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
----
-resend v4:
-- add Reviewed-by tag for patch v4.
-changes compared with v3:
-- using v4l2_disable_ioctl to replace return -ENOTTY
-changes compared with v2:
-- add reviewed-by tag
-changes compared with v1:
-- add Fixes: tag
----
- .../media/platform/mediatek/vcodec/mtk_vcodec_dec.c | 13 +------------
- .../platform/mediatek/vcodec/mtk_vcodec_dec_drv.c   |  3 +++
- 2 files changed, 4 insertions(+), 12 deletions(-)
+This series depends on:
+Chanwoo's repo: kernel/git/chanwoo/linux.git
+branch: devfreq-testing
+[1]: PM / devfreq: Export devfreq_get_freq_range symbol within devfreq
+[2]: PM / devfreq: Add cpu based scaling support to passive governor
+[3]: PM / devfreq: passive: Reduce duplicate code when passive_devfreq case
+[4]: PM / devfreq: passive: Update frequency when start governor
 
-diff --git a/drivers/media/platform/mediatek/vcodec/mtk_vcodec_dec.c b/drivers/media/platform/mediatek/vcodec/mtk_vcodec_dec.c
-index 3859e4c651c6..52e5d36aa912 100644
---- a/drivers/media/platform/mediatek/vcodec/mtk_vcodec_dec.c
-+++ b/drivers/media/platform/mediatek/vcodec/mtk_vcodec_dec.c
-@@ -47,14 +47,7 @@ static struct mtk_q_data *mtk_vdec_get_q_data(struct mtk_vcodec_ctx *ctx,
- static int vidioc_try_decoder_cmd(struct file *file, void *priv,
- 				struct v4l2_decoder_cmd *cmd)
- {
--	struct mtk_vcodec_ctx *ctx = fh_to_ctx(priv);
--
--	/* Use M2M stateless helper if relevant */
--	if (ctx->dev->vdec_pdata->uses_stateless_api)
--		return v4l2_m2m_ioctl_stateless_try_decoder_cmd(file, priv,
--								cmd);
--	else
--		return v4l2_m2m_ioctl_try_decoder_cmd(file, priv, cmd);
-+	return v4l2_m2m_ioctl_try_decoder_cmd(file, priv, cmd);
- }
- 
- 
-@@ -69,10 +62,6 @@ static int vidioc_decoder_cmd(struct file *file, void *priv,
- 	if (ret)
- 		return ret;
- 
--	/* Use M2M stateless helper if relevant */
--	if (ctx->dev->vdec_pdata->uses_stateless_api)
--		return v4l2_m2m_ioctl_stateless_decoder_cmd(file, priv, cmd);
--
- 	mtk_v4l2_debug(1, "decoder cmd=%u", cmd->cmd);
- 	dst_vq = v4l2_m2m_get_vq(ctx->m2m_ctx,
- 				V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE);
-diff --git a/drivers/media/platform/mediatek/vcodec/mtk_vcodec_dec_drv.c b/drivers/media/platform/mediatek/vcodec/mtk_vcodec_dec_drv.c
-index b417a6ab2176..995e6e2fb1ab 100644
---- a/drivers/media/platform/mediatek/vcodec/mtk_vcodec_dec_drv.c
-+++ b/drivers/media/platform/mediatek/vcodec/mtk_vcodec_dec_drv.c
-@@ -395,6 +395,9 @@ static int mtk_vcodec_probe(struct platform_device *pdev)
- 	}
- 
- 	if (dev->vdec_pdata->uses_stateless_api) {
-+		v4l2_disable_ioctl(vfd_dec, VIDIOC_DECODER_CMD);
-+		v4l2_disable_ioctl(vfd_dec, VIDIOC_TRY_DECODER_CMD);
-+
- 		dev->mdev_dec.dev = &pdev->dev;
- 		strscpy(dev->mdev_dec.model, MTK_VCODEC_DEC_NAME,
- 			sizeof(dev->mdev_dec.model));
+Resend v4:
+- CC interconnect maintainer.
+- Change sign-off sequence in commit message.
+
+Changes in v4:
+- Add a maintainer in the binding document.
+- Modify clock description.
+- Add binding document into MAINTAINERS.
+- Replace format specifier %d with %ld.
+
+Changes in v3:
+- Move binding document to 'interconnect' and rename it.
+- Add COMPILE_TEST dependence symbol.
+- Remove need_voltage_tracking variable.
+- Move mtk_ccifreq_voltage_tracking() code into mtk_ccifreq_set_voltage().
+- Add an interation limit in the while() loop.
+- Replace 'cci_dev' with 'dev'
+- Replace old_* with pre_*
+- Remove of_match_ptr()
+- Use module_platform_driver()
+
+Changes in v2:
+- Take MT8183 as example in binding document.
+- Use dev_err() instead of pr_err().
+- Use 'goto' statement to handle error case.
+- Clean up driver code.
+
+Johnson Wang (2):
+  dt-bindings: interconnect: Add MediaTek CCI dt-bindings
+  PM / devfreq: mediatek: Introduce MediaTek CCI devfreq driver
+
+ .../bindings/interconnect/mediatek,cci.yaml   | 140 ++++++
+ MAINTAINERS                                   |   1 +
+ drivers/devfreq/Kconfig                       |  10 +
+ drivers/devfreq/Makefile                      |   1 +
+ drivers/devfreq/mtk-cci-devfreq.c             | 474 ++++++++++++++++++
+ 5 files changed, 626 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/interconnect/mediatek,cci.yaml
+ create mode 100644 drivers/devfreq/mtk-cci-devfreq.c
+
 -- 
 2.18.0
 
