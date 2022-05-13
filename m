@@ -2,66 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 05B5E526353
-	for <lists+devicetree@lfdr.de>; Fri, 13 May 2022 15:57:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0055052637B
+	for <lists+devicetree@lfdr.de>; Fri, 13 May 2022 16:12:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231650AbiEMN5h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 May 2022 09:57:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43540 "EHLO
+        id S233696AbiEMOMX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 May 2022 10:12:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38792 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230452AbiEMN5f (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 May 2022 09:57:35 -0400
-Received: from mail-pj1-x1032.google.com (mail-pj1-x1032.google.com [IPv6:2607:f8b0:4864:20::1032])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4BC86712EB
-        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 06:57:34 -0700 (PDT)
-Received: by mail-pj1-x1032.google.com with SMTP id iq2-20020a17090afb4200b001d93cf33ae9so10889258pjb.5
-        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 06:57:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=c38pckiAKbL4R5gHxVgybPN8tZ+xHGcvHTSt+rrxRXI=;
-        b=Aj0zmrOaKti+xYakhuf30LNS9d4gixVrjVffHak/1ybBgigezMf2WbGLhH4zREtA7i
-         UOCRkjtXh4tXDHwTNxDVAbZhvyrT1JU1yZ66a2XAAxW7TQIpnCm6LY8SRCeknr88LLPo
-         SUXgWuDxFtra4m7lNPXmTUuqyfV6H31zK0lHM=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=c38pckiAKbL4R5gHxVgybPN8tZ+xHGcvHTSt+rrxRXI=;
-        b=LpuIHjLP3KzkWLaAkZBpyk2Ydu9UaVMKkxv4kQNuxAoOA+6QMtfERAr+abjNBYUjgP
-         6XbsE1B9ni4kwS+tDG5MYueTxkBrQIAWk4LVfQS4YxANmSX2Y9tBz7GgN+zcELvZbxWn
-         nfZnuWA1aTD52DMTPdDAPMcvwrMSwWBmeqaeHuQgnkjJ/GUz1O4wEiUhOy04jLdtOQBZ
-         kK+DSm9NXqLPcqnJy3+SiP2o01mIiqjJcqgMFR0cEOyNj2yBeq+Tmwxin8owBZTTke/W
-         Zy7b7fw8//0iI2x8gtroxiGzJ1OsQq/s+hy4IydKc8y/qs98MNIsc0SLNZoAc77fhaJA
-         e50Q==
-X-Gm-Message-State: AOAM5312zaz2QPs07sNhnDv73utgjnHzX04rEJUyxyYLbTu32XNj6t2V
-        rzOiTkaDT1rLBI01+RSiPFasEjMyPtQRb8c/T6jC0g==
-X-Google-Smtp-Source: ABdhPJypfdJ6x5Kten/v6OEf0RQgmVULwcLl0muJOPJ+GbmUvv32LL9LYZnsjMVnVyL/VoEiVqjEVQ==
-X-Received: by 2002:a17:90a:a82:b0:1da:3763:5cf5 with SMTP id 2-20020a17090a0a8200b001da37635cf5mr5138007pjw.55.1652450253811;
-        Fri, 13 May 2022 06:57:33 -0700 (PDT)
-Received: from tictac2.mtv.corp.google.com ([2620:15c:202:201:1ee3:ea22:908:c2b5])
-        by smtp.gmail.com with ESMTPSA id p123-20020a625b81000000b0050dc76281d7sm1843921pfb.177.2022.05.13.06.57.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 May 2022 06:57:33 -0700 (PDT)
-From:   Douglas Anderson <dianders@chromium.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     quic_aravindh@quicinc.com, quic_khsieh@quicinc.com,
-        quic_sbillaka@quicinc.com, Matthias Kaehlcke <mka@chromium.org>,
-        Stephen Boyd <swboyd@chromium.org>, quic_abhinavk@quicinc.com,
-        Douglas Anderson <dianders@chromium.org>,
-        Andy Gross <agross@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: qcom: sc7280-herobrine: Enable DP
-Date:   Fri, 13 May 2022 06:57:14 -0700
-Message-Id: <20220513065704.1.I9b9b9d4d1a3e0350a89221892261881a1771ad15@changeid>
-X-Mailer: git-send-email 2.36.0.550.gb090851708-goog
+        with ESMTP id S233786AbiEMOMW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 May 2022 10:12:22 -0400
+Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0EF1711B407;
+        Fri, 13 May 2022 07:12:19 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by sin.source.kernel.org (Postfix) with ESMTPS id EC29ACE31D0;
+        Fri, 13 May 2022 14:12:17 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 34C3FC36AE2;
+        Fri, 13 May 2022 14:12:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1652451136;
+        bh=HH8tNT9tiA04dQ017qbO5zw1boylBuCKHFJ18ZzpEak=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=Eib47AkMoPF7BqMS44TXNr/Sb5I8nP9hWEW6zRqn4kgspquC20kYTnbleoo8k9y7T
+         +vnVjOmzZ8wqn3u3gEeurUvpAXXjeSip1CmmN6tUc17tazWrj5HYk+YGDHxkHgx6T1
+         oCC99JK/rLK22zA3ZxSGOpWKvKvYaZwww6KEg1nsSdZdaEhAIAro9RpTHrFb1ZeKLt
+         72wMfCtEykfYU7Yg8jrCOQENE6Bgj21L8wsgbR1MrqHD6Zj67qNOvZJHCzBAlR2H35
+         +btUXJqjS95dm/IgPPj6yT99QDPQpP5NoTneduoPqPyERVUbZMTy5GTP+Xmt9bVNG4
+         XEdQpVMQ8qbwg==
+Received: by mail-pl1-f175.google.com with SMTP id d17so8096565plg.0;
+        Fri, 13 May 2022 07:12:16 -0700 (PDT)
+X-Gm-Message-State: AOAM530VEaJnGtkzkRTuvxGQeBOvFbmRDMfg7990yOBfpYUlQR7rYqYo
+        wOk11ooH8l5YdUsEQREtisObhCRhv+bXqJL7NA==
+X-Google-Smtp-Source: ABdhPJzGHUonLHvG6hKoTi4AF+1mrFCq3b0a+Wh3ckhTTSIpB3yo+xQVszOl5Lgx7P2zMAIOmB1dmkCFkM2VM4GaRz0=
+X-Received: by 2002:a17:90a:fd83:b0:1de:d6fd:d552 with SMTP id
+ cx3-20020a17090afd8300b001ded6fdd552mr10599841pjb.32.1652451135585; Fri, 13
+ May 2022 07:12:15 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+References: <20220503155007.2339847-1-csharper2005@gmail.com> <20220512152725.244872-1-miquel.raynal@bootlin.com>
+In-Reply-To: <20220512152725.244872-1-miquel.raynal@bootlin.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Fri, 13 May 2022 09:12:03 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJdUm4p9qAq9dLeVTVC9PA2q2SP01kG2jyEb_f=Fo=bEQ@mail.gmail.com>
+Message-ID: <CAL_JsqJdUm4p9qAq9dLeVTVC9PA2q2SP01kG2jyEb_f=Fo=bEQ@mail.gmail.com>
+Subject: Re: [PATCH v3 2/3] dt-bindings: mtd: partitions: Extend
+ fixed-partitions binding
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     Mikhail Zhilkin <csharper2005@gmail.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+        MTD Maling List <linux-mtd@lists.infradead.org>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Karim <Karimdplay@gmail.com>, M <x1@disroot.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -70,34 +69,190 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This enables DisplayPort for herobrine boards.
+On Thu, May 12, 2022 at 10:27 AM Miquel Raynal
+<miquel.raynal@bootlin.com> wrote:
+>
+> On Tue, 2022-05-03 at 15:50:07 UTC, Mikhail Zhilkin wrote:
+> > Extend fixed-partitions binding for support of Sercomm partition parser
+> > (add "sercomm,sc-partitions" compatible).
+> >
+> > Signed-off-by: Mikhail Zhilkin <csharper2005@gmail.com>
+> > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>
+> Applied to https://git.kernel.org/pub/scm/linux/kernel/git/mtd/linux.git mtd/next, thanks.
 
-Signed-off-by: Douglas Anderson <dianders@chromium.org>
----
+Patch 1 is a dependency, please apply it too. Without it, we now get
+in linux-next:
 
- arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi | 9 +++++++++
- 1 file changed, 9 insertions(+)
+/builds/robherring/linux-dt/Documentation/devicetree/bindings/mtd/partitions/fixed-partitions.example.dtb:
+partition@0: 'sercomm,scpart-id' does not match any of the regexes:
+'^#.*', '^(at25|bm|devbus|dmacap|dsa|exynos|fsi[ab]|gpio-fan|gpio-key|gpio|gpmc|hdmi|i2c-gpio),.*',
+'^(keypad|m25p|max8952|max8997|max8998|mpmc),.*',
+'^(pinctrl-single|#pinctrl-single|PowerPC),.*',
+'^(pl022|pxa-mmc|rcar_sound|rotary-encoder|s5m8767|sdhci),.*',
+'^(simple-audio-card|st-plgpio|st-spics|ts),.*', '^100ask,.*',
+'^70mai,.*', '^8dev,.*', '^GEFanuc,.*', '^ORCL,.*', '^SUNW,.*',
+'^[a-zA-Z0-9#_][a-zA-Z0-9+\\-._@]{0,63}$',
+'^[a-zA-Z0-9+\\-._]*@[0-9a-zA-Z,]*$', '^abb,.*', '^abilis,.*',
+'^abracon,.*', '^abt,.*', '^acer,.*', '^acme,.*', '^actions,.*',
+'^active-semi,.*', '^ad,.*', '^adafruit,.*', '^adapteva,.*',
+'^adaptrum,.*', '^adh,.*', '^adi,.*', '^advantech,.*',
+'^aeroflexgaisler,.*', '^aesop,.*', '^airoha,.*', '^al,.*',
+'^alcatel,.*', '^allegro,.*', '^allo,.*', '^allwinner,.*',
+'^alphascale,.*', '^alps,.*', '^alt,.*', '^altr,.*', '^amarula,.*',
+'^amazon,.*', '^amcc,.*', '^amd,.*', '^amediatech,.*', '^amlogic,.*',
+'^ampere,.*', '^ampire,.*', '^ams,.*', '^amstaos,.*', '^analogix,.*',
+'^andestech,.*', '^anvo,.*', '^apm,.*', '^apple,.*', '^aptina,.*',
+'^arasan,.*', '^archermind,.*', '^arctic,.*', '^arcx,.*', '^aries,.*',
+'^arm,.*', '^armadeus,.*', '^arrow,.*', '^artesyn,.*',
+'^asahi-kasei,.*', '^asc,.*', '^asix,.*', '^aspeed,.*', '^asus,.*',
+'^atlas,.*', '^atmel,.*', '^auo,.*', '^auvidea,.*', '^avago,.*',
+'^avia,.*', '^avic,.*', '^avnet,.*', '^awinic,.*', '^axentia,.*',
+'^axis,.*', '^azoteq,.*', '^azw,.*', '^baikal,.*', '^bananapi,.*',
+'^beacon,.*', '^beagle,.*', '^bhf,.*', '^bitmain,.*', '^blutek,.*',
+'^boe,.*', '^bosch,.*', '^boundary,.*', '^brcm,.*', '^broadmobi,.*',
+'^bsh,.*', '^bticino,.*', '^buffalo,.*', '^bur,.*', '^calamp,.*',
+'^calaosystems,.*', '^calxeda,.*', '^canaan,.*', '^caninos,.*',
+'^capella,.*', '^cascoda,.*', '^catalyst,.*', '^cavium,.*',
+'^cdns,.*', '^cdtech,.*', '^cellwise,.*', '^ceva,.*',
+'^checkpoint,.*', '^chefree,.*', '^chipidea,.*', '^chipone,.*',
+'^chipspark,.*', '^chrontel,.*', '^chrp,.*', '^chunghwa,.*',
+'^chuwi,.*', '^ciaa,.*', '^cirrus,.*', '^cisco,.*',
+'^cloudengines,.*', '^cnm,.*', '^cnxt,.*', '^colorfly,.*',
+'^compulab,.*', '^congatec,.*', '^coreriver,.*', '^corpro,.*',
+'^cortina,.*', '^cosmic,.*', '^crane,.*', '^creative,.*',
+'^crystalfontz,.*', '^csky,.*', '^csq,.*', '^ctera,.*', '^ctu,.*',
+'^cubietech,.*', '^cui,.*', '^cypress,.*', '^cyx,.*', '^cznic,.*',
+'^dallas,.*', '^dataimage,.*', '^davicom,.*', '^dell,.*', '^delta,.*',
+'^denx,.*', '^devantech,.*', '^dfi,.*', '^dh,.*', '^difrnce,.*',
+'^digi,.*', '^digilent,.*', '^dioo,.*', '^dlc,.*', '^dlg,.*',
+'^dlink,.*', '^dmo,.*', '^domintech,.*', '^dongwoon,.*',
+'^dptechnics,.*', '^dragino,.*', '^ds,.*', '^dserve,.*',
+'^dynaimage,.*', '^ea,.*', '^ebang,.*', '^ebs-systart,.*', '^ebv,.*',
+'^eckelmann,.*', '^edimax,.*', '^edt,.*', '^eeti,.*',
+'^einfochips,.*', '^eink,.*', '^elan,.*', '^element14,.*',
+'^elgin,.*', '^elida,.*', '^elimo,.*', '^elpida,.*', '^embest,.*',
+'^emlid,.*', '^emmicro,.*', '^empire-electronix,.*', '^emtrion,.*',
+'^enclustra,.*', '^endless,.*', '^ene,.*', '^energymicro,.*',
+'^engicam,.*', '^engleder,.*', '^epcos,.*', '^epfl,.*', '^epson,.*',
+'^esp,.*', '^est,.*', '^ettus,.*', '^eukrea,.*', '^everest,.*',
+'^everspin,.*', '^evervision,.*', '^exar,.*', '^excito,.*',
+'^exegin,.*', '^ezchip,.*', '^facebook,.*', '^fairphone,.*',
+'^faraday,.*', '^fastrax,.*', '^fcs,.*', '^feixin,.*', '^feiyang,.*',
+'^fii,.*', '^firefly,.*', '^focaltech,.*', '^forlinx,.*', '^frida,.*',
+'^friendlyarm,.*', '^fsl,.*', '^fujitsu,.*', '^fxtec,.*',
+'^gardena,.*', '^gateworks,.*', '^gcw,.*', '^ge,.*', '^geekbuying,.*',
+'^gef,.*', '^gemei,.*', '^geniatech,.*', '^giantec,.*',
+'^giantplus,.*', '^globalscale,.*', '^globaltop,.*', '^gmt,.*',
+'^goodix,.*', '^google,.*', '^grinn,.*', '^grmn,.*', '^gumstix,.*',
+'^gw,.*', '^hannstar,.*', '^haochuangyi,.*', '^haoyu,.*',
+'^hardkernel,.*', '^hideep,.*', '^himax,.*', '^hirschmann,.*',
+'^hisi,.*', '^hisilicon,.*', '^hit,.*', '^hitex,.*', '^holt,.*',
+'^holtek,.*', '^honestar,.*', '^honeywell,.*', '^hoperun,.*',
+'^hp,.*', '^hpe,.*', '^hsg,.*', '^huawei,.*', '^hugsun,.*',
+'^hwacom,.*', '^hycon,.*', '^hydis,.*', '^hynix,.*', '^hyundai,.*',
+'^i2se,.*', '^ibm,.*', '^icplus,.*', '^idt,.*', '^ifi,.*',
+'^ilitek,.*', '^imagis,.*', '^img,.*', '^imi,.*', '^incircuit,.*',
+'^inet-tek,.*', '^infineon,.*', '^inforce,.*', '^ingenic,.*',
+'^injoinic,.*', '^innolux,.*', '^inside-secure,.*', '^insignal,.*',
+'^inspur,.*', '^intel,.*', '^intercontrol,.*', '^invensense,.*',
+'^inversepath,.*', '^iom,.*', '^isee,.*', '^isil,.*', '^issi,.*',
+'^ite,.*', '^itead,.*', '^itian,.*', '^ivo,.*', '^iwave,.*',
+'^jdi,.*', '^jedec,.*', '^jesurun,.*', '^jethome,.*', '^jianda,.*',
+'^joz,.*', '^kam,.*', '^karo,.*', '^keithkoep,.*', '^keymile,.*',
+'^khadas,.*', '^kiebackpeter,.*', '^kinetic,.*', '^kingdisplay,.*',
+'^kingnovel,.*', '^kionix,.*', '^kobo,.*', '^kobol,.*', '^koe,.*',
+'^kontron,.*', '^kosagi,.*', '^kvg,.*', '^kyo,.*', '^lacie,.*',
+'^laird,.*', '^lamobo,.*', '^lantiq,.*', '^lattice,.*', '^leadtek,.*',
+'^leez,.*', '^lego,.*', '^lemaker,.*', '^lenovo,.*', '^lg,.*',
+'^lgphilips,.*', '^libretech,.*', '^licheepi,.*', '^linaro,.*',
+'^linksprite,.*', '^linksys,.*', '^linutronix,.*', '^linux,.*',
+'^linx,.*', '^liteon,.*', '^litex,.*', '^lltc,.*', '^logicpd,.*',
+'^logictechno,.*', '^longcheer,.*', '^lontium,.*', '^loongson,.*',
+'^lsi,.*', '^lwn,.*', '^lxa,.*', '^m5stack,.*', '^macnica,.*',
+'^mantix,.*', '^mapleboard,.*', '^marvell,.*', '^maxbotix,.*',
+'^maxim,.*', '^mbvl,.*', '^mcube,.*', '^meas,.*', '^mecer,.*',
+'^mediatek,.*', '^megachips,.*', '^mele,.*', '^melexis,.*',
+'^melfas,.*', '^mellanox,.*', '^memsic,.*', '^menlo,.*', '^mentor,.*',
+'^meraki,.*', '^merrii,.*', '^micrel,.*', '^microchip,.*',
+'^microcrystal,.*', '^micron,.*', '^microsoft,.*', '^microsys,.*',
+'^mikroe,.*', '^mikrotik,.*', '^miniand,.*', '^minix,.*',
+'^miramems,.*', '^mitsubishi,.*', '^miyoo,.*', '^mntre,.*',
+'^modtronix,.*', '^mosaixtech,.*', '^motorola,.*', '^moxa,.*',
+'^mpl,.*', '^mps,.*', '^mqmaker,.*', '^mrvl,.*', '^mscc,.*',
+'^msi,.*', '^mstar,.*', '^mti,.*', '^multi-inno,.*',
+'^mundoreader,.*', '^murata,.*', '^mxic,.*', '^mxicy,.*', '^myir,.*',
+'^national,.*', '^nec,.*', '^neonode,.*', '^netgear,.*',
+'^netlogic,.*', '^netron-dy,.*', '^netronix,.*', '^netxeon,.*',
+'^neweast,.*', '^newhaven,.*', '^nexbox,.*', '^nextthing,.*',
+'^ni,.*', '^nintendo,.*', '^nlt,.*', '^nokia,.*', '^nordic,.*',
+'^novtech,.*', '^nutsboard,.*', '^nuvoton,.*', '^nvd,.*',
+'^nvidia,.*', '^nxp,.*', '^oceanic,.*', '^ocs,.*', '^oct,.*',
+'^okaya,.*', '^oki,.*', '^olimex,.*', '^olpc,.*', '^oneplus,.*',
+'^onion,.*', '^onnn,.*', '^ontat,.*', '^opalkelly,.*',
+'^opencores,.*', '^openembed,.*', '^openrisc,.*', '^option,.*',
+'^oranth,.*', '^orisetech,.*', '^ortustech,.*', '^osddisplays,.*',
+'^osmc,.*', '^ouya,.*', '^overkiz,.*', '^ovti,.*', '^oxsemi,.*',
+'^ozzmaker,.*', '^panasonic,.*', '^parade,.*', '^parallax,.*',
+'^pda,.*', '^pericom,.*', '^pervasive,.*', '^phicomm,.*',
+'^phytec,.*', '^picochip,.*', '^pine64,.*', '^pineriver,.*',
+'^pixcir,.*', '^plantower,.*', '^plathome,.*', '^plda,.*', '^plx,.*',
+'^ply,.*', '^pni,.*', '^pocketbook,.*', '^polaroid,.*',
+'^portwell,.*', '^poslab,.*', '^pov,.*', '^powertip,.*',
+'^powervr,.*', '^primux,.*', '^probox2,.*', '^prt,.*',
+'^pulsedlight,.*', '^purism,.*', '^qca,.*', '^qcom,.*', '^qemu,.*',
+'^qi,.*', '^qiaodian,.*', '^qihua,.*', '^qishenglong,.*', '^qnap,.*',
+'^radxa,.*', '^raidsonic,.*', '^ralink,.*', '^ramtron,.*',
+'^raspberrypi,.*', '^raydium,.*', '^rda,.*', '^realtek,.*',
+'^remarkable,.*', '^renesas,.*', '^rervision,.*', '^revotics,.*',
+'^rex,.*', '^richtek,.*', '^ricoh,.*', '^rikomagic,.*', '^riot,.*',
+'^riscv,.*', '^rockchip,.*', '^rocktech,.*', '^rohm,.*', '^ronbo,.*',
+'^roofull,.*', '^roseapplepi,.*', '^samsung,.*', '^samtec,.*',
+'^sancloud,.*', '^sandisk,.*', '^satoz,.*', '^sbs,.*',
+'^schindler,.*', '^seagate,.*', '^seeed,.*', '^seirobotics,.*',
+'^semtech,.*', '^senseair,.*', '^sensirion,.*', '^sensortek,.*',
+'^sff,.*', '^sgd,.*', '^sgmicro,.*', '^sgx,.*', '^sharp,.*',
+'^shimafuji,.*', '^shiratech,.*', '^si-en,.*', '^si-linux,.*',
+'^siemens,.*', '^sifive,.*', '^sigma,.*', '^sii,.*', '^sil,.*',
+'^silabs,.*', '^silan,.*', '^silead,.*', '^silergy,.*',
+'^silex-insight,.*', '^siliconfile,.*', '^siliconmitus,.*',
+'^silvaco,.*', '^simtek,.*', '^sinlinx,.*', '^sinovoip,.*',
+'^sinowealth,.*', '^sipeed,.*', '^sirf,.*', '^sis,.*', '^sitronix,.*',
+'^skov,.*', '^skyworks,.*', '^smartlabs,.*', '^smsc,.*', '^snps,.*',
+'^sochip,.*', '^socionext,.*', '^solidrun,.*', '^solomon,.*',
+'^sony,.*', '^spansion,.*', '^sparkfun,.*', '^spinalhdl,.*',
+'^sprd,.*', '^ssi,.*', '^sst,.*', '^sstar,.*', '^st,.*',
+'^st-ericsson,.*', '^starfive,.*', '^starry,.*', '^startek,.*',
+'^ste,.*', '^stericsson,.*', '^storlink,.*', '^storm,.*',
+'^storopack,.*', '^summit,.*', '^sunchip,.*', '^sunplus,.*',
+'^supermicro,.*', '^swir,.*', '^syna,.*', '^synology,.*',
+'^synopsys,.*', '^tbs,.*', '^tbs-biometrics,.*', '^tcg,.*', '^tcl,.*',
+'^tcs,.*', '^tdo,.*', '^team-source-display,.*', '^technexion,.*',
+'^technologic,.*', '^techstar,.*', '^teltonika,.*', '^tempo,.*',
+'^terasic,.*', '^tesla,.*', '^tfc,.*', '^thead,.*', '^thine,.*',
+'^thingyjp,.*', '^thundercomm,.*', '^ti,.*', '^tianma,.*', '^tlm,.*',
+'^tmt,.*', '^topeet,.*', '^topic,.*', '^toppoly,.*', '^topwise,.*',
+'^toradex,.*', '^toshiba,.*', '^toumaz,.*', '^tpk,.*', '^tplink,.*',
+'^tpo,.*', '^tq,.*', '^traverse,.*', '^tronfy,.*', '^tronsmart,.*',
+'^truly,.*', '^tsd,.*', '^tyan,.*', '^u-blox,.*', '^u-boot,.*',
+'^ubnt,.*', '^ucrobotics,.*', '^udoo,.*', '^ugoos,.*', '^uniwest,.*',
+'^upisemi,.*', '^urt,.*', '^usi,.*', '^utoo,.*', '^v3,.*',
+'^vaisala,.*', '^vamrs,.*', '^variscite,.*', '^vdl,.*',
+'^vertexcom,.*', '^via,.*', '^vicor,.*', '^videostrong,.*',
+'^virtio,.*', '^virtual,.*', '^vishay,.*', '^visionox,.*',
+'^vitesse,.*', '^vivante,.*', '^vivax,.*', '^vocore,.*', '^voipac,.*',
+'^vot,.*', '^vxt,.*', '^wanchanglong,.*', '^wand,.*', '^waveshare,.*',
+'^wd,.*', '^we,.*', '^welltech,.*', '^wetek,.*', '^wexler,.*',
+'^whwave,.*', '^wi2wi,.*', '^wiligear,.*', '^willsemi,.*',
+'^winbond,.*', '^wingtech,.*', '^winlink,.*', '^winstar,.*',
+'^wirelesstag,.*', '^wits,.*', '^wlf,.*', '^wm,.*', '^wobo,.*',
+'^x-powers,.*', '^xen,.*', '^xes,.*', '^xiaomi,.*', '^xillybus,.*',
+'^xingbangda,.*', '^xinpeng,.*', '^xiphera,.*', '^xlnx,.*',
+'^xnano,.*', '^xunlong,.*', '^xylon,.*', '^yadro,.*', '^yamaha,.*',
+'^yes-optoelectronics,.*', '^yic,.*', '^ylm,.*', '^yna,.*',
+'^yones-toptech,.*', '^ys,.*', '^ysoft,.*', '^zarlink,.*',
+'^zealz,.*', '^zeitec,.*', '^zidoo,.*', '^zii,.*', '^zinitix,.*',
+'^zkmagic,.*', '^zte,.*', '^zyxel,.*'
+  From schema: /builds/robherring/linux-dt/Documentation/devicetree/bindings/vendor-prefixes.yaml
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi b/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
-index 9cb1bc8ed6b5..709b7aa02101 100644
---- a/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
-@@ -429,6 +429,15 @@ &mdss {
- 	status = "okay";
- };
- 
-+&mdss_dp {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&dp_hot_plug_det>;
-+	data-lanes = <0 1>;
-+	vdda-1p2-supply = <&vdd_a_usbssdp_0_1p2>;
-+	vdda-0p9-supply = <&vdd_a_usbssdp_0_core>;
-+};
-+
- &mdss_mdp {
- 	status = "okay";
- };
--- 
-2.36.0.550.gb090851708-goog
-
+Rob
