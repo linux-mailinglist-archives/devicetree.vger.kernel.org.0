@@ -2,54 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E4998525E01
-	for <lists+devicetree@lfdr.de>; Fri, 13 May 2022 11:19:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A8558525E6A
+	for <lists+devicetree@lfdr.de>; Fri, 13 May 2022 11:19:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1378488AbiEMItO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 May 2022 04:49:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42338 "EHLO
+        id S1378581AbiEMIuP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 May 2022 04:50:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47380 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1378548AbiEMItM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 May 2022 04:49:12 -0400
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57334170F17
-        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 01:49:11 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id i27so14856311ejd.9
-        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 01:49:11 -0700 (PDT)
+        with ESMTP id S1378596AbiEMIuM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 May 2022 04:50:12 -0400
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3877F2B09D8
+        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 01:50:09 -0700 (PDT)
+Received: by mail-ed1-x52d.google.com with SMTP id c12so9118455edv.10
+        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 01:50:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=AOlngjQgTSn6GmtShBqgjXLfwUmwXKNpLbvwbvRVOyg=;
-        b=JPeKVgdXCRANIchrbjh6Wc29UyghmwZk5Kt/XFpS7q4q2iHfNs5Z1o/sIySdat8FJR
-         LkJdPpsr7QNhLp1aPKNvq9NL7Ndgpp+FIf0TLwgWrqyUnuFOM/sc0+c3m09jA42hu4up
-         UpkSvxcbyTcU7z0aKFEgW3NELq3+p1EM1zI9cKrtChdVmxlI/dRmvlcFN0Urg+Ho4S1L
-         eCaPRw3Ye3/QQXHH6wrEaD8U83r60cXGEhcJLvLOIu3Wui3xGBgyxsRrJhEI6oF1qqMA
-         a8zwkfwvYqML/Q7xeJSyvB3STf8s5ntDEGIQAy2HP1xufVIKKQmy+POoFX529ELFb3ZF
-         baqQ==
+        bh=8jAsS4nRtgEk6rcldXqtPG7tB5vr/ix0aGhyeOjtgAY=;
+        b=kWQCU6xHWr/DfLEn/JOSCnxo6nu28XgiljX5rE3ZtPqyaNN1q0OZ80RN3Uo8ygGYgf
+         4UH5U25ybipMbPkvotqsrNS3NM684meI8S3ST7kboogbtF/cewUUCMeGua6lY19paoUv
+         H5Ns2xn+b94WaX0iCzpFUrE5GU+5+Tug66wPJ8lX+5s04cRbwf4/z6pyeH83dH9I4TiO
+         ccGVxTcJJwSTHsSc0APJ/IblRWa49UUfbVSJPEbJITfNmRK3exq09lFLahRGtX+Nm/jD
+         jwJJhm3edGzhzMwklLJXtXNQAnq/R85i599SaI6JmZoT7UHC13xn8RlciL4y2bCrAn7l
+         YEgQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=AOlngjQgTSn6GmtShBqgjXLfwUmwXKNpLbvwbvRVOyg=;
-        b=jlLBfE9/e4f0swzjeRe3m31MpdNsZoUS5Hxiw8gvWCgZcgfr5gdfrc69LPHH+APF4n
-         /bqOwhdpkkGm9+yCpv2OQTEVLoqRhvIOTbUfi6DgJNujFoj5dAFVd6uniNhvkAw34NNW
-         W5jxPqCIc5yMv/LeNYhhwKcDwXzgn9rM2iMub782YTPolDP8hnLGe7wZbIyrJph9Fy7E
-         1sSRmG1glpcNSwKtnyS5tI2eMWPYoRRBo/4QXaqRkZoJn3DcOgGP3u+up1O1OK22eQku
-         joU5aj2JzEI0mTR6skpW/MgE/59LFD36i0gX+CTicO/bWi5sWHyilPp99Dy7KzQFNvSg
-         8M/A==
-X-Gm-Message-State: AOAM533jH3Iy+JwFRgg6KUJxS1Yr0/wTYEVz/KiOlw5mgZamkue+Iz5d
-        8mzbXvpZsdY75wSgyqdG/weDaA==
-X-Google-Smtp-Source: ABdhPJz82mSV+lPh1KuUi0eEVEITLy7/amJuryJTfQ76xBcpYNPpO+sqBQBrGkKHpCLGVye3So9OFg==
-X-Received: by 2002:a17:907:d0a:b0:6f4:98fb:f407 with SMTP id gn10-20020a1709070d0a00b006f498fbf407mr3208500ejc.219.1652431749926;
-        Fri, 13 May 2022 01:49:09 -0700 (PDT)
+        bh=8jAsS4nRtgEk6rcldXqtPG7tB5vr/ix0aGhyeOjtgAY=;
+        b=NhJuod8SUhY1bnh/zraH01Yar0fiq9Eop+Qg0HQaMtLyXCqfuuarv0m1MqMrhMtO8R
+         OjiBqFTfozAGaIcdkRVNEVHRokgBu2/3IKH0Tgcig6b+WZDP4YI97N+jwQ1s/Ri8bSir
+         icOOYzACGTDmOuUU/ipiz6tRYWpYOMaaxIZVoPgGRX0P3aEw3lxrXRe1hQgrZhPMR98z
+         jv0pRzFxx2Fpun05OCKvcE9bzoFF/y2C7QWV1SLUq7pUnY0v1MJrZz7ijVkuDBmHxa4b
+         Pae+pxIsurPpUozzA2xgBtHF3bs5NC2DQXO9mmpBU0QDmmEPYCZ7mFwOt6OjSnrGTYmI
+         qVWA==
+X-Gm-Message-State: AOAM533SmXVmdS7GVCYkh4821mA9+ixa64fkOiANbS4pdlutaSi2357r
+        JzxildT+o7auALKOYIH/QlMxLE99sZmkpCTh
+X-Google-Smtp-Source: ABdhPJzzTyiEdIj6zR27mqFC7p+P/WTJ5S/2her3sMB8727W4T5vdDimn/X7j1JFAnKBvjdwBm8TPg==
+X-Received: by 2002:a05:6402:1399:b0:410:9fa2:60d6 with SMTP id b25-20020a056402139900b004109fa260d6mr39588000edv.35.1652431807826;
+        Fri, 13 May 2022 01:50:07 -0700 (PDT)
 Received: from [192.168.0.169] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id ca26-20020aa7cd7a000000b0042617ba638csm673026edb.22.2022.05.13.01.49.08
+        by smtp.gmail.com with ESMTPSA id hv6-20020a17090760c600b006f3ef214e60sm522542ejc.198.2022.05.13.01.50.06
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 13 May 2022 01:49:09 -0700 (PDT)
-Message-ID: <75535c21-2890-b5bf-3c8e-62013a7c65b3@linaro.org>
-Date:   Fri, 13 May 2022 10:49:08 +0200
+        Fri, 13 May 2022 01:50:07 -0700 (PDT)
+Message-ID: <f18e1934-ba8d-fc4b-dca9-9ceb1a265c53@linaro.org>
+Date:   Fri, 13 May 2022 10:50:05 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.8.1
@@ -58,13 +58,11 @@ Content-Language: en-US
 To:     Eddie James <eajames@linux.ibm.com>, linux-iio@vger.kernel.org
 Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
         jic23@kernel.org, lars@metafoo.de, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, dbarksdale@uplogix.com,
-        miltonm@us.ibm.com
+        krzysztof.kozlowski+dt@linaro.org, dbarksdale@uplogix.com
 References: <20220511190835.51046-1-eajames@linux.ibm.com>
  <20220511190835.51046-2-eajames@linux.ibm.com>
- <7b4f2991-1dce-77d2-53c2-c4c358cbfe77@linux.ibm.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <7b4f2991-1dce-77d2-53c2-c4c358cbfe77@linux.ibm.com>
+In-Reply-To: <20220511190835.51046-2-eajames@linux.ibm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -77,16 +75,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/05/2022 00:08, Eddie James wrote:
-> 
-> On 5/11/22 14:08, Eddie James wrote:
->> Document the si7020 bindings with a new "silabs,skip-reset" property.
-> 
-> 
-> I missed the entry in trivial-devices.txt. I can push a v2 or a separate 
-> patch for that.
+On 11/05/2022 21:08, Eddie James wrote:
+> Document the si7020 bindings with a new "silabs,skip-reset" property.
+> +examples:
+> +  - |
+> +    si7021-a20@40 {
+> +        silabs,skip-reset;
+> +        compatible = "silabs,si7020";
+> +        reg = <0x40>;
+> +    };
 
-In this patch, please. Anyway you need v2.
+As Rob's bot pointed out - you need to test your bindings. See
+writing-schema.rst. Don't send bindings which do not work.
+
 
 Best regards,
 Krzysztof
