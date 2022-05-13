@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A5815262C8
-	for <lists+devicetree@lfdr.de>; Fri, 13 May 2022 15:17:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7EBB15262CB
+	for <lists+devicetree@lfdr.de>; Fri, 13 May 2022 15:17:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1380611AbiEMNRG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 May 2022 09:17:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54222 "EHLO
+        id S1380637AbiEMNRH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 May 2022 09:17:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54220 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1380617AbiEMNRC (ORCPT
+        with ESMTP id S1380618AbiEMNRC (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Fri, 13 May 2022 09:17:02 -0400
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD1ECBE34
-        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 06:17:00 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id bu29so14567609lfb.0
-        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 06:17:00 -0700 (PDT)
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A0434E0C4
+        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 06:17:01 -0700 (PDT)
+Received: by mail-lj1-x22a.google.com with SMTP id 16so10213236lju.13
+        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 06:17:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=E58QkXjEx+u+32umtNZ3ENARtSCSgYwXJPH8+EbS+fs=;
-        b=bkPveqzFmD2s9BnSoPmLiACMv5BFmFr6AGIxFRN1SK4kyBa19KjPTlkpZz19wwRRN7
-         XDTf1JDHmVValh5E+exOp38TPa3QdahmMZ6Dnls3iBll6UegR0PsNAI2ivWOfuj576Yv
-         LArT4tdMn/VQQjYraSYYU730Z6XWpiOX69gqoAqdkPsVF4u/QZ+an8cZX1xCHbUiFic0
-         oqrkwUJXa7bUiCfL6CEzsJHPTCk0dgBoC2VTkYIn8ej/4ZXuqVIGI2PnG9PZGv85OCbS
-         8rUNheSyqCiMRDO7Z2Mfm5i/6Ta/SBueh1SR1M+/+xbXAPtbMhO4Cx3WRg4xW6UQ3H+U
-         7PGg==
+        bh=a4LZO7nOvZAxEv3sjVx7hc+qBpA6kJoq69HVRvs8naE=;
+        b=Q3tU4O20eqpYECFShQzRMej9AYSYGMrvfC3i7qC7mqg8a7xMfootGBJmCFDp12GuWU
+         veLd1En3JR56f6GpG0DbzPrBzPFzxjauw4Q3CnrHZhezalLuBx5NCe4KjMCDhjsUCTk/
+         DNaM7BfoyNH0UPcQR31qwoUnWHHGuD+WtZZYgc3AQsiiAVzz5X0qeXTt/m3lptxGqxF4
+         xH/5ZMqeOkcwS5vwusF3iAt3kjj7i2UQxgB4i+8GlHwR9skGtssF8drRpnbZ9R13bMyN
+         DX87oC24QI4OcXaT0HIKwCSPbsIKYNofr+GGpDWtOpnibFOXoreHpRaIfYZwAq0T1BCE
+         QhaA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=E58QkXjEx+u+32umtNZ3ENARtSCSgYwXJPH8+EbS+fs=;
-        b=akK5FCLMflVH3Y77CqhMruI2do7G9tFtl51XfiSCBvkWN5TzkAWnat7W6sRAb+UpNs
-         4aUpZ05RDO1QtBbOp/bUTy4exzoHk93nJqntl8I9yaPnrwmTKOEB5u/PorvqwVQCrkq1
-         NWdxmecuxefu57khkutMsLF1t9gMrih81RBMqfxGtvoLZOEzMoW2kWPfyASOJE0BYONv
-         bKaFFtinWFmK0PoVwokNxp7nnnNN8Pyo/ChxhPt1KgBBWHFDqawVigWu76Z06TndR+MH
-         5vZhDmU9bDSxiXukunB6AEJKvix0za76yYq/oOwVKEL3vhUSy9MgNPQedm3qm6ZBY6yy
-         xdtQ==
-X-Gm-Message-State: AOAM5319nohwKP++WZxq+b4fJu7WV6KwOenfHy0Nw/kBjIxmW6BNlPiY
-        45BdRC6G6KGnJPEYjfxJUd1Efg==
-X-Google-Smtp-Source: ABdhPJybKQyqTenoquMxfGU84HmmJCqlI7TONfwTGeRoUvz0T0U6Z9WrRHma4nvwQucy0sW+BRjRYA==
-X-Received: by 2002:ac2:44a7:0:b0:472:19b6:1f08 with SMTP id c7-20020ac244a7000000b0047219b61f08mr3440408lfm.266.1652447818830;
-        Fri, 13 May 2022 06:16:58 -0700 (PDT)
+        bh=a4LZO7nOvZAxEv3sjVx7hc+qBpA6kJoq69HVRvs8naE=;
+        b=v7pLT65bNkCbsNF6Ksjc0CHFyK/3x3Oo8ZKrN9qG+kwl3YGxHHs9D4Aji8kgBdriyQ
+         jkEwGTQFSmsEO2yuhHUXirJSFw0pFED9mhgKq4y6qaj71V0Qzq68i4qHPC7s96+u5avx
+         0b1BjejOsSO9e0r7sO6/eLi+7y6GGVkNXUV32dHJUmUGoqyskQtWdztDvvoNnnp9V7Vb
+         J7NLf0iYkyeQnUdx+7BCoch3dpgcMkcuB+TZX7w1BBZRBpTlDItY4OM+8knEcMhRW8aK
+         IF85XZmo/HLOV1ZSuEf/ExwBLFVjD9kFHWpzHmKSuOIHuPIHcmdJEpPel8GayaqvS2h4
+         yTOA==
+X-Gm-Message-State: AOAM530F/6+nmLDJZRxY7XhHC2sQiIBOjAPLiJHgDV5bSI8pFJB2SWzx
+        QbPNIgIfE7UblfIBzsJRp690KQ==
+X-Google-Smtp-Source: ABdhPJzYnQAzCQRLkMtOH2IC1csq94BNYAY08L58FIuVCGiSXO1Fd0F+8Lp41F9BrJyyihYk4F7uxg==
+X-Received: by 2002:a2e:bc05:0:b0:24b:212d:7521 with SMTP id b5-20020a2ebc05000000b0024b212d7521mr2990946ljf.243.1652447819951;
+        Fri, 13 May 2022 06:16:59 -0700 (PDT)
 Received: from eriador.lan ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id u22-20020a2ea176000000b0024f3d1dae8fsm436991ljl.23.2022.05.13.06.16.57
+        by smtp.gmail.com with ESMTPSA id u22-20020a2ea176000000b0024f3d1dae8fsm436991ljl.23.2022.05.13.06.16.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 May 2022 06:16:58 -0700 (PDT)
+        Fri, 13 May 2022 06:16:59 -0700 (PDT)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
@@ -60,10 +60,11 @@ To:     Andy Gross <agross@kernel.org>,
         Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
         Johan Hovold <johan@kernel.org>
 Cc:     Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH v9 02/10] PCI: dwc: Propagate error from dma_mapping_error()
-Date:   Fri, 13 May 2022 16:16:47 +0300
-Message-Id: <20220513131655.2927616-3-dmitry.baryshkov@linaro.org>
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        Rob Herring <robh@kernel.org>
+Subject: [PATCH v9 03/10] PCI: dwc: Correct msi_irq condition in dw_pcie_free_msi()
+Date:   Fri, 13 May 2022 16:16:48 +0300
+Message-Id: <20220513131655.2927616-4-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20220513131655.2927616-1-dmitry.baryshkov@linaro.org>
 References: <20220513131655.2927616-1-dmitry.baryshkov@linaro.org>
@@ -79,32 +80,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-If dma mapping fails, dma_mapping_error() will return an error.
-Propagate it to the dw_pcie_host_init() return value rather than
-incorrectly returning 0 in this case.
+The subdrivers pass -ESOMETHING if they do not want the core to touch
+MSI IRQ. dw_pcie_host_init() also checks if (msi_irq > 0) rather than
+just if (msi_irq). So let's make dw_pcie_free_msi() also check that
+msi_irq is greater than zero.
 
-Fixes: 07940c369a6b ("PCI: dwc: Fix MSI page leakage in suspend/resume")
+Reviewed-by: Rob Herring <robh@kernel.org>
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- drivers/pci/controller/dwc/pcie-designware-host.c | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
+ drivers/pci/controller/dwc/pcie-designware-host.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/drivers/pci/controller/dwc/pcie-designware-host.c b/drivers/pci/controller/dwc/pcie-designware-host.c
-index 2fa86f32d964..a9a31e9e7b6e 100644
+index a9a31e9e7b6e..1874a09fb8fb 100644
 --- a/drivers/pci/controller/dwc/pcie-designware-host.c
 +++ b/drivers/pci/controller/dwc/pcie-designware-host.c
-@@ -396,8 +396,9 @@ int dw_pcie_host_init(struct pcie_port *pp)
- 						      sizeof(pp->msi_msg),
- 						      DMA_FROM_DEVICE,
- 						      DMA_ATTR_SKIP_CPU_SYNC);
--			if (dma_mapping_error(pci->dev, pp->msi_data)) {
--				dev_err(pci->dev, "Failed to map MSI data\n");
-+			ret = dma_mapping_error(pci->dev, pp->msi_data);
-+			if (ret) {
-+				dev_err(pci->dev, "Failed to map MSI data: %d\n", ret);
- 				pp->msi_data = 0;
- 				goto err_free_msi;
- 			}
+@@ -257,7 +257,7 @@ int dw_pcie_allocate_domains(struct pcie_port *pp)
+ 
+ static void dw_pcie_free_msi(struct pcie_port *pp)
+ {
+-	if (pp->msi_irq)
++	if (pp->msi_irq > 0)
+ 		irq_set_chained_handler_and_data(pp->msi_irq, NULL, NULL);
+ 
+ 	irq_domain_remove(pp->msi_domain);
 -- 
 2.35.1
 
