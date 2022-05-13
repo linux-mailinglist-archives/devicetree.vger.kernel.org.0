@@ -2,74 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CFF9C526BB6
-	for <lists+devicetree@lfdr.de>; Fri, 13 May 2022 22:40:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D934B526BBC
+	for <lists+devicetree@lfdr.de>; Fri, 13 May 2022 22:44:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1384508AbiEMUkE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 May 2022 16:40:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59010 "EHLO
+        id S244459AbiEMUo4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 May 2022 16:44:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39762 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1384397AbiEMUj7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 May 2022 16:39:59 -0400
-Received: from mail-yb1-xb32.google.com (mail-yb1-xb32.google.com [IPv6:2607:f8b0:4864:20::b32])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A365C1BA8F2
-        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 13:39:57 -0700 (PDT)
-Received: by mail-yb1-xb32.google.com with SMTP id i38so17169057ybj.13
-        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 13:39:57 -0700 (PDT)
+        with ESMTP id S241188AbiEMUoy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 May 2022 16:44:54 -0400
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 773FD245C5C
+        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 13:44:53 -0700 (PDT)
+Received: by mail-ej1-x62c.google.com with SMTP id ks9so18400512ejb.2
+        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 13:44:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=chromium.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=xjgsJyomaG9QQtE3jbFFKe/5rvj6syuow/ZH8n5yvJ4=;
-        b=SQoFqGZkR8OJQ0Qk63dN6u8KZ6fGMmX6HLbVWIW46XqaVncbFbTDVP9cdiNDF8Rx/D
-         WHT7hM6yG5Ja3/APJFYAliXvVtbW5HdfL+mBQgLhAYE2KGom/m9srR1otUd/jjymzi7N
-         enIhThFTnZLdAgcq2IbD5PxYIagJ5EtxK0/v0a5Y/Zw05uI9+cSDpSCoRPue6ht09eni
-         yptXjDz3CYCwtP34zBKm5VInN3wkF0uonNI+DuaMzjSTHJSvuJaBWZh/aG+fWtNMlJh9
-         doNK7QZ2aOhX3wYSA4XJdgITh3XvxexMRA+Q3rrmOLo10t0QbM42+rpxw87Y/V7qY6Ht
-         BdQQ==
+        bh=55dffKzUURo3SfiqA/BEE8o52UNGk7nPiNJj9q1EvHo=;
+        b=CkwOTBQa/6gpAvG7tg13PNADiJwjora+sLhHNmoDE5nuiBQ9yLYCkJyKH570Geq6zw
+         4ayQB+4KtUdQOc7XprcGjHYoxqC2GIaCbnwloQ/SAKoCUo5gIvwmb+FljxCzfaZ1do3M
+         fN40nTvQPGJixSvk/XOSsiVBi6lhuyEMXsIkE=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=xjgsJyomaG9QQtE3jbFFKe/5rvj6syuow/ZH8n5yvJ4=;
-        b=FmEeAOZrYZgMGeK77g9wIU0ravuZbe6SFflL2zkIm1DmL0jXkKHOxWP+UTfByH9Qry
-         19idNI7qQ+Eb+xdwNRQfaBhqMIKHa5qwILZ+o9cKfRoZJ2x9WizjbFsmKeHlqhdX/kYU
-         QAHYSejawd5R9YIa6cJZ/WvieQJNYxE0umq/Vli46U1s8i/bm1EfxnimApVIbBNVwwco
-         S30PuqhQmciV4eIF4R8OKMmrT2+CP3Z1ugnMIF1wUO4ZeZXQ8WhQC7X0/sMw8vVh7Tjf
-         Mu6lKlK1O01oeV6lEMUIkqLA7JuoClIba/wvW8HkhXYhQJJWY72V9VLs6wCBZINK9yfZ
-         r0DQ==
-X-Gm-Message-State: AOAM530YB0370uJtw6Of3Uh5bItNU7MUQ5Q7WLqPIGkXfvysE9L7dR7l
-        RnBIBH6NRp354i3Im48gVfC2MpuciifxCO86BiK4IQ==
-X-Google-Smtp-Source: ABdhPJxqWNc/BcbrWALPfb9mCeCOCpLqwW04ceOHeKLE9KROovikbSFRNij1NE2lfz4+r3R3/cUkmXIQUrDYhhomyZ8=
-X-Received: by 2002:a25:1f85:0:b0:64b:a5fc:e881 with SMTP id
- f127-20020a251f85000000b0064ba5fce881mr3813638ybf.514.1652474396907; Fri, 13
- May 2022 13:39:56 -0700 (PDT)
+        bh=55dffKzUURo3SfiqA/BEE8o52UNGk7nPiNJj9q1EvHo=;
+        b=8N0Pi+g0df1irwUiIqG4UIHefWsDVSnhtQtTnpjLEZXTMRKfWxgv+dq0JubBYE1JKh
+         extNVLWqASzZE/BB9L5S8EWwI4ZH3XSRgh+zsmJxOa22GklBc0sNElLUnXC0h5Ad0ZFE
+         Vx221uuOBMflR/hn6Kc+rkyIFr7nzlHco9S2/IFkEdw1V+f6quXra5RypAq9pqTXG7cl
+         wQtP246ksufSOHfEwWzHRlh00RIlgK75C1VVQh3Yd1w73Cknnc6dJLvqJZF3eX+jIsIP
+         2u+D69JRrGRu4mWatKo1GUpC8sHt4S+c6BD/xbZydNPIfXtJb4IKXho+5JQyB8m21ofq
+         2osQ==
+X-Gm-Message-State: AOAM5313C1CqPdRDd7U+vZfhpWabNEwK5RiX+AtNpKIfH494bWJ0Dt9b
+        LaCJodinUU72u9wCS6XqV1stxRpvmsOl3impX+Q=
+X-Google-Smtp-Source: ABdhPJxQn71cuOHMtx8JodoMM+rPiA+mAQFoiwk94PjkuiOIkcwrL4obv2eoMxCOUKIWnarr73h0xA==
+X-Received: by 2002:a17:907:728c:b0:6f4:57e5:9ac6 with SMTP id dt12-20020a170907728c00b006f457e59ac6mr5707209ejc.22.1652474691758;
+        Fri, 13 May 2022 13:44:51 -0700 (PDT)
+Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com. [209.85.221.45])
+        by smtp.gmail.com with ESMTPSA id eb22-20020a170907281600b006f3ef214e51sm1085140ejc.183.2022.05.13.13.44.50
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 13 May 2022 13:44:51 -0700 (PDT)
+Received: by mail-wr1-f45.google.com with SMTP id i5so12811724wrc.13
+        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 13:44:50 -0700 (PDT)
+X-Received: by 2002:a05:6000:2c1:b0:20c:5e37:3ed1 with SMTP id
+ o1-20020a05600002c100b0020c5e373ed1mr5333219wry.342.1652474690235; Fri, 13
+ May 2022 13:44:50 -0700 (PDT)
 MIME-Version: 1.0
-References: <cover.1652245767.git.jo@jsfamily.in> <BY5PR02MB70098FF9BDEDE264B78CFCE0D9C89@BY5PR02MB7009.namprd02.prod.outlook.com>
-In-Reply-To: <BY5PR02MB70098FF9BDEDE264B78CFCE0D9C89@BY5PR02MB7009.namprd02.prod.outlook.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Fri, 13 May 2022 22:39:45 +0200
-Message-ID: <CACRpkdbvv6FcdatAPdTq4fmzgXyr-SjYEwuc_sT+152DtqhiUw@mail.gmail.com>
-Subject: Re: [PATCH v2 3/3] drm/panel: introduce ebbg,ft8719 panel
-To:     Joel Selvaraj <jo@jsfamily.in>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
+References: <20220513095722.v2.1.I71e42c6174f1cec17da3024c9f73ba373263b9b6@changeid>
+ <20220513095722.v2.4.Ie8713bc0377672ed8dd71189e66fc0b77226fb85@changeid> <Yn7BbNeVXV1aGCsi@google.com>
+In-Reply-To: <Yn7BbNeVXV1aGCsi@google.com>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Fri, 13 May 2022 13:44:38 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=VpdfrkKJg8bgtTEACxH5VP+rXG0MTXPARi3S1htuqbSg@mail.gmail.com>
+Message-ID: <CAD=FV=VpdfrkKJg8bgtTEACxH5VP+rXG0MTXPARi3S1htuqbSg@mail.gmail.com>
+Subject: Re: [PATCH v2 4/4] dt-bindings: arm: qcom: Add more sc7180 Chromebook
+ board bindings
+To:     Matthias Kaehlcke <mka@chromium.org>
+Cc:     Rob Herring <robh@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rajendra Nayak <quic_rjendra@quicinc.com>,
+        Alexandru M Stan <amstan@chromium.org>,
+        Julius Werner <jwerner@chromium.org>,
+        "Joseph S . Barrera III" <joebar@chromium.org>,
+        Andy Gross <agross@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Stanislav Jakubek <stano.jakubek@gmail.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Corentin Labbe <clabbe@baylibre.com>,
-        Oleksij Rempel <linux@rempel-privat.de>,
-        Hao Fang <fanghao11@huawei.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
+        Stephen Boyd <sboyd@codeaurora.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,28 +88,23 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 11, 2022 at 7:28 AM Joel Selvaraj <jo@jsfamily.in> wrote:
+Hi,
 
-> Add DRM panel driver for EBBG FT8719 6.18" 2246x1080 DSI video mode
-> panel, which can be found on some Xiaomi Poco F1 phones. The panel's
-> backlight is managed through QCOM WLED driver.
+On Fri, May 13, 2022 at 1:37 PM Matthias Kaehlcke <mka@chromium.org> wrote:
 >
-> Signed-off-by: Joel Selvaraj <jo@jsfamily.in>
+> On Fri, May 13, 2022 at 09:59:20AM -0700, Douglas Anderson wrote:
+> > This adds board bindings for boards that are downstream but not quite
+> > upstream yet.
+> >
+> > Signed-off-by: Douglas Anderson <dianders@chromium.org>
+>
+> I didn't follow the discussion about the odd sku ids (-sku1537,
+> -sku1536, -sku1024, ...), but they match what is in the
+> downstream tree, so it seems alright :)
 
-I see my review comments on v1 arrived after v2.
+It makes more sense in hex. hex(1536) = 0x600. Basically on these
+boards there are two sets of GPIO strappings, the normal SKU
+strappings and the panel strappings. Depthcharge combines them. You
+end up with an ugly decimal number, but it's not the end of the world.
 
-Nevertheless, please address my review comments on v1.
-
-> +struct ebbg_ft8719 {
-> +       struct drm_panel panel;
-> +       struct mipi_dsi_device *dsi;
-> +
-> +       struct regulator_bulk_data supplies[ARRAY_SIZE(regulator_names)];
-> +
-> +       struct gpio_desc *reset_gpio;
-> +       bool prepared;
-
-For example that means to drop this prepared member.
-
-Yours,
-Linus Walleij
+-Doug
