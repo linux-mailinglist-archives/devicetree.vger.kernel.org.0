@@ -2,71 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B7009525E67
-	for <lists+devicetree@lfdr.de>; Fri, 13 May 2022 11:19:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CCE20525E2B
+	for <lists+devicetree@lfdr.de>; Fri, 13 May 2022 11:19:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1378366AbiEMIkI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 May 2022 04:40:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36194 "EHLO
+        id S230232AbiEMImE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 May 2022 04:42:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41382 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1378365AbiEMIkH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 May 2022 04:40:07 -0400
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58105268223
-        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 01:40:06 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id i19so14794857eja.11
-        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 01:40:06 -0700 (PDT)
+        with ESMTP id S231163AbiEMImB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 May 2022 04:42:01 -0400
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF63D5D665
+        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 01:41:59 -0700 (PDT)
+Received: by mail-ej1-x62a.google.com with SMTP id kq17so14869445ejb.4
+        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 01:41:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=p/Zao6rc7Ug/D0K5Bk7hpf3ji+A1xvbtLiVbyeRffeE=;
-        b=KxbmUHMMzCKtIHI9JgJ7xt2hRE2AzDnbDN51JiOKTGaS/z8k/0nwD5Neiil3w10ZUI
-         /oaoFX9cia/FZd3oJ01o70/jEuscy5m+kK3vtWsmCmj0r+BoXTjxoHqo9ukRuCJW287q
-         wwML0PITRXXMW9qwtDxlkmcFnHdqDKD9egoDUGvH3I1twIPotFN/2wHDr5iatcfvmiJT
-         Fx5AFgbejxzG1Gtv7Jd6bPEUzUHDMA2NizEhCvAXAxwjQMxB2Wsc9ynga5LaIxN8uult
-         yYkwz9iKPSn9bYp+TWPOTkik36asJYThIhYPYr2e2TikeMJr9A9hl9S0d2YXJ9PUdVOc
-         ytpA==
+         :references:from:in-reply-to:content-transfer-encoding;
+        bh=tUVDTqNL400xGsiM6SBVChaju3wq0r07sdLNoGIileY=;
+        b=WFAHY9UNI7E1vBd3x6Z86jcf1HzjVtd/XYYc+xSt/Sb5xx3OzivKjIJUg9EkJzKLOP
+         mjLmCid4bAxwpVtuI11sfDYSQjv+oxmfFHbff1xzECA0qYnQucWk7V+DWXMUWAF5QC7h
+         B3voEnmjFRtogRduOA0G+ko5e8JqEavsidaaNq4R9Cc+y+dLdErpQLTPu1EMmPrKmVt+
+         FjCShUSptK1iDckNe9kXmGj4tU8MaAXPDWAqHJHoD/VYk/GCG5qMRdh0g5BRR+77fi1S
+         OMyTgShwMqhAJ9+LadVxtw/MMbGuP66SDSGXvrUZW7BoEQa/0Vq43azzntqrySSwHP27
+         lKrQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
+         :content-language:to:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=p/Zao6rc7Ug/D0K5Bk7hpf3ji+A1xvbtLiVbyeRffeE=;
-        b=vOdTwSpeezpk2iKa4KB1LdiN/lEN/Swd04oI5zk8Z84ujTlO8CzsjS2lNCM26Ii4Qi
-         dzKOY+QsTtJ0G+FmF9AKwDD5ZKZIsl5gCq66lciy4tPwCe8P2MJrk+urJxKE+gKykw3S
-         Fc625k/+0vQseQWGn7j5ufsq0aT07BsHpeIGYZoMEsUk7kBXarlCMPTWiuFm9MG9xVyN
-         eaUwXoxbFd3zNKtsn+dCcfADPJtn5+iVll2t0ukcuRg7rU1krpaYD+SSTptpIvTmD1Ue
-         JXdVEqxm3VfvvY0HRRmulvW3t0Bn2l2jM1oWhzNvL7h1S8AToifGDuzML3WIDUYfpLzg
-         M1Yw==
-X-Gm-Message-State: AOAM532eO04ZcfFgdeAznVevJnDgqh1rk7hOajI9P+wUhQRJnSazc9YD
-        IEdZm5LawNLJXClmpA4r6p2TAA==
-X-Google-Smtp-Source: ABdhPJzMeQB9inIJNFaQxmFpNwKNj8u+DcKIX4UYgxC//r5KM1m9TKDb9OcOkgEUQu62L6z+7qtAbg==
-X-Received: by 2002:a17:907:9482:b0:6f5:171d:f7f5 with SMTP id dm2-20020a170907948200b006f5171df7f5mr3309800ejc.68.1652431204937;
-        Fri, 13 May 2022 01:40:04 -0700 (PDT)
+        bh=tUVDTqNL400xGsiM6SBVChaju3wq0r07sdLNoGIileY=;
+        b=zEcgahbtJQgKFuMAeB6f9WmwqcN++dd6L8/5eDnqTGKDxur9EUeyiF3egAKMGYdZkq
+         Ix4DtMp4o9YRJWtiprl8bCwxlE4jYrceAKLRGKCCABlFojUggiK8fqnc+urgo/DF360k
+         FkjJ+y8oCMS9vsMaEAsnPjJatLLFWnrA1Ru0EOSAf4CnUPDkR+HpAYedsOwe6J/MVdai
+         Nm+3F0UqQ3Ts+1jSF1SBRTQ3KyW429cLnRqlKxjaUae+e02yAFC36mma1FlZ4voLi6wE
+         4XInAzoDj5bqGlzBH8IOEOYdCWvizu6/i3tkbKRxQbUj6frn7c8lXtEfLh91zPyUcQ+f
+         A0YQ==
+X-Gm-Message-State: AOAM533nnaoLbHcKZk//LXcUmsbbGMV9hWgcZM17ah9N0wq4TPZ/6UnR
+        CWMYFP5X49xjMqNd289q3bgYLA==
+X-Google-Smtp-Source: ABdhPJx+W4ZMdHItFus3RMWPsHPgwrKIJfpsU05rAl3XnL+R7BBhSF/WDxYSGR1is6uuMLW6JooO2A==
+X-Received: by 2002:a17:906:3087:b0:6f4:2901:608a with SMTP id 7-20020a170906308700b006f42901608amr3331152ejv.646.1652431318425;
+        Fri, 13 May 2022 01:41:58 -0700 (PDT)
 Received: from [192.168.0.169] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id z16-20020aa7d410000000b0042617ba63d1sm657973edq.91.2022.05.13.01.40.03
+        by smtp.gmail.com with ESMTPSA id hf27-20020a1709072c5b00b006f3ef214e2asm536046ejc.144.2022.05.13.01.41.57
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 13 May 2022 01:40:04 -0700 (PDT)
-Message-ID: <059ce16a-0e0e-a6c6-8e19-0fbcdf55e989@linaro.org>
-Date:   Fri, 13 May 2022 10:40:03 +0200
+        Fri, 13 May 2022 01:41:57 -0700 (PDT)
+Message-ID: <8895be18-dde8-e2eb-1738-faae8f368db6@linaro.org>
+Date:   Fri, 13 May 2022 10:41:56 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.8.1
-Subject: Re: [PATCH v3 2/2] dt-bindings: gpio: gpio-mvebu: document offset and
- marvell,pwm-offset
+Subject: Re: [PATCH v3 02/11] dt-bindings: marvell: convert Armada 37xx
+ compatibles to YAML
 Content-Language: en-US
-To:     Chris Packham <chris.packham@alliedtelesis.co.nz>,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linus.walleij@linaro.org, brgl@bgdev.pl, thierry.reding@gmail.com,
-        u.kleine-koenig@pengutronix.de, lee.jones@linaro.org,
-        andrew@lunn.ch
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org
-References: <20220512094125.3748197-1-chris.packham@alliedtelesis.co.nz>
- <20220512094125.3748197-2-chris.packham@alliedtelesis.co.nz>
+To:     Robert Marko <robert.marko@sartura.hr>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, andrew@lunn.ch,
+        gregory.clement@bootlin.com, sebastian.hesselbarth@gmail.com,
+        kostap@marvell.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20220512124905.49979-1-robert.marko@sartura.hr>
+ <20220512124905.49979-2-robert.marko@sartura.hr>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220512094125.3748197-2-chris.packham@alliedtelesis.co.nz>
+In-Reply-To: <20220512124905.49979-2-robert.marko@sartura.hr>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -79,22 +77,44 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/05/2022 11:41, Chris Packham wrote:
-> The offset and marvell,pwm-offset properties weren't in the old binding.
-> Add them based on the existing usage when the marvell,armada-8k-gpio
-> compatible is used.
+On 12/05/2022 14:48, Robert Marko wrote:
+> Convert the Armada 37xx SoC compatibles to YAML.
 > 
-> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+> Signed-off-by: Robert Marko <robert.marko@sartura.hr>
 > ---
-> 
-> Notes:
->     Changes in v3:
->     - Split off from 1:1 conversion patch
 
-To clarify - this documents properties already used in driver and DTS so:
+> -
+> - - compatible: must contain "cznic,turris-mox"
+> diff --git a/Documentation/devicetree/bindings/arm/marvell/armada-37xx.yaml b/Documentation/devicetree/bindings/arm/marvell/armada-37xx.yaml
+> new file mode 100644
+> index 000000000000..4460608ac1e1
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/arm/marvell/armada-37xx.yaml
+> @@ -0,0 +1,46 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/arm/marvell/armada-37xx.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Marvell Armada 37xx Platforms Device Tree Bindings
+
+"Marvell Armada 37xx Platforms"
+
+> +
+> +maintainers:
+> +  - Robert Marko <robert.marko@sartura.hr>
+> +
+> +properties:
+> +  $nodename:
+> +    const: '/'
+> +  compatible:
+> +    oneOf:
+> +      - description: Armada 3720 SoC
+A nit, this should be rather: "Armada 3720 SoC boards"
+
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
 
 Best regards,
 Krzysztof
