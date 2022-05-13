@@ -2,67 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B74EC52626D
-	for <lists+devicetree@lfdr.de>; Fri, 13 May 2022 14:57:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E539B526272
+	for <lists+devicetree@lfdr.de>; Fri, 13 May 2022 14:58:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1380456AbiEMM5I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 May 2022 08:57:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44650 "EHLO
+        id S233058AbiEMM6C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 May 2022 08:58:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46698 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1356173AbiEMM5H (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 May 2022 08:57:07 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E12FB980BF;
-        Fri, 13 May 2022 05:57:06 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 7D51A61FDA;
-        Fri, 13 May 2022 12:57:06 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CD902C34100;
-        Fri, 13 May 2022 12:57:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1652446625;
-        bh=OjdLv3FacygxH0mTynUJq34ZIADUEe0SWIdyZK7+nio=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=nMFdH/VNfmO6dmjF/g6BRvqhxaPVL1P2VYKSWCKq/873xLXfZVZkh94/0bb62jUYo
-         69Yn/M0gaZgjQlBulLsEvyc7oIOsVPPBa0crmZ89JIS6YW2X9HznGsYQTaUhRUuoWc
-         P06vISrLfCcEiZqICmUAc5fY92HOXGQ6igDngjuFzRQ0Fx/M3fQTDz4dFKKXLKGbfu
-         BI/eGNQVK0CTxmV+sZdp8jgiq77LEOlGPhqV3ma3l+wvaiClY2qor5RWN94RPtsGac
-         ZE9ZX30eVvAgjpZHkd/8Q3PXaUF5h3kY8NG+wiAameeQYz35jEIgesszW4mhChXj6E
-         +fFcg/0MH7FUw==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan@kernel.org>)
-        id 1npUqs-0002ju-OZ; Fri, 13 May 2022 14:57:02 +0200
-Date:   Fri, 13 May 2022 14:57:02 +0200
-From:   Johan Hovold <johan@kernel.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Stanimir Varbanov <svarbanov@mm-sol.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v8 07/10] PCI: qcom: Handle MSIs routed to multiple GIC
- interrupts
-Message-ID: <Yn5Vnnp7NynOl1DU@hovoldconsulting.com>
-References: <20220512104545.2204523-1-dmitry.baryshkov@linaro.org>
- <20220512104545.2204523-8-dmitry.baryshkov@linaro.org>
- <Yn5STCN4smibLubA@hovoldconsulting.com>
- <cf16d72a-33d5-07ca-3e6c-0fd87cb74c1a@linaro.org>
+        with ESMTP id S1358095AbiEMM6B (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 May 2022 08:58:01 -0400
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C8C99B19B
+        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 05:57:58 -0700 (PDT)
+Received: by mail-wr1-x42d.google.com with SMTP id h16so10658375wrb.2
+        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 05:57:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=cU4ZtNl2vEtEVH/Lak30VWKkW5zSu+7jhI7ooziHVxo=;
+        b=hY7RshcVZtZ0WoJs33dta6NDd8NbGGJgoY7ZVCt1MeX0kX/Xj3Lur613Or1JybyFNm
+         1HZ68gzAyuZJ8HOhwzUYP2bCfyxQ3UjhIhkwG50UoTionya9gp2Lp4+3JXKF5s9OXTad
+         rtkkhgzPeqz0KXuiSklUoKWKV7iFh885UjegJnXpUGHMq0GfXN1SzZwNVOCpUZQvmUAl
+         wZVv/mwulIFZpoVx+IaJq/yTsvsiD6UHDTj6qw8PTVLML5IPn0FdBM9nRLhQC9e2aKAB
+         /u01OAXzCFlE6Lf25zxbalQ7Q0ZuFUrf1H9RfwLN2zlEoQ/ShPfPWcIgEmgvSF9B8Pws
+         Vwrw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=cU4ZtNl2vEtEVH/Lak30VWKkW5zSu+7jhI7ooziHVxo=;
+        b=yRWx697dPeAQbKcFc0Xj9AF5eA05UTCI8SWFfqQqnV+rAyV8lnGHyA0dgLrESpVdkE
+         5XhGrCdaRuWjrfsdHi0BrNK8gqRDMDkWVljFYmpBJS89J6ZUeC/X7PL70Uu/PDjxOlut
+         2nLYeG9CQcVoJNXwC+NbrXkHUr3TXTgMP04K1YxS8uTEOkhkL2WMXvOiH7m4eiytMytc
+         pScmfgIbLJMFB3HkZOqFAa7oFyuqpFg4BnO860mx6vZHV8zJ2hgRwgGzalpLmsY1XzAA
+         5A7gmCXkrCKfpcAlB4XxGT9wqVVMum8pt0BSw7ivujaaknA5hKxuGei9pEy/hkmidR2B
+         nOWw==
+X-Gm-Message-State: AOAM531Z5ysQwTlOoRR4DZJaL1QQTpSBI6lnjur3aV5efeAHcq83Imw/
+        pLKcDPTfI+jzu4RtpzyJL3LYVQ==
+X-Google-Smtp-Source: ABdhPJzDRMdFOUy5RI8IXI6VfHQuWSfZtMpfsZMkCc8yuVYUOfKov2JEFDGTvRzp8Wcd+aX5lCvZjQ==
+X-Received: by 2002:a5d:5012:0:b0:20a:d9a9:44dc with SMTP id e18-20020a5d5012000000b0020ad9a944dcmr3858584wrt.627.1652446677102;
+        Fri, 13 May 2022 05:57:57 -0700 (PDT)
+Received: from [192.168.0.172] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id d11-20020adfa34b000000b0020c86a9f33bsm2731239wrb.18.2022.05.13.05.57.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 13 May 2022 05:57:56 -0700 (PDT)
+Message-ID: <8f0d4127-7e66-cf50-21c9-99680f737e30@linaro.org>
+Date:   Fri, 13 May 2022 14:57:55 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <cf16d72a-33d5-07ca-3e6c-0fd87cb74c1a@linaro.org>
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH 2/3] dt-bindings: usb: atmel: Add Microchip LAN966x
+ compatible string
+Content-Language: en-US
+To:     Herve Codina <herve.codina@bootlin.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Horatiu Vultur <horatiu.vultur@microchip.com>
+Cc:     linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-clk@vger.kernel.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+References: <20220513105850.310375-1-herve.codina@bootlin.com>
+ <20220513105850.310375-3-herve.codina@bootlin.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220513105850.310375-3-herve.codina@bootlin.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -70,20 +86,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, May 13, 2022 at 03:48:09PM +0300, Dmitry Baryshkov wrote:
-> On 13/05/2022 15:42, Johan Hovold wrote:
-
-> > If all qcom platform that can support more than 32 MSI require multiple
-> > IRQs, how about adding num_vectors to the config instead and set
-> > pp->has_split_msi_irq when cfg->num_vectors is set (or unconditionally
-> > if you remove the corresponding warning you just added to the dwc host
-> > code)?
-> > 
-> > At least some sc8280xp seem to only support 128 MSI (using 4 IRQs).
+On 13/05/2022 12:58, Herve Codina wrote:
+> The USB device controller available in the Microchip LAN966x SOC
+> is the same IP as the one present in the SAMA5D3 SOC.
 > 
-> Nice idea, let's do this.
+> Add the LAN966x compatible string and set the SAMA5D3 compatible
+> string as a fallback for the LAN966x.
+> 
+> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+> ---
+>  Documentation/devicetree/bindings/usb/atmel-usb.txt | 3 +++
+>  1 file changed, 3 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/usb/atmel-usb.txt b/Documentation/devicetree/bindings/usb/atmel-usb.txt
+> index f512f0290728..a6fab7d63f37 100644
+> --- a/Documentation/devicetree/bindings/usb/atmel-usb.txt
+> +++ b/Documentation/devicetree/bindings/usb/atmel-usb.txt
+> @@ -87,6 +87,9 @@ Required properties:
+>  	       "atmel,at91sam9g45-udc"
+>  	       "atmel,sama5d3-udc"
+>  	       "microchip,sam9x60-udc"
+> +	       "microchip,lan996x-udc"
 
-If at all possible it would be even better to just infer it from the
-devicetree to avoid having to describe things in two places, though.
+No wildcards please, especially that it closely fits previous wildcard
+(lan996x includes lan9960 which looks a lot like sam9x60...)
 
-Johan
+
+Best regards,
+Krzysztof
