@@ -2,65 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B658D525C9B
-	for <lists+devicetree@lfdr.de>; Fri, 13 May 2022 09:54:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 33BA6525C89
+	for <lists+devicetree@lfdr.de>; Fri, 13 May 2022 09:49:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1377872AbiEMHug (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 May 2022 03:50:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37676 "EHLO
+        id S1377881AbiEMHtj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 May 2022 03:49:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35582 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1377890AbiEMHue (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 May 2022 03:50:34 -0400
-Received: from mx1.cqplus1.com (unknown [113.204.237.245])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 9D779219C3B
-        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 00:50:23 -0700 (PDT)
-X-MailGates: (flag:1,DYNAMIC,RELAY,NOHOST,LAN:PASS)(compute_score:DELIVE
-        R,40,3)
-Received: from 172.27.96.203
-        by mx1.cqplus1.com with MailGates ESMTP Server V5.0(7682:0:AUTH_RELAY)
-        (envelope-from <qinjian@cqplus1.com>); Fri, 13 May 2022 15:44:27 +0800 (CST)
-Received: from CQEXMAIL01.cqplus1.com (172.27.96.203) by
- CQEXMAIL01.cqplus1.com (172.27.96.203) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.6; Fri, 13 May 2022 15:44:24 +0800
-Received: from CQEXMAIL01.cqplus1.com ([::1]) by CQEXMAIL01.cqplus1.com
- ([::1]) with mapi id 15.01.2507.006; Fri, 13 May 2022 15:44:24 +0800
-From:   =?utf-8?B?cWluamlhblvopoPlgaVd?= <qinjian@cqplus1.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        "sboyd@kernel.org" <sboyd@kernel.org>
-CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mturquette@baylibre.com" <mturquette@baylibre.com>,
-        "tglx@linutronix.de" <tglx@linutronix.de>,
-        "maz@kernel.org" <maz@kernel.org>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "linux@armlinux.org.uk" <linux@armlinux.org.uk>,
-        "arnd@arndb.de" <arnd@arndb.de>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>
-Subject: RE: [PATCH v15 10/10] ARM: dts: Add Sunplus SP7021-Demo-V3 board
- device tree
-Thread-Topic: [PATCH v15 10/10] ARM: dts: Add Sunplus SP7021-Demo-V3 board
- device tree
-Thread-Index: AQHYZcsUOdNmnhD0gkKqn75ry15Nq60ahDUAgAHng+A=
-Date:   Fri, 13 May 2022 07:44:24 +0000
-Message-ID: <3a01fe9aa860407694ee77133459a9ab@cqplus1.com>
-References: <cover.1652329411.git.qinjian@cqplus1.com>
- <daeccdfb9655e549656af0af955a4697871e3ab0.1652329411.git.qinjian@cqplus1.com>
- <32c80a79-abd5-3fd2-cbb4-e2ae93c539da@linaro.org>
-In-Reply-To: <32c80a79-abd5-3fd2-cbb4-e2ae93c539da@linaro.org>
-Accept-Language: zh-CN, en-US
-Content-Language: zh-CN
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.28.110.18]
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        with ESMTP id S1377872AbiEMHtg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 May 2022 03:49:36 -0400
+Received: from m12-18.163.com (m12-18.163.com [220.181.12.18])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 41B51134E1D;
+        Fri, 13 May 2022 00:49:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+        s=s110527; h=Message-ID:Date:MIME-Version:Subject:From; bh=I1PW+
+        UgrxtpOrGKAmIK6mKmMXNBZW3K0uImlgxDg5uk=; b=LomQvD4CK/f2fzw6gLHeW
+        9p3/uY6i69F9rBDSzSdN0wmUuQC5KcOIG+B8yEJtJnxOblL4sgXEghC7MLiUzA2F
+        CaIdcukEgvSzMC0bin2E1nzvRZ2cJFhonh51eyS5wC3KqjjKQ6HVvBxFZraZCjey
+        8QXsvnC3KnjlkrCrYxbGso=
+Received: from [192.168.3.102] (unknown [218.201.129.19])
+        by smtp14 (Coremail) with SMTP id EsCowABnVAViDX5iXlrTCA--.56204S2;
+        Fri, 13 May 2022 15:48:50 +0800 (CST)
+Message-ID: <1352b9d7-5219-af09-948b-6462def39ea5@163.com>
+Date:   Fri, 13 May 2022 15:48:50 +0800
 MIME-Version: 1.0
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.0
+Subject: Re: [PATCH v3 2/2] ARM: dts: sun8i-r40: Add "cpu-supply" node for
+ sun8i-r40 based board
+Content-Language: en-US
+To:     Maxime Ripard <maxime@cerno.tech>
+Cc:     linux-sunxi@lists.linux.dev, Rob Herring <robh+dt@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
+References: <20220512071858.10805-1-qianfanguijin@163.com>
+ <20220512071858.10805-2-qianfanguijin@163.com>
+ <20220513073849.cu4jzykefat2sepg@houat>
+From:   qianfan <qianfanguijin@163.com>
+In-Reply-To: <20220513073849.cu4jzykefat2sepg@houat>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: EsCowABnVAViDX5iXlrTCA--.56204S2
+X-Coremail-Antispam: 1Uf129KBjvJXoWxJr1DZF13AF45KrykXr4Utwb_yoW8Cr4rp3
+        yxuF4DCrs7WF1rKry2grWUJry7AFyrWr4jqF15Gw1rJrn8XF9rtrn3KwnakrZ8Xr4fGw40
+        vrW8ur97Ww4DZa7anT9S1TB71UUUUUUqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+        9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07UGQ6XUUUUU=
+X-Originating-IP: [218.201.129.19]
+X-CM-SenderInfo: htld0w5dqj3xxmlqqiywtou0bp/xtbB2AIA7WBHKY57KgAAsm
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -68,28 +63,52 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-PiA+IGRpZmYgLS1naXQgYS9hcmNoL2FybS9ib290L2R0cy9zdW5wbHVzLXNwNzAyMS1hY2hpcC5k
-dHNpIGIvYXJjaC9hcm0vYm9vdC9kdHMvc3VucGx1cy1zcDcwMjEtYWNoaXAuZHRzaQ0KPiA+IG5l
-dyBmaWxlIG1vZGUgMTAwNjQ0DQo+ID4gaW5kZXggMDAwMDAwMDAwLi4xNTYwYzk1ZDkNCj4gPiAt
-LS0gL2Rldi9udWxsDQo+ID4gKysrIGIvYXJjaC9hcm0vYm9vdC9kdHMvc3VucGx1cy1zcDcwMjEt
-YWNoaXAuZHRzaQ0KPiA+IEBAIC0wLDAgKzEsODUgQEANCj4gPiArLy8gU1BEWC1MaWNlbnNlLUlk
-ZW50aWZpZXI6IEdQTC0yLjANCj4gPiArLyoNCj4gPiArICogRGV2aWNlIFRyZWUgU291cmNlIGZv
-ciBTdW5wbHVzIFNQNzAyMQ0KPiA+ICsgKg0KPiA+ICsgKiBDb3B5cmlnaHQgKEMpIDIwMjEgU3Vu
-cGx1cyBUZWNobm9sb2d5IENvLg0KPiA+ICsgKi8NCj4gPiArDQo+ID4gKyNpbmNsdWRlICJzdW5w
-bHVzLXNwNzAyMS5kdHNpIg0KPiA+ICsNCj4gPiArLyB7DQo+ID4gKwljb21wYXRpYmxlID0gInN1
-bnBsdXMsc3A3MDIxLWFjaGlwIjsNCj4gDQo+IFRoaXMgZG9lcyBub3QgbWF0Y2ggeW91ciBiaW5k
-aW5ncy4NCj4gDQoNCj4gPiArKysgYi9hcmNoL2FybS9ib290L2R0cy9zdW5wbHVzLXNwNzAyMS1k
-ZW1vLXYzLmR0cw0KPiA+IEBAIC0wLDAgKzEsMjcgQEANCj4gPiArLy8gU1BEWC1MaWNlbnNlLUlk
-ZW50aWZpZXI6IEdQTC0yLjANCj4gPiArLyoNCj4gPiArICogRGV2aWNlIFRyZWUgU291cmNlIGZv
-ciBTdW5wbHVzIFNQNzAyMSBEZW1vIFYzIFNCQyBib2FyZA0KPiA+ICsgKg0KPiA+ICsgKiBDb3B5
-cmlnaHQgKEMpIFN1bnBsdXMgVGVjaG5vbG9neSBDby4NCj4gPiArICovDQo+ID4gKw0KPiA+ICsv
-ZHRzLXYxLzsNCj4gPiArDQo+ID4gKyNpbmNsdWRlICJzdW5wbHVzLXNwNzAyMS1hY2hpcC5kdHNp
-Ig0KPiA+ICsNCj4gPiArLyB7DQo+ID4gKwljb21wYXRpYmxlID0gInN1bnBsdXMsc3A3MDIxLWRl
-bW8tdjMiOw0KPiANCj4gVGhpcyBkb2VzIG5vdCBtYXRjaCB5b3VyIGJpbmRpbmdzLg0KPiANCj4g
-UGxlYXNlIHJ1biBtYWtlIGR0YnNfY2hlY2suDQoNCkkgZGlkIHBhc3NlZCB0aGUgbWFrZSBkdGJz
-X2NoZWNrLg0KY29tcGF0aWJsZSBzdHJpbmc6ICJzdW5wbHVzLHNwNzAyMSIsICJzdW5wbHVzLHNw
-NzAyMS1hY2hpcCIsICJzdW5wbHVzLHNwNzAyMS1kZW1vLXYzIg0KYWxsIGRlZmluZWQgQCBEb2N1
-bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvYXJtL3N1bnBsdXMsc3A3MDIxLnlhbWwgWzFd
-DQoNClsxXSBodHRwczovL2xvcmUua2VybmVsLm9yZy9sa21sLzYxMDdhNjgwMDhmMmQ3MWQyYzc4
-NjhkNGQ5NGNiNjZjNWI1ZmMxMzQuMTY1MjMyOTQxMS5naXQucWluamlhbkBjcXBsdXMxLmNvbS8N
-CiANCg0K
+
+
+在 2022/5/13 15:38, Maxime Ripard 写道:
+> Hi,
+>
+> On Thu, May 12, 2022 at 03:18:58PM +0800, qianfanguijin@163.com wrote:
+>> From: qianfan Zhao <qianfanguijin@163.com>
+>>
+>> sun8i-r40 actived cpufreq feature now, let's add "cpu-supply" node on
+>> board.
+>>
+>> Signed-off-by: qianfan Zhao <qianfanguijin@163.com>
+>> ---
+>>   arch/arm/boot/dts/sun8i-r40-bananapi-m2-ultra.dts | 4 ++++
+>>   arch/arm/boot/dts/sun8i-r40-feta40i.dtsi          | 4 ++++
+>>   arch/arm/boot/dts/sun8i-t3-cqa3t-bv3.dts          | 4 ++++
+>>   arch/arm/boot/dts/sun8i-v40-bananapi-m2-berry.dts | 4 ++++
+>>   4 files changed, 16 insertions(+)
+>>
+>> diff --git a/arch/arm/boot/dts/sun8i-r40-bananapi-m2-ultra.dts b/arch/arm/boot/dts/sun8i-r40-bananapi-m2-ultra.dts
+>> index a6a1087a0c9b..4f30018ec4a2 100644
+>> --- a/arch/arm/boot/dts/sun8i-r40-bananapi-m2-ultra.dts
+>> +++ b/arch/arm/boot/dts/sun8i-r40-bananapi-m2-ultra.dts
+>> @@ -113,6 +113,10 @@ &ahci {
+>>   	status = "okay";
+>>   };
+>>   
+>> +&cpu0 {
+>> +	cpu-supply = <&reg_dcdc2>;
+>> +};
+>> +
+> This will break bisection on those boards. Indeed, you added the OPPs on
+> the first patch, and if you only apply that patch, the boards in the
+> second patch will be missing their CPU regulator. The kernel will then
+> ramp up the frequency to the highest OPP, but will not change the
+> voltage, resulting in a crash.
+This is a good point and I will merge those two patch.
+>
+> There's a similar issue for all the boards that don't have a regulator
+> in the first place.
+>
+> The way we worked around this for the other SoCs is to have a DTSI with
+> the OPPs with a frequency higher than what U-Boot boots with (1008MHz?),
+> and only include that DTSI on boards that have a CPU regulator hooked in.
+Is this really necessary? It seems like every board based on sun8i-r40
+have a cpu regulator.
+>
+> Maxime
+
