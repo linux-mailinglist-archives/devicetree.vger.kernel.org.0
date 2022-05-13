@@ -2,129 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B0841526199
-	for <lists+devicetree@lfdr.de>; Fri, 13 May 2022 14:13:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F2AF15261AF
+	for <lists+devicetree@lfdr.de>; Fri, 13 May 2022 14:19:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231622AbiEMMNj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 May 2022 08:13:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55170 "EHLO
+        id S1351785AbiEMMTX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 May 2022 08:19:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44514 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1377242AbiEMMNi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 May 2022 08:13:38 -0400
-Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3854D297408;
-        Fri, 13 May 2022 05:13:36 -0700 (PDT)
-Received: by mail-lj1-x235.google.com with SMTP id v4so10023361ljd.10;
-        Fri, 13 May 2022 05:13:36 -0700 (PDT)
+        with ESMTP id S1346758AbiEMMTW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 May 2022 08:19:22 -0400
+Received: from mail-qt1-x82a.google.com (mail-qt1-x82a.google.com [IPv6:2607:f8b0:4864:20::82a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A7FFF73045
+        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 05:19:20 -0700 (PDT)
+Received: by mail-qt1-x82a.google.com with SMTP id h3so6663308qtn.4
+        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 05:19:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=Jj7Rs1g0MNpjNJfKdXCTRCNUSnWA3K/oljieoDy3W/w=;
-        b=FGJb9YJ/ZVSRn4GNLy4avnEvWR5rz0hnysr1Y53EwJ7xJkFFzFKZ8a93MzzyzFF/0p
-         hr0ucvemplh5G9ztSYKMGr/IZbg4aRywkvZ9UruCwyW61rFsh45/6wEg6SD93LaJrJ4X
-         iisEaw5e21pw9Wte/Ruqy1E+SAruT9ajpPXLiWot/mxE15nrXDSlS8/iOubvGOigKYBU
-         s+EOUiIy0Mb+DM471ACutgI5Qq9wcw12HCK9AWUSWVg68gNMAtsGhKTAFN57iyN0k2ll
-         RRhT5tpOgE5l/wytlUNZ3IinBZiYBsc0sRWX3zX7FnQush5BkYBCpkYl6T52E0RLWlaD
-         YHiw==
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=yh7Ds3nqFPkMrrrTYXJbK8sBHDDYq37d1oj3cOHsPo8=;
+        b=C/hd6Yj0PsOF0obMq2Vte9XSit4yVtODYCuhGUpodF+La3PC9EJevKwyI/+/2hgr2O
+         4x3+FVQ0Hu6IYvoQd6t0ZYcSoO4vEH19bkKLCvYaTgum/EY1Gss6u9yp8lVLnGHs4Ywj
+         h7SxH+dTPriqpyUlT96pXKB87dxN9NIvASh5UT1DbtJ174AqIJWhT5EXhr3Zm7tfsn/d
+         PLqvOm7LxVIXakp9c2zemmiW8NQG1LipCDn+XrM1tOy/X3xm1tc38bAdi7Bh5FnNO/AL
+         1OZ2YA682Viwlnr/1TVPGxM9NTDD8zoeHNTzQoUcB8EJpBIhvnkijv2T1biIod6levTX
+         Uhzg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Jj7Rs1g0MNpjNJfKdXCTRCNUSnWA3K/oljieoDy3W/w=;
-        b=W1dqg3J7qKKdSpwi0DSYQpUClE4DHMq5FgKqYbkRP8nxPdimfqiDpaKtSJxZDuIYhV
-         NtRDvdnz57bvErNk+LVyagkhhz6gS4YBM/DE5Zyx2jMVPuF4f8TLu36PDCUVETJAf89c
-         K2GvaEKZjCGcRA9sxNDS5L7ajIoY7C3YXMt6agmCfKX6w3jwM6BPh0bKCjGjLii7g6SO
-         YUGtN4sxkiLA4fG8xj+gbaibcGbZk0D3k+Bp/aEzUnRLWesgPRPluJ/ve2J6yQKnT3wt
-         Hz20Uhc6qMv6qh4HzvGqyjkpodYpj7HmsYM7zQPv0AiToMddlmpral970cmSuN+Jmvma
-         ywAA==
-X-Gm-Message-State: AOAM533mt8hFc9qB1H1mzbR5kL3av1PxktM+MA24yXPZXZ9lSt/KqKYj
-        LvKaBr2qeJJ8Jzz3qe1wkio=
-X-Google-Smtp-Source: ABdhPJx2R7IIV3xBoJry0mvLrGHeam25T8S/SX2vfM7C+G3R9p3F3R+oNTpqHFZ063/FHjz2H46jJg==
-X-Received: by 2002:a05:651c:4cb:b0:24f:517c:ff9b with SMTP id e11-20020a05651c04cb00b0024f517cff9bmr2989880lji.2.1652444014904;
-        Fri, 13 May 2022 05:13:34 -0700 (PDT)
-Received: from mobilestation ([95.79.189.214])
-        by smtp.gmail.com with ESMTPSA id i5-20020a2e8645000000b0024f3d1daed8sm413381ljj.96.2022.05.13.05.13.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 May 2022 05:13:34 -0700 (PDT)
-Date:   Fri, 13 May 2022 15:13:32 +0300
-From:   Serge Semin <fancer.lancer@gmail.com>
-To:     Sergei Shtylyov <sergei.shtylyov@gmail.com>
-Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Jens Axboe <axboe@kernel.dk>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Rob Herring <robh+dt@kernel.org>, linux-ide@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 13/23] ata: libahci: Extend port-cmd flags set with
- port capabilities
-Message-ID: <20220513121332.lt7ezeqskwoxprkf@mobilestation>
-References: <20220511231810.4928-1-Sergey.Semin@baikalelectronics.ru>
- <20220511231810.4928-14-Sergey.Semin@baikalelectronics.ru>
- <887a7537-5400-f3e2-235c-033871d413bc@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=yh7Ds3nqFPkMrrrTYXJbK8sBHDDYq37d1oj3cOHsPo8=;
+        b=ErGRt+76ZvoCuKnj4thYV9sxYJWgJGMtKVvu5/95g79yzzQj/fMUMbwJcyKPPvuuMU
+         StRi+PXU/HNd1xWrJAuAL93oSLkEP60/QIAkYCPEwZDoRvQyxnuMO7dGtHexU3ZmGJ7J
+         HniKxlvn1rSsFcxesL83BR/sdWuzNUfy/A6fJp9uT5H9DGn8wD0RXB63tXH8vjbuKzKT
+         SNHqhHcx4tKB8c2pj1qMcggMorH9QkpXO9agb34GK3ZC8VaTpJnVpsvlEtv/WHBcLtzk
+         XtpszYSx9DFFXWEY6qTWV76FP5dD3PDskTBLVr3IxhCWMyPdp3vMteB+6X4zp1kJk8CI
+         /vBg==
+X-Gm-Message-State: AOAM5314kB9ePfwltGD8wsgPiiP1RdV6Zp2FWOclkEgfMXiY0OzM7uNo
+        a3ktH8GLbXbUvTMOb0roryARVcm3WyjVxhUyPg2wMQ==
+X-Google-Smtp-Source: ABdhPJwz/jsKMLSl033x/2/+66SPPDBunORwAq9KquUCwcUxVfaETxM9qTpTZoxXDgUPRCy32wLthedhYTZl7Z63y/Y=
+X-Received: by 2002:a05:622a:4f:b0:2f3:e77c:2c7e with SMTP id
+ y15-20020a05622a004f00b002f3e77c2c7emr4195838qtw.62.1652444359788; Fri, 13
+ May 2022 05:19:19 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <887a7537-5400-f3e2-235c-033871d413bc@gmail.com>
+References: <20220512104545.2204523-1-dmitry.baryshkov@linaro.org>
+ <20220512104545.2204523-7-dmitry.baryshkov@linaro.org> <Yn5GlR0UD2/pcOiy@hovoldconsulting.com>
+In-Reply-To: <Yn5GlR0UD2/pcOiy@hovoldconsulting.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Fri, 13 May 2022 15:19:08 +0300
+Message-ID: <CAA8EJpqv8QfYhXfF875Y898=9GAZUfe6db=pYVAEq_DkpOcSGA@mail.gmail.com>
+Subject: Re: [PATCH v8 06/10] PCI: dwc: Handle MSIs routed to multiple GIC interrupts
+To:     Johan Hovold <johan@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Stanimir Varbanov <svarbanov@mm-sol.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, May 13, 2022 at 11:22:44AM +0300, Sergei Shtylyov wrote:
-> On 5/12/22 2:18 AM, Serge Semin wrote:
-> 
-> > Currently not all of the Port-specific capabilities listed in the
-> > PORT_CMD-enumeration. Let's extend that set with the Cold Presence
-> > Detection and Mechanical Presence Switch attached to the Port flags [1] so
-> > to closeup the set of the platform-specific port-capabilities flags.  Note
-> > these flags are supposed to be set by the platform firmware if there is
-> > one. Alternatively as we are about to do they can be set by means of the
-> > OF properties.
-> > 
-> > While at it replace PORT_IRQ_DEV_ILCK with PORT_IRQ_DEV_MPS and fix the
-> 
-
->    Your code has PORT_IRQ_DMPS instead...
-
-Right. The correct macro name is used in the patch body. I'll fix the
-log. Thanks.
-
--Sergey
-
-> 
-> > comment there. In accordance with [2] that IRQ flag is supposed to
-> > indicate the state of the signal coming from the Mechanical Presence
-> > Switch.
-> > 
-> > [1] Serial ATA AHCI 1.3.1 Specification, p.27
-> > [2] Serial ATA AHCI 1.3.1 Specification, p.7
-> > 
-> > Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+On Fri, 13 May 2022 at 14:52, Johan Hovold <johan@kernel.org> wrote:
+>
+> On Thu, May 12, 2022 at 01:45:41PM +0300, Dmitry Baryshkov wrote:
+> > On some of Qualcomm platforms each group of 32 MSI vectors is routed to the
+> > separate GIC interrupt. Implement support for such configuraions by
+> > parsing "msi0" ... "msi7" interrupts and attaching them to the chained
+> > handler.
+> >
+> > Note, that if DT doesn't list an array of MSI interrupts and uses single
+> > "msi" IRQ, the driver will limit the amount of supported MSI vectors
+> > accordingly (to 32).
+> >
+> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 > > ---
-> >  drivers/ata/ahci.h | 7 ++++++-
-> >  1 file changed, 6 insertions(+), 1 deletion(-)
-> > 
-> > diff --git a/drivers/ata/ahci.h b/drivers/ata/ahci.h
-> > index 7d834deefeb9..f501531bd1b3 100644
-> > --- a/drivers/ata/ahci.h
-> > +++ b/drivers/ata/ahci.h
-> > @@ -138,7 +138,7 @@ enum {
-> >  	PORT_IRQ_BAD_PMP	= (1 << 23), /* incorrect port multiplier */
-> >  
-> >  	PORT_IRQ_PHYRDY		= (1 << 22), /* PhyRdy changed */
-> > -	PORT_IRQ_DEV_ILCK	= (1 << 7), /* device interlock */
-> > +	PORT_IRQ_DMPS		= (1 << 7), /* mechanical presence status */
-> >  	PORT_IRQ_CONNECT	= (1 << 6), /* port connect change status */
-> >  	PORT_IRQ_SG_DONE	= (1 << 5), /* descriptor processed */
-> >  	PORT_IRQ_UNK_FIS	= (1 << 4), /* unknown FIS rx'd */
-> [...]
-> 
-> MBR, Sergey
+> >  .../pci/controller/dwc/pcie-designware-host.c | 33 ++++++++++++++++++-
+> >  drivers/pci/controller/dwc/pcie-designware.h  |  1 +
+> >  2 files changed, 33 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/drivers/pci/controller/dwc/pcie-designware-host.c b/drivers/pci/controller/dwc/pcie-designware-host.c
+> > index 6b0c7b75391f..258bafa306dc 100644
+> > --- a/drivers/pci/controller/dwc/pcie-designware-host.c
+> > +++ b/drivers/pci/controller/dwc/pcie-designware-host.c
+> > @@ -291,7 +291,8 @@ static void dw_pcie_msi_init(struct pcie_port *pp)
+> >  static int dw_pcie_msi_host_init(struct pcie_port *pp)
+> >  {
+> >       struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
+> > -     struct platform_device *pdev = to_platform_device(pci->dev);
+> > +     struct device *dev = pci->dev;
+> > +     struct platform_device *pdev = to_platform_device(dev);
+> >       int ret;
+> >       u32 ctrl, num_ctrls;
+> >
+> > @@ -299,6 +300,36 @@ static int dw_pcie_msi_host_init(struct pcie_port *pp)
+> >       for (ctrl = 0; ctrl < num_ctrls; ctrl++)
+> >               pp->irq_mask[ctrl] = ~0;
+> >
+> > +     if (pp->has_split_msi_irq) {
+> > +             char irq_name[] = "msiXX";
+> > +             int irq;
+> > +
+> > +             if (!pp->msi_irq[0]) {
+> > +                     irq = platform_get_irq_byname_optional(pdev, irq_name);
+>
+> This looks broken; you're requesting "msiXX", not "msi0".
+
+Yes, I'm preparing the updated patch.
+
+>
+> > +                     if (irq == -ENXIO) {
+> > +                             num_ctrls = 1;
+> > +                             pp->num_vectors = min((u32)MAX_MSI_IRQS_PER_CTRL, pp->num_vectors);
+> > +                             dev_warn(dev, "No additional MSI IRQs, limiting amount of MSI vectors to %d\n",
+> > +                                      pp->num_vectors);
+> > +                     } else {
+> > +                             pp->msi_irq[0] = irq;
+> > +                     }
+> > +             }
+> > +
+> > +             /* If we fallback to the single MSI ctrl IRQ, this loop will be skipped as num_ctrls is 1 */
+> > +             for (ctrl = 1; ctrl < num_ctrls; ctrl++) {
+> > +                     if (pp->msi_irq[ctrl])
+> > +                             continue;
+> > +
+> > +                     snprintf(irq_name, sizeof(irq_name), "msi%d", ctrl);
+> > +                     irq = platform_get_irq_byname(pdev, irq_name);
+> > +                     if (irq < 0)
+> > +                             return irq;
+> > +
+> > +                     pp->msi_irq[ctrl] = irq;
+> > +             }
+> > +     }
+> > +
+> >       if (!pp->msi_irq[0]) {
+> >               int irq = platform_get_irq_byname_optional(pdev, "msi");
+>
+> Johan
+
+
+
+-- 
+With best wishes
+Dmitry
