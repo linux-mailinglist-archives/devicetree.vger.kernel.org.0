@@ -2,173 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 995F0525D2D
-	for <lists+devicetree@lfdr.de>; Fri, 13 May 2022 10:24:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 564B7525D24
+	for <lists+devicetree@lfdr.de>; Fri, 13 May 2022 10:24:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346490AbiEMIQ2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 May 2022 04:16:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40508 "EHLO
+        id S1378135AbiEMIRH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 May 2022 04:17:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42974 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1378139AbiEMIQH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 May 2022 04:16:07 -0400
-Received: from out1-smtp.messagingengine.com (out1-smtp.messagingengine.com [66.111.4.25])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9203E08D;
-        Fri, 13 May 2022 01:16:01 -0700 (PDT)
-Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
-        by mailout.nyi.internal (Postfix) with ESMTP id E421B5C00E4;
-        Fri, 13 May 2022 04:15:58 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute2.internal (MEProxy); Fri, 13 May 2022 04:15:58 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
-        :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to; s=fm3; t=1652429758; x=1652516158; bh=iY9shFm2Us
-        jfmpTTWu209xlXSoo1/kSVXTPhcXMt7H8=; b=uin/nZOFrMN1r3HNuWHmdoGaY3
-        c7FRaFuahQzKICW7+sXgp7uFRCf6nfBbRUC6qoTalXEwERQDkdkm7pagYWNswuw7
-        LNxbo+qZaPwNQWQBe4UD/pa0/5IoQLjJGGqHzdPFS//WrmNObBk5kg4UD8dlWr/s
-        CUslx4dgQvclORi4IeQlr3Tm4oc0WaWGVdI2slV/+YF8x6V1eENUEKYA3bRz57tj
-        TfcECEiFUusehtJwjbUxQEZ4QysRJ8QwJKFP7rykSE9QTWUHG3BQnSQp0xzthQHa
-        HIPmKNxHqkJW23T41yni9Mj06EuRNv+7Z9Kp/JMulYcVeI3Hl95cp7JyPpGQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-type:date:date:from:from
-        :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
-        :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1652429758; x=
-        1652516158; bh=iY9shFm2UsjfmpTTWu209xlXSoo1/kSVXTPhcXMt7H8=; b=O
-        txrF9ODGUXG/fJtjc68Vnrim6/M1IT/RwWsCEySKTH8NljzFVFci1v7iph3xmYtx
-        c7sKXNXwSd++avrklkfvgHcZNGjdwzsi6UcGVq/5CEfgB/2mY4mX9q/2FUv1HWU8
-        Pb+GixFh6C3nstMt8eaYFh3ffM3V2T4jLxtW35M8XlDPYU7qPsgYWl9RDaLIJROa
-        CbYlWFlaw8/ZrrQla1EfOUZExY2A4KQrAqq3W4JsJWCDvYA84nBncpI4P8SG6J4D
-        lHFE5GszS0h4kpy+BqfeY3yggQ3BSfZ+fVOTe+Z+WUjIckkNr+CRhkAj990Z6rVW
-        VmsskET9xHuMYMrQYk3IQ==
-X-ME-Sender: <xms:vhN-YnzcTbiG27OA1P756RmfHM36QMyh2GbPglNVLKRCLCEHu2uq0A>
-    <xme:vhN-YvRkhH9BwLlPOx8QRN7jf92VpTobhpxfQWGAqOcBSJtwVHK1MT-rDutm82D40
-    iZNGMiTEMA8MgLv7vU>
-X-ME-Received: <xmr:vhN-YhWMYt7HzFou5fAtMcaZpPf5vdSCxQSEMqfVhuNH40O3fQ5LAhsP1aa20IbPC-ykUDQY-3BD8K9qeErac540TeJirNVivc5-jpc>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrgeelgddtudcutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpeffhffvvefukfhfgggtuggjsehgtderredttdejnecuhfhrohhmpeforgigihhm
-    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
-    htvghrnhepjeegieevvedvgffffedtveeuhfehudevjeeifeegjeevuefhteeklefgveet
-    feffnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmh
-    grgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:vhN-YhjvD9iHhT3MCWCWXIOgSYkkmG4VszRZ6srvl6FsfPPn-lFEeQ>
-    <xmx:vhN-YpAh_MXz6ykwmHJo5lKK4dmGhEE0K2HORfkronBnAyiL3aAI0w>
-    <xmx:vhN-YqJGKCQSQn1CNJ2aj9yeVbcZ2iGt7sNu-lIazufNsEwnqS85Iw>
-    <xmx:vhN-YtsF32_EoAfbvgYEHEPNRszMbjIu0XZBBYwB-cSTa1mWk1UzRA>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
- 13 May 2022 04:15:58 -0400 (EDT)
-Date:   Fri, 13 May 2022 10:15:56 +0200
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     qianfan <qianfanguijin@163.com>
-Cc:     linux-sunxi@lists.linux.dev, Rob Herring <robh+dt@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
-Subject: Re: [PATCH v3 2/2] ARM: dts: sun8i-r40: Add "cpu-supply" node for
- sun8i-r40 based board
-Message-ID: <20220513081556.knd3tf6pangfblh3@houat>
-References: <20220512071858.10805-1-qianfanguijin@163.com>
- <20220512071858.10805-2-qianfanguijin@163.com>
- <20220513073849.cu4jzykefat2sepg@houat>
- <1352b9d7-5219-af09-948b-6462def39ea5@163.com>
+        with ESMTP id S1378141AbiEMIRC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 May 2022 04:17:02 -0400
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A90E13B3DC
+        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 01:17:00 -0700 (PDT)
+Received: by mail-wr1-x42b.google.com with SMTP id k2so10380885wrd.5
+        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 01:17:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=E7D8l5bVzLOBk8glw4ZVZyTSYXIEv02i6LMHubHx3+c=;
+        b=BMpOYKIbjITGMPDLK4+XF/wtpBD5jNYwfjCRy8yHy1ozHKyeuJbU6kQvZAAKu6hj8z
+         oMegYQIy+i7PSLhuuzBlE+38Gsw/tsu6NkGhyJI3s7Ye0V+5JeOZsr9rFylGqQsD1/ro
+         lWuv+SjRLWQQvrMCMsD520k7jjNKqdAuzrhlYyGXDMLEZ9abzF8IL6IGLArUiarQBuSq
+         dKQ797Q696/3udZ6UZnXmKBhwjzV3tO+n3LiT7MnHzp6HY+61h1nktKZ6V7Heq1H80xI
+         hAmMMoB6QBLBzHh7QM4j9bUtFceOPR9O3mLB1Wmk+9VZEq85peGrrzc9lUEgec3TKFsO
+         VbRw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=E7D8l5bVzLOBk8glw4ZVZyTSYXIEv02i6LMHubHx3+c=;
+        b=eJGBUH7QmdFjybnEVE/1ykzBkUv48PfQlf/LMLwNwQBjIQT5zH3senZ5gnj/qVS4+E
+         A4qTMwJ6RmFSTHJd5o2L+rMebFXADm75W+0LhLhvjxpudbXxKBBcA6ITaIHhOT2Z2/YF
+         dRCnxpEw1vugSn5adWkVbJh7bSpMqylKaUvSzIEREYj9rad4f5RfHBikceGnVyrZCR0N
+         ev8MhjRW8ePMO4AEv8iFd3HTKcJd9jMNp48BQuszkB+RM84Sf162Y7BsyQahDd16JQ+U
+         sRbOXEmTwcUYJ3Ktu6NyPALrznR4twF3WtajubHlVzlntRyhVBXh8ohh/fTaKTjNG5f3
+         p1Ew==
+X-Gm-Message-State: AOAM5301KtNYqnZlKfvU4RN2VOW2SoZ3vZ984s+a8kcRLYW+Hi0KYeth
+        K/qI7Bd/EIAlB2joBP+cUB5hrw==
+X-Google-Smtp-Source: ABdhPJzRH+K5Zq0s4HK/uVoQ35ZSyLWacT5PSl/3qhGFUDklo2MdHx4nnrs5uXgifP6P4+MOjKc4ug==
+X-Received: by 2002:a5d:45d0:0:b0:20c:b378:c492 with SMTP id b16-20020a5d45d0000000b0020cb378c492mr2960743wrs.188.1652429819296;
+        Fri, 13 May 2022 01:16:59 -0700 (PDT)
+Received: from [192.168.0.168] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id bh8-20020a05600c3d0800b003942a244f45sm5084637wmb.30.2022.05.13.01.16.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 13 May 2022 01:16:58 -0700 (PDT)
+Message-ID: <dce77726-460d-1b85-0c96-e8148751e261@linaro.org>
+Date:   Fri, 13 May 2022 10:16:57 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="ocbjtkvxhxhj7iii"
-Content-Disposition: inline
-In-Reply-To: <1352b9d7-5219-af09-948b-6462def39ea5@163.com>
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH v2 1/5] dt-bindings: proximity: vl53l0x: Document optional
+ supply and GPIO properties
+Content-Language: en-US
+To:     Markuss Broks <markuss.broks@gmail.com>,
+        linux-kernel@vger.kernel.org
+Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Song Qiang <songqiang1304521@gmail.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org
+References: <20220511214718.50879-1-markuss.broks@gmail.com>
+ <20220511214718.50879-2-markuss.broks@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220511214718.50879-2-markuss.broks@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 11/05/2022 23:47, Markuss Broks wrote:
+> This patch adds the optional properties for the VL53L0X ToF sensor to the
+> device-tree binding.
 
---ocbjtkvxhxhj7iii
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+No "this patch":
+https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
 
-On Fri, May 13, 2022 at 03:48:50PM +0800, qianfan wrote:
->=20
->=20
-> =E5=9C=A8 2022/5/13 15:38, Maxime Ripard =E5=86=99=E9=81=93:
-> > Hi,
-> >=20
-> > On Thu, May 12, 2022 at 03:18:58PM +0800, qianfanguijin@163.com wrote:
-> > > From: qianfan Zhao <qianfanguijin@163.com>
-> > >=20
-> > > sun8i-r40 actived cpufreq feature now, let's add "cpu-supply" node on
-> > > board.
-> > >=20
-> > > Signed-off-by: qianfan Zhao <qianfanguijin@163.com>
-> > > ---
-> > >   arch/arm/boot/dts/sun8i-r40-bananapi-m2-ultra.dts | 4 ++++
-> > >   arch/arm/boot/dts/sun8i-r40-feta40i.dtsi          | 4 ++++
-> > >   arch/arm/boot/dts/sun8i-t3-cqa3t-bv3.dts          | 4 ++++
-> > >   arch/arm/boot/dts/sun8i-v40-bananapi-m2-berry.dts | 4 ++++
-> > >   4 files changed, 16 insertions(+)
-> > >=20
-> > > diff --git a/arch/arm/boot/dts/sun8i-r40-bananapi-m2-ultra.dts b/arch=
-/arm/boot/dts/sun8i-r40-bananapi-m2-ultra.dts
-> > > index a6a1087a0c9b..4f30018ec4a2 100644
-> > > --- a/arch/arm/boot/dts/sun8i-r40-bananapi-m2-ultra.dts
-> > > +++ b/arch/arm/boot/dts/sun8i-r40-bananapi-m2-ultra.dts
-> > > @@ -113,6 +113,10 @@ &ahci {
-> > >   	status =3D "okay";
-> > >   };
-> > > +&cpu0 {
-> > > +	cpu-supply =3D <&reg_dcdc2>;
-> > > +};
-> > > +
-> > This will break bisection on those boards. Indeed, you added the OPPs on
-> > the first patch, and if you only apply that patch, the boards in the
-> > second patch will be missing their CPU regulator. The kernel will then
-> > ramp up the frequency to the highest OPP, but will not change the
-> > voltage, resulting in a crash.
->
-> This is a good point and I will merge those two patch.
+> 
+> Signed-off-by: Markuss Broks <markuss.broks@gmail.com>
+> ---
+>  .../devicetree/bindings/iio/proximity/st,vl53l0x.yaml        | 5 +++++
+>  1 file changed, 5 insertions(+)
 
-That's not what I meant to say. Those two patches are great separated.
-You can invert them though.
 
-> > There's a similar issue for all the boards that don't have a regulator
-> > in the first place.
-> >=20
-> > The way we worked around this for the other SoCs is to have a DTSI with
-> > the OPPs with a frequency higher than what U-Boot boots with (1008MHz?),
-> > and only include that DTSI on boards that have a CPU regulator hooked i=
-n.
->
-> Is this really necessary? It seems like every board based on sun8i-r40
-> have a cpu regulator.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-This probably won't be the case whenever someone starts a new design,
-and then they'll face random crashes for no apparent reason, and waste a
-lot of time in the process.
-
-Whereas the alternative is that you would be missing some OPPs,
-something that is fairly easy to figure out.
-
-Maxime
-
---ocbjtkvxhxhj7iii
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYn4TvAAKCRDj7w1vZxhR
-xXVzAQCYS/y6GVik1wq99/10xFtsQVwNbQDTafNgKQRW8bpSxwD+Ohmf/aYmi5JZ
-QfgJA4DF5q5bvX0nina8Y7KiVSMVSQ0=
-=x+9H
------END PGP SIGNATURE-----
-
---ocbjtkvxhxhj7iii--
+Best regards,
+Krzysztof
