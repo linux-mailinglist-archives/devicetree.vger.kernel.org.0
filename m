@@ -2,54 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B205526819
-	for <lists+devicetree@lfdr.de>; Fri, 13 May 2022 19:18:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D06BB526838
+	for <lists+devicetree@lfdr.de>; Fri, 13 May 2022 19:23:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1382911AbiEMRQw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 May 2022 13:16:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46896 "EHLO
+        id S1382941AbiEMRXD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 May 2022 13:23:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33446 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1382864AbiEMRQt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 May 2022 13:16:49 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05639DF93;
-        Fri, 13 May 2022 10:16:40 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id 275411F463B0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1652462198;
-        bh=u2SRqTpnqi7EaYL6hrMeHhetZF1DSjSsk+5BaLSaDYU=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=ZeWZhdG9YtV3hpkjxhdOPtmSe3qvvFh+9VjDugbUZDzCglh5Qperba9fLxK7mMFZW
-         A/fCGOvGjD08wpU9biJQVkR8gLlVlZB6kAcRKQ+9InH+sShRXLKiPWJmiB8kLVD/SS
-         rGVz4MqGzv8s1yiQQINsRHigYZ3BcYkP7QQvt//GCRcg+blgNV2BPhCeeZUiEF8S7N
-         nXEwS3yWdbS42g1dHcHU9gOxhcqePwK0loK1h90mkVj3HzG/qpYXYmfhOfQWGk12ou
-         1to3/yU4wjy+BqpkH70qwqhBWJ9ckOz/vbkpkB9stSxMydRV7JFWYNwGd12/qDDyVo
-         rLmJ4ye5ggRVw==
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-To:     robh+dt@kernel.org
-Cc:     krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        konrad.dybcio@somainline.org, marijn.suijten@somainline.org,
-        martin.botka@somainline.org, ~postmarketos/upstreaming@lists.sr.ht,
-        phone-devel@vger.kernel.org, paul.bouchara@somainline.org,
-        kernel@collabora.com,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Subject: [PATCH 7/7] arm64: dts: mediatek: mt6795: Add ARM CCI-400 node and assign to CPUs
-Date:   Fri, 13 May 2022 19:16:17 +0200
-Message-Id: <20220513171617.504430-8-angelogioacchino.delregno@collabora.com>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220513171617.504430-1-angelogioacchino.delregno@collabora.com>
-References: <20220513171617.504430-1-angelogioacchino.delregno@collabora.com>
+        with ESMTP id S1382929AbiEMRXC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 May 2022 13:23:02 -0400
+Received: from mail-pl1-x62e.google.com (mail-pl1-x62e.google.com [IPv6:2607:f8b0:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8851D66ADC
+        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 10:23:00 -0700 (PDT)
+Received: by mail-pl1-x62e.google.com with SMTP id i17so8550438pla.10
+        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 10:23:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=LmlkxE85vc6UhxNoZfZV20UnauAx9uE6Cz/0zHf9/y0=;
+        b=tHn0ufT6L+atomup5vtndYLuPbMdYYrBkYgqv6ommywwIMqpqT+wemVju040dVYiUM
+         kH2sDLqTKFFja93w7x9kbQpl9GqnJp1u3YyOKs2jmxb5gAIf/KEoY7mvWNSKidlC9PoQ
+         /l7ch9/cWgGlO7IMtxkC9iysiHdTobTx7CwOg8CS02y2iEfr5/Ql5D/VFE7owQevuT3f
+         Xrv954YQ0D49HAaesYjBUxxiIZ6jShsY1k9DXGXiVGECWWZYEGGNvYVr0LE/pCyRxvHo
+         /IQ2La+xI0613nRYpdMCTlA97L8SOInyE0o7FpeSvEWszNbxcperG4TGzjloH1rByJ5w
+         XgKQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=LmlkxE85vc6UhxNoZfZV20UnauAx9uE6Cz/0zHf9/y0=;
+        b=BgIzNNvcYfoyO1ijYADR83qzQk0uqwOx1tq3Q7nwc/jOMO5HBWUkmaNVBkCLMv9vG6
+         PwAjwvMFNJeH8KrrhqJhOdiYrrTP0fqhtN9xqSSumgRN6f8X2oEpA8QPRyS1NxrPIAbX
+         qHAXiNjxDJj5ob0EAE+A9XuEIOqZYBt+B4834ABp0exL+8OA0waf04kNGQnSEFChpgoG
+         MupT5s6/sNHc+fJ5GJhc9AubWLkafK42pbqUzhsfY877xm4UJw5Wy01TYFZT8GeC64/K
+         KaXBhhI4l3MqJGtvWf7aWmq+DuGGf6NSuTJZtT46KfEmmea0GO5RbS6bTPT62oUMTLyy
+         94dg==
+X-Gm-Message-State: AOAM532T0JmtDtrf/2WSXbDXqQ59gjwCd05XOt95uK1ipr71FP1RaVN/
+        QLlBchJj+OciPeHmmDnVN7tB
+X-Google-Smtp-Source: ABdhPJyZY6dt5VXk1vcXI7ZjHApuVJAr163atWieL5kinllyl84dovJtGvw031JvaqN7voVZHkCwew==
+X-Received: by 2002:a17:90b:4c0a:b0:1dc:e81a:f0c with SMTP id na10-20020a17090b4c0a00b001dce81a0f0cmr6068132pjb.2.1652462580028;
+        Fri, 13 May 2022 10:23:00 -0700 (PDT)
+Received: from thinkpad ([117.202.184.246])
+        by smtp.gmail.com with ESMTPSA id f10-20020a6547ca000000b003c5e836eddasm1886683pgs.94.2022.05.13.10.22.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 13 May 2022 10:22:59 -0700 (PDT)
+Date:   Fri, 13 May 2022 22:52:49 +0530
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Avri Altman <avri.altman@wdc.com>,
+        "James E.J. Bottomley" <jejb@linux.ibm.com>,
+        "Martin K. Petersen" <martin.petersen@oracle.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Taniya Das <tdas@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-scsi@vger.kernel.org,
+        Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v3 2/7] dt-bindings: opp: accept array of frequencies
+Message-ID: <20220513172249.GB1922@thinkpad>
+References: <20220513061347.46480-1-krzysztof.kozlowski@linaro.org>
+ <20220513061347.46480-3-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220513061347.46480-3-krzysztof.kozlowski@linaro.org>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -57,125 +87,52 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This SoC features an ARM CCI-400 IP: add the required node and
-assign the cci control ports to the CPU cores.
+On Fri, May 13, 2022 at 08:13:42AM +0200, Krzysztof Kozlowski wrote:
+> Devices might need to control several clocks when scaling the frequency
+> and voltage.  Allow passing array of clock frequencies, similarly to the
+> voltages.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
----
- arch/arm64/boot/dts/mediatek/mt6795.dtsi | 44 ++++++++++++++++++++++++
- 1 file changed, 44 insertions(+)
+Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt6795.dtsi b/arch/arm64/boot/dts/mediatek/mt6795.dtsi
-index 217d99621558..db1f24b3b9a9 100644
---- a/arch/arm64/boot/dts/mediatek/mt6795.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt6795.dtsi
-@@ -34,6 +34,7 @@ cpu0: cpu@0 {
- 			compatible = "arm,cortex-a53";
- 			enable-method = "psci";
- 			reg = <0x000>;
-+			cci-control-port = <&cci_control2>;
- 			next-level-cache = <&l2_0>;
- 		};
- 
-@@ -42,6 +43,7 @@ cpu1: cpu@1 {
- 			compatible = "arm,cortex-a53";
- 			enable-method = "psci";
- 			reg = <0x001>;
-+			cci-control-port = <&cci_control2>;
- 			next-level-cache = <&l2_0>;
- 		};
- 
-@@ -50,6 +52,7 @@ cpu2: cpu@2 {
- 			compatible = "arm,cortex-a53";
- 			enable-method = "psci";
- 			reg = <0x002>;
-+			cci-control-port = <&cci_control2>;
- 			next-level-cache = <&l2_0>;
- 		};
- 
-@@ -58,6 +61,7 @@ cpu3: cpu@3 {
- 			compatible = "arm,cortex-a53";
- 			enable-method = "psci";
- 			reg = <0x003>;
-+			cci-control-port = <&cci_control2>;
- 			next-level-cache = <&l2_0>;
- 		};
- 
-@@ -66,6 +70,7 @@ cpu4: cpu@100 {
- 			compatible = "arm,cortex-a53";
- 			enable-method = "psci";
- 			reg = <0x100>;
-+			cci-control-port = <&cci_control1>;
- 			next-level-cache = <&l2_1>;
- 		};
- 
-@@ -74,6 +79,7 @@ cpu5: cpu@101 {
- 			compatible = "arm,cortex-a53";
- 			enable-method = "psci";
- 			reg = <0x101>;
-+			cci-control-port = <&cci_control1>;
- 			next-level-cache = <&l2_1>;
- 		};
- 
-@@ -82,6 +88,7 @@ cpu6: cpu@102 {
- 			compatible = "arm,cortex-a53";
- 			enable-method = "psci";
- 			reg = <0x102>;
-+			cci-control-port = <&cci_control1>;
- 			next-level-cache = <&l2_1>;
- 		};
- 
-@@ -90,6 +97,7 @@ cpu7: cpu@103 {
- 			compatible = "arm,cortex-a53";
- 			enable-method = "psci";
- 			reg = <0x103>;
-+			cci-control-port = <&cci_control1>;
- 			next-level-cache = <&l2_1>;
- 		};
- 
-@@ -226,6 +234,42 @@ gic: interrupt-controller@10221000 {
- 			      <0 0x10226000 0 0x2000>;
- 		};
- 
-+		cci: cci@10390000 {
-+			compatible = "arm,cci-400";
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+			reg = <0 0x10390000 0 0x1000>;
-+			ranges = <0 0 0x10390000 0x10000>;
-+
-+			cci_control0: slave-if@1000 {
-+				compatible = "arm,cci-400-ctrl-if";
-+				interface-type = "ace-lite";
-+				reg = <0x1000 0x1000>;
-+			};
-+
-+			cci_control1: slave-if@4000 {
-+				compatible = "arm,cci-400-ctrl-if";
-+				interface-type = "ace";
-+				reg = <0x4000 0x1000>;
-+			};
-+
-+			cci_control2: slave-if@5000 {
-+				compatible = "arm,cci-400-ctrl-if";
-+				interface-type = "ace";
-+				reg = <0x5000 0x1000>;
-+			};
-+
-+			pmu@9000 {
-+				compatible = "arm,cci-400-pmu,r1";
-+				reg = <0x9000 0x5000>;
-+				interrupts = <GIC_SPI 58 IRQ_TYPE_LEVEL_HIGH>,
-+					     <GIC_SPI 59 IRQ_TYPE_LEVEL_HIGH>,
-+					     <GIC_SPI 60 IRQ_TYPE_LEVEL_HIGH>,
-+					     <GIC_SPI 61 IRQ_TYPE_LEVEL_HIGH>,
-+					     <GIC_SPI 62 IRQ_TYPE_LEVEL_HIGH>;
-+			};
-+		};
-+
- 		uart0: serial@11002000 {
- 			compatible = "mediatek,mt6795-uart",
- 				     "mediatek,mt6577-uart";
+Thanks,
+Mani
+
+> Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> Acked-by: Rob Herring <robh@kernel.org>
+> 
+> ---
+> 
+> Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> ---
+>  Documentation/devicetree/bindings/opp/opp-v2-base.yaml | 10 ++++++++++
+>  1 file changed, 10 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/opp/opp-v2-base.yaml b/Documentation/devicetree/bindings/opp/opp-v2-base.yaml
+> index 76c8acd981b3..66d0ec763f0b 100644
+> --- a/Documentation/devicetree/bindings/opp/opp-v2-base.yaml
+> +++ b/Documentation/devicetree/bindings/opp/opp-v2-base.yaml
+> @@ -50,6 +50,16 @@ patternProperties:
+>            property to uniquely identify the OPP nodes exists. Devices like power
+>            domains must have another (implementation dependent) property.
+>  
+> +          Entries for multiple clocks shall be provided in the same field, as
+> +          array of frequencies.  The OPP binding doesn't provide any provisions
+> +          to relate the values to their clocks or the order in which the clocks
+> +          need to be configured and that is left for the implementation
+> +          specific binding.
+> +        minItems: 1
+> +        maxItems: 16
+> +        items:
+> +          maxItems: 1
+> +
+>        opp-microvolt:
+>          description: |
+>            Voltage for the OPP
+> -- 
+> 2.32.0
+> 
+
 -- 
-2.35.1
-
+மணிவண்ணன் சதாசிவம்
