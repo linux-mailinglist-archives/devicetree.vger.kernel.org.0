@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C7BA526BDE
-	for <lists+devicetree@lfdr.de>; Fri, 13 May 2022 22:51:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C110D526BF1
+	for <lists+devicetree@lfdr.de>; Fri, 13 May 2022 22:54:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1384362AbiEMUvf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 May 2022 16:51:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52780 "EHLO
+        id S1384567AbiEMUyD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 May 2022 16:54:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57650 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1356070AbiEMUve (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 May 2022 16:51:34 -0400
-Received: from mail-yb1-xb29.google.com (mail-yb1-xb29.google.com [IPv6:2607:f8b0:4864:20::b29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E348438AA
-        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 13:51:32 -0700 (PDT)
-Received: by mail-yb1-xb29.google.com with SMTP id j84so6452475ybc.3
-        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 13:51:32 -0700 (PDT)
+        with ESMTP id S1384387AbiEMUyC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 May 2022 16:54:02 -0400
+Received: from mail-yw1-x112c.google.com (mail-yw1-x112c.google.com [IPv6:2607:f8b0:4864:20::112c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 207AD2C666
+        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 13:54:01 -0700 (PDT)
+Received: by mail-yw1-x112c.google.com with SMTP id 00721157ae682-2f7d621d1caso102007247b3.11
+        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 13:54:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=Q1lUeUaxjxAnhoOvbl5ZUVWNHVA77t2uWF+2X4IoyPA=;
-        b=cHfwau7y/FPCH7f6UNMmfoTRwNQhBKraErEQFbL4UMlr8D19qd52XiN97fGiyRRcsR
-         V3TpQYM4GaknOfyeqkInhEWStX+JHJ/WrcRdKdpIUL0ZyNhkI6MGvvgN54LhfZ1xJTBh
-         33oSENmqBqZVIvGd+3WqXF/jqj3Hb3+NE8usEaI8mHgV2I3uB3+6BjbFj0rpq9pIRt6g
-         OteVPi3Q6Hj+XVq0Z8WfURFvVtXKIhqkL8maORr78SO3oOU7qC93V3oKDjyq3ys0to7f
-         2Y294w6LXLOVqAzwd+6RZjOMB3xuML4RHhvv0OlLffmSC7oji8RULuqVC0pOCp9sJxZi
-         uYpg==
+        bh=QSjouBq1hkSPs3CGhNm0zY6/5FKoqgQOU3DpZD6z5pQ=;
+        b=taQnrTu08fAuBevrb/1K2/eCT8Kgol6/wYE8edLu3Y81qXPvEvDctcBPceQwCKjH1a
+         kDBsvDFXA5Dc3rkMd2Q2eOcLiKsdVM5dBox5U5OcgS+w0b9fLnM1W/r8X2vsna4jn6iD
+         uDxRzug8JNRNYyWHGjPLDz8QYDYgZ69xBcHpMByu+I4XYpRj3JvqVRKnlvNga847KTsA
+         /TICtVI7EQnOT4XBIMuCjWX+XOXhZdcdWjmG39F3zcVOBQM2qBnc6rgVKSrIzX4fBVa3
+         wTXg/JUNNMWhz+W+nMOzxYI143vDymqBdJTPJeyzwVXQVZDG4axQFt1QWepPMishMUTm
+         WMzA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=Q1lUeUaxjxAnhoOvbl5ZUVWNHVA77t2uWF+2X4IoyPA=;
-        b=joli9AeQOP2aqs4oygOGrYkoReVcIupX0HxbTBZ+7IVt+ADUgQWu477/muaVqC1ovg
-         cnOT9S/gEOsm6Y0jU8Bwedb4rg8UNF1pfIIOYb/yQ2uupC4wZK5l9+iCLRHdepiJJ7ID
-         SzG5Ek6NqvG6LJa6diMs2oPWdWyKI12DQsiOJ3LyxrXTq9ZLEg85s0b2BC+0/iB97stE
-         VrvpG6cf4WfQXjGMjKEaX5UQnSo7XZNNiCwlltAw6j6rEmd2EToQSxnG1s+q9oovtxTg
-         rP9f2sQHknu44uUexGl0h1wZU2k9aLg/Q8ExlabPrmyrIApIJWNBC9IzYfMVHHC9lLRJ
-         XGQg==
-X-Gm-Message-State: AOAM530KoFLI+HK3unG5yNRRgroRGupfrqM80JU1CyvIND2gNZ2o4O1k
-        ZCdeKvLNpqPRQYy+9O4twto1/b5OpM2uz+dnUgdqAA==
-X-Google-Smtp-Source: ABdhPJxzWfxcpJX1h26azJfPz0/Orz9nry4uuChl6eqvoECZKt8El5KnYLZ7vDZYwgCD9hXs3qS9WmEwLodLxlsirYk=
-X-Received: by 2002:a25:2c82:0:b0:64d:62a1:850b with SMTP id
- s124-20020a252c82000000b0064d62a1850bmr148021ybs.291.1652475092218; Fri, 13
- May 2022 13:51:32 -0700 (PDT)
+        bh=QSjouBq1hkSPs3CGhNm0zY6/5FKoqgQOU3DpZD6z5pQ=;
+        b=fXgXpWyw8MlqmLEg43kAg9Ia8nJzve2x0gy/pFRWA45rutZhANWblToE9a3iMm/ZpQ
+         zDdLw/P40Wbc0+3hn7Qd4xpe7bpgvQ60sjqpsA41GA7v6HhFUlBEpX1K1WllgtLoBZkJ
+         nRZU19jnjn4aSyQVFgymR7UjhLMPdxMwQS1lBm0hl8mTZFCH4oj0nG9OWeP6Cyz2n2RC
+         nC67+LpnspXN2ykdqSEttp+XXPGHm0c9onE8qa2BcY5yh2GIBzpDELlHIHOlcJRM3Aej
+         fqoLVa7EyIPyjE8eeBooGSDqDgQh+A4H4UK/VVXj/1Rbiqn6cSfZ3z97CJMofGnrUQJ/
+         C6Sg==
+X-Gm-Message-State: AOAM531Twicn6DVN4uS8lUbRqZs/+Yi0goV610gVOw4FNzu0QBqZLfx8
+        xSM+IoVWfyL/AzN7t5b4c7WCpIhmXLNGZSyUynl9QGG6dsNi3w==
+X-Google-Smtp-Source: ABdhPJyXFPMj0hfog8DqAA9Fv2desq61TfhzBIoyY59lAN9Gg0Drmja//xbzjuSnSd2hDwAwjCAVaLqHgYj7g7m3fTo=
+X-Received: by 2002:a81:6d4f:0:b0:2fe:b911:fb6d with SMTP id
+ i76-20020a816d4f000000b002feb911fb6dmr4421832ywc.140.1652475240413; Fri, 13
+ May 2022 13:54:00 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220512142910.328995-1-dinguyen@kernel.org>
-In-Reply-To: <20220512142910.328995-1-dinguyen@kernel.org>
+References: <20220512175011.28753-1-dipenp@nvidia.com>
+In-Reply-To: <20220512175011.28753-1-dipenp@nvidia.com>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Fri, 13 May 2022 22:51:21 +0200
-Message-ID: <CACRpkdasJnPikNPw0N-1C_e6i0wuKfxAtyNj2m96TxaMORz4-A@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: gpio: altera: correct interrupt-cells
-To:     Dinh Nguyen <dinguyen@kernel.org>
-Cc:     brgl@bgdev.pl, robh+dt@kernel.org, krzk+dt@kernel.org,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        stable@vger.kernel.org
+Date:   Fri, 13 May 2022 22:53:49 +0200
+Message-ID: <CACRpkdb0nrQO_543KOeQsms=TtsmLNh2Waim_ko3wN4n890z2g@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: Renamed hte directory to timestamp
+To:     Dipen Patel <dipenp@nvidia.com>
+Cc:     thierry.reding@gmail.com, linux-kernel@vger.kernel.org,
+        linux-tegra@vger.kernel.org, devicetree@vger.kernel.org,
+        robh+dt@kernel.org
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
@@ -66,23 +66,21 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 12, 2022 at 4:29 PM Dinh Nguyen <dinguyen@kernel.org> wrote:
+On Thu, May 12, 2022 at 7:50 PM Dipen Patel <dipenp@nvidia.com> wrote:
 
-> update documentation to correctly state the interrupt-cells to be 2.
+> Renamed hte dt binding directory to timestamp according review comment.
+> Addressed minor comment about having HTE acronym first in the common dt
+> binding document.
 >
-> Cc: stable@vger.kernel.org
-> Fixes: 4fd9bbc6e071 ("drivers/gpio: Altera soft IP GPIO driver devicetree binding")
-> Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
-(...)
-> -- #interrupt-cells : Should be 1. The interrupt type is fixed in the hardware.
-> +- #interrupt-cells : Should be 2. The interrupt type is fixed in the hardware.
->    - The first cell is the GPIO offset number within the GPIO controller.
-> +  - The second cell is the interrupt trigger type and level flags.
+> The change reflects above renaming in MAINTAINERS files too.
+>
+> Signed-off-by: Dipen Patel <dipenp@nvidia.com>
+> ---
+> This patch is on top of old series (Intro to Hardware timestamping
+> engine V6) present in linux-next tentatively in preparation for
+> merge.
 
-So now this says (A) that the interrupt type is fixed in hardware,
-and (B) that you should specify it.
-
-This is confusing, I think something is wrong?
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
 Yours,
 Linus Walleij
