@@ -2,75 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5BFE3526CC1
-	for <lists+devicetree@lfdr.de>; Sat, 14 May 2022 00:01:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 75C68526CD4
+	for <lists+devicetree@lfdr.de>; Sat, 14 May 2022 00:13:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1384813AbiEMWBU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 May 2022 18:01:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35142 "EHLO
+        id S229969AbiEMWNE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 May 2022 18:13:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55472 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1384812AbiEMWBT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 May 2022 18:01:19 -0400
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA9335A2DA;
-        Fri, 13 May 2022 15:01:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1652479278; x=1684015278;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=6W9kIUxVEytkIlePIUvHWEfOUUtB7d0gmWYOO/wGDro=;
-  b=aP2t8BWuwkeAcPC7AcyyWSJRv87h0bYuTsPbdZ7klNzaL/th89pvjCc6
-   2aGOUGVSHmjvoTQZ2QohpS+0QHQFTXGhy+8v0BysRYV1IgZ9OHuig3qP2
-   ZF8S/lrQ0wo3Juxb6FMApSd8+7wiHuLd9Kga79tD7KM1BP7KuDXSuxD9m
-   UC31ioGh++HqSmOJpyT1cUmgj2jnr0nl8+qubYcTz/G2FOop3jDGlEbtE
-   EvYjahQGAlOLDhQ0vNJF3oJnrNB0d6YJhBXMB3ErxJxv2GQ5apdIudQrp
-   o0cEDTxcDEAJqZ4tv4Kso9eLBb70fyd4QmQyclDq7gQCjBCXrBIjfGFLe
-   Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10346"; a="270355995"
-X-IronPort-AV: E=Sophos;i="5.91,223,1647327600"; 
-   d="scan'208";a="270355995"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
-  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 May 2022 15:01:18 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.91,223,1647327600"; 
-   d="scan'208";a="625042653"
-Received: from lkp-server01.sh.intel.com (HELO 5056e131ad90) ([10.239.97.150])
-  by fmsmga008.fm.intel.com with ESMTP; 13 May 2022 15:01:10 -0700
-Received: from kbuild by 5056e131ad90 with local (Exim 4.95)
-        (envelope-from <lkp@intel.com>)
-        id 1npdLS-000M9U-0W;
-        Fri, 13 May 2022 22:01:10 +0000
-Date:   Sat, 14 May 2022 06:00:43 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, robh+dt@kernel.org
-Cc:     llvm@lists.linux.dev, kbuild-all@lists.01.org,
-        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
-        mturquette@baylibre.com, sboyd@kernel.org, p.zabel@pengutronix.de,
-        y.oudjana@protonmail.com, angelogioacchino.delregno@collabora.com,
-        jason-jh.lin@mediatek.com, ck.hu@mediatek.com,
-        fparent@baylibre.com, rex-bc.chen@mediatek.com,
-        tinghan.shen@mediatek.com, chun-jie.chen@mediatek.com,
-        weiyi.lu@mediatek.com, ikjn@chromium.org, miles.chen@mediatek.com,
-        sam.shih@mediatek.com, wenst@chromium.org,
-        bgolaszewski@baylibre.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-clk@vger.kernel.org,
-        konrad.dybcio@somainline.org, marijn.suijten@somainline.org,
-        martin.botka@somainline.org, ~postmarketos/upstreaming@lists.sr.ht,
-        phone-devel@vger.kernel.org
-Subject: Re: [PATCH 5/5] clk: mediatek: Add MediaTek Helio X10 MT6795 clock
- drivers
-Message-ID: <202205140535.hQjmJtwR-lkp@intel.com>
-References: <20220513165050.500831-6-angelogioacchino.delregno@collabora.com>
+        with ESMTP id S229692AbiEMWND (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 May 2022 18:13:03 -0400
+Received: from mail-yb1-xb35.google.com (mail-yb1-xb35.google.com [IPv6:2607:f8b0:4864:20::b35])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF9196EB17
+        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 15:13:00 -0700 (PDT)
+Received: by mail-yb1-xb35.google.com with SMTP id i38so17483732ybj.13
+        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 15:13:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=hPXr8pV9dZF9B1BXNKQfXMsYbL4rZ6nKjrUwBZQ0KMo=;
+        b=DHMa15fitu2r/PPB1WyddaTAumAftS6vsCOF9zBC7o5tUDhku++ZAFZdAjLZqkR/4O
+         KX9pgu0nhyXarktf2F7egfxAdIkEjn1nrLIaAu1dscNjoQdsOaEbg9rlVjOSSR/9U+W7
+         fF9/0uIVsF1CKnclqxUFYK03LSRWHwMpuJQWV03jnnNCj8HLOTb8XQOC03TzlHXrd11e
+         Pvk0073QqoqJT4IY6nBATQGIfOg66LqbvK0hQ3wY6V9R2LkXW3Z7VSxjgZhcZbgicNTf
+         /YHRakDlnlyqJTFdMZcjl4omUdTi+VyA/ZkrWY28MxiBc5wnvSeUXOgDzGII6NX6XYlh
+         iOjQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=hPXr8pV9dZF9B1BXNKQfXMsYbL4rZ6nKjrUwBZQ0KMo=;
+        b=PNom1dAMgku45zk39Cai9mdJGvptu7QdO34fZ/AX3EMsb1Is/soVbH5L3kwg4YqZsI
+         kcjpI8xv9t+cZ3m6UkXJ2xrwe1HJPWBBOUerxmbzBBEdFYmGFdKjRN98o4jIVrmMEI7f
+         TCem4T1vnm1/5DxhVCiXoR5a/H6AWsWEEJ/gn+5AaGsk0XrjZrUS2c6N6UrYDyZqeaqT
+         +7B8CQOy4nZoOKYN63vj5I61R7TzqAbLB6BhaBYcw5g6yVXgS2vPisBsSFgLVJytGiiQ
+         aOU4CuU68i1jJPpQc8J4Mort8Njq5FCGsz2Q9FBcRJ/euzA7nvwUFMnHqSQDmU0E0xpY
+         cGcg==
+X-Gm-Message-State: AOAM5323EkY8HUHWrZXcaIlMkjQmge/feazdX2D0PYsTpjFrSnEGlFBO
+        bRV1onvRtU0alwUSpzRecZp8+SW4scPAY6wQ0woF6w==
+X-Google-Smtp-Source: ABdhPJwdDBtD5whluJHsM54nTP7gGqxuqR862sxqevyBOecVN1RSRe8qZZNMWPlXtgaeaFPIGj9+/FwhHzKHQLS55y0=
+X-Received: by 2002:a5b:302:0:b0:64b:a20a:fcd9 with SMTP id
+ j2-20020a5b0302000000b0064ba20afcd9mr4121428ybp.492.1652479980153; Fri, 13
+ May 2022 15:13:00 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220513165050.500831-6-angelogioacchino.delregno@collabora.com>
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+References: <20220509050953.11005-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20220509050953.11005-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20220509050953.11005-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Sat, 14 May 2022 00:12:48 +0200
+Message-ID: <CACRpkdafrkyQjmyoa4CAJXJ8JdT3owapq10=yBQLyPp0EwO6AQ@mail.gmail.com>
+Subject: Re: [PATCH v2 4/5] gpio: gpiolib: Add ngirq member to struct gpio_irq_chip
+To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Cc:     Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,55 +74,21 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi AngeloGioacchino,
+On Mon, May 9, 2022 at 7:10 AM Lad Prabhakar
+<prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
 
-Thank you for the patch! Yet something to improve:
+> Supported GPIO IRQs by the chip is not always equal to the number of GPIO
+> pins. For example on Renesas RZ/G2L SoC where it has GPIO0-122 pins but at
+> a give point a maximum of only 32 GPIO pins can be used as IRQ lines in
+> the IRQC domain.
+>
+> This patch adds ngirq member to struct gpio_irq_chip and passes this as a
+> size to irq_domain_create_hierarchy()/irq_domain_create_simple() if it is
+> being set in the driver otherwise fallbacks to using ngpio.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-[auto build test ERROR on robh/for-next]
-[also build test ERROR on next-20220513]
-[cannot apply to clk/clk-next pza/reset/next mbgg-mediatek/for-next v5.18-rc6]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
+As mentioned in some other patch, try to use .valid_mask for this instead.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/AngeloGioacchino-Del-Regno/MediaTek-Helio-X10-MT6795-Clock-drivers/20220514-005314
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-config: arm64-buildonly-randconfig-r004-20220512 (https://download.01.org/0day-ci/archive/20220514/202205140535.hQjmJtwR-lkp@intel.com/config)
-compiler: clang version 15.0.0 (https://github.com/llvm/llvm-project 38189438b69ca27b4c6ce707c52dbd217583d046)
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # install arm64 cross compiling tool for clang build
-        # apt-get install binutils-aarch64-linux-gnu
-        # https://github.com/intel-lab-lkp/linux/commit/991f92f26cc545a1836a3120408ce27ba7ddadab
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review AngeloGioacchino-Del-Regno/MediaTek-Helio-X10-MT6795-Clock-drivers/20220514-005314
-        git checkout 991f92f26cc545a1836a3120408ce27ba7ddadab
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=arm64 SHELL=/bin/bash drivers/clk/mediatek/
-
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
-
-All errors (new ones prefixed by >>):
-
->> drivers/clk/mediatek/clk-mt6795-infracfg.c:14:10: fatal error: 'reset.h' file not found
-   #include "reset.h"
-            ^~~~~~~~~
-   1 error generated.
---
->> drivers/clk/mediatek/clk-mt6795-pericfg.c:13:10: fatal error: 'reset.h' file not found
-   #include "reset.h"
-            ^~~~~~~~~
-   1 error generated.
-
-
-vim +14 drivers/clk/mediatek/clk-mt6795-infracfg.c
-
-  > 14	#include "reset.h"
-    15	
-
--- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
+Yours,
+Linus Walleij
