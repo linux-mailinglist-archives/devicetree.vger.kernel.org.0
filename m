@@ -2,59 +2,42 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 52A5D52705E
-	for <lists+devicetree@lfdr.de>; Sat, 14 May 2022 11:49:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 346A8527064
+	for <lists+devicetree@lfdr.de>; Sat, 14 May 2022 11:54:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231561AbiENJtp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 14 May 2022 05:49:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49220 "EHLO
+        id S231546AbiENJyQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 14 May 2022 05:54:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57748 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231543AbiENJto (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 14 May 2022 05:49:44 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB5FF4F445;
-        Sat, 14 May 2022 02:49:30 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S230281AbiENJyP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 14 May 2022 05:54:15 -0400
+Received: from relay07.th.seeweb.it (relay07.th.seeweb.it [5.144.164.168])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91171515BE
+        for <devicetree@vger.kernel.org>; Sat, 14 May 2022 02:54:13 -0700 (PDT)
+Received: from SoMainline.org (94-209-165-62.cable.dynamic.v4.ziggo.nl [94.209.165.62])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id A8C9860C7B;
-        Sat, 14 May 2022 09:49:29 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 83AF9C340EE;
-        Sat, 14 May 2022 09:49:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1652521769;
-        bh=fD/mkjvdISC77Cf8PGTHsmA88B804TFZMCm5qN7kBaw=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Mth4RYLvGgdhMR5tuXBLbTq9kQvo7gu/aJbiEjaVb1PfJv/gwmvhneXxPihIQyUGK
-         GxnY32AjxfObxp3T71hJpIQH+sqByeFgxr6USZdLcxGJiWZignGK/SWi/76Hd9sp/O
-         6fMXgoeS5+pf/V8nCpOgTz0EGwInsRYn4yq1lFQKNtZhZEW8s6sGEeSl7zjJG1osMl
-         VMwgn2Pu/v24gC/feiB+/Xc5HEC7QMq7oOZhferowDQx7OJA2nlUuctB/yKM2qCUxh
-         4zmD76z6jbH5zgcvwUcOT1AFZR/Q/iy5pCGdMQma6HEnsg/kebfw+F0Dn2AB/n5hEk
-         9Mlg+dSVkZrhA==
-Date:   Sat, 14 May 2022 11:49:14 +0200
-From:   Lorenzo Bianconi <lorenzo@kernel.org>
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     netdev@vger.kernel.org, nbd@nbd.name, john@phrozen.org,
-        sean.wang@mediatek.com, Mark-MC.Lee@mediatek.com,
-        davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-        pabeni@redhat.com, Sam.Shih@mediatek.com,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        robh@kernel.org, landen.chao@mediatek.com
-Subject: Re: [PATCH net-next 01/14] arm64: dts: mediatek: mt7986: introduce
- ethernet nodes
-Message-ID: <Yn97GqujwYlljkdH@lore-desk>
-References: <cover.1651839494.git.lorenzo@kernel.org>
- <1d555fbbac820e9b580da3e8c0db30e7d003c4b6.1651839494.git.lorenzo@kernel.org>
- <YnZ8o46pPdKMCbUF@lunn.ch>
- <YnlC3jvYarpV6BP1@lore-desk>
- <YnlFBr1wgb/hlduy@lunn.ch>
+        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 4299C3F662;
+        Sat, 14 May 2022 11:54:12 +0200 (CEST)
+Date:   Sat, 14 May 2022 11:54:11 +0200
+From:   Marijn Suijten <marijn.suijten@somainline.org>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 3/8] arm64: dts: qcom: sdm630: disable GPU by default
+Message-ID: <20220514095411.wdij2x5a2j5bvyco@SoMainline.org>
+References: <20220513234518.3068480-1-dmitry.baryshkov@linaro.org>
+ <20220513234518.3068480-4-dmitry.baryshkov@linaro.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="57sKd9UZFq0yO9gn"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <YnlFBr1wgb/hlduy@lunn.ch>
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+In-Reply-To: <20220513234518.3068480-4-dmitry.baryshkov@linaro.org>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -63,73 +46,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 2022-05-14 02:45:13, Dmitry Baryshkov wrote:
+> The SoC's device tree file disables gpucc and adreno's SMMU by default.
+> So let's disable the GPU too. Moreover it looks like SMMU might be not
+> usable without additional patches (which means that GPU is unusable
+> too). No board uses GPU at this moment.
+> 
+> Fixes: 5cf69dcbec8b ("arm64: dts: qcom: sdm630: Add Adreno 508 GPU configuration")
+> Reviewed-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
---57sKd9UZFq0yO9gn
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Reviewed-by: Marijn Suijten <marijn.suijten@somainline.org>
 
-> On Mon, May 09, 2022 at 06:35:42PM +0200, Lorenzo Bianconi wrote:
-> > > > +&eth {
-> > > > +	status =3D "okay";
-> > > > +
-> > > > +	gmac0: mac@0 {
-> > > > +		compatible =3D "mediatek,eth-mac";
-> > > > +		reg =3D <0>;
-> > > > +		phy-mode =3D "2500base-x";
-> > > > +
-> > > > +		fixed-link {
-> > > > +			speed =3D <2500>;
-> > > > +			full-duplex;
-> > > > +			pause;
-> > > > +		};
-> > > > +	};
-> > > > +
-> > > > +	gmac1: mac@1 {
-> > > > +		compatible =3D "mediatek,eth-mac";
-> > > > +		reg =3D <1>;
-> > > > +		phy-mode =3D "2500base-x";
-> > > > +
-> > > > +		fixed-link {
-> > > > +			speed =3D <2500>;
-> > > > +			full-duplex;
-> > > > +			pause;
-> > > > +		};
-> > > > +	};
-> > >=20
-> > > Are both connected to the switch? It just seems unusual two have two
-> > > fixed-link ports.
-> >=20
-> > afaik mac design supports autoneg only in 10M/100M/1G mode and mt7986 g=
-mac1
-> > is connected to a 2.5Gbps phy on mt7986-ref board.
->=20
-> The MAC does not normally perform autoneg, the PHY
-> does. phylib/phylink then tells the MAC the result of the
-> negotiation. If there is a SERDES/PCS involved, and it is performing
-> the autoneg, phylink should get told about the result of the autoneg
-> and it will tell the MAC the result.
->=20
-> So the gmac1 should just have phy-handle pointing to the PHY, not a
-> fixed link.
->=20
->       Andrew
-
-adding Landen to the discussion to provide more hw details.
-@Landen: any inputs on it?
-
-Regards,
-Lorenzo
-
---57sKd9UZFq0yO9gn
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCYn97GgAKCRA6cBh0uS2t
-rJi/AQCb9dTLYZ7YoVsaSg9/eM2xO1giATwmWgDgvu7ornUl/wD+Im8XM086QT4k
-wTWJpsrIZkt3aACNIfiY34472b6ohAw=
-=ZZRY
------END PGP SIGNATURE-----
-
---57sKd9UZFq0yO9gn--
+> ---
+>  arch/arm64/boot/dts/qcom/sdm630.dtsi | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sdm630.dtsi b/arch/arm64/boot/dts/qcom/sdm630.dtsi
+> index 8697d40e9b74..e8bb170e8b2f 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm630.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sdm630.dtsi
+> @@ -1050,6 +1050,8 @@ adreno_gpu: gpu@5000000 {
+>  
+>  			operating-points-v2 = <&gpu_sdm630_opp_table>;
+>  
+> +			status = "disabled";
+> +
+>  			gpu_sdm630_opp_table: opp-table {
+>  				compatible  = "operating-points-v2";
+>  				opp-775000000 {
+> -- 
+> 2.35.1
+> 
