@@ -2,65 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 640655271E9
-	for <lists+devicetree@lfdr.de>; Sat, 14 May 2022 16:21:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 945C45271FE
+	for <lists+devicetree@lfdr.de>; Sat, 14 May 2022 16:31:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233136AbiENOVW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 14 May 2022 10:21:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34628 "EHLO
+        id S233300AbiENObh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 14 May 2022 10:31:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50268 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233383AbiENOVL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 14 May 2022 10:21:11 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0720A1B1;
-        Sat, 14 May 2022 07:21:08 -0700 (PDT)
+        with ESMTP id S232498AbiENObg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 14 May 2022 10:31:36 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0179719014;
+        Sat, 14 May 2022 07:31:34 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 8537360F2A;
-        Sat, 14 May 2022 14:21:08 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8425FC340EE;
-        Sat, 14 May 2022 14:21:03 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id A335FB808D2;
+        Sat, 14 May 2022 14:31:33 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9849FC340EE;
+        Sat, 14 May 2022 14:31:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1652538067;
-        bh=fBJG7A+XsQUdGt9z4Q/dgnY9axRvsRVkKDu5cKbiVRQ=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=pQqTcVRNOWdlHHOXC+4ME/GCYRzZnE8N7ttD47TT9CnJrMLVmTkjbLeWKpJQfeDhv
-         B2s6QGQXfNzXSAyTatQdpt8RwvlURF0V0iC1OVvNyb6mfs8iQcydgDnUBQeAjQfUFG
-         wRp1M52PJ3Y3DsWNx6TGCG1DposlLQ5GRCfW37nVU+4GUaHW2BoAvfJEle4Z6tLi5M
-         EkaXY4LY3LdzMDOg+ZDkxoilOA2mt8cAc4rljnfawj23clTnGXYhUBuBWSXk1unGLk
-         MUBg0K5zcwc22Hpg7igxdPA0VcDyMnHKMP2BmRVEHuc9RJp0a8cAIXywbAeagz6gSZ
-         vR9sGgUex9UPw==
-Date:   Sat, 14 May 2022 15:29:40 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Markuss Broks <markuss.broks@gmail.com>,
-        linux-kernel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Song Qiang <songqiang1304521@gmail.com>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH v4 1/5] dt-bindings: proximity: vl53l0x: Document
- optional supply and GPIO properties
-Message-ID: <20220514152940.1a212c7f@jic23-huawei>
-In-Reply-To: <f5ec4fd9-b9d7-10fa-1c27-2f268466274f@linaro.org>
-References: <20220512191334.61804-1-markuss.broks@gmail.com>
-        <20220512191334.61804-2-markuss.broks@gmail.com>
-        <f5ec4fd9-b9d7-10fa-1c27-2f268466274f@linaro.org>
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-pc-linux-gnu)
+        s=k20201202; t=1652538692;
+        bh=KLDGJ+XUhBPXixy1Zg7PlcK9TVzkkUVTXCexNedRPdw=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=sbzioa5hOPlt9gboLS22zB5omo907tZtRH6IInLQ1CrfnwkK2NfOpZOJ1gEhi6Fmz
+         wJ889Mle+VD6igOIw2INvZpDAuHTEx9HKZdwk3ubcTh4BQLZq4OK+6Bv+FOUWtkAce
+         OP2GafNWUcvJeVMModmVglfT7SsB1J/BwC2DR5vUxADkW4qDlDdXQseDx66NhqUybk
+         sjRD7kqKoUxNbKI5Ll1jiuVmWjkX9OaAGWSdbfhlkOD5TYPKXSSJ6OzxdOP2VOjQvp
+         q51Wk+roELj09l29LBs1MdWGOaWS9AHtfMKaEaj9GLEWTXV5dUnvfPmumqCI7qHjh4
+         KpqruflA0jFgQ==
+Date:   Sat, 14 May 2022 16:31:28 +0200
+From:   Wolfram Sang <wsa@kernel.org>
+To:     Quan Nguyen <quan@os.amperecomputing.com>
+Cc:     Corey Minyard <minyard@acm.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Brendan Higgins <brendanhiggins@google.com>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        openipmi-developer@lists.sourceforge.net,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        linux-i2c@vger.kernel.org, openbmc@lists.ozlabs.org,
+        Open Source Submission <patches@amperecomputing.com>,
+        Phong Vo <phong@os.amperecomputing.com>,
+        "Thang Q . Nguyen" <thang@os.amperecomputing.com>
+Subject: Re: [PATCH v7 3/3] i2c: aspeed: Assert NAK when slave is busy
+Message-ID: <Yn+9QBoPdH8fMm/m@shikoro>
+Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
+        Quan Nguyen <quan@os.amperecomputing.com>,
+        Corey Minyard <minyard@acm.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@aj.id.au>,
+        Brendan Higgins <brendanhiggins@google.com>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        openipmi-developer@lists.sourceforge.net,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        linux-i2c@vger.kernel.org, openbmc@lists.ozlabs.org,
+        Open Source Submission <patches@amperecomputing.com>,
+        Phong Vo <phong@os.amperecomputing.com>,
+        "Thang Q . Nguyen" <thang@os.amperecomputing.com>
+References: <20220422040803.2524940-1-quan@os.amperecomputing.com>
+ <20220422040803.2524940-4-quan@os.amperecomputing.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="/Jcb04ZVbWq3W2FY"
+Content-Disposition: inline
+In-Reply-To: <20220422040803.2524940-4-quan@os.amperecomputing.com>
 X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -71,37 +80,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 13 May 2022 10:56:50 +0200
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
 
-> On 12/05/2022 21:13, Markuss Broks wrote:
-> > This patch adds the optional properties for the VL53L0X ToF sensor to the
-> > device-tree binding.
-> > 
-> > Signed-off-by: Markuss Broks <markuss.broks@gmail.com>  
-> 
-> Wait, two days and three versions? Please give some time before
-> resending entire patchset.
+--/Jcb04ZVbWq3W2FY
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Yeah, several instances of this on the IIO list this week. Please
-let things sit for at least a few days between versions even if
-the requested changes are fairly minor.
+On Fri, Apr 22, 2022 at 11:08:03AM +0700, Quan Nguyen wrote:
+> When processing I2C_SLAVE_WRITE_REQUESTED event, if slave returns
+> -EBUSY, i2c controller should issue RxCmdLast command to assert NAK
+> on the bus.
 
-> 
-> Same comments apply as for v2 and v3...
->
-I 'could' fix this up, but given you've not responded to Krzysztof
-I think I'd prefer you send a v5 in the second half of next week or
-later (to give time for other review) with the patch description
-change Krzysztof suggested made.
-
-Code wise the series looks fine to me.
-
-Jonathan
+That should be I2C_SLAVE_WRITE_RECEIVED and it should be NAKed on all
+errnos. Have you tested it?
 
 
+--/Jcb04ZVbWq3W2FY
+Content-Type: application/pgp-signature; name="signature.asc"
 
-> 
-> Best regards,
-> Krzysztof
+-----BEGIN PGP SIGNATURE-----
 
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmJ/vT8ACgkQFA3kzBSg
+KbYtRxAAnwySTv44cgVvd57fhPZJ4l4tcBSK97yFdMtZ2UNRFfyFclUiH9skwsuO
+KOmHb1UatGOYAoMyxrPIkiOXkeIeL/vlIkgI0d4CjL0pWKNrNIqqSncRdnpsDO8u
+4efBzlk9D2iNkA7y9OAuBxHwONT41qUX5fgOymGpF56b/X/4sHJjV20pcFewfb/0
+3ykk9Y5QJDq+h5va+IXp0O2ED6u8nZxn+/RAy+JiJFX+ynFzf6MYMrsFEJ4uVB20
+T8/0HKkL0I+TMOMwdu62Blkbo324e3mxvilD6D9buGzpclYxAQb5pw1TRKxkiBxu
+hGrjg3J66VECV7Segwb9gO/JoV1u+jinAXD2xWmQoR29jfb4n9IW/WGy1/meEe43
+GJ9tVo9DGxPUT+nwnpV14oZFQxmrRdZaHzwf4cFpnuVbZZspgSBMM2mjJzpHv3Qq
+9pABXmjzY8LdzVQAAnCpk2062gS2r0hnVnCs7WdgAsAHqzZ/ioYBFyD7Qo5RChe5
+ilimRgUz2brUuVf7K9VxR3JBCBMJ+C7O5Hc1Ii33pIw09mzI1395q6FbzfPz8oWJ
+yXiOivGAf0xBdw8N3J2rQ6e/7lEBWH88KO/bttKAr1CJChuotX3enJH5gvDakGNb
+7gPDMh7sDqcTC5a6vBSuhWF76dZlfgYFA6NYuCn2iNTL8LyBATs=
+=xB1Q
+-----END PGP SIGNATURE-----
+
+--/Jcb04ZVbWq3W2FY--
