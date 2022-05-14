@@ -2,116 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5449E527155
-	for <lists+devicetree@lfdr.de>; Sat, 14 May 2022 15:37:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EAC1152713D
+	for <lists+devicetree@lfdr.de>; Sat, 14 May 2022 15:32:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232744AbiENNhM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 14 May 2022 09:37:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52574 "EHLO
+        id S230246AbiENNcE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 14 May 2022 09:32:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44190 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232712AbiENNhJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 14 May 2022 09:37:09 -0400
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E006F22BDD;
-        Sat, 14 May 2022 06:37:03 -0700 (PDT)
-Received: by mail-ed1-x52b.google.com with SMTP id fd25so444066edb.3;
-        Sat, 14 May 2022 06:37:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=toXlyjRqxPOMu7FU0IW8LcSR73wz0FAFwkKHEk9OfQg=;
-        b=mF0fvJmaxcPEJXwm3QYVF49GBdsbPWOj4de02PwDIcByndRXk4h4m06jv73pa0pSme
-         2N2z/KsA3+HjyKj/TcHeWYFR54jRG+Hi7JuCuU5QLpIZlXTFIMttfIl9PQ9uZUhKYmaV
-         tVIA5a3GN0/FUA1Vj+m+mcARIuiNLdN+633pa1cT7gXQ+XYCnGwbVy1IB5yO7eaC3cvI
-         8pn4LKgtnupFAwjzNlYsh2u9B9A4rcjy8FuDyhfE7YjGW7xxhv0eBGyNx/oa7ACQ+HBE
-         yDB3dTIOmazon6wB7+se0uhHtLlSzBumYL8BMnYndo89GFwO/jsmGx+Jq/Wh8fOTIpAc
-         gdVw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=toXlyjRqxPOMu7FU0IW8LcSR73wz0FAFwkKHEk9OfQg=;
-        b=O/eb0Gp1atkITlV9zxq6209jGBJJGHh6GO0zUcitmjphM2JQcdLdZmYMkOeBj0UUB0
-         skGbNAKUgZ1pyITzfeQ4RdMIHelLhi57BD99QJM/GadIj3NxdvblOm6Xhs2LtmRlk7BF
-         7+mnZMmk+89lPpk+SGiqKtcDq2vgYClpcB+LuhKDqFgg4ihLzM+VdJXFT323xvTaeYqA
-         fBKqJ1PHDncSjkMqpc3QH+lzgMizN3lfzosFCBTWNbnl0BL6srIfE185paXOP31XtapL
-         a412U0/SFth3kR8oIds0UrX+sPBcIPm9+RM5M6tOoqL8gNXhVvS+16c6wZttdjFA3rZY
-         cHaQ==
-X-Gm-Message-State: AOAM533+oQX7VTJmBPqMWn6vZG97ihUdbi8yuXxjWqRx93pvVKY+8RZx
-        b+KJt6vELjQImmNT/iLkDOw=
-X-Google-Smtp-Source: ABdhPJwWj2/+V8JJuLG/en/GhFUmBSvLuOfOdP0FDOK6FKh3Z6r87dGQpB9uw240uYeEwToco2nhzA==
-X-Received: by 2002:a50:fe1a:0:b0:425:e276:5adf with SMTP id f26-20020a50fe1a000000b00425e2765adfmr3840879edt.284.1652535422140;
-        Sat, 14 May 2022 06:37:02 -0700 (PDT)
-Received: from localhost.localdomain (84-72-105-84.dclient.hispeed.ch. [84.72.105.84])
-        by smtp.gmail.com with ESMTPSA id ci18-20020a170907267200b006f3ef214e49sm1736739ejc.175.2022.05.14.06.37.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 14 May 2022 06:37:01 -0700 (PDT)
-From:   Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>
-Cc:     Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v4 3/3] arm64: dts: rockchip: Add Hantro encoder node to rk356x
-Date:   Sat, 14 May 2022 15:36:04 +0200
-Message-Id: <20220514133604.174905-4-frattaroli.nicolas@gmail.com>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20220514133604.174905-1-frattaroli.nicolas@gmail.com>
-References: <20220514133604.174905-1-frattaroli.nicolas@gmail.com>
+        with ESMTP id S232476AbiENNcB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 14 May 2022 09:32:01 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5DF10167ED;
+        Sat, 14 May 2022 06:31:59 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 136D9B80759;
+        Sat, 14 May 2022 13:31:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2A530C340EE;
+        Sat, 14 May 2022 13:31:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1652535115;
+        bh=TExNkCJIyi7sDz+kd0um9+TpmBxdCc8saAXZNsfA+Jo=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=NTYaemDyM2EcpaBTJbdwga+I34SCsAkZ43SzvYi2A/h9HXiFUqi6fQWUc+afC8sKD
+         aDeorUuiE2Wy4pfaEM9+KVfnH/dIglvw+dHdI0mexse6ssIC/jUkC1stFGoWvjhhrl
+         fh8CwBLQTA2FTj59soeJcdLvtfcoWNSxBMbtrUlVNW+1M7Rjt0vIzrmADN7pkizh9+
+         GvGssv6P5m/QIGjO9itQlWhUQ5pBos1CZsxtZWQq6BgjJ2I049t5YAS2ExJn5mUB0C
+         5HBvTQZVHQQ3L0xLIh2HCtH9kE0UGz1/HwoiHCJszvi5tmsFRwsvaxjzMBUR/BEAO0
+         OC0wsubNWhVWA==
+Date:   Sat, 14 May 2022 14:40:30 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Eddie James <eajames@linux.ibm.com>
+Cc:     Jonathan Cameron <Jonathan.Cameron@Huawei.com>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        robh+dt@kernel.org, lars@metafoo.de, miltonm@us.ibm.com
+Subject: Re: [PATCH v2 0/2] iio: humidity: si7020: Check device property for
+ skipping reset in probe
+Message-ID: <20220514144030.7a57da70@jic23-huawei>
+In-Reply-To: <c2f7b09d-e046-409e-b65e-153157f84b03@linux.ibm.com>
+References: <20220512162020.33450-1-eajames@linux.ibm.com>
+        <20220512174859.000042b6@Huawei.com>
+        <c2f7b09d-e046-409e-b65e-153157f84b03@linux.ibm.com>
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The RK3566 and RK3568 come with a dedicated Hantro instance solely for
-encoding. This patch adds a node for this to the device tree, along with
-a node for its MMU.
+On Thu, 12 May 2022 14:11:06 -0500
+Eddie James <eajames@linux.ibm.com> wrote:
 
-Signed-off-by: Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
----
- arch/arm64/boot/dts/rockchip/rk356x.dtsi | 20 ++++++++++++++++++++
- 1 file changed, 20 insertions(+)
+> On 5/12/22 11:48, Jonathan Cameron wrote:
+> > On Thu, 12 May 2022 11:20:18 -0500
+> > Eddie James <eajames@linux.ibm.com> wrote:
+> >  
+> >> I2C commands issued after the SI7020 is starting up or after reset
+> >> can potentially upset the startup sequence. Therefore, the host
+> >> needs to wait for the startup sequence to finish before issuing
+> >> further i2c commands. This is impractical in cases where the SI7020
+> >> is on a shared bus or behind a mux, which may switch channels at
+> >> any time (generating I2C traffic). Therefore, check for a device
+> >> property that indicates that the driver should skip resetting the
+> >> device when probing.  
+> > Why not lock the bus?  It's not ideal, but then not resetting and hence
+> > potentially ending up in an unknown state isn't great either.  
+> 
+> 
+> Also, I should mention that in our case we can rely on the power on 
+> reset, so the device should be in a known state.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk356x.dtsi b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-index 1042e68602de..9b4bed7a8a44 100644
---- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-@@ -569,6 +569,26 @@ gpu: gpu@fde60000 {
- 		status = "disabled";
- 	};
- 
-+	vepu: video-codec@fdee0000 {
-+		compatible = "rockchip,rk3568-vepu";
-+		reg = <0x0 0xfdee0000 0x0 0x800>;
-+		interrupts = <GIC_SPI 64 IRQ_TYPE_LEVEL_HIGH>;
-+		clocks = <&cru ACLK_JENC>, <&cru HCLK_JENC>;
-+		clock-names = "aclk", "hclk";
-+		iommus = <&vepu_mmu>;
-+		power-domains = <&power RK3568_PD_RGA>;
-+	};
-+
-+	vepu_mmu: iommu@fdee0800 {
-+		compatible = "rockchip,rk3568-iommu";
-+		reg = <0x0 0xfdee0800 0x0 0x40>;
-+		interrupts = <GIC_SPI 63 IRQ_TYPE_LEVEL_HIGH>;
-+		clocks = <&cru ACLK_JENC>, <&cru HCLK_JENC>;
-+		clock-names = "aclk", "iface";
-+		power-domains = <&power RK3568_PD_RGA>;
-+		#iommu-cells = <0>;
-+	};
-+
- 	sdmmc2: mmc@fe000000 {
- 		compatible = "rockchip,rk3568-dw-mshc", "rockchip,rk3288-dw-mshc";
- 		reg = <0x0 0xfe000000 0x0 0x4000>;
--- 
-2.36.1
+Until someone unbinds and rebinds the driver...
+It's very hard to have any guarantees once users are involved :)
+
+Jonathan
+
+
+> 
+> Eddie
+> 
+> 
+> >
+> > Jonathan
+> >  
+> >> Changes since v1:
+> >>   - Fix dt binding document
+> >>
+> >> Eddie James (2):
+> >>    dt-bindings: iio: humidity: Add si7020 bindings
+> >>    iio: humidity: si7020: Check device property for skipping reset in probe
+> >>
+> >>   .../bindings/iio/humidity/silabs,si7020.yaml  | 47 +++++++++++++++++++
+> >>   .../devicetree/bindings/trivial-devices.yaml  |  2 -
+> >>   drivers/iio/humidity/si7020.c                 | 14 +++---
+> >>   3 files changed, 55 insertions(+), 8 deletions(-)
+> >>   create mode 100644 Documentation/devicetree/bindings/iio/humidity/silabs,si7020.yaml
+> >>  
 
