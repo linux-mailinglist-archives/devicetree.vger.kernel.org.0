@@ -2,53 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CDAA75273F9
-	for <lists+devicetree@lfdr.de>; Sat, 14 May 2022 22:31:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 074F5527400
+	for <lists+devicetree@lfdr.de>; Sat, 14 May 2022 22:35:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229618AbiENUbs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 14 May 2022 16:31:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36414 "EHLO
+        id S235119AbiENUfr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 14 May 2022 16:35:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45536 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235104AbiENUbr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 14 May 2022 16:31:47 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC1352ED78
-        for <devicetree@vger.kernel.org>; Sat, 14 May 2022 13:31:45 -0700 (PDT)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=bjornoya.blackshift.org)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mkl@pengutronix.de>)
-        id 1npyQR-0002Vj-Fx; Sat, 14 May 2022 22:31:43 +0200
-Received: from pengutronix.de (unknown [IPv6:2a01:4f8:1c1c:29e9:22:41ff:fe00:1400])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (Client did not present a certificate)
-        (Authenticated sender: mkl-all@blackshift.org)
-        by smtp.blackshift.org (Postfix) with ESMTPSA id 2C2287E43A;
-        Sat, 14 May 2022 20:31:42 +0000 (UTC)
-Date:   Sat, 14 May 2022 22:31:41 +0200
-From:   Marc Kleine-Budde <mkl@pengutronix.de>
-To:     Matej Vasilevski <matej.vasilevski@seznam.cz>
-Cc:     devicetree@vger.kernel.org, linux-can@vger.kernel.org,
-        pisa@cmp.felk.cvut.cz, ondrej.ille@gmail.com,
-        netdev@vger.kernel.org, martin.jerabek01@gmail.com
-Subject: Re: [RFC PATCH 1/3] can: ctucanfd: add HW timestamps to RX and error
- CAN frames
-Message-ID: <20220514203141.6fnk7d2zbrleh3rn@pengutronix.de>
-References: <20220512232706.24575-1-matej.vasilevski@seznam.cz>
- <20220512232706.24575-2-matej.vasilevski@seznam.cz>
- <20220513114135.lgbda6armyiccj3o@pengutronix.de>
- <20220514091741.GA203806@hopium>
+        with ESMTP id S234360AbiENUfq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 14 May 2022 16:35:46 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0364BB46
+        for <devicetree@vger.kernel.org>; Sat, 14 May 2022 13:35:44 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id t25so19853200lfg.7
+        for <devicetree@vger.kernel.org>; Sat, 14 May 2022 13:35:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=e3G8IpqywDEQjEr7fmlZZGPKai6zzPVpDCaOqxUYl4o=;
+        b=jEK2JlILacvWZfOhR+2DWw03FiULAN4nWySfk/IrAeRpT14JXfDBPRJBpUoMdnRanN
+         8ugH35mztPZY18+7cQVNRCaVhptMQby2AbOl/9pzrz8TiyhxH59hotuxtFSYz/1qh2cB
+         O0yqMboPEUAYkJPSNXNSBzvhw0Q8Y0ceQkhp6P9Xf3QY3PHx6BJiBqNeLcLnDWQ/Qkkd
+         gc30kUJTi6HUMcfb/qcxYKd6/PtmmfCwA2cJ7TwljUyEn1SLmcsEt1n6UzTr+6whqv17
+         zg4bsx9yVCe7F17woEvlYqhvGUsQ2US9UYdmcfaJ/LvEYwkE2WucOcJozzCeNYLUYKWZ
+         OXUw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=e3G8IpqywDEQjEr7fmlZZGPKai6zzPVpDCaOqxUYl4o=;
+        b=nozA+kRwH80HghZoSNGJn0gyqGcg1SFWMJS5o+xIk3rvp/dCH3QlslUQUSmMrUc1jp
+         Vuby4qS4YyXimqbVFhtn8zAAQYTtKMwXdGNLf3O6DuRqIZjMzbDXcyWkw1ZhcjdMzdi7
+         O9mh6PfqrmjjCIn0spdZDz65XTCsBbd5Q6tYwEW0bqh+UD0T84kDyHvtlepKlr2kvHKn
+         HXrgvirV73thHKmSGtU9fJ1G9ItLjx7b2JwAPGwev+jV99cRb+Fktj5TM+75iil+J/b5
+         0VPknPAqHEpvFoddgse9FBXrifh867r4TVdwR0yaSYDGKAO0urbwBuG6m1kKLj+Fu3Kn
+         ZqPw==
+X-Gm-Message-State: AOAM5301HuuolO+6HM1D0zN2AWMEdXtw8sftLgdMMJggLvHtmFM/RiTo
+        HwP6RbN2WZQdfTqsPuDzt7iBGg==
+X-Google-Smtp-Source: ABdhPJwex93OlPwmCPUB5CECyMFJc82mJEGHOYURcMK+oK4G1BeIA9Na0fcC5JYFA12N1ZiGHSaN6w==
+X-Received: by 2002:ac2:4646:0:b0:472:108e:51af with SMTP id s6-20020ac24646000000b00472108e51afmr7998828lfo.184.1652560542320;
+        Sat, 14 May 2022 13:35:42 -0700 (PDT)
+Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id x2-20020a056512078200b0047255d21166sm805217lfr.149.2022.05.14.13.35.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 14 May 2022 13:35:41 -0700 (PDT)
+Message-ID: <39a41150-6ac8-e158-f21d-15884b34a6e5@linaro.org>
+Date:   Sat, 14 May 2022 22:35:40 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="d3q7pr7umtzohi4e"
-Content-Disposition: inline
-In-Reply-To: <20220514091741.GA203806@hopium>
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH v4 1/2] dt-bindings: iio: adc: Document Renesas RZ/G2UL
+ ADC
+Content-Language: en-US
+To:     Biju Das <biju.das.jz@bp.renesas.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        linux-iio@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>
+References: <20220511082325.36185-1-biju.das.jz@bp.renesas.com>
+ <20220511082325.36185-2-biju.das.jz@bp.renesas.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220511082325.36185-2-biju.das.jz@bp.renesas.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -57,44 +83,84 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 11/05/2022 10:23, Biju Das wrote:
+> Document Renesas RZ/G2UL ADC bindings. RZ/G2UL ADC is almost identical
+> to RZ/G2L, but it has 2 analog input channels compared to 8 channels
+> on the RZ/G2L.
+> 
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> ---
+> v3->v4:
+>  * Removed unnecessary SoC specific reg description as it is
+>    equivalent to the logic used in reg.
+>  * Removed Items from reg.
+> v2->v3:
+>  * Added generic description for reg.
+>  * Improved schema validation by restricting both channel and reg to [0-1].
+> v1->v2:
+>  * Started using generic compatible for RZ/G2UL and added SoC specific validation
+>    for channels.
+> ---
+>  .../bindings/iio/adc/renesas,rzg2l-adc.yaml   | 30 ++++++++++++++++---
+>  1 file changed, 26 insertions(+), 4 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/adc/renesas,rzg2l-adc.yaml b/Documentation/devicetree/bindings/iio/adc/renesas,rzg2l-adc.yaml
+> index d66c24cae1e1..ae6226c1044e 100644
+> --- a/Documentation/devicetree/bindings/iio/adc/renesas,rzg2l-adc.yaml
+> +++ b/Documentation/devicetree/bindings/iio/adc/renesas,rzg2l-adc.yaml
+> @@ -19,6 +19,7 @@ properties:
+>    compatible:
+>      items:
+>        - enum:
+> +          - renesas,r9a07g043-adc   # RZ/G2UL
+>            - renesas,r9a07g044-adc   # RZ/G2L
+>            - renesas,r9a07g054-adc   # RZ/V2L
+>        - const: renesas,rzg2l-adc
+> @@ -76,16 +77,37 @@ patternProperties:
+>      properties:
+>        reg:
+>          description: |
+> -          The channel number. It can have up to 8 channels numbered from 0 to 7.
+> -        items:
+> -          - minimum: 0
+> -            maximum: 7
+> +          The channel number.
+>  
+>      required:
+>        - reg
+>  
+>      additionalProperties: false
+>  
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: renesas,r9a07g043-adc
+> +    then:
+> +      patternProperties:
+> +        "^channel@[2-7]$": false
+> +        "^channel@[0-1]$":
+> +          type: object
 
---d3q7pr7umtzohi4e
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+The actual type was defined earlier - in your first "patternProperties"
+- so this "type:object" should not be needed.
 
-On 14.05.2022 11:18:08, Matej Vasilevski wrote:
-> I have nothing substantial to say on this matter, the discussion should
-> continue in Pavel's thread.
-> I don't mind implementing the .ndo_eth_ioctl.
+> +          properties:
+> +            reg:
+> +              minimum: 0
+> +              maximum: 1
+> +    else:
+> +      patternProperties:
+> +        "^channel@[0-7]$":
+> +          type: object
 
-It's the SIOCSHWTSTAMP ioctl, see:
+Ditto.
 
-| https://elixir.bootlin.com/linux/v5.17.7/source/drivers/net/ethernet/free=
-scale/dpaa/dpaa_eth.c#L3135
+With both removed:
 
-regards,
-Marc
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde           |
-Embedded Linux                   | https://www.pengutronix.de  |
-Vertretung West/Dortmund         | Phone: +49-231-2826-924     |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-5555 |
 
---d3q7pr7umtzohi4e
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEBsvAIBsPu6mG7thcrX5LkNig010FAmKAEagACgkQrX5LkNig
-012eWgf/ULLvb/BCTyvG7U/ijVe+NgCUMf5GgF7AhHmAiTZts9Pt6ap7fNX274hr
-qrCwPsz0PEtKMuRWaTkuwysy8+lEKlWxjIvqXL2javwSkjzwTofEsUSOCZOkib0C
-Jp9k48LaxwCKI0x4oddCMVTzokUkFAfvEZp8yNYLrx9Nb6F1BISlRsbhzZPAzl4L
-Ebr1i/WAvOTayPg7Z9ZGbcb/D8Dt3K4lyHfxlj+KQNIuBjEEEZhCYFTXSKTk19wd
-XAN0MUlAFRyZ6vRboMGH5qV99wW49/WiXwXx3dTgVLhKH615YGh9J09zuobcfmAq
-FA7RXGaL3TWBBW9FQ+kaWjRbN3jYJQ==
-=0aGJ
------END PGP SIGNATURE-----
-
---d3q7pr7umtzohi4e--
+Best regards,
+Krzysztof
