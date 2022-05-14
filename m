@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4AADE527396
+	by mail.lfdr.de (Postfix) with ESMTP id 9655E527397
 	for <lists+devicetree@lfdr.de>; Sat, 14 May 2022 21:01:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234796AbiENTBr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S234811AbiENTBr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Sat, 14 May 2022 15:01:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57542 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57554 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234797AbiENTBo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 14 May 2022 15:01:44 -0400
+        with ESMTP id S234802AbiENTBp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 14 May 2022 15:01:45 -0400
 Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A3DA28709
-        for <devicetree@vger.kernel.org>; Sat, 14 May 2022 12:01:42 -0700 (PDT)
-Received: by mail-lj1-x22f.google.com with SMTP id m23so13879188ljc.0
-        for <devicetree@vger.kernel.org>; Sat, 14 May 2022 12:01:42 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77BFD28715
+        for <devicetree@vger.kernel.org>; Sat, 14 May 2022 12:01:43 -0700 (PDT)
+Received: by mail-lj1-x22f.google.com with SMTP id v4so13815531ljd.10
+        for <devicetree@vger.kernel.org>; Sat, 14 May 2022 12:01:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=VRcBfW2FxHKYJoVpxfrI8zGrGf9W6wst3qWpXKD9jig=;
-        b=FjnfPe/2jDk4MGZtp70kmCCBaZvHlDYvxJWpA2a0qt5SzKE+716SCnvmThbKKU9aUy
-         2Iw5LYZcseJw+QHBaYCsqxe6m/bT5DHJVSG0i+pU9HUD/wdGO/EK1fQRKKPMSplmxAFF
-         oTAgNW7uUeMCTIcIX5+mojMgcNNj/7KlTinO7adotDuaCvmvC2YFcs4u4fapsRXJGNBL
-         QXNtFNtiXqRiNGF8TEUjvQc1Day6DgwxfjKhTkzrzMGa49TAEeCdTbGUuotIL5QBRPr6
-         nI429mfz9/g67YjRdIwlm9Cqq6mAeOITIERqlixRS8RvjiSdQq/34GyMizdJmCGu8Xla
-         WK8A==
+        bh=ypxafSXytWa1pPBeHJ41K2y3Cfr7QvnghKr6SvtMtAA=;
+        b=P8vNmWGsgblpRkkMncBh+RVeTPV8ltEX0EKgVDA9IxtnvEyaRDKXQaNGOJmxo41s47
+         IM/ctJRTABw9RCjd8AtM/6zTlbq3vv8WfbeTzq+GjY90bZMBXrM3uFmtA+8lmXy8bFtU
+         lfZCj76W52hUjhAltEOVBVye9inNXQcdOEbMrxCUGQnhiczCId9AJHGIPxL/VZ3YWmrS
+         5ZqXup1GEZqcN0hCRa7LSh06sQBK4LxD+sLtEgMrPDNE6cFSJFyf+w7D3mI4mMS8CfeX
+         uW0akGslPzgl45ynxETjahCxhta/afZkTYZzPNU0GxERz2IIk4UPhg59ErWJc7hGGdNy
+         OKvw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=VRcBfW2FxHKYJoVpxfrI8zGrGf9W6wst3qWpXKD9jig=;
-        b=sCf8hPNWq+WtQCwpwDo4ILgEBbI8PR5ZGvwKBo1VCgRrdC/2+N3yLIXcCy2SVcT+h+
-         6crzOzwt/boarqoA5XxroSc7tCHvEKAUxzW02mbp2+3Y1x9CzQ3LX/PGAciUMgGzHiW/
-         HiLwXF1JCsJixDoOe12ZOo7r7TwnTDUk/+JBLKc8dD3T6NtiHQvuii6GYFJzvoe1K+MN
-         eUVz+oqWazsZCHj6Z0eFPZA+Tvs9ORMyxLoEGzkuFuUVK5dmgQKsdQJDQezioFomHewT
-         cRFuWUW+IlQdEUsK+bTEeNpg1B77fvjFQNl/KBr1BWj9/MLLqGTDKT/D5hw9erkqC+8V
-         0erA==
-X-Gm-Message-State: AOAM532P0JdF0uJldGpT5PdtPlupcDkLklOX9PmLb8bW/DvI4zsgQ6o0
-        mPjQCIfhsWFobHMHs/bnNxMegw==
-X-Google-Smtp-Source: ABdhPJz7+hSskIPrIMwO1DRmxGdkGbApqmz9K63O4ovaff8d06wZoJ6r+kNXkHzhGW2L1N443jXH8A==
-X-Received: by 2002:a2e:2a83:0:b0:250:e45d:3509 with SMTP id q125-20020a2e2a83000000b00250e45d3509mr6584002ljq.56.1652554900728;
-        Sat, 14 May 2022 12:01:40 -0700 (PDT)
+        bh=ypxafSXytWa1pPBeHJ41K2y3Cfr7QvnghKr6SvtMtAA=;
+        b=057hxxPG8F7fZ5j3Qv5vn8JmNz4Hu354rT1h5822Ol1ekyaiv4Biw5JItLHtCY88SF
+         yuQrhGmUI9PEc/GvDkyf6WOZ+oubVyhf9V8Xf/91b1jitULVWsd8Sho0Zua4bAyE2q32
+         Skvop/o277bOMLE48UMRiLXFWPS9P+1X8w21a6exbBbN/zeYMecFukoh2m2IllLRGiET
+         TVL7hMqr7qXHfuIYfPLql2nEnurDbCOiVYTiMIXlMiFGNBrxnzeNmwEehxUI8Ha7svC4
+         7N1PLzS1AXiPdD20WE8D4Y1PsNvVQ3aYM6ZOt3y3bB44BbkOjFgLzZ0IgXMdmghleZRQ
+         g9Gw==
+X-Gm-Message-State: AOAM530SXYrSYUp7OEKxvZSgwjONTQjyT4ZxRVyDRRnUjHsIw8feT2qm
+        +hM/Sx7KwxbU1yd8FzlYkqRGlQ==
+X-Google-Smtp-Source: ABdhPJxD2+eKgBxYjX8VA5oL4Gsc4Ckr3oHg6tgp6/thwfsCuXkAZCASCIyVW7OgyrAWiagpIeCSDw==
+X-Received: by 2002:a2e:9ecb:0:b0:24b:4e2a:a555 with SMTP id h11-20020a2e9ecb000000b0024b4e2aa555mr6638709ljk.149.1652554901693;
+        Sat, 14 May 2022 12:01:41 -0700 (PDT)
 Received: from eriador.lumag.spb.ru ([93.92.200.201])
         by smtp.gmail.com with ESMTPSA id y26-20020ac255ba000000b0047255d210f4sm787427lfg.35.2022.05.14.12.01.40
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 14 May 2022 12:01:40 -0700 (PDT)
+        Sat, 14 May 2022 12:01:41 -0700 (PDT)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
@@ -55,9 +55,9 @@ To:     Andy Gross <agross@kernel.org>,
         Konrad Dybcio <konrad.dybcio@somainline.org>,
         Marijn Suijten <marijn.suijten@somainline.org>
 Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH v5 01/12] arm64: dts: qcom: sdm630: disable dsi0/dsi0_phy by default
-Date:   Sat, 14 May 2022 22:01:27 +0300
-Message-Id: <20220514190138.3179964-2-dmitry.baryshkov@linaro.org>
+Subject: [PATCH v5 02/12] arm64: dts: qcom: sdm660: disable dsi1/dsi1_phy by default
+Date:   Sat, 14 May 2022 22:01:28 +0300
+Message-Id: <20220514190138.3179964-3-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20220514190138.3179964-1-dmitry.baryshkov@linaro.org>
 References: <20220514190138.3179964-1-dmitry.baryshkov@linaro.org>
@@ -73,37 +73,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Follow the typical practice and keep DSI0/DSI0 PHY disabled by default.
+Follow the typical practice and keep DSI1/DSI1 PHY disabled by default.
 They should be enabled in the board DT files. No existing boards use
 them at this moment.
 
-Suggested-by: Marijn Suijten <marijn.suijten@somainline.org>
+Reviewed-by: Marijn Suijten <marijn.suijten@somainline.org>
 Reviewed-by: Konrad Dybcio <konrad.dybcio@somainline.org>
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sdm630.dtsi | 3 +++
+ arch/arm64/boot/dts/qcom/sdm660.dtsi | 3 +++
  1 file changed, 3 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm630.dtsi b/arch/arm64/boot/dts/qcom/sdm630.dtsi
-index 240293592ef9..8697d40e9b74 100644
---- a/arch/arm64/boot/dts/qcom/sdm630.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm630.dtsi
-@@ -1559,6 +1559,8 @@ dsi0: dsi@c994000 {
- 				phys = <&dsi0_phy>;
- 				phy-names = "dsi";
+diff --git a/arch/arm64/boot/dts/qcom/sdm660.dtsi b/arch/arm64/boot/dts/qcom/sdm660.dtsi
+index eccf6fde16b4..023b0ac4118c 100644
+--- a/arch/arm64/boot/dts/qcom/sdm660.dtsi
++++ b/arch/arm64/boot/dts/qcom/sdm660.dtsi
+@@ -192,6 +192,8 @@ dsi1: dsi@c996000 {
+ 		phys = <&dsi1_phy>;
+ 		phy-names = "dsi";
  
-+				status = "disabled";
++		status = "disabled";
 +
- 				ports {
- 					#address-cells = <1>;
- 					#size-cells = <0>;
-@@ -1592,6 +1594,7 @@ dsi0_phy: dsi-phy@c994400 {
+ 		ports {
+ 			#address-cells = <1>;
+ 			#size-cells = <0>;
+@@ -225,6 +227,7 @@ dsi1_phy: dsi-phy@c996400 {
  
- 				clocks = <&mmcc MDSS_AHB_CLK>, <&xo_board>;
- 				clock-names = "iface", "ref";
-+				status = "disabled";
- 			};
- 		};
+ 		clocks = <&mmcc MDSS_AHB_CLK>, <&rpmcc RPM_SMD_XO_CLK_SRC>;
+ 		clock-names = "iface", "ref";
++		status = "disabled";
+ 	};
+ };
  
 -- 
 2.35.1
