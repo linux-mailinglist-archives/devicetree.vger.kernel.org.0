@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0F59C526F39
-	for <lists+devicetree@lfdr.de>; Sat, 14 May 2022 09:15:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 51617526F15
+	for <lists+devicetree@lfdr.de>; Sat, 14 May 2022 09:15:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229733AbiENCEt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 May 2022 22:04:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36818 "EHLO
+        id S229752AbiENCE7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 May 2022 22:04:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37100 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229678AbiENCEr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 May 2022 22:04:47 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10BCD4200A9
+        with ESMTP id S229699AbiENCE6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 May 2022 22:04:58 -0400
+Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 217CB2CC13F
         for <devicetree@vger.kernel.org>; Fri, 13 May 2022 17:06:09 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id i10so16951016lfg.13
+Received: by mail-lj1-x22c.google.com with SMTP id o22so11107202ljp.8
         for <devicetree@vger.kernel.org>; Fri, 13 May 2022 17:06:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=t1CvvJPo1SMEVY2U38YctB/9fHmQv4dn7y8tFgTVZEk=;
-        b=z0oGwMHu54BCin2PPXEa6MShFm8dXjJyFNgy0ghXHteAcGyCTA0oar+eih8/bCk54s
-         jN+Urot6GEI4wyfsaybIVclOhBXqi9TiN6XEzIQ6VtNZ/WEmLF/IfVnCVZCLjUHgXwvt
-         0cvGoMsYscWzHOfCsJT+IC81cBz84gxmfot5AKweJsucj8lEJxX2aIDZNue5Ncu9/6TP
-         YY5RaDw8RjpFReV2xXvN5hYvtHccfoqvPFT2h1ZEc7Pb3QYnYKBJuzCvMYYhd8jMaTct
-         fMRLFD6f6lxbVUi75n4juFpIZbLzhJLusXkVxnGrPeJ21wdx7NwtwrZxw2qvUNlnxref
-         1AYw==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=p1+Xm7EUInIY3jvthb6tC3vLUTde35YYnc+B4cs34zo=;
+        b=orPadqrPCDmcbZuPrF06wsMUbSjw0K+eL03xR0/hC+F5ybl24xD7r7i/VpUfJehJjk
+         X7fSZnDiXocFltfDjaIUXQ+2sZJSMEBKp7kxrsGGq4S5G/NJxkIfzIQXJ+A7TWZyrU33
+         iTKOFmYgHaZevZbhf3ot98zN7uXpkuR6sOTHnPqzxXlgjnHRtoY8RMP9ey+fYqZvlp79
+         4NMatCxHNITiRkmcwILZ7Rx80bpuJdAsaH5juR9kCTcF7CFb4Br5dhPPVbUjWQq3RXW9
+         2/yGlPOeaPIWEGbSJABM4Trh8lsVMpLOuCd45SlXaur4jayaeS8Qf9i0I+e7snI2bISe
+         Tstg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=t1CvvJPo1SMEVY2U38YctB/9fHmQv4dn7y8tFgTVZEk=;
-        b=o1jBqVQu86XJ3Z3I2+f8Q38UEiyHOPdr7kIFWt8eoQgW55OJTEn9nL7NOBpIfrGNRs
-         ++8e9n00Lqbhrq/QMTflCEidLzA7mOLs6ajK4+jwTmQo2RN9Qr7q7+DUatb4qxcx0GS6
-         G9F/4Cj/lX1vsEXSD6H4lHQJZ01lW03RoweZSBkSQN/tQZZ1Z7KGyCRR9Owyy/Blm9PS
-         6wd6rQ+SMaLF97O/RK4z9HT/d125PjbQygvjFxFmibtoemEHNj4odUsYzdyiBXJuS4KH
-         8KrN+D51igZ6QDa5lJYRrK+44U6T77KRlRXCQ7kTCuvAszpqmgIVHYZ5ygUXFkmIthpe
-         7/3A==
-X-Gm-Message-State: AOAM533Hid9YOr8BlbLM+BUX5MiBNowQdYBhtJHAMXBoOZfGtMscL8Yn
-        bPac3fh0kx0GbNowHUk/EWXIeQ==
-X-Google-Smtp-Source: ABdhPJwNTGDuEvQcrOGBBfbHwE/fQEJbVVwaNmkJ1FD4XdFxy917AOrEW6wq2Cz5Po9ds6Wryhdfow==
-X-Received: by 2002:a05:6512:309:b0:472:105f:e88 with SMTP id t9-20020a056512030900b00472105f0e88mr5056462lfp.232.1652486470022;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=p1+Xm7EUInIY3jvthb6tC3vLUTde35YYnc+B4cs34zo=;
+        b=iX8hx3yltwJ50t4xkmonw+Iau7wGrH4FetCyspauxHO1K3UycAkEozTgsrLq3K/vxr
+         INdZrYKThocbAP8QidqYIo4RmVorUyKAQOsiE9boThAvXuZaODTt0LCsAWmxXkdKORvr
+         J8kRcjo/B5LibF2tK1iYx+dFl39RYvZf108KN+XY92tzPXbHOhrJMAICvJII29RnmAkZ
+         p872fwlFaP7ONE3lc4Ho7Wqr77uMWgXRMoMwpgGh3ETHrMTaxl+kVTt2nmwWI507W5XZ
+         Rz+RvFD348EFiyi6bLMPU6zXl0NbK3T7F6MQ74P4v7P9deWvilMoyDlDs1YnBzeP4+iX
+         4g6A==
+X-Gm-Message-State: AOAM530S24mAwp1icgGbYzc/VGKyIu2iG9jBkqK+L8QJBne8zV/Emp1T
+        3VZDw3CFcIraMtNeOO+dlWL5uA==
+X-Google-Smtp-Source: ABdhPJx0UmqhGj8S6MnXyxoYZW8I6PIYPveeEoxF6Y5cYXtbK5eThZLO5BKTg4wcW6L0KPMOIrlYQQ==
+X-Received: by 2002:a05:651c:10b:b0:24f:24a3:9dec with SMTP id a11-20020a05651c010b00b0024f24a39decmr4361223ljb.144.1652486470712;
         Fri, 13 May 2022 17:01:10 -0700 (PDT)
 Received: from eriador.lan ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id z2-20020a2e9b82000000b0024f3d1daeaesm626221lji.54.2022.05.13.17.01.09
+        by smtp.gmail.com with ESMTPSA id z2-20020a2e9b82000000b0024f3d1daeaesm626221lji.54.2022.05.13.17.01.10
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 May 2022 17:01:09 -0700 (PDT)
+        Fri, 13 May 2022 17:01:10 -0700 (PDT)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
@@ -56,10 +56,12 @@ To:     Andy Gross <agross@kernel.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>
 Cc:     linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
         devicetree@vger.kernel.org
-Subject: [PATCH 0/4] remoteproc: qcom: Add support for CDSP and MSS on SDM630/660
-Date:   Sat, 14 May 2022 03:01:04 +0300
-Message-Id: <20220514000108.3070363-1-dmitry.baryshkov@linaro.org>
+Subject: [PATCH 1/4] dt-bindings: remoteproc: qcom: Add SDM660 modem PAS compatible
+Date:   Sat, 14 May 2022 03:01:05 +0300
+Message-Id: <20220514000108.3070363-2-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.35.1
+In-Reply-To: <20220514000108.3070363-1-dmitry.baryshkov@linaro.org>
+References: <20220514000108.3070363-1-dmitry.baryshkov@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -72,25 +74,49 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Acompany existing support for ADSP on SDM630/660 platforms with support
-for CDSP (660 only) and MSS (both platforms). Tested on IFC6560 (SDA660)
-board.
+Describe required properties of the SDM660 MSS PIL device.
 
-Dmitry Baryshkov (3):
-  dt-bindings: remoteproc: qcom: Add SDM660 modem PAS compatible
-  dt-bindings: remoteproc: qcom: pas: Add SDM660 CDSP PAS compatible
-  remoteproc: qcom: pas: Add SDM660 CDSP PAS support
+Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+---
+ Documentation/devicetree/bindings/remoteproc/qcom,q6v5.txt | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-Konrad Dybcio (1):
-  remoteproc: qcom: q6v5-mss: Add support for SDM630/636/660 MSS
-    remoteproc
-
- .../bindings/remoteproc/qcom,adsp.yaml        |   7 ++
- .../bindings/remoteproc/qcom,q6v5.txt         |   4 +
- drivers/remoteproc/qcom_q6v5_mss.c            | 111 ++++++++++++++++++
- drivers/remoteproc/qcom_q6v5_pas.c            |   1 +
- 4 files changed, 123 insertions(+)
-
+diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,q6v5.txt b/Documentation/devicetree/bindings/remoteproc/qcom,q6v5.txt
+index 8f1507052afd..5ecfaf2048ab 100644
+--- a/Documentation/devicetree/bindings/remoteproc/qcom,q6v5.txt
++++ b/Documentation/devicetree/bindings/remoteproc/qcom,q6v5.txt
+@@ -16,6 +16,7 @@ on the Qualcomm Hexagon core.
+ 		    "qcom,msm8998-mss-pil"
+ 		    "qcom,sc7180-mss-pil"
+ 		    "qcom,sc7280-mss-pil"
++		    "qcom,sdm660-mss-pil"
+ 		    "qcom,sdm845-mss-pil"
+ 
+ - reg:
+@@ -44,6 +45,7 @@ on the Qualcomm Hexagon core.
+ 	qcom,qcs404-wcss-pil:
+ 	qcom,msm8916-mss-pil:
+ 	qcom,msm8974-mss-pil:
++	qcom,sdm660-mss-pil:
+ 		    must be "wdog", "fatal", "ready", "handover", "stop-ack"
+ 	qcom,msm8996-mss-pil:
+ 	qcom,msm8998-mss-pil:
+@@ -84,6 +86,7 @@ on the Qualcomm Hexagon core.
+ 		    must be "iface", "bus", "mem", "xo", "gpll0_mss",
+ 		    "snoc_axi", "mnoc_axi", "pnoc", "qdss"
+ 	qcom,msm8998-mss-pil:
++	qcom,sdm660-mss-pil:
+ 		    must be "iface", "bus", "mem", "xo", "gpll0_mss",
+ 		    "snoc_axi", "mnoc_axi", "qdss"
+ 	qcom,sc7180-mss-pil:
+@@ -175,6 +178,7 @@ For the compatible string below the following supplies are required:
+ 	qcom,msm8974-mss-pil:
+ 	qcom,msm8996-mss-pil:
+ 	qcom,msm8998-mss-pil:
++	qcom,sdm660-mss-pil:
+ 		    must be "cx", "mx"
+ 	qcom,sc7180-mss-pil:
+ 		    must be "cx", "mx", "mss"
 -- 
 2.35.1
 
