@@ -2,209 +2,195 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B7C85270F1
-	for <lists+devicetree@lfdr.de>; Sat, 14 May 2022 14:00:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 331D4527110
+	for <lists+devicetree@lfdr.de>; Sat, 14 May 2022 14:52:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232096AbiENMAJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 14 May 2022 08:00:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49798 "EHLO
+        id S232342AbiENMwK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 14 May 2022 08:52:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49504 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232054AbiENMAE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 14 May 2022 08:00:04 -0400
-Received: from mxout4.routing.net (mxout4.routing.net [IPv6:2a03:2900:1:a::9])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51509BE9;
-        Sat, 14 May 2022 05:00:01 -0700 (PDT)
-Received: from mxbox3.masterlogin.de (unknown [192.168.10.78])
-        by mxout4.routing.net (Postfix) with ESMTP id 812C41012C4;
-        Sat, 14 May 2022 12:00:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailerdienst.de;
-        s=20200217; t=1652529600;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=R1iKpFJztxIvimr5HKEKJzhie/gJm0tJviBrqgPMha8=;
-        b=xAk2rCfGwRHOwk+k32G5T+WjQm0v4hoywVEz1tsYLGFNMjnoya9HWx1q4Lt306v/Vf75JW
-        i5Zr6kk3Y3UZ2Rk8NeDHk6Jh+vwSdbsYMcxpsPFVwgKnymipp8Wjmr+XBlWV7NNGyK91HI
-        x+v4zjS+NdWqZLTKd4zS4pFnUdLm3C4=
-Received: from localhost.localdomain (fttx-pool-217.61.148.252.bambit.de [217.61.148.252])
-        by mxbox3.masterlogin.de (Postfix) with ESMTPSA id 9A1FC360502;
-        Sat, 14 May 2022 11:59:59 +0000 (UTC)
-From:   Frank Wunderlich <linux@fw-web.de>
-To:     linux-rockchip@lists.infradead.org
-Cc:     Frank Wunderlich <frank-w@public-files.de>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Johan Jonker <jbx6244@gmail.com>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-phy@lists.infradead.org
-Subject: [RFC v3 5/5] arm64: dts: rockchip: Add PCIe v3 nodes to BPI-R2-Pro
-Date:   Sat, 14 May 2022 13:59:46 +0200
-Message-Id: <20220514115946.8858-6-linux@fw-web.de>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220514115946.8858-1-linux@fw-web.de>
-References: <20220514115946.8858-1-linux@fw-web.de>
+        with ESMTP id S232340AbiENMwI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 14 May 2022 08:52:08 -0400
+Received: from mail-qv1-xf2f.google.com (mail-qv1-xf2f.google.com [IPv6:2607:f8b0:4864:20::f2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3800D1A043
+        for <devicetree@vger.kernel.org>; Sat, 14 May 2022 05:52:07 -0700 (PDT)
+Received: by mail-qv1-xf2f.google.com with SMTP id f3so8865873qvi.2
+        for <devicetree@vger.kernel.org>; Sat, 14 May 2022 05:52:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=AxOmAckUiuRWVJ0OgGOQtZevonWzdnMCl3bUMEVAUGE=;
+        b=CwlkHTG+mux25rynInAgCk/m0PUJ0PChvnXJ6FDmDsXB5gzNusl7VhLfVRZiwY4CLl
+         kqyWzhPqCgw0OcpCh7wCvLSNxzn6Iw/oUCaiaZ7X0JMxCTw6lTtv91ba18hZDhR0c4sc
+         /xp4T9itG1PxTs9CyNO0VqWAua2CKfKBbhWHxqIEPEMT2o5fyznl5faKBBYpP0GwSNz3
+         DEDa0+nKU3b9Kv45FaY9ctfiEIxrILmzIUly6StamHsc5Eoc9V2sN3tno5959N9QlhwC
+         8ye+HUDXRfHQVcVCT8tQWudHsuaNaO4NoQEAQ9FNTxLOgV2jMO7oI8P1AfDXWB30OaqG
+         fIWQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=AxOmAckUiuRWVJ0OgGOQtZevonWzdnMCl3bUMEVAUGE=;
+        b=Ml1GaQampgQ4GtbZ57JiIosAvBiFNHrE3yFXD3BkvMRVzu1SMALRTSAV2PIVTcSPf8
+         JSWlKpkShTCQQyAZb/E9zw8pJ5UIQj3CA+/JHUR4hJM6EhmCexpiptZBBv1+v0Cp9FRu
+         8MvFamZKuem5qp0TmckHa4ERd3+btDiod2VuGLcVzVK4xAu5CO763AubwqQLM2AUs4hJ
+         TcGjqFAO8zhWMtMMKis7pG2ZyGueVpLo0c+DuMOVgCiR/jECCwjANPF1B/UsP4uRW3cp
+         1eFj5TQLXA6ZsVBY8rp+r1u4s99K4CBcw6YbZY9TNTc/8bBCzeKBdykONVGiRQffVm+D
+         JO2g==
+X-Gm-Message-State: AOAM530vP+QidE02jI8ZPokvjrlk/ZIGfkXGLl/rg6odEkVZ2aNBqZdf
+        hljASXGB66anhuOaQCn3wBXAbiErW+qkUKKwzcGsDxCyrciusg==
+X-Google-Smtp-Source: ABdhPJxDSYXKcBGkKH9XOka4I1hQt4prQ+g6v0RBZK4pQd1zcTJm0sg24cKKCCPSbURKYeJ2VlL5TYxuj5i72ZySjYA=
+X-Received: by 2002:ad4:5f4e:0:b0:45a:b97d:14de with SMTP id
+ p14-20020ad45f4e000000b0045ab97d14demr8060996qvg.73.1652532726367; Sat, 14
+ May 2022 05:52:06 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mail-ID: 090e248d-fa9b-43c5-9787-98c61156afdf
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+References: <20220513234518.3068480-1-dmitry.baryshkov@linaro.org>
+ <20220513234518.3068480-7-dmitry.baryshkov@linaro.org> <20220514094510.yfpc7omljon4nrhs@SoMainline.org>
+In-Reply-To: <20220514094510.yfpc7omljon4nrhs@SoMainline.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Sat, 14 May 2022 15:51:55 +0300
+Message-ID: <CAA8EJpoRMRzXvbe8yOdGwPiLsXVtJiZxkzSb4PU77d1Rt-a_rA@mail.gmail.com>
+Subject: Re: [PATCH v3 6/8] arm64: dts: qcom: sdm630: use defined symbols for interconnects
+To:     Marijn Suijten <marijn.suijten@somainline.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Frank Wunderlich <frank-w@public-files.de>
+On Sat, 14 May 2022 at 12:45, Marijn Suijten
+<marijn.suijten@somainline.org> wrote:
+>
+> On 2022-05-14 02:45:16, Dmitry Baryshkov wrote:
+> > Replace numeric values with the symbolic names defined in the bindings
+> > header.
+> >
+> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>
+> Seems there is one off-by-one copy-paste error.  With that addressed:
+>
+> Reviewed-by: Marijn Suijten <marijn.suijten@somainline.org>
+>
+> > ---
+> >  arch/arm64/boot/dts/qcom/sdm630.dtsi | 23 ++++++++++++-----------
+> >  1 file changed, 12 insertions(+), 11 deletions(-)
+> >
+> > diff --git a/arch/arm64/boot/dts/qcom/sdm630.dtsi b/arch/arm64/boot/dts/qcom/sdm630.dtsi
+> > index 17a1877587cf..01a1a1703568 100644
+> > --- a/arch/arm64/boot/dts/qcom/sdm630.dtsi
+> > +++ b/arch/arm64/boot/dts/qcom/sdm630.dtsi
+> > @@ -8,6 +8,7 @@
+> >  #include <dt-bindings/clock/qcom,gpucc-sdm660.h>
+> >  #include <dt-bindings/clock/qcom,mmcc-sdm660.h>
+> >  #include <dt-bindings/clock/qcom,rpmcc.h>
+> > +#include <dt-bindings/interconnect/qcom,sdm660.h>
+> >  #include <dt-bindings/power/qcom-rpmpd.h>
+> >  #include <dt-bindings/gpio/gpio.h>
+> >  #include <dt-bindings/interrupt-controller/arm-gic.h>
+> > @@ -1045,7 +1046,7 @@ adreno_gpu: gpu@5000000 {
+> >                       nvmem-cells = <&gpu_speed_bin>;
+> >                       nvmem-cell-names = "speed_bin";
+> >
+> > -                     interconnects = <&gnoc 1 &bimc 5>;
+> > +                     interconnects = <&gnoc MASTER_APSS_PROC &bimc SLAVE_EBI>;
+>
+> From qcom,sdm660.h:
+>
+>     /* GNOC */
+>     #define MASTER_APSS_PROC            0
+>     #define SLAVE_GNOC_BIMC                     1
+>     #define SLAVE_GNOC_SNOC                     2
+>
+> Seems like the left side should be SLAVE_GNOC_BIMC?  Unless this
+> semantic change is intended, in which case it should be clearly
+> documented in its own commit with a Fixes tag.
 
-Add Nodes to Bananapi-R2-Pro board to support PCIe v3 and
-set PCIe related regulators to always on.
+I don't think there can be a slave on the left side of the ICC path.
+But nice catch anyway. Downstream uses MSM_BUS_MASTER_GRAPHICS_3D
+here, which corresponds to <&bimc MASTER_OXILI>.
+Could you please double check this?
 
-Suggested-by: Peter Geis <pgwipeout@gmail.com>
-Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
----
-v3:
-- squash lane-map over bifurcation property
-- add comment which slot is M2 and which one if mPCIe
-- fixes from Peter:
-  - drop regulator-always-on/regulator-boot-on from regulators
-  - increase startup-delay-us for regulators
-  - set phy-mode on PCIe3-phy
-  - add num-lanes to PCIe overrides
-  - add usb node for to PCIe/m2
-  - move lane-map from PCIe controller to PCIe-phy
+>
+> The rest looks correct.
+>
+> - Marijn
+>
+> >                       interconnect-names = "gfx-mem";
+> >
+> >                       operating-points-v2 = <&gpu_sdm630_opp_table>;
+> > @@ -1299,8 +1300,8 @@ sdhc_2: sdhci@c084000 {
+> >                                       <&xo_board>;
+> >                       clock-names = "core", "iface", "xo";
+> >
+> > -                     interconnects = <&a2noc 3 &a2noc 10>,
+> > -                                     <&gnoc 0 &cnoc 28>;
+> > +                     interconnects = <&a2noc MASTER_SDCC_2 &a2noc SLAVE_A2NOC_SNOC>,
+> > +                                     <&gnoc MASTER_APSS_PROC &cnoc SLAVE_SDCC_2>;
+> >                       operating-points-v2 = <&sdhc2_opp_table>;
+> >
+> >                       pinctrl-names = "default", "sleep";
+> > @@ -1351,8 +1352,8 @@ sdhc_1: sdhci@c0c4000 {
+> >                                <&gcc GCC_SDCC1_ICE_CORE_CLK>;
+> >                       clock-names = "core", "iface", "xo", "ice";
+> >
+> > -                     interconnects = <&a2noc 2 &a2noc 10>,
+> > -                                     <&gnoc 0 &cnoc 27>;
+> > +                     interconnects = <&a2noc MASTER_SDCC_1 &a2noc SLAVE_A2NOC_SNOC>,
+> > +                                     <&gnoc MASTER_APSS_PROC &cnoc SLAVE_SDCC_1>;
+> >                       interconnect-names = "sdhc1-ddr", "cpu-sdhc1";
+> >                       operating-points-v2 = <&sdhc1_opp_table>;
+> >                       pinctrl-names = "default", "sleep";
+> > @@ -1525,9 +1526,9 @@ mdp: mdp@c901000 {
+> >                                             "core",
+> >                                             "vsync";
+> >
+> > -                             interconnects = <&mnoc 2 &bimc 5>,
+> > -                                             <&mnoc 3 &bimc 5>,
+> > -                                             <&gnoc 0 &mnoc 17>;
+> > +                             interconnects = <&mnoc MASTER_MDP_P0 &bimc SLAVE_EBI>,
+> > +                                             <&mnoc MASTER_MDP_P1 &bimc SLAVE_EBI>,
+> > +                                             <&gnoc MASTER_APSS_PROC &mnoc SLAVE_DISPLAY_CFG>;
+> >                               interconnect-names = "mdp0-mem",
+> >                                                    "mdp1-mem",
+> >                                                    "rotator-mem";
+> > @@ -2034,7 +2035,7 @@ camss: camss@ca00000 {
+> >                               "cphy_csid1",
+> >                               "cphy_csid2",
+> >                               "cphy_csid3";
+> > -                     interconnects = <&mnoc 5 &bimc 5>;
+> > +                     interconnects = <&mnoc MASTER_VFE &bimc SLAVE_EBI>;
+> >                       interconnect-names = "vfe-mem";
+> >                       iommus = <&mmss_smmu 0xc00>,
+> >                                <&mmss_smmu 0xc01>,
+> > @@ -2097,8 +2098,8 @@ venus: video-codec@cc00000 {
+> >                                <&mmcc VIDEO_AXI_CLK>,
+> >                                <&mmcc THROTTLE_VIDEO_AXI_CLK>;
+> >                       clock-names = "core", "iface", "bus", "bus_throttle";
+> > -                     interconnects = <&gnoc 0 &mnoc 13>,
+> > -                                     <&mnoc 4 &bimc 5>;
+> > +                     interconnects = <&gnoc MASTER_APSS_PROC &mnoc SLAVE_VENUS_CFG>,
+> > +                                     <&mnoc MASTER_VENUS &bimc SLAVE_EBI>;
+> >                       interconnect-names = "cpu-cfg", "video-mem";
+> >                       interrupts = <GIC_SPI 287 IRQ_TYPE_LEVEL_HIGH>;
+> >                       iommus = <&mmss_smmu 0x400>,
+> > --
+> > 2.35.1
+> >
 
-v2:
-- underscores in nodenames
-- rockchip,bifurcation to vendor unspecific bifurcation
-- fix trailing space
----
- .../boot/dts/rockchip/rk3568-bpi-r2-pro.dts   | 90 +++++++++++++++++++
- 1 file changed, 90 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3568-bpi-r2-pro.dts b/arch/arm64/boot/dts/rockchip/rk3568-bpi-r2-pro.dts
-index 2700fb18a3bc..8b3b774a9dac 100644
---- a/arch/arm64/boot/dts/rockchip/rk3568-bpi-r2-pro.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3568-bpi-r2-pro.dts
-@@ -74,6 +74,62 @@ vcc5v0_sys: vcc5v0-sys {
- 		vin-supply = <&dc_12v>;
- 	};
- 
-+	pcie30_avdd0v9: pcie30-avdd0v9 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "pcie30_avdd0v9";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <900000>;
-+		regulator-max-microvolt = <900000>;
-+		vin-supply = <&vcc3v3_sys>;
-+	};
-+
-+	pcie30_avdd1v8: pcie30-avdd1v8 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "pcie30_avdd1v8";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		vin-supply = <&vcc3v3_sys>;
-+	};
-+
-+	/* pi6c pcie clock generator feeds both ports */
-+	vcc3v3_pi6c_05: vcc3v3-pi6c-05-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc3v3_pcie";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		enable-active-high;
-+		gpios = <&gpio0 RK_PD4 GPIO_ACTIVE_HIGH>;
-+		startup-delay-us = <200000>;
-+		vin-supply = <&vcc5v0_sys>;
-+	};
-+
-+	/* actually fed by vcc3v3_sys, dependent on pi6c clock generator */
-+	vcc3v3_minipcie: vcc3v3-minipcie-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc3v3_minipcie";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		enable-active-high;
-+		gpio = <&gpio0 RK_PC6 GPIO_ACTIVE_HIGH>;
-+		startup-delay-us = <50000>;
-+		vin-supply = <&vcc3v3_pi6c_05>;
-+	};
-+
-+	/* actually fed by vcc3v3_sys, dependent on pi6c clock generator */
-+	vcc3v3_ngff: vcc3v3-ngff-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc3v3_ngff";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		enable-active-high;
-+		gpio = <&gpio4 RK_PC1 GPIO_ACTIVE_HIGH>;
-+		startup-delay-us = <50000>;
-+		vin-supply = <&vcc3v3_pi6c_05>;
-+	};
-+
- 	vbus: vbus {
- 		compatible = "regulator-fixed";
- 		regulator-name = "vbus";
-@@ -411,6 +467,27 @@ rgmii_phy1: ethernet-phy@0 {
- 	};
- };
- 
-+&pcie30phy {
-+	lane-map = /bits/ 8 <1 2>;
-+	status = "okay";
-+};
-+
-+&pcie3x1 {
-+	/* M.2 slot */
-+	num-lanes = <1>;
-+	reset-gpios = <&gpio3 RK_PA1 GPIO_ACTIVE_HIGH>;
-+	vpcie3v3-supply = <&vcc3v3_ngff>;
-+	status = "okay";
-+};
-+
-+&pcie3x2 {
-+	/* mPCIe slot */
-+	num-lanes = <1>;
-+	reset-gpios = <&gpio2 RK_PD6 GPIO_ACTIVE_HIGH>;
-+	vpcie3v3-supply = <&vcc3v3_minipcie>;
-+	status = "okay";
-+};
-+
- &pinctrl {
- 	leds {
- 		blue_led_pin: blue-led-pin {
-@@ -597,3 +674,16 @@ &usb2phy0_otg {
- 	phy-supply = <&vcc5v0_usb_otg>;
- 	status = "okay";
- };
-+
-+&usb2phy1 {
-+	/* USB for PCIe/M2 */
-+	status = "okay";
-+};
-+
-+&usb2phy1_host {
-+	status = "okay";
-+};
-+
-+&usb2phy1_otg {
-+	status = "okay";
-+};
+
 -- 
-2.25.1
-
+With best wishes
+Dmitry
