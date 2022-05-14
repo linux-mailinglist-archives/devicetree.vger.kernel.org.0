@@ -2,107 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 41E1B52718D
-	for <lists+devicetree@lfdr.de>; Sat, 14 May 2022 16:05:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 93EDC527198
+	for <lists+devicetree@lfdr.de>; Sat, 14 May 2022 16:10:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232695AbiENOFc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 14 May 2022 10:05:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37562 "EHLO
+        id S232925AbiENOKq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 14 May 2022 10:10:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45716 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232521AbiENOFb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 14 May 2022 10:05:31 -0400
-Received: from mail-oa1-x2d.google.com (mail-oa1-x2d.google.com [IPv6:2001:4860:4864:20::2d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E04014011;
-        Sat, 14 May 2022 07:05:30 -0700 (PDT)
-Received: by mail-oa1-x2d.google.com with SMTP id 586e51a60fabf-f16a3e0529so3650101fac.2;
-        Sat, 14 May 2022 07:05:30 -0700 (PDT)
+        with ESMTP id S231211AbiENOKp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 14 May 2022 10:10:45 -0400
+Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F93B14030
+        for <devicetree@vger.kernel.org>; Sat, 14 May 2022 07:10:44 -0700 (PDT)
+Received: by mail-lj1-x229.google.com with SMTP id t25so13337446ljd.6
+        for <devicetree@vger.kernel.org>; Sat, 14 May 2022 07:10:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=sender:date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=H1rAn7agXNY4SKWR1IHEUDfm7bTD4FsfGjzsnQ8t8wY=;
-        b=OZtXXpiEuzc3B3gQ5VPp2GUesAXeMh9RQ75PXl82D4HO2rLSnMm0USKkfVsq3dfWAw
-         yATr8setkpZbWQHnXEykD4flJmymkJrzg9u4i0RXqVV8yBODGngTvkwndK4dwXwPPLu6
-         zBzksljL+qjdlPuJlNHtn6J4SEh4DHELfEyLi4rxhww1nPvSiPc/a2DkmRjCsejlx+9D
-         VH/nRL7RgKECqbjJDS7CfnEagB58zeuoxoa4MRe8oQlMa9wka7CK7kpeEDODZs8GJaRf
-         WpAKAT+NSyRmvHTWCAnTZB+SsrQBcryTcpAlzB4k7ubIhM/ROiP2Eb19/GWhur+35eB+
-         +vtQ==
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=cViI95/oKKeMLGtoQusTFe3W64lJwHzV9ynNluvfOWg=;
+        b=sUB/XzUlDriK0G/2bCWfaRPNKCDxALe+8cGEm2/10u9eCIoqaM6k40oG0g2hVPW/RZ
+         dfXY5w13Hkat0djujts1KV8VgbFVpbwUlcRfRtCZ4ekV71Hoyzx6AxGkQhPcrLLVe7y/
+         qTxPHVJsTyfnhthYFuG8/Ma9DYZsoW0p2XpTh/N5pzYSAsbAOGmHNYDwrYQ4bqvPTyLu
+         I2UsbAvTkeS07YnsLsUfDq0UKRRWleBx3fC05bNyMD/fYJQmHtx5l+ARon4Cl5tSAfrp
+         39d1dRd7wzPxTLi2JFhJr4Mrc7Ym+Kq2taj0gf3QYR/me2ClDSLRUgobtFFs9aT6LQfk
+         D1IA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
-         :references:mime-version:content-disposition:in-reply-to;
-        bh=H1rAn7agXNY4SKWR1IHEUDfm7bTD4FsfGjzsnQ8t8wY=;
-        b=Mjn/pUtG0jFo4TR7+6wRkuKhCUZ6Dc7hDB+GhUujEoe3Dl21TgKJHqu+rfjDkBH1Rj
-         gVuiAcaAycNDE9gEQPtGIBSqO+aNwzgft8diKTHNIr8IZGmp5hn9RweHA5F5Qyl2wD+S
-         +Tr3qxoRQJkkBpjOekzA5ocMvzH1OEXyZt9P+4tu1nrHArn2AapoAtsQRPa5DCOZ+vzO
-         Kdk4vPeMpfM6cFDDgiMqq90wfFt4S+uuHVIlBXQJsCfF6DO78KV3zcoT16gfKxvS58yd
-         rDjx0ozny+LCNoWTWDT6cRkFta4EBFYv2Tw3nUE3Wf5QVJeSnwg/9kctIReVEkexBgX/
-         ka7Q==
-X-Gm-Message-State: AOAM530tGdhmZA3PpISr5EpPQvPerev6vPHc4IZgGtxT/wXPZQjt1dDK
-        G2cuS7CjsJssMxYuFjxyowimYOs6EcpG0g==
-X-Google-Smtp-Source: ABdhPJwipn4axI3cqJczT1ezRfeeLaRwVQT+kfnfHtLORgAacul8FEuqzaPS5fpgrrnDFN07lEmZfw==
-X-Received: by 2002:a05:6870:5708:b0:db:2ef8:f220 with SMTP id k8-20020a056870570800b000db2ef8f220mr10781289oap.198.1652537129831;
-        Sat, 14 May 2022 07:05:29 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id q14-20020a4a6c0e000000b00333301670dcsm2350996ooc.2.2022.05.14.07.05.28
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=cViI95/oKKeMLGtoQusTFe3W64lJwHzV9ynNluvfOWg=;
+        b=7TiukbfcTxBQdesscIzUUi1oAEdKwOhZ9TGGTEAkqY5Mq+1ZAfktd0DFwIw3ByKi2e
+         Okp7NZCXhkdzxggizU9lPF0rubmDRWPoXYhOztad0g0YWGH0ZmL5zvOxm0iPuOqoXLRI
+         63VyDpwoaKwNux0MkK/Q/YbO4L0hN+P2puBFJUlVHeDbaWUGz1VbNBTkyPplZG83rXo6
+         5MTXIJmxyzeXR5POmYlImUz2O3yUITkulv5J//LyJDzUYN1/N4tCw44yWkBn2DYmfsDO
+         DOnkbnMpjwhLtEfo57Egj//FUTT40yCIMU0YJ21jx5lovPp+8pYT5MtXW1imDG99kEF3
+         x2kA==
+X-Gm-Message-State: AOAM532HuFCzNveNZTWC9z1UK6exQRf4knqbAAcREVfqR0kYtmaogG4h
+        /+O7ufxGFKn8jFn+tFukvT+Asg==
+X-Google-Smtp-Source: ABdhPJxgxdZKSonE9t9pgq+i2o3qbVWKLwMY16Hebj2cAKXuGdbawmsZ64BOeszbEPX3mo0XmvIUwA==
+X-Received: by 2002:a2e:b911:0:b0:24f:310d:7f02 with SMTP id b17-20020a2eb911000000b0024f310d7f02mr5814042ljb.179.1652537442583;
+        Sat, 14 May 2022 07:10:42 -0700 (PDT)
+Received: from eriador.lan ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id x9-20020a05651c104900b0024f3d1daedasm845912ljm.98.2022.05.14.07.10.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 14 May 2022 07:05:29 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date:   Sat, 14 May 2022 07:05:27 -0700
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Sat, 14 May 2022 07:10:42 -0700 (PDT)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: watchdog: renesas,wdt: Document RZ/G2UL SoC
-Message-ID: <20220514140527.GA1318039@roeck-us.net>
-References: <20220424071323.151757-1-biju.das.jz@bp.renesas.com>
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH v4 00/12] arm64: dts: qcom: initial Inforce IFC6560 board support
+Date:   Sat, 14 May 2022 17:10:29 +0300
+Message-Id: <20220514141041.3158521-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220424071323.151757-1-biju.das.jz@bp.renesas.com>
-X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Apr 24, 2022 at 08:13:23AM +0100, Biju Das wrote:
-> Document RZ/G2UL WDT bindings. RZ/G2UL WDT is similar to one found
-> on the RZ/G2L SoC. No driver changes are required as generic compatible
-> string "renesas,rzg2l-wdt" will be used as a fallback.
-> 
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+This work is largely based on the previous work by Bjorn Andersson ([1])
 
-Reviewed-by: Guenter Roeck <linux@roeck-us.net>
+Changes since v3 (most points based on review by Marijn):
+- Fixed a typo in dsi0 patch
+- Fixed indentation here and there
+- Renamed qusb2phy to qusb2phy0 to play better with qusb2phy1
+- Fixed the ICC path for the GPU
+- Fixed sdhc2 pinconf for sdm636-sony-xperia-ganges-mermaid
+- Moved SDHC2 card detect gpio pin to board files
 
-> ---
->  Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml b/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml
-> index 59a48387e72d..84c008d956e4 100644
-> --- a/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml
-> +++ b/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml
-> @@ -21,6 +21,7 @@ properties:
->  
->        - items:
->            - enum:
-> +              - renesas,r9a07g043-wdt    # RZ/G2UL
->                - renesas,r9a07g044-wdt    # RZ/G2{L,LC}
->                - renesas,r9a07g054-wdt    # RZ/V2L
->            - const: renesas,rzg2l-wdt
+Changes since v2:
+- Removed useless enablement of mdp node from the board file. It is
+  already enabled in the SoC dtsi file.
+
+Changes since v1 (mostly based on Kondrad's review):
+- Also disabled dsi0/dsi0 phy in sdm630.dtsi
+- Removed the clock from BAM DMA devices rather than disabling them
+  completely
+- Replaced numbers with symbolic names for interconnects in sdm630.dtsi
+- Switched to "qcom,sda660" as a fallback compatible string
+- Added dt-bindings for the qcom,sda660 compat
+- Removed extra nesting level from the adsp firmware path
+- Replaced numbers with proper symbolic names in the board file
+- Added chassis-type property
+- Changed the order of blsp entries in the board file
+- Removed spurious newlines
+- Changed the order of regulator properties
+- Changed the DSI data-lines to list all four lanes. Still use just
+  three lanes for the adv bridge (and describe the reason in the
+  comment)
+
+Changes since Bjorn's v2:
+- Disable dsi1, dsi1 phy, GPU by default in sdm660.dtsi/sdm630.dtsi
+- Fix qusb2phy ref clock
+- Added USB2 host support to sdm630.dtsi
+- Renamed DTS to follow SoC-vendor-board pattern
+- Fixed vph_pwr voltage
+- Removed extra/unrelated comments
+- Added keys, USB2, USB3,
+- Added configuration for the attached HDMI bridge
+- Enabled MDP, MDSS and DSI0/DSI0 PHY devices
+- Removed uart pinctrl and /reserved-mem nodes (present in main dtsi
+  file)
+- Added card detection for the SDCC2
+- Disabled BLSP BAM DMA devices, they make the board reset during boot
+
+[1] https://lore.kernel.org/linux-arm-msm/20210825221110.1498718-1-bjorn.andersson@linaro.org/#t
+
+Dmitry Baryshkov (12):
+  arm64: dts: qcom: sdm630: disable dsi0/dsi0_phy by default
+  arm64: dts: qcom: sdm660: disable dsi1/dsi1_phy by default
+  arm64: dts: qcom: sdm630: disable GPU by default
+  arm64: dts: qcom: sdm630: fix the qusb2phy ref clock
+  arm64: dts: qcom: sdm630: rename qusb2phy to qusb2phy0
+  arm64: dts: qcom: sdm630: add second (HS) USB host support
+  arm64: dts: qcom: sdm630: fix gpu's interconnect path
+  arm64: dts: qcom: sdm630: use defined symbols for interconnects
+  arm64: dts: qcom: sdm636-sony-xperia-ganges-mermaid: correct sdc2
+    pinconf
+  arm64: dts: qcom: sdm660: move SDHC2 card detect pinconf to board
+    files
+  arm64: dts: qcom: sdm660: Add initial Inforce IFC6560 board support
+  dt-bindings: arm: qcom: document sda660 SoC and ifc6560 board
+
+ .../devicetree/bindings/arm/qcom.yaml         |   6 +
+ arch/arm64/boot/dts/qcom/Makefile             |   1 +
+ .../boot/dts/qcom/sda660-inforce-ifc6560.dts  | 471 ++++++++++++++++++
+ .../dts/qcom/sdm630-sony-xperia-nile.dtsi     |  18 +-
+ arch/arm64/boot/dts/qcom/sdm630.dtsi          | 101 +++-
+ .../sdm636-sony-xperia-ganges-mermaid.dts     |   2 +-
+ .../boot/dts/qcom/sdm660-xiaomi-lavender.dts  |  18 +-
+ arch/arm64/boot/dts/qcom/sdm660.dtsi          |   3 +
+ 8 files changed, 591 insertions(+), 29 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/qcom/sda660-inforce-ifc6560.dts
+
+-- 
+2.35.1
+
