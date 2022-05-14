@@ -2,54 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C38085273DF
-	for <lists+devicetree@lfdr.de>; Sat, 14 May 2022 22:13:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E3CE75273EE
+	for <lists+devicetree@lfdr.de>; Sat, 14 May 2022 22:22:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232382AbiENUNh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 14 May 2022 16:13:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59098 "EHLO
+        id S229759AbiENUWD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 14 May 2022 16:22:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45958 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229759AbiENUNh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 14 May 2022 16:13:37 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA0BF140E5
-        for <devicetree@vger.kernel.org>; Sat, 14 May 2022 13:13:35 -0700 (PDT)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=bjornoya.blackshift.org)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mkl@pengutronix.de>)
-        id 1npy8r-00010h-Ek; Sat, 14 May 2022 22:13:33 +0200
-Received: from pengutronix.de (unknown [IPv6:2a01:4f8:1c1c:29e9:22:41ff:fe00:1400])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (Client did not present a certificate)
-        (Authenticated sender: mkl-all@blackshift.org)
-        by smtp.blackshift.org (Postfix) with ESMTPSA id 5CA4D7E427;
-        Sat, 14 May 2022 20:13:32 +0000 (UTC)
-Date:   Sat, 14 May 2022 22:13:31 +0200
-From:   Marc Kleine-Budde <mkl@pengutronix.de>
-To:     Matej Vasilevski <matej.vasilevski@seznam.cz>
-Cc:     devicetree@vger.kernel.org, linux-can@vger.kernel.org,
-        pisa@cmp.felk.cvut.cz, ondrej.ille@gmail.com,
-        netdev@vger.kernel.org, martin.jerabek01@gmail.com
-Subject: Re: [RFC PATCH 1/3] can: ctucanfd: add HW timestamps to RX and error
- CAN frames
-Message-ID: <20220514201331.xv5ofxbzrv5ti3bi@pengutronix.de>
-References: <20220512232706.24575-1-matej.vasilevski@seznam.cz>
- <20220512232706.24575-2-matej.vasilevski@seznam.cz>
- <20220513114135.lgbda6armyiccj3o@pengutronix.de>
- <20220514091741.GA203806@hopium>
+        with ESMTP id S235069AbiENUWC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 14 May 2022 16:22:02 -0400
+Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0713526112
+        for <devicetree@vger.kernel.org>; Sat, 14 May 2022 13:22:00 -0700 (PDT)
+Received: by mail-lj1-x22b.google.com with SMTP id y19so13960866ljd.4
+        for <devicetree@vger.kernel.org>; Sat, 14 May 2022 13:21:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=Y5VRY1Vg5U7FZOYxaP3jhw1GgftqMUz+kaXgWZO/zzo=;
+        b=a9IbvRUaYC8Wc0vyxgFwHAxgU9mSVnhYPrySypKYv+QMWSeS0lIY4wxVjb/+x54LWq
+         Ldc1cXpfGj905mcwbZhrOB2SdRWkkkJTcN8XmsLxZM3o1iVoUToVGPQqNwOLRWQqNkFV
+         hvbA4emBw/8q79PftXEPsH+kSyqRfafhujdgE+P8fJGteGOcK7xMkyuufwBAw8bIrRFa
+         gJuSbkhJHloXm+OQ9D+IZ7DsfUCXfPkNBD+eHfglA2cDMFd0vT8MnG+Zmj8mMlPJwnb4
+         yTLeFaHM+EYpglB82UoRIxyn6Isw1Z9/jYS70nsrx3FRo+XYLmINHoUjvQQkh8OJSE4S
+         gzNQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=Y5VRY1Vg5U7FZOYxaP3jhw1GgftqMUz+kaXgWZO/zzo=;
+        b=IRM6TMKgkqxrlW27W0v8BxDTxrYROHTQje4/jzSor5Rc3BGEe+Qo6V5LbrleiX7hNC
+         NVSKirMsbKf3QRorLTx3/qirXEWhygmmEpWJZx7i/orlkwAoPP5HWPv9PRZC2XVrTjan
+         Q+DQAUKZeMYGvxc+pUlGq78x7p3fuq95PWedeIl4/oCn96yLuaOJYYsh9kiyTL0Rq/it
+         ZLWzTL6MOPNHkwNXaZ5peIXN/PIuKCgyLR4coRbe0tKBD2ojv1liCds9dhrB4Ex875dM
+         f2V4WDxiZPVhois9bCCrt36ck91wrE4jXrYgUAzdoierSHPfqdSZWWZInBlYtwI5rt6Z
+         TyeQ==
+X-Gm-Message-State: AOAM532D3vG/Rq+SJE8tTsYxV/fIN7fVlaamAkFy/oFIyXwJSjM+L+aJ
+        sRxoQGgj0FQySx3q4gRt8pZz4A==
+X-Google-Smtp-Source: ABdhPJzLyuqdkaQnJF2ClXg0Jx1DgHwKnG2ziP/ISkfSmc674JtqB4hc3nDy/CLvL1Xr59yD6peNiw==
+X-Received: by 2002:a05:651c:98d:b0:250:976b:4a0e with SMTP id b13-20020a05651c098d00b00250976b4a0emr6642090ljq.494.1652559718267;
+        Sat, 14 May 2022 13:21:58 -0700 (PDT)
+Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id z2-20020a2e9b82000000b0024f3d1daeaesm942625lji.54.2022.05.14.13.21.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 14 May 2022 13:21:57 -0700 (PDT)
+Message-ID: <567d135b-3d40-9958-e000-1357020b5650@linaro.org>
+Date:   Sat, 14 May 2022 22:21:56 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="qf7flepnkiv2qd3k"
-Content-Disposition: inline
-In-Reply-To: <20220514091741.GA203806@hopium>
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH 3/3] dt-bindings: usb: add documentation for aspeed udc
+Content-Language: en-US
+To:     Neal Liu <neal_liu@aspeedtech.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Felipe Balbi <balbi@kernel.org>,
+        Sumit Semwal <sumit.semwal@linaro.org>,
+        =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Li Yang <leoyang.li@nxp.com>
+Cc:     "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+        "linaro-mm-sig@lists.linaro.org" <linaro-mm-sig@lists.linaro.org>,
+        BMC-SW <BMC-SW@aspeedtech.com>
+References: <20220513065728.857722-1-neal_liu@aspeedtech.com>
+ <20220513065728.857722-4-neal_liu@aspeedtech.com>
+ <da78aaf6-c9ae-d591-fdc4-723f097ace2c@linaro.org>
+ <HK0PR06MB3202679A7FABAF7D0D045F0880CA9@HK0PR06MB3202.apcprd06.prod.outlook.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <HK0PR06MB3202679A7FABAF7D0D045F0880CA9@HK0PR06MB3202.apcprd06.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -57,63 +94,121 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 13/05/2022 17:39, Neal Liu wrote:
+>> -----Original Message-----
+>> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> Sent: Friday, May 13, 2022 5:07 PM
+>> To: Neal Liu <neal_liu@aspeedtech.com>; Greg Kroah-Hartman
+>> <gregkh@linuxfoundation.org>; Rob Herring <robh+dt@kernel.org>;
+>> Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>; Joel Stanley
+>> <joel@jms.id.au>; Andrew Jeffery <andrew@aj.id.au>; Felipe Balbi
+>> <balbi@kernel.org>; Sumit Semwal <sumit.semwal@linaro.org>; Christian
+>> König <christian.koenig@amd.com>; Geert Uytterhoeven <geert@linux-
+>> m68k.org>; Li Yang <leoyang.li@nxp.com>
+>> Cc: linux-aspeed@lists.ozlabs.org; linux-usb@vger.kernel.org;
+>> devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org; linux-
+>> kernel@vger.kernel.org; linux-media@vger.kernel.org; dri-
+>> devel@lists.freedesktop.org; linaro-mm-sig@lists.linaro.org; BMC-SW <BMC-
+>> SW@aspeedtech.com>
+>> Subject: Re: [PATCH 3/3] dt-bindings: usb: add documentation for aspeed
+>> udc
+>>
+>> On 13/05/2022 08:57, Neal Liu wrote:
+>>> Add device tree binding documentation for the Aspeed USB2.0 Device
+>>> Controller.
+>>>
+>>> Signed-off-by: Neal Liu <neal_liu@aspeedtech.com>
+>>> ---
+>>>  .../devicetree/bindings/usb/aspeed,udc.yaml   | 52
+>> +++++++++++++++++++
+>>>  1 file changed, 52 insertions(+)
+>>>  create mode 100644
+>>> Documentation/devicetree/bindings/usb/aspeed,udc.yaml
+>>
+>> Please name the file as first compatible, so "aspeed,ast2600-udc.yaml"
+> 
+> Okay, I could rename it for next patch if you preferred.
+> But there are lots of yaml files which are not named as first compatible.
 
---qf7flepnkiv2qd3k
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Yes, I know, I quite likely I also produced such bindings, but a
+specific name is rather preferred. Otherwise you will have a difficult
+naming choice when your next Aspeed UDC requires new bindings file
+because of some differences (not yet known now).
 
-On 14.05.2022 11:18:08, Matej Vasilevski wrote:
-> > > +	timecounter_init(&priv->tc, &priv->cc, 0);
-> >=20
-> > You here set the offset of the HW clock to 1.1.1970. The mcp driver sets
-> > the offset to current time. I think it's convenient to have the current
-> > time here....What do you think.
->=20
-> I actually searched in the mailing list and read your conversation with
-> Vincent on timestamps starting from 0 or synced to current time.
-> https://lore.kernel.org/linux-can/CAMZ6RqL+n4tRy-B-W+fzW5B3QV6Bedrko57pU_=
-0TE023Oxw_5w@mail.gmail.com/
+> 
+>>
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/usb/aspeed,udc.yaml
+>>> b/Documentation/devicetree/bindings/usb/aspeed,udc.yaml
+>>> new file mode 100644
+>>> index 000000000000..d1d2f77d1c54
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/usb/aspeed,udc.yaml
+>>> @@ -0,0 +1,52 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) # Copyright
+>>> +(c) 2020 Facebook Inc.
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/usb/aspeed,udc.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: ASPEED USB 2.0 Device Controller
+>>> +
+>>> +maintainers:
+>>> +  - Neal Liu <neal_liu@aspeedtech.com>
+>>> +
+>>> +description: |+
+>>> +  The ASPEED USB 2.0 Device Controller implements 1 control endpoint
+>>> +and
+>>> +  4 generic endpoints for AST260x.
+>>> +
+>>> +  Supports independent DMA channel for each generic endpoint.
+>>> +  Supports 32/256 stages descriptor mode for all generic endpoints.
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    enum:
+>>> +      - aspeed,ast2600-udc
+>>> +
+>>> +  reg:
+>>> +    maxItems: 1
+>>> +
+>>> +  clocks:
+>>> +    maxItems: 1
+>>> +
+>>> +  interrupts:
+>>> +    maxItems: 1
+>>
+>> No child properties? No ports or any other devices? No usb-hcd.yaml?
+> 
+> Aspeed udc only has 1 port, no need extra properties for now.
 
-Thanks for looking up that discussion. Back than I was arguing for the
-start from 0, but in the mean time I added TS support for the mcp251xfd,
-which starts with the current time :)
+OK
 
-> Then I discussed it with Pavel Pisa and he requested to start from 0.
-> Reasons are that system time can change (NTP, daylight saving time,
-> user settings etc.), so when it starts from 0 it is clear that it is
-> "timestamp time".
->=20
-> Are there a lot of CAN drivers synced to system time? I think this would
-> be a good argument for syncing, to keep things nice and cohesive in
-> the CAN subsystem.
->=20
-> Overall I wouldn't want to block this patch over such a minutiae.
+> 
+>>> +
+>>> +required:
+>>> +  - compatible
+>>> +  - reg
+>>> +  - clocks
+>>> +  - interrupts
+>>> +
+>>> +additionalProperties: false
+>>> +
+>>> +examples:
+>>> +  - |
+>>> +    #include <dt-bindings/clock/aspeed-clock.h>
+>>> +    udc: udc@1e6a2000 {
+>>
+>> Node name: usb
+>  
+> "udc" is more recognizable than "usb" I think. "usb" is too general, can be various like host or device.
 
-ACK
+It's still required by schema for most of USB host controllers. Existing
+USB device controllers use usb as well (except Atmel mentioning gadget)
+Generic name is also expected by Devicetree spec and "udc" is not on a
+list of examples of generic names (usb is).
 
-regards,
-Marc
 
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde           |
-Embedded Linux                   | https://www.pengutronix.de  |
-Vertretung West/Dortmund         | Phone: +49-231-2826-924     |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-5555 |
-
---qf7flepnkiv2qd3k
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEBsvAIBsPu6mG7thcrX5LkNig010FAmKADWkACgkQrX5LkNig
-010EaQf+P4PDQgB1q9NTsep6x1FkFyAyBf5nFcWP7FYQjvbfOq/3Tuq5/LZsZuKQ
-/ac++Fw7u6iHtZQAHWg9vtmqlDTHR3UQlBEux7siRQXnUNoNopekN8qYKic5bx71
-2aVhD4EmFxOb0jFFhBaOisIi9xmRRXG/kgUyJHQMBPL+gljx3mvbA/PfiIjvCT4L
-KNOizvTR0V0DpdhAl7oceu9AJg97qJ+RSOyyZx7q3vke/LB+8uXWSmdGkms1wcbI
-duCDQ0sFHOqsUdWnqbxfYh9Ph1aep47fqd5cOygN7zbXPA5XpY1VppQYbdsoU0ez
-bfH19KOUpJGU4DPhjj0zXG2bWh78nw==
-=6ZCc
------END PGP SIGNATURE-----
-
---qf7flepnkiv2qd3k--
+Best regards,
+Krzysztof
