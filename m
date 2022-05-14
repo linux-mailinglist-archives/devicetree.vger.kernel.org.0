@@ -2,43 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 814D052705C
-	for <lists+devicetree@lfdr.de>; Sat, 14 May 2022 11:45:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 52A5D52705E
+	for <lists+devicetree@lfdr.de>; Sat, 14 May 2022 11:49:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230367AbiENJpT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 14 May 2022 05:45:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39694 "EHLO
+        id S231561AbiENJtp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 14 May 2022 05:49:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49220 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231638AbiENJpR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 14 May 2022 05:45:17 -0400
-Received: from relay06.th.seeweb.it (relay06.th.seeweb.it [5.144.164.167])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67A97205F5;
-        Sat, 14 May 2022 02:45:14 -0700 (PDT)
-Received: from SoMainline.org (94-209-165-62.cable.dynamic.v4.ziggo.nl [94.209.165.62])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        with ESMTP id S231543AbiENJto (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 14 May 2022 05:49:44 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB5FF4F445;
+        Sat, 14 May 2022 02:49:30 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 18B093F767;
-        Sat, 14 May 2022 11:45:12 +0200 (CEST)
-Date:   Sat, 14 May 2022 11:45:10 +0200
-From:   Marijn Suijten <marijn.suijten@somainline.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 6/8] arm64: dts: qcom: sdm630: use defined symbols for
- interconnects
-Message-ID: <20220514094510.yfpc7omljon4nrhs@SoMainline.org>
-References: <20220513234518.3068480-1-dmitry.baryshkov@linaro.org>
- <20220513234518.3068480-7-dmitry.baryshkov@linaro.org>
+        by dfw.source.kernel.org (Postfix) with ESMTPS id A8C9860C7B;
+        Sat, 14 May 2022 09:49:29 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 83AF9C340EE;
+        Sat, 14 May 2022 09:49:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1652521769;
+        bh=fD/mkjvdISC77Cf8PGTHsmA88B804TFZMCm5qN7kBaw=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Mth4RYLvGgdhMR5tuXBLbTq9kQvo7gu/aJbiEjaVb1PfJv/gwmvhneXxPihIQyUGK
+         GxnY32AjxfObxp3T71hJpIQH+sqByeFgxr6USZdLcxGJiWZignGK/SWi/76Hd9sp/O
+         6fMXgoeS5+pf/V8nCpOgTz0EGwInsRYn4yq1lFQKNtZhZEW8s6sGEeSl7zjJG1osMl
+         VMwgn2Pu/v24gC/feiB+/Xc5HEC7QMq7oOZhferowDQx7OJA2nlUuctB/yKM2qCUxh
+         4zmD76z6jbH5zgcvwUcOT1AFZR/Q/iy5pCGdMQma6HEnsg/kebfw+F0Dn2AB/n5hEk
+         9Mlg+dSVkZrhA==
+Date:   Sat, 14 May 2022 11:49:14 +0200
+From:   Lorenzo Bianconi <lorenzo@kernel.org>
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     netdev@vger.kernel.org, nbd@nbd.name, john@phrozen.org,
+        sean.wang@mediatek.com, Mark-MC.Lee@mediatek.com,
+        davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+        pabeni@redhat.com, Sam.Shih@mediatek.com,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        robh@kernel.org, landen.chao@mediatek.com
+Subject: Re: [PATCH net-next 01/14] arm64: dts: mediatek: mt7986: introduce
+ ethernet nodes
+Message-ID: <Yn97GqujwYlljkdH@lore-desk>
+References: <cover.1651839494.git.lorenzo@kernel.org>
+ <1d555fbbac820e9b580da3e8c0db30e7d003c4b6.1651839494.git.lorenzo@kernel.org>
+ <YnZ8o46pPdKMCbUF@lunn.ch>
+ <YnlC3jvYarpV6BP1@lore-desk>
+ <YnlFBr1wgb/hlduy@lunn.ch>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="57sKd9UZFq0yO9gn"
 Content-Disposition: inline
-In-Reply-To: <20220513234518.3068480-7-dmitry.baryshkov@linaro.org>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+In-Reply-To: <YnlFBr1wgb/hlduy@lunn.ch>
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -47,112 +63,73 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022-05-14 02:45:16, Dmitry Baryshkov wrote:
-> Replace numeric values with the symbolic names defined in the bindings
-> header.
-> 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
-Seems there is one off-by-one copy-paste error.  With that addressed:
+--57sKd9UZFq0yO9gn
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Reviewed-by: Marijn Suijten <marijn.suijten@somainline.org>
+> On Mon, May 09, 2022 at 06:35:42PM +0200, Lorenzo Bianconi wrote:
+> > > > +&eth {
+> > > > +	status =3D "okay";
+> > > > +
+> > > > +	gmac0: mac@0 {
+> > > > +		compatible =3D "mediatek,eth-mac";
+> > > > +		reg =3D <0>;
+> > > > +		phy-mode =3D "2500base-x";
+> > > > +
+> > > > +		fixed-link {
+> > > > +			speed =3D <2500>;
+> > > > +			full-duplex;
+> > > > +			pause;
+> > > > +		};
+> > > > +	};
+> > > > +
+> > > > +	gmac1: mac@1 {
+> > > > +		compatible =3D "mediatek,eth-mac";
+> > > > +		reg =3D <1>;
+> > > > +		phy-mode =3D "2500base-x";
+> > > > +
+> > > > +		fixed-link {
+> > > > +			speed =3D <2500>;
+> > > > +			full-duplex;
+> > > > +			pause;
+> > > > +		};
+> > > > +	};
+> > >=20
+> > > Are both connected to the switch? It just seems unusual two have two
+> > > fixed-link ports.
+> >=20
+> > afaik mac design supports autoneg only in 10M/100M/1G mode and mt7986 g=
+mac1
+> > is connected to a 2.5Gbps phy on mt7986-ref board.
+>=20
+> The MAC does not normally perform autoneg, the PHY
+> does. phylib/phylink then tells the MAC the result of the
+> negotiation. If there is a SERDES/PCS involved, and it is performing
+> the autoneg, phylink should get told about the result of the autoneg
+> and it will tell the MAC the result.
+>=20
+> So the gmac1 should just have phy-handle pointing to the PHY, not a
+> fixed link.
+>=20
+>       Andrew
 
-> ---
->  arch/arm64/boot/dts/qcom/sdm630.dtsi | 23 ++++++++++++-----------
->  1 file changed, 12 insertions(+), 11 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sdm630.dtsi b/arch/arm64/boot/dts/qcom/sdm630.dtsi
-> index 17a1877587cf..01a1a1703568 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm630.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sdm630.dtsi
-> @@ -8,6 +8,7 @@
->  #include <dt-bindings/clock/qcom,gpucc-sdm660.h>
->  #include <dt-bindings/clock/qcom,mmcc-sdm660.h>
->  #include <dt-bindings/clock/qcom,rpmcc.h>
-> +#include <dt-bindings/interconnect/qcom,sdm660.h>
->  #include <dt-bindings/power/qcom-rpmpd.h>
->  #include <dt-bindings/gpio/gpio.h>
->  #include <dt-bindings/interrupt-controller/arm-gic.h>
-> @@ -1045,7 +1046,7 @@ adreno_gpu: gpu@5000000 {
->  			nvmem-cells = <&gpu_speed_bin>;
->  			nvmem-cell-names = "speed_bin";
->  
-> -			interconnects = <&gnoc 1 &bimc 5>;
-> +			interconnects = <&gnoc MASTER_APSS_PROC &bimc SLAVE_EBI>;
+adding Landen to the discussion to provide more hw details.
+@Landen: any inputs on it?
 
-From qcom,sdm660.h:
+Regards,
+Lorenzo
 
-    /* GNOC */
-    #define MASTER_APSS_PROC		0
-    #define SLAVE_GNOC_BIMC			1
-    #define SLAVE_GNOC_SNOC			2
+--57sKd9UZFq0yO9gn
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Seems like the left side should be SLAVE_GNOC_BIMC?  Unless this
-semantic change is intended, in which case it should be clearly
-documented in its own commit with a Fixes tag.
+-----BEGIN PGP SIGNATURE-----
 
-The rest looks correct.
+iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCYn97GgAKCRA6cBh0uS2t
+rJi/AQCb9dTLYZ7YoVsaSg9/eM2xO1giATwmWgDgvu7ornUl/wD+Im8XM086QT4k
+wTWJpsrIZkt3aACNIfiY34472b6ohAw=
+=ZZRY
+-----END PGP SIGNATURE-----
 
-- Marijn
-
->  			interconnect-names = "gfx-mem";
->  
->  			operating-points-v2 = <&gpu_sdm630_opp_table>;
-> @@ -1299,8 +1300,8 @@ sdhc_2: sdhci@c084000 {
->  					<&xo_board>;
->  			clock-names = "core", "iface", "xo";
->  
-> -			interconnects = <&a2noc 3 &a2noc 10>,
-> -					<&gnoc 0 &cnoc 28>;
-> +			interconnects = <&a2noc MASTER_SDCC_2 &a2noc SLAVE_A2NOC_SNOC>,
-> +					<&gnoc MASTER_APSS_PROC &cnoc SLAVE_SDCC_2>;
->  			operating-points-v2 = <&sdhc2_opp_table>;
->  
->  			pinctrl-names = "default", "sleep";
-> @@ -1351,8 +1352,8 @@ sdhc_1: sdhci@c0c4000 {
->  				 <&gcc GCC_SDCC1_ICE_CORE_CLK>;
->  			clock-names = "core", "iface", "xo", "ice";
->  
-> -			interconnects = <&a2noc 2 &a2noc 10>,
-> -					<&gnoc 0 &cnoc 27>;
-> +			interconnects = <&a2noc MASTER_SDCC_1 &a2noc SLAVE_A2NOC_SNOC>,
-> +					<&gnoc MASTER_APSS_PROC &cnoc SLAVE_SDCC_1>;
->  			interconnect-names = "sdhc1-ddr", "cpu-sdhc1";
->  			operating-points-v2 = <&sdhc1_opp_table>;
->  			pinctrl-names = "default", "sleep";
-> @@ -1525,9 +1526,9 @@ mdp: mdp@c901000 {
->  					      "core",
->  					      "vsync";
->  
-> -				interconnects = <&mnoc 2 &bimc 5>,
-> -						<&mnoc 3 &bimc 5>,
-> -						<&gnoc 0 &mnoc 17>;
-> +				interconnects = <&mnoc MASTER_MDP_P0 &bimc SLAVE_EBI>,
-> +						<&mnoc MASTER_MDP_P1 &bimc SLAVE_EBI>,
-> +						<&gnoc MASTER_APSS_PROC &mnoc SLAVE_DISPLAY_CFG>;
->  				interconnect-names = "mdp0-mem",
->  						     "mdp1-mem",
->  						     "rotator-mem";
-> @@ -2034,7 +2035,7 @@ camss: camss@ca00000 {
->  				"cphy_csid1",
->  				"cphy_csid2",
->  				"cphy_csid3";
-> -			interconnects = <&mnoc 5 &bimc 5>;
-> +			interconnects = <&mnoc MASTER_VFE &bimc SLAVE_EBI>;
->  			interconnect-names = "vfe-mem";
->  			iommus = <&mmss_smmu 0xc00>,
->  				 <&mmss_smmu 0xc01>,
-> @@ -2097,8 +2098,8 @@ venus: video-codec@cc00000 {
->  				 <&mmcc VIDEO_AXI_CLK>,
->  				 <&mmcc THROTTLE_VIDEO_AXI_CLK>;
->  			clock-names = "core", "iface", "bus", "bus_throttle";
-> -			interconnects = <&gnoc 0 &mnoc 13>,
-> -					<&mnoc 4 &bimc 5>;
-> +			interconnects = <&gnoc MASTER_APSS_PROC &mnoc SLAVE_VENUS_CFG>,
-> +					<&mnoc MASTER_VENUS &bimc SLAVE_EBI>;
->  			interconnect-names = "cpu-cfg", "video-mem";
->  			interrupts = <GIC_SPI 287 IRQ_TYPE_LEVEL_HIGH>;
->  			iommus = <&mmss_smmu 0x400>,
-> -- 
-> 2.35.1
-> 
+--57sKd9UZFq0yO9gn--
