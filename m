@@ -2,54 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A1895273C3
-	for <lists+devicetree@lfdr.de>; Sat, 14 May 2022 21:36:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D8025273C8
+	for <lists+devicetree@lfdr.de>; Sat, 14 May 2022 21:42:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229538AbiENTgU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 14 May 2022 15:36:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48010 "EHLO
+        id S234936AbiENTlu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 14 May 2022 15:41:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57706 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232146AbiENTgU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 14 May 2022 15:36:20 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A9C91B7A4
-        for <devicetree@vger.kernel.org>; Sat, 14 May 2022 12:36:18 -0700 (PDT)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=bjornoya.blackshift.org)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mkl@pengutronix.de>)
-        id 1npxYi-0005RA-0z; Sat, 14 May 2022 21:36:12 +0200
-Received: from pengutronix.de (unknown [IPv6:2a01:4f8:1c1c:29e9:22:41ff:fe00:1400])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (Client did not present a certificate)
-        (Authenticated sender: mkl-all@blackshift.org)
-        by smtp.blackshift.org (Postfix) with ESMTPSA id 081157E414;
-        Sat, 14 May 2022 19:36:09 +0000 (UTC)
-Date:   Sat, 14 May 2022 21:36:09 +0200
-From:   Marc Kleine-Budde <mkl@pengutronix.de>
-To:     Pavel Pisa <pisa@cmp.felk.cvut.cz>
-Cc:     Matej Vasilevski <matej.vasilevski@seznam.cz>,
-        ondrej.ille@gmail.com, Jiri Novak <jnovak@fel.cvut.cz>,
-        linux-can@vger.kernel.org, devicetree@vger.kernel.org,
-        netdev@vger.kernel.org, martin.jerabek01@gmail.com
-Subject: Re: [RFC PATCH 1/3] can: ctucanfd: add HW timestamps to RX and error
- CAN frames
-Message-ID: <20220514193609.gfq7dbbmddlr5wa2@pengutronix.de>
-References: <20220512232706.24575-1-matej.vasilevski@seznam.cz>
- <20220512232706.24575-2-matej.vasilevski@seznam.cz>
- <20220513114135.lgbda6armyiccj3o@pengutronix.de>
- <202205132102.58109.pisa@cmp.felk.cvut.cz>
+        with ESMTP id S234882AbiENTls (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 14 May 2022 15:41:48 -0400
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F3A21CB35
+        for <devicetree@vger.kernel.org>; Sat, 14 May 2022 12:41:46 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id b18so19722564lfv.9
+        for <devicetree@vger.kernel.org>; Sat, 14 May 2022 12:41:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=t6bJEDO0j/dRfFq4rPjW4+ykP3n6Msmi35RTgOoZ07M=;
+        b=Kl7f6ZAzoxQ4Jd8/+V19vqhkpkPjmEHVoVrK51Kv1LDfYNnBINfKrX6YUx+89iVSjx
+         0Kcyr9hxefFJxiH9uBIlQ+2ta82hisNj12PIGV3cHbR1/w26ovilmYOUt8ypxwv3NlnK
+         7rgtbKaHc9Pg8u9Vb1vJPocjJuzp1fyfnx9QauxFkXLwNYdyTQOgSUUnUt6CgB87i3D+
+         2vqb8TR/qrrGbGRYgNPH3tRTl7crlEA7gLHGfXCI/kF4yCAIZlgT0iSnALmSmbAiZCQi
+         o/wXQ6rT542gdyMTiHD8Cyg3DrMI+wT2KBj30BenDrZW3ofC6Vq4qwJIBXRYI6MTCX5I
+         oIkQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=t6bJEDO0j/dRfFq4rPjW4+ykP3n6Msmi35RTgOoZ07M=;
+        b=RZ9IuAIgmRkMXZaJFCK1GXrLue+J4XO4odQjnaI1KWuaQnGDhGZkiAC3rpKfYOtDwy
+         khRgwSiktXhdPkLCu66gywWTbHnMEeCja2pO3B9yROOehaksq+cNO8UxXalwm1Q0dRoQ
+         lHNDDJhQ8Amkpbp/r+PbhOTN0QMke7yIgh+Z99IjhWqY8F6R7sx6NiWNwVTUjKeQXCz1
+         w7+nm5s/HajJHGI0InxtkHwrnDmN9+5/SJ5rmlOxnc2/lmT4760GNKPoWL59HpxBZP4X
+         8uISAmLSXIXkMH/ft4IDCk34jjAb8NNaaJXaAK8/ycQCp25FopdUnuKGZrb0Au5tV5hl
+         D/Vw==
+X-Gm-Message-State: AOAM530uKvGxlgxa1rGjlMW4AFgKOxmE6tLzqD/CvGUiPWHIeriCsrjF
+        1AcYVafsMgvzM+bEglxOOvcKaA5+mfSkcH4Q
+X-Google-Smtp-Source: ABdhPJxHu3S+WGwVzKJZUxwzhTiHR4uLT/Zh8n+qQPda4WwCCELQ3QGV2iDBNb6lJiozLzyiQW2ksA==
+X-Received: by 2002:a05:6512:12c9:b0:473:c33e:a65b with SMTP id p9-20020a05651212c900b00473c33ea65bmr7771309lfg.285.1652557304862;
+        Sat, 14 May 2022 12:41:44 -0700 (PDT)
+Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id c2-20020ac25302000000b004778d417c49sm78333lfh.290.2022.05.14.12.41.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 14 May 2022 12:41:44 -0700 (PDT)
+Message-ID: <f8d8be37-3e2f-c1fc-37d6-b1e0bfa875ce@linaro.org>
+Date:   Sat, 14 May 2022 21:41:42 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="7sqm2pgw2volmoot"
-Content-Disposition: inline
-In-Reply-To: <202205132102.58109.pisa@cmp.felk.cvut.cz>
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [v4 1/3] dt-bindings: phy: qcom,usb-snps-femto-v2: Add phy
+ override params bindings
+Content-Language: en-US
+To:     Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Doug Anderson <dianders@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Wesley Cheng <quic_wcheng@quicinc.com>,
+        Vinod Koul <vkoul@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-phy@lists.infradead.org, quic_pkondeti@quicinc.com,
+        quic_ppratap@quicinc.com, quic_vpulyala@quicinc.com
+References: <1652282793-5580-1-git-send-email-quic_kriskura@quicinc.com>
+ <1652282793-5580-2-git-send-email-quic_kriskura@quicinc.com>
+ <d296720d-ccbe-27f0-8ba1-9653af25dd52@linaro.org>
+ <9644d608-4ab9-ed0d-50fb-0016e4331361@quicinc.com>
+ <5b32cecf-873a-6367-df87-1b8d45e63cec@linaro.org>
+ <972ac516-efac-54d6-febc-1b180ec36d4b@quicinc.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <972ac516-efac-54d6-febc-1b180ec36d4b@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -58,205 +91,107 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 14/05/2022 08:24, Krishna Kurapati PSSNV wrote:
+> 
+> On 5/12/2022 4:00 PM, Krzysztof Kozlowski wrote:
+>> On 12/05/2022 07:57, Krishna Kurapati PSSNV wrote:
+>>> On 5/11/2022 11:49 PM, Krzysztof Kozlowski wrote:
+>>>> On 11/05/2022 17:26, Krishna Kurapati wrote:
+>>>>> From: Sandeep Maheswaram <quic_c_sanm@quicinc.com>
+>>>>>
+>>>>> Add device tree bindings for SNPS phy tuning parameters.
+>>>>>
+>>>>> Signed-off-by: Sandeep Maheswaram <quic_c_sanm@quicinc.com>
+>>>>> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
+>>>>> ---
+>>>>>    .../bindings/phy/qcom,usb-snps-femto-v2.yaml       | 87 ++++++++++++++++++++++
+>>>>>    1 file changed, 87 insertions(+)
+>>>>>
+>>>>> diff --git a/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml b/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml
+>>>>> index 1ce251d..70efffe 100644
+>>>>> --- a/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml
+>>>>> +++ b/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml
+>>>>> @@ -53,6 +53,93 @@ properties:
+>>>>>      vdda33-supply:
+>>>>>        description: phandle to the regulator 3.3V supply node.
+>>>>>    
+>>>>> +  qcom,hs-disconnect-bps:
+>>>>> +    $ref: /schemas/types.yaml#/definitions/int32
+>>>>> +    description:
+>>>>> +      This adjusts the voltage level for the threshold used to
+>>>>> +      detect a disconnect event at the host. Possible values are.
+>>>>> +      The values defined are in multiples of basis points (1bp = 0.01%).
+>>>> This means there is some minimum and maximum (100%)?
+>>> Hi Krzystof,
+>>>
+>>> Yes there are max and min for each parameter (not necessarily 0%/100%)
+>>>
+>>> As an example if we take squelch detector threshold, the register value
+>>> vs actual percentage changer as per data book is as follows :
+>>>
+>>> % change in voltage    |     corresponding reg value
+>>>
+>>>    -20.90%                        |    7
+>>>    -15.60%                        |    6
+>>> -10.30%                         |    5
+>>> -5.30%                           |    4
+>>> 0%                                  |    3
+>>> 5.30%                            |    2
+>>> 10.60%                          |    1
+>>> 15.90%                          |    0
+>>>
+>>> Here the min and max are 15.9% to -20.9%
+>>>
+>>> The min and max differ for each parameter and might not be necessarily
+>>> 0% and 100%
+>> Then it seems possible to define minimum and maximum values - please add
+>> them ("minimum: xxxx").
+>>
+>>
+>> Best regards,
+>> Krzysztof
+> 
+> Hi Krzysztof,
+> 
+>   Sorry for the late reply, missed this mail.
+> 
+> Currently, these values have a fixed maximum and minimum. But if these 
+> limits change in the
+> 
+> future (say on a per target basis) , would it be appropriate to add them 
+> here in bindings file ?
 
---7sqm2pgw2volmoot
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Per "target" you mean compatible? Then yes, the same as customizing
+number of interrupts, clocks etc.
 
-On 13.05.2022 21:02:58, Pavel Pisa wrote:
-[...]
-> > A property with "width"
->=20
-> agree
->=20
-> > in the name seems to be more common. You=20
-> > probably have to add the "ctu" vendor prefix. BTW: the bindings document
-> > update should come before changing the driver.
->=20
-> this is RFC and not a final.
->=20
-> In general and long term, I vote and prefer to have number of the most
-> significant active timestamp bit to be encoded in some CTU CAN FD IP
-> core info register same as for the number of the Tx buffers.
+> 
+> Also in the driver file for sc7280 target, we have added parameter 
+> mapping : (map b/w register value
+> 
+> and bps passed from device tree). For squelch detector, it is as follows:
+> 
+> +static struct override_param squelch_det_threshold_sc7280[] = {
+> +	OVERRIDE_PARAM(-2090, 7),
+> +	OVERRIDE_PARAM(-1560, 6),
+> +	OVERRIDE_PARAM(-1030, 5),
+> +	OVERRIDE_PARAM(-530, 4),
+> +	OVERRIDE_PARAM(0, 3),
+> +	OVERRIDE_PARAM(530, 2),
+> +	OVERRIDE_PARAM(1060, 1),
+> +	OVERRIDE_PARAM(1590, 0),
+> +};
+> 
+> And the code is written such that if we give a bps value in dt greater than max value in
+> table, we would automatically choose max value. And if we provide bps value lesser than
+> minimum value, we would choose the min value.
+> 
+> So, would it be appropriate to add the min and max in dt-bindings when there is a
+> slight chance of them changing in the future ?
 
-+1
+The kernel behavior should not matter here, because the bindings are
+about the hardware. Therefore if hardware comes with maximum/minimum
+values, it would be better to document them here.
 
-> We will discuss that internally. The the solution is the same for
-> platform as well as for PCI. But the possible second clock frequency
-> same as the bitrate clock source should stay to be provided from
-> platform and some table based on vendor and device ID in the PCI case.
-> Or at least it is my feeling about the situation.
 
-Ack, this is the most straight forward option. ACPI being more
-complicated - tough I've never touched it.
-
-> > > - add second clock phandle to 'clocks' property
-> > > - create 'clock-names' property and name the second clock 'ts_clk'
-> > >
-> > > Alternatively, you can set property 'ts-frequency' directly with
-> > > the timestamping frequency, instead of setting second clock.
-> >
-> > For now, please use a clock property only. If you need ACPI bindings add
-> > them later.
->=20
-> I would be happy if I would never need to think about ACPI... or if
-> somebody else does it for us...
-
-I see no reason for ACPI at the moment.
-
-> > > Signed-off-by: Matej Vasilevski <matej.vasilevski@seznam.cz>
-> > > ---
-> > >  drivers/net/can/ctucanfd/Kconfig              |  10 ++
-> > >  drivers/net/can/ctucanfd/Makefile             |   2 +-
-> > >  drivers/net/can/ctucanfd/ctucanfd.h           |  25 ++++
-> > >  drivers/net/can/ctucanfd/ctucanfd_base.c      | 123 ++++++++++++++++=
-+-
-> > >  drivers/net/can/ctucanfd/ctucanfd_timestamp.c | 113 ++++++++++++++++
-> > >  5 files changed, 267 insertions(+), 6 deletions(-)
-> > >  create mode 100644 drivers/net/can/ctucanfd/ctucanfd_timestamp.c
-> > >
-> > > diff --git a/drivers/net/can/ctucanfd/Kconfig
-> > > b/drivers/net/can/ctucanfd/Kconfig index 48963efc7f19..d75931525ce7
-> > > 100644
-> > > --- a/drivers/net/can/ctucanfd/Kconfig
-> > > +++ b/drivers/net/can/ctucanfd/Kconfig
-> > > @@ -32,3 +32,13 @@ config CAN_CTUCANFD_PLATFORM
-> > >  	  company. FPGA design
-> > > https://gitlab.fel.cvut.cz/canbus/zynq/zynq-can-sja1000-top. The kit
-> > > description at the Computer Architectures course pages
-> > > https://cw.fel.cvut.cz/wiki/courses/b35apo/documentation/mz_apo/start=
- . +
-> > > +config CAN_CTUCANFD_PLATFORM_ENABLE_HW_TIMESTAMPS
-> > > +	bool "CTU CAN-FD IP core platform device hardware timestamps"
-> > > +	depends on CAN_CTUCANFD_PLATFORM
-> > > +	default n
-> > > +	help
-> > > +	  Enables reading hardware timestamps from the IP core for platform
-> > > +	  devices by default. You will have to provide ts-bit-size and
-> > > +	  ts-frequency/timestaping clock in device tree for CTU CAN-FD IP
-> > > cores, +	  see device tree bindings for more details.
-> >
-> > Please no Kconfig option, see above.
->=20
-> It is only my feeling, but I would keep driver for one or two releases
-> with timestamps code really disabled by default and make option
-> visible only when CONFIG_EXPERIMENTAL is set. This would could allow
-> possible incompatible changes and settle of the situation on IP core
-> side... Other options is to keep feature for while out of the tree.
-> But review by community is really important and I am open to
-> suggestions...
-
-The current Kconfig option only sets if timestamping is enabled by
-default or not.
-
-If we now add the TS support including the DT bits, we have to support
-the DT bindings, even after the info registers have been added. Once you
-have a HW with the info registers and boot a system with TS related DT
-information you (or rather the driver) has to decide which information
-to use.
-
-> > > diff --git a/drivers/net/can/ctucanfd/Makefile
-> > > b/drivers/net/can/ctucanfd/Makefile index 8078f1f2c30f..78b7d9830098
-> > > 100644
-> > > --- a/drivers/net/can/ctucanfd/Makefile
-> > > +++ b/drivers/net/can/ctucanfd/Makefile
-> > > --- /dev/null
-> > > +++ b/drivers/net/can/ctucanfd/ctucanfd_timestamp.c
-> > > @@ -0,0 +1,113 @@
-> > > +// SPDX-License-Identifier: GPL-2.0-or-later
-> > > +/*******************************************************************=
-****
-> > >******** + *
-> > > + * CTU CAN FD IP Core
-> > > + *
-> > > + * Copyright (C) 2022 Matej Vasilevski <matej.vasilevski@seznam.cz> =
-FEE
-> > > CTU + *
-> > > + * Project advisors:
-> > > + *     Jiri Novak <jnovak@fel.cvut.cz>
-> > > + *     Pavel Pisa <pisa@cmp.felk.cvut.cz>
-> > > + *
-> > > + * Department of Measurement         (http://meas.fel.cvut.cz/)
-> > > + * Faculty of Electrical Engineering (http://www.fel.cvut.cz)
-> > > + * Czech Technical University        (http://www.cvut.cz/)
-> > > + *
-> > > + * This program is free software; you can redistribute it and/or
-> > > + * modify it under the terms of the GNU General Public License
-> > > + * as published by the Free Software Foundation; either version 2
-> > > + * of the License, or (at your option) any later version.
-> > > + *
-> > > + * This program is distributed in the hope that it will be useful,
-> > > + * but WITHOUT ANY WARRANTY; without even the implied warranty of
-> > > + * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-> > > + * GNU General Public License for more details.
-> >
-> > With the SPDX-License-Identifier you can skip this.
->=20
-> OK, Matej Vasilevski started his work on out of the tree code.
->=20
-> Please, model header according to actual net-next CTU CAN FD
-> files header.
->=20
->=20
-> > > +int ctucan_timestamp_init(struct ctucan_priv *priv)
-> > > +{
-> > > +	struct cyclecounter *cc =3D &priv->cc;
-> > > +
-> > > +	cc->read =3D ctucan_timestamp_read;
-> > > +	cc->mask =3D CYCLECOUNTER_MASK(priv->timestamp_bit_size);
-> > > +	cc->shift =3D 10;
-> > > +	cc->mult =3D clocksource_hz2mult(priv->timestamp_freq, cc->shift);
-> >
-> > If you frequency and width is not known, it's probably better not to
-> >
-> > hard code the shift and use clocks_calc_mult_shift() instead:
-> > | https://elixir.bootlin.com/linux/v5.17.7/source/kernel/time/clocksour=
-ce.c#L47
->=20
-> Thanks for the pointer. I have suggested dynamic shift approach used actu=
-ally
-> in calculate_and_set_work_delay. May it be it can be replaced by some=20
-> cloksource function as well.
-
-The function clocks_calc_mult_shift() actually calculated the mult and
-shift values. It takes frequency and a maxsec argument:
-
-| The @maxsec conversion range argument controls the time frame in
-| seconds which must be covered by the runtime conversion with the
-| calculated mult and shift factors. This guarantees that no 64bit
-| overflow happens when the input value of the conversion is multiplied
-| with the calculated mult factor. Larger ranges may reduce the
-| conversion accuracy by choosing smaller mult and shift factors.
-
-> Best wishes and thanks Matej Vasilevski for the great work and Marc
-> for the help to get it into the shape,
-
-You're welcome. I'm looking forward to use this IP core and driver some
-day.
-
-regards,
-Marc
-
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde           |
-Embedded Linux                   | https://www.pengutronix.de  |
-Vertretung West/Dortmund         | Phone: +49-231-2826-924     |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-5555 |
-
---7sqm2pgw2volmoot
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEBsvAIBsPu6mG7thcrX5LkNig010FAmKABKYACgkQrX5LkNig
-011+Mwf9HtNZGyzCQVwYKJq5QkN+MGQIbT5FI7jDWG7FPGnVKICzFePvXeC0T/Yl
-InijhZc5K+gMXpH/ZPIPUoblKTENEKMQJIQCf1Mv8ujIFQ3tyQvAEFGiBF1rneqT
-ojYh5XV9yIek/GxT67rccVqP1QJRghYBZkUFaPQuos0MiM7k2VY8sLSY9QaAFRwt
-C+w3YvcdjxxB+WlsoIkaD1oALRnlWMNRx7SKRwZO8dl2CLh/9SYmEZAZ5DV4yxwi
-cYyKR2ZToA1iTaqHbqS3hAd+BPrmEahiUAGx/nA7sUkXSciaEwEMnAJlBkGA/pOg
-0FvrCEbg1s6jZ+JWKKGbpQ4q1Qed1A==
-=RbrB
------END PGP SIGNATURE-----
-
---7sqm2pgw2volmoot--
+Best regards,
+Krzysztof
