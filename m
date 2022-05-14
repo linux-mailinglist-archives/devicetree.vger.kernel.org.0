@@ -2,86 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 43E865273F3
-	for <lists+devicetree@lfdr.de>; Sat, 14 May 2022 22:28:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CDAA75273F9
+	for <lists+devicetree@lfdr.de>; Sat, 14 May 2022 22:31:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235090AbiENU2R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 14 May 2022 16:28:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56902 "EHLO
+        id S229618AbiENUbs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 14 May 2022 16:31:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36414 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235059AbiENU2Q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 14 May 2022 16:28:16 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5910D28713
-        for <devicetree@vger.kernel.org>; Sat, 14 May 2022 13:28:15 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id bq30so19871362lfb.3
-        for <devicetree@vger.kernel.org>; Sat, 14 May 2022 13:28:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=oU8cEi9RGKI5PeHOuabBwBx8PODfLAO6JbRmPjOYsQc=;
-        b=UE5bV8SixnycPe242NT4unpuYuLs0IT3V/Lvwh7LTJhOmbejnDYbrPIsKrgTWgGAlW
-         9BLRS6VcSfONQ6/rP4mfhrEkpk3M11Nzl4YlCHiqI9cP1IglVd6S6Vfjo7pX45msSqrV
-         S3Ww5hQZYqN4ES4N6A9n3aHSoKDPdaFfygzW14Q1yqmqPoVXqt/CgEhctUEdRGOCNwY2
-         +ceKeyMdqX8RECrqnCcKBgMYKBYSjppskrTD6M2+AZDhAG6iEPF9L3d3HZDnOWnVRvBc
-         yjg64VPwRi5vYGloOWg7EAN1RW4JFkrYN5KrB097+QCrK/PQTD7HyDTz+futzCkZXbin
-         reng==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=oU8cEi9RGKI5PeHOuabBwBx8PODfLAO6JbRmPjOYsQc=;
-        b=6yLbR+Op4m5K8ej/mFfhEQGyP8KvuPpNOa/CFKwT+aIVFO96gifXb/cgWddee5tk9X
-         T0ITxEeJQyxGEeM+IA3H9AXBbAwc3O5yc8quLV1h3SqIqciX3mXcCYPOi+06LYGvmOS2
-         KmocoMFq1+wYSQ42BHtDVXMGFgbAXYWyc3kZvH67ghmjIgTlG9f95IzH+5ykHqJkBS2c
-         a8nriv8KFFAsO13BhJH0yEXug75Uzmhhh0gsrazrrdtfO33D6OoVt8edEKf2ssprgb1A
-         xm2wI/cs0uprpXxIHbHRHNUxZNS1gpPZOVmCWSl3J2qye18dE4JfP2/X/jzZFv4vfpQl
-         RBeQ==
-X-Gm-Message-State: AOAM5332woYn/QsR2A/CfC/cEiWj81vgcTpC4zwMoL89/OM5eGAM/t/Q
-        ILHn/gcDj4WU+BMNanN3s9eaVA==
-X-Google-Smtp-Source: ABdhPJx00h31Y+JHjm9zszBh0Ce/1DU3I4eUQBWnozuMVemJIxolb+XGt/gBmwRvE9PJp3/pDzhWpQ==
-X-Received: by 2002:a05:6512:3a84:b0:472:6384:4de0 with SMTP id q4-20020a0565123a8400b0047263844de0mr7685091lfu.456.1652560093711;
-        Sat, 14 May 2022 13:28:13 -0700 (PDT)
-Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id f19-20020a19ae13000000b0047255d211b4sm799894lfc.227.2022.05.14.13.28.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 14 May 2022 13:28:13 -0700 (PDT)
-Message-ID: <4714c388-47ec-776a-7a50-362b258ffc25@linaro.org>
-Date:   Sat, 14 May 2022 22:28:12 +0200
+        with ESMTP id S235104AbiENUbr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 14 May 2022 16:31:47 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC1352ED78
+        for <devicetree@vger.kernel.org>; Sat, 14 May 2022 13:31:45 -0700 (PDT)
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=bjornoya.blackshift.org)
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mkl@pengutronix.de>)
+        id 1npyQR-0002Vj-Fx; Sat, 14 May 2022 22:31:43 +0200
+Received: from pengutronix.de (unknown [IPv6:2a01:4f8:1c1c:29e9:22:41ff:fe00:1400])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (Client did not present a certificate)
+        (Authenticated sender: mkl-all@blackshift.org)
+        by smtp.blackshift.org (Postfix) with ESMTPSA id 2C2287E43A;
+        Sat, 14 May 2022 20:31:42 +0000 (UTC)
+Date:   Sat, 14 May 2022 22:31:41 +0200
+From:   Marc Kleine-Budde <mkl@pengutronix.de>
+To:     Matej Vasilevski <matej.vasilevski@seznam.cz>
+Cc:     devicetree@vger.kernel.org, linux-can@vger.kernel.org,
+        pisa@cmp.felk.cvut.cz, ondrej.ille@gmail.com,
+        netdev@vger.kernel.org, martin.jerabek01@gmail.com
+Subject: Re: [RFC PATCH 1/3] can: ctucanfd: add HW timestamps to RX and error
+ CAN frames
+Message-ID: <20220514203141.6fnk7d2zbrleh3rn@pengutronix.de>
+References: <20220512232706.24575-1-matej.vasilevski@seznam.cz>
+ <20220512232706.24575-2-matej.vasilevski@seznam.cz>
+ <20220513114135.lgbda6armyiccj3o@pengutronix.de>
+ <20220514091741.GA203806@hopium>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH v3 1/2] dt-bindings: gpio: gpio-mvebu: convert txt binding
- to YAML
-Content-Language: en-US
-To:     Chris Packham <Chris.Packham@alliedtelesis.co.nz>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "linus.walleij@linaro.org" <linus.walleij@linaro.org>,
-        "brgl@bgdev.pl" <brgl@bgdev.pl>,
-        "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
-        "u.kleine-koenig@pengutronix.de" <u.kleine-koenig@pengutronix.de>,
-        "lee.jones@linaro.org" <lee.jones@linaro.org>,
-        "andrew@lunn.ch" <andrew@lunn.ch>,
-        Vadym Kochan <vadym.kochan@plvision.eu>,
-        "enachman@marvell.com" <enachman@marvell.com>
-Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
-        "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>
-References: <20220512094125.3748197-1-chris.packham@alliedtelesis.co.nz>
- <32aab734-5890-99b2-09c9-8ec7418c7649@linaro.org>
- <e87482cb-20b1-fe09-7233-d56786d5eda6@alliedtelesis.co.nz>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <e87482cb-20b1-fe09-7233-d56786d5eda6@alliedtelesis.co.nz>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="d3q7pr7umtzohi4e"
+Content-Disposition: inline
+In-Reply-To: <20220514091741.GA203806@hopium>
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -89,62 +57,44 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/05/2022 04:20, Chris Packham wrote:
-> 
->>> +
->>> +allOf:
->>> +  - if:
->>> +      properties:
->>> +        compatible:
->>> +          contains:
->>> +            const: marvell,armada-8k-gpio
->>> +    then:
->>> +      required:
->>> +        - offset
->>> +    else:
->>> +      required:
->>> +        - reg
->> one blank line please
->>
->>> +  - if:
->>> +      properties:
->>> +        compatible:
->>> +          contains:
->>> +            const: marvell,armadaxp-gpio
->> Original bindings are saying that second reg is optional for
->> marvell,armada-370-gpio. What about other cases, e.g. mv78200-gpio? Is
->> it also allowed (and optional) there?
-> This is where things get interesting. The armadaxp (and only the 
-> armadaxp) requires a second register value for some per-cpu registers. 
-> All of the other SoCs can have an optional 2nd register value if they 
-> want to use the PWM function. I guess that implies that the armadaxp 
-> can't do PWM.
->>> +    then:
->>> +      properties:
->>> +        reg:
->>> +          minItems: 2
->> Then you also should require two reg-names.
-> 
-> Simple enough to add. But currently we've said that the reg-names are 
-> "gpio" and "pwm" but on the armadaxp the 2nd one is not "pwm" but 
-> something else ("per-cpu" perhaps?)
 
-In such case they would be failing with current bindings, because they
-expect "pwm" as second name, right?
+--d3q7pr7umtzohi4e
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> 
-> On the other hand this is all completely moot because the 
-> armada-xp-mv78*.dtsi actually use the "marvell,armada-370-gpio" 
-> compatible so this appears to be documenting something that is no longer 
-> used. Indeed it appears that the armadaxp specific usage was remove in 
-> 5f79c651e81e ("arm: mvebu: use global interrupts for GPIOs on Armada XP").
-> 
-> So perhaps the best course of action is to drop marvell,armadaxp-gpio 
-> from the new binding (noting that we've done so in the commit message).
+On 14.05.2022 11:18:08, Matej Vasilevski wrote:
+> I have nothing substantial to say on this matter, the discussion should
+> continue in Pavel's thread.
+> I don't mind implementing the .ndo_eth_ioctl.
 
+It's the SIOCSHWTSTAMP ioctl, see:
 
-That's fine, maybe in a separate patch (2nd one)?
+| https://elixir.bootlin.com/linux/v5.17.7/source/drivers/net/ethernet/free=
+scale/dpaa/dpaa_eth.c#L3135
 
+regards,
+Marc
 
-Best regards,
-Krzysztof
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde           |
+Embedded Linux                   | https://www.pengutronix.de  |
+Vertretung West/Dortmund         | Phone: +49-231-2826-924     |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-5555 |
+
+--d3q7pr7umtzohi4e
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEBsvAIBsPu6mG7thcrX5LkNig010FAmKAEagACgkQrX5LkNig
+012eWgf/ULLvb/BCTyvG7U/ijVe+NgCUMf5GgF7AhHmAiTZts9Pt6ap7fNX274hr
+qrCwPsz0PEtKMuRWaTkuwysy8+lEKlWxjIvqXL2javwSkjzwTofEsUSOCZOkib0C
+Jp9k48LaxwCKI0x4oddCMVTzokUkFAfvEZp8yNYLrx9Nb6F1BISlRsbhzZPAzl4L
+Ebr1i/WAvOTayPg7Z9ZGbcb/D8Dt3K4lyHfxlj+KQNIuBjEEEZhCYFTXSKTk19wd
+XAN0MUlAFRyZ6vRboMGH5qV99wW49/WiXwXx3dTgVLhKH615YGh9J09zuobcfmAq
+FA7RXGaL3TWBBW9FQ+kaWjRbN3jYJQ==
+=0aGJ
+-----END PGP SIGNATURE-----
+
+--d3q7pr7umtzohi4e--
