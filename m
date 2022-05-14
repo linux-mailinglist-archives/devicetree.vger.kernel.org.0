@@ -2,69 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A0395273AA
-	for <lists+devicetree@lfdr.de>; Sat, 14 May 2022 21:02:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A1895273C3
+	for <lists+devicetree@lfdr.de>; Sat, 14 May 2022 21:36:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234837AbiENTB4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 14 May 2022 15:01:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57992 "EHLO
+        id S229538AbiENTgU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 14 May 2022 15:36:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48010 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234856AbiENTBv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 14 May 2022 15:01:51 -0400
-Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5AD1C28717
-        for <devicetree@vger.kernel.org>; Sat, 14 May 2022 12:01:50 -0700 (PDT)
-Received: by mail-lj1-x22a.google.com with SMTP id a23so5735807ljd.9
-        for <devicetree@vger.kernel.org>; Sat, 14 May 2022 12:01:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=Mfq8artsCmgPridHwXtCTWz4VD26jC/9nXCO2mqCNlk=;
-        b=SVND50poq7YQONLFiDb5cM2XhT/ZQkEdBvG2GtV/4ZiG+IuDQNABzUURZiAfczlZTq
-         17gUDyf2b11ycm8hXMzEtxqtsNR/N5724+yMc/t7cvYV0/wkvMGtmKl4HjCIw4Juzo7N
-         NSI/vway7z9Nwro+3IAYm6pC2XntNcFpwADQfjepOOpcW7/OzDuwz7slbbCpaVBsMLrj
-         DY+37fb/EeI3FtagCaV08xOYyff4TASIed3uScTXOFSgU3bK5NSmBe57QCKrX8ppkmsh
-         gKMF1y1Fj94uxJxak/c80fWO5VQKBc8wARggQMLsN9JF5kcay9MZoWCkhag3F85LpSeH
-         5SQA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=Mfq8artsCmgPridHwXtCTWz4VD26jC/9nXCO2mqCNlk=;
-        b=WQIHrbSz+FKfFRMhxsFASJM4+VR+I6cwHUCVIIWiZwYuxyR99TWj0Infu/Az0A2Lu/
-         ay2Dpp8SHbJiTbOICIWsMdOtCsk02vV5+Fq/iJRBCQ3xtkOwvQEDqFo2Q3FayH4N72nf
-         R7G2Ux422vK2w0hRF7mu+ypeqs+qK3wi0KP3GmjyQ/MZ7DU39l/zgboOFHUDfJfG/1kb
-         wbLGnExBAzIzGMpWffPBpQh6SIqIZcL7YCkch3zFHXYKAA6EAS3NFkHKnu8JpCwc/11+
-         t+N0Gk2r+4gBpLW+fNu6KLNOUhnSfZLT36ZGsGLoXMHJvAquLpnwnaw2p8/WnaI1f5FH
-         MD3g==
-X-Gm-Message-State: AOAM5302gVazlKbzq+npdVN3k6yTNcPLLypu4OyNtbeeTIYBfdSuJksl
-        aoB5gGG/w2o+mygDYrHIY1Srtw==
-X-Google-Smtp-Source: ABdhPJxc+5UTXQnFqw3XaC45qAyTen7ilR/T+JX+VH3dgAa3XYgTKx45jwzrzkJA5vvtLydcX0vKXg==
-X-Received: by 2002:a2e:b98b:0:b0:24f:1b64:a7b7 with SMTP id p11-20020a2eb98b000000b0024f1b64a7b7mr6459964ljp.331.1652554909931;
-        Sat, 14 May 2022 12:01:49 -0700 (PDT)
-Received: from eriador.lumag.spb.ru ([93.92.200.201])
-        by smtp.gmail.com with ESMTPSA id y26-20020ac255ba000000b0047255d210f4sm787427lfg.35.2022.05.14.12.01.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 14 May 2022 12:01:49 -0700 (PDT)
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH v5 12/12] dt-bindings: arm: qcom: document sda660 SoC and ifc6560 board
-Date:   Sat, 14 May 2022 22:01:38 +0300
-Message-Id: <20220514190138.3179964-13-dmitry.baryshkov@linaro.org>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220514190138.3179964-1-dmitry.baryshkov@linaro.org>
-References: <20220514190138.3179964-1-dmitry.baryshkov@linaro.org>
+        with ESMTP id S232146AbiENTgU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 14 May 2022 15:36:20 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A9C91B7A4
+        for <devicetree@vger.kernel.org>; Sat, 14 May 2022 12:36:18 -0700 (PDT)
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=bjornoya.blackshift.org)
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mkl@pengutronix.de>)
+        id 1npxYi-0005RA-0z; Sat, 14 May 2022 21:36:12 +0200
+Received: from pengutronix.de (unknown [IPv6:2a01:4f8:1c1c:29e9:22:41ff:fe00:1400])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (Client did not present a certificate)
+        (Authenticated sender: mkl-all@blackshift.org)
+        by smtp.blackshift.org (Postfix) with ESMTPSA id 081157E414;
+        Sat, 14 May 2022 19:36:09 +0000 (UTC)
+Date:   Sat, 14 May 2022 21:36:09 +0200
+From:   Marc Kleine-Budde <mkl@pengutronix.de>
+To:     Pavel Pisa <pisa@cmp.felk.cvut.cz>
+Cc:     Matej Vasilevski <matej.vasilevski@seznam.cz>,
+        ondrej.ille@gmail.com, Jiri Novak <jnovak@fel.cvut.cz>,
+        linux-can@vger.kernel.org, devicetree@vger.kernel.org,
+        netdev@vger.kernel.org, martin.jerabek01@gmail.com
+Subject: Re: [RFC PATCH 1/3] can: ctucanfd: add HW timestamps to RX and error
+ CAN frames
+Message-ID: <20220514193609.gfq7dbbmddlr5wa2@pengutronix.de>
+References: <20220512232706.24575-1-matej.vasilevski@seznam.cz>
+ <20220512232706.24575-2-matej.vasilevski@seznam.cz>
+ <20220513114135.lgbda6armyiccj3o@pengutronix.de>
+ <202205132102.58109.pisa@cmp.felk.cvut.cz>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="7sqm2pgw2volmoot"
+Content-Disposition: inline
+In-Reply-To: <202205132102.58109.pisa@cmp.felk.cvut.cz>
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -73,38 +58,205 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add binding documentation for the Inforce IFC6560 board which uses
-Snapdragon SDA660.
 
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- Documentation/devicetree/bindings/arm/qcom.yaml | 6 ++++++
- 1 file changed, 6 insertions(+)
+--7sqm2pgw2volmoot
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
-index 129cdd246223..ac4ee0f874ea 100644
---- a/Documentation/devicetree/bindings/arm/qcom.yaml
-+++ b/Documentation/devicetree/bindings/arm/qcom.yaml
-@@ -41,6 +41,7 @@ description: |
-         sa8155p
-         sc7180
-         sc7280
-+        sda660
-         sdm630
-         sdm632
-         sdm660
-@@ -225,6 +226,11 @@ properties:
-               - google,senor
-           - const: qcom,sc7280
- 
-+      - items:
-+          - enum:
-+              - inforce,ifc6560
-+          - const: qcom,sda660
-+
-       - items:
-           - enum:
-               - fairphone,fp3
--- 
-2.35.1
+On 13.05.2022 21:02:58, Pavel Pisa wrote:
+[...]
+> > A property with "width"
+>=20
+> agree
+>=20
+> > in the name seems to be more common. You=20
+> > probably have to add the "ctu" vendor prefix. BTW: the bindings document
+> > update should come before changing the driver.
+>=20
+> this is RFC and not a final.
+>=20
+> In general and long term, I vote and prefer to have number of the most
+> significant active timestamp bit to be encoded in some CTU CAN FD IP
+> core info register same as for the number of the Tx buffers.
 
++1
+
+> We will discuss that internally. The the solution is the same for
+> platform as well as for PCI. But the possible second clock frequency
+> same as the bitrate clock source should stay to be provided from
+> platform and some table based on vendor and device ID in the PCI case.
+> Or at least it is my feeling about the situation.
+
+Ack, this is the most straight forward option. ACPI being more
+complicated - tough I've never touched it.
+
+> > > - add second clock phandle to 'clocks' property
+> > > - create 'clock-names' property and name the second clock 'ts_clk'
+> > >
+> > > Alternatively, you can set property 'ts-frequency' directly with
+> > > the timestamping frequency, instead of setting second clock.
+> >
+> > For now, please use a clock property only. If you need ACPI bindings add
+> > them later.
+>=20
+> I would be happy if I would never need to think about ACPI... or if
+> somebody else does it for us...
+
+I see no reason for ACPI at the moment.
+
+> > > Signed-off-by: Matej Vasilevski <matej.vasilevski@seznam.cz>
+> > > ---
+> > >  drivers/net/can/ctucanfd/Kconfig              |  10 ++
+> > >  drivers/net/can/ctucanfd/Makefile             |   2 +-
+> > >  drivers/net/can/ctucanfd/ctucanfd.h           |  25 ++++
+> > >  drivers/net/can/ctucanfd/ctucanfd_base.c      | 123 ++++++++++++++++=
++-
+> > >  drivers/net/can/ctucanfd/ctucanfd_timestamp.c | 113 ++++++++++++++++
+> > >  5 files changed, 267 insertions(+), 6 deletions(-)
+> > >  create mode 100644 drivers/net/can/ctucanfd/ctucanfd_timestamp.c
+> > >
+> > > diff --git a/drivers/net/can/ctucanfd/Kconfig
+> > > b/drivers/net/can/ctucanfd/Kconfig index 48963efc7f19..d75931525ce7
+> > > 100644
+> > > --- a/drivers/net/can/ctucanfd/Kconfig
+> > > +++ b/drivers/net/can/ctucanfd/Kconfig
+> > > @@ -32,3 +32,13 @@ config CAN_CTUCANFD_PLATFORM
+> > >  	  company. FPGA design
+> > > https://gitlab.fel.cvut.cz/canbus/zynq/zynq-can-sja1000-top. The kit
+> > > description at the Computer Architectures course pages
+> > > https://cw.fel.cvut.cz/wiki/courses/b35apo/documentation/mz_apo/start=
+ . +
+> > > +config CAN_CTUCANFD_PLATFORM_ENABLE_HW_TIMESTAMPS
+> > > +	bool "CTU CAN-FD IP core platform device hardware timestamps"
+> > > +	depends on CAN_CTUCANFD_PLATFORM
+> > > +	default n
+> > > +	help
+> > > +	  Enables reading hardware timestamps from the IP core for platform
+> > > +	  devices by default. You will have to provide ts-bit-size and
+> > > +	  ts-frequency/timestaping clock in device tree for CTU CAN-FD IP
+> > > cores, +	  see device tree bindings for more details.
+> >
+> > Please no Kconfig option, see above.
+>=20
+> It is only my feeling, but I would keep driver for one or two releases
+> with timestamps code really disabled by default and make option
+> visible only when CONFIG_EXPERIMENTAL is set. This would could allow
+> possible incompatible changes and settle of the situation on IP core
+> side... Other options is to keep feature for while out of the tree.
+> But review by community is really important and I am open to
+> suggestions...
+
+The current Kconfig option only sets if timestamping is enabled by
+default or not.
+
+If we now add the TS support including the DT bits, we have to support
+the DT bindings, even after the info registers have been added. Once you
+have a HW with the info registers and boot a system with TS related DT
+information you (or rather the driver) has to decide which information
+to use.
+
+> > > diff --git a/drivers/net/can/ctucanfd/Makefile
+> > > b/drivers/net/can/ctucanfd/Makefile index 8078f1f2c30f..78b7d9830098
+> > > 100644
+> > > --- a/drivers/net/can/ctucanfd/Makefile
+> > > +++ b/drivers/net/can/ctucanfd/Makefile
+> > > --- /dev/null
+> > > +++ b/drivers/net/can/ctucanfd/ctucanfd_timestamp.c
+> > > @@ -0,0 +1,113 @@
+> > > +// SPDX-License-Identifier: GPL-2.0-or-later
+> > > +/*******************************************************************=
+****
+> > >******** + *
+> > > + * CTU CAN FD IP Core
+> > > + *
+> > > + * Copyright (C) 2022 Matej Vasilevski <matej.vasilevski@seznam.cz> =
+FEE
+> > > CTU + *
+> > > + * Project advisors:
+> > > + *     Jiri Novak <jnovak@fel.cvut.cz>
+> > > + *     Pavel Pisa <pisa@cmp.felk.cvut.cz>
+> > > + *
+> > > + * Department of Measurement         (http://meas.fel.cvut.cz/)
+> > > + * Faculty of Electrical Engineering (http://www.fel.cvut.cz)
+> > > + * Czech Technical University        (http://www.cvut.cz/)
+> > > + *
+> > > + * This program is free software; you can redistribute it and/or
+> > > + * modify it under the terms of the GNU General Public License
+> > > + * as published by the Free Software Foundation; either version 2
+> > > + * of the License, or (at your option) any later version.
+> > > + *
+> > > + * This program is distributed in the hope that it will be useful,
+> > > + * but WITHOUT ANY WARRANTY; without even the implied warranty of
+> > > + * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+> > > + * GNU General Public License for more details.
+> >
+> > With the SPDX-License-Identifier you can skip this.
+>=20
+> OK, Matej Vasilevski started his work on out of the tree code.
+>=20
+> Please, model header according to actual net-next CTU CAN FD
+> files header.
+>=20
+>=20
+> > > +int ctucan_timestamp_init(struct ctucan_priv *priv)
+> > > +{
+> > > +	struct cyclecounter *cc =3D &priv->cc;
+> > > +
+> > > +	cc->read =3D ctucan_timestamp_read;
+> > > +	cc->mask =3D CYCLECOUNTER_MASK(priv->timestamp_bit_size);
+> > > +	cc->shift =3D 10;
+> > > +	cc->mult =3D clocksource_hz2mult(priv->timestamp_freq, cc->shift);
+> >
+> > If you frequency and width is not known, it's probably better not to
+> >
+> > hard code the shift and use clocks_calc_mult_shift() instead:
+> > | https://elixir.bootlin.com/linux/v5.17.7/source/kernel/time/clocksour=
+ce.c#L47
+>=20
+> Thanks for the pointer. I have suggested dynamic shift approach used actu=
+ally
+> in calculate_and_set_work_delay. May it be it can be replaced by some=20
+> cloksource function as well.
+
+The function clocks_calc_mult_shift() actually calculated the mult and
+shift values. It takes frequency and a maxsec argument:
+
+| The @maxsec conversion range argument controls the time frame in
+| seconds which must be covered by the runtime conversion with the
+| calculated mult and shift factors. This guarantees that no 64bit
+| overflow happens when the input value of the conversion is multiplied
+| with the calculated mult factor. Larger ranges may reduce the
+| conversion accuracy by choosing smaller mult and shift factors.
+
+> Best wishes and thanks Matej Vasilevski for the great work and Marc
+> for the help to get it into the shape,
+
+You're welcome. I'm looking forward to use this IP core and driver some
+day.
+
+regards,
+Marc
+
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde           |
+Embedded Linux                   | https://www.pengutronix.de  |
+Vertretung West/Dortmund         | Phone: +49-231-2826-924     |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-5555 |
+
+--7sqm2pgw2volmoot
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEBsvAIBsPu6mG7thcrX5LkNig010FAmKABKYACgkQrX5LkNig
+011+Mwf9HtNZGyzCQVwYKJq5QkN+MGQIbT5FI7jDWG7FPGnVKICzFePvXeC0T/Yl
+InijhZc5K+gMXpH/ZPIPUoblKTENEKMQJIQCf1Mv8ujIFQ3tyQvAEFGiBF1rneqT
+ojYh5XV9yIek/GxT67rccVqP1QJRghYBZkUFaPQuos0MiM7k2VY8sLSY9QaAFRwt
+C+w3YvcdjxxB+WlsoIkaD1oALRnlWMNRx7SKRwZO8dl2CLh/9SYmEZAZ5DV4yxwi
+cYyKR2ZToA1iTaqHbqS3hAd+BPrmEahiUAGx/nA7sUkXSciaEwEMnAJlBkGA/pOg
+0FvrCEbg1s6jZ+JWKKGbpQ4q1Qed1A==
+=RbrB
+-----END PGP SIGNATURE-----
+
+--7sqm2pgw2volmoot--
