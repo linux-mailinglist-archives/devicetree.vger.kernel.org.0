@@ -2,111 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DA5F0526F7E
-	for <lists+devicetree@lfdr.de>; Sat, 14 May 2022 09:15:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D1378526EE5
+	for <lists+devicetree@lfdr.de>; Sat, 14 May 2022 09:14:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229769AbiENCfg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 May 2022 22:35:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53712 "EHLO
+        id S229924AbiENCx3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 May 2022 22:53:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53338 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229481AbiENCfg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 May 2022 22:35:36 -0400
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21B0B33B5D2
-        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 17:37:02 -0700 (PDT)
-Received: by mail-lj1-x22f.google.com with SMTP id l19so12038078ljb.7
-        for <devicetree@vger.kernel.org>; Fri, 13 May 2022 17:37:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=6xHwMp2GjMLCtRgHvLeJhsJBgeLi1U+fn/JxefeSa5g=;
-        b=t4Z4degRkSMSLcDe19rXju8Y5ZvZX7w1l8wj49AjpcEcFduJog/L23Yi3eIUIKFYte
-         1MxeRHF4IjkdGVp+ZpU8FV3jlQ33+/vDrzbxbND0xiP85awMxYAuq3ZXgXPjQs3Yk3lK
-         nC1/yQnvMi8nZyhlFnZtwIahS8BvyGy0U6f8gxlO5DCBAPX9frWfOcEJLaw1uAkl9Jgm
-         WW7QJzqpHpwJ/prENp1ShJIiGpAr6FYvwJWCbINWemrhtsbZR4YjQE6Jw130IeC+9U/l
-         gIZ77UoZhac52CiEYITDg/BRuvszD1uBmuOA6t/lJfVU6DH9Z/JGLhyILI4KpYsz+7ke
-         vufQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=6xHwMp2GjMLCtRgHvLeJhsJBgeLi1U+fn/JxefeSa5g=;
-        b=znynk9eSpRL/Owh9Fu2VGpCihEJpkO3ZzRYxPNSGJIwJSnTMR3JqtxiydNZXc2byV7
-         uRXZU7Fu7r4PpOzBqULHQhwaarLzzpGmf8g/We5Nih8zZOOAjln9ppn+ZXKlAx1GjPEk
-         6d93eNpx7tnzL0PxfyIA7tvbfPnbfyChFTIoROFL2BIm2ToMMeDVL18KMU0upanNG16R
-         lVrDPYDIpPqKLwJgKxRMr0sP4yN+mxuBzOuk/MKxoW4hVF+DI6SqzKUSjC6vyFkJvgcG
-         pe9Q4CkjU1PrmQmqHaI0wGjl+gJzUvaVxmnV6JcugV0YcVcabD+apqp3z1Uwl7yhhbe7
-         9Lmg==
-X-Gm-Message-State: AOAM531uIaVr66bXi693N83slFDUy1jjr+Hp3DPvWJsXdAzfiHiZ3TnY
-        bZMo9EjU1kJMvNxlGBbGc/nHMIoLCj/FMw==
-X-Google-Smtp-Source: ABdhPJwVLJhERxZo8wGuRJdOjpgH3e90ALydSoTimxLZOZu5WM0xcBikJZDpuqrdMiWoKr9ge5ItnQ==
-X-Received: by 2002:a05:6512:39c1:b0:471:b37e:fe5a with SMTP id k1-20020a05651239c100b00471b37efe5amr4868072lfu.527.1652486593551;
-        Fri, 13 May 2022 17:03:13 -0700 (PDT)
-Received: from eriador.lan ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id r10-20020a19ac4a000000b0047255d211c3sm529231lfc.242.2022.05.13.17.03.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 May 2022 17:03:13 -0700 (PDT)
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        with ESMTP id S229882AbiENCx2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 May 2022 22:53:28 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5FCE835B1F7;
+        Fri, 13 May 2022 17:59:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=qyZsoJknrWOVDvtpNszTIIAof3pgi3xfB+EMxclimb4=; b=YUKlqPWGIDZvhXATbELAlppcVk
+        92/7Q/rIwsA0xahE9uRHrV3gPbUEYEv1caC2w8u4thxI4DZV33oa7K1SUXBsSPdiaPrKdyPix/5QH
+        oYl1lWBxbSzo2oFcsrRYadLQzEMPbCWhroO2ghC15gjxxUxR5c16PCzSrzvjpeagk87c=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1npfZX-002hd6-UG; Sat, 14 May 2022 02:23:51 +0200
+Date:   Sat, 14 May 2022 02:23:51 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Vladimir Oltean <vladimir.oltean@nxp.com>
+Cc:     netdev@vger.kernel.org, Jakub Kicinski <kuba@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Eric Dumazet <edumazet@google.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Saravana Kannan <saravanak@google.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH 3/3] arm64: dts: qcom: sda660-inforce-ifc6560: enable cdsp and modem
-Date:   Sat, 14 May 2022 03:03:10 +0300
-Message-Id: <20220514000310.3070578-4-dmitry.baryshkov@linaro.org>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220514000310.3070578-1-dmitry.baryshkov@linaro.org>
-References: <20220514000310.3070578-1-dmitry.baryshkov@linaro.org>
+        Frank Rowand <frowand.list@gmail.com>,
+        John Stultz <jstultz@google.com>,
+        Alvin =?utf-8?Q?=C5=A0ipraga?= <alsi@bang-olufsen.dk>,
+        Russell King <rmk+kernel@armlinux.org.uk>,
+        Heiner Kallweit <hkallweit1@gmail.com>
+Subject: Re: [RFC PATCH net 0/2] Make phylink and DSA wait for PHY driver
+ that defers probe
+Message-ID: <Yn72l3O6yI7YstMf@lunn.ch>
+References: <20220513233640.2518337-1-vladimir.oltean@nxp.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220513233640.2518337-1-vladimir.oltean@nxp.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable CDSP and modem devices on the Inforce IFC6560 board.
+On Sat, May 14, 2022 at 02:36:38AM +0300, Vladimir Oltean wrote:
+> This patch set completes the picture described by
+> '[RFC,devicetree] of: property: mark "interrupts" as optional for fw_devlink'
+> https://patchwork.kernel.org/project/netdevbpf/patch/20220513201243.2381133-1-vladimir.oltean@nxp.com/
+> 
+> I've CCed non-networking maintainers just in case they want to gain a
+> better understanding. If not, apologies and please ignore the rest.
+> 
+> 
+> 
+> My use case is to migrate a PHY driver from poll mode to interrupt mode
+> without breaking compatibility between new device trees and old kernels
+> which did not have a driver for that IRQ parent, and therefore (for
+> things to work) did not even have that interrupt listed in the "vintage
+> correct" DT blobs. Note that current kernels as of today are also
+> "old kernels" in this description.
+> 
+> Creating some degree of compatibility has multiple components.
+> 
+> 1. A PHY driver must eventually give up waiting for an IRQ provider,
+>    since the dependency is optional and it can fall back to poll mode.
+>    This is currently supported thanks to commit 74befa447e68 ("net:
+>    mdio: don't defer probe forever if PHY IRQ provider is missing").
+> 
+> 2. Before it finally gives up, the PHY driver has a transient phase of
+>    returning -EPROBE_DEFER. That transient phase causes some breakage
+>    which is handled by this patch set, details below.
+> 
+> 3. PHY device probing and Ethernet controller finding it and connecting
+>    to it are async events. When both happen during probing, the problem
+>    is that finding the PHY fails if the PHY defers probe, which results
+>    in a missing PHY rather than waiting for it. Unfortunately there is
+>    no universal way to address this problem, because the majority of
+>    Ethernet drivers do not connect to the PHY during probe. So the
+>    problem is fixed only for the driver that is of interest to me in
+>    this context, DSA, and with special API exported by phylink
+>    specifically for this purpose, to limit the impact on other drivers.
 
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- arch/arm64/boot/dts/qcom/sda660-inforce-ifc6560.dts | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+There is a very different approach, which might be simpler.
 
-diff --git a/arch/arm64/boot/dts/qcom/sda660-inforce-ifc6560.dts b/arch/arm64/boot/dts/qcom/sda660-inforce-ifc6560.dts
-index dc6e4de02b42..c2f98863c27c 100644
---- a/arch/arm64/boot/dts/qcom/sda660-inforce-ifc6560.dts
-+++ b/arch/arm64/boot/dts/qcom/sda660-inforce-ifc6560.dts
-@@ -102,6 +102,11 @@ &adsp_pil {
- 	firmware-name = "qcom/ifc6560/adsp.mbn";
- };
- 
-+&cdsp_pil {
-+	status = "okay";
-+	firmware-name = "qcom/ifc6560/cdsp.mbn";
-+};
-+
- &blsp_i2c6 {
- 	status = "okay";
- 
-@@ -194,6 +199,11 @@ &mmss_smmu {
- 	status = "okay";
- };
- 
-+&mss_pil {
-+	status = "okay";
-+	firmware-name = "qcom/ifc6560/mba.mbn", "qcom/ifc6560/modem.mbn";
-+};
-+
- &pon_pwrkey {
- 	status = "okay";
- };
--- 
-2.35.1
+We know polling will always work. And it should be possible to
+transition between polling and interrupt at any point, so long as the
+phylock is held. So if you get -EPROBE_DEFFER during probe, mark some
+state in phydev that there should be an irq, but it is not around yet.
+When the phy is started, and phylib starts polling, look for the state
+and try getting the IRQ again. If successful, swap to interrupts, if
+not, keep polling. Maybe after 60 seconds of polling and trying, give
+up trying to find the irq and stick with polling.
 
+     Andrew
