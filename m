@@ -2,143 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 196AC52748C
-	for <lists+devicetree@lfdr.de>; Sun, 15 May 2022 00:52:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A328A5274A0
+	for <lists+devicetree@lfdr.de>; Sun, 15 May 2022 01:14:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231437AbiENWwE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 14 May 2022 18:52:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37510 "EHLO
+        id S230435AbiENXOs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 14 May 2022 19:14:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59194 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231431AbiENWwE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 14 May 2022 18:52:04 -0400
-Received: from relay03.th.seeweb.it (relay03.th.seeweb.it [5.144.164.164])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D40D218372
-        for <devicetree@vger.kernel.org>; Sat, 14 May 2022 15:51:54 -0700 (PDT)
-Received: from [192.168.1.101] (abxh168.neoplus.adsl.tpnet.pl [83.9.1.168])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id CF0182052C;
-        Sun, 15 May 2022 00:51:50 +0200 (CEST)
-Message-ID: <c165c67e-528c-d976-c479-793c3593bb37@somainline.org>
-Date:   Sun, 15 May 2022 00:51:50 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.0
-Subject: Re: [PATCH 2/3] arm64: dts: qcom: sdm660: add device node for the
- compute PAS
-Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-References: <20220514000310.3070578-1-dmitry.baryshkov@linaro.org>
- <20220514000310.3070578-3-dmitry.baryshkov@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@somainline.org>
-In-Reply-To: <20220514000310.3070578-3-dmitry.baryshkov@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        with ESMTP id S230013AbiENXOp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 14 May 2022 19:14:45 -0400
+Received: from mail-ot1-f45.google.com (mail-ot1-f45.google.com [209.85.210.45])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BFF3F11C29;
+        Sat, 14 May 2022 16:14:43 -0700 (PDT)
+Received: by mail-ot1-f45.google.com with SMTP id k25-20020a056830169900b00605f215e55dso7566412otr.13;
+        Sat, 14 May 2022 16:14:43 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=8fcWrSCf5x/oR5brHV5SFMq/ic1IdVWzznom0Nby5jg=;
+        b=GQN6ammb3tTCwLn7yMLt4mOtmdBJc86UvZs4IfwMKmXpylyl9x9Ij7wfcdxbUY6ivm
+         NfE0tSSEAmitd21oaJzrp3zhQpupjSdHLNh/DBY4okOXL/OWmYaAG6/mailI6p1Ei3zR
+         CQFjQUQF+yiotgw+XZOFugcEW4+X7KASK8dOuaz63iG2L7tlsWz936/1/OpkNJou2455
+         WMymnEGO7Q8WhcKQztu/V+FD3rMaG4TNM1ya/NHtdwNh259HX/OUct5qY0lUw4NvYfXc
+         GX2ikAyoDQrHJxU1okcJzp6ikoAEcRoR7ZrxvS5A4xO3VOWP4lrLrDR0my/PAkToOUNX
+         2J0w==
+X-Gm-Message-State: AOAM533x0/j43MqgW3yQ89k7qjGuDCG7VUX7rmjAyBlvvG8v2y+sgT7T
+        kNIb3OZVQiXa29AYwORFsA==
+X-Google-Smtp-Source: ABdhPJwl9oHK5hDNNxA5VHeDQnmNJ6i+NfFWt4ZnjKEwX0WwdMarfDgU2sJkk1jCO8U1nV6WMPCTsw==
+X-Received: by 2002:a05:6830:d2:b0:605:ee58:2dc5 with SMTP id x18-20020a05683000d200b00605ee582dc5mr4057650oto.252.1652570082831;
+        Sat, 14 May 2022 16:14:42 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id k101-20020a9d19ee000000b006060322123fsm2633837otk.15.2022.05.14.16.14.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 14 May 2022 16:14:42 -0700 (PDT)
+Received: (nullmailer pid 3276246 invoked by uid 1000);
+        Sat, 14 May 2022 23:14:41 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Frank Wunderlich <linux@fw-web.de>
+Cc:     Michael Riesch <michael.riesch@wolfvision.net>,
+        Vinod Koul <vkoul@kernel.org>,
+        Johan Jonker <jbx6244@gmail.com>,
+        linux-rockchip@lists.infradead.org, linux-pci@vger.kernel.org,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        linux-kernel@vger.kernel.org,
+        Frank Wunderlich <frank-w@public-files.de>,
+        linux-phy@lists.infradead.org, Bjorn Helgaas <bhelgaas@google.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>
+In-Reply-To: <20220514115946.8858-2-linux@fw-web.de>
+References: <20220514115946.8858-1-linux@fw-web.de> <20220514115946.8858-2-linux@fw-web.de>
+Subject: Re: [RFC v3 1/5] dt-bindings: phy: rockchip: add PCIe v3 phy
+Date:   Sat, 14 May 2022 18:14:40 -0500
+Message-Id: <1652570081.002742.3276245.nullmailer@robh.at.kernel.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 14.05.2022 02:03, Dmitry Baryshkov wrote:
-> Add device tree node describing CDSP device found on the SDM660 (but not
-> on SDM630) platform.
+On Sat, 14 May 2022 13:59:42 +0200, Frank Wunderlich wrote:
+> From: Frank Wunderlich <frank-w@public-files.de>
 > 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Add a new binding file for Rockchip PCIe v3 phy driver.
+> 
+> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
+> 
 > ---
-Lookin' good, but this must be /delete-node/'d on sdm636. Also, I think 660 had a separate smmu for this hw block?
-
-Konrad
->  arch/arm64/boot/dts/qcom/sdm660.dtsi | 68 ++++++++++++++++++++++++++++
->  1 file changed, 68 insertions(+)
+> v3:
+> - drop quotes
+> - drop rk3588
+> - make clockcount fixed to 3
+> - full path for binding header file
+> - drop phy-mode and its header and add lane-map
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sdm660.dtsi b/arch/arm64/boot/dts/qcom/sdm660.dtsi
-> index 023b0ac4118c..3b70eff68807 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm660.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sdm660.dtsi
-> @@ -9,6 +9,74 @@
->  
->  #include "sdm630.dtsi"
->  
-> +/ {
-> +	reserved-memory {
-> +		/delete-node/ tzbuffer@94a00000;
-> +
-> +		cdsp_region: cdsp@94a00000 {
-> +			reg = <0x0 0x94a00000 0x0 0x600000>;
-> +			no-map;
-> +		};
-> +
-> +	};
-> +
-> +	smp2p-cdsp {
-> +		compatible = "qcom,smp2p";
-> +		qcom,smem = <94>, <432>;
-> +		interrupts = <GIC_SPI 514 IRQ_TYPE_EDGE_RISING>;
-> +		mboxes = <&apcs_glb 30>;
-> +		qcom,local-pid = <0>;
-> +		qcom,remote-pid = <5>;
-> +
-> +		cdsp_smp2p_out: master-kernel {
-> +			qcom,entry-name = "master-kernel";
-> +			#qcom,smem-state-cells = <1>;
-> +		};
-> +
-> +		cdsp_smp2p_in: slave-kernel {
-> +			qcom,entry-name = "slave-kernel";
-> +			interrupt-controller;
-> +			#interrupt-cells = <2>;
-> +		};
-> +	};
-> +
-> +	soc {
-> +		cdsp_pil: remoteproc@1a300000 {
-> +			compatible = "qcom,sdm660-cdsp-pas";
-> +			reg = <0x1a300000 0x4040>;
-> +
-> +			interrupts-extended =
-> +				<&intc GIC_SPI 518 IRQ_TYPE_EDGE_RISING>,
-> +				<&cdsp_smp2p_in 0 IRQ_TYPE_EDGE_RISING>,
-> +				<&cdsp_smp2p_in 1 IRQ_TYPE_EDGE_RISING>,
-> +				<&cdsp_smp2p_in 2 IRQ_TYPE_EDGE_RISING>,
-> +				<&cdsp_smp2p_in 3 IRQ_TYPE_EDGE_RISING>;
-> +			interrupt-names = "wdog", "fatal", "ready",
-> +					  "handover", "stop-ack";
-> +
-> +			clocks = <&rpmcc RPM_SMD_XO_CLK_SRC>;
-> +			clock-names = "xo";
-> +
-> +			memory-region = <&cdsp_region>;
-> +			power-domains = <&rpmpd SDM660_VDDCX>;
-> +			power-domain-names = "cx";
-> +
-> +			qcom,smem-states = <&cdsp_smp2p_out 0>;
-> +			qcom,smem-state-names = "stop";
-> +
-> +			glink-edge {
-> +				interrupts = <GIC_SPI 513 IRQ_TYPE_EDGE_RISING>;
-> +
-> +				label = "turing";
-> +				mboxes = <&apcs_glb 29>;
-> +				qcom,remote-pid = <5>;
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +			};
-> +		};
-> +	};
-> +};
-> +
->  &adreno_gpu {
->  	compatible = "qcom,adreno-512.0", "qcom,adreno";
->  	operating-points-v2 = <&gpu_sdm660_opp_table>;
+> v2:
+> dt-bindings: rename yaml for PCIe v3
+> rockchip-pcie3-phy.yaml => rockchip,pcie3-phy.yaml
+> 
+> changes in pcie3 phy yaml
+> - change clock names to ordered const list
+> - extend pcie30-phymode description
+> - add phy-cells to required properties
+> - drop unevaluatedProperties
+> - example with 1 clock each line
+> - use default property instead of text describing it
+> - update license
+> ---
+>  .../bindings/phy/rockchip,pcie3-phy.yaml      | 82 +++++++++++++++++++
+>  1 file changed, 82 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/phy/rockchip,pcie3-phy.yaml
+> 
+
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/phy/rockchip,pcie3-phy.yaml: properties:clock-names: 'oneOf' conditional failed, one must be fixed:
+	[{'const': 'refclk_m'}, {'const': 'refclk_n'}, {'const': 'pclk'}] is too long
+	[{'const': 'refclk_m'}, {'const': 'refclk_n'}, {'const': 'pclk'}] is too short
+	False schema does not allow 3
+	1 was expected
+	3 is greater than the maximum of 2
+	hint: "minItems" is only needed if less than the "items" list length
+	from schema $id: http://devicetree.org/meta-schemas/items.yaml#
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/phy/rockchip,pcie3-phy.yaml: ignoring, error in schema: properties: clock-names
+Documentation/devicetree/bindings/phy/rockchip,pcie3-phy.example.dtb:0:0: /example-0/phy@fe8c0000: failed to match any schema with compatible: ['rockchip,rk3568-pcie3-phy']
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
