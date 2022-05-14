@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3523652711B
-	for <lists+devicetree@lfdr.de>; Sat, 14 May 2022 14:59:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5888E52711C
+	for <lists+devicetree@lfdr.de>; Sat, 14 May 2022 15:00:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232388AbiENM7b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 14 May 2022 08:59:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36504 "EHLO
+        id S231682AbiENNAh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 14 May 2022 09:00:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38500 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232370AbiENM73 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 14 May 2022 08:59:29 -0400
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1F446562
-        for <devicetree@vger.kernel.org>; Sat, 14 May 2022 05:59:27 -0700 (PDT)
-Received: by mail-lf1-x136.google.com with SMTP id j4so18723966lfh.8
-        for <devicetree@vger.kernel.org>; Sat, 14 May 2022 05:59:27 -0700 (PDT)
+        with ESMTP id S229987AbiENNAh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 14 May 2022 09:00:37 -0400
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8EAD965A2
+        for <devicetree@vger.kernel.org>; Sat, 14 May 2022 06:00:35 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id bq30so18759980lfb.3
+        for <devicetree@vger.kernel.org>; Sat, 14 May 2022 06:00:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=AIJzyHdeQPBN17hd4ci+FEoG/FDDqfH1kiPMV3V90kQ=;
-        b=gxgDf7bEYIeFz6styE/14U1dRliJxq42KGSAHdmKXexA7Ndbw1QIoZmUWoeM+XFJ6g
-         5dCEXoezlAM0sHE1IA8UJ1YAhXnqQBtZHAUMduTtN0vAqQIaZELHz/DJBmTaILCD6nH5
-         RanyhNM2Z0SLBnViNcG4p8bWGKDq7JLckOwtfbLcYf1mQbR8yihj9FSqfM1ijFOTlvZy
-         GfCFUpKWThmbrgt0ypmH5JEkzxplJ0xVi6kbT0IvshrRafO5Ff7GlT+HOsbA6yqJgHZI
-         Zzj5miBiRwkTtLVU8lg7XvvUdyIfualew6QK9LSppE1HYNlTgqeZpYIO4RAIQZ1oNUT0
-         0kUg==
+        bh=0anGjs+PbGX5Dd3ajX3kwo7VYHkTLZAuxgjJqcwByDQ=;
+        b=KTCiubIxZXJhj15IyGoPF0SImESQ7XhBikSjePJu8/EnDjH0HkjW0CkD+IVOek6dfU
+         EZ5NbObiAxS5IpP/s7EYyJdwvEnObLDTqXMDcZqfEnPsMbo1FOuHg6Y4I1HRtI4FdiKf
+         +Xps8hY1CMDH/3vvDtg7BMaMjH9lyDq2rqMH6vBUCZd8buP+8OzyGk6mtB6jtj8A6Y6b
+         ClduTgdPyNfWNUQoDzvxyDXr2eIDizGLakLqwEr/AmafRaiFGDDjA5mrz0ytzMaJRAUg
+         XrBERoEafWQmIlbE703dHiaFWNDjI5Toamz8ekLKaGj3TU7fjhoEo9aBl1gdHJ4JDQqk
+         KWxw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=AIJzyHdeQPBN17hd4ci+FEoG/FDDqfH1kiPMV3V90kQ=;
-        b=5VtSO/sus+VwVep+G3nuIvKMgS+KMB0bSS+pPhm/kX636SYOSeJTwsqci7LsRX5U4F
-         lwbfXzwE60II0IbZOcBa4okEjpmoOS1V3VV2zhqudWdTI/vV0QvaYTkirCEwVwdFBCop
-         q3/9dLtjWAlbAdEotgQheENdhIXpzLAwKsf3Bkwx5RsRx7lU1FhaPmY0ADcBxzkBXexc
-         DYjgagZmWxcE+O75ZXzSbF4M1yp8NcQ6u5G53ljDMARD26mcyI/F5HyUZgnAUfsPycWE
-         EoS60reu8koWHQBJnnSuRrAjpuRJzK7KVaFtWOErkZfMf9c5t1YraJ+xLDJJc2sHGWQN
-         HGIw==
-X-Gm-Message-State: AOAM531N4ZM2ubrQMj4ajYF7c+kjbgLoKNw0aFr7OP6IXOOfwr6WM9Rz
-        ggPW5a8r/LgYo8Ly6ViCIwW6exEAdzBKdw==
-X-Google-Smtp-Source: ABdhPJzSep50zFj5sKRc77gBdrfPUV8wkrPE2c4+YqYgnReJPOJcs6xbD8oVC742gF6bA1mlCzBUPQ==
-X-Received: by 2002:a05:6512:b1c:b0:474:193a:755c with SMTP id w28-20020a0565120b1c00b00474193a755cmr6817152lfu.340.1652533166101;
-        Sat, 14 May 2022 05:59:26 -0700 (PDT)
+        bh=0anGjs+PbGX5Dd3ajX3kwo7VYHkTLZAuxgjJqcwByDQ=;
+        b=conXNyTI5Xu9A1w1FmR3GAwymSnr/Ogab6wybNnDkq1otpS6/PFTAAi8igUlfFOmA2
+         VLZGuMnsN3Wj27L4tvM907Mp9YjV7DDGaMA9HNSBV5m4umE+rBno4F+7YN1bp7t9QSD5
+         oX++Hb0WaAdDbQpr/ZmA4m79PWIDFIUvW702+0jtbaZBG1rMPiqCZvp/w5D4HC+fUi7/
+         H0RyWcd0TUXyjFOGYDbIL3SMg2UMZg/PsvhTSN1JcW/GFQwcY8ec73wNQJp0aU6aPngL
+         V5IwbdNkImOzQMDvHymefaApXv3dc22kFh2cFyn06AcdJglXZ/6t8uovoq9LCZ7n/4QP
+         q/jQ==
+X-Gm-Message-State: AOAM530GkYECjvAum4NwzKU9a/RyupEfbCudic9BDTsn9cPuS42OB2Kj
+        T9Cmpr2crZxRFyr9a6uMthw7gw==
+X-Google-Smtp-Source: ABdhPJyfOtOjJPBlagZEIFnYEycdAcJcez3WkOYanlJ/e+FVg2TtyyondVVRU1tWNbDDYExbnVxTyQ==
+X-Received: by 2002:ac2:51a1:0:b0:472:154:4065 with SMTP id f1-20020ac251a1000000b0047201544065mr6440996lfk.590.1652533233905;
+        Sat, 14 May 2022 06:00:33 -0700 (PDT)
 Received: from [192.168.1.211] ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id m12-20020a2e710c000000b00251fcb946d2sm824820ljc.119.2022.05.14.05.59.25
+        by smtp.gmail.com with ESMTPSA id l22-20020a2e8696000000b0024f3d1dae87sm839111lji.15.2022.05.14.06.00.33
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 14 May 2022 05:59:25 -0700 (PDT)
-Message-ID: <39864947-af5a-2a0c-79b0-ff504b319cd1@linaro.org>
-Date:   Sat, 14 May 2022 15:59:25 +0300
+        Sat, 14 May 2022 06:00:33 -0700 (PDT)
+Message-ID: <70abbfba-3f9b-8f82-7648-1acb9f75fe93@linaro.org>
+Date:   Sat, 14 May 2022 16:00:32 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.8.1
-Subject: Re: [PATCH v3 2/8] arm64: dts: qcom: sdm630: disable dsi1/dsi1_phy by
- default
+Subject: Re: [PATCH v3 4/8] arm64: dts: qcom: sdm630: fix the qusb2phy ref
+ clock
 Content-Language: en-GB
 To:     Marijn Suijten <marijn.suijten@somainline.org>
 Cc:     Andy Gross <agross@kernel.org>,
@@ -64,10 +64,10 @@ Cc:     Andy Gross <agross@kernel.org>,
         Konrad Dybcio <konrad.dybcio@somainline.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
 References: <20220513234518.3068480-1-dmitry.baryshkov@linaro.org>
- <20220513234518.3068480-3-dmitry.baryshkov@linaro.org>
- <20220514093756.f7gqpo2ok2osbcm4@SoMainline.org>
+ <20220513234518.3068480-5-dmitry.baryshkov@linaro.org>
+ <20220514095620.us5wemwsmi2gbqaq@SoMainline.org>
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20220514093756.f7gqpo2ok2osbcm4@SoMainline.org>
+In-Reply-To: <20220514095620.us5wemwsmi2gbqaq@SoMainline.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -80,48 +80,47 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/05/2022 12:37, Marijn Suijten wrote:
-> Title copy-paste error: it should read dsi0/dsi0_phy.  Can you also
-> reorder this patch together with the dsi1/dsi1_phy one, and perhaps they
-> should just be squashed?  Otherwise, does a Suggested-by: make sense
-> here?
+On 14/05/2022 12:56, Marijn Suijten wrote:
+> On 2022-05-14 02:45:14, Dmitry Baryshkov wrote:
+>> According to the downstram DT file, the qusb2phy ref clock should be
+>> GCC_RX0_USB2_CLKREF_CLK, not GCC_RX1_USB2_CLKREF_CLK.
+>>
+>> Fixes: c65a4ed2ea8b ("arm64: dts: qcom: sdm630: Add USB configuration")
+>> Cc: Konrad Dybcio <konrad.dybcio@somainline.org>
+>> Reviewed-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> 
+> Reviewed-by: Marijn Suijten <marijn.suijten@somainline.org>
+> 
+> One nit below.
+> 
+>> ---
+>>   arch/arm64/boot/dts/qcom/sdm630.dtsi | 2 +-
+>>   1 file changed, 1 insertion(+), 1 deletion(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/sdm630.dtsi b/arch/arm64/boot/dts/qcom/sdm630.dtsi
+>> index e8bb170e8b2f..cca56f2fad96 100644
+>> --- a/arch/arm64/boot/dts/qcom/sdm630.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sdm630.dtsi
+>> @@ -1262,7 +1262,7 @@ qusb2phy: phy@c012000 {
+>>   			#phy-cells = <0>;
+>>   
+>>   			clocks = <&gcc GCC_USB_PHY_CFG_AHB2PHY_CLK>,
+>> -				<&gcc GCC_RX1_USB2_CLKREF_CLK>;
+>> +				<&gcc GCC_RX0_USB2_CLKREF_CLK>;
+> 
+> While at it, should this patch fix the indentation or shall I or you do
+> a one-off patch correcting the entire file (either before or after your
+> series)?
 
-Yes, it does. Please excuse me.
+I'd prefer to land these two series, after that we can indent the rest.
 
 > 
 > - Marijn
 > 
-> On 2022-05-14 02:45:12, Dmitry Baryshkov wrote:
->> Follow the typical practice and keep DSI0/DSI0 PHY disabled by default.
->> They should be enabled in the board DT files. No existing boards use
->> them at this moment.
->>
->> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->> ---
->>   arch/arm64/boot/dts/qcom/sdm630.dtsi | 3 +++
->>   1 file changed, 3 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/sdm630.dtsi b/arch/arm64/boot/dts/qcom/sdm630.dtsi
->> index 240293592ef9..8697d40e9b74 100644
->> --- a/arch/arm64/boot/dts/qcom/sdm630.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/sdm630.dtsi
->> @@ -1559,6 +1559,8 @@ dsi0: dsi@c994000 {
->>   				phys = <&dsi0_phy>;
->>   				phy-names = "dsi";
+>>   			clock-names = "cfg_ahb", "ref";
 >>   
->> +				status = "disabled";
->> +
->>   				ports {
->>   					#address-cells = <1>;
->>   					#size-cells = <0>;
->> @@ -1592,6 +1594,7 @@ dsi0_phy: dsi-phy@c994400 {
->>   
->>   				clocks = <&mmcc MDSS_AHB_CLK>, <&xo_board>;
->>   				clock-names = "iface", "ref";
->> +				status = "disabled";
->>   			};
->>   		};
->>   
+>>   			resets = <&gcc GCC_QUSB2PHY_PRIM_BCR>;
 >> -- 
 >> 2.35.1
 >>
