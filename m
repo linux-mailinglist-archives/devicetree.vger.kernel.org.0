@@ -2,145 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EA01D527278
-	for <lists+devicetree@lfdr.de>; Sat, 14 May 2022 17:08:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 57DEF52726B
+	for <lists+devicetree@lfdr.de>; Sat, 14 May 2022 17:07:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229879AbiENPHh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 14 May 2022 11:07:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38668 "EHLO
+        id S233770AbiENPHK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 14 May 2022 11:07:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37664 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233760AbiENPHg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 14 May 2022 11:07:36 -0400
-Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18529BCA9;
-        Sat, 14 May 2022 08:07:10 -0700 (PDT)
-Received: (Authenticated sender: maxime.chevallier@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id E632AC0014;
-        Sat, 14 May 2022 15:07:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1652540829;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=oioTQWxtec+lTDMdLAC/e7vnn3p17HifwpG1OTnINv4=;
-        b=AcgJ09xZ4e+zg7/UmOi0sFyCRaSdje5F0p8i1vR0nMZXkUsc1hrpzCBlrgQin7zodGmfNZ
-        aTLoYQZ7Yba8rJrNiebFwg6t5+YH2rTM4HhH5sBCnTyBSIz0fctZYBFLbhdWyv2op3ah3b
-        I9NrHXJp93o9cgpk/nwqPqgMFY3MxluYkhUWWWQNcm8SPCCP5LUpmx5YENva3W8xOgsJNz
-        txhZsJHbsr1tIXFoT+0ukCmwzPy7GE+7fcdllhLgK0JMnStAl/PDy1EV+ZmVKrtUeojQFZ
-        nsfUyvi8sZS/5KEDzonLXmasWbF2yv1ev2VkIC2CQZDjhtDmaH8ANh/BM4vIdg==
-From:   Maxime Chevallier <maxime.chevallier@bootlin.com>
-To:     davem@davemloft.net, Rob Herring <robh+dt@kernel.org>
-Cc:     Maxime Chevallier <maxime.chevallier@bootlin.com>,
-        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, thomas.petazzoni@bootlin.com,
-        Andrew Lunn <andrew@lunn.ch>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        linux-arm-kernel@lists.infradead.org,
-        Vladimir Oltean <vladimir.oltean@nxp.com>,
-        Luka Perkov <luka.perkov@sartura.hr>,
-        Robert Marko <robert.marko@sartura.hr>
-Subject: [PATCH net-next v2 5/5] ARM: dts: qcom: ipq4019: Add description for the IPQESS Ethernet controller
-Date:   Sat, 14 May 2022 17:06:56 +0200
-Message-Id: <20220514150656.122108-6-maxime.chevallier@bootlin.com>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20220514150656.122108-1-maxime.chevallier@bootlin.com>
-References: <20220514150656.122108-1-maxime.chevallier@bootlin.com>
+        with ESMTP id S233745AbiENPHI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 14 May 2022 11:07:08 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4BDD6632C;
+        Sat, 14 May 2022 08:07:07 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 05214B80908;
+        Sat, 14 May 2022 15:07:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AF8A7C36AE2;
+        Sat, 14 May 2022 15:07:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1652540824;
+        bh=EcqRIDx0ujmGekBnNMQW7sqA4Kb1kqn6wGKblyiQebw=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=pTtbCq04Jj+ptLzxk8Myg/jYgkkLDnbdKAKhLkLXZWCPhsIvFG2CMZ8SGTzlx35Yd
+         HKCPvn4Gbnzdt4yg7kjSvGiPoXlSDMmU/Iblb/2Lj3t1YqzQALCOlAA6JVWC/d6OXH
+         A7GRKSC6AwmOSgQw6HIvuXazc0NAeOPIv75U0gC/sKZtvl/fyxQzNBqcFYGssdlf0Z
+         wXL8J3vi3mm6cqDz2qFuEE2Yq6xWn8e6qO2STYYKDV9MJPBE3VzddcDZkGrK1/o8Gf
+         ISg5+rxBaaXAy6e6vosMrtn4CRm6biA4HG1jx+9mJs3e0LJ7wcjC20D8w0ZT0ZI0lS
+         uQZLTp+1Z56+Q==
+Date:   Sat, 14 May 2022 16:15:39 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Alexandru Ardelean <ardeleanalex@gmail.com>
+Cc:     LI Qingwu <Qing-wu.Li@leica-geosystems.com.cn>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        mchehab+huawei@kernel.org, linux-iio <linux-iio@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mike Looijmans <mike.looijmans@topic.nl>,
+        devicetree <devicetree@vger.kernel.org>
+Subject: Re: [PATCH V2 1/6] iio: accel: bmi088: Modified the scale calculate
+Message-ID: <20220514161539.3805bf87@jic23-huawei>
+In-Reply-To: <CA+U=DsqUztHxrkYsWTNz8Xm1OxRK2Wkb7L7Csque4r1tEDz_ig@mail.gmail.com>
+References: <20220510141753.3878390-1-Qing-wu.Li@leica-geosystems.com.cn>
+        <20220510141753.3878390-2-Qing-wu.Li@leica-geosystems.com.cn>
+        <CA+U=DsqUztHxrkYsWTNz8Xm1OxRK2Wkb7L7Csque4r1tEDz_ig@mail.gmail.com>
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Qualcomm IPQ4019 includes an internal 5 ports switch, which is
-connected to the CPU through the internal IPQESS Ethernet controller.
+On Thu, 12 May 2022 10:14:47 +0300
+Alexandru Ardelean <ardeleanalex@gmail.com> wrote:
 
-This commit adds support for this internal interface, which is
-internally connected to a modified version of the QCA8K Ethernet switch.
+> On Tue, May 10, 2022 at 5:17 PM LI Qingwu
+> <Qing-wu.Li@leica-geosystems.com.cn> wrote:
+> >
+> > The units after application of scale are 100*m/s^2,
+> > The scale calculation is only for the device
+> > with the range of 3, 6, 12, and 24g,
+> > but some other chips have a range of 2, 4, 6, and 8g.
+> >
+> > Modified the formula to a scale list.
+> > The scales in the list are calculated by 1/sensitivity*9.8.
+> > The new units after the application of scale are m/s^2.
+> >  
+> 
+> Strictly on the code:
+> 
+> Reviewed-by: Alexandru Ardelean <ardeleanalex@gmail.com>
+> 
+> On the change of IIO_VAL_FRACTIONAL_LOG2 -> IIO_VAL_INT_PLUS_MICRO  is
+> still up for discussion.
+It's fine as far as I'm concerned.
 
-This Ethernet controller only support a specific internal interface mode
-for connection to the switch.
+Jonathan
 
-Signed-off-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
----
-V1->V2:
- - Added clock and resets
-
- arch/arm/boot/dts/qcom-ipq4019.dtsi | 46 +++++++++++++++++++++++++++++
- 1 file changed, 46 insertions(+)
-
-diff --git a/arch/arm/boot/dts/qcom-ipq4019.dtsi b/arch/arm/boot/dts/qcom-ipq4019.dtsi
-index cac92dde040f..1afabee37fc6 100644
---- a/arch/arm/boot/dts/qcom-ipq4019.dtsi
-+++ b/arch/arm/boot/dts/qcom-ipq4019.dtsi
-@@ -38,6 +38,7 @@ aliases {
- 		spi1 = &blsp1_spi2;
- 		i2c0 = &blsp1_i2c3;
- 		i2c1 = &blsp1_i2c4;
-+		ethernet0 = &gmac;
- 	};
- 
- 	cpus {
-@@ -668,6 +669,51 @@ swport5: port@5 { /* MAC5 */
- 			};
- 		};
- 
-+		gmac: ethernet@c080000 {
-+			compatible = "qcom,ipq4019-ess-edma";
-+			reg = <0xc080000 0x8000>;
-+			resets = <&gcc ESS_RESET>;
-+			reset-names = "ess";
-+			clocks = <&gcc GCC_ESS_CLK>;
-+			clock-names = "ess";
-+			interrupts = <GIC_SPI  65 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI  66 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI  67 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI  68 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI  69 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI  70 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI  71 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI  72 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI  73 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI  74 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI  75 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI  76 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI  77 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI  78 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI  79 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI  80 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 240 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 241 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 242 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 243 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 244 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 245 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 246 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 247 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 248 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 249 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 250 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 251 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 252 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 253 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 254 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 255 IRQ_TYPE_EDGE_RISING>;
-+
-+			status = "disabled";
-+
-+			phy-mode = "internal";
-+		};
-+
- 		mdio: mdio@90000 {
- 			#address-cells = <1>;
- 			#size-cells = <0>;
--- 
-2.36.1
+> 
+> > Signed-off-by: LI Qingwu <Qing-wu.Li@leica-geosystems.com.cn>
+> > ---
+> >  drivers/iio/accel/bmi088-accel-core.c | 12 +++++++-----
+> >  1 file changed, 7 insertions(+), 5 deletions(-)
+> >
+> > diff --git a/drivers/iio/accel/bmi088-accel-core.c b/drivers/iio/accel/bmi088-accel-core.c
+> > index a06dae5c971d..9300313b63cb 100644
+> > --- a/drivers/iio/accel/bmi088-accel-core.c
+> > +++ b/drivers/iio/accel/bmi088-accel-core.c
+> > @@ -119,6 +119,7 @@ struct bmi088_accel_chip_info {
+> >         u8 chip_id;
+> >         const struct iio_chan_spec *channels;
+> >         int num_channels;
+> > +       const int scale_table[4][2];
+> >  };
+> >
+> >  struct bmi088_accel_data {
+> > @@ -280,6 +281,7 @@ static int bmi088_accel_read_raw(struct iio_dev *indio_dev,
+> >         struct bmi088_accel_data *data = iio_priv(indio_dev);
+> >         struct device *dev = regmap_get_device(data->regmap);
+> >         int ret;
+> > +       int reg;
+> >
+> >         switch (mask) {
+> >         case IIO_CHAN_INFO_RAW:
+> > @@ -330,13 +332,12 @@ static int bmi088_accel_read_raw(struct iio_dev *indio_dev,
+> >                                 return ret;
+> >
+> >                         ret = regmap_read(data->regmap,
+> > -                                         BMI088_ACCEL_REG_ACC_RANGE, val);
+> > +                                         BMI088_ACCEL_REG_ACC_RANGE, &reg);
+> >                         if (ret)
+> >                                 goto out_read_raw_pm_put;
+> > -
+> > -                       *val2 = 15 - (*val & 0x3);
+> > -                       *val = 3 * 980;
+> > -                       ret = IIO_VAL_FRACTIONAL_LOG2;
+> > +                       *val = data->chip_info->scale_table[reg&0x03][0];
+> > +                       *val2 = data->chip_info->scale_table[reg&0x03][1];
+> > +                       ret = IIO_VAL_INT_PLUS_MICRO;
+> >
+> >                         goto out_read_raw_pm_put;
+> >                 default:
+> > @@ -432,6 +433,7 @@ static const struct bmi088_accel_chip_info bmi088_accel_chip_info_tbl[] = {
+> >                 .chip_id = 0x1E,
+> >                 .channels = bmi088_accel_channels,
+> >                 .num_channels = ARRAY_SIZE(bmi088_accel_channels),
+> > +               .scale_table = {{0, 897}, {0, 1795}, {0, 3590}, {0, 7179}},
+> >         },
+> >  };
+> >
+> > --
+> > 2.25.1
+> >  
 
