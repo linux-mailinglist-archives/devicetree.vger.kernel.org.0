@@ -2,75 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 074F5527400
-	for <lists+devicetree@lfdr.de>; Sat, 14 May 2022 22:35:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B3E2A527403
+	for <lists+devicetree@lfdr.de>; Sat, 14 May 2022 22:41:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235119AbiENUfr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 14 May 2022 16:35:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45536 "EHLO
+        id S229540AbiENUlf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 14 May 2022 16:41:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33036 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234360AbiENUfq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 14 May 2022 16:35:46 -0400
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0364BB46
-        for <devicetree@vger.kernel.org>; Sat, 14 May 2022 13:35:44 -0700 (PDT)
-Received: by mail-lf1-x133.google.com with SMTP id t25so19853200lfg.7
-        for <devicetree@vger.kernel.org>; Sat, 14 May 2022 13:35:43 -0700 (PDT)
+        with ESMTP id S229379AbiENUle (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 14 May 2022 16:41:34 -0400
+Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98CF313D22
+        for <devicetree@vger.kernel.org>; Sat, 14 May 2022 13:41:32 -0700 (PDT)
+Received: by mail-lj1-x231.google.com with SMTP id v4so13962932ljd.10
+        for <devicetree@vger.kernel.org>; Sat, 14 May 2022 13:41:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=e3G8IpqywDEQjEr7fmlZZGPKai6zzPVpDCaOqxUYl4o=;
-        b=jEK2JlILacvWZfOhR+2DWw03FiULAN4nWySfk/IrAeRpT14JXfDBPRJBpUoMdnRanN
-         8ugH35mztPZY18+7cQVNRCaVhptMQby2AbOl/9pzrz8TiyhxH59hotuxtFSYz/1qh2cB
-         O0yqMboPEUAYkJPSNXNSBzvhw0Q8Y0ceQkhp6P9Xf3QY3PHx6BJiBqNeLcLnDWQ/Qkkd
-         gc30kUJTi6HUMcfb/qcxYKd6/PtmmfCwA2cJ7TwljUyEn1SLmcsEt1n6UzTr+6whqv17
-         zg4bsx9yVCe7F17woEvlYqhvGUsQ2US9UYdmcfaJ/LvEYwkE2WucOcJozzCeNYLUYKWZ
-         OXUw==
+        bh=3iGzxhbVDLQZMgpEjJUgXyEyHAViP8oVHF1txcdlmV8=;
+        b=N5MEGBb3bmfvLt1/VDR6ABuN7P+f9Tl+Bxv6+Q10oz9k6BZjpxCxTVG1ogxADxZEVK
+         H+F6YZmN8Sc2NfAzdP7wCkmz2ppvmZ+fPwE53G10Roc4XXFAU7KHLlqmFx26bEgHYWSs
+         AJMXNfa9t6QcsVrfjwnYJENCWd99ZM0lyolA4iWVr9CV9i3sjq/LI2cztTT5XXJ35D8x
+         IH/IvnpsT2xS/dXXjtOBpXQaflHYwWGu/QknuGyuv6fVyiuomHC0cTWAOYIQlW/zZFmN
+         aIDp5Ssp1R85gu8/sksKG+wAV9NE96tAO2fcEZ+FJc8MaMTEN1YiXa9pxcxSp68wT31A
+         ueUQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=e3G8IpqywDEQjEr7fmlZZGPKai6zzPVpDCaOqxUYl4o=;
-        b=nozA+kRwH80HghZoSNGJn0gyqGcg1SFWMJS5o+xIk3rvp/dCH3QlslUQUSmMrUc1jp
-         Vuby4qS4YyXimqbVFhtn8zAAQYTtKMwXdGNLf3O6DuRqIZjMzbDXcyWkw1ZhcjdMzdi7
-         O9mh6PfqrmjjCIn0spdZDz65XTCsBbd5Q6tYwEW0bqh+UD0T84kDyHvtlepKlr2kvHKn
-         HXrgvirV73thHKmSGtU9fJ1G9ItLjx7b2JwAPGwev+jV99cRb+Fktj5TM+75iil+J/b5
-         0VPknPAqHEpvFoddgse9FBXrifh867r4TVdwR0yaSYDGKAO0urbwBuG6m1kKLj+Fu3Kn
-         ZqPw==
-X-Gm-Message-State: AOAM5301HuuolO+6HM1D0zN2AWMEdXtw8sftLgdMMJggLvHtmFM/RiTo
-        HwP6RbN2WZQdfTqsPuDzt7iBGg==
-X-Google-Smtp-Source: ABdhPJwex93OlPwmCPUB5CECyMFJc82mJEGHOYURcMK+oK4G1BeIA9Na0fcC5JYFA12N1ZiGHSaN6w==
-X-Received: by 2002:ac2:4646:0:b0:472:108e:51af with SMTP id s6-20020ac24646000000b00472108e51afmr7998828lfo.184.1652560542320;
-        Sat, 14 May 2022 13:35:42 -0700 (PDT)
+        bh=3iGzxhbVDLQZMgpEjJUgXyEyHAViP8oVHF1txcdlmV8=;
+        b=nDI3RDJxT4qLn1I095jmw7DFKBQKGGKnN14G4pf3yqIeYDm7JuFZM/e2WFqm/x/Sdl
+         TD9kRvgudcT5mFPakJKxvnAJ/l0yk78ztpG9/bpWKZJf1E5+Zo+H/cIE1NBMf5ma0sJU
+         VSGk/k+xW4sKsXkFM5Qd59wakcb1dIUimYTpludAOs46iPicwr+b7qbRMhFQ6OL2dVlq
+         h+1dp/L0ghNrERfNLrbO1ZoQFGjUNAke+g8fNO+3lMh/arKIXVIhSl7ZT8HTER1vjjH+
+         wKorKdppobqRu1RAUZzGLqR/5GBOGENeiPC6Z3abhi5LxixTa1Kr7V9jrFuZr/mgrQC0
+         Bgyg==
+X-Gm-Message-State: AOAM531gJ0Q0VJ25q/6ykBG2tJqk4CkKd14zr2aQ2ose8lACnSecRvhL
+        j24mcYX/iFNhZ2eoUc/9tjHYpw==
+X-Google-Smtp-Source: ABdhPJwMF2agC7adkE7LOWfQCIhtnfSu8UkDs0sf2IPbdLJ15Vg9UmKKnsHofQjhK629bnaqat+Yrw==
+X-Received: by 2002:a2e:b00a:0:b0:24f:e0f:dd1f with SMTP id y10-20020a2eb00a000000b0024f0e0fdd1fmr6651385ljk.221.1652560890936;
+        Sat, 14 May 2022 13:41:30 -0700 (PDT)
 Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id x2-20020a056512078200b0047255d21166sm805217lfr.149.2022.05.14.13.35.41
+        by smtp.gmail.com with ESMTPSA id v10-20020a2e504a000000b0024f3d1dae93sm945554ljd.27.2022.05.14.13.41.29
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 14 May 2022 13:35:41 -0700 (PDT)
-Message-ID: <39a41150-6ac8-e158-f21d-15884b34a6e5@linaro.org>
-Date:   Sat, 14 May 2022 22:35:40 +0200
+        Sat, 14 May 2022 13:41:30 -0700 (PDT)
+Message-ID: <440a7dc6-7ec4-d7a9-0c56-3b3dc15b79d0@linaro.org>
+Date:   Sat, 14 May 2022 22:41:29 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.8.1
-Subject: Re: [PATCH v4 1/2] dt-bindings: iio: adc: Document Renesas RZ/G2UL
- ADC
+Subject: Re: [PATCH v4 1/3] media: dt-binding: media: Add rockchip-vepu
+ binding
 Content-Language: en-US
-To:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Jonathan Cameron <jic23@kernel.org>,
+To:     Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
+        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        linux-iio@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>
-References: <20220511082325.36185-1-biju.das.jz@bp.renesas.com>
- <20220511082325.36185-2-biju.das.jz@bp.renesas.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Heiko Stuebner <heiko@sntech.de>
+Cc:     linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+References: <20220514133604.174905-1-frattaroli.nicolas@gmail.com>
+ <20220514133604.174905-2-frattaroli.nicolas@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220511082325.36185-2-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20220514133604.174905-2-frattaroli.nicolas@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -83,83 +82,119 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/05/2022 10:23, Biju Das wrote:
-> Document Renesas RZ/G2UL ADC bindings. RZ/G2UL ADC is almost identical
-> to RZ/G2L, but it has 2 analog input channels compared to 8 channels
-> on the RZ/G2L.
+On 14/05/2022 15:36, Nicolas Frattaroli wrote:
+> The RK3568 and RK3566 have a Hantro VPU node solely dedicated to
+> encoding. This patch adds a new binding to describe it, as it
+> does not really fit the rockchip-vpu binding, since there is no
+> decoder.
 > 
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> Signed-off-by: Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
 > ---
-> v3->v4:
->  * Removed unnecessary SoC specific reg description as it is
->    equivalent to the logic used in reg.
->  * Removed Items from reg.
-> v2->v3:
->  * Added generic description for reg.
->  * Improved schema validation by restricting both channel and reg to [0-1].
-> v1->v2:
->  * Started using generic compatible for RZ/G2UL and added SoC specific validation
->    for channels.
-> ---
->  .../bindings/iio/adc/renesas,rzg2l-adc.yaml   | 30 ++++++++++++++++---
->  1 file changed, 26 insertions(+), 4 deletions(-)
+>  .../bindings/media/rockchip-vepu.yaml         | 64 +++++++++++++++++++
+>  MAINTAINERS                                   |  1 +
+>  2 files changed, 65 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/rockchip-vepu.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/iio/adc/renesas,rzg2l-adc.yaml b/Documentation/devicetree/bindings/iio/adc/renesas,rzg2l-adc.yaml
-> index d66c24cae1e1..ae6226c1044e 100644
-> --- a/Documentation/devicetree/bindings/iio/adc/renesas,rzg2l-adc.yaml
-> +++ b/Documentation/devicetree/bindings/iio/adc/renesas,rzg2l-adc.yaml
-> @@ -19,6 +19,7 @@ properties:
->    compatible:
->      items:
->        - enum:
-> +          - renesas,r9a07g043-adc   # RZ/G2UL
->            - renesas,r9a07g044-adc   # RZ/G2L
->            - renesas,r9a07g054-adc   # RZ/V2L
->        - const: renesas,rzg2l-adc
-> @@ -76,16 +77,37 @@ patternProperties:
->      properties:
->        reg:
->          description: |
-> -          The channel number. It can have up to 8 channels numbered from 0 to 7.
-> -        items:
-> -          - minimum: 0
-> -            maximum: 7
-> +          The channel number.
+> diff --git a/Documentation/devicetree/bindings/media/rockchip-vepu.yaml b/Documentation/devicetree/bindings/media/rockchip-vepu.yaml
+> new file mode 100644
+> index 000000000000..b7ba5bf3517a
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/rockchip-vepu.yaml
+
+Filename: vendor,device (not hyphen)
+It would be actually better if it followed the first compatible, so
+"rockchip,rk3568-vepu.yaml"
+
+
+> @@ -0,0 +1,64 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +
+> +%YAML 1.2
+> +---
+> +$id: "http://devicetree.org/schemas/media/rockchip-vepu.yaml#"
+> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> +
+> +title: Hantro G1 VPU encoders implemented on Rockchip SoCs
+> +
+> +maintainers:
+> +  - Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
+> +
+> +description:
+> +  Hantro G1 video encode-only accelerators present on Rockchip SoCs.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - rockchip,rk3568-vepu
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 2
+> +
+> +  clock-names:
+> +    items:
+> +      - const: aclk
+> +      - const: hclk
+
+Since these are new bindings, it would be good to follow DT convention
+and not add common "clk" prefix to clocks. Just like DMA is "tx" not
+"txdma". However clock names "a" and "h" are also not good and maybe
+this is already shared implementation?
+
+> + 
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +  iommus:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +  - clock-names
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +        #include <dt-bindings/clock/rk3568-cru.h>
+
+Indentation starts at "|" (so four spaces)
+
+> +        #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +        #include <dt-bindings/power/rk3568-power.h>
+> +
+> +        vepu: video-codec@fdee0000 {
+
+four spaces.
+
+> +                compatible = "rockchip,rk3568-vepu";
+> +                reg = <0x0 0xfdee0000 0x0 0x800>;
+> +                interrupts = <GIC_SPI 64 IRQ_TYPE_LEVEL_HIGH>;
+> +                clocks = <&cru ACLK_JENC>, <&cru HCLK_JENC>;
+> +                clock-names = "aclk", "hclk";
+> +                iommus = <&vepu_mmu>;
+> +                power-domains = <&power RK3568_PD_RGA>;
+> +        };
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 9ce78f2275dc..f901a42e5d0f 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -8637,6 +8637,7 @@ L:	linux-media@vger.kernel.org
+>  L:	linux-rockchip@lists.infradead.org
+>  S:	Maintained
+>  F:	Documentation/devicetree/bindings/media/nxp,imx8mq-vpu.yaml
+> +F:	Documentation/devicetree/bindings/media/rockchip-vepu.yaml
+>  F:	Documentation/devicetree/bindings/media/rockchip-vpu.yaml
+>  F:	drivers/staging/media/hantro/
 >  
->      required:
->        - reg
->  
->      additionalProperties: false
->  
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: renesas,r9a07g043-adc
-> +    then:
-> +      patternProperties:
-> +        "^channel@[2-7]$": false
-> +        "^channel@[0-1]$":
-> +          type: object
-
-The actual type was defined earlier - in your first "patternProperties"
-- so this "type:object" should not be needed.
-
-> +          properties:
-> +            reg:
-> +              minimum: 0
-> +              maximum: 1
-> +    else:
-> +      patternProperties:
-> +        "^channel@[0-7]$":
-> +          type: object
-
-Ditto.
-
-With both removed:
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 
 Best regards,
