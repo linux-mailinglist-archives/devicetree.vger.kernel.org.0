@@ -2,52 +2,49 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C32455272AF
-	for <lists+devicetree@lfdr.de>; Sat, 14 May 2022 17:41:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 433F55272CD
+	for <lists+devicetree@lfdr.de>; Sat, 14 May 2022 18:09:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234042AbiENPlN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 14 May 2022 11:41:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54022 "EHLO
+        id S234037AbiENQJH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 14 May 2022 12:09:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52496 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234011AbiENPlA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 14 May 2022 11:41:00 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B9DBCDC;
-        Sat, 14 May 2022 08:40:59 -0700 (PDT)
+        with ESMTP id S229965AbiENQJH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 14 May 2022 12:09:07 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4EEE5F0C;
+        Sat, 14 May 2022 09:09:06 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id BFB4060FC5;
-        Sat, 14 May 2022 15:40:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C0AFEC340EE;
-        Sat, 14 May 2022 15:40:55 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id DD35260C1E;
+        Sat, 14 May 2022 16:09:05 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 07DAAC340EE;
+        Sat, 14 May 2022 16:09:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1652542858;
-        bh=Hvx8z7gxwiLOsB3ma/sekJorZo96PjW6zdwnK9wQID4=;
+        s=k20201202; t=1652544545;
+        bh=vfe0fN5WaDr3IfTMVdsfaQTO0TXDCSNrCIB2jRLk/Yk=;
         h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=tAwQ/ZugvwWvz9PwvgrN/dcexR4VZfLghLOGOD/LMdBSUFOKX/c915hJNUu1GUxoF
-         bBIydCl3v/x42Ne86PVisrj8cAByfI+mNXCGdlWdR1WVzby31YeXhb4dsAByu9GHgh
-         vFbBHPA2cUzPMXzHzpeNz7iI22daHUjtckmiu3sCGA1DNamn5K4k8yGVXXN2HKKPrX
-         WrMtcE2/1kNY19Jk3SgVeMYpSpw4tnyG4j6E7kGMwBEzYoh66O2xOFcECaHuVKxksr
-         FAhVyqBJvqZpwSWPYX/TgOPQo6DrM8bSKMt+fLgpftqhY1L32GYQdJBYnGRJ6Tgh4D
-         S3A7e96sSzyIA==
-Date:   Sat, 14 May 2022 16:49:33 +0100
+        b=AZlhOL64713KaCmyJUdhXzrQfv1pdQSFUirmAPGhxrvO9OaFYvZOxtzWJLi/FcUk4
+         FrS5CZpbGfb6woDsY+P1C+oh6dDykOhzuZ+SQ0bgBOg3ZzLYKxHEgYjFgL85av+Mz2
+         pZE/k1wsk3EfCox3QzBk9OysL9NpftVIB1MLJkJ2y0sMDgSapuGSu5nRFbnRU3X7i0
+         750oQ1N2sOpUkMhIZZCQcxWw1TQOih19m7Q06dRbHNZQ+a6vYVdMbSfAGVspCUtymO
+         jO0+HbPCskdAdJneyPPPRmkuYUoMGbF13Sm6fTK37Habf3StrLMPuID+3/Rp2SfD6D
+         2RidhLpWxytKg==
+Date:   Sat, 14 May 2022 17:17:38 +0100
 From:   Jonathan Cameron <jic23@kernel.org>
-To:     Alexandru Ardelean <ardeleanalex@gmail.com>
-Cc:     LI Qingwu <Qing-wu.Li@leica-geosystems.com.cn>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        mchehab+huawei@kernel.org, linux-iio <linux-iio@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mike Looijmans <mike.looijmans@topic.nl>,
-        devicetree <devicetree@vger.kernel.org>
-Subject: Re: [PATCH V2 6/6] dt-bindings: iio: accel: Add bmi085 and bmi090l
- bindings
-Message-ID: <20220514164933.4edbc459@jic23-huawei>
-In-Reply-To: <CA+U=DspAtKrDdgrzAyELDULQVjj6eFgMhsZjFCOXXYrxFAW6YQ@mail.gmail.com>
-References: <20220510141753.3878390-1-Qing-wu.Li@leica-geosystems.com.cn>
-        <20220510141753.3878390-7-Qing-wu.Li@leica-geosystems.com.cn>
-        <CA+U=DspAtKrDdgrzAyELDULQVjj6eFgMhsZjFCOXXYrxFAW6YQ@mail.gmail.com>
+To:     Dmitry Osipenko <digetx@gmail.com>
+Cc:     Shreeya Patel <shreeya.patel@collabora.com>, lars@metafoo.de,
+        robh+dt@kernel.org, Zhigang.Shi@liteon.com, krisman@collabora.com,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, kernel@collabora.com,
+        alvaro.soliverez@collabora.com
+Subject: Re: [PATCH v4 3/3] iio: light: Add support for ltrf216a sensor
+Message-ID: <20220514171738.062b127d@jic23-huawei>
+In-Reply-To: <57bfc915-c761-3ba4-93d0-776f9b5f93b3@gmail.com>
+References: <20220511094024.175994-1-shreeya.patel@collabora.com>
+        <20220511094024.175994-4-shreeya.patel@collabora.com>
+        <57bfc915-c761-3ba4-93d0-776f9b5f93b3@gmail.com>
 X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
@@ -62,57 +59,21 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 12 May 2022 10:32:55 +0300
-Alexandru Ardelean <ardeleanalex@gmail.com> wrote:
+On Fri, 13 May 2022 02:40:41 +0300
+Dmitry Osipenko <digetx@gmail.com> wrote:
 
-> On Tue, May 10, 2022 at 5:18 PM LI Qingwu
-> <Qing-wu.Li@leica-geosystems.com.cn> wrote:
-> >
-> > Adds the device-tree bindings for the Bosch
-> > BMI085 and BMI090L IMU, the accelerometer part.
-> >  
+> Hello Shreeya,
 > 
-> I think some datasheet links could be added to this file for the new devices.
+> ...
+> > +#include <linux/init.h>
+> > +#include <linux/mod_devicetable.h>  
 > 
-> The BMI088 has a link to its datasheet.
-> 
-> > Signed-off-by: LI Qingwu <Qing-wu.Li@leica-geosystems.com.cn>
-> > ---
-> >  Documentation/devicetree/bindings/iio/accel/bosch,bmi088.yaml | 2 ++
-> >  1 file changed, 2 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/iio/accel/bosch,bmi088.yaml b/Documentation/devicetree/bindings/iio/accel/bosch,bmi088.yaml
-> > index 911a1ae9c83f..4290f5f88a8f 100644
-> > --- a/Documentation/devicetree/bindings/iio/accel/bosch,bmi088.yaml
-> > +++ b/Documentation/devicetree/bindings/iio/accel/bosch,bmi088.yaml
-> > @@ -18,6 +18,8 @@ properties:
-> >    compatible:
-> >      enum:
-> >        - bosch,bmi088-accel
-> > +      - bosch,bmi085-accel
-> > +      - bosch,bmi090l-accel
+> You may safely remove these includes because module.h always provides them.
 
-Alphabetical /numeric order preferred. Also, fun question of compatible
-fallbacks as per the previous email.  Other than ID you state the bmi080l
-has same scales etc as the bmi088 so that one should definitely have
-a fallback to bmi088.
-
-The bmi085 is a little less obvious.  We can detect the difference by
-the chip id though so a fallback compatible probably makes sense for
-that one as well.  DT maintainers - I'll go with whatever you recommend
-on that front.
-
-Also, driver doesn't currently have an of_id_table so relies on the fallback
-handling of the spi core. Please add an explicit table to the driver.
-
-Thanks,
+Safely yes, but generally I'd prefer direct include
+of mod_devicetable.h because of the direct use of
+elements from it in the driver.
 
 Jonathan
 
-> >
-> >    reg:
-> >      maxItems: 1
-> > --
-> > 2.25.1
-> >  
 
