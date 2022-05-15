@@ -2,737 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 97287527AA0
-	for <lists+devicetree@lfdr.de>; Mon, 16 May 2022 00:18:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 49A4E527AE2
+	for <lists+devicetree@lfdr.de>; Mon, 16 May 2022 01:31:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230372AbiEOWSK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 15 May 2022 18:18:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45306 "EHLO
+        id S237576AbiEOXbM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 15 May 2022 19:31:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38190 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229824AbiEOWSJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 15 May 2022 18:18:09 -0400
-Received: from ixit.cz (ip-94-112-206-30.net.upcbroadband.cz [94.112.206.30])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5EBB22C105;
-        Sun, 15 May 2022 15:18:07 -0700 (PDT)
-Received: from newone.lan (_gateway [10.0.0.1])
+        with ESMTP id S232333AbiEOXbJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 15 May 2022 19:31:09 -0400
+Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [IPv6:2001:df5:b000:5::4])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3AC075FB9
+        for <devicetree@vger.kernel.org>; Sun, 15 May 2022 16:31:01 -0700 (PDT)
+Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by ixit.cz (Postfix) with ESMTPSA id 8287F2007F;
-        Mon, 16 May 2022 00:18:00 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
-        t=1652653080;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding;
-        bh=ybIBHjPejoUG7gKQIT2nuQfzYTY7QcYBd6Ac2woJbhQ=;
-        b=jg8VyXGVCl0xQpTw7gMICa+oq3PUKr5CStnlWiKQOfRAF2MadguxJbn34DfdNkm1rDTQ78
-        O9CR0lMa23/fETD1f/X98gCDDDfDh/3bRfDwhWYtqhK9SM4Xm9EqQgm7YwfV7d9bTru/zx
-        HoU8AQY+LZUX0EeVs6kOGbWkgscV60k=
-From:   David Heidelberg <david@ixit.cz>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     David Heidelberg <david@ixit.cz>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2] arm64: dts: qcom: timer should use only 32-bit size
-Date:   Mon, 16 May 2022 00:17:57 +0200
-Message-Id: <20220515221758.88723-1-david@ixit.cz>
-X-Mailer: git-send-email 2.35.1
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (Client did not present a certificate)
+        by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 91A842C044A;
+        Sun, 15 May 2022 23:30:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
+        s=mail181024; t=1652657458;
+        bh=GZLu1OeaLOTOIoEPp30r9KAOSr1uCNbQE1buOUq0g7s=;
+        h=From:To:Cc:Subject:Date:From;
+        b=mz8of1ta1LQ1ZQuWlWJNqMjrOO/cGQebNelfMLOYn3BM8scrn+BIiBkKxLH5cwwfx
+         xaTgkxTieU2zJ9P5HC8eTpM7tB7wqQ057jt5yoIzjNfagIa2A75BKSLeruGO2BTLyB
+         /FTaBI2kpjXS4u/XPMwlkGY04AKjShIDp9WMlDXNydfmye0CDac6zqjxFdNuPiQ23a
+         mMGDkNLH5VKIvPt7nrOEbW48moNeboN9u0rUCUI5tKYl3PUYiq7hIcRNy9tH4EJVh4
+         GXN/N0gTZISFT4C3DpqcRS804rLA/Yi5Ho5c8LDgAd74kaNt+gBkU+3DyNX8vy0vhf
+         gE2ZEsqBOrfaA==
+Received: from pat.atlnz.lc (Not Verified[10.32.16.33]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
+        id <B62818d320000>; Mon, 16 May 2022 11:30:58 +1200
+Received: from chrisp-dl.ws.atlnz.lc (chrisp-dl.ws.atlnz.lc [10.33.22.30])
+        by pat.atlnz.lc (Postfix) with ESMTP id 2C60E13EE43;
+        Mon, 16 May 2022 11:30:58 +1200 (NZST)
+Received: by chrisp-dl.ws.atlnz.lc (Postfix, from userid 1030)
+        id 27A2C2A0086; Mon, 16 May 2022 11:30:58 +1200 (NZST)
+From:   Chris Packham <chris.packham@alliedtelesis.co.nz>
+To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        catalin.marinas@arm.com, will@kernel.org, andrew@lunn.ch,
+        gregory.clement@bootlin.com, sebastian.hesselbarth@gmail.com,
+        kostap@marvell.com, robert.marko@sartura.hr,
+        vadym.kochan@plvision.eu
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Chris Packham <chris.packham@alliedtelesis.co.nz>
+Subject: [PATCH v8 0/3] arm64: mvebu: Support for Marvell 98DX2530 (and variants)
+Date:   Mon, 16 May 2022 11:30:44 +1200
+Message-Id: <20220515233047.531979-1-chris.packham@alliedtelesis.co.nz>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RDNS_DYNAMIC,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+X-SEG-SpamProfiler-Analysis: v=2.3 cv=U+Hs8tju c=1 sm=1 tr=0 a=KLBiSEs5mFS1a/PbTCJxuA==:117 a=oZkIemNP1mAA:10 a=1gLZ1RiacOvl1JNmVH8A:9
+X-SEG-SpamProfiler-Score: 0
+x-atlnz-ls: pat
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-There's no reason the timer needs > 32-bits of size.
-Since we using 32-bit size, we need to define ranges properly.
+This series adds support for the Marvell 98DX2530 SoC which is the Contro=
+l and
+Management CPU integrated into the AlleyCat5/AlleyCat5X series of Marvell
+switches.
 
-Fixes warnings as:
-```
-arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dt.yaml: timer@17c90000: #size-cells:0:0: 1 was expected
-        From schema: Documentation/devicetree/bindings/timer/arm,arch_timer_mmio.yaml
-```
+The CPU core is an ARM Cortex-A55 with neon, simd and crypto extensions.
 
-Signed-off-by: David Heidelberg <david@ixit.cz>
+This is fairly similar to the Armada-3700 SoC so most of the required
+peripherals are already supported. This series adds a devicetree and pinc=
+trl
+driver for the SoC and the RD-AC5X-32G16HVG6HLG reference board.
 
----
-Replaces "dt-bindings: timer: add #size-cells 2 for ARM"
-v2: fix accidental change of value 0x0 to 0
+The pinctrl changes from v4 have been picked up and are in linux-next so =
+I
+haven't included them in this round. That leaves just the dts files and a=
+ minor
+Kconfig update for arm64.
 
- arch/arm64/boot/dts/qcom/ipq6018.dtsi | 20 ++++++++++----------
- arch/arm64/boot/dts/qcom/sc7180.dtsi  | 20 ++++++++++----------
- arch/arm64/boot/dts/qcom/sc7280.dtsi  | 20 ++++++++++----------
- arch/arm64/boot/dts/qcom/sdm845.dtsi  | 20 ++++++++++----------
- arch/arm64/boot/dts/qcom/sm6350.dtsi  | 20 ++++++++++----------
- arch/arm64/boot/dts/qcom/sm8150.dtsi  | 20 ++++++++++----------
- arch/arm64/boot/dts/qcom/sm8250.dtsi  | 20 ++++++++++----------
- arch/arm64/boot/dts/qcom/sm8350.dtsi  | 20 ++++++++++----------
- arch/arm64/boot/dts/qcom/sm8450.dtsi  | 20 ++++++++++----------
- 9 files changed, 90 insertions(+), 90 deletions(-)
+Chris Packham (3):
+  dt-bindings: marvell: Document the AC5/AC5X compatibles
+  arm64: dts: marvell: Add Armada 98DX2530 SoC and RD-AC5X board
+  arm64: marvell: enable the 98DX2530 pinctrl driver
 
-diff --git a/arch/arm64/boot/dts/qcom/ipq6018.dtsi b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-index c89499e366d3..8638231dbd2f 100644
---- a/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-+++ b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-@@ -526,8 +526,8 @@ timer {
- 
- 		timer@b120000 {
- 			#address-cells = <2>;
--			#size-cells = <2>;
--			ranges;
-+			#size-cells = <1>;
-+			ranges = <0 0 0 0 0x10000000>;
- 			compatible = "arm,armv7-timer-mem";
- 			reg = <0x0 0x0b120000 0x0 0x1000>;
- 
-@@ -535,49 +535,49 @@ frame@b120000 {
- 				frame-number = <0>;
- 				interrupts = <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
- 					     <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>;
--				reg = <0x0 0x0b121000 0x0 0x1000>,
--				      <0x0 0x0b122000 0x0 0x1000>;
-+				reg = <0x0 0x0b121000 0x1000>,
-+				      <0x0 0x0b122000 0x1000>;
- 			};
- 
- 			frame@b123000 {
- 				frame-number = <1>;
- 				interrupts = <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>;
--				reg = <0x0 0xb123000 0x0 0x1000>;
-+				reg = <0x0 0x0b123000 0x1000>;
- 				status = "disabled";
- 			};
- 
- 			frame@b124000 {
- 				frame-number = <2>;
- 				interrupts = <GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>;
--				reg = <0x0 0x0b124000 0x0 0x1000>;
-+				reg = <0x0 0x0b124000 0x1000>;
- 				status = "disabled";
- 			};
- 
- 			frame@b125000 {
- 				frame-number = <3>;
- 				interrupts = <GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>;
--				reg = <0x0 0x0b125000 0x0 0x1000>;
-+				reg = <0x0 0x0b125000 0x1000>;
- 				status = "disabled";
- 			};
- 
- 			frame@b126000 {
- 				frame-number = <4>;
- 				interrupts = <GIC_SPI 12 IRQ_TYPE_LEVEL_HIGH>;
--				reg = <0x0 0x0b126000 0x0 0x1000>;
-+				reg = <0x0 0x0b126000 0x1000>;
- 				status = "disabled";
- 			};
- 
- 			frame@b127000 {
- 				frame-number = <5>;
- 				interrupts = <GIC_SPI 13 IRQ_TYPE_LEVEL_HIGH>;
--				reg = <0x0 0x0b127000 0x0 0x1000>;
-+				reg = <0x0 0x0b127000 0x1000>;
- 				status = "disabled";
- 			};
- 
- 			frame@b128000 {
- 				frame-number = <6>;
- 				interrupts = <GIC_SPI 14 IRQ_TYPE_LEVEL_HIGH>;
--				reg = <0x0 0x0b128000 0x0 0x1000>;
-+				reg = <0x0 0x0b128000 0x1000>;
- 				status = "disabled";
- 			};
- 		};
-diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-index 5dcaac23a138..4b7be66e04df 100644
---- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-@@ -3385,8 +3385,8 @@ watchdog@17c10000 {
- 
- 		timer@17c20000{
- 			#address-cells = <2>;
--			#size-cells = <2>;
--			ranges;
-+			#size-cells = <1>;
-+			ranges = <0 0 0 0 0x20000000>;
- 			compatible = "arm,armv7-timer-mem";
- 			reg = <0 0x17c20000 0 0x1000>;
- 
-@@ -3394,49 +3394,49 @@ frame@17c21000 {
- 				frame-number = <0>;
- 				interrupts = <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
- 					     <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>;
--				reg = <0 0x17c21000 0 0x1000>,
--				      <0 0x17c22000 0 0x1000>;
-+				reg = <0 0x17c21000 0x1000>,
-+				      <0 0x17c22000 0x1000>;
- 			};
- 
- 			frame@17c23000 {
- 				frame-number = <1>;
- 				interrupts = <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>;
--				reg = <0 0x17c23000 0 0x1000>;
-+				reg = <0 0x17c23000 0x1000>;
- 				status = "disabled";
- 			};
- 
- 			frame@17c25000 {
- 				frame-number = <2>;
- 				interrupts = <GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>;
--				reg = <0 0x17c25000 0 0x1000>;
-+				reg = <0 0x17c25000 0x1000>;
- 				status = "disabled";
- 			};
- 
- 			frame@17c27000 {
- 				frame-number = <3>;
- 				interrupts = <GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>;
--				reg = <0 0x17c27000 0 0x1000>;
-+				reg = <0 0x17c27000 0x1000>;
- 				status = "disabled";
- 			};
- 
- 			frame@17c29000 {
- 				frame-number = <4>;
- 				interrupts = <GIC_SPI 12 IRQ_TYPE_LEVEL_HIGH>;
--				reg = <0 0x17c29000 0 0x1000>;
-+				reg = <0 0x17c29000 0x1000>;
- 				status = "disabled";
- 			};
- 
- 			frame@17c2b000 {
- 				frame-number = <5>;
- 				interrupts = <GIC_SPI 13 IRQ_TYPE_LEVEL_HIGH>;
--				reg = <0 0x17c2b000 0 0x1000>;
-+				reg = <0 0x17c2b000 0x1000>;
- 				status = "disabled";
- 			};
- 
- 			frame@17c2d000 {
- 				frame-number = <6>;
- 				interrupts = <GIC_SPI 14 IRQ_TYPE_LEVEL_HIGH>;
--				reg = <0 0x17c2d000 0 0x1000>;
-+				reg = <0 0x17c2d000 0x1000>;
- 				status = "disabled";
- 			};
- 		};
-diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-index e66fc67de206..1b81cd1e84e9 100644
---- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-@@ -4772,8 +4772,8 @@ watchdog@17c10000 {
- 
- 		timer@17c20000 {
- 			#address-cells = <2>;
--			#size-cells = <2>;
--			ranges;
-+			#size-cells = <1>;
-+			ranges = <0 0 0 0 0x20000000>;
- 			compatible = "arm,armv7-timer-mem";
- 			reg = <0 0x17c20000 0 0x1000>;
- 
-@@ -4781,49 +4781,49 @@ frame@17c21000 {
- 				frame-number = <0>;
- 				interrupts = <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
- 					     <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>;
--				reg = <0 0x17c21000 0 0x1000>,
--				      <0 0x17c22000 0 0x1000>;
-+				reg = <0 0x17c21000 0x1000>,
-+				      <0 0x17c22000 0x1000>;
- 			};
- 
- 			frame@17c23000 {
- 				frame-number = <1>;
- 				interrupts = <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>;
--				reg = <0 0x17c23000 0 0x1000>;
-+				reg = <0 0x17c23000 0x1000>;
- 				status = "disabled";
- 			};
- 
- 			frame@17c25000 {
- 				frame-number = <2>;
- 				interrupts = <GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>;
--				reg = <0 0x17c25000 0 0x1000>;
-+				reg = <0 0x17c25000 0x1000>;
- 				status = "disabled";
- 			};
- 
- 			frame@17c27000 {
- 				frame-number = <3>;
- 				interrupts = <GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>;
--				reg = <0 0x17c27000 0 0x1000>;
-+				reg = <0 0x17c27000 0x1000>;
- 				status = "disabled";
- 			};
- 
- 			frame@17c29000 {
- 				frame-number = <4>;
- 				interrupts = <GIC_SPI 12 IRQ_TYPE_LEVEL_HIGH>;
--				reg = <0 0x17c29000 0 0x1000>;
-+				reg = <0 0x17c29000 0x1000>;
- 				status = "disabled";
- 			};
- 
- 			frame@17c2b000 {
- 				frame-number = <5>;
- 				interrupts = <GIC_SPI 13 IRQ_TYPE_LEVEL_HIGH>;
--				reg = <0 0x17c2b000 0 0x1000>;
-+				reg = <0 0x17c2b000 0x1000>;
- 				status = "disabled";
- 			};
- 
- 			frame@17c2d000 {
- 				frame-number = <6>;
- 				interrupts = <GIC_SPI 14 IRQ_TYPE_LEVEL_HIGH>;
--				reg = <0 0x17c2d000 0 0x1000>;
-+				reg = <0 0x17c2d000 0x1000>;
- 				status = "disabled";
- 			};
- 		};
-diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-index 0692ae0e60a4..9a1705bfa425 100644
---- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-@@ -4949,8 +4949,8 @@ slimbam: dma-controller@17184000 {
- 
- 		timer@17c90000 {
- 			#address-cells = <2>;
--			#size-cells = <2>;
--			ranges;
-+			#size-cells = <1>;
-+			ranges = <0 0 0 0 0x20000000>;
- 			compatible = "arm,armv7-timer-mem";
- 			reg = <0 0x17c90000 0 0x1000>;
- 
-@@ -4958,49 +4958,49 @@ frame@17ca0000 {
- 				frame-number = <0>;
- 				interrupts = <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>,
- 					     <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>;
--				reg = <0 0x17ca0000 0 0x1000>,
--				      <0 0x17cb0000 0 0x1000>;
-+				reg = <0 0x17ca0000 0x1000>,
-+				      <0 0x17cb0000 0x1000>;
- 			};
- 
- 			frame@17cc0000 {
- 				frame-number = <1>;
- 				interrupts = <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>;
--				reg = <0 0x17cc0000 0 0x1000>;
-+				reg = <0 0x17cc0000 0x1000>;
- 				status = "disabled";
- 			};
- 
- 			frame@17cd0000 {
- 				frame-number = <2>;
- 				interrupts = <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>;
--				reg = <0 0x17cd0000 0 0x1000>;
-+				reg = <0 0x17cd0000 0x1000>;
- 				status = "disabled";
- 			};
- 
- 			frame@17ce0000 {
- 				frame-number = <3>;
- 				interrupts = <GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>;
--				reg = <0 0x17ce0000 0 0x1000>;
-+				reg = <0 0x17ce0000 0x1000>;
- 				status = "disabled";
- 			};
- 
- 			frame@17cf0000 {
- 				frame-number = <4>;
- 				interrupts = <GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>;
--				reg = <0 0x17cf0000 0 0x1000>;
-+				reg = <0 0x17cf0000 0x1000>;
- 				status = "disabled";
- 			};
- 
- 			frame@17d00000 {
- 				frame-number = <5>;
- 				interrupts = <GIC_SPI 12 IRQ_TYPE_LEVEL_HIGH>;
--				reg = <0 0x17d00000 0 0x1000>;
-+				reg = <0 0x17d00000 0x1000>;
- 				status = "disabled";
- 			};
- 
- 			frame@17d10000 {
- 				frame-number = <6>;
- 				interrupts = <GIC_SPI 13 IRQ_TYPE_LEVEL_HIGH>;
--				reg = <0 0x17d10000 0 0x1000>;
-+				reg = <0 0x17d10000 0x1000>;
- 				status = "disabled";
- 			};
- 		};
-diff --git a/arch/arm64/boot/dts/qcom/sm6350.dtsi b/arch/arm64/boot/dts/qcom/sm6350.dtsi
-index d4f8f33f3f0c..fc473cb8c93b 100644
---- a/arch/arm64/boot/dts/qcom/sm6350.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm6350.dtsi
-@@ -1305,56 +1305,56 @@ timer@17c20000 {
- 			reg = <0x0 0x17c20000 0x0 0x1000>;
- 			clock-frequency = <19200000>;
- 			#address-cells = <2>;
--			#size-cells = <2>;
--			ranges;
-+			#size-cells = <1>;
-+			ranges = <0 0 0 0 0x20000000>;
- 
- 			frame@17c21000 {
- 				frame-number = <0>;
- 				interrupts = <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
- 					     <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>;
--				reg = <0x0 0x17c21000 0x0 0x1000>,
--				      <0x0 0x17c22000 0x0 0x1000>;
-+				reg = <0x0 0x17c21000 0x1000>,
-+				      <0x0 0x17c22000 0x1000>;
- 			};
- 
- 			frame@17c23000 {
- 				frame-number = <1>;
- 				interrupts = <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>;
--				reg = <0x0 0x17c23000 0x0 0x1000>;
-+				reg = <0x0 0x17c23000 0x1000>;
- 				status = "disabled";
- 			};
- 
- 			frame@17c25000 {
- 				frame-number = <2>;
- 				interrupts = <GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>;
--				reg = <0x0 0x17c25000 0x0 0x1000>;
-+				reg = <0x0 0x17c25000 0x1000>;
- 				status = "disabled";
- 			};
- 
- 			frame@17c27000 {
- 				frame-number = <3>;
- 				interrupts = <GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>;
--				reg = <0x0 0x17c27000 0x0 0x1000>;
-+				reg = <0x0 0x17c27000 0x1000>;
- 				status = "disabled";
- 			};
- 
- 			frame@17c29000 {
- 				frame-number = <4>;
- 				interrupts = <GIC_SPI 12 IRQ_TYPE_LEVEL_HIGH>;
--				reg = <0x0 0x17c29000 0x0 0x1000>;
-+				reg = <0x0 0x17c29000 0x1000>;
- 				status = "disabled";
- 			};
- 
- 			frame@17c2b000 {
- 				frame-number = <5>;
- 				interrupts = <GIC_SPI 13 IRQ_TYPE_LEVEL_HIGH>;
--				reg = <0x0 0x17c2b000 0x0 0x1000>;
-+				reg = <0x0 0x17c2b000 0x1000>;
- 				status = "disabled";
- 			};
- 
- 			frame@17c2d000 {
- 				frame-number = <6>;
- 				interrupts = <GIC_SPI 14 IRQ_TYPE_LEVEL_HIGH>;
--				reg = <0x0 0x17c2d000 0x0 0x1000>;
-+				reg = <0x0 0x17c2d000 0x1000>;
- 				status = "disabled";
- 			};
- 		};
-diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-index 8ea44c4b56b4..066cc00191b2 100644
---- a/arch/arm64/boot/dts/qcom/sm8150.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-@@ -3945,8 +3945,8 @@ watchdog@17c10000 {
- 
- 		timer@17c20000 {
- 			#address-cells = <2>;
--			#size-cells = <2>;
--			ranges;
-+			#size-cells = <1>;
-+			ranges = <0 0 0 0 0x20000000>;
- 			compatible = "arm,armv7-timer-mem";
- 			reg = <0x0 0x17c20000 0x0 0x1000>;
- 			clock-frequency = <19200000>;
-@@ -3955,49 +3955,49 @@ frame@17c21000{
- 				frame-number = <0>;
- 				interrupts = <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
- 					     <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>;
--				reg = <0x0 0x17c21000 0x0 0x1000>,
--				      <0x0 0x17c22000 0x0 0x1000>;
-+				reg = <0x0 0x17c21000 0x1000>,
-+				      <0x0 0x17c22000 0x1000>;
- 			};
- 
- 			frame@17c23000 {
- 				frame-number = <1>;
- 				interrupts = <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>;
--				reg = <0x0 0x17c23000 0x0 0x1000>;
-+				reg = <0x0 0x17c23000 0x1000>;
- 				status = "disabled";
- 			};
- 
- 			frame@17c25000 {
- 				frame-number = <2>;
- 				interrupts = <GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>;
--				reg = <0x0 0x17c25000 0x0 0x1000>;
-+				reg = <0x0 0x17c25000 0x1000>;
- 				status = "disabled";
- 			};
- 
- 			frame@17c27000 {
- 				frame-number = <3>;
- 				interrupts = <GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>;
--				reg = <0x0 0x17c26000 0x0 0x1000>;
-+				reg = <0x0 0x17c26000 0x1000>;
- 				status = "disabled";
- 			};
- 
- 			frame@17c29000 {
- 				frame-number = <4>;
- 				interrupts = <GIC_SPI 12 IRQ_TYPE_LEVEL_HIGH>;
--				reg = <0x0 0x17c29000 0x0 0x1000>;
-+				reg = <0x0 0x17c29000 0x1000>;
- 				status = "disabled";
- 			};
- 
- 			frame@17c2b000 {
- 				frame-number = <5>;
- 				interrupts = <GIC_SPI 13 IRQ_TYPE_LEVEL_HIGH>;
--				reg = <0x0 0x17c2b000 0x0 0x1000>;
-+				reg = <0x0 0x17c2b000 0x1000>;
- 				status = "disabled";
- 			};
- 
- 			frame@17c2d000 {
- 				frame-number = <6>;
- 				interrupts = <GIC_SPI 14 IRQ_TYPE_LEVEL_HIGH>;
--				reg = <0x0 0x17c2d000 0x0 0x1000>;
-+				reg = <0x0 0x17c2d000 0x1000>;
- 				status = "disabled";
- 			};
- 		};
-diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-index cf0c97bd5ad3..ae7d0573e1dc 100644
---- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-@@ -4868,8 +4868,8 @@ watchdog@17c10000 {
- 
- 		timer@17c20000 {
- 			#address-cells = <2>;
--			#size-cells = <2>;
--			ranges;
-+			#size-cells = <1>;
-+			ranges = <0 0 0 0 0x20000000>;
- 			compatible = "arm,armv7-timer-mem";
- 			reg = <0x0 0x17c20000 0x0 0x1000>;
- 			clock-frequency = <19200000>;
-@@ -4878,49 +4878,49 @@ frame@17c21000 {
- 				frame-number = <0>;
- 				interrupts = <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
- 					     <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>;
--				reg = <0x0 0x17c21000 0x0 0x1000>,
--				      <0x0 0x17c22000 0x0 0x1000>;
-+				reg = <0x0 0x17c21000 0x1000>,
-+				      <0x0 0x17c22000 0x1000>;
- 			};
- 
- 			frame@17c23000 {
- 				frame-number = <1>;
- 				interrupts = <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>;
--				reg = <0x0 0x17c23000 0x0 0x1000>;
-+				reg = <0x0 0x17c23000 0x1000>;
- 				status = "disabled";
- 			};
- 
- 			frame@17c25000 {
- 				frame-number = <2>;
- 				interrupts = <GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>;
--				reg = <0x0 0x17c25000 0x0 0x1000>;
-+				reg = <0x0 0x17c25000 0x1000>;
- 				status = "disabled";
- 			};
- 
- 			frame@17c27000 {
- 				frame-number = <3>;
- 				interrupts = <GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>;
--				reg = <0x0 0x17c27000 0x0 0x1000>;
-+				reg = <0x0 0x17c27000 0x1000>;
- 				status = "disabled";
- 			};
- 
- 			frame@17c29000 {
- 				frame-number = <4>;
- 				interrupts = <GIC_SPI 12 IRQ_TYPE_LEVEL_HIGH>;
--				reg = <0x0 0x17c29000 0x0 0x1000>;
-+				reg = <0x0 0x17c29000 0x1000>;
- 				status = "disabled";
- 			};
- 
- 			frame@17c2b000 {
- 				frame-number = <5>;
- 				interrupts = <GIC_SPI 13 IRQ_TYPE_LEVEL_HIGH>;
--				reg = <0x0 0x17c2b000 0x0 0x1000>;
-+				reg = <0x0 0x17c2b000 0x1000>;
- 				status = "disabled";
- 			};
- 
- 			frame@17c2d000 {
- 				frame-number = <6>;
- 				interrupts = <GIC_SPI 14 IRQ_TYPE_LEVEL_HIGH>;
--				reg = <0x0 0x17c2d000 0x0 0x1000>;
-+				reg = <0x0 0x17c2d000 0x1000>;
- 				status = "disabled";
- 			};
- 		};
-diff --git a/arch/arm64/boot/dts/qcom/sm8350.dtsi b/arch/arm64/boot/dts/qcom/sm8350.dtsi
-index 743cba9b683c..58e6bb4a1899 100644
---- a/arch/arm64/boot/dts/qcom/sm8350.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8350.dtsi
-@@ -1934,8 +1934,8 @@ intc: interrupt-controller@17a00000 {
- 		timer@17c20000 {
- 			compatible = "arm,armv7-timer-mem";
- 			#address-cells = <2>;
--			#size-cells = <2>;
--			ranges;
-+			#size-cells = <1>;
-+			ranges = <0 0 0 0 0x20000000>;
- 			reg = <0x0 0x17c20000 0x0 0x1000>;
- 			clock-frequency = <19200000>;
- 
-@@ -1943,49 +1943,49 @@ frame@17c21000 {
- 				frame-number = <0>;
- 				interrupts = <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
- 					     <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>;
--				reg = <0x0 0x17c21000 0x0 0x1000>,
--				      <0x0 0x17c22000 0x0 0x1000>;
-+				reg = <0x0 0x17c21000 0x1000>,
-+				      <0x0 0x17c22000 0x1000>;
- 			};
- 
- 			frame@17c23000 {
- 				frame-number = <1>;
- 				interrupts = <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>;
--				reg = <0x0 0x17c23000 0x0 0x1000>;
-+				reg = <0x0 0x17c23000 0x1000>;
- 				status = "disabled";
- 			};
- 
- 			frame@17c25000 {
- 				frame-number = <2>;
- 				interrupts = <GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>;
--				reg = <0x0 0x17c25000 0x0 0x1000>;
-+				reg = <0x0 0x17c25000 0x1000>;
- 				status = "disabled";
- 			};
- 
- 			frame@17c27000 {
- 				frame-number = <3>;
- 				interrupts = <GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>;
--				reg = <0x0 0x17c27000 0x0 0x1000>;
-+				reg = <0x0 0x17c27000 0x1000>;
- 				status = "disabled";
- 			};
- 
- 			frame@17c29000 {
- 				frame-number = <4>;
- 				interrupts = <GIC_SPI 12 IRQ_TYPE_LEVEL_HIGH>;
--				reg = <0x0 0x17c29000 0x0 0x1000>;
-+				reg = <0x0 0x17c29000 0x1000>;
- 				status = "disabled";
- 			};
- 
- 			frame@17c2b000 {
- 				frame-number = <5>;
- 				interrupts = <GIC_SPI 13 IRQ_TYPE_LEVEL_HIGH>;
--				reg = <0x0 0x17c2b000 0x0 0x1000>;
-+				reg = <0x0 0x17c2b000 0x1000>;
- 				status = "disabled";
- 			};
- 
- 			frame@17c2d000 {
- 				frame-number = <6>;
- 				interrupts = <GIC_SPI 14 IRQ_TYPE_LEVEL_HIGH>;
--				reg = <0x0 0x17c2d000 0x0 0x1000>;
-+				reg = <0x0 0x17c2d000 0x1000>;
- 				status = "disabled";
- 			};
- 		};
-diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-index 7d08fad76371..64ceff515337 100644
---- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-@@ -2858,8 +2858,8 @@ intc: interrupt-controller@17100000 {
- 		timer@17420000 {
- 			compatible = "arm,armv7-timer-mem";
- 			#address-cells = <2>;
--			#size-cells = <2>;
--			ranges;
-+			#size-cells = <1>;
-+			ranges = <0 0 0 0 0x20000000>;
- 			reg = <0x0 0x17420000 0x0 0x1000>;
- 			clock-frequency = <19200000>;
- 
-@@ -2867,49 +2867,49 @@ frame@17421000 {
- 				frame-number = <0>;
- 				interrupts = <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
- 					     <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>;
--				reg = <0x0 0x17421000 0x0 0x1000>,
--				      <0x0 0x17422000 0x0 0x1000>;
-+				reg = <0x0 0x17421000 0x1000>,
-+				      <0x0 0x17422000 0x1000>;
- 			};
- 
- 			frame@17423000 {
- 				frame-number = <1>;
- 				interrupts = <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>;
--				reg = <0x0 0x17423000 0x0 0x1000>;
-+				reg = <0x0 0x17423000 0x1000>;
- 				status = "disabled";
- 			};
- 
- 			frame@17425000 {
- 				frame-number = <2>;
- 				interrupts = <GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>;
--				reg = <0x0 0x17425000 0x0 0x1000>;
-+				reg = <0x0 0x17425000 0x1000>;
- 				status = "disabled";
- 			};
- 
- 			frame@17427000 {
- 				frame-number = <3>;
- 				interrupts = <GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>;
--				reg = <0x0 0x17427000 0x0 0x1000>;
-+				reg = <0x0 0x17427000 0x1000>;
- 				status = "disabled";
- 			};
- 
- 			frame@17429000 {
- 				frame-number = <4>;
- 				interrupts = <GIC_SPI 12 IRQ_TYPE_LEVEL_HIGH>;
--				reg = <0x0 0x17429000 0x0 0x1000>;
-+				reg = <0x0 0x17429000 0x1000>;
- 				status = "disabled";
- 			};
- 
- 			frame@1742b000 {
- 				frame-number = <5>;
- 				interrupts = <GIC_SPI 13 IRQ_TYPE_LEVEL_HIGH>;
--				reg = <0x0 0x1742b000 0x0 0x1000>;
-+				reg = <0x0 0x1742b000 0x1000>;
- 				status = "disabled";
- 			};
- 
- 			frame@1742d000 {
- 				frame-number = <6>;
- 				interrupts = <GIC_SPI 14 IRQ_TYPE_LEVEL_HIGH>;
--				reg = <0x0 0x1742d000 0x0 0x1000>;
-+				reg = <0x0 0x1742d000 0x1000>;
- 				status = "disabled";
- 			};
- 		};
--- 
-2.35.1
+ .../bindings/arm/marvell/armada-98dx25xx.yaml |  32 ++
+ arch/arm64/Kconfig.platforms                  |   2 +
+ arch/arm64/boot/dts/marvell/Makefile          |   1 +
+ .../boot/dts/marvell/armada-98dx25xx.dtsi     | 297 ++++++++++++++++++
+ .../boot/dts/marvell/armada-98dx35xx-rd.dts   | 101 ++++++
+ .../boot/dts/marvell/armada-98dx35xx.dtsi     |  13 +
+ 6 files changed, 446 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/arm/marvell/armada-=
+98dx25xx.yaml
+ create mode 100644 arch/arm64/boot/dts/marvell/armada-98dx25xx.dtsi
+ create mode 100644 arch/arm64/boot/dts/marvell/armada-98dx35xx-rd.dts
+ create mode 100644 arch/arm64/boot/dts/marvell/armada-98dx35xx.dtsi
+
+--=20
+2.36.1
 
