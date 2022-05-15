@@ -2,120 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DF7945276C1
-	for <lists+devicetree@lfdr.de>; Sun, 15 May 2022 11:54:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A58B52771B
+	for <lists+devicetree@lfdr.de>; Sun, 15 May 2022 12:43:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236180AbiEOJyo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 15 May 2022 05:54:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33766 "EHLO
+        id S233132AbiEOKnO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 15 May 2022 06:43:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45172 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229866AbiEOJyn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 15 May 2022 05:54:43 -0400
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 349833153F
-        for <devicetree@vger.kernel.org>; Sun, 15 May 2022 02:54:42 -0700 (PDT)
-Received: by mail-lf1-x12f.google.com with SMTP id d15so21303911lfk.5
-        for <devicetree@vger.kernel.org>; Sun, 15 May 2022 02:54:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=gQEfQ5vJQL6jpC1Tvs1WzVX7/mZ31DOC5y2HUnjzALI=;
-        b=xS7pUV/3EkrxlycX0L6/FEA6iJPGxOoiDzuzWU3a1KmAOMiEyAhmSQGQRXrb35Yzt9
-         zqTlWpN3qcThnhAFGsRCEPaN5aF7968EHYnTZaiIpmzmbuAjHUXpsHyF7lfYTl6V2i50
-         rVhOXY2NzeI0vMCPQZWMBC/s5aEkH7pes1lAmxtw5aW9jGWK1pfS3qYXrjyf1Gsq40Q0
-         fJvozTUM1W2RvfsErXyZEdMPvGhRvx+Ad3d9f4152J5VJL94ks4Weyn0miOBARtKis5u
-         xuKbum/TRUKnk+0+YCDWObPH1VvS24mPFOKN1uKB1oSL6oMiuXXRxCwx9Ai3erRqJIIy
-         NWqw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=gQEfQ5vJQL6jpC1Tvs1WzVX7/mZ31DOC5y2HUnjzALI=;
-        b=fEJ/RFoulR4DcdepyAHgxdCheBgHZVpKeiM9vuENsKXIWdfHnhgMSUjSc1cygV25+N
-         d/tPOKNLpmYn7huLeAoIWwMT9Il8NP4T72ykVT0Ws4r77SV29tg5L9OFCXxQGNJCNegc
-         TJt37J4GMVdNAr1CyjWex7CxZ+N48MvVIpFnicvH0SxIztXSWbgCbtC7vXFlYCEW979n
-         NlQ0YrlEA5gQCjvIfmw6XObRdbfpqf6dIsqbRU9geOY8fGaThMMkbXMwfeARVKIKjD4Q
-         3bFqLzURN1xt1cKcZ1/NILL3On3WGNmkPQe0p0Gyr86IbZ1UxSMnKr4kLXmbLaHjL/0f
-         W18Q==
-X-Gm-Message-State: AOAM533tKoYOaGdYH/FIdT138oDTLo7MYeZngWLS6DeUwxcA9ATkQq0e
-        zj8sx9ZACokEUJG+c1Iu7RrdMg==
-X-Google-Smtp-Source: ABdhPJxcWukAIjcjb8gEHeipeH5rLBbB9Ymlx5x3k+a5VGCaBreyrDbuRJ5b5csmpQ8av1yz5XbC3Q==
-X-Received: by 2002:a05:6512:3048:b0:473:a3d4:5252 with SMTP id b8-20020a056512304800b00473a3d45252mr9274506lfb.50.1652608480591;
-        Sun, 15 May 2022 02:54:40 -0700 (PDT)
-Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id y4-20020a2e9d44000000b0024f3d1dae9fsm1133677ljj.39.2022.05.15.02.54.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 15 May 2022 02:54:40 -0700 (PDT)
-Message-ID: <c3b8a28d-087f-f973-17db-da9c0fed10dd@linaro.org>
-Date:   Sun, 15 May 2022 11:54:38 +0200
+        with ESMTP id S229472AbiEOKnN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 15 May 2022 06:43:13 -0400
+X-Greylist: delayed 445 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Sun, 15 May 2022 03:43:11 PDT
+Received: from soltyk.jannau.net (soltyk.jannau.net [144.76.91.90])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E5C9B1E7;
+        Sun, 15 May 2022 03:43:11 -0700 (PDT)
+Received: by soltyk.jannau.net (Postfix, from userid 1000)
+        id CDF9C26EA99; Sun, 15 May 2022 12:35:44 +0200 (CEST)
+Date:   Sun, 15 May 2022 12:35:44 +0200
+From:   Janne Grunau <j@jannau.net>
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Joerg Roedel <joro@8bytes.org>,
+        Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Nicolin Chen <nicolinc@nvidia.com>,
+        Krishna Reddy <vdumpa@nvidia.com>,
+        Dmitry Osipenko <dmitry.osipenko@collabora.com>,
+        Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
+        Sameer Pujar <spujar@nvidia.com>, devicetree@vger.kernel.org,
+        iommu@lists.linux-foundation.org, linux-tegra@vger.kernel.org,
+        asahi@lists.linux.dev
+Subject: Re: [PATCH v5 0/5] iommu: Support mappings/reservations in
+ reserved-memory regions
+Message-ID: <20220515103544.GC26732@jannau.net>
+References: <20220512190052.1152377-1-thierry.reding@gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH V4 3/5] arm64: dts: nuvoton: Add initial support for
- MA35D1
-Content-Language: en-US
-To:     Jacky Huang <ychuang570808@gmail.com>,
-        Jacky Huang <ychuang3@nuvoton.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Cc:     robh+dt@kernel.org, sboyd@kernel.org, krzk+dt@kernel.org,
-        arnd@arndb.de, olof@lixom.net, catalin.marinas@arm.com,
-        will@kernel.org, soc@kernel.org, cfli0@nuvoton.com
-References: <20220510032558.10304-1-ychuang3@nuvoton.com>
- <20220510032558.10304-4-ychuang3@nuvoton.com>
- <03ac0a67-bd1f-12ca-74f7-8d5b05857ea7@linaro.org>
- <46a55b01-ee9f-604f-72c9-916bc2f02a09@nuvoton.com>
- <0e72e176-d7b0-ed10-08f3-ba7d4729a931@linaro.org>
- <db333ce4-6b21-7807-15fa-384619cde6f8@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <db333ce4-6b21-7807-15fa-384619cde6f8@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-3.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220512190052.1152377-1-thierry.reding@gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/05/2022 07:53, Jacky Huang wrote:
-> 
-> On 2022/5/13 下午 02:57, Krzysztof Kozlowski wrote:
->> On 13/05/2022 08:48, Jacky Huang wrote:
->>>>> +
->>>>> +	hxt_24m: hxt_24mhz {
->>>> No underscores in node name. Generic node names, so "clock-X" or
->>>> "clock-some-suffix"
->>> OK, I will modify it as
->>>    hxt-24m: hxt-24mhz
->> No, it is not a generic node name. Please read my reply again.
-> 
-> I  would modify it as
-> 
->     clock-hxt: clock-hspd-ext-crystal
-> 
-> 
->>
->>>>> +		compatible = "fixed-clock";
->>>>> +		#clock-cells = <0>;
->>>>> +		clock-frequency = <24000000>;
->>>> This does not look like property of SoC. Where is this clock defined? In
->>>> the SoC or on the board?
->>> It's an external crystal on the board.
->>> I add this node, because it's the clock source of clock controller.
->>> It always present on all ma35d1 boards.
->>>
+Hej,
 
-Then such clock is not a property of a SoC, but a board. Feel free to
-simplify DTS by storing most of the clock node in DTSI, but frequency
-should be defined by each board.
+I'm working on the display controller for Apple silicon SoCs and will 
+add some comments with support for it in mind.
 
+added asahi@lists.linux.dev to CC for the Apple silicon related aspects
 
+On 2022-05-12 21:00:47 +0200, Thierry Reding wrote:
+> 
+> this is another attempt at solving the problem of passing IOMMU
+> configuration via device tree. It has significantly evolved since the
+> last attempt, based on the discussion that followed. The discussion can
+> be found here:
+> 
+>   https://lore.kernel.org/all/20210423163234.3651547-1-thierry.reding@gmail.com/
+> 
+> Rather than using a memory-region specifier, this new version introduces
+> a new "iommu-addresses" property for the reserved-memory regions
+> themselves.
 
-Best regards,
-Krzysztof
+If experimented with both proposed bindings for dcp and I think this 
+binding is easer to understand and to work with.
+
+> These are used to describe either a static mapping or
+> reservation that should be created for a given device. If both "reg" and
+> "iommu-addresses" properties are given, a mapping will be created
+> (typically this would be an identity mapping)
+
+dcp on Apple silicon will not use identity mappings. The IOMMU supports 
+identity mapping but the pre-configured mappings setup by Apple's system 
+firmware will not work with identity mapping. It maps multiple regions 
+which are incompatible with a linear identity mapping. In addition the 
+embbeded aarch64 micro controllers used in the display subsystem appears 
+to use a heap mapped at low IOVA space starting at 0.
+
+> whereas if only an "iommu-addresses" property is specified, a 
+> reservation for the specified range will be installed.
+> 
+> An example is included in the DT bindings, but here is an extract of
+> what I've used to test this:
+> 
+> 	reserved-memory {
+> 		#address-cells = <2>;
+> 		#size-cells = <2>;
+> 		ranges;
+> 
+> 		/*
+> 		 * Creates an identity mapping for the framebuffer that
+> 		 * the firmware has setup to scan out a bootsplash from.
+> 		 */
+> 		fb: framebuffer@92cb2000 {
+> 			reg = <0x0 0x92cb2000 0x0 0x00800000>;
+> 			iommu-addresses = <&dc0 0x0 0x92cb2000 0x0 0x00800000>;
+> 		};
+
+The binding supports mapping the same region to multiple devices. The 
+code supports that and it will be used on Apple silicon. Not necessary 
+to extend and complicate the example for I wanted to mention it 
+explicitly.
+
+> 
+> 		/*
+> 		 * Creates a reservation in the IOVA space to prevent
+> 		 * any buffers from being mapped to that region. Note
+> 		 * that on Tegra the range is actually quite different
+> 		 * from this, but it would conflict with the display
+> 		 * driver that I tested this against, so this is just
+> 		 * a dummy region for testing.
+> 		 */
+> 		adsp: reservation-adsp {
+> 			iommu-addresses = <&dc0 0x0 0x90000000 0x0 0x00010000>;
+> 		};
+> 	};
+> 
+> 	host1x@50000000 {
+> 		dc@54200000 {
+> 			memory-region = <&fb>, <&adsp>;
+> 		};
+> 	};
+> 
+> This is abbreviated a little to focus on the essentials. Note also that
+> the ADSP reservation is not actually used on this device and the driver
+> for this doesn't exist yet, but I wanted to include this variant for
+> testing, because we'll want to use these bindings for the reservation
+> use-case as well at some point.
+> 
+> Adding Alyssa and Janne who have in the past tried to make these
+> bindings work on Apple M1. Also adding Sameer from the Tegra audio team
+> to look at the ADSP reservation and double-check that this is suitable
+> for our needs.
+
+The binding itself is sufficient for the needs of the display subsystem 
+on Apple silicon. The device tree parsing code for reserved regions is 
+of limited use in it's current form. We will have either to extend or 
+duplicate it to retrieve the non-identity mappings. That's our problem 
+to solve.
+
+Janne
