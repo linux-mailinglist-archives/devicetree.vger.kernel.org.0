@@ -2,70 +2,41 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F08C527902
-	for <lists+devicetree@lfdr.de>; Sun, 15 May 2022 20:06:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D627527968
+	for <lists+devicetree@lfdr.de>; Sun, 15 May 2022 21:17:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237965AbiEOSF5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 15 May 2022 14:05:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54332 "EHLO
+        id S238521AbiEOTRb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 15 May 2022 15:17:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48580 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229585AbiEOSF5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 15 May 2022 14:05:57 -0400
-Received: from mail-qk1-x736.google.com (mail-qk1-x736.google.com [IPv6:2607:f8b0:4864:20::736])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F39279FE7
-        for <devicetree@vger.kernel.org>; Sun, 15 May 2022 11:05:55 -0700 (PDT)
-Received: by mail-qk1-x736.google.com with SMTP id v11so10904735qkf.1
-        for <devicetree@vger.kernel.org>; Sun, 15 May 2022 11:05:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=gLlUW8vEjuV4DBvfCOgOpFfi++rFu5yf8AmltTgzK/Y=;
-        b=WYbwC4zIu7xjYVp6t7h8P4LPzGQ+uZfJGswn+Z54rii4PFXAQDI6A2RExHxU19m8fw
-         4hMirxm4bfNpHsQzZo7fZ9jllC3YuvypTVBnmlIZWsyAs702NDTql5JSHG2eLO08iVlj
-         wzhYZbBaL83hqjZI5AemGktmDi8vg9OA6edIcLZhV+MNjWcw15ohK6KY0DNacI02IVgw
-         kyB4zFU0ABvvY+7bsqs6xCk2aXxjNlra6X2xRHfKW23oZqcLdIMifTTubbEws58hmkFm
-         QO2A8BTvShfkHPhI9Rw5xYZ69EWe++a+WHqI0wsnIhGHty7V5oZGCc/EpXNHeFB1klDN
-         nJ6Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=gLlUW8vEjuV4DBvfCOgOpFfi++rFu5yf8AmltTgzK/Y=;
-        b=et57FAmUzmdk7v3agFN8RZDK1QkP+8xJ7zPwz1BlvXXyFMTcmfEv9vdUi55WYIe6C2
-         3VeVOrXWmkpSivrcBfAnUBu6/or0u9DThf6xA8VUcQ3ZPVnLPaDMo7+oriXOz3K1p2u2
-         0VRbF+hnL/BxEkGJ7y6+4o3V38CcbYyqFKKeZCEYPEMWrZfq94oIvQbcnRWyIGiEqwVt
-         YjY0UuNqmVdhKykQUuKFSoIF+6RY9muYZTUbR4O1Y7XYmEzZfgvVyDNl/5lWfHX9AW+v
-         3WWAjSrrk2xA96Gsu5Lmhw+HNK7Dh34slyk2GP1NUzxzg2PmXK2YBaJzIlFTZaRyn9yh
-         RTJA==
-X-Gm-Message-State: AOAM532Zz649Wzo2ADl72lqIHnKM/BU/800MJvUqB29KgcC/ewTcm9GL
-        9pQJxV4nHjWA78QeeOFWDhS+Uu2L6h13zESYxSQxIA==
-X-Google-Smtp-Source: ABdhPJwE5huig4V8dQ9xYjZfx0KC2zPJTHJmoCoCmJFAaX4AsZWEFGvA6YYxzpd3r0o7UX4A115fla+faK3JqAIZaxA=
-X-Received: by 2002:a05:620a:12e5:b0:69f:e82e:3021 with SMTP id
- f5-20020a05620a12e500b0069fe82e3021mr10156011qkl.59.1652637955101; Sun, 15
- May 2022 11:05:55 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220513234518.3068480-1-dmitry.baryshkov@linaro.org>
- <20220513234518.3068480-7-dmitry.baryshkov@linaro.org> <20220514094510.yfpc7omljon4nrhs@SoMainline.org>
- <CAA8EJpoRMRzXvbe8yOdGwPiLsXVtJiZxkzSb4PU77d1Rt-a_rA@mail.gmail.com> <20220515144400.uyaijmomlbocbsm3@SoMainline.org>
-In-Reply-To: <20220515144400.uyaijmomlbocbsm3@SoMainline.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Sun, 15 May 2022 21:05:44 +0300
-Message-ID: <CAA8EJpojr4+csDHZL4EiBuXdBH1iXkZb3nkvoR6uEce3-Ru6kg@mail.gmail.com>
-Subject: Re: [PATCH v3 6/8] arm64: dts: qcom: sdm630: use defined symbols for interconnects
-To:     Marijn Suijten <marijn.suijten@somainline.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        with ESMTP id S238406AbiEOTRZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 15 May 2022 15:17:25 -0400
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 610C7120B8;
+        Sun, 15 May 2022 12:17:22 -0700 (PDT)
+Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=diego.localnet)
+        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <heiko@sntech.de>)
+        id 1nqJjs-0005vt-RK; Sun, 15 May 2022 21:17:12 +0200
+From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To:     linux-rockchip@lists.infradead.org,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Peter Geis <pgwipeout@gmail.com>
+Cc:     Peter Geis <pgwipeout@gmail.com>, Marc Zyngier <maz@kernel.org>,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v9 4/5] arm64: dts: rockchip: Add rk3568 PCIe2x1 controller
+Date:   Sun, 15 May 2022 21:17:11 +0200
+Message-ID: <5575428.DvuYhMxLoT@diego>
+In-Reply-To: <20220429123832.2376381-5-pgwipeout@gmail.com>
+References: <20220429123832.2376381-1-pgwipeout@gmail.com> <20220429123832.2376381-5-pgwipeout@gmail.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -73,100 +44,85 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 15 May 2022 at 17:44, Marijn Suijten
-<marijn.suijten@somainline.org> wrote:
->
-> On 2022-05-14 15:51:55, Dmitry Baryshkov wrote:
-> > On Sat, 14 May 2022 at 12:45, Marijn Suijten
-> > <marijn.suijten@somainline.org> wrote:
-> > >
-> > > On 2022-05-14 02:45:16, Dmitry Baryshkov wrote:
-> > > > Replace numeric values with the symbolic names defined in the bindings
-> > > > header.
-> > > >
-> > > > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> > >
-> > > Seems there is one off-by-one copy-paste error.  With that addressed:
-> > >
-> > > Reviewed-by: Marijn Suijten <marijn.suijten@somainline.org>
-> > >
-> > > > ---
-> > > >  arch/arm64/boot/dts/qcom/sdm630.dtsi | 23 ++++++++++++-----------
-> > > >  1 file changed, 12 insertions(+), 11 deletions(-)
-> > > >
-> > > > diff --git a/arch/arm64/boot/dts/qcom/sdm630.dtsi b/arch/arm64/boot/dts/qcom/sdm630.dtsi
-> > > > index 17a1877587cf..01a1a1703568 100644
-> > > > --- a/arch/arm64/boot/dts/qcom/sdm630.dtsi
-> > > > +++ b/arch/arm64/boot/dts/qcom/sdm630.dtsi
-> > > > @@ -8,6 +8,7 @@
-> > > >  #include <dt-bindings/clock/qcom,gpucc-sdm660.h>
-> > > >  #include <dt-bindings/clock/qcom,mmcc-sdm660.h>
-> > > >  #include <dt-bindings/clock/qcom,rpmcc.h>
-> > > > +#include <dt-bindings/interconnect/qcom,sdm660.h>
-> > > >  #include <dt-bindings/power/qcom-rpmpd.h>
-> > > >  #include <dt-bindings/gpio/gpio.h>
-> > > >  #include <dt-bindings/interrupt-controller/arm-gic.h>
-> > > > @@ -1045,7 +1046,7 @@ adreno_gpu: gpu@5000000 {
-> > > >                       nvmem-cells = <&gpu_speed_bin>;
-> > > >                       nvmem-cell-names = "speed_bin";
-> > > >
-> > > > -                     interconnects = <&gnoc 1 &bimc 5>;
-> > > > +                     interconnects = <&gnoc MASTER_APSS_PROC &bimc SLAVE_EBI>;
-> > >
-> > > From qcom,sdm660.h:
-> > >
-> > >     /* GNOC */
-> > >     #define MASTER_APSS_PROC            0
-> > >     #define SLAVE_GNOC_BIMC                     1
-> > >     #define SLAVE_GNOC_SNOC                     2
-> > >
-> > > Seems like the left side should be SLAVE_GNOC_BIMC?  Unless this
-> > > semantic change is intended, in which case it should be clearly
-> > > documented in its own commit with a Fixes tag.
-> >
-> > I don't think there can be a slave on the left side of the ICC path.
-> > But nice catch anyway. Downstream uses MSM_BUS_MASTER_GRAPHICS_3D
-> > here, which corresponds to <&bimc MASTER_OXILI>.
-> > Could you please double check this?
->
-> Agreed, my downstream source for this device also uses
-> MSM_BUS_MASTER_GRAPHICS_3D=26 with mas_rpm_id=ICBID_MASTER_GFX3D=6, and
-> on the right-side MSM_BUS_SLAVE_EBI_CH0=512 which resolves to
-> slv_rpm_id=ICBID_SLAVE_EBI1=0.  Both on &bimc.
->
-> Have you double-checked all the other interconnect paths in this file?
+Am Freitag, 29. April 2022, 14:38:30 CEST schrieb Peter Geis:
+> The PCIe2x1 controller is common between the rk3568 and rk3566. It is a
+> single lane PCIe2 compliant controller.
+> 
+> Signed-off-by: Peter Geis <pgwipeout@gmail.com>
+> ---
+>  arch/arm64/boot/dts/rockchip/rk356x.dtsi | 52 ++++++++++++++++++++++++
+>  1 file changed, 52 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/rockchip/rk356x.dtsi b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+> index 7cdef800cb3c..aea5d9255235 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+> @@ -689,6 +689,58 @@ qos_vop_m1: qos@fe1a8100 {
+>  		reg = <0x0 0xfe1a8100 0x0 0x20>;
+>  	};
+>  
+> +	pcie2x1: pcie@fe260000 {
+> +		compatible = "rockchip,rk3568-pcie";
+> +		#address-cells = <3>;
+> +		#size-cells = <2>;
+> +		bus-range = <0x0 0xf>;
+> +		clocks = <&cru ACLK_PCIE20_MST>, <&cru ACLK_PCIE20_SLV>,
+> +			 <&cru ACLK_PCIE20_DBI>, <&cru PCLK_PCIE20>,
+> +			 <&cru CLK_PCIE20_AUX_NDFT>;
+> +		clock-names = "aclk_mst", "aclk_slv",
+> +			      "aclk_dbi", "pclk", "aux";
+> +		device_type = "pci";
+> +		interrupts = <GIC_SPI 75 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 74 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 73 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 72 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 71 IRQ_TYPE_LEVEL_HIGH>;
+> +		interrupt-names = "sys", "pmc", "msi", "legacy", "err";
+> +		#interrupt-cells = <1>;
 
-Hmmmmm.
+I guess #interrupt-cells shouldn't be necessary here, as that property
+is meant for interrupt-controller nodes - like the subnode here
+which already has its own #interrupt-cells, right?
 
-SDHCs also seem to be incorrect. For sdhc_1 downstream uses
-<MSM_BUS_MASTER_SDCC_1 MSM_BUS_SLAVE_EBI_CH0>,
-<MSM_BUS_MASTER_AMPSS_M0 MSM_BUS_SLAVE_SDCC_1>.
-For the upstream kernel this translates to <&a2noc MASTER_SDCC_1 &bimc
-SLAVE_EBI>, <&gnoc MASTER_APSS_PROC &cnoc SLAVE_SDCC_1> (while we have
-<&a2noc MASTER_SDCC_1 &a2noc SLAVE_A2NOC_SNOC>, <&gnoc
-MASTER_APSS_PROC &cnoc SLAVE_SDCC_1>). Same applies for the sdhc2.
-
-AngeloGioacchino, since SDHC interconnects were added by you, could
-you please check?
-
-For camss I suppose that downstream uses MASTER_CPP rather than
-MASTER_VFE. If I'm not mistaken.
-
-For venus the downstream path is equivalent <&mnoc MASTER_VENUS &bimc
-SLAVE_EBI> (which we have here). vidc describes <&gnoc
-MASTER_APSS_PROC &mnoc SLAVE_VENUS_CFG>. So venus cfg looks correct.
-
->
-> - Marijn
->
-> > >
-> > > The rest looks correct.
-> > >
-> > > - Marijn
-> > [..]
+> +		interrupt-map-mask = <0 0 0 7>;
+> +		interrupt-map = <0 0 0 1 &pcie_intc 0>,
+> +				<0 0 0 2 &pcie_intc 1>,
+> +				<0 0 0 3 &pcie_intc 2>,
+> +				<0 0 0 4 &pcie_intc 3>;
+> +		linux,pci-domain = <0>;
+> +		num-ib-windows = <6>;
+> +		num-ob-windows = <2>;
+> +		max-link-speed = <2>;
+> +		msi-map = <0x0 &gic 0x0 0x1000>;
+> +		num-lanes = <1>;
+> +		phys = <&combphy2 PHY_TYPE_PCIE>;
+> +		phy-names = "pcie-phy";
+> +		power-domains = <&power RK3568_PD_PIPE>;
+> +		reg = <0x3 0xc0000000 0x0 0x00400000>,
+> +		      <0x0 0xfe260000 0x0 0x00010000>,
+> +		      <0x3 0x00000000 0x0 0x01000000>;
+> +		ranges = <0x01000000 0x0 0x01000000 0x3 0x01000000 0x0 0x00100000
+> +			  0x02000000 0x0 0x02000000 0x3 0x01100000 0x0 0x3ef00000>;
+> +		reg-names = "dbi", "apb", "config";
+> +		resets = <&cru SRST_PCIE20_POWERUP>;
+> +		reset-names = "pipe";
+> +		status = "disabled";
+> +
+> +		pcie_intc: legacy-interrupt-controller {
+> +			#address-cells = <0>;
+> +			#interrupt-cells = <1>;
+> +			interrupt-controller;
+> +			interrupt-parent = <&gic>;
+> +			interrupts = <GIC_SPI 72 IRQ_TYPE_EDGE_RISING>;
+> +		};
+> +
+> +	};
+> +
+>  	sdmmc0: mmc@fe2b0000 {
+>  		compatible = "rockchip,rk3568-dw-mshc", "rockchip,rk3288-dw-mshc";
+>  		reg = <0x0 0xfe2b0000 0x0 0x4000>;
+> 
 
 
 
--- 
-With best wishes
-Dmitry
+
