@@ -2,21 +2,21 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F8975279CC
-	for <lists+devicetree@lfdr.de>; Sun, 15 May 2022 22:27:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B759F5279C5
+	for <lists+devicetree@lfdr.de>; Sun, 15 May 2022 22:21:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231372AbiEOU1N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 15 May 2022 16:27:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35886 "EHLO
+        id S232102AbiEOUVl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 15 May 2022 16:21:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55200 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230016AbiEOU1M (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 15 May 2022 16:27:12 -0400
+        with ESMTP id S231891AbiEOUVj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 15 May 2022 16:21:39 -0400
 Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB122EE08
-        for <devicetree@vger.kernel.org>; Sun, 15 May 2022 13:26:46 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA9571EAF0
+        for <devicetree@vger.kernel.org>; Sun, 15 May 2022 13:21:37 -0700 (PDT)
 Received: from localhost.localdomain ([37.4.249.94]) by
  mrelayeu.kundenserver.de (mreue010 [212.227.15.167]) with ESMTPSA (Nemesis)
- id 1MzQwa-1ndDft0Jto-00vLjH; Sun, 15 May 2022 22:21:21 +0200
+ id 1MUpCz-1oGM3E2aK9-00Qjsw; Sun, 15 May 2022 22:21:21 +0200
 From:   Stefan Wahren <stefan.wahren@i2se.com>
 To:     Florian Fainelli <f.fainelli@gmail.com>,
         Ray Jui <rjui@broadcom.com>,
@@ -32,30 +32,30 @@ Cc:     Peter Robinson <pbrobinson@gmail.com>,
         linux-arm-kernel@lists.infradead.org,
         Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
         Stefan Wahren <stefan.wahren@i2se.com>
-Subject: [PATCH 05/11] ARM: dts: bcm2711: Use proper compatible in PM/Watchdog node
-Date:   Sun, 15 May 2022 22:20:26 +0200
-Message-Id: <20220515202032.3046-6-stefan.wahren@i2se.com>
+Subject: [PATCH 06/11] mfd: bcm2835-pm: Use 'reg-names' to get resources
+Date:   Sun, 15 May 2022 22:20:27 +0200
+Message-Id: <20220515202032.3046-7-stefan.wahren@i2se.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20220515202032.3046-1-stefan.wahren@i2se.com>
 References: <20220515202032.3046-1-stefan.wahren@i2se.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Provags-ID: V03:K1:0jzGuZpTigtObmzVR5ZyHvgD+0Dbhv2L1UAKpoafb+ZMxfpFCkE
- geN+ap+GvnT/Pyxp6i60JZGKNI5GO2ias3FxugPbmLUrdEcFqlrdm+S8e5z4e1H+9oGzdvs
- jgDCzHeMlUfY9LsTpBX7+mmB1JHnr7uwoHivPre49YF5SySW1wiDvYuAd8tEJCdOp8Vg1ih
- 1ydZwdqn3b6a9C3fxbTKg==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:jv/rFXgy7yI=:+diqKzL2kc5CcIXMGRq94u
- dPddwGnMAOxa1/MftfyN8OSu9Od8VWlqujEqPYCKap94h4UptOz0Tx2T6xIMtwJnPplz+ivII
- dJYCSLIU4158fHPyjkaTYQaj8CSaFoLCKp4zMP1qpUqvGnJCTY/MzAQiO/Zx+vbc5prFnlkbk
- ClFaWLaLJIrtievgUR4L5A3ySjYgG6yjr0oLzRCIAoVKBmeoChNPVm/WoCdutEgDHGnTmA4iR
- vHHLaq8GyIJdi+uaUPgQatUR73v8JHvcvoqSK673sDafhkRBhODkRc1zIYaxQTRX2I7sr/90A
- P9UZfBREwkBXukD6tr4EmnpSVtFd8F/ASMBRe9XX9EF9Y0BAo41jx5LVKmh+/jZ4xbxUAt1jE
- cpbkv+FD4fYNY14lPbOlWa22rTKzyAY98/Hy4I/vhBM5dOKsdXcKyzNwEzpujJzj1qRlK4GDx
- yFmv4XCHjmLkHwcOOU5QVSRaJ5LtPjWvikzO2RsZXUAvSxRokQhCfRj8jRMyh8yg9wA12wZmw
- 5z3WySb9EsNLR/KXDXKgQEUqdwhhsfnikVOz+GyOFzGkngtbvs2ZOAd2HsNcQGaFIKJxe1ggk
- 67DvWnCJlxGSVocD+0yV0YN6x0NrImsJh8psECletnnffqvj0oTQxKXAyiBRWPHen8m8IABWH
- 6b4Ll9FrCMrX9JKAsyOlMoYgJdShCNRT+cm0O718f0Z9CZMt1zMc9IWSL1eNoofVBqXT5rG1i
- KuJWMs/fhp6lgnlP
+X-Provags-ID: V03:K1:CMkjM+dxKS19+f0NnafvR4zTuYK2+uCtLEdF0TAXa3g67s/sGgz
+ /bQlBsGqTr03dg6w9dwkQfD4EkfI/SkRUh+C4nSqn+0QheLryE/4xyTREt9SLNTNpZK1P1u
+ n7lPfBxsNLZBL6L3PoQi2CgKK5aJR7+HWzN3DzSpRrE14DfctYiti8A1AAHHkHJ2NF6Mvuq
+ 4+NtsVRJr/jzgc3efJnRA==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:IBPrTA7w700=:zqLHdXPLbiprmM8VSnI+xv
+ dpd59o301tzViqVR0w+sei3Le3VYd/S7GwIQ3EQXIWyBcgK8n9AcGWP1YY9x+NxkH1rKpvFsI
+ a38bU8tNDad0N71OZsdQ6o6rMSBqmdzqqpOfrsaCdaGiMVNUIQREcLtZgktB5D3mbdl3+zwDc
+ Udd8up0ViGJN+mJnd2dqym2HHivZFVIy1aRO4sliTt1D5TBrlfvLKI3oGvWwIJTSpTV5VN7go
+ PvZwHJ0tKMThE5meMId09QhLcmHZYfB62efrLkcIqEJypdDVPkW3hngG+xCvriNeltJShNh9j
+ s8kBzd244FpAcunqac1ETdf8D//jY18xFcJVBuniydd4SriN7sfzL592G8dBRH2whfPCPohcm
+ 0eNKrefuWGIp/SD6FlSpKo4QBRCx7cO1ro7qQWV0vo2byPpl5MWXQ1U7PQB3o43hdUz6vAgAQ
+ TM1JDK+jvhS6XWs2iXArz4CWOml+J3G+CTcv/No7lVqA/jqet9BqM2PE9ZONHt2cTm+965tgf
+ Tca6epv8NsfYW0VKq4oQIh+8MNo3R8rQcQUX1hscndKgGuxQS1QNgHSOU9Z+ZeCappDORdgkc
+ IQB3XHphHaKq9DEA/fSeTbhSje6Yb2ZsZOq/Amftgt1syVK3HKVKiHw9e/o6bSyHz5Wp5/xkE
+ GPmkthXCK/TKFhp2nt1P4utTejPy5k7/max/u3tzxkEckJbyzMEFW3bV+rtKM7WEW8InJXMGq
+ GkLZJTm4j/I0lLiu
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
         RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
@@ -67,28 +67,102 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
 
-A new compatible string was introduced specifically for BCM2711, so make
-use of it.
+If available in firmware, find resources by their 'reg-names' position
+instead of relying on hardcoded offsets. Care is taken to support old
+firmware nonetheless.
 
 Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
 Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
 ---
- arch/arm/boot/dts/bcm2711.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/mfd/bcm2835-pm.c | 59 +++++++++++++++++++++++++++-------------
+ 1 file changed, 40 insertions(+), 19 deletions(-)
 
-diff --git a/arch/arm/boot/dts/bcm2711.dtsi b/arch/arm/boot/dts/bcm2711.dtsi
-index cbb47e2c9434..5eca5207c212 100644
---- a/arch/arm/boot/dts/bcm2711.dtsi
-+++ b/arch/arm/boot/dts/bcm2711.dtsi
-@@ -107,7 +107,7 @@ dma: dma@7e007000 {
- 		};
+diff --git a/drivers/mfd/bcm2835-pm.c b/drivers/mfd/bcm2835-pm.c
+index 42fe67f1538e..1656d786993a 100644
+--- a/drivers/mfd/bcm2835-pm.c
++++ b/drivers/mfd/bcm2835-pm.c
+@@ -25,9 +25,41 @@ static const struct mfd_cell bcm2835_power_devs[] = {
+ 	{ .name = "bcm2835-power" },
+ };
  
- 		pm: watchdog@7e100000 {
--			compatible = "brcm,bcm2835-pm", "brcm,bcm2835-pm-wdt";
-+			compatible = "brcm,bcm2711-pm", "brcm,bcm2835-pm-wdt";
- 			#power-domain-cells = <1>;
- 			#reset-cells = <1>;
- 			reg = <0x7e100000 0x114>,
++static int bcm2835_pm_get_pdata(struct platform_device *pdev,
++				struct bcm2835_pm *pm)
++{
++	/* If no 'reg-names' property is found we can assume we're using old
++	 * firmware.
++	 */
++	if (!of_find_property(pm->dev->of_node, "reg-names", NULL)) {
++		dev_warn(pm->dev, "Old devicetree detected, please update your firmware.\n");
++
++		pm->base = devm_platform_ioremap_resource(pdev, 0);
++		if (IS_ERR(pm->base))
++			return PTR_ERR(pm->base);
++
++		pm->asb = devm_platform_ioremap_resource(pdev, 1);
++	} else {
++		struct resource *res;
++
++		pm->base = devm_platform_ioremap_resource_byname(pdev, "pm");
++		if (IS_ERR(pm->base))
++			return PTR_ERR(pm->base);
++
++		res = platform_get_resource_byname(pdev, IORESOURCE_MEM,
++						    "asb");
++		if (res)
++			pm->asb = devm_ioremap_resource(&pdev->dev, res);
++	}
++
++	if (IS_ERR(pm->asb))
++		pm->asb = NULL;
++
++	return 0;
++}
++
+ static int bcm2835_pm_probe(struct platform_device *pdev)
+ {
+-	struct resource *res;
+ 	struct device *dev = &pdev->dev;
+ 	struct bcm2835_pm *pm;
+ 	int ret;
+@@ -39,10 +71,9 @@ static int bcm2835_pm_probe(struct platform_device *pdev)
+ 
+ 	pm->dev = dev;
+ 
+-	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+-	pm->base = devm_ioremap_resource(dev, res);
+-	if (IS_ERR(pm->base))
+-		return PTR_ERR(pm->base);
++	ret = bcm2835_pm_get_pdata(pdev, pm);
++	if (ret)
++		return ret;
+ 
+ 	ret = devm_mfd_add_devices(dev, -1,
+ 				   bcm2835_pm_devs, ARRAY_SIZE(bcm2835_pm_devs),
+@@ -54,20 +85,10 @@ static int bcm2835_pm_probe(struct platform_device *pdev)
+ 	 * bcm2835-pm binding as the key for whether we can reference
+ 	 * the full PM register range and support power domains.
+ 	 */
+-	res = platform_get_resource(pdev, IORESOURCE_MEM, 1);
+-	if (res) {
+-		pm->asb = devm_ioremap_resource(dev, res);
+-		if (IS_ERR(pm->asb))
+-			return PTR_ERR(pm->asb);
+-
+-		ret = devm_mfd_add_devices(dev, -1,
+-					   bcm2835_power_devs,
+-					   ARRAY_SIZE(bcm2835_power_devs),
+-					   NULL, 0, NULL);
+-		if (ret)
+-			return ret;
+-	}
+-
++	if (pm->asb)
++		return devm_mfd_add_devices(dev, -1, bcm2835_power_devs,
++					    ARRAY_SIZE(bcm2835_power_devs),
++					    NULL, 0, NULL);
+ 	return 0;
+ }
+ 
 -- 
 2.25.1
 
