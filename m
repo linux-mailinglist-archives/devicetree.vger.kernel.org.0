@@ -2,65 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9FC2E52760C
-	for <lists+devicetree@lfdr.de>; Sun, 15 May 2022 08:36:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DF7945276C1
+	for <lists+devicetree@lfdr.de>; Sun, 15 May 2022 11:54:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235784AbiEOGgz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 15 May 2022 02:36:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48050 "EHLO
+        id S236180AbiEOJyo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 15 May 2022 05:54:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33766 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235778AbiEOGgy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 15 May 2022 02:36:54 -0400
-Received: from mail-oi1-x229.google.com (mail-oi1-x229.google.com [IPv6:2607:f8b0:4864:20::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A92218E2A
-        for <devicetree@vger.kernel.org>; Sat, 14 May 2022 23:36:53 -0700 (PDT)
-Received: by mail-oi1-x229.google.com with SMTP id w123so15049924oiw.5
-        for <devicetree@vger.kernel.org>; Sat, 14 May 2022 23:36:53 -0700 (PDT)
+        with ESMTP id S229866AbiEOJyn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 15 May 2022 05:54:43 -0400
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 349833153F
+        for <devicetree@vger.kernel.org>; Sun, 15 May 2022 02:54:42 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id d15so21303911lfk.5
+        for <devicetree@vger.kernel.org>; Sun, 15 May 2022 02:54:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=abJLZGgjMfh8rX+ZbBZ6JRfVrVVL/LGIcKNrpQhfC6Y=;
-        b=dNcMrWiXPhoSPTPD7rYo6oHnpWej3ftK/aEsS7ZG3mLHGEdc021KTOLN4BM/XHaDgZ
-         Sg3f23g6pqjHlV6RNZFBaS5NCICddZLu2Wp8lVDciiiEMGlYn/ppyWvFJibpAjo9j1id
-         PMpN+ZQit8Yg4yXMogWGuqsosp4c7ItvCmmYVoXo2LGKFXuox6tPZRDCA6g0ntAnLuBI
-         Zr1xz5A3aYC2i6kau0Mw86sU8HuLczhZDc36+YHfhAus6f20QW0noDr1NreFrT3V+bxR
-         2zRgIp5nytpyZOyduMqFD2hK1qKhUN3ZkKRRIdSYU2a0matUT6H23NTZfHpIm6BxH4eI
-         vghA==
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=gQEfQ5vJQL6jpC1Tvs1WzVX7/mZ31DOC5y2HUnjzALI=;
+        b=xS7pUV/3EkrxlycX0L6/FEA6iJPGxOoiDzuzWU3a1KmAOMiEyAhmSQGQRXrb35Yzt9
+         zqTlWpN3qcThnhAFGsRCEPaN5aF7968EHYnTZaiIpmzmbuAjHUXpsHyF7lfYTl6V2i50
+         rVhOXY2NzeI0vMCPQZWMBC/s5aEkH7pes1lAmxtw5aW9jGWK1pfS3qYXrjyf1Gsq40Q0
+         fJvozTUM1W2RvfsErXyZEdMPvGhRvx+Ad3d9f4152J5VJL94ks4Weyn0miOBARtKis5u
+         xuKbum/TRUKnk+0+YCDWObPH1VvS24mPFOKN1uKB1oSL6oMiuXXRxCwx9Ai3erRqJIIy
+         NWqw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=abJLZGgjMfh8rX+ZbBZ6JRfVrVVL/LGIcKNrpQhfC6Y=;
-        b=K65po0odmeWCcdQfDE7ToUSV0MYfp/Vxgd8A7PCDIakeck3lrJhHLBHxhRSf63q0Gu
-         MNvd0INVWv+M1LXuOCnAkWnJJ8BSU+hfs1js0Bq41QLY++c9vOiO0Z3773SJSAQitx/0
-         wcqE6U4ZC+O+1xOCRvkRA/FdbHhcahZd2GF99BTOYE9V2aR1j0zUZ+uV1Br2jxwFlpvD
-         1e6cpTck1gYHJeadZle5YSQte80KHoumlFAbr03pRc+MRy1vU3TzATZZDkLB57IECJEA
-         pr7reaNR7SupFYUCBSOXp9K0FVJAZgZi2w3qlPgkYsoI66uH0EKZYj4RbL9WAfhQQz8L
-         Hqyw==
-X-Gm-Message-State: AOAM530cbiPyUXQcwcK/8rp5MJMtxHIbEXJRgMnff0RSV6WXYsvBKiv8
-        Sjywlqo7oGmAD4578yQDCWzHFn6cu6Q6uV4zLVWnLQ==
-X-Google-Smtp-Source: ABdhPJz+cF7Kgs9VRE4OciEFza03OApRMb4mZkLk1e9pqh/Cf7HxV9If/lRjpTi+G192d0vuzGfI8DTUQ9JaQqo3XL4=
-X-Received: by 2002:a05:6808:dc3:b0:2ef:86e7:a0b with SMTP id
- g3-20020a0568080dc300b002ef86e70a0bmr5601383oic.48.1652596612750; Sat, 14 May
- 2022 23:36:52 -0700 (PDT)
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=gQEfQ5vJQL6jpC1Tvs1WzVX7/mZ31DOC5y2HUnjzALI=;
+        b=fEJ/RFoulR4DcdepyAHgxdCheBgHZVpKeiM9vuENsKXIWdfHnhgMSUjSc1cygV25+N
+         d/tPOKNLpmYn7huLeAoIWwMT9Il8NP4T72ykVT0Ws4r77SV29tg5L9OFCXxQGNJCNegc
+         TJt37J4GMVdNAr1CyjWex7CxZ+N48MvVIpFnicvH0SxIztXSWbgCbtC7vXFlYCEW979n
+         NlQ0YrlEA5gQCjvIfmw6XObRdbfpqf6dIsqbRU9geOY8fGaThMMkbXMwfeARVKIKjD4Q
+         3bFqLzURN1xt1cKcZ1/NILL3On3WGNmkPQe0p0Gyr86IbZ1UxSMnKr4kLXmbLaHjL/0f
+         W18Q==
+X-Gm-Message-State: AOAM533tKoYOaGdYH/FIdT138oDTLo7MYeZngWLS6DeUwxcA9ATkQq0e
+        zj8sx9ZACokEUJG+c1Iu7RrdMg==
+X-Google-Smtp-Source: ABdhPJxcWukAIjcjb8gEHeipeH5rLBbB9Ymlx5x3k+a5VGCaBreyrDbuRJ5b5csmpQ8av1yz5XbC3Q==
+X-Received: by 2002:a05:6512:3048:b0:473:a3d4:5252 with SMTP id b8-20020a056512304800b00473a3d45252mr9274506lfb.50.1652608480591;
+        Sun, 15 May 2022 02:54:40 -0700 (PDT)
+Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id y4-20020a2e9d44000000b0024f3d1dae9fsm1133677ljj.39.2022.05.15.02.54.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 15 May 2022 02:54:40 -0700 (PDT)
+Message-ID: <c3b8a28d-087f-f973-17db-da9c0fed10dd@linaro.org>
+Date:   Sun, 15 May 2022 11:54:38 +0200
 MIME-Version: 1.0
-References: <20220418205509.1102109-1-bhupesh.sharma@linaro.org>
- <20220418205509.1102109-2-bhupesh.sharma@linaro.org> <YmQfZ+h5tD6KbMID@ripper>
-In-Reply-To: <YmQfZ+h5tD6KbMID@ripper>
-From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Date:   Sun, 15 May 2022 12:06:39 +0530
-Message-ID: <CAH=2NtzEBwuo+vm8-2Drn4P7SiUbV-aNL1zVDs8OahFEargCiQ@mail.gmail.com>
-Subject: Re: [PATCH v3 1/4] dt-bindings: phy: qcom,qmp: Mark '#clock-cells' as
- a 'optional' property
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        bhupesh.linux@gmail.com, agross@kernel.org,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH V4 3/5] arm64: dts: nuvoton: Add initial support for
+ MA35D1
+Content-Language: en-US
+To:     Jacky Huang <ychuang570808@gmail.com>,
+        Jacky Huang <ychuang3@nuvoton.com>,
         linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        robh+dt@kernel.org, vkoul@kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Cc:     robh+dt@kernel.org, sboyd@kernel.org, krzk+dt@kernel.org,
+        arnd@arndb.de, olof@lixom.net, catalin.marinas@arm.com,
+        will@kernel.org, soc@kernel.org, cfli0@nuvoton.com
+References: <20220510032558.10304-1-ychuang3@nuvoton.com>
+ <20220510032558.10304-4-ychuang3@nuvoton.com>
+ <03ac0a67-bd1f-12ca-74f7-8d5b05857ea7@linaro.org>
+ <46a55b01-ee9f-604f-72c9-916bc2f02a09@nuvoton.com>
+ <0e72e176-d7b0-ed10-08f3-ba7d4729a931@linaro.org>
+ <db333ce4-6b21-7807-15fa-384619cde6f8@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <db333ce4-6b21-7807-15fa-384619cde6f8@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-3.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -69,102 +83,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Bjorn,
+On 15/05/2022 07:53, Jacky Huang wrote:
+> 
+> On 2022/5/13 下午 02:57, Krzysztof Kozlowski wrote:
+>> On 13/05/2022 08:48, Jacky Huang wrote:
+>>>>> +
+>>>>> +	hxt_24m: hxt_24mhz {
+>>>> No underscores in node name. Generic node names, so "clock-X" or
+>>>> "clock-some-suffix"
+>>> OK, I will modify it as
+>>>    hxt-24m: hxt-24mhz
+>> No, it is not a generic node name. Please read my reply again.
+> 
+> I  would modify it as
+> 
+>     clock-hxt: clock-hspd-ext-crystal
+> 
+> 
+>>
+>>>>> +		compatible = "fixed-clock";
+>>>>> +		#clock-cells = <0>;
+>>>>> +		clock-frequency = <24000000>;
+>>>> This does not look like property of SoC. Where is this clock defined? In
+>>>> the SoC or on the board?
+>>> It's an external crystal on the board.
+>>> I add this node, because it's the clock source of clock controller.
+>>> It always present on all ma35d1 boards.
+>>>
 
-On Sat, 23 Apr 2022 at 21:14, Bjorn Andersson
-<bjorn.andersson@linaro.org> wrote:
->
-> On Mon 18 Apr 13:55 PDT 2022, Bhupesh Sharma wrote:
->
-> > '#clock-cells' is not a required property for qmp-phy(s) in the
-> > '/' node, but it should be is used in 'phy@' subnode (where it is
-> > actually a 'required' property). Fix the same.
-> >
->
-> It's not that #clock-cells is "not a required property", it's that the
-> clock comes out of the phy (the child node), so there is no clocks
-> provided by the parent device.
->
->
-> Please rewrite the commit message.
+Then such clock is not a property of a SoC, but a board. Feel free to
+simplify DTS by storing most of the clock node in DTSI, but frequency
+should be defined by each board.
 
-Ok.
 
-> > This also fixes the following 'make dtbs_check' warning(s):
-> >
-> > sm8350-microsoft-surface-duo2.dt.yaml: phy@1d87000:
-> >   '#clock-cells' is a required property
-> >
-> > Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
-> > Cc: Vinod Koul <vkoul@kernel.org>
-> > Cc: Rob Herring <robh+dt@kernel.org>
-> > Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
-> > ---
-> >  Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml | 8 +++-----
-> >  1 file changed, 3 insertions(+), 5 deletions(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml
-> > index 8b850c5ab116..c39ead81ecd7 100644
-> > --- a/Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml
-> > +++ b/Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml
-> > @@ -66,9 +66,6 @@ properties:
-> >        - description: Address and length of PHY's common serdes block.
-> >        - description: Address and length of PHY's DP_COM control block.
-> >
-> > -  "#clock-cells":
-> > -    enum: [ 1, 2 ]
-> > -
-> >    "#address-cells":
-> >      enum: [ 1, 2 ]
-> >
-> > @@ -112,11 +109,13 @@ patternProperties:
-> >      description:
-> >        Each device node of QMP phy is required to have as many child nodes as
-> >        the number of lanes the PHY has.
-> > +    properties:
-> > +      "#clock-cells":
-> > +        enum: [ 0, 1, 2 ]
->
-> The commit message doesn't mention the fact that 0 is also a valid
-> value. Perhaps just keep it [1, 2] in this patch?
 
-0 is a valid value as mentioned in the example inside the dt-binding
-example itself.
-For e.g. see the 'sdm845-qmp-pcie-phy' node:
-
-    pcie0_phy: phy@1c06000 {
-            compatible = "qcom,sdm845-qmp-pcie-phy";
-            <..snip..>
-
-            pcie0_lane: phy@1c06200 {
-                    <..snip..>
-
-                #clock-cells = <0>;
-
-So, without [ 0, 1, 2 ] in the yaml bindings we get the following
-error while running '$ make dt_binding_check' :
-qcom,qmp-phy.example.dtb: phy-wrapper@88eb000:
-phy@200:#clock-cells:0:0: 0 is not one of [1, 2]
-
-Thanks,
-Bhupesh
-
-> >
-> >  required:
-> >    - compatible
-> >    - reg
-> > -  - "#clock-cells"
-> >    - "#address-cells"
-> >    - "#size-cells"
-> >    - ranges
-> > @@ -468,7 +467,6 @@ examples:
-> >      usb_2_qmpphy: phy-wrapper@88eb000 {
-> >          compatible = "qcom,sdm845-qmp-usb3-uni-phy";
-> >          reg = <0x088eb000 0x18c>;
-> > -        #clock-cells = <1>;
-> >          #address-cells = <1>;
-> >          #size-cells = <1>;
-> >          ranges = <0x0 0x088eb000 0x2000>;
-> > --
-> > 2.35.1
-> >
+Best regards,
+Krzysztof
