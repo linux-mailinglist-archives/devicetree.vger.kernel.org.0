@@ -2,257 +2,598 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5E7235278DE
-	for <lists+devicetree@lfdr.de>; Sun, 15 May 2022 19:14:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D0D7F5278F2
+	for <lists+devicetree@lfdr.de>; Sun, 15 May 2022 19:43:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237808AbiEOROz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 15 May 2022 13:14:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41440 "EHLO
+        id S237442AbiEORnE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 15 May 2022 13:43:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41200 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237720AbiEOROy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 15 May 2022 13:14:54 -0400
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10on2064.outbound.protection.outlook.com [40.107.93.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 346486176;
-        Sun, 15 May 2022 10:14:52 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=dXX3DXSMELr3E29MEBfJZymtR3hBCrii1J7dMKZjiCI1eQvSwV5vMsAdVYWjpHgx1UkzApTp1MTz/MyYBEfhlWmbHi7mFFnEEEFoeoZTWtqOKgAgInb/fCviXVur0pfqKoqB370bEdranoqPg7k+v9sysRqI/zE8eGHb73UIduJef71vcqmJvVBinG48clWClDw0F3rwmk9K9VrBP6Nbp3xIekKEbm/qV7umQhdK0JmAYXrvZJ1CnghZrYRCv2Nlq5PuIN/g4LRGNAd2109BLlqqDuGCGaBUjU4qQB9VcznyDhDY56aUwKaU0HemZi8853RPKn11IVMGCLYybJsWng==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=RtqgQM62/53+TvuAJW2X0kkUWsTWLSu4S5K/Xu8Ugv8=;
- b=Ez1qK9s+NrtFDe3Q2tgRfiyAWhcJK0LNTAPcdUfLB5p0nhdj1Rld4Nfx2KxNcbO1JAAHpFMOsNVdq+PiViY1W2t95zt93j4TP+YcZdbaW6rByLX73Bk70u6NNpsa75bO3cvRwnJNUBRD5pbXc5PtOCXaYVZHjUtet6rO9T5U5f35NleZBnnbUuLP3XfVnZLJetRVDxiHJfXSQxW/1TqoGQC/ZkdqnUTrt+s6i9CBaRBzJucbloPNSuEfoPxkA2oo3Pg1wOQJ6bvMNusZP1//Z8rVu/aDVDbFxpooxr10gnybpzN64xSDgOJMY0aHTZmpT9qpmieBO6DxGeAICEy2Ng==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=RtqgQM62/53+TvuAJW2X0kkUWsTWLSu4S5K/Xu8Ugv8=;
- b=i9AxAZYIFnYpwMnmNd4Df11xoWoJ3mh7JFOawRhRQUOcVIkHXjQS3+RuA8NdVL1bFwBlhtcT6LlUpZAjXqmqRC3TrIvtbs0Ue7lXJpuAPfBmuvOHfV+lmxfMwJcrmENliWT8UP6CSOUa+FCxiFcidZrC8SJKThsiVr+136C6ojaJK1MdRJ/EuMXaU5auxIBlaSofNUB2WFBSGVjgqR/5FxSgHxv2+7VCwvrstGNPx3rhz873HMWXrTRH+4EfbKB7vgII/JpKn2B3UmMhvMWoUo2i9rFIC/lB5Ux6UrtoPkpbY7s1hNSxnE1PMWKWTdqU93j9Shv0qSQlqKBdQfZcMw==
-Received: from DM6PR12MB4074.namprd12.prod.outlook.com (2603:10b6:5:218::11)
- by BYAPR12MB3319.namprd12.prod.outlook.com (2603:10b6:a03:dc::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5250.18; Sun, 15 May
- 2022 17:14:50 +0000
-Received: from DM6PR12MB4074.namprd12.prod.outlook.com
- ([fe80::e1aa:8450:2ebf:a431]) by DM6PR12MB4074.namprd12.prod.outlook.com
- ([fe80::e1aa:8450:2ebf:a431%7]) with mapi id 15.20.5250.018; Sun, 15 May 2022
- 17:14:50 +0000
-From:   Michael Shych <michaelsh@nvidia.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     "linux@roeck-us.net" <linux@roeck-us.net>,
-        "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Vadim Pasternak <vadimp@nvidia.com>
-Subject: RE: [PATCH v1 2/3] dt-bindings: hwmon: add microchip,emc2306.yaml dt
- binding description.
-Thread-Topic: [PATCH v1 2/3] dt-bindings: hwmon: add microchip,emc2306.yaml dt
- binding description.
-Thread-Index: AQHYXIhSZcqaUVS1GEaoW1rc3c1WLq0L6JuAgBRXQUA=
-Date:   Sun, 15 May 2022 17:14:50 +0000
-Message-ID: <DM6PR12MB4074280B77E772A442B827FFD4CC9@DM6PR12MB4074.namprd12.prod.outlook.com>
-References: <20220430114905.53448-1-michaelsh@nvidia.com>
- <20220430114905.53448-3-michaelsh@nvidia.com>
- <YnAgJVxh5fxijKQj@robh.at.kernel.org>
-In-Reply-To: <YnAgJVxh5fxijKQj@robh.at.kernel.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: c8805d7d-a6fb-4631-e9ee-08da36966b91
-x-ms-traffictypediagnostic: BYAPR12MB3319:EE_
-x-microsoft-antispam-prvs: <BYAPR12MB331984D1BB7D7F920B07C03AD4CC9@BYAPR12MB3319.namprd12.prod.outlook.com>
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: GyxP/awXuV4q9WDiXozdPEYcjCmIPF2rU/mEPoSo81EcZ36Lf0/3pyfVDhU6imXjL5ahODu+HhTMtaSQvKo0mfSrRMe5QvwjsldHmJg2o0OfZ9wVhWmhmAlcy60Bo4da4CL1K07vMTFuexWXHd2noaW2nCeIiFIl2QA4DfBlM4AHRGb4e4iVaB7DW0QmYAgkftuOpI0DLbr5aPRsIkLB/6xDNCXBwPGUS5iz/FAP4Q4oZRKzq/712+1uDPSXSlA+HfEtQXXIA/Gvz3VW4w1YA+aSuZA/AtRfsxJg9obwXJvsjvaWIFIwuTSeI4EZc9MvgS8niRzTfWV/xAIwCALYEhyyfNZw+0TE7Bo/5+P5ti4d22PQdpU5PKPBKKx6LaA+2t0wEWvqt82sLEBsJu1CPrrkfL/dgT4jOVe2vFz6u+rjvTiTPc/l+3ks4BUCIjNuexsrBqHdDXV012Ad0IuFuvLL5e+uuiKp65VJHBkwrM+1EAzzFfEqSzf1QLMPvS0D8PrZFlboLZ6tbkHYZLQsoAqnwLIfRNPR0UDtMkF6rNqSAPtDgMwGWoZDEA8B5FAaqYdG3Cszk1tyoDaMYFoTMXv6rgTBFY6X4hgyEpltYdwI0klgqD7upfrE6ujJrCdfk4zxxXRUL/eubs/CcoC4Vw83Wrb5LYEyhKBinqLO1fxMnHJqoTwuxUFPFTSIxioavjSVK9wPj2McP3kwXDfiGvhtWarE04whU/S4ugTTdY2Xl55yObA5IKQGD47pQA3NMgxq6pg4wXhRJr1/+uKD3/u8wX2HaUQG/b60kNKOdnwuGcqYgA/Bmqq/8jbjWK4XGwm1ZDxftH1qyNdlLEfE/Q==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM6PR12MB4074.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(38100700002)(38070700005)(122000001)(2906002)(9686003)(83380400001)(316002)(6916009)(7696005)(54906003)(66556008)(8676002)(64756008)(66476007)(71200400001)(966005)(186003)(4326008)(52536014)(66446008)(5660300002)(508600001)(66946007)(76116006)(8936002)(26005)(6506007)(53546011)(86362001)(55016003)(107886003)(33656002);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?sSLRwZ9ht1GdMZmfUxUHBLd92pyOHBeA/RcK84q9S+5xO/4mh6Khtumbexxn?=
- =?us-ascii?Q?yJDcw7/sa+WjxLIRTMDR9Eydj59n8isZfUApnG22E4N7FSHCUBda/eMRZst7?=
- =?us-ascii?Q?eNQ2nho4m7t0vD9RcHFYHVs5ecxYFnQWBS/2f4r7tk6wfNe1q8gFnbZf3e8q?=
- =?us-ascii?Q?dCE+gb/WwJ6MnQxGpO0KjXUf+fgps/iibC+Q17qvOKnPlKKG90I00u+kVOot?=
- =?us-ascii?Q?d5YaM6Jp59YFXGOPLlY5SRzpbVgbHEbtVul/UEdFRGYtvEnqjaajb8V+MalF?=
- =?us-ascii?Q?Qbz32Q0T0/LDnKNXqigACoOADRLpcYD7W758a98Z84XLAL6WMTv3QiLie/en?=
- =?us-ascii?Q?tRyMQgHPVQ2wZI2l71Z7GbpKCOMDdj7q35xX9CEkD22+FgxoqDWl2G/Hee3s?=
- =?us-ascii?Q?SquazqB1w6EfDXUTuaxtJkOBg6u8an15/Uwo0LHAqZazBcjliZPgibpWtUzS?=
- =?us-ascii?Q?ElLN72FS3l2czZHaF6G5u4W+1nO2IFbq/KasqyAA9QzxoFDnkOAlx/yd6HYa?=
- =?us-ascii?Q?r0WIfKyCOf0UXTYgxPbFupAv53OjwqPAf4Dp9PmwZeWuA3JSP2oBx79cpHVf?=
- =?us-ascii?Q?+w9HYlzLOgNyiGq2CEone1T4svb8lZrZUDvwZTL7TTPqzQyDD/zms81rbN5O?=
- =?us-ascii?Q?II/vB1BpKXOE6h0kglPVadXZBgrL+mmnyPEnYdoKpuuEz9iixPzCyIpwQH1T?=
- =?us-ascii?Q?QqWSXqHYprcgScYhQDS6RsmXhw7QsOYpqwf/OYeq+ckErKBpWtezkBzpU+D4?=
- =?us-ascii?Q?ACADLwlX4N9wim69CjxbA7VnJe5Tf+kutmXdM8+/Gn+2w9YM8dft+oFem8Aq?=
- =?us-ascii?Q?uJhSje/YxowedTOy5zPi2+SrnM4tFWAaVf1d2zNC/ldA+4RDh7LlEa7JwBjB?=
- =?us-ascii?Q?Zu/TkofPcIjFfZ0qA/AoazRFZjX+AvU8NTcZsoy5PGknJ7U9iH0m/hpN1aGf?=
- =?us-ascii?Q?fOGCmXM2I4/h51Tl1Zb1Dr4tALoV4SNAOOCZOY+pM6m6ezMaFG+kDL0sPVZF?=
- =?us-ascii?Q?iSYd0Cl0AmcBQT2hN0a1wJHBBLp1oEsJZ0P1Kv7QW01+Fs2EtYrVn7hbFhm6?=
- =?us-ascii?Q?A7ykSjUhnNd0138tCHBtkEE3Y+luOQIDpVkLIVnn2tF7HJ6Cfrhm9GGd1K27?=
- =?us-ascii?Q?E/73x0YvnWL6G3biX5qGfVQyGrwXGpKGtWIU0Ck5RdPBugQfSW73kVCfQbva?=
- =?us-ascii?Q?zZL+YozKg+7CL0xoxPG+ksJkjtxHPoBMybWJdY+hPd+KDfELovsck6UaPVLg?=
- =?us-ascii?Q?KrqQchh45re1y1JgyhGzL455uz9wntBmpO4ArHrP+PtpQgUWhDcnlvMX2pLq?=
- =?us-ascii?Q?UcwFDvKpTbFAjCDU1K1ER6WtEaKWwJLEPSlhNkgFayi+6+o1sc5NCRom3f9S?=
- =?us-ascii?Q?AYiTTX2G9VnPPx021Dx6N+O8YVTaY3S1tcl3weIuZ8lf/PfGz9RNf6FOuq2L?=
- =?us-ascii?Q?i85tEKcZeu6BI58Z0A3/CJgPcij2ROsl2TVx6FTNNWlb5f2Hga7OxCfWUNnu?=
- =?us-ascii?Q?F1JtpGinhhvsu0lHLP7fVr3e+vCuGjlu2X594lBSfz0X2cPv3kL4tLrI5sIN?=
- =?us-ascii?Q?Qam5aceHRzZWLKAji7aG7sCXy26nZbeYfN7W0JVbxybQAUF/efcnkTblGlVk?=
- =?us-ascii?Q?Kiepo4UtBtllGBN6MY8UVREQMfy93wWBrdHrg+oTGMC/TdlKGniX9uCZM5lc?=
- =?us-ascii?Q?q45hDeyFUE3YZ9cp1UKPZWoctdzviD/lL9NdLFaD5M08BDaWbMewm5V2Rgdn?=
- =?us-ascii?Q?mj6u19Uk8A=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        with ESMTP id S236776AbiEORnD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 15 May 2022 13:43:03 -0400
+Received: from mail-qk1-x729.google.com (mail-qk1-x729.google.com [IPv6:2607:f8b0:4864:20::729])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E11AB6376
+        for <devicetree@vger.kernel.org>; Sun, 15 May 2022 10:43:01 -0700 (PDT)
+Received: by mail-qk1-x729.google.com with SMTP id 185so10861328qke.7
+        for <devicetree@vger.kernel.org>; Sun, 15 May 2022 10:43:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=wT7VLRDfSwOG7DDUTxqW+M56OQZ9HqRj9DUWwFSPtsI=;
+        b=FEoF/Qragb8knn3BDe1u8yS34m1p84oMRad5hYObcGB1oRmQIcajBS+tN9/q5KH4bE
+         BcT3gDzXnVAAPmLkbsldTRUJTVDdwpL9I2h8dAJ4YzGSErjjVcgQ19tdk4q4xpTyw28q
+         5gQdMrExtYmWjVJg5ERgEVWxjonCdQy0mcJoGUz7SjxjBZGaU4jiWFlpAZePf5WeL/4P
+         WlFo+GhEZv1sNBSRIDzq2P4qvaE7N0UhzqAmURpLSdHaLgJ76sLjbl7XOLL4AZ2dTvHs
+         t3YsJAY5gBHgaq930Zq2Oge0T4YXNiA73k3EQf2eEv4uq0r43dMu+0kFCPRZnh7KPNKI
+         O74w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=wT7VLRDfSwOG7DDUTxqW+M56OQZ9HqRj9DUWwFSPtsI=;
+        b=pEpxWjEH9sMtiXsspp5lqdI0+5NwOUAVFTedIcKpqo16tTqDhwcSn1VU/+/8v8UIQG
+         2DJHe+2SpZ+pl0K6SSXbV6lt5id1un0ki1s92u1uGS1dB88MgK4NdXrIGexsGwUNz3XA
+         eEJZaI4kACjP1WdU4+9MSTuEvlsZTbMHBoq9ehHSQ6OLR8Tm2SBbRePFoikCOBTyFVZc
+         n20qJJcS8etzRckXRo7XuR4fYdwvw8fYD2Kr/W4RBDhkmUgFQKQNTd/rnG6suNHXo9xA
+         yYJP9QspS/J+nHsoXEfVualru0l8udYuuXz0+dfIlQictLlvFyfzHniBfU+R7tmw899+
+         myLQ==
+X-Gm-Message-State: AOAM533r5HlG4m+cbZ+tAFapIwYFnzQx23JKsXAiFMSm6Bor6Z8pi2ZD
+        hhPXqHujVqVSQca6bYyGaYIPY5KxdlkPNphIw068kw==
+X-Google-Smtp-Source: ABdhPJxktobMoOMM3/CKfUI5SmfWU+zvin53agjE4Dvsn+mY4XWFzRdP7eRl2XsMTZ3wKXNyKHaWt/wrSMCJbEjUmxY=
+X-Received: by 2002:a05:620a:2a0f:b0:6a0:2734:a92e with SMTP id
+ o15-20020a05620a2a0f00b006a02734a92emr9855480qkp.593.1652636580974; Sun, 15
+ May 2022 10:43:00 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB4074.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c8805d7d-a6fb-4631-e9ee-08da36966b91
-X-MS-Exchange-CrossTenant-originalarrivaltime: 15 May 2022 17:14:50.3596
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: hcKwZgVb8rBNClUMmW3kviPG4pUVARR6jsBV3QSOmR+CO1vJdv68pKYF5uHtWPStYP6nTZSebD08W4XcBCFacw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR12MB3319
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+References: <20220514190138.3179964-1-dmitry.baryshkov@linaro.org>
+ <20220514190138.3179964-12-dmitry.baryshkov@linaro.org> <20220515145634.6bfbg5ow243ikmai@SoMainline.org>
+In-Reply-To: <20220515145634.6bfbg5ow243ikmai@SoMainline.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Sun, 15 May 2022 20:42:49 +0300
+Message-ID: <CAA8EJprtCO61a7kmm001nN7qz_M4+t6hqs_sFfeLRnwcBkV81w@mail.gmail.com>
+Subject: Re: [PATCH v5 11/12] arm64: dts: qcom: sdm660: Add initial Inforce
+ IFC6560 board support
+To:     Marijn Suijten <marijn.suijten@somainline.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
-
-I fixed all dt binding check errors and changed the patch subject name
-that you pointed out.
-However, it's not clear completely your comment in this reply.
-emc2305 device support 5 pwms.
-The intention was to specify a simple configuration per pwm{n} - to allow s=
-etting per pwm{n}=20
-minimum and maximum duty cycle, cooling level stepping (10%, 5%, 1%).
-
-Is there some way to provide such a configuration?
-Do you think that the following example is OK?
-
-fan {
-    microchip,compatible =3D "microchip,emc2305";
-    microchip,pwm-channel =3D <5>;
-    microchip,cooling-levels =3D <10>;
-	pwm1 {
-		microchip,pwm-min =3D <0>;
-		microchip,pwm-max =3D <255>;
-	};
-	pwm2 {
-		microchip,pwm-min =3D <0>;
-		microchip,pwm-max =3D <255>;
-	};
-	...
-};
-
-Regards,
-    Michael.
-
-
-
-> -----Original Message-----
-> From: Rob Herring <robh@kernel.org>
-> Sent: Monday, May 2, 2022 9:17 PM
-> To: Michael Shych <michaelsh@nvidia.com>
-> Cc: linux@roeck-us.net; linux-hwmon@vger.kernel.org;
-> devicetree@vger.kernel.org; Vadim Pasternak <vadimp@nvidia.com>
-> Subject: Re: [PATCH v1 2/3] dt-bindings: hwmon: add
-> microchip,emc2306.yaml dt binding description.
->=20
-> On Sat, Apr 30, 2022 at 02:49:04PM +0300, michaelsh@nvidia.com wrote:
-> > From: Michael Shych <michaelsh@nvidia.com>
+On Sun, 15 May 2022 at 17:56, Marijn Suijten
+<marijn.suijten@somainline.org> wrote:
+>
+> On 2022-05-14 22:01:37, Dmitry Baryshkov wrote:
+> > The IFC6560 is a board from Inforce Computing, built around the SDA660
+> > SoC. This patch describes core clocks, some regulators from the two
+> > PMICs, debug uart, storage, bluetooth and audio DSP remoteproc.
 > >
-> > Add basic description of emc2305 driver device tree binding.
+> > The regulator settings are inherited from prior work by Konrad Dybcio
+> > and AngeloGioacchino Del Regno.
 > >
-> > Signed-off-by: Michael Shych <michaelsh@nvidia.com>
-> > Reviewed-by: Vadim Pasternak <vadimp@nvidia.com>
+> > Co-developed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>
+> I don't own this board nor a reference manual, but have scrutinized this
+> patch enough (and compared it against the status-quo in other sd*6**
+> dts files) to dare and give it my:
+>
+> Reviewed-by: Marijn Suijten <marijn.suijten@somainline.org>
+>
 > > ---
-> >  .../bindings/hwmon/microchip,emc2305.yaml          | 55
-> ++++++++++++++++++++++
-> >  1 file changed, 55 insertions(+)
-> >  create mode 100644
-> > Documentation/devicetree/bindings/hwmon/microchip,emc2305.yaml
+> >  arch/arm64/boot/dts/qcom/Makefile             |   1 +
+> >  .../boot/dts/qcom/sda660-inforce-ifc6560.dts  | 461 ++++++++++++++++++
+> >  2 files changed, 462 insertions(+)
+> >  create mode 100644 arch/arm64/boot/dts/qcom/sda660-inforce-ifc6560.dts
 > >
-> > diff --git
-> > a/Documentation/devicetree/bindings/hwmon/microchip,emc2305.yaml
-> > b/Documentation/devicetree/bindings/hwmon/microchip,emc2305.yaml
+> > diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+> > index f9e6343acd03..5f717fe0e8d0 100644
+> > --- a/arch/arm64/boot/dts/qcom/Makefile
+> > +++ b/arch/arm64/boot/dts/qcom/Makefile
+> > @@ -88,6 +88,7 @@ dtb-$(CONFIG_ARCH_QCOM)     += sc7280-herobrine-herobrine-r1.dtb
+> >  dtb-$(CONFIG_ARCH_QCOM)      += sc7280-idp.dtb
+> >  dtb-$(CONFIG_ARCH_QCOM)      += sc7280-idp2.dtb
+> >  dtb-$(CONFIG_ARCH_QCOM)      += sc7280-crd.dtb
+> > +dtb-$(CONFIG_ARCH_QCOM)      += sda660-inforce-ifc6560.dtb
+> >  dtb-$(CONFIG_ARCH_QCOM)      += sdm630-sony-xperia-ganges-kirin.dtb
+> >  dtb-$(CONFIG_ARCH_QCOM)      += sdm630-sony-xperia-nile-discovery.dtb
+> >  dtb-$(CONFIG_ARCH_QCOM)      += sdm630-sony-xperia-nile-pioneer.dtb
+> > diff --git a/arch/arm64/boot/dts/qcom/sda660-inforce-ifc6560.dts b/arch/arm64/boot/dts/qcom/sda660-inforce-ifc6560.dts
 > > new file mode 100644
-> > index 000000000000..c873172b7268
+> > index 000000000000..5360b56df045
 > > --- /dev/null
-> > +++
-> b/Documentation/devicetree/bindings/hwmon/microchip,emc2305.yaml
-> > @@ -0,0 +1,55 @@
-> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause) %YAML 1.2
-> > +---
+> > +++ b/arch/arm64/boot/dts/qcom/sda660-inforce-ifc6560.dts
+> > @@ -0,0 +1,461 @@
+> > +// SPDX-License-Identifier: BSD-3-Clause
+> > +/*
+> > + * Copyright (c) 2021, Linaro Ltd.
+> > + * Copyright (c) 2020, Konrad Dybcio <konrad.dybcio@somainline.org>
+> > + * Copyright (c) 2020, AngeloGioacchino Del Regno
+> > + *                     <angelogioacchino.delregno@somainline.org>
+>
+> These are only for the regulator configuration, which typically depend
+> on the board and should not be copied or inherited from a different
+> board?
+
+Not sure, they existed in Bjorn's patch. And I'm not in the position
+to remove existing copyrights. So I've left them in place even if they
+are for the regulators.
+
+>
+> - Marijn
+>
+> > + */
 > > +
-> > +$id: http://devicetree.org/schemas/hwmon/emc2305.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +/dts-v1/;
 > > +
-> > +title: Microchip EMC2305 RPM-based PWM Fan Speed Controller
+> > +#include "sdm660.dtsi"
+> > +#include "pm660.dtsi"
+> > +#include "pm660l.dtsi"
 > > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - microcip,emc2305
+> > +/ {
+> > +     model = "Inforce 6560 Single Board Computer";
+> > +     compatible = "inforce,ifc6560", "qcom,sda660";
+> > +     chassis-type = "embedded"; /* SBC */
 > > +
-> > +  emc2305,pwm-min:
-> > +    description:
-> > +      Min pwm of emc2305
-> > +    maxItems: 1
-> > +  emc2305,pwm-max:
-> > +    description:
-> > +      Max pwm of emc2305
-> > +    maxItems: 1
-> > +  emc2305,pwm-channel:
-> > +    description:
-> > +      Max number of pwm channels
-> > +    maxItems: 1
-> > +  emcs205,max-state:
-> > +    description:
-> > +    maxItems: 1
-> > +  emc2305,cooling-levels:
-> > +    description:
-> > +      Quantity of cooling level state.
-> > +    maxItems: 1
+> > +     aliases {
+> > +             serial0 = &blsp1_uart2;
+> > +             serial1 = &blsp2_uart1;
+> > +     };
 > > +
-> > +required:
-> > +  - compatible
+> > +     chosen {
+> > +             stdout-path = "serial0:115200n8";
+> > +     };
 > > +
-> > +optional:
-> > +  - emc2305,min-pwm
-> > +  - emc2305,max-pwm
-> > +  - emc2305,pwm-channels
-> > +  - emc2305,cooling-levels
+> > +     gpio-keys {
+> > +             compatible = "gpio-keys";
 > > +
-> > +additionalProperties: false
+> > +             volup {
+> > +                     label = "Volume Up";
+> > +                     gpios = <&pm660l_gpios 7 GPIO_ACTIVE_LOW>;
+> > +                     linux,code = <KEY_VOLUMEUP>;
+> > +                     debounce-interval = <15>;
+> > +             };
+> > +     };
 > > +
-> > +examples:
-> > +  - |
-> > +    fan {
-> > +        emc2305,compatible =3D "microchip,emc2305";
->=20
-> Err, what?
->=20
-> > +        emc2305,pwm-min =3D <0>;
-> > +        emc2305,pwm-max =3D <255>;
-> > +        emc2305,pwm-channel =3D <5>
-> > +        emc2305,cooling-levels =3D <10>;
->=20
-> All possible fans attached to this controller are the same and don't have
-> anything that needs to be described? Based on other fan controllers, I do=
-n't
-> think so. As I've said multiple times, there's a need for a common fan an=
-d
-> fan-controller binding. Until that happens, I'm not inclined to accept fa=
-n
-> controller bindings with custom properties.
->=20
-> Rob
+> > +     /*
+> > +      * Until we hook up type-c detection, we
+> > +      * have to stick with this. But it works.
+> > +      */
+> > +     extcon_usb: extcon-usb {
+> > +             compatible = "linux,extcon-usb-gpio";
+> > +             id-gpio = <&tlmm 58 GPIO_ACTIVE_HIGH>;
+> > +     };
+> > +
+> > +     hdmi-out {
+> > +             compatible = "hdmi-connector";
+> > +             type = "a";
+> > +
+> > +             port {
+> > +                     hdmi_con: endpoint {
+> > +                             remote-endpoint = <&adv7533_out>;
+> > +                     };
+> > +             };
+> > +     };
+> > +
+> > +     vph_pwr: vph-pwr-regulator {
+> > +             compatible = "regulator-fixed";
+> > +             regulator-name = "vph_pwr";
+> > +             regulator-min-microvolt = <3800000>;
+> > +             regulator-max-microvolt = <3800000>;
+> > +
+> > +             regulator-always-on;
+> > +             regulator-boot-on;
+> > +     };
+> > +
+> > +     v3p3_bck_bst: v3p3-bck-bst-regulator {
+> > +             compatible = "regulator-fixed";
+> > +             regulator-name = "v3p3_bck_bst";
+> > +
+> > +             regulator-min-microvolt = <3300000>;
+> > +             regulator-max-microvolt = <3300000>;
+> > +
+> > +             vin-supply = <&vph_pwr>;
+> > +     };
+> > +
+> > +     v1p2_ldo: v1p2-ldo-regulator {
+> > +             compatible = "regulator-fixed";
+> > +             regulator-name = "v1p2_ldo";
+> > +
+> > +             regulator-min-microvolt = <1200000>;
+> > +             regulator-max-microvolt = <1200000>;
+> > +
+> > +             vin-supply = <&vph_pwr>;
+> > +     };
+> > +
+> > +     v5p0_boost: v5p0-boost-regulator {
+> > +             compatible = "regulator-fixed";
+> > +             regulator-name = "v5p0_boost";
+> > +
+> > +             regulator-min-microvolt = <5000000>;
+> > +             regulator-max-microvolt = <5000000>;
+> > +
+> > +             vin-supply = <&vph_pwr>;
+> > +     };
+> > +};
+> > +
+> > +&adsp_pil {
+> > +     firmware-name = "qcom/ifc6560/adsp.mbn";
+> > +};
+> > +
+> > +&blsp1_dma {
+> > +     /*
+> > +      * The board will lock up if we toggle the BLSP clock, unless the
+> > +      * BAM DMA interconnects support is in place.
+> > +      */
+> > +     /delete-property/ clocks;
+> > +};
+> > +
+> > +&blsp_i2c6 {
+> > +     status = "okay";
+> > +
+> > +     adv7533: hdmi@39 {
+> > +             compatible = "adi,adv7535";
+> > +             reg = <0x39>, <0x66>;
+> > +             reg-names = "main", "edid";
+> > +
+> > +             interrupt-parent = <&pm660l_gpios>;
+> > +             interrupts = <11 IRQ_TYPE_EDGE_FALLING>;
+> > +
+> > +             clocks = <&rpmcc RPM_SMD_BB_CLK2>;
+> > +             clock-names = "cec";
+> > +             /*
+> > +              * Limit to 3 lanes to prevent the bridge from changing amount
+> > +              * of lanes in the fly. MSM DSI host doesn't like that.
+> > +              */
+> > +             adi,dsi-lanes = <3>;
+> > +             avdd-supply = <&vreg_l13a_1p8>;
+> > +             dvdd-supply = <&vreg_l13a_1p8>;
+> > +             pvdd-supply = <&vreg_l13a_1p8>;
+> > +             a2vdd-supply = <&vreg_l13a_1p8>;
+> > +             v3p3-supply = <&v3p3_bck_bst>;
+> > +
+> > +             ports {
+> > +                     #address-cells = <1>;
+> > +                     #size-cells = <0>;
+> > +
+> > +                     port@0 {
+> > +                             reg = <0>;
+> > +
+> > +                             adv7533_in: endpoint {
+> > +                                     remote-endpoint = <&dsi0_out>;
+> > +                             };
+> > +                     };
+> > +
+> > +                     port@1 {
+> > +                             reg = <1>;
+> > +
+> > +                             adv7533_out: endpoint {
+> > +                                     remote-endpoint = <&hdmi_con>;
+> > +                             };
+> > +                     };
+> > +             };
+> > +     };
+> > +};
+> > +
+> > +&blsp1_uart2 {
+> > +     status = "okay";
+> > +};
+> > +
+> > +&blsp2_dma {
+> > +     /*
+> > +      * The board will lock up if we toggle the BLSP clock, unless the
+> > +      * BAM DMA interconnects support is in place.
+> > +      */
+> > +     /delete-property/ clocks;
+> > +};
+> > +
+> > +&blsp2_uart1 {
+> > +     status = "okay";
+> > +
+> > +     bluetooth {
+> > +             compatible = "qcom,wcn3990-bt";
+> > +
+> > +             vddio-supply = <&vreg_l13a_1p8>;
+> > +             vddxo-supply = <&vreg_l9a_1p8>;
+> > +             vddrf-supply = <&vreg_l6a_1p3>;
+> > +             vddch0-supply = <&vreg_l19a_3p3>;
+> > +             max-speed = <3200000>;
+> > +     };
+> > +};
+> > +
+> > +&dsi0 {
+> > +     status = "okay";
+> > +     vdda-supply = <&vreg_l1a_1p225>;
+> > +};
+> > +
+> > +&dsi0_out {
+> > +     remote-endpoint = <&adv7533_in>;
+> > +     data-lanes = <0 1 2 3>;
+> > +};
+> > +
+> > +&dsi0_phy {
+> > +     status = "okay";
+> > +     vcca-supply = <&vreg_l1b_0p925>;
+> > +};
+> > +
+> > +&mdss {
+> > +     status = "okay";
+> > +};
+> > +
+> > +&mmss_smmu {
+> > +     status = "okay";
+> > +};
+> > +
+> > +&pon_pwrkey {
+> > +     status = "okay";
+> > +};
+> > +
+> > +&pon_resin {
+> > +     status = "okay";
+> > +
+> > +     linux,code = <KEY_VOLUMEUP>;
+> > +};
+> > +
+> > +&qusb2phy0 {
+> > +     status = "okay";
+> > +
+> > +     vdd-supply = <&vreg_l1b_0p925>;
+> > +     vdda-phy-dpdm-supply = <&vreg_l7b_3p125>;
+> > +};
+> > +
+> > +&qusb2phy1 {
+> > +     status = "okay";
+> > +
+> > +     vdd-supply = <&vreg_l1b_0p925>;
+> > +     vdda-phy-dpdm-supply = <&vreg_l7b_3p125>;
+> > +};
+> > +
+> > +&rpm_requests {
+> > +     pm660-regulators {
+> > +             compatible = "qcom,rpm-pm660-regulators";
+> > +
+> > +             vdd_s1-supply = <&vph_pwr>;
+> > +             vdd_s2-supply = <&vph_pwr>;
+> > +             vdd_s3-supply = <&vph_pwr>;
+> > +             vdd_s4-supply = <&vph_pwr>;
+> > +             vdd_s5-supply = <&vph_pwr>;
+> > +             vdd_s6-supply = <&vph_pwr>;
+> > +
+> > +             vdd_l1_l6_l7-supply = <&vreg_s5a_1p35>;
+> > +             vdd_l2_l3-supply = <&vreg_s2b_1p05>;
+> > +             vdd_l5-supply = <&vreg_s2b_1p05>;
+> > +             vdd_l8_l9_l10_l11_l12_l13_l14-supply = <&vreg_s4a_2p04>;
+> > +             vdd_l15_l16_l17_l18_l19-supply = <&vreg_bob>;
+> > +
+> > +             vreg_s4a_2p04: s4 {
+> > +                     regulator-min-microvolt = <1805000>;
+> > +                     regulator-max-microvolt = <2040000>;
+> > +                     regulator-enable-ramp-delay = <200>;
+> > +                     regulator-ramp-delay = <0>;
+> > +                     regulator-always-on;
+> > +             };
+> > +
+> > +             vreg_s5a_1p35: s5 {
+> > +                     regulator-min-microvolt = <1224000>;
+> > +                     regulator-max-microvolt = <1350000>;
+> > +                     regulator-enable-ramp-delay = <200>;
+> > +                     regulator-ramp-delay = <0>;
+> > +             };
+> > +
+> > +             vreg_l1a_1p225: l1 {
+> > +                     regulator-min-microvolt = <1150000>;
+> > +                     regulator-max-microvolt = <1250000>;
+> > +                     regulator-enable-ramp-delay = <250>;
+> > +                     regulator-allow-set-load;
+> > +             };
+> > +
+> > +             vreg_l6a_1p3: l6 {
+> > +                     regulator-min-microvolt = <1304000>;
+> > +                     regulator-max-microvolt = <1368000>;
+> > +                     regulator-enable-ramp-delay = <250>;
+> > +                     regulator-ramp-delay = <0>;
+> > +                     regulator-allow-set-load;
+> > +             };
+> > +
+> > +             vreg_l8a_1p8: l8 {
+> > +                     regulator-min-microvolt = <1800000>;
+> > +                     regulator-max-microvolt = <1800000>;
+> > +                     regulator-enable-ramp-delay = <250>;
+> > +                     regulator-ramp-delay = <0>;
+> > +                     regulator-system-load = <325000>;
+> > +                     regulator-allow-set-load;
+> > +             };
+> > +
+> > +             vreg_l9a_1p8: l9 {
+> > +                     regulator-min-microvolt = <1804000>;
+> > +                     regulator-max-microvolt = <1896000>;
+> > +                     regulator-enable-ramp-delay = <250>;
+> > +                     regulator-ramp-delay = <0>;
+> > +                     regulator-allow-set-load;
+> > +             };
+> > +
+> > +             vreg_l13a_1p8: l13 {
+> > +                     /* This gives power to the LPDDR4: never turn it off! */
+> > +                     regulator-min-microvolt = <1800000>;
+> > +                     regulator-max-microvolt = <1944000>;
+> > +                     regulator-enable-ramp-delay = <250>;
+> > +                     regulator-ramp-delay = <0>;
+> > +                     regulator-always-on;
+> > +                     regulator-boot-on;
+> > +             };
+> > +
+> > +             vreg_l19a_3p3: l19 {
+> > +                     regulator-min-microvolt = <3312000>;
+> > +                     regulator-max-microvolt = <3400000>;
+> > +                     regulator-enable-ramp-delay = <250>;
+> > +                     regulator-ramp-delay = <0>;
+> > +                     regulator-allow-set-load;
+> > +             };
+> > +     };
+> > +
+> > +     pm660l-regulators {
+> > +             compatible = "qcom,rpm-pm660l-regulators";
+> > +
+> > +             vdd_s1-supply = <&vph_pwr>;
+> > +             vdd_s2-supply = <&vph_pwr>;
+> > +             vdd_s3_s4-supply = <&vph_pwr>;
+> > +             vdd_s5-supply = <&vph_pwr>;
+> > +             vdd_s6-supply = <&vph_pwr>;
+> > +
+> > +             vdd_l1_l9_l10-supply = <&vreg_s2b_1p05>;
+> > +             vdd_l2-supply = <&vreg_bob>;
+> > +             vdd_l3_l5_l7_l8-supply = <&vreg_bob>;
+> > +             vdd_l4_l6-supply = <&vreg_bob>;
+> > +             vdd_bob-supply = <&vph_pwr>;
+> > +
+> > +             vreg_s2b_1p05: s2 {
+> > +                     regulator-min-microvolt = <1050000>;
+> > +                     regulator-max-microvolt = <1050000>;
+> > +                     regulator-enable-ramp-delay = <200>;
+> > +                     regulator-ramp-delay = <0>;
+> > +             };
+> > +
+> > +             vreg_l1b_0p925: l1 {
+> > +                     regulator-min-microvolt = <800000>;
+> > +                     regulator-max-microvolt = <925000>;
+> > +                     regulator-enable-ramp-delay = <250>;
+> > +                     regulator-allow-set-load;
+> > +             };
+> > +
+> > +             vreg_l2b_2p95: l2 {
+> > +                     regulator-min-microvolt = <1648000>;
+> > +                     regulator-max-microvolt = <3100000>;
+> > +                     regulator-enable-ramp-delay = <250>;
+> > +                     regulator-ramp-delay = <0>;
+> > +                     regulator-allow-set-load;
+> > +             };
+> > +
+> > +             vreg_l4b_2p95: l4 {
+> > +                     regulator-min-microvolt = <2944000>;
+> > +                     regulator-max-microvolt = <2952000>;
+> > +                     regulator-enable-ramp-delay = <250>;
+> > +                     regulator-ramp-delay = <0>;
+> > +
+> > +                     regulator-min-microamp = <200>;
+> > +                     regulator-max-microamp = <600000>;
+> > +                     regulator-system-load = <570000>;
+> > +                     regulator-allow-set-load;
+> > +             };
+> > +
+> > +             /*
+> > +              * Downstream specifies a range of 1721-3600mV,
+> > +              * but the only assigned consumers are SDHCI2 VMMC
+> > +              * and Coresight QPDI that both request pinned 2.95V.
+> > +              * Tighten the range to 1.8-3.328 (closest to 3.3) to
+> > +              * make the mmc driver happy.
+> > +              */
+> > +             vreg_l5b_2p95: l5 {
+> > +                     regulator-min-microvolt = <1800000>;
+> > +                     regulator-max-microvolt = <3328000>;
+> > +                     regulator-enable-ramp-delay = <250>;
+> > +                     regulator-system-load = <800000>;
+> > +                     regulator-ramp-delay = <0>;
+> > +                     regulator-allow-set-load;
+> > +             };
+> > +
+> > +             vreg_l7b_3p125: l7 {
+> > +                     regulator-min-microvolt = <2700000>;
+> > +                     regulator-max-microvolt = <3125000>;
+> > +                     regulator-enable-ramp-delay = <250>;
+> > +             };
+> > +
+> > +             vreg_l8b_3p3: l8 {
+> > +                     regulator-min-microvolt = <2800000>;
+> > +                     regulator-max-microvolt = <3400000>;
+> > +                     regulator-enable-ramp-delay = <250>;
+> > +                     regulator-ramp-delay = <0>;
+> > +             };
+> > +
+> > +             vreg_bob: bob {
+> > +                     regulator-min-microvolt = <3300000>;
+> > +                     regulator-max-microvolt = <3624000>;
+> > +                     regulator-enable-ramp-delay = <500>;
+> > +                     regulator-ramp-delay = <0>;
+> > +             };
+> > +     };
+> > +};
+> > +
+> > +&sdc2_state_on {
+> > +     sd-cd {
+> > +             pins = "gpio54";
+> > +             bias-pull-up;
+> > +             drive-strength = <2>;
+> > +     };
+> > +};
+> > +
+> > +&sdc2_state_off {
+> > +     sd-cd {
+> > +             pins = "gpio54";
+> > +             bias-disable;
+> > +             drive-strength = <2>;
+> > +     };
+> > +};
+> > +
+> > +&sdhc_1 {
+> > +     status = "okay";
+> > +     supports-cqe;
+> > +
+> > +     vmmc-supply = <&vreg_l4b_2p95>;
+> > +     vqmmc-supply = <&vreg_l8a_1p8>;
+> > +
+> > +     mmc-ddr-1_8v;
+> > +     mmc-hs400-1_8v;
+> > +     mmc-hs400-enhanced-strobe;
+> > +};
+> > +
+> > +&sdhc_2 {
+> > +     status = "okay";
+> > +
+> > +     vmmc-supply = <&vreg_l5b_2p95>;
+> > +     vqmmc-supply = <&vreg_l2b_2p95>;
+> > +
+> > +     cd-gpios = <&tlmm 54 GPIO_ACTIVE_LOW>;
+> > +     no-sdio;
+> > +     no-emmc;
+> > +};
+> > +
+> > +&tlmm {
+> > +     gpio-reserved-ranges = <0 4>, <8 4>;
+> > +};
+> > +
+> > +&usb2 {
+> > +     status = "okay";
+> > +};
+> > +
+> > +&usb2_dwc3 {
+> > +     dr_mode = "host";
+> > +};
+> > +
+> > +&usb3 {
+> > +     status = "okay";
+> > +};
+> > +
+> > +&usb3_dwc3 {
+> > +     dr_mode = "peripheral";
+> > +     extcon = <&extcon_usb>;
+> > +};
+> > --
+> > 2.35.1
+> >
+
+
+
+-- 
+With best wishes
+Dmitry
