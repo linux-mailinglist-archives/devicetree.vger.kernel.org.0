@@ -2,101 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E661C5279E1
-	for <lists+devicetree@lfdr.de>; Sun, 15 May 2022 22:31:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A45135279F4
+	for <lists+devicetree@lfdr.de>; Sun, 15 May 2022 22:40:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238589AbiEOUbe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 15 May 2022 16:31:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43550 "EHLO
+        id S238660AbiEOUkU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 15 May 2022 16:40:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60470 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238049AbiEOUbc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 15 May 2022 16:31:32 -0400
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86C85DED3;
-        Sun, 15 May 2022 13:31:31 -0700 (PDT)
-Received: by mail-ej1-x636.google.com with SMTP id ch13so25114957ejb.12;
-        Sun, 15 May 2022 13:31:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=PaTZIap6SATi669kRyhjyKwcnCOv+7U1T4zX6WeFaro=;
-        b=KmLWDVd5X6xcpiaKXRDi2fjsPUutyKu7aXWvR0erkdVmVwIPnh5jxx13W7egdt06BW
-         ny7XRP69ZsA8OcyVUFatbEP0+tnWSLV2/WJv9OdgJphAlOlTdJufKW2x+BlarZeI9zNX
-         baD0ZFDU2/ClXBJ0rkGX5y+P1KaOz8MuOmPY5wuljk/X4BD/rJqAD5nWMuyjSocUdaP1
-         x2+QrkyzWC7LA7F40+pCc9RKjp3hWt1VNwIQu6/MTcHI+nge2h5BrcaeGQO7M2QtY7kw
-         1gbkStCmV8rxj5ohpaKB4Q/2UCGWiHjCwu/x4ut1BaAFw//hlS33ocAzJ9v9Ry06tD3T
-         nhKA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=PaTZIap6SATi669kRyhjyKwcnCOv+7U1T4zX6WeFaro=;
-        b=Q4OYg5VmNKB2jnvFGERFcdqISaigUFq9qHilUarXJ2xq2+5c3x+95ML97rfpi2xkdh
-         ryXsUQ5j89i5Y8F0gmtgNEN90ciKKYeGrdcfB+z0Zv9t6qKi5tz8gm/KGe3M6unbVXFG
-         8t/UzJZA+FkEo2UbGJoZyRlwKOob5BcxNl08tZ2LsiXvR3BefCmBk8baAivv2QlYgt7Q
-         KDBlf4Qwo8JIHkWhvkcvhBKFX7OPFrMV92FydH8EeZdH68aULhFouWtQi/nyhxCL8tk+
-         Y0pAvSVe8RH5KUeytqUF127+RVHVPmh43pGrsNfuPnlrS8UHWHbCTClVZgPuyaqgnvgP
-         HpbA==
-X-Gm-Message-State: AOAM530nuQrbgBWMM0sGF3Y0T8hZb0dhP4mKr/KuSR4t99YboMnec30x
-        qwqtZI7q7eSnQgGElSiXdE8=
-X-Google-Smtp-Source: ABdhPJzD011Sni2n7zKQi+0xlen0WN3fa8JAf3yBeuqk+YEjslKTDCk6c5kmwvg/aVtYdqWwzdcXUA==
-X-Received: by 2002:a17:907:7d93:b0:6fe:21d9:4230 with SMTP id oz19-20020a1709077d9300b006fe21d94230mr5858712ejc.42.1652646690026;
-        Sun, 15 May 2022 13:31:30 -0700 (PDT)
-Received: from fedora.robimarko.hr (dh207-98-105.xnet.hr. [88.207.98.105])
-        by smtp.googlemail.com with ESMTPSA id ze16-20020a170906ef9000b006f3ef214e4esm2944884ejb.180.2022.05.15.13.31.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 15 May 2022 13:31:29 -0700 (PDT)
-From:   Robert Marko <robimarko@gmail.com>
-To:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
-        broonie@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     Robert Marko <robimarko@gmail.com>
-Subject: [PATCH 6/6] arm64: dts: ipq8074: add VQMMC supply
-Date:   Sun, 15 May 2022 22:31:18 +0200
-Message-Id: <20220515203118.474684-6-robimarko@gmail.com>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20220515203118.474684-1-robimarko@gmail.com>
-References: <20220515203118.474684-1-robimarko@gmail.com>
+        with ESMTP id S230463AbiEOUkS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 15 May 2022 16:40:18 -0400
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5B9318B18;
+        Sun, 15 May 2022 13:40:14 -0700 (PDT)
+Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=phil.lan)
+        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <heiko@sntech.de>)
+        id 1nqL26-0006KS-GD; Sun, 15 May 2022 22:40:06 +0200
+From:   Heiko Stuebner <heiko@sntech.de>
+To:     zhangqing@rock-chips.com, Johan Jonker <jbx6244@gmail.com>
+Cc:     Heiko Stuebner <heiko@sntech.de>, linux-clk@vger.kernel.org,
+        sboyd@kernel.org, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, krzk+dt@kernel.org, robh+dt@kernel.org,
+        mturquette@baylibre.com, linux-rockchip@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 1/3] dt-bindings: clock: convert rockchip,rv1108-cru.txt to YAML
+Date:   Sun, 15 May 2022 22:40:04 +0200
+Message-Id: <165264719504.2587306.15719505641957259296.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.35.1
+In-Reply-To: <20220330131608.30040-1-jbx6244@gmail.com>
+References: <20220330131608.30040-1-jbx6244@gmail.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SDHCI controller claims DDR, HS200 and HS400 1.8V support, however it
-cannot achieve those using the 2.95V I/O that is the default set by
-firmware.
+On Wed, 30 Mar 2022 15:16:06 +0200, Johan Jonker wrote:
+> Convert rockchip,rv1108-cru.txt to YAML.
+> 
+> Changes against original bindings:
+>   Add clocks and clock-names because the device has to have
+>   at least one input clock.
 
-Since we know have access to the PMP8074 PMIC provided LDO that provides
-the I/O voltage set it as VQMMC supply so that higher speeds can actually
-be achieved.
+Applied, thanks!
 
-Signed-off-by: Robert Marko <robimarko@gmail.com>
----
- arch/arm64/boot/dts/qcom/ipq8074.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
+[1/3] dt-bindings: clock: convert rockchip,rv1108-cru.txt to YAML
+      commit: 5eb60b7bff3233d07e6a9e3328d2ba415209691e
+[2/3] ARM: dts: rockchip: add clocks property to cru node rv1108
+      commit: f36fed209444efe8ac6621900f407c6569c92dc9
+[3/3] ARM: dts: rockchip: Remove bogus "amba" bus nodes part 2
+      commit: 191800d40222ee920dab2e7a774ea2ae4f28c1c9
 
-diff --git a/arch/arm64/boot/dts/qcom/ipq8074.dtsi b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-index 906468ee990e..2e8765aa8f37 100644
---- a/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-+++ b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-@@ -476,6 +476,8 @@ sdhc_1: sdhci@7824900 {
- 			mmc-hs400-1_8v;
- 			bus-width = <8>;
- 
-+			vqmmc-supply = <&l11>;
-+
- 			status = "disabled";
- 		};
- 
+Best regards,
 -- 
-2.36.1
-
+Heiko Stuebner <heiko@sntech.de>
