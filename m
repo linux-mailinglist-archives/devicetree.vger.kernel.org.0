@@ -2,106 +2,272 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B3745279CA
-	for <lists+devicetree@lfdr.de>; Sun, 15 May 2022 22:21:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C28435279D8
+	for <lists+devicetree@lfdr.de>; Sun, 15 May 2022 22:31:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233059AbiEOUVp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 15 May 2022 16:21:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55274 "EHLO
+        id S231464AbiEOUbY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 15 May 2022 16:31:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43248 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233179AbiEOUVk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 15 May 2022 16:21:40 -0400
-Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB43D35DF5
-        for <devicetree@vger.kernel.org>; Sun, 15 May 2022 13:21:38 -0700 (PDT)
-Received: from localhost.localdomain ([37.4.249.94]) by
- mrelayeu.kundenserver.de (mreue010 [212.227.15.167]) with ESMTPSA (Nemesis)
- id 1MrQ2R-1nVpyd3W9X-00oZSW; Sun, 15 May 2022 22:21:24 +0200
-From:   Stefan Wahren <stefan.wahren@i2se.com>
-To:     Florian Fainelli <f.fainelli@gmail.com>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        Nicolas Saenz Julienne <nsaenz@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>
-Cc:     Peter Robinson <pbrobinson@gmail.com>,
-        Melissa Wen <melissa.srw@gmail.com>,
-        Phil Elwell <phil@raspberrypi.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Maxime Ripard <maxime@cerno.tech>, devicetree@vger.kernel.org,
-        linux-rpi-kernel@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
-        Stefan Wahren <stefan.wahren@i2se.com>
-Subject: [PATCH 11/11] soc: bcm: bcm2835-power: Bypass power_on/off() calls
-Date:   Sun, 15 May 2022 22:20:32 +0200
-Message-Id: <20220515202032.3046-12-stefan.wahren@i2se.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220515202032.3046-1-stefan.wahren@i2se.com>
-References: <20220515202032.3046-1-stefan.wahren@i2se.com>
+        with ESMTP id S230463AbiEOUbX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 15 May 2022 16:31:23 -0400
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4EC532BE5;
+        Sun, 15 May 2022 13:31:22 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id g6so25221459ejw.1;
+        Sun, 15 May 2022 13:31:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=GMH39Son2N3gZ9c/oeFLwOmolsOkBedh777nxOuqfek=;
+        b=ICNuozQdrKs9S7QW4c7BmzeSDmB6P5eSXxchDKGIniTnOy9u6UXnhLsLw06CAeFl35
+         uU4YG5BYBnA8tlQzkDNgjEu5qF1AFJj8HCdiwMzY6I5uc8cBL6JyC5jRFfRAVVjJm1Fn
+         m8lK6UslYi8crDNayf8bv+RCUyk7sFme0sdXzIEvOh65pwhGcKVk6bFxHmnLtyeJzT7b
+         YBd9w+9sNPXw3e47DOOwbDYGsTIgMqXkzTgvYpkfeh2S0pc3gKxKVQzRsT3TSTyZDFrg
+         9OT0H+64hSrJ8iZObQ4VouvaCfXl3RWSBcYfGMQusyeLvGZbx4kLMz4yyif0tYyMg+od
+         bGzg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=GMH39Son2N3gZ9c/oeFLwOmolsOkBedh777nxOuqfek=;
+        b=fEtjlNHCfwCvSN0vTGrXK+GBKRwwkLEtoSR1b0xgjipDZp5gaTfJOkmkMgZGCx0wqv
+         0PRaWSYyfD2fykBWe2n7yYzI9soM7HKcNw6qkv6GDqr2x8EWZ/u2XAEkBU+yPtGaEH3F
+         kwR3hFElXBzkEiik0FUN9OOcBDMqwpz2SUdlOPUcKhNgyzM1g8Qdkg3rOn88jtH1H396
+         sfl5cEUBPiVQMlNFyzp/IbQEj1s6UrLWqLbi0S+Bpq9tfqDThSHxmovCl7wHxBy8NcA5
+         o6dC97A84ON0lTL6PTzTQNdMgd+WF3WLOysMmct7PFnczP2wBDSnhOKl7UUlvy1OKLZf
+         y/6g==
+X-Gm-Message-State: AOAM531pAHnQQMuaOC+RPO18DF+D6kEpw4cBoPeCZAml9Z+K+U/wnESB
+        iNm6ge2rAw2qcM0W9ofRCh8=
+X-Google-Smtp-Source: ABdhPJzwjb3a5SuYFnXIm2M/C54wSpppovcGlUDKCA+/oHrU+JHpmN1eQxv2BMUB5VucaTIsEAW8SA==
+X-Received: by 2002:a17:906:5006:b0:6ce:3762:c72e with SMTP id s6-20020a170906500600b006ce3762c72emr12588246ejj.30.1652646680755;
+        Sun, 15 May 2022 13:31:20 -0700 (PDT)
+Received: from fedora.robimarko.hr (dh207-98-105.xnet.hr. [88.207.98.105])
+        by smtp.googlemail.com with ESMTPSA id ze16-20020a170906ef9000b006f3ef214e4esm2944884ejb.180.2022.05.15.13.31.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 15 May 2022 13:31:20 -0700 (PDT)
+From:   Robert Marko <robimarko@gmail.com>
+To:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
+        broonie@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     Robert Marko <robimarko@gmail.com>
+Subject: [PATCH 1/6] dt-bindings: regulator: qcom,spmi-regulator: Convert to dtschema
+Date:   Sun, 15 May 2022 22:31:13 +0200
+Message-Id: <20220515203118.474684-1-robimarko@gmail.com>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Provags-ID: V03:K1:AM0pUZJy0xWo5m49ybRT1aE4KogOzmCzVRRc51lDsfppyqziW8p
- qXa0MWDk24XlbJUaOYgvsg1fuy7rmQiimR+fGYefcUSnAtxEFNedH78UiTX6vyUaFepfa9h
- RwQbpbNkSId3Jl6cHKMN2ks3vQ1o32KFsbZCY9gWJWqdDNyWpa+gcFU7qH0UkwM56WcwHmn
- wc4iKSLJ3aK5YEbxhpL7A==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:HE/ehCz5E9E=:SKkkkeDKunTh+09gigVGOR
- P0HH3FaHI8oiylGV844J4/J9JSWalv2BCHNnBfQP2TvXPUOGfsCuOv5u7mAyj+7OneCoz8PU6
- DZueQwndkOnHMJCjzav0C4rxox+EbvHh1dfYLRvLejGvLiHIDMqbZkvfyuZ1H6rOB60090oIH
- RA0ZCV3YSLriKC/10b/JoYOnF7xUg9G+RDQwcCGtuCR0TXvDJlJE+EM3Q/dSrnwVGJbA0b9vy
- aE9uPSQGG7btK0QSA6xuKjcP6WZl1U7KJK40ZXcGgRxgDD5AzoUkzR++UdcRfS+1AnbBP2b9c
- OC6KvI9i79qyEcl8AXYWlzHXQXnEYfajw4Mq3kfc+97u0L0N+9UHNDBbIzsJIs8nKRZA+jBMf
- dqtg33rKP3qL8z2qRJtuAzf2v29xvAgWVHZ9E8gk0xcbLIRuazpfZxh3/ikfs28YsatmQT0z/
- P47HZ+KkNPk082Hg25Y3/t/GS85aQ9hZOud23dGdvx6nmGGEKUHWMYmovlGUrlxkyeAIfmhbK
- 9AFjgeel2Ee4XpImGI8Qfl7OiUzE1/7EsYdmiVh1Q4jitgaYFxd60bSY3ElTpMyPdTbLdwjmo
- 1wReojduhV3fkJ95qSgIYfLzAUUeQE0sPOboK+vtvaFN+l4hPIxcshBRXKwsT8IgjmyvvNqUY
- lWNBGZ6SLxII58e2VWZZ2Qb4Ou7iBHX1pu28+s1bmkDBESOKv5BpepQ6ExY8ToGIeu4D38HMO
- 23Pl9EE/NZ/qLw9d
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+Convert the bindings of Qualcomm SPMI regulators to DT schema.
 
-Bypass power_on/power_off() when running on BCM2711 as they are not
-needed.
-
-Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
+Signed-off-by: Robert Marko <robimarko@gmail.com>
 ---
- drivers/soc/bcm/bcm2835-power.c | 8 ++++++++
- 1 file changed, 8 insertions(+)
+I am aware that syscon alone is not really acceptable, its converted
+directly from the old text bindings.
 
-diff --git a/drivers/soc/bcm/bcm2835-power.c b/drivers/soc/bcm/bcm2835-power.c
-index 1e06d91c0739..5bcd047768b6 100644
---- a/drivers/soc/bcm/bcm2835-power.c
-+++ b/drivers/soc/bcm/bcm2835-power.c
-@@ -198,6 +198,10 @@ static int bcm2835_power_power_off(struct bcm2835_power_domain *pd, u32 pm_reg)
- {
- 	struct bcm2835_power *power = pd->power;
- 
-+	/* We don't run this on BCM2711 */
-+	if (power->rpivid_asb)
-+		return 0;
+There is also the issue of some MSM8994, MSM8996 and APQ8096 devices using
+'#address-cells', '#size-cells', some even defining reg property for
+regulators.
+
+Any advice on how to solve these issues is appreciated.
+---
+ .../regulator/qcom,spmi-regulator.yaml        | 176 ++++++++++++++++++
+ 1 file changed, 176 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/regulator/qcom,spmi-regulator.yaml
+
+diff --git a/Documentation/devicetree/bindings/regulator/qcom,spmi-regulator.yaml b/Documentation/devicetree/bindings/regulator/qcom,spmi-regulator.yaml
+new file mode 100644
+index 000000000000..f7da310f1845
+--- /dev/null
++++ b/Documentation/devicetree/bindings/regulator/qcom,spmi-regulator.yaml
+@@ -0,0 +1,176 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/regulator/qcom,spmi-regulator.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
- 	/* Enable functional isolation */
- 	PM_WRITE(pm_reg, PM_READ(pm_reg) & ~PM_ISFUNC);
- 
-@@ -219,6 +223,10 @@ static int bcm2835_power_power_on(struct bcm2835_power_domain *pd, u32 pm_reg)
- 	int inrush;
- 	bool powok;
- 
-+	/* We don't run this on BCM2711 */
-+	if (power->rpivid_asb)
-+		return 0;
++title: Qualcomm SPMI Regulators
 +
- 	/* If it was already powered on by the fw, leave it that way. */
- 	if (PM_READ(pm_reg) & PM_POWUP)
- 		return 0;
++maintainers:
++  - Robert Marko <robert.marko@sartura.hr>
++
++properties:
++  compatible:
++    enum:
++      - qcom,pm660-regulators
++      - qcom,pm660l-regulators
++      - qcom,pm8004-regulators
++      - qcom,pm8005-regulators
++      - qcom,pm8226-regulators
++      - qcom,pm8841-regulators
++      - qcom,pm8916-regulators
++      - qcom,pm8941-regulators
++      - qcom,pm8950-regulators
++      - qcom,pm8994-regulators
++      - qcom,pmi8994-regulators
++      - qcom,pms405-regulators
++
++  qcom,saw-reg:
++    description: Reference to syscon node defining the SAW registers
++    $ref: "/schemas/types.yaml#/definitions/phandle"
++
++allOf:
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - qcom,pm8941-regulators
++    then:
++      properties:
++        interrupts:
++          items:
++            - description: Over-current protection interrupt for 5V S1
++            - description: Over-current protection interrupt for 5V S2
++        interrupt-names:
++          items:
++            - const: ocp-5vs1
++            - const: ocp-5vs2
++
++patternProperties:
++  ".*-supply$":
++    description: Input supply phandle(s) for this node
++    $ref: "/schemas/types.yaml#/definitions/phandle"
++
++  "^((s|l|lvs|5vs)[0-9]*)$":
++    description: List of regulators and its properties
++    $ref: regulator.yaml#
++
++    properties:
++      qcom,ocp-max-retries:
++        description:
++          Maximum number of times to try toggling a voltage switch off and
++          back on as a result of consecutive over current events
++        $ref: "/schemas/types.yaml#/definitions/uint32"
++
++      qcom,ocp-retry-delay:
++        description:
++          Time to delay in milliseconds between each voltage switch toggle
++          after an over current event takes place
++        $ref: "/schemas/types.yaml#/definitions/uint32"
++
++      qcom,pin-ctrl-enable:
++        description:
++          Bit mask specifying which hardware pins should be used to enable the
++          regulator, if any.
++          Supported bits are
++          0 = ignore all hardware enable signals
++          BIT(0) = follow HW0_EN signal
++          BIT(1) = follow HW1_EN signal
++          BIT(2) = follow HW2_EN signal
++          BIT(3) = follow HW3_EN signal
++        $ref: "/schemas/types.yaml#/definitions/uint32"
++        minimum: 0
++        maximum: 15
++
++      qcom,pin-ctrl-hpm:
++        description:
++          Bit mask specifying which hardware pins should be used to force the
++          regulator into high power mode, if any.
++          Supported bits are
++          0 = ignore all hardware enable signals
++          BIT(0) = follow HW0_EN signal
++          BIT(1) = follow HW1_EN signal
++          BIT(2) = follow HW2_EN signal
++          BIT(3) = follow HW3_EN signal
++          BIT(4) = follow PMIC awake state
++        $ref: "/schemas/types.yaml#/definitions/uint32"
++        minimum: 0
++        maximum: 31
++
++      qcom,vs-soft-start-strength:
++        description:
++          This property sets the soft start strength for voltage switch type
++          regulators.
++          Supported values are
++          0 = 0.05 uA
++          1 = 0.25 uA
++          2 = 0.55 uA
++          3 = 0.75 uA
++        $ref: "/schemas/types.yaml#/definitions/uint32"
++        minimum: 0
++        maximum: 3
++
++      qcom,saw-slave:
++        description: SAW controlled gang slave. Will not be configured.
++        type: boolean
++
++      qcom,saw-leader:
++        description:
++          SAW controlled gang leader. Will be configured as SAW regulator.
++        type: boolean
++
++      unevaluatedProperties: false
++
++unevaluatedProperties: false
++
++required:
++  - compatible
++
++examples:
++  - |
++    regulators {
++      compatible = "qcom,pm8941-regulators";
++      vdd_l1_l3-supply = <&s1>;
++
++      s1: s1 {
++        regulator-min-microvolt = <1300000>;
++        regulator-max-microvolt = <1400000>;
++      };
++
++      l1: l1 {
++        regulator-min-microvolt = <1225000>;
++        regulator-max-microvolt = <1300000>;
++      };
++    };
++
++  - |
++    saw3: syscon@9a10000 {
++      compatible = "syscon";
++      reg = <0x9a10000 0x1000>;
++    };
++
++    regulators {
++      compatible = "qcom,pm8994-regulators";
++      qcom,saw-reg = <&saw3>;
++
++      s8 {
++        qcom,saw-slave;
++      };
++
++      s9 {
++        qcom,saw-slave;
++      };
++
++      s10 {
++        qcom,saw-slave;
++      };
++
++      pm8994_s11_saw: s11 {
++        qcom,saw-leader;
++        regulator-always-on;
++        regulator-min-microvolt = <900000>;
++        regulator-max-microvolt = <1140000>;
++      };
++    };
++...
 -- 
-2.25.1
+2.36.1
 
