@@ -2,171 +2,230 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 045D8527731
-	for <lists+devicetree@lfdr.de>; Sun, 15 May 2022 13:02:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A455F527740
+	for <lists+devicetree@lfdr.de>; Sun, 15 May 2022 13:10:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232414AbiEOLCX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 15 May 2022 07:02:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48478 "EHLO
+        id S236499AbiEOLKs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 15 May 2022 07:10:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33910 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234806AbiEOLCW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 15 May 2022 07:02:22 -0400
-Received: from relay07.th.seeweb.it (relay07.th.seeweb.it [5.144.164.168])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 829D02558F
-        for <devicetree@vger.kernel.org>; Sun, 15 May 2022 04:02:18 -0700 (PDT)
-Received: from [192.168.1.101] (abxh168.neoplus.adsl.tpnet.pl [83.9.1.168])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 0C7093F669;
-        Sun, 15 May 2022 13:02:15 +0200 (CEST)
-Message-ID: <f02782a2-2712-083c-dbe1-b2df3a6d3d0e@somainline.org>
-Date:   Sun, 15 May 2022 13:02:15 +0200
+        with ESMTP id S236513AbiEOLKq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 15 May 2022 07:10:46 -0400
+Received: from soltyk.jannau.net (soltyk.jannau.net [144.76.91.90])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96A19104;
+        Sun, 15 May 2022 04:10:40 -0700 (PDT)
+Received: by soltyk.jannau.net (Postfix, from userid 1000)
+        id E1D0026EA99; Sun, 15 May 2022 13:10:38 +0200 (CEST)
+Date:   Sun, 15 May 2022 13:10:38 +0200
+From:   Janne Grunau <j@jannau.net>
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Joerg Roedel <joro@8bytes.org>,
+        Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Nicolin Chen <nicolinc@nvidia.com>,
+        Krishna Reddy <vdumpa@nvidia.com>,
+        Dmitry Osipenko <dmitry.osipenko@collabora.com>,
+        Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
+        Sameer Pujar <spujar@nvidia.com>, devicetree@vger.kernel.org,
+        iommu@lists.linux-foundation.org, linux-tegra@vger.kernel.org,
+        asahi@lists.linux.dev
+Subject: Re: [PATCH v5 2/5] iommu: Implement of_iommu_get_resv_regions()
+Message-ID: <20220515111038.GE26732@jannau.net>
+References: <20220512190052.1152377-1-thierry.reding@gmail.com>
+ <20220512190052.1152377-3-thierry.reding@gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.0
-Subject: Re: [PATCH 2/3] arm64: dts: qcom: sdm660: add device node for the
- compute PAS
-Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-References: <20220514000310.3070578-1-dmitry.baryshkov@linaro.org>
- <20220514000310.3070578-3-dmitry.baryshkov@linaro.org>
- <c165c67e-528c-d976-c479-793c3593bb37@somainline.org>
- <CAA8EJpq_ZQvoRnDn2VV_+koWF67+BkwLho5vxngm9vE5rcYwBA@mail.gmail.com>
-From:   Konrad Dybcio <konrad.dybcio@somainline.org>
-In-Reply-To: <CAA8EJpq_ZQvoRnDn2VV_+koWF67+BkwLho5vxngm9vE5rcYwBA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220512190052.1152377-3-thierry.reding@gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 2022-05-12 21:00:49 +0200, Thierry Reding wrote:
+> From: Thierry Reding <treding@nvidia.com>
+> 
+> This is an implementation that IOMMU drivers can use to obtain reserved
+> memory regions from a device tree node. It uses the reserved-memory DT
+> bindings to find the regions associated with a given device. If these
+> regions are marked accordingly, identity mappings will be created for
+> them in the IOMMU domain that the devices will be attached to.
+> 
+> Signed-off-by: Thierry Reding <treding@nvidia.com>
+> ---
+> Changes in v5:
+> - update for new "iommu-addresses" device tree bindings
+> 
+> Changes in v4:
+> - fix build failure on !CONFIG_OF_ADDRESS
+> 
+> Changes in v3:
+> - change "active" property to identity mapping flag that is part of the
+>   memory region specifier (as defined by #memory-region-cells) to allow
+>   per-reference flags to be used
+> 
+> Changes in v2:
+> - use "active" property to determine whether direct mappings are needed
+> 
+>  drivers/iommu/of_iommu.c | 90 ++++++++++++++++++++++++++++++++++++++++
+>  include/linux/of_iommu.h |  8 ++++
+>  2 files changed, 98 insertions(+)
+> 
+> diff --git a/drivers/iommu/of_iommu.c b/drivers/iommu/of_iommu.c
+> index 5696314ae69e..9e341b5e307f 100644
+> --- a/drivers/iommu/of_iommu.c
+> +++ b/drivers/iommu/of_iommu.c
+> @@ -11,12 +11,15 @@
+>  #include <linux/module.h>
+>  #include <linux/msi.h>
+>  #include <linux/of.h>
+> +#include <linux/of_address.h>
+>  #include <linux/of_iommu.h>
+>  #include <linux/of_pci.h>
+>  #include <linux/pci.h>
+>  #include <linux/slab.h>
+>  #include <linux/fsl/mc.h>
+>  
+> +#include <dt-bindings/reserved-memory.h>
+> +
+>  #define NO_IOMMU	1
+>  
+>  static int of_iommu_xlate(struct device *dev,
+> @@ -172,3 +175,90 @@ const struct iommu_ops *of_iommu_configure(struct device *dev,
+>  
+>  	return ops;
+>  }
+> +
+> +/**
+> + * of_iommu_get_resv_regions - reserved region driver helper for device tree
+> + * @dev: device for which to get reserved regions
+> + * @list: reserved region list
+> + *
+> + * IOMMU drivers can use this to implement their .get_resv_regions() callback
+> + * for memory regions attached to a device tree node. See the reserved-memory
+> + * device tree bindings on how to use these:
+> + *
+> + *   Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt
+> + */
+> +void of_iommu_get_resv_regions(struct device *dev, struct list_head *list)
+> +{
+> +#if IS_ENABLED(CONFIG_OF_ADDRESS)
+> +	struct of_phandle_iterator it;
+> +	int err;
+> +
+> +	of_for_each_phandle(&it, err, dev->of_node, "memory-region", NULL, 0) {
+> +		struct iommu_resv_region *region;
+> +		struct resource res;
+> +		const __be32 *maps;
+> +		int size;
 
+Adding 'if (!of_device_is_available(it.node)) continue;' here would help 
+backwards compatibility. My plan was to add the reserved regions with 
+"iommu-addresses" with all zero adresses and sizes with status = 
+"disabled" to the devicetree. A bootloader update is required to fill 
+those.
 
-On 15.05.2022 01:17, Dmitry Baryshkov wrote:
-> On Sun, 15 May 2022 at 01:51, Konrad Dybcio
-> <konrad.dybcio@somainline.org> wrote:
->>
->>
->>
->> On 14.05.2022 02:03, Dmitry Baryshkov wrote:
->>> Add device tree node describing CDSP device found on the SDM660 (but not
->>> on SDM630) platform.
->>>
->>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->>> ---
->> Lookin' good, but this must be /delete-node/'d on sdm636.
-> 
-> Ack for the sdm636, will fix in v2.
-> 
-> Or maybe you'd like another approach: move all devices to sdm636 and
-> make sdm660 include sdm636.dtsi?
-Hmm.. sounds like this could save some LoC without being unnecessarily confusing and we'd have a nice path of 'progression' with sdm630<sdm636<(sdm658 if that even really exists outside CAF kernels, never seen it irl)<sdm660
+> +
+> +		memset(&res, 0, sizeof(res));
+> +
+> +		/*
+> +		 * The "reg" property is optional and can be omitted by reserved-memory regions
+> +		 * that represent reservations in the IOVA space, which are regions that should
+> +		 * not be mapped.
+> +		 */
+> +		if (of_find_property(it.node, "reg", NULL)) {
+> +			err = of_address_to_resource(it.node, 0, &res);
+> +			if (err < 0) {
+> +				dev_err(dev, "failed to parse memory region %pOF: %d\n",
+> +					it.node, err);
+> +				continue;
+> +			}
+> +		}
+> +
+> +		maps = of_get_property(it.node, "iommu-addresses", &size);
+> +		if (maps) {
+> +			const __be32 *end = maps + size / sizeof(__be32);
+> +			struct device_node *np;
+> +			unsigned int index = 0;
+> +			u32 phandle;
+> +			int na, ns;
+> +
+> +			while (maps < end) {
+> +				phys_addr_t start, end;
+> +				size_t length;
+> +
+> +				phandle = be32_to_cpup(maps++);
+> +				np = of_find_node_by_phandle(phandle);
+> +				na = of_n_addr_cells(np);
+> +				ns = of_n_size_cells(np);
+> +
+> +				start = of_translate_dma_address(np, maps);
+> +				length = of_read_number(maps + na, ns);
 
-> 
->> Also, I think 660 had a separate smmu for this hw block?
-> 
-> Yes, there is a separate smmu, however enabling it makes the board
-> reset. I can add it here, but I doubt it is going to be useful till
-> somebody lands IOMMU fixes for this platform.
-Right, I keep forgetting that it's one of the last very sad platforms on this front..
+alternatively we could handle mappings/reservations with length 0 as 
+error and skip them.
 
-Konrad
+> +				end = start + length - 1;
+> +
+> +				if (np == dev->of_node) {
+> +					int prot = IOMMU_READ | IOMMU_WRITE;
+> +					enum iommu_resv_type type;
+> +
+> +					/*
+> +					 * IOMMU regions without an associated physical region
+> +					 * cannot be mapped and are simply reservations.
+> +					 */
+> +					if (res.end > res.start)
+> +						type = IOMMU_RESV_DIRECT_RELAXABLE;
+> +					else
+> +						type = IOMMU_RESV_RESERVED;
+> +
+> +					region = iommu_alloc_resv_region(start, length, prot, type);
+> +					if (region)
+> +						list_add_tail(&region->list, list);
+> +				}
+> +
+> +				maps += na + ns;
+> +				index++;
+> +			}
+> +		}
+> +	}
+> +#endif
+> +}
+> +EXPORT_SYMBOL(of_iommu_get_resv_regions);
+> diff --git a/include/linux/of_iommu.h b/include/linux/of_iommu.h
+> index 55c1eb300a86..9a5e6b410dd2 100644
+> --- a/include/linux/of_iommu.h
+> +++ b/include/linux/of_iommu.h
+> @@ -12,6 +12,9 @@ extern const struct iommu_ops *of_iommu_configure(struct device *dev,
+>  					struct device_node *master_np,
+>  					const u32 *id);
+>  
+> +extern void of_iommu_get_resv_regions(struct device *dev,
+> +				      struct list_head *list);
+> +
+>  #else
+>  
+>  static inline const struct iommu_ops *of_iommu_configure(struct device *dev,
+> @@ -21,6 +24,11 @@ static inline const struct iommu_ops *of_iommu_configure(struct device *dev,
+>  	return NULL;
+>  }
+>  
+> +static inline void of_iommu_get_resv_regions(struct device *dev,
+> +					     struct list_head *list)
+> +{
+> +}
+> +
+>  #endif	/* CONFIG_OF_IOMMU */
+>  
+>  #endif /* __OF_IOMMU_H */
+> -- 
+> 2.36.1
 > 
->>
->> Konrad
->>>  arch/arm64/boot/dts/qcom/sdm660.dtsi | 68 ++++++++++++++++++++++++++++
->>>  1 file changed, 68 insertions(+)
->>>
->>> diff --git a/arch/arm64/boot/dts/qcom/sdm660.dtsi b/arch/arm64/boot/dts/qcom/sdm660.dtsi
->>> index 023b0ac4118c..3b70eff68807 100644
->>> --- a/arch/arm64/boot/dts/qcom/sdm660.dtsi
->>> +++ b/arch/arm64/boot/dts/qcom/sdm660.dtsi
->>> @@ -9,6 +9,74 @@
->>>
->>>  #include "sdm630.dtsi"
->>>
->>> +/ {
->>> +     reserved-memory {
->>> +             /delete-node/ tzbuffer@94a00000;
->>> +
->>> +             cdsp_region: cdsp@94a00000 {
->>> +                     reg = <0x0 0x94a00000 0x0 0x600000>;
->>> +                     no-map;
->>> +             };
->>> +
->>> +     };
->>> +
->>> +     smp2p-cdsp {
->>> +             compatible = "qcom,smp2p";
->>> +             qcom,smem = <94>, <432>;
->>> +             interrupts = <GIC_SPI 514 IRQ_TYPE_EDGE_RISING>;
->>> +             mboxes = <&apcs_glb 30>;
->>> +             qcom,local-pid = <0>;
->>> +             qcom,remote-pid = <5>;
->>> +
->>> +             cdsp_smp2p_out: master-kernel {
->>> +                     qcom,entry-name = "master-kernel";
->>> +                     #qcom,smem-state-cells = <1>;
->>> +             };
->>> +
->>> +             cdsp_smp2p_in: slave-kernel {
->>> +                     qcom,entry-name = "slave-kernel";
->>> +                     interrupt-controller;
->>> +                     #interrupt-cells = <2>;
->>> +             };
->>> +     };
->>> +
->>> +     soc {
->>> +             cdsp_pil: remoteproc@1a300000 {
->>> +                     compatible = "qcom,sdm660-cdsp-pas";
->>> +                     reg = <0x1a300000 0x4040>;
->>> +
->>> +                     interrupts-extended =
->>> +                             <&intc GIC_SPI 518 IRQ_TYPE_EDGE_RISING>,
->>> +                             <&cdsp_smp2p_in 0 IRQ_TYPE_EDGE_RISING>,
->>> +                             <&cdsp_smp2p_in 1 IRQ_TYPE_EDGE_RISING>,
->>> +                             <&cdsp_smp2p_in 2 IRQ_TYPE_EDGE_RISING>,
->>> +                             <&cdsp_smp2p_in 3 IRQ_TYPE_EDGE_RISING>;
->>> +                     interrupt-names = "wdog", "fatal", "ready",
->>> +                                       "handover", "stop-ack";
->>> +
->>> +                     clocks = <&rpmcc RPM_SMD_XO_CLK_SRC>;
->>> +                     clock-names = "xo";
->>> +
->>> +                     memory-region = <&cdsp_region>;
->>> +                     power-domains = <&rpmpd SDM660_VDDCX>;
->>> +                     power-domain-names = "cx";
->>> +
->>> +                     qcom,smem-states = <&cdsp_smp2p_out 0>;
->>> +                     qcom,smem-state-names = "stop";
->>> +
->>> +                     glink-edge {
->>> +                             interrupts = <GIC_SPI 513 IRQ_TYPE_EDGE_RISING>;
->>> +
->>> +                             label = "turing";
->>> +                             mboxes = <&apcs_glb 29>;
->>> +                             qcom,remote-pid = <5>;
->>> +                             #address-cells = <1>;
->>> +                             #size-cells = <0>;
->>> +                     };
->>> +             };
->>> +     };
->>> +};
->>> +
->>>  &adreno_gpu {
->>>       compatible = "qcom,adreno-512.0", "qcom,adreno";
->>>       operating-points-v2 = <&gpu_sdm660_opp_table>;
-> 
-> 
-> 
+
+Janne
