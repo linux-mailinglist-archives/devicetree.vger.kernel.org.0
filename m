@@ -2,36 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 68026528743
-	for <lists+devicetree@lfdr.de>; Mon, 16 May 2022 16:41:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C24F52876B
+	for <lists+devicetree@lfdr.de>; Mon, 16 May 2022 16:48:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244431AbiEPOl0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 May 2022 10:41:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42668 "EHLO
+        id S237877AbiEPOsi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 May 2022 10:48:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37238 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244674AbiEPOlM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 May 2022 10:41:12 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1FB552CCB7;
-        Mon, 16 May 2022 07:41:11 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: nfraprado)
-        with ESMTPSA id 674151F42330
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1652712069;
-        bh=8BYTLgL7DNJMJHGxPDAPccqtEpDPhR7Z3zFk1UgBjIc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=fsXq9RO5eqw/T8yDtZ9lIbJ1TmFcfGOYBVOnvXCQYo0FpkwjkzWr5K+eQFZnBaOml
-         fCBWcoMOeljiNkSas8UyyJqbj9Vz4AXbYnjHK4NwYb5+78oRZ08JyAVGl7QauMJhrU
-         IgX+OQu/IdZFaguIkyeI51Ze64t86HjO4TtIScPoxQMA7fzBFejhchi6hmCthMzN9I
-         Qfv3Zp8wjs2O+E4uYet8U58e1c4I/HZowCndnSyi2NyVXe2RAfZA8FEHinx9g55Ayd
-         h7sA3v5xQYcifDGKTfi9yXTQdqcF8tkMoAFWlG8uAYxFsL9PL5dENowgbelKhL5X2j
-         TzGD5vVwGGNtw==
-Date:   Mon, 16 May 2022 10:41:04 -0400
-From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
-        <nfraprado@collabora.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>, kernel@collabora.com,
+        with ESMTP id S244644AbiEPOsg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 May 2022 10:48:36 -0400
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B2192EA36
+        for <devicetree@vger.kernel.org>; Mon, 16 May 2022 07:48:34 -0700 (PDT)
+Received: by mail-ej1-x62f.google.com with SMTP id n10so29190913ejk.5
+        for <devicetree@vger.kernel.org>; Mon, 16 May 2022 07:48:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=pFiYrDI2KIk/lu+aID8s/T/vZWJ+Pf0jeglf1Qmti9o=;
+        b=VZeFthn0/+Mkzq95FEWhHGeRBLt9ztigE/j/mkGPyMCgjj2hS3+s0bPTWUhaUMSowz
+         +Y4SA+s45rp/kkwNngSt5sE+MtI48OukedYMYYlS5THImNtpFopQ/pw7es4dNn8zT+fy
+         +ElPBay/aVvcfgCjyEX3cuTM5A8Lik1hLDyzUTmOTDGUN+ir1qyXB69T9psUqx7Ahx+M
+         YOUEbuLttrp3s7fVSgeT1wrO2lKZ9llsuaGi1beg4ZEfAs71W72ow4W2l5jtLHPAcBRP
+         Jx7IMw+CSsHfQjd4fhsHYYjMFqQ998LB1sKM2jcO43xcVnddEWmHxTMm09WtRnUgECzy
+         2d2w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=pFiYrDI2KIk/lu+aID8s/T/vZWJ+Pf0jeglf1Qmti9o=;
+        b=FMEBl37jesdfpv0isyA9OUYbTNgq2LL7Mtmy8m9GXtGZB0uzanBLsl7zIc1IdX7LlP
+         o0Ej34ain06SuyTDSVOnnWGl+JSEHF0CNVnoMoOzbsHdD46O5+pnSu8mGG6taRyQrZJQ
+         se4l/IipvhnVl1YFnYkGitcRLAOhJfCJYjFSeh7YZ2rifZSCtGQF9J+cByVMMvpzp9/H
+         ncH5YKwB2MQPHDlIptYgGQI5JBnl/VGHv5c9BZivUMfWIG0g3ZwG4BJCzWl0VLHO9Yv4
+         anrO+FWDBmKQMV6O72vh90x5VEt12vWEoTJxrEOGYFs2Mi4/0yL0+dMYy6W/jWkcQ9UD
+         5xZg==
+X-Gm-Message-State: AOAM531StCqExjK5J7wyg2cVRTNYiwd7NrXf5PPHxxmd/+NJ2vXjfq+y
+        UJxf42NbZ73SjKXbM6O+JkBtlA==
+X-Google-Smtp-Source: ABdhPJw+z3a4IS51Rh/2SPddsW0nZC5uDNxcK5FVTvU3AbHCQxPKbc9PunOYp96fOKe4UpFZaSKAnA==
+X-Received: by 2002:a17:907:e90:b0:6f4:cbc8:41bc with SMTP id ho16-20020a1709070e9000b006f4cbc841bcmr16005231ejc.536.1652712512721;
+        Mon, 16 May 2022 07:48:32 -0700 (PDT)
+Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id en8-20020a17090728c800b006f3ef214e0bsm3787988ejc.113.2022.05.16.07.48.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 16 May 2022 07:48:32 -0700 (PDT)
+Message-ID: <4b58f725-3bc6-d537-ca02-cb2a753227c0@linaro.org>
+Date:   Mon, 16 May 2022 16:48:31 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH v5 1/2] dt-bindings: remoteproc: mediatek: Make l1tcm reg
+ exclusive to mt819x
+Content-Language: en-US
+To:     =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
+        <nfraprado@collabora.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     kernel@collabora.com,
         AngeloGioacchino Del Regno 
         <angelogioacchino.delregno@collabora.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -43,20 +71,15 @@ Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>, kernel@collabora.com,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
         linux-mediatek@lists.infradead.org,
         linux-remoteproc@vger.kernel.org
-Subject: Re: [PATCH v5 1/2] dt-bindings: remoteproc: mediatek: Make l1tcm reg
- exclusive to mt819x
-Message-ID: <20220516144104.yvy2a2lncdcgznu6@notapiano>
 References: <20220511195452.871897-1-nfraprado@collabora.com>
  <20220511195452.871897-2-nfraprado@collabora.com>
- <30978e5a-18ef-3ea2-8df3-3ced50f44bfc@linaro.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220511195452.871897-2-nfraprado@collabora.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <30978e5a-18ef-3ea2-8df3-3ced50f44bfc@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -64,60 +87,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, May 13, 2022 at 10:15:51AM +0200, Krzysztof Kozlowski wrote:
-> On 11/05/2022 21:54, Nícolas F. R. A. Prado wrote:
+On 11/05/2022 21:54, NÃ­colas F. R. A. Prado wrote:
+> Commit ca23ecfdbd44 ("remoteproc/mediatek: support L1TCM") added support
+> for the l1tcm memory region on the MT8192 SCP, adding a new da_to_va
+> callback that handles l1tcm while keeping the old one for
+> back-compatibility with MT8183. However, since the mt8192 compatible was
+> missing from the dt-binding, the accompanying dt-binding commit
+> 503c64cc42f1 ("dt-bindings: remoteproc: mediatek: add L1TCM memory region")
+> mistakenly added this reg as if it were for mt8183. And later
+> it became common to all platforms as their compatibles were added.
 > 
-> Thank you for your patch. There is something to discuss/improve.
+> Fix the dt-binding so that the l1tcm reg can be present only on the
+> supported platforms: mt8192 and mt8195.
 > 
-> >  
-> > -if:
-> > -  properties:
-> > -    compatible:
-> > -      enum:
-> > -        - mediatek,mt8183-scp
-> > -        - mediatek,mt8192-scp
-> > -then:
-> > -  required:
-> > -    - clocks
-> > -    - clock-names
-> > +allOf:
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          enum:
-> > +            - mediatek,mt8183-scp
-> > +            - mediatek,mt8192-scp
-> > +    then:
-> > +      required:
-> > +        - clocks
-> > +        - clock-names
-> > +
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          enum:
-> > +            - mediatek,mt8183-scp
-> > +            - mediatek,mt8186-scp
-> > +    then:
-> > +      properties:
-> > +        reg:
-> > +          maxItems: 2
-> > +        reg-names:
-> > +          maxItems: 2
+> Fixes: 503c64cc42f1 ("dt-bindings: remoteproc: mediatek: add L1TCM memory region")
+> Signed-off-by: NÃ­colas F. R. A. Prado <nfraprado@collabora.com>
 > 
-> Isn't l1tcm required on mt819x? Now it is left optional.
-
-Hi Krzysztof,
-
-actually l1tcm is optional for mt819x, as commented by Tzung-Bi on v4 [1]. So
-that change was intended.
-
-Thanks,
-Nícolas
-
-[1] https://lore.kernel.org/all/CA+Px+wXQjys8xvTSSJkLXoGp4yQnANbKWBtfuxiYi0UX6DH0jw@mail.gmail.com/
-
+> ---
 > 
+> Changes in v5:
+> - Made l1tcm optional for mt8192/mt8195
+> - Greatly simplified the constraints override in the if:then:
+> - Updated commit message
 > 
-> Best regards,
-> Krzysztof
+
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+
+Best regards,
+Krzysztof
