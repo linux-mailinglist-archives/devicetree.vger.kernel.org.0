@@ -2,58 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7CCA35281D6
+	by mail.lfdr.de (Postfix) with ESMTP id C922E5281D7
 	for <lists+devicetree@lfdr.de>; Mon, 16 May 2022 12:22:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242487AbiEPKWe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 May 2022 06:22:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34152 "EHLO
+        id S235104AbiEPKWf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 May 2022 06:22:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34216 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235104AbiEPKW1 (ORCPT
+        with ESMTP id S242452AbiEPKW1 (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Mon, 16 May 2022 06:22:27 -0400
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7C88DF28;
-        Mon, 16 May 2022 03:22:17 -0700 (PDT)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B1CCDF2A;
+        Mon, 16 May 2022 03:22:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1652696537; x=1684232537;
+  t=1652696539; x=1684232539;
   h=date:from:to:cc:subject:message-id:references:
    mime-version:in-reply-to;
-  bh=1wcjLqj/Sl4OKFLkc9eIfGdzT4pWqw1XQuQzqw/g7sk=;
-  b=imgqVhREsR9TCl+G14jSzcAMLHlZJLz4iqOMF0rdstYInmFhXv971wMk
-   CFIexkuGHrsShecOR8VTkOFVg4Rj+XUr82bu0otjmQ8d6Y9prbAScyKDx
-   YmhxbtqH6BiVDv+3CAPpeZjLPLdtjzh5H3MHxd+5eOGC+4QVc5y4mpvhu
-   Y+xA5iE+MTsP7TyNwHJ1BrnjFePNRZ7rKfOnov9260yvTae7SGkY8k80k
-   qKcm/oTe5smuE3B9UuKnEmsXxiedNIvnob1Z0uSoetG0U0JwWl0xCowp2
-   vGQsnigZEjiAkOxj/zYSqcgOrOH7++OmeQdzrK9PJeeA+FNSqhX3jPskz
-   Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10348"; a="331415899"
+  bh=rQd2aZJvrRMvYuDZkI9jNLzYYyg/Ub/0/Ce4xmZSbro=;
+  b=kAxbo/i45sMw3QnPc84qdl5rmC81evQusEKcWDYS8tZ6WOvlBW77wjPb
+   if27pNVejm8t680E+KkhuAHwxg3sLCV3Qg+B3vygVmxjXiF6PyPK2p5YK
+   /h5YBPXdyuQ+xLXSJmi8nnWLH5MyWCgxepoldZBmgEfMeRXPa9YE/F+75
+   XmplKIyzhkKZLg8SjhihV5YudIYLhuYPgD71wROp3zZ2fTqfxnv5wfC1k
+   gAQOrtAerZqskavJ7WKyYcgCdwBmCXG1YzLcKMohcXSXWEX/NcXVCZJDR
+   uZx/ttTrupzvtfTO8+11pS+qxC2KFmVPDYT4bear8VVnzRdsvAqGFXUsV
+   w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10348"; a="270742685"
 X-IronPort-AV: E=Sophos;i="5.91,229,1647327600"; 
-   d="scan'208";a="331415899"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 May 2022 03:22:15 -0700
+   d="scan'208";a="270742685"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 May 2022 03:22:18 -0700
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="5.91,229,1647327600"; 
-   d="scan'208";a="522388244"
+   d="scan'208";a="660043145"
 Received: from lkp-server01.sh.intel.com (HELO d1462bc4b09b) ([10.239.97.150])
-  by orsmga003.jf.intel.com with ESMTP; 16 May 2022 03:22:13 -0700
+  by FMSMGA003.fm.intel.com with ESMTP; 16 May 2022 03:22:13 -0700
 Received: from kbuild by d1462bc4b09b with local (Exim 4.95)
         (envelope-from <lkp@intel.com>)
-        id 1nqXrg-0002K9-VY;
-        Mon, 16 May 2022 10:22:12 +0000
-Date:   Mon, 16 May 2022 18:21:53 +0800
+        id 1nqXrh-0002KB-0L;
+        Mon, 16 May 2022 10:22:13 +0000
+Date:   Mon, 16 May 2022 18:21:55 +0800
 From:   kernel test robot <lkp@intel.com>
-To:     Kyle Swenson <kyle.swenson@est.tech>, pavel@ucw.cz,
-        robh+dt@kernel.org, krzk+dt@kernel.org
-Cc:     kbuild-all@lists.01.org, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org, Kyle Swenson <kyle.swenson@est.tech>
-Subject: Re: [PATCH 1/2] leds: aw21024: Add support for Awinic's AW21024
-Message-ID: <202205161802.8WYsbizM-lkp@intel.com>
-References: <20220513190409.3682501-1-kyle.swenson@est.tech>
+To:     Neal Liu <neal_liu@aspeedtech.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Felipe Balbi <balbi@kernel.org>,
+        Sumit Semwal <sumit.semwal@linaro.org>,
+        Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Li Yang <leoyang.li@nxp.com>
+Cc:     kbuild-all@lists.01.org, Neal Liu <neal_liu@aspeedtech.com>,
+        linux-aspeed@lists.ozlabs.org, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org,
+        BMC-SW@aspeedtech.com
+Subject: Re: [PATCH 1/3] usb: gadget: add Aspeed ast2600 udc driver
+Message-ID: <202205161801.OB6kCtEa-lkp@intel.com>
+References: <20220513065728.857722-2-neal_liu@aspeedtech.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220513190409.3682501-1-kyle.swenson@est.tech>
+In-Reply-To: <20220513065728.857722-2-neal_liu@aspeedtech.com>
 X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -64,252 +77,143 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Kyle,
+Hi Neal,
 
-Thank you for the patch! Yet something to improve:
+I love your patch! Perhaps something to improve:
 
-[auto build test ERROR on pavel-leds/for-next]
-[also build test ERROR on robh/for-next v5.18-rc7 next-20220513]
+[auto build test WARNING on usb/usb-testing]
+[also build test WARNING on robh/for-next v5.18-rc7 next-20220513]
 [If your patch is applied to the wrong git tree, kindly drop us a note.
 And when submitting patch, we suggest to use '--base' as documented in
 https://git-scm.com/docs/git-format-patch]
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Kyle-Swenson/leds-aw21024-Add-support-for-Awinic-s-AW21024/20220514-030705
-base:   git://git.kernel.org/pub/scm/linux/kernel/git/pavel/linux-leds.git for-next
-config: mips-randconfig-r006-20220516 (https://download.01.org/0day-ci/archive/20220516/202205161802.8WYsbizM-lkp@intel.com/config)
-compiler: mips-linux-gcc (GCC) 11.3.0
-reproduce (this is a W=1 build):
+url:    https://github.com/intel-lab-lkp/linux/commits/Neal-Liu/add-Aspeed-udc-driver-for-ast2600/20220513-150314
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usb.git usb-testing
+config: openrisc-randconfig-s031-20220516 (https://download.01.org/0day-ci/archive/20220516/202205161801.OB6kCtEa-lkp@intel.com/config)
+compiler: or1k-linux-gcc (GCC) 11.3.0
+reproduce:
         wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
         chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/38eeda60299918b5599f4a58714dc91f9741677c
+        # apt-get install sparse
+        # sparse version: v0.6.4-dirty
+        # https://github.com/intel-lab-lkp/linux/commit/272ae26f9fe89f60d584cf445431d0fa566eb24b
         git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Kyle-Swenson/leds-aw21024-Add-support-for-Awinic-s-AW21024/20220514-030705
-        git checkout 38eeda60299918b5599f4a58714dc91f9741677c
+        git fetch --no-tags linux-review Neal-Liu/add-Aspeed-udc-driver-for-ast2600/20220513-150314
+        git checkout 272ae26f9fe89f60d584cf445431d0fa566eb24b
         # save the config file
         mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.3.0 make.cross W=1 O=build_dir ARCH=mips SHELL=/bin/bash drivers/leds/
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.3.0 make.cross C=1 CF='-fdiagnostic-prefix -D__CHECK_ENDIAN__' O=build_dir ARCH=openrisc SHELL=/bin/bash drivers/usb/gadget/udc/
 
 If you fix the issue, kindly add following tag as appropriate
 Reported-by: kernel test robot <lkp@intel.com>
 
-All error/warnings (new ones prefixed by >>):
 
-   drivers/leds/leds-aw21024.c: In function 'aw21024_led_brightness_set':
->> drivers/leds/leds-aw21024.c:64:31: error: implicit declaration of function 'i2c_smbus_write_byte_data' [-Werror=implicit-function-declaration]
-      64 |                         ret = i2c_smbus_write_byte_data(parent->client,
-         |                               ^~~~~~~~~~~~~~~~~~~~~~~~~
-   drivers/leds/leds-aw21024.c: In function 'aw21024_configure':
->> drivers/leds/leds-aw21024.c:213:15: error: implicit declaration of function 'i2c_smbus_read_byte_data' [-Werror=implicit-function-declaration]
-     213 |         ret = i2c_smbus_read_byte_data(client, AW21024_REG_SW_RESET);
-         |               ^~~~~~~~~~~~~~~~~~~~~~~~
-   drivers/leds/leds-aw21024.c: At top level:
->> drivers/leds/leds-aw21024.c:310:1: warning: data definition has no type or storage class
-     310 | module_i2c_driver(aw21024_driver);
-         | ^~~~~~~~~~~~~~~~~
->> drivers/leds/leds-aw21024.c:310:1: error: type defaults to 'int' in declaration of 'module_i2c_driver' [-Werror=implicit-int]
->> drivers/leds/leds-aw21024.c:310:1: warning: parameter names (without types) in function declaration
-   drivers/leds/leds-aw21024.c:301:26: warning: 'aw21024_driver' defined but not used [-Wunused-variable]
-     301 | static struct i2c_driver aw21024_driver = {
-         |                          ^~~~~~~~~~~~~~
-   drivers/leds/leds-aw21024.c:295:34: warning: 'of_aw21024_leds_match' defined but not used [-Wunused-const-variable=]
-     295 | static const struct of_device_id of_aw21024_leds_match[] = {
-         |                                  ^~~~~~~~~~~~~~~~~~~~~
-   cc1: some warnings being treated as errors
+sparse warnings: (new ones prefixed by >>)
+   drivers/usb/gadget/udc/aspeed_udc.c:1009:34: sparse: sparse: restricted __le16 degrades to integer
+>> drivers/usb/gadget/udc/aspeed_udc.c:1037:32: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void const volatile [noderef] __iomem *addr @@     got struct usb_ctrlrequest *creq @@
+   drivers/usb/gadget/udc/aspeed_udc.c:1037:32: sparse:     expected void const volatile [noderef] __iomem *addr
+   drivers/usb/gadget/udc/aspeed_udc.c:1037:32: sparse:     got struct usb_ctrlrequest *creq
+   drivers/usb/gadget/udc/aspeed_udc.c:1066:25: sparse: sparse: incorrect type in argument 1 (different base types) @@     expected unsigned int [usertype] value @@     got restricted __le16 [addressable] [usertype] wValue @@
+   drivers/usb/gadget/udc/aspeed_udc.c:1066:25: sparse:     expected unsigned int [usertype] value
+   drivers/usb/gadget/udc/aspeed_udc.c:1066:25: sparse:     got restricted __le16 [addressable] [usertype] wValue
+   drivers/usb/gadget/udc/aspeed_udc.c:1070:37: sparse: sparse: restricted __le16 degrades to integer
+   drivers/usb/gadget/udc/aspeed_udc.c:1075:37: sparse: sparse: restricted __le16 degrades to integer
+   drivers/usb/gadget/udc/aspeed_udc.c:1518:19: sparse: sparse: incorrect type in assignment (different address spaces) @@     expected struct usb_ctrlrequest *creq @@     got void [noderef] __iomem * @@
+   drivers/usb/gadget/udc/aspeed_udc.c:1518:19: sparse:     expected struct usb_ctrlrequest *creq
+   drivers/usb/gadget/udc/aspeed_udc.c:1518:19: sparse:     got void [noderef] __iomem *
+   drivers/usb/gadget/udc/aspeed_udc.c:619:38: sparse: sparse: cast truncates bits from constant value (80 becomes 0)
+   drivers/usb/gadget/udc/aspeed_udc.c:625:12: sparse: sparse: context imbalance in 'ast_udc_ep_queue' - different lock contexts for basic block
 
+vim +1037 drivers/usb/gadget/udc/aspeed_udc.c
 
-vim +/i2c_smbus_write_byte_data +64 drivers/leds/leds-aw21024.c
-
-    51	
-    52	static int aw21024_led_brightness_set(struct led_classdev *led_cdev,
-    53						enum led_brightness brightness)
-    54	{
-    55		struct led_classdev_mc *mc_cdev = lcdev_to_mccdev(led_cdev);
-    56		struct aw21024_led_data *led = container_of(mc_cdev, struct aw21024_led_data, mc_cdev);
-    57		struct aw21024 *parent = led->parent;
-    58		int i;
-    59		int ret = 0;
-    60	
-    61		mutex_lock(&parent->lock);
-    62		if (mc_cdev->num_colors && mc_cdev->subled_info) {
-    63			for (i = 0; i < led->nregs; i++) {
-  > 64				ret = i2c_smbus_write_byte_data(parent->client,
-    65						AW21024_REG_DC_CURRENT(led->regs[i]),
-    66						mc_cdev->subled_info[i].intensity);
-    67				if (ret < 0)
-    68					goto unlock_ret;
-    69	
-    70				ret = i2c_smbus_write_byte_data(parent->client,
-    71						AW21024_REG_BRIGHTNESS(led->regs[i]),
-    72						brightness);
-    73				if (ret < 0)
-    74					goto unlock_ret;
-    75			}
-    76		} else {
-    77			ret = i2c_smbus_write_byte_data(parent->client,
-    78						AW21024_REG_DC_CURRENT(led->regs[0]), 0xFF);
-    79			if (ret < 0)
-    80				goto unlock_ret;
-    81	
-    82			ret = i2c_smbus_write_byte_data(parent->client,
-    83						AW21024_REG_BRIGHTNESS(led->regs[0]),
-    84						brightness);
-    85			if (ret < 0)
-    86				goto unlock_ret;
-    87		}
-    88		ret = i2c_smbus_write_byte_data(parent->client, AW21024_REG_UPDATE, 0x0);
-    89	unlock_ret:
-    90		mutex_unlock(&parent->lock);
-    91		return ret;
-    92	}
-    93	
-    94	static int aw21024_probe_dt(struct aw21024 *data)
-    95	{
-    96		struct device *dev = &data->client->dev;
-    97		struct fwnode_handle *child = NULL;
-    98		struct fwnode_handle *led_node = NULL;
-    99		struct led_init_data init_data = {};
-   100		u32 color_id;
-   101		int  ret, num_colors;
-   102		unsigned int nleds = 0;
-   103		struct aw21024_led_data *led;
-   104		struct led_classdev *led_cdev;
-   105		struct mc_subled *mc_led_info;
-   106	
-   107		nleds = device_get_child_node_count(dev);
-   108	
-   109		data->leds = devm_kcalloc(dev, nleds, sizeof(*(data->leds)), GFP_KERNEL);
-   110		if (!data->leds)
-   111			return -ENOMEM;
-   112	
-   113		device_for_each_child_node(dev, child) {
-   114			led = devm_kzalloc(dev, sizeof(struct aw21024_led_data), GFP_KERNEL);
-   115			if (!led) {
-   116				ret = -ENOMEM;
-   117				goto ret_put_child;
-   118			}
-   119			led->parent = data;
-   120			led_cdev = &led->mc_cdev.led_cdev;
-   121			init_data.fwnode = child;
-   122	
-   123			led_cdev->brightness_set_blocking = aw21024_led_brightness_set;
-   124			data->leds[data->nleds] = led;
-   125	
-   126			ret = fwnode_property_count_u32(child, "reg");
-   127			if (ret < 0) {
-   128				dev_err(dev, "reg property is invalid in node %s\n",
-   129						fwnode_get_name(child));
-   130				goto ret_put_child;
-   131			}
-   132	
-   133			led->regs = devm_kcalloc(dev, ret, sizeof(*(led->regs)), GFP_KERNEL);
-   134			led->nregs = ret;
-   135			if (!led->regs) {
-   136				ret = -ENOMEM;
-   137				goto ret_put_child;
-   138			}
-   139	
-   140			ret = fwnode_property_read_u32_array(child, "reg", led->regs, led->nregs);
-   141			if (ret) {
-   142				dev_err(dev, "Failed to read reg array, error=%d\n", ret);
-   143				goto ret_put_child;
-   144			}
-   145	
-   146			if (led->nregs > 1) {
-   147				mc_led_info = devm_kcalloc(dev, led->nregs,
-   148							    sizeof(*mc_led_info), GFP_KERNEL);
-   149				if (!mc_led_info) {
-   150					ret = -ENOMEM;
-   151					goto ret_put_child;
-   152				}
-   153	
-   154				num_colors = 0;
-   155				fwnode_for_each_child_node(child, led_node) {
-   156					if (num_colors > led->nregs) {
-   157						ret = -EINVAL;
-   158						fwnode_handle_put(led_node);
-   159						goto ret_put_child;
-   160					}
-   161	
-   162					ret = fwnode_property_read_u32(led_node, "color",
-   163								       &color_id);
-   164					if (ret) {
-   165						fwnode_handle_put(led_node);
-   166						goto ret_put_child;
-   167					}
-   168					mc_led_info[num_colors].color_index = color_id;
-   169					num_colors++;
-   170				}
-   171	
-   172				led->mc_cdev.num_colors = num_colors;
-   173				led->mc_cdev.subled_info = mc_led_info;
-   174				ret = devm_led_classdev_multicolor_register_ext(dev,
-   175									&led->mc_cdev,
-   176									&init_data);
-   177				if (ret < 0) {
-   178					dev_warn(dev, "Failed to register multicolor LED %s, err=%d\n",
-   179							    fwnode_get_name(child), ret);
-   180					goto ret_put_child;
-   181				}
-   182			} else {
-   183				ret = devm_led_classdev_register_ext(dev,
-   184								    &led->mc_cdev.led_cdev, &init_data);
-   185				if (ret < 0) {
-   186					dev_warn(dev, "Failed to register LED %s, err=%d\n",
-   187							fwnode_get_name(child), ret);
-   188					goto ret_put_child;
-   189				}
-   190			}
-   191			data->nleds++;
-   192		}
-   193	
-   194		return 0;
-   195	
-   196	ret_put_child:
-   197		fwnode_handle_put(child);
-   198		return ret;
-   199	}
-   200	
-   201	/* Expected to be called prior to registering with the LEDs class */
-   202	static int aw21024_configure(struct aw21024 *priv)
-   203	{
-   204		int ret = 0;
-   205		struct i2c_client *client = priv->client;
-   206	
-   207		ret = i2c_smbus_write_byte_data(client, AW21024_REG_GCR0, AW21024_GCR0_CHIPEN);
-   208		if (ret < 0) {
-   209			dev_err(&client->dev, "Failed to write chip enable\n");
-   210			return -ENODEV;
-   211		}
-   212	
- > 213		ret = i2c_smbus_read_byte_data(client, AW21024_REG_SW_RESET);
-   214		if (ret < 0) {
-   215			dev_err(&client->dev, "Failed to read chip id\n");
-   216			return -ENODEV;
-   217		}
-   218	
-   219		if (ret != AW21024_CHIP_ID) {
-   220			dev_err(&client->dev, "Chip ID 0x%02X doesn't match expected (0x%02X)\n",
-   221									ret, AW21024_CHIP_ID);
-   222			return -ENODEV;
-   223		}
-   224	
-   225		ret = i2c_smbus_read_byte_data(client, AW21024_REG_VERSION);
-   226		if (ret < 0) {
-   227			dev_err(&client->dev, "Failed to read chip version\n");
-   228			return -ENODEV;
-   229		}
-   230		if (ret != AW21024_CHIP_VERSION)
-   231			dev_warn(&client->dev, "Chip version 0x%02X doesn't match expected 0x%02X\n",
-   232									ret, AW21024_CHIP_VERSION);
-   233	
-   234		i2c_smbus_write_byte_data(client, AW21024_REG_SW_RESET, 0x00);
-   235		mdelay(2);
-   236		i2c_smbus_write_byte_data(client, AW21024_REG_GCR0, AW21024_GCR0_CHIPEN);
-   237		i2c_smbus_write_byte_data(client, AW21024_REG_GCC, 0xFF);
-   238	
-   239		return 0;
-   240	}
-   241	
+  1027	
+  1028	static void ast_udc_ep0_handle_setup(struct ast_udc_dev *udc)
+  1029	{
+  1030		struct ast_udc_ep *ep = &udc->ep[0];
+  1031		struct ast_udc_request *req;
+  1032		struct usb_ctrlrequest crq;
+  1033		int req_num = 0;
+  1034		u16 ep_num = 0;
+  1035		int rc;
+  1036	
+> 1037		memcpy_fromio(&crq, udc->creq, sizeof(crq));
+  1038	
+  1039		SETUP_DBG(udc, "SETEUP packet: %02x/%02x/%04x/%04x/%04x\n",
+  1040			  crq.bRequestType, crq.bRequest, le16_to_cpu(crq.wValue),
+  1041			  le16_to_cpu(crq.wIndex), le16_to_cpu(crq.wLength));
+  1042	
+  1043		/*
+  1044		 * Cleanup ep0 request(s) in queue because
+  1045		 * there is a new control setup comes.
+  1046		 */
+  1047		list_for_each_entry(req, &udc->ep[0].queue, queue) {
+  1048			req_num++;
+  1049			EP_DBG(ep, "there is req %p in ep0 queue !\n", req);
+  1050		}
+  1051	
+  1052		if (req_num)
+  1053			ast_udc_nuke(&udc->ep[0], -ETIMEDOUT);
+  1054	
+  1055		udc->ep[0].dir_in = crq.bRequestType & USB_DIR_IN;
+  1056	
+  1057		if ((crq.bRequestType & USB_TYPE_MASK) == USB_TYPE_STANDARD) {
+  1058			switch (crq.bRequest) {
+  1059			case USB_REQ_SET_ADDRESS:
+  1060				if (ast_udc_read(udc, AST_UDC_STS) & UDC_STS_HIGHSPEED)
+  1061					udc->gadget.speed = USB_SPEED_HIGH;
+  1062				else
+  1063					udc->gadget.speed = USB_SPEED_FULL;
+  1064	
+  1065				SETUP_DBG(udc, "set addr: 0x%x\n", crq.wValue);
+  1066				ast_udc_write(udc, crq.wValue, AST_UDC_CONFIG);
+  1067				goto req_complete;
+  1068	
+  1069			case USB_REQ_CLEAR_FEATURE:
+  1070				ep_num = crq.wIndex & USB_ENDPOINT_NUMBER_MASK;
+  1071				SETUP_DBG(udc, "ep%d: CLEAR FEATURE\n", ep_num);
+  1072				goto req_driver;
+  1073	
+  1074			case USB_REQ_SET_FEATURE:
+  1075				ep_num = crq.wIndex & USB_ENDPOINT_NUMBER_MASK;
+  1076				SETUP_DBG(udc, "ep%d: SET FEATURE\n", ep_num);
+  1077				goto req_driver;
+  1078	
+  1079			case USB_REQ_GET_STATUS:
+  1080				ast_udc_getstatus(udc);
+  1081				return;
+  1082	
+  1083			default:
+  1084				goto req_driver;
+  1085			}
+  1086	
+  1087		}
+  1088	
+  1089	req_driver:
+  1090		if (udc->driver) {
+  1091			SETUP_DBG(udc, "Forwarding %s to gadget...\n",
+  1092				  udc->gadget.name);
+  1093	
+  1094			spin_unlock(&udc->lock);
+  1095			rc = udc->driver->setup(&udc->gadget, &crq);
+  1096			spin_lock(&udc->lock);
+  1097	
+  1098		} else
+  1099			SETUP_DBG(udc, "No gadget for request !\n");
+  1100	
+  1101		if (rc >= 0)
+  1102			return;
+  1103	
+  1104		/* Stall if gadget failed */
+  1105		SETUP_DBG(udc, "Stalling, rc:0x%x\n", rc);
+  1106		ast_udc_write(udc, ast_udc_read(udc, AST_UDC_EP0_CTRL) | EP0_STALL,
+  1107			      AST_UDC_EP0_CTRL);
+  1108		return;
+  1109	
+  1110	req_complete:
+  1111		SETUP_DBG(udc, "ep%d: Sending IN status without data\n", ep_num);
+  1112		ast_udc_write(udc, EP0_TX_BUFF_RDY, AST_UDC_EP0_CTRL);
+  1113	}
+  1114	
 
 -- 
 0-DAY CI Kernel Test Service
