@@ -2,128 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BFD5C52806C
-	for <lists+devicetree@lfdr.de>; Mon, 16 May 2022 11:09:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7DDEF5280B5
+	for <lists+devicetree@lfdr.de>; Mon, 16 May 2022 11:20:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242143AbiEPJJO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 May 2022 05:09:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37564 "EHLO
+        id S240732AbiEPJUa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 May 2022 05:20:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57874 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233408AbiEPJJD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 May 2022 05:09:03 -0400
-Received: from m12-11.163.com (m12-11.163.com [220.181.12.11])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 48A2C22B27;
-        Mon, 16 May 2022 02:08:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-        s=s110527; h=Message-ID:Date:MIME-Version:Subject:From; bh=SJzeR
-        opa97b+y4ikvwq8pQd3JkFOAJvJtPN1447zVMU=; b=OYFMch/JvS5zRHMSkFQy2
-        6+npR9/hT5fhljyMlbai5peBOLYvad8xghCvHdv6UTqdplMHc6ZNiZm7w79DG5yq
-        5Ela9Pwau9h4KnGD2tgptGrmXJq0K15Un486eThtgQ+3fZw1LxwcLth6EK4dxIM1
-        9eRidqHRafP+X9Spj9aF8I=
-Received: from [192.168.3.102] (unknown [218.201.129.19])
-        by smtp7 (Coremail) with SMTP id C8CowAB3CplRFIJiwNRICw--.41526S2;
-        Mon, 16 May 2022 17:07:30 +0800 (CST)
-Message-ID: <145f9b94-1eb1-8a66-9f9b-36a8395bde70@163.com>
-Date:   Mon, 16 May 2022 17:07:29 +0800
+        with ESMTP id S235024AbiEPJUW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 May 2022 05:20:22 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 756BF25EAC;
+        Mon, 16 May 2022 02:20:20 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 9CB08B80F62;
+        Mon, 16 May 2022 09:20:19 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 40979C34100;
+        Mon, 16 May 2022 09:20:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1652692818;
+        bh=wRK3W4kkTL91oUEb7BaY00QOBPsJRzSa8p8mNImhh+8=;
+        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+        b=Gl+KBgvDdwmZN09ENrMC9KrP//i0Q1iM9NiqGDKgJWmlaNXAZlO+MaAWnjlKpTi4F
+         00qmAa6jDo/M/SguVgt4xI6Oce6mKD8pJxL5IpFkxGMRW2ruRrtCXmFS6HdSQIa3gt
+         Rtr5HBOQ7okYWmUjC8tScguwUY14+ZYgQTf3sW055C5OhE32Zesv8sFJgBD1Fi90kZ
+         ZrBzfJwpimRh97RasKdBheSGmHWiCTnQyD8fWkkLEC8WyefzJTdfOudHxwjKWpZyEj
+         xbk1M4EoCt2Rp1eUaJoKFZKbSKWoZKJP1Jz2jQ2sYWWQyOM7LdNuNUJ+vwtHchg1R7
+         a7bso+S699GDw==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 18280F03935;
+        Mon, 16 May 2022 09:20:18 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.0
-Subject: Re: [PATCH v4 2/2] ARM: dts: sun8i-r40: add opp table for cpu
-Content-Language: en-US
-To:     Maxime Ripard <maxime@cerno.tech>
-Cc:     linux-sunxi@lists.linux.dev, Rob Herring <robh+dt@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
-References: <20220516021516.23216-1-qianfanguijin@163.com>
- <20220516021516.23216-3-qianfanguijin@163.com>
- <20220516085309.jp5yautmb3veocvl@houat>
-From:   qianfan <qianfanguijin@163.com>
-In-Reply-To: <20220516085309.jp5yautmb3veocvl@houat>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: C8CowAB3CplRFIJiwNRICw--.41526S2
-X-Coremail-Antispam: 1Uf129KBjvJXoW7WFWDuFWxKr4rKw1ftry5Jwb_yoW8tr1Upr
-        ZrCr4Ykr4kWr17JrySgw1UJFn3uFWkuFyUGry7GFy8Jwn8Zr1DGFn7trnxKrW8Xr4fZ3y2
-        9rnaqr9Fkw1DC3DanT9S1TB71UUUUUUqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-        9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07jjtC7UUUUU=
-X-Originating-IP: [218.201.129.19]
-X-CM-SenderInfo: htld0w5dqj3xxmlqqiywtou0bp/1tbiXBID7VXl25gMPQAAsi
-X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Subject: Re: [PATCH v4 0/5] Add Renesas RZ/V2M Ethernet support
+From:   patchwork-bot+netdevbpf@kernel.org
+Message-Id: <165269281808.1627.2981856718769988919.git-patchwork-notify@kernel.org>
+Date:   Mon, 16 May 2022 09:20:18 +0000
+References: <20220512114722.35965-1-phil.edworthy@renesas.com>
+In-Reply-To: <20220512114722.35965-1-phil.edworthy@renesas.com>
+To:     Phil Edworthy <Phil.Edworthy@renesas.com>
+Cc:     mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, davem@davemloft.net,
+        edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
+        phil.edworthy@renesas.com, geert+renesas@glider.be,
+        s.shtylyov@omp.ru, sergei.shtylyov@gmail.com,
+        biju.das.jz@bp.renesas.com,
+        prabhakar.mahadev-lad.rj@bp.renesas.com,
+        Chris.Paterson2@renesas.com, magnus.damm@gmail.com,
+        linux-clk@vger.kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+X-Spam-Status: No, score=-7.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hello:
 
+This series was applied to netdev/net-next.git (master)
+by David S. Miller <davem@davemloft.net>:
 
-在 2022/5/16 16:53, Maxime Ripard 写道:
-> On Mon, May 16, 2022 at 10:15:16AM +0800, qianfanguijin@163.com wrote:
->> From: qianfan Zhao <qianfanguijin@163.com>
->>
->> OPP table value is get from allwinner lichee linux-3.10 kernel driver
->>
->> Signed-off-by: qianfan Zhao <qianfanguijin@163.com>
->> ---
->>   arch/arm/boot/dts/sun8i-r40.dtsi | 42 ++++++++++++++++++++++++++++++++
->>   1 file changed, 42 insertions(+)
->>
->> diff --git a/arch/arm/boot/dts/sun8i-r40.dtsi b/arch/arm/boot/dts/sun8i-r40.dtsi
->> index 291f4784e86c..8949153eb0eb 100644
->> --- a/arch/arm/boot/dts/sun8i-r40.dtsi
->> +++ b/arch/arm/boot/dts/sun8i-r40.dtsi
->> @@ -54,6 +54,36 @@ / {
->>   	#size-cells = <1>;
->>   	interrupt-parent = <&gic>;
->>   
->> +	cpu0_opp_table: opp_table0 {
->> +		compatible = "operating-points-v2";
->> +		opp-shared;
->> +
->> +		opp-720000000 {
->> +			opp-hz = /bits/ 64 <720000000>;
->> +			opp-microvolt = <1000000 1000000 1300000>;
->> +			clock-latency-ns = <2000000>;
->> +		};
->> +
->> +		opp-912000000 {
->> +			opp-hz = /bits/ 64 <912000000>;
->> +			opp-microvolt = <1100000 1100000 1300000>;
->> +			clock-latency-ns = <2000000>;
->> +		};
->> +
->> +		opp-1008000000 {
->> +			opp-hz = /bits/ 64 <1008000000>;
->> +			opp-microvolt = <1160000 1160000 1300000>;
->> +			clock-latency-ns = <2000000>;
->> +		};
->> +
->> +		/* The opp table of the cpu frequency that exceeds 1G
->> +		 * is not defined here. They require higher operating
->> +		 * current, which may exceed the 500mA limited if the
->> +		 * system is powered by USB. You can add them to the
->> +		 * board's DTS is you make sure.
->> +		 */
-> That's not the issue though. The issue is that the board is setup with a
-> CPU voltage at 1160mV, and if we raise the frequency to a higher OPP
-> without raising the voltage as well, the CPU will crash.
-Yes, this is a issue and if the dts doesn't has "cpu-supply" node.
-The comment above is found while testing. 100% cpu load @ 4x1.2G
-will consume about 800mA@5V current, the board will reboot if it
-is powered by USB. So I leave those comments.
+On Thu, 12 May 2022 12:47:17 +0100 you wrote:
+> The RZ/V2M Ethernet is very similar to R-Car Gen3 Ethernet-AVB, though
+> some small parts are the same as R-Car Gen2.
+> Other differences are:
+> * It has separate data (DI), error (Line 1) and management (Line 2) irqs
+>   rather than one irq for all three.
+> * Instead of using the High-speed peripheral bus clock for gPTP, it has
+>   a separate gPTP reference clock.
+> 
+> [...]
 
-I am thinking your suggestion to write the opp part to a dtsi like
-A64. Should I adding all supported freq?
+Here is the summary with links:
+  - [v4,1/5] dt-bindings: net: renesas,etheravb: Document RZ/V2M SoC
+    https://git.kernel.org/netdev/net-next/c/a7931ac16128
+  - [v4,2/5] ravb: Separate handling of irq enable/disable regs into feature
+    https://git.kernel.org/netdev/net-next/c/cb99badde146
+  - [v4,3/5] ravb: Support separate Line0 (Desc), Line1 (Err) and Line2 (Mgmt) irqs
+    https://git.kernel.org/netdev/net-next/c/b0265dcba3d6
+  - [v4,4/5] ravb: Use separate clock for gPTP
+    https://git.kernel.org/netdev/net-next/c/72069a7b2821
+  - [v4,5/5] ravb: Add support for RZ/V2M
+    https://git.kernel.org/netdev/net-next/c/e1154be73153
 
-I am preparing a new version which including cpu cooling.
->
-> Maxime
+You are awesome, thank you!
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
 
