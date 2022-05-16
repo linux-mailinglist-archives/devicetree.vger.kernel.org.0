@@ -2,64 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8672E527DBA
-	for <lists+devicetree@lfdr.de>; Mon, 16 May 2022 08:43:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D7B9C527DDC
+	for <lists+devicetree@lfdr.de>; Mon, 16 May 2022 08:52:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240353AbiEPGnn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 May 2022 02:43:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38426 "EHLO
+        id S240501AbiEPGwY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 May 2022 02:52:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55268 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229568AbiEPGnm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 May 2022 02:43:42 -0400
-Received: from smtp2.axis.com (smtp2.axis.com [195.60.68.18])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3CF335876;
-        Sun, 15 May 2022 23:43:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=axis.com; q=dns/txt; s=axis-central1; t=1652683421;
-  x=1684219421;
-  h=date:from:to:subject:message-id:references:mime-version:
-   in-reply-to;
-  bh=UBLXuJ3x/eQp0h7RffFZ6La9xjLghucU1bkO5zIfwR8=;
-  b=E6wWDmE0XsYIeyYopAjQls833PBad5MWIL0I+04i7EG41kmbR7/sfSKR
-   7WCEagOqsbmvTVRsyzZABhDgYZRLAUXTVtmOspOkNPKHm14sANr1DoQsX
-   fvAIR/J5c/N8vGt5sUIWkx2qBA7XPRCo/qvmMldK32n+fwHmY28jbzWL9
-   gdeG17Txb9xPYGyCJrTVb1zPBLc22fj2ejojJsEibsQr54j25ZKcQrD2F
-   B1i2EjUJcBUOhoindOh3bIywmz2KaKJieH0A3/3RplcvDxa8DkpIwemaI
-   nNZVgGhmH1K9Et+Cciu0mKJRSw5qC0sNFSUmWEcRYEaeMKYsO+U620xJV
-   Q==;
-Date:   Mon, 16 May 2022 08:43:38 +0200
-From:   Vincent Whitchurch <vincent.whitchurch@axis.com>
-To:     Wolfram Sang <wsa@kernel.org>, <kernel@axis.com>,
-        <linux-i2c@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <krzk+dt@kernel.org>, <robh+dt@kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 1/2] dt-bindings: i2c: add property to avoid device
- detection
-Message-ID: <20220516064338.GA28916@axis.com>
-References: <20220412085046.1110127-1-vincent.whitchurch@axis.com>
- <20220412085046.1110127-2-vincent.whitchurch@axis.com>
- <Yn+8CJ3j2SY2+Mq+@shikoro>
+        with ESMTP id S240572AbiEPGwN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 May 2022 02:52:13 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96FCF369DF
+        for <devicetree@vger.kernel.org>; Sun, 15 May 2022 23:52:06 -0700 (PDT)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1nqUa6-0006b7-7z; Mon, 16 May 2022 08:51:50 +0200
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1nqUa1-002cQR-Ov; Mon, 16 May 2022 08:51:44 +0200
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1nqUZz-00A274-Fr; Mon, 16 May 2022 08:51:43 +0200
+Date:   Mon, 16 May 2022 08:51:40 +0200
+From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: pwm: Add RZ/G2L GPT binding
+Message-ID: <20220516065140.kdrcihx5ifyeuen2@pengutronix.de>
+References: <20220510144259.9908-1-biju.das.jz@bp.renesas.com>
+ <20220510144259.9908-2-biju.das.jz@bp.renesas.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="jdgb46nmbhxo5jso"
 Content-Disposition: inline
-In-Reply-To: <Yn+8CJ3j2SY2+Mq+@shikoro>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+In-Reply-To: <20220510144259.9908-2-biju.das.jz@bp.renesas.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, May 14, 2022 at 04:26:16PM +0200, Wolfram Sang wrote:
-> That aside, I am not sure we should handle this at DT level. Maybe we
-> should better change the GPIO driver to not populate a class if we have
-> a firmware node?
 
-Is it always safe to not do this detection if we have a firmware node?
-Then maybe the core could just always skip it in that case without
-looking for a special property or requiring individual drivers to choose
-what to do?
+--jdgb46nmbhxo5jso
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+Hello,
+
+On Tue, May 10, 2022 at 03:42:58PM +0100, Biju Das wrote:
+> Add device tree bindings for the General PWM Timer (GPT).
+>=20
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+
+assuming you will tackle my comments for patch 2/2 and will resend this
+patch along with a new version, I discard the dt patch from the queue
+(i.e. mark it as "not applicable" in patchwork).
+
+Applying this one alone isn't that sensible.
+
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--jdgb46nmbhxo5jso
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmKB9HkACgkQwfwUeK3K
+7AmFpgf/TBgddKqgHS84pomumDKEGtKHixbGIIm6U4YoOgLyCRz/znyAiTmWTGbC
+X11m4x+UnHGGCh/cQuPtz6rKg1+acnG7v01UMgX/lw/JmmJHjRpv6vlAD3ZNw7/w
+ENiUsw9Uzn02VAiuvQmBkFg7S4oayMV6kY4Q8RM++bOr2v/71PZj08LhAIXrPZzi
+g6Yacc9rOur2DhSUvtX8gjeEuXF9L4K/jswbkDxzxRwqb6Gruxy0LFOheRgNrvbt
+Ub/kYdanAA5HmS7YIr4eS/eTZkwxFoM+KIWu1GrYUNBsbKHOI98KtXlp4rEfstb/
+2Qq/HfrLRbd2xTSLYM+pDK6N0y8R7w==
+=JHgI
+-----END PGP SIGNATURE-----
+
+--jdgb46nmbhxo5jso--
