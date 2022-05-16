@@ -2,118 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C24F52876B
-	for <lists+devicetree@lfdr.de>; Mon, 16 May 2022 16:48:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F128D528775
+	for <lists+devicetree@lfdr.de>; Mon, 16 May 2022 16:49:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237877AbiEPOsi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 May 2022 10:48:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37238 "EHLO
+        id S244662AbiEPOtX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 May 2022 10:49:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37906 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244644AbiEPOsg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 May 2022 10:48:36 -0400
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B2192EA36
-        for <devicetree@vger.kernel.org>; Mon, 16 May 2022 07:48:34 -0700 (PDT)
-Received: by mail-ej1-x62f.google.com with SMTP id n10so29190913ejk.5
-        for <devicetree@vger.kernel.org>; Mon, 16 May 2022 07:48:34 -0700 (PDT)
+        with ESMTP id S244670AbiEPOtW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 May 2022 10:49:22 -0400
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 540DC2EA2C
+        for <devicetree@vger.kernel.org>; Mon, 16 May 2022 07:49:17 -0700 (PDT)
+Received: by mail-wr1-x432.google.com with SMTP id h14so1216692wrc.6
+        for <devicetree@vger.kernel.org>; Mon, 16 May 2022 07:49:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=pFiYrDI2KIk/lu+aID8s/T/vZWJ+Pf0jeglf1Qmti9o=;
-        b=VZeFthn0/+Mkzq95FEWhHGeRBLt9ztigE/j/mkGPyMCgjj2hS3+s0bPTWUhaUMSowz
-         +Y4SA+s45rp/kkwNngSt5sE+MtI48OukedYMYYlS5THImNtpFopQ/pw7es4dNn8zT+fy
-         +ElPBay/aVvcfgCjyEX3cuTM5A8Lik1hLDyzUTmOTDGUN+ir1qyXB69T9psUqx7Ahx+M
-         YOUEbuLttrp3s7fVSgeT1wrO2lKZ9llsuaGi1beg4ZEfAs71W72ow4W2l5jtLHPAcBRP
-         Jx7IMw+CSsHfQjd4fhsHYYjMFqQ998LB1sKM2jcO43xcVnddEWmHxTMm09WtRnUgECzy
-         2d2w==
+        d=monstr-eu.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=RKsGvNFA2armYhQ1TT2f4Esy5HeTthcwZCKQd7cnxcQ=;
+        b=zdSm7SK71AbVXfd5KB4ucnRBnDAzDFZcXmlvvpTjVOKOBWRfu2qFfAGUHgoSiAutFI
+         aQrwDxBfgC/n07ppsGMDCgq33Qk/av2ka/2li/6AGgI3oLRc1Hd1uVMMijIxnJ38dTKS
+         kNNkpWrm++HfKKe/ZaQKAGTdgMC0fD+5krlsItJ22xh40VXVIiyziLAyZZNHBHtbCE5q
+         Uq4w76G+PmWJzMQv6uBQfH48zZwrawHflPLEiNgTIcwDdmygKtvAQAQDcPlw0oHNI2ux
+         Rtxj/AF68ogLnxHoW/pEsmo8ohg2EGacgjA+8VTCVgsJAJVCvBs8/lBfoQ0LBYB062b7
+         0Y2A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=pFiYrDI2KIk/lu+aID8s/T/vZWJ+Pf0jeglf1Qmti9o=;
-        b=FMEBl37jesdfpv0isyA9OUYbTNgq2LL7Mtmy8m9GXtGZB0uzanBLsl7zIc1IdX7LlP
-         o0Ej34ain06SuyTDSVOnnWGl+JSEHF0CNVnoMoOzbsHdD46O5+pnSu8mGG6taRyQrZJQ
-         se4l/IipvhnVl1YFnYkGitcRLAOhJfCJYjFSeh7YZ2rifZSCtGQF9J+cByVMMvpzp9/H
-         ncH5YKwB2MQPHDlIptYgGQI5JBnl/VGHv5c9BZivUMfWIG0g3ZwG4BJCzWl0VLHO9Yv4
-         anrO+FWDBmKQMV6O72vh90x5VEt12vWEoTJxrEOGYFs2Mi4/0yL0+dMYy6W/jWkcQ9UD
-         5xZg==
-X-Gm-Message-State: AOAM531StCqExjK5J7wyg2cVRTNYiwd7NrXf5PPHxxmd/+NJ2vXjfq+y
-        UJxf42NbZ73SjKXbM6O+JkBtlA==
-X-Google-Smtp-Source: ABdhPJw+z3a4IS51Rh/2SPddsW0nZC5uDNxcK5FVTvU3AbHCQxPKbc9PunOYp96fOKe4UpFZaSKAnA==
-X-Received: by 2002:a17:907:e90:b0:6f4:cbc8:41bc with SMTP id ho16-20020a1709070e9000b006f4cbc841bcmr16005231ejc.536.1652712512721;
-        Mon, 16 May 2022 07:48:32 -0700 (PDT)
-Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id en8-20020a17090728c800b006f3ef214e0bsm3787988ejc.113.2022.05.16.07.48.31
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 16 May 2022 07:48:32 -0700 (PDT)
-Message-ID: <4b58f725-3bc6-d537-ca02-cb2a753227c0@linaro.org>
-Date:   Mon, 16 May 2022 16:48:31 +0200
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=RKsGvNFA2armYhQ1TT2f4Esy5HeTthcwZCKQd7cnxcQ=;
+        b=cA9aYnBMzyFJlDGyAZqqCRZZwJ+DJxIRrXKAalWIesZVv04vfoZxTU0ZfQ9zQ+jew/
+         8R4RVmsm96f+HgEXJIm1oVDkkKKknzX4xNzuZSR1m9EvcxUneownPem2cWTOhDTEQASq
+         vHX+ggpn1+obNxvCg1T+uRdiK50U/FPH0VxYrulyrfUDiHAtAIYJPBd3+bQ5KLEycKJD
+         CLkqvBExRxYXDG7GkgHSqlmU8iPYyN/r0toqnjhWktwsHMiKUmdDLsFT+B2dn79pK9K/
+         orUNyrwRP1Alq5cRKtVPJUVJHByXq6XRXMj3MZMCmeaFcsDdLCv4Y29VNZ5qsRv/wM3/
+         0/0Q==
+X-Gm-Message-State: AOAM530r2KDRX0TcRrKep1v1YYRQHLKu5o71EafiQAZx0cp57ndC74tL
+        oJJ9EU/3NOtukVwdNhSX9hVlzcn7R4U76HLckAjfGw==
+X-Google-Smtp-Source: ABdhPJxC+K2naQi2DGX/i3KZbfX6I8NNh+s+VoQewl4Q/1OR88cxBmM4LvcZMiiESkdDM0YoM0y/lwBv/04jAYEkQSY=
+X-Received: by 2002:a5d:64a6:0:b0:20c:64ef:c9cc with SMTP id
+ m6-20020a5d64a6000000b0020c64efc9ccmr15445043wrp.190.1652712555819; Mon, 16
+ May 2022 07:49:15 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH v5 1/2] dt-bindings: remoteproc: mediatek: Make l1tcm reg
- exclusive to mt819x
-Content-Language: en-US
-To:     =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
-        <nfraprado@collabora.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     kernel@collabora.com,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
+References: <72c973da5670b5ae81d050c582948894ee4174f8.1634206453.git.michal.simek@xilinx.com>
+In-Reply-To: <72c973da5670b5ae81d050c582948894ee4174f8.1634206453.git.michal.simek@xilinx.com>
+From:   Michal Simek <monstr@monstr.eu>
+Date:   Mon, 16 May 2022 16:49:04 +0200
+Message-ID: <CAHTX3dKRRvN+3eAa1Yz5WZJfByGPhLFOA7padA7bZp41-3magA@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: gpio: zynq: Add missing compatible strings
+To:     LKML <linux-kernel@vger.kernel.org>,
+        Michal Simek <monstr@monstr.eu>, git <git@xilinx.com>
+Cc:     Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Nobuhiro Iwamatsu <iwamatsu@nigauri.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Tinghan Shen <tinghan.shen@mediatek.com>,
-        Tzung-Bi Shih <tzungbi@google.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org,
-        linux-remoteproc@vger.kernel.org
-References: <20220511195452.871897-1-nfraprado@collabora.com>
- <20220511195452.871897-2-nfraprado@collabora.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220511195452.871897-2-nfraprado@collabora.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>,
+        Srinivas Neeli <srinivas.neeli@xilinx.com>,
+        DTML <devicetree@vger.kernel.org>,
+        linux-arm <linux-arm-kernel@lists.infradead.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/05/2022 21:54, Nícolas F. R. A. Prado wrote:
-> Commit ca23ecfdbd44 ("remoteproc/mediatek: support L1TCM") added support
-> for the l1tcm memory region on the MT8192 SCP, adding a new da_to_va
-> callback that handles l1tcm while keeping the old one for
-> back-compatibility with MT8183. However, since the mt8192 compatible was
-> missing from the dt-binding, the accompanying dt-binding commit
-> 503c64cc42f1 ("dt-bindings: remoteproc: mediatek: add L1TCM memory region")
-> mistakenly added this reg as if it were for mt8183. And later
-> it became common to all platforms as their compatibles were added.
-> 
-> Fix the dt-binding so that the l1tcm reg can be present only on the
-> supported platforms: mt8192 and mt8195.
-> 
-> Fixes: 503c64cc42f1 ("dt-bindings: remoteproc: mediatek: add L1TCM memory region")
-> Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
-> 
+=C4=8Dt 14. 10. 2021 v 12:14 odes=C3=ADlatel Michal Simek
+<michal.simek@xilinx.com> napsal:
+>
+> "xlnx,zynqmp-gpio-1.0", "xlnx,versal-gpio-1.0" and "xlnx,pmc-gpio-1.0"
+> compatible strings were not moved to yaml format. But they were in origin
+> text file.
+>
+> Fixes: 45ca16072b70 ("dt-bindings: gpio: zynq: convert bindings to YAML")
+> Signed-off-by: Michal Simek <michal.simek@xilinx.com>
 > ---
-> 
-> Changes in v5:
-> - Made l1tcm optional for mt8192/mt8195
-> - Greatly simplified the constraints override in the if:then:
-> - Updated commit message
-> 
+>
+>  Documentation/devicetree/bindings/gpio/gpio-zynq.yaml | 6 +++++-
+>  1 file changed, 5 insertions(+), 1 deletion(-)
+>
+> diff --git a/Documentation/devicetree/bindings/gpio/gpio-zynq.yaml b/Docu=
+mentation/devicetree/bindings/gpio/gpio-zynq.yaml
+> index 378da2649e66..980f92ad9eba 100644
+> --- a/Documentation/devicetree/bindings/gpio/gpio-zynq.yaml
+> +++ b/Documentation/devicetree/bindings/gpio/gpio-zynq.yaml
+> @@ -11,7 +11,11 @@ maintainers:
+>
+>  properties:
+>    compatible:
+> -    const: xlnx,zynq-gpio-1.0
+> +    enum:
+> +      - xlnx,zynq-gpio-1.0
+> +      - xlnx,zynqmp-gpio-1.0
+> +      - xlnx,versal-gpio-1.0
+> +      - xlnx,pmc-gpio-1.0
+>
+>    reg:
+>      maxItems: 1
+> --
+> 2.33.1
+>
 
+Applied.
+M
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-
-Best regards,
-Krzysztof
+--=20
+Michal Simek, Ing. (M.Eng), OpenPGP -> KeyID: FE3D1F91
+w: www.monstr.eu p: +42-0-721842854
+Maintainer of Linux kernel - Xilinx Microblaze
+Maintainer of Linux kernel - Xilinx Zynq ARM and ZynqMP ARM64 SoCs
+U-Boot custodian - Xilinx Microblaze/Zynq/ZynqMP/Versal SoCs
