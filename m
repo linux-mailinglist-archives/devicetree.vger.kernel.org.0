@@ -2,74 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2118A528235
-	for <lists+devicetree@lfdr.de>; Mon, 16 May 2022 12:35:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 422DC528259
+	for <lists+devicetree@lfdr.de>; Mon, 16 May 2022 12:42:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242660AbiEPKfx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 May 2022 06:35:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35656 "EHLO
+        id S237146AbiEPKmS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 May 2022 06:42:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45702 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241703AbiEPKfv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 May 2022 06:35:51 -0400
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C77C3DFC8
-        for <devicetree@vger.kernel.org>; Mon, 16 May 2022 03:35:41 -0700 (PDT)
-Received: by mail-lf1-x12b.google.com with SMTP id h29so25011176lfj.2
-        for <devicetree@vger.kernel.org>; Mon, 16 May 2022 03:35:41 -0700 (PDT)
+        with ESMTP id S242837AbiEPKk6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 May 2022 06:40:58 -0400
+Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64714E0B
+        for <devicetree@vger.kernel.org>; Mon, 16 May 2022 03:40:48 -0700 (PDT)
+Received: by mail-lj1-x233.google.com with SMTP id s27so17591926ljd.2
+        for <devicetree@vger.kernel.org>; Mon, 16 May 2022 03:40:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=TybrrNwubeiCmJTT/Pt5SvO7o0SXKQNwkYoFAX++S+M=;
-        b=ywixI+hrkyjZVveqrBs5WbTfJrk3HXSjXdkw/yG+ZcMSgfRLYwk/qZXOUnJIP1WgXO
-         lBVVRcBv8NUHq+A+ubYszRGIn7INTCE/F31x001Db5x3fLnrVpEmL7vSHY882isd5YBX
-         IgKxgv7LNqsEwCDn8jKJej8c3eymfGOqJUVqfJZ14cGhIZkaUcMaHExYzZotzDgRMr/G
-         /la28vRUa6mnJSrxsNnFK6J9NtRC0I/hUwnzzwLYXrJt8vgGZLdal1yBrwJI1gb2tUfC
-         fB4fiIZIahFse2SAC7pVz9X9ne4v2ymyvwkDBWr3JDUMtsIoPd4r5HeyJNHNgB5Gnf6G
-         BvIw==
+        bh=PIStbMHPtan1KLlc0XW15FaN5Q5q5/G9moSTVEJOKR8=;
+        b=Okry26+6WYZDBL/wyrImejHnErmgQv2VjJ3jxlPsOdX4tWoDQ0KeVWRt3ereejd+P+
+         l+zojoW4rovfwGTHTaxCqbsItDrqLt4TsrXgsqA4EvvM5/JkYxncPvSfhKyEhjmbASZQ
+         TibF4DIkzbDmuy0xtgyjkkgUOdyUb27/kr9dXc3rzbncMVJyYudJD0o5udiVuAEQxY/I
+         5rzowjS35jGcEV/2e/UK+/sj7+IRhOMQANzlqR59j9MGraRJ6MnQvrJJBTDfrf82S9Pp
+         UH/Rnn2AJGZRxLprskHloIEFc1kh4AIDEMX+wordKF8SmSST+s4U96TB9CeldPcYSWND
+         Q8ug==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=TybrrNwubeiCmJTT/Pt5SvO7o0SXKQNwkYoFAX++S+M=;
-        b=IBKYqkj7tVPk2vJ+dVD+yZuIH39fRbvyORUV3KFjL/VkD7CwcNwOAdO+dbt9iUlSOf
-         3RphiSPEmgO0Lhvmqiv6wriscbzfBDPHNAcKyLz+I1z0HwW8o3oWi1sJoSfan1TSB+qY
-         AxItYhvczHR7vUmXhCBOoJlaHspFbxbAgFiaOm3EOuOImahzpLCgw5npnPGewnsdwLIn
-         3oV2sp88Awz+GgndhkgeQNudC5B7h0XQqGYvf4NqNFB8hdkmgLkXOFZbzUvcNzTcKD3/
-         Hz3JkVuTqIbpbTyHSr3nboNbbfuzYsvdxsiS6He/1K9OAs2H+aePqvXQW2ahSfjwrZZ9
-         Y9qw==
-X-Gm-Message-State: AOAM532FHYy4TyD4dYssSZx1Qub3le1/Cr7fVVH9iQF1uj8pnMB1DDYS
-        idVfhkZqYctDgaIHtqeScCZAwQ==
-X-Google-Smtp-Source: ABdhPJzsVUrwn0tS3KToBIsJDTgtNs7vd3KqCRuQCih/v/B3esQjDRGT86G4+aNwUBJFRoPzISn/og==
-X-Received: by 2002:a05:6512:3ee:b0:471:f84f:7d5b with SMTP id n14-20020a05651203ee00b00471f84f7d5bmr12436445lfq.18.1652697340056;
-        Mon, 16 May 2022 03:35:40 -0700 (PDT)
+        bh=PIStbMHPtan1KLlc0XW15FaN5Q5q5/G9moSTVEJOKR8=;
+        b=T+PeEmjFACjGeUt/pnPzoAJ3BFBtAiQaXkBFxRP2/vW0lAg2GkjTmpvCf/2HbnZ+fk
+         wH9V7ccKLMwb3aNR8Rxcd+N1m78aHkWC4A70x97pox/DVr3lQiOMRqn7RKFbe2pAxReS
+         +L0w4hs65K6J46DJFtmmwv67rP6KkRD/teEzSMwBuNBKjrPduEjV2tBipmQ91JPUrXs0
+         AY0ZXWwyRn+KkbFUpTfadWUeRrKO0Bc3lhY4ONcHvOzhIIIMip6zsrHaBuumNPCdG+zd
+         tfBmfEJ1c3Utxnf6/nwj8yeiQ4mvZZFdq5AeFyvpsKwr8Pmwut4OFaVmwa5ZWI3/NIhz
+         Bksw==
+X-Gm-Message-State: AOAM532VqbIGyX7gLkKOxLfnP0nBIaGVFddIKl1xWLI2YeNYOfui1Qwk
+        Fa4oJ7dMkj0yo6dboGW3FxM44Q==
+X-Google-Smtp-Source: ABdhPJy1QZ8BxVhQaPE0U/RAWQGsWQF8ytlTewjrJGbgoAmLSxr4qWAyDEMSN3A6btYEAhDImT/3Rw==
+X-Received: by 2002:a05:651c:105a:b0:250:c5ec:bc2d with SMTP id x26-20020a05651c105a00b00250c5ecbc2dmr10737190ljm.321.1652697646673;
+        Mon, 16 May 2022 03:40:46 -0700 (PDT)
 Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id h12-20020a05651211cc00b0047255d21174sm1265168lfr.163.2022.05.16.03.35.38
+        by smtp.gmail.com with ESMTPSA id t28-20020ac243bc000000b0047255d21195sm1265267lfl.196.2022.05.16.03.40.45
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 16 May 2022 03:35:39 -0700 (PDT)
-Message-ID: <13d65ae2-f378-5353-16b9-5bf68883a701@linaro.org>
-Date:   Mon, 16 May 2022 12:35:38 +0200
+        Mon, 16 May 2022 03:40:46 -0700 (PDT)
+Message-ID: <9a94cf23-430e-56e2-1260-92a162d608e7@linaro.org>
+Date:   Mon, 16 May 2022 12:40:45 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.8.1
-Subject: Re: [PATCH v2] dt-bindings: qcom,pdc: convert to YAML
+Subject: Re: [PATCH v7 1/2] dt-bindings: thermal: k3-j72xx: Add VTM bindings
+ documentation
 Content-Language: en-US
-To:     Luca Weiss <luca.weiss@fairphone.com>,
-        linux-arm-msm@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Rob Herring <robh@kernel.org>, Andy Gross <agross@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20220103074348.6039-1-luca.weiss@fairphone.com>
- <bef4922d-4a32-f184-44a1-8f5430190938@linaro.org>
- <fef5f229-f247-d032-fc76-46ed7083dbf4@linaro.org>
- <CK10OTVFAP75.WCSVY40A7PXO@otso>
+To:     Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Keerthy <j-keerthy@ti.com>, robh+dt@kernel.org,
+        rui.zhang@intel.com, amitk@kernel.org, kristo@kernel.org
+Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220511110657.16305-1-j-keerthy@ti.com>
+ <20220511110657.16305-2-j-keerthy@ti.com>
+ <4568653d-706e-8621-3fee-d4a853517256@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CK10OTVFAP75.WCSVY40A7PXO@otso>
+In-Reply-To: <4568653d-706e-8621-3fee-d4a853517256@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -82,54 +78,71 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/05/2022 09:45, Luca Weiss wrote:
-> Hi Krzysztof,
+On 16/05/2022 12:32, Daniel Lezcano wrote:
 > 
-> On Mon May 9, 2022 at 10:40 AM CEST, Krzysztof Kozlowski wrote:
->> On 09/05/2022 10:38, Krzysztof Kozlowski wrote:
->>> On 03/01/2022 08:43, Luca Weiss wrote:
->>>> Convert the PDC interrupt controller bindings to YAML.
->>>>
->>>> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
->>>> Reviewed-by: Rob Herring <robh@kernel.org>
->>>> ---
->>>> Changes since v1:
->>>> * Adjust description of second reg-name as suggested by Maulik Shah
->>>>
->>>> @Rob Herring: Hope it's ok to keep your R-b given the above changes
->>>>
->>>> This patch depends on the following patch, which fixed sm8250 & sm8350
->>>> compatibles and adds sm6350.
->>>> https://lore.kernel.org/linux-arm-msm/20211213082614.22651-4-luca.weiss@fairphone.com/
->>>
->>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>>
->>> Luca,
->>> I think this needs resending as dependency was merged. Alternatively,
->>> maybe Bjorn could pick it up through QCom SoC?
->>
->> Correction - it seems that Rob took the dependency in April, so this
->> should go via Rob's tree as well.
->>
->> Luca, can you resend without Rob's Review tag and ask him to pick it up?
->>
-> 
-> So... since torvalds/master my sm6350 patch is merged through Rob's
+> Cc'ing krzysztof.kozlowski@linaro.org
 
-If it was merged to torvalds/master, it's not a dependency anymore...
-
-> tree, but there was also a sm8150 patch applied through Linus Walleij's
-> tree. This means (as far as I understand) that neither can really
-> properly apply this (rebased) patch as one tree will have missed the
-> other commit.
-
-sm8150 patch is also a dependency?
+Eh, I wished people used automatically scripts/get_maintainers.pl, so
+there will be no need to Cc someone. It's actually a bit weird because I
+was reviewing v6...
 
 > 
-> Does it make sense to send a v3 rebased on linux-next now, or wait until
-> this has settled down in torvalds's tree?
+> On 11/05/2022 13:06, Keerthy wrote:
+>> Add VTM bindings documentation. In the Voltage Thermal
+>> Management Module(VTM), K3 J72XX supplies a voltage
+>> reference and a temperature sensor feature that are gathered in the band
+>> gap voltage and temperature sensor (VBGAPTS) module. The band
+>> gap provides current and voltage reference for its internal
+>> circuits and other analog IP blocks. The analog-to-digital
+>> converter (ADC) produces an output value that is proportional
+>> to the silicon temperature.
+>>
+>> Signed-off-by: Keerthy <j-keerthy@ti.com>
 
-Conflicts can be resolved, you just need to choose one tree to based on.
+
+In any case this misses all the review-tags, so I don't know what we are
+supposed to do here.
+
+
+Keerthy,
+Please add Acked-by/Reviewed-by tags when posting new versions. However,
+there's no need to repost patches *only* to add the tags. The upstream
+maintainer will do that for acks received on the version they apply.
+
+https://elixir.bootlin.com/linux/v5.13/source/Documentation/process/submitting-patches.rst#L543
+
+If a tag was not added on purpose, please state why and what changed.
+
+>> ---
+>>   .../bindings/thermal/ti,j72xx-thermal.yaml    | 64 +++++++++++++++++++
+>>   1 file changed, 64 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/thermal/ti,j72xx-thermal.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/thermal/ti,j72xx-thermal.yaml b/Documentation/devicetree/bindings/thermal/ti,j72xx-thermal.yaml
+>> new file mode 100644
+>> index 000000000000..83f8f444a133
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/thermal/ti,j72xx-thermal.yaml
+>> @@ -0,0 +1,64 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/thermal/ti,j72xx-thermal.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Texas Instruments J72XX VTM (DTS) binding
+>> +
+>> +maintainers:
+>> +  - Keerthy <j-keerthy@ti.com>
+>> +
+>> +properties:
+>> +  compatible:
+>> +    items:
+>> +      - enum:
+>> +          - ti,j721e-vtm
+>> +          - ti,j7200-vtm
+
+No items, you have only one item.
 
 
 Best regards,
