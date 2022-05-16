@@ -2,66 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4ABA05294B6
-	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 01:09:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9E8FD5294C3
+	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 01:13:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350214AbiEPXJB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 May 2022 19:09:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59212 "EHLO
+        id S1348974AbiEPXNt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 May 2022 19:13:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43890 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348622AbiEPXJA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 May 2022 19:09:00 -0400
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E831B4476E;
-        Mon, 16 May 2022 16:08:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1652742538; x=1684278538;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=t9s//g5eW49okIknpm3TXfprezkECY9aRbZEJNV1PS0=;
-  b=R3PQx5WyT6BXa947mXAS2riDVmAPRt2eWW0A741kBt6cb5j75dEiyyFN
-   tHc+jgDg4/+sQUCawNDvxEXWI01hkx8obXWqhyB88VXudMKjt4qb4K5YH
-   f3Ele9dihh8zNCmbj+p+tt3aV3ryjRidwz0qJdt47cqLjMvJbzYw+En8r
-   82cnfvOZGFyf1/xCXRId80M8tVg9BKS4hUgCDMWLiw15bgos+sLfIleim
-   npjBzNBKa6UoMpTOQPDFVHkh/oD/8iqAdu1DvATC7wddqAFOPITaWrQ8w
-   OKS/A4G9BW2/oRRkWyYQwrGHz+3GbN88109peWA8F1p8uDNu23KDnmkdY
-   A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10349"; a="357401490"
-X-IronPort-AV: E=Sophos;i="5.91,231,1647327600"; 
-   d="scan'208";a="357401490"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
-  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 May 2022 16:08:58 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.91,231,1647327600"; 
-   d="scan'208";a="816621816"
-Received: from lkp-server02.sh.intel.com (HELO 242b25809ac7) ([10.239.97.151])
-  by fmsmga006.fm.intel.com with ESMTP; 16 May 2022 16:08:53 -0700
-Received: from kbuild by 242b25809ac7 with local (Exim 4.95)
-        (envelope-from <lkp@intel.com>)
-        id 1nqjpc-0000PB-Ni;
-        Mon, 16 May 2022 23:08:52 +0000
-Date:   Tue, 17 May 2022 07:08:08 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Medad CChien <medadyoung@gmail.com>, benjaminfair@google.com,
-        yuenn@google.com, venture@google.com, tali.perry1@gmail.com,
-        tmaimon77@gmail.com, avifishman70@gmail.com, robh+dt@kernel.org,
-        alexandre.belloni@bootlin.com, a.zummo@towertech.it,
-        KWLIU@nuvoton.com, YSCHU@nuvoton.com, JJLIU0@nuvoton.com,
-        KFTING@nuvoton.com, ctcchien@nuvoton.com
-Cc:     kbuild-all@lists.01.org, openbmc@lists.ozlabs.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-rtc@vger.kernel.org
-Subject: Re: [PATCH v1 3/3] RTC: nuvoton: Add NCT3018Y real time clock driver
-Message-ID: <202205170654.jQqRSbra-lkp@intel.com>
-References: <20220516152751.27716-3-ctcchien@nuvoton.com>
+        with ESMTP id S238717AbiEPXNs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 May 2022 19:13:48 -0400
+Received: from mail-pf1-x42c.google.com (mail-pf1-x42c.google.com [IPv6:2607:f8b0:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D180E45521
+        for <devicetree@vger.kernel.org>; Mon, 16 May 2022 16:13:46 -0700 (PDT)
+Received: by mail-pf1-x42c.google.com with SMTP id x52so15347394pfu.11
+        for <devicetree@vger.kernel.org>; Mon, 16 May 2022 16:13:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=5H3z629Hzfk43FPeQ6l/HvvBwzEkP6gG3fYwPQ2Js60=;
+        b=jhIu5fQgzwPiId/ZxVydKq1h+XIxL2F7FxjE6RLbLjB/hi59yOcqn8ZQzey53AkfLE
+         7+wBDQR3CM6K7jvai1Sv0qU0Tt2NUOhf9Cm37Kv2CCO/OsXB6c2BByySQQTZsFDgXPCV
+         Z1zcA7QhHnof/elpjpaLLtOrIfLm8UczZCpMg=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=5H3z629Hzfk43FPeQ6l/HvvBwzEkP6gG3fYwPQ2Js60=;
+        b=dT1EIU58h9XDZk87vBFThgW0ntYCu6zgUHy/eQIhWYppE6Crybq07d/lNEHiNnrvqI
+         +2sfrcm4kwWaR5NtanhtZXx16yXCRTqgom44SNycDr8c59Ul4wHIBSbIzkTwvDdyI+8i
+         lH+pY6QMfAOgjknxnJlfzRu8zsmtOHP4NeZB38ZbKBIevtCxBZo5qViaGJzsF8a1mlVe
+         lcBrt/gaqf+T9ccATcqt5BCOonXrtcf0l550s/dqj8LZeDINdCk13n3jImdzKDcBgjSB
+         LN9Ykd0ugOSx28CIJPFd62cXWtit/tnVH6WZzs9AuQ3V69pwnnP4Vt6apRsWnZrOp5z+
+         bKIg==
+X-Gm-Message-State: AOAM5306gMSmrVwM0Y14Jt5wbedF0GmMr0KMife1b++3RdeZB5qFjnFC
+        SbJRZXrjlMIh9HWp/Poi5kBZkA==
+X-Google-Smtp-Source: ABdhPJwwnz9S624j2DyMnf5Z0FuaroubFYKYyHv08Qz90vcyybDrg5YFj61CBAtNHDlIP5z3XyNLVQ==
+X-Received: by 2002:a63:8ac7:0:b0:3aa:fa62:5a28 with SMTP id y190-20020a638ac7000000b003aafa625a28mr17119678pgd.400.1652742826365;
+        Mon, 16 May 2022 16:13:46 -0700 (PDT)
+Received: from localhost ([2620:15c:11a:202:641e:de1c:873b:321e])
+        by smtp.gmail.com with UTF8SMTPSA id q16-20020a170902dad000b0015e8d4eb26fsm7992100plx.185.2022.05.16.16.13.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 16 May 2022 16:13:45 -0700 (PDT)
+Date:   Mon, 16 May 2022 16:13:44 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Pavan Kondeti <quic_pkondeti@quicinc.com>
+Cc:     Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Felipe Balbi <balbi@kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Doug Anderson <dianders@chromium.org>,
+        Mathias Nyman <mathias.nyman@intel.com>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org, quic_ppratap@quicinc.com,
+        quic_vpulyala@quicinc.com,
+        Sandeep Maheswaram <quic_c_sanm@quicinc.com>
+Subject: Re: [v16 2/5] usb: dwc3: core: Host wake up support from system
+ suspend
+Message-ID: <YoLaqDCNK0St8qsB@google.com>
+References: <1652379802-8318-1-git-send-email-quic_kriskura@quicinc.com>
+ <1652379802-8318-3-git-send-email-quic_kriskura@quicinc.com>
+ <Yn2M5hrah78jro1C@google.com>
+ <4124392b-a40f-c204-f9b0-68c3b22dd652@quicinc.com>
+ <20220516044327.GA19209@hu-pkondeti-hyd.qualcomm.com>
+ <20220516150445.GB19209@hu-pkondeti-hyd.qualcomm.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20220516152751.27716-3-ctcchien@nuvoton.com>
-X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+In-Reply-To: <20220516150445.GB19209@hu-pkondeti-hyd.qualcomm.com>
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -69,139 +85,226 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Medad,
+On Mon, May 16, 2022 at 08:34:45PM +0530, Pavan Kondeti wrote:
+> On Mon, May 16, 2022 at 10:13:27AM +0530, Pavan Kondeti wrote:
+> > On Fri, May 13, 2022 at 09:28:16AM +0530, Krishna Kurapati PSSNV wrote:
+> > > 
+> > > On 5/13/2022 4:10 AM, Matthias Kaehlcke wrote:
+> > > >On Thu, May 12, 2022 at 11:53:19PM +0530, Krishna Kurapati wrote:
+> > > >>From: Sandeep Maheswaram <quic_c_sanm@quicinc.com>
+> > > >>
+> > > >>During suspend read the status of all port and set hs phy mode
+> > > >>based on current speed. Use this hs phy mode to configure wakeup
+> > > >>interrupts in qcom glue driver.
+> > > >>
+> > > >>Check wakeup-source property for dwc3 core node to set the
+> > > >>wakeup capability. Drop the device_init_wakeup call from
+> > > >>runtime suspend and resume.
+> > > >>
+> > > >>Also check during suspend if any wakeup capable devices are
+> > > >>connected to the controller (directly or through hubs), if there
+> > > >>are none set a flag to indicate that the PHY is powered
+> > > >>down during suspend.
+> > > >>
+> > > >>Signed-off-by: Sandeep Maheswaram <quic_c_sanm@quicinc.com>
+> > > >>Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
+> > > >>---
+> > > >>  drivers/usb/dwc3/core.c | 30 +++++++++++++++++-------------
+> > > >>  drivers/usb/dwc3/core.h |  4 ++++
+> > > >>  drivers/usb/dwc3/host.c | 24 ++++++++++++++++++++++++
+> > > >>  3 files changed, 45 insertions(+), 13 deletions(-)
+> > > >>
+> > > >>diff --git a/drivers/usb/dwc3/core.c b/drivers/usb/dwc3/core.c
+> > > >>index 01115df..8bcabc5 100644
+> > > >>--- a/drivers/usb/dwc3/core.c
+> > > >>+++ b/drivers/usb/dwc3/core.c
+> > > >>@@ -1785,6 +1785,7 @@ static int dwc3_probe(struct platform_device *pdev)
+> > > >>  	platform_set_drvdata(pdev, dwc);
+> > > >>  	dwc3_cache_hwparams(dwc);
+> > > >>+	device_init_wakeup(&pdev->dev, of_property_read_bool(dev->of_node, "wakeup-source"));
+> > > >>  	spin_lock_init(&dwc->lock);
+> > > >>  	mutex_init(&dwc->mutex);
+> > > >>@@ -1946,10 +1947,7 @@ static int dwc3_suspend_common(struct dwc3 *dwc, pm_message_t msg)
+> > > >>  		dwc3_core_exit(dwc);
+> > > >>  		break;
+> > > >>  	case DWC3_GCTL_PRTCAP_HOST:
+> > > >>-		if (!PMSG_IS_AUTO(msg)) {
+> > > >>-			dwc3_core_exit(dwc);
+> > > >>-			break;
+> > > >>-		}
+> > > >>+		dwc3_check_phy_speed_mode(dwc);
+> > > >>  		/* Let controller to suspend HSPHY before PHY driver suspends */
+> > > >>  		if (dwc->dis_u2_susphy_quirk ||
+> > > >>@@ -1965,6 +1963,15 @@ static int dwc3_suspend_common(struct dwc3 *dwc, pm_message_t msg)
+> > > >>  		phy_pm_runtime_put_sync(dwc->usb2_generic_phy);
+> > > >>  		phy_pm_runtime_put_sync(dwc->usb3_generic_phy);
+> > > >>+
+> > > >>+		if (!PMSG_IS_AUTO(msg)) {
+> > > >>+			if (device_may_wakeup(dwc->dev))
+> > > >I think this should be device_can_wakeup(), i.e. hardware capability instead of
+> > > >device policy. A drawback of powering the PHYs off is that it causes a high
+> > > >power consumption of certain peripherals if VBUS is still supplied, so this
+> > > >should be limited to platforms where the PHYs must be powered off (using wakeup
+> > > >capability as a proxy for now).
+> > > Thnaks Mathias for the review. Will make this change in the next patchset.
+> > > >>+				dwc->phy_power_off = false;
+> > > >>+			else {
+> > > >>+				dwc->phy_power_off = true;
+> > > >>+				dwc3_core_exit(dwc);
+> > > >>+			}
+> > > >>+		}
+> > > >>  		break;
+> > > >>  	case DWC3_GCTL_PRTCAP_OTG:
+> > > >>  		/* do nothing during runtime_suspend */
+> > > >>@@ -2008,11 +2015,12 @@ static int dwc3_resume_common(struct dwc3 *dwc, pm_message_t msg)
+> > > >>  		break;
+> > > >>  	case DWC3_GCTL_PRTCAP_HOST:
+> > > >>  		if (!PMSG_IS_AUTO(msg)) {
+> > > >>-			ret = dwc3_core_init_for_resume(dwc);
+> > > >>-			if (ret)
+> > > >>-				return ret;
+> > > >>-			dwc3_set_prtcap(dwc, DWC3_GCTL_PRTCAP_HOST);
+> > > >>-			break;
+> > > >>+			if (dwc->phy_power_off) {
+> > > >>+				ret = dwc3_core_init_for_resume(dwc);
+> > > >>+				if (ret)
+> > > >>+					return ret;
+> > > >>+				dwc3_set_prtcap(dwc, DWC3_GCTL_PRTCAP_HOST);
+> > > >>+			}
+> > > >>  		}
+> > > >>  		/* Restore GUSB2PHYCFG bits that were modified in suspend */
+> > > >>  		reg = dwc3_readl(dwc->regs, DWC3_GUSB2PHYCFG(0));
+> > > >>@@ -2084,8 +2092,6 @@ static int dwc3_runtime_suspend(struct device *dev)
+> > > >>  	if (ret)
+> > > >>  		return ret;
+> > > >>-	device_init_wakeup(dev, true);
+> > > >>-
+> > > >>  	return 0;
+> > > >>  }
+> > > >>@@ -2094,8 +2100,6 @@ static int dwc3_runtime_resume(struct device *dev)
+> > > >>  	struct dwc3     *dwc = dev_get_drvdata(dev);
+> > > >>  	int		ret;
+> > > >>-	device_init_wakeup(dev, false);
+> > > >>-
+> > > >>  	ret = dwc3_resume_common(dwc, PMSG_AUTO_RESUME);
+> > > >>  	if (ret)
+> > > >>  		return ret;
+> > > >>diff --git a/drivers/usb/dwc3/core.h b/drivers/usb/dwc3/core.h
+> > > >>index 81c486b..37397a8 100644
+> > > >>--- a/drivers/usb/dwc3/core.h
+> > > >>+++ b/drivers/usb/dwc3/core.h
+> > > >>@@ -1155,6 +1155,9 @@ struct dwc3 {
+> > > >>  	bool			phys_ready;
+> > > >>+	unsigned int            hs_phy_mode;
+> > > >>+	bool			phy_power_off;
+> > > >>+
+> > > >>  	struct ulpi		*ulpi;
+> > > >>  	bool			ulpi_ready;
+> > > >>@@ -1539,6 +1542,7 @@ int dwc3_core_soft_reset(struct dwc3 *dwc);
+> > > >>  #if IS_ENABLED(CONFIG_USB_DWC3_HOST) || IS_ENABLED(CONFIG_USB_DWC3_DUAL_ROLE)
+> > > >>  int dwc3_host_init(struct dwc3 *dwc);
+> > > >>  void dwc3_host_exit(struct dwc3 *dwc);
+> > > >>+void dwc3_check_phy_speed_mode(struct dwc3 *dwc);
+> > > >>  #else
+> > > >>  static inline int dwc3_host_init(struct dwc3 *dwc)
+> > > >>  { return 0; }
+> > > >>diff --git a/drivers/usb/dwc3/host.c b/drivers/usb/dwc3/host.c
+> > > >>index f56c30c..e19b40a 100644
+> > > >>--- a/drivers/usb/dwc3/host.c
+> > > >>+++ b/drivers/usb/dwc3/host.c
+> > > >>@@ -12,6 +12,7 @@
+> > > >>  #include <linux/platform_device.h>
+> > > >>  #include "core.h"
+> > > >>+#include "../host/xhci.h"
+> > > >>  static void dwc3_host_fill_xhci_irq_res(struct dwc3 *dwc,
+> > > >>  					int irq, char *name)
+> > > >>@@ -136,3 +137,26 @@ void dwc3_host_exit(struct dwc3 *dwc)
+> > > >>  {
+> > > >>  	platform_device_unregister(dwc->xhci);
+> > > >>  }
+> > > >>+
+> > > >>+void dwc3_check_phy_speed_mode(struct dwc3 *dwc)
+> > > >>+{
+> > > >>+	int i, num_ports;
+> > > >>+	u32 reg;
+> > > >>+	struct usb_hcd	*hcd = platform_get_drvdata(dwc->xhci);
+> > > >>+	struct xhci_hcd	*xhci_hcd = hcd_to_xhci(hcd);
+> > > >>+
+> > > >>+	dwc->hs_phy_mode = 0;
+> > > >>+
+> > > >>+	reg = readl(&xhci_hcd->cap_regs->hcs_params1);
+> > > >>+
+> > > >>+	num_ports = HCS_MAX_PORTS(reg);
+> > > >>+	for (i = 0; i < num_ports; i++) {
+> > > >>+		reg = readl(&xhci_hcd->op_regs->port_status_base + i * NUM_PORT_REGS);
+> > > >>+		if (reg & PORT_PE) {
+> > > >>+			if (DEV_HIGHSPEED(reg) || DEV_FULLSPEED(reg))
+> > > >>+				dwc->hs_phy_mode |= PHY_MODE_USB_HOST_HS;
+> > > >>+			else if (DEV_LOWSPEED(reg))
+> > > >>+				dwc->hs_phy_mode |= PHY_MODE_USB_HOST_LS;
+> > > >>+		}
+> > > >>+	}
+> > > >>+}
+> > > >I anticipate that it might raise concerns from maintainers that
+> > > >dwc3_check_phy_speed_mode() accesses xHCI data structures and
+> > > >registers directly. Could there be a generic HCD API that provides
+> > > >this functionality (if implemented by the specific HCD)?
+> > > 
+> > > Hi Mathias, we are not sure if there is any such API present currently.
+> > > 
+> > > Hi Alan, can you help suggest any API (if present) that we can reuse here to
+> > > avoid
+> > > 
+> > > xhci registers and structs here in dwc3.
+> > > 
+> > 
+> > We can probably do something like below to query the speed. This avoids adding
+> > another API and does not touch the underlying registers.
+> > 
+> > Pls define enum usb_device_speed usb2_speed in dwc3 structure.
+> > 
+> > diff --git a/drivers/usb/dwc3/host.c b/drivers/usb/dwc3/host.c
+> > index f29a264..fed1c58 100644
+> > --- a/drivers/usb/dwc3/host.c
+> > +++ b/drivers/usb/dwc3/host.c
+> > @@ -9,9 +9,29 @@
+> >  
+> >  #include <linux/acpi.h>
+> >  #include <linux/platform_device.h>
+> > +#include <linux/usb.h>
+> >  
+> >  #include "core.h"
+> >  
+> > +void dwc3_update_hs_phy_speed(struct dwc3 *dwc)
+> > +{
+> > +	struct usb_hcd	*hcd = platform_get_drvdata(dwc->xhci);
+> > +	struct usb_device *udev;
+> > +
+> > +	/*
+> > +	 * It is possible to query the speed of all children of
+> > +	 * USB2.0 root hub via usb_hub_for_each_child(). DWC3 code
+> > +	 * currently supports only 1 port per controller. So
+> > +	 * this is sufficient.
+> > +	 */
+> > +	udev = usb_hub_find_child(hcd->self.root_hub, 1);
+> > +
+> > +	if (udev)
+> > +		dwc->usb2_speed = udev->speed;
+> > +	else
+> > +		dwc->usb2_speed = USB_SPEED_UNKNOWN;
+> > +}
+> > +
+> >  static int dwc3_host_get_irq(struct dwc3 *dwc)
+> >  {
+> >  	struct platform_device	*dwc3_pdev = to_platform_device(dwc->dev);
+> > 
+> > 
+> I am also thinking why dwc core needs to cache usb2_speed since dwc3-qcom glue
+> driver is the only sole user. We also require it only during suspend and does
+> not bother about dwc::usb2_speed correctness outside suspend. Lets move this
+> to dwc3-qcom suspend routines where we have to rely on USB2 speed for
+> configuring the D+/D- interrupt.
 
-Thank you for the patch! Perhaps something to improve:
-
-[auto build test WARNING on abelloni/rtc-next]
-[also build test WARNING on robh/for-next v5.18-rc7]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Medad-CChien/ARM-dts-nuvoton-Add-nuvoton-RTC3018Y-node/20220516-232940
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/abelloni/linux.git rtc-next
-config: i386-allyesconfig (https://download.01.org/0day-ci/archive/20220517/202205170654.jQqRSbra-lkp@intel.com/config)
-compiler: gcc-11 (Debian 11.2.0-20) 11.2.0
-reproduce (this is a W=1 build):
-        # https://github.com/intel-lab-lkp/linux/commit/5c51862ee8030cfd9f2e955c10ee580f168663e3
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Medad-CChien/ARM-dts-nuvoton-Add-nuvoton-RTC3018Y-node/20220516-232940
-        git checkout 5c51862ee8030cfd9f2e955c10ee580f168663e3
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        make W=1 O=build_dir ARCH=i386 SHELL=/bin/bash drivers/rtc/
-
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
-
-All warnings (new ones prefixed by >>):
-
-   drivers/rtc/rtc-nct3018y.c: In function 'nct3018y_rtc_read_time':
->> drivers/rtc/rtc-nct3018y.c:192:26: warning: unused variable 'nct3018y' [-Wunused-variable]
-     192 |         struct nct3018y *nct3018y = i2c_get_clientdata(client);
-         |                          ^~~~~~~~
-   drivers/rtc/rtc-nct3018y.c: In function 'nct3018y_rtc_set_time':
-   drivers/rtc/rtc-nct3018y.c:227:26: warning: unused variable 'nct3018y' [-Wunused-variable]
-     227 |         struct nct3018y *nct3018y = i2c_get_clientdata(client);
-         |                          ^~~~~~~~
-   drivers/rtc/rtc-nct3018y.c: In function 'nct3018y_rtc_set_alarm':
-   drivers/rtc/rtc-nct3018y.c:292:26: warning: unused variable 'nct3018y' [-Wunused-variable]
-     292 |         struct nct3018y *nct3018y = i2c_get_clientdata(client);
-         |                          ^~~~~~~~
-   drivers/rtc/rtc-nct3018y.c: In function 'nct3018y_irq_enable':
-   drivers/rtc/rtc-nct3018y.c:322:26: warning: unused variable 'nct3018y' [-Wunused-variable]
-     322 |         struct nct3018y *nct3018y = i2c_get_clientdata(client);
-         |                          ^~~~~~~~
-   In file included from include/linux/printk.h:555,
-                    from include/linux/kernel.h:29,
-                    from arch/x86/include/asm/percpu.h:27,
-                    from arch/x86/include/asm/current.h:6,
-                    from include/linux/mutex.h:14,
-                    from include/linux/kernfs.h:11,
-                    from include/linux/sysfs.h:16,
-                    from include/linux/kobject.h:20,
-                    from include/linux/of.h:17,
-                    from include/linux/clk-provider.h:9,
-                    from drivers/rtc/rtc-nct3018y.c:5:
-   drivers/rtc/rtc-nct3018y.c: In function 'nct3018y_probe':
-   drivers/rtc/rtc-nct3018y.c:513:39: warning: format '%d' expects argument of type 'int', but argument 5 has type 'long unsigned int' [-Wformat=]
-     513 |                 dev_dbg(&client->dev, "%s: NCT3018Y_BIT_TWO is :%d\n",
-         |                                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   include/linux/dynamic_debug.h:134:29: note: in definition of macro '__dynamic_func_call'
-     134 |                 func(&id, ##__VA_ARGS__);               \
-         |                             ^~~~~~~~~~~
-   include/linux/dynamic_debug.h:166:9: note: in expansion of macro '_dynamic_func_call'
-     166 |         _dynamic_func_call(fmt,__dynamic_dev_dbg,               \
-         |         ^~~~~~~~~~~~~~~~~~
-   include/linux/dev_printk.h:155:9: note: in expansion of macro 'dynamic_dev_dbg'
-     155 |         dynamic_dev_dbg(dev, dev_fmt(fmt), ##__VA_ARGS__)
-         |         ^~~~~~~~~~~~~~~
-   include/linux/dev_printk.h:155:30: note: in expansion of macro 'dev_fmt'
-     155 |         dynamic_dev_dbg(dev, dev_fmt(fmt), ##__VA_ARGS__)
-         |                              ^~~~~~~
-   drivers/rtc/rtc-nct3018y.c:513:17: note: in expansion of macro 'dev_dbg'
-     513 |                 dev_dbg(&client->dev, "%s: NCT3018Y_BIT_TWO is :%d\n",
-         |                 ^~~~~~~
-   drivers/rtc/rtc-nct3018y.c:513:66: note: format string is defined here
-     513 |                 dev_dbg(&client->dev, "%s: NCT3018Y_BIT_TWO is :%d\n",
-         |                                                                 ~^
-         |                                                                  |
-         |                                                                  int
-         |                                                                 %ld
-   drivers/rtc/rtc-nct3018y.c:535:22: error: 'struct rtc_device' has no member named 'uie_unsupported'
-     535 |         nct3018y->rtc->uie_unsupported = 1;
-         |                      ^~
-   drivers/rtc/rtc-nct3018y.c:561:15: error: implicit declaration of function 'rtc_register_device'; did you mean 'i2c_unregister_device'? [-Werror=implicit-function-declaration]
-     561 |         err = rtc_register_device(nct3018y->rtc);
-         |               ^~~~~~~~~~~~~~~~~~~
-         |               i2c_unregister_device
-   cc1: some warnings being treated as errors
-
-
-vim +/nct3018y +192 drivers/rtc/rtc-nct3018y.c
-
-   184	
-   185	/*
-   186	 * In the routines that deal directly with the nct3018y hardware, we use
-   187	 * rtc_time -- month 0-11, hour 0-23, yr = calendar year-epoch.
-   188	 */
-   189	static int nct3018y_rtc_read_time(struct device *dev, struct rtc_time *tm)
-   190	{
-   191		struct i2c_client *client = to_i2c_client(dev);
- > 192		struct nct3018y *nct3018y = i2c_get_clientdata(client);
-   193		unsigned char buf[10];
-   194		int err;
-   195	
-   196		err = nct3018y_read_block_data(client, NCT3018Y_REG_ST, 1, buf);
-   197		if (err)
-   198			return err;
-   199	
-   200		if (!buf[0]) {
-   201			dev_err(&client->dev, " voltage <=1.7, date/time is not reliable.\n");
-   202			return -EINVAL;
-   203		}
-   204	
-   205		err = nct3018y_read_block_data(client, NCT3018Y_REG_SC, 10, buf);
-   206		if (err)
-   207			return err;
-   208	
-   209		tm->tm_sec = bcd2bin(buf[0] & 0x7F);
-   210		tm->tm_min = bcd2bin(buf[2] & 0x7F);
-   211		tm->tm_hour = bcd2bin(buf[4] & 0x3F); /* rtc hr 0-24 */
-   212		tm->tm_wday = buf[6] & 0x07;
-   213		tm->tm_mday = bcd2bin(buf[7] & 0x3F);
-   214		tm->tm_mon = bcd2bin(buf[8] & 0x1F) - 1 ; /* rtc mn 1-12 */
-   215		tm->tm_year = bcd2bin(buf[9]) + 100;
-   216	
-   217		dev_dbg(&client->dev, "%s:s=%d, m=%d, hr=%d, md=%d, m=%d, yr=%d, wd=%d\n",
-   218			__func__, tm->tm_sec, tm->tm_min, tm->tm_hour, tm->tm_mday, tm->tm_mon,
-   219			tm->tm_year, tm->tm_wday);
-   220	
-   221		return 0;
-   222	}
-   223	
-
--- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
+I like both of your suggestions. If something like dwc3_update_hs_phy_speed()
+works properly here we should have finally sorted out all the layering issues
+Felipe was unhappy about.
