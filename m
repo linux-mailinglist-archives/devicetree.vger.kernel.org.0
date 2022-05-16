@@ -2,90 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A1CB2528828
-	for <lists+devicetree@lfdr.de>; Mon, 16 May 2022 17:12:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D85352882A
+	for <lists+devicetree@lfdr.de>; Mon, 16 May 2022 17:12:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235087AbiEPPMa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 May 2022 11:12:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40262 "EHLO
+        id S229638AbiEPPMg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 May 2022 11:12:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40558 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229638AbiEPPM3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 May 2022 11:12:29 -0400
-Received: from mail-oa1-f42.google.com (mail-oa1-f42.google.com [209.85.160.42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9700B33A35
-        for <devicetree@vger.kernel.org>; Mon, 16 May 2022 08:12:28 -0700 (PDT)
-Received: by mail-oa1-f42.google.com with SMTP id 586e51a60fabf-f189b07f57so6969942fac.1
-        for <devicetree@vger.kernel.org>; Mon, 16 May 2022 08:12:28 -0700 (PDT)
+        with ESMTP id S233075AbiEPPMf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 May 2022 11:12:35 -0400
+Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34F82A8;
+        Mon, 16 May 2022 08:12:34 -0700 (PDT)
+Received: by mail-wr1-x433.google.com with SMTP id d21so5053697wra.10;
+        Mon, 16 May 2022 08:12:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=a1FJwil/7+XIwiXsq5I+6Eb/YvE5VJgEZyQaNqTaaDc=;
+        b=I31xUdj8VH0Q+b9sUcm9wcgk9wZYanoUdZTbi6PvI39lfkD62Dv4vFTs2lST2Dl0Or
+         3DivGVQ5+AlKvo8YS84BZB6bPxiSdnZ0exa1aAELLQNL0D7kWNQigKEirWEyABRAaXBi
+         4GEZ7APvHtcmd2OKh6lQw8vWaEU+q9Feg0I3iY9dp0hG4IrlZCVGh4oc9Pl39bU0bx5j
+         eMsvvzdN1eu/Tcq0lRCdy+f0mxSZXoOpvoVNsyooPX2IMZO8T61ccFZF4V9NmerNyLHK
+         xNqJxaHKI//jch/jR7OZx8rFFweG5kWW9lG2AzRIfvqBbh6ZriMK27D1PEHJeR1lEq/x
+         gzag==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=znK6Xi/ZZGwAG1mufIgwNSTMcdTMg6wUp+SUygn6ioI=;
-        b=7bgJsBR5WTbd2MENMt3VYu0T56MxmGrKq3PhZY5o+yZL744mdtW0Drv5VejOosuhgi
-         G368A6Yro1P7Kzm7X7mhcT467glsSjaIkg+2eMMC67tWdMFwEyrlqGymYyljVn17gdNp
-         NpAp+XXs2nqJZ7r3hKW4ToYr0z4Qyt9XeYKUF2YTxr+faPerpb0tlRrewSa6yXXlg/ap
-         CJkLR34KrgC76vosUqQIZQp2vMWbBL7KxHTBwH30a825MX/VAdBUyptGCsG7PdVqe8x1
-         Sbyo1SKVUavlSHpy43biM0yI3QCANgSu/J/rKZtWl4gf3D092Rxx9g+e+a8mVrVTu5Xb
-         fUPA==
-X-Gm-Message-State: AOAM531TOwOvabkEPfOeqxwdprGccJYkVkDoRxO3YPqdTdwRD5Q3TRUZ
-        QXfUYfRbVQz3JGozXWuqDw==
-X-Google-Smtp-Source: ABdhPJxPwFMBKNVLxZpvbM0oKINdhczioV6MSSHnKVI7RMNwc5BdKvXqQN13cVGRLoewA3V9riVaNQ==
-X-Received: by 2002:a05:6870:4596:b0:da:b3f:2b1d with SMTP id y22-20020a056870459600b000da0b3f2b1dmr16326831oao.188.1652713947847;
-        Mon, 16 May 2022 08:12:27 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id r12-20020a056808210c00b00325cda1ff8fsm3826021oiw.14.2022.05.16.08.12.26
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=a1FJwil/7+XIwiXsq5I+6Eb/YvE5VJgEZyQaNqTaaDc=;
+        b=jVd/gmO2Oo0jOD4xQkQD2WnEE7TJHPKX2IKRFtx9UjaWzlqfdDtLdM0rrM8CRJxfSL
+         h220VFP6baMWySpQfaAcnkZzTqyrzQ5xMSlkz/6zIQ1DQcuVDJqmmMvs4jRXyKCFSDPo
+         wTPxvFhIkz29aPewedIcKShU/MHMeV8EQUpDEkXlZOe7zb5Rrp7o7WhQ98VCIqlnDlJ1
+         j3mFj8WmD0/VtSCSihDxDVCR8lbWTVsDX2qcpDlRJPijZVSOVccBmgpJ8UwyoPwnxeKZ
+         k5yIXlQGlf4rIiHliqH3ubXWPHi+dwk1WXU5dLCCLGGsv00wn8Te/rIidcSBsGEU9wCn
+         j57A==
+X-Gm-Message-State: AOAM532u2KxERFZVS3whrOVkEUmKiJroER8jyvCmK/vfpgTVbvkVCTQq
+        a+J+3efLt/0fYIAI8u2l0aA=
+X-Google-Smtp-Source: ABdhPJxuqO1uXReP9VrJqtOoLvpX21uGjiDIi805z04XmYH3Q+a6sHOZfKCJaag+PCEz7vqDj4bhUg==
+X-Received: by 2002:adf:e195:0:b0:20d:110c:b890 with SMTP id az21-20020adfe195000000b0020d110cb890mr1657865wrb.232.1652713952708;
+        Mon, 16 May 2022 08:12:32 -0700 (PDT)
+Received: from vmu1804.lan ([2a06:a003:501a:a7ce::887])
+        by smtp.googlemail.com with ESMTPSA id bg33-20020a05600c3ca100b003942a244f57sm8962540wmb.48.2022.05.16.08.12.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 May 2022 08:12:27 -0700 (PDT)
-Received: (nullmailer pid 2653921 invoked by uid 1000);
-        Mon, 16 May 2022 15:12:26 -0000
-Date:   Mon, 16 May 2022 10:12:26 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Sascha Hauer <s.hauer@pengutronix.de>
-Cc:     Heiko =?iso-8859-1?Q?St=FCbner?= <heiko@sntech.de>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        kernel@pengutronix.de, Sandy Huang <hjc@rock-chips.com>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Andy Yan <andy.yan@rock-chips.com>,
-        dri-devel@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 1/3] dt-bindings: display: rockchip: make reg-names
- mandatory for VOP2
-Message-ID: <20220516151226.GA2653888-robh@kernel.org>
-References: <20220511082109.1110043-1-s.hauer@pengutronix.de>
- <20220511082109.1110043-2-s.hauer@pengutronix.de>
+        Mon, 16 May 2022 08:12:32 -0700 (PDT)
+From:   Mikhail Zhilkin <csharper2005@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-mtd@lists.infradead.org, Karim <Karimdplay@gmail.com>,
+        M <x1@disroot.org>, Mikhail Zhilkin <csharper2005@gmail.com>
+Subject: [PATCH v5 0/3] Add support for Sercomm partitions
+Date:   Mon, 16 May 2022 15:12:28 +0000
+Message-Id: <20220516151228.885222-1-csharper2005@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220511082109.1110043-2-s.hauer@pengutronix.de>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 11 May 2022 10:21:07 +0200, Sascha Hauer wrote:
-> The VOP2 driver relies on reg-names properties, but these are not
-> documented. Add the missing documentation, make reg-names mandatory
-> and increase minItems to 2 as always both register spaces are needed.
-> 
-> Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
-> ---
-> 
-> Notes:
->     Changes since v1:
->     - Drop minItems
->     - Add reg-names properties to example
-> 
->  .../bindings/display/rockchip/rockchip-vop2.yaml          | 8 +++++++-
->  1 file changed, 7 insertions(+), 1 deletion(-)
-> 
+This patch series add support for Sercomm mtd partition table parser. It's
+used in some Beeline, Netgear and Sercomm routers. The Sercomm partition
+map table contains real partition offsets, which may differ from device to
+device depending on the number and location of bad blocks on NAND.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Changes since:
+v4:
+ - Add Acked-by to the first patch
+
+v3:
+ - Fix commit message of the first patch
+ - Add Reviewed-by to the second patch
+
+v2:
+ - Fix mistakes in dt-binding
+ - Add patch for new vendor prefix
+ - Add vendor prefix to scpart-id property
+
+v1:
+ - Add dt-binding in a separate patch
+ - Remove redundant braces and logical NOT operator
+ - Define pr_fmt
+ - Replace kcalloc by kzalloc
+ - Use of_get_child_count() and alloc big enough array before the
+   for_each_child_of_node()
+
+Mikhail Zhilkin (3):
+  dt-bindings: Add Sercomm (Suzhou) Corporation vendor prefix
+  dt-bindings: mtd: partitions: Extend fixed-partitions binding
+  mtd: parsers: add support for Sercomm partitions
+
+ .../mtd/partitions/fixed-partitions.yaml      |  55 +++-
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ drivers/mtd/parsers/Kconfig                   |   9 +
+ drivers/mtd/parsers/Makefile                  |   1 +
+ drivers/mtd/parsers/scpart.c                  | 240 ++++++++++++++++++
+ 5 files changed, 305 insertions(+), 2 deletions(-)
+ create mode 100644 drivers/mtd/parsers/scpart.c
+
+-- 
+2.25.1
+
