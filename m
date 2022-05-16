@@ -2,43 +2,43 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 11C94529274
-	for <lists+devicetree@lfdr.de>; Mon, 16 May 2022 23:08:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 07DA75292A3
+	for <lists+devicetree@lfdr.de>; Mon, 16 May 2022 23:19:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349067AbiEPVId (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 May 2022 17:08:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36224 "EHLO
+        id S1349329AbiEPVMz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 May 2022 17:12:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39444 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349169AbiEPVIM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 May 2022 17:08:12 -0400
-Received: from mail-oa1-f48.google.com (mail-oa1-f48.google.com [209.85.160.48])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E955A4A3C8;
-        Mon, 16 May 2022 13:49:44 -0700 (PDT)
-Received: by mail-oa1-f48.google.com with SMTP id 586e51a60fabf-edf9ddb312so21773769fac.8;
-        Mon, 16 May 2022 13:49:44 -0700 (PDT)
+        with ESMTP id S1350114AbiEPVMM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 May 2022 17:12:12 -0400
+Received: from mail-oi1-f182.google.com (mail-oi1-f182.google.com [209.85.167.182])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 845B9B4B5;
+        Mon, 16 May 2022 14:01:57 -0700 (PDT)
+Received: by mail-oi1-f182.google.com with SMTP id i66so20104892oia.11;
+        Mon, 16 May 2022 14:01:57 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=dJ407RX9rra+MeG41XsuDhxD1nvVBeIHBR/vdQHMxFg=;
-        b=uGnV8i7EYk9xkRxbGIAMf418oeQ21KaYhYgowf2A8Vjd1QfUKN0nrw8E6GKqiwZu4Z
-         HDq7Q+CkWPNONUBqc5ecbQLl/2TB0k87rKSJsqOGfrK0ILY4Ih7UXk1JodpzHhPMMMEE
-         X/ieg0ezp8uETsPc4Xj2JNDoEBXJLvEgjujThQc0jbBFtnXVYY8Vb8claRIFIa172oXt
-         2y0DXKRWlFOyB0wav+uxASE0NCpab1+qvwMp92YmyiM4GtvZchi9Lfvh6R+KzS+USEGp
-         /kvL4iuBaPlhumU9vVvKTTr7lViMclSWluR7YV1rxd7F8aJnG9BI9HuNT+XzXcCUFLe/
-         ZcWg==
-X-Gm-Message-State: AOAM533L8IRKnD8E53wXa6Kb9BMPlr1SJYiY4zooFQ6Likc1YShOskbM
-        Hgbc8f/m+uCxXbhj4MgJFg==
-X-Google-Smtp-Source: ABdhPJwSZjeoTdSCcmGSB5osGq7WGCVKCO9I/IGTjq81+0ENZwa2gjhYxpSHG+AyOhA/zPGQj+g1IQ==
-X-Received: by 2002:a05:6870:b527:b0:ed:9cbd:e04a with SMTP id v39-20020a056870b52700b000ed9cbde04amr16246920oap.41.1652734184207;
-        Mon, 16 May 2022 13:49:44 -0700 (PDT)
+        bh=2Ok8Rgh5k5giQQ7VokGXvCm4kz6pM++MXJZ7vVWW924=;
+        b=zbd/5+UhksviBed/Z5QI24T4UajYMZ/ye/ymUTdkryk0iX/V4uPa8f95KXtfxG7Ypg
+         pbfQXYWguXlElBsXmQBflqCAH+62KUhrOXxwFf5aftp20wrKUDJ0rTpkwJDxAmNLcFtQ
+         l8TP4MlCAV6P8/Wme5Jnt5UGbadoO39B6Ny6owMmX9hId3YCABHqBE2gDOJnYZHU68hK
+         i9lcdwgLTWQb8VFAv1nuksBWW5zpd+gItP62U45TmVn1EhQwHMrI8qpat0Hy2FHGGOMW
+         52v0wTd4o2veGZysyttzyfG7XZiD+x27u26kHRajDQhqhU6hRqsH3ezhH7t+z008PY3v
+         KP9A==
+X-Gm-Message-State: AOAM530YqtfptrEgQf1btahxSdm7ve6VF35Nmj1sjg8+sEB14V/BqMdW
+        /frHmn/iKb8nr/bqB+UX1g==
+X-Google-Smtp-Source: ABdhPJwuZSwvSmcukd4UuOWWaX3nmI7sBx7mXyvnpspGDt9YChZJCyMKliPdy3dTZVnej56J+hT5Qw==
+X-Received: by 2002:aca:ac8c:0:b0:326:13f6:5f5c with SMTP id v134-20020acaac8c000000b0032613f65f5cmr9261961oie.287.1652734916537;
+        Mon, 16 May 2022 14:01:56 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id s124-20020aca5e82000000b00325cda1ffb8sm4158039oib.55.2022.05.16.13.49.42
+        by smtp.gmail.com with ESMTPSA id f25-20020a0568301c3900b006060322125csm4440786ote.44.2022.05.16.14.01.55
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 May 2022 13:49:43 -0700 (PDT)
-Received: (nullmailer pid 3259375 invoked by uid 1000);
-        Mon, 16 May 2022 20:49:42 -0000
-Date:   Mon, 16 May 2022 15:49:42 -0500
+        Mon, 16 May 2022 14:01:55 -0700 (PDT)
+Received: (nullmailer pid 3279738 invoked by uid 1000);
+        Mon, 16 May 2022 21:01:54 -0000
+Date:   Mon, 16 May 2022 16:01:54 -0500
 From:   Rob Herring <robh@kernel.org>
 To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
 Cc:     Jingoo Han <jingoohan1@gmail.com>,
@@ -53,15 +53,15 @@ Cc:     Jingoo Han <jingoohan1@gmail.com>,
         Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
         linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 10/17] PCI: dwc: Drop iATU regions enumeration -
- dw_pcie_region_type
-Message-ID: <20220516204942.GG3209795-robh@kernel.org>
+Subject: Re: [PATCH v2 12/17] PCI: dwc: Add iATU regions size detection
+ procedure
+Message-ID: <20220516210154.GH3209795-robh@kernel.org>
 References: <20220503214638.1895-1-Sergey.Semin@baikalelectronics.ru>
- <20220503214638.1895-11-Sergey.Semin@baikalelectronics.ru>
+ <20220503214638.1895-13-Sergey.Semin@baikalelectronics.ru>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220503214638.1895-11-Sergey.Semin@baikalelectronics.ru>
+In-Reply-To: <20220503214638.1895-13-Sergey.Semin@baikalelectronics.ru>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -73,37 +73,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 04, 2022 at 12:46:31AM +0300, Serge Semin wrote:
-> There is no point in having the dw_pcie_region_type enumeration for almost
-> the same reasons as it was stated for dw_pcie_as_type. First of all it's
-> redundant since the driver already has a set of the macros declared which
-> describe the possible inbound and outbound iATU regions. Having an
-> addition abstraction just needlessly complicates the code. Secondly
-> checking the region type passed to the dw_pcie_disable_atu() method for
-> validity is pointless since the erroneous situation is just ignored in the
-> current method implementation. So to speak let's drop the redundant
-> dw_pcie_region_type enumeration replacing it with the direct iATU
-> direction macro usage.
+On Wed, May 04, 2022 at 12:46:33AM +0300, Serge Semin wrote:
+> Depending on the DWC PCIe RC/EP/DM IP-core configuration parameters the
+> controllers can be equipped not only with various number of inbound and
+> outbound iATU windows, but with varied regions settings like alignment
+> (which is also the minimum window size), minimum and maximum sizes. So to
+> speak if internal ATU is enabled for the denoted IP-cores then the former
+> settings will be defined by the CX_ATU_MIN_REGION_SIZE parameter while the
+> later one will be determined by the CX_ATU_MAX_REGION_SIZE configuration
+> parameter. Anyway having these parameters used in the driver will help to
+> verify whether the requested inbound or outbound memory mappings can be
+> fully created. Currently the driver doesn't perform any corresponding
+> checking.
 > 
-> Since the dw_pcie_disable_atu() method now directly accepts the
-> in-/outbound iATU region direction instead of the abstract region type we
-> need to change the argument name and the arguments order. The later change
-> makes the function prototype looking more logical since the passed index
-> indicates an iATU window within the regions with the corresponding
-> direction.
+> Note 1. The extended iATU regions have been supported since DWC PCIe
+> v4.60a. There is no need in testing the upper limit register availability
+> for the older cores.
+> 
+> Note 2. The regions alignment is determined with using the fls() method
+> since the lower four bits of the ATU Limit register can be occupied with
+> the Circular Buffer Increment setting, which can be initialized with
+> zeros.
+> 
+> The (dma-)ranges verification will be added a bit later in one of the next
+> commits.
 > 
 > Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-> 
 > ---
-> 
-> Changelog v2:
-> - Move this patch to being applied before the IB/OB iATU windows setup
->   simplification patch (@Rob).
-> ---
->  .../pci/controller/dwc/pcie-designware-ep.c   |  4 +--
->  .../pci/controller/dwc/pcie-designware-host.c |  2 +-
->  drivers/pci/controller/dwc/pcie-designware.c  | 28 +++++--------------
->  drivers/pci/controller/dwc/pcie-designware.h  | 13 ++-------
->  4 files changed, 13 insertions(+), 34 deletions(-)
+>  drivers/pci/controller/dwc/pcie-designware.c | 33 +++++++++++++++++---
+>  drivers/pci/controller/dwc/pcie-designware.h |  2 ++
+>  2 files changed, 31 insertions(+), 4 deletions(-)
 
 Reviewed-by: Rob Herring <robh@kernel.org>
