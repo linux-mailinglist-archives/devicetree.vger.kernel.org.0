@@ -2,126 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D94085288C9
-	for <lists+devicetree@lfdr.de>; Mon, 16 May 2022 17:27:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 09DD55288D5
+	for <lists+devicetree@lfdr.de>; Mon, 16 May 2022 17:29:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245216AbiEPP1F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 May 2022 11:27:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46542 "EHLO
+        id S231313AbiEPP2H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 May 2022 11:28:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50238 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229688AbiEPP1C (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 May 2022 11:27:02 -0400
-Received: from mail-oa1-x35.google.com (mail-oa1-x35.google.com [IPv6:2001:4860:4864:20::35])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78DDE12754;
-        Mon, 16 May 2022 08:26:55 -0700 (PDT)
-Received: by mail-oa1-x35.google.com with SMTP id 586e51a60fabf-edf9ddb312so20530436fac.8;
-        Mon, 16 May 2022 08:26:55 -0700 (PDT)
+        with ESMTP id S230219AbiEPP2G (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 May 2022 11:28:06 -0400
+Received: from mail-pl1-x634.google.com (mail-pl1-x634.google.com [IPv6:2607:f8b0:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B935914030;
+        Mon, 16 May 2022 08:28:05 -0700 (PDT)
+Received: by mail-pl1-x634.google.com with SMTP id d17so14788083plg.0;
+        Mon, 16 May 2022 08:28:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=KHyeVKxqxatLeY3gDq4jdVF9Tt519Zk/h+VHXOLojzc=;
-        b=KewvRBMJACjGiAlIKD93nIY5CDbfu7LGLi5U9OT3JumiPFbrpxe/9hLyeFkc/lrj9W
-         nyGDOJdITBAxQzLjMsAtN3oVx6acR1EWDeCWuS5Bd76MnSfwqtGsu1op6ye4kfO5CSEg
-         kyAvSbwiXB2Wctjrp7/yIbHPfXU8bo/c/Na8FsNDrd2IewsEeOUHsrgrbCChJFtxq4Xg
-         IbIjbK0xHOfAtds8bB6vnnsS1hu/Zv0xIdI/oEbKwWOt7kdKS6i1efSkkS1/Yh+RkHIv
-         AcFdJQl6YijSS3Vzpn7tqldQsxM+mtnHyKfaPlcsPcTq3aYi7vFD5B1VH2e5WXC3ddxO
-         Mftw==
+        h=from:to:cc:subject:date:message-id;
+        bh=jvAEBjwUOb6zwBl6DiP+4dhdWO5kB2YZRGfj+rIA7BU=;
+        b=U4hyg03xi6oe6X6bhQ1T1+v1r88DZ0by9HRN+VaKWFNIlfUp5+BpC2BgklaZ/gjmSZ
+         Hzbe1Rg0Pqrgg6fUbPg9DCsFUP99lBVSI47LnmUwRdBVddVBukWeDVchsCUKHjIsVH6l
+         ialCaFcZI0XBicM6OnNUlqlfGebQB2qNtYT6fZkmsI6mZjrfSzemK8yhu92r5cJSnth/
+         c31ysVRyvCrgDcd/Mp5vp93qiHTtVsQhpo+1zYC87CD5o7XD6ricuQ2ziF1u53JHteK6
+         N39Vy4qsAcIk4UsWLwoGB7+g+5t8oLWp/nfChFy+BlbEL32ZNovG8uZk8Gsv2e1/sYJr
+         qehw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=KHyeVKxqxatLeY3gDq4jdVF9Tt519Zk/h+VHXOLojzc=;
-        b=tJChQStwvwqF2VBreDpMlHcHk2fInDb+4XutpKFhIzIaNBQn1y+dcfwiy2TnWSvmTF
-         Aza7Md5bST8lepRWHm83VAZA89tXGbxDXPlmoYTKcdbGr6Jni1jJcojh9cwGigr8rtmS
-         al6Zjp42rYcMG59gYG+tBe6d6HTOVJqdUYkCHXq6xe5efpw47XgnKHPpHea6x3RO9jQn
-         3V+GtACDVx9FNm6u7Je0JOSLtod3ezEnbYEyX/lKFBM0OzbSkPC63Yco0bOGVt81eRCY
-         mTtdRYOXq7gXWVmZ1mIyesTPzEzNbT7qbkihg4+wCptTRFCgrSBgtVV6d/GRANz9A0jM
-         3Stw==
-X-Gm-Message-State: AOAM532FG9XcG058P247KiVrPeyRuP07jYZynK+cyGOYyun4IBcN706t
-        2iRwPnkw4CxiPBC1zfQMtj4=
-X-Google-Smtp-Source: ABdhPJzIjGJ8YJEvupAXFxrzzx+fCG8rregIbh6jLEAET5ITg4EypP6IKnXddR5n4Rh0gU+G8PeHrw==
-X-Received: by 2002:a05:6870:c692:b0:e9:5368:10df with SMTP id cv18-20020a056870c69200b000e9536810dfmr9767194oab.182.1652714814852;
-        Mon, 16 May 2022 08:26:54 -0700 (PDT)
-Received: from wintermute.localdomain (cpe-76-183-134-35.tx.res.rr.com. [76.183.134.35])
-        by smtp.gmail.com with ESMTPSA id z30-20020a056870461e00b000e686d1389fsm5475774oao.57.2022.05.16.08.26.53
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=jvAEBjwUOb6zwBl6DiP+4dhdWO5kB2YZRGfj+rIA7BU=;
+        b=W6vR5blQT8aM4rsOTT+/EOSQVHoiviE8LuUizqdP5c3gCRAU1SkrfCIhpiujuGVgsI
+         5JKuJMFEU4FwsE/gQNlGc9GnXkwIXcxHcE17aUs9IjwqxT/MW0UxFI/SqefjDfMQOhN1
+         9HG2bvz9dM+/Oh07zjticcX166gbimKglX6jB6ZcjHnSxDIXo4Pqd35DgRoShRJelYsf
+         tCZh/cE+XxsmqxQ1UZQ4BVKc0wsHohvflswc+JR/kbDm7V+AtsuThBXqd7aWOlPpML5U
+         HfeYEi8ifruMeKzlLyTquDWR37dpSGSl519wM3wwi6EHnXj1ZnQudCcEs6OTxuBpODtK
+         3gUQ==
+X-Gm-Message-State: AOAM533gAhmmYxTGob0bC6wefTy0Y5Hldi/VPhpC/YB2Jn6aFH5NgiRE
+        z7mVHMaFD8y/ii1DXA8Fvsc=
+X-Google-Smtp-Source: ABdhPJy0iI39XqHCU2EmY5yUaX8imnzPT4LnPTzcfum+hrQ94V4WB81XJo2SovUpsXsl2iF2fpfWMw==
+X-Received: by 2002:a17:903:230b:b0:15e:bc9c:18c7 with SMTP id d11-20020a170903230b00b0015ebc9c18c7mr17829910plh.29.1652714885101;
+        Mon, 16 May 2022 08:28:05 -0700 (PDT)
+Received: from localhost.localdomain ([116.89.131.16])
+        by smtp.gmail.com with ESMTPSA id d15-20020a655acf000000b003c14af50605sm6895126pgt.29.2022.05.16.08.28.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 May 2022 08:26:54 -0700 (PDT)
-Date:   Mon, 16 May 2022 10:26:51 -0500
-From:   Chris Morgan <macroalpha82@gmail.com>
-To:     Peter Geis <pgwipeout@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 6/6] arm64: dts: rockchip: enable sfc controller on
- Quartz64 Model A
-Message-ID: <20220516152651.GA18461@wintermute.localdomain>
-References: <20220511150117.113070-1-pgwipeout@gmail.com>
- <20220511150117.113070-7-pgwipeout@gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220511150117.113070-7-pgwipeout@gmail.com>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        Mon, 16 May 2022 08:28:04 -0700 (PDT)
+From:   Medad CChien <medadyoung@gmail.com>
+X-Google-Original-From: Medad CChien <ctcchien@nuvoton.com>
+To:     benjaminfair@google.com, yuenn@google.com, venture@google.com,
+        tali.perry1@gmail.com, tmaimon77@gmail.com, avifishman70@gmail.com,
+        robh+dt@kernel.org, alexandre.belloni@bootlin.com,
+        a.zummo@towertech.it, KWLIU@nuvoton.com, YSCHU@nuvoton.com,
+        JJLIU0@nuvoton.com, KFTING@nuvoton.com, ctcchien@nuvoton.com
+Cc:     openbmc@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-rtc@vger.kernel.org
+Subject: [PATCH v1 1/3] ARM: dts: nuvoton: Add nuvoton RTC3018Y node
+Date:   Mon, 16 May 2022 23:27:49 +0800
+Message-Id: <20220516152751.27716-1-ctcchien@nuvoton.com>
+X-Mailer: git-send-email 2.17.1
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 11, 2022 at 11:01:17AM -0400, Peter Geis wrote:
-> Add the sfc controller binding for the Quartz64 Model A. This is not
-> populated by default, so leave it disabled.
-> 
-> Signed-off-by: Peter Geis <pgwipeout@gmail.com>
-> ---
->  .../boot/dts/rockchip/rk3566-quartz64-a.dts      | 16 ++++++++++++++++
->  1 file changed, 16 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts
-> index 71df64655de5..6ec349e7e521 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts
-> @@ -603,6 +603,22 @@ &sdmmc1 {
->  	status = "okay";
->  };
->  
-> +&sfc {
-> +	pinctrl-0 = <&fspi_pins>;
-> +	pinctrl-names = "default";
-> +	#address-cells = <1>;
-> +	#size-cells = <0>;
-> +	status = "disabled";
-> +
-> +	flash@0 {
-> +		compatible = "jedec,spi-nor";
-> +		reg = <0>;
-> +		spi-max-frequency = <24000000>;
-> +		spi-rx-bus-width = <4>;
-> +		spi-tx-bus-width = <1>;
+Add nuvoton real time clock RTC3018Y in I2C node
 
-This isn't really a concern, just a comment. Did you test this with the
-spi-tx-bus-width of 4 by chance? While I did have to use 1 for my
-implementation (the Odroid Go Advance) the Rockchip engineer I worked
-with couldn't replicate the issue on his end and we ended up chalking
-my issues up to an implementation specific problem. I'm only commenting
-here because I don't want you to think that for this device the tx
-always has to be 1, of course if your implementation does have issues
-with a tx of 2 or 4 that's different...
+Signed-off-by: Medad CChien <ctcchien@nuvoton.com>
+---
+ arch/arm/boot/dts/nuvoton-npcm750-evb.dts | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-Thank you.
+diff --git a/arch/arm/boot/dts/nuvoton-npcm750-evb.dts b/arch/arm/boot/dts/nuvoton-npcm750-evb.dts
+index 0334641f8829..c1248211b1b4 100644
+--- a/arch/arm/boot/dts/nuvoton-npcm750-evb.dts
++++ b/arch/arm/boot/dts/nuvoton-npcm750-evb.dts
+@@ -202,6 +202,12 @@
+ 		reg = <0x48>;
+ 		status = "okay";
+ 	};
++	rtc0: rtc@6f {
++		compatible = "nuvoton,nct3018y";
++		reg = <0x6f>;
++		#clock-cells = <0>;
++		host-wakeup-gpios = <&gpio0 0 GPIO_ACTIVE_LOW>;
++	};
+ };
+ 
+ /* lm75 on EB */
+-- 
+2.17.1
 
-> +	};
-> +};
-> +
->  /* spdif is exposed on con40 pin 18 */
->  &spdif {
->  	status = "okay";
-> -- 
-> 2.25.1
-> 
