@@ -2,66 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C3252527D0F
-	for <lists+devicetree@lfdr.de>; Mon, 16 May 2022 07:35:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 39BBC527D35
+	for <lists+devicetree@lfdr.de>; Mon, 16 May 2022 07:54:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239061AbiEPFff (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 May 2022 01:35:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47160 "EHLO
+        id S239965AbiEPFyK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 May 2022 01:54:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53522 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239339AbiEPFfd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 May 2022 01:35:33 -0400
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2C99DF14
-        for <devicetree@vger.kernel.org>; Sun, 15 May 2022 22:35:30 -0700 (PDT)
-Received: by mail-ed1-x529.google.com with SMTP id en5so2705931edb.1
-        for <devicetree@vger.kernel.org>; Sun, 15 May 2022 22:35:30 -0700 (PDT)
+        with ESMTP id S235841AbiEPFyI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 May 2022 01:54:08 -0400
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A4A217055
+        for <devicetree@vger.kernel.org>; Sun, 15 May 2022 22:54:07 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id b18so23880992lfv.9
+        for <devicetree@vger.kernel.org>; Sun, 15 May 2022 22:54:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=c/IovKeDQ5OmYImuaDKw85Gvkz+g6dB9ube8wouUX0E=;
-        b=GGajIGxKz4a1kdgVCnNp3TVY4oWNsaMBX25vD2wNxJjdlfjW0K2HSomOmhtNf8KlII
-         I/KzDUxpS795xfRF8NdRofQwNVP/BcZW3gRgq5wCMrBCZXhJNS+FRleC+mG3irXz/3aO
-         +mT31wgaBGkXLx4Qfi9CCUwCaASTGFEm4O6+Q=
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=iQu4lukAu6aND/lSxHXOC9CQZKXgScz0FZajkncufEw=;
+        b=WOTncPc2v5NZjRnTIJIh4IXO1dj9ckDUzbSMpFADqaVVFteQj9TEczbboaO7BSW2/s
+         XISBzIocyQtoLTgR7gWJ/xy+YDxJlUaAAnAbtnBo+Ja4yyTkPE3dNrqwQyJL1N6Lt4H0
+         ++LYr9UXQs5/Qplz1Zqp2mpf5Mt3r7P9Z9O4UHYmkTLk3lPXMJ1Bwkihocd9f4kVWpdk
+         3IzpmTfXxrlrmJeAStqS0d+5hFCtGcTIYjrwdLrzg/HL53pH2ksHGVkx5ljLbGLK0EZE
+         n33jLIToD1mvWSg0ZTsItxhaHXXnCYpgLBJ7kwzcMxk9kRkJfIChVs5xPxBONi0DnCfU
+         rI9w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=c/IovKeDQ5OmYImuaDKw85Gvkz+g6dB9ube8wouUX0E=;
-        b=VV/BZAz9KvDRUXXv3+5FH1ZScm8zbjCOe4ql8XyjPXMyTco7A6bdkv+pbHr1un0lR+
-         IHUR1MwkElWXuuIDg5/O1Eg0Z0kVceL/juRsfODBOC7FBiqpVgKhg3dKWltUk2cZftn2
-         IMAxZK0VfU03X1qPLz3jYKdim0iUVaHZOnpBZmgv5zQ/kPZezVM8FLieB+vppx56LqfS
-         bdZ+1uZNzpXhKVxmtjUz1HnqVXgoatkh/v7Qp5ApS/OE5h47hKtJJkpBvfwrFkfsHw1S
-         y7j2IUNymSad24UGqJ91iUZ25IfRUApMyLyoCDuWWcKSbUm2IcwnHr0w3S3p91+YU9Pa
-         Yaug==
-X-Gm-Message-State: AOAM532GKKAGQIYlhU4YPfZhfRtwJJHukCYHSBm9zhjJCj+0GmADjExn
-        ffgaKt8Z4FK5NaV18CaswzxqC1HLM8sCwelVUF5Ab0TvooV/Ig==
-X-Google-Smtp-Source: ABdhPJxkaaQU1pxAn/HNEptaZ1FK3UV5eSAHcvlMeQ1pJimMFp8UJ4ll80vonmeQUOiLh7XTmmmV9IDAbxXEwPO61wM=
-X-Received: by 2002:a05:6402:11cd:b0:427:bda5:542f with SMTP id
- j13-20020a05640211cd00b00427bda5542fmr11486167edw.290.1652679329459; Sun, 15
- May 2022 22:35:29 -0700 (PDT)
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=iQu4lukAu6aND/lSxHXOC9CQZKXgScz0FZajkncufEw=;
+        b=iu/GCE6Kj/OWbXPz4CEhwu8DaaFYALDXNMWXG5gPUXQzdwT9lVAba0ZJuw+J6NCTHR
+         vFgwohYNqw63k7WVFxv8IPAPdY8wh3I1eqBnucUYQYrA1JK+Gq5bUtfQ9aWE1fRbxL+p
+         PSZzo4FCVk/8oKjAwzxVRCf64F4FO70xvAQHNHypDMIe+rlezCcXT3MnpgewmTu9Hhcj
+         4jZOMrLDOGEEda5vtmtGqkmQC7hPr8cbdjQptKT253ptW0QS0zxUHyoE/GmFLfR41mdt
+         NZG8EKAEba1oD44OW8ulBy5FQSNJ7bRSl5NZuoQVa4Ic6AF9NPuHcqUtSzeZ7NakTpop
+         vXeg==
+X-Gm-Message-State: AOAM531JV8jbyH8q1fO2f1k9Z1czBRgc/XYj+JFlaKLHs1Ji5Cy6JdzJ
+        MvJTa/UrZ2LY2t5cLWL5l/+OWw==
+X-Google-Smtp-Source: ABdhPJxDB/Sa5OHAguWRCgpV67m8ipVKXudtdyV00vw1QteYiiQh9fRXMYiofl5SGOVzWKsH/Wkjhg==
+X-Received: by 2002:a05:6512:228d:b0:473:f729:3219 with SMTP id f13-20020a056512228d00b00473f7293219mr12132861lfu.428.1652680445339;
+        Sun, 15 May 2022 22:54:05 -0700 (PDT)
+Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id m20-20020a2e9114000000b0024f3d1daeb5sm1384293ljg.61.2022.05.15.22.54.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 15 May 2022 22:54:04 -0700 (PDT)
+Message-ID: <3499cca2-1d7b-12f5-adbe-0c9b279cc51a@linaro.org>
+Date:   Mon, 16 May 2022 07:54:03 +0200
 MIME-Version: 1.0
-References: <20220505115226.20130-1-rex-bc.chen@mediatek.com> <20220505115226.20130-10-rex-bc.chen@mediatek.com>
-In-Reply-To: <20220505115226.20130-10-rex-bc.chen@mediatek.com>
-From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Mon, 16 May 2022 13:35:18 +0800
-Message-ID: <CAGXv+5FW59B1Dq8eH=5KjEdTxgT64GuvYZHZ9LnnTuaVrK3XpQ@mail.gmail.com>
-Subject: Re: [PATCH v6 09/10] arm64: dts: mediatek: Add MediaTek CCI node for MT8183
-To:     Rex-BC Chen <rex-bc.chen@mediatek.com>
-Cc:     rafael@kernel.org, viresh.kumar@linaro.org, robh+dt@kernel.org,
-        krzk+dt@kernel.org, matthias.bgg@gmail.com,
-        jia-wei.chang@mediatek.com, roger.lu@mediatek.com,
-        hsinyi@google.com, khilman@baylibre.com,
-        angelogioacchino.delregno@collabora.com, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        "Andrew-sh . Cheng" <andrew-sh.cheng@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH 3/3] dt-bindings: usb: add documentation for aspeed udc
+Content-Language: en-US
+To:     Neal Liu <neal_liu@aspeedtech.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Felipe Balbi <balbi@kernel.org>,
+        Sumit Semwal <sumit.semwal@linaro.org>,
+        =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Li Yang <leoyang.li@nxp.com>
+Cc:     "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+        "linaro-mm-sig@lists.linaro.org" <linaro-mm-sig@lists.linaro.org>
+References: <20220513065728.857722-1-neal_liu@aspeedtech.com>
+ <20220513065728.857722-4-neal_liu@aspeedtech.com>
+ <da78aaf6-c9ae-d591-fdc4-723f097ace2c@linaro.org>
+ <HK0PR06MB3202679A7FABAF7D0D045F0880CA9@HK0PR06MB3202.apcprd06.prod.outlook.com>
+ <567d135b-3d40-9958-e000-1357020b5650@linaro.org>
+ <HK0PR06MB32020539063F8A7C5D56E0B980CF9@HK0PR06MB3202.apcprd06.prod.outlook.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <HK0PR06MB32020539063F8A7C5D56E0B980CF9@HK0PR06MB3202.apcprd06.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -70,84 +95,20 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 5, 2022 at 8:04 PM Rex-BC Chen <rex-bc.chen@mediatek.com> wrote:
->
-> Add MediaTek CCI devfreq node for MT8183.
->
-> Signed-off-by: Andrew-sh.Cheng <andrew-sh.cheng@mediatek.com>
-> Signed-off-by: Rex-BC Chen <rex-bc.chen@mediatek.com>
-> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> ---
->  arch/arm64/boot/dts/mediatek/mt8183-evb.dts    | 4 ++++
->  arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi | 4 ++++
->  arch/arm64/boot/dts/mediatek/mt8183.dtsi       | 7 +++++++
->  3 files changed, 15 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8183-evb.dts b/arch/arm64/boot/dts/mediatek/mt8183-evb.dts
-> index 8953dbf84f3e..7ac9864db9de 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8183-evb.dts
-> +++ b/arch/arm64/boot/dts/mediatek/mt8183-evb.dts
-> @@ -412,6 +412,10 @@
->
->  };
->
-> +&cci {
-> +       proc-supply = <&mt6358_vproc12_reg>;
-> +};
-> +
->  &cpu0 {
->         proc-supply = <&mt6358_vproc12_reg>;
->  };
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
-> index 8d5bf73a9099..b035e06840e6 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
-> @@ -230,6 +230,10 @@
->         status = "okay";
->  };
->
-> +&cci {
-> +       proc-supply = <&mt6358_vproc12_reg>;
-> +};
-> +
->  &cpu0 {
->         proc-supply = <&mt6358_vproc12_reg>;
->  };
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> index cecf96b628b7..11caf3dd85cd 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> @@ -280,6 +280,13 @@
->                 };
->         };
->
-> +       cci: cci {
-> +               compatible = "mediatek,mt8183-cci";
-> +               clocks = <&apmixedsys CLK_APMIXED_CCIPLL>;
-> +               clock-names = "cci_clock";
+On 16/05/2022 03:59, Neal Liu wrote:
+>>> Okay, I could rename it for next patch if you preferred.
+>>> But there are lots of yaml files which are not named as first compatible.
+>>
+>> Yes, I know, I quite likely I also produced such bindings, but a specific name is
+>> rather preferred. Otherwise you will have a difficult naming choice when your
+>> next Aspeed UDC requires new bindings file because of some differences (not
+>> yet known now).
+>>
+> We can rename the bindings if next Aspeed UDC needs, don't you think?
+> Currently, Aspeed has no requirement.
 
-Binding says there should be two clocks: the actual clock that drives
-CCI, and a stable "intermediate" clock to switch to during clock rate
-changes. So I think this should look like:
-
-    clocks = <&mcucfg CLK_MCU_BUS_SEL>,
-             <&topckgen CLK_TOP_ARMPLL_DIV_PLL1>;
-    clock-names = "cci", "intermediate";
+So just use proper name from the beginning....
 
 
-ChenYu
-
-> +               operating-points-v2 = <&cci_opp>;
-> +       };
-> +
->         cpus {
->                 #address-cells = <1>;
->                 #size-cells = <0>;
-> --
-> 2.18.0
->
->
-> _______________________________________________
-> Linux-mediatek mailing list
-> Linux-mediatek@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-mediatek
+Best regards,
+Krzysztof
