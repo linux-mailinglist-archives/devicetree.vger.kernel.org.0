@@ -2,113 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 83F83528275
-	for <lists+devicetree@lfdr.de>; Mon, 16 May 2022 12:45:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 832DD5282DC
+	for <lists+devicetree@lfdr.de>; Mon, 16 May 2022 13:11:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232511AbiEPKpH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 May 2022 06:45:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53526 "EHLO
+        id S241674AbiEPLLs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 May 2022 07:11:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46282 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239787AbiEPKow (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 May 2022 06:44:52 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 3849C24947;
-        Mon, 16 May 2022 03:44:49 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id DC6CC1063;
-        Mon, 16 May 2022 03:44:48 -0700 (PDT)
-Received: from [10.57.82.175] (unknown [10.57.82.175])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 849D83F66F;
-        Mon, 16 May 2022 03:44:46 -0700 (PDT)
-Message-ID: <099cf0f9-5c27-0247-7c5e-6704a9527b11@arm.com>
-Date:   Mon, 16 May 2022 11:44:41 +0100
+        with ESMTP id S242931AbiEPLLo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 May 2022 07:11:44 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 680B22AD2;
+        Mon, 16 May 2022 04:11:39 -0700 (PDT)
+X-UUID: 64852cda1f6b4ca098a3fad396ba65dc-20220516
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.5,REQID:edd5ab4b-a499-4c7b-942c-64f168d38ea6,OB:0,LO
+        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
+        ON:release,TS:0
+X-CID-META: VersionHash:2a19b09,CLOUDID:1714c0b9-9f46-4d76-a271-164488ed79f1,C
+        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:1,File:nil
+        ,QS:0,BEC:nil
+X-UUID: 64852cda1f6b4ca098a3fad396ba65dc-20220516
+Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw02.mediatek.com
+        (envelope-from <rex-bc.chen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 2116379412; Mon, 16 May 2022 19:11:33 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.792.15; Mon, 16 May 2022 19:11:32 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Mon, 16 May 2022 19:11:31 +0800
+From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
+To:     <rafael@kernel.org>, <viresh.kumar@linaro.org>,
+        <robh+dt@kernel.org>, <krzk+dt@kernel.org>,
+        <matthias.bgg@gmail.com>
+CC:     <jia-wei.chang@mediatek.com>, <roger.lu@mediatek.com>,
+        <hsinyi@google.com>, <khilman@baylibre.com>,
+        <angelogioacchino.delregno@collabora.com>,
+        <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        Rex-BC Chen <rex-bc.chen@mediatek.com>
+Subject: [PATCH v7 0/3] cpufreq: mediatek: Cleanup and support MT8183 and MT8186
+Date:   Mon, 16 May 2022 19:11:27 +0800
+Message-ID: <20220516111130.13325-1-rex-bc.chen@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101
- Thunderbird/91.9.0
-Subject: Re: [PATCH v5 5/9] iommu/arm-smmu: Attach to host1x context device
- bus
-Content-Language: en-GB
-To:     Mikko Perttunen <cyndis@kapsi.fi>, Will Deacon <will@kernel.org>
-Cc:     thierry.reding@gmail.com, jonathanh@nvidia.com, joro@8bytes.org,
-        robh+dt@kernel.org, krzysztof.kozlowski@canonical.com,
-        linux-tegra@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        iommu@lists.linux-foundation.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Mikko Perttunen <mperttunen@nvidia.com>
-References: <20220516085258.1227691-1-cyndis@kapsi.fi>
- <20220516085258.1227691-6-cyndis@kapsi.fi>
- <20220516100721.GA1927@willie-the-truck>
- <4a170997-c893-1788-dcaa-8ed2193146ae@kapsi.fi>
-From:   Robin Murphy <robin.murphy@arm.com>
-In-Reply-To: <4a170997-c893-1788-dcaa-8ed2193146ae@kapsi.fi>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.3 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-MTK:  N
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE,
+        SPF_HELO_NONE,T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022-05-16 11:13, Mikko Perttunen wrote:
-> On 5/16/22 13:07, Will Deacon wrote:
->> On Mon, May 16, 2022 at 11:52:54AM +0300, cyndis@kapsi.fi wrote:
->>> From: Mikko Perttunen <mperttunen@nvidia.com>
->>>
->>> Set itself as the IOMMU for the host1x context device bus, containing
->>> "dummy" devices used for Host1x context isolation.
->>>
->>> Signed-off-by: Mikko Perttunen <mperttunen@nvidia.com>
->>> ---
->>>   drivers/iommu/arm/arm-smmu/arm-smmu.c | 13 +++++++++++++
->>>   1 file changed, 13 insertions(+)
->>>
->>> diff --git a/drivers/iommu/arm/arm-smmu/arm-smmu.c 
->>> b/drivers/iommu/arm/arm-smmu/arm-smmu.c
->>> index 568cce590ccc..9ff54eaecf81 100644
->>> --- a/drivers/iommu/arm/arm-smmu/arm-smmu.c
->>> +++ b/drivers/iommu/arm/arm-smmu/arm-smmu.c
->>> @@ -39,6 +39,7 @@
->>>   #include <linux/amba/bus.h>
->>>   #include <linux/fsl/mc.h>
->>> +#include <linux/host1x_context_bus.h>
->>>   #include "arm-smmu.h"
->>> @@ -2053,8 +2054,20 @@ static int arm_smmu_bus_init(struct iommu_ops 
->>> *ops)
->>>               goto err_reset_pci_ops;
->>>       }
->>>   #endif
->>> +#ifdef CONFIG_TEGRA_HOST1X_CONTEXT_BUS
->>> +    if (!iommu_present(&host1x_context_device_bus_type)) {
->>> +        err = bus_set_iommu(&host1x_context_device_bus_type, ops);
->>> +        if (err)
->>> +            goto err_reset_fsl_mc_ops;
->>> +    }
->>> +#endif
->>> +
->>>       return 0;
->>> +err_reset_fsl_mc_ops: __maybe_unused;
->>> +#ifdef CONFIG_FSL_MC_BUS
->>> +    bus_set_iommu(&fsl_mc_bus_type, NULL);
->>> +#endif
->>
->> bus_set_iommu() is going away:
->>
->> https://lore.kernel.org/r/cover.1650890638.git.robin.murphy@arm.com
->>
->> Will
-> 
-> Thanks for the heads-up. Robin had pointed out that this work was 
-> ongoing but I hadn't seen the patches yet. I'll look into it.
+Cpufreq is a DVFS driver used for power saving to scale the clock frequency
+and supply the voltage for CPUs. This series do some cleanup for MediaTek
+cpufreq drivers and add support for MediaTek SVS[2] and MediaTek CCI
+devfreq[3] which are supported in MT8183 and MT8186.
 
-Although that *is* currently blocked on the mystery intel-iommu problem 
-that I can't reproduce... If this series is ready to land right now for 
-5.19 then in principle that might be the easiest option overall. 
-Hopefully at least patch #2 could sneak in so that the compile-time 
-dependencies are ready for me to roll up host1x into the next rebase of 
-"iommu: Always register bus notifiers".
+Changes for v7:
+1. Drop all drviers patches because they are all accepted.
+2. Correct clock/clock-name for cci in dts.
 
-Cheers,
-Robin.
+Changes for v6:
+1. Reorder patches in this series.
+2. Add a new patch to do unregister platform device.
+3. Modify drivers from maintainer's advice.
+
+Reference series:
+[1]: V1 of this series is present by Jia-Wei Chang.
+     https://lore.kernel.org/all/20220307122151.11666-1-jia-wei.chang@mediatek.com/
+
+[2]: The MediaTek CCI devfreq driver is introduced in another series.
+     https://lore.kernel.org/all/20220425125546.4129-1-johnson.wang@mediatek.com/
+
+[3]: The MediaTek SVS driver is introduced in another series.
+     https://lore.kernel.org/all/20220420102044.10832-1-roger.lu@mediatek.com/
+
+Rex-BC Chen (3):
+  arm64: dts: mediatek: Add opp table and clock property for MT8183
+    cpufreq
+  arm64: dts: mediatek: Add MediaTek CCI node for MT8183
+  arm64: dts: mediatek: Add mediatek,cci property for MT8183 cpufreq
+
+ arch/arm64/boot/dts/mediatek/mt8183-evb.dts   |  36 +++
+ .../arm64/boot/dts/mediatek/mt8183-kukui.dtsi |   4 +
+ arch/arm64/boot/dts/mediatek/mt8183.dtsi      | 286 ++++++++++++++++++
+ 3 files changed, 326 insertions(+)
+
+-- 
+2.18.0
+
