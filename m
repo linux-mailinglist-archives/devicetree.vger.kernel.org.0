@@ -2,105 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 77489528956
-	for <lists+devicetree@lfdr.de>; Mon, 16 May 2022 17:57:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C63CF528969
+	for <lists+devicetree@lfdr.de>; Mon, 16 May 2022 18:03:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245503AbiEPP5Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 May 2022 11:57:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33380 "EHLO
+        id S245487AbiEPQCy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 May 2022 12:02:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46940 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241722AbiEPP5Y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 May 2022 11:57:24 -0400
-Received: from mail-oi1-x22a.google.com (mail-oi1-x22a.google.com [IPv6:2607:f8b0:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 027DC2D1E5
-        for <devicetree@vger.kernel.org>; Mon, 16 May 2022 08:57:23 -0700 (PDT)
-Received: by mail-oi1-x22a.google.com with SMTP id q10so19112055oia.9
-        for <devicetree@vger.kernel.org>; Mon, 16 May 2022 08:57:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=vH4NPiCLU7evHB+E7xCfaeXJAYfa3KeY6XJRC/M1pQQ=;
-        b=I0Fe0t6KYm7QeHL4cN/jCuSC51Un3vdX70r9iEitsqA1K63t/YgFccUQtt/UroORI8
-         gbaZVesEkVpySAvrLr+ZxLjUVe3dukyjul41x8r7yLKFveJhVJxgzFg17L1JH7HETKVb
-         cDLQDMsag6+BuTw6eobY8ShmaNGmOTYpnFtwNrxPKF2lvvVWZ5INfF8/MY6caqOEZSL2
-         Ye6zQvzqBWRb17tEJnPLeak7Obi9afHqFu79AV4igYmSV8K323dQsA0UpeoAsYHg5tzt
-         Kryqsrc9lqQlzy1F63Lns/djLraiPwLQs50Cx9vI4MtbmKGnYkO2IDrwa/0t7UdbendC
-         PYJg==
+        with ESMTP id S245548AbiEPQCx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 May 2022 12:02:53 -0400
+Received: from mail-ot1-f52.google.com (mail-ot1-f52.google.com [209.85.210.52])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57E6E2FFC5;
+        Mon, 16 May 2022 09:02:52 -0700 (PDT)
+Received: by mail-ot1-f52.google.com with SMTP id z5-20020a9d62c5000000b00606041d11f1so10366328otk.2;
+        Mon, 16 May 2022 09:02:52 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=vH4NPiCLU7evHB+E7xCfaeXJAYfa3KeY6XJRC/M1pQQ=;
-        b=mzh300XunokXMsYYFeDB1N2vBbIhsxwku6v2vyTZ/+VuXn0PxKf+AAZ0GV5TyDPAJt
-         Ff7Qcj8lomLpNqFt7pasbm7vOoD84KEU/d3+RfpuN7kUWEOGOmJBC2q6kogyaqyZYsxl
-         wll8VYNlyMUEWRqmb6k7xCr1JuKXkQ12kmTI99U+rWOqxb+wCcTLSDqUiC05yHftL9rZ
-         VDTUu2vFECKX/Ky01CeQcZ+e4RWP6FBP/9KESvOmoD5Rx9BBP/YnnwvxDUqKknSKx3k/
-         GQmVs/4WdcTafn3sD1pQxn1/oJQjD6Tr+rDXOaUXv/dC7vojfqDaP/zcmYsGVTyvU/Z3
-         opfQ==
-X-Gm-Message-State: AOAM530DRbDN5gNCNLmOLZj33Py4PILmqAmcsgiDm9DUp6vCR16aFvFF
-        vzY2v9hzv8QNjqHnQY6etsv+ITYMlDeruw==
-X-Google-Smtp-Source: ABdhPJy9xU3r4l65PfMiVkn2LKSmg6ikqMXRhfqQGFiUU7W25GCBD0SlgcmefZoFQVTXGUHG7oRFmQ==
-X-Received: by 2002:a05:6808:d52:b0:328:acfc:d274 with SMTP id w18-20020a0568080d5200b00328acfcd274mr8189424oik.174.1652716642349;
-        Mon, 16 May 2022 08:57:22 -0700 (PDT)
-Received: from ripper (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id u23-20020a544397000000b00328b3d8a80fsm3826691oiv.50.2022.05.16.08.57.20
+        bh=2s6RgX26JLo7sa0JrV1c49E2OU9YNnR6NzfYuC55HJw=;
+        b=kS9hMd5oGAgvNNDw9e8ghXN3l4BufDKchaXUSkHp/OOC1+LGRqemsnHA68L37DuJJi
+         33CNIJtz05HysEGaRvVeQtBJ0PqzbeOGluu/6/ULiKDB98SX68XZ4WS/RVO+8Xmt4itv
+         0IvUXtXccFqtyF72VGVaW9Xih5odEtCSBo+7RcUF4oRswrSV7W2KkXzzZxev7XnSeWi5
+         Zae+xy1aV0DyO1rzcd3UfEVVxrH4kgIyb/tUDAGo6quT47UzdEqXCWhlxQSqGvHIqtBA
+         AUg0s9SrODcBLq1kGgMGF+vnZGnbixm6/nibvItP1Ip8yjmosslwat1UeiSG3XapciyI
+         PBjA==
+X-Gm-Message-State: AOAM5319tEhEsvhTNDrZa2mV6g8GafSAoHo++BPCddyIoHL+7Bn7xvRB
+        FWMqFqPRLjsDuCf6V7kYRg==
+X-Google-Smtp-Source: ABdhPJzGWjXFNa+2sThLYEmjVccy/lfEwvFPIeNBJBksa96HNq8xHla6Fr1Cd9RUBRKO59mgX2Jdew==
+X-Received: by 2002:a05:6830:1099:b0:605:fa6e:ac2a with SMTP id y25-20020a056830109900b00605fa6eac2amr6260664oto.305.1652716971624;
+        Mon, 16 May 2022 09:02:51 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id t14-20020a056870f20e00b000f15a771206sm4918661oao.36.2022.05.16.09.02.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 May 2022 08:57:21 -0700 (PDT)
-Date:   Mon, 16 May 2022 08:59:45 -0700
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/3] dt-bindings: phy: qcom,qmp: Add compatible for
- SC8280XP USB3 UNI phy
-Message-ID: <YoJ08Zd/a4g+Ia0r@ripper>
-References: <20220513225348.1671639-1-bjorn.andersson@linaro.org>
- <20220513225348.1671639-2-bjorn.andersson@linaro.org>
- <8b47e106-a567-8d8f-ddd9-34b71211002e@linaro.org>
+        Mon, 16 May 2022 09:02:50 -0700 (PDT)
+Received: (nullmailer pid 2732173 invoked by uid 1000);
+        Mon, 16 May 2022 16:02:50 -0000
+Date:   Mon, 16 May 2022 11:02:50 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Matej Vasilevski <matej.vasilevski@seznam.cz>
+Cc:     linux-can@vger.kernel.org, mkl@pengutronix.de,
+        pisa@cmp.felk.cvut.cz, devicetree@vger.kernel.org,
+        netdev@vger.kernel.org, ondrej.ille@gmail.com,
+        martin.jerabek01@gmail.com
+Subject: Re: [RFC PATCH 2/3] dt-bindings: can: ctucanfd: add properties for
+ HW timestamping
+Message-ID: <20220516160250.GA2724701-robh@kernel.org>
+References: <20220512232706.24575-1-matej.vasilevski@seznam.cz>
+ <20220512232706.24575-3-matej.vasilevski@seznam.cz>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <8b47e106-a567-8d8f-ddd9-34b71211002e@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20220512232706.24575-3-matej.vasilevski@seznam.cz>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon 16 May 00:11 PDT 2022, Krzysztof Kozlowski wrote:
-
-> On 14/05/2022 00:53, Bjorn Andersson wrote:
-> > The SC8280XP platform has a pair of 5nm USB3 UNI phys, add a compatible
-> > for these.
-> > 
-> > Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> > ---
-> >  Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml | 1 +
-> >  1 file changed, 1 insertion(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml
-> > index 8b850c5ab116..0a9ee5b7600d 100644
-> > --- a/Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml
-> > +++ b/Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml
-> > @@ -33,6 +33,7 @@ properties:
-> >        - qcom,sc8180x-qmp-ufs-phy
-> >        - qcom,sc8180x-qmp-usb3-phy
-> >        - qcom,sc8280xp-qmp-ufs-phy
-> > +      - qcom,sc8280xp-qmp-usb3-uni-phy
+On Fri, May 13, 2022 at 01:27:06AM +0200, Matej Vasilevski wrote:
+> Extend dt-bindings for CTU CAN-FD IP core with necessary properties
+> to enable HW timestamping for platform devices. Since the timestamping
+> counter is provided by the system integrator usign those IP cores in
+> their FPGA design, we need to have the properties specified in device tree.
 > 
-> What about the clocks/resets/supplies in allOf:if:then?
+> Signed-off-by: Matej Vasilevski <matej.vasilevski@seznam.cz>
+> ---
+>  .../bindings/net/can/ctu,ctucanfd.yaml        | 34 +++++++++++++++++--
+>  1 file changed, 31 insertions(+), 3 deletions(-)
+
+What's the base for this patch? Doesn't apply for me.
+
 > 
+> diff --git a/Documentation/devicetree/bindings/net/can/ctu,ctucanfd.yaml b/Documentation/devicetree/bindings/net/can/ctu,ctucanfd.yaml
+> index fb34d971dcb3..c3693dadbcd8 100644
+> --- a/Documentation/devicetree/bindings/net/can/ctu,ctucanfd.yaml
+> +++ b/Documentation/devicetree/bindings/net/can/ctu,ctucanfd.yaml
+> @@ -41,9 +41,35 @@ properties:
+>  
+>    clocks:
+>      description: |
+> -      phandle of reference clock (100 MHz is appropriate
+> -      for FPGA implementation on Zynq-7000 system).
+> +      Phandle of reference clock (100 MHz is appropriate for FPGA
+> +      implementation on Zynq-7000 system). If you wish to use timestamps
+> +      from the core, add a second phandle with the clock used for timestamping
+> +      (can be the same as the first clock).
+> +    maxItems: 2
 
-Of course, seems like I missed that part.
+With more than 1, you have to define what each entry is. IOW, use 
+'items'.
 
-Thanks,
-Bjorn
+> +
+> +  clock-names:
+> +    description: |
+> +      Specify clock names for the "clocks" property. The first clock name
+> +      doesn't matter, the second has to be "ts_clk". Timestamping frequency
+> +      is then obtained from the "ts_clk" clock. This takes precedence over
+> +      the ts-frequency property.
+> +      You can omit this property if you don't need timestamps.
+> +    maxItems: 2
+
+You must define what the names are as a schema.
+
+> +
+> +  ts-used-bits:
+> +    description: width of the timestamping counter
+> +    maxItems: 1
+> +    items:
+
+Not an array, so you don't need maxItems nor items.
+
+> +      minimum: 8
+> +      maximum: 64
+> +
+> +  ts-frequency:
+
+Use a standard unit suffix.
+
+> +    description: |
+> +      Frequency of the timestamping counter. Set this if you want to get
+> +      timestamps, but you didn't set the timestamping clock in clocks property.
+>      maxItems: 1
+> +    items:
+
+Not an array.
+
+
+Is timestamping a common feature for CAN or is this specific to this 
+controller? In the latter case, you need vendor prefixes on these 
+properties. In the former case, you need to define them in a common 
+schema.
+
+> +      minimum: 1
+>  
+>  required:
+>    - compatible
+> @@ -58,6 +84,8 @@ examples:
+>      ctu_can_fd_0: can@43c30000 {
+>        compatible = "ctu,ctucanfd";
+>        interrupts = <0 30 4>;
+> -      clocks = <&clkc 15>;
+> +      clocks = <&clkc 15>, <&clkc 15>;
+> +      clock-names = "can_clk", "ts_clk";
+>        reg = <0x43c30000 0x10000>;
+> +      ts-used-bits = <64>;
+>      };
+> -- 
+> 2.25.1
+> 
+> 
