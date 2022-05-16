@@ -2,121 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 31921527B2B
-	for <lists+devicetree@lfdr.de>; Mon, 16 May 2022 02:55:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6B3AF527B5D
+	for <lists+devicetree@lfdr.de>; Mon, 16 May 2022 03:23:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238587AbiEPAzP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 15 May 2022 20:55:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53150 "EHLO
+        id S237380AbiEPBXk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 15 May 2022 21:23:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49550 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234471AbiEPAzO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 15 May 2022 20:55:14 -0400
-Received: from twspam01.aspeedtech.com (twspam01.aspeedtech.com [211.20.114.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B95772A256;
-        Sun, 15 May 2022 17:55:09 -0700 (PDT)
-Received: from mail.aspeedtech.com ([192.168.0.24])
-        by twspam01.aspeedtech.com with ESMTP id 24G0eXN3022584;
-        Mon, 16 May 2022 08:40:33 +0800 (GMT-8)
-        (envelope-from chiawei_wang@aspeedtech.com)
-Received: from Chiawei-PC03.aspeed.com (192.168.2.66) by TWMBX02.aspeed.com
- (192.168.0.24) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Mon, 16 May
- 2022 08:54:05 +0800
-From:   Chia-Wei Wang <chiawei_wang@aspeedtech.com>
-To:     <robh+dt@kernel.org>, <joel@jms.id.au>, <andrew@aj.id.au>,
-        <jk@codeconstruct.com.au>, <a.kartashev@yadro.com>,
-        <patrick.rudolph@9elements.com>, <dphadke@linux.microsoft.com>,
-        <linux-aspeed@lists.ozlabs.org>, <openbmc@lists.ozlabs.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-CC:     <ryan_chen@aspeedtech.com>
-Subject: [PATCH v5 4/4] ARM: dts: aspeed: Add eSPI node
-Date:   Mon, 16 May 2022 08:54:12 +0800
-Message-ID: <20220516005412.4844-5-chiawei_wang@aspeedtech.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220516005412.4844-1-chiawei_wang@aspeedtech.com>
-References: <20220516005412.4844-1-chiawei_wang@aspeedtech.com>
+        with ESMTP id S236470AbiEPBXk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 15 May 2022 21:23:40 -0400
+Received: from mail-ua1-x934.google.com (mail-ua1-x934.google.com [IPv6:2607:f8b0:4864:20::934])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 492DB32045;
+        Sun, 15 May 2022 18:23:39 -0700 (PDT)
+Received: by mail-ua1-x934.google.com with SMTP id p1so5290760uak.1;
+        Sun, 15 May 2022 18:23:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=7wuXO57c0JtXqV5NdAvSdjaT7cOyGnW8IqIXRcho3Sc=;
+        b=jLxemqpwDv3YIlAWxavQtM/R0fB+JS+RanuyHTfmcZVVq1IsYjB7/tbyLeXAnMlWtc
+         t1ATdP3DVFy4V8JCbAObbLpC0n5K6OGz4aePehxPCYiKVRfzBB+lfEuxkFK7ziSxLA3X
+         F/X1wg1G9xTIQevmNjxcApVZnbyVSnVuwbaUQoVEQXOtqcdB4jYIx4IxNKH7uGa48RTB
+         OHXcEHP9GslvHInoVwaPl7bvXCeBJVCjo6DsFtqNZCoh0JMNoAMaFine049A86yv4yqn
+         tKQq2RVNInTXx8wj2kycJW9+CBDKflXYyO4nF3cJKtmTJdJcUoiFmRZZy7xOXwd1k7gH
+         eHjA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=7wuXO57c0JtXqV5NdAvSdjaT7cOyGnW8IqIXRcho3Sc=;
+        b=3BCvRBnJd2Jor6bYZFWJjD1IulJ0w8yeZ5tYPjnhbXc15OCZE2gDg6k0+K8rNDM1v4
+         JWftgD/wA7lujOpbEGkKRtj9pOFcZz4aaT/T2u71vH1kT7A2xbFQl//D1tooxwd7S3W1
+         L92dz1vZViZfVIzHIg2C5pUc2/oQUZ4RukltbVRBef9HXoJAs/x8oGyS4NG2xJnTJcl6
+         cATSrTz3ktBGkxiFuTAwaFVNjMgl8dIxKWW0u8aInFgYn8+kPI1+3Ro6UESoxcASgvtZ
+         4roZQwB6kEmwxMLAN8LqtTRq17MTeq8jQKURKNiedv/jlwsWacSFyNsL4GBs2BsVBYdY
+         efRQ==
+X-Gm-Message-State: AOAM533VwNBE3tJovfXavtu/zGFOzd/NY6S4DTUMJOAXMn0r9i4RYUD+
+        xv34yFKbZAErcNQQpGsPDj07C87DVtXRVgpbJCM+hF3hbVvu
+X-Google-Smtp-Source: ABdhPJwNLMRahavW5whCZBPGo059+0UY3efbiL9iQ4RtWbjJJpSVEhPXj0XzodbmI/P/D96ykhaUca+cEqub5JmtEXs=
+X-Received: by 2002:a9f:31ce:0:b0:360:4d8:3eeb with SMTP id
+ w14-20020a9f31ce000000b0036004d83eebmr5136218uad.73.1652664217430; Sun, 15
+ May 2022 18:23:37 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-Originating-IP: [192.168.2.66]
-X-ClientProxiedBy: TWMBX02.aspeed.com (192.168.0.24) To TWMBX02.aspeed.com
- (192.168.0.24)
-X-DNSRBL: 
-X-MAIL: twspam01.aspeedtech.com 24G0eXN3022584
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+References: <20220510091654.8498-1-warp5tw@gmail.com> <20220510091654.8498-9-warp5tw@gmail.com>
+ <Yno8KMycNbJ+VGtc@smile.fi.intel.com> <CACD3sJYVyV_fFJu9zXJGL1ro02KnkHoeNNSNB8O46FRwd6=-BA@mail.gmail.com>
+In-Reply-To: <CACD3sJYVyV_fFJu9zXJGL1ro02KnkHoeNNSNB8O46FRwd6=-BA@mail.gmail.com>
+From:   Tyrone Ting <warp5tw@gmail.com>
+Date:   Mon, 16 May 2022 09:23:25 +0800
+Message-ID: <CACD3sJZxzs28Ruxifw1vjgKmOr0Z3WgC6SpciwjyvkRMZh8ykw@mail.gmail.com>
+Subject: Re: [PATCH v4 8/9] i2c: npcm: Remove own slave addresses 2:10
+To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc:     avifishman70@gmail.com, tmaimon77@gmail.com, tali.perry1@gmail.com,
+        venture@google.com, yuenn@google.com, benjaminfair@google.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        wsa@kernel.org, jarkko.nikula@linux.intel.com,
+        semen.protsenko@linaro.org, sven@svenpeter.dev, jsd@semihalf.com,
+        lukas.bulwahn@gmail.com, olof@lixom.net, arnd@arndb.de,
+        tali.perry@nuvoton.com, Avi.Fishman@nuvoton.com,
+        tomer.maimon@nuvoton.com, KWLIU@nuvoton.com, JJLIU0@nuvoton.com,
+        kfting@nuvoton.com, openbmc@lists.ozlabs.org,
+        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add eSPI to the device tree for Aspeed 5/6th generation SoCs.
+Hi Andy:
 
-Signed-off-by: Chia-Wei Wang <chiawei_wang@aspeedtech.com>
----
- arch/arm/boot/dts/aspeed-g5.dtsi | 17 +++++++++++++++++
- arch/arm/boot/dts/aspeed-g6.dtsi | 17 +++++++++++++++++
- 2 files changed, 34 insertions(+)
+I would like to have your comments about the "Fancy indentation"
+because I'm not sure if I get the point.
 
-diff --git a/arch/arm/boot/dts/aspeed-g5.dtsi b/arch/arm/boot/dts/aspeed-g5.dtsi
-index 4147b397c883..4b5bb91a0219 100644
---- a/arch/arm/boot/dts/aspeed-g5.dtsi
-+++ b/arch/arm/boot/dts/aspeed-g5.dtsi
-@@ -289,6 +289,23 @@ adc: adc@1e6e9000 {
- 				status = "disabled";
- 			};
- 
-+			espi: espi@1e6ee000 {
-+				compatible = "aspeed,ast2500-espi", "simple-mfd", "syscon";
-+				reg = <0x1e6ee000 0x1000>;
-+
-+				#address-cells = <1>;
-+				#size-cells = <1>;
-+				ranges = <0x0 0x1e6ee000 0x1000>;
-+
-+				espi_ctrl: espi-ctrl@0 {
-+					compatible = "aspeed,ast2500-espi-ctrl";
-+					reg = <0x0 0x800>;
-+					interrupts = <23>;
-+					clocks = <&syscon ASPEED_CLK_GATE_ESPICLK>;
-+					status = "disabled";
-+				};
-+			};
-+
- 			video: video@1e700000 {
- 				compatible = "aspeed,ast2500-video-engine";
- 				reg = <0x1e700000 0x1000>;
-diff --git a/arch/arm/boot/dts/aspeed-g6.dtsi b/arch/arm/boot/dts/aspeed-g6.dtsi
-index 3d5ce9da42c3..1f14ecad51af 100644
---- a/arch/arm/boot/dts/aspeed-g6.dtsi
-+++ b/arch/arm/boot/dts/aspeed-g6.dtsi
-@@ -384,6 +384,23 @@ adc1: adc@1e6e9100 {
- 				status = "disabled";
- 			};
- 
-+			espi: espi@1e6ee000 {
-+				compatible = "aspeed,ast2600-espi", "simple-mfd", "syscon";
-+				reg = <0x1e6ee000 0x1000>;
-+
-+				#address-cells = <1>;
-+				#size-cells = <1>;
-+				ranges = <0x0 0x1e6ee000 0x1000>;
-+
-+				espi_ctrl: espi-ctrl@0 {
-+					compatible = "aspeed,ast2600-espi-ctrl";
-+					reg = <0x0 0x800>;
-+					interrupts = <GIC_SPI 42 IRQ_TYPE_LEVEL_HIGH>;
-+					clocks = <&syscon ASPEED_CLK_GATE_ESPICLK>;
-+					status = "disabled";
-+				};
-+			};
-+
- 			sbc: secure-boot-controller@1e6f2000 {
- 				compatible = "aspeed,ast2600-sbc";
- 				reg = <0x1e6f2000 0x1000>;
--- 
-2.25.1
+I remove extra empty lines and reformat the commit message.
 
+Please see the details below.
+
+Thank you.
+
+Tyrone Ting <warp5tw@gmail.com> =E6=96=BC 2022=E5=B9=B45=E6=9C=8811=E6=97=
+=A5 =E9=80=B1=E4=B8=89 =E4=B8=8A=E5=8D=889:39=E5=AF=AB=E9=81=93=EF=BC=9A
+>
+> Hi Andy:
+>
+> Thank you for your comments and they will be addressed.
+>
+> Andy Shevchenko <andriy.shevchenko@linux.intel.com> =E6=96=BC 2022=E5=B9=
+=B45=E6=9C=8810=E6=97=A5 =E9=80=B1=E4=BA=8C =E4=B8=8B=E5=8D=886:19=E5=AF=AB=
+=E9=81=93=EF=BC=9A
+> >
+> > On Tue, May 10, 2022 at 05:16:53PM +0800, Tyrone Ting wrote:
+> > > From: Tali Perry <tali.perry1@gmail.com>
+> > >
+> > > NPCM can support up to 10 own slave addresses.
+> > > In practice, only one address is actually being used.
+> > > In order to access addresses 2 and above, need to switch
+> > > register banks. The switch needs spinlock.
+> > > To avoid using spinlock for this useless feature
+> > > removed support of SA >=3D 2.
+> >
+> > > Also fix returned slave event enum.
+> > >
+> > > Remove some comment since the bank selection is not
+> > > required. The bank selection is not required since
+> > > the supported slave addresses are reduced.
+> >
+> > Fancy indentation. Please fix it in all your commit messages where it a=
+pplies.
+> >
+
+I modify the commit message as following:
+
+NPCM can support up to 10 own slave addresses. In practice, only one
+address is actually being used. In order to access addresses 2 and above,
+need to switch register banks. The switch needs spinlock.
+To avoid using spinlock for this useless feature removed support of SA >=3D
+2. Also fix returned slave event enum.
+
+Remove some comment since the bank selection is not required. The bank
+selection is not required since the supported slave addresses are reduced.
+
+> > ...
+> >
+> > > +     if (addr_type > I2C_SLAVE_ADDR2 && addr_type <=3D I2C_SLAVE_ADD=
+R10) {
+> > > +             dev_err(bus->dev,
+> > > +                     "try to enable more then 2 SA not supported\n")=
+;
+> >
+> > Make it one line and drop {}.
+> >
+> > > +     }
+> >
+> > ...
+> >
+> > > +     if (addr_type > I2C_SLAVE_ADDR2 && addr_type <=3D I2C_SLAVE_ADD=
+R10) {
+> > > +             dev_err(bus->dev,
+> > > +                     "get slave: try to use more then 2 slave addres=
+ses not supported\n");
+> >
+> > As per above be consistent with abbreviations ("SA" here, which makes l=
+ine
+> > shorter) and follow the above recommendation.
+> >
+> > > +     }
+> >
+> > --
+> > With Best Regards,
+> > Andy Shevchenko
+> >
+> >
+>
+> Best Regards,
+> Tyrone
+
+Best Regards,
+Tyrone
