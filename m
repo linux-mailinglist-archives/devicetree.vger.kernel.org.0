@@ -2,151 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 918B5527BCB
-	for <lists+devicetree@lfdr.de>; Mon, 16 May 2022 04:16:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D8BF4527BEF
+	for <lists+devicetree@lfdr.de>; Mon, 16 May 2022 04:31:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239270AbiEPCQR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 15 May 2022 22:16:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37242 "EHLO
+        id S239393AbiEPCbK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 15 May 2022 22:31:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35874 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230396AbiEPCQO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 15 May 2022 22:16:14 -0400
-Received: from m12-12.163.com (m12-12.163.com [220.181.12.12])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 2F17628993;
-        Sun, 15 May 2022 19:16:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-        s=s110527; h=From:Subject:Date:Message-Id:MIME-Version; bh=yJNGb
-        iMjW6rW2oUi41YYZWCz/tahmAPLKD7bIx55rSo=; b=JBoxfjGqpyvnDvM5EQVYP
-        5gdwDs/cunPbRhhwsaiPyxcnHUmAVd+HdfOrTKPpNxEuO47jMUT0Q/bHm3KE8gOI
-        0v8nKfo1IFgAzOOJkE8zkctwCZfHQENuYCQPSrE8aAC1bj4xFpoiLaoqlzMuM7Xt
-        v9UOHVQ/uOElfsqUjr9fo8=
-Received: from DESKTOP-B1R4FVG.localdomain (unknown [218.201.129.19])
-        by smtp8 (Coremail) with SMTP id DMCowACHYyG1s4Fi8FLcCg--.16808S4;
-        Mon, 16 May 2022 10:15:20 +0800 (CST)
-From:   qianfanguijin@163.com
-To:     linux-sunxi@lists.linux.dev
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-        qianfan Zhao <qianfanguijin@163.com>
-Subject: [PATCH v4 2/2] ARM: dts: sun8i-r40: add opp table for cpu
-Date:   Mon, 16 May 2022 10:15:16 +0800
-Message-Id: <20220516021516.23216-3-qianfanguijin@163.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220516021516.23216-1-qianfanguijin@163.com>
-References: <20220516021516.23216-1-qianfanguijin@163.com>
+        with ESMTP id S239413AbiEPCbE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 15 May 2022 22:31:04 -0400
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CB5915711;
+        Sun, 15 May 2022 19:31:01 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id d19so23462946lfj.4;
+        Sun, 15 May 2022 19:31:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=4s0OSmePhoJXuHiuMzZo1VwoeuQdSeAInIYJXLS5OyM=;
+        b=Qy577rTsVDyHwVUTciphWV+VNPU0RzZ4IdFO25T1sbgmjfn247DhYQoRqZJt/HbXFE
+         Zj8Mey1O+VdqkZZ75zH8Bm+J1PAP5/RrBud4ThJBNncM/Z42o929WNGKYOG4/MBvN2Nh
+         Q61UEZuPT1fm3yrTtQq9AQ+xgIQ39W8e1VCvdufdTFL0goCFzu7agfSiyJ3E/oqCjafc
+         Kk3PfZmbdiRqxvJfdvQaqQbSqvsIwc7cN0QFJqfI+srg1oLQV55jCxiOeM8dyAKl8olC
+         uwpBMzz7ZjXDprNlNz9GNVbpZF149gN4LpjWkkFxilg9y+WFyuiW58JfgXvtUl2ciLFw
+         H08w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=4s0OSmePhoJXuHiuMzZo1VwoeuQdSeAInIYJXLS5OyM=;
+        b=mzwbI/b2jvLcbOhf/0Swv4UgIgPajHVC+Af/GIj3qOBpDI/+KSO879+4XfC3NsXxP4
+         GVVvSohmE6sxOViRWNA2w2/Cmc7ZYNWCsVgo9M6El1vNu7uuEM2PYPbYg/fG7YMm/7xQ
+         5s2aBFPIsqJVhcmAXkDwf4FaxE8jC9Jj9LRG/wThUnL3XDZ3t83VLCxHEAxw52ypRlT/
+         zKzEn2oXjz+aGYv9ImSC7U7M3xEPv/KaJYBLpUB2f4WRaTDrtcOZVV14ntJM2ZMjLGex
+         JrFT+OSRVWlJQQ9KMrPfARhnrAj+vNaBC3RGs66Y3fVJaLUFAiexFFSATGX6M2aqy6fV
+         1gWA==
+X-Gm-Message-State: AOAM531qzA+dGWuoX8IX/fTMHPSIJwgPEJea8lLAXDNuyusIshjtQ8rm
+        0KTMrAqURr/HUL0F2iyl3ZXawctEFgcWwo972WukX/5FBFo=
+X-Google-Smtp-Source: ABdhPJxZq6+lnoKQQOPMomvc/GGVcnlfK80rcb3L0qena45Z2EZ6GSg202Ym+IGA0gz340U5CzyhYcNIOBuICW8aYzY=
+X-Received: by 2002:a05:6512:c03:b0:447:7912:7e6b with SMTP id
+ z3-20020a0565120c0300b0044779127e6bmr11291271lfu.508.1652668259368; Sun, 15
+ May 2022 19:30:59 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: DMCowACHYyG1s4Fi8FLcCg--.16808S4
-X-Coremail-Antispam: 1Uf129KBjvJXoW7uw47XryfXry3Xw4xJryfXrb_yoW8uFyfpr
-        4ak3yFkF48Wr12qw1aqw10qFyruayvvF4UJrnrC3y8t34YqryDtryxtry3K3yDXr47X3yS
-        qrsIqry2kw1DA3DanT9S1TB71UUUUUUqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-        9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07UbjjDUUUUU=
-X-Originating-IP: [218.201.129.19]
-X-CM-SenderInfo: htld0w5dqj3xxmlqqiywtou0bp/xtbB2AgD7WBHKdE-OgAAsk
+References: <20220510031056.1657-1-ctcchien@nuvoton.com> <20220510031056.1657-3-ctcchien@nuvoton.com>
+ <8d46eeb8-7926-f842-6105-1975a5adc3fe@molgen.mpg.de>
+In-Reply-To: <8d46eeb8-7926-f842-6105-1975a5adc3fe@molgen.mpg.de>
+From:   Medad Young <medadyoung@gmail.com>
+Date:   Mon, 16 May 2022 10:30:48 +0800
+Message-ID: <CAHpyw9cvrEKMUpRBWYWp9hDZgA8ALHBkNAQr6ZDqjj4uH-MRTQ@mail.gmail.com>
+Subject: Re: [PATCH v9 2/3] dt-bindings: edac: nuvoton: add NPCM memory controller
+To:     Paul Menzel <pmenzel@molgen.mpg.de>
+Cc:     rric@kernel.org, James Morse <james.morse@arm.com>,
+        tony.luck@intel.com, Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Borislav Petkov <bp@alien8.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Benjamin Fair <benjaminfair@google.com>,
+        Nancy Yuen <yuenn@google.com>,
+        Patrick Venture <venture@google.com>, KWLIU@nuvoton.com,
+        YSCHU@nuvoton.com, JJLIU0@nuvoton.com, KFTING <KFTING@nuvoton.com>,
+        Avi Fishman <avifishman70@gmail.com>,
+        Tomer Maimon <tmaimon77@gmail.com>,
+        Tali Perry <tali.perry1@gmail.com>, ctcchien@nuvoton.com,
+        devicetree <devicetree@vger.kernel.org>,
+        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-edac <linux-edac@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: qianfan Zhao <qianfanguijin@163.com>
+Dear Paul,
 
-OPP table value is get from allwinner lichee linux-3.10 kernel driver
+thanks for your comment.
 
-Signed-off-by: qianfan Zhao <qianfanguijin@163.com>
----
- arch/arm/boot/dts/sun8i-r40.dtsi | 42 ++++++++++++++++++++++++++++++++
- 1 file changed, 42 insertions(+)
+Paul Menzel <pmenzel@molgen.mpg.de> =E6=96=BC 2022=E5=B9=B45=E6=9C=8810=E6=
+=97=A5 =E9=80=B1=E4=BA=8C =E4=B8=8B=E5=8D=882:14=E5=AF=AB=E9=81=93=EF=BC=9A
+>
+> Dear Medad,
+>
+>
+> Thank you for your patch.
+>
+> Am 10.05.22 um 05:10 schrieb Medad CChien:
+> > Document devicetree bindings for the Nuvoton BMC NPCM memory controller=
+.
+> >
+> > Signed-off-by: Medad CChien <ctcchien@nuvoton.com>
+> > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+> > ---
+> >   .../edac/nuvoton,npcm-memory-controller.yaml  | 61 ++++++++++++++++++=
++
+> >   1 file changed, 61 insertions(+)
+> >   create mode 100644 Documentation/devicetree/bindings/edac/nuvoton,npc=
+m-memory-controller.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/edac/nuvoton,npcm-memory=
+-controller.yaml b/Documentation/devicetree/bindings/edac/nuvoton,npcm-memo=
+ry-controller.yaml
+> > new file mode 100644
+> > index 000000000000..6f37211796a3
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/edac/nuvoton,npcm-memory-contro=
+ller.yaml
+> > @@ -0,0 +1,61 @@
+> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/edac/nuvoton,npcm-memory-controller=
+.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Nuvoton NPCM Memory Controller
+> > +
+> > +maintainers:
+> > +  - Medad CChien <ctcchien@nuvoton.com>
+>
+> Just a side note, that in my experience functional like
+> <linux-npcm-memory-controller@nuvoton.com> instead of personal addresses
+> are useful, as you can configure on your side, who to deliver messages
+> to. For example, if you are on sick leave or vacation, you just
+> configure to deliver the message to a colleague of yours (or they get
+> messages in the first place anyway).
+>
+> Maybe you can bring that up at Nuvoton.
+>
 
-diff --git a/arch/arm/boot/dts/sun8i-r40.dtsi b/arch/arm/boot/dts/sun8i-r40.dtsi
-index 291f4784e86c..8949153eb0eb 100644
---- a/arch/arm/boot/dts/sun8i-r40.dtsi
-+++ b/arch/arm/boot/dts/sun8i-r40.dtsi
-@@ -54,6 +54,36 @@ / {
- 	#size-cells = <1>;
- 	interrupt-parent = <&gic>;
- 
-+	cpu0_opp_table: opp_table0 {
-+		compatible = "operating-points-v2";
-+		opp-shared;
-+
-+		opp-720000000 {
-+			opp-hz = /bits/ 64 <720000000>;
-+			opp-microvolt = <1000000 1000000 1300000>;
-+			clock-latency-ns = <2000000>;
-+		};
-+
-+		opp-912000000 {
-+			opp-hz = /bits/ 64 <912000000>;
-+			opp-microvolt = <1100000 1100000 1300000>;
-+			clock-latency-ns = <2000000>;
-+		};
-+
-+		opp-1008000000 {
-+			opp-hz = /bits/ 64 <1008000000>;
-+			opp-microvolt = <1160000 1160000 1300000>;
-+			clock-latency-ns = <2000000>;
-+		};
-+
-+		/* The opp table of the cpu frequency that exceeds 1G
-+		 * is not defined here. They require higher operating
-+		 * current, which may exceed the 500mA limited if the
-+		 * system is powered by USB. You can add them to the
-+		 * board's DTS is you make sure.
-+		 */
-+	};
-+
- 	clocks {
- 		#address-cells = <1>;
- 		#size-cells = <1>;
-@@ -84,24 +114,36 @@ cpu0: cpu@0 {
- 			compatible = "arm,cortex-a7";
- 			device_type = "cpu";
- 			reg = <0>;
-+			clocks = <&ccu CLK_CPU>;
-+			clock-names = "cpu";
-+			operating-points-v2 = <&cpu0_opp_table>;
- 		};
- 
- 		cpu1: cpu@1 {
- 			compatible = "arm,cortex-a7";
- 			device_type = "cpu";
- 			reg = <1>;
-+			clocks = <&ccu CLK_CPU>;
-+			clock-names = "cpu";
-+			operating-points-v2 = <&cpu0_opp_table>;
- 		};
- 
- 		cpu2: cpu@2 {
- 			compatible = "arm,cortex-a7";
- 			device_type = "cpu";
- 			reg = <2>;
-+			clocks = <&ccu CLK_CPU>;
-+			clock-names = "cpu";
-+			operating-points-v2 = <&cpu0_opp_table>;
- 		};
- 
- 		cpu3: cpu@3 {
- 			compatible = "arm,cortex-a7";
- 			device_type = "cpu";
- 			reg = <3>;
-+			clocks = <&ccu CLK_CPU>;
-+			clock-names = "cpu";
-+			operating-points-v2 = <&cpu0_opp_table>;
- 		};
- 	};
- 
--- 
-2.25.1
+I understand, but we do not have group email  address.
+so maybe I should add more maintainers?
 
+> [=E2=80=A6]
+>
+>
+> Kind regards,
+>
+> Paul
+
+B.R.
+Medad
