@@ -2,125 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A14A15287FF
-	for <lists+devicetree@lfdr.de>; Mon, 16 May 2022 17:07:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4819D528813
+	for <lists+devicetree@lfdr.de>; Mon, 16 May 2022 17:08:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244746AbiEPPGm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 May 2022 11:06:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57992 "EHLO
+        id S244782AbiEPPH7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 May 2022 11:07:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34052 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244988AbiEPPGl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 May 2022 11:06:41 -0400
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92B8A3B579
-        for <devicetree@vger.kernel.org>; Mon, 16 May 2022 08:06:33 -0700 (PDT)
-Received: by mail-ed1-x534.google.com with SMTP id j28so4706007eda.13
-        for <devicetree@vger.kernel.org>; Mon, 16 May 2022 08:06:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=5t+Cs8HDnvWj16xGCIF+mikJ115zNj7hKt8zOUcIyb8=;
-        b=Ia7MeHbT6Cl9ycW08HrSddHkar2N5jifNPJOghuyto8SjAe9dMpb41yfEBLr8HxUsE
-         ZCw9vE6Cs34OxAjjE9d321oVSoYzny4BIbOMXorsuNtxFnSj/ASZrloNo/e4+OhQLs5n
-         Yq+1a4x5pFq4zJyNT49fBnO4VaGRJHHECaGZs7gizor1iLUmvjxXy7EDGqoZjRuu7Iuo
-         iM8tWP0ekcEjRzq19qY4wzWob32Gdrz5w9jDpabhpWcDdWjHAfeMR6PYjbd5oHNaONOK
-         QbdaX50xzlMQpb3q2S6uN8K2czHC7S6lLppkBQ7/yNY9U3V63mNhGbNN9bYOq0+QF0CB
-         10Nw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=5t+Cs8HDnvWj16xGCIF+mikJ115zNj7hKt8zOUcIyb8=;
-        b=latxf1iX2GztpD0I0LgR01wEZrPx9ppmbbkxQgGzlFxRKB9tiuRHj2kB5eL4GgS8P3
-         lUBX74HAOLbeoE+G8fGw2/bJRlNVGNRAwk/KxzVzFMOuj+vUidE8CXc4ldi+ydh0GiBd
-         lloBwqhrXNs4Vi35AVVAXMrI0JYalxHnsVIN6FQyJW593cvWz2rHm2pFxqp01XVApCRz
-         CI1Kr6n1tz5OVfS4yZJjQLn53PdjM1nSgr0d1T3jOu9nqJ5qts+asm7ItDa4tO9Cw44p
-         zhp8S71pAvKZDD0M4wNYdrtpLWKmlFIooE3oL6XRpQejd3xlPZ6ngrE3rF3k8TRQQV6Y
-         +r6Q==
-X-Gm-Message-State: AOAM5330TNyLOKQLIhRdvoeZ8oVT/Vx+w/QcRbFRWmpoV8svoBWpIcNA
-        GPpJUeyjppahPOLC0ISPjS451A==
-X-Google-Smtp-Source: ABdhPJzeCPsTLFSMafvtYEP2F1yq4Y7s3vBkx7ePuRLbETQKthyM7TyPkmutQIxLHaU7ngGhBL4V8g==
-X-Received: by 2002:a05:6402:3590:b0:427:ba05:6f19 with SMTP id y16-20020a056402359000b00427ba056f19mr13653559edc.334.1652713591923;
-        Mon, 16 May 2022 08:06:31 -0700 (PDT)
-Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id qs24-20020a170906459800b006fe32c5636asm1509512ejc.184.2022.05.16.08.06.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 16 May 2022 08:06:31 -0700 (PDT)
-Message-ID: <3dc0651a-fc12-ba2c-b178-841529a90310@linaro.org>
-Date:   Mon, 16 May 2022 17:06:30 +0200
+        with ESMTP id S238196AbiEPPH5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 May 2022 11:07:57 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC5283B57F
+        for <devicetree@vger.kernel.org>; Mon, 16 May 2022 08:07:54 -0700 (PDT)
+Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
+        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <a.fatoum@pengutronix.de>)
+        id 1nqcK8-0004pp-1e; Mon, 16 May 2022 17:07:52 +0200
+Message-ID: <c3bd0397-d0e3-6b98-512c-9cbb01759673@pengutronix.de>
+Date:   Mon, 16 May 2022 17:07:50 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH v2 2/4] dt-bindings: arm: qcom: Add sc7180 Chromebook
- board bindings
+ Thunderbird/91.8.0
+Subject: Re: [PATCH v1 02/17] Revert "ARM: dts: imx6qdl-apalis: Avoid
+ underscore in node name"
 Content-Language: en-US
-To:     Doug Anderson <dianders@chromium.org>
-Cc:     Rob Herring <robh@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Rajendra Nayak <quic_rjendra@quicinc.com>,
-        Alexandru M Stan <amstan@chromium.org>,
-        Julius Werner <jwerner@chromium.org>,
-        "Joseph S . Barrera III" <joebar@chromium.org>,
-        Andy Gross <agross@kernel.org>,
+To:     Francesco Dolcini <francesco.dolcini@toradex.com>
+Cc:     Max Krummenacher <max.oss.09@gmail.com>,
+        max.krummenacher@toradex.com, devicetree@vger.kernel.org,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@codeaurora.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>
-References: <20220513095722.v2.1.I71e42c6174f1cec17da3024c9f73ba373263b9b6@changeid>
- <20220513095722.v2.2.I9804fcd5d6c8552ab25f598dd7a3ea71b15b55f0@changeid>
- <d4e031d0-8a43-e458-6535-1044d43a2b63@linaro.org>
- <CAD=FV=UfNKqca5XHX7aWZmxvPmKNikA-=X0Hv5v0MbumnB-W8Q@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAD=FV=UfNKqca5XHX7aWZmxvPmKNikA-=X0Hv5v0MbumnB-W8Q@mail.gmail.com>
+        Fabio Estevam <festevam@gmail.com>,
+        linux-arm-kernel@lists.infradead.org
+References: <20220516115846.58328-1-max.oss.09@gmail.com>
+ <20220516115846.58328-3-max.oss.09@gmail.com>
+ <86815346-209e-304e-3565-b4160afa48e8@pengutronix.de>
+ <20220516145354.GA121079@francesco-nb.int.toradex.com>
+From:   Ahmad Fatoum <a.fatoum@pengutronix.de>
+In-Reply-To: <20220516145354.GA121079@francesco-nb.int.toradex.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
+X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/05/2022 17:01, Doug Anderson wrote:
-> 
-> 
->> Actually this change should be rather part of that other commit...
-> 
-> I'm not sure I understand. Which of these are you suggesting?
-> 
-> 1. You want me to squash the two commits into one, so we add the
-> generic doc in the same patch as the one adding sc7180 Chromebooks.
-> 
-> 2. You want the generic doc to come first in the series and it just
-> adds the little blurb into
-> "Documentation/devicetree/bindings/arm/qcom.yaml" even though
-> Chromebooks aren't actually added until a later commit in the series.
-> 
-> 3. You want to add the sc7180 Chromebooks first in the series with no
-> documentation and then later add in the generic documentation and the
-> blurb into "Documentation/devicetree/bindings/arm/qcom.yaml".
+Hello Francesco,
 
-Sorry for being unclear, I propose the third option. I mean, the hunk
-referencing "chromebook-boot-flow.rst" should be rather added by the
-patch adding that document.
+On 16.05.22 16:53, Francesco Dolcini wrote:
+> On Mon, May 16, 2022 at 02:49:12PM +0200, Ahmad Fatoum wrote:
+>> On 16.05.22 13:58, Max Krummenacher wrote:
+>>> From: Max Krummenacher <max.krummenacher@toradex.com>
+>>>
+>>> The STMPE MFD device binding requires the child node to have a fixed
+>>> name, i.e. with '_', not '-'. Otherwise the stmpe_adc, stmpe_touchscreen
+>>> drivers will not be probed.
+>>
+>> IMO, the Linux driver should be fixed and the requirement to use a fixed
+>> node name be dropped from the binding. The driver itself already probes
+>> by compatible, the node name seems only to be used by the MFD driver to
+>> detect which functions to enable. It could do the same by checking for
+>> compatibles. Otherwise you invite a game of cat and mouse, where in
+>> future, this is changed back again reintroducing the regression..
+> 
+> How would you handle in general such kind of change? Would you keep the
+> driver probing for both the old name with the `_` and the compatible or
+> you just break the compatibility?
 
-> I'm also interested to know if you think the generic documentation
-> patch should land through the Qualcomm tree. I think it would
-> absolutely have to if I take your suggestion, right?
+The Binding requires child nodes to have both a specific node name and
+compatible. So if we remove the node name restriction, we stay compliant
+to the binding.
 
-Yes, in that case would be a 5th patch in the set here, so I think
-everything would go via Qcom SoC.
+The MFD driver requires specific node names, while the MFD cell drivers
+seem to be matched by compatibles. It's thus should be safe to replace
+the node name readout in the MFD driver with a compatible check.
+
+Existing device trees will continue to work. Newer device trees can use
+dashes. Once the binding is converted to YAML, we could enforce a name
+to get everyone aligned, but it will be just a binding checker warning,
+not a breakage on update.
+
+Cheers,
+Ahmad
+
+> 
+> Francesco
+> 
+> 
 
 
-Best regards,
-Krzysztof
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
