@@ -2,363 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 29AD0527C07
-	for <lists+devicetree@lfdr.de>; Mon, 16 May 2022 04:36:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 03075527C25
+	for <lists+devicetree@lfdr.de>; Mon, 16 May 2022 04:51:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239432AbiEPCgT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 15 May 2022 22:36:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45174 "EHLO
+        id S239487AbiEPCvS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 15 May 2022 22:51:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44728 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239435AbiEPCgF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 15 May 2022 22:36:05 -0400
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E95CBBCA8;
-        Sun, 15 May 2022 19:36:03 -0700 (PDT)
-Received: by mail-lj1-x22c.google.com with SMTP id o22so15619865ljp.8;
-        Sun, 15 May 2022 19:36:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=pbnTlSg+9lkzJZgvRMdLa+9B8pVRxX5+A47ByjDRmu8=;
-        b=ZihCwqrl9PpeLm5+Am/uEriWZHH63ZwRI8vnxF3gIuEyRDQXqDuvh/FoZPifsun4aE
-         7Gq3Fnkn2ruUfRnNo54tKViEbwdechsO70HNeCFP7LEnmmyi/Y8JfVm28r9ujbTvs3PC
-         J4BKygK5jDTRjyOuPrg0dQWjdoj/mW+A2TGUYuhgqQvE+1CRRu318gOJcZwn9vWdgBGX
-         SBgZq1O622dabZMlssWzYRb+l1DXRbKg0HGdvSH9gUZtB4dSJyeAy2Ae9m2X6f3BgPlw
-         MQHWarm53k6ajCNzb3jmf+LiIey2bQZFaZTfvP9xE6+igCeU7bL/AYKSkzFFEh6PuUXa
-         iTRA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=pbnTlSg+9lkzJZgvRMdLa+9B8pVRxX5+A47ByjDRmu8=;
-        b=JbLsIqhwRhB9XtwipTqTXw/LoHT5QADucaYluyXD1AxBO27jj/JQqntJj6Ld4EsL1d
-         MYh7qB4nT8R2PULgPnJod3T6XJAi9l8ZcucaK1TkQ/RsuSprHksEOEdeIu4VF7eq2pYq
-         mJHDf8VQr2pD5QJrpsY4+MdO0uGAjbRKQHVALFxe26P0ZvUfGJK8wxois6lliFxbFYkb
-         Ngkd6Y0tD9zMdC3L/yU+Km10+ZizGupXjqIAUcbTsmIUJCaWz269skq1I4+kX/N+vrdb
-         3Q/zr/KjMtOflKgD+MIJPqGjg7lNe0Lj+IcEhnYzKH8TBFw9RbYj7cKtjxgFMEvRPGtq
-         kc9Q==
-X-Gm-Message-State: AOAM530QoXEt9xfckEpXeY7nsfguF+FpnXseEUYxgulu6imW8NNnsqbb
-        YeVrdJtyAau1isoWSpQqwY7Ug9oK5OlKPGKu4Rc=
-X-Google-Smtp-Source: ABdhPJzzYv3UBxnxwNzl6OP7ju5c/5Mj2ZPE3GhdhiqDnR8gYF2Zyfq+Q3Pn4xGVcRozD8KllIWTw+lQmu8rolCRhKk=
-X-Received: by 2002:a2e:a801:0:b0:24a:ff0b:ae7a with SMTP id
- l1-20020a2ea801000000b0024aff0bae7amr9560575ljq.287.1652668561873; Sun, 15
- May 2022 19:36:01 -0700 (PDT)
+        with ESMTP id S239483AbiEPCvO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 15 May 2022 22:51:14 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB55FCE39;
+        Sun, 15 May 2022 19:51:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=aeIiodYHNThScuod1GW5LkC5SMWKdFNGndzQilLs9lY=; b=DBFHslQ4kVTac7kIIocJyO0sUs
+        QUZje+acCpNESTHr4kcevQ1jDHf8qkTE/h/8IOI3ay+VcQbxXDAPZsnJosNka2BKONFX4GTJ0+Zbg
+        I/aB5Vd6xe+33jY/J5cuO0jTUc0CfAZyzp7e2huZaPcR9TJgaVDmU6yDn7RTvFdywE8k=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1nqQp5-002wrJ-HM; Mon, 16 May 2022 04:51:03 +0200
+Date:   Mon, 16 May 2022 04:51:03 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Maxime Chevallier <maxime.chevallier@bootlin.com>
+Cc:     davem@davemloft.net, Rob Herring <robh+dt@kernel.org>,
+        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, thomas.petazzoni@bootlin.com,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        linux-arm-kernel@lists.infradead.org,
+        Vladimir Oltean <vladimir.oltean@nxp.com>,
+        Luka Perkov <luka.perkov@sartura.hr>,
+        Robert Marko <robert.marko@sartura.hr>
+Subject: Re: [PATCH net-next v2 1/5] net: ipqess: introduce the Qualcomm
+ IPQESS driver
+Message-ID: <YoG8F8V0Z+7hz/jw@lunn.ch>
+References: <20220514150656.122108-1-maxime.chevallier@bootlin.com>
+ <20220514150656.122108-2-maxime.chevallier@bootlin.com>
 MIME-Version: 1.0
-References: <20220510031056.1657-1-ctcchien@nuvoton.com> <20220510031056.1657-4-ctcchien@nuvoton.com>
- <0a46ba6f-9eac-7138-c675-99df86750c83@molgen.mpg.de>
-In-Reply-To: <0a46ba6f-9eac-7138-c675-99df86750c83@molgen.mpg.de>
-From:   Medad Young <medadyoung@gmail.com>
-Date:   Mon, 16 May 2022 10:35:50 +0800
-Message-ID: <CAHpyw9epvs9E=DxHRD5oV3wzpiq7spogp+TZcuyNhD4Nk3exZg@mail.gmail.com>
-Subject: Re: [PATCH v9 3/3] EDAC: nuvoton: Add NPCM memory controller driver
-To:     Paul Menzel <pmenzel@molgen.mpg.de>
-Cc:     rric@kernel.org, James Morse <james.morse@arm.com>,
-        tony.luck@intel.com, Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Borislav Petkov <bp@alien8.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Benjamin Fair <benjaminfair@google.com>,
-        Nancy Yuen <yuenn@google.com>,
-        Patrick Venture <venture@google.com>, KWLIU@nuvoton.com,
-        YSCHU@nuvoton.com, JJLIU0@nuvoton.com, KFTING <KFTING@nuvoton.com>,
-        Avi Fishman <avifishman70@gmail.com>,
-        Tomer Maimon <tmaimon77@gmail.com>,
-        Tali Perry <tali.perry1@gmail.com>, ctcchien@nuvoton.com,
-        devicetree <devicetree@vger.kernel.org>,
-        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-edac <linux-edac@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220514150656.122108-2-maxime.chevallier@bootlin.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dear Paul,
+> +static int ipqess_tx_ring_alloc(struct ipqess *ess)
+> +{
+> +	struct device *dev = &ess->pdev->dev;
+> +	int i;
+> +
+> +	for (i = 0; i < IPQESS_NETDEV_QUEUES; i++) {
+> +		struct ipqess_tx_ring *tx_ring = &ess->tx_ring[i];
+> +		size_t size;
+> +		u32 idx;
+> +
+> +		tx_ring->ess = ess;
+> +		tx_ring->ring_id = i;
+> +		tx_ring->idx = i * 4;
+> +		tx_ring->count = IPQESS_TX_RING_SIZE;
+> +		tx_ring->nq = netdev_get_tx_queue(ess->netdev, i);
+> +
+> +		size = sizeof(struct ipqess_buf) * IPQESS_TX_RING_SIZE;
+> +		tx_ring->buf = devm_kzalloc(dev, size, GFP_KERNEL);
+> +		if (!tx_ring->buf) {
+> +			netdev_err(ess->netdev, "buffer alloc of tx ring failed");
+> +			return -ENOMEM;
+> +		}
 
-thanks for your comments.
+kzalloc() is pretty loud when there is no memory. So you see patches
+removing such warning messages.
 
-Paul Menzel <pmenzel@molgen.mpg.de> =E6=96=BC 2022=E5=B9=B45=E6=9C=8810=E6=
-=97=A5 =E9=80=B1=E4=BA=8C =E4=B8=8B=E5=8D=883:49=E5=AF=AB=E9=81=93=EF=BC=9A
->
-> Dear Medad,
->
->
-> Am 10.05.22 um 05:10 schrieb Medad CChien:
-> > Add memory controller support for Nuvoton NPCM SoC.
->
-> It=E2=80=99d be great if you added the datasheet name, revision and secti=
-on used
-> to implement this.
->
+> +static int ipqess_rx_napi(struct napi_struct *napi, int budget)
+> +{
+> +	struct ipqess_rx_ring *rx_ring = container_of(napi, struct ipqess_rx_ring,
+> +						    napi_rx);
+> +	struct ipqess *ess = rx_ring->ess;
+> +	u32 rx_mask = BIT(rx_ring->idx);
+> +	int remain_budget = budget;
+> +	int rx_done;
+> +	u32 status;
+> +
+> +poll_again:
+> +	ipqess_w32(ess, IPQESS_REG_RX_ISR, rx_mask);
+> +	rx_done = ipqess_rx_poll(rx_ring, remain_budget);
+> +
+> +	if (rx_done == remain_budget)
+> +		return budget;
+> +
+> +	status = ipqess_r32(ess, IPQESS_REG_RX_ISR);
+> +	if (status & rx_mask) {
+> +		remain_budget -= rx_done;
+> +		goto poll_again;
+> +	}
 
-OK, I will add those information.
+Could this be turned into a do while() loop?
 
-> > Note:
-> >     you can force an ecc event by writing a string to edac sysfs node
-> >     and remember to define CONFIG_EDAC_DEBUG to enable this feature
-> >     example: force a correctable event on checkcode bit 0
-> >     echo "CE checkcode 0" > /sys/devices/system/edac/mc/mc0/forced_ecc_=
-error
-> >
-> > Fix the following warnings and error:
-> > error:
-> >     error: macro "edac_printk" requires 4 arguments, but only 2 given i=
-n
-> >     driver/edac/npcm_edac.c
-> >     edac_printk(KERN_INFO, "bit_no for checkcode must be 0~7\n");
-> >
-> > warnings:
-> >     performing pointer arithmetic on a null pointer has undefined behav=
-ior.
-> >     logical not is only applied to the left hand side of this bitwise
-> >     operator.
-> >     mixing declarations and code is a C99 extension.
-> >
-> > Reported-by: kernel test robot <lkp@intel.com>
->
-> I find this line confusing as the kernel test robot did not report that
-> the memory controller driver is missing.
->
+> +static void ipqess_irq_enable(struct ipqess *ess)
+> +{
+> +	int i;
+> +
+> +	ipqess_w32(ess, IPQESS_REG_RX_ISR, 0xff);
+> +	ipqess_w32(ess, IPQESS_REG_TX_ISR, 0xffff);
+> +	for (i = 0; i < IPQESS_NETDEV_QUEUES; i++) {
+> +		ipqess_w32(ess, IPQESS_REG_RX_INT_MASK_Q(ess->rx_ring[i].idx), 1);
+> +		ipqess_w32(ess, IPQESS_REG_TX_INT_MASK_Q(ess->tx_ring[i].idx), 1);
+> +	}
+> +}
+> +
+> +static void ipqess_irq_disable(struct ipqess *ess)
+> +{
+> +	int i;
+> +
+> +	for (i = 0; i < IPQESS_NETDEV_QUEUES; i++) {
+> +		ipqess_w32(ess, IPQESS_REG_RX_INT_MASK_Q(ess->rx_ring[i].idx), 0);
+> +		ipqess_w32(ess, IPQESS_REG_TX_INT_MASK_Q(ess->tx_ring[i].idx), 0);
+> +	}
+> +}
 
-Sorry, I did not get your point.
-but I add these due to kernel test robot reported some errors and warnings.
+Enable and disable are not symmetric?
 
-> > Signed-off-by: Medad CChien <ctcchien@nuvoton.com>
-> > ---
-> >   drivers/edac/Kconfig     |  10 +
-> >   drivers/edac/Makefile    |   1 +
-> >   drivers/edac/npcm_edac.c | 680 ++++++++++++++++++++++++++++++++++++++=
-+
-> >   3 files changed, 691 insertions(+)
-> >   create mode 100644 drivers/edac/npcm_edac.c
-> >
-> > diff --git a/drivers/edac/Kconfig b/drivers/edac/Kconfig
-> > index 58ab63642e72..9c83202cbf65 100644
-> > --- a/drivers/edac/Kconfig
-> > +++ b/drivers/edac/Kconfig
-> > @@ -539,4 +539,14 @@ config EDAC_DMC520
-> >         Support for error detection and correction on the
-> >         SoCs with ARM DMC-520 DRAM controller.
-> >
-> > +config EDAC_NPCM
-> > +     tristate "Nuvoton NPCM DDR Memory Controller"
-> > +     depends on (ARCH_NPCM || COMPILE_TEST)
-> > +     help
-> > +       Support for error detection and correction on the Nuvoton NPCM =
-DDR
-> > +       memory controller.
->
-> Maybe add the information from the devicetree documentation:
->
-> The Nuvoton BMC SoC supports DDR4 memory with and without ECC (error
-> correction check).
->
-> The memory controller supports single bit error correction, double bit
-> error detection (in-line ECC in which a section (1/8th) of the memory
-> device used to store data is used for ECC storage).
->
 
-OK, I will add that information.
+> +static inline void ipqess_kick_tx(struct ipqess_tx_ring *tx_ring)
 
-> > +
-> > +       First, ECC must be configured in the BootBlock header. Then, th=
-is driver
-> > +       will expose error counters via the EDAC kernel framework.
-> > +
-> >   endif # EDAC
-> > diff --git a/drivers/edac/Makefile b/drivers/edac/Makefile
-> > index 2d1641a27a28..db3c59d3ad84 100644
-> > --- a/drivers/edac/Makefile
-> > +++ b/drivers/edac/Makefile
-> > @@ -84,3 +84,4 @@ obj-$(CONFIG_EDAC_QCOM)                     +=3D qcom=
-_edac.o
-> >   obj-$(CONFIG_EDAC_ASPEED)           +=3D aspeed_edac.o
-> >   obj-$(CONFIG_EDAC_BLUEFIELD)                +=3D bluefield_edac.o
-> >   obj-$(CONFIG_EDAC_DMC520)           +=3D dmc520_edac.o
-> > +obj-$(CONFIG_EDAC_NPCM)                      +=3D npcm_edac.o
-> > diff --git a/drivers/edac/npcm_edac.c b/drivers/edac/npcm_edac.c
-> > new file mode 100644
-> > index 000000000000..5552dab242b1
-> > --- /dev/null
-> > +++ b/drivers/edac/npcm_edac.c
-> > @@ -0,0 +1,680 @@
-> > +// SPDX-License-Identifier: GPL-2.0
-> > +// Copyright (c) 2022 Nuvoton Technology corporation.
->
-> No dot/period is needed at the end, as corporation is not abbreviated.
-> Maybe also capitalize Corporation as done on the Web site.
+No inline functions please in .c files. Let the compiler decide.
 
-OK
-
->
-> > +
-> > +#include <linux/delay.h>
-> > +#include <linux/of_device.h>
-> > +
-> > +#include "edac_module.h"
-> > +
-> > +#define NPCM_EDAC_MOD_NAME "npcm-edac"
-> > +#define FORCED_ECC_ERR_EVENT_SUPPORT         BIT(1)
-> > +#define EDAC_MSG_SIZE                                                2=
-56
-> > +/* Granularity of reported error in bytes */
-> > +#define NPCM_EDAC_ERR_GRAIN                          1
-> > +
-> > +#define MEM_TYPE_DDR4                                                0=
-xA
-> > +
-> > +#define NPCM7XX_CHIP                                         0x700
-> > +#define NPCM8XX_CHIP                                         0x800
-> > +
-> > +/* Control register width definitions */
-> > +#define WDTH_16                                                       =
-       (2)
-> > +#define WDTH_32                                                       =
-       (1)
-> > +#define WDTH_64                                                       =
-       (0)
-> > +#define CTL_MEM_MAX_WIDTH_MASK                       GENMASK(4, 0)
-> > +#define CTL_REG_WIDTH_SHIFT                                  (32)
-> > +#define XOR_CHECK_BIT_SPLIT_WIDTH                    (16)
-> > +#define CTL_CONTROLLER_BUSY_FLAG                     BIT(0)
-> > +#define NPCM_ECC_CTL_FORCE_WC                                BIT(8)
-> > +#define NPCM_ECC_CTL_AUTO_WRITEBACK_EN       BIT(24)
-> > +#define NPCM_ECC_CTL_XOR_BITS_MASK                   GENMASK(23, 16)
-> > +#define NPCM_ECC_CTL_MTYPE_MASK                      GENMASK(11, 8)
-> > +#define NPCM_ECC_CTL_GLOBAL_INT_DISABLE              BIT(31)
-> > +
-> > +/* Syndrome values */
-> > +#define ECC_DOUBLE_MULTI_ERR_SYND                    0x03
-> > +
-> > +static char data_synd[] =3D {
-> > +                     0xf4, 0xf1, 0xec, 0xea, 0xe9, 0xe6, 0xe5, 0xe3,
-> > +                     0xdc, 0xda, 0xd9, 0xd6, 0xd5, 0xd3, 0xce, 0xcb,
-> > +                     0xb5, 0xb0, 0xad, 0xab, 0xa8, 0xa7, 0xa4, 0xa2,
-> > +                     0x9d, 0x9b, 0x98, 0x97, 0x94, 0x92, 0x8f, 0x8a,
-> > +                     0x75, 0x70, 0x6d, 0x6b, 0x68, 0x67, 0x64, 0x62,
-> > +                     0x5e, 0x5b, 0x58, 0x57, 0x54, 0x52, 0x4f, 0x4a,
-> > +                     0x34, 0x31, 0x2c, 0x2a, 0x29, 0x26, 0x25, 0x23,
-> > +                     0x1c, 0x1a, 0x19, 0x16, 0x15, 0x13, 0x0e, 0x0b
-> > +               };
->
-> This does not look correctly indented. At least the } should be at the
-> beginning. The values can just be indented by one tab I believe. (At
-> least that is what `indent --linux-style` does (GNU indent 2.2.12).
->
-
-OK
-
-> > +
-> > +static char check_synd[] =3D {0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40=
-, 0x80};
->
-> At least `indent --linux-style` add a space after { and before }.
->
-
-OK
-
-> > +
-> > +struct npcm_edac_platform_data {
-> > +     /* force ECC event */
-> > +     u32 ip_features;
-> > +     u32 ddr_ctl_controller_busy_reg;
-> > +     u32 ecc_ctl_xor_check_bits_reg;
-> > +
-> > +     u32 chip;
-> > +
-> > +     /* DDR4 Controller Registers */
-> > +     u32 ddr_ctl_mem_type_reg;
-> > +     u32 ddr_ctl_mem_width_reg;
-> > +
-> > +     u32 ecc_ctl_en_reg;
-> > +     u32 ecc_ctl_int_mask;
-> > +     u32 ecc_ctl_int_status;
-> > +     u32 ecc_ctl_int_ack;
-> > +     u32 ecc_ctl_int_mask_master;
-> > +     u32 ecc_ctl_int_mask_ecc;
-> > +
-> > +     u32 ecc_sig_c_addr_l;
-> > +     u32 ecc_sig_c_addr_h;
-> > +     u32 ecc_sig_c_data_l;
-> > +     u32 ecc_sig_c_data_h;
-> > +     u32 ecc_sig_c_id;
-> > +     u32 ecc_sig_c_synd;
-> > +
-> > +     u32 ecc_sig_u_addr_l;
-> > +     u32 ecc_sig_u_addr_h;
-> > +     u32 ecc_sig_u_data_l;
-> > +     u32 ecc_sig_u_data_h;
-> > +     u32 ecc_sig_u_id;
-> > +     u32 ecc_sig_u_synd;
-> > +
-> > +     /* MASK */
-> > +     u32 ecc_ctl_ecc_enable_mask;
-> > +     u32 ecc_ctl_en_int_master_mask;
-> > +     u32 ecc_ctl_en_int_ecc_mask;
-> > +
-> > +     /* ECC IRQ Macros */
-> > +     u32 ecc_int_ce_event;
-> > +     u32 ecc_int_second_ce_event;
-> > +     u32 ecc_int_ue_event;
-> > +     u32 ecc_int_second_ue_event;
-> > +     u32 ecc_int_ce_ue_mask;
-> > +     u32 ecc_ce_intr_mask;
-> > +     u32 ecc_ue_intr_mask;
-> > +
-> > +     /* ECC Signature Macros */
-> > +     u32 ecc_sig_c_id_shift;
-> > +     u32 ecc_sig_c_synd_shift;
-> > +     u32 ecc_sig_c_addr_h_mask;
-> > +     u32 ecc_sig_c_id_mask;
-> > +     u32 ecc_sig_c_synd_mask;
-> > +
-> > +     u32 ecc_sig_u_id_shift;
-> > +     u32 ecc_sig_u_synd_shift;
-> > +     u32 ecc_sig_u_addr_h_mask;
-> > +     u32 ecc_sig_u_id_mask;
-> > +     u32 ecc_sig_u_synd_mask;
-> > +};
-> > +
-> > +struct priv_data {
-> > +     void __iomem *reg;
-> > +     u32 ce_cnt;
-> > +     u32 ue_cnt; > + char message[EDAC_MSG_SIZE];
-> > +     const struct npcm_edac_platform_data *npcm_chip;
-> > +};
-> > +
-> > +
-> > +static void init_mem_layout(struct mem_ctl_info *mci)
-> > +{
-> > +     struct priv_data *priv =3D mci->pvt_info;
-> > +     const struct npcm_edac_platform_data *npcm_chip =3D priv->npcm_ch=
-ip;
-> > +     struct csrow_info *csi;
-> > +     struct dimm_info *dimm;
-> > +     struct sysinfo info;
-> > +     enum mem_type mtype;
-> > +     u32 val, width;
-> > +     u32 size, row;
-> > +     u8 j;
->
-> At least for loop variables, the default size integers should be used [1]=
-.
->
-
-OK
-
-> [=E2=80=A6]
->
->
-> Kind regards,
->
-> Paul
->
->
-> [1]: https://notabs.org/coding/smallIntsBigPenalty.htm
+   Andrew
