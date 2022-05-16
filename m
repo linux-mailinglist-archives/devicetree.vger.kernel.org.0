@@ -2,69 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E4051528BFB
-	for <lists+devicetree@lfdr.de>; Mon, 16 May 2022 19:28:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0F083528C08
+	for <lists+devicetree@lfdr.de>; Mon, 16 May 2022 19:35:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230463AbiEPR2Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 May 2022 13:28:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56636 "EHLO
+        id S237464AbiEPRfl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 May 2022 13:35:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36922 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231476AbiEPR2X (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 May 2022 13:28:23 -0400
-Received: from mail-oi1-f176.google.com (mail-oi1-f176.google.com [209.85.167.176])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 147C91EEFF;
-        Mon, 16 May 2022 10:28:22 -0700 (PDT)
-Received: by mail-oi1-f176.google.com with SMTP id m25so19453523oih.2;
-        Mon, 16 May 2022 10:28:22 -0700 (PDT)
+        with ESMTP id S235848AbiEPRfl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 May 2022 13:35:41 -0400
+Received: from mail-oi1-f172.google.com (mail-oi1-f172.google.com [209.85.167.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC64FE0;
+        Mon, 16 May 2022 10:35:39 -0700 (PDT)
+Received: by mail-oi1-f172.google.com with SMTP id v65so19432070oig.10;
+        Mon, 16 May 2022 10:35:39 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=wPpscCa2GIFkySmjw5GUwkyZ+UiIs3l9izNHfq7Aa2M=;
-        b=j63O0KR9lmcfHBr9Dlv6hwDTYyNFqSLVPBBvd45EAcXMvUXhG8PwwzCPmy03TcqT/+
-         DriWEVB+AG2ey8eiXo/A3TMUj6CB3o08/vTc1nfK9I1tkweIUFLp6Fe9YkknhihiM3GT
-         NiH7bVHLuO7t1VQWaYRytCQaYzOv3+nkNGnPVXthR7XmA4FLQPBen4pLcqH/RE5n/KQC
-         45h74b9F86yydXyHM+e/MG8rTgI97u0/P6BaC7V2+bY4flMoaHRcOcWvJ/u9RC6Lop0U
-         9V9Ze+2OoDXSSaHBefZakVo+3BuFE6dxrwzJeAHHnc0c5yWTGTQpuy9yQRJFGRqnxwu0
-         QHng==
-X-Gm-Message-State: AOAM531k9qyi6sTWeOVcS9AlosyVnmHP6vd3TFHxy9KncAnF/8Cc54FZ
-        1TTHs+tXVkrSROPuVS5cIw==
-X-Google-Smtp-Source: ABdhPJwUrisBSYtA1OrplifhC1XpMjP+Aq57zo5rc2g+9vWodKCKsoozbjCrFXi567TNb0emYI/VXA==
-X-Received: by 2002:a05:6808:1b2c:b0:326:6bc9:4070 with SMTP id bx44-20020a0568081b2c00b003266bc94070mr8220903oib.248.1652722101353;
-        Mon, 16 May 2022 10:28:21 -0700 (PDT)
+        bh=yRCFWuG9Oqb4uyJxObAmt3C9VXrpqbJosiPlLmLl9sI=;
+        b=EL75QSO/lgYeNiZgrLVbcg77+Bv4AXPDhgQnM6AMtVimqrFACrrRpr552wx4P6vN2O
+         P8ib7jaN3w1SepZKhFE2SXR7o/nbkWcBFbwi0tvJ9dLC1idY/9lwP6mTcXMq+5WGSV/X
+         5ehwlqMXNLZvVpElhj9kiBSyQqhVy5lmL6dMNFYHKFpJbuHfxw9opjxe9yvWbAO0IEEj
+         Us2abEo2VFSndd6V6A96WfDn+Lf7vL0AKznmXiwZCWlzS0Uf/Btzb60/9p5LkypXdP+i
+         PZh9osyEK8a7MmxE8abLr1rVWhEj6cPpIjY/LrMVozqz/WBS0lqFXr4BeI18uzVvUgtu
+         XvCQ==
+X-Gm-Message-State: AOAM533gNJBDBoYD4bXokjmaAcvTWSKdaLSSP8XvblsqdcERyflJd1N6
+        qt+GwudkRwm8tNna9wAmFg==
+X-Google-Smtp-Source: ABdhPJxuclwaDZzyOItOmmGD3yThwcNVeOZQs+WOMuvGRRbmejydML51xYl4owmx8halO8SP4Fl2pw==
+X-Received: by 2002:a05:6808:1703:b0:2f9:cd2d:41c5 with SMTP id bc3-20020a056808170300b002f9cd2d41c5mr14114818oib.77.1652722539072;
+        Mon, 16 May 2022 10:35:39 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id u7-20020a056871058700b000e686d13876sm5795033oan.16.2022.05.16.10.28.19
+        by smtp.gmail.com with ESMTPSA id v2-20020a056870310200b000e686d1386csm5670158oaa.6.2022.05.16.10.35.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 May 2022 10:28:20 -0700 (PDT)
-Received: (nullmailer pid 2941200 invoked by uid 1000);
-        Mon, 16 May 2022 17:28:19 -0000
-Date:   Mon, 16 May 2022 12:28:19 -0500
+        Mon, 16 May 2022 10:35:38 -0700 (PDT)
+Received: (nullmailer pid 2952486 invoked by uid 1000);
+        Mon, 16 May 2022 17:35:37 -0000
+Date:   Mon, 16 May 2022 12:35:37 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
-        mturquette@baylibre.com, sboyd@kernel.org, p.zabel@pengutronix.de,
-        y.oudjana@protonmail.com, jason-jh.lin@mediatek.com,
-        ck.hu@mediatek.com, fparent@baylibre.com, rex-bc.chen@mediatek.com,
-        tinghan.shen@mediatek.com, chun-jie.chen@mediatek.com,
-        weiyi.lu@mediatek.com, ikjn@chromium.org, miles.chen@mediatek.com,
-        sam.shih@mediatek.com, wenst@chromium.org,
-        bgolaszewski@baylibre.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-clk@vger.kernel.org,
-        konrad.dybcio@somainline.org, marijn.suijten@somainline.org,
-        martin.botka@somainline.org, ~postmarketos/upstreaming@lists.sr.ht,
-        phone-devel@vger.kernel.org, paul.bouchara@somainline.org,
-        kernel@collabora.com
-Subject: Re: [PATCH 4/5] dt-bindings: arm: mediatek: Add clock driver
- bindings for MT6795
-Message-ID: <20220516172819.GA2938099-robh@kernel.org>
-References: <20220513165050.500831-1-angelogioacchino.delregno@collabora.com>
- <20220513165050.500831-5-angelogioacchino.delregno@collabora.com>
+To:     Frank Wunderlich <frank-w@public-files.de>
+Cc:     Frank Wunderlich <linux@fw-web.de>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Vinod Koul <vkoul@kernel.org>,
+        Johan Jonker <jbx6244@gmail.com>,
+        linux-rockchip@lists.infradead.org, linux-pci@vger.kernel.org,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>
+Subject: Re: Re: [RFC v3 1/5] dt-bindings: phy: rockchip: add PCIe v3 phy
+Message-ID: <20220516173537.GA2942634-robh@kernel.org>
+References: <20220514115946.8858-1-linux@fw-web.de>
+ <20220514115946.8858-2-linux@fw-web.de>
+ <1652570081.002742.3276245.nullmailer@robh.at.kernel.org>
+ <trinity-02ad648c-f6f8-4383-b389-a0578d5a02d2-1652615387162@3c-app-gmx-bap15>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220513165050.500831-5-angelogioacchino.delregno@collabora.com>
+In-Reply-To: <trinity-02ad648c-f6f8-4383-b389-a0578d5a02d2-1652615387162@3c-app-gmx-bap15>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -76,183 +77,79 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, May 13, 2022 at 06:50:49PM +0200, AngeloGioacchino Del Regno wrote:
-> Add the bindings for the clock drivers of the MediaTek Helio X10
-> MT6795 SoC.
+On Sun, May 15, 2022 at 01:49:47PM +0200, Frank Wunderlich wrote:
+> Hi
 > 
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> ---
->  .../arm/mediatek/mediatek,mt6795-clock.yaml   | 67 +++++++++++++++++
->  .../mediatek/mediatek,mt6795-sys-clock.yaml   | 73 +++++++++++++++++++
->  2 files changed, 140 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/arm/mediatek/mediatek,mt6795-clock.yaml
->  create mode 100644 Documentation/devicetree/bindings/arm/mediatek/mediatek,mt6795-sys-clock.yaml
+> > Gesendet: Sonntag, 15. Mai 2022 um 01:14 Uhr
+> > Von: "Rob Herring" <robh@kernel.org>
 > 
-> diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt6795-clock.yaml b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt6795-clock.yaml
-> new file mode 100644
-> index 000000000000..b7d96d0ed867
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt6795-clock.yaml
-> @@ -0,0 +1,67 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: "http://devicetree.org/schemas/arm/mediatek/mediatek,mt6795-clock.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> +
-> +title: MediaTek Functional Clock Controller for MT6795
-> +
-> +maintainers:
-> +  - AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> +  - Chun-Jie Chen <chun-jie.chen@mediatek.com>
-> +
-> +description: |
-> +  The clock architecture in MediaTek like below
-> +  PLLs -->
-> +          dividers -->
-> +                      muxes
-> +                           -->
-> +                              clock gate
-> +
-> +  The devices provide clock gate control in different IP blocks.
-> +
-> +properties:
-> +  compatible:
-> +    items:
-
-Don't need 'items' if only 1 item.
-
-> +      - enum:
-> +          - mediatek,mt6795-mfgcfg
-> +          - mediatek,mt6795-vdecsys
-> +          - mediatek,mt6795-vencsys
-
-blank line.
-
-> +  reg:
-> +    maxItems: 1
-> +
-> +  '#clock-cells':
-> +    const: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-
-Why is #clock-cells optional? 
-
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    soc {
-> +        #address-cells = <2>;
-> +        #size-cells = <2>;
-> +
-> +        clock-controller@13000000 {
-> +            compatible = "mediatek,mt6795-mfgcfg";
-> +            reg = <0 0x13000000 0 0x1000>;
-> +            #clock-cells = <1>;
-> +        };
-> +
-> +        clock-controller@16000000 {
-> +            compatible = "mediatek,mt6795-vdecsys";
-> +            reg = <0 0x16000000 0 0x1000>;
-> +            #clock-cells = <1>;
-> +        };
-> +
-> +        clock-controller@18000000 {
-> +            compatible = "mediatek,mt6795-vdecsys";
-> +            reg = <0 0x18000000 0 0x1000>;
-> +            #clock-cells = <1>;
-> +        };
-> +    };
-> +
-> +
-> diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt6795-sys-clock.yaml b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt6795-sys-clock.yaml
-> new file mode 100644
-> index 000000000000..389dd8e245ac
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt6795-sys-clock.yaml
-> @@ -0,0 +1,73 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: "http://devicetree.org/schemas/arm/mediatek/mediatek,mt6795-sys-clock.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> +
-> +title: MediaTek System Clock Controller for MT6795
-> +
-> +maintainers:
-> +  - AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> +  - Chun-Jie Chen <chun-jie.chen@mediatek.com>
-> +
-> +description:
-> +  The Mediatek system clock controller provides various clocks and system configuration
-> +  like reset and bus protection on MT6795.
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - mediatek,mt6795-apmixedsys
-> +          - mediatek,mt6795-infracfg
-> +          - mediatek,mt6795-pericfg
-> +          - mediatek,mt6795-topckgen
-> +      - const: syscon
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  '#clock-cells':
-> +    const: 1
-> +
-> +  '#reset-cells':
-> +    const: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-
-#clock-cells?
-
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    soc {
-> +        #address-cells = <2>;
-> +        #size-cells = <2>;
-> +
-> +        topckgen: clock-controller@10000000 {
-> +            compatible = "mediatek,mt6795-topckgen", "syscon";
-> +            reg = <0 0x10000000 0 0x1000>;
-> +            #clock-cells = <1>;
-> +        };
-> +
-> +        infracfg: power-controller@10001000 {
-> +            compatible = "mediatek,mt6795-infracfg", "syscon";
-> +            reg = <0 0x10001000 0 0x1000>;
-> +            #clock-cells = <1>;
-> +            #reset-cells = <1>;
-> +        }
-> +
-> +        pericfg: power-controller@10003000 {
-> +            compatible = "mediatek,mt6795-pericfg", "syscon";
-> +            reg = <0 0x10003000 0 0x1000>;
-> +            #clock-cells = <1>;
-> +            #reset-cells = <1>;
-> +        };
-> +
-> +        apmixedsys: clock-controller@10209000 {
-> +            compatible = "mediatek,mt6795-apmixedsys", "syscon";
-> +            reg = <0 0x10209000 0 0x1000>;
-> +            #clock-cells = <1>;
-> +        };
-> +    };
-> -- 
-> 2.35.1
+> > On Sat, 14 May 2022 13:59:42 +0200, Frank Wunderlich wrote:
+> > > From: Frank Wunderlich <frank-w@public-files.de>
+> > >
+> > > Add a new binding file for Rockchip PCIe v3 phy driver.
+> > >
+> > > Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
+> > >
+> > > ---
+> > > v3:
+> > > - drop quotes
+> > > - drop rk3588
+> > > - make clockcount fixed to 3
+> > > - full path for binding header file
+> > > - drop phy-mode and its header and add lane-map
+> > >
+> > > v2:
+> > > dt-bindings: rename yaml for PCIe v3
+> > > rockchip-pcie3-phy.yaml => rockchip,pcie3-phy.yaml
+> > >
+> > > changes in pcie3 phy yaml
+> > > - change clock names to ordered const list
+> > > - extend pcie30-phymode description
+> > > - add phy-cells to required properties
+> > > - drop unevaluatedProperties
+> > > - example with 1 clock each line
+> > > - use default property instead of text describing it
+> > > - update license
+> > > ---
+> > >  .../bindings/phy/rockchip,pcie3-phy.yaml      | 82 +++++++++++++++++++
+> > >  1 file changed, 82 insertions(+)
+> > >  create mode 100644 Documentation/devicetree/bindings/phy/rockchip,pcie3-phy.yaml
+> > >
+> >
+> > My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> > on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> >
+> > yamllint warnings/errors:
+> >
+> > dtschema/dtc warnings/errors:
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/phy/rockchip,pcie3-phy.yaml: properties:clock-names: 'oneOf' conditional failed, one must be fixed:
+> > 	[{'const': 'refclk_m'}, {'const': 'refclk_n'}, {'const': 'pclk'}] is too long
+> > 	[{'const': 'refclk_m'}, {'const': 'refclk_n'}, {'const': 'pclk'}] is too short
+> > 	False schema does not allow 3
+> > 	1 was expected
+> > 	3 is greater than the maximum of 2
+> > 	hint: "minItems" is only needed if less than the "items" list length
+> > 	from schema $id: http://devicetree.org/meta-schemas/items.yaml#
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/phy/rockchip,pcie3-phy.yaml: ignoring, error in schema: properties: clock-names
+> > Documentation/devicetree/bindings/phy/rockchip,pcie3-phy.example.dtb:0:0: /example-0/phy@fe8c0000: failed to match any schema with compatible: ['rockchip,rk3568-pcie3-phy']
 > 
+> seems this is fixed when i remove the "minItems: 3" from clock names 
+> (which is already fixed length because of the list).
+
+Yes.
+
+> needed to change type of lane-map to this:
 > 
+> $ref: /schemas/types.yaml#/definitions/uint8-array
+
+Why? That's not a standard property though, so needs a 'rockchip' 
+prefix. Though maybe a common property would be appropriate here.
+
+> then it looks clean for it....
+> 
+> -m causes many errors unrelated to this schema-file even if i pass
+> DT_SCHEMA_FILES=Documentation/devicetree/bindings/phy/rockchip,pcie3-phy.yaml
+
+The fix is fixing the remaining 40 or so '-m' errors.
+
+Rob
