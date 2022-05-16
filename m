@@ -2,297 +2,199 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 886BC527D7F
-	for <lists+devicetree@lfdr.de>; Mon, 16 May 2022 08:21:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DC6B5527DB6
+	for <lists+devicetree@lfdr.de>; Mon, 16 May 2022 08:40:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234711AbiEPGVf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 May 2022 02:21:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50646 "EHLO
+        id S240362AbiEPGkq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 May 2022 02:40:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33214 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234525AbiEPGVf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 May 2022 02:21:35 -0400
-Received: from mail-pl1-x631.google.com (mail-pl1-x631.google.com [IPv6:2607:f8b0:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5885124941;
-        Sun, 15 May 2022 23:21:34 -0700 (PDT)
-Received: by mail-pl1-x631.google.com with SMTP id n8so13524724plh.1;
-        Sun, 15 May 2022 23:21:34 -0700 (PDT)
+        with ESMTP id S237764AbiEPGkp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 May 2022 02:40:45 -0400
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7CB301C90C
+        for <devicetree@vger.kernel.org>; Sun, 15 May 2022 23:40:44 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id d19so24047726lfj.4
+        for <devicetree@vger.kernel.org>; Sun, 15 May 2022 23:40:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=2XQvQdTgnCwDfmHkTZtajXuRMAeapjHZEvNeUkViza8=;
-        b=ZLrZuXWGhglqCmNncstz6ccn5vDYbYWzH2VkXAZA1887OQvrY9eWeB0/8UQQgwWSGB
-         pVzZi6ep4Ax9nm3l099qIlairb6gML7KBNuKERwrzUYQKU5NB+Chh4uwnt1fUGD3DE0v
-         UVgcdupbcev1+NvQClM6qz9BVECcYIcbIAc2jk+cxmDVvMnR1sraxFf/z4kVM62+mgmr
-         YG0sv49pzekIRo8vFDi2WXwQkJUYsQ4dyp/aZReuOOSbOFLpNQgBchkiWCIzyH9ZSWww
-         0vH4RNk6R8t4fh5r6JasX81Clk/MpWUx0Ft4/SLtqC8ha+FyAKf7T2imbZHL04MZ9fsN
-         zzNg==
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=IezA8lFbZ3UBxt9oqnYwi09cIkKPiUW4FFJ1P5l8/O0=;
+        b=I0O/pU6cY2spaVMFaJQg1irJ6isUwl5e5ClKCDBGbpiUdQzS1pP3ncibY1xLbZZETg
+         vBW9p6Lpd+BtpNrqDG4mJ21n/B4zxxmO/6LHl1VmKb1PbeGm2SVTWk0dhxmNXIFEj8Il
+         SeR18wyfnPf0rXsq3QP3qHtY/aFEUoVlh4TCorcawpqxJlgXDwV5VDjOZuJzzfhqt6nV
+         BE4VwRhX4due6MEXRw9QYGdIsJ6Dh2eKZCZxR0DKwEB04NNOhHj3ALqp+QnSjUmFEE12
+         y7FD12UQKOA4t9UHw5P0k+2a+g64QrNf69Qa74FVbltOzwKxd077dhAAKIunNPpAE58z
+         ut2g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=2XQvQdTgnCwDfmHkTZtajXuRMAeapjHZEvNeUkViza8=;
-        b=TiYkjbFzf0VJE0I0rbxTHbIaHH1+HUt+v2P4DVvXCceS4cpx8/i1Myv3jj905fGMk3
-         5f/Di7zd6/FbK7g4QsFYjnpXbNeKwihfei9+QqUUhxZEOlDCnRUpAL5oHLAsqwTuXsAN
-         iFCEVAzhHFTjEXF45SAKg7wOVTUjXID6NpQlU9v79dRmX1xRjeP3qcgIcc3QBdZcwq6U
-         71mqpYBasORwnebHuDzedUB6MOMhbWgA+NLLHPIB7yPEyOCh4UUmjxOpsiJuZcs9GZWw
-         F8ewnCkr9u1CqKlmf4oW6yDcnSSbIuurZ9sKzaNNYD4SKEYJJIm1kfyRDxQ0nkvKHik/
-         YMkw==
-X-Gm-Message-State: AOAM530p9Leq5DwdyEN6SpmrxxWqvhc9V0XCWApdcrlog/azxjU6BPJp
-        nbNGqWIzTp+0lcGbAAcU81Q=
-X-Google-Smtp-Source: ABdhPJydDWCC0cImtGR3ApozIWoml6FLqAUUWtzPeE7bW1eJQ3xAFnItpbdPcy3zKpfDYwU75NnssA==
-X-Received: by 2002:a17:902:7593:b0:15e:fe5d:58e1 with SMTP id j19-20020a170902759300b0015efe5d58e1mr16364570pll.102.1652682093885;
-        Sun, 15 May 2022 23:21:33 -0700 (PDT)
-Received: from genechen-System-Product-Name.richtek.com ([2402:7500:469:4645:1448:44e0:4d9f:8e5b])
-        by smtp.gmail.com with ESMTPSA id v15-20020a17090ad58f00b001d840f4eee0sm7597337pju.20.2022.05.15.23.21.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 15 May 2022 23:21:33 -0700 (PDT)
-From:   Gene Chen <gene.chen.richtek@gmail.com>
-To:     lee.jones@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
-        pavel@ucw.cz
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        gene_chen@richtek.com, cy_huang@richtek.com
-Subject: [PATCH v2] dt-bindings: mfd: Add bindings child nodes for the Mediatek MT6360
-Date:   Mon, 16 May 2022 14:21:27 +0800
-Message-Id: <20220516062127.99647-1-gene.chen.richtek@gmail.com>
-X-Mailer: git-send-email 2.25.1
+        bh=IezA8lFbZ3UBxt9oqnYwi09cIkKPiUW4FFJ1P5l8/O0=;
+        b=u3jCtq/ThaNyxb8AFrvvhnr1x6cHJ900jYkSbsT8zlOSzT3LxHShh8+jHPLg2bAfyI
+         wkmPvtEGRs6aKISjrdASM9I4ms3hbHEkOTP+PTX8GsMoe5+qDdgsIED+LUIX3oLYI0ry
+         m+OfPu6pTGxsevUsP2u7+WBo1SgqsbwOExm2NiG5427Ps3NNOP1FLquZtiV27VjBNOyT
+         GmBe25FMCvcPe7gvcHE6cA01DyIUx61tR+3isCeA3zpvP+TI05AGevP0ZYj4yOHLhqgI
+         a644uYIIctr0XL1dKNXxklwBg3ApyuS+Z8pWdV3jfxnzbHE9njKoIqTlgiUF+Ycf8qiT
+         Edwg==
+X-Gm-Message-State: AOAM531yIQghIeyWjClEAJCaFQ4/FEPP23Fmsu5LvhZV2+KLy6xfeNhl
+        tpVnBML05Wc4ZQIYcZxuNby//A==
+X-Google-Smtp-Source: ABdhPJwI3h/Hpn4jlgzq0+4Ulqw991mhhdevbVWHgRGyPrbW/AO6bgZHqym+63dMwfGIhekMCGcUmQ==
+X-Received: by 2002:a19:4348:0:b0:474:d376:45f3 with SMTP id m8-20020a194348000000b00474d37645f3mr11802453lfj.405.1652683242793;
+        Sun, 15 May 2022 23:40:42 -0700 (PDT)
+Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id f13-20020a2eb5ad000000b0024f3d1daedfsm1398118ljn.103.2022.05.15.23.40.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 15 May 2022 23:40:42 -0700 (PDT)
+Message-ID: <96686d6d-83a9-05a2-9fdc-f9fc4b4e7eed@linaro.org>
+Date:   Mon, 16 May 2022 08:40:41 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH 1/3] dt-bindings: arm: qcom: Add sc7180 Chromebook board
+ bindings
+Content-Language: en-US
+To:     Doug Anderson <dianders@chromium.org>
+Cc:     Rob Herring <robh@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Alexandru M Stan <amstan@chromium.org>,
+        Rajendra Nayak <quic_rjendra@quicinc.com>,
+        "Joseph S . Barrera III" <joebar@chromium.org>,
+        Julius Werner <jwerner@chromium.org>,
+        Andy Gross <agross@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@codeaurora.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>
+References: <20220512090429.1.I9804fcd5d6c8552ab25f598dd7a3ea71b15b55f0@changeid>
+ <828bc65f-e585-0fe7-c038-c750861c9446@linaro.org>
+ <48d96a4e-ce1b-03a1-1831-36555efd7080@linaro.org>
+ <CAD=FV=WNSv+kgTZwjHVq+YNQAG0uB42QUPaU-BPTV_W+j=5aYg@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CAD=FV=WNSv+kgTZwjHVq+YNQAG0uB42QUPaU-BPTV_W+j=5aYg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Gene Chen <gene_chen@richtek.com>
+On 13/05/2022 19:00, Doug Anderson wrote:
+> Hi,
+> 
+> On Fri, May 13, 2022 at 2:01 AM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+>>
+>> On 13/05/2022 09:57, Krzysztof Kozlowski wrote:
+>>> On 12/05/2022 18:04, Douglas Anderson wrote:
+>>>> This copy-pastes compatibles from sc7180-based boards from the device
+>>>> trees to the yaml file so that `make dtbs_check` will be happy.
+>>>>
+>>>> NOTES:
+>>>> - I make no attempt to try to share an "item" for all sc7180 based
+>>>>   Chromebooks. Because of the revision matching scheme used by the
+>>>>   Chromebook bootloader, at times we need a different number of
+>>>>   revisions listed.
+>>>> - Some of the odd entries in here (like google,homestar-rev23 or the
+>>>>   fact that "Google Lazor Limozeen without Touchscreen" changed from
+>>>>   sku5 to sku6) are not typos but simply reflect reality.
+>>>> - Many revisions of boards here never actually went to consumers, but
+>>>>   they are still in use within various companies that were involved in
+>>>>   Chromebook development. Since Chromebooks are developed with an
+>>>>   "upstream first" methodology, having these revisions supported with
+>>>>   upstream Linux is important. Making it easy for Chromebooks to be
+>>>>   developed with an "upstream first" methodology is valuable to the
+>>>>   upstream community because it improves the quality of upstream and
+>>>>   gets Chromebooks supported with vanilla upstream faster.
+>>>>
+>>>> Signed-off-by: Douglas Anderson <dianders@chromium.org>
+>>>> ---
+>>>>
+>>>>  .../devicetree/bindings/arm/qcom.yaml         | 180 ++++++++++++++++++
+>>>>  1 file changed, 180 insertions(+)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
+>>>> index 5c06d1bfc046..399be67eb5d2 100644
+>>>> --- a/Documentation/devicetree/bindings/arm/qcom.yaml
+>>>> +++ b/Documentation/devicetree/bindings/arm/qcom.yaml
+>>>> @@ -214,11 +214,191 @@ properties:
+>>>>                - qcom,ipq8074-hk10-c2
+>>>>            - const: qcom,ipq8074
+>>>>
+>>>> +      # Qualcomm Technologies, Inc. SC7180 IDP
+>>>>        - items:
+>>>>            - enum:
+>>>>                - qcom,sc7180-idp
+>>>>            - const: qcom,sc7180
+>>>>
+>>>> +      # Google CoachZ (rev1 - 2)
+>>>> +      - items:
+>>>> +          - const: google,coachz-rev1
+>>>> +          - const: google,coachz-rev2
+>>>
+>>> The inverted pattern of old revision being compatible with the new one,
+>>> is done on purpose? You claim here every rev1 is always compatible with
+>>> rev2 ...
+>>>
+>>> I don't think we discussed such patterns in previous talk. I quickly
+>>> went through it and there were only skuX moving around, not rev1 being
+>>> newer then rev2.
+> 
+> Isn't this what we just had a whole discussion about?
+> 
+> Oh, I see. You're objecting to the fact that the order here lists
+> "rev1" first and "rev2" second.
+> 
+> I think the issue here is that for the purposes of booting Chromebooks
+> the order here doesn't matter. Certainly we can pick a fixed order and
+> we can validate that the order in the yaml matches the order in the
+> device tree, but for all intents and purposes it doesn't matter to
+> anything. The same device tree is compatible with _both_ rev1 and rev2
+> coachz devices. Neither of those two devices is inherently better
+> supported by this device tree than the other.
 
-Add bindings child nodes for the Mediatek MT6360
+OK, thanks for explanation. Since these were not documented maybe fixing
+existing DTS to more expected order (rev2 being the newest, rev1
+following) would make sense. But certainly please use such new order
+compatibles for new DTSes.
 
-Signed-off-by: Gene Chen <gene_chen@richtek.com>
-Link: https://lore.kernel.org/all/YmqTzlrVL5KaVPuz@robh.at.kernel.org/
----
- .../bindings/mfd/mediatek,mt6360.yaml         | 189 ++++++++++++++++++
- 1 file changed, 189 insertions(+)
+> 
+> We can reorder them if it's important for some reason, but it doesn't
+> change the facts of the matter. You can't tell whether you've booted a
+> "-rev1" Chromebook or a "-rev2" Chromebook based on the most specific
+> compatible string.
 
-diff --git a/Documentation/devicetree/bindings/mfd/mediatek,mt6360.yaml b/Documentation/devicetree/bindings/mfd/mediatek,mt6360.yaml
-index 4d8769f3748c..28eee02441ee 100644
---- a/Documentation/devicetree/bindings/mfd/mediatek,mt6360.yaml
-+++ b/Documentation/devicetree/bindings/mfd/mediatek,mt6360.yaml
-@@ -37,6 +37,18 @@ properties:
-     description:
-       The first cell is the IRQ number.
- 
-+  regulators:
-+    $ref: /schemas/regulator/mt6360-regulator.yaml#
-+
-+  charger:
-+    $ref: /schemas/power/supply/mt6360_charger.yaml#
-+
-+  tcpc:
-+    $ref: /schemas/usb/mediatek,mt6360-tcpc.yaml#
-+
-+  led-controller:
-+    $ref: /schemas/leds/leds-mt6360.yaml#
-+
- required:
-   - compatible
-   - reg
-@@ -51,6 +63,8 @@ examples:
-   - |
-     #include <dt-bindings/interrupt-controller/irq.h>
-     #include <dt-bindings/regulator/mediatek,mt6360-regulator.h>
-+    #include <dt-bindings/leds/common.h>
-+    #include <dt-bindings/usb/pd.h>
-     i2c {
-         #address-cells = <1>;
-         #size-cells = <0>;
-@@ -63,5 +77,180 @@ examples:
-             interrupt-names = "IRQB";
-             interrupt-controller;
-             #interrupt-cells = <1>;
-+
-+            mt6360_charger: charger {
-+                compatible = "mediatek,mt6360-chg";
-+                richtek,vinovp-microvolt = <14500000>;
-+
-+                otg_vbus_regulator: usb-otg-vbus-regulator {
-+                    regulator-compatible = "usb-otg-vbus";
-+                    regulator-name = "usb-otg-vbus";
-+                    regulator-min-microvolt = <4425000>;
-+                    regulator-max-microvolt = <5825000>;
-+                };
-+            };
-+
-+            led-controller {
-+                compatible = "mediatek,mt6360-led";
-+                #address-cells = <1>;
-+                #size-cells = <0>;
-+
-+                multi-led@0 {
-+                    reg = <0>;
-+                    function = LED_FUNCTION_INDICATOR;
-+                    color = <LED_COLOR_ID_RGB>;
-+                    led-max-microamp = <24000>;
-+                    #address-cells = <1>;
-+                    #size-cells = <0>;
-+                    led@0 {
-+                        reg = <0>;
-+                        color = <LED_COLOR_ID_RED>;
-+                    };
-+                    led@1 {
-+                        reg = <1>;
-+                        color = <LED_COLOR_ID_GREEN>;
-+                    };
-+                    led@2 {
-+                        reg = <2>;
-+                        color = <LED_COLOR_ID_BLUE>;
-+                    };
-+                };
-+                led@3 {
-+                    reg = <3>;
-+                    function = LED_FUNCTION_INDICATOR;
-+                    color = <LED_COLOR_ID_WHITE>;
-+                    led-max-microamp = <150000>;
-+                };
-+                led@4 {
-+                    reg = <4>;
-+                    function = LED_FUNCTION_FLASH;
-+                    color = <LED_COLOR_ID_WHITE>;
-+                    function-enumerator = <1>;
-+                    led-max-microamp = <200000>;
-+                    flash-max-microamp = <500000>;
-+                    flash-max-timeout-us = <1024000>;
-+                };
-+                led@5 {
-+                    reg = <5>;
-+                    function = LED_FUNCTION_FLASH;
-+                    color = <LED_COLOR_ID_WHITE>;
-+                    function-enumerator = <2>;
-+                    led-max-microamp = <200000>;
-+                    flash-max-microamp = <500000>;
-+                    flash-max-timeout-us = <1024000>;
-+                };
-+            };
-+
-+            regulators {
-+                compatible = "mediatek,mt6360-regulator";
-+                LDO_VIN3-supply = <&BUCK2>;
-+                buck1 {
-+                    regulator-compatible = "BUCK1";
-+                    regulator-name = "mt6360,buck1";
-+                    regulator-min-microvolt = <300000>;
-+                    regulator-max-microvolt = <1300000>;
-+                    regulator-allowed-modes = <MT6360_OPMODE_NORMAL
-+                         MT6360_OPMODE_LP
-+                         MT6360_OPMODE_ULP>;
-+                };
-+                BUCK2: buck2 {
-+                    regulator-compatible = "BUCK2";
-+                    regulator-name = "mt6360,buck2";
-+                    regulator-min-microvolt = <300000>;
-+                    regulator-max-microvolt = <1300000>;
-+                    regulator-allowed-modes = <MT6360_OPMODE_NORMAL
-+                         MT6360_OPMODE_LP
-+                         MT6360_OPMODE_ULP>;
-+                };
-+                ldo6 {
-+                    regulator-compatible = "LDO6";
-+                    regulator-name = "mt6360,ldo6";
-+                    regulator-min-microvolt = <500000>;
-+                    regulator-max-microvolt = <2100000>;
-+                    regulator-allowed-modes = <MT6360_OPMODE_NORMAL
-+                         MT6360_OPMODE_LP>;
-+                };
-+                ldo7 {
-+                    regulator-compatible = "LDO7";
-+                    regulator-name = "mt6360,ldo7";
-+                    regulator-min-microvolt = <500000>;
-+                    regulator-max-microvolt = <2100000>;
-+                    regulator-allowed-modes = <MT6360_OPMODE_NORMAL
-+                         MT6360_OPMODE_LP>;
-+                };
-+                ldo1 {
-+                    regulator-compatible = "LDO1";
-+                    regulator-name = "mt6360,ldo1";
-+                    regulator-min-microvolt = <1200000>;
-+                    regulator-max-microvolt = <3600000>;
-+                    regulator-allowed-modes = <MT6360_OPMODE_NORMAL
-+                         MT6360_OPMODE_LP>;
-+                };
-+                ldo2 {
-+                    regulator-compatible = "LDO2";
-+                    regulator-name = "mt6360,ldo2";
-+                    regulator-min-microvolt = <1200000>;
-+                    regulator-max-microvolt = <3600000>;
-+                    regulator-allowed-modes = <MT6360_OPMODE_NORMAL
-+                         MT6360_OPMODE_LP>;
-+                };
-+                ldo3 {
-+                    regulator-compatible = "LDO3";
-+                    regulator-name = "mt6360,ldo3";
-+                    regulator-min-microvolt = <1200000>;
-+                    regulator-max-microvolt = <3600000>;
-+                    regulator-allowed-modes = <MT6360_OPMODE_NORMAL
-+                         MT6360_OPMODE_LP>;
-+                };
-+                ldo5 {
-+                    regulator-compatible = "LDO5";
-+                    regulator-name = "mt6360,ldo5";
-+                    regulator-min-microvolt = <2700000>;
-+                    regulator-max-microvolt = <3600000>;
-+                    regulator-allowed-modes = <MT6360_OPMODE_NORMAL
-+                         MT6360_OPMODE_LP>;
-+                };
-+            };
-+
-+            tcpc {
-+                compatible = "mediatek,mt6360-tcpc";
-+                interrupts-extended = <&gpio26 3 IRQ_TYPE_LEVEL_LOW>;
-+                interrupt-names = "PD_IRQB";
-+
-+                connector {
-+                    compatible = "usb-c-connector";
-+                    label = "USB-C";
-+                    data-role = "dual";
-+                    power-role = "dual";
-+                    try-power-role = "sink";
-+                    source-pdos = <PDO_FIXED(5000, 1000, PDO_FIXED_DUAL_ROLE | PDO_FIXED_DATA_SWAP)>;
-+                    sink-pdos = <PDO_FIXED(5000, 2000, PDO_FIXED_DUAL_ROLE | PDO_FIXED_DATA_SWAP)>;
-+                    op-sink-microwatt = <10000000>;
-+
-+                    ports {
-+                        #address-cells = <1>;
-+                        #size-cells = <0>;
-+
-+                        port@0 {
-+                            reg = <0>;
-+                            endpoint {
-+                                remote-endpoint = <&usb_hs>;
-+                            };
-+                        };
-+                        port@1 {
-+                            reg = <1>;
-+                            endpoint {
-+                                remote-endpoint = <&usb_ss>;
-+                          };
-+                        };
-+                        port@2 {
-+                            reg = <2>;
-+                            endpoint {
-+                                remote-endpoint = <&dp_aux>;
-+                            };
-+                        };
-+                    };
-+                };
-+            };
-         };
-     };
--- 
-2.25.1
+Of course you cannot, because DT is not for such case (when you can use
+different DT for booting on different hardware...)
 
+> 
+> As per the other discussion, we could "solve" this by making two
+> device trees that were exactly the same but one of them had the
+> compatible "-rev1" the other "-rev2". This would result in a big
+> explosion in the number of device trees in our FIT Image for very
+> little gain. It also fails to solve the "newest rev" problem.
+> 
+> 
+> OK, so I've written up a description of the whole system. Maybe it
+> will be clearer with that and we can continue the discussion in my v2
+> if needed.
+> 
+> https://lore.kernel.org/r/20220513095722.v2.1.I71e42c6174f1cec17da3024c9f73ba373263b9b6@changeid
+> 
+> -Doug
+
+
+Best regards,
+Krzysztof
