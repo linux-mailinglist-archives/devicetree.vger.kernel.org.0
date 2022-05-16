@@ -2,295 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B526527CED
-	for <lists+devicetree@lfdr.de>; Mon, 16 May 2022 06:43:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 47F29527CFE
+	for <lists+devicetree@lfdr.de>; Mon, 16 May 2022 07:09:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233191AbiEPEnm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 May 2022 00:43:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41162 "EHLO
+        id S236967AbiEPFJu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 May 2022 01:09:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56446 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231135AbiEPEnl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 May 2022 00:43:41 -0400
-Received: from alexa-out-sd-01.qualcomm.com (alexa-out-sd-01.qualcomm.com [199.106.114.38])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7BBBCE01C;
-        Sun, 15 May 2022 21:43:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1652676219; x=1684212219;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=LoEwo+56RJWTSRR7kvkAiIrV9qtWnBkWe/fa0SRyMlE=;
-  b=K/01o9cUM3OSAKBII6yGJeKSqp4tSGGWj23t2rxM0SUOoc2GPfaqKyh0
-   p7kPhcrxL+SIjytvD49Mv5qU+dFmvnFlBUUHRh9+up7NFFG5sihGfiuTm
-   jQZfhl31IIZdkaO5Ha1EUkeZz0yKc6fZt9ToiJda7+2nnGfXVtDqP6+FP
-   M=;
-Received: from unknown (HELO ironmsg05-sd.qualcomm.com) ([10.53.140.145])
-  by alexa-out-sd-01.qualcomm.com with ESMTP; 15 May 2022 21:43:38 -0700
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg05-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 May 2022 21:43:37 -0700
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Sun, 15 May 2022 21:43:36 -0700
-Received: from hu-pkondeti-hyd.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Sun, 15 May 2022 21:43:30 -0700
-Date:   Mon, 16 May 2022 10:13:27 +0530
-From:   Pavan Kondeti <quic_pkondeti@quicinc.com>
-To:     Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
-CC:     Matthias Kaehlcke <mka@chromium.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Andy Gross" <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Felipe Balbi <balbi@kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Doug Anderson <dianders@chromium.org>,
-        Mathias Nyman <mathias.nyman@intel.com>,
-        <devicetree@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-usb@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-pm@vger.kernel.org>, <quic_pkondeti@quicinc.com>,
-        <quic_ppratap@quicinc.com>, <quic_vpulyala@quicinc.com>,
-        Sandeep Maheswaram <quic_c_sanm@quicinc.com>
-Subject: Re: [v16 2/5] usb: dwc3: core: Host wake up support from system
- suspend
-Message-ID: <20220516044327.GA19209@hu-pkondeti-hyd.qualcomm.com>
-References: <1652379802-8318-1-git-send-email-quic_kriskura@quicinc.com>
- <1652379802-8318-3-git-send-email-quic_kriskura@quicinc.com>
- <Yn2M5hrah78jro1C@google.com>
- <4124392b-a40f-c204-f9b0-68c3b22dd652@quicinc.com>
+        with ESMTP id S232422AbiEPFJt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 May 2022 01:09:49 -0400
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C2BF28991;
+        Sun, 15 May 2022 22:09:47 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 24G59NY7086792;
+        Mon, 16 May 2022 00:09:23 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1652677763;
+        bh=/z8oplWf9RSWaittYINIFexlqAXiWjMlkFiA5nmmoYU=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=r4nnrlnpqplRCyzn6VGT6+AfQjnBRw3KDNXaNX7ytkARud3afDWhP0hQOesnhoPNU
+         y52n0NjZYcvbVcQ+q+5owau7fI5C8e7DwgwYIZ64KOzNFYURU0Lb+cad7etmcINtC1
+         oTLYtLvDYSzx5pQFV7hZaccmWGo7cA0Q7laHLKZs=
+Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 24G59Nrg004775
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 16 May 2022 00:09:23 -0500
+Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Mon, 16
+ May 2022 00:09:22 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Mon, 16 May 2022 00:09:22 -0500
+Received: from [172.24.220.119] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 24G59FTt004004;
+        Mon, 16 May 2022 00:09:16 -0500
+Message-ID: <a5e14871-db4f-54ce-b925-0787750ab6c2@ti.com>
+Date:   Mon, 16 May 2022 10:39:15 +0530
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <4124392b-a40f-c204-f9b0-68c3b22dd652@quicinc.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH 2/2] net: ti: icssg-prueth: Add ICSSG ethernet driver
+Content-Language: en-US
+To:     Andrew Lunn <andrew@lunn.ch>
+CC:     <linux-kernel@vger.kernel.org>, <davem@davemloft.net>,
+        <edumazet@google.com>, <krzysztof.kozlowski+dt@linaro.org>,
+        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <nm@ti.com>, <ssantosh@kernel.org>, <s-anna@ti.com>,
+        <linux-arm-kernel@lists.infradead.org>, <rogerq@kernel.org>,
+        <grygorii.strashko@ti.com>, <vigneshr@ti.com>, <kishon@ti.com>,
+        <robh+dt@kernel.org>, <afd@ti.com>
+References: <20220506052433.28087-1-p-mohan@ti.com>
+ <20220506052433.28087-3-p-mohan@ti.com> <YnVQW7xpSWEE2/HP@lunn.ch>
+ <f674c56c-0621-f471-9517-5c349940d362@ti.com> <YnkJ5bFd72d0FagD@lunn.ch>
+From:   Puranjay Mohan <p-mohan@ti.com>
+In-Reply-To: <YnkJ5bFd72d0FagD@lunn.ch>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-6.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, May 13, 2022 at 09:28:16AM +0530, Krishna Kurapati PSSNV wrote:
-> 
-> On 5/13/2022 4:10 AM, Matthias Kaehlcke wrote:
-> >On Thu, May 12, 2022 at 11:53:19PM +0530, Krishna Kurapati wrote:
-> >>From: Sandeep Maheswaram <quic_c_sanm@quicinc.com>
-> >>
-> >>During suspend read the status of all port and set hs phy mode
-> >>based on current speed. Use this hs phy mode to configure wakeup
-> >>interrupts in qcom glue driver.
-> >>
-> >>Check wakeup-source property for dwc3 core node to set the
-> >>wakeup capability. Drop the device_init_wakeup call from
-> >>runtime suspend and resume.
-> >>
-> >>Also check during suspend if any wakeup capable devices are
-> >>connected to the controller (directly or through hubs), if there
-> >>are none set a flag to indicate that the PHY is powered
-> >>down during suspend.
-> >>
-> >>Signed-off-by: Sandeep Maheswaram <quic_c_sanm@quicinc.com>
-> >>Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
-> >>---
-> >>  drivers/usb/dwc3/core.c | 30 +++++++++++++++++-------------
-> >>  drivers/usb/dwc3/core.h |  4 ++++
-> >>  drivers/usb/dwc3/host.c | 24 ++++++++++++++++++++++++
-> >>  3 files changed, 45 insertions(+), 13 deletions(-)
-> >>
-> >>diff --git a/drivers/usb/dwc3/core.c b/drivers/usb/dwc3/core.c
-> >>index 01115df..8bcabc5 100644
-> >>--- a/drivers/usb/dwc3/core.c
-> >>+++ b/drivers/usb/dwc3/core.c
-> >>@@ -1785,6 +1785,7 @@ static int dwc3_probe(struct platform_device *pdev)
-> >>  	platform_set_drvdata(pdev, dwc);
-> >>  	dwc3_cache_hwparams(dwc);
-> >>+	device_init_wakeup(&pdev->dev, of_property_read_bool(dev->of_node, "wakeup-source"));
-> >>  	spin_lock_init(&dwc->lock);
-> >>  	mutex_init(&dwc->mutex);
-> >>@@ -1946,10 +1947,7 @@ static int dwc3_suspend_common(struct dwc3 *dwc, pm_message_t msg)
-> >>  		dwc3_core_exit(dwc);
-> >>  		break;
-> >>  	case DWC3_GCTL_PRTCAP_HOST:
-> >>-		if (!PMSG_IS_AUTO(msg)) {
-> >>-			dwc3_core_exit(dwc);
-> >>-			break;
-> >>-		}
-> >>+		dwc3_check_phy_speed_mode(dwc);
-> >>  		/* Let controller to suspend HSPHY before PHY driver suspends */
-> >>  		if (dwc->dis_u2_susphy_quirk ||
-> >>@@ -1965,6 +1963,15 @@ static int dwc3_suspend_common(struct dwc3 *dwc, pm_message_t msg)
-> >>  		phy_pm_runtime_put_sync(dwc->usb2_generic_phy);
-> >>  		phy_pm_runtime_put_sync(dwc->usb3_generic_phy);
-> >>+
-> >>+		if (!PMSG_IS_AUTO(msg)) {
-> >>+			if (device_may_wakeup(dwc->dev))
-> >I think this should be device_can_wakeup(), i.e. hardware capability instead of
-> >device policy. A drawback of powering the PHYs off is that it causes a high
-> >power consumption of certain peripherals if VBUS is still supplied, so this
-> >should be limited to platforms where the PHYs must be powered off (using wakeup
-> >capability as a proxy for now).
-> Thnaks Mathias for the review. Will make this change in the next patchset.
-> >>+				dwc->phy_power_off = false;
-> >>+			else {
-> >>+				dwc->phy_power_off = true;
-> >>+				dwc3_core_exit(dwc);
-> >>+			}
-> >>+		}
-> >>  		break;
-> >>  	case DWC3_GCTL_PRTCAP_OTG:
-> >>  		/* do nothing during runtime_suspend */
-> >>@@ -2008,11 +2015,12 @@ static int dwc3_resume_common(struct dwc3 *dwc, pm_message_t msg)
-> >>  		break;
-> >>  	case DWC3_GCTL_PRTCAP_HOST:
-> >>  		if (!PMSG_IS_AUTO(msg)) {
-> >>-			ret = dwc3_core_init_for_resume(dwc);
-> >>-			if (ret)
-> >>-				return ret;
-> >>-			dwc3_set_prtcap(dwc, DWC3_GCTL_PRTCAP_HOST);
-> >>-			break;
-> >>+			if (dwc->phy_power_off) {
-> >>+				ret = dwc3_core_init_for_resume(dwc);
-> >>+				if (ret)
-> >>+					return ret;
-> >>+				dwc3_set_prtcap(dwc, DWC3_GCTL_PRTCAP_HOST);
-> >>+			}
-> >>  		}
-> >>  		/* Restore GUSB2PHYCFG bits that were modified in suspend */
-> >>  		reg = dwc3_readl(dwc->regs, DWC3_GUSB2PHYCFG(0));
-> >>@@ -2084,8 +2092,6 @@ static int dwc3_runtime_suspend(struct device *dev)
-> >>  	if (ret)
-> >>  		return ret;
-> >>-	device_init_wakeup(dev, true);
-> >>-
-> >>  	return 0;
-> >>  }
-> >>@@ -2094,8 +2100,6 @@ static int dwc3_runtime_resume(struct device *dev)
-> >>  	struct dwc3     *dwc = dev_get_drvdata(dev);
-> >>  	int		ret;
-> >>-	device_init_wakeup(dev, false);
-> >>-
-> >>  	ret = dwc3_resume_common(dwc, PMSG_AUTO_RESUME);
-> >>  	if (ret)
-> >>  		return ret;
-> >>diff --git a/drivers/usb/dwc3/core.h b/drivers/usb/dwc3/core.h
-> >>index 81c486b..37397a8 100644
-> >>--- a/drivers/usb/dwc3/core.h
-> >>+++ b/drivers/usb/dwc3/core.h
-> >>@@ -1155,6 +1155,9 @@ struct dwc3 {
-> >>  	bool			phys_ready;
-> >>+	unsigned int            hs_phy_mode;
-> >>+	bool			phy_power_off;
-> >>+
-> >>  	struct ulpi		*ulpi;
-> >>  	bool			ulpi_ready;
-> >>@@ -1539,6 +1542,7 @@ int dwc3_core_soft_reset(struct dwc3 *dwc);
-> >>  #if IS_ENABLED(CONFIG_USB_DWC3_HOST) || IS_ENABLED(CONFIG_USB_DWC3_DUAL_ROLE)
-> >>  int dwc3_host_init(struct dwc3 *dwc);
-> >>  void dwc3_host_exit(struct dwc3 *dwc);
-> >>+void dwc3_check_phy_speed_mode(struct dwc3 *dwc);
-> >>  #else
-> >>  static inline int dwc3_host_init(struct dwc3 *dwc)
-> >>  { return 0; }
-> >>diff --git a/drivers/usb/dwc3/host.c b/drivers/usb/dwc3/host.c
-> >>index f56c30c..e19b40a 100644
-> >>--- a/drivers/usb/dwc3/host.c
-> >>+++ b/drivers/usb/dwc3/host.c
-> >>@@ -12,6 +12,7 @@
-> >>  #include <linux/platform_device.h>
-> >>  #include "core.h"
-> >>+#include "../host/xhci.h"
-> >>  static void dwc3_host_fill_xhci_irq_res(struct dwc3 *dwc,
-> >>  					int irq, char *name)
-> >>@@ -136,3 +137,26 @@ void dwc3_host_exit(struct dwc3 *dwc)
-> >>  {
-> >>  	platform_device_unregister(dwc->xhci);
-> >>  }
-> >>+
-> >>+void dwc3_check_phy_speed_mode(struct dwc3 *dwc)
-> >>+{
-> >>+	int i, num_ports;
-> >>+	u32 reg;
-> >>+	struct usb_hcd	*hcd = platform_get_drvdata(dwc->xhci);
-> >>+	struct xhci_hcd	*xhci_hcd = hcd_to_xhci(hcd);
-> >>+
-> >>+	dwc->hs_phy_mode = 0;
-> >>+
-> >>+	reg = readl(&xhci_hcd->cap_regs->hcs_params1);
-> >>+
-> >>+	num_ports = HCS_MAX_PORTS(reg);
-> >>+	for (i = 0; i < num_ports; i++) {
-> >>+		reg = readl(&xhci_hcd->op_regs->port_status_base + i * NUM_PORT_REGS);
-> >>+		if (reg & PORT_PE) {
-> >>+			if (DEV_HIGHSPEED(reg) || DEV_FULLSPEED(reg))
-> >>+				dwc->hs_phy_mode |= PHY_MODE_USB_HOST_HS;
-> >>+			else if (DEV_LOWSPEED(reg))
-> >>+				dwc->hs_phy_mode |= PHY_MODE_USB_HOST_LS;
-> >>+		}
-> >>+	}
-> >>+}
-> >I anticipate that it might raise concerns from maintainers that
-> >dwc3_check_phy_speed_mode() accesses xHCI data structures and
-> >registers directly. Could there be a generic HCD API that provides
-> >this functionality (if implemented by the specific HCD)?
-> 
-> Hi Mathias, we are not sure if there is any such API present currently.
-> 
-> Hi Alan, can you help suggest any API (if present) that we can reuse here to
-> avoid
-> 
-> xhci registers and structs here in dwc3.
-> 
+Hi Andrew,
 
-We can probably do something like below to query the speed. This avoids adding
-another API and does not touch the underlying registers.
+On 09/05/22 18:02, Andrew Lunn wrote:
+>>>> +static void icssg_init_emac_mode(struct prueth *prueth)
+>>>> +{
+>>>> +	u8 mac[ETH_ALEN] = { 0 };
+>>>> +
+>>>> +	if (prueth->emacs_initialized)
+>>>> +		return;
+>>>> +
+>>>> +	regmap_update_bits(prueth->miig_rt, FDB_GEN_CFG1, SMEM_VLAN_OFFSET_MASK, 0);
+>>>> +	regmap_write(prueth->miig_rt, FDB_GEN_CFG2, 0);
+>>>> +	/* Clear host MAC address */
+>>>> +	icssg_class_set_host_mac_addr(prueth->miig_rt, mac);
+>>>
+>>> Seems an odd thing to do, set it to 00:00:00:00:00:00. You probably
+>>> want to add a comment why you do this odd thing.
+>>
+>> Actually, this is when the device is configured as a bridge, the host
+>> mac address has to be set to zero to while bringing it back to emac
+>> mode. I will add a comment to explain this.
+> 
+> I don't see any switchdev interface. How does it get into bridge mode?
 
-Pls define enum usb_device_speed usb2_speed in dwc3 structure.
+I will be sending patches to add the switch mode support after this
+series gets merged.
 
-diff --git a/drivers/usb/dwc3/host.c b/drivers/usb/dwc3/host.c
-index f29a264..fed1c58 100644
---- a/drivers/usb/dwc3/host.c
-+++ b/drivers/usb/dwc3/host.c
-@@ -9,9 +9,29 @@
- 
- #include <linux/acpi.h>
- #include <linux/platform_device.h>
-+#include <linux/usb.h>
- 
- #include "core.h"
- 
-+void dwc3_update_hs_phy_speed(struct dwc3 *dwc)
-+{
-+	struct usb_hcd	*hcd = platform_get_drvdata(dwc->xhci);
-+	struct usb_device *udev;
-+
-+	/*
-+	 * It is possible to query the speed of all children of
-+	 * USB2.0 root hub via usb_hub_for_each_child(). DWC3 code
-+	 * currently supports only 1 port per controller. So
-+	 * this is sufficient.
-+	 */
-+	udev = usb_hub_find_child(hcd->self.root_hub, 1);
-+
-+	if (udev)
-+		dwc->usb2_speed = udev->speed;
-+	else
-+		dwc->usb2_speed = USB_SPEED_UNKNOWN;
-+}
-+
- static int dwc3_host_get_irq(struct dwc3 *dwc)
- {
- 	struct platform_device	*dwc3_pdev = to_platform_device(dwc->dev);
+> 
+>>>> +	} else if (emac->link) {
+>>>> +		new_state = true;
+>>>> +		emac->link = 0;
+>>>> +		/* defaults for no link */
+>>>> +
+>>>> +		/* f/w should support 100 & 1000 */
+>>>> +		emac->speed = SPEED_1000;
+>>>> +
+>>>> +		/* half duplex may not supported by f/w */
+>>>> +		emac->duplex = DUPLEX_FULL;
+>>>
+>>> Why set speed and duplex when you have just lost the link? They are
+>>> meaningless until the link comes back.
+>>
+>> These were just the default values that we added.
+>> What do you suggest I put here?
+> 
+> Nothing. If the link is down, they are meaningless. If something is
+> accessing them when the link is down, that code is broken. So i
+> suppose you could give them poison values to help find your broken
+> code.
 
+Okay, I will remove it in next version.
+
+> 
+>>>> +	for_each_child_of_node(eth_ports_node, eth_node) {
+>>>> +		u32 reg;
+>>>> +
+>>>> +		if (strcmp(eth_node->name, "port"))
+>>>> +			continue;
+>>>> +		ret = of_property_read_u32(eth_node, "reg", &reg);
+>>>> +		if (ret < 0) {
+>>>> +			dev_err(dev, "%pOF error reading port_id %d\n",
+>>>> +				eth_node, ret);
+>>>> +		}
+>>>> +
+>>>> +		if (reg == 0)
+>>>> +			eth0_node = eth_node;
+>>>> +		else if (reg == 1)
+>>>> +			eth1_node = eth_node;
+>>>
+>>> and if reg == 4
+>>>
+>>> Or reg 0 appears twice?
+>>
+>> In both of the cases that you mentioned, the device tree schema check
+>> will fail, hence, we can safely assume that this will be 0 and 1 only.
+> 
+> Nothing forces you to run the scheme checker. It is not run by the
+> kernel before it starts accessing the DT blob. You should assume it is
+> invalid until you have proven it to be valid.
+
+I will add error checking here to make sure it is handled.
+
+> 
+> 	Andrew
 
 Thanks,
-Pavan
+Puranjay Mohan
