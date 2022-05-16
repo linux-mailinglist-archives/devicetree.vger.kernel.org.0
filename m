@@ -2,61 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F63B528D6A
-	for <lists+devicetree@lfdr.de>; Mon, 16 May 2022 20:50:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 52A68528D6E
+	for <lists+devicetree@lfdr.de>; Mon, 16 May 2022 20:50:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244290AbiEPSuD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 May 2022 14:50:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40722 "EHLO
+        id S234954AbiEPSum (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 May 2022 14:50:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41318 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234954AbiEPSuC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 May 2022 14:50:02 -0400
-Received: from mail-oi1-f172.google.com (mail-oi1-f172.google.com [209.85.167.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F94B3EAB9;
-        Mon, 16 May 2022 11:50:01 -0700 (PDT)
-Received: by mail-oi1-f172.google.com with SMTP id y63so19697358oia.7;
-        Mon, 16 May 2022 11:50:01 -0700 (PDT)
+        with ESMTP id S1345099AbiEPSum (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 May 2022 14:50:42 -0400
+Received: from mail-oi1-x22b.google.com (mail-oi1-x22b.google.com [IPv6:2607:f8b0:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CCA236E3E
+        for <devicetree@vger.kernel.org>; Mon, 16 May 2022 11:50:40 -0700 (PDT)
+Received: by mail-oi1-x22b.google.com with SMTP id r1so19724676oie.4
+        for <devicetree@vger.kernel.org>; Mon, 16 May 2022 11:50:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
+         :subject:to:cc;
+        bh=z434hv62mhp8lQvS5HCjRqXyQJvXAeM5SVF10IyqdzA=;
+        b=ZMNQEqEvlfGjA3VqetKin487YfdnVKZTT+Xflf7L7ulsAamASHG/ICGwAt+hTwfdId
+         6nfs1LZYHBeesiwNGqzglcZ/UQSFkTyR9nCGsmAC//4AZ8TjB6S5Z16ZprO2wrbK5MwK
+         zsJBWPa37RQLLzyBt/sTFcbD9zMbQSsxAJ39M=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=NJd87yuD1pj9LvycAEhEJrAh+QDD24w77tyGNFmAUac=;
-        b=W3bYZ7g8Ny6j6oB/REGsK3+MIgK+vorrbofovmGVOrfow/FqrThJES2MpfJeC82oeQ
-         uAKNt35FLC7rCd0bwtxetfUTzAp0WC71ZMz/8rseihvQXLcHjx2ng6bUdTl1pAxEUruS
-         0o+U1R0sFrTFOz6uxA7JPkYsRV7NHW7MTuuiRNduDjJFArXqCdCwo+DxG3/6Wuct8+9b
-         GYcGTh2SMhdwOMXYQMgY6RbXsRTpEf4ePiPn7boq1r3uyGLZi02hlDRbFJ/H2DWjD8aS
-         Y0e5cIg6jIzBwr1A/aGqVX5N2yR9nCnBc2W+UNoMVXXSw817HuSSld+Y6WvpUDaYlfWp
-         ZJEA==
-X-Gm-Message-State: AOAM533o757wiIVS8AWQgihkIUq+sCjdMKhziscoEqiZyTFDNhllXPep
-        NK5XFNbooLF2FrvrIVfkMA==
-X-Google-Smtp-Source: ABdhPJyCgwgytE1j1rmFgNxcFGnnP0JWCOTaEHZQvJ3m78nnVLvWvImK5sOPYKBVRyHSdLgb3+CiDw==
-X-Received: by 2002:a05:6808:e8d:b0:322:4fbe:8c5f with SMTP id k13-20020a0568080e8d00b003224fbe8c5fmr14009563oil.284.1652727000791;
-        Mon, 16 May 2022 11:50:00 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id r9-20020a0568301ac900b0060603d8be2dsm4232444otc.67.2022.05.16.11.49.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 May 2022 11:49:59 -0700 (PDT)
-Received: (nullmailer pid 3069340 invoked by uid 1000);
-        Mon, 16 May 2022 18:49:59 -0000
-Date:   Mon, 16 May 2022 13:49:59 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Alex Helms <alexander.helms.jy@renesas.com>
-Cc:     sboyd@kernel.org, linux-clk@vger.kernel.org,
-        mturquette@baylibre.com, linux-kernel@vger.kernel.org,
-        michal.simek@xilinx.com, devicetree@vger.kernel.org,
-        robh+dt@kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: Renesas versaclock7 device tree bindings
-Message-ID: <20220516184959.GA3069296-robh@kernel.org>
-References: <20220503194201.25714-1-alexander.helms.jy@renesas.com>
- <20220503194201.25714-2-alexander.helms.jy@renesas.com>
+        h=x-gm-message-state:mime-version:in-reply-to:references:from
+         :user-agent:date:message-id:subject:to:cc;
+        bh=z434hv62mhp8lQvS5HCjRqXyQJvXAeM5SVF10IyqdzA=;
+        b=JzSeoW02BOqYtidHRSak2dLWx68+c2JRfRzht8BVES6AZldBKLWCrmRM1rYtDy96y4
+         DJZyNGYY7KbqMFgM/j6e/I5wF/vtPLrJlbUucPiRhrVwpH8/q2CD+/wvY1UEC1cfwXiq
+         /b4JnfNUnR/IM/c3/1A7I0uYTN0zvYoJGLZJF3Mjj/YXbAPP5528rGhJv1TfrPDr92Pk
+         UrzISIGbPrXEt7zBVK5B5JqBvHssHv/Vtnbcuc88hDTNhFK7oopUF9uIlzQZ1N7t0kGg
+         soiG1Zr7dlhTsVwxAj1iCWw6T8JtfBNc1pJdVh5+Hjzb5nB9LrlCGkQxAS5bEnFhaGni
+         r2+A==
+X-Gm-Message-State: AOAM532Qr//UBSBJ6D9TsPOSOGUNYpTpTlGwHSNtyFqLl1AJstyiEb3g
+        WGgrPUKbcEb8aA2G935nJ87yL0728kifLEU5T7BzwQ==
+X-Google-Smtp-Source: ABdhPJyLcEcT/qii9ZWiqgSyrm9nshyiCYaWnRPLiITkkReUt6Wh8gIjEmZrDiaK3D7BsbqzJGQNXIutud4Pml/DalE=
+X-Received: by 2002:a05:6808:23c3:b0:326:bd8d:7993 with SMTP id
+ bq3-20020a05680823c300b00326bd8d7993mr8595142oib.63.1652727039596; Mon, 16
+ May 2022 11:50:39 -0700 (PDT)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Mon, 16 May 2022 11:50:39 -0700
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220503194201.25714-2-alexander.helms.jy@renesas.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+In-Reply-To: <20220516183452.942008-2-swboyd@chromium.org>
+References: <20220516183452.942008-1-swboyd@chromium.org> <20220516183452.942008-2-swboyd@chromium.org>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.10
+Date:   Mon, 16 May 2022 11:50:38 -0700
+Message-ID: <CAE-0n50L-P_MPt6NJgO-HJc8+-GuyQPCfCMpV=3mMCoBOL5f8w@mail.gmail.com>
+Subject: Re: [PATCH v5 1/2] dt-bindings: google,cros-ec-keyb: Introduce
+ switches only compatible
+To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc:     linux-kernel@vger.kernel.org, patches@lists.linux.dev,
+        chrome-platform@lists.linux.dev,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Benson Leung <bleung@chromium.org>,
+        Guenter Roeck <groeck@chromium.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        "Joseph S. Barrera III" <joebar@chromium.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -64,19 +73,96 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 03 May 2022 12:42:00 -0700, Alex Helms wrote:
-> Renesas Versaclock7 is a family of configurable clock generator ICs
-> with fractional and integer dividers. This driver has basic support
-> for the RC21008A device, a clock synthesizer with a crystal input and
-> 8 outputs. The supports changing the FOD and IOD rates, and each
-> output can be gated.
-> 
-> Signed-off-by: Alex Helms <alexander.helms.jy@renesas.com>
-> ---
->  .../bindings/clock/renesas,versaclock7.yaml   | 64 +++++++++++++++++++
->  MAINTAINERS                                   |  5 ++
->  2 files changed, 69 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/renesas,versaclock7.yaml
-> 
+Quoting Stephen Boyd (2022-05-16 11:34:51)
+> diff --git a/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml b/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml
+> index e8f137abb03c..e1fb68ca00fc 100644
+> --- a/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml
+> +++ b/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml
+> @@ -15,14 +15,23 @@ description: |
+>    Google's ChromeOS EC Keyboard is a simple matrix keyboard
+>    implemented on a separate EC (Embedded Controller) device. It provides
+>    a message for reading key scans from the EC. These are then converted
+> -  into keycodes for processing by the kernel.
+> -
+> -allOf:
+> -  - $ref: "/schemas/input/matrix-keymap.yaml#"
+> +  into keycodes for processing by the kernel. This device also supports
+> +  switches/buttons like power and volume buttons.
+>
+>  properties:
+>    compatible:
+> -    const: google,cros-ec-keyb
+> +    anyOf:
+> +      - description: ChromeOS EC with only buttons/switches
+> +      - items:
+> +          - const: google,cros-ec-keyb-switches
+> +      - description: |
+> +          (Deprecated) ChromeOS EC with only buttons/switches; optional matrix properties
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+s/optional/required/
+
+> +      - items:
+> +          - const: google,cros-ec-keyb-switches
+> +          - const: google,cros-ec-keyb
+> +      - description: ChromeOS EC with keyboard and possibly buttons/switches
+> +      - items:
+> +          - const: google,cros-ec-keyb
+>
+>    google,needs-ghost-filter:
+>      description:
+> @@ -41,15 +50,32 @@ properties:
+>        where the lower 16 bits are reserved. This property is specified only
+>        when the keyboard has a custom design for the top row keys.
+>
+> +dependencies:
+> +  function-row-phsymap: [ 'linux,keymap' ]
+> +  google,needs-ghost-filter: [ 'linux,keymap' ]
+> +
+>  required:
+>    - compatible
+>
+> +if:
+> +  properties:
+> +    compatible:
+> +      contains:
+> +        const: google,cros-ec-keyb
+> +then:
+> +  allOf:
+> +    - $ref: "/schemas/input/matrix-keymap.yaml#"
+> +  required:
+> +    - keypad,num-rows
+> +    - keypad,num-columns
+> +    - linux,keymap
+> +
+>  unevaluatedProperties: false
+>
+>  examples:
+>    - |
+>      #include <dt-bindings/input/input.h>
+> -    cros-ec-keyb {
+> +    keyboard-controller {
+>          compatible = "google,cros-ec-keyb";
+>          keypad,num-rows = <8>;
+>          keypad,num-columns = <13>;
+> @@ -113,3 +139,56 @@ examples:
+>              /* UP      LEFT    */
+>              0x070b0067 0x070c0069>;
+>      };
+> +
+> +  - |
+> +    keyboard-controller {
+> +        compatible = "google,cros-ec-keyb-switches", "google,cros-ec-keyb";
+> +        /* Matrix keymap properties are optional but ignored */
+
+Ooops I got the wrong line here from v4 :(
+
+s/optional/required/
+
+> +        keypad,num-rows = <8>;
+> +        keypad,num-columns = <13>;
+> +        linux,keymap = <
+> +            /* CAPSLCK F1         B          F10     */
+> +            0x0001003a 0x0002003b 0x00030030 0x00040044
+> +            /* N       =          R_ALT      ESC     */
+> +            0x00060031 0x0008000d 0x000a0064 0x01010001
+> +            /* F4      G          F7         H       */
