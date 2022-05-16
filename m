@@ -2,379 +2,239 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9BF20527D60
-	for <lists+devicetree@lfdr.de>; Mon, 16 May 2022 08:08:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D47A0527D68
+	for <lists+devicetree@lfdr.de>; Mon, 16 May 2022 08:11:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240151AbiEPGH7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 May 2022 02:07:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52348 "EHLO
+        id S240213AbiEPGKh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 May 2022 02:10:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57700 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231302AbiEPGH4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 May 2022 02:07:56 -0400
-Received: from EUR02-AM5-obe.outbound.protection.outlook.com (mail-eopbgr00061.outbound.protection.outlook.com [40.107.0.61])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5DA8A20F42;
-        Sun, 15 May 2022 23:07:50 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=h2CWDOYE47bnzazGnchmAd9VWQNC/HrJuaofnA9di1Lw8GziptBg7jhYuIiwZ/ryKVbz9gogfpPtUoBXOXK/+2pF07bPmF+oNYhfH8B6oHbNrBf8LDHE2RlGuJ0dtGjU9fsxg/BWjePzWr8yfhe7degRq2/RvLEM7ZZ58tLfvibXvgSQIzAGS2eLv0TTpDGiZtuvNnUW8/Vd52gyteETSQdgJE2g9nIlzwG8WVMZggwXbt/BIVTGB10g17sVCJOa5f2IfkvMuA+xVCZzuy+quJrDNb2MfLbE/3wamnA/MKeErRKxXe+6l20KjdOL6ywX5Onl7QuI+RLtrBerLBCCOQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=pJkwTWxJ4jrNPYrHHZRx7zxbDHOu7Ym3A07MkQ2vWhA=;
- b=XN4eHwmsvp550RULa8JErXbX7O5A5AR9K4B7WQksbmRGMex0Kr28Yx4cralkZH9WkOftRRFvO2uMU9rWKwk20NiljetMm0uXHxx7h9H7ZVI0Irml6ysElHC1VsdYeOPzh8a09KZz6OShoUojPkGZvNng+t5A9HqKEL3Mx0xkfcI1CkK7T0Wz3Bnq80rcRFYS5ccSN6YvtiSCkLNpUlSRPtvZoJz/i9XE6wUF+M0vCZaJX5/prGd+CKwnfmj12BBq5vIIM6cnvGXkK4Gni9ISaiMVi8KoanWe+eHabBFZHvRSAQAOxq+/mefPJbki6vj05tZFfKBMZbCTHfckdz0s7g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=vaisala.com; dmarc=pass action=none header.from=vaisala.com;
- dkim=pass header.d=vaisala.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vaisala.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=pJkwTWxJ4jrNPYrHHZRx7zxbDHOu7Ym3A07MkQ2vWhA=;
- b=qgBh3dN2qzTMIwpNQtozmGbLAc6hDDAXg8BjjY1v33Z4/CFUpTdwB6S7HvYX0hEJRojhgUtzgxIv24uNP5A4bZonbh5rju4c5juSjGJlLgZFbZqvEovhydwviR2UFZeUjncEeTi/Sl8zj9BWNQJxp3dkUiuUX9AxBnUppBHRkBX7JRKI/5H5Zcz2nZTiyDbfVeQ9m9PTPTuLQ2ZLi20sYVIf2Pm4dtkoyu9Jmqj4cG2zKbxXqj/ttdbEGcKSyx4iVJ0KAjh0J3XHzW4bg2+aCBD4KvVQCBmIUb49D0yXDJnvuJua7nHHIUUGhaPoCtR32d6dW9JLEv6e11aIgGQgRA==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=vaisala.com;
-Received: from HE1PR0602MB3625.eurprd06.prod.outlook.com (2603:10a6:7:81::18)
- by HE1PR06MB3066.eurprd06.prod.outlook.com (2603:10a6:7:17::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5250.15; Mon, 16 May
- 2022 06:07:48 +0000
-Received: from HE1PR0602MB3625.eurprd06.prod.outlook.com
- ([fe80::58ca:a1d:54ff:1473]) by HE1PR0602MB3625.eurprd06.prod.outlook.com
- ([fe80::58ca:a1d:54ff:1473%3]) with mapi id 15.20.5250.018; Mon, 16 May 2022
- 06:07:48 +0000
-Message-ID: <cd5864b3-c436-4a22-663b-703377bf8521@vaisala.com>
-Date:   Mon, 16 May 2022 09:07:44 +0300
+        with ESMTP id S240217AbiEPGKf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 May 2022 02:10:35 -0400
+Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04B8620F7B
+        for <devicetree@vger.kernel.org>; Sun, 15 May 2022 23:10:31 -0700 (PDT)
+Received: by mail-lj1-x235.google.com with SMTP id 4so16822098ljw.11
+        for <devicetree@vger.kernel.org>; Sun, 15 May 2022 23:10:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=zib3uaRuFHQp5m+3/8oVVWs2fT/RhjrDBvhpgKAcf3A=;
+        b=T8a68Wcn4gY9NFXddamoH+rRrUy8g81C6ugx+hQrWs90thVEoFpfoW5rfePda8J8Ti
+         KhYLE5GeSNkseGhg6lt7Uw3CFsrabahfUTN6w49xWFaBgVGI0x9XP77w7igMPyaJ68Cq
+         qg8vUoA0kBuM1wr5DCpHhE3FpkgNX+KKJZK6qCoalPD/rQiLoRs9/bYs/l0ErwlkoH0P
+         1viy/5jm8JiHRHEICvrFZ3mP4KXxz85YQeOIAL0QqJ1J/jLc0LdzwVX5OH8SXaqpQEH3
+         cNP78pu268Ud97vfkkEiS4RW+MJ/RzJICDEG0kc8MdHqBzJU5DPGyHb+S8K2sDRzFhMV
+         K1KA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=zib3uaRuFHQp5m+3/8oVVWs2fT/RhjrDBvhpgKAcf3A=;
+        b=LoaiUnDQ9hnghZfPdo1jPOq/O+iUP9ewPSJ4S3IAgb/ZY67ANiw3EdPDVxyx9nrT1s
+         7AxcXE9vqbM6dDzVrTkIkAweveX6a6EyrKGSkQqYSo5kqRA/zsZbnuGjIds2I8RKfNRu
+         mSyLP76N2Qz+tqdlhKw6xws8zDrqNI0Ao9CzO9G5fNJo7S+GCYzD1R3Ym+N4vVZ0Uq6v
+         Q9SiZzdnrB6HUFHGcS/B689GiLgFrkVjiUOUe6WyMXtvY6gw+kyekRTLRe0h2AHM5+52
+         5O2wKLn/kvLZ4w/Udser6xeWpPGDtuFDw67XqA+1I2QT7SiLOMBubZnru+ML67VIy8Oc
+         CwbQ==
+X-Gm-Message-State: AOAM5334Vwd/Dq2iry2nzdslKzJvWSDvwfoYyck+C2hNzISJz1K65SDK
+        aEKvCbPbR1FVChYhwNsY2fNcAA==
+X-Google-Smtp-Source: ABdhPJyrZUQf7WD5zZ0nqfhRfXzM6EGNE+a7PhnPAP8HR3cuJ7y91FoKEpx/vEUszqhSySkNWYqKKw==
+X-Received: by 2002:a05:651c:399:b0:24f:18d:5bbd with SMTP id e25-20020a05651c039900b0024f018d5bbdmr10166934ljp.481.1652681429224;
+        Sun, 15 May 2022 23:10:29 -0700 (PDT)
+Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id j9-20020a19f509000000b0047255d210f2sm1208147lfb.33.2022.05.15.23.10.27
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 15 May 2022 23:10:28 -0700 (PDT)
+Message-ID: <eecf3117-772a-f50a-5d09-4d729dea7561@linaro.org>
+Date:   Mon, 16 May 2022 08:10:27 +0200
+MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH V6 3/5] iio: accel: sca3300: modified to support multi
- chips
+ Thunderbird/91.8.1
+Subject: Re: [PATCH v3 7/7] ufs: use PM OPP when scaling gears
 Content-Language: en-US
-To:     Jonathan Cameron <jic23@kernel.org>,
-        LI Qingwu <Qing-wu.Li@leica-geosystems.com.cn>
-Cc:     lars@metafoo.de, robh+dt@kernel.org, andy.shevchenko@gmail.com,
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Avri Altman <avri.altman@wdc.com>,
+        "James E.J. Bottomley" <jejb@linux.ibm.com>,
+        "Martin K. Petersen" <martin.petersen@oracle.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Taniya Das <tdas@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-iio@vger.kernel.org
-References: <20220513124135.1295822-1-Qing-wu.Li@leica-geosystems.com.cn>
- <20220513124135.1295822-4-Qing-wu.Li@leica-geosystems.com.cn>
- <20220514151003.42fa5044@jic23-huawei>
-From:   Tomas Melin <tomas.melin@vaisala.com>
-In-Reply-To: <20220514151003.42fa5044@jic23-huawei>
+        linux-pm@vger.kernel.org, linux-scsi@vger.kernel.org
+References: <20220513061347.46480-1-krzysztof.kozlowski@linaro.org>
+ <20220513061347.46480-8-krzysztof.kozlowski@linaro.org>
+ <20220513182546.GD1922@thinkpad>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220513182546.GD1922@thinkpad>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: HE1P189CA0026.EURP189.PROD.OUTLOOK.COM (2603:10a6:7:53::39)
- To HE1PR0602MB3625.eurprd06.prod.outlook.com (2603:10a6:7:81::18)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: d7749d5c-9719-40d3-2b5f-08da370266aa
-X-MS-TrafficTypeDiagnostic: HE1PR06MB3066:EE_
-X-Microsoft-Antispam-PRVS: <HE1PR06MB3066388D589BA9EA88ED0C7EFDCF9@HE1PR06MB3066.eurprd06.prod.outlook.com>
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: mrIJrBGI7AveN4EZyog2KcPibLrVYoi9iA/8stVVbGK5MEB6MwguZjam6vpkd7nqHL9e8n1DN57/Dzqt7K7M37861dm+sFyFF5VLc49RDk12jA+N8VTzHtgsfvExsNk7q4Y2Gstsnx8a07xEZ7R2NlXtLXALf51DK0LbfWb7o/jAd6JCPUCGFnKUwOCBgXoDiBib0V9NgJwA8weTI6LN1nWhxL2XkEDjOTm2TgxANPOxcv3xALlWxiEf0Dce+SxDjsfX5sdlYCOxWX6Cb9lbfKpTyakFHamGnQw9uGNdPnOYzciqDBkVRDiqGWBcyX3b5o48TJa0TxG3szf2iFbcwXWiOLpHITVaDBhQWKj4kNTxvdILd5SAvZozd31iG7q7bYdG8m2ZFvE9PI3jF0m0wTviqTXYrDoEYYQJ8DFGCcoWAdIQaa5UNsfyLZ2PtqNm8TsuYGoi+H1pavqvf3d/ZP/kGBaawJvZgjnjq2budhHf3zbK8l4wnGjLvS6txEEuIQ5YvzwhPYhbXQfrb2ikIm8kRu+y7/LE3vcrR+V1bt3tIkTcdWllaSHtKEQ42hUH9mPBif2s+upusc0xhW91qXlm0Cmzu6PfTUb3qMbgjRCb2AVWVxsGfYZtVIdNzYgSXkzDJ5MCXa6kTTPTZ7MUR4We6XX6gvkr9J52qfx3MO7ZmfZfRsUImNzbe2RneoMKL4Imhdq4NiyMt96WelTv3AXSM5H9jZTm6Z6LellHC1Q=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:HE1PR0602MB3625.eurprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(6506007)(53546011)(6666004)(186003)(110136005)(83380400001)(2906002)(316002)(66556008)(66476007)(8676002)(66946007)(4326008)(36756003)(6486002)(38100700002)(5660300002)(31686004)(8936002)(508600001)(44832011)(86362001)(6512007)(31696002)(26005)(2616005)(43740500002)(45980500001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?cFd4dkd2bExtYVJuL1VMN1BpSzZoTmRBN1FKVFpEZkYxcTFWVG9JR1hnOE12?=
- =?utf-8?B?ZlB2aVJBZTZqK2hzRHZzSmM4ZXlQeVZ4S0hiRXMzOFYxRUVHQ3Z3SVRVbE9s?=
- =?utf-8?B?dDdiWTRIeW55dFErR3UzS1ZkdjYvZ1oxZ3FmY2tETFBBcDJVekhqcThZdWl3?=
- =?utf-8?B?R21qc0FDbTlKMnE3SVpRQnNKSkRDT1BxTm5QQ05KN3Z2NHNZRkM5TnBoeGcy?=
- =?utf-8?B?b0RlRy9oQVhhR0VxVHorQ1JvNTI2YzNROTQxSGxETnpCdDFpT0Q1bzZTaEt5?=
- =?utf-8?B?bTFwenlrTlc1YWlZZ0FtNG1mWVYvcjNZY3RCaFZyNVkxb0paVnJDSUxwYURh?=
- =?utf-8?B?dDFkL0l0Nm9XcjZJQ0RBdFBDVzBDMjBqSDZ4TllKbjgvOUhMam8vby8xdHpC?=
- =?utf-8?B?eFQyWXhJU0Z1MW9TNzBBdFNCc21LYlFzQjRLK2JnOHU4SVJQVzBySjZ3djhP?=
- =?utf-8?B?eEUwVEliaEp1dDR4Z2ptTXZBTURJVzdwY2lFOEUyOVhNOUdxMmFuU2xrQktl?=
- =?utf-8?B?MGJkTHBFdHNmaUd1TFI5Nm9QY28vRldZMkJHVXBhcU1DeEFyK1BuM0w1Y1BJ?=
- =?utf-8?B?elNIUUJOZG90bEhBaVZhWlAwc3pmYzJONDdNaDVKVFZwRHdYMnBOU0pCZGN6?=
- =?utf-8?B?KzNRTkI3ZWZXa2poVnZlTWo0bmtMVFFTeENkVEQ3cDBOcTBHN2hNcEdEU2gr?=
- =?utf-8?B?UTJ6VUtlRTZtR1JXY1pVemJ3cSsxUzdTWFJLaEtRRHlpYWZLS1RDNlN6eXV1?=
- =?utf-8?B?cGhjbzYyTm4waEJRWmdqVWhjL05DWjZvb3FTWVJvcjZac3B1akJGMzc5TVQ3?=
- =?utf-8?B?N21sTjZIQlJyeGVUQ3AzZkFHcFpmcmYxNHAzSFh5ZDh6NHpadWZ5ZjY5R1U3?=
- =?utf-8?B?bXhoa25EYWV1Z0djUWpka3pYOXBTMzI4aTlGQWEya3pQZG5tN1pPU29vZk82?=
- =?utf-8?B?aGVqQ2lFNExjUnZzcUYxZENIQlQ0dk5ONERPdW1MTGJHL0dFRVpXQUxsVkxz?=
- =?utf-8?B?Vkt3Smo4ZEF4ZVVraW00WlYrYzVzUnJ1TGd2Q2E2SE5SOTJQcTFJQlRHbjJy?=
- =?utf-8?B?VFdJcldsWUJkSlZrSDVYajIrcGxha1k3K3VkRWJsWVFoZGNoTGNkenlYalZ6?=
- =?utf-8?B?VTk1ekVkSDFEK09SbkJCcVNPMTNIaFh4bTUyK3RpRkcrTlFvYU1LZkRVdHFX?=
- =?utf-8?B?TEsrTW1YUS9EaElaY0pVdHgzMUR3L0NUbzR3dWk1dDluWmtESjBRWEsrOFRw?=
- =?utf-8?B?YWx6L3M4N3JxSTJKWmtjSUZtT2ZNb3RTTS9tcGJUYlJGKzVuOWQxRGNZSzdL?=
- =?utf-8?B?OEU5aUQyb3VCbVZwdjE3cEtJM1lTaXFTTExhU0tsZkdSelI5UlBTQ1pPc0hX?=
- =?utf-8?B?djV3dWZnVHZUU0FtejZUeE1zVzVBQXgwNG1xWUM4OTd4U1FjUGN2b0F1emht?=
- =?utf-8?B?bVJOL2tMT2I3OURZNTlpRmJDVFQ3UTJuRnd3Z29yZDF4bFh0UzltMFFGQmt2?=
- =?utf-8?B?aFJwOXFhc1pZWHdEMDVmYTh6UkxaWENUZkdSaVhlNTNWL3M2WGVxRTMySW50?=
- =?utf-8?B?eHZlTkJ4bEpEUGtkRlZrWXZEUkswVXh0UUpnYlgycjdQMVRaOXhxaXlOWGNR?=
- =?utf-8?B?eUhyejdnZU9hTkd4RVpabi9LMWRTSnIwMnAxU2MyL2NEK0NBcG5RYmhhaVJx?=
- =?utf-8?B?WG1lVXZQVXhBQVRvSFBIeXdPRG5EbDFBWUlIRWcvU3dhQU9BMmZWVGN1WUVq?=
- =?utf-8?B?TkpDb1ZGU3ZUUTdoWUJ5QWhaclloOUpXS0krUVpxdzJpeExON1k4ZUVzMEpY?=
- =?utf-8?B?K3ZiOHh5THJOc1JQTVZOM1pPcEZNV2Y0UU5uYVFkREdsQjdKellQUHZzcS8v?=
- =?utf-8?B?QVNxVnpiSDNPQmJmWXdEM3czYWc5Unc2cFVubFdja3d3TzgvekFzUTdGeVp4?=
- =?utf-8?B?aEdHWUpyeGdaSnlMR1p5UVRPcWtSU3V1QUNocTZkakVBeGh2bTc2b3lMRGZ6?=
- =?utf-8?B?TjlxanozOXdBbmNNbXlUWEtNa3VnWFhsU2hJVXF1aGM3K1ZTbHJOSDJHRjBD?=
- =?utf-8?B?ejBQWEtLemRJTEphTVZvV3dlVFdDY2VNRDM4a3BERVZ0dkpCczlBcEF2Q3Ry?=
- =?utf-8?B?amlHMmg5OEc0cCsyUWRhYXpQcVJkMThxbUE2a1QvTmNIV2RLVWtDM2J1a2hS?=
- =?utf-8?B?akJKcHRqbHl4SGhoaEpFUTF4TEVVUytrZUdidm9OMWJ4c1lVQnR1emlEZGxT?=
- =?utf-8?B?bFAya3gyV2o0QnhsZ0JWNGhON1dlUk13cGozcWdCMllOUkhrVUdNQ0ptRkl6?=
- =?utf-8?B?VmZETUxXcnRvdkkrSU5RVFVuVHN0eE5Fdk4xb3J0NEdxaEdIblVXakhQT3NE?=
- =?utf-8?Q?OuoriVYycCaJVkwk=3D?=
-X-OriginatorOrg: vaisala.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d7749d5c-9719-40d3-2b5f-08da370266aa
-X-MS-Exchange-CrossTenant-AuthSource: HE1PR0602MB3625.eurprd06.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 May 2022 06:07:47.9799
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 6d7393e0-41f5-4c2e-9b12-4c2be5da5c57
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: HOwaRsmjymC9RudwTUy6LEXYLdFEhxkq4uqXsQdCqRXCFdmcC3ssKtG0oy/k4gKhea/VK9gglZBHilGhs6RM4w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: HE1PR06MB3066
-X-Spam-Status: No, score=-3.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+X-Spam-Status: No, score=-3.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On 13/05/2022 20:25, Manivannan Sadhasivam wrote:
+> On Fri, May 13, 2022 at 08:13:47AM +0200, Krzysztof Kozlowski wrote:
+>> Scaling gears requires not only scaling clocks, but also voltage levels,
+>> e.g. via performance states.
+>>
+>> Use the provided OPP table, to set proper OPP frequency which through
+>> required-opps will trigger performance state change.  This deprecates
+>> the old freq-table-hz Devicetree property and old clock scaling method
+>> in favor of PM core code.
+>>
+> 
+> To be clear, you are not changing the voltages (UFS supplies) through OPP. But
+> rather handle only clks and leave the power domain handling to parent OPP
+> device.
 
-On 14/05/2022 17:10, Jonathan Cameron wrote:
-> On Fri, 13 May 2022 12:41:33 +0000
-> LI Qingwu <Qing-wu.Li@leica-geosystems.com.cn> wrote:
+Correct, the patchset itself does not introduce itself regulator
+control. For Qualcomm (and maybe others) these will be scaled via OPP
+performance states.
+
 > 
->> Prepare the way for multiple chips and additional channels:
->> - Modify the driver to read the device ID and load the corresponding
->>   sensor information from the table to support multiple chips
->> - Add prepares for the addition of extra channels
->> - Prepare for handling the operation modes for multiple chips
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 >>
->> Signed-off-by: LI Qingwu <Qing-wu.Li@leica-geosystems.com.cn>
-> A few requests for additional comments inline where the handling
-> is 'unusual' enough to be non obvious to figure out.
-> 
-> Thanks,
-> 
-> Jonathan
-> 
 >> ---
->>  drivers/iio/accel/sca3300.c | 186 ++++++++++++++++++++++++++++--------
->>  1 file changed, 145 insertions(+), 41 deletions(-)
 >>
->> diff --git a/drivers/iio/accel/sca3300.c b/drivers/iio/accel/sca3300.c
->> index ff16d2cc8c70..bc6e0213e4aa 100644
->> --- a/drivers/iio/accel/sca3300.c
->> +++ b/drivers/iio/accel/sca3300.c
->> @@ -93,15 +93,35 @@ static const struct iio_chan_spec sca3300_channels[] = {
->>  	IIO_CHAN_SOFT_TIMESTAMP(4),
->>  };
+>> Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+>> ---
+>>  drivers/scsi/ufs/ufshcd-pltfrm.c |  73 +++++++++++++++
+>>  drivers/scsi/ufs/ufshcd.c        | 150 ++++++++++++++++++++++++-------
+>>  drivers/scsi/ufs/ufshcd.h        |   6 ++
+>>  3 files changed, 195 insertions(+), 34 deletions(-)
+>>
+>> diff --git a/drivers/scsi/ufs/ufshcd-pltfrm.c b/drivers/scsi/ufs/ufshcd-pltfrm.c
+>> index 3ab555f6e66e..a603ca8e383b 100644
+>> --- a/drivers/scsi/ufs/ufshcd-pltfrm.c
+>> +++ b/drivers/scsi/ufs/ufshcd-pltfrm.c
+>> @@ -10,6 +10,7 @@
 >>  
->> -static const int sca3300_lp_freq[] = {70, 70, 70, 10};
->> -static const int sca3300_accel_scale[][2] = {{0, 370}, {0, 741}, {0, 185}, {0, 185}};
->> +static const int sca3300_lp_freq[] = {70, 10};
->> +static const int sca3300_lp_freq_map[] = {0, 0, 0, 1};
+>>  #include <linux/module.h>
+>>  #include <linux/platform_device.h>
+>> +#include <linux/pm_opp.h>
+>>  #include <linux/pm_runtime.h>
+>>  #include <linux/of.h>
 >>  
->> +static const int sca3300_accel_scale[][2] = {{0, 370}, {0, 741}, {0, 185}};
->> +static const int sca3300_accel_scale_map[] = {0, 1, 2, 2};
->> +
->> +static const int sca3300_avail_modes_map[] = {0, 1, 2, 3};
->>  static const unsigned long sca3300_scan_masks[] = {
->>  	BIT(SCA3300_ACC_X) | BIT(SCA3300_ACC_Y) | BIT(SCA3300_ACC_Z) |
->>  	BIT(SCA3300_TEMP),
->>  	0
->>  };
->>  
->> +struct sca3300_chip_info {
->> +	const char *name;
->> +	const unsigned long *scan_masks;
->> +	const struct iio_chan_spec *channels;
->> +	u8 num_channels;
->> +	u8 num_accel_scales;
->> +	const int (*accel_scale)[2];
->> +	const int *accel_scale_map;
->> +	u8 num_freqs;
->> +	const int *freq_table;
->> +	const int *freq_map;
->> +	const int *avail_modes_table;
->> +	u8 num_avail_modes;
->> +	u8 chip_id;
->> +};
->> +
->>  /**
->>   * struct sca3300_data - device data
->>   * @spi: SPI device structure
->> @@ -117,10 +137,29 @@ struct sca3300_data {
->>  		s16 channels[4];
->>  		s64 ts __aligned(sizeof(s64));
->>  	} scan;
->> +	const struct sca3300_chip_info *chip;
-> 
-> Needs documentation as struct sca3300_data has kernel doc.
-> Also, move this above scan.  That way all the buffers used
-> for various purposes will remain together.
-> 
->>  	u8 txbuf[4] ____cacheline_aligned;
->>  	u8 rxbuf[4];
->>  };
->>  
->> +static const struct sca3300_chip_info sca3300_chip_tbl[] = {
->> +	{
->> +		.name = "sca3300",
->> +		.scan_masks = sca3300_scan_masks,
->> +		.channels = sca3300_channels,
->> +		.num_channels = ARRAY_SIZE(sca3300_channels),
->> +		.num_accel_scales = ARRAY_SIZE(sca3300_accel_scale)*2,
->> +		.accel_scale = sca3300_accel_scale,
->> +		.accel_scale_map = sca3300_accel_scale_map,
->> +		.num_freqs = ARRAY_SIZE(sca3300_lp_freq),
->> +		.freq_table = sca3300_lp_freq,
->> +		.freq_map = sca3300_lp_freq_map,
->> +		.avail_modes_table = sca3300_avail_modes_map,
->> +		.num_avail_modes = 4,
->> +		.chip_id = SCA3300_WHOAMI_ID,
->> +	},
->> +};
->> +
->>  DECLARE_CRC8_TABLE(sca3300_crc_table);
->>  
->>  static int sca3300_transfer(struct sca3300_data *sca_data, int *val)
->> @@ -227,36 +266,80 @@ static int sca3300_write_reg(struct sca3300_data *sca_data, u8 reg, int val)
->>  	return sca3300_error_handler(sca_data);
+>> @@ -108,6 +109,72 @@ static int ufshcd_parse_clock_info(struct ufs_hba *hba)
+>>  	return ret;
 >>  }
 >>  
->> +static int sca3300_set_op_mode(struct sca3300_data *sca_data, int index)
+>> +static int ufshcd_parse_operating_points(struct ufs_hba *hba)
 >> +{
->> +	if ((index < 0) || (index >= sca_data->chip->num_avail_modes))
+>> +	struct device *dev = hba->dev;
+>> +	struct device_node *np = dev->of_node;
+>> +	struct ufs_clk_info *clki;
+>> +	const char *names[16];
+>> +	int cnt, i, ret;
+>> +
+>> +	if (!of_find_property(dev->of_node, "operating-points-v2", NULL))
+>> +		return 0;
+>> +
+>> +	cnt = of_property_count_strings(np, "clock-names");
+>> +	if (cnt <= 0) {
+>> +		dev_warn(dev, "%s: Missing clock-names\n",
+>> +			 __func__);
+> 
+> This is a hard error, right? So why not dev_err()?
+
+Good point, but actually this (and following cases) should be return 0,
+because clocks/freq-table/opp-points are not required properties. The
+original code (parsing it for freq-table-hz) also does not treat it as
+error.
+
+> 
 >> +		return -EINVAL;
+>> +	}
 >> +
->> +	return sca3300_write_reg(sca_data, SCA3300_REG_MODE,
->> +				 sca_data->chip->avail_modes_table[index]);
->> +}
+>> +	if (cnt > ARRAY_SIZE(names)) {
+>> +		dev_info(dev, "%s: Too many clock-names\n",  __func__);
+> 
+> dev_err()?
+> 
+>> +		return -EINVAL;
+>> +	}
 >> +
->> +static int sca3300_get_op_mode(struct sca3300_data *sca_data, int *index)
->> +{
->> +	int reg_val;
->> +	int ret;
->> +	int i;
+>> +	if (of_find_property(np, "freq-table-hz", NULL)) {
+>> +		dev_info(dev, "%s: operating-points and freq-table-hz are incompatible\n",
+>> +			 __func__);
+> 
+> dev_err()?
+> 
+>> +		return -EINVAL;
+>> +	}
 >> +
->> +	ret = sca3300_read_reg(sca_data, SCA3300_REG_MODE, &reg_val);
+>> +	for (i = 0; i < cnt; i++) {
+>> +		ret = of_property_read_string_index(np, "clock-names", i,
+>> +						    &names[i]);
+>> +		if (ret)
+>> +			return ret;
+>> +
+>> +		clki = devm_kzalloc(dev, sizeof(*clki), GFP_KERNEL);
+>> +		if (!clki)
+>> +			return -ENOMEM;
+>> +
+>> +		clki->name = devm_kstrdup(dev, names[i], GFP_KERNEL);
+>> +		if (!clki->name)
+>> +			return -ENOMEM;
+>> +
+>> +		if (!strcmp(names[i], "ref_clk"))
+>> +			clki->keep_link_active = true;
+>> +
+>> +		list_add_tail(&clki->list, &hba->clk_list_head);
+>> +	}
+>> +
+>> +	ret = devm_pm_opp_set_clknames(dev, names, i);
 >> +	if (ret)
 >> +		return ret;
 >> +
->> +	reg_val &= GENMASK(1, 0);
->> +	for (i = 0; i < sca_data->chip->num_avail_modes; i++) {
->> +		if (sca_data->chip->avail_modes_table[i] == reg_val)
->> +			break;
->> +	}
->> +	if (i == sca_data->chip->num_avail_modes)
->> +		return -EINVAL;
+>> +	ret = devm_pm_opp_register_set_opp_helper(dev, ufshcd_set_opp);
+>> +	if (ret)
+>> +		return ret;
 >> +
->> +	*index = i;
->> +	return 0;
->> +}
+>> +	ret = devm_pm_opp_of_add_table(dev);
+>> +	if (ret)
+>> +		return ret;
 >> +
->> +static int sca3300_set_frequency(struct sca3300_data *data, int val)
->> +{
->> +	const struct sca3300_chip_info *chip = data->chip;
->> +	unsigned int index;
->> +	unsigned int i;
+>> +	hba->use_pm_opp = true;
 >> +
->> +	if (sca3300_get_op_mode(data, &index))
->> +		return -EINVAL;
->> +
->> +	for (i = 0; i < chip->num_avail_modes; i++) {
->> +		if ((val == chip->freq_table[chip->freq_map[i]]) &&
 > 
-> The conditions being checked here are far from obvious, so I think this would benefit
-> from an explanatory comment.
-> 
-> Something along the lines of,
-> "Find a mode in which the requested sampling frequency is available
->  and the scaling currently set is retained".
+> Since you are only handling the clks in UFS driver's OPP implementation, it
+> warrants atleast a comment. Otherwise, someone will add voltage to the OPP
+> table and complain that it is not getting changed. Eventhough the UFS driver
+> won't allow doing it, it is safer to mention it explicitly.
 
-
-In addition to a comment, how about small restructure of loop and giving
-local variables that tell the purpose, something like
-
-
-...
-
-unsigned int opmode_scale, new_scale;
-
-opmode_scale = chip->accel_scale[chip->accel_scale_map[index]];
-
-/*
-* Find a mode in which the requested sampling frequency is available
-* and the scaling currently set is retained
-*/
-for (i = 0; i < chip->num_avail_modes; i++) {
-    if (val == chip->freq_table[chip->freq_map[i]]) {
-        new_scale = chip->accel_scale[chip->accel_scale_map[i]]);	
-        if (opmode_scale == new_scale)
-            break;
-    }
-}
-
-
-That way it's IMHO more clear what we are comparing.
-
-Thanks,
-Tomas
-
+Sure.
 
 > 
+> Also I'm worried about the implementation specific to Qcom platforms. Like we
+> rely on RPMHPD to handle the power domains, but that may not be true for other
+> platforms. I know that we cannot support all possible implementations but
+> atleast we should document this limitation.
 > 
-> 
->> +		    (chip->accel_scale[chip->accel_scale_map[index]] ==
->> +		     chip->accel_scale[chip->accel_scale_map[i]]))
->> +			break;
->> +	}
->> +	if (i == chip->num_avail_modes)
->> +		return -EINVAL;
->> +
->> +	return sca3300_set_op_mode(data, i);
->> +}
->> +
->>  static int sca3300_write_raw(struct iio_dev *indio_dev,
->>  			     struct iio_chan_spec const *chan,
->>  			     int val, int val2, long mask)
->>  {
->>  	struct sca3300_data *data = iio_priv(indio_dev);
->> -	int reg_val;
->> -	int ret;
->> +	int index;
->>  	int i;
->>  
->>  	switch (mask) {
->>  	case IIO_CHAN_INFO_SCALE:
->> -		if (val)
->> +		if (chan->type != IIO_ACCEL)
->>  			return -EINVAL;
->> -
->> -		for (i = 0; i < ARRAY_SIZE(sca3300_accel_scale); i++) {
->> -			if (val2 == sca3300_accel_scale[i][1])
->> -				return sca3300_write_reg(data, SCA3300_REG_MODE, i);
->> +		for (i = 0; i < data->chip->num_avail_modes; i++) {
->> +			index = data->chip->accel_scale_map[i];
-> 
-> Also a comment here that we are letting scale take priority over
-> sampling frequency. That makes sense given we can only ever end up increasing
-> the sampling frequency which is unlikely to be a problem.
-> 
->> +			if ((val  == data->chip->accel_scale[index][0]) &&
->> +			    (val2 == data->chip->accel_scale[index][1])) {
->> +				return sca3300_set_op_mode(data, i);
->> +			}
->>  		}
->>  		return -EINVAL;
->> -
->>  	case IIO_CHAN_INFO_LOW_PASS_FILTER_3DB_FREQUENCY:
->> -		ret = sca3300_read_reg(data, SCA3300_REG_MODE, &reg_val);
->> -		if (ret)
->> -			return ret;
->> -		/* freq. change is possible only for mode 3 and 4 */
->> -		if (reg_val == 2 && val == sca3300_lp_freq[3])
->> -			return sca3300_write_reg(data, SCA3300_REG_MODE, 3);
->> -		if (reg_val == 3 && val == sca3300_lp_freq[2])
->> -			return sca3300_write_reg(data, SCA3300_REG_MODE, 2);
->> -		return -EINVAL;
->> +		return sca3300_set_frequency(data, val);
->>  	default:
->>  		return -EINVAL;
->>  	}
+> Rest looks fine to me. I'll take one more look after testing this series on
+> SM8450.
+
+Using OPPs is quite generic, so other platform could implement also
+regulator scaling. The changes are indeed targetting Qcom platforms, but
+they are not restricting any other usage.
+
+Best regards,
+Krzysztof
