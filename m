@@ -2,65 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E54BD5287F9
-	for <lists+devicetree@lfdr.de>; Mon, 16 May 2022 17:06:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A14A15287FF
+	for <lists+devicetree@lfdr.de>; Mon, 16 May 2022 17:07:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244972AbiEPPGa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 May 2022 11:06:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56848 "EHLO
+        id S244746AbiEPPGm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 May 2022 11:06:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57992 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232483AbiEPPG2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 May 2022 11:06:28 -0400
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34C163B020
-        for <devicetree@vger.kernel.org>; Mon, 16 May 2022 08:06:27 -0700 (PDT)
-Received: by mail-ej1-x62b.google.com with SMTP id j6so29226212ejc.13
-        for <devicetree@vger.kernel.org>; Mon, 16 May 2022 08:06:27 -0700 (PDT)
+        with ESMTP id S244988AbiEPPGl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 May 2022 11:06:41 -0400
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92B8A3B579
+        for <devicetree@vger.kernel.org>; Mon, 16 May 2022 08:06:33 -0700 (PDT)
+Received: by mail-ed1-x534.google.com with SMTP id j28so4706007eda.13
+        for <devicetree@vger.kernel.org>; Mon, 16 May 2022 08:06:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=X3adrsX+uhZAXoth7knDMjvKgEG3AVzl2RqEOStCFFU=;
-        b=WUC5Xg+4w97H+b3njqlusYipF4b7Bqzncvyv3eg4yB93mgKI/DfXQo99MRIvkX7ysm
-         UbxSikcZHAC7DZafAgPC0PmJIZzdAlQ4kZlG1mvRtBK4iw/VAKUpEYYK7q1asUPtmc1H
-         2sDcNSDhZsnI80IGowjrZiyMN0Dy8GI6NTfK4=
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=5t+Cs8HDnvWj16xGCIF+mikJ115zNj7hKt8zOUcIyb8=;
+        b=Ia7MeHbT6Cl9ycW08HrSddHkar2N5jifNPJOghuyto8SjAe9dMpb41yfEBLr8HxUsE
+         ZCw9vE6Cs34OxAjjE9d321oVSoYzny4BIbOMXorsuNtxFnSj/ASZrloNo/e4+OhQLs5n
+         Yq+1a4x5pFq4zJyNT49fBnO4VaGRJHHECaGZs7gizor1iLUmvjxXy7EDGqoZjRuu7Iuo
+         iM8tWP0ekcEjRzq19qY4wzWob32Gdrz5w9jDpabhpWcDdWjHAfeMR6PYjbd5oHNaONOK
+         QbdaX50xzlMQpb3q2S6uN8K2czHC7S6lLppkBQ7/yNY9U3V63mNhGbNN9bYOq0+QF0CB
+         10Nw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=X3adrsX+uhZAXoth7knDMjvKgEG3AVzl2RqEOStCFFU=;
-        b=cIHztbY/ZjUImXzxcPiOeVBwBC4vIfDVQAHKl68zy056SSfjeS6KHUP9ucPZM1zgln
-         7okS8nznGqBlj+zGw5nYtgzH6+zcQ3BHZ1Uqx20UBLNDm6JaDT4mQmdoFvG05NEed4nJ
-         C+4E5P05q2EixfX/5abO+AJk2V5rCn5ygfMxexxib4YAkS0HKFS2YnZ7ouOFjB0oxSqI
-         vfbyiHJ13cKkFQSGyCPN8xS269qAsHZOBxz4NuMA/uFXWQzEblEFSE5hyd1qD27R6CfR
-         9WkXL5nJDNVk/NSDs1z2D2aAfAFXK7/gb0zns0hFhtdm7mk4RVu9dfRhRcKNlgj1RxyV
-         ffjQ==
-X-Gm-Message-State: AOAM531/lMhzgejq1utQm4gSdUkDlXwfYL87lQbFcsPnKzI1oB47/0vG
-        Xu1t9l3rXoGi5ZXEMu8cso6r3AbqoCMNeMJE
-X-Google-Smtp-Source: ABdhPJxj8X3DjQGbLB44uS2uJmvRnsTgN5FaSBllqttxHyt+Yc/7mCJg0eNAssRjd2Ut0qYUww/7Lg==
-X-Received: by 2002:a17:907:7247:b0:6f4:ed49:cd3f with SMTP id ds7-20020a170907724700b006f4ed49cd3fmr16297210ejc.172.1652713585351;
-        Mon, 16 May 2022 08:06:25 -0700 (PDT)
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com. [209.85.128.51])
-        by smtp.gmail.com with ESMTPSA id b18-20020a056402279200b0042617ba63b1sm5488068ede.59.2022.05.16.08.06.24
-        for <devicetree@vger.kernel.org>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=5t+Cs8HDnvWj16xGCIF+mikJ115zNj7hKt8zOUcIyb8=;
+        b=latxf1iX2GztpD0I0LgR01wEZrPx9ppmbbkxQgGzlFxRKB9tiuRHj2kB5eL4GgS8P3
+         lUBX74HAOLbeoE+G8fGw2/bJRlNVGNRAwk/KxzVzFMOuj+vUidE8CXc4ldi+ydh0GiBd
+         lloBwqhrXNs4Vi35AVVAXMrI0JYalxHnsVIN6FQyJW593cvWz2rHm2pFxqp01XVApCRz
+         CI1Kr6n1tz5OVfS4yZJjQLn53PdjM1nSgr0d1T3jOu9nqJ5qts+asm7ItDa4tO9Cw44p
+         zhp8S71pAvKZDD0M4wNYdrtpLWKmlFIooE3oL6XRpQejd3xlPZ6ngrE3rF3k8TRQQV6Y
+         +r6Q==
+X-Gm-Message-State: AOAM5330TNyLOKQLIhRdvoeZ8oVT/Vx+w/QcRbFRWmpoV8svoBWpIcNA
+        GPpJUeyjppahPOLC0ISPjS451A==
+X-Google-Smtp-Source: ABdhPJzeCPsTLFSMafvtYEP2F1yq4Y7s3vBkx7ePuRLbETQKthyM7TyPkmutQIxLHaU7ngGhBL4V8g==
+X-Received: by 2002:a05:6402:3590:b0:427:ba05:6f19 with SMTP id y16-20020a056402359000b00427ba056f19mr13653559edc.334.1652713591923;
+        Mon, 16 May 2022 08:06:31 -0700 (PDT)
+Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id qs24-20020a170906459800b006fe32c5636asm1509512ejc.184.2022.05.16.08.06.30
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 16 May 2022 08:06:24 -0700 (PDT)
-Received: by mail-wm1-f51.google.com with SMTP id r188-20020a1c44c5000000b003946c466c17so8453694wma.4
-        for <devicetree@vger.kernel.org>; Mon, 16 May 2022 08:06:24 -0700 (PDT)
-X-Received: by 2002:a7b:c4c8:0:b0:394:26c5:b79e with SMTP id
- g8-20020a7bc4c8000000b0039426c5b79emr17514279wmk.15.1652713583816; Mon, 16
- May 2022 08:06:23 -0700 (PDT)
+        Mon, 16 May 2022 08:06:31 -0700 (PDT)
+Message-ID: <3dc0651a-fc12-ba2c-b178-841529a90310@linaro.org>
+Date:   Mon, 16 May 2022 17:06:30 +0200
 MIME-Version: 1.0
-References: <20220513095722.v2.1.I71e42c6174f1cec17da3024c9f73ba373263b9b6@changeid>
- <d5438d2e-f387-170a-cea1-d5936cc8e15a@linaro.org>
-In-Reply-To: <d5438d2e-f387-170a-cea1-d5936cc8e15a@linaro.org>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Mon, 16 May 2022 08:06:11 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=VNGS+H8biOOigt=drUCYCWY1VBKN=ZFD74T-3RSeWBxA@mail.gmail.com>
-Message-ID: <CAD=FV=VNGS+H8biOOigt=drUCYCWY1VBKN=ZFD74T-3RSeWBxA@mail.gmail.com>
-Subject: Re: [PATCH v2 1/4] dt-bindings: Document how Chromebooks with
- depthcharge boot
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH v2 2/4] dt-bindings: arm: qcom: Add sc7180 Chromebook
+ board bindings
+Content-Language: en-US
+To:     Doug Anderson <dianders@chromium.org>
 Cc:     Rob Herring <robh@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
         Stephen Boyd <swboyd@chromium.org>,
@@ -69,14 +65,25 @@ Cc:     Rob Herring <robh@kernel.org>,
         Alexandru M Stan <amstan@chromium.org>,
         Julius Werner <jwerner@chromium.org>,
         "Joseph S . Barrera III" <joebar@chromium.org>,
+        Andy Gross <agross@kernel.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@codeaurora.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        <devicetree@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>
+References: <20220513095722.v2.1.I71e42c6174f1cec17da3024c9f73ba373263b9b6@changeid>
+ <20220513095722.v2.2.I9804fcd5d6c8552ab25f598dd7a3ea71b15b55f0@changeid>
+ <d4e031d0-8a43-e458-6535-1044d43a2b63@linaro.org>
+ <CAD=FV=UfNKqca5XHX7aWZmxvPmKNikA-=X0Hv5v0MbumnB-W8Q@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CAD=FV=UfNKqca5XHX7aWZmxvPmKNikA-=X0Hv5v0MbumnB-W8Q@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -84,44 +91,36 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On 16/05/2022 17:01, Doug Anderson wrote:
+> 
+> 
+>> Actually this change should be rather part of that other commit...
+> 
+> I'm not sure I understand. Which of these are you suggesting?
+> 
+> 1. You want me to squash the two commits into one, so we add the
+> generic doc in the same patch as the one adding sc7180 Chromebooks.
+> 
+> 2. You want the generic doc to come first in the series and it just
+> adds the little blurb into
+> "Documentation/devicetree/bindings/arm/qcom.yaml" even though
+> Chromebooks aren't actually added until a later commit in the series.
+> 
+> 3. You want to add the sc7180 Chromebooks first in the series with no
+> documentation and then later add in the generic documentation and the
+> blurb into "Documentation/devicetree/bindings/arm/qcom.yaml".
 
-On Sun, May 15, 2022 at 11:57 PM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 13/05/2022 18:59, Douglas Anderson wrote:
-> > This documents how many Chromebooks pick the device tree that will be
-> > passed to the OS and can help understand the revisions / skus listed
-> > as the top-level "compatible" in many Chromebooks.
-> >
-> > Signed-off-by: Douglas Anderson <dianders@chromium.org>
-> > ---
-> >
-> > Changes in v2:
-> > - ("Document how Chromebooks with depthcharge boot") new for v2.
-> >
-> >  .../devicetree/chromebook-boot-flow.rst       | 63 +++++++++++++++++++
-> >  1 file changed, 63 insertions(+)
-> >  create mode 100644 Documentation/devicetree/chromebook-boot-flow.rst
->
-> This is not a Devicetree (generic) document, so it is not the best place
-> for it. Maybe regular vendor place, e.g . Documentation/arm/google/ ?
+Sorry for being unclear, I propose the third option. I mean, the hunk
+referencing "chromebook-boot-flow.rst" should be rather added by the
+patch adding that document.
 
-I can put it there. ...but taking your two pieces of advice together,
-you're saying:
+> I'm also interested to know if you think the generic documentation
+> patch should land through the Qualcomm tree. I think it would
+> absolutely have to if I take your suggestion, right?
 
-1. Don't add this under the devicetree directory.
+Yes, in that case would be a 5th patch in the set here, so I think
+everything would go via Qcom SoC.
 
-2. Don't refer to this by URL but instead by a relative file path.
 
-I can do both of those two things, but I always had it in my mind that
-the device tree was supposed to be "Linux agnostic". In other words,
-you could refer to Linux as one OS that boots with device tree, but I
-thought that the device tree docs were supposed to stand on their own.
-With the above two suggestions, it seems like an extra piece tieing
-the two together and assuming that both Linux and device tree docs are
-living in the same place.
-
-In any case, I'm happy to do what you request but I just want to double-check.
-
--Doug
+Best regards,
+Krzysztof
