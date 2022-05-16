@@ -2,120 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 37EF25288C3
-	for <lists+devicetree@lfdr.de>; Mon, 16 May 2022 17:26:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D94085288C9
+	for <lists+devicetree@lfdr.de>; Mon, 16 May 2022 17:27:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235742AbiEPP0Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 May 2022 11:26:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43698 "EHLO
+        id S245216AbiEPP1F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 May 2022 11:27:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46542 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245398AbiEPP0M (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 May 2022 11:26:12 -0400
-Received: from mail-pl1-x634.google.com (mail-pl1-x634.google.com [IPv6:2607:f8b0:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43A0DDED3
-        for <devicetree@vger.kernel.org>; Mon, 16 May 2022 08:26:11 -0700 (PDT)
-Received: by mail-pl1-x634.google.com with SMTP id q18so14728522pln.12
-        for <devicetree@vger.kernel.org>; Mon, 16 May 2022 08:26:11 -0700 (PDT)
+        with ESMTP id S229688AbiEPP1C (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 May 2022 11:27:02 -0400
+Received: from mail-oa1-x35.google.com (mail-oa1-x35.google.com [IPv6:2001:4860:4864:20::35])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78DDE12754;
+        Mon, 16 May 2022 08:26:55 -0700 (PDT)
+Received: by mail-oa1-x35.google.com with SMTP id 586e51a60fabf-edf9ddb312so20530436fac.8;
+        Mon, 16 May 2022 08:26:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=mime-version:reply-to:from:date:message-id:subject:to
-         :content-transfer-encoding;
-        bh=9tJIBbJChc1BxjbWcZb0lFSvKfg3R8y5golyZaz5kgY=;
-        b=bPPD0AbY/nuWlcpuNFHjjpiuyGzwqJ91kgp/PzxQ7X74q8SS4nw1vnNz+jful51SMT
-         rbiZYD7cqCCfLqA4pFstou2zLkxFkPIxF+gxtyInT8aFyOyta3gbtwkVRSfm2nkqIHBk
-         9YMlOQU3HXmnQRMI5KDgtECAeXzIMWSx0XIxk7INoan1umMtR+8YElApdDDvIqGJe9EW
-         skIL0ajsMifK6mLK9m3n5fj799Kaa3dqH6rYz9XrHbxjVuirNGQkkomW+4+6Tn9sdh/i
-         ixLvzjSFD8pCQ2tok75nxUfMZs4eKhl1m31qXYTtOrmMNJYDUvlY17jFKQd6rWtQ3sIS
-         cHaA==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=KHyeVKxqxatLeY3gDq4jdVF9Tt519Zk/h+VHXOLojzc=;
+        b=KewvRBMJACjGiAlIKD93nIY5CDbfu7LGLi5U9OT3JumiPFbrpxe/9hLyeFkc/lrj9W
+         nyGDOJdITBAxQzLjMsAtN3oVx6acR1EWDeCWuS5Bd76MnSfwqtGsu1op6ye4kfO5CSEg
+         kyAvSbwiXB2Wctjrp7/yIbHPfXU8bo/c/Na8FsNDrd2IewsEeOUHsrgrbCChJFtxq4Xg
+         IbIjbK0xHOfAtds8bB6vnnsS1hu/Zv0xIdI/oEbKwWOt7kdKS6i1efSkkS1/Yh+RkHIv
+         AcFdJQl6YijSS3Vzpn7tqldQsxM+mtnHyKfaPlcsPcTq3aYi7vFD5B1VH2e5WXC3ddxO
+         Mftw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to:content-transfer-encoding;
-        bh=9tJIBbJChc1BxjbWcZb0lFSvKfg3R8y5golyZaz5kgY=;
-        b=pnfa9C/36BmR1bTydShmJOsbocyOn3QV3j+ybFXmsDVB3yLfD3yRE+zUo9nXwnxcZe
-         6FODEfyx1zjI0ZDLoxdhezWy9pkOn5y9iHDMuzy7Y0ALCje94Pgw/d4yNT4xUa//7TM8
-         fW2Mc437MrqtGHVuvIlhqO0dWfvdT12TTuTmhDDeqpQU8ZTirt0a+tByQ7N8LrrnErP6
-         JEGET18s1VjAvREPCIF3SHoEoej2XZphvHt0UsSPO/MhFVqgrvJwms7wryeioNHN3RNH
-         72B2XJNMqiXYnAtj+JJ1SzbHWCNGdc9ictlO/8m0FkvIiJdQE7BRxCBqDG5q373Wld8q
-         RSWA==
-X-Gm-Message-State: AOAM533WOO9PtLBij8qaVkNx2eEt9JIVoPNn4Xkuu7d/BVZFSZWz7g4Q
-        R9Op1fWFH4miNFS213kAqPPcSt6wuMfHOOabo/4=
-X-Google-Smtp-Source: ABdhPJySp3DbpaVhlc/N+8TME5DMxCLXBMhRiPXH9gQVbAvjRLDuO6rhyWuGbuqV55uAPD30sEtv5RoxfAVk8ophNRU=
-X-Received: by 2002:a17:90b:4c8f:b0:1de:b3b5:ea23 with SMTP id
- my15-20020a17090b4c8f00b001deb3b5ea23mr31336689pjb.133.1652714770533; Mon, 16
- May 2022 08:26:10 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=KHyeVKxqxatLeY3gDq4jdVF9Tt519Zk/h+VHXOLojzc=;
+        b=tJChQStwvwqF2VBreDpMlHcHk2fInDb+4XutpKFhIzIaNBQn1y+dcfwiy2TnWSvmTF
+         Aza7Md5bST8lepRWHm83VAZA89tXGbxDXPlmoYTKcdbGr6Jni1jJcojh9cwGigr8rtmS
+         al6Zjp42rYcMG59gYG+tBe6d6HTOVJqdUYkCHXq6xe5efpw47XgnKHPpHea6x3RO9jQn
+         3V+GtACDVx9FNm6u7Je0JOSLtod3ezEnbYEyX/lKFBM0OzbSkPC63Yco0bOGVt81eRCY
+         mTtdRYOXq7gXWVmZ1mIyesTPzEzNbT7qbkihg4+wCptTRFCgrSBgtVV6d/GRANz9A0jM
+         3Stw==
+X-Gm-Message-State: AOAM532FG9XcG058P247KiVrPeyRuP07jYZynK+cyGOYyun4IBcN706t
+        2iRwPnkw4CxiPBC1zfQMtj4=
+X-Google-Smtp-Source: ABdhPJzIjGJ8YJEvupAXFxrzzx+fCG8rregIbh6jLEAET5ITg4EypP6IKnXddR5n4Rh0gU+G8PeHrw==
+X-Received: by 2002:a05:6870:c692:b0:e9:5368:10df with SMTP id cv18-20020a056870c69200b000e9536810dfmr9767194oab.182.1652714814852;
+        Mon, 16 May 2022 08:26:54 -0700 (PDT)
+Received: from wintermute.localdomain (cpe-76-183-134-35.tx.res.rr.com. [76.183.134.35])
+        by smtp.gmail.com with ESMTPSA id z30-20020a056870461e00b000e686d1389fsm5475774oao.57.2022.05.16.08.26.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 16 May 2022 08:26:54 -0700 (PDT)
+Date:   Mon, 16 May 2022 10:26:51 -0500
+From:   Chris Morgan <macroalpha82@gmail.com>
+To:     Peter Geis <pgwipeout@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 6/6] arm64: dts: rockchip: enable sfc controller on
+ Quartz64 Model A
+Message-ID: <20220516152651.GA18461@wintermute.localdomain>
+References: <20220511150117.113070-1-pgwipeout@gmail.com>
+ <20220511150117.113070-7-pgwipeout@gmail.com>
 MIME-Version: 1.0
-Received: by 2002:a17:522:f806:b0:447:2c78:d054 with HTTP; Mon, 16 May 2022
- 08:26:10 -0700 (PDT)
-Reply-To: abraaahammorrison1980@gmail.com
-From:   Abraham Morrison <chamber00000001@gmail.com>
-Date:   Mon, 16 May 2022 08:26:10 -0700
-Message-ID: <CABLDrx4PrbfMPS2odXXkkNz_nd7xzG=9Bm4MQCwee_pGNDrgyQ@mail.gmail.com>
-Subject: Good day!
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: Yes, score=5.5 required=5.0 tests=BAYES_50,DKIM_SIGNED,
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220511150117.113070-7-pgwipeout@gmail.com>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,FREEMAIL_REPLYTO,FREEMAIL_REPLYTO_END_DIGIT,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        UNDISC_FREEM autolearn=no autolearn_force=no version=3.4.6
-X-Spam-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-        *      https://www.dnswl.org/, no trust
-        *      [2607:f8b0:4864:20:0:0:0:634 listed in]
-        [list.dnswl.org]
-        *  0.8 BAYES_50 BODY: Bayes spam probability is 40 to 60%
-        *      [score: 0.5000]
-        *  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-        *      provider
-        *      [chamber00000001[at]gmail.com]
-        * -0.0 SPF_PASS SPF: sender matches SPF record
-        *  0.2 FREEMAIL_REPLYTO_END_DIGIT Reply-To freemail username ends in
-        *      digit
-        *      [abraaahammorrison1980[at]gmail.com]
-        *  0.0 SPF_HELO_NONE SPF: HELO does not publish an SPF Record
-        *  0.2 FREEMAIL_ENVFROM_END_DIGIT Envelope-from freemail username ends
-        *       in digit
-        *      [chamber00000001[at]gmail.com]
-        * -0.1 DKIM_VALID_EF Message has a valid DKIM or DK signature from
-        *      envelope-from domain
-        * -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-        *      author's domain
-        *  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-        *       valid
-        * -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-        * -0.0 T_SCC_BODY_TEXT_LINE No description available.
-        *  3.4 UNDISC_FREEM Undisclosed recipients + freemail reply-to
-        *  1.0 FREEMAIL_REPLYTO Reply-To/From or Reply-To/body contain
-        *      different freemails
-X-Spam-Level: *****
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Aufmerksamkeit bitte!
+On Wed, May 11, 2022 at 11:01:17AM -0400, Peter Geis wrote:
+> Add the sfc controller binding for the Quartz64 Model A. This is not
+> populated by default, so leave it disabled.
+> 
+> Signed-off-by: Peter Geis <pgwipeout@gmail.com>
+> ---
+>  .../boot/dts/rockchip/rk3566-quartz64-a.dts      | 16 ++++++++++++++++
+>  1 file changed, 16 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts
+> index 71df64655de5..6ec349e7e521 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts
+> +++ b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts
+> @@ -603,6 +603,22 @@ &sdmmc1 {
+>  	status = "okay";
+>  };
+>  
+> +&sfc {
+> +	pinctrl-0 = <&fspi_pins>;
+> +	pinctrl-names = "default";
+> +	#address-cells = <1>;
+> +	#size-cells = <0>;
+> +	status = "disabled";
+> +
+> +	flash@0 {
+> +		compatible = "jedec,spi-nor";
+> +		reg = <0>;
+> +		spi-max-frequency = <24000000>;
+> +		spi-rx-bus-width = <4>;
+> +		spi-tx-bus-width = <1>;
 
-Wie geht es Ihnen? Ich hoffe, es geht dir gut und du bist gesund?
-Hiermit m=C3=B6chte ich Sie dar=C3=BCber informieren, dass ich die Transakt=
-ion
-mit Hilfe eines neuen Partners erfolgreich abgeschlossen habe.
-Inzwischen habe ich mich entschieden, Sie aufgrund Ihrer bisherigen
-Bem=C3=BChungen mit der Summe von 500.000,00 =E2=82=AC zu entsch=C3=A4digen=
-, obwohl Sie
-mich auf der ganzen Linie entt=C3=A4uscht haben.
+This isn't really a concern, just a comment. Did you test this with the
+spi-tx-bus-width of 4 by chance? While I did have to use 1 for my
+implementation (the Odroid Go Advance) the Rockchip engineer I worked
+with couldn't replicate the issue on his end and we ended up chalking
+my issues up to an implementation specific problem. I'm only commenting
+here because I don't want you to think that for this device the tx
+always has to be 1, of course if your implementation does have issues
+with a tx of 2 or 4 that's different...
 
-Ich rate Ihnen, sich an meine Sekret=C3=A4rin zu wenden, um eine ATM-KARTE
-in H=C3=B6he von 500.000,00 =E2=82=AC zu erhalten, die ich f=C3=BCr Sie auf=
-bewahrt habe.
+Thank you.
 
-Kontaktieren Sie sie mit den folgenden Informationen.
-Name: Linda Kofi
-E-Mail: koffilinda785@gmail.com
-
-Bitten Sie sie, Ihnen den Gesamtbetrag von (500.000,00 =E2=82=AC) ATM-KARTE=
- zu
-schicken, die ich f=C3=BCr Sie aufbewahrt habe.
-
-Herr Abraham Morrison
+> +	};
+> +};
+> +
+>  /* spdif is exposed on con40 pin 18 */
+>  &spdif {
+>  	status = "okay";
+> -- 
+> 2.25.1
+> 
