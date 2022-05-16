@@ -2,280 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F0E9528A90
-	for <lists+devicetree@lfdr.de>; Mon, 16 May 2022 18:34:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D60E4528A75
+	for <lists+devicetree@lfdr.de>; Mon, 16 May 2022 18:32:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343841AbiEPQeA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 May 2022 12:34:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36114 "EHLO
+        id S1343681AbiEPQci (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 May 2022 12:32:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59654 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343774AbiEPQd5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 May 2022 12:33:57 -0400
-Received: from mail-oa1-f51.google.com (mail-oa1-f51.google.com [209.85.160.51])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01E783B3F0;
-        Mon, 16 May 2022 09:33:27 -0700 (PDT)
-Received: by mail-oa1-f51.google.com with SMTP id 586e51a60fabf-f189b07f57so7325463fac.1;
-        Mon, 16 May 2022 09:33:27 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=CiuDSc5jE/tQy9qIvLJu2MZL0HMNt8pDPacw0cghyhk=;
-        b=2/1iP//mSuINH/jJ//thfVZ6C863CPO9zN/iilpFucZNfI7xINcREvrvgDTNElWnC5
-         DGQ1U1vFu94sT+om4OAH8DafK2cz6jMbE8wNcwJ5YHtTbhS2fTXXJobcbit6nYGVF5G8
-         mjzcPrsUXvQdBNQABHEBOkYqrIdt5G0bktSmF8rwCZOlW9dqqEbnxE9kbqan+CwKnH45
-         VxX2c1DgRxugaR08NP9qsqsoOgJZco512TpR/Xr+VJiJnEU0iNnowgah4huOLgfoe2mK
-         gQTLl3fg5yvGqEgI/HVgVxQ9ANrIN9JgcdIJmMvVkakQ99ybAWFqBRwGGs/2c1IuuC5W
-         PhMA==
-X-Gm-Message-State: AOAM533koe6sT7LeXcPyYaoK4UwIOlrasNlBzwO16bK8SbTp5FEz7xfG
-        TCq3ExJLCcWyCz3HFrLUhA==
-X-Google-Smtp-Source: ABdhPJycQNzePEJAzWR0E4hHkTqbdk/jDS1QEhfnLSWiGpLOPMe8c1wY+jAIc2jwGk3JGr3sEYpwMg==
-X-Received: by 2002:a05:6870:a1a0:b0:d9:b198:4cfa with SMTP id a32-20020a056870a1a000b000d9b1984cfamr10022635oaf.159.1652718806864;
-        Mon, 16 May 2022 09:33:26 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id d8-20020a056870e24800b000eb0e40b4b8sm5829199oac.48.2022.05.16.09.33.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 May 2022 09:33:26 -0700 (PDT)
-Received: (nullmailer pid 2801600 invoked by uid 1000);
-        Mon, 16 May 2022 16:33:25 -0000
-Date:   Mon, 16 May 2022 11:33:25 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     cyndis@kapsi.fi
-Cc:     thierry.reding@gmail.com, jonathanh@nvidia.com,
-        krzysztof.kozlowski+dt@linaro.org, digetx@gmail.com,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Mikko Perttunen <mperttunen@nvidia.com>
-Subject: Re: [PATCH v1 01/13] dt-bindings: Add bindings for Tegra234 Host1x
- and VIC
-Message-ID: <20220516163325.GA2793304-robh@kernel.org>
-References: <20220516100213.1536571-1-cyndis@kapsi.fi>
- <20220516100213.1536571-2-cyndis@kapsi.fi>
+        with ESMTP id S1343704AbiEPQcg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 May 2022 12:32:36 -0400
+Received: from mx0a-002e3701.pphosted.com (mx0a-002e3701.pphosted.com [148.163.147.86])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2089D3B3ED;
+        Mon, 16 May 2022 09:32:33 -0700 (PDT)
+Received: from pps.filterd (m0150242.ppops.net [127.0.0.1])
+        by mx0a-002e3701.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 24G9UZ26011356;
+        Mon, 16 May 2022 16:32:22 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hpe.com; h=from : to : cc : subject
+ : date : message-id : in-reply-to : references : mime-version; s=pps0720;
+ bh=tHQHa+zVoo/ogw3baS4ruzIWLZW79RxKI0mzDPUQGSQ=;
+ b=aBmTG6w4LZu3xGaTltajTtpj8Njg/axrXC0o5XQN9lm94SnQkKbcNFS1oGfchaOwztnm
+ g21Wmu0X/iQH2PtovRqf1lvvve5qACel5YxqzY+OSi/uWhjttEHnAdt6WWxuv6xvNwqz
+ 5h4Fj6Xbf6Q7osIpjwGz3pDmiXMlIdfDVUfknjO2LyOqF0SSiRndOtNAH0pzhj7kmKPO
+ ECuJ6HULJ2H5kopaFkJOV7H9tDMtwyhDRxxZMuU13CDZpwhrlymuErgOmlycJJ3G2o9I
+ IX/xwDPHXR6oujH4VTfANhyoiAP3S0wJir88Ub86FQMQ3HacWKkiBI0HPcYQXiqvb95A xw== 
+Received: from g9t5009.houston.hpe.com (g9t5009.houston.hpe.com [15.241.48.73])
+        by mx0a-002e3701.pphosted.com (PPS) with ESMTPS id 3g3gk4qttr-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 16 May 2022 16:32:22 +0000
+Received: from g9t2301.houston.hpecorp.net (g9t2301.houston.hpecorp.net [16.220.97.129])
+        by g9t5009.houston.hpe.com (Postfix) with ESMTP id 8260955;
+        Mon, 16 May 2022 16:32:21 +0000 (UTC)
+Received: from hpe.com (cigateway-dev.us.rdlabs.hpecorp.net [10.14.73.30])
+        by g9t2301.houston.hpecorp.net (Postfix) with ESMTP id 2ABF848;
+        Mon, 16 May 2022 16:32:21 +0000 (UTC)
+From:   nick.hawkins@hpe.com
+To:     verdun@hpe.com, nick.hawkins@hpe.com, joel@jms.id.au,
+        arnd@arndb.de, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Cc:     Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org
+Subject: [PATCH v8 5/8] dt-bindings: timer: hpe,gxp-timer: Add HPE GXP Timer and Watchdog
+Date:   Mon, 16 May 2022 11:33:43 -0500
+Message-Id: <20220516163347.44890-5-nick.hawkins@hpe.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20220516163347.44890-1-nick.hawkins@hpe.com>
+References: <20220516163347.44890-1-nick.hawkins@hpe.com>
+X-Proofpoint-ORIG-GUID: Hl0lqory2VEUAkESXPUKbc01mO7GnefA
+X-Proofpoint-GUID: Hl0lqory2VEUAkESXPUKbc01mO7GnefA
+X-Proofpoint-UnRewURL: 0 URL was un-rewritten
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220516100213.1536571-2-cyndis@kapsi.fi>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+X-HPE-SCL: -1
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.858,Hydra:6.0.486,FMLib:17.11.64.514
+ definitions=2022-05-16_15,2022-05-16_02,2022-02-23_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ spamscore=0 bulkscore=0 phishscore=0 mlxscore=0 clxscore=1015
+ impostorscore=0 suspectscore=0 mlxlogscore=999 adultscore=0 malwarescore=0
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2202240000 definitions=main-2205160092
+X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 16, 2022 at 01:02:01PM +0300, cyndis@kapsi.fi wrote:
-> From: Mikko Perttunen <mperttunen@nvidia.com>
-> 
-> Update VIC and Host1x bindings for changes in Tegra234.
-> 
-> Namely,
-> - New compatible strings
-> - Sharded syncpoint interrupts
-> - Optional reset.
-> 
-> Signed-off-by: Mikko Perttunen <mperttunen@nvidia.com>
-> ---
->  .../display/tegra/nvidia,tegra124-vic.yaml    |   1 +
->  .../display/tegra/nvidia,tegra20-host1x.yaml  | 108 +++++++++++++++---
->  2 files changed, 95 insertions(+), 14 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/tegra/nvidia,tegra124-vic.yaml b/Documentation/devicetree/bindings/display/tegra/nvidia,tegra124-vic.yaml
-> index 37bb5ddc1963..7200095ef19e 100644
-> --- a/Documentation/devicetree/bindings/display/tegra/nvidia,tegra124-vic.yaml
-> +++ b/Documentation/devicetree/bindings/display/tegra/nvidia,tegra124-vic.yaml
-> @@ -21,6 +21,7 @@ properties:
->            - nvidia,tegra210-vic
->            - nvidia,tegra186-vic
->            - nvidia,tegra194-vic
-> +          - nvidia,tegra234-vic
->  
->        - items:
->            - const: nvidia,tegra132-vic
-> diff --git a/Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-host1x.yaml b/Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-host1x.yaml
-> index 0adeb03b9e3a..83c58b7dae98 100644
-> --- a/Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-host1x.yaml
-> +++ b/Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-host1x.yaml
-> @@ -24,6 +24,7 @@ properties:
->            - nvidia,tegra210-host1x
->            - nvidia,tegra186-host1x
->            - nvidia,tegra194-host1x
-> +          - nvidia,tegra234-host1x
->  
->        - items:
->            - const: nvidia,tegra132-host1x
-> @@ -31,23 +32,19 @@ properties:
->  
->    reg:
->      minItems: 1
-> -    maxItems: 2
-> +    maxItems: 3
->  
->    reg-names:
->      minItems: 1
-> -    maxItems: 2
-> +    maxItems: 3
->  
->    interrupts:
-> -    items:
-> -      - description: host1x syncpoint interrupt
-> -      - description: host1x general interrupt
->      minItems: 1
-> +    maxItems: 9
->  
->    interrupt-names:
-> -    items:
-> -      - const: syncpt
-> -      - const: host1x
->      minItems: 1
-> +    maxItems: 9
->  
->    '#address-cells':
->      description: The number of cells used to represent physical base addresses
-> @@ -110,13 +107,32 @@ required:
->    - reg
->    - clocks
->    - clock-names
-> -  - resets
-> -  - reset-names
+From: Nick Hawkins <nick.hawkins@hpe.com>
 
-Shouldn't these still be required on some platforms?
+Add support for the HPE GXP Timer and Watchdog. There are multiple
+timers on the SoC but only one is enabled at this time.
 
->  
->  additionalProperties:
->    type: object
->  
->  allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - nvidia,tegra20-host1x
-> +              - nvidia,tegra30-host1x
-> +              - nvidia,tegra114-host1x
-> +              - nvidia,tegra124-host1x
-> +              - nvidia,tegra210-host1x
-> +    then:
-> +      properties:
-> +        interrupts:
-> +          items:
-> +            - description: host1x syncpoint interrupt
-> +            - description: host1x general interrupt
-> +
-> +        interrupt-names:
-> +          items:
-> +            - const: syncpt
-> +            - const: host1x
->    - if:
->        properties:
->          compatible:
-> @@ -133,10 +149,10 @@ allOf:
->  
->          reg:
->            items:
-> -            - description: physical base address and length of the register
-> -                region assigned to the VM
->              - description: physical base address and length of the register
->                  region used by the hypervisor
-> +            - description: physical base address and length of the register
-> +                region assigned to the VM
+Signed-off-by: Nick Hawkins <nick.hawkins@hpe.com>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
 
-You can't just change the order at least without a good explanation why 
-in the commit message. It's an ABI.
+---
+v8:
+* No change
+v7:
+* Resubmission to fix subject from
+  dt-bindings: timer: hpe,gxp-timer: Creation to
+  dt-bindings: timer: hpe,gxp-timer: Add HPE GXP Timer and Watchdog
+  based on comment: 'The subject after prefixes does not match it better.
+  What is "creation"? "Add HPE GXP Timer and Watchdog"'
+* Copied over Reviewed-by tags from previous patch.
+v6:
+* Removed simple-mfd compatible, timer will create watchdog without
+  watchdog node.
+* Removed timer0 label
+* Changed title from HPE GXP TIMER to HPE GXP Timer
+* Changed clock name iopclk to iop
+* Set additionalProperties to false
+* Added space after ',' in the compatible list
+* Changed subject to match the log better
+* Altered description to take up 75 characters per line
+* Changed description to better describe the patch
+v5:
+* Fix versioning
+* Fixed typo time -> timer
+v4:
+* Made watchdog a child of timer
+* Added reference clock
+v3:
+* Removed maintainer change from patch
+* Verified there was no compilation errors
+* Added reference code in separate patch of patchset
+v2:
+* Converted from txt to yaml
+---
+ .../bindings/timer/hpe,gxp-timer.yaml         | 47 +++++++++++++++++++
+ 1 file changed, 47 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/timer/hpe,gxp-timer.yaml
 
->  
->          resets:
->            maxItems: 1
-> @@ -144,6 +160,70 @@ allOf:
->          reset-names:
->            maxItems: 1
->  
-> +        interrupts:
-> +          items:
-> +            - description: host1x syncpoint interrupt
-> +            - description: host1x general interrupt
-> +
-> +        interrupt-names:
-> +          items:
-> +            - const: syncpt
-> +            - const: host1x
-> +
-> +        iommu-map:
-> +          description: Specification of stream IDs available for memory context device
-> +            use. Should be a mapping of IDs 0..n to IOMMU entries corresponding to
-> +            usable stream IDs.
-> +
-> +      required:
-> +        - reg-names
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - nvidia,tegra234-host1x
-> +    then:
-> +      properties:
-> +        reg-names:
-> +          items:
-> +            - const: common
-> +            - const: hypervisor
-> +            - const: vm
-> +
-> +        reg:
-> +          items:
-> +            - description: physical base address and length of the register
-> +                region used by host1x server
-> +            - description: physical base address and length of the register
-> +                region used by the hypervisor
-> +            - description: physical base address and length of the register
-> +                region assigned to the VM
+diff --git a/Documentation/devicetree/bindings/timer/hpe,gxp-timer.yaml b/Documentation/devicetree/bindings/timer/hpe,gxp-timer.yaml
+new file mode 100644
+index 000000000000..d33d90f44d28
+--- /dev/null
++++ b/Documentation/devicetree/bindings/timer/hpe,gxp-timer.yaml
+@@ -0,0 +1,47 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/timer/hpe,gxp-timer.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: HPE GXP Timer
++
++maintainers:
++  - Nick Hawkins <nick.hawkins@hpe.com>
++  - Jean-Marie Verdun <verdun@hpe.com>
++
++properties:
++  compatible:
++    const: hpe,gxp-timer
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++  clock-names:
++    const: iop
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - clocks
++  - clock-names
++
++additionalProperties: false
++
++examples:
++  - |
++    timer@c0000000 {
++        compatible = "hpe,gxp-timer";
++        reg = <0x80 0x16>;
++        interrupts = <0>;
++        interrupt-parent = <&vic0>;
++        clocks = <&iopclk>;
++        clock-names = "iop";
++    };
+-- 
+2.17.1
 
-I guess this is just copied, but 'physical base address and length of 
-the ' is redundant. That's every 'reg'.
-
-> +
-> +        interrupts:
-> +          items:
-> +            - description: host1x syncpoint interrupt 0
-> +            - description: host1x syncpoint interrupt 1
-> +            - description: host1x syncpoint interrupt 2
-> +            - description: host1x syncpoint interrupt 3
-> +            - description: host1x syncpoint interrupt 4
-> +            - description: host1x syncpoint interrupt 5
-> +            - description: host1x syncpoint interrupt 6
-> +            - description: host1x syncpoint interrupt 7
-> +            - description: host1x general interrupt
-> +
-> +        interrupt-names:
-> +          items:
-> +            - const: syncpt0
-> +            - const: syncpt1
-> +            - const: syncpt2
-> +            - const: syncpt3
-> +            - const: syncpt4
-> +            - const: syncpt5
-> +            - const: syncpt6
-> +            - const: syncpt7
-> +            - const: host1x
-> +
->          iommu-map:
->            description: Specification of stream IDs available for memory context device
->              use. Should be a mapping of IDs 0..n to IOMMU entries corresponding to
-> @@ -160,8 +240,8 @@ examples:
->      host1x@50000000 {
->          compatible = "nvidia,tegra20-host1x";
->          reg = <0x50000000 0x00024000>;
-> -        interrupts = <0 65 0x04   /* mpcore syncpt */
-> -                      0 67 0x04>; /* mpcore general */
-> +        interrupts = <0 65 0x04>, /* mpcore syncpt */
-> +                     <0 67 0x04>; /* mpcore general */
->          interrupt-names = "syncpt", "host1x";
->          clocks = <&tegra_car TEGRA20_CLK_HOST1X>;
->          clock-names = "host1x";
-> -- 
-> 2.36.1
-> 
-> 
