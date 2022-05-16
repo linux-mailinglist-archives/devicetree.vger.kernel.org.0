@@ -2,85 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B6DE5528854
+	by mail.lfdr.de (Postfix) with ESMTP id 1F3CB528852
 	for <lists+devicetree@lfdr.de>; Mon, 16 May 2022 17:17:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237458AbiEPPRJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 May 2022 11:17:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51432 "EHLO
+        id S244207AbiEPPRL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 May 2022 11:17:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51498 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244900AbiEPPRI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 May 2022 11:17:08 -0400
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77BB83A198
+        with ESMTP id S244952AbiEPPRK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 May 2022 11:17:10 -0400
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D80413BBC6
         for <devicetree@vger.kernel.org>; Mon, 16 May 2022 08:17:07 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id z2so29343457ejj.3
+Received: by mail-ej1-x632.google.com with SMTP id tk15so5849162ejc.6
         for <devicetree@vger.kernel.org>; Mon, 16 May 2022 08:17:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=jP1Z/t75Zd6+QfO0rBYQNP9W66P0QAZBvkxPxWMCEHY=;
-        b=HzgnGElJcy8Kom4TATLPw1DcUEH44GqfdZxPziBJAjMYplYbhEaAxZbm4LdHD3D4/v
-         hkCwqG4CD/WoFFMnuLnuuTvOxmSjctrf5dh2+OCPOpqZhPPBBbBGPYP3ORxEm3A66gsg
-         h/CPTcnbxFRmyXJ8IzwezD1foSwtGz2VR8OrM=
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=3sD24ADSpY+FG8GR80WnIHxbXm2W1DgeNYS3rlutivw=;
+        b=fIpuK62/EPP9kXXOVRySMpiDCY9ccMhXfI8OKjbIC1VesbtlSR372VUmRAHtiXYnsM
+         khCT6FLTYqi+ZMXlrWpLxTHDThLspaNqcY23nvcrampkw9gCHhWDjF5BpEg7fYfNs9ZL
+         RH9v2IKTaxqlXLVKz2xcyuSQdPFaCvni9HbH/lIeX72fOhiRd5eqt7aTrJmkMaEqtgXS
+         6lETQrYMhh6nXCksjiwwh6WXFz/H2mspmcMUbKBe524YEjI1NxNhX/g/srlwbBv8v5s+
+         O+J4SvKkU2aOxe+SmXbeBipqqdI3pqv5mBSzW3fkHvNkV1yXEZ7q4ifNJsISCSQiJnFC
+         29zg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=jP1Z/t75Zd6+QfO0rBYQNP9W66P0QAZBvkxPxWMCEHY=;
-        b=g+SXRfNGLV6atlsPLIihNGPTNCml58unwTbCEszmaVkeBJm2NsoducOOUeGjRIE58+
-         qEmdO2aHu9Do256KUFjEiR+k3bgAVb9QUPYCrg9HhprxxlHx2A8iCCvo3GmJN8AK6ScW
-         n26sQR5z91DdnrJ3A0x/tF3gOisvUzUO5MniX4o/wBkx+TYBINP811L4g3oPr91BUdFx
-         kaGlsqoldBXFqa9EzWv8UXxy6Vs3xXBt7XeM8J9lgVxS82it8qlxv+hCHZHgSkTzNFYQ
-         RXorrQoH42QLtmLP/bKLB0STRoXWH4+vOQJibbr1en511RTrUbUfwAITMO2yc2Q32f2z
-         9pLQ==
-X-Gm-Message-State: AOAM530JI22mXqNM9AhmcSnG22gJwCJ5T1JdC04l70hYLXhCK1z1bb3x
-        uTsieaUqmem2+CGFFnUIGm4PhIglZNT/J9U0+lc=
-X-Google-Smtp-Source: ABdhPJwYeDiFaEqZnRZr9hvsjrgOMSpkBOkdJFQ3NlKaikrrgK5zVILjU8xkqphUvNs+thOzzbLmKg==
-X-Received: by 2002:a17:907:6e28:b0:6f4:6428:6ee8 with SMTP id sd40-20020a1709076e2800b006f464286ee8mr14979301ejc.608.1652714225796;
-        Mon, 16 May 2022 08:17:05 -0700 (PDT)
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com. [209.85.221.50])
-        by smtp.gmail.com with ESMTPSA id b3-20020a170906728300b006f50ceabcb8sm9353ejl.102.2022.05.16.08.17.04
-        for <devicetree@vger.kernel.org>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=3sD24ADSpY+FG8GR80WnIHxbXm2W1DgeNYS3rlutivw=;
+        b=UaGgFSxzgcaUf1xX2ZR1YP7KkiMVj+CnZ4Zvr0lRg3esn57Q4EtYgH2xzSZlxfvUpw
+         DunHJw0IPNBm2bZLvYMELymIawdNELjMNcScmsb1wLQ/FaR4VDWaMz+Rruv6jt3jm81G
+         XDlcJnksfqjV9y+klDb8lbG+o+2wOtiRuyhIszHixH/LmNTkk2+lGrTFKk8beH8SE5YB
+         hv5qHzb9ns/NYDJdNKrD34QkjhH8Sm7CpzVfGL4sTQ0uV7MdEP6aUeSpEejMgJTKB4Wr
+         BBQ9FwmE91I0xDAgsZPGYUO+bTJmTxTipUkEykoW8P94+H/c5qaZ5bTYhPL1TD5239sH
+         gRhw==
+X-Gm-Message-State: AOAM530WNG5ld0noodRepCoy0WMtGfNg3EZfXTM7GK6Hlk01HkbHv0zu
+        3FuRjJe45XoRqypnaayVhaIUgQ==
+X-Google-Smtp-Source: ABdhPJyaD5kEQjyHQ7iOklYUqDPw7XmHfgloDo7ukO8//+fm6SbAxBFYCrvdZ4Jeu/iwlnAzcAODsA==
+X-Received: by 2002:a17:907:161f:b0:6f4:378a:c2d8 with SMTP id hb31-20020a170907161f00b006f4378ac2d8mr16336413ejc.289.1652714226443;
+        Mon, 16 May 2022 08:17:06 -0700 (PDT)
+Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id e10-20020a056402330a00b0042617ba6386sm5264186eda.16.2022.05.16.08.17.01
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 16 May 2022 08:17:05 -0700 (PDT)
-Received: by mail-wr1-f50.google.com with SMTP id t6so21009536wra.4
-        for <devicetree@vger.kernel.org>; Mon, 16 May 2022 08:17:04 -0700 (PDT)
-X-Received: by 2002:a5d:6d09:0:b0:20c:53a9:cc30 with SMTP id
- e9-20020a5d6d09000000b0020c53a9cc30mr14313656wrq.513.1652714224237; Mon, 16
- May 2022 08:17:04 -0700 (PDT)
+        Mon, 16 May 2022 08:17:02 -0700 (PDT)
+Message-ID: <6d8fff45-012b-b545-0d38-ec38a42326df@linaro.org>
+Date:   Mon, 16 May 2022 17:17:00 +0200
 MIME-Version: 1.0
-References: <20220513095722.v2.1.I71e42c6174f1cec17da3024c9f73ba373263b9b6@changeid>
- <20220513095722.v2.4.Ie8713bc0377672ed8dd71189e66fc0b77226fb85@changeid> <125970b0-af71-1695-a3ab-10a159ac63a5@linaro.org>
-In-Reply-To: <125970b0-af71-1695-a3ab-10a159ac63a5@linaro.org>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Mon, 16 May 2022 08:16:51 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=XR+WwWmrB1wGX65=szBc2PbGNOHbm2tiQT5Wp8CPG0Kg@mail.gmail.com>
-Message-ID: <CAD=FV=XR+WwWmrB1wGX65=szBc2PbGNOHbm2tiQT5Wp8CPG0Kg@mail.gmail.com>
-Subject: Re: [PATCH v2 4/4] dt-bindings: arm: qcom: Add more sc7180 Chromebook
- board bindings
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Rob Herring <robh@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH 1/2] dt-bindings: remoteproc: pru: Update bindings for K3
+ AM62x SoCs
+Content-Language: en-US
+To:     Kishon Vijay Abraham I <kishon@ti.com>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Rajendra Nayak <quic_rjendra@quicinc.com>,
-        Alexandru M Stan <amstan@chromium.org>,
-        Julius Werner <jwerner@chromium.org>,
-        "Joseph S . Barrera III" <joebar@chromium.org>,
-        Andy Gross <agross@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@codeaurora.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Suman Anna <s-anna@ti.com>, linux-remoteproc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220427083509.14458-1-kishon@ti.com>
+ <20220427083509.14458-2-kishon@ti.com>
+ <7bc6fb49-ae7e-d270-b2a4-a14a1d933d61@linaro.org>
+ <de237f2c-6630-2f63-e1da-915ab55a1a7c@ti.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <de237f2c-6630-2f63-e1da-915ab55a1a7c@ti.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -88,41 +81,36 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On 16/05/2022 14:35, Kishon Vijay Abraham I wrote:
+> Hi Krzysztof,
+> 
+> On 28/04/22 11:48, Krzysztof Kozlowski wrote:
+>> On 27/04/2022 10:35, Kishon Vijay Abraham I wrote:
+>>> Update the PRU remoteproc bindings for the PRU cores on AM62x SoCs.
+>>>
+>>> Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
+>>> ---
+>>>  Documentation/devicetree/bindings/remoteproc/ti,pru-rproc.yaml | 1 +
+>>>  1 file changed, 1 insertion(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/remoteproc/ti,pru-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/ti,pru-rproc.yaml
+>>> index d7c3a78e37e6..e351550b012c 100644
+>>> --- a/Documentation/devicetree/bindings/remoteproc/ti,pru-rproc.yaml
+>>> +++ b/Documentation/devicetree/bindings/remoteproc/ti,pru-rproc.yaml
+>>> @@ -47,6 +47,7 @@ properties:
+>>>        - ti,j721e-pru    # for PRUs in K3 J721E SoC family
+>>>        - ti,j721e-rtu    # for RTUs in K3 J721E SoC family
+>>>        - ti,j721e-tx-pru # for Tx_PRUs in K3 J721E SoC family
+>>> +      - ti,am625-pru    # for PRUs in K3 AM62x SoC family
+>>
+>> Looks like out of order.
+> 
+> yes, this is out of sync with the existing format binding. I'll send a
+> patch fixing it.
 
-On Mon, May 16, 2022 at 12:05 AM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 13/05/2022 18:59, Douglas Anderson wrote:
-> > This adds board bindings for boards that are downstream but not quite
-> > upstream yet.
-> >
-> > Signed-off-by: Douglas Anderson <dianders@chromium.org>
-> > ---
-> >
-> > Changes in v2:
-> > - Use a "description" instead of a comment for each item.
-> > - Use the marketing name instead of the code name where possible.
->
-> These should be published with the patch adding their upstream DTS/DTSI.
-> There is no point to list all possible boards in the world from any
-> downstream source. For upstream there is no particular benefit for such
-> bindings, for downstream you also said there is no.
+I meant, you introduce it out-of-order. So this patch should be modified
+and new compatible added in some better place.
 
-Joe has been working on upstreaming these boards:
 
-https://lore.kernel.org/r/20220510154406.v5.1.Id769ddc5dbf570ccb511db96da59f97d08f75a9c@changeid/
-
-I think there is little chance that they won't go upstream at this
-point. However, we're at a time in the merge window where it will be
-several weeks before anything can land. If Joe were to include this
-patch as part of his series I suspect it would be much more confusing
-because it would add an unnecessary dependency between my series and
-his and make it harder for Bjorn to apply it later. Keeping the patch
-with my series means that the series can be applied more easily.
-
-How about: I'll add a link to his latest posting in my next version.
-Then, in the future (after these bindings patches have landed) then
-future boards can go together with their bindings.
-
--DOug
+Best regards,
+Krzysztof
