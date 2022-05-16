@@ -2,151 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 566E052939C
-	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 00:29:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C9C355293C2
+	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 00:48:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238045AbiEPW30 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 May 2022 18:29:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43756 "EHLO
+        id S1349726AbiEPWsP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 May 2022 18:48:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55086 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231352AbiEPW3Y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 May 2022 18:29:24 -0400
-Received: from mail-oa1-f47.google.com (mail-oa1-f47.google.com [209.85.160.47])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1295B2E0B7;
-        Mon, 16 May 2022 15:29:23 -0700 (PDT)
-Received: by mail-oa1-f47.google.com with SMTP id 586e51a60fabf-d39f741ba0so22050574fac.13;
-        Mon, 16 May 2022 15:29:23 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=yh0XlI6sXmeAe5luM19N0LQkxijUinkf8sEAUNmYP3Q=;
-        b=qS+ZKHOHLGJ8rP537lfXf64DFns50xjyGJfYspl7ecBhnDC7KX3WUZ4Q6jhp9mCLzc
-         naS+Zl1m1VkBAcPRDQVF7Qs7jOAm2exKxQkXGnI51dBTfj0+7m7Xi5PDhgALDe+HESuR
-         Cl1n0bKecYHCQ8E9VitYPu7sEgkB5245M1I2OGwK+FfQtDedOi7/z2ooKzkENJHwlgdR
-         zVCJkAeTlspycg8tMllFhYMAWXk8sIBvni+ddERjMWE58yNmOt0FUZfHP5JwuMCFSLgL
-         Cv7a1xh8PzbVLQODLITLs/VQHLBQdfd9li643BesfeLk6Y8yriCz9VflCZ5QaJo5/K2I
-         UWnA==
-X-Gm-Message-State: AOAM531Np0hNwpjwfoTP9JLf7IKeBMvmBW7J2rC5PGnAWCsKkU7c0+ha
-        wTNoTM8c+9C8SMImsLuU9w==
-X-Google-Smtp-Source: ABdhPJzLT9vxyhF1uirDEmBGXBu9ZLZamqOMw/AyDL+VxWaiVJrIVZNyky+QyzXlRh87Yu7ARSgqRw==
-X-Received: by 2002:a05:6870:179a:b0:f1:805a:dbec with SMTP id r26-20020a056870179a00b000f1805adbecmr7011164oae.25.1652740162306;
-        Mon, 16 May 2022 15:29:22 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id e2-20020a056870a60200b000e99b1909d4sm5808505oam.25.2022.05.16.15.29.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 May 2022 15:29:21 -0700 (PDT)
-Received: (nullmailer pid 3427730 invoked by uid 1000);
-        Mon, 16 May 2022 22:29:20 -0000
-Date:   Mon, 16 May 2022 17:29:20 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
-Cc:     Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        Serge Semin <fancer.lancer@gmail.com>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Frank Li <Frank.Li@nxp.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 16/17] PCI: dwc: Introduce generic platform clocks and
- resets sets
-Message-ID: <20220516222920.GC3296584-robh@kernel.org>
-References: <20220503214638.1895-1-Sergey.Semin@baikalelectronics.ru>
- <20220503214638.1895-17-Sergey.Semin@baikalelectronics.ru>
+        with ESMTP id S1349714AbiEPWsN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 May 2022 18:48:13 -0400
+Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C131441315
+        for <devicetree@vger.kernel.org>; Mon, 16 May 2022 15:48:10 -0700 (PDT)
+Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (Client did not present a certificate)
+        by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 7DE102C01C6;
+        Mon, 16 May 2022 22:48:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
+        s=mail181024; t=1652741288;
+        bh=1GS6Dpv7peXBo+oFsPrM70r4NHWXy3wXeFEEXUeukEY=;
+        h=From:To:Cc:Subject:Date:From;
+        b=N1xkDZA60xwb9JDZp4pIqQn3aHzQ/Ya5SG4rUD30f3qmXokILitrD1mLvVo+suvUm
+         SoK9+SiC0lz17Ul4uKYFEyje7QMXXblOgDE184/X+d1VUNOF2bCWsELBdg0bazKV6S
+         VSQ01Xk8f7v4wBKSvopq2XrGQANUU+6tWyqZqi3gOnPYzoNl5oCmgrlddJQznaJAur
+         3XnYp0sLFGAECb9hgfdnH+uIf2QQ7bOXDhPKihb6N7fSmMX2ZLBoWo5TrIK+kakyZB
+         1XvjLMVRl68+3B73pvoieAtOlZSLOe2b6eTKTQNtwuUxOq53OeheZ6wSJhzKviK0Vg
+         iRHpWd/newY3Q==
+Received: from pat.atlnz.lc (Not Verified[10.32.16.33]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
+        id <B6282d4a80000>; Tue, 17 May 2022 10:48:08 +1200
+Received: from chrisp-dl.ws.atlnz.lc (chrisp-dl.ws.atlnz.lc [10.33.22.30])
+        by pat.atlnz.lc (Postfix) with ESMTP id 3E0FC13ED7D;
+        Tue, 17 May 2022 10:48:08 +1200 (NZST)
+Received: by chrisp-dl.ws.atlnz.lc (Postfix, from userid 1030)
+        id 360C92A0086; Tue, 17 May 2022 10:48:08 +1200 (NZST)
+From:   Chris Packham <chris.packham@alliedtelesis.co.nz>
+To:     davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+        pabeni@redhat.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, andrew@lunn.ch,
+        gregory.clement@bootlin.com, sebastian.hesselbarth@gmail.com,
+        kabel@kernel.org
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Chris Packham <chris.packham@alliedtelesis.co.nz>
+Subject: [PATCH 0/2] armada-3720-turris-mox and orion-mdio
+Date:   Tue, 17 May 2022 10:47:59 +1200
+Message-Id: <20220516224801.1656752-1-chris.packham@alliedtelesis.co.nz>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220503214638.1895-17-Sergey.Semin@baikalelectronics.ru>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+X-SEG-SpamProfiler-Analysis: v=2.3 cv=U+Hs8tju c=1 sm=1 tr=0 a=KLBiSEs5mFS1a/PbTCJxuA==:117 a=oZkIemNP1mAA:10 a=mjDiMDIlsi9F-Tf1zcUA:9
+X-SEG-SpamProfiler-Score: 0
+x-atlnz-ls: pat
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 04, 2022 at 12:46:37AM +0300, Serge Semin wrote:
-> Currently almost each platform driver uses its own resets and clocks
-> naming in order to get the corresponding descriptors. It makes the code
-> harder to maintain and comprehend especially seeing the DWC PCIe core main
-> resets and clocks signals set hasn't changed much for about at least one
-> major IP-core release. So in order to organize things around these signals
-> we suggest to create a generic interface for them in accordance with the
-> naming introduced in the DWC PCIe IP-core reference manual:
-> 
-> Clocks:
-> - DBI - data bus interface clock (on some DWC PCIe platforms it's
->   referred as "pclk", "pcie", "sys", "ahb", "cfg", "iface", "gio", "reg",
->   "pcie_apb_sys");
-> - MSTR - AXI-bus master interface clock (some DWC PCIe glue drivers refer
->   to this clock as "port", "bus", "pcie_bus",
->   "bus_master/master_bus/axi_m", "pcie_aclk");
-> - SLV - AXI-bus slave interface clock (also called as "port", "bus",
->   "pcie_bus", "bus_slave/slave_bus/axi_s", "pcie_aclk",
->   "pcie_inbound_axi");
-> - PIPE - Core-PCS PIPE interface clock coming from external PHY (it's
->   normally named by the platform drivers as just "pipe")
-> - CORE - primary clock of the controller (none of the platform drivers
->   declare such a clock but in accordance with the ref. manual the devices
->   may have it separately specified);
-> - AUX - Auxiliary PMC domain clock (it is named by some platforms as
->   "pcie_aux" and just "aux")
-> - REF - Generic reference clock (it is a generic clock source, which can
->   be used as a signal source for multiple interfaces, some platforms call
->   it as "ref", "general", "pcie_phy", "pcie_phy_ref").
-> 
-> Application resets:
-> - DBI - Data-bus interface reset (it's CSR interface clock and is normally
->   called as "apb" though technically it's not APB but DWC PCIe-specific
->   interface);
->   apb, sys,
-> - MSTR -AXI-bus master reset (some platforms call it as "port", "apps",
->   "bus", "axi_m");
-> - SLV - ABI-bus slave reset (some platforms call it as "port", "apps",
->   "bus", "axi_s").
-> 
-> Core resets:
-> - NON_STICKY - Non-sticky CSR flags reset;
-> - STICKY - sticky CSR flags reset;
-> - PIPE - PIPE-interface (Core-PCS) logic reset (some platforms call it
->   just "pipe");
-> - CORE - controller primary reset (resets everything except PMC module,
->   some platforms refer to this signal as "soft", "pci");
-> - PHY - PCS/PHY block reset (strictly speaking it is normally connected to
->   the out of the external block, but the reference manual says it must be
->   available for the PMC working correctly, some existing platforms call it
->   as "pciephy", "phy", "link");
-> - HOT - PMC hot reset signal (also called as sleep");
-> - PWR - cold reset signal (can be referred as "pwr", "turnoff").
-> 
-> As you can see each platform uses it's own naming for basically the same
-> set of the signals. In the framework of this commit we suggest to add a
-> set of the clocks and signals identifiers and corresponding names for each
-> denoted entity. The platforms will be able to use them to define local
-> mapping tables between the generic identifiers and the available set of
-> the clocks and resets. The tables can be then utilized to create the
-> corresponding bulk-arrays, which in its turn can be passed to the
-> clock/reset-bulk API methods to easily get/enable/disable/put,
-> get/reset/assert/deassert/put all the handlers at once or, if it's
-> required, manipulate with the handlers individually.
+This is a follow up to the change that converted the orion-mdio dt-bindin=
+g from
+txt to DT schema format. At the time I thought the binding needed
+'unevaluatedProperties: false' because the core mdio.yaml binding didn't =
+handle
+the DSA switches. In reality it was simply the invalid reg property causi=
+ng the
+downstream nodes to be unevaluated. Fixing the reg nodes means we can set
+'unevaluatedProperties: true'
 
-No doubt there is way to much variation here (ummm, Qcom!). Some 
-standardization of names in (new) bindings would be good. That's where 
-we should be defining names IMO.
+Marek,
 
-On the driver side, I'd like to see the DW core handle clocks/resets/phys 
-at least for the easy cases of just turn on/off all the clocks and 
-toggle all resets. Perhaps even more minimally, move the clk/reset 
-struct pointers to the DWC core.
+I don't know if you had a change for the reg properties in flight. I didn=
+'t see
+anything on lore/lkml so sorry if this crosses with something you've done=
+.
 
-IOW, I'm not sure this patch is really helpful without some of the above 
-happening. 
+Chris Packham (2):
+  arm64: dts: armada-3720-turris-mox: Correct reg property for mdio
+    devices
+  dt-bindings: net: marvell,orion-mdio: Set unevaluatedProperties to
+    false
 
-Rob
+ .../devicetree/bindings/net/marvell,orion-mdio.yaml  |  2 +-
+ .../boot/dts/marvell/armada-3720-turris-mox.dts      | 12 ++++++------
+ 2 files changed, 7 insertions(+), 7 deletions(-)
+
+--=20
+2.36.1
+
