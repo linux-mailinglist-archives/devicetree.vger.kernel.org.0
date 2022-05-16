@@ -2,179 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F0C4528824
-	for <lists+devicetree@lfdr.de>; Mon, 16 May 2022 17:12:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D736528827
+	for <lists+devicetree@lfdr.de>; Mon, 16 May 2022 17:12:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245022AbiEPPLx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 May 2022 11:11:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38466 "EHLO
+        id S240247AbiEPPLw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 May 2022 11:11:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38386 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245142AbiEPPLj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 May 2022 11:11:39 -0400
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD3BA393CC
-        for <devicetree@vger.kernel.org>; Mon, 16 May 2022 08:11:37 -0700 (PDT)
-Received: by mail-ej1-x62a.google.com with SMTP id i19so29268579eja.11
-        for <devicetree@vger.kernel.org>; Mon, 16 May 2022 08:11:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=QhOe+cbJpQ93yezmNjBYNkoQz1rzToEQuOQW8v6GMak=;
-        b=TMjo+X04V5/NRDQ2Z2Yd8NypG6VmbuZCI/jaFOpz3fPoo06X/Hub6O/PggtslDk28m
-         N9d8jcS/6+aKEqZBK6bahPJkmst9B3dKAsE/eWEGdkHAGgt5/Yu4/IqtcGpFEo0v6v3C
-         DA4hoXRONUlwqFy6gocEufGRgWB9dI8rPhT04=
+        with ESMTP id S245139AbiEPPLh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 May 2022 11:11:37 -0400
+Received: from mail-oo1-f44.google.com (mail-oo1-f44.google.com [209.85.161.44])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40827A8
+        for <devicetree@vger.kernel.org>; Mon, 16 May 2022 08:11:36 -0700 (PDT)
+Received: by mail-oo1-f44.google.com with SMTP id y22-20020a4acb96000000b0035eb01f5b65so4082935ooq.5
+        for <devicetree@vger.kernel.org>; Mon, 16 May 2022 08:11:36 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=QhOe+cbJpQ93yezmNjBYNkoQz1rzToEQuOQW8v6GMak=;
-        b=ssG5DEBIYtm0/p7MC0BsXyFaeRJ+PVKDZiEO2Q/ieVjKLByhwIWRVnRoEe8V9NHgho
-         SWC1feQA7pV8AAZ122IfJTSu+mYkTS9ab5L2CddHO7HqV/RNeqNwyYcupQGj9p2xeb20
-         cZGTTGlGv48LFaBcmJw6CGVNdiBsWyz2w2q4Rp1YABbdRznj5Z/AH4elQYUbfUssb5/Q
-         2uCe+mdb5dwSdBEl4TY6mrVfcC7jD0WvriQNU0JqTT8cLPEX6FnR3hCilSDh1+WP5G15
-         UoPeS4IXH0kEc3n8xBatOy95bqSNLoqI2JT8RMzDto6zhkrGg3KxzBQaUwTuPm8Nr7VF
-         m4fA==
-X-Gm-Message-State: AOAM531gFZjR8RQkjRZwsEQwyDLOn0W0VE4gJv3fKtvy5uZkbexbR2m2
-        z0s1n1+nk7h6wAldpLBRFMCggpwqcoM3YPn5Bo4=
-X-Google-Smtp-Source: ABdhPJwhGgr3Y3oFeeRk4ReAKizT47sZgc/Te5fYzRuEVO1OkKlwZ3n06Bwm+lzjscRQdYo3p/YjUw==
-X-Received: by 2002:a17:906:6a0f:b0:6f5:15cf:2e5 with SMTP id qw15-20020a1709066a0f00b006f515cf02e5mr15292801ejc.584.1652713896126;
-        Mon, 16 May 2022 08:11:36 -0700 (PDT)
-Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com. [209.85.221.49])
-        by smtp.gmail.com with ESMTPSA id f2-20020a056402004200b0042617ba63c4sm5459416edu.78.2022.05.16.08.11.34
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=XQZilFNnyWOrnsd9+O3k/1NtnfB23HnxNigB7mEQs6g=;
+        b=TQIg+2MWcwOZTZK4C9i4Hrazt1bP/IePWbsZ5mS9cmvwx8asggqEpj0HhUHxcUAnst
+         oZtFs8bkRUcimYnKKHAs5JTMuPIgmX84j1FNNEUrAr69cA4hP0+ATnaUxTE9fUjA4viG
+         QHSvY9IuOt2PMa/Sc9OLG9Q0p/fPOuH/eP90dtc88D/ehqVwWSYDwiQzr9sp8EzbwNz3
+         9rxlPtdG1IYy5f5RTndZUmaHLDnJlLLfBE/b5nH7mdFcGtlx0X8rLBL2+2lR1i0KTQCJ
+         gqciG6OGInHnA8/Y6QspLLXUwHzArcvpleTiP/fvULagFB0E0M80/pVzKRORpn1D6Ida
+         IYXg==
+X-Gm-Message-State: AOAM530F97RqeHPpOErHgZctW1RVdLMfAO/t3lAddjfiYBjKVMxppkym
+        pH2W0W3Qq+oWMW9vcpuwEg==
+X-Google-Smtp-Source: ABdhPJwoINneFOPVMUiM8+pXuhnEFeSw9ccB7ueOeoHaNfTmlTOq11kp8/ddeparMJV2zMR12s/fGw==
+X-Received: by 2002:a4a:ea16:0:b0:35e:9a71:4826 with SMTP id x22-20020a4aea16000000b0035e9a714826mr6084849ood.76.1652713895492;
+        Mon, 16 May 2022 08:11:35 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id q9-20020aca5c09000000b00325cda1ffb6sm3834548oib.53.2022.05.16.08.11.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
         Mon, 16 May 2022 08:11:34 -0700 (PDT)
-Received: by mail-wr1-f49.google.com with SMTP id u3so21003847wrg.3
-        for <devicetree@vger.kernel.org>; Mon, 16 May 2022 08:11:34 -0700 (PDT)
-X-Received: by 2002:a5d:5009:0:b0:20d:846:f4da with SMTP id
- e9-20020a5d5009000000b0020d0846f4damr4962075wrt.301.1652713894018; Mon, 16
- May 2022 08:11:34 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220512090429.1.I9804fcd5d6c8552ab25f598dd7a3ea71b15b55f0@changeid>
- <828bc65f-e585-0fe7-c038-c750861c9446@linaro.org> <48d96a4e-ce1b-03a1-1831-36555efd7080@linaro.org>
- <CAD=FV=WNSv+kgTZwjHVq+YNQAG0uB42QUPaU-BPTV_W+j=5aYg@mail.gmail.com> <96686d6d-83a9-05a2-9fdc-f9fc4b4e7eed@linaro.org>
-In-Reply-To: <96686d6d-83a9-05a2-9fdc-f9fc4b4e7eed@linaro.org>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Mon, 16 May 2022 08:11:21 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=W8F5xbv2tKhCvjLLHitts+eQFbFE3fb3wogwY91Q7gAA@mail.gmail.com>
-Message-ID: <CAD=FV=W8F5xbv2tKhCvjLLHitts+eQFbFE3fb3wogwY91Q7gAA@mail.gmail.com>
-Subject: Re: [PATCH 1/3] dt-bindings: arm: qcom: Add sc7180 Chromebook board bindings
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Rob Herring <robh@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Alexandru M Stan <amstan@chromium.org>,
-        Rajendra Nayak <quic_rjendra@quicinc.com>,
-        "Joseph S . Barrera III" <joebar@chromium.org>,
-        Julius Werner <jwerner@chromium.org>,
-        Andy Gross <agross@kernel.org>,
+Received: (nullmailer pid 2652479 invoked by uid 1000);
+        Mon, 16 May 2022 15:11:33 -0000
+Date:   Mon, 16 May 2022 10:11:33 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     Lucas Stach <l.stach@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Paul Elder <paul.elder@ideasonboard.com>,
+        Marek Vasut <marex@denx.de>, Rob Herring <robh+dt@kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@codeaurora.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH] dt-bindings: soc: imx8mp-media-blk-ctrl: Fix DT example
+Message-ID: <20220516151133.GA2652417-robh@kernel.org>
+References: <20220510200543.13482-1-laurent.pinchart@ideasonboard.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220510200543.13482-1-laurent.pinchart@ideasonboard.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Tue, 10 May 2022 23:05:43 +0300, Laurent Pinchart wrote:
+> The DT example incorrectly names the ISP power domain "isp1" instead of
+> "isp". This causes a validation failure:
+> 
+> Documentation/devicetree/bindings/soc/imx/fsl,imx8mp-media-blk-ctrl.example.dtb: blk-ctl@32ec0000: power-domain-names:7: 'isp' was expected
+>         From schema: Documentation/devicetree/bindings/soc/imx/fsl,imx8mp-media-blk-ctrl.yaml
+> 
+> Fix it.
+> 
+> Fixes: 584d6dd668e2 ("dt-bindings: soc: Add i.MX8MP media block control DT bindings")
+> Reported-by: Rob Herring <robh+dt@kernel.org>
+> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> ---
+> Shawn, this fixes an issue in linux-next, could you please apply the
+> patch to your imx/bindings branch for v5.19 ?
+> ---
+>  .../devicetree/bindings/soc/imx/fsl,imx8mp-media-blk-ctrl.yaml  | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
 
-On Sun, May 15, 2022 at 11:40 PM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 13/05/2022 19:00, Doug Anderson wrote:
-> > Hi,
-> >
-> > On Fri, May 13, 2022 at 2:01 AM Krzysztof Kozlowski
-> > <krzysztof.kozlowski@linaro.org> wrote:
-> >>
-> >> On 13/05/2022 09:57, Krzysztof Kozlowski wrote:
-> >>> On 12/05/2022 18:04, Douglas Anderson wrote:
-> >>>> This copy-pastes compatibles from sc7180-based boards from the device
-> >>>> trees to the yaml file so that `make dtbs_check` will be happy.
-> >>>>
-> >>>> NOTES:
-> >>>> - I make no attempt to try to share an "item" for all sc7180 based
-> >>>>   Chromebooks. Because of the revision matching scheme used by the
-> >>>>   Chromebook bootloader, at times we need a different number of
-> >>>>   revisions listed.
-> >>>> - Some of the odd entries in here (like google,homestar-rev23 or the
-> >>>>   fact that "Google Lazor Limozeen without Touchscreen" changed from
-> >>>>   sku5 to sku6) are not typos but simply reflect reality.
-> >>>> - Many revisions of boards here never actually went to consumers, but
-> >>>>   they are still in use within various companies that were involved in
-> >>>>   Chromebook development. Since Chromebooks are developed with an
-> >>>>   "upstream first" methodology, having these revisions supported with
-> >>>>   upstream Linux is important. Making it easy for Chromebooks to be
-> >>>>   developed with an "upstream first" methodology is valuable to the
-> >>>>   upstream community because it improves the quality of upstream and
-> >>>>   gets Chromebooks supported with vanilla upstream faster.
-> >>>>
-> >>>> Signed-off-by: Douglas Anderson <dianders@chromium.org>
-> >>>> ---
-> >>>>
-> >>>>  .../devicetree/bindings/arm/qcom.yaml         | 180 ++++++++++++++++++
-> >>>>  1 file changed, 180 insertions(+)
-> >>>>
-> >>>> diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
-> >>>> index 5c06d1bfc046..399be67eb5d2 100644
-> >>>> --- a/Documentation/devicetree/bindings/arm/qcom.yaml
-> >>>> +++ b/Documentation/devicetree/bindings/arm/qcom.yaml
-> >>>> @@ -214,11 +214,191 @@ properties:
-> >>>>                - qcom,ipq8074-hk10-c2
-> >>>>            - const: qcom,ipq8074
-> >>>>
-> >>>> +      # Qualcomm Technologies, Inc. SC7180 IDP
-> >>>>        - items:
-> >>>>            - enum:
-> >>>>                - qcom,sc7180-idp
-> >>>>            - const: qcom,sc7180
-> >>>>
-> >>>> +      # Google CoachZ (rev1 - 2)
-> >>>> +      - items:
-> >>>> +          - const: google,coachz-rev1
-> >>>> +          - const: google,coachz-rev2
-> >>>
-> >>> The inverted pattern of old revision being compatible with the new one,
-> >>> is done on purpose? You claim here every rev1 is always compatible with
-> >>> rev2 ...
-> >>>
-> >>> I don't think we discussed such patterns in previous talk. I quickly
-> >>> went through it and there were only skuX moving around, not rev1 being
-> >>> newer then rev2.
-> >
-> > Isn't this what we just had a whole discussion about?
-> >
-> > Oh, I see. You're objecting to the fact that the order here lists
-> > "rev1" first and "rev2" second.
-> >
-> > I think the issue here is that for the purposes of booting Chromebooks
-> > the order here doesn't matter. Certainly we can pick a fixed order and
-> > we can validate that the order in the yaml matches the order in the
-> > device tree, but for all intents and purposes it doesn't matter to
-> > anything. The same device tree is compatible with _both_ rev1 and rev2
-> > coachz devices. Neither of those two devices is inherently better
-> > supported by this device tree than the other.
->
-> OK, thanks for explanation. Since these were not documented maybe fixing
-> existing DTS to more expected order (rev2 being the newest, rev1
-> following) would make sense. But certainly please use such new order
-> compatibles for new DTSes.
-
-I'm still not sure I understand: if the list of revisions is
-effectively unordered, why does it matter which order they are listed
-in? Certainly we can change the order, but I'm not sure how I justify
-the extra churn in my patch description.
-
--Doug
+Acked-by: Rob Herring <robh@kernel.org>
