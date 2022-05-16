@@ -2,116 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B8CBD527EA9
-	for <lists+devicetree@lfdr.de>; Mon, 16 May 2022 09:36:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B5AAE527EC7
+	for <lists+devicetree@lfdr.de>; Mon, 16 May 2022 09:45:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241193AbiEPHfp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 May 2022 03:35:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57318 "EHLO
+        id S241235AbiEPHp0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 May 2022 03:45:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50082 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229771AbiEPHfe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 May 2022 03:35:34 -0400
-Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::226])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3D0323173;
-        Mon, 16 May 2022 00:35:31 -0700 (PDT)
-Received: (Authenticated sender: clement.leger@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 5BD3AC0009;
-        Mon, 16 May 2022 07:35:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1652686529;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=qBDInhr0yZ1fOXspgyh+6sLKoxgAx7ViWH8dL349Tjs=;
-        b=d+goV1MEW4MIn5lwfeiPYXFuKknZCEbSnceabWOkWUCcFnwHzHhkbWbv19xk4BMzUin/If
-        VjwgWZ+2vG/A+h+EZXcxrKu0u8t57ZPvipF/eGcow08Fz0VwqlylGmvh8UKXIPc/aCmgpH
-        DjQP362ER2T9Qe6kOze832gbVDSHMmrrtHwrrvAMFDZsm2VXHTRDq+Mnxor1rrmA3j6DmA
-        9CK0CxqjWbUg/NwlCriR+rYzjYzIW63YHN/1DqIkdCr45xIscptJW2iJmX06KF8FIj1RRr
-        uIx3LpKShMGunnZdaDUppLXHJnnLuQVbuEkDEtm7nYVOtf6gHEDoSG9A7tXtWg==
-Date:   Mon, 16 May 2022 09:34:18 +0200
-From:   =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
-To:     Peter Rosin <peda@axentia.se>
-Cc:     Wolfram Sang <wsa@kernel.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Daniel Scally <djrscally@gmail.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Len Brown <lenb@kernel.org>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Allan Nielsen <allan.nielsen@microchip.com>,
-        linux-kernel@vger.kernel.org, linux-acpi@vger.kernel.org,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 0/9] introduce fwnode in the I2C subsystem
-Message-ID: <20220516093418.0038845c@fixe.home>
-In-Reply-To: <12be48dc-b5d1-063c-87a0-050886cc2505@axentia.se>
-References: <20220325113148.588163-1-clement.leger@bootlin.com>
-        <Yn/BFKwzVLwrjF/F@shikoro>
-        <12be48dc-b5d1-063c-87a0-050886cc2505@axentia.se>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-pc-linux-gnu)
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+        with ESMTP id S238326AbiEPHpY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 May 2022 03:45:24 -0400
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3BCB24F16
+        for <devicetree@vger.kernel.org>; Mon, 16 May 2022 00:45:22 -0700 (PDT)
+Received: by mail-ej1-x629.google.com with SMTP id z2so26949413ejj.3
+        for <devicetree@vger.kernel.org>; Mon, 16 May 2022 00:45:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=fairphone.com; s=fair;
+        h=mime-version:content-transfer-encoding:date:message-id:cc:subject
+         :from:to:references:in-reply-to;
+        bh=21e+O6a/0NQnBECsUblxR6mTia9rEVhmdm2lp/29jkY=;
+        b=fcr1QxfEr0HCRvXrgOstMlmzEa5x/qaQxKyfu87La+0aiPxd3NTmjHb8XZCfaIhBBR
+         yZlIeLPDeeQc0LNHSTOu8R9/lW/f+PZTUdMn+6icXtB2qKIdRQyE6TVS6z1npqbEYNDG
+         YjMQLUq92ZtZ+Nz6GPH2rLo3PRuYQ8ptHRS/aOcO2S/Da07Wn5JmLOuNfr9GxhB/PbcL
+         Y6ycu+J9BeM+v3oWsRCzyg1COi9tdHK9SnvGQMD6j9ezQm9ih0KrDJxuhb7adI7YumE5
+         DgQD/OANI8nFfI7hjE03ejAV64e3EYwgJGnJNmQ74fPZzHqLY1y245jobjRYSq1tiGiq
+         Os4w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:content-transfer-encoding:date
+         :message-id:cc:subject:from:to:references:in-reply-to;
+        bh=21e+O6a/0NQnBECsUblxR6mTia9rEVhmdm2lp/29jkY=;
+        b=jp0C+CMDGjls1C1+GGQ/jFxRtoIgMupBJWDET1K8IzehtBf4p8gm4Jy2qTalePsOqJ
+         SxhdIIghxLnz3dwL6BJX3BaVD2UiYdIC6/Vbb5zB4S1C7txFCDsaJSUY1Lcsuuks1CUq
+         fUmV98rhXZIaE2WUj0EP1GSca2CoI5SfATq7nhlGhJcdUwBUayBc7nttoE5qEXjMYTTr
+         /YssgYvDLpPHAeCu6nxDzyesv+tJ2rsPlUxBN614L4REYtxGurioA+YOSdl5h8Gsojry
+         wL5jQBrvxXjq1urz/zMsTIKsk9kOFIwyABlPf3XvmOBeEhlhpri4lqbW+C3xB/du0a6J
+         7HEw==
+X-Gm-Message-State: AOAM531YPbVggeJ5/SM89nHDJl+TSohdgMLNzizc2wqVwVpXsvCXFUjZ
+        n9/QOZqLDxM7+V5kH/MUmf1vTQ==
+X-Google-Smtp-Source: ABdhPJz7BbCTvyGtaVJ3tAW9MxQnhNQH6NUdZwryDCDX+Ji2qugloOBjcp9IZjWHCPc380+95m3wxg==
+X-Received: by 2002:a17:906:3087:b0:6f4:2901:608a with SMTP id 7-20020a170906308700b006f42901608amr14292893ejv.646.1652687121379;
+        Mon, 16 May 2022 00:45:21 -0700 (PDT)
+Received: from localhost (144-178-202-138.static.ef-service.nl. [144.178.202.138])
+        by smtp.gmail.com with ESMTPSA id eo10-20020a1709069b0a00b006f3ef214dbesm3409794ejc.36.2022.05.16.00.45.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 16 May 2022 00:45:20 -0700 (PDT)
+Mime-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Date:   Mon, 16 May 2022 09:45:20 +0200
+Message-Id: <CK10OTVFAP75.WCSVY40A7PXO@otso>
+Cc:     <~postmarketos/upstreaming@lists.sr.ht>,
+        <phone-devel@vger.kernel.org>, "Rob Herring" <robh@kernel.org>,
+        "Andy Gross" <agross@kernel.org>,
+        "Thomas Gleixner" <tglx@linutronix.de>,
+        "Marc Zyngier" <maz@kernel.org>,
+        "Rob Herring" <robh+dt@kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v2] dt-bindings: qcom,pdc: convert to YAML
+From:   "Luca Weiss" <luca.weiss@fairphone.com>
+To:     "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>,
+        <linux-arm-msm@vger.kernel.org>,
+        "Bjorn Andersson" <bjorn.andersson@linaro.org>
+X-Mailer: aerc 0.9.0
+References: <20220103074348.6039-1-luca.weiss@fairphone.com>
+ <bef4922d-4a32-f184-44a1-8f5430190938@linaro.org>
+ <fef5f229-f247-d032-fc76-46ed7083dbf4@linaro.org>
+In-Reply-To: <fef5f229-f247-d032-fc76-46ed7083dbf4@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Le Sun, 15 May 2022 23:34:16 +0200,
-Peter Rosin <peda@axentia.se> a =C3=A9crit :
+Hi Krzysztof,
 
-> 2022-05-14 at 16:47, Wolfram Sang wrote:
-> > O =20
-> >> This series is a subset of the one that was first submitted as a larger
-> >> series to add swnode support [1]. In this one, it will be focused on
-> >> fwnode support only since it seems to have reach a consensus that
-> >> adding fwnode to subsystems makes sense. =20
+On Mon May 9, 2022 at 10:40 AM CEST, Krzysztof Kozlowski wrote:
+> On 09/05/2022 10:38, Krzysztof Kozlowski wrote:
+> > On 03/01/2022 08:43, Luca Weiss wrote:
+> >> Convert the PDC interrupt controller bindings to YAML.
+> >>
+> >> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+> >> Reviewed-by: Rob Herring <robh@kernel.org>
+> >> ---
+> >> Changes since v1:
+> >> * Adjust description of second reg-name as suggested by Maulik Shah
+> >>
+> >> @Rob Herring: Hope it's ok to keep your R-b given the above changes
+> >>
+> >> This patch depends on the following patch, which fixed sm8250 & sm8350
+> >> compatibles and adds sm6350.
+> >> https://lore.kernel.org/linux-arm-msm/20211213082614.22651-4-luca.weis=
+s@fairphone.com/
 > >=20
-> > From a high level view, I like this series. Though, it will need Peter's
-> > ack on the I2C mux patches as he is the I2C mux maintainer. Still, I
-> > wonder about the way to upstream the series. Feels like the first 5
-> > patches should not go via I2C but seperately? =20
->=20
-> Hi Wolfram,
->=20
-> I also think it looks basically sane. However, there are a couple of
-> comments plus promises to adjust accordingly. I guess I filed it under
-> "wait for the next iteration"...
->=20
-> Cheers,
-> Peter
+> > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> >=20
+> > Luca,
+> > I think this needs resending as dependency was merged. Alternatively,
+> > maybe Bjorn could pick it up through QCom SoC?
+>
+> Correction - it seems that Rob took the dependency in April, so this
+> should go via Rob's tree as well.
+>
+> Luca, can you resend without Rob's Review tag and ask him to pick it up?
+>
 
-Hi Wolfram & Peter,
+So... since torvalds/master my sm6350 patch is merged through Rob's
+tree, but there was also a sm8150 patch applied through Linus Walleij's
+tree. This means (as far as I understand) that neither can really
+properly apply this (rebased) patch as one tree will have missed the
+other commit.
 
-While doing the same conversion on the reset subsystem, Rob Herring
-stepped in and mention the fact that this could be done using
-device-tree overlay (even on system with ACPI) .
+Does it make sense to send a v3 rebased on linux-next now, or wait until
+this has settled down in torvalds's tree?
 
-The result was that a new serie [1] which add support to create the PCI
-devices of_node if not existing, and then allow drivers to applies an
-overlay which describe the tree of devices as a child of a specific PCI
-device of_node. There are a lot of advantages to this approach (small
-patchset working for all susbystems, easier to use, description is
-using already existing device-tree). There are still some concerns
-about the viability of dynamic overlay but this might be settled soon.
+Regards
+Luca
 
-Regards,
+>
+> Best regards,
+> Krzysztof
 
-[1] https://lore.kernel.org/all/20220509141634.16158c38@xps-bootlin/T/
-
---=20
-Cl=C3=A9ment L=C3=A9ger,
-Embedded Linux and Kernel engineer at Bootlin
-https://bootlin.com
