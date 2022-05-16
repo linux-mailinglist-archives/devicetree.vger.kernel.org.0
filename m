@@ -2,61 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 487555293DF
-	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 00:56:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CD48F5293E9
+	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 00:56:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233282AbiEPW4f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 May 2022 18:56:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45666 "EHLO
+        id S1349845AbiEPW4o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 May 2022 18:56:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47736 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349826AbiEPW4C (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 May 2022 18:56:02 -0400
-Received: from mail-oa1-f44.google.com (mail-oa1-f44.google.com [209.85.160.44])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7680865BB;
-        Mon, 16 May 2022 15:55:59 -0700 (PDT)
-Received: by mail-oa1-f44.google.com with SMTP id 586e51a60fabf-f16a3e0529so11831678fac.2;
-        Mon, 16 May 2022 15:55:59 -0700 (PDT)
+        with ESMTP id S1349855AbiEPW4n (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 May 2022 18:56:43 -0400
+Received: from mail-oa1-f48.google.com (mail-oa1-f48.google.com [209.85.160.48])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3EAD29C93;
+        Mon, 16 May 2022 15:56:38 -0700 (PDT)
+Received: by mail-oa1-f48.google.com with SMTP id 586e51a60fabf-edf9ddb312so22152473fac.8;
+        Mon, 16 May 2022 15:56:38 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=WWIkYq2gmKsjJ10G1579jbzJ51SdBFfwyh8O5uRzmK0=;
-        b=c3iKe5OXPkqJWM4NbtdXUvjqgyzcNdcIkB5SPCp/irJ1Tqt8PdHHLiAoBaOCoP9cSE
-         BaORZ0q97TgdOBkNYpqkzYoIetRUGThauilZFowhDPiFg1+0ovIefL1rKWEhw68D2JgP
-         ikmUKFpdWQXNm8ZSUVXGmX1yzFW754tzFB6BUsvDF2NYy4tx++bUyyIlAN0yaHgBqTSC
-         zrXHrmz5Ftj1rnp+SLR4gpd7owVXeSqZXUk68a423jj0Na1MA/Vko/KijLZt1LJQBtpa
-         JtKHoH1Ny37O18DB8IJaeIDvm21ksi+dRZlcHEikJgihAbj6DiGEmX9sTtQYANX5szLt
-         17MA==
-X-Gm-Message-State: AOAM533ZHKVUjVp4DC+5hcj9Pa1dQokdCnr6lyeQ9fFzRr+L6MpWYbdb
-        tPLIExIpe0MyNUawP9gZwg==
-X-Google-Smtp-Source: ABdhPJwk3pQZyl//Mn32sjbmvYJ11kR4v8NtTekdMFosCVDqdVv8PAXebaB3Di53dAeOJFllXSwflA==
-X-Received: by 2002:a05:6870:2189:b0:ed:995f:8f1 with SMTP id l9-20020a056870218900b000ed995f08f1mr10428874oae.33.1652741758724;
-        Mon, 16 May 2022 15:55:58 -0700 (PDT)
+        bh=9JpR0VbPHC9Ot9LMXLbulS3SOKAjNY3sH8Ig5/561d0=;
+        b=nG4FYGjZ+YlrsT11SiFZ7M6nz8J3Mo3yDUVt39dyaby9sJMlVzT3WYLPg0CkguPQWD
+         LhGGGh6S8BH+lmWdnmXnaYM1k/G2pejJ2WHiAHfJKpL/9GceEJVs1BZiHP1/wBdatcqM
+         hOok4+FCSr30CUz4skDxE8AnbU5cl955lmDI9TDLHOQbPzKvyByJjO3tM0BqB9gL7YF6
+         wcRirWrlE6TD9z/DXyHytMf6cEkdSHsbo0i7CejYPai0C9kDaShB175I4p+2FoWqZ1Jk
+         pHZr032jyAX4Jsy+ht99KTSq/p+BGPIumxjxmPpo+4SrAM5+EwrtHfHuzeJkxn1Sm1Hs
+         TeGQ==
+X-Gm-Message-State: AOAM533zFi3bbzj6jew5Q6YtIEPZzQb3HSxcAZDxj9bjWpwvKKW3Va5Y
+        z77861hh1PhCfEdGv4zGeg==
+X-Google-Smtp-Source: ABdhPJwxKQk9+/mRedofsllv+p9O0Iv9HVxFpCS4EiHKJmsKR/DTsoiZSjr53bOAe0CGl8MZjRB6uA==
+X-Received: by 2002:a05:6870:469e:b0:f1:6a40:e7dd with SMTP id a30-20020a056870469e00b000f16a40e7ddmr8836756oap.260.1652741798040;
+        Mon, 16 May 2022 15:56:38 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id t14-20020a056870f20e00b000f15a771206sm5406648oao.36.2022.05.16.15.55.57
+        by smtp.gmail.com with ESMTPSA id y22-20020a4a6256000000b0035eb4e5a6cfsm4578810oog.37.2022.05.16.15.56.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 May 2022 15:55:57 -0700 (PDT)
-Received: (nullmailer pid 3473100 invoked by uid 1000);
-        Mon, 16 May 2022 22:55:57 -0000
-Date:   Mon, 16 May 2022 17:55:57 -0500
+        Mon, 16 May 2022 15:56:37 -0700 (PDT)
+Received: (nullmailer pid 3474248 invoked by uid 1000);
+        Mon, 16 May 2022 22:56:36 -0000
+Date:   Mon, 16 May 2022 17:56:36 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Cristian Marussi <cristian.marussi@arm.com>
-Cc:     f.fainelli@gmail.com, daniel.lezcano@linaro.org,
-        Rob Herring <robh+dt@kernel.org>, sudeep.holla@arm.com,
-        vincent.guittot@linaro.org, james.quinlan@broadcom.com,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        souvik.chakravarty@arm.com, adrian.slatineanu@arm.com,
-        devicetree@vger.kernel.org, tarek.el-sherbiny@arm.com,
-        Jonathan.Cameron@huawei.com
-Subject: Re: [PATCH 1/7] dt-bindings: firmware: arm,scmi: Add powercap
- protocol
-Message-ID: <20220516225557.GA3473042-robh@kernel.org>
-References: <20220504093609.3077646-1-cristian.marussi@arm.com>
- <20220504093609.3077646-2-cristian.marussi@arm.com>
+To:     Jagan Teki <jagan@amarulasolutions.com>
+Cc:     Tim Harvey <tharvey@gateworks.com>,
+        Inki Dae <inki.dae@samsung.com>,
+        Matteo Lisi <matteo.lisi@engicam.com>,
+        dri-devel@lists.freedesktop.org,
+        linux-arm-kernel@lists.infradead.org,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Adam Ford <aford173@gmail.com>, Fancy Fang <chen.fang@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Seung-Woo Kim <sw0312.kim@samsung.com>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Joonyoung Shim <jy0922.shim@samsung.com>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        linux-amarula <linux-amarula@amarulasolutions.com>,
+        Robert Foss <robert.foss@linaro.org>,
+        linux-samsung-soc@vger.kernel.org,
+        Michael Nazzareno Trimarchi <michael@amarulasolutions.com>,
+        Tommaso Merciai <tommaso.merciai@amarulasolutions.com>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        Frieder Schrempf <frieder.schrempf@kontron.de>
+Subject: Re: [PATCH v2 11/12] dt-bindings: display: exynos: dsim: Add NXP
+ i.MX8MM support
+Message-ID: <20220516225636.GA3474191-robh@kernel.org>
+References: <20220504114021.33265-1-jagan@amarulasolutions.com>
+ <20220504114021.33265-12-jagan@amarulasolutions.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220504093609.3077646-2-cristian.marussi@arm.com>
+In-Reply-To: <20220504114021.33265-12-jagan@amarulasolutions.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -68,15 +82,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 04 May 2022 10:36:03 +0100, Cristian Marussi wrote:
-> Add new SCMIv3.1 Powercap protocol bindings definitions and example.
+On Wed, 04 May 2022 17:10:20 +0530, Jagan Teki wrote:
+> Samsung MIPI DSIM bridge can also be found in i.MX8MM SoC.
 > 
+> Add dt-bingings for it.
+> 
+> v2:
+> * updated comments
+> 
+> v1:
+> * new patch
+> 
+> Cc: devicetree@vger.kernel.org,
 > Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: devicetree@vger.kernel.org
-> Signed-off-by: Cristian Marussi <cristian.marussi@arm.com>
+> Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
 > ---
->  .../devicetree/bindings/firmware/arm,scmi.yaml         | 10 ++++++++++
->  1 file changed, 10 insertions(+)
+> Note:
+> I will send separate series for updating to yaml as the existing binding
+> is old that it has some properties need to fix.
+> 
+>  Documentation/devicetree/bindings/display/exynos/exynos_dsim.txt | 1 +
+>  1 file changed, 1 insertion(+)
 > 
 
 Acked-by: Rob Herring <robh@kernel.org>
