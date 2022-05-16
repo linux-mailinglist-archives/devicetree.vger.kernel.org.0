@@ -2,120 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4454A52834D
-	for <lists+devicetree@lfdr.de>; Mon, 16 May 2022 13:32:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0BB1352835A
+	for <lists+devicetree@lfdr.de>; Mon, 16 May 2022 13:36:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239672AbiEPLcw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 May 2022 07:32:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34564 "EHLO
+        id S237636AbiEPLgT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 May 2022 07:36:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39648 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229527AbiEPLcv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 May 2022 07:32:51 -0400
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 317D138D8B;
-        Mon, 16 May 2022 04:32:50 -0700 (PDT)
-Received: by mail-wm1-x329.google.com with SMTP id p5-20020a1c2905000000b003970dd5404dso793881wmp.0;
-        Mon, 16 May 2022 04:32:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=caeR1d5UF/OVvqIoQomSco97tJ43m4mKPZrJZyYHxJw=;
-        b=J9z9Eo4Uws1wL5DN7Apv1Nidg+AkLal3CFdoeL6/CmNOcfT+UuLdAwwacmvG72zOjp
-         AJfH7g3i4BHKEG3vxH0OCHDxdgDOWHtmgZoSfTjRvEhAPgwsfzY0PgDT0uDPZ2QzGsSb
-         K8e21Vw3Q/4L5V2DDzqveSFoIMTm4O8Z1Eg0AQxycGm9+FcRUhjuQvLyLzZLYXpZ8c+U
-         nxHnJEoTyKSxHH6VU5jLYXW8Wi5vz+8KgiL1r73b+mqpC6r6bX72GL53a/Zhjf8iroFY
-         FgUN9zRwN0Jo/Z88OXmjABQ34oU6ncA478+oJ1k1OXf0rZ3NbiEdheSVwWLMaHekGxx9
-         PJ2g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=caeR1d5UF/OVvqIoQomSco97tJ43m4mKPZrJZyYHxJw=;
-        b=XHcaxlv3YOf59u8YzLiGiCLkNsPGCTkkmBFittSgZbeFnBgcUiTcl+O5BxAwPl3tFp
-         r23kfXFYAyF7dIxL68zO5VREG6OH+T5UcPo+/9z1okER/FUvaRgx30SRxHsibKkE9ZvI
-         /rUyvNKmqcFk9s1P2lqXWTA97BFN+feMWIN41NMe0edho8jrzkOYuP7cKBFLQFgnTrqE
-         pz50LCaVC/B8uHwWbD0CKcNdScWuz1CqAbT2Qz0tJbBfb8rLo67W0sC1yZPQttMTR7zm
-         gpJ75RqafQzSaxkhHNfMRTJQPJQBVR2UOhCGzvZBBZoNlJDXLxlSd9Ok5xgr+kkQ/75A
-         sq9A==
-X-Gm-Message-State: AOAM532yCUiiCLGME1oQZiY5Rsxzjbnzvf4fGPJpk/2p5jTfw0xjmO6A
-        UZ1h7qFZatmKdn9oYIVqGIo=
-X-Google-Smtp-Source: ABdhPJz3pErEXVh6c5jSOm5lb9urUb/kznpC3Pzf2jcgE4pcvIh1nDHvdVZVd+IKCii501ptpAeCxw==
-X-Received: by 2002:a05:600c:154d:b0:394:8d64:9166 with SMTP id f13-20020a05600c154d00b003948d649166mr16485448wmg.102.1652700768735;
-        Mon, 16 May 2022 04:32:48 -0700 (PDT)
-Received: from [192.168.2.177] ([207.188.167.132])
-        by smtp.gmail.com with ESMTPSA id n12-20020adf8b0c000000b0020cdf6ecafbsm11529943wra.81.2022.05.16.04.32.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 16 May 2022 04:32:48 -0700 (PDT)
-Message-ID: <d602eb96-587d-5b1d-17af-2af83acde709@gmail.com>
-Date:   Mon, 16 May 2022 13:32:46 +0200
+        with ESMTP id S243257AbiEPLfY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 May 2022 07:35:24 -0400
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49A6939179;
+        Mon, 16 May 2022 04:34:37 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 24GBYPvl064087;
+        Mon, 16 May 2022 06:34:25 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1652700865;
+        bh=fbeCK0uro4p5FGuzHkn749PzHGt/GQEbNS0oFOHxILE=;
+        h=From:To:CC:Subject:Date;
+        b=iXTtgMv6slBLEla2mPLRFPlSGy4jD83jPG5UpOV1lW+RdXVEKzyRu64r1zQWtZlww
+         wPD5+FgrrmxcmlO0JEdMLC4ok3qvN4oHoHxmYT834r/s7CqwQtKHNwCyvi8J3XA6b9
+         GWtMm71Ih723AU1wbaDzR+awh6gAORSm13T7u12I=
+Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 24GBYPm8038380
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 16 May 2022 06:34:25 -0500
+Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Mon, 16
+ May 2022 06:34:25 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Mon, 16 May 2022 06:34:25 -0500
+Received: from gsaswath-HP-ProBook-640-G5.dal.design.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 24GBYLm8083405;
+        Mon, 16 May 2022 06:34:22 -0500
+From:   Aswath Govindraju <a-govindraju@ti.com>
+CC:     Kishon Vijay Abraham I <kishon@ti.com>,
+        Aswath Govindraju <a-govindraju@ti.com>,
+        Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH] arm64: dts: ti: k3-am642-sk: Add pinmux corresponding to main_uart0
+Date:   Mon, 16 May 2022 17:04:17 +0530
+Message-ID: <20220516113417.3516-1-a-govindraju@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH v2 1/2] dt-bindings: memory: mtk-smi: Add MT6795 Helio X10
- bindings
-Content-Language: en-US
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, yong.wu@mediatek.com
-Cc:     krzysztof.kozlowski@linaro.org, robh+dt@kernel.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        konrad.dybcio@somainline.org, marijn.suijten@somainline.org,
-        martin.botka@somainline.org, ~postmarketos/upstreaming@lists.sr.ht,
-        phone-devel@vger.kernel.org, paul.bouchara@somainline.org,
-        kernel@collabora.com
-References: <20220513150633.387200-1-angelogioacchino.delregno@collabora.com>
- <20220513150633.387200-2-angelogioacchino.delregno@collabora.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <20220513150633.387200-2-angelogioacchino.delregno@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add pinmux details required for the zeroth instance of main UART.
 
+Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
+---
+ arch/arm64/boot/dts/ti/k3-am642-sk.dts | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
 
-On 13/05/2022 17:06, AngeloGioacchino Del Regno wrote:
-> Add SMI bindings for the MediaTek Helio X10 (MT6795) SoC
-> 
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+diff --git a/arch/arm64/boot/dts/ti/k3-am642-sk.dts b/arch/arm64/boot/dts/ti/k3-am642-sk.dts
+index 59f506cbd275..358662f5d10d 100644
+--- a/arch/arm64/boot/dts/ti/k3-am642-sk.dts
++++ b/arch/arm64/boot/dts/ti/k3-am642-sk.dts
+@@ -166,6 +166,15 @@
+ 		>;
+ 	};
+ 
++	main_uart0_pins_default: main-uart0-pins-default {
++		pinctrl-single,pins = <
++			AM64X_IOPAD(0x0238, PIN_INPUT, 0) /* (B16) UART0_CTSn */
++			AM64X_IOPAD(0x023c, PIN_OUTPUT, 0) /* (A16) UART0_RTSn */
++			AM64X_IOPAD(0x0230, PIN_INPUT, 0) /* (D15) UART0_RXD */
++			AM64X_IOPAD(0x0234, PIN_OUTPUT, 0) /* (C16) UART0_TXD */
++		>;
++	};
++
+ 	main_usb0_pins_default: main-usb0-pins-default {
+ 		pinctrl-single,pins = <
+ 			AM64X_IOPAD(0x02a8, PIN_OUTPUT, 0) /* (E19) USB0_DRVVBUS */
+@@ -268,6 +277,11 @@
+ 	status = "disabled";
+ };
+ 
++&main_uart0 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&main_uart0_pins_default>;
++};
++
+ &main_uart1 {
+ 	/* main_uart1 is reserved for firmware usage */
+ 	status = "reserved";
+-- 
+2.17.1
 
-Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
-
-> ---
->   .../bindings/memory-controllers/mediatek,smi-common.yaml         | 1 +
->   .../bindings/memory-controllers/mediatek,smi-larb.yaml           | 1 +
->   2 files changed, 2 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/memory-controllers/mediatek,smi-common.yaml b/Documentation/devicetree/bindings/memory-controllers/mediatek,smi-common.yaml
-> index a98b359bf909..71bc5cefb49c 100644
-> --- a/Documentation/devicetree/bindings/memory-controllers/mediatek,smi-common.yaml
-> +++ b/Documentation/devicetree/bindings/memory-controllers/mediatek,smi-common.yaml
-> @@ -32,6 +32,7 @@ properties:
->             - mediatek,mt2701-smi-common
->             - mediatek,mt2712-smi-common
->             - mediatek,mt6779-smi-common
-> +          - mediatek,mt6795-smi-common
->             - mediatek,mt8167-smi-common
->             - mediatek,mt8173-smi-common
->             - mediatek,mt8183-smi-common
-> diff --git a/Documentation/devicetree/bindings/memory-controllers/mediatek,smi-larb.yaml b/Documentation/devicetree/bindings/memory-controllers/mediatek,smi-larb.yaml
-> index c886681f62a7..59dcd163668f 100644
-> --- a/Documentation/devicetree/bindings/memory-controllers/mediatek,smi-larb.yaml
-> +++ b/Documentation/devicetree/bindings/memory-controllers/mediatek,smi-larb.yaml
-> @@ -20,6 +20,7 @@ properties:
->             - mediatek,mt2701-smi-larb
->             - mediatek,mt2712-smi-larb
->             - mediatek,mt6779-smi-larb
-> +          - mediatek,mt6795-smi-larb
->             - mediatek,mt8167-smi-larb
->             - mediatek,mt8173-smi-larb
->             - mediatek,mt8183-smi-larb
