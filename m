@@ -2,79 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0605052885B
-	for <lists+devicetree@lfdr.de>; Mon, 16 May 2022 17:18:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 72A99528860
+	for <lists+devicetree@lfdr.de>; Mon, 16 May 2022 17:20:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245015AbiEPPSs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 May 2022 11:18:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55324 "EHLO
+        id S240554AbiEPPUI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 May 2022 11:20:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56312 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243153AbiEPPSr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 May 2022 11:18:47 -0400
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9771E3BBDD
-        for <devicetree@vger.kernel.org>; Mon, 16 May 2022 08:18:46 -0700 (PDT)
-Received: by mail-ej1-x630.google.com with SMTP id tk15so5858575ejc.6
-        for <devicetree@vger.kernel.org>; Mon, 16 May 2022 08:18:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=uxc1EEZZN9XC0ZN9vHSl5EkxKkFP8gfHegm9oB3GxA8=;
-        b=qpZZ8TAszik3sPrA20jwi+fpzDYTA/LNak6uSY1rlEWO9Qt1CO4o8OWr3yyUjcBSnT
-         1hsvIj41mxjvlWR/WdIWDGiM4RJWASvys/QUAdp69Z/5Brko8SEGIZ9I05M2ihKi7L0A
-         IDiINA7xwRn0YbI9djW+srmOdP31xhwBi3RSiGqyog0yx5lUK3b6zMbjJSEtsx3QqZfp
-         PhPoHoYjriPmvprDeiylkcOYgCxnXtT8mU147yvud4+pE9isnA9/ZwijZe7cZxzhnRpK
-         Ldhpgs4Z/cgDfYMAEZU9gII4mnVUE0yUHvXXzJCefO3Afc+LW61i0iHkUFdfKExYj/Bm
-         FArg==
+        with ESMTP id S238130AbiEPPUH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 May 2022 11:20:07 -0400
+Received: from mail-oa1-f48.google.com (mail-oa1-f48.google.com [209.85.160.48])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1ADDE3BBE4;
+        Mon, 16 May 2022 08:20:06 -0700 (PDT)
+Received: by mail-oa1-f48.google.com with SMTP id 586e51a60fabf-d6e29fb3d7so20489730fac.7;
+        Mon, 16 May 2022 08:20:06 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=uxc1EEZZN9XC0ZN9vHSl5EkxKkFP8gfHegm9oB3GxA8=;
-        b=xzB+aYRU5nYGUbGGKOnwxttSbG1LA2U7YphVsjlMLpbJSSYmH05UFIFrr4PYSzHmiI
-         D3vNW82c6zc468pRbfgHA0ShbQXwzihQUF2k9VZd4gPwBs/BJlBn7HFNKMxODR31qa/t
-         vFGLWKeMGuKjpXDek86bQwlElEwxGpl+v5rgulQywHWTwGvMbqanml/V4kjfMgmwEf9Q
-         30kff4DiEDwqQsVQKCPw0iVfKZCNpnfs1NPQ1f7fyFd7tBWYE7F87OemzDqlVcgjbG59
-         EHY3Ny7GNWcQBQxLpH86z+T/jq1dqYpWuWjftU8GqEhWH7LFCZ9b7L38+b0t6/nKNtIW
-         2mng==
-X-Gm-Message-State: AOAM532RIXI0OilxAnvvV8c7NQbusFE8ReL0LfiOU5h7tb9GddTbxAT2
-        PZIb0gOcLEhQWTDp3IXN/Vn53Q==
-X-Google-Smtp-Source: ABdhPJw4qAnLHxMA2xzrQr8zb4moNWR6Cth9S9WbMTdZY6Or4pmF7GQKRSZ4xhw281GADg2352uulg==
-X-Received: by 2002:a17:907:7745:b0:6f3:674a:339 with SMTP id kx5-20020a170907774500b006f3674a0339mr15501849ejc.207.1652714325231;
-        Mon, 16 May 2022 08:18:45 -0700 (PDT)
-Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id h9-20020a50cdc9000000b0042617ba63d5sm5427301edj.95.2022.05.16.08.18.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 16 May 2022 08:18:44 -0700 (PDT)
-Message-ID: <81d94ea8-9d0f-785b-07aa-fe9c9093ad73@linaro.org>
-Date:   Mon, 16 May 2022 17:18:43 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH 1/2] dt-bindings: soc: ti: pruss: Update bindings for K3
- AM62x SoCs
-Content-Language: en-US
-To:     Kishon Vijay Abraham I <kishon@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=mANvH5Glg28X27DbDs60K/K1FoGHkBM8nBp++djQ2O0=;
+        b=x9P/ftnRTcMKDchJpERMlydWaxFD2ZovAasbYh72G/DMoO8gFJC0fhx9bK1gGPVp7M
+         spfbcWCwyjCbcJfkbsXPJs2u2F6wIod4KN6LXfeS/WHMNCHItOimTSmEC5i9dLjNOB/Z
+         +JA0WnGL1IRY57Vukzudcz9c9qsCeRUWivxmylLIsENfzDV5TSgYhS12gP2q6UWlCVUJ
+         iPrhT0opMsLwPnUqsYbjvjtiu0IygKFWGvkPqhGLFadF4EOOQ+IhzKV1ZStEqfRh6ORm
+         xapExn1BKkb5roj/2jxmLKz3JpCRV7chmETgVamoE5dOGpM6HCsuQ9LLS5q9Qx/3w2Mg
+         ofwg==
+X-Gm-Message-State: AOAM530wFYlADfpwiAzQiZQTjL4/2u6pisqLnHfxH+AT2a3tU5adudq1
+        hxmQRhf6suWjTM6p3AOCPw==
+X-Google-Smtp-Source: ABdhPJw5Z0T6XyGQu+b4aaUc0XyVQeiKkr66PyaL0uiv7QPaF70Yk5G2072wzEbdHmH127RpqVyIPA==
+X-Received: by 2002:a05:6870:80d4:b0:f1:8f10:f741 with SMTP id r20-20020a05687080d400b000f18f10f741mr4339845oab.124.1652714405331;
+        Mon, 16 May 2022 08:20:05 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id a13-20020a4a988d000000b0035eb4e5a6bfsm4250166ooj.21.2022.05.16.08.20.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 16 May 2022 08:20:04 -0700 (PDT)
+Received: (nullmailer pid 2666110 invoked by uid 1000);
+        Mon, 16 May 2022 15:20:03 -0000
+Date:   Mon, 16 May 2022 10:20:03 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Stephen Boyd <swboyd@chromium.org>
+Cc:     linux-kernel@vger.kernel.org, patches@lists.linux.dev,
+        devicetree@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Nishanth Menon <nm@ti.com>
-Cc:     Santosh Shilimkar <ssantosh@kernel.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Vignesh Raghavendra <vigneshr@ti.com>
-References: <20220427072703.4898-1-kishon@ti.com>
- <20220427072703.4898-2-kishon@ti.com>
- <53212a3b-d02c-ab5e-6b5c-e19d359c7c2b@linaro.org>
- <dcce6737-5881-a703-67f0-59c5f55f1cd1@ti.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <dcce6737-5881-a703-67f0-59c5f55f1cd1@ti.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        chrome-platform@lists.linux.dev,
+        Guenter Roeck <groeck@chromium.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        Craig Hesling <hesling@chromium.org>,
+        Tom Hughes <tomhughes@chromium.org>,
+        Alexandru M Stan <amstan@chromium.org>,
+        Tzung-Bi Shih <tzungbi@kernel.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Benson Leung <bleung@chromium.org>,
+        Lee Jones <lee.jones@linaro.org>
+Subject: Re: [PATCH v5 3/3] dt-bindings: cros-ec: Add ChromeOS fingerprint
+ binding
+Message-ID: <20220516152003.GB2659134-robh@kernel.org>
+References: <20220512013921.164637-1-swboyd@chromium.org>
+ <20220512013921.164637-4-swboyd@chromium.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220512013921.164637-4-swboyd@chromium.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -82,42 +74,119 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/05/2022 14:33, Kishon Vijay Abraham I wrote:
-> Hi Krzysztof,
+On Wed, May 11, 2022 at 06:39:21PM -0700, Stephen Boyd wrote:
+> Add a binding to describe the fingerprint processor found on Chromebooks
+> with a fingerprint sensor. Previously we've been describing this with
+> the google,cros-ec-spi binding but it lacks gpio and regulator control
+> used during firmware flashing.
 > 
-> On 28/04/22 11:48, Krzysztof Kozlowski wrote:
->> On 27/04/2022 09:27, Kishon Vijay Abraham I wrote:
->>> Update the PRUSS bindings for the PRUSSM instance present in
->>> AM625 SoC.
->>>
->>> Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
->>> ---
->>>  Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml | 1 +
->>>  1 file changed, 1 insertion(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml b/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
->>> index 64461d432004..cf13e5179657 100644
->>> --- a/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
->>> +++ b/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
->>> @@ -69,6 +69,7 @@ properties:
->>>        - ti,am654-icssg   # for K3 AM65x SoC family
->>>        - ti,j721e-icssg   # for K3 J721E SoC family
->>>        - ti,am642-icssg   # for K3 AM64x SoC family
->>> +      - ti,am625-pruss   # for K3 AM62x SoC family
->>>  
->>
->> Looks like out of order (although for some reason before it was also
->> misordered...).
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> Cc: <devicetree@vger.kernel.org>
+> Cc: <chrome-platform@lists.linux.dev>
+> Cc: Guenter Roeck <groeck@chromium.org>
+> Cc: Douglas Anderson <dianders@chromium.org>
+> Cc: Craig Hesling <hesling@chromium.org>
+> Cc: Tom Hughes <tomhughes@chromium.org>
+> Cc: Alexandru M Stan <amstan@chromium.org>
+> Cc: Tzung-Bi Shih <tzungbi@kernel.org>
+> Cc: Matthias Kaehlcke <mka@chromium.org>
+> Cc: Benson Leung <bleung@chromium.org>
+> Cc: Lee Jones <lee.jones@linaro.org>
+> Signed-off-by: Stephen Boyd <swboyd@chromium.org>
+> ---
+>  .../bindings/mfd/google,cros-ec.yaml          | 80 ++++++++++++++++---
+>  1 file changed, 71 insertions(+), 9 deletions(-)
 > 
-> These are really in the chronological order of the introduction of SoCs.
-> Isn't that okay to have?
+> diff --git a/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml b/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
+> index 409ecef967ce..e5fe60beb9fe 100644
+> --- a/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
+> +++ b/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
+> @@ -19,15 +19,19 @@ description:
+>  properties:
+>    compatible:
+>      oneOf:
+> -      - description:
+> -          For implementations of the EC is connected through I2C.
+> -        const: google,cros-ec-i2c
+> -      - description:
+> -          For implementations of the EC is connected through SPI.
+> -        const: google,cros-ec-spi
+> -      - description:
+> -          For implementations of the EC is connected through RPMSG.
+> -        const: google,cros-ec-rpmsg
+> +      # For implementations of the EC is connected through I2C.
 
-You mean order of release on the market of order of adding files here?
-The first is ok, the latter would mean there is no order at all.
+Using 'description' was preferred.
 
-It's a nit, so I don't expect to change it. It just increases our
-chances for conflicts...
+> +      - items:
+> +          - const: google,cros-ec-i2c
+> +      # For implementations of the FPMCU connected through SPI.
+> +      - items:
+> +          - const: google,cros-ec-fp
+> +          - const: google,cros-ec-spi
+> +      # For implementations of the EC is connected through SPI.
+> +      - items:
+> +          - const: google,cros-ec-spi
+> +      # For implementations of the EC is connected through RPMSG.
+> +      - items:
+> +          - const: google,cros-ec-rpmsg
+>  
+>    controller-data:
+>      description:
+> @@ -132,6 +136,15 @@ properties:
+>  
+>      additionalProperties: false
+>  
+> +  reset-gpios:
+> +    maxItems: 1
+> +
+> +  boot0-gpios:
+> +    maxItems: 1
+> +    description: Assert for bootloader mode.
+> +
+> +  vdd-supply: true
+> +
+>  patternProperties:
+>    "^i2c-tunnel[0-9]*$":
+>      type: object
+> @@ -176,6 +189,37 @@ allOf:
+>          - reg
+>          - interrupts
+>  
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: google,cros-ec-fp
+> +    then:
+> +      properties:
+> +        '#address-cells': false
+> +        '#size-cells': false
+> +        typec: false
+> +        ec-pwm: false
+> +        keyboard-controller: false
+> +        proximity: false
+> +        codecs: false
+> +        cbas: false
+> +
+> +      patternProperties:
+> +        "^i2c-tunnel[0-9]*$": false
+> +        "^regulator@[0-9]+$": false
+> +        "^extcon[0-9]*$": false
 
+Is the list of what's allowed shorter? If so, you could list those 
+properties and use 'additionalProperties: false'.
 
-Best regards,
-Krzysztof
+Or maybe this is a sign that this should be a separate schema document.
+
+> +
+> +      required:
+> +        - reset-gpios
+> +        - boot0-gpios
+> +        - vdd-supply
+> +    else:
+> +      properties:
+> +        reset-gpios: false
+> +        boot0-gpios: false
+> +        vdd-supply: false
