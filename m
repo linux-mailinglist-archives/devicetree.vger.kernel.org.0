@@ -2,160 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 47F29527CFE
-	for <lists+devicetree@lfdr.de>; Mon, 16 May 2022 07:09:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C3252527D0F
+	for <lists+devicetree@lfdr.de>; Mon, 16 May 2022 07:35:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236967AbiEPFJu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 May 2022 01:09:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56446 "EHLO
+        id S239061AbiEPFff (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 May 2022 01:35:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47160 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232422AbiEPFJt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 May 2022 01:09:49 -0400
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C2BF28991;
-        Sun, 15 May 2022 22:09:47 -0700 (PDT)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 24G59NY7086792;
-        Mon, 16 May 2022 00:09:23 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1652677763;
-        bh=/z8oplWf9RSWaittYINIFexlqAXiWjMlkFiA5nmmoYU=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=r4nnrlnpqplRCyzn6VGT6+AfQjnBRw3KDNXaNX7ytkARud3afDWhP0hQOesnhoPNU
-         y52n0NjZYcvbVcQ+q+5owau7fI5C8e7DwgwYIZ64KOzNFYURU0Lb+cad7etmcINtC1
-         oTLYtLvDYSzx5pQFV7hZaccmWGo7cA0Q7laHLKZs=
-Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 24G59Nrg004775
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 16 May 2022 00:09:23 -0500
-Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Mon, 16
- May 2022 00:09:22 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Mon, 16 May 2022 00:09:22 -0500
-Received: from [172.24.220.119] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 24G59FTt004004;
-        Mon, 16 May 2022 00:09:16 -0500
-Message-ID: <a5e14871-db4f-54ce-b925-0787750ab6c2@ti.com>
-Date:   Mon, 16 May 2022 10:39:15 +0530
+        with ESMTP id S239339AbiEPFfd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 May 2022 01:35:33 -0400
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2C99DF14
+        for <devicetree@vger.kernel.org>; Sun, 15 May 2022 22:35:30 -0700 (PDT)
+Received: by mail-ed1-x529.google.com with SMTP id en5so2705931edb.1
+        for <devicetree@vger.kernel.org>; Sun, 15 May 2022 22:35:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=c/IovKeDQ5OmYImuaDKw85Gvkz+g6dB9ube8wouUX0E=;
+        b=GGajIGxKz4a1kdgVCnNp3TVY4oWNsaMBX25vD2wNxJjdlfjW0K2HSomOmhtNf8KlII
+         I/KzDUxpS795xfRF8NdRofQwNVP/BcZW3gRgq5wCMrBCZXhJNS+FRleC+mG3irXz/3aO
+         +mT31wgaBGkXLx4Qfi9CCUwCaASTGFEm4O6+Q=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=c/IovKeDQ5OmYImuaDKw85Gvkz+g6dB9ube8wouUX0E=;
+        b=VV/BZAz9KvDRUXXv3+5FH1ZScm8zbjCOe4ql8XyjPXMyTco7A6bdkv+pbHr1un0lR+
+         IHUR1MwkElWXuuIDg5/O1Eg0Z0kVceL/juRsfODBOC7FBiqpVgKhg3dKWltUk2cZftn2
+         IMAxZK0VfU03X1qPLz3jYKdim0iUVaHZOnpBZmgv5zQ/kPZezVM8FLieB+vppx56LqfS
+         bdZ+1uZNzpXhKVxmtjUz1HnqVXgoatkh/v7Qp5ApS/OE5h47hKtJJkpBvfwrFkfsHw1S
+         y7j2IUNymSad24UGqJ91iUZ25IfRUApMyLyoCDuWWcKSbUm2IcwnHr0w3S3p91+YU9Pa
+         Yaug==
+X-Gm-Message-State: AOAM532GKKAGQIYlhU4YPfZhfRtwJJHukCYHSBm9zhjJCj+0GmADjExn
+        ffgaKt8Z4FK5NaV18CaswzxqC1HLM8sCwelVUF5Ab0TvooV/Ig==
+X-Google-Smtp-Source: ABdhPJxkaaQU1pxAn/HNEptaZ1FK3UV5eSAHcvlMeQ1pJimMFp8UJ4ll80vonmeQUOiLh7XTmmmV9IDAbxXEwPO61wM=
+X-Received: by 2002:a05:6402:11cd:b0:427:bda5:542f with SMTP id
+ j13-20020a05640211cd00b00427bda5542fmr11486167edw.290.1652679329459; Sun, 15
+ May 2022 22:35:29 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH 2/2] net: ti: icssg-prueth: Add ICSSG ethernet driver
-Content-Language: en-US
-To:     Andrew Lunn <andrew@lunn.ch>
-CC:     <linux-kernel@vger.kernel.org>, <davem@davemloft.net>,
-        <edumazet@google.com>, <krzysztof.kozlowski+dt@linaro.org>,
-        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <nm@ti.com>, <ssantosh@kernel.org>, <s-anna@ti.com>,
-        <linux-arm-kernel@lists.infradead.org>, <rogerq@kernel.org>,
-        <grygorii.strashko@ti.com>, <vigneshr@ti.com>, <kishon@ti.com>,
-        <robh+dt@kernel.org>, <afd@ti.com>
-References: <20220506052433.28087-1-p-mohan@ti.com>
- <20220506052433.28087-3-p-mohan@ti.com> <YnVQW7xpSWEE2/HP@lunn.ch>
- <f674c56c-0621-f471-9517-5c349940d362@ti.com> <YnkJ5bFd72d0FagD@lunn.ch>
-From:   Puranjay Mohan <p-mohan@ti.com>
-In-Reply-To: <YnkJ5bFd72d0FagD@lunn.ch>
+References: <20220505115226.20130-1-rex-bc.chen@mediatek.com> <20220505115226.20130-10-rex-bc.chen@mediatek.com>
+In-Reply-To: <20220505115226.20130-10-rex-bc.chen@mediatek.com>
+From:   Chen-Yu Tsai <wenst@chromium.org>
+Date:   Mon, 16 May 2022 13:35:18 +0800
+Message-ID: <CAGXv+5FW59B1Dq8eH=5KjEdTxgT64GuvYZHZ9LnnTuaVrK3XpQ@mail.gmail.com>
+Subject: Re: [PATCH v6 09/10] arm64: dts: mediatek: Add MediaTek CCI node for MT8183
+To:     Rex-BC Chen <rex-bc.chen@mediatek.com>
+Cc:     rafael@kernel.org, viresh.kumar@linaro.org, robh+dt@kernel.org,
+        krzk+dt@kernel.org, matthias.bgg@gmail.com,
+        jia-wei.chang@mediatek.com, roger.lu@mediatek.com,
+        hsinyi@google.com, khilman@baylibre.com,
+        angelogioacchino.delregno@collabora.com, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        "Andrew-sh . Cheng" <andrew-sh.cheng@mediatek.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-6.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andrew,
+On Thu, May 5, 2022 at 8:04 PM Rex-BC Chen <rex-bc.chen@mediatek.com> wrote:
+>
+> Add MediaTek CCI devfreq node for MT8183.
+>
+> Signed-off-by: Andrew-sh.Cheng <andrew-sh.cheng@mediatek.com>
+> Signed-off-by: Rex-BC Chen <rex-bc.chen@mediatek.com>
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> ---
+>  arch/arm64/boot/dts/mediatek/mt8183-evb.dts    | 4 ++++
+>  arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi | 4 ++++
+>  arch/arm64/boot/dts/mediatek/mt8183.dtsi       | 7 +++++++
+>  3 files changed, 15 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8183-evb.dts b/arch/arm64/boot/dts/mediatek/mt8183-evb.dts
+> index 8953dbf84f3e..7ac9864db9de 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8183-evb.dts
+> +++ b/arch/arm64/boot/dts/mediatek/mt8183-evb.dts
+> @@ -412,6 +412,10 @@
+>
+>  };
+>
+> +&cci {
+> +       proc-supply = <&mt6358_vproc12_reg>;
+> +};
+> +
+>  &cpu0 {
+>         proc-supply = <&mt6358_vproc12_reg>;
+>  };
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
+> index 8d5bf73a9099..b035e06840e6 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
+> @@ -230,6 +230,10 @@
+>         status = "okay";
+>  };
+>
+> +&cci {
+> +       proc-supply = <&mt6358_vproc12_reg>;
+> +};
+> +
+>  &cpu0 {
+>         proc-supply = <&mt6358_vproc12_reg>;
+>  };
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+> index cecf96b628b7..11caf3dd85cd 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+> @@ -280,6 +280,13 @@
+>                 };
+>         };
+>
+> +       cci: cci {
+> +               compatible = "mediatek,mt8183-cci";
+> +               clocks = <&apmixedsys CLK_APMIXED_CCIPLL>;
+> +               clock-names = "cci_clock";
 
-On 09/05/22 18:02, Andrew Lunn wrote:
->>>> +static void icssg_init_emac_mode(struct prueth *prueth)
->>>> +{
->>>> +	u8 mac[ETH_ALEN] = { 0 };
->>>> +
->>>> +	if (prueth->emacs_initialized)
->>>> +		return;
->>>> +
->>>> +	regmap_update_bits(prueth->miig_rt, FDB_GEN_CFG1, SMEM_VLAN_OFFSET_MASK, 0);
->>>> +	regmap_write(prueth->miig_rt, FDB_GEN_CFG2, 0);
->>>> +	/* Clear host MAC address */
->>>> +	icssg_class_set_host_mac_addr(prueth->miig_rt, mac);
->>>
->>> Seems an odd thing to do, set it to 00:00:00:00:00:00. You probably
->>> want to add a comment why you do this odd thing.
->>
->> Actually, this is when the device is configured as a bridge, the host
->> mac address has to be set to zero to while bringing it back to emac
->> mode. I will add a comment to explain this.
-> 
-> I don't see any switchdev interface. How does it get into bridge mode?
+Binding says there should be two clocks: the actual clock that drives
+CCI, and a stable "intermediate" clock to switch to during clock rate
+changes. So I think this should look like:
 
-I will be sending patches to add the switch mode support after this
-series gets merged.
+    clocks = <&mcucfg CLK_MCU_BUS_SEL>,
+             <&topckgen CLK_TOP_ARMPLL_DIV_PLL1>;
+    clock-names = "cci", "intermediate";
 
-> 
->>>> +	} else if (emac->link) {
->>>> +		new_state = true;
->>>> +		emac->link = 0;
->>>> +		/* defaults for no link */
->>>> +
->>>> +		/* f/w should support 100 & 1000 */
->>>> +		emac->speed = SPEED_1000;
->>>> +
->>>> +		/* half duplex may not supported by f/w */
->>>> +		emac->duplex = DUPLEX_FULL;
->>>
->>> Why set speed and duplex when you have just lost the link? They are
->>> meaningless until the link comes back.
->>
->> These were just the default values that we added.
->> What do you suggest I put here?
-> 
-> Nothing. If the link is down, they are meaningless. If something is
-> accessing them when the link is down, that code is broken. So i
-> suppose you could give them poison values to help find your broken
-> code.
 
-Okay, I will remove it in next version.
+ChenYu
 
-> 
->>>> +	for_each_child_of_node(eth_ports_node, eth_node) {
->>>> +		u32 reg;
->>>> +
->>>> +		if (strcmp(eth_node->name, "port"))
->>>> +			continue;
->>>> +		ret = of_property_read_u32(eth_node, "reg", &reg);
->>>> +		if (ret < 0) {
->>>> +			dev_err(dev, "%pOF error reading port_id %d\n",
->>>> +				eth_node, ret);
->>>> +		}
->>>> +
->>>> +		if (reg == 0)
->>>> +			eth0_node = eth_node;
->>>> +		else if (reg == 1)
->>>> +			eth1_node = eth_node;
->>>
->>> and if reg == 4
->>>
->>> Or reg 0 appears twice?
->>
->> In both of the cases that you mentioned, the device tree schema check
->> will fail, hence, we can safely assume that this will be 0 and 1 only.
-> 
-> Nothing forces you to run the scheme checker. It is not run by the
-> kernel before it starts accessing the DT blob. You should assume it is
-> invalid until you have proven it to be valid.
-
-I will add error checking here to make sure it is handled.
-
-> 
-> 	Andrew
-
-Thanks,
-Puranjay Mohan
+> +               operating-points-v2 = <&cci_opp>;
+> +       };
+> +
+>         cpus {
+>                 #address-cells = <1>;
+>                 #size-cells = <0>;
+> --
+> 2.18.0
+>
+>
+> _______________________________________________
+> Linux-mediatek mailing list
+> Linux-mediatek@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-mediatek
