@@ -2,229 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1592C528E26
-	for <lists+devicetree@lfdr.de>; Mon, 16 May 2022 21:43:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F256528E02
+	for <lists+devicetree@lfdr.de>; Mon, 16 May 2022 21:37:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345696AbiEPTkS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 May 2022 15:40:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43896 "EHLO
+        id S1344099AbiEPThw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 May 2022 15:37:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40950 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345714AbiEPTjn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 May 2022 15:39:43 -0400
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80F6F3FD9B;
-        Mon, 16 May 2022 12:39:11 -0700 (PDT)
-Received: by mail-ej1-x632.google.com with SMTP id i27so30583089ejd.9;
-        Mon, 16 May 2022 12:39:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=zJNYDk4SvD1YtpXR0oj8NsF6HENGwzWTt8Lj8cCkpNo=;
-        b=GfpaCn3LMRvcWxUW26o8K7i1OgF9OOlb+NMttVfSDfnGCO1x92FO4XgTiW/aE8cK/a
-         6EPLXmEh5UIZPGY4T7AjjkJSyPvSKwZzGg/WsQlcpdF+aQT1oaX15KSys6jajMRl4daE
-         Dkb/qDAMY2pyPHhL0AS/NHTNs9O4/rHbQSL9QWD2/uXlhfBPY67M6Fvrt62I4p3t1z6t
-         3MrdJV2MYZJtHqV7xx+vuMYj9PN+WgalQiRsAqj4e6Ge0FxL2FgyQ+gqB7U1FYmflxs8
-         wEL79+0JU40DzFh9awCDRLt/FOmSQs2etsHFSNeG/jjYqyz448nzVYV/ZhAsL9/nmz7/
-         UluQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=zJNYDk4SvD1YtpXR0oj8NsF6HENGwzWTt8Lj8cCkpNo=;
-        b=jFRuY6sNOGRrg/d8eDCTF+tXeu0taDfaIpAYvS/9Y8QsWHnPXSat2/MUOK72N+EUoA
-         ed3wb8/yum3A68vrE6IIo/LmlUeMoT5P14YpNZ+n0ShKI1gnr4yWD3xJiTLC/dwVZQD5
-         sXVJtkS1gDU/MNmzKbD8r1VRoOg7LQ+ZNoI+Z+Nl3F1/gvripsXJMYBfmw7zHHhTd2tB
-         UgfcR5up1hzZ9gwpcKaU8agb8TEM+MnAylUoHqj+LWf+tX1XhJJu8g1VQI9qLG/53o12
-         GEkrnRpVp5HsrjalTUy1wOYqct3/slxFfTQ3AHB6YVTCibotWXObIuyiUfTVUOrlqYf2
-         msFA==
-X-Gm-Message-State: AOAM533y0p6FWxLjt73o19SuIY3kuVhjmshF2eSHwl/TBYdOXyyl551w
-        3mc/xJNEih4VKyvJ0A3R0Y0=
-X-Google-Smtp-Source: ABdhPJxoPobHPfYM65bQ9gkqOcRe7+3noo9i4Ud/hXXldy2+MIeYBuZ0nPEvonOeOo7whoyTzmPsMg==
-X-Received: by 2002:a17:907:6d25:b0:6f4:d753:f250 with SMTP id sa37-20020a1709076d2500b006f4d753f250mr16485319ejc.580.1652729950114;
-        Mon, 16 May 2022 12:39:10 -0700 (PDT)
-Received: from adroid (102-167-184-091.ip-addr.vsenet.de. [91.184.167.102])
-        by smtp.gmail.com with ESMTPSA id d3-20020a170907272300b006f3ef214e6fsm85180ejl.213.2022.05.16.12.39.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 May 2022 12:39:09 -0700 (PDT)
-From:   =?UTF-8?q?Martin=20J=C3=BCcker?= <martin.juecker@gmail.com>
-To:     linux-samsung-soc@vger.kernel.org
-Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        Alim Akhtar <alim.akhtar@samsung.com>,
+        with ESMTP id S232405AbiEPThw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 May 2022 15:37:52 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CCE436697;
+        Mon, 16 May 2022 12:37:51 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id C421BB81607;
+        Mon, 16 May 2022 19:37:49 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A3799C385AA;
+        Mon, 16 May 2022 19:37:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1652729868;
+        bh=judWzFax2O3B8ZmwXVnBN/tcmChI0ZNzfAlZ79mvki4=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=R6iqqgoT6oMpdIkr+HBExWlxd22WJ+m1rkYVDY8QYfshHQiUbVKjlG5wzIN+ns68a
+         SuVGYsh8Hf1ZPmhpdYiQIDcMYn9FYjTPCDuArH39K1vGTYqzC/5EZYmTxsiJK5jwZ6
+         pKbG6w5KkAKNqNf0rHW76iVQ/WVtMCTL1YhxVGE4DKO/xGnI77PaYf4iu23hXoX5+6
+         1DADE2FrbsOw/KPnrrlGUVFGT3TsyQJs5T1YSTzeZrVceUhGmBL8fy5GxCFiH+9Qm4
+         jx7aAFadtO8g16P0AWteX3pyxy/cXC2Ne/mEHPQrzgGb67Rn/kPQ4vJ4P8K7aOsR/I
+         Z81VOTazNkFqQ==
+Date:   Mon, 16 May 2022 21:37:44 +0200
+From:   Wolfram Sang <wsa@kernel.org>
+To:     Heiner Kallweit <hkallweit1@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v2 3/3] i2c: gpio: support write-only sda
+Message-ID: <YoKoCFU/apFMyUUC@kunai>
+Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@linux.ie>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        =?UTF-8?q?Martin=20J=C3=BCcker?= <martin.juecker@gmail.com>
-Subject: [PATCH 3/3] ARM: dts: exynos: add panel and backlight to p4note
-Date:   Mon, 16 May 2022 21:37:09 +0200
-Message-Id: <20220516193709.10037-3-martin.juecker@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220516193709.10037-1-martin.juecker@gmail.com>
-References: <20220516193709.10037-1-martin.juecker@gmail.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+References: <3e6c934e-5298-42c5-c346-31b1acaa06ba@gmail.com>
+ <a09b4c2e-5256-25b7-59da-f93b04d128c5@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="kZFe0FArO/s19L5d"
+Content-Disposition: inline
+In-Reply-To: <a09b4c2e-5256-25b7-59da-f93b04d128c5@gmail.com>
+X-Spam-Status: No, score=-7.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add configuration for the LTL101AL01 panel and a pwm backlight to drive
-the display in the p4note devices.
 
-Signed-off-by: Martin Jücker <martin.juecker@gmail.com>
----
- arch/arm/boot/dts/exynos4412-p4note.dtsi | 84 ++++++++++++++++++++----
- 1 file changed, 71 insertions(+), 13 deletions(-)
+--kZFe0FArO/s19L5d
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-diff --git a/arch/arm/boot/dts/exynos4412-p4note.dtsi b/arch/arm/boot/dts/exynos4412-p4note.dtsi
-index 97f131b1014b..1fd051b52387 100644
---- a/arch/arm/boot/dts/exynos4412-p4note.dtsi
-+++ b/arch/arm/boot/dts/exynos4412-p4note.dtsi
-@@ -106,6 +106,16 @@ voltage-regulator-3 {
- 		regulator-always-on;
- 	};
- 
-+	panel_vdd: voltage-regulator-4 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "LCD_ENABLE";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&lcd_enable>;
-+		gpios = <&gpc0 1 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+		regulator-boot-on;
-+	};
-+
- 	wlan_pwrseq: sdhci3-pwrseq {
- 		compatible = "mmc-pwrseq-simple";
- 		reset-gpios = <&gpm3 5 GPIO_ACTIVE_LOW>;
-@@ -216,6 +226,32 @@ power_supply: charger@6 {
- 			monitored-battery = <&battery_cell>;
- 		};
- 	};
-+
-+	panel {
-+		compatible = "samsung,ltl101al01";
-+		pinctrl-0 = <&lvds_nshdn>;
-+		pinctrl-names = "default";
-+		power-supply = <&panel_vdd>;
-+		enable-gpios = <&gpm0 5 GPIO_ACTIVE_HIGH>;
-+		backlight = <&backlight>;
-+
-+		port {
-+			lcd_ep: endpoint {
-+				remote-endpoint = <&fimd_ep>;
-+			};
-+		};
-+	};
-+
-+	backlight: backlight {
-+		compatible = "pwm-backlight";
-+		pinctrl-0 = <&led_bl_reset>;
-+		pinctrl-names = "default";
-+		enable-gpios = <&gpm0 1 GPIO_ACTIVE_HIGH>;
-+		pwms = <&pwm 1 78770 0>;
-+		brightness-levels = <0 48 128 255>;
-+		num-interpolated-steps = <8>;
-+		default-brightness-level = <12>;
-+	};
- };
- 
- &adc {
-@@ -295,22 +331,19 @@ &exynos_usbphy {
- };
- 
- &fimd {
--	pinctrl-0 = <&lcd_clk &lcd_data24 &pwm1_out>;
-+	pinctrl-0 = <&lcd_clk &lcd_data24>;
- 	pinctrl-names = "default";
-+	#address-cells = <1>;
-+	#size-cells = <0>;
- 	status = "okay";
- 
--	display-timings {
--		timing0 {
--			clock-frequency = <66666666>;
--			hactive = <1280>;
--			vactive = <800>;
--			hfront-porch = <18>;
--			hback-porch = <36>;
--			hsync-len = <16>;
--			vback-porch = <16>;
--			vfront-porch = <4>;
--			vsync-len = <3>;
--			hsync-active = <1>;
-+	samsung,invert-vclk;
-+
-+	port@3 {
-+		reg = <3>;
-+
-+		fimd_ep: endpoint {
-+			remote-endpoint = <&lcd_ep>;
- 		};
- 	};
- };
-@@ -687,6 +720,12 @@ tsp_reg_gpio_3: tsp-reg-gpio-3-pins {
- 		samsung,pin-pud = <EXYNOS_PIN_PULL_NONE>;
- 	};
- 
-+	lcd_enable: lcd-enable-pins {
-+		samsung,pins = "gpc0-1";
-+		samsung,pin-function = <EXYNOS_PIN_FUNC_OUTPUT>;
-+		samsung,pin-pud = <EXYNOS_PIN_PULL_NONE>;
-+	};
-+
- 	sleep0: sleep-state {
- 		PIN_SLP(gpa0-0, INPUT, NONE);
- 		PIN_SLP(gpa0-1, OUT0, NONE);
-@@ -809,12 +848,24 @@ uart_sel: uart-sel-pins {
- 		/* 0 = CP, 1 = AP (serial output) */
- 	};
- 
-+	led_bl_reset: led-bl-reset-pins {
-+		samsung,pins = "gpm0-1";
-+		samsung,pin-function = <EXYNOS_PIN_FUNC_OUTPUT>;
-+		samsung,pin-pud = <EXYNOS_PIN_PULL_NONE>;
-+	};
-+
- 	tsp_rst: tsp-rst-pins {
- 		samsung,pins = "gpm0-4";
- 		samsung,pin-function = <EXYNOS_PIN_FUNC_OUTPUT>;
- 		samsung,pin-pud = <EXYNOS_PIN_PULL_NONE>;
- 	};
- 
-+	lvds_nshdn: lvds-nshdn-pins {
-+		samsung,pins = "gpm0-5";
-+		samsung,pin-function = <EXYNOS_PIN_FUNC_OUTPUT>;
-+		samsung,pin-pud = <EXYNOS_PIN_PULL_NONE>;
-+	};
-+
- 	tsp_irq: tsp-irq-pins {
- 		samsung,pins = "gpm2-3";
- 		samsung,pin-function = <EXYNOS_PIN_FUNC_F>;
-@@ -1100,6 +1151,13 @@ &pmu_system_controller {
- 	assigned-clock-parents = <&clock CLK_XUSBXTI>;
- };
- 
-+&pwm {
-+	pinctrl-0 = <&pwm1_out>;
-+	pinctrl-names = "default";
-+	samsung,pwm-outputs = <1>;
-+	status = "okay";
-+};
-+
- &rtc {
- 	clocks = <&clock CLK_RTC>, <&max77686 MAX77686_CLK_AP>;
- 	clock-names = "rtc", "rtc_src";
--- 
-2.25.1
 
+> +	 * If SCL/SDA both are write-only, then this indicates I2C-like slaves
+> +	 * with read-only SCL/SDA. Such slaves don't need open-drain, and partially
+> +	 * don't even work with open-drain.
+
+This comment is great!
+
+> + * @sda_is_output_only: I2C-like interface, SDA is write-only.
+
+This one not so much ;)
+
+>   * @scl_is_open_drain: SCL is set up as open drain. Same requirements
+>   *	as for sda_is_open_drain apply.
+>   * @scl_is_output_only: SCL output drivers cannot be turned off.
+
+I think we whould use a similar description for SDA like we have for
+SCL. Maybe we should also repeat here that this setup is for clients
+which can only read SDA/SCL?
+
+
+--kZFe0FArO/s19L5d
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmKCqAgACgkQFA3kzBSg
+KbbImg/+NCObzDNC/bu3mIFG3y9xU/BQfKJuXOpnlRwfC81uduAziVxMyha36dc0
+kUNENf/10rhBmtN0/IGYRUA37d1OOkLZVICMgWpn+BdtXPCxyzANdXbzG1HvU/Bg
+fKKEGDvoRMkZbwIAC5KlLvp+cTfe5PoO+Zv94CqaNIfyYB+mNzt2sUyaEcY/boJ1
+102F1y3owZibnOIcxsFHeg0Smir7QW+1dDtEqxvVe6D0pwQaDg0j4dTy5tNrVcOz
+OIMpMsPlEZTjI8wCPTiApxMK2y1+qZkJna1eeXkB9VmOQK6/i6PU12omAB9Ry56y
+hdNVkJ3NAsc9N8GRkjJkmcl9AyhJIkHIicr7TRMACxkMRuEGdH6Kb6h3PeN4iCJF
+vnbJHKeDXvb/CWoGAs1CmRJ53YFDHg2AiqnxnEjQvns9Zk/73Y3YWEktl3sRe4pR
+adJ9p7i/Xd6vMClbd6cBhNzA5NzRoLN9bfNESILnmjc3xOE8fV+IESUc/sazA4sT
+5YYHJYD4y++cHo6K09ZEolCR7RseVhbB3sF8ibw/KV1vHU58xVuNQCfP18IsXPd6
++/J2jqyfaCdgEy1WjlhFkozBtCyWbkey8oVxvOAHe238XVWAmksVM14un4scwdxu
+igLUQLAOF8iOLSfY4LsPJA6b70/fw4soBrtubpm9SxC/F6SlaZg=
+=Tia2
+-----END PGP SIGNATURE-----
+
+--kZFe0FArO/s19L5d--
