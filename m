@@ -2,189 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E134528679
-	for <lists+devicetree@lfdr.de>; Mon, 16 May 2022 16:07:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E8413528688
+	for <lists+devicetree@lfdr.de>; Mon, 16 May 2022 16:10:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244298AbiEPOH0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 May 2022 10:07:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54746 "EHLO
+        id S244372AbiEPOKh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 May 2022 10:10:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57420 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243887AbiEPOHT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 May 2022 10:07:19 -0400
-Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30CD43A728;
-        Mon, 16 May 2022 07:07:18 -0700 (PDT)
-Received: by mail-wr1-x42b.google.com with SMTP id f2so13686306wrc.0;
-        Mon, 16 May 2022 07:07:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=sM2sRGLVCJ3Fk4PRrn+4dC0xyoX9H+fcNcN8bioAh10=;
-        b=XEldJpEHMASSsGBrI5Mmn0Pi9N670GLUxxVJp9B5HOBl43K97MwoAJgO8rLsByNaeb
-         lGFHZLdSMp5plsxPECl1hu/RCE92lA3mQMUkELx5ggDkbKbIrRbWl2CF5epTn2VVa9Bk
-         EKleAupnQa510VCDAbAdsbYftuIScC1x7XiBfKKGJN4+Q4XS1jPWRU5vVJ/+q3ubfCcV
-         CqQx3Zr2V7XIS4AOAoBetY/mlyaYWA5HTpaVMVfXp3aqrxwJLDkgz7shVZ2/UZ8uhN3P
-         XQJSOuKhPUftPUtyRVyYYoaZl0WFTnNY6kIltroHODF1It8/lBZoYSRFsyKFcmYNaD1w
-         gFVw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=sM2sRGLVCJ3Fk4PRrn+4dC0xyoX9H+fcNcN8bioAh10=;
-        b=e78sUnF+Z4iNBVcZOHuCis/BExhcDs2feMj/wXXIlPv0D9Yl1uOj/u1JKNh4wwo6pC
-         4IShw9vpuGnPU/2I/LAA+be08DiOEAjpoygT2Cb7joxOkP8WIRtxWLhuZgVo6zQRAQhv
-         3VTATRlxSGmOS/5VaXqK6FPHT9O7+oNtMjyc/2yKuEetmCZMhGHd1o1IXILks9YWMRFV
-         UdHIvbvlB/jIBDIMAdL5MN25oC72mDeoA+JjrRalQytxOGagFxQTeAloOnb97j+51PvP
-         jSr7whyaO8MgJy+Y04oNGRYu9HGpwkw9beeaxvUSfzGppfkdB0vxVB+eNGXnn2TBTXhX
-         jV1g==
-X-Gm-Message-State: AOAM530xGvzCSlfkviTjzerQX0qGfAOwpdHPBNe8HjfbaFGEnq3g632n
-        BfAXCb/8+nI2YST+M8RhPQLBsDHvRXY=
-X-Google-Smtp-Source: ABdhPJy6o0QTxOZPvxVZf6UA03LSbXaPI3cJ5caJlhMXQFfhV3BWO5alGfIPKD4PGJbIVes3G4Q8Uw==
-X-Received: by 2002:a5d:4988:0:b0:20d:9b8:e560 with SMTP id r8-20020a5d4988000000b0020d09b8e560mr3799784wrq.33.1652710036571;
-        Mon, 16 May 2022 07:07:16 -0700 (PDT)
-Received: from orome (pd9e518f7.dip0.t-ipconnect.de. [217.229.24.247])
-        by smtp.gmail.com with ESMTPSA id v8-20020adfa1c8000000b0020d050461c9sm5287367wrv.54.2022.05.16.07.07.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 May 2022 07:07:15 -0700 (PDT)
-Date:   Mon, 16 May 2022 16:07:13 +0200
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Mikko Perttunen <cyndis@kapsi.fi>
-Cc:     Robin Murphy <robin.murphy@arm.com>, Will Deacon <will@kernel.org>,
-        jonathanh@nvidia.com, joro@8bytes.org, robh+dt@kernel.org,
-        krzysztof.kozlowski@canonical.com, linux-tegra@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, iommu@lists.linux-foundation.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Mikko Perttunen <mperttunen@nvidia.com>
-Subject: Re: [PATCH v5 5/9] iommu/arm-smmu: Attach to host1x context device
- bus
-Message-ID: <YoJakX0ms7rBF3ia@orome>
-References: <20220516085258.1227691-1-cyndis@kapsi.fi>
- <20220516085258.1227691-6-cyndis@kapsi.fi>
- <20220516100721.GA1927@willie-the-truck>
- <4a170997-c893-1788-dcaa-8ed2193146ae@kapsi.fi>
- <099cf0f9-5c27-0247-7c5e-6704a9527b11@arm.com>
- <020a8244-760e-fe7c-594a-1d85e5645dbe@kapsi.fi>
+        with ESMTP id S244379AbiEPOK1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 May 2022 10:10:27 -0400
+Received: from mout.perfora.net (mout.perfora.net [74.208.4.194])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6B0F3AA48;
+        Mon, 16 May 2022 07:10:26 -0700 (PDT)
+Received: from toolbox.int.toradex.com ([81.221.85.15]) by mrelay.perfora.net
+ (mreueus002 [74.208.5.2]) with ESMTPSA (Nemesis) id 0Lj04u-1nKHo13zmI-00dIkY;
+ Mon, 16 May 2022 16:10:08 +0200
+From:   Marcel Ziswiler <marcel@ziswiler.com>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Russell King <linux@armlinux.org.uk>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v2 19/24] ARM: dts: imx7-colibri: clean-up device enabling/disabling
+Date:   Mon, 16 May 2022 16:09:38 +0200
+Message-Id: <20220516140938.494289-1-marcel@ziswiler.com>
+X-Mailer: git-send-email 2.35.1
+In-Reply-To: <20220516134734.493065-1-marcel@ziswiler.com>
+References: <20220516134734.493065-1-marcel@ziswiler.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="pzcJQLU+ls3tyqds"
-Content-Disposition: inline
-In-Reply-To: <020a8244-760e-fe7c-594a-1d85e5645dbe@kapsi.fi>
-User-Agent: Mutt/2.2.4 (c3baa83e) (2022-04-30)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Provags-ID: V03:K1:f4KTShYxaHiJIBPORmg1zxtwPgLmVUsBya8yEKgOKdtcDIxhrHA
+ KK6p8q/Z424xAxuGhIMU1g98ApfBG+aGNb1NvvLThFnxXP7WoXrNCI1fw/EX0C88p9qsqqK
+ 2aXrvEakbUayRIr87JvL01QuQB5UzyLtwjdUrLchAQXwOdz25ahFaX+nz8NuYNssRi1ybIY
+ YQvvZ+am18mx6MTtitDAg==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:c9RdkB/YBJ8=:qzurQjombKI4eec/3WsQS4
+ tMH0TXcoQjADBqPt+TqQc6lidlGS+uoUjqYx9mIVoEEfsrUTSjt7SXT9XjAkdOl+LRZNMst5N
+ qzrqwoyyT3lHxqY9MkkZttxwQ2+fmwA2YSbvmt22s79z7YxTyV7IX5prOCYJQG6HIanoOLmQk
+ uN0oJrrwB4VH8VDALYzvblki3lvuJfcxNpJAjaVoYaoXEsNywr+u8Un9/ryuzFxeE3Er+I007
+ 8QtQzex8L+7uy0GYflL3GTD8li17ZxIsfXqfJmvsj42gmbnaL6qDX+5S2JkG0QvDs5nsBnUd2
+ vTDZDze7MBLv30gTawiGuTzGmVs2TkKu7KW/RFW3DqgN6WkU4bmixCkRI/YOdFfOi6fwjzD0R
+ QLGmIWgeEoinr7OFtT4Pz9J02m32js0YIeHcXRU3R3G0uZXqaHs4IDP1VbTdq7yT9R3hOldon
+ Rj4S1P1T5um5FQDrT8UePJpvvTAtivKY0+yPdNQBKrSEfHYi8uVX2xr5w81yUVKx3xyXz9Ye6
+ mDRyrziYHI6gZo3DJuT2MLMLERjWN7Kiyf0dAQ8HWS+5+yzZmnSXgREz0rHvrHlRgUI3NnIVj
+ jSYrEvE+wbkSNgpBLTrLdmjaDIEzDv08x/5URvXMp9pblHfYawzNdWbeT9m9bcuOBmcQyN4KY
+ QaHr75jPPNrRr/BD6xdv5gLYRi8KHSAWoPuBD8cODz/IcK6NvgeFyBeqdqcwWa8RHyhgNmEjh
+ pNLm5BDnasCe1lI49b3TLTJL+KVWDS2dS37XZR/wlNU1unvxml0ei9JKvixV0ATUOyzrSohxa
+ OQl8ilN/OinOjka/N6D5eUGw09DpqLIRS9ht7FQH3DEygTTEl2DK6tjpb2zXWc/4iMz1peX
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Marcel Ziswiler <marcel.ziswiler@toradex.com>
 
---pzcJQLU+ls3tyqds
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Disable most nodes on module-level to be enabled on carrier board-level.
 
-On Mon, May 16, 2022 at 02:20:18PM +0300, Mikko Perttunen wrote:
-> On 5/16/22 13:44, Robin Murphy wrote:
-> > On 2022-05-16 11:13, Mikko Perttunen wrote:
-> > > On 5/16/22 13:07, Will Deacon wrote:
-> > > > On Mon, May 16, 2022 at 11:52:54AM +0300, cyndis@kapsi.fi wrote:
-> > > > > From: Mikko Perttunen <mperttunen@nvidia.com>
-> > > > >=20
-> > > > > Set itself as the IOMMU for the host1x context device bus, contai=
-ning
-> > > > > "dummy" devices used for Host1x context isolation.
-> > > > >=20
-> > > > > Signed-off-by: Mikko Perttunen <mperttunen@nvidia.com>
-> > > > > ---
-> > > > > =C2=A0 drivers/iommu/arm/arm-smmu/arm-smmu.c | 13 +++++++++++++
-> > > > > =C2=A0 1 file changed, 13 insertions(+)
-> > > > >=20
-> > > > > diff --git a/drivers/iommu/arm/arm-smmu/arm-smmu.c
-> > > > > b/drivers/iommu/arm/arm-smmu/arm-smmu.c
-> > > > > index 568cce590ccc..9ff54eaecf81 100644
-> > > > > --- a/drivers/iommu/arm/arm-smmu/arm-smmu.c
-> > > > > +++ b/drivers/iommu/arm/arm-smmu/arm-smmu.c
-> > > > > @@ -39,6 +39,7 @@
-> > > > > =C2=A0 #include <linux/amba/bus.h>
-> > > > > =C2=A0 #include <linux/fsl/mc.h>
-> > > > > +#include <linux/host1x_context_bus.h>
-> > > > > =C2=A0 #include "arm-smmu.h"
-> > > > > @@ -2053,8 +2054,20 @@ static int arm_smmu_bus_init(struct
-> > > > > iommu_ops *ops)
-> > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 goto err_reset_pci_ops;
-> > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 }
-> > > > > =C2=A0 #endif
-> > > > > +#ifdef CONFIG_TEGRA_HOST1X_CONTEXT_BUS
-> > > > > +=C2=A0=C2=A0=C2=A0 if (!iommu_present(&host1x_context_device_bus=
-_type)) {
-> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 err =3D bus_set_iommu=
-(&host1x_context_device_bus_type, ops);
-> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (err)
-> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0 goto err_reset_fsl_mc_ops;
-> > > > > +=C2=A0=C2=A0=C2=A0 }
-> > > > > +#endif
-> > > > > +
-> > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return 0;
-> > > > > +err_reset_fsl_mc_ops: __maybe_unused;
-> > > > > +#ifdef CONFIG_FSL_MC_BUS
-> > > > > +=C2=A0=C2=A0=C2=A0 bus_set_iommu(&fsl_mc_bus_type, NULL);
-> > > > > +#endif
-> > > >=20
-> > > > bus_set_iommu() is going away:
-> > > >=20
-> > > > https://lore.kernel.org/r/cover.1650890638.git.robin.murphy@arm.com
-> > > >=20
-> > > > Will
-> > >=20
-> > > Thanks for the heads-up. Robin had pointed out that this work was
-> > > ongoing but I hadn't seen the patches yet. I'll look into it.
-> >=20
-> > Although that *is* currently blocked on the mystery intel-iommu problem
-> > that I can't reproduce... If this series is ready to land right now for
-> > 5.19 then in principle that might be the easiest option overall.
-> > Hopefully at least patch #2 could sneak in so that the compile-time
-> > dependencies are ready for me to roll up host1x into the next rebase of
-> > "iommu: Always register bus notifiers".
-> >=20
-> > Cheers,
-> > Robin.
->=20
-> My guess is that the series as a whole is not ready to land in the 5.19
-> timeframe, but #2 could be possible.
->=20
-> Thierry, any opinion?
+Signed-off-by: Marcel Ziswiler <marcel.ziswiler@toradex.com>
+---
 
-Dave and Daniel typically want new material to be in by -rc6 and I've
-already sent the PR for this cycle. I can ask them if they'd take
-another one, though, if it make things simpler for the next cycle.
+(no changes since v1)
 
-Thierry
+ arch/arm/boot/dts/imx7-colibri-eval-v3.dtsi | 1 -
+ arch/arm/boot/dts/imx7-colibri.dtsi         | 5 -----
+ 2 files changed, 6 deletions(-)
 
---pzcJQLU+ls3tyqds
-Content-Type: application/pgp-signature; name="signature.asc"
+diff --git a/arch/arm/boot/dts/imx7-colibri-eval-v3.dtsi b/arch/arm/boot/dts/imx7-colibri-eval-v3.dtsi
+index fea6e4c0d4d6..826f13da5b81 100644
+--- a/arch/arm/boot/dts/imx7-colibri-eval-v3.dtsi
++++ b/arch/arm/boot/dts/imx7-colibri-eval-v3.dtsi
+@@ -44,7 +44,6 @@ mcp2515: can@0 {
+ 		spi-max-frequency = <10000000>;
+ 		vdd-supply = <&reg_3v3>;
+ 		xceiver-supply = <&reg_5v0>;
+-		status = "okay";
+ 	};
+ };
+ 
+diff --git a/arch/arm/boot/dts/imx7-colibri.dtsi b/arch/arm/boot/dts/imx7-colibri.dtsi
+index f29096fca54d..065d8f55f326 100644
+--- a/arch/arm/boot/dts/imx7-colibri.dtsi
++++ b/arch/arm/boot/dts/imx7-colibri.dtsi
+@@ -140,9 +140,6 @@ &adc1 {
+ };
+ 
+ /* ADC2 is not available as it conflicts with AD7879 resistive touchscreen. */
+-&adc2 {
+-	status = "disabled";
+-};
+ 
+ &cpu0 {
+ 	cpu-supply = <&reg_DCDC2>;
+@@ -191,13 +188,11 @@ ethphy0: ethernet-phy@0 {
+ &flexcan1 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_flexcan1>;
+-	status = "disabled";
+ };
+ 
+ &flexcan2 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_flexcan2>;
+-	status = "disabled";
+ };
+ 
+ &gpio1 {
+-- 
+2.35.1
 
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmKCWpEACgkQ3SOs138+
-s6HS5g/+NDlKp3MuR8qOz2HUhNTb5hZJliQREJuGJiH3Lb+xlTr9HRTYFTog5h2o
-/8FYXEz/xNe0Ksteb58UEMgTzATGtPWYulLdKMfCLgHRSw9jwEG6IOtCweZv5fNf
-9oAzyL/ZTpTOF330ce1BRfk/PvlNVLnetImK4b8OGmaj9ZMgvfNhgJpzq0jSkf7S
-hTZozfgJ++nan7UBRnZofuYzhpbDGrTAbxhTgksppbF0nM6AykU1je/eQBZL6I05
-ASNkCmDqun5PBmXYyMZChBXBhJl6Di2qKGy1kuFwrT2/K8a1WghA+J4ZiW6nGCH+
-9jcbkiXYNiq6T8mwywq3zxONLKKB2gDr07doUPHr2ERBfmXtG+X6lxXq97Zq+eyV
-N8RGawUV8cCELULq/U9t7k9WjNtCLNiLIhXKGj7c1QNK8PervlLaJqY2+t1HQzwt
-JFWZcP2I1S3246kEhCbh+mPTKS+J5HkOgfgbVRkjcDY/lZrcK1QLmvsL95UFIt1f
-pPRcBG9O2CNtjsN2rH8mOHs7dMpR6G1562YhRiRjGJubFFCg5Tmt/Mt7KyER4HGS
-kosQh4xTIxzi6Cs0RIXDO/2krGcibkv3vlWJBsxNczzpoq63d7TIjXM5WaV0UKqL
-UreHGegFDP9Q2xzfuJhqmaYOYg/E/VuRbZOO19Zn28tLtD/wiGY=
-=fv4K
------END PGP SIGNATURE-----
-
---pzcJQLU+ls3tyqds--
