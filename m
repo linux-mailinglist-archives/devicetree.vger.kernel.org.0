@@ -2,57 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E4780527FB2
-	for <lists+devicetree@lfdr.de>; Mon, 16 May 2022 10:31:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 689D7527FBC
+	for <lists+devicetree@lfdr.de>; Mon, 16 May 2022 10:33:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236291AbiEPIbW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 May 2022 04:31:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52154 "EHLO
+        id S233857AbiEPIdK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 May 2022 04:33:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55440 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234405AbiEPIbU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 May 2022 04:31:20 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3FDDDE84;
-        Mon, 16 May 2022 01:31:18 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id 6E5C21F427EB
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1652689876;
-        bh=ytW6OzemA443Fouu0UIECYThL8+4RWJXRFWc1m4MtCA=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=DrwGfIZryGFSE47jUYrBD9ViP0HynbmltEeFaTfaRjPvDy127ALe3/gLlx4a/wIBm
-         cpYw0qGPUh+ofhh0mBWJ5H4ZzXZlc6BC5fYLTbjuGUDrbCCqRRmyf5DpkU2H7FTAt0
-         3yTXp9b7+x2kaw0UwSpa4FazbLDEeAB4UGuRl0ZhTGJQqJZJ34D+mlB8Gcb54Dq2bO
-         OD26aijV8SV43MYCA/nARuauX2z8LwzxNUkZA+iotU9mdoqhSHbVAtmatPJMuUBuV9
-         e6tAROSSVU6Iesivz5qfYmqVSEWIWedgd9icIfmLbDDdirUd2TbOyZwkeotkq+RVUP
-         MDIFscgK1UCHg==
-Message-ID: <7d4caab4-bb70-8e32-dc06-5edd51dbeea5@collabora.com>
-Date:   Mon, 16 May 2022 10:31:12 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.0
-Subject: Re: [PATCH v2 2/2] clocksource/drivers/timer-mediatek: Implement
- CPUXGPT timers
+        with ESMTP id S232158AbiEPIdJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 May 2022 04:33:09 -0400
+Received: from JPN01-OS0-obe.outbound.protection.outlook.com (mail-os0jpn01on2138.outbound.protection.outlook.com [40.107.113.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8985E09C;
+        Mon, 16 May 2022 01:33:06 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=QilfbesBVmy+UnARDKGdDaZDYdKkXkcwWvYS33UJ6Wm1prYXxLBTN8IrkfJzEOTvjS5EAFZhmPNxzQ7UCSNBd++WZb2HCWhleT26j/zlr+CsxpZsywV8+/QOx+6IM/ZsMGtibPYB3LHJCX31Tde7UkoGh2289bc9ySwhkGmcakSMckeDDuvUKpyTuR8w9LQnuEV9tS8V3RcfIvA5phK6PskzcyoYLXCcexlfJD2gw9sdzUt7CMDGZPblZ4VU9iJaZWRK34RI3fvkbJHrnxvbNBT1V6BtTocFK3ejfdV+mhtd0y2gmw/6Ojg7QfvwEcmNJIlTImVVgdSWEAs8eQxflg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=LTRtrwsewfNRrysdDKCxv1MXkrltvowX3VtBX+LjIJw=;
+ b=mqwqQZQbOhJq7lgU9bMyyH5gOmCc3Gw1mFTP8jkZ6p2VcEsxoGLRw6bsjqM9vhDkbTPwy1IYUQCR/SA6cdo/P7MLeMGyYI8FGjK8AOkqA/f0OzjhdcNVmHUZJu8kbG0sJZwcu0OavjEKP2iN/fUjk3gLwOYyXGTF7IU1iKSPCdZGzwpkkRIj/RIKFuH9JRSEZ1XHt2ySdZWy6PIz9TNkBGYde+PqzKwtKdjsWAFSqFP0zYuP23x2087EcgdlIF5H03KYflzl2DmC7gEDPFm8sPceesZ/6qgkdz7A2DNAtYGA4IywkbR5RryJgDcH8A+uYZqQP1ChUmR5fKBECqSUCg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
+ header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=LTRtrwsewfNRrysdDKCxv1MXkrltvowX3VtBX+LjIJw=;
+ b=CB0O+OCju6T/EdR+7tP9240OgDAHmHpUgZSYOQy97pC+w5SKKcwe8Sv7iKX5W6ev1NWkBNKePfHopkM+geUFObORmDRvcb3nPcoHts4nJUYRrfoT9VwJ4GYy/EpIMfu16tAsdfrIzUPnO62F9ASS5AmDwfqk+Ej5594LTYQoU3Q=
+Received: from OS0PR01MB5922.jpnprd01.prod.outlook.com (2603:1096:604:bb::5)
+ by OSAPR01MB4001.jpnprd01.prod.outlook.com (2603:1096:604:5f::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5250.13; Mon, 16 May
+ 2022 08:33:03 +0000
+Received: from OS0PR01MB5922.jpnprd01.prod.outlook.com
+ ([fe80::3e:970b:c238:f57]) by OS0PR01MB5922.jpnprd01.prod.outlook.com
+ ([fe80::3e:970b:c238:f57%9]) with mapi id 15.20.5250.018; Mon, 16 May 2022
+ 08:33:03 +0000
+From:   Biju Das <biju.das.jz@bp.renesas.com>
+To:     Marc Zyngier <maz@kernel.org>
+CC:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Phil Edworthy <phil.edworthy@renesas.com>
+Subject: RE: [PATCH v3 5/5] pinctrl: renesas: pinctrl-rzg2l: Add IRQ domain to
+ handle GPIO interrupt
+Thread-Topic: [PATCH v3 5/5] pinctrl: renesas: pinctrl-rzg2l: Add IRQ domain
+ to handle GPIO interrupt
+Thread-Index: AQHYZWWEBd/euhXmSkarEpD10nkci60a2/SAgACm0QCAAN7IAIAAdeAAgAAJi4CAAD6IgIACRgWAgAB/rgCAASkA8IAAIc+AgAAAN7A=
+Date:   Mon, 16 May 2022 08:33:03 +0000
+Message-ID: <OS0PR01MB5922F84DA086D2C7F69BB6B386CF9@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+References: <20220511183210.5248-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        <20220511183210.5248-6-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        <CAMuHMdXDQ+eECWwvAGOb-MaN16H17qm_v_1baZ7PdT8qx9McSw@mail.gmail.com>
+        <CA+V-a8tNrJQtAQYoUKVwH9w4QOyA9JUWNjiYDPUPsj6UuJ4vaA@mail.gmail.com>
+        <CAMuHMdVazy9y_U6Nva+B-3vuX1Ersq+QirXDDgSh28pj8s=EJA@mail.gmail.com>
+        <CA+V-a8s2Gf22MPLoZMJS_5uDwzOboJ2i8rZ3KdRFy7a7wv8pGg@mail.gmail.com>
+        <CAMuHMdXHJ385isGd-x8u4sFm1w=rxOC89SUryYbSd34bijkb0g@mail.gmail.com>
+        <CA+V-a8uXakF45TLvpsfeAY_EZKDGHr-wfgqLR_LTz1ZAo8FYmg@mail.gmail.com>
+        <OS0PR01MB5922C5DD97F922396CFDA6BD86CC9@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+        <87pmkfm0v3.wl-maz@kernel.org>
+        <OS0PR01MB5922C5E362A582509A814C1586CF9@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+ <87pmkd6gda.wl-maz@kernel.org>
+In-Reply-To: <87pmkd6gda.wl-maz@kernel.org>
+Accept-Language: en-GB, en-US
 Content-Language: en-US
-To:     Yassine Oudjana <yassine.oudjana@gmail.com>
-Cc:     daniel.lezcano@linaro.org, tglx@linutronix.de, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, konrad.dybcio@somainline.org,
-        marijn.suijten@somainline.org, martin.botka@somainline.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        paul.bouchara@somainline.org
-References: <20220513201442.13569-1-y.oudjana@protonmail.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20220513201442.13569-1-y.oudjana@protonmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=bp.renesas.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: aacd214f-c183-424c-54a3-08da3716b1af
+x-ms-traffictypediagnostic: OSAPR01MB4001:EE_
+x-microsoft-antispam-prvs: <OSAPR01MB400114C961DFCFC94684D3AD86CF9@OSAPR01MB4001.jpnprd01.prod.outlook.com>
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 8IXPbQvmI6MSZTznGeQDrtQ/uJ86aPQZ2CQ9NykWz2QMqrKo0TaOvd9xTwb2hbe/OPaye42X87voNEBrJIj4RGme2914505CNDssgmj0BnC+dpGm15bsS9iHo99vNarEe7ALzjbB4gZid8W01iunIe8paNf3xFOdqsCaDlM/jjstKmAsghjkPhu+Nq+UcQcGsWuhvBcWO63N+h5+CuSuo8kFO8hmwWOvQIIt7AVOgIFB2TmTnAsyYC6oDwemigt+DVFqi3yPL4T8anDUSBAFevNFb0JjEv/M3vY+HhzYl9nl3Q7yBEqzzHTpgqAyNtQwTZ732NyBmWWNaQvPl/2qVX6mpzfKbbwFsFTb5vhnfVGUHhwRSL3fLmGxK8yiqpuC5nge3YaKJTMS6RFYpNci71igHVI0JQ5gYdBXSxGTYSy5jhORYmtvRda8CPXR9DTw9CeEaJ8N6J59ArqyOZWGQDlCyuLCTdoU3oDxJk9M7iu3UOsCKIR3Ez3K3OUvC1Q2DWMnFuV2L6N8GmVmyZd/UAVzX4trk72Kb7uu9tCRx+eHk5dJR9vaqsbREbA+pKdoavOGy42yRMPaud9sqIyRtWXcXWEdCRKOwouRnskAL8PNcQPEvkekiFmA5m+hzAi7R0G1dUbmsyIpS+DyV82kluihY415n9GKt+NCeFm4lI1+1pyJMCxlh/vBGO6HMFyjFFI974+pC/9piy1ZZdsMif7Lh0Xms/HYkwHwliAIrjI=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OS0PR01MB5922.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(6916009)(54906003)(107886003)(66556008)(76116006)(66946007)(9686003)(26005)(64756008)(66446008)(66476007)(83380400001)(8676002)(6506007)(4326008)(55016003)(316002)(7416002)(71200400001)(38070700005)(86362001)(5660300002)(508600001)(52536014)(8936002)(33656002)(2906002)(122000001)(38100700002)(186003)(7696005)(21314003);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?17pmn2BEiw0FS6lTHeorTsrZjfz41O6c6T7aaju9WU6wdOP6z9HVUpkfwgFb?=
+ =?us-ascii?Q?sYuganTAWv1r6RfHxM7vlUsSoZgBVjpKeMlRrRy4EM39XrvFw+yyGrSR0w/b?=
+ =?us-ascii?Q?QaO73WXHAtEr2R+Rp4lAP0zoK7LtIrs3giEKUaPEZopwENgY+ZaoDGNugto7?=
+ =?us-ascii?Q?SYIkUA97S9AnV+C8zkTFEqbiPPGitwDTkF4FFW4rsYGLwumE7iXcYgNfcUns?=
+ =?us-ascii?Q?sg1WsU7b39qG5pSBjsGUZcQEEt9sm+EuvqSnACBLZsNC5oEjM3aaNZFfvNJH?=
+ =?us-ascii?Q?2IO6LLVAan0lmvDDuuIDfAPnjheGioQXG+TaDVY/7Pf07nULB4mvly7DVqS/?=
+ =?us-ascii?Q?nJpCVkbM2ETYW6vWDeLp4SnjBl/+mpB2LKQt8Ztixr2KVISwjaYrf93VOfs4?=
+ =?us-ascii?Q?RKWuSu3uqDnRMxi2hTeCyiVn8OlA+ClhuAjh/41B7Gk2JhE6WhZ9Nutkq16H?=
+ =?us-ascii?Q?eLefjSF9xRbMMiS55oMbNHJrR9QVu2Vn6t5RyEovQQvqmAWGAJ2ZL754Gio0?=
+ =?us-ascii?Q?JZn+S5qqQPenvHwzLKDFhg8xgAfnAmRxZDG8gCnTsly3KYVwoAGDwYYVAIbQ?=
+ =?us-ascii?Q?QbL7btUkVf0jIdzi8tg4/FLrp8oqVKX3QT58JXqfOmzXzDVb21q9vl2WBC32?=
+ =?us-ascii?Q?b/ueeAfOYBpsPzVn6ZzznATvEvQaHO0X43zq5ofK1oj27lOesfMcoqScMC/R?=
+ =?us-ascii?Q?dSxM6/vtGib1r5EVZptevcvEX8ZPCrNz1QvyFIyoLugiZyZQXvYgYbS9bJQj?=
+ =?us-ascii?Q?a11GHrq600v1lbJ0pmPNrzMBGdQ4tHMPRtlYKdquBLyHtcMzgglB1hJb7ePW?=
+ =?us-ascii?Q?XRqo8gL6KiK9kqjCcR/iwh7Y/wJ4NiYbL2czHXd/zh3ctDPA4DrXAF3of9XJ?=
+ =?us-ascii?Q?irHd9RpO11TbrKPT+nflP3jb22n+LATjHgSL3scz1eeHdD2SOHx79f4C1zIX?=
+ =?us-ascii?Q?aEgwrZHC0EMt0tNjn/Mz4yHGaFvlqRRgiHWW+VrMmpq6O/LbU2glnuNJ+ISM?=
+ =?us-ascii?Q?LZJzHfM1KOM4nmXJAuScO/meAdJSbeFyy/TUI11znm/BgZQQS+/q8RicfEdm?=
+ =?us-ascii?Q?gtxYTmZMDggKh2/l/FSBkM6rzNflubHphJdI/HIQAx3909wvGb3GynSaDQC6?=
+ =?us-ascii?Q?2qImCylH94FCijmAg0GLid2ZO+BrQjEG2eZ6Q4Sq4WEQYx/XL9/OJ8nppBda?=
+ =?us-ascii?Q?jkaDXvg37Y5tRKEyO0ZLikYJKe+IJCDtSYs33enXMErBxIuPiKi2lYe+48vZ?=
+ =?us-ascii?Q?k7SNM3QBn5WJEABdXwyQA5+kVARtKebMIRH/yaX2LImzDtTmjsRgPamkpX5i?=
+ =?us-ascii?Q?JriL2iyA9yL2U8aO9cKmoemnjdDs5cR5Fj2UiFwXk6ypFSlsa5oaQwHkSGfF?=
+ =?us-ascii?Q?hqCvxwXr6nUQtdPqlH9vQP060ZY/J4Z6uzOrOZX33fzoyYmMeFO8NbKG/tgZ?=
+ =?us-ascii?Q?o093waSQMSZh92I7QVmo7I/RPCUWJ/D3zt3ybLwQ7iWypwB7v04yYlGuEQSd?=
+ =?us-ascii?Q?JbaiIh++PTjYlZnzKZvyTpVtyc+U0+8T5q3laOJ2myYDxNN9/9FNhdBbXIs6?=
+ =?us-ascii?Q?U8ma5sIz5SKilXLS/W+umq971GCSBAD4kxNpK+IvtSKggi3gAzW4symEh14Z?=
+ =?us-ascii?Q?BIWszsQDaw/xcSk71i2acZAHOYc5BnVWiZlwNIELWIMbfUoZSyg0JAFXoJtd?=
+ =?us-ascii?Q?zV/hfmDyqfvB0jxvgLjepj0ck5bI/XLUkBcNPsFQQ2wAFWbkl84sEWjKn+NB?=
+ =?us-ascii?Q?dy2xv/LD6Y5NvZHyZIGs9c0fYAWx+HI=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-OriginatorOrg: bp.renesas.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: OS0PR01MB5922.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: aacd214f-c183-424c-54a3-08da3716b1af
+X-MS-Exchange-CrossTenant-originalarrivaltime: 16 May 2022 08:33:03.5743
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: W4zB3AnOnEorFl0Fo13Q+60x8AbnrghMlWRaTugXV99WpLj522cRDUXGUo99YRRp29TnKyBrNvKGUFSHeORbNM0fqHv0wRpxYt4ribb03yc=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: OSAPR01MB4001
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -60,162 +145,108 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 13/05/22 22:14, Yassine Oudjana ha scritto:
-> From: Yassine Oudjana <yassine.oudjana@gmail.com>
-> 
-> On Mon,  9 May 2022 23:07:40 +0200, AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com> wrote:
->> Some MediaTek platforms with a buggy TrustZone ATF firmware will not
->> initialize the AArch64 System Timer correctly: in these cases, the
->> System Timer address is correctly programmed, as well as the CNTFRQ_EL0
->> register (reading 13MHz, as it should be), but the assigned hardware
->> timers are never started before (or after) booting Linux.
->>
->> In this condition, any call to function get_cycles() will be returning
->> zero, as CNTVCT_EL0 will always read zero.
-> 
-> I spent a lot of time trying to figure out why the arch timer didn't
-> work on MT6737T and never got any results. Turns out this is why...
-> 
-> I ended up using the GPT (@ 0x10004000) as a system timer and it
-> worked fine.
-> 
-> With this patch the arch timer started to work finally. Thanks for
-> the fix! See below for one comment on this patch.
-> 
+Hi Marc,
 
-Hello Yassine,
+.org>; Phil Edworthy
+> <phil.edworthy@renesas.com>
+> Subject: Re: [PATCH v3 5/5] pinctrl: renesas: pinctrl-rzg2l: Add IRQ
+> domain to handle GPIO interrupt
+>=20
+> On Mon, 16 May 2022 08:20:47 +0100,
+> Biju Das <biju.das.jz@bp.renesas.com> wrote:
+> >
+> > > >
+> > > > I believe from interrupt statistics point of view, cat
+> > > > /proc/interrupts should report actual gpioint number (0->122)
+> > > > corresponding to pin index for SW1, SW2 and SW3 ??
+> > >
+> > > No. There is no need for such userspace-visible behaviour. Userspace
+> > > has no business tracking those. The required information is in
+> > > debugfs, and that more than enough.
+> >
+> > Ok, So far I used cat /proc/interrupts for debugging, since I don't
+> > need to enable DEBUG config for Enabling Debugfs for irq. This Debugfs
+> > irq is new info to me.
+> >
+> > Our hardware manual has below info for usb-phy irq
+> > 2H0_OBINT	126(InterruptID)	SPI 94	IRQ 94	Level
+> >
+> > cat /proc/interrupts matches with GICV3 Interrupt ID/ type in the HW
+> manual
+> > 113:          0          0     GICv3 126 Level     11c50200.usb-phy
+> >
+> > Debugfs is also showing similar info like hwirq and interrupt type.
+> > But I don't know which field corresponds to number of interrupts?
+> >
+> > root@smarc-rzg2l:~# cat /sys/kernel/debug/irq/irqs/113
+> > handler:  handle_fasteoi_irq
+> > device:   (null)
+> > status:   0x00000104
+> > istate:   0x00000000
+> > ddepth:   0
+> > wdepth:   0
+> > dstate:   0x13402204
+> >             IRQ_TYPE_LEVEL_HIGH
+> >             IRQD_LEVEL
+> >             IRQD_ACTIVATED
+> >             IRQD_IRQ_STARTED
+> >             IRQD_SINGLE_TARGET
+> >             IRQD_DEFAULT_TRIGGER_SET
+> >             IRQD_HANDLE_ENFORCE_IRQCTX
+> > node:     0
+> > affinity: 0-1
+> > effectiv: 0
+> > domain:  :soc:interrupt-controller@11900000-1
+> >  hwirq:   0x7e
+>=20
+> 0x7e =3D 126 =3D 94 - 32 -> SPI94.
+>=20
+> What else do you need?
 
-yes this is a common quirk that's present on all (or almost all?) older
-MediaTek platforms - as I explained, due to TZ doing only partial init
-for these timers.
+OK, similar to GIC, I thought for gpio interrupts,
 
-I'm happy to read that this is working out as expected: I saw you pushing
-some patches for older MTK SoCs, so I started researching about what the
-community was blocked on with the upstreaming of these, and learnt about
-such major blocker.
+The  hwirq should match with gpiointN  mentioned in hwmanual. That is all.
+Any way it is minor thing, it may be not at all needed. Please ignore this.
 
-There's more, though: you also need to initialize the CPU MTCMOS at early
-boot in order for SMP to work on (some?) old platforms, or at least this
-is true for MT6795.
+Eg:-for gpioint0, it should be
 
-Since it looks like you're interested in giving love to old SoCs, I will
-anticipate to you that I *do* have a local implementation for a correct
-initialization of the MTCMOS for the non-boot cores... that needs to be
-cleaned up a bit before I push that upstream though.
+root@smarc-rzg2l:~# cat /proc/interrupts | grep SW
+ 82:          0          0 11030000.pinctrl 0 Edge      XXX
 
->> One common critical symptom of that is trying to use the udelay()
->> function (calling __delay()), which executes the following loop:
->>
->>              start = get_cycles();
->>              while ((get_cycles() - start) < cycles)
->>                      cpu_relax();
->>
->> which, when CNTVCT_EL0 always reads zero, translates to:
->>
->>              while((0 - 0) < 0)  ==> while(0 < 0)
->>
->> ... generating an infinite loop, even though zero is never less
->> than zero, but always equal to it (this has to be researched,
->> but it's out of the scope of this commit).
->>
->> To fix this issue on the affected MediaTek platforms, the solution
->> is to simply start the timers that are designed to be System Timer(s).
->> These timers, downstream, are called "CPUXGPT" and there is one
->> timer per CPU core; luckily, it is not necessary to set a start bit
->> on each CPUX General Purpose Timer, but it's conveniently enough to:
->>   - Set the clock divider (input = 26MHz, divider = 2, output = 13MHz);
->>   - Set the ENABLE bit on a global register (starts all CPUX timers).
->>
->> The only small hurdle with this setup is that it's all done through
->> the MCUSYS wrapper, where it is needed, for each read or write, to
->> select a register address (by writing it to an index register) and
->> then to perform any R/W on a "CON" register.
->>
->> For example, writing "0x1" to the CPUXGPT register offset 0x4:
->> - Write 0x4 to mcusys INDEX register
->> - Write 0x1 to mcusys CON register
->>
->> Reading from CPUXGPT register offset 0x4:
->> - Write 0x4 to mcusys INDEX register
->> - Read mcusys CON register.
->>
->> Finally, starting this timer makes platforms affected by this issue
->> to work correctly.
->>
->> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
->> ---
->>   drivers/clocksource/timer-mediatek.c | 119 +++++++++++++++++++++++++++
->>   1 file changed, 119 insertions(+)
->>
->> diff --git a/drivers/clocksource/timer-mediatek.c b/drivers/clocksource/timer-mediatek.c
->> index 7bcb4a3f26fb..a3e90047f9ac 100644
->> --- a/drivers/clocksource/timer-mediatek.c
->> +++ b/drivers/clocksource/timer-mediatek.c
+Not like
 
-..snip..
-
->> +
->> +	/*
->> +	 * Check if we're given a clock with the right frequency for this
->> +	 * timer, otherwise warn but keep going with the setup anyway, as
->> +	 * that makes it possible to still boot the kernel, even though
->> +	 * it may not work correctly (random lockups, etc).
->> +	 * The reason behind this is that having an early UART may not be
->> +	 * possible for everyone and this gives a chance to retrieve kmsg
->> +	 * for eventual debugging even on consumer devices.
->> +	 */
->> +	freq = timer_of_rate(&to_cpux);
->> +	if (freq > 13000000)
-> 
-> Input clock is 26MHz and is then divided by 2 in CPUXGPT, so shouldn't
-> this be 26000000 instead? I get a warning here with 26MHz system clock
-> supplied:
-> 
-
-This may seem to be counter intuitive... I had two ways to implement this:
-1. Design this driver to take "clk26m" as a clock input and make it so
-    that it reads the expected frequency from CNTFRQ_EL0, then setup the
-    dividers based on that reading; or
-2. Take "clk13m" as input and refuse to take anything else.
-
-Keeping in mind that:
-1. There's no way (that I know, at least) to set a different clock source for
-    the CPUXGPT timers, and
-2. There's no platform (I've been researching on that) that uses a different
-    frequency for these timers...
-
-...there will never be any platform that outputs a clock that's not 13MHz,
-hence I chose to follow path 2 and take the 13MHz "System Clock", which is
-something that is present downstream as well.
-
-In any case, now that you make me think about that, it may indeed be more
-logical to assign the 26MHz clock to this node... my intention was to force
-knowledge on this outputting 13MHz instead but, I realize, this may be the
-wrong way of doing that.
-
-> clocks {
-> 	...
-> 	clk26m: clk26m {
-> 		compatible = "fixed-clock";
-> 		clock-frequency = <26000000>;
-> 		#clock-cells = <0>;
-> 	};
-> 	...
-> };
-> ...
-> soc {
-> 	...
-> 	cpuxgpt: timer@10200670 {
-> 		compatible = "mediatek,mt6795-systimer";
-> 		reg = <0 0x10200670 0 0x8>;
-
-My congratulations on this timer node: you're a smart person!
-I was expecting people complaining about "this doesn't work" and having
-to explain that 0x10200000 is not the right iostart for this node, but
-I didn't have to.
-
-Hats off.
+root@smarc-rzg2l:~# cat /proc/interrupts | grep SW
+ 82:          0          0 11030000.pinctrl 120 Edge      XXX
 
 Cheers,
-Angelo
+Biju
+
+>=20
+> >  chip:    GICv3
+> >   flags:   0x15
+> >              IRQCHIP_SET_TYPE_MASKED
+> >              IRQCHIP_MASK_ON_SUSPEND
+> >              IRQCHIP_SKIP_SET_WAKE
+> >
+> > Now coming to current case,
+> >
+> > Currently GPIO INT 0-122(123 interrupts) corresponding to
+> > 120-511(291 interrupts) with same invalid lines.
+> >
+> > From a debugging point, If user has put same irq name for gpioints(cat
+> > /proc/interrupts case), then how do we distinguish these interrupts??
+> > (using hwirq??)
+>=20
+> Yes.
+>=20
+> >
+> > For using Debugfs, Do we need to first execute cat /proc/interrupts to
+> > get virq and from there we need to use virq to get statistics, right?
+>=20
+> It depends what you want to do. /sys/kernel/debug/irq/irqs/ has the exact
+> same information. The only thing /proc/interrupts has that debugfs doesn'=
+t
+> is the per-CPU accounting of delivered interrupts.
+
+
 
