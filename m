@@ -2,81 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EAA1D528DDF
-	for <lists+devicetree@lfdr.de>; Mon, 16 May 2022 21:22:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 91A99528DDD
+	for <lists+devicetree@lfdr.de>; Mon, 16 May 2022 21:21:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345341AbiEPTWP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 May 2022 15:22:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54870 "EHLO
+        id S1345375AbiEPTVz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 May 2022 15:21:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53480 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345387AbiEPTWK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 May 2022 15:22:10 -0400
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.20])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9653E1AF19;
-        Mon, 16 May 2022 12:22:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1652728896;
-        bh=n3B1tFZFIsJ89uIoiL7dX/rVRMmDUZ1088RdBsJpfxE=;
-        h=X-UI-Sender-Class:Date:In-Reply-To:References:Subject:Reply-to:To:
-         CC:From;
-        b=iAqc3i/yie0yQ2RO4KjEodO6JlsmEeoCluKIjQQeD5VvGXK2FMakTvhlaCwZTxZSO
-         +AzMBHyTlzQIQMaEQ316PydcD87/HFx5pXYq2+cMNj7A9Gvv91zdDVmJwriY3yGh6i
-         6WBPQ5hsPF1ev6OmpV54UGGyP8a06ZCPvBlzup2c=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from frank-s9 ([80.245.74.14]) by mail.gmx.net (mrgmx105
- [212.227.17.168]) with ESMTPSA (Nemesis) id 1MGyxX-1o3ajL2Lzf-00E7Xg; Mon, 16
- May 2022 21:21:36 +0200
-Date:   Mon, 16 May 2022 21:21:31 +0200
-User-Agent: K-9 Mail for Android
-In-Reply-To: <20220516173537.GA2942634-robh@kernel.org>
-References: <20220514115946.8858-1-linux@fw-web.de> <20220514115946.8858-2-linux@fw-web.de> <1652570081.002742.3276245.nullmailer@robh.at.kernel.org> <trinity-02ad648c-f6f8-4383-b389-a0578d5a02d2-1652615387162@3c-app-gmx-bap15> <20220516173537.GA2942634-robh@kernel.org>
+        with ESMTP id S1345352AbiEPTVz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 May 2022 15:21:55 -0400
+Received: from mailgw.felk.cvut.cz (mailgw.felk.cvut.cz [147.32.82.15])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF9CF19FA3;
+        Mon, 16 May 2022 12:21:51 -0700 (PDT)
+Received: from mailgw.felk.cvut.cz (localhost.localdomain [127.0.0.1])
+        by mailgw.felk.cvut.cz (Proxmox) with ESMTP id 6327030B2943;
+        Mon, 16 May 2022 21:21:49 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        cmp.felk.cvut.cz; h=cc:cc:content-transfer-encoding:content-type
+        :content-type:date:from:from:in-reply-to:message-id:mime-version
+        :references:reply-to:subject:subject:to:to; s=felkmail; bh=D25+b
+        sYPPdD75osljot245ly0xJRX+XEY5UOuZmKOpc=; b=geG4M6+JzNolfnKk+mVPV
+        61e/Q86dMa0avgUlWzXALoQsKdJ6B2c8m+ZQ/mFgxMiiBlGGwL8pWJCKT0lAx3pW
+        N66Di9bprba+Tq1g6C2F+3D8f/aoPF6TouA3WZExfQ4O9pS2t8pHila22OGTVXYA
+        Zd5fAjTk+1oCzuNe4nOFqoTFN7rHVDQ4rwKHm6h2qPgITmXEz6x5QsVRBHSALvaT
+        f4UP0R0iL1x2NqUrUrJ/jLkF2XFnn+5YjMFkcfV65krf4VqFELin4e5Btig1BUB0
+        jlZLOyB1F+3IO0knR2z5NXw71GkWgYUxznVyKDl+x2PhC43nEcMqdczqxO8wW9XX
+        g==
+Received: from cmp.felk.cvut.cz (haar.felk.cvut.cz [147.32.84.19])
+        by mailgw.felk.cvut.cz (Proxmox) with ESMTPS id B38D730B2941;
+        Mon, 16 May 2022 21:21:48 +0200 (CEST)
+Received: from haar.felk.cvut.cz (localhost [127.0.0.1])
+        by cmp.felk.cvut.cz (8.14.0/8.12.3/SuSE Linux 0.6) with ESMTP id 24GJLm6n031667;
+        Mon, 16 May 2022 21:21:48 +0200
+Received: (from pisa@localhost)
+        by haar.felk.cvut.cz (8.14.0/8.13.7/Submit) id 24GJLmNC031666;
+        Mon, 16 May 2022 21:21:48 +0200
+X-Authentication-Warning: haar.felk.cvut.cz: pisa set sender to pisa@cmp.felk.cvut.cz using -f
+From:   Pavel Pisa <pisa@cmp.felk.cvut.cz>
+To:     "Marc Kleine-Budde" <mkl@pengutronix.de>,
+        Rob Herring <robh@kernel.org>
+Subject: Re: [RFC PATCH 2/3] dt-bindings: can: ctucanfd: add properties for HW timestamping
+Date:   Mon, 16 May 2022 21:21:42 +0200
+User-Agent: KMail/1.9.10
+Cc:     Matej Vasilevski <matej.vasilevski@seznam.cz>,
+        linux-can@vger.kernel.org, devicetree@vger.kernel.org,
+        netdev@vger.kernel.org, ondrej.ille@gmail.com,
+        martin.jerabek01@gmail.com
+References: <20220512232706.24575-1-matej.vasilevski@seznam.cz> <20220516160250.GA2724701-robh@kernel.org> <20220516163445.qxz3xlohuquqwbwl@pengutronix.de>
+In-Reply-To: <20220516163445.qxz3xlohuquqwbwl@pengutronix.de>
+X-KMail-QuotePrefix: > 
 MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: Re: [RFC v3 1/5] dt-bindings: phy: rockchip: add PCIe v3 phy
-Reply-to: frank-w@public-files.de
-To:     Rob Herring <robh@kernel.org>
-CC:     Frank Wunderlich <linux@fw-web.de>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Vinod Koul <vkoul@kernel.org>,
-        Johan Jonker <jbx6244@gmail.com>,
-        linux-rockchip@lists.infradead.org, linux-pci@vger.kernel.org,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>
-From:   Frank Wunderlich <frank-w@public-files.de>
-Message-ID: <9496CAFB-6CB6-4BDA-A539-3A6E1B562299@public-files.de>
-X-Provags-ID: V03:K1:f5Irn2u3e6Zhnd5do173aOUv5ETb+hLAEAT30DBf0+1ZrVkoATS
- Fhws/gr/3BwWNsggKEhfSKQkuKdL2wcpALEinrn8h6gKmm20zJmzf3QTFk3lHJlZjBMttx8
- SBN/2jVpFWVUSFkg+pdar6rvQxC24N68914q1lpLgr6mh56mrI47hOdOOiqsN2BIO4LVmoA
- 55GtwGo3goKFxsQZm5N6Q==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:mRgqnWkK9Sg=:YTdRH5LtJInU/r+qpgpHTp
- RkdHzdHcEvxu7D7CwcHrfaWdoYRljfDrihJYlHodROSRLr7fcp7ZVLDwlAfAj2SQ7ABS6rvix
- FUSMNn7R1Uw/eep6ikgEjSetAPpQ3ovZr6hPl1H26FBChTQX8uEQg0fji9RBXE4hkMfLEYgRj
- qi1IThmmCXf8ruHD3NZF+MtfyAm+yMlowRrf/hAeb494As4sPPs8qjUjZ0uGZ8XKDzi0WPZGb
- pUfNnutYtGbnB129EOlQEMxbdeKCczFMhHimE/8ajesstSfHFzd1JNbjDmDcCg7rpzidmQdXr
- 4Z7wy/UB5TcHfzptUdOZZSWGOXNkGMPFiBVhusjhAY2scwkxwXAPd5G++7Q1ZBTagos7sp3pU
- 3g5r8paoFTrw0u/zBC5b7THS8qm7ojKQoY3ABU5rBo181Dcax8wW5R9Mwea4ylhEdbmRhL0WI
- HctnSZH8CP89tV+aFOIvDuWKV7y5Vs0MmczPLz95pmq/5AaEwzPCbbjbn2etye/9Rl7tih67O
- D/aHepkA7IUWi6rDA7GSPTa6cXxYNslD7+suV7ReIBLuIdKd3ptfM2xMsofZ6Vg1mwq1dEnVC
- pE4fe4ypJ6EZ1c14gUDANN8b3eGXA+3XqEuO0AqaM71t5Q4CM4rAmNcDXMcHtaVgtUJN7/Xbf
- MzdP+CJo81lBGDeth+6cW8nkP6ias3KfYPNg67lR8Zp7Sb/ErzQPZ3aW7eLTwHrYZsgaX1rvP
- QBBMBjBeK9gib4axMHxAX7UoCGuY2SNoNYqc63ymHbj2Vw8UJVw19bVtqdjXdFiuzZATlDzyX
- MP2H5mKv8T6PlnNdFzn85gFEqS3J07cyApRMrAjM5PFlK7DE4qs4+dspPeOBEHPa18BMnBHT/
- DufwIomMAa2L65GCXfO3zLkPu6ZRWp5vdMNbMvxXO52yCnLqn6beF8z5fRLkoTYh7Wr7nZ/Rs
- CnOGakp5eqt3eMJXbdyPlIBwfjg+0j05Z/hEX55/wYUxOlety08eHvKqD58ZzN2cG77jclmci
- xQ19HjerZpf+P4LlW+Y0ZJ/wm0PfvAjH1E0Xix1ywyrrXTHJrBNH95hpbZWZyOqELguiFVRlc
- flu7VLme4boB+0=
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_LOW,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+Content-Type: Text/Plain;
+  charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+Message-Id: <202205162121.42800.pisa@cmp.felk.cvut.cz>
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,SPF_HELO_NONE,SPF_NONE,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -84,81 +66,119 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am 16=2E Mai 2022 19:35:37 MESZ schrieb Rob Herring <robh@kernel=2Eorg>:
->On Sun, May 15, 2022 at 01:49:47PM +0200, Frank Wunderlich wrote:
->> Hi
->>=20
->> > Gesendet: Sonntag, 15=2E Mai 2022 um 01:14 Uhr
->> > Von: "Rob Herring" <robh@kernel=2Eorg>
->>=20
->> > On Sat, 14 May 2022 13:59:42 +0200, Frank Wunderlich wrote:
+Hello Rob and Marc,
 
->Documentation/devicetree/bindings/phy/rockchip,pcie3-phy=2Eyaml
->> > >
->> >
->> > My bot found errors running 'make DT_CHECKER_FLAGS=3D-m
->dt_binding_check'
->> > on your patch (DT_CHECKER_FLAGS is new in v5=2E13):
->> >
->> > yamllint warnings/errors:
->> >
->> > dtschema/dtc warnings/errors:
->> >
->/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/phy/=
-rockchip,pcie3-phy=2Eyaml:
->properties:clock-names: 'oneOf' conditional failed, one must be fixed:
->> > 	[{'const': 'refclk_m'}, {'const': 'refclk_n'}, {'const': 'pclk'}]
->is too long
->> > 	[{'const': 'refclk_m'}, {'const': 'refclk_n'}, {'const': 'pclk'}]
->is too short
->> > 	False schema does not allow 3
->> > 	1 was expected
->> > 	3 is greater than the maximum of 2
->> > 	hint: "minItems" is only needed if less than the "items" list
->length
->> > 	from schema $id: http://devicetree=2Eorg/meta-schemas/items=2Eyaml#
->> >
->/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/phy/=
-rockchip,pcie3-phy=2Eyaml:
->ignoring, error in schema: properties: clock-names
->> >
->Documentation/devicetree/bindings/phy/rockchip,pcie3-phy=2Eexample=2Edtb:=
-0:0:
->/example-0/phy@fe8c0000: failed to match any schema with compatible:
->['rockchip,rk3568-pcie3-phy']
->>=20
->> seems this is fixed when i remove the "minItems: 3" from clock names=20
->> (which is already fixed length because of the list)=2E
+thanks for comment and help.
+
+This patch is marked as RFC and not intended for direct
+application. We plan to gather feetback, adjust code
+and probably even IP core HDL based on suggestions,
+then we plan more testing and when we will be ready and
+time allows, new version with plea for merge will provided. 
+
+On Monday 16 of May 2022 18:34:45 Marc Kleine-Budde wrote:
+> On 16.05.2022 11:02:50, Rob Herring wrote:
+> > On Fri, May 13, 2022 at 01:27:06AM +0200, Matej Vasilevski wrote:
+> > > Extend dt-bindings for CTU CAN-FD IP core with necessary properties
+> > > to enable HW timestamping for platform devices. Since the timestamping
+> > > counter is provided by the system integrator usign those IP cores in
+> > > their FPGA design, we need to have the properties specified in device
+> > > tree.
+> > >
+> > > Signed-off-by: Matej Vasilevski <matej.vasilevski@seznam.cz>
+> > > ---
+> > >  .../bindings/net/can/ctu,ctucanfd.yaml        | 34 +++++++++++++++++--
+> > >  1 file changed, 31 insertions(+), 3 deletions(-)
+> >
+> > What's the base for this patch? Doesn't apply for me.
+
+It is based on the series of complete CTU CAN FD support
+which has been accepted into net-next.
+The DTC part has gone through your review and has been
+ACKed longer time ago. We have spent considerable time
+to resolve suggested driver changes - headers files generation
+from HDL tool chain, etc.
+
+We inline to version when most of the info will be directly
+provided by the core HW except for optional second clocks
+probably.
+
+Best wishes,
+
+Pavel
+
+> > > diff --git
+> > > a/Documentation/devicetree/bindings/net/can/ctu,ctucanfd.yaml
+> > > b/Documentation/devicetree/bindings/net/can/ctu,ctucanfd.yaml index
+> > > fb34d971dcb3..c3693dadbcd8 100644
+> > > --- a/Documentation/devicetree/bindings/net/can/ctu,ctucanfd.yaml
+> > > +++ b/Documentation/devicetree/bindings/net/can/ctu,ctucanfd.yaml
+> > > @@ -41,9 +41,35 @@ properties:
+> > >
+> > >    clocks:
+> > >      description: |
+> > > -      phandle of reference clock (100 MHz is appropriate
+> > > -      for FPGA implementation on Zynq-7000 system).
+> > > +      Phandle of reference clock (100 MHz is appropriate for FPGA
+> > > +      implementation on Zynq-7000 system). If you wish to use
+> > > timestamps +      from the core, add a second phandle with the clock
+> > > used for timestamping +      (can be the same as the first clock).
+> > > +    maxItems: 2
+> >
+> > With more than 1, you have to define what each entry is. IOW, use
+> > 'items'.
+> >
+> > > +
+> > > +  clock-names:
+> > > +    description: |
+> > > +      Specify clock names for the "clocks" property. The first clock
+> > > name +      doesn't matter, the second has to be "ts_clk". Timestamping
+> > > frequency +      is then obtained from the "ts_clk" clock. This takes
+> > > precedence over +      the ts-frequency property.
+> > > +      You can omit this property if you don't need timestamps.
+> > > +    maxItems: 2
+> >
+> > You must define what the names are as a schema.
+> >
+> > > +
+> > > +  ts-used-bits:
+> > > +    description: width of the timestamping counter
+> > > +    maxItems: 1
+> > > +    items:
+> >
+> > Not an array, so you don't need maxItems nor items.
+> >
+> > > +      minimum: 8
+> > > +      maximum: 64
+> > > +
+> > > +  ts-frequency:
+> >
+> > Use a standard unit suffix.
+> >
+> > > +    description: |
+> > > +      Frequency of the timestamping counter. Set this if you want to
+> > > get +      timestamps, but you didn't set the timestamping clock in
+> > > clocks property. maxItems: 1
+> > > +    items:
+> >
+> > Not an array.
+> >
+> >
+> > Is timestamping a common feature for CAN or is this specific to this
+> > controller? In the latter case, you need vendor prefixes on these
+> > properties. In the former case, you need to define them in a common
+> > schema.
 >
->Yes=2E
+> This property describes the usable with of the free running timer and
+> the timestamps generated by it. This is similar to the free running
+> timer and time stamps as found on PTP capable Ethernet NICs. But the
+> ctucanfd comes in a hardware description language that can be
+> parametrized and synthesized into your own FPGA.
 >
->> needed to change type of lane-map to this:
->>=20
->> $ref: /schemas/types=2Eyaml#/definitions/uint8-array
+> To answer your question, timestamping is common in newer CAN cores, but
+> the width of the timestamping register is usually fixed and thus hard
+> coded in the driver.
 >
->Why? That's not a standard property though, so needs a 'rockchip'=20
->prefix=2E Though maybe a common property would be appropriate here=2E
+> regards,
+> Marc
 
-Originally it was a bool property named "rockchip,bifurcation" and we chan=
-ged it (after comments) to be a more generic property "lane-map" that can b=
-e re-used on other vendors/controllers/phys=2E
-
-Driver reads as u8 array and range is small enough for u8 even if used for=
- larger controllers (e=2Eg=2E PCIe x16)=2E
-
->> then it looks clean for it=2E=2E=2E=2E
->>=20
->> -m causes many errors unrelated to this schema-file even if i pass
->>
->DT_SCHEMA_FILES=3DDocumentation/devicetree/bindings/phy/rockchip,pcie3-ph=
-y=2Eyaml
->
->The fix is fixing the remaining 40 or so '-m' errors=2E
-
-So now clean for you(r bot), too? Did only get a bunch of other unrelated =
-messages=2E
-
->Rob
-
-
-regards Frank
