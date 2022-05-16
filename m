@@ -2,58 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7DDEF5280B5
-	for <lists+devicetree@lfdr.de>; Mon, 16 May 2022 11:20:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 82C4F528102
+	for <lists+devicetree@lfdr.de>; Mon, 16 May 2022 11:49:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240732AbiEPJUa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 May 2022 05:20:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57874 "EHLO
+        id S237380AbiEPJtA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 May 2022 05:49:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52074 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235024AbiEPJUW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 May 2022 05:20:22 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 756BF25EAC;
-        Mon, 16 May 2022 02:20:20 -0700 (PDT)
+        with ESMTP id S233564AbiEPJs4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 May 2022 05:48:56 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADB3136E0F;
+        Mon, 16 May 2022 02:48:55 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 9CB08B80F62;
-        Mon, 16 May 2022 09:20:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 40979C34100;
-        Mon, 16 May 2022 09:20:18 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 1D3F7612CC;
+        Mon, 16 May 2022 09:48:55 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5A416C385AA;
+        Mon, 16 May 2022 09:48:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1652692818;
-        bh=wRK3W4kkTL91oUEb7BaY00QOBPsJRzSa8p8mNImhh+8=;
-        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-        b=Gl+KBgvDdwmZN09ENrMC9KrP//i0Q1iM9NiqGDKgJWmlaNXAZlO+MaAWnjlKpTi4F
-         00qmAa6jDo/M/SguVgt4xI6Oce6mKD8pJxL5IpFkxGMRW2ruRrtCXmFS6HdSQIa3gt
-         Rtr5HBOQ7okYWmUjC8tScguwUY14+ZYgQTf3sW055C5OhE32Zesv8sFJgBD1Fi90kZ
-         ZrBzfJwpimRh97RasKdBheSGmHWiCTnQyD8fWkkLEC8WyefzJTdfOudHxwjKWpZyEj
-         xbk1M4EoCt2Rp1eUaJoKFZKbSKWoZKJP1Jz2jQ2sYWWQyOM7LdNuNUJ+vwtHchg1R7
-         a7bso+S699GDw==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 18280F03935;
-        Mon, 16 May 2022 09:20:18 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH v4 0/5] Add Renesas RZ/V2M Ethernet support
-From:   patchwork-bot+netdevbpf@kernel.org
-Message-Id: <165269281808.1627.2981856718769988919.git-patchwork-notify@kernel.org>
-Date:   Mon, 16 May 2022 09:20:18 +0000
-References: <20220512114722.35965-1-phil.edworthy@renesas.com>
-In-Reply-To: <20220512114722.35965-1-phil.edworthy@renesas.com>
-To:     Phil Edworthy <Phil.Edworthy@renesas.com>
-Cc:     mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, davem@davemloft.net,
-        edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
-        phil.edworthy@renesas.com, geert+renesas@glider.be,
-        s.shtylyov@omp.ru, sergei.shtylyov@gmail.com,
-        biju.das.jz@bp.renesas.com,
-        prabhakar.mahadev-lad.rj@bp.renesas.com,
-        Chris.Paterson2@renesas.com, magnus.damm@gmail.com,
-        linux-clk@vger.kernel.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+        s=k20201202; t=1652694534;
+        bh=leHS3GcsKVc1Lrf/nqyL0NPJMCBOOuuCoSxhEbeGdFg=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=H4sPnGiwwh9XPdEbTNyUwxkbrG8ifZIPDKFEVrHAMoC+HxGU3DV4nw2hozTUb0v+p
+         vJdE4IlfnSMT3tk2mfmVycqVB+Hg5RJbJpAGphDjUPUs1rLHL34AKp9wRenjdSPzU+
+         BXBG/97cFqQtNml6wjRsE0S5EIhzmtcFC4tVAgM+2dH5sGgXSOrsfN+4KuBigY1qx9
+         sD+PDzh2vcX5237CybA9/59RtqUpC6DoOUABa9I9lEYGHCFFzJTJ8brg/oPCjoOTN8
+         A6DFURdJwl/qqNZMKA/fKfWVEBDgiy4mpQR8QSlSrEjLV63de/3goR6RiJMA6Hgw1+
+         EaSRk1Y+LxQOA==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=why.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <maz@kernel.org>)
+        id 1nqXLP-00BZNP-GO; Mon, 16 May 2022 10:48:51 +0100
+Date:   Mon, 16 May 2022 10:48:51 +0100
+Message-ID: <87mtfh6c58.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Chris Packham <Chris.Packham@alliedtelesis.co.nz>
+Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
+        "will@kernel.org" <will@kernel.org>,
+        "andrew@lunn.ch" <andrew@lunn.ch>,
+        "gregory.clement@bootlin.com" <gregory.clement@bootlin.com>,
+        "sebastian.hesselbarth@gmail.com" <sebastian.hesselbarth@gmail.com>,
+        "kostap@marvell.com" <kostap@marvell.com>,
+        "robert.marko@sartura.hr" <robert.marko@sartura.hr>,
+        "vadym.kochan@plvision.eu" <vadym.kochan@plvision.eu>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v7 2/3] arm64: dts: marvell: Add Armada 98DX2530 SoC and RD-AC5X board
+In-Reply-To: <a69eaf73-8c3c-dfd7-16e5-70460c68877e@alliedtelesis.co.nz>
+References: <20220512042501.3339775-1-chris.packham@alliedtelesis.co.nz>
+        <20220512042501.3339775-3-chris.packham@alliedtelesis.co.nz>
+        <87wnermc9c.wl-maz@kernel.org>
+        <5c01f20a-acd3-da15-081d-7cf878f8a77a@alliedtelesis.co.nz>
+        <a69eaf73-8c3c-dfd7-16e5-70460c68877e@alliedtelesis.co.nz>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: Chris.Packham@alliedtelesis.co.nz, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, catalin.marinas@arm.com, will@kernel.org, andrew@lunn.ch, gregory.clement@bootlin.com, sebastian.hesselbarth@gmail.com, kostap@marvell.com, robert.marko@sartura.hr, vadym.kochan@plvision.eu, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 X-Spam-Status: No, score=-7.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -64,37 +82,283 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello:
+On Fri, 13 May 2022 02:26:21 +0100,
+Chris Packham <Chris.Packham@alliedtelesis.co.nz> wrote:
+>=20
+> Hi Marc,
+>=20
+> On 13/05/22 10:10, Chris Packham wrote:
+> > Hi Marc,
+> >
+> > On 12/05/22 19:38, Marc Zyngier wrote:
+> >> On Thu, 12 May 2022 05:25:00 +0100,
+> >> Chris Packham <chris.packham@alliedtelesis.co.nz> wrote:
+> >>> The 98DX2530 SoC is the Control and Management CPU integrated into
+> >>> the Marvell 98DX25xx and 98DX35xx series of switch chip (internally
+> >>> referred to as AlleyCat5 and AlleyCat5X).
+> >>>
+> >>> These files have been taken from the Marvell SDK and lightly cleaned
+> >>> up with the License and copyright retained.
+> >>>
+> >>> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+> >>> Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+> >>> ---
+> >>>
+> >>> Notes:
+> >>> =C2=A0=C2=A0=C2=A0=C2=A0 The Marvell SDK has a number of new compatib=
+le strings. I've=20
+> >>> brought
+> >>> =C2=A0=C2=A0=C2=A0=C2=A0 through some of the drivers or where possibl=
+e used an in-tree
+> >>> =C2=A0=C2=A0=C2=A0=C2=A0 alternative (e.g. there is SDK code for a ac=
+5-gpio but two=20
+> >>> instances of
+> >>> =C2=A0=C2=A0=C2=A0=C2=A0 the existing marvell,orion-gpio seems to cov=
+er what is needed=20
+> >>> if you use
+> >>> =C2=A0=C2=A0=C2=A0=C2=A0 an appropriate binding). I expect that there=
+ will a new series of
+> >>> =C2=A0=C2=A0=C2=A0=C2=A0 patches when I get some different hardware (=
+or additions to=20
+> >>> this series
+> >>> =C2=A0=C2=A0=C2=A0=C2=A0 depending on if/when it lands).
+> >>> =C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0 Changes in v7:
+> >>> =C2=A0=C2=A0=C2=A0=C2=A0 - Add missing compatible on usb1
+> >>> =C2=A0=C2=A0=C2=A0=C2=A0 - Add "rd-ac5x" compatible for board
+> >>> =C2=A0=C2=A0=C2=A0=C2=A0 - Move aliases to board dts
+> >>> =C2=A0=C2=A0=C2=A0=C2=A0 - Move board specific usb info to board dts
+> >>> =C2=A0=C2=A0=C2=A0=C2=A0 - Consolidate usb1 board settings and remove=
+ unnecessary=20
+> >>> compatible
+> >>> =C2=A0=C2=A0=C2=A0=C2=A0 - Add Allied Telesis copyright
+> >>> =C2=A0=C2=A0=C2=A0=C2=A0 - Rename files after mailng-list discussion
+> >>> =C2=A0=C2=A0=C2=A0=C2=A0 Changes in v6:
+> >>> =C2=A0=C2=A0=C2=A0=C2=A0 - Move CPU nodes above the SoC (Krzysztof)
+> >>> =C2=A0=C2=A0=C2=A0=C2=A0 - Minor formatting clean ups (Krzysztof)
+> >>> =C2=A0=C2=A0=C2=A0=C2=A0 - Run through `make dtbs_check`
+> >>> =C2=A0=C2=A0=C2=A0=C2=A0 - Move gic nodes inside SoC
+> >>> =C2=A0=C2=A0=C2=A0=C2=A0 - Group clocks under a clock node
+> >>> =C2=A0=C2=A0=C2=A0=C2=A0 Changes in v5:
+> >>> =C2=A0=C2=A0=C2=A0=C2=A0 - add #{address,size}-cells property to i2c =
+nodes
+> >>> =C2=A0=C2=A0=C2=A0=C2=A0 - make i2c nodes disabled in the SoC and ena=
+ble them in the board
+> >>> =C2=A0=C2=A0=C2=A0=C2=A0 - add interrupt controller attributes to gpi=
+o nodes
+> >>> =C2=A0=C2=A0=C2=A0=C2=A0 - Move fixed-clock nodes up a level and remo=
+ve unnecessary @0
+> >>> =C2=A0=C2=A0=C2=A0=C2=A0 Changes in v4:
+> >>> =C2=A0=C2=A0=C2=A0=C2=A0 - use 'phy-handle' instead of 'phy'
+> >>> =C2=A0=C2=A0=C2=A0=C2=A0 - move status=3D"okay" on usb nodes to board=
+ dts
+> >>> =C2=A0=C2=A0=C2=A0=C2=A0 - Add review from Andrew
+> >>> =C2=A0=C2=A0=C2=A0=C2=A0 Changes in v3:
+> >>> =C2=A0=C2=A0=C2=A0=C2=A0 - Move memory node to board
+> >>> =C2=A0=C2=A0=C2=A0=C2=A0 - Use single digit reg value for phy address
+> >>> =C2=A0=C2=A0=C2=A0=C2=A0 - Remove MMC node (driver needs work)
+> >>> =C2=A0=C2=A0=C2=A0=C2=A0 - Remove syscon & simple-mfd for pinctrl
+> >>> =C2=A0=C2=A0=C2=A0=C2=A0 Changes in v2:
+> >>> =C2=A0=C2=A0=C2=A0=C2=A0 - Make pinctrl a child node of a syscon node
+> >>> =C2=A0=C2=A0=C2=A0=C2=A0 - Use marvell,armada-8k-gpio instead of orio=
+n-gpio
+> >>> =C2=A0=C2=A0=C2=A0=C2=A0 - Remove nand peripheral. The Marvell SDK do=
+es have some=20
+> >>> changes for the
+> >>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ac5-nand-controller but I curren=
+tly lack hardware with NAND=20
+> >>> fitted so
+> >>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 I can't test it right now. I've =
+therefore chosen to omit the=20
+> >>> node and
+> >>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 not attempted to bring in the dr=
+iver or binding.
+> >>> =C2=A0=C2=A0=C2=A0=C2=A0 - Remove pcie peripheral. Again there are ch=
+anges in the SDK=20
+> >>> and I have
+> >>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 no way of testing them.
+> >>> =C2=A0=C2=A0=C2=A0=C2=A0 - Remove prestera node.
+> >>> =C2=A0=C2=A0=C2=A0=C2=A0 - Remove "marvell,ac5-ehci" compatible from =
+USB node as
+> >>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 "marvell,orion-ehci" is sufficie=
+nt
+> >>> =C2=A0=C2=A0=C2=A0=C2=A0 - Remove watchdog node. There is a buggy dri=
+ver for the ac5=20
+> >>> watchdog in
+> >>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 the SDK but it needs some work s=
+o I've dropped the node for now.
+> >>>
+> >>> =C2=A0 arch/arm64/boot/dts/marvell/Makefile=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 1 +
+> >>> =C2=A0 .../boot/dts/marvell/armada-98dx25xx.dtsi=C2=A0=C2=A0=C2=A0=C2=
+=A0 | 295=20
+> >>> ++++++++++++++++++
+> >>> =C2=A0 .../boot/dts/marvell/armada-98dx35xx-rd.dts=C2=A0=C2=A0 | 101 =
+++++++
+> >>> =C2=A0 .../boot/dts/marvell/armada-98dx35xx.dtsi=C2=A0=C2=A0=C2=A0=C2=
+=A0 |=C2=A0 13 +
+> >>> =C2=A0 4 files changed, 410 insertions(+)
+> >>> =C2=A0 create mode 100644 arch/arm64/boot/dts/marvell/armada-98dx25xx=
+.dtsi
+> >>> =C2=A0 create mode 100644 arch/arm64/boot/dts/marvell/armada-98dx35xx=
+-rd.dts
+> >>> =C2=A0 create mode 100644 arch/arm64/boot/dts/marvell/armada-98dx35xx=
+.dtsi
+> >>>
+> >>> diff --git a/arch/arm64/boot/dts/marvell/Makefile=20
+> >>> b/arch/arm64/boot/dts/marvell/Makefile
+> >>> index 1c794cdcb8e6..b7a4c715afbb 100644
+> >>> --- a/arch/arm64/boot/dts/marvell/Makefile
+> >>> +++ b/arch/arm64/boot/dts/marvell/Makefile
+> >>> @@ -24,3 +24,4 @@ dtb-$(CONFIG_ARCH_MVEBU) +=3D cn9132-db.dtb
+> >>> =C2=A0 dtb-$(CONFIG_ARCH_MVEBU) +=3D cn9132-db-B.dtb
+> >>> =C2=A0 dtb-$(CONFIG_ARCH_MVEBU) +=3D cn9130-crb-A.dtb
+> >>> =C2=A0 dtb-$(CONFIG_ARCH_MVEBU) +=3D cn9130-crb-B.dtb
+> >>> +dtb-$(CONFIG_ARCH_MVEBU) +=3D armada-98dx35xx-rd.dtb
+> >>> diff --git a/arch/arm64/boot/dts/marvell/armada-98dx25xx.dtsi=20
+> >>> b/arch/arm64/boot/dts/marvell/armada-98dx25xx.dtsi
+> >>> new file mode 100644
+> >>> index 000000000000..55ab4cd843a9
+> >>> --- /dev/null
+> >>> +++ b/arch/arm64/boot/dts/marvell/armada-98dx25xx.dtsi
+> >>> @@ -0,0 +1,295 @@
+> >>> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> >>> +/*
+> >>> + * Device Tree For AC5.
+> >>> + *
+> >>> + * Copyright (C) 2021 Marvell
+> >>> + * Copyright (C) 2022 Allied Telesis Labs
+> >>> + */
+> >>> +
+> >>> +#include <dt-bindings/gpio/gpio.h>
+> >>> +#include <dt-bindings/interrupt-controller/arm-gic.h>
+> >>> +
+> >>> +/ {
+> >>> +=C2=A0=C2=A0=C2=A0 model =3D "Marvell AC5 SoC";
+> >>> +=C2=A0=C2=A0=C2=A0 compatible =3D "marvell,ac5";
+> >>> +=C2=A0=C2=A0=C2=A0 interrupt-parent =3D <&gic>;
+> >>> +=C2=A0=C2=A0=C2=A0 #address-cells =3D <2>;
+> >>> +=C2=A0=C2=A0=C2=A0 #size-cells =3D <2>;
+> >>> +
+> >>> +=C2=A0=C2=A0=C2=A0 cpus {
+> >>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 #address-cells =3D <2>;
+> >>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 #size-cells =3D <0>;
+> >>> +
+> >>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 cpu-map {
+> >>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 c=
+luster0 {
+> >>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 core0 {
+> >>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 cpu =3D <&cpu0>;
+> >>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 };
+> >>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 core1 {
+> >>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 cpu =3D <&cpu1>;
+> >>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 };
+> >>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 };
+> >>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 };
+> >>> +
+> >>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 cpu0: cpu@0 {
+> >>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 d=
+evice_type =3D "cpu";
+> >>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 c=
+ompatible =3D "arm,armv8";
+> >>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 r=
+eg =3D <0x0 0x0>;
+> >>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 e=
+nable-method =3D "psci";
+> >>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 n=
+ext-level-cache =3D <&l2>;
+> >>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 };
+> >>> +
+> >>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 cpu1: cpu@1 {
+> >>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 d=
+evice_type =3D "cpu";
+> >>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 c=
+ompatible =3D "arm,armv8";
+> >>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 r=
+eg =3D <0x0 0x100>;
+> >>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 e=
+nable-method =3D "psci";
+> >>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 n=
+ext-level-cache =3D <&l2>;
+> >>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 };
+> >>> +
+> >>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 l2: l2-cache {
+> >>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 c=
+ompatible =3D "cache";
+> >>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 };
+> >>> +=C2=A0=C2=A0=C2=A0 };
+> >>> +
+> >>> +
+> >>> +=C2=A0=C2=A0=C2=A0 psci {
+> >>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 compatible =3D "arm,psci-=
+0.2";
+> >>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 method =3D "smc";
+> >>> +=C2=A0=C2=A0=C2=A0 };
+> >>> +
+> >>> +=C2=A0=C2=A0=C2=A0 timer {
+> >>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 compatible =3D "arm,armv8=
+-timer";
+> >>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 interrupts =3D <GIC_PPI 9=
+ IRQ_TYPE_LEVEL_HIGH>,
+> >>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 <GIC_PPI 8 IRQ_TYPE_LEVEL_HIGH>,
+> >>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 <GIC_PPI 10 IRQ_TYPE_LEVEL_HIGH>,
+> >>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 <GIC_PPI 7 IRQ_TYPE_LEVEL_HIGH>;
+> >>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 clock-frequency =3D <2500=
+0000>;
+> >> I said no to this hack in a past version of this patch, and I'm going
+> >> to say it *again*.
+> > Sorry I must have missed it.
+> >> Please fix your firmware to program CNTFRQ_EL0, and
+> >> remove this useless property.
+> > I'm kind of at the mercy of what Marvell have provided for ATF. I am=20
+> > working on the bootloader portion in parallel and am getting things=20
+> > ready for submitting the u-boot support upstream. I was hoping to=20
+> > leave ATF alone I can at least see if they haven't fixed this already=20
+> > (the original dtsi I started with was fairly old) and if they haven't=20
+> > I'll raise it via their support system.
+> Seems to work fine without the clock so I'll drop it.
 
-This series was applied to netdev/net-next.git (master)
-by David S. Miller <davem@davemloft.net>:
+Thanks. If you can, please verify that this is set on both CPUs (I
+have seen plenty of firmware only setting it on CPU0 in the past).
 
-On Thu, 12 May 2022 12:47:17 +0100 you wrote:
-> The RZ/V2M Ethernet is very similar to R-Car Gen3 Ethernet-AVB, though
-> some small parts are the same as R-Car Gen2.
-> Other differences are:
-> * It has separate data (DI), error (Line 1) and management (Line 2) irqs
->   rather than one irq for all three.
-> * Instead of using the High-speed peripheral bus clock for gPTP, it has
->   a separate gPTP reference clock.
-> 
-> [...]
+> >> You are also missing a PPI for the EL2 virtual timer which is present
+> >> on any ARMv8.1+ CPU (and since this system is using A55, it definitely
+> >> has it).
+> >>
+> >> [...]
+> > Will add.
+> I assume you're talking about the 5th PPI per the=20
+> timer/arm,arch_timer.yaml ("hypervisor virtual timer irq").
 
-Here is the summary with links:
-  - [v4,1/5] dt-bindings: net: renesas,etheravb: Document RZ/V2M SoC
-    https://git.kernel.org/netdev/net-next/c/a7931ac16128
-  - [v4,2/5] ravb: Separate handling of irq enable/disable regs into feature
-    https://git.kernel.org/netdev/net-next/c/cb99badde146
-  - [v4,3/5] ravb: Support separate Line0 (Desc), Line1 (Err) and Line2 (Mgmt) irqs
-    https://git.kernel.org/netdev/net-next/c/b0265dcba3d6
-  - [v4,4/5] ravb: Use separate clock for gPTP
-    https://git.kernel.org/netdev/net-next/c/72069a7b2821
-  - [v4,5/5] ravb: Add support for RZ/V2M
-    https://git.kernel.org/netdev/net-next/c/e1154be73153
+Indeed.
 
-You are awesome, thank you!
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
+> Helpfully
+> Marvell don't include the PPI interrupt numbers in their datasheet. But=20
+> then I also notice that none of the other boards that have a=20
+> "arm,armv8-timer" provide a 5th interrupt either, have I misunderstood=20
+> something?
 
+This was only recently added to the DT binding, but the interrupt
+definitely exist at the CPU level for anything that implements ARMv8.1
+and up. AFAIK, the M1 is the only machine to expose this interrupt in
+DT, but this doesn't mean the interrupt doesn't exist on all the other
+systems that have the same architecture revision.
 
+If you have contacts in Marvell, maybe try and find out whether they
+have simply decided not to wire the interrupt (I wouldn't be
+surprised). In this case, please add a comment.
+
+Thanks,
+
+	M.
+
+--=20
+Without deviation from the norm, progress is not possible.
