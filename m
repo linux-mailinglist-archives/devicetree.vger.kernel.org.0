@@ -2,57 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D7B9C527DDC
-	for <lists+devicetree@lfdr.de>; Mon, 16 May 2022 08:52:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 23B2D527DE3
+	for <lists+devicetree@lfdr.de>; Mon, 16 May 2022 08:53:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240501AbiEPGwY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 May 2022 02:52:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55268 "EHLO
+        id S240492AbiEPGxX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 May 2022 02:53:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57790 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240572AbiEPGwN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 May 2022 02:52:13 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96FCF369DF
-        for <devicetree@vger.kernel.org>; Sun, 15 May 2022 23:52:06 -0700 (PDT)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1nqUa6-0006b7-7z; Mon, 16 May 2022 08:51:50 +0200
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1nqUa1-002cQR-Ov; Mon, 16 May 2022 08:51:44 +0200
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1nqUZz-00A274-Fr; Mon, 16 May 2022 08:51:43 +0200
-Date:   Mon, 16 May 2022 08:51:40 +0200
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: pwm: Add RZ/G2L GPT binding
-Message-ID: <20220516065140.kdrcihx5ifyeuen2@pengutronix.de>
-References: <20220510144259.9908-1-biju.das.jz@bp.renesas.com>
- <20220510144259.9908-2-biju.das.jz@bp.renesas.com>
+        with ESMTP id S239392AbiEPGxW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 May 2022 02:53:22 -0400
+Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18DB93668B
+        for <devicetree@vger.kernel.org>; Sun, 15 May 2022 23:53:21 -0700 (PDT)
+Received: by mail-lj1-x235.google.com with SMTP id v4so16915601ljd.10
+        for <devicetree@vger.kernel.org>; Sun, 15 May 2022 23:53:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=iQVgADZLBM+Tk36v5DqK8z3h8gSiVKkXU+KLhBynY50=;
+        b=Fzdn7ZrUVnjI5ix1Xz7ZS9MSvzDp2IVmHZmOuf8Qoxg+Me7w091JRcNTY1ez5PMdJN
+         spLkgs3IrcQeDKDwLcIRio5b24ahnWCAEMAn7sdanmMQs3DX5sB87JymWfBY2WQMEJYF
+         pOJ12nidG+j/ctVfXBS7iR8F0LA6Z5jcdb/ETqW//Rgb2Ol24l4fIXRN+CCHfdo9D1MV
+         Nfb0ypKBH0tIIxpHiNi6p8movBZVs9c8LoYy9M0DohYi8F3ApobiduFbkGRD78CA2GBB
+         pxs7JW9jXQZ8x1LyucIOvNUac3yfF4rAvx/zlnYye4K/GirDDTw83omfLqnlcbhlAdjs
+         GKnw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=iQVgADZLBM+Tk36v5DqK8z3h8gSiVKkXU+KLhBynY50=;
+        b=dZ0ek7sGNwqPAnfxwqEK8A1ERvAvHKLvLr8KGfCNd0Os1Gqd04zD0yZdmHCYEmIKVi
+         sEBZQXkh1WCpTkJEJ05RRa0u7y/foUu82qG1H6Xy+kAMYt2OcjUkttO1N15MAc4VdeR2
+         Uqk92HDSZF1MsEvOOFR34OdnZsPqrP0/5EY2gbX78gRz7nepnQe78g0ueL5qKYSzKXgI
+         yoBr/vReflKiHsLUfUhVb5qZADgrQyZsziKEzv9ckp3rFSCUDwoCwf0KtoPpoAK2GTEI
+         K7666P3T3pvp/Q5UCNW9y2f5rXbS0Y3IHnrzdTaFDg48xtnQ5ccwFUBOEWgRMC3mMW6d
+         Ht/Q==
+X-Gm-Message-State: AOAM5307tR63E2g6g/tX+Y9SgnhycPxQJ4XSwu0ytN4djIcY7eiIwCU/
+        /UluouOwZeOV96zf0oFqDC296g==
+X-Google-Smtp-Source: ABdhPJygTudLr5l66SdYw3/EqfYLPutQCfyXT97Lr18S0gtaYEZy7Q7U8/8QfJq9gd/Khh3H+Tj6dA==
+X-Received: by 2002:a2e:a7c8:0:b0:24f:700a:4df5 with SMTP id x8-20020a2ea7c8000000b0024f700a4df5mr10360083ljp.472.1652683999492;
+        Sun, 15 May 2022 23:53:19 -0700 (PDT)
+Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id x5-20020ac24885000000b0047255d21184sm1211671lfc.179.2022.05.15.23.53.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 15 May 2022 23:53:19 -0700 (PDT)
+Message-ID: <792697a1-7385-9bcc-e3ad-ddcef80e3b35@linaro.org>
+Date:   Mon, 16 May 2022 08:53:18 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="jdgb46nmbhxo5jso"
-Content-Disposition: inline
-In-Reply-To: <20220510144259.9908-2-biju.das.jz@bp.renesas.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH v5 12/12] dt-bindings: arm: qcom: document sda660 SoC and
+ ifc6560 board
+Content-Language: en-US
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+References: <20220514190138.3179964-1-dmitry.baryshkov@linaro.org>
+ <20220514190138.3179964-13-dmitry.baryshkov@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220514190138.3179964-13-dmitry.baryshkov@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -61,45 +79,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 14/05/2022 21:01, Dmitry Baryshkov wrote:
+> Add binding documentation for the Inforce IFC6560 board which uses
+> Snapdragon SDA660.
+> 
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
---jdgb46nmbhxo5jso
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-Hello,
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-On Tue, May 10, 2022 at 03:42:58PM +0100, Biju Das wrote:
-> Add device tree bindings for the General PWM Timer (GPT).
->=20
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
 
-assuming you will tackle my comments for patch 2/2 and will resend this
-patch along with a new version, I discard the dt patch from the queue
-(i.e. mark it as "not applicable" in patchwork).
-
-Applying this one alone isn't that sensible.
-
-Best regards
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---jdgb46nmbhxo5jso
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmKB9HkACgkQwfwUeK3K
-7AmFpgf/TBgddKqgHS84pomumDKEGtKHixbGIIm6U4YoOgLyCRz/znyAiTmWTGbC
-X11m4x+UnHGGCh/cQuPtz6rKg1+acnG7v01UMgX/lw/JmmJHjRpv6vlAD3ZNw7/w
-ENiUsw9Uzn02VAiuvQmBkFg7S4oayMV6kY4Q8RM++bOr2v/71PZj08LhAIXrPZzi
-g6Yacc9rOur2DhSUvtX8gjeEuXF9L4K/jswbkDxzxRwqb6Gruxy0LFOheRgNrvbt
-Ub/kYdanAA5HmS7YIr4eS/eTZkwxFoM+KIWu1GrYUNBsbKHOI98KtXlp4rEfstb/
-2Qq/HfrLRbd2xTSLYM+pDK6N0y8R7w==
-=JHgI
------END PGP SIGNATURE-----
-
---jdgb46nmbhxo5jso--
+Best regards,
+Krzysztof
