@@ -2,101 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F206528444
-	for <lists+devicetree@lfdr.de>; Mon, 16 May 2022 14:35:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7910D528484
+	for <lists+devicetree@lfdr.de>; Mon, 16 May 2022 14:49:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232381AbiEPMfu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 May 2022 08:35:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59982 "EHLO
+        id S241421AbiEPMsq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 May 2022 08:48:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59366 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230412AbiEPMft (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 May 2022 08:35:49 -0400
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E430B101E4;
-        Mon, 16 May 2022 05:35:48 -0700 (PDT)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 24GCZjSb028649;
-        Mon, 16 May 2022 07:35:45 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1652704545;
-        bh=/0u+9KzA8iafIXTx/LF596vcL7D0tHPBH+q6NdMh6cY=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=TMSdLkVwK5GhyFLSP3s5OWKhg4knI96FUrwxaCIVbwtljcHDyD+hHmjHO3T46V8fe
-         woavz7wA6oyRW2Qyaz0n7uip1HS3EyOV9ZB1I9+uCyYSlBt9HKHz4ZlNrQpYCN4R+s
-         7596eT/NQ7QuUK3ece6x09Y9TXRU1P2sVtPu6VNU=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 24GCZjld120787
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 16 May 2022 07:35:45 -0500
-Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Mon, 16
- May 2022 07:35:44 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Mon, 16 May 2022 07:35:44 -0500
-Received: from [10.24.69.159] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 24GCZfr1011768;
-        Mon, 16 May 2022 07:35:42 -0500
-Message-ID: <de237f2c-6630-2f63-e1da-915ab55a1a7c@ti.com>
-Date:   Mon, 16 May 2022 18:05:41 +0530
+        with ESMTP id S241305AbiEPMso (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 May 2022 08:48:44 -0400
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C300F38BE3
+        for <devicetree@vger.kernel.org>; Mon, 16 May 2022 05:48:42 -0700 (PDT)
+Received: by mail-ej1-x634.google.com with SMTP id dk23so28422130ejb.8
+        for <devicetree@vger.kernel.org>; Mon, 16 May 2022 05:48:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sartura-hr.20210112.gappssmtp.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=hMdyF4If6ae6Tmly543kWlCuV298toa6OvkNM2U0cEM=;
+        b=k3iAgjmc3ZkJRc3VOJ/SKmPGYWWzWQmCcwT2XhmXLs/SygErr4+WC9yo/tcrhvQn18
+         8lmjEvTLjbcaS1jwZfhtLFRA9uGX3p2AWf9z4x8YvTt9anlpxaLblYyhV5n2t7bArO3t
+         VaDCXhtjnpxqNzamjY+YTLEHe45niAyrabL40jp0DGYz8hNSLNiSzsgxg+Wr9UD69WIN
+         bRXMe5+IlXQg793oUbiWbvN5xzfazuYhsWtZE7v/6ag34jpZKCwacPQrA2p39BwClsuZ
+         PZJxFFe4C6wOi2uNwE+C2E3fvnsIpZzCInxij0D7nH0qrvxRjj1Ot5rpyCaH9LEMPfNf
+         uGNg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=hMdyF4If6ae6Tmly543kWlCuV298toa6OvkNM2U0cEM=;
+        b=xzQV9ITDaQAHkFeXhKcbXaAIlkxmbzo8b6j8xrSzfGs0pNMxSZ32vWC1DP2ISC/Qdm
+         6+XwtFkdsS0rAMRmJTVLkT7oUksX1D24mRXZHl1D2qGsTH++efwyYhdMXt8N+qjczsVb
+         4KMVvTGt9qfBee0hxaqshSyrF6qin7dPJxVPZXGse39Gw8gIU8bPQdcrPMOJUv22NtVL
+         qN+cfNXB6ygVeMbW34l6IYgluC2r/6HzsoxHlrCqGncpfHI3MrBkh7JmRebP9lHYTMsm
+         438i5Pz1jr65XcEYiwmaQM2eN3ByB5lXQpXfNI4N7KIChuMVw4uKe6qQH2p4uHssjYKD
+         ZiCQ==
+X-Gm-Message-State: AOAM532/WQnQJT4gAeRxa9PayRj02ApMeqfzm+TIWJvUZfq5W2l7dphT
+        HRzMEQCjYyPwFzBUhcwddOdUQA==
+X-Google-Smtp-Source: ABdhPJwoIt83C38GsHPHd0kwSgf5SyF3isyKvMAg7kwCZJ0B+A8znq6BEPh+8ju0i1Nz/EwHGucT+A==
+X-Received: by 2002:a17:906:328a:b0:6f4:8045:3fe3 with SMTP id 10-20020a170906328a00b006f480453fe3mr15700188ejw.752.1652705321266;
+        Mon, 16 May 2022 05:48:41 -0700 (PDT)
+Received: from fedora.robimarko.hr (dh207-98-105.xnet.hr. [88.207.98.105])
+        by smtp.googlemail.com with ESMTPSA id e10-20020a056402330a00b0042617ba6386sm5093331eda.16.2022.05.16.05.48.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 16 May 2022 05:48:40 -0700 (PDT)
+From:   Robert Marko <robert.marko@sartura.hr>
+To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        andrew@lunn.ch, gregory.clement@bootlin.com,
+        sebastian.hesselbarth@gmail.com, kostap@marvell.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Cc:     Robert Marko <robert.marko@sartura.hr>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v4 01/10] dt-bindings: vendor-prefixes: add Methode Electronics
+Date:   Mon, 16 May 2022 14:48:19 +0200
+Message-Id: <20220516124828.45144-1-robert.marko@sartura.hr>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.0
-Subject: Re: [PATCH 1/2] dt-bindings: remoteproc: pru: Update bindings for K3
- AM62x SoCs
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-CC:     Suman Anna <s-anna@ti.com>, <linux-remoteproc@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20220427083509.14458-1-kishon@ti.com>
- <20220427083509.14458-2-kishon@ti.com>
- <7bc6fb49-ae7e-d270-b2a4-a14a1d933d61@linaro.org>
-From:   Kishon Vijay Abraham I <kishon@ti.com>
-In-Reply-To: <7bc6fb49-ae7e-d270-b2a4-a14a1d933d61@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-5.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+Add vendor prefix for Methode Electronics, Inc. (https://www.methode.com)
 
-On 28/04/22 11:48, Krzysztof Kozlowski wrote:
-> On 27/04/2022 10:35, Kishon Vijay Abraham I wrote:
->> Update the PRU remoteproc bindings for the PRU cores on AM62x SoCs.
->>
->> Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
->> ---
->>  Documentation/devicetree/bindings/remoteproc/ti,pru-rproc.yaml | 1 +
->>  1 file changed, 1 insertion(+)
->>
->> diff --git a/Documentation/devicetree/bindings/remoteproc/ti,pru-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/ti,pru-rproc.yaml
->> index d7c3a78e37e6..e351550b012c 100644
->> --- a/Documentation/devicetree/bindings/remoteproc/ti,pru-rproc.yaml
->> +++ b/Documentation/devicetree/bindings/remoteproc/ti,pru-rproc.yaml
->> @@ -47,6 +47,7 @@ properties:
->>        - ti,j721e-pru    # for PRUs in K3 J721E SoC family
->>        - ti,j721e-rtu    # for RTUs in K3 J721E SoC family
->>        - ti,j721e-tx-pru # for Tx_PRUs in K3 J721E SoC family
->> +      - ti,am625-pru    # for PRUs in K3 AM62x SoC family
-> 
-> Looks like out of order.
+Signed-off-by: Robert Marko <robert.marko@sartura.hr>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-yes, this is out of sync with the existing format binding. I'll send a
-patch fixing it.
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index 8fc6ed566cf9..2ee5a62363ea 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -768,6 +768,8 @@ patternProperties:
+     description: Cisco Meraki, LLC
+   "^merrii,.*":
+     description: Merrii Technology Co., Ltd.
++  "^methode,.*":
++    description: Methode Electronics, Inc.
+   "^micrel,.*":
+     description: Micrel Inc.
+   "^microchip,.*":
+-- 
+2.36.1
 
-Thanks,
-Kishon
