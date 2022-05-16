@@ -2,92 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 47B09528971
-	for <lists+devicetree@lfdr.de>; Mon, 16 May 2022 18:03:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 96D49528990
+	for <lists+devicetree@lfdr.de>; Mon, 16 May 2022 18:07:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245556AbiEPQDc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 May 2022 12:03:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49900 "EHLO
+        id S239613AbiEPQHw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 May 2022 12:07:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60592 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245534AbiEPQDb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 May 2022 12:03:31 -0400
-Received: from mail-ot1-f41.google.com (mail-ot1-f41.google.com [209.85.210.41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7658338B3;
-        Mon, 16 May 2022 09:03:30 -0700 (PDT)
-Received: by mail-ot1-f41.google.com with SMTP id m6-20020a05683023a600b0060612720715so10347789ots.10;
-        Mon, 16 May 2022 09:03:30 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=SzDio8XAI8nlBFG5iUOWW20ONgOCFkCak39qfWjf874=;
-        b=HnBghAviZipKJRBivLAPOpv2WG3nl6+x0vh4uA4gY8krHZ8gMhgYGxHmghD3xYc2+k
-         PloKDpgjBR812LiQ+92bWTyCKj2xBCQlTT1v7RTIQhBVCbGuF6HfsqZaHlGFS4PERthc
-         5rPcOtMQrn0fW/eEd+JOh9v/36Q0sGCHFOZ6StYYOMsJjsKXDPnuwkN7i2pkgfey8tY5
-         qQZRcsWCKl7Gyz4x7kNDYJXVG8lWwMvzV7K15hy1LPHRJjIsk2FnsHJumVjCUvx0d7WW
-         atzLfNei7L6tUaw9D7fGdUC4gLo7foXA7x7VbPwVgb0eDp36RapOK5mb4Nlh9CfiK1PG
-         JuTw==
-X-Gm-Message-State: AOAM532MjJKqJ2TX80mxWegZXJVZsCnq+8kh31XL/cGtTdqgSbXbKc1V
-        cTKCObVWhLmkZ5ed2qQwTg==
-X-Google-Smtp-Source: ABdhPJxCVtmAolhbJ0fmzBUmzA+qG5NqVCHP9ys53Ul5bQx6uPg33wJGiivCjzr/GhgOwo+VDT9gdg==
-X-Received: by 2002:a9d:da5:0:b0:605:e8e2:1706 with SMTP id 34-20020a9d0da5000000b00605e8e21706mr6102309ots.317.1652717010094;
-        Mon, 16 May 2022 09:03:30 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id e24-20020a9d5618000000b006060322125fsm4121077oti.47.2022.05.16.09.03.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 May 2022 09:03:29 -0700 (PDT)
-Received: (nullmailer pid 2733520 invoked by uid 1000);
-        Mon, 16 May 2022 16:03:28 -0000
-Date:   Mon, 16 May 2022 11:03:28 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     marijn.suijten@somainline.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, konrad.dybcio@somainline.org,
-        phone-devel@vger.kernel.org, kernel@collabora.com,
-        bgolaszewski@baylibre.com, p.zabel@pengutronix.de,
-        robh+dt@kernel.org, weiyi.lu@mediatek.com, mturquette@baylibre.com,
-        linux-clk@vger.kernel.org, paul.bouchara@somainline.org,
-        fparent@baylibre.com, ikjn@chromium.org, jason-jh.lin@mediatek.com,
-        krzysztof.kozlowski+dt@linaro.org, rex-bc.chen@mediatek.com,
-        ~postmarketos/upstreaming@lists.sr.ht, wenst@chromium.org,
-        tinghan.shen@mediatek.com, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, sam.shih@mediatek.com,
-        martin.botka@somainline.org, y.oudjana@protonmail.com,
-        miles.chen@mediatek.com, matthias.bgg@gmail.com, sboyd@kernel.org,
-        chun-jie.chen@mediatek.com, ck.hu@mediatek.com
-Subject: Re: [PATCH 1/5] dt-bindings: mediatek: Document MT6795 system
- controllers bindings
-Message-ID: <20220516160328.GA2733482-robh@kernel.org>
-References: <20220513165050.500831-1-angelogioacchino.delregno@collabora.com>
- <20220513165050.500831-2-angelogioacchino.delregno@collabora.com>
+        with ESMTP id S245718AbiEPQHm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 May 2022 12:07:42 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E4FD37A90;
+        Mon, 16 May 2022 09:07:38 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 2273160F58;
+        Mon, 16 May 2022 16:07:38 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9870CC385AA;
+        Mon, 16 May 2022 16:07:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1652717257;
+        bh=XOhhReOwl1Pta9qaV5a9VKBGR6h1O872iZhq1RArjgw=;
+        h=From:To:Cc:Subject:Date:From;
+        b=Z9w9vAvjqf6xTrUJzIy0ZmAp6aN/Ic2InydiMkWR/4TD/jbtEUV0S82Dteq1LiEFy
+         Nx1TlzUXrGsFzDdgql3otFWH8E6BWCqzWIDebJU2WdJYNpSdv7I/hV81x8xLlcKpeK
+         mKTFjhbEl2xsQMBWKzvn86RSrhqWyklyDSvWeatFt9Jk487L+urKUD4MuLwWW5X03q
+         Gi4ObBCpeXGcNwk9J73OuUl8xC2mm7m+8geDFqRmq6vjx/qeT8zhpH+qCcTWrvphl3
+         c4Pw5A6RzWEfIIVgx093C9yiRX2uu7AIdYKu9iVFk3DdbaLfIrVdONtAh8oT5LVCbr
+         Z5zFQEt0dihHg==
+From:   Lorenzo Bianconi <lorenzo@kernel.org>
+To:     netdev@vger.kernel.org
+Cc:     nbd@nbd.name, john@phrozen.org, sean.wang@mediatek.com,
+        Mark-MC.Lee@mediatek.com, davem@davemloft.net, edumazet@google.com,
+        kuba@kernel.org, pabeni@redhat.com, Sam.Shih@mediatek.com,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        robh@kernel.org, lorenzo.bianconi@redhat.com
+Subject: [PATCH v2 net-next 00/15] introduce mt7986 ethernet support
+Date:   Mon, 16 May 2022 18:06:27 +0200
+Message-Id: <cover.1652716741.git.lorenzo@kernel.org>
+X-Mailer: git-send-email 2.35.3
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220513165050.500831-2-angelogioacchino.delregno@collabora.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-7.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 13 May 2022 18:50:46 +0200, AngeloGioacchino Del Regno wrote:
-> Document the MediaTek Helio X10 (MT6795) bindings for the apmixedsys,
-> infracfg, topckgen, pericfg and mmsys system controllers.
-> 
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> ---
->  .../devicetree/bindings/arm/mediatek/mediatek,infracfg.yaml     | 2 ++
->  .../devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml        | 1 +
->  .../devicetree/bindings/arm/mediatek/mediatek,pericfg.yaml      | 1 +
->  .../devicetree/bindings/clock/mediatek,apmixedsys.yaml          | 1 +
->  Documentation/devicetree/bindings/clock/mediatek,topckgen.yaml  | 1 +
->  5 files changed, 6 insertions(+)
-> 
+Add support for mt7986-eth driver available on mt7986 soc.
 
-Acked-by: Rob Herring <robh@kernel.org>
+Changes since v1:
+- drop SRAM option
+- convert ring->dma to void
+- convert scratch_ring to void
+- enable port4
+- fix irq dts bindings
+- drop gmac1 support from mt7986a-rfb dts for the moment
+
+Lorenzo Bianconi (15):
+  arm64: dts: mediatek: mt7986: introduce ethernet nodes
+  dt-bindings: net: mediatek,net: add mt7986-eth binding
+  net: ethernet: mtk_eth_soc: move tx dma desc configuration in
+    mtk_tx_set_dma_desc
+  net: ethernet: mtk_eth_soc: add txd_size to mtk_soc_data
+  net: ethernet: mtk_eth_soc: rely on txd_size in
+    mtk_tx_alloc/mtk_tx_clean
+  net: ethernet: mtk_eth_soc: rely on txd_size in mtk_desc_to_tx_buf
+  net: ethernet: mtk_eth_soc: rely on txd_size in txd_to_idx
+  net: ethernet: mtk_eth_soc: add rxd_size to mtk_soc_data
+  net: ethernet: mtk_eth_soc: rely on txd_size field in
+    mtk_poll_tx/mtk_poll_rx
+  net: ethernet: mtk_eth_soc: rely on rxd_size field in
+    mtk_rx_alloc/mtk_rx_clean
+  net: ethernet: mtk_eth_soc: introduce device register map
+  net: ethernet: mtk_eth_soc: introduce MTK_NETSYS_V2 support
+  net: ethernet: mtk_eth_soc: convert ring dma pointer to void
+  net: ethernet: mtk_eth_soc: convert scratch_ring pointer to void
+  net: ethernet: mtk_eth_soc: introduce support for mt7986 chipset
+
+ .../devicetree/bindings/net/mediatek,net.yaml | 141 +++-
+ arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts  |  74 ++
+ arch/arm64/boot/dts/mediatek/mt7986a.dtsi     |  39 ++
+ arch/arm64/boot/dts/mediatek/mt7986b-rfb.dts  |  70 ++
+ drivers/net/ethernet/mediatek/mtk_eth_soc.c   | 630 +++++++++++++-----
+ drivers/net/ethernet/mediatek/mtk_eth_soc.h   | 328 +++++++--
+ 6 files changed, 1037 insertions(+), 245 deletions(-)
+
+-- 
+2.35.3
+
