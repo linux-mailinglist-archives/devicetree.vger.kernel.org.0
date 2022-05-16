@@ -2,116 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AAB5E528795
-	for <lists+devicetree@lfdr.de>; Mon, 16 May 2022 16:51:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C23F652879E
+	for <lists+devicetree@lfdr.de>; Mon, 16 May 2022 16:53:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244771AbiEPOvx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 May 2022 10:51:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44256 "EHLO
+        id S236193AbiEPOxI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 May 2022 10:53:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50112 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244766AbiEPOvt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 May 2022 10:51:49 -0400
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C18552F021
-        for <devicetree@vger.kernel.org>; Mon, 16 May 2022 07:51:43 -0700 (PDT)
-Received: by mail-ej1-x62c.google.com with SMTP id ks9so29193213ejb.2
-        for <devicetree@vger.kernel.org>; Mon, 16 May 2022 07:51:43 -0700 (PDT)
+        with ESMTP id S232963AbiEPOxH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 May 2022 10:53:07 -0400
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D10C32ED9
+        for <devicetree@vger.kernel.org>; Mon, 16 May 2022 07:53:06 -0700 (PDT)
+Received: by mail-wr1-x429.google.com with SMTP id u3so20923623wrg.3
+        for <devicetree@vger.kernel.org>; Mon, 16 May 2022 07:53:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=uOxNWh7yabHDrbMrM0Z54oCYMU6X2Tmhhr4bpaZlq8s=;
-        b=fRNJSoxj7giRSyQy0TVYlxEPinl12dnHdkFzDvk1D/dHyFl1VZXFh4KWjRwx8lB8lr
-         m4jpauyK4bAZcNzAWg+/V4WUux4FUyrEQka080XO4bipiNeA9kzXpEvqqC2dTINgx3oa
-         RuWuz1NvyuJ/arOWE63/iU3+BpG8Z96CoPVntmaPbEO/7+3/jiChIGPDuKds61vUTwM0
-         +NPNeOCoqvtwV4qQAX+ZwplH+WT/0o1tRCeufiOslW7dlU5GwY/cSPM1nPWVtxF8IfGs
-         E8ub98BW4pYJ7a9i+4Dh25pMUsT8SQ+Bt1NbE4VUhd3MJTC3TvWaeLRfnBU4Sj3mqnPO
-         6SmA==
+        d=monstr-eu.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=F/0hxZ3FdeGCwd9gwk7c1gJBeXuAJpYrwcp/nOSul0s=;
+        b=LAKUAusdr95I4Vg37q15yh+zxPz/mCMHcqIG3FGhYvOJJr80PI/jPAJTLRDLOVAwEV
+         PV4XzPXvu+Is+eVchVPMYv1upVAXGgJQ2AA9Sei3S+FZaAJMQ2ek/2DrmVa6sZhDm3CI
+         BkPoc2DhJ8JoISCODmyFcF7q/Z0BtJb9thUvTSNmJGYKvpiymOjoVrdVMY9TMSNnIrIB
+         fcU62gKkBcwmEo5SxIuhZCdt/H4IXjjf/DPHv/hT7qxCi1bSA2Qn+XjqgRqhW2EjAWQw
+         NSBN3Q5ettLX7uUS8YVChOJrEUbA/9XOwOOTGDhBOap9wNxl8qv2tsghZfwGs+AEC3di
+         SrYQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=uOxNWh7yabHDrbMrM0Z54oCYMU6X2Tmhhr4bpaZlq8s=;
-        b=uHJJixPEfSK4XQhpwv4p7vSsQTu4DWZVIXqOtcWDDySbmIjxKV7/ldj+CQ1YdNCMKK
-         gOpbcaZ+HQln+ty0jkG1uqu+IfdvLXpJePAemD1H5ppfGODZB5i+7O29KBSCkcjOCJGR
-         QOGp527T/iv+/l6qtF0KA0vhp9jgaAluPDCQKt9O28O7u4T+E+xpCgUNKOH3Oz7qFCsY
-         +bftdlTq6qnIx617uQQ5X4xuXVjBh+ucVfAaEdhB9AkDST70CWA7fUqnthBmwf0tvfdh
-         zBqOYR5+5nll+PPIwDx6EnwSBmtrkPRFWiFiJc+fXWR5I/v/qyFoDxgn6fT5jU0WtQ6n
-         BNpg==
-X-Gm-Message-State: AOAM531h8rRBRRZOuSGqfkhO/1YcvYn/cbtSGRIUGfvMJPLB99Hhrxdu
-        2Psax8lCibsjz5OXwmYpFbeFYA==
-X-Google-Smtp-Source: ABdhPJxaAJZbuIA8SR9ZufnKLS++8KuZsJE84jXP4tu+xwDtfpKQXu3jisHIZIVRufznRUYH6G6c4A==
-X-Received: by 2002:a17:906:4cd8:b0:6db:372:c4ba with SMTP id q24-20020a1709064cd800b006db0372c4bamr15448039ejt.57.1652712702161;
-        Mon, 16 May 2022 07:51:42 -0700 (PDT)
-Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id 3-20020a170906100300b006f3ef214e40sm3733974ejm.166.2022.05.16.07.51.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 16 May 2022 07:51:41 -0700 (PDT)
-Message-ID: <d78e1936-a0ab-663d-1381-b537bfd7f07d@linaro.org>
-Date:   Mon, 16 May 2022 16:51:40 +0200
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=F/0hxZ3FdeGCwd9gwk7c1gJBeXuAJpYrwcp/nOSul0s=;
+        b=7YFAuOtGjuPN1jzDQnh1FC5e7V92WUd+Wo6SWaKRBYMbejkqKzgBbfYd+Y2Wchamid
+         bfeJzVKQ9TVv7KsFA5GMBURY7nnu65zqcvKAioNtKHWc5ymBL2QT8lXg2sRruss2D0gV
+         Yl85hH17zgcLADtZ/k4Gu+iV2CRdFxilMDEZHsCb72TrZoJlr8evqq+rIpH6dXPFtcoB
+         vwj536X1QiyWHiA5m1q/OABansi1Y2VSzQPG/dStMo+LetYAVvGWYMCql0zPBSfKanPK
+         tslykER3fN3Z83p+Fqk40mzJHqa4bm9cecgmBxO5G+ToQg7bckMJjNwwa29tzAcOWEdS
+         CMSQ==
+X-Gm-Message-State: AOAM5322kqK6MUZsbnPdFc54zei+UDc8xUlwGINEY2D/9To6qIqVj2cQ
+        NSVEbpCbxCpt2E7G234qk9PL48K+WDKTcRpKyxstwQ==
+X-Google-Smtp-Source: ABdhPJzElNcloeF64fOP/Kb2aO6HlOLZaVTJaip5RDigdZ9nvc7rW9rIU7lDL2m19Kia0+gDSzkJpANVRfrB4n3EisQ=
+X-Received: by 2002:adf:d1cf:0:b0:20c:6030:d6f0 with SMTP id
+ b15-20020adfd1cf000000b0020c6030d6f0mr14866687wrd.298.1652712784587; Mon, 16
+ May 2022 07:53:04 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH 5/7] arm64: dts: mediatek: mt6795: Add fixed clocks for
- 32kHz and 26MHz XOs
-Content-Language: en-US
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, robh+dt@kernel.org
-Cc:     krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        konrad.dybcio@somainline.org, marijn.suijten@somainline.org,
-        martin.botka@somainline.org, ~postmarketos/upstreaming@lists.sr.ht,
-        phone-devel@vger.kernel.org, paul.bouchara@somainline.org,
-        kernel@collabora.com
-References: <20220513171617.504430-1-angelogioacchino.delregno@collabora.com>
- <20220513171617.504430-6-angelogioacchino.delregno@collabora.com>
- <03e99a02-1233-3882-e1e5-24ab1bbaf257@linaro.org>
- <0f303425-3b12-7573-b201-030d4d044db8@collabora.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <0f303425-3b12-7573-b201-030d4d044db8@collabora.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+References: <4b9db94cdd8ca106feee53f76fab2a23721f7d2a.1634290039.git.michal.simek@xilinx.com>
+In-Reply-To: <4b9db94cdd8ca106feee53f76fab2a23721f7d2a.1634290039.git.michal.simek@xilinx.com>
+From:   Michal Simek <monstr@monstr.eu>
+Date:   Mon, 16 May 2022 16:52:53 +0200
+Message-ID: <CAHTX3dLAwT7BFZPg1zinhDnvsZmadpsdSHQZHpsTg5=06MMgnw@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: gpio: zynq: Describe gpio-line-names
+To:     LKML <linux-kernel@vger.kernel.org>,
+        Michal Simek <monstr@monstr.eu>, git <git@xilinx.com>
+Cc:     Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>,
+        Srinivas Neeli <srinivas.neeli@xilinx.com>,
+        DTML <devicetree@vger.kernel.org>,
+        linux-arm <linux-arm-kernel@lists.infradead.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/05/2022 10:51, AngeloGioacchino Del Regno wrote:
+p=C3=A1 15. 10. 2021 v 11:27 odes=C3=ADlatel Michal Simek
+<michal.simek@xilinx.com> napsal:
+>
+> Number of lines depends on compatible string from 58 to 174.
+> That's why it is checked based on it.
+>
+> Signed-off-by: Michal Simek <michal.simek@xilinx.com>
+> ---
+>
+>  .../devicetree/bindings/gpio/gpio-zynq.yaml   | 50 +++++++++++++++++++
+>  1 file changed, 50 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/gpio/gpio-zynq.yaml b/Docu=
+mentation/devicetree/bindings/gpio/gpio-zynq.yaml
+> index da95b951c23e..29c27eadbac8 100644
+> --- a/Documentation/devicetree/bindings/gpio/gpio-zynq.yaml
+> +++ b/Documentation/devicetree/bindings/gpio/gpio-zynq.yaml
+> @@ -28,6 +28,11 @@ properties:
+>
+>    gpio-controller: true
+>
+> +  gpio-line-names:
+> +    description: strings describing the names of each gpio line
+> +    minItems: 58
+> +    maxItems: 174
+> +
+>    interrupt-controller: true
+>
+>    "#interrupt-cells":
+> @@ -39,6 +44,51 @@ properties:
+>    power-domains:
+>      maxItems: 1
+>
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          enum:
+> +            - xlnx,zynqmp-gpio-1.0
+> +    then:
+> +      properties:
+> +        gpio-line-names:
+> +          minItems: 174
+> +          maxItems: 174
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          enum:
+> +            - xlnx,zynq-gpio-1.0
+> +    then:
+> +      properties:
+> +        gpio-line-names:
+> +          minItems: 118
+> +          maxItems: 118
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          enum:
+> +            - xlnx,versal-gpio-1.0
+> +    then:
+> +      properties:
+> +        gpio-line-names:
+> +          minItems: 58
+> +          maxItems: 58
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          enum:
+> +            - xlnx,pmc-gpio-1.0
+> +    then:
+> +      properties:
+> +        gpio-line-names:
+> +          minItems: 116
+> +          maxItems: 116
+> +
+>  required:
+>    - compatible
+>    - reg
+> --
+> 2.33.1
+>
 
->>
->>
-> 
-> I should reword the commit description to be clearer, sorry about that: I
-> went with "exactly what I've done", but looking at the actual diff, it is
-> just a rename. What my brain was ticking on here was about removing clocks
-> that didn't really exist (uart_clk is not a fixed clock, etc), and adding
-> the ones that do exist.... but then again, the result, casually, is a rename.
+Applied.
+M
 
-Yes, some better explanation would help.
-
-> 
-> In any case... no, these clocks are not board-specific for two reasons:
-> 1. AFAIK, these fixed clock outputs are from the SoC itself, not from
->     external components placed on the board, and
-
-This would be fine.
-
-> 2. Even if these were from external components, the SoC *needs* these
->     ones to work and any board that doesn't have these fixed XOs simply
->     wouldn't be able to work.
-
-This is common pattern and Mediatek is not different here. In all cases
-these are needed by SoC and in (almost?) all cases these should be
-provided by board DTS. The DTS describes here the hardware, the board
-has the clock thus the board DTS should define it.
-
-
-Best regards,
-Krzysztof
+--=20
+Michal Simek, Ing. (M.Eng), OpenPGP -> KeyID: FE3D1F91
+w: www.monstr.eu p: +42-0-721842854
+Maintainer of Linux kernel - Xilinx Microblaze
+Maintainer of Linux kernel - Xilinx Zynq ARM and ZynqMP ARM64 SoCs
+U-Boot custodian - Xilinx Microblaze/Zynq/ZynqMP/Versal SoCs
