@@ -2,111 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F1ABF528DFA
-	for <lists+devicetree@lfdr.de>; Mon, 16 May 2022 21:32:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F8C3528E1F
+	for <lists+devicetree@lfdr.de>; Mon, 16 May 2022 21:42:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243334AbiEPTc1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 May 2022 15:32:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51538 "EHLO
+        id S1345616AbiEPTjt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 May 2022 15:39:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44078 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242301AbiEPTc0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 May 2022 15:32:26 -0400
-Received: from mail-oa1-x32.google.com (mail-oa1-x32.google.com [IPv6:2001:4860:4864:20::32])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2250765B
-        for <devicetree@vger.kernel.org>; Mon, 16 May 2022 12:32:25 -0700 (PDT)
-Received: by mail-oa1-x32.google.com with SMTP id 586e51a60fabf-e5e433d66dso21508666fac.5
-        for <devicetree@vger.kernel.org>; Mon, 16 May 2022 12:32:25 -0700 (PDT)
+        with ESMTP id S1345600AbiEPTi5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 May 2022 15:38:57 -0400
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A71423F88C;
+        Mon, 16 May 2022 12:38:45 -0700 (PDT)
+Received: by mail-ed1-x52e.google.com with SMTP id i40so4692715eda.7;
+        Mon, 16 May 2022 12:38:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to:cc;
-        bh=J76YW6Wdlh5XkWvWlzC9gchLSjC+e1zZeLVaSHsN2OQ=;
-        b=d9CQktVULUaK6nXZ/QzkDqI6+WbJO6m8jOyWYhqDLe6AiSL43teR7zxEi4j/IT7G28
-         i0FvQpprMbKCLYaRtRu6xtCLzfxz4D+9LtFXrKoj5wr4IU1XrPGKgaW1ckZhsBjDGdDf
-         NM0oeFrayV7Db9eD5+OCdlhAGV0efJ6ydoh70=
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=LebDF3RuPxmX1Cw/8NAKFfKs/e37d3Ws73/ZUWsOSYY=;
+        b=bseiz9mTWBFks9ltjnA8R2a+/W7/FVLzfkmSDHkJfeKfQX1rYGRuIyUViZL8yKA9mF
+         MLEAdCbqCH+RPshFcSqj8Y/AkfxtyUTdOtL2F5UnpHv0UXW0mf1LKw3QS/uRg9BEqWq7
+         QMATuJ+nvY4vq7d4KZnFOq4VS8QyGepI2Sam7Qz6f6IallvZ+rxo7sHaARhKMtw359gl
+         9H/CUYF9h8DrFCKvAY6T1zMs8VFaRAwHSyzzb1/zafJQy5vhl5bQ42vFNfVAh7T7ClI8
+         oRRmlyG0j5tAoD3DEzyuDLbHY6upzDkmAnY6zHLJ8BGTThl1mtVURC7BBqr7hvTVZUbw
+         kcCA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to:cc;
-        bh=J76YW6Wdlh5XkWvWlzC9gchLSjC+e1zZeLVaSHsN2OQ=;
-        b=4hbd7F+GIZcL/fSUmMkw0KjUk0+j7mNRMV1wjcU8bCdhXx3PiT+uuwSsa43TiMfucj
-         jwlrFgUewMGlxD6Poyvn4fnv3/HqeW35BQyvtnuZWCJzhJsNN8uG2q2mS6K+Jew0+lgM
-         gd5L2oTfhPJuIUsfDGmdPL684efRHkKpZhSud+1OIfZinKtq5g+jM6hjDdX4JvFDSV1l
-         Nbasf6SaMCFYCO4dBSwj20ikunvl6QDi+DUe4WcfuCIdt/KHJc5HZHPhrmb12Bgitd8G
-         igkY03tt6JFa4cGvsVo7UDgMVBhyRyuheuIf0lZUtxyWrqwDkMP8XJ2XvTBQ9AN+kzcs
-         SO4g==
-X-Gm-Message-State: AOAM532/GnfrH3PD11zjK41tf8Cexk6lFQgdEpCPGvezXrzC8IdVWOoN
-        15lZ0gBOYBztUUfsP43EBT3kObNctE52Y63YCpUz/Q==
-X-Google-Smtp-Source: ABdhPJzJI92I4I96rEOhysGBJGD/K/e+0SB9aptCslRQ20O4rAnvh5bNk0UoYZG3ZWuAynzOHNF45aylQc9TEohySps=
-X-Received: by 2002:a05:6870:240d:b0:f1:b878:e97c with SMTP id
- n13-20020a056870240d00b000f1b878e97cmr880663oap.193.1652729544662; Mon, 16
- May 2022 12:32:24 -0700 (PDT)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Mon, 16 May 2022 12:32:24 -0700
-MIME-Version: 1.0
-In-Reply-To: <CAD=FV=XfmU1GhXZPvUMoh9dqs8iei6s+0gu6Mve-aQ33A+7m3g@mail.gmail.com>
-References: <20220512013921.164637-1-swboyd@chromium.org> <20220512013921.164637-3-swboyd@chromium.org>
- <CAD=FV=XfmU1GhXZPvUMoh9dqs8iei6s+0gu6Mve-aQ33A+7m3g@mail.gmail.com>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.10
-Date:   Mon, 16 May 2022 12:32:24 -0700
-Message-ID: <CAE-0n53nqrSmxZsnReE=yVzN0OkGw8BaNqFxX6mcRkJyxXyyJg@mail.gmail.com>
-Subject: Re: [PATCH v5 2/3] dt-bindings: cros-ec: Reorganize property availability
-To:     Doug Anderson <dianders@chromium.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>, patches@lists.linux.dev,
-        devicetree@vger.kernel.org,
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=LebDF3RuPxmX1Cw/8NAKFfKs/e37d3Ws73/ZUWsOSYY=;
+        b=bQAU7dH3n3ni1KT0j80EoabV5Q3NzXee7YMiF/RDOkdDdI0mfh4nwvKeA60967TDMB
+         hQds208CVNIYz+Y84XbzXe5m/H2sRwnXQPScqcAaFnbDTPaBr1KpygD4tBpk4hlDRJjs
+         R1tQNWwlOtZJi3IWSW7N2/IkkbmKWB8hkN8wDV1SXOquv1TtAa3g3o5K4bASsFUEz/4G
+         +2DFL21cAa1MPMisgszKLqyHfRWBPjzfzAtT2EhKEN7PHY5TQWbCR28qiPUO1OBt4Zi5
+         7WQG4oFlIk5R1znnYzzwhbgmFpZMtLFZLu/KR9Y0a6e7t1wEd/WEzCt6TGjhJEFCeizC
+         +kkA==
+X-Gm-Message-State: AOAM533Q6CzTq50rh+UzXdJrxu437jdpEQhqll4+4ePpZkitStn73OPm
+        Hf/lxjgW7CvqJv3HXkA2ik0=
+X-Google-Smtp-Source: ABdhPJyTP9Rwj4orjplkbScv8cYbfHA3DBy1Z17s4DcQWsXitJXORWnR2TTE2sCfqqK/ke8zXrzj6Q==
+X-Received: by 2002:a05:6402:f13:b0:428:a849:d0c1 with SMTP id i19-20020a0564020f1300b00428a849d0c1mr15059561eda.346.1652729923428;
+        Mon, 16 May 2022 12:38:43 -0700 (PDT)
+Received: from adroid (102-167-184-091.ip-addr.vsenet.de. [91.184.167.102])
+        by smtp.gmail.com with ESMTPSA id s7-20020a170906220700b006f3ef214e45sm94042ejs.171.2022.05.16.12.38.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 16 May 2022 12:38:43 -0700 (PDT)
+From:   =?UTF-8?q?Martin=20J=C3=BCcker?= <martin.juecker@gmail.com>
+To:     linux-samsung-soc@vger.kernel.org
+Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        Alim Akhtar <alim.akhtar@samsung.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        chrome-platform@lists.linux.dev,
-        Guenter Roeck <groeck@chromium.org>,
-        Craig Hesling <hesling@chromium.org>,
-        Tom Hughes <tomhughes@chromium.org>,
-        Alexandru M Stan <amstan@chromium.org>,
-        Tzung-Bi Shih <tzungbi@kernel.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Benson Leung <bleung@chromium.org>,
-        Lee Jones <lee.jones@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        Rob Herring <robh+dt@kernel.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        =?UTF-8?q?Martin=20J=C3=BCcker?= <martin.juecker@gmail.com>
+Subject: [PATCH 1/3] dt-bindings: display: simple: add support for Samsung LTL101AL01
+Date:   Mon, 16 May 2022 21:37:07 +0200
+Message-Id: <20220516193709.10037-1-martin.juecker@gmail.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Doug Anderson (2022-05-12 16:44:44)
-> On Wed, May 11, 2022 at 6:39 PM Stephen Boyd <swboyd@chromium.org> wrote:
-> > +
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          not:
-> > +            contains:
-> > +              const: google,cros-ec-rpmsg
-> > +    then:
-> > +      properties:
-> > +        mediatek,rpmsg-name: false
-> > +
-> > +      required:
-> > +        - reg
-> > +        - interrupts
->
-> Is it worth having an "else" clause here? to explicitly make
-> "mediatek,rpmsg-name" required for mediatek?
+Add the Samsung LTL101AL01 WXGA LCD panel to the list.
 
-I don't know if mediatek,rpmsg-name is required for a generic
-google,cros-ec-rpmsg. I would guess it isn't, because it's a vendor
-prefixed property. Maybe it could look at the parent node property to
-see that it is inside a mediatek remoteproc node but I'd rather leave
-that to future work.
+Signed-off-by: Martin Jücker <martin.juecker@gmail.com>
+---
+ .../devicetree/bindings/display/panel/panel-simple.yaml         | 2 ++
+ 1 file changed, 2 insertions(+)
 
->
-> In any case, this seems right from my (albeit) limited yaml knowledge
-> and seems like an improvement.
->
-> Reviewed-by: Douglas Anderson <dianders@chromium.org>
+diff --git a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+index 1eb9dd4f8f58..9501b5a3c011 100644
+--- a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
++++ b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+@@ -270,6 +270,8 @@ properties:
+       - samsung,atna33xc20
+         # Samsung 12.2" (2560x1600 pixels) TFT LCD panel
+       - samsung,lsn122dl01-c01
++        # Samsung Electronics 10.1" WXGA (1280x800) TFT LCD panel
++      - samsung,ltl101al01
+         # Samsung Electronics 10.1" WSVGA TFT LCD panel
+       - samsung,ltn101nt05
+         # Samsung Electronics 14" WXGA (1366x768) TFT LCD panel
+-- 
+2.25.1
 
-Thanks!
