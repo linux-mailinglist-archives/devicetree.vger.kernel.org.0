@@ -2,60 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A445F52958A
-	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 01:51:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D75E529594
+	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 01:53:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238946AbiEPXve (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 May 2022 19:51:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58010 "EHLO
+        id S1350404AbiEPXw6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 May 2022 19:52:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37082 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350586AbiEPXvB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 May 2022 19:51:01 -0400
-Received: from mail-ot1-f53.google.com (mail-ot1-f53.google.com [209.85.210.53])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7BFA3167FB;
-        Mon, 16 May 2022 16:50:59 -0700 (PDT)
-Received: by mail-ot1-f53.google.com with SMTP id z15-20020a9d65cf000000b00605f064482cso11151959oth.6;
-        Mon, 16 May 2022 16:50:59 -0700 (PDT)
+        with ESMTP id S242639AbiEPXwy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 May 2022 19:52:54 -0400
+Received: from mail-oa1-f46.google.com (mail-oa1-f46.google.com [209.85.160.46])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 893E63ED2F;
+        Mon, 16 May 2022 16:52:52 -0700 (PDT)
+Received: by mail-oa1-f46.google.com with SMTP id 586e51a60fabf-f165bc447fso12410958fac.6;
+        Mon, 16 May 2022 16:52:52 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=hAZlTfSrsJjd8YPKa5lPR+jdJB2otw3VfDdAjcUM/Tk=;
-        b=JSiYyPOvqXYIc+lsEaXefJ80fl3bS/BshdFe7Q0v+s0uFJ4EeSCupzNVSgnFnfJf7v
-         4OJ92mEHll1rLUK1c2twPtMMmSTHQ9oLfsvQXmuFDAEurFVmlPflCr7dNClz/l6QVf0d
-         W+ssskUEDNCFiVwoDwFbzZqabxaAxs6wNxCr/gMElnxFhEmk3VNnat9jWEKqArE92M2+
-         L10Hp9mbNQMBZAUlXf6GLURCGEddSqqM1Aur2lrJzzfhCsQLkxWr5B9IapJIAFkco6Bq
-         0dlPZ8Bj92hyScf2hnZ11D8UBK9YMmNSWWeqRce9Cfnp973Khil59aCNFJ72/D3gyE6S
-         np0g==
-X-Gm-Message-State: AOAM5330+hFZBbKQrxepHRtn+HkHeNaeYFl210jbeSMWrALE/W75yB1r
-        YDaX4Y5VCZ48z4jmOpL2ug==
-X-Google-Smtp-Source: ABdhPJzCJr7RYLgraF/mlXq4mT3z7F4FFe2icQKEADzp0aPIlGvnKD6HvdtYUeFqKhg515C24pSyYg==
-X-Received: by 2002:a05:6830:2093:b0:605:6f01:1ed1 with SMTP id y19-20020a056830209300b006056f011ed1mr7220064otq.166.1652745058730;
-        Mon, 16 May 2022 16:50:58 -0700 (PDT)
+        bh=oLYjtsgGlA07Qc3dBcMPR9s7GFGmrm0AkOOuD7W1saQ=;
+        b=LFl1cBxPWoUCkE1W+k1PIjY2Filc4of03ndVm3CoXLomb3jygZBVxTI8zmTIOPLSlE
+         KOeX9fx8akcj3qgXSiHA4qJUGDpZGGGYuUbNUelDMPkhu/aPuJ8gLCDmxe6eTEvuoHrN
+         ElnzXh9IjFNVXxOZnrnVZNOPMOUlD7VQe7rOvMLuQLWjVy79fK/sxVoCPQ/uEZg3qE77
+         NWNszNq2LWXBNtgPyL/ul3x60y2btL3VAs7gZW9q6yyz+5r/FL7Sit0eL+gJTQaMsHzT
+         cpyaC8Jhymt+1oaZzyEOPT/kIh03RFN+aEvqgWbcfn0mon79z8X33KEliTLiU3WB5RNd
+         JUzg==
+X-Gm-Message-State: AOAM530W2tUMkfLP+6BlCuPqmvi1SqUOsrWW8yo3skINma/p9fmO9jNa
+        JM2js2qI7jiVCqT7EdZrVQ==
+X-Google-Smtp-Source: ABdhPJzGVAd5OY/GykxaSm1uI0nwH0J0ngGxXZJsQ5IeSSSe+fV9RLKWsy4BBR/D9rZxTj9YblLnHg==
+X-Received: by 2002:a05:6870:b254:b0:ec:6ca4:c89f with SMTP id b20-20020a056870b25400b000ec6ca4c89fmr17070305oam.272.1652745171572;
+        Mon, 16 May 2022 16:52:51 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id w195-20020aca30cc000000b0032906c0eab0sm735758oiw.31.2022.05.16.16.50.57
+        by smtp.gmail.com with ESMTPSA id q9-20020aca5c09000000b00325cda1ffb6sm4263596oib.53.2022.05.16.16.52.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 May 2022 16:50:58 -0700 (PDT)
-Received: (nullmailer pid 3566937 invoked by uid 1000);
-        Mon, 16 May 2022 23:50:57 -0000
-Date:   Mon, 16 May 2022 18:50:57 -0500
+        Mon, 16 May 2022 16:52:50 -0700 (PDT)
+Received: (nullmailer pid 3570060 invoked by uid 1000);
+        Mon, 16 May 2022 23:52:49 -0000
+Date:   Mon, 16 May 2022 18:52:49 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Robert Foss <robert.foss@linaro.org>
-Cc:     agross@kernel.org, bjorn.andersson@linaro.org,
-        mturquette@baylibre.com, sboyd@kernel.org, krzk+dt@kernel.org,
-        jonathan@marek.ca, tdas@codeaurora.org,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Dmitry Baryshkov <dmityr.baryshkov@linaro.org>
-Subject: Re: [PATCH v3 3/6] dt-bindings: clock: Add Qcom SM8350 GPUCC bindings
-Message-ID: <20220516235057.GA3564535-robh@kernel.org>
-References: <20220504122725.179262-1-robert.foss@linaro.org>
- <20220504122725.179262-4-robert.foss@linaro.org>
+To:     Valentin Caron <valentin.caron@foss.st.com>
+Cc:     Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Gabriel Fernandez <gabriel.fernandez@foss.st.com>,
+        Amelie Delaunay <amelie.delaunay@foss.st.com>,
+        linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/6] dt-bindings: rtc: stm32: add st,lsco optional
+ property to select output
+Message-ID: <20220516235249.GA3567294-robh@kernel.org>
+References: <20220504130233.330983-1-valentin.caron@foss.st.com>
+ <20220504130233.330983-2-valentin.caron@foss.st.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220504122725.179262-4-robert.foss@linaro.org>
+In-Reply-To: <20220504130233.330983-2-valentin.caron@foss.st.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
@@ -67,102 +70,116 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 04, 2022 at 02:27:22PM +0200, Robert Foss wrote:
-> Add device tree bindings for graphics clock controller for
-> Qualcomm Technology Inc's SM8350 SoCs.
+On Wed, May 04, 2022 at 03:02:28PM +0200, Valentin Caron wrote:
+> From: Amelie Delaunay <amelie.delaunay@foss.st.com>
 > 
-> Signed-off-by: Robert Foss <robert.foss@linaro.org>
-> Reviewed-by: Dmitry Baryshkov <dmityr.baryshkov@linaro.org>
+> STM32 RTC has three output pins: RTC_OUT1, RTC_OUT2 or RTC_OUT2_RMP.
+> 
+> RTC Low-Speed Clock Output (LSCO) can be output on RTC_OUT1 or
+> RTC_OUT2_RMP.
+> 
+> This patch adds constants for RTC output bindings and adds st,lsco
+> optional property for stm32 rtc driver, to select and enable LSCO.
+> A pinctrl state is also optional to reserve pin for RTC output.
+> 
+> Signed-off-by: Amelie Delaunay <amelie.delaunay@foss.st.com>
+> Signed-off-by: Valentin Caron <valentin.caron@foss.st.com>
 > ---
->  .../devicetree/bindings/clock/qcom,gpucc.yaml |  2 +
->  include/dt-bindings/clock/qcom,gpucc-sm8350.h | 52 +++++++++++++++++++
->  2 files changed, 54 insertions(+)
->  create mode 100644 include/dt-bindings/clock/qcom,gpucc-sm8350.h
+>  .../devicetree/bindings/rtc/st,stm32-rtc.yaml | 20 +++++++++++++++++++
+>  include/dt-bindings/rtc/rtc-stm32.h           | 14 +++++++++++++
+>  2 files changed, 34 insertions(+)
+>  create mode 100644 include/dt-bindings/rtc/rtc-stm32.h
 > 
-> diff --git a/Documentation/devicetree/bindings/clock/qcom,gpucc.yaml b/Documentation/devicetree/bindings/clock/qcom,gpucc.yaml
-> index 9ebcb1943b0a..4090cc7ea2ae 100644
-> --- a/Documentation/devicetree/bindings/clock/qcom,gpucc.yaml
-> +++ b/Documentation/devicetree/bindings/clock/qcom,gpucc.yaml
-> @@ -20,6 +20,7 @@ description: |
->      dt-bindings/clock/qcom,gpucc-sm6350.h
->      dt-bindings/clock/qcom,gpucc-sm8150.h
->      dt-bindings/clock/qcom,gpucc-sm8250.h
-> +    dt-bindings/clock/qcom,gpucc-sm8350.h
+> diff --git a/Documentation/devicetree/bindings/rtc/st,stm32-rtc.yaml b/Documentation/devicetree/bindings/rtc/st,stm32-rtc.yaml
+> index 764717ce1873..56d46ea35c5d 100644
+> --- a/Documentation/devicetree/bindings/rtc/st,stm32-rtc.yaml
+> +++ b/Documentation/devicetree/bindings/rtc/st,stm32-rtc.yaml
+> @@ -52,6 +52,13 @@ properties:
+>        override default rtc_ck parent clock phandle of the new parent clock of rtc_ck
+>      maxItems: 1
 >  
->  properties:
->    compatible:
-> @@ -31,6 +32,7 @@ properties:
->        - qcom,sm6350-gpucc
->        - qcom,sm8150-gpucc
->        - qcom,sm8250-gpucc
-> +      - qcom,sm8350-gpucc
+> +  st,lsco:
+> +    $ref: "/schemas/types.yaml#/definitions/uint32"
+> +    description: |
+> +      To select and enable RTC Low Speed Clock Output.
+> +      Refer to <include/dt-bindings/rtc/rtc-stm32.h> for the supported values.
+> +      Pinctrl state named "default" may be defined to reserve pin for RTC output.
+> +
+>  allOf:
+>    - if:
+>        properties:
+> @@ -65,6 +72,9 @@ allOf:
+>            minItems: 1
+>            maxItems: 1
 >  
->    clocks:
->      items:
-> diff --git a/include/dt-bindings/clock/qcom,gpucc-sm8350.h b/include/dt-bindings/clock/qcom,gpucc-sm8350.h
+> +        st,lsco:
+> +          maxItems: 0
+
+If disallowing the property is what you wanted, then 'st,lsco: false' is 
+the way. 'maxItems: 0' is never correct.
+
+> +
+>          clock-names: false
+>  
+>        required:
+> @@ -82,6 +92,9 @@ allOf:
+>            minItems: 2
+>            maxItems: 2
+>  
+> +        st,lsco:
+> +          maxItems: 0
+> +
+>        required:
+>          - clock-names
+>          - st,syscfg
+> @@ -101,6 +114,9 @@ allOf:
+>          assigned-clocks: false
+>          assigned-clock-parents: false
+>  
+> +        st,lsco:
+> +          maxItems: 1
+> +
+>        required:
+>          - clock-names
+>  
+> @@ -130,12 +146,16 @@ examples:
+>    - |
+>      #include <dt-bindings/interrupt-controller/arm-gic.h>
+>      #include <dt-bindings/clock/stm32mp1-clks.h>
+> +    #include <dt-bindings/rtc/rtc-stm32.h>
+>      rtc@5c004000 {
+>        compatible = "st,stm32mp1-rtc";
+>        reg = <0x5c004000 0x400>;
+>        clocks = <&rcc RTCAPB>, <&rcc RTC>;
+>        clock-names = "pclk", "rtc_ck";
+>        interrupts = <GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>;
+> +      st,lsco = <RTC_OUT2_RMP>;
+> +      pinctrl-0 = <&rtc_out2_rmp_pins_a>;
+> +      pinctrl-names = "default";
+>      };
+>  
+>  ...
+> diff --git a/include/dt-bindings/rtc/rtc-stm32.h b/include/dt-bindings/rtc/rtc-stm32.h
 > new file mode 100644
-> index 000000000000..d2294e0d527e
+> index 000000000000..2fd78c2e62d4
 > --- /dev/null
-> +++ b/include/dt-bindings/clock/qcom,gpucc-sm8350.h
-> @@ -0,0 +1,52 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only */
-
-QCom reviewed and approved the license on this, right?
-
-Dual license.
-
+> +++ b/include/dt-bindings/rtc/rtc-stm32.h
+> @@ -0,0 +1,14 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
 > +/*
-> + * Copyright (c) 2019-2020, The Linux Foundation. All rights reserved.
+> + * This header provides constants for STM32_RTC bindings.
 > + */
 > +
-> +#ifndef _DT_BINDINGS_CLK_QCOM_GPU_CC_SM8350_H
-> +#define _DT_BINDINGS_CLK_QCOM_GPU_CC_SM8350_H
+> +#ifndef _DT_BINDINGS_RTC_RTC_STM32_H
+> +#define _DT_BINDINGS_RTC_RTC_STM32_H
 > +
-> +/* GPU_CC clocks */
-> +#define GPU_CC_AHB_CLK			0
-> +#define GPU_CC_CB_CLK			1
-> +#define GPU_CC_CRC_AHB_CLK		2
-> +#define GPU_CC_CX_APB_CLK		3
-> +#define GPU_CC_CX_GMU_CLK		4
-> +#define GPU_CC_CX_QDSS_AT_CLK		5
-> +#define GPU_CC_CX_QDSS_TRIG_CLK		6
-> +#define GPU_CC_CX_QDSS_TSCTR_CLK	7
-> +#define GPU_CC_CX_SNOC_DVM_CLK		8
-> +#define GPU_CC_CXO_AON_CLK		9
-> +#define GPU_CC_CXO_CLK			10
-> +#define GPU_CC_FREQ_MEASURE_CLK		11
-> +#define GPU_CC_GMU_CLK_SRC		12
-> +#define GPU_CC_GX_GMU_CLK		13
-> +#define GPU_CC_GX_QDSS_TSCTR_CLK	14
-> +#define GPU_CC_GX_VSENSE_CLK		15
-> +#define GPU_CC_HLOS1_VOTE_GPU_SMMU_CLK	16
-> +#define GPU_CC_HUB_AHB_DIV_CLK_SRC	17
-> +#define GPU_CC_HUB_AON_CLK		18
-> +#define GPU_CC_HUB_CLK_SRC		19
-> +#define GPU_CC_HUB_CX_INT_CLK		20
-> +#define GPU_CC_HUB_CX_INT_DIV_CLK_SRC	21
-> +#define GPU_CC_MND1X_0_GFX3D_CLK	22
-> +#define GPU_CC_MND1X_1_GFX3D_CLK	23
-> +#define GPU_CC_PLL0			24
-> +#define GPU_CC_PLL1			25
-> +#define GPU_CC_SLEEP_CLK		26
-> +
-> +/* GPU_CC resets */
-> +#define GPUCC_GPU_CC_ACD_BCR		0
-> +#define GPUCC_GPU_CC_CB_BCR		1
-> +#define GPUCC_GPU_CC_CX_BCR		2
-> +#define GPUCC_GPU_CC_FAST_HUB_BCR	3
-> +#define GPUCC_GPU_CC_GFX3D_AON_BCR	4
-> +#define GPUCC_GPU_CC_GMU_BCR		5
-> +#define GPUCC_GPU_CC_GX_BCR		6
-> +#define GPUCC_GPU_CC_XO_BCR		7
-> +
-> +/* GPU_CC GDSCRs */
-> +#define GPU_CX_GDSC			0
-> +#define GPU_GX_GDSC			1
+> +#define RTC_NO_OUT	0
+> +#define RTC_OUT1	1
+> +#define RTC_OUT2	2
+> +#define RTC_OUT2_RMP	3
 > +
 > +#endif
 > -- 
-> 2.34.1
+> 2.25.1
 > 
 > 
