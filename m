@@ -2,138 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 38A6D528307
-	for <lists+devicetree@lfdr.de>; Mon, 16 May 2022 13:20:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DA851528314
+	for <lists+devicetree@lfdr.de>; Mon, 16 May 2022 13:23:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237177AbiEPLUh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 May 2022 07:20:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35432 "EHLO
+        id S243059AbiEPLXB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 May 2022 07:23:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39740 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229735AbiEPLUg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 May 2022 07:20:36 -0400
-Received: from mail.kapsi.fi (mail.kapsi.fi [IPv6:2001:67c:1be8::25])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F0F2534BBE;
-        Mon, 16 May 2022 04:20:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=kapsi.fi;
-         s=20161220; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
-        References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
-        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-        Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-        List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=LUKhFyWGsJws4jt1m41drcAy5kgxr8adnAp720eLM7Y=; b=KlbgSdflonmdW6hPspTw/oFJYR
-        yLr4OzBTS5jTqa88i7yjnmsG6GpnO3VrGHQvwpaLGB2sica6hBO1nPPepUxvCjDJ/qMSWv2bqHO+b
-        ZmAAhzszkvaGdABMHDNLbFKBA/0X2cZLpA26IbwG1J+/WKn3BSeYHWPzAy1E2IXsArxpSxY1jKaNf
-        G7qksyN1vqqi7dVGF3f0eawRTnGOVi0UUGB2fOyVmQ+Pmj57atz5AZx29cjIHEp8OKaSWq9LTUTaz
-        ANu8h4V4ZNvvD3woDjGX8sWZqSmMJ69f3GKZYxGyFvG3KOEc3VaTNtMLpx3ov/1arKmls2ipz2Eax
-        IJtGDvbg==;
-Received: from 91-158-25-70.elisa-laajakaista.fi ([91.158.25.70] helo=[192.168.1.10])
-        by mail.kapsi.fi with esmtpsa (TLS1.3:ECDHE_RSA_AES_128_GCM_SHA256:128)
-        (Exim 4.92)
-        (envelope-from <cyndis@kapsi.fi>)
-        id 1nqYlv-0001Dw-4J; Mon, 16 May 2022 14:20:19 +0300
-Message-ID: <020a8244-760e-fe7c-594a-1d85e5645dbe@kapsi.fi>
-Date:   Mon, 16 May 2022 14:20:18 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.4.1
-Subject: Re: [PATCH v5 5/9] iommu/arm-smmu: Attach to host1x context device
- bus
-Content-Language: en-US
-To:     Robin Murphy <robin.murphy@arm.com>, Will Deacon <will@kernel.org>
-Cc:     thierry.reding@gmail.com, jonathanh@nvidia.com, joro@8bytes.org,
-        robh+dt@kernel.org, krzysztof.kozlowski@canonical.com,
-        linux-tegra@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        iommu@lists.linux-foundation.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Mikko Perttunen <mperttunen@nvidia.com>
-References: <20220516085258.1227691-1-cyndis@kapsi.fi>
- <20220516085258.1227691-6-cyndis@kapsi.fi>
- <20220516100721.GA1927@willie-the-truck>
- <4a170997-c893-1788-dcaa-8ed2193146ae@kapsi.fi>
- <099cf0f9-5c27-0247-7c5e-6704a9527b11@arm.com>
-From:   Mikko Perttunen <cyndis@kapsi.fi>
-In-Reply-To: <099cf0f9-5c27-0247-7c5e-6704a9527b11@arm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 91.158.25.70
-X-SA-Exim-Mail-From: cyndis@kapsi.fi
-X-SA-Exim-Scanned: No (on mail.kapsi.fi); SAEximRunCond expanded to false
-X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        with ESMTP id S243021AbiEPLWv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 May 2022 07:22:51 -0400
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83D2F38189
+        for <devicetree@vger.kernel.org>; Mon, 16 May 2022 04:22:49 -0700 (PDT)
+Received: by mail-ej1-x62a.google.com with SMTP id z2so27997894ejj.3
+        for <devicetree@vger.kernel.org>; Mon, 16 May 2022 04:22:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=fairphone.com; s=fair;
+        h=mime-version:content-transfer-encoding:date:message-id:from:to:cc
+         :subject:references:in-reply-to;
+        bh=z/sJ+M1XxtJXB9OHfNzwnEILWmK+EFv1aJKz+1MttWM=;
+        b=ab8F5qnQhlZymUFMlry85o+kQxlSUkk0qQBmbXQYDXjm6tNk3f6wwBfgFJ1jkUG2BR
+         9v/egoOeHoFAOvSkPi97wnKqMnwmRk/EudKcPqdzI7bZmacULRjBYlRU7D/SeUtVzHe6
+         1jpYmWBlJ7TEO+YYOrI81j+TJhU+p4DzVB4hazDxVI0/RBdIoOAaRGjbUuuzJHB3229d
+         6RdS/WrDZwulYt+3uULiQuISRpBwDmdlr4ZEtACXr9h6yhicZRKAh7wTL/PwyMUNmJ0R
+         fTpjEagPe4gjas7QXRGL7og5z20u84pfcM9xWlubSEipIrfk3RGiCG2G6zzy9Sn0/fEj
+         4m4Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:content-transfer-encoding:date
+         :message-id:from:to:cc:subject:references:in-reply-to;
+        bh=z/sJ+M1XxtJXB9OHfNzwnEILWmK+EFv1aJKz+1MttWM=;
+        b=Y9QcOkD4PgmllettyK3LNj08fQOEMqHUDgbgTIv5RokdeIHxu5PgpMxhQNE2Eofu2k
+         SYDwC0EijD1QjGQwAyJD0oiv/L7OXOH6hGC0+nByx4OVs9MeRJszm640Hyb7ejKQ2KKn
+         /oX3uILTQfFandV590ZftFq2ib2ZR7Wcgh5vc1TsTmvdJIOXMHHqvQv4Qp2PLjiSzW3Q
+         +6R82hgMgq+/ujX0WugUtcaDFOGLRz2QRW5oUylmaW2UvrQSS4/3jgAkprikfac7VsRa
+         BXR1xB3ubvkgbCxyJxhQcHV3hJKdd80N6TcqN9sayUg6zJo1AmMMYITzUMNTDOcmbisS
+         bL9Q==
+X-Gm-Message-State: AOAM532v4kbgDSPC4q7eiwiBxMMcE1ttdbxoSuZeLSblB92IH5D4oCp8
+        25zg4+3Se3F1nIVmiz2tLCmXdA==
+X-Google-Smtp-Source: ABdhPJzgJws20+k1w/bd9YDmKu6f8bJwp96JqZDsW4Rp66WDsfycPObkkkYE4zEcys2M4yADuMjhxg==
+X-Received: by 2002:a17:906:dc8a:b0:6f9:13e9:4c87 with SMTP id cs10-20020a170906dc8a00b006f913e94c87mr14513978ejc.729.1652700167860;
+        Mon, 16 May 2022 04:22:47 -0700 (PDT)
+Received: from localhost (144-178-202-138.static.ef-service.nl. [144.178.202.138])
+        by smtp.gmail.com with ESMTPSA id cn7-20020a0564020ca700b0042617ba6387sm5006533edb.17.2022.05.16.04.22.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 16 May 2022 04:22:47 -0700 (PDT)
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date:   Mon, 16 May 2022 13:22:46 +0200
+Message-Id: <CK15BB34PCJM.1PI9Z68ZM20K9@otso>
+From:   "Luca Weiss" <luca.weiss@fairphone.com>
+To:     "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>,
+        <linux-arm-msm@vger.kernel.org>,
+        "Bjorn Andersson" <bjorn.andersson@linaro.org>
+Cc:     <~postmarketos/upstreaming@lists.sr.ht>,
+        <phone-devel@vger.kernel.org>, "Rob Herring" <robh@kernel.org>,
+        "Andy Gross" <agross@kernel.org>,
+        "Thomas Gleixner" <tglx@linutronix.de>,
+        "Marc Zyngier" <maz@kernel.org>,
+        "Rob Herring" <robh+dt@kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v2] dt-bindings: qcom,pdc: convert to YAML
+X-Mailer: aerc 0.9.0
+References: <20220103074348.6039-1-luca.weiss@fairphone.com>
+ <bef4922d-4a32-f184-44a1-8f5430190938@linaro.org>
+ <fef5f229-f247-d032-fc76-46ed7083dbf4@linaro.org>
+ <CK10OTVFAP75.WCSVY40A7PXO@otso>
+ <13d65ae2-f378-5353-16b9-5bf68883a701@linaro.org>
+In-Reply-To: <13d65ae2-f378-5353-16b9-5bf68883a701@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 5/16/22 13:44, Robin Murphy wrote:
-> On 2022-05-16 11:13, Mikko Perttunen wrote:
->> On 5/16/22 13:07, Will Deacon wrote:
->>> On Mon, May 16, 2022 at 11:52:54AM +0300, cyndis@kapsi.fi wrote:
->>>> From: Mikko Perttunen <mperttunen@nvidia.com>
->>>>
->>>> Set itself as the IOMMU for the host1x context device bus, containing
->>>> "dummy" devices used for Host1x context isolation.
->>>>
->>>> Signed-off-by: Mikko Perttunen <mperttunen@nvidia.com>
->>>> ---
->>>>   drivers/iommu/arm/arm-smmu/arm-smmu.c | 13 +++++++++++++
->>>>   1 file changed, 13 insertions(+)
->>>>
->>>> diff --git a/drivers/iommu/arm/arm-smmu/arm-smmu.c 
->>>> b/drivers/iommu/arm/arm-smmu/arm-smmu.c
->>>> index 568cce590ccc..9ff54eaecf81 100644
->>>> --- a/drivers/iommu/arm/arm-smmu/arm-smmu.c
->>>> +++ b/drivers/iommu/arm/arm-smmu/arm-smmu.c
->>>> @@ -39,6 +39,7 @@
->>>>   #include <linux/amba/bus.h>
->>>>   #include <linux/fsl/mc.h>
->>>> +#include <linux/host1x_context_bus.h>
->>>>   #include "arm-smmu.h"
->>>> @@ -2053,8 +2054,20 @@ static int arm_smmu_bus_init(struct iommu_ops 
->>>> *ops)
->>>>               goto err_reset_pci_ops;
->>>>       }
->>>>   #endif
->>>> +#ifdef CONFIG_TEGRA_HOST1X_CONTEXT_BUS
->>>> +    if (!iommu_present(&host1x_context_device_bus_type)) {
->>>> +        err = bus_set_iommu(&host1x_context_device_bus_type, ops);
->>>> +        if (err)
->>>> +            goto err_reset_fsl_mc_ops;
->>>> +    }
->>>> +#endif
->>>> +
->>>>       return 0;
->>>> +err_reset_fsl_mc_ops: __maybe_unused;
->>>> +#ifdef CONFIG_FSL_MC_BUS
->>>> +    bus_set_iommu(&fsl_mc_bus_type, NULL);
->>>> +#endif
->>>
->>> bus_set_iommu() is going away:
->>>
->>> https://lore.kernel.org/r/cover.1650890638.git.robin.murphy@arm.com
->>>
->>> Will
->>
->> Thanks for the heads-up. Robin had pointed out that this work was 
->> ongoing but I hadn't seen the patches yet. I'll look into it.
-> 
-> Although that *is* currently blocked on the mystery intel-iommu problem 
-> that I can't reproduce... If this series is ready to land right now for 
-> 5.19 then in principle that might be the easiest option overall. 
-> Hopefully at least patch #2 could sneak in so that the compile-time 
-> dependencies are ready for me to roll up host1x into the next rebase of 
-> "iommu: Always register bus notifiers".
-> 
-> Cheers,
-> Robin.
+Hi Krzysztof,
 
-My guess is that the series as a whole is not ready to land in the 5.19 
-timeframe, but #2 could be possible.
+On Mon May 16, 2022 at 12:35 PM CEST, Krzysztof Kozlowski wrote:
+> On 16/05/2022 09:45, Luca Weiss wrote:
+> > Hi Krzysztof,
+> >=20
+> > On Mon May 9, 2022 at 10:40 AM CEST, Krzysztof Kozlowski wrote:
+> >> On 09/05/2022 10:38, Krzysztof Kozlowski wrote:
+> >>> On 03/01/2022 08:43, Luca Weiss wrote:
+> >>>> Convert the PDC interrupt controller bindings to YAML.
+> >>>>
+> >>>> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+> >>>> Reviewed-by: Rob Herring <robh@kernel.org>
+> >>>> ---
+> >>>> Changes since v1:
+> >>>> * Adjust description of second reg-name as suggested by Maulik Shah
+> >>>>
+> >>>> @Rob Herring: Hope it's ok to keep your R-b given the above changes
+> >>>>
+> >>>> This patch depends on the following patch, which fixed sm8250 & sm83=
+50
+> >>>> compatibles and adds sm6350.
+> >>>> https://lore.kernel.org/linux-arm-msm/20211213082614.22651-4-luca.we=
+iss@fairphone.com/
+> >>>
+> >>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> >>>
+> >>> Luca,
+> >>> I think this needs resending as dependency was merged. Alternatively,
+> >>> maybe Bjorn could pick it up through QCom SoC?
+> >>
+> >> Correction - it seems that Rob took the dependency in April, so this
+> >> should go via Rob's tree as well.
+> >>
+> >> Luca, can you resend without Rob's Review tag and ask him to pick it u=
+p?
+> >>
+> >=20
+> > So... since torvalds/master my sm6350 patch is merged through Rob's
+>
+> If it was merged to torvalds/master, it's not a dependency anymore...
 
-Thierry, any opinion?
+Yeah of course, but currently sm6350 and sm8150 patches are lined up to
+be merged in the next merge window from different trees which just make
+it difficult.
 
-Thanks,
-Mikko
+>
+> > tree, but there was also a sm8150 patch applied through Linus Walleij's
+> > tree. This means (as far as I understand) that neither can really
+> > properly apply this (rebased) patch as one tree will have missed the
+> > other commit.
+>
+> sm8150 patch is also a dependency?
+
+I mean either this conversion patch includes sm8150 or it doesn't but
+given it's applied to some tree and lined up for the next merge window
+it should probably include it?
+
+>
+> >=20
+> > Does it make sense to send a v3 rebased on linux-next now, or wait unti=
+l
+> > this has settled down in torvalds's tree?
+>
+> Conflicts can be resolved, you just need to choose one tree to based on.
+
+If conflict resolution will be done when merging Linus' and Rob's tree
+(e.g. add sm8150 to the yaml) then this v2 can be applied to Rob's tree
+now.
+
+Otherwise, I'll just wait until everything's merged into torvald's tree
+so the issue disappears.
+
+Regards
+Luca
+
+>
+>
+> Best regards,
+> Krzysztof
+
