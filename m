@@ -2,239 +2,297 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D47A0527D68
-	for <lists+devicetree@lfdr.de>; Mon, 16 May 2022 08:11:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 886BC527D7F
+	for <lists+devicetree@lfdr.de>; Mon, 16 May 2022 08:21:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240213AbiEPGKh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 May 2022 02:10:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57700 "EHLO
+        id S234711AbiEPGVf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 May 2022 02:21:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50646 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240217AbiEPGKf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 May 2022 02:10:35 -0400
-Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04B8620F7B
-        for <devicetree@vger.kernel.org>; Sun, 15 May 2022 23:10:31 -0700 (PDT)
-Received: by mail-lj1-x235.google.com with SMTP id 4so16822098ljw.11
-        for <devicetree@vger.kernel.org>; Sun, 15 May 2022 23:10:30 -0700 (PDT)
+        with ESMTP id S234525AbiEPGVf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 May 2022 02:21:35 -0400
+Received: from mail-pl1-x631.google.com (mail-pl1-x631.google.com [IPv6:2607:f8b0:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5885124941;
+        Sun, 15 May 2022 23:21:34 -0700 (PDT)
+Received: by mail-pl1-x631.google.com with SMTP id n8so13524724plh.1;
+        Sun, 15 May 2022 23:21:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=zib3uaRuFHQp5m+3/8oVVWs2fT/RhjrDBvhpgKAcf3A=;
-        b=T8a68Wcn4gY9NFXddamoH+rRrUy8g81C6ugx+hQrWs90thVEoFpfoW5rfePda8J8Ti
-         KhYLE5GeSNkseGhg6lt7Uw3CFsrabahfUTN6w49xWFaBgVGI0x9XP77w7igMPyaJ68Cq
-         qg8vUoA0kBuM1wr5DCpHhE3FpkgNX+KKJZK6qCoalPD/rQiLoRs9/bYs/l0ErwlkoH0P
-         1viy/5jm8JiHRHEICvrFZ3mP4KXxz85YQeOIAL0QqJ1J/jLc0LdzwVX5OH8SXaqpQEH3
-         cNP78pu268Ud97vfkkEiS4RW+MJ/RzJICDEG0kc8MdHqBzJU5DPGyHb+S8K2sDRzFhMV
-         K1KA==
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=2XQvQdTgnCwDfmHkTZtajXuRMAeapjHZEvNeUkViza8=;
+        b=ZLrZuXWGhglqCmNncstz6ccn5vDYbYWzH2VkXAZA1887OQvrY9eWeB0/8UQQgwWSGB
+         pVzZi6ep4Ax9nm3l099qIlairb6gML7KBNuKERwrzUYQKU5NB+Chh4uwnt1fUGD3DE0v
+         UVgcdupbcev1+NvQClM6qz9BVECcYIcbIAc2jk+cxmDVvMnR1sraxFf/z4kVM62+mgmr
+         YG0sv49pzekIRo8vFDi2WXwQkJUYsQ4dyp/aZReuOOSbOFLpNQgBchkiWCIzyH9ZSWww
+         0vH4RNk6R8t4fh5r6JasX81Clk/MpWUx0Ft4/SLtqC8ha+FyAKf7T2imbZHL04MZ9fsN
+         zzNg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=zib3uaRuFHQp5m+3/8oVVWs2fT/RhjrDBvhpgKAcf3A=;
-        b=LoaiUnDQ9hnghZfPdo1jPOq/O+iUP9ewPSJ4S3IAgb/ZY67ANiw3EdPDVxyx9nrT1s
-         7AxcXE9vqbM6dDzVrTkIkAweveX6a6EyrKGSkQqYSo5kqRA/zsZbnuGjIds2I8RKfNRu
-         mSyLP76N2Qz+tqdlhKw6xws8zDrqNI0Ao9CzO9G5fNJo7S+GCYzD1R3Ym+N4vVZ0Uq6v
-         Q9SiZzdnrB6HUFHGcS/B689GiLgFrkVjiUOUe6WyMXtvY6gw+kyekRTLRe0h2AHM5+52
-         5O2wKLn/kvLZ4w/Udser6xeWpPGDtuFDw67XqA+1I2QT7SiLOMBubZnru+ML67VIy8Oc
-         CwbQ==
-X-Gm-Message-State: AOAM5334Vwd/Dq2iry2nzdslKzJvWSDvwfoYyck+C2hNzISJz1K65SDK
-        aEKvCbPbR1FVChYhwNsY2fNcAA==
-X-Google-Smtp-Source: ABdhPJyrZUQf7WD5zZ0nqfhRfXzM6EGNE+a7PhnPAP8HR3cuJ7y91FoKEpx/vEUszqhSySkNWYqKKw==
-X-Received: by 2002:a05:651c:399:b0:24f:18d:5bbd with SMTP id e25-20020a05651c039900b0024f018d5bbdmr10166934ljp.481.1652681429224;
-        Sun, 15 May 2022 23:10:29 -0700 (PDT)
-Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id j9-20020a19f509000000b0047255d210f2sm1208147lfb.33.2022.05.15.23.10.27
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 15 May 2022 23:10:28 -0700 (PDT)
-Message-ID: <eecf3117-772a-f50a-5d09-4d729dea7561@linaro.org>
-Date:   Mon, 16 May 2022 08:10:27 +0200
+        bh=2XQvQdTgnCwDfmHkTZtajXuRMAeapjHZEvNeUkViza8=;
+        b=TiYkjbFzf0VJE0I0rbxTHbIaHH1+HUt+v2P4DVvXCceS4cpx8/i1Myv3jj905fGMk3
+         5f/Di7zd6/FbK7g4QsFYjnpXbNeKwihfei9+QqUUhxZEOlDCnRUpAL5oHLAsqwTuXsAN
+         iFCEVAzhHFTjEXF45SAKg7wOVTUjXID6NpQlU9v79dRmX1xRjeP3qcgIcc3QBdZcwq6U
+         71mqpYBasORwnebHuDzedUB6MOMhbWgA+NLLHPIB7yPEyOCh4UUmjxOpsiJuZcs9GZWw
+         F8ewnCkr9u1CqKlmf4oW6yDcnSSbIuurZ9sKzaNNYD4SKEYJJIm1kfyRDxQ0nkvKHik/
+         YMkw==
+X-Gm-Message-State: AOAM530p9Leq5DwdyEN6SpmrxxWqvhc9V0XCWApdcrlog/azxjU6BPJp
+        nbNGqWIzTp+0lcGbAAcU81Q=
+X-Google-Smtp-Source: ABdhPJydDWCC0cImtGR3ApozIWoml6FLqAUUWtzPeE7bW1eJQ3xAFnItpbdPcy3zKpfDYwU75NnssA==
+X-Received: by 2002:a17:902:7593:b0:15e:fe5d:58e1 with SMTP id j19-20020a170902759300b0015efe5d58e1mr16364570pll.102.1652682093885;
+        Sun, 15 May 2022 23:21:33 -0700 (PDT)
+Received: from genechen-System-Product-Name.richtek.com ([2402:7500:469:4645:1448:44e0:4d9f:8e5b])
+        by smtp.gmail.com with ESMTPSA id v15-20020a17090ad58f00b001d840f4eee0sm7597337pju.20.2022.05.15.23.21.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 15 May 2022 23:21:33 -0700 (PDT)
+From:   Gene Chen <gene.chen.richtek@gmail.com>
+To:     lee.jones@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
+        pavel@ucw.cz
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        gene_chen@richtek.com, cy_huang@richtek.com
+Subject: [PATCH v2] dt-bindings: mfd: Add bindings child nodes for the Mediatek MT6360
+Date:   Mon, 16 May 2022 14:21:27 +0800
+Message-Id: <20220516062127.99647-1-gene.chen.richtek@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH v3 7/7] ufs: use PM OPP when scaling gears
-Content-Language: en-US
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Avri Altman <avri.altman@wdc.com>,
-        "James E.J. Bottomley" <jejb@linux.ibm.com>,
-        "Martin K. Petersen" <martin.petersen@oracle.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Taniya Das <tdas@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-scsi@vger.kernel.org
-References: <20220513061347.46480-1-krzysztof.kozlowski@linaro.org>
- <20220513061347.46480-8-krzysztof.kozlowski@linaro.org>
- <20220513182546.GD1922@thinkpad>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220513182546.GD1922@thinkpad>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/05/2022 20:25, Manivannan Sadhasivam wrote:
-> On Fri, May 13, 2022 at 08:13:47AM +0200, Krzysztof Kozlowski wrote:
->> Scaling gears requires not only scaling clocks, but also voltage levels,
->> e.g. via performance states.
->>
->> Use the provided OPP table, to set proper OPP frequency which through
->> required-opps will trigger performance state change.  This deprecates
->> the old freq-table-hz Devicetree property and old clock scaling method
->> in favor of PM core code.
->>
-> 
-> To be clear, you are not changing the voltages (UFS supplies) through OPP. But
-> rather handle only clks and leave the power domain handling to parent OPP
-> device.
+From: Gene Chen <gene_chen@richtek.com>
 
-Correct, the patchset itself does not introduce itself regulator
-control. For Qualcomm (and maybe others) these will be scaled via OPP
-performance states.
+Add bindings child nodes for the Mediatek MT6360
 
-> 
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
->>
->> ---
->>
->> Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
->> ---
->>  drivers/scsi/ufs/ufshcd-pltfrm.c |  73 +++++++++++++++
->>  drivers/scsi/ufs/ufshcd.c        | 150 ++++++++++++++++++++++++-------
->>  drivers/scsi/ufs/ufshcd.h        |   6 ++
->>  3 files changed, 195 insertions(+), 34 deletions(-)
->>
->> diff --git a/drivers/scsi/ufs/ufshcd-pltfrm.c b/drivers/scsi/ufs/ufshcd-pltfrm.c
->> index 3ab555f6e66e..a603ca8e383b 100644
->> --- a/drivers/scsi/ufs/ufshcd-pltfrm.c
->> +++ b/drivers/scsi/ufs/ufshcd-pltfrm.c
->> @@ -10,6 +10,7 @@
->>  
->>  #include <linux/module.h>
->>  #include <linux/platform_device.h>
->> +#include <linux/pm_opp.h>
->>  #include <linux/pm_runtime.h>
->>  #include <linux/of.h>
->>  
->> @@ -108,6 +109,72 @@ static int ufshcd_parse_clock_info(struct ufs_hba *hba)
->>  	return ret;
->>  }
->>  
->> +static int ufshcd_parse_operating_points(struct ufs_hba *hba)
->> +{
->> +	struct device *dev = hba->dev;
->> +	struct device_node *np = dev->of_node;
->> +	struct ufs_clk_info *clki;
->> +	const char *names[16];
->> +	int cnt, i, ret;
->> +
->> +	if (!of_find_property(dev->of_node, "operating-points-v2", NULL))
->> +		return 0;
->> +
->> +	cnt = of_property_count_strings(np, "clock-names");
->> +	if (cnt <= 0) {
->> +		dev_warn(dev, "%s: Missing clock-names\n",
->> +			 __func__);
-> 
-> This is a hard error, right? So why not dev_err()?
+Signed-off-by: Gene Chen <gene_chen@richtek.com>
+Link: https://lore.kernel.org/all/YmqTzlrVL5KaVPuz@robh.at.kernel.org/
+---
+ .../bindings/mfd/mediatek,mt6360.yaml         | 189 ++++++++++++++++++
+ 1 file changed, 189 insertions(+)
 
-Good point, but actually this (and following cases) should be return 0,
-because clocks/freq-table/opp-points are not required properties. The
-original code (parsing it for freq-table-hz) also does not treat it as
-error.
+diff --git a/Documentation/devicetree/bindings/mfd/mediatek,mt6360.yaml b/Documentation/devicetree/bindings/mfd/mediatek,mt6360.yaml
+index 4d8769f3748c..28eee02441ee 100644
+--- a/Documentation/devicetree/bindings/mfd/mediatek,mt6360.yaml
++++ b/Documentation/devicetree/bindings/mfd/mediatek,mt6360.yaml
+@@ -37,6 +37,18 @@ properties:
+     description:
+       The first cell is the IRQ number.
+ 
++  regulators:
++    $ref: /schemas/regulator/mt6360-regulator.yaml#
++
++  charger:
++    $ref: /schemas/power/supply/mt6360_charger.yaml#
++
++  tcpc:
++    $ref: /schemas/usb/mediatek,mt6360-tcpc.yaml#
++
++  led-controller:
++    $ref: /schemas/leds/leds-mt6360.yaml#
++
+ required:
+   - compatible
+   - reg
+@@ -51,6 +63,8 @@ examples:
+   - |
+     #include <dt-bindings/interrupt-controller/irq.h>
+     #include <dt-bindings/regulator/mediatek,mt6360-regulator.h>
++    #include <dt-bindings/leds/common.h>
++    #include <dt-bindings/usb/pd.h>
+     i2c {
+         #address-cells = <1>;
+         #size-cells = <0>;
+@@ -63,5 +77,180 @@ examples:
+             interrupt-names = "IRQB";
+             interrupt-controller;
+             #interrupt-cells = <1>;
++
++            mt6360_charger: charger {
++                compatible = "mediatek,mt6360-chg";
++                richtek,vinovp-microvolt = <14500000>;
++
++                otg_vbus_regulator: usb-otg-vbus-regulator {
++                    regulator-compatible = "usb-otg-vbus";
++                    regulator-name = "usb-otg-vbus";
++                    regulator-min-microvolt = <4425000>;
++                    regulator-max-microvolt = <5825000>;
++                };
++            };
++
++            led-controller {
++                compatible = "mediatek,mt6360-led";
++                #address-cells = <1>;
++                #size-cells = <0>;
++
++                multi-led@0 {
++                    reg = <0>;
++                    function = LED_FUNCTION_INDICATOR;
++                    color = <LED_COLOR_ID_RGB>;
++                    led-max-microamp = <24000>;
++                    #address-cells = <1>;
++                    #size-cells = <0>;
++                    led@0 {
++                        reg = <0>;
++                        color = <LED_COLOR_ID_RED>;
++                    };
++                    led@1 {
++                        reg = <1>;
++                        color = <LED_COLOR_ID_GREEN>;
++                    };
++                    led@2 {
++                        reg = <2>;
++                        color = <LED_COLOR_ID_BLUE>;
++                    };
++                };
++                led@3 {
++                    reg = <3>;
++                    function = LED_FUNCTION_INDICATOR;
++                    color = <LED_COLOR_ID_WHITE>;
++                    led-max-microamp = <150000>;
++                };
++                led@4 {
++                    reg = <4>;
++                    function = LED_FUNCTION_FLASH;
++                    color = <LED_COLOR_ID_WHITE>;
++                    function-enumerator = <1>;
++                    led-max-microamp = <200000>;
++                    flash-max-microamp = <500000>;
++                    flash-max-timeout-us = <1024000>;
++                };
++                led@5 {
++                    reg = <5>;
++                    function = LED_FUNCTION_FLASH;
++                    color = <LED_COLOR_ID_WHITE>;
++                    function-enumerator = <2>;
++                    led-max-microamp = <200000>;
++                    flash-max-microamp = <500000>;
++                    flash-max-timeout-us = <1024000>;
++                };
++            };
++
++            regulators {
++                compatible = "mediatek,mt6360-regulator";
++                LDO_VIN3-supply = <&BUCK2>;
++                buck1 {
++                    regulator-compatible = "BUCK1";
++                    regulator-name = "mt6360,buck1";
++                    regulator-min-microvolt = <300000>;
++                    regulator-max-microvolt = <1300000>;
++                    regulator-allowed-modes = <MT6360_OPMODE_NORMAL
++                         MT6360_OPMODE_LP
++                         MT6360_OPMODE_ULP>;
++                };
++                BUCK2: buck2 {
++                    regulator-compatible = "BUCK2";
++                    regulator-name = "mt6360,buck2";
++                    regulator-min-microvolt = <300000>;
++                    regulator-max-microvolt = <1300000>;
++                    regulator-allowed-modes = <MT6360_OPMODE_NORMAL
++                         MT6360_OPMODE_LP
++                         MT6360_OPMODE_ULP>;
++                };
++                ldo6 {
++                    regulator-compatible = "LDO6";
++                    regulator-name = "mt6360,ldo6";
++                    regulator-min-microvolt = <500000>;
++                    regulator-max-microvolt = <2100000>;
++                    regulator-allowed-modes = <MT6360_OPMODE_NORMAL
++                         MT6360_OPMODE_LP>;
++                };
++                ldo7 {
++                    regulator-compatible = "LDO7";
++                    regulator-name = "mt6360,ldo7";
++                    regulator-min-microvolt = <500000>;
++                    regulator-max-microvolt = <2100000>;
++                    regulator-allowed-modes = <MT6360_OPMODE_NORMAL
++                         MT6360_OPMODE_LP>;
++                };
++                ldo1 {
++                    regulator-compatible = "LDO1";
++                    regulator-name = "mt6360,ldo1";
++                    regulator-min-microvolt = <1200000>;
++                    regulator-max-microvolt = <3600000>;
++                    regulator-allowed-modes = <MT6360_OPMODE_NORMAL
++                         MT6360_OPMODE_LP>;
++                };
++                ldo2 {
++                    regulator-compatible = "LDO2";
++                    regulator-name = "mt6360,ldo2";
++                    regulator-min-microvolt = <1200000>;
++                    regulator-max-microvolt = <3600000>;
++                    regulator-allowed-modes = <MT6360_OPMODE_NORMAL
++                         MT6360_OPMODE_LP>;
++                };
++                ldo3 {
++                    regulator-compatible = "LDO3";
++                    regulator-name = "mt6360,ldo3";
++                    regulator-min-microvolt = <1200000>;
++                    regulator-max-microvolt = <3600000>;
++                    regulator-allowed-modes = <MT6360_OPMODE_NORMAL
++                         MT6360_OPMODE_LP>;
++                };
++                ldo5 {
++                    regulator-compatible = "LDO5";
++                    regulator-name = "mt6360,ldo5";
++                    regulator-min-microvolt = <2700000>;
++                    regulator-max-microvolt = <3600000>;
++                    regulator-allowed-modes = <MT6360_OPMODE_NORMAL
++                         MT6360_OPMODE_LP>;
++                };
++            };
++
++            tcpc {
++                compatible = "mediatek,mt6360-tcpc";
++                interrupts-extended = <&gpio26 3 IRQ_TYPE_LEVEL_LOW>;
++                interrupt-names = "PD_IRQB";
++
++                connector {
++                    compatible = "usb-c-connector";
++                    label = "USB-C";
++                    data-role = "dual";
++                    power-role = "dual";
++                    try-power-role = "sink";
++                    source-pdos = <PDO_FIXED(5000, 1000, PDO_FIXED_DUAL_ROLE | PDO_FIXED_DATA_SWAP)>;
++                    sink-pdos = <PDO_FIXED(5000, 2000, PDO_FIXED_DUAL_ROLE | PDO_FIXED_DATA_SWAP)>;
++                    op-sink-microwatt = <10000000>;
++
++                    ports {
++                        #address-cells = <1>;
++                        #size-cells = <0>;
++
++                        port@0 {
++                            reg = <0>;
++                            endpoint {
++                                remote-endpoint = <&usb_hs>;
++                            };
++                        };
++                        port@1 {
++                            reg = <1>;
++                            endpoint {
++                                remote-endpoint = <&usb_ss>;
++                          };
++                        };
++                        port@2 {
++                            reg = <2>;
++                            endpoint {
++                                remote-endpoint = <&dp_aux>;
++                            };
++                        };
++                    };
++                };
++            };
+         };
+     };
+-- 
+2.25.1
 
-> 
->> +		return -EINVAL;
->> +	}
->> +
->> +	if (cnt > ARRAY_SIZE(names)) {
->> +		dev_info(dev, "%s: Too many clock-names\n",  __func__);
-> 
-> dev_err()?
-> 
->> +		return -EINVAL;
->> +	}
->> +
->> +	if (of_find_property(np, "freq-table-hz", NULL)) {
->> +		dev_info(dev, "%s: operating-points and freq-table-hz are incompatible\n",
->> +			 __func__);
-> 
-> dev_err()?
-> 
->> +		return -EINVAL;
->> +	}
->> +
->> +	for (i = 0; i < cnt; i++) {
->> +		ret = of_property_read_string_index(np, "clock-names", i,
->> +						    &names[i]);
->> +		if (ret)
->> +			return ret;
->> +
->> +		clki = devm_kzalloc(dev, sizeof(*clki), GFP_KERNEL);
->> +		if (!clki)
->> +			return -ENOMEM;
->> +
->> +		clki->name = devm_kstrdup(dev, names[i], GFP_KERNEL);
->> +		if (!clki->name)
->> +			return -ENOMEM;
->> +
->> +		if (!strcmp(names[i], "ref_clk"))
->> +			clki->keep_link_active = true;
->> +
->> +		list_add_tail(&clki->list, &hba->clk_list_head);
->> +	}
->> +
->> +	ret = devm_pm_opp_set_clknames(dev, names, i);
->> +	if (ret)
->> +		return ret;
->> +
->> +	ret = devm_pm_opp_register_set_opp_helper(dev, ufshcd_set_opp);
->> +	if (ret)
->> +		return ret;
->> +
->> +	ret = devm_pm_opp_of_add_table(dev);
->> +	if (ret)
->> +		return ret;
->> +
->> +	hba->use_pm_opp = true;
->> +
-> 
-> Since you are only handling the clks in UFS driver's OPP implementation, it
-> warrants atleast a comment. Otherwise, someone will add voltage to the OPP
-> table and complain that it is not getting changed. Eventhough the UFS driver
-> won't allow doing it, it is safer to mention it explicitly.
-
-Sure.
-
-> 
-> Also I'm worried about the implementation specific to Qcom platforms. Like we
-> rely on RPMHPD to handle the power domains, but that may not be true for other
-> platforms. I know that we cannot support all possible implementations but
-> atleast we should document this limitation.
-> 
-> Rest looks fine to me. I'll take one more look after testing this series on
-> SM8450.
-
-Using OPPs is quite generic, so other platform could implement also
-regulator scaling. The changes are indeed targetting Qcom platforms, but
-they are not restricting any other usage.
-
-Best regards,
-Krzysztof
