@@ -2,83 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 690F252890F
-	for <lists+devicetree@lfdr.de>; Mon, 16 May 2022 17:39:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 77489528956
+	for <lists+devicetree@lfdr.de>; Mon, 16 May 2022 17:57:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245335AbiEPPjh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 May 2022 11:39:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44470 "EHLO
+        id S245503AbiEPP5Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 May 2022 11:57:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33380 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245410AbiEPPjf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 May 2022 11:39:35 -0400
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5FF593C739
-        for <devicetree@vger.kernel.org>; Mon, 16 May 2022 08:39:34 -0700 (PDT)
-Received: by mail-ej1-x62a.google.com with SMTP id n10so29493888ejk.5
-        for <devicetree@vger.kernel.org>; Mon, 16 May 2022 08:39:34 -0700 (PDT)
+        with ESMTP id S241722AbiEPP5Y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 May 2022 11:57:24 -0400
+Received: from mail-oi1-x22a.google.com (mail-oi1-x22a.google.com [IPv6:2607:f8b0:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 027DC2D1E5
+        for <devicetree@vger.kernel.org>; Mon, 16 May 2022 08:57:23 -0700 (PDT)
+Received: by mail-oi1-x22a.google.com with SMTP id q10so19112055oia.9
+        for <devicetree@vger.kernel.org>; Mon, 16 May 2022 08:57:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=QeTzlSoKejIzpA/CAduavQTBSJGaWHTM+6ACJIUc4Ls=;
-        b=iBUVsMo1tUy6ku2kKrAq06P4tNuRs8L7DuSuMJsMffIfw9EJq0At17N3EFzXWo+W89
-         h1VRgjMAZCz/Tdo9TJVCB/EK+j0UB+Rc7Q876XFYXzbKhKdz/Z+z1lq4+aDYyKo8pXPv
-         nOxdF1itJEz5oF055uiMM9uQRD8OBFIkwieOa+/CJMxUzc9eUZPrw/cIniXG/1TpBeIQ
-         nXTs90Xi184cLv8dN0lQ0mtlKDZBZKle3MwTS3X70U77kfBgeJsPl0UrFU23FEUhavRm
-         JIofXbf/FQdSA2DAyP/19uvDNwfeTyn7TJgxtAOa3hWQaDTLZqgxa2yRCKTlrZkfHAcn
-         EvrA==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=vH4NPiCLU7evHB+E7xCfaeXJAYfa3KeY6XJRC/M1pQQ=;
+        b=I0Fe0t6KYm7QeHL4cN/jCuSC51Un3vdX70r9iEitsqA1K63t/YgFccUQtt/UroORI8
+         gbaZVesEkVpySAvrLr+ZxLjUVe3dukyjul41x8r7yLKFveJhVJxgzFg17L1JH7HETKVb
+         cDLQDMsag6+BuTw6eobY8ShmaNGmOTYpnFtwNrxPKF2lvvVWZ5INfF8/MY6caqOEZSL2
+         Ye6zQvzqBWRb17tEJnPLeak7Obi9afHqFu79AV4igYmSV8K323dQsA0UpeoAsYHg5tzt
+         Kryqsrc9lqQlzy1F63Lns/djLraiPwLQs50Cx9vI4MtbmKGnYkO2IDrwa/0t7UdbendC
+         PYJg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=QeTzlSoKejIzpA/CAduavQTBSJGaWHTM+6ACJIUc4Ls=;
-        b=xJJpY+pZiIh5ZuSoD52an9y6kucQfFeYt4+UmhMu+QuKRolVXO2lyKozQosL9kyb8D
-         dlTayg2ozRjPf+skDO/xbKJz2786oeYbnrhFXVutfugBLwvXtETYxjvWd937ClnYYiPp
-         9HwpffcRMit84hL9PE823AB6LeWUKYKt3rl+Jxv+FBZQCKcQDRKFPPRfyVNKJv9XBjPv
-         gHGXTTL6X6hydUBjbFenyVwDMptj6oTIwEhT2V/RV7S9SlI6BFDp9ON9vlPvOd6aeddi
-         Od4yEW1tLfCQuCoJEy+ZBamAqz/6goDZJ2CHrsPkdWgkPGpoqMriUW/51mcC/l+Gk59m
-         1CgQ==
-X-Gm-Message-State: AOAM530CZiBnxtb+ALXczr9JMhWwZ6yQVa8Icp2XLSSuKD5mpH8H7f8i
-        K6dmrRreeJE33EYcER0eNBOaaw==
-X-Google-Smtp-Source: ABdhPJzGGrQoOSmJ9vD3CMkYO/M8Z/D7CsPSwd6YiSuqRc3ss5QTTRcW0bxHqNKD1ofxAe9kVrTeeA==
-X-Received: by 2002:a17:907:6294:b0:6e1:ea4:74a3 with SMTP id nd20-20020a170907629400b006e10ea474a3mr15582068ejc.168.1652715572978;
-        Mon, 16 May 2022 08:39:32 -0700 (PDT)
-Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id w26-20020aa7d29a000000b0042aae307407sm2287770edq.21.2022.05.16.08.39.31
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 16 May 2022 08:39:32 -0700 (PDT)
-Message-ID: <e35ff2c4-e6a7-29d4-a0c5-aace840a0c19@linaro.org>
-Date:   Mon, 16 May 2022 17:39:31 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH v3 2/3] dt-bindings: mtd: partitions: Extend
- fixed-partitions binding
-Content-Language: en-US
-To:     Mikhail Zhilkin <csharper2005@gmail.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=vH4NPiCLU7evHB+E7xCfaeXJAYfa3KeY6XJRC/M1pQQ=;
+        b=mzh300XunokXMsYYFeDB1N2vBbIhsxwku6v2vyTZ/+VuXn0PxKf+AAZ0GV5TyDPAJt
+         Ff7Qcj8lomLpNqFt7pasbm7vOoD84KEU/d3+RfpuN7kUWEOGOmJBC2q6kogyaqyZYsxl
+         wll8VYNlyMUEWRqmb6k7xCr1JuKXkQ12kmTI99U+rWOqxb+wCcTLSDqUiC05yHftL9rZ
+         VDTUu2vFECKX/Ky01CeQcZ+e4RWP6FBP/9KESvOmoD5Rx9BBP/YnnwvxDUqKknSKx3k/
+         GQmVs/4WdcTafn3sD1pQxn1/oJQjD6Tr+rDXOaUXv/dC7vojfqDaP/zcmYsGVTyvU/Z3
+         opfQ==
+X-Gm-Message-State: AOAM530DRbDN5gNCNLmOLZj33Py4PILmqAmcsgiDm9DUp6vCR16aFvFF
+        vzY2v9hzv8QNjqHnQY6etsv+ITYMlDeruw==
+X-Google-Smtp-Source: ABdhPJy9xU3r4l65PfMiVkn2LKSmg6ikqMXRhfqQGFiUU7W25GCBD0SlgcmefZoFQVTXGUHG7oRFmQ==
+X-Received: by 2002:a05:6808:d52:b0:328:acfc:d274 with SMTP id w18-20020a0568080d5200b00328acfcd274mr8189424oik.174.1652716642349;
+        Mon, 16 May 2022 08:57:22 -0700 (PDT)
+Received: from ripper (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id u23-20020a544397000000b00328b3d8a80fsm3826691oiv.50.2022.05.16.08.57.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 16 May 2022 08:57:21 -0700 (PDT)
+Date:   Mon, 16 May 2022 08:59:45 -0700
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-        MTD Maling List <linux-mtd@lists.infradead.org>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Karim <Karimdplay@gmail.com>, M <x1@disroot.org>
-References: <20220503155007.2339847-1-csharper2005@gmail.com>
- <20220512152725.244872-1-miquel.raynal@bootlin.com>
- <CAL_JsqJdUm4p9qAq9dLeVTVC9PA2q2SP01kG2jyEb_f=Fo=bEQ@mail.gmail.com>
- <20220516102115.4ab6fada@xps13>
- <ed853a8c-f1a5-d137-e2bb-df782d43b65e@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <ed853a8c-f1a5-d137-e2bb-df782d43b65e@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: phy: qcom,qmp: Add compatible for
+ SC8280XP USB3 UNI phy
+Message-ID: <YoJ08Zd/a4g+Ia0r@ripper>
+References: <20220513225348.1671639-1-bjorn.andersson@linaro.org>
+ <20220513225348.1671639-2-bjorn.andersson@linaro.org>
+ <8b47e106-a567-8d8f-ddd9-34b71211002e@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <8b47e106-a567-8d8f-ddd9-34b71211002e@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -86,43 +76,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/05/2022 17:34, Mikhail Zhilkin wrote:
-> Hi, Miquel!
+On Mon 16 May 00:11 PDT 2022, Krzysztof Kozlowski wrote:
+
+> On 14/05/2022 00:53, Bjorn Andersson wrote:
+> > The SC8280XP platform has a pair of 5nm USB3 UNI phys, add a compatible
+> > for these.
+> > 
+> > Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> > ---
+> >  Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml | 1 +
+> >  1 file changed, 1 insertion(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml
+> > index 8b850c5ab116..0a9ee5b7600d 100644
+> > --- a/Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml
+> > +++ b/Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml
+> > @@ -33,6 +33,7 @@ properties:
+> >        - qcom,sc8180x-qmp-ufs-phy
+> >        - qcom,sc8180x-qmp-usb3-phy
+> >        - qcom,sc8280xp-qmp-ufs-phy
+> > +      - qcom,sc8280xp-qmp-usb3-uni-phy
 > 
-> On 5/16/2022 11:21 AM, Miquel Raynal wrote:
->> Hi,
->>
->> robh+dt@kernel.org wrote on Fri, 13 May 2022 09:12:03 -0500:
->>
->>> On Thu, May 12, 2022 at 10:27 AM Miquel Raynal
->>> <miquel.raynal@bootlin.com> wrote:
->>>> On Tue, 2022-05-03 at 15:50:07 UTC, Mikhail Zhilkin wrote:  
->>>>> Extend fixed-partitions binding for support of Sercomm partition parser
->>>>> (add "sercomm,sc-partitions" compatible).
->>>>>
->>>>> Signed-off-by: Mikhail Zhilkin <csharper2005@gmail.com>
->>>>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>  
->>>> Applied to https://git.kernel.org/pub/scm/linux/kernel/git/mtd/linux.git mtd/next, thanks.  
->>> Patch 1 is a dependency, please apply it too. Without it, we now get
->>> in linux-next:
->> Only patch 3 was sent to me/the mtd ML. I'll drop the patch.
->>
->> Mikhail, please resend the series including us on all your patches.
+> What about the clocks/resets/supplies in allOf:if:then?
 > 
-> Done! I sent the series to you and mtd
-> https://lore.kernel.org/linux-mtd/20220516151228.885222-1-csharper2005@gmail.com/T/#t
-> 
-> P.S. get_maintainer.pl didn't recommend to add you and mtd that and this
-> time. Do I need to send each patch from the series to all maintainers of
-> all the patches in the future?
 
-Yes, entire patchset should be sent to the same folks, same maintainers.
-Otherwise maintainer should assume patches are independent, which is not
-true.
+Of course, seems like I missed that part.
 
-Exception is for large patchsets where we do not want to spam everyone
-and these require different approaches. It's not the case here.
-
-
-Best regards,
-Krzysztof
+Thanks,
+Bjorn
