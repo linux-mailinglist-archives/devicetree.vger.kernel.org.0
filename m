@@ -2,53 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 52803528620
-	for <lists+devicetree@lfdr.de>; Mon, 16 May 2022 15:58:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4059B52865C
+	for <lists+devicetree@lfdr.de>; Mon, 16 May 2022 16:04:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238768AbiEPN5i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 May 2022 09:57:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57648 "EHLO
+        id S243981AbiEPODu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 May 2022 10:03:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46090 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244573AbiEPN44 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 May 2022 09:56:56 -0400
-Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67B40E99;
-        Mon, 16 May 2022 06:56:54 -0700 (PDT)
-Received: (Authenticated sender: alexandre.belloni@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 4A813C0004;
-        Mon, 16 May 2022 13:56:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1652709412;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=7SpoWIQY72eSmiR3JfnZLb5PGezpamlWkoq3B0Im97c=;
-        b=OB8asnz9ViEfyXVey9yvtRZ28vTTKRL2clDhg7AWJgpkOgjZlQ6PWQBebPRPCzuuUqQ5s3
-        K+HdPw/Q+aBcB012sVnLcbbnwmbwYyu0uLN6f/alewfE6OcPrRLQ4ZUjEE2IyZOomgAqXF
-        Mh8ioBdGCN3RNHYK8ScbgqjSGBziCDbJdpxmlUC5q7pSDjWpAIMYiLC1WcduK8/h+HhDjc
-        lWaQOL5S+TEEt1y/2c3fqhsS3IPDAwFpSGEZ4kCg9+FFsPGt+0YmYQq4yEwkEJ/MD9xpqH
-        cj7J5Bh4DKl7Aoq//WNh9BaM3TIVI1xEfKtXPQOF91rL+ekf49DXy5wJ1H7uOg==
-Date:   Mon, 16 May 2022 15:56:52 +0200
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     Paul Cercueil <paul@crapouillou.net>
-Cc:     Alessandro Zummo <a.zummo@towertech.it>, list@opendingux.net,
-        linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org
-Subject: Re: [PATCH 3/5] rtc: jz4740: Reset scratchpad register on power loss
-Message-ID: <YoJYJIqoflaoEpsQ@mail.local>
-References: <20220418184933.13172-1-paul@crapouillou.net>
- <20220418184933.13172-4-paul@crapouillou.net>
- <Yl8PBx5qyvMrwrV/@mail.local>
- <I1RLAR.CF78L45NPJDC1@crapouillou.net>
- <Yl8U4JDSHwjT9nXw@mail.local>
- <T0ULAR.TKXMRCDN7DQ53@crapouillou.net>
+        with ESMTP id S244069AbiEPODt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 May 2022 10:03:49 -0400
+Received: from smtp11.infineon.com (smtp11.infineon.com [IPv6:2a00:18f0:1e00:4::5])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8935A3A70E;
+        Mon, 16 May 2022 07:03:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=infineon.com; i=@infineon.com; q=dns/txt; s=IFXMAIL;
+  t=1652709827; x=1684245827;
+  h=from:to:cc:subject:date:message-id:
+   content-transfer-encoding:mime-version;
+  bh=636FGaXaQXwgfi1XFO/H9eecxAz+PzvmLT0pqxtsHVg=;
+  b=e/9VMzk5VmaVJziSA0cH430BN/eltZkhVsmB2IUqt1U+qxCHTNWq0YOu
+   EFbCNIVfkNOmeMs+mW+Jw7hkI+MfBymv+PrnFGC8dgCNbsG2bz4SRRTq3
+   gVXpgGsmHGqzesmaIKuTNVmVzdJtcVaP0TnGnoLmZ0xJIQoLPKQIXXMKG
+   M=;
+X-SBRS: None
+X-IronPort-AV: E=McAfee;i="6400,9594,10348"; a="295016285"
+X-IronPort-AV: E=Sophos;i="5.91,230,1647298800"; 
+   d="scan'208";a="295016285"
+Received: from unknown (HELO mucxv002.muc.infineon.com) ([172.23.11.17])
+  by smtp11.infineon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 May 2022 16:03:44 +0200
+Received: from MUCSE812.infineon.com (MUCSE812.infineon.com [172.23.29.38])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mucxv002.muc.infineon.com (Postfix) with ESMTPS;
+        Mon, 16 May 2022 16:03:44 +0200 (CEST)
+Received: from MUCSE816.infineon.com (172.23.29.42) by MUCSE812.infineon.com
+ (172.23.29.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Mon, 16 May
+ 2022 16:03:44 +0200
+Received: from MUCSE820.infineon.com (172.23.29.46) by MUCSE816.infineon.com
+ (172.23.29.42) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Mon, 16 May
+ 2022 16:03:43 +0200
+Received: from MUCSE820.infineon.com ([172.23.29.46]) by MUCSE820.infineon.com
+ ([172.23.29.46]) with mapi id 15.02.0986.022; Mon, 16 May 2022 16:03:43 +0200
+From:   <Greg.Schwendimann@infineon.com>
+To:     <linux@roeck-us.net>, <linux-hwmon@vger.kernel.org>
+CC:     <robh+dt@kernel.org>, <krzk+dt@kernel.org>,
+        <devicetree@vger.kernel.org>
+Subject: [PATCH v5 2/2] dt-bindings: trivial-devices: Add xdp152
+Thread-Topic: [PATCH v5 2/2] dt-bindings: trivial-devices: Add xdp152
+Thread-Index: AdhpLYgADYGwpyOnQaWeHDYnP9drqg==
+Date:   Mon, 16 May 2022 14:03:43 +0000
+Message-ID: <1a600fd51db942389a5078a72c3bf411@infineon.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.23.8.247]
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <T0ULAR.TKXMRCDN7DQ53@crapouillou.net>
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -56,55 +72,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/04/2022 21:53:17+0100, Paul Cercueil wrote:
-> > >  So what is the best thing to do then?
-> > > 
-> > 
-> > Well, -EINVAL is returned when the time is invalid, this should be
-> > enough. I'm not actually sure what is the issue you are trying to fix
-> > here.
-> 
-> htop fails to start and tells me:
-> "No btime in /proc/stat: No such file or directory"
-> 
-> until the date is reset. So I was assuming it was a case of the jz4740
-> driver not being correct and breaking userspace.
-> 
 
-I guess either /proc/stat or htop needs fixing then ;)
+Add Infineon Digital Multi-phase xdp152 family controllers.
 
-> Cheers,
-> -Paul
-> 
-> 
-> > 
-> > >  Cheers,
-> > >  -Paul
-> > > 
-> > >  > >  +	}
-> > >  > >  +
-> > >  > >   	ret = devm_rtc_register_device(rtc->rtc);
-> > >  > >   	if (ret)
-> > >  > >   		return ret;
-> > >  > >  --
-> > >  > >  2.35.1
-> > >  > >
-> > >  >
-> > >  > --
-> > >  > Alexandre Belloni, co-owner and COO, Bootlin
-> > >  > Embedded Linux and Kernel engineering
-> > >  > https://bootlin.com
-> > > 
-> > > 
-> > 
-> > --
-> > Alexandre Belloni, co-owner and COO, Bootlin
-> > Embedded Linux and Kernel engineering
-> > https://bootlin.com
-> 
-> 
+Signed-off-by: Greg Schwendimann <Greg.Schwendimann@infineon.com>
+---
+ Documentation/devicetree/bindings/trivial-devices.yaml | 4 ++++
+ 1 file changed, 4 insertions(+)
 
--- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Docum=
+entation/devicetree/bindings/trivial-devices.yaml
+index 550a2e5c9e05..c11520347a9d 100644
+--- a/Documentation/devicetree/bindings/trivial-devices.yaml
++++ b/Documentation/devicetree/bindings/trivial-devices.yaml
+@@ -143,6 +143,10 @@ properties:
+           - infineon,xdpe12254
+             # Infineon Multi-phase Digital VR Controller xdpe12284
+           - infineon,xdpe12284
++            # Infineon Multi-phase Digital VR Controller xdpe15284
++          - infineon,xdpe15284
++            # Infineon Multi-phase Digital VR Controller xdpe152c4
++          - infineon,xdpe152c4
+             # Injoinic IP5108 2.0A Power Bank IC with I2C
+           - injoinic,ip5108
+             # Injoinic IP5109 2.1A Power Bank IC with I2C
+--=20
+2.25.1
+
