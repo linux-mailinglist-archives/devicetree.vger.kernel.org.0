@@ -2,162 +2,210 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A518E528A60
-	for <lists+devicetree@lfdr.de>; Mon, 16 May 2022 18:29:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 88C8F528A6D
+	for <lists+devicetree@lfdr.de>; Mon, 16 May 2022 18:32:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343646AbiEPQ3O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 May 2022 12:29:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51874 "EHLO
+        id S1343667AbiEPQcW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 May 2022 12:32:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58668 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343633AbiEPQ3N (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 May 2022 12:29:13 -0400
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8DCA3B02A;
-        Mon, 16 May 2022 09:29:10 -0700 (PDT)
-Received: by mail-ej1-x631.google.com with SMTP id gh6so29837292ejb.0;
-        Mon, 16 May 2022 09:29:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=hJB5QWTkjOe+A3TmBJQWslNfP6ImokdCskIDq0K0JSM=;
-        b=DnhHqyh6nEcagUBSwSL40ZweMeOpDzDwVizgwFmVcHjJ/CbyNvQe/YL0Q/Sm4VGTef
-         snsNOJJGUmDBwBZmNxTZi/yeO28knuXU3t/9CaHyTMjnNfnA+TzcqyFqKjxsB9Y/ucmF
-         K10r77Qx0BDVHbx/Qbc2sjxngOV2307zrtQNiPA3dNgys+L3hEaytD7diKMlFZoqZ+gH
-         mxnrwG53b5Owa7VQ1Inessh3sUouGHbZEOLGjWEZ+vUC/vH9cRhFpaz4XhdzC+B9FsMz
-         4u2kjGEkmvPsnNVLbrePD09DJ2kODMtCttp9GHbTS2BuFJ4fysxycGxi/1+iRChtNXib
-         6Hag==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=hJB5QWTkjOe+A3TmBJQWslNfP6ImokdCskIDq0K0JSM=;
-        b=g73rm4OkFmigJcBMg+CQBshDx9L3baQs0xRR9/uMvtZRunVkA30E4db6+REqDaKFBD
-         0ZuHIVrIAYcM7Vaq6T5Q0fRxprm1JNom/fnkM/jARuwcOLsS72fzuz+hhARNwx5078tt
-         WqXPB2UlT0EetFr/pl7vOJc767xc6vhHIXEigtkIbhRziic0hUhj3Jr/NdNHKEU5tVrP
-         rbL1Vj5Wp2TqkLZCEZzRfSMhHts38OvEA6Y01SwWC6/5DNfevxq+1qe2LCz3+HS6essn
-         mPn7+PNm+c51o6BjNmpkY3gQVR4/oJDcDrhbNgpSgNZTrUztEbRQRQlPlkJs/Wm7zj4W
-         pbww==
-X-Gm-Message-State: AOAM532Ipbkj1N17Xyxtl2IpVOzRI61//l1+JwdDxmSuHETu4SnoK6m5
-        r/cgxTT8Qp1KoAmo8iT4SLM=
-X-Google-Smtp-Source: ABdhPJyZcntD5axDOHiDmfr5EqB4Uv2Nmp/U52P8mLja7/bBTGWg/cytwgQKXKtLEFZNZBC9ymNpMw==
-X-Received: by 2002:a17:907:3e8f:b0:6f4:4f42:a75f with SMTP id hs15-20020a1709073e8f00b006f44f42a75fmr16158090ejc.695.1652718549038;
-        Mon, 16 May 2022 09:29:09 -0700 (PDT)
-Received: from linuxdev2.toradex.int (31-10-206-125.static.upc.ch. [31.10.206.125])
-        by smtp.gmail.com with ESMTPSA id 9-20020a170906004900b006f3ef214e3bsm58819ejg.161.2022.05.16.09.29.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 May 2022 09:29:08 -0700 (PDT)
-From:   Max Krummenacher <max.oss.09@gmail.com>
-To:     max.krummenacher@toradex.com
-Cc:     Christoph Niedermaier <cniedermaier@dh-electronics.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Marek Vasut <marex@denx.de>,
-        Francesco Dolcini <francesco.dolcini@toradex.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Dave Stevenson <dave.stevenson@raspberrypi.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@linux.ie>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v1 1/2] dt-bindings: display: add new bus-format property for panel-dpi
-Date:   Mon, 16 May 2022 18:28:25 +0200
-Message-Id: <20220516162826.23025-2-max.oss.09@gmail.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20220516162826.23025-1-max.oss.09@gmail.com>
-References: <20220516162826.23025-1-max.oss.09@gmail.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S233839AbiEPQcP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 May 2022 12:32:15 -0400
+Received: from mx0a-002e3701.pphosted.com (mx0a-002e3701.pphosted.com [148.163.147.86])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 426353B2BD;
+        Mon, 16 May 2022 09:32:14 -0700 (PDT)
+Received: from pps.filterd (m0150241.ppops.net [127.0.0.1])
+        by mx0a-002e3701.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 24G9ZZxm012847;
+        Mon, 16 May 2022 16:31:21 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hpe.com; h=from : to : subject :
+ date : message-id; s=pps0720;
+ bh=M4Ucz3XpmHfg+BS5UkTAgZSf+gZkXZxwowIS8buRzAo=;
+ b=GnRCwBNeQI0/gB3ErMXu8ZhkUXF2ymLYd7OKyTYWCkl/1DkeUff9B800EIWnf0AurYIB
+ Rls2D7/SwLCbCBMZIXKAUxmCn1Ppbf8PTjX3rF7vpAOKyy6y1dISIPnsk7T9SS/Pagvj
+ NyqGVfWolI7NPa/vvjKmwQ+6aPaPcOHyFTHaOWKDTY6Ra/K8fzEdeXcP3GUC9oREBVoP
+ x7Q7vc/Jxy1M+ZflYbvNlPCThl4VWOwx+MKXCEfMHvhzgcI2whuCaW+kK+KAWWaYz6uk
+ 4K4ZSH6jfJshF4YvWn+9eKHooHfZNilxkQIrt9ykPg2ePj7bZO8+AOIqJ6NaFEbZG+Xs Iw== 
+Received: from g2t2353.austin.hpe.com (g2t2353.austin.hpe.com [15.233.44.26])
+        by mx0a-002e3701.pphosted.com (PPS) with ESMTPS id 3g3kgrdhtp-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 16 May 2022 16:31:21 +0000
+Received: from g2t2360.austin.hpecorp.net (g2t2360.austin.hpecorp.net [16.196.225.135])
+        by g2t2353.austin.hpe.com (Postfix) with ESMTP id 412B665;
+        Mon, 16 May 2022 16:31:19 +0000 (UTC)
+Received: from hpe.com (cigateway-dev.us.rdlabs.hpecorp.net [10.14.73.30])
+        by g2t2360.austin.hpecorp.net (Postfix) with ESMTP id C3B6136;
+        Mon, 16 May 2022 16:31:17 +0000 (UTC)
+From:   nick.hawkins@hpe.com
+To:     verdun@hpe.com, nick.hawkins@hpe.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, daniel.lezcano@linaro.org,
+        tglx@linutronix.de, linux@armlinux.org.uk, arnd@arndb.de,
+        olof@lixom.net, soc@kernel.org, wim@linux-watchdog.org,
+        linux@roeck-us.net, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-watchdog@vger.kernel.org, joel@jms.id.au
+Subject: [PATCH v8 0/8] Introduce HPE GXP Architecture
+Date:   Mon, 16 May 2022 11:33:10 -0500
+Message-Id: <20220516163310.44842-1-nick.hawkins@hpe.com>
+X-Mailer: git-send-email 2.17.1
+X-Proofpoint-ORIG-GUID: fx7CeuKXYiuDZAiqqR2dEuZxtlmH3Pzk
+X-Proofpoint-GUID: fx7CeuKXYiuDZAiqqR2dEuZxtlmH3Pzk
+X-HPE-SCL: -1
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.858,Hydra:6.0.486,FMLib:17.11.64.514
+ definitions=2022-05-16_15,2022-05-16_02,2022-02-23_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 clxscore=1015
+ impostorscore=0 mlxscore=0 bulkscore=0 priorityscore=1501 malwarescore=0
+ lowpriorityscore=0 phishscore=0 mlxlogscore=999 adultscore=0 spamscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2202240000
+ definitions=main-2205160092
+X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Max Krummenacher <max.krummenacher@toradex.com>
+From: Nick Hawkins <nick.hawkins@hpe.com>
 
-The property is used to set the enum bus_format and infer the bpc
-for a panel defined by 'panel-dpi'.
-This specifies how the panel is connected to the display interface.
+Changes since v7:
+ *Fixed comment format in watchdog driver
+ *Added the Acked-by tag to the device tree patch.
+ *Resubmitted the dt-bindings patches hpe,gxp and hpe,gxp-timer with
+  Reviewed-by tags from previous patch in descriptions to keep patchset
+  continuity for v8.
+Changes since v6:
+ *Resubmitted the dt-bindings patches hpe,gxp and hpe,gxp-timer with
+  Reviewed-by tags from previous patch in descriptions to keep patchset
+  continuity for v7.
+ *Fixed the subject on dt-binding patch:
+  dt-bindings: timer: hpe,gxp-timer: Creation to
+  dt-bindings: timer: hpe,gxp-timer: Add HPE GXP Timer and Watchdog
+ *Changed the following in MAINTAINERS:
+  arch/arm/boot/dts/hpe-bmc-dl360gen10.dts to arch/arm/boot/hpe-bmc*
+  arch/arm/boot/dts/hpe-gxp.dtsi to arch/arm/boot/dts/hpe-gxp*
+  arch/arm/mach-hpe/gxp.c to arch/arm/mach-hpe 
+ *Changed cache register area length from 0xFFC to 0x1000 in hpe-gxp.dtsi
+ *Added space between "," in compatible list for the
+  hpe-bmc-dl360gen10.dts
+ *Added aliases, chosen, and memory to hpe-bmc-dl360gen10.dts
+ *Removed memory from hpe-gxp.dtsi
+ *Changed conditional statements around COMPILE_TEST and TIMER_OF if of
+  for GXP in clocksource Kconfig
+ *Changed commit description for watchdog driver where Adding became Add
+  and compliment became complement.
+ *Removed unused include files of_address.h and of_platform.h in gxp-wdt.c
+ *Fixed the max timeout on watchdog to be 655350 in gxp-wdt.c
+ *Changed time variable computations in gxp_wdt_set_timeout to be clear in
+  gxp-wdt.c
+ *Decreased reboot delay to 10ms from 100ms in gxp-wdt.c
+ *Added comment to explain why it is necessary to pass the base address
+  over a private interface from the timer driver in gxp-wdt.c
 
-Signed-off-by: Max Krummenacher <max.krummenacher@toradex.com>
----
+Changes since v5:
+ *Removed generic-ohci and generic-ehci from patchset as they were
+  committed to linux-next 
+ *Removed watchdog node from device tree and dt-bindings documentation as
+  it is not necessary since the timer creates it
+ *Added cache controller to device tree
+ *Fixed l2c initialization by making l2c_aux_map=~1
+ *Corrected Kconfig punctuation and wording in mach-hpe
+ *Added oneOf to hpe,gxp.yaml
+ *Set additionalProperties to false on hpe,gxp-timer
+ *Added space after "," in compatible lists
+ *Switched hpe,gxp-timer.yaml title to Timer from TIMER
+ *Switched clockname from iopclk to iop
+ *Added clock labels clock-0 and clock-1 to device tree
+ *Added dma-ranges to ahb in device tree
+ *Fixed static device issue in timer-gxp.c with platform_device_alloc
+ *Fixed timer-gxp.c initialization to exit cleanly
+ *Corrected all subjects and descriptions for every commit
+ *Added information about bootloader to mach-hpe patch
 
- .../bindings/display/panel/panel-dpi.yaml     | 11 +++++++++
- .../dt-bindings/display/dt-media-bus-format.h | 23 +++++++++++++++++++
- 2 files changed, 34 insertions(+)
- create mode 100644 include/dt-bindings/display/dt-media-bus-format.h
+Changes since v4:
+ *Fixed version mismatch with patchset across all patches
+ *Fixed typos with ochi -> ohci echi -> ehci
+ *Adjusted Watchdog Kconfig file
+ *Adjusted various commit comments
+ *Removed un-necessary include file
+ *Updated outdated base revision to newer one to resolve merge conflicts
+  as well as pickup vendor binding change for hpe.
 
-diff --git a/Documentation/devicetree/bindings/display/panel/panel-dpi.yaml b/Documentation/devicetree/bindings/display/panel/panel-dpi.yaml
-index dae0676b5c6e..ca44e96c3001 100644
---- a/Documentation/devicetree/bindings/display/panel/panel-dpi.yaml
-+++ b/Documentation/devicetree/bindings/display/panel/panel-dpi.yaml
-@@ -21,6 +21,14 @@ properties:
-       - {}
-       - const: panel-dpi
- 
-+  bus-format:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: |
-+      Describes how the display panel is connected to the display interface.
-+      Valid values are defined in <dt-bindings/display/dt-media-bus-format.h>.
-+      The mapping between the color/significance of the panel lines to the
-+      parallel data lines are defined in [1].
-+      [1] https://www.kernel.org/doc/html/v5.17/userspace-api/media/v4l/subdev-formats.html#packed-rgb-formats
-   backlight: true
-   enable-gpios: true
-   height-mm: true
-@@ -39,11 +47,14 @@ additionalProperties: false
- 
- examples:
-   - |
-+    #include <dt-bindings/display/dt-media-bus-format.h>
-+    ...
-     panel {
-         compatible = "startek,startek-kd050c", "panel-dpi";
-         label = "osddisplay";
-         power-supply = <&vcc_supply>;
-         backlight = <&backlight>;
-+        bus-format = "DT_MEDIA_BUS_FMT_RGB888_1X24";
- 
-         port {
-             lcd_in: endpoint {
-diff --git a/include/dt-bindings/display/dt-media-bus-format.h b/include/dt-bindings/display/dt-media-bus-format.h
-new file mode 100644
-index 000000000000..c0f2a7b59aa1
---- /dev/null
-+++ b/include/dt-bindings/display/dt-media-bus-format.h
-@@ -0,0 +1,23 @@
-+/* SPDX-License-Identifier: GPL-2.0-only OR MIT */
-+/*
-+ * Copyright 2022 Max Krummenacher <max.krummenacher@toradex.com>
-+ */
-+
-+#ifndef __DT_BINDINGS_DT_MEDIA_BUS_FORMAT_H
-+#define __DT_BINDINGS_DT_MEDIA_BUS_FORMAT_H
-+
-+/*
-+ * Attention: Keep these macro names in sync with
-+ * include/uapi/linux/media-bus-format.h
-+ */
-+
-+#define DT_MEDIA_BUS_FMT_RGB565_1X16		1
-+#define DT_MEDIA_BUS_FMT_RGB666_1X18		2
-+#define DT_MEDIA_BUS_FMT_RBG888_1X24		3
-+#define DT_MEDIA_BUS_FMT_RGB666_1X24_CPADHI	4
-+#define DT_MEDIA_BUS_FMT_BGR888_1X24		5
-+#define DT_MEDIA_BUS_FMT_GBR888_1X24		6
-+#define DT_MEDIA_BUS_FMT_RGB888_1X24		7
-+#define DT_MEDIA_BUS_FMT_RGB888_1X32_PADHI	8
-+
-+#endif /* __DT_BINDINGS_DT_MEDIA_BUS_FORMAT_H */
+Changes since v3:
+ *Completely redid the dtsi file to represent architecture
+ *Reduced device tree size
+ *Rewrote the timer driver to start the watchdog driver due to similar
+  register region
+ *Made adjustments to timer
+ *Made adjustments to watchdog
+ *Changed gxp.yaml to hpe,gxp.yaml with changes
+ *Updated Maintainers to represent new file names
+ *Added hpe bindings to generic-ehci and generic-ohci
+ *Fixed clock architecture to be accurate
+
+Changes since v2:
+ *Reduced size of changes, put them into patchset format
+ *Changed from txt->yaml
+
+Changes since v1:
+ *Fixed compiler warnings
+
+The GXP is the HPE BMC SoC that is used in the majority of HPE current
+generation servers. Traditionally the asic will last multiple
+generations of server before being replaced.
+
+Info about SoC:
+
+ HPE GXP is the name of the HPE Soc. This SoC is used to implement many
+ BMC features at HPE. It supports ARMv7 architecture based on the Cortex
+ A9 core. It is capable of using an AXI bus to which a memory controller
+ is attached. It has multiple SPI interfaces to connect boot flash and
+ BIOS flash. It uses a 10/100/1000 MAC for network connectivity. It has
+ multiple i2c engines to drive connectivity with a host infrastructure.
+ The initial patches enable the watchdog and timer enabling the host to
+ be able to boot.
+
+Nick Hawkins (8):
+  ARM: hpe: Introduce the HPE GXP architecture
+  ARM: configs: multi_v7_defconfig: Add HPE GXP ARCH
+  watchdog: hpe-wdt: Introduce HPE GXP Watchdog
+  clocksource/drivers/timer-gxp: Add HPE GXP Timer
+  dt-bindings: timer: hpe,gxp-timer: Add HPE GXP Timer and Watchdog
+  dt-bindings: arm: hpe: add GXP Support
+  ARM: dts: Introduce HPE GXP Device tree
+  MAINTAINERS: Introduce HPE GXP Architecture
+
+ .../devicetree/bindings/arm/hpe,gxp.yaml      |  27 +++
+ .../bindings/timer/hpe,gxp-timer.yaml         |  47 ++++
+ MAINTAINERS                                   |  12 +
+ arch/arm/Kconfig                              |   2 +
+ arch/arm/Makefile                             |   1 +
+ arch/arm/boot/dts/Makefile                    |   2 +
+ arch/arm/boot/dts/hpe-bmc-dl360gen10.dts      |  26 +++
+ arch/arm/boot/dts/hpe-gxp.dtsi                | 127 +++++++++++
+ arch/arm/configs/multi_v7_defconfig           |   3 +
+ arch/arm/mach-hpe/Kconfig                     |  23 ++
+ arch/arm/mach-hpe/Makefile                    |   1 +
+ arch/arm/mach-hpe/gxp.c                       |  16 ++
+ drivers/clocksource/Kconfig                   |   8 +
+ drivers/clocksource/Makefile                  |   1 +
+ drivers/clocksource/timer-gxp.c               | 209 ++++++++++++++++++
+ drivers/watchdog/Kconfig                      |  11 +
+ drivers/watchdog/Makefile                     |   1 +
+ drivers/watchdog/gxp-wdt.c                    | 174 +++++++++++++++
+ 18 files changed, 691 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/arm/hpe,gxp.yaml
+ create mode 100644 Documentation/devicetree/bindings/timer/hpe,gxp-timer.yaml
+ create mode 100644 arch/arm/boot/dts/hpe-bmc-dl360gen10.dts
+ create mode 100644 arch/arm/boot/dts/hpe-gxp.dtsi
+ create mode 100644 arch/arm/mach-hpe/Kconfig
+ create mode 100644 arch/arm/mach-hpe/Makefile
+ create mode 100644 arch/arm/mach-hpe/gxp.c
+ create mode 100644 drivers/clocksource/timer-gxp.c
+ create mode 100644 drivers/watchdog/gxp-wdt.c
+
 -- 
-2.20.1
+2.17.1
 
