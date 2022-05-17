@@ -2,44 +2,43 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D3A0B52ABD3
-	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 21:20:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3FFB452AC6A
+	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 22:04:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351410AbiEQTUh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 May 2022 15:20:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47206 "EHLO
+        id S1345642AbiEQUEP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 May 2022 16:04:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57234 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241252AbiEQTUc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 15:20:32 -0400
-Received: from mail-ot1-f52.google.com (mail-ot1-f52.google.com [209.85.210.52])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85094427C5;
-        Tue, 17 May 2022 12:20:30 -0700 (PDT)
-Received: by mail-ot1-f52.google.com with SMTP id y14-20020a9d460e000000b00605ee347da1so12849616ote.8;
-        Tue, 17 May 2022 12:20:30 -0700 (PDT)
+        with ESMTP id S241347AbiEQUEO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 16:04:14 -0400
+Received: from mail-ot1-f47.google.com (mail-ot1-f47.google.com [209.85.210.47])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF5524CD72;
+        Tue, 17 May 2022 13:04:13 -0700 (PDT)
+Received: by mail-ot1-f47.google.com with SMTP id a22-20020a9d3e16000000b00606aeb12ab6so12912772otd.7;
+        Tue, 17 May 2022 13:04:13 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=jMly9zZBObNQRlIQNVFaY06sIaIahtck7cQNpLIcDRE=;
-        b=KKoXsBtHuSNOScxelpdcaXSSyde0uepEm+1Ux+7wgTUTXxBsGkBRIwtGfDennVrdC/
-         evN14D9bjfi3tXZclJiES0gg7zLekoeeAvisaPBWkxOEGp+8Ssb2gK7JRqIibGR589PJ
-         2z5lRLQPDfNy7h7sdGWFngY2GGbRE7fnDsfb0POp5cmM0Tx0jsJ70EtxnEXTuSiN0+lZ
-         hC1jERIwYSfXAXB6zKHG2fLQrMU3BQfVwtBad4dnER57esbvs7/V/KdET0ogJ/EIXV4W
-         Krt5BhZT5W2/cma9kcdqjbTG6X0EtzuNcGeU4S9EtBMyiq5WZ3W3fTfXDSU5kYjJnnfU
-         WK4g==
-X-Gm-Message-State: AOAM530fRhiVxTknSA2Y+miEsxAtZ/JBKLdgtMoayhKaXOVSf7t9vbg6
-        X1NOHGzc/juuf7K9lNQwmUOaXimBSA==
-X-Google-Smtp-Source: ABdhPJxxgh/F0v4j8Y3VuOwu8SOZrLN5lBS78tigzQM+mMPyMT6Ic8wZDNl1+FvOjbANN75Eh0ioYg==
-X-Received: by 2002:a9d:4d8c:0:b0:606:2a57:7f5 with SMTP id u12-20020a9d4d8c000000b006062a5707f5mr8721462otk.78.1652815229742;
-        Tue, 17 May 2022 12:20:29 -0700 (PDT)
+         :mime-version:content-disposition:in-reply-to;
+        bh=IIaQA4b3hHv2itAgFRZqCZtPkNhj3dWRuktwztUeYB0=;
+        b=tkzuaoxfNVnHWLOyzE359WoNf7Zr0mWZ5CEebi4Fr/F3ejDpYUUuAbiUvIGJXnRx4B
+         ZAQpLHS/sIl7rSmjcqDz0DXNKivGg5q83S7/KP1Gn8vjeIv5GNYtvFKH0LJ5Vm3u6zm3
+         Qjk0q6oCxZ8WvpLqUke/M31dr7YuOohsj2hvqQmBk/ee6UruK4Hzp9zSTXb+H67vmY0t
+         YU+QYT0ozhvjewtqtgY7ocPe9kUG3oN2Pw66js/La2wImOAULD5eva0eawpi/Bt+UwD0
+         ysS1nsNhG1Xh+95Psa2tDIHlFp9N9Ef/Y85n8AY2ioDAfsrRufPic3+BnDL+IbbEg67J
+         XYWg==
+X-Gm-Message-State: AOAM5339vD9Wpx7pen5xCN9EgpH0wf4l4xUfhHsiKoP3CK5l9zlDjgXF
+        gl6pfEG2+Eu9n25FEaL0IQ==
+X-Google-Smtp-Source: ABdhPJzK+76emXX7coEe6iFrJmT3kQ+hsQh9vVP0K86w/fEgQvyGQUjTO8KvNZGDC6AVcfxP09fXog==
+X-Received: by 2002:a9d:eec:0:b0:606:bc42:9b3e with SMTP id 99-20020a9d0eec000000b00606bc429b3emr8924788otj.105.1652817853015;
+        Tue, 17 May 2022 13:04:13 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id p12-20020a9d454c000000b00606b237d850sm98549oti.13.2022.05.17.12.20.28
+        by smtp.gmail.com with ESMTPSA id k12-20020a4a2a0c000000b0035eb4e5a6bbsm174260oof.17.2022.05.17.13.04.11
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 May 2022 12:20:29 -0700 (PDT)
-Received: (nullmailer pid 1461903 invoked by uid 1000);
-        Tue, 17 May 2022 19:20:28 -0000
-Date:   Tue, 17 May 2022 14:20:28 -0500
+        Tue, 17 May 2022 13:04:12 -0700 (PDT)
+Received: (nullmailer pid 1535050 invoked by uid 1000);
+        Tue, 17 May 2022 20:04:11 -0000
+Date:   Tue, 17 May 2022 15:04:11 -0500
 From:   Rob Herring <robh@kernel.org>
 To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
 Cc:     Damien Le Moal <damien.lemoal@opensource.wdc.com>,
@@ -51,16 +50,15 @@ Cc:     Damien Le Moal <damien.lemoal@opensource.wdc.com>,
         Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
         linux-ide@vger.kernel.org, linux-kernel@vger.kernel.org,
         devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 12/23] dt-bindings: ata: ahci: Add platform capability
- properties
-Message-ID: <20220517192028.GA1453662-robh@kernel.org>
+Subject: Re: [PATCH v3 18/23] dt-bindings: ata: ahci: Add DWC AHCI SATA
+ controller DT schema
+Message-ID: <20220517200411.GA1462130-robh@kernel.org>
 References: <20220511231810.4928-1-Sergey.Semin@baikalelectronics.ru>
- <20220511231810.4928-13-Sergey.Semin@baikalelectronics.ru>
+ <20220511231810.4928-19-Sergey.Semin@baikalelectronics.ru>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220511231810.4928-13-Sergey.Semin@baikalelectronics.ru>
+In-Reply-To: <20220511231810.4928-19-Sergey.Semin@baikalelectronics.ru>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
@@ -72,160 +70,201 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 12, 2022 at 02:17:59AM +0300, Serge Semin wrote:
-> In case if the platform doesn't have BIOS or a comprehensive firmware
-> installed then the HBA capability flags will be left uninitialized. As a
-> good alternative we can define a set AHCI DT-node properties to describe
-> all of HW-init capabilities flags. Luckily there aren't too many of them.
-> SSS - Staggered Spin-up support and MPS - Mechanical Presence Switch
-> support determine the corresponding feature availability for whole HBA by
-> means of the "hba-sss" and "hba-smps" properties.  Each port can have the
-> "hba-{hpcp,mpsp,cpd,esp,fbscp}" defined indicatating that the port
-> supports the next functionality: HPCP - HotPlug capable port, MPSP -
-> Mechanical Presence Switch attached to a port, CPD - Cold Plug detection,
-> ESP - External SATA Port (eSATA), FBSCP - FIS-based switching capable
-> port.
+On Thu, May 12, 2022 at 02:18:05AM +0300, Serge Semin wrote:
+> Synopsys AHCI SATA controller is mainly compatible with the generic AHCI
+> SATA controller except a few peculiarities and the platform environment
+> requirements. In particular it can have one or two reference clocks to
+> feed up its AXI/AHB interface and SATA PHYs domain and at least one reset
+> control for the application clock domain. In addition to that the DMA
+> interface of each port can be tuned up to work with the predefined maximum
+> data chunk size. Note unlike generic AHCI controller DWC AHCI can't have
+> more than 8 ports. All of that is reflected in the new DWC AHCI SATA
+> device DT binding.
+> 
+> Note the DWC AHCI SATA controller DT-schema has been created in a way so
+> to be reused for the vendor-specific DT-schemas (see for example the
+> "snps,dwc-ahci" compatible string binding). One of which we are about to
+> introduce.
 > 
 > Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
 > 
 > ---
 > 
-> Alternatively we could define them as a bitfield, but having a set of
-> boolean properties seemed a better idea since in that case we can
-> implement a simple inter-dependency rules for them, which can't be done
-> should we take the bitfields path.
-
-I would just provide a CAP register override and be done with it.
-
-The boolean fields only let you set a capability, but not unset one. 
-They would need to be tristate.
-
+> Changelog v2:
+> - Replace min/max constraints of the snps,{tx,rx}-ts-max property with
+>   enum [ 1, 2, 4, ..., 1024 ]. (@Rob)
 > ---
->  .../devicetree/bindings/ata/ahci-common.yaml  | 66 +++++++++++++++++++
->  .../bindings/ata/ahci-platform.yaml           | 11 ++++
->  2 files changed, 77 insertions(+)
+>  .../bindings/ata/ahci-platform.yaml           |   8 --
+>  .../bindings/ata/snps,dwc-ahci.yaml           | 123 ++++++++++++++++++
+>  2 files changed, 123 insertions(+), 8 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/ata/snps,dwc-ahci.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/ata/ahci-common.yaml b/Documentation/devicetree/bindings/ata/ahci-common.yaml
-> index a7d1a8353de3..a29edfbb25db 100644
-> --- a/Documentation/devicetree/bindings/ata/ahci-common.yaml
-> +++ b/Documentation/devicetree/bindings/ata/ahci-common.yaml
-> @@ -75,6 +75,19 @@ properties:
->    phy-names:
->      const: sata-phy
->  
-> +  hba-sss:
-> +    type: boolean
-> +    description:
-> +      Staggered Spin-up Support. Indicates whether the HBA supports the
-> +      staggered spin-up on its ports, for use in balancing power spikes.
-> +
-> +  hba-smps:
-> +    type: boolean
-> +    description:
-> +      Mechanical Presence Switch Support. Indicates whether the HBA supports
-> +      mechanical presence switches on its ports for use in hot plug
-> +      operations.
-> +
->    ports-implemented:
->      $ref: '/schemas/types.yaml#/definitions/uint32'
->      description:
-> @@ -97,6 +110,40 @@ patternProperties:
->          minimum: 0
->          maximum: 31
->  
-> +      hba-hpcp:
-> +        type: boolean
-> +        description:
-> +          Hot Plug Capable Port. Indicates that this port’s signal and power
-> +          connectors are externally accessible via a joint signal and power
-> +          connector for blindmate device hot plug. It is mutually exclusive
-> +          with the ESP feature.
-> +
-> +      hba-mpsp:
-> +        type: boolean
-> +        description:
-> +          Mechanical Presence Switch Attached to Port. Indicates whether
-> +          the platform an mechanical presence switch attached to this
-> +          port.
-> +
-> +      hba-cpd:
-> +        type: boolean
-> +        description:
-> +          Cold Presence Detection. Indicates whether the platform supports
-> +          cold presence detection on this port.
-> +
-> +      hba-esp:
-> +        type: boolean
-> +        description:
-> +          External SATA Port. Indicates that this port’s signal connector
-> +          is externally accessible on a signal only connector (e.g. eSATA
-> +          connector).
-> +
-> +      hba-fbscp:
-> +        type: boolean
-> +        description:
-> +          FIS-based Switching Capable Port. Indicates whether this port
-> +          supports Port Multiplier FIS-based switching.
-> +
->        phys:
->          description: Individual AHCI SATA port PHY
->          maxItems: 1
-> @@ -111,6 +158,25 @@ patternProperties:
->      required:
->        - reg
->  
-> +    # eSATA can't be enabled together with the HotPlug capability
-> +    oneOf:
-> +      - required:
-> +          - hba-hpcp
-> +      - required:
-> +          - hba-esp
-> +      - not:
-> +          anyOf:
-> +            - required:
-> +                - hba-hpcp
-> +            - required:
-> +                - hba-esp
-> +
-> +    # HotPlug capability must be enabled together with Cold Plug
-> +    # Detection and Mechanical Presence Switching.
-> +    dependencies:
-> +      hba-cpd: ["hba-hpcp"]
-> +      hba-mpsp: ["hba-hpcp"]
-> +
->      additionalProperties: true
->  
->  required:
 > diff --git a/Documentation/devicetree/bindings/ata/ahci-platform.yaml b/Documentation/devicetree/bindings/ata/ahci-platform.yaml
-> index 76075d3c8987..6cad7e86f3bb 100644
+> index 6cad7e86f3bb..4b65966ec23b 100644
 > --- a/Documentation/devicetree/bindings/ata/ahci-platform.yaml
 > +++ b/Documentation/devicetree/bindings/ata/ahci-platform.yaml
-> @@ -117,14 +117,25 @@ examples:
->          #address-cells = <1>;
->          #size-cells = <0>;
+> @@ -30,8 +30,6 @@ select:
+>            - marvell,armada-3700-ahci
+>            - marvell,armada-8k-ahci
+>            - marvell,berlin2q-ahci
+> -          - snps,dwc-ahci
+> -          - snps,spear-ahci
+>    required:
+>      - compatible
 >  
-> +        hba-smps;
-> +
->          sata0: sata-port@0 {
->              reg = <0>;
-> +
-> +            hba-fbscp;
-> +            hba-esp;
-> +
->              phys = <&sata_phy 0>;
->              target-supply = <&reg_sata0>;
->          };
+> @@ -48,17 +46,11 @@ properties:
+>                - marvell,berlin2-ahci
+>                - marvell,berlin2q-ahci
+>            - const: generic-ahci
+> -      - items:
+> -          - enum:
+> -              - rockchip,rk3568-dwc-ahci
+> -          - const: snps,dwc-ahci
+>        - enum:
+>            - cavium,octeon-7130-ahci
+>            - hisilicon,hisi-ahci
+>            - ibm,476gtr-ahci
+>            - marvell,armada-3700-ahci
+> -          - snps,dwc-ahci
+> -          - snps,spear-ahci
 >  
->          sata1: sata-port@1 {
->              reg = <1>;
+>    reg:
+>      minItems: 1
+> diff --git a/Documentation/devicetree/bindings/ata/snps,dwc-ahci.yaml b/Documentation/devicetree/bindings/ata/snps,dwc-ahci.yaml
+> new file mode 100644
+> index 000000000000..a13fd77a451f
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/ata/snps,dwc-ahci.yaml
+> @@ -0,0 +1,123 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/ata/snps,dwc-ahci.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +            hba-fbscp;
-> +            hba-hpcp;
-> +            hba-mpsp;
+> +title: Synopsys DWC AHCI SATA controller
 > +
->              phys = <&sata_phy 1>;
->              target-supply = <&reg_sata1>;
->          };
+> +maintainers:
+> +  - Serge Semin <fancer.lancer@gmail.com>
+> +
+> +description:
+> +  This document defines device tree bindings for the Synopsys DWC
+> +  implementation of the AHCI SATA controller.
+> +
+> +allOf:
+> +  - $ref: ahci-common.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - description: Synopsys AHCI SATA-compatible devices
+> +        contains:
+> +          const: snps,dwc-ahci
+> +      - description: SPEAr1340 AHCI SATA device
+> +        const: snps,spear-ahci
+> +      - description: Rockhip RK3568 ahci controller
+> +        const: rockchip,rk3568-dwc-ahci
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    description:
+> +      Basic DWC AHCI SATA clock sources like application AXI/AHB BIU clock
+> +      and embedded PHYs reference clock together with vendor-specific set
+> +      of clocks.
+> +    minItems: 1
+> +    maxItems: 4
+> +
+> +  clock-names:
+> +    contains:
+> +      anyOf:
+> +        - description: Application AXI/AHB BIU clock source
+> +          enum:
+> +            - aclk
+> +            - sata
+> +        - description: SATA Ports reference clock
+> +          enum:
+> +            - ref
+> +            - sata_ref
+> +
+> +  resets:
+> +    description:
+> +      At least basic core and application clock domains reset is normally
+> +      supported by the DWC AHCI SATA controller. Some platform specific
+> +      clocks can be also specified though.
+> +
+> +  reset-names:
+> +    contains:
+> +      description: Core and application clock domains reset control
+> +      const: arst
+> +
+> +patternProperties:
+> +  "^sata-port@[0-9a-e]$":
+> +    type: object
+> +
+> +    properties:
+> +      reg:
+> +        minimum: 0
+> +        maximum: 7
+> +
+> +      snps,tx-ts-max:
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        description: Maximal size of Tx DMA transactions in FIFO words
+> +        enum: [ 1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024 ]
+> +
+> +      snps,rx-ts-max:
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        description: Maximal size of Rx DMA transactions in FIFO words
+> +        enum: [ 1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024 ]
+> +
+> +      additionalProperties: true
+
+You just defined a DT property called 'additionalProperties'. For this 
+reason, I prefer placing additionalProperties above 'properties'.
+
+As mentioned the way 'sata-port' schemas are done here doesn't work.
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +
+> +    sata@122f0000 {
+> +      compatible = "snps,dwc-ahci";
+> +      reg = <0x122F0000 0x1ff>;
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +
+> +      interrupts = <GIC_SPI 115 IRQ_TYPE_LEVEL_HIGH>;
+> +
+> +      clocks = <&clock1>, <&clock2>;
+> +      clock-names = "aclk", "ref";
+> +
+> +      phys = <&sata_phy>;
+> +      phy-names = "sata-phy";
+> +
+> +      ports-implemented = <0x1>;
+> +
+> +      sata-port@0 {
+> +        reg = <0>;
+> +
+> +        hba-fbscp;
+> +        snps,tx-ts-max = <512>;
+> +        snps,rx-ts-max = <512>;
+> +      };
+> +    };
+> +...
 > -- 
 > 2.35.1
 > 
