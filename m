@@ -2,76 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E91BB52A547
-	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 16:53:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E5EA352A560
+	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 16:53:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349294AbiEQOvq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 May 2022 10:51:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40634 "EHLO
+        id S1349466AbiEQOxy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 May 2022 10:53:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47308 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349348AbiEQOvj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 10:51:39 -0400
-Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B10B019001
-        for <devicetree@vger.kernel.org>; Tue, 17 May 2022 07:51:35 -0700 (PDT)
-Received: by mail-lj1-x232.google.com with SMTP id bx33so22022767ljb.12
-        for <devicetree@vger.kernel.org>; Tue, 17 May 2022 07:51:35 -0700 (PDT)
+        with ESMTP id S1349427AbiEQOxs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 10:53:48 -0400
+Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1AE8B2CC87
+        for <devicetree@vger.kernel.org>; Tue, 17 May 2022 07:53:38 -0700 (PDT)
+Received: by mail-lj1-x22c.google.com with SMTP id q130so22073609ljb.5
+        for <devicetree@vger.kernel.org>; Tue, 17 May 2022 07:53:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=fItPi4WH6eFny62sNLwk0x/dSWz/KeliSihrZvDBGCI=;
-        b=SKZXvVEkhFni6NzylNm4G0Pn98ecOqHdH6IY3kqNwRU5BDemhZl6Sv2QTHDZ0+a3xG
-         3sHhiJ5rmPPO3CKqKQ+qHC+LALgxaG8MIqca3q6NaME1w9oWFnt/T+GbOubX0JaGfbVo
-         I14YjlrOIt8p9CeG7NNfLtfQyn7Wnnutw46/dJDMRe72Vm5F3esQbw5nNu6drp7I4XmU
-         GGF7duSC0YFVk5pOpwxrXEATYaGLxRMYwkyZOLlSvH/0pTPrgcbN6hd8ihEWvtLRpivt
-         OKirjfEO/QElSePc92GOVlV0B/ybygpT8Kr5aP6WO14zg4+ZQbcPb5rFNiDmwhUncKBh
-         QPYA==
+        bh=98lrMyDx9nA58tX+jL8WsvjaXFJ5bPfTC4nB38BPHxA=;
+        b=x9dx0SlO4F+EkMbBg+vshW88M1gEMckHm0L13WDfzZo5c4+BVCTmrbAdnJ98gufYJe
+         Qmf4hd07LDsg6x1ZYTY8fQRD+qwnKQqEaqSHOxwf8CwwGwozgEkqQ5wn3k297ne+94Lu
+         10/RKKdcjfqL7DzHy/z/Kh5cWmJ1mh2DFzqTnLTS5JSAlOcy6yTHk745eI1I16HuRLPi
+         +BPF/07xb2jWxwr35+dsqwKrBN7oLLmgdIR1oo1SaIAIZDK5CTJXESaVi55t+rvO8Woh
+         Cyh4OYqy/lTKbOr0y3+SFEmVPs6wxSz+h7W+MS30+uUq3kWSwySQimWQ04pqLHNAe3ij
+         HKNQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=fItPi4WH6eFny62sNLwk0x/dSWz/KeliSihrZvDBGCI=;
-        b=3ZVaYwvWOSQWSTN2wzpC2+DBOfoiveJe0lAdhvI+6pntKFN6CmZbbGYb6PJvlvP9Fb
-         6qIGGfASGbNyKNieYI/+mV0qeNFyoPjuykPtjaSxG6lx/ToMIGvTj0yKvgsbLCkldxGA
-         QykdUP3Cp9kOl62TmZNvA5iNDKj+pMbKvlW63a3yLMead+dVmguFVPtwj+Q5w9wjyiQ9
-         5Mu9JrJYMqpM/YEF5fHJpjceieDc74jgTdKoeVsN1A0LlB748bw9lGU3CwrrwZI0pl5O
-         20Gf6vrgZRsRyL2fEfur9VdzrlcjlddRfoPcT8Z5R0ypGqeOUWOZ1Rv+PMcEHtxZm9b5
-         NZFg==
-X-Gm-Message-State: AOAM531akrErtZ1S7HQ1q5Ad83xYdkBpY5NChGdqG5A0AfjotMI0c3UR
-        bUHn59X/N2313SUg0iE5W1aRQQ==
-X-Google-Smtp-Source: ABdhPJyWm2Zl9OZhnOZge8xJaNB/lSejMQtbBHoeyzWsyXYfqc/xhWPGsDcU2RUdb22zZ0kRvGkOIw==
-X-Received: by 2002:a2e:8e84:0:b0:24f:1d40:ceb0 with SMTP id z4-20020a2e8e84000000b0024f1d40ceb0mr14890942ljk.292.1652799093975;
-        Tue, 17 May 2022 07:51:33 -0700 (PDT)
+        bh=98lrMyDx9nA58tX+jL8WsvjaXFJ5bPfTC4nB38BPHxA=;
+        b=iquFrjrEKl31U+suosO6GpQq0idwWD3xCavMGW7s9JfU3RSCp+xjamAhBH/on6MbRq
+         MqU8I8KMgkLThhiSclHbU2XeKdoYfbjrknuuLu/r96Vi3IH0dosQOehnsdSRw40msTyP
+         Me/rYp2q/DhbyfdZ3NYYJQ60YZyLZAN0oF2g9bXZMXLXHkC939GC3fis6jJHhks9Im7V
+         1DZBvG6gP3OMfpjbXQINa4cra74SaKXIm50DsMV2AGge1/MTtWn4aptM4CIx417FCCm8
+         eCLTZIsWvaPm+yu4mAGBLDzkksQpQgdVGbQ0KSMovEKzpYk/Jl4GCDWi/ojYtj49eoEI
+         euhg==
+X-Gm-Message-State: AOAM5325dC1prRY3L+gBUHVxpOm2QR28vNH/znQaLssANJTKJW1q/Olj
+        z7Za9iE07z54c848YDj6wU1shA==
+X-Google-Smtp-Source: ABdhPJyWvHzwFXV4y4dwE1Mg+4vxEcyCuwAK4eajYXdjTegf080biutfjdxui5eX5IbFoPm6jzW9uQ==
+X-Received: by 2002:a2e:9d08:0:b0:250:d483:d734 with SMTP id t8-20020a2e9d08000000b00250d483d734mr14679734lji.406.1652799215969;
+        Tue, 17 May 2022 07:53:35 -0700 (PDT)
 Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id d7-20020a05651221c700b0047255d210f0sm1607514lft.31.2022.05.17.07.51.32
+        by smtp.gmail.com with ESMTPSA id w17-20020ac254b1000000b0047255d210f8sm1611527lfk.39.2022.05.17.07.53.34
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 17 May 2022 07:51:33 -0700 (PDT)
-Message-ID: <0f9398aa-ab7d-44e4-033a-e13bf57f88d2@linaro.org>
-Date:   Tue, 17 May 2022 16:51:32 +0200
+        Tue, 17 May 2022 07:53:35 -0700 (PDT)
+Message-ID: <0bc5ba24-5bfb-593e-cbd0-828ef44aabc5@linaro.org>
+Date:   Tue, 17 May 2022 16:53:33 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.8.1
-Subject: Re: [PATCH] riscv: dts: microchip: fix gpio1 reg property typo
+Subject: Re: [PATCH v2 2/3] ARM: dts: aspeed: Add USB2.0 device controller
+ node
 Content-Language: en-US
-To:     Conor Paxton <conor.paxton@microchip.com>,
-        conor.dooley@microchip.com, Palmer Dabbelt <palmer@dabbelt.com>
-Cc:     Lewis Hanly <lewis.hanly@microchip.com>,
+To:     Neal Liu <neal_liu@aspeedtech.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220517104058.2004734-1-conor.paxton@microchip.com>
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Felipe Balbi <balbi@kernel.org>,
+        Sumit Semwal <sumit.semwal@linaro.org>,
+        =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Li Yang <leoyang.li@nxp.com>
+Cc:     "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+        "linaro-mm-sig@lists.linaro.org" <linaro-mm-sig@lists.linaro.org>
+References: <20220517082558.3534161-1-neal_liu@aspeedtech.com>
+ <20220517082558.3534161-3-neal_liu@aspeedtech.com>
+ <96973d1d-c52c-d190-6989-3f7996dae70b@linaro.org>
+ <HK0PR06MB32027CAC4BEE443F426F587380CE9@HK0PR06MB3202.apcprd06.prod.outlook.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220517104058.2004734-1-conor.paxton@microchip.com>
+In-Reply-To: <HK0PR06MB32027CAC4BEE443F426F587380CE9@HK0PR06MB3202.apcprd06.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,16 +94,51 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/05/2022 12:40, Conor Paxton wrote:
-> Fix reg address typo in the gpio1 stanza.
+On 17/05/2022 16:50, Neal Liu wrote:
+>> -----Original Message-----
+>> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> Sent: Tuesday, May 17, 2022 8:00 PM
+>> To: Neal Liu <neal_liu@aspeedtech.com>; Greg Kroah-Hartman
+>> <gregkh@linuxfoundation.org>; Rob Herring <robh+dt@kernel.org>; Krzysztof
+>> Kozlowski <krzysztof.kozlowski+dt@linaro.org>; Joel Stanley <joel@jms.id.au>;
+>> Andrew Jeffery <andrew@aj.id.au>; Felipe Balbi <balbi@kernel.org>; Sumit
+>> Semwal <sumit.semwal@linaro.org>; Christian König
+>> <christian.koenig@amd.com>; Geert Uytterhoeven <geert@linux-m68k.org>;
+>> Li Yang <leoyang.li@nxp.com>
+>> Cc: linux-aspeed@lists.ozlabs.org; linux-usb@vger.kernel.org;
+>> devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org;
+>> linux-kernel@vger.kernel.org; linux-media@vger.kernel.org;
+>> dri-devel@lists.freedesktop.org; linaro-mm-sig@lists.linaro.org
+>> Subject: Re: [PATCH v2 2/3] ARM: dts: aspeed: Add USB2.0 device controller
+>> node
+>>
+>> On 17/05/2022 10:25, Neal Liu wrote:
+>>> Add USB2.0 device controller(udc) node to device tree for AST2600.
+>>>
+>>> Signed-off-by: Neal Liu <neal_liu@aspeedtech.com>
+>>> ---
+>>>  arch/arm/boot/dts/aspeed-g6.dtsi | 10 ++++++++++
+>>>  1 file changed, 10 insertions(+)
+>>>
+>>> diff --git a/arch/arm/boot/dts/aspeed-g6.dtsi
+>>> b/arch/arm/boot/dts/aspeed-g6.dtsi
+>>> index 3d5ce9da42c3..5517313eb2b5 100644
+>>> --- a/arch/arm/boot/dts/aspeed-g6.dtsi
+>>> +++ b/arch/arm/boot/dts/aspeed-g6.dtsi
+>>> @@ -298,6 +298,16 @@ vhub: usb-vhub@1e6a0000 {
+>>>  			status = "disabled";
+>>>  		};
+>>>
+>>> +		udc: udc@1e6a2000 {
+>>
+>> The same as DTS in bindings - generic node name, please.
+>>
 > 
-> Signed-off-by: Conor Paxton <conor.paxton@microchip.com>
-> ---
->  arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi | 2 +-
+> Is it possible to use "udc: usb-udc@1e6a2000" to distinguish it between "vhub: usb-vhub@1e6a0000"?
 
-Pressed send to fast...
-
-Please add Fixes tag, unless fixed commit SHA is not considered stable.
+Possible yes :), but not recommended and not wanted. Nodes should be
+generic and prefixes are added only if there is no unit address. You can
+though use some more descriptive label.
 
 
 Best regards,
