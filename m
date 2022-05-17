@@ -2,96 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 25192529AD6
-	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 09:32:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 06A25529AE9
+	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 09:35:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241015AbiEQHcr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 May 2022 03:32:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34350 "EHLO
+        id S241742AbiEQHfC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 May 2022 03:35:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35414 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236081AbiEQHcq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 03:32:46 -0400
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2BD1C25586
-        for <devicetree@vger.kernel.org>; Tue, 17 May 2022 00:32:45 -0700 (PDT)
-Received: by mail-ed1-x52e.google.com with SMTP id i40so6229803eda.7
-        for <devicetree@vger.kernel.org>; Tue, 17 May 2022 00:32:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=6+PM+IzbMhfXslyjFiVRohLtTwAYLD/wNY5LYHLjz2E=;
-        b=kcPFtNO6HjpPS2YFgXfW1xd43vq158WrRQFhegs5i8ItjE6arwKhjtBg2Q+OQf8rJ5
-         dfhJOyns7c3cx/mvCmMOdKWWmDz4ShVB+UGbOVHkRKOUQ1TtmcSHquKqkYt7E0iZ1HMQ
-         6CLzqPnnGMWOkj3gkhcTfiyWw6RBGpDNlpdnLpkIpBZ7wOpqbCA5hSU5I6UBMg+Erv9P
-         C15CIzqCLjyWwmAXjLhTSmAf79X/g+BjXSq7wuYXfo569wSPkEi5VIH5BX1KWUngjD5r
-         GE2ysgs5aBZp6g61OHqYuy9Ztl9e4I3aRhPZacsJhx38hKB8elWX5ptnhxIGMquaLSma
-         ogaA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=6+PM+IzbMhfXslyjFiVRohLtTwAYLD/wNY5LYHLjz2E=;
-        b=rfs7UUSmbjciVv8kYz93KigqkgrRXK6qDOD0EJww0tYB4lyB4O62np2IV5hzr50ehA
-         9/8aQt0aCIFqxXcgDvEAwd7yJSX1i0JlZTNRlvytzrukCc3MUHoHTDpVBS284KTTBs/V
-         iG8sU7tHXwG1vD4Wv98u8vUyt0RbFwWh1mjlAppEAPvzvDoQNAAWJietVz7MekaNvexg
-         wXJUKBhi4HvIlIsqZi9hsQTwW7frBa0v9wcFuSAUvoTFi9yNxWtKyDGiLSdzEPVqkELb
-         Pm9xMXidcBblLvLqfa9JSFfoPts86m6+2cEpTI45NAuUPBcBHu1yVmROLS3nToBn7E5W
-         XKJQ==
-X-Gm-Message-State: AOAM530tkAU+v+FrhI/Jd5Dj6/UoFHx5clq06lH8S/f4DPYeD9XexCCs
-        W3Ia4OPMWIcVAkWgVB6Jd2hKbA==
-X-Google-Smtp-Source: ABdhPJxYChotr5WqwFSmgPy49KOJnMiwVkU4JDEcWzo3NznHVFYDP8xEpw0QRHtt/Q1eDLjDqqYaAQ==
-X-Received: by 2002:a05:6402:2948:b0:42a:ae0c:2f26 with SMTP id ed8-20020a056402294800b0042aae0c2f26mr10624192edb.425.1652772763727;
-        Tue, 17 May 2022 00:32:43 -0700 (PDT)
-Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id ci18-20020a170907267200b006f3ef214e6dsm672543ejc.211.2022.05.17.00.32.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 17 May 2022 00:32:43 -0700 (PDT)
-Message-ID: <94cceaf9-57ab-e7e7-9cc3-627013467768@linaro.org>
-Date:   Tue, 17 May 2022 09:32:42 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH 1/3] dt-bindings: display: simple: add support for Samsung
- LTL101AL01
-Content-Language: en-US
-To:     =?UTF-8?Q?Martin_J=c3=bccker?= <martin.juecker@gmail.com>,
-        linux-samsung-soc@vger.kernel.org
-Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@linux.ie>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Thierry Reding <thierry.reding@gmail.com>
-References: <20220516193709.10037-1-martin.juecker@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220516193709.10037-1-martin.juecker@gmail.com>
-Content-Type: text/plain; charset=UTF-8
+        with ESMTP id S241549AbiEQHek (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 03:34:40 -0400
+Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2082.outbound.protection.outlook.com [40.107.20.82])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0689548E4B;
+        Tue, 17 May 2022 00:33:38 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=L+kV7yP23xXGjImGqZP0WqfnbhV1TpzdfUSK5b8g9Dd7oWqbq2GI0tPmGwxyyVczRaBdtUaXZ6ycrs8JYcJud1vqlhQf7ajBa7mUdGNlkhAb9sxcS6frpGOQcaJdDIW+zFqZ/4/4q+Iso31BEl1mz2fiuPWb2Dva04SZvtuw3c3fk9zbymv9gGLNtl3cZ3GZBKNaXUVgS+ChQ8qVV2ICZWxdVQBcP/QFmVHqTn+Y1nhW+lmuP6oFFBRuMKuSlJxVigYbezgvJI/x/yxctPe2XaCkuoQvrrkzocwHkzVQdfoTnpW/J7pgh0cJRT55NQbTY9l9nPlhl+r1YF0WQNmanw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=dCNzBSA+4yMm2IZFGg8RQ9pMyLVDPzqwD0eE9Uo/3GU=;
+ b=BlttlGVTpvVKTcWdPrQ0VAkcK1f5rIOqPTJI+TrnMoRYMDs5ZL3558b+bdf7m8XClgFd2MeDcHe3w+fMLiTEL8fX58M2vST9QAwNfTNpT+E7FlUOP0EiO1eCiC2CKq2zUWF+FvrKIdvXVLqTgm65XQz4UyozsXD3GlM1LgsuTFoa7Hvn8s8SYFZdmohgWiuKc2/t7iTHuEWyHxbVYJU8VtactxrNUfnrWDXQRx1kd10SxUn/2nTz4q3SBvi1OGbYrThHLfYALgtm5+32iDM9P6zfAxDh8IWjHmL6PIErnRFD3Fh/p9SQrBcIJ4Z96wYma4Odx7J9VvyKQ1CRzWlUBA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector2-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=dCNzBSA+4yMm2IZFGg8RQ9pMyLVDPzqwD0eE9Uo/3GU=;
+ b=WH8XOTtd/5zxJ+eajvJw6992qdI23l6v2MsVqYdqJvF6B3/+fyBO5R6b5SU7jBenB9DFeQPLmdnqx5BHzQiFezQMQxu3kjIxlECv0D776w1f9b+fJ1ATxR3DElB5WBsmN3OciEWVEGaQ3fgU2/wziM2sJNduUgr0WxKNPxa1ly4=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from DU0PR04MB9417.eurprd04.prod.outlook.com (2603:10a6:10:358::11)
+ by AM6PR04MB4375.eurprd04.prod.outlook.com (2603:10a6:20b:20::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5250.18; Tue, 17 May
+ 2022 07:33:32 +0000
+Received: from DU0PR04MB9417.eurprd04.prod.outlook.com
+ ([fe80::a892:e4a9:4769:13a5]) by DU0PR04MB9417.eurprd04.prod.outlook.com
+ ([fe80::a892:e4a9:4769:13a5%7]) with mapi id 15.20.5250.014; Tue, 17 May 2022
+ 07:33:32 +0000
+From:   "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de
+Cc:     kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, Peng Fan <peng.fan@nxp.com>
+Subject: [PATCH 0/2] mailbox: imx: support RST channel
+Date:   Tue, 17 May 2022 15:35:16 +0800
+Message-Id: <20220517073518.34474-1-peng.fan@oss.nxp.com>
+X-Mailer: git-send-email 2.25.1
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-ClientProxiedBy: SI2PR01CA0045.apcprd01.prod.exchangelabs.com
+ (2603:1096:4:193::19) To DU0PR04MB9417.eurprd04.prod.outlook.com
+ (2603:10a6:10:358::11)
+MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 436d4fbd-e220-4ecb-7f80-08da37d78afa
+X-MS-TrafficTypeDiagnostic: AM6PR04MB4375:EE_
+X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
+X-Microsoft-Antispam-PRVS: <AM6PR04MB43756084B1DE29F6A146311CC9CE9@AM6PR04MB4375.eurprd04.prod.outlook.com>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: FIMTGwCtmDhFrDo4AFlxZDB2CsHGD08v0O9JumyF1rcCz90dZnjCBZLb1OB4nhJM4dX99m+B/Gxi4rGwjFt5mUH5fsUC6S0RzXWEHr6SQ9uCwEs3zx1azTEn5HZOlYim3SXPq/SdHMqeaS21JddYQSyqwGmQiv1filMI2BhL5uvvh7HvVQvvBA4wW/2AtyVMn/UaLXfBBp6I7fgfd49vrXK2BxvRaeV40J9bPz785Rwmvr0ZEdcX1//EM4M5sT0C2WOwcgI1LKH/GoQpc98i+R8BYyJgZ6UoDHpgzCOtAXT8lVSzY4fHwzLXL0JVq5bZTVmF3VSwbrgHLOcn/BijkHuvZhFwmLlIOg4k0XoJVqJi6HFzHVfNdLKdLW671gEYKu3mboklFD9FqLc6yc690VNZRoc6Ob2GsesEGeRdH1tFP7D9uhqubLQQkEgfzG2KK8wcQrO8qOS2XnJ0lhTQ0RPPP2VJB5FyR69mE/gF/VbU7/NoY+zMJPkMF7rjtsNls9AXTK7Ajk2OcUbwucLPzCNskx7OrmN1kEyvoBQy7LL9fa0PrLxYNRDIX3mwii1Kghj+rZGI95+Stz2W7Bi4iXD++9kPcZIy4MgMWEFRwtVyD1PnzTbL1pKmAmQqD2Bqlkgug/sormuX8ajQfglmbU7CkVMsd6x6FMZ9czRsImzbreT+WWPmRl3Vm2k1gQaiK8uZVAbsQ8/AyMiqG4A5QA==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9417.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(66946007)(8676002)(4326008)(66556008)(66476007)(2616005)(6666004)(15650500001)(316002)(38100700002)(38350700002)(86362001)(4744005)(83380400001)(8936002)(5660300002)(186003)(6506007)(26005)(6512007)(6486002)(2906002)(52116002)(508600001)(1076003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?oF64U2xS0XHJ+YoLACKw+qh43eee7Apn2wHmZoMylU3rh4vFfudel8b3ZQX/?=
+ =?us-ascii?Q?zKSey+EcFXHvqG/Ns0KsA6sA3MO6wVM4AEV9Fb3mW3COvvEOioXxtMtfTXOs?=
+ =?us-ascii?Q?RgArZnq9Vur1RX69t8zcOnRf6Yum3NyOOYk+nkB6A82j72phX+65g4moBPYl?=
+ =?us-ascii?Q?DfTMeecE9VrOcwBnbzvaXCDwcih0db5pWGi0T5RKf6hvtazA5QA+ADiemUw2?=
+ =?us-ascii?Q?5ZXCUvHQTfUDf4H0xQReSuum2eNfnjVOLULo3InP5+hejANnacXIyQNjEFFR?=
+ =?us-ascii?Q?MzjVTgDgJ82ZXeyxwi+nhq7AD43xAMeHmK89IstcTX2Adw+EMJkmbVw8Kxsd?=
+ =?us-ascii?Q?NWqNazuAl8MyCvER1jvsRXK5sIg7QkYdOR4SwHmZVlrB04FoPo3+U+lI+vD7?=
+ =?us-ascii?Q?ItZcB/MibIKuAsRcbdeZALR3w72itemj6wuLZx093t61ypSja8A/Fj0V+J+l?=
+ =?us-ascii?Q?ypv2Giyo6zmfXsbnUkx2qSh/K24trzJjLNA+PdWTDlLSfMgqk82RDCct52O8?=
+ =?us-ascii?Q?9BOJClgXSz9lPsgyLxKSxsV0p048eAs3hVPqeow06+avKX/mzRocTJ3x3AOO?=
+ =?us-ascii?Q?waDqMnIHelWMoNzV8f0i9bc5SFx2qzPC31/MHWJ4ArwCw3P31JXBx1iewkmN?=
+ =?us-ascii?Q?x7dwh4Vq0iy2n55BTLJkKizjtW0lD0p87v2bc/k7xc+jn0bCrDLKK/fSmcy/?=
+ =?us-ascii?Q?Q8ZKJ3QM0ppWlEXzpNNCxQipPT05YrRJW2dnUCks80IBrqHJ5eyHQ7jHelJP?=
+ =?us-ascii?Q?WJ6hOORCXWfWEFs3ccTx7y8CK8v4Qns6BwuhvfMDOzlNFqi7dNE1/PKv01l6?=
+ =?us-ascii?Q?eKdNb6z5T1OPuaqnYIhT10QlZmdmclEdLr7YDSyh8SjpprXV78Ln0Du0M0EP?=
+ =?us-ascii?Q?D0Tfoof/wr5h8OmFGEhd3mKSSBGHThGpfV8GRRItas2WJ6JlRUeBJp7JsgPM?=
+ =?us-ascii?Q?Xc0PcNM/fK6+IrePX87FDBPtYzfjWsPKYFjl5ruBJaBMFgX9Vyk4Bv+ekmXI?=
+ =?us-ascii?Q?63ILV73bx0KVqjgBSXP3S0t5TG+9n9qcFuA30UQZl1kzJB4FDud9KxICniXp?=
+ =?us-ascii?Q?8vFBiCMR3VW3htFIIwr6llTk0keibjn1OpaSiUhabKrQ2VSfKVbhPzSOEzCm?=
+ =?us-ascii?Q?6LBZT3WsRSemuWL+fS3nzjOF2YPK7a4+ZsBBWjmN0GYTUh33ueplx3+z8Eg6?=
+ =?us-ascii?Q?r3NVMt4PM+osJcOobdwTe/pbpUEnXx9IePR4iw6pZWtmewBJyH5l8Hzb4e4R?=
+ =?us-ascii?Q?8DlBl2jtYYULvtrFZwTohSKSww9jWaasIo/mgApO3qZMGNPdR3hC+RpPQYpz?=
+ =?us-ascii?Q?dW97n4KPNigcyPOLiqAJq5lW4GvcCcG8+mYT7N/l1xZSS4BKDj2bUlD74AQp?=
+ =?us-ascii?Q?p63pBkhybDURINaaxn/KRRUHUz4SIVw7Vo8TeFlMxSpqh7C38wW3SbCQz+Fx?=
+ =?us-ascii?Q?VFWtlhut0nl9/cQypbRbvglBPVq371VuuA+4yNeepyc2LEmez4PNRtkTKgBI?=
+ =?us-ascii?Q?vbRbkPmLSmU89cPw/6PRv/ClClbyY7orMGBiqtEh7bEzU5kSwO6acLDRMU4v?=
+ =?us-ascii?Q?OGKaoICgmx15IdF13NsM3okwMxjg35G0UNm95IfAnQGrsQbn9MS1ILMspxTP?=
+ =?us-ascii?Q?wCp4AWGYUk9TVcD+ZR3sFo5/4kyPGscZLPWcwe2zu5mGHDBUnqM8ipUAGsFi?=
+ =?us-ascii?Q?gSZdcyhevUvzZQQLrw+z1DhWenWq4LQN9z8QZfi/ixu4EMIVoZYpEqfTU5fg?=
+ =?us-ascii?Q?jHg+91CM2w=3D=3D?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 436d4fbd-e220-4ecb-7f80-08da37d78afa
+X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9417.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 May 2022 07:33:32.0358
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: jLUluCrd+FFXCo1s2S6XyLgvTumfMWmM0/16wj+EH5FME3pxtWKpghFW+/ag1ii4HGbu8fI9I9WeAuQjNp8BMQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM6PR04MB4375
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/05/2022 21:37, Martin Jücker wrote:
-> Add the Samsung LTL101AL01 WXGA LCD panel to the list.
-> 
-> Signed-off-by: Martin Jücker <martin.juecker@gmail.com>
-> ---
->  .../devicetree/bindings/display/panel/panel-simple.yaml         | 2 ++
+From: Peng Fan <peng.fan@nxp.com>
 
+To i.MX generic MU, when linux stop remote core, the MU-B side is not
+reset because of hardware design, so MU-B contains valid configuration
+when remote core stops. Then when linux start remote core again,
+linux may notify remote core before remote core is ready for incoming
+message. So we need make sure MU is in reset state before remote core
+start. So add a RST channel which is only to reset MU when shutdown
+the RST mbox channel.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Peng Fan (2):
+  dt-bindings: mailbox: imx-mu: add RST channel
+  mailbox: imx: support RST channel
 
+ .../devicetree/bindings/mailbox/fsl,mu.yaml   |  6 ++--
+ drivers/mailbox/imx-mailbox.c                 | 29 +++++++++++++++----
+ 2 files changed, 27 insertions(+), 8 deletions(-)
 
-Best regards,
-Krzysztof
+-- 
+2.25.1
+
