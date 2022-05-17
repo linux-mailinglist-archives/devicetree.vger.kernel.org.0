@@ -2,122 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B0A3529B20
-	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 09:41:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 38121529B3F
+	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 09:42:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242131AbiEQHkZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 May 2022 03:40:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47850 "EHLO
+        id S236133AbiEQHmA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 May 2022 03:42:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45748 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242507AbiEQHkF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 03:40:05 -0400
-Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A7F2D4B1D9;
-        Tue, 17 May 2022 00:38:42 -0700 (PDT)
-Received: (Authenticated sender: clement.leger@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id B45F920002;
-        Tue, 17 May 2022 07:38:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1652773121;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=cGUPuIBqdoAwF6CrSgCGhpb2rO2ZYTzLfr84zCXtbUA=;
-        b=ovXm/FsHnSnly3cug8E/YvUa+9uFuM/kadH6jEa5sy7xnlB4fzjbw0lWqNydOR96WeNOSc
-        YaTpt0thgcY2ZVX5qZuyXZ/sOpC5fGAZqGO0Vj/vvIWmxu+k16Koe4sq/V87m5dTWIQvfD
-        ejw3EQX4is5LVegbHsgC7yry9tluxAcJjwaKllYLWRYUiQEm0StXG+Z4O6Hagv6tiqSBro
-        erZMqa2a6696y6yUJZ8BO4yw2buJrYO9C6I17kjrCdmJHPHeUypAE48cnhCA+gqMMS1vkz
-        BMemUOTmiNwe8reMRoEhGECPonU6/WR5ilgDapGdwj1aPnDsaUFqZrgQHbKv0Q==
-Date:   Tue, 17 May 2022 09:37:29 +0200
-From:   =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
-To:     Frank Rowand <frowand.list@gmail.com>
-Cc:     Rob Herring <robh@kernel.org>,
-        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Allan Nielsen <allan.nielsen@microchip.com>,
-        Horatiu Vultur <horatiu.vultur@microchip.com>,
-        Steen Hegelund <steen.hegelund@microchip.com>,
-        Thomas Petazzoni <thomas.petazonni@bootlin.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Mark Brown <broonie@kernel.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Andrew Lunn <andrew@lunn.ch>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org
-Subject: Re: [PATCH 1/3] of: always populate a root node
-Message-ID: <20220517093729.214c33a3@fixe.home>
-In-Reply-To: <d356acbe-daff-1c66-6511-aab97a171c82@gmail.com>
-References: <20220427094502.456111-1-clement.leger@bootlin.com>
-        <20220427094502.456111-2-clement.leger@bootlin.com>
-        <YnEx5/ni1ddIFCj9@robh.at.kernel.org>
-        <d356acbe-daff-1c66-6511-aab97a171c82@gmail.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-pc-linux-gnu)
+        with ESMTP id S242624AbiEQHlK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 03:41:10 -0400
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (mail-dm6nam12on2049.outbound.protection.outlook.com [40.107.243.49])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A53BC483AA;
+        Tue, 17 May 2022 00:41:02 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=QiQSYuJAKfM6NeVBkwmESdnTPwvqiTIX3eUpr6BruzWXSUXwigmm4fJnFNL41SFuw7hdUHV5xyXnIPgR2vPbdg4g0q70XC351Edk72jKn7ZSeTaEUTVyuYhOY3lWvHV6vJ6r8Coy3GicGsDknIKxk/BCo/wbguRKA6DxTWyVFjYTAwYq7iUvLH7eHnjxsyek4DQ/3RR4ZDK86YtXJNqjLKw9zfLwwMwgtuKJglRO3mMsg4OwLdyIvgoRU414v9lgS5Xt55mzHrEC++ocn5bsBV/t31313NOV55OLFYwRdKOKZ3QZdkFGr+fSVzxQh9OI2LKeIsDdXe8WBLDN8JBARw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=AZ1sD84aEjd1mdsFmmSTopbeioZVYNjELgFYiUF5MYk=;
+ b=FgiD/rCUx7Cua1FfvaC6VatO3jUeUzIwWvNeVtpMIGV0LMGUi7lVtsumU4lypIOFkNHp+Vqrgi4ClK0zDJL+utIEhnNWnWetwz1N4GUYs0OWP608xAK4TYnQSJl2OXV+LbG836UOjAJJe5R16Qz86VGevTeaTLpvC3At3iRcNiOYNTOYic7x6BVy8VdSE8B8oLaKlTPE4bKjef6jxsFUbLCCTcFTq/ff19Kj0mbsYcQmN2XjZllKrXw2HzOuvZTyTL4sbKdW4d57uQ5nCDDB+3yDFC0/RxFfrseYevUlGp2S5eLFowA5qliS/M8AwNX+lgLb/C2i02RKqhy8QHjabg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 12.22.5.236) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=AZ1sD84aEjd1mdsFmmSTopbeioZVYNjELgFYiUF5MYk=;
+ b=joGXQndLx3FMKEfW8qpLrYTbtz1AtvBOhw+g39sAw8DG+u7cjT2zTbH8TumkoOCMrKNwm0UjFUukE0L2PoeF6tz8LPhmtpQ7n0I2KCryh0kqjW1oJAAzfyQ7pZElOvatz16rB0OFl3fxs5woA0XLoKb6KPdbh1Z8Ry+u9Jf2vU0qj13KXPI85bd/szZB4rBFiZhjFoq4JfXWECSTolZWx49xpjbTytFk60L/NcNeGqpSNnsWJr4mEsT8HWua2jejb1h32eY6YQvQ2fcyV2xJKVcvxLKP5Fo7iWn4RZPsqAAmHsbAxCEUjUH/oLa5iZvNTpmgLIbDZS2IfXbPig+42g==
+Received: from BN0PR04CA0014.namprd04.prod.outlook.com (2603:10b6:408:ee::19)
+ by CH2PR12MB4312.namprd12.prod.outlook.com (2603:10b6:610:af::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5250.14; Tue, 17 May
+ 2022 07:41:00 +0000
+Received: from BN8NAM11FT022.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:408:ee:cafe::46) by BN0PR04CA0014.outlook.office365.com
+ (2603:10b6:408:ee::19) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5250.15 via Frontend
+ Transport; Tue, 17 May 2022 07:41:00 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 12.22.5.236)
+ smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 12.22.5.236 as permitted sender) receiver=protection.outlook.com;
+ client-ip=12.22.5.236; helo=mail.nvidia.com;
+Received: from mail.nvidia.com (12.22.5.236) by
+ BN8NAM11FT022.mail.protection.outlook.com (10.13.176.112) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.20.5250.13 via Frontend Transport; Tue, 17 May 2022 07:41:00 +0000
+Received: from drhqmail201.nvidia.com (10.126.190.180) by
+ DRHQMAIL109.nvidia.com (10.27.9.19) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.32; Tue, 17 May 2022 07:40:59 +0000
+Received: from drhqmail201.nvidia.com (10.126.190.180) by
+ drhqmail201.nvidia.com (10.126.190.180) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Tue, 17 May 2022 00:40:59 -0700
+Received: from BUILDSERVER-IO-L4T.nvidia.com (10.127.8.14) by mail.nvidia.com
+ (10.126.190.180) with Microsoft SMTP Server id 15.2.986.22 via Frontend
+ Transport; Tue, 17 May 2022 00:40:57 -0700
+From:   Akhil R <akhilrajeev@nvidia.com>
+To:     <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <thierry.reding@gmail.com>, <jonathanh@nvidia.com>,
+        <devicetree@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+CC:     <akhilrajeev@nvidia.com>
+Subject: [PATCH v2 0/2] Add GPCDMA support for Tegra234
+Date:   Tue, 17 May 2022 13:10:46 +0530
+Message-ID: <20220517074048.54347-1-akhilrajeev@nvidia.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 71caa909-3c47-4dd1-7160-08da37d89689
+X-MS-TrafficTypeDiagnostic: CH2PR12MB4312:EE_
+X-Microsoft-Antispam-PRVS: <CH2PR12MB4312ECBE3C4D84C5DED16BC3C0CE9@CH2PR12MB4312.namprd12.prod.outlook.com>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: Vcc5LQi5Xm1QOKxqmgn6yXSEDq1VOfo4+bcd4QIcvYCqFxY5X84Lplp4BucJ4/huYSftKW3LFfAtd7sXfNR8Ks8nEfS8nHua4P8KDuz2GHyDceOKIfFtfkwzzaHKEEhyChksF8iPl8aFQaOH74UZOrf+EfxrdYEILMxlei9lL1cru4HSaRJ5BoZQWNSTBqEu+6jdMPrYx/frGFb9qBv73K7r/V8trNCKclPHsfH2WaHDHlcs80groVUKQsgCVBQ0HrWTBt+AeetAhhg1rTqiHv3YkKtkomQtstOVO9KdbkS4onizNqb3/4xgCN107FyGuE7IQU0wdrvbd5W+tYOLWXojCAY4ShoD9a+dALByuR9Dmfk/IZsJH8lKNCtw0KFwJKOdOoSkKb235py9Kdiyp/Hxg2ABZXJaUGFQz8Ilb+bpGxxBWKjhdOgliV2XNZfXQdHPe+Gy8V42MMrgpCxMLclJ35sGyKrf+wgGoeTmh60wzSSHZ98PhFx7TkB6iUjG4FsQdzs8K6YXHTjQNDtrey5YK76Gqxmri6yPDKwPryJ+XjUOXOXH/CtaZgVuyGWbC/9GJ+abA3kbgb+Uvd2PvIC+wEialNu+yT249zV27X1w08iokWXOVu/XGQtSCvbZHttHtzyac40MHROAqdVFwkigmrcZI3p40eQwwHP4PLjXG82F3TC33sqBOT6sRaRhQ/kh88iM6fms2MvEEWCb+A==
+X-Forefront-Antispam-Report: CIP:12.22.5.236;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:InfoNoRecords;CAT:NONE;SFS:(13230001)(4636009)(36840700001)(46966006)(40470700004)(81166007)(6666004)(2906002)(186003)(1076003)(7696005)(47076005)(426003)(356005)(336012)(82310400005)(316002)(110136005)(36860700001)(86362001)(40460700003)(5660300002)(508600001)(4326008)(8676002)(70206006)(70586007)(4744005)(8936002)(26005)(107886003)(2616005)(36756003)(36900700001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 May 2022 07:41:00.2681
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 71caa909-3c47-4dd1-7160-08da37d89689
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[12.22.5.236];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT022.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4312
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Le Mon, 16 May 2022 23:11:03 -0400,
-Frank Rowand <frowand.list@gmail.com> a =C3=A9crit :
+Add headers and device tree node to support GPCDMA in Tegra234
 
-> On 5/3/22 08:45, Rob Herring wrote:
-> > On Wed, Apr 27, 2022 at 11:45:00AM +0200, Cl=C3=A9ment L=C3=A9ger wrote=
-: =20
-> >> When enabling CONFIG_OF on a platform where of_root is not populated by
-> >> firmware, we end up without a root node. In order to apply overlays and
-> >> create subnodes of the root node, we need one. This commit creates an
-> >> empty root node if not present. =20
-> >=20
-> > The existing unittest essentially does the same thing for running the=20
-> > tests on non-DT systems. It should be modified to use this support=20
-> > instead. Maybe that's just removing the unittest code that set of_root.
-> >=20
-> > I expect Frank will have some comments. =20
->=20
-> My preference would be for unflatten_and_copy_device_tree() to
-> use a compiled in FDT that only contains a root node, in the
-> case that no valid device tree is found (in other words,
-> "if (!initial_boot_params)".
+v1->v2:
+  * Removed 'status="okay"' since the node is enabled by default
 
-Ok, so basically, instead of creating the root node manually, you
-expect a device-tree which contains the following to be builtin the
-kernel and unflattened if needed:
+Akhil R (2):
+  dt-bindings: Add headers for Tegra234 GPCDMA
+  arm64: tegra: Add Tegra234 GPCDMA device tree node
 
-/ {
+ arch/arm64/boot/dts/nvidia/tegra234.dtsi   | 42 ++++++++++++++++++++++
+ include/dt-bindings/memory/tegra234-mc.h   |  1 +
+ include/dt-bindings/reset/tegra234-reset.h |  1 +
+ 3 files changed, 44 insertions(+)
 
-};
+-- 
+2.17.1
 
-Maybe "chosen" and "aliases" nodes should also be provided as empty
-nodes since the unittest are creating them anyway and the core DT code
-also uses them.
-
-Thanks,
-
-Cl=C3=A9ment
-
->=20
-> unflatten_and_copy_device_tree() calls unittest_unflatten_overlay_base()
-> after unflattening the device tree passed into the booting kernel.  This
-> step is needed for a specific portion of the unittests.
->=20
-> I'm still looking at the bigger picture of using overlays for the PCIe
-> card, so more comments will be coming about that bigger picture.
->=20
-> -Frank
->=20
-
-
---=20
-Cl=C3=A9ment L=C3=A9ger,
-Embedded Linux and Kernel engineer at Bootlin
-https://bootlin.com
