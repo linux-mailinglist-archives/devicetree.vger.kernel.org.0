@@ -2,95 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EF22352AD60
-	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 23:13:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C802552AD8C
+	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 23:31:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236219AbiEQVNL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 May 2022 17:13:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37524 "EHLO
+        id S229469AbiEQVbU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 May 2022 17:31:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50688 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242972AbiEQVNK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 17:13:10 -0400
-Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::226])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70B1742EEA;
-        Tue, 17 May 2022 14:13:08 -0700 (PDT)
-Received: (Authenticated sender: alexandre.belloni@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id A0AAEC0002;
-        Tue, 17 May 2022 21:13:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1652821987;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=qBaJl8WcrskpVvu5x6uJ7XKJuPc6WqxXWNmf+zmU5C0=;
-        b=XJcefgUihW/mLjSlmZtAH14YAmr+OzwTF9nzTT5peXEn5qhJwOG7F8ludFkaVHvWachzQE
-        Dge4lHwLx7J+sd78ampwrHRodU5qkixX6wbHznUf+cCDE9RRCbCTdUcV/GQMWfpyWBZFjQ
-        1Vku6mgH/GCStsAJ8vd8RZHIYA4J0TTVCXkvMeeGDFTY1b6/cI5FRgQHaZNp2TXMwKKf5f
-        bYl336+RgOZquuSf+B97QxDHxMC49f4COEgh2CU3yhXNA9JfFFLoajmVKd77zBCoQO4k1V
-        jnSIOAgt8YZhrLYXNTBadCC/ssPZKuo3ymniggDSCC7cnstMdcQUrSDSvtgpLw==
-Date:   Tue, 17 May 2022 23:13:05 +0200
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Herve Codina <herve.codina@bootlin.com>,
-        Gareth Williams <gareth.williams.jx@renesas.com>,
-        Milan Stevanovic <milan.stevanovic@se.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Clement Leger <clement.leger@bootlin.com>,
-        linux-rtc@vger.kernel.org,
-        Pascal Eberhard <pascal.eberhard@se.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        Jimmy Lalande <jimmy.lalande@se.com>
-Subject: Re: [PATCH v7 0/5] RZ/N1 RTC support
-Message-ID: <165282193419.289847.12458884088861451958.b4-ty@bootlin.com>
-References: <20220516082504.33913-1-miquel.raynal@bootlin.com>
+        with ESMTP id S230101AbiEQVbT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 17:31:19 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C8413337F;
+        Tue, 17 May 2022 14:31:17 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: nfraprado)
+        with ESMTPSA id 91C2F1F44529
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1652823075;
+        bh=HRSS8woHfbhaBMvzaEElxv/TxCPiPytRs/B9ys0Aolo=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=d7DGzljIgY1ZUvR5X0+e6kZMprNH2UzQ0A7u9HHHGywLCvjflIHY/vRiItTD1r2/z
+         PQK6qSyuBWLGZatA2CENsvMqzWAs3ccA3dmVxFkZ5GiJtk4lhRC4C8yHkK+ixfzXMI
+         uZfyEHtxSpggJFkbTYKHs8l6+yWib4hHXJkmRSROTIzvBOyD/VY8B+1nQgcBYkZwqA
+         6i/5Ej9kgfoyU/cgrj9KEsQPWuWZH/QeMdygKYBjumnKQ4RCJXAA+04HCCvWRyxaQA
+         9ezs/V0EEFsYXFXwyuljwTKZDQWkm9o606knMWZ6MEyFmZjTAISPUH58MFutFtRusi
+         HJ1xFS6Hld++A==
+Date:   Tue, 17 May 2022 17:31:11 -0400
+From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
+        <nfraprado@collabora.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Linus Walleij <linus.walleij@linaro.org>, kernel@collabora.com,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sean Wang <sean.wang@mediatek.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH] dt-bindings: pinctrl: mt8192: Add mediatek,pull-down-adv
+ property
+Message-ID: <20220517213111.22slqxqhbaxc22f6@notapiano>
+References: <20220429200637.2204937-1-nfraprado@collabora.com>
+ <4adf790c-5773-a78e-3c8e-2a510e3dbd1e@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220516082504.33913-1-miquel.raynal@bootlin.com>
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+In-Reply-To: <4adf790c-5773-a78e-3c8e-2a510e3dbd1e@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 16 May 2022 10:24:59 +0200, Miquel Raynal wrote:
-> This small series adds support for the RZ/N1 RTC.
+On Fri, Apr 29, 2022 at 10:31:52PM +0200, Krzysztof Kozlowski wrote:
+> On 29/04/2022 22:06, Nícolas F. R. A. Prado wrote:
+> > Add the mediatek,pull-down-adv property to the pinctrl-mt8192 dt-binding
+> > to allow configuring pull-down resistors on the pins of MT8192. It is
+> > the same as in mt8183-pinctrl.
+> > 
+> > Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+> > 
+> > ---
+> > 
+> >  .../devicetree/bindings/pinctrl/pinctrl-mt8192.yaml   | 11 +++++++++++
+> >  1 file changed, 11 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/pinctrl/pinctrl-mt8192.yaml b/Documentation/devicetree/bindings/pinctrl/pinctrl-mt8192.yaml
+> > index c90a132fbc79..e462f49eae6f 100644
+> > --- a/Documentation/devicetree/bindings/pinctrl/pinctrl-mt8192.yaml
+> > +++ b/Documentation/devicetree/bindings/pinctrl/pinctrl-mt8192.yaml
+> > @@ -117,6 +117,17 @@ patternProperties:
+> >              $ref: /schemas/types.yaml#/definitions/uint32
+> >              enum: [0, 1, 2, 3]
+> >  
+> > +          mediatek,pull-down-adv:
+> > +            description: |
+> > +              Pull down settings for 2 pull resistors, R0 and R1. User can
+> > +              configure those special pins. Valid arguments are described as below:
 > 
-> Despite its limitations, I found useful to at least have alarm and
-> offset support.
+> Trailing ':' should be escaped, so '::'
+
+OK.
+
 > 
-> Cheers,
-> Miquèl
 > 
-> [...]
+> > +              0: (R1, R0) = (0, 0) which means R1 disabled and R0 disabled.
+> > +              1: (R1, R0) = (0, 1) which means R1 disabled and R0 enabled.
+> > +              2: (R1, R0) = (1, 0) which means R1 enabled and R0 disabled.
+> > +              3: (R1, R0) = (1, 1) which means R1 enabled and R0 enabled.
+> > +            $ref: /schemas/types.yaml#/definitions/uint32
+> > +            enum: [0, 1, 2, 3]
+> 
+> It's okay, but for all these and other values (you have few such in the
+> binding), you should maybe add header and defines. It's much more
+> readable for humans...
 
-Applied, thanks!
+OK. I'll look into adding defines for these.
 
-[1/5] dt-bindings: rtc: rzn1: Describe the RZN1 RTC
-      commit: 4c4d145a65e5a7faac440081bc1eac860930cd24
-[2/5] rtc: rzn1: Add new RTC driver
-      commit: deeb4b5393e106b990607df06261fba0ebb7ebde
-[3/5] rtc: rzn1: Add alarm support
-      commit: b5ad1bf00d2c4bf96bf9318f44a929f0b22dd29c
-[4/5] rtc: rzn1: Add oscillator offset support
-      commit: be4a11cf98aff5d456eae947a49b6163393d9420
-[5/5] MAINTAINERS: Add myself as maintainer of the RZN1 RTC driver
-      commit: 060eceb739e5b30db684666592c2a33d09426651
+> 
+> Is the property valid without bias-pull-down?
 
-Best regards,
+Actually it doesn't really make sense to set this property together with
+bias-pull-down, as they set conflicting register settings for the pin bias...
+I'll add a condition to avoid both being present.
 
--- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Thanks,
+Nícolas
+
+> 
+> Best regards,
+> Krzysztof
