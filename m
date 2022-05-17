@@ -2,132 +2,173 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 48315529C77
-	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 10:29:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BAA1C529C72
+	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 10:29:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237536AbiEQI2d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 May 2022 04:28:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54736 "EHLO
+        id S229711AbiEQI2o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 May 2022 04:28:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54676 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243087AbiEQI1r (ORCPT
+        with ESMTP id S243314AbiEQI1r (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 04:27:47 -0400
-Received: from twspam01.aspeedtech.com (twspam01.aspeedtech.com [211.20.114.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0E9345AF3;
-        Tue, 17 May 2022 01:27:24 -0700 (PDT)
-Received: from mail.aspeedtech.com ([192.168.0.24])
-        by twspam01.aspeedtech.com with ESMTP id 24H8CR7W039693;
-        Tue, 17 May 2022 16:12:27 +0800 (GMT-8)
-        (envelope-from neal_liu@aspeedtech.com)
-Received: from localhost.localdomain (192.168.10.10) by TWMBX02.aspeed.com
- (192.168.0.24) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Tue, 17 May
- 2022 16:26:05 +0800
-From:   Neal Liu <neal_liu@aspeedtech.com>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Joel Stanley <joel@jms.id.au>,
-        "Andrew Jeffery" <andrew@aj.id.au>,
-        Felipe Balbi <balbi@kernel.org>,
-        Sumit Semwal <sumit.semwal@linaro.org>,
-        =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        "Li Yang" <leoyang.li@nxp.com>
-CC:     Neal Liu <neal_liu@aspeedtech.com>,
-        <linux-aspeed@lists.ozlabs.org>, <linux-usb@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <linux-media@vger.kernel.org>,
-        <dri-devel@lists.freedesktop.org>, <linaro-mm-sig@lists.linaro.org>
-Subject: [PATCH v2 3/3] dt-bindings: usb: add documentation for aspeed udc
-Date:   Tue, 17 May 2022 16:25:58 +0800
-Message-ID: <20220517082558.3534161-4-neal_liu@aspeedtech.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220517082558.3534161-1-neal_liu@aspeedtech.com>
-References: <20220517082558.3534161-1-neal_liu@aspeedtech.com>
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6EF0136339;
+        Tue, 17 May 2022 01:27:21 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: kholk11)
+        with ESMTPSA id 422D71F44233
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1652776040;
+        bh=tE2Neszj+y3O1cmeD6vmFcKg7q+eIA8I1b4UnVOkoE8=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=BJL5v0bhuVFvcCQ25D+0pK3NIga8y2Un6h5uMhfxH1hCPQs3rOACMYkyuhdftODMA
+         smu6iAvegiNflzFCbuhqFT/2s31v5ZA9YoWy0ljjT7HESoXXPDOzz/j74fbRRlC0wF
+         gvjgdD2Ix8DZ9LK+lSBwINqwPj0l7qzi47HqevxeFw0jg2gHOvqokYwxH3xxjc5SBb
+         iE0py6i4qoCiLcxX8ZMESLn5YDM4s+PlUQIiH26CJucIwb7ph6qrj1dcIzie6lp3Yn
+         nJU/CaP4iR5oHkZ/SNghJwxsrkTGw296rc5WWsPV+U713IMpxtoohYuiH7PixO4KBV
+         ah5V4clhlBlRw==
+Message-ID: <f222e1c5-4ce1-a42d-ceef-a292136d8b61@collabora.com>
+Date:   Tue, 17 May 2022 10:27:16 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-Originating-IP: [192.168.10.10]
-X-ClientProxiedBy: TWMBX02.aspeed.com (192.168.0.24) To TWMBX02.aspeed.com
- (192.168.0.24)
-X-DNSRBL: 
-X-MAIL: twspam01.aspeedtech.com 24H8CR7W039693
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.0
+Subject: Re: [PATCH v2 2/2] memory: mtk-smi: Add support for MT6795 Helio X10
+Content-Language: en-US
+To:     Yong Wu <yong.wu@mediatek.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     krzysztof.kozlowski@linaro.org, robh+dt@kernel.org,
+        matthias.bgg@gmail.com, linux-mediatek@lists.infradead.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, konrad.dybcio@somainline.org,
+        marijn.suijten@somainline.org, martin.botka@somainline.org,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        paul.bouchara@somainline.org, kernel@collabora.com,
+        yi.kuo@mediatek.com, anthony.huang@mediatek.com,
+        wendy-st.lin@mediatek.com
+References: <20220513150633.387200-1-angelogioacchino.delregno@collabora.com>
+ <20220513150633.387200-3-angelogioacchino.delregno@collabora.com>
+ <cf2442b9c7124ebf1ce62ae5df597f003fa447d7.camel@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <cf2442b9c7124ebf1ce62ae5df597f003fa447d7.camel@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add device tree binding documentation for the Aspeed USB2.0 Device
-Controller.
+Il 17/05/22 08:37, Yong Wu ha scritto:
+> On Fri, 2022-05-13 at 17:06 +0200, AngeloGioacchino Del Regno wrote:
+>> The MediaTek Helio X10 (MT6795) SoC has 5 LARBs and one common SMI
+>> instance without any sub-common and without GALS.
+>>
+>> While the smi-common configuration is specific to this SoC, on the
+>> LARB side, this is similar to MT8173, in the sense that it doesn't
+>> need the port in LARB, and the register layout is also compatible
+>> with that one, which makes us able to fully reuse the smi-larb
+>> platform data struct that was introduced for MT8173.
+>>
+>> Signed-off-by: AngeloGioacchino Del Regno <
+>> angelogioacchino.delregno@collabora.com>
+>> ---
+>>   drivers/memory/mtk-smi.c | 17 +++++++++++++++++
+>>   1 file changed, 17 insertions(+)
+>>
+>> diff --git a/drivers/memory/mtk-smi.c b/drivers/memory/mtk-smi.c
+>> index 86a3d34f418e..7e7c3ede19e4 100644
+>> --- a/drivers/memory/mtk-smi.c
+>> +++ b/drivers/memory/mtk-smi.c
+>> @@ -21,11 +21,13 @@
+>>   /* SMI COMMON */
+>>   #define SMI_L1LEN			0x100
+>>   
+>> +#define SMI_L1_ARB			0x200
+>>   #define SMI_BUS_SEL			0x220
+>>   #define SMI_BUS_LARB_SHIFT(larbid)	((larbid) << 1)
+>>   /* All are MMU0 defaultly. Only specialize mmu1 here. */
+>>   #define F_MMU1_LARB(larbid)		(0x1 <<
+>> SMI_BUS_LARB_SHIFT(larbid))
+>>   
+>> +#define SMI_FIFO_TH0			0x230
+> 
+> Does the name come from the coda you got?
+> It is called SMI_READ_FIFO_TH in my coda.
+> 
 
-Signed-off-by: Neal Liu <neal_liu@aspeedtech.com>
----
- .../bindings/usb/aspeed,ast2600-udc.yaml      | 52 +++++++++++++++++++
- 1 file changed, 52 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/usb/aspeed,ast2600-udc.yaml
+Documentation for this SoC is not public and I have no access to it, so
+everything that you see here comes from reading downstream kernel code :-(
 
-diff --git a/Documentation/devicetree/bindings/usb/aspeed,ast2600-udc.yaml b/Documentation/devicetree/bindings/usb/aspeed,ast2600-udc.yaml
-new file mode 100644
-index 000000000000..2e91d5179359
---- /dev/null
-+++ b/Documentation/devicetree/bindings/usb/aspeed,ast2600-udc.yaml
-@@ -0,0 +1,52 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+# Copyright (c) 2020 Facebook Inc.
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/usb/aspeed,ast2600-udc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: ASPEED USB 2.0 Device Controller
-+
-+maintainers:
-+  - Neal Liu <neal_liu@aspeedtech.com>
-+
-+description: |+
-+  The ASPEED USB 2.0 Device Controller implements 1 control endpoint and
-+  4 generic endpoints for AST260x.
-+
-+  Supports independent DMA channel for each generic endpoint.
-+  Supports 32/256 stages descriptor mode for all generic endpoints.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - aspeed,ast2600-udc
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - interrupts
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/aspeed-clock.h>
-+    usb: usb@1e6a2000 {
-+            compatible = "aspeed,ast2600-udc";
-+            reg = <0x1e6a2000 0x300>;
-+            interrupts = <9>;
-+            clocks = <&syscon ASPEED_CLK_GATE_USBPORT2CLK>;
-+            pinctrl-names = "default";
-+            pinctrl-0 = <&pinctrl_usb2bd_default>;
-+    };
--- 
-2.25.1
+I'll change the name to SMI_READ_FIFO_TH as suggested, thanks!
 
+>>   #define SMI_M4U_TH			0x234
+>>   #define SMI_FIFO_TH1			0x238
+>>   #define SMI_FIFO_TH2			0x23c
+>> @@ -360,6 +362,7 @@ static const struct of_device_id
+>> mtk_smi_larb_of_ids[] = {
+>>   	{.compatible = "mediatek,mt2701-smi-larb", .data =
+>> &mtk_smi_larb_mt2701},
+>>   	{.compatible = "mediatek,mt2712-smi-larb", .data =
+>> &mtk_smi_larb_mt2712},
+>>   	{.compatible = "mediatek,mt6779-smi-larb", .data =
+>> &mtk_smi_larb_mt6779},
+>> +	{.compatible = "mediatek,mt6795-smi-larb", .data =
+>> &mtk_smi_larb_mt8173},
+>>   	{.compatible = "mediatek,mt8167-smi-larb", .data =
+>> &mtk_smi_larb_mt8167},
+>>   	{.compatible = "mediatek,mt8173-smi-larb", .data =
+>> &mtk_smi_larb_mt8173},
+>>   	{.compatible = "mediatek,mt8183-smi-larb", .data =
+>> &mtk_smi_larb_mt8183},
+>> @@ -541,6 +544,13 @@ static struct platform_driver
+>> mtk_smi_larb_driver = {
+>>   	}
+>>   };
+>>   
+>> +static const struct mtk_smi_reg_pair
+>> mtk_smi_common_mt6795_init[SMI_COMMON_INIT_REGS_NR] = {
+>> +	{SMI_L1_ARB, 0x1b},
+>> +	{SMI_M4U_TH, 0xce810c85},
+>> +	{SMI_FIFO_TH1, 0x43214c8},
+>> +	{SMI_FIFO_TH0, 0x191f},
+>> +};
+>> +
+>>   static const struct mtk_smi_reg_pair
+>> mtk_smi_common_mt8195_init[SMI_COMMON_INIT_REGS_NR] = {
+>>   	{SMI_L1LEN, 0xb},
+>>   	{SMI_M4U_TH, 0xe100e10},
+>> @@ -565,6 +575,12 @@ static const struct mtk_smi_common_plat
+>> mtk_smi_common_mt6779 = {
+>>   		    F_MMU1_LARB(5) | F_MMU1_LARB(6) | F_MMU1_LARB(7),
+>>   };
+>>   
+>> +static const struct mtk_smi_common_plat mtk_smi_common_mt6795 = {
+>> +	.type	  = MTK_SMI_GEN2,
+>> +	.bus_sel  = BIT(0),
+> 
+> Like the other larbs, use F_MMU1_LARB(0) here?
+> 
+
+I agree that F_MMU1_LARB(0) == (1 << (0 << 1)) == BIT(0), but that would
+not be correct and induce other people to mistake, I think?
+Downstream doesn't do MMU1 bits, but MMU0 in this case... but if you can
+check on internal documentation and confirm that the downstream kernel's
+logic is wrong on that - and that you've verified that this should indeed
+be F_MMU1_LARB(x), you'll get a big(bigger) thank you from me :-)
+
+Meanwhile...
+
+Thanks!
+Angelo
+
+> 
+> After the two changes,
+> 
+> Reviewed-by: Yong Wu <yong.wu@mediatek.com>
+> 
+> Thanks.
