@@ -2,59 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 22852529AA8
-	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 09:18:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E1E0529AAE
+	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 09:23:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231211AbiEQHSd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 May 2022 03:18:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58108 "EHLO
+        id S240188AbiEQHXO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 May 2022 03:23:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38576 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236460AbiEQHSa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 03:18:30 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A78047578
-        for <devicetree@vger.kernel.org>; Tue, 17 May 2022 00:18:28 -0700 (PDT)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <uol@pengutronix.de>)
-        id 1nqrTJ-0008Rr-6Q; Tue, 17 May 2022 09:18:21 +0200
-Received: from [2a0a:edc0:0:1101:1d::39] (helo=dude03.red.stw.pengutronix.de)
-        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
-        (envelope-from <uol@pengutronix.de>)
-        id 1nqrTJ-002p58-2w; Tue, 17 May 2022 09:18:19 +0200
-Received: from uol by dude03.red.stw.pengutronix.de with local (Exim 4.94.2)
-        (envelope-from <uol@pengutronix.de>)
-        id 1nqrTG-00FDTz-Rt; Tue, 17 May 2022 09:18:18 +0200
-From:   =?UTF-8?q?Ulrich=20=C3=96lmann?= <u.oelmann@pengutronix.de>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>
-Cc:     NXP Linux Team <linux-imx@nxp.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Oleksij Rempel <o.rempel@pengutronix.de>,
-        Juergen Borleis <jbe@pengutronix.de>,
-        Michael Grzeschik <m.grzeschik@pengutronix.de>,
-        Marco Felsch <m.felsch@pengutronix.de>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        =?UTF-8?q?S=C3=B8ren=20Andersen?= <san@skov.dk>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        =?UTF-8?q?Ulrich=20=C3=96lmann?= <u.oelmann@pengutronix.de>
-Subject: [PATCH] ARM: dts: imx6: skov: add pwm-regulator to control the panel's VCOM
-Date:   Tue, 17 May 2022 09:18:14 +0200
-Message-Id: <20220517071814.3626702-1-u.oelmann@pengutronix.de>
-X-Mailer: git-send-email 2.30.2
+        with ESMTP id S235255AbiEQHXK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 03:23:10 -0400
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3E70434B0
+        for <devicetree@vger.kernel.org>; Tue, 17 May 2022 00:23:08 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id j6so32859691ejc.13
+        for <devicetree@vger.kernel.org>; Tue, 17 May 2022 00:23:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=XCRBYrzQvjS4psczJqPKiR1yzwCr9m3dz6Q37fPyVWc=;
+        b=Y+3U6RnS5g0NIQcBmmgAFfin+pi/+a/jPrVCWPhBW+wYgF2cSsb3M9D77GNCflSTLE
+         DuAd444CkknzbOxbH53oJu1XKZgh2AoixtIitZUNJO3NO+Ydx9EvUHuDQMCpvSe43iEQ
+         QEhcbkeZmmMYjJLcHMC8U+Cc712bPHzz/R0J0VQC32sQlLTywUuST3WoQJOu6G10pDPd
+         Cs33cc3KwxDjJTyh9y51ug9mQtClFsS1n9R2JjShh8Eu1uO3rT90uSqpi64EvY/3rOFI
+         ogIZHNtUCvcKf4lDtXgaceDzl7RbqErhWse6Z/rn76GdjFd8u+2WoqA6AufZNKXXBQD6
+         U0Vw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=XCRBYrzQvjS4psczJqPKiR1yzwCr9m3dz6Q37fPyVWc=;
+        b=rnqTfJyDOcxWEbaIQDkNggl32MxH9923Xk6571jd8x/G0hekIGv6411vOrRyB1o6Fa
+         A8W7HbpL0lsFkYfCZzbTcU+YUVCZH91KORIhquIykznDjHd/XiLZqKXzrAhU+Vmjzgx9
+         Yaf4xM7dVWnJucXVCutRcOdhNLKrGbibdOq278NSYBjERWOI0ruT6Y5svOPenkFLZL70
+         sSuEAeasgWWedh+IWMqNMkWM2y/pZZncemZIdrTgK8NS7Ggd7MbK05Wf0gvIU1A+b3l5
+         qLEvSREM56TrN/QQyW/46bHeQEPH1AojsRg/6K/wdSwiqf6E1I85qDdZNX+zfFTn1Vao
+         Ld7g==
+X-Gm-Message-State: AOAM533fcJpXcP2mhNZFI59ogNQA5oK1yTkgDcY6NMAYEkxJyZT/wb0E
+        HPzjhHPvormZMwd6t7AEwSuVBQ==
+X-Google-Smtp-Source: ABdhPJzfy58cHRd3DOtRyIs4xD25jMmDSEeBJchqbp3rg8jiISTRXl4sNXSb1FiD4HqnpEQqekmgeA==
+X-Received: by 2002:a17:907:3f1d:b0:6f4:ce49:52ea with SMTP id hq29-20020a1709073f1d00b006f4ce4952eamr17969703ejc.47.1652772187446;
+        Tue, 17 May 2022 00:23:07 -0700 (PDT)
+Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id s12-20020a508d0c000000b0042617ba63d7sm6354380eds.97.2022.05.17.00.23.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 17 May 2022 00:23:07 -0700 (PDT)
+Message-ID: <c948c2ed-d222-5c16-4df4-daf078c886cc@linaro.org>
+Date:   Tue, 17 May 2022 09:23:05 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH v2 4/4] dt-bindings: arm: qcom: Add more sc7180 Chromebook
+ board bindings
+Content-Language: en-US
+To:     Doug Anderson <dianders@chromium.org>
+Cc:     Rob Herring <robh@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Rajendra Nayak <quic_rjendra@quicinc.com>,
+        Alexandru M Stan <amstan@chromium.org>,
+        Julius Werner <jwerner@chromium.org>,
+        "Joseph S . Barrera III" <joebar@chromium.org>,
+        Andy Gross <agross@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@codeaurora.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>
+References: <20220513095722.v2.1.I71e42c6174f1cec17da3024c9f73ba373263b9b6@changeid>
+ <20220513095722.v2.4.Ie8713bc0377672ed8dd71189e66fc0b77226fb85@changeid>
+ <125970b0-af71-1695-a3ab-10a159ac63a5@linaro.org>
+ <CAD=FV=XR+WwWmrB1wGX65=szBc2PbGNOHbm2tiQT5Wp8CPG0Kg@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CAD=FV=XR+WwWmrB1wGX65=szBc2PbGNOHbm2tiQT5Wp8CPG0Kg@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: uol@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -63,54 +91,47 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Skov's i.MX6 based boards come in different flavors which have different panels
-attached. For optimal contrast experience each panel type needs an individual
-common voltage (VCOM) to drive its TFT backplane. The latter is generated by an
-LCD bias supply IC controlled by a pwm as input signal. Introduce a pwm-
-regulator to describe this hardware property and parameterize it appropriately
-for the different boards.
+On 16/05/2022 17:16, Doug Anderson wrote:
+> Hi,
+> 
+> On Mon, May 16, 2022 at 12:05 AM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+>>
+>> On 13/05/2022 18:59, Douglas Anderson wrote:
+>>> This adds board bindings for boards that are downstream but not quite
+>>> upstream yet.
+>>>
+>>> Signed-off-by: Douglas Anderson <dianders@chromium.org>
+>>> ---
+>>>
+>>> Changes in v2:
+>>> - Use a "description" instead of a comment for each item.
+>>> - Use the marketing name instead of the code name where possible.
+>>
+>> These should be published with the patch adding their upstream DTS/DTSI.
+>> There is no point to list all possible boards in the world from any
+>> downstream source. For upstream there is no particular benefit for such
+>> bindings, for downstream you also said there is no.
+> 
+> Joe has been working on upstreaming these boards:
+> 
+> https://lore.kernel.org/r/20220510154406.v5.1.Id769ddc5dbf570ccb511db96da59f97d08f75a9c@changeid/
+> 
+> I think there is little chance that they won't go upstream at this
+> point. However, we're at a time in the merge window where it will be
+> several weeks before anything can land. If Joe were to include this
+> patch as part of his series I suspect it would be much more confusing
+> because it would add an unnecessary dependency between my series and
+> his and make it harder for Bjorn to apply it later. Keeping the patch
+> with my series means that the series can be applied more easily.
+> 
+> How about: I'll add a link to his latest posting in my next version.
+> Then, in the future (after these bindings patches have landed) then
+> future boards can go together with their bindings.
 
-Signed-off-by: Ulrich Ölmann <u.oelmann@pengutronix.de>
----
- arch/arm/boot/dts/imx6q-skov-reve-mi1010ait-1cp1.dts |  6 ++++++
- arch/arm/boot/dts/imx6qdl-skov-cpu.dtsi              | 10 ++++++++++
- 2 files changed, 16 insertions(+)
 
-diff --git a/arch/arm/boot/dts/imx6q-skov-reve-mi1010ait-1cp1.dts b/arch/arm/boot/dts/imx6q-skov-reve-mi1010ait-1cp1.dts
-index 7f1f19b74bfa..a3f247c722b4 100644
---- a/arch/arm/boot/dts/imx6q-skov-reve-mi1010ait-1cp1.dts
-+++ b/arch/arm/boot/dts/imx6q-skov-reve-mi1010ait-1cp1.dts
-@@ -125,3 +125,9 @@ MX6QDL_PAD_EIM_D23__GPIO3_IO23		0x1b0b0
- 		>;
- 	};
- };
-+
-+&reg_tft_vcom {
-+	regulator-min-microvolt = <3160000>;
-+	regulator-max-microvolt = <3160000>;
-+	voltage-table = <3160000 73>;
-+};
-diff --git a/arch/arm/boot/dts/imx6qdl-skov-cpu.dtsi b/arch/arm/boot/dts/imx6qdl-skov-cpu.dtsi
-index 77a91a97e6cf..3def1b621c8e 100644
---- a/arch/arm/boot/dts/imx6qdl-skov-cpu.dtsi
-+++ b/arch/arm/boot/dts/imx6qdl-skov-cpu.dtsi
-@@ -149,6 +149,16 @@ reg_can2_stby: regulator-can2-stby {
- 		gpio = <&gpio4 11 GPIO_ACTIVE_LOW>;
- 	};
- 
-+	reg_tft_vcom: regulator-tft-vcom {
-+		compatible = "pwm-regulator";
-+		pwms = <&pwm3 0 20000 0>;
-+		regulator-name = "tft_vcom";
-+		regulator-min-microvolt = <3600000>;
-+		regulator-max-microvolt = <3600000>;
-+		regulator-always-on;
-+		voltage-table = <3600000 26>;
-+	};
-+
- 	reg_vcc_mmc: regulator-vcc-mmc {
- 		compatible = "regulator-fixed";
- 		pinctrl-names = "default";
--- 
-2.30.2
+Sure, sounds good.
 
+
+Best regards,
+Krzysztof
