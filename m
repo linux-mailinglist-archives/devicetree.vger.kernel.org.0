@@ -2,173 +2,226 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BAA1C529C72
-	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 10:29:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E3594529C80
+	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 10:31:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229711AbiEQI2o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 May 2022 04:28:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54676 "EHLO
+        id S241817AbiEQIbP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 May 2022 04:31:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34470 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243314AbiEQI1r (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 04:27:47 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6EF0136339;
-        Tue, 17 May 2022 01:27:21 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id 422D71F44233
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1652776040;
-        bh=tE2Neszj+y3O1cmeD6vmFcKg7q+eIA8I1b4UnVOkoE8=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=BJL5v0bhuVFvcCQ25D+0pK3NIga8y2Un6h5uMhfxH1hCPQs3rOACMYkyuhdftODMA
-         smu6iAvegiNflzFCbuhqFT/2s31v5ZA9YoWy0ljjT7HESoXXPDOzz/j74fbRRlC0wF
-         gvjgdD2Ix8DZ9LK+lSBwINqwPj0l7qzi47HqevxeFw0jg2gHOvqokYwxH3xxjc5SBb
-         iE0py6i4qoCiLcxX8ZMESLn5YDM4s+PlUQIiH26CJucIwb7ph6qrj1dcIzie6lp3Yn
-         nJU/CaP4iR5oHkZ/SNghJwxsrkTGw296rc5WWsPV+U713IMpxtoohYuiH7PixO4KBV
-         ah5V4clhlBlRw==
-Message-ID: <f222e1c5-4ce1-a42d-ceef-a292136d8b61@collabora.com>
-Date:   Tue, 17 May 2022 10:27:16 +0200
+        with ESMTP id S242020AbiEQIbN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 04:31:13 -0400
+Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::222])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17F863DA68;
+        Tue, 17 May 2022 01:31:05 -0700 (PDT)
+Received: (Authenticated sender: miquel.raynal@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id E4DB840002;
+        Tue, 17 May 2022 08:31:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1652776264;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=i1z3x9hbx4kB/pMTiRJFrLwHXIkoX1zu3HrlembJ5x8=;
+        b=TyeDRQ2lIX5B3f8sM/z1ikAhOjf29Ggqj6AmwWNXDtHI5qVIkGgNT1I0cNOgQojRJUxRu+
+        rYU4r24Ud6cAMdYWwVrxIqPnToc88eBtWbhL9xwguekqqgmxJtBJl0OQBvlWN5+tC/MXrj
+        F+nuik+Bx3C24RZVTyE+dExGS8b5eH9Q6/XxPjsSeXPsE+LluIPUnw8by/+iC/QwRr3HGu
+        5YT2ODzz4sAAdN2o+nHUbIewzfvK8Ve+m43NGdfXhHQQPU/NzYDIbHMXNlj2QOEFKkPTKc
+        wIJE/fSUsapnvIDGcmptiDwOLZJH/vsKs2TY5pu/cGkIt3Fu5qMPPZ3J6Rm2cw==
+Date:   Tue, 17 May 2022 10:31:00 +0200
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Magnus Damm <magnus.damm@gmail.com>,
+        Gareth Williams <gareth.williams.jx@renesas.com>,
+        Phil Edworthy <phil.edworthy@renesas.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Vinod Koul <vkoul@kernel.org>
+Cc:     linux-renesas-soc@vger.kernel.org, dmaengine@vger.kernel.org,
+        Milan Stevanovic <milan.stevanovic@se.com>,
+        Jimmy Lalande <jimmy.lalande@se.com>,
+        Pascal Eberhard <pascal.eberhard@se.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Herve Codina <herve.codina@bootlin.com>,
+        Clement Leger <clement.leger@bootlin.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        linux-clk@vger.kernel.org, Viresh Kumar <vireshk@kernel.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Ilpo Jarvinen <ilpo.jarvinen@linux.intel.com>,
+        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH v12 0/9] RZN1 DMA support
+Message-ID: <20220517103100.4da9ebe5@xps-13>
+In-Reply-To: <20220427095653.91804-1-miquel.raynal@bootlin.com>
+References: <20220427095653.91804-1-miquel.raynal@bootlin.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.0
-Subject: Re: [PATCH v2 2/2] memory: mtk-smi: Add support for MT6795 Helio X10
-Content-Language: en-US
-To:     Yong Wu <yong.wu@mediatek.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     krzysztof.kozlowski@linaro.org, robh+dt@kernel.org,
-        matthias.bgg@gmail.com, linux-mediatek@lists.infradead.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, konrad.dybcio@somainline.org,
-        marijn.suijten@somainline.org, martin.botka@somainline.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        paul.bouchara@somainline.org, kernel@collabora.com,
-        yi.kuo@mediatek.com, anthony.huang@mediatek.com,
-        wendy-st.lin@mediatek.com
-References: <20220513150633.387200-1-angelogioacchino.delregno@collabora.com>
- <20220513150633.387200-3-angelogioacchino.delregno@collabora.com>
- <cf2442b9c7124ebf1ce62ae5df597f003fa447d7.camel@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <cf2442b9c7124ebf1ce62ae5df597f003fa447d7.camel@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 17/05/22 08:37, Yong Wu ha scritto:
-> On Fri, 2022-05-13 at 17:06 +0200, AngeloGioacchino Del Regno wrote:
->> The MediaTek Helio X10 (MT6795) SoC has 5 LARBs and one common SMI
->> instance without any sub-common and without GALS.
->>
->> While the smi-common configuration is specific to this SoC, on the
->> LARB side, this is similar to MT8173, in the sense that it doesn't
->> need the port in LARB, and the register layout is also compatible
->> with that one, which makes us able to fully reuse the smi-larb
->> platform data struct that was introduced for MT8173.
->>
->> Signed-off-by: AngeloGioacchino Del Regno <
->> angelogioacchino.delregno@collabora.com>
->> ---
->>   drivers/memory/mtk-smi.c | 17 +++++++++++++++++
->>   1 file changed, 17 insertions(+)
->>
->> diff --git a/drivers/memory/mtk-smi.c b/drivers/memory/mtk-smi.c
->> index 86a3d34f418e..7e7c3ede19e4 100644
->> --- a/drivers/memory/mtk-smi.c
->> +++ b/drivers/memory/mtk-smi.c
->> @@ -21,11 +21,13 @@
->>   /* SMI COMMON */
->>   #define SMI_L1LEN			0x100
->>   
->> +#define SMI_L1_ARB			0x200
->>   #define SMI_BUS_SEL			0x220
->>   #define SMI_BUS_LARB_SHIFT(larbid)	((larbid) << 1)
->>   /* All are MMU0 defaultly. Only specialize mmu1 here. */
->>   #define F_MMU1_LARB(larbid)		(0x1 <<
->> SMI_BUS_LARB_SHIFT(larbid))
->>   
->> +#define SMI_FIFO_TH0			0x230
-> 
-> Does the name come from the coda you got?
-> It is called SMI_READ_FIFO_TH in my coda.
-> 
+Hi folks,
 
-Documentation for this SoC is not public and I have no access to it, so
-everything that you see here comes from reading downstream kernel code :-(
+miquel.raynal@bootlin.com wrote on Wed, 27 Apr 2022 11:56:44 +0200:
 
-I'll change the name to SMI_READ_FIFO_TH as suggested, thanks!
+> Hello,
+>=20
+> This is the series bringing DMA support to RZN1 platforms.
+> The UART changes regarding DMA support has been merged into tty-next
+> already.
+>=20
+> There is no other conflicting dependency with the other series, so these
+> patches (all but DTS) can go though the dmaengine tree I believe.
 
->>   #define SMI_M4U_TH			0x234
->>   #define SMI_FIFO_TH1			0x238
->>   #define SMI_FIFO_TH2			0x23c
->> @@ -360,6 +362,7 @@ static const struct of_device_id
->> mtk_smi_larb_of_ids[] = {
->>   	{.compatible = "mediatek,mt2701-smi-larb", .data =
->> &mtk_smi_larb_mt2701},
->>   	{.compatible = "mediatek,mt2712-smi-larb", .data =
->> &mtk_smi_larb_mt2712},
->>   	{.compatible = "mediatek,mt6779-smi-larb", .data =
->> &mtk_smi_larb_mt6779},
->> +	{.compatible = "mediatek,mt6795-smi-larb", .data =
->> &mtk_smi_larb_mt8173},
->>   	{.compatible = "mediatek,mt8167-smi-larb", .data =
->> &mtk_smi_larb_mt8167},
->>   	{.compatible = "mediatek,mt8173-smi-larb", .data =
->> &mtk_smi_larb_mt8173},
->>   	{.compatible = "mediatek,mt8183-smi-larb", .data =
->> &mtk_smi_larb_mt8183},
->> @@ -541,6 +544,13 @@ static struct platform_driver
->> mtk_smi_larb_driver = {
->>   	}
->>   };
->>   
->> +static const struct mtk_smi_reg_pair
->> mtk_smi_common_mt6795_init[SMI_COMMON_INIT_REGS_NR] = {
->> +	{SMI_L1_ARB, 0x1b},
->> +	{SMI_M4U_TH, 0xce810c85},
->> +	{SMI_FIFO_TH1, 0x43214c8},
->> +	{SMI_FIFO_TH0, 0x191f},
->> +};
->> +
->>   static const struct mtk_smi_reg_pair
->> mtk_smi_common_mt8195_init[SMI_COMMON_INIT_REGS_NR] = {
->>   	{SMI_L1LEN, 0xb},
->>   	{SMI_M4U_TH, 0xe100e10},
->> @@ -565,6 +575,12 @@ static const struct mtk_smi_common_plat
->> mtk_smi_common_mt6779 = {
->>   		    F_MMU1_LARB(5) | F_MMU1_LARB(6) | F_MMU1_LARB(7),
->>   };
->>   
->> +static const struct mtk_smi_common_plat mtk_smi_common_mt6795 = {
->> +	.type	  = MTK_SMI_GEN2,
->> +	.bus_sel  = BIT(0),
-> 
-> Like the other larbs, use F_MMU1_LARB(0) here?
-> 
+As all patches the patches in this series have received a fairly good
+amount of reviews, as well as all the necessary tags since a few weeks
+already, I was hoping to see it applied for the next merge window. Is
+there something still blocking its acceptance? Let me know if it is
+the case and I will do the necessary to make them fit.
 
-I agree that F_MMU1_LARB(0) == (1 << (0 << 1)) == BIT(0), but that would
-not be correct and induce other people to mistake, I think?
-Downstream doesn't do MMU1 bits, but MMU0 in this case... but if you can
-check on internal documentation and confirm that the downstream kernel's
-logic is wrong on that - and that you've verified that this should indeed
-be F_MMU1_LARB(x), you'll get a big(bigger) thank you from me :-)
-
-Meanwhile...
-
-Thanks!
-Angelo
-
-> 
-> After the two changes,
-> 
-> Reviewed-by: Yong Wu <yong.wu@mediatek.com>
-> 
-> Thanks.
+Cheers,
+Miqu=C3=A8l
+>=20
+> Cheers,
+> Miqu=C3=A8l
+>=20
+> Changes in v12:
+> * Collected more tags.
+> * Updated the prefix of the patch introducing the dmamux helper.
+> * Avoid failing to probe the clock driver entirely when a clock subnode
+>   fails to probe. Just print an error message on purpose and mention it
+>   int the commit log.
+> * Enabled the DMA nodes by default in the DTSI.
+> * Used the data-width property instead of the deprecated data_width.
+>=20
+> Changes in v11:
+> * Renamed two defines.
+> * Changed the way the bitmap is declared.
+> * Updated the cover letter: this series can now go in through the
+>   dmaengine tree.
+>=20
+> Changes in v10:
+> * Collected more tags.
+> * Dropped the mutex from the dmamux driver.
+> * Added missing includes in the dmamux driver.
+> * Replaced set_bit() by test_and_set_bit() in order to check if the chan
+>   is already used or not in the dmamux driver.
+> * Corrected the misuse of the set_bit() macro in the dmamux driver.
+>=20
+> Changes in v9:
+> * Collected more tags.
+> * Changed a u32 into a regular bitmap and used the bitmap API.
+> * Reordered two function calls to save one extra line.
+> * Added a define to avoid a magic value.
+>=20
+> Changes in v8:
+> * Collected more tags.
+> * Moved the Makefile line adding the dmamux driver to the bottom of the
+>   file.
+> * Reversed the logic in a ternary operation as suggested by Andy.
+> * Changed a bit the naming of a #define as suggested by Andy.
+>=20
+> Changes in v7:
+> * This time, really added Stephen's Acks (sorry for the error).
+> * Moved an error check to get rid of one mutex_unlock/lock call as
+>   suggested by Ilpo.
+> * Split the patch adding the dmamux driver as advised by Vinod. One
+>   patch introduces the dmamux driver, the other populates the children
+>   of the system controller. As the original patch got acked by Stephen
+>   Boyd, I moved his tag to the patch touching the clock controller only.
+>=20
+> Changes in v6:
+> * Added Stephen's acks.
+> * Fixed an extra newline added in the middle of nowhere.
+> * Rebased on top of v5.18-rc1.
+>=20
+> Changes in v5:
+> * Used gotos in rzn1_dmamux_route_allocate().
+> * Changed the prefix to "dmaengine:".
+> * Dropped the partial transfers fix.
+> * Added Rob's acks.
+>=20
+> Changes in v4:
+> * Freed "map" in the error path of the dmamux driver.
+> * Improved a bit the style as requested by Prabhakar.
+> * Dropped a __maybe_unused.
+> * Reorder the includes.
+> * Added a dependency on ARCH_RZN1.
+> * Added Rob's Ack.
+> * Added a reg property to the dmamux binding file.
+> * Referenced the dmamux binding from the system controller file.
+> * Called of_platform_populate from the end of the system controller
+>   (clock) driver probe in order to probe the dmamux if it was
+>   populated.
+> * Added DMA properties to all the relevant UARTs.
+>=20
+> Changes in v3:
+> * Added Reviewed-by tags.
+> * Exported the set_dmamux* symbol properly.
+> * Dropped a useless check in the probe and moved the sysctrl_priv
+>   assignation to the end of the probe.
+> * Renamed the dmamux driver
+> * Added a couple of missing MODULE_ macros in the dmamux driver.
+> * Decided to use a regular platform init call instead of the
+>   arch_initcall() initially proposed.
+> * s/%d/%u/ in printk's when appropriate.
+> * Used a hardcoded value instead of dmamux->dmac_requests when
+>   appropriate.
+> * Changed the variable name "master" to "dmac_idx" to be more
+>   descriptive.
+> * Dropped most of the of_* calls in favor of #define's.
+> * Fixed a typo.
+> * Exported two symbols from 8250_dma.c.
+>=20
+> Changes in v2:
+> * Clarified that the 'fix' regarding non aligned reads would only apply
+>   to the DEV_TO_MEM case.
+> * Fix the DMA controller compatible string (copy-paste error).
+> * s/syscon/sysctrl/ as advised by Geert.
+> * Disabled irqs when taking the spinlock from the clocks driver.
+> * Moved the DMAMUX offset inside the driver.
+> * Removed extra commas.
+> * Improved the style as suggested by Andy.
+> * Removed a dupplicated check against the device node presence.
+> * Reduced the number of lines of code by using dev_err_probe().
+> * Created a Kconfig symbol for DMAMUX to fix the two robot reports
+>   received and be sure there was no useless overhead with other
+>   platforms.
+> * Exported the serial8250_{tx,rx}_dma() symbols.
+>=20
+> Miquel Raynal (9):
+>   dt-bindings: dmaengine: Introduce RZN1 dmamux bindings
+>   dt-bindings: clock: r9a06g032-sysctrl: Reference the DMAMUX subnode
+>   dt-bindings: dmaengine: Introduce RZN1 DMA compatible
+>   clk: renesas: r9a06g032: Export function to set dmamux
+>   dmaengine: dw: dmamux: Introduce RZN1 DMA router support
+>   clk: renesas: r9a06g032: Probe possible children
+>   dmaengine: dw: Add RZN1 compatible
+>   ARM: dts: r9a06g032: Add the two DMA nodes
+>   ARM: dts: r9a06g032: Describe the DMA router
+>=20
+>  .../clock/renesas,r9a06g032-sysctrl.yaml      |  11 ++
+>  .../bindings/dma/renesas,rzn1-dmamux.yaml     |  51 ++++++
+>  .../bindings/dma/snps,dma-spear1340.yaml      |   8 +-
+>  MAINTAINERS                                   |   1 +
+>  arch/arm/boot/dts/r9a06g032.dtsi              |  38 +++++
+>  drivers/clk/renesas/r9a06g032-clocks.c        |  40 ++++-
+>  drivers/dma/dw/Kconfig                        |   9 +
+>  drivers/dma/dw/Makefile                       |   2 +
+>  drivers/dma/dw/platform.c                     |   1 +
+>  drivers/dma/dw/rzn1-dmamux.c                  | 155 ++++++++++++++++++
+>  include/linux/soc/renesas/r9a06g032-sysctrl.h |  11 ++
+>  11 files changed, 325 insertions(+), 2 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/dma/renesas,rzn1-dm=
+amux.yaml
+>  create mode 100644 drivers/dma/dw/rzn1-dmamux.c
+>  create mode 100644 include/linux/soc/renesas/r9a06g032-sysctrl.h
+>=20
