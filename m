@@ -2,88 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4E1E0529AAE
-	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 09:23:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B8511529AB6
+	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 09:26:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240188AbiEQHXO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 May 2022 03:23:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38576 "EHLO
+        id S238482AbiEQH00 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 May 2022 03:26:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45854 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235255AbiEQHXK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 03:23:10 -0400
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3E70434B0
-        for <devicetree@vger.kernel.org>; Tue, 17 May 2022 00:23:08 -0700 (PDT)
-Received: by mail-ej1-x633.google.com with SMTP id j6so32859691ejc.13
-        for <devicetree@vger.kernel.org>; Tue, 17 May 2022 00:23:08 -0700 (PDT)
+        with ESMTP id S241096AbiEQH0T (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 03:26:19 -0400
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4ED8E12600
+        for <devicetree@vger.kernel.org>; Tue, 17 May 2022 00:26:17 -0700 (PDT)
+Received: by mail-ej1-x62b.google.com with SMTP id tk15so9413529ejc.6
+        for <devicetree@vger.kernel.org>; Tue, 17 May 2022 00:26:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=XCRBYrzQvjS4psczJqPKiR1yzwCr9m3dz6Q37fPyVWc=;
-        b=Y+3U6RnS5g0NIQcBmmgAFfin+pi/+a/jPrVCWPhBW+wYgF2cSsb3M9D77GNCflSTLE
-         DuAd444CkknzbOxbH53oJu1XKZgh2AoixtIitZUNJO3NO+Ydx9EvUHuDQMCpvSe43iEQ
-         QEhcbkeZmmMYjJLcHMC8U+Cc712bPHzz/R0J0VQC32sQlLTywUuST3WoQJOu6G10pDPd
-         Cs33cc3KwxDjJTyh9y51ug9mQtClFsS1n9R2JjShh8Eu1uO3rT90uSqpi64EvY/3rOFI
-         ogIZHNtUCvcKf4lDtXgaceDzl7RbqErhWse6Z/rn76GdjFd8u+2WoqA6AufZNKXXBQD6
-         U0Vw==
+         :references:from:in-reply-to:content-transfer-encoding;
+        bh=mkv+AFLKZ6z0pAWxiMD1eopJToeMN6aA5f5FUcc/dXc=;
+        b=djzgp8BTUZLH3FFMHVMXHi+RtKuPZCyyi+WeIn35v+xQ0YLN/eVBWWr0O7nSEe5XRE
+         RSXkIbxBerlskygCynbFApJ5+f6ctyT9lXsQP64L4fkhhJfXFlPAUFKqg6KoWz+dnumx
+         ZSB68iDT0kCh0exTS0PUZ0Dg/PswM5X53OaD5UUpuJJkFIzSANPssYzujL7MMcXd90y4
+         mJ2x2Losq1/2oz42FgJ1HauyUdcxTAf397rPzQ43R1oi2+AudM987DF+q4Y6EfHoz8j5
+         k3NDeu80iCyecY7fmIqvzpaNO4JLDWdJyDbgbnbd2qk+YPcE9a54qZ/v5WvGeaSZP8Ld
+         46aw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
+         :content-language:to:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=XCRBYrzQvjS4psczJqPKiR1yzwCr9m3dz6Q37fPyVWc=;
-        b=rnqTfJyDOcxWEbaIQDkNggl32MxH9923Xk6571jd8x/G0hekIGv6411vOrRyB1o6Fa
-         A8W7HbpL0lsFkYfCZzbTcU+YUVCZH91KORIhquIykznDjHd/XiLZqKXzrAhU+Vmjzgx9
-         Yaf4xM7dVWnJucXVCutRcOdhNLKrGbibdOq278NSYBjERWOI0ruT6Y5svOPenkFLZL70
-         sSuEAeasgWWedh+IWMqNMkWM2y/pZZncemZIdrTgK8NS7Ggd7MbK05Wf0gvIU1A+b3l5
-         qLEvSREM56TrN/QQyW/46bHeQEPH1AojsRg/6K/wdSwiqf6E1I85qDdZNX+zfFTn1Vao
-         Ld7g==
-X-Gm-Message-State: AOAM533fcJpXcP2mhNZFI59ogNQA5oK1yTkgDcY6NMAYEkxJyZT/wb0E
-        HPzjhHPvormZMwd6t7AEwSuVBQ==
-X-Google-Smtp-Source: ABdhPJzfy58cHRd3DOtRyIs4xD25jMmDSEeBJchqbp3rg8jiISTRXl4sNXSb1FiD4HqnpEQqekmgeA==
-X-Received: by 2002:a17:907:3f1d:b0:6f4:ce49:52ea with SMTP id hq29-20020a1709073f1d00b006f4ce4952eamr17969703ejc.47.1652772187446;
-        Tue, 17 May 2022 00:23:07 -0700 (PDT)
+        bh=mkv+AFLKZ6z0pAWxiMD1eopJToeMN6aA5f5FUcc/dXc=;
+        b=8IeoK0OceBwW+GP7iM5Oz2KxDAEF3DFkz/pQw1RMDC79yl63mC3udafuNrm9rPi//i
+         PeU0/1PngTNNjxPBMmBdiqfmftTtfQm42kJ99CemVAd893sVZL7t9QBSMeBogG372f+P
+         kHR/HWTs3do/SHaiIx+AmoSh3QnHswG0+6tw9uAtjcqf3xeokbzx1MfpryFrZIZOslPS
+         YznLXS4HMUy5iR7TMUcnnXFtRuaxT7IVBPZoPJUDLHuol+fgsJ2J9jGJARYCBMOjJrk2
+         j+/5P55jcjuYtGeFC7rI9lOAQQVAKr1tOfLQuxOdPI2w46Xzsp5YHZfmjjO58FX5Zw3O
+         LxGQ==
+X-Gm-Message-State: AOAM531slVYAjDG593dNqKqpHZEOsHxjJImEN7Mtwn361wQZOow5mDtl
+        GeVnMKgxZ/5XN0cDry3wBaSoog==
+X-Google-Smtp-Source: ABdhPJwgO/s2grWZe3PZvtpp+Q5Pvo1W2bpG+p15ZvVLJiQz2sQvGpgkchxCLLh4NmCrawcJmR9+JQ==
+X-Received: by 2002:a17:906:9748:b0:6fa:8c68:af0e with SMTP id o8-20020a170906974800b006fa8c68af0emr19080152ejy.153.1652772375886;
+        Tue, 17 May 2022 00:26:15 -0700 (PDT)
 Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id s12-20020a508d0c000000b0042617ba63d7sm6354380eds.97.2022.05.17.00.23.06
+        by smtp.gmail.com with ESMTPSA id hv6-20020a17090760c600b006f3ef214d9esm711213ejc.4.2022.05.17.00.26.14
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 17 May 2022 00:23:07 -0700 (PDT)
-Message-ID: <c948c2ed-d222-5c16-4df4-daf078c886cc@linaro.org>
-Date:   Tue, 17 May 2022 09:23:05 +0200
+        Tue, 17 May 2022 00:26:15 -0700 (PDT)
+Message-ID: <fa11d71b-d53e-1eb3-22db-e7237c523cd4@linaro.org>
+Date:   Tue, 17 May 2022 09:26:14 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.8.1
-Subject: Re: [PATCH v2 4/4] dt-bindings: arm: qcom: Add more sc7180 Chromebook
- board bindings
+Subject: Re: [PATCH 1/6] dt-bindings: regulator: qcom,spmi-regulator: Convert
+ to dtschema
 Content-Language: en-US
-To:     Doug Anderson <dianders@chromium.org>
-Cc:     Rob Herring <robh@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Rajendra Nayak <quic_rjendra@quicinc.com>,
-        Alexandru M Stan <amstan@chromium.org>,
-        Julius Werner <jwerner@chromium.org>,
-        "Joseph S . Barrera III" <joebar@chromium.org>,
-        Andy Gross <agross@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@codeaurora.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>
-References: <20220513095722.v2.1.I71e42c6174f1cec17da3024c9f73ba373263b9b6@changeid>
- <20220513095722.v2.4.Ie8713bc0377672ed8dd71189e66fc0b77226fb85@changeid>
- <125970b0-af71-1695-a3ab-10a159ac63a5@linaro.org>
- <CAD=FV=XR+WwWmrB1wGX65=szBc2PbGNOHbm2tiQT5Wp8CPG0Kg@mail.gmail.com>
+To:     Robert Marko <robimarko@gmail.com>, agross@kernel.org,
+        bjorn.andersson@linaro.org, lgirdwood@gmail.com,
+        broonie@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20220515203118.474684-1-robimarko@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAD=FV=XR+WwWmrB1wGX65=szBc2PbGNOHbm2tiQT5Wp8CPG0Kg@mail.gmail.com>
+In-Reply-To: <20220515203118.474684-1-robimarko@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -91,47 +76,90 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/05/2022 17:16, Doug Anderson wrote:
-> Hi,
+On 15/05/2022 22:31, Robert Marko wrote:
+> Convert the bindings of Qualcomm SPMI regulators to DT schema.
 > 
-> On Mon, May 16, 2022 at 12:05 AM Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
->>
->> On 13/05/2022 18:59, Douglas Anderson wrote:
->>> This adds board bindings for boards that are downstream but not quite
->>> upstream yet.
->>>
->>> Signed-off-by: Douglas Anderson <dianders@chromium.org>
->>> ---
->>>
->>> Changes in v2:
->>> - Use a "description" instead of a comment for each item.
->>> - Use the marketing name instead of the code name where possible.
->>
->> These should be published with the patch adding their upstream DTS/DTSI.
->> There is no point to list all possible boards in the world from any
->> downstream source. For upstream there is no particular benefit for such
->> bindings, for downstream you also said there is no.
+> Signed-off-by: Robert Marko <robimarko@gmail.com>
+> ---
+> I am aware that syscon alone is not really acceptable, its converted
+> directly from the old text bindings.
 > 
-> Joe has been working on upstreaming these boards:
+> There is also the issue of some MSM8994, MSM8996 and APQ8096 devices using
+> '#address-cells', '#size-cells', some even defining reg property for
+> regulators.
 > 
-> https://lore.kernel.org/r/20220510154406.v5.1.Id769ddc5dbf570ccb511db96da59f97d08f75a9c@changeid/
-> 
-> I think there is little chance that they won't go upstream at this
-> point. However, we're at a time in the merge window where it will be
-> several weeks before anything can land. If Joe were to include this
-> patch as part of his series I suspect it would be much more confusing
-> because it would add an unnecessary dependency between my series and
-> his and make it harder for Bjorn to apply it later. Keeping the patch
-> with my series means that the series can be applied more easily.
-> 
-> How about: I'll add a link to his latest posting in my next version.
-> Then, in the future (after these bindings patches have landed) then
-> future boards can go together with their bindings.
+> Any advice on how to solve these issues is appreciated.
+> ---
+>  .../regulator/qcom,spmi-regulator.yaml        | 176 ++++++++++++++++++
 
+You miss here the actual conversion... where is the removal of old file?
 
-Sure, sounds good.
+>  1 file changed, 176 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/regulator/qcom,spmi-regulator.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/regulator/qcom,spmi-regulator.yaml b/Documentation/devicetree/bindings/regulator/qcom,spmi-regulator.yaml
+> new file mode 100644
+> index 000000000000..f7da310f1845
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/regulator/qcom,spmi-regulator.yaml
+> @@ -0,0 +1,176 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/regulator/qcom,spmi-regulator.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm SPMI Regulators
+> +
+> +maintainers:
+> +  - Robert Marko <robert.marko@sartura.hr>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - qcom,pm660-regulators
+> +      - qcom,pm660l-regulators
+> +      - qcom,pm8004-regulators
+> +      - qcom,pm8005-regulators
+> +      - qcom,pm8226-regulators
+> +      - qcom,pm8841-regulators
+> +      - qcom,pm8916-regulators
+> +      - qcom,pm8941-regulators
+> +      - qcom,pm8950-regulators
+> +      - qcom,pm8994-regulators
+> +      - qcom,pmi8994-regulators
+> +      - qcom,pms405-regulators
+> +
+> +  qcom,saw-reg:
+> +    description: Reference to syscon node defining the SAW registers
+> +    $ref: "/schemas/types.yaml#/definitions/phandle"
+> +
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - qcom,pm8941-regulators
+> +    then:
+> +      properties:
+> +        interrupts:
+> +          items:
+> +            - description: Over-current protection interrupt for 5V S1
+> +            - description: Over-current protection interrupt for 5V S2
+> +        interrupt-names:
+> +          items:
+> +            - const: ocp-5vs1
+> +            - const: ocp-5vs2
+> +
+> +patternProperties:
 
+This goes just after "properties:"
+
+> +  ".*-supply$":
+> +    description: Input supply phandle(s) for this node
+> +    $ref: "/schemas/types.yaml#/definitions/phandle"
+> +
 
 Best regards,
 Krzysztof
