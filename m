@@ -2,31 +2,31 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7276752A332
-	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 15:21:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 76C1852A334
+	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 15:21:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347695AbiEQNVv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 May 2022 09:21:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54266 "EHLO
+        id S1347734AbiEQNVy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 May 2022 09:21:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54620 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347665AbiEQNVV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 09:21:21 -0400
+        with ESMTP id S1347697AbiEQNV3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 09:21:29 -0400
 Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D47C840E7B;
-        Tue, 17 May 2022 06:21:18 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 076E140E7B;
+        Tue, 17 May 2022 06:21:27 -0700 (PDT)
 Received: from [127.0.0.1] (localhost [127.0.0.1])
         (Authenticated sender: kholk11)
-        with ESMTPSA id 124DE1F43486
+        with ESMTPSA id E218B1F43490
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1652793677;
-        bh=CgNYAOaieQLCVcum8jYWv0FFa/H0G4zrGj0sGsj1tXw=;
+        s=mail; t=1652793678;
+        bh=NSHC9jr1SktgRyogww62O4j6dftElLCQcN59dUpsrwQ=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=fSBaRyI6hnMhzOnk7Qp0Ysns7gPUpTUzRMIMj694El0CyT8qbgolMVkEpkBpzrtIk
-         yNZIE7eq0Nbgo0c0an2FgIb2c0ciV4pEbQF8ZOSNq+nNZKN6Aql2OHLkz88WGk9pfB
-         Md4Z9YLSK/U8pIAcrlPauRO9xLO+nayomT4d+bbyi1hM7/NLovW3MjWLwPMPYigFpu
-         MugKE11JhgWjrruYhJoZuumEQKclpr7xzzyBQtsZQ1XQIELAistppfKN89g3PI5ukz
-         fRZlj1xfXf6Oua1iryHxkyASM0L9G57c5BosNNF/fJK9yXkVEC6JkMM6xA8EYMPrNs
-         ySLA+v4OILXkQ==
+        b=mg9vgY26ZsZkR1bhWe/HrA3BhQ0yR740ZsnUBGWgAPNItH3WIG9vIRmfyGM1lrSjX
+         Yehh33G3DOMxOp9pEQKx00aIUckLohR2nDQ/pDaTzRxX5Y2lMD1jiywpPKC6P2QHo3
+         9z4V8ABheLJI6wDdFRU8O+B2QVUW+Zpy5+GDwrwKBrTj4ghoKzZV9+KkOBkCt2h6o3
+         WxYZm90xyFTqs2VF64tTVsZsJJiYi6VuvxosuFdTGd3CxdF+D3cJ1Oq54RDtErmJUA
+         K9T+FZmtN6dV3EIi9w6O4/EA8T9dvV1K+M59ooPWlqqZ2aa4vvD3SLSDbbXx+rWI3K
+         xOpU1OaJXYQ7Q==
 From:   AngeloGioacchino Del Regno 
         <angelogioacchino.delregno@collabora.com>
 To:     yong.wu@mediatek.com
@@ -37,9 +37,9 @@ Cc:     joro@8bytes.org, will@kernel.org, robh+dt@kernel.org,
         linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         AngeloGioacchino Del Regno 
         <angelogioacchino.delregno@collabora.com>
-Subject: [PATCH 6/8] arm64: dts: mediatek: mt2712e: Add mediatek,infracfg phandle for IOMMU
-Date:   Tue, 17 May 2022 15:21:05 +0200
-Message-Id: <20220517132107.195932-7-angelogioacchino.delregno@collabora.com>
+Subject: [PATCH 7/8] dt-bindings: iommu: mediatek: Require mediatek,infracfg for mt2712/8173
+Date:   Tue, 17 May 2022 15:21:06 +0200
+Message-Id: <20220517132107.195932-8-angelogioacchino.delregno@collabora.com>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20220517132107.195932-1-angelogioacchino.delregno@collabora.com>
 References: <20220517132107.195932-1-angelogioacchino.delregno@collabora.com>
@@ -55,40 +55,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The IOMMU driver now looks for the "mediatek,infracfg" phandle as a
-new way to retrieve a syscon to that:
-even though the old way is retained, it has been deprecated and the
-driver will write a message in kmsg advertising to use the phandle
-way instead.
-
-For this reason, assign the right phandle to mediatek,infracfg in
-the iommu node.
+Both MT2712 and MT8173 got a mediatek,infracfg phandle: add that to
+the required properties for these SoCs to deprecate the old way of
+looking for SoC-specific infracfg compatible in the entire devicetree.
 
 Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 ---
- arch/arm64/boot/dts/mediatek/mt2712e.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
+ .../devicetree/bindings/iommu/mediatek,iommu.yaml    | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt2712e.dtsi b/arch/arm64/boot/dts/mediatek/mt2712e.dtsi
-index 623eb3beabf2..4797537cb368 100644
---- a/arch/arm64/boot/dts/mediatek/mt2712e.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt2712e.dtsi
-@@ -329,6 +329,7 @@ iommu0: iommu@10205000 {
- 		interrupts = <GIC_SPI 147 IRQ_TYPE_LEVEL_LOW>;
- 		clocks = <&infracfg CLK_INFRA_M4U>;
- 		clock-names = "bclk";
-+		mediatek,infracfg = <&infracfg>;
- 		mediatek,larbs = <&larb0>, <&larb1>, <&larb2>,
- 				 <&larb3>, <&larb6>;
- 		#iommu-cells = <1>;
-@@ -346,6 +347,7 @@ iommu1: iommu@1020a000 {
- 		interrupts = <GIC_SPI 145 IRQ_TYPE_LEVEL_LOW>;
- 		clocks = <&infracfg CLK_INFRA_M4U>;
- 		clock-names = "bclk";
-+		mediatek,infracfg = <&infracfg>;
- 		mediatek,larbs = <&larb4>, <&larb5>, <&larb7>;
- 		#iommu-cells = <1>;
- 	};
+diff --git a/Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml b/Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml
+index a6cf9678271f..17d78b17027a 100644
+--- a/Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml
++++ b/Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml
+@@ -175,6 +175,18 @@ allOf:
+       required:
+         - power-domains
+ 
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - mediatek,mt2712-m4u
++              - mediatek,mt8173-m4u
++
++    then:
++      required:
++        - mediatek,infracfg
++
+   - if: # The IOMMUs don't have larbs.
+       not:
+         properties:
 -- 
 2.35.1
 
