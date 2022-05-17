@@ -2,102 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C733529A13
-	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 09:01:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E43C0529A59
+	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 09:03:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240808AbiEQHBk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 May 2022 03:01:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34022 "EHLO
+        id S233914AbiEQHDP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 May 2022 03:03:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38448 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240763AbiEQHBe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 03:01:34 -0400
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9879A3CFF0
-        for <devicetree@vger.kernel.org>; Tue, 17 May 2022 00:01:32 -0700 (PDT)
-Received: by mail-ej1-x62a.google.com with SMTP id m20so32746336ejj.10
-        for <devicetree@vger.kernel.org>; Tue, 17 May 2022 00:01:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=bc1mIt/3dkcIrUfw+Wx32EX6v+iTPPZGITrndOapvM4=;
-        b=Fjh6poNxasG94ErQpFcdlbjAl0+dlDmlCBoaT6HDLJGKC2Kw5OTZ92q8Dr7fo/kBF3
-         BLNhTmSo5/UVu2d9ilG70dsB8hTy4sLrmiex8pe6YJnw3utstVhoF1BcSiHY/9fMkZBL
-         xH4r97n04dXzIzRWhJvmJU+5eBiVSVbT6hT31XGH0IhBX+7iugUTRaSR1H4ewVuUO4nA
-         l9XGL7TQX4/ozmnfXw11EBk8btdV96qaweYJ5tsPVAMzCFpFjbBx6YvvpiGTbhOTrLgL
-         w5hKS9/BnpqQZc0GdsSBzhNdf3UODOS2hof9D/XKWnW0dLTLVx7fhOkn5thbJCdos7qx
-         V+WA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=bc1mIt/3dkcIrUfw+Wx32EX6v+iTPPZGITrndOapvM4=;
-        b=ebLu84zE2OoO+XTd0GQT7Jyj0plJZJJFQW5fqwiJhjm+hLFUJThcO/XJxpxuFiMiu3
-         BjRVj1jyb2x/pdpAh6/lCSl3lRVk2SKuAXAwVkMfMtsO0hdppaDycaCOQF+OzJrKCqxt
-         YNbXCfFXLzuz5K+5bz6aXW/qk+Rrxuyodk4JDPu5xOI/7/ynYtoApjQtdMH43794D1yB
-         GYplUfLFrlwh10vyBl4Ko7dPUm6/sOkegl0wNFbgoWtLrwxdudSuixvVsglxKUkZLHLd
-         xdbJAiQofhr+IwE3Lm4Kh6IcqiwJ4Ki2VmxQ79xBQVS4HmWdb6iioyOphd+b/Dt4rDvv
-         mGLQ==
-X-Gm-Message-State: AOAM531TKR6047Qz4vw5Y7hGHKTEA7FappgcR4J+0wcpBjNz4KB1FEIq
-        zabbPUkFjl/1rfHVnUvYUtQALAxB3EzKlV39
-X-Google-Smtp-Source: ABdhPJzkUfAuTvwacS7XtUrVOynLJXz12kNbe6zJA4OEiOtW6jW6Kj8UltSzl8K/mI/BNt0o0hkPBA==
-X-Received: by 2002:a17:907:94d2:b0:6f4:b5f9:6f3a with SMTP id dn18-20020a17090794d200b006f4b5f96f3amr18025368ejc.313.1652770891993;
-        Tue, 17 May 2022 00:01:31 -0700 (PDT)
-Received: from krzk-bin.. (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id b5-20020a056402138500b0042617ba637esm6487016edv.8.2022.05.17.00.01.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 May 2022 00:01:31 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        with ESMTP id S240732AbiEQHCU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 03:02:20 -0400
+Received: from relay11.mail.gandi.net (relay11.mail.gandi.net [217.70.178.231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32EE9473A0;
+        Tue, 17 May 2022 00:02:01 -0700 (PDT)
+Received: (Authenticated sender: maxime.chevallier@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id A1ADA10000B;
+        Tue, 17 May 2022 07:01:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1652770920;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=9KazaW1SkFx7SybTXPFRmtUBoimvEisxPHGbF+BGpFc=;
+        b=R5CTzLA4Ubtz8fYfQ2SDt3yt3caIj3yrtuf0wjEBNuwsMPcn30DzUr5KYbk4TNHmWe5fGn
+        PceQ1IHai4j++s5NU/WJqjbOkn2Legv9KSeORmjtH8o9pkGx3aFTRfx+W7+ZT9URZnolio
+        rdvxiV4rfaQVB4ISVYv/iuthulsjxDhJH3SrSqohMvKj6qwxjd0LAicq3OjeHg35EOYnlx
+        n46ipD/l/baalEMoG1wmOkd/dNPzNzBChI9l0XUYPajQTBeBpIpPdUb3AhJZpwaMbDJqQa
+        h3H3Vpkf1+E6oKnbD4wWfESDyqbNcBgFMRC22ANt+DxSQlDY99MkW97sHrc7qQ==
+Date:   Tue, 17 May 2022 09:01:56 +0200
+From:   Maxime Chevallier <maxime.chevallier@bootlin.com>
+To:     Vladimir Oltean <vladimir.oltean@nxp.com>
+Cc:     "davem@davemloft.net" <davem@davemloft.net>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v2 12/12] arm64: dts: qcom: sm8450: remove duplicated glink-edge interrupt
-Date:   Tue, 17 May 2022 09:01:13 +0200
-Message-Id: <20220517070113.18023-13-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20220517070113.18023-1-krzysztof.kozlowski@linaro.org>
-References: <20220517070113.18023-1-krzysztof.kozlowski@linaro.org>
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "thomas.petazzoni@bootlin.com" <thomas.petazzoni@bootlin.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        Luka Perkov <luka.perkov@sartura.hr>,
+        Robert Marko <robert.marko@sartura.hr>
+Subject: Re: [PATCH net-next v2 2/5] net: dsa: add out-of-band tagging
+ protocol
+Message-ID: <20220517090156.3fde5a8f@pc-20.home>
+In-Reply-To: <20220514224002.vvmd43lnjkbsw2g3@skbuf>
+References: <20220514150656.122108-1-maxime.chevallier@bootlin.com>
+        <20220514150656.122108-3-maxime.chevallier@bootlin.com>
+        <20220514224002.vvmd43lnjkbsw2g3@skbuf>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Specifying interrupts and interrupts-extended is not correct.  Keep only
-the extended ones, routed towards IPCC mailbox to fix warnings like:
+Hi Vlad,
 
-  sm8450-qrd.dtb: glink-edge: More than one condition true in oneOf schema:
-    {'$filename': 'Documentation/devicetree/bindings/remoteproc/qcom,glink-edge.yaml',
+On Sat, 14 May 2022 22:40:03 +0000
+Vladimir Oltean <vladimir.oltean@nxp.com> wrote:
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- arch/arm64/boot/dts/qcom/sm8450.dtsi | 1 -
- 1 file changed, 1 deletion(-)
+> On Sat, May 14, 2022 at 05:06:53PM +0200, Maxime Chevallier wrote:
+> > This tagging protocol is designed for the situation where the link
+> > between the MAC and the Switch is designed such that the Destination
+> > Port, which is usually embedded in some part of the Ethernet
+> > Header, is sent out-of-band, and isn't present at all in the
+> > Ethernet frame.
+> > 
+> > This can happen when the MAC and Switch are tightly integrated on an
+> > SoC, as is the case with the Qualcomm IPQ4019 for example, where
+> > the DSA tag is inserted directly into the DMA descriptors. In that
+> > case, the MAC driver is responsible for sending the tag to the
+> > switch using the out-of-band medium. To do so, the MAC driver needs
+> > to have the information of the destination port for that skb.
+> > 
+> > This out-of-band tagging protocol is using the very beggining of
+> > the skb headroom to store the tag. The drawback of this approch is
+> > that the headroom isn't initialized upon allocating it, therefore
+> > we have a chance that the garbage data that lies there at
+> > allocation time actually ressembles a valid oob tag. This is only
+> > problematic if we are sending/receiving traffic on the master port,
+> > which isn't a valid DSA use-case from the beggining. When dealing
+> > from traffic to/from a slave port, then the oob tag will be
+> > initialized properly by the tagger or the mac driver through the
+> > use of the dsa_oob_tag_push() call.
+> > 
+> > Signed-off-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
+> > ---  
+> 
+> Why put the DSA pseudo-header at skb->head rather than push it using
+> skb_push()? I thought you were going to check for the presence of a
+> DSA header using something like skb->mac_len == ETH_HLEN + tag len,
+> but right now it sounds like treating garbage in the headroom as a
+> valid DSA tag is indeed a potential problem. If you can't sort that
+> out using information from the header offsets alone, maybe an skb
+> extension is required?
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-index 7d08fad76371..4e796f27d6fc 100644
---- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-@@ -2282,7 +2282,6 @@ IPCC_MPROC_SIGNAL_GLINK_QMP
- 							     IRQ_TYPE_EDGE_RISING>;
- 				mboxes = <&ipcc IPCC_CLIENT_MPSS
- 						IPCC_MPROC_SIGNAL_GLINK_QMP>;
--				interrupts = <GIC_SPI 449 IRQ_TYPE_EDGE_RISING>;
- 				label = "modem";
- 				qcom,remote-pid = <1>;
- 			};
--- 
-2.32.0
+Indeed, I thought of that, the main reason is that pushing/poping in
+itself is not enough, you also have to move the whole mac_header to
+leave room for the tag, and then re-set it in it's original location.
+There's nothing wrong with this, but it looked a bit cumbersome just to
+insert a dummy tag that gets removed rightaway. Does that make sense ?
 
+But yes I would really like to get a way to know wether the tag is
+there or not, I'll dig a bit more to see if I can find a way to get
+this info from the various skb offsets in a reliable way.
+
+Thanks,
+
+Maxime
