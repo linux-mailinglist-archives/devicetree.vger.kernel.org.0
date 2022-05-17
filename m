@@ -2,82 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F49952A410
-	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 16:00:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7446E52A4D9
+	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 16:29:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345951AbiEQOAA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 May 2022 10:00:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53474 "EHLO
+        id S1348904AbiEQO3f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 May 2022 10:29:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52188 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348141AbiEQN76 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 09:59:58 -0400
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C40593C700
-        for <devicetree@vger.kernel.org>; Tue, 17 May 2022 06:59:56 -0700 (PDT)
-Received: by mail-lj1-x22b.google.com with SMTP id h8so1187305ljb.6
-        for <devicetree@vger.kernel.org>; Tue, 17 May 2022 06:59:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=LEsqb6iifvbd1vGQ2F4XBUPSxstBfEUVUDZg8Q1Sun8=;
-        b=DdA+OmC0wz5YgtBt1uk29pnGFOo9cocstcx0c01D4Gt6aBXJ1itONLZ4e3gxzaHZfA
-         ow7cvmw0uFuF41S2OBXAZiPivC7NxRJS4YY0+6KuIAzgOMXHSteBFR6LqRaBdmkCyy5p
-         2kBOGatD9avctT1ETg3QAgtLJlgI2TEjLr6wNV3hW9FMGz7dcEOs5qwJlLgidL/VQNNx
-         uCEp9RD50bUIXz6sNxxLMYsPB6Eb7dya3JwnC8RqBiwhwee4UMeN9Pt8fyOzm/OpAR48
-         hELaCLsrup08W9pKmTxn3FQrXjy4vddlwgncgr6VHkCXMkfXWMdvcdBxoFbEsp84Q+fV
-         /JnQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=LEsqb6iifvbd1vGQ2F4XBUPSxstBfEUVUDZg8Q1Sun8=;
-        b=B70BiKvFlKRsyLvwxpqFL0RhTTa9A638s+pLyMnjXG3mYQwrWaJ3t4YuKtfqMq991O
-         PMt7HkL5t4WqX/l4DZZAT63Vu1dTSzlQnEZPxk4SrLin5HJ/w17ce1UF5WOGo8wS6Bpo
-         ShSAbkWwHIfzwXw8Ee3kaF7k00X7Krr7ewoMexWm//X+jWaCxp00sip2M3DakKUDiXaJ
-         09TNnxJYvxYgTP9SVLD0Dphwv9JfvaBkOp3Xv/7A3YKHoA/OtnmxnxO+VgLtwoi2s+x+
-         AsVESH626cCMARsNdIzXLcsjPSY2/knTRRb8MfflbfOjwHH6Qhge+dNtr+XkCUUU9TbL
-         EReQ==
-X-Gm-Message-State: AOAM5319SI2etCfh71mA5HHDkGhjQBjw3bWRf672jUB2kxQ7TRGX+k1a
-        UvqkF5growhW4kwni2ppEP3xhg==
-X-Google-Smtp-Source: ABdhPJz7RfnaMB4s3XVzeGmho3fC74jbeCzLVypGz9aT7Ugi9qvsalkuXfrWE+QLQgyBiSWvUfDqdA==
-X-Received: by 2002:a2e:934b:0:b0:24f:cce:5501 with SMTP id m11-20020a2e934b000000b0024f0cce5501mr14698187ljh.443.1652795995182;
-        Tue, 17 May 2022 06:59:55 -0700 (PDT)
-Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id v11-20020ac2592b000000b0047255d2117asm1596611lfi.169.2022.05.17.06.59.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 17 May 2022 06:59:54 -0700 (PDT)
-Message-ID: <08787027-4978-d03e-0d91-d70bb8e98f82@linaro.org>
-Date:   Tue, 17 May 2022 15:59:53 +0200
+        with ESMTP id S235130AbiEQO3e (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 10:29:34 -0400
+X-Greylist: delayed 8400 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 17 May 2022 07:29:32 PDT
+Received: from 5.mo552.mail-out.ovh.net (5.mo552.mail-out.ovh.net [188.165.45.220])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBE5342A27
+        for <devicetree@vger.kernel.org>; Tue, 17 May 2022 07:29:32 -0700 (PDT)
+Received: from mxplan5.mail.ovh.net (unknown [10.109.143.159])
+        by mo552.mail-out.ovh.net (Postfix) with ESMTPS id 99C30272DB;
+        Tue, 17 May 2022 12:03:05 +0000 (UTC)
+Received: from kaod.org (37.59.142.95) by DAG4EX1.mxp5.local (172.16.2.31)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.6; Tue, 17 May
+ 2022 14:03:03 +0200
+Authentication-Results: garm.ovh; auth=pass (GARM-95G00170ed3db5-be56-4885-81a9-6c1aa5207cce,
+                    BB146B841C735870D6401592F5D215EFF71F43F0) smtp.auth=clg@kaod.org
+X-OVh-ClientIp: 82.64.250.170
+Message-ID: <a17b2446-f5a6-d606-8ef4-3931b8bc94da@kaod.org>
+Date:   Tue, 17 May 2022 14:03:02 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH 15/20] media: s5p-mfc: DPB Count Independent of
- VIDIOC_REQBUF
+ Thunderbird/91.8.0
+Subject: Re: (subset) [PATCH v7 00/11] spi: spi-mem: Convert Aspeed SMC driver
+ to spi-mem
 Content-Language: en-US
-To:     Smitha T Murthy <smitha.t@samsung.com>,
-        linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     m.szyprowski@samsung.com, andrzej.hajda@intel.com,
-        mchehab@kernel.org, hverkuil-cisco@xs4all.nl,
-        ezequiel@vanguardiasur.com.ar, jernej.skrabec@gmail.com,
-        benjamin.gaignard@collabora.com, stanimir.varbanov@linaro.org,
-        dillon.minfei@gmail.com, david.plowman@raspberrypi.com,
-        mark.rutland@arm.com, robh+dt@kernel.org, krzk+dt@kernel.org,
-        andi@etezian.org, alim.akhtar@samsung.com,
-        aswani.reddy@samsung.com, pankaj.dubey@samsung.com,
-        linux-fsd@tesla.com
-References: <20220517125548.14746-1-smitha.t@samsung.com>
- <CGME20220517125641epcas5p48fc3d48ad5e4a02879a1063da36c0063@epcas5p4.samsung.com>
- <20220517125548.14746-16-smitha.t@samsung.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220517125548.14746-16-smitha.t@samsung.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+To:     Pratyush Yadav <p.yadav@ti.com>, Mark Brown <broonie@kernel.org>
+CC:     <linux-spi@vger.kernel.org>, <linux-mtd@lists.infradead.org>,
+        <andrew@aj.id.au>, <robh+dt@kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <richard@nod.at>,
+        <joel@jms.id.au>, <tudor.ambarus@microchip.com>,
+        <miquel.raynal@bootlin.com>, <chin-ting_kuo@aspeedtech.com>,
+        <linux-aspeed@lists.ozlabs.org>, <vigneshr@ti.com>,
+        <linux-kernel@vger.kernel.org>
+References: <20220509175616.1089346-1-clg@kaod.org>
+ <165272636363.750911.14933122170662994904.b4-ty@kernel.org>
+ <20220517110509.2e6xbwot63yl6a3c@ti.com>
+From:   =?UTF-8?Q?C=c3=a9dric_Le_Goater?= <clg@kaod.org>
+In-Reply-To: <20220517110509.2e6xbwot63yl6a3c@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [37.59.142.95]
+X-ClientProxiedBy: DAG5EX1.mxp5.local (172.16.2.41) To DAG4EX1.mxp5.local
+ (172.16.2.31)
+X-Ovh-Tracer-GUID: 80e81b9c-232a-483c-aa21-84c362e6a333
+X-Ovh-Tracer-Id: 10302265625168612228
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedvfedrheejgdeghecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefkffggfgfuvfevfhfhjggtgfhisehtkeertddtfeejnecuhfhrohhmpeevrogurhhitggpnfgvpgfiohgrthgvrhcuoegtlhhgsehkrghougdrohhrgheqnecuggftrfgrthhtvghrnheptdehkeelieetvddtlefgveeuheduheetledvtdfgfeffledvjeekjeegledvkeeunecuffhomhgrihhnpehkvghrnhgvlhdrohhrghenucfkpheptddrtddrtddrtddpfeejrdehledrudegvddrleehnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmohguvgepshhmthhpohhuthdphhgvlhhopehmgihplhgrnhehrdhmrghilhdrohhvhhdrnhgvthdpihhnvghtpedtrddtrddtrddtpdhmrghilhhfrhhomheptghlgheskhgrohgurdhorhhgpdhnsggprhgtphhtthhopedupdhrtghpthhtoheplhhinhhugidqkhgvrhhnvghlsehvghgvrhdrkhgvrhhnvghlrdhorhhg
+X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -85,17 +66,86 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/05/2022 14:55, Smitha T Murthy wrote:
-> This patch allows allocation of DPB buffers based
-> on MFC requirement so codec buffers allocations
-> has been moved after state MFCINST_HEAD_PRODUCED.
-> And it is taken care that codec buffer allocation
-> is performed in process context from userspace IOCTL
-> call.
+Pratyush,
 
-Please wrap your commit messages according to Linux coding style:
-https://elixir.bootlin.com/linux/v5.18-rc4/source/Documentation/process/submitting-patches.rst#L586
+On 5/17/22 13:05, Pratyush Yadav wrote:
+> Hi Cedric,
+> 
+> On 16/05/22 07:39PM, Mark Brown wrote:
+>> On Mon, 9 May 2022 19:56:05 +0200, Cédric Le Goater wrote:
+>>> This series adds a new SPI driver using the spi-mem interface for the
+>>> Aspeed static memory controllers of the AST2600, AST2500 and AST2400
+>>> SoCs.
+>>>
+>>>   * AST2600 Firmware SPI Memory Controller (FMC)
+>>>   * AST2600 SPI Flash Controller (SPI1 and SPI2)
+>>>   * AST2500 Firmware SPI Memory Controller (FMC)
+>>>   * AST2500 SPI Flash Controller (SPI1 and SPI2)
+>>>   * AST2400 New Static Memory Controller (also referred as FMC)
+>>>   * AST2400 SPI Flash Controller (SPI)
+>>>
+>>> [...]
+>>
+>> Applied to
+>>
+>>     https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
+>>
+>> Thanks!
+>>
+>> [02/11] dt-bindings: spi: Convert the Aspeed SMC controllers device tree binding
+>>          commit: ce9858ea499da025684a7a5f19823c2c3f14bdce
+>> [03/11] spi: spi-mem: Convert Aspeed SMC driver to spi-mem
+>>          commit: 9c63b846e6df43e5b3d31263f7db545f32deeda3
+>> [04/11] spi: aspeed: Add support for direct mapping
+>>          commit: 9da06d7bdec7dad8018c23b180e410ef2e7a4367
+>> [05/11] spi: aspeed: Adjust direct mapping to device size
+>>          commit: bb084f94e1bca4a5c4f689d7aa9b410220c1ed71
+>> [06/11] spi: aspeed: Workaround AST2500 limitations
+>>          commit: 5785eedee42c34cfec496199a80fa8ec9ddcf7fe
+>> [07/11] spi: aspeed: Add support for the AST2400 SPI controller
+>>          commit: 53526ab27d9c256504f267713aea60db7af18fb0
+>> [08/11] spi: aspeed: Calibrate read timings
+>>          commit: eeaec1ea05c0e0f08e04c6844f20cc24a2fcc0f4
+> 
+> I have repeatedly objected to this patch [0][1][2] and you have
+> repeatedly decided to not address my objections. 
 
+That's a very harsh way of saying things. I did not decide anything
+or ignore your comments. I answered your questions and acknowledged
+that indeed the read training was done under the dirmap handler but
+this was not a concern today since we had all the required information
+from spimem.
 
-Best regards,
-Krzysztof
+We waited _together_, 5 or 6 weeks, for more inputs on how to address
+the concerns you raised regarding the sustainability of this method.
+
+> I won't spend any more time fighting it. 
+
+This is not a fight. I don't know why you interpret it that way.
+
+Now, since you object so explicitly, and since this patchset has
+not reached the Linux kernel yet, we should consider dropping it.
+I rather do that than push crap in mainline. But then, please,
+provide solutions and not only objections !
+
+> But I will say that you should not expect any
+> guarantees that SPI NOR or SPI NAND will not break your calibration in
+> the future if they decide to move the dirmap_create() call around.
+
+If that's the case one day, we have multiple solutions :
+
+   - stop doing the training
+   - move the training to the appropriate handler if it exists
+   - use a default value
+  
+>> [11/11] mtd: spi-nor: aspeed: set the decoding size to at least 2MB for AST2600
+>>          commit: 73ae97e3cabb580639f02f12a192324a53c4bebb
+>>
+> 
+> [0] https://patchwork.kernel.org/project/spi-devel-general/patch/20220325100849.2019209-9-clg@kaod.org/
+> [1] https://patchwork.kernel.org/project/spi-devel-general/patch/20220214094231.3753686-9-clg@kaod.org/
+> [2] https://lore.kernel.org/all/20220208190636.h6dubktkmuosvdxo@ti.com/
+
+Regards,
+
+Cédric.
